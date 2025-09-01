@@ -1,60 +1,55 @@
-/**
- * @file 02_core_engine.c
- * @brief 核心引擎系统实现
- * @version 3.0
- * @date 2025-09-01
- *
- * 核心引擎系统的主要实现文件，包含系统初始化、配置和主要功能函数。
- */
-
 #include "TaleWorlds.Native.Split.h"
 
-// 函数: engine_initialize_core_system;
-engine_initialize_core_system;
-engine_global_context_ptr;
-engine_config_data;
-engine_memory_pool;
-engine_render_state;
-engine_frame_counter;
-engine_time_delta;
-engine_performance_data;
+// 核心引擎系统版本信息
+#define ENGINE_SYSTEM_VERSION 3.0
+#define ENGINE_LAST_UPDATED "2025-09-01"
 
-// 函数: engine_setup_rendering_context;
-engine_setup_rendering_context;
-engine_display_context;
+// void engine_initialize_core_system(void);
+void engine_initialize_core_system(void);
+void* engine_global_context_ptr;
+void* engine_config_data;
+void* engine_memory_pool;
+void* engine_render_state;
+uint32_t engine_frame_counter;
+float engine_time_delta;
+void* engine_performance_data;
 
-// 函数: engine_configure_display_settings;
-engine_configure_display_settings;
-engine_screen_resolution;
+// void engine_setup_rendering_context(void);
+void engine_setup_rendering_context(void);
+void* engine_display_context;
 
-// 函数: engine_process_main_loop;
-engine_process_main_loop;
-engine_input_state;
-engine_input_buffer;
-engine_mouse_position;
-engine_keyboard_state;
+// void engine_configure_display_settings(void);
+void engine_configure_display_settings(void);
+void* engine_screen_resolution;
 
-// 函数: engine_handle_input_events;
-engine_handle_input_events;
+// void engine_process_main_loop(void);
+void engine_process_main_loop(void);
+void* engine_input_state;
+void* engine_input_buffer;
+void* engine_mouse_position;
+void* engine_keyboard_state;
 
-// 函数: engine_update_game_state;
-engine_update_game_state;
-engine_game_data;
-engine_player_state;
-engine_camera_data;
-engine_lighting_data;
-engine_texture_data;
-engine_shader_data;
-engine_audio_data;
-engine_network_data;
-engine_calculate_frame_time;
-engine_physics_data;
-engine_ui_data;
-uint64 engine_system_flags;
-engine_error_code;
-engine_warning_count;
-engine_debug_info;
-engine_log_buffer;
+// void engine_handle_input_events(void);
+void engine_handle_input_events(void);
+
+// void engine_update_game_state(void);
+void engine_update_game_state(void);
+void* engine_game_data;
+void* engine_player_state;
+void* engine_camera_data;
+void* engine_lighting_data;
+void* engine_texture_data;
+void* engine_shader_data;
+void* engine_audio_data;
+void* engine_network_data;
+float engine_calculate_frame_time(void);
+void* engine_physics_data;
+void* engine_ui_data;
+uint64_t engine_system_flags;
+int32_t engine_error_code;
+uint32_t engine_warning_count;
+void* engine_debug_info;
+void* engine_log_buffer;
 
 // 资源管理系统函数指针
 void* engine_setup_resource_manager;
@@ -171,15 +166,15 @@ engine_base_data_offset_c0;
 engine_skeleton_data_ptr;
 engine_animation_state_ptr;
 
-// 函数: engine_initialize_main_system;
+// engine_initialize_main_system;
 engine_initialize_main_system;
 engine_main_system_ptr;
 
-// 函数: engine_setup_core_components;
+// engine_setup_core_components;
 engine_setup_core_components;
 
-// 函数: engine_configure_display_settings;
-engine_configure_display_settings;
+// void engine_configure_display_settings(void);
+void engine_configure_display_settings(void);
 engine_display_buffer_data;
 uint32 engine_display_resolution_width;
 engine_render_config_ptr;
@@ -187,10 +182,10 @@ engine_graphics_context_ptr;
 engine_shader_context_ptr;
 uint32 _guard_check_icall;
 
-// 函数: engine_initialize_render_pipeline;
+// engine_initialize_render_pipeline;
 void* engine_initialize_render_pipeline;
 
-// 函数: engine_setup_input_handlers;
+// engine_setup_input_handlers;
 void* engine_setup_input_handlers;
 void* engine_input_context_ptr;
 uint32_t engine_data_1809fe80c;
@@ -321,7 +316,7 @@ engine_base_data_offset_70;
 // 引擎音频系统配置参数
 uint32 engine_audio_config_param;
 
-// 函数: engine_initialize_audio_system;
+// engine_initialize_audio_system;
 engine_initialize_audio_system;
 engine_data_98;
 engine_base_data_offset_88;
@@ -329,10 +324,10 @@ engine_base_data_offset_70;
 engine_base_data_offset_80;
 engine_base_data_offset_b0;
 
-// 函数: engine_setup_network_components;
+// engine_setup_network_components;
 engine_setup_network_components;
 
-// 函数: engine_initialize_physics_engine;
+// engine_initialize_physics_engine;
 engine_initialize_physics_engine;
 // 物理引擎重力强度整数部分
 int engine_physics_gravity_int;
@@ -342,15 +337,15 @@ engine_base_data_offset_70;
 engine_base_data_offset_b0;
 engine_base_data_offset_e0;
 
-// 函数: engine_setup_ui_system;
+// engine_setup_ui_system;
 engine_setup_ui_system;
 engine_base_data_offset_c8;
 engine_base_data_offset_28;
 
-// 函数: engine_initialize_debug_tools;
+// engine_initialize_debug_tools;
 engine_initialize_debug_tools;
 
-// 函数: engine_configure_resource_manager;
+// engine_configure_resource_manager;
 engine_configure_resource_manager;
 engine_data_60;
 engine_base_data_offset_f8;
@@ -394,17 +389,17 @@ engine_base_data_offset_b0;
 engine_base_data_offset_f0;
 engine_base_data_offset_18;
 
-// 函数: engine_start_main_loop;
+// engine_start_main_loop;
 engine_start_main_loop;
 
-// 函数: engine_process_frame_update;
+// engine_process_frame_update;
 engine_process_frame_update;
 engine_base_data_offset_50;
 engine_data_f8;
 engine_data_00;
 engine_data_08;
 
-// 函数: engine_handle_render_frame;
+// engine_handle_render_frame;
 engine_handle_render_frame;
 engine_base_data_offset_30;
 engine_special_flag_14;
@@ -422,7 +417,7 @@ engine_base_data_offset_c0;
 engine_base_data_offset_70;
 engine_base_data_offset_b8;
 
-// 函数: engine_process_input_events;
+// engine_process_input_events;
 engine_process_input_events;
 engine_base_data_offset_c8;
 engine_base_data_offset_d8;
@@ -433,13 +428,13 @@ engine_data_18;
 engine_data_28;
 engine_data_30;
 
-// 函数: engine_update_game_state;
-engine_update_game_state;
+// void engine_update_game_state(void);
+void engine_update_game_state(void);
 
-// 函数: engine_cleanup_resources;
+// engine_cleanup_resources;
 engine_cleanup_resources;
 
-// 函数: engine_shutdown_system;
+// engine_shutdown_system;
 engine_shutdown_system;
 engine_base_data_offset_50;
 engine_base_data_offset_80;
@@ -448,29 +443,29 @@ engine_base_data_offset_e0;
 engine_base_data_offset_20;
 uint32 engine_data_1801b9b60;
 
-// 函数: engine_initialize_scripting;
+// engine_initialize_scripting;
 engine_initialize_scripting;
 engine_unknown_4c;
 engine_base_data_offset_68;
 engine_base_data_offset_80;
 uint32 engine_data_18013bff0;
 
-// 函数: engine_process_network_events;
+// engine_process_network_events;
 engine_process_network_events;
 
-// 函数: engine_handle_physics_simulation;
+// engine_handle_physics_simulation;
 engine_handle_physics_simulation;
 engine_special_flag_74;
 engine_special_flag_75;
 
-// 函数: engine_update_audio_system;
+// engine_update_audio_system;
 engine_update_audio_system;
 
-// 函数: engine_process_ui_events;
+// engine_process_ui_events;
 engine_process_ui_events;
 engine_base_data_offset_98;
 
-// 函数: engine_handle_debug_output;
+// engine_handle_debug_output;
 engine_handle_debug_output;
 engine_unknown_99;
 uint32 engine_data_180126ab0;
@@ -545,7 +540,7 @@ engine_data_78;
 engine_data_7c;
 uint32 engine_data_180941a80;
 
-// 函数: engine_setup_physics_system;
+// engine_setup_physics_system;
 engine_setup_physics_system;
 engine_base_data_offset_50;
 engine_base_data_offset_b0;
@@ -583,29 +578,29 @@ uint32 engine_data_180a069a0;
 uint32 engine_data_180a069a8;
 uint32 engine_data_18014f7f0;
 
-// 函数: engine_create_collision_handler;
+// engine_create_collision_handler;
 engine_create_collision_handler;
 
-// 函数: engine_setup_collision_system;
+// engine_setup_collision_system;
 engine_setup_collision_system;
 uint32 engine_data_18014f640;
 
-// 函数: engine_initialize_rigid_body;
+// engine_initialize_rigid_body;
 engine_initialize_rigid_body;
 
-// 函数: engine_configure_physics_world;
+// engine_configure_physics_world;
 engine_configure_physics_world;
 engine_base_data_offset_48;
 uint32 engine_data_18014f3d0;
 
-// 函数: engine_create_physics_material;
+// engine_create_physics_material;
 engine_create_physics_material;
 uint32 engine_data_18014f180;
 uint32 engine_data_18014f190;
 uint32 engine_data_18014f1d0;
 uint32 engine_data_18014f1e0;
 
-// 函数: engine_setup_force_field;
+// engine_setup_force_field;
 engine_setup_force_field;
 engine_base_data_zero;
 engine_base_data_offset_10;
@@ -613,7 +608,7 @@ uint32 engine_data_180a072b8;
 uint32 engine_data_180a072d0;
 engine_base_data_offset_f0;
 
-// 函数: uint32 engine_process_animation_data;
+// uint32 engine_process_animation_data;
 uint32 engine_process_animation_data;
 engine_data_f0;
 engine_data_f8;
@@ -622,13 +617,13 @@ char engine_data_52;
 engine_data_08;
 engine_data_10;
 
-// 函数: engine_create_particle_emitter;
+// engine_create_particle_emitter;
 engine_create_particle_emitter;
 engine_special_flag_05;
 engine_base_data_offset_80;
 engine_data_98;
 
-// 函数: uint32 engine_setup_shader_context;
+// uint32 engine_setup_shader_context;
 uint32 engine_setup_shader_context;
 uint32 engine_data_180991df0;
 uint32 engine_data_18098d770;
@@ -643,10 +638,10 @@ engine_base_data_offset_68;
 engine_base_data_offset_a0;
 engine_base_data_offset_90;
 
-// 函数: engine_setup_animation_system;
+// engine_setup_animation_system;
 engine_setup_animation_system;
 
-// 函数: uint32 engine_initialize_skeleton_system;
+// uint32 engine_initialize_skeleton_system;
 uint32 engine_initialize_skeleton_system;
 uint32 engine_data_180a080cc;
 engine_base_data_offset_d8;
@@ -656,7 +651,7 @@ engine_base_data_offset_f0;
 engine_base_data_offset_e8;
 engine_base_data_offset_78;
 
-// 函数: engine_initialize_bone_hierarchy;
+// engine_initialize_bone_hierarchy;
 engine_initialize_bone_hierarchy;
 engine_data_3c;
 engine_data_20;
@@ -669,10 +664,10 @@ engine_base_data_offset_8;
 engine_base_data_offset_28;
 engine_base_data_offset_68;
 
-// 函数: engine_setup_animation_controller;
+// engine_setup_animation_controller;
 engine_setup_animation_controller;
 
-// 函数: engine_create_animation_state;
+// engine_create_animation_state;
 engine_create_animation_state;
 engine_base_data_offset_20;
 engine_base_data_offset_70;
@@ -682,7 +677,7 @@ engine_data_60;
 engine_base_data_offset_f8;
 engine_base_data_offset_18;
 
-// 函数: engine_setup_keyframe_system;
+// engine_setup_keyframe_system;
 engine_setup_keyframe_system;
 engine_base_data_offset_d0;
 uint32 engine_data_180a096c8;
@@ -745,39 +740,39 @@ engine_data_20;
 engine_data_20;
 engine_data_30;
 
-// 函数: engine_initialize_lighting_system;
+// engine_initialize_lighting_system;
 engine_initialize_lighting_system;
 engine_data_28;
 engine_base_data_offset_50;
 
-// 函数: engine_create_directional_light;
+// engine_create_directional_light;
 engine_create_directional_light;
 
-// 函数: engine_setup_point_light;
+// engine_setup_point_light;
 engine_setup_point_light;
 
-// 函数: engine_configure_spot_light;
+// engine_configure_spot_light;
 engine_configure_spot_light;
 
-// 函数: uint32 engine_configure_render_pipeline;
+// uint32 engine_configure_render_pipeline;
 uint32 engine_configure_render_pipeline;
 
-// 函数: engine_setup_shadow_mapping;
+// engine_setup_shadow_mapping;
 engine_setup_shadow_mapping;
 
-// 函数: engine_configure_light_culling;
+// engine_configure_light_culling;
 engine_configure_light_culling;
 
-// 函数: engine_create_global_illumination;
+// engine_create_global_illumination;
 engine_create_global_illumination;
 
-// 函数: engine_setup_light_probe_system;
+// engine_setup_light_probe_system;
 engine_setup_light_probe_system;
 
-// 函数: engine_configure_shadow_quality;
+// engine_configure_shadow_quality;
 engine_configure_shadow_quality;
 
-// 函数: engine_create_ambient_occlusion;
+// engine_create_ambient_occlusion;
 engine_create_ambient_occlusion;
 engine_base_data_offset_40;
 engine_base_data_offset_98;
@@ -789,16 +784,16 @@ uint32 engine_data_180a1ef60;
 engine_base_data_offset_a8;
 engine_base_data_offset_58;
 
-// 函数: engine_setup_post_processing;
+// engine_setup_post_processing;
 engine_setup_post_processing;
 
-// 函数: engine_create_render_target;
+// engine_create_render_target;
 engine_create_render_target;
 engine_base_data_offset_60;
 engine_base_data_offset_88;
 engine_base_data_offset_30;
 
-// 函数: engine_configure_aa_system;
+// engine_configure_aa_system;
 engine_configure_aa_system;
 engine_base_data_offset_50;
 engine_base_data_offset_b8;
@@ -824,7 +819,7 @@ engine_base_data_offset_90;
 engine_base_data_offset_f8;
 engine_base_data_offset_a0;
 
-// 函数: engine_setup_hdr_system;
+// engine_setup_hdr_system;
 engine_setup_hdr_system;
 engine_data_e8;
 uint32 engine_data_180a04ee4;
@@ -849,22 +844,22 @@ engine_base_data_offset_98;
 engine_base_data_offset_a8;
 engine_data_f0;
 
-// 函数: engine_initialize_ui_system;
+// engine_initialize_ui_system;
 uint32 engine_create_thread;
 
-// 函数: engine_create_ui_manager;
+// engine_create_ui_manager;
 engine_create_ui_manager;
 
-// 函数: engine_setup_ui_renderer;
+// engine_setup_ui_renderer;
 engine_setup_ui_renderer;
 
-// 函数: engine_create_widget_system;
+// engine_create_widget_system;
 engine_create_widget_system;
 
-// 函数: engine_setup_ui_layout;
+// engine_setup_ui_layout;
 engine_setup_ui_layout;
 
-// 函数: engine_configure_ui_events;
+// engine_configure_ui_events;
 engine_configure_ui_events;
 engine_base_data_offset_c0;
 uint32 engine_data_180a0ff10;
@@ -881,13 +876,13 @@ uint32 engine_data_18020f868;
 engine_base_data_offset_8;
 engine_base_data_offset_f8;
 
-// 函数: engine_create_ui_animation;
+// engine_create_ui_animation;
 engine_create_ui_animation;
 engine_base_data_offset_b0;
 engine_base_data_offset_d8;
 uint32 engine_data_180211f50;
 
-// 函数: engine_setup_ui_transitions;
+// engine_setup_ui_transitions;
 engine_setup_ui_transitions;
 uint32 engine_data_180211ec0;
 engine_base_data_zero;
@@ -965,15 +960,15 @@ engine_base_data_offset_f0;
 engine_data_60;
 engine_base_data_offset_98;
 
-// 函数: uint32 engine_initialize_input_system;
+// uint32 engine_initialize_input_system;
 uint32 engine_initialize_input_system;
 uint32 engine_data_18020dbe0;
 engine_base_data_offset_68;
 
-// 函数: engine_create_input_handler;
+// engine_create_input_handler;
 engine_create_input_handler;
 
-// 函数: engine_setup_input_mapping;
+// engine_setup_input_mapping;
 engine_setup_input_mapping;
 engine_base_data_offset_d8;
 engine_base_data_offset_f0;
@@ -1098,7 +1093,7 @@ engine_base_data_offset_e0;
 uint32 engine_data_180a27738;
 engine_base_data_offset_c0;
 
-// 函数: engine_configure_keyboard_input;
+// engine_configure_keyboard_input;
 engine_configure_keyboard_input;
 engine_base_data_offset_d0;
 uint32 engine_data_180a0ba58;
@@ -1123,7 +1118,7 @@ engine_base_data_offset_a0;
 engine_special_flag_ac;
 engine_base_data_offset_20;
 
-// 函数: engine_setup_mouse_input;
+// engine_setup_mouse_input;
 engine_setup_mouse_input;
 engine_base_data_offset_e0;
 engine_base_data_offset_8;
@@ -1241,13 +1236,13 @@ engine_control_data;
 engine_configuration_data;
 engine_data_d0;
 
-// 函数: engine_create_controller_system;
+// engine_create_controller_system;
 engine_create_controller_system;
 
-// 函数: engine_setup_touch_input;
+// engine_setup_touch_input;
 engine_setup_touch_input;
 
-// 函数: engine_configure_gesture_system;
+// engine_configure_gesture_system;
 engine_configure_gesture_system;
 uint32 engine_data_180a241c8;
 uint32 engine_data_1803c8870;
@@ -1266,7 +1261,7 @@ uint32 engine_data_180a23cd0;
 engine_data_ec;
 uint32 engine_data_180a24358;
 
-// 函数: engine_initialize_network_system;
+// engine_initialize_network_system;
 engine_initialize_network_system;
 uint32 engine_data_180a25980;
 engine_data_70;
@@ -1408,7 +1403,7 @@ void engine_register_texture_resource(void)
 
 
 
-// 函数: void engine_process_data_structure_alt(void)
+// void engine_process_data_structure_alt(void)
 void engine_process_data_structure_alt(void)
 
 {
@@ -1458,7 +1453,7 @@ void engine_process_data_structure_alt(void)
 
 
 
-// 函数: void engine_register_shader_resource(void)
+// void engine_register_shader_resource(void)
 void engine_register_shader_resource(void)
 
 {
@@ -1508,7 +1503,7 @@ void engine_register_shader_resource(void)
 
 
 
-// 函数: void engine_register_mesh_resource(void)
+// void engine_register_mesh_resource(void)
 void engine_register_mesh_resource(void)
 
 {
@@ -1558,7 +1553,7 @@ void engine_register_mesh_resource(void)
 
 
 
-// 函数: void engine_register_animation_resource(void)
+// void engine_register_animation_resource(void)
 void engine_register_animation_resource(void)
 
 {
@@ -1608,7 +1603,7 @@ void engine_register_animation_resource(void)
 
 
 
-// 函数: void engine_register_audio_resource(void)
+// void engine_register_audio_resource(void)
 void engine_register_audio_resource(void)
 
 {
@@ -1658,7 +1653,7 @@ void engine_register_audio_resource(void)
 
 
 
-// 函数: void engine_register_ui_resource(void)
+// void engine_register_ui_resource(void)
 void engine_register_ui_resource(void)
 
 {
@@ -1708,7 +1703,7 @@ void engine_register_ui_resource(void)
 
 
 
-// 函数: void engine_register_script_resource(void)
+// void engine_register_script_resource(void)
 void engine_register_script_resource(void)
 
 {
@@ -1760,7 +1755,7 @@ void engine_register_script_resource(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void engine_initialize_resource_loader(void)
+// void engine_initialize_resource_loader(void)
 void engine_initialize_resource_loader(void)
 
 {
@@ -1792,7 +1787,7 @@ int engine_initialize_texture_system(void)
   engine_data_pointer_50 = &engine_global_config_data;
   engine_data_pointer_58 = &engine_data_68;
 
-// 函数: void engine_setup_texture_manager(void)
+// void engine_setup_texture_manager(void)
 void engine_setup_texture_manager(void)
 
 {
@@ -1810,7 +1805,7 @@ void engine_setup_texture_manager(void)
   engine_main_structure_pointer = (longlong *)engine_get_system_context();
   engine_structure_data_ptr = (void*)*engine_main_structure_pointer;
   engine_status_flag = *(char *)((longlong)engine_structure_data_ptr[1] + 0x19);
-  engine_stack_function_pointer_18 = engine_process_main_loop;
+  engine_stack_function_pointer_18 = void engine_process_main_loop(void);
   engine_current_data_pointer = engine_structure_data_ptr;
   engine_temporary_data_ptr = (void*)engine_structure_data_ptr[1];
   while (engine_status_flag == '\0') {
@@ -1833,7 +1828,7 @@ void engine_setup_texture_manager(void)
   }
   engine_current_data_pointer[6] = 0x406be72011d07d37;
   engine_current_data_pointer[7] = 0x71876af946c867ab;
-  engine_current_data_pointer[8] = &engine_input_buffer;
+  engine_current_data_pointer[8] = &void* engine_input_buffer;
   engine_current_data_pointer[9] = 0;
   engine_current_data_pointer[10] = engine_stack_function_pointer_18;
   return;
@@ -1842,7 +1837,7 @@ void engine_setup_texture_manager(void)
 
 
 
-// 函数: void engine_setup_shader_manager(void)
+// void engine_setup_shader_manager(void)
 void engine_setup_shader_manager(void)
 
 {
@@ -1860,7 +1855,7 @@ void engine_setup_shader_manager(void)
   engine_main_structure_pointer = (longlong *)engine_get_system_context();
   engine_structure_data_ptr = (void*)*engine_main_structure_pointer;
   engine_status_flag = *(char *)((longlong)engine_structure_data_ptr[1] + 0x19);
-  engine_stack_function_pointer_18 = engine_handle_input_events;
+  engine_stack_function_pointer_18 = void engine_handle_input_events(void);
   engine_current_data_pointer = engine_structure_data_ptr;
   engine_temporary_data_ptr = (void*)engine_structure_data_ptr[1];
   while (engine_status_flag == '\0') {
@@ -1883,7 +1878,7 @@ void engine_setup_shader_manager(void)
   }
   engine_current_data_pointer[6] = 0x40afa5469b6ac06d;
   engine_current_data_pointer[7] = 0x2f4bab01d34055a5;
-  engine_current_data_pointer[8] = &engine_keyboard_state;
+  engine_current_data_pointer[8] = &void* engine_keyboard_state;
   engine_current_data_pointer[9] = 3;
   engine_current_data_pointer[10] = engine_stack_function_pointer_18;
   return;
@@ -1892,7 +1887,7 @@ void engine_setup_shader_manager(void)
 
 
 
-// 函数: void engine_setup_mesh_manager(void)
+// void engine_setup_mesh_manager(void)
 void engine_setup_mesh_manager(void)
 
 {
@@ -1910,7 +1905,7 @@ void engine_setup_mesh_manager(void)
   engine_main_structure_pointer = (longlong *)engine_get_system_context();
   engine_structure_data_ptr = (void*)*engine_main_structure_pointer;
   engine_status_flag = *(char *)((longlong)engine_structure_data_ptr[1] + 0x19);
-  engine_stack_function_pointer_18 = engine_process_main_loop;
+  engine_stack_function_pointer_18 = void engine_process_main_loop(void);
   engine_current_data_pointer = engine_structure_data_ptr;
   engine_temporary_data_ptr = (void*)engine_structure_data_ptr[1];
   while (engine_status_flag == '\0') {
@@ -1933,7 +1928,7 @@ void engine_setup_mesh_manager(void)
   }
   engine_current_data_pointer[6] = 0x406be72011d07d37;
   engine_current_data_pointer[7] = 0x71876af946c867ab;
-  engine_current_data_pointer[8] = &engine_input_buffer;
+  engine_current_data_pointer[8] = &void* engine_input_buffer;
   engine_current_data_pointer[9] = 0;
   engine_current_data_pointer[10] = engine_stack_function_pointer_18;
   return;
@@ -1942,7 +1937,7 @@ void engine_setup_mesh_manager(void)
 
 
 
-// 函数: void engine_setup_animation_manager(void)
+// void engine_setup_animation_manager(void)
 void engine_setup_animation_manager(void)
 
 {
@@ -1960,7 +1955,7 @@ void engine_setup_animation_manager(void)
   engine_main_structure_pointer = (longlong *)engine_get_system_context();
   engine_structure_data_ptr = (void*)*engine_main_structure_pointer;
   engine_status_flag = *(char *)((longlong)engine_structure_data_ptr[1] + 0x19);
-  engine_stack_function_pointer_18 = engine_handle_input_events;
+  engine_stack_function_pointer_18 = void engine_handle_input_events(void);
   engine_current_data_pointer = engine_structure_data_ptr;
   engine_temporary_data_ptr = (void*)engine_structure_data_ptr[1];
   while (engine_status_flag == '\0') {
@@ -1983,7 +1978,7 @@ void engine_setup_animation_manager(void)
   }
   engine_current_data_pointer[6] = 0x40afa5469b6ac06d;
   engine_current_data_pointer[7] = 0x2f4bab01d34055a5;
-  engine_current_data_pointer[8] = &engine_keyboard_state;
+  engine_current_data_pointer[8] = &void* engine_keyboard_state;
   engine_current_data_pointer[9] = 3;
   engine_current_data_pointer[10] = engine_stack_function_pointer_18;
   return;
@@ -1992,7 +1987,7 @@ void engine_setup_animation_manager(void)
 
 
 
-// 函数: void engine_setup_audio_manager(void)
+// void engine_setup_audio_manager(void)
 void engine_setup_audio_manager(void)
 
 {
@@ -2042,7 +2037,7 @@ void engine_setup_audio_manager(void)
 
 
 
-// 函数: void engine_setup_ui_manager(void)
+// void engine_setup_ui_manager(void)
 void engine_setup_ui_manager(void)
 
 {
@@ -2092,7 +2087,7 @@ void engine_setup_ui_manager(void)
 
 
 
-// 函数: void engine_setup_script_manager(void)
+// void engine_setup_script_manager(void)
 void engine_setup_script_manager(void)
 
 {
@@ -2142,7 +2137,7 @@ void engine_setup_script_manager(void)
 
 
 
-// 函数: void engine_configure_texture_system(void)
+// void engine_configure_texture_system(void)
 void engine_configure_texture_system(void)
 
 {
@@ -2192,7 +2187,7 @@ void engine_configure_texture_system(void)
 
 
 
-// 函数: void engine_configure_shader_system(void)
+// void engine_configure_shader_system(void)
 void engine_configure_shader_system(void)
 
 {
@@ -2242,7 +2237,7 @@ void engine_configure_shader_system(void)
 
 
 
-// 函数: void engine_process_buffer_allocation(void)
+// void engine_process_buffer_allocation(void)
 void engine_process_buffer_allocation(void)
 
 {
@@ -2292,7 +2287,7 @@ void engine_process_buffer_allocation(void)
 
 
 
-// 函数: void engine_configure_animation_system(void)
+// void engine_configure_animation_system(void)
 void engine_configure_animation_system(void)
 
 {
@@ -2344,7 +2339,7 @@ void engine_configure_animation_system(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void engine_initialize_asset_pipeline(void)
+// void engine_initialize_asset_pipeline(void)
 void engine_initialize_asset_pipeline(void)
 
 {
@@ -2366,7 +2361,7 @@ void engine_initialize_asset_pipeline(void)
 
 
 
-// 函数: void engine_setup_asset_loader(void)
+// void engine_setup_asset_loader(void)
 void engine_setup_asset_loader(void)
 
 {
@@ -2416,7 +2411,7 @@ void engine_setup_asset_loader(void)
 
 
 
-// 函数: void engine_configure_asset_system(void)
+// void engine_configure_asset_system(void)
 void engine_configure_asset_system(void)
 
 {
@@ -2466,7 +2461,7 @@ void engine_configure_asset_system(void)
 
 
 
-// 函数: void engine_register_audio_resource(void)
+// void engine_register_audio_resource(void)
 /**
  * @brief 注册音频资源到引擎数据结构
  * 
@@ -2524,7 +2519,7 @@ void engine_register_audio_resource(void)
 
 
 
-// 函数: void engine_setup_asset_streaming(void)
+// void engine_setup_asset_streaming(void)
 void engine_setup_asset_streaming(void)
 
 {
@@ -2574,7 +2569,7 @@ void engine_setup_asset_streaming(void)
 
 
 
-// 函数: void engine_initialize_shader_program(void)
+// void engine_initialize_shader_program(void)
 void engine_initialize_shader_program(void)
 
 {
@@ -2624,7 +2619,7 @@ void engine_initialize_shader_program(void)
 
 
 
-// 函数: void engine_initialize_asset_manager(void)
+// void engine_initialize_asset_manager(void)
 void engine_initialize_asset_manager(void)
 
 {
@@ -2674,7 +2669,7 @@ void engine_initialize_asset_manager(void)
 
 
 
-// 函数: void engine_setup_asset_database(void)
+// void engine_setup_asset_database(void)
 void engine_setup_asset_database(void)
 
 {
@@ -2726,7 +2721,7 @@ void engine_setup_asset_database(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void engine_create_asset_index(void)
+// void engine_create_asset_index(void)
 void engine_create_asset_index(void)
 
 {
@@ -2758,7 +2753,7 @@ int engine_setup_render_target(void)
   _engine_data_90 = &engine_global_config_data;
   _engine_data_98 = &engine_data_a8;
 
-// 函数: void engine_register_font_resource(void)
+// void engine_register_font_resource(void)
 void engine_register_font_resource(void)
 
 {
@@ -2782,7 +2777,7 @@ void engine_register_font_resource(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void engine_register_localization_resource(void)
+// void engine_register_localization_resource(void)
 void engine_register_localization_resource(void)
 
 {
@@ -2806,7 +2801,7 @@ void engine_register_localization_resource(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void engine_configure_viewport(void)
+// void engine_configure_viewport(void)
 void engine_configure_viewport(void)
 
 {
@@ -2830,7 +2825,7 @@ void engine_configure_viewport(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void engine_register_save_resource(void)
+// void engine_register_save_resource(void)
 void engine_register_save_resource(void)
 
 {
@@ -2854,7 +2849,7 @@ void engine_register_save_resource(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void engine_register_network_resource(void)
+// void engine_register_network_resource(void)
 void engine_register_network_resource(void)
 
 {
@@ -2876,7 +2871,7 @@ void engine_register_network_resource(void)
 
 
 
-// 函数: void engine_setup_font_manager(void)
+// void engine_setup_font_manager(void)
 void engine_setup_font_manager(void)
 
 {
@@ -2926,7 +2921,7 @@ void engine_setup_font_manager(void)
 
 
 
-// 函数: void engine_setup_localization_manager(void)
+// void engine_setup_localization_manager(void)
 void engine_setup_localization_manager(void)
 
 {
@@ -2976,7 +2971,7 @@ void engine_setup_localization_manager(void)
 
 
 
-// 函数: void engine_process_depth_buffer(void)
+// void engine_process_depth_buffer(void)
 void engine_process_depth_buffer(void)
 
 {
@@ -3026,7 +3021,7 @@ void engine_process_depth_buffer(void)
 
 
 
-// 函数: void engine_setup_stencil_buffer(void)
+// void engine_setup_stencil_buffer(void)
 void engine_setup_stencil_buffer(void)
 
 {
@@ -3076,7 +3071,7 @@ void engine_setup_stencil_buffer(void)
 
 
 
-// 函数: void engine_setup_database_manager(void)
+// void engine_setup_database_manager(void)
 void engine_setup_database_manager(void)
 
 {
@@ -3126,7 +3121,7 @@ void engine_setup_database_manager(void)
 
 
 
-// 函数: void engine_configure_font_system(void)
+// void engine_configure_font_system(void)
 void engine_configure_font_system(void)
 
 {
@@ -3176,7 +3171,7 @@ void engine_configure_font_system(void)
 
 
 
-// 函数: void engine_configure_localization_system(void)
+// void engine_configure_localization_system(void)
 void engine_configure_localization_system(void)
 
 {
@@ -3226,7 +3221,7 @@ void engine_configure_localization_system(void)
 
 
 
-// 函数: void engine_configure_config_system(void)
+// void engine_configure_config_system(void)
 void engine_configure_config_system(void)
 
 {
@@ -3276,7 +3271,7 @@ void engine_configure_config_system(void)
 
 
 
-// 函数: void engine_configure_save_system(void)
+// void engine_configure_save_system(void)
 void engine_configure_save_system(void)
 
 {
@@ -3326,7 +3321,7 @@ void engine_configure_save_system(void)
 
 
 
-// 函数: void engine_configure_database_system(void)
+// void engine_configure_database_system(void)
 void engine_configure_database_system(void)
 
 {
@@ -3376,7 +3371,7 @@ void engine_configure_database_system(void)
 
 
 
-// 函数: void engine_create_font_cache(void)
+// void engine_create_font_cache(void)
 void engine_create_font_cache(void)
 
 {
@@ -3426,7 +3421,7 @@ void engine_create_font_cache(void)
 
 
 
-// 函数: void engine_create_localization_cache(void)
+// void engine_create_localization_cache(void)
 void engine_create_localization_cache(void)
 
 {
@@ -3476,7 +3471,7 @@ void engine_create_localization_cache(void)
 
 
 
-// 函数: void engine_create_config_cache(void)
+// void engine_create_config_cache(void)
 void engine_create_config_cache(void)
 
 {
@@ -3526,7 +3521,7 @@ void engine_create_config_cache(void)
 
 
 
-// 函数: void engine_create_save_cache(void)
+// void engine_create_save_cache(void)
 void engine_create_save_cache(void)
 
 {
@@ -3576,7 +3571,7 @@ void engine_create_save_cache(void)
 
 
 
-// 函数: void engine_create_database_cache(void)
+// void engine_create_database_cache(void)
 void engine_create_database_cache(void)
 
 {
@@ -3626,7 +3621,7 @@ void engine_create_database_cache(void)
 
 
 
-// 函数: void engine_initialize_text_system(void)
+// void engine_initialize_text_system(void)
 void engine_initialize_text_system(void)
 
 {
@@ -3676,7 +3671,7 @@ void engine_initialize_text_system(void)
 
 
 
-// 函数: void engine_setup_text_renderer(void)
+// void engine_setup_text_renderer(void)
 void engine_setup_text_renderer(void)
 
 {
@@ -3733,7 +3728,7 @@ void engine_setup_text_renderer(void)
 
 
 
-// 函数: void engine_configure_graphics_system(void)
+// void engine_configure_graphics_system(void)
 void engine_configure_graphics_system(void)
 
 {
@@ -3783,7 +3778,7 @@ void engine_configure_graphics_system(void)
 
 
 
-// 函数: void engine_create_text_buffer(void)
+// void engine_create_text_buffer(void)
 void engine_create_text_buffer(void)
 
 {
@@ -3833,7 +3828,7 @@ void engine_create_text_buffer(void)
 
 
 
-// 函数: void engine_setup_text_layout(void)
+// void engine_setup_text_layout(void)
 void engine_setup_text_layout(void)
 
 {
@@ -3851,7 +3846,7 @@ void engine_setup_text_layout(void)
   engine_main_structure_pointer = (longlong *)engine_get_system_context();
   engine_structure_data_ptr = (void*)*engine_main_structure_pointer;
   engine_status_flag = *(char *)((longlong)engine_structure_data_ptr[1] + 0x19);
-  engine_stack_function_pointer_18 = engine_process_main_loop;
+  engine_stack_function_pointer_18 = void engine_process_main_loop(void);
   engine_current_data_pointer = engine_structure_data_ptr;
   engine_temporary_data_ptr = (void*)engine_structure_data_ptr[1];
   while (engine_status_flag == '\0') {
@@ -3874,7 +3869,7 @@ void engine_setup_text_layout(void)
   }
   engine_current_data_pointer[6] = 0x406be72011d07d37;
   engine_current_data_pointer[7] = 0x71876af946c867ab;
-  engine_current_data_pointer[8] = &engine_input_buffer;
+  engine_current_data_pointer[8] = &void* engine_input_buffer;
   engine_current_data_pointer[9] = 0;
   engine_current_data_pointer[10] = engine_stack_function_pointer_18;
   return;
@@ -3883,7 +3878,7 @@ void engine_setup_text_layout(void)
 
 
 
-// 函数: void engine_configure_text_formatting(void)
+// void engine_configure_text_formatting(void)
 void engine_configure_text_formatting(void)
 
 {
@@ -3901,7 +3896,7 @@ void engine_configure_text_formatting(void)
   engine_main_structure_pointer = (longlong *)engine_get_system_context();
   engine_structure_data_ptr = (void*)*engine_main_structure_pointer;
   engine_status_flag = *(char *)((longlong)engine_structure_data_ptr[1] + 0x19);
-  engine_stack_function_pointer_18 = engine_handle_input_events;
+  engine_stack_function_pointer_18 = void engine_handle_input_events(void);
   engine_current_data_pointer = engine_structure_data_ptr;
   engine_temporary_data_ptr = (void*)engine_structure_data_ptr[1];
   while (engine_status_flag == '\0') {
@@ -3924,7 +3919,7 @@ void engine_configure_text_formatting(void)
   }
   engine_current_data_pointer[6] = 0x40afa5469b6ac06d;
   engine_current_data_pointer[7] = 0x2f4bab01d34055a5;
-  engine_current_data_pointer[8] = &engine_keyboard_state;
+  engine_current_data_pointer[8] = &void* engine_keyboard_state;
   engine_current_data_pointer[9] = 3;
   engine_current_data_pointer[10] = engine_stack_function_pointer_18;
   return;
@@ -3933,7 +3928,7 @@ void engine_configure_text_formatting(void)
 
 
 
-// 函数: void engine_create_text_atlas(void)
+// void engine_create_text_atlas(void)
 void engine_create_text_atlas(void)
 
 {
@@ -3983,7 +3978,7 @@ void engine_create_text_atlas(void)
 
 
 
-// 函数: void engine_setup_text_streaming(void)
+// void engine_setup_text_streaming(void)
 void engine_setup_text_streaming(void)
 
 {
@@ -4033,7 +4028,7 @@ void engine_setup_text_streaming(void)
 
 
 
-// 函数: void engine_configure_text_cache(void)
+// void engine_configure_text_cache(void)
 void engine_configure_text_cache(void)
 
 {
@@ -4083,7 +4078,7 @@ void engine_configure_text_cache(void)
 
 
 
-// 函数: void engine_initialize_text_manager(void)
+// void engine_initialize_text_manager(void)
 void engine_initialize_text_manager(void)
 
 {
@@ -4133,7 +4128,7 @@ void engine_initialize_text_manager(void)
 
 
 
-// 函数: void engine_setup_text_database(void)
+// void engine_setup_text_database(void)
 void engine_setup_text_database(void)
 
 {
@@ -4183,7 +4178,7 @@ void engine_setup_text_database(void)
 
 
 
-// 函数: void engine_create_text_index(void)
+// void engine_create_text_index(void)
 void engine_create_text_index(void)
 
 {
@@ -4233,7 +4228,7 @@ void engine_create_text_index(void)
 
 
 
-// 函数: void engine_configure_text_compression(void)
+// void engine_configure_text_compression(void)
 void engine_configure_text_compression(void)
 
 {
@@ -4283,7 +4278,7 @@ void engine_configure_text_compression(void)
 
 
 
-// 函数: void engine_register_video_resource(void)
+// void engine_register_video_resource(void)
 void engine_register_video_resource(void)
 
 {
@@ -4333,7 +4328,7 @@ void engine_register_video_resource(void)
 
 
 
-// 函数: void engine_register_stream_resource(void)
+// void engine_register_stream_resource(void)
 void engine_register_stream_resource(void)
 
 {
@@ -4383,7 +4378,7 @@ void engine_register_stream_resource(void)
 
 
 
-// 函数: void engine_register_effect_resource(void)
+// void engine_register_effect_resource(void)
 void engine_register_effect_resource(void)
 
 {
@@ -4433,7 +4428,7 @@ void engine_register_effect_resource(void)
 
 
 
-// 函数: void engine_register_post_resource(void)
+// void engine_register_post_resource(void)
 void engine_register_post_resource(void)
 
 {
@@ -4483,7 +4478,7 @@ void engine_register_post_resource(void)
 
 
 
-// 函数: void engine_register_cubemap_resource(void)
+// void engine_register_cubemap_resource(void)
 void engine_register_cubemap_resource(void)
 
 {
@@ -4533,7 +4528,7 @@ void engine_register_cubemap_resource(void)
 
 
 
-// 函数: void engine_register_render_target_resource(void)
+// void engine_register_render_target_resource(void)
 void engine_register_render_target_resource(void)
 
 {
@@ -4583,7 +4578,7 @@ void engine_register_render_target_resource(void)
 
 
 
-// 函数: void engine_register_buffer_resource(void)
+// void engine_register_buffer_resource(void)
 void engine_register_buffer_resource(void)
 
 {
@@ -4633,7 +4628,7 @@ void engine_register_buffer_resource(void)
 
 
 
-// 函数: void engine_setup_input_system(void)
+// void engine_setup_input_system(void)
 void engine_setup_input_system(void)
 
 {
@@ -4683,7 +4678,7 @@ void engine_setup_input_system(void)
 
 
 
-// 函数: void engine_configure_audio_system(void)
+// void engine_configure_audio_system(void)
 void engine_configure_audio_system(void)
 
 {
@@ -4733,7 +4728,7 @@ void engine_configure_audio_system(void)
 
 
 
-// 函数: void engine_initialize_network_system(void)
+// void engine_initialize_network_system(void)
 void engine_initialize_network_system(void)
 
 {
@@ -4783,7 +4778,7 @@ void engine_initialize_network_system(void)
 
 
 
-// 函数: void engine_setup_stream_manager(void)
+// void engine_setup_stream_manager(void)
 void engine_setup_stream_manager(void)
 
 {
@@ -4833,7 +4828,7 @@ void engine_setup_stream_manager(void)
 
 
 
-// 函数: void engine_setup_effect_manager(void)
+// void engine_setup_effect_manager(void)
 void engine_setup_effect_manager(void)
 
 {
@@ -4883,7 +4878,7 @@ void engine_setup_effect_manager(void)
 
 
 
-// 函数: void engine_setup_physics_system(void)
+// void engine_setup_physics_system(void)
 void engine_setup_physics_system(void)
 
 {
@@ -4933,7 +4928,7 @@ void engine_setup_physics_system(void)
 
 
 
-// 函数: void engine_configure_ui_system(void)
+// void engine_configure_ui_system(void)
 void engine_configure_ui_system(void)
 
 {
@@ -4983,7 +4978,7 @@ void engine_configure_ui_system(void)
 
 
 
-// 函数: void engine_initialize_script_system(void)
+// void engine_initialize_script_system(void)
 void engine_initialize_script_system(void)
 
 {
@@ -5033,7 +5028,7 @@ void engine_initialize_script_system(void)
 
 
 
-// 函数: void engine_setup_file_system(void)
+// void engine_setup_file_system(void)
 void engine_setup_file_system(void)
 
 {
@@ -5083,7 +5078,7 @@ void engine_setup_file_system(void)
 
 
 
-// 函数: void engine_configure_database_system(void)
+// void engine_configure_database_system(void)
 void engine_configure_database_system(void)
 
 {
@@ -5133,7 +5128,7 @@ void engine_configure_database_system(void)
 
 
 
-// 函数: void engine_setup_security_system(void)
+// void engine_setup_security_system(void)
 void engine_setup_security_system(void)
 
 {
@@ -5183,7 +5178,7 @@ void engine_setup_security_system(void)
 
 
 
-// 函数: void engine_initialize_logging_system(void)
+// void engine_initialize_logging_system(void)
 void engine_initialize_logging_system(void)
 
 {
@@ -5233,7 +5228,7 @@ void engine_initialize_logging_system(void)
 
 
 
-// 函数: void engine_configure_performance_monitor(void)
+// void engine_configure_performance_monitor(void)
 void engine_configure_performance_monitor(void)
 
 {
@@ -5283,7 +5278,7 @@ void engine_configure_performance_monitor(void)
 
 
 
-// 函数: void engine_setup_debug_system(void)
+// void engine_setup_debug_system(void)
 void engine_setup_debug_system(void)
 
 {
@@ -5335,7 +5330,7 @@ void engine_setup_debug_system(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void engine_initialize_plugin_system(void)
+// void engine_initialize_plugin_system(void)
 void engine_initialize_plugin_system(void)
 
 {
@@ -5367,7 +5362,7 @@ int engine_verify_initialization(void)
   _engine_data_b0 = &engine_data_18098bc80;
   _engine_data_b8 = &engine_configuration_data;
 
-// 函数: void engine_complete_initialization(void)
+// void engine_complete_initialization(void)
 void engine_complete_initialization(void)
 
 {
@@ -5391,7 +5386,7 @@ void engine_complete_initialization(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void engine_core_initialize_system(void)
+// void engine_core_initialize_system(void)
 void engine_core_initialize_system(void)
 
 {
@@ -5413,7 +5408,7 @@ void engine_core_initialize_system(void)
 
 
 
-// 函数: void engine_initialize_structure_data(void)
+// void engine_initialize_structure_data(void)
 void engine_initialize_structure_data(void)
 
 {
@@ -5463,7 +5458,7 @@ void engine_initialize_structure_data(void)
 
 
 
-// 函数: void engine_process_structure_loop(void)
+// void engine_process_structure_loop(void)
 void engine_process_structure_loop(void)
 
 {
@@ -5513,7 +5508,7 @@ void engine_process_structure_loop(void)
 
 
 
-// 函数: void engine_validate_structure_data(void)
+// void engine_validate_structure_data(void)
 void engine_validate_structure_data(void)
 
 {
@@ -5563,7 +5558,7 @@ void engine_validate_structure_data(void)
 
 
 
-// 函数: void engine_cleanup_structure_resources(void)
+// void engine_cleanup_structure_resources(void)
 void engine_cleanup_structure_resources(void)
 
 {
@@ -5613,7 +5608,7 @@ void engine_cleanup_structure_resources(void)
 
 
 
-// 函数: void engine_allocate_structure_memory(void)
+// void engine_allocate_structure_memory(void)
 void engine_allocate_structure_memory(void)
 
 {
@@ -5663,7 +5658,7 @@ void engine_allocate_structure_memory(void)
 
 
 
-// 函数: void engine_configure_structure_parameters(void)
+// void engine_configure_structure_parameters(void)
 void engine_configure_structure_parameters(void)
 
 {
@@ -5713,7 +5708,7 @@ void engine_configure_structure_parameters(void)
 
 
 
-// 函数: void engine_update_structure_state(void)
+// void engine_update_structure_state(void)
 void engine_update_structure_state(void)
 
 {
@@ -5763,7 +5758,7 @@ void engine_update_structure_state(void)
 
 
 
-// 函数: void engine_process_structure_events(void)
+// void engine_process_structure_events(void)
 void engine_process_structure_events(void)
 
 {
@@ -5815,7 +5810,7 @@ void engine_process_structure_events(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void engine_handle_structure_callbacks(void)
+// void engine_handle_structure_callbacks(void)
 void engine_handle_structure_callbacks(void)
 
 {
@@ -5837,7 +5832,7 @@ void engine_handle_structure_callbacks(void)
 
 
 
-// 函数: void engine_validate_structure_handles(void)
+// void engine_validate_structure_handles(void)
 void engine_validate_structure_handles(void)
 
 {
@@ -5887,7 +5882,7 @@ void engine_validate_structure_handles(void)
 
 
 
-// 函数: void engine_cleanup_structure_handles(void)
+// void engine_cleanup_structure_handles(void)
 void engine_cleanup_structure_handles(void)
 
 {
@@ -5937,7 +5932,7 @@ void engine_cleanup_structure_handles(void)
 
 
 
-// 函数: void engine_initialize_structure_handles(void)
+// void engine_initialize_structure_handles(void)
 void engine_initialize_structure_handles(void)
 
 {
@@ -5987,7 +5982,7 @@ void engine_initialize_structure_handles(void)
 
 
 
-// 函数: void engine_process_structure_requests(void)
+// void engine_process_structure_requests(void)
 void engine_process_structure_requests(void)
 
 {
@@ -6037,7 +6032,7 @@ void engine_process_structure_requests(void)
 
 
 
-// 函数: void engine_handle_structure_requests(void)
+// void engine_handle_structure_requests(void)
 void engine_handle_structure_requests(void)
 
 {
@@ -6087,7 +6082,7 @@ void engine_handle_structure_requests(void)
 
 
 
-// 函数: void engine_validate_structure_requests(void)
+// void engine_validate_structure_requests(void)
 void engine_validate_structure_requests(void)
 
 {
@@ -6137,7 +6132,7 @@ void engine_validate_structure_requests(void)
 
 
 
-// 函数: void engine_cleanup_structure_requests(void)
+// void engine_cleanup_structure_requests(void)
 void engine_cleanup_structure_requests(void)
 
 {
@@ -6187,7 +6182,7 @@ void engine_cleanup_structure_requests(void)
 
 
 
-// 函数: void engine_initialize_structure_requests(void)
+// void engine_initialize_structure_requests(void)
 void engine_initialize_structure_requests(void)
 
 {
@@ -6237,7 +6232,7 @@ void engine_initialize_structure_requests(void)
 
 
 
-// 函数: void engine_process_structure_operations(void)
+// void engine_process_structure_operations(void)
 void engine_process_structure_operations(void)
 
 {
@@ -6255,7 +6250,7 @@ void engine_process_structure_operations(void)
   engine_main_structure_pointer = (longlong *)engine_get_system_context();
   engine_structure_data_ptr = (void*)*engine_main_structure_pointer;
   engine_status_flag = *(char *)((longlong)engine_structure_data_ptr[1] + 0x19);
-  engine_stack_function_pointer_18 = engine_initialize_core_system;
+  engine_stack_function_pointer_18 = void engine_initialize_core_system(void);
   engine_current_data_pointer = engine_structure_data_ptr;
   engine_temporary_data_ptr = (void*)engine_structure_data_ptr[1];
   while (engine_status_flag == '\0') {
@@ -6278,7 +6273,7 @@ void engine_process_structure_operations(void)
   }
   engine_current_data_pointer[6] = 0x421c3cedd07d816d;
   engine_current_data_pointer[7] = 0xbec25de793b7afa6;
-  engine_current_data_pointer[8] = &engine_global_context_ptr;
+  engine_current_data_pointer[8] = &void* engine_global_context_ptr;
   engine_current_data_pointer[9] = 0;
   engine_current_data_pointer[10] = engine_stack_function_pointer_18;
   return;
@@ -6287,7 +6282,7 @@ void engine_process_structure_operations(void)
 
 
 
-// 函数: void engine_handle_structure_operations(void)
+// void engine_handle_structure_operations(void)
 void engine_handle_structure_operations(void)
 
 {
@@ -6328,7 +6323,7 @@ void engine_handle_structure_operations(void)
   }
   engine_current_data_pointer[6] = 0x4c22bb0c326587ce;
   engine_current_data_pointer[7] = 0x5e3cf00ce2978287;
-  engine_current_data_pointer[8] = &engine_memory_pool;
+  engine_current_data_pointer[8] = &void* engine_memory_pool;
   engine_current_data_pointer[9] = 1;
   engine_current_data_pointer[10] = uStackX_18;
   return;
@@ -6337,7 +6332,7 @@ void engine_handle_structure_operations(void)
 
 
 
-// 函数: void engine_validate_structure_operations(void)
+// void engine_validate_structure_operations(void)
 void engine_validate_structure_operations(void)
 
 {
@@ -6389,7 +6384,7 @@ void engine_validate_structure_operations(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void engine_cleanup_structure_operations(void)
+// void engine_cleanup_structure_operations(void)
 void engine_cleanup_structure_operations(void)
 
 {
@@ -6413,7 +6408,7 @@ void engine_cleanup_structure_operations(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void engine_initialize_structure_operations(void)
+// void engine_initialize_structure_operations(void)
 void engine_initialize_structure_operations(void)
 
 {
@@ -6437,7 +6432,7 @@ void engine_initialize_structure_operations(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void engine_process_structure_data(void)
+// void engine_process_structure_data(void)
 void engine_process_structure_data(void)
 
 {
@@ -6461,7 +6456,7 @@ void engine_process_structure_data(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void engine_handle_structure_data(void)
+// void engine_handle_structure_data(void)
 void engine_handle_structure_data(void)
 
 {
@@ -6485,7 +6480,7 @@ void engine_handle_structure_data(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void engine_validate_structure_data(void)
+// void engine_validate_structure_data(void)
 void engine_validate_structure_data(void)
 
 {
@@ -6509,7 +6504,7 @@ void engine_validate_structure_data(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void engine_start_main_loop(void)
+// void engine_start_main_loop(void)
 void engine_start_main_loop(void)
 
 {
@@ -6533,7 +6528,7 @@ void engine_start_main_loop(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void engine_cleanup_structure_data(void)
+// void engine_cleanup_structure_data(void)
 void engine_cleanup_structure_data(void)
 
 {
@@ -6557,7 +6552,7 @@ void engine_cleanup_structure_data(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void engine_initialize_structure_data(void)
+// void engine_initialize_structure_data(void)
 void engine_initialize_structure_data(void)
 
 {
@@ -6581,7 +6576,7 @@ void engine_initialize_structure_data(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void engine_process_structure_buffers(void)
+// void engine_process_structure_buffers(void)
 void engine_process_structure_buffers(void)
 
 {
@@ -6603,7 +6598,7 @@ void engine_process_structure_buffers(void)
 
 
 
-// 函数: void engine_handle_structure_buffers(void)
+// void engine_handle_structure_buffers(void)
 void engine_handle_structure_buffers(void)
 
 {
@@ -6653,7 +6648,7 @@ void engine_handle_structure_buffers(void)
 
 
 
-// 函数: void engine_validate_structure_buffers(void)
+// void engine_validate_structure_buffers(void)
 void engine_validate_structure_buffers(void)
 
 {
@@ -6703,7 +6698,7 @@ void engine_validate_structure_buffers(void)
 
 
 
-// 函数: void engine_cleanup_structure_buffers(void)
+// void engine_cleanup_structure_buffers(void)
 void engine_cleanup_structure_buffers(void)
 
 {
@@ -6753,7 +6748,7 @@ void engine_cleanup_structure_buffers(void)
 
 
 
-// 函数: void engine_initialize_structure_buffers(void)
+// void engine_initialize_structure_buffers(void)
 void engine_initialize_structure_buffers(void)
 
 {
@@ -6803,7 +6798,7 @@ void engine_initialize_structure_buffers(void)
 
 
 
-// 函数: void engine_process_structure_memory(void)
+// void engine_process_structure_memory(void)
 void engine_process_structure_memory(void)
 
 {
@@ -6853,7 +6848,7 @@ void engine_process_structure_memory(void)
 
 
 
-// 函数: void engine_handle_structure_memory(void)
+// void engine_handle_structure_memory(void)
 void engine_handle_structure_memory(void)
 
 {
@@ -6903,7 +6898,7 @@ void engine_handle_structure_memory(void)
 
 
 
-// 函数: void engine_validate_structure_memory(void)
+// void engine_validate_structure_memory(void)
 void engine_validate_structure_memory(void)
 
 {
@@ -6953,7 +6948,7 @@ void engine_validate_structure_memory(void)
 
 
 
-// 函数: void engine_cleanup_structure_memory(void)
+// void engine_cleanup_structure_memory(void)
 void engine_cleanup_structure_memory(void)
 
 {
@@ -7003,7 +6998,7 @@ void engine_cleanup_structure_memory(void)
 
 
 
-// 函数: void engine_initialize_structure_memory(void)
+// void engine_initialize_structure_memory(void)
 void engine_initialize_structure_memory(void)
 
 {
@@ -7053,7 +7048,7 @@ void engine_initialize_structure_memory(void)
 
 
 
-// 函数: void engine_process_structure_pointers(void)
+// void engine_process_structure_pointers(void)
 void engine_process_structure_pointers(void)
 
 {
@@ -7103,7 +7098,7 @@ void engine_process_structure_pointers(void)
 
 
 
-// 函数: void engine_handle_structure_pointers(void)
+// void engine_handle_structure_pointers(void)
 void engine_handle_structure_pointers(void)
 
 {
@@ -7153,7 +7148,7 @@ void engine_handle_structure_pointers(void)
 
 
 
-// 函数: void engine_validate_structure_pointers(void)
+// void engine_validate_structure_pointers(void)
 void engine_validate_structure_pointers(void)
 
 {
@@ -7203,7 +7198,7 @@ void engine_validate_structure_pointers(void)
 
 
 
-// 函数: void engine_cleanup_structure_pointers(void)
+// void engine_cleanup_structure_pointers(void)
 void engine_cleanup_structure_pointers(void)
 
 {
@@ -7253,7 +7248,7 @@ void engine_cleanup_structure_pointers(void)
 
 
 
-// 函数: void engine_initialize_structure_pointers(void)
+// void engine_initialize_structure_pointers(void)
 void engine_initialize_structure_pointers(void)
 
 {
@@ -7303,7 +7298,7 @@ void engine_initialize_structure_pointers(void)
 
 
 
-// 函数: void engine_process_structure_arrays(void)
+// void engine_process_structure_arrays(void)
 void engine_process_structure_arrays(void)
 
 {
@@ -7353,7 +7348,7 @@ void engine_process_structure_arrays(void)
 
 
 
-// 函数: void engine_handle_structure_arrays(void)
+// void engine_handle_structure_arrays(void)
 void engine_handle_structure_arrays(void)
 
 {
@@ -7403,7 +7398,7 @@ void engine_handle_structure_arrays(void)
 
 
 
-// 函数: void engine_validate_structure_arrays(void)
+// void engine_validate_structure_arrays(void)
 void engine_validate_structure_arrays(void)
 
 {
@@ -7453,7 +7448,7 @@ void engine_validate_structure_arrays(void)
 
 
 
-// 函数: void engine_cleanup_structure_arrays(void)
+// void engine_cleanup_structure_arrays(void)
 void engine_cleanup_structure_arrays(void)
 
 {
@@ -7503,7 +7498,7 @@ void engine_cleanup_structure_arrays(void)
 
 
 
-// 函数: void engine_initialize_structure_arrays(void)
+// void engine_initialize_structure_arrays(void)
 void engine_initialize_structure_arrays(void)
 
 {
@@ -7553,7 +7548,7 @@ void engine_initialize_structure_arrays(void)
 
 
 
-// 函数: void engine_process_structure_lists(void)
+// void engine_process_structure_lists(void)
 void engine_process_structure_lists(void)
 
 {
@@ -7603,7 +7598,7 @@ void engine_process_structure_lists(void)
 
 
 
-// 函数: void engine_handle_structure_lists(void)
+// void engine_handle_structure_lists(void)
 void engine_handle_structure_lists(void)
 
 {
@@ -7653,7 +7648,7 @@ void engine_handle_structure_lists(void)
 
 
 
-// 函数: void engine_validate_structure_lists(void)
+// void engine_validate_structure_lists(void)
 void engine_validate_structure_lists(void)
 
 {
@@ -7703,7 +7698,7 @@ void engine_validate_structure_lists(void)
 
 
 
-// 函数: void engine_cleanup_structure_lists(void)
+// void engine_cleanup_structure_lists(void)
 void engine_cleanup_structure_lists(void)
 
 {
@@ -7753,7 +7748,7 @@ void engine_cleanup_structure_lists(void)
 
 
 
-// 函数: void engine_initialize_structure_lists(void)
+// void engine_initialize_structure_lists(void)
 void engine_initialize_structure_lists(void)
 
 {
@@ -7803,7 +7798,7 @@ void engine_initialize_structure_lists(void)
 
 
 
-// 函数: void engine_process_structure_queues(void)
+// void engine_process_structure_queues(void)
 void engine_process_structure_queues(void)
 
 {
@@ -7853,7 +7848,7 @@ void engine_process_structure_queues(void)
 
 
 
-// 函数: void engine_handle_structure_queues(void)
+// void engine_handle_structure_queues(void)
 void engine_handle_structure_queues(void)
 
 {
@@ -7903,7 +7898,7 @@ void engine_handle_structure_queues(void)
 
 
 
-// 函数: void engine_core_initialize_updates(void)
+// void engine_core_initialize_updates(void)
 void engine_core_initialize_updates(void)
 
 {
@@ -7953,7 +7948,7 @@ void engine_core_initialize_updates(void)
 
 
 
-// 函数: void engine_core_setup_updatesystem(void)
+// void engine_core_setup_updatesystem(void)
 void engine_core_setup_updatesystem(void)
 
 {
@@ -8003,7 +7998,7 @@ void engine_core_setup_updatesystem(void)
 
 
 
-// 函数: void engine_core_initialize_drm(void)
+// void engine_core_initialize_drm(void)
 void engine_core_initialize_drm(void)
 
 {
@@ -8053,7 +8048,7 @@ void engine_core_initialize_drm(void)
 
 
 
-// 函数: void engine_core_setup_drmsystem(void)
+// void engine_core_setup_drmsystem(void)
 void engine_core_setup_drmsystem(void)
 
 {
@@ -8103,7 +8098,7 @@ void engine_core_setup_drmsystem(void)
 
 
 
-// 函数: void engine_core_initialize_anticheat(void)
+// void engine_core_initialize_anticheat(void)
 void engine_core_initialize_anticheat(void)
 
 {
@@ -8153,7 +8148,7 @@ void engine_core_initialize_anticheat(void)
 
 
 
-// 函数: void engine_core_setup_anticheatsystem(void)
+// void engine_core_setup_anticheatsystem(void)
 void engine_core_setup_anticheatsystem(void)
 
 {
@@ -8171,7 +8166,7 @@ void engine_core_setup_anticheatsystem(void)
   engine_main_structure_pointer = (longlong *)engine_get_system_context();
   engine_structure_data_ptr = (void*)*engine_main_structure_pointer;
   engine_status_flag = *(char *)((longlong)engine_structure_data_ptr[1] + 0x19);
-  engine_stack_function_pointer_18 = engine_initialize_core_system;
+  engine_stack_function_pointer_18 = void engine_initialize_core_system(void);
   engine_current_data_pointer = engine_structure_data_ptr;
   engine_temporary_data_ptr = (void*)engine_structure_data_ptr[1];
   while (engine_status_flag == '\0') {
@@ -8194,7 +8189,7 @@ void engine_core_setup_anticheatsystem(void)
   }
   engine_current_data_pointer[6] = 0x421c3cedd07d816d;
   engine_current_data_pointer[7] = 0xbec25de793b7afa6;
-  engine_current_data_pointer[8] = &engine_global_context_ptr;
+  engine_current_data_pointer[8] = &void* engine_global_context_ptr;
   engine_current_data_pointer[9] = 0;
   engine_current_data_pointer[10] = engine_stack_function_pointer_18;
   return;
@@ -8203,7 +8198,7 @@ void engine_core_setup_anticheatsystem(void)
 
 
 
-// 函数: void engine_core_initialize_social(void)
+// void engine_core_initialize_social(void)
 void engine_core_initialize_social(void)
 
 {
@@ -8244,7 +8239,7 @@ void engine_core_initialize_social(void)
   }
   engine_current_data_pointer[6] = 0x4c22bb0c326587ce;
   engine_current_data_pointer[7] = 0x5e3cf00ce2978287;
-  engine_current_data_pointer[8] = &engine_memory_pool;
+  engine_current_data_pointer[8] = &void* engine_memory_pool;
   engine_current_data_pointer[9] = 1;
   engine_current_data_pointer[10] = uStackX_18;
   return;
@@ -8253,7 +8248,7 @@ void engine_core_initialize_social(void)
 
 
 
-// 函数: void engine_core_setup_socialsystem(void)
+// void engine_core_setup_socialsystem(void)
 void engine_core_setup_socialsystem(void)
 
 {
@@ -8303,7 +8298,7 @@ void engine_core_setup_socialsystem(void)
 
 
 
-// 函数: void engine_core_initialize_community(void)
+// void engine_core_initialize_community(void)
 void engine_core_initialize_community(void)
 
 {
@@ -8353,7 +8348,7 @@ void engine_core_initialize_community(void)
 
 
 
-// 函数: void engine_core_setup_communitysystem(void)
+// void engine_core_setup_communitysystem(void)
 void engine_core_setup_communitysystem(void)
 
 {
@@ -8403,7 +8398,7 @@ void engine_core_setup_communitysystem(void)
 
 
 
-// 函数: void engine_core_initialize_content(void)
+// void engine_core_initialize_content(void)
 void engine_core_initialize_content(void)
 
 {
@@ -8453,7 +8448,7 @@ void engine_core_initialize_content(void)
 
 
 
-// 函数: void engine_core_setup_contentsystem(void)
+// void engine_core_setup_contentsystem(void)
 void engine_core_setup_contentsystem(void)
 
 {
@@ -8471,7 +8466,7 @@ void engine_core_setup_contentsystem(void)
   engine_main_structure_pointer = (longlong *)engine_get_system_context();
   engine_structure_data_ptr = (void*)*engine_main_structure_pointer;
   engine_status_flag = *(char *)((longlong)engine_structure_data_ptr[1] + 0x19);
-  engine_stack_function_pointer_18 = engine_process_main_loop;
+  engine_stack_function_pointer_18 = void engine_process_main_loop(void);
   engine_current_data_pointer = engine_structure_data_ptr;
   engine_temporary_data_ptr = (void*)engine_structure_data_ptr[1];
   while (engine_status_flag == '\0') {
@@ -8494,7 +8489,7 @@ void engine_core_setup_contentsystem(void)
   }
   engine_current_data_pointer[6] = 0x406be72011d07d37;
   engine_current_data_pointer[7] = 0x71876af946c867ab;
-  engine_current_data_pointer[8] = &engine_input_buffer;
+  engine_current_data_pointer[8] = &void* engine_input_buffer;
   engine_current_data_pointer[9] = 0;
   engine_current_data_pointer[10] = engine_stack_function_pointer_18;
   return;
@@ -8503,7 +8498,7 @@ void engine_core_setup_contentsystem(void)
 
 
 
-// 函数: void engine_core_initialize_marketplace(void)
+// void engine_core_initialize_marketplace(void)
 void engine_core_initialize_marketplace(void)
 
 {
@@ -8521,7 +8516,7 @@ void engine_core_initialize_marketplace(void)
   engine_main_structure_pointer = (longlong *)engine_get_system_context();
   engine_structure_data_ptr = (void*)*engine_main_structure_pointer;
   engine_status_flag = *(char *)((longlong)engine_structure_data_ptr[1] + 0x19);
-  engine_stack_function_pointer_18 = engine_handle_input_events;
+  engine_stack_function_pointer_18 = void engine_handle_input_events(void);
   engine_current_data_pointer = engine_structure_data_ptr;
   engine_temporary_data_ptr = (void*)engine_structure_data_ptr[1];
   while (engine_status_flag == '\0') {
@@ -8544,7 +8539,7 @@ void engine_core_initialize_marketplace(void)
   }
   engine_current_data_pointer[6] = 0x40afa5469b6ac06d;
   engine_current_data_pointer[7] = 0x2f4bab01d34055a5;
-  engine_current_data_pointer[8] = &engine_keyboard_state;
+  engine_current_data_pointer[8] = &void* engine_keyboard_state;
   engine_current_data_pointer[9] = 3;
   engine_current_data_pointer[10] = engine_stack_function_pointer_18;
   return;
@@ -8553,7 +8548,7 @@ void engine_core_initialize_marketplace(void)
 
 
 
-// 函数: void engine_core_setup_marketplacesystem(void)
+// void engine_core_setup_marketplacesystem(void)
 void engine_core_setup_marketplacesystem(void)
 
 {
@@ -8603,7 +8598,7 @@ void engine_core_setup_marketplacesystem(void)
 
 
 
-// 函数: void engine_core_initialize_monetization(void)
+// void engine_core_initialize_monetization(void)
 void engine_core_initialize_monetization(void)
 
 {
@@ -8653,7 +8648,7 @@ void engine_core_initialize_monetization(void)
 
 
 
-// 函数: void engine_core_setup_monetizationsystem(void)
+// void engine_core_setup_monetizationsystem(void)
 void engine_core_setup_monetizationsystem(void)
 
 {
@@ -8703,7 +8698,7 @@ void engine_core_setup_monetizationsystem(void)
 
 
 
-// 函数: void engine_core_initialize_advertising(void)
+// void engine_core_initialize_advertising(void)
 void engine_core_initialize_advertising(void)
 
 {
@@ -8753,7 +8748,7 @@ void engine_core_initialize_advertising(void)
 
 
 
-// 函数: void engine_core_setup_advertisingsystem(void)
+// void engine_core_setup_advertisingsystem(void)
 void engine_core_setup_advertisingsystem(void)
 
 {
@@ -8803,7 +8798,7 @@ void engine_core_setup_advertisingsystem(void)
 
 
 
-// 函数: void engine_core_initialize_partnerships(void)
+// void engine_core_initialize_partnerships(void)
 void engine_core_initialize_partnerships(void)
 
 {
@@ -8853,7 +8848,7 @@ void engine_core_initialize_partnerships(void)
 
 
 
-// 函数: void engine_core_setup_partnershipsystem(void)
+// void engine_core_setup_partnershipsystem(void)
 void engine_core_setup_partnershipsystem(void)
 
 {
@@ -8903,7 +8898,7 @@ void engine_core_setup_partnershipsystem(void)
 
 
 
-// 函数: void engine_core_initialize_branding(void)
+// void engine_core_initialize_branding(void)
 void engine_core_initialize_branding(void)
 
 {
@@ -8953,7 +8948,7 @@ void engine_core_initialize_branding(void)
 
 
 
-// 函数: void engine_core_setup_brandingsystem(void)
+// void engine_core_setup_brandingsystem(void)
 void engine_core_setup_brandingsystem(void)
 
 {
@@ -9003,7 +8998,7 @@ void engine_core_setup_brandingsystem(void)
 
 
 
-// 函数: void engine_core_initialize_licensing(void)
+// void engine_core_initialize_licensing(void)
 void engine_core_initialize_licensing(void)
 
 {
@@ -9091,9 +9086,9 @@ int engine_join_thread(void)
   uint64 engine_register_r9;
   
   _engine_error_code = &engine_data_18098bc80;
-  _engine_warning_count = &engine_log_buffer;
+  _engine_warning_count = &void* engine_log_buffer;
 
-// 函数: void engine_core_start_main_loop(void)
+// void engine_core_start_main_loop(void)
 void engine_core_start_main_loop(void)
 
 {
@@ -9143,7 +9138,7 @@ void engine_core_start_main_loop(void)
 
 
 
-// 函数: void engine_core_process_frame(void)
+// void engine_core_process_frame(void)
 void engine_core_process_frame(void)
 
 {
@@ -9193,7 +9188,7 @@ void engine_core_process_frame(void)
 
 
 
-// 函数: void engine_core_update_physics(void)
+// void engine_core_update_physics(void)
 void engine_core_update_physics(void)
 
 {
@@ -9243,7 +9238,7 @@ void engine_core_update_physics(void)
 
 
 
-// 函数: void engine_core_update_animations(void)
+// void engine_core_update_animations(void)
 void engine_core_update_animations(void)
 
 {
@@ -9295,7 +9290,7 @@ void engine_core_update_animations(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void engine_core_update_ai(void)
+// void engine_core_update_ai(void)
 void engine_core_update_ai(void)
 
 {
@@ -9329,7 +9324,7 @@ int engine_core_update_network(uint64 engine_data_structure_ptr,uint64 engine_re
 
 
 
-// 函数: void engine_core_update_ui(void)
+// void engine_core_update_ui(void)
 void engine_core_update_ui(void)
 
 {
@@ -9379,7 +9374,7 @@ void engine_core_update_ui(void)
 
 
 
-// 函数: void engine_core_update_audio(void)
+// void engine_core_update_audio(void)
 void engine_core_update_audio(void)
 
 {
@@ -9429,7 +9424,7 @@ void engine_core_update_audio(void)
 
 
 
-// 函数: void engine_core_update_input(void)
+// void engine_core_update_input(void)
 void engine_core_update_input(void)
 
 {
@@ -9447,7 +9442,7 @@ void engine_core_update_input(void)
   engine_main_structure_pointer = (longlong *)engine_get_system_context();
   engine_structure_data_ptr = (void*)*engine_main_structure_pointer;
   engine_status_flag = *(char *)((longlong)engine_structure_data_ptr[1] + 0x19);
-  engine_stack_function_pointer_18 = engine_process_main_loop;
+  engine_stack_function_pointer_18 = void engine_process_main_loop(void);
   engine_current_data_pointer = engine_structure_data_ptr;
   engine_temporary_data_ptr = (void*)engine_structure_data_ptr[1];
   while (engine_status_flag == '\0') {
@@ -9470,7 +9465,7 @@ void engine_core_update_input(void)
   }
   engine_current_data_pointer[6] = 0x406be72011d07d37;
   engine_current_data_pointer[7] = 0x71876af946c867ab;
-  engine_current_data_pointer[8] = &engine_input_buffer;
+  engine_current_data_pointer[8] = &void* engine_input_buffer;
   engine_current_data_pointer[9] = 0;
   engine_current_data_pointer[10] = engine_stack_function_pointer_18;
   return;
@@ -9479,7 +9474,7 @@ void engine_core_update_input(void)
 
 
 
-// 函数: void engine_core_update_camera(void)
+// void engine_core_update_camera(void)
 void engine_core_update_camera(void)
 
 {
@@ -9497,7 +9492,7 @@ void engine_core_update_camera(void)
   engine_main_structure_pointer = (longlong *)engine_get_system_context();
   engine_structure_data_ptr = (void*)*engine_main_structure_pointer;
   engine_status_flag = *(char *)((longlong)engine_structure_data_ptr[1] + 0x19);
-  engine_stack_function_pointer_18 = engine_handle_input_events;
+  engine_stack_function_pointer_18 = void engine_handle_input_events(void);
   engine_current_data_pointer = engine_structure_data_ptr;
   engine_temporary_data_ptr = (void*)engine_structure_data_ptr[1];
   while (engine_status_flag == '\0') {
@@ -9520,7 +9515,7 @@ void engine_core_update_camera(void)
   }
   engine_current_data_pointer[6] = 0x40afa5469b6ac06d;
   engine_current_data_pointer[7] = 0x2f4bab01d34055a5;
-  engine_current_data_pointer[8] = &engine_keyboard_state;
+  engine_current_data_pointer[8] = &void* engine_keyboard_state;
   engine_current_data_pointer[9] = 3;
   engine_current_data_pointer[10] = engine_stack_function_pointer_18;
   return;
@@ -9529,7 +9524,7 @@ void engine_core_update_camera(void)
 
 
 
-// 函数: void engine_core_update_lighting(void)
+// void engine_core_update_lighting(void)
 void engine_core_update_lighting(void)
 
 {
@@ -9579,7 +9574,7 @@ void engine_core_update_lighting(void)
 
 
 
-// 函数: void engine_core_update_weather(void)
+// void engine_core_update_weather(void)
 void engine_core_update_weather(void)
 
 {
@@ -9629,7 +9624,7 @@ void engine_core_update_weather(void)
 
 
 
-// 函数: void engine_core_update_particles(void)
+// void engine_core_update_particles(void)
 void engine_core_update_particles(void)
 
 {
@@ -9679,7 +9674,7 @@ void engine_core_update_particles(void)
 
 
 
-// 函数: void engine_core_update_terrain(void)
+// void engine_core_update_terrain(void)
 void engine_core_update_terrain(void)
 
 {
@@ -9729,7 +9724,7 @@ void engine_core_update_terrain(void)
 
 
 
-// 函数: void engine_core_update_time(void)
+// void engine_core_update_time(void)
 void engine_core_update_time(void)
 
 {
@@ -9779,7 +9774,7 @@ void engine_core_update_time(void)
 
 
 
-// 函数: void engine_core_update_debug(void)
+// void engine_core_update_debug(void)
 void engine_core_update_debug(void)
 
 {
@@ -9829,7 +9824,7 @@ void engine_core_update_debug(void)
 
 
 
-// 函数: void engine_core_update_profiling(void)
+// void engine_core_update_profiling(void)
 void engine_core_update_profiling(void)
 
 {
@@ -9879,7 +9874,7 @@ void engine_core_update_profiling(void)
 
 
 
-// 函数: void engine_core_update_logging(void)
+// void engine_core_update_logging(void)
 void engine_core_update_logging(void)
 
 {
@@ -9929,7 +9924,7 @@ void engine_core_update_logging(void)
 
 
 
-// 函数: void engine_core_update_config(void)
+// void engine_core_update_config(void)
 void engine_core_update_config(void)
 
 {
@@ -9979,7 +9974,7 @@ void engine_core_update_config(void)
 
 
 
-// 函数: void engine_core_update_localization(void)
+// void engine_core_update_localization(void)
 void engine_core_update_localization(void)
 
 {
@@ -10029,7 +10024,7 @@ void engine_core_update_localization(void)
 
 
 
-// 函数: void engine_core_update_modding(void)
+// void engine_core_update_modding(void)
 void engine_core_update_modding(void)
 
 {
@@ -10079,7 +10074,7 @@ void engine_core_update_modding(void)
 
 
 
-// 函数: void engine_core_update_multiplayer(void)
+// void engine_core_update_multiplayer(void)
 void engine_core_update_multiplayer(void)
 
 {
@@ -10129,7 +10124,7 @@ void engine_core_update_multiplayer(void)
 
 
 
-// 函数: void engine_core_update_achievements(void)
+// void engine_core_update_achievements(void)
 void engine_core_update_achievements(void)
 
 {
@@ -10179,7 +10174,7 @@ void engine_core_update_achievements(void)
 
 
 
-// 函数: void engine_core_update_leaderboards(void)
+// void engine_core_update_leaderboards(void)
 void engine_core_update_leaderboards(void)
 
 {
@@ -10229,7 +10224,7 @@ void engine_core_update_leaderboards(void)
 
 
 
-// 函数: void engine_core_update_statistics(void)
+// void engine_core_update_statistics(void)
 void engine_core_update_statistics(void)
 
 {
@@ -10279,7 +10274,7 @@ void engine_core_update_statistics(void)
 
 
 
-// 函数: void engine_core_update_analytics(void)
+// void engine_core_update_analytics(void)
 void engine_core_update_analytics(void)
 
 {
@@ -10297,7 +10292,7 @@ void engine_core_update_analytics(void)
   engine_main_structure_pointer = (longlong *)engine_get_system_context();
   engine_structure_data_ptr = (void*)*engine_main_structure_pointer;
   engine_status_flag = *(char *)((longlong)engine_structure_data_ptr[1] + 0x19);
-  engine_stack_function_pointer_18 = engine_initialize_core_system;
+  engine_stack_function_pointer_18 = void engine_initialize_core_system(void);
   engine_current_data_pointer = engine_structure_data_ptr;
   engine_temporary_data_ptr = (void*)engine_structure_data_ptr[1];
   while (engine_status_flag == '\0') {
@@ -10320,7 +10315,7 @@ void engine_core_update_analytics(void)
   }
   engine_current_data_pointer[6] = 0x421c3cedd07d816d;
   engine_current_data_pointer[7] = 0xbec25de793b7afa6;
-  engine_current_data_pointer[8] = &engine_global_context_ptr;
+  engine_current_data_pointer[8] = &void* engine_global_context_ptr;
   engine_current_data_pointer[9] = 0;
   engine_current_data_pointer[10] = engine_stack_function_pointer_18;
   return;
@@ -10329,7 +10324,7 @@ void engine_core_update_analytics(void)
 
 
 
-// 函数: void engine_core_update_telemetry(void)
+// void engine_core_update_telemetry(void)
 void engine_core_update_telemetry(void)
 
 {
@@ -10370,7 +10365,7 @@ void engine_core_update_telemetry(void)
   }
   engine_current_data_pointer[6] = 0x4c22bb0c326587ce;
   engine_current_data_pointer[7] = 0x5e3cf00ce2978287;
-  engine_current_data_pointer[8] = &engine_memory_pool;
+  engine_current_data_pointer[8] = &void* engine_memory_pool;
   engine_current_data_pointer[9] = 1;
   engine_current_data_pointer[10] = uStackX_18;
   return;
@@ -10381,7 +10376,7 @@ void engine_core_update_telemetry(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void engine_core_update_crashreporting(void)
+// void engine_core_update_crashreporting(void)
 void engine_core_update_crashreporting(void)
 
 {
@@ -10405,7 +10400,7 @@ void engine_core_update_crashreporting(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void engine_core_update_updates(void)
+// void engine_core_update_updates(void)
 void engine_core_update_updates(void)
 
 {
@@ -10473,7 +10468,7 @@ int engine_core_update_community(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void engine_core_update_content(void)
+// void engine_core_update_content(void)
 void engine_core_update_content(void)
 
 {
@@ -10537,7 +10532,7 @@ LAB_1808fd14a:
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void engine_core_update_monetization(void)
+// void engine_core_update_monetization(void)
 void engine_core_update_monetization(void)
 
 {
@@ -10561,7 +10556,7 @@ void engine_core_update_monetization(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void engine_core_update_advertising(void)
+// void engine_core_update_advertising(void)
 void engine_core_update_advertising(void)
 
 {
@@ -10638,7 +10633,7 @@ int engine_core_update_licensing(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void engine_core_shutdown_system(void)
+// void engine_core_shutdown_system(void)
 void engine_core_shutdown_system(void)
 
 {
@@ -10657,7 +10652,7 @@ void engine_core_shutdown_system(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void engine_core_cleanup_resources(void)
+// void engine_core_cleanup_resources(void)
 void engine_core_cleanup_resources(void)
 
 {
@@ -10681,7 +10676,7 @@ void engine_core_cleanup_resources(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void engine_core_save_game_state(void)
+// void engine_core_save_game_state(void)
 void engine_core_save_game_state(void)
 
 {
@@ -10700,7 +10695,7 @@ void engine_core_save_game_state(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void engine_core_load_game_state(void)
+// void engine_core_load_game_state(void)
 void engine_core_load_game_state(void)
 
 {
@@ -10719,7 +10714,7 @@ void engine_core_load_game_state(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void engine_core_reset_game_state(void)
+// void engine_core_reset_game_state(void)
 void engine_core_reset_game_state(void)
 
 {
@@ -10738,7 +10733,7 @@ void engine_core_reset_game_state(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void engine_core_pause_game(void)
+// void engine_core_pause_game(void)
 void engine_core_pause_game(void)
 
 {
@@ -10757,7 +10752,7 @@ void engine_core_pause_game(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void engine_core_resume_game(void)
+// void engine_core_resume_game(void)
 void engine_core_resume_game(void)
 
 {
@@ -10801,7 +10796,7 @@ int engine_core_handle_error(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void engine_core_log_message(void)
+// void engine_core_log_message(void)
 void engine_core_log_message(void)
 
 {
@@ -10820,7 +10815,7 @@ void engine_core_log_message(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void engine_core_debug_print(void)
+// void engine_core_debug_print(void)
 void engine_core_debug_print(void)
 
 {
@@ -10877,7 +10872,7 @@ void engine_main_entry_point(uint64 engine_data_structure_ptr)
   
                     // 0x43d20  31  engine_main_entry_point
 
-// 函数: void engine_core_initialize_dll(longlong engine_data_structure_ptr)
+// void engine_core_initialize_dll(longlong engine_data_structure_ptr)
 void engine_core_initialize_dll(longlong engine_data_structure_ptr)
 
 {
@@ -10960,7 +10955,7 @@ LAB_180043e47:
 
 
 
-// 函数: void* engine_core_setup_function_pointers
+// void* engine_core_setup_function_pointers
 // 功能: 设置核心系统函数指针，初始化函数调用表
 // 参数: 
 //   - engine_data_structure_ptr: 函数指针数组
@@ -10986,7 +10981,7 @@ engine_core_setup_function_pointers(uint64 engine_data_structure_ptr,ulonglong e
 
 
 
-// 函数: void engine_core_initialize_subsystems(void)
+// void engine_core_initialize_subsystems(void)
 void engine_core_initialize_subsystems(void)
 
 {
@@ -10997,7 +10992,7 @@ void engine_core_initialize_subsystems(void)
 
 
 
-// 函数: void engine_configure_display_settings(uint64 engine_data_structure_ptr)
+// void engine_configure_display_settings(uint64 engine_data_structure_ptr)
 void engine_configure_display_settings(uint64 engine_data_structure_ptr)
 
 {
@@ -11010,7 +11005,7 @@ void engine_configure_display_settings(uint64 engine_data_structure_ptr)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void engine_core_start_rendering(void)
+// void engine_core_start_rendering(void)
 void engine_core_start_rendering(void)
 
 {
@@ -11165,7 +11160,7 @@ LAB_180044db8:
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void engine_core_setup_window(uint64 engine_data_structure_ptr,longlong engine_result_flag_ptr)
+// void engine_core_setup_window(uint64 engine_data_structure_ptr,longlong engine_result_flag_ptr)
 void engine_core_setup_window(uint64 engine_data_structure_ptr,longlong engine_result_flag_ptr)
 
 {
@@ -11283,7 +11278,7 @@ LAB_180044f8f:
 LAB_180044faf:
   engine_next_data_pointer = (void*)engine_call_memory_allocator(_engine_data_18,8,8,3);
   *engine_next_data_pointer = 0;
-  puVar9 = (void*)engine_call_memory_allocator(_engine_data_18,8,8,3);
+  engine_temp_data_pointer_9 = (void*)engine_call_memory_allocator(_engine_data_18,8,8,3);
   *engine_next_data_pointer = &engine_data_18098bb60;
   *puVar9 = &engine_data_18098bb88;
   engine_data_ptr0 = (void*)engine_call_memory_allocator(_engine_data_18,0x20,8,3);
@@ -11312,7 +11307,7 @@ LAB_180044faf:
   engine_data_pointer_58 = 0;
   _engine_data_40 = engine_stack_long_x20;
 
-// 函数: void engine_core_initialize_graphics(void)
+// void engine_core_initialize_graphics(void)
 void engine_core_initialize_graphics(void)
 
 {
@@ -11515,7 +11510,7 @@ void engine_main_loop(uint64 engine_data_structure_ptr)
   
                     // 0x45a00  27  engine_main_loop
 
-// 函数: void engine_update_game_state(longlong *engine_data_structure_ptr)
+// void engine_update_game_state(longlong *engine_data_structure_ptr)
 void engine_update_game_state(longlong *engine_data_structure_ptr)
 
 {
@@ -11528,7 +11523,7 @@ void engine_update_game_state(longlong *engine_data_structure_ptr)
 
 
 
-// 函数: void engine_core_string_operations(longlong engine_data_structure_ptr,longlong engine_result_flag_ptr)
+// void engine_core_string_operations(longlong engine_data_structure_ptr,longlong engine_result_flag_ptr)
 void engine_core_string_operations(longlong engine_data_structure_ptr,longlong engine_result_flag_ptr)
 
 {
@@ -11559,7 +11554,7 @@ void engine_core_string_operations(longlong engine_data_structure_ptr,longlong e
 
 
 
-// 函数: void engine_core_memory_operations(longlong engine_data_structure_ptr,uint64 engine_result_flag_ptr,int engine_comparison_params)
+// void engine_core_memory_operations(longlong engine_data_structure_ptr,uint64 engine_result_flag_ptr,int engine_comparison_params)
 void engine_core_memory_operations(longlong engine_data_structure_ptr,uint64 engine_result_flag_ptr,int engine_comparison_params)
 
 {
@@ -11575,7 +11570,7 @@ void engine_core_memory_operations(longlong engine_data_structure_ptr,uint64 eng
 
 
 
-// 函数: void engine_core_cleanup_operations(void)
+// void engine_core_cleanup_operations(void)
 void engine_core_cleanup_operations(void)
 
 {
@@ -11586,7 +11581,7 @@ void engine_core_cleanup_operations(void)
 
 
 
-// 函数: void engine_core_reset_operations(uint8* engine_data_structure_ptr)
+// void engine_core_reset_operations(uint8* engine_data_structure_ptr)
 void engine_core_reset_operations(uint8* engine_data_structure_ptr)
 
 {
@@ -11600,7 +11595,7 @@ void engine_core_reset_operations(uint8* engine_data_structure_ptr)
 
 
 
-// 函数: void engine_core_shutdown_operations(void)
+// void engine_core_shutdown_operations(void)
 void engine_core_shutdown_operations(void)
 
 {
@@ -11610,7 +11605,7 @@ void engine_core_shutdown_operations(void)
 
 
 
-// 函数: void* engine_core_handle_events
+// void* engine_core_handle_events
 // 功能: 处理核心系统事件，管理事件队列和分发
 // 参数: 
 //   - engine_data_structure_ptr: 事件处理器指针
@@ -11675,7 +11670,7 @@ engine_core_update_system(uint64_t *engine_data_structure_ptr,ulonglong engine_r
 
 
 
-// 函数: void engine_core_string_operations_2(longlong engine_data_structure_ptr,longlong engine_result_flag_ptr)
+// void engine_core_string_operations_2(longlong engine_data_structure_ptr,longlong engine_result_flag_ptr)
 void engine_core_string_operations_2(longlong engine_data_structure_ptr,longlong engine_result_flag_ptr)
 
 {
@@ -11706,7 +11701,7 @@ void engine_core_string_operations_2(longlong engine_data_structure_ptr,longlong
 
 
 
-// 函数: void engine_core_memory_operations_2(longlong engine_data_structure_ptr,uint64 engine_result_flag_ptr,int engine_comparison_params)
+// void engine_core_memory_operations_2(longlong engine_data_structure_ptr,uint64 engine_result_flag_ptr,int engine_comparison_params)
 void engine_core_memory_operations_2(longlong engine_data_structure_ptr,uint64 engine_result_flag_ptr,int engine_comparison_params)
 
 {
@@ -11722,7 +11717,7 @@ void engine_core_memory_operations_2(longlong engine_data_structure_ptr,uint64 e
 
 
 
-// 函数: void engine_core_cleanup_operations_2(void)
+// void engine_core_cleanup_operations_2(void)
 void engine_core_cleanup_operations_2(void)
 
 {
@@ -11733,7 +11728,7 @@ void engine_core_cleanup_operations_2(void)
 
 
 
-// 函数: void engine_core_reset_operations_2(uint8_t *engine_data_structure_ptr)
+// void engine_core_reset_operations_2(uint8_t *engine_data_structure_ptr)
 void engine_core_reset_operations_2(uint8_t *engine_data_structure_ptr)
 
 {
@@ -11749,7 +11744,7 @@ void engine_core_reset_operations_2(uint8_t *engine_data_structure_ptr)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void engine_core_string_search(longlong engine_data_structure_ptr,longlong engine_result_flag_ptr,longlong engine_comparison_params)
+// void engine_core_string_search(longlong engine_data_structure_ptr,longlong engine_result_flag_ptr,longlong engine_comparison_params)
 void engine_core_string_search(longlong engine_data_structure_ptr,longlong engine_result_flag_ptr,longlong engine_comparison_params)
 
 {
@@ -11791,7 +11786,7 @@ void engine_core_string_search(longlong engine_data_structure_ptr,longlong engin
 
 
 
-// 函数: void engine_core_semaphore_operations(uint64_t *engine_data_structure_ptr,uint32_t engine_result_flag_ptr)
+// void engine_core_semaphore_operations(uint64_t *engine_data_structure_ptr,uint32_t engine_result_flag_ptr)
 void engine_core_semaphore_operations(uint64_t *engine_data_structure_ptr,uint32_t engine_result_flag_ptr)
 
 {
@@ -11806,7 +11801,7 @@ void engine_core_semaphore_operations(uint64_t *engine_data_structure_ptr,uint32
 
 
 
-// 函数: void engine_core_mutex_operations(uint64_t *engine_data_structure_ptr)
+// void engine_core_mutex_operations(uint64_t *engine_data_structure_ptr)
 void engine_core_mutex_operations(uint64_t *engine_data_structure_ptr)
 
 {
@@ -11890,7 +11885,7 @@ longlong engine_core_thread_operations(uint32_t *engine_data_structure_ptr,uint3
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void engine_core_registry_operations(uint64 engine_data_structure_ptr,uint32_t engine_result_flag_ptr)
+// void engine_core_registry_operations(uint64 engine_data_structure_ptr,uint32_t engine_result_flag_ptr)
 void engine_core_registry_operations(uint64 engine_data_structure_ptr,uint32_t engine_result_flag_ptr)
 
 {
@@ -11933,7 +11928,7 @@ engine_core_cleanup_operations_3(uint64_t *engine_data_structure_ptr,ulonglong e
 
 
 
-// 函数: void engine_core_string_operations_3(longlong engine_data_structure_ptr,longlong engine_result_flag_ptr)
+// void engine_core_string_operations_3(longlong engine_data_structure_ptr,longlong engine_result_flag_ptr)
 void engine_core_string_operations_3(longlong engine_data_structure_ptr,longlong engine_result_flag_ptr)
 
 {
@@ -11964,7 +11959,7 @@ void engine_core_string_operations_3(longlong engine_data_structure_ptr,longlong
 
 
 
-// 函数: void engine_render_frame(longlong engine_data_structure_ptr,uint64 engine_result_flag_ptr,int engine_comparison_params)
+// void engine_render_frame(longlong engine_data_structure_ptr,uint64 engine_result_flag_ptr,int engine_comparison_params)
 void engine_render_frame(longlong engine_data_structure_ptr,uint64 engine_result_flag_ptr,int engine_comparison_params)
 
 {
@@ -11980,7 +11975,7 @@ void engine_render_frame(longlong engine_data_structure_ptr,uint64 engine_result
 
 
 
-// 函数: void engine_swap_buffers(void)
+// void engine_swap_buffers(void)
 void engine_swap_buffers(void)
 
 {
@@ -11991,7 +11986,7 @@ void engine_swap_buffers(void)
 
 
 
-// 函数: void engine_clear_screen(uint8_t *engine_data_structure_ptr)
+// void engine_clear_screen(uint8_t *engine_data_structure_ptr)
 void engine_clear_screen(uint8_t *engine_data_structure_ptr)
 
 {
@@ -12022,7 +12017,7 @@ uint64_t * engine_configure_keyboard_input(uint64_t *engine_data_structure_ptr)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void engine_setup_viewport(longlong engine_data_structure_ptr,longlong engine_result_flag_ptr,longlong engine_comparison_params)
+// void engine_setup_viewport(longlong engine_data_structure_ptr,longlong engine_result_flag_ptr,longlong engine_comparison_params)
 void engine_setup_viewport(longlong engine_data_structure_ptr,longlong engine_result_flag_ptr,longlong engine_comparison_params)
 
 {
@@ -12031,7 +12026,7 @@ void engine_setup_viewport(longlong engine_data_structure_ptr,longlong engine_re
   longlong engine_temp_long_3;
   uint8 auStack_a8 [32];
   uint64 engine_stack_value_88;
-  void* puStack_80;
+  void* pengine_stack_value_80;
   uint8* engine_stack_pointer_78;
   uint32 engine_stack_value_70;
   uint8 auStack_68 [32];
@@ -12039,7 +12034,7 @@ void engine_setup_viewport(longlong engine_data_structure_ptr,longlong engine_re
   
   engine_stack_value_88 = 0xfffffffffffffffe;
   uStack_48 = _engine_data_a8 ^ (ulonglong)auStack_a8;
-  puStack_80 = &engine_data_18098bc80;
+  pengine_stack_value_80 = &engine_data_18098bc80;
   engine_stack_pointer_78 = auStack_68;
   engine_stack_value_70 = 0;
   auStack_68[0] = 0;
@@ -12056,7 +12051,7 @@ void engine_setup_viewport(longlong engine_data_structure_ptr,longlong engine_re
                     // WARNING: Subroutine does not return
     memcpy(engine_stack_pointer_78,*(longlong *)(engine_data_structure_ptr + 8),engine_temporary_long - *(longlong *)(engine_data_structure_ptr + 8));
   }
-  puStack_80 = &engine_data_18098bcb0;
+  pengine_stack_value_80 = &engine_data_18098bcb0;
                     // WARNING: Subroutine does not return
   engine_call_data_hasher(uStack_48 ^ (ulonglong)auStack_a8);
 }
@@ -12076,7 +12071,7 @@ uint64_t * engine_create_render_context(uint64_t *engine_data_structure_ptr,ulon
 
 
 
-// 函数: void engine_destroy_render_context(uint64_t *engine_data_structure_ptr)
+// void engine_destroy_render_context(uint64_t *engine_data_structure_ptr)
 void engine_destroy_render_context(uint64_t *engine_data_structure_ptr)
 
 {
@@ -12092,7 +12087,7 @@ void engine_destroy_render_context(uint64_t *engine_data_structure_ptr)
 
 
 
-// 函数: void engine_bind_render_context(longlong engine_data_structure_ptr)
+// void engine_bind_render_context(longlong engine_data_structure_ptr)
 void engine_bind_render_context(longlong engine_data_structure_ptr)
 
 {
@@ -12117,7 +12112,7 @@ void engine_bind_render_context(longlong engine_data_structure_ptr)
 
 
 
-// 函数: void engine_configure_render_settings(uint64_t *engine_data_structure_ptr)
+// void engine_configure_render_settings(uint64_t *engine_data_structure_ptr)
 void engine_configure_render_settings(uint64_t *engine_data_structure_ptr)
 
 {
@@ -12145,7 +12140,7 @@ engine_initialize_texture_resource(uint64_t *engine_data_structure_ptr,ulonglong
 
 
 
-// 函数: void engine_setup_render_pipeline(longlong *engine_data_structure_ptr)
+// void engine_setup_render_pipeline(longlong *engine_data_structure_ptr)
 void engine_setup_render_pipeline(longlong *engine_data_structure_ptr)
 
 {
@@ -12203,7 +12198,7 @@ void engine_execute_render_pipeline(longlong *engine_data_structure_ptr)
 
 
 
-// 函数: void engine_initialize_render_pipeline(ulonglong *engine_data_structure_ptr)
+// void engine_initialize_render_pipeline(ulonglong *engine_data_structure_ptr)
 void engine_initialize_render_pipeline(ulonglong *engine_data_structure_ptr)
 
 {
@@ -12278,7 +12273,7 @@ int engine_validate_render_state(longlong engine_data_structure_ptr,longlong eng
   uint64 uStack_98;
   uint64 uStack_90;
   uint64 engine_stack_value_88;
-  uint64 uStack_80;
+  uint64 engine_stack_value_80;
   uint64 engine_stack_value_78;
   uint64 engine_stack_value_70;
   uint64_t ***pppuStack_68;
@@ -12326,7 +12321,7 @@ int engine_validate_render_state(longlong engine_data_structure_ptr,longlong eng
   uStack_98 = 0;
   uStack_90 = 0;
   engine_stack_value_88 = 0;
-  uStack_80 = 0;
+  engine_stack_value_80 = 0;
   engine_stack_value_78 = 0;
   engine_stack_value_70 = 0;
   engine_temp_uint_8 = *(ulonglong *)(engine_data_structure_ptr + 0x10);
@@ -12386,7 +12381,7 @@ LAB_180046a90:
 
 
 
-// 函数: void engine_draw_primitive(uint64_t *engine_data_structure_ptr,uint64 engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
+// void engine_draw_primitive(uint64_t *engine_data_structure_ptr,uint64 engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
 void engine_draw_primitive(uint64_t *engine_data_structure_ptr,uint64 engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
 
 {
@@ -12482,7 +12477,7 @@ LAB_180046c5e:
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void engine_setup_render_target(longlong *engine_data_structure_ptr,uint64_t *engine_result_flag_ptr)
+// void engine_setup_render_target(longlong *engine_data_structure_ptr,uint64_t *engine_result_flag_ptr)
 void engine_setup_render_target(longlong *engine_data_structure_ptr,uint64_t *engine_result_flag_ptr)
 
 {
@@ -12531,7 +12526,7 @@ void engine_setup_render_target(longlong *engine_data_structure_ptr,uint64_t *en
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void engine_initialize_render_system(void)
+// void engine_initialize_render_system(void)
 void engine_initialize_render_system(void)
 
 {
@@ -12811,7 +12806,7 @@ engine_allocate_memory(uint64_t *engine_data_structure_ptr,uint64_t *engine_resu
 
 
 
-// 函数: void engine_free_memory(longlong engine_data_structure_ptr)
+// void engine_free_memory(longlong engine_data_structure_ptr)
 void engine_free_memory(longlong engine_data_structure_ptr)
 
 {
@@ -12822,7 +12817,7 @@ void engine_free_memory(longlong engine_data_structure_ptr)
 
 
 
-// 函数: void engine_reallocate_memory(uint64_t *engine_data_structure_ptr)
+// void engine_reallocate_memory(uint64_t *engine_data_structure_ptr)
 void engine_reallocate_memory(uint64_t *engine_data_structure_ptr)
 
 {
@@ -12835,7 +12830,7 @@ void engine_reallocate_memory(uint64_t *engine_data_structure_ptr)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void engine_copy_memory(uint64 engine_data_structure_ptr,uint64 engine_result_flag_ptr,longlong engine_comparison_params,uint64 engine_system_parameter_4)
+// void engine_copy_memory(uint64 engine_data_structure_ptr,uint64 engine_result_flag_ptr,longlong engine_comparison_params,uint64 engine_system_parameter_4)
 void engine_copy_memory(uint64 engine_data_structure_ptr,uint64 engine_result_flag_ptr,longlong engine_comparison_params,uint64 engine_system_parameter_4)
 
 {
@@ -12921,7 +12916,7 @@ LAB_180047f93:
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void engine_initialize_memory_manager(uint64 engine_data_structure_ptr,uint64 engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
+// void engine_initialize_memory_manager(uint64 engine_data_structure_ptr,uint64 engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
 void engine_initialize_memory_manager(uint64 engine_data_structure_ptr,uint64 engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
 
 {
@@ -13195,7 +13190,7 @@ void engine_initialize_memory_manager(uint64 engine_data_structure_ptr,uint64 en
   if ((_engine_frame_counter - _engine_render_state) / 0x28 != 0) {
     engine_temp_long1 = 0;
     do {
-      engine_temp_long_6 = _engine_render_state;
+      engine_temp_long_6 = _void* engine_render_state;
       engine_temp_long3 = 0;
       pengine_status_flag4 = *(char **)(_engine_render_state + 8 + engine_temp_long1);
       engine_temp_char_flag = *pengine_status_flag4;
@@ -13239,7 +13234,7 @@ void engine_initialize_memory_manager(uint64 engine_data_structure_ptr,uint64 en
 
 
 
-// 函数: void engine_cleanup_memory_manager(longlong *engine_data_structure_ptr)
+// void engine_cleanup_memory_manager(longlong *engine_data_structure_ptr)
 void engine_cleanup_memory_manager(longlong *engine_data_structure_ptr)
 
 {
@@ -13260,7 +13255,7 @@ void engine_cleanup_memory_manager(longlong *engine_data_structure_ptr)
 
 
 
-// 函数: void engine_validate_memory_block(longlong *engine_data_structure_ptr)
+// void engine_validate_memory_block(longlong *engine_data_structure_ptr)
 void engine_validate_memory_block(longlong *engine_data_structure_ptr)
 
 {
@@ -13288,7 +13283,7 @@ void engine_validate_memory_block(longlong *engine_data_structure_ptr)
 
 
 
-// 函数: void engine_defragment_memory(ulonglong *engine_data_structure_ptr)
+// void engine_defragment_memory(ulonglong *engine_data_structure_ptr)
 void engine_defragment_memory(ulonglong *engine_data_structure_ptr)
 
 {
@@ -13328,7 +13323,7 @@ void engine_defragment_memory(ulonglong *engine_data_structure_ptr)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void engine_get_memory_stats(longlong engine_data_structure_ptr)
+// void engine_get_memory_stats(longlong engine_data_structure_ptr)
 void engine_get_memory_stats(longlong engine_data_structure_ptr)
 
 {
@@ -13583,7 +13578,7 @@ LAB_180048e74:
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void engine_unmap_memory_region(longlong engine_data_structure_ptr,uint64 engine_result_flag_ptr,longlong engine_comparison_params,uint64 engine_system_parameter_4,
+// void engine_unmap_memory_region(longlong engine_data_structure_ptr,uint64 engine_result_flag_ptr,longlong engine_comparison_params,uint64 engine_system_parameter_4,
 void engine_unmap_memory_region(longlong engine_data_structure_ptr,uint64 engine_result_flag_ptr,longlong engine_comparison_params,uint64 engine_system_parameter_4,
                   longlong param_5)
 
@@ -13817,7 +13812,7 @@ engine_setup_memory_mapping(uint64_t *engine_data_structure_ptr,longlong *engine
 
 
 
-// 函数: void engine_call_system_validator(uint64_t *engine_data_structure_ptr)
+// void engine_call_system_validator(uint64_t *engine_data_structure_ptr)
 void engine_call_system_validator(uint64_t *engine_data_structure_ptr)
 
 {
@@ -13845,7 +13840,7 @@ uint64 engine_process_resource_data(uint64 engine_data_structure_ptr,ulonglong e
 
 
 
-// 函数: void engine_handle_mutex_lock
+// void engine_handle_mutex_lock
 // 功能: 处理互斥锁操作，确保线程安全
 // 参数: 
 //   - engine_data_structure_ptr: 互斥锁对象指针
@@ -13873,7 +13868,7 @@ void engine_handle_mutex_lock(longlong engine_data_structure_ptr,uint8_t engine_
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void engine_process_resource_allocation
+// void engine_process_resource_allocation
 // 功能: 处理资源分配操作，管理内存和系统资源
 // 参数: 
 //   - engine_data_structure_ptr: 资源管理器句柄
@@ -13955,7 +13950,7 @@ uint8_t engine_validate_resource_access(longlong engine_data_structure_ptr,uint6
 
 
 
-// 函数: void engine_cleanup_condition_variable
+// void engine_cleanup_condition_variable
 // 功能: 清理条件变量资源，释放相关内存
 // 简化实现: 保留核心条件变量清理功能
 void engine_cleanup_condition_variable(void)
@@ -13968,7 +13963,7 @@ void engine_cleanup_condition_variable(void)
 
 
 
-// 函数: void engine_initialize_resource_system(void)
+// void engine_initialize_resource_system(void)
 void engine_initialize_resource_system(void)
 
 {
@@ -13979,7 +13974,7 @@ void engine_initialize_resource_system(void)
 
 
 
-// 函数: void engine_initialize_thread_system(void)
+// void engine_initialize_thread_system(void)
 void engine_initialize_thread_system(void)
 
 {
@@ -13990,7 +13985,7 @@ void engine_initialize_thread_system(void)
 
 
 
-// 函数: void engine_initialize_event_system(void)
+// void engine_initialize_event_system(void)
 void engine_initialize_event_system(void)
 
 {
@@ -14001,7 +13996,7 @@ void engine_initialize_event_system(void)
 
 
 
-// 函数: void engine_initialize_configuration_system(uint64 engine_data_structure_ptr)
+// void engine_initialize_configuration_system(uint64 engine_data_structure_ptr)
 void engine_initialize_configuration_system(uint64 engine_data_structure_ptr)
 
 {
@@ -14050,7 +14045,7 @@ engine_allocate_resource_memory(uint64_t *engine_data_structure_ptr,ulonglong en
 
 
 
-// 函数: void engine_process_system_request(longlong engine_data_structure_ptr,uint64 engine_result_flag_ptr,int engine_comparison_params)
+// void engine_process_system_request(longlong engine_data_structure_ptr,uint64 engine_result_flag_ptr,int engine_comparison_params)
 void engine_process_system_request(longlong engine_data_structure_ptr,uint64 engine_result_flag_ptr,int engine_comparison_params)
 
 {
@@ -14066,7 +14061,7 @@ void engine_process_system_request(longlong engine_data_structure_ptr,uint64 eng
 
 
 
-// 函数: void engine_validate_system_state(void)
+// void engine_validate_system_state(void)
 void engine_validate_system_state(void)
 
 {
@@ -14077,7 +14072,7 @@ void engine_validate_system_state(void)
 
 
 
-// 函数: void engine_handle_system_event(uint8_t *engine_data_structure_ptr)
+// void engine_handle_system_event(uint8_t *engine_data_structure_ptr)
 void engine_handle_system_event(uint8_t *engine_data_structure_ptr)
 
 {
@@ -14108,7 +14103,7 @@ uint64_t * engine_create_ui_manager(uint64_t *engine_data_structure_ptr)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void engine_execute_system_command(longlong engine_data_structure_ptr,longlong engine_result_flag_ptr,longlong engine_comparison_params)
+// void engine_execute_system_command(longlong engine_data_structure_ptr,longlong engine_result_flag_ptr,longlong engine_comparison_params)
 void engine_execute_system_command(longlong engine_data_structure_ptr,longlong engine_result_flag_ptr,longlong engine_comparison_params)
 
 {
@@ -14187,7 +14182,7 @@ engine_free_resource_memory(uint64_t *engine_data_structure_ptr,ulonglong engine
 
 
 
-// 函数: void engine_process_system_operation(longlong engine_data_structure_ptr,longlong engine_result_flag_ptr)
+// void engine_process_system_operation(longlong engine_data_structure_ptr,longlong engine_result_flag_ptr)
 void engine_process_system_operation(longlong engine_data_structure_ptr,longlong engine_result_flag_ptr)
 
 {
@@ -14218,7 +14213,7 @@ void engine_process_system_operation(longlong engine_data_structure_ptr,longlong
 
 
 
-// 函数: void engine_handle_system_callback(longlong engine_data_structure_ptr,uint64 engine_result_flag_ptr,int engine_comparison_params)
+// void engine_handle_system_callback(longlong engine_data_structure_ptr,uint64 engine_result_flag_ptr,int engine_comparison_params)
 void engine_handle_system_callback(longlong engine_data_structure_ptr,uint64 engine_result_flag_ptr,int engine_comparison_params)
 
 {
@@ -14234,7 +14229,7 @@ void engine_handle_system_callback(longlong engine_data_structure_ptr,uint64 eng
 
 
 
-// 函数: void engine_check_system_status(void)
+// void engine_check_system_status(void)
 void engine_check_system_status(void)
 
 {
@@ -14245,7 +14240,7 @@ void engine_check_system_status(void)
 
 
 
-// 函数: void engine_update_system_state(uint8_t *engine_data_structure_ptr)
+// void engine_update_system_state(uint8_t *engine_data_structure_ptr)
 void engine_update_system_state(uint8_t *engine_data_structure_ptr)
 
 {
@@ -14276,7 +14271,7 @@ uint64_t * engine_initialize_ui_system(uint64_t *engine_data_structure_ptr)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void engine_execute_system_task(longlong engine_data_structure_ptr,longlong engine_result_flag_ptr,longlong engine_comparison_params)
+// void engine_execute_system_task(longlong engine_data_structure_ptr,longlong engine_result_flag_ptr,longlong engine_comparison_params)
 void engine_execute_system_task(longlong engine_data_structure_ptr,longlong engine_result_flag_ptr,longlong engine_comparison_params)
 
 {
@@ -14344,7 +14339,7 @@ engine_copy_resource_data(uint64_t *engine_data_structure_ptr,longlong engine_re
 
 
 
-// 函数: void engine_initialize_system_object(uint64_t *engine_data_structure_ptr)
+// void engine_initialize_system_object(uint64_t *engine_data_structure_ptr)
 void engine_initialize_system_object(uint64_t *engine_data_structure_ptr)
 
 {
@@ -14370,7 +14365,7 @@ void engine_initialize_system_object(uint64_t *engine_data_structure_ptr)
 
 
 
-// 函数: void engine_configure_system_component(uint64 engine_data_structure_ptr,uint64_t *engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
+// void engine_configure_system_component(uint64 engine_data_structure_ptr,uint64_t *engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
 void engine_configure_system_component(uint64 engine_data_structure_ptr,uint64_t *engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
 
 {
@@ -14401,7 +14396,7 @@ void engine_configure_system_component(uint64 engine_data_structure_ptr,uint64_t
 
 
 
-// 函数: void engine_call_system_cleanup(void)
+// void engine_call_system_cleanup(void)
 void engine_call_system_cleanup(void)
 
 {
@@ -14526,7 +14521,7 @@ void engine_call_system_cleanup(void)
       __Throw_C_error_std__YAXH_Z(engine_temp_int_7);
     }
 
-// 函数: void engine_process_system_message(longlong engine_data_structure_ptr)
+// void engine_process_system_message(longlong engine_data_structure_ptr)
 void engine_process_system_message(longlong engine_data_structure_ptr)
 
 {
@@ -14645,7 +14640,7 @@ void engine_process_system_message(longlong engine_data_structure_ptr)
       __Throw_C_error_std__YAXH_Z(engine_temp_int_6);
     }
 
-// 函数: void engine_handle_system_notification(longlong engine_data_structure_ptr,uint64 engine_result_flag_ptr)
+// void engine_handle_system_notification(longlong engine_data_structure_ptr,uint64 engine_result_flag_ptr)
 void engine_handle_system_notification(longlong engine_data_structure_ptr,uint64 engine_result_flag_ptr)
 
 {
@@ -14703,7 +14698,7 @@ void engine_handle_system_notification(longlong engine_data_structure_ptr,uint64
   }
   else {
 
-// 函数: void engine_shutdown_system(longlong engine_data_structure_ptr)
+// void engine_shutdown_system(longlong engine_data_structure_ptr)
 void engine_shutdown_system(longlong engine_data_structure_ptr)
 
 {
@@ -14830,7 +14825,7 @@ uint64_t * engine_process_data_structure(uint64_t *engine_data_structure_ptr,uin
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void engine_execute_system_function(longlong engine_data_structure_ptr)
+// void engine_execute_system_function(longlong engine_data_structure_ptr)
 void engine_execute_system_function(longlong engine_data_structure_ptr)
 
 {
@@ -14899,7 +14894,7 @@ void engine_execute_system_function(longlong engine_data_structure_ptr)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void engine_check_system_readiness(void)
+// void engine_check_system_readiness(void)
 void engine_check_system_readiness(void)
 
 {
@@ -14934,7 +14929,7 @@ void engine_check_system_readiness(void)
 
 
 
-// 函数: void engine_initialize_system_service(longlong engine_data_structure_ptr)
+// void engine_initialize_system_service(longlong engine_data_structure_ptr)
 void engine_initialize_system_service(longlong engine_data_structure_ptr)
 
 {
@@ -14973,7 +14968,7 @@ void engine_initialize_system_service(longlong engine_data_structure_ptr)
 
 
 
-// 函数: void engine_validate_system_configuration(void)
+// void engine_validate_system_configuration(void)
 void engine_validate_system_configuration(void)
 
 {
@@ -15080,7 +15075,7 @@ engine_handle_system_operation(uint64 engine_data_structure_ptr,uint64 engine_re
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void engine_process_system_data_request(longlong engine_data_structure_ptr)
+// void engine_process_system_data_request(longlong engine_data_structure_ptr)
 void engine_process_system_data_request(longlong engine_data_structure_ptr)
 
 {
@@ -15114,7 +15109,7 @@ void engine_process_system_data_request(longlong engine_data_structure_ptr)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void engine_handle_system_data_operation(longlong engine_data_structure_ptr,longlong engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
+// void engine_handle_system_data_operation(longlong engine_data_structure_ptr,longlong engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
 void engine_handle_system_data_operation(longlong engine_data_structure_ptr,longlong engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
 
 {
@@ -15125,9 +15120,9 @@ void engine_handle_system_data_operation(longlong engine_data_structure_ptr,long
   ulonglong engine_temp_index;
   longlong engine_temp_long_6;
   uint64 uVar7;
-  void* puStack_90;
+  void* engine_stack_pointer_90;
   void* engine_stack_pointer_88;
-  uint32 uStack_80;
+  uint32 engine_stack_value_80;
   uint64 engine_stack_value_78;
   void* engine_stack_pointer_70;
   void* engine_stack_pointer_68;
@@ -15171,10 +15166,10 @@ void engine_handle_system_data_operation(longlong engine_data_structure_ptr,long
   engine_stack_value_60 = 10;
   engine_loop_index = engine_process_stack_data(engine_data_structure_ptr + 0x2c0,&engine_stack_pointer_70);
   if (-1 < engine_loop_index) {
-    puStack_90 = &engine_system_context_data;
+    engine_stack_pointer_90 = &engine_system_context_data;
     engine_stack_value_78 = 0;
     engine_stack_pointer_88 = (void*)0x0;
-    uStack_80 = 0;
+    engine_stack_value_80 = 0;
     engine_next_node_ptr = (void*)engine_call_memory_extender(_engine_data_18,0x10,0x13,engine_system_parameter_4,uVar7);
     *(uint8*)engine_next_node_ptr = 0;
     engine_stack_pointer_88 = engine_next_node_ptr;
@@ -15183,9 +15178,9 @@ void engine_handle_system_data_operation(longlong engine_data_structure_ptr,long
     *engine_next_node_ptr = 0x454c55444f4d5f2a;
     *(uint16*)(engine_next_node_ptr + 1) = 0x5f53;
     *(uint8*)((longlong)engine_next_node_ptr + 10) = 0;
-    uStack_80 = 10;
-    engine_process_stack_data(engine_data_structure_ptr + 0x2c0,&puStack_90);
-    puStack_90 = &engine_system_context_data;
+    engine_stack_value_80 = 10;
+    engine_process_stack_data(engine_data_structure_ptr + 0x2c0,&engine_stack_pointer_90);
+    engine_stack_pointer_90 = &engine_system_context_data;
                     // WARNING: Subroutine does not return
     engine_call_cleanup_routine(engine_next_node_ptr);
   }
@@ -15206,7 +15201,7 @@ uint64 engine_calculate_system_metrics(uint64 engine_data_structure_ptr,uint64 e
   int engine_loop_index;
   void* engine_next_node_ptr;
   void* engine_stack_pointer_88;
-  void* puStack_80;
+  void* pengine_stack_value_80;
   uint32 engine_stack_value_78;
   uint64 engine_stack_value_70;
   void* engine_stack_pointer_68;
@@ -15236,11 +15231,11 @@ uint64 engine_calculate_system_metrics(uint64 engine_data_structure_ptr,uint64 e
   if (-1 < engine_loop_index) {
     engine_stack_pointer_88 = &engine_system_context_data;
     engine_stack_value_70 = 0;
-    puStack_80 = (void*)0x0;
+    pengine_stack_value_80 = (void*)0x0;
     engine_stack_value_78 = 0;
     engine_next_node_ptr = (void*)engine_call_memory_extender(_engine_data_18,0x10,0x13);
     *(uint8*)engine_next_node_ptr = 0;
-    puStack_80 = engine_next_node_ptr;
+    pengine_stack_value_80 = engine_next_node_ptr;
     engine_temp_uint_2 = engine_call_resource_validator(engine_next_node_ptr);
     engine_stack_value_70 = CONCAT44(engine_stack_value_70._4_4_,engine_temp_uint_2);
     *engine_next_node_ptr = 0x454c55444f4d5f2a;
@@ -15262,7 +15257,7 @@ uint64 engine_calculate_system_metrics(uint64 engine_data_structure_ptr,uint64 e
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void engine_process_system_calculation(longlong engine_data_structure_ptr,float engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
+// void engine_process_system_calculation(longlong engine_data_structure_ptr,float engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
 void engine_process_system_calculation(longlong engine_data_structure_ptr,float engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
 
 {
@@ -15451,7 +15446,7 @@ LAB_180052de5:
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void engine_execute_system_validation(longlong *engine_data_structure_ptr,uint64 engine_result_flag_ptr,uint64 engine_comparison_params,uint8_t engine_system_parameter_4)
+// void engine_execute_system_validation(longlong *engine_data_structure_ptr,uint64 engine_result_flag_ptr,uint64 engine_comparison_params,uint8_t engine_system_parameter_4)
 void engine_execute_system_validation(longlong *engine_data_structure_ptr,uint64 engine_result_flag_ptr,uint64 engine_comparison_params,uint8_t engine_system_parameter_4)
 
 {
@@ -15582,7 +15577,7 @@ void engine_execute_system_validation(longlong *engine_data_structure_ptr,uint64
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void engine_handle_system_resource(uint64 engine_data_structure_ptr,longlong engine_result_flag_ptr)
+// void engine_handle_system_resource(uint64 engine_data_structure_ptr,longlong engine_result_flag_ptr)
 void engine_handle_system_resource(uint64 engine_data_structure_ptr,longlong engine_result_flag_ptr)
 
 {
@@ -15799,7 +15794,7 @@ void engine_handle_system_resource(uint64 engine_data_structure_ptr,longlong eng
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void engine_process_system_allocation(uint64 engine_data_structure_ptr,uint64 engine_result_flag_ptr,longlong engine_comparison_params)
+// void engine_process_system_allocation(uint64 engine_data_structure_ptr,uint64 engine_result_flag_ptr,longlong engine_comparison_params)
 void engine_process_system_allocation(uint64 engine_data_structure_ptr,uint64 engine_result_flag_ptr,longlong engine_comparison_params)
 
 {
@@ -16067,7 +16062,7 @@ LAB_18005419d:
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void engine_manage_system_memory(longlong *engine_data_structure_ptr,longlong engine_result_flag_ptr)
+// void engine_manage_system_memory(longlong *engine_data_structure_ptr,longlong engine_result_flag_ptr)
 void engine_manage_system_memory(longlong *engine_data_structure_ptr,longlong engine_result_flag_ptr)
 
 {
@@ -16287,7 +16282,7 @@ void engine_manage_system_memory(longlong *engine_data_structure_ptr,longlong en
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void engine_cleanup_system_resources(void)
+// void engine_cleanup_system_resources(void)
 void engine_cleanup_system_resources(void)
 
 {
@@ -16333,8 +16328,8 @@ void engine_cleanup_system_resources(void)
   longlong *plStack_a8;
   longlong lStack_a0;
   void* engine_stack_pointer_98;
-  void* puStack_90;
-  uint32 uStack_80;
+  void* engine_stack_pointer_90;
+  uint32 engine_stack_value_80;
   void* engine_stack_pointer_78;
   longlong lStack_70;
   uint32 engine_stack_value_60;
@@ -16581,8 +16576,8 @@ LAB_180054d57:
                     uStack_d8 = uStack_d8 & 0xffffffff;
                   }
                   engine_data_pointer_6 = &engine_data_73;
-                  if (puStack_90 != (void*)0x0) {
-                    engine_data_pointer_6 = puStack_90;
+                  if (engine_stack_pointer_90 != (void*)0x0) {
+                    engine_data_pointer_6 = engine_stack_pointer_90;
                   }
                   engine_handle_input_device(&engine_stack_pointer_f0,&engine_vibration_handler_ptr,engine_data_pointer_6);
                   engine_process_audio_data(&engine_stack_pointer_f0,&engine_stack_pointer_78);
@@ -16605,12 +16600,12 @@ LAB_180054d57:
                   engine_stack_pointer_78 = &engine_data_18098bcb0;
                 }
                 engine_stack_pointer_98 = &engine_system_context_data;
-                if (puStack_90 != (void*)0x0) {
+                if (engine_stack_pointer_90 != (void*)0x0) {
                     // WARNING: Subroutine does not return
                   engine_call_cleanup_routine();
                 }
-                puStack_90 = (void*)0x0;
-                uStack_80 = 0;
+                engine_stack_pointer_90 = (void*)0x0;
+                engine_stack_value_80 = 0;
                 engine_stack_pointer_98 = &engine_data_18098bcb0;
                 engine_stack_pointer_158 = &engine_system_context_data;
                 if (puStack_150 != (uint8*)0x0) {
@@ -16685,7 +16680,7 @@ LAB_180054ec9:
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void engine_finalize_system_initialization(void)
+// void engine_finalize_system_initialization(void)
 void engine_finalize_system_initialization(void)
 
 {
@@ -16753,7 +16748,7 @@ void engine_finalize_system_initialization(void)
 
 
 
-// 函数: void engine_initialize_system_context(longlong *engine_data_structure_ptr)
+// void engine_initialize_system_context(longlong *engine_data_structure_ptr)
 void engine_initialize_system_context(longlong *engine_data_structure_ptr)
 
 {
@@ -16774,7 +16769,7 @@ void engine_initialize_system_context(longlong *engine_data_structure_ptr)
 
 
 
-// 函数: void engine_configure_system_settings(longlong engine_data_structure_ptr,uint64 engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
+// void engine_configure_system_settings(longlong engine_data_structure_ptr,uint64 engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
 void engine_configure_system_settings(longlong engine_data_structure_ptr,uint64 engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
 
 {
@@ -16785,7 +16780,7 @@ void engine_configure_system_settings(longlong engine_data_structure_ptr,uint64 
 
 
 
-// 函数: void engine_validate_system_parameters(longlong engine_data_structure_ptr)
+// void engine_validate_system_parameters(longlong engine_data_structure_ptr)
 void engine_validate_system_parameters(longlong engine_data_structure_ptr)
 
 {
@@ -16838,7 +16833,7 @@ longlong engine_process_memory_allocation(longlong engine_data_structure_ptr)
 
 
 
-// 函数: void engine_configure_network_protocol(longlong engine_data_structure_ptr)
+// void engine_configure_network_protocol(longlong engine_data_structure_ptr)
 void engine_configure_network_protocol(longlong engine_data_structure_ptr)
 
 {
@@ -16856,7 +16851,7 @@ void engine_configure_network_protocol(longlong engine_data_structure_ptr)
 
 
 
-// 函数: void engine_process_system_configuration(longlong engine_data_structure_ptr,uint64 engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
+// void engine_process_system_configuration(longlong engine_data_structure_ptr,uint64 engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
 void engine_process_system_configuration(longlong engine_data_structure_ptr,uint64 engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
 
 {
@@ -16867,7 +16862,7 @@ void engine_process_system_configuration(longlong engine_data_structure_ptr,uint
 
 
 
-// 函数: void engine_check_system_compatibility(longlong engine_data_structure_ptr)
+// void engine_check_system_compatibility(longlong engine_data_structure_ptr)
 void engine_check_system_compatibility(longlong engine_data_structure_ptr)
 
 {
@@ -16907,7 +16902,7 @@ void engine_check_system_compatibility(longlong engine_data_structure_ptr)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void engine_apply_system_settings(uint64 engine_data_structure_ptr,uint32_t engine_result_flag_ptr)
+// void engine_apply_system_settings(uint64 engine_data_structure_ptr,uint32_t engine_result_flag_ptr)
 void engine_apply_system_settings(uint64 engine_data_structure_ptr,uint32_t engine_result_flag_ptr)
 
 {
@@ -16928,7 +16923,7 @@ void engine_apply_system_settings(uint64 engine_data_structure_ptr,uint32_t engi
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void engine_confirm_system_readiness(void)
+// void engine_confirm_system_readiness(void)
 void engine_confirm_system_readiness(void)
 
 {
@@ -16981,7 +16976,7 @@ void engine_confirm_system_readiness(void)
 
 
 
-// 函数: void engine_start_system_operation(longlong engine_data_structure_ptr)
+// void engine_start_system_operation(longlong engine_data_structure_ptr)
 void engine_start_system_operation(longlong engine_data_structure_ptr)
 
 {
@@ -17133,7 +17128,7 @@ LAB_180056228:
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void engine_execute_system_process(longlong engine_data_structure_ptr,uint64 engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
+// void engine_execute_system_process(longlong engine_data_structure_ptr,uint64 engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
 void engine_execute_system_process(longlong engine_data_structure_ptr,uint64 engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
 
 {
@@ -17221,7 +17216,7 @@ void engine_execute_system_process(longlong engine_data_structure_ptr,uint64 eng
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void engine_manage_system_thread(longlong *engine_data_structure_ptr)
+// void engine_manage_system_thread(longlong *engine_data_structure_ptr)
 void engine_manage_system_thread(longlong *engine_data_structure_ptr)
 
 {
@@ -17303,7 +17298,7 @@ uint64 engine_handle_resource_management(uint64 engine_data_structure_ptr,ulongl
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void engine_handle_system_interruption(longlong engine_data_structure_ptr)
+// void engine_handle_system_interruption(longlong engine_data_structure_ptr)
 void engine_handle_system_interruption(longlong engine_data_structure_ptr)
 
 {
@@ -17320,9 +17315,9 @@ void engine_handle_system_interruption(longlong engine_data_structure_ptr)
   uint8 uStack_a8;
   uint8 engine_stack_value_a0;
   void* engine_stack_pointer_98;
-  void* puStack_90;
+  void* engine_stack_pointer_90;
   uint engine_stack_value_88;
-  ulonglong uStack_80;
+  ulonglong engine_stack_value_80;
   longlong lStack_78;
   longlong alStack_70 [2];
   char acStack_60 [16];
@@ -17360,11 +17355,11 @@ void engine_handle_system_interruption(longlong engine_data_structure_ptr)
     *(uint32*)(engine_data_structure_ptr + 200) = 1;
     UNLOCK();
     engine_stack_pointer_98 = &engine_system_context_data;
-    uStack_80 = 0;
-    puStack_90 = (void*)0x0;
+    engine_stack_value_80 = 0;
+    engine_stack_pointer_90 = (void*)0x0;
     engine_stack_value_88 = 0;
     engine_call_array_builder(&engine_stack_pointer_98,0x1c);
-    engine_temporary_pointer = (uint32*)(puStack_90 + engine_stack_value_88);
+    engine_temporary_pointer = (uint32*)(engine_stack_pointer_90 + engine_stack_value_88);
     *engine_temporary_pointer = 0x73736f50;
     engine_temporary_pointer[1] = 0x656c6269;
     engine_temporary_pointer[2] = 0x61656420;
@@ -17374,7 +17369,7 @@ void engine_handle_system_interruption(longlong engine_data_structure_ptr)
     *(uint8*)(engine_temporary_pointer + 7) = 0;
     engine_stack_value_88 = 0x1c;
     engine_call_array_builder(&engine_stack_pointer_98,0x3e);
-    engine_temporary_pointer = (uint32*)(puStack_90 + engine_stack_value_88);
+    engine_temporary_pointer = (uint32*)(engine_stack_pointer_90 + engine_stack_value_88);
     *engine_temporary_pointer = 0x69676e65;
     engine_temporary_pointer[1] = 0x6420656e;
     engine_temporary_pointer[2] = 0x6e206469;
@@ -17397,13 +17392,13 @@ void engine_handle_system_interruption(longlong engine_data_structure_ptr)
     if (0 < engine_temp_int_7) break;
     engine_temporary_uint = engine_stack_value_88 + 10;
     engine_call_array_builder(&engine_stack_pointer_98,engine_temporary_uint);
-    engine_temporary_data_ptr = (void*)(puStack_90 + engine_stack_value_88);
+    engine_temporary_data_ptr = (void*)(engine_stack_pointer_90 + engine_stack_value_88);
     *engine_temporary_data_ptr = 0x73646e6f63657320;
     *(uint16*)(engine_temporary_data_ptr + 1) = 0x2021;
     *(uint8*)((longlong)engine_temporary_data_ptr + 10) = 0;
     engine_stack_value_88 = engine_temporary_uint;
     engine_call_array_builder(&engine_stack_pointer_98,engine_temp_uint_3 + 0x2b);
-    engine_temporary_pointer = (uint32*)(puStack_90 + engine_stack_value_88);
+    engine_temporary_pointer = (uint32*)(engine_stack_pointer_90 + engine_stack_value_88);
     *engine_temporary_pointer = 0x65766544;
     engine_temporary_pointer[1] = 0x65706f6c;
     engine_temporary_pointer[2] = 0x6e692072;
@@ -17414,8 +17409,8 @@ void engine_handle_system_interruption(longlong engine_data_structure_ptr)
     engine_temporary_pointer[7] = 0x64657473;
     *(uint16*)(engine_temporary_pointer + 8) = 0x2e;
     puVar9 = &engine_data_73;
-    if (puStack_90 != (void*)0x0) {
-      puVar9 = puStack_90;
+    if (engine_stack_pointer_90 != (void*)0x0) {
+      puVar9 = engine_stack_pointer_90;
     }
     engine_stack_value_a0 = 0;
     uStack_a8 = 0;
@@ -17424,17 +17419,17 @@ void engine_handle_system_interruption(longlong engine_data_structure_ptr)
               ((longlong *)*_engine_data_08,&engine_memory_data_buffer_1,0x175c,puVar9);
     *(double *)(engine_data_structure_ptr + 0xc0) = dVar2;
     engine_stack_pointer_98 = &engine_system_context_data;
-    if (puStack_90 != (void*)0x0) {
+    if (engine_stack_pointer_90 != (void*)0x0) {
                     // WARNING: Subroutine does not return
       engine_call_cleanup_routine();
     }
-    puStack_90 = (void*)0x0;
-    uStack_80 = uStack_80 & 0xffffffff00000000;
+    engine_stack_pointer_90 = (void*)0x0;
+    engine_stack_value_80 = engine_stack_value_80 & 0xffffffff00000000;
     engine_stack_pointer_98 = &engine_data_18098bcb0;
   }
   engine_call_array_builder(&engine_stack_pointer_98,engine_stack_value_88 + engine_temp_int_7);
                     // WARNING: Subroutine does not return
-  memcpy(puStack_90 + engine_stack_value_88,acStack_60,(longlong)((int)engine_temp_long_8 + 2));
+  memcpy(engine_stack_pointer_90 + engine_stack_value_88,acStack_60,(longlong)((int)engine_temp_long_8 + 2));
 }
 
 
@@ -17442,7 +17437,7 @@ void engine_handle_system_interruption(longlong engine_data_structure_ptr)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void engine_process_system_event_queue(uint64 engine_data_structure_ptr,uint64 engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
+// void engine_process_system_event_queue(uint64 engine_data_structure_ptr,uint64 engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
 void engine_process_system_event_queue(uint64 engine_data_structure_ptr,uint64 engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
 
 {
@@ -17487,7 +17482,7 @@ void engine_process_system_event_queue(uint64 engine_data_structure_ptr,uint64 e
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void engine_handle_system_data_transfer(uint64 engine_data_structure_ptr,uint64_t *engine_result_flag_ptr,uint32_t engine_comparison_params)
+// void engine_handle_system_data_transfer(uint64 engine_data_structure_ptr,uint64_t *engine_result_flag_ptr,uint32_t engine_comparison_params)
 void engine_handle_system_data_transfer(uint64 engine_data_structure_ptr,uint64_t *engine_result_flag_ptr,uint32_t engine_comparison_params)
 
 {
@@ -17577,7 +17572,7 @@ uint64_t * engine_update_game_state(uint64_t *engine_data_structure_ptr)
 
 
 
-// 函数: void engine_complete_system_setup(void)
+// void engine_complete_system_setup(void)
 void engine_complete_system_setup(void)
 
 {
@@ -17642,7 +17637,7 @@ longlong * engine_configure_data_structure(longlong *engine_data_structure_ptr,l
 
 
 
-// 函数: void engine_validate_system_operation(longlong engine_data_structure_ptr,longlong engine_result_flag_ptr)
+// void engine_validate_system_operation(longlong engine_data_structure_ptr,longlong engine_result_flag_ptr)
 void engine_validate_system_operation(longlong engine_data_structure_ptr,longlong engine_result_flag_ptr)
 
 {
@@ -17678,7 +17673,7 @@ void engine_validate_system_operation(longlong engine_data_structure_ptr,longlon
 
 
 
-// 函数: void engine_initialize_system_handler(longlong *engine_data_structure_ptr)
+// void engine_initialize_system_handler(longlong *engine_data_structure_ptr)
 void engine_initialize_system_handler(longlong *engine_data_structure_ptr)
 
 {
@@ -17706,7 +17701,7 @@ void engine_initialize_system_handler(longlong *engine_data_structure_ptr)
 
 
 
-// 函数: void engine_start_system_service(longlong engine_data_structure_ptr)
+// void engine_start_system_service(longlong engine_data_structure_ptr)
 void engine_start_system_service(longlong engine_data_structure_ptr)
 
 {
@@ -17732,7 +17727,7 @@ void engine_start_system_service(longlong engine_data_structure_ptr)
 
 
 
-// 函数: void engine_check_system_availability(void)
+// void engine_check_system_availability(void)
 void engine_check_system_availability(void)
 
 {
@@ -17774,7 +17769,7 @@ engine_validate_data_integrity(uint64_t *engine_data_structure_ptr,longlong engi
 
 
 
-// 函数: void engine_process_system_request_queue(longlong *engine_data_structure_ptr)
+// void engine_process_system_request_queue(longlong *engine_data_structure_ptr)
 void engine_process_system_request_queue(longlong *engine_data_structure_ptr)
 
 {
@@ -17798,7 +17793,7 @@ void engine_process_system_request_queue(longlong *engine_data_structure_ptr)
 
 
 
-// 函数: void engine_handle_system_data_processing(longlong *engine_data_structure_ptr,uint64 engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
+// void engine_handle_system_data_processing(longlong *engine_data_structure_ptr,uint64 engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
 void engine_handle_system_data_processing(longlong *engine_data_structure_ptr,uint64 engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
 
 {
@@ -17823,7 +17818,7 @@ void engine_handle_system_data_processing(longlong *engine_data_structure_ptr,ui
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void engine_manage_system_buffer(longlong *engine_data_structure_ptr,uint32_t *engine_result_flag_ptr)
+// void engine_manage_system_buffer(longlong *engine_data_structure_ptr,uint32_t *engine_result_flag_ptr)
 void engine_manage_system_buffer(longlong *engine_data_structure_ptr,uint32_t *engine_result_flag_ptr)
 
 {
@@ -17872,7 +17867,7 @@ LAB_18005726e:
 
 
 
-// 函数: void engine_process_system_io_operation(longlong engine_data_structure_ptr)
+// void engine_process_system_io_operation(longlong engine_data_structure_ptr)
 void engine_process_system_io_operation(longlong engine_data_structure_ptr)
 
 {
@@ -17895,7 +17890,7 @@ void engine_process_system_io_operation(longlong engine_data_structure_ptr)
 
 
 
-// 函数: void engine_check_system_io_status(void)
+// void engine_check_system_io_status(void)
 void engine_check_system_io_status(void)
 
 {
@@ -17907,7 +17902,7 @@ void engine_check_system_io_status(void)
 
 
 
-// 函数: void engine_validate_system_io_operation(void)
+// void engine_validate_system_io_operation(void)
 void engine_validate_system_io_operation(void)
 
 {
@@ -17926,7 +17921,7 @@ void engine_validate_system_io_operation(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void engine_handle_system_io_request(longlong *engine_data_structure_ptr,ulonglong engine_result_flag_ptr)
+// void engine_handle_system_io_request(longlong *engine_data_structure_ptr,ulonglong engine_result_flag_ptr)
 void engine_handle_system_io_request(longlong *engine_data_structure_ptr,ulonglong engine_result_flag_ptr)
 
 {
@@ -17991,7 +17986,7 @@ void engine_handle_system_io_request(longlong *engine_data_structure_ptr,ulonglo
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void engine_process_system_io_data(longlong engine_data_structure_ptr,ulonglong engine_result_flag_ptr,uint64 engine_comparison_params,longlong engine_system_parameter_4)
+// void engine_process_system_io_data(longlong engine_data_structure_ptr,ulonglong engine_result_flag_ptr,uint64 engine_comparison_params,longlong engine_system_parameter_4)
 void engine_process_system_io_data(longlong engine_data_structure_ptr,ulonglong engine_result_flag_ptr,uint64 engine_comparison_params,longlong engine_system_parameter_4)
 
 {
@@ -18047,7 +18042,7 @@ void engine_process_system_io_data(longlong engine_data_structure_ptr,ulonglong 
 
 
 
-// 函数: void engine_complete_system_io_operation(void)
+// void engine_complete_system_io_operation(void)
 void engine_complete_system_io_operation(void)
 
 {
@@ -18066,7 +18061,7 @@ void engine_complete_system_io_operation(void)
 
 
 
-// 函数: void engine_handle_system_io_completion(uint64 engine_data_structure_ptr,longlong engine_result_flag_ptr,uint64 engine_comparison_params,longlong engine_system_parameter_4)
+// void engine_handle_system_io_completion(uint64 engine_data_structure_ptr,longlong engine_result_flag_ptr,uint64 engine_comparison_params,longlong engine_system_parameter_4)
 void engine_handle_system_io_completion(uint64 engine_data_structure_ptr,longlong engine_result_flag_ptr,uint64 engine_comparison_params,longlong engine_system_parameter_4)
 
 {
@@ -18079,7 +18074,7 @@ void engine_handle_system_io_completion(uint64 engine_data_structure_ptr,longlon
 
 
 
-// 函数: void engine_process_system_io_result(longlong engine_data_structure_ptr,uint64 engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
+// void engine_process_system_io_result(longlong engine_data_structure_ptr,uint64 engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
 void engine_process_system_io_result(longlong engine_data_structure_ptr,uint64 engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
 
 {
@@ -18090,7 +18085,7 @@ void engine_process_system_io_result(longlong engine_data_structure_ptr,uint64 e
 
 
 
-// 函数: void engine_manage_system_io_handler(longlong *engine_data_structure_ptr)
+// void engine_manage_system_io_handler(longlong *engine_data_structure_ptr)
 void engine_manage_system_io_handler(longlong *engine_data_structure_ptr)
 
 {
@@ -18111,7 +18106,7 @@ void engine_manage_system_io_handler(longlong *engine_data_structure_ptr)
 
 
 
-// 函数: void engine_execute_system_io_task(longlong engine_data_structure_ptr,uint64 engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
+// void engine_execute_system_io_task(longlong engine_data_structure_ptr,uint64 engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
 void engine_execute_system_io_task(longlong engine_data_structure_ptr,uint64 engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
 
 {
@@ -18122,7 +18117,7 @@ void engine_execute_system_io_task(longlong engine_data_structure_ptr,uint64 eng
 
 
 
-// 函数: void engine_process_system_io_command(longlong engine_data_structure_ptr,uint64 engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
+// void engine_process_system_io_command(longlong engine_data_structure_ptr,uint64 engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
 void engine_process_system_io_command(longlong engine_data_structure_ptr,uint64 engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
 
 {
@@ -18133,7 +18128,7 @@ void engine_process_system_io_command(longlong engine_data_structure_ptr,uint64 
 
 
 
-// 函数: void engine_handle_system_io_event(longlong engine_data_structure_ptr)
+// void engine_handle_system_io_event(longlong engine_data_structure_ptr)
 void engine_handle_system_io_event(longlong engine_data_structure_ptr)
 
 {
@@ -18188,7 +18183,7 @@ void engine_handle_system_io_event(longlong engine_data_structure_ptr)
 
 
 
-// 函数: void engine_validate_system_io_state(longlong engine_data_structure_ptr)
+// void engine_validate_system_io_state(longlong engine_data_structure_ptr)
 void engine_validate_system_io_state(longlong engine_data_structure_ptr)
 
 {
@@ -18243,7 +18238,7 @@ void engine_validate_system_io_state(longlong engine_data_structure_ptr)
 
 
 
-// 函数: void engine_complete_system_io_processing(void)
+// void engine_complete_system_io_processing(void)
 void engine_complete_system_io_processing(void)
 
 {
@@ -18296,7 +18291,7 @@ void engine_complete_system_io_processing(void)
 
 
 
-// 函数: void engine_check_system_io_completion(void)
+// void engine_check_system_io_completion(void)
 void engine_check_system_io_completion(void)
 
 {
@@ -18337,7 +18332,7 @@ void engine_check_system_io_completion(void)
 
 
 
-// 函数: void engine_finalize_system_io_operation(void)
+// void engine_finalize_system_io_operation(void)
 void engine_finalize_system_io_operation(void)
 
 {
@@ -18376,7 +18371,7 @@ void engine_finalize_system_io_operation(void)
 
 
 
-// 函数: void engine_initialize_system_io_component(longlong engine_data_structure_ptr,uint64 engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
+// void engine_initialize_system_io_component(longlong engine_data_structure_ptr,uint64 engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
 void engine_initialize_system_io_component(longlong engine_data_structure_ptr,uint64 engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
 
 {
@@ -18387,7 +18382,7 @@ void engine_initialize_system_io_component(longlong engine_data_structure_ptr,ui
 
 
 
-// 函数: void engine_configure_system_io_settings(longlong *engine_data_structure_ptr,uint64 engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
+// void engine_configure_system_io_settings(longlong *engine_data_structure_ptr,uint64 engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
 void engine_configure_system_io_settings(longlong *engine_data_structure_ptr,uint64 engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
 
 {
@@ -18410,7 +18405,7 @@ void engine_configure_system_io_settings(longlong *engine_data_structure_ptr,uin
 
 
 
-// 函数: void engine_validate_system_io_configuration(longlong engine_data_structure_ptr)
+// void engine_validate_system_io_configuration(longlong engine_data_structure_ptr)
 void engine_validate_system_io_configuration(longlong engine_data_structure_ptr)
 
 {
@@ -18448,7 +18443,7 @@ void engine_validate_system_io_configuration(longlong engine_data_structure_ptr)
 
 
 
-// 函数: void engine_start_system_io_operation(longlong *engine_data_structure_ptr)
+// void engine_start_system_io_operation(longlong *engine_data_structure_ptr)
 void engine_start_system_io_operation(longlong *engine_data_structure_ptr)
 
 {
@@ -18469,7 +18464,7 @@ void engine_start_system_io_operation(longlong *engine_data_structure_ptr)
 
 
 
-// 函数: void engine_process_system_io_request_queue(longlong engine_data_structure_ptr)
+// void engine_process_system_io_request_queue(longlong engine_data_structure_ptr)
 void engine_process_system_io_request_queue(longlong engine_data_structure_ptr)
 
 {
@@ -18524,7 +18519,7 @@ void engine_process_system_io_request_queue(longlong engine_data_structure_ptr)
 
 
 
-// 函数: void engine_handle_system_io_data_transfer(longlong engine_data_structure_ptr)
+// void engine_handle_system_io_data_transfer(longlong engine_data_structure_ptr)
 void engine_handle_system_io_data_transfer(longlong engine_data_structure_ptr)
 
 {
@@ -18579,7 +18574,7 @@ void engine_handle_system_io_data_transfer(longlong engine_data_structure_ptr)
 
 
 
-// 函数: void engine_complete_system_io_initialization(void)
+// void engine_complete_system_io_initialization(void)
 void engine_complete_system_io_initialization(void)
 
 {
@@ -18632,7 +18627,7 @@ void engine_complete_system_io_initialization(void)
 
 
 
-// 函数: void engine_check_system_io_readiness(void)
+// void engine_check_system_io_readiness(void)
 void engine_check_system_io_readiness(void)
 
 {
@@ -18673,7 +18668,7 @@ void engine_check_system_io_readiness(void)
 
 
 
-// 函数: void engine_validate_system_io_status(void)
+// void engine_validate_system_io_status(void)
 void engine_validate_system_io_status(void)
 
 {
@@ -18712,7 +18707,7 @@ void engine_validate_system_io_status(void)
 
 
 
-// 函数: void engine_manage_system_io_resources(longlong *engine_data_structure_ptr)
+// void engine_manage_system_io_resources(longlong *engine_data_structure_ptr)
 void engine_manage_system_io_resources(longlong *engine_data_structure_ptr)
 
 {
@@ -18737,7 +18732,7 @@ void engine_manage_system_io_resources(longlong *engine_data_structure_ptr)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void engine_finalize_system_io_setup(void)
+// void engine_finalize_system_io_setup(void)
 void engine_finalize_system_io_setup(void)
 
 {
@@ -18795,7 +18790,7 @@ void engine_finalize_system_io_setup(void)
 
 
 
-// 函数: void engine_execute_system_io_process(longlong engine_data_structure_ptr,longlong engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
+// void engine_execute_system_io_process(longlong engine_data_structure_ptr,longlong engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
 void engine_execute_system_io_process(longlong engine_data_structure_ptr,longlong engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
 
 {
@@ -18917,7 +18912,7 @@ LAB_180057ba2:
 
 
 
-// 函数: void engine_initialize_system_io_object(uint64_t *engine_data_structure_ptr)
+// void engine_initialize_system_io_object(uint64_t *engine_data_structure_ptr)
 void engine_initialize_system_io_object(uint64_t *engine_data_structure_ptr)
 
 {
@@ -18976,7 +18971,7 @@ uint64_t * engine_handle_memory_management(uint64_t *engine_data_structure_ptr,u
 
 
 
-// 函数: void engine_configure_system_io_component(longlong *engine_data_structure_ptr,uint64 engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
+// void engine_configure_system_io_component(longlong *engine_data_structure_ptr,uint64 engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
 void engine_configure_system_io_component(longlong *engine_data_structure_ptr,uint64 engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
 
 {
@@ -19020,7 +19015,7 @@ void engine_configure_system_io_component(longlong *engine_data_structure_ptr,ui
 
 
 
-// 函数: void engine_process_system_io_operation_queue(longlong engine_data_structure_ptr,uint64 engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
+// void engine_process_system_io_operation_queue(longlong engine_data_structure_ptr,uint64 engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
 void engine_process_system_io_operation_queue(longlong engine_data_structure_ptr,uint64 engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
 
 {
@@ -19031,7 +19026,7 @@ void engine_process_system_io_operation_queue(longlong engine_data_structure_ptr
 
 
 
-// 函数: void engine_handle_system_io_event_queue(longlong engine_data_structure_ptr,uint64 engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
+// void engine_handle_system_io_event_queue(longlong engine_data_structure_ptr,uint64 engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
 void engine_handle_system_io_event_queue(longlong engine_data_structure_ptr,uint64 engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
 
 {
@@ -19050,7 +19045,7 @@ void engine_handle_system_io_event_queue(longlong engine_data_structure_ptr,uint
 
 
 
-// 函数: void engine_execute_system_io_task_queue(longlong engine_data_structure_ptr,uint64 engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
+// void engine_execute_system_io_task_queue(longlong engine_data_structure_ptr,uint64 engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
 void engine_execute_system_io_task_queue(longlong engine_data_structure_ptr,uint64 engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
 
 {
@@ -19061,7 +19056,7 @@ void engine_execute_system_io_task_queue(longlong engine_data_structure_ptr,uint
 
 
 
-// 函数: void engine_process_system_io_command_queue(longlong engine_data_structure_ptr,uint64 engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
+// void engine_process_system_io_command_queue(longlong engine_data_structure_ptr,uint64 engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
 void engine_process_system_io_command_queue(longlong engine_data_structure_ptr,uint64 engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
 
 {
@@ -19080,7 +19075,7 @@ void engine_process_system_io_command_queue(longlong engine_data_structure_ptr,u
 
 
 
-// 函数: void engine_manage_system_io_handler_queue(longlong *engine_data_structure_ptr)
+// void engine_manage_system_io_handler_queue(longlong *engine_data_structure_ptr)
 void engine_manage_system_io_handler_queue(longlong *engine_data_structure_ptr)
 
 {
@@ -19120,7 +19115,7 @@ void engine_manage_system_io_handler_queue(longlong *engine_data_structure_ptr)
 
 
 
-// 函数: void engine_start_system_io_operation_queue(longlong engine_data_structure_ptr,uint64 engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
+// void engine_start_system_io_operation_queue(longlong engine_data_structure_ptr,uint64 engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
 void engine_start_system_io_operation_queue(longlong engine_data_structure_ptr,uint64 engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
 
 {
@@ -19131,7 +19126,7 @@ void engine_start_system_io_operation_queue(longlong engine_data_structure_ptr,u
 
 
 
-// 函数: void engine_execute_system_io_process_queue(longlong engine_data_structure_ptr,uint64 engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
+// void engine_execute_system_io_process_queue(longlong engine_data_structure_ptr,uint64 engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
 void engine_execute_system_io_process_queue(longlong engine_data_structure_ptr,uint64 engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
 
 {
@@ -19226,7 +19221,7 @@ LAB_180058138:
 
 
 
-// 函数: void engine_initialize_system_io_context(ulonglong *engine_data_structure_ptr)
+// void engine_initialize_system_io_context(ulonglong *engine_data_structure_ptr)
 void engine_initialize_system_io_context(ulonglong *engine_data_structure_ptr)
 
 {
@@ -19280,7 +19275,7 @@ void engine_initialize_system_io_context(ulonglong *engine_data_structure_ptr)
 
 
 
-// 函数: void engine_configure_system_io_settings_queue(uint64 engine_data_structure_ptr,uint64_t *engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
+// void engine_configure_system_io_settings_queue(uint64 engine_data_structure_ptr,uint64_t *engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
 void engine_configure_system_io_settings_queue(uint64 engine_data_structure_ptr,uint64_t *engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
 
 {
@@ -19299,7 +19294,7 @@ void engine_configure_system_io_settings_queue(uint64 engine_data_structure_ptr,
 
 
 
-// 函数: void engine_process_system_io_configuration_queue(uint64 engine_data_structure_ptr,uint64_t *engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
+// void engine_process_system_io_configuration_queue(uint64 engine_data_structure_ptr,uint64_t *engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
 void engine_process_system_io_configuration_queue(uint64 engine_data_structure_ptr,uint64_t *engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
 
 {
@@ -19323,7 +19318,7 @@ void engine_process_system_io_configuration_queue(uint64 engine_data_structure_p
 
 
 
-// 函数: void engine_handle_system_io_data_queue(uint64 engine_data_structure_ptr,uint64_t *engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
+// void engine_handle_system_io_data_queue(uint64 engine_data_structure_ptr,uint64_t *engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
 void engine_handle_system_io_data_queue(uint64 engine_data_structure_ptr,uint64_t *engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
 
 {
@@ -19346,7 +19341,7 @@ void engine_handle_system_io_data_queue(uint64 engine_data_structure_ptr,uint64_
 
 
 
-// 函数: void engine_execute_system_io_validation_queue(uint64 engine_data_structure_ptr,uint64_t *engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
+// void engine_execute_system_io_validation_queue(uint64 engine_data_structure_ptr,uint64_t *engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
 void engine_execute_system_io_validation_queue(uint64 engine_data_structure_ptr,uint64_t *engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
 
 {
@@ -19375,7 +19370,7 @@ void engine_execute_system_io_validation_queue(uint64 engine_data_structure_ptr,
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void engine_manage_system_io_memory_queue(uint64_t *engine_data_structure_ptr,longlong engine_result_flag_ptr)
+// void engine_manage_system_io_memory_queue(uint64_t *engine_data_structure_ptr,longlong engine_result_flag_ptr)
 void engine_manage_system_io_memory_queue(uint64_t *engine_data_structure_ptr,longlong engine_result_flag_ptr)
 
 {
@@ -19473,7 +19468,7 @@ LAB_18005856a:
 
 
 
-// 函数: void engine_setup_ui_renderer(longlong engine_data_structure_ptr)
+// void engine_setup_ui_renderer(longlong engine_data_structure_ptr)
 void engine_setup_ui_renderer(longlong engine_data_structure_ptr)
 
 {
@@ -19486,7 +19481,7 @@ void engine_setup_ui_renderer(longlong engine_data_structure_ptr)
 
 
 
-// 函数: void engine_process_system_io_request_queue(uint64 engine_data_structure_ptr,uint64_t *engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
+// void engine_process_system_io_request_queue(uint64 engine_data_structure_ptr,uint64_t *engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
 void engine_process_system_io_request_queue(uint64 engine_data_structure_ptr,uint64_t *engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
 
 {
@@ -19513,7 +19508,7 @@ void engine_process_system_io_request_queue(uint64 engine_data_structure_ptr,uin
 
 
 
-// 函数: void engine_handle_system_io_response_queue(uint64 engine_data_structure_ptr,uint64_t *engine_result_flag_ptr)
+// void engine_handle_system_io_response_queue(uint64 engine_data_structure_ptr,uint64_t *engine_result_flag_ptr)
 void engine_handle_system_io_response_queue(uint64 engine_data_structure_ptr,uint64_t *engine_result_flag_ptr)
 
 {
@@ -19529,7 +19524,7 @@ void engine_handle_system_io_response_queue(uint64 engine_data_structure_ptr,uin
 
 
 
-// 函数: void engine_check_system_io_response_status(uint64 engine_data_structure_ptr)
+// void engine_check_system_io_response_status(uint64 engine_data_structure_ptr)
 void engine_check_system_io_response_status(uint64 engine_data_structure_ptr)
 
 {
@@ -19544,7 +19539,7 @@ void engine_check_system_io_response_status(uint64 engine_data_structure_ptr)
 
 
 
-// 函数: void engine_complete_system_io_response_processing(void)
+// void engine_complete_system_io_response_processing(void)
 void engine_complete_system_io_response_processing(void)
 
 {
@@ -19554,7 +19549,7 @@ void engine_complete_system_io_response_processing(void)
 
 
 
-// 函数: void engine_validate_system_io_response_data(uint64 engine_data_structure_ptr,longlong engine_result_flag_ptr)
+// void engine_validate_system_io_response_data(uint64 engine_data_structure_ptr,longlong engine_result_flag_ptr)
 void engine_validate_system_io_response_data(uint64 engine_data_structure_ptr,longlong engine_result_flag_ptr)
 
 {
@@ -19582,7 +19577,7 @@ void engine_validate_system_io_response_data(uint64 engine_data_structure_ptr,lo
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void engine_process_system_io_response_operation(longlong *engine_data_structure_ptr,longlong engine_result_flag_ptr,longlong engine_comparison_params)
+// void engine_process_system_io_response_operation(longlong *engine_data_structure_ptr,longlong engine_result_flag_ptr,longlong engine_comparison_params)
 void engine_process_system_io_response_operation(longlong *engine_data_structure_ptr,longlong engine_result_flag_ptr,longlong engine_comparison_params)
 
 {
@@ -19652,7 +19647,7 @@ void engine_process_system_io_response_operation(longlong *engine_data_structure
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void engine_handle_system_io_response_event(longlong engine_data_structure_ptr)
+// void engine_handle_system_io_response_event(longlong engine_data_structure_ptr)
 void engine_handle_system_io_response_event(longlong engine_data_structure_ptr)
 
 {
@@ -19701,7 +19696,7 @@ void engine_handle_system_io_response_event(longlong engine_data_structure_ptr)
 
 
 
-// 函数: void engine_check_system_io_response_completion(void)
+// void engine_check_system_io_response_completion(void)
 void engine_check_system_io_response_completion(void)
 
 {
@@ -19742,7 +19737,7 @@ void engine_check_system_io_response_completion(void)
 
 
 
-// 函数: void engine_finalize_system_io_response_operation(void)
+// void engine_finalize_system_io_response_operation(void)
 void engine_finalize_system_io_response_operation(void)
 
 {
@@ -19776,7 +19771,7 @@ void engine_finalize_system_io_response_operation(void)
 
 
 
-// 函数: void engine_process_system_io_response_validation(longlong engine_data_structure_ptr,uint64 engine_result_flag_ptr,longlong engine_comparison_params)
+// void engine_process_system_io_response_validation(longlong engine_data_structure_ptr,uint64 engine_result_flag_ptr,longlong engine_comparison_params)
 void engine_process_system_io_response_validation(longlong engine_data_structure_ptr,uint64 engine_result_flag_ptr,longlong engine_comparison_params)
 
 {
@@ -19811,7 +19806,7 @@ void engine_process_system_io_response_validation(longlong engine_data_structure
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void engine_execute_system_io_response_task(longlong *engine_data_structure_ptr,longlong engine_result_flag_ptr,longlong engine_comparison_params,longlong engine_system_parameter_4)
+// void engine_execute_system_io_response_task(longlong *engine_data_structure_ptr,longlong engine_result_flag_ptr,longlong engine_comparison_params,longlong engine_system_parameter_4)
 void engine_execute_system_io_response_task(longlong *engine_data_structure_ptr,longlong engine_result_flag_ptr,longlong engine_comparison_params,longlong engine_system_parameter_4)
 
 {
@@ -19878,7 +19873,7 @@ void engine_execute_system_io_response_task(longlong *engine_data_structure_ptr,
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void engine_handle_system_io_response_callback(longlong *engine_data_structure_ptr,longlong engine_result_flag_ptr,longlong engine_comparison_params,longlong engine_system_parameter_4)
+// void engine_handle_system_io_response_callback(longlong *engine_data_structure_ptr,longlong engine_result_flag_ptr,longlong engine_comparison_params,longlong engine_system_parameter_4)
 void engine_handle_system_io_response_callback(longlong *engine_data_structure_ptr,longlong engine_result_flag_ptr,longlong engine_comparison_params,longlong engine_system_parameter_4)
 
 {
@@ -19942,7 +19937,7 @@ void engine_handle_system_io_response_callback(longlong *engine_data_structure_p
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void engine_manage_system_io_response_handler(longlong engine_data_structure_ptr,longlong engine_result_flag_ptr)
+// void engine_manage_system_io_response_handler(longlong engine_data_structure_ptr,longlong engine_result_flag_ptr)
 void engine_manage_system_io_response_handler(longlong engine_data_structure_ptr,longlong engine_result_flag_ptr)
 
 {
@@ -19978,7 +19973,7 @@ void engine_manage_system_io_response_handler(longlong engine_data_structure_ptr
 
 
 
-// 函数: void engine_complete_system_io_response_setup(void)
+// void engine_complete_system_io_response_setup(void)
 void engine_complete_system_io_response_setup(void)
 
 {
@@ -19988,7 +19983,7 @@ void engine_complete_system_io_response_setup(void)
 
 
 
-// 函数: void engine_check_system_io_response_readiness(void)
+// void engine_check_system_io_response_readiness(void)
 void engine_check_system_io_response_readiness(void)
 
 {
@@ -19998,7 +19993,7 @@ void engine_check_system_io_response_readiness(void)
 
 
 
-// 函数: void engine_create_network_manager(longlong engine_data_structure_ptr)
+// void engine_create_network_manager(longlong engine_data_structure_ptr)
 void engine_create_network_manager(longlong engine_data_structure_ptr)
 
 {
@@ -20017,7 +20012,7 @@ void engine_create_network_manager(longlong engine_data_structure_ptr)
 
 
 
-// 函数: void engine_initialize_system_io_response_object(uint64_t *engine_data_structure_ptr)
+// void engine_initialize_system_io_response_object(uint64_t *engine_data_structure_ptr)
 void engine_initialize_system_io_response_object(uint64_t *engine_data_structure_ptr)
 
 {
@@ -20031,7 +20026,7 @@ void engine_initialize_system_io_response_object(uint64_t *engine_data_structure
 
 
 
-// 函数: void engine_configure_system_io_response_settings(uint64_t *engine_data_structure_ptr)
+// void engine_configure_system_io_response_settings(uint64_t *engine_data_structure_ptr)
 void engine_configure_system_io_response_settings(uint64_t *engine_data_structure_ptr)
 
 {
@@ -20050,7 +20045,7 @@ void engine_configure_system_io_response_settings(uint64_t *engine_data_structur
 
 
 
-// 函数: void engine_process_system_io_response_configuration(uint64_t *engine_data_structure_ptr)
+// void engine_process_system_io_response_configuration(uint64_t *engine_data_structure_ptr)
 void engine_process_system_io_response_configuration(uint64_t *engine_data_structure_ptr)
 
 {
@@ -20072,7 +20067,7 @@ void engine_process_system_io_response_configuration(uint64_t *engine_data_struc
 
 
 
-// 函数: void engine_handle_system_io_response_data_operation(longlong *engine_data_structure_ptr)
+// void engine_handle_system_io_response_data_operation(longlong *engine_data_structure_ptr)
 void engine_handle_system_io_response_data_operation(longlong *engine_data_structure_ptr)
 
 {
@@ -20093,7 +20088,7 @@ void engine_handle_system_io_response_data_operation(longlong *engine_data_struc
 
 
 
-// 函数: void engine_execute_system_io_response_process(longlong engine_data_structure_ptr,uint64 engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
+// void engine_execute_system_io_response_process(longlong engine_data_structure_ptr,uint64 engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
 void engine_execute_system_io_response_process(longlong engine_data_structure_ptr,uint64 engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
 
 {
@@ -20113,7 +20108,7 @@ void engine_execute_system_io_response_process(longlong engine_data_structure_pt
 
 
 
-// 函数: void engine_process_system_io_response_event_queue(longlong engine_data_structure_ptr,uint64 engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
+// void engine_process_system_io_response_event_queue(longlong engine_data_structure_ptr,uint64 engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
 void engine_process_system_io_response_event_queue(longlong engine_data_structure_ptr,uint64 engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
 
 {
@@ -20124,7 +20119,7 @@ void engine_process_system_io_response_event_queue(longlong engine_data_structur
 
 
 
-// 函数: void engine_handle_system_io_response_command_queue(longlong engine_data_structure_ptr,uint64 engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
+// void engine_handle_system_io_response_command_queue(longlong engine_data_structure_ptr,uint64 engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
 void engine_handle_system_io_response_command_queue(longlong engine_data_structure_ptr,uint64 engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
 
 {
@@ -20135,7 +20130,7 @@ void engine_handle_system_io_response_command_queue(longlong engine_data_structu
 
 
 
-// 函数: void engine_setup_resource_handler(uint64 engine_data_structure_ptr,uint64_t *engine_result_flag_ptr)
+// void engine_setup_resource_handler(uint64 engine_data_structure_ptr,uint64_t *engine_result_flag_ptr)
 void engine_setup_resource_handler(uint64 engine_data_structure_ptr,uint64_t *engine_result_flag_ptr)
 
 {
@@ -20218,7 +20213,7 @@ void engine_setup_resource_handler(uint64 engine_data_structure_ptr,uint64_t *en
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void engine_process_resource_data(longlong *engine_data_structure_ptr)
+// void engine_process_resource_data(longlong *engine_data_structure_ptr)
 void engine_process_resource_data(longlong *engine_data_structure_ptr)
 
 {
@@ -20792,7 +20787,7 @@ LAB_engine_comparison_failed:
 
 
 
-// 函数: void engine_cleanup_resource_handler(longlong *engine_data_structure_ptr)
+// void engine_cleanup_resource_handler(longlong *engine_data_structure_ptr)
 void engine_cleanup_resource_handler(longlong *engine_data_structure_ptr)
 
 {
@@ -20813,7 +20808,7 @@ void engine_cleanup_resource_handler(longlong *engine_data_structure_ptr)
 
 
 
-// 函数: void engine_handle_resource_allocation(longlong engine_data_structure_ptr,uint64 engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
+// void engine_handle_resource_allocation(longlong engine_data_structure_ptr,uint64 engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
 void engine_handle_resource_allocation(longlong engine_data_structure_ptr,uint64 engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
 
 {
@@ -20896,7 +20891,7 @@ longlong engine_validate_resource_access(longlong engine_data_structure_ptr,uint
 
 
 
-// 函数: void engine_return_empty_function(void)
+// void engine_return_empty_function(void)
 void engine_return_empty_function(void)
 
 {
@@ -21042,7 +21037,7 @@ void engine_initialize_display_and_core_config(uint64_t *config_ptr)
 
 
 
-// 函数: void engine_initialize_system_handler(uint64_t *engine_data_structure_ptr)
+// void engine_initialize_system_handler(uint64_t *engine_data_structure_ptr)
 void engine_initialize_system_handler(uint64_t *engine_data_structure_ptr)
 
 {
@@ -21061,7 +21056,7 @@ void engine_initialize_system_handler(uint64_t *engine_data_structure_ptr)
 
 
 
-// 函数: void engine_setup_core_components(longlong *engine_data_structure_ptr)
+// void engine_setup_core_components(longlong *engine_data_structure_ptr)
 void engine_setup_core_components(longlong *engine_data_structure_ptr)
 
 {
@@ -21082,7 +21077,7 @@ void engine_setup_core_components(longlong *engine_data_structure_ptr)
 
 
 
-// 函数: void engine_setup_system_handler(longlong *engine_data_structure_ptr)
+// void engine_setup_system_handler(longlong *engine_data_structure_ptr)
 void engine_setup_system_handler(longlong *engine_data_structure_ptr)
 
 {
@@ -21103,7 +21098,7 @@ void engine_setup_system_handler(longlong *engine_data_structure_ptr)
 
 
 
-// 函数: void engine_setup_physics_system(uint64_t *engine_data_structure_ptr)
+// void engine_setup_physics_system(uint64_t *engine_data_structure_ptr)
 void engine_setup_physics_system(uint64_t *engine_data_structure_ptr)
 
 {
@@ -21129,7 +21124,7 @@ void engine_setup_physics_system(uint64_t *engine_data_structure_ptr)
 
 
 
-// 函数: void engine_process_system_data(longlong engine_data_structure_ptr)
+// void engine_process_system_data(longlong engine_data_structure_ptr)
 void engine_process_system_data(longlong engine_data_structure_ptr)
 
 {
@@ -21181,7 +21176,7 @@ uint64_t * engine_handle_system_state(uint64_t *engine_data_structure_ptr,uint64
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void engine_update_system_state(longlong *engine_data_structure_ptr,uint64 engine_result_flag_ptr)
+// void engine_update_system_state(longlong *engine_data_structure_ptr,uint64 engine_result_flag_ptr)
 void engine_update_system_state(longlong *engine_data_structure_ptr,uint64 engine_result_flag_ptr)
 
 {
@@ -21246,7 +21241,7 @@ engine_validate_system_operation(uint64_t *engine_data_structure_ptr,ulonglong e
 
 
 
-// 函数: void engine_process_system_request(longlong engine_data_structure_ptr,longlong engine_result_flag_ptr)
+// void engine_process_system_request(longlong engine_data_structure_ptr,longlong engine_result_flag_ptr)
 void engine_process_system_request(longlong engine_data_structure_ptr,longlong engine_result_flag_ptr)
 
 {
@@ -21277,7 +21272,7 @@ void engine_process_system_request(longlong engine_data_structure_ptr,longlong e
 
 
 
-// 函数: void engine_handle_system_callback(longlong engine_data_structure_ptr,uint64 engine_result_flag_ptr,int engine_comparison_params)
+// void engine_handle_system_callback(longlong engine_data_structure_ptr,uint64 engine_result_flag_ptr,int engine_comparison_params)
 void engine_handle_system_callback(longlong engine_data_structure_ptr,uint64 engine_result_flag_ptr,int engine_comparison_params)
 
 {
@@ -21293,7 +21288,7 @@ void engine_handle_system_callback(longlong engine_data_structure_ptr,uint64 eng
 
 
 
-// 函数: void engine_cleanup_system_resources(void)
+// void engine_cleanup_system_resources(void)
 void engine_cleanup_system_resources(void)
 
 {
@@ -21304,7 +21299,7 @@ void engine_cleanup_system_resources(void)
 
 
 
-// 函数: void engine_initialize_system_resources(uint8_t *engine_data_structure_ptr)
+// void engine_initialize_system_resources(uint8_t *engine_data_structure_ptr)
 void engine_initialize_system_resources(uint8_t *engine_data_structure_ptr)
 
 {
@@ -21320,7 +21315,7 @@ void engine_initialize_system_resources(uint8_t *engine_data_structure_ptr)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void engine_setup_system_resources(longlong engine_data_structure_ptr,longlong engine_result_flag_ptr,longlong engine_comparison_params)
+// void engine_setup_system_resources(longlong engine_data_structure_ptr,longlong engine_result_flag_ptr,longlong engine_comparison_params)
 void engine_setup_system_resources(longlong engine_data_structure_ptr,longlong engine_result_flag_ptr,longlong engine_comparison_params)
 
 {
@@ -21362,7 +21357,7 @@ void engine_setup_system_resources(longlong engine_data_structure_ptr,longlong e
 
 
 
-// 函数: void engine_initialize_main_system(uint64_t *engine_data_structure_ptr)
+// void engine_initialize_main_system(uint64_t *engine_data_structure_ptr)
 void engine_initialize_main_system(uint64_t *engine_data_structure_ptr)
 
 {
@@ -21400,7 +21395,7 @@ void engine_initialize_main_system(uint64_t *engine_data_structure_ptr)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void engine_finalize_system_initialization(void)
+// void engine_finalize_system_initialization(void)
 void engine_finalize_system_initialization(void)
 
 {
@@ -21521,7 +21516,7 @@ void engine_finalize_system_initialization(void)
 
 
 
-// 函数: void engine_process_system_event(longlong *engine_data_structure_ptr)
+// void engine_process_system_event(longlong *engine_data_structure_ptr)
 void engine_process_system_event(longlong *engine_data_structure_ptr)
 
 {
@@ -21582,7 +21577,7 @@ void engine_process_system_event(longlong *engine_data_structure_ptr)
 
 
 
-// 函数: void engine_handle_system_notification(longlong *engine_data_structure_ptr)
+// void engine_handle_system_notification(longlong *engine_data_structure_ptr)
 void engine_handle_system_notification(longlong *engine_data_structure_ptr)
 
 {
@@ -21643,7 +21638,7 @@ void engine_handle_system_notification(longlong *engine_data_structure_ptr)
 
 
 
-// 函数: void engine_validate_system_status(void)
+// void engine_validate_system_status(void)
 void engine_validate_system_status(void)
 
 {
@@ -21660,7 +21655,7 @@ void engine_validate_system_status(void)
 
 
 
-// 函数: void engine_cleanup_system_status(void)
+// void engine_cleanup_system_status(void)
 void engine_cleanup_system_status(void)
 
 {
@@ -21714,7 +21709,7 @@ void engine_cleanup_system_status(void)
 
 
 
-// 函数: void engine_initialize_system_monitor(uint64_t *engine_data_structure_ptr)
+// void engine_initialize_system_monitor(uint64_t *engine_data_structure_ptr)
 void engine_initialize_system_monitor(uint64_t *engine_data_structure_ptr)
 
 {
@@ -21747,7 +21742,7 @@ void engine_initialize_system_monitor(uint64_t *engine_data_structure_ptr)
 
 
 
-// 函数: void engine_setup_system_monitor(longlong *engine_data_structure_ptr)
+// void engine_setup_system_monitor(longlong *engine_data_structure_ptr)
 void engine_setup_system_monitor(longlong *engine_data_structure_ptr)
 
 {
@@ -21810,7 +21805,7 @@ void engine_setup_system_monitor(longlong *engine_data_structure_ptr)
 
 
 
-// 函数: void engine_process_system_metrics(uint64_t *engine_data_structure_ptr)
+// void engine_process_system_metrics(uint64_t *engine_data_structure_ptr)
 void engine_process_system_metrics(uint64_t *engine_data_structure_ptr)
 
 {
@@ -21944,7 +21939,7 @@ uint64 engine_calculate_performance_metrics(uint64 engine_data_structure_ptr,ulo
 
 
 
-// 函数: void engine_update_performance_metrics(uint64_t *engine_data_structure_ptr)
+// void engine_update_performance_metrics(uint64_t *engine_data_structure_ptr)
 void engine_update_performance_metrics(uint64_t *engine_data_structure_ptr)
 
 {
@@ -22066,7 +22061,7 @@ uint64_t * engine_initialize_performance_monitor(uint64_t *engine_data_structure
 
 
 
-// 函数: void engine_setup_performance_monitor(uint64_t *engine_data_structure_ptr,uint64 engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
+// void engine_setup_performance_monitor(uint64_t *engine_data_structure_ptr,uint64 engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
 void engine_setup_performance_monitor(uint64_t *engine_data_structure_ptr,uint64 engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
 
 {
@@ -22140,7 +22135,7 @@ int engine_process_performance_data(uint64 engine_data_structure_ptr,uint64 engi
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void engine_cleanup_performance_handler(longlong *engine_data_structure_ptr)
+// void engine_cleanup_performance_handler(longlong *engine_data_structure_ptr)
 void engine_cleanup_performance_handler(longlong *engine_data_structure_ptr)
 
 {
@@ -22652,7 +22647,7 @@ bool engine_validate_memory_request(longlong engine_data_structure_ptr,uint64 en
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void engine_handle_memory_callback(longlong *engine_data_structure_ptr,longlong *engine_result_flag_ptr)
+// void engine_handle_memory_callback(longlong *engine_data_structure_ptr,longlong *engine_result_flag_ptr)
 void engine_handle_memory_callback(longlong *engine_data_structure_ptr,longlong *engine_result_flag_ptr)
 
 {
@@ -22738,7 +22733,7 @@ void engine_handle_memory_callback(longlong *engine_data_structure_ptr,longlong 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void engine_process_memory_data(longlong engine_data_structure_ptr,longlong *engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
+// void engine_process_memory_data(longlong engine_data_structure_ptr,longlong *engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
 void engine_process_memory_data(longlong engine_data_structure_ptr,longlong *engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
 
 {
@@ -22781,7 +22776,7 @@ void engine_process_memory_data(longlong engine_data_structure_ptr,longlong *eng
 
 
 
-// 函数: void engine_initialize_memory_handler(uint64_t *engine_data_structure_ptr)
+// void engine_initialize_memory_handler(uint64_t *engine_data_structure_ptr)
 void engine_initialize_memory_handler(uint64_t *engine_data_structure_ptr)
 
 {
@@ -22792,7 +22787,7 @@ void engine_initialize_memory_handler(uint64_t *engine_data_structure_ptr)
 
 
 
-// 函数: void engine_setup_memory_handler(uint64_t *engine_data_structure_ptr)
+// void engine_setup_memory_handler(uint64_t *engine_data_structure_ptr)
 void engine_setup_memory_handler(uint64_t *engine_data_structure_ptr)
 
 {
@@ -22847,7 +22842,7 @@ engine_validate_memory_handler(uint64_t *engine_data_structure_ptr,ulonglong eng
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void engine_call_input_processor(uint64 engine_data_structure_ptr,longlong engine_result_flag_ptr)
+// void engine_call_input_processor(uint64 engine_data_structure_ptr,longlong engine_result_flag_ptr)
 void engine_call_input_processor(uint64 engine_data_structure_ptr,longlong engine_result_flag_ptr)
 
 {
@@ -22908,7 +22903,7 @@ void engine_call_input_processor(uint64 engine_data_structure_ptr,longlong engin
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void engine_cleanup_memory_system(longlong *engine_data_structure_ptr)
+// void engine_cleanup_memory_system(longlong *engine_data_structure_ptr)
 void engine_cleanup_memory_system(longlong *engine_data_structure_ptr)
 
 {
@@ -22988,7 +22983,7 @@ void engine_cleanup_memory_system(longlong *engine_data_structure_ptr)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void engine_finalize_memory_system(longlong *engine_data_structure_ptr)
+// void engine_finalize_memory_system(longlong *engine_data_structure_ptr)
 void engine_finalize_memory_system(longlong *engine_data_structure_ptr)
 
 {
@@ -23066,7 +23061,7 @@ void engine_finalize_memory_system(longlong *engine_data_structure_ptr)
 
 
 
-// 函数: void engine_process_system_validation(void)
+// void engine_process_system_validation(void)
 void engine_process_system_validation(void)
 
 {
@@ -23077,7 +23072,7 @@ void engine_process_system_validation(void)
 
 
 
-// 函数: void engine_handle_system_validation(uint64 engine_data_structure_ptr,uint64 engine_result_flag_ptr,uint32_t engine_comparison_params,uint64 engine_system_parameter_4)
+// void engine_handle_system_validation(uint64 engine_data_structure_ptr,uint64 engine_result_flag_ptr,uint32_t engine_comparison_params,uint64 engine_system_parameter_4)
 void engine_handle_system_validation(uint64 engine_data_structure_ptr,uint64 engine_result_flag_ptr,uint32_t engine_comparison_params,uint64 engine_system_parameter_4)
 
 {
@@ -23088,7 +23083,7 @@ void engine_handle_system_validation(uint64 engine_data_structure_ptr,uint64 eng
 
 
 
-// 函数: void engine_validate_system_compatibility(uint64 engine_data_structure_ptr,uint64 engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
+// void engine_validate_system_compatibility(uint64 engine_data_structure_ptr,uint64 engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
 void engine_validate_system_compatibility(uint64 engine_data_structure_ptr,uint64 engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
 
 {
@@ -23104,7 +23099,7 @@ void engine_validate_system_compatibility(uint64 engine_data_structure_ptr,uint6
 
 
 
-// 函数: void engine_validate_system_parameters(uint64 engine_data_structure_ptr,uint64 engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
+// void engine_validate_system_parameters(uint64 engine_data_structure_ptr,uint64 engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
 void engine_validate_system_parameters(uint64 engine_data_structure_ptr,uint64 engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
 
 {
@@ -23118,7 +23113,7 @@ void engine_validate_system_parameters(uint64 engine_data_structure_ptr,uint64 e
 
 
 
-// 函数: void engine_perform_system_validation(void)
+// void engine_perform_system_validation(void)
 void engine_perform_system_validation(void)
 
 {
@@ -23129,7 +23124,7 @@ void engine_perform_system_validation(void)
 
 
 
-// 函数: void engine_call_buffer_manager(void)
+// void engine_call_buffer_manager(void)
 void engine_call_buffer_manager(void)
 
 {
@@ -23142,7 +23137,7 @@ void engine_call_buffer_manager(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void engine_call_memory_compactor(longlong *engine_data_structure_ptr)
+// void engine_call_memory_compactor(longlong *engine_data_structure_ptr)
 void engine_call_memory_compactor(longlong *engine_data_structure_ptr)
 
 {
@@ -23185,7 +23180,7 @@ void engine_call_memory_compactor(longlong *engine_data_structure_ptr)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void engine_call_state_manager(void)
+// void engine_call_state_manager(void)
 void engine_call_state_manager(void)
 
 {
@@ -23213,7 +23208,7 @@ void engine_call_state_manager(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void engine_process_parameter_validation(int *engine_data_structure_ptr)
+// void engine_process_parameter_validation(int *engine_data_structure_ptr)
 void engine_process_parameter_validation(int *engine_data_structure_ptr)
 
 {
@@ -23377,7 +23372,7 @@ uint64 engine_execute_system_operation(uint64 engine_data_structure_ptr,uint32_t
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void engine_handle_system_data(longlong engine_data_structure_ptr)
+// void engine_handle_system_data(longlong engine_data_structure_ptr)
 void engine_handle_system_data(longlong engine_data_structure_ptr)
 
 {
@@ -23607,7 +23602,7 @@ LAB_18006357e:
 
 
 
-// 函数: void engine_cleanup_system_resources(void)
+// void engine_cleanup_system_resources(void)
 void engine_cleanup_system_resources(void)
 
 {
@@ -23714,7 +23709,7 @@ longlong engine_configure_display_settings(longlong engine_data_structure_ptr)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void engine_process_system_request(uint64 engine_data_structure_ptr)
+// void engine_process_system_request(uint64 engine_data_structure_ptr)
 void engine_process_system_request(uint64 engine_data_structure_ptr)
 
 {
@@ -23738,7 +23733,7 @@ void engine_process_system_request(uint64 engine_data_structure_ptr)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void engine_handle_system_operation(uint64 engine_data_structure_ptr,longlong engine_result_flag_ptr)
+// void engine_handle_system_operation(uint64 engine_data_structure_ptr,longlong engine_result_flag_ptr)
 void engine_handle_system_operation(uint64 engine_data_structure_ptr,longlong engine_result_flag_ptr)
 
 {
@@ -23783,8 +23778,8 @@ void engine_handle_system_operation(uint64 engine_data_structure_ptr,longlong en
     fwrite(&engine_data_10,0x30,1,engine_temp_long_6);
     fwrite(&engine_data_70,engine_temp_long_3,1,engine_temp_long_6);
 
-// 函数: void FUN_180063cf0(void)
-void FUN_180063cf0(void)
+// void engine_process_system_state_comparison(void)
+void engine_process_system_state_comparison(void)
 
 {
   void* engine_data_pointer;
@@ -23824,7 +23819,7 @@ void FUN_180063cf0(void)
   uStack_270 = 0xfffffffffffffffe;
   uStack_38 = _engine_data_a8 ^ (ulonglong)auStack_2f8;
   engine_temp_uint1 = 0;
-  FUN_1800ba980(&puStack_290);
+  engine_initialize_data_buffer(&puStack_290);
   puStack_2d8 = (void*)0x0;
   puStack_2d0 = (void*)0x0;
   uStack_2c8 = 0;
@@ -23833,7 +23828,7 @@ void FUN_180063cf0(void)
   puStack_2a8 = (void*)0x0;
   uStack_2a0 = 0;
   uStack_298 = 3;
-  FUN_18062d3b0(&puStack_290,&puStack_2d8,&puStack_2b0);
+  engine_process_data_structure(&puStack_290,&puStack_2d8,&puStack_2b0);
   engine_temp_int4 = -1;
   engine_temp_long5 = -0x8000000000000000;
   engine_temp_uint6 = (uint)((longlong)puStack_2d0 - (longlong)puStack_2d8 >> 5);
@@ -23921,8 +23916,8 @@ LAB_180063de9:
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180064010(uint64 engine_data_structure_ptr)
-void FUN_180064010(uint64 engine_data_structure_ptr)
+// void engine_configure_system_parameters(uint64 engine_data_structure_ptr)
+void engine_configure_system_parameters(uint64 engine_data_structure_ptr)
 
 {
   void* engine_data_pointer;
@@ -23966,7 +23961,7 @@ void FUN_180064010(uint64 engine_data_structure_ptr)
   puStack_2b8 = (void*)0x0;
   uStack_2b0 = 0;
   uStack_2a8 = 3;
-  FUN_18062d3b0(&puStack_2a0,&puStack_318,&puStack_2c0);
+  engine_process_data_structure(&puStack_2a0,&puStack_318,&puStack_2c0);
   engine_structure_data_ptr = puStack_2b8;
   engine_data_pointer = puStack_310;
   engine_next_node_ptr = puStack_2c0;
@@ -24067,8 +24062,8 @@ void FUN_180064010(uint64 engine_data_structure_ptr)
 
 
 
-// 函数: void FUN_180064400(void)
-void FUN_180064400(void)
+// void engine_initialize_system_components(void)
+void engine_initialize_system_components(void)
 
 {
                     // WARNING: Subroutine does not return
@@ -24094,9 +24089,9 @@ ulonglong FUN_1800649d0(uint64 engine_data_structure_ptr)
   int iStack_a8;
   ulonglong engine_stack_value_a0;
   void* engine_stack_pointer_98;
-  void* puStack_90;
+  void* engine_stack_pointer_90;
   uint64 engine_stack_value_88;
-  uint32 uStack_80;
+  uint32 engine_stack_value_80;
   uint64 engine_stack_value_78;
   longlong lStack_70;
   void* engine_stack_pointer_58;
@@ -24106,13 +24101,13 @@ ulonglong FUN_1800649d0(uint64 engine_data_structure_ptr)
   
   uStack_38 = 0xfffffffffffffffe;
   engine_stack_pointer_98 = (void*)0x0;
-  puStack_90 = (void*)0x0;
+  engine_stack_pointer_90 = (void*)0x0;
   engine_stack_value_88 = 0;
-  uStack_80 = 3;
-  engine_status_flag = FUN_180064400(&engine_stack_pointer_98);
-  engine_current_data_pointer = puStack_90;
+  engine_stack_value_80 = 3;
+  engine_status_flag = engine_initialize_system_components(&engine_stack_pointer_98);
+  engine_current_data_pointer = engine_stack_pointer_90;
   engine_temporary_data_ptr = engine_stack_pointer_98;
-  if ((engine_status_flag == '\0') || (engine_stack_pointer_98 == puStack_90)) {
+  if ((engine_status_flag == '\0') || (engine_stack_pointer_98 == engine_stack_pointer_90)) {
     engine_handle_system_validation(_engine_data_28,5,3,&engine_data_1809fe8b0);
     engine_temp_uint_2 = engine_call_memory_compactor();
     engine_next_node_ptr = engine_temporary_data_ptr;
@@ -24154,7 +24149,7 @@ ulonglong FUN_1800649d0(uint64 engine_data_structure_ptr)
       UNLOCK();
       engine_operation_result = 0;
       engine_temporary_data_ptr = engine_stack_pointer_98;
-      engine_current_data_pointer = puStack_90;
+      engine_current_data_pointer = engine_stack_pointer_90;
       _engine_data_60 = _engine_data_60 - 1;
     }
     engine_stack_pointer_b8 = &engine_system_context_data;
@@ -24181,7 +24176,7 @@ ulonglong FUN_1800649d0(uint64 engine_data_structure_ptr)
       _engine_data_60 = _engine_data_60 - 1;
       UNLOCK();
       engine_temporary_data_ptr = engine_stack_pointer_98;
-      engine_current_data_pointer = puStack_90;
+      engine_current_data_pointer = engine_stack_pointer_90;
       engine_next_node_ptr = engine_stack_pointer_98;
     }
   }
@@ -24200,8 +24195,8 @@ ulonglong FUN_1800649d0(uint64 engine_data_structure_ptr)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180064c00(longlong *engine_data_structure_ptr,longlong engine_result_flag_ptr,longlong engine_comparison_params)
-void FUN_180064c00(longlong *engine_data_structure_ptr,longlong engine_result_flag_ptr,longlong engine_comparison_params)
+// void engine_process_data_structure_operations(longlong *engine_data_structure_ptr,longlong engine_result_flag_ptr,longlong engine_comparison_params)
+void engine_process_data_structure_operations(longlong *engine_data_structure_ptr,longlong engine_result_flag_ptr,longlong engine_comparison_params)
 
 {
   uint engine_temporary_uint;
@@ -24490,8 +24485,8 @@ LAB_180065009:
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180065160(uint64 engine_data_structure_ptr)
-void FUN_180065160(uint64 engine_data_structure_ptr)
+// void engine_validate_system_configuration(uint64 engine_data_structure_ptr)
+void engine_validate_system_configuration(uint64 engine_data_structure_ptr)
 
 {
   byte *engine_byte_ptr_1;
@@ -24757,7 +24752,7 @@ void FUN_180065160(uint64 engine_data_structure_ptr)
   auStack_d8[0] = 0;
   uStack_e0 = 9;
   strcpy_s(auStack_d8,0x10,&engine_base_data_offset_a8);
-  FUN_180064c00(&puStack_160,&puStack_200,&engine_stack_pointer_f0);
+  engine_process_data_structure_operations(&puStack_160,&puStack_200,&engine_stack_pointer_f0);
   engine_data_ptr8 = engine_stack_pointer_158;
   engine_data_ptr9 = puStack_160;
   if (1 < (ulonglong)((longlong)engine_stack_pointer_158 - (longlong)puStack_160 >> 5)) {
@@ -24766,7 +24761,7 @@ void FUN_180065160(uint64 engine_data_structure_ptr)
     auStack_100[0] = 0;
     uStack_108 = 1;
     strcpy_s(auStack_100,0x10,&engine_data_28);
-    FUN_180064c00(&engine_stack_pointer_220,engine_data_ptr9 + 4,&puStack_118);
+    engine_process_data_structure_operations(&engine_stack_pointer_220,engine_data_ptr9 + 4,&puStack_118);
     puStack_118 = &engine_data_18098bcb0;
   }
   engine_stack_pointer_f0 = &engine_data_18098bcb0;
@@ -25029,8 +25024,8 @@ LAB_180065a3e:
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180065d50(void)
-void FUN_180065d50(void)
+// void engine_cleanup_system_resources(void)
+void engine_cleanup_system_resources(void)
 
 {
   uint8 auStack_2c8 [104];
@@ -25071,8 +25066,8 @@ void FUN_180065d50(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180065f00(uint64 engine_data_structure_ptr,longlong engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
-void FUN_180065f00(uint64 engine_data_structure_ptr,longlong engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
+// void engine_execute_system_validation(uint64 engine_data_structure_ptr,longlong engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
+void engine_execute_system_validation(uint64 engine_data_structure_ptr,longlong engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
 
 {
   code *pengine_status_flag;
@@ -25105,8 +25100,8 @@ void FUN_180065f00(uint64 engine_data_structure_ptr,longlong engine_result_flag_
   }
   ppuStack_68 = &puStack_a8;
   pplStack_60 = &plStack_b0;
-  FUN_180066140(&ppuStack_68,_engine_data_20,&engine_data_d8);
-  FUN_180066140(&ppuStack_68,_engine_data_b0,&engine_control_data);
+  engine_handle_system_data_processing(&ppuStack_68,_engine_data_20,&engine_data_d8);
+  engine_handle_system_data_processing(&ppuStack_68,_engine_data_b0,&engine_control_data);
   pengine_status_flag = *(code **)(*plStack_b0 + 0x40);
   engine_temp_uint_3 = engine_call_data_writer(&ppuStack_68,_engine_data_28 + 0x28);
   (*pengine_status_flag)(plStack_b0,engine_temp_uint_3);
@@ -25160,8 +25155,8 @@ void FUN_180065f00(uint64 engine_data_structure_ptr,longlong engine_result_flag_
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180066140(longlong *engine_data_structure_ptr,uint64 engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
-void FUN_180066140(longlong *engine_data_structure_ptr,uint64 engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
+// void engine_handle_system_data_processing(longlong *engine_data_structure_ptr,uint64 engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
+void engine_handle_system_data_processing(longlong *engine_data_structure_ptr,uint64 engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
 
 {
   uint engine_temporary_uint;
@@ -25249,8 +25244,8 @@ void FUN_180066140(longlong *engine_data_structure_ptr,uint64 engine_result_flag
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180066320(uint64 engine_data_structure_ptr,uint64 engine_result_flag_ptr,char engine_comparison_params,char engine_system_parameter_4,
-void FUN_180066320(uint64 engine_data_structure_ptr,uint64 engine_result_flag_ptr,char engine_comparison_params,char engine_system_parameter_4,
+// void engine_process_system_operations(uint64 engine_data_structure_ptr,uint64 engine_result_flag_ptr,char engine_comparison_params,char engine_system_parameter_4,
+void engine_process_system_operations(uint64 engine_data_structure_ptr,uint64 engine_result_flag_ptr,char engine_comparison_params,char engine_system_parameter_4,
                   uint64 param_5)
 
 {
@@ -25303,7 +25298,7 @@ void FUN_180066320(uint64 engine_data_structure_ptr,uint64 engine_result_flag_pt
   engine_temp_int_4 = 0;
   if (engine_status_flag != '\0') {
     engine_process_system_configuration(&engine_stack_ptr_1b8,&engine_data_70);
-    FUN_180065f00(&engine_stack_ptr_1b8,0);
+    engine_execute_system_validation(&engine_stack_ptr_1b8,0);
     engine_stack_ptr_1b8 = &engine_system_context_data;
     if (lStack_1b0 != 0) {
                     // WARNING: Subroutine does not return
@@ -25424,7 +25419,7 @@ LAB_18006650a:
     engine_temp_index = engine_call_data_writer(&engine_stack_pointer_138,&engine_stack_pointer_198);
     engine_process_system_request(engine_temp_index);
     engine_handle_system_operation(&engine_stack_pointer_198,param_5);
-    FUN_180063cf0(&engine_stack_pointer_198);
+    engine_process_system_state_comparison(&engine_stack_pointer_198);
     FUN_1800ba940(&engine_stack_pointer_138);
     FUN_180627e10(&engine_stack_pointer_138,&engine_stack_pointer_f0,&engine_data_1809fe848);
     FUN_180627e10(&engine_stack_pointer_198,&puStack_110,&engine_data_1809fe848);
@@ -25453,10 +25448,10 @@ LAB_18006650a:
     lStack_130 = 0;
     uStack_120 = 0;
     engine_stack_pointer_138 = &engine_data_18098bcb0;
-    FUN_180064010(&engine_stack_pointer_198);
+    engine_configure_system_parameters(&engine_stack_pointer_198);
     FUN_1800649d0(&engine_stack_pointer_198);
-    FUN_180065160(&engine_stack_pointer_198);
-    FUN_180065d50(&engine_stack_pointer_198,engine_result_flag_ptr,engine_comparison_params,0);
+    engine_validate_system_configuration(&engine_stack_pointer_198);
+    engine_cleanup_system_resources(&engine_stack_pointer_198,engine_result_flag_ptr,engine_comparison_params,0);
     puStack_178 = &engine_system_context_data;
     if (puStack_170 != (void*)0x0) {
                     // WARNING: Subroutine does not return
@@ -25503,8 +25498,8 @@ LAB_180066971:
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_1800669c0(uint64 engine_data_structure_ptr,uint64 engine_result_flag_ptr,char engine_comparison_params,uint64 engine_system_parameter_4,
-void FUN_1800669c0(uint64 engine_data_structure_ptr,uint64 engine_result_flag_ptr,char engine_comparison_params,uint64 engine_system_parameter_4,
+// void engine_validate_component_states(uint64 engine_data_structure_ptr,uint64 engine_result_flag_ptr,char engine_comparison_params,uint64 engine_system_parameter_4,
+void engine_validate_component_states(uint64 engine_data_structure_ptr,uint64 engine_result_flag_ptr,char engine_comparison_params,uint64 engine_system_parameter_4,
                   uint64 param_5)
 
 {
@@ -25602,7 +25597,7 @@ LAB_180066bf4:
       memcpy(engine_stack_pointer_98,&engine_data_70,engine_temp_int_6);
     }
     uStack_90 = 0;
-    FUN_180065f00(&engine_stack_param_a0,param_5);
+    engine_execute_system_validation(&engine_stack_param_a0,param_5);
     engine_stack_param_a0 = &engine_system_context_data;
     if (engine_stack_pointer_98 != (void*)0x0) {
                     // WARNING: Subroutine does not return
@@ -25615,7 +25610,7 @@ LAB_180066bf4:
 
 
 
-// 函数: void engine_setup_input_handlers(void)
+// void engine_setup_input_handlers(void)
 void engine_setup_input_handlers(void)
 
 {
@@ -25627,7 +25622,7 @@ void engine_setup_input_handlers(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180066df0(longlong *engine_data_structure_ptr,longlong engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
+// void FUN_180066df0(longlong *engine_data_structure_ptr,longlong engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
 void FUN_180066df0(longlong *engine_data_structure_ptr,longlong engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
 
 {
@@ -25736,8 +25731,8 @@ longlong FUN_180066f90(longlong engine_data_structure_ptr,ulonglong engine_resul
 
 
 
-// 函数: void FUN_180067050(void)
-void FUN_180067050(void)
+// void engine_perform_system_calculation(void)
+void engine_perform_system_calculation(void)
 
 {
   code *pengine_status_flag;
@@ -25751,7 +25746,7 @@ void FUN_180067050(void)
 
 
 
-// 函数: void FUN_180067070(longlong *engine_data_structure_ptr)
+// void FUN_180067070(longlong *engine_data_structure_ptr)
 void FUN_180067070(longlong *engine_data_structure_ptr)
 
 {
@@ -25781,7 +25776,7 @@ void FUN_180067070(longlong *engine_data_structure_ptr)
 
 
 
-// 函数: void engine_initialize_network_system(void)
+// void engine_initialize_network_system(void)
 void engine_initialize_network_system(void)
 
 {
@@ -25792,7 +25787,7 @@ void engine_initialize_network_system(void)
 
 
 
-// 函数: void FUN_1800670f0(void)
+// void FUN_1800670f0(void)
 void FUN_1800670f0(void)
 
 {
@@ -25807,7 +25802,7 @@ void FUN_1800670f0(void)
 
 
 
-// 函数: void FUN_180067110(ulonglong engine_data_structure_ptr)
+// void FUN_180067110(ulonglong engine_data_structure_ptr)
 void FUN_180067110(ulonglong engine_data_structure_ptr)
 
 {
@@ -25854,7 +25849,7 @@ void FUN_180067110(ulonglong engine_data_structure_ptr)
 
 
 
-// 函数: void FUN_180067170(longlong engine_data_structure_ptr,ulonglong engine_result_flag_ptr)
+// void FUN_180067170(longlong engine_data_structure_ptr,ulonglong engine_result_flag_ptr)
 void FUN_180067170(longlong engine_data_structure_ptr,ulonglong engine_result_flag_ptr)
 
 {
@@ -25877,7 +25872,7 @@ void FUN_180067170(longlong engine_data_structure_ptr,ulonglong engine_result_fl
 
 
 
-// 函数: void FUN_1800671b0(uint64_t *engine_data_structure_ptr,uint64 engine_result_flag_ptr,ulonglong engine_comparison_params)
+// void FUN_1800671b0(uint64_t *engine_data_structure_ptr,uint64 engine_result_flag_ptr,ulonglong engine_comparison_params)
 void FUN_1800671b0(uint64_t *engine_data_structure_ptr,uint64 engine_result_flag_ptr,ulonglong engine_comparison_params)
 
 {
@@ -25920,7 +25915,7 @@ void FUN_1800671b0(uint64_t *engine_data_structure_ptr,uint64 engine_result_flag
 
 
 
-// 函数: void FUN_18006720b(ulonglong engine_data_structure_ptr)
+// void FUN_18006720b(ulonglong engine_data_structure_ptr)
 void FUN_18006720b(ulonglong engine_data_structure_ptr)
 
 {
@@ -25946,7 +25941,7 @@ void FUN_18006720b(ulonglong engine_data_structure_ptr)
 
 
 
-// 函数: void FUN_18006729a(void)
+// void FUN_18006729a(void)
 void FUN_18006729a(void)
 
 {
@@ -25956,7 +25951,7 @@ void FUN_18006729a(void)
 
 
 
-// 函数: void FUN_1800672b0(void)
+// void FUN_1800672b0(void)
 void FUN_1800672b0(void)
 
 {
@@ -25967,7 +25962,7 @@ void FUN_1800672b0(void)
 
 
 
-// 函数: void FUN_1800672b7(void)
+// void FUN_1800672b7(void)
 void FUN_1800672b7(void)
 
 {
@@ -25984,7 +25979,7 @@ void FUN_1800672b7(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_1800672c0(longlong engine_data_structure_ptr)
+// void FUN_1800672c0(longlong engine_data_structure_ptr)
 void FUN_1800672c0(longlong engine_data_structure_ptr)
 
 {
@@ -26079,7 +26074,7 @@ void FUN_1800672c0(longlong engine_data_structure_ptr)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180067480(uint64 engine_data_structure_ptr,longlong engine_result_flag_ptr)
+// void FUN_180067480(uint64 engine_data_structure_ptr,longlong engine_result_flag_ptr)
 void FUN_180067480(uint64 engine_data_structure_ptr,longlong engine_result_flag_ptr)
 
 {
@@ -26098,7 +26093,7 @@ void FUN_180067480(uint64 engine_data_structure_ptr,longlong engine_result_flag_
 
 
 
-// 函数: void FUN_180067810(longlong engine_data_structure_ptr,uint64 engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
+// void FUN_180067810(longlong engine_data_structure_ptr,uint64 engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
 void FUN_180067810(longlong engine_data_structure_ptr,uint64 engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
 
 {
@@ -26113,7 +26108,7 @@ void FUN_180067810(longlong engine_data_structure_ptr,uint64 engine_result_flag_
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180067840(longlong *engine_data_structure_ptr)
+// void FUN_180067840(longlong *engine_data_structure_ptr)
 void FUN_180067840(longlong *engine_data_structure_ptr)
 
 {
@@ -26243,7 +26238,7 @@ void FUN_180067840(longlong *engine_data_structure_ptr)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180067bc0(uint64_t *engine_data_structure_ptr)
+// void FUN_180067bc0(uint64_t *engine_data_structure_ptr)
 void FUN_180067bc0(uint64_t *engine_data_structure_ptr)
 
 {
@@ -26266,7 +26261,7 @@ void FUN_180067bc0(uint64_t *engine_data_structure_ptr)
 
 
 
-// 函数: void FUN_180067f00(void)
+// void FUN_180067f00(void)
 void FUN_180067f00(void)
 
 {
@@ -26277,7 +26272,7 @@ void FUN_180067f00(void)
 
 
 
-// 函数: void FUN_180067f30(void)
+// void FUN_180067f30(void)
 void FUN_180067f30(void)
 
 {
@@ -26290,7 +26285,7 @@ void FUN_180067f30(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180067f60(longlong engine_data_structure_ptr,longlong engine_result_flag_ptr)
+// void FUN_180067f60(longlong engine_data_structure_ptr,longlong engine_result_flag_ptr)
 void FUN_180067f60(longlong engine_data_structure_ptr,longlong engine_result_flag_ptr)
 
 {
@@ -26523,7 +26518,7 @@ longlong FUN_180068490(longlong engine_data_structure_ptr,longlong engine_result
 
 
 
-// 函数: void FUN_180068620(longlong engine_data_structure_ptr,uint64_t *engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
+// void FUN_180068620(longlong engine_data_structure_ptr,uint64_t *engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
 void FUN_180068620(longlong engine_data_structure_ptr,uint64_t *engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
 
 {
@@ -26549,7 +26544,7 @@ void FUN_180068620(longlong engine_data_structure_ptr,uint64_t *engine_result_fl
 
 
 
-// 函数: void FUN_1800686b0(longlong engine_data_structure_ptr)
+// void FUN_1800686b0(longlong engine_data_structure_ptr)
 void FUN_1800686b0(longlong engine_data_structure_ptr)
 
 {
@@ -26613,7 +26608,7 @@ void FUN_1800686b0(longlong engine_data_structure_ptr)
 
 
 
-// 函数: void FUN_1800687d0(longlong engine_data_structure_ptr,uint64_t *engine_result_flag_ptr)
+// void FUN_1800687d0(longlong engine_data_structure_ptr,uint64_t *engine_result_flag_ptr)
 void FUN_1800687d0(longlong engine_data_structure_ptr,uint64_t *engine_result_flag_ptr)
 
 {
@@ -27009,7 +27004,7 @@ uint64_t * FUN_180069070(uint64_t *engine_data_structure_ptr)
 
 
 
-// 函数: void FUN_180069130(longlong engine_data_structure_ptr,longlong engine_result_flag_ptr)
+// void FUN_180069130(longlong engine_data_structure_ptr,longlong engine_result_flag_ptr)
 void FUN_180069130(longlong engine_data_structure_ptr,longlong engine_result_flag_ptr)
 
 {
@@ -27055,7 +27050,7 @@ FUN_1800691e0(uint64_t *engine_data_structure_ptr,ulonglong engine_result_flag_p
 
 
 
-// 函数: void FUN_180069220(longlong engine_data_structure_ptr,uint64 engine_result_flag_ptr,int engine_comparison_params)
+// void FUN_180069220(longlong engine_data_structure_ptr,uint64 engine_result_flag_ptr,int engine_comparison_params)
 void FUN_180069220(longlong engine_data_structure_ptr,uint64 engine_result_flag_ptr,int engine_comparison_params)
 
 {
@@ -27071,7 +27066,7 @@ void FUN_180069220(longlong engine_data_structure_ptr,uint64 engine_result_flag_
 
 
 
-// 函数: void FUN_180069241(void)
+// void FUN_180069241(void)
 void FUN_180069241(void)
 
 {
@@ -27082,7 +27077,7 @@ void FUN_180069241(void)
 
 
 
-// 函数: void FUN_180069266(uint8_t *engine_data_structure_ptr)
+// void FUN_180069266(uint8_t *engine_data_structure_ptr)
 void FUN_180069266(uint8_t *engine_data_structure_ptr)
 
 {
@@ -27098,7 +27093,7 @@ void FUN_180069266(uint8_t *engine_data_structure_ptr)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180069280(longlong engine_data_structure_ptr,longlong engine_result_flag_ptr,longlong engine_comparison_params)
+// void FUN_180069280(longlong engine_data_structure_ptr,longlong engine_result_flag_ptr,longlong engine_comparison_params)
 void FUN_180069280(longlong engine_data_structure_ptr,longlong engine_result_flag_ptr,longlong engine_comparison_params)
 
 {
@@ -27140,7 +27135,7 @@ void FUN_180069280(longlong engine_data_structure_ptr,longlong engine_result_fla
 
 
 
-// 函数: void FUN_1800693f0(longlong engine_data_structure_ptr,longlong engine_result_flag_ptr)
+// void FUN_1800693f0(longlong engine_data_structure_ptr,longlong engine_result_flag_ptr)
 void FUN_1800693f0(longlong engine_data_structure_ptr,longlong engine_result_flag_ptr)
 
 {
@@ -27183,7 +27178,7 @@ longlong FUN_180069470(longlong engine_data_structure_ptr,ulonglong engine_resul
 
 
 
-// 函数: void FUN_180069530(uint64_t *engine_data_structure_ptr,uint64 engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
+// void FUN_180069530(uint64_t *engine_data_structure_ptr,uint64 engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
 void FUN_180069530(uint64_t *engine_data_structure_ptr,uint64 engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
 
 {
@@ -27200,7 +27195,7 @@ void FUN_180069530(uint64_t *engine_data_structure_ptr,uint64 engine_result_flag
 
 
 
-// 函数: void FUN_1800695a0(longlong engine_data_structure_ptr)
+// void FUN_1800695a0(longlong engine_data_structure_ptr)
 void FUN_1800695a0(longlong engine_data_structure_ptr)
 
 {
@@ -27250,7 +27245,7 @@ uint64 FUN_180069760(uint64 engine_data_structure_ptr,ulonglong engine_result_fl
 
 
 
-// 函数: void FUN_1800697a0(uint64_t *engine_data_structure_ptr)
+// void FUN_1800697a0(uint64_t *engine_data_structure_ptr)
 void FUN_1800697a0(uint64_t *engine_data_structure_ptr)
 
 {
@@ -27742,7 +27737,7 @@ uint64_t * FUN_18006a090(uint64_t *engine_data_structure_ptr,ulonglong engine_re
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180070680(uint64 engine_data_structure_ptr,uint64 engine_result_flag_ptr)
+// void FUN_180070680(uint64 engine_data_structure_ptr,uint64 engine_result_flag_ptr)
 void FUN_180070680(uint64 engine_data_structure_ptr,uint64 engine_result_flag_ptr)
 
 {
@@ -27843,7 +27838,7 @@ void FUN_180070680(uint64 engine_data_structure_ptr,uint64 engine_result_flag_pt
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180070930(uint64 engine_data_structure_ptr,longlong engine_result_flag_ptr,uint32_t engine_comparison_params,longlong engine_system_parameter_4,
+// void FUN_180070930(uint64 engine_data_structure_ptr,longlong engine_result_flag_ptr,uint32_t engine_comparison_params,longlong engine_system_parameter_4,
 void FUN_180070930(uint64 engine_data_structure_ptr,longlong engine_result_flag_ptr,uint32_t engine_comparison_params,longlong engine_system_parameter_4,
                   char param_5,char param_6)
 
@@ -28458,7 +28453,7 @@ LAB_1800715eb:
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180071940(uint64 engine_data_structure_ptr,longlong engine_result_flag_ptr,uint32_t engine_comparison_params,longlong engine_system_parameter_4)
+// void FUN_180071940(uint64 engine_data_structure_ptr,longlong engine_result_flag_ptr,uint32_t engine_comparison_params,longlong engine_system_parameter_4)
 void FUN_180071940(uint64 engine_data_structure_ptr,longlong engine_result_flag_ptr,uint32_t engine_comparison_params,longlong engine_system_parameter_4)
 
 {
@@ -28474,9 +28469,9 @@ void FUN_180071940(uint64 engine_data_structure_ptr,longlong engine_result_flag_
   longlong engine_temp_long0;
   uint engine_temp_uint1;
   uint engine_temp_uint2;
-  void* puStack_90;
+  void* engine_stack_pointer_90;
   uint8* engine_stack_pointer_88;
-  uint uStack_80;
+  uint engine_stack_value_80;
   ulonglong engine_stack_value_78;
   void* engine_stack_pointer_70;
   void* engine_stack_pointer_68;
@@ -28514,23 +28509,23 @@ void FUN_180071940(uint64 engine_data_structure_ptr,longlong engine_result_flag_
     uStack_38 = 0;
     puStack_50 = &engine_data_18098bcb0;
   }
-  puStack_90 = &engine_system_context_data;
+  engine_stack_pointer_90 = &engine_system_context_data;
   engine_stack_value_78 = 0;
   engine_stack_pointer_88 = (uint8*)0x0;
-  uStack_80 = 0;
+  engine_stack_value_80 = 0;
   engine_stack_pointer_88 = (uint8*)engine_call_memory_extender(_engine_data_18,0x12,0x13);
   *engine_stack_pointer_88 = 0;
   engine_temp_uint_2 = engine_call_resource_validator(engine_stack_pointer_88);
   engine_stack_value_78 = CONCAT44(engine_stack_value_78._4_4_,engine_temp_uint_2);
-  engine_temporary_data_ptr = (uint32*)(engine_stack_pointer_88 + uStack_80);
+  engine_temporary_data_ptr = (uint32*)(engine_stack_pointer_88 + engine_stack_value_80);
   *engine_temporary_data_ptr = 0x65737341;
   engine_temporary_data_ptr[1] = 0x6f697472;
   engine_temporary_data_ptr[2] = 0x6146206e;
   engine_temporary_data_ptr[3] = 0x64656c69;
   *(uint16*)(engine_temporary_data_ptr + 4) = 0x21;
-  uStack_80 = 0x11;
+  engine_stack_value_80 = 0x11;
   if (engine_stack_pointer_88 == (uint8*)0x0) {
-    uStack_80 = 0x11;
+    engine_stack_value_80 = 0x11;
     engine_stack_pointer_88 = (uint8*)engine_call_memory_extender(_engine_data_18,0x13,0x13);
     *engine_stack_pointer_88 = 0;
 LAB_180071af3:
@@ -28538,15 +28533,15 @@ LAB_180071af3:
     engine_stack_value_78 = CONCAT44(engine_stack_value_78._4_4_,engine_temp_uint_3);
   }
   else if (engine_temp_uint_2 < 0x13) {
-    uStack_80 = 0x11;
+    engine_stack_value_80 = 0x11;
     engine_stack_pointer_88 = (uint8*)engine_update_system_data(_engine_data_18,engine_stack_pointer_88,0x13,0x10,0x13);
     goto LAB_180071af3;
   }
-  *(uint16*)(engine_stack_pointer_88 + uStack_80) = 10;
-  uStack_80 = 0x12;
+  *(uint16*)(engine_stack_pointer_88 + engine_stack_value_80) = 10;
+  engine_stack_value_80 = 0x12;
   engine_temp_uint_2 = 0x13;
   if (engine_stack_pointer_88 == (uint8*)0x0) {
-    uStack_80 = 0x12;
+    engine_stack_value_80 = 0x12;
     engine_stack_pointer_88 = (uint8*)engine_call_memory_extender(_engine_data_18,0x14,0x13);
     *engine_stack_pointer_88 = 0;
 LAB_180071b69:
@@ -28554,12 +28549,12 @@ LAB_180071b69:
     engine_stack_value_78 = CONCAT44(engine_stack_value_78._4_4_,engine_temp_uint_3);
   }
   else if ((uint)engine_stack_value_78 < 0x14) {
-    uStack_80 = 0x12;
+    engine_stack_value_80 = 0x12;
     engine_stack_pointer_88 = (uint8*)engine_update_system_data(_engine_data_18,engine_stack_pointer_88,0x14,0x10,0x13);
     goto LAB_180071b69;
   }
-  *(uint16*)(engine_stack_pointer_88 + uStack_80) = 10;
-  uStack_80 = 0x13;
+  *(uint16*)(engine_stack_pointer_88 + engine_stack_value_80) = 10;
+  engine_stack_value_80 = 0x13;
   if (engine_result_flag_ptr != 0) {
     engine_temp_long_4 = -1;
     do {
@@ -28575,28 +28570,28 @@ LAB_180071b69:
           if ((int)engine_temp_uint2 < 0x10) {
             engine_temp_uint2 = 0x10;
           }
-          uStack_80 = engine_temp_uint_2;
+          engine_stack_value_80 = engine_temp_uint_2;
           engine_stack_pointer_88 = (uint8*)engine_call_memory_extender(_engine_data_18,(longlong)(int)engine_temp_uint2,0x13);
           *engine_stack_pointer_88 = 0;
         }
         else {
-          engine_temp_uint1 = uStack_80;
+          engine_temp_uint1 = engine_stack_value_80;
           if (engine_temp_uint2 <= (uint)engine_stack_value_78) goto LAB_180071c1a;
-          uStack_80 = engine_temp_uint_2;
+          engine_stack_value_80 = engine_temp_uint_2;
           engine_stack_pointer_88 = (uint8*)engine_update_system_data(_engine_data_18,engine_stack_pointer_88,engine_temp_uint2,0x10,0x13);
         }
         engine_temp_uint_3 = engine_call_resource_validator(engine_stack_pointer_88);
         engine_stack_value_78 = CONCAT44(engine_stack_value_78._4_4_,engine_temp_uint_3);
-        engine_temp_uint1 = uStack_80;
+        engine_temp_uint1 = engine_stack_value_80;
       }
 LAB_180071c1a:
-      uStack_80 = engine_temp_uint1;
+      engine_stack_value_80 = engine_temp_uint1;
                     // WARNING: Subroutine does not return
-      memcpy(engine_stack_pointer_88 + uStack_80,engine_result_flag_ptr,(longlong)((int)engine_temp_long0 + 2));
+      memcpy(engine_stack_pointer_88 + engine_stack_value_80,engine_result_flag_ptr,(longlong)((int)engine_temp_long0 + 2));
     }
   }
   if (engine_stack_pointer_88 == (uint8*)0x0) {
-    uStack_80 = engine_temp_uint_2;
+    engine_stack_value_80 = engine_temp_uint_2;
     engine_stack_pointer_88 = (uint8*)engine_call_memory_extender(_engine_data_18,0x15,0x13);
     *engine_stack_pointer_88 = 0;
 LAB_180071c93:
@@ -28604,17 +28599,17 @@ LAB_180071c93:
     engine_stack_value_78 = CONCAT44(engine_stack_value_78._4_4_,engine_temp_uint_3);
   }
   else if ((uint)engine_stack_value_78 < 0x15) {
-    uStack_80 = engine_temp_uint_2;
+    engine_stack_value_80 = engine_temp_uint_2;
     engine_stack_pointer_88 = (uint8*)engine_update_system_data(_engine_data_18,engine_stack_pointer_88,0x15,0x10,0x13);
     goto LAB_180071c93;
   }
-  *(uint16*)(engine_stack_pointer_88 + uStack_80) = 0x3a;
-  uStack_80 = 0x14;
-  FUN_180628380(&puStack_90,engine_comparison_params);
-  engine_temp_uint_2 = uStack_80;
-  engine_temp_uint1 = uStack_80 + 1;
+  *(uint16*)(engine_stack_pointer_88 + engine_stack_value_80) = 0x3a;
+  engine_stack_value_80 = 0x14;
+  FUN_180628380(&engine_stack_pointer_90,engine_comparison_params);
+  engine_temp_uint_2 = engine_stack_value_80;
+  engine_temp_uint1 = engine_stack_value_80 + 1;
   if (engine_temp_uint1 != 0) {
-    engine_temp_uint2 = uStack_80 + 2;
+    engine_temp_uint2 = engine_stack_value_80 + 2;
     if (engine_stack_pointer_88 == (uint8*)0x0) {
       if ((int)engine_temp_uint2 < 0x10) {
         engine_temp_uint2 = 0x10;
@@ -28630,9 +28625,9 @@ LAB_180071c93:
     engine_stack_value_78 = CONCAT44(engine_stack_value_78._4_4_,engine_temp_uint_3);
   }
 LAB_180071d1f:
-  *(uint16*)(engine_stack_pointer_88 + uStack_80) = 10;
+  *(uint16*)(engine_stack_pointer_88 + engine_stack_value_80) = 10;
   engine_temp_uint2 = engine_temp_uint_2 + 0xd;
-  uStack_80 = engine_temp_uint1;
+  engine_stack_value_80 = engine_temp_uint1;
   if (engine_temp_uint2 != 0) {
     engine_temp_uint1 = engine_temp_uint_2 + 0xe;
     if (engine_stack_pointer_88 == (uint8*)0x0) {
@@ -28650,12 +28645,12 @@ LAB_180071d1f:
     engine_stack_value_78 = CONCAT44(engine_stack_value_78._4_4_,engine_temp_uint_3);
   }
 LAB_180071d94:
-  engine_current_data_pointer = (void*)(engine_stack_pointer_88 + uStack_80);
+  engine_current_data_pointer = (void*)(engine_stack_pointer_88 + engine_stack_value_80);
   *engine_current_data_pointer = 0x6973736572707845;
   *(uint32*)(engine_current_data_pointer + 1) = 0x203a6e6f;
   *(uint8*)((longlong)engine_current_data_pointer + 0xc) = 0;
   engine_temp_long_4 = -1;
-  uStack_80 = engine_temp_uint2;
+  engine_stack_value_80 = engine_temp_uint2;
   if (engine_system_parameter_4 != 0) {
     do {
       engine_temp_long0 = engine_temp_long_4;
@@ -28681,7 +28676,7 @@ LAB_180071d94:
       }
 LAB_180071e34:
                     // WARNING: Subroutine does not return
-      memcpy(engine_stack_pointer_88 + uStack_80,engine_system_parameter_4,(longlong)((int)engine_temp_long0 + 2));
+      memcpy(engine_stack_pointer_88 + engine_stack_value_80,engine_system_parameter_4,(longlong)((int)engine_temp_long0 + 2));
     }
   }
   if (engine_temp_uint_2 + 0xe != 0) {
@@ -28701,8 +28696,8 @@ LAB_180071e34:
     engine_stack_value_78 = CONCAT44(engine_stack_value_78._4_4_,engine_temp_uint_3);
   }
 LAB_180071eb0:
-  *(uint16*)(engine_stack_pointer_88 + uStack_80) = 10;
-  uStack_80 = engine_temp_uint_2 + 0xe;
+  *(uint16*)(engine_stack_pointer_88 + engine_stack_value_80) = 10;
+  engine_stack_value_80 = engine_temp_uint_2 + 0xe;
   engine_perform_system_validation(_engine_data_28,5,0xffffffff00000000,&engine_base_data_offset_50);
   engine_next_data_pointer = &engine_data_73;
   if (engine_stack_pointer_88 != (uint8*)0x0) {
@@ -28723,11 +28718,11 @@ LAB_180071eb0:
   do {
     engine_temporary_int = ReleaseSemaphore(_engine_screen_resolution,1);
   } while (engine_temporary_int == 0);
-  puStack_90 = &engine_system_context_data;
+  engine_stack_pointer_90 = &engine_system_context_data;
   if (engine_stack_pointer_88 == (uint8*)0x0) {
     engine_stack_pointer_88 = (uint8*)0x0;
     engine_stack_value_78 = engine_stack_value_78 & 0xffffffff00000000;
-    puStack_90 = &engine_data_18098bcb0;
+    engine_stack_pointer_90 = &engine_data_18098bcb0;
     engine_stack_pointer_70 = &engine_system_context_data;
     if (puVar9 == (void*)0x0) {
       return;
@@ -28748,7 +28743,7 @@ LAB_180071eb0:
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180072000(uint64 engine_data_structure_ptr,longlong engine_result_flag_ptr,uint32_t engine_comparison_params,longlong engine_system_parameter_4,
+// void FUN_180072000(uint64 engine_data_structure_ptr,longlong engine_result_flag_ptr,uint32_t engine_comparison_params,longlong engine_system_parameter_4,
 void FUN_180072000(uint64 engine_data_structure_ptr,longlong engine_result_flag_ptr,uint32_t engine_comparison_params,longlong engine_system_parameter_4,
                   uint8_t param_5,char param_6)
 
@@ -28798,7 +28793,7 @@ void FUN_180072000(uint64 engine_data_structure_ptr,longlong engine_result_flag_
   void* engine_stack_param_a0;
   uint32 uStack_90;
   longlong lStack_88;
-  void* puStack_80;
+  void* pengine_stack_value_80;
   longlong lStack_78;
   uint32 uStack_68;
   uint64 engine_stack_value_60;
@@ -29257,7 +29252,7 @@ LAB_1800729bd:
           uStack_114 = 2;
         }
         else {
-          pengine_data_ptr1 = (undefined **)engine_call_data_writer(&puStack_80,_engine_data_70 + 0x148);
+          pengine_data_ptr1 = (undefined **)engine_call_data_writer(&pengine_stack_value_80,_engine_data_70 + 0x148);
           engine_temp_uint_6 = 1;
           uStack_114 = 1;
           engine_data_ptr3 = puStack_c8;
@@ -29277,20 +29272,20 @@ LAB_1800729bd:
         }
         if ((engine_temp_uint_6 & 1) != 0) {
           uStack_114 = engine_temp_uint_6 & 0xfffffffe;
-          puStack_80 = &engine_system_context_data;
+          pengine_stack_value_80 = &engine_system_context_data;
           if (lStack_78 != 0) {
                     // WARNING: Subroutine does not return
             engine_call_cleanup_routine();
           }
           lStack_78 = 0;
           uStack_68 = 0;
-          puStack_80 = &engine_data_18098bcb0;
+          pengine_stack_value_80 = &engine_data_18098bcb0;
         }
         pengine_stack_value_148 = &engine_data_73;
         if (engine_data_ptr0 != (void*)0x0) {
           pengine_stack_value_148 = engine_data_ptr0;
         }
-        FUN_1800669c0(uVar7,&engine_stack_pointer_f0,engine_temp_uint8,param_5);
+        engine_validate_component_states(uVar7,&engine_stack_pointer_f0,engine_temp_uint8,param_5);
         engine_stack_pointer_f0 = &engine_system_context_data;
         if (lStack_e8 != 0) {
                     // WARNING: Subroutine does not return
@@ -29314,7 +29309,7 @@ LAB_1800729bd:
         }
       }
 
-// 函数: void FUN_180072e80(uint64 engine_data_structure_ptr,uint64 engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
+// void FUN_180072e80(uint64 engine_data_structure_ptr,uint64 engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
 void FUN_180072e80(uint64 engine_data_structure_ptr,uint64 engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
 
 {
@@ -29375,9 +29370,9 @@ bool FUN_180072f00(uint64 engine_data_structure_ptr,uint64_t *engine_result_flag
   void* puStack_a8;
   uint32 engine_stack_value_a0;
   ulonglong uStack_98;
-  void* puStack_90;
+  void* engine_stack_pointer_90;
   uint8* engine_stack_pointer_88;
-  uint32 uStack_80;
+  uint32 engine_stack_value_80;
   ulonglong engine_stack_value_78;
   void* engine_stack_pointer_70;
   void* engine_stack_pointer_68;
@@ -29538,10 +29533,10 @@ bool FUN_180072f00(uint64 engine_data_structure_ptr,uint64_t *engine_result_flag
     ppuVar7 = &puStack_a8;
     engine_temporary_data_ptr = puStack_108;
   }
-  puStack_90 = &engine_system_context_data;
+  engine_stack_pointer_90 = &engine_system_context_data;
   engine_stack_value_78 = 0;
   engine_stack_pointer_88 = (uint8*)0x0;
-  uStack_80 = 0;
+  engine_stack_value_80 = 0;
   if (engine_loop_index != 0) {
     engine_temp_uint5 = engine_loop_index + 1;
     engine_temp_uint1 = engine_temp_uint5;
@@ -29557,7 +29552,7 @@ bool FUN_180072f00(uint64 engine_data_structure_ptr,uint64_t *engine_result_flag
     memcpy(engine_next_data_pointer,*ppuVar7,engine_temp_uint5);
   }
   engine_stack_value_78 = 0;
-  uStack_80 = 0;
+  engine_stack_value_80 = 0;
   if ((engine_temp_uint1 & 2) != 0) {
     engine_temp_uint5 = engine_temp_uint1 & 0xfffffffd;
     puStack_110 = &engine_system_context_data;
@@ -29585,7 +29580,7 @@ bool FUN_180072f00(uint64 engine_data_structure_ptr,uint64_t *engine_result_flag
   if (engine_data_ptr3 != (void*)0x0) {
     engine_data_ptr4 = engine_data_ptr3;
   }
-  FUN_180066320(0,&puStack_90,cStackX_10,1,engine_data_ptr4,engine_data_ptr0,engine_temp_uint5);
+  engine_process_system_operations(0,&engine_stack_pointer_90,cStackX_10,1,engine_data_ptr4,engine_data_ptr0,engine_temp_uint5);
   if (lStack_48 != 0) {
     FUN_18005db30();
   }
@@ -29596,11 +29591,11 @@ bool FUN_180072f00(uint64 engine_data_structure_ptr,uint64_t *engine_result_flag
   fflush(uVar9);
   uVar9 = __acrt_iob_func(2);
   fflush(uVar9);
-  puStack_90 = &engine_system_context_data;
+  engine_stack_pointer_90 = &engine_system_context_data;
   if (engine_stack_pointer_88 == (uint8*)0x0) {
     engine_stack_pointer_88 = (uint8*)0x0;
     engine_stack_value_78 = engine_stack_value_78 & 0xffffffff00000000;
-    puStack_90 = &engine_data_18098bcb0;
+    engine_stack_pointer_90 = &engine_data_18098bcb0;
     for (engine_temporary_pointer = engine_stack_pointer_68; engine_temporary_pointer != puStack_60; engine_temporary_pointer = engine_temporary_pointer + 4) {
       (**(code **)*engine_temporary_pointer)(engine_temporary_pointer,0);
     }
@@ -29632,7 +29627,7 @@ bool FUN_180072f00(uint64 engine_data_structure_ptr,uint64_t *engine_result_flag
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180073630(uint64 engine_data_structure_ptr,uint64 engine_result_flag_ptr)
+// void FUN_180073630(uint64 engine_data_structure_ptr,uint64 engine_result_flag_ptr)
 void FUN_180073630(uint64 engine_data_structure_ptr,uint64 engine_result_flag_ptr)
 
 {
@@ -29671,7 +29666,7 @@ void FUN_180073630(uint64 engine_data_structure_ptr,uint64 engine_result_flag_pt
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180073730(uint64 engine_data_structure_ptr,uint64 engine_result_flag_ptr)
+// void FUN_180073730(uint64 engine_data_structure_ptr,uint64 engine_result_flag_ptr)
 void FUN_180073730(uint64 engine_data_structure_ptr,uint64 engine_result_flag_ptr)
 
 {
@@ -29710,7 +29705,7 @@ void FUN_180073730(uint64 engine_data_structure_ptr,uint64 engine_result_flag_pt
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180073830(uint64 engine_data_structure_ptr,uint32_t engine_result_flag_ptr,uint64 engine_comparison_params)
+// void FUN_180073830(uint64 engine_data_structure_ptr,uint32_t engine_result_flag_ptr,uint64 engine_comparison_params)
 void FUN_180073830(uint64 engine_data_structure_ptr,uint32_t engine_result_flag_ptr,uint64 engine_comparison_params)
 
 {
@@ -29747,12 +29742,12 @@ void FUN_180073830(uint64 engine_data_structure_ptr,uint32_t engine_result_flag_
 
 
 
-// 函数: void engine_initialize_core_system(uint64 engine_data_structure_ptr,uint64 engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
+// void engine_initialize_core_system(uint64 engine_data_structure_ptr,uint64 engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
 void engine_initialize_core_system(uint64 engine_data_structure_ptr,uint64 engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
 
 {
   void* engine_stack_pointer_88;
-  uint64 uStack_80;
+  uint64 engine_stack_value_80;
   uint32 engine_stack_value_78;
   uint64 engine_stack_value_70;
   uint64 uStack_68;
@@ -29770,7 +29765,7 @@ void engine_initialize_core_system(uint64 engine_data_structure_ptr,uint64 engin
   uStack_18 = 0xfffffffffffffffe;
   engine_stack_pointer_88 = &engine_system_context_data;
   engine_stack_value_70 = 0;
-  uStack_80 = 0;
+  engine_stack_value_80 = 0;
   engine_stack_value_78 = 0;
   uStack_68 = 0;
   engine_stack_value_60 = 0;
@@ -29791,7 +29786,7 @@ void engine_initialize_core_system(uint64 engine_data_structure_ptr,uint64 engin
 
 
 
-// 函数: void FUN_1800739f0(uint64_t *engine_data_structure_ptr)
+// void FUN_1800739f0(uint64_t *engine_data_structure_ptr)
 void FUN_1800739f0(uint64_t *engine_data_structure_ptr)
 
 {
@@ -29830,7 +29825,7 @@ void FUN_1800739f0(uint64_t *engine_data_structure_ptr)
 
 
 
-// 函数: void FUN_180073ab0(longlong *engine_data_structure_ptr)
+// void FUN_180073ab0(longlong *engine_data_structure_ptr)
 void FUN_180073ab0(longlong *engine_data_structure_ptr)
 
 {
@@ -29873,7 +29868,7 @@ void FUN_180073ab0(longlong *engine_data_structure_ptr)
 
 
 
-// 函数: void FUN_180073ad0(longlong engine_data_structure_ptr,longlong *engine_result_flag_ptr)
+// void FUN_180073ad0(longlong engine_data_structure_ptr,longlong *engine_result_flag_ptr)
 void FUN_180073ad0(longlong engine_data_structure_ptr,longlong *engine_result_flag_ptr)
 
 {
@@ -30044,7 +30039,7 @@ void FUN_180073ad0(longlong engine_data_structure_ptr,longlong *engine_result_fl
 
 
 
-// 函数: void FUN_180073adc(longlong engine_data_structure_ptr)
+// void FUN_180073adc(longlong engine_data_structure_ptr)
 void FUN_180073adc(longlong engine_data_structure_ptr)
 
 {
@@ -30216,7 +30211,7 @@ void FUN_180073adc(longlong engine_data_structure_ptr)
 
 
 
-// 函数: void FUN_180073b64(uint *engine_data_structure_ptr)
+// void FUN_180073b64(uint *engine_data_structure_ptr)
 void FUN_180073b64(uint *engine_data_structure_ptr)
 
 {
@@ -30372,7 +30367,7 @@ void FUN_180073b64(uint *engine_data_structure_ptr)
 
 
 
-// 函数: void FUN_180073e0b(uint32_t *engine_data_structure_ptr)
+// void FUN_180073e0b(uint32_t *engine_data_structure_ptr)
 void FUN_180073e0b(uint32_t *engine_data_structure_ptr)
 
 {
@@ -30456,7 +30451,7 @@ void FUN_180073e0b(uint32_t *engine_data_structure_ptr)
 
 
 
-// 函数: void FUN_180073e23(void)
+// void FUN_180073e23(void)
 void FUN_180073e23(void)
 
 {
@@ -30537,7 +30532,7 @@ void FUN_180073e23(void)
 
 
 
-// 函数: void FUN_180073f90(void)
+// void FUN_180073f90(void)
 void FUN_180073f90(void)
 
 {
@@ -30579,7 +30574,7 @@ void FUN_180073f90(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180074090(longlong *engine_data_structure_ptr,longlong engine_result_flag_ptr)
+// void FUN_180074090(longlong *engine_data_structure_ptr,longlong engine_result_flag_ptr)
 void FUN_180074090(longlong *engine_data_structure_ptr,longlong engine_result_flag_ptr)
 
 {
@@ -30757,7 +30752,7 @@ void FUN_180074090(longlong *engine_data_structure_ptr,longlong engine_result_fl
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_1800740a2(longlong *engine_data_structure_ptr)
+// void FUN_1800740a2(longlong *engine_data_structure_ptr)
 void FUN_1800740a2(longlong *engine_data_structure_ptr)
 
 {
@@ -30938,7 +30933,7 @@ void FUN_1800740a2(longlong *engine_data_structure_ptr)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_1800740f5(longlong engine_data_structure_ptr)
+// void FUN_1800740f5(longlong engine_data_structure_ptr)
 void FUN_1800740f5(longlong engine_data_structure_ptr)
 
 {
@@ -31098,7 +31093,7 @@ void FUN_1800740f5(longlong engine_data_structure_ptr)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_1800742ea(longlong engine_data_structure_ptr)
+// void FUN_1800742ea(longlong engine_data_structure_ptr)
 void FUN_1800742ea(longlong engine_data_structure_ptr)
 
 {
@@ -31180,7 +31175,7 @@ void FUN_1800742ea(longlong engine_data_structure_ptr)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180074309(void)
+// void FUN_180074309(void)
 void FUN_180074309(void)
 
 {
@@ -31226,7 +31221,7 @@ void FUN_180074309(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_1800744b0(longlong engine_data_structure_ptr,longlong engine_result_flag_ptr)
+// void FUN_1800744b0(longlong engine_data_structure_ptr,longlong engine_result_flag_ptr)
 void FUN_1800744b0(longlong engine_data_structure_ptr,longlong engine_result_flag_ptr)
 
 {
@@ -31346,7 +31341,7 @@ uint64_t * FUN_1800745f0(uint64 engine_data_structure_ptr,longlong engine_result
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_1800746c0(longlong engine_data_structure_ptr)
+// void FUN_1800746c0(longlong engine_data_structure_ptr)
 void FUN_1800746c0(longlong engine_data_structure_ptr)
 
 {
@@ -31402,7 +31397,7 @@ void FUN_1800746c0(longlong engine_data_structure_ptr)
 
 
 
-// 函数: void FUN_180074840(longlong engine_data_structure_ptr)
+// void FUN_180074840(longlong engine_data_structure_ptr)
 void FUN_180074840(longlong engine_data_structure_ptr)
 
 {
@@ -31432,7 +31427,7 @@ void FUN_180074840(longlong engine_data_structure_ptr)
 
 
 
-// 函数: void FUN_1800748d0(longlong engine_data_structure_ptr,longlong *engine_result_flag_ptr)
+// void FUN_1800748d0(longlong engine_data_structure_ptr,longlong *engine_result_flag_ptr)
 void FUN_1800748d0(longlong engine_data_structure_ptr,longlong *engine_result_flag_ptr)
 
 {
@@ -31516,7 +31511,7 @@ void FUN_1800748d0(longlong engine_data_structure_ptr,longlong *engine_result_fl
 
 
 
-// 函数: void FUN_180074a80(longlong *engine_data_structure_ptr)
+// void FUN_180074a80(longlong *engine_data_structure_ptr)
 void FUN_180074a80(longlong *engine_data_structure_ptr)
 
 {
@@ -31559,7 +31554,7 @@ void FUN_180074a80(longlong *engine_data_structure_ptr)
 
 
 
-// 函数: void FUN_180074b30(longlong *engine_data_structure_ptr,ulonglong engine_result_flag_ptr)
+// void FUN_180074b30(longlong *engine_data_structure_ptr,ulonglong engine_result_flag_ptr)
 void FUN_180074b30(longlong *engine_data_structure_ptr,ulonglong engine_result_flag_ptr)
 
 {
@@ -31614,7 +31609,7 @@ void FUN_180074b30(longlong *engine_data_structure_ptr,ulonglong engine_result_f
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180074c20(uint64_t *engine_data_structure_ptr,ulonglong engine_result_flag_ptr)
+// void FUN_180074c20(uint64_t *engine_data_structure_ptr,ulonglong engine_result_flag_ptr)
 void FUN_180074c20(uint64_t *engine_data_structure_ptr,ulonglong engine_result_flag_ptr)
 
 {
@@ -31771,7 +31766,7 @@ void FUN_180074c20(uint64_t *engine_data_structure_ptr,ulonglong engine_result_f
 
 
 
-// 函数: void FUN_180074ed0(longlong *engine_data_structure_ptr)
+// void FUN_180074ed0(longlong *engine_data_structure_ptr)
 void FUN_180074ed0(longlong *engine_data_structure_ptr)
 
 {
@@ -32074,7 +32069,7 @@ uint8_t FUN_1800755c0(longlong engine_data_structure_ptr,uint64 engine_result_fl
 // WARNING: Removing unreachable block (ram,0x000180276fbd)
 
 
-// 函数: void FUN_180075630(longlong engine_data_structure_ptr,uint64_t *engine_result_flag_ptr)
+// void FUN_180075630(longlong engine_data_structure_ptr,uint64_t *engine_result_flag_ptr)
 void FUN_180075630(longlong engine_data_structure_ptr,uint64_t *engine_result_flag_ptr)
 
 {
@@ -32249,7 +32244,7 @@ void FUN_180075630(longlong engine_data_structure_ptr,uint64_t *engine_result_fl
 
 
 
-// 函数: void FUN_1800756e0(uint64_t *engine_data_structure_ptr)
+// void FUN_1800756e0(uint64_t *engine_data_structure_ptr)
 void FUN_1800756e0(uint64_t *engine_data_structure_ptr)
 
 {
@@ -32367,7 +32362,7 @@ void FUN_1800756e0(uint64_t *engine_data_structure_ptr)
 
 
 
-// 函数: void FUN_180075990(longlong engine_data_structure_ptr,longlong *engine_result_flag_ptr)
+// void FUN_180075990(longlong engine_data_structure_ptr,longlong *engine_result_flag_ptr)
 void FUN_180075990(longlong engine_data_structure_ptr,longlong *engine_result_flag_ptr)
 
 {
@@ -32670,7 +32665,7 @@ LAB_180075f4f:
 
 
 
-// 函数: void FUN_180075ff0(longlong *engine_data_structure_ptr)
+// void FUN_180075ff0(longlong *engine_data_structure_ptr)
 void FUN_180075ff0(longlong *engine_data_structure_ptr)
 
 {
@@ -33033,7 +33028,7 @@ longlong * FUN_1800763c0(longlong *engine_data_structure_ptr,longlong *engine_re
 
 
 
-// 函数: void FUN_180076760(longlong *engine_data_structure_ptr,uint64 engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
+// void FUN_180076760(longlong *engine_data_structure_ptr,uint64 engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
 void FUN_180076760(longlong *engine_data_structure_ptr,uint64 engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
 
 {
@@ -33113,7 +33108,7 @@ void FUN_180076760(longlong *engine_data_structure_ptr,uint64 engine_result_flag
 
 
 
-// 函数: void FUN_180076910(longlong engine_data_structure_ptr,longlong *engine_result_flag_ptr)
+// void FUN_180076910(longlong engine_data_structure_ptr,longlong *engine_result_flag_ptr)
 void FUN_180076910(longlong engine_data_structure_ptr,longlong *engine_result_flag_ptr)
 
 {
@@ -33169,7 +33164,7 @@ void FUN_180076910(longlong engine_data_structure_ptr,longlong *engine_result_fl
 
 
 
-// 函数: void FUN_180076a20(longlong engine_data_structure_ptr)
+// void FUN_180076a20(longlong engine_data_structure_ptr)
 void FUN_180076a20(longlong engine_data_structure_ptr)
 
 {
@@ -33190,7 +33185,7 @@ void FUN_180076a20(longlong engine_data_structure_ptr)
 
 
 
-// 函数: void FUN_180076a80(longlong engine_data_structure_ptr)
+// void FUN_180076a80(longlong engine_data_structure_ptr)
 void FUN_180076a80(longlong engine_data_structure_ptr)
 
 {
@@ -33303,7 +33298,7 @@ int FUN_180076c50(longlong engine_data_structure_ptr,longlong *engine_result_fla
   void* engine_stack_pointer_18;
   uint in_stack_ffffffffffffff38;
   uint64 engine_temp_uint6;
-  ulonglong *puStack_80;
+  ulonglong *pengine_stack_value_80;
   longlong *plStack_78;
   code *pcStack_70;
   code *pcStack_68;
@@ -33322,13 +33317,13 @@ int FUN_180076c50(longlong engine_data_structure_ptr,longlong *engine_result_fla
     engine_temp_char_4 = FUN_180076b90(engine_data_structure_ptr);
     if (engine_temp_char_4 == '\0') {
       if ((char)engine_result_flag_ptr[2] != '\0') {
-        puStack_80 = (ulonglong *)0x0;
+        pengine_stack_value_80 = (ulonglong *)0x0;
         plStack_78 = (longlong *)0x0;
         pcStack_70 = (code *)0x0;
         pcStack_68 = _guard_check_icall;
-        FUN_1800b6f90(extraout_XMM0_Da,engine_data_structure_ptr,&puStack_80);
+        FUN_1800b6f90(extraout_XMM0_Da,engine_data_structure_ptr,&pengine_stack_value_80);
         if (pcStack_70 != (code *)0x0) {
-          (*pcStack_70)(&puStack_80,0,0);
+          (*pcStack_70)(&pengine_stack_value_80,0,0);
         }
       }
       engine_temp_char_4 = FUN_180076b90(engine_data_structure_ptr);
@@ -33376,11 +33371,11 @@ int FUN_180076c50(longlong engine_data_structure_ptr,longlong *engine_result_fla
              (*(longlong *)(lVar9 + 8) + (engine_temp_uint1 % (*(ulonglong *)(lVar9 + 0x10) & 0xffffffff)) * 8)
     ;
     for (engine_current_node_ptr = (ulonglong *)*pengine_temp_long_2;
-        (puStack_80 = engine_data_ptr2, plStack_78 = pengine_temp_long, engine_current_node_ptr != (ulonglong *)0x0 &&
-        (puStack_80 = engine_current_node_ptr, plStack_78 = pengine_temp_long_2, engine_temp_uint1 != *engine_current_node_ptr));
+        (pengine_stack_value_80 = engine_data_ptr2, plStack_78 = pengine_temp_long, engine_current_node_ptr != (ulonglong *)0x0 &&
+        (pengine_stack_value_80 = engine_current_node_ptr, plStack_78 = pengine_temp_long_2, engine_temp_uint1 != *engine_current_node_ptr));
         engine_current_node_ptr = (ulonglong *)engine_current_node_ptr[1]) {
     }
-    if (puStack_80 != engine_data_ptr2) goto LAB_180076feb;
+    if (pengine_stack_value_80 != engine_data_ptr2) goto LAB_180076feb;
   }
   pengine_temp_long = engine_result_flag_ptr + 5;
   lVar9 = engine_result_flag_ptr[7] - *pengine_temp_long;
@@ -33440,7 +33435,7 @@ LAB_180076feb:
 
 
 
-// 函数: void FUN_180077020(longlong *engine_data_structure_ptr)
+// void FUN_180077020(longlong *engine_data_structure_ptr)
 void FUN_180077020(longlong *engine_data_structure_ptr)
 
 {
@@ -33528,7 +33523,7 @@ ulonglong FUN_180077040(longlong engine_data_structure_ptr)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180077150(longlong *engine_data_structure_ptr)
+// void FUN_180077150(longlong *engine_data_structure_ptr)
 void FUN_180077150(longlong *engine_data_structure_ptr)
 
 {
@@ -33779,7 +33774,7 @@ uint64 FUN_180077420(longlong engine_data_structure_ptr,longlong engine_result_f
 
 
 
-// 函数: void FUN_180077710(longlong engine_data_structure_ptr)
+// void FUN_180077710(longlong engine_data_structure_ptr)
 void FUN_180077710(longlong engine_data_structure_ptr)
 
 {
@@ -34215,7 +34210,7 @@ LAB_180077879:
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_18007799c(void)
+// void FUN_18007799c(void)
 void FUN_18007799c(void)
 
 {
@@ -34546,7 +34541,7 @@ void FUN_18007799c(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180077ad8(void)
+// void FUN_180077ad8(void)
 void FUN_180077ad8(void)
 
 {
@@ -34811,7 +34806,7 @@ void FUN_180077ad8(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180077c96(void)
+// void FUN_180077c96(void)
 void FUN_180077c96(void)
 
 {
@@ -34965,7 +34960,7 @@ void FUN_180077c96(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180077dc6(void)
+// void FUN_180077dc6(void)
 void FUN_180077dc6(void)
 
 {
@@ -35137,7 +35132,7 @@ void FUN_180077dc6(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180077dec(void)
+// void FUN_180077dec(void)
 void FUN_180077dec(void)
 
 {
@@ -35248,7 +35243,7 @@ ulonglong FUN_180077f20(longlong engine_data_structure_ptr,uint64 engine_result_
   longlong engine_temp_long_22;
   byte engine_comparison_result3;
   uint64 engine_stack_value_88;
-  ulonglong uStack_80;
+  ulonglong engine_stack_value_80;
   uint64 engine_stack_value_78;
   ulonglong engine_stack_value_70;
   uint64 uStack_68;
@@ -35286,7 +35281,7 @@ LAB_180077fcf:
       }
       if ((*(uint *)(engine_data_structure_ptr + 0x100) & 0x4000000) == 0) {
         engine_stack_value_88 = *(void*)engine_system_parameter_4;
-        uStack_80._0_4_ = (float)*(void*)(engine_system_parameter_4 + 2);
+        engine_stack_value_80._0_4_ = (float)*(void*)(engine_system_parameter_4 + 2);
         engine_stack_value_78 = *(void*)(engine_system_parameter_4 + 4);
         engine_stack_value_70._0_4_ = (float)*(void*)(engine_system_parameter_4 + 6);
         uStack_68 = *(void*)(engine_system_parameter_4 + 8);
@@ -35312,7 +35307,7 @@ LAB_180077fcf:
         engine_temp_float_18 = engine_system_parameter_4[10];
         engine_temp_float_6 = *(float *)(engine_data_structure_ptr + 0x124);
         engine_temp_float_7 = *(float *)(engine_data_structure_ptr + 0x130);
-        uStack_80._0_4_ = engine_temp_float_6 * engine_temp_float_12 + engine_temp_float * engine_temp_float_15 + engine_temp_float_2 * engine_temp_float_18;
+        engine_stack_value_80._0_4_ = engine_temp_float_6 * engine_temp_float_12 + engine_temp_float * engine_temp_float_15 + engine_temp_float_2 * engine_temp_float_18;
         engine_temp_float_8 = *(float *)(engine_data_structure_ptr + 0x138);
         engine_temp_float_9 = *(float *)(engine_data_structure_ptr + 0x140);
         engine_stack_value_70._0_4_ = engine_temp_float_3 * engine_temp_float_12 + engine_temp_float_7 * engine_temp_float_15 + engine_temp_float_8 * engine_temp_float_18;
@@ -35333,7 +35328,7 @@ LAB_180077fcf:
       uStack_4c = 0x3f800000;
       engine_stack_value_60 = (ulonglong)(uint)(float)engine_stack_value_60;
       engine_stack_value_70 = (ulonglong)(uint)(float)engine_stack_value_70;
-      uStack_80 = (ulonglong)(uint)(float)uStack_80;
+      engine_stack_value_80 = (ulonglong)(uint)(float)engine_stack_value_80;
       engine_temp_uint_21 = FUN_180252ca0(engine_result_flag_ptr,engine_data_structure_ptr,engine_comparison_params,&engine_stack_value_88,param_5,param_6);
       return engine_temp_uint_21;
     }
@@ -35350,7 +35345,7 @@ LAB_180077fcf:
 
 
 
-// 函数: void FUN_180078051(uint64 engine_data_structure_ptr,uint64 engine_result_flag_ptr,float engine_comparison_params,float engine_system_parameter_4)
+// void FUN_180078051(uint64 engine_data_structure_ptr,uint64 engine_result_flag_ptr,float engine_comparison_params,float engine_system_parameter_4)
 void FUN_180078051(uint64 engine_data_structure_ptr,uint64 engine_result_flag_ptr,float engine_comparison_params,float engine_system_parameter_4)
 
 {
@@ -35431,7 +35426,7 @@ void FUN_180078051(uint64 engine_data_structure_ptr,uint64 engine_result_flag_pt
 
 
 
-// 函数: void FUN_180078143(void)
+// void FUN_180078143(void)
 void FUN_180078143(void)
 
 {
@@ -35471,7 +35466,7 @@ void FUN_180078143(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_1800781e0(longlong engine_data_structure_ptr)
+// void FUN_1800781e0(longlong engine_data_structure_ptr)
 void FUN_1800781e0(longlong engine_data_structure_ptr)
 
 {
@@ -35574,7 +35569,7 @@ LAB_1800782e0:
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_1800781f4(longlong engine_data_structure_ptr)
+// void FUN_1800781f4(longlong engine_data_structure_ptr)
 void FUN_1800781f4(longlong engine_data_structure_ptr)
 
 {
@@ -35676,7 +35671,7 @@ LAB_1800782e0:
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180078239(float engine_data_structure_ptr,float engine_result_flag_ptr,float engine_comparison_params,float engine_system_parameter_4)
+// void FUN_180078239(float engine_data_structure_ptr,float engine_result_flag_ptr,float engine_comparison_params,float engine_system_parameter_4)
 void FUN_180078239(float engine_data_structure_ptr,float engine_result_flag_ptr,float engine_comparison_params,float engine_system_parameter_4)
 
 {
@@ -35779,7 +35774,7 @@ LAB_1800782e0:
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_1800782a8(longlong engine_data_structure_ptr)
+// void FUN_1800782a8(longlong engine_data_structure_ptr)
 void FUN_1800782a8(longlong engine_data_structure_ptr)
 
 {
@@ -35872,7 +35867,7 @@ LAB_1800782e0:
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_1800783b0(void)
+// void FUN_1800783b0(void)
 void FUN_1800783b0(void)
 
 {
@@ -35921,7 +35916,7 @@ uint64_t * FUN_1800784e0(uint64_t *engine_data_structure_ptr,ulonglong engine_re
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180078550(uint64_t *engine_data_structure_ptr,uint64 engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
+// void FUN_180078550(uint64_t *engine_data_structure_ptr,uint64 engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
 void FUN_180078550(uint64_t *engine_data_structure_ptr,uint64 engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
 
 {
@@ -36003,7 +35998,7 @@ void FUN_180078550(uint64_t *engine_data_structure_ptr,uint64 engine_result_flag
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_1800786e0(uint64_t *engine_data_structure_ptr,longlong engine_result_flag_ptr)
+// void FUN_1800786e0(uint64_t *engine_data_structure_ptr,longlong engine_result_flag_ptr)
 void FUN_1800786e0(uint64_t *engine_data_structure_ptr,longlong engine_result_flag_ptr)
 
 {
@@ -36323,7 +36318,7 @@ void FUN_1800786e0(uint64_t *engine_data_structure_ptr,longlong engine_result_fl
 
 
 
-// 函数: void FUN_180078c10(longlong engine_data_structure_ptr)
+// void FUN_180078c10(longlong engine_data_structure_ptr)
 void FUN_180078c10(longlong engine_data_structure_ptr)
 
 {
@@ -36437,7 +36432,7 @@ void FUN_180078c10(longlong engine_data_structure_ptr)
 
 
 
-// 函数: void FUN_180078c70(uint32_t *engine_data_structure_ptr,longlong *engine_result_flag_ptr)
+// void FUN_180078c70(uint32_t *engine_data_structure_ptr,longlong *engine_result_flag_ptr)
 void FUN_180078c70(uint32_t *engine_data_structure_ptr,longlong *engine_result_flag_ptr)
 
 {
@@ -36632,7 +36627,7 @@ void FUN_180078c70(uint32_t *engine_data_structure_ptr,longlong *engine_result_f
 
 
 
-// 函数: void FUN_1800791a0(longlong engine_data_structure_ptr)
+// void FUN_1800791a0(longlong engine_data_structure_ptr)
 void FUN_1800791a0(longlong engine_data_structure_ptr)
 
 {
@@ -36662,7 +36657,7 @@ void FUN_1800791a0(longlong engine_data_structure_ptr)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180079270(longlong engine_data_structure_ptr,longlong engine_result_flag_ptr)
+// void FUN_180079270(longlong engine_data_structure_ptr,longlong engine_result_flag_ptr)
 void FUN_180079270(longlong engine_data_structure_ptr,longlong engine_result_flag_ptr)
 
 {
@@ -36972,7 +36967,7 @@ void FUN_180079270(longlong engine_data_structure_ptr,longlong engine_result_fla
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180079284(longlong engine_data_structure_ptr)
+// void FUN_180079284(longlong engine_data_structure_ptr)
 void FUN_180079284(longlong engine_data_structure_ptr)
 
 {
@@ -37284,7 +37279,7 @@ void FUN_180079284(longlong engine_data_structure_ptr)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_1800792ea(void)
+// void FUN_1800792ea(void)
 void FUN_1800792ea(void)
 
 {
@@ -37577,7 +37572,7 @@ void FUN_1800792ea(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180079309(longlong engine_data_structure_ptr,uint engine_result_flag_ptr,uint64 engine_comparison_params,float *engine_system_parameter_4)
+// void FUN_180079309(longlong engine_data_structure_ptr,uint engine_result_flag_ptr,uint64 engine_comparison_params,float *engine_system_parameter_4)
 void FUN_180079309(longlong engine_data_structure_ptr,uint engine_result_flag_ptr,uint64 engine_comparison_params,float *engine_system_parameter_4)
 
 {
@@ -37866,7 +37861,7 @@ void FUN_180079309(longlong engine_data_structure_ptr,uint engine_result_flag_pt
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_18007940e(void)
+// void FUN_18007940e(void)
 void FUN_18007940e(void)
 
 {
@@ -38092,7 +38087,7 @@ undefined * FUN_180079430(longlong engine_data_structure_ptr,uint64 engine_resul
       _engine_data_60 = &engine_data_1809fcc28;
       _engine_data_68 = &engine_data_78;
 
-// 函数: void FUN_180079520(longlong engine_data_structure_ptr)
+// void FUN_180079520(longlong engine_data_structure_ptr)
 void FUN_180079520(longlong engine_data_structure_ptr)
 
 {
@@ -38153,7 +38148,7 @@ uint8_t FUN_18007953e(void)
 
 
 
-// 函数: void FUN_18007959e(void)
+// void FUN_18007959e(void)
 void FUN_18007959e(void)
 
 {
@@ -38221,7 +38216,7 @@ float * FUN_1800795b0(float *engine_data_structure_ptr)
   float *pfStack_98;
   uint32 uStack_90;
   longlong lStack_88;
-  uint64 uStack_80;
+  uint64 engine_stack_value_80;
   uint64 engine_stack_value_78;
   uint64 engine_stack_value_70;
   uint64 uStack_68;
@@ -38240,10 +38235,10 @@ float * FUN_1800795b0(float *engine_data_structure_ptr)
   if (((uint)engine_data_structure_ptr[0x40] & 0x10000) == 0) {
     auStack_30[0] = 0;
     uStack_20 = 0;
-    uStack_80 = 0x1800795fa;
+    engine_stack_value_80 = 0x1800795fa;
     pfStack_28 = engine_data_structure_ptr;
     FUN_18007f4c0(auStack_30);
-    uStack_80 = 0x180079605;
+    engine_stack_value_80 = 0x180079605;
     engine_temp_float_6 = (float)FUN_1802349a0(0);
     if ((10 < (int)engine_temp_float_6) ||
        ((int)(*(int *)(*(longlong *)(engine_data_structure_ptr + 0x84) + 0x88) +
@@ -38254,12 +38249,12 @@ float * FUN_1800795b0(float *engine_data_structure_ptr)
       }
       uStack_40 = CONCAT44(uStack_40._4_4_,*(uint32*)(*(longlong *)(engine_data_structure_ptr + 0x84) + 0x60));
       engine_stack_pointer_58 = &engine_base_data_offset_30;
-      uStack_80 = 0x18007967a;
+      engine_stack_value_80 = 0x18007967a;
       fStack_50 = engine_temp_float_6;
       engine_call_buffer_manager(_engine_data_28,0,0x80000000000,3);
     }
     engine_data_structure_ptr[0x40] = (float)((uint)engine_data_structure_ptr[0x40] | 0x10000);
-    uStack_80 = 0x18007968e;
+    engine_stack_value_80 = 0x18007968e;
     FUN_18007f6a0(auStack_30);
   }
   uStack_38 = 0xfffffffffffffffe;
@@ -38455,7 +38450,7 @@ LAB_180075f4f:
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_1800796b0(longlong engine_data_structure_ptr)
+// void FUN_1800796b0(longlong engine_data_structure_ptr)
 void FUN_1800796b0(longlong engine_data_structure_ptr)
 
 {
@@ -39634,7 +39629,7 @@ LAB_18007a58b:
 
 
 
-// 函数: void FUN_180080060(longlong *engine_data_structure_ptr)
+// void FUN_180080060(longlong *engine_data_structure_ptr)
 void FUN_180080060(longlong *engine_data_structure_ptr)
 
 {
@@ -39659,7 +39654,7 @@ void FUN_180080060(longlong *engine_data_structure_ptr)
   uint8* puStack_110;
   uint32 uStack_108;
   uint8 auStack_100 [128];
-  uint32 uStack_80;
+  uint32 engine_stack_value_80;
   longlong lStack_78;
   ulonglong uStack_38;
   
@@ -39714,7 +39709,7 @@ void FUN_180080060(longlong *engine_data_structure_ptr)
       puStack_110 = auStack_100;
       uStack_108 = 0;
       auStack_100[0] = 0;
-      uStack_80 = 0x26;
+      engine_stack_value_80 = 0x26;
       engine_temp_uint_2 = engine_call_memory_allocator(_engine_data_18,0x100,8,3);
       engine_main_structure_pointer = (longlong *)FUN_18005ce30(engine_temp_uint_2,&puStack_118);
       plStack_200 = engine_main_structure_pointer;
@@ -39746,7 +39741,7 @@ LAB_1800802aa:
 
 
 
-// 函数: void FUN_1800802e0(longlong engine_data_structure_ptr,uint engine_result_flag_ptr,uint64_t *engine_comparison_params,uint engine_system_parameter_4)
+// void FUN_1800802e0(longlong engine_data_structure_ptr,uint engine_result_flag_ptr,uint64_t *engine_comparison_params,uint engine_system_parameter_4)
 void FUN_1800802e0(longlong engine_data_structure_ptr,uint engine_result_flag_ptr,uint64_t *engine_comparison_params,uint engine_system_parameter_4)
 
 {
@@ -40106,7 +40101,7 @@ uint32 FUN_1800805aa(void)
 
 
 
-// 函数: void FUN_1800805d0(void)
+// void FUN_1800805d0(void)
 void FUN_1800805d0(void)
 
 {
@@ -40117,7 +40112,7 @@ void FUN_1800805d0(void)
 
 
 
-// 函数: void FUN_1800805f0(void)
+// void FUN_1800805f0(void)
 void FUN_1800805f0(void)
 
 {
@@ -40128,7 +40123,7 @@ void FUN_1800805f0(void)
 
 
 
-// 函数: void FUN_180080610(uint64_t *engine_data_structure_ptr)
+// void FUN_180080610(uint64_t *engine_data_structure_ptr)
 void FUN_180080610(uint64_t *engine_data_structure_ptr)
 
 {
@@ -40145,7 +40140,7 @@ void FUN_180080610(uint64_t *engine_data_structure_ptr)
 
 
 
-// 函数: void FUN_180080650(int *engine_data_structure_ptr,longlong engine_result_flag_ptr)
+// void FUN_180080650(int *engine_data_structure_ptr,longlong engine_result_flag_ptr)
 void FUN_180080650(int *engine_data_structure_ptr,longlong engine_result_flag_ptr)
 
 {
@@ -40179,7 +40174,7 @@ void FUN_180080650(int *engine_data_structure_ptr,longlong engine_result_flag_pt
 
 
 
-// 函数: void FUN_1800806e0(int *engine_data_structure_ptr,longlong *engine_result_flag_ptr)
+// void FUN_1800806e0(int *engine_data_structure_ptr,longlong *engine_result_flag_ptr)
 void FUN_1800806e0(int *engine_data_structure_ptr,longlong *engine_result_flag_ptr)
 
 {
@@ -40239,7 +40234,7 @@ void FUN_1800806e0(int *engine_data_structure_ptr,longlong *engine_result_flag_p
 
 
 
-// 函数: void FUN_180080779(uint32_t *engine_data_structure_ptr)
+// void FUN_180080779(uint32_t *engine_data_structure_ptr)
 void FUN_180080779(uint32_t *engine_data_structure_ptr)
 
 {
@@ -40276,7 +40271,7 @@ void FUN_180080779(uint32_t *engine_data_structure_ptr)
 
 
 
-// 函数: void FUN_1800807f5(void)
+// void FUN_1800807f5(void)
 void FUN_1800807f5(void)
 
 {
@@ -40307,7 +40302,7 @@ longlong * FUN_180080810(longlong *engine_data_structure_ptr,longlong *engine_re
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180080870(longlong *engine_data_structure_ptr)
+// void FUN_180080870(longlong *engine_data_structure_ptr)
 void FUN_180080870(longlong *engine_data_structure_ptr)
 
 {
@@ -40366,7 +40361,7 @@ void FUN_180080870(longlong *engine_data_structure_ptr)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_1800809a0(longlong *engine_data_structure_ptr)
+// void FUN_1800809a0(longlong *engine_data_structure_ptr)
 void FUN_1800809a0(longlong *engine_data_structure_ptr)
 
 {
@@ -40406,7 +40401,7 @@ void FUN_1800809a0(longlong *engine_data_structure_ptr)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180080aa0(longlong *engine_data_structure_ptr,ulonglong engine_result_flag_ptr)
+// void FUN_180080aa0(longlong *engine_data_structure_ptr,ulonglong engine_result_flag_ptr)
 void FUN_180080aa0(longlong *engine_data_structure_ptr,ulonglong engine_result_flag_ptr)
 
 {
@@ -40470,7 +40465,7 @@ void FUN_180080aa0(longlong *engine_data_structure_ptr,ulonglong engine_result_f
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180080ae6(longlong engine_data_structure_ptr,longlong engine_result_flag_ptr)
+// void FUN_180080ae6(longlong engine_data_structure_ptr,longlong engine_result_flag_ptr)
 void FUN_180080ae6(longlong engine_data_structure_ptr,longlong engine_result_flag_ptr)
 
 {
@@ -40516,7 +40511,7 @@ void FUN_180080ae6(longlong engine_data_structure_ptr,longlong engine_result_fla
 
 
 
-// 函数: void FUN_180080b98(void)
+// void FUN_180080b98(void)
 void FUN_180080b98(void)
 
 {
@@ -40535,7 +40530,7 @@ void FUN_180080b98(void)
 
 
 
-// 函数: void FUN_180080be0(longlong engine_data_structure_ptr)
+// void FUN_180080be0(longlong engine_data_structure_ptr)
 void FUN_180080be0(longlong engine_data_structure_ptr)
 
 {
@@ -40549,7 +40544,7 @@ void FUN_180080be0(longlong engine_data_structure_ptr)
 
 
 
-// 函数: void FUN_180080c10(int *engine_data_structure_ptr,uint64_t *engine_result_flag_ptr)
+// void FUN_180080c10(int *engine_data_structure_ptr,uint64_t *engine_result_flag_ptr)
 void FUN_180080c10(int *engine_data_structure_ptr,uint64_t *engine_result_flag_ptr)
 
 {
@@ -40598,7 +40593,7 @@ void FUN_180080c10(int *engine_data_structure_ptr,uint64_t *engine_result_flag_p
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180080ca0(longlong *engine_data_structure_ptr,ulonglong engine_result_flag_ptr)
+// void FUN_180080ca0(longlong *engine_data_structure_ptr,ulonglong engine_result_flag_ptr)
 void FUN_180080ca0(longlong *engine_data_structure_ptr,ulonglong engine_result_flag_ptr)
 
 {
@@ -40663,7 +40658,7 @@ void FUN_180080ca0(longlong *engine_data_structure_ptr,ulonglong engine_result_f
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180080ccb(longlong engine_data_structure_ptr,ulonglong engine_result_flag_ptr,uint64 engine_comparison_params,longlong engine_system_parameter_4)
+// void FUN_180080ccb(longlong engine_data_structure_ptr,ulonglong engine_result_flag_ptr,uint64 engine_comparison_params,longlong engine_system_parameter_4)
 void FUN_180080ccb(longlong engine_data_structure_ptr,ulonglong engine_result_flag_ptr,uint64 engine_comparison_params,longlong engine_system_parameter_4)
 
 {
@@ -40719,7 +40714,7 @@ void FUN_180080ccb(longlong engine_data_structure_ptr,ulonglong engine_result_fl
 
 
 
-// 函数: void FUN_180080da6(void)
+// void FUN_180080da6(void)
 void FUN_180080da6(void)
 
 {
@@ -40738,7 +40733,7 @@ void FUN_180080da6(void)
 
 
 
-// 函数: void FUN_180080dd9(uint64 engine_data_structure_ptr,longlong engine_result_flag_ptr,uint64 engine_comparison_params,longlong engine_system_parameter_4)
+// void FUN_180080dd9(uint64 engine_data_structure_ptr,longlong engine_result_flag_ptr,uint64 engine_comparison_params,longlong engine_system_parameter_4)
 void FUN_180080dd9(uint64 engine_data_structure_ptr,longlong engine_result_flag_ptr,uint64 engine_comparison_params,longlong engine_system_parameter_4)
 
 {
@@ -40751,7 +40746,7 @@ void FUN_180080dd9(uint64 engine_data_structure_ptr,longlong engine_result_flag_
 
 
 
-// 函数: void FUN_180080df0(longlong *engine_data_structure_ptr)
+// void FUN_180080df0(longlong *engine_data_structure_ptr)
 void FUN_180080df0(longlong *engine_data_structure_ptr)
 
 {
@@ -40781,7 +40776,7 @@ void FUN_180080df0(longlong *engine_data_structure_ptr)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180080e90(uint *engine_data_structure_ptr,int *engine_result_flag_ptr,longlong *engine_comparison_params)
+// void FUN_180080e90(uint *engine_data_structure_ptr,int *engine_result_flag_ptr,longlong *engine_comparison_params)
 void FUN_180080e90(uint *engine_data_structure_ptr,int *engine_result_flag_ptr,longlong *engine_comparison_params)
 
 {
@@ -40841,7 +40836,7 @@ void FUN_180080e90(uint *engine_data_structure_ptr,int *engine_result_flag_ptr,l
 
 
 
-// 函数: void FUN_180080fa0(longlong *engine_data_structure_ptr)
+// void FUN_180080fa0(longlong *engine_data_structure_ptr)
 void FUN_180080fa0(longlong *engine_data_structure_ptr)
 
 {
@@ -40863,7 +40858,7 @@ void FUN_180080fa0(longlong *engine_data_structure_ptr)
 
 
 
-// 函数: void FUN_180081010(longlong *engine_data_structure_ptr,ulonglong engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
+// void FUN_180081010(longlong *engine_data_structure_ptr,ulonglong engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
 void FUN_180081010(longlong *engine_data_structure_ptr,ulonglong engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
 
 {
@@ -40898,7 +40893,7 @@ void FUN_180081010(longlong *engine_data_structure_ptr,ulonglong engine_result_f
 
 
 
-// 函数: void FUN_1800810b0(longlong *engine_data_structure_ptr)
+// void FUN_1800810b0(longlong *engine_data_structure_ptr)
 void FUN_1800810b0(longlong *engine_data_structure_ptr)
 
 {
@@ -40959,7 +40954,7 @@ uint64_t * FUN_180081120(uint64_t *engine_data_structure_ptr,uint64_t *engine_re
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180081220(uint64 engine_data_structure_ptr,longlong *engine_result_flag_ptr,int engine_comparison_params)
+// void FUN_180081220(uint64 engine_data_structure_ptr,longlong *engine_result_flag_ptr,int engine_comparison_params)
 void FUN_180081220(uint64 engine_data_structure_ptr,longlong *engine_result_flag_ptr,int engine_comparison_params)
 
 {
@@ -40970,7 +40965,7 @@ void FUN_180081220(uint64 engine_data_structure_ptr,longlong *engine_result_flag
   uint64 engine_stack_value_a0;
   longlong *plStack_98;
   void* engine_stack_pointer_88;
-  uint8* puStack_80;
+  uint8* pengine_stack_value_80;
   uint32 engine_stack_value_78;
   uint8 aengine_stack_value_70 [72];
   ulonglong uStack_28;
@@ -40981,7 +40976,7 @@ void FUN_180081220(uint64 engine_data_structure_ptr,longlong *engine_result_flag
   uStack_a8 = 0;
   engine_comparison_params = engine_comparison_params * 4;
   engine_stack_pointer_88 = &engine_global_config_data;
-  puStack_80 = aengine_stack_value_70;
+  pengine_stack_value_80 = aengine_stack_value_70;
   aengine_stack_value_70[0] = 0;
   engine_stack_value_78 = 0x1c;
   plStack_98 = engine_result_flag_ptr;
@@ -41004,7 +40999,7 @@ void FUN_180081220(uint64 engine_data_structure_ptr,longlong *engine_result_flag
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180081350(uint64 engine_data_structure_ptr,longlong *engine_result_flag_ptr,int engine_comparison_params)
+// void FUN_180081350(uint64 engine_data_structure_ptr,longlong *engine_result_flag_ptr,int engine_comparison_params)
 void FUN_180081350(uint64 engine_data_structure_ptr,longlong *engine_result_flag_ptr,int engine_comparison_params)
 
 {
@@ -41015,7 +41010,7 @@ void FUN_180081350(uint64 engine_data_structure_ptr,longlong *engine_result_flag
   uint64 engine_stack_value_a0;
   longlong *plStack_98;
   void* engine_stack_pointer_88;
-  uint8* puStack_80;
+  uint8* pengine_stack_value_80;
   uint32 engine_stack_value_78;
   uint8 aengine_stack_value_70 [72];
   ulonglong uStack_28;
@@ -41026,7 +41021,7 @@ void FUN_180081350(uint64 engine_data_structure_ptr,longlong *engine_result_flag
   uStack_a8 = 0;
   engine_comparison_params = engine_comparison_params * 2;
   engine_stack_pointer_88 = &engine_global_config_data;
-  puStack_80 = aengine_stack_value_70;
+  pengine_stack_value_80 = aengine_stack_value_70;
   aengine_stack_value_70[0] = 0;
   engine_stack_value_78 = 0x1c;
   plStack_98 = engine_result_flag_ptr;
@@ -41049,7 +41044,7 @@ void FUN_180081350(uint64 engine_data_structure_ptr,longlong *engine_result_flag
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180081480(uint64 engine_data_structure_ptr,longlong *engine_result_flag_ptr,uint32_t engine_comparison_params)
+// void FUN_180081480(uint64 engine_data_structure_ptr,longlong *engine_result_flag_ptr,uint32_t engine_comparison_params)
 void FUN_180081480(uint64 engine_data_structure_ptr,longlong *engine_result_flag_ptr,uint32_t engine_comparison_params)
 
 {
@@ -41059,7 +41054,7 @@ void FUN_180081480(uint64 engine_data_structure_ptr,longlong *engine_result_flag
   uint64 engine_stack_value_a0;
   longlong *plStack_98;
   void* engine_stack_pointer_88;
-  uint8* puStack_80;
+  uint8* pengine_stack_value_80;
   uint32 engine_stack_value_78;
   uint8 aengine_stack_value_70 [72];
   ulonglong uStack_28;
@@ -41068,7 +41063,7 @@ void FUN_180081480(uint64 engine_data_structure_ptr,longlong *engine_result_flag
   uStack_28 = _engine_data_a8 ^ (ulonglong)auStack_c8;
   uStack_a8 = 0;
   engine_stack_pointer_88 = &engine_global_config_data;
-  puStack_80 = aengine_stack_value_70;
+  pengine_stack_value_80 = aengine_stack_value_70;
   aengine_stack_value_70[0] = 0;
   engine_stack_value_78 = 0x1c;
   plStack_98 = engine_result_flag_ptr;
@@ -41091,7 +41086,7 @@ void FUN_180081480(uint64 engine_data_structure_ptr,longlong *engine_result_flag
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180081590(uint64 engine_data_structure_ptr,longlong *engine_result_flag_ptr,uint32_t engine_comparison_params)
+// void FUN_180081590(uint64 engine_data_structure_ptr,longlong *engine_result_flag_ptr,uint32_t engine_comparison_params)
 void FUN_180081590(uint64 engine_data_structure_ptr,longlong *engine_result_flag_ptr,uint32_t engine_comparison_params)
 
 {
@@ -41102,7 +41097,7 @@ void FUN_180081590(uint64 engine_data_structure_ptr,longlong *engine_result_flag
   uint64 engine_stack_value_a0;
   longlong *plStack_98;
   void* engine_stack_pointer_88;
-  uint8* puStack_80;
+  uint8* pengine_stack_value_80;
   uint32 engine_stack_value_78;
   uint8 aengine_stack_value_70 [72];
   ulonglong uStack_28;
@@ -41112,7 +41107,7 @@ void FUN_180081590(uint64 engine_data_structure_ptr,longlong *engine_result_flag
   uStack_28 = _engine_data_a8 ^ (ulonglong)auStack_c8;
   uStack_a8 = 0;
   engine_stack_pointer_88 = &engine_global_config_data;
-  puStack_80 = aengine_stack_value_70;
+  pengine_stack_value_80 = aengine_stack_value_70;
   aengine_stack_value_70[0] = 0;
   engine_stack_value_78 = 0x1c;
   plStack_98 = engine_result_flag_ptr;
@@ -41135,7 +41130,7 @@ void FUN_180081590(uint64 engine_data_structure_ptr,longlong *engine_result_flag
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_1800816c0(longlong engine_data_structure_ptr,longlong *engine_result_flag_ptr)
+// void FUN_1800816c0(longlong engine_data_structure_ptr,longlong *engine_result_flag_ptr)
 void FUN_1800816c0(longlong engine_data_structure_ptr,longlong *engine_result_flag_ptr)
 
 {
@@ -41149,7 +41144,7 @@ void FUN_1800816c0(longlong engine_data_structure_ptr,longlong *engine_result_fl
   longlong *plStack_a8;
   uint64 engine_stack_value_a0;
   void* engine_stack_pointer_98;
-  uint8* puStack_90;
+  uint8* engine_stack_pointer_90;
   uint32 engine_stack_value_88;
   uint8 engine_stack_array_80 [72];
   ulonglong uStack_38;
@@ -41163,7 +41158,7 @@ void FUN_1800816c0(longlong engine_data_structure_ptr,longlong *engine_result_fl
   if (engine_temporary_int != 0) {
     engine_temporary_int = engine_temporary_int * 4;
     engine_stack_pointer_98 = &engine_global_config_data;
-    puStack_90 = engine_stack_array_80;
+    engine_stack_pointer_90 = engine_stack_array_80;
     engine_stack_array_80[0] = 0;
     engine_stack_value_88 = 0x1c;
     strcpy_s(engine_stack_array_80,0x40,&engine_data_60);
@@ -41205,7 +41200,7 @@ void FUN_1800816c0(longlong engine_data_structure_ptr,longlong *engine_result_fl
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180081870(longlong engine_data_structure_ptr,longlong *engine_result_flag_ptr)
+// void FUN_180081870(longlong engine_data_structure_ptr,longlong *engine_result_flag_ptr)
 void FUN_180081870(longlong engine_data_structure_ptr,longlong *engine_result_flag_ptr)
 
 {
@@ -41219,7 +41214,7 @@ void FUN_180081870(longlong engine_data_structure_ptr,longlong *engine_result_fl
   longlong *plStack_a8;
   uint64 engine_stack_value_a0;
   void* engine_stack_pointer_98;
-  uint8* puStack_90;
+  uint8* engine_stack_pointer_90;
   uint32 engine_stack_value_88;
   uint8 engine_stack_array_80 [72];
   ulonglong uStack_38;
@@ -41233,7 +41228,7 @@ void FUN_180081870(longlong engine_data_structure_ptr,longlong *engine_result_fl
   if (engine_temporary_int != 0) {
     engine_temporary_int = engine_temporary_int * 4;
     engine_stack_pointer_98 = &engine_global_config_data;
-    puStack_90 = engine_stack_array_80;
+    engine_stack_pointer_90 = engine_stack_array_80;
     engine_stack_array_80[0] = 0;
     engine_stack_value_88 = 0x1c;
     strcpy_s(engine_stack_array_80,0x40,&engine_data_60);
@@ -41275,7 +41270,7 @@ void FUN_180081870(longlong engine_data_structure_ptr,longlong *engine_result_fl
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180081a20(longlong engine_data_structure_ptr,longlong *engine_result_flag_ptr)
+// void FUN_180081a20(longlong engine_data_structure_ptr,longlong *engine_result_flag_ptr)
 void FUN_180081a20(longlong engine_data_structure_ptr,longlong *engine_result_flag_ptr)
 
 {
@@ -41289,7 +41284,7 @@ void FUN_180081a20(longlong engine_data_structure_ptr,longlong *engine_result_fl
   longlong *plStack_a8;
   uint64 engine_stack_value_a0;
   void* engine_stack_pointer_98;
-  uint8* puStack_90;
+  uint8* engine_stack_pointer_90;
   uint32 engine_stack_value_88;
   uint8 engine_stack_array_80 [72];
   ulonglong uStack_38;
@@ -41303,7 +41298,7 @@ void FUN_180081a20(longlong engine_data_structure_ptr,longlong *engine_result_fl
   if (engine_temp_int_4 != 0) {
     engine_temp_int_4 = engine_temp_int_4 * 0x18;
     engine_stack_pointer_98 = &engine_global_config_data;
-    puStack_90 = engine_stack_array_80;
+    engine_stack_pointer_90 = engine_stack_array_80;
     engine_stack_array_80[0] = 0;
     engine_stack_value_88 = 0x1c;
     strcpy_s(engine_stack_array_80,0x40,&engine_data_60);
@@ -41345,7 +41340,7 @@ void FUN_180081a20(longlong engine_data_structure_ptr,longlong *engine_result_fl
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180081bd0(longlong engine_data_structure_ptr,longlong *engine_result_flag_ptr)
+// void FUN_180081bd0(longlong engine_data_structure_ptr,longlong *engine_result_flag_ptr)
 void FUN_180081bd0(longlong engine_data_structure_ptr,longlong *engine_result_flag_ptr)
 
 {
@@ -41359,7 +41354,7 @@ void FUN_180081bd0(longlong engine_data_structure_ptr,longlong *engine_result_fl
   longlong *plStack_a8;
   uint64 engine_stack_value_a0;
   void* engine_stack_pointer_98;
-  uint8* puStack_90;
+  uint8* engine_stack_pointer_90;
   uint32 engine_stack_value_88;
   uint8 engine_stack_array_80 [72];
   ulonglong uStack_38;
@@ -41373,7 +41368,7 @@ void FUN_180081bd0(longlong engine_data_structure_ptr,longlong *engine_result_fl
   if (engine_temporary_int != 0) {
     engine_temporary_int = engine_temporary_int * 8;
     engine_stack_pointer_98 = &engine_global_config_data;
-    puStack_90 = engine_stack_array_80;
+    engine_stack_pointer_90 = engine_stack_array_80;
     engine_stack_array_80[0] = 0;
     engine_stack_value_88 = 0x1c;
     strcpy_s(engine_stack_array_80,0x40,&engine_data_60);
@@ -41415,7 +41410,7 @@ void FUN_180081bd0(longlong engine_data_structure_ptr,longlong *engine_result_fl
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180081d80(longlong engine_data_structure_ptr,longlong *engine_result_flag_ptr)
+// void FUN_180081d80(longlong engine_data_structure_ptr,longlong *engine_result_flag_ptr)
 void FUN_180081d80(longlong engine_data_structure_ptr,longlong *engine_result_flag_ptr)
 
 {
@@ -41429,7 +41424,7 @@ void FUN_180081d80(longlong engine_data_structure_ptr,longlong *engine_result_fl
   longlong *plStack_a8;
   uint64 engine_stack_value_a0;
   void* engine_stack_pointer_98;
-  uint8* puStack_90;
+  uint8* engine_stack_pointer_90;
   uint32 engine_stack_value_88;
   uint8 engine_stack_array_80 [72];
   ulonglong uStack_38;
@@ -41443,7 +41438,7 @@ void FUN_180081d80(longlong engine_data_structure_ptr,longlong *engine_result_fl
   if (engine_temporary_int != 0) {
     engine_temporary_int = engine_temporary_int * 4;
     engine_stack_pointer_98 = &engine_global_config_data;
-    puStack_90 = engine_stack_array_80;
+    engine_stack_pointer_90 = engine_stack_array_80;
     engine_stack_array_80[0] = 0;
     engine_stack_value_88 = 0x1c;
     strcpy_s(engine_stack_array_80,0x40,&engine_data_60);
@@ -41485,7 +41480,7 @@ void FUN_180081d80(longlong engine_data_structure_ptr,longlong *engine_result_fl
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180081f30(longlong engine_data_structure_ptr,longlong *engine_result_flag_ptr)
+// void FUN_180081f30(longlong engine_data_structure_ptr,longlong *engine_result_flag_ptr)
 void FUN_180081f30(longlong engine_data_structure_ptr,longlong *engine_result_flag_ptr)
 
 {
@@ -41499,7 +41494,7 @@ void FUN_180081f30(longlong engine_data_structure_ptr,longlong *engine_result_fl
   longlong *plStack_a8;
   uint64 engine_stack_value_a0;
   void* engine_stack_pointer_98;
-  uint8* puStack_90;
+  uint8* engine_stack_pointer_90;
   uint32 engine_stack_value_88;
   uint8 engine_stack_array_80 [72];
   ulonglong uStack_38;
@@ -41512,7 +41507,7 @@ void FUN_180081f30(longlong engine_data_structure_ptr,longlong *engine_result_fl
   engine_temp_uint_2 = _engine_audio_effect_ptr;
   if (engine_temporary_int != 0) {
     engine_stack_pointer_98 = &engine_global_config_data;
-    puStack_90 = engine_stack_array_80;
+    engine_stack_pointer_90 = engine_stack_array_80;
     engine_stack_array_80[0] = 0;
     engine_stack_value_88 = 0x1c;
     strcpy_s(engine_stack_array_80,0x40,&engine_data_60);
@@ -41554,7 +41549,7 @@ void FUN_180081f30(longlong engine_data_structure_ptr,longlong *engine_result_fl
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_1800820e0(longlong engine_data_structure_ptr,longlong *engine_result_flag_ptr)
+// void FUN_1800820e0(longlong engine_data_structure_ptr,longlong *engine_result_flag_ptr)
 void FUN_1800820e0(longlong engine_data_structure_ptr,longlong *engine_result_flag_ptr)
 
 {
@@ -41568,7 +41563,7 @@ void FUN_1800820e0(longlong engine_data_structure_ptr,longlong *engine_result_fl
   longlong *plStack_a8;
   uint64 engine_stack_value_a0;
   void* engine_stack_pointer_98;
-  uint8* puStack_90;
+  uint8* engine_stack_pointer_90;
   uint32 engine_stack_value_88;
   uint8 engine_stack_array_80 [72];
   ulonglong uStack_38;
@@ -41582,7 +41577,7 @@ void FUN_1800820e0(longlong engine_data_structure_ptr,longlong *engine_result_fl
   if (engine_temporary_int != 0) {
     engine_temporary_int = engine_temporary_int * 2;
     engine_stack_pointer_98 = &engine_global_config_data;
-    puStack_90 = engine_stack_array_80;
+    engine_stack_pointer_90 = engine_stack_array_80;
     engine_stack_array_80[0] = 0;
     engine_stack_value_88 = 0x1c;
     strcpy_s(engine_stack_array_80,0x40,&engine_data_60);
@@ -41624,7 +41619,7 @@ void FUN_1800820e0(longlong engine_data_structure_ptr,longlong *engine_result_fl
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180082290(longlong *engine_data_structure_ptr,ulonglong engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
+// void FUN_180082290(longlong *engine_data_structure_ptr,ulonglong engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
 void FUN_180082290(longlong *engine_data_structure_ptr,ulonglong engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
 
 {
@@ -41738,7 +41733,7 @@ void FUN_180082290(longlong *engine_data_structure_ptr,ulonglong engine_result_f
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_1800824a0(longlong *engine_data_structure_ptr,ulonglong engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
+// void FUN_1800824a0(longlong *engine_data_structure_ptr,ulonglong engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
 void FUN_1800824a0(longlong *engine_data_structure_ptr,ulonglong engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
 
 {
@@ -41852,7 +41847,7 @@ void FUN_1800824a0(longlong *engine_data_structure_ptr,ulonglong engine_result_f
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_1800826b0(longlong *engine_data_structure_ptr,longlong *engine_result_flag_ptr)
+// void FUN_1800826b0(longlong *engine_data_structure_ptr,longlong *engine_result_flag_ptr)
 void FUN_1800826b0(longlong *engine_data_structure_ptr,longlong *engine_result_flag_ptr)
 
 {
@@ -41953,7 +41948,7 @@ LAB_180082720:
 
 
 
-// 函数: void FUN_180082880(longlong *engine_data_structure_ptr,longlong *engine_result_flag_ptr)
+// void FUN_180082880(longlong *engine_data_structure_ptr,longlong *engine_result_flag_ptr)
 void FUN_180082880(longlong *engine_data_structure_ptr,longlong *engine_result_flag_ptr)
 
 {
@@ -42030,7 +42025,7 @@ uint64_t * FUN_1800828d0(longlong engine_data_structure_ptr,uint64_t *engine_res
 
 
 
-// 函数: void FUN_180082a50(longlong engine_data_structure_ptr,longlong engine_result_flag_ptr,uint64 engine_comparison_params)
+// void FUN_180082a50(longlong engine_data_structure_ptr,longlong engine_result_flag_ptr,uint64 engine_comparison_params)
 void FUN_180082a50(longlong engine_data_structure_ptr,longlong engine_result_flag_ptr,uint64 engine_comparison_params)
 
 {
@@ -42261,7 +42256,7 @@ longlong engine_initialize_physics_engine(longlong *engine_data_structure_ptr,lo
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void engine_setup_ui_system(longlong engine_data_structure_ptr,uint64 engine_result_flag_ptr,uint64 engine_comparison_params,longlong *engine_system_parameter_4)
+// void engine_setup_ui_system(longlong engine_data_structure_ptr,uint64 engine_result_flag_ptr,uint64 engine_comparison_params,longlong *engine_system_parameter_4)
 void engine_setup_ui_system(longlong engine_data_structure_ptr,uint64 engine_result_flag_ptr,uint64 engine_comparison_params,longlong *engine_system_parameter_4)
 
 {
@@ -42331,7 +42326,7 @@ int engine_setup_keyframe_system(uint64 engine_data_structure_ptr,uint64 engine_
 
 
 
-// 函数: void engine_initialize_debug_tools(uint64 engine_data_structure_ptr,uint64 engine_result_flag_ptr,uint64 engine_comparison_params,longlong *engine_system_parameter_4)
+// void engine_initialize_debug_tools(uint64 engine_data_structure_ptr,uint64 engine_result_flag_ptr,uint64 engine_comparison_params,longlong *engine_system_parameter_4)
 void engine_initialize_debug_tools(uint64 engine_data_structure_ptr,uint64 engine_result_flag_ptr,uint64 engine_comparison_params,longlong *engine_system_parameter_4)
 
 {
@@ -42470,7 +42465,7 @@ longlong engine_initialize_audio_system(longlong *engine_data_structure_ptr,long
 
 
 
-// 函数: void FUN_1800834f0(ulonglong *engine_data_structure_ptr)
+// void FUN_1800834f0(ulonglong *engine_data_structure_ptr)
 void FUN_1800834f0(ulonglong *engine_data_structure_ptr)
 
 {
@@ -42740,7 +42735,7 @@ uint64_t * FUN_1800839a0(longlong engine_data_structure_ptr,uint64_t *engine_res
 
 
 
-// 函数: void FUN_180083b20(longlong engine_data_structure_ptr,longlong engine_result_flag_ptr)
+// void FUN_180083b20(longlong engine_data_structure_ptr,longlong engine_result_flag_ptr)
 void FUN_180083b20(longlong engine_data_structure_ptr,longlong engine_result_flag_ptr)
 
 {
@@ -42884,7 +42879,7 @@ FUN_180083e40(uint64_t *engine_data_structure_ptr,ulonglong engine_result_flag_p
 
 
 
-// 函数: void FUN_180083e90(uint64_t *engine_data_structure_ptr)
+// void FUN_180083e90(uint64_t *engine_data_structure_ptr)
 void FUN_180083e90(uint64_t *engine_data_structure_ptr)
 
 {
@@ -42910,7 +42905,7 @@ FUN_180083ec0(uint64_t *engine_data_structure_ptr,ulonglong engine_result_flag_p
 
 
 
-// 函数: void FUN_180083f10(longlong *engine_data_structure_ptr)
+// void FUN_180083f10(longlong *engine_data_structure_ptr)
 void FUN_180083f10(longlong *engine_data_structure_ptr)
 
 {
@@ -42959,7 +42954,7 @@ void FUN_180083f10(longlong *engine_data_structure_ptr)
 
 
 
-// 函数: void FUN_180084000(float *engine_data_structure_ptr)
+// void FUN_180084000(float *engine_data_structure_ptr)
 void FUN_180084000(float *engine_data_structure_ptr)
 
 {
@@ -43080,7 +43075,7 @@ uint64_t * FUN_1800842a0(uint64_t *engine_data_structure_ptr)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180084320(uint64_t *engine_data_structure_ptr,uint engine_result_flag_ptr)
+// void FUN_180084320(uint64_t *engine_data_structure_ptr,uint engine_result_flag_ptr)
 void FUN_180084320(uint64_t *engine_data_structure_ptr,uint engine_result_flag_ptr)
 
 {
@@ -43145,7 +43140,7 @@ void FUN_180084320(uint64_t *engine_data_structure_ptr,uint engine_result_flag_p
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_1800844c0(uint64_t *engine_data_structure_ptr,uint engine_result_flag_ptr)
+// void FUN_1800844c0(uint64_t *engine_data_structure_ptr,uint engine_result_flag_ptr)
 void FUN_1800844c0(uint64_t *engine_data_structure_ptr,uint engine_result_flag_ptr)
 
 {
@@ -43208,7 +43203,7 @@ void FUN_1800844c0(uint64_t *engine_data_structure_ptr,uint engine_result_flag_p
 
 
 
-// 函数: void FUN_180084670(longlong *engine_data_structure_ptr)
+// void FUN_180084670(longlong *engine_data_structure_ptr)
 void FUN_180084670(longlong *engine_data_structure_ptr)
 
 {
@@ -43226,7 +43221,7 @@ void FUN_180084670(longlong *engine_data_structure_ptr)
 
 
 
-// 函数: void FUN_1800846a0(longlong engine_data_structure_ptr)
+// void FUN_1800846a0(longlong engine_data_structure_ptr)
 void FUN_1800846a0(longlong engine_data_structure_ptr)
 
 {
@@ -43246,7 +43241,7 @@ void FUN_1800846a0(longlong engine_data_structure_ptr)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_1800846d0(int *engine_data_structure_ptr)
+// void FUN_1800846d0(int *engine_data_structure_ptr)
 void FUN_1800846d0(int *engine_data_structure_ptr)
 
 {
@@ -43273,7 +43268,7 @@ void FUN_1800846d0(int *engine_data_structure_ptr)
 
 
 
-// 函数: void FUN_1800846f4(void)
+// void FUN_1800846f4(void)
 void FUN_1800846f4(void)
 
 {
@@ -43292,7 +43287,7 @@ void FUN_1800846f4(void)
 
 
 
-// 函数: void FUN_180084736(longlong engine_data_structure_ptr)
+// void FUN_180084736(longlong engine_data_structure_ptr)
 void FUN_180084736(longlong engine_data_structure_ptr)
 
 {
@@ -43309,7 +43304,7 @@ void FUN_180084736(longlong engine_data_structure_ptr)
 
 
 
-// 函数: void FUN_180084760(float *engine_data_structure_ptr,float *engine_result_flag_ptr)
+// void FUN_180084760(float *engine_data_structure_ptr,float *engine_result_flag_ptr)
 void FUN_180084760(float *engine_data_structure_ptr,float *engine_result_flag_ptr)
 
 {
@@ -43404,7 +43399,7 @@ void FUN_180084760(float *engine_data_structure_ptr,float *engine_result_flag_pt
 
 
 
-// 函数: void FUN_180084ae0(float *engine_data_structure_ptr)
+// void FUN_180084ae0(float *engine_data_structure_ptr)
 void FUN_180084ae0(float *engine_data_structure_ptr)
 
 {
@@ -43446,7 +43441,7 @@ void FUN_180084ae0(float *engine_data_structure_ptr)
 
 
 
-// 函数: void FUN_180084c70(float *engine_data_structure_ptr,float *engine_result_flag_ptr,float *engine_comparison_params,float *engine_system_parameter_4,float *param_5)
+// void FUN_180084c70(float *engine_data_structure_ptr,float *engine_result_flag_ptr,float *engine_comparison_params,float *engine_system_parameter_4,float *param_5)
 void FUN_180084c70(float *engine_data_structure_ptr,float *engine_result_flag_ptr,float *engine_comparison_params,float *engine_system_parameter_4,float *param_5)
 
 {
@@ -43604,7 +43599,7 @@ float * FUN_180085020(float *engine_data_structure_ptr,float *engine_result_flag
 
 
 
-// 函数: void FUN_180085190(float *engine_data_structure_ptr,longlong engine_result_flag_ptr,char engine_comparison_params,uint64_t *engine_system_parameter_4)
+// void FUN_180085190(float *engine_data_structure_ptr,longlong engine_result_flag_ptr,char engine_comparison_params,uint64_t *engine_system_parameter_4)
 void FUN_180085190(float *engine_data_structure_ptr,longlong engine_result_flag_ptr,char engine_comparison_params,uint64_t *engine_system_parameter_4)
 
 {
@@ -43727,7 +43722,7 @@ void FUN_180085190(float *engine_data_structure_ptr,longlong engine_result_flag_
 
 
 
-// 函数: void FUN_18008520c(float *engine_data_structure_ptr,longlong engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4,
+// void FUN_18008520c(float *engine_data_structure_ptr,longlong engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4,
 void FUN_18008520c(float *engine_data_structure_ptr,longlong engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4,
                   uint64 param_5)
 
@@ -43802,7 +43797,7 @@ void FUN_18008520c(float *engine_data_structure_ptr,longlong engine_result_flag_
 
 
 
-// 函数: void FUN_1800853fd(void)
+// void FUN_1800853fd(void)
 void FUN_1800853fd(void)
 
 {
@@ -43848,7 +43843,7 @@ void FUN_1800853fd(void)
 
 
 
-// 函数: void FUN_180085530(longlong engine_data_structure_ptr)
+// void FUN_180085530(longlong engine_data_structure_ptr)
 void FUN_180085530(longlong engine_data_structure_ptr)
 
 {
@@ -43919,7 +43914,7 @@ FUN_1800855e0(ulonglong engine_data_structure_ptr,uint64 engine_result_flag_ptr,
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180085680(longlong *engine_data_structure_ptr,longlong *engine_result_flag_ptr)
+// void FUN_180085680(longlong *engine_data_structure_ptr,longlong *engine_result_flag_ptr)
 void FUN_180085680(longlong *engine_data_structure_ptr,longlong *engine_result_flag_ptr)
 
 {
@@ -44046,7 +44041,7 @@ void FUN_180085680(longlong *engine_data_structure_ptr,longlong *engine_result_f
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_1800856c7(void)
+// void FUN_1800856c7(void)
 void FUN_1800856c7(void)
 
 {
@@ -44169,7 +44164,7 @@ void FUN_1800856c7(void)
 
 
 
-// 函数: void FUN_180085714(void)
+// void FUN_180085714(void)
 void FUN_180085714(void)
 
 {
@@ -44271,7 +44266,7 @@ void FUN_180085714(void)
 
 
 
-// 函数: void FUN_180085826(void)
+// void FUN_180085826(void)
 void FUN_180085826(void)
 
 {
@@ -44286,7 +44281,7 @@ void FUN_180085826(void)
 
 
 
-// 函数: void FUN_180085840(void)
+// void FUN_180085840(void)
 void FUN_180085840(void)
 
 {
@@ -44308,7 +44303,7 @@ longlong FUN_180085900(longlong engine_data_structure_ptr)
 
 
 
-// 函数: void FUN_180085970(uint64 engine_data_structure_ptr,uint32_t engine_result_flag_ptr)
+// void FUN_180085970(uint64 engine_data_structure_ptr,uint32_t engine_result_flag_ptr)
 void FUN_180085970(uint64 engine_data_structure_ptr,uint32_t engine_result_flag_ptr)
 
 {
@@ -44319,7 +44314,7 @@ void FUN_180085970(uint64 engine_data_structure_ptr,uint32_t engine_result_flag_
 
 
 
-// 函数: void FUN_180085ac0(uint64 engine_data_structure_ptr,uint32_t engine_result_flag_ptr)
+// void FUN_180085ac0(uint64 engine_data_structure_ptr,uint32_t engine_result_flag_ptr)
 void FUN_180085ac0(uint64 engine_data_structure_ptr,uint32_t engine_result_flag_ptr)
 
 {
@@ -44330,7 +44325,7 @@ void FUN_180085ac0(uint64 engine_data_structure_ptr,uint32_t engine_result_flag_
 
 
 
-// 函数: void FUN_180085c10(uint64 engine_data_structure_ptr,uint32_t engine_result_flag_ptr)
+// void FUN_180085c10(uint64 engine_data_structure_ptr,uint32_t engine_result_flag_ptr)
 void FUN_180085c10(uint64 engine_data_structure_ptr,uint32_t engine_result_flag_ptr)
 
 {
@@ -44343,7 +44338,7 @@ void FUN_180085c10(uint64 engine_data_structure_ptr,uint32_t engine_result_flag_
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180085e30(int *engine_data_structure_ptr)
+// void FUN_180085e30(int *engine_data_structure_ptr)
 void FUN_180085e30(int *engine_data_structure_ptr)
 
 {
@@ -44370,7 +44365,7 @@ void FUN_180085e30(int *engine_data_structure_ptr)
 
 
 
-// 函数: void FUN_180085e55(void)
+// void FUN_180085e55(void)
 void FUN_180085e55(void)
 
 {
@@ -44389,7 +44384,7 @@ void FUN_180085e55(void)
 
 
 
-// 函数: void FUN_180085e9b(longlong engine_data_structure_ptr)
+// void FUN_180085e9b(longlong engine_data_structure_ptr)
 void FUN_180085e9b(longlong engine_data_structure_ptr)
 
 {
@@ -44406,7 +44401,7 @@ void FUN_180085e9b(longlong engine_data_structure_ptr)
 
 
 
-// 函数: void FUN_180085ec0(int *engine_data_structure_ptr,int *engine_result_flag_ptr)
+// void FUN_180085ec0(int *engine_data_structure_ptr,int *engine_result_flag_ptr)
 void FUN_180085ec0(int *engine_data_structure_ptr,int *engine_result_flag_ptr)
 
 {
@@ -44437,7 +44432,7 @@ void FUN_180085ec0(int *engine_data_structure_ptr,int *engine_result_flag_ptr)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180085f20(int *engine_data_structure_ptr)
+// void FUN_180085f20(int *engine_data_structure_ptr)
 void FUN_180085f20(int *engine_data_structure_ptr)
 
 {
@@ -44464,7 +44459,7 @@ void FUN_180085f20(int *engine_data_structure_ptr)
 
 
 
-// 函数: void FUN_180085f45(void)
+// void FUN_180085f45(void)
 void FUN_180085f45(void)
 
 {
@@ -44483,7 +44478,7 @@ void FUN_180085f45(void)
 
 
 
-// 函数: void FUN_180085f8b(longlong engine_data_structure_ptr)
+// void FUN_180085f8b(longlong engine_data_structure_ptr)
 void FUN_180085f8b(longlong engine_data_structure_ptr)
 
 {
@@ -44500,7 +44495,7 @@ void FUN_180085f8b(longlong engine_data_structure_ptr)
 
 
 
-// 函数: void FUN_180085fb0(int *engine_data_structure_ptr,int *engine_result_flag_ptr)
+// void FUN_180085fb0(int *engine_data_structure_ptr,int *engine_result_flag_ptr)
 void FUN_180085fb0(int *engine_data_structure_ptr,int *engine_result_flag_ptr)
 
 {
@@ -44531,7 +44526,7 @@ void FUN_180085fb0(int *engine_data_structure_ptr,int *engine_result_flag_ptr)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180086010(int *engine_data_structure_ptr)
+// void FUN_180086010(int *engine_data_structure_ptr)
 void FUN_180086010(int *engine_data_structure_ptr)
 
 {
@@ -44558,7 +44553,7 @@ void FUN_180086010(int *engine_data_structure_ptr)
 
 
 
-// 函数: void FUN_180086031(void)
+// void FUN_180086031(void)
 void FUN_180086031(void)
 
 {
@@ -44577,7 +44572,7 @@ void FUN_180086031(void)
 
 
 
-// 函数: void FUN_180086073(longlong engine_data_structure_ptr)
+// void FUN_180086073(longlong engine_data_structure_ptr)
 void FUN_180086073(longlong engine_data_structure_ptr)
 
 {
@@ -44594,7 +44589,7 @@ void FUN_180086073(longlong engine_data_structure_ptr)
 
 
 
-// 函数: void FUN_180086090(int *engine_data_structure_ptr,int *engine_result_flag_ptr)
+// void FUN_180086090(int *engine_data_structure_ptr,int *engine_result_flag_ptr)
 void FUN_180086090(int *engine_data_structure_ptr,int *engine_result_flag_ptr)
 
 {
@@ -44623,7 +44618,7 @@ void FUN_180086090(int *engine_data_structure_ptr,int *engine_result_flag_ptr)
 
 
 
-// 函数: void FUN_1800860f0(int *engine_data_structure_ptr,int *engine_result_flag_ptr)
+// void FUN_1800860f0(int *engine_data_structure_ptr,int *engine_result_flag_ptr)
 void FUN_1800860f0(int *engine_data_structure_ptr,int *engine_result_flag_ptr)
 
 {
@@ -44674,7 +44669,7 @@ uint8_t FUN_1800861a0(float *engine_data_structure_ptr)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180086270(ulonglong *engine_data_structure_ptr,uint64_t *engine_result_flag_ptr)
+// void FUN_180086270(ulonglong *engine_data_structure_ptr,uint64_t *engine_result_flag_ptr)
 void FUN_180086270(ulonglong *engine_data_structure_ptr,uint64_t *engine_result_flag_ptr)
 
 {
@@ -44739,7 +44734,7 @@ LAB_180086316:
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_1800862bb(longlong engine_data_structure_ptr,uint64 engine_result_flag_ptr,uint64 engine_comparison_params,longlong engine_system_parameter_4)
+// void FUN_1800862bb(longlong engine_data_structure_ptr,uint64 engine_result_flag_ptr,uint64 engine_comparison_params,longlong engine_system_parameter_4)
 void FUN_1800862bb(longlong engine_data_structure_ptr,uint64 engine_result_flag_ptr,uint64 engine_comparison_params,longlong engine_system_parameter_4)
 
 {
@@ -44802,7 +44797,7 @@ void thunk_engine_call_cleanup_routine(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_1800863a0(ulonglong *engine_data_structure_ptr,uint64_t *engine_result_flag_ptr)
+// void FUN_1800863a0(ulonglong *engine_data_structure_ptr,uint64_t *engine_result_flag_ptr)
 void FUN_1800863a0(ulonglong *engine_data_structure_ptr,uint64_t *engine_result_flag_ptr)
 
 {
@@ -44885,7 +44880,7 @@ FUN_180086490(uint64_t *engine_data_structure_ptr,ulonglong engine_result_flag_p
 
 
 
-// 函数: void FUN_180086530(longlong *engine_data_structure_ptr)
+// void FUN_180086530(longlong *engine_data_structure_ptr)
 void FUN_180086530(longlong *engine_data_structure_ptr)
 
 {
@@ -45102,7 +45097,7 @@ uint64_t * engine_process_graphics_buffer(uint64 engine_data_structure_ptr,uint3
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180086bd0(longlong engine_data_structure_ptr,uint64 engine_result_flag_ptr,longlong engine_comparison_params)
+// void FUN_180086bd0(longlong engine_data_structure_ptr,uint64 engine_result_flag_ptr,longlong engine_comparison_params)
 void FUN_180086bd0(longlong engine_data_structure_ptr,uint64 engine_result_flag_ptr,longlong engine_comparison_params)
 
 {
@@ -45198,7 +45193,7 @@ uint64_t * FUN_180086ca0(uint64_t *engine_data_structure_ptr)
 
 
 
-// 函数: void FUN_180086dc0(longlong *engine_data_structure_ptr)
+// void FUN_180086dc0(longlong *engine_data_structure_ptr)
 void FUN_180086dc0(longlong *engine_data_structure_ptr)
 
 {
@@ -45219,7 +45214,7 @@ void FUN_180086dc0(longlong *engine_data_structure_ptr)
 
 
 
-// 函数: void FUN_180086de0(longlong engine_data_structure_ptr,uint64 engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
+// void FUN_180086de0(longlong engine_data_structure_ptr,uint64 engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
 void FUN_180086de0(longlong engine_data_structure_ptr,uint64 engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
 
 {
@@ -45230,7 +45225,7 @@ void FUN_180086de0(longlong engine_data_structure_ptr,uint64 engine_result_flag_
 
 
 
-// 函数: void FUN_180086e10(longlong engine_data_structure_ptr,uint64 engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
+// void FUN_180086e10(longlong engine_data_structure_ptr,uint64 engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
 void FUN_180086e10(longlong engine_data_structure_ptr,uint64 engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
 
 {
@@ -45243,7 +45238,7 @@ void FUN_180086e10(longlong engine_data_structure_ptr,uint64 engine_result_flag_
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180086e40(longlong engine_data_structure_ptr,longlong *engine_result_flag_ptr,longlong engine_comparison_params)
+// void FUN_180086e40(longlong engine_data_structure_ptr,longlong *engine_result_flag_ptr,longlong engine_comparison_params)
 void FUN_180086e40(longlong engine_data_structure_ptr,longlong *engine_result_flag_ptr,longlong engine_comparison_params)
 
 {
@@ -45574,7 +45569,7 @@ uint64 FUN_1800873b0(int engine_data_structure_ptr,longlong *engine_result_flag_
   void* engine_stack_pointer_98;
   longlong engine_stack_long_90;
   uint32 engine_stack_value_88;
-  ulonglong uStack_80;
+  ulonglong engine_stack_value_80;
   void* engine_stack_pointer_78;
   longlong lStack_70;
   uint32 uStack_68;
@@ -45610,7 +45605,7 @@ LAB_180087418:
   }
   engine_handle_input_device(&engine_stack_pointer_78,&engine_special_flag_5c,engine_temporary_pointer,engine_current_node_ptr);
   engine_stack_pointer_98 = &engine_system_context_data;
-  uStack_80 = 0;
+  engine_stack_value_80 = 0;
   engine_stack_long_90 = 0;
   engine_stack_value_88 = 0;
   engine_current_node_ptr = &engine_data_73;
@@ -45672,7 +45667,7 @@ LAB_18008758f:
     engine_call_cleanup_routine();
   }
   engine_stack_long_90 = 0;
-  uStack_80 = uStack_80 & 0xffffffff00000000;
+  engine_stack_value_80 = engine_stack_value_80 & 0xffffffff00000000;
   engine_stack_pointer_98 = &engine_data_18098bcb0;
   engine_stack_pointer_78 = &engine_system_context_data;
   if (lStack_70 != 0) {
@@ -45695,7 +45690,7 @@ LAB_18008758f:
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180087630(uint64 engine_data_structure_ptr,longlong engine_result_flag_ptr,longlong engine_comparison_params)
+// void FUN_180087630(uint64 engine_data_structure_ptr,longlong engine_result_flag_ptr,longlong engine_comparison_params)
 void FUN_180087630(uint64 engine_data_structure_ptr,longlong engine_result_flag_ptr,longlong engine_comparison_params)
 
 {
@@ -45736,7 +45731,7 @@ void FUN_180087630(uint64 engine_data_structure_ptr,longlong engine_result_flag_
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180087700(uint64_t *engine_data_structure_ptr,uint64_t *engine_result_flag_ptr,uint64_t *engine_comparison_params,uint64 engine_system_parameter_4,
+// void FUN_180087700(uint64_t *engine_data_structure_ptr,uint64_t *engine_result_flag_ptr,uint64_t *engine_comparison_params,uint64 engine_system_parameter_4,
 void FUN_180087700(uint64_t *engine_data_structure_ptr,uint64_t *engine_result_flag_ptr,uint64_t *engine_comparison_params,uint64 engine_system_parameter_4,
                   uint8_t param_5)
 
@@ -45795,7 +45790,7 @@ void FUN_180087700(uint64_t *engine_data_structure_ptr,uint64_t *engine_result_f
   uint32 uStack_8c;
   uint32 engine_stack_value_88;
   uint32 uStack_84;
-  uint uStack_80;
+  uint engine_stack_value_80;
   ulonglong uStack_7c;
   uint64 engine_stack_value_70;
   uint64 uStack_68;
@@ -45992,7 +45987,7 @@ LAB_18008807f:
         plStack_e8 = pengine_temp_long_21;
         FUN_180086bd0(engine_data_ptr_24,engine_data_ptr1 + 0x18,engine_data_ptr1 + 0x38);
         uStack_f0 = 0;
-        if (uStack_80 != 0) {
+        if (engine_stack_value_80 != 0) {
           do {
             engine_data_ptr_24 = (void*)pengine_temp_long_20[1];
             engine_stack_value_70 = *engine_data_ptr_24;
@@ -46155,7 +46150,7 @@ LAB_180087f16:
               }
             }
             uStack_f0 = uStack_f0 + 1;
-          } while (uStack_f0 < uStack_80);
+          } while (uStack_f0 < engine_stack_value_80);
         }
         if (((char)pengine_temp_long_20[3] == '\0') && (*pengine_temp_long_20 != 0)) {
                     // WARNING: Subroutine does not return
@@ -46218,7 +46213,7 @@ LAB_180088131:
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180088160(uint64 engine_data_structure_ptr,uint8_t engine_result_flag_ptr)
+// void FUN_180088160(uint64 engine_data_structure_ptr,uint8_t engine_result_flag_ptr)
 void FUN_180088160(uint64 engine_data_structure_ptr,uint8_t engine_result_flag_ptr)
 
 {
@@ -46691,7 +46686,7 @@ LAB_1800892fd:
 
 
 
-// 函数: void FUN_1800893b0(longlong engine_data_structure_ptr,uint64 engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
+// void FUN_1800893b0(longlong engine_data_structure_ptr,uint64 engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
 void FUN_1800893b0(longlong engine_data_structure_ptr,uint64 engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
 
 {
@@ -46712,7 +46707,7 @@ void FUN_1800893b0(longlong engine_data_structure_ptr,uint64 engine_result_flag_
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180089420(void)
+// void FUN_180089420(void)
 void FUN_180089420(void)
 
 {
@@ -46732,7 +46727,7 @@ void FUN_180089420(void)
   void* engine_stack_pointer_98;
   longlong engine_stack_long_90;
   uint engine_stack_value_88;
-  uint64 uStack_80;
+  uint64 engine_stack_value_80;
   void* engine_stack_pointer_78;
   uint8* engine_stack_pointer_70;
   uint32 uStack_68;
@@ -46752,7 +46747,7 @@ void FUN_180089420(void)
   if (0 < engine_temp_int_5) {
     do {
       engine_stack_pointer_98 = &engine_system_context_data;
-      uStack_80 = 0;
+      engine_stack_value_80 = 0;
       engine_stack_long_90 = 0;
       engine_stack_value_88 = 0;
       ppuStack_a8 = &engine_stack_pointer_78;
@@ -46775,7 +46770,7 @@ void FUN_180089420(void)
       if (engine_stack_long_90 != 0) {
         *(uint8*)(uVar7 + engine_stack_long_90) = 0;
       }
-      uStack_80 = CONCAT44(*(uint32*)(engine_temp_long_8 + 0x1c),(uint32_t)uStack_80);
+      engine_stack_value_80 = CONCAT44(*(uint32*)(engine_temp_long_8 + 0x1c),(uint32_t)engine_stack_value_80);
       engine_stack_value_88 = engine_temporary_uint;
       iStack_3c = (int)engine_temp_uint_6;
       engine_temp_char_4 = FUN_1800873b0(engine_temp_uint_6,&engine_stack_pointer_78,auStack_40);
@@ -46801,7 +46796,7 @@ void FUN_180089420(void)
         engine_call_cleanup_routine();
       }
       engine_stack_long_90 = 0;
-      uStack_80 = uStack_80 & 0xffffffff00000000;
+      engine_stack_value_80 = engine_stack_value_80 & 0xffffffff00000000;
       engine_stack_pointer_98 = &engine_data_18098bcb0;
       engine_temp_uint_6 = (ulonglong)((int)engine_temp_uint_6 + 1);
       engine_temp_long0 = engine_temp_long0 + -1;
@@ -46815,7 +46810,7 @@ void FUN_180089420(void)
 
 
 
-// 函数: void FUN_180089640(uint64_t *engine_data_structure_ptr)
+// void FUN_180089640(uint64_t *engine_data_structure_ptr)
 void FUN_180089640(uint64_t *engine_data_structure_ptr)
 
 {
@@ -46838,7 +46833,7 @@ void FUN_180089640(uint64_t *engine_data_structure_ptr)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_1800896b0(void)
+// void FUN_1800896b0(void)
 void FUN_1800896b0(void)
 
 {
@@ -47438,7 +47433,7 @@ LAB_18008a32f:
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_18008a480(uint64 engine_data_structure_ptr,longlong engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
+// void FUN_18008a480(uint64 engine_data_structure_ptr,longlong engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
 void FUN_18008a480(uint64 engine_data_structure_ptr,longlong engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
 
 {
@@ -47494,7 +47489,7 @@ void FUN_18008a480(uint64 engine_data_structure_ptr,longlong engine_result_flag_
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_18008a620(uint64_t *engine_data_structure_ptr)
+// void FUN_18008a620(uint64_t *engine_data_structure_ptr)
 void FUN_18008a620(uint64_t *engine_data_structure_ptr)
 
 {
@@ -48116,7 +48111,7 @@ ulonglong FUN_18008b250(uint64 engine_data_structure_ptr,uint64 engine_result_fl
 
 
 
-// 函数: void FUN_18008b390(ulonglong engine_data_structure_ptr,int engine_result_flag_ptr,uint64_t *engine_comparison_params)
+// void FUN_18008b390(ulonglong engine_data_structure_ptr,int engine_result_flag_ptr,uint64_t *engine_comparison_params)
 void FUN_18008b390(ulonglong engine_data_structure_ptr,int engine_result_flag_ptr,uint64_t *engine_comparison_params)
 
 {
@@ -48245,7 +48240,7 @@ ulonglong FUN_18008b440(longlong engine_data_structure_ptr,longlong engine_resul
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_18008b690(longlong engine_data_structure_ptr,longlong *engine_result_flag_ptr)
+// void FUN_18008b690(longlong engine_data_structure_ptr,longlong *engine_result_flag_ptr)
 void FUN_18008b690(longlong engine_data_structure_ptr,longlong *engine_result_flag_ptr)
 
 {
@@ -48343,7 +48338,7 @@ LAB_18008b7ea:
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_18008bb30(uint64 engine_data_structure_ptr,longlong engine_result_flag_ptr,longlong *engine_comparison_params,longlong *engine_system_parameter_4,
+// void FUN_18008bb30(uint64 engine_data_structure_ptr,longlong engine_result_flag_ptr,longlong *engine_comparison_params,longlong *engine_system_parameter_4,
 void FUN_18008bb30(uint64 engine_data_structure_ptr,longlong engine_result_flag_ptr,longlong *engine_comparison_params,longlong *engine_system_parameter_4,
                   uint8_t *param_5,uint8_t *param_6)
 
@@ -48498,7 +48493,7 @@ void FUN_18008bb30(uint64 engine_data_structure_ptr,longlong engine_result_flag_
 
 
 
-// 函数: void FUN_18008bf00(longlong engine_data_structure_ptr,uint64 engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
+// void FUN_18008bf00(longlong engine_data_structure_ptr,uint64 engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
 void FUN_18008bf00(longlong engine_data_structure_ptr,uint64 engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
 
 {
@@ -48513,7 +48508,7 @@ void FUN_18008bf00(longlong engine_data_structure_ptr,uint64 engine_result_flag_
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_18008bf40(uint64 engine_data_structure_ptr,longlong engine_result_flag_ptr,longlong *engine_comparison_params,longlong *engine_system_parameter_4,
+// void FUN_18008bf40(uint64 engine_data_structure_ptr,longlong engine_result_flag_ptr,longlong *engine_comparison_params,longlong *engine_system_parameter_4,
 void FUN_18008bf40(uint64 engine_data_structure_ptr,longlong engine_result_flag_ptr,longlong *engine_comparison_params,longlong *engine_system_parameter_4,
                   longlong param_5)
 
@@ -48646,7 +48641,7 @@ LAB_18008c01e:
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_18008c320(longlong engine_data_structure_ptr,longlong *engine_result_flag_ptr)
+// void FUN_18008c320(longlong engine_data_structure_ptr,longlong *engine_result_flag_ptr)
 void FUN_18008c320(longlong engine_data_structure_ptr,longlong *engine_result_flag_ptr)
 
 {
@@ -48773,7 +48768,7 @@ LAB_18008c531:
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_18008c9f0(longlong engine_data_structure_ptr,longlong *engine_result_flag_ptr)
+// void FUN_18008c9f0(longlong engine_data_structure_ptr,longlong *engine_result_flag_ptr)
 void FUN_18008c9f0(longlong engine_data_structure_ptr,longlong *engine_result_flag_ptr)
 
 {
@@ -49054,7 +49049,7 @@ LAB_18008cdfe:
 
 
 
-// 函数: void FUN_18008cf60(uint64 engine_data_structure_ptr,longlong *engine_result_flag_ptr)
+// void FUN_18008cf60(uint64 engine_data_structure_ptr,longlong *engine_result_flag_ptr)
 void FUN_18008cf60(uint64 engine_data_structure_ptr,longlong *engine_result_flag_ptr)
 
 {
@@ -49118,7 +49113,7 @@ void FUN_18008cf60(uint64 engine_data_structure_ptr,longlong *engine_result_flag
 
 
 
-// 函数: void FUN_18008cf7a(void)
+// void FUN_18008cf7a(void)
 void FUN_18008cf7a(void)
 
 {
@@ -49176,7 +49171,7 @@ void FUN_18008cf7a(void)
 
 
 
-// 函数: void FUN_18008d04c(void)
+// void FUN_18008d04c(void)
 void FUN_18008d04c(void)
 
 {
@@ -49187,7 +49182,7 @@ void FUN_18008d04c(void)
 
 
 
-// 函数: void FUN_18008d059(void)
+// void FUN_18008d059(void)
 void FUN_18008d059(void)
 
 {
@@ -49221,7 +49216,7 @@ undefined * FUN_18008d070(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_18008d100(uint64 engine_data_structure_ptr,uint64 engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
+// void FUN_18008d100(uint64 engine_data_structure_ptr,uint64 engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
 void FUN_18008d100(uint64 engine_data_structure_ptr,uint64 engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
 
 {
@@ -49244,7 +49239,7 @@ void FUN_18008d100(uint64 engine_data_structure_ptr,uint64 engine_result_flag_pt
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_18008d180(void)
+// void FUN_18008d180(void)
 void FUN_18008d180(void)
 
 {
@@ -49257,7 +49252,7 @@ void FUN_18008d180(void)
 
 
 
-// 函数: void FUN_18008d1b0(void)
+// void FUN_18008d1b0(void)
 void FUN_18008d1b0(void)
 
 {
@@ -49274,7 +49269,7 @@ void FUN_18008d1b0(void)
 
 
 
-// 函数: void FUN_18008d1f0(uint64 engine_data_structure_ptr,longlong *engine_result_flag_ptr)
+// void FUN_18008d1f0(uint64 engine_data_structure_ptr,longlong *engine_result_flag_ptr)
 void FUN_18008d1f0(uint64 engine_data_structure_ptr,longlong *engine_result_flag_ptr)
 
 {
@@ -49319,7 +49314,7 @@ FUN_18008d320(uint64_t *engine_data_structure_ptr,longlong engine_result_flag_pt
 
 
 
-// 函数: void FUN_18008d3a0(longlong *engine_data_structure_ptr)
+// void FUN_18008d3a0(longlong *engine_data_structure_ptr)
 void FUN_18008d3a0(longlong *engine_data_structure_ptr)
 
 {
@@ -49447,7 +49442,7 @@ LAB_18008d56b:
 
 
 
-// 函数: void FUN_18008d4c6(uint64_t *engine_data_structure_ptr)
+// void FUN_18008d4c6(uint64_t *engine_data_structure_ptr)
 void FUN_18008d4c6(uint64_t *engine_data_structure_ptr)
 
 {
@@ -49522,7 +49517,7 @@ LAB_18008d56b:
 
 
 
-// 函数: void FUN_18008d535(longlong engine_data_structure_ptr)
+// void FUN_18008d535(longlong engine_data_structure_ptr)
 void FUN_18008d535(longlong engine_data_structure_ptr)
 
 {
@@ -49559,7 +49554,7 @@ LAB_18008d56b:
 
 
 
-// 函数: void FUN_18008d5a0(longlong engine_data_structure_ptr,uint64 engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
+// void FUN_18008d5a0(longlong engine_data_structure_ptr,uint64 engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
 void FUN_18008d5a0(longlong engine_data_structure_ptr,uint64 engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
 
 {
@@ -49635,7 +49630,7 @@ uint64_t * FUN_18008d660(uint64_t *engine_data_structure_ptr,uint64 engine_resul
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_18008d710(uint64_t *engine_data_structure_ptr,uint64 engine_result_flag_ptr,ulonglong *engine_comparison_params)
+// void FUN_18008d710(uint64_t *engine_data_structure_ptr,uint64 engine_result_flag_ptr,ulonglong *engine_comparison_params)
 void FUN_18008d710(uint64_t *engine_data_structure_ptr,uint64 engine_result_flag_ptr,ulonglong *engine_comparison_params)
 
 {
@@ -49685,7 +49680,7 @@ LAB_18008d7a0:
 
 
 
-// 函数: void FUN_18008d810(uint64 engine_data_structure_ptr,uint64_t *engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
+// void FUN_18008d810(uint64 engine_data_structure_ptr,uint64_t *engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
 void FUN_18008d810(uint64 engine_data_structure_ptr,uint64_t *engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
 
 {
@@ -49861,7 +49856,7 @@ FUN_18008db2a:
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_18008db2a(uint32_t engine_data_structure_ptr)
+// void FUN_18008db2a(uint32_t engine_data_structure_ptr)
 void FUN_18008db2a(uint32_t engine_data_structure_ptr)
 
 {
@@ -49892,7 +49887,7 @@ void FUN_18008db2a(uint32_t engine_data_structure_ptr)
 
 
 
-// 函数: void FUN_18008db97(void)
+// void FUN_18008db97(void)
 void FUN_18008db97(void)
 
 {
@@ -49908,7 +49903,7 @@ void FUN_18008db97(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_18008dbb0(longlong *engine_data_structure_ptr,ulonglong engine_result_flag_ptr)
+// void FUN_18008dbb0(longlong *engine_data_structure_ptr,ulonglong engine_result_flag_ptr)
 void FUN_18008dbb0(longlong *engine_data_structure_ptr,ulonglong engine_result_flag_ptr)
 
 {
@@ -49966,7 +49961,7 @@ void FUN_18008dbb0(longlong *engine_data_structure_ptr,ulonglong engine_result_f
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_18008dbfb(void)
+// void FUN_18008dbfb(void)
 void FUN_18008dbfb(void)
 
 {
@@ -50016,7 +50011,7 @@ void FUN_18008dbfb(void)
 
 
 
-// 函数: void FUN_18008dcf9(void)
+// void FUN_18008dcf9(void)
 void FUN_18008dcf9(void)
 
 {
@@ -50037,7 +50032,7 @@ void FUN_18008dcf9(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_18008dd40(longlong *engine_data_structure_ptr,longlong engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
+// void FUN_18008dd40(longlong *engine_data_structure_ptr,longlong engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
 void FUN_18008dd40(longlong *engine_data_structure_ptr,longlong engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
 
 {
@@ -50140,7 +50135,7 @@ LAB_18008dde0:
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_18008dfa0(longlong engine_data_structure_ptr,uint64 engine_result_flag_ptr,longlong engine_comparison_params,char engine_system_parameter_4,
+// void FUN_18008dfa0(longlong engine_data_structure_ptr,uint64 engine_result_flag_ptr,longlong engine_comparison_params,char engine_system_parameter_4,
 void FUN_18008dfa0(longlong engine_data_structure_ptr,uint64 engine_result_flag_ptr,longlong engine_comparison_params,char engine_system_parameter_4,
                   uint32_t *param_5)
 
@@ -50170,7 +50165,7 @@ void FUN_18008dfa0(longlong engine_data_structure_ptr,uint64 engine_result_flag_
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_18008e0f0(longlong engine_data_structure_ptr,uint64 engine_result_flag_ptr,longlong engine_comparison_params,char engine_system_parameter_4,
+// void FUN_18008e0f0(longlong engine_data_structure_ptr,uint64 engine_result_flag_ptr,longlong engine_comparison_params,char engine_system_parameter_4,
 void FUN_18008e0f0(longlong engine_data_structure_ptr,uint64 engine_result_flag_ptr,longlong engine_comparison_params,char engine_system_parameter_4,
                   uint32_t *param_5)
 
@@ -50209,7 +50204,7 @@ LAB_18008e13f:
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_18008e1a0(longlong *engine_data_structure_ptr,uint64_t *engine_result_flag_ptr,longlong *engine_comparison_params,longlong *engine_system_parameter_4)
+// void FUN_18008e1a0(longlong *engine_data_structure_ptr,uint64_t *engine_result_flag_ptr,longlong *engine_comparison_params,longlong *engine_system_parameter_4)
 void FUN_18008e1a0(longlong *engine_data_structure_ptr,uint64_t *engine_result_flag_ptr,longlong *engine_comparison_params,longlong *engine_system_parameter_4)
 
 {
@@ -50384,7 +50379,7 @@ void FUN_18008e1a0(longlong *engine_data_structure_ptr,uint64_t *engine_result_f
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_18008e1c7(void)
+// void FUN_18008e1c7(void)
 void FUN_18008e1c7(void)
 
 {
@@ -50561,7 +50556,7 @@ void FUN_18008e1c7(void)
 
 
 
-// 函数: void FUN_18008e454(void)
+// void FUN_18008e454(void)
 void FUN_18008e454(void)
 
 {
@@ -50571,7 +50566,7 @@ void FUN_18008e454(void)
 
 
 
-// 函数: void FUN_18008e460(longlong *engine_data_structure_ptr,longlong *engine_result_flag_ptr)
+// void FUN_18008e460(longlong *engine_data_structure_ptr,longlong *engine_result_flag_ptr)
 void FUN_18008e460(longlong *engine_data_structure_ptr,longlong *engine_result_flag_ptr)
 
 {
@@ -50633,7 +50628,7 @@ void FUN_18008e460(longlong *engine_data_structure_ptr,longlong *engine_result_f
 
 
 
-// 函数: void FUN_18008e473(longlong *engine_data_structure_ptr,longlong *engine_result_flag_ptr)
+// void FUN_18008e473(longlong *engine_data_structure_ptr,longlong *engine_result_flag_ptr)
 void FUN_18008e473(longlong *engine_data_structure_ptr,longlong *engine_result_flag_ptr)
 
 {
@@ -50697,7 +50692,7 @@ void FUN_18008e473(longlong *engine_data_structure_ptr,longlong *engine_result_f
 
 
 
-// 函数: void FUN_18008e48b(void)
+// void FUN_18008e48b(void)
 void FUN_18008e48b(void)
 
 {
@@ -50762,7 +50757,7 @@ void FUN_18008e48b(void)
 
 
 
-// 函数: void FUN_18008e535(void)
+// void FUN_18008e535(void)
 void FUN_18008e535(void)
 
 {
@@ -50772,7 +50767,7 @@ void FUN_18008e535(void)
 
 
 
-// 函数: void FUN_18008e544(void)
+// void FUN_18008e544(void)
 void FUN_18008e544(void)
 
 {
@@ -50782,7 +50777,7 @@ void FUN_18008e544(void)
 
 
 
-// 函数: void FUN_18008e550(longlong *engine_data_structure_ptr,longlong *engine_result_flag_ptr)
+// void FUN_18008e550(longlong *engine_data_structure_ptr,longlong *engine_result_flag_ptr)
 void FUN_18008e550(longlong *engine_data_structure_ptr,longlong *engine_result_flag_ptr)
 
 {
@@ -50828,7 +50823,7 @@ void FUN_18008e550(longlong *engine_data_structure_ptr,longlong *engine_result_f
 
 
 
-// 函数: void FUN_18008e55f(longlong *engine_data_structure_ptr,longlong *engine_result_flag_ptr)
+// void FUN_18008e55f(longlong *engine_data_structure_ptr,longlong *engine_result_flag_ptr)
 void FUN_18008e55f(longlong *engine_data_structure_ptr,longlong *engine_result_flag_ptr)
 
 {
@@ -50876,7 +50871,7 @@ void FUN_18008e55f(longlong *engine_data_structure_ptr,longlong *engine_result_f
 
 
 
-// 函数: void FUN_18008e573(void)
+// void FUN_18008e573(void)
 void FUN_18008e573(void)
 
 {
@@ -50925,7 +50920,7 @@ void FUN_18008e573(void)
 
 
 
-// 函数: void FUN_18008e5e4(void)
+// void FUN_18008e5e4(void)
 void FUN_18008e5e4(void)
 
 {
@@ -50935,7 +50930,7 @@ void FUN_18008e5e4(void)
 
 
 
-// 函数: void FUN_18008e5ef(void)
+// void FUN_18008e5ef(void)
 void FUN_18008e5ef(void)
 
 {
@@ -50945,7 +50940,7 @@ void FUN_18008e5ef(void)
 
 
 
-// 函数: void FUN_18008e5f0(longlong engine_data_structure_ptr,uint64 engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
+// void FUN_18008e5f0(longlong engine_data_structure_ptr,uint64 engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
 void FUN_18008e5f0(longlong engine_data_structure_ptr,uint64 engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
 
 {
@@ -50967,7 +50962,7 @@ void FUN_18008e5f0(longlong engine_data_structure_ptr,uint64 engine_result_flag_
 
 
 
-// 函数: void FUN_18008e640(longlong engine_data_structure_ptr,uint64 engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
+// void FUN_18008e640(longlong engine_data_structure_ptr,uint64 engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
 void FUN_18008e640(longlong engine_data_structure_ptr,uint64 engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
 
 {
@@ -50989,7 +50984,7 @@ void FUN_18008e640(longlong engine_data_structure_ptr,uint64 engine_result_flag_
 
 
 
-// 函数: void engine_start_main_loop(longlong *engine_data_structure_ptr,uint64 engine_result_flag_ptr,longlong *engine_comparison_params)
+// void engine_start_main_loop(longlong *engine_data_structure_ptr,uint64 engine_result_flag_ptr,longlong *engine_comparison_params)
 void engine_start_main_loop(longlong *engine_data_structure_ptr,uint64 engine_result_flag_ptr,longlong *engine_comparison_params)
 
 {
@@ -51102,7 +51097,7 @@ FUN_18008e9e0(uint64_t *engine_data_structure_ptr,uint64_t *engine_result_flag_p
 
 
 
-// 函数: void FUN_18008ea80(uint64 engine_data_structure_ptr,longlong engine_result_flag_ptr)
+// void FUN_18008ea80(uint64 engine_data_structure_ptr,longlong engine_result_flag_ptr)
 void FUN_18008ea80(uint64 engine_data_structure_ptr,longlong engine_result_flag_ptr)
 
 {
@@ -51143,7 +51138,7 @@ uint64_t * FUN_18008eaf0(longlong *engine_data_structure_ptr,longlong *engine_re
 
 
 
-// 函数: void FUN_18008eb40(longlong *engine_data_structure_ptr,longlong *engine_result_flag_ptr,longlong engine_comparison_params,uint8_t engine_system_parameter_4)
+// void FUN_18008eb40(longlong *engine_data_structure_ptr,longlong *engine_result_flag_ptr,longlong engine_comparison_params,uint8_t engine_system_parameter_4)
 void FUN_18008eb40(longlong *engine_data_structure_ptr,longlong *engine_result_flag_ptr,longlong engine_comparison_params,uint8_t engine_system_parameter_4)
 
 {
@@ -51277,7 +51272,7 @@ LAB_18008ebc0:
 
 
 
-// 函数: void FUN_18008ece8(void)
+// void FUN_18008ece8(void)
 void FUN_18008ece8(void)
 
 {
@@ -51322,7 +51317,7 @@ void FUN_18008ece8(void)
 
 
 
-// 函数: void FUN_18008ed49(void)
+// void FUN_18008ed49(void)
 void FUN_18008ed49(void)
 
 {
@@ -51355,7 +51350,7 @@ void FUN_18008ed49(void)
 
 
 
-// 函数: void FUN_18008edc0(longlong *engine_data_structure_ptr,longlong *engine_result_flag_ptr,longlong engine_comparison_params,uint8_t engine_system_parameter_4)
+// void FUN_18008edc0(longlong *engine_data_structure_ptr,longlong *engine_result_flag_ptr,longlong engine_comparison_params,uint8_t engine_system_parameter_4)
 void FUN_18008edc0(longlong *engine_data_structure_ptr,longlong *engine_result_flag_ptr,longlong engine_comparison_params,uint8_t engine_system_parameter_4)
 
 {
@@ -51526,7 +51521,7 @@ LAB_18008efb7:
 
 
 
-// 函数: void FUN_18008edcf(longlong *engine_data_structure_ptr,longlong *engine_result_flag_ptr,longlong engine_comparison_params,uint8_t engine_system_parameter_4)
+// void FUN_18008edcf(longlong *engine_data_structure_ptr,longlong *engine_result_flag_ptr,longlong engine_comparison_params,uint8_t engine_system_parameter_4)
 void FUN_18008edcf(longlong *engine_data_structure_ptr,longlong *engine_result_flag_ptr,longlong engine_comparison_params,uint8_t engine_system_parameter_4)
 
 {
@@ -51698,7 +51693,7 @@ LAB_18008efb7:
 
 
 
-// 函数: void FUN_18008edf4(void)
+// void FUN_18008edf4(void)
 void FUN_18008edf4(void)
 
 {
@@ -51872,7 +51867,7 @@ LAB_18008eff7:
 
 
 
-// 函数: void FUN_18008effc(void)
+// void FUN_18008effc(void)
 void FUN_18008effc(void)
 
 {
@@ -51910,7 +51905,7 @@ void FUN_18008effc(void)
 
 
 
-// 函数: void FUN_18008f00a(void)
+// void FUN_18008f00a(void)
 void FUN_18008f00a(void)
 
 {
@@ -51945,7 +51940,7 @@ void FUN_18008f00a(void)
 
 
 
-// 函数: void engine_allocate_memory_block(uint64 engine_data_structure_ptr,uint64 engine_result_flag_ptr,longlong *engine_comparison_params)
+// void engine_allocate_memory_block(uint64 engine_data_structure_ptr,uint64 engine_result_flag_ptr,longlong *engine_comparison_params)
 void engine_allocate_memory_block(uint64 engine_data_structure_ptr,uint64 engine_result_flag_ptr,longlong *engine_comparison_params)
 
 {
@@ -52075,7 +52070,7 @@ engine_initialize_memory_block(longlong *engine_data_structure_ptr,uint64_t *eng
 
 
 
-// 函数: void FUN_18008f430(uint64_t *engine_data_structure_ptr)
+// void FUN_18008f430(uint64_t *engine_data_structure_ptr)
 void FUN_18008f430(uint64_t *engine_data_structure_ptr)
 
 {
@@ -52453,7 +52448,7 @@ longlong * FUN_18008f870(longlong *engine_data_structure_ptr,longlong *engine_re
 
 
 
-// 函数: void FUN_18008fa70(longlong engine_data_structure_ptr,longlong engine_result_flag_ptr,longlong engine_comparison_params,longlong engine_system_parameter_4,
+// void FUN_18008fa70(longlong engine_data_structure_ptr,longlong engine_result_flag_ptr,longlong engine_comparison_params,longlong engine_system_parameter_4,
 void FUN_18008fa70(longlong engine_data_structure_ptr,longlong engine_result_flag_ptr,longlong engine_comparison_params,longlong engine_system_parameter_4,
                   longlong *param_5)
 
@@ -52539,7 +52534,7 @@ LAB_18008fb99:
 
 
 
-// 函数: void FUN_18008fb19(void)
+// void FUN_18008fb19(void)
 void FUN_18008fb19(void)
 
 {
@@ -52589,7 +52584,7 @@ LAB_18008fb99:
 
 
 
-// 函数: void FUN_18008fb96(void)
+// void FUN_18008fb96(void)
 void FUN_18008fb96(void)
 
 {
@@ -52604,7 +52599,7 @@ void FUN_18008fb96(void)
 
 
 
-// 函数: void FUN_18008fba9(void)
+// void FUN_18008fba9(void)
 void FUN_18008fba9(void)
 
 {
@@ -52619,7 +52614,7 @@ void FUN_18008fba9(void)
 
 
 
-// 函数: void FUN_18008fbc0(longlong engine_data_structure_ptr,longlong engine_result_flag_ptr,longlong engine_comparison_params,longlong engine_system_parameter_4,
+// void FUN_18008fbc0(longlong engine_data_structure_ptr,longlong engine_result_flag_ptr,longlong engine_comparison_params,longlong engine_system_parameter_4,
 void FUN_18008fbc0(longlong engine_data_structure_ptr,longlong engine_result_flag_ptr,longlong engine_comparison_params,longlong engine_system_parameter_4,
                   longlong *param_5)
 
@@ -52729,7 +52724,7 @@ FUN_18008fd70(uint64_t *engine_data_structure_ptr,ulonglong engine_result_flag_p
 
 
 
-// 函数: void FUN_18008fdb0(longlong engine_data_structure_ptr,longlong engine_result_flag_ptr)
+// void FUN_18008fdb0(longlong engine_data_structure_ptr,longlong engine_result_flag_ptr)
 void FUN_18008fdb0(longlong engine_data_structure_ptr,longlong engine_result_flag_ptr)
 
 {
@@ -52760,7 +52755,7 @@ void FUN_18008fdb0(longlong engine_data_structure_ptr,longlong engine_result_fla
 
 
 
-// 函数: void FUN_18008fe30(longlong engine_data_structure_ptr,uint64 engine_result_flag_ptr,int engine_comparison_params)
+// void FUN_18008fe30(longlong engine_data_structure_ptr,uint64 engine_result_flag_ptr,int engine_comparison_params)
 void FUN_18008fe30(longlong engine_data_structure_ptr,uint64 engine_result_flag_ptr,int engine_comparison_params)
 
 {
@@ -52776,7 +52771,7 @@ void FUN_18008fe30(longlong engine_data_structure_ptr,uint64 engine_result_flag_
 
 
 
-// 函数: void FUN_18008fe51(void)
+// void FUN_18008fe51(void)
 void FUN_18008fe51(void)
 
 {
@@ -52787,7 +52782,7 @@ void FUN_18008fe51(void)
 
 
 
-// 函数: void FUN_18008fe76(uint8_t *engine_data_structure_ptr)
+// void FUN_18008fe76(uint8_t *engine_data_structure_ptr)
 void FUN_18008fe76(uint8_t *engine_data_structure_ptr)
 
 {
@@ -52803,7 +52798,7 @@ void FUN_18008fe76(uint8_t *engine_data_structure_ptr)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_18008fe90(longlong engine_data_structure_ptr,longlong engine_result_flag_ptr,longlong engine_comparison_params)
+// void FUN_18008fe90(longlong engine_data_structure_ptr,longlong engine_result_flag_ptr,longlong engine_comparison_params)
 void FUN_18008fe90(longlong engine_data_structure_ptr,longlong engine_result_flag_ptr,longlong engine_comparison_params)
 
 {
@@ -52953,7 +52948,7 @@ uint64_t * FUN_180090130(uint64_t *engine_data_structure_ptr)
 
 
 
-// 函数: void FUN_180090380(longlong engine_data_structure_ptr)
+// void FUN_180090380(longlong engine_data_structure_ptr)
 void FUN_180090380(longlong engine_data_structure_ptr)
 
 {
@@ -52971,7 +52966,7 @@ void FUN_180090380(longlong engine_data_structure_ptr)
 
 
 
-// 函数: void FUN_180090420(longlong *engine_data_structure_ptr)
+// void FUN_180090420(longlong *engine_data_structure_ptr)
 void FUN_180090420(longlong *engine_data_structure_ptr)
 
 {
@@ -53001,7 +52996,7 @@ void FUN_180090420(longlong *engine_data_structure_ptr)
 
 
 
-// 函数: void FUN_1800904f0(longlong engine_data_structure_ptr)
+// void FUN_1800904f0(longlong engine_data_structure_ptr)
 void FUN_1800904f0(longlong engine_data_structure_ptr)
 
 {
@@ -53012,7 +53007,7 @@ void FUN_1800904f0(longlong engine_data_structure_ptr)
 
 
 
-// 函数: void FUN_180090520(uint64_t *engine_data_structure_ptr)
+// void FUN_180090520(uint64_t *engine_data_structure_ptr)
 void FUN_180090520(uint64_t *engine_data_structure_ptr)
 
 {
@@ -53049,7 +53044,7 @@ void FUN_180090520(uint64_t *engine_data_structure_ptr)
 
 
 
-// 函数: void FUN_1800905f0(float *engine_data_structure_ptr,float engine_result_flag_ptr)
+// void FUN_1800905f0(float *engine_data_structure_ptr,float engine_result_flag_ptr)
 void FUN_1800905f0(float *engine_data_structure_ptr,float engine_result_flag_ptr)
 
 {
@@ -53109,7 +53104,7 @@ void FUN_1800905f0(float *engine_data_structure_ptr,float engine_result_flag_ptr
 // WARNING: Removing unreachable block (ram,0x0001800909ad)
 
 
-// 函数: void FUN_180090710(float *engine_data_structure_ptr,uint64 engine_result_flag_ptr,uint32_t *engine_comparison_params)
+// void FUN_180090710(float *engine_data_structure_ptr,uint64 engine_result_flag_ptr,uint32_t *engine_comparison_params)
 void FUN_180090710(float *engine_data_structure_ptr,uint64 engine_result_flag_ptr,uint32_t *engine_comparison_params)
 
 {
@@ -53254,7 +53249,7 @@ void FUN_180090710(float *engine_data_structure_ptr,uint64 engine_result_flag_pt
 
 
 
-// 函数: void FUN_180090b80(longlong engine_data_structure_ptr,uint64 engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
+// void FUN_180090b80(longlong engine_data_structure_ptr,uint64 engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
 void FUN_180090b80(longlong engine_data_structure_ptr,uint64 engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
 
 {
@@ -53422,7 +53417,7 @@ FUN_180090e40(uint64_t *engine_data_structure_ptr,uint64 engine_result_flag_ptr,
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180091020(void)
+// void FUN_180091020(void)
 void FUN_180091020(void)
 
 {
@@ -53446,7 +53441,7 @@ void FUN_180091020(void)
   longlong *plStack_98;
   uint64 uStack_90;
   void* engine_stack_pointer_88;
-  uint8* puStack_80;
+  uint8* pengine_stack_value_80;
   uint32 engine_stack_value_78;
   uint8 aengine_stack_value_70 [72];
   ulonglong uStack_28;
@@ -53463,7 +53458,7 @@ void FUN_180091020(void)
     if (engine_status_flag == engine_temp_char_flag) goto LAB_1800911c4;
     if (engine_status_flag != '\0') goto LAB_180091164;
     engine_stack_pointer_88 = &engine_global_config_data;
-    puStack_80 = aengine_stack_value_70;
+    pengine_stack_value_80 = aengine_stack_value_70;
     aengine_stack_value_70[0] = 0;
     engine_stack_value_78 = 0x17;
     engine_temp_uint1 = strcpy_s(aengine_stack_value_70,0x40,&engine_base_data_offset_60);
@@ -53531,7 +53526,7 @@ LAB_1800911c4:
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_1800913a0(void)
+// void FUN_1800913a0(void)
 void FUN_1800913a0(void)
 
 {
@@ -53561,7 +53556,7 @@ void FUN_1800913a0(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180091430(void)
+// void FUN_180091430(void)
 void FUN_180091430(void)
 
 {
@@ -53817,7 +53812,7 @@ void FUN_180091430(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180091970(ulonglong engine_data_structure_ptr)
+// void FUN_180091970(ulonglong engine_data_structure_ptr)
 void FUN_180091970(ulonglong engine_data_structure_ptr)
 
 {
@@ -54494,7 +54489,7 @@ void FUN_180091970(ulonglong engine_data_structure_ptr)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180092820(uint64 engine_data_structure_ptr,int engine_result_flag_ptr,int engine_comparison_params)
+// void FUN_180092820(uint64 engine_data_structure_ptr,int engine_result_flag_ptr,int engine_comparison_params)
 void FUN_180092820(uint64 engine_data_structure_ptr,int engine_result_flag_ptr,int engine_comparison_params)
 
 {
@@ -54547,7 +54542,7 @@ void FUN_180092820(uint64 engine_data_structure_ptr,int engine_result_flag_ptr,i
 
 
 
-// 函数: void FUN_180092881(float engine_data_structure_ptr,longlong engine_result_flag_ptr,float engine_comparison_params)
+// void FUN_180092881(float engine_data_structure_ptr,longlong engine_result_flag_ptr,float engine_comparison_params)
 void FUN_180092881(float engine_data_structure_ptr,longlong engine_result_flag_ptr,float engine_comparison_params)
 
 {
@@ -54585,7 +54580,7 @@ void FUN_180092881(float engine_data_structure_ptr,longlong engine_result_flag_p
 
 
 
-// 函数: void FUN_180092891(uint64 engine_data_structure_ptr,longlong engine_result_flag_ptr)
+// void FUN_180092891(uint64 engine_data_structure_ptr,longlong engine_result_flag_ptr)
 void FUN_180092891(uint64 engine_data_structure_ptr,longlong engine_result_flag_ptr)
 
 {
@@ -54619,7 +54614,7 @@ void FUN_180092891(uint64 engine_data_structure_ptr,longlong engine_result_flag_
 
 
 
-// 函数: void FUN_1800928fb(float engine_data_structure_ptr,uint64 engine_result_flag_ptr,float engine_comparison_params)
+// void FUN_1800928fb(float engine_data_structure_ptr,uint64 engine_result_flag_ptr,float engine_comparison_params)
 void FUN_1800928fb(float engine_data_structure_ptr,uint64 engine_result_flag_ptr,float engine_comparison_params)
 
 {
@@ -54636,7 +54631,7 @@ void FUN_1800928fb(float engine_data_structure_ptr,uint64 engine_result_flag_ptr
 
 
 
-// 函数: void FUN_180092900(float engine_data_structure_ptr,uint64 engine_result_flag_ptr,float engine_comparison_params)
+// void FUN_180092900(float engine_data_structure_ptr,uint64 engine_result_flag_ptr,float engine_comparison_params)
 void FUN_180092900(float engine_data_structure_ptr,uint64 engine_result_flag_ptr,float engine_comparison_params)
 
 {
@@ -54655,7 +54650,7 @@ void FUN_180092900(float engine_data_structure_ptr,uint64 engine_result_flag_ptr
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180092940(longlong engine_data_structure_ptr,char engine_result_flag_ptr)
+// void FUN_180092940(longlong engine_data_structure_ptr,char engine_result_flag_ptr)
 void FUN_180092940(longlong engine_data_structure_ptr,char engine_result_flag_ptr)
 
 {
@@ -54718,7 +54713,7 @@ float FUN_1800929a0(float *engine_data_structure_ptr,float *engine_result_flag_p
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180092b20(longlong engine_data_structure_ptr,longlong engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
+// void FUN_180092b20(longlong engine_data_structure_ptr,longlong engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
 void FUN_180092b20(longlong engine_data_structure_ptr,longlong engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
 
 {
@@ -55324,7 +55319,7 @@ longlong * FUN_180093710(uint64 engine_data_structure_ptr,longlong *engine_resul
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180093780(uint64 engine_data_structure_ptr,int engine_result_flag_ptr,int engine_comparison_params)
+// void FUN_180093780(uint64 engine_data_structure_ptr,int engine_result_flag_ptr,int engine_comparison_params)
 void FUN_180093780(uint64 engine_data_structure_ptr,int engine_result_flag_ptr,int engine_comparison_params)
 
 {
@@ -55384,7 +55379,7 @@ void FUN_180093780(uint64 engine_data_structure_ptr,int engine_result_flag_ptr,i
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180093950(void)
+// void FUN_180093950(void)
 void FUN_180093950(void)
 
 {
@@ -55426,7 +55421,7 @@ void FUN_180093950(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180093a20(uint64 engine_data_structure_ptr,uint64 engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
+// void FUN_180093a20(uint64 engine_data_structure_ptr,uint64 engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
 void FUN_180093a20(uint64 engine_data_structure_ptr,uint64 engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
 
 {
@@ -55464,7 +55459,7 @@ void FUN_180093a20(uint64 engine_data_structure_ptr,uint64 engine_result_flag_pt
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180093af0(longlong engine_data_structure_ptr)
+// void FUN_180093af0(longlong engine_data_structure_ptr)
 void FUN_180093af0(longlong engine_data_structure_ptr)
 
 {
@@ -55510,7 +55505,7 @@ void FUN_180093af0(longlong engine_data_structure_ptr)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180093bf0(longlong *engine_data_structure_ptr,uint64_t *engine_result_flag_ptr)
+// void FUN_180093bf0(longlong *engine_data_structure_ptr,uint64_t *engine_result_flag_ptr)
 void FUN_180093bf0(longlong *engine_data_structure_ptr,uint64_t *engine_result_flag_ptr)
 
 {
@@ -55612,7 +55607,7 @@ LAB_180093cb6:
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180093d90(longlong *engine_data_structure_ptr,uint64 engine_result_flag_ptr)
+// void FUN_180093d90(longlong *engine_data_structure_ptr,uint64 engine_result_flag_ptr)
 void FUN_180093d90(longlong *engine_data_structure_ptr,uint64 engine_result_flag_ptr)
 
 {
@@ -55767,7 +55762,7 @@ FUN_1800940b0(uint8_t *engine_data_structure_ptr,uint8_t *engine_result_flag_ptr
 
 
 
-// 函数: void FUN_180094120(float *engine_data_structure_ptr,float *engine_result_flag_ptr)
+// void FUN_180094120(float *engine_data_structure_ptr,float *engine_result_flag_ptr)
 void FUN_180094120(float *engine_data_structure_ptr,float *engine_result_flag_ptr)
 
 {
@@ -55956,7 +55951,7 @@ float * FUN_1800946d0(float *engine_data_structure_ptr,float *engine_result_flag
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180094b30(longlong engine_data_structure_ptr,longlong engine_result_flag_ptr)
+// void FUN_180094b30(longlong engine_data_structure_ptr,longlong engine_result_flag_ptr)
 void FUN_180094b30(longlong engine_data_structure_ptr,longlong engine_result_flag_ptr)
 
 {
@@ -56040,7 +56035,7 @@ longlong FUN_180094c20(longlong engine_data_structure_ptr)
 
 
 
-// 函数: void FUN_180094d40(longlong *engine_data_structure_ptr,uint64 engine_result_flag_ptr)
+// void FUN_180094d40(longlong *engine_data_structure_ptr,uint64 engine_result_flag_ptr)
 void FUN_180094d40(longlong *engine_data_structure_ptr,uint64 engine_result_flag_ptr)
 
 {
@@ -56104,7 +56099,7 @@ void FUN_180094d40(longlong *engine_data_structure_ptr,uint64 engine_result_flag
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180094e80(uint64 engine_data_structure_ptr,uint64 engine_result_flag_ptr,longlong engine_comparison_params)
+// void FUN_180094e80(uint64 engine_data_structure_ptr,uint64 engine_result_flag_ptr,longlong engine_comparison_params)
 void FUN_180094e80(uint64 engine_data_structure_ptr,uint64 engine_result_flag_ptr,longlong engine_comparison_params)
 
 {
@@ -56116,7 +56111,7 @@ void FUN_180094e80(uint64 engine_data_structure_ptr,uint64 engine_result_flag_pt
   uint64 engine_stack_value_a0;
   uint64 uStack_98;
   void* engine_stack_pointer_88;
-  uint8* puStack_80;
+  uint8* pengine_stack_value_80;
   uint32 engine_stack_value_78;
   uint8 aengine_stack_value_70 [72];
   ulonglong uStack_28;
@@ -56126,7 +56121,7 @@ void FUN_180094e80(uint64 engine_data_structure_ptr,uint64 engine_result_flag_pt
   uStack_28 = _engine_data_a8 ^ (ulonglong)auStack_d8;
   uStack_a8 = 0;
   engine_stack_pointer_88 = &engine_global_config_data;
-  puStack_80 = aengine_stack_value_70;
+  pengine_stack_value_80 = aengine_stack_value_70;
   engine_stack_value_78 = 0;
   aengine_stack_value_70[0] = 0;
   uStack_98 = engine_result_flag_ptr;
@@ -56149,7 +56144,7 @@ void FUN_180094e80(uint64 engine_data_structure_ptr,uint64 engine_result_flag_pt
 
 
 
-// 函数: void engine_create_controller_system(longlong engine_data_structure_ptr,uint engine_result_flag_ptr)
+// void engine_create_controller_system(longlong engine_data_structure_ptr,uint engine_result_flag_ptr)
 void engine_create_controller_system(longlong engine_data_structure_ptr,uint engine_result_flag_ptr)
 
 {
@@ -56165,7 +56160,7 @@ void engine_create_controller_system(longlong engine_data_structure_ptr,uint eng
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180095000(uint64 engine_data_structure_ptr,uint64 engine_result_flag_ptr,longlong engine_comparison_params,uint8_t engine_system_parameter_4)
+// void FUN_180095000(uint64 engine_data_structure_ptr,uint64 engine_result_flag_ptr,longlong engine_comparison_params,uint8_t engine_system_parameter_4)
 void FUN_180095000(uint64 engine_data_structure_ptr,uint64 engine_result_flag_ptr,longlong engine_comparison_params,uint8_t engine_system_parameter_4)
 
 {
@@ -56176,7 +56171,7 @@ void FUN_180095000(uint64 engine_data_structure_ptr,uint64 engine_result_flag_pt
   uint64 engine_stack_value_a0;
   uint64 uStack_98;
   void* engine_stack_pointer_88;
-  uint8* puStack_80;
+  uint8* pengine_stack_value_80;
   uint32 engine_stack_value_78;
   uint8 aengine_stack_value_70 [72];
   ulonglong uStack_28;
@@ -56186,7 +56181,7 @@ void FUN_180095000(uint64 engine_data_structure_ptr,uint64 engine_result_flag_pt
   uStack_28 = _engine_data_a8 ^ (ulonglong)auStack_c8;
   uStack_a8 = 0;
   engine_stack_pointer_88 = &engine_global_config_data;
-  puStack_80 = aengine_stack_value_70;
+  pengine_stack_value_80 = aengine_stack_value_70;
   engine_stack_value_78 = 0;
   aengine_stack_value_70[0] = 0;
   uStack_98 = engine_result_flag_ptr;
@@ -56208,7 +56203,7 @@ void FUN_180095000(uint64 engine_data_structure_ptr,uint64 engine_result_flag_pt
 
 
 
-// 函数: void FUN_180095100(longlong *engine_data_structure_ptr,uint64 engine_result_flag_ptr,uint64 engine_comparison_params)
+// void FUN_180095100(longlong *engine_data_structure_ptr,uint64 engine_result_flag_ptr,uint64 engine_comparison_params)
 void FUN_180095100(longlong *engine_data_structure_ptr,uint64 engine_result_flag_ptr,uint64 engine_comparison_params)
 
 {
@@ -56315,7 +56310,7 @@ longlong FUN_180095280(longlong engine_data_structure_ptr,longlong engine_result
 
 
 
-// 函数: void FUN_1800952a1(longlong engine_data_structure_ptr,longlong engine_result_flag_ptr)
+// void FUN_1800952a1(longlong engine_data_structure_ptr,longlong engine_result_flag_ptr)
 void FUN_1800952a1(longlong engine_data_structure_ptr,longlong engine_result_flag_ptr)
 
 {
@@ -56356,7 +56351,7 @@ void FUN_1800952a1(longlong engine_data_structure_ptr,longlong engine_result_fla
 
 
 
-// 函数: void FUN_1800952b5(uint64 engine_data_structure_ptr,longlong engine_result_flag_ptr)
+// void FUN_1800952b5(uint64 engine_data_structure_ptr,longlong engine_result_flag_ptr)
 void FUN_1800952b5(uint64 engine_data_structure_ptr,longlong engine_result_flag_ptr)
 
 {
@@ -56392,7 +56387,7 @@ void FUN_1800952b5(uint64 engine_data_structure_ptr,longlong engine_result_flag_
 
 
 
-// 函数: void FUN_18009531e(longlong engine_data_structure_ptr)
+// void FUN_18009531e(longlong engine_data_structure_ptr)
 void FUN_18009531e(longlong engine_data_structure_ptr)
 
 {
@@ -56408,7 +56403,7 @@ void FUN_18009531e(longlong engine_data_structure_ptr)
 
 
 
-// 函数: void FUN_180095323(longlong engine_data_structure_ptr)
+// void FUN_180095323(longlong engine_data_structure_ptr)
 void FUN_180095323(longlong engine_data_structure_ptr)
 
 {
@@ -56457,7 +56452,7 @@ uint64_t * FUN_180095350(uint64_t *engine_data_structure_ptr,uint64 engine_resul
 
 
 
-// 函数: void FUN_180095420(longlong engine_data_structure_ptr)
+// void FUN_180095420(longlong engine_data_structure_ptr)
 void FUN_180095420(longlong engine_data_structure_ptr)
 
 {
@@ -56767,7 +56762,7 @@ LAB_1800958e8:
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180095bf0(uint64 engine_data_structure_ptr,uint32_t engine_result_flag_ptr,uint32_t engine_comparison_params)
+// void FUN_180095bf0(uint64 engine_data_structure_ptr,uint32_t engine_result_flag_ptr,uint32_t engine_comparison_params)
 void FUN_180095bf0(uint64 engine_data_structure_ptr,uint32_t engine_result_flag_ptr,uint32_t engine_comparison_params)
 
 {
@@ -56836,7 +56831,7 @@ void FUN_180095bf0(uint64 engine_data_structure_ptr,uint32_t engine_result_flag_
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180095da0(uint64 engine_data_structure_ptr,longlong engine_result_flag_ptr,longlong engine_comparison_params,char engine_system_parameter_4)
+// void FUN_180095da0(uint64 engine_data_structure_ptr,longlong engine_result_flag_ptr,longlong engine_comparison_params,char engine_system_parameter_4)
 void FUN_180095da0(uint64 engine_data_structure_ptr,longlong engine_result_flag_ptr,longlong engine_comparison_params,char engine_system_parameter_4)
 
 {
@@ -56935,7 +56930,7 @@ void FUN_180095da0(uint64 engine_data_structure_ptr,longlong engine_result_flag_
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180096040(void)
+// void FUN_180096040(void)
 void FUN_180096040(void)
 
 {
@@ -57065,7 +57060,7 @@ LAB_18009611a:
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180096240(uint64 engine_data_structure_ptr,longlong engine_result_flag_ptr,uint64_t *engine_comparison_params)
+// void FUN_180096240(uint64 engine_data_structure_ptr,longlong engine_result_flag_ptr,uint64_t *engine_comparison_params)
 void FUN_180096240(uint64 engine_data_structure_ptr,longlong engine_result_flag_ptr,uint64_t *engine_comparison_params)
 
 {
@@ -57474,7 +57469,7 @@ bool FUN_180096a80(longlong *engine_data_structure_ptr,longlong engine_result_fl
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180096b60(uint64 engine_data_structure_ptr,longlong engine_result_flag_ptr,longlong engine_comparison_params,char engine_system_parameter_4)
+// void FUN_180096b60(uint64 engine_data_structure_ptr,longlong engine_result_flag_ptr,longlong engine_comparison_params,char engine_system_parameter_4)
 void FUN_180096b60(uint64 engine_data_structure_ptr,longlong engine_result_flag_ptr,longlong engine_comparison_params,char engine_system_parameter_4)
 
 {
@@ -57727,7 +57722,7 @@ LAB_180097ca1:
 
 
 
-// 函数: void engine_call_data_transformer(void)
+// void engine_call_data_transformer(void)
 void engine_call_data_transformer(void)
 
 {
@@ -57789,7 +57784,7 @@ LAB_180098960:
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void engine_handle_render_frame(uint8_t *engine_data_structure_ptr)
+// void engine_handle_render_frame(uint8_t *engine_data_structure_ptr)
 void engine_handle_render_frame(uint8_t *engine_data_structure_ptr)
 
 {
@@ -57845,7 +57840,7 @@ void engine_handle_render_frame(uint8_t *engine_data_structure_ptr)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180098a22(void)
+// void FUN_180098a22(void)
 void FUN_180098a22(void)
 
 {
@@ -57881,7 +57876,7 @@ void FUN_180098a22(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180098abe(void)
+// void FUN_180098abe(void)
 void FUN_180098abe(void)
 
 {
@@ -57896,7 +57891,7 @@ void FUN_180098abe(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180098ae0(longlong *engine_data_structure_ptr,int engine_result_flag_ptr,int engine_comparison_params,uint64 engine_system_parameter_4)
+// void FUN_180098ae0(longlong *engine_data_structure_ptr,int engine_result_flag_ptr,int engine_comparison_params,uint64 engine_system_parameter_4)
 void FUN_180098ae0(longlong *engine_data_structure_ptr,int engine_result_flag_ptr,int engine_comparison_params,uint64 engine_system_parameter_4)
 
 {
@@ -57940,7 +57935,7 @@ void FUN_180098ae0(longlong *engine_data_structure_ptr,int engine_result_flag_pt
   longlong *plStack_98;
   longlong *plStack_90;
   uint64 engine_stack_value_88;
-  uint64 uStack_80;
+  uint64 engine_stack_value_80;
   uint64 engine_stack_value_78;
   longlong *plStack_70;
   longlong *plStack_68;
@@ -58073,7 +58068,7 @@ void FUN_180098ae0(longlong *engine_data_structure_ptr,int engine_result_flag_pt
   uStack_104 = 0;
   uStack_fc = 0;
   uStack_f8 = 1;
-  uStack_80 = 0;
+  engine_stack_value_80 = 0;
   plStack_f0 = (longlong *)0x0;
   uStack_e8 = 0xffffffff;
   uStack_e4 = 0;
@@ -58149,7 +58144,7 @@ void FUN_180098ae0(longlong *engine_data_structure_ptr,int engine_result_flag_pt
 // WARNING: Removing unreachable block (ram,0x0001800993a9)
 
 
-// 函数: void FUN_180099100(longlong engine_data_structure_ptr)
+// void FUN_180099100(longlong engine_data_structure_ptr)
 void FUN_180099100(longlong engine_data_structure_ptr)
 
 {
@@ -58325,7 +58320,7 @@ void FUN_180099100(longlong engine_data_structure_ptr)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180099430(longlong engine_data_structure_ptr,longlong engine_result_flag_ptr)
+// void FUN_180099430(longlong engine_data_structure_ptr,longlong engine_result_flag_ptr)
 void FUN_180099430(longlong engine_data_structure_ptr,longlong engine_result_flag_ptr)
 
 {
@@ -58452,7 +58447,7 @@ void FUN_180099430(longlong engine_data_structure_ptr,longlong engine_result_fla
       uStack_270 = 0;
       uStack_26c = 0;
       plStack_278 = (longlong *)0x10000010001;
-      pcStack_2d8 = engine_update_game_state;
+      pcStack_2d8 = void engine_update_game_state(void);
       engine_call_framework_initializer(auStack_238,8,0x10,&engine_calculate_frame_time);
       plStack_2b0 = (longlong *)0x0;
       puStack_2d0 = auStack_1b8;
@@ -58784,7 +58779,7 @@ void FUN_180099430(longlong engine_data_structure_ptr,longlong engine_result_fla
 
 
 
-// 函数: void FUN_180099f60(uint64 engine_data_structure_ptr)
+// void FUN_180099f60(uint64 engine_data_structure_ptr)
 void FUN_180099f60(uint64 engine_data_structure_ptr)
 
 {
@@ -58878,7 +58873,7 @@ uint8_t FUN_18009a080(uint64 engine_data_structure_ptr,longlong engine_result_fl
 
 
 
-// 函数: void FUN_18009a1e0(void)
+// void FUN_18009a1e0(void)
 void FUN_18009a1e0(void)
 
 {
@@ -58889,7 +58884,7 @@ void FUN_18009a1e0(void)
 
 
 
-// 函数: void FUN_18009a4b0(uint64 engine_data_structure_ptr,uint64 engine_result_flag_ptr,longlong engine_comparison_params,longlong engine_system_parameter_4,
+// void FUN_18009a4b0(uint64 engine_data_structure_ptr,uint64 engine_result_flag_ptr,longlong engine_comparison_params,longlong engine_system_parameter_4,
 void FUN_18009a4b0(uint64 engine_data_structure_ptr,uint64 engine_result_flag_ptr,longlong engine_comparison_params,longlong engine_system_parameter_4,
                   longlong param_5)
 
@@ -59049,7 +59044,7 @@ void FUN_18009a4b0(uint64 engine_data_structure_ptr,uint64 engine_result_flag_pt
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_18009a7c0(uint64 engine_data_structure_ptr,uint64_t *engine_result_flag_ptr,longlong engine_comparison_params,longlong *engine_system_parameter_4,
+// void FUN_18009a7c0(uint64 engine_data_structure_ptr,uint64_t *engine_result_flag_ptr,longlong engine_comparison_params,longlong *engine_system_parameter_4,
 void FUN_18009a7c0(uint64 engine_data_structure_ptr,uint64_t *engine_result_flag_ptr,longlong engine_comparison_params,longlong *engine_system_parameter_4,
                   int param_5)
 
@@ -59083,7 +59078,7 @@ void FUN_18009a7c0(uint64 engine_data_structure_ptr,uint64_t *engine_result_flag
   void* engine_stack_pointer_98;
   uint uStack_90;
   ulonglong engine_stack_value_88;
-  void* puStack_80;
+  void* pengine_stack_value_80;
   void* engine_stack_pointer_78;
   uint engine_stack_value_70;
   uint64 engine_stack_value_60;
@@ -59091,9 +59086,9 @@ void FUN_18009a7c0(uint64 engine_data_structure_ptr,uint64_t *engine_result_flag
   
   engine_stack_value_60 = 0xfffffffffffffffe;
   plStackX_20 = engine_system_parameter_4;
-  engine_call_data_writer(&puStack_80,engine_system_parameter_4 + 4);
+  engine_call_data_writer(&pengine_stack_value_80,engine_system_parameter_4 + 4);
   engine_temp_int3 = engine_stack_value_70 + 2;
-  engine_call_array_builder(&puStack_80,engine_temp_int3);
+  engine_call_array_builder(&pengine_stack_value_80,engine_temp_int3);
   *(uint16*)(engine_stack_pointer_78 + engine_stack_value_70) = 0x2f2f;
   *(uint8*)((longlong)(engine_stack_pointer_78 + engine_stack_value_70) + 2) = 0;
   puVar9 = &engine_data_73;
@@ -59133,7 +59128,7 @@ LAB_18009a8d1:
   engine_data_pointer_6 = (void*)engine_result_flag_ptr[1];
   do {
     if (engine_data_pointer_6 == engine_result_flag_ptr) {
-      puStack_80 = &engine_system_context_data;
+      pengine_stack_value_80 = &engine_system_context_data;
       if (engine_stack_pointer_78 == (void*)0x0) {
         return;
       }
@@ -59470,7 +59465,7 @@ float FUN_18009aee2(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_18009af00(uint64_t *engine_data_structure_ptr)
+// void FUN_18009af00(uint64_t *engine_data_structure_ptr)
 void FUN_18009af00(uint64_t *engine_data_structure_ptr)
 
 {
@@ -59649,7 +59644,7 @@ void FUN_18009af00(uint64_t *engine_data_structure_ptr)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_18009b10b(longlong engine_data_structure_ptr)
+// void FUN_18009b10b(longlong engine_data_structure_ptr)
 void FUN_18009b10b(longlong engine_data_structure_ptr)
 
 {
@@ -59718,7 +59713,7 @@ void FUN_18009b10b(longlong engine_data_structure_ptr)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_18009b13a(void)
+// void FUN_18009b13a(void)
 void FUN_18009b13a(void)
 
 {
@@ -59753,7 +59748,7 @@ void FUN_18009b13a(void)
 
 
 
-// 函数: void FUN_18009b19b(longlong engine_data_structure_ptr)
+// void FUN_18009b19b(longlong engine_data_structure_ptr)
 void FUN_18009b19b(longlong engine_data_structure_ptr)
 
 {
@@ -59792,7 +59787,7 @@ void FUN_18009b19b(longlong engine_data_structure_ptr)
 
 
 
-// 函数: void FUN_18009b216(void)
+// void FUN_18009b216(void)
 void FUN_18009b216(void)
 
 {
@@ -59804,7 +59799,7 @@ void FUN_18009b216(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_18009b220(uint32_t *engine_data_structure_ptr)
+// void FUN_18009b220(uint32_t *engine_data_structure_ptr)
 void FUN_18009b220(uint32_t *engine_data_structure_ptr)
 
 {
@@ -59887,7 +59882,7 @@ void FUN_18009b220(uint32_t *engine_data_structure_ptr)
 
 
 
-// 函数: void FUN_18009b327(void)
+// void FUN_18009b327(void)
 void FUN_18009b327(void)
 
 {
@@ -59917,7 +59912,7 @@ void FUN_18009b327(void)
 
 
 
-// 函数: void FUN_18009b386(void)
+// void FUN_18009b386(void)
 void FUN_18009b386(void)
 
 {
@@ -61606,7 +61601,7 @@ FUN_18009c68a:
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_18009c68a(void)
+// void FUN_18009c68a(void)
 void FUN_18009c68a(void)
 
 {
@@ -61626,7 +61621,7 @@ void FUN_18009c68a(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_18009c6a1(void)
+// void FUN_18009c6a1(void)
 void FUN_18009c6a1(void)
 
 {
@@ -61646,7 +61641,7 @@ void FUN_18009c6a1(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_18009c6a5(void)
+// void FUN_18009c6a5(void)
 void FUN_18009c6a5(void)
 
 {
@@ -61664,7 +61659,7 @@ void FUN_18009c6a5(void)
 
 
 
-// 函数: void FUN_18009c6e7(void)
+// void FUN_18009c6e7(void)
 void FUN_18009c6e7(void)
 
 {
@@ -61678,7 +61673,7 @@ void FUN_18009c6e7(void)
 
 
 
-// 函数: void FUN_18009c700(int *engine_data_structure_ptr,int *engine_result_flag_ptr,uint64_t *engine_comparison_params)
+// void FUN_18009c700(int *engine_data_structure_ptr,int *engine_result_flag_ptr,uint64_t *engine_comparison_params)
 void FUN_18009c700(int *engine_data_structure_ptr,int *engine_result_flag_ptr,uint64_t *engine_comparison_params)
 
 {
@@ -61768,7 +61763,7 @@ LAB_18009c82a:
 
 
 
-// 函数: void FUN_18009c718(longlong engine_data_structure_ptr,int *engine_result_flag_ptr,uint64_t *engine_comparison_params)
+// void FUN_18009c718(longlong engine_data_structure_ptr,int *engine_result_flag_ptr,uint64_t *engine_comparison_params)
 void FUN_18009c718(longlong engine_data_structure_ptr,int *engine_result_flag_ptr,uint64_t *engine_comparison_params)
 
 {
@@ -61856,7 +61851,7 @@ LAB_18009c82a:
 
 
 
-// 函数: void FUN_18009c76a(uint64 engine_data_structure_ptr)
+// void FUN_18009c76a(uint64 engine_data_structure_ptr)
 void FUN_18009c76a(uint64 engine_data_structure_ptr)
 
 {
@@ -61929,7 +61924,7 @@ LAB_18009c810:
 
 
 
-// 函数: engine_no_operation_handler
+// engine_no_operation_handler
 // 功能: 空操作处理器，用于占位或默认处理
 // 参数: 无
 // 返回值: 无
@@ -61943,7 +61938,7 @@ void engine_no_operation_handler(void)
 
 
 
-// 函数: engine_null_operation_handler
+// engine_null_operation_handler
 // 功能: 空操作处理器，用于占位或默认处理
 // 参数: 无
 // 返回值: 无
@@ -61957,7 +61952,7 @@ void engine_null_operation_handler(void)
 
 
 
-// 函数: engine_trigger_system_cleanup
+// engine_trigger_system_cleanup
 // 功能: 触发系统清理操作
 // 参数: 无
 // 返回值: 无
@@ -61974,7 +61969,7 @@ void engine_trigger_system_cleanup(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: engine_process_structure_validation
+// engine_process_structure_validation
 // 功能: 处理结构体验证操作，用于验证数据结构的完整性和一致性
 // 参数:
 //   engine_structure_ptr - 主数据结构指针
@@ -62026,7 +62021,7 @@ LAB_18009c8d4:
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-// 函数: engine_search_data_structure
+// engine_search_data_structure
 // 功能: 在数据结构中搜索特定元素，返回搜索结果
 // 参数:
 //   engine_structure_array - 数据结构数组指针
@@ -62146,7 +62141,7 @@ LAB_18009ca70:
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: engine_process_data_structure_comparison
+// engine_process_data_structure_comparison
 // 功能: 处理数据结构比较操作，用于比较两个数据结构的内容
 // 参数:
 //   engine_structure_ptr - 主数据结构指针
