@@ -6303,7 +6303,7 @@ void ProcessSystemConfigurationUpdate(int configIndex, int configSize)
   longlong threadContext;
   undefined8 stackParameter;
   
-  iVar2 = param_1 + 1;
+  newSize = configIndex + 1;
   if (currentConfigValue - configSize < newSize) {
     iVar1 = (int)((float)(in_EAX - param_2) * 1.5);
     if (iVar2 <= iVar1) {
