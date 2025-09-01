@@ -86119,7 +86119,7 @@ void InitializeSystemDataStructureBN(void)
 void InitializeSystemDataStructureBN(void)
 
 {
-  _DAT_180bf9e10 = &SystemDataStructure;
+  SystemDataPointer006 = &SystemDataStructure;
   return;
 }
 
