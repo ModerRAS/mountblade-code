@@ -4590,7 +4590,7 @@ int ProcessNetworkPacketComplete(longlong connectionContext,longlong packetData,
   connectionOffset58 = *(NetworkStatus *)(connectionContext + 0x38);
   connectionOffset5c = *(NetworkStatus *)(connectionContext + 0x3c);
   connectionOffset60 = *(NetworkHandle *)(connectionContext + 0x40);
-  packetProcessingOffset = ProcessNetworkBufferData(packetData,dataSize,&UNK_180982670);
+  packetProcessingOffset = ProcessNetworkBufferData(packetData,dataSize,&NetworkPacketCacheBuffer);
   dataProcessedSize = ProcessNetworkBufferData(packetProcessingOffset + packetData,dataSize - packetProcessingOffset,&g_NetworkBufferDataTemplate);
   packetProcessingOffset = packetProcessingOffset + dataProcessedSize;
   dataProcessedSize = ProcessNetworkHandleInitialization(packetProcessingOffset + packetData,dataSize - packetProcessingOffset,&connectionOffset16);
@@ -4617,7 +4617,7 @@ int ProcessNetworkPacketTypeL(longlong connectionContext,longlong packetData,int
   
   primaryNetworkFlag = *(NetworkStatus *)(connectionContext + 0x10);
   secondaryNetworkFlag = *(NetworkStatus *)(connectionContext + 0x14);
-  networkStatus3 = ProcessNetworkBufferData(packetData,dataSize,&UNK_180982570);
+  networkStatus3 = ProcessNetworkBufferData(packetData,dataSize,&NetworkPacketFilterBuffer);
   networkStatus4 = ProcessNetworkBufferData(packetData + networkStatus3,dataSize - networkStatus3,&g_NetworkBufferDataTemplate);
   networkStatus3 = networkStatus3 + networkStatus4;
   networkStatus4 = ProcessNetworkBufferData(networkStatus3 + packetData,dataSize - networkStatus3,connectionContext + 0x18);
@@ -4709,7 +4709,7 @@ int ProcessNetworkPacketTypeN(longlong connectionContext,longlong packetData,int
   uStack_14 = *(NetworkStatus *)(connectionContext + 0x38);
   uStack_10 = *(NetworkStatus *)(connectionContext + 0x3c);
   uStack_c = *(NetworkStatus *)(connectionContext + 0x40);
-  networkStatus3 = ProcessNetworkBufferData(packetData,dataSize,&UNK_180982460);
+  networkStatus3 = ProcessNetworkBufferData(packetData,dataSize,&NetworkConnectionContextData);
   networkStatus4 = NetworkProcessBufferData(networkStatus3 + packetData,dataSize - networkStatus3,&g_NetworkBufferDataTemplate);
   networkStatus3 = networkStatus3 + networkStatus4;
   networkStatus4 = ProcessNetworkDataValidation(networkStatus3 + packetData,dataSize - networkStatus3,secondaryNetworkFlag);
@@ -4740,7 +4740,7 @@ int ProcessNetworkPacketTypeO(longlong connectionContext,longlong packetData,int
   
   secondaryNetworkFlag = *(NetworkStatus *)(connectionContext + 0x10);
   primaryNetworkFlag = *(NetworkStatus *)(connectionContext + 0x14);
-  networkStatus3 = ProcessNetworkBufferData(packetData,dataSize,&UNK_1809824e8);
+  networkStatus3 = ProcessNetworkBufferData(packetData,dataSize,&NetworkConnectionSecurityContext);
   networkStatus4 = ProcessNetworkBufferData(packetData + networkStatus3,dataSize - networkStatus3,&g_NetworkBufferDataTemplate);
   networkStatus3 = networkStatus3 + networkStatus4;
   networkStatus4 = ProcessNetworkDataValidation(networkStatus3 + packetData,dataSize - networkStatus3,secondaryNetworkFlag);
@@ -7626,7 +7626,7 @@ void ProcessNetworkConnectionStatusAndPacketTransfer(ulonglong connectionContext
     ProcessNetworkAddressValidation(networkDataBuffer + (networkValidationStatus + networkHandleStatus),0x100 - (networkValidationStatus + networkHandleStatus),param_4);
     networkErrorBuffer = networkDataBuffer;
                     // WARNING: Subroutine does not return
-    LogNetworkConnectionError(0x1f,0xb,connectionContext,&UNK_180982570);
+    LogNetworkConnectionError(0x1f,0xb,connectionContext,&NetworkPacketFilterBuffer);
   }
   networkConnectionHandle = 0;
   networkHandleStatus = NetworkConnectionIdInitialize(connectionContext & 0xffffffff,&networkConnectionId);
@@ -9742,7 +9742,7 @@ void ProcessNetworkConnectionDataValidationAndProcessing(NetworkHandle connectio
     NetworkErrorHandler(auStack_148 + (iVar5 + iVar6),0x100 - (iVar5 + iVar6),param_4);
     puStack_178 = auStack_148;
                     // WARNING: Subroutine does not return
-    LogNetworkConnectionError(0x1f,0xb,connectionContext,&UNK_180982460);
+    LogNetworkConnectionError(0x1f,0xb,connectionContext,&NetworkConnectionContextData);
   }
   uStack_168 = 0;
   iVar5 = NetworkConnectionIdInitialize(connectionContext,&lStack_160);
@@ -20457,7 +20457,7 @@ NetworkHandle ProcessNetworkConnectionData(longlong connectionContext, longlong 
     if (plVar4 != (longlong *)0x0) {
       plVar5 = plVar4;
     }
-    FUN_180851840(plVar5[2]);
+    ValidateNetworkConnectionStatus(plVar5[2]);
   }
   networkResult = FUN_18073cdf0(*(NetworkHandle *)(packetData + 0x78),0);
   if ((int)networkResult == 0) {
@@ -20489,7 +20489,7 @@ NetworkHandle ProcessNetworkConnectionData(longlong connectionContext, longlong 
            (networkResult = func_0x0001808c1de0(*(NetworkHandle *)(connectionContext + 0x10),packetData), (int)networkResult == 0)))
           ) && ((networkResult = func_0x000180853810(*(NetworkHandle *)(connectionContext + 0x10),packetData),
                 (int)networkResult == 0 &&
-                (networkResult = FUN_180853560(*(NetworkHandle *)(connectionContext + 8),packetData), (int)networkResult == 0)))) {
+                (networkResult = SendNetworkPacket(*(NetworkHandle *)(connectionContext + 8),packetData), (int)networkResult == 0)))) {
         dataPointer1 = (longlong *)(packetData + 0xb0);
         while (((longlong *)*dataPointer1 != dataPointer1 || (*(longlong **)(packetData + 0xb8) != dataPointer1))) {
           networkResult = FUN_1808c4370(((longlong *)*dataPointer1)[2],packetData,0);
@@ -20636,7 +20636,7 @@ NetworkHandle FreeNetworkConnectionResources(longlong connectionContext)
         if ((int)tertiaryNetworkFlag != 0) {
           return tertiaryNetworkFlag;
         }
-        tertiaryNetworkFlag = FUN_180853790(&plocalContext);
+        tertiaryNetworkFlag = ReceiveNetworkPacket(&plocalContext);
         if ((int)tertiaryNetworkFlag != 0) {
           return tertiaryNetworkFlag;
         }
@@ -20720,7 +20720,7 @@ NetworkHandle ProcessNetworkDataTransfer(longlong connectionContext, NetworkHand
       if ((int)tertiaryNetworkFlag != 0) {
         return tertiaryNetworkFlag;
       }
-      tertiaryNetworkFlag = FUN_180853790(&stack0x00000020);
+      tertiaryNetworkFlag = ReceiveNetworkPacket(&stack0x00000020);
       if ((int)tertiaryNetworkFlag != 0) {
         return tertiaryNetworkFlag;
       }
@@ -21452,7 +21452,7 @@ LAB_180852302:
          (((*(int *)(lVar6 + 0x5c) == 0 && (*(int *)(lVar6 + 0x60) == 0)) &&
           (*(int *)(lVar6 + 100) == 0)))) goto FUN_180852aaa;
       primaryNetworkFlag = connectionContext[0xe];
-      iVar5 = FUN_180853470(connectionContext);
+      iVar5 = CloseNetworkConnectionHandle(connectionContext);
       if (iVar5 != 0) goto FUN_180852aaa;
       connectionContext[0xe] = primaryNetworkFlag;
       ValidateNetworkConnectionState(connectionContext);
@@ -21946,7 +21946,7 @@ LAB_180852302:
          (((*(int *)(lVar4 + 0x5c) == 0 && (*(int *)(lVar4 + 0x60) == 0)) &&
           (*(int *)(lVar4 + 100) == 0)))) goto LAB_180852a9a;
       secondaryNetworkFlag3 = unaff_R15[0xe];
-      networkStatus3 = FUN_180853470();
+      networkStatus3 = CloseNetworkConnectionHandle();
       if (networkStatus3 != 0) goto LAB_180852a9a;
       unaff_R15[0xe] = secondaryNetworkFlag3;
       ValidateNetworkConnectionState();
@@ -23173,14 +23173,14 @@ NetworkHandle FUN_1808533d0(longlong connectionContext,int *packetData)
 
 
 
-NetworkHandle FUN_180853470(longlong connectionContext)
+NetworkHandle CloseNetworkConnectionHandle(longlong connectionContext)
 
 {
   longlong lVar1;
   NetworkHandle secondaryNetworkFlag;
   
   lVar1 = *(longlong *)(connectionContext + 0x60);
-  secondaryNetworkFlag = FUN_180851840();
+  secondaryNetworkFlag = ValidateNetworkConnectionStatus();
   if ((int)secondaryNetworkFlag == 0) {
     if ((lVar1 != 0) &&
        (secondaryNetworkFlag = FUN_1808c19d0(*(NetworkHandle *)(connectionContext + 0x38),lVar1), (int)secondaryNetworkFlag != 0)) {
@@ -23195,7 +23195,7 @@ NetworkHandle FUN_180853470(longlong connectionContext)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-longlong * FUN_180853560(longlong *connectionContext,NetworkHandle *packetData)
+longlong * SendNetworkPacket(longlong *connectionContext,NetworkHandle *packetData)
 
 {
   longlong lVar1;
@@ -23316,7 +23316,7 @@ LAB_180853768:
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-NetworkHandle FUN_180853790(longlong *connectionContext)
+NetworkHandle ReceiveNetworkPacket(longlong *connectionContext)
 
 {
   longlong *plVar1;
