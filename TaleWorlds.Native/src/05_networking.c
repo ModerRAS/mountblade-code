@@ -6185,20 +6185,29 @@ LAB_1808469dd:
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180846a90(ulonglong connectionContext,NetworkStatus *packetData)
-void FUN_180846a90(ulonglong connectionContext,NetworkStatus *packetData)
+/**
+ * @brief 处理网络连接数据操作
+ * 
+ * 该函数负责处理网络连接的数据操作，包括数据验证、
+ * 连接状态检查、安全守卫验证等。主要用于网络连接的数据处理。
+ * 
+ * @param connectionContext 网络连接上下文指针
+ * @param packetData 数据包数据指针
+ * @return void
+ */
+void ProcessNetworkConnectionData(ulonglong connectionContext,NetworkStatus *packetData)
 
 {
   int networkStatus1;
   NetworkStatus secondaryNetworkFlag;
-  NetworkByte auStack_178 [32];
-  NetworkByte *puStack_158;
-  NetworkHandle uStack_148;
-  NetworkHandle uStack_140;
-  longlong lStack_138;
-  longlong lStack_130;
-  NetworkByte auStack_128 [256];
-  ulonglong uStack_28;
+  NetworkByte securityBuffer [32];
+  NetworkByte *packetBufferPointer;
+  NetworkHandle connectionHandle;
+  NetworkHandle connectionId;
+  longlong connectionContextData;
+  longlong connectionFlags;
+  NetworkByte networkStackBuffer [256];
+  ulonglong securityGuardValue;
   
   uStack_28 = NetworkSecurityGuardValue ^ (ulonglong)auStack_178;
   if (packetData == (NetworkStatus *)0x0) {
