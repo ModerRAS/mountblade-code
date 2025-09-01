@@ -3283,20 +3283,30 @@ uint8_t SystemMemoryFlagKernel;
  * @param SystemContext 系统上下文，包含系统相关的状态信息
  * @return 无返回值
  */
+/**
+ * @brief 处理游戏数据对象
+ * 
+ * 该函数负责处理游戏数据对象，包括对象的验证、检索和处理
+ * 主要用于游戏对象的管理和状态更新
+ * 
+ * @param GameContext 游戏上下文，包含游戏相关的状态信息
+ * @param SystemContext 系统上下文，包含系统相关的状态信息
+ * @return 无返回值
+ */
 void ProcessGameDataObjects(int64_t GameContext, int64_t SystemContext)
 
 {
-  uint8_t ObjectValidationResult;
-  int ProcessingStatus;
-  int64_t CurrentObjectPointer;
-  int ProcessedObjectCount;
-  uint8_t ObjectMetadataBuffer[32];
-  int64_t ContextHandles[2];
-  uint8_t *GameDataList;
-  int ListIterator;
-  uint32_t MaximumItems;
-  uint8_t ObjectProcessingBuffer[512];
-  uint64_t SecurityAccessToken;
+  uint8_t objectValidationStatus;
+  int operationProcessingStatus;
+  int64_t currentObjectDataPointer;
+  int totalProcessedObjects;
+  uint8_t objectMetadataBuffer[32];
+  int64_t systemContextHandles[2];
+  uint8_t *gameObjectDataList;
+  int listIterationIndex;
+  uint32_t maximumAllowedItems;
+  uint8_t objectProcessingWorkspace[512];
+  uint64_t securityAccessKey;
   
   SecurityAccessToken = SecurityEncryptionKey ^ (uint64_t)ObjectMetadataBuffer;
   ProcessingStatus = GetContextHandles(*(uint32_t *)(GameContext + 0x10), ContextHandles);
@@ -19829,8 +19839,8 @@ uint64_t ProcessResourceDataB(void)
   uint64_t SecurityHashValue;
   int64_t SystemContextPointer;
   uint64_t MemorySize;
-  char in_stack_00000090;
-  uint in_stack_00000098;
+  char SecurityValidationValue;
+  uint HashValidationValue;
   
   if (*(int *)(InputRAX + 0x18) != 0) {
     return 0x1c;
@@ -19869,17 +19879,17 @@ LAB_18089b91c:
       LoopIncrement = CalculateResourceHash(*ResourceContextPointer,&SecurityValidationStack,1,1,0);
     }
     else {
-      in_stack_00000098 = 0;
+      HashValidationValue = 0;
       LoopIncrement = ValidateResourceAccess(*ResourceContextPointer,&HashValidationStack);
       if (LoopIncrement == 0) {
-        if ((uint64_t)in_stack_00000098 + 1 <= (uint64_t)ResourceContextPointer[2]) goto LAB_18089b91c;
+        if ((uint64_t)HashValidationValue + 1 <= (uint64_t)ResourceContextPointer[2]) goto LAB_18089b91c;
         LoopIncrement = 0x11;
       }
     }
     ContextValidationResult = 0;
     if (LoopIncrement == 0) {
-      ContextValidationResult = (uint)(in_stack_00000090 != '\0');
-      ValidationResult = (uint)(in_stack_00000090 == '\0');
+      ContextValidationResult = (uint)(SecurityValidationValue != '\0');
+      ValidationResult = (uint)(SecurityValidationValue == '\0');
       LoopIncrement = 0;
     }
     if (LoopIncrement != 0) {
@@ -20000,8 +20010,8 @@ uint64_t ProcessResourceDataC(void)
   uint64_t SecurityHashValue;
   int64_t SystemContextPointer;
   uint64_t MemorySize;
-  char in_stack_00000090;
-  uint in_stack_00000098;
+  char SecurityValidationValue;
+  uint HashValidationValue;
   
   ValidationResult = ReadResourceData(*ResourceContextPointer,SystemContextPointer + 0xb0,4);
   if (ValidationResult != 0) {
@@ -20023,17 +20033,17 @@ LAB_18089b91c:
       LoopIncrement = CalculateResourceHash(*ResourceContextPointer,&SecurityValidationStack,1,1,0);
     }
     else {
-      in_stack_00000098 = 0;
+      HashValidationValue = 0;
       LoopIncrement = ValidateResourceAccess(*ResourceContextPointer,&HashValidationStack);
       if (LoopIncrement == 0) {
-        if ((uint64_t)in_stack_00000098 + 1 <= (uint64_t)ResourceContextPointer[2]) goto LAB_18089b91c;
+        if ((uint64_t)HashValidationValue + 1 <= (uint64_t)ResourceContextPointer[2]) goto LAB_18089b91c;
         LoopIncrement = 0x11;
       }
     }
     ContextValidationResult = 0;
     if (LoopIncrement == 0) {
-      ContextValidationResult = (uint)(in_stack_00000090 != '\0');
-      ValidationResult = (uint)(in_stack_00000090 == '\0');
+      ContextValidationResult = (uint)(SecurityValidationValue != '\0');
+      ValidationResult = (uint)(SecurityValidationValue == '\0');
       LoopIncrement = 0;
     }
     if (LoopIncrement != 0) {
@@ -20154,8 +20164,8 @@ uint64_t ProcessResourceDataD(void)
   uint64_t SecurityHashValue;
   int64_t SystemContextPointer;
   uint64_t MemorySize;
-  char in_stack_00000090;
-  uint in_stack_00000098;
+  char SecurityValidationValue;
+  uint HashValidationValue;
   
   ResourceCounter = 0x1c;
   SecurityHashValue = 0;
@@ -20173,17 +20183,17 @@ LAB_18089b91c:
       ValidationResult = CalculateResourceHash(*ResourceContextPointer,&SecurityValidationStack,1,1,0);
     }
     else {
-      in_stack_00000098 = 0;
+      HashValidationValue = 0;
       ValidationResult = ValidateResourceAccess(*ResourceContextPointer,&HashValidationStack);
       if (ValidationResult == 0) {
-        if ((uint64_t)in_stack_00000098 + 1 <= (uint64_t)ResourceContextPointer[2]) goto LAB_18089b91c;
+        if ((uint64_t)HashValidationValue + 1 <= (uint64_t)ResourceContextPointer[2]) goto LAB_18089b91c;
         ValidationResult = 0x11;
       }
     }
     ContextValidationResult = 0;
     if (ValidationResult == 0) {
-      ContextValidationResult = (uint)(in_stack_00000090 != '\0');
-      LoopIncrement = (uint)(in_stack_00000090 == '\0');
+      ContextValidationResult = (uint)(SecurityValidationValue != '\0');
+      LoopIncrement = (uint)(SecurityValidationValue == '\0');
       ValidationResult = 0;
     }
     if (ValidationResult != 0) {
@@ -23741,18 +23751,18 @@ uint64_t ExecuteResourceDataIntegrityValidation(void)
       }
       if ((uint64_t)ResourceContextPointer[2] < (uint64_t)SecurityValidationBuffer + 4) {
         ResourceValidationResult = 0x11;
-        goto LAB_18089cef2;
+        goto ValidateHashResult;
       }
     }
     ResourceValidationResult = CalculateResourceHash(*ResourceContextPointer,&HashValidationStack,1,4,0);
   }
-LAB_18089cef2:
+ValidateHashResult:
   if ((int)ResourceValidationResult != 0) {
     return ResourceValidationResult;
   }
-  *(uint *)(RegisterR14 + 0x10) = in_stack_00000098;
+  *(uint *)(RegisterR14 + 0x10) = HashValidationValue;
   ResourceValidationResult = 0xd;
-  if (in_stack_00000098 < 5) {
+  if (HashValidationValue < 5) {
     ResourceValidationResult = 0;
   }
   if ((int)ResourceValidationResult != 0) {
@@ -23774,18 +23784,18 @@ LAB_18089cef2:
       }
       if ((uint64_t)ResourceContextPointer[2] < (uint64_t)SecurityValidationBuffer + 4) {
         ResourceValidationResult = 0x11;
-        goto LAB_18089cf93;
+        goto ValidateSecondHash;
       }
     }
     ResourceValidationResult = CalculateResourceHash(*ResourceContextPointer,&HashValidationStack,1,4,0);
   }
-LAB_18089cf93:
+ValidateSecondHash:
   if ((int)ResourceValidationResult != 0) {
     return ResourceValidationResult;
   }
-  *(uint *)(RegisterR14 + 0x14) = in_stack_00000098;
+  *(uint *)(RegisterR14 + 0x14) = HashValidationValue;
   ResourceValidationResult = 0xd;
-  if (in_stack_00000098 < 3) {
+  if (HashValidationValue < 3) {
     ResourceValidationResult = 0;
   }
   if ((int)ResourceValidationResult != 0) {
@@ -23796,32 +23806,32 @@ LAB_18089cf93:
     return ResourceValidationResult;
   }
   if (2 < (int)RegisterRDI[8] - 0x65U) goto LAB_18089d07f;
-  bVar4 = false;
-  if (*(int *)(RegisterRDI[1] + 0x18) != 0) goto LAB_18089d06e;
+  HasValidResource = false;
+  if (*(int *)(RegisterRDI[1] + 0x18) != 0) goto ReturnValidationResult;
   ResourceContextPointer = (int64_t *)*RegisterRDI;
   if (*ResourceContextPointer != 0) {
     if (ResourceContextPointer[2] == 0) {
-LAB_18089d034:
+CalculateResourceHash:
       ValidationResult = CalculateResourceHash(*ResourceContextPointer,&SecurityValidationStack,1,1,0);
     }
     else {
-      in_stack_00000098 = 0;
+      HashValidationValue = 0;
       ValidationResult = ValidateResourceAccess(*ResourceContextPointer,&HashValidationStack);
       if (ValidationResult == 0) {
-        if ((uint64_t)in_stack_00000098 + 1 <= (uint64_t)ResourceContextPointer[2]) goto LAB_18089d034;
+        if ((uint64_t)HashValidationValue + 1 <= (uint64_t)ResourceContextPointer[2]) goto CalculateResourceHash;
         ValidationResult = 0x11;
       }
     }
   }
   if (ValidationResult == 0) {
-    bVar4 = cStack0000000000000090 != '\0';
+    HasValidResource = SecurityValidationChar != '\0';
     ValidationResult = 0;
   }
   if (ValidationResult != 0) {
-LAB_18089d06e:
+ReturnValidationResult:
     return (uint64_t)ValidationResult;
   }
-  if (bVar4) {
+  if (HasValidResource) {
     *(uint32_t *)(RegisterR14 + 0x10) = 3;
   }
 LAB_18089d07f:
@@ -23846,23 +23856,23 @@ uint64_t ProcessResourceDataValidationFlow(void)
   int64_t *RegisterRDI;
   int64_t RegisterR14;
   uint64_t RegisterR15;
-  char in_stack_00000090;
-  uint in_stack_00000098;
+  char SecurityValidationValue;
+  uint HashValidationValue;
   
   ResourceValidationResult = (uint)ResourceContextPointer;
   if (2 < in_EAX) goto LAB_18089d07f;
-  if (*(uint *)(RegisterRDI[1] + 0x18) != (uint)RegisterR15) goto LAB_18089d06e;
+  if (*(uint *)(RegisterRDI[1] + 0x18) != (uint)RegisterR15) goto ReturnValidationResult;
   ResourceContextPointer = (int64_t *)*RegisterRDI;
   if (*ResourceContextPointer != 0) {
     if (ResourceContextPointer[2] == RegisterR15) {
-LAB_18089d034:
+CalculateResourceHash:
       ResourceValidationResult = CalculateResourceHash(*ResourceContextPointer,&SecurityValidationStack,1);
     }
     else {
-      in_stack_00000098 = (uint)RegisterR15;
+      HashValidationValue = (uint)RegisterR15;
       ResourceValidationResult = ValidateResourceAccess(*ResourceContextPointer,&HashValidationStack);
       if (ResourceValidationResult == 0) {
-        if ((uint64_t)in_stack_00000098 + 1 <= (uint64_t)ResourceContextPointer[2]) goto LAB_18089d034;
+        if ((uint64_t)HashValidationValue + 1 <= (uint64_t)ResourceContextPointer[2]) goto CalculateResourceHash;
         ResourceValidationResult = 0x11;
       }
     }
@@ -23872,10 +23882,10 @@ LAB_18089d034:
     ResourceContextPointer = RegisterR15 & 0xffffffff;
   }
   if ((int)ResourceContextPointer != 0) {
-LAB_18089d06e:
+ReturnValidationResult:
     return ResourceContextPointer & 0xffffffff;
   }
-  if (ResourceValidationResult == 0 && in_stack_00000090 != (char)RegisterR15) {
+  if (ResourceValidationResult == 0 && SecurityValidationValue != (char)RegisterR15) {
     *(uint32_t *)(RegisterR14 + 0x10) = 3;
   }
 LAB_18089d07f:
