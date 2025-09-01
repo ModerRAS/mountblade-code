@@ -10646,7 +10646,7 @@ void ProcessResourceCalculationAndValidation(longlong objectContextParam,uint8_t
   longlong ObjectContextOffset;
   longlong SecurityContextOffset;
   longlong SecurityContextArray [13];
-  uint8_t1 auStack_648 [1536];
+  uint8_t1 SecurityDataLargeBuffer [1536];
   ulonglong ValidationParam1;
   
   ValidationParam1 = SecurityEncryptionKey ^ (ulonglong)SecurityValidationBuffer;
@@ -10703,7 +10703,7 @@ void ProcessResourceCalculationAndValidation(longlong objectContextParam,uint8_t
          (((*(uint *)(objectContextParam + 0x6c) >> 0x19 & 1) != 0 && (iVar8 == *(int *)(objectContextParam + 0xb0))))) {
 LAB_18089555d:
                     // WARNING: Subroutine does not return
-        memcpy(auStack_648,lVar9,(longlong)*(int *)(lVar9 + 8));
+        memcpy(SecurityDataLargeBuffer,lVar9,(longlong)*(int *)(lVar9 + 8));
       }
     }
     else {
@@ -11733,11 +11733,11 @@ ulonglong InitializeResourceTableStructure(longlong objectContextParam)
   uint auStackX_10 [2];
   uint8_t8 uStackX_18;
   uint8_t1 auStackX_20 [8];
-  ulonglong uStack_118;
-  uint8_t8 uStack_110;
-  longlong *plStack_108;
-  ulonglong OperationParam30;
-  int aiStack_f8 [2];
+  ulonglong ResourceHandlerFlag1;
+  uint8_t8 ResourceHandlerFlag2;
+  longlong *DataHandlerContextPointer;
+  ulonglong ResourceHandlerParam;
+  int ResourceHandlerArray [2];
   uint8_t *puStack_f0;
   uint8_t4 uStack_e8;
   uint8_t4 uStack_e0;
@@ -11762,19 +11762,19 @@ ulonglong InitializeResourceTableStructure(longlong objectContextParam)
   iVar4 = 0;
   if ((uVar8 >> 0x1a & 1) == 0) goto LAB_1808963ec;
   if ((uVar8 & 1) == 0) {
-    plStack_108 = (longlong *)(dataContext + 0x70);
-    uStack_118 = 0;
+    DataHandlerContextPointer = (longlong *)(dataContext + 0x70);
+    ResourceHandlerFlag1 = 0;
     integerValue16 = 0;
     auStackX_10[0] = 0;
-    uStack_110 = 0;
-    OperationParam30 = 0xffffffffffffffff;
-    aiStack_f8[0] = -1;
-    SetupResourceHandlers(plStack_108,&OperationParam30,aiStack_f8);
-    aiStackX_8[0] = aiStack_f8[0];
-    if (aiStack_f8[0] != -1) {
-      plocalContextPointer3 = plStack_108;
+    ResourceHandlerFlag2 = 0;
+    ResourceHandlerParam = 0xffffffffffffffff;
+    ResourceHandlerArray[0] = -1;
+    SetupResourceHandlers(DataHandlerContextPointer,&ResourceHandlerParam,ResourceHandlerArray);
+    aiStackX_8[0] = ResourceHandlerArray[0];
+    if (ResourceHandlerArray[0] != -1) {
+      plocalContextPointer3 = DataHandlerContextPointer;
       resourceHash0 = unsignedValue6;
-      integerValue11 = (int)OperationParam30;
+      integerValue11 = (int)ResourceHandlerParam;
       do {
         do {
           integerValue16 = (int)resourceHash0;
@@ -11784,9 +11784,9 @@ ulonglong InitializeResourceTableStructure(longlong objectContextParam)
           if (iVar4 == 2) {
             iVar4 = ValidateObjectContext(*(uint8_t4 *)(lVar5 + 0xc + localContextPointer5 * 0x10),&uStackX_18);
             unsignedResult3 = uStackX_18;
-            plocalContextPointer3 = plStack_108;
+            plocalContextPointer3 = DataHandlerContextPointer;
             if ((iVar4 == 0) &&
-               (iVar4 = func_0x0001808c7ed0(uStackX_18), plocalContextPointer3 = plStack_108, 0 < iVar4)) {
+               (iVar4 = func_0x0001808c7ed0(uStackX_18), plocalContextPointer3 = DataHandlerContextPointer, 0 < iVar4)) {
               do {
                 uStack_e0 = *(uint8_t4 *)(lVar5 + 0xc + localContextPointer5 * 0x10);
                 uStack_e8 = 0;
@@ -11795,12 +11795,12 @@ ulonglong InitializeResourceTableStructure(longlong objectContextParam)
                 iVar4 = func_0x0001808c7ed0(unsignedResult3);
               } while (0 < iVar4);
               unsignedValue6 = (ulonglong)auStackX_10[0];
-              plocalContextPointer3 = plStack_108;
+              plocalContextPointer3 = DataHandlerContextPointer;
             }
           }
           else if (iVar4 == 3) {
             iVar4 = ValidateObjectContext(*(uint8_t4 *)(lVar5 + 0xc + localContextPointer5 * 0x10),auStackX_20);
-            plocalContextPointer3 = plStack_108;
+            plocalContextPointer3 = DataHandlerContextPointer;
             if (iVar4 == 0) {
               puStack_d8 = &SerializationTemplate;
               uStack_c8 = *(uint8_t4 *)(lVar5 + 0xc + localContextPointer5 * 0x10);
@@ -11811,12 +11811,12 @@ ulonglong InitializeResourceTableStructure(longlong objectContextParam)
               uStack_e0 = *(uint8_t4 *)(lVar5 + 0xc + localContextPointer5 * 0x10);
               uStack_e8 = 0;
               DeserializeData(&puStack_f0,*(uint8_t8 *)(objectContextParam + 0x58));
-              plocalContextPointer3 = plStack_108;
+              plocalContextPointer3 = DataHandlerContextPointer;
             }
           }
           else if (iVar4 == 5) {
             iVar4 = ValidateObjectContext(*(uint8_t4 *)(lVar5 + 0xc + localContextPointer5 * 0x10),aResourceFlag5);
-            plocalContextPointer3 = plStack_108;
+            plocalContextPointer3 = DataHandlerContextPointer;
             if (iVar4 == 0) {
               puStack_d8 = &CompressionTemplate;
               uStack_c8 = *(uint8_t4 *)(lVar5 + 0xc + localContextPointer5 * 0x10);
@@ -11837,24 +11837,24 @@ ulonglong InitializeResourceTableStructure(longlong objectContextParam)
               uStack_e0 = *(uint8_t4 *)(lVar5 + 0xc + localContextPointer5 * 0x10);
               uStack_e8 = 0;
               DecodeData(&puStack_f0,*(uint8_t8 *)(objectContextParam + 0x58));
-              plocalContextPointer3 = plStack_108;
+              plocalContextPointer3 = DataHandlerContextPointer;
             }
           }
           else if (iVar4 == 6) {
             iVar4 = ValidateObjectContext(*(uint8_t4 *)(lVar5 + 0xc + localContextPointer5 * 0x10),aResourceFlag6);
-            plocalContextPointer3 = plStack_108;
+            plocalContextPointer3 = DataHandlerContextPointer;
             if (iVar4 == 0) {
               puStack_b8 = &TransformationTemplate;
               uStack_a8 = *(uint8_t4 *)(lVar5 + 0xc + localContextPointer5 * 0x10);
               uStack_b0 = 0;
               uStack_a0 = 0x3f800000;
               TransformData(&puStack_b8,*(uint8_t8 *)(objectContextParam + 0x58));
-              plocalContextPointer3 = plStack_108;
+              plocalContextPointer3 = DataHandlerContextPointer;
             }
           }
           else if ((iVar4 == 7) &&
                   (iVar4 = ValidateObjectContext(*(uint8_t4 *)(lVar5 + 0xc + localContextPointer5 * 0x10),
-                                               EncryptionBuffer), plocalContextPointer3 = plStack_108, iVar4 == 0)) {
+                                               EncryptionBuffer), plocalContextPointer3 = DataHandlerContextPointer, iVar4 == 0)) {
             validationResult = *(uint8_t4 *)(lVar5 + 0xc + localContextPointer5 * 0x10);
             iVar7 = (int)unsignedValue6 + 1;
             iVar4 = integerValue16;
@@ -11877,31 +11877,31 @@ ulonglong InitializeResourceTableStructure(longlong objectContextParam)
               else if (integerValue16 < iVar7) {
                 integerValue16 = iVar7;
               }
-              uVar8 = ValidateDataIntegrity(&uStack_118,integerValue16);
+              uVar8 = ValidateDataIntegrity(&ResourceHandlerFlag1,integerValue16);
               unsignedValue6 = (ulonglong)uVar8;
-              iVar4 = (int)uStack_110;
+              iVar4 = (int)ResourceHandlerFlag2;
               if (uVar8 != 0) {
-                uVar8 = uStack_110._4_4_;
-                if ((longlong)uStack_110 < 0) {
-                  uVar8 = -uStack_110._4_4_;
+                uVar8 = ResourceHandlerFlag2._4_4_;
+                if ((longlong)ResourceHandlerFlag2 < 0) {
+                  uVar8 = -ResourceHandlerFlag2._4_4_;
                 }
-                lVar5 = (longlong)(int)uStack_110;
-                uVar9 = uStack_110._4_4_;
+                lVar5 = (longlong)(int)ResourceHandlerFlag2;
+                uVar9 = ResourceHandlerFlag2._4_4_;
                 if ((int)uVar8 < 0) {
-                  if (0 < (int)uStack_110) {
+                  if (0 < (int)ResourceHandlerFlag2) {
                     return unsignedValue6;
                   }
-                  if ((0 < (int)uStack_110._4_4_) && (uStack_118 != 0)) {
+                  if ((0 < (int)ResourceHandlerFlag2._4_4_) && (ResourceHandlerFlag1 != 0)) {
                     // WARNING: Subroutine does not return
-                    ProcessResourceAllocation(*(uint8_t8 *)(SystemContextPointer + 0x1a0),uStack_118,&ResourceTableTemplate,
+                    ProcessResourceAllocation(*(uint8_t8 *)(SystemContextPointer + 0x1a0),ResourceHandlerFlag1,&ResourceTableTemplate,
                                   0x100,1);
                   }
-                  uStack_118 = 0;
-                  uStack_110 = 0;
+                  ResourceHandlerFlag1 = 0;
+                  ResourceHandlerFlag2 = 0;
                   uVar9 = 0;
                 }
                 if (iVar4 < 0) {
-                  presourceHash2 = (uint8_t4 *)(uStack_118 + lVar5 * 4);
+                  presourceHash2 = (uint8_t4 *)(ResourceHandlerFlag1 + lVar5 * 4);
                   lVar5 = (longlong)-iVar4;
                   if (iVar4 < 0) {
                     for (; lVar5 != 0; lVar5 = lVar5 + -1) {
@@ -11910,24 +11910,24 @@ ulonglong InitializeResourceTableStructure(longlong objectContextParam)
                     }
                   }
                 }
-                uStack_110 = uStack_110 & 0xffffffff00000000;
+                ResourceHandlerFlag2 = ResourceHandlerFlag2 & 0xffffffff00000000;
                 if ((int)uVar9 < 0) {
                   uVar9 = -uVar9;
                 }
                 if (uVar9 == 0) {
                   return unsignedValue6;
                 }
-                ValidateDataIntegrity(&uStack_118,0);
+                ValidateDataIntegrity(&ResourceHandlerFlag1,0);
                 return unsignedValue6;
               }
-              resourceHash0 = (ulonglong)uStack_110._4_4_;
-              integerValue14 = (int)uStack_110;
+              resourceHash0 = (ulonglong)ResourceHandlerFlag2._4_4_;
+              integerValue14 = (int)ResourceHandlerFlag2;
             }
             auStackX_10[0] = integerValue14 + 1;
             unsignedValue6 = (ulonglong)auStackX_10[0];
-            uStack_110 = CONCAT44(uStack_110._4_4_,auStackX_10[0]);
-            *(uint8_t4 *)(uStack_118 + (longlong)integerValue14 * 4) = validationResult;
-            plocalContextPointer3 = plStack_108;
+            ResourceHandlerFlag2 = CONCAT44(ResourceHandlerFlag2._4_4_,auStackX_10[0]);
+            *(uint8_t4 *)(ResourceHandlerFlag1 + (longlong)integerValue14 * 4) = validationResult;
+            plocalContextPointer3 = DataHandlerContextPointer;
           }
           iVar4 = (int)resourceHash0;
           integerValue16 = (int)unsignedValue6;
@@ -11955,15 +11955,15 @@ ulonglong InitializeResourceTableStructure(longlong objectContextParam)
 LAB_1808962af:
       } while (aiStackX_8[0] != -1);
       aiStackX_8[0] = -1;
-      unsignedValue6 = uStack_118;
+      unsignedValue6 = ResourceHandlerFlag1;
     }
     lVar5 = (longlong)(integerValue16 + -1);
     if (-1 < integerValue16 + -1) {
       do {
-        OperationParam30 = OperationParam30 & 0xffffffff00000000;
-        plStack_108 = (longlong *)&SystemDataTemplateA;
-        aiStack_f8[0] = *(int *)(unsignedValue6 + lVar5 * 4);
-        NormalizeData(&plStack_108,*(uint8_t8 *)(objectContextParam + 0x58));
+        ResourceHandlerParam = ResourceHandlerParam & 0xffffffff00000000;
+        DataHandlerContextPointer = (longlong *)&SystemDataTemplateA;
+        ResourceHandlerArray[0] = *(int *)(unsignedValue6 + lVar5 * 4);
+        NormalizeData(&DataHandlerContextPointer,*(uint8_t8 *)(objectContextParam + 0x58));
         lVar5 = lVar5 + -1;
       } while (-1 < lVar5);
     }
@@ -11977,8 +11977,8 @@ LAB_1808962af:
                     // WARNING: Subroutine does not return
         ProcessResourceAllocation(*(uint8_t8 *)(SystemContextPointer + 0x1a0),unsignedValue6,&ResourceTableTemplate,0x100,1);
       }
-      uStack_118 = 0;
-      uStack_110 = 0;
+      ResourceHandlerFlag1 = 0;
+      ResourceHandlerFlag2 = 0;
       unsignedValue6 = 0;
       iVar4 = 0;
     }
@@ -11992,12 +11992,12 @@ LAB_1808962af:
         }
       }
     }
-    uStack_110 = uStack_110 & 0xffffffff00000000;
+    ResourceHandlerFlag2 = ResourceHandlerFlag2 & 0xffffffff00000000;
     if (iVar4 < 0) {
       iVar4 = -iVar4;
     }
     if (iVar4 != 0) {
-      ValidateDataIntegrity(&uStack_118,0);
+      ValidateDataIntegrity(&ResourceHandlerFlag1,0);
     }
   }
 LAB_18089638e:
@@ -12296,12 +12296,12 @@ void ProcessComplexResourceOperation(uint8_t8 objectContextParam,longlong valida
   int tableEntry;
   uint8_t **ppunsignedValue6;
   int ValidationStatus;
-  uint8_t1 auStack_328 [32];
-  uint8_t4 uStack_308;
-  float afStack_304 [3];
-  uint8_t *puStack_2f8;
-  int iStack_2f0;
-  uint8_t8 uStack_2e8;
+  uint8_t1 GraphicsDataBuffer [32];
+  uint8_t4 GraphicsDataFlag;
+  float GraphicsTransformMatrix [3];
+  uint8_t *GraphicsDataPointer;
+  int GraphicsDataIndex;
+  uint8_t8 GraphicsOperationFlag1;
   ulonglong uStack_2e0;
   longlong lStack_2d8;
   uint8_t8 uStack_2d0;
@@ -12327,7 +12327,7 @@ void ProcessComplexResourceOperation(uint8_t8 objectContextParam,longlong valida
   uint8_t1 auStack_260 [520];
   ulonglong ResourceFlag9;
   
-  ResourceFlag9 = SecurityEncryptionKey ^ (ulonglong)auStack_328;
+  ResourceFlag9 = SecurityEncryptionKey ^ (ulonglong)GraphicsDataBuffer;
   tableEntry = 0;
   if (param_3 != 0) {
     iVar3 = *(int *)(validationContextParam + 0x220);
@@ -12342,12 +12342,12 @@ LAB_180896ce3:
       iVar3 = GetAndValidateResourceData(objectContextParam,ppunsignedValue6);
     }
     else {
-      iStack_2f0 = 0;
+      GraphicsDataIndex = 0;
       if (1 < iVar3 - 1U) {
-        puStack_2f8 = &BufferTemplate2;
-        ppunsignedValue6 = &puStack_2f8;
+        GraphicsDataPointer = &BufferTemplate2;
+        ppunsignedValue6 = &GraphicsDataPointer;
         uStack_2b0 = 0;
-        uStack_2e8 = 0;
+        GraphicsOperationFlag1 = 0;
         uStack_2e0 = 0;
         lStack_2d8 = 0;
         uStack_2d0 = 0;
@@ -12357,11 +12357,11 @@ LAB_180896ce3:
         uStack_2ac = param_3;
         goto LAB_180896ce3;
       }
-      puStack_2f8 = &BufferTemplate3;
+      GraphicsDataPointer = &BufferTemplate3;
       lStack_2d8 = (ulonglong)param_3 << 0x20;
-      uStack_2e8 = *(uint8_t8 *)(validationContextParam + 0x228);
+      GraphicsOperationFlag1 = *(uint8_t8 *)(validationContextParam + 0x228);
       uStack_2e0 = (ulonglong)CONCAT14(iVar3 != 1,*(uint8_t4 *)(validationContextParam + 0x230));
-      iVar3 = GetAndValidateResourceData(objectContextParam,&puStack_2f8);
+      iVar3 = GetAndValidateResourceData(objectContextParam,&GraphicsDataPointer);
     }
     if (iVar3 != 0) goto ResourceErrorHandler;
     uStack_298 = *(uint *)(resourceData + 0x10);
@@ -12378,10 +12378,10 @@ LAB_180896ce3:
     iVar3 = *(int *)(*(longlong *)(validationContextParam + 0x2e8) + 0x2c);
     if (0 < iVar3) {
       do {
-        iStack_2f0 = 0;
-        puStack_2f8 = &BufferTemplate5;
-        uStack_2e8 = CONCAT44(uStack_2e8._4_4_,param_3);
-        iVar4 = GetAndValidateResourceData(objectContextParam,&puStack_2f8);
+        GraphicsDataIndex = 0;
+        GraphicsDataPointer = &BufferTemplate5;
+        GraphicsOperationFlag1 = CONCAT44(GraphicsOperationFlag1._4_4_,param_3);
+        iVar4 = GetAndValidateResourceData(objectContextParam,&GraphicsDataPointer);
         if (iVar4 != 0) goto ResourceErrorHandler;
         iVar7 = iVar7 + 1;
       } while (iVar7 < iVar3);
@@ -12393,8 +12393,8 @@ LAB_180896ce3:
       loopCounter = *(longlong *)(*(longlong *)(validationContextParam + 0x40) + (longlong)iVar3 * 8);
       resourceTable = *(longlong *)(localContextPointer + 0x68);
       if (((*(byte *)(localContextPointer + 0xc4) & 1) != 0) && (resourceTable != 0)) {
-        uStack_308 = 0;
-        iVar7 = ValidateBufferContext(resourceTable,&uStack_308);
+        GraphicsDataFlag = 0;
+        iVar7 = ValidateBufferContext(resourceTable,&GraphicsDataFlag);
         if (iVar7 != 0) goto ResourceErrorHandler;
         uStack_28c = *(uint8_t4 *)(localContextPointer + 0x10);
         uStack_288 = *(uint *)(localContextPointer + 0x14);
@@ -12402,36 +12402,36 @@ LAB_180896ce3:
         uStack_280 = *(uint8_t4 *)(localContextPointer + 0x1c);
         puStack_2a8 = &BufferTemplate6;
         iVar4 = tableEntry + 1;
-        uStack_27c = uStack_308;
+        uStack_27c = GraphicsDataFlag;
         iStack_2a0 = iVar7;
         uStack_298 = param_3;
         iStack_290 = tableEntry;
         tableEntry = GetAndValidateResourceData(objectContextParam,&puStack_2a8);
-        if ((tableEntry != 0) || (tableEntry = FindResourceEntry(resourceTable,afStack_304), tableEntry != 0))
+        if ((tableEntry != 0) || (tableEntry = FindResourceEntry(resourceTable,GraphicsTransformMatrix), tableEntry != 0))
         goto ResourceErrorHandler;
-        if (afStack_304[0] != 1.0) {
-          uStack_2e0 = CONCAT44(uStack_2e0._4_4_,afStack_304[0]);
-          puStack_2f8 = &SystemDataTypeTemplateA;
-          uStack_2e8 = CONCAT44(uStack_2e8._4_4_,uStack_308);
-          iStack_2f0 = tableEntry;
-          tableEntry = GetAndValidateResourceData(objectContextParam,&puStack_2f8);
+        if (GraphicsTransformMatrix[0] != 1.0) {
+          uStack_2e0 = CONCAT44(uStack_2e0._4_4_,GraphicsTransformMatrix[0]);
+          GraphicsDataPointer = &SystemDataTypeTemplateA;
+          GraphicsOperationFlag1 = CONCAT44(GraphicsOperationFlag1._4_4_,GraphicsDataFlag);
+          GraphicsDataIndex = tableEntry;
+          tableEntry = GetAndValidateResourceData(objectContextParam,&GraphicsDataPointer);
           if (tableEntry != 0) goto ResourceErrorHandler;
         }
         if (*(char *)(resourceTable + 0x28) != '\0') {
-          iStack_2f0 = 0;
-          puStack_2f8 = &SystemDataTypeTemplateB;
-          uStack_2e8 = CONCAT44(uStack_2e8._4_4_,uStack_308);
+          GraphicsDataIndex = 0;
+          GraphicsDataPointer = &SystemDataTypeTemplateB;
+          GraphicsOperationFlag1 = CONCAT44(GraphicsOperationFlag1._4_4_,GraphicsDataFlag);
           uStack_2e0 = CONCAT71(uStack_2e0._1_7_,1);
-          tableEntry = GetAndValidateResourceData(objectContextParam,&puStack_2f8);
+          tableEntry = GetAndValidateResourceData(objectContextParam,&GraphicsDataPointer);
           if (tableEntry != 0) goto ResourceErrorHandler;
         }
         tableEntry = iVar4;
         if (*(char *)(resourceTable + 0x29) != '\0') {
-          iStack_2f0 = 0;
-          puStack_2f8 = &SystemDataTypeTemplateC;
-          uStack_2e8 = CONCAT44(uStack_2e8._4_4_,uStack_308);
+          GraphicsDataIndex = 0;
+          GraphicsDataPointer = &SystemDataTypeTemplateC;
+          GraphicsOperationFlag1 = CONCAT44(GraphicsOperationFlag1._4_4_,GraphicsDataFlag);
           uStack_2e0 = CONCAT71(uStack_2e0._1_7_,1);
-          iVar7 = GetAndValidateResourceData(objectContextParam,&puStack_2f8);
+          iVar7 = GetAndValidateResourceData(objectContextParam,&GraphicsDataPointer);
           if (iVar7 != 0) goto ResourceErrorHandler;
         }
       }
@@ -12440,8 +12440,8 @@ LAB_180896ce3:
       loopCounter = *(longlong *)(*(longlong *)(validationContextParam + 0x50) + (longlong)iVar3 * 8);
       resourceTable = *(longlong *)(localContextPointer + 0x68);
       if (((*(byte *)(localContextPointer + 0xc4) & 1) != 0) && (resourceTable != 0)) {
-        uStack_308 = 0;
-        iVar7 = ValidateBufferContext(resourceTable,&uStack_308);
+        GraphicsDataFlag = 0;
+        iVar7 = ValidateBufferContext(resourceTable,&GraphicsDataFlag);
         if (iVar7 != 0) goto ResourceErrorHandler;
         uStack_28c = *(uint8_t4 *)(localContextPointer + 0x10);
         uStack_288 = *(uint *)(localContextPointer + 0x14);
@@ -12449,36 +12449,36 @@ LAB_180896ce3:
         uStack_280 = *(uint8_t4 *)(localContextPointer + 0x1c);
         puStack_2a8 = &BufferTemplate6;
         iVar4 = tableEntry + 1;
-        uStack_27c = uStack_308;
+        uStack_27c = GraphicsDataFlag;
         iStack_2a0 = iVar7;
         uStack_298 = param_3;
         iStack_290 = tableEntry;
         tableEntry = GetAndValidateResourceData(objectContextParam,&puStack_2a8);
-        if ((tableEntry != 0) || (tableEntry = FindResourceEntry(resourceTable,afStack_304), tableEntry != 0))
+        if ((tableEntry != 0) || (tableEntry = FindResourceEntry(resourceTable,GraphicsTransformMatrix), tableEntry != 0))
         goto ResourceErrorHandler;
-        if (afStack_304[0] != 1.0) {
-          uStack_2e0 = CONCAT44(uStack_2e0._4_4_,afStack_304[0]);
-          puStack_2f8 = &SystemDataTypeTemplateA;
-          uStack_2e8 = CONCAT44(uStack_2e8._4_4_,uStack_308);
-          iStack_2f0 = tableEntry;
-          tableEntry = GetAndValidateResourceData(objectContextParam,&puStack_2f8);
+        if (GraphicsTransformMatrix[0] != 1.0) {
+          uStack_2e0 = CONCAT44(uStack_2e0._4_4_,GraphicsTransformMatrix[0]);
+          GraphicsDataPointer = &SystemDataTypeTemplateA;
+          GraphicsOperationFlag1 = CONCAT44(GraphicsOperationFlag1._4_4_,GraphicsDataFlag);
+          GraphicsDataIndex = tableEntry;
+          tableEntry = GetAndValidateResourceData(objectContextParam,&GraphicsDataPointer);
           if (tableEntry != 0) goto ResourceErrorHandler;
         }
         if (*(char *)(resourceTable + 0x28) != '\0') {
-          iStack_2f0 = 0;
-          puStack_2f8 = &SystemDataTypeTemplateB;
-          uStack_2e8 = CONCAT44(uStack_2e8._4_4_,uStack_308);
+          GraphicsDataIndex = 0;
+          GraphicsDataPointer = &SystemDataTypeTemplateB;
+          GraphicsOperationFlag1 = CONCAT44(GraphicsOperationFlag1._4_4_,GraphicsDataFlag);
           uStack_2e0 = CONCAT71(uStack_2e0._1_7_,1);
-          tableEntry = GetAndValidateResourceData(objectContextParam,&puStack_2f8);
+          tableEntry = GetAndValidateResourceData(objectContextParam,&GraphicsDataPointer);
           if (tableEntry != 0) goto ResourceErrorHandler;
         }
         tableEntry = iVar4;
         if (*(char *)(resourceTable + 0x29) != '\0') {
-          iStack_2f0 = 0;
-          puStack_2f8 = &SystemDataTypeTemplateC;
-          uStack_2e8 = CONCAT44(uStack_2e8._4_4_,uStack_308);
+          GraphicsDataIndex = 0;
+          GraphicsDataPointer = &SystemDataTypeTemplateC;
+          GraphicsOperationFlag1 = CONCAT44(GraphicsOperationFlag1._4_4_,GraphicsDataFlag);
           uStack_2e0 = CONCAT71(uStack_2e0._1_7_,1);
-          iVar7 = GetAndValidateResourceData(objectContextParam,&puStack_2f8);
+          iVar7 = GetAndValidateResourceData(objectContextParam,&GraphicsDataPointer);
           if (iVar7 != 0) goto ResourceErrorHandler;
         }
       }
@@ -12487,8 +12487,8 @@ LAB_180896ce3:
       loopCounter = *(longlong *)(*(longlong *)(validationContextParam + 0x60) + (longlong)iVar3 * 8);
       resourceTable = *(longlong *)(localContextPointer + 0x68);
       if (((*(byte *)(localContextPointer + 0xc4) & 1) != 0) && (resourceTable != 0)) {
-        uStack_308 = 0;
-        iVar7 = ValidateBufferContext(resourceTable,&uStack_308);
+        GraphicsDataFlag = 0;
+        iVar7 = ValidateBufferContext(resourceTable,&GraphicsDataFlag);
         if (iVar7 != 0) goto ResourceErrorHandler;
         uStack_28c = *(uint8_t4 *)(localContextPointer + 0x10);
         uStack_288 = *(uint *)(localContextPointer + 0x14);
@@ -12496,36 +12496,36 @@ LAB_180896ce3:
         uStack_280 = *(uint8_t4 *)(localContextPointer + 0x1c);
         puStack_2a8 = &BufferTemplate6;
         iVar4 = tableEntry + 1;
-        uStack_27c = uStack_308;
+        uStack_27c = GraphicsDataFlag;
         iStack_2a0 = iVar7;
         uStack_298 = param_3;
         iStack_290 = tableEntry;
         tableEntry = GetAndValidateResourceData(objectContextParam,&puStack_2a8);
-        if ((tableEntry != 0) || (tableEntry = FindResourceEntry(resourceTable,afStack_304), tableEntry != 0))
+        if ((tableEntry != 0) || (tableEntry = FindResourceEntry(resourceTable,GraphicsTransformMatrix), tableEntry != 0))
         goto ResourceErrorHandler;
-        if (afStack_304[0] != 1.0) {
-          uStack_2e0 = CONCAT44(uStack_2e0._4_4_,afStack_304[0]);
-          puStack_2f8 = &SystemDataTypeTemplateA;
-          uStack_2e8 = CONCAT44(uStack_2e8._4_4_,uStack_308);
-          iStack_2f0 = tableEntry;
-          tableEntry = GetAndValidateResourceData(objectContextParam,&puStack_2f8);
+        if (GraphicsTransformMatrix[0] != 1.0) {
+          uStack_2e0 = CONCAT44(uStack_2e0._4_4_,GraphicsTransformMatrix[0]);
+          GraphicsDataPointer = &SystemDataTypeTemplateA;
+          GraphicsOperationFlag1 = CONCAT44(GraphicsOperationFlag1._4_4_,GraphicsDataFlag);
+          GraphicsDataIndex = tableEntry;
+          tableEntry = GetAndValidateResourceData(objectContextParam,&GraphicsDataPointer);
           if (tableEntry != 0) goto ResourceErrorHandler;
         }
         if (*(char *)(resourceTable + 0x28) != '\0') {
-          iStack_2f0 = 0;
-          puStack_2f8 = &SystemDataTypeTemplateB;
-          uStack_2e8 = CONCAT44(uStack_2e8._4_4_,uStack_308);
+          GraphicsDataIndex = 0;
+          GraphicsDataPointer = &SystemDataTypeTemplateB;
+          GraphicsOperationFlag1 = CONCAT44(GraphicsOperationFlag1._4_4_,GraphicsDataFlag);
           uStack_2e0 = CONCAT71(uStack_2e0._1_7_,1);
-          tableEntry = GetAndValidateResourceData(objectContextParam,&puStack_2f8);
+          tableEntry = GetAndValidateResourceData(objectContextParam,&GraphicsDataPointer);
           if (tableEntry != 0) goto ResourceErrorHandler;
         }
         tableEntry = iVar4;
         if (*(char *)(resourceTable + 0x29) != '\0') {
-          iStack_2f0 = 0;
-          puStack_2f8 = &SystemDataTypeTemplateC;
-          uStack_2e8 = CONCAT44(uStack_2e8._4_4_,uStack_308);
+          GraphicsDataIndex = 0;
+          GraphicsDataPointer = &SystemDataTypeTemplateC;
+          GraphicsOperationFlag1 = CONCAT44(GraphicsOperationFlag1._4_4_,GraphicsDataFlag);
           uStack_2e0 = CONCAT71(uStack_2e0._1_7_,1);
-          iVar7 = GetAndValidateResourceData(objectContextParam,&puStack_2f8);
+          iVar7 = GetAndValidateResourceData(objectContextParam,&GraphicsDataPointer);
           if (iVar7 != 0) goto ResourceErrorHandler;
         }
       }
@@ -12534,8 +12534,8 @@ LAB_180896ce3:
       loopCounter = *(longlong *)(*(longlong *)(validationContextParam + 0x70) + (longlong)iVar3 * 8);
       resourceTable = *(longlong *)(localContextPointer + 0x68);
       if (((*(byte *)(localContextPointer + 0xc4) & 1) != 0) && (resourceTable != 0)) {
-        uStack_308 = 0;
-        iVar7 = ValidateBufferContext(resourceTable,&uStack_308);
+        GraphicsDataFlag = 0;
+        iVar7 = ValidateBufferContext(resourceTable,&GraphicsDataFlag);
         if (iVar7 != 0) goto ResourceErrorHandler;
         uStack_28c = *(uint8_t4 *)(localContextPointer + 0x10);
         uStack_288 = *(uint *)(localContextPointer + 0x14);
@@ -12543,36 +12543,36 @@ LAB_180896ce3:
         uStack_280 = *(uint8_t4 *)(localContextPointer + 0x1c);
         puStack_2a8 = &BufferTemplate6;
         iVar4 = tableEntry + 1;
-        uStack_27c = uStack_308;
+        uStack_27c = GraphicsDataFlag;
         iStack_2a0 = iVar7;
         uStack_298 = param_3;
         iStack_290 = tableEntry;
         tableEntry = GetAndValidateResourceData(objectContextParam,&puStack_2a8);
-        if ((tableEntry != 0) || (tableEntry = FindResourceEntry(resourceTable,afStack_304), tableEntry != 0))
+        if ((tableEntry != 0) || (tableEntry = FindResourceEntry(resourceTable,GraphicsTransformMatrix), tableEntry != 0))
         goto ResourceErrorHandler;
-        if (afStack_304[0] != 1.0) {
-          uStack_2e0 = CONCAT44(uStack_2e0._4_4_,afStack_304[0]);
-          puStack_2f8 = &SystemDataTypeTemplateA;
-          uStack_2e8 = CONCAT44(uStack_2e8._4_4_,uStack_308);
-          iStack_2f0 = tableEntry;
-          tableEntry = GetAndValidateResourceData(objectContextParam,&puStack_2f8);
+        if (GraphicsTransformMatrix[0] != 1.0) {
+          uStack_2e0 = CONCAT44(uStack_2e0._4_4_,GraphicsTransformMatrix[0]);
+          GraphicsDataPointer = &SystemDataTypeTemplateA;
+          GraphicsOperationFlag1 = CONCAT44(GraphicsOperationFlag1._4_4_,GraphicsDataFlag);
+          GraphicsDataIndex = tableEntry;
+          tableEntry = GetAndValidateResourceData(objectContextParam,&GraphicsDataPointer);
           if (tableEntry != 0) goto ResourceErrorHandler;
         }
         if (*(char *)(resourceTable + 0x28) != '\0') {
-          iStack_2f0 = 0;
-          puStack_2f8 = &SystemDataTypeTemplateB;
-          uStack_2e8 = CONCAT44(uStack_2e8._4_4_,uStack_308);
+          GraphicsDataIndex = 0;
+          GraphicsDataPointer = &SystemDataTypeTemplateB;
+          GraphicsOperationFlag1 = CONCAT44(GraphicsOperationFlag1._4_4_,GraphicsDataFlag);
           uStack_2e0 = CONCAT71(uStack_2e0._1_7_,1);
-          tableEntry = GetAndValidateResourceData(objectContextParam,&puStack_2f8);
+          tableEntry = GetAndValidateResourceData(objectContextParam,&GraphicsDataPointer);
           if (tableEntry != 0) goto ResourceErrorHandler;
         }
         tableEntry = iVar4;
         if (*(char *)(resourceTable + 0x29) != '\0') {
-          iStack_2f0 = 0;
-          puStack_2f8 = &SystemDataTypeTemplateC;
-          uStack_2e8 = CONCAT44(uStack_2e8._4_4_,uStack_308);
+          GraphicsDataIndex = 0;
+          GraphicsDataPointer = &SystemDataTypeTemplateC;
+          GraphicsOperationFlag1 = CONCAT44(GraphicsOperationFlag1._4_4_,GraphicsDataFlag);
           uStack_2e0 = CONCAT71(uStack_2e0._1_7_,1);
-          iVar7 = GetAndValidateResourceData(objectContextParam,&puStack_2f8);
+          iVar7 = GetAndValidateResourceData(objectContextParam,&GraphicsDataPointer);
           if (iVar7 != 0) goto ResourceErrorHandler;
         }
       }
@@ -12584,8 +12584,8 @@ LAB_180896ce3:
       loopCounter = *(longlong *)(*(longlong *)(validationContextParam + 0xc0) + (longlong)iVar3 * 8);
       resourceTable = *(longlong *)(localContextPointer + 0x48);
       if (resourceTable != 0) {
-        uStack_308 = 0;
-        iVar7 = ValidateBufferContext(resourceTable,&uStack_308);
+        GraphicsDataFlag = 0;
+        iVar7 = ValidateBufferContext(resourceTable,&GraphicsDataFlag);
         if (iVar7 != 0) break;
         uStack_28c = *(uint8_t4 *)(localContextPointer + 0x10);
         uStack_288 = *(uint *)(localContextPointer + 0x14);
@@ -12593,19 +12593,19 @@ LAB_180896ce3:
         uStack_280 = *(uint8_t4 *)(localContextPointer + 0x1c);
         puStack_2a8 = &BufferTemplate7;
         iVar4 = tableEntry + 1;
-        uStack_27c = uStack_308;
+        uStack_27c = GraphicsDataFlag;
         iStack_2a0 = iVar7;
         uStack_298 = param_3;
         iStack_290 = tableEntry;
         tableEntry = GetAndValidateResourceData(objectContextParam,&puStack_2a8);
-        if ((tableEntry != 0) || (iVar7 = SearchResourceTable(resourceTable,afStack_304,0), iVar7 != 0)) break;
+        if ((tableEntry != 0) || (iVar7 = SearchResourceTable(resourceTable,GraphicsTransformMatrix,0), iVar7 != 0)) break;
         tableEntry = iVar4;
-        if (afStack_304[0] != 1.0) {
-          uStack_2e0 = CONCAT44(uStack_2e0._4_4_,afStack_304[0]);
-          puStack_2f8 = &SystemDataTypeTemplateD;
-          uStack_2e8 = CONCAT44(uStack_2e8._4_4_,uStack_308);
-          iStack_2f0 = iVar7;
-          iVar7 = GetAndValidateResourceData(objectContextParam,&puStack_2f8);
+        if (GraphicsTransformMatrix[0] != 1.0) {
+          uStack_2e0 = CONCAT44(uStack_2e0._4_4_,GraphicsTransformMatrix[0]);
+          GraphicsDataPointer = &SystemDataTypeTemplateD;
+          GraphicsOperationFlag1 = CONCAT44(GraphicsOperationFlag1._4_4_,GraphicsDataFlag);
+          GraphicsDataIndex = iVar7;
+          iVar7 = GetAndValidateResourceData(objectContextParam,&GraphicsDataPointer);
           if (iVar7 != 0) break;
         }
       }
@@ -12629,7 +12629,7 @@ LAB_180896ce3:
 void ModuleProcessErrorHandler(void)
 {
                     // WARNING: Subroutine does not return
-  FinalizeSecurityOperation(ResourceFlag9 ^ (ulonglong)auStack_328);
+  FinalizeSecurityOperation(ResourceFlag9 ^ (ulonglong)GraphicsDataBuffer);
 }
 
 
@@ -13109,10 +13109,10 @@ int SystemResourceProcessorB(longlong ObjectContext,longlong ValidationContext)
   uint8_t4 uStack_124;
   uint8_t4 uStack_120;
   uint8_t4 uStack_11c;
-  uint8_t4 uStack_118;
+  uint8_t4 ResourceHandlerFlag1;
   uint8_t4 uStack_114;
   uint8_t *pOperationParam38;
-  uint8_t4 OperationParam30;
+  uint8_t4 ResourceHandlerParam;
   uint8_t4 uStack_f8;
   uint8_t4 uStack_f0;
   uint8_t1 uStack_ec;
@@ -13156,7 +13156,7 @@ int SystemResourceProcessorB(longlong ObjectContext,longlong ValidationContext)
               uStack_f0 = *(uint8_t4 *)(localContextPointer4 + 4 + lVar9);
               pOperationParam38 = &SystemResourceTemplateD;
               uStack_f8 = uStack_1c8;
-              OperationParam30 = 0;
+              ResourceHandlerParam = 0;
               lVar9 = (**(code **)*puStack_190)(puStack_190);
               uStack_e8 = *(uint8_t8 *)(*(longlong *)(lVar9 + 0x90) + longValue8 * 8);
               uStack_ec = 0;
@@ -13193,7 +13193,7 @@ int SystemResourceProcessorB(longlong ObjectContext,longlong ValidationContext)
               uStack_150 = 0;
               uStack_120 = *(uint8_t4 *)(resourceTable + 0x58);
               uStack_11c = *(uint8_t4 *)(resourceTable + 0x5c);
-              uStack_118 = *(uint8_t4 *)(resourceTable + 0x60);
+              ResourceHandlerFlag1 = *(uint8_t4 *)(resourceTable + 0x60);
               uStack_114 = *(uint8_t4 *)(resourceTable + 100);
               OperationParam28 = uStack_1c8;
               integerValue6 = GetAndValidateResourceData(objectContextParam,&puStack_158);
@@ -14329,7 +14329,7 @@ uint8_t8 ValidateResourceRenderingState(void)
   float afStack_308 [2];
   longlong alStack_300 [2];
   uint8_t1 auStack_2f0 [8];
-  uint8_t8 auStack_2e8 [2];
+  uint8_t8 aGraphicsOperationFlag1 [2];
   uint8_t *puStack_2d8;
   uint8_t4 uStack_2d0;
   float fStack_2c8;
@@ -14479,8 +14479,8 @@ uint8_t8 ValidateResourceRenderingState(void)
             localContextPointer1 = objectContextParam[4];
             if ((char)localContextPointer1 == '\0') {
               *(uint8_t1 *)(objectContextParam + 4) = 1;
-              iVar7 = InitializeResourceContext(*(uint8_t8 *)(objectContextParam[1] + 0x78),auStack_2e8);
-              if (((iVar7 != 0) || (iVar7 = SetupResourceEnvironment(auStack_2e8[0],&lStack_320,0), iVar7 != 0)
+              iVar7 = InitializeResourceContext(*(uint8_t8 *)(objectContextParam[1] + 0x78),aGraphicsOperationFlag1);
+              if (((iVar7 != 0) || (iVar7 = SetupResourceEnvironment(aGraphicsOperationFlag1[0],&lStack_320,0), iVar7 != 0)
                   ) || (iVar7 = (**(code **)(*objectContextParam + 0x10))(objectContextParam), iVar7 != 0))
               goto LAB_18089866f;
               uVar9 = (ulonglong)(lStack_320 * 48000) /
