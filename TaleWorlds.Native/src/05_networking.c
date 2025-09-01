@@ -25790,31 +25790,42 @@ void NetworkConnectionDataProcessor(longlong *connectionContext)
 
 
 
-// 函数: void FUN_180855810(longlong connectionContext,NetworkHandle packetData)
-void FUN_180855810(longlong connectionContext,NetworkHandle packetData)
+/**
+ * @brief 处理网络连接数据包验证
+ * 
+ * 该函数负责处理网络连接中的数据包验证流程，包括多个阶段的验证检查。
+ * 主要用于确保网络数据包的完整性和安全性。
+ * 
+ * @param connectionContext 网络连接上下文指针
+ * @param packetData 网络数据包句柄
+ * @return 无返回值
+ * 
+ * 注意：这是一个反编译的函数实现，原始函数名为FUN_180855810
+ */
+void ProcessNetworkPacketValidation(longlong connectionContext, NetworkHandle packetData)
 
 {
-  longlong lVar1;
-  int networkStatus2;
+  longlong validationContext;
+  int validationStatus;
   
-  lVar1 = *(longlong *)(connectionContext + 0x140);
-  if (lVar1 != 0) {
-    networkStatus2 = FUN_18085f8d0(*(NetworkHandle *)(connectionContext + 0x160),packetData,
-                          *(longlong *)(connectionContext + 0x110) + 0x38,0,1);
-    if (networkStatus2 != 0) {
+  validationContext = *(longlong *)(connectionContext + 0x140);
+  if (validationContext != 0) {
+    validationStatus = FUN_18085f8d0(*(NetworkHandle *)(connectionContext + 0x160), packetData,
+                          *(longlong *)(connectionContext + 0x110) + 0x38, 0, 1);
+    if (validationStatus != 0) {
       return;
     }
-    networkStatus2 = FUN_18085f8d0(*(NetworkHandle *)(connectionContext + 0x160),packetData,
-                          *(longlong *)(connectionContext + 0x110) + 0x48,1,1);
-    if (networkStatus2 != 0) {
+    validationStatus = FUN_18085f8d0(*(NetworkHandle *)(connectionContext + 0x160), packetData,
+                          *(longlong *)(connectionContext + 0x110) + 0x48, 1, 1);
+    if (validationStatus != 0) {
       return;
     }
-    networkStatus2 = FUN_18085f8d0(*(NetworkHandle *)(connectionContext + 0x160),packetData,lVar1 + 0x90,0,0);
-    if (networkStatus2 != 0) {
+    validationStatus = FUN_18085f8d0(*(NetworkHandle *)(connectionContext + 0x160), packetData, validationContext + 0x90, 0, 0);
+    if (validationStatus != 0) {
       return;
     }
-    networkStatus2 = FUN_18085f8d0(*(NetworkHandle *)(connectionContext + 0x160),packetData,lVar1 + 0x80,1,0);
-    if (networkStatus2 != 0) {
+    validationStatus = FUN_18085f8d0(*(NetworkHandle *)(connectionContext + 0x160), packetData, validationContext + 0x80, 1, 0);
+    if (validationStatus != 0) {
       return;
     }
   }
