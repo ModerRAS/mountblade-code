@@ -92,7 +92,7 @@ void* GlobalModuleEConfiguration;
 uint32_t GlobalModuleEStatus;
 void* GlobalModuleEHandle;
 
- uint32_t GetSystemStatusFlag1;
+
 /**
  * @brief 获取系统状态标志1
  * 
