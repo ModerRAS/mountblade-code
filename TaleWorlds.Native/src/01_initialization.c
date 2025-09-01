@@ -17238,8 +17238,14 @@ void SystemPerformanceMonitorInitializer(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180043560(void)
-void FUN_180043560(void)
+// 函数: 系统安全管理器初始化器
+/**
+ * @brief 系统安全管理器初始化器
+ * 
+ * 该函数负责初始化系统安全管理器，获取当前进程信息，
+ * 为系统安全功能提供基础的进程上下文
+ */
+void SystemSecurityManagerInitializer(void)
 
 {
   _DAT_180c96218 = GetCurrentProcess();
@@ -17346,8 +17352,14 @@ int InitializeSystemThreadPool(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180043690(void)
-void FUN_180043690(void)
+// 函数: 系统网络管理器初始化器
+/**
+ * @brief 系统网络管理器初始化器
+ * 
+ * 该函数负责初始化系统网络管理器，设置网络相关的
+ * 基础数据结构和配置，为网络通信功能提供支持
+ */
+void SystemNetworkManagerInitializer(void)
 
 {
   void* in_R9;
