@@ -38656,7 +38656,7 @@ void engine_unnamed_function_1640(longlong engine_data_structure_ptr)
   uint32 engine_stack_uint_188;
   uint64 engine_stack_uint_180;
   float engine_stack_float_178;
-  float fStack_174;
+  float engine_stack_float_174;
   longlong engine_stack_long_170;
   longlong *pengine_stack_long_168;
   longlong *pengine_stack_long_160;
@@ -38813,15 +38813,15 @@ void engine_unnamed_function_1640(longlong engine_data_structure_ptr)
         engine_temp_float_50 = (engine_temp_float_46 - engine_temp_float_51) * (engine_temp_float_45 - engine_temp_float_5) - (engine_temp_float_52 - engine_temp_float_5) * (engine_temp_float_53 - engine_temp_float_51);
         engine_temp_float_51 = engine_temp_float_49 * (engine_temp_float_53 - engine_temp_float_51) - engine_temp_float_48 * (engine_temp_float_46 - engine_temp_float_51);
         engine_temp_float_48 = engine_temp_float_48 * (engine_temp_float_52 - engine_temp_float_5) - engine_temp_float_49 * (engine_temp_float_45 - engine_temp_float_5);
-        fStack_174 = SQRT(engine_temp_float_51 * engine_temp_float_51 + engine_temp_float_48 * engine_temp_float_48 + engine_temp_float_50 * engine_temp_float_50);
-        if (fStack_174 <= 0.0) {
+        engine_stack_float_174 = SQRT(engine_temp_float_51 * engine_temp_float_51 + engine_temp_float_48 * engine_temp_float_48 + engine_temp_float_50 * engine_temp_float_50);
+        if (engine_stack_float_174 <= 0.0) {
           engine_temp_float_48 = 0.0;
           engine_temp_float_51 = 0.0;
           engine_stack_float_178 = 1.0;
-          fStack_174 = 1.0;
+          engine_stack_float_174 = 1.0;
         }
         else {
-          engine_stack_float_178 = 1.0 / fStack_174;
+          engine_stack_float_178 = 1.0 / engine_stack_float_174;
           engine_temp_float_48 = engine_temp_float_48 * engine_stack_float_178;
           engine_temp_float_51 = engine_stack_float_178 * engine_temp_float_51;
           engine_stack_float_178 = engine_stack_float_178 * engine_temp_float_50;
@@ -38831,7 +38831,7 @@ void engine_unnamed_function_1640(longlong engine_data_structure_ptr)
         *pengine_temp_float_18 = engine_temp_float_48;
         pengine_temp_float_18[1] = engine_temp_float_51;
         pengine_temp_float_18[2] = engine_stack_float_178;
-        pengine_temp_float_18[3] = fStack_174;
+        pengine_temp_float_18[3] = engine_stack_float_174;
         engine_temp_uint_38 = engine_temp_uint_38 - 1;
         engine_temp_uint_41 = engine_temp_uint_41 + 0xc;
         engine_temp_uint_30 = engine_temp_uint_30 + 0x10;
@@ -43740,7 +43740,7 @@ void engine_unnamed_function_2650(float *engine_data_structure_ptr,longlong engi
   float engine_temp_float_11;
   float engine_temp_float_12;
   float engine_temp_float_13;
-  float fStack_68;
+  float engine_stack_float_68;
   float fStack_64;
   float fStack_60;
   
@@ -43815,7 +43815,7 @@ void engine_unnamed_function_2650(float *engine_data_structure_ptr,longlong engi
     engine_data_structure_ptr[0xf] = 1.0;
     return;
   }
-  engine_unnamed_function_2640(engine_system_parameter_4,&fStack_68);
+  engine_unnamed_function_2640(engine_system_parameter_4,&engine_stack_float_68);
   engine_temporary_uint = *(void*)(engine_result_flag_ptr + 200);
   engine_temp_uint_2 = *(void*)(engine_result_flag_ptr + 0xd0);
   engine_temp_uint_3 = *(void*)(engine_result_flag_ptr + 0xd8);
@@ -43827,9 +43827,9 @@ void engine_unnamed_function_2650(float *engine_data_structure_ptr,longlong engi
   *(void*)(engine_data_structure_ptr + 6) = engine_temp_uint_3;
   *(void*)(engine_data_structure_ptr + 8) = engine_temporary_uint;
   *(void*)(engine_data_structure_ptr + 10) = engine_temp_uint_4;
-  engine_data_structure_ptr[1] = fStack_68 * engine_data_structure_ptr[1];
-  *engine_data_structure_ptr = fStack_68 * *engine_data_structure_ptr;
-  engine_data_structure_ptr[2] = fStack_68 * engine_data_structure_ptr[2];
+  engine_data_structure_ptr[1] = engine_stack_float_68 * engine_data_structure_ptr[1];
+  *engine_data_structure_ptr = engine_stack_float_68 * *engine_data_structure_ptr;
+  engine_data_structure_ptr[2] = engine_stack_float_68 * engine_data_structure_ptr[2];
   engine_data_structure_ptr[4] = fStack_64 * engine_data_structure_ptr[4];
   engine_data_structure_ptr[5] = fStack_64 * engine_data_structure_ptr[5];
   engine_data_structure_ptr[6] = fStack_64 * engine_data_structure_ptr[6];
