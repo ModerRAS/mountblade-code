@@ -11375,7 +11375,15 @@ void FUN_18003a9b0(void)
 
 
 // 函数: void FUN_18003aab0(void)
-void FUN_18003aab0(void)
+/**
+ * @brief 初始化系统内存节点管理器
+ * 
+ * 该函数负责初始化系统的内存节点管理组件，设置内存节点操作的基础结构。
+ * 它会遍历系统内存节点树，进行内存比较，分配必要的内存，并设置内存节点属性。
+ * 
+ * @note 这是系统初始化过程中的重要组成部分，确保内存节点管理系统的正常运行
+ */
+void InitializeSystemMemoryNodeManager(void)
 
 {
   char systemNodeFlag;
@@ -11425,7 +11433,15 @@ void FUN_18003aab0(void)
 
 
 // 函数: void FUN_18003abb0(void)
-void FUN_18003abb0(void)
+/**
+ * @brief 初始化系统设备节点管理器
+ * 
+ * 该函数负责初始化系统的设备节点管理组件，设置设备节点操作的基础结构。
+ * 它会遍历系统设备节点树，进行内存比较，分配必要的内存，并设置设备节点属性。
+ * 
+ * @note 这是系统初始化过程中的重要组成部分，确保设备节点管理系统的正常运行
+ */
+void InitializeSystemDeviceNodeManager(void)
 
 {
   char systemNodeFlag;
