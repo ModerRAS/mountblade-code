@@ -43521,7 +43521,7 @@ void Unwind_180905de0(undefined8 param_1,longlong param_2)
 void Unwind_180905df0(undefined8 param_1,longlong param_2)
 
 {
-  FUN_180069530((ulonglong)(*(uint *)(resourceData + 0x30) & 0x1f) * 0x1a8 +
+  ProcessResourceIndex((ulonglong)(*(uint *)(resourceData + 0x30) & 0x1f) * 0x1a8 +
                 *(longlong *)(param_2 + 0x28));
   *(undefined1 *)
    ((*(longlong *)(param_2 + 0x28) - (ulonglong)(*(uint *)(resourceData + 0x30) & 0x1f)) + 0x352f) = 1;
@@ -43559,7 +43559,7 @@ void Unwind_180905e40(undefined8 param_1,longlong param_2)
   bool bVar9;
   
   presourceIndex = (longlong *)(param_2 + 0x28);
-  FUN_180069530((ulonglong)(*(uint *)(resourceData + 0x30) & 0x1f) * 0x1a8 + *presourceIndex);
+  ProcessResourceIndex((ulonglong)(*(uint *)(resourceData + 0x30) & 0x1f) * 0x1a8 + *presourceIndex);
   LOCK();
   plVar1 = (longlong *)(*presourceIndex + 0x3508);
   lVar5 = *plVar1;
