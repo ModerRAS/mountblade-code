@@ -163,6 +163,12 @@ int InitializePhysicsEngineSync(uint64_t threadId, uint64_t syncPtr, uint64_t mu
 /**
  * 初始化条件变量和互斥锁C
  * 设置线程同步所需的条件变量和互斥锁
+ * 
+ * @param threadId 线程ID，用于标识当前线程
+ * @param syncPtr 同步对象指针，指向同步数据结构
+ * @param mutexType 互斥锁类型，定义互斥锁的行为特性
+ * @param mutexAttr 互斥锁属性，包含互斥锁的配置参数
+ * @return 初始化成功返回0，失败返回-1
  */
 int InitializeConditionMutexC(uint64_t threadId,uint64_t syncPtr,uint64_t mutexType,uint64_t mutexAttr)
 {
@@ -178,6 +184,12 @@ int InitializeConditionMutexC(uint64_t threadId,uint64_t syncPtr,uint64_t mutexT
 /**
  * 初始化条件变量和互斥锁D
  * 设置线程同步所需的条件变量和互斥锁
+ * 
+ * @param threadId 线程ID，用于标识当前线程
+ * @param syncPtr 同步对象指针，指向同步数据结构
+ * @param mutexType 互斥锁类型，定义互斥锁的行为特性
+ * @param mutexAttr 互斥锁属性，包含互斥锁的配置参数
+ * @return 初始化成功返回0，失败返回-1
  */
 int InitializeConditionMutexD(uint64_t threadId,uint64_t syncPtr,uint64_t mutexType,uint64_t mutexAttr)
 {
@@ -385,15 +397,15 @@ int InitializeConfigurationMutex(uint64_t threadId,uint64_t syncPtr,uint64_t mut
   _DAT_180bf67b8 = 0xd;
   strcpy_s(&CONFIG_DATA_BUFFER_B,0x40,&UNK_180a0cb80);
   _DAT_180bf6800 = &UNK_1809fcc58;
-  _DAT_180bf6808 = &DAT_180bf6818;
-  DAT_180bf6818 = 0;
+  _DAT_180bf6808 = &CONFIG_DATA_BUFFER_C;
+  CONFIG_DATA_BUFFER_C = 0;
   _DAT_180bf6810 = 0x17;
-  strcpy_s(&DAT_180bf6818,0x40,&UNK_180a0cb90);
+  strcpy_s(&CONFIG_DATA_BUFFER_C,0x40,&UNK_180a0cb90);
   _DAT_180bf6858 = &UNK_1809fcc58;
-  _DAT_180bf6860 = &DAT_180bf6870;
-  DAT_180bf6870 = 0;
+  _DAT_180bf6860 = &CONFIG_DATA_BUFFER_D;
+  CONFIG_DATA_BUFFER_D = 0;
   _DAT_180bf6868 = 0xd;
-  strcpy_s(&DAT_180bf6870,0x40,&UNK_180a0cb60);
+  strcpy_s(&CONFIG_DATA_BUFFER_D,0x40,&UNK_180a0cb60);
   _DAT_180bf68b0 = &UNK_1809fcc58;
   _DAT_180bf68b8 = &DAT_180bf68c8;
   DAT_180bf68c8 = 0;
@@ -998,7 +1010,13 @@ int InitializeStringProcessorAA(void)
   InitializationResult = RegisterSystemCallback(StringProcessorAACallback);
   return (InitializationResult != 0) - 1;
 }
-int FUN_18003afe0(void)
+/**
+ * 初始化字符串处理器AA
+ * 设置字符串处理所需的配置和数据结构
+ * 
+ * @return 初始化成功返回0，失败返回-1
+ */
+int InitializeStringProcessorAA(void)
 {
   int64_t LocalResult;
   undefined8 in_R9;
@@ -1781,7 +1799,7 @@ int FUN_180041a80(void)
   FUN_180045580();
   return;
 }
-void WotsMainNativeSDLL(undefined8 param_1)
+void InitializeNativeSDLL(uint64_t initFlags)
 {
   undefined8 auStackX_18 [2];
   DAT_180c82841 = 0;
@@ -1887,7 +1905,7 @@ LAB_1800451ca:
   FUN_180045580();
   return;
 }
-void WotsMainNative(undefined8 param_1)
+void InitializeNativeCore(uint64_t initFlags)
 {
   undefined8 auStackX_18 [2];
   DAT_180c82841 = 0;
@@ -1898,7 +1916,7 @@ void WotsMainNative(undefined8 param_1)
   FUN_180045580();
   return;
 }
-void WotsMainNativeCoreCLR(undefined8 param_1)
+void InitializeNativeCoreCLR(uint64_t initFlags)
 {
   undefined8 auStackX_18 [2];
   DAT_180c82841 = 0;
@@ -9018,7 +9036,7 @@ LAB_18062e327:
 LAB_18062e3f0:
   memcpy(puVar5 + 3,acStack_40,(longlong)((int)lVar9 + 2));
 }
-char * FUN_18062e480(undefined4 param_1,undefined8 param_2,char *param_3,undefined8 param_4,
+char * FUN_18062e480(uint32_t param_1,undefined8 param_2,char *param_3,undefined8 param_4,
                     longlong *param_5,longlong param_6,ulonglong param_7,undefined8 *param_8,
                     int *param_9,undefined8 *param_10)
 {
@@ -11371,7 +11389,7 @@ undefined4 FUN_1808ee740(int param_1,int param_2,int param_3)
   func_0x0001808f6ce0();
   return auStack_18[0];
 }
-undefined8 FUN_1808ee7d0(undefined4 param_1,uint *param_2)
+undefined8 FUN_1808ee7d0(uint32_t param_1,uint *param_2)
 {
   int64_t LocalResult;
   uint uVar2;
@@ -11468,7 +11486,7 @@ undefined8 FUN_1808ee7d0(undefined4 param_1,uint *param_2)
   func_0x0001808f6ce0();
   return 0;
 }
-int FUN_1808eea10(undefined4 param_1,byte *param_2)
+int FUN_1808eea10(uint32_t param_1,byte *param_2)
 {
   char cVar1;
   int iVar2;
