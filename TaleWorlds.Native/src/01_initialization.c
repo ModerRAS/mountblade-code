@@ -603,16 +603,16 @@ undefined FUN_18006b8f0;
 void initializeGameCoreSystem(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
-  code *pcStackX_18;
+  char nodeFlag;
+  undefined8 *systemRootPointer;
+  int comparisonResult;
+  longlong *systemTablePointer;
+  longlong allocationSize;
+  undefined8 *currentNode;
+  undefined8 *previousNode;
+  undefined8 *nextNode;
+  undefined8 *allocatedNode;
+  code *initializationFunction;
   
   plVar4 = (longlong *)FUN_18008d070();
   puVar2 = (undefined8 *)*plVar4;
@@ -16058,47 +16058,52 @@ void WotsMainSDLL(undefined8 param_1)
   
                     // 0x43d20  31  WotsMainSDLL
 
-// 函数: void FUN_180043d40(longlong param_1)
-void FUN_180043d40(longlong param_1)
+/**
+ * 初始化主系统控制器
+ * 初始化游戏主系统控制器，处理系统状态和事件管理
+ * 
+ * @param param_1 系统参数
+ */
+void InitializeMainSystemController(longlong param_1)
 
 {
-  longlong lVar1;
-  longlong *plVar2;
-  char cVar3;
-  longlong *plStackX_8;
-  longlong **pplStackX_10;
-  longlong *plStackX_18;
-  longlong *plStackX_20;
-  undefined8 uVar4;
+  longlong systemObject;
+  longlong *controllerPtr;
+  char isActiveFlag;
+  longlong *tempStackPtr8;
+  longlong **tempStackPtr10;
+  longlong *tempStackPtr18;
+  longlong *tempStackPtr20;
+  undefined8 allocationFlags;
   
-  uVar4 = 0xfffffffffffffffe;
+  allocationFlags = 0xfffffffffffffffe;
   FUN_180046e20();
   _DAT_180c82864 = _DAT_180c82864 + 1;
   FUN_180050b00();
   if (_DAT_180c91048 != (longlong *)0x0) {
     if ((undefined *)*_DAT_180c91048 == &UNK_1809fe100) {
-      cVar3 = (char)_DAT_180c91048[2] != '\0';
+      isActiveFlag = (char)_DAT_180c91048[2] != '\0';
     }
     else {
-      cVar3 = (**(code **)((undefined *)*_DAT_180c91048 + 0x68))();
+      isActiveFlag = (**(code **)((undefined *)*_DAT_180c91048 + 0x68))();
     }
-    if (cVar3 == '\0') goto LAB_180043e47;
+    if (isActiveFlag == '\0') goto LAB_180043e47;
   }
-  plVar2 = (longlong *)FUN_18062b1e0(_DAT_180c8ed18,0xc0,8,3,uVar4);
-  plStackX_20 = plVar2;
-  FUN_180049830(plVar2);
-  *plVar2 = (longlong)&UNK_1809fe100;
-  plVar2[3] = -4;
-  pplStackX_10 = (longlong **)plVar2;
-  (**(code **)(*plVar2 + 0x28))(plVar2);
-  pplStackX_10 = (longlong **)_DAT_180c91048;
+  controllerPtr = (longlong *)FUN_18062b1e0(_DAT_180c8ed18,0xc0,8,3,allocationFlags);
+  tempStackPtr20 = controllerPtr;
+  FUN_180049830(controllerPtr);
+  *controllerPtr = (longlong)&UNK_1809fe100;
+  controllerPtr[3] = -4;
+  tempStackPtr10 = (longlong **)controllerPtr;
+  (**(code **)(*controllerPtr + 0x28))(controllerPtr);
+  tempStackPtr10 = (longlong **)_DAT_180c91048;
   if (_DAT_180c91048 != (longlong *)0x0) {
-    lVar1 = *_DAT_180c91048;
-    _DAT_180c91048 = plVar2;
-    (**(code **)(lVar1 + 0x38))();
-    plVar2 = _DAT_180c91048;
+    systemObject = *_DAT_180c91048;
+    _DAT_180c91048 = controllerPtr;
+    (**(code **)(systemObject + 0x38))();
+    controllerPtr = _DAT_180c91048;
   }
-  _DAT_180c91048 = plVar2;
+  _DAT_180c91048 = controllerPtr;
   if ((undefined *)*_DAT_180c91048 == &UNK_1809fe100) {
     if (_DAT_180c86948 != 0) {
       FUN_18006e990();
@@ -16107,59 +16112,72 @@ void FUN_180043d40(longlong param_1)
   else {
     (**(code **)((undefined *)*_DAT_180c91048 + 0x60))();
   }
-  plVar2 = _DAT_180c91048;
-  plStackX_18 = _DAT_180c91048;
+  controllerPtr = _DAT_180c91048;
+  tempStackPtr18 = _DAT_180c91048;
   _DAT_180c91048 = (longlong *)0x0;
-  if (plVar2 != (longlong *)0x0) {
-    (**(code **)(*plVar2 + 0x38))();
+  if (controllerPtr != (longlong *)0x0) {
+    (**(code **)(*controllerPtr + 0x38))();
   }
 LAB_180043e47:
   FUN_1800466d0(*(undefined8 *)(param_1 + 0x20));
   if (*(char *)(_DAT_180c86870 + 0x1ed) != '\0') {
-    plVar2 = (longlong *)FUN_18062b1e0(_DAT_180c8ed18,0x28,8,3);
-    *plVar2 = (longlong)&UNK_180a21690;
-    *plVar2 = (longlong)&UNK_180a21720;
-    *(undefined4 *)(plVar2 + 1) = 0;
-    *plVar2 = (longlong)&UNK_18098bdc8;
+    controllerPtr = (longlong *)FUN_18062b1e0(_DAT_180c8ed18,0x28,8,3);
+    *controllerPtr = (longlong)&UNK_180a21690;
+    *controllerPtr = (longlong)&UNK_180a21720;
+    *(undefined4 *)(controllerPtr + 1) = 0;
+    *controllerPtr = (longlong)&UNK_18098bdc8;
     LOCK();
-    *(undefined1 *)(plVar2 + 2) = 0;
+    *(undefined1 *)(controllerPtr + 2) = 0;
     UNLOCK();
-    plVar2[3] = -1;
-    *plVar2 = (longlong)&UNK_18098bd40;
-    plVar2[4] = 0x180c91060;
-    plStackX_20 = plVar2;
-    (**(code **)(*plVar2 + 0x28))(plVar2);
-    uVar4 = _DAT_180c82868;
-    pplStackX_10 = &plStackX_8;
-    plStackX_8 = plVar2;
-    (**(code **)(*plVar2 + 0x28))(plVar2);
-    FUN_18005e300(uVar4,&plStackX_8);
-    (**(code **)(*plVar2 + 0x38))(plVar2);
+    controllerPtr[3] = -1;
+    *controllerPtr = (longlong)&UNK_18098bd40;
+    controllerPtr[4] = 0x180c91060;
+    tempStackPtr20 = controllerPtr;
+    (**(code **)(*controllerPtr + 0x28))(controllerPtr);
+    allocationFlags = _DAT_180c82868;
+    tempStackPtr10 = &tempStackPtr8;
+    tempStackPtr8 = controllerPtr;
+    (**(code **)(*controllerPtr + 0x28))(controllerPtr);
+    FUN_18005e300(allocationFlags,&tempStackPtr8);
+    (**(code **)(*controllerPtr + 0x38))(controllerPtr);
   }
   return;
 }
 
 
 
+/**
+ * 内存管理器清理函数
+ * 清理内存管理器相关的指针和资源
+ * 
+ * @param param_1 内存管理器指针
+ * @param param_2 清理标志
+ * @param param_3 保留参数
+ * @param param_4 保留参数
+ * @return 返回内存管理器指针
+ */
 undefined8 *
-FUN_180043f30(undefined8 *param_1,ulonglong param_2,undefined8 param_3,undefined8 param_4)
+CleanupMemoryManager(undefined8 *memoryManager,ulonglong cleanupFlags,undefined8 reservedParam3,undefined8 reservedParam4)
 
 {
-  *param_1 = &UNK_18098bd40;
-  *param_1 = &UNK_18098bdc8;
-  *param_1 = &UNK_180a21720;
-  *param_1 = &UNK_180a21690;
-  if ((param_2 & 1) != 0) {
-    free(param_1,0x28,param_3,param_4,0xfffffffffffffffe);
+  *memoryManager = &UNK_18098bd40;
+  *memoryManager = &UNK_18098bdc8;
+  *memoryManager = &UNK_180a21720;
+  *memoryManager = &UNK_180a21690;
+  if ((cleanupFlags & 1) != 0) {
+    free(memoryManager,0x28,reservedParam3,reservedParam4,0xfffffffffffffffe);
   }
-  return param_1;
+  return memoryManager;
 }
 
 
 
 
-// 函数: void FUN_180043f90(void)
-void FUN_180043f90(void)
+/**
+ * 系统终止函数
+ * 终止系统运行，此函数不会返回
+ */
+void TerminateSystem(void)
 
 {
                     // WARNING: Subroutine does not return
@@ -16169,11 +16187,16 @@ void FUN_180043f90(void)
 
 
 
-// 函数: void FUN_180044a30(undefined8 *param_1)
-void FUN_180044a30(undefined8 *param_1)
+/**
+ * 设置默认系统指针
+ * 设置系统默认的指针地址
+ * 
+ * @param param_1 系统指针
+ */
+void SetDefaultSystemPointer(undefined8 *systemPointer)
 
 {
-  *param_1 = &UNK_18098bcb0;
+  *systemPointer = &UNK_18098bcb0;
   return;
 }
 
@@ -16182,16 +16205,19 @@ void FUN_180044a30(undefined8 *param_1)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180044a50(void)
-void FUN_180044a50(void)
+/**
+ * 初始化系统信息和用户环境
+ * 初始化系统信息，获取计算机名和用户名，设置系统环境
+ */
+void InitializeSystemInfoAndUserEnvironment(void)
 
 {
-  undefined8 *puVar1;
-  code *pcVar2;
-  longlong lVar3;
-  int iVar4;
-  undefined8 uVar5;
-  longlong *plVar6;
+  undefined8 *systemInfoPtr;
+  code *systemCallback;
+  longlong systemHandle;
+  int operationResult;
+  undefined8 allocationFlags;
+  longlong *controllerPtr;
   undefined1 auStack_248 [32];
   undefined *puStack_228;
   undefined *puStack_220;
@@ -16484,42 +16510,52 @@ LAB_180044faf:
   _DAT_180c8ed58 = 0;
   _DAT_180c8ed40 = lStackX_20;
 
-// 函数: void FUN_180045380(void)
-void FUN_180045380(void)
+/**
+ * 初始化线程管理器
+ * 初始化线程管理器并设置线程相关信息
+ * 此函数不会返回
+ */
+void InitializeThreadManager(void)
 
 {
-  undefined8 uVar1;
-  undefined4 uVar2;
-  undefined8 *puVar3;
-  undefined8 in_R9;
-  undefined *puStack_68;
-  undefined8 *puStack_60;
-  undefined4 uStack_58;
-  undefined8 uStack_50;
+  undefined8 currentThread;
+  undefined4 threadResult;
+  undefined8 *threadManager;
+  undefined8 registerR9;
+  undefined *errorPtr;
+  undefined8 *tempStack60;
+  undefined4 stack58;
+  undefined8 stack50;
   
-  puStack_68 = &UNK_180a3c3e0;
-  uStack_50 = 0;
-  puStack_60 = (undefined8 *)0x0;
-  uStack_58 = 0;
-  puVar3 = (undefined8 *)FUN_18062b420(_DAT_180c8ed18,0x10,0x13,in_R9,0xfffffffffffffffe);
-  *(undefined1 *)puVar3 = 0;
-  puStack_60 = puVar3;
-  uVar2 = FUN_18064e990(puVar3);
-  uStack_50 = CONCAT44(uStack_50._4_4_,uVar2);
-  *puVar3 = 0x72657472617453;
-  uStack_58 = 7;
-  uVar1 = GetCurrentThread();
-  FUN_180623fd0(uVar1,&puStack_68);
-  puStack_68 = &UNK_180a3c3e0;
+  errorPtr = &UNK_180a3c3e0;
+  stack50 = 0;
+  tempStack60 = (undefined8 *)0x0;
+  stack58 = 0;
+  threadManager = (undefined8 *)FUN_18062b420(_DAT_180c8ed18,0x10,0x13,registerR9,0xfffffffffffffffe);
+  *(undefined1 *)threadManager = 0;
+  tempStack60 = threadManager;
+  threadResult = FUN_18064e990(threadManager);
+  stack50 = CONCAT44(stack50._4_4_,threadResult);
+  *threadManager = 0x72657472617453;
+  stack58 = 7;
+  currentThread = GetCurrentThread();
+  FUN_180623fd0(currentThread,&errorPtr);
+  errorPtr = &UNK_180a3c3e0;
                     // WARNING: Subroutine does not return
-  FUN_18064e900(puVar3);
+  FUN_18064e900(threadManager);
 }
 
 
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined4 FUN_180045580(void)
+/**
+ * 最终系统初始化函数
+ * 执行最终的系统初始化，等待系统就绪，清理系统资源
+ * 
+ * @return 初始化结果
+ */
+undefined4 FinalSystemInitialization(void)
 
 {
   undefined8 *puVar1;
