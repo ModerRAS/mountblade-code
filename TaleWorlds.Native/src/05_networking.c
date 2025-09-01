@@ -1505,7 +1505,7 @@ void FindNetworkConnectionIndex(longlong connectionContext, longlong searchKey, 
     if (connectionValidated) {
       connectionIndex = 0;
       networkStatus2 = NetworkGetConnectionCount(connectionContext);
-      if (0 < networkStatus2) {
+      if (0 < networkStatus) {
         do {
           connectionEntry = NetworkGetConnectionByIndex(connectionContext,connectionIndex);
           if ((*(longlong *)(lVar3 + 0x10) == lStack_38) &&
@@ -1518,7 +1518,7 @@ void FindNetworkConnectionIndex(longlong connectionContext, longlong searchKey, 
     else {
       connectionIndex = 0;
       networkStatus2 = NetworkGetConnectionCount(connectionContext);
-      if (0 < networkStatus2) {
+      if (0 < networkStatus) {
         do {
           connectionEntry = NetworkGetConnectionByIndex(connectionContext,connectionIndex);
           if (*(int *)(lVar3 + 0x58) < 1) {
@@ -34052,7 +34052,7 @@ NetworkStatus * FUN_18085c820(longlong connectionContext,NetworkStatus *packetDa
   
   networkStatus2 = FUN_18085ab70();
   lVar3 = (longlong)networkStatus2;
-  if (0 < networkStatus2) {
+  if (0 < networkStatus) {
     primaryNetworkFlag = *(uint *)(*(longlong *)(connectionContext + 0x168) + 0x774);
     if (primaryNetworkFlag != 48000) {
       lVar3 = (lVar3 * 48000) / (longlong)(ulonglong)primaryNetworkFlag;
@@ -40233,7 +40233,7 @@ NetworkHandle FUN_180861ce0(longlong *connectionContext,int packetData)
     if (networkStatus2 != 0) {
       networkStatus12 = 0;
       lVar3 = *connectionContext;
-      if (0 < networkStatus2) {
+      if (0 < networkStatus) {
         lVar11 = lVar7 + 0x1c;
         lVar8 = lVar3 - lVar7;
         do {
@@ -40310,7 +40310,7 @@ NetworkHandle FUN_180861d0b(void)
     if (networkStatus2 != 0) {
       networkStatus12 = 0;
       lVar3 = *unaff_RDI;
-      if (0 < networkStatus2) {
+      if (0 < networkStatus) {
         lVar11 = lVar7 + 0x1c;
         lVar8 = lVar3 - lVar7;
         do {
@@ -46065,7 +46065,7 @@ NetworkHandle FUN_1808661e0(longlong *connectionContext,longlong packetData,int 
   if (networkStatus2 != 0) {
     quinaryNetworkFlag = *(uint *)((longlong)connectionContext + 0xc);
     if ((int)((quinaryNetworkFlag ^ (int)quinaryNetworkFlag >> 0x1f) - ((int)quinaryNetworkFlag >> 0x1f)) < 0) {
-      if (0 < networkStatus2) {
+      if (0 < networkStatus) {
         return 0x1c;
       }
       if ((0 < (int)quinaryNetworkFlag) && (*connectionContext != 0)) {
@@ -49234,7 +49234,7 @@ void FUN_180869b10(longlong connectionContext,NetworkHandle *packetData)
 LAB_180869c7a:
           if ((-1 < iVar5) && (iVar5 < iVar6)) {
             networkStatus2 = (iVar6 - iVar5) + -1;
-            if (0 < networkStatus2) {
+            if (0 < networkStatus) {
               lVar3 = *(longlong *)(connectionContext + 0x140) + (longlong)iVar5 * 8;
                     // WARNING: Subroutine does not return
               memmove(lVar3,lVar3 + 8,(longlong)networkStatus2 << 3);
@@ -49312,7 +49312,7 @@ void FUN_180869b4f(void)
 LAB_180869c7a:
         if ((-1 < cleanupIndex) && (cleanupIndex < connectionCount)) {
           networkStatus = (connectionCount - cleanupIndex) + -1;
-          if (0 < networkStatus2) {
+          if (0 < networkStatus) {
             lVar6 = *(longlong *)(unaff_RBP + 0x140) + (longlong)networkStatus4 * 8;
                     // WARNING: Subroutine does not return
             memmove(lVar6,lVar6 + 8,(longlong)networkStatus2 << 3);
@@ -49379,7 +49379,7 @@ void FUN_180869b6c(void)
 LAB_180869c7a:
       if ((-1 < unaff_ESI) && (unaff_ESI < unaff_EDI)) {
         networkStatus2 = (unaff_EDI - unaff_ESI) + -1;
-        if (0 < networkStatus2) {
+        if (0 < networkStatus) {
           lVar4 = *(longlong *)(unaff_RBP + 0x140) + (longlong)unaff_ESI * 8;
                     // WARNING: Subroutine does not return
           memmove(lVar4,lVar4 + 8,(longlong)networkStatus2 << 3);
@@ -49489,7 +49489,7 @@ void FUN_180869d10(longlong connectionContext,NetworkHandle *packetData)
 LAB_180869e7a:
           if ((-1 < iVar5) && (iVar5 < iVar6)) {
             networkStatus2 = (iVar6 - iVar5) + -1;
-            if (0 < networkStatus2) {
+            if (0 < networkStatus) {
               lVar3 = *(longlong *)(connectionContext + 0x80) + (longlong)iVar5 * 8;
                     // WARNING: Subroutine does not return
               memmove(lVar3,lVar3 + 8,(longlong)networkStatus2 << 3);
@@ -49567,7 +49567,7 @@ void FUN_180869d52(void)
 LAB_180869e7a:
         if ((-1 < cleanupIndex) && (cleanupIndex < connectionCount)) {
           networkStatus = (connectionCount - cleanupIndex) + -1;
-          if (0 < networkStatus2) {
+          if (0 < networkStatus) {
             lVar6 = *(longlong *)(unaff_RBP + 0x80) + (longlong)networkStatus4 * 8;
                     // WARNING: Subroutine does not return
             memmove(lVar6,lVar6 + 8,(longlong)networkStatus2 << 3);
@@ -49634,7 +49634,7 @@ void FUN_180869d6f(void)
 LAB_180869e7a:
       if ((-1 < unaff_ESI) && (unaff_ESI < unaff_EDI)) {
         networkStatus2 = (unaff_EDI - unaff_ESI) + -1;
-        if (0 < networkStatus2) {
+        if (0 < networkStatus) {
           lVar4 = *(longlong *)(unaff_RBP + 0x80) + (longlong)unaff_ESI * 8;
                     // WARNING: Subroutine does not return
           memmove(lVar4,lVar4 + 8,(longlong)networkStatus2 << 3);
@@ -49744,7 +49744,7 @@ void FUN_180869f10(longlong connectionContext,NetworkHandle *packetData)
 LAB_18086a07a:
           if ((-1 < iVar5) && (iVar5 < iVar6)) {
             networkStatus2 = (iVar6 - iVar5) + -1;
-            if (0 < networkStatus2) {
+            if (0 < networkStatus) {
               lVar3 = *(longlong *)(connectionContext + 0x110) + (longlong)iVar5 * 8;
                     // WARNING: Subroutine does not return
               memmove(lVar3,lVar3 + 8,(longlong)networkStatus2 << 3);
@@ -49822,7 +49822,7 @@ void FUN_180869f52(void)
 LAB_18086a07a:
         if ((-1 < cleanupIndex) && (cleanupIndex < connectionCount)) {
           networkStatus = (connectionCount - cleanupIndex) + -1;
-          if (0 < networkStatus2) {
+          if (0 < networkStatus) {
             lVar6 = *(longlong *)(unaff_RBP + 0x110) + (longlong)networkStatus4 * 8;
                     // WARNING: Subroutine does not return
             memmove(lVar6,lVar6 + 8,(longlong)networkStatus2 << 3);
@@ -49889,7 +49889,7 @@ void FUN_180869f6f(void)
 LAB_18086a07a:
       if ((-1 < unaff_ESI) && (unaff_ESI < unaff_EDI)) {
         networkStatus2 = (unaff_EDI - unaff_ESI) + -1;
-        if (0 < networkStatus2) {
+        if (0 < networkStatus) {
           lVar4 = *(longlong *)(unaff_RBP + 0x110) + (longlong)unaff_ESI * 8;
                     // WARNING: Subroutine does not return
           memmove(lVar4,lVar4 + 8,(longlong)networkStatus2 << 3);
@@ -49999,7 +49999,7 @@ void FUN_18086a110(longlong connectionContext,NetworkHandle *packetData)
 LAB_18086a27a:
           if ((-1 < iVar5) && (iVar5 < iVar6)) {
             networkStatus2 = (iVar6 - iVar5) + -1;
-            if (0 < networkStatus2) {
+            if (0 < networkStatus) {
               lVar3 = *(longlong *)(connectionContext + 0x180) + (longlong)iVar5 * 8;
                     // WARNING: Subroutine does not return
               memmove(lVar3,lVar3 + 8,(longlong)networkStatus2 << 3);
@@ -50084,7 +50084,7 @@ void CleanupNetworkConnectionArray(void)
 LAB_18086a27a:
         if ((-1 < cleanupIndex) && (cleanupIndex < connectionCount)) {
           networkStatus = (connectionCount - cleanupIndex) + -1;
-          if (0 < networkStatus2) {
+          if (0 < networkStatus) {
             lVar6 = *(longlong *)(unaff_RBP + 0x180) + (longlong)networkStatus4 * 8;
                     // WARNING: Subroutine does not return
             memmove(lVar6,lVar6 + 8,(longlong)networkStatus2 << 3);
@@ -50151,7 +50151,7 @@ void FUN_18086a16c(void)
 LAB_18086a27a:
       if ((-1 < unaff_ESI) && (unaff_ESI < unaff_EDI)) {
         networkStatus2 = (unaff_EDI - unaff_ESI) + -1;
-        if (0 < networkStatus2) {
+        if (0 < networkStatus) {
           lVar4 = *(longlong *)(unaff_RBP + 0x180) + (longlong)unaff_ESI * 8;
                     // WARNING: Subroutine does not return
           memmove(lVar4,lVar4 + 8,(longlong)networkStatus2 << 3);
@@ -50261,7 +50261,7 @@ void FUN_18086a310(longlong connectionContext,NetworkHandle *packetData)
 LAB_18086a47a:
           if ((-1 < iVar5) && (iVar5 < iVar6)) {
             networkStatus2 = (iVar6 - iVar5) + -1;
-            if (0 < networkStatus2) {
+            if (0 < networkStatus) {
               lVar3 = *(longlong *)(connectionContext + 0x1d0) + (longlong)iVar5 * 8;
                     // WARNING: Subroutine does not return
               memmove(lVar3,lVar3 + 8,(longlong)networkStatus2 << 3);
@@ -50339,7 +50339,7 @@ void FUN_18086a34f(void)
 LAB_18086a47a:
         if ((-1 < cleanupIndex) && (cleanupIndex < connectionCount)) {
           networkStatus = (connectionCount - cleanupIndex) + -1;
-          if (0 < networkStatus2) {
+          if (0 < networkStatus) {
             lVar6 = *(longlong *)(unaff_RBP + 0x1d0) + (longlong)networkStatus4 * 8;
                     // WARNING: Subroutine does not return
             memmove(lVar6,lVar6 + 8,(longlong)networkStatus2 << 3);
@@ -50406,7 +50406,7 @@ void FUN_18086a36c(void)
 LAB_18086a47a:
       if ((-1 < unaff_ESI) && (unaff_ESI < unaff_EDI)) {
         networkStatus2 = (unaff_EDI - unaff_ESI) + -1;
-        if (0 < networkStatus2) {
+        if (0 < networkStatus) {
           lVar4 = *(longlong *)(unaff_RBP + 0x1d0) + (longlong)unaff_ESI * 8;
                     // WARNING: Subroutine does not return
           memmove(lVar4,lVar4 + 8,(longlong)networkStatus2 << 3);
@@ -50516,7 +50516,7 @@ void FUN_18086a510(longlong connectionContext,NetworkHandle *packetData)
 LAB_18086a67a:
           if ((-1 < iVar5) && (iVar5 < iVar6)) {
             networkStatus2 = (iVar6 - iVar5) + -1;
-            if (0 < networkStatus2) {
+            if (0 < networkStatus) {
               lVar3 = *(longlong *)(connectionContext + 0x100) + (longlong)iVar5 * 8;
                     // WARNING: Subroutine does not return
               memmove(lVar3,lVar3 + 8,(longlong)networkStatus2 << 3);
@@ -50594,7 +50594,7 @@ void FUN_18086a552(void)
 LAB_18086a67a:
         if ((-1 < cleanupIndex) && (cleanupIndex < connectionCount)) {
           networkStatus = (connectionCount - cleanupIndex) + -1;
-          if (0 < networkStatus2) {
+          if (0 < networkStatus) {
             lVar6 = *(longlong *)(unaff_RBP + 0x100) + (longlong)networkStatus4 * 8;
                     // WARNING: Subroutine does not return
             memmove(lVar6,lVar6 + 8,(longlong)networkStatus2 << 3);
@@ -50661,7 +50661,7 @@ void FUN_18086a56f(void)
 LAB_18086a67a:
       if ((-1 < unaff_ESI) && (unaff_ESI < unaff_EDI)) {
         networkStatus2 = (unaff_EDI - unaff_ESI) + -1;
-        if (0 < networkStatus2) {
+        if (0 < networkStatus) {
           lVar4 = *(longlong *)(unaff_RBP + 0x100) + (longlong)unaff_ESI * 8;
                     // WARNING: Subroutine does not return
           memmove(lVar4,lVar4 + 8,(longlong)networkStatus2 << 3);
@@ -50771,7 +50771,7 @@ void FUN_18086a710(longlong connectionContext,NetworkHandle *packetData)
 LAB_18086a87a:
           if ((-1 < iVar5) && (iVar5 < iVar6)) {
             networkStatus2 = (iVar6 - iVar5) + -1;
-            if (0 < networkStatus2) {
+            if (0 < networkStatus) {
               lVar3 = *(longlong *)(connectionContext + 0xe0) + (longlong)iVar5 * 8;
                     // WARNING: Subroutine does not return
               memmove(lVar3,lVar3 + 8,(longlong)networkStatus2 << 3);
@@ -50849,7 +50849,7 @@ void FUN_18086a752(void)
 LAB_18086a87a:
         if ((-1 < cleanupIndex) && (cleanupIndex < connectionCount)) {
           networkStatus = (connectionCount - cleanupIndex) + -1;
-          if (0 < networkStatus2) {
+          if (0 < networkStatus) {
             lVar6 = *(longlong *)(unaff_RBP + 0xe0) + (longlong)networkStatus4 * 8;
                     // WARNING: Subroutine does not return
             memmove(lVar6,lVar6 + 8,(longlong)networkStatus2 << 3);
@@ -50916,7 +50916,7 @@ void FUN_18086a76f(void)
 LAB_18086a87a:
       if ((-1 < unaff_ESI) && (unaff_ESI < unaff_EDI)) {
         networkStatus2 = (unaff_EDI - unaff_ESI) + -1;
-        if (0 < networkStatus2) {
+        if (0 < networkStatus) {
           lVar4 = *(longlong *)(unaff_RBP + 0xe0) + (longlong)unaff_ESI * 8;
                     // WARNING: Subroutine does not return
           memmove(lVar4,lVar4 + 8,(longlong)networkStatus2 << 3);
@@ -51026,7 +51026,7 @@ void FUN_18086a910(longlong connectionContext,NetworkHandle *packetData)
 LAB_18086aa7a:
           if ((-1 < iVar5) && (iVar5 < iVar6)) {
             networkStatus2 = (iVar6 - iVar5) + -1;
-            if (0 < networkStatus2) {
+            if (0 < networkStatus) {
               lVar3 = *(longlong *)(connectionContext + 0x1a0) + (longlong)iVar5 * 8;
                     // WARNING: Subroutine does not return
               memmove(lVar3,lVar3 + 8,(longlong)networkStatus2 << 3);
@@ -51104,7 +51104,7 @@ void FUN_18086a94f(void)
 LAB_18086aa7a:
         if ((-1 < cleanupIndex) && (cleanupIndex < connectionCount)) {
           networkStatus = (connectionCount - cleanupIndex) + -1;
-          if (0 < networkStatus2) {
+          if (0 < networkStatus) {
             lVar6 = *(longlong *)(unaff_RBP + 0x1a0) + (longlong)networkStatus4 * 8;
                     // WARNING: Subroutine does not return
             memmove(lVar6,lVar6 + 8,(longlong)networkStatus2 << 3);
@@ -51171,7 +51171,7 @@ void FUN_18086a96c(void)
 LAB_18086aa7a:
       if ((-1 < unaff_ESI) && (unaff_ESI < unaff_EDI)) {
         networkStatus2 = (unaff_EDI - unaff_ESI) + -1;
-        if (0 < networkStatus2) {
+        if (0 < networkStatus) {
           lVar4 = *(longlong *)(unaff_RBP + 0x1a0) + (longlong)unaff_ESI * 8;
                     // WARNING: Subroutine does not return
           memmove(lVar4,lVar4 + 8,(longlong)networkStatus2 << 3);
@@ -51281,7 +51281,7 @@ void FUN_18086ab10(longlong connectionContext,NetworkHandle *packetData)
 LAB_18086ac60:
           if ((-1 < iVar5) && (iVar5 < iVar6)) {
             networkStatus2 = (iVar6 - iVar5) + -1;
-            if (0 < networkStatus2) {
+            if (0 < networkStatus) {
               lVar3 = *(longlong *)(connectionContext + 0x40) + (longlong)iVar5 * 8;
                     // WARNING: Subroutine does not return
               memmove(lVar3,lVar3 + 8,(longlong)networkStatus2 << 3);
@@ -51359,7 +51359,7 @@ void FUN_18086ab52(void)
 LAB_18086ac60:
         if ((-1 < cleanupIndex) && (cleanupIndex < connectionCount)) {
           networkStatus = (connectionCount - cleanupIndex) + -1;
-          if (0 < networkStatus2) {
+          if (0 < networkStatus) {
             lVar6 = *(longlong *)(unaff_RBP + 0x40) + (longlong)networkStatus4 * 8;
                     // WARNING: Subroutine does not return
             memmove(lVar6,lVar6 + 8,(longlong)networkStatus2 << 3);
@@ -51426,7 +51426,7 @@ void FUN_18086ab6c(void)
 LAB_18086ac60:
       if ((-1 < unaff_ESI) && (unaff_ESI < unaff_EDI)) {
         networkStatus2 = (unaff_EDI - unaff_ESI) + -1;
-        if (0 < networkStatus2) {
+        if (0 < networkStatus) {
           lVar4 = *(longlong *)(unaff_RBP + 0x40) + (longlong)unaff_ESI * 8;
                     // WARNING: Subroutine does not return
           memmove(lVar4,lVar4 + 8,(longlong)networkStatus2 << 3);
@@ -51536,7 +51536,7 @@ void FUN_18086acf0(longlong connectionContext,NetworkHandle *packetData)
 LAB_18086ae40:
           if ((-1 < iVar5) && (iVar5 < iVar6)) {
             networkStatus2 = (iVar6 - iVar5) + -1;
-            if (0 < networkStatus2) {
+            if (0 < networkStatus) {
               lVar3 = *(longlong *)(connectionContext + 0x30) + (longlong)iVar5 * 8;
                     // WARNING: Subroutine does not return
               memmove(lVar3,lVar3 + 8,(longlong)networkStatus2 << 3);
@@ -51614,7 +51614,7 @@ void FUN_18086ad32(void)
 LAB_18086ae40:
         if ((-1 < cleanupIndex) && (cleanupIndex < connectionCount)) {
           networkStatus = (connectionCount - cleanupIndex) + -1;
-          if (0 < networkStatus2) {
+          if (0 < networkStatus) {
             lVar6 = *(longlong *)(unaff_RBP + 0x30) + (longlong)networkStatus4 * 8;
                     // WARNING: Subroutine does not return
             memmove(lVar6,lVar6 + 8,(longlong)networkStatus2 << 3);
@@ -51681,7 +51681,7 @@ void FUN_18086ad4c(void)
 LAB_18086ae40:
       if ((-1 < unaff_ESI) && (unaff_ESI < unaff_EDI)) {
         networkStatus2 = (unaff_EDI - unaff_ESI) + -1;
-        if (0 < networkStatus2) {
+        if (0 < networkStatus) {
           lVar4 = *(longlong *)(unaff_RBP + 0x30) + (longlong)unaff_ESI * 8;
                     // WARNING: Subroutine does not return
           memmove(lVar4,lVar4 + 8,(longlong)networkStatus2 << 3);
@@ -51791,7 +51791,7 @@ void FUN_18086aed0(longlong connectionContext,NetworkHandle *packetData)
 LAB_18086b03a:
           if ((-1 < iVar5) && (iVar5 < iVar6)) {
             networkStatus2 = (iVar6 - iVar5) + -1;
-            if (0 < networkStatus2) {
+            if (0 < networkStatus) {
               lVar3 = *(longlong *)(connectionContext + 0x130) + (longlong)iVar5 * 8;
                     // WARNING: Subroutine does not return
               memmove(lVar3,lVar3 + 8,(longlong)networkStatus2 << 3);
@@ -51869,7 +51869,7 @@ void FUN_18086af12(void)
 LAB_18086b03a:
         if ((-1 < cleanupIndex) && (cleanupIndex < connectionCount)) {
           networkStatus = (connectionCount - cleanupIndex) + -1;
-          if (0 < networkStatus2) {
+          if (0 < networkStatus) {
             lVar6 = *(longlong *)(unaff_RBP + 0x130) + (longlong)networkStatus4 * 8;
                     // WARNING: Subroutine does not return
             memmove(lVar6,lVar6 + 8,(longlong)networkStatus2 << 3);
@@ -51936,7 +51936,7 @@ void FUN_18086af2f(void)
 LAB_18086b03a:
       if ((-1 < unaff_ESI) && (unaff_ESI < unaff_EDI)) {
         networkStatus2 = (unaff_EDI - unaff_ESI) + -1;
-        if (0 < networkStatus2) {
+        if (0 < networkStatus) {
           lVar4 = *(longlong *)(unaff_RBP + 0x130) + (longlong)unaff_ESI * 8;
                     // WARNING: Subroutine does not return
           memmove(lVar4,lVar4 + 8,(longlong)networkStatus2 << 3);
@@ -52046,7 +52046,7 @@ void FUN_18086b0d0(longlong connectionContext,NetworkHandle *packetData)
 LAB_18086b23a:
           if ((-1 < iVar5) && (iVar5 < iVar6)) {
             networkStatus2 = (iVar6 - iVar5) + -1;
-            if (0 < networkStatus2) {
+            if (0 < networkStatus) {
               lVar3 = *(longlong *)(connectionContext + 0x1e0) + (longlong)iVar5 * 8;
                     // WARNING: Subroutine does not return
               memmove(lVar3,lVar3 + 8,(longlong)networkStatus2 << 3);
@@ -52124,7 +52124,7 @@ void FUN_18086b10f(void)
 LAB_18086b23a:
         if ((-1 < cleanupIndex) && (cleanupIndex < connectionCount)) {
           networkStatus = (connectionCount - cleanupIndex) + -1;
-          if (0 < networkStatus2) {
+          if (0 < networkStatus) {
             lVar6 = *(longlong *)(unaff_RBP + 0x1e0) + (longlong)networkStatus4 * 8;
                     // WARNING: Subroutine does not return
             memmove(lVar6,lVar6 + 8,(longlong)networkStatus2 << 3);
@@ -52191,7 +52191,7 @@ void FUN_18086b12c(void)
 LAB_18086b23a:
       if ((-1 < unaff_ESI) && (unaff_ESI < unaff_EDI)) {
         networkStatus2 = (unaff_EDI - unaff_ESI) + -1;
-        if (0 < networkStatus2) {
+        if (0 < networkStatus) {
           lVar4 = *(longlong *)(unaff_RBP + 0x1e0) + (longlong)unaff_ESI * 8;
                     // WARNING: Subroutine does not return
           memmove(lVar4,lVar4 + 8,(longlong)networkStatus2 << 3);
@@ -52301,7 +52301,7 @@ void FUN_18086b2d0(longlong connectionContext,NetworkHandle *packetData)
 LAB_18086b420:
           if ((-1 < iVar5) && (iVar5 < iVar6)) {
             networkStatus2 = (iVar6 - iVar5) + -1;
-            if (0 < networkStatus2) {
+            if (0 < networkStatus) {
               lVar3 = *(longlong *)(connectionContext + 0x60) + (longlong)iVar5 * 8;
                     // WARNING: Subroutine does not return
               memmove(lVar3,lVar3 + 8,(longlong)networkStatus2 << 3);
@@ -52379,7 +52379,7 @@ void FUN_18086b312(void)
 LAB_18086b420:
         if ((-1 < cleanupIndex) && (cleanupIndex < connectionCount)) {
           networkStatus = (connectionCount - cleanupIndex) + -1;
-          if (0 < networkStatus2) {
+          if (0 < networkStatus) {
             lVar6 = *(longlong *)(unaff_RBP + 0x60) + (longlong)networkStatus4 * 8;
                     // WARNING: Subroutine does not return
             memmove(lVar6,lVar6 + 8,(longlong)networkStatus2 << 3);
@@ -52446,7 +52446,7 @@ void FUN_18086b32c(void)
 LAB_18086b420:
       if ((-1 < unaff_ESI) && (unaff_ESI < unaff_EDI)) {
         networkStatus2 = (unaff_EDI - unaff_ESI) + -1;
-        if (0 < networkStatus2) {
+        if (0 < networkStatus) {
           lVar4 = *(longlong *)(unaff_RBP + 0x60) + (longlong)unaff_ESI * 8;
                     // WARNING: Subroutine does not return
           memmove(lVar4,lVar4 + 8,(longlong)networkStatus2 << 3);
@@ -52556,7 +52556,7 @@ void FUN_18086b4b0(longlong connectionContext,NetworkHandle *packetData)
 LAB_18086b61a:
           if ((-1 < iVar5) && (iVar5 < iVar6)) {
             networkStatus2 = (iVar6 - iVar5) + -1;
-            if (0 < networkStatus2) {
+            if (0 < networkStatus) {
               lVar3 = *(longlong *)(connectionContext + 400) + (longlong)iVar5 * 8;
                     // WARNING: Subroutine does not return
               memmove(lVar3,lVar3 + 8,(longlong)networkStatus2 << 3);
@@ -52634,7 +52634,7 @@ void FUN_18086b4ef(void)
 LAB_18086b61a:
         if ((-1 < cleanupIndex) && (cleanupIndex < connectionCount)) {
           networkStatus = (connectionCount - cleanupIndex) + -1;
-          if (0 < networkStatus2) {
+          if (0 < networkStatus) {
             lVar6 = *(longlong *)(unaff_RBP + 400) + (longlong)networkStatus4 * 8;
                     // WARNING: Subroutine does not return
             memmove(lVar6,lVar6 + 8,(longlong)networkStatus2 << 3);
@@ -52701,7 +52701,7 @@ void FUN_18086b50c(void)
 LAB_18086b61a:
       if ((-1 < unaff_ESI) && (unaff_ESI < unaff_EDI)) {
         networkStatus2 = (unaff_EDI - unaff_ESI) + -1;
-        if (0 < networkStatus2) {
+        if (0 < networkStatus) {
           lVar4 = *(longlong *)(unaff_RBP + 400) + (longlong)unaff_ESI * 8;
                     // WARNING: Subroutine does not return
           memmove(lVar4,lVar4 + 8,(longlong)networkStatus2 << 3);
@@ -52811,7 +52811,7 @@ void FUN_18086b6b0(longlong connectionContext,NetworkHandle *packetData)
 LAB_18086b81a:
           if ((-1 < iVar5) && (iVar5 < iVar6)) {
             networkStatus2 = (iVar6 - iVar5) + -1;
-            if (0 < networkStatus2) {
+            if (0 < networkStatus) {
               lVar3 = *(longlong *)(connectionContext + 0x150) + (longlong)iVar5 * 8;
                     // WARNING: Subroutine does not return
               memmove(lVar3,lVar3 + 8,(longlong)networkStatus2 << 3);
@@ -52889,7 +52889,7 @@ void FUN_18086b6f2(void)
 LAB_18086b81a:
         if ((-1 < cleanupIndex) && (cleanupIndex < connectionCount)) {
           networkStatus = (connectionCount - cleanupIndex) + -1;
-          if (0 < networkStatus2) {
+          if (0 < networkStatus) {
             lVar6 = *(longlong *)(unaff_RBP + 0x150) + (longlong)networkStatus4 * 8;
                     // WARNING: Subroutine does not return
             memmove(lVar6,lVar6 + 8,(longlong)networkStatus2 << 3);
@@ -52956,7 +52956,7 @@ void FUN_18086b70f(void)
 LAB_18086b81a:
       if ((-1 < unaff_ESI) && (unaff_ESI < unaff_EDI)) {
         networkStatus2 = (unaff_EDI - unaff_ESI) + -1;
-        if (0 < networkStatus2) {
+        if (0 < networkStatus) {
           lVar4 = *(longlong *)(unaff_RBP + 0x150) + (longlong)unaff_ESI * 8;
                     // WARNING: Subroutine does not return
           memmove(lVar4,lVar4 + 8,(longlong)networkStatus2 << 3);
@@ -53066,7 +53066,7 @@ void FUN_18086b8b0(longlong connectionContext,NetworkHandle *packetData)
 LAB_18086ba00:
           if ((-1 < iVar5) && (iVar5 < iVar6)) {
             networkStatus2 = (iVar6 - iVar5) + -1;
-            if (0 < networkStatus2) {
+            if (0 < networkStatus) {
               lVar3 = *(longlong *)(connectionContext + 0x70) + (longlong)iVar5 * 8;
                     // WARNING: Subroutine does not return
               memmove(lVar3,lVar3 + 8,(longlong)networkStatus2 << 3);
@@ -53151,7 +53151,7 @@ void ProcessNetworkConnectionQueue(void)
 LAB_18086ba00:
         if ((-1 < cleanupIndex) && (cleanupIndex < connectionCount)) {
           networkStatus = (connectionCount - cleanupIndex) + -1;
-          if (0 < networkStatus2) {
+          if (0 < networkStatus) {
             lVar6 = *(longlong *)(unaff_RBP + 0x70) + (longlong)networkStatus4 * 8;
                     // WARNING: Subroutine does not return
             memmove(lVar6,lVar6 + 8,(longlong)networkStatus2 << 3);
@@ -53227,7 +53227,7 @@ void ProcessNetworkConnectionQueueSorting(void)
 LAB_18086ba00:
       if ((-1 < unaff_ESI) && (unaff_ESI < unaff_EDI)) {
         networkStatus2 = (unaff_EDI - unaff_ESI) + -1;
-        if (0 < networkStatus2) {
+        if (0 < networkStatus) {
           lVar4 = *(longlong *)(unaff_RBP + 0x70) + (longlong)unaff_ESI * 8;
                     // WARNING: Subroutine does not return
           memmove(lVar4,lVar4 + 8,(longlong)networkStatus2 << 3);
@@ -53337,7 +53337,7 @@ void FUN_18086ba90(longlong connectionContext,NetworkHandle *packetData)
 LAB_18086bbfa:
           if ((-1 < iVar5) && (iVar5 < iVar6)) {
             networkStatus2 = (iVar6 - iVar5) + -1;
-            if (0 < networkStatus2) {
+            if (0 < networkStatus) {
               lVar3 = *(longlong *)(connectionContext + 0x1c0) + (longlong)iVar5 * 8;
                     // WARNING: Subroutine does not return
               memmove(lVar3,lVar3 + 8,(longlong)networkStatus2 << 3);
@@ -53415,7 +53415,7 @@ void FUN_18086bacf(void)
 LAB_18086bbfa:
         if ((-1 < cleanupIndex) && (cleanupIndex < connectionCount)) {
           networkStatus = (connectionCount - cleanupIndex) + -1;
-          if (0 < networkStatus2) {
+          if (0 < networkStatus) {
             lVar6 = *(longlong *)(unaff_RBP + 0x1c0) + (longlong)networkStatus4 * 8;
                     // WARNING: Subroutine does not return
             memmove(lVar6,lVar6 + 8,(longlong)networkStatus2 << 3);
@@ -53482,7 +53482,7 @@ void FUN_18086baec(void)
 LAB_18086bbfa:
       if ((-1 < unaff_ESI) && (unaff_ESI < unaff_EDI)) {
         networkStatus2 = (unaff_EDI - unaff_ESI) + -1;
-        if (0 < networkStatus2) {
+        if (0 < networkStatus) {
           lVar4 = *(longlong *)(unaff_RBP + 0x1c0) + (longlong)unaff_ESI * 8;
                     // WARNING: Subroutine does not return
           memmove(lVar4,lVar4 + 8,(longlong)networkStatus2 << 3);
@@ -53592,7 +53592,7 @@ void FUN_18086bc90(longlong connectionContext,NetworkHandle *packetData)
 LAB_18086bdfa:
           if ((-1 < iVar5) && (iVar5 < iVar6)) {
             networkStatus2 = (iVar6 - iVar5) + -1;
-            if (0 < networkStatus2) {
+            if (0 < networkStatus) {
               lVar3 = *(longlong *)(connectionContext + 0x1b0) + (longlong)iVar5 * 8;
                     // WARNING: Subroutine does not return
               memmove(lVar3,lVar3 + 8,(longlong)networkStatus2 << 3);
@@ -53670,7 +53670,7 @@ void FUN_18086bccf(void)
 LAB_18086bdfa:
         if ((-1 < cleanupIndex) && (cleanupIndex < connectionCount)) {
           networkStatus = (connectionCount - cleanupIndex) + -1;
-          if (0 < networkStatus2) {
+          if (0 < networkStatus) {
             lVar6 = *(longlong *)(unaff_RBP + 0x1b0) + (longlong)networkStatus4 * 8;
                     // WARNING: Subroutine does not return
             memmove(lVar6,lVar6 + 8,(longlong)networkStatus2 << 3);
@@ -53737,7 +53737,7 @@ void FUN_18086bcec(void)
 LAB_18086bdfa:
       if ((-1 < unaff_ESI) && (unaff_ESI < unaff_EDI)) {
         networkStatus2 = (unaff_EDI - unaff_ESI) + -1;
-        if (0 < networkStatus2) {
+        if (0 < networkStatus) {
           lVar4 = *(longlong *)(unaff_RBP + 0x1b0) + (longlong)unaff_ESI * 8;
                     // WARNING: Subroutine does not return
           memmove(lVar4,lVar4 + 8,(longlong)networkStatus2 << 3);
@@ -53847,7 +53847,7 @@ void FUN_18086be90(longlong connectionContext,NetworkHandle *packetData)
 LAB_18086bffa:
           if ((-1 < iVar5) && (iVar5 < iVar6)) {
             networkStatus2 = (iVar6 - iVar5) + -1;
-            if (0 < networkStatus2) {
+            if (0 < networkStatus) {
               lVar3 = *(longlong *)(connectionContext + 0x90) + (longlong)iVar5 * 8;
                     // WARNING: Subroutine does not return
               memmove(lVar3,lVar3 + 8,(longlong)networkStatus2 << 3);
@@ -53925,7 +53925,7 @@ void FUN_18086bed2(void)
 LAB_18086bffa:
         if ((-1 < cleanupIndex) && (cleanupIndex < connectionCount)) {
           networkStatus = (connectionCount - cleanupIndex) + -1;
-          if (0 < networkStatus2) {
+          if (0 < networkStatus) {
             lVar6 = *(longlong *)(unaff_RBP + 0x90) + (longlong)networkStatus4 * 8;
                     // WARNING: Subroutine does not return
             memmove(lVar6,lVar6 + 8,(longlong)networkStatus2 << 3);
@@ -53992,7 +53992,7 @@ void FUN_18086beef(void)
 LAB_18086bffa:
       if ((-1 < unaff_ESI) && (unaff_ESI < unaff_EDI)) {
         networkStatus2 = (unaff_EDI - unaff_ESI) + -1;
-        if (0 < networkStatus2) {
+        if (0 < networkStatus) {
           lVar4 = *(longlong *)(unaff_RBP + 0x90) + (longlong)unaff_ESI * 8;
                     // WARNING: Subroutine does not return
           memmove(lVar4,lVar4 + 8,(longlong)networkStatus2 << 3);
@@ -54102,7 +54102,7 @@ void FUN_18086c090(longlong connectionContext,NetworkHandle *packetData)
 LAB_18086c1fa:
           if ((-1 < iVar5) && (iVar5 < iVar6)) {
             networkStatus2 = (iVar6 - iVar5) + -1;
-            if (0 < networkStatus2) {
+            if (0 < networkStatus) {
               lVar3 = *(longlong *)(connectionContext + 0x170) + (longlong)iVar5 * 8;
                     // WARNING: Subroutine does not return
               memmove(lVar3,lVar3 + 8,(longlong)networkStatus2 << 3);
@@ -54180,7 +54180,7 @@ void FUN_18086c0d2(void)
 LAB_18086c1fa:
         if ((-1 < cleanupIndex) && (cleanupIndex < connectionCount)) {
           networkStatus = (connectionCount - cleanupIndex) + -1;
-          if (0 < networkStatus2) {
+          if (0 < networkStatus) {
             lVar6 = *(longlong *)(unaff_RBP + 0x170) + (longlong)networkStatus4 * 8;
                     // WARNING: Subroutine does not return
             memmove(lVar6,lVar6 + 8,(longlong)networkStatus2 << 3);
@@ -54247,7 +54247,7 @@ void FUN_18086c0ef(void)
 LAB_18086c1fa:
       if ((-1 < unaff_ESI) && (unaff_ESI < unaff_EDI)) {
         networkStatus2 = (unaff_EDI - unaff_ESI) + -1;
-        if (0 < networkStatus2) {
+        if (0 < networkStatus) {
           lVar4 = *(longlong *)(unaff_RBP + 0x170) + (longlong)unaff_ESI * 8;
                     // WARNING: Subroutine does not return
           memmove(lVar4,lVar4 + 8,(longlong)networkStatus2 << 3);
@@ -54357,7 +54357,7 @@ void FUN_18086c290(longlong connectionContext,NetworkHandle *packetData)
 LAB_18086c3e0:
           if ((-1 < iVar5) && (iVar5 < iVar6)) {
             networkStatus2 = (iVar6 - iVar5) + -1;
-            if (0 < networkStatus2) {
+            if (0 < networkStatus) {
               lVar3 = *(longlong *)(connectionContext + 0x50) + (longlong)iVar5 * 8;
                     // WARNING: Subroutine does not return
               memmove(lVar3,lVar3 + 8,(longlong)networkStatus2 << 3);
@@ -54435,7 +54435,7 @@ void FUN_18086c2d2(void)
 LAB_18086c3e0:
         if ((-1 < cleanupIndex) && (cleanupIndex < connectionCount)) {
           networkStatus = (connectionCount - cleanupIndex) + -1;
-          if (0 < networkStatus2) {
+          if (0 < networkStatus) {
             lVar6 = *(longlong *)(unaff_RBP + 0x50) + (longlong)networkStatus4 * 8;
                     // WARNING: Subroutine does not return
             memmove(lVar6,lVar6 + 8,(longlong)networkStatus2 << 3);
@@ -54502,7 +54502,7 @@ void FUN_18086c2ec(void)
 LAB_18086c3e0:
       if ((-1 < unaff_ESI) && (unaff_ESI < unaff_EDI)) {
         networkStatus2 = (unaff_EDI - unaff_ESI) + -1;
-        if (0 < networkStatus2) {
+        if (0 < networkStatus) {
           lVar4 = *(longlong *)(unaff_RBP + 0x50) + (longlong)unaff_ESI * 8;
                     // WARNING: Subroutine does not return
           memmove(lVar4,lVar4 + 8,(longlong)networkStatus2 << 3);
@@ -54612,7 +54612,7 @@ void FUN_18086c470(longlong connectionContext,NetworkHandle *packetData)
 LAB_18086c5da:
           if ((-1 < iVar5) && (iVar5 < iVar6)) {
             networkStatus2 = (iVar6 - iVar5) + -1;
-            if (0 < networkStatus2) {
+            if (0 < networkStatus) {
               lVar3 = *(longlong *)(connectionContext + 0x160) + (longlong)iVar5 * 8;
                     // WARNING: Subroutine does not return
               memmove(lVar3,lVar3 + 8,(longlong)networkStatus2 << 3);
@@ -54690,7 +54690,7 @@ void FUN_18086c4b2(void)
 LAB_18086c5da:
         if ((-1 < cleanupIndex) && (cleanupIndex < connectionCount)) {
           networkStatus = (connectionCount - cleanupIndex) + -1;
-          if (0 < networkStatus2) {
+          if (0 < networkStatus) {
             lVar6 = *(longlong *)(unaff_RBP + 0x160) + (longlong)networkStatus4 * 8;
                     // WARNING: Subroutine does not return
             memmove(lVar6,lVar6 + 8,(longlong)networkStatus2 << 3);
@@ -54757,7 +54757,7 @@ void FUN_18086c4cf(void)
 LAB_18086c5da:
       if ((-1 < unaff_ESI) && (unaff_ESI < unaff_EDI)) {
         networkStatus2 = (unaff_EDI - unaff_ESI) + -1;
-        if (0 < networkStatus2) {
+        if (0 < networkStatus) {
           lVar4 = *(longlong *)(unaff_RBP + 0x160) + (longlong)unaff_ESI * 8;
                     // WARNING: Subroutine does not return
           memmove(lVar4,lVar4 + 8,(longlong)networkStatus2 << 3);
@@ -54867,7 +54867,7 @@ void FUN_18086c670(longlong connectionContext,NetworkHandle *packetData)
 LAB_18086c7da:
           if ((-1 < iVar5) && (iVar5 < iVar6)) {
             networkStatus2 = (iVar6 - iVar5) + -1;
-            if (0 < networkStatus2) {
+            if (0 < networkStatus) {
               lVar3 = *(longlong *)(connectionContext + 0xa0) + (longlong)iVar5 * 8;
                     // WARNING: Subroutine does not return
               memmove(lVar3,lVar3 + 8,(longlong)networkStatus2 << 3);
@@ -54945,7 +54945,7 @@ void FUN_18086c6b2(void)
 LAB_18086c7da:
         if ((-1 < cleanupIndex) && (cleanupIndex < connectionCount)) {
           networkStatus = (connectionCount - cleanupIndex) + -1;
-          if (0 < networkStatus2) {
+          if (0 < networkStatus) {
             lVar6 = *(longlong *)(unaff_RBP + 0xa0) + (longlong)networkStatus4 * 8;
                     // WARNING: Subroutine does not return
             memmove(lVar6,lVar6 + 8,(longlong)networkStatus2 << 3);
@@ -55012,7 +55012,7 @@ void FUN_18086c6cf(void)
 LAB_18086c7da:
       if ((-1 < unaff_ESI) && (unaff_ESI < unaff_EDI)) {
         networkStatus2 = (unaff_EDI - unaff_ESI) + -1;
-        if (0 < networkStatus2) {
+        if (0 < networkStatus) {
           lVar4 = *(longlong *)(unaff_RBP + 0xa0) + (longlong)unaff_ESI * 8;
                     // WARNING: Subroutine does not return
           memmove(lVar4,lVar4 + 8,(longlong)networkStatus2 << 3);
@@ -55122,7 +55122,7 @@ void FUN_18086c870(longlong connectionContext,NetworkHandle *packetData)
 LAB_18086c9da:
           if ((-1 < iVar5) && (iVar5 < iVar6)) {
             networkStatus2 = (iVar6 - iVar5) + -1;
-            if (0 < networkStatus2) {
+            if (0 < networkStatus) {
               lVar3 = *(longlong *)(connectionContext + 0xb0) + (longlong)iVar5 * 8;
                     // WARNING: Subroutine does not return
               memmove(lVar3,lVar3 + 8,(longlong)networkStatus2 << 3);
@@ -55200,7 +55200,7 @@ void FUN_18086c8b2(void)
 LAB_18086c9da:
         if ((-1 < cleanupIndex) && (cleanupIndex < connectionCount)) {
           networkStatus = (connectionCount - cleanupIndex) + -1;
-          if (0 < networkStatus2) {
+          if (0 < networkStatus) {
             lVar6 = *(longlong *)(unaff_RBP + 0xb0) + (longlong)networkStatus4 * 8;
                     // WARNING: Subroutine does not return
             memmove(lVar6,lVar6 + 8,(longlong)networkStatus2 << 3);
@@ -55267,7 +55267,7 @@ void FUN_18086c8cf(void)
 LAB_18086c9da:
       if ((-1 < unaff_ESI) && (unaff_ESI < unaff_EDI)) {
         networkStatus2 = (unaff_EDI - unaff_ESI) + -1;
-        if (0 < networkStatus2) {
+        if (0 < networkStatus) {
           lVar4 = *(longlong *)(unaff_RBP + 0xb0) + (longlong)unaff_ESI * 8;
                     // WARNING: Subroutine does not return
           memmove(lVar4,lVar4 + 8,(longlong)networkStatus2 << 3);
@@ -55377,7 +55377,7 @@ void FUN_18086ca70(longlong connectionContext,NetworkHandle *packetData)
 LAB_18086cbda:
           if ((-1 < iVar5) && (iVar5 < iVar6)) {
             networkStatus2 = (iVar6 - iVar5) + -1;
-            if (0 < networkStatus2) {
+            if (0 < networkStatus) {
               lVar3 = *(longlong *)(connectionContext + 0x120) + (longlong)iVar5 * 8;
                     // WARNING: Subroutine does not return
               memmove(lVar3,lVar3 + 8,(longlong)networkStatus2 << 3);
@@ -55455,7 +55455,7 @@ void FUN_18086cab2(void)
 LAB_18086cbda:
         if ((-1 < cleanupIndex) && (cleanupIndex < connectionCount)) {
           networkStatus = (connectionCount - cleanupIndex) + -1;
-          if (0 < networkStatus2) {
+          if (0 < networkStatus) {
             lVar6 = *(longlong *)(unaff_RBP + 0x120) + (longlong)networkStatus4 * 8;
                     // WARNING: Subroutine does not return
             memmove(lVar6,lVar6 + 8,(longlong)networkStatus2 << 3);
@@ -55522,7 +55522,7 @@ void FUN_18086cacf(void)
 LAB_18086cbda:
       if ((-1 < unaff_ESI) && (unaff_ESI < unaff_EDI)) {
         networkStatus2 = (unaff_EDI - unaff_ESI) + -1;
-        if (0 < networkStatus2) {
+        if (0 < networkStatus) {
           lVar4 = *(longlong *)(unaff_RBP + 0x120) + (longlong)unaff_ESI * 8;
                     // WARNING: Subroutine does not return
           memmove(lVar4,lVar4 + 8,(longlong)networkStatus2 << 3);
@@ -55632,7 +55632,7 @@ void FUN_18086cc70(longlong connectionContext,NetworkHandle *packetData)
 LAB_18086cdda:
           if ((-1 < iVar5) && (iVar5 < iVar6)) {
             networkStatus2 = (iVar6 - iVar5) + -1;
-            if (0 < networkStatus2) {
+            if (0 < networkStatus) {
               lVar3 = *(longlong *)(connectionContext + 0x1f0) + (longlong)iVar5 * 8;
                     // WARNING: Subroutine does not return
               memmove(lVar3,lVar3 + 8,(longlong)networkStatus2 << 3);
@@ -55710,7 +55710,7 @@ void FUN_18086ccaf(void)
 LAB_18086cdda:
         if ((-1 < cleanupIndex) && (cleanupIndex < connectionCount)) {
           networkStatus = (connectionCount - cleanupIndex) + -1;
-          if (0 < networkStatus2) {
+          if (0 < networkStatus) {
             lVar6 = *(longlong *)(unaff_RBP + 0x1f0) + (longlong)networkStatus4 * 8;
                     // WARNING: Subroutine does not return
             memmove(lVar6,lVar6 + 8,(longlong)networkStatus2 << 3);
@@ -55777,7 +55777,7 @@ void FUN_18086cccc(void)
 LAB_18086cdda:
       if ((-1 < unaff_ESI) && (unaff_ESI < unaff_EDI)) {
         networkStatus2 = (unaff_EDI - unaff_ESI) + -1;
-        if (0 < networkStatus2) {
+        if (0 < networkStatus) {
           lVar4 = *(longlong *)(unaff_RBP + 0x1f0) + (longlong)unaff_ESI * 8;
                     // WARNING: Subroutine does not return
           memmove(lVar4,lVar4 + 8,(longlong)networkStatus2 << 3);
@@ -55887,7 +55887,7 @@ void FUN_18086ce70(longlong connectionContext,NetworkHandle *packetData)
 LAB_18086cfda:
           if ((-1 < iVar5) && (iVar5 < iVar6)) {
             networkStatus2 = (iVar6 - iVar5) + -1;
-            if (0 < networkStatus2) {
+            if (0 < networkStatus) {
               lVar3 = *(longlong *)(connectionContext + 0xd0) + (longlong)iVar5 * 8;
                     // WARNING: Subroutine does not return
               memmove(lVar3,lVar3 + 8,(longlong)networkStatus2 << 3);
@@ -55965,7 +55965,7 @@ void FUN_18086ceaf(void)
 LAB_18086cfda:
         if ((-1 < cleanupIndex) && (cleanupIndex < connectionCount)) {
           networkStatus = (connectionCount - cleanupIndex) + -1;
-          if (0 < networkStatus2) {
+          if (0 < networkStatus) {
             lVar6 = *(longlong *)(unaff_RBP + 0xd0) + (longlong)networkStatus4 * 8;
                     // WARNING: Subroutine does not return
             memmove(lVar6,lVar6 + 8,(longlong)networkStatus2 << 3);
@@ -56032,7 +56032,7 @@ void FUN_18086cecc(void)
 LAB_18086cfda:
       if ((-1 < unaff_ESI) && (unaff_ESI < unaff_EDI)) {
         networkStatus2 = (unaff_EDI - unaff_ESI) + -1;
-        if (0 < networkStatus2) {
+        if (0 < networkStatus) {
           lVar4 = *(longlong *)(unaff_RBP + 0xd0) + (longlong)unaff_ESI * 8;
                     // WARNING: Subroutine does not return
           memmove(lVar4,lVar4 + 8,(longlong)networkStatus2 << 3);
@@ -56142,7 +56142,7 @@ void FUN_18086d070(longlong connectionContext,NetworkHandle *packetData)
 LAB_18086d1da:
           if ((-1 < iVar5) && (iVar5 < iVar6)) {
             networkStatus2 = (iVar6 - iVar5) + -1;
-            if (0 < networkStatus2) {
+            if (0 < networkStatus) {
               lVar3 = *(longlong *)(connectionContext + 0xc0) + (longlong)iVar5 * 8;
                     // WARNING: Subroutine does not return
               memmove(lVar3,lVar3 + 8,(longlong)networkStatus2 << 3);
@@ -56220,7 +56220,7 @@ void FUN_18086d0b2(void)
 LAB_18086d1da:
         if ((-1 < cleanupIndex) && (cleanupIndex < connectionCount)) {
           networkStatus = (connectionCount - cleanupIndex) + -1;
-          if (0 < networkStatus2) {
+          if (0 < networkStatus) {
             lVar6 = *(longlong *)(unaff_RBP + 0xc0) + (longlong)networkStatus4 * 8;
                     // WARNING: Subroutine does not return
             memmove(lVar6,lVar6 + 8,(longlong)networkStatus2 << 3);
@@ -56287,7 +56287,7 @@ void FUN_18086d0cf(void)
 LAB_18086d1da:
       if ((-1 < unaff_ESI) && (unaff_ESI < unaff_EDI)) {
         networkStatus2 = (unaff_EDI - unaff_ESI) + -1;
-        if (0 < networkStatus2) {
+        if (0 < networkStatus) {
           lVar4 = *(longlong *)(unaff_RBP + 0xc0) + (longlong)unaff_ESI * 8;
                     // WARNING: Subroutine does not return
           memmove(lVar4,lVar4 + 8,(longlong)networkStatus2 << 3);
@@ -56397,7 +56397,7 @@ void FUN_18086d270(longlong connectionContext,NetworkHandle *packetData)
 LAB_18086d3da:
           if ((-1 < iVar5) && (iVar5 < iVar6)) {
             networkStatus2 = (iVar6 - iVar5) + -1;
-            if (0 < networkStatus2) {
+            if (0 < networkStatus) {
               lVar3 = *(longlong *)(connectionContext + 0xf0) + (longlong)iVar5 * 8;
                     // WARNING: Subroutine does not return
               memmove(lVar3,lVar3 + 8,(longlong)networkStatus2 << 3);
@@ -56475,7 +56475,7 @@ void FUN_18086d2af(void)
 LAB_18086d3da:
         if ((-1 < cleanupIndex) && (cleanupIndex < connectionCount)) {
           networkStatus = (connectionCount - cleanupIndex) + -1;
-          if (0 < networkStatus2) {
+          if (0 < networkStatus) {
             lVar6 = *(longlong *)(unaff_RBP + 0xf0) + (longlong)networkStatus4 * 8;
                     // WARNING: Subroutine does not return
             memmove(lVar6,lVar6 + 8,(longlong)networkStatus2 << 3);
@@ -56542,7 +56542,7 @@ void FUN_18086d2cc(void)
 LAB_18086d3da:
       if ((-1 < unaff_ESI) && (unaff_ESI < unaff_EDI)) {
         networkStatus2 = (unaff_EDI - unaff_ESI) + -1;
-        if (0 < networkStatus2) {
+        if (0 < networkStatus) {
           lVar4 = *(longlong *)(unaff_RBP + 0xf0) + (longlong)unaff_ESI * 8;
                     // WARNING: Subroutine does not return
           memmove(lVar4,lVar4 + 8,(longlong)networkStatus2 << 3);
@@ -61998,7 +61998,7 @@ NetworkHandle FUN_18087439e(longlong connectionContext)
       memset(lVar4 + -0x21c,0,0x108);
     }
   }
-  else if (0 < networkStatus2) {
+  else if (0 < networkStatus) {
     lVar4 = *unaff_RDI + 600;
     do {
       FUN_1808723c0(lVar4 + 0x10);
@@ -104128,7 +104128,7 @@ NetworkHandle FUN_18089a370(longlong connectionContext,longlong packetData)
               return quaternaryNetworkFlag;
             }
             lVar8 = lVar7;
-            if (0 < networkStatus2) {
+            if (0 < networkStatus) {
               do {
                 lVar6 = *(longlong *)(packetData + 600) + lVar7;
                 sVar1 = *(short *)(lVar6 + 0x114);
@@ -104193,7 +104193,7 @@ NetworkHandle FUN_18089a51d(void)
       return tertiaryNetworkFlag;
     }
     lVar4 = unaff_R14;
-    if (0 < networkStatus2) {
+    if (0 < networkStatus) {
       do {
         sVar1 = *(short *)(*(longlong *)(unaff_RDI + 600) + unaff_R14 + 0x114);
         tertiaryNetworkFlag = FUN_180899ef0();
