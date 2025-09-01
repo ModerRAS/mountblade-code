@@ -4311,51 +4311,52 @@ uint8_t InitializeObjectHandleC(int64_t objectContext)
 
 
 /**
- * @brief 处理对象句柄初始化操作D
+ * @brief 初始化对象句柄操作D
  * 
- * 该函数负责处理对象句柄的初始化操作，包括句柄分配、
- * 状态检查和初始化设置等步骤
+ * 该函数负责处理对象句柄的初始化操作，包括从寄存器获取上下文、
+ * 资源遍历和批量处理等步骤
  * 
- * @return 操作结果状态码
+ * @return uint8_t 操作结果状态码，0表示成功，非0表示失败
  */
 uint8_t InitializeObjectHandleD(void)
 
 {
-  int64_t loopCounter;
-  int integerValue2;
-  int64_t InputRegisterValue;
-  uint8_t unsignedResult3;
-  uint32_t *punsignedResult4;
-  uint64_t unsignedValue5;
-  int64_t SystemContextPointer;
+  int64_t resourceOffset;
+  int resourceIndex;
+  int64_t registerValue;
+  uint8_t operationResult;
+  uint32_t *resourceIdPointer;
+  uint64_t contextHandle;
+  int64_t systemContext;
   uint configurationFlags;
-  uint64_t unsignedValue7;
-  int64_t longValue8;
+  uint64_t iterationCounter;
+  int64_t baseAddressOffset;
   
-  unsignedValue7 = 0;
-  unsignedValue5 = in_RAX - 8;
+  iterationCounter = 0;
+  contextHandle = in_RAX - 8;
   if (in_RAX == 0) {
-    unsignedValue5 = unsignedValue7;
+    contextHandle = iterationCounter;
   }
-  punsignedResult4 = (uint32_t *)(SystemContextPointer + 0x20 + (int64_t)*(int *)(SystemContextPointer + 0x18) * 4);
-  if (0 < *(int *)(SystemContextPointer + 0x18)) {
-    longValue8 = (SystemContextPointer + 0x20) - (int64_t)punsignedResult4;
+  resourceIdPointer = (uint32_t *)(systemContext + 0x20 + (int64_t)*(int *)(systemContext + 0x18) * 4);
+  if (0 < *(int *)(systemContext + 0x18)) {
+    baseAddressOffset = (systemContext + 0x20) - (int64_t)resourceIdPointer;
     do {
-      integerValue2 = *(int *)(longValue8 + (int64_t)punsignedResult4);
-      if (integerValue2 != -1) {
-        loopCounter = *(int64_t *)(unsignedValue5 + 0x20) + (int64_t)integerValue2 * 0x18;
-        if ((localContextPointer == 0) || (loopCounter = *(int64_t *)(localContextPointer + 8), localContextPointer == 0)) {
+      resourceIndex = *(int *)(baseAddressOffset + (int64_t)resourceIdPointer);
+      if (resourceIndex != -1) {
+        resourceOffset = *(int64_t *)(contextHandle + 0x20) + (int64_t)resourceIndex * 0x18;
+        int64_t resourceContext = *(int64_t *)(resourceOffset + 8);
+        if ((resourceContext == 0)) {
           return 0x1c;
         }
-        unsignedResult3 = ProcessResourceOperation(localContextPointer,*punsignedResult4,0);
-        if ((int)unsignedResult3 != 0) {
-          return unsignedResult3;
+        operationResult = ProcessResourceOperation(resourceContext, *resourceIdPointer, 0);
+        if ((int)operationResult != 0) {
+          return operationResult;
         }
       }
-      unsignedValue6 = (int)unsignedValue7 + 1;
-      unsignedValue7 = (uint64_t)unsignedValue6;
-      punsignedResult4 = punsignedResult4 + 1;
-    } while ((int)unsignedValue6 < *(int *)(SystemContextPointer + 0x18));
+      uint32_t nextIteration = (uint32_t)iterationCounter + 1;
+      iterationCounter = (uint64_t)nextIteration;
+      resourceIdPointer = resourceIdPointer + 1;
+    } while ((int)nextIteration < *(int *)(systemContext + 0x18));
   }
   return 0;
 }
