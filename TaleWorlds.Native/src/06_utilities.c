@@ -83116,22 +83116,28 @@ void FUN_1809430b0(void)
 void ClearSystemCacheAndResetState(void)
 
 {
-  _DAT_180d4a068 = &UNK_180a3c3e0;
-  if (_DAT_180d4a070 != 0) {
+  SystemCachePointer = &DefaultCacheResetValue;
+  if (SystemCacheStatus != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    EmergencyCleanupFunction();
   }
-  _DAT_180d4a070 = 0;
-  _DAT_180d4a080 = 0;
-  _DAT_180d4a068 = &UNK_18098bcb0;
+  SystemCacheStatus = 0;
+  SystemCacheData = 0;
+  SystemCachePointer = &DefaultCacheValue;
   return;
 }
 
 
 
 
-// 函数: void FUN_180943140(void)
-void FUN_180943140(void)
+// 函数: void DestroyMutexInPlace(void)
+/**
+ * @brief 销毁互斥锁资源
+ * 
+ * 该函数负责销毁指定的互斥锁资源
+ * 释放互斥锁占用的内存和相关资源
+ */
+void DestroyMutexInPlace(void)
 
 {
                     // WARNING: Could not recover jumptable at 0x000180943158. Too many branches

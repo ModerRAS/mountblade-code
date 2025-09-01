@@ -609,7 +609,7 @@ void ValidateNetworkConnection(undefined8 connectionId,ulonglong *connectionStat
   if (connectionStatus == (ulonglong *)0x0) {
     if ((*(byte *)(_DAT_180be12f0 + 0x10) & 0x80) == 0) {
                     // WARNING: Subroutine does not return
-      FUN_1808fc050(stackGuard ^ (ulonglong)securityBuffer);
+      CleanupNetworkSecurityBuffer(stackGuard ^ (ulonglong)securityBuffer);
     }
     func_0x00018074bda0(errorBuffer,0x100,0);
     errorMessage = errorBuffer;
@@ -708,7 +708,7 @@ void ProcessNetworkPacket(undefined4 packetId,int packetIndex,longlong packetDat
     }
   }
                     // WARNING: Subroutine does not return
-  FUN_18088c790(&connectionHandle);
+  CleanupNetworkConnection(&connectionHandle);
 }
 
 
