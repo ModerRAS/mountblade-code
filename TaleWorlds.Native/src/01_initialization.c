@@ -32333,7 +32333,7 @@ void ClearSystemCache(void)
 void DestroySystemResource(long long SystemResourcePointer)
 
 {
-  FUN_1800591c0();
+  FreeSystemMemoryPool();
   *(void* *)(SystemResourcePointer + 8) = &SystemGlobalDataReference;
   if (*(long long *)(SystemResourcePointer + 0x10) != 0) {
                     // WARNING: Subroutine does not return
@@ -33135,8 +33135,9 @@ LAB_1800591a6:
 
 
 
-// 函数: void FUN_1800591c0(long long *SystemResourcePointer)
-void FUN_1800591c0(long long *SystemResourcePointer)
+// 函数: void FreeSystemMemoryPool(long long *SystemResourcePointer)
+// 功能: 释放系统内存池，清理内存资源
+void FreeSystemMemoryPool(long long *SystemResourcePointer)
 
 {
   long long localMemoryPointer;
