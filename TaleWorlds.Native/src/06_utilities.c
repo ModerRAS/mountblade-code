@@ -174,51 +174,56 @@ undefined packetHandler;
 undefined networkProtocolManager;
 undefined networkEventDispatcher;
 
-// 函数: undefined FUN_1809418c0;
-undefined FUN_1809418c0;
-undefined DAT_180bf6680;
-undefined DAT_180bf6688;
-undefined DAT_180bf6690;
-undefined DAT_180bf6698;
-undefined UNK_180a00540;
+// 函数: undefined InitializeRenderingSystem;
+undefined InitializeRenderingSystem;
+undefined renderingEngineInstance;
+undefined graphicsDeviceHandle;
+undefined shaderManager;
+undefined renderQueueManager;
+undefined graphicsMemoryPool;
 
-// 函数: undefined FUN_1809418e0;
-undefined FUN_1809418e0;
-undefined DAT_180bf66b0;
-undefined DAT_180bf66b8;
-undefined DAT_180bf66c0;
-undefined DAT_180bf66c8;
-undefined UNK_180a00548;
+// 函数: undefined InitializeAnimationSystem;
+undefined InitializeAnimationSystem;
+undefined animationEngineInstance;
+undefined skeletonManager;
+undefined animationClipManager;
+undefined boneTransformManager;
+undefined animationStateController;
 
-// 函数: undefined FUN_180941900;
-undefined FUN_180941900;
-undefined DAT_180bf52e8;
-undefined DAT_180bf52f0;
-undefined DAT_180bf52f8;
-undefined DAT_180bf5300;
-undefined UNK_180a01300;
+// 函数: undefined InitializeMemoryManager;
+undefined InitializeMemoryManager;
+undefined memoryManagerInstance;
+undefined heapAllocator;
+undefined memoryPoolManager;
+undefined garbageCollector;
+undefined memoryDebugger;
 
-// 函数: undefined FUN_180941980;
-undefined FUN_180941980;
+// 函数: undefined InitializeScriptingSystem;
+undefined InitializeScriptingSystem;
 undefined DAT_180bf5738;
-undefined DAT_180bf5740;
-undefined DAT_180bf5748;
-undefined DAT_180bf5750;
-undefined UNK_180a01330;
+undefined scriptingEngineInstance;
+undefined scriptCompiler;
+undefined scriptVirtualMachine;
+undefined scriptDebugger;
 
-// 函数: undefined FUN_1809419a0;
-undefined FUN_1809419a0;
+// 函数: undefined InitializeFileSystem;
+undefined InitializeFileSystem;
 
-// 函数: undefined FUN_1809419c0;
-undefined FUN_1809419c0;
-undefined DAT_180c9196c;
-undefined UNK_180a02998;
-undefined DAT_180c919e0;
-undefined UNK_180a0b1c8;
-undefined DAT_180bf6750;
-undefined DAT_180bf6758;
-undefined DAT_180bf6760;
-undefined DAT_180bf6768;
+/**
+ * @brief 初始化数据库系统
+ * 
+ * 该函数负责初始化游戏数据库系统
+ * 设置数据库连接、查询和事务管理的相关机制
+ */
+undefined InitializeDatabaseSystem;
+undefined databaseConnectionPool;
+undefined databaseQueryCache;
+undefined databaseTransactionManager;
+undefined databaseIndexManager;
+undefined databaseSchemaManager;
+undefined databaseRecordManager;
+undefined databaseLockManager;
+undefined databaseBackupManager;
 undefined DAT_180bf67a8;
 undefined DAT_180bf67b0;
 undefined DAT_180bf67b8;
