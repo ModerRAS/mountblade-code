@@ -10326,8 +10326,17 @@ LAB_18084ac26:
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_18084acb0(NetworkHandle connectionContext)
-void FUN_18084acb0(NetworkHandle connectionContext)
+/**
+ * @brief 网络连接初始化器
+ * 
+ * 该函数负责初始化网络连接。
+ * 它设置连接参数，验证连接状态，并处理连接的初始化过程。
+ * 
+ * @param connectionContext 网络连接句柄
+ * @return void
+ * @note 该函数用于网络连接的初始化和设置
+ */
+void NetworkConnectionInitializer(NetworkHandle connectionContext)
 
 {
   int networkStatus1;

@@ -26709,7 +26709,15 @@ void UnwindExceptionHandlerType2(undefined8 param_1,longlong param_2)
 
 
 
-void Unwind_180901f00(undefined8 param_1,longlong param_2)
+/**
+ * @brief 异常处理函数：解卷处理器类型3
+ * 
+ * 该函数负责处理异常情况下的资源清理和状态恢复
+ * 
+ * @param param_1 异常上下文参数
+ * @param param_2 系统上下文指针
+ */
+void UnwindExceptionHandlerType3(undefined8 param_1,longlong param_2)
 
 {
   if ((longlong *)**(longlong **)(param_2 + 0x48) != (longlong *)0x0) {
@@ -26720,7 +26728,15 @@ void Unwind_180901f00(undefined8 param_1,longlong param_2)
 
 
 
-void Unwind_180901f10(undefined8 param_1,longlong param_2)
+/**
+ * @brief 异常处理函数：解卷处理器类型4
+ * 
+ * 该函数负责处理异常情况下的资源清理和状态恢复
+ * 
+ * @param param_1 异常上下文参数
+ * @param param_2 系统上下文指针
+ */
+void UnwindExceptionHandlerType4(undefined8 param_1,longlong param_2)
 
 {
   undefined8 *presourceHash;
@@ -26734,7 +26750,15 @@ void Unwind_180901f10(undefined8 param_1,longlong param_2)
 
 
 
-void Unwind_180901f20(undefined8 param_1,longlong param_2)
+/**
+ * @brief 异常处理函数：解卷处理器类型5
+ * 
+ * 该函数负责处理异常情况下的资源清理和状态恢复
+ * 
+ * @param param_1 异常上下文参数
+ * @param param_2 系统上下文指针
+ */
+void UnwindExceptionHandlerType5(undefined8 param_1,longlong param_2)
 
 {
   undefined8 *presourceHash;
