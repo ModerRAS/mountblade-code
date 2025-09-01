@@ -10011,9 +10011,9 @@ void ValidateAndInitializeResource(longlong objectContextParam,uint8_t8 validati
 {
   int operationResult;
   
-  integerValue1 = CalculateResourceHash(validationContextParam,objectContextParam + 0x10);
-  if (((integerValue1 == 0) && (integerValue1 = ValidateResourceHash(validationContextParam,objectContextParam + 0x18), integerValue1 == 0)) &&
-     (integerValue1 = ProcessResourceTableEntries(validationContextParam,objectContextParam + 0x20,*(uint8_t4 *)(objectContextParam + 0x18)), integerValue1 == 0)) {
+  HashCalculationResult = CalculateResourceHash(validationContextParam,objectContextParam + 0x10);
+  if (((HashCalculationResult == 0) && (HashCalculationResult = ValidateResourceHash(validationContextParam,objectContextParam + 0x18), HashCalculationResult == 0)) &&
+     (HashCalculationResult = ProcessResourceTableEntries(validationContextParam,objectContextParam + 0x20,*(uint8_t4 *)(objectContextParam + 0x18)), HashCalculationResult == 0)) {
     InitializeResourceBuffer(validationContextParam,objectContextParam + 0x20 + (longlong)*(int *)(objectContextParam + 0x18) * 4);
   }
   return;
