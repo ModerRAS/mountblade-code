@@ -22634,16 +22634,29 @@ void InitializeSystemMutex(void* *SystemResourcePointer)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void* FUN_18004a430(long long SystemResourcePointer,void* param_2)
+/**
+ * @brief 系统线程创建器
+ * 
+ * 该函数负责创建系统线程，分配内存并启动线程执行。
+ * 函数会分配线程所需的内存，启动线程，并更新系统资源指针中的线程句柄计数。
+ * 
+ * @param SystemResourcePointer 系统资源指针
+ * @param param_2 线程参数
+ * @return 返回分配的内存指针
+ * 
+ * @note 函数分配0x10字节大小的内存，类型为6
+ * @note 函数更新资源指针+8位置的句柄计数
+ */
+void* CreateSystemThread(long long SystemResourcePointer,void* param_2)
 
 {
-  void* unsignedSystemValue1;
-  long long localSystemHandle;
+  void* threadMemory;
+  long long threadHandle;
   
-  unsignedSystemValue1 = SystemMemoryAllocationFunction(SystemMemoryAllocationTemplate,param_2,0x10,6);
-  localSystemHandle = StartSystemThread(unsignedSystemValue1);
-  *(long long *)(SystemResourcePointer + 8) = *(long long *)(SystemResourcePointer + 8) + localSystemHandle;
-  return unsignedSystemValue1;
+  threadMemory = SystemMemoryAllocationFunction(SystemMemoryAllocationTemplate,param_2,0x10,6);
+  threadHandle = StartSystemThread(threadMemory);
+  *(long long *)(SystemResourcePointer + 8) = *(long long *)(SystemResourcePointer + 8) + threadHandle;
+  return threadMemory;
 }
 
 
