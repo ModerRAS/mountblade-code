@@ -2169,7 +2169,7 @@ void SetLogLevel;
 undefined LogLevelConfigurationData;
 undefined LogOutputConfigurationData;
 undefined LogMessageQueueData;
-undefined UNK_180a18a20;
+undefined LogMessageBufferData;
 undefined UNK_180a18a40;
 undefined UNK_180a18a58;
 undefined UNK_180a18a78;
