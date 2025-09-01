@@ -6469,53 +6469,53 @@ void InitializeSystemResourceInitializer(void)
 void InitializeSystemFloatingPointCalculator(void)
 
 {
-  ulong long uVar1;
-  float *pfVar2;
+  ulong long loopCounter;
+  float *floatTablePointer;
   int memoryCompareResult;
-  ulong long uVar4;
-  uint uVar5;
-  ulong long uVar6;
-  int iVar7;
-  float *pfVar8;
-  float fVar9;
+  ulong long outerLoopCounter;
+  uint innerLoopCounter;
+  ulong long baseCounter;
+  int rangeOffset;
+  float *currentFloatTable;
+  float calculatedValue;
   
-  pfVar8 = (float *)0x180c8aa70;
-  uVar6 = 0;
-  iVar7 = -3;
-  uVar4 = uVar6;
+  currentFloatTable = (float *)0x180c8aa70;
+  baseCounter = 0;
+  rangeOffset = -3;
+  outerLoopCounter = baseCounter;
   do {
-    if (0 < (long long)uVar4) {
-      iVar3 = -3;
-      uVar1 = uVar6;
-      pfVar2 = pfVar8;
+    if (0 < (long long)outerLoopCounter) {
+      int innerOffset = -3;
+      loopCounter = baseCounter;
+      floatTablePointer = currentFloatTable;
       do {
-        fVar9 = 0.0;
-        if (-1 < (long long)uVar1) {
-          if ((long long)uVar1 < 3) {
-            fVar9 = 0.75;
+        calculatedValue = 0.0;
+        if (-1 < (long long)loopCounter) {
+          if ((long long)loopCounter < 3) {
+            calculatedValue = 0.75;
           }
           else {
-            fVar9 = 1.0 - (float)iVar3 / (float)iVar7;
-            fVar9 = SQRT(fVar9) * fVar9;
+            calculatedValue = 1.0 - (float)innerOffset / (float)rangeOffset;
+            calculatedValue = SQRT(calculatedValue) * calculatedValue;
           }
         }
-        *pfVar2 = fVar9;
-        iVar3 = iVar3 + 1;
-        pfVar2 = pfVar2 + 1;
-        uVar1 = uVar1 + 1;
-      } while ((long long)uVar1 < (long long)uVar4);
+        *floatTablePointer = calculatedValue;
+        innerOffset = innerOffset + 1;
+        floatTablePointer = floatTablePointer + 1;
+        loopCounter = loopCounter + 1;
+      } while ((long long)loopCounter < (long long)outerLoopCounter);
     }
-    iVar7 = iVar7 + 1;
-    uVar4 = uVar4 + 1;
-    pfVar8 = pfVar8 + 0x40;
-  } while ((long long)pfVar8 < 0x180c8ea71);
-  pfVar8 = (float *)0x180c8eb70;
+    rangeOffset = rangeOffset + 1;
+    outerLoopCounter = outerLoopCounter + 1;
+    currentFloatTable = currentFloatTable + 0x40;
+  } while ((long long)currentFloatTable < 0x180c8ea71);
+  currentFloatTable = (float *)0x180c8eb70;
   do {
-    uVar5 = (int)uVar6 + 1;
-    *pfVar8 = 1.0 / SQRT((float)uVar6) + 1.0 / SQRT((float)uVar6);
-    pfVar8 = pfVar8 + 1;
-    uVar6 = (ulong long)uVar5;
-  } while (uVar5 < 0x40);
+    innerLoopCounter = (int)baseCounter + 1;
+    *currentFloatTable = 1.0 / SQRT((float)baseCounter) + 1.0 / SQRT((float)baseCounter);
+    currentFloatTable = currentFloatTable + 1;
+    baseCounter = (ulong long)innerLoopCounter;
+  } while (innerLoopCounter < 0x40);
   return;
 }
 
@@ -16015,18 +16015,18 @@ void InitializeSystemSubcomponentM(void)
  * 该函数负责初始化系统的互斥锁机制，确保多线程环境下的资源同步访问。
  * 它使用 mtx_init_in_situ 函数来初始化互斥锁，并设置适当的同步参数。
  * 
- * @param param_1 互斥锁标识符
- * @param param_2 互斥锁类型
- * @param param_3 同步参数1
- * @param param_4 同步参数2
+ * @param mutexIdentifier 互斥锁标识符
+ * @param mutexType 互斥锁类型
+ * @param syncParameter1 同步参数1
+ * @param syncParameter2 同步参数2
  * @return int 初始化成功返回0，失败返回-1
  */
-int InitializeSystemMutex(void* param_1,void* param_2,void* param_3,void* param_4)
+int InitializeSystemMutex(void* mutexIdentifier,void* mutexType,void* syncParameter1,void* syncParameter2)
 
 {
   long long initializationResult;
   
-  _Mtx_init_in_situ(0x180c96690,2,param_3,param_4,0xfffffffffffffffe);
+  _Mtx_init_in_situ(0x180c96690,2,syncParameter1,syncParameter2,0xfffffffffffffffe);
   initializationResult = InitializeSystemSyncMechanism(SystemSyncCallbackFunction);
   return (initializationResult != 0) - 1;
 }
@@ -17292,18 +17292,18 @@ int InitializeSystemPerformanceCounters(void)
  * 该函数负责初始化系统的互斥锁组件，设置线程同步的基础结构。
  * 它会初始化互斥锁，并返回初始化状态。
  * 
- * @param param_1 互斥锁参数1
- * @param param_2 互斥锁参数2
- * @param param_3 互斥锁参数3
- * @param param_4 互斥锁参数4
+ * @param mutexParameter1 互斥锁参数1
+ * @param mutexParameter2 互斥锁参数2
+ * @param mutexParameter3 互斥锁参数3
+ * @param mutexParameter4 互斥锁参数4
  * @return 初始化状态，成功返回0，失败返回-1
  */
-int InitializeSystemMutex(void* param_1,void* param_2,void* param_3,void* param_4)
+int InitializeSystemMutex(void* mutexParameter1,void* mutexParameter2,void* mutexParameter3,void* mutexParameter4)
 
 {
   long long initializationStatus;
   
-  _Mtx_init_in_situ(0x180c966f0,2,param_3,param_4,0xfffffffffffffffe);
+  _Mtx_init_in_situ(0x180c966f0,2,mutexParameter3,mutexParameter4,0xfffffffffffffffe);
   initializationStatus = ValidateSystemConfiguration(SystemConfigValidatorSenary);
   return (initializationStatus != 0) - 1;
 }
@@ -17316,18 +17316,18 @@ int InitializeSystemMutex(void* param_1,void* param_2,void* param_3,void* param_
  * 该函数负责初始化系统的信号量组件，设置线程同步的基础结构。
  * 它会初始化信号量，并返回初始化状态。
  * 
- * @param param_1 信号量参数1
- * @param param_2 信号量参数2
- * @param param_3 信号量参数3
- * @param param_4 信号量参数4
+ * @param semaphoreParameter1 信号量参数1
+ * @param semaphoreParameter2 信号量参数2
+ * @param semaphoreParameter3 信号量参数3
+ * @param semaphoreParameter4 信号量参数4
  * @return 初始化状态，成功返回0，失败返回-1
  */
-int InitializeSystemSemaphore(void* param_1,void* param_2,void* param_3,void* param_4)
+int InitializeSystemSemaphore(void* semaphoreParameter1,void* semaphoreParameter2,void* semaphoreParameter3,void* semaphoreParameter4)
 
 {
   long long initializationStatus;
   
-  _Mtx_init_in_situ(0x180c96740,2,param_3,param_4,0xfffffffffffffffe);
+  _Mtx_init_in_situ(0x180c96740,2,semaphoreParameter3,semaphoreParameter4,0xfffffffffffffffe);
   initializationStatus = ValidateSystemConfiguration(SystemConfigValidatorSeptenary);
   return (initializationStatus != 0) - 1;
 }
