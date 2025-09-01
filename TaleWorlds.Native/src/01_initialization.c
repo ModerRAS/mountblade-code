@@ -31849,8 +31849,13 @@ void FUN_1800587e2(void* SystemResourcePointer)
 
 
 
-// 函数: void FUN_180058826(void)
-void FUN_180058826(void)
+/**
+ * @brief 系统空操作函数
+ * 
+ * 该函数是一个空操作函数，不执行任何操作。
+ * 主要用于占位或作为默认的空处理函数。
+ */
+void SystemNullOperation(void)
 
 {
   return;
@@ -31859,8 +31864,16 @@ void FUN_180058826(void)
 
 
 
-// 函数: void FUN_180058830(void* SystemResourcePointer,long long param_2)
-void FUN_180058830(void* SystemResourcePointer,long long param_2)
+/**
+ * @brief 系统资源初始化函数
+ * 
+ * 该函数负责初始化系统资源，包括设置全局数据引用和内存分配器引用。
+ * 在初始化过程中会检查资源状态，如果发现异常则调用清理函数。
+ * 
+ * @param SystemResourcePointer 系统资源指针
+ * @param param_2 资源参数指针
+ */
+void SystemResourceInitializer(void* SystemResourcePointer,long long param_2)
 
 {
   if (*(long long *)(param_2 + 0x40) != 0) {
@@ -31886,66 +31899,75 @@ void FUN_180058830(void* SystemResourcePointer,long long param_2)
 
 
 
-// 函数: void FUN_1800588c0(long long *SystemResourcePointer,long long param_2,long long param_3)
-void FUN_1800588c0(long long *SystemResourcePointer,long long param_2,long long param_3)
+/**
+ * @brief 系统资源数组管理函数
+ * 
+ * 该函数负责管理系统资源数组，包括创建、扩展和清理资源数组。
+ * 它会根据需要分配新的内存空间，并处理现有资源的迁移和清理。
+ * 
+ * @param SystemResourcePointer 系统资源指针数组
+ * @param param_2 起始参数
+ * @param param_3 结束参数
+ */
+void SystemResourceArrayManager(long long *SystemResourcePointer,long long param_2,long long param_3)
 
 {
-  void* *pointerToUnsigned1;
+  void* *resourcePointer1;
   long long localSystemHandle;
-  void* *pointerToUnsigned3;
-  void* *punsignedSystemValue4;
-  ulong long unsignedSystemValue5;
-  ulong long unsignedSystemValue6;
-  long long localDataPointer;
+  void* *resourcePointer3;
+  void* *resourcePointer4;
+  ulong long resourceCapacity;
+  ulong long requiredCapacity;
+  long long resourceOffset;
   
-  unsignedSystemValue6 = param_3 - param_2 >> 5;
-  if ((ulong long)(SystemResourcePointer[2] - *SystemResourcePointer >> 5) < unsignedSystemValue6) {
-    if (unsignedSystemValue6 == 0) {
+  requiredCapacity = param_3 - param_2 >> 5;
+  if ((ulong long)(SystemResourcePointer[2] - *SystemResourcePointer >> 5) < requiredCapacity) {
+    if (requiredCapacity == 0) {
       localSystemHandle = 0;
     }
     else {
-      localSystemHandle = CreateSystemThreadObject(SystemMemoryAllocationTemplate,unsignedSystemValue6 << 5,(char)SystemResourcePointer[3]);
+      localSystemHandle = CreateSystemThreadObject(SystemMemoryAllocationTemplate,requiredCapacity << 5,(char)SystemResourcePointer[3]);
     }
     if (param_2 != param_3) {
-      localDataPointer = localSystemHandle - param_2;
+      resourceOffset = localSystemHandle - param_2;
       do {
-        CreateSystemObject(localDataPointer + param_2,param_2);
+        CreateSystemObject(resourceOffset + param_2,param_2);
         param_2 = param_2 + 0x20;
       } while (param_2 != param_3);
     }
-    pointerToUnsigned1 = (void* *)SystemResourcePointer[1];
-    punsignedSystemValue4 = (void* *)*SystemResourcePointer;
-    if (punsignedSystemValue4 != pointerToUnsigned1) {
+    resourcePointer1 = (void* *)SystemResourcePointer[1];
+    resourcePointer4 = (void* *)*SystemResourcePointer;
+    if (resourcePointer4 != resourcePointer1) {
       do {
-        (**(code **)*punsignedSystemValue4)(punsignedSystemValue4,0);
-        punsignedSystemValue4 = punsignedSystemValue4 + 4;
-      } while (punsignedSystemValue4 != pointerToUnsigned1);
-      punsignedSystemValue4 = (void* *)*SystemResourcePointer;
+        (**(code **)*resourcePointer4)(resourcePointer4,0);
+        resourcePointer4 = resourcePointer4 + 4;
+      } while (resourcePointer4 != resourcePointer1);
+      resourcePointer4 = (void* *)*SystemResourcePointer;
     }
-    if (punsignedSystemValue4 != (void* *)0x0) {
+    if (resourcePointer4 != (void* *)0x0) {
                     // WARNING: Subroutine does not return
-      SystemCleanupFunction(punsignedSystemValue4);
+      SystemCleanupFunction(resourcePointer4);
     }
     *SystemResourcePointer = localSystemHandle;
-    localSystemHandle = unsignedSystemValue6 * 0x20 + localSystemHandle;
+    localSystemHandle = requiredCapacity * 0x20 + localSystemHandle;
     SystemResourcePointer[2] = localSystemHandle;
     SystemResourcePointer[1] = localSystemHandle;
   }
   else {
-    unsignedSystemValue5 = SystemResourcePointer[1] - *SystemResourcePointer >> 5;
-    if (unsignedSystemValue5 < unsignedSystemValue6) {
-      localSystemHandle = unsignedSystemValue5 * 0x20 + param_2;
+    resourceCapacity = SystemResourcePointer[1] - *SystemResourcePointer >> 5;
+    if (resourceCapacity < requiredCapacity) {
+      localSystemHandle = resourceCapacity * 0x20 + param_2;
       FUN_180059250(param_2,localSystemHandle);
       localSystemHandle = FUN_180059300(localSystemHandle,param_3,SystemResourcePointer[1]);
       SystemResourcePointer[1] = localSystemHandle;
     }
     else {
-      pointerToUnsigned3 = (void* *)FUN_180059250(param_2,param_3);
-      pointerToUnsigned1 = (void* *)SystemResourcePointer[1];
-      for (punsignedSystemValue4 = pointerToUnsigned3; punsignedSystemValue4 != pointerToUnsigned1; punsignedSystemValue4 = punsignedSystemValue4 + 4) {
-        (**(code **)*punsignedSystemValue4)(punsignedSystemValue4,0);
+      resourcePointer3 = (void* *)FUN_180059250(param_2,param_3);
+      resourcePointer1 = (void* *)SystemResourcePointer[1];
+      for (resourcePointer4 = resourcePointer3; resourcePointer4 != resourcePointer1; resourcePointer4 = resourcePointer4 + 4) {
+        (**(code **)*resourcePointer4)(resourcePointer4,0);
       }
-      SystemResourcePointer[1] = (long long)pointerToUnsigned3;
+      SystemResourcePointer[1] = (long long)resourcePointer3;
     }
   }
   return;
@@ -31955,50 +31977,57 @@ void FUN_1800588c0(long long *SystemResourcePointer,long long param_2,long long 
 
 
 
-// 函数: void FUN_1800588fc(long long SystemResourcePointer)
-void FUN_1800588fc(long long SystemResourcePointer)
+/**
+ * @brief 系统资源数组创建函数
+ * 
+ * 该函数负责创建系统资源数组，包括分配内存空间和初始化资源对象。
+ * 它会根据指定的大小创建系统线程对象，并设置相应的资源指针。
+ * 
+ * @param SystemResourcePointer 系统资源指针
+ */
+void SystemResourceArrayCreator(long long SystemResourcePointer)
 
 {
-  void* *pointerToUnsigned1;
+  void* *resourcePointer1;
   long long localSystemHandle;
-  long long unaff_RBX;
-  void* *pointerToUnsigned3;
-  long long unaff_RSI;
-  long long *unaff_RDI;
-  long long localBufferAddress;
-  long long unaff_R15;
+  long long resourceStartOffset;
+  void* *resourcePointer3;
+  long long resourceSize;
+  long long *resourceArrayPointer;
+  long long bufferAddress;
+  long long resourceEndOffset;
   
-  if (unaff_RSI == 0) {
+  if (resourceSize == 0) {
     localSystemHandle = 0;
   }
   else {
-    localSystemHandle = CreateSystemThreadObject(SystemMemoryAllocationTemplate,unaff_RSI << 5,*(uint8_t *)(SystemResourcePointer + 0x18));
+    localSystemHandle = CreateSystemThreadObject(SystemMemoryAllocationTemplate,resourceSize << 5,*(uint8_t *)(SystemResourcePointer + 0x18));
   }
-  if (unaff_RBX != unaff_R15) {
-    localBufferAddress = localSystemHandle - unaff_RBX;
+  if (resourceStartOffset != resourceEndOffset) {
+    bufferAddress = localSystemHandle - resourceStartOffset;
     do {
-      CreateSystemObject(localBufferAddress + unaff_RBX,unaff_RBX);
-      unaff_RBX = unaff_RBX + 0x20;
-    } while (unaff_RBX != unaff_R15);
+      CreateSystemObject(bufferAddress + resourceStartOffset,resourceStartOffset);
+      resourceStartOffset = resourceStartOffset + 0x20;
+    } while (resourceStartOffset != resourceEndOffset);
   }
-  pointerToUnsigned1 = (void* *)unaff_RDI[1];
-  pointerToUnsigned3 = (void* *)*unaff_RDI;
-  if (pointerToUnsigned3 != pointerToUnsigned1) {
+  resourcePointer1 = (void* *)resourceArrayPointer[1];
+  resourcePointer3 = (void* *)*resourceArrayPointer;
+  if (resourcePointer3 != resourcePointer1) {
     do {
-      (**(code **)*pointerToUnsigned3)(pointerToUnsigned3,0);
-      pointerToUnsigned3 = pointerToUnsigned3 + 4;
-    } while (pointerToUnsigned3 != pointerToUnsigned1);
-    pointerToUnsigned3 = (void* *)*unaff_RDI;
+      (**(code **)*resourcePointer3)(resourcePointer3,0);
+      resourcePointer3 = resourcePointer3 + 4;
+    } while (resourcePointer3 != resourcePointer1);
+    resourcePointer3 = (void* *)*resourceArrayPointer;
   }
-  if (pointerToUnsigned3 == (void* *)0x0) {
-    *unaff_RDI = localSystemHandle;
-    localSystemHandle = unaff_RSI * 0x20 + localSystemHandle;
-    unaff_RDI[2] = localSystemHandle;
-    unaff_RDI[1] = localSystemHandle;
+  if (resourcePointer3 == (void* *)0x0) {
+    *resourceArrayPointer = localSystemHandle;
+    localSystemHandle = resourceSize * 0x20 + localSystemHandle;
+    resourceArrayPointer[2] = localSystemHandle;
+    resourceArrayPointer[1] = localSystemHandle;
     return;
   }
                     // WARNING: Subroutine does not return
-  SystemCleanupFunction(pointerToUnsigned3);
+  SystemCleanupFunction(resourcePointer3);
 }
 
 
@@ -32081,32 +32110,41 @@ void FinalizeSystemInitialization(void)
 
 
 
-// 函数: void FUN_1800589a3(long long SystemResourcePointer,void* param_2,long long param_3)
-void FUN_1800589a3(long long SystemResourcePointer,void* param_2,long long param_3)
+/**
+ * @brief 系统资源处理器
+ * 
+ * 该函数负责处理系统资源，包括资源的分配、清理和状态管理。
+ * 它会根据资源的状态和容量需求，执行相应的资源操作。
+ * 
+ * @param SystemResourcePointer 系统资源指针
+ * @param param_2 处理参数
+ * @param param_3 资源大小参数
+ */
+void SystemResourceProcessor(long long SystemResourcePointer,void* param_2,long long param_3)
 
 {
-  void* *pointerToUnsigned1;
+  void* *resourcePointer1;
   void** systemDataTable;
-  void* unsignedSystemValue3;
-  long long unaff_RBX;
-  void* *punsignedSystemValue4;
-  ulong long unsignedSystemValue5;
-  ulong long unaff_RSI;
-  long long unaff_RDI;
+  void* resourceHandle;
+  long long resourceOffset;
+  void* *resourcePointer4;
+  ulong long resourceCapacity;
+  ulong long requiredSize;
+  long long resourceArrayPointer;
   
-  unsignedSystemValue5 = *(long long *)(SystemResourcePointer + 8) - param_3 >> 5;
-  if (unsignedSystemValue5 < unaff_RSI) {
+  resourceCapacity = *(long long *)(SystemResourcePointer + 8) - param_3 >> 5;
+  if (resourceCapacity < requiredSize) {
     FUN_180059250();
-    unsignedSystemValue3 = FUN_180059300(unsignedSystemValue5 * 0x20 + unaff_RBX);
-    *(void* *)(unaff_RDI + 8) = unsignedSystemValue3;
+    resourceHandle = FUN_180059300(resourceCapacity * 0x20 + resourceOffset);
+    *(void* *)(resourceArrayPointer + 8) = resourceHandle;
   }
   else {
     pointerToUnsigned2 = (void* *)FUN_180059250();
-    pointerToUnsigned1 = *(void* **)(unaff_RDI + 8);
-    for (punsignedSystemValue4 = pointerToUnsigned2; punsignedSystemValue4 != pointerToUnsigned1; punsignedSystemValue4 = punsignedSystemValue4 + 4) {
-      (**(code **)*punsignedSystemValue4)(punsignedSystemValue4,0);
+    resourcePointer1 = *(void* **)(resourceArrayPointer + 8);
+    for (resourcePointer4 = pointerToUnsigned2; resourcePointer4 != resourcePointer1; resourcePointer4 = resourcePointer4 + 4) {
+      (**(code **)*resourcePointer4)(resourcePointer4,0);
     }
-    *(void* **)(unaff_RDI + 8) = pointerToUnsigned2;
+    *(void* **)(resourceArrayPointer + 8) = pointerToUnsigned2;
   }
   return;
 }
