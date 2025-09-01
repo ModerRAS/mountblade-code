@@ -25419,17 +25419,17 @@ void UpdateSystemRenderManager(long long SystemResourcePointer)
   }
   else {
     bVar4 = true;
-    FUN_180092820(SystemRenderManagerPointer,*(int *)(SystemResourcePointer + 0x3cc),*pointerToInteger1);
+    UpdateRenderManagerSystem(SystemRenderManagerPointer,*(int *)(SystemResourcePointer + 0x3cc),*pointerToInteger1);
   }
   if (*(int *)(*(long long *)(SystemResourcePointer + 8) + 0x38) == 2) {
     if ((*(char *)(SystemResourcePointer + 0x3d4) != '\0') || (*(char *)(SystemResourcePointer + 0x3d5) != '\0')) {
       unsignedSystemValue2 = *(uint32_t *)(SystemNodeManagerPointer + 0x1ea0);
-      FUN_18005ca20(SystemNodeManagerPointer,0);
-      FUN_1801725e0(*(void* *)(SystemResourcePointer + 8),*(uint32_t *)(SystemResourcePointer + 0x3cc),*pointerToInteger1,
+      ProcessNodeManagerOperation(SystemNodeManagerPointer,0);
+      ProcessSystemResourceData(*(void* *)(SystemResourcePointer + 8),*(uint32_t *)(SystemResourcePointer + 0x3cc),*pointerToInteger1,
                     *(uint8_t *)(SystemResourcePointer + 0x3d5));
       FUN_1800a3880(SystemTextureManagerPointer,*(uint32_t *)(SystemResourcePointer + 0x3cc),*pointerToInteger1,1);
-      FUN_18005ca20(SystemNodeManagerPointer,unsignedSystemValue2);
-      FUN_1801725e0(*(void* *)(SystemResourcePointer + 8),*(uint32_t *)(SystemResourcePointer + 0x3cc),*pointerToInteger1,
+      ProcessNodeManagerOperation(SystemNodeManagerPointer,unsignedSystemValue2);
+      ProcessSystemResourceData(*(void* *)(SystemResourcePointer + 8),*(uint32_t *)(SystemResourcePointer + 0x3cc),*pointerToInteger1,
                     *(uint8_t *)(SystemResourcePointer + 0x3d5));
       bVar6 = true;
       goto LAB_18004e721;
@@ -25444,7 +25444,7 @@ void UpdateSystemRenderManager(long long SystemResourcePointer)
       else {
         unsignedSystemValue5 = 0;
       }
-      FUN_1801725e0(*(long long *)(SystemResourcePointer + 8),*(uint32_t *)(SystemResourcePointer + 0x3cc),*pointerToInteger1,unsignedSystemValue5);
+      ProcessSystemResourceData(*(long long *)(SystemResourcePointer + 8),*(uint32_t *)(SystemResourcePointer + 0x3cc),*pointerToInteger1,unsignedSystemValue5);
       bVar6 = systemCounter == 2;
       goto LAB_18004e721;
     }
@@ -31085,7 +31085,7 @@ long long * FUN_180057b00(long long SystemResourcePointer,long long *param_2,voi
   FUN_180627ae0(localResourceOffset + 0x20,param_3);
   localBufferAddress = SystemResourceAllocator(SystemResourcePointer,acStackX_8,localResourceOffset + 0x20);
   if (acStackX_8[0] == '\0') {
-    FUN_18005d1f0();
+    ProcessExtraOutputResource();
     *param_2 = localBufferAddress;
     *(uint8_t *)(param_2 + 1) = 0;
     return param_2;
@@ -35213,8 +35213,8 @@ LAB_18005c9be:
 
 
 
-// 函数: void FUN_18005ca20(long long SystemResourcePointer,uint32_t param_2)
-void FUN_18005ca20(long long SystemResourcePointer,uint32_t param_2)
+// 函数: void ProcessNodeManagerOperation(long long SystemResourcePointer,uint32_t param_2)
+void ProcessNodeManagerOperation(long long SystemResourcePointer,uint32_t param_2)
 
 {
   char SystemNodeFlag;
@@ -35655,8 +35655,8 @@ long long FUN_18005d190(long long SystemResourcePointer,long long param_2)
 
 
 
-// 函数: void FUN_18005d1f0(void* SystemResourcePointer,long long param_2)
-void FUN_18005d1f0(void* SystemResourcePointer,long long param_2)
+// 函数: void ProcessExtraOutputResource(void* SystemResourcePointer,long long param_2)
+void ProcessExtraOutputResource(void* SystemResourcePointer,long long param_2)
 
 {
   *(void* *)(param_2 + 0x20) = &SystemGlobalDataReference;
