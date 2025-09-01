@@ -375,6 +375,7 @@ void* SystemConfigDataPointerB;        // _DAT_180bf52d8
 void* SystemConfigDataPointerC;        // _DAT_180bf52c8
 void* SystemConfigDataPointerD;        // _DAT_180bf52d0
 void* SystemConfigDataPointerE;        // _DAT_180bf6750
+void* SystemConfigDataPointerF;        // _DAT_180bf7e90
 /**
  * @brief 系统内存分配器函数
  * 
@@ -4860,7 +4861,7 @@ void InitializeSystemStringConfigurationManager(void)
   undefined4 uStack_90;
   undefined1 auStack_88 [136];
   
-  puStack_a0 = &UNK_1809fcc28;
+  puStack_a0 = &SystemGlobalDataPointerC;
   puStack_98 = auStack_88;
   auStack_88[0] = 0;
   uStack_90 = 0xb;
@@ -5321,7 +5322,7 @@ int InitializeSystemDebugManager(void)
   longlong lVar1;
   undefined8 in_R9;
   
-  _DAT_180bf7e90 = &UNK_1809fcc58;
+  SystemConfigDataPointerF = &SystemGlobalDataPointerB;
   _DAT_180bf7e98 = &DAT_180bf7ea8;
 
 // 函数: void FUN_180033780(void)
@@ -8226,7 +8227,7 @@ void InitializeSystemConfigurationManager(void)
   undefined4 uStack_90;
   undefined1 auStack_88 [136];
   
-  puStack_a0 = &UNK_1809fcc28;
+  puStack_a0 = &SystemGlobalDataPointerC;
   puStack_98 = auStack_88;
   auStack_88[0] = 0;
   uStack_90 = 0xc;
@@ -8268,7 +8269,7 @@ void InitializeSystemExtensionManager(void)
   undefined4 uStack_90;
   undefined1 auStack_88 [136];
   
-  puStack_a0 = &UNK_1809fcc28;
+  puStack_a0 = &SystemGlobalDataPointerC;
   puStack_98 = auStack_88;
   auStack_88[0] = 0;
   uStack_90 = 0x16;
@@ -8293,7 +8294,7 @@ void InitializeSystemLibraryManager(void)
   undefined4 uStack_90;
   undefined1 auStack_88 [136];
   
-  puStack_a0 = &UNK_1809fcc28;
+  puStack_a0 = &SystemGlobalDataPointerC;
   puStack_98 = auStack_88;
   auStack_88[0] = 0;
   uStack_90 = 0x16;
@@ -8727,7 +8728,7 @@ void InitializeSystemPerformanceNode(void)
   undefined4 uStack_90;
   undefined1 auStack_88 [136];
   
-  puStack_a0 = &UNK_1809fcc28;
+  puStack_a0 = &SystemGlobalDataPointerC;
   puStack_98 = auStack_88;
   auStack_88[0] = 0;
   uStack_90 = 0x1c;
@@ -9345,7 +9346,7 @@ void InitializeSystemDebugInfoManager(void)
   undefined4 uStack_90;
   undefined1 auStack_88 [136];
   
-  puStack_a0 = &UNK_1809fcc28;
+  puStack_a0 = &SystemGlobalDataPointerC;
   puStack_98 = auStack_88;
   auStack_88[0] = 0;
   uStack_90 = 9;
@@ -9377,7 +9378,7 @@ void InitializeSystemLogManager(void)
   undefined4 uStack_90;
   undefined1 auStack_88 [136];
   
-  puStack_a0 = &UNK_1809fcc28;
+  puStack_a0 = &SystemGlobalDataPointerC;
   puStack_98 = auStack_88;
   auStack_88[0] = 0;
   uStack_90 = 8;
@@ -9497,7 +9498,7 @@ void InitializeSystemStringProcessorA(void)
   undefined4 uStack_90;
   undefined1 auStack_88 [136];
   
-  puStack_a0 = &UNK_1809fcc28;
+  puStack_a0 = &SystemGlobalDataPointerC;
   puStack_98 = auStack_88;
   auStack_88[0] = 0;
   uStack_90 = 0x15;
@@ -9521,7 +9522,7 @@ void InitializeSystemStringProcessorB(void)
   undefined4 uStack_90;
   undefined1 auStack_88 [136];
   
-  puStack_a0 = &UNK_1809fcc28;
+  puStack_a0 = &SystemGlobalDataPointerC;
   puStack_98 = auStack_88;
   auStack_88[0] = 0;
   uStack_90 = 0xe;
@@ -9545,7 +9546,7 @@ void InitializeSystemStringProcessorC(void)
   undefined4 uStack_90;
   undefined1 auStack_88 [136];
   
-  puStack_a0 = &UNK_1809fcc28;
+  puStack_a0 = &SystemGlobalDataPointerC;
   puStack_98 = auStack_88;
   auStack_88[0] = 0;
   uStack_90 = 0x1a;
@@ -9569,7 +9570,7 @@ void InitializeSystemStringProcessorD(void)
   undefined4 uStack_90;
   undefined1 auStack_88 [136];
   
-  puStack_a0 = &UNK_1809fcc28;
+  puStack_a0 = &SystemGlobalDataPointerC;
   puStack_98 = auStack_88;
   auStack_88[0] = 0;
   uStack_90 = 0x13;
@@ -12169,7 +12170,7 @@ void InitializeSystemMemoryNodeManager(void)
   undefined4 uStack_90;
   undefined1 auStack_88 [136];
   
-  puStack_a0 = &UNK_1809fcc28;
+  puStack_a0 = &SystemGlobalDataPointerC;
   puStack_98 = auStack_88;
   auStack_88[0] = 0;
   uStack_90 = 0x12;
@@ -12199,7 +12200,7 @@ void InitializeSystemDeviceNodeManager(void)
   undefined4 uStack_90;
   undefined1 auStack_88 [136];
   
-  puStack_a0 = &UNK_1809fcc28;
+  puStack_a0 = &SystemGlobalDataPointerC;
   puStack_98 = auStack_88;
   auStack_88[0] = 0;
   uStack_90 = 8;
@@ -13472,7 +13473,7 @@ void InitializeSystemEventManagerN(void)
   undefined4 uStack_90;
   undefined1 auStack_88 [136];
   
-  puStack_a0 = &UNK_1809fcc28;
+  puStack_a0 = &SystemGlobalDataPointerC;
   puStack_98 = auStack_88;
   auStack_88[0] = 0;
   uStack_90 = 0x1b;
@@ -14087,7 +14088,7 @@ void InitializeSystemResourceManagerK(void)
   undefined4 uStack_90;
   undefined1 auStack_88 [136];
   
-  puStack_a0 = &UNK_1809fcc28;
+  puStack_a0 = &SystemGlobalDataPointerC;
   puStack_98 = auStack_88;
   auStack_88[0] = 0;
   uStack_90 = 0x10;
@@ -14114,7 +14115,7 @@ void InitializeSystemResourceManagerL(void)
   undefined4 uStack_90;
   undefined1 auStack_88 [136];
   
-  puStack_a0 = &UNK_1809fcc28;
+  puStack_a0 = &SystemGlobalDataPointerC;
   puStack_98 = auStack_88;
   auStack_88[0] = 0;
   uStack_90 = 0xf;
@@ -14141,7 +14142,7 @@ void InitializeSystemResourceManagerM(void)
   undefined4 uStack_90;
   undefined1 auStack_88 [136];
   
-  puStack_a0 = &UNK_1809fcc28;
+  puStack_a0 = &SystemGlobalDataPointerC;
   puStack_98 = auStack_88;
   auStack_88[0] = 0;
   uStack_90 = 0x19;
@@ -14168,7 +14169,7 @@ void InitializeSystemResourceManagerN(void)
   undefined4 uStack_90;
   undefined1 auStack_88 [136];
   
-  puStack_a0 = &UNK_1809fcc28;
+  puStack_a0 = &SystemGlobalDataPointerC;
   puStack_98 = auStack_88;
   auStack_88[0] = 0;
   uStack_90 = 0x14;
@@ -15925,7 +15926,7 @@ void InitializeSystemSubcomponentM(void)
   undefined4 uStack_90;
   undefined1 auStack_88 [136];
   
-  puStack_a0 = &UNK_1809fcc28;
+  puStack_a0 = &SystemGlobalDataPointerC;
   puStack_98 = auStack_88;
   auStack_88[0] = 0;
   uStack_90 = 0xd;
@@ -17025,7 +17026,7 @@ void FUN_1800434d0(void)
   undefined4 uStack_90;
   undefined1 auStack_88 [136];
   
-  puStack_a0 = &UNK_1809fcc28;
+  puStack_a0 = &SystemGlobalDataPointerC;
   puStack_98 = auStack_88;
   auStack_88[0] = 0;
   uStack_90 = 0x1b;
@@ -17157,7 +17158,7 @@ void FUN_180043690(void)
   undefined4 uStack_90;
   undefined1 auStack_88 [136];
   
-  puStack_a0 = &UNK_1809fcc28;
+  puStack_a0 = &SystemGlobalDataPointerC;
   puStack_98 = auStack_88;
   auStack_88[0] = 0;
   uStack_90 = 0x10;
