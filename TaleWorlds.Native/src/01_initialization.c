@@ -19370,8 +19370,8 @@ InitializeSystemReferencePointersWithCleanup(void* *param_1,ulong long param_2,v
 
 
 
-// 函数: void FUN_180046820(long long *param_1)
-void FUN_180046820(long long *param_1)
+// 函数: void ProcessSystemMemoryRange(long long *param_1)
+void ProcessSystemMemoryRange(long long *param_1)
 
 {
   long long lVar1;
@@ -19391,8 +19391,8 @@ void FUN_180046820(long long *param_1)
 
 
 
-// 函数: void FUN_180046840(long long *param_1)
-void FUN_180046840(long long *param_1)
+// 函数: void InitializeSystemDataPointers(long long *param_1)
+void InitializeSystemDataPointers(long long *param_1)
 
 {
   void* *puVar1;
@@ -19425,7 +19425,7 @@ void FUN_180046840(long long *param_1)
  * 
  * @param param_1 内存块指针的指针
  */
-void FUN_180046860(ulong long *param_1)
+void ReleaseMemoryBlockReference(ulong long *param_1)
 
 {
   int *piVar1;
@@ -19471,7 +19471,7 @@ void FUN_180046860(ulong long *param_1)
  * @param param_2 初始化选项标志
  * @return 初始化结果状态码
  */
-int FUN_180046890(long long param_1,long long param_2)
+int InitializeSystemCoreComponents(long long param_1,long long param_2)
 
 {
   void* ***pppuVar1;
@@ -22028,18 +22028,26 @@ void InitializeSystemThreadPoolManager(void)
 
 
 // 函数: void FUN_18004a850(void)
-void FUN_18004a850(void)
+/**
+ * @brief 初始化系统配置数据结构
+ * 
+ * 该函数初始化系统的配置数据结构，包括设置系统参数和清零配置缓冲区。
+ * 它会分配内存、设置系统参数，并清空配置数据区域。
+ * 
+ * @note 这是系统初始化过程中的重要组成部分，确保系统配置的正确初始化
+ */
+void InitializeSystemConfigurationData(void)
 
 {
-  void* uVar1;
+  void* systemConfigPointer;
   
-  uVar1 = FUN_18062b1e0(_DAT_180c8ed18,0xd20,8,3);
-  _DAT_180c86930 = FUN_1800b4a40(uVar1);
-  uVar1 = FUN_18062b1e0(_DAT_180c8ed18,0x138,8,3);
-  _DAT_180c868a8 = FUN_180086ca0(uVar1);
-  uVar1 = FUN_18062b1e0(_DAT_180c8ed18,0x50,8,3);
+  systemConfigPointer = AllocateSystemMemory(_DAT_180c8ed18,0xd20,8,3);
+  SystemConfigParameterA = InitializeSystemParameterA(systemConfigPointer);
+  systemConfigPointer = AllocateSystemMemory(_DAT_180c8ed18,0x138,8,3);
+  SystemConfigParameterB = InitializeSystemParameterB(systemConfigPointer);
+  systemConfigPointer = AllocateSystemMemory(_DAT_180c8ed18,0x50,8,3);
                     // WARNING: Subroutine does not return
-  memset(uVar1,0,0x50);
+  memset(systemConfigPointer,0,0x50);
 }
 
 

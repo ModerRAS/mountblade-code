@@ -20,12 +20,6 @@ uint32_t ModuleDependencyChecksum;
 void* ModuleDependencySignature;
 void* ModuleDependencyHandle;
 
-/**
- * @brief 初始化全局模块A
- * 
- * 该函数负责初始化游戏引擎的全局模块A
- * 设置模块A所需的数据结构和运行环境
- */
 void InitializeGlobalModuleA(void);
 void* GlobalModuleAInstance;
 void* GlobalModuleAConfiguration;
@@ -1122,14 +1116,14 @@ uint32_t MemoryEncryptionConfigData3;
 uint32_t MemoryEncryptionConfigData4;
 void* MemoryEncryptionReservedMemory;
 
- void InitializeMemoryVirtualization;
+ void InitializeMemoryVirtualization(void);
 /**
  * @brief 初始化内存虚拟化
  * 
  * 该函数负责初始化内存虚拟化系统
  * 设置虚拟内存映射和管理
  */
-void InitializeMemoryVirtualization;
+void InitializeMemoryVirtualization(void);
 uint32_t MemoryVirtualizationConfigData1;
 uint32_t MemoryVirtualizationConfigData2;
 uint32_t MemoryVirtualizationConfigData3;
@@ -1150,14 +1144,14 @@ uint32_t MemoryPrefetchConfigData3;
 uint32_t MemoryPrefetchConfigData4;
 void* MemoryPrefetchReservedMemory;
 
- void InitializeMemoryBandwidth;
+ void InitializeMemoryBandwidth(void);
 /**
  * @brief 初始化内存带宽管理
  * 
  * 该函数负责初始化内存带宽管理系统
  * 设置带宽分配和优先级策略
  */
-void InitializeMemoryBandwidth;
+void InitializeMemoryBandwidth(void);
 uint32_t MemoryBandwidthConfigData1;
 uint32_t MemoryBandwidthConfigData2;
 uint32_t MemoryBandwidthConfigData3;
@@ -1178,23 +1172,23 @@ uint32_t MemoryLatencyConfigData3;
 uint32_t MemoryLatencyConfigData4;
 void* MemoryLatencyReservedMemory;
 
- void InitializeMemoryThroughput;
+ void InitializeMemoryThroughput(void);
 /**
  * @brief 初始化内存吞吐量
  * 
  * 该函数负责初始化内存吞吐量管理
  * 设置内存传输速率和吞吐量优化
  */
-void InitializeMemoryThroughput;
+void InitializeMemoryThroughput(void);
 
- void SetupMemoryReliability;
+ void SetupMemoryReliability(void);
 /**
  * @brief 设置内存可靠性
  * 
  * 该函数负责设置内存可靠性机制
  * 配置内存错误检测和纠正功能
  */
-void SetupMemoryReliability;
+void SetupMemoryReliability(void);
 undefined SystemMemoryPool;
 undefined SystemMemoryCache;
 undefined SystemMemoryBuffer;
