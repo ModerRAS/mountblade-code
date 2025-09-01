@@ -7830,73 +7830,63 @@ uint8_t8 ValidateObjectContextAndProcessParameterizedComplexFloatOperation(longl
 
 
 uint8_t8 ValidateObjectContextAndProcessFloatRange(longlong objectContext,longlong validationParams)
-/**
- * @brief 验证对象上下文并处理浮点数范围
- * 
- * 该函数验证对象上下文的有效性，并处理浮点数范围检查
- * 确保浮点数数据在有效范围内，避免无穷大或NaN值
- * 
- * @param objectContext 对象上下文指针，包含待验证的对象数据
- * @param validationParams 验证参数，包含范围检查和验证规则
- * @return 验证状态，0表示成功，非0值表示验证失败
- */
-
 {
-  int operationResult;
-  int integerValue2;
-  uint8_t8 unsignedResult3;
-  float *pfVar4;
-  longlong lVar5;
-  ulonglong unsignedValue6;
-  float *pfloatValue7;
-  ulonglong uVar8;
-  uint uVar9;
-  float fVar11;
-  float fStackX_8;
-  uint8_t4 uStackX_c;
-  ulonglong resourceHash0;
+  int validationStatus;
+  int arrayIndex;
+  uint8_t8 validationResult;
+  float *floatPointer;
+  longlong resourcePointer;
+  ulonglong contextOffset;
+  float *floatArrayPointer;
+  ulonglong loopCounter;
+  uint arraySize;
+  float minValue;
+  float maxValue;
+  float currentValue;
+  uint8_t4 stackBuffer;
+  ulonglong resourceHash;
   
-  unsignedResult3 = ValidateObjectContext(*(uint8_t4 *)(objectContextParam + 0x10),&fStackX_8);
-  if ((int)unsignedResult3 != 0) {
-    return unsignedResult3;
+  validationResult = ValidateObjectContext(*(uint8_t4 *)(objectContextParam + 0x10),&currentValue);
+  if ((int)validationResult != 0) {
+    return validationResult;
   }
-  uVar8 = 0;
-  unsignedValue6 = CONCAT44(uStackX_c,fStackX_8) - 8;
-  if (CONCAT44(uStackX_c,fStackX_8) == 0) {
-    unsignedValue6 = uVar8;
+  loopCounter = 0;
+  contextOffset = CONCAT44(stackBuffer,currentValue) - 8;
+  if (CONCAT44(stackBuffer,currentValue) == 0) {
+    contextOffset = loopCounter;
   }
-  integerValue1 = *(int *)(unsignedValue6 + 0x28);
-  pfloatValue7 = (float *)(objectContextParam + 0x20 + (longlong)*(int *)(objectContextParam + 0x18) * 4);
+  arrayIndex = *(int *)(contextOffset + 0x28);
+  floatArrayPointer = (float *)(objectContextParam + 0x20 + (longlong)*(int *)(objectContextParam + 0x18) * 4);
   if (0 < *(int *)(objectContextParam + 0x18)) {
-    pfVar4 = pfloatValue7;
-    resourceHash0 = uVar8;
+    floatPointer = floatArrayPointer;
+    resourceHash = loopCounter;
     do {
-      integerValue2 = *(int *)(((objectContextParam + 0x20) - (longlong)pfloatValue7) + (longlong)pfVar4);
-      if (integerValue2 != -1) {
-        fStackX_8 = *pfVar4;
-        if (((uint)fStackX_8 & 0x7f800000) == 0x7f800000) {
+      arrayIndex = *(int *)(((objectContextParam + 0x20) - (longlong)floatArrayPointer) + (longlong)floatPointer);
+      if (arrayIndex != -1) {
+        currentValue = *floatPointer;
+        if (((uint)currentValue & 0x7f800000) == 0x7f800000) {
           return 0x1d;
         }
-        if ((integerValue2 < 0) || (integerValue1 <= integerValue2)) {
+        if ((arrayIndex < 0) || (arrayIndex <= arrayIndex)) {
           return 0x1f;
         }
-        lVar5 = *(longlong *)(unsignedValue6 + 0x20) + (longlong)integerValue2 * 0x18;
-        if (lVar5 == 0) {
+        resourcePointer = *(longlong *)(contextOffset + 0x20) + (longlong)arrayIndex * 0x18;
+        if (resourcePointer == 0) {
           return 0x1c;
         }
-        lVar5 = *(longlong *)(lVar5 + 0x10);
-        if (lVar5 == 0) {
+        resourcePointer = *(longlong *)(resourcePointer + 0x10);
+        if (resourcePointer == 0) {
           return 0x1e;
         }
-        if (*(int *)(lVar5 + 0x30) != 0) {
+        if (*(int *)(resourcePointer + 0x30) != 0) {
           return 0x1f;
         }
-        fVar11 = *(float *)(lVar5 + 0x38);
-        if ((*(float *)(lVar5 + 0x38) <= fStackX_8) &&
-           (fVar11 = *(float *)(lVar5 + 0x3c), fStackX_8 <= *(float *)(lVar5 + 0x3c))) {
-          fVar11 = fStackX_8;
+        minValue = *(float *)(resourcePointer + 0x38);
+        if ((*(float *)(resourcePointer + 0x38) <= currentValue) &&
+           (minValue = *(float *)(resourcePointer + 0x3c), currentValue <= *(float *)(resourcePointer + 0x3c))) {
+          minValue = currentValue;
         }
-        *pfVar4 = fVar11;
+        *floatPointer = minValue;
       }
       uVar9 = (int)resourceHash0 + 1;
       resourceHash0 = (ulonglong)uVar9;
@@ -8344,7 +8334,7 @@ uint8_t8 ValidateObjectContextAndProcessComplexFloatOperation(longlong objectCon
 
 
 
- 33c0(longlong objectContextParam,longlong validationContextParam)
+ void ProcessObjectContextValidationAndIncrement(longlong objectContextParam,longlong validationContextParam)
 /**
  * @brief 处理对象上下文验证并递增计数器
  * 
@@ -8561,7 +8551,7 @@ void ValidateAndProcessBufferContext(longlong objectContextParam,longlong valida
 
 
 
- 36a0(longlong objectContextParam,longlong validationContextParam)
+ void ProcessBufferContextValidationAndCleanup(longlong objectContextParam,longlong validationContextParam)
 /**
  * @brief 处理缓冲区上下文验证和清理操作
  * 
@@ -87691,8 +87681,8 @@ void ResetThreadLocalStorage(void)
     CleanupThreadResources();
   }
   *(uint8_t8 *)(threadData + 0x20) = 0;
-  *(uint8_t4 *)(thread_data + 0x30) = 0;
-  *(uint8_t8 *)(thread_data + 0x18) = &defaultThreadResource;
+  *(uint8_t4 *)(threadData + 0x30) = 0;
+  *(uint8_t8 *)(threadData + 0x18) = &defaultThreadResource;
   return;
 }
 
