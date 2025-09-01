@@ -26819,7 +26819,16 @@ void SystemContextInitializer(void)
 
 
 
-bool FUN_180051f00(long long SystemResourcePointer)
+/**
+ * @brief 系统资源验证器
+ * 
+ * 该函数验证系统资源的有效性和完整性。
+ * 它会检查资源的状态、属性和关联数据，确保资源处于可用状态。
+ * 
+ * @param SystemResourcePointer 系统资源指针
+ * @return 返回验证结果，true表示资源有效，false表示资源无效
+ */
+bool SystemResourceValidator(long long SystemResourcePointer)
 
 {
   void* *pointerToUnsigned1;
@@ -26905,7 +26914,19 @@ LAB_180051fc9:
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 void*
-FUN_180052020(void* SystemResourcePointer,void* param_2,void* param_3,void* param_4)
+/**
+ * @brief 系统状态标志处理器
+ * 
+ * 该函数处理系统状态标志的操作，包括设置、清除和查询状态标志。
+ * 它会调用底层的系统函数来处理状态标志的相关操作。
+ * 
+ * @param SystemResourcePointer 系统资源指针
+ * @param param_2 参数2，用于传递操作目标
+ * @param param_3 参数3，用于传递操作参数
+ * @param param_4 参数4，用于传递操作标志
+ * @return 返回处理后的结果指针
+ */
+void* SystemStatusFlagProcessor(void* SystemResourcePointer,void* param_2,void* param_3,void* param_4)
 
 {
   FUN_180627ae0(param_2,SystemStatusFlagsPointer + 0x2c0,param_3,param_4,0,0xfffffffffffffffe);
