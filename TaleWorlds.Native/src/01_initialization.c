@@ -22687,7 +22687,7 @@ void InitializeSystemThreadPoolManager(void)
                     // WARNING: Subroutine does not return
     SystemCleanupFunction(puVar3);
   }
-  FUN_1800aecf0(_DAT_180c868b0,puVar3);
+  FUN_1800aecf0(SystemMemoryManagerPointer,puVar3);
   FUN_18062de90(puVar3);
   if (puVar3[1] != 0) {
     fclose();
@@ -22799,7 +22799,7 @@ void InitializeSystemDataCleaner(void)
     } while (pcVar3[lVar5] != '\0');
   }
   *puVar2 = 0;
-  _DAT_180c82858 = puVar2;
+  SystemSecondaryStateStorage = puVar2;
   if (DAT_180bf0101 != '\0') {
     GetLastError();
     systemPreviousNode = &SystemStringTemplate;
@@ -22828,12 +22828,12 @@ void ExecuteSystemFinalCleanup(void)
   void* uVar4;
   
   uVar4 = 0xfffffffffffffffe;
-  if ((_DAT_180c86878 != (long long *)0x0) && ((char)_DAT_180c86878[0x42] == '\0')) {
-    (**(code **)(*_DAT_180c86878 + 0x38))();
+  if ((SystemDeviceManagerPointer != (long long *)0x0) && ((char)SystemDeviceManagerPointer[0x42] == '\0')) {
+    (**(code **)(*SystemDeviceManagerPointer + 0x38))();
   }
-  lVar2 = _DAT_180c8a990;
-  (**(code **)(**(long long **)(_DAT_180c8a990 + 0x20) + 0x108))
-            (*(long long **)(_DAT_180c8a990 + 0x20),_DAT_180c8a990 + 0xc0);
+  lVar2 = SystemGraphicsContextPointer;
+  (**(code **)(**(long long **)(SystemGraphicsContextPointer + 0x20) + 0x108))
+            (*(long long **)(SystemGraphicsContextPointer + 0x20),SystemGraphicsContextPointer + 0xc0);
   PrimaryResourcePointer = *(long long **)(lVar2 + 0x30);
   if (PrimaryResourcePointer != (long long *)0x0) {
     lVar3 = __RTCastToVoid(PrimaryResourcePointer);
@@ -22848,8 +22848,8 @@ void ExecuteSystemFinalCleanup(void)
     (**(code **)**(void* **)(lVar2 + 0x28))();
     *(void* *)(lVar2 + 0x28) = 0;
   }
-  lVar2 = _DAT_180c8a990;
-  if (_DAT_180c8a990 != 0) {
+  lVar2 = SystemGraphicsContextPointer;
+  if (SystemGraphicsContextPointer != 0) {
     FUN_18004b730();
     *(void* **)(lVar2 + 0xc0) = &SystemDataBufferTemplateH;
     DestroySystemMutex(lVar2 + 0x48);
@@ -22859,15 +22859,15 @@ void ExecuteSystemFinalCleanup(void)
                     // WARNING: Subroutine does not return
     SystemCleanupFunction(lVar2);
   }
-  _DAT_180c8a990 = 0;
+  SystemGraphicsContextPointer = 0;
   timeEndPeriod(1);
-  lVar2 = _DAT_180c86930;
-  if (_DAT_180c86930 != 0) {
-    FUN_1800b4550(_DAT_180c86930);
+  lVar2 = SystemInputManagerPointer;
+  if (SystemInputManagerPointer != 0) {
+    FUN_1800b4550(SystemInputManagerPointer);
                     // WARNING: Subroutine does not return
     SystemCleanupFunction(lVar2);
   }
-  _DAT_180c86930 = 0;
+  SystemInputManagerPointer = 0;
   return;
 }
 
@@ -23013,10 +23013,10 @@ bool SystemThreadCheckStatus(void)
   int iVar1;
   
   iVar1 = _Thrd_id();
-  if (_DAT_180c9105c == 0) {
+  if (SystemVersionCheckStorage == 0) {
     return iVar1 == *(int *)(**(long long **)(SystemAllocationFlagsTemplate + 8) + 0x48);
   }
-  if ((iVar1 != *(int *)(**(long long **)(SystemAllocationFlagsTemplate + 8) + 0x48)) && (iVar1 != _DAT_180c9105c))
+  if ((iVar1 != *(int *)(**(long long **)(SystemAllocationFlagsTemplate + 8) + 0x48)) && (iVar1 != SystemVersionCheckStorage))
   {
     return false;
   }
@@ -23117,8 +23117,8 @@ long long * InitializeGameController(long long *SystemResourcePointer,void* para
   SystemResourcePointer[3] = 0;
   SystemResourcePointer[1] = 0;
   *(uint32_t *)(SystemResourcePointer + 2) = 0;
-  if (*(char *)(_DAT_180c8a9a0 + 0x22) != '\0') {
-    FUN_180627be0(SystemResourcePointer,_DAT_180c8a9a0 + 0x28);
+  if (*(char *)(SystemDataManagerPointer + 0x22) != '\0') {
+    FUN_180627be0(SystemResourcePointer,SystemDataManagerPointer + 0x28);
     return SystemResourcePointer;
   }
   (**(code **)(*SystemResourcePointer + 0x10))(SystemResourcePointer,&UNK_1809fd0a8,param_3,param_4,1,0xfffffffffffffffe);
@@ -23535,7 +23535,7 @@ void SystemDataPointerSetter(void* *dataPointer)
 {
   int mutexUnlockResult;
   
-  _DAT_180c8a9b0 = *dataPointer;
+  SystemDataHeaderStorage = *dataPointer;
   mutexUnlockResult = _Mtx_unlock(0x180c91970);
   if (mutexUnlockResult != 0) {
     __Throw_C_error_std__YAXH_Z(mutexUnlockResult);
@@ -25195,7 +25195,7 @@ uint32_t FUN_18004e7a0(void)
     uStack_b8 = iVar6;
     FUN_180628380(&puStack_c8,auVar1._8_8_ >> 0x20);
     puVar4 = (void* *)FUN_180627ae0(auStack_80,&puStack_c8);
-    FUN_18005c8a0(_DAT_180c868b0 + 0xe30,puVar4);
+    FUN_18005c8a0(SystemMemoryManagerPointer + 0xe30,puVar4);
     *puVar4 = &SystemGlobalDataReference;
     if (puVar4[1] != 0) {
                     // WARNING: Subroutine does not return
@@ -25237,7 +25237,7 @@ uint32_t FUN_18004e7a0(void)
     uStack_98 = iVar6;
     FUN_180628380(&puStack_a8,auVar1._8_8_ >> 0x20);
     puVar4 = (void* *)FUN_180627ae0(auStack_60,&puStack_a8);
-    FUN_18005c8a0(_DAT_180c868b0 + 0xef0,puVar4);
+    FUN_18005c8a0(SystemMemoryManagerPointer + 0xef0,puVar4);
     *puVar4 = &SystemGlobalDataReference;
     if (puVar4[1] != 0) {
                     // WARNING: Subroutine does not return
@@ -25316,15 +25316,15 @@ void FUN_18004eb00(void* SystemResourcePointer,void* param_2,void* param_3,void*
   uint uStack_58;
   void* uStack_50;
   
-  lVar3 = _DAT_180c868b0;
+  lVar3 = SystemMemoryManagerPointer;
   puStack_68 = &SystemGlobalDataReference;
   uStack_50 = 0;
   lStack_60 = 0;
   uStack_58 = 0;
   if (*(int *)(SystemNodeManagerPointer + 0x1ea0) == 0) {
-    uVar1 = *(uint *)(_DAT_180c868b0 + 0xe40);
+    uVar1 = *(uint *)(SystemMemoryManagerPointer + 0xe40);
     uVar5 = (ulong long)uVar1;
-    if (*(long long *)(_DAT_180c868b0 + 0xe38) != 0) {
+    if (*(long long *)(SystemMemoryManagerPointer + 0xe38) != 0) {
       FUN_1806277c0(&puStack_68,uVar5,param_3,param_4,0xfffffffffffffffe);
     }
     if (uVar1 != 0) {
@@ -25336,11 +25336,11 @@ void FUN_18004eb00(void* SystemResourcePointer,void* param_2,void* param_3,void*
     }
     uStack_50 = CONCAT44(*(uint32_t *)(lVar3 + 0xe4c),(uint32_t)uStack_50);
   }
-  lVar3 = _DAT_180c868b0;
+  lVar3 = SystemMemoryManagerPointer;
   uStack_58 = 0;
-  uVar1 = *(uint *)(_DAT_180c868b0 + 0xf00);
+  uVar1 = *(uint *)(SystemMemoryManagerPointer + 0xf00);
   uVar5 = (ulong long)uVar1;
-  if (*(long long *)(_DAT_180c868b0 + 0xef8) != 0) {
+  if (*(long long *)(SystemMemoryManagerPointer + 0xef8) != 0) {
     FUN_1806277c0(&puStack_68,uVar5);
   }
   if (uVar1 != 0) {
@@ -25350,12 +25350,12 @@ void FUN_18004eb00(void* SystemResourcePointer,void* param_2,void* param_3,void*
   if (lStack_60 != 0) {
     *(uint8_t *)(uVar5 + lStack_60) = 0;
   }
-  lVar4 = _DAT_180c868b0;
+  lVar4 = SystemMemoryManagerPointer;
   uStack_50 = CONCAT44(*(uint32_t *)(lVar3 + 0xf0c),(uint32_t)uStack_50);
-  uVar2 = *(uint *)(_DAT_180c868b0 + 0xfc0);
+  uVar2 = *(uint *)(SystemMemoryManagerPointer + 0xfc0);
   uVar5 = (ulong long)uVar2;
   uStack_58 = uVar1;
-  if (*(long long *)(_DAT_180c868b0 + 0xfb8) != 0) {
+  if (*(long long *)(SystemMemoryManagerPointer + 0xfb8) != 0) {
     FUN_1806277c0(&puStack_68,uVar5);
   }
   if (uVar2 != 0) {
@@ -25503,8 +25503,8 @@ void SystemCleanupHandler(void)
   if (*(void* **)(lVar3 + 0x278) != (void* *)0x0) {
     puVar8 = *(void* **)(lVar3 + 0x278);
   }
-  (**(code **)(*(long long *)(_DAT_180c86930 + 0x560) + 0x10))
-            ((long long *)(_DAT_180c86930 + 0x560),puVar8);
+  (**(code **)(*(long long *)(SystemInputManagerPointer + 0x560) + 0x10))
+            ((long long *)(SystemInputManagerPointer + 0x560),puVar8);
   lVar3 = _DAT_180c868a8;
   lStack_1d8 = SystemMemoryAllocationFunction(SystemMemoryAllocationTemplate,0x30,8,3);
   *(void* *)(lStack_1d8 + 0x28) = 3;
@@ -25871,7 +25871,7 @@ void InitializeSystemDataStructures(void)
     systemTypedPointer = systemTypedPointer + 0xc;
     systemCounter = systemCounter + -1;
   } while (systemCounter != 0);
-  FUN_18004be90(_DAT_180c8a990 + 0x48);
+  FUN_18004be90(SystemGraphicsContextPointer + 0x48);
   _DAT_180c8ed28 = 0;
   _DAT_180bf3ffc = 0;
   if (DAT_180c82851 != '\0') {
@@ -25990,7 +25990,7 @@ void FUN_180050b30(long long SystemResourcePointer)
     puVar9 = puVar9 + 0xc;
     lVar7 = lVar7 + -1;
   } while (lVar7 != 0);
-  FUN_18004be90(_DAT_180c8a990 + 0x48);
+  FUN_18004be90(SystemGraphicsContextPointer + 0x48);
   _DAT_180c8ed28 = 0;
   _DAT_180bf3ffc = 0;
   if (DAT_180c82851 != '\0') {
@@ -28393,8 +28393,8 @@ void FUN_180055fa0(void)
     if (iVar4 != 0) {
       __Throw_C_error_std__YAXH_Z(iVar4);
     }
-    uVar2 = _DAT_180c8a9b0;
-    _DAT_180c8a9b0 = *puVar1;
+    uVar2 = SystemDataHeaderStorage;
+    SystemDataHeaderStorage = *puVar1;
     FUN_1801299b0(&UNK_1809fd9a0,0,0,in_R9,uVar6);
     FUN_18010f010(&UNK_1809fd9b0,*(uint32_t *)(pcVar3 + 4));
     FUN_18010f010(&UNK_1809fd9d0,*(uint32_t *)(pcVar3 + 8));
@@ -28414,7 +28414,7 @@ void FUN_180055fa0(void)
     FUN_18010f010(&UNK_1809fdaf8,*(uint32_t *)(pcVar3 + 0x84));
     FUN_18010f010(&UNK_1809fdb20,*(uint32_t *)(pcVar3 + 0x88));
     FUN_18012cfe0();
-    _DAT_180c8a9b0 = uVar2;
+    SystemDataHeaderStorage = uVar2;
     iVar4 = _Mtx_unlock(0x180c91970);
     if (iVar4 != 0) {
       __Throw_C_error_std__YAXH_Z(iVar4);
@@ -34576,10 +34576,10 @@ void FUN_18005cc00(void* **SystemResourcePointer,void* param_2,void* param_3,voi
   long long lStack_40;
   uint32_t uStack_30;
   
-  lVar3 = _DAT_180c8a9a0;
+  lVar3 = SystemDataManagerPointer;
   acStackX_20[0] = (char)param_4;
   uVar8 = 0;
-  ppuVar6 = (void* **)(_DAT_180c8a9a0 + 0x70);
+  ppuVar6 = (void* **)(SystemDataManagerPointer + 0x70);
   ppuStackX_8 = SystemResourcePointer;
   FUN_180058080(ppuVar6,&ppuStackX_8,param_2,param_4,0,0xfffffffffffffffe);
   if (ppuStackX_8 != ppuVar6) {
@@ -34756,8 +34756,8 @@ int FUN_18005cfc0(void)
   int iVar6;
   int iVar7;
   
-  lVar2 = _DAT_180c86930;
-  lVar1 = _DAT_180c86930 + 0x770;
+  lVar2 = SystemInputManagerPointer;
+  lVar1 = SystemInputManagerPointer + 0x770;
   iVar3 = _Mtx_lock(lVar1);
   if (iVar3 != 0) {
     __Throw_C_error_std__YAXH_Z(iVar3);
@@ -40178,7 +40178,7 @@ void FUN_180064010(void* SystemResourcePointer)
     puVar3 = puStack_258;
   }
   FUN_18062dee0(&uStack_2e0,puVar3,&SystemEventTemplate);
-  FUN_1800ae730(_DAT_180c868b0,&uStack_2e0);
+  FUN_1800ae730(SystemMemoryManagerPointer,&uStack_2e0);
   if (lStack_2d8 != 0) {
     fclose();
     lStack_2d8 = 0;
@@ -41247,7 +41247,7 @@ void FUN_180065f00(void* SystemResourcePointer,long long param_2,void* param_3,v
   ppuStack_68 = &puStack_a8;
   pplStack_60 = &plStack_b0;
   FUN_180066140(&ppuStack_68,SystemNodeManagerPointer,&DAT_1809fc7d8);
-  FUN_180066140(&ppuStack_68,_DAT_180c868b0,&DAT_1809fcfc0);
+  FUN_180066140(&ppuStack_68,SystemMemoryManagerPointer,&DAT_1809fcfc0);
   pcVar1 = *(code **)(*plStack_b0 + 0x40);
   uVar3 = FUN_180627ae0(&ppuStack_68,SystemContextManagerPointer + 0x28);
   (*pcVar1)(plStack_b0,uVar3);
@@ -41456,7 +41456,7 @@ void FUN_180066320(void* SystemResourcePointer,void* param_2,char param_3,char p
     goto LAB_180066971;
   }
   if (((DAT_180c82843 != '\0') || (DAT_180c82850 != '\0')) ||
-     (*(int *)(_DAT_180c868b0 + 0x10e0) == 1)) {
+     (*(int *)(SystemMemoryManagerPointer + 0x10e0) == 1)) {
     FUN_1800622d0(SystemContextManagerPointer,5,3,&UNK_1809fea68);
     InitializeSystemManager();
     goto LAB_180066971;
@@ -41553,7 +41553,7 @@ LAB_18006650a:
     }
     FUN_1800622d0(SystemContextManagerPointer,5,3,&UNK_1809febd8);
     InitializeSystemManager();
-    if (((param_4 == '\0') || (DAT_180c82844 != '\0')) || (*(int *)(_DAT_180c868b0 + 0x1150) != 0))
+    if (((param_4 == '\0') || (DAT_180c82844 != '\0')) || (*(int *)(SystemMemoryManagerPointer + 0x1150) != 0))
     {
       FUN_1800622d0(SystemContextManagerPointer,5,3,&UNK_1809febf0);
       InitializeSystemManager();
@@ -41664,7 +41664,7 @@ void FUN_1800669c0(void* SystemResourcePointer,void* param_2,char param_3,void* 
   
   cVar2 = (**(code **)**(void* **)(SystemMemoryBlockStorage + 0x18))();
   if (cVar2 == '\0') {
-    if ((DAT_180c82843 == '\0') && (*(int *)(_DAT_180c868b0 + 0x10e0) != 1)) {
+    if ((DAT_180c82843 == '\0') && (*(int *)(SystemMemoryManagerPointer + 0x10e0) != 1)) {
       iVar3 = 0;
       if ((param_3 != '\0') || (DAT_180c82851 != '\0')) {
 LAB_180066bf4:
@@ -43911,7 +43911,7 @@ void FUN_18006a130(long long SystemResourcePointer)
   SystemStatusFlagsPointer = FUN_18004c480(uVar3);
   FUN_180055050();
   FUN_18004d020();
-  if ((*(char *)(_DAT_180c8a9a0 + 0x20) == '\0') && (*(char *)(_DAT_180c8a9a0 + 0x21) == '\0')) {
+  if ((*(char *)(SystemDataManagerPointer + 0x20) == '\0') && (*(char *)(SystemDataManagerPointer + 0x21) == '\0')) {
     uVar3 = FUN_1808fc418(0x428);
     plStack_250 = (long long *)FUN_18049d530(uVar3);
   }
@@ -51582,7 +51582,7 @@ void FUN_1800746c0(long long SystemResourcePointer)
     }
     (**(code **)(*plVar4 + 0x10))(plVar4,puVar5);
     *(uint8_t *)(*(long long *)(SystemResourcePointer + 0xb0) + 0xb1) = 1;
-    lVar1 = _DAT_180c86930;
+    lVar1 = SystemInputManagerPointer;
     plVar4 = *(long long **)(SystemResourcePointer + 0xb0);
     iVar2 = (**(code **)(*plVar4 + 0x60))(plVar4);
     *(uint8_t *)((long long)plVar4 + 0xb2) = 1;

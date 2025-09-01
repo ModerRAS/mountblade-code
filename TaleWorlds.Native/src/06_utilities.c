@@ -29179,7 +29179,18 @@ void ResetMainSystemResourceHandlerPointer(uint8_t8 objectContextParam, longlong
 
 
 
-void Unwind_1809023c0(uint8_t8 objectContextParam,longlong validationContextParam)
+/**
+ * @brief 重置系统资源管理器指针
+ * 
+ * 该函数负责在异常处理时重置系统资源管理器指针
+ * 将资源管理器指针指向系统数据结构，确保资源管理的完整性
+ * 
+ * @param objectContextParam 对象上下文参数，用于标识当前处理的对象
+ * @param validationContextParam 验证上下文参数，包含验证相关的上下文信息
+ * @return 无返回值
+ * @note 此函数通常在异常处理的展开阶段调用
+ */
+void ResetSystemResourceManagerPointer(uint8_t8 objectContextParam, longlong validationContextParam)
 
 {
   *(uint8_t **)(validationContextParam + 0x1a0) = &SystemDataStructure;
