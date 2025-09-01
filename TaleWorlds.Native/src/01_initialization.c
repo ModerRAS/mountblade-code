@@ -24381,13 +24381,25 @@ void SystemEventHandler(void)
 
 
 
+/**
+ * @brief 初始化系统资源缓冲区
+ * 
+ * 该函数初始化系统资源缓冲区，设置内存分配器引用、全局数据引用和
+ * 各种系统资源的配置。函数会配置多个资源指针并设置相关的属性值。
+ * 
+ * @param systemResourcePointer 系统资源指针
+ * @param reservedParam2 保留参数2
+ * @param reservedParam3 保留参数3
+ * @param reservedParam4 保留参数4
+ * @return 返回初始化后的系统资源指针
+ */
 uint8_t *
-FUN_18004c330(uint8_t *SystemResourcePointer,void* param_2,void* param_3,void* param_4)
+InitializeSystemResourceBuffer(uint8_t *systemResourcePointer, void* reservedParam2, void* reservedParam3, void* reservedParam4)
 
 {
-  long long *PrimaryResourcePointer;
-  long long *SecondaryResourcePointer;
-  long long *plVar3;
+  long long *primaryResourcePointer;
+  long long *secondaryResourcePointer;
+  long long *resourceAllocatorPointer;
   
   plVar3 = (long long *)(SystemResourcePointer + 8);
   *plVar3 = (long long)&SystemMemoryAllocatorReference;
