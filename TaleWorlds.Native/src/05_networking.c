@@ -491,7 +491,7 @@ uint64_t CleanupNetworkConnectionResources(longlong *connectionContext)
   }
   *(undefined4 *)(connectionContext + 1) = 0;
   if ((0 < (int)((validationRange ^ (int)validationRange >> 0x1f) - ((int)validationRange >> 0x1f))) &&
-     (cleanupStatus = FUN_180849030(connectionContext,0), (int)cleanupStatus != 0)) {
+     (cleanupStatus = CleanupNetworkResources(connectionContext,0), (int)cleanupStatus != 0)) {
     return cleanupStatus;
   }
   return 0;
@@ -538,13 +538,13 @@ void InitializeNetworkConnection(ulonglong *connectionHandle,int connectionType)
     *connectionHandle = 0;
     if (connectionType - 0x20200U < 0x100) {
       connectionData = 0;
-      status = FUN_180875520(&connectionData);
+      status = InitializeNetworkConnectionData(&connectionData);
       if (status == 0) {
         connectionInfo[0] = 0;
-        status = FUN_18073aab0(*(undefined8 *)(connectionData + 0x78),connectionInfo);
+        status = EstablishNetworkConnection(*(undefined8 *)(connectionData + 0x78),connectionInfo);
         if (status == 0) {
           if (connectionInfo[0] != 0x20214) {
-            FUN_180883a30();
+            HandleNetworkConnectionError();
             goto error_handling;
           }
           status = func_0x00018088c570(connectionData,connectionParams);
@@ -563,15 +563,15 @@ error_handling:
   }
   if ((*(byte *)(_DAT_180be12f0 + 0x10) & 0x80) != 0) {
     result = func_0x00018074bda0(errorBuffer,0x100,connectionHandle);
-    errorStatus = FUN_18074b880(errorBuffer + result,0x100 - result,&DAT_180a06434);
+    errorStatus = FormatNetworkErrorMessage(errorBuffer + result,0x100 - result,&DAT_180a06434);
     func_0x00018074b800(errorBuffer + (result + errorStatus),0x100 - (result + errorStatus),connectionType);
     errorMessage = errorBuffer;
                     // WARNING: Subroutine does not return
-    FUN_180749ef0(status,0,0,&UNK_180984660);
+    LogNetworkError(status,0,0,&UNK_180984660);
   }
 cleanup:
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(stackGuard ^ (ulonglong)securityBuffer);
+  CleanupNetworkSecurityBuffer(stackGuard ^ (ulonglong)securityBuffer);
 }
 
 
@@ -614,7 +614,7 @@ void ValidateNetworkConnection(undefined8 connectionId,ulonglong *connectionStat
     func_0x00018074bda0(errorBuffer,0x100,0);
     errorMessage = errorBuffer;
                     // WARNING: Subroutine does not return
-    FUN_180749ef0(0x1f,0xc,connectionId,&UNK_180983320);
+    LogNetworkConnectionError(0x1f,0xc,connectionId,&UNK_180983320);
   }
   *connectionStatus = 0;
   connectionInfo[1] = 0;

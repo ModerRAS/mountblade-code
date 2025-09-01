@@ -337,13 +337,13 @@ undefined DAT_180d49358;
 undefined DAT_180d49398;
 undefined DAT_180d493a0;
 undefined DAT_180d493a8;
-undefined DAT_180d493b0;
-undefined UNK_180941ab0;
-undefined DAT_180a06990;
-undefined DAT_180a06998;
-undefined DAT_180a069a0;
-undefined DAT_180a069a8;
-undefined UNK_18014f7f0;
+undefined SystemGlobalDataFlag;
+undefined SystemMemoryAllocatorState;
+undefined SystemMemoryPoolSize;
+undefined SystemMemoryPoolAlignment;
+undefined SystemMemoryPoolAttributes;
+undefined SystemMemoryPoolConfiguration;
+undefined SystemInitializationStatus;
 
 // 函数: 系统内存分配器 - 负责动态内存分配和管理
 undefined SystemMemoryAllocator;
@@ -392,17 +392,17 @@ undefined UNK_180a0c7d8;
 undefined UNK_180a0c7f0;
 undefined UNK_180a0c508;
 
-// 函数: undefined FUN_180049cd0;
-undefined FUN_180049cd0;
+// 函数: 系统错误处理器 - 负责处理系统级错误和异常
+undefined SystemErrorHandler;
 
-// 函数: undefined FUN_180049970;
-undefined FUN_180049970;
+// 函数: 系统日志记录器 - 负责记录系统运行日志
+undefined SystemLogger;
 
-// 函数: undefined FUN_1800586e0;
-undefined FUN_1800586e0;
+// 函数: 系统性能监控器 - 负责监控系统性能指标
+undefined SystemPerformanceMonitor;
 
-// 函数: undefined FUN_180046480;
-undefined FUN_180046480;
+// 函数: 系统资源清理器 - 负责清理系统资源
+undefined SystemResourceCleaner;
 undefined UNK_180a13ad0;
 undefined DAT_180a0ba58;
 undefined DAT_180a0d580;
@@ -426,8 +426,8 @@ undefined UNK_180a13ca0;
 undefined UNK_180a13cac;
 undefined UNK_180239520;
 
-// 函数: undefined FUN_180056de0;
-undefined FUN_180056de0;
+// 函数: 系统状态管理器 - 负责管理系统运行状态
+undefined SystemStateManager;
 undefined UNK_180a172e0;
 undefined UNK_180a17308;
 undefined UNK_180a17398;
@@ -544,8 +544,8 @@ undefined DAT_180d48dc0;
 undefined DAT_180d48dc8;
 undefined DAT_180d48dd0;
 
-// 函数: undefined FUN_1800670d0;
-undefined FUN_1800670d0;
+// 函数: 系统初始化协调器 - 负责协调各个子系统的初始化顺序
+undefined SystemInitializationCoordinator;
 undefined UNK_180a25980;
 undefined DAT_180bfc170;
 undefined UNK_180a258e0;
@@ -626,8 +626,14 @@ undefined UNK_180a25900;
 undefined UNK_180a25ad0;
 undefined UNK_180a25a6c;
 
-// 函数: undefined FUN_18006b8f0;
-undefined FUN_18006b8f0;
+// 函数: 系统启动验证器 - 负责验证系统启动条件
+undefined SystemStartupValidator;
+
+// 函数: 获取系统根指针 - 获取系统根节点指针
+undefined GetSystemRootPointer;
+
+// 函数: 获取系统初始化函数 - 获取系统初始化相关函数
+undefined GetSystemInitializationFunction;
 
 /**
  * @brief 初始化游戏核心系统

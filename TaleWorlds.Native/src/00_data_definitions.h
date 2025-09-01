@@ -1,10 +1,34 @@
 #ifndef DATA_DEFINITIONS_H
 #define DATA_DEFINITIONS_H
 
+/**
+ * @file 00_data_definitions.h
+ * @brief Mount & Blade 游戏引擎数据定义和系统初始化函数
+ * 
+ * 本文件包含游戏引擎的核心数据结构定义、系统模块初始化函数
+ * 以及各种配置缓冲区的管理。所有变量和函数都使用语义化的命名
+ * 以提高代码的可读性和维护性。
+ */
+
 // 全局系统数据指针
 void* GlobalSystemData;
 // 未知全局数据指针
 void* GlobalUnknownData;
+
+// 系统内存池 - 用于动态内存分配
+void* SystemMemoryPool;
+
+// 系统配置缓冲区组 - 用于存储各种系统配置数据
+char SystemConfigBufferA[0x40];
+char SystemConfigBufferB[0x40];
+char SystemConfigBufferC[0x40];
+char SystemConfigBufferD[0x40];
+char SystemConfigBufferE[0x40];
+char SystemConfigBufferF[0x40];
+char SystemConfigBufferG[0x40];
+char SystemConfigBufferH[0x40];
+char SystemConfigBufferI[0x40];
+char SystemConfigBufferJ[0x40];
 
 /**
  * 初始化渲染系统模块
@@ -350,7 +374,7 @@ int InitializeStringProcessorH(void)
   STRING_PROCESSOR_CONFIG_C = 0;
   g_stringProcessorBufferSizeC = 0xd;
   strcpy_s(&STRING_PROCESSOR_CONFIG_C,0x20,&UNK_180a01300,stringProcessorHFlags,0xfffffffffffffffe);
-  CallbackResult = RegisterSystemModule(FUN_180941980);
+  CallbackResult = RegisterSystemModule(InitializeStringProcessorModule);
   return (CallbackResult != 0) - 1;
 }
 /**
@@ -368,7 +392,7 @@ int InitializeStringProcessorI(void)
   STRING_PROCESSOR_CONFIG_D = 0;
   g_stringProcessorBufferSizeD = 9;
   strcpy_s(&STRING_PROCESSOR_CONFIG_D,0x20,&UNK_180a01330,stringProcessorIFlags,0xfffffffffffffffe);
-  CallbackResult = RegisterSystemModule(FUN_1809419a0);
+  CallbackResult = RegisterSystemModule(InitializeNetworkModule);
   return (CallbackResult != 0) - 1;
 }
 /**

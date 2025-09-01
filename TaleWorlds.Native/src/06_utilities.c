@@ -774,10 +774,10 @@ undefined DAT_180bf90c8;
  * 设置多语言支持、文本翻译和文化适配
  */
 void InitializeLocalizationSystem(void);
-void* g_localizationDatabase;
-void* g_languagePackManager;
-void* g_textTranslationEngine;
-void* g_culturalAdaptationManager;
+void* LocalizationDatabase;
+void* LanguagePackManager;
+void* TextTranslationEngine;
+void* CulturalAdaptationManager;
 
 // 函数: void InitializeModdingSystem(void)
 /**
@@ -787,18 +787,18 @@ void* g_culturalAdaptationManager;
  * 设置模组加载、管理和接口系统
  */
 void InitializeModdingSystem(void);
-undefined g_moddingSystemInstance;
-undefined g_modLoader;
-undefined g_modDependencyResolver;
-undefined g_modInterfaceManager;
-undefined g_modConfigManager;
-undefined g_modResourceManager;
-undefined g_modEventSystem;
-undefined g_modValidationEngine;
-undefined g_modCompatibilityChecker;
-undefined g_modUpdateManager;
-undefined g_modCommunityManager;
-undefined g_modWorkshopIntegration;
+undefined ModdingSystemInstance;
+undefined ModLoader;
+undefined ModDependencyResolver;
+undefined ModInterfaceManager;
+undefined ModConfigManager;
+undefined ModResourceManager;
+undefined ModEventSystem;
+undefined ModValidationEngine;
+undefined ModCompatibilityChecker;
+undefined ModUpdateManager;
+undefined ModCommunityManager;
+undefined ModWorkshopIntegration;
 undefined DAT_180c91f0c;
 undefined UNK_180a1a6c8;
 undefined DAT_180c91f10;
@@ -4299,8 +4299,8 @@ uint32_t ProcessResourceTask(void)
 
 
 
-// 函数: void FUN_180890c66(void)
-void FUN_180890c66(void)
+// 函数: void TriggerSystemTermination(void)
+void TriggerSystemTermination(void)
 
 {
                     // WARNING: Subroutine does not return
