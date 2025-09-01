@@ -25942,8 +25942,16 @@ void SystemMemoryManager(long long SystemResourcePointer)
 
 
 
-// 函数: void FUN_18004f900(long long SystemResourcePointer)
-void FUN_18004f900(long long SystemResourcePointer)
+// 函数: void SystemMemoryCleanup(long long SystemResourcePointer)
+/**
+ * @brief 系统内存清理器
+ * 
+ * 该函数负责清理系统内存资源，释放不再使用的内存块。
+ * 这是内存管理系统的清理函数。
+ * 
+ * @param SystemResourcePointer 系统资源指针
+ */
+void SystemMemoryCleanup(long long SystemResourcePointer)
 
 {
   int *pointerToInteger1;
@@ -26625,8 +26633,16 @@ void* * FUN_180051d40(void* *SystemResourcePointer,void* *param_2)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180051de4(long long SystemResourcePointer)
-void FUN_180051de4(long long SystemResourcePointer)
+// 函数: void SystemResourceManager(long long SystemResourcePointer)
+/**
+ * @brief 系统资源管理器
+ * 
+ * 该函数负责管理系统资源的分配和释放。
+ * 这是资源管理系统的核心函数。
+ * 
+ * @param SystemResourcePointer 系统资源指针
+ */
+void SystemResourceManager(long long SystemResourcePointer)
 
 {
   long long localMemoryPointer;
@@ -26731,8 +26747,16 @@ void SystemMemoryConfigurator(void)
 
 
 
-// 函数: void FUN_180051e74(long long SystemResourcePointer)
-void FUN_180051e74(long long SystemResourcePointer)
+// 函数: void SystemResourceHandler(long long SystemResourcePointer)
+/**
+ * @brief 系统资源处理器
+ * 
+ * 该函数负责处理系统资源的具体操作。
+ * 这是资源处理系统的核心函数。
+ * 
+ * @param SystemResourcePointer 系统资源指针
+ */
+void SystemResourceHandler(long long SystemResourcePointer)
 
 {
   long long localMemoryPointer;
@@ -26770,8 +26794,14 @@ void FUN_180051e74(long long SystemResourcePointer)
 
 
 
-// 函数: void FUN_180051eef(void)
-void FUN_180051eef(void)
+// 函数: void SystemContextInitializer(void)
+/**
+ * @brief 系统上下文初始化器
+ * 
+ * 该函数负责初始化系统上下文环境。
+ * 这是上下文管理系统的初始化函数。
+ */
+void SystemContextInitializer(void)
 
 {
   return;
@@ -26877,8 +26907,16 @@ FUN_180052020(void* SystemResourcePointer,void* param_2,void* param_3,void* para
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180052070(long long SystemResourcePointer)
-void FUN_180052070(long long SystemResourcePointer)
+// 函数: void SystemDataProcessor(long long SystemResourcePointer)
+/**
+ * @brief 系统数据处理器
+ * 
+ * 该函数负责处理系统数据的操作和管理。
+ * 这是数据处理系统的核心函数。
+ * 
+ * @param SystemResourcePointer 系统资源指针
+ */
+void SystemDataProcessor(long long SystemResourcePointer)
 
 {
   void* *pointerToUnsigned1;
@@ -26911,8 +26949,19 @@ void FUN_180052070(long long SystemResourcePointer)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180052200(long long SystemResourcePointer,long long param_2,void* param_3,void* param_4)
-void FUN_180052200(long long SystemResourcePointer,long long param_2,void* param_3,void* param_4)
+// 函数: void SystemMemoryAllocator(long long SystemResourcePointer,long long parameter2,void* parameter3,void* parameter4)
+/**
+ * @brief 系统内存分配器
+ * 
+ * 该函数负责分配系统内存资源。
+ * 这是内存分配系统的核心函数。
+ * 
+ * @param SystemResourcePointer 系统资源指针
+ * @param parameter2 分配参数2
+ * @param parameter3 分配参数3
+ * @param parameter4 分配参数4
+ */
+void SystemMemoryAllocator(long long SystemResourcePointer,long long parameter2,void* parameter3,void* parameter4)
 
 {
   long long *PrimaryResourcePointer;
@@ -27059,8 +27108,19 @@ void* FUN_1800524c0(void* SystemResourcePointer,void* param_2)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180052940(long long SystemResourcePointer,float param_2,void* param_3,void* param_4)
-void FUN_180052940(long long SystemResourcePointer,float param_2,void* param_3,void* param_4)
+// 函数: void SystemFloatingPointProcessor(long long SystemResourcePointer,float parameter2,void* parameter3,void* parameter4)
+/**
+ * @brief 系统浮点数处理器
+ * 
+ * 该函数负责处理系统中的浮点数运算。
+ * 这是浮点数处理系统的核心函数。
+ * 
+ * @param SystemResourcePointer 系统资源指针
+ * @param parameter2 浮点参数
+ * @param parameter3 处理参数3
+ * @param parameter4 处理参数4
+ */
+void SystemFloatingPointProcessor(long long SystemResourcePointer,float parameter2,void* parameter3,void* parameter4)
 
 {
   ulong long unsignedSystemValue1;
