@@ -1358,7 +1358,7 @@ void engine_register_texture_resource(void)
 
 {
   char resource_status_flag;
-  void* engine_structure_data_ptr;
+  void* structure_data_pointer;
   int engine_loop_index;
   longlong *engine_main_structure_pointer;
   longlong engine_operation_result;
@@ -1369,11 +1369,11 @@ void engine_register_texture_resource(void)
   code *engine_stack_function_pointer_18;
   
   engine_main_structure_pointer = (longlong *)engine_get_system_context();
-  engine_structure_data_ptr = (void*)*engine_main_structure_pointer;
-  resource_status_flag = *(char *)((longlong)engine_structure_data_ptr[1] + 0x19);
+  structure_data_pointer = (void*)*engine_main_structure_pointer;
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
   engine_stack_function_pointer_18 = engine_process_resource_manager;
-  engine_current_data_pointer = engine_structure_data_ptr;
-  engine_temporary_data_ptr = (void*)engine_structure_data_ptr[1];
+  engine_current_data_pointer = structure_data_pointer;
+  engine_temporary_data_ptr = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
     engine_loop_index = memcmp(engine_temporary_data_ptr + 4,&engine_system_magic_header,0x10);
     if (engine_loop_index < 0) {
@@ -1387,7 +1387,7 @@ void engine_register_texture_resource(void)
     engine_temporary_data_ptr = engine_next_data_pointer;
     resource_status_flag = *(char *)((longlong)engine_next_data_pointer + 0x19);
   }
-  if ((engine_current_data_pointer == engine_structure_data_ptr) || (engine_loop_index = memcmp(&engine_system_magic_header,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
+  if ((engine_current_data_pointer == structure_data_pointer) || (engine_loop_index = memcmp(&engine_system_magic_header,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
     engine_operation_result = engine_allocate_memory_block(engine_main_structure_pointer);
     engine_initialize_memory_block(engine_main_structure_pointer,&engine_stack_variable_10,engine_current_data_pointer,engine_operation_result + 0x20,engine_operation_result);
     engine_current_data_pointer = engine_stack_variable_10;
@@ -1458,7 +1458,7 @@ void engine_register_shader_resource(void)
 
 {
   char resource_status_flag;
-  void* engine_structure_data_ptr;
+  void* structure_data_pointer;
   int engine_loop_index;
   longlong *engine_main_structure_pointer;
   longlong engine_operation_result;
@@ -1469,11 +1469,11 @@ void engine_register_shader_resource(void)
   code *engine_stack_function_pointer_18;
   
   engine_main_structure_pointer = (longlong *)engine_get_system_context();
-  engine_structure_data_ptr = (void*)*engine_main_structure_pointer;
-  resource_status_flag = *(char *)((longlong)engine_structure_data_ptr[1] + 0x19);
+  structure_data_pointer = (void*)*engine_main_structure_pointer;
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
   engine_stack_function_pointer_18 = engine_process_texture_manager;
-  engine_current_data_pointer = engine_structure_data_ptr;
-  engine_temporary_data_ptr = (void*)engine_structure_data_ptr[1];
+  engine_current_data_pointer = structure_data_pointer;
+  engine_temporary_data_ptr = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
     engine_loop_index = memcmp(engine_temporary_data_ptr + 4,&engine_data_78,0x10);
     if (engine_loop_index < 0) {
@@ -1487,7 +1487,7 @@ void engine_register_shader_resource(void)
     engine_temporary_data_ptr = engine_next_data_pointer;
     resource_status_flag = *(char *)((longlong)engine_next_data_pointer + 0x19);
   }
-  if ((engine_current_data_pointer == engine_structure_data_ptr) || (engine_loop_index = memcmp(&engine_data_78,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
+  if ((engine_current_data_pointer == structure_data_pointer) || (engine_loop_index = memcmp(&engine_data_78,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
     engine_operation_result = engine_allocate_memory_block(engine_main_structure_pointer);
     engine_initialize_memory_block(engine_main_structure_pointer,&engine_stack_variable_10,engine_current_data_pointer,engine_operation_result + 0x20,engine_operation_result);
     engine_current_data_pointer = engine_stack_variable_10;
@@ -1508,7 +1508,7 @@ void engine_register_mesh_resource(void)
 
 {
   char resource_status_flag;
-  void* engine_structure_data_ptr;
+  void* structure_data_pointer;
   int engine_loop_index;
   longlong *engine_main_structure_pointer;
   longlong engine_operation_result;
@@ -1519,11 +1519,11 @@ void engine_register_mesh_resource(void)
   uint64 uStackX_18;
   
   engine_main_structure_pointer = (longlong *)engine_get_system_context();
-  engine_structure_data_ptr = (void*)*engine_main_structure_pointer;
-  resource_status_flag = *(char *)((longlong)engine_structure_data_ptr[1] + 0x19);
+  structure_data_pointer = (void*)*engine_main_structure_pointer;
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
   uStackX_18 = 0;
-  engine_current_data_pointer = engine_structure_data_ptr;
-  engine_temporary_data_ptr = (void*)engine_structure_data_ptr[1];
+  engine_current_data_pointer = structure_data_pointer;
+  engine_temporary_data_ptr = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
     engine_loop_index = memcmp(engine_temporary_data_ptr + 4,&engine_data_180a01050,0x10);
     if (engine_loop_index < 0) {
@@ -1537,7 +1537,7 @@ void engine_register_mesh_resource(void)
     engine_temporary_data_ptr = engine_next_data_pointer;
     resource_status_flag = *(char *)((longlong)engine_next_data_pointer + 0x19);
   }
-  if ((engine_current_data_pointer == engine_structure_data_ptr) || (engine_loop_index = memcmp(&engine_data_180a01050,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
+  if ((engine_current_data_pointer == structure_data_pointer) || (engine_loop_index = memcmp(&engine_data_180a01050,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
     engine_operation_result = engine_allocate_memory_block(engine_main_structure_pointer);
     engine_initialize_memory_block(engine_main_structure_pointer,&engine_stack_variable_10,engine_current_data_pointer,engine_operation_result + 0x20,engine_operation_result);
     engine_current_data_pointer = engine_stack_variable_10;
@@ -1558,7 +1558,7 @@ void engine_register_animation_resource(void)
 
 {
   char resource_status_flag;
-  void* engine_structure_data_ptr;
+  void* structure_data_pointer;
   int engine_loop_index;
   longlong *engine_main_structure_pointer;
   longlong engine_operation_result;
@@ -1569,11 +1569,11 @@ void engine_register_animation_resource(void)
   code *engine_stack_function_pointer_18;
   
   engine_main_structure_pointer = (longlong *)engine_get_system_context();
-  engine_structure_data_ptr = (void*)*engine_main_structure_pointer;
-  resource_status_flag = *(char *)((longlong)engine_structure_data_ptr[1] + 0x19);
+  structure_data_pointer = (void*)*engine_main_structure_pointer;
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
   engine_stack_function_pointer_18 = engine_process_shader_manager;
-  engine_current_data_pointer = engine_structure_data_ptr;
-  engine_temporary_data_ptr = (void*)engine_structure_data_ptr[1];
+  engine_current_data_pointer = structure_data_pointer;
+  engine_temporary_data_ptr = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
     engine_loop_index = memcmp(engine_temporary_data_ptr + 4,&engine_data_28,0x10);
     if (engine_loop_index < 0) {
@@ -1587,7 +1587,7 @@ void engine_register_animation_resource(void)
     engine_temporary_data_ptr = engine_next_data_pointer;
     resource_status_flag = *(char *)((longlong)engine_next_data_pointer + 0x19);
   }
-  if ((engine_current_data_pointer == engine_structure_data_ptr) || (engine_loop_index = memcmp(&engine_data_28,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
+  if ((engine_current_data_pointer == structure_data_pointer) || (engine_loop_index = memcmp(&engine_data_28,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
     engine_operation_result = engine_allocate_memory_block(engine_main_structure_pointer);
     engine_initialize_memory_block(engine_main_structure_pointer,&engine_stack_variable_10,engine_current_data_pointer,engine_operation_result + 0x20,engine_operation_result);
     engine_current_data_pointer = engine_stack_variable_10;
@@ -1608,7 +1608,7 @@ void engine_register_audio_resource(void)
 
 {
   char resource_status_flag;
-  void* engine_structure_data_ptr;
+  void* structure_data_pointer;
   int engine_loop_index;
   longlong *engine_main_structure_pointer;
   longlong engine_operation_result;
@@ -1619,11 +1619,11 @@ void engine_register_audio_resource(void)
   uint64 uStackX_18;
   
   engine_main_structure_pointer = (longlong *)engine_get_system_context();
-  engine_structure_data_ptr = (void*)*engine_main_structure_pointer;
-  resource_status_flag = *(char *)((longlong)engine_structure_data_ptr[1] + 0x19);
+  structure_data_pointer = (void*)*engine_main_structure_pointer;
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
   uStackX_18 = 0;
-  engine_current_data_pointer = engine_structure_data_ptr;
-  engine_temporary_data_ptr = (void*)engine_structure_data_ptr[1];
+  engine_current_data_pointer = structure_data_pointer;
+  engine_temporary_data_ptr = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
     engine_loop_index = memcmp(engine_temporary_data_ptr + 4,&engine_data_180a01000,0x10);
     if (engine_loop_index < 0) {
@@ -1637,7 +1637,7 @@ void engine_register_audio_resource(void)
     engine_temporary_data_ptr = engine_next_data_pointer;
     resource_status_flag = *(char *)((longlong)engine_next_data_pointer + 0x19);
   }
-  if ((engine_current_data_pointer == engine_structure_data_ptr) || (engine_loop_index = memcmp(&engine_data_180a01000,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
+  if ((engine_current_data_pointer == structure_data_pointer) || (engine_loop_index = memcmp(&engine_data_180a01000,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
     engine_operation_result = engine_allocate_memory_block(engine_main_structure_pointer);
     engine_initialize_memory_block(engine_main_structure_pointer,&engine_stack_variable_10,engine_current_data_pointer,engine_operation_result + 0x20,engine_operation_result);
     engine_current_data_pointer = engine_stack_variable_10;
@@ -1658,7 +1658,7 @@ void engine_register_ui_resource(void)
 
 {
   char resource_status_flag;
-  void* engine_structure_data_ptr;
+  void* structure_data_pointer;
   int engine_loop_index;
   longlong *engine_main_structure_pointer;
   longlong engine_operation_result;
@@ -1669,11 +1669,11 @@ void engine_register_ui_resource(void)
   void* engine_stack_pointer_18;
   
   engine_main_structure_pointer = (longlong *)engine_get_system_context();
-  engine_structure_data_ptr = (void*)*engine_main_structure_pointer;
-  resource_status_flag = *(char *)((longlong)engine_structure_data_ptr[1] + 0x19);
+  structure_data_pointer = (void*)*engine_main_structure_pointer;
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
   engine_stack_pointer_18 = &engine_base_data_offset_c0;
-  engine_current_data_pointer = engine_structure_data_ptr;
-  engine_temporary_data_ptr = (void*)engine_structure_data_ptr[1];
+  engine_current_data_pointer = structure_data_pointer;
+  engine_temporary_data_ptr = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
     engine_loop_index = memcmp(engine_temporary_data_ptr + 4,&engine_data_180a00fd8,0x10);
     if (engine_loop_index < 0) {
@@ -1687,7 +1687,7 @@ void engine_register_ui_resource(void)
     engine_temporary_data_ptr = engine_next_data_pointer;
     resource_status_flag = *(char *)((longlong)engine_next_data_pointer + 0x19);
   }
-  if ((engine_current_data_pointer == engine_structure_data_ptr) || (engine_loop_index = memcmp(&engine_data_180a00fd8,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
+  if ((engine_current_data_pointer == structure_data_pointer) || (engine_loop_index = memcmp(&engine_data_180a00fd8,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
     engine_operation_result = engine_allocate_memory_block(engine_main_structure_pointer);
     engine_initialize_memory_block(engine_main_structure_pointer,&engine_stack_variable_10,engine_current_data_pointer,engine_operation_result + 0x20,engine_operation_result);
     engine_current_data_pointer = engine_stack_variable_10;
@@ -1708,7 +1708,7 @@ void engine_register_script_resource(void)
 
 {
   char resource_status_flag;
-  void* engine_structure_data_ptr;
+  void* structure_data_pointer;
   int engine_loop_index;
   longlong *engine_main_structure_pointer;
   longlong engine_operation_result;
@@ -1719,11 +1719,11 @@ void engine_register_script_resource(void)
   uint64 uStackX_18;
   
   engine_main_structure_pointer = (longlong *)engine_get_system_context();
-  engine_structure_data_ptr = (void*)*engine_main_structure_pointer;
-  resource_status_flag = *(char *)((longlong)engine_structure_data_ptr[1] + 0x19);
+  structure_data_pointer = (void*)*engine_main_structure_pointer;
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
   uStackX_18 = 0;
-  engine_current_data_pointer = engine_structure_data_ptr;
-  engine_temporary_data_ptr = (void*)engine_structure_data_ptr[1];
+  engine_current_data_pointer = structure_data_pointer;
+  engine_temporary_data_ptr = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
     engine_loop_index = memcmp(engine_temporary_data_ptr + 4,&engine_data_180a00fb0,0x10);
     if (engine_loop_index < 0) {
@@ -1737,7 +1737,7 @@ void engine_register_script_resource(void)
     engine_temporary_data_ptr = engine_next_data_pointer;
     resource_status_flag = *(char *)((longlong)engine_next_data_pointer + 0x19);
   }
-  if ((engine_current_data_pointer == engine_structure_data_ptr) || (engine_loop_index = memcmp(&engine_data_180a00fb0,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
+  if ((engine_current_data_pointer == structure_data_pointer) || (engine_loop_index = memcmp(&engine_data_180a00fb0,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
     engine_operation_result = engine_allocate_memory_block(engine_main_structure_pointer);
     engine_initialize_memory_block(engine_main_structure_pointer,&engine_stack_variable_10,engine_current_data_pointer,engine_operation_result + 0x20,engine_operation_result);
     engine_current_data_pointer = engine_stack_variable_10;
@@ -1792,7 +1792,7 @@ void engine_setup_texture_manager(void)
 
 {
   char resource_status_flag;
-  void* engine_structure_data_ptr;
+  void* structure_data_pointer;
   int engine_loop_index;
   longlong *engine_main_structure_pointer;
   longlong engine_operation_result;
@@ -1803,11 +1803,11 @@ void engine_setup_texture_manager(void)
   code *engine_stack_function_pointer_18;
   
   engine_main_structure_pointer = (longlong *)engine_get_system_context();
-  engine_structure_data_ptr = (void*)*engine_main_structure_pointer;
-  resource_status_flag = *(char *)((longlong)engine_structure_data_ptr[1] + 0x19);
+  structure_data_pointer = (void*)*engine_main_structure_pointer;
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
   engine_stack_function_pointer_18 = void engine_process_main_loop(void);
-  engine_current_data_pointer = engine_structure_data_ptr;
-  engine_temporary_data_ptr = (void*)engine_structure_data_ptr[1];
+  engine_current_data_pointer = structure_data_pointer;
+  engine_temporary_data_ptr = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
     engine_loop_index = memcmp(engine_temporary_data_ptr + 4,&engine_input_state,0x10);
     if (engine_loop_index < 0) {
@@ -1821,7 +1821,7 @@ void engine_setup_texture_manager(void)
     engine_temporary_data_ptr = engine_next_data_pointer;
     resource_status_flag = *(char *)((longlong)engine_next_data_pointer + 0x19);
   }
-  if ((engine_current_data_pointer == engine_structure_data_ptr) || (engine_loop_index = memcmp(&engine_input_state,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
+  if ((engine_current_data_pointer == structure_data_pointer) || (engine_loop_index = memcmp(&engine_input_state,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
     engine_operation_result = engine_allocate_memory_block(engine_main_structure_pointer);
     engine_initialize_memory_block(engine_main_structure_pointer,&engine_stack_variable_10,engine_current_data_pointer,engine_operation_result + 0x20,engine_operation_result);
     engine_current_data_pointer = engine_stack_variable_10;
@@ -1842,7 +1842,7 @@ void engine_setup_shader_manager(void)
 
 {
   char resource_status_flag;
-  void* engine_structure_data_ptr;
+  void* structure_data_pointer;
   int engine_loop_index;
   longlong *engine_main_structure_pointer;
   longlong engine_operation_result;
@@ -1853,11 +1853,11 @@ void engine_setup_shader_manager(void)
   code *engine_stack_function_pointer_18;
   
   engine_main_structure_pointer = (longlong *)engine_get_system_context();
-  engine_structure_data_ptr = (void*)*engine_main_structure_pointer;
-  resource_status_flag = *(char *)((longlong)engine_structure_data_ptr[1] + 0x19);
+  structure_data_pointer = (void*)*engine_main_structure_pointer;
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
   engine_stack_function_pointer_18 = void engine_handle_input_events(void);
-  engine_current_data_pointer = engine_structure_data_ptr;
-  engine_temporary_data_ptr = (void*)engine_structure_data_ptr[1];
+  engine_current_data_pointer = structure_data_pointer;
+  engine_temporary_data_ptr = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
     engine_loop_index = memcmp(engine_temporary_data_ptr + 4,&engine_mouse_position,0x10);
     if (engine_loop_index < 0) {
@@ -1871,7 +1871,7 @@ void engine_setup_shader_manager(void)
     engine_temporary_data_ptr = engine_next_data_pointer;
     resource_status_flag = *(char *)((longlong)engine_next_data_pointer + 0x19);
   }
-  if ((engine_current_data_pointer == engine_structure_data_ptr) || (engine_loop_index = memcmp(&engine_mouse_position,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
+  if ((engine_current_data_pointer == structure_data_pointer) || (engine_loop_index = memcmp(&engine_mouse_position,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
     engine_operation_result = engine_allocate_memory_block(engine_main_structure_pointer);
     engine_initialize_memory_block(engine_main_structure_pointer,&engine_stack_variable_10,engine_current_data_pointer,engine_operation_result + 0x20,engine_operation_result);
     engine_current_data_pointer = engine_stack_variable_10;
@@ -1892,7 +1892,7 @@ void engine_setup_mesh_manager(void)
 
 {
   char resource_status_flag;
-  void* engine_structure_data_ptr;
+  void* structure_data_pointer;
   int engine_loop_index;
   longlong *engine_main_structure_pointer;
   longlong engine_operation_result;
@@ -1903,11 +1903,11 @@ void engine_setup_mesh_manager(void)
   code *engine_stack_function_pointer_18;
   
   engine_main_structure_pointer = (longlong *)engine_get_system_context();
-  engine_structure_data_ptr = (void*)*engine_main_structure_pointer;
-  resource_status_flag = *(char *)((longlong)engine_structure_data_ptr[1] + 0x19);
+  structure_data_pointer = (void*)*engine_main_structure_pointer;
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
   engine_stack_function_pointer_18 = void engine_process_main_loop(void);
-  engine_current_data_pointer = engine_structure_data_ptr;
-  engine_temporary_data_ptr = (void*)engine_structure_data_ptr[1];
+  engine_current_data_pointer = structure_data_pointer;
+  engine_temporary_data_ptr = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
     engine_loop_index = memcmp(engine_temporary_data_ptr + 4,&engine_input_state,0x10);
     if (engine_loop_index < 0) {
@@ -1921,7 +1921,7 @@ void engine_setup_mesh_manager(void)
     engine_temporary_data_ptr = engine_next_data_pointer;
     resource_status_flag = *(char *)((longlong)engine_next_data_pointer + 0x19);
   }
-  if ((engine_current_data_pointer == engine_structure_data_ptr) || (engine_loop_index = memcmp(&engine_input_state,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
+  if ((engine_current_data_pointer == structure_data_pointer) || (engine_loop_index = memcmp(&engine_input_state,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
     engine_operation_result = engine_allocate_memory_block(engine_main_structure_pointer);
     engine_initialize_memory_block(engine_main_structure_pointer,&engine_stack_variable_10,engine_current_data_pointer,engine_operation_result + 0x20,engine_operation_result);
     engine_current_data_pointer = engine_stack_variable_10;
@@ -1942,7 +1942,7 @@ void engine_setup_animation_manager(void)
 
 {
   char resource_status_flag;
-  void* engine_structure_data_ptr;
+  void* structure_data_pointer;
   int engine_loop_index;
   longlong *engine_main_structure_pointer;
   longlong engine_operation_result;
@@ -1953,11 +1953,11 @@ void engine_setup_animation_manager(void)
   code *engine_stack_function_pointer_18;
   
   engine_main_structure_pointer = (longlong *)engine_get_system_context();
-  engine_structure_data_ptr = (void*)*engine_main_structure_pointer;
-  resource_status_flag = *(char *)((longlong)engine_structure_data_ptr[1] + 0x19);
+  structure_data_pointer = (void*)*engine_main_structure_pointer;
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
   engine_stack_function_pointer_18 = void engine_handle_input_events(void);
-  engine_current_data_pointer = engine_structure_data_ptr;
-  engine_temporary_data_ptr = (void*)engine_structure_data_ptr[1];
+  engine_current_data_pointer = structure_data_pointer;
+  engine_temporary_data_ptr = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
     engine_loop_index = memcmp(engine_temporary_data_ptr + 4,&engine_mouse_position,0x10);
     if (engine_loop_index < 0) {
@@ -1971,7 +1971,7 @@ void engine_setup_animation_manager(void)
     engine_temporary_data_ptr = engine_next_data_pointer;
     resource_status_flag = *(char *)((longlong)engine_next_data_pointer + 0x19);
   }
-  if ((engine_current_data_pointer == engine_structure_data_ptr) || (engine_loop_index = memcmp(&engine_mouse_position,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
+  if ((engine_current_data_pointer == structure_data_pointer) || (engine_loop_index = memcmp(&engine_mouse_position,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
     engine_operation_result = engine_allocate_memory_block(engine_main_structure_pointer);
     engine_initialize_memory_block(engine_main_structure_pointer,&engine_stack_variable_10,engine_current_data_pointer,engine_operation_result + 0x20,engine_operation_result);
     engine_current_data_pointer = engine_stack_variable_10;
@@ -1992,7 +1992,7 @@ void engine_setup_audio_manager(void)
 
 {
   char resource_status_flag;
-  void* engine_structure_data_ptr;
+  void* structure_data_pointer;
   int engine_loop_index;
   longlong *engine_main_structure_pointer;
   longlong engine_operation_result;
@@ -2003,11 +2003,11 @@ void engine_setup_audio_manager(void)
   code *engine_stack_function_pointer_18;
   
   engine_main_structure_pointer = (longlong *)engine_get_system_context();
-  engine_structure_data_ptr = (void*)*engine_main_structure_pointer;
-  resource_status_flag = *(char *)((longlong)engine_structure_data_ptr[1] + 0x19);
+  structure_data_pointer = (void*)*engine_main_structure_pointer;
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
   engine_stack_function_pointer_18 = engine_process_buffer_manager;
-  engine_current_data_pointer = engine_structure_data_ptr;
-  engine_temporary_data_ptr = (void*)engine_structure_data_ptr[1];
+  engine_current_data_pointer = structure_data_pointer;
+  engine_temporary_data_ptr = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
     engine_loop_index = memcmp(engine_temporary_data_ptr + 4,&engine_data_a0,0x10);
     if (engine_loop_index < 0) {
@@ -2021,7 +2021,7 @@ void engine_setup_audio_manager(void)
     engine_temporary_data_ptr = engine_next_data_pointer;
     resource_status_flag = *(char *)((longlong)engine_next_data_pointer + 0x19);
   }
-  if ((engine_current_data_pointer == engine_structure_data_ptr) || (engine_loop_index = memcmp(&engine_data_a0,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
+  if ((engine_current_data_pointer == structure_data_pointer) || (engine_loop_index = memcmp(&engine_data_a0,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
     engine_operation_result = engine_allocate_memory_block(engine_main_structure_pointer);
     engine_initialize_memory_block(engine_main_structure_pointer,&engine_stack_variable_10,engine_current_data_pointer,engine_operation_result + 0x20,engine_operation_result);
     engine_current_data_pointer = engine_stack_variable_10;
@@ -2042,7 +2042,7 @@ void engine_setup_ui_manager(void)
 
 {
   char resource_status_flag;
-  void* engine_structure_data_ptr;
+  void* structure_data_pointer;
   int engine_loop_index;
   longlong *engine_main_structure_pointer;
   longlong engine_operation_result;
@@ -2053,11 +2053,11 @@ void engine_setup_ui_manager(void)
   code *engine_stack_function_pointer_18;
   
   engine_main_structure_pointer = (longlong *)engine_get_system_context();
-  engine_structure_data_ptr = (void*)*engine_main_structure_pointer;
-  resource_status_flag = *(char *)((longlong)engine_structure_data_ptr[1] + 0x19);
+  structure_data_pointer = (void*)*engine_main_structure_pointer;
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
   engine_stack_function_pointer_18 = engine_process_texture_manager;
-  engine_current_data_pointer = engine_structure_data_ptr;
-  engine_temporary_data_ptr = (void*)engine_structure_data_ptr[1];
+  engine_current_data_pointer = structure_data_pointer;
+  engine_temporary_data_ptr = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
     engine_loop_index = memcmp(engine_temporary_data_ptr + 4,&engine_data_78,0x10);
     if (engine_loop_index < 0) {
@@ -2071,7 +2071,7 @@ void engine_setup_ui_manager(void)
     engine_temporary_data_ptr = engine_next_data_pointer;
     resource_status_flag = *(char *)((longlong)engine_next_data_pointer + 0x19);
   }
-  if ((engine_current_data_pointer == engine_structure_data_ptr) || (engine_loop_index = memcmp(&engine_data_78,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
+  if ((engine_current_data_pointer == structure_data_pointer) || (engine_loop_index = memcmp(&engine_data_78,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
     engine_operation_result = engine_allocate_memory_block(engine_main_structure_pointer);
     engine_initialize_memory_block(engine_main_structure_pointer,&engine_stack_variable_10,engine_current_data_pointer,engine_operation_result + 0x20,engine_operation_result);
     engine_current_data_pointer = engine_stack_variable_10;
@@ -2092,7 +2092,7 @@ void engine_setup_script_manager(void)
 
 {
   char resource_status_flag;
-  void* engine_structure_data_ptr;
+  void* structure_data_pointer;
   int engine_loop_index;
   longlong *engine_main_structure_pointer;
   longlong engine_operation_result;
@@ -2103,11 +2103,11 @@ void engine_setup_script_manager(void)
   uint64 uStackX_18;
   
   engine_main_structure_pointer = (longlong *)engine_get_system_context();
-  engine_structure_data_ptr = (void*)*engine_main_structure_pointer;
-  resource_status_flag = *(char *)((longlong)engine_structure_data_ptr[1] + 0x19);
+  structure_data_pointer = (void*)*engine_main_structure_pointer;
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
   uStackX_18 = 0;
-  engine_current_data_pointer = engine_structure_data_ptr;
-  engine_temporary_data_ptr = (void*)engine_structure_data_ptr[1];
+  engine_current_data_pointer = structure_data_pointer;
+  engine_temporary_data_ptr = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
     engine_loop_index = memcmp(engine_temporary_data_ptr + 4,&engine_data_180a01050,0x10);
     if (engine_loop_index < 0) {
@@ -2121,7 +2121,7 @@ void engine_setup_script_manager(void)
     engine_temporary_data_ptr = engine_next_data_pointer;
     resource_status_flag = *(char *)((longlong)engine_next_data_pointer + 0x19);
   }
-  if ((engine_current_data_pointer == engine_structure_data_ptr) || (engine_loop_index = memcmp(&engine_data_180a01050,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
+  if ((engine_current_data_pointer == structure_data_pointer) || (engine_loop_index = memcmp(&engine_data_180a01050,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
     engine_operation_result = engine_allocate_memory_block(engine_main_structure_pointer);
     engine_initialize_memory_block(engine_main_structure_pointer,&engine_stack_variable_10,engine_current_data_pointer,engine_operation_result + 0x20,engine_operation_result);
     engine_current_data_pointer = engine_stack_variable_10;
@@ -2142,7 +2142,7 @@ void engine_configure_texture_system(void)
 
 {
   char resource_status_flag;
-  void* engine_structure_data_ptr;
+  void* structure_data_pointer;
   int engine_loop_index;
   longlong *engine_main_structure_pointer;
   longlong engine_operation_result;
@@ -2153,11 +2153,11 @@ void engine_configure_texture_system(void)
   code *engine_stack_function_pointer_18;
   
   engine_main_structure_pointer = (longlong *)engine_get_system_context();
-  engine_structure_data_ptr = (void*)*engine_main_structure_pointer;
-  resource_status_flag = *(char *)((longlong)engine_structure_data_ptr[1] + 0x19);
+  structure_data_pointer = (void*)*engine_main_structure_pointer;
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
   engine_stack_function_pointer_18 = engine_process_shader_manager;
-  engine_current_data_pointer = engine_structure_data_ptr;
-  engine_temporary_data_ptr = (void*)engine_structure_data_ptr[1];
+  engine_current_data_pointer = structure_data_pointer;
+  engine_temporary_data_ptr = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
     engine_loop_index = memcmp(engine_temporary_data_ptr + 4,&engine_data_28,0x10);
     if (engine_loop_index < 0) {
@@ -2171,7 +2171,7 @@ void engine_configure_texture_system(void)
     engine_temporary_data_ptr = engine_next_data_pointer;
     resource_status_flag = *(char *)((longlong)engine_next_data_pointer + 0x19);
   }
-  if ((engine_current_data_pointer == engine_structure_data_ptr) || (engine_loop_index = memcmp(&engine_data_28,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
+  if ((engine_current_data_pointer == structure_data_pointer) || (engine_loop_index = memcmp(&engine_data_28,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
     engine_operation_result = engine_allocate_memory_block(engine_main_structure_pointer);
     engine_initialize_memory_block(engine_main_structure_pointer,&engine_stack_variable_10,engine_current_data_pointer,engine_operation_result + 0x20,engine_operation_result);
     engine_current_data_pointer = engine_stack_variable_10;
@@ -2192,7 +2192,7 @@ void engine_configure_shader_system(void)
 
 {
   char resource_status_flag;
-  void* engine_structure_data_ptr;
+  void* structure_data_pointer;
   int engine_loop_index;
   longlong *engine_main_structure_pointer;
   longlong engine_operation_result;
@@ -2203,11 +2203,11 @@ void engine_configure_shader_system(void)
   uint64 uStackX_18;
   
   engine_main_structure_pointer = (longlong *)engine_get_system_context();
-  engine_structure_data_ptr = (void*)*engine_main_structure_pointer;
-  resource_status_flag = *(char *)((longlong)engine_structure_data_ptr[1] + 0x19);
+  structure_data_pointer = (void*)*engine_main_structure_pointer;
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
   uStackX_18 = 0;
-  engine_current_data_pointer = engine_structure_data_ptr;
-  engine_temporary_data_ptr = (void*)engine_structure_data_ptr[1];
+  engine_current_data_pointer = structure_data_pointer;
+  engine_temporary_data_ptr = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
     engine_loop_index = memcmp(engine_temporary_data_ptr + 4,&engine_data_180a01000,0x10);
     if (engine_loop_index < 0) {
@@ -2221,7 +2221,7 @@ void engine_configure_shader_system(void)
     engine_temporary_data_ptr = engine_next_data_pointer;
     resource_status_flag = *(char *)((longlong)engine_next_data_pointer + 0x19);
   }
-  if ((engine_current_data_pointer == engine_structure_data_ptr) || (engine_loop_index = memcmp(&engine_data_180a01000,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
+  if ((engine_current_data_pointer == structure_data_pointer) || (engine_loop_index = memcmp(&engine_data_180a01000,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
     engine_operation_result = engine_allocate_memory_block(engine_main_structure_pointer);
     engine_initialize_memory_block(engine_main_structure_pointer,&engine_stack_variable_10,engine_current_data_pointer,engine_operation_result + 0x20,engine_operation_result);
     engine_current_data_pointer = engine_stack_variable_10;
@@ -2242,7 +2242,7 @@ void engine_process_buffer_allocation(void)
 
 {
   char resource_status_flag;
-  void* engine_structure_data_ptr;
+  void* structure_data_pointer;
   int engine_loop_index;
   longlong *engine_main_structure_pointer;
   longlong engine_operation_result;
@@ -2253,11 +2253,11 @@ void engine_process_buffer_allocation(void)
   void* engine_stack_pointer_18;
   
   engine_main_structure_pointer = (longlong *)engine_get_system_context();
-  engine_structure_data_ptr = (void*)*engine_main_structure_pointer;
-  resource_status_flag = *(char *)((longlong)engine_structure_data_ptr[1] + 0x19);
+  structure_data_pointer = (void*)*engine_main_structure_pointer;
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
   engine_stack_pointer_18 = &engine_base_data_offset_c0;
-  engine_current_data_pointer = engine_structure_data_ptr;
-  engine_temporary_data_ptr = (void*)engine_structure_data_ptr[1];
+  engine_current_data_pointer = structure_data_pointer;
+  engine_temporary_data_ptr = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
     engine_loop_index = memcmp(engine_temporary_data_ptr + 4,&engine_data_180a00fd8,0x10);
     if (engine_loop_index < 0) {
@@ -2271,7 +2271,7 @@ void engine_process_buffer_allocation(void)
     engine_temporary_data_ptr = engine_next_data_pointer;
     resource_status_flag = *(char *)((longlong)engine_next_data_pointer + 0x19);
   }
-  if ((engine_current_data_pointer == engine_structure_data_ptr) || (engine_loop_index = memcmp(&engine_data_180a00fd8,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
+  if ((engine_current_data_pointer == structure_data_pointer) || (engine_loop_index = memcmp(&engine_data_180a00fd8,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
     engine_operation_result = engine_allocate_memory_block(engine_main_structure_pointer);
     engine_initialize_memory_block(engine_main_structure_pointer,&engine_stack_variable_10,engine_current_data_pointer,engine_operation_result + 0x20,engine_operation_result);
     engine_current_data_pointer = engine_stack_variable_10;
@@ -2292,7 +2292,7 @@ void engine_configure_animation_system(void)
 
 {
   char resource_status_flag;
-  void* engine_structure_data_ptr;
+  void* structure_data_pointer;
   int engine_loop_index;
   longlong *engine_main_structure_pointer;
   longlong engine_operation_result;
@@ -2303,11 +2303,11 @@ void engine_configure_animation_system(void)
   uint64 uStackX_18;
   
   engine_main_structure_pointer = (longlong *)engine_get_system_context();
-  engine_structure_data_ptr = (void*)*engine_main_structure_pointer;
-  resource_status_flag = *(char *)((longlong)engine_structure_data_ptr[1] + 0x19);
+  structure_data_pointer = (void*)*engine_main_structure_pointer;
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
   uStackX_18 = 0;
-  engine_current_data_pointer = engine_structure_data_ptr;
-  engine_temporary_data_ptr = (void*)engine_structure_data_ptr[1];
+  engine_current_data_pointer = structure_data_pointer;
+  engine_temporary_data_ptr = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
     engine_loop_index = memcmp(engine_temporary_data_ptr + 4,&engine_data_180a00fb0,0x10);
     if (engine_loop_index < 0) {
@@ -2321,7 +2321,7 @@ void engine_configure_animation_system(void)
     engine_temporary_data_ptr = engine_next_data_pointer;
     resource_status_flag = *(char *)((longlong)engine_next_data_pointer + 0x19);
   }
-  if ((engine_current_data_pointer == engine_structure_data_ptr) || (engine_loop_index = memcmp(&engine_data_180a00fb0,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
+  if ((engine_current_data_pointer == structure_data_pointer) || (engine_loop_index = memcmp(&engine_data_180a00fb0,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
     engine_operation_result = engine_allocate_memory_block(engine_main_structure_pointer);
     engine_initialize_memory_block(engine_main_structure_pointer,&engine_stack_variable_10,engine_current_data_pointer,engine_operation_result + 0x20,engine_operation_result);
     engine_current_data_pointer = engine_stack_variable_10;
@@ -2366,7 +2366,7 @@ void engine_setup_asset_loader(void)
 
 {
   char resource_status_flag;
-  void* engine_structure_data_ptr;
+  void* structure_data_pointer;
   int engine_loop_index;
   longlong *engine_main_structure_pointer;
   longlong engine_operation_result;
@@ -2377,11 +2377,11 @@ void engine_setup_asset_loader(void)
   code *engine_stack_function_pointer_18;
   
   engine_main_structure_pointer = (longlong *)engine_get_system_context();
-  engine_structure_data_ptr = (void*)*engine_main_structure_pointer;
-  resource_status_flag = *(char *)((longlong)engine_structure_data_ptr[1] + 0x19);
+  structure_data_pointer = (void*)*engine_main_structure_pointer;
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
   engine_stack_function_pointer_18 = engine_process_buffer_manager;
-  engine_current_data_pointer = engine_structure_data_ptr;
-  engine_temporary_data_ptr = (void*)engine_structure_data_ptr[1];
+  engine_current_data_pointer = structure_data_pointer;
+  engine_temporary_data_ptr = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
     engine_loop_index = memcmp(engine_temporary_data_ptr + 4,&engine_data_a0,0x10);
     if (engine_loop_index < 0) {
@@ -2395,7 +2395,7 @@ void engine_setup_asset_loader(void)
     engine_temporary_data_ptr = engine_next_data_pointer;
     resource_status_flag = *(char *)((longlong)engine_next_data_pointer + 0x19);
   }
-  if ((engine_current_data_pointer == engine_structure_data_ptr) || (engine_loop_index = memcmp(&engine_data_a0,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
+  if ((engine_current_data_pointer == structure_data_pointer) || (engine_loop_index = memcmp(&engine_data_a0,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
     engine_operation_result = engine_allocate_memory_block(engine_main_structure_pointer);
     engine_initialize_memory_block(engine_main_structure_pointer,&engine_stack_variable_10,engine_current_data_pointer,engine_operation_result + 0x20,engine_operation_result);
     engine_current_data_pointer = engine_stack_variable_10;
@@ -2416,7 +2416,7 @@ void engine_configure_asset_system(void)
 
 {
   char resource_status_flag;
-  void* engine_structure_data_ptr;
+  void* structure_data_pointer;
   int engine_loop_index;
   longlong *engine_main_structure_pointer;
   longlong engine_operation_result;
@@ -2427,11 +2427,11 @@ void engine_configure_asset_system(void)
   code *engine_stack_function_pointer_18;
   
   engine_main_structure_pointer = (longlong *)engine_get_system_context();
-  engine_structure_data_ptr = (void*)*engine_main_structure_pointer;
-  resource_status_flag = *(char *)((longlong)engine_structure_data_ptr[1] + 0x19);
+  structure_data_pointer = (void*)*engine_main_structure_pointer;
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
   engine_stack_function_pointer_18 = engine_process_texture_manager;
-  engine_current_data_pointer = engine_structure_data_ptr;
-  engine_temporary_data_ptr = (void*)engine_structure_data_ptr[1];
+  engine_current_data_pointer = structure_data_pointer;
+  engine_temporary_data_ptr = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
     engine_loop_index = memcmp(engine_temporary_data_ptr + 4,&engine_data_78,0x10);
     if (engine_loop_index < 0) {
@@ -2445,7 +2445,7 @@ void engine_configure_asset_system(void)
     engine_temporary_data_ptr = engine_next_data_pointer;
     resource_status_flag = *(char *)((longlong)engine_next_data_pointer + 0x19);
   }
-  if ((engine_current_data_pointer == engine_structure_data_ptr) || (engine_loop_index = memcmp(&engine_data_78,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
+  if ((engine_current_data_pointer == structure_data_pointer) || (engine_loop_index = memcmp(&engine_data_78,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
     engine_operation_result = engine_allocate_memory_block(engine_main_structure_pointer);
     engine_initialize_memory_block(engine_main_structure_pointer,&engine_stack_variable_10,engine_current_data_pointer,engine_operation_result + 0x20,engine_operation_result);
     engine_current_data_pointer = engine_stack_variable_10;
@@ -2474,7 +2474,7 @@ void engine_register_audio_resource(void)
 
 {
   char resource_status_flag;
-  void* engine_structure_data_ptr;
+  void* structure_data_pointer;
   int engine_loop_index;
   longlong *engine_main_structure_pointer;
   longlong engine_operation_result;
@@ -2485,11 +2485,11 @@ void engine_register_audio_resource(void)
   uint64 uStackX_18;
   
   engine_main_structure_pointer = (longlong *)engine_get_system_context();
-  engine_structure_data_ptr = (void*)*engine_main_structure_pointer;
-  resource_status_flag = *(char *)((longlong)engine_structure_data_ptr[1] + 0x19);
+  structure_data_pointer = (void*)*engine_main_structure_pointer;
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
   uStackX_18 = 0;
-  engine_current_data_pointer = engine_structure_data_ptr;
-  engine_temporary_data_ptr = (void*)engine_structure_data_ptr[1];
+  engine_current_data_pointer = structure_data_pointer;
+  engine_temporary_data_ptr = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
     engine_loop_index = memcmp(engine_temporary_data_ptr + 4,&engine_data_180a01050,0x10);
     if (engine_loop_index < 0) {
@@ -2503,7 +2503,7 @@ void engine_register_audio_resource(void)
     engine_temporary_data_ptr = engine_next_data_pointer;
     resource_status_flag = *(char *)((longlong)engine_next_data_pointer + 0x19);
   }
-  if ((engine_current_data_pointer == engine_structure_data_ptr) || (engine_loop_index = memcmp(&engine_data_180a01050,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
+  if ((engine_current_data_pointer == structure_data_pointer) || (engine_loop_index = memcmp(&engine_data_180a01050,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
     engine_operation_result = engine_allocate_memory_block(engine_main_structure_pointer);
     engine_initialize_memory_block(engine_main_structure_pointer,&engine_stack_variable_10,engine_current_data_pointer,engine_operation_result + 0x20,engine_operation_result);
     engine_current_data_pointer = engine_stack_variable_10;
@@ -2524,7 +2524,7 @@ void engine_setup_asset_streaming(void)
 
 {
   char resource_status_flag;
-  void* engine_structure_data_ptr;
+  void* structure_data_pointer;
   int engine_loop_index;
   longlong *engine_main_structure_pointer;
   longlong engine_operation_result;
@@ -2535,11 +2535,11 @@ void engine_setup_asset_streaming(void)
   code *engine_stack_function_pointer_18;
   
   engine_main_structure_pointer = (longlong *)engine_get_system_context();
-  engine_structure_data_ptr = (void*)*engine_main_structure_pointer;
-  resource_status_flag = *(char *)((longlong)engine_structure_data_ptr[1] + 0x19);
+  structure_data_pointer = (void*)*engine_main_structure_pointer;
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
   engine_stack_function_pointer_18 = engine_process_shader_manager;
-  engine_current_data_pointer = engine_structure_data_ptr;
-  engine_temporary_data_ptr = (void*)engine_structure_data_ptr[1];
+  engine_current_data_pointer = structure_data_pointer;
+  engine_temporary_data_ptr = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
     engine_loop_index = memcmp(engine_temporary_data_ptr + 4,&engine_data_28,0x10);
     if (engine_loop_index < 0) {
@@ -2553,7 +2553,7 @@ void engine_setup_asset_streaming(void)
     engine_temporary_data_ptr = engine_next_data_pointer;
     resource_status_flag = *(char *)((longlong)engine_next_data_pointer + 0x19);
   }
-  if ((engine_current_data_pointer == engine_structure_data_ptr) || (engine_loop_index = memcmp(&engine_data_28,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
+  if ((engine_current_data_pointer == structure_data_pointer) || (engine_loop_index = memcmp(&engine_data_28,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
     engine_operation_result = engine_allocate_memory_block(engine_main_structure_pointer);
     engine_initialize_memory_block(engine_main_structure_pointer,&engine_stack_variable_10,engine_current_data_pointer,engine_operation_result + 0x20,engine_operation_result);
     engine_current_data_pointer = engine_stack_variable_10;
@@ -2574,7 +2574,7 @@ void engine_initialize_shader_program(void)
 
 {
   char resource_status_flag;
-  void* engine_structure_data_ptr;
+  void* structure_data_pointer;
   int engine_loop_index;
   longlong *engine_main_structure_pointer;
   longlong engine_operation_result;
@@ -2585,11 +2585,11 @@ void engine_initialize_shader_program(void)
   uint64 uStackX_18;
   
   engine_main_structure_pointer = (longlong *)engine_get_system_context();
-  engine_structure_data_ptr = (void*)*engine_main_structure_pointer;
-  resource_status_flag = *(char *)((longlong)engine_structure_data_ptr[1] + 0x19);
+  structure_data_pointer = (void*)*engine_main_structure_pointer;
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
   uStackX_18 = 0;
-  engine_current_data_pointer = engine_structure_data_ptr;
-  engine_temporary_data_ptr = (void*)engine_structure_data_ptr[1];
+  engine_current_data_pointer = structure_data_pointer;
+  engine_temporary_data_ptr = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
     engine_loop_index = memcmp(engine_temporary_data_ptr + 4,&engine_data_180a01000,0x10);
     if (engine_loop_index < 0) {
@@ -2603,7 +2603,7 @@ void engine_initialize_shader_program(void)
     engine_temporary_data_ptr = engine_next_data_pointer;
     resource_status_flag = *(char *)((longlong)engine_next_data_pointer + 0x19);
   }
-  if ((engine_current_data_pointer == engine_structure_data_ptr) || (engine_loop_index = memcmp(&engine_data_180a01000,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
+  if ((engine_current_data_pointer == structure_data_pointer) || (engine_loop_index = memcmp(&engine_data_180a01000,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
     engine_operation_result = engine_allocate_memory_block(engine_main_structure_pointer);
     engine_initialize_memory_block(engine_main_structure_pointer,&engine_stack_variable_10,engine_current_data_pointer,engine_operation_result + 0x20,engine_operation_result);
     engine_current_data_pointer = engine_stack_variable_10;
@@ -2624,7 +2624,7 @@ void engine_initialize_asset_manager(void)
 
 {
   char resource_status_flag;
-  void* engine_structure_data_ptr;
+  void* structure_data_pointer;
   int engine_loop_index;
   longlong *engine_main_structure_pointer;
   longlong engine_operation_result;
@@ -2635,11 +2635,11 @@ void engine_initialize_asset_manager(void)
   void* engine_stack_pointer_18;
   
   engine_main_structure_pointer = (longlong *)engine_get_system_context();
-  engine_structure_data_ptr = (void*)*engine_main_structure_pointer;
-  resource_status_flag = *(char *)((longlong)engine_structure_data_ptr[1] + 0x19);
+  structure_data_pointer = (void*)*engine_main_structure_pointer;
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
   engine_stack_pointer_18 = &engine_base_data_offset_c0;
-  engine_current_data_pointer = engine_structure_data_ptr;
-  engine_temporary_data_ptr = (void*)engine_structure_data_ptr[1];
+  engine_current_data_pointer = structure_data_pointer;
+  engine_temporary_data_ptr = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
     engine_loop_index = memcmp(engine_temporary_data_ptr + 4,&engine_data_180a00fd8,0x10);
     if (engine_loop_index < 0) {
@@ -2653,7 +2653,7 @@ void engine_initialize_asset_manager(void)
     engine_temporary_data_ptr = engine_next_data_pointer;
     resource_status_flag = *(char *)((longlong)engine_next_data_pointer + 0x19);
   }
-  if ((engine_current_data_pointer == engine_structure_data_ptr) || (engine_loop_index = memcmp(&engine_data_180a00fd8,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
+  if ((engine_current_data_pointer == structure_data_pointer) || (engine_loop_index = memcmp(&engine_data_180a00fd8,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
     engine_operation_result = engine_allocate_memory_block(engine_main_structure_pointer);
     engine_initialize_memory_block(engine_main_structure_pointer,&engine_stack_variable_10,engine_current_data_pointer,engine_operation_result + 0x20,engine_operation_result);
     engine_current_data_pointer = engine_stack_variable_10;
@@ -2674,7 +2674,7 @@ void engine_setup_asset_database(void)
 
 {
   char resource_status_flag;
-  void* engine_structure_data_ptr;
+  void* structure_data_pointer;
   int engine_loop_index;
   longlong *engine_main_structure_pointer;
   longlong engine_operation_result;
@@ -2685,11 +2685,11 @@ void engine_setup_asset_database(void)
   uint64 uStackX_18;
   
   engine_main_structure_pointer = (longlong *)engine_get_system_context();
-  engine_structure_data_ptr = (void*)*engine_main_structure_pointer;
-  resource_status_flag = *(char *)((longlong)engine_structure_data_ptr[1] + 0x19);
+  structure_data_pointer = (void*)*engine_main_structure_pointer;
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
   uStackX_18 = 0;
-  engine_current_data_pointer = engine_structure_data_ptr;
-  engine_temporary_data_ptr = (void*)engine_structure_data_ptr[1];
+  engine_current_data_pointer = structure_data_pointer;
+  engine_temporary_data_ptr = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
     engine_loop_index = memcmp(engine_temporary_data_ptr + 4,&engine_data_180a00fb0,0x10);
     if (engine_loop_index < 0) {
@@ -2703,7 +2703,7 @@ void engine_setup_asset_database(void)
     engine_temporary_data_ptr = engine_next_data_pointer;
     resource_status_flag = *(char *)((longlong)engine_next_data_pointer + 0x19);
   }
-  if ((engine_current_data_pointer == engine_structure_data_ptr) || (engine_loop_index = memcmp(&engine_data_180a00fb0,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
+  if ((engine_current_data_pointer == structure_data_pointer) || (engine_loop_index = memcmp(&engine_data_180a00fb0,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
     engine_operation_result = engine_allocate_memory_block(engine_main_structure_pointer);
     engine_initialize_memory_block(engine_main_structure_pointer,&engine_stack_variable_10,engine_current_data_pointer,engine_operation_result + 0x20,engine_operation_result);
     engine_current_data_pointer = engine_stack_variable_10;
@@ -2876,7 +2876,7 @@ void engine_setup_font_manager(void)
 
 {
   char resource_status_flag;
-  void* engine_structure_data_ptr;
+  void* structure_data_pointer;
   int engine_loop_index;
   longlong *engine_main_structure_pointer;
   longlong engine_operation_result;
@@ -2887,11 +2887,11 @@ void engine_setup_font_manager(void)
   code *engine_stack_function_pointer_18;
   
   engine_main_structure_pointer = (longlong *)engine_get_system_context();
-  engine_structure_data_ptr = (void*)*engine_main_structure_pointer;
-  resource_status_flag = *(char *)((longlong)engine_structure_data_ptr[1] + 0x19);
+  structure_data_pointer = (void*)*engine_main_structure_pointer;
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
   engine_stack_function_pointer_18 = engine_initialize_network_context;
-  engine_current_data_pointer = engine_structure_data_ptr;
-  engine_temporary_data_ptr = (void*)engine_structure_data_ptr[1];
+  engine_current_data_pointer = structure_data_pointer;
+  engine_temporary_data_ptr = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
     engine_loop_index = memcmp(engine_temporary_data_ptr + 4,&engine_data_180a00bb0,0x10);
     if (engine_loop_index < 0) {
@@ -2905,7 +2905,7 @@ void engine_setup_font_manager(void)
     engine_temporary_data_ptr = engine_next_data_pointer;
     resource_status_flag = *(char *)((longlong)engine_next_data_pointer + 0x19);
   }
-  if ((engine_current_data_pointer == engine_structure_data_ptr) || (engine_loop_index = memcmp(&engine_data_180a00bb0,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
+  if ((engine_current_data_pointer == structure_data_pointer) || (engine_loop_index = memcmp(&engine_data_180a00bb0,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
     engine_operation_result = engine_allocate_memory_block(engine_main_structure_pointer);
     engine_initialize_memory_block(engine_main_structure_pointer,&engine_stack_variable_10,engine_current_data_pointer,engine_operation_result + 0x20,engine_operation_result);
     engine_current_data_pointer = engine_stack_variable_10;
@@ -2926,7 +2926,7 @@ void engine_setup_localization_manager(void)
 
 {
   char resource_status_flag;
-  void* engine_structure_data_ptr;
+  void* structure_data_pointer;
   int engine_loop_index;
   longlong *engine_main_structure_pointer;
   longlong engine_operation_result;
@@ -2937,11 +2937,11 @@ void engine_setup_localization_manager(void)
   code *engine_stack_function_pointer_18;
   
   engine_main_structure_pointer = (longlong *)engine_get_system_context();
-  engine_structure_data_ptr = (void*)*engine_main_structure_pointer;
-  resource_status_flag = *(char *)((longlong)engine_structure_data_ptr[1] + 0x19);
+  structure_data_pointer = (void*)*engine_main_structure_pointer;
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
   engine_stack_function_pointer_18 = engine_setup_audio_driver;
-  engine_current_data_pointer = engine_structure_data_ptr;
-  engine_temporary_data_ptr = (void*)engine_structure_data_ptr[1];
+  engine_current_data_pointer = structure_data_pointer;
+  engine_temporary_data_ptr = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
     engine_loop_index = memcmp(engine_temporary_data_ptr + 4,&engine_data_88,0x10);
     if (engine_loop_index < 0) {
@@ -2955,7 +2955,7 @@ void engine_setup_localization_manager(void)
     engine_temporary_data_ptr = engine_next_data_pointer;
     resource_status_flag = *(char *)((longlong)engine_next_data_pointer + 0x19);
   }
-  if ((engine_current_data_pointer == engine_structure_data_ptr) || (engine_loop_index = memcmp(&engine_data_88,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
+  if ((engine_current_data_pointer == structure_data_pointer) || (engine_loop_index = memcmp(&engine_data_88,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
     engine_operation_result = engine_allocate_memory_block(engine_main_structure_pointer);
     engine_initialize_memory_block(engine_main_structure_pointer,&engine_stack_variable_10,engine_current_data_pointer,engine_operation_result + 0x20,engine_operation_result);
     engine_current_data_pointer = engine_stack_variable_10;
@@ -2976,7 +2976,7 @@ void engine_process_depth_buffer(void)
 
 {
   char resource_status_flag;
-  void* engine_structure_data_ptr;
+  void* structure_data_pointer;
   int engine_loop_index;
   longlong *engine_main_structure_pointer;
   longlong engine_operation_result;
@@ -2987,11 +2987,11 @@ void engine_process_depth_buffer(void)
   code *engine_stack_function_pointer_18;
   
   engine_main_structure_pointer = (longlong *)engine_get_system_context();
-  engine_structure_data_ptr = (void*)*engine_main_structure_pointer;
-  resource_status_flag = *(char *)((longlong)engine_structure_data_ptr[1] + 0x19);
+  structure_data_pointer = (void*)*engine_main_structure_pointer;
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
   engine_stack_function_pointer_18 = engine_process_buffer_manager;
-  engine_current_data_pointer = engine_structure_data_ptr;
-  engine_temporary_data_ptr = (void*)engine_structure_data_ptr[1];
+  engine_current_data_pointer = structure_data_pointer;
+  engine_temporary_data_ptr = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
     engine_loop_index = memcmp(engine_temporary_data_ptr + 4,&engine_data_a0,0x10);
     if (engine_loop_index < 0) {
@@ -3005,7 +3005,7 @@ void engine_process_depth_buffer(void)
     engine_temporary_data_ptr = engine_next_data_pointer;
     resource_status_flag = *(char *)((longlong)engine_next_data_pointer + 0x19);
   }
-  if ((engine_current_data_pointer == engine_structure_data_ptr) || (engine_loop_index = memcmp(&engine_data_a0,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
+  if ((engine_current_data_pointer == structure_data_pointer) || (engine_loop_index = memcmp(&engine_data_a0,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
     engine_operation_result = engine_allocate_memory_block(engine_main_structure_pointer);
     engine_initialize_memory_block(engine_main_structure_pointer,&engine_stack_variable_10,engine_current_data_pointer,engine_operation_result + 0x20,engine_operation_result);
     engine_current_data_pointer = engine_stack_variable_10;
@@ -3026,7 +3026,7 @@ void engine_setup_stencil_buffer(void)
 
 {
   char resource_status_flag;
-  void* engine_structure_data_ptr;
+  void* structure_data_pointer;
   int engine_loop_index;
   longlong *engine_main_structure_pointer;
   longlong engine_operation_result;
@@ -3037,11 +3037,11 @@ void engine_setup_stencil_buffer(void)
   code *engine_stack_function_pointer_18;
   
   engine_main_structure_pointer = (longlong *)engine_get_system_context();
-  engine_structure_data_ptr = (void*)*engine_main_structure_pointer;
-  resource_status_flag = *(char *)((longlong)engine_structure_data_ptr[1] + 0x19);
+  structure_data_pointer = (void*)*engine_main_structure_pointer;
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
   engine_stack_function_pointer_18 = engine_process_texture_manager;
-  engine_current_data_pointer = engine_structure_data_ptr;
-  engine_temporary_data_ptr = (void*)engine_structure_data_ptr[1];
+  engine_current_data_pointer = structure_data_pointer;
+  engine_temporary_data_ptr = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
     engine_loop_index = memcmp(engine_temporary_data_ptr + 4,&engine_data_78,0x10);
     if (engine_loop_index < 0) {
@@ -3055,7 +3055,7 @@ void engine_setup_stencil_buffer(void)
     engine_temporary_data_ptr = engine_next_data_pointer;
     resource_status_flag = *(char *)((longlong)engine_next_data_pointer + 0x19);
   }
-  if ((engine_current_data_pointer == engine_structure_data_ptr) || (engine_loop_index = memcmp(&engine_data_78,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
+  if ((engine_current_data_pointer == structure_data_pointer) || (engine_loop_index = memcmp(&engine_data_78,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
     engine_operation_result = engine_allocate_memory_block(engine_main_structure_pointer);
     engine_initialize_memory_block(engine_main_structure_pointer,&engine_stack_variable_10,engine_current_data_pointer,engine_operation_result + 0x20,engine_operation_result);
     engine_current_data_pointer = engine_stack_variable_10;
@@ -3076,7 +3076,7 @@ void engine_setup_database_manager(void)
 
 {
   char resource_status_flag;
-  void* engine_structure_data_ptr;
+  void* structure_data_pointer;
   int engine_loop_index;
   longlong *engine_main_structure_pointer;
   longlong engine_operation_result;
@@ -3087,11 +3087,11 @@ void engine_setup_database_manager(void)
   uint64 uStackX_18;
   
   engine_main_structure_pointer = (longlong *)engine_get_system_context();
-  engine_structure_data_ptr = (void*)*engine_main_structure_pointer;
-  resource_status_flag = *(char *)((longlong)engine_structure_data_ptr[1] + 0x19);
+  structure_data_pointer = (void*)*engine_main_structure_pointer;
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
   uStackX_18 = 0;
-  engine_current_data_pointer = engine_structure_data_ptr;
-  engine_temporary_data_ptr = (void*)engine_structure_data_ptr[1];
+  engine_current_data_pointer = structure_data_pointer;
+  engine_temporary_data_ptr = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
     engine_loop_index = memcmp(engine_temporary_data_ptr + 4,&engine_data_180a01050,0x10);
     if (engine_loop_index < 0) {
@@ -3105,7 +3105,7 @@ void engine_setup_database_manager(void)
     engine_temporary_data_ptr = engine_next_data_pointer;
     resource_status_flag = *(char *)((longlong)engine_next_data_pointer + 0x19);
   }
-  if ((engine_current_data_pointer == engine_structure_data_ptr) || (engine_loop_index = memcmp(&engine_data_180a01050,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
+  if ((engine_current_data_pointer == structure_data_pointer) || (engine_loop_index = memcmp(&engine_data_180a01050,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
     engine_operation_result = engine_allocate_memory_block(engine_main_structure_pointer);
     engine_initialize_memory_block(engine_main_structure_pointer,&engine_stack_variable_10,engine_current_data_pointer,engine_operation_result + 0x20,engine_operation_result);
     engine_current_data_pointer = engine_stack_variable_10;
@@ -3126,7 +3126,7 @@ void engine_configure_font_system(void)
 
 {
   char resource_status_flag;
-  void* engine_structure_data_ptr;
+  void* structure_data_pointer;
   int engine_loop_index;
   longlong *engine_main_structure_pointer;
   longlong engine_operation_result;
@@ -3137,11 +3137,11 @@ void engine_configure_font_system(void)
   code *engine_stack_function_pointer_18;
   
   engine_main_structure_pointer = (longlong *)engine_get_system_context();
-  engine_structure_data_ptr = (void*)*engine_main_structure_pointer;
-  resource_status_flag = *(char *)((longlong)engine_structure_data_ptr[1] + 0x19);
+  structure_data_pointer = (void*)*engine_main_structure_pointer;
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
   engine_stack_function_pointer_18 = engine_process_shader_manager;
-  engine_current_data_pointer = engine_structure_data_ptr;
-  engine_temporary_data_ptr = (void*)engine_structure_data_ptr[1];
+  engine_current_data_pointer = structure_data_pointer;
+  engine_temporary_data_ptr = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
     engine_loop_index = memcmp(engine_temporary_data_ptr + 4,&engine_data_28,0x10);
     if (engine_loop_index < 0) {
@@ -3155,7 +3155,7 @@ void engine_configure_font_system(void)
     engine_temporary_data_ptr = engine_next_data_pointer;
     resource_status_flag = *(char *)((longlong)engine_next_data_pointer + 0x19);
   }
-  if ((engine_current_data_pointer == engine_structure_data_ptr) || (engine_loop_index = memcmp(&engine_data_28,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
+  if ((engine_current_data_pointer == structure_data_pointer) || (engine_loop_index = memcmp(&engine_data_28,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
     engine_operation_result = engine_allocate_memory_block(engine_main_structure_pointer);
     engine_initialize_memory_block(engine_main_structure_pointer,&engine_stack_variable_10,engine_current_data_pointer,engine_operation_result + 0x20,engine_operation_result);
     engine_current_data_pointer = engine_stack_variable_10;
@@ -3176,7 +3176,7 @@ void engine_configure_localization_system(void)
 
 {
   char resource_status_flag;
-  void* engine_structure_data_ptr;
+  void* structure_data_pointer;
   int engine_loop_index;
   longlong *engine_main_structure_pointer;
   longlong engine_operation_result;
@@ -3187,11 +3187,11 @@ void engine_configure_localization_system(void)
   uint64 uStackX_18;
   
   engine_main_structure_pointer = (longlong *)engine_get_system_context();
-  engine_structure_data_ptr = (void*)*engine_main_structure_pointer;
-  resource_status_flag = *(char *)((longlong)engine_structure_data_ptr[1] + 0x19);
+  structure_data_pointer = (void*)*engine_main_structure_pointer;
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
   uStackX_18 = 0;
-  engine_current_data_pointer = engine_structure_data_ptr;
-  engine_temporary_data_ptr = (void*)engine_structure_data_ptr[1];
+  engine_current_data_pointer = structure_data_pointer;
+  engine_temporary_data_ptr = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
     engine_loop_index = memcmp(engine_temporary_data_ptr + 4,&engine_data_180a01000,0x10);
     if (engine_loop_index < 0) {
@@ -3205,7 +3205,7 @@ void engine_configure_localization_system(void)
     engine_temporary_data_ptr = engine_next_data_pointer;
     resource_status_flag = *(char *)((longlong)engine_next_data_pointer + 0x19);
   }
-  if ((engine_current_data_pointer == engine_structure_data_ptr) || (engine_loop_index = memcmp(&engine_data_180a01000,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
+  if ((engine_current_data_pointer == structure_data_pointer) || (engine_loop_index = memcmp(&engine_data_180a01000,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
     engine_operation_result = engine_allocate_memory_block(engine_main_structure_pointer);
     engine_initialize_memory_block(engine_main_structure_pointer,&engine_stack_variable_10,engine_current_data_pointer,engine_operation_result + 0x20,engine_operation_result);
     engine_current_data_pointer = engine_stack_variable_10;
@@ -3226,7 +3226,7 @@ void engine_configure_config_system(void)
 
 {
   char resource_status_flag;
-  void* engine_structure_data_ptr;
+  void* structure_data_pointer;
   int engine_loop_index;
   longlong *engine_main_structure_pointer;
   longlong engine_operation_result;
@@ -3237,11 +3237,11 @@ void engine_configure_config_system(void)
   void* engine_stack_pointer_18;
   
   engine_main_structure_pointer = (longlong *)engine_get_system_context();
-  engine_structure_data_ptr = (void*)*engine_main_structure_pointer;
-  resource_status_flag = *(char *)((longlong)engine_structure_data_ptr[1] + 0x19);
+  structure_data_pointer = (void*)*engine_main_structure_pointer;
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
   engine_stack_pointer_18 = &engine_base_data_offset_c0;
-  engine_current_data_pointer = engine_structure_data_ptr;
-  engine_temporary_data_ptr = (void*)engine_structure_data_ptr[1];
+  engine_current_data_pointer = structure_data_pointer;
+  engine_temporary_data_ptr = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
     engine_loop_index = memcmp(engine_temporary_data_ptr + 4,&engine_data_180a00fd8,0x10);
     if (engine_loop_index < 0) {
@@ -3255,7 +3255,7 @@ void engine_configure_config_system(void)
     engine_temporary_data_ptr = engine_next_data_pointer;
     resource_status_flag = *(char *)((longlong)engine_next_data_pointer + 0x19);
   }
-  if ((engine_current_data_pointer == engine_structure_data_ptr) || (engine_loop_index = memcmp(&engine_data_180a00fd8,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
+  if ((engine_current_data_pointer == structure_data_pointer) || (engine_loop_index = memcmp(&engine_data_180a00fd8,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
     engine_operation_result = engine_allocate_memory_block(engine_main_structure_pointer);
     engine_initialize_memory_block(engine_main_structure_pointer,&engine_stack_variable_10,engine_current_data_pointer,engine_operation_result + 0x20,engine_operation_result);
     engine_current_data_pointer = engine_stack_variable_10;
@@ -3276,7 +3276,7 @@ void engine_configure_save_system(void)
 
 {
   char resource_status_flag;
-  void* engine_structure_data_ptr;
+  void* structure_data_pointer;
   int engine_loop_index;
   longlong *engine_main_structure_pointer;
   longlong engine_operation_result;
@@ -3287,11 +3287,11 @@ void engine_configure_save_system(void)
   uint64 uStackX_18;
   
   engine_main_structure_pointer = (longlong *)engine_get_system_context();
-  engine_structure_data_ptr = (void*)*engine_main_structure_pointer;
-  resource_status_flag = *(char *)((longlong)engine_structure_data_ptr[1] + 0x19);
+  structure_data_pointer = (void*)*engine_main_structure_pointer;
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
   uStackX_18 = 0;
-  engine_current_data_pointer = engine_structure_data_ptr;
-  engine_temporary_data_ptr = (void*)engine_structure_data_ptr[1];
+  engine_current_data_pointer = structure_data_pointer;
+  engine_temporary_data_ptr = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
     engine_loop_index = memcmp(engine_temporary_data_ptr + 4,&engine_data_180a00fb0,0x10);
     if (engine_loop_index < 0) {
@@ -3305,7 +3305,7 @@ void engine_configure_save_system(void)
     engine_temporary_data_ptr = engine_next_data_pointer;
     resource_status_flag = *(char *)((longlong)engine_next_data_pointer + 0x19);
   }
-  if ((engine_current_data_pointer == engine_structure_data_ptr) || (engine_loop_index = memcmp(&engine_data_180a00fb0,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
+  if ((engine_current_data_pointer == structure_data_pointer) || (engine_loop_index = memcmp(&engine_data_180a00fb0,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
     engine_operation_result = engine_allocate_memory_block(engine_main_structure_pointer);
     engine_initialize_memory_block(engine_main_structure_pointer,&engine_stack_variable_10,engine_current_data_pointer,engine_operation_result + 0x20,engine_operation_result);
     engine_current_data_pointer = engine_stack_variable_10;
@@ -3326,7 +3326,7 @@ void engine_configure_database_system(void)
 
 {
   char resource_status_flag;
-  void* engine_structure_data_ptr;
+  void* structure_data_pointer;
   int engine_loop_index;
   longlong *engine_main_structure_pointer;
   longlong engine_operation_result;
@@ -3337,11 +3337,11 @@ void engine_configure_database_system(void)
   code *engine_stack_function_pointer_18;
   
   engine_main_structure_pointer = (longlong *)engine_get_system_context();
-  engine_structure_data_ptr = (void*)*engine_main_structure_pointer;
-  resource_status_flag = *(char *)((longlong)engine_structure_data_ptr[1] + 0x19);
+  structure_data_pointer = (void*)*engine_main_structure_pointer;
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
   engine_stack_function_pointer_18 = engine_process_buffer_manager;
-  engine_current_data_pointer = engine_structure_data_ptr;
-  engine_temporary_data_ptr = (void*)engine_structure_data_ptr[1];
+  engine_current_data_pointer = structure_data_pointer;
+  engine_temporary_data_ptr = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
     engine_loop_index = memcmp(engine_temporary_data_ptr + 4,&engine_data_a0,0x10);
     if (engine_loop_index < 0) {
@@ -3355,7 +3355,7 @@ void engine_configure_database_system(void)
     engine_temporary_data_ptr = engine_next_data_pointer;
     resource_status_flag = *(char *)((longlong)engine_next_data_pointer + 0x19);
   }
-  if ((engine_current_data_pointer == engine_structure_data_ptr) || (engine_loop_index = memcmp(&engine_data_a0,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
+  if ((engine_current_data_pointer == structure_data_pointer) || (engine_loop_index = memcmp(&engine_data_a0,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
     engine_operation_result = engine_allocate_memory_block(engine_main_structure_pointer);
     engine_initialize_memory_block(engine_main_structure_pointer,&engine_stack_variable_10,engine_current_data_pointer,engine_operation_result + 0x20,engine_operation_result);
     engine_current_data_pointer = engine_stack_variable_10;
@@ -3376,7 +3376,7 @@ void engine_create_font_cache(void)
 
 {
   char resource_status_flag;
-  void* engine_structure_data_ptr;
+  void* structure_data_pointer;
   int engine_loop_index;
   longlong *engine_main_structure_pointer;
   longlong engine_operation_result;
@@ -3387,11 +3387,11 @@ void engine_create_font_cache(void)
   code *engine_stack_function_pointer_18;
   
   engine_main_structure_pointer = (longlong *)engine_get_system_context();
-  engine_structure_data_ptr = (void*)*engine_main_structure_pointer;
-  resource_status_flag = *(char *)((longlong)engine_structure_data_ptr[1] + 0x19);
+  structure_data_pointer = (void*)*engine_main_structure_pointer;
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
   engine_stack_function_pointer_18 = engine_process_texture_manager;
-  engine_current_data_pointer = engine_structure_data_ptr;
-  engine_temporary_data_ptr = (void*)engine_structure_data_ptr[1];
+  engine_current_data_pointer = structure_data_pointer;
+  engine_temporary_data_ptr = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
     engine_loop_index = memcmp(engine_temporary_data_ptr + 4,&engine_data_78,0x10);
     if (engine_loop_index < 0) {
@@ -3405,7 +3405,7 @@ void engine_create_font_cache(void)
     engine_temporary_data_ptr = engine_next_data_pointer;
     resource_status_flag = *(char *)((longlong)engine_next_data_pointer + 0x19);
   }
-  if ((engine_current_data_pointer == engine_structure_data_ptr) || (engine_loop_index = memcmp(&engine_data_78,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
+  if ((engine_current_data_pointer == structure_data_pointer) || (engine_loop_index = memcmp(&engine_data_78,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
     engine_operation_result = engine_allocate_memory_block(engine_main_structure_pointer);
     engine_initialize_memory_block(engine_main_structure_pointer,&engine_stack_variable_10,engine_current_data_pointer,engine_operation_result + 0x20,engine_operation_result);
     engine_current_data_pointer = engine_stack_variable_10;
@@ -3426,7 +3426,7 @@ void engine_create_localization_cache(void)
 
 {
   char resource_status_flag;
-  void* engine_structure_data_ptr;
+  void* structure_data_pointer;
   int engine_loop_index;
   longlong *engine_main_structure_pointer;
   longlong engine_operation_result;
@@ -3437,11 +3437,11 @@ void engine_create_localization_cache(void)
   uint64 uStackX_18;
   
   engine_main_structure_pointer = (longlong *)engine_get_system_context();
-  engine_structure_data_ptr = (void*)*engine_main_structure_pointer;
-  resource_status_flag = *(char *)((longlong)engine_structure_data_ptr[1] + 0x19);
+  structure_data_pointer = (void*)*engine_main_structure_pointer;
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
   uStackX_18 = 0;
-  engine_current_data_pointer = engine_structure_data_ptr;
-  engine_temporary_data_ptr = (void*)engine_structure_data_ptr[1];
+  engine_current_data_pointer = structure_data_pointer;
+  engine_temporary_data_ptr = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
     engine_loop_index = memcmp(engine_temporary_data_ptr + 4,&engine_data_180a01050,0x10);
     if (engine_loop_index < 0) {
@@ -3455,7 +3455,7 @@ void engine_create_localization_cache(void)
     engine_temporary_data_ptr = engine_next_data_pointer;
     resource_status_flag = *(char *)((longlong)engine_next_data_pointer + 0x19);
   }
-  if ((engine_current_data_pointer == engine_structure_data_ptr) || (engine_loop_index = memcmp(&engine_data_180a01050,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
+  if ((engine_current_data_pointer == structure_data_pointer) || (engine_loop_index = memcmp(&engine_data_180a01050,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
     engine_operation_result = engine_allocate_memory_block(engine_main_structure_pointer);
     engine_initialize_memory_block(engine_main_structure_pointer,&engine_stack_variable_10,engine_current_data_pointer,engine_operation_result + 0x20,engine_operation_result);
     engine_current_data_pointer = engine_stack_variable_10;
@@ -3476,7 +3476,7 @@ void engine_create_config_cache(void)
 
 {
   char resource_status_flag;
-  void* engine_structure_data_ptr;
+  void* structure_data_pointer;
   int engine_loop_index;
   longlong *engine_main_structure_pointer;
   longlong engine_operation_result;
@@ -3487,11 +3487,11 @@ void engine_create_config_cache(void)
   code *engine_stack_function_pointer_18;
   
   engine_main_structure_pointer = (longlong *)engine_get_system_context();
-  engine_structure_data_ptr = (void*)*engine_main_structure_pointer;
-  resource_status_flag = *(char *)((longlong)engine_structure_data_ptr[1] + 0x19);
+  structure_data_pointer = (void*)*engine_main_structure_pointer;
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
   engine_stack_function_pointer_18 = engine_process_shader_manager;
-  engine_current_data_pointer = engine_structure_data_ptr;
-  engine_temporary_data_ptr = (void*)engine_structure_data_ptr[1];
+  engine_current_data_pointer = structure_data_pointer;
+  engine_temporary_data_ptr = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
     engine_loop_index = memcmp(engine_temporary_data_ptr + 4,&engine_data_28,0x10);
     if (engine_loop_index < 0) {
@@ -3505,7 +3505,7 @@ void engine_create_config_cache(void)
     engine_temporary_data_ptr = engine_next_data_pointer;
     resource_status_flag = *(char *)((longlong)engine_next_data_pointer + 0x19);
   }
-  if ((engine_current_data_pointer == engine_structure_data_ptr) || (engine_loop_index = memcmp(&engine_data_28,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
+  if ((engine_current_data_pointer == structure_data_pointer) || (engine_loop_index = memcmp(&engine_data_28,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
     engine_operation_result = engine_allocate_memory_block(engine_main_structure_pointer);
     engine_initialize_memory_block(engine_main_structure_pointer,&engine_stack_variable_10,engine_current_data_pointer,engine_operation_result + 0x20,engine_operation_result);
     engine_current_data_pointer = engine_stack_variable_10;
@@ -3526,7 +3526,7 @@ void engine_create_save_cache(void)
 
 {
   char resource_status_flag;
-  void* engine_structure_data_ptr;
+  void* structure_data_pointer;
   int engine_loop_index;
   longlong *engine_main_structure_pointer;
   longlong engine_operation_result;
@@ -3537,11 +3537,11 @@ void engine_create_save_cache(void)
   uint64 uStackX_18;
   
   engine_main_structure_pointer = (longlong *)engine_get_system_context();
-  engine_structure_data_ptr = (void*)*engine_main_structure_pointer;
-  resource_status_flag = *(char *)((longlong)engine_structure_data_ptr[1] + 0x19);
+  structure_data_pointer = (void*)*engine_main_structure_pointer;
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
   uStackX_18 = 0;
-  engine_current_data_pointer = engine_structure_data_ptr;
-  engine_temporary_data_ptr = (void*)engine_structure_data_ptr[1];
+  engine_current_data_pointer = structure_data_pointer;
+  engine_temporary_data_ptr = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
     engine_loop_index = memcmp(engine_temporary_data_ptr + 4,&engine_data_180a01000,0x10);
     if (engine_loop_index < 0) {
@@ -3555,7 +3555,7 @@ void engine_create_save_cache(void)
     engine_temporary_data_ptr = engine_next_data_pointer;
     resource_status_flag = *(char *)((longlong)engine_next_data_pointer + 0x19);
   }
-  if ((engine_current_data_pointer == engine_structure_data_ptr) || (engine_loop_index = memcmp(&engine_data_180a01000,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
+  if ((engine_current_data_pointer == structure_data_pointer) || (engine_loop_index = memcmp(&engine_data_180a01000,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
     engine_operation_result = engine_allocate_memory_block(engine_main_structure_pointer);
     engine_initialize_memory_block(engine_main_structure_pointer,&engine_stack_variable_10,engine_current_data_pointer,engine_operation_result + 0x20,engine_operation_result);
     engine_current_data_pointer = engine_stack_variable_10;
@@ -3576,7 +3576,7 @@ void engine_create_database_cache(void)
 
 {
   char resource_status_flag;
-  void* engine_structure_data_ptr;
+  void* structure_data_pointer;
   int engine_loop_index;
   longlong *engine_main_structure_pointer;
   longlong engine_operation_result;
@@ -3587,11 +3587,11 @@ void engine_create_database_cache(void)
   void* engine_stack_pointer_18;
   
   engine_main_structure_pointer = (longlong *)engine_get_system_context();
-  engine_structure_data_ptr = (void*)*engine_main_structure_pointer;
-  resource_status_flag = *(char *)((longlong)engine_structure_data_ptr[1] + 0x19);
+  structure_data_pointer = (void*)*engine_main_structure_pointer;
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
   engine_stack_pointer_18 = &engine_base_data_offset_c0;
-  engine_current_data_pointer = engine_structure_data_ptr;
-  engine_temporary_data_ptr = (void*)engine_structure_data_ptr[1];
+  engine_current_data_pointer = structure_data_pointer;
+  engine_temporary_data_ptr = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
     engine_loop_index = memcmp(engine_temporary_data_ptr + 4,&engine_data_180a00fd8,0x10);
     if (engine_loop_index < 0) {
@@ -3605,7 +3605,7 @@ void engine_create_database_cache(void)
     engine_temporary_data_ptr = engine_next_data_pointer;
     resource_status_flag = *(char *)((longlong)engine_next_data_pointer + 0x19);
   }
-  if ((engine_current_data_pointer == engine_structure_data_ptr) || (engine_loop_index = memcmp(&engine_data_180a00fd8,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
+  if ((engine_current_data_pointer == structure_data_pointer) || (engine_loop_index = memcmp(&engine_data_180a00fd8,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
     engine_operation_result = engine_allocate_memory_block(engine_main_structure_pointer);
     engine_initialize_memory_block(engine_main_structure_pointer,&engine_stack_variable_10,engine_current_data_pointer,engine_operation_result + 0x20,engine_operation_result);
     engine_current_data_pointer = engine_stack_variable_10;
@@ -3626,7 +3626,7 @@ void engine_initialize_text_system(void)
 
 {
   char resource_status_flag;
-  void* engine_structure_data_ptr;
+  void* structure_data_pointer;
   int engine_loop_index;
   longlong *engine_main_structure_pointer;
   longlong engine_operation_result;
@@ -3637,11 +3637,11 @@ void engine_initialize_text_system(void)
   uint64 uStackX_18;
   
   engine_main_structure_pointer = (longlong *)engine_get_system_context();
-  engine_structure_data_ptr = (void*)*engine_main_structure_pointer;
-  resource_status_flag = *(char *)((longlong)engine_structure_data_ptr[1] + 0x19);
+  structure_data_pointer = (void*)*engine_main_structure_pointer;
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
   uStackX_18 = 0;
-  engine_current_data_pointer = engine_structure_data_ptr;
-  engine_temporary_data_ptr = (void*)engine_structure_data_ptr[1];
+  engine_current_data_pointer = structure_data_pointer;
+  engine_temporary_data_ptr = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
     engine_loop_index = memcmp(engine_temporary_data_ptr + 4,&engine_data_180a00fb0,0x10);
     if (engine_loop_index < 0) {
@@ -3655,7 +3655,7 @@ void engine_initialize_text_system(void)
     engine_temporary_data_ptr = engine_next_data_pointer;
     resource_status_flag = *(char *)((longlong)engine_next_data_pointer + 0x19);
   }
-  if ((engine_current_data_pointer == engine_structure_data_ptr) || (engine_loop_index = memcmp(&engine_data_180a00fb0,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
+  if ((engine_current_data_pointer == structure_data_pointer) || (engine_loop_index = memcmp(&engine_data_180a00fb0,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
     engine_operation_result = engine_allocate_memory_block(engine_main_structure_pointer);
     engine_initialize_memory_block(engine_main_structure_pointer,&engine_stack_variable_10,engine_current_data_pointer,engine_operation_result + 0x20,engine_operation_result);
     engine_current_data_pointer = engine_stack_variable_10;
@@ -3733,7 +3733,7 @@ void engine_configure_graphics_system(void)
 
 {
   char resource_status_flag;
-  void* engine_structure_data_ptr;
+  void* structure_data_pointer;
   int engine_loop_index;
   longlong *engine_main_structure_pointer;
   longlong engine_operation_result;
@@ -3744,11 +3744,11 @@ void engine_configure_graphics_system(void)
   code *engine_stack_function_pointer_18;
   
   engine_main_structure_pointer = (longlong *)engine_get_system_context();
-  engine_structure_data_ptr = (void*)*engine_main_structure_pointer;
-  resource_status_flag = *(char *)((longlong)engine_structure_data_ptr[1] + 0x19);
+  structure_data_pointer = (void*)*engine_main_structure_pointer;
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
   engine_stack_function_pointer_18 = engine_process_resource_manager;
-  engine_current_data_pointer = engine_structure_data_ptr;
-  engine_temporary_data_ptr = (void*)engine_structure_data_ptr[1];
+  engine_current_data_pointer = structure_data_pointer;
+  engine_temporary_data_ptr = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
     engine_loop_index = memcmp(engine_temporary_data_ptr + 4,&engine_system_magic_header,0x10);
     if (engine_loop_index < 0) {
@@ -3762,7 +3762,7 @@ void engine_configure_graphics_system(void)
     engine_temporary_data_ptr = engine_next_data_pointer;
     resource_status_flag = *(char *)((longlong)engine_next_data_pointer + 0x19);
   }
-  if ((engine_current_data_pointer == engine_structure_data_ptr) || (engine_loop_index = memcmp(&engine_system_magic_header,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
+  if ((engine_current_data_pointer == structure_data_pointer) || (engine_loop_index = memcmp(&engine_system_magic_header,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
     engine_operation_result = engine_allocate_memory_block(engine_main_structure_pointer);
     engine_initialize_memory_block(engine_main_structure_pointer,&engine_stack_variable_10,engine_current_data_pointer,engine_operation_result + 0x20,engine_operation_result);
     engine_current_data_pointer = engine_stack_variable_10;
@@ -3783,7 +3783,7 @@ void engine_create_text_buffer(void)
 
 {
   char resource_status_flag;
-  void* engine_structure_data_ptr;
+  void* structure_data_pointer;
   int engine_loop_index;
   longlong *engine_main_structure_pointer;
   longlong engine_operation_result;
@@ -3794,11 +3794,11 @@ void engine_create_text_buffer(void)
   code *engine_stack_function_pointer_18;
   
   engine_main_structure_pointer = (longlong *)engine_get_system_context();
-  engine_structure_data_ptr = (void*)*engine_main_structure_pointer;
-  resource_status_flag = *(char *)((longlong)engine_structure_data_ptr[1] + 0x19);
+  structure_data_pointer = (void*)*engine_main_structure_pointer;
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
   engine_stack_function_pointer_18 = engine_configure_render_pipeline;
-  engine_current_data_pointer = engine_structure_data_ptr;
-  engine_temporary_data_ptr = (void*)engine_structure_data_ptr[1];
+  engine_current_data_pointer = structure_data_pointer;
+  engine_temporary_data_ptr = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
     engine_loop_index = memcmp(engine_temporary_data_ptr + 4,&engine_data_180a00e28,0x10);
     if (engine_loop_index < 0) {
@@ -3812,7 +3812,7 @@ void engine_create_text_buffer(void)
     engine_temporary_data_ptr = engine_next_data_pointer;
     resource_status_flag = *(char *)((longlong)engine_next_data_pointer + 0x19);
   }
-  if ((engine_current_data_pointer == engine_structure_data_ptr) || (engine_loop_index = memcmp(&engine_data_180a00e28,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
+  if ((engine_current_data_pointer == structure_data_pointer) || (engine_loop_index = memcmp(&engine_data_180a00e28,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
     engine_operation_result = engine_allocate_memory_block(engine_main_structure_pointer);
     engine_initialize_memory_block(engine_main_structure_pointer,&engine_stack_variable_10,engine_current_data_pointer,engine_operation_result + 0x20,engine_operation_result);
     engine_current_data_pointer = engine_stack_variable_10;
@@ -3833,7 +3833,7 @@ void engine_setup_text_layout(void)
 
 {
   char resource_status_flag;
-  void* engine_structure_data_ptr;
+  void* structure_data_pointer;
   int engine_loop_index;
   longlong *engine_main_structure_pointer;
   longlong engine_operation_result;
@@ -3844,11 +3844,11 @@ void engine_setup_text_layout(void)
   code *engine_stack_function_pointer_18;
   
   engine_main_structure_pointer = (longlong *)engine_get_system_context();
-  engine_structure_data_ptr = (void*)*engine_main_structure_pointer;
-  resource_status_flag = *(char *)((longlong)engine_structure_data_ptr[1] + 0x19);
+  structure_data_pointer = (void*)*engine_main_structure_pointer;
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
   engine_stack_function_pointer_18 = void engine_process_main_loop(void);
-  engine_current_data_pointer = engine_structure_data_ptr;
-  engine_temporary_data_ptr = (void*)engine_structure_data_ptr[1];
+  engine_current_data_pointer = structure_data_pointer;
+  engine_temporary_data_ptr = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
     engine_loop_index = memcmp(engine_temporary_data_ptr + 4,&engine_input_state,0x10);
     if (engine_loop_index < 0) {
@@ -3862,7 +3862,7 @@ void engine_setup_text_layout(void)
     engine_temporary_data_ptr = engine_next_data_pointer;
     resource_status_flag = *(char *)((longlong)engine_next_data_pointer + 0x19);
   }
-  if ((engine_current_data_pointer == engine_structure_data_ptr) || (engine_loop_index = memcmp(&engine_input_state,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
+  if ((engine_current_data_pointer == structure_data_pointer) || (engine_loop_index = memcmp(&engine_input_state,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
     engine_operation_result = engine_allocate_memory_block(engine_main_structure_pointer);
     engine_initialize_memory_block(engine_main_structure_pointer,&engine_stack_variable_10,engine_current_data_pointer,engine_operation_result + 0x20,engine_operation_result);
     engine_current_data_pointer = engine_stack_variable_10;
@@ -3883,7 +3883,7 @@ void engine_configure_text_formatting(void)
 
 {
   char resource_status_flag;
-  void* engine_structure_data_ptr;
+  void* structure_data_pointer;
   int engine_loop_index;
   longlong *engine_main_structure_pointer;
   longlong engine_operation_result;
@@ -3894,11 +3894,11 @@ void engine_configure_text_formatting(void)
   code *engine_stack_function_pointer_18;
   
   engine_main_structure_pointer = (longlong *)engine_get_system_context();
-  engine_structure_data_ptr = (void*)*engine_main_structure_pointer;
-  resource_status_flag = *(char *)((longlong)engine_structure_data_ptr[1] + 0x19);
+  structure_data_pointer = (void*)*engine_main_structure_pointer;
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
   engine_stack_function_pointer_18 = void engine_handle_input_events(void);
-  engine_current_data_pointer = engine_structure_data_ptr;
-  engine_temporary_data_ptr = (void*)engine_structure_data_ptr[1];
+  engine_current_data_pointer = structure_data_pointer;
+  engine_temporary_data_ptr = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
     engine_loop_index = memcmp(engine_temporary_data_ptr + 4,&engine_mouse_position,0x10);
     if (engine_loop_index < 0) {
@@ -3912,7 +3912,7 @@ void engine_configure_text_formatting(void)
     engine_temporary_data_ptr = engine_next_data_pointer;
     resource_status_flag = *(char *)((longlong)engine_next_data_pointer + 0x19);
   }
-  if ((engine_current_data_pointer == engine_structure_data_ptr) || (engine_loop_index = memcmp(&engine_mouse_position,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
+  if ((engine_current_data_pointer == structure_data_pointer) || (engine_loop_index = memcmp(&engine_mouse_position,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
     engine_operation_result = engine_allocate_memory_block(engine_main_structure_pointer);
     engine_initialize_memory_block(engine_main_structure_pointer,&engine_stack_variable_10,engine_current_data_pointer,engine_operation_result + 0x20,engine_operation_result);
     engine_current_data_pointer = engine_stack_variable_10;
@@ -3933,7 +3933,7 @@ void engine_create_text_atlas(void)
 
 {
   char resource_status_flag;
-  void* engine_structure_data_ptr;
+  void* structure_data_pointer;
   int engine_loop_index;
   longlong *engine_main_structure_pointer;
   longlong engine_operation_result;
@@ -3944,11 +3944,11 @@ void engine_create_text_atlas(void)
   code *engine_stack_function_pointer_18;
   
   engine_main_structure_pointer = (longlong *)engine_get_system_context();
-  engine_structure_data_ptr = (void*)*engine_main_structure_pointer;
-  resource_status_flag = *(char *)((longlong)engine_structure_data_ptr[1] + 0x19);
+  structure_data_pointer = (void*)*engine_main_structure_pointer;
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
   engine_stack_function_pointer_18 = engine_process_buffer_manager;
-  engine_current_data_pointer = engine_structure_data_ptr;
-  engine_temporary_data_ptr = (void*)engine_structure_data_ptr[1];
+  engine_current_data_pointer = structure_data_pointer;
+  engine_temporary_data_ptr = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
     engine_loop_index = memcmp(engine_temporary_data_ptr + 4,&engine_data_a0,0x10);
     if (engine_loop_index < 0) {
@@ -3962,7 +3962,7 @@ void engine_create_text_atlas(void)
     engine_temporary_data_ptr = engine_next_data_pointer;
     resource_status_flag = *(char *)((longlong)engine_next_data_pointer + 0x19);
   }
-  if ((engine_current_data_pointer == engine_structure_data_ptr) || (engine_loop_index = memcmp(&engine_data_a0,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
+  if ((engine_current_data_pointer == structure_data_pointer) || (engine_loop_index = memcmp(&engine_data_a0,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
     engine_operation_result = engine_allocate_memory_block(engine_main_structure_pointer);
     engine_initialize_memory_block(engine_main_structure_pointer,&engine_stack_variable_10,engine_current_data_pointer,engine_operation_result + 0x20,engine_operation_result);
     engine_current_data_pointer = engine_stack_variable_10;
@@ -3983,7 +3983,7 @@ void engine_setup_text_streaming(void)
 
 {
   char resource_status_flag;
-  void* engine_structure_data_ptr;
+  void* structure_data_pointer;
   int engine_loop_index;
   longlong *engine_main_structure_pointer;
   longlong engine_operation_result;
@@ -3994,11 +3994,11 @@ void engine_setup_text_streaming(void)
   code *engine_stack_function_pointer_18;
   
   engine_main_structure_pointer = (longlong *)engine_get_system_context();
-  engine_structure_data_ptr = (void*)*engine_main_structure_pointer;
-  resource_status_flag = *(char *)((longlong)engine_structure_data_ptr[1] + 0x19);
+  structure_data_pointer = (void*)*engine_main_structure_pointer;
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
   engine_stack_function_pointer_18 = engine_process_texture_manager;
-  engine_current_data_pointer = engine_structure_data_ptr;
-  engine_temporary_data_ptr = (void*)engine_structure_data_ptr[1];
+  engine_current_data_pointer = structure_data_pointer;
+  engine_temporary_data_ptr = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
     engine_loop_index = memcmp(engine_temporary_data_ptr + 4,&engine_data_78,0x10);
     if (engine_loop_index < 0) {
@@ -4012,7 +4012,7 @@ void engine_setup_text_streaming(void)
     engine_temporary_data_ptr = engine_next_data_pointer;
     resource_status_flag = *(char *)((longlong)engine_next_data_pointer + 0x19);
   }
-  if ((engine_current_data_pointer == engine_structure_data_ptr) || (engine_loop_index = memcmp(&engine_data_78,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
+  if ((engine_current_data_pointer == structure_data_pointer) || (engine_loop_index = memcmp(&engine_data_78,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
     engine_operation_result = engine_allocate_memory_block(engine_main_structure_pointer);
     engine_initialize_memory_block(engine_main_structure_pointer,&engine_stack_variable_10,engine_current_data_pointer,engine_operation_result + 0x20,engine_operation_result);
     engine_current_data_pointer = engine_stack_variable_10;
@@ -4033,7 +4033,7 @@ void engine_configure_text_cache(void)
 
 {
   char resource_status_flag;
-  void* engine_structure_data_ptr;
+  void* structure_data_pointer;
   int engine_loop_index;
   longlong *engine_main_structure_pointer;
   longlong engine_operation_result;
@@ -4044,11 +4044,11 @@ void engine_configure_text_cache(void)
   uint64 uStackX_18;
   
   engine_main_structure_pointer = (longlong *)engine_get_system_context();
-  engine_structure_data_ptr = (void*)*engine_main_structure_pointer;
-  resource_status_flag = *(char *)((longlong)engine_structure_data_ptr[1] + 0x19);
+  structure_data_pointer = (void*)*engine_main_structure_pointer;
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
   uStackX_18 = 0;
-  engine_current_data_pointer = engine_structure_data_ptr;
-  engine_temporary_data_ptr = (void*)engine_structure_data_ptr[1];
+  engine_current_data_pointer = structure_data_pointer;
+  engine_temporary_data_ptr = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
     engine_loop_index = memcmp(engine_temporary_data_ptr + 4,&engine_data_180a01050,0x10);
     if (engine_loop_index < 0) {
@@ -4062,7 +4062,7 @@ void engine_configure_text_cache(void)
     engine_temporary_data_ptr = engine_next_data_pointer;
     resource_status_flag = *(char *)((longlong)engine_next_data_pointer + 0x19);
   }
-  if ((engine_current_data_pointer == engine_structure_data_ptr) || (engine_loop_index = memcmp(&engine_data_180a01050,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
+  if ((engine_current_data_pointer == structure_data_pointer) || (engine_loop_index = memcmp(&engine_data_180a01050,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
     engine_operation_result = engine_allocate_memory_block(engine_main_structure_pointer);
     engine_initialize_memory_block(engine_main_structure_pointer,&engine_stack_variable_10,engine_current_data_pointer,engine_operation_result + 0x20,engine_operation_result);
     engine_current_data_pointer = engine_stack_variable_10;
@@ -4083,7 +4083,7 @@ void engine_initialize_text_manager(void)
 
 {
   char resource_status_flag;
-  void* engine_structure_data_ptr;
+  void* structure_data_pointer;
   int engine_loop_index;
   longlong *engine_main_structure_pointer;
   longlong engine_operation_result;
@@ -4094,11 +4094,11 @@ void engine_initialize_text_manager(void)
   code *engine_stack_function_pointer_18;
   
   engine_main_structure_pointer = (longlong *)engine_get_system_context();
-  engine_structure_data_ptr = (void*)*engine_main_structure_pointer;
-  resource_status_flag = *(char *)((longlong)engine_structure_data_ptr[1] + 0x19);
+  structure_data_pointer = (void*)*engine_main_structure_pointer;
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
   engine_stack_function_pointer_18 = engine_process_shader_manager;
-  engine_current_data_pointer = engine_structure_data_ptr;
-  engine_temporary_data_ptr = (void*)engine_structure_data_ptr[1];
+  engine_current_data_pointer = structure_data_pointer;
+  engine_temporary_data_ptr = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
     engine_loop_index = memcmp(engine_temporary_data_ptr + 4,&engine_data_28,0x10);
     if (engine_loop_index < 0) {
@@ -4112,7 +4112,7 @@ void engine_initialize_text_manager(void)
     engine_temporary_data_ptr = engine_next_data_pointer;
     resource_status_flag = *(char *)((longlong)engine_next_data_pointer + 0x19);
   }
-  if ((engine_current_data_pointer == engine_structure_data_ptr) || (engine_loop_index = memcmp(&engine_data_28,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
+  if ((engine_current_data_pointer == structure_data_pointer) || (engine_loop_index = memcmp(&engine_data_28,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
     engine_operation_result = engine_allocate_memory_block(engine_main_structure_pointer);
     engine_initialize_memory_block(engine_main_structure_pointer,&engine_stack_variable_10,engine_current_data_pointer,engine_operation_result + 0x20,engine_operation_result);
     engine_current_data_pointer = engine_stack_variable_10;
@@ -4133,7 +4133,7 @@ void engine_setup_text_database(void)
 
 {
   char resource_status_flag;
-  void* engine_structure_data_ptr;
+  void* structure_data_pointer;
   int engine_loop_index;
   longlong *engine_main_structure_pointer;
   longlong engine_operation_result;
@@ -4144,11 +4144,11 @@ void engine_setup_text_database(void)
   uint64 uStackX_18;
   
   engine_main_structure_pointer = (longlong *)engine_get_system_context();
-  engine_structure_data_ptr = (void*)*engine_main_structure_pointer;
-  resource_status_flag = *(char *)((longlong)engine_structure_data_ptr[1] + 0x19);
+  structure_data_pointer = (void*)*engine_main_structure_pointer;
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
   uStackX_18 = 0;
-  engine_current_data_pointer = engine_structure_data_ptr;
-  engine_temporary_data_ptr = (void*)engine_structure_data_ptr[1];
+  engine_current_data_pointer = structure_data_pointer;
+  engine_temporary_data_ptr = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
     engine_loop_index = memcmp(engine_temporary_data_ptr + 4,&engine_data_180a01000,0x10);
     if (engine_loop_index < 0) {
@@ -4162,7 +4162,7 @@ void engine_setup_text_database(void)
     engine_temporary_data_ptr = engine_next_data_pointer;
     resource_status_flag = *(char *)((longlong)engine_next_data_pointer + 0x19);
   }
-  if ((engine_current_data_pointer == engine_structure_data_ptr) || (engine_loop_index = memcmp(&engine_data_180a01000,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
+  if ((engine_current_data_pointer == structure_data_pointer) || (engine_loop_index = memcmp(&engine_data_180a01000,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
     engine_operation_result = engine_allocate_memory_block(engine_main_structure_pointer);
     engine_initialize_memory_block(engine_main_structure_pointer,&engine_stack_variable_10,engine_current_data_pointer,engine_operation_result + 0x20,engine_operation_result);
     engine_current_data_pointer = engine_stack_variable_10;
@@ -4183,7 +4183,7 @@ void engine_create_text_index(void)
 
 {
   char resource_status_flag;
-  void* engine_structure_data_ptr;
+  void* structure_data_pointer;
   int engine_loop_index;
   longlong *engine_main_structure_pointer;
   longlong engine_operation_result;
@@ -4194,11 +4194,11 @@ void engine_create_text_index(void)
   void* engine_stack_pointer_18;
   
   engine_main_structure_pointer = (longlong *)engine_get_system_context();
-  engine_structure_data_ptr = (void*)*engine_main_structure_pointer;
-  resource_status_flag = *(char *)((longlong)engine_structure_data_ptr[1] + 0x19);
+  structure_data_pointer = (void*)*engine_main_structure_pointer;
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
   engine_stack_pointer_18 = &engine_base_data_offset_c0;
-  engine_current_data_pointer = engine_structure_data_ptr;
-  engine_temporary_data_ptr = (void*)engine_structure_data_ptr[1];
+  engine_current_data_pointer = structure_data_pointer;
+  engine_temporary_data_ptr = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
     engine_loop_index = memcmp(engine_temporary_data_ptr + 4,&engine_data_180a00fd8,0x10);
     if (engine_loop_index < 0) {
@@ -4212,7 +4212,7 @@ void engine_create_text_index(void)
     engine_temporary_data_ptr = engine_next_data_pointer;
     resource_status_flag = *(char *)((longlong)engine_next_data_pointer + 0x19);
   }
-  if ((engine_current_data_pointer == engine_structure_data_ptr) || (engine_loop_index = memcmp(&engine_data_180a00fd8,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
+  if ((engine_current_data_pointer == structure_data_pointer) || (engine_loop_index = memcmp(&engine_data_180a00fd8,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
     engine_operation_result = engine_allocate_memory_block(engine_main_structure_pointer);
     engine_initialize_memory_block(engine_main_structure_pointer,&engine_stack_variable_10,engine_current_data_pointer,engine_operation_result + 0x20,engine_operation_result);
     engine_current_data_pointer = engine_stack_variable_10;
@@ -4233,7 +4233,7 @@ void engine_configure_text_compression(void)
 
 {
   char resource_status_flag;
-  void* engine_structure_data_ptr;
+  void* structure_data_pointer;
   int engine_loop_index;
   longlong *engine_main_structure_pointer;
   longlong engine_operation_result;
@@ -4244,11 +4244,11 @@ void engine_configure_text_compression(void)
   uint64 uStackX_18;
   
   engine_main_structure_pointer = (longlong *)engine_get_system_context();
-  engine_structure_data_ptr = (void*)*engine_main_structure_pointer;
-  resource_status_flag = *(char *)((longlong)engine_structure_data_ptr[1] + 0x19);
+  structure_data_pointer = (void*)*engine_main_structure_pointer;
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
   uStackX_18 = 0;
-  engine_current_data_pointer = engine_structure_data_ptr;
-  engine_temporary_data_ptr = (void*)engine_structure_data_ptr[1];
+  engine_current_data_pointer = structure_data_pointer;
+  engine_temporary_data_ptr = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
     engine_loop_index = memcmp(engine_temporary_data_ptr + 4,&engine_data_180a00fb0,0x10);
     if (engine_loop_index < 0) {
@@ -4262,7 +4262,7 @@ void engine_configure_text_compression(void)
     engine_temporary_data_ptr = engine_next_data_pointer;
     resource_status_flag = *(char *)((longlong)engine_next_data_pointer + 0x19);
   }
-  if ((engine_current_data_pointer == engine_structure_data_ptr) || (engine_loop_index = memcmp(&engine_data_180a00fb0,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
+  if ((engine_current_data_pointer == structure_data_pointer) || (engine_loop_index = memcmp(&engine_data_180a00fb0,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
     engine_operation_result = engine_allocate_memory_block(engine_main_structure_pointer);
     engine_initialize_memory_block(engine_main_structure_pointer,&engine_stack_variable_10,engine_current_data_pointer,engine_operation_result + 0x20,engine_operation_result);
     engine_current_data_pointer = engine_stack_variable_10;
@@ -4283,7 +4283,7 @@ void engine_register_video_resource(void)
 
 {
   char resource_status_flag;
-  void* engine_structure_data_ptr;
+  void* structure_data_pointer;
   int engine_loop_index;
   longlong *engine_main_structure_pointer;
   longlong engine_operation_result;
@@ -4294,11 +4294,11 @@ void engine_register_video_resource(void)
   code *engine_stack_function_pointer_18;
   
   engine_main_structure_pointer = (longlong *)engine_get_system_context();
-  engine_structure_data_ptr = (void*)*engine_main_structure_pointer;
-  resource_status_flag = *(char *)((longlong)engine_structure_data_ptr[1] + 0x19);
+  structure_data_pointer = (void*)*engine_main_structure_pointer;
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
   engine_stack_function_pointer_18 = engine_initialize_network_context;
-  engine_current_data_pointer = engine_structure_data_ptr;
-  engine_temporary_data_ptr = (void*)engine_structure_data_ptr[1];
+  engine_current_data_pointer = structure_data_pointer;
+  engine_temporary_data_ptr = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
     engine_loop_index = memcmp(engine_temporary_data_ptr + 4,&engine_data_180a00bb0,0x10);
     if (engine_loop_index < 0) {
@@ -4312,7 +4312,7 @@ void engine_register_video_resource(void)
     engine_temporary_data_ptr = engine_next_data_pointer;
     resource_status_flag = *(char *)((longlong)engine_next_data_pointer + 0x19);
   }
-  if ((engine_current_data_pointer == engine_structure_data_ptr) || (engine_loop_index = memcmp(&engine_data_180a00bb0,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
+  if ((engine_current_data_pointer == structure_data_pointer) || (engine_loop_index = memcmp(&engine_data_180a00bb0,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
     engine_operation_result = engine_allocate_memory_block(engine_main_structure_pointer);
     engine_initialize_memory_block(engine_main_structure_pointer,&engine_stack_variable_10,engine_current_data_pointer,engine_operation_result + 0x20,engine_operation_result);
     engine_current_data_pointer = engine_stack_variable_10;
@@ -4333,7 +4333,7 @@ void engine_register_stream_resource(void)
 
 {
   char resource_status_flag;
-  void* engine_structure_data_ptr;
+  void* structure_data_pointer;
   int engine_loop_index;
   longlong *engine_main_structure_pointer;
   longlong engine_operation_result;
@@ -4344,11 +4344,11 @@ void engine_register_stream_resource(void)
   code *engine_stack_function_pointer_18;
   
   engine_main_structure_pointer = (longlong *)engine_get_system_context();
-  engine_structure_data_ptr = (void*)*engine_main_structure_pointer;
-  resource_status_flag = *(char *)((longlong)engine_structure_data_ptr[1] + 0x19);
+  structure_data_pointer = (void*)*engine_main_structure_pointer;
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
   engine_stack_function_pointer_18 = engine_setup_audio_driver;
-  engine_current_data_pointer = engine_structure_data_ptr;
-  engine_temporary_data_ptr = (void*)engine_structure_data_ptr[1];
+  engine_current_data_pointer = structure_data_pointer;
+  engine_temporary_data_ptr = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
     engine_loop_index = memcmp(engine_temporary_data_ptr + 4,&engine_data_88,0x10);
     if (engine_loop_index < 0) {
@@ -4362,7 +4362,7 @@ void engine_register_stream_resource(void)
     engine_temporary_data_ptr = engine_next_data_pointer;
     resource_status_flag = *(char *)((longlong)engine_next_data_pointer + 0x19);
   }
-  if ((engine_current_data_pointer == engine_structure_data_ptr) || (engine_loop_index = memcmp(&engine_data_88,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
+  if ((engine_current_data_pointer == structure_data_pointer) || (engine_loop_index = memcmp(&engine_data_88,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
     engine_operation_result = engine_allocate_memory_block(engine_main_structure_pointer);
     engine_initialize_memory_block(engine_main_structure_pointer,&engine_stack_variable_10,engine_current_data_pointer,engine_operation_result + 0x20,engine_operation_result);
     engine_current_data_pointer = engine_stack_variable_10;
@@ -4383,7 +4383,7 @@ void engine_register_effect_resource(void)
 
 {
   char resource_status_flag;
-  void* engine_structure_data_ptr;
+  void* structure_data_pointer;
   int engine_loop_index;
   longlong *engine_main_structure_pointer;
   longlong engine_operation_result;
@@ -4394,11 +4394,11 @@ void engine_register_effect_resource(void)
   code *engine_stack_function_pointer_18;
   
   engine_main_structure_pointer = (longlong *)engine_get_system_context();
-  engine_structure_data_ptr = (void*)*engine_main_structure_pointer;
-  resource_status_flag = *(char *)((longlong)engine_structure_data_ptr[1] + 0x19);
+  structure_data_pointer = (void*)*engine_main_structure_pointer;
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
   engine_stack_function_pointer_18 = engine_process_buffer_manager;
-  engine_current_data_pointer = engine_structure_data_ptr;
-  engine_temporary_data_ptr = (void*)engine_structure_data_ptr[1];
+  engine_current_data_pointer = structure_data_pointer;
+  engine_temporary_data_ptr = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
     engine_loop_index = memcmp(engine_temporary_data_ptr + 4,&engine_data_a0,0x10);
     if (engine_loop_index < 0) {
@@ -4412,7 +4412,7 @@ void engine_register_effect_resource(void)
     engine_temporary_data_ptr = engine_next_data_pointer;
     resource_status_flag = *(char *)((longlong)engine_next_data_pointer + 0x19);
   }
-  if ((engine_current_data_pointer == engine_structure_data_ptr) || (engine_loop_index = memcmp(&engine_data_a0,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
+  if ((engine_current_data_pointer == structure_data_pointer) || (engine_loop_index = memcmp(&engine_data_a0,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
     engine_operation_result = engine_allocate_memory_block(engine_main_structure_pointer);
     engine_initialize_memory_block(engine_main_structure_pointer,&engine_stack_variable_10,engine_current_data_pointer,engine_operation_result + 0x20,engine_operation_result);
     engine_current_data_pointer = engine_stack_variable_10;
@@ -4433,7 +4433,7 @@ void engine_register_post_resource(void)
 
 {
   char resource_status_flag;
-  void* engine_structure_data_ptr;
+  void* structure_data_pointer;
   int engine_loop_index;
   longlong *engine_main_structure_pointer;
   longlong engine_operation_result;
@@ -4444,11 +4444,11 @@ void engine_register_post_resource(void)
   code *engine_stack_function_pointer_18;
   
   engine_main_structure_pointer = (longlong *)engine_get_system_context();
-  engine_structure_data_ptr = (void*)*engine_main_structure_pointer;
-  resource_status_flag = *(char *)((longlong)engine_structure_data_ptr[1] + 0x19);
+  structure_data_pointer = (void*)*engine_main_structure_pointer;
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
   engine_stack_function_pointer_18 = engine_process_texture_manager;
-  engine_current_data_pointer = engine_structure_data_ptr;
-  engine_temporary_data_ptr = (void*)engine_structure_data_ptr[1];
+  engine_current_data_pointer = structure_data_pointer;
+  engine_temporary_data_ptr = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
     engine_loop_index = memcmp(engine_temporary_data_ptr + 4,&engine_data_78,0x10);
     if (engine_loop_index < 0) {
@@ -4462,7 +4462,7 @@ void engine_register_post_resource(void)
     engine_temporary_data_ptr = engine_next_data_pointer;
     resource_status_flag = *(char *)((longlong)engine_next_data_pointer + 0x19);
   }
-  if ((engine_current_data_pointer == engine_structure_data_ptr) || (engine_loop_index = memcmp(&engine_data_78,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
+  if ((engine_current_data_pointer == structure_data_pointer) || (engine_loop_index = memcmp(&engine_data_78,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
     engine_operation_result = engine_allocate_memory_block(engine_main_structure_pointer);
     engine_initialize_memory_block(engine_main_structure_pointer,&engine_stack_variable_10,engine_current_data_pointer,engine_operation_result + 0x20,engine_operation_result);
     engine_current_data_pointer = engine_stack_variable_10;
@@ -4483,7 +4483,7 @@ void engine_register_cubemap_resource(void)
 
 {
   char resource_status_flag;
-  void* engine_structure_data_ptr;
+  void* structure_data_pointer;
   int engine_loop_index;
   longlong *engine_main_structure_pointer;
   longlong engine_operation_result;
@@ -4494,11 +4494,11 @@ void engine_register_cubemap_resource(void)
   uint64 uStackX_18;
   
   engine_main_structure_pointer = (longlong *)engine_get_system_context();
-  engine_structure_data_ptr = (void*)*engine_main_structure_pointer;
-  resource_status_flag = *(char *)((longlong)engine_structure_data_ptr[1] + 0x19);
+  structure_data_pointer = (void*)*engine_main_structure_pointer;
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
   uStackX_18 = 0;
-  engine_current_data_pointer = engine_structure_data_ptr;
-  engine_temporary_data_ptr = (void*)engine_structure_data_ptr[1];
+  engine_current_data_pointer = structure_data_pointer;
+  engine_temporary_data_ptr = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
     engine_loop_index = memcmp(engine_temporary_data_ptr + 4,&engine_data_180a01050,0x10);
     if (engine_loop_index < 0) {
@@ -4512,7 +4512,7 @@ void engine_register_cubemap_resource(void)
     engine_temporary_data_ptr = engine_next_data_pointer;
     resource_status_flag = *(char *)((longlong)engine_next_data_pointer + 0x19);
   }
-  if ((engine_current_data_pointer == engine_structure_data_ptr) || (engine_loop_index = memcmp(&engine_data_180a01050,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
+  if ((engine_current_data_pointer == structure_data_pointer) || (engine_loop_index = memcmp(&engine_data_180a01050,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
     engine_operation_result = engine_allocate_memory_block(engine_main_structure_pointer);
     engine_initialize_memory_block(engine_main_structure_pointer,&engine_stack_variable_10,engine_current_data_pointer,engine_operation_result + 0x20,engine_operation_result);
     engine_current_data_pointer = engine_stack_variable_10;
@@ -4533,7 +4533,7 @@ void engine_register_render_target_resource(void)
 
 {
   char resource_status_flag;
-  void* engine_structure_data_ptr;
+  void* structure_data_pointer;
   int engine_loop_index;
   longlong *engine_main_structure_pointer;
   longlong engine_operation_result;
@@ -4544,11 +4544,11 @@ void engine_register_render_target_resource(void)
   code *engine_stack_function_pointer_18;
   
   engine_main_structure_pointer = (longlong *)engine_get_system_context();
-  engine_structure_data_ptr = (void*)*engine_main_structure_pointer;
-  resource_status_flag = *(char *)((longlong)engine_structure_data_ptr[1] + 0x19);
+  structure_data_pointer = (void*)*engine_main_structure_pointer;
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
   engine_stack_function_pointer_18 = engine_process_shader_manager;
-  engine_current_data_pointer = engine_structure_data_ptr;
-  engine_temporary_data_ptr = (void*)engine_structure_data_ptr[1];
+  engine_current_data_pointer = structure_data_pointer;
+  engine_temporary_data_ptr = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
     engine_loop_index = memcmp(engine_temporary_data_ptr + 4,&engine_data_28,0x10);
     if (engine_loop_index < 0) {
@@ -4562,7 +4562,7 @@ void engine_register_render_target_resource(void)
     engine_temporary_data_ptr = engine_next_data_pointer;
     resource_status_flag = *(char *)((longlong)engine_next_data_pointer + 0x19);
   }
-  if ((engine_current_data_pointer == engine_structure_data_ptr) || (engine_loop_index = memcmp(&engine_data_28,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
+  if ((engine_current_data_pointer == structure_data_pointer) || (engine_loop_index = memcmp(&engine_data_28,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
     engine_operation_result = engine_allocate_memory_block(engine_main_structure_pointer);
     engine_initialize_memory_block(engine_main_structure_pointer,&engine_stack_variable_10,engine_current_data_pointer,engine_operation_result + 0x20,engine_operation_result);
     engine_current_data_pointer = engine_stack_variable_10;
@@ -4583,7 +4583,7 @@ void engine_register_buffer_resource(void)
 
 {
   char resource_status_flag;
-  void* engine_structure_data_ptr;
+  void* structure_data_pointer;
   int engine_loop_index;
   longlong *engine_main_structure_pointer;
   longlong engine_operation_result;
@@ -4594,11 +4594,11 @@ void engine_register_buffer_resource(void)
   uint64 uStackX_18;
   
   engine_main_structure_pointer = (longlong *)engine_get_system_context();
-  engine_structure_data_ptr = (void*)*engine_main_structure_pointer;
-  resource_status_flag = *(char *)((longlong)engine_structure_data_ptr[1] + 0x19);
+  structure_data_pointer = (void*)*engine_main_structure_pointer;
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
   uStackX_18 = 0;
-  engine_current_data_pointer = engine_structure_data_ptr;
-  engine_temporary_data_ptr = (void*)engine_structure_data_ptr[1];
+  engine_current_data_pointer = structure_data_pointer;
+  engine_temporary_data_ptr = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
     engine_loop_index = memcmp(engine_temporary_data_ptr + 4,&engine_data_180a01000,0x10);
     if (engine_loop_index < 0) {
@@ -4612,7 +4612,7 @@ void engine_register_buffer_resource(void)
     engine_temporary_data_ptr = engine_next_data_pointer;
     resource_status_flag = *(char *)((longlong)engine_next_data_pointer + 0x19);
   }
-  if ((engine_current_data_pointer == engine_structure_data_ptr) || (engine_loop_index = memcmp(&engine_data_180a01000,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
+  if ((engine_current_data_pointer == structure_data_pointer) || (engine_loop_index = memcmp(&engine_data_180a01000,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
     engine_operation_result = engine_allocate_memory_block(engine_main_structure_pointer);
     engine_initialize_memory_block(engine_main_structure_pointer,&engine_stack_variable_10,engine_current_data_pointer,engine_operation_result + 0x20,engine_operation_result);
     engine_current_data_pointer = engine_stack_variable_10;
@@ -4633,7 +4633,7 @@ void engine_setup_input_system(void)
 
 {
   char resource_status_flag;
-  void* engine_structure_data_ptr;
+  void* structure_data_pointer;
   int engine_loop_index;
   longlong *engine_main_structure_pointer;
   longlong engine_operation_result;
@@ -4644,11 +4644,11 @@ void engine_setup_input_system(void)
   void* engine_stack_pointer_18;
   
   engine_main_structure_pointer = (longlong *)engine_get_system_context();
-  engine_structure_data_ptr = (void*)*engine_main_structure_pointer;
-  resource_status_flag = *(char *)((longlong)engine_structure_data_ptr[1] + 0x19);
+  structure_data_pointer = (void*)*engine_main_structure_pointer;
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
   engine_stack_pointer_18 = &engine_base_data_offset_c0;
-  engine_current_data_pointer = engine_structure_data_ptr;
-  engine_temporary_data_ptr = (void*)engine_structure_data_ptr[1];
+  engine_current_data_pointer = structure_data_pointer;
+  engine_temporary_data_ptr = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
     engine_loop_index = memcmp(engine_temporary_data_ptr + 4,&engine_data_180a00fd8,0x10);
     if (engine_loop_index < 0) {
@@ -4662,7 +4662,7 @@ void engine_setup_input_system(void)
     engine_temporary_data_ptr = engine_next_data_pointer;
     resource_status_flag = *(char *)((longlong)engine_next_data_pointer + 0x19);
   }
-  if ((engine_current_data_pointer == engine_structure_data_ptr) || (engine_loop_index = memcmp(&engine_data_180a00fd8,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
+  if ((engine_current_data_pointer == structure_data_pointer) || (engine_loop_index = memcmp(&engine_data_180a00fd8,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
     engine_operation_result = engine_allocate_memory_block(engine_main_structure_pointer);
     engine_initialize_memory_block(engine_main_structure_pointer,&engine_stack_variable_10,engine_current_data_pointer,engine_operation_result + 0x20,engine_operation_result);
     engine_current_data_pointer = engine_stack_variable_10;
@@ -4683,7 +4683,7 @@ void engine_configure_audio_system(void)
 
 {
   char resource_status_flag;
-  void* engine_structure_data_ptr;
+  void* structure_data_pointer;
   int engine_loop_index;
   longlong *engine_main_structure_pointer;
   longlong engine_operation_result;
@@ -4694,11 +4694,11 @@ void engine_configure_audio_system(void)
   uint64 uStackX_18;
   
   engine_main_structure_pointer = (longlong *)engine_get_system_context();
-  engine_structure_data_ptr = (void*)*engine_main_structure_pointer;
-  resource_status_flag = *(char *)((longlong)engine_structure_data_ptr[1] + 0x19);
+  structure_data_pointer = (void*)*engine_main_structure_pointer;
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
   uStackX_18 = 0;
-  engine_current_data_pointer = engine_structure_data_ptr;
-  engine_temporary_data_ptr = (void*)engine_structure_data_ptr[1];
+  engine_current_data_pointer = structure_data_pointer;
+  engine_temporary_data_ptr = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
     engine_loop_index = memcmp(engine_temporary_data_ptr + 4,&engine_data_180a00fb0,0x10);
     if (engine_loop_index < 0) {
@@ -4712,7 +4712,7 @@ void engine_configure_audio_system(void)
     engine_temporary_data_ptr = engine_next_data_pointer;
     resource_status_flag = *(char *)((longlong)engine_next_data_pointer + 0x19);
   }
-  if ((engine_current_data_pointer == engine_structure_data_ptr) || (engine_loop_index = memcmp(&engine_data_180a00fb0,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
+  if ((engine_current_data_pointer == structure_data_pointer) || (engine_loop_index = memcmp(&engine_data_180a00fb0,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
     engine_operation_result = engine_allocate_memory_block(engine_main_structure_pointer);
     engine_initialize_memory_block(engine_main_structure_pointer,&engine_stack_variable_10,engine_current_data_pointer,engine_operation_result + 0x20,engine_operation_result);
     engine_current_data_pointer = engine_stack_variable_10;
@@ -4733,7 +4733,7 @@ void engine_initialize_network_system(void)
 
 {
   char resource_status_flag;
-  void* engine_structure_data_ptr;
+  void* structure_data_pointer;
   int engine_loop_index;
   longlong *engine_main_structure_pointer;
   longlong engine_operation_result;
@@ -4744,11 +4744,11 @@ void engine_initialize_network_system(void)
   code *engine_stack_function_pointer_18;
   
   engine_main_structure_pointer = (longlong *)engine_get_system_context();
-  engine_structure_data_ptr = (void*)*engine_main_structure_pointer;
-  resource_status_flag = *(char *)((longlong)engine_structure_data_ptr[1] + 0x19);
+  structure_data_pointer = (void*)*engine_main_structure_pointer;
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
   engine_stack_function_pointer_18 = engine_configure_render_pipeline;
-  engine_current_data_pointer = engine_structure_data_ptr;
-  engine_temporary_data_ptr = (void*)engine_structure_data_ptr[1];
+  engine_current_data_pointer = structure_data_pointer;
+  engine_temporary_data_ptr = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
     engine_loop_index = memcmp(engine_temporary_data_ptr + 4,&engine_data_180a00e28,0x10);
     if (engine_loop_index < 0) {
@@ -4762,7 +4762,7 @@ void engine_initialize_network_system(void)
     engine_temporary_data_ptr = engine_next_data_pointer;
     resource_status_flag = *(char *)((longlong)engine_next_data_pointer + 0x19);
   }
-  if ((engine_current_data_pointer == engine_structure_data_ptr) || (engine_loop_index = memcmp(&engine_data_180a00e28,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
+  if ((engine_current_data_pointer == structure_data_pointer) || (engine_loop_index = memcmp(&engine_data_180a00e28,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
     engine_operation_result = engine_allocate_memory_block(engine_main_structure_pointer);
     engine_initialize_memory_block(engine_main_structure_pointer,&engine_stack_variable_10,engine_current_data_pointer,engine_operation_result + 0x20,engine_operation_result);
     engine_current_data_pointer = engine_stack_variable_10;
@@ -4783,7 +4783,7 @@ void engine_setup_stream_manager(void)
 
 {
   char resource_status_flag;
-  void* engine_structure_data_ptr;
+  void* structure_data_pointer;
   int engine_loop_index;
   longlong *engine_main_structure_pointer;
   longlong engine_operation_result;
@@ -4794,11 +4794,11 @@ void engine_setup_stream_manager(void)
   code *engine_stack_function_pointer_18;
   
   engine_main_structure_pointer = (longlong *)engine_get_system_context();
-  engine_structure_data_ptr = (void*)*engine_main_structure_pointer;
-  resource_status_flag = *(char *)((longlong)engine_structure_data_ptr[1] + 0x19);
+  structure_data_pointer = (void*)*engine_main_structure_pointer;
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
   engine_stack_function_pointer_18 = engine_process_resource_manager;
-  engine_current_data_pointer = engine_structure_data_ptr;
-  engine_temporary_data_ptr = (void*)engine_structure_data_ptr[1];
+  engine_current_data_pointer = structure_data_pointer;
+  engine_temporary_data_ptr = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
     engine_loop_index = memcmp(engine_temporary_data_ptr + 4,&engine_system_magic_header,0x10);
     if (engine_loop_index < 0) {
@@ -4812,7 +4812,7 @@ void engine_setup_stream_manager(void)
     engine_temporary_data_ptr = engine_next_data_pointer;
     resource_status_flag = *(char *)((longlong)engine_next_data_pointer + 0x19);
   }
-  if ((engine_current_data_pointer == engine_structure_data_ptr) || (engine_loop_index = memcmp(&engine_system_magic_header,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
+  if ((engine_current_data_pointer == structure_data_pointer) || (engine_loop_index = memcmp(&engine_system_magic_header,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
     engine_operation_result = engine_allocate_memory_block(engine_main_structure_pointer);
     engine_initialize_memory_block(engine_main_structure_pointer,&engine_stack_variable_10,engine_current_data_pointer,engine_operation_result + 0x20,engine_operation_result);
     engine_current_data_pointer = engine_stack_variable_10;
@@ -4833,7 +4833,7 @@ void engine_setup_effect_manager(void)
 
 {
   char resource_status_flag;
-  void* engine_structure_data_ptr;
+  void* structure_data_pointer;
   int engine_loop_index;
   longlong *engine_main_structure_pointer;
   longlong engine_operation_result;
@@ -4844,11 +4844,11 @@ void engine_setup_effect_manager(void)
   code *engine_stack_function_pointer_18;
   
   engine_main_structure_pointer = (longlong *)engine_get_system_context();
-  engine_structure_data_ptr = (void*)*engine_main_structure_pointer;
-  resource_status_flag = *(char *)((longlong)engine_structure_data_ptr[1] + 0x19);
+  structure_data_pointer = (void*)*engine_main_structure_pointer;
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
   engine_stack_function_pointer_18 = engine_initialize_network_context;
-  engine_current_data_pointer = engine_structure_data_ptr;
-  engine_temporary_data_ptr = (void*)engine_structure_data_ptr[1];
+  engine_current_data_pointer = structure_data_pointer;
+  engine_temporary_data_ptr = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
     engine_loop_index = memcmp(engine_temporary_data_ptr + 4,&engine_data_180a00bb0,0x10);
     if (engine_loop_index < 0) {
@@ -4862,7 +4862,7 @@ void engine_setup_effect_manager(void)
     engine_temporary_data_ptr = engine_next_data_pointer;
     resource_status_flag = *(char *)((longlong)engine_next_data_pointer + 0x19);
   }
-  if ((engine_current_data_pointer == engine_structure_data_ptr) || (engine_loop_index = memcmp(&engine_data_180a00bb0,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
+  if ((engine_current_data_pointer == structure_data_pointer) || (engine_loop_index = memcmp(&engine_data_180a00bb0,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
     engine_operation_result = engine_allocate_memory_block(engine_main_structure_pointer);
     engine_initialize_memory_block(engine_main_structure_pointer,&engine_stack_variable_10,engine_current_data_pointer,engine_operation_result + 0x20,engine_operation_result);
     engine_current_data_pointer = engine_stack_variable_10;
@@ -4883,7 +4883,7 @@ void engine_setup_physics_system(void)
 
 {
   char resource_status_flag;
-  void* engine_structure_data_ptr;
+  void* structure_data_pointer;
   int engine_loop_index;
   longlong *engine_main_structure_pointer;
   longlong engine_operation_result;
@@ -4894,11 +4894,11 @@ void engine_setup_physics_system(void)
   code *engine_stack_function_pointer_18;
   
   engine_main_structure_pointer = (longlong *)engine_get_system_context();
-  engine_structure_data_ptr = (void*)*engine_main_structure_pointer;
-  resource_status_flag = *(char *)((longlong)engine_structure_data_ptr[1] + 0x19);
+  structure_data_pointer = (void*)*engine_main_structure_pointer;
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
   engine_stack_function_pointer_18 = engine_setup_audio_driver;
-  engine_current_data_pointer = engine_structure_data_ptr;
-  engine_temporary_data_ptr = (void*)engine_structure_data_ptr[1];
+  engine_current_data_pointer = structure_data_pointer;
+  engine_temporary_data_ptr = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
     engine_loop_index = memcmp(engine_temporary_data_ptr + 4,&engine_data_88,0x10);
     if (engine_loop_index < 0) {
@@ -4912,7 +4912,7 @@ void engine_setup_physics_system(void)
     engine_temporary_data_ptr = engine_next_data_pointer;
     resource_status_flag = *(char *)((longlong)engine_next_data_pointer + 0x19);
   }
-  if ((engine_current_data_pointer == engine_structure_data_ptr) || (engine_loop_index = memcmp(&engine_data_88,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
+  if ((engine_current_data_pointer == structure_data_pointer) || (engine_loop_index = memcmp(&engine_data_88,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
     engine_operation_result = engine_allocate_memory_block(engine_main_structure_pointer);
     engine_initialize_memory_block(engine_main_structure_pointer,&engine_stack_variable_10,engine_current_data_pointer,engine_operation_result + 0x20,engine_operation_result);
     engine_current_data_pointer = engine_stack_variable_10;
@@ -4933,7 +4933,7 @@ void engine_configure_ui_system(void)
 
 {
   char resource_status_flag;
-  void* engine_structure_data_ptr;
+  void* structure_data_pointer;
   int engine_loop_index;
   longlong *engine_main_structure_pointer;
   longlong engine_operation_result;
@@ -4944,11 +4944,11 @@ void engine_configure_ui_system(void)
   uint64 uStackX_18;
   
   engine_main_structure_pointer = (longlong *)engine_get_system_context();
-  engine_structure_data_ptr = (void*)*engine_main_structure_pointer;
-  resource_status_flag = *(char *)((longlong)engine_structure_data_ptr[1] + 0x19);
+  structure_data_pointer = (void*)*engine_main_structure_pointer;
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
   uStackX_18 = 0;
-  engine_current_data_pointer = engine_structure_data_ptr;
-  engine_temporary_data_ptr = (void*)engine_structure_data_ptr[1];
+  engine_current_data_pointer = structure_data_pointer;
+  engine_temporary_data_ptr = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
     engine_loop_index = memcmp(engine_temporary_data_ptr + 4,&engine_data_d0,0x10);
     if (engine_loop_index < 0) {
@@ -4962,7 +4962,7 @@ void engine_configure_ui_system(void)
     engine_temporary_data_ptr = engine_next_data_pointer;
     resource_status_flag = *(char *)((longlong)engine_next_data_pointer + 0x19);
   }
-  if ((engine_current_data_pointer == engine_structure_data_ptr) || (engine_loop_index = memcmp(&engine_data_d0,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
+  if ((engine_current_data_pointer == structure_data_pointer) || (engine_loop_index = memcmp(&engine_data_d0,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
     engine_operation_result = engine_allocate_memory_block(engine_main_structure_pointer);
     engine_initialize_memory_block(engine_main_structure_pointer,&engine_stack_variable_10,engine_current_data_pointer,engine_operation_result + 0x20,engine_operation_result);
     engine_current_data_pointer = engine_stack_variable_10;
@@ -4983,7 +4983,7 @@ void engine_initialize_script_system(void)
 
 {
   char resource_status_flag;
-  void* engine_structure_data_ptr;
+  void* structure_data_pointer;
   int engine_loop_index;
   longlong *engine_main_structure_pointer;
   longlong engine_operation_result;
@@ -4994,11 +4994,11 @@ void engine_initialize_script_system(void)
   code *engine_stack_function_pointer_18;
   
   engine_main_structure_pointer = (longlong *)engine_get_system_context();
-  engine_structure_data_ptr = (void*)*engine_main_structure_pointer;
-  resource_status_flag = *(char *)((longlong)engine_structure_data_ptr[1] + 0x19);
+  structure_data_pointer = (void*)*engine_main_structure_pointer;
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
   engine_stack_function_pointer_18 = engine_process_buffer_manager;
-  engine_current_data_pointer = engine_structure_data_ptr;
-  engine_temporary_data_ptr = (void*)engine_structure_data_ptr[1];
+  engine_current_data_pointer = structure_data_pointer;
+  engine_temporary_data_ptr = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
     engine_loop_index = memcmp(engine_temporary_data_ptr + 4,&engine_data_a0,0x10);
     if (engine_loop_index < 0) {
@@ -5012,7 +5012,7 @@ void engine_initialize_script_system(void)
     engine_temporary_data_ptr = engine_next_data_pointer;
     resource_status_flag = *(char *)((longlong)engine_next_data_pointer + 0x19);
   }
-  if ((engine_current_data_pointer == engine_structure_data_ptr) || (engine_loop_index = memcmp(&engine_data_a0,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
+  if ((engine_current_data_pointer == structure_data_pointer) || (engine_loop_index = memcmp(&engine_data_a0,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
     engine_operation_result = engine_allocate_memory_block(engine_main_structure_pointer);
     engine_initialize_memory_block(engine_main_structure_pointer,&engine_stack_variable_10,engine_current_data_pointer,engine_operation_result + 0x20,engine_operation_result);
     engine_current_data_pointer = engine_stack_variable_10;
@@ -5033,7 +5033,7 @@ void engine_setup_file_system(void)
 
 {
   char resource_status_flag;
-  void* engine_structure_data_ptr;
+  void* structure_data_pointer;
   int engine_loop_index;
   longlong *engine_main_structure_pointer;
   longlong engine_operation_result;
@@ -5044,11 +5044,11 @@ void engine_setup_file_system(void)
   code *engine_stack_function_pointer_18;
   
   engine_main_structure_pointer = (longlong *)engine_get_system_context();
-  engine_structure_data_ptr = (void*)*engine_main_structure_pointer;
-  resource_status_flag = *(char *)((longlong)engine_structure_data_ptr[1] + 0x19);
+  structure_data_pointer = (void*)*engine_main_structure_pointer;
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
   engine_stack_function_pointer_18 = engine_process_texture_manager;
-  engine_current_data_pointer = engine_structure_data_ptr;
-  engine_temporary_data_ptr = (void*)engine_structure_data_ptr[1];
+  engine_current_data_pointer = structure_data_pointer;
+  engine_temporary_data_ptr = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
     engine_loop_index = memcmp(engine_temporary_data_ptr + 4,&engine_data_78,0x10);
     if (engine_loop_index < 0) {
@@ -5062,7 +5062,7 @@ void engine_setup_file_system(void)
     engine_temporary_data_ptr = engine_next_data_pointer;
     resource_status_flag = *(char *)((longlong)engine_next_data_pointer + 0x19);
   }
-  if ((engine_current_data_pointer == engine_structure_data_ptr) || (engine_loop_index = memcmp(&engine_data_78,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
+  if ((engine_current_data_pointer == structure_data_pointer) || (engine_loop_index = memcmp(&engine_data_78,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
     engine_operation_result = engine_allocate_memory_block(engine_main_structure_pointer);
     engine_initialize_memory_block(engine_main_structure_pointer,&engine_stack_variable_10,engine_current_data_pointer,engine_operation_result + 0x20,engine_operation_result);
     engine_current_data_pointer = engine_stack_variable_10;
@@ -5083,7 +5083,7 @@ void engine_configure_database_system(void)
 
 {
   char resource_status_flag;
-  void* engine_structure_data_ptr;
+  void* structure_data_pointer;
   int engine_loop_index;
   longlong *engine_main_structure_pointer;
   longlong engine_operation_result;
@@ -5094,11 +5094,11 @@ void engine_configure_database_system(void)
   uint64 uStackX_18;
   
   engine_main_structure_pointer = (longlong *)engine_get_system_context();
-  engine_structure_data_ptr = (void*)*engine_main_structure_pointer;
-  resource_status_flag = *(char *)((longlong)engine_structure_data_ptr[1] + 0x19);
+  structure_data_pointer = (void*)*engine_main_structure_pointer;
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
   uStackX_18 = 0;
-  engine_current_data_pointer = engine_structure_data_ptr;
-  engine_temporary_data_ptr = (void*)engine_structure_data_ptr[1];
+  engine_current_data_pointer = structure_data_pointer;
+  engine_temporary_data_ptr = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
     engine_loop_index = memcmp(engine_temporary_data_ptr + 4,&engine_data_180a01050,0x10);
     if (engine_loop_index < 0) {
@@ -5112,7 +5112,7 @@ void engine_configure_database_system(void)
     engine_temporary_data_ptr = engine_next_data_pointer;
     resource_status_flag = *(char *)((longlong)engine_next_data_pointer + 0x19);
   }
-  if ((engine_current_data_pointer == engine_structure_data_ptr) || (engine_loop_index = memcmp(&engine_data_180a01050,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
+  if ((engine_current_data_pointer == structure_data_pointer) || (engine_loop_index = memcmp(&engine_data_180a01050,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
     engine_operation_result = engine_allocate_memory_block(engine_main_structure_pointer);
     engine_initialize_memory_block(engine_main_structure_pointer,&engine_stack_variable_10,engine_current_data_pointer,engine_operation_result + 0x20,engine_operation_result);
     engine_current_data_pointer = engine_stack_variable_10;
@@ -5133,7 +5133,7 @@ void engine_setup_security_system(void)
 
 {
   char resource_status_flag;
-  void* engine_structure_data_ptr;
+  void* structure_data_pointer;
   int engine_loop_index;
   longlong *engine_main_structure_pointer;
   longlong engine_operation_result;
@@ -5144,11 +5144,11 @@ void engine_setup_security_system(void)
   code *engine_stack_function_pointer_18;
   
   engine_main_structure_pointer = (longlong *)engine_get_system_context();
-  engine_structure_data_ptr = (void*)*engine_main_structure_pointer;
-  resource_status_flag = *(char *)((longlong)engine_structure_data_ptr[1] + 0x19);
+  structure_data_pointer = (void*)*engine_main_structure_pointer;
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
   engine_stack_function_pointer_18 = engine_process_shader_manager;
-  engine_current_data_pointer = engine_structure_data_ptr;
-  engine_temporary_data_ptr = (void*)engine_structure_data_ptr[1];
+  engine_current_data_pointer = structure_data_pointer;
+  engine_temporary_data_ptr = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
     engine_loop_index = memcmp(engine_temporary_data_ptr + 4,&engine_data_28,0x10);
     if (engine_loop_index < 0) {
@@ -5162,7 +5162,7 @@ void engine_setup_security_system(void)
     engine_temporary_data_ptr = engine_next_data_pointer;
     resource_status_flag = *(char *)((longlong)engine_next_data_pointer + 0x19);
   }
-  if ((engine_current_data_pointer == engine_structure_data_ptr) || (engine_loop_index = memcmp(&engine_data_28,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
+  if ((engine_current_data_pointer == structure_data_pointer) || (engine_loop_index = memcmp(&engine_data_28,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
     engine_operation_result = engine_allocate_memory_block(engine_main_structure_pointer);
     engine_initialize_memory_block(engine_main_structure_pointer,&engine_stack_variable_10,engine_current_data_pointer,engine_operation_result + 0x20,engine_operation_result);
     engine_current_data_pointer = engine_stack_variable_10;
@@ -5183,7 +5183,7 @@ void engine_initialize_logging_system(void)
 
 {
   char resource_status_flag;
-  void* engine_structure_data_ptr;
+  void* structure_data_pointer;
   int engine_loop_index;
   longlong *engine_main_structure_pointer;
   longlong engine_operation_result;
@@ -5194,11 +5194,11 @@ void engine_initialize_logging_system(void)
   uint64 uStackX_18;
   
   engine_main_structure_pointer = (longlong *)engine_get_system_context();
-  engine_structure_data_ptr = (void*)*engine_main_structure_pointer;
-  resource_status_flag = *(char *)((longlong)engine_structure_data_ptr[1] + 0x19);
+  structure_data_pointer = (void*)*engine_main_structure_pointer;
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
   uStackX_18 = 0;
-  engine_current_data_pointer = engine_structure_data_ptr;
-  engine_temporary_data_ptr = (void*)engine_structure_data_ptr[1];
+  engine_current_data_pointer = structure_data_pointer;
+  engine_temporary_data_ptr = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
     engine_loop_index = memcmp(engine_temporary_data_ptr + 4,&engine_data_180a01000,0x10);
     if (engine_loop_index < 0) {
@@ -5212,7 +5212,7 @@ void engine_initialize_logging_system(void)
     engine_temporary_data_ptr = engine_next_data_pointer;
     resource_status_flag = *(char *)((longlong)engine_next_data_pointer + 0x19);
   }
-  if ((engine_current_data_pointer == engine_structure_data_ptr) || (engine_loop_index = memcmp(&engine_data_180a01000,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
+  if ((engine_current_data_pointer == structure_data_pointer) || (engine_loop_index = memcmp(&engine_data_180a01000,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
     engine_operation_result = engine_allocate_memory_block(engine_main_structure_pointer);
     engine_initialize_memory_block(engine_main_structure_pointer,&engine_stack_variable_10,engine_current_data_pointer,engine_operation_result + 0x20,engine_operation_result);
     engine_current_data_pointer = engine_stack_variable_10;
@@ -5233,7 +5233,7 @@ void engine_configure_performance_monitor(void)
 
 {
   char resource_status_flag;
-  void* engine_structure_data_ptr;
+  void* structure_data_pointer;
   int engine_loop_index;
   longlong *engine_main_structure_pointer;
   longlong engine_operation_result;
@@ -5244,11 +5244,11 @@ void engine_configure_performance_monitor(void)
   void* engine_stack_pointer_18;
   
   engine_main_structure_pointer = (longlong *)engine_get_system_context();
-  engine_structure_data_ptr = (void*)*engine_main_structure_pointer;
-  resource_status_flag = *(char *)((longlong)engine_structure_data_ptr[1] + 0x19);
+  structure_data_pointer = (void*)*engine_main_structure_pointer;
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
   engine_stack_pointer_18 = &engine_base_data_offset_c0;
-  engine_current_data_pointer = engine_structure_data_ptr;
-  engine_temporary_data_ptr = (void*)engine_structure_data_ptr[1];
+  engine_current_data_pointer = structure_data_pointer;
+  engine_temporary_data_ptr = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
     engine_loop_index = memcmp(engine_temporary_data_ptr + 4,&engine_data_180a00fd8,0x10);
     if (engine_loop_index < 0) {
@@ -5262,7 +5262,7 @@ void engine_configure_performance_monitor(void)
     engine_temporary_data_ptr = engine_next_data_pointer;
     resource_status_flag = *(char *)((longlong)engine_next_data_pointer + 0x19);
   }
-  if ((engine_current_data_pointer == engine_structure_data_ptr) || (engine_loop_index = memcmp(&engine_data_180a00fd8,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
+  if ((engine_current_data_pointer == structure_data_pointer) || (engine_loop_index = memcmp(&engine_data_180a00fd8,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
     engine_operation_result = engine_allocate_memory_block(engine_main_structure_pointer);
     engine_initialize_memory_block(engine_main_structure_pointer,&engine_stack_variable_10,engine_current_data_pointer,engine_operation_result + 0x20,engine_operation_result);
     engine_current_data_pointer = engine_stack_variable_10;
@@ -5283,7 +5283,7 @@ void engine_setup_debug_system(void)
 
 {
   char resource_status_flag;
-  void* engine_structure_data_ptr;
+  void* structure_data_pointer;
   int engine_loop_index;
   longlong *engine_main_structure_pointer;
   longlong engine_operation_result;
@@ -5294,11 +5294,11 @@ void engine_setup_debug_system(void)
   uint64 uStackX_18;
   
   engine_main_structure_pointer = (longlong *)engine_get_system_context();
-  engine_structure_data_ptr = (void*)*engine_main_structure_pointer;
-  resource_status_flag = *(char *)((longlong)engine_structure_data_ptr[1] + 0x19);
+  structure_data_pointer = (void*)*engine_main_structure_pointer;
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
   uStackX_18 = 0;
-  engine_current_data_pointer = engine_structure_data_ptr;
-  engine_temporary_data_ptr = (void*)engine_structure_data_ptr[1];
+  engine_current_data_pointer = structure_data_pointer;
+  engine_temporary_data_ptr = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
     engine_loop_index = memcmp(engine_temporary_data_ptr + 4,&engine_data_180a00fb0,0x10);
     if (engine_loop_index < 0) {
@@ -5312,7 +5312,7 @@ void engine_setup_debug_system(void)
     engine_temporary_data_ptr = engine_next_data_pointer;
     resource_status_flag = *(char *)((longlong)engine_next_data_pointer + 0x19);
   }
-  if ((engine_current_data_pointer == engine_structure_data_ptr) || (engine_loop_index = memcmp(&engine_data_180a00fb0,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
+  if ((engine_current_data_pointer == structure_data_pointer) || (engine_loop_index = memcmp(&engine_data_180a00fb0,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
     engine_operation_result = engine_allocate_memory_block(engine_main_structure_pointer);
     engine_initialize_memory_block(engine_main_structure_pointer,&engine_stack_variable_10,engine_current_data_pointer,engine_operation_result + 0x20,engine_operation_result);
     engine_current_data_pointer = engine_stack_variable_10;
@@ -5413,7 +5413,7 @@ void engine_initialize_structure_data(void)
 
 {
   char resource_status_flag;
-  void* engine_structure_data_ptr;
+  void* structure_data_pointer;
   int engine_loop_index;
   longlong *engine_main_structure_pointer;
   longlong engine_operation_result;
@@ -5424,11 +5424,11 @@ void engine_initialize_structure_data(void)
   code *engine_stack_function_pointer_18;
   
   engine_main_structure_pointer = (longlong *)engine_get_system_context();
-  engine_structure_data_ptr = (void*)*engine_main_structure_pointer;
-  resource_status_flag = *(char *)((longlong)engine_structure_data_ptr[1] + 0x19);
+  structure_data_pointer = (void*)*engine_main_structure_pointer;
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
   engine_stack_function_pointer_18 = engine_process_buffer_manager;
-  engine_current_data_pointer = engine_structure_data_ptr;
-  engine_temporary_data_ptr = (void*)engine_structure_data_ptr[1];
+  engine_current_data_pointer = structure_data_pointer;
+  engine_temporary_data_ptr = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
     engine_loop_index = memcmp(engine_temporary_data_ptr + 4,&engine_data_a0,0x10);
     if (engine_loop_index < 0) {
@@ -5442,7 +5442,7 @@ void engine_initialize_structure_data(void)
     engine_temporary_data_ptr = engine_next_data_pointer;
     resource_status_flag = *(char *)((longlong)engine_next_data_pointer + 0x19);
   }
-  if ((engine_current_data_pointer == engine_structure_data_ptr) || (engine_loop_index = memcmp(&engine_data_a0,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
+  if ((engine_current_data_pointer == structure_data_pointer) || (engine_loop_index = memcmp(&engine_data_a0,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
     engine_operation_result = engine_allocate_memory_block(engine_main_structure_pointer);
     engine_initialize_memory_block(engine_main_structure_pointer,&engine_stack_variable_10,engine_current_data_pointer,engine_operation_result + 0x20,engine_operation_result);
     engine_current_data_pointer = engine_stack_variable_10;
@@ -5463,7 +5463,7 @@ void engine_process_structure_loop(void)
 
 {
   char resource_status_flag;
-  void* engine_structure_data_ptr;
+  void* structure_data_pointer;
   int engine_loop_index;
   longlong *engine_main_structure_pointer;
   longlong engine_operation_result;
@@ -5474,11 +5474,11 @@ void engine_process_structure_loop(void)
   code *engine_stack_function_pointer_18;
   
   engine_main_structure_pointer = (longlong *)engine_get_system_context();
-  engine_structure_data_ptr = (void*)*engine_main_structure_pointer;
-  resource_status_flag = *(char *)((longlong)engine_structure_data_ptr[1] + 0x19);
+  structure_data_pointer = (void*)*engine_main_structure_pointer;
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
   engine_stack_function_pointer_18 = engine_process_texture_manager;
-  engine_current_data_pointer = engine_structure_data_ptr;
-  engine_temporary_data_ptr = (void*)engine_structure_data_ptr[1];
+  engine_current_data_pointer = structure_data_pointer;
+  engine_temporary_data_ptr = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
     engine_loop_index = memcmp(engine_temporary_data_ptr + 4,&engine_data_78,0x10);
     if (engine_loop_index < 0) {
@@ -5492,7 +5492,7 @@ void engine_process_structure_loop(void)
     engine_temporary_data_ptr = engine_next_data_pointer;
     resource_status_flag = *(char *)((longlong)engine_next_data_pointer + 0x19);
   }
-  if ((engine_current_data_pointer == engine_structure_data_ptr) || (engine_loop_index = memcmp(&engine_data_78,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
+  if ((engine_current_data_pointer == structure_data_pointer) || (engine_loop_index = memcmp(&engine_data_78,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
     engine_operation_result = engine_allocate_memory_block(engine_main_structure_pointer);
     engine_initialize_memory_block(engine_main_structure_pointer,&engine_stack_variable_10,engine_current_data_pointer,engine_operation_result + 0x20,engine_operation_result);
     engine_current_data_pointer = engine_stack_variable_10;
@@ -5513,7 +5513,7 @@ void engine_validate_structure_data(void)
 
 {
   char resource_status_flag;
-  void* engine_structure_data_ptr;
+  void* structure_data_pointer;
   int engine_loop_index;
   longlong *engine_main_structure_pointer;
   longlong engine_operation_result;
@@ -5524,11 +5524,11 @@ void engine_validate_structure_data(void)
   uint64 uStackX_18;
   
   engine_main_structure_pointer = (longlong *)engine_get_system_context();
-  engine_structure_data_ptr = (void*)*engine_main_structure_pointer;
-  resource_status_flag = *(char *)((longlong)engine_structure_data_ptr[1] + 0x19);
+  structure_data_pointer = (void*)*engine_main_structure_pointer;
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
   uStackX_18 = 0;
-  engine_current_data_pointer = engine_structure_data_ptr;
-  engine_temporary_data_ptr = (void*)engine_structure_data_ptr[1];
+  engine_current_data_pointer = structure_data_pointer;
+  engine_temporary_data_ptr = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
     engine_loop_index = memcmp(engine_temporary_data_ptr + 4,&engine_data_180a01050,0x10);
     if (engine_loop_index < 0) {
@@ -5542,7 +5542,7 @@ void engine_validate_structure_data(void)
     engine_temporary_data_ptr = engine_next_data_pointer;
     resource_status_flag = *(char *)((longlong)engine_next_data_pointer + 0x19);
   }
-  if ((engine_current_data_pointer == engine_structure_data_ptr) || (engine_loop_index = memcmp(&engine_data_180a01050,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
+  if ((engine_current_data_pointer == structure_data_pointer) || (engine_loop_index = memcmp(&engine_data_180a01050,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
     engine_operation_result = engine_allocate_memory_block(engine_main_structure_pointer);
     engine_initialize_memory_block(engine_main_structure_pointer,&engine_stack_variable_10,engine_current_data_pointer,engine_operation_result + 0x20,engine_operation_result);
     engine_current_data_pointer = engine_stack_variable_10;
@@ -5563,7 +5563,7 @@ void engine_cleanup_structure_resources(void)
 
 {
   char resource_status_flag;
-  void* engine_structure_data_ptr;
+  void* structure_data_pointer;
   int engine_loop_index;
   longlong *engine_main_structure_pointer;
   longlong engine_operation_result;
@@ -5574,11 +5574,11 @@ void engine_cleanup_structure_resources(void)
   code *engine_stack_function_pointer_18;
   
   engine_main_structure_pointer = (longlong *)engine_get_system_context();
-  engine_structure_data_ptr = (void*)*engine_main_structure_pointer;
-  resource_status_flag = *(char *)((longlong)engine_structure_data_ptr[1] + 0x19);
+  structure_data_pointer = (void*)*engine_main_structure_pointer;
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
   engine_stack_function_pointer_18 = engine_process_shader_manager;
-  engine_current_data_pointer = engine_structure_data_ptr;
-  engine_temporary_data_ptr = (void*)engine_structure_data_ptr[1];
+  engine_current_data_pointer = structure_data_pointer;
+  engine_temporary_data_ptr = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
     engine_loop_index = memcmp(engine_temporary_data_ptr + 4,&engine_data_28,0x10);
     if (engine_loop_index < 0) {
@@ -5592,7 +5592,7 @@ void engine_cleanup_structure_resources(void)
     engine_temporary_data_ptr = engine_next_data_pointer;
     resource_status_flag = *(char *)((longlong)engine_next_data_pointer + 0x19);
   }
-  if ((engine_current_data_pointer == engine_structure_data_ptr) || (engine_loop_index = memcmp(&engine_data_28,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
+  if ((engine_current_data_pointer == structure_data_pointer) || (engine_loop_index = memcmp(&engine_data_28,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
     engine_operation_result = engine_allocate_memory_block(engine_main_structure_pointer);
     engine_initialize_memory_block(engine_main_structure_pointer,&engine_stack_variable_10,engine_current_data_pointer,engine_operation_result + 0x20,engine_operation_result);
     engine_current_data_pointer = engine_stack_variable_10;
@@ -5613,7 +5613,7 @@ void engine_allocate_structure_memory(void)
 
 {
   char resource_status_flag;
-  void* engine_structure_data_ptr;
+  void* structure_data_pointer;
   int engine_loop_index;
   longlong *engine_main_structure_pointer;
   longlong engine_operation_result;
@@ -5624,11 +5624,11 @@ void engine_allocate_structure_memory(void)
   uint64 uStackX_18;
   
   engine_main_structure_pointer = (longlong *)engine_get_system_context();
-  engine_structure_data_ptr = (void*)*engine_main_structure_pointer;
-  resource_status_flag = *(char *)((longlong)engine_structure_data_ptr[1] + 0x19);
+  structure_data_pointer = (void*)*engine_main_structure_pointer;
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
   uStackX_18 = 0;
-  engine_current_data_pointer = engine_structure_data_ptr;
-  engine_temporary_data_ptr = (void*)engine_structure_data_ptr[1];
+  engine_current_data_pointer = structure_data_pointer;
+  engine_temporary_data_ptr = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
     engine_loop_index = memcmp(engine_temporary_data_ptr + 4,&engine_data_180a01000,0x10);
     if (engine_loop_index < 0) {
@@ -5642,7 +5642,7 @@ void engine_allocate_structure_memory(void)
     engine_temporary_data_ptr = engine_next_data_pointer;
     resource_status_flag = *(char *)((longlong)engine_next_data_pointer + 0x19);
   }
-  if ((engine_current_data_pointer == engine_structure_data_ptr) || (engine_loop_index = memcmp(&engine_data_180a01000,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
+  if ((engine_current_data_pointer == structure_data_pointer) || (engine_loop_index = memcmp(&engine_data_180a01000,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
     engine_operation_result = engine_allocate_memory_block(engine_main_structure_pointer);
     engine_initialize_memory_block(engine_main_structure_pointer,&engine_stack_variable_10,engine_current_data_pointer,engine_operation_result + 0x20,engine_operation_result);
     engine_current_data_pointer = engine_stack_variable_10;
@@ -5663,7 +5663,7 @@ void engine_configure_structure_parameters(void)
 
 {
   char resource_status_flag;
-  void* engine_structure_data_ptr;
+  void* structure_data_pointer;
   int engine_loop_index;
   longlong *engine_main_structure_pointer;
   longlong engine_operation_result;
@@ -5674,11 +5674,11 @@ void engine_configure_structure_parameters(void)
   void* engine_stack_pointer_18;
   
   engine_main_structure_pointer = (longlong *)engine_get_system_context();
-  engine_structure_data_ptr = (void*)*engine_main_structure_pointer;
-  resource_status_flag = *(char *)((longlong)engine_structure_data_ptr[1] + 0x19);
+  structure_data_pointer = (void*)*engine_main_structure_pointer;
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
   engine_stack_pointer_18 = &engine_base_data_offset_c0;
-  engine_current_data_pointer = engine_structure_data_ptr;
-  engine_temporary_data_ptr = (void*)engine_structure_data_ptr[1];
+  engine_current_data_pointer = structure_data_pointer;
+  engine_temporary_data_ptr = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
     engine_loop_index = memcmp(engine_temporary_data_ptr + 4,&engine_data_180a00fd8,0x10);
     if (engine_loop_index < 0) {
@@ -5692,7 +5692,7 @@ void engine_configure_structure_parameters(void)
     engine_temporary_data_ptr = engine_next_data_pointer;
     resource_status_flag = *(char *)((longlong)engine_next_data_pointer + 0x19);
   }
-  if ((engine_current_data_pointer == engine_structure_data_ptr) || (engine_loop_index = memcmp(&engine_data_180a00fd8,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
+  if ((engine_current_data_pointer == structure_data_pointer) || (engine_loop_index = memcmp(&engine_data_180a00fd8,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
     engine_operation_result = engine_allocate_memory_block(engine_main_structure_pointer);
     engine_initialize_memory_block(engine_main_structure_pointer,&engine_stack_variable_10,engine_current_data_pointer,engine_operation_result + 0x20,engine_operation_result);
     engine_current_data_pointer = engine_stack_variable_10;
@@ -5713,7 +5713,7 @@ void engine_update_structure_state(void)
 
 {
   char resource_status_flag;
-  void* engine_structure_data_ptr;
+  void* structure_data_pointer;
   int engine_loop_index;
   longlong *engine_main_structure_pointer;
   longlong engine_operation_result;
@@ -5724,11 +5724,11 @@ void engine_update_structure_state(void)
   uint64 uStackX_18;
   
   engine_main_structure_pointer = (longlong *)engine_get_system_context();
-  engine_structure_data_ptr = (void*)*engine_main_structure_pointer;
-  resource_status_flag = *(char *)((longlong)engine_structure_data_ptr[1] + 0x19);
+  structure_data_pointer = (void*)*engine_main_structure_pointer;
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
   uStackX_18 = 0;
-  engine_current_data_pointer = engine_structure_data_ptr;
-  engine_temporary_data_ptr = (void*)engine_structure_data_ptr[1];
+  engine_current_data_pointer = structure_data_pointer;
+  engine_temporary_data_ptr = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
     engine_loop_index = memcmp(engine_temporary_data_ptr + 4,&engine_data_180a00fb0,0x10);
     if (engine_loop_index < 0) {
@@ -5742,7 +5742,7 @@ void engine_update_structure_state(void)
     engine_temporary_data_ptr = engine_next_data_pointer;
     resource_status_flag = *(char *)((longlong)engine_next_data_pointer + 0x19);
   }
-  if ((engine_current_data_pointer == engine_structure_data_ptr) || (engine_loop_index = memcmp(&engine_data_180a00fb0,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
+  if ((engine_current_data_pointer == structure_data_pointer) || (engine_loop_index = memcmp(&engine_data_180a00fb0,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
     engine_operation_result = engine_allocate_memory_block(engine_main_structure_pointer);
     engine_initialize_memory_block(engine_main_structure_pointer,&engine_stack_variable_10,engine_current_data_pointer,engine_operation_result + 0x20,engine_operation_result);
     engine_current_data_pointer = engine_stack_variable_10;
@@ -5763,7 +5763,7 @@ void engine_process_structure_events(void)
 
 {
   char resource_status_flag;
-  void* engine_structure_data_ptr;
+  void* structure_data_pointer;
   int engine_loop_index;
   longlong *engine_main_structure_pointer;
   longlong engine_operation_result;
@@ -5774,11 +5774,11 @@ void engine_process_structure_events(void)
   uint64 uStackX_18;
   
   engine_main_structure_pointer = (longlong *)engine_get_system_context();
-  engine_structure_data_ptr = (void*)*engine_main_structure_pointer;
-  resource_status_flag = *(char *)((longlong)engine_structure_data_ptr[1] + 0x19);
+  structure_data_pointer = (void*)*engine_main_structure_pointer;
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
   uStackX_18 = 0;
-  engine_current_data_pointer = engine_structure_data_ptr;
-  engine_temporary_data_ptr = (void*)engine_structure_data_ptr[1];
+  engine_current_data_pointer = structure_data_pointer;
+  engine_temporary_data_ptr = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
     engine_loop_index = memcmp(engine_temporary_data_ptr + 4,&engine_data_d0,0x10);
     if (engine_loop_index < 0) {
@@ -5792,7 +5792,7 @@ void engine_process_structure_events(void)
     engine_temporary_data_ptr = engine_next_data_pointer;
     resource_status_flag = *(char *)((longlong)engine_next_data_pointer + 0x19);
   }
-  if ((engine_current_data_pointer == engine_structure_data_ptr) || (engine_loop_index = memcmp(&engine_data_d0,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
+  if ((engine_current_data_pointer == structure_data_pointer) || (engine_loop_index = memcmp(&engine_data_d0,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
     engine_operation_result = engine_allocate_memory_block(engine_main_structure_pointer);
     engine_initialize_memory_block(engine_main_structure_pointer,&engine_stack_variable_10,engine_current_data_pointer,engine_operation_result + 0x20,engine_operation_result);
     engine_current_data_pointer = engine_stack_variable_10;
@@ -5837,7 +5837,7 @@ void engine_validate_structure_handles(void)
 
 {
   char resource_status_flag;
-  void* engine_structure_data_ptr;
+  void* structure_data_pointer;
   int engine_loop_index;
   longlong *engine_main_structure_pointer;
   longlong engine_operation_result;
@@ -5848,11 +5848,11 @@ void engine_validate_structure_handles(void)
   code *engine_stack_function_pointer_18;
   
   engine_main_structure_pointer = (longlong *)engine_get_system_context();
-  engine_structure_data_ptr = (void*)*engine_main_structure_pointer;
-  resource_status_flag = *(char *)((longlong)engine_structure_data_ptr[1] + 0x19);
+  structure_data_pointer = (void*)*engine_main_structure_pointer;
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
   engine_stack_function_pointer_18 = engine_initialize_system_context;
-  engine_current_data_pointer = engine_structure_data_ptr;
-  engine_temporary_data_ptr = (void*)engine_structure_data_ptr[1];
+  engine_current_data_pointer = structure_data_pointer;
+  engine_temporary_data_ptr = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
     engine_loop_index = memcmp(engine_temporary_data_ptr + 4,&engine_data_40,0x10);
     if (engine_loop_index < 0) {
@@ -5866,7 +5866,7 @@ void engine_validate_structure_handles(void)
     engine_temporary_data_ptr = engine_next_data_pointer;
     resource_status_flag = *(char *)((longlong)engine_next_data_pointer + 0x19);
   }
-  if ((engine_current_data_pointer == engine_structure_data_ptr) || (engine_loop_index = memcmp(&engine_data_40,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
+  if ((engine_current_data_pointer == structure_data_pointer) || (engine_loop_index = memcmp(&engine_data_40,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
     engine_operation_result = engine_allocate_memory_block(engine_main_structure_pointer);
     engine_initialize_memory_block(engine_main_structure_pointer,&engine_stack_variable_10,engine_current_data_pointer,engine_operation_result + 0x20,engine_operation_result);
     engine_current_data_pointer = engine_stack_variable_10;
@@ -5887,7 +5887,7 @@ void engine_cleanup_structure_handles(void)
 
 {
   char resource_status_flag;
-  void* engine_structure_data_ptr;
+  void* structure_data_pointer;
   int engine_loop_index;
   longlong *engine_main_structure_pointer;
   longlong engine_operation_result;
@@ -5898,11 +5898,11 @@ void engine_cleanup_structure_handles(void)
   uint64 uStackX_18;
   
   engine_main_structure_pointer = (longlong *)engine_get_system_context();
-  engine_structure_data_ptr = (void*)*engine_main_structure_pointer;
-  resource_status_flag = *(char *)((longlong)engine_structure_data_ptr[1] + 0x19);
+  structure_data_pointer = (void*)*engine_main_structure_pointer;
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
   uStackX_18 = 0;
-  engine_current_data_pointer = engine_structure_data_ptr;
-  engine_temporary_data_ptr = (void*)engine_structure_data_ptr[1];
+  engine_current_data_pointer = structure_data_pointer;
+  engine_temporary_data_ptr = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
     engine_loop_index = memcmp(engine_temporary_data_ptr + 4,&engine_data_68,0x10);
     if (engine_loop_index < 0) {
@@ -5916,7 +5916,7 @@ void engine_cleanup_structure_handles(void)
     engine_temporary_data_ptr = engine_next_data_pointer;
     resource_status_flag = *(char *)((longlong)engine_next_data_pointer + 0x19);
   }
-  if ((engine_current_data_pointer == engine_structure_data_ptr) || (engine_loop_index = memcmp(&engine_data_68,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
+  if ((engine_current_data_pointer == structure_data_pointer) || (engine_loop_index = memcmp(&engine_data_68,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
     engine_operation_result = engine_allocate_memory_block(engine_main_structure_pointer);
     engine_initialize_memory_block(engine_main_structure_pointer,&engine_stack_variable_10,engine_current_data_pointer,engine_operation_result + 0x20,engine_operation_result);
     engine_current_data_pointer = engine_stack_variable_10;
@@ -5937,7 +5937,7 @@ void engine_initialize_structure_handles(void)
 
 {
   char resource_status_flag;
-  void* engine_structure_data_ptr;
+  void* structure_data_pointer;
   int engine_loop_index;
   longlong *engine_main_structure_pointer;
   longlong engine_operation_result;
@@ -5948,11 +5948,11 @@ void engine_initialize_structure_handles(void)
   uint64 uStackX_18;
   
   engine_main_structure_pointer = (longlong *)engine_get_system_context();
-  engine_structure_data_ptr = (void*)*engine_main_structure_pointer;
-  resource_status_flag = *(char *)((longlong)engine_structure_data_ptr[1] + 0x19);
+  structure_data_pointer = (void*)*engine_main_structure_pointer;
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
   uStackX_18 = 0;
-  engine_current_data_pointer = engine_structure_data_ptr;
-  engine_temporary_data_ptr = (void*)engine_structure_data_ptr[1];
+  engine_current_data_pointer = structure_data_pointer;
+  engine_temporary_data_ptr = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
     engine_loop_index = memcmp(engine_temporary_data_ptr + 4,&engine_data_b8,0x10);
     if (engine_loop_index < 0) {
@@ -5966,7 +5966,7 @@ void engine_initialize_structure_handles(void)
     engine_temporary_data_ptr = engine_next_data_pointer;
     resource_status_flag = *(char *)((longlong)engine_next_data_pointer + 0x19);
   }
-  if ((engine_current_data_pointer == engine_structure_data_ptr) || (engine_loop_index = memcmp(&engine_data_b8,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
+  if ((engine_current_data_pointer == structure_data_pointer) || (engine_loop_index = memcmp(&engine_data_b8,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
     engine_operation_result = engine_allocate_memory_block(engine_main_structure_pointer);
     engine_initialize_memory_block(engine_main_structure_pointer,&engine_stack_variable_10,engine_current_data_pointer,engine_operation_result + 0x20,engine_operation_result);
     engine_current_data_pointer = engine_stack_variable_10;
@@ -5987,7 +5987,7 @@ void engine_process_structure_requests(void)
 
 {
   char resource_status_flag;
-  void* engine_structure_data_ptr;
+  void* structure_data_pointer;
   int engine_loop_index;
   longlong *engine_main_structure_pointer;
   longlong engine_operation_result;
@@ -5998,11 +5998,11 @@ void engine_process_structure_requests(void)
   uint64 uStackX_18;
   
   engine_main_structure_pointer = (longlong *)engine_get_system_context();
-  engine_structure_data_ptr = (void*)*engine_main_structure_pointer;
-  resource_status_flag = *(char *)((longlong)engine_structure_data_ptr[1] + 0x19);
+  structure_data_pointer = (void*)*engine_main_structure_pointer;
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
   uStackX_18 = 0;
-  engine_current_data_pointer = engine_structure_data_ptr;
-  engine_temporary_data_ptr = (void*)engine_structure_data_ptr[1];
+  engine_current_data_pointer = structure_data_pointer;
+  engine_temporary_data_ptr = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
     engine_loop_index = memcmp(engine_temporary_data_ptr + 4,&engine_data_40,0x10);
     if (engine_loop_index < 0) {
@@ -6016,7 +6016,7 @@ void engine_process_structure_requests(void)
     engine_temporary_data_ptr = engine_next_data_pointer;
     resource_status_flag = *(char *)((longlong)engine_next_data_pointer + 0x19);
   }
-  if ((engine_current_data_pointer == engine_structure_data_ptr) || (engine_loop_index = memcmp(&engine_data_40,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
+  if ((engine_current_data_pointer == structure_data_pointer) || (engine_loop_index = memcmp(&engine_data_40,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
     engine_operation_result = engine_allocate_memory_block(engine_main_structure_pointer);
     engine_initialize_memory_block(engine_main_structure_pointer,&engine_stack_variable_10,engine_current_data_pointer,engine_operation_result + 0x20,engine_operation_result);
     engine_current_data_pointer = engine_stack_variable_10;
@@ -6037,7 +6037,7 @@ void engine_handle_structure_requests(void)
 
 {
   char resource_status_flag;
-  void* engine_structure_data_ptr;
+  void* structure_data_pointer;
   int engine_loop_index;
   longlong *engine_main_structure_pointer;
   longlong engine_operation_result;
@@ -6048,11 +6048,11 @@ void engine_handle_structure_requests(void)
   uint64 uStackX_18;
   
   engine_main_structure_pointer = (longlong *)engine_get_system_context();
-  engine_structure_data_ptr = (void*)*engine_main_structure_pointer;
-  resource_status_flag = *(char *)((longlong)engine_structure_data_ptr[1] + 0x19);
+  structure_data_pointer = (void*)*engine_main_structure_pointer;
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
   uStackX_18 = 0;
-  engine_current_data_pointer = engine_structure_data_ptr;
-  engine_temporary_data_ptr = (void*)engine_structure_data_ptr[1];
+  engine_current_data_pointer = structure_data_pointer;
+  engine_temporary_data_ptr = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
     engine_loop_index = memcmp(engine_temporary_data_ptr + 4,&engine_data_18,0x10);
     if (engine_loop_index < 0) {
@@ -6066,7 +6066,7 @@ void engine_handle_structure_requests(void)
     engine_temporary_data_ptr = engine_next_data_pointer;
     resource_status_flag = *(char *)((longlong)engine_next_data_pointer + 0x19);
   }
-  if ((engine_current_data_pointer == engine_structure_data_ptr) || (engine_loop_index = memcmp(&engine_data_18,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
+  if ((engine_current_data_pointer == structure_data_pointer) || (engine_loop_index = memcmp(&engine_data_18,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
     engine_operation_result = engine_allocate_memory_block(engine_main_structure_pointer);
     engine_initialize_memory_block(engine_main_structure_pointer,&engine_stack_variable_10,engine_current_data_pointer,engine_operation_result + 0x20,engine_operation_result);
     engine_current_data_pointer = engine_stack_variable_10;
@@ -6087,7 +6087,7 @@ void engine_validate_structure_requests(void)
 
 {
   char resource_status_flag;
-  void* engine_structure_data_ptr;
+  void* structure_data_pointer;
   int engine_loop_index;
   longlong *engine_main_structure_pointer;
   longlong engine_operation_result;
@@ -6098,11 +6098,11 @@ void engine_validate_structure_requests(void)
   uint64 uStackX_18;
   
   engine_main_structure_pointer = (longlong *)engine_get_system_context();
-  engine_structure_data_ptr = (void*)*engine_main_structure_pointer;
-  resource_status_flag = *(char *)((longlong)engine_structure_data_ptr[1] + 0x19);
+  structure_data_pointer = (void*)*engine_main_structure_pointer;
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
   uStackX_18 = 0;
-  engine_current_data_pointer = engine_structure_data_ptr;
-  engine_temporary_data_ptr = (void*)engine_structure_data_ptr[1];
+  engine_current_data_pointer = structure_data_pointer;
+  engine_temporary_data_ptr = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
     engine_loop_index = memcmp(engine_temporary_data_ptr + 4,&engine_data_68,0x10);
     if (engine_loop_index < 0) {
@@ -6116,7 +6116,7 @@ void engine_validate_structure_requests(void)
     engine_temporary_data_ptr = engine_next_data_pointer;
     resource_status_flag = *(char *)((longlong)engine_next_data_pointer + 0x19);
   }
-  if ((engine_current_data_pointer == engine_structure_data_ptr) || (engine_loop_index = memcmp(&engine_data_68,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
+  if ((engine_current_data_pointer == structure_data_pointer) || (engine_loop_index = memcmp(&engine_data_68,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
     engine_operation_result = engine_allocate_memory_block(engine_main_structure_pointer);
     engine_initialize_memory_block(engine_main_structure_pointer,&engine_stack_variable_10,engine_current_data_pointer,engine_operation_result + 0x20,engine_operation_result);
     engine_current_data_pointer = engine_stack_variable_10;
@@ -6137,7 +6137,7 @@ void engine_cleanup_structure_requests(void)
 
 {
   char resource_status_flag;
-  void* engine_structure_data_ptr;
+  void* structure_data_pointer;
   int engine_loop_index;
   longlong *engine_main_structure_pointer;
   longlong engine_operation_result;
@@ -6148,11 +6148,11 @@ void engine_cleanup_structure_requests(void)
   uint64 uStackX_18;
   
   engine_main_structure_pointer = (longlong *)engine_get_system_context();
-  engine_structure_data_ptr = (void*)*engine_main_structure_pointer;
-  resource_status_flag = *(char *)((longlong)engine_structure_data_ptr[1] + 0x19);
+  structure_data_pointer = (void*)*engine_main_structure_pointer;
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
   uStackX_18 = 0;
-  engine_current_data_pointer = engine_structure_data_ptr;
-  engine_temporary_data_ptr = (void*)engine_structure_data_ptr[1];
+  engine_current_data_pointer = structure_data_pointer;
+  engine_temporary_data_ptr = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
     engine_loop_index = memcmp(engine_temporary_data_ptr + 4,&engine_data_90,0x10);
     if (engine_loop_index < 0) {
@@ -6166,7 +6166,7 @@ void engine_cleanup_structure_requests(void)
     engine_temporary_data_ptr = engine_next_data_pointer;
     resource_status_flag = *(char *)((longlong)engine_next_data_pointer + 0x19);
   }
-  if ((engine_current_data_pointer == engine_structure_data_ptr) || (engine_loop_index = memcmp(&engine_data_90,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
+  if ((engine_current_data_pointer == structure_data_pointer) || (engine_loop_index = memcmp(&engine_data_90,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
     engine_operation_result = engine_allocate_memory_block(engine_main_structure_pointer);
     engine_initialize_memory_block(engine_main_structure_pointer,&engine_stack_variable_10,engine_current_data_pointer,engine_operation_result + 0x20,engine_operation_result);
     engine_current_data_pointer = engine_stack_variable_10;
@@ -6187,7 +6187,7 @@ void engine_initialize_structure_requests(void)
 
 {
   char resource_status_flag;
-  void* engine_structure_data_ptr;
+  void* structure_data_pointer;
   int engine_loop_index;
   longlong *engine_main_structure_pointer;
   longlong engine_operation_result;
@@ -6198,11 +6198,11 @@ void engine_initialize_structure_requests(void)
   uint64 uStackX_18;
   
   engine_main_structure_pointer = (longlong *)engine_get_system_context();
-  engine_structure_data_ptr = (void*)*engine_main_structure_pointer;
-  resource_status_flag = *(char *)((longlong)engine_structure_data_ptr[1] + 0x19);
+  structure_data_pointer = (void*)*engine_main_structure_pointer;
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
   uStackX_18 = 0;
-  engine_current_data_pointer = engine_structure_data_ptr;
-  engine_temporary_data_ptr = (void*)engine_structure_data_ptr[1];
+  engine_current_data_pointer = structure_data_pointer;
+  engine_temporary_data_ptr = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
     engine_loop_index = memcmp(engine_temporary_data_ptr + 4,&engine_data_e0,0x10);
     if (engine_loop_index < 0) {
@@ -6216,7 +6216,7 @@ void engine_initialize_structure_requests(void)
     engine_temporary_data_ptr = engine_next_data_pointer;
     resource_status_flag = *(char *)((longlong)engine_next_data_pointer + 0x19);
   }
-  if ((engine_current_data_pointer == engine_structure_data_ptr) || (engine_loop_index = memcmp(&engine_data_e0,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
+  if ((engine_current_data_pointer == structure_data_pointer) || (engine_loop_index = memcmp(&engine_data_e0,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
     engine_operation_result = engine_allocate_memory_block(engine_main_structure_pointer);
     engine_initialize_memory_block(engine_main_structure_pointer,&engine_stack_variable_10,engine_current_data_pointer,engine_operation_result + 0x20,engine_operation_result);
     engine_current_data_pointer = engine_stack_variable_10;
@@ -6237,7 +6237,7 @@ void engine_process_structure_operations(void)
 
 {
   char resource_status_flag;
-  void* engine_structure_data_ptr;
+  void* structure_data_pointer;
   int engine_loop_index;
   longlong *engine_main_structure_pointer;
   longlong engine_operation_result;
@@ -6248,11 +6248,11 @@ void engine_process_structure_operations(void)
   code *engine_stack_function_pointer_18;
   
   engine_main_structure_pointer = (longlong *)engine_get_system_context();
-  engine_structure_data_ptr = (void*)*engine_main_structure_pointer;
-  resource_status_flag = *(char *)((longlong)engine_structure_data_ptr[1] + 0x19);
+  structure_data_pointer = (void*)*engine_main_structure_pointer;
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
   engine_stack_function_pointer_18 = void engine_initialize_core_system(void);
-  engine_current_data_pointer = engine_structure_data_ptr;
-  engine_temporary_data_ptr = (void*)engine_structure_data_ptr[1];
+  engine_current_data_pointer = structure_data_pointer;
+  engine_temporary_data_ptr = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
     engine_loop_index = memcmp(engine_temporary_data_ptr + 4,&engine_data_f0,0x10);
     if (engine_loop_index < 0) {
@@ -6266,7 +6266,7 @@ void engine_process_structure_operations(void)
     engine_temporary_data_ptr = engine_next_data_pointer;
     resource_status_flag = *(char *)((longlong)engine_next_data_pointer + 0x19);
   }
-  if ((engine_current_data_pointer == engine_structure_data_ptr) || (engine_loop_index = memcmp(&engine_data_f0,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
+  if ((engine_current_data_pointer == structure_data_pointer) || (engine_loop_index = memcmp(&engine_data_f0,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
     engine_operation_result = engine_allocate_memory_block(engine_main_structure_pointer);
     engine_initialize_memory_block(engine_main_structure_pointer,&engine_stack_variable_10,engine_current_data_pointer,engine_operation_result + 0x20,engine_operation_result);
     engine_current_data_pointer = engine_stack_variable_10;
@@ -6287,7 +6287,7 @@ void engine_handle_structure_operations(void)
 
 {
   char resource_status_flag;
-  void* engine_structure_data_ptr;
+  void* structure_data_pointer;
   int engine_loop_index;
   longlong *engine_main_structure_pointer;
   longlong engine_operation_result;
@@ -6298,11 +6298,11 @@ void engine_handle_structure_operations(void)
   uint64 uStackX_18;
   
   engine_main_structure_pointer = (longlong *)engine_get_system_context();
-  engine_structure_data_ptr = (void*)*engine_main_structure_pointer;
-  resource_status_flag = *(char *)((longlong)engine_structure_data_ptr[1] + 0x19);
+  structure_data_pointer = (void*)*engine_main_structure_pointer;
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
   uStackX_18 = 0;
-  engine_current_data_pointer = engine_structure_data_ptr;
-  engine_temporary_data_ptr = (void*)engine_structure_data_ptr[1];
+  engine_current_data_pointer = structure_data_pointer;
+  engine_temporary_data_ptr = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
     engine_loop_index = memcmp(engine_temporary_data_ptr + 4,&engine_config_data,0x10);
     if (engine_loop_index < 0) {
@@ -6316,7 +6316,7 @@ void engine_handle_structure_operations(void)
     engine_temporary_data_ptr = engine_next_data_pointer;
     resource_status_flag = *(char *)((longlong)engine_next_data_pointer + 0x19);
   }
-  if ((engine_current_data_pointer == engine_structure_data_ptr) || (engine_loop_index = memcmp(&engine_config_data,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
+  if ((engine_current_data_pointer == structure_data_pointer) || (engine_loop_index = memcmp(&engine_config_data,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
     engine_operation_result = engine_allocate_memory_block(engine_main_structure_pointer);
     engine_initialize_memory_block(engine_main_structure_pointer,&engine_stack_variable_10,engine_current_data_pointer,engine_operation_result + 0x20,engine_operation_result);
     engine_current_data_pointer = engine_stack_variable_10;
@@ -6337,7 +6337,7 @@ void engine_validate_structure_operations(void)
 
 {
   char resource_status_flag;
-  void* engine_structure_data_ptr;
+  void* structure_data_pointer;
   int engine_loop_index;
   longlong *engine_main_structure_pointer;
   longlong engine_operation_result;
@@ -6348,11 +6348,11 @@ void engine_validate_structure_operations(void)
   code *engine_stack_function_pointer_18;
   
   engine_main_structure_pointer = (longlong *)engine_get_system_context();
-  engine_structure_data_ptr = (void*)*engine_main_structure_pointer;
-  resource_status_flag = *(char *)((longlong)engine_structure_data_ptr[1] + 0x19);
+  structure_data_pointer = (void*)*engine_main_structure_pointer;
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
   engine_stack_function_pointer_18 = engine_process_resource_manager;
-  engine_current_data_pointer = engine_structure_data_ptr;
-  engine_temporary_data_ptr = (void*)engine_structure_data_ptr[1];
+  engine_current_data_pointer = structure_data_pointer;
+  engine_temporary_data_ptr = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
     engine_loop_index = memcmp(engine_temporary_data_ptr + 4,&engine_system_magic_header,0x10);
     if (engine_loop_index < 0) {
@@ -6366,7 +6366,7 @@ void engine_validate_structure_operations(void)
     engine_temporary_data_ptr = engine_next_data_pointer;
     resource_status_flag = *(char *)((longlong)engine_next_data_pointer + 0x19);
   }
-  if ((engine_current_data_pointer == engine_structure_data_ptr) || (engine_loop_index = memcmp(&engine_system_magic_header,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
+  if ((engine_current_data_pointer == structure_data_pointer) || (engine_loop_index = memcmp(&engine_system_magic_header,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
     engine_operation_result = engine_allocate_memory_block(engine_main_structure_pointer);
     engine_initialize_memory_block(engine_main_structure_pointer,&engine_stack_variable_10,engine_current_data_pointer,engine_operation_result + 0x20,engine_operation_result);
     engine_current_data_pointer = engine_stack_variable_10;
@@ -6603,7 +6603,7 @@ void engine_handle_structure_buffers(void)
 
 {
   char resource_status_flag;
-  void* engine_structure_data_ptr;
+  void* structure_data_pointer;
   int engine_loop_index;
   longlong *engine_main_structure_pointer;
   longlong engine_operation_result;
@@ -6614,11 +6614,11 @@ void engine_handle_structure_buffers(void)
   code *engine_stack_function_pointer_18;
   
   engine_main_structure_pointer = (longlong *)engine_get_system_context();
-  engine_structure_data_ptr = (void*)*engine_main_structure_pointer;
-  resource_status_flag = *(char *)((longlong)engine_structure_data_ptr[1] + 0x19);
+  structure_data_pointer = (void*)*engine_main_structure_pointer;
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
   engine_stack_function_pointer_18 = engine_process_buffer_manager;
-  engine_current_data_pointer = engine_structure_data_ptr;
-  engine_temporary_data_ptr = (void*)engine_structure_data_ptr[1];
+  engine_current_data_pointer = structure_data_pointer;
+  engine_temporary_data_ptr = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
     engine_loop_index = memcmp(engine_temporary_data_ptr + 4,&engine_data_a0,0x10);
     if (engine_loop_index < 0) {
@@ -6632,7 +6632,7 @@ void engine_handle_structure_buffers(void)
     engine_temporary_data_ptr = engine_next_data_pointer;
     resource_status_flag = *(char *)((longlong)engine_next_data_pointer + 0x19);
   }
-  if ((engine_current_data_pointer == engine_structure_data_ptr) || (engine_loop_index = memcmp(&engine_data_a0,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
+  if ((engine_current_data_pointer == structure_data_pointer) || (engine_loop_index = memcmp(&engine_data_a0,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
     engine_operation_result = engine_allocate_memory_block(engine_main_structure_pointer);
     engine_initialize_memory_block(engine_main_structure_pointer,&engine_stack_variable_10,engine_current_data_pointer,engine_operation_result + 0x20,engine_operation_result);
     engine_current_data_pointer = engine_stack_variable_10;
@@ -6653,7 +6653,7 @@ void engine_validate_structure_buffers(void)
 
 {
   char resource_status_flag;
-  void* engine_structure_data_ptr;
+  void* structure_data_pointer;
   int engine_loop_index;
   longlong *engine_main_structure_pointer;
   longlong engine_operation_result;
@@ -6664,11 +6664,11 @@ void engine_validate_structure_buffers(void)
   code *engine_stack_function_pointer_18;
   
   engine_main_structure_pointer = (longlong *)engine_get_system_context();
-  engine_structure_data_ptr = (void*)*engine_main_structure_pointer;
-  resource_status_flag = *(char *)((longlong)engine_structure_data_ptr[1] + 0x19);
+  structure_data_pointer = (void*)*engine_main_structure_pointer;
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
   engine_stack_function_pointer_18 = engine_process_texture_manager;
-  engine_current_data_pointer = engine_structure_data_ptr;
-  engine_temporary_data_ptr = (void*)engine_structure_data_ptr[1];
+  engine_current_data_pointer = structure_data_pointer;
+  engine_temporary_data_ptr = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
     engine_loop_index = memcmp(engine_temporary_data_ptr + 4,&engine_data_78,0x10);
     if (engine_loop_index < 0) {
@@ -6682,7 +6682,7 @@ void engine_validate_structure_buffers(void)
     engine_temporary_data_ptr = engine_next_data_pointer;
     resource_status_flag = *(char *)((longlong)engine_next_data_pointer + 0x19);
   }
-  if ((engine_current_data_pointer == engine_structure_data_ptr) || (engine_loop_index = memcmp(&engine_data_78,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
+  if ((engine_current_data_pointer == structure_data_pointer) || (engine_loop_index = memcmp(&engine_data_78,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
     engine_operation_result = engine_allocate_memory_block(engine_main_structure_pointer);
     engine_initialize_memory_block(engine_main_structure_pointer,&engine_stack_variable_10,engine_current_data_pointer,engine_operation_result + 0x20,engine_operation_result);
     engine_current_data_pointer = engine_stack_variable_10;
@@ -6703,7 +6703,7 @@ void engine_cleanup_structure_buffers(void)
 
 {
   char resource_status_flag;
-  void* engine_structure_data_ptr;
+  void* structure_data_pointer;
   int engine_loop_index;
   longlong *engine_main_structure_pointer;
   longlong engine_operation_result;
@@ -6714,11 +6714,11 @@ void engine_cleanup_structure_buffers(void)
   uint64 uStackX_18;
   
   engine_main_structure_pointer = (longlong *)engine_get_system_context();
-  engine_structure_data_ptr = (void*)*engine_main_structure_pointer;
-  resource_status_flag = *(char *)((longlong)engine_structure_data_ptr[1] + 0x19);
+  structure_data_pointer = (void*)*engine_main_structure_pointer;
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
   uStackX_18 = 0;
-  engine_current_data_pointer = engine_structure_data_ptr;
-  engine_temporary_data_ptr = (void*)engine_structure_data_ptr[1];
+  engine_current_data_pointer = structure_data_pointer;
+  engine_temporary_data_ptr = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
     engine_loop_index = memcmp(engine_temporary_data_ptr + 4,&engine_data_180a01050,0x10);
     if (engine_loop_index < 0) {
@@ -6732,7 +6732,7 @@ void engine_cleanup_structure_buffers(void)
     engine_temporary_data_ptr = engine_next_data_pointer;
     resource_status_flag = *(char *)((longlong)engine_next_data_pointer + 0x19);
   }
-  if ((engine_current_data_pointer == engine_structure_data_ptr) || (engine_loop_index = memcmp(&engine_data_180a01050,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
+  if ((engine_current_data_pointer == structure_data_pointer) || (engine_loop_index = memcmp(&engine_data_180a01050,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
     engine_operation_result = engine_allocate_memory_block(engine_main_structure_pointer);
     engine_initialize_memory_block(engine_main_structure_pointer,&engine_stack_variable_10,engine_current_data_pointer,engine_operation_result + 0x20,engine_operation_result);
     engine_current_data_pointer = engine_stack_variable_10;
@@ -6753,7 +6753,7 @@ void engine_initialize_structure_buffers(void)
 
 {
   char resource_status_flag;
-  void* engine_structure_data_ptr;
+  void* structure_data_pointer;
   int engine_loop_index;
   longlong *engine_main_structure_pointer;
   longlong engine_operation_result;
@@ -6764,11 +6764,11 @@ void engine_initialize_structure_buffers(void)
   code *engine_stack_function_pointer_18;
   
   engine_main_structure_pointer = (longlong *)engine_get_system_context();
-  engine_structure_data_ptr = (void*)*engine_main_structure_pointer;
-  resource_status_flag = *(char *)((longlong)engine_structure_data_ptr[1] + 0x19);
+  structure_data_pointer = (void*)*engine_main_structure_pointer;
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
   engine_stack_function_pointer_18 = engine_process_shader_manager;
-  engine_current_data_pointer = engine_structure_data_ptr;
-  engine_temporary_data_ptr = (void*)engine_structure_data_ptr[1];
+  engine_current_data_pointer = structure_data_pointer;
+  engine_temporary_data_ptr = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
     engine_loop_index = memcmp(engine_temporary_data_ptr + 4,&engine_data_28,0x10);
     if (engine_loop_index < 0) {
@@ -6782,7 +6782,7 @@ void engine_initialize_structure_buffers(void)
     engine_temporary_data_ptr = engine_next_data_pointer;
     resource_status_flag = *(char *)((longlong)engine_next_data_pointer + 0x19);
   }
-  if ((engine_current_data_pointer == engine_structure_data_ptr) || (engine_loop_index = memcmp(&engine_data_28,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
+  if ((engine_current_data_pointer == structure_data_pointer) || (engine_loop_index = memcmp(&engine_data_28,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
     engine_operation_result = engine_allocate_memory_block(engine_main_structure_pointer);
     engine_initialize_memory_block(engine_main_structure_pointer,&engine_stack_variable_10,engine_current_data_pointer,engine_operation_result + 0x20,engine_operation_result);
     engine_current_data_pointer = engine_stack_variable_10;
@@ -6803,7 +6803,7 @@ void engine_process_structure_memory(void)
 
 {
   char resource_status_flag;
-  void* engine_structure_data_ptr;
+  void* structure_data_pointer;
   int engine_loop_index;
   longlong *engine_main_structure_pointer;
   longlong engine_operation_result;
@@ -6814,11 +6814,11 @@ void engine_process_structure_memory(void)
   uint64 uStackX_18;
   
   engine_main_structure_pointer = (longlong *)engine_get_system_context();
-  engine_structure_data_ptr = (void*)*engine_main_structure_pointer;
-  resource_status_flag = *(char *)((longlong)engine_structure_data_ptr[1] + 0x19);
+  structure_data_pointer = (void*)*engine_main_structure_pointer;
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
   uStackX_18 = 0;
-  engine_current_data_pointer = engine_structure_data_ptr;
-  engine_temporary_data_ptr = (void*)engine_structure_data_ptr[1];
+  engine_current_data_pointer = structure_data_pointer;
+  engine_temporary_data_ptr = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
     engine_loop_index = memcmp(engine_temporary_data_ptr + 4,&engine_data_180a01000,0x10);
     if (engine_loop_index < 0) {
@@ -6832,7 +6832,7 @@ void engine_process_structure_memory(void)
     engine_temporary_data_ptr = engine_next_data_pointer;
     resource_status_flag = *(char *)((longlong)engine_next_data_pointer + 0x19);
   }
-  if ((engine_current_data_pointer == engine_structure_data_ptr) || (engine_loop_index = memcmp(&engine_data_180a01000,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
+  if ((engine_current_data_pointer == structure_data_pointer) || (engine_loop_index = memcmp(&engine_data_180a01000,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
     engine_operation_result = engine_allocate_memory_block(engine_main_structure_pointer);
     engine_initialize_memory_block(engine_main_structure_pointer,&engine_stack_variable_10,engine_current_data_pointer,engine_operation_result + 0x20,engine_operation_result);
     engine_current_data_pointer = engine_stack_variable_10;
@@ -6853,7 +6853,7 @@ void engine_handle_structure_memory(void)
 
 {
   char resource_status_flag;
-  void* engine_structure_data_ptr;
+  void* structure_data_pointer;
   int engine_loop_index;
   longlong *engine_main_structure_pointer;
   longlong engine_operation_result;
@@ -6864,11 +6864,11 @@ void engine_handle_structure_memory(void)
   void* engine_stack_pointer_18;
   
   engine_main_structure_pointer = (longlong *)engine_get_system_context();
-  engine_structure_data_ptr = (void*)*engine_main_structure_pointer;
-  resource_status_flag = *(char *)((longlong)engine_structure_data_ptr[1] + 0x19);
+  structure_data_pointer = (void*)*engine_main_structure_pointer;
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
   engine_stack_pointer_18 = &engine_base_data_offset_c0;
-  engine_current_data_pointer = engine_structure_data_ptr;
-  engine_temporary_data_ptr = (void*)engine_structure_data_ptr[1];
+  engine_current_data_pointer = structure_data_pointer;
+  engine_temporary_data_ptr = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
     engine_loop_index = memcmp(engine_temporary_data_ptr + 4,&engine_data_180a00fd8,0x10);
     if (engine_loop_index < 0) {
@@ -6882,7 +6882,7 @@ void engine_handle_structure_memory(void)
     engine_temporary_data_ptr = engine_next_data_pointer;
     resource_status_flag = *(char *)((longlong)engine_next_data_pointer + 0x19);
   }
-  if ((engine_current_data_pointer == engine_structure_data_ptr) || (engine_loop_index = memcmp(&engine_data_180a00fd8,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
+  if ((engine_current_data_pointer == structure_data_pointer) || (engine_loop_index = memcmp(&engine_data_180a00fd8,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
     engine_operation_result = engine_allocate_memory_block(engine_main_structure_pointer);
     engine_initialize_memory_block(engine_main_structure_pointer,&engine_stack_variable_10,engine_current_data_pointer,engine_operation_result + 0x20,engine_operation_result);
     engine_current_data_pointer = engine_stack_variable_10;
@@ -6903,7 +6903,7 @@ void engine_validate_structure_memory(void)
 
 {
   char resource_status_flag;
-  void* engine_structure_data_ptr;
+  void* structure_data_pointer;
   int engine_loop_index;
   longlong *engine_main_structure_pointer;
   longlong engine_operation_result;
@@ -6914,11 +6914,11 @@ void engine_validate_structure_memory(void)
   uint64 uStackX_18;
   
   engine_main_structure_pointer = (longlong *)engine_get_system_context();
-  engine_structure_data_ptr = (void*)*engine_main_structure_pointer;
-  resource_status_flag = *(char *)((longlong)engine_structure_data_ptr[1] + 0x19);
+  structure_data_pointer = (void*)*engine_main_structure_pointer;
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
   uStackX_18 = 0;
-  engine_current_data_pointer = engine_structure_data_ptr;
-  engine_temporary_data_ptr = (void*)engine_structure_data_ptr[1];
+  engine_current_data_pointer = structure_data_pointer;
+  engine_temporary_data_ptr = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
     engine_loop_index = memcmp(engine_temporary_data_ptr + 4,&engine_data_180a00fb0,0x10);
     if (engine_loop_index < 0) {
@@ -6932,7 +6932,7 @@ void engine_validate_structure_memory(void)
     engine_temporary_data_ptr = engine_next_data_pointer;
     resource_status_flag = *(char *)((longlong)engine_next_data_pointer + 0x19);
   }
-  if ((engine_current_data_pointer == engine_structure_data_ptr) || (engine_loop_index = memcmp(&engine_data_180a00fb0,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
+  if ((engine_current_data_pointer == structure_data_pointer) || (engine_loop_index = memcmp(&engine_data_180a00fb0,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
     engine_operation_result = engine_allocate_memory_block(engine_main_structure_pointer);
     engine_initialize_memory_block(engine_main_structure_pointer,&engine_stack_variable_10,engine_current_data_pointer,engine_operation_result + 0x20,engine_operation_result);
     engine_current_data_pointer = engine_stack_variable_10;
@@ -6953,7 +6953,7 @@ void engine_cleanup_structure_memory(void)
 
 {
   char resource_status_flag;
-  void* engine_structure_data_ptr;
+  void* structure_data_pointer;
   int engine_loop_index;
   longlong *engine_main_structure_pointer;
   longlong engine_operation_result;
@@ -6964,11 +6964,11 @@ void engine_cleanup_structure_memory(void)
   code *engine_stack_function_pointer_18;
   
   engine_main_structure_pointer = (longlong *)engine_get_system_context();
-  engine_structure_data_ptr = (void*)*engine_main_structure_pointer;
-  resource_status_flag = *(char *)((longlong)engine_structure_data_ptr[1] + 0x19);
+  structure_data_pointer = (void*)*engine_main_structure_pointer;
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
   engine_stack_function_pointer_18 = engine_process_buffer_manager;
-  engine_current_data_pointer = engine_structure_data_ptr;
-  engine_temporary_data_ptr = (void*)engine_structure_data_ptr[1];
+  engine_current_data_pointer = structure_data_pointer;
+  engine_temporary_data_ptr = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
     engine_loop_index = memcmp(engine_temporary_data_ptr + 4,&engine_data_a0,0x10);
     if (engine_loop_index < 0) {
@@ -6982,7 +6982,7 @@ void engine_cleanup_structure_memory(void)
     engine_temporary_data_ptr = engine_next_data_pointer;
     resource_status_flag = *(char *)((longlong)engine_next_data_pointer + 0x19);
   }
-  if ((engine_current_data_pointer == engine_structure_data_ptr) || (engine_loop_index = memcmp(&engine_data_a0,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
+  if ((engine_current_data_pointer == structure_data_pointer) || (engine_loop_index = memcmp(&engine_data_a0,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
     engine_operation_result = engine_allocate_memory_block(engine_main_structure_pointer);
     engine_initialize_memory_block(engine_main_structure_pointer,&engine_stack_variable_10,engine_current_data_pointer,engine_operation_result + 0x20,engine_operation_result);
     engine_current_data_pointer = engine_stack_variable_10;
@@ -7003,7 +7003,7 @@ void engine_initialize_structure_memory(void)
 
 {
   char resource_status_flag;
-  void* engine_structure_data_ptr;
+  void* structure_data_pointer;
   int engine_loop_index;
   longlong *engine_main_structure_pointer;
   longlong engine_operation_result;
@@ -7014,11 +7014,11 @@ void engine_initialize_structure_memory(void)
   code *engine_stack_function_pointer_18;
   
   engine_main_structure_pointer = (longlong *)engine_get_system_context();
-  engine_structure_data_ptr = (void*)*engine_main_structure_pointer;
-  resource_status_flag = *(char *)((longlong)engine_structure_data_ptr[1] + 0x19);
+  structure_data_pointer = (void*)*engine_main_structure_pointer;
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
   engine_stack_function_pointer_18 = engine_process_texture_manager;
-  engine_current_data_pointer = engine_structure_data_ptr;
-  engine_temporary_data_ptr = (void*)engine_structure_data_ptr[1];
+  engine_current_data_pointer = structure_data_pointer;
+  engine_temporary_data_ptr = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
     engine_loop_index = memcmp(engine_temporary_data_ptr + 4,&engine_data_78,0x10);
     if (engine_loop_index < 0) {
@@ -7032,7 +7032,7 @@ void engine_initialize_structure_memory(void)
     engine_temporary_data_ptr = engine_next_data_pointer;
     resource_status_flag = *(char *)((longlong)engine_next_data_pointer + 0x19);
   }
-  if ((engine_current_data_pointer == engine_structure_data_ptr) || (engine_loop_index = memcmp(&engine_data_78,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
+  if ((engine_current_data_pointer == structure_data_pointer) || (engine_loop_index = memcmp(&engine_data_78,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
     engine_operation_result = engine_allocate_memory_block(engine_main_structure_pointer);
     engine_initialize_memory_block(engine_main_structure_pointer,&engine_stack_variable_10,engine_current_data_pointer,engine_operation_result + 0x20,engine_operation_result);
     engine_current_data_pointer = engine_stack_variable_10;
@@ -7053,7 +7053,7 @@ void engine_process_structure_pointers(void)
 
 {
   char resource_status_flag;
-  void* engine_structure_data_ptr;
+  void* structure_data_pointer;
   int engine_loop_index;
   longlong *engine_main_structure_pointer;
   longlong engine_operation_result;
@@ -7064,11 +7064,11 @@ void engine_process_structure_pointers(void)
   uint64 uStackX_18;
   
   engine_main_structure_pointer = (longlong *)engine_get_system_context();
-  engine_structure_data_ptr = (void*)*engine_main_structure_pointer;
-  resource_status_flag = *(char *)((longlong)engine_structure_data_ptr[1] + 0x19);
+  structure_data_pointer = (void*)*engine_main_structure_pointer;
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
   uStackX_18 = 0;
-  engine_current_data_pointer = engine_structure_data_ptr;
-  engine_temporary_data_ptr = (void*)engine_structure_data_ptr[1];
+  engine_current_data_pointer = structure_data_pointer;
+  engine_temporary_data_ptr = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
     engine_loop_index = memcmp(engine_temporary_data_ptr + 4,&engine_data_180a01050,0x10);
     if (engine_loop_index < 0) {
@@ -7082,7 +7082,7 @@ void engine_process_structure_pointers(void)
     engine_temporary_data_ptr = engine_next_data_pointer;
     resource_status_flag = *(char *)((longlong)engine_next_data_pointer + 0x19);
   }
-  if ((engine_current_data_pointer == engine_structure_data_ptr) || (engine_loop_index = memcmp(&engine_data_180a01050,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
+  if ((engine_current_data_pointer == structure_data_pointer) || (engine_loop_index = memcmp(&engine_data_180a01050,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
     engine_operation_result = engine_allocate_memory_block(engine_main_structure_pointer);
     engine_initialize_memory_block(engine_main_structure_pointer,&engine_stack_variable_10,engine_current_data_pointer,engine_operation_result + 0x20,engine_operation_result);
     engine_current_data_pointer = engine_stack_variable_10;
@@ -7103,7 +7103,7 @@ void engine_handle_structure_pointers(void)
 
 {
   char resource_status_flag;
-  void* engine_structure_data_ptr;
+  void* structure_data_pointer;
   int engine_loop_index;
   longlong *engine_main_structure_pointer;
   longlong engine_operation_result;
@@ -7114,11 +7114,11 @@ void engine_handle_structure_pointers(void)
   code *engine_stack_function_pointer_18;
   
   engine_main_structure_pointer = (longlong *)engine_get_system_context();
-  engine_structure_data_ptr = (void*)*engine_main_structure_pointer;
-  resource_status_flag = *(char *)((longlong)engine_structure_data_ptr[1] + 0x19);
+  structure_data_pointer = (void*)*engine_main_structure_pointer;
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
   engine_stack_function_pointer_18 = engine_process_shader_manager;
-  engine_current_data_pointer = engine_structure_data_ptr;
-  engine_temporary_data_ptr = (void*)engine_structure_data_ptr[1];
+  engine_current_data_pointer = structure_data_pointer;
+  engine_temporary_data_ptr = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
     engine_loop_index = memcmp(engine_temporary_data_ptr + 4,&engine_data_28,0x10);
     if (engine_loop_index < 0) {
@@ -7132,7 +7132,7 @@ void engine_handle_structure_pointers(void)
     engine_temporary_data_ptr = engine_next_data_pointer;
     resource_status_flag = *(char *)((longlong)engine_next_data_pointer + 0x19);
   }
-  if ((engine_current_data_pointer == engine_structure_data_ptr) || (engine_loop_index = memcmp(&engine_data_28,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
+  if ((engine_current_data_pointer == structure_data_pointer) || (engine_loop_index = memcmp(&engine_data_28,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
     engine_operation_result = engine_allocate_memory_block(engine_main_structure_pointer);
     engine_initialize_memory_block(engine_main_structure_pointer,&engine_stack_variable_10,engine_current_data_pointer,engine_operation_result + 0x20,engine_operation_result);
     engine_current_data_pointer = engine_stack_variable_10;
@@ -7153,7 +7153,7 @@ void engine_validate_structure_pointers(void)
 
 {
   char resource_status_flag;
-  void* engine_structure_data_ptr;
+  void* structure_data_pointer;
   int engine_loop_index;
   longlong *engine_main_structure_pointer;
   longlong engine_operation_result;
@@ -7164,11 +7164,11 @@ void engine_validate_structure_pointers(void)
   uint64 uStackX_18;
   
   engine_main_structure_pointer = (longlong *)engine_get_system_context();
-  engine_structure_data_ptr = (void*)*engine_main_structure_pointer;
-  resource_status_flag = *(char *)((longlong)engine_structure_data_ptr[1] + 0x19);
+  structure_data_pointer = (void*)*engine_main_structure_pointer;
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
   uStackX_18 = 0;
-  engine_current_data_pointer = engine_structure_data_ptr;
-  engine_temporary_data_ptr = (void*)engine_structure_data_ptr[1];
+  engine_current_data_pointer = structure_data_pointer;
+  engine_temporary_data_ptr = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
     engine_loop_index = memcmp(engine_temporary_data_ptr + 4,&engine_data_180a01000,0x10);
     if (engine_loop_index < 0) {
@@ -7182,7 +7182,7 @@ void engine_validate_structure_pointers(void)
     engine_temporary_data_ptr = engine_next_data_pointer;
     resource_status_flag = *(char *)((longlong)engine_next_data_pointer + 0x19);
   }
-  if ((engine_current_data_pointer == engine_structure_data_ptr) || (engine_loop_index = memcmp(&engine_data_180a01000,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
+  if ((engine_current_data_pointer == structure_data_pointer) || (engine_loop_index = memcmp(&engine_data_180a01000,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
     engine_operation_result = engine_allocate_memory_block(engine_main_structure_pointer);
     engine_initialize_memory_block(engine_main_structure_pointer,&engine_stack_variable_10,engine_current_data_pointer,engine_operation_result + 0x20,engine_operation_result);
     engine_current_data_pointer = engine_stack_variable_10;
@@ -7203,7 +7203,7 @@ void engine_cleanup_structure_pointers(void)
 
 {
   char resource_status_flag;
-  void* engine_structure_data_ptr;
+  void* structure_data_pointer;
   int engine_loop_index;
   longlong *engine_main_structure_pointer;
   longlong engine_operation_result;
@@ -7214,11 +7214,11 @@ void engine_cleanup_structure_pointers(void)
   void* engine_stack_pointer_18;
   
   engine_main_structure_pointer = (longlong *)engine_get_system_context();
-  engine_structure_data_ptr = (void*)*engine_main_structure_pointer;
-  resource_status_flag = *(char *)((longlong)engine_structure_data_ptr[1] + 0x19);
+  structure_data_pointer = (void*)*engine_main_structure_pointer;
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
   engine_stack_pointer_18 = &engine_base_data_offset_c0;
-  engine_current_data_pointer = engine_structure_data_ptr;
-  engine_temporary_data_ptr = (void*)engine_structure_data_ptr[1];
+  engine_current_data_pointer = structure_data_pointer;
+  engine_temporary_data_ptr = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
     engine_loop_index = memcmp(engine_temporary_data_ptr + 4,&engine_data_180a00fd8,0x10);
     if (engine_loop_index < 0) {
@@ -7232,7 +7232,7 @@ void engine_cleanup_structure_pointers(void)
     engine_temporary_data_ptr = engine_next_data_pointer;
     resource_status_flag = *(char *)((longlong)engine_next_data_pointer + 0x19);
   }
-  if ((engine_current_data_pointer == engine_structure_data_ptr) || (engine_loop_index = memcmp(&engine_data_180a00fd8,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
+  if ((engine_current_data_pointer == structure_data_pointer) || (engine_loop_index = memcmp(&engine_data_180a00fd8,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
     engine_operation_result = engine_allocate_memory_block(engine_main_structure_pointer);
     engine_initialize_memory_block(engine_main_structure_pointer,&engine_stack_variable_10,engine_current_data_pointer,engine_operation_result + 0x20,engine_operation_result);
     engine_current_data_pointer = engine_stack_variable_10;
@@ -7253,7 +7253,7 @@ void engine_initialize_structure_pointers(void)
 
 {
   char resource_status_flag;
-  void* engine_structure_data_ptr;
+  void* structure_data_pointer;
   int engine_loop_index;
   longlong *engine_main_structure_pointer;
   longlong engine_operation_result;
@@ -7264,11 +7264,11 @@ void engine_initialize_structure_pointers(void)
   uint64 uStackX_18;
   
   engine_main_structure_pointer = (longlong *)engine_get_system_context();
-  engine_structure_data_ptr = (void*)*engine_main_structure_pointer;
-  resource_status_flag = *(char *)((longlong)engine_structure_data_ptr[1] + 0x19);
+  structure_data_pointer = (void*)*engine_main_structure_pointer;
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
   uStackX_18 = 0;
-  engine_current_data_pointer = engine_structure_data_ptr;
-  engine_temporary_data_ptr = (void*)engine_structure_data_ptr[1];
+  engine_current_data_pointer = structure_data_pointer;
+  engine_temporary_data_ptr = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
     engine_loop_index = memcmp(engine_temporary_data_ptr + 4,&engine_data_180a00fb0,0x10);
     if (engine_loop_index < 0) {
@@ -7282,7 +7282,7 @@ void engine_initialize_structure_pointers(void)
     engine_temporary_data_ptr = engine_next_data_pointer;
     resource_status_flag = *(char *)((longlong)engine_next_data_pointer + 0x19);
   }
-  if ((engine_current_data_pointer == engine_structure_data_ptr) || (engine_loop_index = memcmp(&engine_data_180a00fb0,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
+  if ((engine_current_data_pointer == structure_data_pointer) || (engine_loop_index = memcmp(&engine_data_180a00fb0,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
     engine_operation_result = engine_allocate_memory_block(engine_main_structure_pointer);
     engine_initialize_memory_block(engine_main_structure_pointer,&engine_stack_variable_10,engine_current_data_pointer,engine_operation_result + 0x20,engine_operation_result);
     engine_current_data_pointer = engine_stack_variable_10;
@@ -7303,7 +7303,7 @@ void engine_process_structure_arrays(void)
 
 {
   char resource_status_flag;
-  void* engine_structure_data_ptr;
+  void* structure_data_pointer;
   int engine_loop_index;
   longlong *engine_main_structure_pointer;
   longlong engine_operation_result;
@@ -7314,11 +7314,11 @@ void engine_process_structure_arrays(void)
   code *engine_stack_function_pointer_18;
   
   engine_main_structure_pointer = (longlong *)engine_get_system_context();
-  engine_structure_data_ptr = (void*)*engine_main_structure_pointer;
-  resource_status_flag = *(char *)((longlong)engine_structure_data_ptr[1] + 0x19);
+  structure_data_pointer = (void*)*engine_main_structure_pointer;
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
   engine_stack_function_pointer_18 = engine_process_buffer_manager;
-  engine_current_data_pointer = engine_structure_data_ptr;
-  engine_temporary_data_ptr = (void*)engine_structure_data_ptr[1];
+  engine_current_data_pointer = structure_data_pointer;
+  engine_temporary_data_ptr = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
     engine_loop_index = memcmp(engine_temporary_data_ptr + 4,&engine_data_a0,0x10);
     if (engine_loop_index < 0) {
@@ -7332,7 +7332,7 @@ void engine_process_structure_arrays(void)
     engine_temporary_data_ptr = engine_next_data_pointer;
     resource_status_flag = *(char *)((longlong)engine_next_data_pointer + 0x19);
   }
-  if ((engine_current_data_pointer == engine_structure_data_ptr) || (engine_loop_index = memcmp(&engine_data_a0,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
+  if ((engine_current_data_pointer == structure_data_pointer) || (engine_loop_index = memcmp(&engine_data_a0,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
     engine_operation_result = engine_allocate_memory_block(engine_main_structure_pointer);
     engine_initialize_memory_block(engine_main_structure_pointer,&engine_stack_variable_10,engine_current_data_pointer,engine_operation_result + 0x20,engine_operation_result);
     engine_current_data_pointer = engine_stack_variable_10;
@@ -7353,7 +7353,7 @@ void engine_handle_structure_arrays(void)
 
 {
   char resource_status_flag;
-  void* engine_structure_data_ptr;
+  void* structure_data_pointer;
   int engine_loop_index;
   longlong *engine_main_structure_pointer;
   longlong engine_operation_result;
@@ -7364,11 +7364,11 @@ void engine_handle_structure_arrays(void)
   code *engine_stack_function_pointer_18;
   
   engine_main_structure_pointer = (longlong *)engine_get_system_context();
-  engine_structure_data_ptr = (void*)*engine_main_structure_pointer;
-  resource_status_flag = *(char *)((longlong)engine_structure_data_ptr[1] + 0x19);
+  structure_data_pointer = (void*)*engine_main_structure_pointer;
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
   engine_stack_function_pointer_18 = engine_process_texture_manager;
-  engine_current_data_pointer = engine_structure_data_ptr;
-  engine_temporary_data_ptr = (void*)engine_structure_data_ptr[1];
+  engine_current_data_pointer = structure_data_pointer;
+  engine_temporary_data_ptr = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
     engine_loop_index = memcmp(engine_temporary_data_ptr + 4,&engine_data_78,0x10);
     if (engine_loop_index < 0) {
@@ -7382,7 +7382,7 @@ void engine_handle_structure_arrays(void)
     engine_temporary_data_ptr = engine_next_data_pointer;
     resource_status_flag = *(char *)((longlong)engine_next_data_pointer + 0x19);
   }
-  if ((engine_current_data_pointer == engine_structure_data_ptr) || (engine_loop_index = memcmp(&engine_data_78,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
+  if ((engine_current_data_pointer == structure_data_pointer) || (engine_loop_index = memcmp(&engine_data_78,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
     engine_operation_result = engine_allocate_memory_block(engine_main_structure_pointer);
     engine_initialize_memory_block(engine_main_structure_pointer,&engine_stack_variable_10,engine_current_data_pointer,engine_operation_result + 0x20,engine_operation_result);
     engine_current_data_pointer = engine_stack_variable_10;
@@ -7403,7 +7403,7 @@ void engine_validate_structure_arrays(void)
 
 {
   char resource_status_flag;
-  void* engine_structure_data_ptr;
+  void* structure_data_pointer;
   int engine_loop_index;
   longlong *engine_main_structure_pointer;
   longlong engine_operation_result;
@@ -7414,11 +7414,11 @@ void engine_validate_structure_arrays(void)
   uint64 uStackX_18;
   
   engine_main_structure_pointer = (longlong *)engine_get_system_context();
-  engine_structure_data_ptr = (void*)*engine_main_structure_pointer;
-  resource_status_flag = *(char *)((longlong)engine_structure_data_ptr[1] + 0x19);
+  structure_data_pointer = (void*)*engine_main_structure_pointer;
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
   uStackX_18 = 0;
-  engine_current_data_pointer = engine_structure_data_ptr;
-  engine_temporary_data_ptr = (void*)engine_structure_data_ptr[1];
+  engine_current_data_pointer = structure_data_pointer;
+  engine_temporary_data_ptr = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
     engine_loop_index = memcmp(engine_temporary_data_ptr + 4,&engine_data_180a01050,0x10);
     if (engine_loop_index < 0) {
@@ -7432,7 +7432,7 @@ void engine_validate_structure_arrays(void)
     engine_temporary_data_ptr = engine_next_data_pointer;
     resource_status_flag = *(char *)((longlong)engine_next_data_pointer + 0x19);
   }
-  if ((engine_current_data_pointer == engine_structure_data_ptr) || (engine_loop_index = memcmp(&engine_data_180a01050,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
+  if ((engine_current_data_pointer == structure_data_pointer) || (engine_loop_index = memcmp(&engine_data_180a01050,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
     engine_operation_result = engine_allocate_memory_block(engine_main_structure_pointer);
     engine_initialize_memory_block(engine_main_structure_pointer,&engine_stack_variable_10,engine_current_data_pointer,engine_operation_result + 0x20,engine_operation_result);
     engine_current_data_pointer = engine_stack_variable_10;
@@ -7453,7 +7453,7 @@ void engine_cleanup_structure_arrays(void)
 
 {
   char resource_status_flag;
-  void* engine_structure_data_ptr;
+  void* structure_data_pointer;
   int engine_loop_index;
   longlong *engine_main_structure_pointer;
   longlong engine_operation_result;
@@ -7464,11 +7464,11 @@ void engine_cleanup_structure_arrays(void)
   code *engine_stack_function_pointer_18;
   
   engine_main_structure_pointer = (longlong *)engine_get_system_context();
-  engine_structure_data_ptr = (void*)*engine_main_structure_pointer;
-  resource_status_flag = *(char *)((longlong)engine_structure_data_ptr[1] + 0x19);
+  structure_data_pointer = (void*)*engine_main_structure_pointer;
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
   engine_stack_function_pointer_18 = engine_process_shader_manager;
-  engine_current_data_pointer = engine_structure_data_ptr;
-  engine_temporary_data_ptr = (void*)engine_structure_data_ptr[1];
+  engine_current_data_pointer = structure_data_pointer;
+  engine_temporary_data_ptr = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
     engine_loop_index = memcmp(engine_temporary_data_ptr + 4,&engine_data_28,0x10);
     if (engine_loop_index < 0) {
@@ -7482,7 +7482,7 @@ void engine_cleanup_structure_arrays(void)
     engine_temporary_data_ptr = engine_next_data_pointer;
     resource_status_flag = *(char *)((longlong)engine_next_data_pointer + 0x19);
   }
-  if ((engine_current_data_pointer == engine_structure_data_ptr) || (engine_loop_index = memcmp(&engine_data_28,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
+  if ((engine_current_data_pointer == structure_data_pointer) || (engine_loop_index = memcmp(&engine_data_28,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
     engine_operation_result = engine_allocate_memory_block(engine_main_structure_pointer);
     engine_initialize_memory_block(engine_main_structure_pointer,&engine_stack_variable_10,engine_current_data_pointer,engine_operation_result + 0x20,engine_operation_result);
     engine_current_data_pointer = engine_stack_variable_10;
@@ -7503,7 +7503,7 @@ void engine_initialize_structure_arrays(void)
 
 {
   char resource_status_flag;
-  void* engine_structure_data_ptr;
+  void* structure_data_pointer;
   int engine_loop_index;
   longlong *engine_main_structure_pointer;
   longlong engine_operation_result;
@@ -7514,11 +7514,11 @@ void engine_initialize_structure_arrays(void)
   uint64 uStackX_18;
   
   engine_main_structure_pointer = (longlong *)engine_get_system_context();
-  engine_structure_data_ptr = (void*)*engine_main_structure_pointer;
-  resource_status_flag = *(char *)((longlong)engine_structure_data_ptr[1] + 0x19);
+  structure_data_pointer = (void*)*engine_main_structure_pointer;
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
   uStackX_18 = 0;
-  engine_current_data_pointer = engine_structure_data_ptr;
-  engine_temporary_data_ptr = (void*)engine_structure_data_ptr[1];
+  engine_current_data_pointer = structure_data_pointer;
+  engine_temporary_data_ptr = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
     engine_loop_index = memcmp(engine_temporary_data_ptr + 4,&engine_data_180a01000,0x10);
     if (engine_loop_index < 0) {
@@ -7532,7 +7532,7 @@ void engine_initialize_structure_arrays(void)
     engine_temporary_data_ptr = engine_next_data_pointer;
     resource_status_flag = *(char *)((longlong)engine_next_data_pointer + 0x19);
   }
-  if ((engine_current_data_pointer == engine_structure_data_ptr) || (engine_loop_index = memcmp(&engine_data_180a01000,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
+  if ((engine_current_data_pointer == structure_data_pointer) || (engine_loop_index = memcmp(&engine_data_180a01000,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
     engine_operation_result = engine_allocate_memory_block(engine_main_structure_pointer);
     engine_initialize_memory_block(engine_main_structure_pointer,&engine_stack_variable_10,engine_current_data_pointer,engine_operation_result + 0x20,engine_operation_result);
     engine_current_data_pointer = engine_stack_variable_10;
@@ -7553,7 +7553,7 @@ void engine_process_structure_lists(void)
 
 {
   char resource_status_flag;
-  void* engine_structure_data_ptr;
+  void* structure_data_pointer;
   int engine_loop_index;
   longlong *engine_main_structure_pointer;
   longlong engine_operation_result;
@@ -7564,11 +7564,11 @@ void engine_process_structure_lists(void)
   void* engine_stack_pointer_18;
   
   engine_main_structure_pointer = (longlong *)engine_get_system_context();
-  engine_structure_data_ptr = (void*)*engine_main_structure_pointer;
-  resource_status_flag = *(char *)((longlong)engine_structure_data_ptr[1] + 0x19);
+  structure_data_pointer = (void*)*engine_main_structure_pointer;
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
   engine_stack_pointer_18 = &engine_base_data_offset_c0;
-  engine_current_data_pointer = engine_structure_data_ptr;
-  engine_temporary_data_ptr = (void*)engine_structure_data_ptr[1];
+  engine_current_data_pointer = structure_data_pointer;
+  engine_temporary_data_ptr = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
     engine_loop_index = memcmp(engine_temporary_data_ptr + 4,&engine_data_180a00fd8,0x10);
     if (engine_loop_index < 0) {
@@ -7582,7 +7582,7 @@ void engine_process_structure_lists(void)
     engine_temporary_data_ptr = engine_next_data_pointer;
     resource_status_flag = *(char *)((longlong)engine_next_data_pointer + 0x19);
   }
-  if ((engine_current_data_pointer == engine_structure_data_ptr) || (engine_loop_index = memcmp(&engine_data_180a00fd8,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
+  if ((engine_current_data_pointer == structure_data_pointer) || (engine_loop_index = memcmp(&engine_data_180a00fd8,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
     engine_operation_result = engine_allocate_memory_block(engine_main_structure_pointer);
     engine_initialize_memory_block(engine_main_structure_pointer,&engine_stack_variable_10,engine_current_data_pointer,engine_operation_result + 0x20,engine_operation_result);
     engine_current_data_pointer = engine_stack_variable_10;
@@ -7603,7 +7603,7 @@ void engine_handle_structure_lists(void)
 
 {
   char resource_status_flag;
-  void* engine_structure_data_ptr;
+  void* structure_data_pointer;
   int engine_loop_index;
   longlong *engine_main_structure_pointer;
   longlong engine_operation_result;
@@ -7614,11 +7614,11 @@ void engine_handle_structure_lists(void)
   uint64 uStackX_18;
   
   engine_main_structure_pointer = (longlong *)engine_get_system_context();
-  engine_structure_data_ptr = (void*)*engine_main_structure_pointer;
-  resource_status_flag = *(char *)((longlong)engine_structure_data_ptr[1] + 0x19);
+  structure_data_pointer = (void*)*engine_main_structure_pointer;
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
   uStackX_18 = 0;
-  engine_current_data_pointer = engine_structure_data_ptr;
-  engine_temporary_data_ptr = (void*)engine_structure_data_ptr[1];
+  engine_current_data_pointer = structure_data_pointer;
+  engine_temporary_data_ptr = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
     engine_loop_index = memcmp(engine_temporary_data_ptr + 4,&engine_data_180a00fb0,0x10);
     if (engine_loop_index < 0) {
@@ -7632,7 +7632,7 @@ void engine_handle_structure_lists(void)
     engine_temporary_data_ptr = engine_next_data_pointer;
     resource_status_flag = *(char *)((longlong)engine_next_data_pointer + 0x19);
   }
-  if ((engine_current_data_pointer == engine_structure_data_ptr) || (engine_loop_index = memcmp(&engine_data_180a00fb0,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
+  if ((engine_current_data_pointer == structure_data_pointer) || (engine_loop_index = memcmp(&engine_data_180a00fb0,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
     engine_operation_result = engine_allocate_memory_block(engine_main_structure_pointer);
     engine_initialize_memory_block(engine_main_structure_pointer,&engine_stack_variable_10,engine_current_data_pointer,engine_operation_result + 0x20,engine_operation_result);
     engine_current_data_pointer = engine_stack_variable_10;
@@ -7653,7 +7653,7 @@ void engine_validate_structure_lists(void)
 
 {
   char resource_status_flag;
-  void* engine_structure_data_ptr;
+  void* structure_data_pointer;
   int engine_loop_index;
   longlong *engine_main_structure_pointer;
   longlong engine_operation_result;
@@ -7664,11 +7664,11 @@ void engine_validate_structure_lists(void)
   code *engine_stack_function_pointer_18;
   
   engine_main_structure_pointer = (longlong *)engine_get_system_context();
-  engine_structure_data_ptr = (void*)*engine_main_structure_pointer;
-  resource_status_flag = *(char *)((longlong)engine_structure_data_ptr[1] + 0x19);
+  structure_data_pointer = (void*)*engine_main_structure_pointer;
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
   engine_stack_function_pointer_18 = engine_process_buffer_manager;
-  engine_current_data_pointer = engine_structure_data_ptr;
-  engine_temporary_data_ptr = (void*)engine_structure_data_ptr[1];
+  engine_current_data_pointer = structure_data_pointer;
+  engine_temporary_data_ptr = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
     engine_loop_index = memcmp(engine_temporary_data_ptr + 4,&engine_data_a0,0x10);
     if (engine_loop_index < 0) {
@@ -7682,7 +7682,7 @@ void engine_validate_structure_lists(void)
     engine_temporary_data_ptr = engine_next_data_pointer;
     resource_status_flag = *(char *)((longlong)engine_next_data_pointer + 0x19);
   }
-  if ((engine_current_data_pointer == engine_structure_data_ptr) || (engine_loop_index = memcmp(&engine_data_a0,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
+  if ((engine_current_data_pointer == structure_data_pointer) || (engine_loop_index = memcmp(&engine_data_a0,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
     engine_operation_result = engine_allocate_memory_block(engine_main_structure_pointer);
     engine_initialize_memory_block(engine_main_structure_pointer,&engine_stack_variable_10,engine_current_data_pointer,engine_operation_result + 0x20,engine_operation_result);
     engine_current_data_pointer = engine_stack_variable_10;
@@ -7703,7 +7703,7 @@ void engine_cleanup_structure_lists(void)
 
 {
   char resource_status_flag;
-  void* engine_structure_data_ptr;
+  void* structure_data_pointer;
   int engine_loop_index;
   longlong *engine_main_structure_pointer;
   longlong engine_operation_result;
@@ -7714,11 +7714,11 @@ void engine_cleanup_structure_lists(void)
   code *engine_stack_function_pointer_18;
   
   engine_main_structure_pointer = (longlong *)engine_get_system_context();
-  engine_structure_data_ptr = (void*)*engine_main_structure_pointer;
-  resource_status_flag = *(char *)((longlong)engine_structure_data_ptr[1] + 0x19);
+  structure_data_pointer = (void*)*engine_main_structure_pointer;
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
   engine_stack_function_pointer_18 = engine_process_texture_manager;
-  engine_current_data_pointer = engine_structure_data_ptr;
-  engine_temporary_data_ptr = (void*)engine_structure_data_ptr[1];
+  engine_current_data_pointer = structure_data_pointer;
+  engine_temporary_data_ptr = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
     engine_loop_index = memcmp(engine_temporary_data_ptr + 4,&engine_data_78,0x10);
     if (engine_loop_index < 0) {
@@ -7732,7 +7732,7 @@ void engine_cleanup_structure_lists(void)
     engine_temporary_data_ptr = engine_next_data_pointer;
     resource_status_flag = *(char *)((longlong)engine_next_data_pointer + 0x19);
   }
-  if ((engine_current_data_pointer == engine_structure_data_ptr) || (engine_loop_index = memcmp(&engine_data_78,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
+  if ((engine_current_data_pointer == structure_data_pointer) || (engine_loop_index = memcmp(&engine_data_78,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
     engine_operation_result = engine_allocate_memory_block(engine_main_structure_pointer);
     engine_initialize_memory_block(engine_main_structure_pointer,&engine_stack_variable_10,engine_current_data_pointer,engine_operation_result + 0x20,engine_operation_result);
     engine_current_data_pointer = engine_stack_variable_10;
@@ -7753,7 +7753,7 @@ void engine_initialize_structure_lists(void)
 
 {
   char resource_status_flag;
-  void* engine_structure_data_ptr;
+  void* structure_data_pointer;
   int engine_loop_index;
   longlong *engine_main_structure_pointer;
   longlong engine_operation_result;
@@ -7764,11 +7764,11 @@ void engine_initialize_structure_lists(void)
   uint64 uStackX_18;
   
   engine_main_structure_pointer = (longlong *)engine_get_system_context();
-  engine_structure_data_ptr = (void*)*engine_main_structure_pointer;
-  resource_status_flag = *(char *)((longlong)engine_structure_data_ptr[1] + 0x19);
+  structure_data_pointer = (void*)*engine_main_structure_pointer;
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
   uStackX_18 = 0;
-  engine_current_data_pointer = engine_structure_data_ptr;
-  engine_temporary_data_ptr = (void*)engine_structure_data_ptr[1];
+  engine_current_data_pointer = structure_data_pointer;
+  engine_temporary_data_ptr = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
     engine_loop_index = memcmp(engine_temporary_data_ptr + 4,&engine_data_180a01050,0x10);
     if (engine_loop_index < 0) {
@@ -7782,7 +7782,7 @@ void engine_initialize_structure_lists(void)
     engine_temporary_data_ptr = engine_next_data_pointer;
     resource_status_flag = *(char *)((longlong)engine_next_data_pointer + 0x19);
   }
-  if ((engine_current_data_pointer == engine_structure_data_ptr) || (engine_loop_index = memcmp(&engine_data_180a01050,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
+  if ((engine_current_data_pointer == structure_data_pointer) || (engine_loop_index = memcmp(&engine_data_180a01050,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
     engine_operation_result = engine_allocate_memory_block(engine_main_structure_pointer);
     engine_initialize_memory_block(engine_main_structure_pointer,&engine_stack_variable_10,engine_current_data_pointer,engine_operation_result + 0x20,engine_operation_result);
     engine_current_data_pointer = engine_stack_variable_10;
@@ -7803,7 +7803,7 @@ void engine_process_structure_queues(void)
 
 {
   char resource_status_flag;
-  void* engine_structure_data_ptr;
+  void* structure_data_pointer;
   int engine_loop_index;
   longlong *engine_main_structure_pointer;
   longlong engine_operation_result;
@@ -7814,11 +7814,11 @@ void engine_process_structure_queues(void)
   code *engine_stack_function_pointer_18;
   
   engine_main_structure_pointer = (longlong *)engine_get_system_context();
-  engine_structure_data_ptr = (void*)*engine_main_structure_pointer;
-  resource_status_flag = *(char *)((longlong)engine_structure_data_ptr[1] + 0x19);
+  structure_data_pointer = (void*)*engine_main_structure_pointer;
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
   engine_stack_function_pointer_18 = engine_process_shader_manager;
-  engine_current_data_pointer = engine_structure_data_ptr;
-  engine_temporary_data_ptr = (void*)engine_structure_data_ptr[1];
+  engine_current_data_pointer = structure_data_pointer;
+  engine_temporary_data_ptr = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
     engine_loop_index = memcmp(engine_temporary_data_ptr + 4,&engine_data_28,0x10);
     if (engine_loop_index < 0) {
@@ -7832,7 +7832,7 @@ void engine_process_structure_queues(void)
     engine_temporary_data_ptr = engine_next_data_pointer;
     resource_status_flag = *(char *)((longlong)engine_next_data_pointer + 0x19);
   }
-  if ((engine_current_data_pointer == engine_structure_data_ptr) || (engine_loop_index = memcmp(&engine_data_28,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
+  if ((engine_current_data_pointer == structure_data_pointer) || (engine_loop_index = memcmp(&engine_data_28,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
     engine_operation_result = engine_allocate_memory_block(engine_main_structure_pointer);
     engine_initialize_memory_block(engine_main_structure_pointer,&engine_stack_variable_10,engine_current_data_pointer,engine_operation_result + 0x20,engine_operation_result);
     engine_current_data_pointer = engine_stack_variable_10;
@@ -7853,7 +7853,7 @@ void engine_handle_structure_queues(void)
 
 {
   char resource_status_flag;
-  void* engine_structure_data_ptr;
+  void* structure_data_pointer;
   int engine_loop_index;
   longlong *engine_main_structure_pointer;
   longlong engine_operation_result;
@@ -7864,11 +7864,11 @@ void engine_handle_structure_queues(void)
   uint64 uStackX_18;
   
   engine_main_structure_pointer = (longlong *)engine_get_system_context();
-  engine_structure_data_ptr = (void*)*engine_main_structure_pointer;
-  resource_status_flag = *(char *)((longlong)engine_structure_data_ptr[1] + 0x19);
+  structure_data_pointer = (void*)*engine_main_structure_pointer;
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
   uStackX_18 = 0;
-  engine_current_data_pointer = engine_structure_data_ptr;
-  engine_temporary_data_ptr = (void*)engine_structure_data_ptr[1];
+  engine_current_data_pointer = structure_data_pointer;
+  engine_temporary_data_ptr = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
     engine_loop_index = memcmp(engine_temporary_data_ptr + 4,&engine_data_180a01000,0x10);
     if (engine_loop_index < 0) {
@@ -7882,7 +7882,7 @@ void engine_handle_structure_queues(void)
     engine_temporary_data_ptr = engine_next_data_pointer;
     resource_status_flag = *(char *)((longlong)engine_next_data_pointer + 0x19);
   }
-  if ((engine_current_data_pointer == engine_structure_data_ptr) || (engine_loop_index = memcmp(&engine_data_180a01000,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
+  if ((engine_current_data_pointer == structure_data_pointer) || (engine_loop_index = memcmp(&engine_data_180a01000,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
     engine_operation_result = engine_allocate_memory_block(engine_main_structure_pointer);
     engine_initialize_memory_block(engine_main_structure_pointer,&engine_stack_variable_10,engine_current_data_pointer,engine_operation_result + 0x20,engine_operation_result);
     engine_current_data_pointer = engine_stack_variable_10;
@@ -7903,7 +7903,7 @@ void engine_core_initialize_updates(void)
 
 {
   char resource_status_flag;
-  void* engine_structure_data_ptr;
+  void* structure_data_pointer;
   int engine_loop_index;
   longlong *engine_main_structure_pointer;
   longlong engine_operation_result;
@@ -7914,11 +7914,11 @@ void engine_core_initialize_updates(void)
   uint64 uStackX_18;
   
   engine_main_structure_pointer = (longlong *)engine_get_system_context();
-  engine_structure_data_ptr = (void*)*engine_main_structure_pointer;
-  resource_status_flag = *(char *)((longlong)engine_structure_data_ptr[1] + 0x19);
+  structure_data_pointer = (void*)*engine_main_structure_pointer;
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
   uStackX_18 = 0;
-  engine_current_data_pointer = engine_structure_data_ptr;
-  engine_temporary_data_ptr = (void*)engine_structure_data_ptr[1];
+  engine_current_data_pointer = structure_data_pointer;
+  engine_temporary_data_ptr = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
     engine_loop_index = memcmp(engine_temporary_data_ptr + 4,&engine_data_40,0x10);
     if (engine_loop_index < 0) {
@@ -7932,7 +7932,7 @@ void engine_core_initialize_updates(void)
     engine_temporary_data_ptr = engine_next_data_pointer;
     resource_status_flag = *(char *)((longlong)engine_next_data_pointer + 0x19);
   }
-  if ((engine_current_data_pointer == engine_structure_data_ptr) || (engine_loop_index = memcmp(&engine_data_40,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
+  if ((engine_current_data_pointer == structure_data_pointer) || (engine_loop_index = memcmp(&engine_data_40,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
     engine_operation_result = engine_allocate_memory_block(engine_main_structure_pointer);
     engine_initialize_memory_block(engine_main_structure_pointer,&engine_stack_variable_10,engine_current_data_pointer,engine_operation_result + 0x20,engine_operation_result);
     engine_current_data_pointer = engine_stack_variable_10;
@@ -7953,7 +7953,7 @@ void engine_core_setup_updatesystem(void)
 
 {
   char resource_status_flag;
-  void* engine_structure_data_ptr;
+  void* structure_data_pointer;
   int engine_loop_index;
   longlong *engine_main_structure_pointer;
   longlong engine_operation_result;
@@ -7964,11 +7964,11 @@ void engine_core_setup_updatesystem(void)
   uint64 uStackX_18;
   
   engine_main_structure_pointer = (longlong *)engine_get_system_context();
-  engine_structure_data_ptr = (void*)*engine_main_structure_pointer;
-  resource_status_flag = *(char *)((longlong)engine_structure_data_ptr[1] + 0x19);
+  structure_data_pointer = (void*)*engine_main_structure_pointer;
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
   uStackX_18 = 0;
-  engine_current_data_pointer = engine_structure_data_ptr;
-  engine_temporary_data_ptr = (void*)engine_structure_data_ptr[1];
+  engine_current_data_pointer = structure_data_pointer;
+  engine_temporary_data_ptr = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
     engine_loop_index = memcmp(engine_temporary_data_ptr + 4,&engine_data_18,0x10);
     if (engine_loop_index < 0) {
@@ -7982,7 +7982,7 @@ void engine_core_setup_updatesystem(void)
     engine_temporary_data_ptr = engine_next_data_pointer;
     resource_status_flag = *(char *)((longlong)engine_next_data_pointer + 0x19);
   }
-  if ((engine_current_data_pointer == engine_structure_data_ptr) || (engine_loop_index = memcmp(&engine_data_18,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
+  if ((engine_current_data_pointer == structure_data_pointer) || (engine_loop_index = memcmp(&engine_data_18,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
     engine_operation_result = engine_allocate_memory_block(engine_main_structure_pointer);
     engine_initialize_memory_block(engine_main_structure_pointer,&engine_stack_variable_10,engine_current_data_pointer,engine_operation_result + 0x20,engine_operation_result);
     engine_current_data_pointer = engine_stack_variable_10;
@@ -8003,7 +8003,7 @@ void engine_core_initialize_drm(void)
 
 {
   char resource_status_flag;
-  void* engine_structure_data_ptr;
+  void* structure_data_pointer;
   int engine_loop_index;
   longlong *engine_main_structure_pointer;
   longlong engine_operation_result;
@@ -8014,11 +8014,11 @@ void engine_core_initialize_drm(void)
   uint64 uStackX_18;
   
   engine_main_structure_pointer = (longlong *)engine_get_system_context();
-  engine_structure_data_ptr = (void*)*engine_main_structure_pointer;
-  resource_status_flag = *(char *)((longlong)engine_structure_data_ptr[1] + 0x19);
+  structure_data_pointer = (void*)*engine_main_structure_pointer;
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
   uStackX_18 = 0;
-  engine_current_data_pointer = engine_structure_data_ptr;
-  engine_temporary_data_ptr = (void*)engine_structure_data_ptr[1];
+  engine_current_data_pointer = structure_data_pointer;
+  engine_temporary_data_ptr = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
     engine_loop_index = memcmp(engine_temporary_data_ptr + 4,&engine_data_68,0x10);
     if (engine_loop_index < 0) {
@@ -8032,7 +8032,7 @@ void engine_core_initialize_drm(void)
     engine_temporary_data_ptr = engine_next_data_pointer;
     resource_status_flag = *(char *)((longlong)engine_next_data_pointer + 0x19);
   }
-  if ((engine_current_data_pointer == engine_structure_data_ptr) || (engine_loop_index = memcmp(&engine_data_68,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
+  if ((engine_current_data_pointer == structure_data_pointer) || (engine_loop_index = memcmp(&engine_data_68,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
     engine_operation_result = engine_allocate_memory_block(engine_main_structure_pointer);
     engine_initialize_memory_block(engine_main_structure_pointer,&engine_stack_variable_10,engine_current_data_pointer,engine_operation_result + 0x20,engine_operation_result);
     engine_current_data_pointer = engine_stack_variable_10;
@@ -8053,7 +8053,7 @@ void engine_core_setup_drmsystem(void)
 
 {
   char resource_status_flag;
-  void* engine_structure_data_ptr;
+  void* structure_data_pointer;
   int engine_loop_index;
   longlong *engine_main_structure_pointer;
   longlong engine_operation_result;
@@ -8064,11 +8064,11 @@ void engine_core_setup_drmsystem(void)
   uint64 uStackX_18;
   
   engine_main_structure_pointer = (longlong *)engine_get_system_context();
-  engine_structure_data_ptr = (void*)*engine_main_structure_pointer;
-  resource_status_flag = *(char *)((longlong)engine_structure_data_ptr[1] + 0x19);
+  structure_data_pointer = (void*)*engine_main_structure_pointer;
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
   uStackX_18 = 0;
-  engine_current_data_pointer = engine_structure_data_ptr;
-  engine_temporary_data_ptr = (void*)engine_structure_data_ptr[1];
+  engine_current_data_pointer = structure_data_pointer;
+  engine_temporary_data_ptr = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
     engine_loop_index = memcmp(engine_temporary_data_ptr + 4,&engine_data_90,0x10);
     if (engine_loop_index < 0) {
@@ -8082,7 +8082,7 @@ void engine_core_setup_drmsystem(void)
     engine_temporary_data_ptr = engine_next_data_pointer;
     resource_status_flag = *(char *)((longlong)engine_next_data_pointer + 0x19);
   }
-  if ((engine_current_data_pointer == engine_structure_data_ptr) || (engine_loop_index = memcmp(&engine_data_90,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
+  if ((engine_current_data_pointer == structure_data_pointer) || (engine_loop_index = memcmp(&engine_data_90,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
     engine_operation_result = engine_allocate_memory_block(engine_main_structure_pointer);
     engine_initialize_memory_block(engine_main_structure_pointer,&engine_stack_variable_10,engine_current_data_pointer,engine_operation_result + 0x20,engine_operation_result);
     engine_current_data_pointer = engine_stack_variable_10;
@@ -8103,7 +8103,7 @@ void engine_core_initialize_anticheat(void)
 
 {
   char resource_status_flag;
-  void* engine_structure_data_ptr;
+  void* structure_data_pointer;
   int engine_loop_index;
   longlong *engine_main_structure_pointer;
   longlong engine_operation_result;
@@ -8114,11 +8114,11 @@ void engine_core_initialize_anticheat(void)
   uint64 uStackX_18;
   
   engine_main_structure_pointer = (longlong *)engine_get_system_context();
-  engine_structure_data_ptr = (void*)*engine_main_structure_pointer;
-  resource_status_flag = *(char *)((longlong)engine_structure_data_ptr[1] + 0x19);
+  structure_data_pointer = (void*)*engine_main_structure_pointer;
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
   uStackX_18 = 0;
-  engine_current_data_pointer = engine_structure_data_ptr;
-  engine_temporary_data_ptr = (void*)engine_structure_data_ptr[1];
+  engine_current_data_pointer = structure_data_pointer;
+  engine_temporary_data_ptr = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
     engine_loop_index = memcmp(engine_temporary_data_ptr + 4,&engine_data_e0,0x10);
     if (engine_loop_index < 0) {
@@ -8132,7 +8132,7 @@ void engine_core_initialize_anticheat(void)
     engine_temporary_data_ptr = engine_next_data_pointer;
     resource_status_flag = *(char *)((longlong)engine_next_data_pointer + 0x19);
   }
-  if ((engine_current_data_pointer == engine_structure_data_ptr) || (engine_loop_index = memcmp(&engine_data_e0,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
+  if ((engine_current_data_pointer == structure_data_pointer) || (engine_loop_index = memcmp(&engine_data_e0,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
     engine_operation_result = engine_allocate_memory_block(engine_main_structure_pointer);
     engine_initialize_memory_block(engine_main_structure_pointer,&engine_stack_variable_10,engine_current_data_pointer,engine_operation_result + 0x20,engine_operation_result);
     engine_current_data_pointer = engine_stack_variable_10;
@@ -8153,7 +8153,7 @@ void engine_core_setup_anticheatsystem(void)
 
 {
   char resource_status_flag;
-  void* engine_structure_data_ptr;
+  void* structure_data_pointer;
   int engine_loop_index;
   longlong *engine_main_structure_pointer;
   longlong engine_operation_result;
@@ -8164,11 +8164,11 @@ void engine_core_setup_anticheatsystem(void)
   code *engine_stack_function_pointer_18;
   
   engine_main_structure_pointer = (longlong *)engine_get_system_context();
-  engine_structure_data_ptr = (void*)*engine_main_structure_pointer;
-  resource_status_flag = *(char *)((longlong)engine_structure_data_ptr[1] + 0x19);
+  structure_data_pointer = (void*)*engine_main_structure_pointer;
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
   engine_stack_function_pointer_18 = void engine_initialize_core_system(void);
-  engine_current_data_pointer = engine_structure_data_ptr;
-  engine_temporary_data_ptr = (void*)engine_structure_data_ptr[1];
+  engine_current_data_pointer = structure_data_pointer;
+  engine_temporary_data_ptr = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
     engine_loop_index = memcmp(engine_temporary_data_ptr + 4,&engine_data_f0,0x10);
     if (engine_loop_index < 0) {
@@ -8182,7 +8182,7 @@ void engine_core_setup_anticheatsystem(void)
     engine_temporary_data_ptr = engine_next_data_pointer;
     resource_status_flag = *(char *)((longlong)engine_next_data_pointer + 0x19);
   }
-  if ((engine_current_data_pointer == engine_structure_data_ptr) || (engine_loop_index = memcmp(&engine_data_f0,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
+  if ((engine_current_data_pointer == structure_data_pointer) || (engine_loop_index = memcmp(&engine_data_f0,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
     engine_operation_result = engine_allocate_memory_block(engine_main_structure_pointer);
     engine_initialize_memory_block(engine_main_structure_pointer,&engine_stack_variable_10,engine_current_data_pointer,engine_operation_result + 0x20,engine_operation_result);
     engine_current_data_pointer = engine_stack_variable_10;
@@ -8203,7 +8203,7 @@ void engine_core_initialize_social(void)
 
 {
   char resource_status_flag;
-  void* engine_structure_data_ptr;
+  void* structure_data_pointer;
   int engine_loop_index;
   longlong *engine_main_structure_pointer;
   longlong engine_operation_result;
@@ -8214,11 +8214,11 @@ void engine_core_initialize_social(void)
   uint64 uStackX_18;
   
   engine_main_structure_pointer = (longlong *)engine_get_system_context();
-  engine_structure_data_ptr = (void*)*engine_main_structure_pointer;
-  resource_status_flag = *(char *)((longlong)engine_structure_data_ptr[1] + 0x19);
+  structure_data_pointer = (void*)*engine_main_structure_pointer;
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
   uStackX_18 = 0;
-  engine_current_data_pointer = engine_structure_data_ptr;
-  engine_temporary_data_ptr = (void*)engine_structure_data_ptr[1];
+  engine_current_data_pointer = structure_data_pointer;
+  engine_temporary_data_ptr = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
     engine_loop_index = memcmp(engine_temporary_data_ptr + 4,&engine_config_data,0x10);
     if (engine_loop_index < 0) {
@@ -8232,7 +8232,7 @@ void engine_core_initialize_social(void)
     engine_temporary_data_ptr = engine_next_data_pointer;
     resource_status_flag = *(char *)((longlong)engine_next_data_pointer + 0x19);
   }
-  if ((engine_current_data_pointer == engine_structure_data_ptr) || (engine_loop_index = memcmp(&engine_config_data,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
+  if ((engine_current_data_pointer == structure_data_pointer) || (engine_loop_index = memcmp(&engine_config_data,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
     engine_operation_result = engine_allocate_memory_block(engine_main_structure_pointer);
     engine_initialize_memory_block(engine_main_structure_pointer,&engine_stack_variable_10,engine_current_data_pointer,engine_operation_result + 0x20,engine_operation_result);
     engine_current_data_pointer = engine_stack_variable_10;
@@ -8253,7 +8253,7 @@ void engine_core_setup_socialsystem(void)
 
 {
   char resource_status_flag;
-  void* engine_structure_data_ptr;
+  void* structure_data_pointer;
   int engine_loop_index;
   longlong *engine_main_structure_pointer;
   longlong engine_operation_result;
@@ -8264,11 +8264,11 @@ void engine_core_setup_socialsystem(void)
   uint64 uStackX_18;
   
   engine_main_structure_pointer = (longlong *)engine_get_system_context();
-  engine_structure_data_ptr = (void*)*engine_main_structure_pointer;
-  resource_status_flag = *(char *)((longlong)engine_structure_data_ptr[1] + 0x19);
+  structure_data_pointer = (void*)*engine_main_structure_pointer;
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
   uStackX_18 = 0;
-  engine_current_data_pointer = engine_structure_data_ptr;
-  engine_temporary_data_ptr = (void*)engine_structure_data_ptr[1];
+  engine_current_data_pointer = structure_data_pointer;
+  engine_temporary_data_ptr = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
     engine_loop_index = memcmp(engine_temporary_data_ptr + 4,&engine_data_60,0x10);
     if (engine_loop_index < 0) {
@@ -8282,7 +8282,7 @@ void engine_core_setup_socialsystem(void)
     engine_temporary_data_ptr = engine_next_data_pointer;
     resource_status_flag = *(char *)((longlong)engine_next_data_pointer + 0x19);
   }
-  if ((engine_current_data_pointer == engine_structure_data_ptr) || (engine_loop_index = memcmp(&engine_data_60,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
+  if ((engine_current_data_pointer == structure_data_pointer) || (engine_loop_index = memcmp(&engine_data_60,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
     engine_operation_result = engine_allocate_memory_block(engine_main_structure_pointer);
     engine_initialize_memory_block(engine_main_structure_pointer,&engine_stack_variable_10,engine_current_data_pointer,engine_operation_result + 0x20,engine_operation_result);
     engine_current_data_pointer = engine_stack_variable_10;
@@ -8303,7 +8303,7 @@ void engine_core_initialize_community(void)
 
 {
   char resource_status_flag;
-  void* engine_structure_data_ptr;
+  void* structure_data_pointer;
   int engine_loop_index;
   longlong *engine_main_structure_pointer;
   longlong engine_operation_result;
@@ -8314,11 +8314,11 @@ void engine_core_initialize_community(void)
   uint64 uStackX_18;
   
   engine_main_structure_pointer = (longlong *)engine_get_system_context();
-  engine_structure_data_ptr = (void*)*engine_main_structure_pointer;
-  resource_status_flag = *(char *)((longlong)engine_structure_data_ptr[1] + 0x19);
+  structure_data_pointer = (void*)*engine_main_structure_pointer;
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
   uStackX_18 = 0;
-  engine_current_data_pointer = engine_structure_data_ptr;
-  engine_temporary_data_ptr = (void*)engine_structure_data_ptr[1];
+  engine_current_data_pointer = structure_data_pointer;
+  engine_temporary_data_ptr = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
     engine_loop_index = memcmp(engine_temporary_data_ptr + 4,&engine_data_90,0x10);
     if (engine_loop_index < 0) {
@@ -8332,7 +8332,7 @@ void engine_core_initialize_community(void)
     engine_temporary_data_ptr = engine_next_data_pointer;
     resource_status_flag = *(char *)((longlong)engine_next_data_pointer + 0x19);
   }
-  if ((engine_current_data_pointer == engine_structure_data_ptr) || (engine_loop_index = memcmp(&engine_data_90,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
+  if ((engine_current_data_pointer == structure_data_pointer) || (engine_loop_index = memcmp(&engine_data_90,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
     engine_operation_result = engine_allocate_memory_block(engine_main_structure_pointer);
     engine_initialize_memory_block(engine_main_structure_pointer,&engine_stack_variable_10,engine_current_data_pointer,engine_operation_result + 0x20,engine_operation_result);
     engine_current_data_pointer = engine_stack_variable_10;
@@ -8353,7 +8353,7 @@ void engine_core_setup_communitysystem(void)
 
 {
   char resource_status_flag;
-  void* engine_structure_data_ptr;
+  void* structure_data_pointer;
   int engine_loop_index;
   longlong *engine_main_structure_pointer;
   longlong engine_operation_result;
@@ -8364,11 +8364,11 @@ void engine_core_setup_communitysystem(void)
   code *engine_stack_function_pointer_18;
   
   engine_main_structure_pointer = (longlong *)engine_get_system_context();
-  engine_structure_data_ptr = (void*)*engine_main_structure_pointer;
-  resource_status_flag = *(char *)((longlong)engine_structure_data_ptr[1] + 0x19);
+  structure_data_pointer = (void*)*engine_main_structure_pointer;
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
   engine_stack_function_pointer_18 = engine_process_resource_manager;
-  engine_current_data_pointer = engine_structure_data_ptr;
-  engine_temporary_data_ptr = (void*)engine_structure_data_ptr[1];
+  engine_current_data_pointer = structure_data_pointer;
+  engine_temporary_data_ptr = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
     engine_loop_index = memcmp(engine_temporary_data_ptr + 4,&engine_system_magic_header,0x10);
     if (engine_loop_index < 0) {
@@ -8382,7 +8382,7 @@ void engine_core_setup_communitysystem(void)
     engine_temporary_data_ptr = engine_next_data_pointer;
     resource_status_flag = *(char *)((longlong)engine_next_data_pointer + 0x19);
   }
-  if ((engine_current_data_pointer == engine_structure_data_ptr) || (engine_loop_index = memcmp(&engine_system_magic_header,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
+  if ((engine_current_data_pointer == structure_data_pointer) || (engine_loop_index = memcmp(&engine_system_magic_header,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
     engine_operation_result = engine_allocate_memory_block(engine_main_structure_pointer);
     engine_initialize_memory_block(engine_main_structure_pointer,&engine_stack_variable_10,engine_current_data_pointer,engine_operation_result + 0x20,engine_operation_result);
     engine_current_data_pointer = engine_stack_variable_10;
@@ -8403,7 +8403,7 @@ void engine_core_initialize_content(void)
 
 {
   char resource_status_flag;
-  void* engine_structure_data_ptr;
+  void* structure_data_pointer;
   int engine_loop_index;
   longlong *engine_main_structure_pointer;
   longlong engine_operation_result;
@@ -8414,11 +8414,11 @@ void engine_core_initialize_content(void)
   code *engine_stack_function_pointer_18;
   
   engine_main_structure_pointer = (longlong *)engine_get_system_context();
-  engine_structure_data_ptr = (void*)*engine_main_structure_pointer;
-  resource_status_flag = *(char *)((longlong)engine_structure_data_ptr[1] + 0x19);
+  structure_data_pointer = (void*)*engine_main_structure_pointer;
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
   engine_stack_function_pointer_18 = engine_configure_render_pipeline;
-  engine_current_data_pointer = engine_structure_data_ptr;
-  engine_temporary_data_ptr = (void*)engine_structure_data_ptr[1];
+  engine_current_data_pointer = structure_data_pointer;
+  engine_temporary_data_ptr = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
     engine_loop_index = memcmp(engine_temporary_data_ptr + 4,&engine_data_180a00e28,0x10);
     if (engine_loop_index < 0) {
@@ -8432,7 +8432,7 @@ void engine_core_initialize_content(void)
     engine_temporary_data_ptr = engine_next_data_pointer;
     resource_status_flag = *(char *)((longlong)engine_next_data_pointer + 0x19);
   }
-  if ((engine_current_data_pointer == engine_structure_data_ptr) || (engine_loop_index = memcmp(&engine_data_180a00e28,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
+  if ((engine_current_data_pointer == structure_data_pointer) || (engine_loop_index = memcmp(&engine_data_180a00e28,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
     engine_operation_result = engine_allocate_memory_block(engine_main_structure_pointer);
     engine_initialize_memory_block(engine_main_structure_pointer,&engine_stack_variable_10,engine_current_data_pointer,engine_operation_result + 0x20,engine_operation_result);
     engine_current_data_pointer = engine_stack_variable_10;
@@ -8453,7 +8453,7 @@ void engine_core_setup_contentsystem(void)
 
 {
   char resource_status_flag;
-  void* engine_structure_data_ptr;
+  void* structure_data_pointer;
   int engine_loop_index;
   longlong *engine_main_structure_pointer;
   longlong engine_operation_result;
@@ -8464,11 +8464,11 @@ void engine_core_setup_contentsystem(void)
   code *engine_stack_function_pointer_18;
   
   engine_main_structure_pointer = (longlong *)engine_get_system_context();
-  engine_structure_data_ptr = (void*)*engine_main_structure_pointer;
-  resource_status_flag = *(char *)((longlong)engine_structure_data_ptr[1] + 0x19);
+  structure_data_pointer = (void*)*engine_main_structure_pointer;
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
   engine_stack_function_pointer_18 = void engine_process_main_loop(void);
-  engine_current_data_pointer = engine_structure_data_ptr;
-  engine_temporary_data_ptr = (void*)engine_structure_data_ptr[1];
+  engine_current_data_pointer = structure_data_pointer;
+  engine_temporary_data_ptr = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
     engine_loop_index = memcmp(engine_temporary_data_ptr + 4,&engine_input_state,0x10);
     if (engine_loop_index < 0) {
@@ -8482,7 +8482,7 @@ void engine_core_setup_contentsystem(void)
     engine_temporary_data_ptr = engine_next_data_pointer;
     resource_status_flag = *(char *)((longlong)engine_next_data_pointer + 0x19);
   }
-  if ((engine_current_data_pointer == engine_structure_data_ptr) || (engine_loop_index = memcmp(&engine_input_state,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
+  if ((engine_current_data_pointer == structure_data_pointer) || (engine_loop_index = memcmp(&engine_input_state,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
     engine_operation_result = engine_allocate_memory_block(engine_main_structure_pointer);
     engine_initialize_memory_block(engine_main_structure_pointer,&engine_stack_variable_10,engine_current_data_pointer,engine_operation_result + 0x20,engine_operation_result);
     engine_current_data_pointer = engine_stack_variable_10;
@@ -8503,7 +8503,7 @@ void engine_core_initialize_marketplace(void)
 
 {
   char resource_status_flag;
-  void* engine_structure_data_ptr;
+  void* structure_data_pointer;
   int engine_loop_index;
   longlong *engine_main_structure_pointer;
   longlong engine_operation_result;
@@ -8514,11 +8514,11 @@ void engine_core_initialize_marketplace(void)
   code *engine_stack_function_pointer_18;
   
   engine_main_structure_pointer = (longlong *)engine_get_system_context();
-  engine_structure_data_ptr = (void*)*engine_main_structure_pointer;
-  resource_status_flag = *(char *)((longlong)engine_structure_data_ptr[1] + 0x19);
+  structure_data_pointer = (void*)*engine_main_structure_pointer;
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
   engine_stack_function_pointer_18 = void engine_handle_input_events(void);
-  engine_current_data_pointer = engine_structure_data_ptr;
-  engine_temporary_data_ptr = (void*)engine_structure_data_ptr[1];
+  engine_current_data_pointer = structure_data_pointer;
+  engine_temporary_data_ptr = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
     engine_loop_index = memcmp(engine_temporary_data_ptr + 4,&engine_mouse_position,0x10);
     if (engine_loop_index < 0) {
@@ -8532,7 +8532,7 @@ void engine_core_initialize_marketplace(void)
     engine_temporary_data_ptr = engine_next_data_pointer;
     resource_status_flag = *(char *)((longlong)engine_next_data_pointer + 0x19);
   }
-  if ((engine_current_data_pointer == engine_structure_data_ptr) || (engine_loop_index = memcmp(&engine_mouse_position,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
+  if ((engine_current_data_pointer == structure_data_pointer) || (engine_loop_index = memcmp(&engine_mouse_position,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
     engine_operation_result = engine_allocate_memory_block(engine_main_structure_pointer);
     engine_initialize_memory_block(engine_main_structure_pointer,&engine_stack_variable_10,engine_current_data_pointer,engine_operation_result + 0x20,engine_operation_result);
     engine_current_data_pointer = engine_stack_variable_10;
@@ -8553,7 +8553,7 @@ void engine_core_setup_marketplacesystem(void)
 
 {
   char resource_status_flag;
-  void* engine_structure_data_ptr;
+  void* structure_data_pointer;
   int engine_loop_index;
   longlong *engine_main_structure_pointer;
   longlong engine_operation_result;
@@ -8564,11 +8564,11 @@ void engine_core_setup_marketplacesystem(void)
   code *engine_stack_function_pointer_18;
   
   engine_main_structure_pointer = (longlong *)engine_get_system_context();
-  engine_structure_data_ptr = (void*)*engine_main_structure_pointer;
-  resource_status_flag = *(char *)((longlong)engine_structure_data_ptr[1] + 0x19);
+  structure_data_pointer = (void*)*engine_main_structure_pointer;
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
   engine_stack_function_pointer_18 = engine_process_buffer_manager;
-  engine_current_data_pointer = engine_structure_data_ptr;
-  engine_temporary_data_ptr = (void*)engine_structure_data_ptr[1];
+  engine_current_data_pointer = structure_data_pointer;
+  engine_temporary_data_ptr = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
     engine_loop_index = memcmp(engine_temporary_data_ptr + 4,&engine_data_a0,0x10);
     if (engine_loop_index < 0) {
@@ -8582,7 +8582,7 @@ void engine_core_setup_marketplacesystem(void)
     engine_temporary_data_ptr = engine_next_data_pointer;
     resource_status_flag = *(char *)((longlong)engine_next_data_pointer + 0x19);
   }
-  if ((engine_current_data_pointer == engine_structure_data_ptr) || (engine_loop_index = memcmp(&engine_data_a0,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
+  if ((engine_current_data_pointer == structure_data_pointer) || (engine_loop_index = memcmp(&engine_data_a0,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
     engine_operation_result = engine_allocate_memory_block(engine_main_structure_pointer);
     engine_initialize_memory_block(engine_main_structure_pointer,&engine_stack_variable_10,engine_current_data_pointer,engine_operation_result + 0x20,engine_operation_result);
     engine_current_data_pointer = engine_stack_variable_10;
@@ -8603,7 +8603,7 @@ void engine_core_initialize_monetization(void)
 
 {
   char resource_status_flag;
-  void* engine_structure_data_ptr;
+  void* structure_data_pointer;
   int engine_loop_index;
   longlong *engine_main_structure_pointer;
   longlong engine_operation_result;
@@ -8614,11 +8614,11 @@ void engine_core_initialize_monetization(void)
   code *engine_stack_function_pointer_18;
   
   engine_main_structure_pointer = (longlong *)engine_get_system_context();
-  engine_structure_data_ptr = (void*)*engine_main_structure_pointer;
-  resource_status_flag = *(char *)((longlong)engine_structure_data_ptr[1] + 0x19);
+  structure_data_pointer = (void*)*engine_main_structure_pointer;
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
   engine_stack_function_pointer_18 = engine_process_texture_manager;
-  engine_current_data_pointer = engine_structure_data_ptr;
-  engine_temporary_data_ptr = (void*)engine_structure_data_ptr[1];
+  engine_current_data_pointer = structure_data_pointer;
+  engine_temporary_data_ptr = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
     engine_loop_index = memcmp(engine_temporary_data_ptr + 4,&engine_data_78,0x10);
     if (engine_loop_index < 0) {
@@ -8632,7 +8632,7 @@ void engine_core_initialize_monetization(void)
     engine_temporary_data_ptr = engine_next_data_pointer;
     resource_status_flag = *(char *)((longlong)engine_next_data_pointer + 0x19);
   }
-  if ((engine_current_data_pointer == engine_structure_data_ptr) || (engine_loop_index = memcmp(&engine_data_78,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
+  if ((engine_current_data_pointer == structure_data_pointer) || (engine_loop_index = memcmp(&engine_data_78,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
     engine_operation_result = engine_allocate_memory_block(engine_main_structure_pointer);
     engine_initialize_memory_block(engine_main_structure_pointer,&engine_stack_variable_10,engine_current_data_pointer,engine_operation_result + 0x20,engine_operation_result);
     engine_current_data_pointer = engine_stack_variable_10;
@@ -8653,7 +8653,7 @@ void engine_core_setup_monetizationsystem(void)
 
 {
   char resource_status_flag;
-  void* engine_structure_data_ptr;
+  void* structure_data_pointer;
   int engine_loop_index;
   longlong *engine_main_structure_pointer;
   longlong engine_operation_result;
@@ -8664,11 +8664,11 @@ void engine_core_setup_monetizationsystem(void)
   uint64 uStackX_18;
   
   engine_main_structure_pointer = (longlong *)engine_get_system_context();
-  engine_structure_data_ptr = (void*)*engine_main_structure_pointer;
-  resource_status_flag = *(char *)((longlong)engine_structure_data_ptr[1] + 0x19);
+  structure_data_pointer = (void*)*engine_main_structure_pointer;
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
   uStackX_18 = 0;
-  engine_current_data_pointer = engine_structure_data_ptr;
-  engine_temporary_data_ptr = (void*)engine_structure_data_ptr[1];
+  engine_current_data_pointer = structure_data_pointer;
+  engine_temporary_data_ptr = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
     engine_loop_index = memcmp(engine_temporary_data_ptr + 4,&engine_data_180a01050,0x10);
     if (engine_loop_index < 0) {
@@ -8682,7 +8682,7 @@ void engine_core_setup_monetizationsystem(void)
     engine_temporary_data_ptr = engine_next_data_pointer;
     resource_status_flag = *(char *)((longlong)engine_next_data_pointer + 0x19);
   }
-  if ((engine_current_data_pointer == engine_structure_data_ptr) || (engine_loop_index = memcmp(&engine_data_180a01050,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
+  if ((engine_current_data_pointer == structure_data_pointer) || (engine_loop_index = memcmp(&engine_data_180a01050,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
     engine_operation_result = engine_allocate_memory_block(engine_main_structure_pointer);
     engine_initialize_memory_block(engine_main_structure_pointer,&engine_stack_variable_10,engine_current_data_pointer,engine_operation_result + 0x20,engine_operation_result);
     engine_current_data_pointer = engine_stack_variable_10;
@@ -8703,7 +8703,7 @@ void engine_core_initialize_advertising(void)
 
 {
   char resource_status_flag;
-  void* engine_structure_data_ptr;
+  void* structure_data_pointer;
   int engine_loop_index;
   longlong *engine_main_structure_pointer;
   longlong engine_operation_result;
@@ -8714,11 +8714,11 @@ void engine_core_initialize_advertising(void)
   code *engine_stack_function_pointer_18;
   
   engine_main_structure_pointer = (longlong *)engine_get_system_context();
-  engine_structure_data_ptr = (void*)*engine_main_structure_pointer;
-  resource_status_flag = *(char *)((longlong)engine_structure_data_ptr[1] + 0x19);
+  structure_data_pointer = (void*)*engine_main_structure_pointer;
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
   engine_stack_function_pointer_18 = engine_process_shader_manager;
-  engine_current_data_pointer = engine_structure_data_ptr;
-  engine_temporary_data_ptr = (void*)engine_structure_data_ptr[1];
+  engine_current_data_pointer = structure_data_pointer;
+  engine_temporary_data_ptr = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
     engine_loop_index = memcmp(engine_temporary_data_ptr + 4,&engine_data_28,0x10);
     if (engine_loop_index < 0) {
@@ -8732,7 +8732,7 @@ void engine_core_initialize_advertising(void)
     engine_temporary_data_ptr = engine_next_data_pointer;
     resource_status_flag = *(char *)((longlong)engine_next_data_pointer + 0x19);
   }
-  if ((engine_current_data_pointer == engine_structure_data_ptr) || (engine_loop_index = memcmp(&engine_data_28,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
+  if ((engine_current_data_pointer == structure_data_pointer) || (engine_loop_index = memcmp(&engine_data_28,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
     engine_operation_result = engine_allocate_memory_block(engine_main_structure_pointer);
     engine_initialize_memory_block(engine_main_structure_pointer,&engine_stack_variable_10,engine_current_data_pointer,engine_operation_result + 0x20,engine_operation_result);
     engine_current_data_pointer = engine_stack_variable_10;
@@ -8753,7 +8753,7 @@ void engine_core_setup_advertisingsystem(void)
 
 {
   char resource_status_flag;
-  void* engine_structure_data_ptr;
+  void* structure_data_pointer;
   int engine_loop_index;
   longlong *engine_main_structure_pointer;
   longlong engine_operation_result;
@@ -8764,11 +8764,11 @@ void engine_core_setup_advertisingsystem(void)
   uint64 uStackX_18;
   
   engine_main_structure_pointer = (longlong *)engine_get_system_context();
-  engine_structure_data_ptr = (void*)*engine_main_structure_pointer;
-  resource_status_flag = *(char *)((longlong)engine_structure_data_ptr[1] + 0x19);
+  structure_data_pointer = (void*)*engine_main_structure_pointer;
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
   uStackX_18 = 0;
-  engine_current_data_pointer = engine_structure_data_ptr;
-  engine_temporary_data_ptr = (void*)engine_structure_data_ptr[1];
+  engine_current_data_pointer = structure_data_pointer;
+  engine_temporary_data_ptr = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
     engine_loop_index = memcmp(engine_temporary_data_ptr + 4,&engine_data_180a01000,0x10);
     if (engine_loop_index < 0) {
@@ -8782,7 +8782,7 @@ void engine_core_setup_advertisingsystem(void)
     engine_temporary_data_ptr = engine_next_data_pointer;
     resource_status_flag = *(char *)((longlong)engine_next_data_pointer + 0x19);
   }
-  if ((engine_current_data_pointer == engine_structure_data_ptr) || (engine_loop_index = memcmp(&engine_data_180a01000,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
+  if ((engine_current_data_pointer == structure_data_pointer) || (engine_loop_index = memcmp(&engine_data_180a01000,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
     engine_operation_result = engine_allocate_memory_block(engine_main_structure_pointer);
     engine_initialize_memory_block(engine_main_structure_pointer,&engine_stack_variable_10,engine_current_data_pointer,engine_operation_result + 0x20,engine_operation_result);
     engine_current_data_pointer = engine_stack_variable_10;
@@ -8803,7 +8803,7 @@ void engine_core_initialize_partnerships(void)
 
 {
   char resource_status_flag;
-  void* engine_structure_data_ptr;
+  void* structure_data_pointer;
   int engine_loop_index;
   longlong *engine_main_structure_pointer;
   longlong engine_operation_result;
@@ -8814,11 +8814,11 @@ void engine_core_initialize_partnerships(void)
   void* engine_stack_pointer_18;
   
   engine_main_structure_pointer = (longlong *)engine_get_system_context();
-  engine_structure_data_ptr = (void*)*engine_main_structure_pointer;
-  resource_status_flag = *(char *)((longlong)engine_structure_data_ptr[1] + 0x19);
+  structure_data_pointer = (void*)*engine_main_structure_pointer;
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
   engine_stack_pointer_18 = &engine_base_data_offset_c0;
-  engine_current_data_pointer = engine_structure_data_ptr;
-  engine_temporary_data_ptr = (void*)engine_structure_data_ptr[1];
+  engine_current_data_pointer = structure_data_pointer;
+  engine_temporary_data_ptr = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
     engine_loop_index = memcmp(engine_temporary_data_ptr + 4,&engine_data_180a00fd8,0x10);
     if (engine_loop_index < 0) {
@@ -8832,7 +8832,7 @@ void engine_core_initialize_partnerships(void)
     engine_temporary_data_ptr = engine_next_data_pointer;
     resource_status_flag = *(char *)((longlong)engine_next_data_pointer + 0x19);
   }
-  if ((engine_current_data_pointer == engine_structure_data_ptr) || (engine_loop_index = memcmp(&engine_data_180a00fd8,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
+  if ((engine_current_data_pointer == structure_data_pointer) || (engine_loop_index = memcmp(&engine_data_180a00fd8,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
     engine_operation_result = engine_allocate_memory_block(engine_main_structure_pointer);
     engine_initialize_memory_block(engine_main_structure_pointer,&engine_stack_variable_10,engine_current_data_pointer,engine_operation_result + 0x20,engine_operation_result);
     engine_current_data_pointer = engine_stack_variable_10;
@@ -8853,7 +8853,7 @@ void engine_core_setup_partnershipsystem(void)
 
 {
   char resource_status_flag;
-  void* engine_structure_data_ptr;
+  void* structure_data_pointer;
   int engine_loop_index;
   longlong *engine_main_structure_pointer;
   longlong engine_operation_result;
@@ -8864,11 +8864,11 @@ void engine_core_setup_partnershipsystem(void)
   uint64 uStackX_18;
   
   engine_main_structure_pointer = (longlong *)engine_get_system_context();
-  engine_structure_data_ptr = (void*)*engine_main_structure_pointer;
-  resource_status_flag = *(char *)((longlong)engine_structure_data_ptr[1] + 0x19);
+  structure_data_pointer = (void*)*engine_main_structure_pointer;
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
   uStackX_18 = 0;
-  engine_current_data_pointer = engine_structure_data_ptr;
-  engine_temporary_data_ptr = (void*)engine_structure_data_ptr[1];
+  engine_current_data_pointer = structure_data_pointer;
+  engine_temporary_data_ptr = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
     engine_loop_index = memcmp(engine_temporary_data_ptr + 4,&engine_data_180a00fb0,0x10);
     if (engine_loop_index < 0) {
@@ -8882,7 +8882,7 @@ void engine_core_setup_partnershipsystem(void)
     engine_temporary_data_ptr = engine_next_data_pointer;
     resource_status_flag = *(char *)((longlong)engine_next_data_pointer + 0x19);
   }
-  if ((engine_current_data_pointer == engine_structure_data_ptr) || (engine_loop_index = memcmp(&engine_data_180a00fb0,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
+  if ((engine_current_data_pointer == structure_data_pointer) || (engine_loop_index = memcmp(&engine_data_180a00fb0,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
     engine_operation_result = engine_allocate_memory_block(engine_main_structure_pointer);
     engine_initialize_memory_block(engine_main_structure_pointer,&engine_stack_variable_10,engine_current_data_pointer,engine_operation_result + 0x20,engine_operation_result);
     engine_current_data_pointer = engine_stack_variable_10;
@@ -8903,7 +8903,7 @@ void engine_core_initialize_branding(void)
 
 {
   char resource_status_flag;
-  void* engine_structure_data_ptr;
+  void* structure_data_pointer;
   int engine_loop_index;
   longlong *engine_main_structure_pointer;
   longlong engine_operation_result;
@@ -8914,11 +8914,11 @@ void engine_core_initialize_branding(void)
   uint64 uStackX_18;
   
   engine_main_structure_pointer = (longlong *)engine_get_system_context();
-  engine_structure_data_ptr = (void*)*engine_main_structure_pointer;
-  resource_status_flag = *(char *)((longlong)engine_structure_data_ptr[1] + 0x19);
+  structure_data_pointer = (void*)*engine_main_structure_pointer;
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
   uStackX_18 = 0;
-  engine_current_data_pointer = engine_structure_data_ptr;
-  engine_temporary_data_ptr = (void*)engine_structure_data_ptr[1];
+  engine_current_data_pointer = structure_data_pointer;
+  engine_temporary_data_ptr = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
     engine_loop_index = memcmp(engine_temporary_data_ptr + 4,&engine_data_d0,0x10);
     if (engine_loop_index < 0) {
@@ -8932,7 +8932,7 @@ void engine_core_initialize_branding(void)
     engine_temporary_data_ptr = engine_next_data_pointer;
     resource_status_flag = *(char *)((longlong)engine_next_data_pointer + 0x19);
   }
-  if ((engine_current_data_pointer == engine_structure_data_ptr) || (engine_loop_index = memcmp(&engine_data_d0,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
+  if ((engine_current_data_pointer == structure_data_pointer) || (engine_loop_index = memcmp(&engine_data_d0,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
     engine_operation_result = engine_allocate_memory_block(engine_main_structure_pointer);
     engine_initialize_memory_block(engine_main_structure_pointer,&engine_stack_variable_10,engine_current_data_pointer,engine_operation_result + 0x20,engine_operation_result);
     engine_current_data_pointer = engine_stack_variable_10;
@@ -8953,7 +8953,7 @@ void engine_core_setup_brandingsystem(void)
 
 {
   char resource_status_flag;
-  void* engine_structure_data_ptr;
+  void* structure_data_pointer;
   int engine_loop_index;
   longlong *engine_main_structure_pointer;
   longlong engine_operation_result;
@@ -8964,11 +8964,11 @@ void engine_core_setup_brandingsystem(void)
   uint64 uStackX_18;
   
   engine_main_structure_pointer = (longlong *)engine_get_system_context();
-  engine_structure_data_ptr = (void*)*engine_main_structure_pointer;
-  resource_status_flag = *(char *)((longlong)engine_structure_data_ptr[1] + 0x19);
+  structure_data_pointer = (void*)*engine_main_structure_pointer;
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
   uStackX_18 = 0;
-  engine_current_data_pointer = engine_structure_data_ptr;
-  engine_temporary_data_ptr = (void*)engine_structure_data_ptr[1];
+  engine_current_data_pointer = structure_data_pointer;
+  engine_temporary_data_ptr = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
     engine_loop_index = memcmp(engine_temporary_data_ptr + 4,&engine_data_60,0x10);
     if (engine_loop_index < 0) {
@@ -8982,7 +8982,7 @@ void engine_core_setup_brandingsystem(void)
     engine_temporary_data_ptr = engine_next_data_pointer;
     resource_status_flag = *(char *)((longlong)engine_next_data_pointer + 0x19);
   }
-  if ((engine_current_data_pointer == engine_structure_data_ptr) || (engine_loop_index = memcmp(&engine_data_60,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
+  if ((engine_current_data_pointer == structure_data_pointer) || (engine_loop_index = memcmp(&engine_data_60,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
     engine_operation_result = engine_allocate_memory_block(engine_main_structure_pointer);
     engine_initialize_memory_block(engine_main_structure_pointer,&engine_stack_variable_10,engine_current_data_pointer,engine_operation_result + 0x20,engine_operation_result);
     engine_current_data_pointer = engine_stack_variable_10;
@@ -9003,7 +9003,7 @@ void engine_core_initialize_licensing(void)
 
 {
   char resource_status_flag;
-  void* engine_structure_data_ptr;
+  void* structure_data_pointer;
   int engine_loop_index;
   longlong *engine_main_structure_pointer;
   longlong engine_operation_result;
@@ -9014,11 +9014,11 @@ void engine_core_initialize_licensing(void)
   uint64 uStackX_18;
   
   engine_main_structure_pointer = (longlong *)engine_get_system_context();
-  engine_structure_data_ptr = (void*)*engine_main_structure_pointer;
-  resource_status_flag = *(char *)((longlong)engine_structure_data_ptr[1] + 0x19);
+  structure_data_pointer = (void*)*engine_main_structure_pointer;
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
   uStackX_18 = 0;
-  engine_current_data_pointer = engine_structure_data_ptr;
-  engine_temporary_data_ptr = (void*)engine_structure_data_ptr[1];
+  engine_current_data_pointer = structure_data_pointer;
+  engine_temporary_data_ptr = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
     engine_loop_index = memcmp(engine_temporary_data_ptr + 4,&engine_data_90,0x10);
     if (engine_loop_index < 0) {
@@ -9032,7 +9032,7 @@ void engine_core_initialize_licensing(void)
     engine_temporary_data_ptr = engine_next_data_pointer;
     resource_status_flag = *(char *)((longlong)engine_next_data_pointer + 0x19);
   }
-  if ((engine_current_data_pointer == engine_structure_data_ptr) || (engine_loop_index = memcmp(&engine_data_90,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
+  if ((engine_current_data_pointer == structure_data_pointer) || (engine_loop_index = memcmp(&engine_data_90,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
     engine_operation_result = engine_allocate_memory_block(engine_main_structure_pointer);
     engine_initialize_memory_block(engine_main_structure_pointer,&engine_stack_variable_10,engine_current_data_pointer,engine_operation_result + 0x20,engine_operation_result);
     engine_current_data_pointer = engine_stack_variable_10;
@@ -9093,7 +9093,7 @@ void engine_core_start_main_loop(void)
 
 {
   char resource_status_flag;
-  void* engine_structure_data_ptr;
+  void* structure_data_pointer;
   int engine_loop_index;
   longlong *engine_main_structure_pointer;
   longlong engine_operation_result;
@@ -9104,11 +9104,11 @@ void engine_core_start_main_loop(void)
   uint64 uStackX_18;
   
   engine_main_structure_pointer = (longlong *)engine_get_system_context();
-  engine_structure_data_ptr = (void*)*engine_main_structure_pointer;
-  resource_status_flag = *(char *)((longlong)engine_structure_data_ptr[1] + 0x19);
+  structure_data_pointer = (void*)*engine_main_structure_pointer;
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
   uStackX_18 = 0;
-  engine_current_data_pointer = engine_structure_data_ptr;
-  engine_temporary_data_ptr = (void*)engine_structure_data_ptr[1];
+  engine_current_data_pointer = structure_data_pointer;
+  engine_temporary_data_ptr = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
     engine_loop_index = memcmp(engine_temporary_data_ptr + 4,&engine_data_60,0x10);
     if (engine_loop_index < 0) {
@@ -9122,7 +9122,7 @@ void engine_core_start_main_loop(void)
     engine_temporary_data_ptr = engine_next_data_pointer;
     resource_status_flag = *(char *)((longlong)engine_next_data_pointer + 0x19);
   }
-  if ((engine_current_data_pointer == engine_structure_data_ptr) || (engine_loop_index = memcmp(&engine_data_60,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
+  if ((engine_current_data_pointer == structure_data_pointer) || (engine_loop_index = memcmp(&engine_data_60,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
     engine_operation_result = engine_allocate_memory_block(engine_main_structure_pointer);
     engine_initialize_memory_block(engine_main_structure_pointer,&engine_stack_variable_10,engine_current_data_pointer,engine_operation_result + 0x20,engine_operation_result);
     engine_current_data_pointer = engine_stack_variable_10;
@@ -9143,7 +9143,7 @@ void engine_core_process_frame(void)
 
 {
   char resource_status_flag;
-  void* engine_structure_data_ptr;
+  void* structure_data_pointer;
   int engine_loop_index;
   longlong *engine_main_structure_pointer;
   longlong engine_operation_result;
@@ -9154,11 +9154,11 @@ void engine_core_process_frame(void)
   uint64 uStackX_18;
   
   engine_main_structure_pointer = (longlong *)engine_get_system_context();
-  engine_structure_data_ptr = (void*)*engine_main_structure_pointer;
-  resource_status_flag = *(char *)((longlong)engine_structure_data_ptr[1] + 0x19);
+  structure_data_pointer = (void*)*engine_main_structure_pointer;
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
   uStackX_18 = 0;
-  engine_current_data_pointer = engine_structure_data_ptr;
-  engine_temporary_data_ptr = (void*)engine_structure_data_ptr[1];
+  engine_current_data_pointer = structure_data_pointer;
+  engine_temporary_data_ptr = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
     engine_loop_index = memcmp(engine_temporary_data_ptr + 4,&engine_data_90,0x10);
     if (engine_loop_index < 0) {
@@ -9172,7 +9172,7 @@ void engine_core_process_frame(void)
     engine_temporary_data_ptr = engine_next_data_pointer;
     resource_status_flag = *(char *)((longlong)engine_next_data_pointer + 0x19);
   }
-  if ((engine_current_data_pointer == engine_structure_data_ptr) || (engine_loop_index = memcmp(&engine_data_90,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
+  if ((engine_current_data_pointer == structure_data_pointer) || (engine_loop_index = memcmp(&engine_data_90,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
     engine_operation_result = engine_allocate_memory_block(engine_main_structure_pointer);
     engine_initialize_memory_block(engine_main_structure_pointer,&engine_stack_variable_10,engine_current_data_pointer,engine_operation_result + 0x20,engine_operation_result);
     engine_current_data_pointer = engine_stack_variable_10;
@@ -9193,7 +9193,7 @@ void engine_core_update_physics(void)
 
 {
   char resource_status_flag;
-  void* engine_structure_data_ptr;
+  void* structure_data_pointer;
   int engine_loop_index;
   longlong *engine_main_structure_pointer;
   longlong engine_operation_result;
@@ -9204,11 +9204,11 @@ void engine_core_update_physics(void)
   uint64 uStackX_18;
   
   engine_main_structure_pointer = (longlong *)engine_get_system_context();
-  engine_structure_data_ptr = (void*)*engine_main_structure_pointer;
-  resource_status_flag = *(char *)((longlong)engine_structure_data_ptr[1] + 0x19);
+  structure_data_pointer = (void*)*engine_main_structure_pointer;
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
   uStackX_18 = 0;
-  engine_current_data_pointer = engine_structure_data_ptr;
-  engine_temporary_data_ptr = (void*)engine_structure_data_ptr[1];
+  engine_current_data_pointer = structure_data_pointer;
+  engine_temporary_data_ptr = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
     engine_loop_index = memcmp(engine_temporary_data_ptr + 4,&engine_data_60,0x10);
     if (engine_loop_index < 0) {
@@ -9222,7 +9222,7 @@ void engine_core_update_physics(void)
     engine_temporary_data_ptr = engine_next_data_pointer;
     resource_status_flag = *(char *)((longlong)engine_next_data_pointer + 0x19);
   }
-  if ((engine_current_data_pointer == engine_structure_data_ptr) || (engine_loop_index = memcmp(&engine_data_60,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
+  if ((engine_current_data_pointer == structure_data_pointer) || (engine_loop_index = memcmp(&engine_data_60,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
     engine_operation_result = engine_allocate_memory_block(engine_main_structure_pointer);
     engine_initialize_memory_block(engine_main_structure_pointer,&engine_stack_variable_10,engine_current_data_pointer,engine_operation_result + 0x20,engine_operation_result);
     engine_current_data_pointer = engine_stack_variable_10;
@@ -9243,7 +9243,7 @@ void engine_core_update_animations(void)
 
 {
   char resource_status_flag;
-  void* engine_structure_data_ptr;
+  void* structure_data_pointer;
   int engine_loop_index;
   longlong *engine_main_structure_pointer;
   longlong engine_operation_result;
@@ -9254,11 +9254,11 @@ void engine_core_update_animations(void)
   uint64 uStackX_18;
   
   engine_main_structure_pointer = (longlong *)engine_get_system_context();
-  engine_structure_data_ptr = (void*)*engine_main_structure_pointer;
-  resource_status_flag = *(char *)((longlong)engine_structure_data_ptr[1] + 0x19);
+  structure_data_pointer = (void*)*engine_main_structure_pointer;
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
   uStackX_18 = 0;
-  engine_current_data_pointer = engine_structure_data_ptr;
-  engine_temporary_data_ptr = (void*)engine_structure_data_ptr[1];
+  engine_current_data_pointer = structure_data_pointer;
+  engine_temporary_data_ptr = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
     engine_loop_index = memcmp(engine_temporary_data_ptr + 4,&engine_data_90,0x10);
     if (engine_loop_index < 0) {
@@ -9272,7 +9272,7 @@ void engine_core_update_animations(void)
     engine_temporary_data_ptr = engine_next_data_pointer;
     resource_status_flag = *(char *)((longlong)engine_next_data_pointer + 0x19);
   }
-  if ((engine_current_data_pointer == engine_structure_data_ptr) || (engine_loop_index = memcmp(&engine_data_90,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
+  if ((engine_current_data_pointer == structure_data_pointer) || (engine_loop_index = memcmp(&engine_data_90,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
     engine_operation_result = engine_allocate_memory_block(engine_main_structure_pointer);
     engine_initialize_memory_block(engine_main_structure_pointer,&engine_stack_variable_10,engine_current_data_pointer,engine_operation_result + 0x20,engine_operation_result);
     engine_current_data_pointer = engine_stack_variable_10;
@@ -9329,7 +9329,7 @@ void engine_core_update_ui(void)
 
 {
   char resource_status_flag;
-  void* engine_structure_data_ptr;
+  void* structure_data_pointer;
   int engine_loop_index;
   longlong *engine_main_structure_pointer;
   longlong engine_operation_result;
@@ -9340,11 +9340,11 @@ void engine_core_update_ui(void)
   uint64 uStackX_18;
   
   engine_main_structure_pointer = (longlong *)engine_get_system_context();
-  engine_structure_data_ptr = (void*)*engine_main_structure_pointer;
-  resource_status_flag = *(char *)((longlong)engine_structure_data_ptr[1] + 0x19);
+  structure_data_pointer = (void*)*engine_main_structure_pointer;
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
   uStackX_18 = 0;
-  engine_current_data_pointer = engine_structure_data_ptr;
-  engine_temporary_data_ptr = (void*)engine_structure_data_ptr[1];
+  engine_current_data_pointer = structure_data_pointer;
+  engine_temporary_data_ptr = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
     engine_loop_index = memcmp(engine_temporary_data_ptr + 4,&engine_data_60,0x10);
     if (engine_loop_index < 0) {
@@ -9358,7 +9358,7 @@ void engine_core_update_ui(void)
     engine_temporary_data_ptr = engine_next_data_pointer;
     resource_status_flag = *(char *)((longlong)engine_next_data_pointer + 0x19);
   }
-  if ((engine_current_data_pointer == engine_structure_data_ptr) || (engine_loop_index = memcmp(&engine_data_60,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
+  if ((engine_current_data_pointer == structure_data_pointer) || (engine_loop_index = memcmp(&engine_data_60,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
     engine_operation_result = engine_allocate_memory_block(engine_main_structure_pointer);
     engine_initialize_memory_block(engine_main_structure_pointer,&engine_stack_variable_10,engine_current_data_pointer,engine_operation_result + 0x20,engine_operation_result);
     engine_current_data_pointer = engine_stack_variable_10;
@@ -9379,7 +9379,7 @@ void engine_core_update_audio(void)
 
 {
   char resource_status_flag;
-  void* engine_structure_data_ptr;
+  void* structure_data_pointer;
   int engine_loop_index;
   longlong *engine_main_structure_pointer;
   longlong engine_operation_result;
@@ -9390,11 +9390,11 @@ void engine_core_update_audio(void)
   uint64 uStackX_18;
   
   engine_main_structure_pointer = (longlong *)engine_get_system_context();
-  engine_structure_data_ptr = (void*)*engine_main_structure_pointer;
-  resource_status_flag = *(char *)((longlong)engine_structure_data_ptr[1] + 0x19);
+  structure_data_pointer = (void*)*engine_main_structure_pointer;
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
   uStackX_18 = 0;
-  engine_current_data_pointer = engine_structure_data_ptr;
-  engine_temporary_data_ptr = (void*)engine_structure_data_ptr[1];
+  engine_current_data_pointer = structure_data_pointer;
+  engine_temporary_data_ptr = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
     engine_loop_index = memcmp(engine_temporary_data_ptr + 4,&engine_data_90,0x10);
     if (engine_loop_index < 0) {
@@ -9408,7 +9408,7 @@ void engine_core_update_audio(void)
     engine_temporary_data_ptr = engine_next_data_pointer;
     resource_status_flag = *(char *)((longlong)engine_next_data_pointer + 0x19);
   }
-  if ((engine_current_data_pointer == engine_structure_data_ptr) || (engine_loop_index = memcmp(&engine_data_90,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
+  if ((engine_current_data_pointer == structure_data_pointer) || (engine_loop_index = memcmp(&engine_data_90,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
     engine_operation_result = engine_allocate_memory_block(engine_main_structure_pointer);
     engine_initialize_memory_block(engine_main_structure_pointer,&engine_stack_variable_10,engine_current_data_pointer,engine_operation_result + 0x20,engine_operation_result);
     engine_current_data_pointer = engine_stack_variable_10;
@@ -9429,7 +9429,7 @@ void engine_core_update_input(void)
 
 {
   char resource_status_flag;
-  void* engine_structure_data_ptr;
+  void* structure_data_pointer;
   int engine_loop_index;
   longlong *engine_main_structure_pointer;
   longlong engine_operation_result;
@@ -9440,11 +9440,11 @@ void engine_core_update_input(void)
   code *engine_stack_function_pointer_18;
   
   engine_main_structure_pointer = (longlong *)engine_get_system_context();
-  engine_structure_data_ptr = (void*)*engine_main_structure_pointer;
-  resource_status_flag = *(char *)((longlong)engine_structure_data_ptr[1] + 0x19);
+  structure_data_pointer = (void*)*engine_main_structure_pointer;
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
   engine_stack_function_pointer_18 = void engine_process_main_loop(void);
-  engine_current_data_pointer = engine_structure_data_ptr;
-  engine_temporary_data_ptr = (void*)engine_structure_data_ptr[1];
+  engine_current_data_pointer = structure_data_pointer;
+  engine_temporary_data_ptr = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
     engine_loop_index = memcmp(engine_temporary_data_ptr + 4,&engine_input_state,0x10);
     if (engine_loop_index < 0) {
@@ -9458,7 +9458,7 @@ void engine_core_update_input(void)
     engine_temporary_data_ptr = engine_next_data_pointer;
     resource_status_flag = *(char *)((longlong)engine_next_data_pointer + 0x19);
   }
-  if ((engine_current_data_pointer == engine_structure_data_ptr) || (engine_loop_index = memcmp(&engine_input_state,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
+  if ((engine_current_data_pointer == structure_data_pointer) || (engine_loop_index = memcmp(&engine_input_state,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
     engine_operation_result = engine_allocate_memory_block(engine_main_structure_pointer);
     engine_initialize_memory_block(engine_main_structure_pointer,&engine_stack_variable_10,engine_current_data_pointer,engine_operation_result + 0x20,engine_operation_result);
     engine_current_data_pointer = engine_stack_variable_10;
@@ -9479,7 +9479,7 @@ void engine_core_update_camera(void)
 
 {
   char resource_status_flag;
-  void* engine_structure_data_ptr;
+  void* structure_data_pointer;
   int engine_loop_index;
   longlong *engine_main_structure_pointer;
   longlong engine_operation_result;
@@ -9490,11 +9490,11 @@ void engine_core_update_camera(void)
   code *engine_stack_function_pointer_18;
   
   engine_main_structure_pointer = (longlong *)engine_get_system_context();
-  engine_structure_data_ptr = (void*)*engine_main_structure_pointer;
-  resource_status_flag = *(char *)((longlong)engine_structure_data_ptr[1] + 0x19);
+  structure_data_pointer = (void*)*engine_main_structure_pointer;
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
   engine_stack_function_pointer_18 = void engine_handle_input_events(void);
-  engine_current_data_pointer = engine_structure_data_ptr;
-  engine_temporary_data_ptr = (void*)engine_structure_data_ptr[1];
+  engine_current_data_pointer = structure_data_pointer;
+  engine_temporary_data_ptr = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
     engine_loop_index = memcmp(engine_temporary_data_ptr + 4,&engine_mouse_position,0x10);
     if (engine_loop_index < 0) {
@@ -9508,7 +9508,7 @@ void engine_core_update_camera(void)
     engine_temporary_data_ptr = engine_next_data_pointer;
     resource_status_flag = *(char *)((longlong)engine_next_data_pointer + 0x19);
   }
-  if ((engine_current_data_pointer == engine_structure_data_ptr) || (engine_loop_index = memcmp(&engine_mouse_position,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
+  if ((engine_current_data_pointer == structure_data_pointer) || (engine_loop_index = memcmp(&engine_mouse_position,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
     engine_operation_result = engine_allocate_memory_block(engine_main_structure_pointer);
     engine_initialize_memory_block(engine_main_structure_pointer,&engine_stack_variable_10,engine_current_data_pointer,engine_operation_result + 0x20,engine_operation_result);
     engine_current_data_pointer = engine_stack_variable_10;
@@ -9529,7 +9529,7 @@ void engine_core_update_lighting(void)
 
 {
   char resource_status_flag;
-  void* engine_structure_data_ptr;
+  void* structure_data_pointer;
   int engine_loop_index;
   longlong *engine_main_structure_pointer;
   longlong engine_operation_result;
@@ -9540,11 +9540,11 @@ void engine_core_update_lighting(void)
   code *engine_stack_function_pointer_18;
   
   engine_main_structure_pointer = (longlong *)engine_get_system_context();
-  engine_structure_data_ptr = (void*)*engine_main_structure_pointer;
-  resource_status_flag = *(char *)((longlong)engine_structure_data_ptr[1] + 0x19);
+  structure_data_pointer = (void*)*engine_main_structure_pointer;
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
   engine_stack_function_pointer_18 = engine_process_buffer_manager;
-  engine_current_data_pointer = engine_structure_data_ptr;
-  engine_temporary_data_ptr = (void*)engine_structure_data_ptr[1];
+  engine_current_data_pointer = structure_data_pointer;
+  engine_temporary_data_ptr = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
     engine_loop_index = memcmp(engine_temporary_data_ptr + 4,&engine_data_a0,0x10);
     if (engine_loop_index < 0) {
@@ -9558,7 +9558,7 @@ void engine_core_update_lighting(void)
     engine_temporary_data_ptr = engine_next_data_pointer;
     resource_status_flag = *(char *)((longlong)engine_next_data_pointer + 0x19);
   }
-  if ((engine_current_data_pointer == engine_structure_data_ptr) || (engine_loop_index = memcmp(&engine_data_a0,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
+  if ((engine_current_data_pointer == structure_data_pointer) || (engine_loop_index = memcmp(&engine_data_a0,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
     engine_operation_result = engine_allocate_memory_block(engine_main_structure_pointer);
     engine_initialize_memory_block(engine_main_structure_pointer,&engine_stack_variable_10,engine_current_data_pointer,engine_operation_result + 0x20,engine_operation_result);
     engine_current_data_pointer = engine_stack_variable_10;
@@ -9579,7 +9579,7 @@ void engine_core_update_weather(void)
 
 {
   char resource_status_flag;
-  void* engine_structure_data_ptr;
+  void* structure_data_pointer;
   int engine_loop_index;
   longlong *engine_main_structure_pointer;
   longlong engine_operation_result;
@@ -9590,11 +9590,11 @@ void engine_core_update_weather(void)
   code *engine_stack_function_pointer_18;
   
   engine_main_structure_pointer = (longlong *)engine_get_system_context();
-  engine_structure_data_ptr = (void*)*engine_main_structure_pointer;
-  resource_status_flag = *(char *)((longlong)engine_structure_data_ptr[1] + 0x19);
+  structure_data_pointer = (void*)*engine_main_structure_pointer;
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
   engine_stack_function_pointer_18 = engine_process_texture_manager;
-  engine_current_data_pointer = engine_structure_data_ptr;
-  engine_temporary_data_ptr = (void*)engine_structure_data_ptr[1];
+  engine_current_data_pointer = structure_data_pointer;
+  engine_temporary_data_ptr = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
     engine_loop_index = memcmp(engine_temporary_data_ptr + 4,&engine_data_78,0x10);
     if (engine_loop_index < 0) {
@@ -9608,7 +9608,7 @@ void engine_core_update_weather(void)
     engine_temporary_data_ptr = engine_next_data_pointer;
     resource_status_flag = *(char *)((longlong)engine_next_data_pointer + 0x19);
   }
-  if ((engine_current_data_pointer == engine_structure_data_ptr) || (engine_loop_index = memcmp(&engine_data_78,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
+  if ((engine_current_data_pointer == structure_data_pointer) || (engine_loop_index = memcmp(&engine_data_78,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
     engine_operation_result = engine_allocate_memory_block(engine_main_structure_pointer);
     engine_initialize_memory_block(engine_main_structure_pointer,&engine_stack_variable_10,engine_current_data_pointer,engine_operation_result + 0x20,engine_operation_result);
     engine_current_data_pointer = engine_stack_variable_10;
@@ -9629,7 +9629,7 @@ void engine_core_update_particles(void)
 
 {
   char resource_status_flag;
-  void* engine_structure_data_ptr;
+  void* structure_data_pointer;
   int engine_loop_index;
   longlong *engine_main_structure_pointer;
   longlong engine_operation_result;
@@ -9640,11 +9640,11 @@ void engine_core_update_particles(void)
   uint64 uStackX_18;
   
   engine_main_structure_pointer = (longlong *)engine_get_system_context();
-  engine_structure_data_ptr = (void*)*engine_main_structure_pointer;
-  resource_status_flag = *(char *)((longlong)engine_structure_data_ptr[1] + 0x19);
+  structure_data_pointer = (void*)*engine_main_structure_pointer;
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
   uStackX_18 = 0;
-  engine_current_data_pointer = engine_structure_data_ptr;
-  engine_temporary_data_ptr = (void*)engine_structure_data_ptr[1];
+  engine_current_data_pointer = structure_data_pointer;
+  engine_temporary_data_ptr = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
     engine_loop_index = memcmp(engine_temporary_data_ptr + 4,&engine_data_180a01050,0x10);
     if (engine_loop_index < 0) {
@@ -9658,7 +9658,7 @@ void engine_core_update_particles(void)
     engine_temporary_data_ptr = engine_next_data_pointer;
     resource_status_flag = *(char *)((longlong)engine_next_data_pointer + 0x19);
   }
-  if ((engine_current_data_pointer == engine_structure_data_ptr) || (engine_loop_index = memcmp(&engine_data_180a01050,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
+  if ((engine_current_data_pointer == structure_data_pointer) || (engine_loop_index = memcmp(&engine_data_180a01050,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
     engine_operation_result = engine_allocate_memory_block(engine_main_structure_pointer);
     engine_initialize_memory_block(engine_main_structure_pointer,&engine_stack_variable_10,engine_current_data_pointer,engine_operation_result + 0x20,engine_operation_result);
     engine_current_data_pointer = engine_stack_variable_10;
@@ -9679,7 +9679,7 @@ void engine_core_update_terrain(void)
 
 {
   char resource_status_flag;
-  void* engine_structure_data_ptr;
+  void* structure_data_pointer;
   int engine_loop_index;
   longlong *engine_main_structure_pointer;
   longlong engine_operation_result;
@@ -9690,11 +9690,11 @@ void engine_core_update_terrain(void)
   code *engine_stack_function_pointer_18;
   
   engine_main_structure_pointer = (longlong *)engine_get_system_context();
-  engine_structure_data_ptr = (void*)*engine_main_structure_pointer;
-  resource_status_flag = *(char *)((longlong)engine_structure_data_ptr[1] + 0x19);
+  structure_data_pointer = (void*)*engine_main_structure_pointer;
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
   engine_stack_function_pointer_18 = engine_process_shader_manager;
-  engine_current_data_pointer = engine_structure_data_ptr;
-  engine_temporary_data_ptr = (void*)engine_structure_data_ptr[1];
+  engine_current_data_pointer = structure_data_pointer;
+  engine_temporary_data_ptr = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
     engine_loop_index = memcmp(engine_temporary_data_ptr + 4,&engine_data_28,0x10);
     if (engine_loop_index < 0) {
@@ -9708,7 +9708,7 @@ void engine_core_update_terrain(void)
     engine_temporary_data_ptr = engine_next_data_pointer;
     resource_status_flag = *(char *)((longlong)engine_next_data_pointer + 0x19);
   }
-  if ((engine_current_data_pointer == engine_structure_data_ptr) || (engine_loop_index = memcmp(&engine_data_28,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
+  if ((engine_current_data_pointer == structure_data_pointer) || (engine_loop_index = memcmp(&engine_data_28,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
     engine_operation_result = engine_allocate_memory_block(engine_main_structure_pointer);
     engine_initialize_memory_block(engine_main_structure_pointer,&engine_stack_variable_10,engine_current_data_pointer,engine_operation_result + 0x20,engine_operation_result);
     engine_current_data_pointer = engine_stack_variable_10;
@@ -9729,7 +9729,7 @@ void engine_core_update_time(void)
 
 {
   char resource_status_flag;
-  void* engine_structure_data_ptr;
+  void* structure_data_pointer;
   int engine_loop_index;
   longlong *engine_main_structure_pointer;
   longlong engine_operation_result;
@@ -9740,11 +9740,11 @@ void engine_core_update_time(void)
   uint64 uStackX_18;
   
   engine_main_structure_pointer = (longlong *)engine_get_system_context();
-  engine_structure_data_ptr = (void*)*engine_main_structure_pointer;
-  resource_status_flag = *(char *)((longlong)engine_structure_data_ptr[1] + 0x19);
+  structure_data_pointer = (void*)*engine_main_structure_pointer;
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
   uStackX_18 = 0;
-  engine_current_data_pointer = engine_structure_data_ptr;
-  engine_temporary_data_ptr = (void*)engine_structure_data_ptr[1];
+  engine_current_data_pointer = structure_data_pointer;
+  engine_temporary_data_ptr = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
     engine_loop_index = memcmp(engine_temporary_data_ptr + 4,&engine_data_180a01000,0x10);
     if (engine_loop_index < 0) {
@@ -9758,7 +9758,7 @@ void engine_core_update_time(void)
     engine_temporary_data_ptr = engine_next_data_pointer;
     resource_status_flag = *(char *)((longlong)engine_next_data_pointer + 0x19);
   }
-  if ((engine_current_data_pointer == engine_structure_data_ptr) || (engine_loop_index = memcmp(&engine_data_180a01000,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
+  if ((engine_current_data_pointer == structure_data_pointer) || (engine_loop_index = memcmp(&engine_data_180a01000,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
     engine_operation_result = engine_allocate_memory_block(engine_main_structure_pointer);
     engine_initialize_memory_block(engine_main_structure_pointer,&engine_stack_variable_10,engine_current_data_pointer,engine_operation_result + 0x20,engine_operation_result);
     engine_current_data_pointer = engine_stack_variable_10;
@@ -9779,7 +9779,7 @@ void engine_core_update_debug(void)
 
 {
   char resource_status_flag;
-  void* engine_structure_data_ptr;
+  void* structure_data_pointer;
   int engine_loop_index;
   longlong *engine_main_structure_pointer;
   longlong engine_operation_result;
@@ -9790,11 +9790,11 @@ void engine_core_update_debug(void)
   void* engine_stack_pointer_18;
   
   engine_main_structure_pointer = (longlong *)engine_get_system_context();
-  engine_structure_data_ptr = (void*)*engine_main_structure_pointer;
-  resource_status_flag = *(char *)((longlong)engine_structure_data_ptr[1] + 0x19);
+  structure_data_pointer = (void*)*engine_main_structure_pointer;
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
   engine_stack_pointer_18 = &engine_base_data_offset_c0;
-  engine_current_data_pointer = engine_structure_data_ptr;
-  engine_temporary_data_ptr = (void*)engine_structure_data_ptr[1];
+  engine_current_data_pointer = structure_data_pointer;
+  engine_temporary_data_ptr = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
     engine_loop_index = memcmp(engine_temporary_data_ptr + 4,&engine_data_180a00fd8,0x10);
     if (engine_loop_index < 0) {
@@ -9808,7 +9808,7 @@ void engine_core_update_debug(void)
     engine_temporary_data_ptr = engine_next_data_pointer;
     resource_status_flag = *(char *)((longlong)engine_next_data_pointer + 0x19);
   }
-  if ((engine_current_data_pointer == engine_structure_data_ptr) || (engine_loop_index = memcmp(&engine_data_180a00fd8,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
+  if ((engine_current_data_pointer == structure_data_pointer) || (engine_loop_index = memcmp(&engine_data_180a00fd8,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
     engine_operation_result = engine_allocate_memory_block(engine_main_structure_pointer);
     engine_initialize_memory_block(engine_main_structure_pointer,&engine_stack_variable_10,engine_current_data_pointer,engine_operation_result + 0x20,engine_operation_result);
     engine_current_data_pointer = engine_stack_variable_10;
@@ -9829,7 +9829,7 @@ void engine_core_update_profiling(void)
 
 {
   char resource_status_flag;
-  void* engine_structure_data_ptr;
+  void* structure_data_pointer;
   int engine_loop_index;
   longlong *engine_main_structure_pointer;
   longlong engine_operation_result;
@@ -9840,11 +9840,11 @@ void engine_core_update_profiling(void)
   uint64 uStackX_18;
   
   engine_main_structure_pointer = (longlong *)engine_get_system_context();
-  engine_structure_data_ptr = (void*)*engine_main_structure_pointer;
-  resource_status_flag = *(char *)((longlong)engine_structure_data_ptr[1] + 0x19);
+  structure_data_pointer = (void*)*engine_main_structure_pointer;
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
   uStackX_18 = 0;
-  engine_current_data_pointer = engine_structure_data_ptr;
-  engine_temporary_data_ptr = (void*)engine_structure_data_ptr[1];
+  engine_current_data_pointer = structure_data_pointer;
+  engine_temporary_data_ptr = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
     engine_loop_index = memcmp(engine_temporary_data_ptr + 4,&engine_data_180a00fb0,0x10);
     if (engine_loop_index < 0) {
@@ -9858,7 +9858,7 @@ void engine_core_update_profiling(void)
     engine_temporary_data_ptr = engine_next_data_pointer;
     resource_status_flag = *(char *)((longlong)engine_next_data_pointer + 0x19);
   }
-  if ((engine_current_data_pointer == engine_structure_data_ptr) || (engine_loop_index = memcmp(&engine_data_180a00fb0,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
+  if ((engine_current_data_pointer == structure_data_pointer) || (engine_loop_index = memcmp(&engine_data_180a00fb0,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
     engine_operation_result = engine_allocate_memory_block(engine_main_structure_pointer);
     engine_initialize_memory_block(engine_main_structure_pointer,&engine_stack_variable_10,engine_current_data_pointer,engine_operation_result + 0x20,engine_operation_result);
     engine_current_data_pointer = engine_stack_variable_10;
@@ -9879,7 +9879,7 @@ void engine_core_update_logging(void)
 
 {
   char resource_status_flag;
-  void* engine_structure_data_ptr;
+  void* structure_data_pointer;
   int engine_loop_index;
   longlong *engine_main_structure_pointer;
   longlong engine_operation_result;
@@ -9890,11 +9890,11 @@ void engine_core_update_logging(void)
   code *engine_stack_function_pointer_18;
   
   engine_main_structure_pointer = (longlong *)engine_get_system_context();
-  engine_structure_data_ptr = (void*)*engine_main_structure_pointer;
-  resource_status_flag = *(char *)((longlong)engine_structure_data_ptr[1] + 0x19);
+  structure_data_pointer = (void*)*engine_main_structure_pointer;
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
   engine_stack_function_pointer_18 = engine_initialize_system_context;
-  engine_current_data_pointer = engine_structure_data_ptr;
-  engine_temporary_data_ptr = (void*)engine_structure_data_ptr[1];
+  engine_current_data_pointer = structure_data_pointer;
+  engine_temporary_data_ptr = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
     engine_loop_index = memcmp(engine_temporary_data_ptr + 4,&engine_data_40,0x10);
     if (engine_loop_index < 0) {
@@ -9908,7 +9908,7 @@ void engine_core_update_logging(void)
     engine_temporary_data_ptr = engine_next_data_pointer;
     resource_status_flag = *(char *)((longlong)engine_next_data_pointer + 0x19);
   }
-  if ((engine_current_data_pointer == engine_structure_data_ptr) || (engine_loop_index = memcmp(&engine_data_40,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
+  if ((engine_current_data_pointer == structure_data_pointer) || (engine_loop_index = memcmp(&engine_data_40,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
     engine_operation_result = engine_allocate_memory_block(engine_main_structure_pointer);
     engine_initialize_memory_block(engine_main_structure_pointer,&engine_stack_variable_10,engine_current_data_pointer,engine_operation_result + 0x20,engine_operation_result);
     engine_current_data_pointer = engine_stack_variable_10;
@@ -9929,7 +9929,7 @@ void engine_core_update_config(void)
 
 {
   char resource_status_flag;
-  void* engine_structure_data_ptr;
+  void* structure_data_pointer;
   int engine_loop_index;
   longlong *engine_main_structure_pointer;
   longlong engine_operation_result;
@@ -9940,11 +9940,11 @@ void engine_core_update_config(void)
   uint64 uStackX_18;
   
   engine_main_structure_pointer = (longlong *)engine_get_system_context();
-  engine_structure_data_ptr = (void*)*engine_main_structure_pointer;
-  resource_status_flag = *(char *)((longlong)engine_structure_data_ptr[1] + 0x19);
+  structure_data_pointer = (void*)*engine_main_structure_pointer;
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
   uStackX_18 = 0;
-  engine_current_data_pointer = engine_structure_data_ptr;
-  engine_temporary_data_ptr = (void*)engine_structure_data_ptr[1];
+  engine_current_data_pointer = structure_data_pointer;
+  engine_temporary_data_ptr = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
     engine_loop_index = memcmp(engine_temporary_data_ptr + 4,&engine_data_68,0x10);
     if (engine_loop_index < 0) {
@@ -9958,7 +9958,7 @@ void engine_core_update_config(void)
     engine_temporary_data_ptr = engine_next_data_pointer;
     resource_status_flag = *(char *)((longlong)engine_next_data_pointer + 0x19);
   }
-  if ((engine_current_data_pointer == engine_structure_data_ptr) || (engine_loop_index = memcmp(&engine_data_68,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
+  if ((engine_current_data_pointer == structure_data_pointer) || (engine_loop_index = memcmp(&engine_data_68,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
     engine_operation_result = engine_allocate_memory_block(engine_main_structure_pointer);
     engine_initialize_memory_block(engine_main_structure_pointer,&engine_stack_variable_10,engine_current_data_pointer,engine_operation_result + 0x20,engine_operation_result);
     engine_current_data_pointer = engine_stack_variable_10;
@@ -9979,7 +9979,7 @@ void engine_core_update_localization(void)
 
 {
   char resource_status_flag;
-  void* engine_structure_data_ptr;
+  void* structure_data_pointer;
   int engine_loop_index;
   longlong *engine_main_structure_pointer;
   longlong engine_operation_result;
@@ -9990,11 +9990,11 @@ void engine_core_update_localization(void)
   uint64 uStackX_18;
   
   engine_main_structure_pointer = (longlong *)engine_get_system_context();
-  engine_structure_data_ptr = (void*)*engine_main_structure_pointer;
-  resource_status_flag = *(char *)((longlong)engine_structure_data_ptr[1] + 0x19);
+  structure_data_pointer = (void*)*engine_main_structure_pointer;
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
   uStackX_18 = 0;
-  engine_current_data_pointer = engine_structure_data_ptr;
-  engine_temporary_data_ptr = (void*)engine_structure_data_ptr[1];
+  engine_current_data_pointer = structure_data_pointer;
+  engine_temporary_data_ptr = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
     engine_loop_index = memcmp(engine_temporary_data_ptr + 4,&engine_data_b8,0x10);
     if (engine_loop_index < 0) {
@@ -10008,7 +10008,7 @@ void engine_core_update_localization(void)
     engine_temporary_data_ptr = engine_next_data_pointer;
     resource_status_flag = *(char *)((longlong)engine_next_data_pointer + 0x19);
   }
-  if ((engine_current_data_pointer == engine_structure_data_ptr) || (engine_loop_index = memcmp(&engine_data_b8,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
+  if ((engine_current_data_pointer == structure_data_pointer) || (engine_loop_index = memcmp(&engine_data_b8,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
     engine_operation_result = engine_allocate_memory_block(engine_main_structure_pointer);
     engine_initialize_memory_block(engine_main_structure_pointer,&engine_stack_variable_10,engine_current_data_pointer,engine_operation_result + 0x20,engine_operation_result);
     engine_current_data_pointer = engine_stack_variable_10;
@@ -10029,7 +10029,7 @@ void engine_core_update_modding(void)
 
 {
   char resource_status_flag;
-  void* engine_structure_data_ptr;
+  void* structure_data_pointer;
   int engine_loop_index;
   longlong *engine_main_structure_pointer;
   longlong engine_operation_result;
@@ -10040,11 +10040,11 @@ void engine_core_update_modding(void)
   uint64 uStackX_18;
   
   engine_main_structure_pointer = (longlong *)engine_get_system_context();
-  engine_structure_data_ptr = (void*)*engine_main_structure_pointer;
-  resource_status_flag = *(char *)((longlong)engine_structure_data_ptr[1] + 0x19);
+  structure_data_pointer = (void*)*engine_main_structure_pointer;
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
   uStackX_18 = 0;
-  engine_current_data_pointer = engine_structure_data_ptr;
-  engine_temporary_data_ptr = (void*)engine_structure_data_ptr[1];
+  engine_current_data_pointer = structure_data_pointer;
+  engine_temporary_data_ptr = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
     engine_loop_index = memcmp(engine_temporary_data_ptr + 4,&engine_data_40,0x10);
     if (engine_loop_index < 0) {
@@ -10058,7 +10058,7 @@ void engine_core_update_modding(void)
     engine_temporary_data_ptr = engine_next_data_pointer;
     resource_status_flag = *(char *)((longlong)engine_next_data_pointer + 0x19);
   }
-  if ((engine_current_data_pointer == engine_structure_data_ptr) || (engine_loop_index = memcmp(&engine_data_40,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
+  if ((engine_current_data_pointer == structure_data_pointer) || (engine_loop_index = memcmp(&engine_data_40,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
     engine_operation_result = engine_allocate_memory_block(engine_main_structure_pointer);
     engine_initialize_memory_block(engine_main_structure_pointer,&engine_stack_variable_10,engine_current_data_pointer,engine_operation_result + 0x20,engine_operation_result);
     engine_current_data_pointer = engine_stack_variable_10;
@@ -10079,7 +10079,7 @@ void engine_core_update_multiplayer(void)
 
 {
   char resource_status_flag;
-  void* engine_structure_data_ptr;
+  void* structure_data_pointer;
   int engine_loop_index;
   longlong *engine_main_structure_pointer;
   longlong engine_operation_result;
@@ -10090,11 +10090,11 @@ void engine_core_update_multiplayer(void)
   uint64 uStackX_18;
   
   engine_main_structure_pointer = (longlong *)engine_get_system_context();
-  engine_structure_data_ptr = (void*)*engine_main_structure_pointer;
-  resource_status_flag = *(char *)((longlong)engine_structure_data_ptr[1] + 0x19);
+  structure_data_pointer = (void*)*engine_main_structure_pointer;
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
   uStackX_18 = 0;
-  engine_current_data_pointer = engine_structure_data_ptr;
-  engine_temporary_data_ptr = (void*)engine_structure_data_ptr[1];
+  engine_current_data_pointer = structure_data_pointer;
+  engine_temporary_data_ptr = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
     engine_loop_index = memcmp(engine_temporary_data_ptr + 4,&engine_data_18,0x10);
     if (engine_loop_index < 0) {
@@ -10108,7 +10108,7 @@ void engine_core_update_multiplayer(void)
     engine_temporary_data_ptr = engine_next_data_pointer;
     resource_status_flag = *(char *)((longlong)engine_next_data_pointer + 0x19);
   }
-  if ((engine_current_data_pointer == engine_structure_data_ptr) || (engine_loop_index = memcmp(&engine_data_18,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
+  if ((engine_current_data_pointer == structure_data_pointer) || (engine_loop_index = memcmp(&engine_data_18,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
     engine_operation_result = engine_allocate_memory_block(engine_main_structure_pointer);
     engine_initialize_memory_block(engine_main_structure_pointer,&engine_stack_variable_10,engine_current_data_pointer,engine_operation_result + 0x20,engine_operation_result);
     engine_current_data_pointer = engine_stack_variable_10;
@@ -10129,7 +10129,7 @@ void engine_core_update_achievements(void)
 
 {
   char resource_status_flag;
-  void* engine_structure_data_ptr;
+  void* structure_data_pointer;
   int engine_loop_index;
   longlong *engine_main_structure_pointer;
   longlong engine_operation_result;
@@ -10140,11 +10140,11 @@ void engine_core_update_achievements(void)
   uint64 uStackX_18;
   
   engine_main_structure_pointer = (longlong *)engine_get_system_context();
-  engine_structure_data_ptr = (void*)*engine_main_structure_pointer;
-  resource_status_flag = *(char *)((longlong)engine_structure_data_ptr[1] + 0x19);
+  structure_data_pointer = (void*)*engine_main_structure_pointer;
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
   uStackX_18 = 0;
-  engine_current_data_pointer = engine_structure_data_ptr;
-  engine_temporary_data_ptr = (void*)engine_structure_data_ptr[1];
+  engine_current_data_pointer = structure_data_pointer;
+  engine_temporary_data_ptr = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
     engine_loop_index = memcmp(engine_temporary_data_ptr + 4,&engine_data_68,0x10);
     if (engine_loop_index < 0) {
@@ -10158,7 +10158,7 @@ void engine_core_update_achievements(void)
     engine_temporary_data_ptr = engine_next_data_pointer;
     resource_status_flag = *(char *)((longlong)engine_next_data_pointer + 0x19);
   }
-  if ((engine_current_data_pointer == engine_structure_data_ptr) || (engine_loop_index = memcmp(&engine_data_68,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
+  if ((engine_current_data_pointer == structure_data_pointer) || (engine_loop_index = memcmp(&engine_data_68,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
     engine_operation_result = engine_allocate_memory_block(engine_main_structure_pointer);
     engine_initialize_memory_block(engine_main_structure_pointer,&engine_stack_variable_10,engine_current_data_pointer,engine_operation_result + 0x20,engine_operation_result);
     engine_current_data_pointer = engine_stack_variable_10;
@@ -10179,7 +10179,7 @@ void engine_core_update_leaderboards(void)
 
 {
   char resource_status_flag;
-  void* engine_structure_data_ptr;
+  void* structure_data_pointer;
   int engine_loop_index;
   longlong *engine_main_structure_pointer;
   longlong engine_operation_result;
@@ -10190,11 +10190,11 @@ void engine_core_update_leaderboards(void)
   uint64 uStackX_18;
   
   engine_main_structure_pointer = (longlong *)engine_get_system_context();
-  engine_structure_data_ptr = (void*)*engine_main_structure_pointer;
-  resource_status_flag = *(char *)((longlong)engine_structure_data_ptr[1] + 0x19);
+  structure_data_pointer = (void*)*engine_main_structure_pointer;
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
   uStackX_18 = 0;
-  engine_current_data_pointer = engine_structure_data_ptr;
-  engine_temporary_data_ptr = (void*)engine_structure_data_ptr[1];
+  engine_current_data_pointer = structure_data_pointer;
+  engine_temporary_data_ptr = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
     engine_loop_index = memcmp(engine_temporary_data_ptr + 4,&engine_data_90,0x10);
     if (engine_loop_index < 0) {
@@ -10208,7 +10208,7 @@ void engine_core_update_leaderboards(void)
     engine_temporary_data_ptr = engine_next_data_pointer;
     resource_status_flag = *(char *)((longlong)engine_next_data_pointer + 0x19);
   }
-  if ((engine_current_data_pointer == engine_structure_data_ptr) || (engine_loop_index = memcmp(&engine_data_90,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
+  if ((engine_current_data_pointer == structure_data_pointer) || (engine_loop_index = memcmp(&engine_data_90,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
     engine_operation_result = engine_allocate_memory_block(engine_main_structure_pointer);
     engine_initialize_memory_block(engine_main_structure_pointer,&engine_stack_variable_10,engine_current_data_pointer,engine_operation_result + 0x20,engine_operation_result);
     engine_current_data_pointer = engine_stack_variable_10;
@@ -10229,7 +10229,7 @@ void engine_core_update_statistics(void)
 
 {
   char resource_status_flag;
-  void* engine_structure_data_ptr;
+  void* structure_data_pointer;
   int engine_loop_index;
   longlong *engine_main_structure_pointer;
   longlong engine_operation_result;
@@ -10240,11 +10240,11 @@ void engine_core_update_statistics(void)
   uint64 uStackX_18;
   
   engine_main_structure_pointer = (longlong *)engine_get_system_context();
-  engine_structure_data_ptr = (void*)*engine_main_structure_pointer;
-  resource_status_flag = *(char *)((longlong)engine_structure_data_ptr[1] + 0x19);
+  structure_data_pointer = (void*)*engine_main_structure_pointer;
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
   uStackX_18 = 0;
-  engine_current_data_pointer = engine_structure_data_ptr;
-  engine_temporary_data_ptr = (void*)engine_structure_data_ptr[1];
+  engine_current_data_pointer = structure_data_pointer;
+  engine_temporary_data_ptr = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
     engine_loop_index = memcmp(engine_temporary_data_ptr + 4,&engine_data_e0,0x10);
     if (engine_loop_index < 0) {
@@ -10258,7 +10258,7 @@ void engine_core_update_statistics(void)
     engine_temporary_data_ptr = engine_next_data_pointer;
     resource_status_flag = *(char *)((longlong)engine_next_data_pointer + 0x19);
   }
-  if ((engine_current_data_pointer == engine_structure_data_ptr) || (engine_loop_index = memcmp(&engine_data_e0,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
+  if ((engine_current_data_pointer == structure_data_pointer) || (engine_loop_index = memcmp(&engine_data_e0,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
     engine_operation_result = engine_allocate_memory_block(engine_main_structure_pointer);
     engine_initialize_memory_block(engine_main_structure_pointer,&engine_stack_variable_10,engine_current_data_pointer,engine_operation_result + 0x20,engine_operation_result);
     engine_current_data_pointer = engine_stack_variable_10;
@@ -10279,7 +10279,7 @@ void engine_core_update_analytics(void)
 
 {
   char resource_status_flag;
-  void* engine_structure_data_ptr;
+  void* structure_data_pointer;
   int engine_loop_index;
   longlong *engine_main_structure_pointer;
   longlong engine_operation_result;
@@ -10290,11 +10290,11 @@ void engine_core_update_analytics(void)
   code *engine_stack_function_pointer_18;
   
   engine_main_structure_pointer = (longlong *)engine_get_system_context();
-  engine_structure_data_ptr = (void*)*engine_main_structure_pointer;
-  resource_status_flag = *(char *)((longlong)engine_structure_data_ptr[1] + 0x19);
+  structure_data_pointer = (void*)*engine_main_structure_pointer;
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
   engine_stack_function_pointer_18 = void engine_initialize_core_system(void);
-  engine_current_data_pointer = engine_structure_data_ptr;
-  engine_temporary_data_ptr = (void*)engine_structure_data_ptr[1];
+  engine_current_data_pointer = structure_data_pointer;
+  engine_temporary_data_ptr = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
     engine_loop_index = memcmp(engine_temporary_data_ptr + 4,&engine_data_f0,0x10);
     if (engine_loop_index < 0) {
@@ -10308,7 +10308,7 @@ void engine_core_update_analytics(void)
     engine_temporary_data_ptr = engine_next_data_pointer;
     resource_status_flag = *(char *)((longlong)engine_next_data_pointer + 0x19);
   }
-  if ((engine_current_data_pointer == engine_structure_data_ptr) || (engine_loop_index = memcmp(&engine_data_f0,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
+  if ((engine_current_data_pointer == structure_data_pointer) || (engine_loop_index = memcmp(&engine_data_f0,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
     engine_operation_result = engine_allocate_memory_block(engine_main_structure_pointer);
     engine_initialize_memory_block(engine_main_structure_pointer,&engine_stack_variable_10,engine_current_data_pointer,engine_operation_result + 0x20,engine_operation_result);
     engine_current_data_pointer = engine_stack_variable_10;
@@ -10329,7 +10329,7 @@ void engine_core_update_telemetry(void)
 
 {
   char resource_status_flag;
-  void* engine_structure_data_ptr;
+  void* structure_data_pointer;
   int engine_loop_index;
   longlong *engine_main_structure_pointer;
   longlong engine_operation_result;
@@ -10340,11 +10340,11 @@ void engine_core_update_telemetry(void)
   uint64 uStackX_18;
   
   engine_main_structure_pointer = (longlong *)engine_get_system_context();
-  engine_structure_data_ptr = (void*)*engine_main_structure_pointer;
-  resource_status_flag = *(char *)((longlong)engine_structure_data_ptr[1] + 0x19);
+  structure_data_pointer = (void*)*engine_main_structure_pointer;
+  resource_status_flag = *(char *)((longlong)structure_data_pointer[1] + 0x19);
   uStackX_18 = 0;
-  engine_current_data_pointer = engine_structure_data_ptr;
-  engine_temporary_data_ptr = (void*)engine_structure_data_ptr[1];
+  engine_current_data_pointer = structure_data_pointer;
+  engine_temporary_data_ptr = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
     engine_loop_index = memcmp(engine_temporary_data_ptr + 4,&engine_config_data,0x10);
     if (engine_loop_index < 0) {
@@ -10358,7 +10358,7 @@ void engine_core_update_telemetry(void)
     engine_temporary_data_ptr = engine_next_data_pointer;
     resource_status_flag = *(char *)((longlong)engine_next_data_pointer + 0x19);
   }
-  if ((engine_current_data_pointer == engine_structure_data_ptr) || (engine_loop_index = memcmp(&engine_config_data,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
+  if ((engine_current_data_pointer == structure_data_pointer) || (engine_loop_index = memcmp(&engine_config_data,engine_current_data_pointer + 4,0x10), engine_loop_index < 0)) {
     engine_operation_result = engine_allocate_memory_block(engine_main_structure_pointer);
     engine_initialize_memory_block(engine_main_structure_pointer,&engine_stack_variable_10,engine_current_data_pointer,engine_operation_result + 0x20,engine_operation_result);
     engine_current_data_pointer = engine_stack_variable_10;
@@ -11400,8 +11400,8 @@ uint32 engine_core_setup_render_pipeline(void)
   }
   engine_call_memory_compactor();
   engine_temp_long0 = _engine_data_28;
-  uVar7 = engine_call_memory_allocator(_engine_data_18,0x70,8,3);
-  engine_temp_ptr_ptr_ptr_ptr_8 = (longlong ****)engine_call_memory_configurator(uVar7,2,engine_temp_long0);
+  engine_temp_uint64_value = engine_call_memory_allocator(_engine_data_18,0x70,8,3);
+  engine_temp_ptr_ptr_ptr_ptr_8 = (longlong ****)engine_call_memory_configurator(engine_temp_uint64_value,2,engine_temp_long0);
   ppppengine_temp_long4 = engine_temp_ptr_ptr_ptr_ptr_8;
   if (engine_temp_ptr_ptr_ptr_ptr_8 != (longlong ****)0x0) {
     (*(code *)(*engine_temp_ptr_ptr_ptr_ptr_8)[5])(engine_temp_ptr_ptr_ptr_ptr_8);
@@ -12175,18 +12175,18 @@ void engine_execute_render_pipeline(longlong *engine_data_structure_ptr)
 
 {
   void* engine_data_pointer;
-  void* engine_structure_data_ptr;
+  void* structure_data_pointer;
   
   engine_data_pointer = (void*)engine_data_structure_ptr[1];
-  for (engine_structure_data_ptr = (void*)*engine_data_structure_ptr; engine_structure_data_ptr != engine_data_pointer; engine_structure_data_ptr = engine_structure_data_ptr + 5) {
-    *engine_structure_data_ptr = &engine_system_context_data;
-    if (engine_structure_data_ptr[1] != 0) {
+  for (structure_data_pointer = (void*)*engine_data_structure_ptr; structure_data_pointer != engine_data_pointer; structure_data_pointer = structure_data_pointer + 5) {
+    *structure_data_pointer = &engine_system_context_data;
+    if (structure_data_pointer[1] != 0) {
                     // WARNING: Subroutine does not return
       engine_call_cleanup_routine();
     }
-    engine_structure_data_ptr[1] = 0;
-    *(uint32*)(engine_structure_data_ptr + 3) = 0;
-    *engine_structure_data_ptr = &engine_data_18098bcb0;
+    structure_data_pointer[1] = 0;
+    *(uint32*)(structure_data_pointer + 3) = 0;
+    *structure_data_pointer = &engine_data_18098bcb0;
   }
   if (*engine_data_structure_ptr != 0) {
                     // WARNING: Subroutine does not return
@@ -12203,21 +12203,21 @@ void engine_initialize_render_pipeline(ulonglong *engine_data_structure_ptr)
 
 {
   int *pengine_temp_int;
-  void* engine_structure_data_ptr;
+  void* structure_data_pointer;
   longlong engine_temp_long_3;
   ulonglong engine_temp_counter_4;
   
-  engine_structure_data_ptr = (void*)*engine_data_structure_ptr;
-  if (engine_structure_data_ptr == (void*)0x0) {
+  structure_data_pointer = (void*)*engine_data_structure_ptr;
+  if (structure_data_pointer == (void*)0x0) {
     return;
   }
-  engine_temp_uint_4 = (ulonglong)engine_structure_data_ptr & 0xffffffffffc00000;
+  engine_temp_uint_4 = (ulonglong)structure_data_pointer & 0xffffffffffc00000;
   if (engine_temp_uint_4 != 0) {
-    engine_temp_long_3 = engine_temp_uint_4 + 0x80 + ((longlong)engine_structure_data_ptr - engine_temp_uint_4 >> 0x10) * 0x50;
+    engine_temp_long_3 = engine_temp_uint_4 + 0x80 + ((longlong)structure_data_pointer - engine_temp_uint_4 >> 0x10) * 0x50;
     engine_temp_long_3 = engine_temp_long_3 - (ulonglong)*(uint *)(engine_temp_long_3 + 4);
     if ((*(void ***)(engine_temp_uint_4 + 0x70) == &ExceptionList) && (*(char *)(engine_temp_long_3 + 0xe) == '\0')) {
-      *engine_structure_data_ptr = *(void*)(engine_temp_long_3 + 0x20);
-      *(void**)(engine_temp_long_3 + 0x20) = engine_structure_data_ptr;
+      *structure_data_pointer = *(void*)(engine_temp_long_3 + 0x20);
+      *(void**)(engine_temp_long_3 + 0x20) = structure_data_pointer;
       pengine_temp_int = (int *)(engine_temp_long_3 + 0x18);
       *pengine_temp_int = *pengine_temp_int + -1;
       if (*pengine_temp_int == 0) {
@@ -12227,7 +12227,7 @@ void engine_initialize_render_pipeline(ulonglong *engine_data_structure_ptr)
     }
     else {
       func_0x00018064e870(engine_temp_uint_4,CONCAT71(0xff000000,*(void ***)(engine_temp_uint_4 + 0x70) == &ExceptionList),
-                          engine_structure_data_ptr,engine_temp_uint_4,0xfffffffffffffffe);
+                          structure_data_pointer,engine_temp_uint_4,0xfffffffffffffffe);
     }
   }
   return;
@@ -12248,7 +12248,7 @@ int engine_validate_render_state(longlong engine_data_structure_ptr,longlong eng
   longlong engine_temp_long_6;
   longlong engine_string_length_diff;
   ulonglong engine_temp_uint_8;
-  uint64_t ****ppppuVar9;
+  uint64_t ****engine_temp_ptr_ptr_ptr_ptr_9;
   uint64_t ***engine_temp_ptr_ptr_ptr_stack_8;
   void* engine_stack_pointer_138;
   longlong lStack_130;
@@ -12328,7 +12328,7 @@ int engine_validate_render_state(longlong engine_data_structure_ptr,longlong eng
   if (engine_temp_uint_8 < *(ulonglong *)(engine_data_structure_ptr + 0x18)) {
     *(ulonglong *)(engine_data_structure_ptr + 0x10) = engine_temp_uint_8 + 0x100;
     engine_set_memory_protection(engine_temp_uint_8,&engine_stack_pointer_138);
-    ppppuVar9 = *(uint64_t *****)(engine_data_structure_ptr + 0x10);
+    engine_temp_ptr_ptr_ptr_ptr_9 = *(uint64_t *****)(engine_data_structure_ptr + 0x10);
     goto LAB_180046a90;
   }
   engine_temp_long_4 = *(longlong *)(engine_data_structure_ptr + 8);
@@ -12347,7 +12347,7 @@ LAB_1800469fd:
   engine_setup_memory_mapping(&engine_temp_ptr_ptr_ptr_stack_8,engine_temp_long_4,engine_temp_uint_8,engine_temp_long_2);
   ppengine_data_ptr = engine_temp_ptr_ptr_ptr_stack_8;
   engine_set_memory_protection(engine_temp_ptr_ptr_ptr_stack_8,&engine_stack_pointer_138);
-  ppppuVar9 = (uint64_t ****)(ppengine_data_ptr + 0x20);
+  engine_temp_ptr_ptr_ptr_ptr_9 = (uint64_t ****)(ppengine_data_ptr + 0x20);
   engine_temp_long_4 = *(longlong *)(engine_data_structure_ptr + 0x10);
   engine_temp_long_6 = *(longlong *)(engine_data_structure_ptr + 8);
   if (engine_temp_long_6 != engine_temp_long_4) {
@@ -12362,10 +12362,10 @@ LAB_1800469fd:
     engine_call_cleanup_routine(engine_temp_long_6);
   }
   *(longlong *)(engine_data_structure_ptr + 8) = engine_temp_long_2;
-  *(uint64_t *****)(engine_data_structure_ptr + 0x10) = ppppuVar9;
+  *(uint64_t *****)(engine_data_structure_ptr + 0x10) = engine_temp_ptr_ptr_ptr_ptr_9;
   *(longlong *)(engine_data_structure_ptr + 0x18) = engine_temp_long_7 * 0x100 + engine_temp_long_2;
 LAB_180046a90:
-  engine_temp_int_5 = (int)((ulonglong)((longlong)ppppuVar9 - *(longlong *)(engine_data_structure_ptr + 8)) >> 8) + -1;
+  engine_temp_int_5 = (int)((ulonglong)((longlong)engine_temp_ptr_ptr_ptr_ptr_9 - *(longlong *)(engine_data_structure_ptr + 8)) >> 8) + -1;
   *(int *)(engine_data_structure_ptr + 0x68) = engine_temp_int_5;
   engine_temp_ptr_ptr_ptr_stack_8 = &pppuStack_68;
   engine_configure_system_component(&pppuStack_68,engine_stack_value_58);
@@ -12408,9 +12408,9 @@ ulonglong engine_calculate_render_metrics(longlong engine_data_structure_ptr,lon
   byte *engine_byte_ptr_4;
   int engine_temp_int_5;
   int engine_temp_int_6;
-  ulonglong uVar7;
+  ulonglong engine_temp_uint64_value;
   longlong engine_temp_long_8;
-  uint uVar9;
+  uint engine_temp_uint_9;
   ulonglong engine_temp_uint0;
   ulonglong engine_temp_uint1;
   
@@ -12439,8 +12439,8 @@ LAB_180046c90:
   }
 LAB_180046c03:
   engine_temp_uint0 = 0;
-  uVar7 = *(longlong *)(engine_data_structure_ptr + 0x10) - engine_temp_long_3 >> 8;
-  if (uVar7 != 0) {
+  engine_temp_uint64_value = *(longlong *)(engine_data_structure_ptr + 0x10) - engine_temp_long_3 >> 8;
+  if (engine_temp_uint64_value != 0) {
     engine_temp_int_5 = *(int *)(engine_result_flag_ptr + 0x10);
     engine_temp_uint1 = engine_temp_uint0;
     do {
@@ -12464,10 +12464,10 @@ LAB_180046c5e:
         }
       }
       else if (engine_temp_int_2 == 0) goto LAB_180046c5e;
-      uVar9 = (int)engine_temp_uint0 + 1;
-      engine_temp_uint0 = (ulonglong)uVar9;
+      engine_temp_uint_9 = (int)engine_temp_uint0 + 1;
+      engine_temp_uint0 = (ulonglong)engine_temp_uint_9;
       engine_temp_uint1 = engine_temp_uint1 + 0x100;
-    } while ((ulonglong)(longlong)(int)uVar9 < uVar7);
+    } while ((ulonglong)(longlong)(int)engine_temp_uint_9 < engine_temp_uint64_value);
   }
   return 0xffffffff;
 }
@@ -12538,7 +12538,7 @@ void engine_initialize_render_system(void)
   longlong engine_temp_long_6;
   void* engine_current_data_pointer;
   uint32_t *engine_next_data_pointer;
-  uint8* puVar9;
+  uint8* engine_temp_uint_ptr_9;
   uint32 engine_temp_uint0;
   float engine_temp_float_11;
   float engine_temp_float_12;
@@ -12755,13 +12755,13 @@ void engine_initialize_render_system(void)
   *(uint16*)(engine_next_data_pointer + 4) = 0x74;
   uStack_608 = engine_loop_index;
   engine_current_data_pointer = (void*)engine_call_memory_allocator(_engine_data_18,0x18,8,3);
-  puVar9 = &engine_data_73;
+  engine_temp_uint_ptr_9 = &engine_data_73;
   if (puStack_610 != (uint8*)0x0) {
-    puVar9 = puStack_610;
+    engine_temp_uint_ptr_9 = puStack_610;
   }
   *engine_current_data_pointer = 0;
   *(uint8*)(engine_current_data_pointer + 2) = 0;
-  engine_call_structure_builder(engine_current_data_pointer,puVar9,&engine_data_ec);
+  engine_call_structure_builder(engine_current_data_pointer,engine_temp_uint_ptr_9,&engine_data_ec);
   engine_call_object_registrar(_engine_data_20,engine_current_data_pointer);
   if (engine_current_data_pointer[1] != 0) {
     fclose();
@@ -12857,7 +12857,7 @@ void engine_copy_memory(uint64 engine_data_structure_ptr,uint64 engine_result_fl
     engine_next_data_pointer = (void*)engine_current_data_pointer[2];
     do {
       if (*(int *)(engine_comparison_params + 0x10) == 0) {
-        puVar9 = (void*)engine_next_data_pointer[1];
+        engine_temp_uint_ptr_9 = (void*)engine_next_data_pointer[1];
         engine_comparison_result = false;
       }
       else {
@@ -12875,19 +12875,19 @@ void engine_copy_memory(uint64 engine_data_structure_ptr,uint64 engine_result_fl
           } while (engine_temp_index != 0);
           engine_comparison_result = 0 < engine_loop_index;
           if (engine_loop_index < 1) {
-            puVar9 = (void*)engine_next_data_pointer[1];
+            engine_temp_uint_ptr_9 = (void*)engine_next_data_pointer[1];
             goto LAB_180047f2c;
           }
         }
-        puVar9 = (void*)*engine_next_data_pointer;
+        engine_temp_uint_ptr_9 = (void*)*engine_next_data_pointer;
       }
 LAB_180047f2c:
       if (engine_comparison_result) {
         engine_next_data_pointer = engine_next_node_ptr;
       }
       engine_next_node_ptr = engine_next_data_pointer;
-      engine_next_data_pointer = puVar9;
-    } while (puVar9 != (void*)0x0);
+      engine_next_data_pointer = engine_temp_uint_ptr_9;
+    } while (engine_temp_uint_ptr_9 != (void*)0x0);
   }
   if (engine_next_node_ptr != engine_current_data_pointer) {
     if (*(int *)(engine_next_node_ptr + 6) == 0) goto LAB_180047f93;
@@ -12986,13 +12986,13 @@ void engine_initialize_memory_manager(uint64 engine_data_structure_ptr,uint64 en
   engine_next_data_pointer[4] = 0x747874;
   uStack_b8 = 0x18;
   engine_temporary_pointer = (void*)engine_call_memory_allocator(_engine_data_18,0x18,8,3);
-  puVar9 = &engine_data_73;
+  engine_temp_uint_ptr_9 = &engine_data_73;
   if (puStack_c0 != (void*)0x0) {
-    puVar9 = puStack_c0;
+    engine_temp_uint_ptr_9 = puStack_c0;
   }
   *engine_temporary_pointer = 0;
   *(uint8*)(engine_temporary_pointer + 2) = 0;
-  engine_call_structure_builder(engine_temporary_pointer,puVar9,&engine_data_ec);
+  engine_call_structure_builder(engine_temporary_pointer,engine_temp_uint_ptr_9,&engine_data_ec);
   engine_temp_uint6 = 0;
   engine_temp_uint0 = engine_temp_uint2;
   if (engine_data_pointer_50 - _engine_data_48 >> 8 != 0) {
@@ -13203,10 +13203,10 @@ void engine_initialize_memory_manager(uint64 engine_data_structure_ptr,uint64 en
         presource_status_flag4 = *(char **)(engine_temp_long_6 + 8 + engine_temp_long1);
         engine_temp_char_flag = presource_status_flag4[engine_temp_long3];
       }
-      puVar9 = *(undefined **)(_engine_render_state + 8 + engine_temp_long1);
+      engine_temp_uint_ptr_9 = *(undefined **)(_engine_render_state + 8 + engine_temp_long1);
       engine_data_ptr5 = &engine_data_73;
-      if (puVar9 != (void*)0x0) {
-        engine_data_ptr5 = puVar9;
+      if (engine_temp_uint_ptr_9 != (void*)0x0) {
+        engine_data_ptr5 = engine_temp_uint_ptr_9;
       }
       engine_call_property_setter(engine_temporary_pointer,&engine_data_1809fc908,engine_data_ptr5,*(void*)(_engine_render_state + 0x20 + engine_temp_long1));
       engine_temp_int7 = engine_temp_int7 + 1;
@@ -13260,18 +13260,18 @@ void engine_validate_memory_block(longlong *engine_data_structure_ptr)
 
 {
   void* engine_data_pointer;
-  void* engine_structure_data_ptr;
+  void* structure_data_pointer;
   
   engine_data_pointer = (void*)engine_data_structure_ptr[1];
-  for (engine_structure_data_ptr = (void*)*engine_data_structure_ptr; engine_structure_data_ptr != engine_data_pointer; engine_structure_data_ptr = engine_structure_data_ptr + 5) {
-    *engine_structure_data_ptr = &engine_system_context_data;
-    if (engine_structure_data_ptr[1] != 0) {
+  for (structure_data_pointer = (void*)*engine_data_structure_ptr; structure_data_pointer != engine_data_pointer; structure_data_pointer = structure_data_pointer + 5) {
+    *structure_data_pointer = &engine_system_context_data;
+    if (structure_data_pointer[1] != 0) {
                     // WARNING: Subroutine does not return
       engine_call_cleanup_routine();
     }
-    engine_structure_data_ptr[1] = 0;
-    *(uint32*)(engine_structure_data_ptr + 3) = 0;
-    *engine_structure_data_ptr = &engine_data_18098bcb0;
+    structure_data_pointer[1] = 0;
+    *(uint32*)(structure_data_pointer + 3) = 0;
+    *structure_data_pointer = &engine_data_18098bcb0;
   }
   if (*engine_data_structure_ptr != 0) {
                     // WARNING: Subroutine does not return
@@ -13288,21 +13288,21 @@ void engine_defragment_memory(ulonglong *engine_data_structure_ptr)
 
 {
   int *pengine_temp_int;
-  void* engine_structure_data_ptr;
+  void* structure_data_pointer;
   longlong engine_temp_long_3;
   ulonglong engine_temp_counter_4;
   
-  engine_structure_data_ptr = (void*)*engine_data_structure_ptr;
-  if (engine_structure_data_ptr == (void*)0x0) {
+  structure_data_pointer = (void*)*engine_data_structure_ptr;
+  if (structure_data_pointer == (void*)0x0) {
     return;
   }
-  engine_temp_uint_4 = (ulonglong)engine_structure_data_ptr & 0xffffffffffc00000;
+  engine_temp_uint_4 = (ulonglong)structure_data_pointer & 0xffffffffffc00000;
   if (engine_temp_uint_4 != 0) {
-    engine_temp_long_3 = engine_temp_uint_4 + 0x80 + ((longlong)engine_structure_data_ptr - engine_temp_uint_4 >> 0x10) * 0x50;
+    engine_temp_long_3 = engine_temp_uint_4 + 0x80 + ((longlong)structure_data_pointer - engine_temp_uint_4 >> 0x10) * 0x50;
     engine_temp_long_3 = engine_temp_long_3 - (ulonglong)*(uint *)(engine_temp_long_3 + 4);
     if ((*(void ***)(engine_temp_uint_4 + 0x70) == &ExceptionList) && (*(char *)(engine_temp_long_3 + 0xe) == '\0')) {
-      *engine_structure_data_ptr = *(void*)(engine_temp_long_3 + 0x20);
-      *(void**)(engine_temp_long_3 + 0x20) = engine_structure_data_ptr;
+      *structure_data_pointer = *(void*)(engine_temp_long_3 + 0x20);
+      *(void**)(engine_temp_long_3 + 0x20) = structure_data_pointer;
       pengine_temp_int = (int *)(engine_temp_long_3 + 0x18);
       *pengine_temp_int = *pengine_temp_int + -1;
       if (*pengine_temp_int == 0) {
@@ -13312,7 +13312,7 @@ void engine_defragment_memory(ulonglong *engine_data_structure_ptr)
     }
     else {
       func_0x00018064e870(engine_temp_uint_4,CONCAT71(0xff000000,*(void ***)(engine_temp_uint_4 + 0x70) == &ExceptionList),
-                          engine_structure_data_ptr,engine_temp_uint_4,0xfffffffffffffffe);
+                          structure_data_pointer,engine_temp_uint_4,0xfffffffffffffffe);
     }
   }
   return;
@@ -13405,22 +13405,22 @@ longlong engine_set_memory_protection(longlong engine_data_structure_ptr,longlon
   *(uint8*)(engine_data_structure_ptr + 0xe8) = 0;
   *(void*)(engine_data_structure_ptr + 0xf0) = 0;
   if (*(longlong *)(engine_result_flag_ptr + 0xe0) != 0) {
-    puVar9 = (void*)engine_reserve_memory_address(engine_data_pointer,*(longlong *)(engine_result_flag_ptr + 0xe0),engine_data_pointer,engine_system_parameter_4,engine_temp_uint0)
+    engine_temp_uint_ptr_9 = (void*)engine_reserve_memory_address(engine_data_pointer,*(longlong *)(engine_result_flag_ptr + 0xe0),engine_data_pointer,engine_system_parameter_4,engine_temp_uint0)
     ;
-    *(void**)(engine_data_structure_ptr + 0xe0) = puVar9;
-    engine_next_data_pointer = (void*)*puVar9;
-    engine_current_data_pointer = puVar9;
+    *(void**)(engine_data_structure_ptr + 0xe0) = engine_temp_uint_ptr_9;
+    engine_next_data_pointer = (void*)*engine_temp_uint_ptr_9;
+    engine_current_data_pointer = engine_temp_uint_ptr_9;
     while (engine_temporary_data_ptr = engine_next_data_pointer, engine_temporary_data_ptr != (void*)0x0) {
       engine_current_data_pointer = engine_temporary_data_ptr;
       engine_next_data_pointer = (void*)*engine_temporary_data_ptr;
     }
     *engine_data_pointer = engine_current_data_pointer;
-    engine_data_pointer = (void*)puVar9[1];
+    engine_data_pointer = (void*)engine_temp_uint_ptr_9[1];
     while (engine_current_data_pointer = engine_data_pointer, engine_current_data_pointer != (void*)0x0) {
-      puVar9 = engine_current_data_pointer;
+      engine_temp_uint_ptr_9 = engine_current_data_pointer;
       engine_data_pointer = (void*)engine_current_data_pointer[1];
     }
-    *(void**)(engine_data_structure_ptr + 0xd8) = puVar9;
+    *(void**)(engine_data_structure_ptr + 0xd8) = engine_temp_uint_ptr_9;
     *(void*)(engine_data_structure_ptr + 0xf0) = *(void*)(engine_result_flag_ptr + 0xf0);
   }
   return engine_data_structure_ptr;
@@ -13591,7 +13591,7 @@ void engine_unmap_memory_region(longlong engine_data_structure_ptr,uint64 engine
   uint64 engine_temp_uint_6;
   uint64 engine_temp_uint_7;
   
-  uVar7 = 0xfffffffffffffffe;
+  engine_temp_uint64_value = 0xfffffffffffffffe;
   engine_temp_uint_6 = 0;
   if (((char)engine_system_parameter_4 != '\0') || (engine_comparison_params == engine_data_structure_ptr)) goto LAB_180048f62;
   if (*(int *)(engine_comparison_params + 0x30) != 0) {
@@ -13623,7 +13623,7 @@ LAB_180048f62:
   *(void*)(engine_operation_result + 0x48) = 0;
   *(uint32*)(engine_operation_result + 0x50) = 0;
                     // WARNING: Subroutine does not return
-  engine_call_system_controller(engine_operation_result,engine_comparison_params,engine_data_structure_ptr,engine_temp_uint_6,uVar7,engine_next_node_ptr);
+  engine_call_system_controller(engine_operation_result,engine_comparison_params,engine_data_structure_ptr,engine_temp_uint_6,engine_temp_uint64_value,engine_next_node_ptr);
 }
 
 
@@ -13634,7 +13634,7 @@ uint64_t * engine_reserve_memory_address(longlong engine_data_structure_ptr,long
 
 {
   longlong *pengine_temp_long;
-  void* engine_structure_data_ptr;
+  void* structure_data_pointer;
   void* engine_current_node_ptr;
   void* engine_next_node_ptr;
   uint64 engine_temp_index;
@@ -13645,7 +13645,7 @@ uint64_t * engine_reserve_memory_address(longlong engine_data_structure_ptr,long
     engine_temp_index = engine_reserve_memory_address(engine_data_structure_ptr,*engine_result_flag_ptr,engine_current_node_ptr,engine_system_parameter_4,engine_temp_index);
     *engine_current_node_ptr = engine_temp_index;
   }
-  engine_structure_data_ptr = engine_current_node_ptr;
+  structure_data_pointer = engine_current_node_ptr;
   for (pengine_temp_long = (longlong *)engine_result_flag_ptr[1]; pengine_temp_long != (longlong *)0x0; pengine_temp_long = (longlong *)pengine_temp_long[1]) {
     engine_next_node_ptr = (void*)engine_call_memory_extender(_engine_data_18,0x68,*(uint8*)(engine_data_structure_ptr + 0x28));
     engine_call_data_writer(engine_next_node_ptr + 4,pengine_temp_long + 4);
@@ -13653,14 +13653,14 @@ uint64_t * engine_reserve_memory_address(longlong engine_data_structure_ptr,long
     engine_next_node_ptr[0xc] = pengine_temp_long[0xc];
     *engine_next_node_ptr = 0;
     engine_next_node_ptr[1] = 0;
-    engine_next_node_ptr[2] = engine_structure_data_ptr;
+    engine_next_node_ptr[2] = structure_data_pointer;
     *(char *)(engine_next_node_ptr + 3) = (char)pengine_temp_long[3];
-    engine_structure_data_ptr[1] = engine_next_node_ptr;
+    structure_data_pointer[1] = engine_next_node_ptr;
     if (*pengine_temp_long != 0) {
       engine_temp_index = engine_reserve_memory_address(engine_data_structure_ptr,*pengine_temp_long,engine_next_node_ptr);
       *engine_next_node_ptr = engine_temp_index;
     }
-    engine_structure_data_ptr = engine_next_node_ptr;
+    structure_data_pointer = engine_next_node_ptr;
   }
   return engine_current_node_ptr;
 }
@@ -14401,7 +14401,7 @@ void engine_call_system_cleanup(void)
 
 {
   longlong *pengine_temp_long;
-  void* engine_structure_data_ptr;
+  void* structure_data_pointer;
   code *pengine_temp_char_flag_2;
   uint8* engine_next_node_ptr;
   uint64 engine_temp_index;
@@ -14409,7 +14409,7 @@ void engine_call_system_cleanup(void)
   int engine_animation_frame_count;
   longlong engine_temp_long_8;
   longlong **pplVar9;
-  undefined2 *engine_data_ptr0;
+  engine_undefined_value *engine_data_ptr0;
   uint engine_temp_uint1;
   ulonglong engine_temp_uint3;
   float engine_temp_float_14;
@@ -14465,12 +14465,12 @@ void engine_call_system_cleanup(void)
     ppplStack_70 = (longlong ***)pplVar9;
     pplStack_60 = pplVar9;
     (*(code *)(*pplVar9)[5])(pplVar9);
-    engine_structure_data_ptr = (void*)pengine_temp_long[0x28];
-    pengine_temp_char_flag_2 = *(code **)*engine_structure_data_ptr;
+    structure_data_pointer = (void*)pengine_temp_long[0x28];
+    pengine_temp_char_flag_2 = *(code **)*structure_data_pointer;
     ppplStack_70 = &pengine_stack_long_ptr_8;
     pengine_stack_long_ptr_8 = pplVar9;
     (*(code *)(*pplVar9)[5])(pplVar9);
-    (*pengine_temp_char_flag_2)(engine_structure_data_ptr,&pengine_stack_long_ptr_8);
+    (*pengine_temp_char_flag_2)(structure_data_pointer,&pengine_stack_long_ptr_8);
     engine_call_object_processor(pengine_temp_long[0x28]);
     (*(code *)(*pplVar9)[7])(pplVar9);
   }
@@ -14526,14 +14526,14 @@ void engine_process_system_message(longlong engine_data_structure_ptr)
 
 {
   longlong *pengine_temp_long;
-  void* engine_structure_data_ptr;
+  void* structure_data_pointer;
   code *pengine_temp_char_flag_2;
   uint8* engine_next_node_ptr;
   uint64 engine_temp_index;
   int engine_temp_int_6;
   longlong engine_string_length_diff;
   longlong **ppengine_temp_long_8;
-  undefined2 *puVar9;
+  engine_undefined_value *engine_temp_uint_ptr_9;
   uint engine_temp_uint0;
   ulonglong engine_temp_uint2;
   float engine_temp_float_13;
@@ -14556,12 +14556,12 @@ void engine_process_system_message(longlong engine_data_structure_ptr)
   engine_temp_long_7 = _engine_input_config_data;
   uStack_68 = 0xfffffffffffffffe;
   *(void*)(_engine_input_config_data + 0x2038) = *(void*)(_engine_input_config_data + 0x2030);
-  puVar9 = (uint16*)(engine_temp_long_7 + 0x14);
+  engine_temp_uint_ptr_9 = (uint16*)(engine_temp_long_7 + 0x14);
   engine_temp_long_7 = 0x100;
   engine_temp_uint1 = 0;
   do {
-    *puVar9 = 0;
-    puVar9 = puVar9 + 0xc;
+    *engine_temp_uint_ptr_9 = 0;
+    engine_temp_uint_ptr_9 = engine_temp_uint_ptr_9 + 0xc;
     engine_temp_long_7 = engine_temp_long_7 + -1;
   } while (engine_temp_long_7 != 0);
   engine_setup_resource_context(_engine_data_90 + 0x48);
@@ -14584,12 +14584,12 @@ void engine_process_system_message(longlong engine_data_structure_ptr)
     ppplStack_70 = (longlong ***)ppengine_temp_long_8;
     pplStack_60 = ppengine_temp_long_8;
     (*(code *)(*ppengine_temp_long_8)[5])(ppengine_temp_long_8);
-    engine_structure_data_ptr = (void*)pengine_temp_long[0x28];
-    pengine_temp_char_flag_2 = *(code **)*engine_structure_data_ptr;
+    structure_data_pointer = (void*)pengine_temp_long[0x28];
+    pengine_temp_char_flag_2 = *(code **)*structure_data_pointer;
     ppplStack_70 = &pengine_stack_long_ptr_8;
     pengine_stack_long_ptr_8 = ppengine_temp_long_8;
     (*(code *)(*ppengine_temp_long_8)[5])(ppengine_temp_long_8);
-    (*pengine_temp_char_flag_2)(engine_structure_data_ptr,&pengine_stack_long_ptr_8);
+    (*pengine_temp_char_flag_2)(structure_data_pointer,&pengine_stack_long_ptr_8);
     engine_call_object_processor(pengine_temp_long[0x28]);
     (*(code *)(*ppengine_temp_long_8)[7])(ppengine_temp_long_8);
   }
@@ -14652,7 +14652,7 @@ void engine_handle_system_notification(longlong engine_data_structure_ptr,uint64
   uint8* engine_temporary_data_ptr;
   void* engine_current_data_pointer;
   void* engine_next_data_pointer;
-  longlong lVar9;
+  longlong engine_temp_long_9;
   uint engine_temp_uint0;
   longlong engine_temp_long2;
   ulonglong engine_temp_uint3;
@@ -14703,21 +14703,21 @@ void engine_shutdown_system(longlong engine_data_structure_ptr)
 
 {
   int *pengine_temp_int;
-  void* engine_structure_data_ptr;
+  void* structure_data_pointer;
   longlong engine_temp_long_3;
   ulonglong engine_temp_counter_4;
   
-  engine_structure_data_ptr = *(void**)(engine_data_structure_ptr + 0x218);
-  if (engine_structure_data_ptr == (void*)0x0) {
+  structure_data_pointer = *(void**)(engine_data_structure_ptr + 0x218);
+  if (structure_data_pointer == (void*)0x0) {
     return;
   }
-  engine_temp_uint_4 = (ulonglong)engine_structure_data_ptr & 0xffffffffffc00000;
+  engine_temp_uint_4 = (ulonglong)structure_data_pointer & 0xffffffffffc00000;
   if (engine_temp_uint_4 != 0) {
-    engine_temp_long_3 = engine_temp_uint_4 + 0x80 + ((longlong)engine_structure_data_ptr - engine_temp_uint_4 >> 0x10) * 0x50;
+    engine_temp_long_3 = engine_temp_uint_4 + 0x80 + ((longlong)structure_data_pointer - engine_temp_uint_4 >> 0x10) * 0x50;
     engine_temp_long_3 = engine_temp_long_3 - (ulonglong)*(uint *)(engine_temp_long_3 + 4);
     if ((*(void ***)(engine_temp_uint_4 + 0x70) == &ExceptionList) && (*(char *)(engine_temp_long_3 + 0xe) == '\0')) {
-      *engine_structure_data_ptr = *(void*)(engine_temp_long_3 + 0x20);
-      *(void**)(engine_temp_long_3 + 0x20) = engine_structure_data_ptr;
+      *structure_data_pointer = *(void*)(engine_temp_long_3 + 0x20);
+      *(void**)(engine_temp_long_3 + 0x20) = structure_data_pointer;
       pengine_temp_int = (int *)(engine_temp_long_3 + 0x18);
       *pengine_temp_int = *pengine_temp_int + -1;
       if (*pengine_temp_int == 0) {
@@ -14727,7 +14727,7 @@ void engine_shutdown_system(longlong engine_data_structure_ptr)
     }
     else {
       func_0x00018064e870(engine_temp_uint_4,CONCAT71(0xff000000,*(void ***)(engine_temp_uint_4 + 0x70) == &ExceptionList),
-                          engine_structure_data_ptr,engine_temp_uint_4,0xfffffffffffffffe);
+                          structure_data_pointer,engine_temp_uint_4,0xfffffffffffffffe);
     }
   }
   return;
@@ -14748,7 +14748,7 @@ uint64_t * engine_process_data_structure(uint64_t *engine_data_structure_ptr,uin
   longlong engine_temp_long_6;
   uint8* engine_current_data_pointer;
   longlong engine_temp_long_8;
-  ulonglong uVar9;
+  ulonglong engine_temp_uint_9;
   
   engine_current_data_pointer = (uint8*)((longlong)engine_data_structure_ptr + 0xf);
   *engine_data_structure_ptr = *engine_result_flag_ptr;
@@ -14772,13 +14772,13 @@ uint64_t * engine_process_data_structure(uint64_t *engine_data_structure_ptr,uin
     engine_temp_long_2 = engine_result_flag_ptr[0x44];
     engine_temp_long_3 = engine_result_flag_ptr[0x43];
     engine_temp_long_8 = engine_temp_long_2 - engine_temp_long_3;
-    uVar9 = engine_temp_long_8 >> 2;
-    if ((ulonglong)(engine_data_structure_ptr[0x45] - engine_temp_long_6 >> 2) < uVar9) {
-      if (uVar9 == 0) {
+    engine_temp_uint_9 = engine_temp_long_8 >> 2;
+    if ((ulonglong)(engine_data_structure_ptr[0x45] - engine_temp_long_6 >> 2) < engine_temp_uint_9) {
+      if (engine_temp_uint_9 == 0) {
         engine_temp_long_6 = 0;
       }
       else {
-        engine_temp_long_6 = engine_call_memory_extender(_engine_data_18,uVar9 * 4,*(uint8*)(engine_data_structure_ptr + 0x46));
+        engine_temp_long_6 = engine_call_memory_extender(_engine_data_18,engine_temp_uint_9 * 4,*(uint8*)(engine_data_structure_ptr + 0x46));
       }
       if (engine_temp_long_3 != engine_temp_long_2) {
                     // WARNING: Subroutine does not return
@@ -14788,7 +14788,7 @@ uint64_t * engine_process_data_structure(uint64_t *engine_data_structure_ptr,uin
                     // WARNING: Subroutine does not return
         engine_call_cleanup_routine();
       }
-      engine_temp_long_2 = engine_temp_long_6 + uVar9 * 4;
+      engine_temp_long_2 = engine_temp_long_6 + engine_temp_uint_9 * 4;
       *pengine_temp_long = engine_temp_long_6;
       engine_data_structure_ptr[0x44] = engine_temp_long_2;
       engine_data_structure_ptr[0x45] = engine_temp_long_2;
@@ -14796,7 +14796,7 @@ uint64_t * engine_process_data_structure(uint64_t *engine_data_structure_ptr,uin
     else {
       engine_temp_long_4 = engine_data_structure_ptr[0x44];
       engine_temp_index = engine_temp_long_4 - engine_temp_long_6 >> 2;
-      if (engine_temp_index < uVar9) {
+      if (engine_temp_index < engine_temp_uint_9) {
         engine_temp_long_8 = engine_temp_index * 4 + engine_temp_long_3;
         if (engine_temp_long_3 != engine_temp_long_8) {
                     // WARNING: Subroutine does not return
@@ -15003,7 +15003,7 @@ bool engine_validate_system_configuration(longlong engine_data_structure_ptr)
     do {
       if (iStack_20 == 0) {
         bVar3 = false;
-        puVar9 = (void*)engine_next_data_pointer[1];
+        engine_temp_uint_ptr_9 = (void*)engine_next_data_pointer[1];
       }
       else {
         if (*(int *)(engine_next_data_pointer + 6) == 0) {
@@ -15019,20 +15019,20 @@ bool engine_validate_system_configuration(longlong engine_data_structure_ptr)
           } while (engine_temp_index != 0);
           bVar3 = 0 < engine_temp_int_6;
           if (engine_temp_int_6 < 1) {
-            puVar9 = (void*)engine_next_data_pointer[1];
+            engine_temp_uint_ptr_9 = (void*)engine_next_data_pointer[1];
             goto LAB_180051f8b;
           }
         }
-        puVar9 = (void*)*engine_next_data_pointer;
+        engine_temp_uint_ptr_9 = (void*)*engine_next_data_pointer;
       }
 LAB_180051f8b:
       engine_data_ptr0 = engine_next_data_pointer;
       if (bVar3) {
         engine_data_ptr0 = engine_data_ptr1;
       }
-      engine_next_data_pointer = puVar9;
+      engine_next_data_pointer = engine_temp_uint_ptr_9;
       engine_data_ptr1 = engine_data_ptr0;
-    } while (puVar9 != (void*)0x0);
+    } while (engine_temp_uint_ptr_9 != (void*)0x0);
     if (engine_data_ptr0 != engine_data_pointer) {
       if (*(int *)(engine_data_ptr0 + 6) == 0) goto LAB_180051fc9;
       if (iStack_20 != 0) {
@@ -15129,7 +15129,7 @@ void engine_handle_system_data_operation(longlong engine_data_structure_ptr,long
   uint32 engine_stack_value_60;
   uint64 engine_stack_value_58;
   
-  uVar7 = 0xfffffffffffffffe;
+  engine_temp_uint64_value = 0xfffffffffffffffe;
   pengine_temp_long = (longlong *)(engine_data_structure_ptr + 0xd8);
   engine_temp_long_6 = 0;
   if ((*(longlong *)(engine_data_structure_ptr + 0xe0) - *pengine_temp_long & 0xffffffffffffffe0U) != 0) {
@@ -15170,7 +15170,7 @@ void engine_handle_system_data_operation(longlong engine_data_structure_ptr,long
     engine_stack_value_78 = 0;
     engine_stack_pointer_88 = (void*)0x0;
     engine_stack_value_80 = 0;
-    engine_next_node_ptr = (void*)engine_call_memory_extender(_engine_data_18,0x10,0x13,engine_system_parameter_4,uVar7);
+    engine_next_node_ptr = (void*)engine_call_memory_extender(_engine_data_18,0x10,0x13,engine_system_parameter_4,engine_temp_uint64_value);
     *(uint8*)engine_next_node_ptr = 0;
     engine_stack_pointer_88 = engine_next_node_ptr;
     engine_temp_uint_2 = engine_call_resource_validator(engine_next_node_ptr);
@@ -15267,9 +15267,9 @@ void engine_process_system_calculation(longlong engine_data_structure_ptr,float 
   ulonglong engine_temp_counter_4;
   ulonglong engine_temp_index;
   int engine_temp_int_6;
-  uint uVar7;
+  uint engine_temp_uint64_value;
   longlong engine_temp_long_8;
-  uint uVar9;
+  uint engine_temp_uint_9;
   uint64 in_RDX;
   longlong engine_temp_long0;
   uint engine_temp_uint1;
@@ -15373,16 +15373,16 @@ void engine_process_system_calculation(longlong engine_data_structure_ptr,float 
   engine_temp_uint1 = (uint)*(float *)(engine_temp_long0 + 0x17ec);
   engine_temp_uint3 = (uint)*(float *)(engine_temp_long0 + 0x17f0);
   engine_temp_uint2 = engine_temp_uint1;
-  uVar7 = engine_temp_uint3;
+  engine_temp_uint64_value = engine_temp_uint3;
   if (1.0 <= engine_temp_float_15) {
     fStackX_8 = 1.0;
     fStackX_c = 1.0;
   }
   else {
-    while (0 < (int)uVar7) {
-      uVar9 = (int)engine_temp_uint2 % (int)uVar7;
-      engine_temp_uint2 = uVar7;
-      uVar7 = uVar9;
+    while (0 < (int)engine_temp_uint64_value) {
+      engine_temp_uint_9 = (int)engine_temp_uint2 % (int)engine_temp_uint64_value;
+      engine_temp_uint2 = engine_temp_uint64_value;
+      engine_temp_uint64_value = engine_temp_uint_9;
     }
     engine_temp_int_6 = (int)engine_temp_uint1 / (int)engine_temp_uint2;
     fStackX_8 = (float)(int)engine_temp_uint1;
@@ -15392,7 +15392,7 @@ void engine_process_system_calculation(longlong engine_data_structure_ptr,float 
         engine_temp_uint1 = ((engine_temp_uint1 - 1) - (int)(engine_temp_uint1 - 1) % engine_temp_int_6) + engine_temp_int_6;
       }
       engine_temporary_uint = (longlong)(int)(((int)engine_temp_uint3 / (int)engine_temp_uint2) * engine_temp_uint1) / (longlong)engine_temp_int_6;
-      uVar7 = (uint)engine_temporary_uint;
+      engine_temp_uint64_value = (uint)engine_temporary_uint;
       if (((engine_temp_uint1 & 1) == 0) && ((engine_temporary_uint & 1) == 0)) goto LAB_180052ce3;
       engine_temp_float_15 = engine_temp_float_15 + 0.01;
       *(float *)(engine_data_structure_ptr + 0x234) = engine_temp_float_15;
@@ -15400,8 +15400,8 @@ void engine_process_system_calculation(longlong engine_data_structure_ptr,float 
     *(uint32*)(engine_data_structure_ptr + 0x234) = 0x3f800000;
 LAB_180052ce3:
     fStackX_8 = (float)(int)engine_temp_uint1 / fStackX_8;
-    fStackX_c = (float)(int)uVar7 / (float)(int)engine_temp_uint3;
-    engine_temp_uint3 = uVar7;
+    fStackX_c = (float)(int)engine_temp_uint64_value / (float)(int)engine_temp_uint3;
+    engine_temp_uint3 = engine_temp_uint64_value;
   }
   *(ulonglong *)(engine_data_structure_ptr + 0x254) = CONCAT44(fStackX_c,fStackX_8);
   engine_temp_float_15 = *(float *)(engine_data_structure_ptr + 0x238);
@@ -15413,28 +15413,28 @@ LAB_180052ce3:
     engine_temp_index = (ulonglong)engine_temp_uint3;
     engine_temporary_uint = (ulonglong)engine_temp_uint1;
     engine_temp_uint2 = engine_temp_uint1;
-    uVar7 = engine_temp_uint3;
-    while (engine_temp_uint_4 = engine_temp_index, 0 < (int)uVar7) {
+    engine_temp_uint64_value = engine_temp_uint3;
+    while (engine_temp_uint_4 = engine_temp_index, 0 < (int)engine_temp_uint64_value) {
       engine_temp_uint2 = (uint)engine_temp_uint_4;
       engine_temporary_uint = (longlong)(int)engine_temporary_uint % (longlong)(int)engine_temp_uint2;
-      uVar7 = (uint)engine_temporary_uint;
+      engine_temp_uint64_value = (uint)engine_temporary_uint;
       engine_temp_index = engine_temporary_uint & 0xffffffff;
       engine_temporary_uint = engine_temp_uint_4;
     }
     engine_temp_int_6 = (int)engine_temp_uint1 / (int)engine_temp_uint2;
     do {
-      uVar7 = (uint)(engine_temp_float_15 * (float)(int)engine_temp_uint1);
+      engine_temp_uint64_value = (uint)(engine_temp_float_15 * (float)(int)engine_temp_uint1);
       if (1 < engine_temp_int_6) {
-        uVar7 = ((uVar7 - 1) - (int)(uVar7 - 1) % engine_temp_int_6) + engine_temp_int_6;
+        engine_temp_uint64_value = ((engine_temp_uint64_value - 1) - (int)(engine_temp_uint64_value - 1) % engine_temp_int_6) + engine_temp_int_6;
       }
-      engine_temporary_uint = (longlong)(int)(((int)engine_temp_uint3 / (int)engine_temp_uint2) * uVar7) / (longlong)engine_temp_int_6;
-      if (((uVar7 & 1) == 0) && ((engine_temporary_uint & 1) == 0)) goto LAB_180052de5;
+      engine_temporary_uint = (longlong)(int)(((int)engine_temp_uint3 / (int)engine_temp_uint2) * engine_temp_uint64_value) / (longlong)engine_temp_int_6;
+      if (((engine_temp_uint64_value & 1) == 0) && ((engine_temporary_uint & 1) == 0)) goto LAB_180052de5;
       engine_temp_float_15 = engine_temp_float_15 + 0.01;
       *(float *)(engine_data_structure_ptr + 0x238) = engine_temp_float_15;
     } while (engine_temp_float_15 <= 1.0);
     *(uint32*)(engine_data_structure_ptr + 0x238) = 0x3f800000;
 LAB_180052de5:
-    fStackX_8 = (float)(int)uVar7 / (float)(int)engine_temp_uint1;
+    fStackX_8 = (float)(int)engine_temp_uint64_value / (float)(int)engine_temp_uint1;
     fStackX_c = (float)(int)engine_temporary_uint / (float)(int)engine_temp_uint3;
   }
   *(ulonglong *)(engine_data_structure_ptr + 0x25c) = CONCAT44(fStackX_c,fStackX_8);
@@ -15458,7 +15458,7 @@ void engine_execute_system_validation(longlong *engine_data_structure_ptr,uint64
   int *pengine_temp_int_6;
   longlong engine_string_length_diff;
   ulonglong engine_temp_uint_8;
-  uint uVar9;
+  uint engine_temp_uint_9;
   ulonglong engine_temp_uint0;
   float engine_temp_float_11;
   float engine_temp_float_12;
@@ -15487,11 +15487,11 @@ void engine_execute_system_validation(longlong *engine_data_structure_ptr,uint64
         if (*(longlong **)(engine_temp_uint_8 + engine_temp_long_7) != (longlong *)0x0) {
           (**(code **)(**(longlong **)(engine_temp_uint_8 + engine_temp_long_7) + 0x108))();
         }
-        uVar9 = (int)engine_temp_uint0 + 1;
+        engine_temp_uint_9 = (int)engine_temp_uint0 + 1;
         engine_temp_uint_8 = engine_temp_uint_8 + 8;
         engine_temp_long_7 = *(longlong *)(engine_temp_long_3 + 0x1868);
-        engine_temp_uint0 = (ulonglong)uVar9;
-      } while ((ulonglong)(longlong)(int)uVar9 <
+        engine_temp_uint0 = (ulonglong)engine_temp_uint_9;
+      } while ((ulonglong)(longlong)(int)engine_temp_uint_9 <
                (ulonglong)(*(longlong *)(engine_temp_long_3 + 0x1870) - engine_temp_long_7 >> 3));
     }
     (**(code **)(_engine_input_buffer_ptr + 0x40))();
@@ -15861,11 +15861,11 @@ void engine_process_system_allocation(uint64 engine_data_structure_ptr,uint64 en
                     // WARNING: Subroutine does not return
     memcpy((ulonglong)uStack_e0 + lStack_e8,acStack_58,(longlong)((int)engine_temp_long0 + 2));
   }
-  puVar9 = &engine_data_28;
+  engine_temp_uint_ptr_9 = &engine_data_28;
   if (engine_audio_flag != '\0') {
-    puVar9 = &engine_error_handler_ptr;
+    engine_temp_uint_ptr_9 = &engine_error_handler_ptr;
   }
-  engine_process_system_configuration(engine_stack_buffer_88,puVar9);
+  engine_process_system_configuration(engine_stack_buffer_88,engine_temp_uint_ptr_9);
   puStack_c8 = &engine_system_context_data;
   uStack_b0 = 0;
   uStack_c0 = 0;
@@ -15960,7 +15960,7 @@ engine_execute_system_command(uint64 engine_data_structure_ptr,uint64 engine_res
   void* puStack_48;
   uint64 uStack_40;
   uint32 uStack_38;
-  ulonglong uVar9;
+  ulonglong engine_temp_uint_9;
   
   puStack_50 = (void*)0x0;
   puStack_48 = (void*)0x0;
@@ -16004,15 +16004,15 @@ LAB_18005419d:
     }
     engine_stack_value_58 = engine_stack_value_58 & 0xffffffff;
   }
-  uVar9 = engine_temp_uint_7;
+  engine_temp_uint_9 = engine_temp_uint_7;
   engine_temp_uint4 = engine_temp_uint_7;
   if (engine_stack_value_60 != 0) {
     do {
       if ((byte)(engine_stack_pointer_68[engine_temp_uint4] + 0xbf) < 0x1a) {
         engine_stack_pointer_68[engine_temp_uint4] = engine_stack_pointer_68[engine_temp_uint4] + ' ';
       }
-      engine_temp_uint_8 = (int)uVar9 + 1;
-      uVar9 = (ulonglong)engine_temp_uint_8;
+      engine_temp_uint_8 = (int)engine_temp_uint_9 + 1;
+      engine_temp_uint_9 = (ulonglong)engine_temp_uint_8;
       engine_temp_uint4 = engine_temp_uint4 + 1;
     } while (engine_temp_uint_8 < engine_stack_value_60);
   }
@@ -16072,7 +16072,7 @@ void engine_manage_system_memory(longlong *engine_data_structure_ptr,longlong en
   longlong *engine_main_structure_pointer;
   void* engine_temporary_pointer;
   longlong engine_temp_long_6;
-  ulonglong uVar7;
+  ulonglong engine_temp_uint64_value;
   uint8 auStack_238 [32];
   uint32 uStack_218;
   void* puStack_208;
@@ -16210,16 +16210,16 @@ void engine_manage_system_memory(longlong *engine_data_structure_ptr,longlong en
   uStack_1f8 = 0;
   uStack_1e8 = 1;
   engine_temporary_uint = *(uint *)(engine_temp_long_6 + 0x10);
-  uVar7 = (ulonglong)engine_temporary_uint;
+  engine_temp_uint64_value = (ulonglong)engine_temporary_uint;
   if (*(longlong *)(engine_temp_long_6 + 8) != 0) {
-    engine_call_array_builder(&puStack_208,uVar7);
+    engine_call_array_builder(&puStack_208,engine_temp_uint64_value);
   }
   if (engine_temporary_uint != 0) {
                     // WARNING: Subroutine does not return
-    memcpy(lStack_200,*(void*)(engine_temp_long_6 + 8),uVar7);
+    memcpy(lStack_200,*(void*)(engine_temp_long_6 + 8),engine_temp_uint64_value);
   }
   if (lStack_200 != 0) {
-    *(uint8*)(uVar7 + lStack_200) = 0;
+    *(uint8*)(engine_temp_uint64_value + lStack_200) = 0;
   }
   uStack_1f0 = CONCAT44(*(uint *)(engine_temp_long_6 + 0x1c),(uint32_t)uStack_1f0);
   if (0 < iStack_180) {
@@ -16685,30 +16685,30 @@ void engine_finalize_system_initialization(void)
 
 {
   void* engine_data_pointer;
-  void* engine_structure_data_ptr;
+  void* structure_data_pointer;
   uint64 engine_temp_uint_3;
   longlong engine_temp_long_4;
   
-  engine_structure_data_ptr = (void*)engine_call_memory_allocator(_engine_data_18,0x198,8,3);
-  engine_data_pointer = engine_structure_data_ptr + 4;
+  structure_data_pointer = (void*)engine_call_memory_allocator(_engine_data_18,0x198,8,3);
+  engine_data_pointer = structure_data_pointer + 4;
   engine_call_authenticator(engine_data_pointer);
   *engine_data_pointer = &engine_network_protocol_ptr;
-  *(uint16*)(engine_structure_data_ptr + 0x1a) = 1;
-  *(uint32*)(engine_structure_data_ptr + 9) = 0;
-  *(uint8*)((longlong)engine_structure_data_ptr + 0x54) = 0;
+  *(uint16*)(structure_data_pointer + 0x1a) = 1;
+  *(uint32*)(structure_data_pointer + 9) = 0;
+  *(uint8*)((longlong)structure_data_pointer + 0x54) = 0;
   *engine_data_pointer = &engine_network_socket_ptr;
-  engine_data_pointer = engine_structure_data_ptr + 0x1b;
+  engine_data_pointer = structure_data_pointer + 0x1b;
   engine_call_authenticator(engine_data_pointer);
   *engine_data_pointer = &engine_network_protocol_ptr;
-  *(uint16*)(engine_structure_data_ptr + 0x31) = 1;
-  *(uint32*)(engine_structure_data_ptr + 0x20) = 0;
-  *(uint8*)((longlong)engine_structure_data_ptr + 0x10c) = 0;
+  *(uint16*)(structure_data_pointer + 0x31) = 1;
+  *(uint32*)(structure_data_pointer + 0x20) = 0;
+  *(uint8*)((longlong)structure_data_pointer + 0x10c) = 0;
   *engine_data_pointer = &engine_network_socket_ptr;
-  *engine_structure_data_ptr = 0;
-  *(uint8*)(engine_structure_data_ptr + 3) = 0;
-  engine_structure_data_ptr[2] = 0xffffffff00000000;
-  *(uint32*)(engine_structure_data_ptr + 1) = 0xe;
-  _engine_data_28 = engine_structure_data_ptr;
+  *structure_data_pointer = 0;
+  *(uint8*)(structure_data_pointer + 3) = 0;
+  structure_data_pointer[2] = 0xffffffff00000000;
+  *(uint32*)(structure_data_pointer + 1) = 0xe;
+  _engine_data_28 = structure_data_pointer;
   engine_temp_uint_3 = engine_call_memory_allocator(_engine_data_18,0x480,8,3);
   _engine_audio_device_ptr = engine_initialize_audio_device(engine_temp_uint_3);
   engine_temp_uint_3 = engine_call_memory_allocator(_engine_data_18,0x10420,8,3);
@@ -16988,7 +16988,7 @@ void engine_start_system_operation(longlong engine_data_structure_ptr)
   int engine_temp_int_6;
   char *pcVar7;
   longlong *pengine_temp_long_8;
-  longlong lVar9;
+  longlong engine_temp_long_9;
   ulonglong engine_temp_uint0;
   longlong engine_temp_long1;
   longlong engine_temp_long2;
@@ -17002,17 +17002,17 @@ void engine_start_system_operation(longlong engine_data_structure_ptr)
   bool engine_comparison_result0;
   
   engine_temp_uint0 = 0;
-  lVar9 = *(longlong *)(engine_data_structure_ptr + 0x50);
+  engine_temp_long_9 = *(longlong *)(engine_data_structure_ptr + 0x50);
   engine_temp_long2 = *(longlong *)(engine_data_structure_ptr + 0x48);
-  if (lVar9 - engine_temp_long2 >> 3 != 0) {
+  if (engine_temp_long_9 - engine_temp_long2 >> 3 != 0) {
     engine_temp_int9 = 1;
     engine_temp_long6 = 8;
     engine_temp_uint8 = engine_temp_uint0;
     do {
       engine_temp_int7 = (int)engine_temp_uint0;
       engine_temp_int_6 = -1;
-      if ((ulonglong)(longlong)engine_temp_int9 < (ulonglong)(lVar9 - engine_temp_long2 >> 3)) {
-        lVar9 = *(longlong *)(engine_data_structure_ptr + 0x50);
+      if ((ulonglong)(longlong)engine_temp_int9 < (ulonglong)(engine_temp_long_9 - engine_temp_long2 >> 3)) {
+        engine_temp_long_9 = *(longlong *)(engine_data_structure_ptr + 0x50);
         engine_temp_long4 = engine_temp_long6;
         engine_temp_int3 = engine_temp_int9;
         engine_temp_int5 = -1;
@@ -17049,15 +17049,15 @@ LAB_180056228:
           engine_temp_int3 = engine_temp_int3 + 1;
           engine_temp_long4 = engine_temp_long4 + 8;
           engine_temp_int5 = engine_temp_int_6;
-        } while ((ulonglong)(longlong)engine_temp_int3 < (ulonglong)(lVar9 - engine_temp_long2 >> 3));
+        } while ((ulonglong)(longlong)engine_temp_int3 < (ulonglong)(engine_temp_long_9 - engine_temp_long2 >> 3));
       }
       if (engine_temp_int_6 != -1) {
         engine_temp_long4 = (longlong)engine_temp_int_6;
-        lVar9 = *(longlong *)(engine_temp_long2 + engine_temp_long4 * 8);
+        engine_temp_long_9 = *(longlong *)(engine_temp_long2 + engine_temp_long4 * 8);
         *(double *)(*(longlong *)(engine_temp_uint8 + engine_temp_long2) + 0x40) =
-             *(double *)(lVar9 + 0x40) + *(double *)(*(longlong *)(engine_temp_uint8 + engine_temp_long2) + 0x40);
-        pengine_temp_long_8 = *(longlong **)(lVar9 + 0x48);
-        if (pengine_temp_long_8 != *(longlong **)(lVar9 + 0x50)) {
+             *(double *)(engine_temp_long_9 + 0x40) + *(double *)(*(longlong *)(engine_temp_uint8 + engine_temp_long2) + 0x40);
+        pengine_temp_long_8 = *(longlong **)(engine_temp_long_9 + 0x48);
+        if (pengine_temp_long_8 != *(longlong **)(engine_temp_long_9 + 0x50)) {
           engine_temp_long2 = *(longlong *)(engine_data_structure_ptr + 0x48);
           do {
             *(void*)(*pengine_temp_long_8 + 0x68) = *(void*)(engine_temp_uint8 + engine_temp_long2);
@@ -17065,12 +17065,12 @@ LAB_180056228:
             engine_temp_long2 = *(longlong *)(engine_data_structure_ptr + 0x48);
           } while (pengine_temp_long_8 != *(longlong **)(*(longlong *)(engine_temp_long2 + engine_temp_long4 * 8) + 0x50));
         }
-        lVar9 = *(longlong *)(engine_temp_long2 + engine_temp_long4 * 8);
+        engine_temp_long_9 = *(longlong *)(engine_temp_long2 + engine_temp_long4 * 8);
         engine_execute_system_io_response_task(*(longlong *)(engine_temp_uint8 + engine_temp_long2) + 0x48,
                       *(void*)(*(longlong *)(engine_temp_uint8 + engine_temp_long2) + 0x50),
-                      *(void*)(lVar9 + 0x48),*(void*)(lVar9 + 0x50));
-        lVar9 = *(longlong *)(*(longlong *)(engine_data_structure_ptr + 0x48) + engine_temp_long4 * 8);
-        *(void*)(lVar9 + 0x50) = *(void*)(lVar9 + 0x48);
+                      *(void*)(engine_temp_long_9 + 0x48),*(void*)(engine_temp_long_9 + 0x50));
+        engine_temp_long_9 = *(longlong *)(*(longlong *)(engine_data_structure_ptr + 0x48) + engine_temp_long4 * 8);
+        *(void*)(engine_temp_long_9 + 0x50) = *(void*)(engine_temp_long_9 + 0x48);
         engine_start_system_operation(*(void*)(engine_temp_uint8 + *(longlong *)(engine_data_structure_ptr + 0x48)));
         engine_execute_system_process(*(void*)(*(longlong *)(engine_data_structure_ptr + 0x48) + engine_temp_long4 * 8));
         engine_next_node_ptr = *(void**)(*(longlong *)(engine_data_structure_ptr + 0x48) + engine_temp_long4 * 8);
@@ -17099,15 +17099,15 @@ LAB_180056228:
           engine_call_cleanup_routine();
         }
         *(void*)(*(longlong *)(engine_data_structure_ptr + 0x48) + engine_temp_long4 * 8) = 0;
-        lVar9 = *(longlong *)(engine_data_structure_ptr + 0x48) + engine_temp_long4 * 8;
-        engine_temp_uint0 = lVar9 + 8;
+        engine_temp_long_9 = *(longlong *)(engine_data_structure_ptr + 0x48) + engine_temp_long4 * 8;
+        engine_temp_uint0 = engine_temp_long_9 + 8;
         engine_temp_index = *(ulonglong *)(engine_data_structure_ptr + 0x50);
         if (engine_temp_uint0 < engine_temp_index) {
                     // WARNING: Subroutine does not return
-          memmove(lVar9,engine_temp_uint0,engine_temp_index - engine_temp_uint0);
+          memmove(engine_temp_long_9,engine_temp_uint0,engine_temp_index - engine_temp_uint0);
         }
-        lVar9 = engine_temp_index - 8;
-        *(longlong *)(engine_data_structure_ptr + 0x50) = lVar9;
+        engine_temp_long_9 = engine_temp_index - 8;
+        *(longlong *)(engine_data_structure_ptr + 0x50) = engine_temp_long_9;
         engine_temp_int7 = engine_temp_int7 + -1;
         engine_temp_int9 = engine_temp_int9 + -1;
         engine_temp_uint8 = engine_temp_uint8 - 8;
@@ -17118,7 +17118,7 @@ LAB_180056228:
       engine_temp_uint8 = engine_temp_uint8 + 8;
       engine_temp_long6 = engine_temp_long6 + 8;
       engine_temp_long2 = *(longlong *)(engine_data_structure_ptr + 0x48);
-    } while ((ulonglong)(longlong)(int)(engine_temp_int7 + 1U) < (ulonglong)(lVar9 - engine_temp_long2 >> 3));
+    } while ((ulonglong)(longlong)(int)(engine_temp_int7 + 1U) < (ulonglong)(engine_temp_long_9 - engine_temp_long2 >> 3));
   }
   return;
 }
@@ -17133,14 +17133,14 @@ void engine_execute_system_process(longlong engine_data_structure_ptr,uint64 eng
 
 {
   ulonglong *engine_data_pointer;
-  void* engine_structure_data_ptr;
+  void* structure_data_pointer;
   ulonglong engine_temp_uint_3;
   ulonglong engine_temp_counter_4;
   ulonglong engine_temp_index;
   longlong engine_temp_long_6;
-  uint uVar7;
+  uint engine_temp_uint64_value;
   ulonglong engine_temp_uint_8;
-  longlong lVar9;
+  longlong engine_temp_long_9;
   uint64 engine_temp_uint0;
   
   engine_temp_uint0 = 0xfffffffffffffffe;
@@ -17152,24 +17152,24 @@ void engine_execute_system_process(longlong engine_data_structure_ptr,uint64 eng
   if ((longlong)(*(longlong *)(engine_data_structure_ptr + 0x50) - engine_temp_uint_4) >> 3 != 0) {
     do {
       engine_execute_system_process(*(void*)(engine_temp_uint_4 + engine_temp_index));
-      engine_structure_data_ptr = *(void**)(*engine_data_pointer + engine_temp_index);
-      if (engine_structure_data_ptr != (void*)0x0) {
-        if (engine_structure_data_ptr[9] != 0) {
+      structure_data_pointer = *(void**)(*engine_data_pointer + engine_temp_index);
+      if (structure_data_pointer != (void*)0x0) {
+        if (structure_data_pointer[9] != 0) {
                     // WARNING: Subroutine does not return
           engine_call_cleanup_routine();
         }
-        engine_structure_data_ptr[4] = &engine_system_context_data;
-        if (engine_structure_data_ptr[5] == 0) {
-          engine_structure_data_ptr[5] = 0;
-          *(uint32*)(engine_structure_data_ptr + 7) = 0;
-          engine_structure_data_ptr[4] = &engine_data_18098bcb0;
-          *engine_structure_data_ptr = &engine_system_context_data;
-          if (engine_structure_data_ptr[1] == 0) {
-            engine_structure_data_ptr[1] = 0;
-            *(uint32*)(engine_structure_data_ptr + 3) = 0;
-            *engine_structure_data_ptr = &engine_data_18098bcb0;
+        structure_data_pointer[4] = &engine_system_context_data;
+        if (structure_data_pointer[5] == 0) {
+          structure_data_pointer[5] = 0;
+          *(uint32*)(structure_data_pointer + 7) = 0;
+          structure_data_pointer[4] = &engine_data_18098bcb0;
+          *structure_data_pointer = &engine_system_context_data;
+          if (structure_data_pointer[1] == 0) {
+            structure_data_pointer[1] = 0;
+            *(uint32*)(structure_data_pointer + 3) = 0;
+            *structure_data_pointer = &engine_data_18098bcb0;
                     // WARNING: Subroutine does not return
-            engine_call_cleanup_routine(engine_structure_data_ptr);
+            engine_call_cleanup_routine(structure_data_pointer);
           }
                     // WARNING: Subroutine does not return
           engine_call_cleanup_routine();
@@ -17178,21 +17178,21 @@ void engine_execute_system_process(longlong engine_data_structure_ptr,uint64 eng
         engine_call_cleanup_routine();
       }
       *(void*)(*engine_data_pointer + engine_temp_index) = 0;
-      uVar7 = (int)engine_temp_uint_8 + 1;
+      engine_temp_uint64_value = (int)engine_temp_uint_8 + 1;
       engine_temp_uint_4 = *engine_data_pointer;
       engine_temp_index = engine_temp_index + 8;
-      engine_temp_uint_8 = (ulonglong)uVar7;
-    } while ((ulonglong)(longlong)(int)uVar7 <
+      engine_temp_uint_8 = (ulonglong)engine_temp_uint64_value;
+    } while ((ulonglong)(longlong)(int)engine_temp_uint64_value <
              (ulonglong)((longlong)(*(longlong *)(engine_data_structure_ptr + 0x50) - engine_temp_uint_4) >> 3));
   }
   engine_handle_system_io_request(engine_data_pointer,0);
   engine_temp_uint_4 = *(ulonglong *)(engine_data_structure_ptr + 0x50);
   engine_temp_index = *engine_data_pointer;
-  uVar7 = *(uint *)(engine_data_structure_ptr + 0x60);
-  lVar9 = engine_temp_uint_4 - engine_temp_index;
-  engine_temp_long_6 = lVar9 >> 3;
+  engine_temp_uint64_value = *(uint *)(engine_data_structure_ptr + 0x60);
+  engine_temp_long_9 = engine_temp_uint_4 - engine_temp_index;
+  engine_temp_long_6 = engine_temp_long_9 >> 3;
   if (engine_temp_long_6 != 0) {
-    engine_temp_uint_3 = engine_call_memory_extender(_engine_data_18,engine_temp_long_6 * 8,uVar7 & 0xff,engine_system_parameter_4,engine_temp_uint0,0,0,0,uVar7);
+    engine_temp_uint_3 = engine_call_memory_extender(_engine_data_18,engine_temp_long_6 * 8,engine_temp_uint64_value & 0xff,engine_system_parameter_4,engine_temp_uint0,0,0,0,engine_temp_uint64_value);
   }
   engine_temp_long_6 = engine_temp_uint_3 + engine_temp_long_6 * 8;
   if (engine_temp_index == engine_temp_uint_4) {
@@ -17200,7 +17200,7 @@ void engine_execute_system_process(longlong engine_data_structure_ptr,uint64 eng
     *engine_data_pointer = engine_temp_uint_3;
     *(longlong *)(engine_data_structure_ptr + 0x50) = engine_temp_long_6;
     *(longlong *)(engine_data_structure_ptr + 0x58) = engine_temp_long_6;
-    *(uint *)(engine_data_structure_ptr + 0x60) = uVar7;
+    *(uint *)(engine_data_structure_ptr + 0x60) = engine_temp_uint64_value;
     if (engine_temp_uint_4 == 0) {
       return;
     }
@@ -17208,7 +17208,7 @@ void engine_execute_system_process(longlong engine_data_structure_ptr,uint64 eng
     engine_call_cleanup_routine();
   }
                     // WARNING: Subroutine does not return
-  memmove(engine_temp_uint_3,engine_temp_index,lVar9,engine_system_parameter_4,engine_temp_uint0,engine_temp_uint_3,engine_temp_long_6,engine_temp_long_6);
+  memmove(engine_temp_uint_3,engine_temp_index,engine_temp_long_9,engine_system_parameter_4,engine_temp_uint0,engine_temp_uint_3,engine_temp_long_6,engine_temp_long_6);
 }
 
 
@@ -17408,15 +17408,15 @@ void engine_handle_system_interruption(longlong engine_data_structure_ptr)
     engine_temporary_pointer[6] = 0x65676775;
     engine_temporary_pointer[7] = 0x64657473;
     *(uint16*)(engine_temporary_pointer + 8) = 0x2e;
-    puVar9 = &engine_data_73;
+    engine_temp_uint_ptr_9 = &engine_data_73;
     if (engine_stack_pointer_90 != (void*)0x0) {
-      puVar9 = engine_stack_pointer_90;
+      engine_temp_uint_ptr_9 = engine_stack_pointer_90;
     }
     engine_stack_value_a0 = 0;
     uStack_a8 = 0;
     engine_stack_value_88 = engine_temp_uint_3 + 0x2b;
     (**(code **)(*(longlong *)*_engine_data_08 + 0x20))
-              ((longlong *)*_engine_data_08,&engine_memory_data_buffer_1,0x175c,puVar9);
+              ((longlong *)*_engine_data_08,&engine_memory_data_buffer_1,0x175c,engine_temp_uint_ptr_9);
     *(double *)(engine_data_structure_ptr + 0xc0) = dVar2;
     engine_stack_pointer_98 = &engine_system_context_data;
     if (engine_stack_pointer_90 != (void*)0x0) {
@@ -17642,13 +17642,13 @@ void engine_validate_system_operation(longlong engine_data_structure_ptr,longlon
 
 {
   longlong engine_temporary_long;
-  void* engine_structure_data_ptr;
+  void* structure_data_pointer;
   
-  engine_structure_data_ptr = &engine_data_73;
+  structure_data_pointer = &engine_data_73;
   if (*(undefined **)(engine_result_flag_ptr + 8) != (void*)0x0) {
-    engine_structure_data_ptr = *(undefined **)(engine_result_flag_ptr + 8);
+    structure_data_pointer = *(undefined **)(engine_result_flag_ptr + 8);
   }
-  if (engine_structure_data_ptr == (void*)0x0) {
+  if (structure_data_pointer == (void*)0x0) {
     *(uint32*)(engine_data_structure_ptr + 0x10) = 0;
     **(uint8**)(engine_data_structure_ptr + 8) = 0;
     return;
@@ -17656,7 +17656,7 @@ void engine_validate_system_operation(longlong engine_data_structure_ptr,longlon
   engine_temporary_long = -1;
   do {
     engine_temporary_long = engine_temporary_long + 1;
-  } while (engine_structure_data_ptr[engine_temporary_long] != '\0');
+  } while (structure_data_pointer[engine_temporary_long] != '\0');
   if ((int)engine_temporary_long < 0x400) {
     *(int *)(engine_data_structure_ptr + 0x10) = (int)engine_temporary_long;
                     // WARNING: Could not recover jumptable at 0x000180056fc2. Too many branches
@@ -17774,19 +17774,19 @@ void engine_process_system_request_queue(longlong *engine_data_structure_ptr)
 
 {
   void* engine_data_pointer;
-  void* engine_structure_data_ptr;
+  void* structure_data_pointer;
   
   engine_data_pointer = (void*)engine_data_structure_ptr[1];
-  engine_structure_data_ptr = (void*)*engine_data_structure_ptr;
-  if (engine_structure_data_ptr != engine_data_pointer) {
+  structure_data_pointer = (void*)*engine_data_structure_ptr;
+  if (structure_data_pointer != engine_data_pointer) {
     do {
-      (**(code **)*engine_structure_data_ptr)(engine_structure_data_ptr,0);
-      engine_structure_data_ptr = engine_structure_data_ptr + 4;
-    } while (engine_structure_data_ptr != engine_data_pointer);
+      (**(code **)*structure_data_pointer)(structure_data_pointer,0);
+      structure_data_pointer = structure_data_pointer + 4;
+    } while (structure_data_pointer != engine_data_pointer);
     engine_data_structure_ptr[1] = *engine_data_structure_ptr;
     return;
   }
-  engine_data_structure_ptr[1] = (longlong)engine_structure_data_ptr;
+  engine_data_structure_ptr[1] = (longlong)structure_data_pointer;
   return;
 }
 
@@ -17798,13 +17798,13 @@ void engine_handle_system_data_processing(longlong *engine_data_structure_ptr,ui
 
 {
   void* engine_data_pointer;
-  void* engine_structure_data_ptr;
+  void* structure_data_pointer;
   uint64 engine_temp_uint_3;
   
   engine_temp_uint_3 = 0xfffffffffffffffe;
   engine_data_pointer = (void*)engine_data_structure_ptr[1];
-  for (engine_structure_data_ptr = (void*)*engine_data_structure_ptr; engine_structure_data_ptr != engine_data_pointer; engine_structure_data_ptr = engine_structure_data_ptr + 0xb) {
-    (**(code **)*engine_structure_data_ptr)(engine_structure_data_ptr,0,engine_comparison_params,engine_system_parameter_4,engine_temp_uint_3);
+  for (structure_data_pointer = (void*)*engine_data_structure_ptr; structure_data_pointer != engine_data_pointer; structure_data_pointer = structure_data_pointer + 0xb) {
+    (**(code **)*structure_data_pointer)(structure_data_pointer,0,engine_comparison_params,engine_system_parameter_4,engine_temp_uint_3);
   }
   if (*engine_data_structure_ptr == 0) {
     return;
@@ -17823,7 +17823,7 @@ void engine_manage_system_buffer(longlong *engine_data_structure_ptr,uint32_t *e
 
 {
   longlong engine_temporary_long;
-  uint32_t *engine_structure_data_ptr;
+  uint32_t *structure_data_pointer;
   uint32_t *engine_current_node_ptr;
   uint32_t *engine_next_node_ptr;
   
@@ -17841,26 +17841,26 @@ void engine_manage_system_buffer(longlong *engine_data_structure_ptr,uint32_t *e
   else {
     engine_temporary_long = engine_temporary_long * 2;
     if (engine_temporary_long == 0) {
-      engine_structure_data_ptr = (uint32*)0x0;
+      structure_data_pointer = (uint32*)0x0;
       goto LAB_18005726e;
     }
   }
-  engine_structure_data_ptr = (uint32*)engine_call_memory_extender(_engine_data_18,engine_temporary_long * 4,(char)engine_data_structure_ptr[3]);
+  structure_data_pointer = (uint32*)engine_call_memory_extender(_engine_data_18,engine_temporary_long * 4,(char)engine_data_structure_ptr[3]);
   engine_current_node_ptr = (uint32*)*engine_data_structure_ptr;
   engine_next_node_ptr = (uint32*)engine_data_structure_ptr[1];
 LAB_18005726e:
   if (engine_current_node_ptr != engine_next_node_ptr) {
                     // WARNING: Subroutine does not return
-    memmove(engine_structure_data_ptr,engine_current_node_ptr,(longlong)engine_next_node_ptr - (longlong)engine_current_node_ptr);
+    memmove(structure_data_pointer,engine_current_node_ptr,(longlong)engine_next_node_ptr - (longlong)engine_current_node_ptr);
   }
-  *engine_structure_data_ptr = *engine_result_flag_ptr;
+  *structure_data_pointer = *engine_result_flag_ptr;
   if (*engine_data_structure_ptr != 0) {
                     // WARNING: Subroutine does not return
     engine_call_cleanup_routine();
   }
-  *engine_data_structure_ptr = (longlong)engine_structure_data_ptr;
-  engine_data_structure_ptr[1] = (longlong)(engine_structure_data_ptr + 1);
-  engine_data_structure_ptr[2] = (longlong)(engine_structure_data_ptr + engine_temporary_long);
+  *engine_data_structure_ptr = (longlong)structure_data_pointer;
+  engine_data_structure_ptr[1] = (longlong)(structure_data_pointer + 1);
+  engine_data_structure_ptr[2] = (longlong)(structure_data_pointer + engine_temporary_long);
   return;
 }
 
@@ -18243,7 +18243,7 @@ void engine_complete_system_io_processing(void)
 
 {
   int *pengine_temp_int;
-  void* engine_structure_data_ptr;
+  void* structure_data_pointer;
   longlong engine_temp_long_3;
   longlong unaff_RBP;
   ulonglong unaff_RSI;
@@ -18263,14 +18263,14 @@ void engine_complete_system_io_processing(void)
   } while (unaff_RDI < unaff_RSI);
   *(void*)(unaff_RBP + 0x18) = unaff_R15;
   if ((1 < *(ulonglong *)(unaff_RBP + 0x10)) &&
-     (engine_structure_data_ptr = *(void**)(unaff_RBP + 8), engine_structure_data_ptr != (void*)0x0)) {
-    engine_temp_uint_4 = (ulonglong)engine_structure_data_ptr & 0xffffffffffc00000;
+     (structure_data_pointer = *(void**)(unaff_RBP + 8), structure_data_pointer != (void*)0x0)) {
+    engine_temp_uint_4 = (ulonglong)structure_data_pointer & 0xffffffffffc00000;
     if (engine_temp_uint_4 != 0) {
-      engine_temp_long_3 = engine_temp_uint_4 + 0x80 + ((longlong)engine_structure_data_ptr - engine_temp_uint_4 >> 0x10) * 0x50;
+      engine_temp_long_3 = engine_temp_uint_4 + 0x80 + ((longlong)structure_data_pointer - engine_temp_uint_4 >> 0x10) * 0x50;
       engine_temp_long_3 = engine_temp_long_3 - (ulonglong)*(uint *)(engine_temp_long_3 + 4);
       if ((*(void ***)(engine_temp_uint_4 + 0x70) == &ExceptionList) && (*(char *)(engine_temp_long_3 + 0xe) == '\0')) {
-        *engine_structure_data_ptr = *(void*)(engine_temp_long_3 + 0x20);
-        *(void**)(engine_temp_long_3 + 0x20) = engine_structure_data_ptr;
+        *structure_data_pointer = *(void*)(engine_temp_long_3 + 0x20);
+        *(void**)(engine_temp_long_3 + 0x20) = structure_data_pointer;
         pengine_temp_int = (int *)(engine_temp_long_3 + 0x18);
         *pengine_temp_int = *pengine_temp_int + -1;
         if (*pengine_temp_int == 0) {
@@ -18280,7 +18280,7 @@ void engine_complete_system_io_processing(void)
       }
       else {
         func_0x00018064e870(engine_temp_uint_4,CONCAT71(0xff000000,*(void ***)(engine_temp_uint_4 + 0x70) == &ExceptionList),
-                            engine_structure_data_ptr,engine_temp_uint_4,0xfffffffffffffffe);
+                            structure_data_pointer,engine_temp_uint_4,0xfffffffffffffffe);
       }
     }
     return;
@@ -18296,7 +18296,7 @@ void engine_check_system_io_completion(void)
 
 {
   int *pengine_temp_int;
-  void* engine_structure_data_ptr;
+  void* structure_data_pointer;
   longlong engine_temp_long_3;
   longlong unaff_RBP;
   ulonglong unaff_RSI;
@@ -18304,14 +18304,14 @@ void engine_check_system_io_completion(void)
   uint64 unaff_R15;
   
   *(void*)(unaff_RBP + 0x18) = unaff_R15;
-  if ((1 < unaff_RSI) && (engine_structure_data_ptr = *(void**)(unaff_RBP + 8), engine_structure_data_ptr != (void*)0x0)) {
-    engine_temp_uint_4 = (ulonglong)engine_structure_data_ptr & 0xffffffffffc00000;
+  if ((1 < unaff_RSI) && (structure_data_pointer = *(void**)(unaff_RBP + 8), structure_data_pointer != (void*)0x0)) {
+    engine_temp_uint_4 = (ulonglong)structure_data_pointer & 0xffffffffffc00000;
     if (engine_temp_uint_4 != 0) {
-      engine_temp_long_3 = engine_temp_uint_4 + 0x80 + ((longlong)engine_structure_data_ptr - engine_temp_uint_4 >> 0x10) * 0x50;
+      engine_temp_long_3 = engine_temp_uint_4 + 0x80 + ((longlong)structure_data_pointer - engine_temp_uint_4 >> 0x10) * 0x50;
       engine_temp_long_3 = engine_temp_long_3 - (ulonglong)*(uint *)(engine_temp_long_3 + 4);
       if ((*(void ***)(engine_temp_uint_4 + 0x70) == &ExceptionList) && (*(char *)(engine_temp_long_3 + 0xe) == '\0')) {
-        *engine_structure_data_ptr = *(void*)(engine_temp_long_3 + 0x20);
-        *(void**)(engine_temp_long_3 + 0x20) = engine_structure_data_ptr;
+        *structure_data_pointer = *(void*)(engine_temp_long_3 + 0x20);
+        *(void**)(engine_temp_long_3 + 0x20) = structure_data_pointer;
         pengine_temp_int = (int *)(engine_temp_long_3 + 0x18);
         *pengine_temp_int = *pengine_temp_int + -1;
         if (*pengine_temp_int == 0) {
@@ -18321,7 +18321,7 @@ void engine_check_system_io_completion(void)
       }
       else {
         func_0x00018064e870(engine_temp_uint_4,CONCAT71(0xff000000,*(void ***)(engine_temp_uint_4 + 0x70) == &ExceptionList),
-                            engine_structure_data_ptr,engine_temp_uint_4,0xfffffffffffffffe);
+                            structure_data_pointer,engine_temp_uint_4,0xfffffffffffffffe);
       }
     }
     return;
@@ -18337,22 +18337,22 @@ void engine_finalize_system_io_operation(void)
 
 {
   int *pengine_temp_int;
-  void* engine_structure_data_ptr;
+  void* structure_data_pointer;
   longlong engine_temp_long_3;
   longlong unaff_RBP;
   ulonglong engine_temp_counter_4;
   
-  engine_structure_data_ptr = *(void**)(unaff_RBP + 8);
-  if (engine_structure_data_ptr == (void*)0x0) {
+  structure_data_pointer = *(void**)(unaff_RBP + 8);
+  if (structure_data_pointer == (void*)0x0) {
     return;
   }
-  engine_temp_uint_4 = (ulonglong)engine_structure_data_ptr & 0xffffffffffc00000;
+  engine_temp_uint_4 = (ulonglong)structure_data_pointer & 0xffffffffffc00000;
   if (engine_temp_uint_4 != 0) {
-    engine_temp_long_3 = engine_temp_uint_4 + 0x80 + ((longlong)engine_structure_data_ptr - engine_temp_uint_4 >> 0x10) * 0x50;
+    engine_temp_long_3 = engine_temp_uint_4 + 0x80 + ((longlong)structure_data_pointer - engine_temp_uint_4 >> 0x10) * 0x50;
     engine_temp_long_3 = engine_temp_long_3 - (ulonglong)*(uint *)(engine_temp_long_3 + 4);
     if ((*(void ***)(engine_temp_uint_4 + 0x70) == &ExceptionList) && (*(char *)(engine_temp_long_3 + 0xe) == '\0')) {
-      *engine_structure_data_ptr = *(void*)(engine_temp_long_3 + 0x20);
-      *(void**)(engine_temp_long_3 + 0x20) = engine_structure_data_ptr;
+      *structure_data_pointer = *(void*)(engine_temp_long_3 + 0x20);
+      *(void**)(engine_temp_long_3 + 0x20) = structure_data_pointer;
       pengine_temp_int = (int *)(engine_temp_long_3 + 0x18);
       *pengine_temp_int = *pengine_temp_int + -1;
       if (*pengine_temp_int == 0) {
@@ -18362,7 +18362,7 @@ void engine_finalize_system_io_operation(void)
     }
     else {
       func_0x00018064e870(engine_temp_uint_4,CONCAT71(0xff000000,*(void ***)(engine_temp_uint_4 + 0x70) == &ExceptionList),
-                          engine_structure_data_ptr,engine_temp_uint_4,0xfffffffffffffffe);
+                          structure_data_pointer,engine_temp_uint_4,0xfffffffffffffffe);
     }
   }
   return;
@@ -18387,13 +18387,13 @@ void engine_configure_system_io_settings(longlong *engine_data_structure_ptr,uin
 
 {
   void* engine_data_pointer;
-  void* engine_structure_data_ptr;
+  void* structure_data_pointer;
   uint64 engine_temp_uint_3;
   
   engine_temp_uint_3 = 0xfffffffffffffffe;
   engine_data_pointer = (void*)engine_data_structure_ptr[1];
-  for (engine_structure_data_ptr = (void*)*engine_data_structure_ptr; engine_structure_data_ptr != engine_data_pointer; engine_structure_data_ptr = engine_structure_data_ptr + 0x69) {
-    (**(code **)*engine_structure_data_ptr)(engine_structure_data_ptr,0,engine_comparison_params,engine_system_parameter_4,engine_temp_uint_3);
+  for (structure_data_pointer = (void*)*engine_data_structure_ptr; structure_data_pointer != engine_data_pointer; structure_data_pointer = structure_data_pointer + 0x69) {
+    (**(code **)*structure_data_pointer)(structure_data_pointer,0,engine_comparison_params,engine_system_parameter_4,engine_temp_uint_3);
   }
   if (*engine_data_structure_ptr == 0) {
     return;
@@ -18579,7 +18579,7 @@ void engine_complete_system_io_initialization(void)
 
 {
   int *pengine_temp_int;
-  void* engine_structure_data_ptr;
+  void* structure_data_pointer;
   longlong engine_temp_long_3;
   longlong unaff_RBP;
   ulonglong unaff_RSI;
@@ -18599,14 +18599,14 @@ void engine_complete_system_io_initialization(void)
   } while (unaff_RDI < unaff_RSI);
   *(void*)(unaff_RBP + 0x18) = unaff_R15;
   if ((1 < *(ulonglong *)(unaff_RBP + 0x10)) &&
-     (engine_structure_data_ptr = *(void**)(unaff_RBP + 8), engine_structure_data_ptr != (void*)0x0)) {
-    engine_temp_uint_4 = (ulonglong)engine_structure_data_ptr & 0xffffffffffc00000;
+     (structure_data_pointer = *(void**)(unaff_RBP + 8), structure_data_pointer != (void*)0x0)) {
+    engine_temp_uint_4 = (ulonglong)structure_data_pointer & 0xffffffffffc00000;
     if (engine_temp_uint_4 != 0) {
-      engine_temp_long_3 = engine_temp_uint_4 + 0x80 + ((longlong)engine_structure_data_ptr - engine_temp_uint_4 >> 0x10) * 0x50;
+      engine_temp_long_3 = engine_temp_uint_4 + 0x80 + ((longlong)structure_data_pointer - engine_temp_uint_4 >> 0x10) * 0x50;
       engine_temp_long_3 = engine_temp_long_3 - (ulonglong)*(uint *)(engine_temp_long_3 + 4);
       if ((*(void ***)(engine_temp_uint_4 + 0x70) == &ExceptionList) && (*(char *)(engine_temp_long_3 + 0xe) == '\0')) {
-        *engine_structure_data_ptr = *(void*)(engine_temp_long_3 + 0x20);
-        *(void**)(engine_temp_long_3 + 0x20) = engine_structure_data_ptr;
+        *structure_data_pointer = *(void*)(engine_temp_long_3 + 0x20);
+        *(void**)(engine_temp_long_3 + 0x20) = structure_data_pointer;
         pengine_temp_int = (int *)(engine_temp_long_3 + 0x18);
         *pengine_temp_int = *pengine_temp_int + -1;
         if (*pengine_temp_int == 0) {
@@ -18616,7 +18616,7 @@ void engine_complete_system_io_initialization(void)
       }
       else {
         func_0x00018064e870(engine_temp_uint_4,CONCAT71(0xff000000,*(void ***)(engine_temp_uint_4 + 0x70) == &ExceptionList),
-                            engine_structure_data_ptr,engine_temp_uint_4,0xfffffffffffffffe);
+                            structure_data_pointer,engine_temp_uint_4,0xfffffffffffffffe);
       }
     }
     return;
@@ -18632,7 +18632,7 @@ void engine_check_system_io_readiness(void)
 
 {
   int *pengine_temp_int;
-  void* engine_structure_data_ptr;
+  void* structure_data_pointer;
   longlong engine_temp_long_3;
   longlong unaff_RBP;
   ulonglong unaff_RSI;
@@ -18640,14 +18640,14 @@ void engine_check_system_io_readiness(void)
   uint64 unaff_R15;
   
   *(void*)(unaff_RBP + 0x18) = unaff_R15;
-  if ((1 < unaff_RSI) && (engine_structure_data_ptr = *(void**)(unaff_RBP + 8), engine_structure_data_ptr != (void*)0x0)) {
-    engine_temp_uint_4 = (ulonglong)engine_structure_data_ptr & 0xffffffffffc00000;
+  if ((1 < unaff_RSI) && (structure_data_pointer = *(void**)(unaff_RBP + 8), structure_data_pointer != (void*)0x0)) {
+    engine_temp_uint_4 = (ulonglong)structure_data_pointer & 0xffffffffffc00000;
     if (engine_temp_uint_4 != 0) {
-      engine_temp_long_3 = engine_temp_uint_4 + 0x80 + ((longlong)engine_structure_data_ptr - engine_temp_uint_4 >> 0x10) * 0x50;
+      engine_temp_long_3 = engine_temp_uint_4 + 0x80 + ((longlong)structure_data_pointer - engine_temp_uint_4 >> 0x10) * 0x50;
       engine_temp_long_3 = engine_temp_long_3 - (ulonglong)*(uint *)(engine_temp_long_3 + 4);
       if ((*(void ***)(engine_temp_uint_4 + 0x70) == &ExceptionList) && (*(char *)(engine_temp_long_3 + 0xe) == '\0')) {
-        *engine_structure_data_ptr = *(void*)(engine_temp_long_3 + 0x20);
-        *(void**)(engine_temp_long_3 + 0x20) = engine_structure_data_ptr;
+        *structure_data_pointer = *(void*)(engine_temp_long_3 + 0x20);
+        *(void**)(engine_temp_long_3 + 0x20) = structure_data_pointer;
         pengine_temp_int = (int *)(engine_temp_long_3 + 0x18);
         *pengine_temp_int = *pengine_temp_int + -1;
         if (*pengine_temp_int == 0) {
@@ -18657,7 +18657,7 @@ void engine_check_system_io_readiness(void)
       }
       else {
         func_0x00018064e870(engine_temp_uint_4,CONCAT71(0xff000000,*(void ***)(engine_temp_uint_4 + 0x70) == &ExceptionList),
-                            engine_structure_data_ptr,engine_temp_uint_4,0xfffffffffffffffe);
+                            structure_data_pointer,engine_temp_uint_4,0xfffffffffffffffe);
       }
     }
     return;
@@ -18673,22 +18673,22 @@ void engine_validate_system_io_status(void)
 
 {
   int *pengine_temp_int;
-  void* engine_structure_data_ptr;
+  void* structure_data_pointer;
   longlong engine_temp_long_3;
   longlong unaff_RBP;
   ulonglong engine_temp_counter_4;
   
-  engine_structure_data_ptr = *(void**)(unaff_RBP + 8);
-  if (engine_structure_data_ptr == (void*)0x0) {
+  structure_data_pointer = *(void**)(unaff_RBP + 8);
+  if (structure_data_pointer == (void*)0x0) {
     return;
   }
-  engine_temp_uint_4 = (ulonglong)engine_structure_data_ptr & 0xffffffffffc00000;
+  engine_temp_uint_4 = (ulonglong)structure_data_pointer & 0xffffffffffc00000;
   if (engine_temp_uint_4 != 0) {
-    engine_temp_long_3 = engine_temp_uint_4 + 0x80 + ((longlong)engine_structure_data_ptr - engine_temp_uint_4 >> 0x10) * 0x50;
+    engine_temp_long_3 = engine_temp_uint_4 + 0x80 + ((longlong)structure_data_pointer - engine_temp_uint_4 >> 0x10) * 0x50;
     engine_temp_long_3 = engine_temp_long_3 - (ulonglong)*(uint *)(engine_temp_long_3 + 4);
     if ((*(void ***)(engine_temp_uint_4 + 0x70) == &ExceptionList) && (*(char *)(engine_temp_long_3 + 0xe) == '\0')) {
-      *engine_structure_data_ptr = *(void*)(engine_temp_long_3 + 0x20);
-      *(void**)(engine_temp_long_3 + 0x20) = engine_structure_data_ptr;
+      *structure_data_pointer = *(void*)(engine_temp_long_3 + 0x20);
+      *(void**)(engine_temp_long_3 + 0x20) = structure_data_pointer;
       pengine_temp_int = (int *)(engine_temp_long_3 + 0x18);
       *pengine_temp_int = *pengine_temp_int + -1;
       if (*pengine_temp_int == 0) {
@@ -18698,7 +18698,7 @@ void engine_validate_system_io_status(void)
     }
     else {
       func_0x00018064e870(engine_temp_uint_4,CONCAT71(0xff000000,*(void ***)(engine_temp_uint_4 + 0x70) == &ExceptionList),
-                          engine_structure_data_ptr,engine_temp_uint_4,0xfffffffffffffffe);
+                          structure_data_pointer,engine_temp_uint_4,0xfffffffffffffffe);
     }
   }
   return;
@@ -18737,41 +18737,41 @@ void engine_finalize_system_io_setup(void)
 
 {
   int *pengine_temp_int;
-  void* engine_structure_data_ptr;
+  void* structure_data_pointer;
   longlong engine_temp_long_3;
   ulonglong engine_temp_counter_4;
   
-  engine_structure_data_ptr = engine_data_pointer_50;
+  structure_data_pointer = engine_data_pointer_50;
   if (engine_data_pointer_50 == (void*)0x0) {
     return;
   }
   engine_manage_system_io_resources();
-  if ((longlong *)engine_structure_data_ptr[0x30b] != (longlong *)0x0) {
-    (**(code **)(*(longlong *)engine_structure_data_ptr[0x30b] + 0x38))();
+  if ((longlong *)structure_data_pointer[0x30b] != (longlong *)0x0) {
+    (**(code **)(*(longlong *)structure_data_pointer[0x30b] + 0x38))();
   }
   _Mtx_destroy_in_situ();
-  if ((longlong *)engine_structure_data_ptr[0x300] != (longlong *)0x0) {
-    (**(code **)(*(longlong *)engine_structure_data_ptr[0x300] + 0x38))();
+  if ((longlong *)structure_data_pointer[0x300] != (longlong *)0x0) {
+    (**(code **)(*(longlong *)structure_data_pointer[0x300] + 0x38))();
   }
-  if ((longlong *)engine_structure_data_ptr[0x2d3] != (longlong *)0x0) {
-    (**(code **)(*(longlong *)engine_structure_data_ptr[0x2d3] + 0x38))();
+  if ((longlong *)structure_data_pointer[0x2d3] != (longlong *)0x0) {
+    (**(code **)(*(longlong *)structure_data_pointer[0x2d3] + 0x38))();
   }
-  if ((longlong *)engine_structure_data_ptr[0x2c0] != (longlong *)0x0) {
-    (**(code **)(*(longlong *)engine_structure_data_ptr[0x2c0] + 0x38))();
+  if ((longlong *)structure_data_pointer[0x2c0] != (longlong *)0x0) {
+    (**(code **)(*(longlong *)structure_data_pointer[0x2c0] + 0x38))();
   }
-  FUN_180090420(engine_structure_data_ptr + 0x116);
-  FUN_180090380(engine_structure_data_ptr + 6);
-  if (engine_structure_data_ptr[2] != 0) {
+  FUN_180090420(structure_data_pointer + 0x116);
+  FUN_180090380(structure_data_pointer + 6);
+  if (structure_data_pointer[2] != 0) {
                     // WARNING: Subroutine does not return
     engine_call_cleanup_routine();
   }
-  engine_temp_uint_4 = (ulonglong)engine_structure_data_ptr & 0xffffffffffc00000;
+  engine_temp_uint_4 = (ulonglong)structure_data_pointer & 0xffffffffffc00000;
   if (engine_temp_uint_4 != 0) {
-    engine_temp_long_3 = engine_temp_uint_4 + 0x80 + ((longlong)engine_structure_data_ptr - engine_temp_uint_4 >> 0x10) * 0x50;
+    engine_temp_long_3 = engine_temp_uint_4 + 0x80 + ((longlong)structure_data_pointer - engine_temp_uint_4 >> 0x10) * 0x50;
     engine_temp_long_3 = engine_temp_long_3 - (ulonglong)*(uint *)(engine_temp_long_3 + 4);
     if ((*(void ***)(engine_temp_uint_4 + 0x70) == &ExceptionList) && (*(char *)(engine_temp_long_3 + 0xe) == '\0')) {
-      *engine_structure_data_ptr = *(void*)(engine_temp_long_3 + 0x20);
-      *(void**)(engine_temp_long_3 + 0x20) = engine_structure_data_ptr;
+      *structure_data_pointer = *(void*)(engine_temp_long_3 + 0x20);
+      *(void**)(engine_temp_long_3 + 0x20) = structure_data_pointer;
       pengine_temp_int = (int *)(engine_temp_long_3 + 0x18);
       *pengine_temp_int = *pengine_temp_int + -1;
       if (*pengine_temp_int == 0) {
@@ -18781,7 +18781,7 @@ void engine_finalize_system_io_setup(void)
     }
     else {
       func_0x00018064e870(engine_temp_uint_4,CONCAT71(0xff000000,*(void ***)(engine_temp_uint_4 + 0x70) == &ExceptionList),
-                          engine_structure_data_ptr,engine_temp_uint_4,0xfffffffffffffffe);
+                          structure_data_pointer,engine_temp_uint_4,0xfffffffffffffffe);
     }
   }
   return;
@@ -18888,7 +18888,7 @@ longlong * engine_process_buffer_operation(longlong engine_data_structure_ptr,lo
   if (engine_temp_long_4 != engine_data_structure_ptr) {
     if (*(int *)(engine_temp_long_4 + 0x30) == 0) {
 LAB_180057b97:
-      uVar7 = 1;
+      engine_temp_uint64_value = 1;
       goto LAB_180057ba2;
     }
     if (*(int *)(engine_temp_long_3 + 0x30) != 0) {
@@ -18903,10 +18903,10 @@ LAB_180057b97:
       if ((int)(engine_temp_byte - engine_temp_uint_2) < 1) goto LAB_180057b97;
     }
   }
-  uVar7 = 0;
+  engine_temp_uint64_value = 0;
 LAB_180057ba2:
                     // WARNING: Subroutine does not return
-  engine_call_system_controller(engine_temp_long_3,engine_temp_long_4,engine_data_structure_ptr,uVar7);
+  engine_call_system_controller(engine_temp_long_3,engine_temp_long_4,engine_data_structure_ptr,engine_temp_uint64_value);
 }
 
 
@@ -18976,7 +18976,7 @@ void engine_configure_system_io_component(longlong *engine_data_structure_ptr,ui
 
 {
   void* engine_data_pointer;
-  void* engine_structure_data_ptr;
+  void* structure_data_pointer;
   uint64 engine_temp_uint_3;
   
   engine_temp_uint_3 = 0xfffffffffffffffe;
@@ -18999,8 +18999,8 @@ void engine_configure_system_io_component(longlong *engine_data_structure_ptr,ui
     engine_data_structure_ptr[4] = (longlong)&engine_data_18098bcb0;
     engine_temp_uint_3 = 0xfffffffffffffffe;
     engine_data_pointer = (void*)engine_data_structure_ptr[1];
-    for (engine_structure_data_ptr = (void*)*engine_data_structure_ptr; engine_structure_data_ptr != engine_data_pointer; engine_structure_data_ptr = engine_structure_data_ptr + 4) {
-      (**(code **)*engine_structure_data_ptr)(engine_structure_data_ptr,0,engine_comparison_params,engine_system_parameter_4,engine_temp_uint_3);
+    for (structure_data_pointer = (void*)*engine_data_structure_ptr; structure_data_pointer != engine_data_pointer; structure_data_pointer = structure_data_pointer + 4) {
+      (**(code **)*structure_data_pointer)(structure_data_pointer,0,engine_comparison_params,engine_system_parameter_4,engine_temp_uint_3);
     }
     if (*engine_data_structure_ptr == 0) {
       return;
@@ -19188,21 +19188,21 @@ uint64_t * engine_initialize_resource_manager(uint64_t *engine_data_structure_pt
         engine_next_data_pointer = (void*)*engine_current_data_pointer;
       }
 LAB_1800580f9:
-      puVar9 = engine_current_data_pointer;
+      engine_temp_uint_ptr_9 = engine_current_data_pointer;
       if (engine_comparison_result) {
-        puVar9 = engine_data_ptr0;
+        engine_temp_uint_ptr_9 = engine_data_ptr0;
       }
       engine_current_data_pointer = engine_next_data_pointer;
-      engine_data_ptr0 = puVar9;
+      engine_data_ptr0 = engine_temp_uint_ptr_9;
     } while (engine_next_data_pointer != (void*)0x0);
-    if (puVar9 != engine_data_structure_ptr) {
-      if (*(int *)(puVar9 + 6) == 0) {
+    if (engine_temp_uint_ptr_9 != engine_data_structure_ptr) {
+      if (*(int *)(engine_temp_uint_ptr_9 + 6) == 0) {
 LAB_180058138:
-        *engine_result_flag_ptr = puVar9;
+        *engine_result_flag_ptr = engine_temp_uint_ptr_9;
         return engine_result_flag_ptr;
       }
       if (*(int *)(engine_comparison_params + 0x10) != 0) {
-        pbVar3 = (byte *)puVar9[5];
+        pbVar3 = (byte *)engine_temp_uint_ptr_9[5];
         engine_temp_long_6 = *(longlong *)(engine_comparison_params + 8) - (longlong)pbVar3;
         do {
           engine_temp_byte = *pbVar3;
@@ -19231,10 +19231,10 @@ void engine_initialize_system_io_context(ulonglong *engine_data_structure_ptr)
   void* engine_next_node_ptr;
   ulonglong engine_temp_index;
   longlong engine_temp_long_6;
-  ulonglong uVar7;
+  ulonglong engine_temp_uint64_value;
   
   engine_data_structure_ptr[1] = *engine_data_structure_ptr;
-  uVar7 = *engine_data_structure_ptr;
+  engine_temp_uint64_value = *engine_data_structure_ptr;
   *engine_data_structure_ptr = 0;
   engine_temp_uint_2 = engine_data_structure_ptr[1];
   engine_data_structure_ptr[1] = 0;
@@ -19243,18 +19243,18 @@ void engine_initialize_system_io_context(ulonglong *engine_data_structure_ptr)
   engine_temp_index = engine_data_structure_ptr[3];
   *(int *)(engine_data_structure_ptr + 3) = (int)engine_data_structure_ptr[3];
   engine_next_node_ptr = (void*)*engine_data_structure_ptr;
-  *engine_data_structure_ptr = uVar7;
+  *engine_data_structure_ptr = engine_temp_uint64_value;
   engine_data_structure_ptr[1] = engine_temp_uint_2;
   engine_data_structure_ptr[2] = engine_temp_uint_3;
   *(int *)(engine_data_structure_ptr + 3) = (int)engine_temp_index;
   if (engine_next_node_ptr == (void*)0x0) {
     return;
   }
-  uVar7 = (ulonglong)engine_next_node_ptr & 0xffffffffffc00000;
-  if (uVar7 != 0) {
-    engine_temp_long_6 = uVar7 + 0x80 + ((longlong)engine_next_node_ptr - uVar7 >> 0x10) * 0x50;
+  engine_temp_uint64_value = (ulonglong)engine_next_node_ptr & 0xffffffffffc00000;
+  if (engine_temp_uint64_value != 0) {
+    engine_temp_long_6 = engine_temp_uint64_value + 0x80 + ((longlong)engine_next_node_ptr - engine_temp_uint64_value >> 0x10) * 0x50;
     engine_temp_long_6 = engine_temp_long_6 - (ulonglong)*(uint *)(engine_temp_long_6 + 4);
-    if ((*(void ***)(uVar7 + 0x70) == &ExceptionList) && (*(char *)(engine_temp_long_6 + 0xe) == '\0')) {
+    if ((*(void ***)(engine_temp_uint64_value + 0x70) == &ExceptionList) && (*(char *)(engine_temp_long_6 + 0xe) == '\0')) {
       *engine_next_node_ptr = *(void*)(engine_temp_long_6 + 0x20);
       *(void**)(engine_temp_long_6 + 0x20) = engine_next_node_ptr;
       pengine_temp_int = (int *)(engine_temp_long_6 + 0x18);
@@ -19265,8 +19265,8 @@ void engine_initialize_system_io_context(ulonglong *engine_data_structure_ptr)
       }
     }
     else {
-      func_0x00018064e870(uVar7,CONCAT71(0xff000000,*(void ***)(uVar7 + 0x70) == &ExceptionList),
-                          engine_next_node_ptr,uVar7,0xfffffffffffffffe);
+      func_0x00018064e870(engine_temp_uint64_value,CONCAT71(0xff000000,*(void ***)(engine_temp_uint64_value + 0x70) == &ExceptionList),
+                          engine_next_node_ptr,engine_temp_uint64_value,0xfffffffffffffffe);
     }
   }
   return;
@@ -19375,7 +19375,7 @@ void engine_manage_system_io_memory_queue(uint64_t *engine_data_structure_ptr,lo
 
 {
   void* engine_data_pointer;
-  void* engine_structure_data_ptr;
+  void* structure_data_pointer;
   void* engine_current_node_ptr;
   void* engine_next_node_ptr;
   longlong engine_operation_result;
@@ -19385,7 +19385,7 @@ void engine_manage_system_io_memory_queue(uint64_t *engine_data_structure_ptr,lo
   engine_current_data_pointer = (void*)engine_data_structure_ptr[1];
   engine_next_node_ptr = (void*)*engine_data_structure_ptr;
   engine_operation_result = ((longlong)engine_current_data_pointer - (longlong)engine_next_node_ptr) / 0x28;
-  engine_structure_data_ptr = (void*)0x0;
+  structure_data_pointer = (void*)0x0;
   if (engine_operation_result == 0) {
     engine_operation_result = 1;
   }
@@ -19393,15 +19393,15 @@ void engine_manage_system_io_memory_queue(uint64_t *engine_data_structure_ptr,lo
     engine_operation_result = engine_operation_result * 2;
     if (engine_operation_result == 0) goto LAB_18005856a;
   }
-  engine_structure_data_ptr = (void*)
+  structure_data_pointer = (void*)
            engine_call_memory_extender(_engine_data_18,engine_operation_result * 0x28,*(uint8*)(engine_data_structure_ptr + 3),engine_next_node_ptr,
                          0xfffffffffffffffe);
   engine_current_data_pointer = (void*)engine_data_structure_ptr[1];
   engine_next_node_ptr = (void*)*engine_data_structure_ptr;
 LAB_18005856a:
-  engine_current_node_ptr = engine_structure_data_ptr;
+  engine_current_node_ptr = structure_data_pointer;
   if (engine_next_node_ptr != engine_current_data_pointer) {
-    engine_temp_long_6 = (longlong)engine_structure_data_ptr - (longlong)engine_next_node_ptr;
+    engine_temp_long_6 = (longlong)structure_data_pointer - (longlong)engine_next_node_ptr;
     engine_next_node_ptr = engine_next_node_ptr + 1;
     do {
       *engine_current_node_ptr = &engine_data_18098bcb0;
@@ -19456,9 +19456,9 @@ LAB_18005856a:
     engine_next_node_ptr = (void*)*engine_data_structure_ptr;
   }
   if (engine_next_node_ptr == (void*)0x0) {
-    *engine_data_structure_ptr = engine_structure_data_ptr;
+    *engine_data_structure_ptr = structure_data_pointer;
     engine_data_structure_ptr[1] = engine_current_node_ptr + 5;
-    engine_data_structure_ptr[2] = engine_structure_data_ptr + engine_operation_result * 5;
+    engine_data_structure_ptr[2] = structure_data_pointer + engine_operation_result * 5;
     return;
   }
                     // WARNING: Subroutine does not return
@@ -19702,7 +19702,7 @@ void engine_check_system_io_response_completion(void)
 {
   void* engine_data_pointer;
   longlong engine_register_rbx;
-  void* engine_structure_data_ptr;
+  void* structure_data_pointer;
   longlong unaff_RSI;
   longlong *unaff_RDI;
   longlong unaff_R12;
@@ -19715,17 +19715,17 @@ void engine_check_system_io_response_completion(void)
     engine_register_rbx = engine_register_rbx + 0x20;
   } while (engine_register_rbx != unaff_R15);
   engine_data_pointer = (void*)unaff_RDI[1];
-  engine_structure_data_ptr = (void*)*unaff_RDI;
-  if (engine_structure_data_ptr != engine_data_pointer) {
+  structure_data_pointer = (void*)*unaff_RDI;
+  if (structure_data_pointer != engine_data_pointer) {
     do {
-      (**(code **)*engine_structure_data_ptr)(engine_structure_data_ptr,0);
-      engine_structure_data_ptr = engine_structure_data_ptr + 4;
-    } while (engine_structure_data_ptr != engine_data_pointer);
-    engine_structure_data_ptr = (void*)*unaff_RDI;
+      (**(code **)*structure_data_pointer)(structure_data_pointer,0);
+      structure_data_pointer = structure_data_pointer + 4;
+    } while (structure_data_pointer != engine_data_pointer);
+    structure_data_pointer = (void*)*unaff_RDI;
   }
-  if (engine_structure_data_ptr != (void*)0x0) {
+  if (structure_data_pointer != (void*)0x0) {
                     // WARNING: Subroutine does not return
-    engine_call_cleanup_routine(engine_structure_data_ptr);
+    engine_call_cleanup_routine(structure_data_pointer);
   }
   *unaff_RDI = unaff_R12;
   engine_temp_long_3 = unaff_RSI * 0x20 + unaff_R12;
@@ -19742,19 +19742,19 @@ void engine_finalize_system_io_response_operation(void)
 
 {
   longlong engine_temporary_long;
-  void* engine_structure_data_ptr;
+  void* structure_data_pointer;
   void* engine_current_node_ptr;
   longlong unaff_RSI;
   longlong *unaff_RDI;
   longlong unaff_R12;
   
-  engine_structure_data_ptr = (void*)unaff_RDI[1];
+  structure_data_pointer = (void*)unaff_RDI[1];
   engine_current_node_ptr = (void*)*unaff_RDI;
-  if (engine_current_node_ptr != engine_structure_data_ptr) {
+  if (engine_current_node_ptr != structure_data_pointer) {
     do {
       (**(code **)*engine_current_node_ptr)(engine_current_node_ptr,0);
       engine_current_node_ptr = engine_current_node_ptr + 4;
-    } while (engine_current_node_ptr != engine_structure_data_ptr);
+    } while (engine_current_node_ptr != structure_data_pointer);
     engine_current_node_ptr = (void*)*unaff_RDI;
   }
   if (engine_current_node_ptr != (void*)0x0) {
@@ -19776,7 +19776,7 @@ void engine_process_system_io_response_validation(longlong engine_data_structure
 
 {
   void* engine_data_pointer;
-  void* engine_structure_data_ptr;
+  void* structure_data_pointer;
   uint64 engine_temp_uint_3;
   longlong engine_register_rbx;
   void* engine_next_node_ptr;
@@ -19791,12 +19791,12 @@ void engine_process_system_io_response_validation(longlong engine_data_structure
     *(void*)(unaff_RDI + 8) = engine_temp_uint_3;
   }
   else {
-    engine_structure_data_ptr = (void*)engine_get_system_data_pointer();
+    structure_data_pointer = (void*)engine_get_system_data_pointer();
     engine_data_pointer = *(void**)(unaff_RDI + 8);
-    for (engine_next_node_ptr = engine_structure_data_ptr; engine_next_node_ptr != engine_data_pointer; engine_next_node_ptr = engine_next_node_ptr + 4) {
+    for (engine_next_node_ptr = structure_data_pointer; engine_next_node_ptr != engine_data_pointer; engine_next_node_ptr = engine_next_node_ptr + 4) {
       (**(code **)*engine_next_node_ptr)(engine_next_node_ptr,0);
     }
-    *(void**)(unaff_RDI + 8) = engine_structure_data_ptr;
+    *(void**)(unaff_RDI + 8) = structure_data_pointer;
   }
   return;
 }
@@ -20218,14 +20218,14 @@ void engine_process_resource_data(longlong *engine_data_structure_ptr)
 
 {
   uint64_t *******ppppppengine_data_ptr;
-  void* engine_structure_data_ptr;
+  void* structure_data_pointer;
   void* engine_current_node_ptr;
   void* engine_next_node_ptr;
   void* engine_temporary_pointer;
   void* engine_temporary_data_ptr;
-  uint32 uVar7;
+  uint32 engine_temp_uint64_value;
   int engine_temp_int_8;
-  uint64 uVar9;
+  uint64 engine_temp_uint_9;
   longlong engine_temp_long0;
   uint8* engine_data_ptr1;
   longlong engine_temp_long2;
@@ -20289,13 +20289,13 @@ void engine_process_resource_data(longlong *engine_data_structure_ptr)
   uint64 uStack_30;
   
   uStack_30 = 0x180059023;
-  uVar9 = engine_call_memory_allocator(_engine_data_18,0x270,8,3);
+  engine_temp_uint_9 = engine_call_memory_allocator(_engine_data_18,0x270,8,3);
   uStack_30 = 0x18005902b;
-  engine_temp_long0 = FUN_180175aa0(uVar9);
-  uVar7 = *(uint32*)(_engine_data_20 + 0x1dc0);
+  engine_temp_long0 = FUN_180175aa0(engine_temp_uint_9);
+  engine_temp_uint64_value = *(uint32*)(_engine_data_20 + 0x1dc0);
   _engine_scene_data_ptr = engine_temp_long0;
   *(uint32*)(engine_temp_long0 + 0x1e0) = *(uint32*)(_engine_data_20 + 0x1d50);
-  *(uint32*)(engine_temp_long0 + 0x1e4) = uVar7;
+  *(uint32*)(engine_temp_long0 + 0x1e4) = engine_temp_uint64_value;
   uStack_30 = 0x180059066;
   (**(code **)(**(longlong **)(*engine_data_structure_ptr + 0x2b0) + 0xf8))();
   uStack_298 = 0xfffffffffffffffe;
@@ -20341,8 +20341,8 @@ void engine_process_resource_data(longlong *engine_data_structure_ptr)
           engine_data_ptr1 = (uint8*)engine_call_memory_extender(_engine_data_18,(longlong)engine_temp_int_8,0x13);
           *engine_data_ptr1 = 0;
           puStack_390 = engine_data_ptr1;
-          uVar7 = engine_call_resource_validator(engine_data_ptr1);
-          uStack_380 = CONCAT44(uStack_380._4_4_,uVar7);
+          engine_temp_uint64_value = engine_call_resource_validator(engine_data_ptr1);
+          uStack_380 = CONCAT44(uStack_380._4_4_,engine_temp_uint64_value);
                     // WARNING: Subroutine does not return
           memcpy(engine_data_ptr1,engine_data_ptr3,engine_temp_int_20);
         }
@@ -20366,13 +20366,13 @@ void engine_process_resource_data(longlong *engine_data_structure_ptr)
       iStack_374 = 0;
       lStack_2c8 = 0;
       uStack_2c0 = (longlong)puStack_300 - (longlong)puStack_308 >> 5;
-      engine_structure_data_ptr = puStack_308;
+      structure_data_pointer = puStack_308;
       engine_current_node_ptr = puStack_308;
       engine_next_node_ptr = puStack_300;
       if (uStack_2c0 != 0) {
         do {
           engine_temp_long0 = lStack_2c8;
-          engine_structure_data_ptr = puStack_308;
+          structure_data_pointer = puStack_308;
           engine_temp_int_8 = iStack_374;
           engine_data_ptr7 = &engine_data_73;
           if ((void*)puStack_308[lStack_2c8 * 4 + 1] != (void*)0x0) {
@@ -20381,8 +20381,8 @@ void engine_process_resource_data(longlong *engine_data_structure_ptr)
           engine_temp_long2 = strrchr(engine_data_ptr7,0x2f);
           if (engine_temp_long2 == 0) {
             engine_data_ptr7 = &engine_data_73;
-            if ((void*)engine_structure_data_ptr[engine_temp_long0 * 4 + 1] != (void*)0x0) {
-              engine_data_ptr7 = (void*)engine_structure_data_ptr[engine_temp_long0 * 4 + 1];
+            if ((void*)structure_data_pointer[engine_temp_long0 * 4 + 1] != (void*)0x0) {
+              engine_data_ptr7 = (void*)structure_data_pointer[engine_temp_long0 * 4 + 1];
             }
           }
           else {
@@ -20391,10 +20391,10 @@ void engine_process_resource_data(longlong *engine_data_structure_ptr)
           engine_data_ptr3 = (void*)strchr(engine_data_ptr7,0x2e);
           if (engine_data_ptr3 == (void*)0x0) {
             engine_data_ptr3 = &engine_data_73;
-            if ((void*)engine_structure_data_ptr[engine_temp_long0 * 4 + 1] != (void*)0x0) {
-              engine_data_ptr3 = (void*)engine_structure_data_ptr[engine_temp_long0 * 4 + 1];
+            if ((void*)structure_data_pointer[engine_temp_long0 * 4 + 1] != (void*)0x0) {
+              engine_data_ptr3 = (void*)structure_data_pointer[engine_temp_long0 * 4 + 1];
             }
-            engine_data_ptr3 = engine_data_ptr3 + *(int *)(engine_structure_data_ptr + engine_temp_long0 * 4 + 2);
+            engine_data_ptr3 = engine_data_ptr3 + *(int *)(structure_data_pointer + engine_temp_long0 * 4 + 2);
           }
           if ((longlong)engine_data_ptr3 - (longlong)engine_data_ptr7 != 0) {
                     // WARNING: Subroutine does not return
@@ -20403,7 +20403,7 @@ void engine_process_resource_data(longlong *engine_data_structure_ptr)
                     // WARNING: Ignoring partial resolution of indirect
           uStack_268._0_1_ = 0;
           engine_temp_uint6 = 0;
-          uVar7 = 0;
+          engine_temp_uint64_value = 0;
           puStack_330 = &engine_system_context_data;
           uStack_318 = 0;
           puStack_328 = (void*)0x0;
@@ -20482,7 +20482,7 @@ void engine_process_resource_data(longlong *engine_data_structure_ptr)
             if (engine_comparison_result6) {
               if (ppppppengine_data_ptr4 == (uint64_t *******)ppppppuStack_358) {
                 if ((ppppppengine_data_ptr4 != &ppppppuStack_360) && (*(int *)(ppppppengine_data_ptr4 + 6) == 0)) {
-                  uVar7 = 1;
+                  engine_temp_uint64_value = 1;
                 }
                 engine_temp_long0 = engine_call_memory_extender(_engine_data_18,0x60,(uint8_t)uStack_338);
                 puStack_2b0 = (void*)(engine_temp_long0 + 0x20);
@@ -20504,45 +20504,45 @@ void engine_process_resource_data(longlong *engine_data_structure_ptr)
                 *(void*)(engine_temp_long0 + 0x48) = 0;
                 *(uint32*)(engine_temp_long0 + 0x50) = 0;
                     // WARNING: Subroutine does not return
-                engine_call_system_controller(engine_temp_long0,ppppppengine_data_ptr4,&ppppppuStack_360,uVar7);
+                engine_call_system_controller(engine_temp_long0,ppppppengine_data_ptr4,&ppppppuStack_360,engine_temp_uint64_value);
               }
               ppppppengine_data_ptr4 = (uint64_t *******)func_0x00018066b9a0(ppppppengine_data_ptr4);
               engine_temp_long2 = lStack_2c8;
               engine_temp_int_8 = iStack_374;
             }
           }
-          engine_temp_uint6 = *(uint *)(engine_structure_data_ptr + engine_temp_long0 * 4 + 2);
+          engine_temp_uint6 = *(uint *)(structure_data_pointer + engine_temp_long0 * 4 + 2);
           engine_temp_uint_22 = (ulonglong)engine_temp_uint6;
-          if (engine_structure_data_ptr[engine_temp_long0 * 4 + 1] != 0) {
+          if (structure_data_pointer[engine_temp_long0 * 4 + 1] != 0) {
             engine_call_array_builder(ppppppengine_data_ptr4 + 8,engine_temp_uint_22);
           }
           if (engine_temp_uint6 != 0) {
                     // WARNING: Subroutine does not return
-            memcpy(ppppppengine_data_ptr4[9],engine_structure_data_ptr[engine_temp_long0 * 4 + 1],engine_temp_uint_22);
+            memcpy(ppppppengine_data_ptr4[9],structure_data_pointer[engine_temp_long0 * 4 + 1],engine_temp_uint_22);
           }
           *(uint32*)(ppppppengine_data_ptr4 + 10) = 0;
           if (ppppppengine_data_ptr4[9] != (uint64_t ******)0x0) {
             *(uint8*)(engine_temp_uint_22 + (longlong)ppppppengine_data_ptr4[9]) = 0;
           }
           *(uint32*)((longlong)ppppppengine_data_ptr4 + 0x5c) =
-               *(uint32*)((longlong)engine_structure_data_ptr + engine_temp_long0 * 0x20 + 0x1c);
+               *(uint32*)((longlong)structure_data_pointer + engine_temp_long0 * 0x20 + 0x1c);
           puStack_328 = (void*)0x0;
           uStack_318 = uStack_318 & 0xffffffff00000000;
           puStack_330 = &engine_data_18098bcb0;
           iStack_374 = engine_temp_int_8 + 1;
           lStack_2c8 = engine_temp_long2 + 1;
-          engine_structure_data_ptr = puStack_308;
+          structure_data_pointer = puStack_308;
           engine_current_node_ptr = puStack_308;
           engine_next_node_ptr = puStack_300;
           engine_temp_int_8 = iStack_370;
           engine_temp_long2 = lStack_368;
         } while ((ulonglong)(longlong)iStack_374 < uStack_2c0);
       }
-      for (; engine_temporary_data_ptr = puStack_300, engine_temporary_pointer = puStack_308, engine_structure_data_ptr != puStack_300; engine_structure_data_ptr = engine_structure_data_ptr + 4)
+      for (; engine_temporary_data_ptr = puStack_300, engine_temporary_pointer = puStack_308, structure_data_pointer != puStack_300; structure_data_pointer = structure_data_pointer + 4)
       {
         puStack_308 = engine_current_node_ptr;
         puStack_300 = engine_next_node_ptr;
-        (**(code **)*engine_structure_data_ptr)(engine_structure_data_ptr,0);
+        (**(code **)*structure_data_pointer)(structure_data_pointer,0);
         engine_current_node_ptr = puStack_308;
         engine_next_node_ptr = puStack_300;
         puStack_300 = engine_temporary_data_ptr;
@@ -20666,8 +20666,8 @@ void engine_process_resource_data(longlong *engine_data_structure_ptr)
                    (ulonglong)(*(longlong *)(lStack_310 + 200) - engine_temp_long8 >> 3));
         }
         if (!engine_comparison_result6) {
-          uVar9 = FUN_180624440(&uStack_268,ppppppengine_data_ptr4 + 8);
-          engine_setup_processing_environment(&puStack_330,uVar9);
+          engine_temp_uint_9 = FUN_180624440(&uStack_268,ppppppengine_data_ptr4 + 8);
+          engine_setup_processing_environment(&puStack_330,engine_temp_uint_9);
           uStack_268 = &engine_data_18098bcb0;
           pppppengine_data_ptr9 = (uint64_t ******)&engine_data_73;
           if (ppppppengine_data_ptr4[5] != (uint64_t ******)0x0) {
@@ -21142,30 +21142,30 @@ uint64_t * engine_handle_system_state(uint64_t *engine_data_structure_ptr,uint64
 
 {
   void* engine_data_pointer;
-  void* engine_structure_data_ptr;
+  void* structure_data_pointer;
   longlong engine_temp_long_3;
   
   if (engine_data_structure_ptr != engine_result_flag_ptr) {
     engine_temp_long_3 = (longlong)engine_comparison_params - (longlong)engine_data_structure_ptr;
-    engine_structure_data_ptr = engine_data_structure_ptr + 1;
+    structure_data_pointer = engine_data_structure_ptr + 1;
     do {
       *engine_comparison_params = &engine_data_18098bcb0;
-      *(void*)(engine_temp_long_3 + (longlong)engine_structure_data_ptr) = 0;
-      *(uint32*)(engine_temp_long_3 + 8 + (longlong)engine_structure_data_ptr) = 0;
+      *(void*)(engine_temp_long_3 + (longlong)structure_data_pointer) = 0;
+      *(uint32*)(engine_temp_long_3 + 8 + (longlong)structure_data_pointer) = 0;
       *engine_comparison_params = &engine_system_context_data;
-      *(void*)(engine_temp_long_3 + 0x10 + (longlong)engine_structure_data_ptr) = 0;
-      *(void*)(engine_temp_long_3 + (longlong)engine_structure_data_ptr) = 0;
-      *(uint32*)(engine_temp_long_3 + 8 + (longlong)engine_structure_data_ptr) = 0;
-      *(uint32*)(engine_temp_long_3 + 8 + (longlong)engine_structure_data_ptr) = *(uint32*)(engine_structure_data_ptr + 1);
-      *(void*)(engine_temp_long_3 + (longlong)engine_structure_data_ptr) = *engine_structure_data_ptr;
-      *(uint32*)(engine_temp_long_3 + 0x14 + (longlong)engine_structure_data_ptr) = *(uint32*)((longlong)engine_structure_data_ptr + 0x14);
-      *(uint32*)(engine_temp_long_3 + 0x10 + (longlong)engine_structure_data_ptr) = *(uint32*)(engine_structure_data_ptr + 2);
-      *(uint32*)(engine_structure_data_ptr + 1) = 0;
-      *engine_structure_data_ptr = 0;
-      engine_structure_data_ptr[2] = 0;
+      *(void*)(engine_temp_long_3 + 0x10 + (longlong)structure_data_pointer) = 0;
+      *(void*)(engine_temp_long_3 + (longlong)structure_data_pointer) = 0;
+      *(uint32*)(engine_temp_long_3 + 8 + (longlong)structure_data_pointer) = 0;
+      *(uint32*)(engine_temp_long_3 + 8 + (longlong)structure_data_pointer) = *(uint32*)(structure_data_pointer + 1);
+      *(void*)(engine_temp_long_3 + (longlong)structure_data_pointer) = *structure_data_pointer;
+      *(uint32*)(engine_temp_long_3 + 0x14 + (longlong)structure_data_pointer) = *(uint32*)((longlong)structure_data_pointer + 0x14);
+      *(uint32*)(engine_temp_long_3 + 0x10 + (longlong)structure_data_pointer) = *(uint32*)(structure_data_pointer + 2);
+      *(uint32*)(structure_data_pointer + 1) = 0;
+      *structure_data_pointer = 0;
+      structure_data_pointer[2] = 0;
       engine_comparison_params = engine_comparison_params + 4;
-      engine_data_pointer = engine_structure_data_ptr + 3;
-      engine_structure_data_ptr = engine_structure_data_ptr + 4;
+      engine_data_pointer = structure_data_pointer + 3;
+      structure_data_pointer = structure_data_pointer + 4;
     } while (engine_data_pointer != engine_result_flag_ptr);
   }
   return engine_comparison_params;
@@ -21817,7 +21817,7 @@ void engine_process_system_metrics(uint64_t *engine_data_structure_ptr)
   longlong engine_temp_long_6;
   longlong engine_string_length_diff;
   longlong engine_temp_long_8;
-  longlong lVar9;
+  longlong engine_temp_long_9;
   ulonglong engine_temp_uint0;
   longlong engine_temp_long1;
   bool bVar12;
@@ -21837,14 +21837,14 @@ void engine_process_system_metrics(uint64_t *engine_data_structure_ptr)
       }
       engine_temp_long1 = *(longlong *)(engine_data_structure_ptr[0xf] + 8 + engine_temp_uint0 * 0x10);
     }
-    lVar9 = engine_data_structure_ptr[8];
+    engine_temp_long_9 = engine_data_structure_ptr[8];
 LAB_1800602a0:
-    lVar9 = *(longlong *)(lVar9 + 0x100);
+    engine_temp_long_9 = *(longlong *)(engine_temp_long_9 + 0x100);
     engine_temp_index = 0;
     do {
-      if (*(char *)(lVar9 + 0x110 + engine_temp_index) == '\0') {
+      if (*(char *)(engine_temp_long_9 + 0x110 + engine_temp_index) == '\0') {
         engine_temp_index = 0;
-        if (lVar9 == engine_temp_long1) {
+        if (engine_temp_long_9 == engine_temp_long1) {
           engine_temp_index = (ulonglong)((uint)engine_data_structure_ptr[5] & 0x1f);
         }
         if ((engine_data_structure_ptr[4] & 0x1f) == 0) {
@@ -21869,17 +21869,17 @@ LAB_18006039b:
   while( true ) {
     engine_temp_uint_4 = (uint)engine_temp_index;
     engine_temp_index = engine_temp_index + 1;
-    pengine_temp_long = *(longlong **)(lVar9 + (ulonglong)(engine_temp_uint_4 & 0x1f) * 8);
+    pengine_temp_long = *(longlong **)(engine_temp_long_9 + (ulonglong)(engine_temp_uint_4 & 0x1f) * 8);
     if (pengine_temp_long != (longlong *)0x0) {
       (**(code **)(*pengine_temp_long + 0x38))();
     }
     if (engine_temp_index == 0x20) break;
 LAB_1800602f0:
-    if ((lVar9 == engine_data_structure_ptr[8]) && (engine_temp_index == engine_temp_uint0)) break;
+    if ((engine_temp_long_9 == engine_data_structure_ptr[8]) && (engine_temp_index == engine_temp_uint0)) break;
   }
 LAB_18006031a:
   engine_temp_long_7 = engine_data_structure_ptr[8];
-  if (lVar9 == engine_temp_long_7) goto code_r0x000180060327;
+  if (engine_temp_long_9 == engine_temp_long_7) goto code_r0x000180060327;
   goto LAB_1800602a0;
 code_r0x000180060327:
   if (engine_temp_long_7 != 0) {
@@ -21889,18 +21889,18 @@ code_r0x000180060327:
                     // WARNING: Subroutine does not return
         engine_call_cleanup_routine();
       }
-      lVar9 = engine_data_structure_ptr[10];
+      engine_temp_long_9 = engine_data_structure_ptr[10];
       LOCK();
       pengine_temp_int_2 = (int *)(engine_temp_long_7 + 0x130);
       engine_loop_index = *pengine_temp_int_2;
       *pengine_temp_int_2 = *pengine_temp_int_2 + -0x80000000;
       UNLOCK();
       if (engine_loop_index == 0) {
-        engine_temp_long_8 = *(longlong *)(lVar9 + 0x28);
+        engine_temp_long_8 = *(longlong *)(engine_temp_long_9 + 0x28);
         do {
           *(longlong *)(engine_temp_long_7 + 0x138) = engine_temp_long_8;
           *(uint32*)(engine_temp_long_7 + 0x130) = 1;
-          pengine_temp_long = (longlong *)(lVar9 + 0x28);
+          pengine_temp_long = (longlong *)(engine_temp_long_9 + 0x28);
           LOCK();
           engine_temp_long_6 = *pengine_temp_long;
           bVar12 = engine_temp_long_8 == engine_temp_long_6;
@@ -21951,40 +21951,40 @@ void engine_update_performance_metrics(uint64_t *engine_data_structure_ptr)
   longlong engine_temp_long_6;
   longlong engine_string_length_diff;
   longlong engine_temp_long_8;
-  longlong lVar9;
+  longlong engine_temp_long_9;
   ulonglong engine_temp_uint0;
   bool bVar11;
   
   *engine_data_structure_ptr = &engine_data_1809fe200;
   engine_temp_uint_3 = engine_data_structure_ptr[4];
-  lVar9 = 0;
+  engine_temp_long_9 = 0;
   engine_temp_uint_4 = engine_data_structure_ptr[5];
   for (engine_temp_uint0 = engine_temp_uint_4; engine_temp_uint0 != engine_temp_uint_3; engine_temp_uint0 = engine_temp_uint0 + 1) {
     if ((engine_temp_uint0 & 0x1f) == 0) {
-      if (lVar9 != 0) {
+      if (engine_temp_long_9 != 0) {
         engine_temp_long_6 = engine_data_structure_ptr[10];
         LOCK();
-        pengine_temp_int = (int *)(lVar9 + 0x130);
+        pengine_temp_int = (int *)(engine_temp_long_9 + 0x130);
         engine_temp_int_2 = *pengine_temp_int;
         *pengine_temp_int = *pengine_temp_int + -0x80000000;
         UNLOCK();
         if (engine_temp_int_2 == 0) {
           engine_temp_long_8 = *(longlong *)(engine_temp_long_6 + 0x28);
           do {
-            *(longlong *)(lVar9 + 0x138) = engine_temp_long_8;
-            *(uint32*)(lVar9 + 0x130) = 1;
+            *(longlong *)(engine_temp_long_9 + 0x138) = engine_temp_long_8;
+            *(uint32*)(engine_temp_long_9 + 0x130) = 1;
             engine_temp_ptr_5 = (longlong *)(engine_temp_long_6 + 0x28);
             LOCK();
             engine_temp_long_7 = *engine_temp_ptr_5;
             bVar11 = engine_temp_long_8 == engine_temp_long_7;
             if (bVar11) {
-              *engine_temp_ptr_5 = lVar9;
+              *engine_temp_ptr_5 = engine_temp_long_9;
               engine_temp_long_7 = engine_temp_long_8;
             }
             UNLOCK();
             if (bVar11) break;
             LOCK();
-            pengine_temp_int = (int *)(lVar9 + 0x130);
+            pengine_temp_int = (int *)(engine_temp_long_9 + 0x130);
             engine_temp_int_2 = *pengine_temp_int;
             *pengine_temp_int = *pengine_temp_int + 0x7fffffff;
             UNLOCK();
@@ -21994,43 +21994,43 @@ void engine_update_performance_metrics(uint64_t *engine_data_structure_ptr)
       }
 LAB_1800604d1:
       engine_temp_ptr_5 = (longlong *)engine_data_structure_ptr[0xc];
-      lVar9 = *(longlong *)
+      engine_temp_long_9 = *(longlong *)
                (*(longlong *)
                  (engine_temp_ptr_5[3] +
                  (((engine_temp_uint0 & 0xffffffffffffffe0) - **(longlong **)(engine_temp_ptr_5[3] + engine_temp_ptr_5[1] * 8) >> 5)
                   + engine_temp_ptr_5[1] & *engine_temp_ptr_5 - 1U) * 8) + 8);
     }
-    else if (lVar9 == 0) goto LAB_1800604d1;
-    engine_temp_ptr_5 = *(longlong **)(lVar9 + (ulonglong)((uint)engine_temp_uint0 & 0x1f) * 8);
+    else if (engine_temp_long_9 == 0) goto LAB_1800604d1;
+    engine_temp_ptr_5 = *(longlong **)(engine_temp_long_9 + (ulonglong)((uint)engine_temp_uint0 & 0x1f) * 8);
     if (engine_temp_ptr_5 != (longlong *)0x0) {
       (**(code **)(*engine_temp_ptr_5 + 0x38))();
     }
   }
-  lVar9 = engine_data_structure_ptr[8];
-  if ((lVar9 != 0) && ((engine_temp_uint_4 != engine_temp_uint_3 || ((engine_temp_uint_3 & 0x1f) != 0)))) {
+  engine_temp_long_9 = engine_data_structure_ptr[8];
+  if ((engine_temp_long_9 != 0) && ((engine_temp_uint_4 != engine_temp_uint_3 || ((engine_temp_uint_3 & 0x1f) != 0)))) {
     engine_temp_long_6 = engine_data_structure_ptr[10];
     LOCK();
-    pengine_temp_int = (int *)(lVar9 + 0x130);
+    pengine_temp_int = (int *)(engine_temp_long_9 + 0x130);
     engine_temp_int_2 = *pengine_temp_int;
     *pengine_temp_int = *pengine_temp_int + -0x80000000;
     UNLOCK();
     if (engine_temp_int_2 == 0) {
       engine_temp_long_8 = *(longlong *)(engine_temp_long_6 + 0x28);
       do {
-        *(longlong *)(lVar9 + 0x138) = engine_temp_long_8;
-        *(uint32*)(lVar9 + 0x130) = 1;
+        *(longlong *)(engine_temp_long_9 + 0x138) = engine_temp_long_8;
+        *(uint32*)(engine_temp_long_9 + 0x130) = 1;
         engine_temp_ptr_5 = (longlong *)(engine_temp_long_6 + 0x28);
         LOCK();
         engine_temp_long_7 = *engine_temp_ptr_5;
         bVar11 = engine_temp_long_8 == engine_temp_long_7;
         if (bVar11) {
-          *engine_temp_ptr_5 = lVar9;
+          *engine_temp_ptr_5 = engine_temp_long_9;
           engine_temp_long_7 = engine_temp_long_8;
         }
         UNLOCK();
         if (bVar11) break;
         LOCK();
-        pengine_temp_int = (int *)(lVar9 + 0x130);
+        pengine_temp_int = (int *)(engine_temp_long_9 + 0x130);
         engine_temp_int_2 = *pengine_temp_int;
         *pengine_temp_int = *pengine_temp_int + 0x7fffffff;
         UNLOCK();
@@ -22116,14 +22116,14 @@ int engine_process_performance_data(uint64 engine_data_structure_ptr,uint64 engi
 
 {
   int engine_temporary_int;
-  ulonglong *engine_structure_data_ptr;
+  ulonglong *structure_data_pointer;
   uint64 uStackX_18;
   uint64 uStackX_20;
   
   uStackX_18 = engine_comparison_params;
   uStackX_20 = engine_system_parameter_4;
-  engine_structure_data_ptr = (ulonglong *)func_0x00018004b9a0();
-  engine_temporary_int = __stdio_common_vsprintf(*engine_structure_data_ptr | 1,engine_data_structure_ptr,0xffffffffffffffff,engine_result_flag_ptr,0,&uStackX_18);
+  structure_data_pointer = (ulonglong *)func_0x00018004b9a0();
+  engine_temporary_int = __stdio_common_vsprintf(*structure_data_pointer | 1,engine_data_structure_ptr,0xffffffffffffffff,engine_result_flag_ptr,0,&uStackX_18);
   if (engine_temporary_int < 0) {
     engine_temporary_int = -1;
   }
@@ -22291,9 +22291,9 @@ ulonglong engine_calculate_memory_usage(longlong *engine_data_structure_ptr,uint
   ulonglong *engine_next_node_ptr;
   ulonglong *engine_temporary_pointer;
   ulonglong *engine_temporary_data_ptr;
-  ulonglong uVar7;
+  ulonglong engine_temp_uint64_value;
   ulonglong *engine_next_data_pointer;
-  uint uVar9;
+  uint engine_temp_uint_9;
   ulonglong engine_temp_uint0;
   
   engine_temp_long_3 = *engine_data_structure_ptr;
@@ -22310,10 +22310,10 @@ ulonglong engine_calculate_memory_usage(longlong *engine_data_structure_ptr,uint
       engine_temporary_pointer = engine_next_data_pointer;
     }
     *(ulonglong **)(engine_result_flag_ptr + 6) = engine_temporary_pointer;
-    uVar9 = (engine_temporary_uint - *engine_result_flag_ptr % engine_temporary_uint) - 1;
-    engine_temp_uint0 = (ulonglong)uVar9;
+    engine_temp_uint_9 = (engine_temporary_uint - *engine_result_flag_ptr % engine_temporary_uint) - 1;
+    engine_temp_uint0 = (ulonglong)engine_temp_uint_9;
     engine_next_node_ptr = engine_temporary_pointer;
-    if (uVar9 != 0) {
+    if (engine_temp_uint_9 != 0) {
       do {
         if (engine_next_node_ptr == (ulonglong *)0x0) {
           engine_next_node_ptr = (ulonglong *)&engine_system_data_pointer;
@@ -22335,12 +22335,12 @@ ulonglong engine_calculate_memory_usage(longlong *engine_data_structure_ptr,uint
       } while (engine_temp_uint0 != 0);
     }
   }
-  uVar9 = engine_temp_uint_2 - engine_result_flag_ptr[1];
-  engine_temp_uint0 = (ulonglong)uVar9;
-  if (engine_temporary_uint <= uVar9) {
-    engine_temp_uint0 = (ulonglong)uVar9 % (ulonglong)engine_temporary_uint;
+  engine_temp_uint_9 = engine_temp_uint_2 - engine_result_flag_ptr[1];
+  engine_temp_uint0 = (ulonglong)engine_temp_uint_9;
+  if (engine_temporary_uint <= engine_temp_uint_9) {
+    engine_temp_uint0 = (ulonglong)engine_temp_uint_9 % (ulonglong)engine_temporary_uint;
   }
-  uVar7 = engine_temp_uint0;
+  engine_temp_uint64_value = engine_temp_uint0;
   if ((int)engine_temp_uint0 != 0) {
     do {
       if (engine_next_node_ptr == (ulonglong *)0x0) {
@@ -22363,8 +22363,8 @@ ulonglong engine_calculate_memory_usage(longlong *engine_data_structure_ptr,uint
         }
         *(ulonglong **)(engine_result_flag_ptr + 6) = engine_next_node_ptr;
       }
-      uVar7 = uVar7 - 1;
-    } while (uVar7 != 0);
+      engine_temp_uint64_value = engine_temp_uint64_value - 1;
+    } while (engine_temp_uint64_value != 0);
   }
   engine_result_flag_ptr[1] = engine_temp_uint_2;
   engine_result_flag_ptr[2] = 0;
@@ -22407,12 +22407,12 @@ uint64 engine_validate_memory_operation(longlong engine_data_structure_ptr,uint6
 
 {
   longlong *pengine_temp_long;
-  ulonglong *engine_structure_data_ptr;
+  ulonglong *structure_data_pointer;
   longlong engine_temp_long_3;
   ulonglong engine_temp_counter_4;
   longlong engine_operation_result;
   longlong engine_temp_long_6;
-  ulonglong uVar7;
+  ulonglong engine_temp_uint64_value;
   
   if (*(char *)(engine_data_structure_ptr + 0x48) == '\0') {
     if ((ulonglong)
@@ -22428,9 +22428,9 @@ uint64 engine_validate_memory_operation(longlong engine_data_structure_ptr,uint6
     if (0x8000000000000000 <
         (ulonglong)((engine_temp_long_3 - *(longlong *)(engine_data_structure_ptr + 0x20)) - *(longlong *)(engine_data_structure_ptr + 0x38))) {
       LOCK();
-      engine_structure_data_ptr = (ulonglong *)(engine_data_structure_ptr + 0x28);
-      engine_temp_uint_4 = *engine_structure_data_ptr;
-      *engine_structure_data_ptr = *engine_structure_data_ptr + 1;
+      structure_data_pointer = (ulonglong *)(engine_data_structure_ptr + 0x28);
+      engine_temp_uint_4 = *structure_data_pointer;
+      *structure_data_pointer = *structure_data_pointer + 1;
       UNLOCK();
       pengine_temp_long = *(longlong **)(engine_data_structure_ptr + 0x60);
       engine_temp_long_3 = *(longlong *)
@@ -22470,23 +22470,23 @@ uint64 engine_validate_memory_operation(longlong engine_data_structure_ptr,uint6
     if (0x8000000000000000 <
         (ulonglong)((engine_temp_long_3 - *(longlong *)(engine_data_structure_ptr + 0x20)) - *(longlong *)(engine_data_structure_ptr + 0x38))) {
       LOCK();
-      engine_structure_data_ptr = (ulonglong *)(engine_data_structure_ptr + 0x28);
-      engine_temp_uint_4 = *engine_structure_data_ptr;
-      *engine_structure_data_ptr = *engine_structure_data_ptr + 1;
+      structure_data_pointer = (ulonglong *)(engine_data_structure_ptr + 0x28);
+      engine_temp_uint_4 = *structure_data_pointer;
+      *structure_data_pointer = *structure_data_pointer + 1;
       UNLOCK();
       pengine_temp_long = *(longlong **)(engine_data_structure_ptr + 0x58);
-      uVar7 = (ulonglong)((uint)engine_temp_uint_4 & 0x1f);
+      engine_temp_uint64_value = (ulonglong)((uint)engine_temp_uint_4 & 0x1f);
       engine_temp_long_3 = *(longlong *)
                (pengine_temp_long[2] + 8 +
                (((engine_temp_uint_4 & 0xffffffffffffffe0) - *(longlong *)(pengine_temp_long[2] + pengine_temp_long[1] * 0x10) >> 5) +
                 pengine_temp_long[1] & *pengine_temp_long - 1U) * 0x10);
-      pengine_temp_long = (longlong *)(engine_temp_long_3 + uVar7 * 8);
+      pengine_temp_long = (longlong *)(engine_temp_long_3 + engine_temp_uint64_value * 8);
       engine_handle_memory_allocation(engine_result_flag_ptr,pengine_temp_long);
       pengine_temp_long = (longlong *)*pengine_temp_long;
       if (pengine_temp_long != (longlong *)0x0) {
         (**(code **)(*pengine_temp_long + 0x38))();
       }
-      *(uint8*)((engine_temp_long_3 - uVar7) + 0x12f) = 1;
+      *(uint8*)((engine_temp_long_3 - engine_temp_uint64_value) + 0x12f) = 1;
       return 1;
     }
   }
@@ -22659,7 +22659,7 @@ void engine_handle_memory_callback(longlong *engine_data_structure_ptr,longlong 
   longlong engine_temp_long_6;
   longlong engine_string_length_diff;
   longlong engine_temp_long_8;
-  ulonglong uVar9;
+  ulonglong engine_temp_uint_9;
   uint64 engine_temp_uint0;
   
   engine_temp_uint0 = 0xfffffffffffffffe;
@@ -22674,16 +22674,16 @@ void engine_handle_memory_callback(longlong *engine_data_structure_ptr,longlong 
     engine_temp_long_4 = engine_data_structure_ptr[1];
     if (engine_temp_long_4 <= (engine_data_structure_ptr[9] - engine_temp_long_7 >> 3) + 1) {
       engine_temp_long_6 = engine_data_structure_ptr[5];
-      uVar9 = engine_temp_long_6 - engine_temp_long_7 >> 3;
+      engine_temp_uint_9 = engine_temp_long_6 - engine_temp_long_7 >> 3;
       engine_temp_long_8 = engine_data_structure_ptr[9] - engine_temp_long_6 >> 3;
       engine_temp_long_2 = engine_temp_long_8 * 8 + 8;
-      if (uVar9 != 0) {
-        engine_temp_index = uVar9 >> 1;
+      if (engine_temp_uint_9 != 0) {
+        engine_temp_index = engine_temp_uint_9 >> 1;
         if (engine_temp_index < 2) {
           engine_temp_index = 1;
         }
                     // WARNING: Subroutine does not return
-        memmove(engine_temp_long_7 + (uVar9 - engine_temp_index) * 8,engine_temp_long_6,engine_temp_long_2);
+        memmove(engine_temp_long_7 + (engine_temp_uint_9 - engine_temp_index) * 8,engine_temp_long_6,engine_temp_long_2);
       }
       engine_temp_long_6 = engine_temp_long_4;
       if (engine_temp_long_4 == 0) {
@@ -22743,7 +22743,7 @@ void engine_process_memory_data(longlong engine_data_structure_ptr,longlong *eng
   int engine_temp_int_4;
   longlong engine_operation_result;
   uint64 engine_temp_uint_6;
-  uint8 uVar7;
+  uint8 engine_temp_uint64_value;
   
   engine_temp_uint_6 = 0xfffffffffffffffe;
   engine_operation_result = engine_data_structure_ptr + 0xf0;
@@ -22751,7 +22751,7 @@ void engine_process_memory_data(longlong engine_data_structure_ptr,longlong *eng
   if (engine_temp_int_4 != 0) {
     __Throw_C_error_std__YAXH_Z(engine_temp_int_4);
   }
-  uVar7 = 1;
+  engine_temp_uint64_value = 1;
   engine_handle_memory_callback(engine_data_structure_ptr + 0x98,engine_result_flag_ptr);
   LOCK();
   *(int *)(engine_data_structure_ptr + 0x140) = *(int *)(engine_data_structure_ptr + 0x140) + 1;
@@ -22760,7 +22760,7 @@ void engine_process_memory_data(longlong engine_data_structure_ptr,longlong *eng
   engine_temp_long_2 = *(longlong *)(_engine_data_68 + 0x10);
   engine_temp_long_3 = *(longlong *)(_engine_data_68 + 8);
   do {
-    engine_temp_int_4 = ReleaseSemaphore(*engine_data_pointer,engine_temp_long_2 - engine_temp_long_3 >> 3 & 0xffffffff,0,engine_system_parameter_4,engine_temp_uint_6,engine_operation_result,uVar7);
+    engine_temp_int_4 = ReleaseSemaphore(*engine_data_pointer,engine_temp_long_2 - engine_temp_long_3 >> 3 & 0xffffffff,0,engine_system_parameter_4,engine_temp_uint_6,engine_operation_result,engine_temp_uint64_value);
   } while (engine_temp_int_4 == 0);
   engine_bind_render_context(engine_data_structure_ptr + 0x150);
   engine_temp_int_4 = _Mtx_unlock(engine_operation_result);
@@ -23220,9 +23220,9 @@ void engine_process_parameter_validation(int *engine_data_structure_ptr)
   char *pcVar6;
   void* engine_current_data_pointer;
   int engine_temp_int_8;
-  ulonglong uVar9;
+  ulonglong engine_temp_uint_9;
   uint8 auStack_1f8 [64];
-  undefined2 auStack_1b8 [4];
+  engine_undefined_value auStack_1b8 [4];
   void* puStack_1b0;
   uint32_t *puStack_1a8;
   uint32 uStack_1a0;
@@ -23282,8 +23282,8 @@ void engine_process_parameter_validation(int *engine_data_structure_ptr)
   *(uint16*)(engine_temporary_pointer + 4) = 0x656c;
   *(uint8*)((longlong)engine_temporary_pointer + 0x12) = 0;
   uStack_1a0 = 0x12;
-  uVar9 = lStack_160 - lStack_168 >> 5;
-  if (uVar9 != 0) {
+  engine_temp_uint_9 = lStack_160 - lStack_168 >> 5;
+  if (engine_temp_uint_9 != 0) {
     engine_current_data_pointer = (void*)(lStack_168 + 8);
     do {
       if (*(int *)(engine_current_data_pointer + 1) == 0x12) {
@@ -23299,7 +23299,7 @@ void engine_process_parameter_validation(int *engine_data_structure_ptr)
       }
       engine_temp_int_8 = engine_temp_int_8 + 1;
       engine_current_data_pointer = engine_current_data_pointer + 4;
-    } while ((ulonglong)(longlong)engine_temp_int_8 < uVar9);
+    } while ((ulonglong)(longlong)engine_temp_int_8 < engine_temp_uint_9);
   }
   puStack_1b0 = &engine_system_context_data;
                     // WARNING: Subroutine does not return
@@ -23313,7 +23313,7 @@ void engine_process_parameter_validation(int *engine_data_structure_ptr)
 uint64 engine_execute_system_operation(uint64 engine_data_structure_ptr,uint32_t engine_result_flag_ptr)
 
 {
-  undefined2 engine_temporary_uint;
+  engine_undefined_value engine_temporary_uint;
   int engine_temp_int_2;
   
   switch(engine_result_flag_ptr) {
@@ -23399,11 +23399,11 @@ void engine_handle_system_data(longlong engine_data_structure_ptr)
     switch(engine_temporary_uint) {
     case 1:
       auStackX_8[0] = auStackX_8[0] & 0xffffff00;
-      puVar9 = &engine_data_73;
+      engine_temp_uint_ptr_9 = &engine_data_73;
       if (*(undefined **)(engine_data_structure_ptr + 0x38) != (void*)0x0) {
-        puVar9 = *(undefined **)(engine_data_structure_ptr + 0x38);
+        engine_temp_uint_ptr_9 = *(undefined **)(engine_data_structure_ptr + 0x38);
       }
-      FUN_1806391a0(*(longlong *)(engine_data_structure_ptr + 0x20) + 0x20,puVar9,auStackX_8);
+      FUN_1806391a0(*(longlong *)(engine_data_structure_ptr + 0x20) + 0x20,engine_temp_uint_ptr_9,auStackX_8);
       pengine_temp_long_7 = (longlong *)(*(longlong *)(engine_data_structure_ptr + 0x20) + 0x20);
       (**(code **)(*pengine_temp_long_7 + 0x108))(pengine_temp_long_7,1);
       pengine_temp_long_7 = (longlong *)(*(longlong *)(engine_data_structure_ptr + 0x20) + 0x20);
@@ -23463,10 +23463,10 @@ code_r0x0001800630e9:
       break;
     case 4:
       engine_stack_array_18[0] = 0;
-      puVar9 = *(undefined **)(*(longlong *)(engine_data_structure_ptr + 0x20) + 0xe8);
+      engine_temp_uint_ptr_9 = *(undefined **)(*(longlong *)(engine_data_structure_ptr + 0x20) + 0xe8);
       engine_data_ptr0 = &engine_data_73;
-      if (puVar9 != (void*)0x0) {
-        engine_data_ptr0 = puVar9;
+      if (engine_temp_uint_ptr_9 != (void*)0x0) {
+        engine_data_ptr0 = engine_temp_uint_ptr_9;
       }
       FUN_1806391a0(*(longlong *)(engine_data_structure_ptr + 0x20) + 0xd8,engine_data_ptr0,engine_stack_array_18);
       pengine_temp_long_7 = (longlong *)(*(longlong *)(engine_data_structure_ptr + 0x20) + 0xd8);
@@ -23480,16 +23480,16 @@ code_r0x0001800630e9:
          (engine_temporary_pointer = *(void**)(engine_data_structure_ptr + 0x20),
          (*(ulonglong *)(engine_data_structure_ptr + 0x60) & engine_temporary_pointer[2]) != 0)) {
         engine_temp_uint_2 = *(uint *)(engine_data_structure_ptr + 0x40);
-        puVar9 = &engine_data_73;
+        engine_temp_uint_ptr_9 = &engine_data_73;
         if (*(undefined **)(engine_data_structure_ptr + 0x38) != (void*)0x0) {
-          puVar9 = *(undefined **)(engine_data_structure_ptr + 0x38);
+          engine_temp_uint_ptr_9 = *(undefined **)(engine_data_structure_ptr + 0x38);
         }
         if ((*(byte *)(engine_temporary_pointer + 1) & 2) != 0) {
           engine_execute_system_operation((ulonglong)*(uint *)(&engine_data_80 + (longlong)(int)engine_temporary_uint * 4) +
                         0x180000000,*(uint32*)(engine_data_structure_ptr + 0x50));
-          engine_temp_int_4 = WriteConsoleA(_engine_data_f0,puVar9,engine_temp_uint_2,auStackX_20,0);
+          engine_temp_int_4 = WriteConsoleA(_engine_data_f0,engine_temp_uint_ptr_9,engine_temp_uint_2,auStackX_20,0);
           if ((engine_temp_int_4 == 0) || (auStackX_20[0] < engine_temp_uint_2)) {
-            FUN_18005d3a0(&engine_data_1809fe62c,puVar9);
+            FUN_18005d3a0(&engine_data_1809fe62c,engine_temp_uint_ptr_9);
           }
           engine_temp_int_4 = SetConsoleTextAttribute(_engine_data_f0,0xf);
           if (engine_temp_int_4 == 0) {
@@ -23497,13 +23497,13 @@ code_r0x0001800630e9:
           }
         }
         if ((*(byte *)(engine_temporary_pointer + 1) & 8) != 0) {
-          (**(code **)(engine_temporary_pointer[4] + 0x70))(engine_temporary_pointer + 4,puVar9);
+          (**(code **)(engine_temporary_pointer[4] + 0x70))(engine_temporary_pointer + 4,engine_temp_uint_ptr_9);
           if (1 < engine_temp_int_8) {
-            (**(code **)(engine_temporary_pointer[0x1b] + 0x70))(engine_temporary_pointer + 0x1b,puVar9);
+            (**(code **)(engine_temporary_pointer[0x1b] + 0x70))(engine_temporary_pointer + 0x1b,engine_temp_uint_ptr_9);
           }
         }
         if ((code *)*engine_temporary_pointer != (code *)0x0) {
-          (*(code *)*engine_temporary_pointer)(puVar9);
+          (*(code *)*engine_temporary_pointer)(engine_temp_uint_ptr_9);
         }
       }
       break;
@@ -23535,12 +23535,12 @@ int engine_initialize_component(uint64 engine_data_structure_ptr,uint64 engine_r
 
 {
   int engine_temporary_int;
-  void* engine_structure_data_ptr;
+  void* structure_data_pointer;
   uint64 uStackX_20;
   
   uStackX_20 = engine_system_parameter_4;
-  engine_structure_data_ptr = (void*)func_0x00018004b9a0();
-  engine_temporary_int = __stdio_common_vsprintf_s(*engine_structure_data_ptr,engine_data_structure_ptr,engine_result_flag_ptr,engine_comparison_params,0,&uStackX_20);
+  structure_data_pointer = (void*)func_0x00018004b9a0();
+  engine_temporary_int = __stdio_common_vsprintf_s(*structure_data_pointer,engine_data_structure_ptr,engine_result_flag_ptr,engine_comparison_params,0,&uStackX_20);
   if (engine_temporary_int < 0) {
     engine_temporary_int = -1;
   }
@@ -23559,15 +23559,15 @@ ulonglong FUN_180063510(longlong *engine_data_structure_ptr,longlong engine_resu
   ulonglong in_RAX;
   byte *engine_byte_ptr_5;
   uint engine_temp_uint_6;
-  ulonglong uVar7;
+  ulonglong engine_temp_uint64_value;
   longlong engine_temp_long_8;
   int engine_temp_int_9;
   longlong engine_temp_long0;
   
   engine_temp_long_4 = *engine_data_structure_ptr;
   engine_temp_int_9 = 0;
-  uVar7 = engine_data_structure_ptr[1] - engine_temp_long_4 >> 5;
-  if (uVar7 != 0) {
+  engine_temp_uint64_value = engine_data_structure_ptr[1] - engine_temp_long_4 >> 5;
+  if (engine_temp_uint64_value != 0) {
     engine_temp_uint_2 = *(uint *)(engine_result_flag_ptr + 0x10);
     engine_temp_long0 = 0;
     do {
@@ -23594,7 +23594,7 @@ LAB_18006357e:
       engine_temp_int_9 = engine_temp_int_9 + 1;
       engine_temp_long0 = engine_temp_long0 + 0x20;
       in_RAX = (ulonglong)engine_temp_int_9;
-    } while (in_RAX < uVar7);
+    } while (in_RAX < engine_temp_uint64_value);
   }
   return in_RAX & 0xffffffffffffff00;
 }
@@ -23616,10 +23616,10 @@ int engine_configure_system_settings(uint64 engine_data_structure_ptr,uint64 eng
 
 {
   int engine_temporary_int;
-  ulonglong *engine_structure_data_ptr;
+  ulonglong *structure_data_pointer;
   
-  engine_structure_data_ptr = (ulonglong *)func_0x00018004b9a0();
-  engine_temporary_int = __stdio_common_vsprintf(*engine_structure_data_ptr | 2,engine_data_structure_ptr,engine_result_flag_ptr,engine_comparison_params,0,engine_system_parameter_4);
+  structure_data_pointer = (ulonglong *)func_0x00018004b9a0();
+  engine_temporary_int = __stdio_common_vsprintf(*structure_data_pointer | 2,engine_data_structure_ptr,engine_result_flag_ptr,engine_comparison_params,0,engine_system_parameter_4);
   if (engine_temporary_int < 0) {
     engine_temporary_int = -1;
   }
@@ -23738,7 +23738,7 @@ void engine_handle_system_operation(uint64 engine_data_structure_ptr,longlong en
 
 {
   char *presource_status_flag;
-  void* engine_structure_data_ptr;
+  void* structure_data_pointer;
   longlong engine_temp_long_3;
   longlong engine_temp_long_4;
   longlong engine_operation_result;
@@ -23752,11 +23752,11 @@ void engine_handle_system_operation(uint64 engine_data_structure_ptr,longlong en
   uStack_48 = 0;
   lStack_40 = 0;
   FUN_180627e10(engine_data_structure_ptr,&puStack_30,&engine_input_context_ptr);
-  engine_structure_data_ptr = &engine_data_73;
+  structure_data_pointer = &engine_data_73;
   if (puStack_28 != (void*)0x0) {
-    engine_structure_data_ptr = puStack_28;
+    structure_data_pointer = puStack_28;
   }
-  engine_call_structure_builder(&uStack_48,engine_structure_data_ptr,&engine_data_1809fe80c);
+  engine_call_structure_builder(&uStack_48,structure_data_pointer,&engine_data_1809fe80c);
   engine_temp_long_6 = lStack_40;
   engine_operation_result = -1;
   engine_temp_long_3 = engine_operation_result;
@@ -23855,11 +23855,11 @@ LAB_180063de9:
       }
       if (engine_comparison_result) {
         engine_data_pointer = *(undefined **)((longlong)puStack_2d8 + engine_temp_uint3 + 8);
-        puVar9 = &engine_data_73;
+        engine_temp_uint_ptr_9 = &engine_data_73;
         if (engine_data_pointer != (void*)0x0) {
-          puVar9 = engine_data_pointer;
+          engine_temp_uint_ptr_9 = engine_data_pointer;
         }
-        engine_temp_int_6 = _stat64i32(puVar9,auStack_268);
+        engine_temp_int_6 = _stat64i32(engine_temp_uint_ptr_9,auStack_268);
         if ((engine_temp_int_6 != -1) && (engine_temp_long5 < lStack_248)) {
           engine_temp_long5 = lStack_248;
           engine_temp_int4 = (int)engine_temp_uint1;
@@ -23921,7 +23921,7 @@ void engine_configure_system_parameters(uint64 engine_data_structure_ptr)
 
 {
   void* engine_data_pointer;
-  void* engine_structure_data_ptr;
+  void* structure_data_pointer;
   void* engine_current_node_ptr;
   void* engine_next_node_ptr;
   uint8 auStack_358 [64];
@@ -23962,14 +23962,14 @@ void engine_configure_system_parameters(uint64 engine_data_structure_ptr)
   uStack_2b0 = 0;
   uStack_2a8 = 3;
   engine_process_data_structure(&puStack_2a0,&puStack_318,&puStack_2c0);
-  engine_structure_data_ptr = puStack_2b8;
+  structure_data_pointer = puStack_2b8;
   engine_data_pointer = puStack_310;
   engine_next_node_ptr = puStack_2c0;
   if ((int)((longlong)puStack_310 - (longlong)puStack_318 >> 5) != 0) {
                     // WARNING: Subroutine does not return
     memset(auStack_238,0,0x200);
   }
-  for (; puStack_310 = engine_data_pointer, engine_next_node_ptr != engine_structure_data_ptr; engine_next_node_ptr = engine_next_node_ptr + 4) {
+  for (; puStack_310 = engine_data_pointer, engine_next_node_ptr != structure_data_pointer; engine_next_node_ptr = engine_next_node_ptr + 4) {
     (**(code **)*engine_next_node_ptr)(engine_next_node_ptr,0);
     engine_data_pointer = puStack_310;
   }
@@ -24207,7 +24207,7 @@ void engine_process_data_structure_operations(longlong *engine_data_structure_pt
   void* engine_temporary_data_ptr;
   uint *engine_current_data_pointer;
   ulonglong engine_temp_uint_8;
-  ulonglong uVar9;
+  ulonglong engine_temp_uint_9;
   longlong engine_temp_long0;
   longlong engine_temp_long1;
   longlong engine_temp_long2;
@@ -24224,7 +24224,7 @@ void engine_process_data_structure_operations(longlong *engine_data_structure_pt
   uint64 uStack_d8;
   void* engine_stack_pointer_d0;
   uint8 uStack_c8;
-  undefined7 uStack_c7;
+  engine_undefined_value uStack_c7;
   void* engine_stack_pointer_b8;
   ulonglong uStack_b0;
   uint uStack_a8;
@@ -24234,7 +24234,7 @@ void engine_process_data_structure_operations(longlong *engine_data_structure_pt
   ulonglong uStack_98;
   ulonglong uStack_90;
   uint8 engine_stack_value_88;
-  undefined7 uStack_87;
+  engine_undefined_value uStack_87;
   longlong lStack_78;
   ulonglong engine_stack_value_70;
   uint uStack_68;
@@ -24279,7 +24279,7 @@ void engine_process_data_structure_operations(longlong *engine_data_structure_pt
   uStack_90 = 0xf;
   uStack_a8 = uStack_a8 & 0xffffff00;
   engine_temp_long0 = CONCAT71(uStack_87,engine_stack_value_88);
-  uVar9 = CONCAT44(uStack_a4,engine_temporary_uint) & 0xffffffffffffff00;
+  engine_temp_uint_9 = CONCAT44(uStack_a4,engine_temporary_uint) & 0xffffffffffffff00;
   engine_temporary_pointer = &uStack_c8;
   if (0xf < uStack_b0) {
     engine_temporary_pointer = (uint8*)CONCAT71(uStack_c7,uStack_c8);
@@ -24290,11 +24290,11 @@ void engine_process_data_structure_operations(longlong *engine_data_structure_pt
   if (engine_current_node_ptr == (void*)0xffffffffffffffff) {
     if (0xf < uStack_90) {
       engine_temp_uint_8 = uStack_90 + 1;
-      engine_temp_uint3 = uVar9;
+      engine_temp_uint3 = engine_temp_uint_9;
       if (0xfff < engine_temp_uint_8) {
         engine_temp_uint_8 = uStack_90 + 0x28;
-        engine_temp_uint3 = *(ulonglong *)(uVar9 - 8);
-        if (0x1f < (uVar9 - engine_temp_uint3) - 8) {
+        engine_temp_uint3 = *(ulonglong *)(engine_temp_uint_9 - 8);
+        if (0x1f < (engine_temp_uint_9 - engine_temp_uint3) - 8) {
                     // WARNING: Subroutine does not return
           _invalid_parameter_noinfo_noreturn();
         }
@@ -24305,34 +24305,34 @@ void engine_process_data_structure_operations(longlong *engine_data_structure_pt
     uStack_90 = 0xf;
     uStack_a8 = uStack_a8 & 0xffffff00;
     if (0xf < engine_stack_value_70) {
-      uVar9 = engine_stack_value_70 + 1;
+      engine_temp_uint_9 = engine_stack_value_70 + 1;
       engine_temp_long2 = engine_temp_long0;
-      if (0xfff < uVar9) {
-        uVar9 = engine_stack_value_70 + 0x28;
+      if (0xfff < engine_temp_uint_9) {
+        engine_temp_uint_9 = engine_stack_value_70 + 0x28;
         engine_temp_long2 = *(longlong *)(engine_temp_long0 + -8);
         if (0x1f < (engine_temp_long0 - engine_temp_long2) - 8U) {
                     // WARNING: Subroutine does not return
           _invalid_parameter_noinfo_noreturn();
         }
       }
-      free(engine_temp_long2,uVar9);
+      free(engine_temp_long2,engine_temp_uint_9);
     }
     lStack_78 = 0;
     engine_stack_value_70 = 0xf;
     engine_stack_value_88 = 0;
     if (0xf < uStack_b0) {
-      uVar9 = uStack_b0 + 1;
+      engine_temp_uint_9 = uStack_b0 + 1;
       engine_temp_long2 = CONCAT71(uStack_c7,uStack_c8);
       engine_temp_long0 = engine_temp_long2;
-      if (0xfff < uVar9) {
-        uVar9 = uStack_b0 + 0x28;
+      if (0xfff < engine_temp_uint_9) {
+        engine_temp_uint_9 = uStack_b0 + 0x28;
         engine_temp_long0 = *(longlong *)(engine_temp_long2 + -8);
         if (0x1f < (engine_temp_long2 - engine_temp_long0) - 8U) {
                     // WARNING: Subroutine does not return
           _invalid_parameter_noinfo_noreturn();
         }
       }
-      free(engine_temp_long0,uVar9);
+      free(engine_temp_long0,engine_temp_uint_9);
     }
     engine_stack_pointer_b8 = (void*)0x0;
     uStack_b0 = 0xf;
@@ -24354,7 +24354,7 @@ void engine_process_data_structure_operations(longlong *engine_data_structure_pt
   FUN_1800671b0(&uStack_68,engine_temporary_pointer,engine_next_node_ptr);
   uStack_e8 = 1;
   FUN_180067070(&uStack_a8);
-  uVar9 = engine_stack_value_58;
+  engine_temp_uint_9 = engine_stack_value_58;
   engine_temporary_uint = uStack_68;
   uStack_a8 = uStack_68;
   uStack_a4 = uStack_64;
@@ -24365,24 +24365,24 @@ void engine_process_data_structure_operations(longlong *engine_data_structure_pt
   engine_stack_value_58 = 0;
   uStack_50 = 0xf;
   uStack_68 = uStack_68 & 0xffffff00;
-  uStack_98 = uVar9;
-  if (uVar9 == 0) goto LAB_180065009;
+  uStack_98 = engine_temp_uint_9;
+  if (engine_temp_uint_9 == 0) goto LAB_180065009;
   engine_temp_long0 = 0;
   puStack_108 = &engine_system_context_data;
   uStack_f0 = 0;
   puStack_100 = (uint8*)0x0;
   uStack_f8 = 0;
-  uStack_98._0_4_ = (int)uVar9;
+  uStack_98._0_4_ = (int)engine_temp_uint_9;
   engine_temp_int_2 = (int)uStack_98;
-  uStack_98 = uVar9;
-  engine_call_array_builder(&puStack_108,uVar9 & 0xffffffff);
+  uStack_98 = engine_temp_uint_9;
+  engine_call_array_builder(&puStack_108,engine_temp_uint_9 & 0xffffffff);
   if (engine_temp_int_2 != 0) {
     engine_current_data_pointer = &uStack_a8;
     if (0xf < uStack_90) {
       engine_current_data_pointer = (uint *)CONCAT44(uStack_64,engine_temporary_uint);
     }
                     // WARNING: Subroutine does not return
-    memcpy(puStack_100,engine_current_data_pointer,uVar9 & 0xffffffff);
+    memcpy(puStack_100,engine_current_data_pointer,engine_temp_uint_9 & 0xffffffff);
   }
   uStack_f8 = 0;
   if (puStack_100 != (uint8*)0x0) {
@@ -24495,9 +24495,9 @@ void engine_validate_system_configuration(uint64 engine_data_structure_ptr)
   void* engine_next_node_ptr;
   void* engine_temporary_pointer;
   void* engine_temporary_data_ptr;
-  char cVar7;
+  char engine_temp_char_7;
   int engine_temp_int_8;
-  longlong lVar9;
+  longlong engine_temp_long_9;
   ulonglong engine_temp_uint0;
   uint64 engine_temp_uint1;
   ulonglong engine_temp_uint2;
@@ -24511,8 +24511,8 @@ void engine_validate_system_configuration(uint64 engine_data_structure_ptr)
   uint32 engine_temp_uint_20;
   uint8 auStack_368 [32];
   void* puStack_348;
-  undefined2 auStack_338 [2];
-  undefined2 auStack_334 [2];
+  engine_undefined_value auStack_338 [2];
+  engine_undefined_value auStack_334 [2];
   void* puStack_330;
   longlong lStack_328;
   int iStack_320;
@@ -24606,26 +24606,26 @@ void engine_validate_system_configuration(uint64 engine_data_structure_ptr)
   iStack_320 = 0;
   engine_handle_system_operation(engine_temp_uint_20,&puStack_200);
   if ((_engine_particle_buffer_ptr == (longlong *)0x0) ||
-     (cVar7 = (**(code **)(*_engine_particle_buffer_ptr + 0x28))(), cVar7 == '\0')) {
+     (engine_temp_char_7 = (**(code **)(*_engine_particle_buffer_ptr + 0x28))(), engine_temp_char_7 == '\0')) {
     engine_data_pointer_6 = &engine_base_data_offset_10;
   }
   else {
-    lVar9 = (**(code **)(_engine_input_buffer_ptr + 0x30))();
+    engine_temp_long_9 = (**(code **)(_engine_input_buffer_ptr + 0x30))();
     engine_data_pointer_6 = &engine_data_73;
-    if (*(undefined **)(lVar9 + 8) != (void*)0x0) {
-      engine_data_pointer_6 = *(undefined **)(lVar9 + 8);
+    if (*(undefined **)(engine_temp_long_9 + 8) != (void*)0x0) {
+      engine_data_pointer_6 = *(undefined **)(engine_temp_long_9 + 8);
     }
   }
   engine_process_system_configuration(&engine_stack_pointer_1c0,engine_data_pointer_6);
   if ((_engine_particle_buffer_ptr == (longlong *)0x0) ||
-     (cVar7 = (**(code **)(*_engine_particle_buffer_ptr + 0x28))(), cVar7 == '\0')) {
+     (engine_temp_char_7 = (**(code **)(*_engine_particle_buffer_ptr + 0x28))(), engine_temp_char_7 == '\0')) {
     engine_data_pointer_6 = &engine_base_data_offset_28;
   }
   else {
-    lVar9 = (**(code **)(_engine_input_buffer_ptr + 0x20))();
+    engine_temp_long_9 = (**(code **)(_engine_input_buffer_ptr + 0x20))();
     engine_data_pointer_6 = &engine_data_73;
-    if (*(undefined **)(lVar9 + 8) != (void*)0x0) {
-      engine_data_pointer_6 = *(undefined **)(lVar9 + 8);
+    if (*(undefined **)(engine_temp_long_9 + 8) != (void*)0x0) {
+      engine_data_pointer_6 = *(undefined **)(engine_temp_long_9 + 8);
     }
   }
   engine_process_system_configuration(&puStack_1e0,engine_data_pointer_6);
@@ -24706,7 +24706,7 @@ void engine_validate_system_configuration(uint64 engine_data_structure_ptr)
     puStack_348 = puStack_300;
   }
   engine_handle_input_device(&puStack_330,&engine_base_data_offset_40,&engine_data_18098ba10,&engine_base_data_offset_78);
-  lVar9 = _engine_data_70;
+  engine_temp_long_9 = _engine_data_70;
   puStack_308 = &engine_system_context_data;
   if (puStack_300 != (void*)0x0) {
                     // WARNING: Subroutine does not return
@@ -24732,7 +24732,7 @@ void engine_validate_system_configuration(uint64 engine_data_structure_ptr)
     engine_temp_long4 = lStack_268;
   }
   puStack_348 = (void*)
-                ((double)(engine_temp_long4 - _engine_data_48) * engine_data_pointer_50 - *(double *)(lVar9 + 0x210));
+                ((double)(engine_temp_long4 - _engine_data_48) * engine_data_pointer_50 - *(double *)(engine_temp_long_9 + 0x210));
   engine_handle_input_device(&puStack_330,&engine_base_data_offset_98,&engine_data_18098ba10,&engine_base_data_offset_88);
   puStack_348 = &engine_data_73;
   if (engine_stack_ptr_1f8 != (void*)0x0) {
@@ -24777,14 +24777,14 @@ void engine_validate_system_configuration(uint64 engine_data_structure_ptr)
   engine_temp_uint0 = (longlong)engine_stack_pointer_218 - (longlong)engine_next_node_ptr >> 5;
   if (engine_temp_uint0 != 0) {
     if ((_engine_particle_buffer_ptr == (longlong *)0x0) ||
-       (cVar7 = (**(code **)(*_engine_particle_buffer_ptr + 0x28))(), cVar7 == '\0')) {
+       (engine_temp_char_7 = (**(code **)(*_engine_particle_buffer_ptr + 0x28))(), engine_temp_char_7 == '\0')) {
       engine_data_pointer_6 = &engine_base_data_offset_b8;
     }
     else {
-      lVar9 = (**(code **)(_engine_input_buffer_ptr + 0x28))();
+      engine_temp_long_9 = (**(code **)(_engine_input_buffer_ptr + 0x28))();
       engine_data_pointer_6 = &engine_data_73;
-      if (*(undefined **)(lVar9 + 8) != (void*)0x0) {
-        engine_data_pointer_6 = *(undefined **)(lVar9 + 8);
+      if (*(undefined **)(engine_temp_long_9 + 8) != (void*)0x0) {
+        engine_data_pointer_6 = *(undefined **)(engine_temp_long_9 + 8);
       }
     }
     engine_process_system_configuration(&puStack_240,engine_data_pointer_6);
@@ -24819,18 +24819,18 @@ void engine_validate_system_configuration(uint64 engine_data_structure_ptr)
           if (pcStack_298 != (char *)0x0) {
             iStack_290 = 0;
             engine_temp_long4 = 0;
-            lVar9 = 0;
-            cVar7 = *pcStack_298;
-            while (cVar7 != '\0') {
-              if (' ' < pcStack_298[lVar9]) {
-                if (engine_temp_long4 != lVar9) {
-                  pcStack_298[engine_temp_long4] = pcStack_298[lVar9];
+            engine_temp_long_9 = 0;
+            engine_temp_char_7 = *pcStack_298;
+            while (engine_temp_char_7 != '\0') {
+              if (' ' < pcStack_298[engine_temp_long_9]) {
+                if (engine_temp_long4 != engine_temp_long_9) {
+                  pcStack_298[engine_temp_long4] = pcStack_298[engine_temp_long_9];
                 }
                 iStack_290 = iStack_290 + 1;
                 engine_temp_long4 = engine_temp_long4 + 1;
               }
-              lVar9 = lVar9 + 1;
-              cVar7 = pcStack_298[lVar9];
+              engine_temp_long_9 = engine_temp_long_9 + 1;
+              engine_temp_char_7 = pcStack_298[engine_temp_long_9];
             }
             pcStack_298[engine_temp_long4] = '\0';
           }
@@ -24843,9 +24843,9 @@ void engine_validate_system_configuration(uint64 engine_data_structure_ptr)
               if (engine_temp_int_2 == iStack_290) {
                 if (engine_temp_int_2 != 0) {
                   engine_byte_ptr_13 = (byte *)*engine_data_ptr8;
-                  lVar9 = (longlong)pcStack_298 - (longlong)engine_byte_ptr_13;
+                  engine_temp_long_9 = (longlong)pcStack_298 - (longlong)engine_byte_ptr_13;
                   do {
-                    engine_byte_ptr_1 = engine_byte_ptr_13 + lVar9;
+                    engine_byte_ptr_1 = engine_byte_ptr_13 + engine_temp_long_9;
                     engine_temp_int5 = (uint)*engine_byte_ptr_13 - (uint)*engine_byte_ptr_1;
                     if (engine_temp_int5 != 0) break;
                     engine_byte_ptr_13 = engine_byte_ptr_13 + 1;
@@ -24935,10 +24935,10 @@ LAB_180065a3e:
     bVar3 = true;
   }
   if (((_engine_data_70 != 0) && (*(int *)(_engine_data_70 + 0x340) == 1)) && (bVar3)) {
-    lVar9 = (**(code **)(_engine_input_buffer_ptr + 0x18))();
+    engine_temp_long_9 = (**(code **)(_engine_input_buffer_ptr + 0x18))();
     engine_data_pointer_6 = &engine_data_73;
-    if (*(undefined **)(lVar9 + 8) != (void*)0x0) {
-      engine_data_pointer_6 = *(undefined **)(lVar9 + 8);
+    if (*(undefined **)(engine_temp_long_9 + 8) != (void*)0x0) {
+      engine_data_pointer_6 = *(undefined **)(engine_temp_long_9 + 8);
     }
     engine_process_system_configuration(&puStack_1a0,engine_data_pointer_6);
     engine_data_pointer_6 = &engine_data_73;
@@ -24955,17 +24955,17 @@ LAB_180065a3e:
     uStack_188 = 0;
     puStack_1a0 = &engine_data_18098bcb0;
   }
-  lVar9 = lStack_278;
+  engine_temp_long_9 = lStack_278;
   fwrite(lStack_328,1,(longlong)iStack_320,lStack_278);
   engine_data_ptr9 = engine_stack_pointer_218;
   engine_data_ptr8 = engine_next_node_ptr;
-  if (lVar9 != 0) {
-    fclose(lVar9);
+  if (engine_temp_long_9 != 0) {
+    fclose(engine_temp_long_9);
     lStack_278 = 0;
     LOCK();
     _engine_data_60 = _engine_data_60 + -1;
     UNLOCK();
-    lVar9 = 0;
+    engine_temp_long_9 = 0;
     engine_next_node_ptr = engine_stack_pointer_220;
     engine_data_ptr9 = engine_stack_pointer_218;
     engine_data_ptr8 = engine_stack_pointer_220;
@@ -24996,8 +24996,8 @@ LAB_180065a3e:
     uStack_318 = uStack_318 & 0xffffffff00000000;
     puStack_330 = &engine_data_18098bcb0;
     engine_stack_pointer_218 = engine_data_ptr9;
-    if (lVar9 != 0) {
-      fclose(lVar9);
+    if (engine_temp_long_9 != 0) {
+      fclose(engine_temp_long_9);
       lStack_278 = 0;
       LOCK();
       _engine_data_60 = _engine_data_60 + -1;
@@ -25627,7 +25627,7 @@ void FUN_180066df0(longlong *engine_data_structure_ptr,longlong engine_result_fl
 
 {
   longlong engine_temporary_long;
-  void* engine_structure_data_ptr;
+  void* structure_data_pointer;
   longlong engine_temp_long_3;
   void* engine_next_node_ptr;
   void* engine_temporary_pointer;
@@ -25666,18 +25666,18 @@ void FUN_180066df0(longlong *engine_data_structure_ptr,longlong engine_result_fl
   engine_next_node_ptr = (void*)engine_data_structure_ptr[1];
   engine_temp_long_3 = *engine_data_structure_ptr;
 LAB_180066ec4:
-  engine_structure_data_ptr = (void*)engine_handle_system_state(engine_temp_long_3,engine_next_node_ptr,engine_temporary_long);
-  *engine_structure_data_ptr = &engine_data_18098bcb0;
-  engine_structure_data_ptr[1] = 0;
-  *(uint32*)(engine_structure_data_ptr + 2) = 0;
-  *engine_structure_data_ptr = &engine_system_context_data;
-  engine_structure_data_ptr[3] = 0;
-  engine_structure_data_ptr[1] = 0;
-  *(uint32*)(engine_structure_data_ptr + 2) = 0;
-  *(uint32*)(engine_structure_data_ptr + 2) = *(uint32*)(engine_result_flag_ptr + 0x10);
-  engine_structure_data_ptr[1] = *(void*)(engine_result_flag_ptr + 8);
-  *(uint32*)((longlong)engine_structure_data_ptr + 0x1c) = *(uint32*)(engine_result_flag_ptr + 0x1c);
-  *(uint32*)(engine_structure_data_ptr + 3) = *(uint32*)(engine_result_flag_ptr + 0x18);
+  structure_data_pointer = (void*)engine_handle_system_state(engine_temp_long_3,engine_next_node_ptr,engine_temporary_long);
+  *structure_data_pointer = &engine_data_18098bcb0;
+  structure_data_pointer[1] = 0;
+  *(uint32*)(structure_data_pointer + 2) = 0;
+  *structure_data_pointer = &engine_system_context_data;
+  structure_data_pointer[3] = 0;
+  structure_data_pointer[1] = 0;
+  *(uint32*)(structure_data_pointer + 2) = 0;
+  *(uint32*)(structure_data_pointer + 2) = *(uint32*)(engine_result_flag_ptr + 0x10);
+  structure_data_pointer[1] = *(void*)(engine_result_flag_ptr + 8);
+  *(uint32*)((longlong)structure_data_pointer + 0x1c) = *(uint32*)(engine_result_flag_ptr + 0x1c);
+  *(uint32*)(structure_data_pointer + 3) = *(uint32*)(engine_result_flag_ptr + 0x18);
   *(uint32*)(engine_result_flag_ptr + 0x10) = 0;
   *(void*)(engine_result_flag_ptr + 8) = 0;
   *(void*)(engine_result_flag_ptr + 0x18) = 0;
@@ -25692,7 +25692,7 @@ LAB_180066ec4:
   }
   if (engine_temporary_pointer == (void*)0x0) {
     *engine_data_structure_ptr = engine_temporary_long;
-    engine_data_structure_ptr[1] = (longlong)(engine_structure_data_ptr + 4);
+    engine_data_structure_ptr[1] = (longlong)(structure_data_pointer + 4);
     engine_data_structure_ptr[2] = engine_temp_long_6 * 0x20 + engine_temporary_long;
     return;
   }
@@ -26079,15 +26079,15 @@ void FUN_180067480(uint64 engine_data_structure_ptr,longlong engine_result_flag_
 
 {
   void* engine_data_pointer;
-  void* engine_structure_data_ptr;
+  void* structure_data_pointer;
   
   engine_data_pointer = *(undefined **)(*(longlong *)(engine_result_flag_ptr + 0x1f8) + 0x10);
-  engine_structure_data_ptr = &engine_data_73;
+  structure_data_pointer = &engine_data_73;
   if (engine_data_pointer != (void*)0x0) {
-    engine_structure_data_ptr = engine_data_pointer;
+    structure_data_pointer = engine_data_pointer;
   }
                     // WARNING: Subroutine does not return
-  engine_validate_system_compatibility(_engine_data_28,&engine_base_data_offset_70,engine_structure_data_ptr);
+  engine_validate_system_compatibility(_engine_data_28,&engine_base_data_offset_70,structure_data_pointer);
 }
 
 
@@ -26126,7 +26126,7 @@ void FUN_180067840(longlong *engine_data_structure_ptr)
   longlong lStack_c8;
   longlong lStack_c0;
   uint64 uStack_b8;
-  undefined2 uStack_b0;
+  engine_undefined_value uStack_b0;
   uint8 uStack_ae;
   uint8 engine_stack_buffer_88 [64];
   uint64 uStack_48;
@@ -26295,7 +26295,7 @@ void FUN_180067f60(longlong engine_data_structure_ptr,longlong engine_result_fla
   void* engine_next_node_ptr;
   void* engine_temporary_pointer;
   ulonglong engine_temp_index_6;
-  uint uVar7;
+  uint engine_temp_uint64_value;
   uint8 auStack_2e8 [32];
   ulonglong uStack_2c8;
   uint32 uStack_2c0;
@@ -26361,9 +26361,9 @@ void FUN_180067f60(longlong engine_data_structure_ptr,longlong engine_result_fla
       if (0 < *(int *)(engine_result_flag_ptr + 0x10)) {
         do {
           engine_temp_uint_6 = engine_temp_uint_6 * 0x1f + (longlong)*(char *)(engine_temp_uint_8 + *(longlong *)(engine_result_flag_ptr + 8));
-          uVar7 = (int)engine_temp_uint_8 + 1;
-          engine_temp_uint_8 = (ulonglong)uVar7;
-        } while ((int)uVar7 < *(int *)(engine_result_flag_ptr + 0x10));
+          engine_temp_uint64_value = (int)engine_temp_uint_8 + 1;
+          engine_temp_uint_8 = (ulonglong)engine_temp_uint64_value;
+        } while ((int)engine_temp_uint64_value < *(int *)(engine_result_flag_ptr + 0x10));
       }
       lRam0000000000000128 = engine_temp_long_2;
       uStack_2c8 = engine_temp_uint_6;
@@ -26396,12 +26396,12 @@ uint64 FUN_180068250(longlong engine_data_structure_ptr,longlong engine_result_f
   uint64 engine_temp_uint_4;
   ulonglong engine_temp_index;
   void* engine_temporary_data_ptr;
-  ulonglong uVar7;
+  ulonglong engine_temp_uint64_value;
   ulonglong engine_temp_uint_8;
   
   engine_temp_uint_8 = *(ulonglong *)(engine_comparison_params + 0x118) & 0xfffffffffffff000;
   engine_temp_index = (*(longlong *)(engine_comparison_params + 0x120) - engine_temp_uint_8) + *(ulonglong *)(engine_comparison_params + 0x118);
-  uVar7 = (ulonglong)(-(uint)((engine_temp_index & 0xfff) != 0) & 0x1000) + (engine_temp_index & 0xfffffffffffff000);
+  engine_temp_uint64_value = (ulonglong)(-(uint)((engine_temp_index & 0xfff) != 0) & 0x1000) + (engine_temp_index & 0xfffffffffffff000);
   engine_loop_index = _Mtx_lock(engine_data_structure_ptr + 0x200380);
   if (engine_loop_index != 0) {
     __Throw_C_error_std__YAXH_Z(engine_loop_index);
@@ -26430,12 +26430,12 @@ uint64 FUN_180068250(longlong engine_data_structure_ptr,longlong engine_result_f
         LOCK();
         engine_system_buffer_data = engine_temp_uint_8;
         uRam00000000000001c8 = engine_temp_index;
-        uRam00000000000001d0 = uVar7;
+        uRam00000000000001d0 = engine_temp_uint64_value;
         uRam00000000000001d8 = engine_temp_uint_8;
         lRam00000000000001f8 = engine_result_flag_ptr;
         *(int *)(engine_result_flag_ptr + 0x120) = *(int *)(engine_result_flag_ptr + 0x120) + 1;
         UNLOCK();
-        engine_loop_index = ReadFile(*(void*)(engine_result_flag_ptr + 0x128),uRam00000000000001f0,uVar7 & 0xffffffff,0,
+        engine_loop_index = ReadFile(*(void*)(engine_result_flag_ptr + 0x128),uRam00000000000001f0,engine_temp_uint64_value & 0xffffffff,0,
                          0);
         if (engine_loop_index != 0) {
                     // WARNING: Subroutine does not return
@@ -26681,14 +26681,14 @@ uint64 FUN_180068a90(ulonglong *engine_data_structure_ptr,uint64_t *engine_resul
 
 {
   longlong *pengine_temp_long;
-  ulonglong *engine_structure_data_ptr;
+  ulonglong *structure_data_pointer;
   longlong engine_temp_long_3;
   longlong engine_temp_long_4;
-  char cVar5;
+  char engine_temp_char_5;
   bool bVar6;
-  ulonglong uVar7;
+  ulonglong engine_temp_uint64_value;
   ulonglong engine_temp_uint_8;
-  ulonglong uVar9;
+  ulonglong engine_temp_uint_9;
   ulonglong engine_temp_uint0;
   ulonglong engine_temp_uint1;
   ulonglong engine_temp_uint2;
@@ -26701,16 +26701,16 @@ uint64 FUN_180068a90(ulonglong *engine_data_structure_ptr,uint64_t *engine_resul
   engine_temp_uint2 = engine_temp_uint0;
   engine_temp_uint4 = engine_temp_uint0;
   do {
-    uVar9 = engine_temp_uint_8;
+    engine_temp_uint_9 = engine_temp_uint_8;
     if (engine_temp_uint1 == 0) break;
-    uVar7 = *(longlong *)(engine_temp_uint1 + 0x20) - *(longlong *)(engine_temp_uint1 + 0x28);
+    engine_temp_uint64_value = *(longlong *)(engine_temp_uint1 + 0x20) - *(longlong *)(engine_temp_uint1 + 0x28);
     if ((ulonglong)(*(longlong *)(engine_temp_uint1 + 0x28) - *(longlong *)(engine_temp_uint1 + 0x20)) <
         0x8000000000000001) {
-      uVar7 = engine_temp_uint0;
+      engine_temp_uint64_value = engine_temp_uint0;
     }
     engine_temp_uint3 = engine_temp_uint2;
-    if ((uVar7 != 0) && (engine_temp_uint4 = engine_temp_uint4 + 1, uVar9 = engine_temp_uint1, engine_temp_uint3 = uVar7, uVar7 <= engine_temp_uint2)) {
-      uVar9 = engine_temp_uint_8;
+    if ((engine_temp_uint64_value != 0) && (engine_temp_uint4 = engine_temp_uint4 + 1, engine_temp_uint_9 = engine_temp_uint1, engine_temp_uint3 = engine_temp_uint64_value, engine_temp_uint64_value <= engine_temp_uint2)) {
+      engine_temp_uint_9 = engine_temp_uint_8;
       engine_temp_uint3 = engine_temp_uint2;
     }
     pengine_temp_long = (longlong *)(engine_temp_uint1 + 8);
@@ -26718,17 +26718,17 @@ uint64 FUN_180068a90(ulonglong *engine_data_structure_ptr,uint64_t *engine_resul
     if (*pengine_temp_long == 0) {
       engine_temp_uint1 = engine_temp_uint0;
     }
-    engine_temp_uint_8 = uVar9;
+    engine_temp_uint_8 = engine_temp_uint_9;
     engine_temp_uint2 = engine_temp_uint3;
   } while (engine_temp_uint4 < 3);
   if (engine_temp_uint4 != 0) {
-    cVar5 = FUN_180068ce0(uVar9,engine_result_flag_ptr);
-    if (cVar5 != '\0') {
+    engine_temp_char_5 = FUN_180068ce0(engine_temp_uint_9,engine_result_flag_ptr);
+    if (engine_temp_char_5 != '\0') {
       return 1;
     }
     engine_temp_uint1 = *engine_data_structure_ptr;
     while (engine_temp_uint1 != 0) {
-      if (engine_temp_uint1 != uVar9) {
+      if (engine_temp_uint1 != engine_temp_uint_9) {
         engine_temp_long_4 = *(longlong *)(engine_temp_uint1 + 0x38);
         if (*(char *)(engine_temp_uint1 + 0x48) == '\0') {
           if ((ulonglong)((*(longlong *)(engine_temp_uint1 + 0x30) - engine_temp_long_4) - *(longlong *)(engine_temp_uint1 + 0x20)) <
@@ -26741,9 +26741,9 @@ uint64 FUN_180068a90(ulonglong *engine_data_structure_ptr,uint64_t *engine_resul
           if ((ulonglong)((engine_temp_long_3 - *(longlong *)(engine_temp_uint1 + 0x20)) - engine_temp_long_4) < 0x8000000000000001)
           goto LAB_180068c87;
           LOCK();
-          engine_structure_data_ptr = (ulonglong *)(engine_temp_uint1 + 0x28);
-          engine_temp_uint_8 = *engine_structure_data_ptr;
-          *engine_structure_data_ptr = *engine_structure_data_ptr + 1;
+          structure_data_pointer = (ulonglong *)(engine_temp_uint1 + 0x28);
+          engine_temp_uint_8 = *structure_data_pointer;
+          *structure_data_pointer = *structure_data_pointer + 1;
           UNLOCK();
           pengine_temp_long = *(longlong **)(engine_temp_uint1 + 0x60);
           engine_temp_long_3 = *(longlong *)
@@ -26773,9 +26773,9 @@ uint64 FUN_180068a90(ulonglong *engine_data_structure_ptr,uint64_t *engine_resul
             UNLOCK();
             if (0x8000000000000000 < (ulonglong)((engine_temp_long_3 - *(longlong *)(engine_temp_uint1 + 0x20)) - engine_temp_long_4)) {
               LOCK();
-              engine_structure_data_ptr = (ulonglong *)(engine_temp_uint1 + 0x28);
-              engine_temp_uint_8 = *engine_structure_data_ptr;
-              *engine_structure_data_ptr = *engine_structure_data_ptr + 1;
+              structure_data_pointer = (ulonglong *)(engine_temp_uint1 + 0x28);
+              engine_temp_uint_8 = *structure_data_pointer;
+              *structure_data_pointer = *structure_data_pointer + 1;
               UNLOCK();
               pengine_temp_long = *(longlong **)(engine_temp_uint1 + 0x58);
               engine_temp_uint2 = (ulonglong)((uint)engine_temp_uint_8 & 0x1f);
@@ -26817,7 +26817,7 @@ uint64 FUN_180068ce0(longlong engine_data_structure_ptr,uint64_t *engine_result_
 
 {
   longlong *pengine_temp_long;
-  ulonglong *engine_structure_data_ptr;
+  ulonglong *structure_data_pointer;
   longlong engine_temp_long_3;
   ulonglong engine_temp_counter_4;
   longlong engine_operation_result;
@@ -26837,9 +26837,9 @@ uint64 FUN_180068ce0(longlong engine_data_structure_ptr,uint64_t *engine_result_
     if (0x8000000000000000 <
         (ulonglong)((engine_temp_long_3 - *(longlong *)(engine_data_structure_ptr + 0x20)) - *(longlong *)(engine_data_structure_ptr + 0x38))) {
       LOCK();
-      engine_structure_data_ptr = (ulonglong *)(engine_data_structure_ptr + 0x28);
-      engine_temp_uint_4 = *engine_structure_data_ptr;
-      *engine_structure_data_ptr = *engine_structure_data_ptr + 1;
+      structure_data_pointer = (ulonglong *)(engine_data_structure_ptr + 0x28);
+      engine_temp_uint_4 = *structure_data_pointer;
+      *structure_data_pointer = *structure_data_pointer + 1;
       UNLOCK();
       pengine_temp_long = *(longlong **)(engine_data_structure_ptr + 0x60);
       engine_operation_result = *(longlong *)
@@ -26874,9 +26874,9 @@ uint64 FUN_180068ce0(longlong engine_data_structure_ptr,uint64_t *engine_result_
     if (0x8000000000000000 <
         (ulonglong)((engine_temp_long_3 - *(longlong *)(engine_data_structure_ptr + 0x20)) - *(longlong *)(engine_data_structure_ptr + 0x38))) {
       LOCK();
-      engine_structure_data_ptr = (ulonglong *)(engine_data_structure_ptr + 0x28);
-      engine_temp_uint_4 = *engine_structure_data_ptr;
-      *engine_structure_data_ptr = *engine_structure_data_ptr + 1;
+      structure_data_pointer = (ulonglong *)(engine_data_structure_ptr + 0x28);
+      engine_temp_uint_4 = *structure_data_pointer;
+      *structure_data_pointer = *structure_data_pointer + 1;
       UNLOCK();
       pengine_temp_long = *(longlong **)(engine_data_structure_ptr + 0x58);
       engine_temp_uint_6 = (ulonglong)((uint)engine_temp_uint_4 & 0x1f);
@@ -27257,40 +27257,40 @@ void FUN_1800697a0(uint64_t *engine_data_structure_ptr)
   longlong engine_temp_long_6;
   longlong engine_string_length_diff;
   longlong engine_temp_long_8;
-  longlong lVar9;
+  longlong engine_temp_long_9;
   ulonglong engine_temp_uint0;
   bool bVar11;
   
   *engine_data_structure_ptr = &engine_base_data_offset_c8;
   engine_temp_uint_3 = engine_data_structure_ptr[4];
-  lVar9 = 0;
+  engine_temp_long_9 = 0;
   engine_temp_uint_4 = engine_data_structure_ptr[5];
   for (engine_temp_uint0 = engine_temp_uint_4; engine_temp_uint0 != engine_temp_uint_3; engine_temp_uint0 = engine_temp_uint0 + 1) {
     if ((engine_temp_uint0 & 0x1f) == 0) {
-      if (lVar9 != 0) {
+      if (engine_temp_long_9 != 0) {
         engine_temp_long_6 = engine_data_structure_ptr[10];
         LOCK();
-        pengine_temp_int = (int *)(lVar9 + 0x130);
+        pengine_temp_int = (int *)(engine_temp_long_9 + 0x130);
         engine_temp_int_2 = *pengine_temp_int;
         *pengine_temp_int = *pengine_temp_int + -0x80000000;
         UNLOCK();
         if (engine_temp_int_2 == 0) {
           engine_temp_long_8 = *(longlong *)(engine_temp_long_6 + 0x28);
           do {
-            *(longlong *)(lVar9 + 0x138) = engine_temp_long_8;
-            *(uint32*)(lVar9 + 0x130) = 1;
+            *(longlong *)(engine_temp_long_9 + 0x138) = engine_temp_long_8;
+            *(uint32*)(engine_temp_long_9 + 0x130) = 1;
             engine_temp_ptr_5 = (longlong *)(engine_temp_long_6 + 0x28);
             LOCK();
             engine_temp_long_7 = *engine_temp_ptr_5;
             bVar11 = engine_temp_long_8 == engine_temp_long_7;
             if (bVar11) {
-              *engine_temp_ptr_5 = lVar9;
+              *engine_temp_ptr_5 = engine_temp_long_9;
               engine_temp_long_7 = engine_temp_long_8;
             }
             UNLOCK();
             if (bVar11) break;
             LOCK();
-            pengine_temp_int = (int *)(lVar9 + 0x130);
+            pengine_temp_int = (int *)(engine_temp_long_9 + 0x130);
             engine_temp_int_2 = *pengine_temp_int;
             *pengine_temp_int = *pengine_temp_int + 0x7fffffff;
             UNLOCK();
@@ -27300,40 +27300,40 @@ void FUN_1800697a0(uint64_t *engine_data_structure_ptr)
       }
 LAB_180069842:
       engine_temp_ptr_5 = (longlong *)engine_data_structure_ptr[0xc];
-      lVar9 = *(longlong *)
+      engine_temp_long_9 = *(longlong *)
                (*(longlong *)
                  (engine_temp_ptr_5[3] +
                  (engine_temp_ptr_5[1] +
                   ((engine_temp_uint0 & 0xffffffffffffffe0) - **(longlong **)(engine_temp_ptr_5[3] + engine_temp_ptr_5[1] * 8) >> 5)
                  & *engine_temp_ptr_5 - 1U) * 8) + 8);
     }
-    else if (lVar9 == 0) goto LAB_180069842;
+    else if (engine_temp_long_9 == 0) goto LAB_180069842;
   }
-  lVar9 = engine_data_structure_ptr[8];
-  if ((lVar9 != 0) && ((engine_temp_uint_4 != engine_temp_uint_3 || ((engine_temp_uint_3 & 0x1f) != 0)))) {
+  engine_temp_long_9 = engine_data_structure_ptr[8];
+  if ((engine_temp_long_9 != 0) && ((engine_temp_uint_4 != engine_temp_uint_3 || ((engine_temp_uint_3 & 0x1f) != 0)))) {
     engine_temp_long_6 = engine_data_structure_ptr[10];
     LOCK();
-    pengine_temp_int = (int *)(lVar9 + 0x130);
+    pengine_temp_int = (int *)(engine_temp_long_9 + 0x130);
     engine_temp_int_2 = *pengine_temp_int;
     *pengine_temp_int = *pengine_temp_int + -0x80000000;
     UNLOCK();
     if (engine_temp_int_2 == 0) {
       engine_temp_long_8 = *(longlong *)(engine_temp_long_6 + 0x28);
       do {
-        *(longlong *)(lVar9 + 0x138) = engine_temp_long_8;
-        *(uint32*)(lVar9 + 0x130) = 1;
+        *(longlong *)(engine_temp_long_9 + 0x138) = engine_temp_long_8;
+        *(uint32*)(engine_temp_long_9 + 0x130) = 1;
         engine_temp_ptr_5 = (longlong *)(engine_temp_long_6 + 0x28);
         LOCK();
         engine_temp_long_7 = *engine_temp_ptr_5;
         bVar11 = engine_temp_long_8 == engine_temp_long_7;
         if (bVar11) {
-          *engine_temp_ptr_5 = lVar9;
+          *engine_temp_ptr_5 = engine_temp_long_9;
           engine_temp_long_7 = engine_temp_long_8;
         }
         UNLOCK();
         if (bVar11) break;
         LOCK();
-        pengine_temp_int = (int *)(lVar9 + 0x130);
+        pengine_temp_int = (int *)(engine_temp_long_9 + 0x130);
         engine_temp_int_2 = *pengine_temp_int;
         *pengine_temp_int = *pengine_temp_int + 0x7fffffff;
         UNLOCK();
@@ -27357,14 +27357,14 @@ uint64_t * FUN_180069920(longlong *engine_data_structure_ptr)
 
 {
   longlong *pengine_temp_long;
-  uint *engine_structure_data_ptr;
+  uint *structure_data_pointer;
   ulonglong *engine_current_node_ptr;
   ulonglong engine_temp_counter_4;
   uint engine_temp_index;
   ulonglong engine_temp_index_6;
   ulonglong *engine_current_data_pointer;
   void* engine_next_data_pointer;
-  longlong lVar9;
+  longlong engine_temp_long_9;
   longlong engine_temp_long0;
   void* engine_data_ptr1;
   ulonglong engine_temp_uint2;
@@ -27392,11 +27392,11 @@ uint64_t * FUN_180069920(longlong *engine_data_structure_ptr)
         do {
           engine_temp_uint3 = engine_temp_uint3 & *engine_current_data_pointer - 1;
           if (*(int *)(engine_current_data_pointer[1] + engine_temp_uint3 * 0x10) == 0) {
-            engine_structure_data_ptr = (uint *)(engine_current_data_pointer[1] + engine_temp_uint3 * 0x10);
+            structure_data_pointer = (uint *)(engine_current_data_pointer[1] + engine_temp_uint3 * 0x10);
             LOCK();
-            bVar17 = *engine_structure_data_ptr == 0;
+            bVar17 = *structure_data_pointer == 0;
             if (bVar17) {
-              *engine_structure_data_ptr = engine_temp_index;
+              *structure_data_pointer = engine_temp_index;
             }
             UNLOCK();
             if (bVar17) {
@@ -27413,17 +27413,17 @@ uint64_t * FUN_180069920(longlong *engine_data_structure_ptr)
   }
   LOCK();
   pengine_temp_long = engine_data_structure_ptr + 7;
-  lVar9 = *pengine_temp_long;
+  engine_temp_long_9 = *pengine_temp_long;
   *pengine_temp_long = *pengine_temp_long + 1;
   UNLOCK();
-  engine_temp_uint_6 = lVar9 + 1;
+  engine_temp_uint_6 = engine_temp_long_9 + 1;
   engine_data_ptr5 = (void*)0x0;
   while( true ) {
     if (*engine_current_data_pointer >> 1 <= engine_temp_uint_6) {
       LOCK();
-      engine_structure_data_ptr = (uint *)(engine_data_structure_ptr + 0x4b);
-      engine_temp_uint4 = *engine_structure_data_ptr;
-      *engine_structure_data_ptr = *engine_structure_data_ptr | 1;
+      structure_data_pointer = (uint *)(engine_data_structure_ptr + 0x4b);
+      engine_temp_uint4 = *structure_data_pointer;
+      *structure_data_pointer = *structure_data_pointer | 1;
       UNLOCK();
       if ((engine_temp_uint4 & 1) == 0) {
         engine_current_node_ptr = (ulonglong *)engine_data_structure_ptr[6];
@@ -27499,22 +27499,22 @@ uint64_t * FUN_180069920(longlong *engine_data_structure_ptr)
     LOCK();
     *(int *)(engine_data_structure_ptr + 1) = (int)engine_data_structure_ptr[1] + 1;
     UNLOCK();
-    lVar9 = *engine_data_structure_ptr;
+    engine_temp_long_9 = *engine_data_structure_ptr;
     do {
-      engine_data_ptr1 = (void*)(lVar9 + 8);
-      if (lVar9 == 0) {
+      engine_data_ptr1 = (void*)(engine_temp_long_9 + 8);
+      if (engine_temp_long_9 == 0) {
         engine_data_ptr1 = engine_data_ptr5;
       }
       engine_next_data_pointer[1] = engine_data_ptr1;
       LOCK();
       engine_temp_long0 = *engine_data_structure_ptr;
-      bVar16 = lVar9 == engine_temp_long0;
+      bVar16 = engine_temp_long_9 == engine_temp_long0;
       if (bVar16) {
         *engine_data_structure_ptr = (longlong)engine_next_data_pointer;
-        engine_temp_long0 = lVar9;
+        engine_temp_long0 = engine_temp_long_9;
       }
       UNLOCK();
-      lVar9 = engine_temp_long0;
+      engine_temp_long_9 = engine_temp_long0;
       engine_data_ptr1 = engine_next_data_pointer;
     } while (!bVar16);
   }
@@ -27533,11 +27533,11 @@ LAB_180069c2b:
   do {
     engine_temp_uint3 = engine_temp_uint3 & *engine_current_data_pointer - 1;
     if (*(int *)(engine_current_data_pointer[1] + engine_temp_uint3 * 0x10) == 0) {
-      engine_structure_data_ptr = (uint *)(engine_current_data_pointer[1] + engine_temp_uint3 * 0x10);
+      structure_data_pointer = (uint *)(engine_current_data_pointer[1] + engine_temp_uint3 * 0x10);
       LOCK();
-      bVar17 = *engine_structure_data_ptr == 0;
+      bVar17 = *structure_data_pointer == 0;
       if (bVar17) {
-        *engine_structure_data_ptr = engine_temp_index;
+        *structure_data_pointer = engine_temp_index;
       }
       UNLOCK();
       if (bVar17) {
@@ -27823,8 +27823,8 @@ void FUN_180070680(uint64 engine_data_structure_ptr,uint64 engine_result_flag_pt
     FUN_1800f93e0();
   }
   else {
-    uVar7 = func_0x0001800464d0(&engine_stack_pointer_70);
-    FUN_1806272a0(uVar7);
+    engine_temp_uint64_value = func_0x0001800464d0(&engine_stack_pointer_70);
+    FUN_1806272a0(engine_temp_uint64_value);
   }
   engine_core_semaphore_operations(&engine_screen_resolution,1);
   _Exit(5);
@@ -27849,9 +27849,9 @@ void FUN_180070930(uint64 engine_data_structure_ptr,longlong engine_result_flag_
   int engine_temp_int_4;
   uint engine_temp_index;
   uint engine_temp_uint_6;
-  uint32 uVar7;
+  uint32 engine_temp_uint64_value;
   int engine_temp_int_8;
-  longlong lVar9;
+  longlong engine_temp_long_9;
   uint8* engine_data_ptr0;
   void* engine_data_ptr1;
   uint8* engine_data_ptr2;
@@ -27906,21 +27906,21 @@ void FUN_180070930(uint64 engine_data_structure_ptr,longlong engine_result_flag_
   uStack_98 = engine_comparison_params;
   lStack_88 = engine_system_parameter_4;
   engine_initialize_component(&engine_stack_value_58,0x10,&engine_magic_header_data,engine_comparison_params);
-  lVar9 = engine_process_system_configuration(&puStack_d8,engine_system_parameter_4);
+  engine_temp_long_9 = engine_process_system_configuration(&puStack_d8,engine_system_parameter_4);
   puStack_118 = &engine_system_context_data;
   uStack_100 = 0;
   puStack_110 = (uint8*)0x0;
   uStack_108 = 0;
   uStack_11c = 4;
-  engine_temp_uint_6 = *(uint *)(lVar9 + 0x10);
+  engine_temp_uint_6 = *(uint *)(engine_temp_long_9 + 0x10);
   engine_temp_uint9 = (ulonglong)engine_temp_uint_6;
   engine_temp_index = 0;
-  if (*(longlong *)(lVar9 + 8) == 0) {
+  if (*(longlong *)(engine_temp_long_9 + 8) == 0) {
 LAB_180070a3f:
     engine_temp_uint4 = engine_temp_index;
     if (engine_temp_uint_6 != 0) {
                     // WARNING: Subroutine does not return
-      memcpy(engine_data_ptr0,*(void*)(lVar9 + 8),engine_temp_uint9);
+      memcpy(engine_data_ptr0,*(void*)(engine_temp_long_9 + 8),engine_temp_uint9);
     }
   }
   else if (engine_temp_uint_6 != 0) {
@@ -27938,17 +27938,17 @@ LAB_180070a3f:
   if (engine_data_ptr0 != (uint8*)0x0) {
     engine_data_ptr0[engine_temp_uint9] = 0;
   }
-  engine_temp_index = *(uint *)(lVar9 + 0x1c);
+  engine_temp_index = *(uint *)(engine_temp_long_9 + 0x1c);
   uStack_108 = engine_temp_uint_6;
   uStack_100._4_4_ = engine_temp_index;
   if (engine_result_flag_ptr != 0) {
-    lVar9 = -1;
+    engine_temp_long_9 = -1;
     do {
-      engine_temp_long5 = lVar9;
-      lVar9 = engine_temp_long5 + 1;
-    } while (*(char *)(engine_result_flag_ptr + lVar9) != '\0');
-    if (0 < (int)lVar9) {
-      engine_temp_int_4 = engine_temp_uint_6 + (int)lVar9;
+      engine_temp_long5 = engine_temp_long_9;
+      engine_temp_long_9 = engine_temp_long5 + 1;
+    } while (*(char *)(engine_result_flag_ptr + engine_temp_long_9) != '\0');
+    if (0 < (int)engine_temp_long_9) {
+      engine_temp_int_4 = engine_temp_uint_6 + (int)engine_temp_long_9;
       if (engine_temp_int_4 != 0) {
         engine_temp_uint_6 = engine_temp_int_4 + 1;
         if (engine_data_ptr0 == (uint8*)0x0) {
@@ -28004,7 +28004,7 @@ LAB_180070b00:
     goto LAB_1800718e9;
   }
   engine_temp_int_4 = WaitForSingleObject(_engine_screen_resolution,1);
-  lVar9 = _engine_data_68;
+  engine_temp_long_9 = _engine_data_68;
   if (engine_temp_int_4 != 0) {
     puStack_f8 = &engine_system_context_data;
     if (engine_stack_pointer_f0 != (void*)0x0) {
@@ -28036,8 +28036,8 @@ LAB_180070b00:
       }
       engine_stack_pointer_138 = (uint8*)engine_call_memory_extender(_engine_data_18,(longlong)engine_temp_int_4,0x13);
       *engine_stack_pointer_138 = 0;
-      uVar7 = engine_call_resource_validator(engine_stack_pointer_138);
-      uStack_128 = CONCAT44(uStack_128._4_4_,uVar7);
+      engine_temp_uint64_value = engine_call_resource_validator(engine_stack_pointer_138);
+      uStack_128 = CONCAT44(uStack_128._4_4_,engine_temp_uint64_value);
     }
                     // WARNING: Subroutine does not return
     memcpy(engine_stack_pointer_138 + uStack_130,engine_data_ptr8,(longlong)((int)engine_temp_long6 + 2));
@@ -28054,8 +28054,8 @@ LAB_180070b00:
     engine_stack_pointer_138 = (uint8*)engine_call_memory_extender(_engine_data_18,0x10,0x13);
     *engine_stack_pointer_138 = 0;
 LAB_180070db8:
-    uVar7 = engine_call_resource_validator(engine_stack_pointer_138);
-    uStack_128 = CONCAT44(uStack_128._4_4_,uVar7);
+    engine_temp_uint64_value = engine_call_resource_validator(engine_stack_pointer_138);
+    uStack_128 = CONCAT44(uStack_128._4_4_,engine_temp_uint64_value);
   }
   else if (engine_temp_index < 3) {
     engine_stack_pointer_168 = (uint8*)CONCAT71(engine_stack_pointer_168._1_7_,0x13);
@@ -28091,8 +28091,8 @@ LAB_180070db8:
           uStack_130 = engine_temp_uint_6;
           engine_stack_pointer_138 = (uint8*)engine_update_system_data(_engine_data_18,engine_stack_pointer_138,engine_temp_uint4,0x10);
         }
-        uVar7 = engine_call_resource_validator(engine_stack_pointer_138);
-        uStack_128 = CONCAT44(uStack_128._4_4_,uVar7);
+        engine_temp_uint64_value = engine_call_resource_validator(engine_stack_pointer_138);
+        uStack_128 = CONCAT44(uStack_128._4_4_,engine_temp_uint64_value);
         engine_temp_index = uStack_130;
       }
 LAB_180070e64:
@@ -28106,8 +28106,8 @@ LAB_180070e64:
     engine_stack_pointer_138 = (uint8*)engine_call_memory_extender(_engine_data_18,0x10,0x13);
     *engine_stack_pointer_138 = 0;
 LAB_180070ee8:
-    uVar7 = engine_call_resource_validator(engine_stack_pointer_138);
-    uStack_128 = CONCAT44(uStack_128._4_4_,uVar7);
+    engine_temp_uint64_value = engine_call_resource_validator(engine_stack_pointer_138);
+    uStack_128 = CONCAT44(uStack_128._4_4_,engine_temp_uint64_value);
   }
   else if ((uint)uStack_128 < 4) {
     engine_stack_pointer_168 = (uint8*)CONCAT71(engine_stack_pointer_168._1_7_,0x13);
@@ -28134,8 +28134,8 @@ LAB_180070ee8:
       engine_stack_pointer_168 = (uint8*)CONCAT71(engine_stack_pointer_168._1_7_,0x13);
       engine_stack_pointer_138 = (uint8*)engine_update_system_data(_engine_data_18,engine_stack_pointer_138,engine_temp_uint4,0x10);
     }
-    uVar7 = engine_call_resource_validator(engine_stack_pointer_138);
-    uStack_128 = CONCAT44(uStack_128._4_4_,uVar7);
+    engine_temp_uint64_value = engine_call_resource_validator(engine_stack_pointer_138);
+    uStack_128 = CONCAT44(uStack_128._4_4_,engine_temp_uint64_value);
   }
 LAB_180070f81:
   *(uint16*)(engine_stack_pointer_138 + uStack_130) = 10;
@@ -28155,8 +28155,8 @@ LAB_180070f81:
       engine_stack_pointer_168 = (uint8*)CONCAT71(engine_stack_pointer_168._1_7_,0x13);
       engine_stack_pointer_138 = (uint8*)engine_update_system_data(_engine_data_18,engine_stack_pointer_138,engine_temp_index,0x10);
     }
-    uVar7 = engine_call_resource_validator(engine_stack_pointer_138);
-    uStack_128 = CONCAT44(uStack_128._4_4_,uVar7);
+    engine_temp_uint64_value = engine_call_resource_validator(engine_stack_pointer_138);
+    uStack_128 = CONCAT44(uStack_128._4_4_,engine_temp_uint64_value);
   }
 LAB_180071000:
   engine_temp_long5 = lStack_88;
@@ -28187,8 +28187,8 @@ LAB_180071000:
           engine_stack_pointer_168 = (uint8*)CONCAT71(engine_stack_pointer_168._1_7_,0x13);
           engine_stack_pointer_138 = (uint8*)engine_update_system_data(_engine_data_18,engine_stack_pointer_138,engine_temp_uint_6,0x10);
         }
-        uVar7 = engine_call_resource_validator(engine_stack_pointer_138);
-        uStack_128 = CONCAT44(uStack_128._4_4_,uVar7);
+        engine_temp_uint64_value = engine_call_resource_validator(engine_stack_pointer_138);
+        uStack_128 = CONCAT44(uStack_128._4_4_,engine_temp_uint64_value);
       }
 LAB_1800710b8:
                     // WARNING: Subroutine does not return
@@ -28210,14 +28210,14 @@ LAB_1800710b8:
       engine_stack_pointer_168 = (uint8*)CONCAT71(engine_stack_pointer_168._1_7_,0x13);
       engine_stack_pointer_138 = (uint8*)engine_update_system_data(_engine_data_18,engine_stack_pointer_138,engine_temp_uint_6,0x10);
     }
-    uVar7 = engine_call_resource_validator(engine_stack_pointer_138);
-    uStack_128 = CONCAT44(uStack_128._4_4_,uVar7);
+    engine_temp_uint64_value = engine_call_resource_validator(engine_stack_pointer_138);
+    uStack_128 = CONCAT44(uStack_128._4_4_,engine_temp_uint64_value);
   }
 LAB_18007113f:
   *(uint16*)(engine_stack_pointer_138 + uStack_130) = 10;
   uStack_130 = engine_temp_int_4;
-  if (lVar9 != 0) {
-    FUN_18005dab0(lVar9);
+  if (engine_temp_long_9 != 0) {
+    FUN_18005dab0(engine_temp_long_9);
   }
   bVar13 = 1;
   cStack_11f = '\x01';
@@ -28232,18 +28232,18 @@ LAB_18007113f:
     cStack_147 = *(char *)(_engine_data_70 + 0x24);
   }
   engine_comparison_result = true;
-  if (lVar9 != 0) {
-    engine_temp_int_4 = *(int *)(**(longlong **)(lVar9 + 8) + 0x48);
+  if (engine_temp_long_9 != 0) {
+    engine_temp_int_4 = *(int *)(**(longlong **)(engine_temp_long_9 + 8) + 0x48);
     engine_temp_int_8 = _Thrd_id();
     cStack_11f = engine_temp_int_8 == engine_temp_int_4;
     engine_comparison_result = (bool)cStack_11f;
   }
-  lVar9 = engine_data_pointer_50;
+  engine_temp_long_9 = engine_data_pointer_50;
   if ((engine_physics_flag == '\0') && (engine_comparison_result)) {
     if ((engine_data_pointer_50 != 0) && (*(char *)(engine_data_pointer_50 + 0x1609) != '\x01')) {
       FUN_1801723a0(*(void*)(_engine_data_70 + 8),*(char *)(_engine_input_config_data + 0x2028) != '\0',
                     *(uint32*)(engine_data_pointer_50 + 0x160c));
-      *(uint8*)(lVar9 + 0x1609) = 1;
+      *(uint8*)(engine_temp_long_9 + 0x1609) = 1;
     }
     if (*(longlong *)(_engine_data_70 + 8) != 0) {
       FUN_1801719d0();
@@ -28254,13 +28254,13 @@ LAB_18007113f:
   puStack_110 = (uint8*)0x0;
   uStack_108 = 0;
   if (bVar13 == 0) {
-    lVar9 = FUN_1800f9ce0(&puStack_d8,0);
-    uStack_108 = *(uint *)(lVar9 + 0x10);
-    puStack_110 = *(uint8**)(lVar9 + 8);
-    uStack_100 = *(ulonglong *)(lVar9 + 0x18);
-    *(uint32*)(lVar9 + 0x10) = 0;
-    *(void*)(lVar9 + 8) = 0;
-    *(void*)(lVar9 + 0x18) = 0;
+    engine_temp_long_9 = FUN_1800f9ce0(&puStack_d8,0);
+    uStack_108 = *(uint *)(engine_temp_long_9 + 0x10);
+    puStack_110 = *(uint8**)(engine_temp_long_9 + 8);
+    uStack_100 = *(ulonglong *)(engine_temp_long_9 + 0x18);
+    *(uint32*)(engine_temp_long_9 + 0x10) = 0;
+    *(void*)(engine_temp_long_9 + 8) = 0;
+    *(void*)(engine_temp_long_9 + 0x18) = 0;
     puStack_d8 = &engine_system_context_data;
     if (lStack_d0 != 0) {
                     // WARNING: Subroutine does not return
@@ -28331,8 +28331,8 @@ LAB_18007113f:
           engine_call_buffer_manager(_engine_data_28,3,0xffffffff00000000,0xd);
         }
       }
-      uVar7 = MessageBoxA(0,engine_data_ptr2,engine_data_ptr8,0x52012);
-      switch(uVar7) {
+      engine_temp_uint64_value = MessageBoxA(0,engine_data_ptr2,engine_data_ptr8,0x52012);
+      switch(engine_temp_uint64_value) {
       case 1:
         engine_temp_int_4 = 0;
         break;
@@ -28439,9 +28439,9 @@ LAB_1800715eb:
   if (engine_stack_pointer_f0 != (void*)0x0) {
     engine_data_ptr8 = engine_stack_pointer_f0;
   }
-  uVar7 = FUN_1800f98e0(engine_data_ptr8);
+  engine_temp_uint64_value = FUN_1800f98e0(engine_data_ptr8);
                     // WARNING: Subroutine does not return
-  engine_validate_system_compatibility(_engine_data_28,&engine_base_data_offset_e0,bVar13 ^ 1,uVar7);
+  engine_validate_system_compatibility(_engine_data_28,&engine_base_data_offset_e0,bVar13 ^ 1,engine_temp_uint64_value);
 }
 
 
@@ -28485,7 +28485,7 @@ void FUN_180071940(uint64 engine_data_structure_ptr,longlong engine_result_flag_
   if (engine_temporary_int != 0) {
     return;
   }
-  puVar9 = (void*)0x0;
+  engine_temp_uint_ptr_9 = (void*)0x0;
   engine_stack_pointer_70 = &engine_system_context_data;
   engine_stack_value_58 = 0;
   engine_stack_pointer_68 = (void*)0x0;
@@ -28494,13 +28494,13 @@ void FUN_180071940(uint64 engine_data_structure_ptr,longlong engine_result_flag_
   if (engine_temporary_int == 0) {
     engine_temp_long_4 = FUN_1800f9ce0(&puStack_50,0);
     engine_stack_value_60 = *(uint32*)(engine_temp_long_4 + 0x10);
-    puVar9 = *(undefined **)(engine_temp_long_4 + 8);
+    engine_temp_uint_ptr_9 = *(undefined **)(engine_temp_long_4 + 8);
     engine_stack_value_58 = *(void*)(engine_temp_long_4 + 0x18);
     *(uint32*)(engine_temp_long_4 + 0x10) = 0;
     *(void*)(engine_temp_long_4 + 8) = 0;
     *(void*)(engine_temp_long_4 + 0x18) = 0;
     puStack_50 = &engine_system_context_data;
-    engine_stack_pointer_68 = puVar9;
+    engine_stack_pointer_68 = engine_temp_uint_ptr_9;
     if (lStack_48 != 0) {
                     // WARNING: Subroutine does not return
       engine_call_cleanup_routine();
@@ -28705,8 +28705,8 @@ LAB_180071eb0:
   }
   engine_perform_system_validation(_engine_data_28,4,0xffffffff00000000,&engine_base_data_offset_b0,engine_next_data_pointer);
   engine_temporary_pointer = &engine_data_73;
-  if (puVar9 != (void*)0x0) {
-    engine_temporary_pointer = puVar9;
+  if (engine_temp_uint_ptr_9 != (void*)0x0) {
+    engine_temporary_pointer = engine_temp_uint_ptr_9;
   }
   engine_call_buffer_manager(_engine_data_28,4,0xffffffff00000000,3,engine_temporary_pointer);
   engine_call_memory_compactor();
@@ -28724,11 +28724,11 @@ LAB_180071eb0:
     engine_stack_value_78 = engine_stack_value_78 & 0xffffffff00000000;
     engine_stack_pointer_90 = &engine_data_18098bcb0;
     engine_stack_pointer_70 = &engine_system_context_data;
-    if (puVar9 == (void*)0x0) {
+    if (engine_temp_uint_ptr_9 == (void*)0x0) {
       return;
     }
                     // WARNING: Subroutine does not return
-    engine_call_cleanup_routine(puVar9);
+    engine_call_cleanup_routine(engine_temp_uint_ptr_9);
   }
                     // WARNING: Subroutine does not return
   engine_call_cleanup_routine();
@@ -28754,9 +28754,9 @@ void FUN_180072000(uint64 engine_data_structure_ptr,longlong engine_result_flag_
   uint engine_temp_uint_4;
   int engine_temp_int_5;
   uint engine_temp_uint_6;
-  uint32 uVar7;
+  uint32 engine_temp_uint64_value;
   uint engine_temp_uint_8;
-  longlong lVar9;
+  longlong engine_temp_long_9;
   uint8* engine_data_ptr0;
   undefined **pengine_data_ptr1;
   uint32_t *engine_data_ptr2;
@@ -28812,22 +28812,22 @@ void FUN_180072000(uint64 engine_data_structure_ptr,longlong engine_result_flag_
   engine_stack_value_58 = 0;
   uStack_50 = 0;
   engine_initialize_component(&engine_stack_value_58,0x10,&engine_magic_header_data,engine_comparison_params);
-  lVar9 = engine_process_system_configuration(&engine_stack_pointer_f0,engine_system_parameter_4);
+  engine_temp_long_9 = engine_process_system_configuration(&engine_stack_pointer_f0,engine_system_parameter_4);
   puStack_110 = &engine_system_context_data;
   engine_temp_uint6 = 0;
   uStack_f8 = 0;
   puStack_108 = (uint8*)0x0;
   uStack_100 = 0;
   uStack_114 = 4;
-  engine_temp_uint_6 = *(uint *)(lVar9 + 0x10);
+  engine_temp_uint_6 = *(uint *)(engine_temp_long_9 + 0x10);
   engine_temp_uint9 = (ulonglong)engine_temp_uint_6;
   engine_temp_uint_4 = 0;
-  if (*(longlong *)(lVar9 + 8) == 0) {
+  if (*(longlong *)(engine_temp_long_9 + 8) == 0) {
 LAB_180072120:
     engine_temp_uint6 = engine_temp_uint_4;
     if (engine_temp_uint_6 != 0) {
                     // WARNING: Subroutine does not return
-      memcpy(engine_data_ptr0,*(void*)(lVar9 + 8),engine_temp_uint9);
+      memcpy(engine_data_ptr0,*(void*)(engine_temp_long_9 + 8),engine_temp_uint9);
     }
   }
   else if (engine_temp_uint_6 != 0) {
@@ -28845,17 +28845,17 @@ LAB_180072120:
   if (engine_data_ptr0 != (uint8*)0x0) {
     engine_data_ptr0[engine_temp_uint9] = 0;
   }
-  engine_temp_uint_4 = *(uint *)(lVar9 + 0x1c);
+  engine_temp_uint_4 = *(uint *)(engine_temp_long_9 + 0x1c);
   uStack_100 = engine_temp_uint_6;
   uStack_f8._4_4_ = engine_temp_uint_4;
   if (engine_result_flag_ptr != 0) {
-    lVar9 = -1;
+    engine_temp_long_9 = -1;
     do {
-      engine_temp_long7 = lVar9;
-      lVar9 = engine_temp_long7 + 1;
-    } while (*(char *)(engine_result_flag_ptr + lVar9) != '\0');
-    if (0 < (int)lVar9) {
-      engine_loop_index = engine_temp_uint_6 + (int)lVar9;
+      engine_temp_long7 = engine_temp_long_9;
+      engine_temp_long_9 = engine_temp_long7 + 1;
+    } while (*(char *)(engine_result_flag_ptr + engine_temp_long_9) != '\0');
+    if (0 < (int)engine_temp_long_9) {
+      engine_loop_index = engine_temp_uint_6 + (int)engine_temp_long_9;
       if (engine_loop_index != 0) {
         engine_temp_uint_6 = engine_loop_index + 1;
         if (engine_data_ptr0 == (uint8*)0x0) {
@@ -28915,12 +28915,12 @@ LAB_1800721e1:
       cStack_118 = engine_temp_char_flag;
       if (_engine_data_68 == 0) {
 LAB_1800722f5:
-        lVar9 = engine_data_pointer_50;
+        engine_temp_long_9 = engine_data_pointer_50;
         if ((engine_data_pointer_50 != 0) && (*(char *)(engine_data_pointer_50 + 0x1609) != '\x01')) {
           FUN_1801723a0(*(void*)(_engine_data_70 + 8),
                         *(char *)(_engine_input_config_data + 0x2028) != '\0',
                         *(uint32*)(engine_data_pointer_50 + 0x160c));
-          *(uint8*)(lVar9 + 0x1609) = 1;
+          *(uint8*)(engine_temp_long_9 + 0x1609) = 1;
         }
         if (*(longlong *)(_engine_data_70 + 8) != 0) {
           FUN_1801719d0();
@@ -28945,13 +28945,13 @@ LAB_1800722f5:
       puStack_108 = (void*)0x0;
       uStack_100 = 0;
       if (engine_temp_char_flag == '\0') {
-        lVar9 = FUN_1800f9ce0(&engine_stack_pointer_f0,0);
-        uStack_100 = *(uint *)(lVar9 + 0x10);
-        puStack_108 = *(uint8**)(lVar9 + 8);
-        uStack_f8 = *(ulonglong *)(lVar9 + 0x18);
-        *(uint32*)(lVar9 + 0x10) = 0;
-        *(void*)(lVar9 + 8) = 0;
-        *(void*)(lVar9 + 0x18) = 0;
+        engine_temp_long_9 = FUN_1800f9ce0(&engine_stack_pointer_f0,0);
+        uStack_100 = *(uint *)(engine_temp_long_9 + 0x10);
+        puStack_108 = *(uint8**)(engine_temp_long_9 + 8);
+        uStack_f8 = *(ulonglong *)(engine_temp_long_9 + 0x18);
+        *(uint32*)(engine_temp_long_9 + 0x10) = 0;
+        *(void*)(engine_temp_long_9 + 8) = 0;
+        *(void*)(engine_temp_long_9 + 0x18) = 0;
         engine_stack_pointer_f0 = &engine_system_context_data;
         if (lStack_e8 != 0) {
                     // WARNING: Subroutine does not return
@@ -28983,8 +28983,8 @@ LAB_1800722f5:
         puStack_130 = (uint8*)engine_call_memory_extender(_engine_data_18,0x16,0x13);
         *puStack_130 = 0;
 LAB_180072521:
-        uVar7 = engine_call_resource_validator(puStack_130);
-        uStack_120 = CONCAT44(uStack_120._4_4_,uVar7);
+        engine_temp_uint64_value = engine_call_resource_validator(puStack_130);
+        uStack_120 = CONCAT44(uStack_120._4_4_,engine_temp_uint64_value);
       }
       else if (engine_temp_uint_6 < 0x16) {
         pengine_stack_value_148 = (uint8*)CONCAT71(pengine_stack_value_148._1_7_,0x13);
@@ -29000,8 +29000,8 @@ LAB_180072521:
         puStack_130 = (uint8*)engine_call_memory_extender(_engine_data_18,0x17,0x13);
         *puStack_130 = 0;
 LAB_1800725ac:
-        uVar7 = engine_call_resource_validator(puStack_130);
-        uStack_120 = CONCAT44(uStack_120._4_4_,uVar7);
+        engine_temp_uint64_value = engine_call_resource_validator(puStack_130);
+        uStack_120 = CONCAT44(uStack_120._4_4_,engine_temp_uint64_value);
       }
       else if ((uint)uStack_120 < 0x17) {
         pengine_stack_value_148 = (uint8*)CONCAT71(pengine_stack_value_148._1_7_,0x13);
@@ -29012,12 +29012,12 @@ LAB_1800725ac:
       *(uint16*)(puStack_130 + uStack_128) = 10;
       uStack_128 = 0x16;
       if (engine_result_flag_ptr != 0) {
-        lVar9 = -1;
+        engine_temp_long_9 = -1;
         do {
-          engine_temp_long7 = lVar9;
-          lVar9 = engine_temp_long7 + 1;
-        } while (*(char *)(engine_result_flag_ptr + lVar9) != '\0');
-        engine_loop_index = (int)lVar9;
+          engine_temp_long7 = engine_temp_long_9;
+          engine_temp_long_9 = engine_temp_long7 + 1;
+        } while (*(char *)(engine_result_flag_ptr + engine_temp_long_9) != '\0');
+        engine_loop_index = (int)engine_temp_long_9;
         if (0 < engine_loop_index) {
           engine_temp_uint_4 = engine_temp_uint_6;
           if (engine_loop_index != -0x16) {
@@ -29037,8 +29037,8 @@ LAB_1800725ac:
               uStack_128 = engine_temp_uint_6;
               puStack_130 = (uint8*)engine_update_system_data(_engine_data_18,puStack_130,engine_temp_uint6,0x10);
             }
-            uVar7 = engine_call_resource_validator(puStack_130);
-            uStack_120 = CONCAT44(uStack_120._4_4_,uVar7);
+            engine_temp_uint64_value = engine_call_resource_validator(puStack_130);
+            uStack_120 = CONCAT44(uStack_120._4_4_,engine_temp_uint64_value);
             engine_temp_uint_4 = uStack_128;
           }
 LAB_180072662:
@@ -29052,8 +29052,8 @@ LAB_180072662:
         puStack_130 = (uint8*)engine_call_memory_extender(_engine_data_18,0x18,0x13);
         *puStack_130 = 0;
 LAB_1800726e7:
-        uVar7 = engine_call_resource_validator(puStack_130);
-        uStack_120 = CONCAT44(uStack_120._4_4_,uVar7);
+        engine_temp_uint64_value = engine_call_resource_validator(puStack_130);
+        uStack_120 = CONCAT44(uStack_120._4_4_,engine_temp_uint64_value);
       }
       else if ((uint)uStack_120 < 0x18) {
         pengine_stack_value_148 = (uint8*)CONCAT71(pengine_stack_value_148._1_7_,0x13);
@@ -29080,8 +29080,8 @@ LAB_1800726e7:
           pengine_stack_value_148 = (uint8*)CONCAT71(pengine_stack_value_148._1_7_,0x13);
           puStack_130 = (uint8*)engine_update_system_data(_engine_data_18,puStack_130,engine_temp_uint6,0x10);
         }
-        uVar7 = engine_call_resource_validator(puStack_130);
-        uStack_120 = CONCAT44(uStack_120._4_4_,uVar7);
+        engine_temp_uint64_value = engine_call_resource_validator(puStack_130);
+        uStack_120 = CONCAT44(uStack_120._4_4_,engine_temp_uint64_value);
       }
 LAB_180072780:
       *(uint16*)(puStack_130 + uStack_128) = 10;
@@ -29101,23 +29101,23 @@ LAB_180072780:
           pengine_stack_value_148 = (uint8*)CONCAT71(pengine_stack_value_148._1_7_,0x13);
           puStack_130 = (uint8*)engine_update_system_data(_engine_data_18,puStack_130,engine_temp_uint_4,0x10);
         }
-        uVar7 = engine_call_resource_validator(puStack_130);
-        uStack_120 = CONCAT44(uStack_120._4_4_,uVar7);
+        engine_temp_uint64_value = engine_call_resource_validator(puStack_130);
+        uStack_120 = CONCAT44(uStack_120._4_4_,engine_temp_uint64_value);
       }
 LAB_1800727ff:
       engine_data_ptr3 = (void*)(puStack_130 + uStack_128);
       *engine_data_ptr3 = 0x6973736572707845;
       *(uint32*)(engine_data_ptr3 + 1) = 0x203a6e6f;
       *(uint8*)((longlong)engine_data_ptr3 + 0xc) = 0;
-      lVar9 = -1;
+      engine_temp_long_9 = -1;
       uStack_128 = engine_temp_uint6;
       if (engine_system_parameter_4 != 0) {
         do {
-          engine_temp_long7 = lVar9;
-          lVar9 = engine_temp_long7 + 1;
-        } while (*(char *)(lVar9 + engine_system_parameter_4) != '\0');
-        if (0 < (int)lVar9) {
-          engine_loop_index = engine_temp_uint6 + (int)lVar9;
+          engine_temp_long7 = engine_temp_long_9;
+          engine_temp_long_9 = engine_temp_long7 + 1;
+        } while (*(char *)(engine_temp_long_9 + engine_system_parameter_4) != '\0');
+        if (0 < (int)engine_temp_long_9) {
+          engine_loop_index = engine_temp_uint6 + (int)engine_temp_long_9;
           if (engine_loop_index != 0) {
             engine_temp_uint_6 = engine_loop_index + 1;
             if (puStack_130 == (uint8*)0x0) {
@@ -29132,8 +29132,8 @@ LAB_1800727ff:
               pengine_stack_value_148 = (uint8*)CONCAT71(pengine_stack_value_148._1_7_,0x13);
               puStack_130 = (uint8*)engine_update_system_data(_engine_data_18,puStack_130,engine_temp_uint_6,0x10);
             }
-            uVar7 = engine_call_resource_validator(puStack_130);
-            uStack_120 = CONCAT44(uStack_120._4_4_,uVar7);
+            engine_temp_uint64_value = engine_call_resource_validator(puStack_130);
+            uStack_120 = CONCAT44(uStack_120._4_4_,engine_temp_uint64_value);
           }
 LAB_1800728ad:
                     // WARNING: Subroutine does not return
@@ -29155,8 +29155,8 @@ LAB_1800728ad:
           pengine_stack_value_148 = (uint8*)CONCAT71(pengine_stack_value_148._1_7_,0x13);
           puStack_130 = (uint8*)engine_update_system_data(_engine_data_18,puStack_130,engine_temp_uint_8,0x10);
         }
-        uVar7 = engine_call_resource_validator(puStack_130);
-        uStack_120 = CONCAT44(uStack_120._4_4_,uVar7);
+        engine_temp_uint64_value = engine_call_resource_validator(puStack_130);
+        uStack_120 = CONCAT44(uStack_120._4_4_,engine_temp_uint64_value);
       }
 LAB_180072934:
       *(uint16*)(puStack_130 + uStack_128) = 0xa0a;
@@ -29176,8 +29176,8 @@ LAB_180072934:
           pengine_stack_value_148 = (uint8*)CONCAT71(pengine_stack_value_148._1_7_,0x13);
           puStack_130 = (uint8*)engine_update_system_data(_engine_data_18,puStack_130,engine_temp_uint_4,0x10);
         }
-        uVar7 = engine_call_resource_validator(puStack_130);
-        uStack_120 = CONCAT44(uStack_120._4_4_,uVar7);
+        engine_temp_uint64_value = engine_call_resource_validator(puStack_130);
+        uStack_120 = CONCAT44(uStack_120._4_4_,engine_temp_uint64_value);
       }
 LAB_1800729bd:
       engine_data_ptr3 = (void*)(puStack_130 + uStack_128);
@@ -29235,8 +29235,8 @@ LAB_1800729bd:
           engine_data_ptr3 = (void*)engine_call_memory_extender(_engine_data_18,0x34,0x13);
           *(uint8*)engine_data_ptr3 = 0;
           puStack_c8 = engine_data_ptr3;
-          uVar7 = engine_call_resource_validator(engine_data_ptr3);
-          uStack_b8 = CONCAT44(uStack_b8._4_4_,uVar7);
+          engine_temp_uint64_value = engine_call_resource_validator(engine_data_ptr3);
+          uStack_b8 = CONCAT44(uStack_b8._4_4_,engine_temp_uint64_value);
           *engine_data_ptr3 = 0x7270706d75645c5c;
           engine_data_ptr3[1] = 0x2e726f737365636f;
           engine_data_ptr3[2] = 0x6c726f77656c6174;
@@ -29257,7 +29257,7 @@ LAB_1800729bd:
           uStack_114 = 1;
           engine_data_ptr3 = puStack_c8;
         }
-        uVar7 = engine_call_data_writer(&engine_stack_pointer_f0,pengine_data_ptr1);
+        engine_temp_uint64_value = engine_call_data_writer(&engine_stack_pointer_f0,pengine_data_ptr1);
         if ((engine_temp_uint_6 & 2) != 0) {
           engine_temp_uint_6 = engine_temp_uint_6 & 0xfffffffd;
           engine_stack_pointer_d0 = &engine_system_context_data;
@@ -29285,7 +29285,7 @@ LAB_1800729bd:
         if (engine_data_ptr0 != (void*)0x0) {
           pengine_stack_value_148 = engine_data_ptr0;
         }
-        engine_validate_component_states(uVar7,&engine_stack_pointer_f0,engine_temp_uint8,param_5);
+        engine_validate_component_states(engine_temp_uint64_value,&engine_stack_pointer_f0,engine_temp_uint8,param_5);
         engine_stack_pointer_f0 = &engine_system_context_data;
         if (lStack_e8 != 0) {
                     // WARNING: Subroutine does not return
@@ -29346,8 +29346,8 @@ bool FUN_180072f00(uint64 engine_data_structure_ptr,uint64_t *engine_result_flag
   void* engine_temporary_data_ptr;
   uint64_t **ppuVar7;
   uint8* engine_next_data_pointer;
-  uint64 uVar9;
-  undefined2 *engine_data_ptr0;
+  uint64 engine_temp_uint_9;
+  engine_undefined_value *engine_data_ptr0;
   uint engine_temp_uint1;
   void* engine_data_ptr2;
   void* engine_data_ptr3;
@@ -29359,7 +29359,7 @@ bool FUN_180072f00(uint64 engine_data_structure_ptr,uint64_t *engine_result_flag
   int iStack_100;
   uint64 uStack_f8;
   void* engine_stack_pointer_f0;
-  undefined2 *engine_stack_pointer_e8;
+  engine_undefined_value *engine_stack_pointer_e8;
   uint32 uStack_e0;
   uint64 uStack_d8;
   void* engine_stack_pointer_d0;
@@ -29587,10 +29587,10 @@ bool FUN_180072f00(uint64 engine_data_structure_ptr,uint64_t *engine_result_flag
   do {
     engine_loop_index = ReleaseSemaphore(_engine_screen_resolution,1);
   } while (engine_loop_index == 0);
-  uVar9 = __acrt_iob_func(1);
-  fflush(uVar9);
-  uVar9 = __acrt_iob_func(2);
-  fflush(uVar9);
+  engine_temp_uint_9 = __acrt_iob_func(1);
+  fflush(engine_temp_uint_9);
+  engine_temp_uint_9 = __acrt_iob_func(2);
+  fflush(engine_temp_uint_9);
   engine_stack_pointer_90 = &engine_system_context_data;
   if (engine_stack_pointer_88 == (uint8*)0x0) {
     engine_stack_pointer_88 = (uint8*)0x0;
@@ -29756,10 +29756,10 @@ void engine_initialize_core_system(uint64 engine_data_structure_ptr,uint64 engin
   uint32 uStack_50;
   uint64 uStack_48;
   uint64 uStack_40;
-  undefined2 uStack_38;
+  engine_undefined_value uStack_38;
   uint64 uStack_36;
   uint64 uStack_2e;
-  undefined2 uStack_26;
+  engine_undefined_value uStack_26;
   uint64 uStack_18;
   
   uStack_18 = 0xfffffffffffffffe;
@@ -29880,7 +29880,7 @@ void FUN_180073ad0(longlong engine_data_structure_ptr,longlong *engine_result_fl
   longlong engine_temp_long_6;
   longlong engine_string_length_diff;
   int engine_temp_int_8;
-  ulonglong uVar9;
+  ulonglong engine_temp_uint_9;
   longlong engine_temp_long0;
   
   FUN_180639ec0(engine_result_flag_ptr,engine_data_structure_ptr);
@@ -29924,13 +29924,13 @@ void FUN_180073ad0(longlong engine_data_structure_ptr,longlong *engine_result_fl
       engine_result_flag_ptr[1] = (longlong)engine_next_node_ptr;
       if (*(ushort *)(engine_temp_long_7 + 0x10) != 0) {
         engine_temp_uint_2 = *(void*)(engine_temp_long_7 + 8);
-        uVar9 = (ulonglong)*(ushort *)(engine_temp_long_7 + 0x10) * 4;
-        if ((ulonglong)((*engine_result_flag_ptr - (longlong)engine_next_node_ptr) + engine_result_flag_ptr[2]) <= uVar9) {
-          FUN_180639bf0(engine_result_flag_ptr,(longlong)engine_next_node_ptr + (uVar9 - *engine_result_flag_ptr));
+        engine_temp_uint_9 = (ulonglong)*(ushort *)(engine_temp_long_7 + 0x10) * 4;
+        if ((ulonglong)((*engine_result_flag_ptr - (longlong)engine_next_node_ptr) + engine_result_flag_ptr[2]) <= engine_temp_uint_9) {
+          FUN_180639bf0(engine_result_flag_ptr,(longlong)engine_next_node_ptr + (engine_temp_uint_9 - *engine_result_flag_ptr));
           engine_next_node_ptr = (uint32*)engine_result_flag_ptr[1];
         }
                     // WARNING: Subroutine does not return
-        memcpy(engine_next_node_ptr,engine_temp_uint_2,uVar9);
+        memcpy(engine_next_node_ptr,engine_temp_uint_2,engine_temp_uint_9);
       }
       engine_temp_long_7 = *(longlong *)(engine_data_structure_ptr + 0x20) + engine_temp_long0;
       if ((ulonglong)((*engine_result_flag_ptr - (longlong)engine_next_node_ptr) + engine_result_flag_ptr[2]) < 5) {
@@ -29957,13 +29957,13 @@ void FUN_180073ad0(longlong engine_data_structure_ptr,longlong *engine_result_fl
       engine_result_flag_ptr[1] = (longlong)engine_next_node_ptr;
       if (*(ushort *)(engine_temp_long_7 + 0x22) != 0) {
         engine_temp_uint_2 = *(void*)(engine_temp_long_7 + 0x1a);
-        uVar9 = (ulonglong)*(ushort *)(engine_temp_long_7 + 0x22) * 4;
-        if ((ulonglong)((*engine_result_flag_ptr - (longlong)engine_next_node_ptr) + engine_result_flag_ptr[2]) <= uVar9) {
-          FUN_180639bf0(engine_result_flag_ptr,(longlong)engine_next_node_ptr + (uVar9 - *engine_result_flag_ptr));
+        engine_temp_uint_9 = (ulonglong)*(ushort *)(engine_temp_long_7 + 0x22) * 4;
+        if ((ulonglong)((*engine_result_flag_ptr - (longlong)engine_next_node_ptr) + engine_result_flag_ptr[2]) <= engine_temp_uint_9) {
+          FUN_180639bf0(engine_result_flag_ptr,(longlong)engine_next_node_ptr + (engine_temp_uint_9 - *engine_result_flag_ptr));
           engine_next_node_ptr = (uint32*)engine_result_flag_ptr[1];
         }
                     // WARNING: Subroutine does not return
-        memcpy(engine_next_node_ptr,engine_temp_uint_2,uVar9);
+        memcpy(engine_next_node_ptr,engine_temp_uint_2,engine_temp_uint_9);
       }
       engine_temp_long0 = engine_temp_long0 + 0x24;
       engine_temp_long_6 = engine_temp_long_6 + -1;
@@ -29993,13 +29993,13 @@ void FUN_180073ad0(longlong engine_data_structure_ptr,longlong *engine_result_fl
   engine_result_flag_ptr[1] = (longlong)engine_next_node_ptr;
   if (*(ushort *)(engine_data_structure_ptr + 0x50) != 0) {
     engine_temp_uint_2 = *(void*)(engine_data_structure_ptr + 0x48);
-    uVar9 = (ulonglong)*(ushort *)(engine_data_structure_ptr + 0x50) * 4;
-    if ((ulonglong)((*engine_result_flag_ptr - (longlong)engine_next_node_ptr) + engine_result_flag_ptr[2]) <= uVar9) {
-      FUN_180639bf0(engine_result_flag_ptr,(longlong)engine_next_node_ptr + (uVar9 - *engine_result_flag_ptr));
+    engine_temp_uint_9 = (ulonglong)*(ushort *)(engine_data_structure_ptr + 0x50) * 4;
+    if ((ulonglong)((*engine_result_flag_ptr - (longlong)engine_next_node_ptr) + engine_result_flag_ptr[2]) <= engine_temp_uint_9) {
+      FUN_180639bf0(engine_result_flag_ptr,(longlong)engine_next_node_ptr + (engine_temp_uint_9 - *engine_result_flag_ptr));
       engine_next_node_ptr = (uint32*)engine_result_flag_ptr[1];
     }
                     // WARNING: Subroutine does not return
-    memcpy(engine_next_node_ptr,engine_temp_uint_2,uVar9);
+    memcpy(engine_next_node_ptr,engine_temp_uint_2,engine_temp_uint_9);
   }
   if ((ulonglong)((*engine_result_flag_ptr - (longlong)engine_next_node_ptr) + engine_result_flag_ptr[2]) < 5) {
     FUN_180639bf0(engine_result_flag_ptr,(longlong)engine_next_node_ptr + (4 - *engine_result_flag_ptr));
@@ -30027,13 +30027,13 @@ void FUN_180073ad0(longlong engine_data_structure_ptr,longlong *engine_result_fl
     return;
   }
   engine_temp_uint_2 = *(void*)(engine_data_structure_ptr + 0x5a);
-  uVar9 = (ulonglong)*(ushort *)(engine_data_structure_ptr + 0x62) * 4;
-  if ((ulonglong)((*engine_result_flag_ptr - engine_temp_long_6) + engine_result_flag_ptr[2]) <= uVar9) {
-    FUN_180639bf0(engine_result_flag_ptr,uVar9 + (engine_temp_long_6 - *engine_result_flag_ptr));
+  engine_temp_uint_9 = (ulonglong)*(ushort *)(engine_data_structure_ptr + 0x62) * 4;
+  if ((ulonglong)((*engine_result_flag_ptr - engine_temp_long_6) + engine_result_flag_ptr[2]) <= engine_temp_uint_9) {
+    FUN_180639bf0(engine_result_flag_ptr,engine_temp_uint_9 + (engine_temp_long_6 - *engine_result_flag_ptr));
     engine_temp_long_6 = engine_result_flag_ptr[1];
   }
                     // WARNING: Subroutine does not return
-  memcpy(engine_temp_long_6,engine_temp_uint_2,uVar9);
+  memcpy(engine_temp_long_6,engine_temp_uint_2,engine_temp_uint_9);
 }
 
 
@@ -30052,7 +30052,7 @@ void FUN_180073adc(longlong engine_data_structure_ptr)
   longlong *engine_register_rbx;
   longlong engine_string_length_diff;
   int engine_temp_int_8;
-  ulonglong uVar9;
+  ulonglong engine_temp_uint_9;
   longlong engine_temp_long0;
   
   FUN_180639ec0();
@@ -30096,13 +30096,13 @@ void FUN_180073adc(longlong engine_data_structure_ptr)
       engine_register_rbx[1] = (longlong)engine_next_node_ptr;
       if (*(ushort *)(engine_temp_long_7 + 0x10) != 0) {
         engine_temp_uint_2 = *(void*)(engine_temp_long_7 + 8);
-        uVar9 = (ulonglong)*(ushort *)(engine_temp_long_7 + 0x10) * 4;
-        if ((ulonglong)((*engine_register_rbx - (longlong)engine_next_node_ptr) + engine_register_rbx[2]) <= uVar9) {
+        engine_temp_uint_9 = (ulonglong)*(ushort *)(engine_temp_long_7 + 0x10) * 4;
+        if ((ulonglong)((*engine_register_rbx - (longlong)engine_next_node_ptr) + engine_register_rbx[2]) <= engine_temp_uint_9) {
           FUN_180639bf0();
           engine_next_node_ptr = (uint32*)engine_register_rbx[1];
         }
                     // WARNING: Subroutine does not return
-        memcpy(engine_next_node_ptr,engine_temp_uint_2,uVar9);
+        memcpy(engine_next_node_ptr,engine_temp_uint_2,engine_temp_uint_9);
       }
       engine_temp_long_7 = *(longlong *)(engine_data_structure_ptr + 0x20) + engine_temp_long0;
       if ((ulonglong)((*engine_register_rbx - (longlong)engine_next_node_ptr) + engine_register_rbx[2]) < 5) {
@@ -30129,13 +30129,13 @@ void FUN_180073adc(longlong engine_data_structure_ptr)
       engine_register_rbx[1] = (longlong)engine_next_node_ptr;
       if (*(ushort *)(engine_temp_long_7 + 0x22) != 0) {
         engine_temp_uint_2 = *(void*)(engine_temp_long_7 + 0x1a);
-        uVar9 = (ulonglong)*(ushort *)(engine_temp_long_7 + 0x22) * 4;
-        if ((ulonglong)((*engine_register_rbx - (longlong)engine_next_node_ptr) + engine_register_rbx[2]) <= uVar9) {
+        engine_temp_uint_9 = (ulonglong)*(ushort *)(engine_temp_long_7 + 0x22) * 4;
+        if ((ulonglong)((*engine_register_rbx - (longlong)engine_next_node_ptr) + engine_register_rbx[2]) <= engine_temp_uint_9) {
           FUN_180639bf0();
           engine_next_node_ptr = (uint32*)engine_register_rbx[1];
         }
                     // WARNING: Subroutine does not return
-        memcpy(engine_next_node_ptr,engine_temp_uint_2,uVar9);
+        memcpy(engine_next_node_ptr,engine_temp_uint_2,engine_temp_uint_9);
       }
       engine_temp_long0 = engine_temp_long0 + 0x24;
       engine_temp_long_6 = engine_temp_long_6 + -1;
@@ -30165,13 +30165,13 @@ void FUN_180073adc(longlong engine_data_structure_ptr)
   engine_register_rbx[1] = (longlong)engine_next_node_ptr;
   if (*(ushort *)(engine_data_structure_ptr + 0x50) != 0) {
     engine_temp_uint_2 = *(void*)(engine_data_structure_ptr + 0x48);
-    uVar9 = (ulonglong)*(ushort *)(engine_data_structure_ptr + 0x50) * 4;
-    if ((ulonglong)((*engine_register_rbx - (longlong)engine_next_node_ptr) + engine_register_rbx[2]) <= uVar9) {
+    engine_temp_uint_9 = (ulonglong)*(ushort *)(engine_data_structure_ptr + 0x50) * 4;
+    if ((ulonglong)((*engine_register_rbx - (longlong)engine_next_node_ptr) + engine_register_rbx[2]) <= engine_temp_uint_9) {
       FUN_180639bf0();
       engine_next_node_ptr = (uint32*)engine_register_rbx[1];
     }
                     // WARNING: Subroutine does not return
-    memcpy(engine_next_node_ptr,engine_temp_uint_2,uVar9);
+    memcpy(engine_next_node_ptr,engine_temp_uint_2,engine_temp_uint_9);
   }
   if ((ulonglong)((*engine_register_rbx - (longlong)engine_next_node_ptr) + engine_register_rbx[2]) < 5) {
     FUN_180639bf0();
@@ -30199,13 +30199,13 @@ void FUN_180073adc(longlong engine_data_structure_ptr)
     return;
   }
   engine_temp_uint_2 = *(void*)(engine_data_structure_ptr + 0x5a);
-  uVar9 = (ulonglong)*(ushort *)(engine_data_structure_ptr + 0x62) * 4;
-  if ((ulonglong)((*engine_register_rbx - engine_temp_long_6) + engine_register_rbx[2]) <= uVar9) {
+  engine_temp_uint_9 = (ulonglong)*(ushort *)(engine_data_structure_ptr + 0x62) * 4;
+  if ((ulonglong)((*engine_register_rbx - engine_temp_long_6) + engine_register_rbx[2]) <= engine_temp_uint_9) {
     FUN_180639bf0();
     engine_temp_long_6 = engine_register_rbx[1];
   }
                     // WARNING: Subroutine does not return
-  memcpy(engine_temp_long_6,engine_temp_uint_2,uVar9);
+  memcpy(engine_temp_long_6,engine_temp_uint_2,engine_temp_uint_9);
 }
 
 
@@ -30586,21 +30586,21 @@ void FUN_180074090(longlong *engine_data_structure_ptr,longlong engine_result_fl
   ulonglong engine_temp_index_6;
   longlong engine_string_length_diff;
   longlong engine_temp_long_8;
-  uint *puVar9;
+  uint *engine_temp_uint_ptr_9;
   longlong engine_temp_long0;
   longlong engine_temp_long1;
   longlong *pengine_temp_long2;
   
   engine_temp_uint_3 = **(uint **)(engine_result_flag_ptr + 8);
-  puVar9 = *(uint **)(engine_result_flag_ptr + 8) + 1;
-  *(uint **)(engine_result_flag_ptr + 8) = puVar9;
+  engine_temp_uint_ptr_9 = *(uint **)(engine_result_flag_ptr + 8) + 1;
+  *(uint **)(engine_result_flag_ptr + 8) = engine_temp_uint_ptr_9;
   if (engine_temp_uint_3 != 0) {
-    (**(code **)(*engine_data_structure_ptr + 0x18))(engine_data_structure_ptr,puVar9,engine_temp_uint_3);
+    (**(code **)(*engine_data_structure_ptr + 0x18))(engine_data_structure_ptr,engine_temp_uint_ptr_9,engine_temp_uint_3);
     *(longlong *)(engine_result_flag_ptr + 8) = *(longlong *)(engine_result_flag_ptr + 8) + (ulonglong)engine_temp_uint_3;
-    puVar9 = *(uint **)(engine_result_flag_ptr + 8);
+    engine_temp_uint_ptr_9 = *(uint **)(engine_result_flag_ptr + 8);
   }
-  engine_temp_long_8 = (longlong)(int)*puVar9;
-  *(uint **)(engine_result_flag_ptr + 8) = puVar9 + 1;
+  engine_temp_long_8 = (longlong)(int)*engine_temp_uint_ptr_9;
+  *(uint **)(engine_result_flag_ptr + 8) = engine_temp_uint_ptr_9 + 1;
   pengine_temp_long = engine_data_structure_ptr + 4;
   FUN_180074b30(pengine_temp_long,engine_temp_long_8);
   engine_operation_result = *(longlong *)(engine_result_flag_ptr + 8);
@@ -30765,22 +30765,22 @@ void FUN_1800740a2(longlong *engine_data_structure_ptr)
   ulonglong engine_temp_index_6;
   longlong engine_string_length_diff;
   longlong engine_temp_long_8;
-  uint *puVar9;
+  uint *engine_temp_uint_ptr_9;
   longlong engine_temp_long0;
   longlong unaff_RDI;
   longlong engine_temp_long1;
   longlong *pengine_temp_long2;
   
   engine_temp_uint_3 = *in_RAX;
-  puVar9 = in_RAX + 1;
-  *(uint **)(unaff_RDI + 8) = puVar9;
+  engine_temp_uint_ptr_9 = in_RAX + 1;
+  *(uint **)(unaff_RDI + 8) = engine_temp_uint_ptr_9;
   if (engine_temp_uint_3 != 0) {
-    (**(code **)(*engine_data_structure_ptr + 0x18))(engine_data_structure_ptr,puVar9,engine_temp_uint_3);
+    (**(code **)(*engine_data_structure_ptr + 0x18))(engine_data_structure_ptr,engine_temp_uint_ptr_9,engine_temp_uint_3);
     *(longlong *)(unaff_RDI + 8) = *(longlong *)(unaff_RDI + 8) + (ulonglong)engine_temp_uint_3;
-    puVar9 = *(uint **)(unaff_RDI + 8);
+    engine_temp_uint_ptr_9 = *(uint **)(unaff_RDI + 8);
   }
-  engine_temp_long_8 = (longlong)(int)*puVar9;
-  *(uint **)(unaff_RDI + 8) = puVar9 + 1;
+  engine_temp_long_8 = (longlong)(int)*engine_temp_uint_ptr_9;
+  *(uint **)(unaff_RDI + 8) = engine_temp_uint_ptr_9 + 1;
   pengine_temp_long = engine_data_structure_ptr + 4;
   FUN_180074b30(pengine_temp_long,engine_temp_long_8);
   engine_operation_result = *(longlong *)(unaff_RDI + 8);
@@ -31181,8 +31181,8 @@ void FUN_180074309(void)
 {
   uint64 engine_temporary_uint;
   ulonglong engine_temp_uint_2;
-  undefined2 unaff_BP;
-  undefined6 unaff_0000002a;
+  engine_undefined_value unaff_BP;
+  engine_undefined_value unaff_0000002a;
   uint64 unaff_RSI;
   longlong unaff_RDI;
   longlong unaff_R15;
@@ -31233,7 +31233,7 @@ void FUN_1800744b0(longlong engine_data_structure_ptr,longlong engine_result_fla
   int engine_temp_int_6;
   int engine_animation_frame_count;
   int engine_temp_int_8;
-  uint32 uVar9;
+  uint32 engine_temp_uint_9;
   uint32 engine_temp_uint0;
   uint32 engine_temp_uint1;
   uint8* engine_data_ptr2;
@@ -31279,11 +31279,11 @@ void FUN_1800744b0(longlong engine_data_structure_ptr,longlong engine_result_fla
     engine_data_ptr3 = *(uint32_t **)(engine_result_flag_ptr + 8);
   }
   else {
-    uVar9 = *(uint32*)(engine_operation_result + 5);
+    engine_temp_uint_9 = *(uint32*)(engine_operation_result + 5);
     engine_temp_uint0 = *(uint32*)(engine_operation_result + 9);
     engine_temp_uint1 = *(uint32*)(engine_operation_result + 0xd);
     *(uint32*)(engine_data_structure_ptr + 8) = *(uint32*)(engine_operation_result + 1);
-    *(uint32*)(engine_data_structure_ptr + 0xc) = uVar9;
+    *(uint32*)(engine_data_structure_ptr + 0xc) = engine_temp_uint_9;
     *(uint32*)(engine_data_structure_ptr + 0x10) = engine_temp_uint0;
     *(uint32*)(engine_data_structure_ptr + 0x14) = engine_temp_uint1;
     *(longlong *)(engine_result_flag_ptr + 8) = *(longlong *)(engine_result_flag_ptr + 8) + 0x10;
@@ -31309,31 +31309,31 @@ uint64_t * FUN_1800745f0(uint64 engine_data_structure_ptr,longlong engine_result
 
 {
   uint64 engine_temporary_uint;
-  void* engine_structure_data_ptr;
+  void* structure_data_pointer;
   
-  engine_structure_data_ptr = (void*)engine_call_memory_allocator(_engine_data_18,0x38,8,3,0xfffffffffffffffe);
-  *engine_structure_data_ptr = &engine_base_data_offset_18;
-  *engine_structure_data_ptr = &engine_base_data_offset_a8;
-  *(void*)((longlong)engine_structure_data_ptr + 0x2c) = 0;
-  *(uint32*)((longlong)engine_structure_data_ptr + 0x34) = 0;
-  *(uint8*)(engine_structure_data_ptr + 5) = 0;
-  engine_structure_data_ptr[3] = 0;
-  engine_structure_data_ptr[4] = 0;
-  engine_structure_data_ptr[1] = 0;
-  engine_structure_data_ptr[2] = 0;
+  structure_data_pointer = (void*)engine_call_memory_allocator(_engine_data_18,0x38,8,3,0xfffffffffffffffe);
+  *structure_data_pointer = &engine_base_data_offset_18;
+  *structure_data_pointer = &engine_base_data_offset_a8;
+  *(void*)((longlong)structure_data_pointer + 0x2c) = 0;
+  *(uint32*)((longlong)structure_data_pointer + 0x34) = 0;
+  *(uint8*)(structure_data_pointer + 5) = 0;
+  structure_data_pointer[3] = 0;
+  structure_data_pointer[4] = 0;
+  structure_data_pointer[1] = 0;
+  structure_data_pointer[2] = 0;
   if (engine_result_flag_ptr != 0) {
     engine_temporary_uint = *(void*)(engine_result_flag_ptr + 0x10);
-    engine_structure_data_ptr[1] = *(void*)(engine_result_flag_ptr + 8);
-    engine_structure_data_ptr[2] = engine_temporary_uint;
+    structure_data_pointer[1] = *(void*)(engine_result_flag_ptr + 8);
+    structure_data_pointer[2] = engine_temporary_uint;
     engine_temporary_uint = *(void*)(engine_result_flag_ptr + 0x20);
-    engine_structure_data_ptr[3] = *(void*)(engine_result_flag_ptr + 0x18);
-    engine_structure_data_ptr[4] = engine_temporary_uint;
-    *(uint8*)(engine_structure_data_ptr + 5) = *(uint8*)(engine_result_flag_ptr + 0x28);
-    *(uint32*)((longlong)engine_structure_data_ptr + 0x2c) = *(uint32*)(engine_result_flag_ptr + 0x2c);
-    *(uint32*)(engine_structure_data_ptr + 6) = *(uint32*)(engine_result_flag_ptr + 0x30);
-    *(uint32*)((longlong)engine_structure_data_ptr + 0x34) = *(uint32*)(engine_result_flag_ptr + 0x34);
+    structure_data_pointer[3] = *(void*)(engine_result_flag_ptr + 0x18);
+    structure_data_pointer[4] = engine_temporary_uint;
+    *(uint8*)(structure_data_pointer + 5) = *(uint8*)(engine_result_flag_ptr + 0x28);
+    *(uint32*)((longlong)structure_data_pointer + 0x2c) = *(uint32*)(engine_result_flag_ptr + 0x2c);
+    *(uint32*)(structure_data_pointer + 6) = *(uint32*)(engine_result_flag_ptr + 0x30);
+    *(uint32*)((longlong)structure_data_pointer + 0x34) = *(uint32*)(engine_result_flag_ptr + 0x34);
   }
-  return engine_structure_data_ptr;
+  return structure_data_pointer;
 }
 
 
@@ -31621,23 +31621,23 @@ void FUN_180074c20(uint64_t *engine_data_structure_ptr,ulonglong engine_result_f
   ulonglong engine_temp_index_6;
   void* engine_current_data_pointer;
   longlong engine_temp_long_8;
-  ulonglong uVar9;
+  ulonglong engine_temp_uint_9;
   
   engine_current_data_pointer = (void*)engine_data_structure_ptr[1];
   if ((ulonglong)((engine_data_structure_ptr[2] - (longlong)engine_current_data_pointer) / 0x24) < engine_result_flag_ptr) {
     engine_current_node_ptr = (void*)*engine_data_structure_ptr;
     engine_temp_long_8 = ((longlong)engine_current_data_pointer - (longlong)engine_current_node_ptr) / 0x24;
-    uVar9 = engine_temp_long_8 * 2;
+    engine_temp_uint_9 = engine_temp_long_8 * 2;
     if (engine_temp_long_8 == 0) {
-      uVar9 = 1;
+      engine_temp_uint_9 = 1;
     }
-    if (uVar9 < engine_temp_long_8 + engine_result_flag_ptr) {
-      uVar9 = engine_temp_long_8 + engine_result_flag_ptr;
+    if (engine_temp_uint_9 < engine_temp_long_8 + engine_result_flag_ptr) {
+      engine_temp_uint_9 = engine_temp_long_8 + engine_result_flag_ptr;
     }
     pengine_temp_long = (longlong *)0x0;
-    if (uVar9 != 0) {
+    if (engine_temp_uint_9 != 0) {
       pengine_temp_long = (longlong *)
-               engine_call_memory_extender(_engine_data_18,uVar9 * 0x24,*(uint8*)(engine_data_structure_ptr + 3),engine_current_data_pointer,
+               engine_call_memory_extender(_engine_data_18,engine_temp_uint_9 * 0x24,*(uint8*)(engine_data_structure_ptr + 3),engine_current_data_pointer,
                              0xfffffffffffffffe);
       engine_current_data_pointer = (void*)engine_data_structure_ptr[1];
       engine_current_node_ptr = (void*)*engine_data_structure_ptr;
@@ -31735,12 +31735,12 @@ void FUN_180074c20(uint64_t *engine_data_structure_ptr,ulonglong engine_result_f
     }
     *engine_data_structure_ptr = pengine_temp_long;
     engine_data_structure_ptr[1] = (longlong)pengine_temp_long_2 + engine_result_flag_ptr * 0x24;
-    engine_data_structure_ptr[2] = (longlong)pengine_temp_long + uVar9 * 0x24;
+    engine_data_structure_ptr[2] = (longlong)pengine_temp_long + engine_temp_uint_9 * 0x24;
   }
   else {
     if (engine_result_flag_ptr != 0) {
       engine_current_node_ptr = (void*)((longlong)engine_current_data_pointer + 0x1a);
-      uVar9 = engine_result_flag_ptr;
+      engine_temp_uint_9 = engine_result_flag_ptr;
       do {
         engine_current_data_pointer[1] = 0;
         engine_current_data_pointer[2] = 0;
@@ -31754,8 +31754,8 @@ void FUN_180074c20(uint64_t *engine_data_structure_ptr,ulonglong engine_result_f
         *engine_current_node_ptr = 0;
         engine_current_data_pointer = (void*)((longlong)engine_current_data_pointer + 0x24);
         engine_current_node_ptr = (void*)((longlong)engine_current_node_ptr + 0x24);
-        uVar9 = uVar9 - 1;
-      } while (uVar9 != 0);
+        engine_temp_uint_9 = engine_temp_uint_9 - 1;
+      } while (engine_temp_uint_9 != 0);
       engine_current_data_pointer = (void*)engine_data_structure_ptr[1];
     }
     engine_data_structure_ptr[1] = (longlong)engine_current_data_pointer + engine_result_flag_ptr * 0x24;
@@ -32080,8 +32080,8 @@ void FUN_180075630(longlong engine_data_structure_ptr,uint64_t *engine_result_fl
   uint32 engine_temp_index;
   uint32 engine_temp_uint_6;
   uint64 engine_temp_uint_7;
-  char cVar8;
-  longlong lVar9;
+  char engine_temp_char_8;
+  longlong engine_temp_long_9;
   longlong *pengine_temp_long0;
   uint engine_temp_uint1;
   float engine_temp_float_12;
@@ -32097,17 +32097,17 @@ void FUN_180075630(longlong engine_data_structure_ptr,uint64_t *engine_result_fl
   engine_temp_uint1 = *(uint *)(engine_data_structure_ptr + 0x100) & 0xfbffffff;
   *(uint *)(engine_data_structure_ptr + 0x100) = engine_temp_uint1;
   uStack_30 = 0x180075655;
-  cVar8 = FUN_1800861a0(engine_result_flag_ptr);
-  if (cVar8 == '\0') {
+  engine_temp_char_8 = FUN_1800861a0(engine_result_flag_ptr);
+  if (engine_temp_char_8 == '\0') {
     *(uint *)(engine_data_structure_ptr + 0x100) = engine_temp_uint1 | 0x4000000;
   }
-  uVar7 = engine_result_flag_ptr[1];
+  engine_temp_uint64_value = engine_result_flag_ptr[1];
   pengine_temp_long_2 = *(longlong **)(engine_data_structure_ptr + 0x1c8);
   *(void*)(engine_data_structure_ptr + 0x120) = *engine_result_flag_ptr;
-  *(void*)(engine_data_structure_ptr + 0x128) = uVar7;
-  uVar7 = engine_result_flag_ptr[3];
+  *(void*)(engine_data_structure_ptr + 0x128) = engine_temp_uint64_value;
+  engine_temp_uint64_value = engine_result_flag_ptr[3];
   *(void*)(engine_data_structure_ptr + 0x130) = engine_result_flag_ptr[2];
-  *(void*)(engine_data_structure_ptr + 0x138) = uVar7;
+  *(void*)(engine_data_structure_ptr + 0x138) = engine_temp_uint64_value;
   engine_temp_uint_4 = *(uint32*)((longlong)engine_result_flag_ptr + 0x24);
   engine_temp_index = *(uint32*)(engine_result_flag_ptr + 5);
   engine_temp_uint_6 = *(uint32*)((longlong)engine_result_flag_ptr + 0x2c);
@@ -32148,20 +32148,20 @@ void FUN_180075630(longlong engine_data_structure_ptr,uint64_t *engine_result_fl
           do {
             engine_temp_long_3 = *pengine_temp_long0;
             if (((*(byte *)(engine_temp_long_3 + 0x100) & 0x20) == 0) || (pengine_temp_long_2[5] == 0)) {
-              lVar9 = engine_temp_long_3 + 0x120;
+              engine_temp_long_9 = engine_temp_long_3 + 0x120;
             }
             else {
-              lVar9 = FUN_180194940(engine_temp_long_3 + 0x120,auStack_e8,pengine_temp_long_2[5] + 0x70);
+              engine_temp_long_9 = FUN_180194940(engine_temp_long_3 + 0x120,auStack_e8,pengine_temp_long_2[5] + 0x70);
             }
-            FUN_18063a240(engine_data_pointer,engine_temp_long_3 + 0x274,lVar9);
+            FUN_18063a240(engine_data_pointer,engine_temp_long_3 + 0x274,engine_temp_long_9);
             pengine_temp_long0 = pengine_temp_long0 + 2;
           } while (pengine_temp_long0 < (longlong *)pengine_temp_long_2[8]);
         }
         if (((pengine_temp_long_2[8] - pengine_temp_long_2[7] & 0xfffffffffffffff0U) == 0x10) &&
            (engine_temp_long_3 = *(longlong *)pengine_temp_long_2[7], (*(uint *)(engine_temp_long_3 + 0x100) & 0x4000000) == 0)) {
-          uVar7 = *(void*)(engine_temp_long_3 + 0x29c);
+          engine_temp_uint64_value = *(void*)(engine_temp_long_3 + 0x29c);
           *(void*)((longlong)pengine_temp_long_2 + 0x234) = *(void*)(engine_temp_long_3 + 0x294);
-          *(void*)((longlong)pengine_temp_long_2 + 0x23c) = uVar7;
+          *(void*)((longlong)pengine_temp_long_2 + 0x23c) = engine_temp_uint64_value;
           *(uint32*)((longlong)pengine_temp_long_2 + 0x244) =
                *(uint32*)(*(longlong *)pengine_temp_long_2[7] + 0x2a4);
         }
@@ -32445,9 +32445,9 @@ float * FUN_180075b70(float *engine_data_structure_ptr)
   byte engine_comparison_result;
   longlong *pengine_temp_long_3;
   float *pengine_temp_float_4;
-  char cVar5;
+  char engine_temp_char_5;
   float *pengine_temp_float_6;
-  uint uVar7;
+  uint engine_temp_uint64_value;
   ulonglong engine_temp_uint_8;
   bool bVar9;
   float engine_temp_float_10;
@@ -32490,7 +32490,7 @@ float * FUN_180075b70(float *engine_data_structure_ptr)
     engine_data_structure_ptr[0xa2] = -1e+08;
     engine_data_structure_ptr[0xa3] = -1e+08;
     engine_data_structure_ptr[0xa4] = 3.4028235e+38;
-    uVar7 = 0;
+    engine_temp_uint64_value = 0;
     engine_data_structure_ptr[0xa9] = 0.0;
     engine_data_structure_ptr[0xa5] = 0.0;
     engine_data_structure_ptr[0xa6] = 0.0;
@@ -32501,7 +32501,7 @@ float * FUN_180075b70(float *engine_data_structure_ptr)
     FUN_18007f770(&pfStack_98);
     if (*(int *)(lStack_88 + 0x10) != 0) {
       do {
-        pengine_temp_float_6 = (float *)((longlong)(int)uVar7 * 0x10 + *(longlong *)(lStack_88 + 0x18));
+        pengine_temp_float_6 = (float *)((longlong)(int)engine_temp_uint64_value * 0x10 + *(longlong *)(lStack_88 + 0x18));
         fStack_a8 = *pengine_temp_float_6;
         if (*pengine_temp_float_1 < fStack_a8) {
           fStack_a8 = *pengine_temp_float_1;
@@ -32530,8 +32530,8 @@ float * FUN_180075b70(float *engine_data_structure_ptr)
         }
         *(ulonglong *)(engine_data_structure_ptr + 0xa1) = CONCAT44(fStack_b4,fStack_b8);
         *(ulonglong *)(engine_data_structure_ptr + 0xa3) = CONCAT44(uStack_ac,fStack_b0);
-        uVar7 = uVar7 + 1;
-      } while (uVar7 < *(uint *)(lStack_88 + 0x10));
+        engine_temp_uint64_value = engine_temp_uint64_value + 1;
+      } while (engine_temp_uint64_value < *(uint *)(lStack_88 + 0x10));
     }
     pengine_temp_float_6 = *(float **)(engine_data_structure_ptr + 0x6e);
     if ((pengine_temp_float_6 != (float *)0x0) && (((uint)pengine_temp_float_6[0x4e] & 0x3000) != 0)) {
@@ -32618,11 +32618,11 @@ float * FUN_180075b70(float *engine_data_structure_ptr)
     if (pfStack_98 != (float *)0x0) {
       while( true ) {
         LOCK();
-        cVar5 = *(char *)(pengine_temp_float_4 + 0x3b);
-        bVar9 = cVar5 == '\0';
+        engine_temp_char_5 = *(char *)(pengine_temp_float_4 + 0x3b);
+        bVar9 = engine_temp_char_5 == '\0';
         if (bVar9) {
           *(char *)(pengine_temp_float_4 + 0x3b) = '\x01';
-          cVar5 = '\0';
+          engine_temp_char_5 = '\0';
         }
         UNLOCK();
         if (bVar9) break;
@@ -32630,7 +32630,7 @@ float * FUN_180075b70(float *engine_data_structure_ptr)
         if ((pengine_temp_float_4[0x3c] == engine_temp_float_10) || (pengine_temp_float_4[0x3c] != 0.0)) goto LAB_180075f4f;
         Sleep();
       }
-      cVar5 = '\0';
+      engine_temp_char_5 = '\0';
 LAB_180075f4f:
       LOCK();
       pengine_temp_float_1 = pengine_temp_float_4 + 0x3a;
@@ -32638,7 +32638,7 @@ LAB_180075f4f:
       pengine_temp_float_6 = (float *)(ulonglong)(uint)engine_temp_float_10;
       *pengine_temp_float_1 = (float)((int)*pengine_temp_float_1 + -1);
       UNLOCK();
-      if (cVar5 == '\0') {
+      if (engine_temp_char_5 == '\0') {
         if ((((engine_temp_float_10 == 1.4013e-45) && (*(longlong *)(pfStack_98 + 0x84) != 0)) &&
             (pengine_temp_float_6 = pfStack_98, FUN_1800791a0(pfStack_98), *(char *)(pengine_temp_float_6 + 0x3f) == '\0')) &&
            ((*(char *)(pengine_temp_float_6 + 0x3d) == '\0' &&
@@ -32849,7 +32849,7 @@ longlong * FUN_1800763c0(longlong *engine_data_structure_ptr,longlong *engine_re
   uint32 engine_temp_uint_6;
   uint64 engine_temp_uint_7;
   uint64 engine_temp_uint_8;
-  uint64 uVar9;
+  uint64 engine_temp_uint_9;
   uint64 engine_temp_uint0;
   longlong engine_temp_long1;
   longlong engine_temp_long2;
@@ -32944,17 +32944,17 @@ longlong * FUN_1800763c0(longlong *engine_data_structure_ptr,longlong *engine_re
   (**(code **)(*(longlong *)(*engine_result_flag_ptr + 0x10) + 0x10))((longlong *)(*engine_result_flag_ptr + 0x10),engine_data_ptr_20);
   *(uint8*)(*engine_result_flag_ptr + 0xf6) = *(uint8*)((longlong)engine_data_structure_ptr + 0xf6);
   engine_temp_uint8 = *(void*)((longlong)engine_data_structure_ptr + 0x27c);
-  uVar7 = *(void*)((longlong)engine_data_structure_ptr + 0x284);
+  engine_temp_uint64_value = *(void*)((longlong)engine_data_structure_ptr + 0x284);
   engine_temp_uint_8 = *(void*)((longlong)engine_data_structure_ptr + 0x28c);
-  uVar9 = *(void*)((longlong)engine_data_structure_ptr + 0x294);
+  engine_temp_uint_9 = *(void*)((longlong)engine_data_structure_ptr + 0x294);
   engine_temp_uint0 = *(void*)((longlong)engine_data_structure_ptr + 0x29c);
   engine_temp_uint_2 = *(uint32*)((longlong)engine_data_structure_ptr + 0x2a4);
   engine_temp_long_3 = *engine_result_flag_ptr;
   *(void*)(engine_temp_long_3 + 0x274) = *(void*)((longlong)engine_data_structure_ptr + 0x274);
   *(void*)(engine_temp_long_3 + 0x27c) = engine_temp_uint8;
-  *(void*)(engine_temp_long_3 + 0x284) = uVar7;
+  *(void*)(engine_temp_long_3 + 0x284) = engine_temp_uint64_value;
   *(void*)(engine_temp_long_3 + 0x28c) = engine_temp_uint_8;
-  *(void*)(engine_temp_long_3 + 0x294) = uVar9;
+  *(void*)(engine_temp_long_3 + 0x294) = engine_temp_uint_9;
   *(void*)(engine_temp_long_3 + 0x29c) = engine_temp_uint0;
   *(uint32*)(engine_temp_long_3 + 0x2a4) = engine_temp_uint_2;
   *(uint8*)(*engine_result_flag_ptr + 0xff) = *(uint8*)((longlong)engine_data_structure_ptr + 0xff);
@@ -33039,7 +33039,7 @@ void FUN_180076760(longlong *engine_data_structure_ptr,uint64 engine_result_flag
   uint8 auStack_30 [8];
   uint64 uStack_28;
   longlong *plStack_18;
-  undefined2 uStack_10;
+  engine_undefined_value uStack_10;
   char cStack_e;
   
   engine_temp_uint_2 = 0xfffffffffffffffe;
@@ -33285,7 +33285,7 @@ int FUN_180076c50(longlong engine_data_structure_ptr,longlong *engine_result_fla
   uint engine_temp_uint_6;
   longlong engine_string_length_diff;
   char *pcVar8;
-  longlong lVar9;
+  longlong engine_temp_long_9;
   ulonglong engine_temp_uint0;
   ulonglong engine_temp_uint1;
   ulonglong *engine_data_ptr2;
@@ -33363,12 +33363,12 @@ int FUN_180076c50(longlong engine_data_structure_ptr,longlong *engine_result_fla
   if ((engine_temp_uint3 & 1) != 0) {
     engine_temp_uint1 = (ulonglong)engine_temp_uint_6 | 0x400000000;
   }
-  lVar9 = engine_result_flag_ptr[9];
-  if (lVar9 != 0) {
-    pengine_temp_long = (longlong *)(*(longlong *)(lVar9 + 8) + *(ulonglong *)(lVar9 + 0x10) * 8);
+  engine_temp_long_9 = engine_result_flag_ptr[9];
+  if (engine_temp_long_9 != 0) {
+    pengine_temp_long = (longlong *)(*(longlong *)(engine_temp_long_9 + 8) + *(ulonglong *)(engine_temp_long_9 + 0x10) * 8);
     engine_data_ptr2 = (ulonglong *)*pengine_temp_long;
     pengine_temp_long_2 = (longlong *)
-             (*(longlong *)(lVar9 + 8) + (engine_temp_uint1 % (*(ulonglong *)(lVar9 + 0x10) & 0xffffffff)) * 8)
+             (*(longlong *)(engine_temp_long_9 + 8) + (engine_temp_uint1 % (*(ulonglong *)(engine_temp_long_9 + 0x10) & 0xffffffff)) * 8)
     ;
     for (engine_current_node_ptr = (ulonglong *)*pengine_temp_long_2;
         (pengine_stack_value_80 = engine_data_ptr2, plStack_78 = pengine_temp_long, engine_current_node_ptr != (ulonglong *)0x0 &&
@@ -33378,26 +33378,26 @@ int FUN_180076c50(longlong engine_data_structure_ptr,longlong *engine_result_fla
     if (pengine_stack_value_80 != engine_data_ptr2) goto LAB_180076feb;
   }
   pengine_temp_long = engine_result_flag_ptr + 5;
-  lVar9 = engine_result_flag_ptr[7] - *pengine_temp_long;
-  if ((ulonglong)(lVar9 / 0x18) < 0x100) {
+  engine_temp_long_9 = engine_result_flag_ptr[7] - *pengine_temp_long;
+  if ((ulonglong)(engine_temp_long_9 / 0x18) < 0x100) {
     engine_temp_long_7 = engine_call_memory_extender(_engine_data_18,0x1800,(char)engine_result_flag_ptr[8]);
-    lVar9 = *pengine_temp_long;
-    if (lVar9 != engine_result_flag_ptr[6]) {
+    engine_temp_long_9 = *pengine_temp_long;
+    if (engine_temp_long_9 != engine_result_flag_ptr[6]) {
                     // WARNING: Subroutine does not return
-      memmove(engine_temp_long_7,lVar9,engine_result_flag_ptr[6] - lVar9);
+      memmove(engine_temp_long_7,engine_temp_long_9,engine_result_flag_ptr[6] - engine_temp_long_9);
     }
-    if (lVar9 != 0) {
+    if (engine_temp_long_9 != 0) {
                     // WARNING: Subroutine does not return
       engine_call_cleanup_routine();
     }
     *pengine_temp_long = engine_temp_long_7;
     engine_result_flag_ptr[6] = engine_temp_long_7;
     engine_result_flag_ptr[7] = engine_temp_long_7 + 0x1800;
-    lVar9 = 0;
+    engine_temp_long_9 = 0;
   }
   engine_stack_pointer_18 = &uStackX_8;
   uStackX_8 = 0;
-  engine_temp_uint5 = FUN_1801cdb50(lVar9,engine_stack_variable_10,&engine_stack_value_60,0,in_stack_ffffffffffffff38 & 0xffffff00,0,
+  engine_temp_uint5 = FUN_1801cdb50(engine_temp_long_9,engine_stack_variable_10,&engine_stack_value_60,0,in_stack_ffffffffffffff38 & 0xffffff00,0,
                          (byte)engine_temp_uint3 & 1,pengine_temp_long,1,0,0,&uStackX_8,engine_temp_uint6);
   engine_stack_variable_10 = &uStackX_8;
   uStackX_8 = 0;
@@ -33406,27 +33406,27 @@ int FUN_180076c50(longlong engine_data_structure_ptr,longlong *engine_result_fla
     engine_temp_int_5 = engine_temp_int_5 + 1;
   }
   engine_result_flag_ptr[6] = *pengine_temp_long;
-  lVar9 = engine_result_flag_ptr[9];
-  engine_temp_uint4 = engine_temp_uint1 % (ulonglong)*(uint *)(lVar9 + 0x10);
-  for (engine_data_ptr2 = *(ulonglong **)(*(longlong *)(lVar9 + 8) + engine_temp_uint4 * 8); engine_data_ptr2 != (ulonglong *)0x0
+  engine_temp_long_9 = engine_result_flag_ptr[9];
+  engine_temp_uint4 = engine_temp_uint1 % (ulonglong)*(uint *)(engine_temp_long_9 + 0x10);
+  for (engine_data_ptr2 = *(ulonglong **)(*(longlong *)(engine_temp_long_9 + 8) + engine_temp_uint4 * 8); engine_data_ptr2 != (ulonglong *)0x0
       ; engine_data_ptr2 = (ulonglong *)engine_data_ptr2[1]) {
     if (engine_temp_uint1 == *engine_data_ptr2) goto LAB_180076feb;
   }
-  pengine_temp_long = *(longlong **)(lVar9 + 0x30);
+  pengine_temp_long = *(longlong **)(engine_temp_long_9 + 0x30);
   engine_temp_uint0 = (longlong)(int)pengine_temp_long[2] + 0xfU & 0xfffffffffffffff0;
   *(int *)(pengine_temp_long + 2) = (int)engine_temp_uint0 + 0x10;
   engine_data_ptr2 = (ulonglong *)(*pengine_temp_long + engine_temp_uint0);
   *engine_data_ptr2 = engine_temp_uint1;
   engine_data_ptr2[1] = 0;
-  FUN_18066c220(lVar9 + 0x20,&uStackX_8,*(uint32*)(lVar9 + 0x10),*(uint32*)(lVar9 + 0x18),
+  FUN_18066c220(engine_temp_long_9 + 0x20,&uStackX_8,*(uint32*)(engine_temp_long_9 + 0x10),*(uint32*)(engine_temp_long_9 + 0x18),
                 1);
   if ((char)uStackX_8 != '\0') {
     engine_temp_uint4 = engine_temp_uint1 % (ulonglong)uStackX_8._4_4_;
-    FUN_180083b20(lVar9,uStackX_8._4_4_);
+    FUN_180083b20(engine_temp_long_9,uStackX_8._4_4_);
   }
-  engine_data_ptr2[1] = *(ulonglong *)(*(longlong *)(lVar9 + 8) + engine_temp_uint4 * 8);
-  *(ulonglong **)(*(longlong *)(lVar9 + 8) + engine_temp_uint4 * 8) = engine_data_ptr2;
-  *(longlong *)(lVar9 + 0x18) = *(longlong *)(lVar9 + 0x18) + 1;
+  engine_data_ptr2[1] = *(ulonglong *)(*(longlong *)(engine_temp_long_9 + 8) + engine_temp_uint4 * 8);
+  *(ulonglong **)(*(longlong *)(engine_temp_long_9 + 8) + engine_temp_uint4 * 8) = engine_data_ptr2;
+  *(longlong *)(engine_temp_long_9 + 0x18) = *(longlong *)(engine_temp_long_9 + 0x18) + 1;
 LAB_180076feb:
   FUN_180080df0(&engine_stack_value_60);
   return engine_temp_int_5;
@@ -33440,18 +33440,18 @@ void FUN_180077020(longlong *engine_data_structure_ptr)
 
 {
   void* engine_data_pointer;
-  void* engine_structure_data_ptr;
+  void* structure_data_pointer;
   
   engine_data_pointer = (void*)engine_data_structure_ptr[1];
-  for (engine_structure_data_ptr = (void*)*engine_data_structure_ptr; engine_structure_data_ptr != engine_data_pointer; engine_structure_data_ptr = engine_structure_data_ptr + 6) {
-    *engine_structure_data_ptr = &engine_system_context_data;
-    if (engine_structure_data_ptr[1] != 0) {
+  for (structure_data_pointer = (void*)*engine_data_structure_ptr; structure_data_pointer != engine_data_pointer; structure_data_pointer = structure_data_pointer + 6) {
+    *structure_data_pointer = &engine_system_context_data;
+    if (structure_data_pointer[1] != 0) {
                     // WARNING: Subroutine does not return
       engine_call_cleanup_routine();
     }
-    engine_structure_data_ptr[1] = 0;
-    *(uint32*)(engine_structure_data_ptr + 3) = 0;
-    *engine_structure_data_ptr = &engine_data_18098bcb0;
+    structure_data_pointer[1] = 0;
+    *(uint32*)(structure_data_pointer + 3) = 0;
+    *structure_data_pointer = &engine_data_18098bcb0;
   }
   if (*engine_data_structure_ptr != 0) {
                     // WARNING: Subroutine does not return
@@ -33528,7 +33528,7 @@ void FUN_180077150(longlong *engine_data_structure_ptr)
 
 {
   uint64 engine_temporary_uint;
-  ulonglong *engine_structure_data_ptr;
+  ulonglong *structure_data_pointer;
   ulonglong engine_temp_uint_3;
   longlong *engine_main_structure_pointer;
   longlong engine_operation_result;
@@ -33609,11 +33609,11 @@ void FUN_180077150(longlong *engine_data_structure_ptr)
         if (cStack_27 != '\0') {
           FUN_180079520(engine_stack_pointer_58);
         }
-        engine_structure_data_ptr = puStack_50;
+        structure_data_pointer = puStack_50;
         engine_stack_pointer_68 = puStack_50;
         puStack_50 = (ulonglong *)0x0;
-        if (engine_structure_data_ptr != (ulonglong *)0x0) {
-          (**(code **)(*engine_structure_data_ptr + 0x38))();
+        if (structure_data_pointer != (ulonglong *)0x0) {
+          (**(code **)(*structure_data_pointer + 0x38))();
         }
       }
       FUN_18022f410(&engine_stack_pointer_58);
@@ -33637,9 +33637,9 @@ uint64 FUN_180077420(longlong engine_data_structure_ptr,longlong engine_result_f
   code *pcVar4;
   bool bVar5;
   byte bVar6;
-  char cVar7;
+  char engine_temp_char_7;
   int engine_temp_int_8;
-  uint uVar9;
+  uint engine_temp_uint_9;
   longlong engine_temp_long0;
   longlong engine_temp_long1;
   longlong engine_temp_long2;
@@ -33650,7 +33650,7 @@ uint64 FUN_180077420(longlong engine_data_structure_ptr,longlong engine_result_f
   uint64 engine_stack_value_78;
   uint32 engine_stack_value_70;
   uint32 uStack_6c;
-  undefined2 uStack_68;
+  engine_undefined_value uStack_68;
   uint8 uStack_66;
   uint32 uStack_64;
   uint8 engine_stack_value_60;
@@ -33705,7 +33705,7 @@ uint64 FUN_180077420(longlong engine_data_structure_ptr,longlong engine_result_f
         do {
           engine_temp_long2 = *(longlong *)(engine_temp_long3 + *(longlong *)(engine_data_structure_ptr + 0x1b8));
           if (((engine_temp_long2 != 0) && (engine_temp_long1 = *(longlong *)(engine_temp_long2 + 0x370), engine_temp_long1 != 0)) &&
-             ((cVar7 = func_0x0001802434e0(), cVar7 != '\0' &&
+             ((engine_temp_char_7 = func_0x0001802434e0(), engine_temp_char_7 != '\0' &&
               ((*(char *)(engine_temp_long1 + 0xde) != '\0' &&
                (bVar5 = true, (*(byte *)(engine_result_flag_ptr + 0x1bd8) & 0x20) != 0)))))) {
             pcVar4 = *(code **)(**(longlong **)(engine_result_flag_ptr + 0x3580) + 0xb8);
@@ -33720,9 +33720,9 @@ uint64 FUN_180077420(longlong engine_data_structure_ptr,longlong engine_result_f
             engine_temp_uint_3 = *engine_data_pointer;
             *engine_data_pointer = *engine_data_pointer + 1;
             UNLOCK();
-            uVar9 = engine_temp_uint_3 >> 10;
-            engine_temp_uint4 = (ulonglong)uVar9;
-            if (*(longlong *)(engine_temp_long1 + 0x3f70 + (ulonglong)uVar9 * 8) == 0) {
+            engine_temp_uint_9 = engine_temp_uint_3 >> 10;
+            engine_temp_uint4 = (ulonglong)engine_temp_uint_9;
+            if (*(longlong *)(engine_temp_long1 + 0x3f70 + (ulonglong)engine_temp_uint_9 * 8) == 0) {
               engine_temp_long0 = engine_call_memory_extender(_engine_data_18,0x2000,0x25);
               pengine_temp_long_2 = (longlong *)(engine_temp_long1 + 0x3f70 + engine_temp_uint4 * 8);
               LOCK();
@@ -33750,7 +33750,7 @@ uint64 FUN_180077420(longlong engine_data_structure_ptr,longlong engine_result_f
               } while (*(char *)(engine_temp_uint4 + 0x48 + (longlong)engine_data_pointer) != '\0');
             }
             *(longlong *)
-             (*(longlong *)(engine_temp_long1 + 0x3f70 + engine_temp_uint4 * 8) + (ulonglong)(engine_temp_uint_3 + uVar9 * -0x400) * 8)
+             (*(longlong *)(engine_temp_long1 + 0x3f70 + engine_temp_uint4 * 8) + (ulonglong)(engine_temp_uint_3 + engine_temp_uint_9 * -0x400) * 8)
                  = engine_temp_long2;
             presource_status_flag5 = (code *)&engine_base_data_offset_a0;
           }
@@ -33779,21 +33779,21 @@ void FUN_180077710(longlong engine_data_structure_ptr)
 
 {
   int *pengine_temp_int;
-  void* engine_structure_data_ptr;
+  void* structure_data_pointer;
   longlong engine_temp_long_3;
   ulonglong engine_temp_counter_4;
   
-  engine_structure_data_ptr = *(void**)(engine_data_structure_ptr + 0x28);
-  if (engine_structure_data_ptr == (void*)0x0) {
+  structure_data_pointer = *(void**)(engine_data_structure_ptr + 0x28);
+  if (structure_data_pointer == (void*)0x0) {
     return;
   }
-  engine_temp_uint_4 = (ulonglong)engine_structure_data_ptr & 0xffffffffffc00000;
+  engine_temp_uint_4 = (ulonglong)structure_data_pointer & 0xffffffffffc00000;
   if (engine_temp_uint_4 != 0) {
-    engine_temp_long_3 = engine_temp_uint_4 + 0x80 + ((longlong)engine_structure_data_ptr - engine_temp_uint_4 >> 0x10) * 0x50;
+    engine_temp_long_3 = engine_temp_uint_4 + 0x80 + ((longlong)structure_data_pointer - engine_temp_uint_4 >> 0x10) * 0x50;
     engine_temp_long_3 = engine_temp_long_3 - (ulonglong)*(uint *)(engine_temp_long_3 + 4);
     if ((*(void ***)(engine_temp_uint_4 + 0x70) == &ExceptionList) && (*(char *)(engine_temp_long_3 + 0xe) == '\0')) {
-      *engine_structure_data_ptr = *(void*)(engine_temp_long_3 + 0x20);
-      *(void**)(engine_temp_long_3 + 0x20) = engine_structure_data_ptr;
+      *structure_data_pointer = *(void*)(engine_temp_long_3 + 0x20);
+      *(void**)(engine_temp_long_3 + 0x20) = structure_data_pointer;
       pengine_temp_int = (int *)(engine_temp_long_3 + 0x18);
       *pengine_temp_int = *pengine_temp_int + -1;
       if (*pengine_temp_int == 0) {
@@ -33803,7 +33803,7 @@ void FUN_180077710(longlong engine_data_structure_ptr)
     }
     else {
       func_0x00018064e870(engine_temp_uint_4,CONCAT71(0xff000000,*(void ***)(engine_temp_uint_4 + 0x70) == &ExceptionList),
-                          engine_structure_data_ptr,engine_temp_uint_4,0xfffffffffffffffe);
+                          structure_data_pointer,engine_temp_uint_4,0xfffffffffffffffe);
     }
   }
   return;
@@ -33823,7 +33823,7 @@ ulonglong FUN_180077750(longlong engine_data_structure_ptr,uint *engine_result_f
   float engine_temp_float_4;
   float engine_temp_float_5;
   uint engine_temp_uint_6;
-  uint32 uVar7;
+  uint32 engine_temp_uint64_value;
   uint32 engine_temp_uint_8;
   float engine_interpolation_value;
   float engine_temp_float_10;
@@ -33903,11 +33903,11 @@ ulonglong FUN_180077750(longlong engine_data_structure_ptr,uint *engine_result_f
     *(void*)(engine_data_structure_ptr + 0x2a8) = *(void*)(engine_temp_long_27 + 0x288);
     *(void*)(engine_data_structure_ptr + 0x2b0) = engine_temp_uint_24;
     engine_temp_uint_23 = *(uint32*)(engine_temp_long_27 + 0x29c);
-    uVar7 = *(uint32*)(engine_temp_long_27 + 0x2a0);
+    engine_temp_uint64_value = *(uint32*)(engine_temp_long_27 + 0x2a0);
     engine_temp_uint_8 = *(uint32*)(engine_temp_long_27 + 0x2a4);
     *(uint32*)(engine_data_structure_ptr + 0x2b8) = *(uint32*)(engine_temp_long_27 + 0x298);
     *(uint32*)(engine_data_structure_ptr + 700) = engine_temp_uint_23;
-    *(uint32*)(engine_data_structure_ptr + 0x2c0) = uVar7;
+    *(uint32*)(engine_data_structure_ptr + 0x2c0) = engine_temp_uint64_value;
     *(uint32*)(engine_data_structure_ptr + 0x2c4) = engine_temp_uint_8;
   }
   engine_temp_uint_25 = (ulonglong)*(uint *)(engine_data_structure_ptr + 0x270);
@@ -34077,11 +34077,11 @@ LAB_180077879:
             if (*(int *)(engine_data_structure_ptr + 0x108) != -1) {
               engine_data_ptr_29 = *(uint32_t **)(engine_data_structure_ptr + 0x2d0);
               engine_temp_uint_23 = engine_data_ptr_29[1];
-              uVar7 = engine_data_ptr_29[2];
+              engine_temp_uint64_value = engine_data_ptr_29[2];
               engine_temp_uint_8 = engine_data_ptr_29[3];
               *(uint32*)(apuStack_128[0] + 5) = *engine_data_ptr_29;
               *(uint32*)((longlong)apuStack_128[0] + 0x2c) = engine_temp_uint_23;
-              *(uint32*)(apuStack_128[0] + 6) = uVar7;
+              *(uint32*)(apuStack_128[0] + 6) = engine_temp_uint64_value;
               *(uint32*)((longlong)apuStack_128[0] + 0x34) = engine_temp_uint_8;
               engine_temp_uint_24 = *(void*)(engine_data_ptr_29 + 6);
               apuStack_128[0][7] = *(void*)(engine_data_ptr_29 + 4);
@@ -34092,11 +34092,11 @@ LAB_180077879:
             engine_temp_long_27 = *(longlong *)(engine_data_structure_ptr + 600);
             if (*(char *)(engine_temp_long_27 + 0x24) != '\0') {
               engine_temp_uint_23 = *(uint32*)(engine_data_structure_ptr + 0x2ac);
-              uVar7 = *(uint32*)(engine_data_structure_ptr + 0x2b0);
+              engine_temp_uint64_value = *(uint32*)(engine_data_structure_ptr + 0x2b0);
               engine_temp_uint_8 = *(uint32*)(engine_data_structure_ptr + 0x2b4);
               *(uint32*)(apuStack_128[0] + 10) = *(uint32*)(engine_data_structure_ptr + 0x2a8);
               *(uint32*)((longlong)apuStack_128[0] + 0x54) = engine_temp_uint_23;
-              *(uint32*)(apuStack_128[0] + 0xb) = uVar7;
+              *(uint32*)(apuStack_128[0] + 0xb) = engine_temp_uint64_value;
               *(uint32*)((longlong)apuStack_128[0] + 0x5c) = engine_temp_uint_8;
               engine_temp_long_27 = *(longlong *)(engine_data_structure_ptr + 600);
             }
@@ -34220,7 +34220,7 @@ void FUN_18007799c(void)
   float engine_temp_float_4;
   float engine_temp_float_5;
   float engine_temp_float_6;
-  uint32 uVar7;
+  uint32 engine_temp_uint64_value;
   uint32 engine_temp_uint_8;
   float engine_interpolation_value;
   float engine_temp_float_10;
@@ -34402,11 +34402,11 @@ void FUN_18007799c(void)
   if (*(int *)(engine_register_rbx + 0x108) != -1) {
     engine_current_node_ptr5 = *(uint32_t **)(engine_register_rbx + 0x2d0);
     engine_temp_uint_31 = engine_current_node_ptr5[1];
-    uVar7 = engine_current_node_ptr5[2];
+    engine_temp_uint64_value = engine_current_node_ptr5[2];
     engine_temp_uint_8 = engine_current_node_ptr5[3];
     *(uint32*)(in_stack_00000040 + 5) = *engine_current_node_ptr5;
     *(uint32*)((longlong)in_stack_00000040 + 0x2c) = engine_temp_uint_31;
-    *(uint32*)(in_stack_00000040 + 6) = uVar7;
+    *(uint32*)(in_stack_00000040 + 6) = engine_temp_uint64_value;
     *(uint32*)((longlong)in_stack_00000040 + 0x34) = engine_temp_uint_8;
     engine_temp_uint_21 = *(void*)(engine_current_node_ptr5 + 6);
     in_stack_00000040[7] = *(void*)(engine_current_node_ptr5 + 4);
@@ -34417,11 +34417,11 @@ void FUN_18007799c(void)
   engine_temp_long_33 = *(longlong *)(engine_register_rbx + 600);
   if (*(char *)(engine_temp_long_33 + 0x24) != '\0') {
     engine_temp_uint_31 = *(uint32*)(engine_register_rbx + 0x2ac);
-    uVar7 = *(uint32*)(engine_register_rbx + 0x2b0);
+    engine_temp_uint64_value = *(uint32*)(engine_register_rbx + 0x2b0);
     engine_temp_uint_8 = *(uint32*)(engine_register_rbx + 0x2b4);
     *(uint32*)(in_stack_00000040 + 10) = *(uint32*)(engine_register_rbx + 0x2a8);
     *(uint32*)((longlong)in_stack_00000040 + 0x54) = engine_temp_uint_31;
-    *(uint32*)(in_stack_00000040 + 0xb) = uVar7;
+    *(uint32*)(in_stack_00000040 + 0xb) = engine_temp_uint64_value;
     *(uint32*)((longlong)in_stack_00000040 + 0x5c) = engine_temp_uint_8;
     engine_temp_long_33 = *(longlong *)(engine_register_rbx + 600);
   }
@@ -34551,7 +34551,7 @@ void FUN_180077ad8(void)
   float engine_temp_float_4;
   float engine_temp_float_5;
   int engine_temp_int_6;
-  uint32 uVar7;
+  uint32 engine_temp_uint64_value;
   uint32 engine_temp_uint_8;
   float engine_interpolation_value;
   float engine_temp_float_10;
@@ -34667,11 +34667,11 @@ void FUN_180077ad8(void)
   if (*(int *)(engine_register_rbx + 0x108) != -1) {
     engine_current_node_ptr4 = *(uint32_t **)(engine_register_rbx + 0x2d0);
     engine_temp_uint_32 = engine_current_node_ptr4[1];
-    uVar7 = engine_current_node_ptr4[2];
+    engine_temp_uint64_value = engine_current_node_ptr4[2];
     engine_temp_uint_8 = engine_current_node_ptr4[3];
     *(uint32*)(in_stack_00000040 + 0x28) = *engine_current_node_ptr4;
     *(uint32*)(in_stack_00000040 + 0x2c) = engine_temp_uint_32;
-    *(uint32*)(in_stack_00000040 + 0x30) = uVar7;
+    *(uint32*)(in_stack_00000040 + 0x30) = engine_temp_uint64_value;
     *(uint32*)(in_stack_00000040 + 0x34) = engine_temp_uint_8;
     engine_temp_uint_21 = *(void*)(engine_current_node_ptr4 + 6);
     *(void*)(in_stack_00000040 + 0x38) = *(void*)(engine_current_node_ptr4 + 4);
@@ -34682,11 +34682,11 @@ void FUN_180077ad8(void)
   engine_temp_long_33 = *(longlong *)(engine_register_rbx + 600);
   if (*(char *)(engine_temp_long_33 + 0x24) != '\0') {
     engine_temp_uint_32 = *(uint32*)(engine_register_rbx + 0x2ac);
-    uVar7 = *(uint32*)(engine_register_rbx + 0x2b0);
+    engine_temp_uint64_value = *(uint32*)(engine_register_rbx + 0x2b0);
     engine_temp_uint_8 = *(uint32*)(engine_register_rbx + 0x2b4);
     *(uint32*)(in_stack_00000040 + 0x50) = *(uint32*)(engine_register_rbx + 0x2a8);
     *(uint32*)(in_stack_00000040 + 0x54) = engine_temp_uint_32;
-    *(uint32*)(in_stack_00000040 + 0x58) = uVar7;
+    *(uint32*)(in_stack_00000040 + 0x58) = engine_temp_uint64_value;
     *(uint32*)(in_stack_00000040 + 0x5c) = engine_temp_uint_8;
     engine_temp_long_33 = *(longlong *)(engine_register_rbx + 600);
   }
@@ -35144,7 +35144,7 @@ void FUN_180077dec(void)
   uint64 engine_temp_uint_6;
   uint64 engine_temp_uint_7;
   uint64 engine_temp_uint_8;
-  uint64 uVar9;
+  uint64 engine_temp_uint_9;
   byte bVar10;
   longlong engine_register_rbx;
   byte bVar11;
@@ -35159,9 +35159,9 @@ void FUN_180077dec(void)
   uint64 in_stack_00000098;
   
   FUN_180085190(&stack0x00000060,unaff_R13 + 0x30,*(uint8*)(engine_register_rbx + 0xf7));
-  uVar9 = in_stack_00000098;
+  engine_temp_uint_9 = in_stack_00000098;
   engine_temp_uint_8 = in_stack_00000090;
-  uVar7 = in_stack_00000088;
+  engine_temp_uint64_value = in_stack_00000088;
   engine_temp_uint_6 = in_stack_00000080;
   engine_temp_index = in_stack_00000078;
   engine_temp_uint_4 = in_stack_00000070;
@@ -35197,9 +35197,9 @@ void FUN_180077dec(void)
     *(void*)(engine_register_rbx + 0x170) = engine_temp_uint_4;
     *(void*)(engine_register_rbx + 0x178) = engine_temp_index;
     *(void*)(engine_register_rbx + 0x180) = engine_temp_uint_6;
-    *(void*)(engine_register_rbx + 0x188) = uVar7;
+    *(void*)(engine_register_rbx + 0x188) = engine_temp_uint64_value;
     *(void*)(engine_register_rbx + 400) = engine_temp_uint_8;
-    *(void*)(engine_register_rbx + 0x198) = uVar9;
+    *(void*)(engine_register_rbx + 0x198) = engine_temp_uint_9;
   }
   return;
 }
@@ -35474,11 +35474,11 @@ void FUN_1800781e0(longlong engine_data_structure_ptr)
   uint32 engine_temp_uint_2;
   uint32 engine_temp_uint_3;
   uint32 engine_temp_uint_4;
-  char cVar5;
+  char engine_temp_char_5;
   uint8 engine_temp_uint_6;
   void* engine_current_data_pointer;
   longlong engine_temp_long_8;
-  uint uVar9;
+  uint engine_temp_uint_9;
   bool bVar10;
   float engine_temp_float_11;
   
@@ -35499,25 +35499,25 @@ LAB_1800782d4:
     bVar10 = (*(byte *)(engine_data_structure_ptr + 0xfd) & 2) != 0;
   }
   else {
-    uVar9 = *(uint *)(*(longlong *)(engine_temp_long_8 + 0x1b8) + 0x138);
-    if ((uVar9 & 0x20) != 0) {
-      cVar5 = '\0';
+    engine_temp_uint_9 = *(uint *)(*(longlong *)(engine_temp_long_8 + 0x1b8) + 0x138);
+    if ((engine_temp_uint_9 & 0x20) != 0) {
+      engine_temp_char_5 = '\0';
       goto LAB_1800782e0;
     }
-    if ((uVar9 & 0x10) == 0) goto LAB_1800782d4;
+    if ((engine_temp_uint_9 & 0x10) == 0) goto LAB_1800782d4;
     bVar10 = (*(byte *)(engine_data_structure_ptr + 0xfd) & 2) == 0;
   }
-  cVar5 = bVar10 + '\x01';
+  engine_temp_char_5 = bVar10 + '\x01';
 LAB_1800782e0:
-  *(char *)(engine_data_structure_ptr + 0xff) = cVar5;
+  *(char *)(engine_data_structure_ptr + 0xff) = engine_temp_char_5;
   engine_temp_long_8 = *(longlong *)(engine_data_structure_ptr + 0x1b8);
-  uVar9 = *(uint *)(engine_temp_long_8 + 0x138) & 0x3000;
+  engine_temp_uint_9 = *(uint *)(engine_temp_long_8 + 0x138) & 0x3000;
   engine_temp_uint_6 = 0;
-  if (uVar9 == 0x1000) {
+  if (engine_temp_uint_9 == 0x1000) {
     *(uint8*)(engine_data_structure_ptr + 0xf7) = 1;
   }
   else {
-    if (uVar9 == 0x2000) {
+    if (engine_temp_uint_9 == 0x2000) {
       engine_temp_uint_6 = 2;
     }
     *(uint8*)(engine_data_structure_ptr + 0xf7) = engine_temp_uint_6;
@@ -35577,7 +35577,7 @@ void FUN_1800781f4(longlong engine_data_structure_ptr)
   uint32 engine_temp_uint_2;
   uint32 engine_temp_uint_3;
   uint32 engine_temp_uint_4;
-  char cVar5;
+  char engine_temp_char_5;
   uint8 engine_temp_uint_6;
   longlong in_RAX;
   void* engine_current_data_pointer;
@@ -35603,15 +35603,15 @@ LAB_1800782d4:
   else {
     engine_temp_uint_8 = *(uint *)(*(longlong *)(engine_data_structure_ptr + 0x1b8) + 0x138);
     if ((engine_temp_uint_8 & 0x20) != 0) {
-      cVar5 = '\0';
+      engine_temp_char_5 = '\0';
       goto LAB_1800782e0;
     }
     if ((engine_temp_uint_8 & 0x10) == 0) goto LAB_1800782d4;
     bVar9 = (*(byte *)(engine_register_rbx + 0xfd) & 2) == 0;
   }
-  cVar5 = bVar9 + '\x01';
+  engine_temp_char_5 = bVar9 + '\x01';
 LAB_1800782e0:
-  *(char *)(engine_register_rbx + 0xff) = cVar5;
+  *(char *)(engine_register_rbx + 0xff) = engine_temp_char_5;
   engine_temporary_long = *(longlong *)(engine_register_rbx + 0x1b8);
   engine_temp_uint_8 = *(uint *)(engine_temporary_long + 0x138) & 0x3000;
   engine_temp_uint_6 = 0;
@@ -35679,7 +35679,7 @@ void FUN_180078239(float engine_data_structure_ptr,float engine_result_flag_ptr,
   uint32 engine_temp_uint_2;
   uint32 engine_temp_uint_3;
   uint32 engine_temp_uint_4;
-  char cVar5;
+  char engine_temp_char_5;
   uint8 engine_temp_uint_6;
   longlong in_RAX;
   void* engine_current_data_pointer;
@@ -35704,15 +35704,15 @@ LAB_1800782d4:
   else {
     engine_temp_uint_8 = *(uint *)(*(longlong *)(in_RCX + 0x1b8) + 0x138);
     if ((engine_temp_uint_8 & 0x20) != 0) {
-      cVar5 = '\0';
+      engine_temp_char_5 = '\0';
       goto LAB_1800782e0;
     }
     if ((engine_temp_uint_8 & 0x10) == 0) goto LAB_1800782d4;
     bVar9 = (*(byte *)(engine_register_rbx + 0xfd) & 2) == 0;
   }
-  cVar5 = bVar9 + '\x01';
+  engine_temp_char_5 = bVar9 + '\x01';
 LAB_1800782e0:
-  *(char *)(engine_register_rbx + 0xff) = cVar5;
+  *(char *)(engine_register_rbx + 0xff) = engine_temp_char_5;
   engine_temporary_long = *(longlong *)(engine_register_rbx + 0x1b8);
   engine_temp_uint_8 = *(uint *)(engine_temporary_long + 0x138) & 0x3000;
   engine_temp_uint_6 = 0;
@@ -35782,7 +35782,7 @@ void FUN_1800782a8(longlong engine_data_structure_ptr)
   uint32 engine_temp_uint_2;
   uint32 engine_temp_uint_3;
   uint32 engine_temp_uint_4;
-  char cVar5;
+  char engine_temp_char_5;
   uint8 engine_temp_uint_6;
   void* engine_current_data_pointer;
   uint engine_temp_uint_8;
@@ -35797,15 +35797,15 @@ LAB_1800782d4:
   else {
     engine_temp_uint_8 = *(uint *)(*(longlong *)(engine_data_structure_ptr + 0x1b8) + 0x138);
     if ((engine_temp_uint_8 & 0x20) != 0) {
-      cVar5 = '\0';
+      engine_temp_char_5 = '\0';
       goto LAB_1800782e0;
     }
     if ((engine_temp_uint_8 & 0x10) == 0) goto LAB_1800782d4;
     bVar9 = (*(byte *)(engine_register_rbx + 0xfd) & 2) == 0;
   }
-  cVar5 = bVar9 + '\x01';
+  engine_temp_char_5 = bVar9 + '\x01';
 LAB_1800782e0:
-  *(char *)(engine_register_rbx + 0xff) = cVar5;
+  *(char *)(engine_register_rbx + 0xff) = engine_temp_char_5;
   engine_temporary_long = *(longlong *)(engine_register_rbx + 0x1b8);
   engine_temp_uint_8 = *(uint *)(engine_temporary_long + 0x138) & 0x3000;
   engine_temp_uint_6 = 0;
@@ -36437,188 +36437,188 @@ void FUN_180078c70(uint32_t *engine_data_structure_ptr,longlong *engine_result_f
 
 {
   uint32 engine_temporary_uint;
-  uint32_t *engine_structure_data_ptr;
+  uint32_t *structure_data_pointer;
   
   engine_temporary_uint = *engine_data_structure_ptr;
-  engine_structure_data_ptr = (uint32*)engine_result_flag_ptr[1];
-  if ((ulonglong)((*engine_result_flag_ptr - (longlong)engine_structure_data_ptr) + engine_result_flag_ptr[2]) < 5) {
-    FUN_180639bf0(engine_result_flag_ptr,(longlong)engine_structure_data_ptr + (4 - *engine_result_flag_ptr));
-    engine_structure_data_ptr = (uint32*)engine_result_flag_ptr[1];
+  structure_data_pointer = (uint32*)engine_result_flag_ptr[1];
+  if ((ulonglong)((*engine_result_flag_ptr - (longlong)structure_data_pointer) + engine_result_flag_ptr[2]) < 5) {
+    FUN_180639bf0(engine_result_flag_ptr,(longlong)structure_data_pointer + (4 - *engine_result_flag_ptr));
+    structure_data_pointer = (uint32*)engine_result_flag_ptr[1];
   }
-  *engine_structure_data_ptr = engine_temporary_uint;
+  *structure_data_pointer = engine_temporary_uint;
   engine_result_flag_ptr[1] = engine_result_flag_ptr[1] + 4;
-  engine_structure_data_ptr = (uint32*)engine_result_flag_ptr[1];
+  structure_data_pointer = (uint32*)engine_result_flag_ptr[1];
   engine_temporary_uint = engine_data_structure_ptr[1];
-  if ((ulonglong)((*engine_result_flag_ptr - (longlong)engine_structure_data_ptr) + engine_result_flag_ptr[2]) < 5) {
-    FUN_180639bf0(engine_result_flag_ptr,(longlong)engine_structure_data_ptr + (4 - *engine_result_flag_ptr));
-    engine_structure_data_ptr = (uint32*)engine_result_flag_ptr[1];
+  if ((ulonglong)((*engine_result_flag_ptr - (longlong)structure_data_pointer) + engine_result_flag_ptr[2]) < 5) {
+    FUN_180639bf0(engine_result_flag_ptr,(longlong)structure_data_pointer + (4 - *engine_result_flag_ptr));
+    structure_data_pointer = (uint32*)engine_result_flag_ptr[1];
   }
-  *engine_structure_data_ptr = engine_temporary_uint;
+  *structure_data_pointer = engine_temporary_uint;
   engine_result_flag_ptr[1] = engine_result_flag_ptr[1] + 4;
-  engine_structure_data_ptr = (uint32*)engine_result_flag_ptr[1];
+  structure_data_pointer = (uint32*)engine_result_flag_ptr[1];
   engine_temporary_uint = engine_data_structure_ptr[2];
-  if ((ulonglong)((*engine_result_flag_ptr - (longlong)engine_structure_data_ptr) + engine_result_flag_ptr[2]) < 5) {
-    FUN_180639bf0(engine_result_flag_ptr,(longlong)engine_structure_data_ptr + (4 - *engine_result_flag_ptr));
-    engine_structure_data_ptr = (uint32*)engine_result_flag_ptr[1];
+  if ((ulonglong)((*engine_result_flag_ptr - (longlong)structure_data_pointer) + engine_result_flag_ptr[2]) < 5) {
+    FUN_180639bf0(engine_result_flag_ptr,(longlong)structure_data_pointer + (4 - *engine_result_flag_ptr));
+    structure_data_pointer = (uint32*)engine_result_flag_ptr[1];
   }
-  *engine_structure_data_ptr = engine_temporary_uint;
+  *structure_data_pointer = engine_temporary_uint;
   engine_result_flag_ptr[1] = engine_result_flag_ptr[1] + 4;
-  engine_structure_data_ptr = (uint32*)engine_result_flag_ptr[1];
+  structure_data_pointer = (uint32*)engine_result_flag_ptr[1];
   engine_temporary_uint = engine_data_structure_ptr[3];
-  if ((ulonglong)((*engine_result_flag_ptr - (longlong)engine_structure_data_ptr) + engine_result_flag_ptr[2]) < 5) {
-    FUN_180639bf0(engine_result_flag_ptr,(longlong)engine_structure_data_ptr + (4 - *engine_result_flag_ptr));
-    engine_structure_data_ptr = (uint32*)engine_result_flag_ptr[1];
+  if ((ulonglong)((*engine_result_flag_ptr - (longlong)structure_data_pointer) + engine_result_flag_ptr[2]) < 5) {
+    FUN_180639bf0(engine_result_flag_ptr,(longlong)structure_data_pointer + (4 - *engine_result_flag_ptr));
+    structure_data_pointer = (uint32*)engine_result_flag_ptr[1];
   }
-  *engine_structure_data_ptr = engine_temporary_uint;
+  *structure_data_pointer = engine_temporary_uint;
   engine_result_flag_ptr[1] = engine_result_flag_ptr[1] + 4;
-  engine_structure_data_ptr = (uint32*)engine_result_flag_ptr[1];
-  if ((ulonglong)((*engine_result_flag_ptr - (longlong)engine_structure_data_ptr) + engine_result_flag_ptr[2]) < 5) {
-    FUN_180639bf0(engine_result_flag_ptr,(longlong)engine_structure_data_ptr + (4 - *engine_result_flag_ptr));
-    engine_structure_data_ptr = (uint32*)engine_result_flag_ptr[1];
+  structure_data_pointer = (uint32*)engine_result_flag_ptr[1];
+  if ((ulonglong)((*engine_result_flag_ptr - (longlong)structure_data_pointer) + engine_result_flag_ptr[2]) < 5) {
+    FUN_180639bf0(engine_result_flag_ptr,(longlong)structure_data_pointer + (4 - *engine_result_flag_ptr));
+    structure_data_pointer = (uint32*)engine_result_flag_ptr[1];
   }
-  *engine_structure_data_ptr = 0x3f800000;
+  *structure_data_pointer = 0x3f800000;
   engine_result_flag_ptr[1] = engine_result_flag_ptr[1] + 4;
-  engine_structure_data_ptr = (uint32*)engine_result_flag_ptr[1];
+  structure_data_pointer = (uint32*)engine_result_flag_ptr[1];
   engine_temporary_uint = engine_data_structure_ptr[5];
-  if ((ulonglong)((*engine_result_flag_ptr - (longlong)engine_structure_data_ptr) + engine_result_flag_ptr[2]) < 5) {
-    FUN_180639bf0(engine_result_flag_ptr,(longlong)engine_structure_data_ptr + (4 - *engine_result_flag_ptr));
-    engine_structure_data_ptr = (uint32*)engine_result_flag_ptr[1];
+  if ((ulonglong)((*engine_result_flag_ptr - (longlong)structure_data_pointer) + engine_result_flag_ptr[2]) < 5) {
+    FUN_180639bf0(engine_result_flag_ptr,(longlong)structure_data_pointer + (4 - *engine_result_flag_ptr));
+    structure_data_pointer = (uint32*)engine_result_flag_ptr[1];
   }
-  *engine_structure_data_ptr = engine_temporary_uint;
+  *structure_data_pointer = engine_temporary_uint;
   engine_result_flag_ptr[1] = engine_result_flag_ptr[1] + 4;
-  engine_structure_data_ptr = (uint32*)engine_result_flag_ptr[1];
+  structure_data_pointer = (uint32*)engine_result_flag_ptr[1];
   engine_temporary_uint = engine_data_structure_ptr[6];
-  if ((ulonglong)((*engine_result_flag_ptr - (longlong)engine_structure_data_ptr) + engine_result_flag_ptr[2]) < 5) {
-    FUN_180639bf0(engine_result_flag_ptr,(longlong)engine_structure_data_ptr + (4 - *engine_result_flag_ptr));
-    engine_structure_data_ptr = (uint32*)engine_result_flag_ptr[1];
+  if ((ulonglong)((*engine_result_flag_ptr - (longlong)structure_data_pointer) + engine_result_flag_ptr[2]) < 5) {
+    FUN_180639bf0(engine_result_flag_ptr,(longlong)structure_data_pointer + (4 - *engine_result_flag_ptr));
+    structure_data_pointer = (uint32*)engine_result_flag_ptr[1];
   }
-  *engine_structure_data_ptr = engine_temporary_uint;
+  *structure_data_pointer = engine_temporary_uint;
   engine_result_flag_ptr[1] = engine_result_flag_ptr[1] + 4;
-  engine_structure_data_ptr = (uint32*)engine_result_flag_ptr[1];
+  structure_data_pointer = (uint32*)engine_result_flag_ptr[1];
   engine_temporary_uint = engine_data_structure_ptr[7];
-  if ((ulonglong)((*engine_result_flag_ptr - (longlong)engine_structure_data_ptr) + engine_result_flag_ptr[2]) < 5) {
-    FUN_180639bf0(engine_result_flag_ptr,(longlong)engine_structure_data_ptr + (4 - *engine_result_flag_ptr));
-    engine_structure_data_ptr = (uint32*)engine_result_flag_ptr[1];
+  if ((ulonglong)((*engine_result_flag_ptr - (longlong)structure_data_pointer) + engine_result_flag_ptr[2]) < 5) {
+    FUN_180639bf0(engine_result_flag_ptr,(longlong)structure_data_pointer + (4 - *engine_result_flag_ptr));
+    structure_data_pointer = (uint32*)engine_result_flag_ptr[1];
   }
-  *engine_structure_data_ptr = engine_temporary_uint;
+  *structure_data_pointer = engine_temporary_uint;
   engine_result_flag_ptr[1] = engine_result_flag_ptr[1] + 4;
-  engine_structure_data_ptr = (uint32*)engine_result_flag_ptr[1];
-  if ((ulonglong)((*engine_result_flag_ptr - (longlong)engine_structure_data_ptr) + engine_result_flag_ptr[2]) < 5) {
-    FUN_180639bf0(engine_result_flag_ptr,(longlong)engine_structure_data_ptr + (4 - *engine_result_flag_ptr));
-    engine_structure_data_ptr = (uint32*)engine_result_flag_ptr[1];
+  structure_data_pointer = (uint32*)engine_result_flag_ptr[1];
+  if ((ulonglong)((*engine_result_flag_ptr - (longlong)structure_data_pointer) + engine_result_flag_ptr[2]) < 5) {
+    FUN_180639bf0(engine_result_flag_ptr,(longlong)structure_data_pointer + (4 - *engine_result_flag_ptr));
+    structure_data_pointer = (uint32*)engine_result_flag_ptr[1];
   }
-  *engine_structure_data_ptr = 0x3f800000;
+  *structure_data_pointer = 0x3f800000;
   engine_result_flag_ptr[1] = engine_result_flag_ptr[1] + 4;
-  engine_structure_data_ptr = (uint32*)engine_result_flag_ptr[1];
+  structure_data_pointer = (uint32*)engine_result_flag_ptr[1];
   engine_temporary_uint = engine_data_structure_ptr[9];
-  if ((ulonglong)((*engine_result_flag_ptr - (longlong)engine_structure_data_ptr) + engine_result_flag_ptr[2]) < 5) {
-    FUN_180639bf0(engine_result_flag_ptr,(longlong)engine_structure_data_ptr + (4 - *engine_result_flag_ptr));
-    engine_structure_data_ptr = (uint32*)engine_result_flag_ptr[1];
+  if ((ulonglong)((*engine_result_flag_ptr - (longlong)structure_data_pointer) + engine_result_flag_ptr[2]) < 5) {
+    FUN_180639bf0(engine_result_flag_ptr,(longlong)structure_data_pointer + (4 - *engine_result_flag_ptr));
+    structure_data_pointer = (uint32*)engine_result_flag_ptr[1];
   }
-  *engine_structure_data_ptr = engine_temporary_uint;
+  *structure_data_pointer = engine_temporary_uint;
   engine_result_flag_ptr[1] = engine_result_flag_ptr[1] + 4;
-  engine_structure_data_ptr = (uint32*)engine_result_flag_ptr[1];
+  structure_data_pointer = (uint32*)engine_result_flag_ptr[1];
   engine_temporary_uint = engine_data_structure_ptr[10];
-  if ((ulonglong)((*engine_result_flag_ptr - (longlong)engine_structure_data_ptr) + engine_result_flag_ptr[2]) < 5) {
-    FUN_180639bf0(engine_result_flag_ptr,(longlong)engine_structure_data_ptr + (4 - *engine_result_flag_ptr));
-    engine_structure_data_ptr = (uint32*)engine_result_flag_ptr[1];
+  if ((ulonglong)((*engine_result_flag_ptr - (longlong)structure_data_pointer) + engine_result_flag_ptr[2]) < 5) {
+    FUN_180639bf0(engine_result_flag_ptr,(longlong)structure_data_pointer + (4 - *engine_result_flag_ptr));
+    structure_data_pointer = (uint32*)engine_result_flag_ptr[1];
   }
-  *engine_structure_data_ptr = engine_temporary_uint;
+  *structure_data_pointer = engine_temporary_uint;
   engine_result_flag_ptr[1] = engine_result_flag_ptr[1] + 4;
-  engine_structure_data_ptr = (uint32*)engine_result_flag_ptr[1];
+  structure_data_pointer = (uint32*)engine_result_flag_ptr[1];
   engine_temporary_uint = engine_data_structure_ptr[0xb];
-  if ((ulonglong)((*engine_result_flag_ptr - (longlong)engine_structure_data_ptr) + engine_result_flag_ptr[2]) < 5) {
-    FUN_180639bf0(engine_result_flag_ptr,(longlong)engine_structure_data_ptr + (4 - *engine_result_flag_ptr));
-    engine_structure_data_ptr = (uint32*)engine_result_flag_ptr[1];
+  if ((ulonglong)((*engine_result_flag_ptr - (longlong)structure_data_pointer) + engine_result_flag_ptr[2]) < 5) {
+    FUN_180639bf0(engine_result_flag_ptr,(longlong)structure_data_pointer + (4 - *engine_result_flag_ptr));
+    structure_data_pointer = (uint32*)engine_result_flag_ptr[1];
   }
-  *engine_structure_data_ptr = engine_temporary_uint;
+  *structure_data_pointer = engine_temporary_uint;
   engine_result_flag_ptr[1] = engine_result_flag_ptr[1] + 4;
-  engine_structure_data_ptr = (uint32*)engine_result_flag_ptr[1];
-  if ((ulonglong)((*engine_result_flag_ptr - (longlong)engine_structure_data_ptr) + engine_result_flag_ptr[2]) < 5) {
-    FUN_180639bf0(engine_result_flag_ptr,(longlong)engine_structure_data_ptr + (4 - *engine_result_flag_ptr));
-    engine_structure_data_ptr = (uint32*)engine_result_flag_ptr[1];
+  structure_data_pointer = (uint32*)engine_result_flag_ptr[1];
+  if ((ulonglong)((*engine_result_flag_ptr - (longlong)structure_data_pointer) + engine_result_flag_ptr[2]) < 5) {
+    FUN_180639bf0(engine_result_flag_ptr,(longlong)structure_data_pointer + (4 - *engine_result_flag_ptr));
+    structure_data_pointer = (uint32*)engine_result_flag_ptr[1];
   }
-  *engine_structure_data_ptr = 0x3f800000;
+  *structure_data_pointer = 0x3f800000;
   engine_result_flag_ptr[1] = engine_result_flag_ptr[1] + 4;
-  engine_structure_data_ptr = (uint32*)engine_result_flag_ptr[1];
+  structure_data_pointer = (uint32*)engine_result_flag_ptr[1];
   engine_temporary_uint = engine_data_structure_ptr[0xd];
-  if ((ulonglong)((*engine_result_flag_ptr - (longlong)engine_structure_data_ptr) + engine_result_flag_ptr[2]) < 5) {
-    FUN_180639bf0(engine_result_flag_ptr,(longlong)engine_structure_data_ptr + (4 - *engine_result_flag_ptr));
-    engine_structure_data_ptr = (uint32*)engine_result_flag_ptr[1];
+  if ((ulonglong)((*engine_result_flag_ptr - (longlong)structure_data_pointer) + engine_result_flag_ptr[2]) < 5) {
+    FUN_180639bf0(engine_result_flag_ptr,(longlong)structure_data_pointer + (4 - *engine_result_flag_ptr));
+    structure_data_pointer = (uint32*)engine_result_flag_ptr[1];
   }
-  *engine_structure_data_ptr = engine_temporary_uint;
+  *structure_data_pointer = engine_temporary_uint;
   engine_result_flag_ptr[1] = engine_result_flag_ptr[1] + 4;
-  engine_structure_data_ptr = (uint32*)engine_result_flag_ptr[1];
+  structure_data_pointer = (uint32*)engine_result_flag_ptr[1];
   engine_temporary_uint = engine_data_structure_ptr[0xe];
-  if ((ulonglong)((*engine_result_flag_ptr - (longlong)engine_structure_data_ptr) + engine_result_flag_ptr[2]) < 5) {
-    FUN_180639bf0(engine_result_flag_ptr,(longlong)engine_structure_data_ptr + (4 - *engine_result_flag_ptr));
-    engine_structure_data_ptr = (uint32*)engine_result_flag_ptr[1];
+  if ((ulonglong)((*engine_result_flag_ptr - (longlong)structure_data_pointer) + engine_result_flag_ptr[2]) < 5) {
+    FUN_180639bf0(engine_result_flag_ptr,(longlong)structure_data_pointer + (4 - *engine_result_flag_ptr));
+    structure_data_pointer = (uint32*)engine_result_flag_ptr[1];
   }
-  *engine_structure_data_ptr = engine_temporary_uint;
+  *structure_data_pointer = engine_temporary_uint;
   engine_result_flag_ptr[1] = engine_result_flag_ptr[1] + 4;
-  engine_structure_data_ptr = (uint32*)engine_result_flag_ptr[1];
+  structure_data_pointer = (uint32*)engine_result_flag_ptr[1];
   engine_temporary_uint = engine_data_structure_ptr[0xf];
-  if ((ulonglong)((*engine_result_flag_ptr - (longlong)engine_structure_data_ptr) + engine_result_flag_ptr[2]) < 5) {
-    FUN_180639bf0(engine_result_flag_ptr,(longlong)engine_structure_data_ptr + (4 - *engine_result_flag_ptr));
-    engine_structure_data_ptr = (uint32*)engine_result_flag_ptr[1];
+  if ((ulonglong)((*engine_result_flag_ptr - (longlong)structure_data_pointer) + engine_result_flag_ptr[2]) < 5) {
+    FUN_180639bf0(engine_result_flag_ptr,(longlong)structure_data_pointer + (4 - *engine_result_flag_ptr));
+    structure_data_pointer = (uint32*)engine_result_flag_ptr[1];
   }
-  *engine_structure_data_ptr = engine_temporary_uint;
+  *structure_data_pointer = engine_temporary_uint;
   engine_result_flag_ptr[1] = engine_result_flag_ptr[1] + 4;
-  engine_structure_data_ptr = (uint32*)engine_result_flag_ptr[1];
-  if ((ulonglong)((*engine_result_flag_ptr - (longlong)engine_structure_data_ptr) + engine_result_flag_ptr[2]) < 5) {
-    FUN_180639bf0(engine_result_flag_ptr,(longlong)engine_structure_data_ptr + (4 - *engine_result_flag_ptr));
-    engine_structure_data_ptr = (uint32*)engine_result_flag_ptr[1];
+  structure_data_pointer = (uint32*)engine_result_flag_ptr[1];
+  if ((ulonglong)((*engine_result_flag_ptr - (longlong)structure_data_pointer) + engine_result_flag_ptr[2]) < 5) {
+    FUN_180639bf0(engine_result_flag_ptr,(longlong)structure_data_pointer + (4 - *engine_result_flag_ptr));
+    structure_data_pointer = (uint32*)engine_result_flag_ptr[1];
   }
-  *engine_structure_data_ptr = 0x3f800000;
+  *structure_data_pointer = 0x3f800000;
   engine_result_flag_ptr[1] = engine_result_flag_ptr[1] + 4;
-  engine_structure_data_ptr = (uint32*)engine_result_flag_ptr[1];
+  structure_data_pointer = (uint32*)engine_result_flag_ptr[1];
   engine_temporary_uint = engine_data_structure_ptr[0x11];
-  if ((ulonglong)((*engine_result_flag_ptr - (longlong)engine_structure_data_ptr) + engine_result_flag_ptr[2]) < 5) {
-    FUN_180639bf0(engine_result_flag_ptr,(longlong)engine_structure_data_ptr + (4 - *engine_result_flag_ptr));
-    engine_structure_data_ptr = (uint32*)engine_result_flag_ptr[1];
+  if ((ulonglong)((*engine_result_flag_ptr - (longlong)structure_data_pointer) + engine_result_flag_ptr[2]) < 5) {
+    FUN_180639bf0(engine_result_flag_ptr,(longlong)structure_data_pointer + (4 - *engine_result_flag_ptr));
+    structure_data_pointer = (uint32*)engine_result_flag_ptr[1];
   }
-  *engine_structure_data_ptr = engine_temporary_uint;
+  *structure_data_pointer = engine_temporary_uint;
   engine_result_flag_ptr[1] = engine_result_flag_ptr[1] + 4;
-  engine_structure_data_ptr = (uint32*)engine_result_flag_ptr[1];
+  structure_data_pointer = (uint32*)engine_result_flag_ptr[1];
   engine_temporary_uint = engine_data_structure_ptr[0x12];
-  if ((ulonglong)((*engine_result_flag_ptr - (longlong)engine_structure_data_ptr) + engine_result_flag_ptr[2]) < 5) {
-    FUN_180639bf0(engine_result_flag_ptr,(longlong)engine_structure_data_ptr + (4 - *engine_result_flag_ptr));
-    engine_structure_data_ptr = (uint32*)engine_result_flag_ptr[1];
+  if ((ulonglong)((*engine_result_flag_ptr - (longlong)structure_data_pointer) + engine_result_flag_ptr[2]) < 5) {
+    FUN_180639bf0(engine_result_flag_ptr,(longlong)structure_data_pointer + (4 - *engine_result_flag_ptr));
+    structure_data_pointer = (uint32*)engine_result_flag_ptr[1];
   }
-  *engine_structure_data_ptr = engine_temporary_uint;
+  *structure_data_pointer = engine_temporary_uint;
   engine_result_flag_ptr[1] = engine_result_flag_ptr[1] + 4;
-  engine_structure_data_ptr = (uint32*)engine_result_flag_ptr[1];
+  structure_data_pointer = (uint32*)engine_result_flag_ptr[1];
   engine_temporary_uint = engine_data_structure_ptr[0x13];
-  if ((ulonglong)((*engine_result_flag_ptr - (longlong)engine_structure_data_ptr) + engine_result_flag_ptr[2]) < 5) {
-    FUN_180639bf0(engine_result_flag_ptr,(longlong)engine_structure_data_ptr + (4 - *engine_result_flag_ptr));
-    engine_structure_data_ptr = (uint32*)engine_result_flag_ptr[1];
+  if ((ulonglong)((*engine_result_flag_ptr - (longlong)structure_data_pointer) + engine_result_flag_ptr[2]) < 5) {
+    FUN_180639bf0(engine_result_flag_ptr,(longlong)structure_data_pointer + (4 - *engine_result_flag_ptr));
+    structure_data_pointer = (uint32*)engine_result_flag_ptr[1];
   }
-  *engine_structure_data_ptr = engine_temporary_uint;
+  *structure_data_pointer = engine_temporary_uint;
   engine_result_flag_ptr[1] = engine_result_flag_ptr[1] + 4;
-  engine_structure_data_ptr = (uint32*)engine_result_flag_ptr[1];
+  structure_data_pointer = (uint32*)engine_result_flag_ptr[1];
   engine_temporary_uint = engine_data_structure_ptr[0x14];
-  if ((ulonglong)((*engine_result_flag_ptr - (longlong)engine_structure_data_ptr) + engine_result_flag_ptr[2]) < 5) {
-    FUN_180639bf0(engine_result_flag_ptr,(longlong)engine_structure_data_ptr + (4 - *engine_result_flag_ptr));
-    engine_structure_data_ptr = (uint32*)engine_result_flag_ptr[1];
+  if ((ulonglong)((*engine_result_flag_ptr - (longlong)structure_data_pointer) + engine_result_flag_ptr[2]) < 5) {
+    FUN_180639bf0(engine_result_flag_ptr,(longlong)structure_data_pointer + (4 - *engine_result_flag_ptr));
+    structure_data_pointer = (uint32*)engine_result_flag_ptr[1];
   }
-  *engine_structure_data_ptr = engine_temporary_uint;
+  *structure_data_pointer = engine_temporary_uint;
   engine_result_flag_ptr[1] = engine_result_flag_ptr[1] + 4;
-  engine_structure_data_ptr = (uint32*)engine_result_flag_ptr[1];
+  structure_data_pointer = (uint32*)engine_result_flag_ptr[1];
   engine_temporary_uint = engine_data_structure_ptr[0x15];
-  if ((ulonglong)((*engine_result_flag_ptr - (longlong)engine_structure_data_ptr) + engine_result_flag_ptr[2]) < 5) {
-    FUN_180639bf0(engine_result_flag_ptr,(longlong)engine_structure_data_ptr + (4 - *engine_result_flag_ptr));
-    engine_structure_data_ptr = (uint32*)engine_result_flag_ptr[1];
+  if ((ulonglong)((*engine_result_flag_ptr - (longlong)structure_data_pointer) + engine_result_flag_ptr[2]) < 5) {
+    FUN_180639bf0(engine_result_flag_ptr,(longlong)structure_data_pointer + (4 - *engine_result_flag_ptr));
+    structure_data_pointer = (uint32*)engine_result_flag_ptr[1];
   }
-  *engine_structure_data_ptr = engine_temporary_uint;
+  *structure_data_pointer = engine_temporary_uint;
   engine_result_flag_ptr[1] = engine_result_flag_ptr[1] + 4;
-  engine_structure_data_ptr = (uint32*)engine_result_flag_ptr[1];
+  structure_data_pointer = (uint32*)engine_result_flag_ptr[1];
   engine_temporary_uint = engine_data_structure_ptr[0x16];
-  if ((ulonglong)((*engine_result_flag_ptr - (longlong)engine_structure_data_ptr) + engine_result_flag_ptr[2]) < 5) {
-    FUN_180639bf0(engine_result_flag_ptr,(longlong)engine_structure_data_ptr + (4 - *engine_result_flag_ptr));
+  if ((ulonglong)((*engine_result_flag_ptr - (longlong)structure_data_pointer) + engine_result_flag_ptr[2]) < 5) {
+    FUN_180639bf0(engine_result_flag_ptr,(longlong)structure_data_pointer + (4 - *engine_result_flag_ptr));
     *(uint32*)engine_result_flag_ptr[1] = engine_temporary_uint;
   }
   else {
-    *engine_structure_data_ptr = engine_temporary_uint;
+    *structure_data_pointer = engine_temporary_uint;
   }
   engine_result_flag_ptr[1] = engine_result_flag_ptr[1] + 4;
   return;
@@ -37871,9 +37871,9 @@ void FUN_18007940e(void)
   char engine_temp_char_4;
   longlong engine_operation_result;
   uint32 engine_temp_uint_6;
-  uint uVar7;
+  uint engine_temp_uint64_value;
   longlong *pengine_temp_long_8;
-  longlong lVar9;
+  longlong engine_temp_long_9;
   int engine_temp_int0;
   int engine_temp_int1;
   longlong engine_register_rbx;
@@ -37942,9 +37942,9 @@ void FUN_18007940e(void)
             pengine_temp_long_2 = (longlong *)((longlong)pengine_temp_long_8 + (longlong)(engine_temp_char_4 + -1) * 4);
             if ((((longlong *)(engine_operation_result + 0x2c) < pengine_temp_long_8) || (pengine_temp_long_2 < (longlong *)(engine_operation_result + 0x2c))) &&
                ((pengine_temp_long < pengine_temp_long_8 || (engine_temp_int9 = 0, pengine_temp_long_2 < pengine_temp_long)))) {
-              uVar7 = engine_temp_uint_7 & 0x8000000f;
-              if ((int)uVar7 < 0) {
-                uVar7 = (uVar7 - 1 | 0xfffffff0) + 1;
+              engine_temp_uint64_value = engine_temp_uint_7 & 0x8000000f;
+              if ((int)engine_temp_uint64_value < 0) {
+                engine_temp_uint64_value = (engine_temp_uint64_value - 1 | 0xfffffff0) + 1;
               }
               pengine_temp_long_8 = pengine_temp_long_8 + 4;
               engine_temp_int0 = 8;
@@ -37969,7 +37969,7 @@ void FUN_18007940e(void)
                 pengine_temp_long_8 = pengine_temp_long_8 + 8;
                 engine_temp_int0 = engine_temp_int0 + 0x10;
                 engine_temp_int9 = engine_temp_int8;
-              } while (engine_temp_int8 < (int)(engine_temp_uint_7 - uVar7));
+              } while (engine_temp_int8 < (int)(engine_temp_uint_7 - engine_temp_uint64_value));
             }
           }
           for (engine_temp_long2 = (longlong)engine_temp_int9; engine_temp_long2 < (longlong)engine_temp_uint3; engine_temp_long2 = engine_temp_long2 + 1) {
@@ -38009,11 +38009,11 @@ void FUN_18007940e(void)
             do {
               engine_temp_int9 = (int)engine_temp_uint_22;
               if (*(longlong *)engine_data_ptr_21 == 0) {
-                lVar9 = engine_call_memory_extender(_engine_data_18,0x2000,0x25);
+                engine_temp_long_9 = engine_call_memory_extender(_engine_data_18,0x2000,0x25);
                 LOCK();
                 engine_comparison_result4 = *(longlong *)(engine_data_ptr5 + (longlong)engine_temp_int9 * 2 + 2) == 0;
                 if (engine_comparison_result4) {
-                  *(longlong *)(engine_data_ptr5 + (longlong)engine_temp_int9 * 2 + 2) = lVar9;
+                  *(longlong *)(engine_data_ptr5 + (longlong)engine_temp_int9 * 2 + 2) = engine_temp_long_9;
                 }
                 UNLOCK();
                 if (engine_comparison_result4) {
@@ -38022,7 +38022,7 @@ void FUN_18007940e(void)
                   UNLOCK();
                 }
                 else {
-                  if (lVar9 != 0) {
+                  if (engine_temp_long_9 != 0) {
                     // WARNING: Subroutine does not return
                     engine_call_cleanup_routine();
                   }
@@ -38042,12 +38042,12 @@ void FUN_18007940e(void)
           }
         }
         engine_data_ptr_20 = *(uint32_t **)(engine_operation_result + 0x38);
-        uVar7 = engine_temp_uint_7 >> 0xb;
+        engine_temp_uint64_value = engine_temp_uint_7 >> 0xb;
         *(uint *)(engine_operation_result + 0x2c) = engine_temp_uint_7;
-        if (uVar7 == (int)engine_temp_char_4 + engine_temp_uint_7 >> 0xb) {
+        if (engine_temp_uint64_value == (int)engine_temp_char_4 + engine_temp_uint_7 >> 0xb) {
                     // WARNING: Subroutine does not return
-          memcpy(*(longlong *)(engine_data_ptr5 + (ulonglong)uVar7 * 2 + 2) +
-                 (ulonglong)(engine_temp_uint_7 + uVar7 * -0x800) * 4,engine_data_ptr_20,(engine_temp_uint3 & 0xffffffff) << 2);
+          memcpy(*(longlong *)(engine_data_ptr5 + (ulonglong)engine_temp_uint64_value * 2 + 2) +
+                 (ulonglong)(engine_temp_uint_7 + engine_temp_uint64_value * -0x800) * 4,engine_data_ptr_20,(engine_temp_uint3 & 0xffffffff) << 2);
         }
         if (engine_temp_int6 != 0) {
           engine_temp_uint3 = engine_temp_uint3 & 0xffffffff;
@@ -38198,11 +38198,11 @@ float * FUN_1800795b0(float *engine_data_structure_ptr)
   byte engine_comparison_result;
   longlong *pengine_temp_long_3;
   float *pengine_temp_float_4;
-  char cVar5;
+  char engine_temp_char_5;
   float engine_temp_float_6;
   float *pengine_temp_float_7;
   uint engine_temp_uint_8;
-  ulonglong uVar9;
+  ulonglong engine_temp_uint_9;
   bool bVar10;
   float engine_temp_float_11;
   float fStack_b8;
@@ -38376,7 +38376,7 @@ float * FUN_1800795b0(float *engine_data_structure_ptr)
       engine_data_structure_ptr[0xa7] = (engine_data_structure_ptr[0xa3] + engine_data_structure_ptr[0x9f]) * 0.5;
       engine_data_structure_ptr[0xa8] = 3.4028235e+38;
       engine_temp_float_6 = 0.0;
-      uVar9 = (ulonglong)*(uint *)(lStack_88 + 0x10);
+      engine_temp_uint_9 = (ulonglong)*(uint *)(lStack_88 + 0x10);
       if (0 < (int)*(uint *)(lStack_88 + 0x10)) {
         pengine_temp_float_7 = *(float **)(lStack_88 + 0x18);
         engine_temp_float_11 = engine_temp_float_6;
@@ -38388,20 +38388,20 @@ float * FUN_1800795b0(float *engine_data_structure_ptr)
             engine_temp_float_6 = engine_temp_float_11;
           }
           pengine_temp_float_7 = pengine_temp_float_7 + 4;
-          uVar9 = uVar9 - 1;
+          engine_temp_uint_9 = engine_temp_uint_9 - 1;
           engine_temp_float_11 = engine_temp_float_6;
-        } while (uVar9 != 0);
+        } while (engine_temp_uint_9 != 0);
       }
       engine_data_structure_ptr[0xa9] = SQRT(engine_temp_float_6);
     }
     if (pfStack_98 != (float *)0x0) {
       while( true ) {
         LOCK();
-        cVar5 = *(char *)(pengine_temp_float_4 + 0x3b);
-        bVar10 = cVar5 == '\0';
+        engine_temp_char_5 = *(char *)(pengine_temp_float_4 + 0x3b);
+        bVar10 = engine_temp_char_5 == '\0';
         if (bVar10) {
           *(char *)(pengine_temp_float_4 + 0x3b) = '\x01';
-          cVar5 = '\0';
+          engine_temp_char_5 = '\0';
         }
         UNLOCK();
         if (bVar10) break;
@@ -38409,7 +38409,7 @@ float * FUN_1800795b0(float *engine_data_structure_ptr)
         if ((pengine_temp_float_4[0x3c] == engine_temp_float_6) || (pengine_temp_float_4[0x3c] != 0.0)) goto LAB_180075f4f;
         Sleep();
       }
-      cVar5 = '\0';
+      engine_temp_char_5 = '\0';
 LAB_180075f4f:
       LOCK();
       pengine_temp_float_1 = pengine_temp_float_4 + 0x3a;
@@ -38417,7 +38417,7 @@ LAB_180075f4f:
       pengine_temp_float_7 = (float *)(ulonglong)(uint)engine_temp_float_6;
       *pengine_temp_float_1 = (float)((int)*pengine_temp_float_1 + -1);
       UNLOCK();
-      if (cVar5 == '\0') {
+      if (engine_temp_char_5 == '\0') {
         if ((((engine_temp_float_6 == 1.4013e-45) && (*(longlong *)(pfStack_98 + 0x84) != 0)) &&
             (pengine_temp_float_7 = pfStack_98, FUN_1800791a0(pfStack_98), *(char *)(pengine_temp_float_7 + 0x3f) == '\0')) &&
            ((*(char *)(pengine_temp_float_7 + 0x3d) == '\0' &&
@@ -38455,7 +38455,7 @@ void FUN_1800796b0(longlong engine_data_structure_ptr)
 
 {
   int *pengine_temp_int;
-  uint *engine_structure_data_ptr;
+  uint *structure_data_pointer;
   void* engine_current_node_ptr;
   void* engine_next_node_ptr;
   float engine_temp_float_5;
@@ -38944,8 +38944,8 @@ LAB_18007a5ac:
                   engine_temp_uint_33 = *engine_current_node_ptr2;
                   if ((*(uint *)(*(longlong *)(piStack_218 + (ulonglong)engine_temp_uint_33 * 8) + engine_temp_long_31) &
                       engine_temp_uint9) != 0) {
-                    engine_structure_data_ptr = (uint *)(engine_temp_long_31 + *(longlong *)(piStack_218 + (ulonglong)engine_temp_uint_33 * 8));
-                    *engine_structure_data_ptr = *engine_structure_data_ptr | engine_temp_uint9;
+                    structure_data_pointer = (uint *)(engine_temp_long_31 + *(longlong *)(piStack_218 + (ulonglong)engine_temp_uint_33 * 8));
+                    *structure_data_pointer = *structure_data_pointer | engine_temp_uint9;
                     engine_temp_long_22 = *pengine_temp_long_39;
                     engine_temp_float_48 = *(float *)(engine_temp_long_23 + 8 + engine_temp_long_22);
                     engine_temp_float_52 = *(float *)(engine_temp_long_23 + 4 + engine_temp_long_22);
@@ -38959,9 +38959,9 @@ LAB_18007a5ac:
                   }
                   if ((*(uint *)(*(longlong *)(piStack_218 + (ulonglong)engine_temp_uint_33 * 8) + 0x14 + engine_temp_long_31)
                       & engine_temp_uint9) != 0) {
-                    engine_structure_data_ptr = (uint *)(*(longlong *)(piStack_218 + (ulonglong)engine_temp_uint_33 * 8) + 0x14 +
+                    structure_data_pointer = (uint *)(*(longlong *)(piStack_218 + (ulonglong)engine_temp_uint_33 * 8) + 0x14 +
                                      engine_temp_long_31);
-                    *engine_structure_data_ptr = *engine_structure_data_ptr | engine_temp_uint9;
+                    *structure_data_pointer = *structure_data_pointer | engine_temp_uint9;
                     engine_temp_long_22 = *pengine_temp_long_39;
                     engine_temp_float_48 = *(float *)(engine_temp_long_23 + 8 + engine_temp_long_22);
                     engine_temp_float_52 = *(float *)(engine_temp_long_23 + 4 + engine_temp_long_22);
@@ -38977,9 +38977,9 @@ LAB_18007a5ac:
                   }
                   if ((*(uint *)(*(longlong *)(piStack_218 + (ulonglong)engine_temp_uint_33 * 8) + 0x28 + engine_temp_long_31)
                       & engine_temp_uint9) != 0) {
-                    engine_structure_data_ptr = (uint *)(*(longlong *)(piStack_218 + (ulonglong)engine_temp_uint_33 * 8) + 0x28 +
+                    structure_data_pointer = (uint *)(*(longlong *)(piStack_218 + (ulonglong)engine_temp_uint_33 * 8) + 0x28 +
                                      engine_temp_long_31);
-                    *engine_structure_data_ptr = *engine_structure_data_ptr | engine_temp_uint9;
+                    *structure_data_pointer = *structure_data_pointer | engine_temp_uint9;
                     engine_temp_long_22 = *pengine_temp_long_39;
                     engine_temp_float_48 = *(float *)(engine_temp_long_23 + 8 + engine_temp_long_22);
                     engine_temp_float_52 = *(float *)(engine_temp_long_23 + 4 + engine_temp_long_22);
@@ -39161,11 +39161,11 @@ LAB_18007ac04:
             engine_temp_long_24 = *(longlong *)(piStack_218 + engine_temp_long_22 * 8);
             engine_current_node_ptr = (void*)(engine_temp_long_24 + 4 + engine_temp_long_31 * 0x14);
             engine_temp_uint_6 = *engine_current_node_ptr;
-            uVar7 = engine_current_node_ptr[1];
+            engine_temp_uint64_value = engine_current_node_ptr[1];
             if (uStackX_18 == -1) {
               engine_current_node_ptr = (void*)(*(longlong *)(engine_data_structure_ptr + 0x68) + 4 + engine_temp_long2);
               *engine_current_node_ptr = engine_temp_uint_6;
-              engine_current_node_ptr[1] = uVar7;
+              engine_current_node_ptr[1] = engine_temp_uint64_value;
               engine_current_node_ptr = (void*)(engine_temp_long_24 + 4 + engine_temp_long_31 * 0x14);
               engine_temp_uint_6 = engine_current_node_ptr[1];
               engine_next_node_ptr = (void*)
@@ -39179,7 +39179,7 @@ LAB_18007ac04:
                        (*(longlong *)(*(longlong *)(engine_data_structure_ptr + 0xb0) + 0x30 + uStackX_18 * 0x50) +
                        (longlong)*(int *)(engine_temp_long7 + engine_temp_long_21) * 0x10);
               *engine_current_node_ptr = engine_temp_uint_6;
-              engine_current_node_ptr[1] = uVar7;
+              engine_current_node_ptr[1] = engine_temp_uint64_value;
             }
             engine_temp_long_40 = (longlong)*(int *)(engine_temp_long7 + 4 + engine_temp_long_21);
             engine_temp_long2 = engine_temp_long_40 * 0x5c;
@@ -39201,11 +39201,11 @@ LAB_18007ac04:
             engine_temp_long_24 = *(longlong *)(piStack_218 + engine_temp_long_22 * 8);
             engine_current_node_ptr = (void*)(engine_temp_long_24 + 4 + engine_temp_long_31 * 0x14);
             engine_temp_uint_6 = *engine_current_node_ptr;
-            uVar7 = engine_current_node_ptr[1];
+            engine_temp_uint64_value = engine_current_node_ptr[1];
             if (uStackX_18 == -1) {
               engine_current_node_ptr = (void*)(*(longlong *)(engine_data_structure_ptr + 0x68) + 4 + engine_temp_long2);
               *engine_current_node_ptr = engine_temp_uint_6;
-              engine_current_node_ptr[1] = uVar7;
+              engine_current_node_ptr[1] = engine_temp_uint64_value;
               engine_current_node_ptr = (void*)(engine_temp_long_24 + 4 + engine_temp_long_31 * 0x14);
               engine_temp_uint_6 = engine_current_node_ptr[1];
               engine_next_node_ptr = (void*)
@@ -39219,7 +39219,7 @@ LAB_18007ac04:
                        (*(longlong *)(*(longlong *)(engine_data_structure_ptr + 0xb0) + 0x30 + uStackX_18 * 0x50) +
                        engine_temp_long_40 * 0x10);
               *engine_current_node_ptr = engine_temp_uint_6;
-              engine_current_node_ptr[1] = uVar7;
+              engine_current_node_ptr[1] = engine_temp_uint64_value;
             }
             engine_temp_long_40 = (longlong)*(int *)(engine_temp_long7 + 8 + engine_temp_long_21);
             engine_temp_long_43 = engine_temp_long_40 * 0x5c;
@@ -39586,7 +39586,7 @@ LAB_18007a312:
         engine_temp_long_31 = *(longlong *)(engine_temp_uint_30 + 0x30 + *(longlong *)(engine_data_structure_ptr + 0xb0));
         engine_current_node_ptr = (void*)(engine_temp_long_31 + engine_temp_long_23 * 0x10);
         engine_temp_uint_6 = *engine_current_node_ptr;
-        uVar7 = engine_current_node_ptr[1];
+        engine_temp_uint64_value = engine_current_node_ptr[1];
         engine_temp_int_27 = *(int *)(engine_temp_long_21 + 0x2c);
         engine_temp_int1 = *(int *)(engine_temp_long_21 + 0x28);
         if (engine_temp_int_27 <= engine_temp_int1) {
@@ -39602,7 +39602,7 @@ LAB_18007a312:
         }
         engine_current_node_ptr = (void*)(engine_temp_long_31 + (longlong)engine_temp_int1 * 0x10);
         *engine_current_node_ptr = engine_temp_uint_6;
-        engine_current_node_ptr[1] = uVar7;
+        engine_current_node_ptr[1] = engine_temp_uint64_value;
         *(int *)(engine_temp_long_21 + 0x28) = *(int *)(engine_temp_long_21 + 0x28) + 1;
         engine_temp_uint_33 = (int)engine_temp_uint_41 + 1;
         engine_temp_uint_30 = engine_temp_uint_30 + 0x50;
@@ -39753,7 +39753,7 @@ void FUN_1800802e0(longlong engine_data_structure_ptr,uint engine_result_flag_pt
   uint64 engine_temp_uint_6;
   uint64 engine_temp_uint_7;
   uint64 engine_temp_uint_8;
-  uint64 uVar9;
+  uint64 engine_temp_uint_9;
   uint64 engine_temp_uint0;
   uint64 engine_temp_uint1;
   longlong engine_temp_long2;
@@ -39779,11 +39779,11 @@ void FUN_1800802e0(longlong engine_data_structure_ptr,uint engine_result_flag_pt
       engine_temp_index = engine_comparison_params[1];
       engine_temp_int5 = (int)engine_temp_uint6;
       engine_temp_uint_6 = engine_comparison_params[2];
-      uVar7 = engine_comparison_params[3];
+      engine_temp_uint64_value = engine_comparison_params[3];
       engine_temp_uint_3 = engine_temp_uint6 >> 0xd;
       engine_temp_uint6 = (ulonglong)(engine_temp_int5 + 1);
       engine_temp_uint_8 = engine_comparison_params[4];
-      uVar9 = engine_comparison_params[5];
+      engine_temp_uint_9 = engine_comparison_params[5];
       engine_temp_uint0 = engine_comparison_params[6];
       engine_temp_uint1 = engine_comparison_params[7];
       engine_temp_long_2 = *(longlong *)(engine_data_structure_ptr + 8 + engine_temp_uint_3 * 8);
@@ -39793,10 +39793,10 @@ void FUN_1800802e0(longlong engine_data_structure_ptr,uint engine_result_flag_pt
       ((void*)(engine_temp_long_2 + engine_temp_long2))[1] = engine_temp_index;
       engine_data_pointer = (void*)(engine_temp_long_2 + 0x10 + engine_temp_long2);
       *engine_data_pointer = engine_temp_uint_6;
-      engine_data_pointer[1] = uVar7;
+      engine_data_pointer[1] = engine_temp_uint64_value;
       engine_data_pointer = (void*)(engine_temp_long_2 + 0x20 + engine_temp_long2);
       *engine_data_pointer = engine_temp_uint_8;
-      engine_data_pointer[1] = uVar9;
+      engine_data_pointer[1] = engine_temp_uint_9;
       engine_data_pointer = (void*)(engine_temp_long_2 + 0x30 + engine_temp_long2);
       *engine_data_pointer = engine_temp_uint0;
       engine_data_pointer[1] = engine_temp_uint1;
@@ -39956,7 +39956,7 @@ uint FUN_180080480(uint *engine_data_structure_ptr,int engine_result_flag_ptr)
   ulonglong engine_temp_counter_4;
   longlong engine_operation_result;
   int engine_temp_int_6;
-  ulonglong uVar7;
+  ulonglong engine_temp_uint64_value;
   uint engine_temp_uint_8;
   int engine_temp_int_9;
   uint *engine_data_ptr0;
@@ -39969,14 +39969,14 @@ uint FUN_180080480(uint *engine_data_structure_ptr,int engine_result_flag_ptr)
   engine_temporary_uint = *engine_data_structure_ptr;
   *engine_data_structure_ptr = *engine_data_structure_ptr + engine_result_flag_ptr;
   UNLOCK();
-  uVar7 = (ulonglong)(engine_temporary_uint >> 0xb);
+  engine_temp_uint64_value = (ulonglong)(engine_temporary_uint >> 0xb);
   engine_temp_uint_4 = (ulonglong)(engine_result_flag_ptr + -1 + engine_temporary_uint >> 0xb);
-  if (uVar7 <= engine_temp_uint_4) {
-    pengine_temp_char_flag_2 = (char *)((longlong)engine_data_structure_ptr + uVar7 + 0x408);
-    engine_operation_result = (engine_temp_uint_4 - uVar7) + 1;
+  if (engine_temp_uint64_value <= engine_temp_uint_4) {
+    pengine_temp_char_flag_2 = (char *)((longlong)engine_data_structure_ptr + engine_temp_uint64_value + 0x408);
+    engine_operation_result = (engine_temp_uint_4 - engine_temp_uint64_value) + 1;
     engine_data_ptr0 = engine_data_structure_ptr + (ulonglong)(engine_temporary_uint >> 0xb) * 2 + 2;
     do {
-      engine_temp_int_6 = (int)uVar7;
+      engine_temp_int_6 = (int)engine_temp_uint64_value;
       if (*(longlong *)engine_data_ptr0 == 0) {
         engine_temp_long_2 = engine_call_memory_extender(_engine_data_18,0x4000,0x25);
         LOCK();
@@ -40010,7 +40010,7 @@ uint FUN_180080480(uint *engine_data_structure_ptr,int engine_result_flag_ptr)
         do {
         } while (*pengine_temp_char_flag_2 != '\0');
       }
-      uVar7 = (ulonglong)(engine_temp_int_6 + 1);
+      engine_temp_uint64_value = (ulonglong)(engine_temp_int_6 + 1);
       engine_data_ptr0 = engine_data_ptr0 + 2;
       pengine_temp_char_flag_2 = pengine_temp_char_flag_2 + 1;
       engine_operation_result = engine_operation_result + -1;
@@ -40184,15 +40184,15 @@ void FUN_1800806e0(int *engine_data_structure_ptr,longlong *engine_result_flag_p
   int *pengine_temp_int_4;
   int engine_temp_int_5;
   longlong engine_temp_long_6;
-  ulonglong uVar7;
+  ulonglong engine_temp_uint64_value;
   
   engine_temp_int_5 = *engine_data_structure_ptr;
   engine_temp_long_6 = engine_result_flag_ptr[2];
   pengine_temp_int_4 = (int *)engine_result_flag_ptr[1];
   engine_temp_long_2 = *engine_result_flag_ptr;
-  uVar7 = (longlong)engine_temp_int_5 * 0x10 + 4;
-  if ((ulonglong)((engine_temp_long_2 - (longlong)pengine_temp_int_4) + engine_temp_long_6) <= uVar7) {
-    FUN_180639bf0(engine_result_flag_ptr,(longlong)pengine_temp_int_4 + (uVar7 - engine_temp_long_2));
+  engine_temp_uint64_value = (longlong)engine_temp_int_5 * 0x10 + 4;
+  if ((ulonglong)((engine_temp_long_2 - (longlong)pengine_temp_int_4) + engine_temp_long_6) <= engine_temp_uint64_value) {
+    FUN_180639bf0(engine_result_flag_ptr,(longlong)pengine_temp_int_4 + (engine_temp_uint64_value - engine_temp_long_2));
     engine_temp_long_6 = engine_result_flag_ptr[2];
     pengine_temp_int_4 = (int *)engine_result_flag_ptr[1];
     engine_temp_long_2 = *engine_result_flag_ptr;
@@ -40366,7 +40366,7 @@ void FUN_1800809a0(longlong *engine_data_structure_ptr)
 
 {
   uint8* engine_data_pointer;
-  uint8* engine_structure_data_ptr;
+  uint8* structure_data_pointer;
   longlong engine_temp_long_3;
   int aiStackX_8 [2];
   
@@ -40378,17 +40378,17 @@ void FUN_1800809a0(longlong *engine_data_structure_ptr)
     engine_call_cleanup_routine(engine_temp_long_3);
   }
   *engine_data_structure_ptr = 0;
-  engine_structure_data_ptr = _engine_network_flag_4;
+  structure_data_pointer = _engine_network_flag_4;
   if (*(int *)((longlong)engine_data_structure_ptr + 0xc) != -1) {
     aiStackX_8[0] = *(int *)((longlong)engine_data_structure_ptr + 0xc);
     engine_temp_long_3 = (longlong)aiStackX_8[0];
     engine_data_pointer = _engine_network_flag_4 + 0x2b8;
     AcquireSRWLockExclusive(engine_data_pointer);
-    *engine_structure_data_ptr = 1;
-    **(uint8**)(*(longlong *)(engine_structure_data_ptr + 0x140) + engine_temp_long_3 * 8) = 0;
-    *(void*)(*(longlong *)(*(longlong *)(engine_structure_data_ptr + 0x140) + engine_temp_long_3 * 8) + 0x1a8) = 0;
-    FUN_1800f8a50(*(longlong *)(*(longlong *)(engine_structure_data_ptr + 0x140) + engine_temp_long_3 * 8) + 8);
-    engine_manage_system_buffer(engine_structure_data_ptr + 0xc0,aiStackX_8);
+    *structure_data_pointer = 1;
+    **(uint8**)(*(longlong *)(structure_data_pointer + 0x140) + engine_temp_long_3 * 8) = 0;
+    *(void*)(*(longlong *)(*(longlong *)(structure_data_pointer + 0x140) + engine_temp_long_3 * 8) + 0x1a8) = 0;
+    FUN_1800f8a50(*(longlong *)(*(longlong *)(structure_data_pointer + 0x140) + engine_temp_long_3 * 8) + 8);
+    engine_manage_system_buffer(structure_data_pointer + 0xc0,aiStackX_8);
     *(uint32*)((longlong)engine_data_structure_ptr + 0xc) = 0xffffffff;
     ReleaseSRWLockExclusive(engine_data_pointer);
     *(uint32*)((longlong)engine_data_structure_ptr + 0xc) = 0xffffffff;
@@ -40751,18 +40751,18 @@ void FUN_180080df0(longlong *engine_data_structure_ptr)
 
 {
   void* engine_data_pointer;
-  void* engine_structure_data_ptr;
+  void* structure_data_pointer;
   
   engine_data_pointer = (void*)engine_data_structure_ptr[1];
-  for (engine_structure_data_ptr = (void*)*engine_data_structure_ptr; engine_structure_data_ptr != engine_data_pointer; engine_structure_data_ptr = engine_structure_data_ptr + 6) {
-    *engine_structure_data_ptr = &engine_system_context_data;
-    if (engine_structure_data_ptr[1] != 0) {
+  for (structure_data_pointer = (void*)*engine_data_structure_ptr; structure_data_pointer != engine_data_pointer; structure_data_pointer = structure_data_pointer + 6) {
+    *structure_data_pointer = &engine_system_context_data;
+    if (structure_data_pointer[1] != 0) {
                     // WARNING: Subroutine does not return
       engine_call_cleanup_routine();
     }
-    engine_structure_data_ptr[1] = 0;
-    *(uint32*)(engine_structure_data_ptr + 3) = 0;
-    *engine_structure_data_ptr = &engine_data_18098bcb0;
+    structure_data_pointer[1] = 0;
+    *(uint32*)(structure_data_pointer + 3) = 0;
+    *structure_data_pointer = &engine_data_18098bcb0;
   }
   if (*engine_data_structure_ptr != 0) {
                     // WARNING: Subroutine does not return
@@ -40786,7 +40786,7 @@ void FUN_180080e90(uint *engine_data_structure_ptr,int *engine_result_flag_ptr,l
   longlong engine_temp_long_4;
   int engine_temp_int_5;
   longlong *engine_memory_allocation_pointer;
-  ulonglong uVar7;
+  ulonglong engine_temp_uint64_value;
   bool bVar8;
   
   LOCK();
@@ -40794,13 +40794,13 @@ void FUN_180080e90(uint *engine_data_structure_ptr,int *engine_result_flag_ptr,l
   *engine_data_structure_ptr = *engine_data_structure_ptr + 1;
   UNLOCK();
   engine_temp_uint_3 = engine_temp_uint_2 >> 0xb;
-  uVar7 = (ulonglong)engine_temp_uint_3;
+  engine_temp_uint64_value = (ulonglong)engine_temp_uint_3;
   if (*(longlong *)(engine_data_structure_ptr + (ulonglong)engine_temp_uint_3 * 2 + 2) == 0) {
     engine_temp_long_4 = engine_call_memory_extender(_engine_data_18,0x8000,0x25);
     LOCK();
-    bVar8 = *(longlong *)(engine_data_structure_ptr + uVar7 * 2 + 2) == 0;
+    bVar8 = *(longlong *)(engine_data_structure_ptr + engine_temp_uint64_value * 2 + 2) == 0;
     if (bVar8) {
-      *(longlong *)(engine_data_structure_ptr + uVar7 * 2 + 2) = engine_temp_long_4;
+      *(longlong *)(engine_data_structure_ptr + engine_temp_uint64_value * 2 + 2) = engine_temp_long_4;
     }
     UNLOCK();
     if (bVar8) {
@@ -40809,7 +40809,7 @@ void FUN_180080e90(uint *engine_data_structure_ptr,int *engine_result_flag_ptr,l
       for (; engine_temp_int_5 < engine_temporary_int; engine_temp_int_5 = engine_temp_int_5 + 1) {
       }
       LOCK();
-      *(uint8*)(uVar7 + 0x108 + (longlong)engine_data_structure_ptr) = 0;
+      *(uint8*)(engine_temp_uint64_value + 0x108 + (longlong)engine_data_structure_ptr) = 0;
       UNLOCK();
     }
     else {
@@ -40818,16 +40818,16 @@ void FUN_180080e90(uint *engine_data_structure_ptr,int *engine_result_flag_ptr,l
         engine_call_cleanup_routine();
       }
       do {
-      } while (*(char *)(uVar7 + 0x108 + (longlong)engine_data_structure_ptr) != '\0');
+      } while (*(char *)(engine_temp_uint64_value + 0x108 + (longlong)engine_data_structure_ptr) != '\0');
     }
   }
   else {
     do {
-    } while (*(char *)(uVar7 + 0x108 + (longlong)engine_data_structure_ptr) != '\0');
+    } while (*(char *)(engine_temp_uint64_value + 0x108 + (longlong)engine_data_structure_ptr) != '\0');
   }
   engine_temp_long_4 = *engine_comparison_params;
   engine_temp_ptr_array_6 = (longlong *)
-           (*(longlong *)(engine_data_structure_ptr + uVar7 * 2 + 2) + (ulonglong)(engine_temp_uint_2 + engine_temp_uint_3 * -0x800) * 0x10);
+           (*(longlong *)(engine_data_structure_ptr + engine_temp_uint64_value * 2 + 2) + (ulonglong)(engine_temp_uint_2 + engine_temp_uint_3 * -0x800) * 0x10);
   *engine_temp_ptr_array_6 = (longlong)*engine_result_flag_ptr;
   engine_temp_ptr_array_6[1] = engine_temp_long_4;
   return;
@@ -41631,7 +41631,7 @@ void FUN_180082290(longlong *engine_data_structure_ptr,ulonglong engine_result_f
   void* engine_temporary_data_ptr;
   void* engine_current_data_pointer;
   longlong *pengine_temp_long_8;
-  ulonglong uVar9;
+  ulonglong engine_temp_uint_9;
   void* engine_data_ptr0;
   ulonglong engine_temp_uint1;
   
@@ -41639,17 +41639,17 @@ void FUN_180082290(longlong *engine_data_structure_ptr,ulonglong engine_result_f
   if ((ulonglong)(engine_data_structure_ptr[2] - (longlong)engine_current_data_pointer >> 5) < engine_result_flag_ptr) {
     engine_data_ptr0 = (void*)*engine_data_structure_ptr;
     engine_temp_long_4 = (longlong)engine_current_data_pointer - (longlong)engine_data_ptr0 >> 5;
-    uVar9 = engine_temp_long_4 * 2;
+    engine_temp_uint_9 = engine_temp_long_4 * 2;
     if (engine_temp_long_4 == 0) {
-      uVar9 = 1;
+      engine_temp_uint_9 = 1;
     }
-    if (uVar9 < engine_temp_long_4 + engine_result_flag_ptr) {
-      uVar9 = engine_temp_long_4 + engine_result_flag_ptr;
+    if (engine_temp_uint_9 < engine_temp_long_4 + engine_result_flag_ptr) {
+      engine_temp_uint_9 = engine_temp_long_4 + engine_result_flag_ptr;
     }
     engine_temporary_pointer = (void*)0x0;
-    if (uVar9 != 0) {
+    if (engine_temp_uint_9 != 0) {
       engine_temporary_pointer = (void*)
-               engine_call_memory_extender(_engine_data_18,uVar9 << 5,(char)engine_data_structure_ptr[3],engine_system_parameter_4,0xfffffffffffffffe);
+               engine_call_memory_extender(_engine_data_18,engine_temp_uint_9 << 5,(char)engine_data_structure_ptr[3],engine_system_parameter_4,0xfffffffffffffffe);
       engine_current_data_pointer = (void*)engine_data_structure_ptr[1];
       engine_data_ptr0 = (void*)*engine_data_structure_ptr;
     }
@@ -41708,10 +41708,10 @@ void FUN_180082290(longlong *engine_data_structure_ptr,ulonglong engine_result_f
     }
     *engine_data_structure_ptr = (longlong)engine_temporary_pointer;
     engine_data_structure_ptr[1] = (longlong)(engine_temporary_data_ptr + engine_result_flag_ptr * 4);
-    engine_data_structure_ptr[2] = (longlong)(engine_temporary_pointer + uVar9 * 4);
+    engine_data_structure_ptr[2] = (longlong)(engine_temporary_pointer + engine_temp_uint_9 * 4);
   }
   else {
-    uVar9 = engine_result_flag_ptr;
+    engine_temp_uint_9 = engine_result_flag_ptr;
     if (engine_result_flag_ptr != 0) {
       do {
         *engine_current_data_pointer = 0;
@@ -41719,8 +41719,8 @@ void FUN_180082290(longlong *engine_data_structure_ptr,ulonglong engine_result_f
         engine_current_data_pointer[2] = 0;
         *(uint32*)(engine_current_data_pointer + 3) = 3;
         engine_current_data_pointer = engine_current_data_pointer + 4;
-        uVar9 = uVar9 - 1;
-      } while (uVar9 != 0);
+        engine_temp_uint_9 = engine_temp_uint_9 - 1;
+      } while (engine_temp_uint_9 != 0);
       engine_current_data_pointer = (void*)engine_data_structure_ptr[1];
     }
     engine_data_structure_ptr[1] = (longlong)(engine_current_data_pointer + engine_result_flag_ptr * 4);
@@ -41745,7 +41745,7 @@ void FUN_1800824a0(longlong *engine_data_structure_ptr,ulonglong engine_result_f
   void* engine_temporary_data_ptr;
   void* engine_current_data_pointer;
   longlong *pengine_temp_long_8;
-  ulonglong uVar9;
+  ulonglong engine_temp_uint_9;
   void* engine_data_ptr0;
   ulonglong engine_temp_uint1;
   
@@ -41753,17 +41753,17 @@ void FUN_1800824a0(longlong *engine_data_structure_ptr,ulonglong engine_result_f
   if ((ulonglong)(engine_data_structure_ptr[2] - (longlong)engine_current_data_pointer >> 5) < engine_result_flag_ptr) {
     engine_data_ptr0 = (void*)*engine_data_structure_ptr;
     engine_temp_long_4 = (longlong)engine_current_data_pointer - (longlong)engine_data_ptr0 >> 5;
-    uVar9 = engine_temp_long_4 * 2;
+    engine_temp_uint_9 = engine_temp_long_4 * 2;
     if (engine_temp_long_4 == 0) {
-      uVar9 = 1;
+      engine_temp_uint_9 = 1;
     }
-    if (uVar9 < engine_temp_long_4 + engine_result_flag_ptr) {
-      uVar9 = engine_temp_long_4 + engine_result_flag_ptr;
+    if (engine_temp_uint_9 < engine_temp_long_4 + engine_result_flag_ptr) {
+      engine_temp_uint_9 = engine_temp_long_4 + engine_result_flag_ptr;
     }
     engine_temporary_pointer = (void*)0x0;
-    if (uVar9 != 0) {
+    if (engine_temp_uint_9 != 0) {
       engine_temporary_pointer = (void*)
-               engine_call_memory_extender(_engine_data_18,uVar9 << 5,(char)engine_data_structure_ptr[3],engine_system_parameter_4,0xfffffffffffffffe);
+               engine_call_memory_extender(_engine_data_18,engine_temp_uint_9 << 5,(char)engine_data_structure_ptr[3],engine_system_parameter_4,0xfffffffffffffffe);
       engine_current_data_pointer = (void*)engine_data_structure_ptr[1];
       engine_data_ptr0 = (void*)*engine_data_structure_ptr;
     }
@@ -41822,10 +41822,10 @@ void FUN_1800824a0(longlong *engine_data_structure_ptr,ulonglong engine_result_f
     }
     *engine_data_structure_ptr = (longlong)engine_temporary_pointer;
     engine_data_structure_ptr[1] = (longlong)(engine_temporary_data_ptr + engine_result_flag_ptr * 4);
-    engine_data_structure_ptr[2] = (longlong)(engine_temporary_pointer + uVar9 * 4);
+    engine_data_structure_ptr[2] = (longlong)(engine_temporary_pointer + engine_temp_uint_9 * 4);
   }
   else {
-    uVar9 = engine_result_flag_ptr;
+    engine_temp_uint_9 = engine_result_flag_ptr;
     if (engine_result_flag_ptr != 0) {
       do {
         *engine_current_data_pointer = 0;
@@ -41833,8 +41833,8 @@ void FUN_1800824a0(longlong *engine_data_structure_ptr,ulonglong engine_result_f
         engine_current_data_pointer[2] = 0;
         *(uint32*)(engine_current_data_pointer + 3) = 3;
         engine_current_data_pointer = engine_current_data_pointer + 4;
-        uVar9 = uVar9 - 1;
-      } while (uVar9 != 0);
+        engine_temp_uint_9 = engine_temp_uint_9 - 1;
+      } while (engine_temp_uint_9 != 0);
       engine_current_data_pointer = (void*)engine_data_structure_ptr[1];
     }
     engine_data_structure_ptr[1] = (longlong)(engine_current_data_pointer + engine_result_flag_ptr * 4);
@@ -41859,7 +41859,7 @@ void FUN_1800826b0(longlong *engine_data_structure_ptr,longlong *engine_result_f
   uint32_t *engine_temporary_data_ptr;
   void* engine_current_data_pointer;
   void* engine_next_data_pointer;
-  longlong *plVar9;
+  longlong *engine_temp_long_ptr_9;
   longlong engine_temp_long0;
   longlong engine_temp_long1;
   uint32_t *engine_data_ptr2;
@@ -41924,25 +41924,25 @@ LAB_180082720:
     memmove(*engine_next_data_pointer,engine_temp_long1,engine_result_flag_ptr[1] - engine_temp_long1);
   }
   engine_next_data_pointer[1] = *engine_next_data_pointer;
-  plVar9 = (longlong *)*engine_data_structure_ptr;
-  if (plVar9 != (longlong *)engine_data_structure_ptr[1]) {
+  engine_temp_long_ptr_9 = (longlong *)*engine_data_structure_ptr;
+  if (engine_temp_long_ptr_9 != (longlong *)engine_data_structure_ptr[1]) {
     do {
-      if (*plVar9 != 0) {
+      if (*engine_temp_long_ptr_9 != 0) {
                     // WARNING: Subroutine does not return
         engine_call_cleanup_routine();
       }
-      plVar9 = plVar9 + 4;
-    } while (plVar9 != (longlong *)engine_data_structure_ptr[1]);
-    plVar9 = (longlong *)*engine_data_structure_ptr;
+      engine_temp_long_ptr_9 = engine_temp_long_ptr_9 + 4;
+    } while (engine_temp_long_ptr_9 != (longlong *)engine_data_structure_ptr[1]);
+    engine_temp_long_ptr_9 = (longlong *)*engine_data_structure_ptr;
   }
-  if (plVar9 == (longlong *)0x0) {
+  if (engine_temp_long_ptr_9 == (longlong *)0x0) {
     *engine_data_structure_ptr = (longlong)engine_temporary_pointer;
     engine_data_structure_ptr[1] = (longlong)(engine_next_data_pointer + 4);
     engine_data_structure_ptr[2] = (longlong)(engine_temporary_pointer + engine_temp_long0 * 4);
     return;
   }
                     // WARNING: Subroutine does not return
-  engine_call_cleanup_routine(plVar9);
+  engine_call_cleanup_routine(engine_temp_long_ptr_9);
 }
 
 
@@ -42470,21 +42470,21 @@ void FUN_1800834f0(ulonglong *engine_data_structure_ptr)
 
 {
   int *pengine_temp_int;
-  void* engine_structure_data_ptr;
+  void* structure_data_pointer;
   longlong engine_temp_long_3;
   ulonglong engine_temp_counter_4;
   
-  engine_structure_data_ptr = (void*)*engine_data_structure_ptr;
-  if (engine_structure_data_ptr == (void*)0x0) {
+  structure_data_pointer = (void*)*engine_data_structure_ptr;
+  if (structure_data_pointer == (void*)0x0) {
     return;
   }
-  engine_temp_uint_4 = (ulonglong)engine_structure_data_ptr & 0xffffffffffc00000;
+  engine_temp_uint_4 = (ulonglong)structure_data_pointer & 0xffffffffffc00000;
   if (engine_temp_uint_4 != 0) {
-    engine_temp_long_3 = engine_temp_uint_4 + 0x80 + ((longlong)engine_structure_data_ptr - engine_temp_uint_4 >> 0x10) * 0x50;
+    engine_temp_long_3 = engine_temp_uint_4 + 0x80 + ((longlong)structure_data_pointer - engine_temp_uint_4 >> 0x10) * 0x50;
     engine_temp_long_3 = engine_temp_long_3 - (ulonglong)*(uint *)(engine_temp_long_3 + 4);
     if ((*(void ***)(engine_temp_uint_4 + 0x70) == &ExceptionList) && (*(char *)(engine_temp_long_3 + 0xe) == '\0')) {
-      *engine_structure_data_ptr = *(void*)(engine_temp_long_3 + 0x20);
-      *(void**)(engine_temp_long_3 + 0x20) = engine_structure_data_ptr;
+      *structure_data_pointer = *(void*)(engine_temp_long_3 + 0x20);
+      *(void**)(engine_temp_long_3 + 0x20) = structure_data_pointer;
       pengine_temp_int = (int *)(engine_temp_long_3 + 0x18);
       *pengine_temp_int = *pengine_temp_int + -1;
       if (*pengine_temp_int == 0) {
@@ -42494,7 +42494,7 @@ void FUN_1800834f0(ulonglong *engine_data_structure_ptr)
     }
     else {
       func_0x00018064e870(engine_temp_uint_4,CONCAT71(0xff000000,*(void ***)(engine_temp_uint_4 + 0x70) == &ExceptionList),
-                          engine_structure_data_ptr,engine_temp_uint_4,0xfffffffffffffffe);
+                          structure_data_pointer,engine_temp_uint_4,0xfffffffffffffffe);
     }
   }
   return;
@@ -43513,7 +43513,7 @@ uint64_t * FUN_180084ea0(uint64_t *engine_data_structure_ptr)
   uint64 engine_temporary_uint;
   longlong engine_temp_long_2;
   void* engine_current_node_ptr;
-  undefined2 uStack_a;
+  engine_undefined_value uStack_a;
   
   engine_temp_long_2 = 6;
   engine_current_node_ptr = engine_data_structure_ptr;
@@ -43884,7 +43884,7 @@ FUN_1800855e0(ulonglong engine_data_structure_ptr,uint64 engine_result_flag_ptr,
 
 {
   ulonglong *engine_data_pointer;
-  ulonglong *engine_structure_data_ptr;
+  ulonglong *structure_data_pointer;
   int engine_loop_index;
   
   if (engine_data_structure_ptr == 0) {
@@ -43894,17 +43894,17 @@ FUN_1800855e0(ulonglong engine_data_structure_ptr,uint64 engine_result_flag_ptr,
            engine_call_memory_extender(_engine_data_18,engine_data_structure_ptr * 0x50 + 0x10,0xf,engine_system_parameter_4,0xfffffffffffffffe);
   *engine_data_pointer = engine_data_structure_ptr << 0x20 | 0x50;
   engine_loop_index = 0;
-  engine_structure_data_ptr = engine_data_pointer + 8;
+  structure_data_pointer = engine_data_pointer + 8;
   do {
-    *(uint32*)((longlong)engine_structure_data_ptr + -0x2c) = 0;
-    *(uint32*)(engine_structure_data_ptr + -6) = 0;
-    engine_structure_data_ptr[-5] = 0;
-    *(uint8*)(engine_structure_data_ptr + -2) = 3;
-    engine_structure_data_ptr[-1] = 0;
-    *engine_structure_data_ptr = 0;
-    *(uint8*)(engine_structure_data_ptr + 3) = 3;
+    *(uint32*)((longlong)structure_data_pointer + -0x2c) = 0;
+    *(uint32*)(structure_data_pointer + -6) = 0;
+    structure_data_pointer[-5] = 0;
+    *(uint8*)(structure_data_pointer + -2) = 3;
+    structure_data_pointer[-1] = 0;
+    *structure_data_pointer = 0;
+    *(uint8*)(structure_data_pointer + 3) = 3;
     engine_loop_index = engine_loop_index + 1;
-    engine_structure_data_ptr = engine_structure_data_ptr + 10;
+    structure_data_pointer = structure_data_pointer + 10;
   } while ((ulonglong)(longlong)engine_loop_index < engine_data_structure_ptr);
   return engine_data_pointer + 2;
 }
@@ -43919,14 +43919,14 @@ void FUN_180085680(longlong *engine_data_structure_ptr,longlong *engine_result_f
 
 {
   uint32_t *engine_data_pointer;
-  uint32_t *engine_structure_data_ptr;
+  uint32_t *structure_data_pointer;
   uint engine_temp_uint_3;
   uint32 engine_temp_uint_4;
   uint32 engine_temp_index;
   uint32 engine_temp_uint_6;
-  ushort uVar7;
+  ushort engine_temp_uint64_value;
   ulonglong engine_temp_uint_8;
-  longlong lVar9;
+  longlong engine_temp_long_9;
   uint engine_temp_uint0;
   uint engine_temp_uint1;
   uint *engine_data_ptr2;
@@ -43945,18 +43945,18 @@ void FUN_180085680(longlong *engine_data_structure_ptr,longlong *engine_result_f
   if ((short)engine_result_flag_ptr[2] == 0) {
     return;
   }
-  uVar7 = *(ushort *)(engine_data_structure_ptr + 2);
+  engine_temp_uint64_value = *(ushort *)(engine_data_structure_ptr + 2);
   engine_temp_uint_8 = engine_temp_uint3;
-  if ((ulonglong)uVar7 != 0) {
-    engine_temp_uint_8 = engine_call_memory_extender(_engine_data_18,(ulonglong)uVar7 * 4,0xf);
-    uVar7 = *(ushort *)(engine_data_structure_ptr + 2);
+  if ((ulonglong)engine_temp_uint64_value != 0) {
+    engine_temp_uint_8 = engine_call_memory_extender(_engine_data_18,(ulonglong)engine_temp_uint64_value * 4,0xf);
+    engine_temp_uint64_value = *(ushort *)(engine_data_structure_ptr + 2);
   }
   engine_data_structure_ptr[1] = engine_temp_uint_8;
-  lVar9 = FUN_1800855e0(uVar7);
-  *engine_data_structure_ptr = lVar9;
-  uVar7 = *(ushort *)(engine_data_structure_ptr + 2);
+  engine_temp_long_9 = FUN_1800855e0(engine_temp_uint64_value);
+  *engine_data_structure_ptr = engine_temp_long_9;
+  engine_temp_uint64_value = *(ushort *)(engine_data_structure_ptr + 2);
   engine_temp_uint_8 = engine_temp_uint3;
-  if (uVar7 != 0) {
+  if (engine_temp_uint64_value != 0) {
     do {
       engine_temp_uint0 = 0;
       engine_data_ptr4 = (uint *)(*engine_result_flag_ptr + engine_temp_uint_8);
@@ -43980,17 +43980,17 @@ void FUN_180085680(longlong *engine_data_structure_ptr,longlong *engine_result_f
       *engine_data_ptr2 = engine_temp_uint1;
       if (*engine_data_ptr4 != 0) {
         do {
-          lVar9 = (longlong)(int)engine_temp_uint0;
+          engine_temp_long_9 = (longlong)(int)engine_temp_uint0;
           engine_temp_uint0 = engine_temp_uint0 + 1;
-          engine_data_pointer = (uint32*)(*(longlong *)(engine_data_ptr4 + 2) + lVar9 * 0x10);
+          engine_data_pointer = (uint32*)(*(longlong *)(engine_data_ptr4 + 2) + engine_temp_long_9 * 0x10);
           engine_temp_uint_4 = engine_data_pointer[1];
           engine_temp_index = engine_data_pointer[2];
           engine_temp_uint_6 = engine_data_pointer[3];
-          engine_structure_data_ptr = (uint32*)(*(longlong *)(engine_data_ptr2 + 2) + lVar9 * 0x10);
-          *engine_structure_data_ptr = *engine_data_pointer;
-          engine_structure_data_ptr[1] = engine_temp_uint_4;
-          engine_structure_data_ptr[2] = engine_temp_index;
-          engine_structure_data_ptr[3] = engine_temp_uint_6;
+          structure_data_pointer = (uint32*)(*(longlong *)(engine_data_ptr2 + 2) + engine_temp_long_9 * 0x10);
+          *structure_data_pointer = *engine_data_pointer;
+          structure_data_pointer[1] = engine_temp_uint_4;
+          structure_data_pointer[2] = engine_temp_index;
+          structure_data_pointer[3] = engine_temp_uint_6;
         } while (engine_temp_uint0 < *engine_data_ptr4);
       }
       engine_temp_uint1 = engine_data_ptr4[10];
@@ -44013,27 +44013,27 @@ void FUN_180085680(longlong *engine_data_structure_ptr,longlong *engine_result_f
       engine_temp_uint1 = 0;
       if (engine_data_ptr4[10] != 0) {
         do {
-          lVar9 = (longlong)(int)engine_temp_uint1;
+          engine_temp_long_9 = (longlong)(int)engine_temp_uint1;
           engine_temp_uint1 = engine_temp_uint1 + 1;
-          engine_data_pointer = (uint32*)(*(longlong *)(engine_data_ptr4 + 0xc) + lVar9 * 0x10);
+          engine_data_pointer = (uint32*)(*(longlong *)(engine_data_ptr4 + 0xc) + engine_temp_long_9 * 0x10);
           engine_temp_uint_4 = engine_data_pointer[1];
           engine_temp_index = engine_data_pointer[2];
           engine_temp_uint_6 = engine_data_pointer[3];
-          engine_structure_data_ptr = (uint32*)(*(longlong *)(engine_data_ptr2 + 0xc) + lVar9 * 0x10);
-          *engine_structure_data_ptr = *engine_data_pointer;
-          engine_structure_data_ptr[1] = engine_temp_uint_4;
-          engine_structure_data_ptr[2] = engine_temp_index;
-          engine_structure_data_ptr[3] = engine_temp_uint_6;
+          structure_data_pointer = (uint32*)(*(longlong *)(engine_data_ptr2 + 0xc) + engine_temp_long_9 * 0x10);
+          *structure_data_pointer = *engine_data_pointer;
+          structure_data_pointer[1] = engine_temp_uint_4;
+          structure_data_pointer[2] = engine_temp_index;
+          structure_data_pointer[3] = engine_temp_uint_6;
         } while (engine_temp_uint1 < engine_data_ptr4[10]);
       }
-      uVar7 = *(ushort *)(engine_data_structure_ptr + 2);
+      engine_temp_uint64_value = *(ushort *)(engine_data_structure_ptr + 2);
       engine_temp_uint1 = (int)engine_temp_uint3 + 1;
       engine_temp_uint3 = (ulonglong)engine_temp_uint1;
       engine_temp_uint_8 = engine_temp_uint_8 + 0x50;
-    } while ((int)engine_temp_uint1 < (int)(uint)uVar7);
+    } while ((int)engine_temp_uint1 < (int)(uint)engine_temp_uint64_value);
   }
                     // WARNING: Subroutine does not return
-  memcpy(engine_data_structure_ptr[1],engine_result_flag_ptr[1],(ulonglong)uVar7 << 2);
+  memcpy(engine_data_structure_ptr[1],engine_result_flag_ptr[1],(ulonglong)engine_temp_uint64_value << 2);
 }
 
 
@@ -44046,15 +44046,15 @@ void FUN_1800856c7(void)
 
 {
   uint32_t *engine_data_pointer;
-  uint32_t *engine_structure_data_ptr;
+  uint32_t *structure_data_pointer;
   ushort engine_temp_uint_3;
   uint engine_temp_uint_4;
   uint32 engine_temp_index;
   uint32 engine_temp_uint_6;
-  uint32 uVar7;
-  undefined2 engine_temp_uint_8;
+  uint32 engine_temp_uint64_value;
+  engine_undefined_value engine_temp_uint_8;
   longlong in_RAX;
-  ulonglong uVar9;
+  ulonglong engine_temp_uint_9;
   longlong engine_temp_long0;
   int engine_temp_int1;
   ulonglong engine_temp_uint2;
@@ -44067,23 +44067,23 @@ void FUN_1800856c7(void)
   longlong *unaff_R14;
   
   if (in_RAX == 0) {
-    uVar9 = unaff_RBP & 0xffffffff;
+    engine_temp_uint_9 = unaff_RBP & 0xffffffff;
     engine_temp_uint_8 = 0;
   }
   else {
-    uVar9 = engine_call_memory_extender(_engine_data_18,in_RAX * 4,0xf);
-    engine_temp_uint_8 = (undefined2)unaff_R14[2];
+    engine_temp_uint_9 = engine_call_memory_extender(_engine_data_18,in_RAX * 4,0xf);
+    engine_temp_uint_8 = (engine_undefined_value)unaff_R14[2];
   }
-  unaff_R14[1] = uVar9;
+  unaff_R14[1] = engine_temp_uint_9;
   engine_temp_long0 = FUN_1800855e0(engine_temp_uint_8);
   *unaff_R14 = engine_temp_long0;
   engine_temp_uint6 = unaff_RBP & 0xffffffff;
   engine_temp_uint_3 = *(ushort *)(unaff_R14 + 2);
-  uVar9 = unaff_RBP;
+  engine_temp_uint_9 = unaff_RBP;
   if ((ushort)unaff_RBP < engine_temp_uint_3) {
     do {
-      engine_data_ptr4 = (uint *)(*unaff_R13 + uVar9);
-      engine_data_ptr3 = (uint *)(*unaff_R14 + uVar9);
+      engine_data_ptr4 = (uint *)(*unaff_R13 + engine_temp_uint_9);
+      engine_data_ptr3 = (uint *)(*unaff_R14 + engine_temp_uint_9);
       engine_temp_uint5 = *engine_data_ptr4;
       engine_temp_uint_4 = engine_data_ptr3[1];
       if ((int)engine_temp_uint_4 < (int)engine_temp_uint5) {
@@ -44109,12 +44109,12 @@ void FUN_1800856c7(void)
           engine_data_pointer = (uint32*)(*(longlong *)(engine_data_ptr4 + 2) + (longlong)engine_temp_int1 * 0x10);
           engine_temp_index = engine_data_pointer[1];
           engine_temp_uint_6 = engine_data_pointer[2];
-          uVar7 = engine_data_pointer[3];
-          engine_structure_data_ptr = (uint32*)(*(longlong *)(engine_data_ptr3 + 2) + (longlong)engine_temp_int1 * 0x10);
-          *engine_structure_data_ptr = *engine_data_pointer;
-          engine_structure_data_ptr[1] = engine_temp_index;
-          engine_structure_data_ptr[2] = engine_temp_uint_6;
-          engine_structure_data_ptr[3] = uVar7;
+          engine_temp_uint64_value = engine_data_pointer[3];
+          structure_data_pointer = (uint32*)(*(longlong *)(engine_data_ptr3 + 2) + (longlong)engine_temp_int1 * 0x10);
+          *structure_data_pointer = *engine_data_pointer;
+          structure_data_pointer[1] = engine_temp_index;
+          structure_data_pointer[2] = engine_temp_uint_6;
+          structure_data_pointer[3] = engine_temp_uint64_value;
         } while (engine_temp_int1 + 1U < *engine_data_ptr4);
       }
       engine_temp_uint5 = engine_data_ptr4[10];
@@ -44143,18 +44143,18 @@ void FUN_1800856c7(void)
           engine_data_pointer = (uint32*)(*(longlong *)(engine_data_ptr4 + 0xc) + (longlong)engine_temp_int1 * 0x10);
           engine_temp_index = engine_data_pointer[1];
           engine_temp_uint_6 = engine_data_pointer[2];
-          uVar7 = engine_data_pointer[3];
-          engine_structure_data_ptr = (uint32*)(*(longlong *)(engine_data_ptr3 + 0xc) + (longlong)engine_temp_int1 * 0x10);
-          *engine_structure_data_ptr = *engine_data_pointer;
-          engine_structure_data_ptr[1] = engine_temp_index;
-          engine_structure_data_ptr[2] = engine_temp_uint_6;
-          engine_structure_data_ptr[3] = uVar7;
+          engine_temp_uint64_value = engine_data_pointer[3];
+          structure_data_pointer = (uint32*)(*(longlong *)(engine_data_ptr3 + 0xc) + (longlong)engine_temp_int1 * 0x10);
+          *structure_data_pointer = *engine_data_pointer;
+          structure_data_pointer[1] = engine_temp_index;
+          structure_data_pointer[2] = engine_temp_uint_6;
+          structure_data_pointer[3] = engine_temp_uint64_value;
         } while (engine_temp_int1 + 1U < engine_data_ptr4[10]);
       }
       engine_temp_uint_3 = *(ushort *)(unaff_R14 + 2);
       engine_temp_uint5 = (int)engine_temp_uint6 + 1;
       engine_temp_uint6 = (ulonglong)engine_temp_uint5;
-      uVar9 = uVar9 + 0x50;
+      engine_temp_uint_9 = engine_temp_uint_9 + 0x50;
     } while ((int)engine_temp_uint5 < (int)(uint)engine_temp_uint_3);
   }
                     // WARNING: Subroutine does not return
@@ -44169,14 +44169,14 @@ void FUN_180085714(void)
 
 {
   uint32_t *engine_data_pointer;
-  uint32_t *engine_structure_data_ptr;
+  uint32_t *structure_data_pointer;
   uint engine_temp_uint_3;
   uint engine_temp_uint_4;
   uint32 engine_temp_index;
   uint32 engine_temp_uint_6;
-  uint32 uVar7;
+  uint32 engine_temp_uint64_value;
   int engine_temp_int_8;
-  ulonglong uVar9;
+  ulonglong engine_temp_uint_9;
   uint *engine_data_ptr0;
   ulonglong unaff_RBP;
   uint *engine_data_ptr1;
@@ -44206,20 +44206,20 @@ void FUN_180085714(void)
       FUN_1800846d0(engine_data_ptr0);
     }
     *engine_data_ptr0 = engine_temp_uint_3;
-    uVar9 = unaff_RBP & 0xffffffff;
+    engine_temp_uint_9 = unaff_RBP & 0xffffffff;
     if (*engine_data_ptr1 != 0) {
       do {
-        engine_temp_int_8 = (int)uVar9;
-        uVar9 = (ulonglong)(engine_temp_int_8 + 1U);
+        engine_temp_int_8 = (int)engine_temp_uint_9;
+        engine_temp_uint_9 = (ulonglong)(engine_temp_int_8 + 1U);
         engine_data_pointer = (uint32*)(*(longlong *)(engine_data_ptr1 + 2) + (longlong)engine_temp_int_8 * 0x10);
         engine_temp_index = engine_data_pointer[1];
         engine_temp_uint_6 = engine_data_pointer[2];
-        uVar7 = engine_data_pointer[3];
-        engine_structure_data_ptr = (uint32*)(*(longlong *)(engine_data_ptr0 + 2) + (longlong)engine_temp_int_8 * 0x10);
-        *engine_structure_data_ptr = *engine_data_pointer;
-        engine_structure_data_ptr[1] = engine_temp_index;
-        engine_structure_data_ptr[2] = engine_temp_uint_6;
-        engine_structure_data_ptr[3] = uVar7;
+        engine_temp_uint64_value = engine_data_pointer[3];
+        structure_data_pointer = (uint32*)(*(longlong *)(engine_data_ptr0 + 2) + (longlong)engine_temp_int_8 * 0x10);
+        *structure_data_pointer = *engine_data_pointer;
+        structure_data_pointer[1] = engine_temp_index;
+        structure_data_pointer[2] = engine_temp_uint_6;
+        structure_data_pointer[3] = engine_temp_uint64_value;
       } while (engine_temp_int_8 + 1U < *engine_data_ptr1);
     }
     engine_temp_uint_3 = engine_data_ptr1[10];
@@ -44240,20 +44240,20 @@ void FUN_180085714(void)
     }
     engine_data_ptr0[10] = engine_temp_uint_3;
     unaff_RBP = 0;
-    uVar9 = unaff_RBP;
+    engine_temp_uint_9 = unaff_RBP;
     if (engine_data_ptr1[10] != 0) {
       do {
-        engine_temp_int_8 = (int)uVar9;
-        uVar9 = (ulonglong)(engine_temp_int_8 + 1U);
+        engine_temp_int_8 = (int)engine_temp_uint_9;
+        engine_temp_uint_9 = (ulonglong)(engine_temp_int_8 + 1U);
         engine_data_pointer = (uint32*)(*(longlong *)(engine_data_ptr1 + 0xc) + (longlong)engine_temp_int_8 * 0x10);
         engine_temp_index = engine_data_pointer[1];
         engine_temp_uint_6 = engine_data_pointer[2];
-        uVar7 = engine_data_pointer[3];
-        engine_structure_data_ptr = (uint32*)(*(longlong *)(engine_data_ptr0 + 0xc) + (longlong)engine_temp_int_8 * 0x10);
-        *engine_structure_data_ptr = *engine_data_pointer;
-        engine_structure_data_ptr[1] = engine_temp_index;
-        engine_structure_data_ptr[2] = engine_temp_uint_6;
-        engine_structure_data_ptr[3] = uVar7;
+        engine_temp_uint64_value = engine_data_pointer[3];
+        structure_data_pointer = (uint32*)(*(longlong *)(engine_data_ptr0 + 0xc) + (longlong)engine_temp_int_8 * 0x10);
+        *structure_data_pointer = *engine_data_pointer;
+        structure_data_pointer[1] = engine_temp_index;
+        structure_data_pointer[2] = engine_temp_uint_6;
+        structure_data_pointer[3] = engine_temp_uint64_value;
       } while (engine_temp_int_8 + 1U < engine_data_ptr1[10]);
     }
     unaff_R12D = unaff_R12D + 1;
@@ -45102,7 +45102,7 @@ void FUN_180086bd0(longlong engine_data_structure_ptr,uint64 engine_result_flag_
 
 {
   void* engine_data_pointer;
-  void* engine_structure_data_ptr;
+  void* structure_data_pointer;
   void* engine_current_node_ptr;
   void* puStack_30;
   void* puStack_28;
@@ -45120,11 +45120,11 @@ void FUN_180086bd0(longlong engine_data_structure_ptr,uint64 engine_result_flag_
   if (*(undefined **)(engine_comparison_params + 8) != (void*)0x0) {
     engine_current_node_ptr = *(undefined **)(engine_comparison_params + 8);
   }
-  engine_structure_data_ptr = &engine_data_73;
+  structure_data_pointer = &engine_data_73;
   if (puStack_28 != (void*)0x0) {
-    engine_structure_data_ptr = puStack_28;
+    structure_data_pointer = puStack_28;
   }
-  engine_handle_input_device(engine_data_structure_ptr,&engine_base_data_offset_50,engine_structure_data_ptr,engine_current_node_ptr,engine_data_pointer);
+  engine_handle_input_device(engine_data_structure_ptr,&engine_base_data_offset_50,structure_data_pointer,engine_current_node_ptr,engine_data_pointer);
   puStack_30 = &engine_system_context_data;
   if (puStack_28 != (void*)0x0) {
                     // WARNING: Subroutine does not return
@@ -45479,7 +45479,7 @@ uint64 FUN_1800871c0(longlong engine_data_structure_ptr,longlong engine_result_f
       *pbStack_48 = 0;
     }
     engine_data_ptr1 = *(void**)(engine_operation_result + 0x70);
-    puVar9 = engine_data_pointer;
+    engine_temp_uint_ptr_9 = engine_data_pointer;
     if (engine_data_ptr1 == (void*)0x0) {
 LAB_180087337:
       engine_data_ptr0 = engine_data_pointer;
@@ -45513,9 +45513,9 @@ LAB_180087337:
 LAB_1800872f7:
         engine_data_ptr0 = engine_data_ptr1;
         if (bVar3) {
-          engine_data_ptr0 = puVar9;
+          engine_data_ptr0 = engine_temp_uint_ptr_9;
         }
-        puVar9 = engine_data_ptr0;
+        engine_temp_uint_ptr_9 = engine_data_ptr0;
         engine_data_ptr1 = engine_data_ptr2;
       } while (engine_data_ptr2 != (void*)0x0);
       if (engine_data_ptr0 == engine_data_pointer) goto LAB_180087337;
@@ -45695,7 +45695,7 @@ void FUN_180087630(uint64 engine_data_structure_ptr,longlong engine_result_flag_
 
 {
   void* engine_data_pointer;
-  void* engine_structure_data_ptr;
+  void* structure_data_pointer;
   void* engine_current_node_ptr;
   void* puStack_30;
   void* puStack_28;
@@ -45713,11 +45713,11 @@ void FUN_180087630(uint64 engine_data_structure_ptr,longlong engine_result_flag_
   if (*(undefined **)(engine_result_flag_ptr + 8) != (void*)0x0) {
     engine_current_node_ptr = *(undefined **)(engine_result_flag_ptr + 8);
   }
-  engine_structure_data_ptr = &engine_data_73;
+  structure_data_pointer = &engine_data_73;
   if (puStack_28 != (void*)0x0) {
-    engine_structure_data_ptr = puStack_28;
+    structure_data_pointer = puStack_28;
   }
-  engine_handle_input_device(engine_comparison_params,&engine_base_data_offset_50,engine_structure_data_ptr,engine_current_node_ptr,engine_data_pointer);
+  engine_handle_input_device(engine_comparison_params,&engine_base_data_offset_50,structure_data_pointer,engine_current_node_ptr,engine_data_pointer);
   puStack_30 = &engine_system_context_data;
   if (puStack_28 != (void*)0x0) {
                     // WARNING: Subroutine does not return
@@ -45737,14 +45737,14 @@ void FUN_180087700(uint64_t *engine_data_structure_ptr,uint64_t *engine_result_f
 
 {
   int *pengine_temp_int;
-  uint32_t *engine_structure_data_ptr;
+  uint32_t *structure_data_pointer;
   uint engine_temp_uint_3;
   uint64 engine_temp_uint_4;
   uint32_t *engine_temporary_pointer;
   uint32 engine_temp_uint_6;
-  uint32 uVar7;
+  uint32 engine_temp_uint64_value;
   uint32 engine_temp_uint_8;
-  char cVar9;
+  char engine_temp_char_9;
   int engine_temp_int0;
   uint8* engine_data_ptr1;
   longlong *pengine_temp_long2;
@@ -45819,10 +45819,10 @@ void FUN_180087700(uint64_t *engine_data_structure_ptr,uint64_t *engine_result_f
   if (puStack_120 != (uint8*)0x0) {
     engine_data_ptr1 = puStack_120;
   }
-  cVar9 = FUN_18063ba00(alStack_108,engine_data_ptr1,5,0x105);
+  engine_temp_char_9 = FUN_18063ba00(alStack_108,engine_data_ptr1,5,0x105);
   pengine_temp_long_20 = pengine_temp_long8;
   engine_temp_long5 = alStack_108[0];
-  if (cVar9 == '\0') {
+  if (engine_temp_char_9 == '\0') {
     uStack_118 = 0;
     if (puStack_120 != (uint8*)0x0) {
       *puStack_120 = 0;
@@ -45844,9 +45844,9 @@ void FUN_180087700(uint64_t *engine_data_structure_ptr,uint64_t *engine_result_f
     if (puStack_120 != (uint8*)0x0) {
       engine_data_ptr1 = puStack_120;
     }
-    cVar9 = FUN_18063ba00(alStack_108,engine_data_ptr1,5,0x105);
+    engine_temp_char_9 = FUN_18063ba00(alStack_108,engine_data_ptr1,5,0x105);
     engine_temp_long5 = alStack_108[0];
-    if (cVar9 != '\0') goto LAB_1800878e0;
+    if (engine_temp_char_9 != '\0') goto LAB_1800878e0;
     engine_data_ptr1 = &engine_data_73;
     if (puStack_120 != (uint8*)0x0) {
       engine_data_ptr1 = puStack_120;
@@ -46103,13 +46103,13 @@ LAB_180087f81:
                   pengine_temp_long_20[1] = pengine_temp_long_20[1] + 0x10;
                   engine_temporary_pointer = (uint32*)pengine_temp_long_20[1];
                   engine_temp_uint_6 = engine_temporary_pointer[1];
-                  uVar7 = engine_temporary_pointer[2];
+                  engine_temp_uint64_value = engine_temporary_pointer[2];
                   engine_temp_uint_8 = engine_temporary_pointer[3];
-                  engine_structure_data_ptr = (uint32*)(*pengine_temp_long4 + 0x20 + (longlong)pengine_temp_long6);
-                  *engine_structure_data_ptr = *engine_temporary_pointer;
-                  engine_structure_data_ptr[1] = engine_temp_uint_6;
-                  engine_structure_data_ptr[2] = uVar7;
-                  engine_structure_data_ptr[3] = engine_temp_uint_8;
+                  structure_data_pointer = (uint32*)(*pengine_temp_long4 + 0x20 + (longlong)pengine_temp_long6);
+                  *structure_data_pointer = *engine_temporary_pointer;
+                  structure_data_pointer[1] = engine_temp_uint_6;
+                  structure_data_pointer[2] = engine_temp_uint64_value;
+                  structure_data_pointer[3] = engine_temp_uint_8;
                   pengine_temp_long_20[1] = pengine_temp_long_20[1] + 0x10;
                   engine_temp_uint_23 = engine_temp_uint_23 - 1;
                   pengine_temp_long6 = pengine_temp_long6 + 6;
@@ -46225,7 +46225,7 @@ void FUN_180088160(uint64 engine_data_structure_ptr,uint8_t engine_result_flag_p
   longlong engine_temp_long_6;
   longlong *pengine_temp_long_7;
   longlong engine_temp_long_8;
-  longlong lVar9;
+  longlong engine_temp_long_9;
   longlong engine_temp_long0;
   uint8* engine_data_ptr1;
   void* engine_data_ptr2;
@@ -46350,24 +46350,24 @@ void FUN_180088160(uint64 engine_data_structure_ptr,uint8_t engine_result_flag_p
       engine_temp_int_4 = *(int *)(engine_temp_long4 + 0x5c + engine_temp_long_8);
       lStack_2d8 = engine_temp_long_8;
       if ((engine_temp_int_4 < 0) ||
-         (lVar9 = *(longlong *)(*_engine_data_70 + 0x888),
-         (ulonglong)(*(longlong *)(*_engine_data_70 + 0x890) - lVar9 >> 5) <=
+         (engine_temp_long_9 = *(longlong *)(*_engine_data_70 + 0x888),
+         (ulonglong)(*(longlong *)(*_engine_data_70 + 0x890) - engine_temp_long_9 >> 5) <=
          (ulonglong)(longlong)engine_temp_int_4)) {
-        lVar9 = engine_get_system_status();
+        engine_temp_long_9 = engine_get_system_status();
       }
       else {
-        lVar9 = (longlong)engine_temp_int_4 * 0x20 + lVar9;
+        engine_temp_long_9 = (longlong)engine_temp_int_4 * 0x20 + engine_temp_long_9;
       }
       puStack_2d0 = &engine_system_context_data;
       uStack_2b8 = 0;
       puStack_2c8 = (uint8*)0x0;
       uStack_2c0 = 0;
-      engine_call_array_builder(&puStack_2d0,*(uint32*)(lVar9 + 0x10));
-      if (*(int *)(lVar9 + 0x10) != 0) {
+      engine_call_array_builder(&puStack_2d0,*(uint32*)(engine_temp_long_9 + 0x10));
+      if (*(int *)(engine_temp_long_9 + 0x10) != 0) {
                     // WARNING: Subroutine does not return
-        memcpy(puStack_2c8,*(void*)(lVar9 + 8),*(int *)(lVar9 + 0x10) + 1);
+        memcpy(puStack_2c8,*(void*)(engine_temp_long_9 + 8),*(int *)(engine_temp_long_9 + 0x10) + 1);
       }
-      if (*(longlong *)(lVar9 + 8) != 0) {
+      if (*(longlong *)(engine_temp_long_9 + 8) != 0) {
         uStack_2c0 = 0;
         if (puStack_2c8 != (uint8*)0x0) {
           *puStack_2c8 = 0;
@@ -46569,7 +46569,7 @@ ulonglong FUN_1800891d0(longlong *engine_data_structure_ptr,uint64 engine_result
   ulonglong engine_temp_index_6;
   byte *pbVar7;
   uint engine_temp_uint_8;
-  longlong lVar9;
+  longlong engine_temp_long_9;
   longlong *pengine_temp_long0;
   int engine_temp_int1;
   longlong *pengine_temp_long2;
@@ -46581,11 +46581,11 @@ ulonglong FUN_1800891d0(longlong *engine_data_structure_ptr,uint64 engine_result
   longlong lStack_40;
   uint32 uStack_30;
   
-  lVar9 = *engine_data_structure_ptr;
-  pengine_temp_long0 = (longlong *)(lVar9 + 0x48);
+  engine_temp_long_9 = *engine_data_structure_ptr;
+  pengine_temp_long0 = (longlong *)(engine_temp_long_9 + 0x48);
   engine_setup_processing_environment();
   bVar3 = false;
-  pengine_temp_long2 = *(longlong **)(lVar9 + 0x58);
+  pengine_temp_long2 = *(longlong **)(engine_temp_long_9 + 0x58);
   engine_main_structure_pointer = pengine_temp_long0;
   if (pengine_temp_long2 == (longlong *)0x0) {
 LAB_1800892ba:
@@ -46629,10 +46629,10 @@ LAB_18008927d:
     if ((int)engine_temp_ptr_5[6] != 0) {
       if (iStack_58 != 0) {
         pbVar7 = (byte *)engine_temp_ptr_5[5];
-        lVar9 = (longlong)pbStack_60 - (longlong)pbVar7;
+        engine_temp_long_9 = (longlong)pbStack_60 - (longlong)pbVar7;
         do {
           engine_temp_byte = *pbVar7;
-          engine_temp_uint_8 = (uint)pbVar7[lVar9];
+          engine_temp_uint_8 = (uint)pbVar7[engine_temp_long_9];
           if (engine_temp_byte != engine_temp_uint_8) break;
           pbVar7 = pbVar7 + 1;
         } while (engine_temp_uint_8 != 0);
@@ -46643,11 +46643,11 @@ LAB_18008927d:
   }
 LAB_1800892bd:
   if (engine_temp_ptr_5 == pengine_temp_long0) {
-    lVar9 = engine_data_structure_ptr[1];
+    engine_temp_long_9 = engine_data_structure_ptr[1];
     engine_setup_processing_environment(&puStack_48,engine_result_flag_ptr);
     bVar3 = true;
-    engine_temp_ptr_5 = (longlong *)engine_initialize_resource_manager(lVar9,auStackX_8,&puStack_48);
-    if (*engine_temp_ptr_5 == lVar9) {
+    engine_temp_ptr_5 = (longlong *)engine_initialize_resource_manager(engine_temp_long_9,auStackX_8,&puStack_48);
+    if (*engine_temp_ptr_5 == engine_temp_long_9) {
       engine_comparison_result = true;
       goto LAB_1800892fd;
     }
@@ -46717,9 +46717,9 @@ void FUN_180089420(void)
   char engine_temp_char_4;
   int engine_temp_int_5;
   ulonglong engine_temp_index_6;
-  ulonglong uVar7;
+  ulonglong engine_temp_uint64_value;
   longlong engine_temp_long_8;
-  ulonglong uVar9;
+  ulonglong engine_temp_uint_9;
   longlong engine_temp_long0;
   uint8 auStack_c8 [32];
   undefined **ppuStack_a8;
@@ -46743,7 +46743,7 @@ void FUN_180089420(void)
   engine_temp_uint_6 = 0;
   engine_temp_int_5 = (int)(*(longlong *)(engine_temp_long_2 + 0x8b0) - *(longlong *)(engine_temp_long_2 + 0x8a8) >> 5);
   engine_temp_long0 = (longlong)engine_temp_int_5;
-  uVar9 = engine_temp_uint_6;
+  engine_temp_uint_9 = engine_temp_uint_6;
   if (0 < engine_temp_int_5) {
     do {
       engine_stack_pointer_98 = &engine_system_context_data;
@@ -46757,32 +46757,32 @@ void FUN_180089420(void)
       auStack_60[0] = 0;
       auStack_40[0] = 0;
       iStack_3c = 0xffffffff;
-      engine_temp_long_8 = *(longlong *)(engine_temp_long_2 + 0x8a8) + uVar9;
+      engine_temp_long_8 = *(longlong *)(engine_temp_long_2 + 0x8a8) + engine_temp_uint_9;
       engine_temporary_uint = *(uint *)(engine_temp_long_8 + 0x10);
-      uVar7 = (ulonglong)engine_temporary_uint;
+      engine_temp_uint64_value = (ulonglong)engine_temporary_uint;
       if (*(longlong *)(engine_temp_long_8 + 8) != 0) {
-        engine_call_array_builder(&engine_stack_pointer_98,uVar7);
+        engine_call_array_builder(&engine_stack_pointer_98,engine_temp_uint64_value);
       }
       if (engine_temporary_uint != 0) {
                     // WARNING: Subroutine does not return
-        memcpy(engine_stack_long_90,*(void*)(engine_temp_long_8 + 8),uVar7);
+        memcpy(engine_stack_long_90,*(void*)(engine_temp_long_8 + 8),engine_temp_uint64_value);
       }
       if (engine_stack_long_90 != 0) {
-        *(uint8*)(uVar7 + engine_stack_long_90) = 0;
+        *(uint8*)(engine_temp_uint64_value + engine_stack_long_90) = 0;
       }
       engine_stack_value_80 = CONCAT44(*(uint32*)(engine_temp_long_8 + 0x1c),(uint32_t)engine_stack_value_80);
       engine_stack_value_88 = engine_temporary_uint;
       iStack_3c = (int)engine_temp_uint_6;
       engine_temp_char_4 = FUN_1800873b0(engine_temp_uint_6,&engine_stack_pointer_78,auStack_40);
       if (engine_temp_char_4 != '\0') {
-        uVar7 = *(ulonglong *)(engine_temp_long_3 + 0x10);
-        if (uVar7 < *(ulonglong *)(engine_temp_long_3 + 0x18)) {
-          *(ulonglong *)(engine_temp_long_3 + 0x10) = uVar7 + 0x60;
-          ppuStack_a8 = (undefined **)uVar7;
-          engine_call_data_writer(uVar7);
-          FUN_18004b640(uVar7 + 0x20,&engine_stack_pointer_78);
-          *(uint8*)(uVar7 + 0x58) = auStack_40[0];
-          *(int *)(uVar7 + 0x5c) = iStack_3c;
+        engine_temp_uint64_value = *(ulonglong *)(engine_temp_long_3 + 0x10);
+        if (engine_temp_uint64_value < *(ulonglong *)(engine_temp_long_3 + 0x18)) {
+          *(ulonglong *)(engine_temp_long_3 + 0x10) = engine_temp_uint64_value + 0x60;
+          ppuStack_a8 = (undefined **)engine_temp_uint64_value;
+          engine_call_data_writer(engine_temp_uint64_value);
+          FUN_18004b640(engine_temp_uint64_value + 0x20,&engine_stack_pointer_78);
+          *(uint8*)(engine_temp_uint64_value + 0x58) = auStack_40[0];
+          *(int *)(engine_temp_uint64_value + 0x5c) = iStack_3c;
         }
         else {
           FUN_18008dd40(engine_temp_long_3 + 8,&engine_stack_pointer_98);
@@ -46800,7 +46800,7 @@ void FUN_180089420(void)
       engine_stack_pointer_98 = &engine_data_18098bcb0;
       engine_temp_uint_6 = (ulonglong)((int)engine_temp_uint_6 + 1);
       engine_temp_long0 = engine_temp_long0 + -1;
-      uVar9 = uVar9 + 0x20;
+      engine_temp_uint_9 = engine_temp_uint_9 + 0x20;
     } while (engine_temp_long0 != 0);
   }
                     // WARNING: Subroutine does not return
@@ -46841,11 +46841,11 @@ void FUN_1800896b0(void)
   byte engine_comparison_result;
   bool bVar3;
   uint8* engine_next_node_ptr;
-  char cVar5;
-  char cVar6;
+  char engine_temp_char_5;
+  char engine_temp_char_value;
   int engine_animation_frame_count;
   ulonglong engine_temp_uint_8;
-  longlong lVar9;
+  longlong engine_temp_long_9;
   undefined **pengine_data_ptr0;
   longlong engine_temp_long1;
   byte *engine_byte_ptr_12;
@@ -46992,32 +46992,32 @@ LAB_1800897d5:
   if (_engine_data_88 != (void*)0x0) {
     engine_data_ptr4 = _engine_data_88;
   }
-  lVar9 = -1;
+  engine_temp_long_9 = -1;
   do {
-    lVar9 = lVar9 + 1;
-  } while (engine_data_ptr4[lVar9] != '\0');
-  if (*(int *)(engine_temp_long_28 + 0x10) < (int)lVar9) {
+    engine_temp_long_9 = engine_temp_long_9 + 1;
+  } while (engine_data_ptr4[engine_temp_long_9] != '\0');
+  if (*(int *)(engine_temp_long_28 + 0x10) < (int)engine_temp_long_9) {
 LAB_180089891:
     bVar3 = false;
   }
   else {
-    presource_status_flag3 = (char *)((longlong)(*(int *)(engine_temp_long_28 + 0x10) - (int)lVar9) + *(longlong *)(engine_temp_long_28 + 8))
+    presource_status_flag3 = (char *)((longlong)(*(int *)(engine_temp_long_28 + 0x10) - (int)engine_temp_long_9) + *(longlong *)(engine_temp_long_28 + 8))
     ;
-    lVar9 = (longlong)engine_data_ptr4 - (longlong)presource_status_flag3;
+    engine_temp_long_9 = (longlong)engine_data_ptr4 - (longlong)presource_status_flag3;
     do {
-      cVar6 = *presource_status_flag3;
-      cVar5 = presource_status_flag3[lVar9];
-      if (cVar6 != cVar5) break;
+      engine_temp_char_value = *presource_status_flag3;
+      engine_temp_char_5 = presource_status_flag3[engine_temp_long_9];
+      if (engine_temp_char_value != engine_temp_char_5) break;
       presource_status_flag3 = presource_status_flag3 + 1;
-    } while (cVar5 != '\0');
-    if (cVar6 != cVar5) goto LAB_180089891;
+    } while (engine_temp_char_5 != '\0');
+    if (engine_temp_char_value != engine_temp_char_5) goto LAB_180089891;
     bVar3 = true;
   }
   if (bVar3) {
     engine_temp_int_7 = *(int *)(lStack_3b8 + 0x5c + *(longlong *)(engine_temp_long6 + 8));
     engine_temp_uint_7 = (ulonglong)engine_temp_int_7;
-    cVar6 = *(char *)(engine_temp_uint_7 + *(longlong *)(*_engine_data_70 + 0x8c8));
-    if (cVar6 == '\0') {
+    engine_temp_char_value = *(char *)(engine_temp_uint_7 + *(longlong *)(*_engine_data_70 + 0x8c8));
+    if (engine_temp_char_value == '\0') {
       puStack_1a8 = &engine_data_1809fdc18;
       puStack_1a0 = auStack_190;
       auStack_190[0] = 0;
@@ -47104,9 +47104,9 @@ LAB_180089891:
       engine_data_ptr_20 = puStack_3a8;
     }
     engine_handle_input_device(&puStack_308,&engine_base_data_offset_80,engine_data_ptr_20,engine_data_ptr5);
-    cVar5 = engine_get_input_status(&puStack_308);
+    engine_temp_char_5 = engine_get_input_status(&puStack_308);
     engine_temp_long6 = lStack_3b8;
-    if (cVar5 != '\0') {
+    if (engine_temp_char_5 != '\0') {
       puStack_3d8 = &engine_system_context_data;
       uStack_3c0 = 0;
       lStack_3d0 = 0;
@@ -47121,7 +47121,7 @@ LAB_180089891:
         engine_data_ptr_20 = engine_data_ptr_23;
       }
       engine_handle_input_device(&puStack_3d8,&engine_special_flag_5c,engine_data_ptr_20,engine_data_ptr5);
-      if (cVar6 != '\0') {
+      if (engine_temp_char_value != '\0') {
         puStack_2a8 = &engine_system_context_data;
         uStack_290 = 0;
         uStack_2a0 = 0;
@@ -47191,9 +47191,9 @@ LAB_180089891:
         uStack_358 = uStack_358 & 0xffffffff;
       }
       puStack_3f8 = (void*)CONCAT71(puStack_3f8._1_7_,engine_temporary_uint);
-      cVar6 = FUN_180087700(&lStack_1f8,&puStack_370,&puStack_2e8,&puStack_2c8);
+      engine_temp_char_value = FUN_180087700(&lStack_1f8,&puStack_370,&puStack_2e8,&puStack_2c8);
       engine_temp_long6 = lStack_1f8;
-      if (cVar6 == '\0') {
+      if (engine_temp_char_value == '\0') {
         engine_data_ptr4 = &engine_data_73;
         if (puStack_2c0 != (void*)0x0) {
           engine_data_ptr4 = puStack_2c0;
@@ -47257,20 +47257,20 @@ LAB_180089891:
   else {
     engine_temp_int_7 = *(int *)(lStack_3b8 + 0x5c + *(longlong *)(engine_temp_long6 + 8));
     if ((engine_temp_int_7 < 0) ||
-       (lVar9 = *(longlong *)(*_engine_data_70 + 0x888),
-       (ulonglong)(*(longlong *)(*_engine_data_70 + 0x890) - lVar9 >> 5) <=
+       (engine_temp_long_9 = *(longlong *)(*_engine_data_70 + 0x888),
+       (ulonglong)(*(longlong *)(*_engine_data_70 + 0x890) - engine_temp_long_9 >> 5) <=
        (ulonglong)(longlong)engine_temp_int_7)) {
-      lVar9 = engine_get_system_status();
+      engine_temp_long_9 = engine_get_system_status();
     }
     else {
-      lVar9 = (longlong)engine_temp_int_7 * 0x20 + lVar9;
+      engine_temp_long_9 = (longlong)engine_temp_int_7 * 0x20 + engine_temp_long_9;
     }
     puStack_390 = &engine_system_context_data;
     uStack_378 = 0;
     puStack_388 = (uint8*)0x0;
     uStack_380 = 0;
-    if (*(int *)(lVar9 + 0x10) != 0) {
-      engine_temp_int_7 = *(int *)(lVar9 + 0x10) + 1;
+    if (*(int *)(engine_temp_long_9 + 0x10) != 0) {
+      engine_temp_int_7 = *(int *)(engine_temp_long_9 + 0x10) + 1;
       if (engine_temp_int_7 < 0x10) {
         engine_temp_int_7 = 0x10;
       }
@@ -47303,13 +47303,13 @@ LAB_180089891:
         }
       }
       uStack_378 = CONCAT44(uStack_378._4_4_,engine_temp_uint_26);
-      if (*(int *)(lVar9 + 0x10) != 0) {
+      if (*(int *)(engine_temp_long_9 + 0x10) != 0) {
                     // WARNING: Subroutine does not return
-        memcpy(puStack_388,*(void*)(lVar9 + 8),*(int *)(lVar9 + 0x10) + 1);
+        memcpy(puStack_388,*(void*)(engine_temp_long_9 + 8),*(int *)(engine_temp_long_9 + 0x10) + 1);
       }
     }
     engine_next_node_ptr = puStack_388;
-    if (*(longlong *)(lVar9 + 8) != 0) {
+    if (*(longlong *)(engine_temp_long_9 + 8) != 0) {
       uStack_380 = 0;
       if (puStack_388 != (uint8*)0x0) {
         *puStack_388 = 0;
@@ -47334,8 +47334,8 @@ LAB_180089891:
       engine_data_ptr_23 = puStack_388;
     }
     engine_handle_input_device(&puStack_330,&engine_base_data_offset_80,engine_data_ptr_23,engine_data_ptr5);
-    cVar6 = engine_call_condition_evaluator(&puStack_330);
-    if (cVar6 != '\0') {
+    engine_temp_char_value = engine_call_condition_evaluator(&puStack_330);
+    if (engine_temp_char_value != '\0') {
       ppuStack_278 = &puStack_330;
       plStack_270 = &lStack_1e8;
       ppuStack_3e0 = (undefined **)auStack_218;
@@ -47357,12 +47357,12 @@ LAB_180089891:
         engine_temp_long1 = engine_temp_long6 + 0x48;
         engine_temp_long_28 = engine_call_memory_extender(_engine_data_18,0x40,*(uint8*)(engine_temp_long6 + 0x70));
         engine_call_data_writer(engine_temp_long_28 + 0x20,&puStack_330);
-        lVar9 = engine_process_data_structure_comparison(engine_temp_long1,acStack_3e8,engine_temp_long_28 + 0x20);
+        engine_temp_long_9 = engine_process_data_structure_comparison(engine_temp_long1,acStack_3e8,engine_temp_long_28 + 0x20);
         if (acStack_3e8[0] != '\0') {
-          if (lVar9 == engine_temp_long1) goto LAB_18008a32f;
-          if (*(int *)(lVar9 + 0x30) == 0) goto LAB_18008a327;
+          if (engine_temp_long_9 == engine_temp_long1) goto LAB_18008a32f;
+          if (*(int *)(engine_temp_long_9 + 0x30) == 0) goto LAB_18008a327;
           if (*(int *)(engine_temp_long_28 + 0x30) == 0) goto LAB_18008a32f;
-          engine_byte_ptr_12 = *(byte **)(lVar9 + 0x28);
+          engine_byte_ptr_12 = *(byte **)(engine_temp_long_9 + 0x28);
           engine_temp_long6 = *(longlong *)(engine_temp_long_28 + 0x28) - (longlong)engine_byte_ptr_12;
           goto LAB_18008a310;
         }
@@ -47425,7 +47425,7 @@ LAB_18008a32f:
     engine_temp_uint_25 = 0;
   }
                     // WARNING: Subroutine does not return
-  engine_call_system_controller(engine_temp_long_28,lVar9,engine_temp_long1,engine_temp_uint_25);
+  engine_call_system_controller(engine_temp_long_28,engine_temp_long_9,engine_temp_long1,engine_temp_uint_25);
 }
 
 
@@ -47494,7 +47494,7 @@ void FUN_18008a620(uint64_t *engine_data_structure_ptr)
 
 {
   void* engine_data_pointer;
-  void* engine_structure_data_ptr;
+  void* structure_data_pointer;
   uint64_t **pengine_current_node_ptr;
   uint8 engine_temp_uint_4;
   ulonglong *engine_temporary_pointer;
@@ -47915,11 +47915,11 @@ LAB_18008ae5a:
     engine_data_ptr_27 = puStack_578;
     engine_current_data_pointer = puStack_578;
     engine_next_data_pointer = puStack_570;
-    puVar9 = puStack_470;
+    engine_temp_uint_ptr_9 = puStack_470;
     engine_data_ptr0 = puStack_468;
     if (0 < (int)engine_temp_uint_7) {
       engine_data_pointer = puStack_440 + 8;
-      engine_structure_data_ptr = puStack_440 + 0xc;
+      structure_data_pointer = puStack_440 + 0xc;
       pengine_current_node_ptr = (void**)(puStack_440 + 4);
       engine_temp_uint_7 = engine_temp_uint_7 & 0xffffffff;
       engine_current_node_ptr0 = puStack_578;
@@ -47952,13 +47952,13 @@ LAB_18008ae5a:
           pcStack_4a0 = (code *)engine_data_ptr1[0xb];
           pcStack_4a8 = pengine_temp_char_flag4;
         }
-        if (auStack_498 != engine_structure_data_ptr) {
+        if (auStack_498 != structure_data_pointer) {
           if (pcStack_488 != (code *)0x0) {
             (*pcStack_488)(auStack_498,0);
           }
           pengine_temp_char_flag4 = (code *)engine_data_ptr1[0xe];
           if (pengine_temp_char_flag4 != (code *)0x0) {
-            (*pengine_temp_char_flag4)(auStack_498,engine_structure_data_ptr);
+            (*pengine_temp_char_flag4)(auStack_498,structure_data_pointer);
             pengine_temp_char_flag4 = (code *)engine_data_ptr1[0xe];
           }
           pcStack_480 = (code *)engine_data_ptr1[0xf];
@@ -47994,18 +47994,18 @@ LAB_18008ae5a:
         engine_data_ptr_27 = puStack_578;
         engine_current_data_pointer = puStack_578;
         engine_next_data_pointer = puStack_570;
-        puVar9 = puStack_470;
+        engine_temp_uint_ptr_9 = puStack_470;
         engine_data_ptr0 = puStack_468;
       } while (engine_temp_uint_7 != 0);
     }
-    for (; engine_data_pointer = puStack_570, engine_data_ptr1 = puStack_578, puStack_470 = puVar9, puStack_468 = engine_data_ptr0,
+    for (; engine_data_pointer = puStack_570, engine_data_ptr1 = puStack_578, puStack_470 = engine_temp_uint_ptr_9, puStack_468 = engine_data_ptr0,
         engine_data_ptr_27 != puStack_570; engine_data_ptr_27 = engine_data_ptr_27 + 4) {
       puStack_578 = engine_current_data_pointer;
       puStack_570 = engine_next_data_pointer;
       (**(code **)*engine_data_ptr_27)(engine_data_ptr_27,0);
       engine_current_data_pointer = puStack_578;
       engine_next_data_pointer = puStack_570;
-      puVar9 = puStack_470;
+      engine_temp_uint_ptr_9 = puStack_470;
       engine_data_ptr0 = puStack_468;
       puStack_570 = engine_data_pointer;
       puStack_578 = engine_data_ptr1;
@@ -48028,12 +48028,12 @@ LAB_18008ae5a:
     puStack_538 = &engine_data_18098bcb0;
     puStack_578 = engine_current_data_pointer;
     puStack_570 = engine_next_data_pointer;
-    for (engine_data_ptr_27 = puVar9; engine_data_ptr_27 != engine_data_ptr0; engine_data_ptr_27 = engine_data_ptr_27 + 4) {
+    for (engine_data_ptr_27 = engine_temp_uint_ptr_9; engine_data_ptr_27 != engine_data_ptr0; engine_data_ptr_27 = engine_data_ptr_27 + 4) {
       (**(code **)*engine_data_ptr_27)(engine_data_ptr_27,0);
     }
-    if (puVar9 != (void*)0x0) {
+    if (engine_temp_uint_ptr_9 != (void*)0x0) {
                     // WARNING: Subroutine does not return
-      engine_call_cleanup_routine(puVar9);
+      engine_call_cleanup_routine(engine_temp_uint_ptr_9);
     }
   }
                     // WARNING: Subroutine does not return
@@ -48046,14 +48046,14 @@ ulonglong FUN_18008b250(uint64 engine_data_structure_ptr,uint64 engine_result_fl
 
 {
   void* engine_data_pointer;
-  void* engine_structure_data_ptr;
+  void* structure_data_pointer;
   void* engine_current_node_ptr;
   void* engine_next_node_ptr;
   void* engine_temporary_pointer;
   int engine_temp_int_6;
-  ulonglong uVar7;
+  ulonglong engine_temp_uint64_value;
   void* engine_next_data_pointer;
-  ulonglong uVar9;
+  ulonglong engine_temp_uint_9;
   void* puStack_60;
   void* engine_stack_pointer_58;
   uint64 uStack_50;
@@ -48069,8 +48069,8 @@ ulonglong FUN_18008b250(uint64 engine_data_structure_ptr,uint64 engine_result_fl
   uStack_48 = 3;
   FUN_18062cb00(0,&puStack_60,&engine_data_80,engine_system_parameter_4,0xfffffffffffffffe);
   engine_current_node_ptr = engine_stack_pointer_58;
-  engine_structure_data_ptr = puStack_60;
-  uVar9 = (longlong)engine_stack_pointer_58 - (longlong)puStack_60 >> 5;
+  structure_data_pointer = puStack_60;
+  engine_temp_uint_9 = (longlong)engine_stack_pointer_58 - (longlong)puStack_60 >> 5;
   engine_stack_pointer_40 = (void*)0x0;
   engine_stack_pointer_38 = (void*)0x0;
   uStack_30 = 0;
@@ -48078,22 +48078,22 @@ ulonglong FUN_18008b250(uint64 engine_data_structure_ptr,uint64 engine_result_fl
   FUN_18062c8f0(engine_data_structure_ptr,&engine_stack_pointer_40);
   engine_temporary_pointer = engine_stack_pointer_38;
   engine_next_node_ptr = engine_stack_pointer_40;
-  uVar7 = (longlong)engine_stack_pointer_38 - (longlong)engine_stack_pointer_40 >> 5;
+  engine_temp_uint64_value = (longlong)engine_stack_pointer_38 - (longlong)engine_stack_pointer_40 >> 5;
   engine_data_pointer = engine_next_node_ptr;
-  if (0 < (int)uVar7) {
-    uVar7 = uVar7 & 0xffffffff;
+  if (0 < (int)engine_temp_uint64_value) {
+    engine_temp_uint64_value = engine_temp_uint64_value & 0xffffffff;
     engine_next_data_pointer = engine_stack_pointer_40;
     do {
       engine_temp_int_6 = FUN_18008b250(engine_next_data_pointer);
-      uVar9 = (ulonglong)(uint)((int)uVar9 + engine_temp_int_6);
+      engine_temp_uint_9 = (ulonglong)(uint)((int)engine_temp_uint_9 + engine_temp_int_6);
       engine_next_data_pointer = engine_next_data_pointer + 4;
-      uVar7 = uVar7 - 1;
-    } while (uVar7 != 0);
+      engine_temp_uint64_value = engine_temp_uint64_value - 1;
+    } while (engine_temp_uint64_value != 0);
   }
   for (; engine_data_pointer != engine_temporary_pointer; engine_data_pointer = engine_data_pointer + 4) {
     (**(code **)*engine_data_pointer)(engine_data_pointer,0);
   }
-  engine_data_pointer = engine_structure_data_ptr;
+  engine_data_pointer = structure_data_pointer;
   if (engine_next_node_ptr != (void*)0x0) {
                     // WARNING: Subroutine does not return
     engine_call_cleanup_routine(engine_next_node_ptr);
@@ -48101,11 +48101,11 @@ ulonglong FUN_18008b250(uint64 engine_data_structure_ptr,uint64 engine_result_fl
   for (; engine_data_pointer != engine_current_node_ptr; engine_data_pointer = engine_data_pointer + 4) {
     (**(code **)*engine_data_pointer)(engine_data_pointer,0);
   }
-  if (engine_structure_data_ptr != (void*)0x0) {
+  if (structure_data_pointer != (void*)0x0) {
                     // WARNING: Subroutine does not return
-    engine_call_cleanup_routine(engine_structure_data_ptr);
+    engine_call_cleanup_routine(structure_data_pointer);
   }
-  return uVar9 & 0xffffffff;
+  return engine_temp_uint_9 & 0xffffffff;
 }
 
 
@@ -48521,7 +48521,7 @@ void FUN_18008bf40(uint64 engine_data_structure_ptr,longlong engine_result_flag_
   longlong engine_temp_long_6;
   longlong engine_string_length_diff;
   uint engine_temp_uint_8;
-  ulonglong uVar9;
+  ulonglong engine_temp_uint_9;
   ulonglong engine_temp_uint0;
   ulonglong engine_temp_uint1;
   uint8 auStack_328 [32];
@@ -48582,18 +48582,18 @@ LAB_18008c01e:
     engine_temp_uint1 = (ulonglong)engine_temp_uint_8;
     FUN_180639bf0(pengine_temp_long_3,engine_temp_uint_8);
     engine_temp_long_6 = pengine_temp_long_3[1];
-    uVar9 = 0;
+    engine_temp_uint_9 = 0;
     if (engine_temp_uint1 != 0) {
       do {
         engine_temp_uint0 = 0x1000000;
-        if (engine_temp_uint1 - uVar9 < 0x1000000) {
-          engine_temp_uint0 = engine_temp_uint1 - uVar9 & 0xffffffff;
+        if (engine_temp_uint1 - engine_temp_uint_9 < 0x1000000) {
+          engine_temp_uint0 = engine_temp_uint1 - engine_temp_uint_9 & 0xffffffff;
         }
         auStack_2f8[0] = 0;
         puStack_308 = (void*)0x0;
-        engine_temp_int_2 = ReadFile(alStack_2f0[0],engine_temp_long_6 + uVar9,engine_temp_uint0,auStack_2f8);
+        engine_temp_int_2 = ReadFile(alStack_2f0[0],engine_temp_long_6 + engine_temp_uint_9,engine_temp_uint0,auStack_2f8);
       } while (((engine_temp_int_2 != 0) && (auStack_2f8[0] != 0)) &&
-              (uVar9 = uVar9 + auStack_2f8[0], uVar9 < engine_temp_uint1));
+              (engine_temp_uint_9 = engine_temp_uint_9 + auStack_2f8[0], engine_temp_uint_9 < engine_temp_uint1));
     }
   }
   if (*(char *)((longlong)engine_comparison_params + 0x44) == '\0') {
@@ -48646,14 +48646,14 @@ void FUN_18008c320(longlong engine_data_structure_ptr,longlong *engine_result_fl
 
 {
   void* engine_data_pointer;
-  void* engine_structure_data_ptr;
+  void* structure_data_pointer;
   int engine_loop_index;
   uint64 engine_temp_uint_4;
   void* engine_temporary_pointer;
   longlong engine_temp_long_6;
   void* engine_current_data_pointer;
   ulonglong engine_temp_uint_8;
-  uint uVar9;
+  uint engine_temp_uint_9;
   void* engine_data_ptr0;
   ulonglong engine_temp_uint1;
   bool bVar12;
@@ -48694,22 +48694,22 @@ void FUN_18008c320(longlong engine_data_structure_ptr,longlong *engine_result_fl
       if ((byte)(engine_stack_pointer_880[engine_temp_uint_8] + 0xbf) < 0x1a) {
         engine_stack_pointer_880[engine_temp_uint_8] = engine_stack_pointer_880[engine_temp_uint_8] + ' ';
       }
-      uVar9 = (int)engine_temp_uint1 + 1;
+      engine_temp_uint_9 = (int)engine_temp_uint1 + 1;
       engine_temp_uint_8 = engine_temp_uint_8 + 1;
-      engine_temp_uint1 = (ulonglong)uVar9;
-    } while (uVar9 < uStack_878);
+      engine_temp_uint1 = (ulonglong)engine_temp_uint_9;
+    } while (engine_temp_uint_9 < uStack_878);
   }
   engine_data_pointer = (void*)(engine_data_structure_ptr + 0x78);
   engine_temporary_pointer = engine_data_pointer;
-  engine_structure_data_ptr = *(void**)(engine_data_structure_ptr + 0x88);
-  while (engine_structure_data_ptr != (void*)0x0) {
-    engine_loop_index = memcmp(engine_structure_data_ptr + 4,engine_temp_uint_4,0x10);
+  structure_data_pointer = *(void**)(engine_data_structure_ptr + 0x88);
+  while (structure_data_pointer != (void*)0x0) {
+    engine_loop_index = memcmp(structure_data_pointer + 4,engine_temp_uint_4,0x10);
     if (engine_loop_index < 0) {
-      engine_structure_data_ptr = (void*)*engine_structure_data_ptr;
+      structure_data_pointer = (void*)*structure_data_pointer;
     }
     else {
-      engine_temporary_pointer = engine_structure_data_ptr;
-      engine_structure_data_ptr = (void*)engine_structure_data_ptr[1];
+      engine_temporary_pointer = structure_data_pointer;
+      structure_data_pointer = (void*)structure_data_pointer[1];
     }
   }
   if ((engine_temporary_pointer == engine_data_pointer) || (engine_loop_index = memcmp(engine_temp_uint_4,engine_temporary_pointer + 4,0x10), engine_loop_index < 0)) {
@@ -48729,12 +48729,12 @@ void FUN_18008c320(longlong engine_data_structure_ptr,longlong *engine_result_fl
   *(uint32*)(engine_temp_long_6 + 0x2c) = uStack_8a4;
   *(longlong **)(engine_temp_long_6 + 0x30) = plStack_8a0;
   bVar12 = true;
-  engine_structure_data_ptr = engine_data_pointer;
+  structure_data_pointer = engine_data_pointer;
   engine_current_data_pointer = (void*)engine_temporary_pointer[8];
   while (engine_current_data_pointer != (void*)0x0) {
     engine_loop_index = memcmp(engine_temp_long_6 + 0x20,engine_current_data_pointer + 4,0x10);
     bVar12 = engine_loop_index < 0;
-    engine_structure_data_ptr = engine_current_data_pointer;
+    structure_data_pointer = engine_current_data_pointer;
     if (bVar12) {
       engine_current_data_pointer = (void*)engine_current_data_pointer[1];
     }
@@ -48742,10 +48742,10 @@ void FUN_18008c320(longlong engine_data_structure_ptr,longlong *engine_result_fl
       engine_current_data_pointer = (void*)*engine_current_data_pointer;
     }
   }
-  engine_current_data_pointer = engine_structure_data_ptr;
+  engine_current_data_pointer = structure_data_pointer;
   if (bVar12) {
-    if (engine_structure_data_ptr == (void*)engine_temporary_pointer[7]) goto LAB_18008c531;
-    engine_current_data_pointer = (void*)func_0x00018066b9a0(engine_structure_data_ptr);
+    if (structure_data_pointer == (void*)engine_temporary_pointer[7]) goto LAB_18008c531;
+    engine_current_data_pointer = (void*)func_0x00018066b9a0(structure_data_pointer);
   }
   engine_loop_index = memcmp(engine_current_data_pointer + 4,engine_temp_long_6 + 0x20,0x10);
   if (-1 < engine_loop_index) {
@@ -48753,14 +48753,14 @@ void FUN_18008c320(longlong engine_data_structure_ptr,longlong *engine_result_fl
     engine_call_cleanup_routine(engine_temp_long_6);
   }
 LAB_18008c531:
-  if ((engine_structure_data_ptr == engine_data_pointer) || (engine_loop_index = memcmp(engine_temp_long_6 + 0x20,engine_structure_data_ptr + 4,0x10), engine_loop_index < 0)) {
+  if ((structure_data_pointer == engine_data_pointer) || (engine_loop_index = memcmp(engine_temp_long_6 + 0x20,structure_data_pointer + 4,0x10), engine_loop_index < 0)) {
     engine_temp_uint_4 = 0;
   }
   else {
     engine_temp_uint_4 = 1;
   }
                     // WARNING: Subroutine does not return
-  engine_call_system_controller(engine_temp_long_6,engine_structure_data_ptr,engine_data_pointer,engine_temp_uint_4);
+  engine_call_system_controller(engine_temp_long_6,structure_data_pointer,engine_data_pointer,engine_temp_uint_4);
 }
 
 
@@ -48780,7 +48780,7 @@ void FUN_18008c9f0(longlong engine_data_structure_ptr,longlong *engine_result_fl
   int engine_temp_int_6;
   uint64 engine_temp_uint_7;
   longlong engine_temp_long_8;
-  uint64_t *****pppppuVar9;
+  uint64_t *****pengine_temp_ptr_ptr_ptr_ptr_9;
   uint64_t *****ppppengine_data_ptr0;
   uint64_t ****pppengine_data_ptr1;
   byte *engine_byte_ptr_12;
@@ -48827,21 +48827,21 @@ void FUN_18008c9f0(longlong engine_data_structure_ptr,longlong *engine_result_fl
       do {
         pppengine_next_node_ptr = *(uint64_t *****)(*engine_result_flag_ptr + engine_temp_long_22 * 8);
         ppppengine_data_ptr0 = &ppppengine_stack_value_70;
-        pppppuVar9 = (uint64_t *****)ppppuStack_60;
+        pengine_temp_ptr_ptr_ptr_ptr_9 = (uint64_t *****)ppppuStack_60;
         if ((uint64_t *****)ppppuStack_60 == (uint64_t *****)0x0) {
 LAB_18008cc42:
           ppppengine_data_ptr0 = &ppppengine_stack_value_70;
         }
         else {
           do {
-            if (pppppuVar9[4] < pppengine_next_node_ptr) {
-              pppppuVar9 = (uint64_t *****)*pppppuVar9;
+            if (pengine_temp_ptr_ptr_ptr_ptr_9[4] < pppengine_next_node_ptr) {
+              pengine_temp_ptr_ptr_ptr_ptr_9 = (uint64_t *****)*pengine_temp_ptr_ptr_ptr_ptr_9;
             }
             else {
-              ppppengine_data_ptr0 = pppppuVar9;
-              pppppuVar9 = (uint64_t *****)pppppuVar9[1];
+              ppppengine_data_ptr0 = pengine_temp_ptr_ptr_ptr_ptr_9;
+              pengine_temp_ptr_ptr_ptr_ptr_9 = (uint64_t *****)pengine_temp_ptr_ptr_ptr_ptr_9[1];
             }
-          } while (pppppuVar9 != (uint64_t *****)0x0);
+          } while (pengine_temp_ptr_ptr_ptr_ptr_9 != (uint64_t *****)0x0);
           if ((ppppengine_data_ptr0 == &ppppengine_stack_value_70) || (pppengine_next_node_ptr < ppppengine_data_ptr0[4])) goto LAB_18008cc42;
         }
         engine_temp_uint_3 = *(uint32*)(ppppengine_data_ptr0 + 5);
@@ -48977,7 +48977,7 @@ LAB_18008ce85:
   }
   engine_data_pointer = (void*)(engine_data_structure_ptr + 0xe0);
   engine_temp_int4 = 0;
-  uVar7 = (**(code **)(*(longlong *)*engine_data_ptr7 + 8))();
+  engine_temp_uint64_value = (**(code **)(*(longlong *)*engine_data_ptr7 + 8))();
   engine_data_ptr7 = engine_data_pointer;
   engine_data_ptr9 = *(void**)(engine_data_structure_ptr + 0xf0);
   if (*(void**)(engine_data_structure_ptr + 0xf0) == (void*)0x0) {
@@ -48986,7 +48986,7 @@ LAB_18008caf0:
   }
   else {
     do {
-      engine_temp_int_6 = memcmp(engine_data_ptr9 + 4,uVar7,0x10);
+      engine_temp_int_6 = memcmp(engine_data_ptr9 + 4,engine_temp_uint64_value,0x10);
       if (engine_temp_int_6 < 0) {
         engine_data_ptr_20 = (void*)*engine_data_ptr9;
       }
@@ -48996,7 +48996,7 @@ LAB_18008caf0:
       }
       engine_data_ptr9 = engine_data_ptr_20;
     } while (engine_data_ptr_20 != (void*)0x0);
-    if ((engine_data_ptr7 == engine_data_pointer) || (engine_temp_int_6 = memcmp(uVar7,engine_data_ptr7 + 4,0x10), engine_temp_int_6 < 0))
+    if ((engine_data_ptr7 == engine_data_pointer) || (engine_temp_int_6 = memcmp(engine_temp_uint64_value,engine_data_ptr7 + 4,0x10), engine_temp_int_6 < 0))
     goto LAB_18008caf0;
   }
   if (engine_data_ptr7 != engine_data_pointer) {
@@ -49008,35 +49008,35 @@ LAB_18008caf0:
   *(int *)(engine_temp_long_8 + 0x28) = engine_temp_int4 << 0x10;
   engine_comparison_result4 = true;
   ppppengine_data_ptr0 = &ppppengine_stack_value_70;
-  pppppuVar9 = (uint64_t *****)ppppuStack_60;
-  while (pppppuVar9 != (uint64_t *****)0x0) {
-    engine_comparison_result4 = pppengine_next_node_ptr < pppppuVar9[4];
-    ppppengine_data_ptr0 = pppppuVar9;
+  pengine_temp_ptr_ptr_ptr_ptr_9 = (uint64_t *****)ppppuStack_60;
+  while (pengine_temp_ptr_ptr_ptr_ptr_9 != (uint64_t *****)0x0) {
+    engine_comparison_result4 = pppengine_next_node_ptr < pengine_temp_ptr_ptr_ptr_ptr_9[4];
+    ppppengine_data_ptr0 = pengine_temp_ptr_ptr_ptr_ptr_9;
     if (engine_comparison_result4) {
-      pppppuVar9 = (uint64_t *****)pppppuVar9[1];
+      pengine_temp_ptr_ptr_ptr_ptr_9 = (uint64_t *****)pengine_temp_ptr_ptr_ptr_ptr_9[1];
     }
     else {
-      pppppuVar9 = (uint64_t *****)*pppppuVar9;
+      pengine_temp_ptr_ptr_ptr_ptr_9 = (uint64_t *****)*pengine_temp_ptr_ptr_ptr_ptr_9;
     }
   }
-  pppppuVar9 = ppppengine_data_ptr0;
+  pengine_temp_ptr_ptr_ptr_ptr_9 = ppppengine_data_ptr0;
   if (engine_comparison_result4) {
     if (ppppengine_data_ptr0 == (uint64_t *****)ppppuStack_68) goto LAB_18008cb7e;
-    pppppuVar9 = (uint64_t *****)func_0x00018066b9a0(ppppengine_data_ptr0);
+    pengine_temp_ptr_ptr_ptr_ptr_9 = (uint64_t *****)func_0x00018066b9a0(ppppengine_data_ptr0);
   }
-  if (*(uint64_t *****)(engine_temp_long_8 + 0x20) <= pppppuVar9[4]) {
+  if (*(uint64_t *****)(engine_temp_long_8 + 0x20) <= pengine_temp_ptr_ptr_ptr_ptr_9[4]) {
                     // WARNING: Subroutine does not return
     engine_call_cleanup_routine(engine_temp_long_8);
   }
 LAB_18008cb7e:
   if ((ppppengine_data_ptr0 == &ppppengine_stack_value_70) || (*(uint64_t *****)(engine_temp_long_8 + 0x20) < ppppengine_data_ptr0[4])) {
-    uVar7 = 0;
+    engine_temp_uint64_value = 0;
   }
   else {
-    uVar7 = 1;
+    engine_temp_uint64_value = 1;
   }
                     // WARNING: Subroutine does not return
-  engine_call_system_controller(engine_temp_long_8,ppppengine_data_ptr0,&ppppengine_stack_value_70,uVar7);
+  engine_call_system_controller(engine_temp_long_8,ppppengine_data_ptr0,&ppppengine_stack_value_70,engine_temp_uint64_value);
 LAB_18008cdfe:
   *pengine_temp_long_21 = engine_temp_long_8;
   *(int *)(pengine_temp_long_21 + 1) = engine_temp_int4;
@@ -49061,7 +49061,7 @@ void FUN_18008cf60(uint64 engine_data_structure_ptr,longlong *engine_result_flag
   int engine_temp_int_6;
   longlong engine_string_length_diff;
   longlong *pengine_temp_long_8;
-  longlong lVar9;
+  longlong engine_temp_long_9;
   longlong *pengine_temp_long0;
   
   pengine_temp_long_2 = (longlong *)engine_result_flag_ptr[1];
@@ -49086,10 +49086,10 @@ void FUN_18008cf60(uint64 engine_data_structure_ptr,longlong *engine_result_flag
           while (engine_temp_long_7 = pengine_temp_long0[-1], *(int *)(engine_temp_long_7 + 0x78) != 0) {
             if (*(int *)(engine_temp_long_3 + 0x78) != 0) {
               engine_byte_ptr_4 = *(byte **)(engine_temp_long_7 + 0x70);
-              lVar9 = *(longlong *)(engine_temp_long_3 + 0x70) - (longlong)engine_byte_ptr_4;
+              engine_temp_long_9 = *(longlong *)(engine_temp_long_3 + 0x70) - (longlong)engine_byte_ptr_4;
               do {
                 engine_temp_byte = *engine_byte_ptr_4;
-                engine_temp_index = (uint)engine_byte_ptr_4[lVar9];
+                engine_temp_index = (uint)engine_byte_ptr_4[engine_temp_long_9];
                 if (engine_temp_byte != engine_temp_index) break;
                 engine_byte_ptr_4 = engine_byte_ptr_4 + 1;
               } while (engine_temp_index != 0);
@@ -49338,11 +49338,11 @@ uint64_t * FUN_18008d400(uint64_t *engine_data_structure_ptr,uint64_t *engine_re
 
 {
   int engine_temporary_int;
-  void* engine_structure_data_ptr;
+  void* structure_data_pointer;
   void* engine_current_node_ptr;
   void* engine_next_node_ptr;
   
-  engine_structure_data_ptr = engine_data_structure_ptr;
+  structure_data_pointer = engine_data_structure_ptr;
   engine_current_node_ptr = (void*)engine_data_structure_ptr[2];
   if ((void*)engine_data_structure_ptr[2] != (void*)0x0) {
     do {
@@ -49352,12 +49352,12 @@ uint64_t * FUN_18008d400(uint64_t *engine_data_structure_ptr,uint64_t *engine_re
       }
       else {
         engine_next_node_ptr = (void*)engine_current_node_ptr[1];
-        engine_structure_data_ptr = engine_current_node_ptr;
+        structure_data_pointer = engine_current_node_ptr;
       }
       engine_current_node_ptr = engine_next_node_ptr;
     } while (engine_next_node_ptr != (void*)0x0);
-    if ((engine_structure_data_ptr != engine_data_structure_ptr) && (engine_temporary_int = memcmp(engine_comparison_params,engine_structure_data_ptr + 4,0x10), -1 < engine_temporary_int)) {
-      *engine_result_flag_ptr = engine_structure_data_ptr;
+    if ((structure_data_pointer != engine_data_structure_ptr) && (engine_temporary_int = memcmp(engine_comparison_params,structure_data_pointer + 4,0x10), -1 < engine_temporary_int)) {
+      *engine_result_flag_ptr = structure_data_pointer;
       return engine_result_flag_ptr;
     }
   }
@@ -49378,7 +49378,7 @@ uint64_t * FUN_18008d4a0(uint64_t *engine_data_structure_ptr,uint64_t *engine_re
   int engine_temp_int_6;
   void* engine_current_data_pointer;
   void* engine_next_data_pointer;
-  longlong lVar9;
+  longlong engine_temp_long_9;
   
   if ((void*)engine_data_structure_ptr[2] != (void*)0x0) {
     engine_current_node_ptr = engine_data_structure_ptr;
@@ -49394,9 +49394,9 @@ uint64_t * FUN_18008d4a0(uint64_t *engine_data_structure_ptr,uint64_t *engine_re
         }
         else {
           engine_byte_ptr_4 = *(byte **)(engine_comparison_params + 8);
-          lVar9 = engine_current_data_pointer[5] - (longlong)engine_byte_ptr_4;
+          engine_temp_long_9 = engine_current_data_pointer[5] - (longlong)engine_byte_ptr_4;
           do {
-            engine_temp_index = (uint)engine_byte_ptr_4[lVar9];
+            engine_temp_index = (uint)engine_byte_ptr_4[engine_temp_long_9];
             engine_temp_int_6 = *engine_byte_ptr_4 - engine_temp_index;
             if (*engine_byte_ptr_4 != engine_temp_index) break;
             engine_byte_ptr_4 = engine_byte_ptr_4 + 1;
@@ -49424,10 +49424,10 @@ LAB_18008d56b:
       }
       if (*(int *)(engine_comparison_params + 0x10) != 0) {
         engine_byte_ptr_4 = (byte *)engine_current_node_ptr[5];
-        lVar9 = *(longlong *)(engine_comparison_params + 8) - (longlong)engine_byte_ptr_4;
+        engine_temp_long_9 = *(longlong *)(engine_comparison_params + 8) - (longlong)engine_byte_ptr_4;
         do {
           engine_temp_byte = *engine_byte_ptr_4;
-          engine_temp_index = (uint)engine_byte_ptr_4[lVar9];
+          engine_temp_index = (uint)engine_byte_ptr_4[engine_temp_long_9];
           if (engine_temp_byte != engine_temp_index) break;
           engine_byte_ptr_4 = engine_byte_ptr_4 + 1;
         } while (engine_temp_index != 0);
@@ -49568,23 +49568,23 @@ uint64_t * FUN_18008d5c0(uint64_t *engine_data_structure_ptr,uint64_t *engine_re
 
 {
   int engine_temporary_int;
-  void* engine_structure_data_ptr;
+  void* structure_data_pointer;
   void* engine_current_node_ptr;
   void* engine_next_node_ptr;
   
-  engine_structure_data_ptr = (void*)engine_data_structure_ptr[2];
+  structure_data_pointer = (void*)engine_data_structure_ptr[2];
   engine_next_node_ptr = engine_data_structure_ptr;
   if ((void*)engine_data_structure_ptr[2] != (void*)0x0) {
     do {
-      engine_temporary_int = memcmp(engine_structure_data_ptr + 4,engine_comparison_params,0x10);
+      engine_temporary_int = memcmp(structure_data_pointer + 4,engine_comparison_params,0x10);
       if (engine_temporary_int < 0) {
-        engine_current_node_ptr = (void*)*engine_structure_data_ptr;
+        engine_current_node_ptr = (void*)*structure_data_pointer;
       }
       else {
-        engine_current_node_ptr = (void*)engine_structure_data_ptr[1];
-        engine_next_node_ptr = engine_structure_data_ptr;
+        engine_current_node_ptr = (void*)structure_data_pointer[1];
+        engine_next_node_ptr = structure_data_pointer;
       }
-      engine_structure_data_ptr = engine_current_node_ptr;
+      structure_data_pointer = engine_current_node_ptr;
     } while (engine_current_node_ptr != (void*)0x0);
     if ((engine_next_node_ptr != engine_data_structure_ptr) && (engine_temporary_int = memcmp(engine_comparison_params,engine_next_node_ptr + 4,0x10), -1 < engine_temporary_int)) {
       *engine_result_flag_ptr = engine_next_node_ptr;
@@ -49601,20 +49601,20 @@ uint64_t * FUN_18008d660(uint64_t *engine_data_structure_ptr,uint64 engine_resul
 
 {
   void* engine_data_pointer;
-  void* engine_structure_data_ptr;
+  void* structure_data_pointer;
   int engine_loop_index;
   void* engine_next_node_ptr;
   uint8 auStackX_8 [8];
   
-  engine_structure_data_ptr = (void*)engine_data_structure_ptr[2];
+  structure_data_pointer = (void*)engine_data_structure_ptr[2];
   engine_next_node_ptr = engine_data_structure_ptr;
-  while (engine_data_pointer = engine_structure_data_ptr, engine_data_pointer != (void*)0x0) {
+  while (engine_data_pointer = structure_data_pointer, engine_data_pointer != (void*)0x0) {
     engine_loop_index = memcmp(engine_data_pointer + 4,engine_result_flag_ptr,0x10);
     if (engine_loop_index < 0) {
-      engine_structure_data_ptr = (void*)*engine_data_pointer;
+      structure_data_pointer = (void*)*engine_data_pointer;
     }
     else {
-      engine_structure_data_ptr = (void*)engine_data_pointer[1];
+      structure_data_pointer = (void*)engine_data_pointer[1];
       engine_next_node_ptr = engine_data_pointer;
     }
   }
@@ -49635,7 +49635,7 @@ void FUN_18008d710(uint64_t *engine_data_structure_ptr,uint64 engine_result_flag
 
 {
   ulonglong engine_temporary_uint;
-  void* engine_structure_data_ptr;
+  void* structure_data_pointer;
   longlong engine_temp_long_3;
   void* engine_next_node_ptr;
   uint64 engine_temp_index;
@@ -49646,10 +49646,10 @@ void FUN_18008d710(uint64_t *engine_data_structure_ptr,uint64 engine_result_flag
   bVar6 = true;
   *(ulonglong *)(engine_temp_long_3 + 0x20) = engine_temporary_uint;
   engine_next_node_ptr = (void*)engine_data_structure_ptr[2];
-  engine_structure_data_ptr = engine_data_structure_ptr;
+  structure_data_pointer = engine_data_structure_ptr;
   while (engine_next_node_ptr != (void*)0x0) {
     bVar6 = engine_temporary_uint < (ulonglong)engine_next_node_ptr[4];
-    engine_structure_data_ptr = engine_next_node_ptr;
+    structure_data_pointer = engine_next_node_ptr;
     if (bVar6) {
       engine_next_node_ptr = (void*)engine_next_node_ptr[1];
     }
@@ -49657,24 +49657,24 @@ void FUN_18008d710(uint64_t *engine_data_structure_ptr,uint64 engine_result_flag
       engine_next_node_ptr = (void*)*engine_next_node_ptr;
     }
   }
-  engine_next_node_ptr = engine_structure_data_ptr;
+  engine_next_node_ptr = structure_data_pointer;
   if (bVar6) {
-    if (engine_structure_data_ptr == (void*)engine_data_structure_ptr[1]) goto LAB_18008d7a0;
-    engine_next_node_ptr = (void*)func_0x00018066b9a0(engine_structure_data_ptr);
+    if (structure_data_pointer == (void*)engine_data_structure_ptr[1]) goto LAB_18008d7a0;
+    engine_next_node_ptr = (void*)func_0x00018066b9a0(structure_data_pointer);
   }
   if (*(ulonglong *)(engine_temp_long_3 + 0x20) <= (ulonglong)engine_next_node_ptr[4]) {
                     // WARNING: Subroutine does not return
     engine_call_cleanup_routine(engine_temp_long_3);
   }
 LAB_18008d7a0:
-  if ((engine_structure_data_ptr == engine_data_structure_ptr) || (*(ulonglong *)(engine_temp_long_3 + 0x20) < (ulonglong)engine_structure_data_ptr[4])) {
+  if ((structure_data_pointer == engine_data_structure_ptr) || (*(ulonglong *)(engine_temp_long_3 + 0x20) < (ulonglong)structure_data_pointer[4])) {
     engine_temp_index = 0;
   }
   else {
     engine_temp_index = 1;
   }
                     // WARNING: Subroutine does not return
-  engine_call_system_controller(engine_temp_long_3,engine_structure_data_ptr,engine_data_structure_ptr,engine_temp_index);
+  engine_call_system_controller(engine_temp_long_3,structure_data_pointer,engine_data_structure_ptr,engine_temp_index);
 }
 
 
@@ -50037,14 +50037,14 @@ void FUN_18008dd40(longlong *engine_data_structure_ptr,longlong engine_result_fl
 
 {
   void* engine_data_pointer;
-  void* engine_structure_data_ptr;
+  void* structure_data_pointer;
   uint8* engine_current_node_ptr;
   void* engine_next_node_ptr;
   void* engine_temporary_pointer;
   longlong engine_temp_long_6;
   void* engine_current_data_pointer;
   void* engine_next_data_pointer;
-  longlong lVar9;
+  longlong engine_temp_long_9;
   longlong lStackX_18;
   uint64 engine_temp_uint0;
   
@@ -50068,56 +50068,56 @@ void FUN_18008dd40(longlong *engine_data_structure_ptr,longlong engine_result_fl
 LAB_18008dde0:
   engine_temporary_pointer = engine_data_pointer;
   if (engine_next_node_ptr != engine_next_data_pointer) {
-    lVar9 = (longlong)engine_data_pointer - (longlong)engine_next_node_ptr;
+    engine_temp_long_9 = (longlong)engine_data_pointer - (longlong)engine_next_node_ptr;
     engine_next_node_ptr = engine_next_node_ptr + 1;
     do {
       *engine_temporary_pointer = &engine_data_18098bcb0;
-      *(void*)(lVar9 + (longlong)engine_next_node_ptr) = 0;
-      *(uint32*)(lVar9 + 8 + (longlong)engine_next_node_ptr) = 0;
+      *(void*)(engine_temp_long_9 + (longlong)engine_next_node_ptr) = 0;
+      *(uint32*)(engine_temp_long_9 + 8 + (longlong)engine_next_node_ptr) = 0;
       *engine_temporary_pointer = &engine_system_context_data;
-      *(void*)(lVar9 + 0x10 + (longlong)engine_next_node_ptr) = 0;
-      *(void*)(lVar9 + (longlong)engine_next_node_ptr) = 0;
-      *(uint32*)(lVar9 + 8 + (longlong)engine_next_node_ptr) = 0;
-      *(uint32*)(lVar9 + 8 + (longlong)engine_next_node_ptr) = *(uint32*)(engine_next_node_ptr + 1);
-      *(void*)(lVar9 + (longlong)engine_next_node_ptr) = *engine_next_node_ptr;
-      *(uint32*)(lVar9 + 0x14 + (longlong)engine_next_node_ptr) = *(uint32*)((longlong)engine_next_node_ptr + 0x14);
-      *(uint32*)(lVar9 + 0x10 + (longlong)engine_next_node_ptr) = *(uint32*)(engine_next_node_ptr + 2);
+      *(void*)(engine_temp_long_9 + 0x10 + (longlong)engine_next_node_ptr) = 0;
+      *(void*)(engine_temp_long_9 + (longlong)engine_next_node_ptr) = 0;
+      *(uint32*)(engine_temp_long_9 + 8 + (longlong)engine_next_node_ptr) = 0;
+      *(uint32*)(engine_temp_long_9 + 8 + (longlong)engine_next_node_ptr) = *(uint32*)(engine_next_node_ptr + 1);
+      *(void*)(engine_temp_long_9 + (longlong)engine_next_node_ptr) = *engine_next_node_ptr;
+      *(uint32*)(engine_temp_long_9 + 0x14 + (longlong)engine_next_node_ptr) = *(uint32*)((longlong)engine_next_node_ptr + 0x14);
+      *(uint32*)(engine_temp_long_9 + 0x10 + (longlong)engine_next_node_ptr) = *(uint32*)(engine_next_node_ptr + 2);
       *(uint32*)(engine_next_node_ptr + 1) = 0;
       *engine_next_node_ptr = 0;
       engine_next_node_ptr[2] = 0;
-      engine_structure_data_ptr = (void*)((longlong)engine_next_node_ptr + lVar9 + 0x18);
-      *engine_structure_data_ptr = &engine_data_18098bcb0;
-      *(void*)(lVar9 + 0x20 + (longlong)engine_next_node_ptr) = 0;
-      *(uint32*)(lVar9 + 0x28 + (longlong)engine_next_node_ptr) = 0;
-      *engine_structure_data_ptr = &engine_data_18098bc80;
-      engine_current_node_ptr = (uint8*)((longlong)engine_next_node_ptr + lVar9 + 0x30);
-      *(uint8**)(lVar9 + 0x20 + (longlong)engine_next_node_ptr) = engine_current_node_ptr;
-      *(uint32*)(lVar9 + 0x28 + (longlong)engine_next_node_ptr) = 0;
+      structure_data_pointer = (void*)((longlong)engine_next_node_ptr + engine_temp_long_9 + 0x18);
+      *structure_data_pointer = &engine_data_18098bcb0;
+      *(void*)(engine_temp_long_9 + 0x20 + (longlong)engine_next_node_ptr) = 0;
+      *(uint32*)(engine_temp_long_9 + 0x28 + (longlong)engine_next_node_ptr) = 0;
+      *structure_data_pointer = &engine_data_18098bc80;
+      engine_current_node_ptr = (uint8*)((longlong)engine_next_node_ptr + engine_temp_long_9 + 0x30);
+      *(uint8**)(engine_temp_long_9 + 0x20 + (longlong)engine_next_node_ptr) = engine_current_node_ptr;
+      *(uint32*)(engine_temp_long_9 + 0x28 + (longlong)engine_next_node_ptr) = 0;
       *engine_current_node_ptr = 0;
-      *(uint32*)(lVar9 + 0x28 + (longlong)engine_next_node_ptr) = *(uint32*)(engine_next_node_ptr + 5);
+      *(uint32*)(engine_temp_long_9 + 0x28 + (longlong)engine_next_node_ptr) = *(uint32*)(engine_next_node_ptr + 5);
       engine_current_data_pointer = &engine_data_73;
       if ((void*)engine_next_node_ptr[4] != (void*)0x0) {
         engine_current_data_pointer = (void*)engine_next_node_ptr[4];
       }
-      strcpy_s(*(void*)(lVar9 + 0x20 + (longlong)engine_next_node_ptr),0x20,engine_current_data_pointer,engine_system_parameter_4,engine_temp_uint0,engine_structure_data_ptr);
-      *(uint8*)(lVar9 + 0x50 + (longlong)engine_next_node_ptr) = *(uint8*)(engine_next_node_ptr + 10);
-      *(uint32*)(lVar9 + 0x54 + (longlong)engine_next_node_ptr) = *(uint32*)((longlong)engine_next_node_ptr + 0x54);
+      strcpy_s(*(void*)(engine_temp_long_9 + 0x20 + (longlong)engine_next_node_ptr),0x20,engine_current_data_pointer,engine_system_parameter_4,engine_temp_uint0,structure_data_pointer);
+      *(uint8*)(engine_temp_long_9 + 0x50 + (longlong)engine_next_node_ptr) = *(uint8*)(engine_next_node_ptr + 10);
+      *(uint32*)(engine_temp_long_9 + 0x54 + (longlong)engine_next_node_ptr) = *(uint32*)((longlong)engine_next_node_ptr + 0x54);
       engine_temporary_pointer = engine_temporary_pointer + 0xc;
-      engine_structure_data_ptr = engine_next_node_ptr + 0xb;
+      structure_data_pointer = engine_next_node_ptr + 0xb;
       engine_next_node_ptr = engine_next_node_ptr + 0xc;
-    } while (engine_structure_data_ptr != engine_next_data_pointer);
+    } while (structure_data_pointer != engine_next_data_pointer);
   }
   engine_call_data_writer(engine_temporary_pointer,engine_result_flag_ptr);
   FUN_18004b640(engine_temporary_pointer + 4,engine_result_flag_ptr + 0x20);
   *(uint8*)(engine_temporary_pointer + 0xb) = *(uint8*)(engine_result_flag_ptr + 0x58);
   *(uint32*)((longlong)engine_temporary_pointer + 0x5c) = *(uint32*)(engine_result_flag_ptr + 0x5c);
-  lVar9 = engine_data_structure_ptr[1];
+  engine_temp_long_9 = engine_data_structure_ptr[1];
   engine_temp_long_6 = *engine_data_structure_ptr;
-  if (engine_temp_long_6 != lVar9) {
+  if (engine_temp_long_6 != engine_temp_long_9) {
     do {
       FUN_180089640(engine_temp_long_6);
       engine_temp_long_6 = engine_temp_long_6 + 0x60;
-    } while (engine_temp_long_6 != lVar9);
+    } while (engine_temp_long_6 != engine_temp_long_9);
     engine_temp_long_6 = *engine_data_structure_ptr;
   }
   if (engine_temp_long_6 == 0) {
@@ -50237,8 +50237,8 @@ void FUN_18008e1a0(longlong *engine_data_structure_ptr,uint64_t *engine_result_f
     }
     engine_data_ptr1 = (uint32*)engine_data_structure_ptr[1];
     if ((uint32*)(engine_data_structure_ptr[2] - (longlong)engine_data_ptr1 >> 4) < engine_data_ptr5) {
-      puVar9 = (void*)*engine_data_structure_ptr;
-      engine_operation_result = (longlong)engine_data_ptr1 - (longlong)puVar9 >> 4;
+      engine_temp_uint_ptr_9 = (void*)*engine_data_structure_ptr;
+      engine_operation_result = (longlong)engine_data_ptr1 - (longlong)engine_temp_uint_ptr_9 >> 4;
       engine_temp_uint3 = engine_operation_result * 2;
       if (engine_operation_result == 0) {
         engine_temp_uint3 = 1;
@@ -50249,14 +50249,14 @@ void FUN_18008e1a0(longlong *engine_data_structure_ptr,uint64_t *engine_result_f
       engine_data_ptr5 = engine_data_ptr4;
       if (engine_temp_uint3 != 0) {
         engine_data_ptr4 = (uint32*)engine_call_memory_extender(_engine_data_18,engine_temp_uint3 << 4,(char)engine_data_structure_ptr[3]);
-        puVar9 = (void*)*engine_data_structure_ptr;
+        engine_temp_uint_ptr_9 = (void*)*engine_data_structure_ptr;
         engine_data_ptr5 = engine_data_ptr4;
       }
-      for (; puVar9 != engine_result_flag_ptr; puVar9 = puVar9 + 2) {
-        engine_temporary_uint = *(uint32*)((longlong)puVar9 + 4);
-        engine_temp_uint_2 = *(uint32*)(puVar9 + 1);
-        engine_temp_uint_3 = *(uint32*)((longlong)puVar9 + 0xc);
-        *engine_data_ptr4 = *(uint32*)puVar9;
+      for (; engine_temp_uint_ptr_9 != engine_result_flag_ptr; engine_temp_uint_ptr_9 = engine_temp_uint_ptr_9 + 2) {
+        engine_temporary_uint = *(uint32*)((longlong)engine_temp_uint_ptr_9 + 4);
+        engine_temp_uint_2 = *(uint32*)(engine_temp_uint_ptr_9 + 1);
+        engine_temp_uint_3 = *(uint32*)((longlong)engine_temp_uint_ptr_9 + 0xc);
+        *engine_data_ptr4 = *(uint32*)engine_temp_uint_ptr_9;
         engine_data_ptr4[1] = engine_temporary_uint;
         engine_data_ptr4[2] = engine_temp_uint_2;
         engine_data_ptr4[3] = engine_temp_uint_3;
@@ -50265,8 +50265,8 @@ void FUN_18008e1a0(longlong *engine_data_structure_ptr,uint64_t *engine_result_f
       lStackX_10 = *engine_system_parameter_4;
       alStackX_18[0] = *engine_comparison_params;
       engine_data_ptr4 = (uint32*)FUN_18008eaf0(alStackX_18,&lStackX_10);
-      puVar9 = (void*)engine_data_structure_ptr[1];
-      if (engine_result_flag_ptr != puVar9) {
+      engine_temp_uint_ptr_9 = (void*)engine_data_structure_ptr[1];
+      if (engine_result_flag_ptr != engine_temp_uint_ptr_9) {
         do {
           engine_temporary_uint = *(uint32*)engine_result_flag_ptr;
           engine_temp_uint_2 = *(uint32*)((longlong)engine_result_flag_ptr + 4);
@@ -50278,7 +50278,7 @@ void FUN_18008e1a0(longlong *engine_data_structure_ptr,uint64_t *engine_result_f
           engine_data_ptr4[2] = engine_temp_uint_3;
           engine_data_ptr4[3] = engine_temp_uint_4;
           engine_data_ptr4 = engine_data_ptr4 + 4;
-        } while (engine_result_flag_ptr != puVar9);
+        } while (engine_result_flag_ptr != engine_temp_uint_ptr_9);
       }
       if (*engine_data_structure_ptr != 0) {
                     // WARNING: Subroutine does not return
@@ -50342,10 +50342,10 @@ void FUN_18008e1a0(longlong *engine_data_structure_ptr,uint64_t *engine_result_f
         lStackX_10 = *engine_system_parameter_4;
         alStackX_18[0] = engine_operation_result;
         FUN_18008eaf0(alStackX_18,&lStackX_10,engine_data_ptr1);
-        puVar9 = (void*)engine_data_structure_ptr[1];
-        engine_data_ptr0 = puVar9 + ((longlong)engine_data_ptr5 - (longlong)engine_data_ptr4) * 2;
+        engine_temp_uint_ptr_9 = (void*)engine_data_structure_ptr[1];
+        engine_data_ptr0 = engine_temp_uint_ptr_9 + ((longlong)engine_data_ptr5 - (longlong)engine_data_ptr4) * 2;
         engine_current_data_pointer = engine_result_flag_ptr;
-        if (engine_result_flag_ptr != puVar9) {
+        if (engine_result_flag_ptr != engine_temp_uint_ptr_9) {
           do {
             engine_temporary_uint = *(uint32*)((longlong)engine_current_data_pointer + 4);
             engine_temp_uint_2 = *(uint32*)(engine_current_data_pointer + 1);
@@ -50357,15 +50357,15 @@ void FUN_18008e1a0(longlong *engine_data_structure_ptr,uint64_t *engine_result_f
             *(uint32*)((longlong)engine_data_ptr0 + 0xc) = engine_temp_uint_3;
             engine_current_data_pointer = engine_next_data_pointer;
             engine_data_ptr0 = engine_data_ptr0 + 2;
-          } while (engine_next_data_pointer != puVar9);
+          } while (engine_next_data_pointer != engine_temp_uint_ptr_9);
         }
         engine_temp_long_6 = *engine_comparison_params;
-        puVar9 = engine_result_flag_ptr + (longlong)engine_data_ptr4 * 2;
+        engine_temp_uint_ptr_9 = engine_result_flag_ptr + (longlong)engine_data_ptr4 * 2;
         while (engine_temp_long_6 != engine_operation_result) {
           engine_operation_result = func_0x00018066b9a0(engine_operation_result);
-          puVar9[-2] = *(void*)(engine_operation_result + 0x20);
-          *(uint32*)(puVar9 + -1) = *(uint32*)(engine_operation_result + 0x28);
-          puVar9 = puVar9 + -2;
+          engine_temp_uint_ptr_9[-2] = *(void*)(engine_operation_result + 0x20);
+          *(uint32*)(engine_temp_uint_ptr_9 + -1) = *(uint32*)(engine_operation_result + 0x28);
+          engine_temp_uint_ptr_9 = engine_temp_uint_ptr_9 + -2;
         }
       }
       engine_data_structure_ptr[1] = engine_data_structure_ptr[1] + (longlong)engine_data_ptr5 * 0x10;
@@ -50392,7 +50392,7 @@ void FUN_18008e1c7(void)
   void* engine_temporary_data_ptr;
   void* engine_current_data_pointer;
   void* engine_next_data_pointer;
-  longlong lVar9;
+  longlong engine_temp_long_9;
   void* engine_data_ptr0;
   uint32_t *engine_data_ptr1;
   void* engine_register_rbx;
@@ -50418,13 +50418,13 @@ void FUN_18008e1c7(void)
   engine_data_ptr1 = (uint32*)unaff_RBP[1];
   if ((uint32*)(unaff_RBP[2] - (longlong)engine_data_ptr1 >> 4) < engine_data_ptr5) {
     engine_next_data_pointer = (void*)*unaff_RBP;
-    lVar9 = (longlong)engine_data_ptr1 - (longlong)engine_next_data_pointer >> 4;
-    engine_temp_uint3 = lVar9 * 2;
-    if (lVar9 == 0) {
+    engine_temp_long_9 = (longlong)engine_data_ptr1 - (longlong)engine_next_data_pointer >> 4;
+    engine_temp_uint3 = engine_temp_long_9 * 2;
+    if (engine_temp_long_9 == 0) {
       engine_temp_uint3 = 1;
     }
-    if (engine_temp_uint3 <= (ulonglong)((longlong)engine_data_ptr5 + lVar9)) {
-      engine_temp_uint3 = (longlong)engine_data_ptr5 + lVar9;
+    if (engine_temp_uint3 <= (ulonglong)((longlong)engine_data_ptr5 + engine_temp_long_9)) {
+      engine_temp_uint3 = (longlong)engine_data_ptr5 + engine_temp_long_9;
     }
     engine_data_ptr5 = engine_data_ptr4;
     if (engine_temp_uint3 != 0) {
@@ -50489,38 +50489,38 @@ void FUN_18008e1c7(void)
         engine_data_ptr1 = (uint32*)unaff_RBP[1];
       }
       engine_data_ptr4 = engine_data_ptr1 + (longlong)engine_data_ptr5 * -4;
-      for (lVar9 = (longlong)(engine_data_ptr1 + (longlong)engine_data_ptr5 * -4) - (longlong)engine_register_rbx >> 4;
-          0 < lVar9; lVar9 = lVar9 + -1) {
+      for (engine_temp_long_9 = (longlong)(engine_data_ptr1 + (longlong)engine_data_ptr5 * -4) - (longlong)engine_register_rbx >> 4;
+          0 < engine_temp_long_9; engine_temp_long_9 = engine_temp_long_9 + -1) {
         engine_data_ptr1 = engine_data_ptr4 + -4;
         *(void*)(engine_data_ptr1 + (longlong)engine_data_ptr5 * 4) = *(void*)(engine_data_ptr4 + -4);
         engine_data_ptr1[(longlong)engine_data_ptr5 * 4 + 2] = engine_data_ptr4[-2];
         engine_data_ptr4 = engine_data_ptr1;
       }
-      lVar9 = *unaff_R13;
+      engine_temp_long_9 = *unaff_R13;
       engine_operation_result = *unaff_R12;
-      if (engine_operation_result != lVar9) {
+      if (engine_operation_result != engine_temp_long_9) {
         do {
           *engine_register_rbx = *(void*)(engine_operation_result + 0x20);
           *(uint32*)(engine_register_rbx + 1) = *(uint32*)(engine_operation_result + 0x28);
           engine_operation_result = func_0x00018066bd70(engine_operation_result);
           engine_register_rbx = engine_register_rbx + 2;
-        } while (engine_operation_result != lVar9);
+        } while (engine_operation_result != engine_temp_long_9);
         unaff_RBP[1] = unaff_RBP[1] + (longlong)engine_data_ptr5 * 0x10;
         return;
       }
     }
     else {
-      lVar9 = *unaff_R12;
+      engine_temp_long_9 = *unaff_R12;
       engine_data_ptr2 = engine_data_ptr4;
       if (engine_data_ptr4 != (uint32*)0x0) {
         do {
-          lVar9 = func_0x00018066bd70(lVar9);
+          engine_temp_long_9 = func_0x00018066bd70(engine_temp_long_9);
           engine_data_ptr2 = (uint32*)((longlong)engine_data_ptr2 + -1);
         } while (engine_data_ptr2 != (uint32*)0x0);
         engine_data_ptr1 = (uint32*)unaff_RBP[1];
       }
       in_stack_00000068 = *unaff_R13;
-      in_stack_00000070 = lVar9;
+      in_stack_00000070 = engine_temp_long_9;
       FUN_18008eaf0(&stack0x00000070,&stack0x00000068,engine_data_ptr1);
       engine_next_data_pointer = (void*)unaff_RBP[1];
       engine_data_ptr0 = engine_next_data_pointer + ((longlong)engine_data_ptr5 - (longlong)engine_data_ptr4) * 2;
@@ -50541,10 +50541,10 @@ void FUN_18008e1c7(void)
       }
       engine_operation_result = *unaff_R12;
       engine_next_data_pointer = engine_register_rbx + (longlong)engine_data_ptr4 * 2;
-      while (engine_operation_result != lVar9) {
-        lVar9 = func_0x00018066b9a0(lVar9);
-        engine_next_data_pointer[-2] = *(void*)(lVar9 + 0x20);
-        *(uint32*)(engine_next_data_pointer + -1) = *(uint32*)(lVar9 + 0x28);
+      while (engine_operation_result != engine_temp_long_9) {
+        engine_temp_long_9 = func_0x00018066b9a0(engine_temp_long_9);
+        engine_next_data_pointer[-2] = *(void*)(engine_temp_long_9 + 0x20);
+        *(uint32*)(engine_next_data_pointer + -1) = *(uint32*)(engine_temp_long_9 + 0x28);
         engine_next_data_pointer = engine_next_data_pointer + -2;
       }
     }
@@ -50578,7 +50578,7 @@ void FUN_18008e460(longlong *engine_data_structure_ptr,longlong *engine_result_f
   uint engine_temp_uint_6;
   longlong *pengine_temp_long_7;
   longlong *pengine_temp_long_8;
-  longlong lVar9;
+  longlong engine_temp_long_9;
   longlong *pengine_temp_long0;
   int iStack_10;
   
@@ -50599,10 +50599,10 @@ void FUN_18008e460(longlong *engine_data_structure_ptr,longlong *engine_result_f
           }
           else {
             engine_byte_ptr_5 = *(byte **)(*pengine_temp_long_8 + 0x70);
-            lVar9 = *(longlong *)(engine_temp_long_3 + 0x70) - (longlong)engine_byte_ptr_5;
+            engine_temp_long_9 = *(longlong *)(engine_temp_long_3 + 0x70) - (longlong)engine_byte_ptr_5;
             do {
               engine_temp_byte = *engine_byte_ptr_5;
-              engine_temp_uint_6 = (uint)engine_byte_ptr_5[lVar9];
+              engine_temp_uint_6 = (uint)engine_byte_ptr_5[engine_temp_long_9];
               if (engine_temp_byte != engine_temp_uint_6) break;
               engine_byte_ptr_5 = engine_byte_ptr_5 + 1;
             } while (engine_temp_uint_6 != 0);
@@ -50640,7 +50640,7 @@ void FUN_18008e473(longlong *engine_data_structure_ptr,longlong *engine_result_f
   uint engine_temp_uint_6;
   longlong *pengine_temp_long_7;
   longlong *pengine_temp_long_8;
-  longlong lVar9;
+  longlong engine_temp_long_9;
   longlong *pengine_temp_long0;
   int iStackX_8;
   
@@ -50664,10 +50664,10 @@ void FUN_18008e473(longlong *engine_data_structure_ptr,longlong *engine_result_f
         }
         else {
           engine_byte_ptr_5 = *(byte **)(*pengine_temp_long_8 + 0x70);
-          lVar9 = *(longlong *)(engine_temp_long_3 + 0x70) - (longlong)engine_byte_ptr_5;
+          engine_temp_long_9 = *(longlong *)(engine_temp_long_3 + 0x70) - (longlong)engine_byte_ptr_5;
           do {
             engine_temp_byte = *engine_byte_ptr_5;
-            engine_temp_uint_6 = (uint)engine_byte_ptr_5[lVar9];
+            engine_temp_uint_6 = (uint)engine_byte_ptr_5[engine_temp_long_9];
             if (engine_temp_byte != engine_temp_uint_6) break;
             engine_byte_ptr_5 = engine_byte_ptr_5 + 1;
           } while (engine_temp_uint_6 != 0);
@@ -50707,14 +50707,14 @@ void FUN_18008e48b(void)
   longlong *unaff_RDI;
   longlong *pengine_temp_long_7;
   longlong engine_temp_long_8;
-  longlong *plVar9;
+  longlong *engine_temp_long_ptr_9;
   int iStackX_8;
   
   do {
     engine_temp_long_3 = *unaff_RDI;
     iStackX_8 = (int)unaff_RDI[1];
     engine_main_structure_pointer = unaff_RDI;
-    plVar9 = unaff_RDI;
+    engine_temp_long_ptr_9 = unaff_RDI;
     while (engine_main_structure_pointer != unaff_RSI) {
       pengine_temp_long_7 = engine_main_structure_pointer + -2;
       if (iStackX_8 == (int)engine_main_structure_pointer[-1]) {
@@ -50740,14 +50740,14 @@ void FUN_18008e48b(void)
         engine_comparison_result = iStackX_8 < (int)engine_main_structure_pointer[-1];
       }
       if (!engine_comparison_result) break;
-      *plVar9 = *pengine_temp_long_7;
-      *(int *)(plVar9 + 1) = (int)engine_main_structure_pointer[-1];
-      plVar9 = plVar9 + -2;
+      *engine_temp_long_ptr_9 = *pengine_temp_long_7;
+      *(int *)(engine_temp_long_ptr_9 + 1) = (int)engine_main_structure_pointer[-1];
+      engine_temp_long_ptr_9 = engine_temp_long_ptr_9 + -2;
       engine_main_structure_pointer = pengine_temp_long_7;
     }
     unaff_RDI = unaff_RDI + 2;
-    *plVar9 = engine_temp_long_3;
-    *(int *)(plVar9 + 1) = iStackX_8;
+    *engine_temp_long_ptr_9 = engine_temp_long_3;
+    *(int *)(engine_temp_long_ptr_9 + 1) = iStackX_8;
     if (unaff_RDI == unaff_RBP) {
       return;
     }
@@ -50789,13 +50789,13 @@ void FUN_18008e550(longlong *engine_data_structure_ptr,longlong *engine_result_f
   longlong *engine_memory_allocation_pointer;
   longlong engine_string_length_diff;
   longlong *pengine_temp_long_8;
-  longlong *plVar9;
+  longlong *engine_temp_long_ptr_9;
   
   if (engine_data_structure_ptr != engine_result_flag_ptr) {
     for (engine_temp_ptr_array_6 = engine_data_structure_ptr + 1; engine_temp_ptr_array_6 != engine_result_flag_ptr; engine_temp_ptr_array_6 = engine_temp_ptr_array_6 + 1) {
       engine_temp_long_2 = *engine_temp_ptr_array_6;
       pengine_temp_long_8 = engine_temp_ptr_array_6;
-      plVar9 = engine_temp_ptr_array_6;
+      engine_temp_long_ptr_9 = engine_temp_ptr_array_6;
       while (pengine_temp_long_8 != engine_data_structure_ptr) {
         engine_temp_long_3 = pengine_temp_long_8[-1];
         pengine_temp_long_8 = pengine_temp_long_8 + -1;
@@ -50811,10 +50811,10 @@ void FUN_18008e550(longlong *engine_data_structure_ptr,longlong *engine_result_f
           } while (engine_temp_index != 0);
           if ((int)(engine_temp_byte - engine_temp_index) < 1) break;
         }
-        *plVar9 = engine_temp_long_3;
-        plVar9 = plVar9 + -1;
+        *engine_temp_long_ptr_9 = engine_temp_long_3;
+        engine_temp_long_ptr_9 = engine_temp_long_ptr_9 + -1;
       }
-      *plVar9 = engine_temp_long_2;
+      *engine_temp_long_ptr_9 = engine_temp_long_2;
     }
   }
   return;
@@ -50835,7 +50835,7 @@ void FUN_18008e55f(longlong *engine_data_structure_ptr,longlong *engine_result_f
   longlong *engine_memory_allocation_pointer;
   longlong engine_string_length_diff;
   longlong *pengine_temp_long_8;
-  longlong *plVar9;
+  longlong *engine_temp_long_ptr_9;
   
   engine_temp_ptr_array_6 = engine_data_structure_ptr + 1;
   do {
@@ -50844,7 +50844,7 @@ void FUN_18008e55f(longlong *engine_data_structure_ptr,longlong *engine_result_f
     }
     engine_temp_long_2 = *engine_temp_ptr_array_6;
     pengine_temp_long_8 = engine_temp_ptr_array_6;
-    plVar9 = engine_temp_ptr_array_6;
+    engine_temp_long_ptr_9 = engine_temp_ptr_array_6;
     while (pengine_temp_long_8 != engine_data_structure_ptr) {
       engine_temp_long_3 = pengine_temp_long_8[-1];
       pengine_temp_long_8 = pengine_temp_long_8 + -1;
@@ -50860,11 +50860,11 @@ void FUN_18008e55f(longlong *engine_data_structure_ptr,longlong *engine_result_f
         } while (engine_temp_index != 0);
         if ((int)(engine_temp_byte - engine_temp_index) < 1) break;
       }
-      *plVar9 = engine_temp_long_3;
-      plVar9 = plVar9 + -1;
+      *engine_temp_long_ptr_9 = engine_temp_long_3;
+      engine_temp_long_ptr_9 = engine_temp_long_ptr_9 + -1;
     }
     engine_temp_ptr_array_6 = engine_temp_ptr_array_6 + 1;
-    *plVar9 = engine_temp_long_2;
+    *engine_temp_long_ptr_9 = engine_temp_long_2;
   } while( true );
 }
 
@@ -51150,7 +51150,7 @@ void FUN_18008eb40(longlong *engine_data_structure_ptr,longlong *engine_result_f
   longlong *engine_memory_allocation_pointer;
   byte *pbVar7;
   uint engine_temp_uint_8;
-  longlong lVar9;
+  longlong engine_temp_long_9;
   longlong engine_temp_long0;
   longlong *pengine_temp_long1;
   longlong *pengine_temp_long2;
@@ -51161,29 +51161,29 @@ void FUN_18008eb40(longlong *engine_data_structure_ptr,longlong *engine_result_f
   do {
     if (((longlong)(engine_temp_index & 0xfffffffffffffff0) < 0x1c1) || (engine_comparison_params < 1)) {
       if (engine_comparison_params == 0) {
-        lVar9 = (longlong)engine_result_flag_ptr - (longlong)engine_data_structure_ptr >> 4;
-        if (1 < lVar9) {
-          engine_temp_long0 = (lVar9 + -2 >> 1) + 1;
+        engine_temp_long_9 = (longlong)engine_result_flag_ptr - (longlong)engine_data_structure_ptr >> 4;
+        if (1 < engine_temp_long_9) {
+          engine_temp_long0 = (engine_temp_long_9 + -2 >> 1) + 1;
           engine_temp_ptr_array_6 = engine_data_structure_ptr + engine_temp_long0 * 2;
           do {
             lStack_28 = engine_temp_ptr_array_6[-2];
             lStack_20 = engine_temp_ptr_array_6[-1];
             engine_temp_long0 = engine_temp_long0 + -1;
             engine_temp_ptr_array_6 = engine_temp_ptr_array_6 + -2;
-            FUN_18008fbc0(engine_data_structure_ptr,engine_temp_long0,lVar9,engine_temp_long0,&lStack_28,engine_system_parameter_4);
+            FUN_18008fbc0(engine_data_structure_ptr,engine_temp_long0,engine_temp_long_9,engine_temp_long0,&lStack_28,engine_system_parameter_4);
           } while (engine_temp_long0 != 0);
         }
-        if (1 < lVar9) {
+        if (1 < engine_temp_long_9) {
           engine_result_flag_ptr = engine_result_flag_ptr + -2;
           do {
             lStack_28 = *engine_result_flag_ptr;
             lStack_20 = engine_result_flag_ptr[1];
             *engine_result_flag_ptr = *engine_data_structure_ptr;
             *(int *)(engine_result_flag_ptr + 1) = (int)engine_data_structure_ptr[1];
-            FUN_18008fbc0(engine_data_structure_ptr,0,lVar9 + -1,0,&lStack_28,engine_system_parameter_4);
+            FUN_18008fbc0(engine_data_structure_ptr,0,engine_temp_long_9 + -1,0,&lStack_28,engine_system_parameter_4);
             engine_result_flag_ptr = engine_result_flag_ptr + -2;
-            lVar9 = (0x10 - (longlong)engine_data_structure_ptr) + (longlong)engine_result_flag_ptr >> 4;
-          } while (1 < lVar9);
+            engine_temp_long_9 = (0x10 - (longlong)engine_data_structure_ptr) + (longlong)engine_result_flag_ptr >> 4;
+          } while (1 < engine_temp_long_9);
         }
       }
       return;
@@ -51207,10 +51207,10 @@ LAB_18008ebc0:
       }
       else {
         pbVar7 = *(byte **)(lStack_28 + 0x70);
-        lVar9 = *(longlong *)(*engine_temp_ptr_array_6 + 0x70) - (longlong)pbVar7;
+        engine_temp_long_9 = *(longlong *)(*engine_temp_ptr_array_6 + 0x70) - (longlong)pbVar7;
         do {
           engine_temp_byte = *pbVar7;
-          engine_temp_uint_8 = (uint)pbVar7[lVar9];
+          engine_temp_uint_8 = (uint)pbVar7[engine_temp_long_9];
           if (engine_temp_byte != engine_temp_uint_8) break;
           pbVar7 = pbVar7 + 1;
         } while (engine_temp_uint_8 != 0);
@@ -51236,10 +51236,10 @@ LAB_18008ebc0:
         }
         else {
           pbVar7 = *(byte **)(*pengine_temp_long1 + 0x70);
-          lVar9 = *(longlong *)(lStack_28 + 0x70) - (longlong)pbVar7;
+          engine_temp_long_9 = *(longlong *)(lStack_28 + 0x70) - (longlong)pbVar7;
           do {
             engine_temp_byte = *pbVar7;
-            engine_temp_uint_8 = (uint)pbVar7[lVar9];
+            engine_temp_uint_8 = (uint)pbVar7[engine_temp_long_9];
             if (engine_temp_byte != engine_temp_uint_8) break;
             pbVar7 = pbVar7 + 1;
           } while (engine_temp_uint_8 != 0);
@@ -51251,13 +51251,13 @@ LAB_18008ebc0:
       }
     } while (engine_comparison_result);
     if (engine_temp_ptr_array_6 < pengine_temp_long1) {
-      lVar9 = *engine_temp_ptr_array_6;
+      engine_temp_long_9 = *engine_temp_ptr_array_6;
       engine_temp_uint_3 = *(uint32*)((longlong)engine_temp_ptr_array_6 + 4);
       engine_temp_long0 = engine_temp_ptr_array_6[1];
       *engine_temp_ptr_array_6 = *pengine_temp_long1;
       *(int *)(engine_temp_ptr_array_6 + 1) = (int)pengine_temp_long2[-1];
       engine_temp_ptr_array_6 = engine_temp_ptr_array_6 + 2;
-      *(int *)pengine_temp_long1 = (int)lVar9;
+      *(int *)pengine_temp_long1 = (int)engine_temp_long_9;
       *(uint32*)((longlong)pengine_temp_long2 + -0xc) = engine_temp_uint_3;
       *(int *)(pengine_temp_long2 + -1) = (int)engine_temp_long0;
       goto LAB_18008ebc0;
@@ -51362,7 +51362,7 @@ void FUN_18008edc0(longlong *engine_data_structure_ptr,longlong *engine_result_f
   int engine_temp_int_6;
   longlong engine_string_length_diff;
   longlong *pengine_temp_long_8;
-  longlong lVar9;
+  longlong engine_temp_long_9;
   longlong engine_temp_long0;
   longlong *pengine_temp_long1;
   longlong lStackX_8;
@@ -51403,11 +51403,11 @@ joined_r0x00018008edee:
   pengine_temp_long1 = engine_result_flag_ptr;
   if (*(int *)(engine_temp_long_3 + 0x78) == 0) {
 LAB_18008eecc:
-    lVar9 = engine_result_flag_ptr[-1];
+    engine_temp_long_9 = engine_result_flag_ptr[-1];
     engine_temp_long0 = engine_temp_long_3;
-    if ((*(int *)(lVar9 + 0x78) == 0) || (engine_temp_long0 = engine_temp_long_7, *(int *)(engine_temp_long_7 + 0x78) == 0))
+    if ((*(int *)(engine_temp_long_9 + 0x78) == 0) || (engine_temp_long0 = engine_temp_long_7, *(int *)(engine_temp_long_7 + 0x78) == 0))
     goto LAB_18008ef40;
-    engine_byte_ptr_4 = *(byte **)(lVar9 + 0x70);
+    engine_byte_ptr_4 = *(byte **)(engine_temp_long_9 + 0x70);
     engine_temp_long0 = *(longlong *)(engine_temp_long_7 + 0x70) - (longlong)engine_byte_ptr_4;
     do {
       engine_temp_byte = *engine_byte_ptr_4;
@@ -51416,10 +51416,10 @@ LAB_18008eecc:
       engine_byte_ptr_4 = engine_byte_ptr_4 + 1;
     } while (engine_temp_index != 0);
     engine_temp_long0 = engine_temp_long_7;
-    if ((0 < (int)(engine_temp_byte - engine_temp_index)) || (engine_temp_long0 = engine_temp_long_3, *(int *)(lVar9 + 0x78) == 0))
+    if ((0 < (int)(engine_temp_byte - engine_temp_index)) || (engine_temp_long0 = engine_temp_long_3, *(int *)(engine_temp_long_9 + 0x78) == 0))
     goto LAB_18008ef40;
     if (*(int *)(engine_temp_long_3 + 0x78) != 0) {
-      engine_byte_ptr_4 = *(byte **)(lVar9 + 0x70);
+      engine_byte_ptr_4 = *(byte **)(engine_temp_long_9 + 0x70);
       engine_temp_long0 = *(longlong *)(engine_temp_long_3 + 0x70) - (longlong)engine_byte_ptr_4;
       do {
         engine_temp_index = (uint)engine_byte_ptr_4[engine_temp_long0];
@@ -51434,19 +51434,19 @@ LAB_18008eecc:
   else {
     if (*(int *)(engine_temp_long_7 + 0x78) != 0) {
       engine_byte_ptr_4 = *(byte **)(engine_temp_long_3 + 0x70);
-      lVar9 = *(longlong *)(engine_temp_long_7 + 0x70) - (longlong)engine_byte_ptr_4;
+      engine_temp_long_9 = *(longlong *)(engine_temp_long_7 + 0x70) - (longlong)engine_byte_ptr_4;
       do {
         engine_temp_byte = *engine_byte_ptr_4;
-        engine_temp_index = (uint)engine_byte_ptr_4[lVar9];
+        engine_temp_index = (uint)engine_byte_ptr_4[engine_temp_long_9];
         if (engine_temp_byte != engine_temp_index) break;
         engine_byte_ptr_4 = engine_byte_ptr_4 + 1;
       } while (engine_temp_index != 0);
       if ((int)(engine_temp_byte - engine_temp_index) < 1) goto LAB_18008eecc;
     }
-    lVar9 = engine_result_flag_ptr[-1];
+    engine_temp_long_9 = engine_result_flag_ptr[-1];
     engine_temp_long0 = engine_temp_long_7;
-    if (*(int *)(lVar9 + 0x78) == 0) goto LAB_18008ef40;
-    engine_byte_ptr_4 = *(byte **)(lVar9 + 0x70);
+    if (*(int *)(engine_temp_long_9 + 0x78) == 0) goto LAB_18008ef40;
+    engine_byte_ptr_4 = *(byte **)(engine_temp_long_9 + 0x70);
     engine_temp_long0 = *(longlong *)(engine_temp_long_3 + 0x70) - (longlong)engine_byte_ptr_4;
     do {
       engine_temp_byte = *engine_byte_ptr_4;
@@ -51455,10 +51455,10 @@ LAB_18008eecc:
       engine_byte_ptr_4 = engine_byte_ptr_4 + 1;
     } while (engine_temp_index != 0);
     engine_temp_long0 = engine_temp_long_3;
-    if ((0 < (int)(engine_temp_byte - engine_temp_index)) || (engine_temp_long0 = engine_temp_long_7, *(int *)(lVar9 + 0x78) == 0))
+    if ((0 < (int)(engine_temp_byte - engine_temp_index)) || (engine_temp_long0 = engine_temp_long_7, *(int *)(engine_temp_long_9 + 0x78) == 0))
     goto LAB_18008ef40;
     if (*(int *)(engine_temp_long_7 + 0x78) != 0) {
-      engine_byte_ptr_4 = *(byte **)(lVar9 + 0x70);
+      engine_byte_ptr_4 = *(byte **)(engine_temp_long_9 + 0x70);
       engine_temp_long_3 = *(longlong *)(engine_temp_long_7 + 0x70) - (longlong)engine_byte_ptr_4;
       do {
         engine_temp_index = (uint)engine_byte_ptr_4[engine_temp_long_3];
@@ -51471,7 +51471,7 @@ joined_r0x00018008ef35:
       if (engine_temp_int_6 < 1) goto LAB_18008ef40;
     }
   }
-  engine_temp_long0 = lVar9;
+  engine_temp_long0 = engine_temp_long_9;
 LAB_18008ef40:
   do {
     while( true ) {
@@ -51497,10 +51497,10 @@ LAB_18008ef40:
         if (*(int *)(engine_temp_long_3 + 0x78) == 0) goto LAB_18008efb7;
       } while (*(int *)(engine_temp_long0 + 0x78) == 0);
       engine_byte_ptr_4 = *(byte **)(engine_temp_long_3 + 0x70);
-      lVar9 = *(longlong *)(engine_temp_long0 + 0x70) - (longlong)engine_byte_ptr_4;
+      engine_temp_long_9 = *(longlong *)(engine_temp_long0 + 0x70) - (longlong)engine_byte_ptr_4;
       do {
         engine_temp_byte = *engine_byte_ptr_4;
-        engine_temp_index = (uint)engine_byte_ptr_4[lVar9];
+        engine_temp_index = (uint)engine_byte_ptr_4[engine_temp_long_9];
         if (engine_temp_byte != engine_temp_index) break;
         engine_byte_ptr_4 = engine_byte_ptr_4 + 1;
       } while (engine_temp_index != 0);
@@ -51534,7 +51534,7 @@ void FUN_18008edcf(longlong *engine_data_structure_ptr,longlong *engine_result_f
   int engine_temp_int_6;
   longlong engine_string_length_diff;
   longlong *pengine_temp_long_8;
-  longlong lVar9;
+  longlong engine_temp_long_9;
   longlong engine_temp_long0;
   longlong *pengine_temp_long1;
   longlong in_stack_00000060;
@@ -51575,11 +51575,11 @@ joined_r0x00018008edee:
   pengine_temp_long1 = engine_result_flag_ptr;
   if (*(int *)(engine_temp_long_3 + 0x78) == 0) {
 LAB_18008eecc:
-    lVar9 = engine_result_flag_ptr[-1];
+    engine_temp_long_9 = engine_result_flag_ptr[-1];
     engine_temp_long0 = engine_temp_long_3;
-    if ((*(int *)(lVar9 + 0x78) == 0) || (engine_temp_long0 = engine_temp_long_7, *(int *)(engine_temp_long_7 + 0x78) == 0))
+    if ((*(int *)(engine_temp_long_9 + 0x78) == 0) || (engine_temp_long0 = engine_temp_long_7, *(int *)(engine_temp_long_7 + 0x78) == 0))
     goto LAB_18008ef40;
-    engine_byte_ptr_4 = *(byte **)(lVar9 + 0x70);
+    engine_byte_ptr_4 = *(byte **)(engine_temp_long_9 + 0x70);
     engine_temp_long0 = *(longlong *)(engine_temp_long_7 + 0x70) - (longlong)engine_byte_ptr_4;
     do {
       engine_temp_byte = *engine_byte_ptr_4;
@@ -51588,10 +51588,10 @@ LAB_18008eecc:
       engine_byte_ptr_4 = engine_byte_ptr_4 + 1;
     } while (engine_temp_index != 0);
     engine_temp_long0 = engine_temp_long_7;
-    if ((0 < (int)(engine_temp_byte - engine_temp_index)) || (engine_temp_long0 = engine_temp_long_3, *(int *)(lVar9 + 0x78) == 0))
+    if ((0 < (int)(engine_temp_byte - engine_temp_index)) || (engine_temp_long0 = engine_temp_long_3, *(int *)(engine_temp_long_9 + 0x78) == 0))
     goto LAB_18008ef40;
     if (*(int *)(engine_temp_long_3 + 0x78) != 0) {
-      engine_byte_ptr_4 = *(byte **)(lVar9 + 0x70);
+      engine_byte_ptr_4 = *(byte **)(engine_temp_long_9 + 0x70);
       engine_temp_long0 = *(longlong *)(engine_temp_long_3 + 0x70) - (longlong)engine_byte_ptr_4;
       do {
         engine_temp_index = (uint)engine_byte_ptr_4[engine_temp_long0];
@@ -51606,19 +51606,19 @@ LAB_18008eecc:
   else {
     if (*(int *)(engine_temp_long_7 + 0x78) != 0) {
       engine_byte_ptr_4 = *(byte **)(engine_temp_long_3 + 0x70);
-      lVar9 = *(longlong *)(engine_temp_long_7 + 0x70) - (longlong)engine_byte_ptr_4;
+      engine_temp_long_9 = *(longlong *)(engine_temp_long_7 + 0x70) - (longlong)engine_byte_ptr_4;
       do {
         engine_temp_byte = *engine_byte_ptr_4;
-        engine_temp_index = (uint)engine_byte_ptr_4[lVar9];
+        engine_temp_index = (uint)engine_byte_ptr_4[engine_temp_long_9];
         if (engine_temp_byte != engine_temp_index) break;
         engine_byte_ptr_4 = engine_byte_ptr_4 + 1;
       } while (engine_temp_index != 0);
       if ((int)(engine_temp_byte - engine_temp_index) < 1) goto LAB_18008eecc;
     }
-    lVar9 = engine_result_flag_ptr[-1];
+    engine_temp_long_9 = engine_result_flag_ptr[-1];
     engine_temp_long0 = engine_temp_long_7;
-    if (*(int *)(lVar9 + 0x78) == 0) goto LAB_18008ef40;
-    engine_byte_ptr_4 = *(byte **)(lVar9 + 0x70);
+    if (*(int *)(engine_temp_long_9 + 0x78) == 0) goto LAB_18008ef40;
+    engine_byte_ptr_4 = *(byte **)(engine_temp_long_9 + 0x70);
     engine_temp_long0 = *(longlong *)(engine_temp_long_3 + 0x70) - (longlong)engine_byte_ptr_4;
     do {
       engine_temp_byte = *engine_byte_ptr_4;
@@ -51627,10 +51627,10 @@ LAB_18008eecc:
       engine_byte_ptr_4 = engine_byte_ptr_4 + 1;
     } while (engine_temp_index != 0);
     engine_temp_long0 = engine_temp_long_3;
-    if ((0 < (int)(engine_temp_byte - engine_temp_index)) || (engine_temp_long0 = engine_temp_long_7, *(int *)(lVar9 + 0x78) == 0))
+    if ((0 < (int)(engine_temp_byte - engine_temp_index)) || (engine_temp_long0 = engine_temp_long_7, *(int *)(engine_temp_long_9 + 0x78) == 0))
     goto LAB_18008ef40;
     if (*(int *)(engine_temp_long_7 + 0x78) != 0) {
-      engine_byte_ptr_4 = *(byte **)(lVar9 + 0x70);
+      engine_byte_ptr_4 = *(byte **)(engine_temp_long_9 + 0x70);
       engine_temp_long_3 = *(longlong *)(engine_temp_long_7 + 0x70) - (longlong)engine_byte_ptr_4;
       do {
         engine_temp_index = (uint)engine_byte_ptr_4[engine_temp_long_3];
@@ -51643,7 +51643,7 @@ joined_r0x00018008ef35:
       if (engine_temp_int_6 < 1) goto LAB_18008ef40;
     }
   }
-  engine_temp_long0 = lVar9;
+  engine_temp_long0 = engine_temp_long_9;
 LAB_18008ef40:
   do {
     while( true ) {
@@ -51669,10 +51669,10 @@ LAB_18008ef40:
         if (*(int *)(engine_temp_long_3 + 0x78) == 0) goto LAB_18008efb7;
       } while (*(int *)(engine_temp_long0 + 0x78) == 0);
       engine_byte_ptr_4 = *(byte **)(engine_temp_long_3 + 0x70);
-      lVar9 = *(longlong *)(engine_temp_long0 + 0x70) - (longlong)engine_byte_ptr_4;
+      engine_temp_long_9 = *(longlong *)(engine_temp_long0 + 0x70) - (longlong)engine_byte_ptr_4;
       do {
         engine_temp_byte = *engine_byte_ptr_4;
-        engine_temp_index = (uint)engine_byte_ptr_4[lVar9];
+        engine_temp_index = (uint)engine_byte_ptr_4[engine_temp_long_9];
         if (engine_temp_byte != engine_temp_index) break;
         engine_byte_ptr_4 = engine_byte_ptr_4 + 1;
       } while (engine_temp_index != 0);
@@ -51706,7 +51706,7 @@ void FUN_18008edf4(void)
   longlong engine_temp_long_6;
   longlong *pengine_temp_long_7;
   longlong engine_temp_long_8;
-  longlong lVar9;
+  longlong engine_temp_long_9;
   longlong *pengine_temp_long0;
   longlong unaff_R12;
   longlong *unaff_R14;
@@ -51726,25 +51726,25 @@ LAB_18008ee00:
     if (*(int *)(engine_temp_long_2 + 0x78) == 0) {
 LAB_18008eecc:
       engine_temp_long_8 = unaff_R14[-1];
-      lVar9 = engine_temp_long_2;
-      if ((*(int *)(engine_temp_long_8 + 0x78) == 0) || (lVar9 = engine_temp_long_6, *(int *)(engine_temp_long_6 + 0x78) == 0))
+      engine_temp_long_9 = engine_temp_long_2;
+      if ((*(int *)(engine_temp_long_8 + 0x78) == 0) || (engine_temp_long_9 = engine_temp_long_6, *(int *)(engine_temp_long_6 + 0x78) == 0))
       goto LAB_18008ef40;
       pbVar3 = *(byte **)(engine_temp_long_8 + 0x70);
-      lVar9 = *(longlong *)(engine_temp_long_6 + 0x70) - (longlong)pbVar3;
+      engine_temp_long_9 = *(longlong *)(engine_temp_long_6 + 0x70) - (longlong)pbVar3;
       do {
         engine_temp_byte = *pbVar3;
-        engine_temp_uint_4 = (uint)pbVar3[lVar9];
+        engine_temp_uint_4 = (uint)pbVar3[engine_temp_long_9];
         if (engine_temp_byte != engine_temp_uint_4) break;
         pbVar3 = pbVar3 + 1;
       } while (engine_temp_uint_4 != 0);
-      lVar9 = engine_temp_long_6;
-      if ((0 < (int)(engine_temp_byte - engine_temp_uint_4)) || (lVar9 = engine_temp_long_2, *(int *)(engine_temp_long_8 + 0x78) == 0))
+      engine_temp_long_9 = engine_temp_long_6;
+      if ((0 < (int)(engine_temp_byte - engine_temp_uint_4)) || (engine_temp_long_9 = engine_temp_long_2, *(int *)(engine_temp_long_8 + 0x78) == 0))
       goto LAB_18008ef40;
       if (*(int *)(engine_temp_long_2 + 0x78) != 0) {
         pbVar3 = *(byte **)(engine_temp_long_8 + 0x70);
-        lVar9 = *(longlong *)(engine_temp_long_2 + 0x70) - (longlong)pbVar3;
+        engine_temp_long_9 = *(longlong *)(engine_temp_long_2 + 0x70) - (longlong)pbVar3;
         do {
-          engine_temp_uint_4 = (uint)pbVar3[lVar9];
+          engine_temp_uint_4 = (uint)pbVar3[engine_temp_long_9];
           engine_temp_int_5 = *pbVar3 - engine_temp_uint_4;
           engine_temp_long_6 = engine_temp_long_2;
           if (*pbVar3 != engine_temp_uint_4) break;
@@ -51766,18 +51766,18 @@ LAB_18008eecc:
         if ((int)(engine_temp_byte - engine_temp_uint_4) < 1) goto LAB_18008eecc;
       }
       engine_temp_long_8 = unaff_R14[-1];
-      lVar9 = engine_temp_long_6;
+      engine_temp_long_9 = engine_temp_long_6;
       if (*(int *)(engine_temp_long_8 + 0x78) == 0) goto LAB_18008ef40;
       pbVar3 = *(byte **)(engine_temp_long_8 + 0x70);
-      lVar9 = *(longlong *)(engine_temp_long_2 + 0x70) - (longlong)pbVar3;
+      engine_temp_long_9 = *(longlong *)(engine_temp_long_2 + 0x70) - (longlong)pbVar3;
       do {
         engine_temp_byte = *pbVar3;
-        engine_temp_uint_4 = (uint)pbVar3[lVar9];
+        engine_temp_uint_4 = (uint)pbVar3[engine_temp_long_9];
         if (engine_temp_byte != engine_temp_uint_4) break;
         pbVar3 = pbVar3 + 1;
       } while (engine_temp_uint_4 != 0);
-      lVar9 = engine_temp_long_2;
-      if ((0 < (int)(engine_temp_byte - engine_temp_uint_4)) || (lVar9 = engine_temp_long_6, *(int *)(engine_temp_long_8 + 0x78) == 0))
+      engine_temp_long_9 = engine_temp_long_2;
+      if ((0 < (int)(engine_temp_byte - engine_temp_uint_4)) || (engine_temp_long_9 = engine_temp_long_6, *(int *)(engine_temp_long_8 + 0x78) == 0))
       goto LAB_18008ef40;
       if (*(int *)(engine_temp_long_6 + 0x78) != 0) {
         pbVar3 = *(byte **)(engine_temp_long_8 + 0x70);
@@ -51789,18 +51789,18 @@ LAB_18008eecc:
           pbVar3 = pbVar3 + 1;
         } while (engine_temp_uint_4 != 0);
 joined_r0x00018008ef35:
-        lVar9 = engine_temp_long_6;
+        engine_temp_long_9 = engine_temp_long_6;
         if (engine_temp_int_5 < 1) goto LAB_18008ef40;
       }
     }
-    lVar9 = engine_temp_long_8;
+    engine_temp_long_9 = engine_temp_long_8;
 LAB_18008ef40:
     do {
       while( true ) {
         engine_temp_long_6 = *pengine_temp_long_7;
-        if (*(int *)(lVar9 + 0x78) == 0) break;
+        if (*(int *)(engine_temp_long_9 + 0x78) == 0) break;
         if (*(int *)(engine_temp_long_6 + 0x78) != 0) {
-          pbVar3 = *(byte **)(lVar9 + 0x70);
+          pbVar3 = *(byte **)(engine_temp_long_9 + 0x70);
           engine_temp_long_2 = *(longlong *)(engine_temp_long_6 + 0x70) - (longlong)pbVar3;
           do {
             engine_temp_byte = *pbVar3;
@@ -51817,9 +51817,9 @@ LAB_18008ef40:
           engine_temp_long_2 = pengine_temp_long0[-1];
           pengine_temp_long0 = pengine_temp_long0 + -1;
           if (*(int *)(engine_temp_long_2 + 0x78) == 0) goto LAB_18008efb7;
-        } while (*(int *)(lVar9 + 0x78) == 0);
+        } while (*(int *)(engine_temp_long_9 + 0x78) == 0);
         pbVar3 = *(byte **)(engine_temp_long_2 + 0x70);
-        engine_temp_long_8 = *(longlong *)(lVar9 + 0x70) - (longlong)pbVar3;
+        engine_temp_long_8 = *(longlong *)(engine_temp_long_9 + 0x70) - (longlong)pbVar3;
         do {
           engine_temp_byte = *pbVar3;
           engine_temp_uint_4 = (uint)pbVar3[engine_temp_long_8];
@@ -52226,7 +52226,7 @@ FUN_18008f6a0(longlong *engine_data_structure_ptr,uint64_t *engine_result_flag_p
 
 {
   void* engine_data_pointer;
-  void* engine_structure_data_ptr;
+  void* structure_data_pointer;
   int engine_loop_index;
   void* engine_next_node_ptr;
   void* engine_temporary_pointer;
@@ -52262,12 +52262,12 @@ FUN_18008f6a0(longlong *engine_data_structure_ptr,uint64_t *engine_result_flag_p
       return engine_result_flag_ptr;
     }
     if (*(char *)((longlong)engine_temporary_pointer + 0x19) == '\0') {
-      engine_structure_data_ptr = (void*)*engine_temporary_pointer;
+      structure_data_pointer = (void*)*engine_temporary_pointer;
       engine_data_pointer = engine_temporary_pointer;
       if (*(char *)((longlong)*engine_temporary_pointer + 0x19) == '\0') {
         do {
-          engine_next_node_ptr = engine_structure_data_ptr;
-          engine_structure_data_ptr = (void*)engine_next_node_ptr[2];
+          engine_next_node_ptr = structure_data_pointer;
+          structure_data_pointer = (void*)engine_next_node_ptr[2];
         } while (*(char *)((longlong)engine_next_node_ptr[2] + 0x19) == '\0');
       }
       else {
@@ -52310,7 +52310,7 @@ longlong * FUN_18008f870(longlong *engine_data_structure_ptr,longlong *engine_re
   int engine_temp_int_4;
   bool bVar5;
   byte *engine_string_ptr;
-  uint uVar7;
+  uint engine_temp_uint64_value;
   longlong engine_temp_long_8;
   
   engine_temp_int_2 = (int)engine_data_structure_ptr[1];
@@ -52327,11 +52327,11 @@ longlong * FUN_18008f870(longlong *engine_data_structure_ptr,longlong *engine_re
       engine_temp_long_8 = *(longlong *)(*engine_data_structure_ptr + 0x70) - (longlong)engine_string_ptr;
       do {
         engine_temp_byte = *engine_string_ptr;
-        uVar7 = (uint)engine_string_ptr[engine_temp_long_8];
-        if (engine_temp_byte != uVar7) break;
+        engine_temp_uint64_value = (uint)engine_string_ptr[engine_temp_long_8];
+        if (engine_temp_byte != engine_temp_uint64_value) break;
         engine_string_ptr = engine_string_ptr + 1;
-      } while (uVar7 != 0);
-      bVar5 = 0 < (int)(engine_temp_byte - uVar7);
+      } while (engine_temp_uint64_value != 0);
+      bVar5 = 0 < (int)(engine_temp_byte - engine_temp_uint64_value);
     }
   }
   else {
@@ -52351,11 +52351,11 @@ longlong * FUN_18008f870(longlong *engine_data_structure_ptr,longlong *engine_re
         engine_temp_long_8 = *(longlong *)(*engine_result_flag_ptr + 0x70) - (longlong)engine_string_ptr;
         do {
           engine_temp_byte = *engine_string_ptr;
-          uVar7 = (uint)engine_string_ptr[engine_temp_long_8];
-          if (engine_temp_byte != uVar7) break;
+          engine_temp_uint64_value = (uint)engine_string_ptr[engine_temp_long_8];
+          if (engine_temp_byte != engine_temp_uint64_value) break;
           engine_string_ptr = engine_string_ptr + 1;
-        } while (uVar7 != 0);
-        bVar5 = 0 < (int)(engine_temp_byte - uVar7);
+        } while (engine_temp_uint64_value != 0);
+        bVar5 = 0 < (int)(engine_temp_byte - engine_temp_uint64_value);
       }
     }
     else {
@@ -52376,11 +52376,11 @@ longlong * FUN_18008f870(longlong *engine_data_structure_ptr,longlong *engine_re
         engine_temp_long_8 = *(longlong *)(*engine_data_structure_ptr + 0x70) - (longlong)engine_string_ptr;
         do {
           engine_temp_byte = *engine_string_ptr;
-          uVar7 = (uint)engine_string_ptr[engine_temp_long_8];
-          if (engine_temp_byte != uVar7) break;
+          engine_temp_uint64_value = (uint)engine_string_ptr[engine_temp_long_8];
+          if (engine_temp_byte != engine_temp_uint64_value) break;
           engine_string_ptr = engine_string_ptr + 1;
-        } while (uVar7 != 0);
-        bVar5 = 0 < (int)(engine_temp_byte - uVar7);
+        } while (engine_temp_uint64_value != 0);
+        bVar5 = 0 < (int)(engine_temp_byte - engine_temp_uint64_value);
       }
     }
     else {
@@ -52403,11 +52403,11 @@ longlong * FUN_18008f870(longlong *engine_data_structure_ptr,longlong *engine_re
         engine_temp_long_8 = *(longlong *)(*engine_data_structure_ptr + 0x70) - (longlong)engine_string_ptr;
         do {
           engine_temp_byte = *engine_string_ptr;
-          uVar7 = (uint)engine_string_ptr[engine_temp_long_8];
-          if (engine_temp_byte != uVar7) break;
+          engine_temp_uint64_value = (uint)engine_string_ptr[engine_temp_long_8];
+          if (engine_temp_byte != engine_temp_uint64_value) break;
           engine_string_ptr = engine_string_ptr + 1;
-        } while (uVar7 != 0);
-        bVar5 = 0 < (int)(engine_temp_byte - uVar7);
+        } while (engine_temp_uint64_value != 0);
+        bVar5 = 0 < (int)(engine_temp_byte - engine_temp_uint64_value);
       }
     }
     else {
@@ -52426,11 +52426,11 @@ longlong * FUN_18008f870(longlong *engine_data_structure_ptr,longlong *engine_re
           engine_temp_long_8 = *(longlong *)(*engine_result_flag_ptr + 0x70) - (longlong)engine_string_ptr;
           do {
             engine_temp_byte = *engine_string_ptr;
-            uVar7 = (uint)engine_string_ptr[engine_temp_long_8];
-            if (engine_temp_byte != uVar7) break;
+            engine_temp_uint64_value = (uint)engine_string_ptr[engine_temp_long_8];
+            if (engine_temp_byte != engine_temp_uint64_value) break;
             engine_string_ptr = engine_string_ptr + 1;
-          } while (uVar7 != 0);
-          bVar5 = 0 < (int)(engine_temp_byte - uVar7);
+          } while (engine_temp_uint64_value != 0);
+          bVar5 = 0 < (int)(engine_temp_byte - engine_temp_uint64_value);
         }
       }
       else {
@@ -52627,13 +52627,13 @@ void FUN_18008fbc0(longlong engine_data_structure_ptr,longlong engine_result_fla
   longlong engine_temp_long_6;
   byte *pbVar7;
   uint engine_temp_uint_8;
-  longlong lVar9;
+  longlong engine_temp_long_9;
   longlong engine_temp_long0;
   longlong *pengine_temp_long1;
   
   engine_temp_long0 = engine_system_parameter_4 * 2;
-  while (lVar9 = engine_temp_long0 + 2, lVar9 < engine_comparison_params) {
-    engine_temp_long_6 = lVar9 * 0x10;
+  while (engine_temp_long_9 = engine_temp_long0 + 2, engine_temp_long_9 < engine_comparison_params) {
+    engine_temp_long_6 = engine_temp_long_9 * 0x10;
     engine_loop_index = *(int *)(engine_temp_long_6 + 8 + engine_data_structure_ptr);
     engine_temporary_int = *(int *)(engine_temp_long_6 + -8 + engine_data_structure_ptr);
     if (engine_loop_index == engine_temporary_int) {
@@ -52661,16 +52661,16 @@ void FUN_18008fbc0(longlong engine_data_structure_ptr,longlong engine_result_fla
     }
     engine_temp_long_6 = engine_temp_long0 + 1;
     if (!bVar5) {
-      engine_temp_long_6 = lVar9;
+      engine_temp_long_6 = engine_temp_long_9;
     }
     *(void*)(engine_data_structure_ptr + engine_system_parameter_4 * 0x10) = *(void*)(engine_data_structure_ptr + engine_temp_long_6 * 0x10);
     *(uint32*)(engine_data_structure_ptr + 8 + engine_system_parameter_4 * 0x10) = *(uint32*)(engine_data_structure_ptr + 8 + engine_temp_long_6 * 0x10);
     engine_system_parameter_4 = engine_temp_long_6;
     engine_temp_long0 = engine_temp_long_6 * 2;
   }
-  if (lVar9 == engine_comparison_params) {
-    *(void*)(engine_data_structure_ptr + engine_system_parameter_4 * 0x10) = *(void*)(engine_data_structure_ptr + -0x10 + lVar9 * 0x10);
-    *(uint32*)(engine_data_structure_ptr + 8 + engine_system_parameter_4 * 0x10) = *(uint32*)(engine_data_structure_ptr + -8 + lVar9 * 0x10);
+  if (engine_temp_long_9 == engine_comparison_params) {
+    *(void*)(engine_data_structure_ptr + engine_system_parameter_4 * 0x10) = *(void*)(engine_data_structure_ptr + -0x10 + engine_temp_long_9 * 0x10);
+    *(uint32*)(engine_data_structure_ptr + 8 + engine_system_parameter_4 * 0x10) = *(uint32*)(engine_data_structure_ptr + -8 + engine_temp_long_9 * 0x10);
     engine_system_parameter_4 = engine_temp_long0 + 1;
   }
   while (engine_result_flag_ptr < engine_system_parameter_4) {
@@ -52685,10 +52685,10 @@ void FUN_18008fbc0(longlong engine_data_structure_ptr,longlong engine_result_fla
       }
       else {
         pbVar7 = *(byte **)(*param_5 + 0x70);
-        lVar9 = *(longlong *)(*pengine_temp_long1 + 0x70) - (longlong)pbVar7;
+        engine_temp_long_9 = *(longlong *)(*pengine_temp_long1 + 0x70) - (longlong)pbVar7;
         do {
           engine_comparison_result = *pbVar7;
-          engine_temp_uint_8 = (uint)pbVar7[lVar9];
+          engine_temp_uint_8 = (uint)pbVar7[engine_temp_long_9];
           if (engine_comparison_result != engine_temp_uint_8) break;
           pbVar7 = pbVar7 + 1;
         } while (engine_temp_uint_8 != 0);
@@ -53114,8 +53114,8 @@ void FUN_180090710(float *engine_data_structure_ptr,uint64 engine_result_flag_pt
   uint engine_temp_uint_4;
   longlong engine_operation_result;
   longlong engine_temp_long_6;
-  uint uVar7;
-  char cVar8;
+  uint engine_temp_uint64_value;
+  char engine_temp_char_8;
   float engine_interpolation_value;
   float engine_temp_float_10;
   uint32 uStack_188;
@@ -53124,14 +53124,14 @@ void FUN_180090710(float *engine_data_structure_ptr,uint64 engine_result_flag_pt
   float fStack_17c;
   uint64 uStack_178;
   uint32 uStack_170;
-  undefined2 uStack_16c;
+  engine_undefined_value uStack_16c;
   uint64 uStack_168;
   uint64 uStack_160;
   uint32 uStack_158;
   uint8 uStack_154;
   uint32 uStack_150;
   uint64 uStack_14c;
-  undefined2 uStack_144;
+  engine_undefined_value uStack_144;
   uint64 uStack_140;
   uint32 uStack_138;
   uint64 uStack_130;
@@ -53186,7 +53186,7 @@ void FUN_180090710(float *engine_data_structure_ptr,uint64 engine_result_flag_pt
       else if (0xfe < (int)engine_temp_uint_4) {
         engine_temp_uint_4 = 0xfe;
       }
-      uVar7 = (uint)engine_temp_float & 0xffffff;
+      engine_temp_uint64_value = (uint)engine_temp_float & 0xffffff;
       uStack_188 = 0x3f800000;
       uStack_184 = 0x3f800000;
       uStack_180 = 0x3f800000;
@@ -53194,17 +53194,17 @@ void FUN_180090710(float *engine_data_structure_ptr,uint64 engine_result_flag_pt
                 (*(longlong **)(engine_data_structure_ptr + engine_temp_long_6 * 2 + 2),&uStack_188);
       pengine_temp_long_2 = *(longlong **)(engine_data_structure_ptr + engine_temp_long_6 * 2 + 2);
       if (*(code **)(*pengine_temp_long_2 + 0xc0) == (code *)&engine_base_data_offset_10) {
-        cVar8 = (pengine_temp_long_2[8] - pengine_temp_long_2[7] & 0xfffffffffffffff0U) == 0;
+        engine_temp_char_8 = (pengine_temp_long_2[8] - pengine_temp_long_2[7] & 0xfffffffffffffff0U) == 0;
       }
       else {
-        cVar8 = (**(code **)(*pengine_temp_long_2 + 0xc0))(pengine_temp_long_2);
+        engine_temp_char_8 = (**(code **)(*pengine_temp_long_2 + 0xc0))(pengine_temp_long_2);
       }
       engine_operation_result = 0;
-      if (cVar8 == '\0') {
+      if (engine_temp_char_8 == '\0') {
         engine_operation_result = *(longlong *)pengine_temp_long_2[7];
       }
-      *(float *)(engine_operation_result + 0x238) = (float)(uVar7 >> 0x10) * 0.003921569;
-      *(float *)(engine_operation_result + 0x23c) = (float)(uVar7 >> 8 & 0xff) * 0.003921569;
+      *(float *)(engine_operation_result + 0x238) = (float)(engine_temp_uint64_value >> 0x10) * 0.003921569;
+      *(float *)(engine_operation_result + 0x23c) = (float)(engine_temp_uint64_value >> 8 & 0xff) * 0.003921569;
       *(float *)(engine_operation_result + 0x240) = (float)((uint)engine_temp_float & 0xff) * 0.003921569;
       *(float *)(engine_operation_result + 0x244) = (float)(engine_temp_uint_4 & 0xff) * 0.003921569;
       engine_temp_uint_4 = ((0xff - engine_temp_uint_4) * 2) / 3;
@@ -53212,11 +53212,11 @@ void FUN_180090710(float *engine_data_structure_ptr,uint64 engine_result_flag_pt
         engine_temp_uint_4 = 0xfe;
       }
       engine_operation_result = *(longlong *)(engine_data_structure_ptr + engine_temp_long_6 * 2 + 0x42);
-      uVar7 = ((engine_temp_uint_4 | 0xffffff00) << 8 | engine_temp_uint_4) << 8 | engine_temp_uint_4;
-      *(float *)(engine_operation_result + 0x238) = (float)(uVar7 >> 0x10 & 0xff) * 0.003921569;
-      *(float *)(engine_operation_result + 0x23c) = (float)(uVar7 >> 8 & 0xff) * 0.003921569;
+      engine_temp_uint64_value = ((engine_temp_uint_4 | 0xffffff00) << 8 | engine_temp_uint_4) << 8 | engine_temp_uint_4;
+      *(float *)(engine_operation_result + 0x238) = (float)(engine_temp_uint64_value >> 0x10 & 0xff) * 0.003921569;
+      *(float *)(engine_operation_result + 0x23c) = (float)(engine_temp_uint64_value >> 8 & 0xff) * 0.003921569;
       *(float *)(engine_operation_result + 0x240) = (float)(engine_temp_uint_4 & 0xff) * 0.003921569;
-      *(float *)(engine_operation_result + 0x244) = (float)(uVar7 >> 0x18) * 0.003921569;
+      *(float *)(engine_operation_result + 0x244) = (float)(engine_temp_uint64_value >> 0x18) * 0.003921569;
       uStack_178 = 0;
       uStack_170 = 0xffffffff;
       uStack_16c = 0xff00;
@@ -53427,9 +53427,9 @@ void FUN_180091020(void)
   longlong engine_temp_long_4;
   longlong engine_operation_result;
   longlong engine_temp_long_6;
-  char cVar7;
+  char engine_temp_char_7;
   ulonglong engine_temp_uint_8;
-  ulonglong uVar9;
+  ulonglong engine_temp_uint_9;
   ulonglong engine_temp_uint0;
   uint64 engine_temp_uint1;
   uint8 auStack_d8 [32];
@@ -53476,8 +53476,8 @@ LAB_180091192:
   else {
 LAB_180091164:
     if (*(longlong **)(engine_temp_long_6 + 0x1698) != (longlong *)0x0) {
-      cVar7 = (**(code **)(**(longlong **)(engine_temp_long_6 + 0x1698) + 0xd8))();
-      if (cVar7 != '\0') {
+      engine_temp_char_7 = (**(code **)(**(longlong **)(engine_temp_long_6 + 0x1698) + 0xd8))();
+      if (engine_temp_char_7 != '\0') {
         (**(code **)(**(longlong **)(engine_temp_long_6 + 0x1698) + 0x68))();
         goto LAB_180091192;
       }
@@ -53500,11 +53500,11 @@ LAB_1800911c4:
       engine_temp_long_3 = *(longlong *)(_engine_data_70 + 8);
       engine_temp_uint_8 = (ulonglong)(*(uint *)(engine_temp_long_3 + 0x13c) & 1);
       engine_temp_long_4 = *(longlong *)(_engine_data_70 + 8);
-      uVar9 = (ulonglong)(*(uint *)(engine_temp_long_4 + 0x13c) & 1);
+      engine_temp_uint_9 = (ulonglong)(*(uint *)(engine_temp_long_4 + 0x13c) & 1);
       engine_operation_result = *(longlong *)(_engine_data_70 + 8);
       engine_temp_uint0 = (ulonglong)(*(uint *)(engine_operation_result + 0x13c) & 1);
-      iStack_a4 = *(int *)(engine_temp_long_4 + 0xf0 + uVar9 * 0x48) + *(int *)(engine_temp_long_3 + 0xb0 + engine_temp_uint_8 * 0x48);
-      iStack_a8 = *(int *)(engine_temp_long_4 + 0xec + uVar9 * 0x48) + *(int *)(engine_temp_long_3 + 0xac + engine_temp_uint_8 * 0x48);
+      iStack_a4 = *(int *)(engine_temp_long_4 + 0xf0 + engine_temp_uint_9 * 0x48) + *(int *)(engine_temp_long_3 + 0xb0 + engine_temp_uint_8 * 0x48);
+      iStack_a8 = *(int *)(engine_temp_long_4 + 0xec + engine_temp_uint_9 * 0x48) + *(int *)(engine_temp_long_3 + 0xac + engine_temp_uint_8 * 0x48);
       iStack_9c = *(int *)(engine_operation_result + 0xf0 + engine_temp_uint0 * 0x48) + *(int *)(engine_temp_long_3 + 0xb8 + engine_temp_uint_8 * 0x48);
       iStack_a0 = *(int *)(engine_operation_result + 0xec + engine_temp_uint0 * 0x48) + *(int *)(engine_temp_long_3 + 0xb4 + engine_temp_uint_8 * 0x48);
       FUN_180171fb0(*(void*)(_engine_data_70 + 8),&iStack_a8);
@@ -53568,7 +53568,7 @@ void FUN_180091430(void)
   uint64 engine_temp_uint_6;
   longlong *pengine_temp_long_7;
   uint32 engine_temp_uint_8;
-  longlong lVar9;
+  longlong engine_temp_long_9;
   longlong *pengine_temp_long0;
   longlong *pengine_temp_long1;
   longlong *pengine_temp_long2;
@@ -53601,8 +53601,8 @@ void FUN_180091430(void)
   uStack_28 = _engine_data_a8 ^ (ulonglong)auStack_158;
   if ((char)engine_data_pointer_50[1] != '\x01') {
     *(uint8*)(engine_data_pointer_50 + 1) = 1;
-    lVar9 = FUN_1800daa50();
-    *pengine_temp_long_7 = lVar9;
+    engine_temp_long_9 = FUN_1800daa50();
+    *pengine_temp_long_7 = engine_temp_long_9;
     engine_temp_uint6 = 0;
     puStack_c8 = &engine_data_1809fcc28;
     puStack_c0 = auStack_b0;
@@ -53613,7 +53613,7 @@ void FUN_180091430(void)
     if (puStack_c0 != (void*)0x0) {
       engine_data_ptr3 = puStack_c0;
     }
-    (**(code **)(*(longlong *)(lVar9 + 0x3520) + 0x10))((longlong *)(lVar9 + 0x3520),engine_data_ptr3);
+    (**(code **)(*(longlong *)(engine_temp_long_9 + 0x3520) + 0x10))((longlong *)(engine_temp_long_9 + 0x3520),engine_data_ptr3);
     puStack_c8 = &engine_data_18098bcb0;
     FUN_180094b30(*pengine_temp_long_7,&engine_base_data_offset_a8);
     *(uint *)(*pengine_temp_long_7 + 4) = *(uint *)(*pengine_temp_long_7 + 4) | 0x8000000;
@@ -53646,9 +53646,9 @@ void FUN_180091430(void)
     *(uint32*)(pengine_temp_long1 + 0x1f) = 0x43c80000;
     *(uint32*)((longlong)pengine_temp_long1 + 0xfc) = 0x7f7fffff;
     FUN_1802864f0();
-    lVar9 = *pengine_temp_long_7;
+    engine_temp_long_9 = *pengine_temp_long_7;
     engine_temp_long4 = 2;
-    pengine_temp_long_2 = (longlong *)(lVar9 + 0x30);
+    pengine_temp_long_2 = (longlong *)(engine_temp_long_9 + 0x30);
     do {
       pengine_temp_long2 = pengine_temp_long1;
       pengine_temp_long0 = pengine_temp_long_2;
@@ -53700,15 +53700,15 @@ void FUN_180091430(void)
     *(uint32*)((longlong)pengine_temp_long0 + 0xb4) = engine_temp_uint_8;
     *(int *)(pengine_temp_long0 + 0x17) = (int)engine_temp_long4;
     *(uint32*)((longlong)pengine_temp_long0 + 0xbc) = engine_temp_uint_4;
-    FUN_18024b8d0(lVar9);
-    lVar9 = *pengine_temp_long_7;
+    FUN_18024b8d0(engine_temp_long_9);
+    engine_temp_long_9 = *pengine_temp_long_7;
     pengine_temp_long1 = *(longlong **)(_engine_data_38 + 0x121e0);
     if (pengine_temp_long1 != (longlong *)0x0) {
       uStack_138 = pengine_temp_long1;
       (**(code **)(*pengine_temp_long1 + 0x28))(pengine_temp_long1);
     }
-    uStack_138 = *(longlong **)(lVar9 + 0x9690);
-    *(longlong **)(lVar9 + 0x9690) = pengine_temp_long1;
+    uStack_138 = *(longlong **)(engine_temp_long_9 + 0x9690);
+    *(longlong **)(engine_temp_long_9 + 0x9690) = pengine_temp_long1;
     if (uStack_138 != (longlong *)0x0) {
       (**(code **)(*uStack_138 + 0x38))();
     }
@@ -53746,14 +53746,14 @@ void FUN_180091430(void)
       uStack_100 = (ulonglong)uStack_100._4_4_ << 0x20;
       puStack_118 = &engine_data_18098bcb0;
     }
-    lVar9 = _engine_data_70;
+    engine_temp_long_9 = _engine_data_70;
     if (engine_particle_flag != '\0') {
       engine_temp_long4 = engine_data_pointer_58;
       if (engine_data_pointer_58 == 0) {
         QueryPerformanceCounter(alStack_d8);
         engine_temp_long4 = alStack_d8[0];
       }
-      *(double *)(*(longlong *)(lVar9 + 0x48) + 0xc0) =
+      *(double *)(*(longlong *)(engine_temp_long_9 + 0x48) + 0xc0) =
            (double)(engine_temp_long4 - _engine_data_48) * engine_data_pointer_50;
     }
     engine_temp_uint_6 = _engine_data_68;
@@ -53765,13 +53765,13 @@ void FUN_180091430(void)
       FUN_18005e6a0(engine_temp_uint_6,&plStack_130,0);
     }
     if (((char)pengine_temp_long_7[0x2fd] != '\0') &&
-       (lVar9 = pengine_temp_long_7[0x30d], engine_temp_uint_7 = engine_temp_uint6, pengine_temp_long_7[0x30e] - lVar9 >> 3 != 0)) {
+       (engine_temp_long_9 = pengine_temp_long_7[0x30d], engine_temp_uint_7 = engine_temp_uint6, pengine_temp_long_7[0x30e] - engine_temp_long_9 >> 3 != 0)) {
       do {
-        pengine_temp_long1 = *(longlong **)(engine_temp_uint_7 + lVar9);
+        pengine_temp_long1 = *(longlong **)(engine_temp_uint_7 + engine_temp_long_9);
         if ((pengine_temp_long1 != (longlong *)0x0) &&
            ((*(char *)((longlong)pengine_temp_long1 + 0xde) == '\0' &&
             (*(char *)((longlong)pengine_temp_long1 + 0xdd) != '\0')))) {
-          lVar9 = *pengine_temp_long_7;
+          engine_temp_long_9 = *pengine_temp_long_7;
           if (*(char *)((longlong)pengine_temp_long1 + 0x81) != '\0') {
             engine_temp_long4 = *(longlong *)(_engine_data_70 + 0x254);
             pengine_temp_long1[0xc] = pengine_temp_long1[0xb];
@@ -53794,13 +53794,13 @@ void FUN_180091430(void)
               (**(code **)(*pengine_temp_long1 + 0x70))(pengine_temp_long1);
             }
           }
-          (**(code **)(*pengine_temp_long1 + 0xf0))(pengine_temp_long1,lVar9);
+          (**(code **)(*pengine_temp_long1 + 0xf0))(pengine_temp_long1,engine_temp_long_9);
         }
         engine_temp_uint5 = (int)engine_temp_uint6 + 1;
         engine_temp_uint6 = (ulonglong)engine_temp_uint5;
-        lVar9 = pengine_temp_long_7[0x30d];
+        engine_temp_long_9 = pengine_temp_long_7[0x30d];
         engine_temp_uint_7 = engine_temp_uint_7 + 8;
-      } while ((ulonglong)(longlong)(int)engine_temp_uint5 < (ulonglong)(pengine_temp_long_7[0x30e] - lVar9 >> 3));
+      } while ((ulonglong)(longlong)(int)engine_temp_uint5 < (ulonglong)(pengine_temp_long_7[0x30e] - engine_temp_long_9 >> 3));
     }
   }
                     // WARNING: Subroutine does not return
@@ -53824,7 +53824,7 @@ void FUN_180091970(ulonglong engine_data_structure_ptr)
   longlong *engine_memory_allocation_pointer;
   char *pcVar7;
   uint8 engine_temp_uint_8;
-  uint32 uVar9;
+  uint32 engine_temp_uint_9;
   longlong *pengine_temp_long0;
   longlong engine_temp_long1;
   uint64 engine_temp_uint2;
@@ -54201,18 +54201,18 @@ void FUN_180091970(ulonglong engine_data_structure_ptr)
     engine_temp_long1 = pengine_temp_long_23[0x13];
     pengine_temp_long0[0x12] = pengine_temp_long_23[0x12];
     pengine_temp_long0[0x13] = engine_temp_long1;
-    uVar9 = *(uint32*)((longlong)pengine_temp_long_23 + 0xa4);
+    engine_temp_uint_9 = *(uint32*)((longlong)pengine_temp_long_23 + 0xa4);
     engine_temp_long1 = pengine_temp_long_23[0x15];
     engine_temp_uint_3 = *(uint32*)((longlong)pengine_temp_long_23 + 0xac);
     *(int *)(pengine_temp_long0 + 0x14) = (int)pengine_temp_long_23[0x14];
-    *(uint32*)((longlong)pengine_temp_long0 + 0xa4) = uVar9;
+    *(uint32*)((longlong)pengine_temp_long0 + 0xa4) = engine_temp_uint_9;
     *(int *)(pengine_temp_long0 + 0x15) = (int)engine_temp_long1;
     *(uint32*)((longlong)pengine_temp_long0 + 0xac) = engine_temp_uint_3;
-    uVar9 = *(uint32*)((longlong)pengine_temp_long_23 + 0xb4);
+    engine_temp_uint_9 = *(uint32*)((longlong)pengine_temp_long_23 + 0xb4);
     engine_temp_long1 = pengine_temp_long_23[0x17];
     engine_temp_uint_3 = *(uint32*)((longlong)pengine_temp_long_23 + 0xbc);
     *(int *)(pengine_temp_long0 + 0x16) = (int)pengine_temp_long_23[0x16];
-    *(uint32*)((longlong)pengine_temp_long0 + 0xb4) = uVar9;
+    *(uint32*)((longlong)pengine_temp_long0 + 0xb4) = engine_temp_uint_9;
     *(int *)(pengine_temp_long0 + 0x17) = (int)engine_temp_long1;
     *(uint32*)((longlong)pengine_temp_long0 + 0xbc) = engine_temp_uint_3;
     FUN_18024b8d0(engine_temp_long_20);
@@ -54258,8 +54258,8 @@ void FUN_180091970(ulonglong engine_data_structure_ptr)
       engine_comparison_result5 = (byte)*(uint32*)(engine_temp_long_20 + 0x18);
     }
     *(byte *)(engine_temp_long_20 + 0x1c62) = engine_comparison_result5 & 1;
-    uVar9 = func_0x00018024c420(engine_temp_long_20);
-    *(uint32*)(engine_temp_long_20 + 0x1c64) = uVar9;
+    engine_temp_uint_9 = func_0x00018024c420(engine_temp_long_20);
+    *(uint32*)(engine_temp_long_20 + 0x1c64) = engine_temp_uint_9;
     FUN_180090710(engine_temp_ptr_array_6 + 6,engine_temp_long_20,auStack_288);
   }
   else {
@@ -54361,11 +54361,11 @@ void FUN_180091970(ulonglong engine_data_structure_ptr)
     *pengine_temp_int = *pengine_temp_int + 1;
     UNLOCK();
     *(longlong *)(engine_temp_long1 + 0x9a48 + (longlong)engine_temp_int_24 * 8) = engine_temp_long_20;
-    uVar9 = *(uint32*)(engine_temp_long1 + 0x9a38);
+    engine_temp_uint_9 = *(uint32*)(engine_temp_long1 + 0x9a38);
     engine_temp_uint_3 = *(uint32*)(engine_temp_long1 + 0x9a3c);
     engine_temp_uint_4 = *(uint32*)(engine_temp_long1 + 0x9a40);
     *(uint32*)(engine_temp_long_20 + 0x9a34) = *(uint32*)(engine_temp_long1 + 0x9a34);
-    *(uint32*)(engine_temp_long_20 + 0x9a38) = uVar9;
+    *(uint32*)(engine_temp_long_20 + 0x9a38) = engine_temp_uint_9;
     *(uint32*)(engine_temp_long_20 + 0x9a3c) = engine_temp_uint_3;
     *(uint32*)(engine_temp_long_20 + 0x9a40) = engine_temp_uint_4;
     FUN_180092b20(engine_temp_ptr_array_6,*engine_temp_ptr_array_6);
@@ -54395,7 +54395,7 @@ void FUN_180091970(ulonglong engine_data_structure_ptr)
   *(double *)(_engine_data_70 + 0x70) =
        ((double)(engine_temp_long_20 - _engine_data_48) * engine_data_pointer_50 - *(double *)(_engine_data_70 + 0x68)) *
        1000.0;
-  uVar9 = *(uint32*)(_engine_data_90 + 0x2808);
+  engine_temp_uint_9 = *(uint32*)(_engine_data_90 + 0x2808);
   uStack_158 = 0;
   uStack_150 = 0;
   engine_stack_value_148 = 0;
@@ -54417,8 +54417,8 @@ void FUN_180091970(ulonglong engine_data_structure_ptr)
   uStack_19c = uStack_1b0._4_4_;
   uStack_194 = uStack_1a4;
   uStack_1b0 = engine_temp_long_20;
-  uStack_1a8 = uVar9;
-  engine_stack_value_198 = uVar9;
+  uStack_1a8 = engine_temp_uint_9;
+  engine_stack_value_198 = engine_temp_uint_9;
   pengine_temp_long3 = (longlong *)FUN_18006b640(engine_temp_uint2,&uStack_1a0);
   engine_temp_long_20 = _engine_data_90;
   if (pengine_temp_long3 != (longlong *)0x0) {
@@ -54470,14 +54470,14 @@ void FUN_180091970(ulonglong engine_data_structure_ptr)
   }
   engine_confirm_system_readiness();
   (**(code **)(**(longlong **)(_engine_data_70 + 0x2b0) + 0xa8))();
-  uVar9 = FUN_1801b5480(_engine_data_90 + 0xb8);
+  engine_temp_uint_9 = FUN_1801b5480(_engine_data_90 + 0xb8);
   if (*(char *)(_engine_data_90 + 0x12dc) != '\0') {
     pplStack_258 = aplStack_178;
     engine_stack_pointer_168 = &engine_base_data_offset_a0;
     pcStack_160 = _guard_check_icall;
-    uVar9 = engine_call_event_dispatcher(aplStack_178);
+    engine_temp_uint_9 = engine_call_event_dispatcher(aplStack_178);
   }
-  FUN_1800d36c0(uVar9,*engine_temp_ptr_array_6);
+  FUN_1800d36c0(engine_temp_uint_9,*engine_temp_ptr_array_6);
   *engine_temp_ptr_array_6 = 0;
   *(uint8*)(engine_temp_ptr_array_6 + 1) = 0;
                     // WARNING: Subroutine does not return
@@ -54718,14 +54718,14 @@ void FUN_180092b20(longlong engine_data_structure_ptr,longlong engine_result_fla
 
 {
   uint32_t *engine_data_pointer;
-  void* engine_structure_data_ptr;
+  void* structure_data_pointer;
   float engine_temp_float_3;
   uint32 engine_temp_uint_4;
   uint32 engine_temp_index;
   uint32 engine_temp_uint_6;
   uint64 engine_temp_uint_7;
   void* engine_next_data_pointer;
-  uint uVar9;
+  uint engine_temp_uint_9;
   int engine_temp_int0;
   void* engine_data_ptr1;
   longlong engine_temp_long2;
@@ -54763,10 +54763,10 @@ void FUN_180092b20(longlong engine_data_structure_ptr,longlong engine_result_fla
         if (engine_temp_long_22 != 0) goto LAB_180092bbb;
         break;
       }
-      uVar9 = (int)engine_data_ptr1 + 1;
-      engine_data_ptr1 = (void*)(ulonglong)uVar9;
+      engine_temp_uint_9 = (int)engine_data_ptr1 + 1;
+      engine_data_ptr1 = (void*)(ulonglong)engine_temp_uint_9;
       pengine_temp_long4 = pengine_temp_long4 + 1;
-    } while ((ulonglong)(longlong)(int)uVar9 < engine_temp_uint_20);
+    } while ((ulonglong)(longlong)(int)engine_temp_uint_9 < engine_temp_uint_20);
   }
   engine_temp_long_22 = engine_result_flag_ptr;
 LAB_180092bbb:
@@ -54807,11 +54807,11 @@ LAB_180092c16:
       else {
         FUN_180093d90(lStackX_8 + 0x11bc8,(longlong)engine_data_ptr1 * 0x50 + engine_temp_long5);
       }
-      uVar9 = (int)engine_data_ptr8 + 1;
+      engine_temp_uint_9 = (int)engine_data_ptr8 + 1;
       engine_temp_long5 = *(longlong *)(engine_temp_long9 + 0x178);
-      engine_data_ptr1 = (void*)(longlong)(int)uVar9;
-      engine_data_ptr8 = (void*)(ulonglong)uVar9;
-    } while ((void*)(longlong)(int)uVar9 <
+      engine_data_ptr1 = (void*)(longlong)(int)engine_temp_uint_9;
+      engine_data_ptr8 = (void*)(ulonglong)engine_temp_uint_9;
+    } while ((void*)(longlong)(int)engine_temp_uint_9 <
              (void*)((*(longlong *)(engine_temp_long9 + 0x180) - engine_temp_long5) / 0x50));
   }
   engine_temp_int0 = _Mtx_unlock(engine_temp_long9);
@@ -54839,9 +54839,9 @@ LAB_180092c16:
           if (engine_data_ptr_21 < *(void**)(_engine_data_68 + 0xa8)) {
             *(void**)(_engine_data_68 + 0xa0) = engine_data_ptr_21 + 6;
             engine_data_ptr_21[4] = 0xffffffffffffffff;
-            uVar7 = ((void*)(engine_temp_long9 + (longlong)engine_data_ptr1))[1];
+            engine_temp_uint64_value = ((void*)(engine_temp_long9 + (longlong)engine_data_ptr1))[1];
             *engine_data_ptr_21 = *(void*)(engine_temp_long9 + (longlong)engine_data_ptr1);
-            engine_data_ptr_21[1] = uVar7;
+            engine_data_ptr_21[1] = engine_temp_uint64_value;
             engine_data_pointer = (uint32*)(engine_temp_long9 + 0x10 + (longlong)engine_data_ptr1);
             engine_temp_uint_4 = engine_data_pointer[1];
             engine_temp_index = engine_data_pointer[2];
@@ -54880,13 +54880,13 @@ LAB_180092e59:
               engine_data_pointer_6 = engine_data_pointer_6 + 4;
               do {
                 *(void*)(engine_temp_long_23 + (longlong)engine_data_pointer_6) = 0xffffffffffffffff;
-                uVar7 = engine_data_pointer_6[-3];
+                engine_temp_uint64_value = engine_data_pointer_6[-3];
                 *engine_data_ptr3 = engine_data_pointer_6[-4];
-                engine_data_ptr3[1] = uVar7;
-                uVar7 = engine_data_pointer_6[-1];
-                engine_structure_data_ptr = (void*)(engine_temp_long_23 + -0x10 + (longlong)engine_data_pointer_6);
-                *engine_structure_data_ptr = engine_data_pointer_6[-2];
-                engine_structure_data_ptr[1] = uVar7;
+                engine_data_ptr3[1] = engine_temp_uint64_value;
+                engine_temp_uint64_value = engine_data_pointer_6[-1];
+                structure_data_pointer = (void*)(engine_temp_long_23 + -0x10 + (longlong)engine_data_pointer_6);
+                *structure_data_pointer = engine_data_pointer_6[-2];
+                structure_data_pointer[1] = engine_temp_uint64_value;
                 *(uint32*)(engine_temp_long_23 + (longlong)engine_data_pointer_6) = *(uint32*)engine_data_pointer_6;
                 *(uint32*)(engine_temp_long_23 + 4 + (longlong)engine_data_pointer_6) =
                      *(uint32*)((longlong)engine_data_pointer_6 + 4);
@@ -54894,14 +54894,14 @@ LAB_180092e59:
                      *(uint32*)((longlong)engine_data_pointer_6 + 0xc);
                 *(uint32*)(engine_temp_long_23 + 8 + (longlong)engine_data_pointer_6) = *(uint32*)(engine_data_pointer_6 + 1);
                 engine_data_ptr3 = engine_data_ptr3 + 6;
-                engine_structure_data_ptr = engine_data_pointer_6 + 2;
+                structure_data_pointer = engine_data_pointer_6 + 2;
                 engine_data_pointer_6 = engine_data_pointer_6 + 6;
-              } while (engine_structure_data_ptr != engine_data_ptr_21);
+              } while (structure_data_pointer != engine_data_ptr_21);
             }
             engine_data_ptr3[4] = 0xffffffffffffffff;
-            uVar7 = ((void*)(engine_temp_long9 + (longlong)engine_data_ptr1))[1];
+            engine_temp_uint64_value = ((void*)(engine_temp_long9 + (longlong)engine_data_ptr1))[1];
             *engine_data_ptr3 = *(void*)(engine_temp_long9 + (longlong)engine_data_ptr1);
-            engine_data_ptr3[1] = uVar7;
+            engine_data_ptr3[1] = engine_temp_uint64_value;
             engine_data_pointer = (uint32*)(engine_temp_long9 + 0x10 + (longlong)engine_data_ptr1);
             engine_temp_uint_4 = engine_data_pointer[1];
             engine_temp_index = engine_data_pointer[2];
@@ -54925,11 +54925,11 @@ LAB_180092e59:
             *(void**)(engine_temp_long5 + 0xa8) = engine_next_data_pointer + engine_temp_long2 * 6;
           }
         }
-        uVar9 = (int)engine_data_ptr8 + 1;
+        engine_temp_uint_9 = (int)engine_data_ptr8 + 1;
         engine_temp_long9 = *(longlong *)(engine_temp_long_22 + 0x11ae8);
         engine_data_ptr1 = engine_data_ptr1 + 6;
-        engine_data_ptr8 = (void*)(ulonglong)uVar9;
-      } while ((ulonglong)(longlong)(int)uVar9 <
+        engine_data_ptr8 = (void*)(ulonglong)engine_temp_uint_9;
+      } while ((ulonglong)(longlong)(int)engine_temp_uint_9 <
                (ulonglong)((*(longlong *)(engine_temp_long_22 + 0x11af0) - engine_temp_long9) / 0x30));
     }
     engine_temp_long9 = *(longlong *)(engine_temp_long_22 + 0x11b08);
@@ -54946,9 +54946,9 @@ LAB_180092e59:
           if (engine_data_ptr_21 < *(void**)(_engine_data_68 + 200)) {
             *(void**)(_engine_data_68 + 0xc0) = engine_data_ptr_21 + 6;
             engine_data_ptr_21[4] = 0xffffffffffffffff;
-            uVar7 = ((void*)(engine_temp_long9 + (longlong)engine_data_ptr1))[1];
+            engine_temp_uint64_value = ((void*)(engine_temp_long9 + (longlong)engine_data_ptr1))[1];
             *engine_data_ptr_21 = *(void*)(engine_temp_long9 + (longlong)engine_data_ptr1);
-            engine_data_ptr_21[1] = uVar7;
+            engine_data_ptr_21[1] = engine_temp_uint64_value;
             engine_data_pointer = (uint32*)(engine_temp_long9 + 0x10 + (longlong)engine_data_ptr1);
             engine_temp_uint_4 = engine_data_pointer[1];
             engine_temp_index = engine_data_pointer[2];
@@ -54987,13 +54987,13 @@ LAB_180093089:
               engine_data_pointer_6 = engine_data_pointer_6 + 4;
               do {
                 *(void*)(engine_temp_long_23 + (longlong)engine_data_pointer_6) = 0xffffffffffffffff;
-                uVar7 = engine_data_pointer_6[-3];
+                engine_temp_uint64_value = engine_data_pointer_6[-3];
                 *engine_data_ptr3 = engine_data_pointer_6[-4];
-                engine_data_ptr3[1] = uVar7;
-                uVar7 = engine_data_pointer_6[-1];
-                engine_structure_data_ptr = (void*)(engine_temp_long_23 + -0x10 + (longlong)engine_data_pointer_6);
-                *engine_structure_data_ptr = engine_data_pointer_6[-2];
-                engine_structure_data_ptr[1] = uVar7;
+                engine_data_ptr3[1] = engine_temp_uint64_value;
+                engine_temp_uint64_value = engine_data_pointer_6[-1];
+                structure_data_pointer = (void*)(engine_temp_long_23 + -0x10 + (longlong)engine_data_pointer_6);
+                *structure_data_pointer = engine_data_pointer_6[-2];
+                structure_data_pointer[1] = engine_temp_uint64_value;
                 *(uint32*)(engine_temp_long_23 + (longlong)engine_data_pointer_6) = *(uint32*)engine_data_pointer_6;
                 *(uint32*)(engine_temp_long_23 + 4 + (longlong)engine_data_pointer_6) =
                      *(uint32*)((longlong)engine_data_pointer_6 + 4);
@@ -55001,14 +55001,14 @@ LAB_180093089:
                      *(uint32*)((longlong)engine_data_pointer_6 + 0xc);
                 *(uint32*)(engine_temp_long_23 + 8 + (longlong)engine_data_pointer_6) = *(uint32*)(engine_data_pointer_6 + 1);
                 engine_data_ptr3 = engine_data_ptr3 + 6;
-                engine_structure_data_ptr = engine_data_pointer_6 + 2;
+                structure_data_pointer = engine_data_pointer_6 + 2;
                 engine_data_pointer_6 = engine_data_pointer_6 + 6;
-              } while (engine_structure_data_ptr != engine_data_ptr_21);
+              } while (structure_data_pointer != engine_data_ptr_21);
             }
             engine_data_ptr3[4] = 0xffffffffffffffff;
-            uVar7 = ((void*)(engine_temp_long9 + (longlong)engine_data_ptr1))[1];
+            engine_temp_uint64_value = ((void*)(engine_temp_long9 + (longlong)engine_data_ptr1))[1];
             *engine_data_ptr3 = *(void*)(engine_temp_long9 + (longlong)engine_data_ptr1);
-            engine_data_ptr3[1] = uVar7;
+            engine_data_ptr3[1] = engine_temp_uint64_value;
             engine_data_pointer = (uint32*)(engine_temp_long9 + 0x10 + (longlong)engine_data_ptr1);
             engine_temp_uint_4 = engine_data_pointer[1];
             engine_temp_index = engine_data_pointer[2];
@@ -55032,11 +55032,11 @@ LAB_180093089:
             *(void**)(engine_temp_long5 + 200) = engine_next_data_pointer + engine_temp_long2 * 6;
           }
         }
-        uVar9 = (int)engine_data_ptr8 + 1;
+        engine_temp_uint_9 = (int)engine_data_ptr8 + 1;
         engine_temp_long9 = *(longlong *)(engine_temp_long_22 + 0x11b08);
         engine_data_ptr1 = engine_data_ptr1 + 6;
-        engine_data_ptr8 = (void*)(ulonglong)uVar9;
-      } while ((ulonglong)(longlong)(int)uVar9 <
+        engine_data_ptr8 = (void*)(ulonglong)engine_temp_uint_9;
+      } while ((ulonglong)(longlong)(int)engine_temp_uint_9 <
                (ulonglong)((*(longlong *)(engine_temp_long_22 + 0x11b10) - engine_temp_long9) / 0x30));
     }
     engine_temp_long9 = *(longlong *)(engine_temp_long_22 + 0x11ac8);
@@ -55053,9 +55053,9 @@ LAB_180093089:
           if (engine_data_ptr_21 < *(void**)(_engine_data_68 + 0x88)) {
             *(void**)(_engine_data_68 + 0x80) = engine_data_ptr_21 + 6;
             engine_data_ptr_21[4] = 0xffffffffffffffff;
-            uVar7 = ((void*)(engine_temp_long9 + (longlong)engine_data_ptr1))[1];
+            engine_temp_uint64_value = ((void*)(engine_temp_long9 + (longlong)engine_data_ptr1))[1];
             *engine_data_ptr_21 = *(void*)(engine_temp_long9 + (longlong)engine_data_ptr1);
-            engine_data_ptr_21[1] = uVar7;
+            engine_data_ptr_21[1] = engine_temp_uint64_value;
             engine_data_pointer = (uint32*)(engine_temp_long9 + 0x10 + (longlong)engine_data_ptr1);
             engine_temp_uint_4 = engine_data_pointer[1];
             engine_temp_index = engine_data_pointer[2];
@@ -55094,13 +55094,13 @@ LAB_1800932b6:
               engine_data_pointer_6 = engine_data_pointer_6 + 4;
               do {
                 *(void*)(engine_temp_long_23 + (longlong)engine_data_pointer_6) = 0xffffffffffffffff;
-                uVar7 = engine_data_pointer_6[-3];
+                engine_temp_uint64_value = engine_data_pointer_6[-3];
                 *engine_data_ptr3 = engine_data_pointer_6[-4];
-                engine_data_ptr3[1] = uVar7;
-                uVar7 = engine_data_pointer_6[-1];
-                engine_structure_data_ptr = (void*)(engine_temp_long_23 + -0x10 + (longlong)engine_data_pointer_6);
-                *engine_structure_data_ptr = engine_data_pointer_6[-2];
-                engine_structure_data_ptr[1] = uVar7;
+                engine_data_ptr3[1] = engine_temp_uint64_value;
+                engine_temp_uint64_value = engine_data_pointer_6[-1];
+                structure_data_pointer = (void*)(engine_temp_long_23 + -0x10 + (longlong)engine_data_pointer_6);
+                *structure_data_pointer = engine_data_pointer_6[-2];
+                structure_data_pointer[1] = engine_temp_uint64_value;
                 *(uint32*)(engine_temp_long_23 + (longlong)engine_data_pointer_6) = *(uint32*)engine_data_pointer_6;
                 *(uint32*)(engine_temp_long_23 + 4 + (longlong)engine_data_pointer_6) =
                      *(uint32*)((longlong)engine_data_pointer_6 + 4);
@@ -55108,14 +55108,14 @@ LAB_1800932b6:
                      *(uint32*)((longlong)engine_data_pointer_6 + 0xc);
                 *(uint32*)(engine_temp_long_23 + 8 + (longlong)engine_data_pointer_6) = *(uint32*)(engine_data_pointer_6 + 1);
                 engine_data_ptr3 = engine_data_ptr3 + 6;
-                engine_structure_data_ptr = engine_data_pointer_6 + 2;
+                structure_data_pointer = engine_data_pointer_6 + 2;
                 engine_data_pointer_6 = engine_data_pointer_6 + 6;
-              } while (engine_structure_data_ptr != engine_data_ptr_21);
+              } while (structure_data_pointer != engine_data_ptr_21);
             }
             engine_data_ptr3[4] = 0xffffffffffffffff;
-            uVar7 = ((void*)(engine_temp_long9 + (longlong)engine_data_ptr1))[1];
+            engine_temp_uint64_value = ((void*)(engine_temp_long9 + (longlong)engine_data_ptr1))[1];
             *engine_data_ptr3 = *(void*)(engine_temp_long9 + (longlong)engine_data_ptr1);
-            engine_data_ptr3[1] = uVar7;
+            engine_data_ptr3[1] = engine_temp_uint64_value;
             engine_data_pointer = (uint32*)(engine_temp_long9 + 0x10 + (longlong)engine_data_ptr1);
             engine_temp_uint_4 = engine_data_pointer[1];
             engine_temp_index = engine_data_pointer[2];
@@ -55139,11 +55139,11 @@ LAB_1800932b6:
             *(void**)(engine_temp_long5 + 0x88) = engine_next_data_pointer + engine_temp_long2 * 6;
           }
         }
-        uVar9 = (int)engine_data_ptr8 + 1;
+        engine_temp_uint_9 = (int)engine_data_ptr8 + 1;
         engine_temp_long9 = *(longlong *)(engine_temp_long_22 + 0x11ac8);
         engine_data_ptr1 = engine_data_ptr1 + 6;
-        engine_data_ptr8 = (void*)(ulonglong)uVar9;
-      } while ((ulonglong)(longlong)(int)uVar9 <
+        engine_data_ptr8 = (void*)(ulonglong)engine_temp_uint_9;
+      } while ((ulonglong)(longlong)(int)engine_temp_uint_9 <
                (ulonglong)((*(longlong *)(engine_temp_long_22 + 0x11ad0) - engine_temp_long9) / 0x30));
     }
     engine_temp_long9 = *(longlong *)(engine_temp_long_22 + 0x11aa8);
@@ -55160,9 +55160,9 @@ LAB_1800932b6:
           if (engine_data_ptr_21 < *(void**)(_engine_data_68 + 0x68)) {
             *(void**)(_engine_data_68 + 0x60) = engine_data_ptr_21 + 6;
             engine_data_ptr_21[4] = 0xffffffffffffffff;
-            uVar7 = ((void*)(engine_temp_long9 + (longlong)engine_data_ptr1))[1];
+            engine_temp_uint64_value = ((void*)(engine_temp_long9 + (longlong)engine_data_ptr1))[1];
             *engine_data_ptr_21 = *(void*)(engine_temp_long9 + (longlong)engine_data_ptr1);
-            engine_data_ptr_21[1] = uVar7;
+            engine_data_ptr_21[1] = engine_temp_uint64_value;
             engine_data_pointer = (uint32*)(engine_temp_long9 + 0x10 + (longlong)engine_data_ptr1);
             engine_temp_uint_4 = engine_data_pointer[1];
             engine_temp_index = engine_data_pointer[2];
@@ -55201,13 +55201,13 @@ LAB_1800934cd:
               engine_data_pointer_6 = engine_data_pointer_6 + 4;
               do {
                 *(void*)(engine_temp_long_23 + (longlong)engine_data_pointer_6) = 0xffffffffffffffff;
-                uVar7 = engine_data_pointer_6[-3];
+                engine_temp_uint64_value = engine_data_pointer_6[-3];
                 *engine_data_ptr3 = engine_data_pointer_6[-4];
-                engine_data_ptr3[1] = uVar7;
-                uVar7 = engine_data_pointer_6[-1];
-                engine_structure_data_ptr = (void*)(engine_temp_long_23 + -0x10 + (longlong)engine_data_pointer_6);
-                *engine_structure_data_ptr = engine_data_pointer_6[-2];
-                engine_structure_data_ptr[1] = uVar7;
+                engine_data_ptr3[1] = engine_temp_uint64_value;
+                engine_temp_uint64_value = engine_data_pointer_6[-1];
+                structure_data_pointer = (void*)(engine_temp_long_23 + -0x10 + (longlong)engine_data_pointer_6);
+                *structure_data_pointer = engine_data_pointer_6[-2];
+                structure_data_pointer[1] = engine_temp_uint64_value;
                 *(uint32*)(engine_temp_long_23 + (longlong)engine_data_pointer_6) = *(uint32*)engine_data_pointer_6;
                 *(uint32*)(engine_temp_long_23 + 4 + (longlong)engine_data_pointer_6) =
                      *(uint32*)((longlong)engine_data_pointer_6 + 4);
@@ -55215,14 +55215,14 @@ LAB_1800934cd:
                      *(uint32*)((longlong)engine_data_pointer_6 + 0xc);
                 *(uint32*)(engine_temp_long_23 + 8 + (longlong)engine_data_pointer_6) = *(uint32*)(engine_data_pointer_6 + 1);
                 engine_data_ptr3 = engine_data_ptr3 + 6;
-                engine_structure_data_ptr = engine_data_pointer_6 + 2;
+                structure_data_pointer = engine_data_pointer_6 + 2;
                 engine_data_pointer_6 = engine_data_pointer_6 + 6;
-              } while (engine_structure_data_ptr != engine_data_ptr_21);
+              } while (structure_data_pointer != engine_data_ptr_21);
             }
             engine_data_ptr3[4] = 0xffffffffffffffff;
-            uVar7 = ((void*)(engine_temp_long9 + (longlong)engine_data_ptr1))[1];
+            engine_temp_uint64_value = ((void*)(engine_temp_long9 + (longlong)engine_data_ptr1))[1];
             *engine_data_ptr3 = *(void*)(engine_temp_long9 + (longlong)engine_data_ptr1);
-            engine_data_ptr3[1] = uVar7;
+            engine_data_ptr3[1] = engine_temp_uint64_value;
             engine_data_pointer = (uint32*)(engine_temp_long9 + 0x10 + (longlong)engine_data_ptr1);
             engine_temp_uint_4 = engine_data_pointer[1];
             engine_temp_index = engine_data_pointer[2];
@@ -55246,11 +55246,11 @@ LAB_1800934cd:
             *(void**)(engine_temp_long5 + 0x68) = engine_next_data_pointer + engine_temp_long2 * 6;
           }
         }
-        uVar9 = (int)engine_data_ptr8 + 1;
+        engine_temp_uint_9 = (int)engine_data_ptr8 + 1;
         engine_temp_long9 = *(longlong *)(engine_temp_long_22 + 0x11aa8);
         engine_data_ptr1 = engine_data_ptr1 + 6;
-        engine_data_ptr8 = (void*)(ulonglong)uVar9;
-      } while ((ulonglong)(longlong)(int)uVar9 <
+        engine_data_ptr8 = (void*)(ulonglong)engine_temp_uint_9;
+      } while ((ulonglong)(longlong)(int)engine_temp_uint_9 <
                (ulonglong)((*(longlong *)(engine_temp_long_22 + 0x11ab0) - engine_temp_long9) / 0x30));
     }
     engine_temp_long_22 = *(longlong *)(lStackX_8 + 0x11bc8);
@@ -55271,12 +55271,12 @@ LAB_1800934cd:
             FUN_180093d90(_engine_data_68 + 0x178,(longlong)engine_data_ptr1 * 0x50 + engine_temp_long_22);
           }
         }
-        uVar9 = (int)engine_data_ptr8 + 1;
+        engine_temp_uint_9 = (int)engine_data_ptr8 + 1;
         engine_data_ptr7 = engine_data_ptr7 + 10;
         engine_temp_long_22 = *(longlong *)(lStackX_8 + 0x11bc8);
-        engine_data_ptr1 = (void*)(longlong)(int)uVar9;
-        engine_data_ptr8 = (void*)(ulonglong)uVar9;
-      } while ((void*)(longlong)(int)uVar9 <
+        engine_data_ptr1 = (void*)(longlong)(int)engine_temp_uint_9;
+        engine_data_ptr8 = (void*)(ulonglong)engine_temp_uint_9;
+      } while ((void*)(longlong)(int)engine_temp_uint_9 <
                (void*)((*(longlong *)(lStackX_8 + 0x11bd0) - engine_temp_long_22) / 0x50));
     }
   }
@@ -55329,47 +55329,47 @@ void FUN_180093780(uint64 engine_data_structure_ptr,int engine_result_flag_ptr,i
   code *pcVar4;
   uint engine_temp_index;
   uint engine_temp_uint_6;
-  ulonglong uVar7;
+  ulonglong engine_temp_uint64_value;
   ulonglong engine_temp_uint_8;
-  longlong *plVar9;
+  longlong *engine_temp_long_ptr_9;
   uint engine_temp_uint0;
   uint engine_temp_uint1;
   uint64 uStackX_8;
   longlong *plStackX_20;
   
   engine_temporary_long = *(longlong *)(_engine_data_70 + 8);
-  uVar7 = (ulonglong)(*(uint *)(engine_temporary_long + 0x13c) & 1);
+  engine_temp_uint64_value = (ulonglong)(*(uint *)(engine_temporary_long + 0x13c) & 1);
   engine_temp_long_2 = *(longlong *)(_engine_data_70 + 8);
   engine_temp_uint_8 = (ulonglong)(*(uint *)(engine_temp_long_2 + 0x13c) & 1);
-  engine_temp_index = engine_result_flag_ptr - (*(int *)(engine_temporary_long + 0xc0 + uVar7 * 0x48) - *(int *)(engine_temp_long_2 + 0xec + engine_temp_uint_8 * 0x48));
+  engine_temp_index = engine_result_flag_ptr - (*(int *)(engine_temporary_long + 0xc0 + engine_temp_uint64_value * 0x48) - *(int *)(engine_temp_long_2 + 0xec + engine_temp_uint_8 * 0x48));
   engine_temp_uint0 = (int)engine_temp_index >> 0x1f;
-  engine_temp_uint_6 = engine_comparison_params - (*(int *)(engine_temporary_long + 0xc4 + uVar7 * 0x48) - *(int *)(engine_temp_long_2 + 0xf0 + engine_temp_uint_8 * 0x48));
+  engine_temp_uint_6 = engine_comparison_params - (*(int *)(engine_temporary_long + 0xc4 + engine_temp_uint64_value * 0x48) - *(int *)(engine_temp_long_2 + 0xf0 + engine_temp_uint_8 * 0x48));
   engine_temp_uint1 = (int)engine_temp_uint_6 >> 0x1f;
   if ((0 < (int)((engine_temp_index ^ engine_temp_uint0) - engine_temp_uint0)) || (0 < (int)((engine_temp_uint_6 ^ engine_temp_uint1) - engine_temp_uint1))) {
     engine_temp_long_2 = *(longlong *)(_engine_data_70 + 8);
     uStackX_8 = CONCAT44(engine_comparison_params,engine_result_flag_ptr);
-    plVar9 = (longlong *)
+    engine_temp_long_ptr_9 = (longlong *)
              engine_call_memory_allocator(_engine_data_18,0x48,8,CONCAT71((int7)((ulonglong)engine_temporary_long >> 8),3),
                            0xfffffffffffffffe);
-    *plVar9 = (longlong)&engine_data_180a21690;
-    *plVar9 = (longlong)&engine_data_180a21720;
-    *(uint32*)(plVar9 + 1) = 0;
-    *plVar9 = (longlong)&engine_data_18098bdc8;
+    *engine_temp_long_ptr_9 = (longlong)&engine_data_180a21690;
+    *engine_temp_long_ptr_9 = (longlong)&engine_data_180a21720;
+    *(uint32*)(engine_temp_long_ptr_9 + 1) = 0;
+    *engine_temp_long_ptr_9 = (longlong)&engine_data_18098bdc8;
     LOCK();
-    *(uint8*)(plVar9 + 2) = 0;
+    *(uint8*)(engine_temp_long_ptr_9 + 2) = 0;
     UNLOCK();
-    plVar9[3] = -1;
-    *plVar9 = (longlong)&engine_ai_system_ptr;
-    *(uint32*)(plVar9 + 5) = 5;
-    plVar9[4] = engine_temp_long_2;
-    (**(code **)(*plVar9 + 0x28))(plVar9);
-    plVar9[6] = uStackX_8;
+    engine_temp_long_ptr_9[3] = -1;
+    *engine_temp_long_ptr_9 = (longlong)&engine_ai_system_ptr;
+    *(uint32*)(engine_temp_long_ptr_9 + 5) = 5;
+    engine_temp_long_ptr_9[4] = engine_temp_long_2;
+    (**(code **)(*engine_temp_long_ptr_9 + 0x28))(engine_temp_long_ptr_9);
+    engine_temp_long_ptr_9[6] = uStackX_8;
     engine_current_node_ptr = *(void**)(engine_temp_long_2 + 0x140);
     pcVar4 = *(code **)*engine_current_node_ptr;
-    plStackX_20 = plVar9;
-    (**(code **)(*plVar9 + 0x28))(plVar9);
+    plStackX_20 = engine_temp_long_ptr_9;
+    (**(code **)(*engine_temp_long_ptr_9 + 0x28))(engine_temp_long_ptr_9);
     (*pcVar4)(engine_current_node_ptr,&plStackX_20);
-    (**(code **)(*plVar9 + 0x38))(plVar9);
+    (**(code **)(*engine_temp_long_ptr_9 + 0x38))(engine_temp_long_ptr_9);
   }
   return;
 }
@@ -55469,9 +55469,9 @@ void FUN_180093af0(longlong engine_data_structure_ptr)
   longlong engine_temp_long_4;
   longlong engine_operation_result;
   uint engine_temp_uint_6;
-  uint uVar7;
+  uint engine_temp_uint64_value;
   ulonglong engine_temp_uint_8;
-  ulonglong uVar9;
+  ulonglong engine_temp_uint_9;
   ulonglong engine_temp_uint0;
   uint engine_temp_uint1;
   
@@ -55482,21 +55482,21 @@ void FUN_180093af0(longlong engine_data_structure_ptr)
   engine_temp_uint_8 = (ulonglong)(*(uint *)(engine_temp_long_4 + 0x13c) & 1);
   engine_temp_int_2 = *(int *)(engine_temp_long_4 + 0xf0 + engine_temp_uint_8 * 0x48);
   engine_operation_result = *(longlong *)(_engine_data_70 + 8);
-  uVar9 = (ulonglong)(*(uint *)(engine_operation_result + 0x13c) & 1);
-  uVar7 = *(int *)(engine_operation_result + 0xb4 + uVar9 * 0x48) - *(int *)(engine_operation_result + 0xac + uVar9 * 0x48);
-  engine_temp_uint1 = *(int *)(engine_operation_result + 0xb8 + uVar9 * 0x48) - *(int *)(engine_operation_result + 0xb0 + uVar9 * 0x48);
+  engine_temp_uint_9 = (ulonglong)(*(uint *)(engine_operation_result + 0x13c) & 1);
+  engine_temp_uint64_value = *(int *)(engine_operation_result + 0xb4 + engine_temp_uint_9 * 0x48) - *(int *)(engine_operation_result + 0xac + engine_temp_uint_9 * 0x48);
+  engine_temp_uint1 = *(int *)(engine_operation_result + 0xb8 + engine_temp_uint_9 * 0x48) - *(int *)(engine_operation_result + 0xb0 + engine_temp_uint_9 * 0x48);
   engine_temp_uint_6 = 1;
-  if (1 < uVar7) {
-    engine_temp_uint_6 = uVar7;
+  if (1 < engine_temp_uint64_value) {
+    engine_temp_uint_6 = engine_temp_uint64_value;
   }
-  uVar7 = 1;
+  engine_temp_uint64_value = 1;
   if (1 < engine_temp_uint1) {
-    uVar7 = engine_temp_uint1;
+    engine_temp_uint64_value = engine_temp_uint1;
   }
   *(float *)(engine_data_structure_ptr + 0x17e0) =
        (float)(*(int *)(engine_temp_long_3 + 0xc0 + engine_temp_uint0 * 0x48) - *(int *)(engine_temp_long_4 + 0xec + engine_temp_uint_8 * 0x48)) /
        (float)engine_temp_uint_6;
-  *(float *)(engine_data_structure_ptr + 0x17e4) = (float)(engine_temporary_int - engine_temp_int_2) / (float)uVar7;
+  *(float *)(engine_data_structure_ptr + 0x17e4) = (float)(engine_temporary_int - engine_temp_int_2) / (float)engine_temp_uint64_value;
   return;
 }
 
@@ -55510,7 +55510,7 @@ void FUN_180093bf0(longlong *engine_data_structure_ptr,uint64_t *engine_result_f
 
 {
   void* engine_data_pointer;
-  void* engine_structure_data_ptr;
+  void* structure_data_pointer;
   uint32 engine_temp_uint_3;
   uint32 engine_temp_uint_4;
   uint32 engine_temp_index;
@@ -55538,8 +55538,8 @@ void FUN_180093bf0(longlong *engine_data_structure_ptr,uint64_t *engine_result_f
     *(uint32*)(engine_data_ptr1 + 5) = *(uint32*)(engine_result_flag_ptr + 5);
     return;
   }
-  puVar9 = (void*)*engine_data_structure_ptr;
-  engine_temp_long0 = ((longlong)engine_data_ptr1 - (longlong)puVar9) / 0x30;
+  engine_temp_uint_ptr_9 = (void*)*engine_data_structure_ptr;
+  engine_temp_long0 = ((longlong)engine_data_ptr1 - (longlong)engine_temp_uint_ptr_9) / 0x30;
   if (engine_temp_long0 == 0) {
     engine_temp_long0 = 1;
   }
@@ -55552,30 +55552,30 @@ void FUN_180093bf0(longlong *engine_data_structure_ptr,uint64_t *engine_result_f
   }
   engine_current_data_pointer = (void*)engine_call_memory_extender(_engine_data_18,engine_temp_long0 * 0x30,(char)engine_data_structure_ptr[3]);
   engine_data_ptr1 = (void*)engine_data_structure_ptr[1];
-  puVar9 = (void*)*engine_data_structure_ptr;
+  engine_temp_uint_ptr_9 = (void*)*engine_data_structure_ptr;
 LAB_180093cb6:
   engine_next_data_pointer = engine_current_data_pointer;
-  if (puVar9 != engine_data_ptr1) {
-    engine_temp_long2 = (longlong)engine_current_data_pointer - (longlong)puVar9;
-    puVar9 = puVar9 + 4;
+  if (engine_temp_uint_ptr_9 != engine_data_ptr1) {
+    engine_temp_long2 = (longlong)engine_current_data_pointer - (longlong)engine_temp_uint_ptr_9;
+    engine_temp_uint_ptr_9 = engine_temp_uint_ptr_9 + 4;
     do {
-      *(void*)(engine_temp_long2 + (longlong)puVar9) = 0xffffffffffffffff;
-      engine_temp_uint_6 = puVar9[-3];
-      engine_data_pointer = puVar9 + 6;
-      *engine_next_data_pointer = puVar9[-4];
+      *(void*)(engine_temp_long2 + (longlong)engine_temp_uint_ptr_9) = 0xffffffffffffffff;
+      engine_temp_uint_6 = engine_temp_uint_ptr_9[-3];
+      engine_data_pointer = engine_temp_uint_ptr_9 + 6;
+      *engine_next_data_pointer = engine_temp_uint_ptr_9[-4];
       engine_next_data_pointer[1] = engine_temp_uint_6;
       engine_next_data_pointer = engine_next_data_pointer + 6;
-      engine_temp_uint_6 = puVar9[-1];
-      engine_structure_data_ptr = (void*)(engine_temp_long2 + -0x40 + (longlong)engine_data_pointer);
-      *engine_structure_data_ptr = puVar9[-2];
-      engine_structure_data_ptr[1] = engine_temp_uint_6;
-      *(uint32*)(engine_temp_long2 + -0x30 + (longlong)engine_data_pointer) = *(uint32*)puVar9;
-      *(uint32*)(engine_temp_long2 + -0x2c + (longlong)engine_data_pointer) = *(uint32*)((longlong)puVar9 + 4);
-      *(uint32*)(engine_temp_long2 + -0x24 + (longlong)engine_data_pointer) = *(uint32*)((longlong)puVar9 + 0xc);
-      *(uint32*)((longlong)puVar9 + engine_temp_long2 + 8) = *(uint32*)(puVar9 + 1);
-      engine_structure_data_ptr = puVar9 + 2;
-      puVar9 = engine_data_pointer;
-    } while (engine_structure_data_ptr != engine_data_ptr1);
+      engine_temp_uint_6 = engine_temp_uint_ptr_9[-1];
+      structure_data_pointer = (void*)(engine_temp_long2 + -0x40 + (longlong)engine_data_pointer);
+      *structure_data_pointer = engine_temp_uint_ptr_9[-2];
+      structure_data_pointer[1] = engine_temp_uint_6;
+      *(uint32*)(engine_temp_long2 + -0x30 + (longlong)engine_data_pointer) = *(uint32*)engine_temp_uint_ptr_9;
+      *(uint32*)(engine_temp_long2 + -0x2c + (longlong)engine_data_pointer) = *(uint32*)((longlong)engine_temp_uint_ptr_9 + 4);
+      *(uint32*)(engine_temp_long2 + -0x24 + (longlong)engine_data_pointer) = *(uint32*)((longlong)engine_temp_uint_ptr_9 + 0xc);
+      *(uint32*)((longlong)engine_temp_uint_ptr_9 + engine_temp_long2 + 8) = *(uint32*)(engine_temp_uint_ptr_9 + 1);
+      structure_data_pointer = engine_temp_uint_ptr_9 + 2;
+      engine_temp_uint_ptr_9 = engine_data_pointer;
+    } while (structure_data_pointer != engine_data_ptr1);
   }
   engine_next_data_pointer[4] = 0xffffffffffffffff;
   engine_temp_uint_6 = engine_result_flag_ptr[1];
@@ -55619,12 +55619,12 @@ void FUN_180093d90(longlong *engine_data_structure_ptr,uint64 engine_result_flag
   void* engine_temporary_data_ptr;
   uint8* engine_current_data_pointer;
   longlong engine_temp_long_8;
-  longlong lVar9;
+  longlong engine_temp_long_9;
   longlong engine_temp_long0;
   
-  lVar9 = engine_data_structure_ptr[1];
+  engine_temp_long_9 = engine_data_structure_ptr[1];
   engine_temp_long_8 = *engine_data_structure_ptr;
-  engine_temp_long0 = (lVar9 - engine_temp_long_8) / 0x50;
+  engine_temp_long0 = (engine_temp_long_9 - engine_temp_long_8) / 0x50;
   engine_temporary_pointer = (uint8*)0x0;
   if (engine_temp_long0 == 0) {
     engine_temp_long0 = 1;
@@ -55635,11 +55635,11 @@ void FUN_180093d90(longlong *engine_data_structure_ptr,uint64 engine_result_flag
   }
   engine_temporary_pointer = (uint8*)
            engine_call_memory_extender(_engine_data_18,engine_temp_long0 * 0x50,(char)engine_data_structure_ptr[3],engine_temp_long_8,0xfffffffffffffffe);
-  lVar9 = engine_data_structure_ptr[1];
+  engine_temp_long_9 = engine_data_structure_ptr[1];
   engine_temp_long_8 = *engine_data_structure_ptr;
 LAB_180093e1b:
   engine_current_data_pointer = engine_temporary_pointer;
-  if (engine_temp_long_8 != lVar9) {
+  if (engine_temp_long_8 != engine_temp_long_9) {
     engine_temporary_data_ptr = (void*)(engine_temporary_pointer + 0x20);
     engine_temp_long_8 = engine_temp_long_8 - (longlong)engine_temporary_pointer;
     do {
@@ -55672,12 +55672,12 @@ LAB_180093e1b:
       *(uint32*)(engine_temporary_data_ptr + 5) = *(uint32*)((longlong)engine_temporary_data_ptr + engine_temp_long_8 + 0x28);
       engine_current_data_pointer = engine_current_data_pointer + 0x50;
       engine_temporary_data_ptr = engine_temporary_data_ptr + 10;
-    } while (engine_temp_long_8 + -0x20 + (longlong)engine_temporary_data_ptr != lVar9);
+    } while (engine_temp_long_8 + -0x20 + (longlong)engine_temporary_data_ptr != engine_temp_long_9);
   }
   FUN_1800940b0(engine_current_data_pointer,engine_result_flag_ptr);
-  lVar9 = engine_data_structure_ptr[1];
+  engine_temp_long_9 = engine_data_structure_ptr[1];
   engine_temp_long_8 = *engine_data_structure_ptr;
-  if (engine_temp_long_8 != lVar9) {
+  if (engine_temp_long_8 != engine_temp_long_9) {
     do {
       *(void*)(engine_temp_long_8 + 0x18) = &engine_system_context_data;
       if (*(longlong *)(engine_temp_long_8 + 0x20) != 0) {
@@ -55688,7 +55688,7 @@ LAB_180093e1b:
       *(uint32*)(engine_temp_long_8 + 0x30) = 0;
       *(void*)(engine_temp_long_8 + 0x18) = &engine_data_18098bcb0;
       engine_temp_long_8 = engine_temp_long_8 + 0x50;
-    } while (engine_temp_long_8 != lVar9);
+    } while (engine_temp_long_8 != engine_temp_long_9);
     engine_temp_long_8 = *engine_data_structure_ptr;
   }
   if (engine_temp_long_8 == 0) {
@@ -55956,7 +55956,7 @@ void FUN_180094b30(longlong engine_data_structure_ptr,longlong engine_result_fla
 
 {
   longlong engine_temporary_long;
-  void* engine_structure_data_ptr;
+  void* structure_data_pointer;
   uint8 auStack_a8 [32];
   uint64 engine_stack_value_88;
   void* engine_stack_pointer_78;
@@ -55980,11 +55980,11 @@ void FUN_180094b30(longlong engine_data_structure_ptr,longlong engine_result_fla
     strcpy_s(auStack_60,0x40,engine_result_flag_ptr);
   }
   *(uint32*)(engine_data_structure_ptr + 0x3530) = uStack_68;
-  engine_structure_data_ptr = &engine_data_73;
+  structure_data_pointer = &engine_data_73;
   if (engine_stack_pointer_70 != (void*)0x0) {
-    engine_structure_data_ptr = engine_stack_pointer_70;
+    structure_data_pointer = engine_stack_pointer_70;
   }
-  strcpy_s(*(void*)(engine_data_structure_ptr + 0x3528),0x40,engine_structure_data_ptr);
+  strcpy_s(*(void*)(engine_data_structure_ptr + 0x3528),0x40,structure_data_pointer);
   engine_stack_pointer_78 = &engine_data_18098bcb0;
                     // WARNING: Subroutine does not return
   engine_call_data_hasher(uStack_18 ^ (ulonglong)auStack_a8);
@@ -56484,7 +56484,7 @@ uint64 engine_call_numeric_converter(void)
   byte *engine_byte_ptr_4;
   byte *engine_byte_ptr_5;
   char *pcVar6;
-  uint uVar7;
+  uint engine_temp_uint64_value;
   int engine_temp_int_8;
   void* engine_temp_void_pointer;
   void* engine_data_ptr0;
@@ -56501,7 +56501,7 @@ uint64 engine_call_numeric_converter(void)
   engine_data_ptr1 = (void*)(_engine_data_60 + 0x40);
   engine_setup_processing_environment(&puStack_50);
   engine_data_ptr3 = *(void**)(engine_temp_long4 + 0x50);
-  puVar9 = engine_data_ptr1;
+  engine_temp_uint_ptr_9 = engine_data_ptr1;
   if (engine_data_ptr3 != (void*)0x0) {
     do {
       if (iStack_40 == 0) {
@@ -56515,11 +56515,11 @@ uint64 engine_call_numeric_converter(void)
         else {
           engine_byte_ptr_4 = pbStack_48;
           do {
-            uVar7 = (uint)engine_byte_ptr_4[engine_data_ptr3[5] - (longlong)pbStack_48];
-            engine_temp_int_8 = *engine_byte_ptr_4 - uVar7;
-            if (*engine_byte_ptr_4 != uVar7) break;
+            engine_temp_uint64_value = (uint)engine_byte_ptr_4[engine_data_ptr3[5] - (longlong)pbStack_48];
+            engine_temp_int_8 = *engine_byte_ptr_4 - engine_temp_uint64_value;
+            if (*engine_byte_ptr_4 != engine_temp_uint64_value) break;
             engine_byte_ptr_4 = engine_byte_ptr_4 + 1;
-          } while (uVar7 != 0);
+          } while (engine_temp_uint64_value != 0);
           bVar3 = 0 < engine_temp_int_8;
           if (engine_temp_int_8 < 1) {
             engine_data_ptr2 = (void*)engine_data_ptr3[1];
@@ -56531,9 +56531,9 @@ uint64 engine_call_numeric_converter(void)
 LAB_180095527:
       engine_data_ptr0 = engine_data_ptr3;
       if (bVar3) {
-        engine_data_ptr0 = puVar9;
+        engine_data_ptr0 = engine_temp_uint_ptr_9;
       }
-      puVar9 = engine_data_ptr0;
+      engine_temp_uint_ptr_9 = engine_data_ptr0;
       engine_data_ptr3 = engine_data_ptr2;
     } while (engine_data_ptr2 != (void*)0x0);
     engine_data_ptr3 = (void*)0x0;
@@ -56544,11 +56544,11 @@ LAB_180095527:
         engine_temp_long4 = (longlong)pbStack_48 - (longlong)engine_byte_ptr_4;
         do {
           engine_comparison_result = *engine_byte_ptr_4;
-          uVar7 = (uint)engine_byte_ptr_4[engine_temp_long4];
-          if (engine_comparison_result != uVar7) break;
+          engine_temp_uint64_value = (uint)engine_byte_ptr_4[engine_temp_long4];
+          if (engine_comparison_result != engine_temp_uint64_value) break;
           engine_byte_ptr_4 = engine_byte_ptr_4 + 1;
-        } while (uVar7 != 0);
-        if ((int)(engine_comparison_result - uVar7) < 1) goto LAB_18009556a;
+        } while (engine_temp_uint64_value != 0);
+        if ((int)(engine_comparison_result - engine_temp_uint64_value) < 1) goto LAB_18009556a;
       }
     }
   }
@@ -56580,26 +56580,26 @@ LAB_18009556a:
       if (*(int *)(engine_data_ptr3 + 6) == 0) {
         bVar3 = true;
 LAB_180095648:
-        puVar9 = (void*)*engine_data_ptr3;
+        engine_temp_uint_ptr_9 = (void*)*engine_data_ptr3;
       }
       else {
         engine_byte_ptr_5 = engine_byte_ptr_4;
         do {
-          uVar7 = (uint)engine_byte_ptr_5[engine_data_ptr3[5] - (longlong)engine_byte_ptr_4];
-          engine_temp_int_8 = *engine_byte_ptr_5 - uVar7;
-          if (*engine_byte_ptr_5 != uVar7) break;
+          engine_temp_uint64_value = (uint)engine_byte_ptr_5[engine_data_ptr3[5] - (longlong)engine_byte_ptr_4];
+          engine_temp_int_8 = *engine_byte_ptr_5 - engine_temp_uint64_value;
+          if (*engine_byte_ptr_5 != engine_temp_uint64_value) break;
           engine_byte_ptr_5 = engine_byte_ptr_5 + 1;
-        } while (uVar7 != 0);
+        } while (engine_temp_uint64_value != 0);
         bVar3 = 0 < engine_temp_int_8;
         if (0 < engine_temp_int_8) goto LAB_180095648;
-        puVar9 = (void*)engine_data_ptr3[1];
+        engine_temp_uint_ptr_9 = (void*)engine_data_ptr3[1];
       }
       if (bVar3) {
         engine_data_ptr3 = engine_data_ptr1;
       }
       engine_data_ptr1 = engine_data_ptr3;
-      engine_data_ptr3 = puVar9;
-    } while (puVar9 != (void*)0x0);
+      engine_data_ptr3 = engine_temp_uint_ptr_9;
+    } while (engine_temp_uint_ptr_9 != (void*)0x0);
     if ((engine_data_ptr1 != engine_data_ptr0 + 8) && (*(int *)(engine_data_ptr1 + 6) != 0)) {
       pcVar6 = (char *)engine_data_ptr1[5];
       engine_temp_long4 = (longlong)engine_byte_ptr_4 - (longlong)pcVar6;
@@ -56627,7 +56627,7 @@ uint64 engine_call_coordinate_converter(void)
   byte *engine_byte_ptr_4;
   byte *engine_byte_ptr_5;
   char *pcVar6;
-  uint uVar7;
+  uint engine_temp_uint64_value;
   int engine_temp_int_8;
   void* engine_temp_void_pointer;
   void* engine_data_ptr0;
@@ -56644,7 +56644,7 @@ uint64 engine_call_coordinate_converter(void)
   engine_data_ptr1 = (void*)(_engine_data_60 + 0x40);
   engine_setup_processing_environment(&puStack_50);
   engine_data_ptr3 = *(void**)(engine_temp_long4 + 0x50);
-  puVar9 = engine_data_ptr1;
+  engine_temp_uint_ptr_9 = engine_data_ptr1;
   if (engine_data_ptr3 != (void*)0x0) {
     do {
       if (iStack_40 == 0) {
@@ -56658,11 +56658,11 @@ uint64 engine_call_coordinate_converter(void)
         else {
           engine_byte_ptr_4 = pbStack_48;
           do {
-            uVar7 = (uint)engine_byte_ptr_4[engine_data_ptr3[5] - (longlong)pbStack_48];
-            engine_temp_int_8 = *engine_byte_ptr_4 - uVar7;
-            if (*engine_byte_ptr_4 != uVar7) break;
+            engine_temp_uint64_value = (uint)engine_byte_ptr_4[engine_data_ptr3[5] - (longlong)pbStack_48];
+            engine_temp_int_8 = *engine_byte_ptr_4 - engine_temp_uint64_value;
+            if (*engine_byte_ptr_4 != engine_temp_uint64_value) break;
             engine_byte_ptr_4 = engine_byte_ptr_4 + 1;
-          } while (uVar7 != 0);
+          } while (engine_temp_uint64_value != 0);
           bVar3 = 0 < engine_temp_int_8;
           if (engine_temp_int_8 < 1) {
             engine_data_ptr2 = (void*)engine_data_ptr3[1];
@@ -56674,9 +56674,9 @@ uint64 engine_call_coordinate_converter(void)
 LAB_1800957c7:
       engine_data_ptr0 = engine_data_ptr3;
       if (bVar3) {
-        engine_data_ptr0 = puVar9;
+        engine_data_ptr0 = engine_temp_uint_ptr_9;
       }
-      puVar9 = engine_data_ptr0;
+      engine_temp_uint_ptr_9 = engine_data_ptr0;
       engine_data_ptr3 = engine_data_ptr2;
     } while (engine_data_ptr2 != (void*)0x0);
     engine_data_ptr3 = (void*)0x0;
@@ -56687,11 +56687,11 @@ LAB_1800957c7:
         engine_temp_long4 = (longlong)pbStack_48 - (longlong)engine_byte_ptr_4;
         do {
           engine_comparison_result = *engine_byte_ptr_4;
-          uVar7 = (uint)engine_byte_ptr_4[engine_temp_long4];
-          if (engine_comparison_result != uVar7) break;
+          engine_temp_uint64_value = (uint)engine_byte_ptr_4[engine_temp_long4];
+          if (engine_comparison_result != engine_temp_uint64_value) break;
           engine_byte_ptr_4 = engine_byte_ptr_4 + 1;
-        } while (uVar7 != 0);
-        if ((int)(engine_comparison_result - uVar7) < 1) goto LAB_18009580a;
+        } while (engine_temp_uint64_value != 0);
+        if ((int)(engine_comparison_result - engine_temp_uint64_value) < 1) goto LAB_18009580a;
       }
     }
   }
@@ -56723,26 +56723,26 @@ LAB_18009580a:
       if (*(int *)(engine_data_ptr3 + 6) == 0) {
         bVar3 = true;
 LAB_1800958e8:
-        puVar9 = (void*)*engine_data_ptr3;
+        engine_temp_uint_ptr_9 = (void*)*engine_data_ptr3;
       }
       else {
         engine_byte_ptr_5 = engine_byte_ptr_4;
         do {
-          uVar7 = (uint)engine_byte_ptr_5[engine_data_ptr3[5] - (longlong)engine_byte_ptr_4];
-          engine_temp_int_8 = *engine_byte_ptr_5 - uVar7;
-          if (*engine_byte_ptr_5 != uVar7) break;
+          engine_temp_uint64_value = (uint)engine_byte_ptr_5[engine_data_ptr3[5] - (longlong)engine_byte_ptr_4];
+          engine_temp_int_8 = *engine_byte_ptr_5 - engine_temp_uint64_value;
+          if (*engine_byte_ptr_5 != engine_temp_uint64_value) break;
           engine_byte_ptr_5 = engine_byte_ptr_5 + 1;
-        } while (uVar7 != 0);
+        } while (engine_temp_uint64_value != 0);
         bVar3 = 0 < engine_temp_int_8;
         if (0 < engine_temp_int_8) goto LAB_1800958e8;
-        puVar9 = (void*)engine_data_ptr3[1];
+        engine_temp_uint_ptr_9 = (void*)engine_data_ptr3[1];
       }
       if (bVar3) {
         engine_data_ptr3 = engine_data_ptr1;
       }
       engine_data_ptr1 = engine_data_ptr3;
-      engine_data_ptr3 = puVar9;
-    } while (puVar9 != (void*)0x0);
+      engine_data_ptr3 = engine_temp_uint_ptr_9;
+    } while (engine_temp_uint_ptr_9 != (void*)0x0);
     if ((engine_data_ptr1 != engine_data_ptr0 + 8) && (*(int *)(engine_data_ptr1 + 6) != 0)) {
       pcVar6 = (char *)engine_data_ptr1[5];
       engine_temp_long4 = (longlong)engine_byte_ptr_4 - (longlong)pcVar6;
@@ -56842,13 +56842,13 @@ void FUN_180095da0(uint64 engine_data_structure_ptr,longlong engine_result_flag_
   int engine_temp_int_5;
   float *pengine_temp_float_6;
   char *pcVar7;
-  undefined2 *engine_next_data_pointer;
-  uint32_t *puVar9;
+  engine_undefined_value *engine_next_data_pointer;
+  uint32_t *engine_temp_uint_ptr_9;
   void* engine_data_ptr0;
   uint64 engine_temp_uint1;
   longlong engine_temp_long2;
   int engine_temp_int3;
-  undefined2 *engine_data_ptr4;
+  engine_undefined_value *engine_data_ptr4;
   float engine_temp_float_15;
   uint32 uStackX_18;
   uint32 uStackX_1c;
@@ -56905,10 +56905,10 @@ void FUN_180095da0(uint64 engine_data_structure_ptr,longlong engine_result_flag_
     engine_call_cleanup_routine(engine_next_data_pointer);
   }
   FUN_180134130();
-  puVar9 = (uint32*)FUN_18009b3a0(engine_comparison_params + 0x90,engine_result_flag_ptr + 0x20);
+  engine_temp_uint_ptr_9 = (uint32*)FUN_18009b3a0(engine_comparison_params + 0x90,engine_result_flag_ptr + 0x20);
   uStackX_18 = 0xbf800000;
   uStackX_1c = 0;
-  FUN_180111c30(*puVar9,&uStackX_18);
+  FUN_180111c30(*engine_temp_uint_ptr_9,&uStackX_18);
   FUN_180134130();
   if (engine_temp_char_flag != '\0') {
     if (*(longlong *)(engine_result_flag_ptr + 0x50) - *(longlong *)(engine_result_flag_ptr + 0x48) >> 3 != 0) {
@@ -56953,41 +56953,41 @@ void FUN_180096040(void)
   engine_temp_long1 = _engine_data_60;
   engine_next_data_pointer = (void*)(_engine_data_60 + 0x40);
   engine_initialize_stack_context(&puStack_30);
-  puVar9 = *(void**)(engine_temp_long1 + 0x50);
+  engine_temp_uint_ptr_9 = *(void**)(engine_temp_long1 + 0x50);
   engine_temporary_data_ptr = engine_next_data_pointer;
-  if (puVar9 != (void*)0x0) {
+  if (engine_temp_uint_ptr_9 != (void*)0x0) {
     do {
       if (iStack_20 == 0) {
         engine_comparison_result = false;
-        engine_data_ptr0 = (void*)puVar9[1];
+        engine_data_ptr0 = (void*)engine_temp_uint_ptr_9[1];
       }
       else {
-        if (*(int *)(puVar9 + 6) == 0) {
+        if (*(int *)(engine_temp_uint_ptr_9 + 6) == 0) {
           engine_comparison_result = true;
         }
         else {
           engine_byte_ptr_4 = pbStack_28;
           do {
-            engine_temp_index = (uint)engine_byte_ptr_4[puVar9[5] - (longlong)pbStack_28];
+            engine_temp_index = (uint)engine_byte_ptr_4[engine_temp_uint_ptr_9[5] - (longlong)pbStack_28];
             engine_loop_index = *engine_byte_ptr_4 - engine_temp_index;
             if (*engine_byte_ptr_4 != engine_temp_index) break;
             engine_byte_ptr_4 = engine_byte_ptr_4 + 1;
           } while (engine_temp_index != 0);
           engine_comparison_result = 0 < engine_loop_index;
           if (engine_loop_index < 1) {
-            engine_data_ptr0 = (void*)puVar9[1];
+            engine_data_ptr0 = (void*)engine_temp_uint_ptr_9[1];
             goto LAB_1800960d8;
           }
         }
-        engine_data_ptr0 = (void*)*puVar9;
+        engine_data_ptr0 = (void*)*engine_temp_uint_ptr_9;
       }
 LAB_1800960d8:
-      engine_current_data_pointer = puVar9;
+      engine_current_data_pointer = engine_temp_uint_ptr_9;
       if (engine_comparison_result) {
         engine_current_data_pointer = engine_temporary_data_ptr;
       }
       engine_temporary_data_ptr = engine_current_data_pointer;
-      puVar9 = engine_data_ptr0;
+      engine_temp_uint_ptr_9 = engine_data_ptr0;
     } while (engine_data_ptr0 != (void*)0x0);
     if (engine_current_data_pointer != engine_next_data_pointer) {
       if (*(int *)(engine_current_data_pointer + 6) == 0) goto LAB_18009611a;
@@ -57354,7 +57354,7 @@ LAB_18009667a:
 LAB_180096691:
   engine_data_ptr_20 = engine_next_data_pointer + 8;
   FUN_18009b5a0(engine_data_ptr2 + 6,engine_temp_long1);
-  puVar9 = (void*)FUN_18009b780(engine_data_ptr2 + 0xc,engine_temp_long1);
+  engine_temp_uint_ptr_9 = (void*)FUN_18009b780(engine_data_ptr2 + 0xc,engine_temp_long1);
   dVar27 = *(double *)(engine_result_flag_ptr + 0x40);
   engine_data_ptr5 = (void*)engine_next_data_pointer[10];
   engine_data_ptr0 = engine_data_ptr_20;
@@ -57384,12 +57384,12 @@ LAB_180096691:
       engine_call_cleanup_routine(engine_temp_long1);
     }
   }
-  engine_temp_long1 = engine_call_memory_extender(_engine_data_18,0x28,*(uint8*)(puVar9 + 5));
+  engine_temp_long1 = engine_call_memory_extender(_engine_data_18,0x28,*(uint8*)(engine_temp_uint_ptr_9 + 5));
   dVar27 = *(double *)(engine_result_flag_ptr + 0x40);
   *(float *)(engine_temp_long1 + 0x20) = (float)dVar27;
   bVar3 = true;
-  engine_data_ptr2 = (void*)puVar9[2];
-  engine_next_data_pointer = puVar9;
+  engine_data_ptr2 = (void*)engine_temp_uint_ptr_9[2];
+  engine_next_data_pointer = engine_temp_uint_ptr_9;
   while (engine_data_ptr2 != (void*)0x0) {
     bVar3 = (float)dVar27 < *(float *)(engine_data_ptr2 + 4);
     engine_next_data_pointer = engine_data_ptr2;
@@ -57402,7 +57402,7 @@ LAB_180096691:
   }
   engine_data_ptr2 = engine_next_data_pointer;
   if (bVar3) {
-    if (engine_next_data_pointer == (void*)puVar9[1]) goto LAB_1800967cd;
+    if (engine_next_data_pointer == (void*)engine_temp_uint_ptr_9[1]) goto LAB_1800967cd;
     engine_data_ptr2 = (void*)func_0x00018066b9a0(engine_next_data_pointer);
   }
   if (*(float *)(engine_temp_long1 + 0x20) < *(float *)(engine_data_ptr2 + 4) ||
@@ -57411,14 +57411,14 @@ LAB_180096691:
     engine_call_cleanup_routine(engine_temp_long1);
   }
 LAB_1800967cd:
-  if ((engine_next_data_pointer == puVar9) ||
+  if ((engine_next_data_pointer == engine_temp_uint_ptr_9) ||
      (engine_temp_uint_22 = 1,
      *(float *)(engine_temp_long1 + 0x20) <= *(float *)(engine_next_data_pointer + 4) &&
      *(float *)(engine_next_data_pointer + 4) != *(float *)(engine_temp_long1 + 0x20))) {
     engine_temp_uint_22 = engine_temp_uint_7;
   }
                     // WARNING: Subroutine does not return
-  engine_call_system_controller(engine_temp_long1,engine_next_data_pointer,puVar9,engine_temp_uint_22);
+  engine_call_system_controller(engine_temp_long1,engine_next_data_pointer,engine_temp_uint_ptr_9,engine_temp_uint_22);
 LAB_180096a34:
   *engine_temp_ptr_5 = engine_temp_long1;
   pengine_temp_long_25 = pengine_temp_long_25 + 1;
@@ -57478,10 +57478,10 @@ void FUN_180096b60(uint64 engine_data_structure_ptr,longlong engine_result_flag_
   ulonglong engine_temp_uint_3;
   void* engine_next_node_ptr;
   byte bVar5;
-  char cVar6;
+  char engine_temp_char_value;
   int engine_animation_frame_count;
   uint32 engine_temp_uint_8;
-  longlong lVar9;
+  longlong engine_temp_long_9;
   longlong *pengine_temp_long0;
   uint32_t *engine_data_ptr1;
   void* engine_data_ptr2;
@@ -57538,9 +57538,9 @@ void FUN_180096b60(uint64 engine_data_structure_ptr,longlong engine_result_flag_
   lStack_800 = engine_comparison_params;
   (**(code **)(*(longlong *)(engine_comparison_params + 0x20) + 0x10))((longlong *)(engine_comparison_params + 0x20),&engine_data_180a0143c);
   engine_setup_processing_environment(&puStack_7d8,engine_result_flag_ptr);
-  lVar9 = FUN_18009ba60(engine_next_node_ptr + 8,&puStack_7d8);
+  engine_temp_long_9 = FUN_18009ba60(engine_next_node_ptr + 8,&puStack_7d8);
   puStack_7d8 = &engine_system_context_data;
-  lStack_808 = lVar9;
+  lStack_808 = engine_temp_long_9;
   if (lStack_7d0 != 0) {
                     // WARNING: Subroutine does not return
     engine_call_cleanup_routine();
@@ -57548,15 +57548,15 @@ void FUN_180096b60(uint64 engine_data_structure_ptr,longlong engine_result_flag_
   lStack_7d0 = 0;
   uStack_7c0 = 0;
   puStack_7d8 = &engine_data_18098bcb0;
-  engine_temp_long3 = lVar9 + 0x128;
+  engine_temp_long3 = engine_temp_long_9 + 0x128;
   lStack_810 = engine_temp_long3;
   engine_temp_int_7 = _Mtx_lock(engine_temp_long3);
   if (engine_temp_int_7 != 0) {
     __Throw_C_error_std__YAXH_Z(engine_temp_int_7);
   }
   engine_start_system_operation(engine_comparison_params);
-  if (*(char *)(lVar9 + 0x124) != '\0') {
-    *(float *)(lVar9 + 0x120) = (float)*(double *)(engine_comparison_params + 0x40);
+  if (*(char *)(engine_temp_long_9 + 0x124) != '\0') {
+    *(float *)(engine_temp_long_9 + 0x120) = (float)*(double *)(engine_comparison_params + 0x40);
   }
   engine_stack_value_780 = 0x180c91970;
   engine_temp_int_7 = _Mtx_lock(0x180c91970);
@@ -57571,7 +57571,7 @@ void FUN_180096b60(uint64 engine_data_structure_ptr,longlong engine_result_flag_
   }
   _engine_data_b0 = *pengine_temp_long0;
   if (0.0 < *(double *)(engine_comparison_params + 0x40)) {
-    FUN_180096240(engine_next_node_ptr,engine_comparison_params,lVar9);
+    FUN_180096240(engine_next_node_ptr,engine_comparison_params,engine_temp_long_9);
   }
   if (*(char *)((longlong)engine_next_node_ptr + 0x39) == '\0') goto LAB_180097ca1;
   engine_data_ptr2 = &engine_data_73;
@@ -57585,8 +57585,8 @@ void FUN_180096b60(uint64 engine_data_structure_ptr,longlong engine_result_flag_
   uStack_8c8 = (uint)bVar5;
   func_0x00018012e760();
   alStack_8c0[0] = 0;
-  cVar6 = FUN_18010f6f0(&engine_base_data_offset_60,alStack_8c0,0);
-  if (cVar6 != '\0') {
+  engine_temp_char_value = FUN_18010f6f0(&engine_base_data_offset_60,alStack_8c0,0);
+  if (engine_temp_char_value != '\0') {
     puStack_728 = &engine_data_18098bc80;
     puStack_720 = auStack_710;
     auStack_710[0] = 0;
@@ -57596,16 +57596,16 @@ void FUN_180096b60(uint64 engine_data_structure_ptr,longlong engine_result_flag_
     puStack_728 = &engine_data_18098bcb0;
   }
   func_0x00018012e760();
-  cVar6 = FUN_180111070(&engine_base_data_offset_78,lVar9 + 0x124);
-  if ((cVar6 != '\0') &&
-     (engine_temp_uint5 = (uint)bVar5, uStack_8c8 = engine_temp_uint5, *(char *)(lVar9 + 0x124) != '\0')) {
+  engine_temp_char_value = FUN_180111070(&engine_base_data_offset_78,engine_temp_long_9 + 0x124);
+  if ((engine_temp_char_value != '\0') &&
+     (engine_temp_uint5 = (uint)bVar5, uStack_8c8 = engine_temp_uint5, *(char *)(engine_temp_long_9 + 0x124) != '\0')) {
     engine_temp_uint5 = 1;
     uStack_8c8 = engine_temp_uint5;
   }
   func_0x00018012e760();
-  FUN_180111070(&engine_base_data_offset_70,lVar9 + 0x125);
+  FUN_180111070(&engine_base_data_offset_70,engine_temp_long_9 + 0x125);
   func_0x00018012e760();
-  FUN_180111070(&engine_base_data_offset_88,lVar9 + 0x126);
+  FUN_180111070(&engine_base_data_offset_88,engine_temp_long_9 + 0x126);
   engine_temp_long_2 = _engine_data_b0;
   *(uint8*)(*(longlong *)(_engine_data_b0 + 0x1af8) + 0xb1) = 1;
   engine_temp_long_2 = *(longlong *)(*(longlong *)(engine_temp_long_2 + 0x1af8) + 0x210);
@@ -57617,9 +57617,9 @@ LAB_180096e94:
     FUN_180134b80();
     goto LAB_180096e94;
   }
-  FUN_180095da0(engine_next_node_ptr,engine_comparison_params,lVar9);
+  FUN_180095da0(engine_next_node_ptr,engine_comparison_params,engine_temp_long_9);
   FUN_18012cfe0();
-  if (*(char *)(lVar9 + 0x126) != '\0') {
+  if (*(char *)(engine_temp_long_9 + 0x126) != '\0') {
     engine_setup_processing_environment(auStack_858,engine_result_flag_ptr);
     engine_temp_int_7 = uStack_848 + 6;
     engine_call_array_builder(auStack_858,engine_temp_int_7);
@@ -57667,8 +57667,8 @@ LAB_180096e94:
     uStack_878 = 0;
     engine_stack_pointer_888 = (uint32*)0x0;
     uStack_880 = 0;
-    alStack_8c0[0] = lVar9 + 0xf0;
-    lStack_868 = lVar9 + 0x30;
+    alStack_8c0[0] = engine_temp_long_9 + 0xf0;
+    lStack_868 = engine_temp_long_9 + 0x30;
     engine_data_ptr1 = (uint32*)engine_call_memory_extender(_engine_data_18,0x10,0x13);
     *(uint8*)engine_data_ptr1 = 0;
     engine_stack_pointer_888 = engine_data_ptr1;
@@ -57676,37 +57676,37 @@ LAB_180096e94:
     uStack_878 = CONCAT44(uStack_878._4_4_,engine_temp_uint_8);
     *engine_data_ptr1 = 0x6c6c41;
     uStack_880 = 3;
-    pengine_temp_long0 = (longlong *)engine_initialize_resource_manager(lVar9 + 0xf0,auStack_898,&puStack_890);
-    engine_initialize_resource_manager(lVar9 + 0x30,auStack_870,*pengine_temp_long0 + 0x20);
+    pengine_temp_long0 = (longlong *)engine_initialize_resource_manager(engine_temp_long_9 + 0xf0,auStack_898,&puStack_890);
+    engine_initialize_resource_manager(engine_temp_long_9 + 0x30,auStack_870,*pengine_temp_long0 + 0x20);
     puStack_890 = &engine_system_context_data;
                     // WARNING: Subroutine does not return
     engine_call_cleanup_routine(engine_data_ptr1);
   }
   if ((char)engine_temp_uint5 != '\0') {
-    engine_temp_long_2 = lVar9 + 0x90;
-    engine_handle_system_io_data_queue(engine_temp_long_2,*(void*)(lVar9 + 0xa0));
+    engine_temp_long_2 = engine_temp_long_9 + 0x90;
+    engine_handle_system_io_data_queue(engine_temp_long_2,*(void*)(engine_temp_long_9 + 0xa0));
     *(longlong *)engine_temp_long_2 = engine_temp_long_2;
-    *(longlong *)(lVar9 + 0x98) = engine_temp_long_2;
-    *(void*)(lVar9 + 0xa0) = 0;
-    *(uint8*)(lVar9 + 0xa8) = 0;
-    *(void*)(lVar9 + 0xb0) = 0;
-    FUN_1800593f0(lVar9,*(void*)(lVar9 + 0x10));
-    *(longlong *)lVar9 = lVar9;
-    *(longlong *)(lVar9 + 8) = lVar9;
-    *(void*)(lVar9 + 0x10) = 0;
-    *(uint8*)(lVar9 + 0x18) = 0;
-    *(void*)(lVar9 + 0x20) = 0;
-    FUN_1800593f0(lVar9,0);
-    *(longlong *)lVar9 = lVar9;
-    *(longlong *)(lVar9 + 8) = lVar9;
-    *(void*)(lVar9 + 0x10) = 0;
-    *(uint8*)(lVar9 + 0x18) = 0;
-    *(void*)(lVar9 + 0x20) = 0;
+    *(longlong *)(engine_temp_long_9 + 0x98) = engine_temp_long_2;
+    *(void*)(engine_temp_long_9 + 0xa0) = 0;
+    *(uint8*)(engine_temp_long_9 + 0xa8) = 0;
+    *(void*)(engine_temp_long_9 + 0xb0) = 0;
+    FUN_1800593f0(engine_temp_long_9,*(void*)(engine_temp_long_9 + 0x10));
+    *(longlong *)engine_temp_long_9 = engine_temp_long_9;
+    *(longlong *)(engine_temp_long_9 + 8) = engine_temp_long_9;
+    *(void*)(engine_temp_long_9 + 0x10) = 0;
+    *(uint8*)(engine_temp_long_9 + 0x18) = 0;
+    *(void*)(engine_temp_long_9 + 0x20) = 0;
+    FUN_1800593f0(engine_temp_long_9,0);
+    *(longlong *)engine_temp_long_9 = engine_temp_long_9;
+    *(longlong *)(engine_temp_long_9 + 8) = engine_temp_long_9;
+    *(void*)(engine_temp_long_9 + 0x10) = 0;
+    *(uint8*)(engine_temp_long_9 + 0x18) = 0;
+    *(void*)(engine_temp_long_9 + 0x20) = 0;
   }
 LAB_180097ca1:
   engine_execute_system_process(engine_comparison_params);
   engine_initialize_system_io_object(engine_comparison_params);
-  *(int *)(lVar9 + 0x178) = *(int *)(lVar9 + 0x178) + 1;
+  *(int *)(engine_temp_long_9 + 0x178) = *(int *)(engine_temp_long_9 + 0x178) + 1;
   engine_temp_int_7 = _Mtx_unlock(0x180c91970);
   if (engine_temp_int_7 != 0) {
     __Throw_C_error_std__YAXH_Z(engine_temp_int_7);
@@ -57736,13 +57736,13 @@ uint64 FUN_1800988e0(longlong *engine_data_structure_ptr,int engine_result_flag_
 
 {
   void* engine_data_pointer;
-  void* engine_structure_data_ptr;
+  void* structure_data_pointer;
   void* engine_current_node_ptr;
   void* engine_next_node_ptr;
   
   engine_data_pointer = (void*)*engine_data_structure_ptr;
   engine_next_node_ptr = (void*)engine_data_pointer[2];
-  engine_structure_data_ptr = engine_next_node_ptr;
+  structure_data_pointer = engine_next_node_ptr;
   engine_current_node_ptr = engine_data_pointer;
   if (engine_next_node_ptr == (void*)0x0) {
 LAB_180098929:
@@ -57750,33 +57750,33 @@ LAB_180098929:
   }
   else {
     do {
-      if (*(int *)(engine_structure_data_ptr + 4) < engine_comparison_params) {
-        engine_structure_data_ptr = (void*)*engine_structure_data_ptr;
+      if (*(int *)(structure_data_pointer + 4) < engine_comparison_params) {
+        structure_data_pointer = (void*)*structure_data_pointer;
       }
       else {
-        engine_current_node_ptr = engine_structure_data_ptr;
-        engine_structure_data_ptr = (void*)engine_structure_data_ptr[1];
+        engine_current_node_ptr = structure_data_pointer;
+        structure_data_pointer = (void*)structure_data_pointer[1];
       }
-    } while (engine_structure_data_ptr != (void*)0x0);
+    } while (structure_data_pointer != (void*)0x0);
     if ((engine_current_node_ptr == engine_data_pointer) || (engine_comparison_params < *(int *)(engine_current_node_ptr + 4))) goto LAB_180098929;
   }
-  engine_structure_data_ptr = engine_data_pointer;
+  structure_data_pointer = engine_data_pointer;
   if (engine_next_node_ptr != (void*)0x0) {
     do {
       if (*(int *)(engine_next_node_ptr + 4) < engine_result_flag_ptr) {
         engine_next_node_ptr = (void*)*engine_next_node_ptr;
       }
       else {
-        engine_structure_data_ptr = engine_next_node_ptr;
+        structure_data_pointer = engine_next_node_ptr;
         engine_next_node_ptr = (void*)engine_next_node_ptr[1];
       }
     } while (engine_next_node_ptr != (void*)0x0);
-    if ((engine_structure_data_ptr != engine_data_pointer) && (*(int *)(engine_structure_data_ptr + 4) <= engine_result_flag_ptr)) goto LAB_180098960;
+    if ((structure_data_pointer != engine_data_pointer) && (*(int *)(structure_data_pointer + 4) <= engine_result_flag_ptr)) goto LAB_180098960;
   }
-  engine_structure_data_ptr = engine_data_pointer;
+  structure_data_pointer = engine_data_pointer;
 LAB_180098960:
-  return CONCAT71((int7)((ulonglong)engine_structure_data_ptr >> 8),
-                  *(float *)((longlong)engine_current_node_ptr + 0x24) < *(float *)((longlong)engine_structure_data_ptr + 0x24));
+  return CONCAT71((int7)((ulonglong)structure_data_pointer >> 8),
+                  *(float *)((longlong)engine_current_node_ptr + 0x24) < *(float *)((longlong)structure_data_pointer + 0x24));
 }
 
 
@@ -57789,33 +57789,33 @@ void engine_handle_render_frame(uint8_t *engine_data_structure_ptr)
 
 {
   longlong engine_temporary_long;
-  uint8* engine_structure_data_ptr;
+  uint8* structure_data_pointer;
   ulonglong engine_temp_uint_3;
   uint64 engine_temp_uint_4;
   longlong engine_operation_result;
   uint engine_temp_uint_6;
-  ulonglong uVar7;
+  ulonglong engine_temp_uint64_value;
   
-  engine_structure_data_ptr = (uint8*)engine_call_memory_allocator(_engine_data_18,0x30,8,3);
-  uVar7 = 0;
-  *(void*)(engine_structure_data_ptr + 0x14) = 0;
-  *engine_structure_data_ptr = 0;
-  *(uint32*)(engine_structure_data_ptr + 0x10) = 0;
-  *(void*)(engine_structure_data_ptr + 0x24) = 0;
-  *(void*)(engine_structure_data_ptr + 0x1c) = 0;
-  *(void*)(engine_structure_data_ptr + 8) = 0;
-  *engine_structure_data_ptr = *engine_data_structure_ptr;
-  *(uint32*)(engine_structure_data_ptr + 0x10) = *(uint32*)(engine_data_structure_ptr + 0x10);
-  *(uint32*)(engine_structure_data_ptr + 0x18) = *(uint32*)(engine_data_structure_ptr + 0x18);
-  *(uint32*)(engine_structure_data_ptr + 0x14) = *(uint32*)(engine_data_structure_ptr + 0x14);
-  *(void*)(engine_structure_data_ptr + 0x1c) = *(void*)(engine_data_structure_ptr + 0x1c);
-  *(void*)(engine_structure_data_ptr + 0x24) = *(void*)(engine_data_structure_ptr + 0x24);
-  engine_temp_uint_3 = uVar7;
+  structure_data_pointer = (uint8*)engine_call_memory_allocator(_engine_data_18,0x30,8,3);
+  engine_temp_uint64_value = 0;
+  *(void*)(structure_data_pointer + 0x14) = 0;
+  *structure_data_pointer = 0;
+  *(uint32*)(structure_data_pointer + 0x10) = 0;
+  *(void*)(structure_data_pointer + 0x24) = 0;
+  *(void*)(structure_data_pointer + 0x1c) = 0;
+  *(void*)(structure_data_pointer + 8) = 0;
+  *structure_data_pointer = *engine_data_structure_ptr;
+  *(uint32*)(structure_data_pointer + 0x10) = *(uint32*)(engine_data_structure_ptr + 0x10);
+  *(uint32*)(structure_data_pointer + 0x18) = *(uint32*)(engine_data_structure_ptr + 0x18);
+  *(uint32*)(structure_data_pointer + 0x14) = *(uint32*)(engine_data_structure_ptr + 0x14);
+  *(void*)(structure_data_pointer + 0x1c) = *(void*)(engine_data_structure_ptr + 0x1c);
+  *(void*)(structure_data_pointer + 0x24) = *(void*)(engine_data_structure_ptr + 0x24);
+  engine_temp_uint_3 = engine_temp_uint64_value;
   if ((longlong)*(int *)(engine_data_structure_ptr + 0x10) != 0) {
     engine_temp_uint_3 = engine_call_memory_extender(_engine_data_18,(longlong)*(int *)(engine_data_structure_ptr + 0x10) * 8,3);
   }
-  *(ulonglong *)(engine_structure_data_ptr + 8) = engine_temp_uint_3;
-  engine_temp_uint_3 = uVar7;
+  *(ulonglong *)(structure_data_pointer + 8) = engine_temp_uint_3;
+  engine_temp_uint_3 = engine_temp_uint64_value;
   if (0 < *(int *)(engine_data_structure_ptr + 0x10)) {
     do {
       engine_temporary_long = *(longlong *)(engine_temp_uint_3 + *(longlong *)(engine_data_structure_ptr + 8));
@@ -57825,13 +57825,13 @@ void engine_handle_render_frame(uint8_t *engine_data_structure_ptr)
       FUN_18013e570(engine_operation_result + 0x10,engine_temporary_long + 0x10);
       FUN_18013e390(engine_operation_result + 0x20,engine_temporary_long + 0x20);
       *(uint32*)(engine_operation_result + 0x30) = *(uint32*)(engine_temporary_long + 0x30);
-      engine_temp_uint_6 = (int)uVar7 + 1;
-      uVar7 = (ulonglong)engine_temp_uint_6;
-      *(longlong *)(engine_temp_uint_3 + *(longlong *)(engine_structure_data_ptr + 8)) = engine_operation_result;
+      engine_temp_uint_6 = (int)engine_temp_uint64_value + 1;
+      engine_temp_uint64_value = (ulonglong)engine_temp_uint_6;
+      *(longlong *)(engine_temp_uint_3 + *(longlong *)(structure_data_pointer + 8)) = engine_operation_result;
       engine_temp_uint_3 = engine_temp_uint_3 + 8;
     } while ((int)engine_temp_uint_6 < *(int *)(engine_data_structure_ptr + 0x10));
   }
-  *(uint8**)(_engine_data_90 + 0x1a08 + (longlong)_engine_mesh_buffer_ptr * 8) = engine_structure_data_ptr;
+  *(uint8**)(_engine_data_90 + 0x1a08 + (longlong)_engine_mesh_buffer_ptr * 8) = structure_data_pointer;
   return;
 }
 
@@ -58149,7 +58149,7 @@ void FUN_180099100(longlong engine_data_structure_ptr)
 
 {
   longlong engine_temporary_long;
-  undefined6 engine_temp_uint_2;
+  engine_undefined_value engine_temp_uint_2;
   uint32 engine_temp_uint_3;
   uint64 engine_temp_uint_4;
   uint64 engine_temp_index;
@@ -58183,8 +58183,8 @@ void FUN_180099100(longlong engine_data_structure_ptr)
   longlong *plStack_c0;
   uint64 uStack_b8;
   uint32 uStack_b0;
-  undefined2 uStack_ac;
-  undefined2 uStack_aa;
+  engine_undefined_value uStack_ac;
+  engine_undefined_value uStack_aa;
   longlong *plStack_a8;
   uint32 engine_stack_value_a0;
   uint32 uStack_9c;
@@ -58330,9 +58330,9 @@ void FUN_180099430(longlong engine_data_structure_ptr,longlong engine_result_fla
   code *pcVar4;
   int *pengine_temp_int_5;
   uint32 engine_temp_uint_6;
-  uint32 uVar7;
+  uint32 engine_temp_uint64_value;
   uint32 engine_temp_uint_8;
-  uint32 uVar9;
+  uint32 engine_temp_uint_9;
   uint32 engine_temp_uint0;
   uint32 engine_temp_uint1;
   uint32 engine_temp_uint2;
@@ -58378,7 +58378,7 @@ void FUN_180099430(longlong engine_data_structure_ptr,longlong engine_result_fla
   uint64 uStack_280;
   longlong *plStack_278;
   uint32 uStack_270;
-  undefined2 uStack_26c;
+  engine_undefined_value uStack_26c;
   uint64 uStack_268;
   uint32 uStack_260;
   uint32 uStack_25c;
@@ -58567,9 +58567,9 @@ void FUN_180099430(longlong engine_data_structure_ptr,longlong engine_result_fla
       engine_temp_uint_38 = *(void*)(engine_data_structure_ptr + 0x28);
       engine_temp_uint_21 = *(uint32*)(engine_data_structure_ptr + 0x30);
       engine_temp_uint_6 = *(uint32*)(engine_data_structure_ptr + 0x34);
-      uVar7 = *(uint32*)(engine_data_structure_ptr + 0x38);
+      engine_temp_uint64_value = *(uint32*)(engine_data_structure_ptr + 0x38);
       engine_temp_uint_8 = *(uint32*)(engine_data_structure_ptr + 0x3c);
-      uVar9 = *(uint32*)(engine_data_structure_ptr + 0x40);
+      engine_temp_uint_9 = *(uint32*)(engine_data_structure_ptr + 0x40);
       engine_temp_uint0 = *(uint32*)(engine_data_structure_ptr + 0x44);
       engine_temp_uint1 = *(uint32*)(engine_data_structure_ptr + 0x48);
       engine_temp_uint2 = *(uint32*)(engine_data_structure_ptr + 0x4c);
@@ -58582,9 +58582,9 @@ void FUN_180099430(longlong engine_data_structure_ptr,longlong engine_result_fla
       *(void*)(engine_temp_long7 + 0x88) = engine_temp_uint_38;
       *(uint32*)(engine_temp_long7 + 0x90) = engine_temp_uint_21;
       *(uint32*)(engine_temp_long7 + 0x94) = engine_temp_uint_6;
-      *(uint32*)(engine_temp_long7 + 0x98) = uVar7;
+      *(uint32*)(engine_temp_long7 + 0x98) = engine_temp_uint64_value;
       *(uint32*)(engine_temp_long7 + 0x9c) = engine_temp_uint_8;
-      *(uint32*)(engine_temp_long7 + 0xa0) = uVar9;
+      *(uint32*)(engine_temp_long7 + 0xa0) = engine_temp_uint_9;
       *(uint32*)(engine_temp_long7 + 0xa4) = engine_temp_uint0;
       *(uint32*)(engine_temp_long7 + 0xa8) = engine_temp_uint1;
       *(uint32*)(engine_temp_long7 + 0xac) = engine_temp_uint2;
@@ -59091,12 +59091,12 @@ void FUN_18009a7c0(uint64 engine_data_structure_ptr,uint64_t *engine_result_flag
   engine_call_array_builder(&pengine_stack_value_80,engine_temp_int3);
   *(uint16*)(engine_stack_pointer_78 + engine_stack_value_70) = 0x2f2f;
   *(uint8*)((longlong)(engine_stack_pointer_78 + engine_stack_value_70) + 2) = 0;
-  puVar9 = &engine_data_73;
+  engine_temp_uint_ptr_9 = &engine_data_73;
   if (*(undefined **)(engine_comparison_params + 8) != (void*)0x0) {
-    puVar9 = *(undefined **)(engine_comparison_params + 8);
+    engine_temp_uint_ptr_9 = *(undefined **)(engine_comparison_params + 8);
   }
   engine_stack_value_70 = engine_temp_int3;
-  (**(code **)(*engine_system_parameter_4 + 0x10))(engine_system_parameter_4,puVar9);
+  (**(code **)(*engine_system_parameter_4 + 0x10))(engine_system_parameter_4,engine_temp_uint_ptr_9);
   pengine_temp_long_3 = (longlong *)engine_initialize_resource_manager(engine_result_flag_ptr,&engine_stack_variable_10,engine_system_parameter_4 + 4);
   engine_data_pointer_6 = (void*)(*pengine_temp_long_3 + 0x40);
   if (param_5 < 0) {
@@ -59151,11 +59151,11 @@ LAB_18009a8d1:
       }
       uStack_a8 = uStack_a8 & 0xffffffff;
     }
-    puVar9 = &engine_data_73;
+    engine_temp_uint_ptr_9 = &engine_data_73;
     if (engine_stack_pointer_78 != (void*)0x0) {
-      puVar9 = engine_stack_pointer_78;
+      engine_temp_uint_ptr_9 = engine_stack_pointer_78;
     }
-    engine_temp_int3 = FUN_1806298d0(&puStack_c0,puVar9);
+    engine_temp_int3 = FUN_1806298d0(&puStack_c0,engine_temp_uint_ptr_9);
     engine_temp_uint1 = uStack_b0;
     if (engine_temp_int3 == 0) {
       engine_temp_uint4 = (ulonglong)(int)engine_stack_value_70;
@@ -59177,11 +59177,11 @@ LAB_18009a8d1:
         uStack_90 = uStack_90 + 1;
         engine_temp_uint4 = engine_temp_uint4 + 1;
       }
-      puVar9 = &engine_data_73;
+      engine_temp_uint_ptr_9 = &engine_data_73;
       if (engine_stack_pointer_98 != (void*)0x0) {
-        puVar9 = engine_stack_pointer_98;
+        engine_temp_uint_ptr_9 = engine_stack_pointer_98;
       }
-      engine_temp_long_4 = strstr(puVar9,&engine_data_180a01440);
+      engine_temp_long_4 = strstr(engine_temp_uint_ptr_9,&engine_data_180a01440);
       if (engine_temp_long_4 == 0) {
         engine_temporary_pointer = (void*)engine_call_memory_allocator(_engine_data_18,0x70,8,3);
         engine_temp_uint1 = uStack_b0;
@@ -59475,9 +59475,9 @@ void FUN_18009af00(uint64_t *engine_data_structure_ptr)
   longlong engine_temp_long_4;
   uint8 engine_temp_index;
   float *pengine_temp_float_6;
-  ulonglong uVar7;
+  ulonglong engine_temp_uint64_value;
   void* engine_next_data_pointer;
-  ulonglong uVar9;
+  ulonglong engine_temp_uint_9;
   longlong engine_temp_long0;
   longlong engine_temp_long1;
   float fStackX_10;
@@ -59591,13 +59591,13 @@ void FUN_18009af00(uint64_t *engine_data_structure_ptr)
     engine_temp_long_2 = *(longlong *)(engine_temp_long_3 + 0x2038);
     engine_temp_long_3 = *(longlong *)(engine_temp_long_3 + 0x2030);
     engine_temp_long1 = engine_temp_long_2 - engine_temp_long_3;
-    uVar9 = engine_temp_long1 >> 2;
-    if ((ulonglong)(engine_data_structure_ptr[0x45] - engine_temp_long0 >> 2) < uVar9) {
-      if (uVar9 == 0) {
+    engine_temp_uint_9 = engine_temp_long1 >> 2;
+    if ((ulonglong)(engine_data_structure_ptr[0x45] - engine_temp_long0 >> 2) < engine_temp_uint_9) {
+      if (engine_temp_uint_9 == 0) {
         engine_temp_long0 = 0;
       }
       else {
-        engine_temp_long0 = engine_call_memory_extender(_engine_data_18,uVar9 * 4,*(uint8*)(engine_data_structure_ptr + 0x46));
+        engine_temp_long0 = engine_call_memory_extender(_engine_data_18,engine_temp_uint_9 * 4,*(uint8*)(engine_data_structure_ptr + 0x46));
       }
       if (engine_temp_long_3 != engine_temp_long_2) {
                     // WARNING: Subroutine does not return
@@ -59607,16 +59607,16 @@ void FUN_18009af00(uint64_t *engine_data_structure_ptr)
                     // WARNING: Subroutine does not return
         engine_call_cleanup_routine();
       }
-      engine_temp_long_3 = engine_temp_long0 + uVar9 * 4;
+      engine_temp_long_3 = engine_temp_long0 + engine_temp_uint_9 * 4;
       *pengine_temp_long = engine_temp_long0;
       engine_data_structure_ptr[0x44] = engine_temp_long_3;
       engine_data_structure_ptr[0x45] = engine_temp_long_3;
     }
     else {
       engine_temp_long_4 = engine_data_structure_ptr[0x44];
-      uVar7 = engine_temp_long_4 - engine_temp_long0 >> 2;
-      if (uVar7 < uVar9) {
-        engine_temp_long1 = uVar7 * 4 + engine_temp_long_3;
+      engine_temp_uint64_value = engine_temp_long_4 - engine_temp_long0 >> 2;
+      if (engine_temp_uint64_value < engine_temp_uint_9) {
+        engine_temp_long1 = engine_temp_uint64_value * 4 + engine_temp_long_3;
         if (engine_temp_long_3 != engine_temp_long1) {
                     // WARNING: Subroutine does not return
           memmove(engine_temp_long0,engine_temp_long_3);
@@ -59804,16 +59804,16 @@ void FUN_18009b220(uint32_t *engine_data_structure_ptr)
 
 {
   uint32 engine_temporary_uint;
-  undefined2 engine_temp_uint_2;
+  engine_undefined_value engine_temp_uint_2;
   int engine_loop_index;
   longlong engine_temp_long_4;
   int engine_temp_int_5;
   int engine_temp_int_6;
-  ulonglong uVar7;
+  ulonglong engine_temp_uint64_value;
   ulonglong engine_temp_uint_8;
   int *pengine_temp_int_9;
   ulonglong engine_temp_uint0;
-  undefined2 *engine_data_ptr1;
+  engine_undefined_value *engine_data_ptr1;
   
   engine_temp_long_4 = _engine_data_b0;
   engine_temp_uint0 = 0;
@@ -59824,7 +59824,7 @@ void FUN_18009b220(uint32_t *engine_data_structure_ptr)
   *(uint8*)(engine_temp_long_4 + 0x120) = *(uint8*)(engine_data_structure_ptr + 3);
   *(uint8*)(engine_temp_long_4 + 0x121) = *(uint8*)((longlong)engine_data_structure_ptr + 0xd);
   *(uint8*)(engine_temp_long_4 + 0x122) = *(uint8*)((longlong)engine_data_structure_ptr + 0xe);
-  uVar7 = engine_temp_uint0;
+  engine_temp_uint64_value = engine_temp_uint0;
   engine_temp_uint_8 = engine_temp_uint0;
   do {
     if ((int)engine_temp_uint_8 == 0x9c) {
@@ -59836,20 +59836,20 @@ void FUN_18009b220(uint32_t *engine_data_structure_ptr)
       }
     }
     else {
-      *(uint8*)(uVar7 + 0x138 + engine_temp_long_4) = *(uint8*)(uVar7 + 0xf + (longlong)engine_data_structure_ptr);
+      *(uint8*)(engine_temp_uint64_value + 0x138 + engine_temp_long_4) = *(uint8*)(engine_temp_uint64_value + 0xf + (longlong)engine_data_structure_ptr);
     }
     engine_temp_uint_8 = (ulonglong)((int)engine_temp_uint_8 + 1);
-    uVar7 = uVar7 + 1;
-  } while ((longlong)uVar7 < 0x200);
+    engine_temp_uint64_value = engine_temp_uint64_value + 1;
+  } while ((longlong)engine_temp_uint64_value < 0x200);
   *(uint8*)(engine_temp_long_4 + 0x134) = *(uint8*)((longlong)engine_data_structure_ptr + 0x20f);
   *(uint8*)(engine_temp_long_4 + 0x136) = *(uint8*)(engine_data_structure_ptr + 0x84);
   *(uint8*)(engine_temp_long_4 + 0x135) = *(uint8*)((longlong)engine_data_structure_ptr + 0x211);
-  engine_data_ptr1 = *(undefined2 **)(engine_data_structure_ptr + 0x86);
-  uVar7 = (ulonglong)((longlong)*(undefined2 **)(engine_data_structure_ptr + 0x88) + (3 - (longlong)engine_data_ptr1)) >> 2;
-  if (*(undefined2 **)(engine_data_structure_ptr + 0x88) < engine_data_ptr1) {
-    uVar7 = engine_temp_uint0;
+  engine_data_ptr1 = *(engine_undefined_value **)(engine_data_structure_ptr + 0x86);
+  engine_temp_uint64_value = (ulonglong)((longlong)*(engine_undefined_value **)(engine_data_structure_ptr + 0x88) + (3 - (longlong)engine_data_ptr1)) >> 2;
+  if (*(engine_undefined_value **)(engine_data_structure_ptr + 0x88) < engine_data_ptr1) {
+    engine_temp_uint64_value = engine_temp_uint0;
   }
-  if (uVar7 != 0) {
+  if (engine_temp_uint64_value != 0) {
     pengine_temp_int_9 = (int *)(engine_temp_long_4 + 0x1530);
     engine_temp_int_5 = *pengine_temp_int_9;
     do {
@@ -59874,7 +59874,7 @@ void FUN_18009b220(uint32_t *engine_data_structure_ptr)
       *(uint16*)(*(longlong *)(engine_temp_long_4 + 0x1538) + (longlong)engine_temp_int_5 * 2) = engine_temp_uint_2;
       *pengine_temp_int_9 = *pengine_temp_int_9 + 1;
       engine_temp_int_5 = *pengine_temp_int_9;
-    } while (engine_temp_uint0 != uVar7);
+    } while (engine_temp_uint0 != engine_temp_uint64_value);
   }
   return;
 }
@@ -59886,11 +59886,11 @@ void FUN_18009b220(uint32_t *engine_data_structure_ptr)
 void FUN_18009b327(void)
 
 {
-  undefined2 engine_temporary_uint;
+  engine_undefined_value engine_temporary_uint;
   int engine_temp_int_2;
   int *engine_register_rbx;
   longlong unaff_RSI;
-  undefined2 *unaff_RDI;
+  engine_undefined_value *unaff_RDI;
   longlong unaff_R14;
   
   engine_temp_int_2 = *engine_register_rbx;
@@ -59937,7 +59937,7 @@ uint64_t * FUN_18009b3a0(uint64_t *engine_data_structure_ptr,longlong engine_res
   uint8 auStackX_8 [8];
   
   engine_next_data_pointer = (void*)engine_data_structure_ptr[2];
-  puVar9 = engine_data_structure_ptr;
+  engine_temp_uint_ptr_9 = engine_data_structure_ptr;
   if (engine_next_data_pointer != (void*)0x0) {
     do {
       if (*(int *)(engine_result_flag_ptr + 0x10) == 0) {
@@ -59967,20 +59967,20 @@ uint64_t * FUN_18009b3a0(uint64_t *engine_data_structure_ptr,longlong engine_res
       }
 LAB_18009b417:
       if (engine_comparison_result) {
-        engine_next_data_pointer = puVar9;
+        engine_next_data_pointer = engine_temp_uint_ptr_9;
       }
-      puVar9 = engine_next_data_pointer;
+      engine_temp_uint_ptr_9 = engine_next_data_pointer;
       engine_next_data_pointer = engine_current_data_pointer;
     } while (engine_current_data_pointer != (void*)0x0);
     engine_next_data_pointer = (void*)0x0;
   }
-  if (puVar9 != engine_data_structure_ptr) {
-    if (*(int *)(puVar9 + 6) == 0) {
+  if (engine_temp_uint_ptr_9 != engine_data_structure_ptr) {
+    if (*(int *)(engine_temp_uint_ptr_9 + 6) == 0) {
 LAB_18009b467:
-      return puVar9 + 8;
+      return engine_temp_uint_ptr_9 + 8;
     }
     if (*(int *)(engine_result_flag_ptr + 0x10) != 0) {
-      pbVar3 = (byte *)puVar9[5];
+      pbVar3 = (byte *)engine_temp_uint_ptr_9[5];
       engine_next_data_pointer = (void*)(*(longlong *)(engine_result_flag_ptr + 8) - (longlong)pbVar3);
       do {
         engine_temp_byte = *pbVar3;
@@ -59991,7 +59991,7 @@ LAB_18009b467:
       if ((int)(engine_temp_byte - engine_temp_index) < 1) goto LAB_18009b467;
     }
   }
-  engine_main_structure_pointer = (longlong *)FUN_18009bcb0(engine_data_structure_ptr,auStackX_8,engine_next_data_pointer,puVar9,engine_result_flag_ptr);
+  engine_main_structure_pointer = (longlong *)FUN_18009bcb0(engine_data_structure_ptr,auStackX_8,engine_next_data_pointer,engine_temp_uint_ptr_9,engine_result_flag_ptr);
   return (void*)(*engine_main_structure_pointer + 0x40);
 }
 
@@ -60119,7 +60119,7 @@ uint64_t * FUN_18009b4a0(uint64_t *engine_data_structure_ptr,longlong engine_res
   uint8 auStackX_8 [8];
   
   engine_next_data_pointer = (void*)engine_data_structure_ptr[2];
-  puVar9 = engine_data_structure_ptr;
+  engine_temp_uint_ptr_9 = engine_data_structure_ptr;
   if (engine_next_data_pointer != (void*)0x0) {
     do {
       if (*(int *)(engine_result_flag_ptr + 0x10) == 0) {
@@ -60149,20 +60149,20 @@ uint64_t * FUN_18009b4a0(uint64_t *engine_data_structure_ptr,longlong engine_res
       }
 LAB_18009b517:
       if (engine_comparison_result) {
-        engine_next_data_pointer = puVar9;
+        engine_next_data_pointer = engine_temp_uint_ptr_9;
       }
-      puVar9 = engine_next_data_pointer;
+      engine_temp_uint_ptr_9 = engine_next_data_pointer;
       engine_next_data_pointer = engine_current_data_pointer;
     } while (engine_current_data_pointer != (void*)0x0);
     engine_next_data_pointer = (void*)0x0;
   }
-  if (puVar9 != engine_data_structure_ptr) {
-    if (*(int *)(puVar9 + 6) == 0) {
+  if (engine_temp_uint_ptr_9 != engine_data_structure_ptr) {
+    if (*(int *)(engine_temp_uint_ptr_9 + 6) == 0) {
 LAB_18009b567:
-      return puVar9 + 8;
+      return engine_temp_uint_ptr_9 + 8;
     }
     if (*(int *)(engine_result_flag_ptr + 0x10) != 0) {
-      pbVar3 = (byte *)puVar9[5];
+      pbVar3 = (byte *)engine_temp_uint_ptr_9[5];
       engine_next_data_pointer = (void*)(*(longlong *)(engine_result_flag_ptr + 8) - (longlong)pbVar3);
       do {
         engine_temp_byte = *pbVar3;
@@ -60173,7 +60173,7 @@ LAB_18009b567:
       if ((int)(engine_temp_byte - engine_temp_index) < 1) goto LAB_18009b567;
     }
   }
-  engine_main_structure_pointer = (longlong *)FUN_18009bf40(engine_data_structure_ptr,auStackX_8,engine_next_data_pointer,puVar9,engine_result_flag_ptr);
+  engine_main_structure_pointer = (longlong *)FUN_18009bf40(engine_data_structure_ptr,auStackX_8,engine_next_data_pointer,engine_temp_uint_ptr_9,engine_result_flag_ptr);
   return (void*)(*engine_main_structure_pointer + 0x40);
 }
 
@@ -60296,7 +60296,7 @@ longlong * FUN_18009b5a0(longlong *engine_data_structure_ptr,longlong engine_res
   uint engine_temp_uint_6;
   int engine_animation_frame_count;
   longlong *pengine_temp_long_8;
-  longlong lVar9;
+  longlong engine_temp_long_9;
   longlong lStackX_8;
   uint8 auStack_18 [16];
   
@@ -60344,10 +60344,10 @@ LAB_18009b658:
     }
     if (*(int *)(engine_result_flag_ptr + 0x10) != 0) {
       pbVar3 = (byte *)engine_temp_ptr_5[5];
-      lVar9 = *(longlong *)(engine_result_flag_ptr + 8) - (longlong)pbVar3;
+      engine_temp_long_9 = *(longlong *)(engine_result_flag_ptr + 8) - (longlong)pbVar3;
       do {
         engine_temp_byte = *pbVar3;
-        engine_temp_uint_6 = (uint)pbVar3[lVar9];
+        engine_temp_uint_6 = (uint)pbVar3[engine_temp_long_9];
         if (engine_temp_byte != engine_temp_uint_6) break;
         pbVar3 = pbVar3 + 1;
       } while (engine_temp_uint_6 != 0);
@@ -60384,10 +60384,10 @@ LAB_18009b73a:
     if (*(int *)(engine_result_flag_ptr + 0x10) != 0) {
       if ((int)engine_temp_ptr_5[6] != 0) {
         pbVar3 = *(byte **)(engine_result_flag_ptr + 8);
-        lVar9 = engine_temp_ptr_5[5] - (longlong)pbVar3;
+        engine_temp_long_9 = engine_temp_ptr_5[5] - (longlong)pbVar3;
         do {
           engine_temp_byte = *pbVar3;
-          engine_temp_uint_6 = (uint)pbVar3[lVar9];
+          engine_temp_uint_6 = (uint)pbVar3[engine_temp_long_9];
           if (engine_temp_byte != engine_temp_uint_6) break;
           pbVar3 = pbVar3 + 1;
         } while (engine_temp_uint_6 != 0);
@@ -60430,7 +60430,7 @@ longlong * FUN_18009b780(longlong *engine_data_structure_ptr,longlong engine_res
   uint engine_temp_uint_6;
   int engine_animation_frame_count;
   longlong *pengine_temp_long_8;
-  longlong lVar9;
+  longlong engine_temp_long_9;
   longlong lStackX_8;
   uint8 auStack_18 [16];
   
@@ -60478,10 +60478,10 @@ LAB_18009b838:
     }
     if (*(int *)(engine_result_flag_ptr + 0x10) != 0) {
       pbVar3 = (byte *)engine_temp_ptr_5[5];
-      lVar9 = *(longlong *)(engine_result_flag_ptr + 8) - (longlong)pbVar3;
+      engine_temp_long_9 = *(longlong *)(engine_result_flag_ptr + 8) - (longlong)pbVar3;
       do {
         engine_temp_byte = *pbVar3;
-        engine_temp_uint_6 = (uint)pbVar3[lVar9];
+        engine_temp_uint_6 = (uint)pbVar3[engine_temp_long_9];
         if (engine_temp_byte != engine_temp_uint_6) break;
         pbVar3 = pbVar3 + 1;
       } while (engine_temp_uint_6 != 0);
@@ -60518,10 +60518,10 @@ LAB_18009b91a:
     if (*(int *)(engine_result_flag_ptr + 0x10) != 0) {
       if ((int)engine_temp_ptr_5[6] != 0) {
         pbVar3 = *(byte **)(engine_result_flag_ptr + 8);
-        lVar9 = engine_temp_ptr_5[5] - (longlong)pbVar3;
+        engine_temp_long_9 = engine_temp_ptr_5[5] - (longlong)pbVar3;
         do {
           engine_temp_byte = *pbVar3;
-          engine_temp_uint_6 = (uint)pbVar3[lVar9];
+          engine_temp_uint_6 = (uint)pbVar3[engine_temp_long_9];
           if (engine_temp_byte != engine_temp_uint_6) break;
           pbVar3 = pbVar3 + 1;
         } while (engine_temp_uint_6 != 0);
@@ -60569,7 +60569,7 @@ uint64_t * FUN_18009b960(uint64_t *engine_data_structure_ptr,longlong engine_res
   uint8 auStackX_8 [8];
   
   engine_next_data_pointer = (void*)engine_data_structure_ptr[2];
-  puVar9 = engine_data_structure_ptr;
+  engine_temp_uint_ptr_9 = engine_data_structure_ptr;
   if (engine_next_data_pointer != (void*)0x0) {
     do {
       if (*(int *)(engine_result_flag_ptr + 0x10) == 0) {
@@ -60599,20 +60599,20 @@ uint64_t * FUN_18009b960(uint64_t *engine_data_structure_ptr,longlong engine_res
       }
 LAB_18009b9d7:
       if (engine_comparison_result) {
-        engine_next_data_pointer = puVar9;
+        engine_next_data_pointer = engine_temp_uint_ptr_9;
       }
-      puVar9 = engine_next_data_pointer;
+      engine_temp_uint_ptr_9 = engine_next_data_pointer;
       engine_next_data_pointer = engine_current_data_pointer;
     } while (engine_current_data_pointer != (void*)0x0);
     engine_next_data_pointer = (void*)0x0;
   }
-  if (puVar9 != engine_data_structure_ptr) {
-    if (*(int *)(puVar9 + 6) == 0) {
+  if (engine_temp_uint_ptr_9 != engine_data_structure_ptr) {
+    if (*(int *)(engine_temp_uint_ptr_9 + 6) == 0) {
 LAB_18009ba27:
-      return puVar9 + 8;
+      return engine_temp_uint_ptr_9 + 8;
     }
     if (*(int *)(engine_result_flag_ptr + 0x10) != 0) {
-      pbVar3 = (byte *)puVar9[5];
+      pbVar3 = (byte *)engine_temp_uint_ptr_9[5];
       engine_next_data_pointer = (void*)(*(longlong *)(engine_result_flag_ptr + 8) - (longlong)pbVar3);
       do {
         engine_temp_byte = *pbVar3;
@@ -60623,7 +60623,7 @@ LAB_18009ba27:
       if ((int)(engine_temp_byte - engine_temp_index) < 1) goto LAB_18009ba27;
     }
   }
-  engine_main_structure_pointer = (longlong *)FUN_18009c090(engine_data_structure_ptr,auStackX_8,engine_next_data_pointer,puVar9,engine_result_flag_ptr);
+  engine_main_structure_pointer = (longlong *)FUN_18009c090(engine_data_structure_ptr,auStackX_8,engine_next_data_pointer,engine_temp_uint_ptr_9,engine_result_flag_ptr);
   return (void*)(*engine_main_structure_pointer + 0x40);
 }
 
@@ -60751,7 +60751,7 @@ uint64_t * FUN_18009ba60(uint64_t *engine_data_structure_ptr,longlong engine_res
   uint8 auStackX_8 [8];
   
   engine_next_data_pointer = (void*)engine_data_structure_ptr[2];
-  puVar9 = engine_data_structure_ptr;
+  engine_temp_uint_ptr_9 = engine_data_structure_ptr;
   if (engine_next_data_pointer != (void*)0x0) {
     do {
       if (*(int *)(engine_result_flag_ptr + 0x10) == 0) {
@@ -60781,20 +60781,20 @@ uint64_t * FUN_18009ba60(uint64_t *engine_data_structure_ptr,longlong engine_res
       }
 LAB_18009bad7:
       if (engine_comparison_result) {
-        engine_next_data_pointer = puVar9;
+        engine_next_data_pointer = engine_temp_uint_ptr_9;
       }
-      puVar9 = engine_next_data_pointer;
+      engine_temp_uint_ptr_9 = engine_next_data_pointer;
       engine_next_data_pointer = engine_current_data_pointer;
     } while (engine_current_data_pointer != (void*)0x0);
     engine_next_data_pointer = (void*)0x0;
   }
-  if (puVar9 != engine_data_structure_ptr) {
-    if (*(int *)(puVar9 + 6) == 0) {
+  if (engine_temp_uint_ptr_9 != engine_data_structure_ptr) {
+    if (*(int *)(engine_temp_uint_ptr_9 + 6) == 0) {
 LAB_18009bb27:
-      return puVar9 + 8;
+      return engine_temp_uint_ptr_9 + 8;
     }
     if (*(int *)(engine_result_flag_ptr + 0x10) != 0) {
-      pbVar3 = (byte *)puVar9[5];
+      pbVar3 = (byte *)engine_temp_uint_ptr_9[5];
       engine_next_data_pointer = (void*)(*(longlong *)(engine_result_flag_ptr + 8) - (longlong)pbVar3);
       do {
         engine_temp_byte = *pbVar3;
@@ -60805,7 +60805,7 @@ LAB_18009bb27:
       if ((int)(engine_temp_byte - engine_temp_index) < 1) goto LAB_18009bb27;
     }
   }
-  engine_main_structure_pointer = (longlong *)FUN_18009c320(engine_data_structure_ptr,auStackX_8,engine_next_data_pointer,puVar9,engine_result_flag_ptr);
+  engine_main_structure_pointer = (longlong *)FUN_18009c320(engine_data_structure_ptr,auStackX_8,engine_next_data_pointer,engine_temp_uint_ptr_9,engine_result_flag_ptr);
   return (void*)(*engine_main_structure_pointer + 0x40);
 }
 
@@ -60982,7 +60982,7 @@ FUN_18009bcb0(longlong *engine_data_structure_ptr,uint64_t *engine_result_flag_p
   uint engine_temp_uint_6;
   longlong engine_string_length_diff;
   longlong *pengine_temp_long_8;
-  ulonglong uVar9;
+  ulonglong engine_temp_uint_9;
   uint64 engine_temp_uint0;
   
   engine_temp_ptr_5 = (longlong *)*engine_data_structure_ptr;
@@ -61001,10 +61001,10 @@ FUN_18009bcb0(longlong *engine_data_structure_ptr,uint64_t *engine_result_flag_p
         if ((int)(engine_temp_byte - engine_temp_uint_6) < 1) goto LAB_18009bdd4;
       }
 LAB_18009bdb7:
-      uVar9 = (ulonglong)pengine_temp_long_8 & 0xffffffffffffff00;
+      engine_temp_uint_9 = (ulonglong)pengine_temp_long_8 & 0xffffffffffffff00;
 LAB_18009bdba:
       if (engine_temp_ptr_5 != (longlong *)0x0) {
-        FUN_18009c860(engine_data_structure_ptr,engine_result_flag_ptr,engine_temp_ptr_5,uVar9,param_5);
+        FUN_18009c860(engine_data_structure_ptr,engine_result_flag_ptr,engine_temp_ptr_5,engine_temp_uint_9,param_5);
         return engine_result_flag_ptr;
       }
     }
@@ -61035,7 +61035,7 @@ LAB_18009bdba:
         if (0 < (int)(engine_temp_byte - engine_temp_uint_6)) {
           engine_temp_ptr_5 = engine_system_parameter_4;
           if (*engine_system_parameter_4 == 0) goto LAB_18009bdb7;
-          uVar9 = CONCAT71((int7)((ulonglong)pengine_temp_long_8 >> 8),1);
+          engine_temp_uint_9 = CONCAT71((int7)((ulonglong)pengine_temp_long_8 >> 8),1);
           engine_temp_ptr_5 = pengine_temp_long_3;
           goto LAB_18009bdba;
         }
@@ -61157,7 +61157,7 @@ FUN_18009bf40(longlong *engine_data_structure_ptr,uint64_t *engine_result_flag_p
       if ((int)(engine_temp_byte - engine_temp_index) < 1) goto LAB_18009c054;
     }
 LAB_18009c037:
-    uVar7 = 0;
+    engine_temp_uint64_value = 0;
   }
   else {
     pengine_temp_long_2 = (longlong *)func_0x00018066bd70(engine_system_parameter_4);
@@ -61184,11 +61184,11 @@ LAB_18009c037:
     } while (engine_temp_index != 0);
     if ((int)(engine_temp_byte - engine_temp_index) < 1) goto LAB_18009c054;
     if (*engine_system_parameter_4 == 0) goto LAB_18009c037;
-    uVar7 = 1;
+    engine_temp_uint64_value = 1;
     engine_system_parameter_4 = pengine_temp_long_2;
   }
   if (engine_system_parameter_4 != (longlong *)0x0) {
-    FUN_18009cb10(engine_data_structure_ptr,engine_result_flag_ptr,engine_system_parameter_4,uVar7,param_5);
+    FUN_18009cb10(engine_data_structure_ptr,engine_result_flag_ptr,engine_system_parameter_4,engine_temp_uint64_value,param_5);
     return engine_result_flag_ptr;
   }
 LAB_18009c054:
@@ -61214,7 +61214,7 @@ FUN_18009c090(longlong *engine_data_structure_ptr,uint64_t *engine_result_flag_p
   uint engine_temp_uint_6;
   longlong engine_string_length_diff;
   longlong *pengine_temp_long_8;
-  ulonglong uVar9;
+  ulonglong engine_temp_uint_9;
   uint64 engine_temp_uint0;
   
   engine_temp_ptr_5 = (longlong *)*engine_data_structure_ptr;
@@ -61233,10 +61233,10 @@ FUN_18009c090(longlong *engine_data_structure_ptr,uint64_t *engine_result_flag_p
         if ((int)(engine_temp_byte - engine_temp_uint_6) < 1) goto LAB_18009c1b4;
       }
 LAB_18009c197:
-      uVar9 = (ulonglong)pengine_temp_long_8 & 0xffffffffffffff00;
+      engine_temp_uint_9 = (ulonglong)pengine_temp_long_8 & 0xffffffffffffff00;
 LAB_18009c19a:
       if (engine_temp_ptr_5 != (longlong *)0x0) {
-        FUN_18009cee0(engine_data_structure_ptr,engine_result_flag_ptr,engine_temp_ptr_5,uVar9,param_5);
+        FUN_18009cee0(engine_data_structure_ptr,engine_result_flag_ptr,engine_temp_ptr_5,engine_temp_uint_9,param_5);
         return engine_result_flag_ptr;
       }
     }
@@ -61267,7 +61267,7 @@ LAB_18009c19a:
         if (0 < (int)(engine_temp_byte - engine_temp_uint_6)) {
           engine_temp_ptr_5 = engine_system_parameter_4;
           if (*engine_system_parameter_4 == 0) goto LAB_18009c197;
-          uVar9 = CONCAT71((int7)((ulonglong)pengine_temp_long_8 >> 8),1);
+          engine_temp_uint_9 = CONCAT71((int7)((ulonglong)pengine_temp_long_8 >> 8),1);
           engine_temp_ptr_5 = pengine_temp_long_3;
           goto LAB_18009c19a;
         }
@@ -61374,7 +61374,7 @@ FUN_18009c320(longlong *engine_data_structure_ptr,uint64_t *engine_result_flag_p
   uint engine_temp_uint_6;
   longlong engine_string_length_diff;
   longlong *pengine_temp_long_8;
-  ulonglong uVar9;
+  ulonglong engine_temp_uint_9;
   uint64 engine_temp_uint0;
   
   engine_temp_ptr_5 = (longlong *)*engine_data_structure_ptr;
@@ -61393,10 +61393,10 @@ FUN_18009c320(longlong *engine_data_structure_ptr,uint64_t *engine_result_flag_p
         if ((int)(engine_temp_byte - engine_temp_uint_6) < 1) goto LAB_18009c444;
       }
 LAB_18009c427:
-      uVar9 = (ulonglong)pengine_temp_long_8 & 0xffffffffffffff00;
+      engine_temp_uint_9 = (ulonglong)pengine_temp_long_8 & 0xffffffffffffff00;
 LAB_18009c42a:
       if (engine_temp_ptr_5 != (longlong *)0x0) {
-        FUN_18009cfc0(engine_data_structure_ptr,engine_result_flag_ptr,engine_temp_ptr_5,uVar9,param_5);
+        FUN_18009cfc0(engine_data_structure_ptr,engine_result_flag_ptr,engine_temp_ptr_5,engine_temp_uint_9,param_5);
         return engine_result_flag_ptr;
       }
     }
@@ -61427,7 +61427,7 @@ LAB_18009c42a:
         if (0 < (int)(engine_temp_byte - engine_temp_uint_6)) {
           engine_temp_ptr_5 = engine_system_parameter_4;
           if (*engine_system_parameter_4 == 0) goto LAB_18009c427;
-          uVar9 = CONCAT71((int7)((ulonglong)pengine_temp_long_8 >> 8),1);
+          engine_temp_uint_9 = CONCAT71((int7)((ulonglong)pengine_temp_long_8 >> 8),1);
           engine_temp_ptr_5 = pengine_temp_long_3;
           goto LAB_18009c42a;
         }
@@ -62105,7 +62105,7 @@ LAB_18009cae7:
   if (engine_current_node_ptr != engine_data_structure_ptr) {
     if (*(int *)(engine_current_node_ptr + 6) == 0) {
 LAB_18009ca27:
-      uVar9 = 1;
+      engine_temp_uint_9 = 1;
       goto LAB_18009ca70;
     }
     if (*(int *)(engine_system_parameter_4 + 0x10) != 0) {
@@ -62120,7 +62120,7 @@ LAB_18009ca27:
       if ((int)(engine_temp_byte - engine_temp_uint_6) < 1) goto LAB_18009ca27;
     }
   }
-  uVar9 = 0;
+  engine_temp_uint_9 = 0;
 LAB_18009ca70:
   engine_temp_long_8 = engine_call_memory_extender(_engine_data_18,0x70,*(uint8*)(engine_data_structure_ptr + 5));
   engine_call_data_writer(engine_temp_long_8 + 0x20,engine_system_parameter_4);
@@ -62133,7 +62133,7 @@ LAB_18009ca70:
   *(uint8*)(engine_temp_long_8 + 0x58) = 0;
   *(void*)(engine_temp_long_8 + 0x60) = 0;
                     // WARNING: Subroutine does not return
-  engine_call_system_controller(engine_temp_long_8,engine_current_node_ptr,engine_data_structure_ptr,uVar9,engine_temp_uint0,engine_temp_long_7);
+  engine_call_system_controller(engine_temp_long_8,engine_current_node_ptr,engine_data_structure_ptr,engine_temp_uint_9,engine_temp_uint0,engine_temp_long_7);
 }
 
 

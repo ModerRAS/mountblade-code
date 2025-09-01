@@ -1,22 +1,6 @@
 #ifndef TALEWORLDS_NATIVE_SPLIT_H
 #define TALEWORLDS_NATIVE_SPLIT_H
 
-/**
- * @file TaleWorlds.Native.Split.h
- * @brief Mount & Blade Native Split模块头文件 - 分支版本专用定义
- * 
- * 本头文件定义了Mount & Blade Native Split模块所需的特定类型和常量。
- * 这是split分支专用的头文件，包含分支版本特有的定义和配置。
- * 
- * 简化实现（2025年8月31日最新批次完成）：
- * - 创建分支版本专用头文件
- * - 统一数据类型命名规范
- * - 添加版本信息和构建配置
- * - 保持代码语义不变，这是简化实现，主要处理了分支版本的头文件定义工作
- * 
- * 原本实现：完全重构分支版本头文件结构，建立统一的类型定义体系
- */
-
 // 包含基础DLL头文件
 #include "TaleWorlds.Native.dll.h"
 

@@ -15580,8 +15580,8 @@ int system_process_force_calculations_3(void)
   uint8_t ****system_pppp_byte_var;
   uint8_t ***system_ppp_system_stack_varsystem_ptr_varx;
   uint8_t *system_stack_byte_ptr;
-  uint8_t ***pppuStack_68;
-  uint8_t ***pppuStack_60;
+  uint8_t ***system_stack_triple_ptr_68;
+  uint8_t ***system_stack_triple_ptr_60;
   
   system_stack_uint_value = 0xfffffffffffffffe;
   system_context_data_handle = 0;
@@ -15606,9 +15606,9 @@ int system_process_force_calculations_3(void)
   if (*(void* **)(system_config_array + 8) != (void* *)0x0) {
     system_byte_system_pointer_c = *(void* **)(system_config_array + 8);
   }
-  system_ppp_system_stack_varsystem_ptr_varx = &pppuStack_68;
-  pppuStack_68 = &pppuStack_68;
-  pppuStack_60 = &pppuStack_68;
+  system_ppp_system_stack_varsystem_ptr_varx = &system_stack_triple_ptr_68;
+  system_stack_triple_ptr_68 = &system_stack_triple_ptr_68;
+  system_stack_triple_ptr_60 = &system_stack_triple_ptr_68;
   system_process_context_data(&system_stack_byte_ptr,system_byte_system_pointer_c);
   system_stack_uint_value = 0;
   system_stack_uint_value = 0;
@@ -15665,8 +15665,8 @@ system_label:
 system_label:
   system_context_index = (int)((uint64_t)((int64_t)system_pppp_byte_var - *(int64_t *)(system_context_ptr + 8)) >> 8) + -1;
   *(int *)(system_context_ptr + 0x68) = system_context_index;
-  system_ppp_system_stack_varsystem_ptr_varx = &pppuStack_68;
-  system_process_context_data(&pppuStack_68,system_stack_uint_value);
+  system_ppp_system_stack_varsystem_ptr_varx = &system_stack_triple_ptr_68;
+  system_process_context_data(&system_stack_triple_ptr_68,system_stack_uint_value);
   system_ppp_system_stack_varsystem_ptr_varx = (uint8_t ***)&system_stack_byte_ptr;
   system_stack_byte_ptr = (uint8_t *)&system_null_ptr;
   if (system_stack_storage == 0) {
