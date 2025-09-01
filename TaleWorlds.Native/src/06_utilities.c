@@ -13280,7 +13280,7 @@ int SystemResourceProcessorB(int64_t ObjectContext,int64_t ValidationContext)
               } while ((int)floatValue13 < 6);
               SecurityHashValue = CalculateSecurityHash(ValidationContextParameter + 200);
               if ((float)(SecurityHashValue / 0x30) != 0.0) {
-                puStack_1c0 = &SystemResourceTemplateJ;
+                puStack_1c0 = &SystemResourceTemplateJob;
                 uStack_1b0 = uStack_1c8;
                 uStack_1b8 = 0;
                 FloatStackValue = (float)(SecurityHashValue / 0x30);
@@ -13289,7 +13289,7 @@ int SystemResourceProcessorB(int64_t ObjectContext,int64_t ValidationContext)
               }
               if ((*(uint *)(resourceData + 0x2d8) >> 1 & 1) != 0) {
                 uStack_1b8 = 0;
-                puStack_1c0 = &SystemResourceTemplateK;
+                puStack_1c0 = &SystemResourceTemplateKernel;
                 uStack_1b0 = uStack_1c8;
                 FloatStackValue = (float)CONCAT31(FloatStackValue._1_3_,1);
                 integerValue6 = GetAndValidateResourceData(ObjectContextParameter,&puStack_1c0);
@@ -13562,7 +13562,7 @@ void SystemInitializerA(void)
             resourceHash4 = CalculateSecurityHash(RegisterR14 + 200);
             validationResult4 = extraout_XMM0_Da_04;
             if ((float)(resourceHash4 / 0x30) != 0.0) {
-              in_stack_00000028 = &SystemResourceTemplateJ;
+              in_stack_00000028 = &SystemResourceTemplateJob;
               in_stack_00000038 = uStackX_20;
               in_stack_00000030 = unaff_R13D;
               fStack0000000000000040 = (float)(resourceHash4 / 0x30);
@@ -13571,7 +13571,7 @@ void SystemInitializerA(void)
               if (ResourceIndex3 != 0) goto ProcessMemoryRelease;
             }
             if ((*(uint *)(RegisterR14 + 0x2d8) >> 1 & 1) != 0) {
-              in_stack_00000028 = &SystemResourceTemplateK;
+              in_stack_00000028 = &SystemResourceTemplateKernel;
               in_stack_00000038 = uStackX_20;
               fStack0000000000000040 = (float)CONCAT31(fStack0000000000000040._1_3_,1);
               in_stack_00000030 = unaff_R13D;
@@ -13823,7 +13823,7 @@ void DataProcessingErrorHandler(void)
         resourceHash4 = CalculateSecurityHash(RegisterR14 + 200);
         validationResult3 = extraout_XMM0_Da_03;
         if ((float)(resourceHash4 / 0x30) != 0.0) {
-          in_stack_00000028 = &SystemResourceTemplateJ;
+          in_stack_00000028 = &SystemResourceTemplateJob;
           in_stack_00000038 = uStackX_20;
           in_stack_00000030 = unaff_R13D;
           fStack0000000000000040 = (float)(resourceHash4 / 0x30);
@@ -13832,7 +13832,7 @@ void DataProcessingErrorHandler(void)
           if (ResourceIndex3 != 0) goto ExecuteMemoryDeallocation;
         }
         if ((*(uint *)(RegisterR14 + 0x2d8) >> 1 & 1) != 0) {
-          in_stack_00000028 = &SystemResourceTemplateK;
+          in_stack_00000028 = &SystemResourceTemplateKernel;
           in_stack_00000038 = uStackX_20;
           fStack0000000000000040 = (float)CONCAT31(fStack0000000000000040._1_3_,1);
           in_stack_00000030 = unaff_R13D;
@@ -13972,7 +13972,7 @@ void FloatProcessingErrorHandler(void)
     ValidationResult = CalculateSecurityHash(RegisterR14 + 200);
     ContextValidationResult = extraout_XMM0_Da_00;
     if ((float)(ValidationResult / 0x30) != 0.0) {
-      in_stack_00000028 = &SystemResourceTemplateJ;
+      in_stack_00000028 = &SystemResourceTemplateJob;
       in_stack_00000038 = uStackX_20;
       in_stack_00000030 = unaff_R13D;
       fStack0000000000000040 = (float)(ValidationResult / 0x30);
@@ -13981,7 +13981,7 @@ void FloatProcessingErrorHandler(void)
       if (OperationResult != 0) goto LAB_180897af6;
     }
     if ((*(uint *)(RegisterR14 + 0x2d8) >> 1 & 1) != 0) {
-      in_stack_00000028 = &SystemResourceTemplateK;
+      in_stack_00000028 = &SystemResourceTemplateKernel;
       in_stack_00000038 = uStackX_20;
       fStack0000000000000040 = (float)CONCAT31(fStack0000000000000040._1_3_,1);
       in_stack_00000030 = unaff_R13D;
