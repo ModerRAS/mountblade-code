@@ -23557,15 +23557,15 @@ FinalizeValidation:
 uint64_t ExecuteResourceDataIntegrityValidation(void)
 
 {
-  int64_t *processPointer;
-  int64_t InputRegisterValue;
-  uint64_t validationResult;
-  uint unsignedValue3;
-  int64_t *unaff_RDI;
-  int64_t unaff_R14;
-  bool bVar4;
-  char cStack0000000000000090;
-  uint in_stack_00000098;
+  int64_t *ResourceContextPointer;
+  int64_t ResourceDataPointer;
+  uint64_t ValidationStatus;
+  uint32_t ResourceSize;
+  int64_t *SystemContextPointer;
+  int64_t ValidationContextPointer;
+  bool HasValidResource;
+  char SecurityValidationBuffer;
+  uint ResourceHashValue;
   
   if (*(int *)(in_RAX + 0x18) != 0) {
     return 0x1c;
@@ -31670,6 +31670,19 @@ void ValidateMemoryAccessPermissions(uint8_t objectContextParam,int64_t validati
 
 
 
+/**
+ * @brief 执行系统展开操作（版本180902a60）
+ * 
+ * 该函数负责执行系统展开操作，处理资源表的遍历和缓冲区操作
+ * 遍历资源表中的每个资源索引并处理缓冲区操作
+ * 如果资源表为空则正常返回，否则执行紧急退出程序
+ * 
+ * @param objectContextParam 对象上下文参数，包含对象相关的上下文信息
+ * @param validationContextParam 验证上下文参数，用于验证和访问资源表
+ * @return 无返回值
+ * @note 此函数会在异常处理过程中自动调用
+ * @warning 如果资源表不为空，此函数可能会调用紧急退出程序并不返回
+ */
 void Unwind_180902a60(uint8_t objectContextParam,int64_t validationContextParam)
 
 {
