@@ -4927,98 +4927,112 @@ void InitializeSystemEventNodeManager(void)
 
 
 
-// 函数: void FUN_1800327a0(void)
-void FUN_1800327a0(void)
+/**
+ * @brief 初始化系统资源节点
+ * 
+ * 该函数负责初始化系统资源管理器的节点结构，包括内存分配、
+ * 节点链接和回调函数设置。通过遍历系统节点树来找到合适的
+ * 位置插入新的资源节点。
+ */
+void InitializeSystemResourceNode(void)
 
 {
   char systemNodeFlag;
-  undefined8 *systemDataTable;
+  void *systemDataTable;
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *systemRootNode;
-  undefined8 *systemCurrentNode;
-  undefined8 *systemNextNode;
-  undefined8 *systemPreviousNode;
+  void *systemRootNode;
+  void *systemCurrentNode;
+  void *systemNextNode;
+  void *systemPreviousNode;
   uint64_t systemInitializationFlag;
   
-  systemDataTable = (longlong *)GetSystemRootPointer();
-  systemRootNode = (undefined8 *)*systemDataTable;
+  systemDataTable = (void *)GetSystemRootPointer();
+  systemRootNode = (void *)*(longlong *)systemDataTable;
   systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   systemInitializationFlag = 0;
   systemPreviousNode = systemRootNode;
-  systemCurrentNode = (undefined8 *)systemRootNode[1];
+  systemCurrentNode = (void *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
-    iVar3 = memcmp(puVar6 + 4,&DAT_180a01050,0x10);
+    memoryCompareResult = memcmp((void *)((longlong)systemCurrentNode + 4),&DAT_180a01050,0x10);
     if (memoryCompareResult < 0) {
-      systemNextNode = (undefined8 *)systemCurrentNode[2];
+      systemNextNode = (void *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
     else {
-      systemNextNode = (undefined8 *)*systemCurrentNode;
+      systemNextNode = (void *)*systemCurrentNode;
     }
     systemPreviousNode = systemCurrentNode;
     systemCurrentNode = systemNextNode;
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
-  if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a01050,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = GetSystemMemorySize(systemDataTable);
+  if ((systemCurrentNode == systemRootNode) || (memoryCompareResult = memcmp(&DAT_180a01050,(void *)((longlong)systemCurrentNode + 4),0x10), memoryCompareResult < 0)) {
+    longlong memoryAllocationSize = GetSystemMemorySize(systemDataTable);
+    void *systemAllocatedNode;
     AllocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
-  puVar7[6] = 0x4b2d79e470ee4e2c;
-  puVar7[7] = 0x9c552acd3ed5548d;
-  puVar7[8] = &UNK_180a003a0;
+  systemCurrentNode[6] = 0x4b2d79e470ee4e2c;
+  systemCurrentNode[7] = 0x9c552acd3ed5548d;
+  systemCurrentNode[8] = &UNK_180a003a0;
   systemPreviousNode[9] = 0;
-  puVar7[10] = resourceInitializationCallback;
+  systemCurrentNode[10] = resourceInitializationCallback;
   return;
 }
 
 
 
 
-// 函数: void FUN_1800328a0(void)
-void FUN_1800328a0(void)
+/**
+ * @brief 初始化系统事件节点
+ * 
+ * 该函数负责初始化系统事件管理器的节点结构，包括内存分配、
+ * 节点链接和事件回调函数设置。通过遍历系统节点树来找到合适的
+ * 位置插入新的事件节点。
+ */
+void InitializeSystemEventNode(void)
 
 {
   char systemNodeFlag;
-  undefined8 *systemDataTable;
+  void *systemDataTable;
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *systemRootNode;
-  undefined8 *systemCurrentNode;
-  undefined8 *systemNextNode;
-  undefined8 *systemPreviousNode;
-  code *pcStackX_18;
+  void *systemRootNode;
+  void *systemCurrentNode;
+  void *systemNextNode;
+  void *systemPreviousNode;
+  void *systemValidationCallback;
   
-  systemDataTable = (longlong *)GetSystemRootPointer();
-  systemRootNode = (undefined8 *)*systemDataTable;
+  systemDataTable = (void *)GetSystemRootPointer();
+  systemRootNode = (void *)*(longlong *)systemDataTable;
   systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
-  pcStackX_18 = FUN_18025d270;
+  systemValidationCallback = FUN_18025d270;
   systemPreviousNode = systemRootNode;
-  systemCurrentNode = (undefined8 *)systemRootNode[1];
+  systemCurrentNode = (void *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
-    iVar3 = memcmp(puVar6 + 4,&DAT_180a01028,0x10);
+    memoryCompareResult = memcmp((void *)((longlong)systemCurrentNode + 4),&DAT_180a01028,0x10);
     if (memoryCompareResult < 0) {
-      systemNextNode = (undefined8 *)systemCurrentNode[2];
+      systemNextNode = (void *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
     else {
-      systemNextNode = (undefined8 *)*systemCurrentNode;
+      systemNextNode = (void *)*systemCurrentNode;
     }
     systemPreviousNode = systemCurrentNode;
     systemCurrentNode = systemNextNode;
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
-  if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a01028,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = GetSystemMemorySize(systemDataTable);
+  if ((systemCurrentNode == systemRootNode) || (memoryCompareResult = memcmp(&DAT_180a01028,(void *)((longlong)systemCurrentNode + 4),0x10), memoryCompareResult < 0)) {
+    longlong memoryAllocationSize = GetSystemMemorySize(systemDataTable);
+    void *systemAllocatedNode;
     AllocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
-  puVar7[6] = 0x49086ba08ab981a7;
-  puVar7[7] = 0xa9191d34ad910696;
-  puVar7[8] = &UNK_180a003b8;
+  systemCurrentNode[6] = 0x49086ba08ab981a7;
+  systemCurrentNode[7] = 0xa9191d34ad910696;
+  systemCurrentNode[8] = &UNK_180a003b8;
   systemPreviousNode[9] = 0;
   systemPreviousNode[10] = eventCallbackPointer;
   return;
@@ -5027,50 +5041,57 @@ void FUN_1800328a0(void)
 
 
 
-// 函数: void FUN_1800329a0(void)
-void FUN_1800329a0(void)
+/**
+ * @brief 初始化系统内存节点
+ * 
+ * 该函数负责初始化系统内存管理器的节点结构，包括内存分配、
+ * 节点链接和内存管理回调函数设置。通过遍历系统节点树来找到合适的
+ * 位置插入新的内存节点。
+ */
+void InitializeSystemMemoryNode(void)
 
 {
   char systemNodeFlag;
-  undefined8 *systemDataTable;
+  void *systemDataTable;
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *systemRootNode;
-  undefined8 *systemCurrentNode;
-  undefined8 *systemNextNode;
-  undefined8 *systemPreviousNode;
+  void *systemRootNode;
+  void *systemCurrentNode;
+  void *systemNextNode;
+  void *systemPreviousNode;
   uint64_t systemInitializationFlag;
   
-  systemDataTable = (longlong *)GetSystemRootPointer();
-  systemRootNode = (undefined8 *)*systemDataTable;
+  systemDataTable = (void *)GetSystemRootPointer();
+  systemRootNode = (void *)*(longlong *)systemDataTable;
   systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
   systemInitializationFlag = 0;
   systemPreviousNode = systemRootNode;
-  systemCurrentNode = (undefined8 *)systemRootNode[1];
+  systemCurrentNode = (void *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
-    iVar3 = memcmp(puVar6 + 4,&DAT_180a01000,0x10);
+    memoryCompareResult = memcmp((void *)((longlong)systemCurrentNode + 4),&DAT_180a01000,0x10);
     if (memoryCompareResult < 0) {
-      systemNextNode = (undefined8 *)systemCurrentNode[2];
+      systemNextNode = (void *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
     else {
-      systemNextNode = (undefined8 *)*systemCurrentNode;
+      systemNextNode = (void *)*systemCurrentNode;
     }
     systemPreviousNode = systemCurrentNode;
     systemCurrentNode = systemNextNode;
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
-  if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a01000,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = GetSystemMemorySize(systemDataTable);
+  if ((systemCurrentNode == systemRootNode) || (memoryCompareResult = memcmp(&DAT_180a01000,(void *)((longlong)systemCurrentNode + 4),0x10), memoryCompareResult < 0)) {
+    longlong memoryAllocationSize = GetSystemMemorySize(systemDataTable);
+    void *systemAllocatedNode;
     AllocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
-  puVar7[6] = 0x402feffe4481676e;
-  puVar7[7] = 0xd4c2151109de93a0;
-  puVar7[8] = &UNK_180a003d0;
+  systemCurrentNode[6] = 0x402feffe4481676e;
+  systemCurrentNode[7] = 0xd4c2151109de93a0;
+  systemCurrentNode[8] = &UNK_180a003d0;
   systemPreviousNode[9] = 0;
-  puVar7[10] = resourceInitializationCallback;
+  systemCurrentNode[10] = resourceInitializationCallback;
   return;
 }
 

@@ -6604,27 +6604,37 @@ undefined8 ValidateAndProcessObjectAttributeSetting(longlong ObjectContext, long
 
 
 
-undefined8 FUN_1808921f0(longlong param_1,longlong param_2)
+/**
+ * @brief 验证对象并处理缓冲区上下文
+ * 
+ * 该函数验证对象上下文的有效性，检查对象的缓冲区上下文，
+ * 如果验证通过则处理缓冲区上下文并调用相应的处理函数
+ * 
+ * @param ObjectContext 对象上下文指针，包含要处理的对象信息
+ * @param SystemContext 系统上下文指针，包含系统运行环境信息
+ * @return 处理结果状态码，0x1e表示特定错误状态
+ */
+undefined8 ValidateObjectAndProcessBufferContext(longlong ObjectContext, longlong SystemContext)
 
 {
-  undefined8 uVar1;
-  longlong lStackX_8;
+  undefined8 processingResult;
+  longlong objectContextBuffer;
   
-  uVar1 = ValidateObjectContext(*(undefined4 *)(param_1 + 0x10),&lStackX_8);
-  if ((int)uVar1 == 0) {
-    if (lStackX_8 != 0) {
-      lStackX_8 = lStackX_8 + -8;
+  processingResult = ValidateObjectContext(*(undefined4 *)(ObjectContext + 0x10), &objectContextBuffer);
+  if ((int)processingResult == 0) {
+    if (objectContextBuffer != 0) {
+      objectContextBuffer = objectContextBuffer + -8;
     }
-    if (*(longlong *)(lStackX_8 + 0x18) == 0) {
+    if (*(longlong *)(objectContextBuffer + 0x18) == 0) {
       return 0x1e;
     }
-    uVar1 = ValidateBufferContext(*(undefined8 *)(*(longlong *)(lStackX_8 + 0x18) + 0xd0),
-                                param_1 + 0x18);
-    if ((int)uVar1 == 0) {
-      uVar1 = FUN_18088d7c0(*(undefined8 *)(param_2 + 0x98),param_1);
+    processingResult = ValidateBufferContext(*(undefined8 *)(*(longlong *)(objectContextBuffer + 0x18) + 0xd0),
+                                ObjectContext + 0x18);
+    if ((int)processingResult == 0) {
+      processingResult = ProcessSystemObjectWithCleanup(*(undefined8 *)(SystemContext + 0x98), ObjectContext);
     }
   }
-  return uVar1;
+  return processingResult;
 }
 
 
@@ -6751,8 +6761,13 @@ uint64_t ValidateSystemBufferContext(void)
 
 
 
- void FUN_180892333(void)
-void FUN_180892333(void)
+ /**
+ * @brief 空操作函数
+ * 
+ * 该函数不执行任何操作，直接返回
+ * 用作占位符或空操作
+ */
+void EmptyOperationFunction2(void)
 
 {
   return;
@@ -6761,16 +6776,23 @@ void FUN_180892333(void)
 
 
 
- void FUN_18089233e(void)
-void FUN_18089233e(void)
+ /**
+ * @brief 验证缓冲区上下文并处理
+ * 
+ * 该函数验证缓冲区上下文的有效性，如果验证通过则调用处理函数
+ * 主要用于缓冲区的验证和处理流程
+ * 
+ * @param SystemContext 系统上下文指针，包含系统运行环境信息
+ */
+void ValidateBufferContextAndProcess(void)
 
 {
-  int iVar1;
-  longlong unaff_R13;
+  int validationStatus;
+  longlong systemContext;
   
-  iVar1 = ValidateBufferContext();
-  if (iVar1 == 0) {
-    FUN_18088d7c0(*(undefined8 *)(unaff_R13 + 0x98));
+  validationStatus = ValidateBufferContext();
+  if (validationStatus == 0) {
+    ProcessSystemObjectWithCleanup(*(undefined8 *)(systemContext + 0x98));
   }
   return;
 }
