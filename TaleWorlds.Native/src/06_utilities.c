@@ -31148,7 +31148,19 @@ void UnwindExceptionHandler001(uint8_t objectContextParam,int64_t validationCont
 
 
 
-void Unwind_1809028f0(uint8_t objectContextParam,int64_t validationContextParam)
+/**
+ * @brief 栈帧处理器配置
+ * 
+ * 该函数负责配置栈帧处理系统
+ * 设置栈帧参数和处理逻辑
+ * 
+ * @param objectContextParam 对象上下文参数
+ * @param validationContextParam 验证上下文参数
+ * @return 无返回值
+ * @note 此函数用于栈帧处理器配置
+ * @warning 配置错误可能导致栈处理异常
+ */
+void UnwindStackFrame001(uint8_t objectContextParam,int64_t validationContextParam)
 
 {
   int *pintegerValue1;
