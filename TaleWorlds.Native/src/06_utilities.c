@@ -1263,8 +1263,8 @@ void* MemoryPagingReservedMemory;
  * 检查内存损坏和数据一致性
  */
 void ValidateMemoryIntegrity;
-undefined g_memoryValidationContext;
-undefined g_memoryValidationTable;
+void* g_memoryValidationContext;
+void* g_memoryValidationTable;
 undefined g_memoryValidationStatus;
 undefined g_memoryValidationConfig;
 undefined g_memoryValidationHandle;
