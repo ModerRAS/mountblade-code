@@ -32374,6 +32374,16 @@ void SetupSystemResourceHandlerTemplate(uint8_t ObjectContextParameter,int64_t V
 
 
 
+/**
+ * @brief 系统资源清理处理器
+ * 
+ * 该函数负责处理系统资源的清理和释放操作
+ * 主要用于系统异常处理时的资源回收
+ * 
+ * @param ObjectContextParameter 对象上下文参数
+ * @param ValidationContextParameter 验证上下文参数
+ * @return 无返回值
+ */
 void SystemResourceCleanupHandler(uint8_t ObjectContextParameter,int64_t ValidationContextParameter)
 
 {
