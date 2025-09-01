@@ -27,7 +27,7 @@
 
 
 // 核心引擎系统版本信息
-#define ENGINE_SYSTEM_VERSION 3.4
+#define ENGINE_SYSTEM_VERSION 3.5
 #define ENGINE_LAST_UPDATED "2025-09-01"
 
 /**
