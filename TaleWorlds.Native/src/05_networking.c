@@ -26186,7 +26186,7 @@ void ProcessNetworkPacketValidation(longlong connectionContext, NetworkHandle pa
 
 
 
-NetworkHandle FUN_1808558e0(NetworkHandle connectionContext,longlong packetData,longlong dataSize)
+NetworkHandle NetworkPacketSender(NetworkHandle connectionContext,longlong packetData,longlong dataSize)
 
 {
   longlong *plVar1;
@@ -29080,9 +29080,9 @@ joined_r0x000180857d6c:
         plVar4 = plVar7 + 3;
       }
     }
-    iVar5 = FUN_1808558e0(connectionContext,packetData,*(longlong *)(connectionContext + 0x160) + 0x378);
+    iVar5 = NetworkPacketSender(connectionContext,packetData,*(longlong *)(connectionContext + 0x160) + 0x378);
     if (iVar5 == 0) {
-      FUN_1808558e0(connectionContext,packetData,*(longlong *)(connectionContext + 0x160) + 0x3f8);
+      NetworkPacketSender(connectionContext,packetData,*(longlong *)(connectionContext + 0x160) + 0x3f8);
     }
   }
 NetworkSystemNoOperation:
@@ -29191,9 +29191,9 @@ joined_r0x000180857d6c:
       plVar4 = plVar7 + 3;
     }
   }
-  iVar5 = FUN_1808558e0();
+  iVar5 = NetworkPacketSender();
   if (iVar5 == 0) {
-    FUN_1808558e0();
+    NetworkPacketSender();
   }
 LAB_180857c4e:
                     // WARNING: Subroutine does not return
@@ -29279,9 +29279,9 @@ LAB_180857d77:
 LAB_180857d7c:
   if (unaff_RBX == unaff_R14) {
 LAB_180857da6:
-    networkStatus2 = FUN_1808558e0();
+    networkStatus2 = NetworkPacketSender();
     if (networkStatus2 == 0) {
-      FUN_1808558e0();
+      NetworkPacketSender();
     }
     goto LAB_180857c4e;
   }
@@ -29373,7 +29373,7 @@ NetworkHandle HandleNetworkConnectionError(longlong connectionContext, longlong 
  * @return 超时处理结果状态码
  */
 NetworkHandle HandleNetworkConnectionTimeout(longlong connectionContext);
-void FUN_180857de5(void)
+void NetworkConnectionCleanup(void)
 
 {
   ulonglong in_stack_00000048;
@@ -29404,7 +29404,7 @@ NetworkData * GetNetworkData(void)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-ulonglong FUN_180857e50(longlong connectionContext,uint *packetData,int dataSize,uint param_4)
+ulonglong NetworkDataProcessor(longlong connectionContext,uint *packetData,int dataSize,uint param_4)
 
 {
   int *pnetworkStatus1;
@@ -34114,7 +34114,7 @@ FUN_18085bc30(longlong connectionContext,uint packetData,char dataSize,char para
     if (cStackX_18 != '\0') {
       uVar8 = 4;
     }
-    uVar8 = FUN_180857e50(connectionContext,auStackX_10,uVar8,*networkPointer11);
+    uVar8 = NetworkDataProcessor(connectionContext,auStackX_10,uVar8,*networkPointer11);
     if ((int)uVar8 != 0) {
       return uVar8;
     }
@@ -34648,7 +34648,7 @@ void FUN_18085ca30(longlong connectionContext,ulonglong packetData)
     networkPointer12 = (uint *)CreateNetworkStatus();
     if (secondaryNetworkFlag1 != *networkPointer12) {
       primaryNetworkFlag3 = CreateNetworkStatus();
-      iVar9 = FUN_180857e50(connectionContext,primaryNetworkFlag3,*(NetworkStatus *)(connectionContext + 0xc),secondaryNetworkFlag1);
+      iVar9 = NetworkDataProcessor(connectionContext,primaryNetworkFlag3,*(NetworkStatus *)(connectionContext + 0xc),secondaryNetworkFlag1);
       if (iVar9 != 0) goto LAB_18085d424;
     }
   }
