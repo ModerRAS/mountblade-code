@@ -231,6 +231,10 @@ void ValidateResourceIntegrity(void);
  * 
  * 该函数负责执行系统资源的清理操作
  * 释放不再使用的资源并回收内存
+ * 
+ * @return 无返回值
+ * @note 此函数会释放所有不再使用的系统资源
+ * @warning 调用此函数后，被释放的资源将不再可用
  */
 void ExecuteResourceCleanup(void);
 
