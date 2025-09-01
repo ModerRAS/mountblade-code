@@ -8783,7 +8783,7 @@ void InitializeSystemPerformanceNode(void)
   stackParameterB = stackBuffer;
   stackBuffer[0] = 0;
   stackParameterC = 0x1c;
-  strcpy_s(stackBuffer,0x80,&UNK_180a17e48,in_R9,0xfffffffffffffffe);
+  strcpy_s(stackBuffer,0x80,&SystemInitializationStringTemplate,in_R9,0xfffffffffffffffe);
   _DAT_180c91ee8 = SystemMemoryAllocationFunction(&stackParameterA);
   return;
 }
@@ -8882,7 +8882,7 @@ void InitializeSystemNetworkNode(void)
   }
   systemPreviousNode[6] = 0x4770584fbb1df897;
   systemPreviousNode[7] = 0x47f249e43f66f2ab;
-  systemPreviousNode[8] = &UNK_18098c7a0;
+  systemPreviousNode[8] = &SystemResourceNodeTemplateA;
   systemPreviousNode[9] = 1;
   systemPreviousNode[10] = resourceInitializationCallback;
   return;
@@ -8932,7 +8932,7 @@ void InitializeSystemAudioNode(void)
   }
   systemPreviousNode[6] = 0x4666df49b97e0f10;
   systemPreviousNode[7] = 0x4e4b0d63a6ad1d8f;
-  systemPreviousNode[8] = &UNK_18098c7b8;
+  systemPreviousNode[8] = &SystemResourceNodeTemplateB;
   systemPreviousNode[9] = 0;
   systemPreviousNode[10] = resourceInitializationCallback;
   return;
@@ -8982,7 +8982,7 @@ void InitializeSystemInputNode(void)
   }
   systemPreviousNode[6] = 0x46ecbd4daf41613e;
   systemPreviousNode[7] = 0xdc42c056bbde8482;
-  systemPreviousNode[8] = &UNK_18098c7c8;
+  systemPreviousNode[8] = &SystemResourceNodeTemplateC;
   systemPreviousNode[9] = 0;
   systemPreviousNode[10] = resourceInitializationCallback;
   return;
@@ -9250,7 +9250,7 @@ void InitializeSystemEventConfigurationManager(void)
   }
   systemPreviousNode[6] = 0x421c3cedd07d816d;
   systemPreviousNode[7] = 0xbec25de793b7afa6;
-  systemPreviousNode[8] = &UNK_18098c880;
+  systemPreviousNode[8] = &SystemResourceNodeTemplateD;
   systemPreviousNode[9] = 0;
   systemPreviousNode[10] = eventCallbackPointer;
   return;
@@ -9309,7 +9309,7 @@ void InitializeSystemNetworkConfigurationManager(void)
   }
   systemPreviousNode[6] = 0x4c22bb0c326587ce;
   systemPreviousNode[7] = 0x5e3cf00ce2978287;
-  systemPreviousNode[8] = &UNK_18098c898;
+  systemPreviousNode[8] = &SystemResourceNodeTemplateE;
   systemPreviousNode[9] = 1;
   systemPreviousNode[10] = resourceInitializationCallback;
   return;
@@ -9401,7 +9401,7 @@ void InitializeSystemDebugInfoManager(void)
   stackParameterB = stackBuffer;
   stackBuffer[0] = 0;
   stackParameterC = 9;
-  strcpy_s(stackBuffer,0x80,&UNK_180a194f0,in_R9,0xfffffffffffffffe);
+  strcpy_s(stackBuffer,0x80,&SystemConfigurationStringTemplate,in_R9,0xfffffffffffffffe);
   _DAT_180c91ef8 = SystemMemoryAllocationFunction(&stackParameterA);
   return;
 }
@@ -9433,7 +9433,7 @@ void InitializeSystemLogManager(void)
   stackParameterB = stackBuffer;
   stackBuffer[0] = 0;
   stackParameterC = 8;
-  strcpy_s(stackBuffer,0x80,&UNK_180a19588,in_R9,0xfffffffffffffffe);
+  strcpy_s(stackBuffer,0x80,&SystemResourceStringTemplate,in_R9,0xfffffffffffffffe);
   _DAT_180c91efc = SystemMemoryAllocationFunction(&stackParameterA);
   return;
 }
@@ -9553,7 +9553,7 @@ void InitializeSystemStringProcessorA(void)
   stackParameterB = stackBuffer;
   stackBuffer[0] = 0;
   stackParameterC = 0x15;
-  strcpy_s(stackBuffer,0x80,&UNK_180a1a6c8,in_R9,0xfffffffffffffffe);
+  strcpy_s(stackBuffer,0x80,&SystemMemoryStringTemplate,in_R9,0xfffffffffffffffe);
   _DAT_180c91f0c = SystemMemoryAllocationFunction(&stackParameterA);
   return;
 }
@@ -9577,7 +9577,7 @@ void InitializeSystemStringProcessorB(void)
   stackParameterB = stackBuffer;
   stackBuffer[0] = 0;
   stackParameterC = 0xe;
-  strcpy_s(stackBuffer,0x80,&UNK_180a1afd8,in_R9,0xfffffffffffffffe);
+  strcpy_s(stackBuffer,0x80,&SystemThreadStringTemplate,in_R9,0xfffffffffffffffe);
   _DAT_180c91f10 = SystemMemoryAllocationFunction(&stackParameterA);
   return;
 }
@@ -9601,7 +9601,7 @@ void InitializeSystemStringProcessorC(void)
   stackParameterB = stackBuffer;
   stackBuffer[0] = 0;
   stackParameterC = 0x1a;
-  strcpy_s(stackBuffer,0x80,&UNK_180a1cc28,in_R9,0xfffffffffffffffe);
+  strcpy_s(stackBuffer,0x80,&SystemFileSystemStringTemplate,in_R9,0xfffffffffffffffe);
   _DAT_180c91f14 = SystemMemoryAllocationFunction(&stackParameterA);
   return;
 }
@@ -9625,7 +9625,7 @@ void InitializeSystemStringProcessorD(void)
   stackParameterB = stackBuffer;
   stackBuffer[0] = 0;
   stackParameterC = 0x13;
-  strcpy_s(stackBuffer,0x80,&UNK_180a1eb30,in_R9,0xfffffffffffffffe);
+  strcpy_s(stackBuffer,0x80,&SystemNetworkStringTemplate,in_R9,0xfffffffffffffffe);
   _DAT_180c91f30 = SystemMemoryAllocationFunction(&stackParameterA);
   return;
 }
@@ -11134,7 +11134,7 @@ void InitializeSystemDataTableConfigurator(void)
   }
   systemPreviousNode[6] = 0x4770584fbb1df897;
   systemPreviousNode[7] = 0x47f249e43f66f2ab;
-  systemPreviousNode[8] = &UNK_18098c7a0;
+  systemPreviousNode[8] = &SystemResourceNodeTemplateA;
   systemPreviousNode[9] = 1;
   systemPreviousNode[10] = resourceInitializationCallback;
   return;
@@ -11184,7 +11184,7 @@ void InitializeSystemMemoryManagerG(void)
   }
   systemPreviousNode[6] = 0x4666df49b97e0f10;
   systemPreviousNode[7] = 0x4e4b0d63a6ad1d8f;
-  systemPreviousNode[8] = &UNK_18098c7b8;
+  systemPreviousNode[8] = &SystemResourceNodeTemplateB;
   systemPreviousNode[9] = 0;
   systemPreviousNode[10] = resourceInitializationCallback;
   return;
@@ -11234,7 +11234,7 @@ void InitializeSystemMemoryManagerH(void)
   }
   systemPreviousNode[6] = 0x46ecbd4daf41613e;
   systemPreviousNode[7] = 0xdc42c056bbde8482;
-  systemPreviousNode[8] = &UNK_18098c7c8;
+  systemPreviousNode[8] = &SystemResourceNodeTemplateC;
   systemPreviousNode[9] = 0;
   systemPreviousNode[10] = resourceInitializationCallback;
   return;
@@ -11516,7 +11516,7 @@ void InitializeSystemMemoryNodeManager(void)
   }
   systemPreviousNode[6] = 0x421c3cedd07d816d;
   systemPreviousNode[7] = 0xbec25de793b7afa6;
-  systemPreviousNode[8] = &UNK_18098c880;
+  systemPreviousNode[8] = &SystemResourceNodeTemplateD;
   systemPreviousNode[9] = 0;
   systemPreviousNode[10] = eventCallbackPointer;
   return;
@@ -11574,7 +11574,7 @@ void InitializeSystemDeviceNodeManager(void)
   }
   systemPreviousNode[6] = 0x4c22bb0c326587ce;
   systemPreviousNode[7] = 0x5e3cf00ce2978287;
-  systemPreviousNode[8] = &UNK_18098c898;
+  systemPreviousNode[8] = &SystemResourceNodeTemplateE;
   systemPreviousNode[9] = 1;
   systemPreviousNode[10] = resourceInitializationCallback;
   return;
@@ -11602,11 +11602,11 @@ void InitializeSystemStringProcessor(void)
   uint32_t systemStackValue90;
   uint8_t systemStackBuffer88 [136];
   
-  systemStackPointerA0 = &UNK_1809fcc28;
+  systemStackPointerA0 = &SystemGlobalDataTertiary;
   systemStackPointer98 = systemStackBuffer88;
   systemStackBuffer88[0] = 0;
   systemStackValue90 = 0x16;
-  strcpy_s(systemStackBuffer88,0x80,&UNK_180a22538,systemRegisterR9,0xfffffffffffffffe);
+  strcpy_s(systemStackBuffer88,0x80,&SystemSecurityStringTemplate,systemRegisterR9,0xfffffffffffffffe);
   _DAT_180c91f68 = SystemMemoryAllocationFunction(&systemStackPointerA0);
   return;
 }
@@ -11738,7 +11738,7 @@ void InitializeSystemDeviceNodeManager(void)
   }
   systemPreviousNode[6] = 0x4770584fbb1df897;
   systemPreviousNode[7] = 0x47f249e43f66f2ab;
-  systemPreviousNode[8] = &UNK_18098c7a0;
+  systemPreviousNode[8] = &SystemResourceNodeTemplateA;
   systemPreviousNode[9] = 1;
   systemPreviousNode[10] = resourceInitializationCallback;
   return;
@@ -11795,7 +11795,7 @@ void InitializeSystemConfigurationDataNodeManager(void)
   }
   systemPreviousNode[6] = 0x4666df49b97e0f10;
   systemPreviousNode[7] = 0x4e4b0d63a6ad1d8f;
-  systemPreviousNode[8] = &UNK_18098c7b8;
+  systemPreviousNode[8] = &SystemResourceNodeTemplateB;
   systemPreviousNode[9] = 0;
   systemPreviousNode[10] = resourceInitializationCallback;
   return;
@@ -11852,7 +11852,7 @@ void InitializeSystemEventDataNodeManager(void)
   }
   systemPreviousNode[6] = 0x46ecbd4daf41613e;
   systemPreviousNode[7] = 0xdc42c056bbde8482;
-  systemPreviousNode[8] = &UNK_18098c7c8;
+  systemPreviousNode[8] = &SystemResourceNodeTemplateC;
   systemPreviousNode[9] = 0;
   systemPreviousNode[10] = resourceInitializationCallback;
   return;
@@ -12137,7 +12137,7 @@ void InitializeSystemDataNode(void)
   }
   systemPreviousNode[6] = 0x421c3cedd07d816d;
   systemPreviousNode[7] = 0xbec25de793b7afa6;
-  systemPreviousNode[8] = &UNK_18098c880;
+  systemPreviousNode[8] = &SystemResourceNodeTemplateD;
   systemPreviousNode[9] = 0;
   systemPreviousNode[10] = eventCallbackPointer;
   return;
@@ -12194,7 +12194,7 @@ void InitializeSystemStringProcessor(void)
   }
   systemPreviousNode[6] = 0x4c22bb0c326587ce;
   systemPreviousNode[7] = 0x5e3cf00ce2978287;
-  systemPreviousNode[8] = &UNK_18098c898;
+  systemPreviousNode[8] = &SystemResourceNodeTemplateE;
   systemPreviousNode[9] = 1;
   systemPreviousNode[10] = resourceInitializationCallback;
   return;
@@ -13600,8 +13600,8 @@ int InitializeSystemModuleE(void)
 {
   long long systemStatus;
   
-  FUN_1803f2eb0(0x180d49d50);
-  systemStatus = FUN_1808fc7d0(FUN_1809429f0);
+  InitializeSystemSecurityContext(0x180d49d50);
+  systemStatus = ValidateSystemConfiguration(SystemConfigValidatorQuinary);
   return (systemStatus != 0) - 1;
 }
 
@@ -13703,7 +13703,7 @@ void InitializeSystemResourceManagerB(void)
   }
   systemPreviousNode[6] = 0x4770584fbb1df897;
   systemPreviousNode[7] = 0x47f249e43f66f2ab;
-  systemPreviousNode[8] = &UNK_18098c7a0;
+  systemPreviousNode[8] = &SystemResourceNodeTemplateA;
   systemPreviousNode[9] = 1;
   systemPreviousNode[10] = resourceInitializationCallback;
   return;
@@ -13755,7 +13755,7 @@ void InitializeSystemResourceManagerC(void)
   }
   systemPreviousNode[6] = 0x4666df49b97e0f10;
   systemPreviousNode[7] = 0x4e4b0d63a6ad1d8f;
-  systemPreviousNode[8] = &UNK_18098c7b8;
+  systemPreviousNode[8] = &SystemResourceNodeTemplateB;
   systemPreviousNode[9] = 0;
   systemPreviousNode[10] = resourceInitializationCallback;
   return;
@@ -13807,7 +13807,7 @@ void InitializeSystemResourceManagerD(void)
   }
   systemPreviousNode[6] = 0x46ecbd4daf41613e;
   systemPreviousNode[7] = 0xdc42c056bbde8482;
-  systemPreviousNode[8] = &UNK_18098c7c8;
+  systemPreviousNode[8] = &SystemResourceNodeTemplateC;
   systemPreviousNode[9] = 0;
   systemPreviousNode[10] = resourceInitializationCallback;
   return;
@@ -14071,7 +14071,7 @@ void InitializeSystemResourceManagerI(void)
   }
   systemPreviousNode[6] = 0x421c3cedd07d816d;
   systemPreviousNode[7] = 0xbec25de793b7afa6;
-  systemPreviousNode[8] = &UNK_18098c880;
+  systemPreviousNode[8] = &SystemResourceNodeTemplateD;
   systemPreviousNode[9] = 0;
   systemPreviousNode[10] = eventCallbackPointer;
   return;
@@ -14124,7 +14124,7 @@ void InitializeSystemResourceManagerJ(void)
   }
   systemPreviousNode[6] = 0x4c22bb0c326587ce;
   systemPreviousNode[7] = 0x5e3cf00ce2978287;
-  systemPreviousNode[8] = &UNK_18098c898;
+  systemPreviousNode[8] = &SystemResourceNodeTemplateE;
   systemPreviousNode[9] = 1;
   systemPreviousNode[10] = resourceInitializationCallback;
   return;
@@ -14459,7 +14459,7 @@ void InitializeSystemResourceAllocator(void)
   }
   systemPreviousNode[6] = 0x4770584fbb1df897;
   systemPreviousNode[7] = 0x47f249e43f66f2ab;
-  systemPreviousNode[8] = &UNK_18098c7a0;
+  systemPreviousNode[8] = &SystemResourceNodeTemplateA;
   systemPreviousNode[9] = 1;
   systemPreviousNode[10] = resourceInitializationCallback;
   return;
@@ -14517,7 +14517,7 @@ void InitializeSystemDataTableAllocator(void)
   }
   systemPreviousNode[6] = 0x4666df49b97e0f10;
   systemPreviousNode[7] = 0x4e4b0d63a6ad1d8f;
-  systemPreviousNode[8] = &UNK_18098c7b8;
+  systemPreviousNode[8] = &SystemResourceNodeTemplateB;
   systemPreviousNode[9] = 0;
   systemPreviousNode[10] = resourceInitializationCallback;
   return;
@@ -14568,7 +14568,7 @@ void InitializeSystemResourceComponent(void)
   }
   systemPreviousNode[6] = 0x46ecbd4daf41613e;
   systemPreviousNode[7] = 0xdc42c056bbde8482;
-  systemPreviousNode[8] = &UNK_18098c7c8;
+  systemPreviousNode[8] = &SystemResourceNodeTemplateC;
   systemPreviousNode[9] = 0;
   systemPreviousNode[10] = resourceInitializationCallback;
   return;
@@ -14823,7 +14823,7 @@ void InitializeSystemThreadComponent(void)
   }
   systemPreviousNode[6] = 0x421c3cedd07d816d;
   systemPreviousNode[7] = 0xbec25de793b7afa6;
-  systemPreviousNode[8] = &UNK_18098c880;
+  systemPreviousNode[8] = &SystemResourceNodeTemplateD;
   systemPreviousNode[9] = 0;
   systemPreviousNode[10] = eventCallbackPointer;
   return;
@@ -14874,7 +14874,7 @@ void InitializeSystemEventComponent(void)
   }
   systemPreviousNode[6] = 0x4c22bb0c326587ce;
   systemPreviousNode[7] = 0x5e3cf00ce2978287;
-  systemPreviousNode[8] = &UNK_18098c898;
+  systemPreviousNode[8] = &SystemResourceNodeTemplateE;
   systemPreviousNode[9] = 1;
   systemPreviousNode[10] = resourceInitializationCallback;
   return;
@@ -16749,7 +16749,7 @@ void InitializeBaseAllocatorNode(void)
   }
   systemPreviousNode[6] = 0x4770584fbb1df897;
   systemPreviousNode[7] = 0x47f249e43f66f2ab;
-  systemPreviousNode[8] = &UNK_18098c7a0;
+  systemPreviousNode[8] = &SystemResourceNodeTemplateA;
   systemPreviousNode[9] = 1;
   systemPreviousNode[10] = resourceInitializationCallback;
   return;
@@ -16805,7 +16805,7 @@ void InitializeSystemDataTableNode(void)
   }
   systemPreviousNode[6] = 0x4666df49b97e0f10;
   systemPreviousNode[7] = 0x4e4b0d63a6ad1d8f;
-  systemPreviousNode[8] = &UNK_18098c7b8;
+  systemPreviousNode[8] = &SystemResourceNodeTemplateB;
   systemPreviousNode[9] = 0;
   systemPreviousNode[10] = resourceInitializationCallback;
   return;
@@ -16861,7 +16861,7 @@ void ResourceInitializationCallbackSetter(void)
   }
   systemPreviousNode[6] = 0x46ecbd4daf41613e;
   systemPreviousNode[7] = 0xdc42c056bbde8482;
-  systemPreviousNode[8] = &UNK_18098c7c8;
+  systemPreviousNode[8] = &SystemResourceNodeTemplateC;
   systemPreviousNode[9] = 0;
   systemPreviousNode[10] = resourceInitializationCallback;
   return;
@@ -17141,7 +17141,7 @@ void SystemThreadManagerInitializer(void)
   }
   systemPreviousNode[6] = 0x421c3cedd07d816d;
   systemPreviousNode[7] = 0xbec25de793b7afa6;
-  systemPreviousNode[8] = &UNK_18098c880;
+  systemPreviousNode[8] = &SystemResourceNodeTemplateD;
   systemPreviousNode[9] = 0;
   systemPreviousNode[10] = eventCallbackPointer;
   return;
@@ -17197,7 +17197,7 @@ void SystemResourceTrackerInitializer(void)
   }
   systemPreviousNode[6] = 0x4c22bb0c326587ce;
   systemPreviousNode[7] = 0x5e3cf00ce2978287;
-  systemPreviousNode[8] = &UNK_18098c898;
+  systemPreviousNode[8] = &SystemResourceNodeTemplateE;
   systemPreviousNode[9] = 1;
   systemPreviousNode[10] = resourceInitializationCallback;
   return;
@@ -17267,8 +17267,8 @@ int InitializeSystemPerformanceCounters(void)
 {
   long long initializationStatus;
   
-  InitializeSystemPerformanceCounters();
-  initializationStatus = FUN_1808fc7d0(&UNK_180943130);
+  InitializePerformanceCounterHardware();
+  initializationStatus = ValidatePerformanceCounterInitialization(&SystemPerformanceCounterConfig);
   return (initializationStatus != 0) - 1;
 }
 
@@ -17292,7 +17292,7 @@ int InitializeSystemMutex(void* param_1,void* param_2,void* param_3,void* param_
   long long initializationStatus;
   
   _Mtx_init_in_situ(0x180c966f0,2,param_3,param_4,0xfffffffffffffffe);
-  initializationStatus = FUN_1808fc7d0(FUN_180943140);
+  initializationStatus = ValidateSystemConfiguration(SystemConfigValidatorSenary);
   return (initializationStatus != 0) - 1;
 }
 
@@ -17316,7 +17316,7 @@ int InitializeSystemSemaphore(void* param_1,void* param_2,void* param_3,void* pa
   long long initializationStatus;
   
   _Mtx_init_in_situ(0x180c96740,2,param_3,param_4,0xfffffffffffffffe);
-  initializationStatus = FUN_1808fc7d0(FUN_180943160);
+  initializationStatus = ValidateSystemConfiguration(SystemConfigValidatorSeptenary);
   return (initializationStatus != 0) - 1;
 }
 
@@ -17343,7 +17343,7 @@ int InitializeSystemThreadPool(void)
   _DAT_180c967a0 = 0;
   _DAT_180c967a8 = 0;
   _DAT_180c967b0 = 0;
-  initializationStatus = FUN_1808fc7d0(FUN_180943180);
+  initializationStatus = ValidateSystemConfiguration(SystemConfigValidatorOctonary);
   return (initializationStatus != 0) - 1;
 }
 
@@ -17498,7 +17498,7 @@ int InitializeEngineCoreSystem(void)
   _DAT_180c967f0 = 0;
   _DAT_180c967f8 = 0;
   _DAT_180c96800 = 0;
-  result = FUN_1808fc7d0(FUN_180943200);
+  result = ValidateSystemConfiguration(SystemConfigValidatorNonary);
   return (result != 0) - 1;
 }
 
@@ -20188,8 +20188,12 @@ LAB_180047f93:
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180047fc0(void* param_1,void* param_2,void* param_3,void* param_4)
-void FUN_180047fc0(void* param_1,void* param_2,void* param_3,void* param_4)
+// 函数: void InitializeSystemConfigurationData(void* param_1,void* param_2,void* param_3,void* param_4)
+/**
+ * @brief 初始化系统配置数据
+ * 初始化系统配置数据，设置系统属性和配置模板
+ */
+void InitializeSystemConfigurationData(void* param_1,void* param_2,void* param_3,void* param_4)
 
 {
   double dVar1;
@@ -20506,8 +20510,12 @@ void FUN_180047fc0(void* param_1,void* param_2,void* param_3,void* param_4)
 
 
 
-// 函数: void FUN_180048910(long long *param_1)
-void FUN_180048910(long long *param_1)
+// 函数: void ProcessSystemMemoryRegion(long long *param_1)
+/**
+ * @brief 处理系统内存区域
+ * 遍历内存区域并调用相应的处理函数
+ */
+void ProcessSystemMemoryRegion(long long *param_1)
 
 {
   long long lVar1;
