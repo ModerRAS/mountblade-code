@@ -100,8 +100,18 @@ void AcceptNetworkConnection(void);
  */
 void CloseNetworkConnection(void);
 
-// 函数: undefined FUN_1808794d0;
-undefined FUN_1808794d0;
+// 函数: undefined HandleNetworkConnectionEvent;
+/**
+ * 处理网络连接事件
+ * 
+ * 该函数负责处理网络连接中的各种事件，包括：
+ * - 连接建立事件
+ * - 连接断开事件
+ * - 数据传输事件
+ * 
+ * @return 事件处理结果
+ */
+undefined HandleNetworkConnectionEvent;
 
 // 函数: void SendNetworkData(void)
 /**
@@ -184,23 +194,33 @@ undefined g_networkProtocolVersion;
 undefined g_networkEventQueue;
 undefined g_networkCallbackHandler;
 
-// 函数: undefined FUN_18088ea60;
-undefined FUN_18088ea60;
-undefined UNK_180986218;
-undefined UNK_180986240;
-undefined UNK_180986244;
-undefined UNK_180986248;
-undefined UNK_18098624c;
-undefined UNK_180986250;
-undefined UNK_180986268;
-undefined DAT_180c4eaa0;
-undefined DAT_180c4eaa4;
-undefined UNK_1809862d0;
-undefined UNK_180986298;
-undefined UNK_180984010;
-undefined UNK_180982240;
-undefined UNK_180983588;
-undefined UNK_1809841e0;
+// 函数: undefined ProcessNetworkTimeout;
+/**
+ * 处理网络超时
+ * 
+ * 该函数负责处理网络连接的超时事件，包括：
+ * - 连接超时检测
+ * - 数据传输超时处理
+ * - 超时重连机制
+ * 
+ * @return 超时处理结果
+ */
+undefined ProcessNetworkTimeout;
+undefined g_networkConnectionState;
+undefined g_networkConnectionMode;
+undefined g_networkConnectionFlags;
+undefined g_networkConnectionPriority;
+undefined g_networkConnectionQuality;
+undefined g_networkConnectionBandwidth;
+undefined g_networkConnectionLatency;
+undefined g_networkEncryptionAlgorithm;
+undefined g_networkCompressionMethod;
+undefined g_networkAuthenticationType;
+undefined g_networkSecurityLevel;
+undefined g_networkPacketSequence;
+undefined g_networkAcknowledgeNumber;
+undefined g_networkWindowScale;
+undefined g_networkRetransmitTimer;
 undefined UNK_180984358;
 undefined UNK_1809843d0;
 undefined UNK_180986350;

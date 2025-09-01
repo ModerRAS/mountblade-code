@@ -160,22 +160,34 @@ undefined g_threadSyncContext;
 void CloseSystemHandle(void);
 
 // 函数: void CleanupThreadResources(void)
+/**
+ * @brief 清理线程资源
+ * 
+ * 该函数负责清理线程运行过程中使用的资源
+ * 释放内存，关闭句柄，重置状态
+ */
 void CleanupThreadResources(void);
-undefined threadResourceFlag;
-unknown cleanupSystemData1;
-unknown cleanupSystemData2;
-undefined resourceCleanupHandle;
-unknown cleanupSystemData3;
+undefined g_threadResourceFlag;
+unknown g_cleanupContextData1;
+unknown g_cleanupContextData2;
+undefined g_cleanupResourceHandle;
+unknown g_cleanupContextData3;
 
 // 函数: void InitializeResourceManager(void)
+/**
+ * @brief 初始化资源管理器
+ * 
+ * 该函数负责初始化游戏资源管理器
+ * 设置资源加载、缓存和释放的相关系统
+ */
 void InitializeResourceManager(void);
-undefined resourceManagerHandle;
-undefined resourceManagerStatus;
-unknown resourceSystemData1;
-unknown resourceSystemData2;
-undefined resourceBuffer1;
-undefined resourceBuffer2;
-undefined resourceBuffer3;
+undefined g_resourceManagerHandle;
+undefined g_resourceManagerStatus;
+unknown g_resourceContextData1;
+unknown g_resourceContextData2;
+undefined g_resourceBufferPool1;
+undefined g_resourceBufferPool2;
+undefined g_resourceBufferPool3;
 
 // 函数: void InitializeTextureManager(void)
 /**
@@ -250,38 +262,68 @@ undefined networkProtocolManager;
 undefined networkEventDispatcher;
 
 // 函数: undefined InitializeRenderingSystem;
+/**
+ * @brief 初始化渲染系统
+ * 
+ * 该函数负责初始化游戏渲染系统
+ * 设置图形设备、着色器和渲染队列等相关组件
+ */
 undefined InitializeRenderingSystem;
-undefined renderingEngineInstance;
-undefined graphicsDeviceHandle;
-undefined shaderManager;
-undefined renderQueueManager;
-undefined graphicsMemoryPool;
+undefined g_renderingEngineInstance;
+undefined g_graphicsDeviceHandle;
+undefined g_shaderManager;
+undefined g_renderQueueManager;
+undefined g_graphicsMemoryPool;
 
 // 函数: undefined InitializeAnimationSystem;
+/**
+ * @brief 初始化动画系统
+ * 
+ * 该函数负责初始化游戏动画系统
+ * 设置骨骼管理、动画剪辑和状态控制等相关组件
+ */
 undefined InitializeAnimationSystem;
-undefined animationEngineInstance;
-undefined skeletonManager;
-undefined animationClipManager;
-undefined boneTransformManager;
-undefined animationStateController;
+undefined g_animationEngineInstance;
+undefined g_skeletonManager;
+undefined g_animationClipManager;
+undefined g_boneTransformManager;
+undefined g_animationStateController;
 
 // 函数: undefined InitializeMemoryManager;
+/**
+ * @brief 初始化内存管理器
+ * 
+ * 该函数负责初始化游戏内存管理系统
+ * 设置堆分配器、内存池和垃圾回收等相关组件
+ */
 undefined InitializeMemoryManager;
-undefined memoryManagerInstance;
-undefined heapAllocator;
-undefined memoryPoolManager;
-undefined garbageCollector;
-undefined memoryDebugger;
+undefined g_memoryManagerInstance;
+undefined g_heapAllocator;
+undefined g_memoryPoolManager;
+undefined g_garbageCollector;
+undefined g_memoryDebugger;
 
 // 函数: undefined InitializeScriptingSystem;
+/**
+ * @brief 初始化脚本系统
+ * 
+ * 该函数负责初始化游戏脚本系统
+ * 设置脚本引擎、编译器和虚拟机等相关组件
+ */
 undefined InitializeScriptingSystem;
-undefined DAT_180bf5738;
-undefined scriptingEngineInstance;
-undefined scriptCompiler;
-undefined scriptVirtualMachine;
-undefined scriptDebugger;
+undefined g_scriptingContext;
+undefined g_scriptingEngineInstance;
+undefined g_scriptCompiler;
+undefined g_scriptVirtualMachine;
+undefined g_scriptDebugger;
 
 // 函数: undefined InitializeFileSystem;
+/**
+ * @brief 初始化文件系统
+ * 
+ * 该函数负责初始化游戏文件系统
+ * 设置文件访问、路径管理和文件操作等相关组件
+ */
 undefined InitializeFileSystem;
 
 /**
@@ -291,40 +333,39 @@ undefined InitializeFileSystem;
  * 设置数据库连接、查询和事务管理的相关机制
  */
 undefined InitializeDatabaseSystem;
-undefined databaseConnectionPool;
-undefined databaseQueryCache;
-undefined databaseTransactionManager;
-undefined databaseIndexManager;
-undefined databaseSchemaManager;
-undefined databaseRecordManager;
-undefined databaseLockManager;
-undefined databaseBackupManager;
-undefined DAT_180bf67a8;
-undefined DAT_180bf67b0;
-undefined DAT_180bf67b8;
-undefined DAT_180bf67c0;
-undefined DAT_180bf6800;
-undefined DAT_180bf6808;
-undefined DAT_180bf6810;
-undefined DAT_180bf6818;
-undefined DAT_180bf6858;
-undefined DAT_180bf6860;
-undefined DAT_180bf6868;
-undefined DAT_180bf6870;
-undefined DAT_180bf68b0;
-undefined DAT_180bf68b8;
-undefined DAT_180bf68c0;
-undefined DAT_180bf68c8;
-undefined DAT_180bf6908;
-undefined DAT_180bf6910;
-undefined DAT_180bf6918;
-undefined DAT_180bf6920;
-undefined DAT_180bf6960;
-undefined DAT_180bf6968;
-undefined DAT_180bf6970;
-undefined DAT_180bf6978;
-undefined DAT_180bf69b8;
-undefined DAT_180bf69c0;
+undefined g_databaseConnectionPool;
+undefined g_databaseQueryCache;
+undefined g_databaseTransactionManager;
+undefined g_databaseIndexManager;
+undefined g_databaseSchemaManager;
+undefined g_databaseRecordManager;
+undefined g_databaseLockManager;
+undefined g_databaseBackupManager;
+undefined g_databaseConfigTable;
+undefined g_databaseConnectionTable;
+undefined g_databaseTransactionTable;
+undefined g_databaseIndexTable;
+undefined g_databaseSchemaTable;
+undefined g_databaseRecordTable;
+undefined g_databaseLockTable;
+undefined g_databaseBackupTable;
+undefined g_databaseStatistics;
+undefined g_databaseMetrics;
+undefined g_databasePerformance;
+undefined g_databaseLogger;
+undefined g_databaseCache;
+undefined g_databaseBuffer;
+undefined g_databaseQueue;
+undefined g_databaseEvent;
+undefined g_databaseSignal;
+undefined g_databaseThread;
+undefined g_databaseMutex;
+undefined g_databaseSemaphore;
+undefined g_databaseCondition;
+undefined g_databaseMemory;
+undefined g_databaseHeap;
+undefined g_databaseStack;
+undefined g_databasePool;
 undefined DAT_180bf69c8;
 undefined DAT_180bf69d0;
 undefined DAT_180bf6a10;
