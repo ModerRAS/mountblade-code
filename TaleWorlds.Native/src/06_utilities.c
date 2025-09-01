@@ -3205,6 +3205,18 @@ uint8_t SystemMemoryFlagKernel;
  * @note 此函数会验证所有游戏对象的状态
  * @warning 如果发现无效对象，函数将不会返回
  */
+/**
+ * @brief 处理游戏对象的系统函数
+ * 
+ * 该函数负责处理系统中的所有游戏对象，包括验证、更新和管理。
+ * 函数会遍历游戏对象列表，对每个对象进行安全验证和状态更新。
+ * 
+ * @param GameContext 游戏上下文指针，包含游戏相关的状态和数据
+ * @param SystemContext 系统上下文指针，包含系统运行环境和配置
+ * @return 无返回值
+ * @note 此函数会处理大量游戏对象，可能需要较长时间执行
+ * @warning 在处理过程中会修改对象状态，确保在合适的时机调用
+ */
 void ProcessGameObjects(int64_t GameContext, int64_t SystemContext)
 
 {
@@ -3318,7 +3330,12 @@ void ValidateSystemObjectCollection(void)
  /**
  * @brief 终止系统进程
  * 
- * 该函数用于安全终止系统进程，确保系统资源正确释放
+ * 该函数负责安全终止系统进程，确保所有系统资源得到正确释放
+ * 函数会生成终止令牌并执行系统终止操作
+ * 
+ * @return 无返回值
+ * @note 此函数不会返回，调用后系统将终止
+ * @warning 调用此函数将导致系统完全停止运行
  */
 void TerminateSystemProcess(void)
 
@@ -3335,8 +3352,12 @@ void TerminateSystemProcess(void)
  /**
  * @brief 检查系统标志
  * 
- * 该函数检查系统标志状态，根据标志位执行相应操作
- * 确保系统在正确的状态下运行
+ * 该函数负责检查系统标志状态，根据不同的标志位执行相应的操作
+ * 函数会验证系统当前状态并确保系统在正确的状态下运行
+ * 
+ * @return 无返回值
+ * @note 此函数会检查多个系统标志位，包括安全状态和运行状态
+ * @warning 如果发现系统状态异常，可能触发相应的处理机制
  */
 void CheckSystemFlags(void)
 
@@ -3361,10 +3382,10 @@ void CheckSystemFlags(void)
  * 该函数负责验证对象的注册状态
  * 确保对象已正确注册到系统中
  * 
- * @param objectContext 对象上下文，包含对象的注册信息
+ * @param ObjectContext 对象上下文，包含对象的注册信息
  * @return 验证结果，0表示成功，非0表示错误码
  */
-uint8_t VerifyObjectRegistration(int64_t objectContext)
+uint8_t VerifyObjectRegistration(int64_t ObjectContext)
 
 {
   int64_t RegistrationObjectData;
