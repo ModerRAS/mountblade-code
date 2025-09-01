@@ -179,13 +179,13 @@ void* CleanupContextData3;
  * 设置资源加载、缓存和释放的相关系统
  */
 void InitializeResourceManager(void);
-void* g_resourceManagerHandle;
-uint32_t g_resourceManagerStatus;
-void* g_resourceContextData1;
-void* g_resourceContextData2;
-void* g_resourceBufferPool1;
-void* g_resourceBufferPool2;
-void* g_resourceBufferPool3;
+void* ResourceManagerHandle;
+uint32_t ResourceManagerStatus;
+void* ResourceContextData1;
+void* ResourceContextData2;
+void* ResourceBufferPool1;
+void* ResourceBufferPool2;
+void* ResourceBufferPool3;
 
 // 函数: void InitializeTextureManager(void)
 /**
@@ -195,12 +195,12 @@ void* g_resourceBufferPool3;
  * 设置纹理加载、缓存和释放的相关数据结构
  */
 void InitializeTextureManager(void);
-void* textureManagerInstance;
-void* textureSystemData;
-void* textureCacheHandle;
-void* textureLoaderHandle;
-void* textureMemoryPool;
-void* textureDescriptorTable;
+void* TextureManagerInstance;
+void* TextureSystemData;
+void* TextureCacheHandle;
+void* TextureLoaderHandle;
+void* TextureMemoryPool;
+void* TextureDescriptorTable;
 
 // 函数: void InitializeAudioSystem(void)
 /**
@@ -210,11 +210,11 @@ void* textureDescriptorTable;
  * 设置音效、音乐和语音播放的相关参数
  */
 void InitializeAudioSystem(void);
-void* audioSystemInstance;
-void* audioDeviceHandle;
-void* audioMixerHandle;
-void* audioBufferPool;
-void* audioStreamManager;
+void* AudioSystemInstance;
+void* AudioDeviceHandle;
+void* AudioMixerHandle;
+void* AudioBufferPool;
+void* AudioStreamManager;
 
 // 函数: void InitializePhysicsEngine(void)
 /**
@@ -224,11 +224,11 @@ void* audioStreamManager;
  * 设置碰撞检测、重力模拟和物理计算的相关系统
  */
 void InitializePhysicsEngine(void);
-void* physicsEngineInstance;
-void* physicsWorldHandle;
-void* collisionSystemHandle;
-void* rigidBodyManager;
-void* physicsConstraintSolver;
+void* PhysicsEngineInstance;
+void* PhysicsWorldHandle;
+void* CollisionSystemHandle;
+void* RigidBodyManager;
+void* PhysicsConstraintSolver;
 
 // 函数: void InitializeInputManager(void)
 /**
@@ -238,12 +238,12 @@ void* physicsConstraintSolver;
  * 设置键盘、鼠标和手柄输入的处理机制
  */
 void InitializeInputManager(void);
-void* inputSystemInstance;
-void* inputDeviceManager;
-void* keyboardHandler;
-void* mouseHandler;
-void* controllerManager;
-void* inputEventQueue;
+void* InputSystemInstance;
+void* InputDeviceManager;
+void* KeyboardHandler;
+void* MouseHandler;
+void* ControllerManager;
+void* InputEventQueue;
 
 // 函数: void InitializeNetworkManager(void)
 /**
@@ -253,11 +253,11 @@ void* inputEventQueue;
  * 设置网络连接、数据传输和通信协议
  */
 void InitializeNetworkManager(void);
-void* networkSystemInstance;
-void* networkConnectionManager;
-void* packetHandler;
-void* networkProtocolManager;
-void* networkEventDispatcher;
+void* NetworkSystemInstance;
+void* NetworkConnectionManager;
+void* PacketHandler;
+void* NetworkProtocolManager;
+void* NetworkEventDispatcher;
 
 // 函数: undefined InitializeRenderingSystem;
 /**
@@ -333,18 +333,18 @@ void* InitializeFileSystem;
 void* InitializeDatabaseSystem;
 void* g_databaseConnectionPool;
 void* g_databaseQueryCache;
-undefined g_databaseTransactionManager;
-undefined g_databaseIndexManager;
-undefined g_databaseSchemaManager;
-undefined g_databaseRecordManager;
-undefined g_databaseLockManager;
-undefined g_databaseBackupManager;
-undefined g_databaseConfigTable;
-undefined g_databaseConnectionTable;
-undefined g_databaseTransactionTable;
-undefined g_databaseIndexTable;
-undefined g_databaseSchemaTable;
-undefined g_databaseRecordTable;
+void* DatabaseTransactionManager;
+void* g_databaseIndexManager;
+void* g_databaseSchemaManager;
+void* g_databaseRecordManager;
+void* g_databaseLockManager;
+void* g_databaseBackupManager;
+void* g_databaseConfigTable;
+void* g_databaseConnectionTable;
+void* g_databaseTransactionTable;
+void* g_databaseIndexTable;
+void* g_databaseSchemaTable;
+void* g_databaseRecordTable;
 undefined g_databaseLockTable;
 undefined g_databaseBackupTable;
 undefined g_databaseStatistics;
@@ -823,8 +823,8 @@ undefined DAT_180bf9220;
 undefined DAT_180bf9228;
 undefined UNK_180a22b90;
 
-// 函数: undefined FUN_180941f20;
-undefined FUN_180941f20;
+// 函数: void* FUN_180941f20;
+void* FUN_180941f20;
 
 // 函数: undefined FUN_180941f40;
 undefined FUN_180941f40;
@@ -82792,8 +82792,14 @@ void FUN_180943140(void)
 
 
 
-// 函数: void FUN_180943160(void)
-void FUN_180943160(void)
+// 函数: void CleanupMutexResources(void)
+/**
+ * @brief 清理互斥锁资源
+ * 
+ * 该函数负责清理系统中不再需要的互斥锁资源
+ * 释放相关内存并重置互斥锁状态
+ */
+void CleanupMutexResources(void)
 
 {
                     // WARNING: Could not recover jumptable at 0x000180943178. Too many branches
@@ -82864,8 +82870,19 @@ void resetThreadLocalStorage(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180943200(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
-void FUN_180943200(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+// 函数: void CleanupSystemResources(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+/**
+ * @brief 清理系统资源
+ * 
+ * 该函数负责清理系统运行过程中分配的各种资源
+ * 包括内存、句柄、数据结构等
+ * 
+ * @param param_1 参数1，用于标识资源类型
+ * @param param_2 参数2，用于标识资源实例
+ * @param param_3 参数3，清理选项
+ * @param param_4 参数4，清理标志
+ */
+void CleanupSystemResources(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
 
 {
   undefined8 *puVar1;
