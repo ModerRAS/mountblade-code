@@ -53905,7 +53905,7 @@ void Unwind_180908ed0(undefined8 param_1,longlong param_2)
   undefined8 *presourceHash;
   
   presourceHash = *(undefined8 **)(param_2 + 0x20);
-  *presourceHash = &UNK_18098b928;
+  *presourceHash = &SystemDataTable001;
   __std_exception_destroy(presourceHash + 1);
   return;
 }
@@ -53918,7 +53918,7 @@ void Unwind_180908ee0(undefined8 param_1,longlong param_2)
   undefined8 *presourceHash;
   
   presourceHash = *(undefined8 **)(param_2 + 0x40);
-  *presourceHash = &UNK_18098b928;
+  *presourceHash = &SystemDataTable001;
   __std_exception_destroy(presourceHash + 1);
   return;
 }
@@ -53974,7 +53974,7 @@ void Unwind_180908f30(undefined8 param_1,longlong param_2)
   
   resourceIndex = *(longlong *)(param_2 + 0x40);
   puVar4 = (undefined8 *)(resourceIndex + -0xa0);
-  *puVar4 = &UNK_180a01668;
+  *puVar4 = &SystemDataPointer001;
   if ((*(longlong *)(resourceIndex + -0x20) != 0) && (**(longlong **)(resourceIndex + -0x88) == resourceIndex + -0x30)) {
     resourceHash = *(undefined8 *)(resourceIndex + -0x10);
     resourceTable = *(longlong *)(resourceIndex + -0x18);
@@ -53999,7 +53999,7 @@ undefined * Catch_180908f50(undefined8 param_1,longlong param_2)
   _setstate___basic_ios_DU__char_traits_D_std___std__QEAAXH_N_Z
             ((longlong)*(int *)(**(longlong **)(param_2 + 0x70) + 4) +
              (longlong)*(longlong **)(param_2 + 0x70),4,1);
-  return &UNK_1800a0f67;
+  return &SystemDataPointer002;
 }
 
 
@@ -54083,7 +54083,7 @@ undefined * Catch_180908fc0(undefined8 param_1,longlong param_2)
   _setstate___basic_ios_DU__char_traits_D_std___std__QEAAXH_N_Z
             ((longlong)*(int *)(**(longlong **)(param_2 + 0x70) + 4) +
              (longlong)*(longlong **)(param_2 + 0x70),4,1);
-  return &UNK_1800a127e;
+  return &SystemDataPointer003;
 }
 
 
@@ -54149,7 +54149,7 @@ void Unwind_180909080(undefined8 param_1,longlong param_2)
   undefined8 *puVar3;
   
   puVar3 = (undefined8 *)(param_2 + 0x88);
-  *puVar3 = &UNK_180a01668;
+  *puVar3 = &SystemDataPointer001;
   if ((*(longlong *)(param_2 + 0x108) != 0) && (**(longlong **)(param_2 + 0xa0) == param_2 + 0xf8))
   {
     resourceHash = *(undefined8 *)(param_2 + 0x118);
@@ -62011,7 +62011,7 @@ void Unwind_18090c200(undefined8 param_1,longlong param_2)
   
   resourceIndex = *(longlong *)(param_2 + 0x70);
   puVar4 = (undefined8 *)(resourceIndex + -0xa0);
-  *puVar4 = &UNK_180a01668;
+  *puVar4 = &SystemDataPointer001;
   if ((*(longlong *)(resourceIndex + -0x20) != 0) && (**(longlong **)(resourceIndex + -0x88) == resourceIndex + -0x30)) {
     resourceHash = *(undefined8 *)(resourceIndex + -0x10);
     resourceTable = *(longlong *)(resourceIndex + -0x18);
@@ -62051,7 +62051,7 @@ void Unwind_18090c240(undefined8 param_1,longlong param_2)
   
   resourceIndex = *(longlong *)(param_2 + 0x40);
   puVar4 = (undefined8 *)(resourceIndex + -0xa0);
-  *puVar4 = &UNK_180a01668;
+  *puVar4 = &SystemDataPointer001;
   if ((*(longlong *)(resourceIndex + -0x20) != 0) && (**(longlong **)(resourceIndex + -0x88) == resourceIndex + -0x30)) {
     resourceHash = *(undefined8 *)(resourceIndex + -0x10);
     resourceTable = *(longlong *)(resourceIndex + -0x18);
@@ -62311,7 +62311,7 @@ void Unwind_18090c380(undefined8 param_1,longlong param_2)
   
   resourceIndex = *(longlong *)(param_2 + 0x40);
   puVar4 = (undefined8 *)(resourceIndex + 0x18);
-  *puVar4 = &UNK_180a01668;
+  *puVar4 = &SystemDataPointer001;
   if ((*(longlong *)(resourceIndex + 0x98) != 0) && (**(longlong **)(resourceIndex + 0x30) == resourceIndex + 0x88)) {
     resourceHash = *(undefined8 *)(resourceIndex + 0xa8);
     resourceTable = *(longlong *)(resourceIndex + 0xa0);
@@ -75917,7 +75917,7 @@ void Unwind_180910580(undefined8 param_1,longlong param_2)
   
   resourceIndex = *(longlong *)(param_2 + 0x68);
   puVar4 = (undefined8 *)(resourceIndex + 0x10);
-  *puVar4 = &UNK_180a01668;
+  *puVar4 = &SystemDataPointer001;
   if ((*(longlong *)(resourceIndex + 0x90) != 0) && (**(longlong **)(resourceIndex + 0x28) == resourceIndex + 0x80)) {
     resourceHash = *(undefined8 *)(resourceIndex + 0xa0);
     resourceTable = *(longlong *)(resourceIndex + 0x98);
@@ -76126,7 +76126,7 @@ void Unwind_1809106a0(undefined8 param_1,longlong param_2)
   
   resourceIndex = *(longlong *)(param_2 + 0x40);
   puVar4 = (undefined8 *)(resourceIndex + -0xa0);
-  *puVar4 = &UNK_180a01668;
+  *puVar4 = &SystemDataPointer001;
   if ((*(longlong *)(resourceIndex + -0x20) != 0) && (**(longlong **)(resourceIndex + -0x88) == resourceIndex + -0x30)) {
     resourceHash = *(undefined8 *)(resourceIndex + -0x10);
     resourceTable = *(longlong *)(resourceIndex + -0x18);
