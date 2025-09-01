@@ -52,11 +52,21 @@ void* GameRenderingMainEntryPoint;
 void* RenderingSystemContext;                   // 渲染系统上下文
 
 // 网络系统初始化函数
-void* GameNetworkMainEntryPoint;                    // 游戏网络系统入口点
+/**
+ * @brief 游戏网络系统主入口点
+ * 
+ * 负责初始化和管理游戏的网络系统，包括网络连接、数据传输等
+ */
+void* GameNetworkMainEntryPoint;
 void* NetworkSystemContext;                     // 网络系统上下文
 
 // 音频系统初始化函数
-void* GameAudioMainEntryPoint;                      // 游戏音频系统入口点
+/**
+ * @brief 游戏音频系统主入口点
+ * 
+ * 负责初始化和管理游戏的音频系统，包括音效播放、音乐管理等
+ */
+void* GameAudioMainEntryPoint;
 void* AudioSystemContext;                       // 音频系统上下文
 
 // 输入系统初始化函数和相关数据
