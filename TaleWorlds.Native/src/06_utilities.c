@@ -1705,7 +1705,7 @@ undefined SystemMemoryConfigDataTemplateU;
 undefined SystemMemoryConfigDataTemplateV;
 undefined SystemMemoryConfigDataTemplateW;
 undefined SystemMemoryConfigDataTemplateX;
-undefined DAT_180bfacd8;
+undefined SystemMemoryConfigDataTemplateA;
 undefined DAT_180bface0;
 undefined DAT_180bface8;
 undefined DAT_180bfacf0;
@@ -18209,11 +18209,11 @@ LAB_18089af81:
   if ((int)uVar4 != 0) {
     return uVar4;
   }
-  uVar4 = FUN_1808a5d60();
+  uVar4 = ValidateResourceHash();
   if ((int)uVar4 != 0) {
     return uVar4;
   }
-  uVar4 = FUN_1808a5d60();
+  uVar4 = ValidateResourceHash();
   if ((int)uVar4 != 0) {
     return uVar4;
   }
@@ -23629,7 +23629,7 @@ LAB_18089d378:
         if ((int)uVar3 != 0) {
           return uVar3;
         }
-        uVar3 = FUN_1808a5d60(param_2,resourceTable + 0x10,0);
+        uVar3 = ValidateResourceHash(param_2,resourceTable + 0x10,0);
         if ((int)uVar3 == 0) {
           *(undefined4 *)(resourceTable + 0x44) = 0xffffffff;
           goto LAB_18089d435;
@@ -23733,7 +23733,7 @@ LAB_18089d378:
         if ((int)uVar3 != 0) {
           return uVar3;
         }
-        uVar3 = FUN_1808a5d60();
+        uVar3 = ValidateResourceHash();
         if ((int)uVar3 == 0) {
           *(undefined4 *)(resourceTable + 0x44) = 0xffffffff;
           goto LAB_18089d435;
@@ -24638,13 +24638,13 @@ undefined8 ResourceContextProcessor(longlong param_1,undefined8 *param_2)
       return 0x1c;
     }
     resourceHash = ProcessResourceHash(*param_2,param_1 + 0x6c);
-    if (((int)resourceHash == 0) && (resourceHash = FUN_1808a5d60(param_2,param_1 + 0x48,0), (int)resourceHash == 0)) {
+    if (((int)resourceHash == 0) && (resourceHash = ValidateResourceHash(param_2,param_1 + 0x48,0), (int)resourceHash == 0)) {
       if ((*(int *)(param_2 + 8) - 0x4aU < 0x11) &&
          (resourceHash = ValidateResourceData(param_2,param_1 + 0x44), (int)resourceHash != 0)) {
         return resourceHash;
       }
       if ((0x52 < *(uint *)(resourceData + 8)) &&
-         (resourceHash = FUN_1808a5d60(param_2,param_1 + 0x58,0), (int)resourceHash != 0)) {
+         (resourceHash = ValidateResourceHash(param_2,param_1 + 0x58,0), (int)resourceHash != 0)) {
         return resourceHash;
       }
       if (*(uint *)(resourceData + 8) < 0x88) {
@@ -26124,7 +26124,7 @@ LAB_18089ed1b:
 
 
 
-ulonglong FUN_18089e9af(undefined8 param_1,undefined8 param_2,ulonglong param_3)
+ulonglong ProcessResourceDataValidationAndAllocation(undefined8 param_1,undefined8 param_2,ulonglong param_3)
 
 {
   longlong *plVar1;
