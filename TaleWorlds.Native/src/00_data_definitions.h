@@ -2475,12 +2475,12 @@ int ProcessSystemEvent(uint64_t systemId,uint64_t eventType,uint64_t eventData,u
   return (ModuleInitializationResult != 0) - 1;
 }
   SystemStringBufferAH = 0;
-  _DAT_180bfa360 = 7;
+  SystemInitializationStatus = 7;
   strcpy_s(&SystemStringBufferAH,0x80,&UnknownDataPointer180a0f5b8,StringProcessorFlags,SystemMutexFlags);
-  _DAT_180bfa3e8 = &SystemMemoryConfigTemplate;
-  _DAT_180bfa3f0 = &SystemStringBufferAI;
+  SystemMemoryConfigReference = &SystemMemoryConfigTemplate;
+  SystemStringBufferReference = &SystemStringBufferAI;
   SystemStringBufferAI = 0;
-  _DAT_180bfa3f8 = 9;
+  SystemBufferSizeParameter = 9;
   strcpy_s(&SystemStringBufferAI,0x80,&UnknownDataPointer180a0f190);
   _DAT_180bfa480 = &SystemMemoryConfigTemplate;
   _DAT_180bfa488 = &DAT_180bfa498;

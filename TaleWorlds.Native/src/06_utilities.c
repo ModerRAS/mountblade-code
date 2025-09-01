@@ -50104,7 +50104,17 @@ void Unwind_180906b70(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 
 
 
-void Unwind_180906b80(uint8_t ObjectContextParameter,int64_t ValidationContextParameter)
+/**
+ * @brief 处理资源事务清理操作
+ * 
+ * 该函数负责处理资源事务的清理操作，调用相应的清理函数
+ * 主要用于系统资源管理中的事务清理
+ * 
+ * @param ObjectContextParameter 对象上下文参数
+ * @param ValidationContextParameter 验证上下文参数
+ * @return 无返回值
+ */
+void HandleResourceTransactionCleanup(uint8_t ObjectContextParameter,int64_t ValidationContextParameter)
 
 {
   if (*(int64_t **)(ValidationContextParameter + 0x38) != (int64_t *)0x0) {
@@ -50115,7 +50125,17 @@ void Unwind_180906b80(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 
 
 
-void Unwind_180906b90(uint8_t ObjectContextParameter,int64_t ValidationContextParameter)
+/**
+ * @brief 开始资源事务处理
+ * 
+ * 该函数负责开始资源事务处理，初始化事务状态
+ * 主要用于系统资源管理中的事务处理
+ * 
+ * @param ObjectContextParameter 对象上下文参数
+ * @param ValidationContextParameter 验证上下文参数
+ * @return 无返回值
+ */
+void BeginResourceTransactionHandling(uint8_t ObjectContextParameter,int64_t ValidationContextParameter)
 
 {
   BeginResourceTransaction();
