@@ -28975,7 +28975,7 @@ void ProcessResourceValidation(uint8_t ObjectContextParameter,int64_t Validation
  * @param ObjectContextParameter 对象上下文参数
  * @param ValidationContextParameter 验证上下文参数
  */
-void RestoreSystemDataStructureToContextF0(uint8_t ObjectContextParameter, int64_t ValidationContextParameter)
+void RestoreSystemDataStructureToContextOffset240(uint8_t ObjectContextParameter, int64_t ValidationContextParameter)
 
 {
   *(uint8_t **)(ValidationContextParameter + 0xf0) = &SystemDataStructure;
@@ -28990,7 +28990,7 @@ void RestoreSystemDataStructureToContextF0(uint8_t ObjectContextParameter, int64
  * @param ObjectContextParameter 对象上下文参数
  * @param ValidationContextParameter 验证上下文参数
  */
-void RestoreSystemDataStructureToContext30(uint8_t ObjectContextParameter, int64_t ValidationContextParameter)
+void RestoreSystemDataStructureToContextOffset48(uint8_t ObjectContextParameter, int64_t ValidationContextParameter)
 
 {
   *(uint8_t **)(ValidationContextParameter + 0x30) = &SystemDataStructure;
@@ -31220,7 +31220,7 @@ void ReleaseIndexBufferLock(uint8_t ObjectContextParameter,int64_t ValidationCon
  * @note 此函数用于进程控制器资源释放
  * @warning 引用计数为零时将触发系统清理
  */
-void UnwindProcessController001(uint8_t ObjectContextParameter,int64_t ValidationContextParameter)
+void UnwindProcessControllerBase(uint8_t ObjectContextParameter,int64_t ValidationContextParameter)
 
 {
   int *pResourceIndex;
@@ -31288,7 +31288,7 @@ void ClearShaderProgramState(uint8_t ObjectContextParameter,int64_t ValidationCo
  * @note 此函数用于异常处理器初始化
  * @warning 初始化失败可能导致异常处理不可用
  */
-void UnwindExceptionHandler001(uint8_t ObjectContextParameter,int64_t ValidationContextParameter)
+void UnwindExceptionHandlerBase(uint8_t ObjectContextParameter,int64_t ValidationContextParameter)
 
 {
   int64_t loopCounter;
@@ -31319,7 +31319,7 @@ void UnwindExceptionHandler001(uint8_t ObjectContextParameter,int64_t Validation
  * @note 此函数用于栈帧处理器配置
  * @warning 配置错误可能导致栈处理异常
  */
-void UnwindStackFrame001(uint8_t ObjectContextParameter,int64_t ValidationContextParameter)
+void UnwindStackFrameBase(uint8_t ObjectContextParameter,int64_t ValidationContextParameter)
 
 {
   int *pResourceIndex;
@@ -32320,7 +32320,7 @@ void UnwindResourceReleaseConfirmation(uint8_t ObjectContextParameter,int64_t Va
  * @note 此函数在异常处理过程中自动调用
  * @warning 如果系统资源处理器已初始化，将触发系统紧急退出
  */
-void UnwindSystemResourceProcessorSetup20(uint8_t ObjectContextParameter,int64_t ValidationContextParameter)
+void UnwindSystemResourceProcessorSetupStandard(uint8_t ObjectContextParameter,int64_t ValidationContextParameter)
 
 {
   int64_t loopCounter;
