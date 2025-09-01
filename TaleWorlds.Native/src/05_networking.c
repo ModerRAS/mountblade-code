@@ -100,7 +100,7 @@ void AcceptNetworkConnection(void);
  */
 void CloseNetworkConnection(void);
 
-// 函数: undefined HandleNetworkConnectionEvent;
+// 函数: uint32_t HandleNetworkConnectionEvent;
 /**
  * 处理网络连接事件
  * 
@@ -111,7 +111,7 @@ void CloseNetworkConnection(void);
  * 
  * @return 事件处理结果
  */
-undefined HandleNetworkConnectionEvent;
+uint32_t HandleNetworkConnectionEvent;
 
 // 函数: void SendNetworkData(void)
 /**
@@ -205,94 +205,94 @@ uint32_t NetworkCallbackHandler;
  * 
  * @return 超时处理结果
  */
-undefined ProcessNetworkTimeout;
-undefined g_NetworkConnectionStateMachine;
-undefined g_NetworkConnectionMode;
-undefined g_NetworkConnectionFlags;
-undefined g_NetworkConnectionPriority;
-undefined g_NetworkConnectionQuality;
-undefined g_NetworkConnectionBandwidth;
-undefined g_NetworkConnectionLatency;
-undefined g_NetworkEncryptionAlgorithm;
-undefined g_NetworkCompressionMethod;
-undefined g_NetworkAuthenticationType;
-undefined g_NetworkSecurityLevel;
-undefined g_NetworkPacketSequence;
-undefined g_NetworkAcknowledgeNumber;
-undefined g_NetworkWindowScale;
-undefined g_NetworkRetransmitTimer;
-undefined g_NetworkKeepAliveIntervalValue;
-undefined g_NetworkHeartbeatTimeout;
-undefined g_NetworkConnectionPoolSize;
-undefined g_NetworkMaxConnectionsValue;
-undefined g_NetworkReceiveBufferSizeValue;
-undefined g_NetworkSendBufferSizeValue;
-undefined g_NetworkPacketLossRate;
-undefined g_NetworkRoundTripTime;
-undefined g_NetworkConnectionTimeoutValue;
-undefined g_NetworkHandshakeTimeoutValue;
-undefined g_NetworkAuthenticationTimeout;
-undefined g_NetworkEncryptionTimeout;
-undefined g_NetworkDataCompressionLevel;
-undefined g_NetworkEncryptionKeyLength;
-undefined g_NetworkHashAlgorithm;
-undefined g_NetworkSignatureMethod;
-undefined g_NetworkConnectionRetryCount;
-undefined g_NetworkConnectionBackoffTime;
-undefined g_NetworkConnectionJitterBuffer;
-undefined g_NetworkConnectionErrorRate;
-undefined g_NetworkThroughputMonitor;
-undefined g_NetworkLatencyMonitor;
-undefined g_NetworkBandwidthMonitor;
-undefined g_NetworkPacketMonitor;
-undefined g_NetworkConnectionHealth;
-undefined g_NetworkConnectionStability;
-undefined g_NetworkConnectionReliability;
-undefined g_NetworkConnectionPerformance;
-undefined g_NetworkConnectionTableIndex;
-undefined g_NetworkConnectionTableSize;
-undefined g_NetworkPacketQueue;
-undefined g_NetworkPacketQueueSize;
-undefined g_NetworkEncryptionContext;
-undefined g_NetworkCompressionContext;
-undefined g_NetworkAuthenticationContext;
-undefined g_NetworkSecurityContext;
-undefined g_NetworkConnectionContext;
-undefined g_NetworkConnectionContextSize;
-undefined g_NetworkConnectionPoolManager;
-undefined g_NetworkConnectionPoolData;
-undefined g_NetworkConnectionPoolIndex;
-undefined g_NetworkConnectionPoolSize;
-undefined g_NetworkSocketContext;
-undefined g_NetworkSocketContextSize;
-undefined g_NetworkSocketData;
-undefined g_NetworkSocketIndex;
-undefined g_NetworkSocketSize;
-undefined g_NetworkPacketContext;
-undefined g_NetworkPacketContextSize;
-undefined g_NetworkPacketData;
-undefined g_NetworkPacketIndex;
-undefined g_NetworkPacketSize;
-undefined g_NetworkPacketHeaderData;
-undefined g_NetworkPacketHeaderSize;
-undefined g_NetworkPacketTrailerData;
-undefined g_NetworkPacketTrailerSize;
-undefined g_NetworkBufferManager;
-undefined g_NetworkBufferData;
-undefined g_NetworkBufferSize;
-undefined g_NetworkBufferIndex;
-undefined g_NetworkConnectionManager;
-undefined g_NetworkConnectionData;
-undefined g_NetworkConnectionSize;
-undefined g_NetworkConnectionIndex;
-undefined g_NetworkEventContext;
-undefined g_NetworkEventData;
-undefined g_NetworkEventSize;
-undefined g_NetworkEventIndex;
-undefined g_NetworkCallbackContext;
-undefined g_NetworkCallbackData;
-undefined g_NetworkCallbackSize;
-undefined g_NetworkCallbackIndex;
+uint32_t ProcessNetworkTimeout;
+uint32_t NetworkConnectionStateMachine;
+uint32_t NetworkConnectionMode;
+uint32_t NetworkConnectionFlags;
+uint32_t NetworkConnectionPriority;
+uint32_t NetworkConnectionQuality;
+uint32_t NetworkConnectionBandwidth;
+uint32_t NetworkConnectionLatency;
+uint32_t NetworkEncryptionAlgorithm;
+uint32_t NetworkCompressionMethod;
+uint32_t NetworkAuthenticationType;
+uint32_t NetworkSecurityLevel;
+uint32_t NetworkPacketSequence;
+uint32_t NetworkAcknowledgeNumber;
+uint32_t NetworkWindowScale;
+uint32_t NetworkRetransmitTimer;
+uint32_t NetworkKeepAliveInterval;
+uint32_t NetworkHeartbeatTimeout;
+uint32_t NetworkConnectionPoolSize;
+uint32_t NetworkMaxConnections;
+uint32_t NetworkReceiveBufferSize;
+uint32_t NetworkSendBufferSize;
+uint32_t NetworkPacketLossRate;
+uint32_t NetworkRoundTripTime;
+uint32_t NetworkConnectionTimeoutValue;
+uint32_t NetworkHandshakeTimeout;
+uint32_t NetworkAuthenticationTimeout;
+uint32_t NetworkEncryptionTimeout;
+uint32_t NetworkDataCompressionLevel;
+uint32_t NetworkEncryptionKeyLength;
+uint32_t NetworkHashAlgorithm;
+uint32_t NetworkSignatureMethod;
+uint32_t NetworkConnectionRetryCount;
+uint32_t NetworkConnectionBackoffTime;
+uint32_t NetworkConnectionJitterBuffer;
+uint32_t NetworkConnectionErrorRate;
+uint32_t NetworkThroughputMonitor;
+uint32_t NetworkLatencyMonitor;
+uint32_t NetworkBandwidthMonitor;
+uint32_t NetworkPacketMonitor;
+uint32_t NetworkConnectionHealth;
+uint32_t NetworkConnectionStability;
+uint32_t NetworkConnectionReliability;
+uint32_t NetworkConnectionPerformance;
+uint32_t NetworkConnectionTableIndex;
+uint32_t NetworkConnectionTableSize;
+uint32_t NetworkPacketQueue;
+uint32_t NetworkPacketQueueSize;
+uint32_t NetworkEncryptionContext;
+uint32_t NetworkCompressionContext;
+uint32_t NetworkAuthenticationContext;
+uint32_t NetworkSecurityContext;
+uint32_t NetworkConnectionContext;
+uint32_t NetworkConnectionContextSize;
+uint32_t NetworkConnectionPoolManager;
+uint32_t NetworkConnectionPoolData;
+uint32_t NetworkConnectionPoolIndex;
+uint32_t NetworkConnectionPoolSize;
+uint32_t NetworkSocketContext;
+uint32_t NetworkSocketContextSize;
+uint32_t NetworkSocketData;
+uint32_t NetworkSocketIndex;
+uint32_t NetworkSocketSize;
+uint32_t NetworkPacketContext;
+uint32_t NetworkPacketContextSize;
+uint32_t NetworkPacketData;
+uint32_t NetworkPacketIndex;
+uint32_t NetworkPacketSize;
+uint32_t NetworkPacketHeaderData;
+uint32_t NetworkPacketHeaderSize;
+uint32_t NetworkPacketTrailerData;
+uint32_t NetworkPacketTrailerSize;
+uint32_t NetworkBufferManager;
+uint32_t NetworkBufferData;
+uint32_t NetworkBufferSize;
+uint32_t NetworkBufferIndex;
+uint32_t NetworkConnectionManager;
+uint32_t NetworkConnectionData;
+uint32_t NetworkConnectionSize;
+uint32_t NetworkConnectionIndex;
+uint32_t NetworkEventContext;
+uint32_t NetworkEventData;
+uint32_t NetworkEventSize;
+uint32_t NetworkEventIndex;
+uint32_t NetworkCallbackContext;
+uint32_t NetworkCallbackData;
+uint32_t NetworkCallbackSize;
+uint32_t NetworkCallbackIndex;
 
 // 函数: void InitializeNetworkConnectionState(void)
 /**
@@ -464,11 +464,11 @@ void ProcessNetworkPacket(uint64_t packetHandle)
  * 
  * 注意：这是一个反编译的函数实现
  */
-undefined8 CleanupNetworkConnectionResources(longlong *connectionContext)
+uint64_t CleanupNetworkConnectionResources(longlong *connectionContext)
 
 {
   int resourceCount;
-  undefined8 cleanupStatus;
+  uint64_t cleanupStatus;
   uint validationRange;
   
   validationRange = *(uint *)((longlong)connectionContext + 0xc);
@@ -1060,13 +1060,13 @@ LAB_1808408dd:
  * 
  * 注意：这是一个反编译的函数实现，原始函数名已丢失
  */
-undefined4 FUN_1808408ec(void)
+uint32_t ResetNetworkConnectionState(void)
 
 {
-  undefined8 *connectionBuffer;
-  undefined4 status;
+  uint64_t *connectionBuffer;
+  uint32_t status;
   
-  if (connectionBuffer != (undefined8 *)0x0) {
+  if (connectionBuffer != (uint64_t *)0x0) {
     *connectionBuffer = 0;
     connectionBuffer[1] = 0;
     connectionBuffer[2] = 0;
@@ -88394,72 +88394,97 @@ undefined8 FUN_180890090(longlong param_1)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_1808900e0(longlong param_1,longlong param_2)
-void FUN_1808900e0(longlong param_1,longlong param_2)
+// 函数: void ProcessNetworkConnectionResources(longlong connectionHandle, longlong networkContext)
+/**
+ * 处理网络连接资源
+ * 
+ * 该函数负责处理网络连接的资源分配和释放。
+ * 主要功能包括：
+ * - 验证连接状态
+ * - 分配和管理网络资源
+ * - 清理和释放资源
+ * 
+ * @param connectionHandle 网络连接句柄
+ * @param networkContext 网络上下文指针
+ * 
+ * 注意：这是一个反编译的函数实现
+ */
+void ProcessNetworkConnectionResources(longlong connectionHandle, longlong networkContext)
 
 {
-  undefined8 uVar1;
-  int iVar2;
-  longlong lVar3;
-  int iVar4;
-  undefined1 auStack_278 [32];
-  longlong alStack_258 [2];
-  undefined1 *puStack_248;
-  int iStack_240;
-  undefined4 uStack_23c;
-  undefined1 auStack_238 [512];
-  ulonglong uStack_38;
+  undefined8 resourceHandle;
+  int operationStatus;
+  longlong resourceIndex;
+  int resourceCount;
+  undefined1 securityStackBuffer [32];
+  longlong connectionInfo [2];
+  undefined1 *resourceBuffer;
+  int bufferLength;
+  undefined4 bufferFlags;
+  undefined1 processingBuffer [512];
+  ulonglong stackGuard;
   
-  uStack_38 = _DAT_180bf00a8 ^ (ulonglong)auStack_278;
-  iVar2 = func_0x00018088c530(*(undefined4 *)(param_1 + 0x10),alStack_258);
-  if ((iVar2 == 0) && (*(longlong *)(alStack_258[0] + 8) != 0)) {
-    puStack_248 = auStack_238;
-    iVar4 = 0;
-    iStack_240 = 0;
-    uStack_23c = 0xffffffc0;
-    iVar2 = FUN_1808bf350(*(undefined8 *)(param_2 + 0x90),*(longlong *)(alStack_258[0] + 8),
-                          &puStack_248);
-    if (iVar2 == 0) {
-      if (0 < iStack_240) {
-        lVar3 = 0;
+  stackGuard = _DAT_180bf00a8 ^ (ulonglong)securityStackBuffer;
+  operationStatus = func_0x00018088c530(*(undefined4 *)(connectionHandle + 0x10), connectionInfo);
+  if ((operationStatus == 0) && (*(longlong *)(connectionInfo[0] + 8) != 0)) {
+    resourceBuffer = processingBuffer;
+    resourceCount = 0;
+    bufferLength = 0;
+    bufferFlags = 0xffffffc0;
+    operationStatus = FUN_1808bf350(*(undefined8 *)(networkContext + 0x90),*(longlong *)(connectionInfo[0] + 8),
+                          &resourceBuffer);
+    if (operationStatus == 0) {
+      if (0 < bufferLength) {
+        resourceIndex = 0;
         do {
-          uVar1 = *(undefined8 *)(puStack_248 + lVar3);
-          iVar2 = FUN_1808605e0(uVar1);
-          if (iVar2 != 2) {
+          resourceHandle = *(undefined8 *)(resourceBuffer + resourceIndex);
+          operationStatus = FUN_1808605e0(resourceHandle);
+          if (operationStatus != 2) {
                     // WARNING: Subroutine does not return
-            FUN_180862e00(uVar1,1);
+            FUN_180862e00(resourceHandle,1);
           }
-          iVar4 = iVar4 + 1;
-          lVar3 = lVar3 + 8;
-        } while (iVar4 < iStack_240);
+          resourceCount = resourceCount + 1;
+          resourceIndex = resourceIndex + 8;
+        } while (resourceCount < bufferLength);
       }
-      FUN_18085dbf0(&puStack_248);
+      FUN_18085dbf0(&resourceBuffer);
     }
     else {
-      FUN_18085dbf0(&puStack_248);
+      FUN_18085dbf0(&resourceBuffer);
     }
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_38 ^ (ulonglong)auStack_278);
+  FUN_1808fc050(stackGuard ^ (ulonglong)securityStackBuffer);
 }
 
 
 
 
-// 函数: void FUN_18089011d(void)
-void FUN_18089011d(void)
+// 函数: void CleanupNetworkConnectionResources(void)
+/**
+ * 清理网络连接资源
+ * 
+ * 该函数负责清理和释放网络连接相关的资源。
+ * 主要功能包括：
+ * - 遍历和清理所有网络资源
+ * - 释放分配的内存和句柄
+ * - 重置连接状态
+ * 
+ * 注意：这是一个反编译的函数实现
+ */
+void CleanupNetworkConnectionResources(void)
 
 {
-  undefined8 uVar1;
-  int iVar2;
-  longlong in_RAX;
-  longlong unaff_RBX;
-  longlong lVar3;
-  int iVar4;
-  undefined1 *in_stack_00000030;
-  int iStack0000000000000038;
-  undefined4 uStack000000000000003c;
-  ulonglong in_stack_00000240;
+  undefined8 resourceHandle;
+  int operationStatus;
+  longlong connectionContext;
+  longlong networkContext;
+  longlong resourceIndex;
+  int resourceCount;
+  undefined1 *resourceBuffer;
+  int bufferLength;
+  undefined4 bufferFlags;
+  ulonglong stackGuard;
   
   if (*(longlong *)(in_RAX + 8) != 0) {
     in_stack_00000030 = &stack0x00000040;
@@ -110008,8 +110033,16 @@ void FUN_18089fb06(void)
 
 
 
-// 函数: void FUN_18089fb2b(void)
-void FUN_18089fb2b(void)
+// 函数: void InitializeNetworkDummyFunction(void)
+/**
+ * @brief 初始化网络虚拟函数
+ * 
+ * 该函数是一个空的初始化函数，可能用于占位或未来扩展。
+ * 目前不执行任何操作，直接返回。
+ * 
+ * 注意：这是一个反编译的函数实现，可能是一个占位符函数
+ */
+void InitializeNetworkDummyFunction(void)
 
 {
   return;
@@ -110018,19 +110051,30 @@ void FUN_18089fb2b(void)
 
 
 
-// 函数: void FUN_18089fb40(longlong param_1,undefined8 param_2)
-void FUN_18089fb40(longlong param_1,undefined8 param_2)
+// 函数: void ProcessNetworkProtocolValidation(longlong connectionHandle, undefined8 protocolData)
+/**
+ * @brief 处理网络协议验证
+ * 
+ * 该函数负责验证网络连接的协议数据，确保协议的正确性和安全性。
+ * 首先验证协议标识符，然后检查连接状态，如果验证失败则终止连接。
+ * 
+ * @param connectionHandle 网络连接句柄，用于标识特定的网络连接
+ * @param protocolData 协议数据，包含协议标识符和验证信息
+ * 
+ * 注意：这是一个反编译的函数实现，包含原始的十六进制常量
+ */
+void ProcessNetworkProtocolValidation(longlong connectionHandle, undefined8 protocolData)
 
 {
-  int iVar1;
-  undefined1 auStack_28 [32];
+  int validationStatus;
+  undefined1 securityStackBuffer [32];
   
-  iVar1 = FUN_1808ddd30(param_2,auStack_28,0,0x4f525443,0);
-  if (iVar1 == 0) {
-    iVar1 = FUN_1808a7b00(param_2,param_1 + 8);
-    if (iVar1 == 0) {
+  validationStatus = ValidateNetworkProtocol(protocolData, securityStackBuffer, 0, 0x4f525443, 0);
+  if (validationStatus == 0) {
+    validationStatus = CheckConnectionStatus(protocolData, connectionHandle + 8);
+    if (validationStatus == 0) {
                     // WARNING: Subroutine does not return
-      FUN_1808de000(param_2,auStack_28);
+      TerminateNetworkConnection(protocolData, securityStackBuffer);
     }
   }
   return;
@@ -110038,31 +110082,45 @@ void FUN_18089fb40(longlong param_1,undefined8 param_2)
 
 
 
-undefined8 FUN_18089fba0(longlong param_1,undefined8 *param_2)
+// 函数: undefined8 ValidateNetworkConnectionData(longlong connectionData, undefined8 *connectionPointers)
+/**
+ * @brief 验证网络连接数据
+ * 
+ * 该函数负责验证网络连接的数据完整性和协议正确性。
+ * 首先验证协议标识符，然后检查连接状态标志，接着验证连接数据的各个部分，
+ * 最后处理网络数据。如果任何验证失败，返回错误代码。
+ * 
+ * @param connectionData 连接数据指针，包含连接的详细信息
+ * @param connectionPointers 连接指针数组，包含连接相关的各种指针
+ * @return 验证结果，0表示成功，非0表示失败或错误代码
+ * 
+ * 注意：这是一个反编译的函数实现，包含原始的十六进制常量
+ */
+undefined8 ValidateNetworkConnectionData(longlong connectionData, undefined8 *connectionPointers)
 
 {
-  undefined8 uVar1;
-  undefined1 auStack_28 [32];
+  undefined8 validationResult;
+  undefined1 securityStackBuffer [32];
   
-  uVar1 = FUN_1808ddd30(param_2,auStack_28,0,0x56525543,0);
-  if ((int)uVar1 == 0) {
-    if (*(int *)(param_2[1] + 0x18) != 0) {
+  validationResult = ValidateNetworkProtocol(connectionPointers, securityStackBuffer, 0, 0x56525543, 0);
+  if ((int)validationResult == 0) {
+    if (*(int *)(connectionPointers[1] + 0x18) != 0) {
       return 0x1c;
     }
-    uVar1 = FUN_180899ef0(*param_2,param_1 + 0x10);
-    if ((int)uVar1 == 0) {
-      if (*(int *)(param_2[1] + 0x18) != 0) {
+    validationResult = ValidateConnectionData(*connectionPointers, connectionData + 0x10);
+    if ((int)validationResult == 0) {
+      if (*(int *)(connectionPointers[1] + 0x18) != 0) {
         return 0x1c;
       }
-      uVar1 = FUN_180899ef0(*param_2,param_1 + 0x20);
-      if (((int)uVar1 == 0) && (uVar1 = FUN_1808a4fb0(param_2,param_1 + 0x30,1,0), (int)uVar1 == 0))
+      validationResult = ValidateConnectionData(*connectionPointers, connectionData + 0x20);
+      if (((int)validationResult == 0) && (validationResult = ProcessNetworkData(connectionPointers, connectionData + 0x30, 1, 0), (int)validationResult == 0))
       {
                     // WARNING: Subroutine does not return
-        FUN_1808de000(param_2,auStack_28);
+        TerminateNetworkConnection(connectionPointers, securityStackBuffer);
       }
     }
   }
-  return uVar1;
+  return validationResult;
 }
 
 
