@@ -12883,26 +12883,26 @@ void ProcessComplexResourceWithRegisters(void)
           validationErrorCode = 0;
           dataTypeTemplate = &SystemDataTypeTemplateC;
           stackValidationFlags = contextFlags;
-          in_stack_00000048 = (float)CONCAT31(in_stack_00000048._1_3_,1);
-          iVar8 = GetAndValidateResourceData(fVar10,&ObjectStackBuffer30);
-          if (iVar8 != 0) goto LAB_1808974ec;
+          stackResourceValue = (float)CONCAT31(stackResourceValue._1_3_,1);
+          validationErrorCode = GetAndValidateResourceData(resultFloat,&ObjectStackBuffer30);
+          if (validationErrorCode != 0) goto LAB_1808974ec;
         }
       }
     }
-    iVar8 = 0;
-    iVar7 = 0;
+    validationErrorCode = 0;
+    operationResult = 0;
     do {
-      if ((iVar7 < 0) || (*(int *)(unaff_R13 + 200) <= iVar7)) break;
-      loopCounter = *(longlong *)(*(longlong *)(unaff_R13 + 0xc0) + (longlong)iVar7 * 8);
-      resourceTable = *(longlong *)(localContextPointer + 0x48);
-      if (resourceTable != 0) {
-        uStackX_20 = 0;
-        iVar9 = ValidateBufferContext(resourceTable,&uStackX_20);
-        if (iVar9 != 0) break;
-        unsignedResult3 = *(uint8_t4 *)(localContextPointer + 0x10);
-        unsignedResult4 = *(uint8_t4 *)(localContextPointer + 0x14);
-        unsignedValue5 = *(uint8_t4 *)(localContextPointer + 0x18);
-        unsignedValue6 = *(uint8_t4 *)(localContextPointer + 0x1c);
+      if ((operationResult < 0) || (*(int *)(systemRegister3 + 200) <= operationResult)) break;
+      resourceIndex = *(longlong *)(*(longlong *)(systemRegister3 + 0xc0) + (longlong)operationResult * 8);
+      resourceTablePointer = *(longlong *)(localContextPointer + 0x48);
+      if (resourceTablePointer != 0) {
+        contextFlags = 0;
+        tempIndex = ValidateBufferContext(resourceTablePointer,&contextFlags);
+        if (tempIndex != 0) break;
+        validationStatus1 = *(uint8_t4 *)(localContextPointer + 0x10);
+        validationStatus2 = *(uint8_t4 *)(localContextPointer + 0x14);
+        resourceData1 = *(uint8_t4 *)(localContextPointer + 0x18);
+        resourceData2 = *(uint8_t4 *)(localContextPointer + 0x1c);
         *(uint8_t4 *)(ExecutionContextPointer + -0x78) = 0;
         *(int *)(ExecutionContextPointer + -0x68) = iVar8;
         *(uint8_t **)(ExecutionContextPointer + -0x80) = &SystemResourceTemplateB;
