@@ -32775,8 +32775,18 @@ void ExecuteSystemResourceConfiguration(long long SystemResourcePointer,void* Co
 
 
 
-// 函数: void FUN_180058f00(void* SystemResourcePointer,void* *ConfigurationDataPointer)
-void FUN_180058f00(void* SystemResourcePointer,void* *ConfigurationDataPointer)
+/**
+ * @brief 执行配置数据回调函数
+ * 
+ * 该函数负责执行配置数据指针指向的回调函数，
+ * 用于系统配置和初始化过程中的回调处理。
+ * 
+ * @param SystemResourcePointer 系统资源指针
+ * @param ConfigurationDataPointer 配置数据指针，指向要执行的回调函数
+ * 
+ * 原始函数名为FUN_180058f00，现已重命名为ExecuteConfigurationDataCallback
+ */
+void ExecuteConfigurationDataCallback(void* SystemResourcePointer,void* *ConfigurationDataPointer)
 
 {
   (*(code *)*ConfigurationDataPointer)();
@@ -33582,12 +33592,22 @@ long long CreateSystemObjectsBatch(long long SystemResourcePointer,long long Con
 
 
 
-// 函数: void FUN_180059350(long long SystemResourcePointer,long long ConfigurationDataPointer,void* AdditionalParameter)
-void FUN_180059350(long long SystemResourcePointer,long long ConfigurationDataPointer,void* AdditionalParameter)
+/**
+ * @brief 移动系统资源数据
+ * 
+ * 该函数负责将系统资源数据从源地址移动到目标地址，
+ * 用于系统资源的重新分配和数据迁移。
+ * 
+ * @param SystemResourcePointer 源资源指针
+ * @param ConfigurationDataPointer 配置数据指针（用作结束地址）
+ * @param AdditionalParameter 目标参数指针
+ * 
+ * 原始函数名为FUN_180059350，现已重命名为MoveSystemResourceData
+ */
+void MoveSystemResourceData(long long SystemResourcePointer,long long ConfigurationDataPointer,void* AdditionalParameter)
 
 {
   if (SystemResourcePointer != ConfigurationDataPointer) {
-                    // WARNING: Subroutine does not return
     memmove(AdditionalParameter,SystemResourcePointer,ConfigurationDataPointer - SystemResourcePointer);
   }
   return;
@@ -33646,8 +33666,8 @@ void FUN_1800593f0(void* SystemResourcePointer,void* *ConfigurationDataPointer,v
 void FUN_1800594b0(void* *SystemResourcePointer)
 
 {
-  ConfigureSystemMemoryRegion(SystemResourcePointer + 0x7d,0x58,4,FUN_180044a30,0xfffffffffffffffe);
-  ConfigureSystemMemoryRegion(SystemResourcePointer + 0x51,0x58,4,FUN_180044a30);
+  ConfigureSystemMemoryRegion(SystemResourcePointer + 0x7d,0x58,4,InitializeDriverSystem,0xfffffffffffffffe);
+  ConfigureSystemMemoryRegion(SystemResourcePointer + 0x51,0x58,4,InitializeDriverSystem);
   ConfigureSystemMemoryRegion(SystemResourcePointer + 0x11,0x20,0x10,CleanupSystemResources);
   SystemResourcePointer[8] = &SystemGlobalDataReference;
   if (SystemResourcePointer[9] != 0) {
@@ -35317,8 +35337,8 @@ long long InitializeSystemContext(long long SystemResourcePointer)
   long long localMemoryPointer;
   long long localSystemHandle;
   
-  InitializeSystemMemoryBlock(SystemResourcePointer,0x20,0x400,FUN_18005c060,FUN_180046860);
-  InitializeSystemMemoryBlock(SystemResourcePointer + 0x8000,0x20,0x400,FUN_18005c060,FUN_180046860);
+  InitializeSystemMemoryBlock(SystemResourcePointer,0x20,0x400,InitializeSystemDataBlock,ReleaseSystemMemoryBlock);
+  InitializeSystemMemoryBlock(SystemResourcePointer + 0x8000,0x20,0x400,InitializeSystemDataBlock,ReleaseSystemMemoryBlock);
   *(void* *)(SystemResourcePointer + 0x10400) = 0;
   *(void* *)(SystemResourcePointer + 0x10408) = 0;
   *(void* *)(SystemResourcePointer + 0x10410) = 0;
@@ -57456,7 +57476,7 @@ void* * FUN_1800784e0(void* *SystemResourcePointer,ulong long ConfigurationDataP
   unsignedSystemValue1 = 0xfffffffffffffffe;
   *SystemResourcePointer = &UNK_180a001e8;
   FUN_180078550();
-  ConfigureSystemMemoryRegion(SystemResourcePointer + 1,8,7,FUN_180045af0,unsignedSystemValue1);
+  ConfigureSystemMemoryRegion(SystemResourcePointer + 1,8,7,InitializeMemoryManager,unsignedSystemValue1);
   if ((ConfigurationDataPointer & 1) != 0) {
     free(SystemResourcePointer,0x158);
   }

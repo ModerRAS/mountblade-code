@@ -1274,24 +1274,8 @@ uint32_t MemoryLatencyTertiaryConfig;
 uint32_t MemoryLatencyQuaternaryConfig;
 void* MemoryLatencyReservedMemory;
 
- void InitializeMemoryThroughput(void);
-/**
- * @brief 初始化内存吞吐量
- * 
- * 该函数负责初始化内存吞吐量管理
- * 设置内存传输速率和吞吐量优化
- */
-void InitializeMemoryThroughput(void);
-
- void SetupMemoryReliability(void);
-/**
- * @brief 设置内存可靠性
- * 
- * 该函数负责设置内存可靠性机制
- * 配置内存错误检测和纠正功能
- */
-void SetupMemoryReliability(void);
-void* SystemMemoryCache;
+ 
+ void* SystemMemoryCache;
 void* SystemMemoryReliabilityBuffer;
 void* SystemMemoryDescriptor;
 void* MemoryReliabilityConfigData;
@@ -1312,15 +1296,7 @@ void* MemorySecurityConfigData;
 void* SystemConfigTablePrimary;
 void* SystemConfigTableSecondary;
 
- void ConfigureMemoryIsolation(void);
-/**
- * @brief 配置内存隔离
- * 
- * 该函数负责配置内存隔离机制
- * 设置进程间内存隔离和保护
- */
-void ConfigureMemoryIsolation(void);
-void* SystemConfigTableTertiary;
+ void* SystemConfigTableTertiary;
 void* MemoryValidationContextData;
 void* MemoryIsolationConfigData;
 void* MemoryValidationStatusData;
@@ -1342,15 +1318,7 @@ void* MemoryMappingStatus;
 void* MemoryMappingConfig;
 void* MemoryMappingBuffer;
 
- void SetupMemoryPaging(void);
-/**
- * @brief 设置内存分页
- * 
- * 该函数负责设置内存分页系统
- * 配置页面大小和分页策略
- */
-void SetupMemoryPaging(void);
-void* MemoryPagingConfigTable;
+ void* MemoryPagingConfigTable;
 void* MemoryPagingStatusFlags;
 void* MemoryPagingControlRegisters;
 void* MemoryPagingBufferPointer;
@@ -6403,23 +6371,23 @@ void ProcessSystemDataBufferExpansion(uint8_t SystemContext, uint8_t bufferConte
                                 0xf4,0), ResourceIndex == 0)) goto LAB_180891fc0;
       if (*(int *)(in_stack_00000070 + 0x28) != 0) {
                     // WARNING: Subroutine does not return
-        memcpy(ResourceIndex,*(uint8_t *)(in_stack_00000070 + 0x20),
-               (int64_t)*(int *)(in_stack_00000070 + 0x28) << 3);
+        memcpy(ResourceIndex,*(uint8_t *)(StackParameterBuffer70 + 0x20),
+               (int64_t)*(int *)(StackParameterBuffer70 + 0x28) << 3);
       }
     }
-    if ((0 < *(int *)(in_stack_00000070 + 0x2c)) && (*(int64_t *)(in_stack_00000070 + 0x20) != 0))
+    if ((0 < *(int *)(StackParameterBuffer70 + 0x2c)) && (*(int64_t *)(StackParameterBuffer70 + 0x20) != 0))
     {
                     // WARNING: Subroutine does not return
-      ProcessResourceAllocation(*(uint8_t *)(SystemContextPointer + 0x1a0),*(int64_t *)(in_stack_00000070 + 0x20),
+      ProcessResourceAllocation(*(uint8_t *)(SystemContextPointer + 0x1a0),*(int64_t *)(StackParameterBuffer70 + 0x20),
                     &ResourceTableTemplate,0x100,1);
     }
-    *(int64_t *)(in_stack_00000070 + 0x20) = ResourceIndex;
-    *(int *)(in_stack_00000070 + 0x2c) = ResourceIndex;
+    *(int64_t *)(StackParameterBuffer70 + 0x20) = ResourceIndex;
+    *(int *)(StackParameterBuffer70 + 0x2c) = ResourceIndex;
   }
   *(int64_t *)
-   (*(int64_t *)(in_stack_00000070 + 0x20) + (int64_t)*(int *)(in_stack_00000070 + 0x28) * 8) =
+   (*(int64_t *)(StackParameterBuffer70 + 0x20) + (int64_t)*(int *)(StackParameterBuffer70 + 0x28) * 8) =
        StackParameter60;
-  *(int *)(in_stack_00000070 + 0x28) = *(int *)(in_stack_00000070 + 0x28) + 1;
+  *(int *)(StackParameterBuffer70 + 0x28) = *(int *)(StackParameterBuffer70 + 0x28) + 1;
 LAB_180891fc0:
                     // WARNING: Subroutine does not return
   ReleaseSystemContextResources(*(uint8_t *)(RegisterR14 + 0x98));
@@ -9520,7 +9488,7 @@ uint8_t ProcessFloatRangeValidationAndDataHandlingNoParams(void)
   uint8_t *pLoopIncrement;
   int64_t UnaffectedRegisterValue;
   int64_t RegisterR14;
-  uint32_t in_stack_00000050;
+  uint32_t StackParameterBuffer50;
   
   resourceTable = LookupResourceIndex();
   if ((*(uint *)(resourceTable + 0x34) >> 4 & 1) != 0) {
@@ -9534,10 +9502,10 @@ uint8_t ProcessFloatRangeValidationAndDataHandlingNoParams(void)
       ValidationResult = 0x1c;
     }
     else {
-      ValidationResult = ValidateResourceParameters(RegisterR14 + 0x60,in_stack_00000050);
+      ValidationResult = ValidateResourceParameters(RegisterR14 + 0x60,StackParameterBuffer50);
       if ((int)ValidationResult == 0) {
         pLoopIncrement = (uint8_t *)
-                 GetResourcePointer(RegisterR14 + 0x60,&ObjectStackBuffer40,in_stack_00000050);
+                 GetResourcePointer(RegisterR14 + 0x60,&ObjectStackBuffer40,StackParameterBuffer50);
         *(uint8_t *)(RegisterRDI + 0x18) = *pLoopIncrement;
                     // WARNING: Subroutine does not return
         ReleaseSystemContextResources(*(uint8_t *)(RegisterR14 + 0x98));
@@ -9566,7 +9534,7 @@ uint64_t ProcessFloatDataValidation(void)
   int64_t ResourceContextPointer;
   int64_t UnaffectedRegisterValue;
   int64_t RegisterR14;
-  uint32_t in_stack_00000050;
+  uint32_t StackParameterBuffer50;
   
   ResourceValidationResult = ValidateObjectContextAndProcessData();
   if ((int)ResourceValidationResult == 0) {
@@ -9576,10 +9544,10 @@ uint64_t ProcessFloatDataValidation(void)
       ResourceValidationResult = 0x1c;
     }
     else {
-      ResourceValidationResult = ValidateResourceParameters(RegisterR14 + 0x60,in_stack_00000050);
+      ResourceValidationResult = ValidateResourceParameters(RegisterR14 + 0x60,StackParameterBuffer50);
       if ((int)ResourceValidationResult == 0) {
         pValidationResult = (uint8_t *)
-                 GetResourcePointer(RegisterR14 + 0x60,&ObjectStackBuffer40,in_stack_00000050);
+                 GetResourcePointer(RegisterR14 + 0x60,&ObjectStackBuffer40,StackParameterBuffer50);
         *(uint8_t *)(RegisterRDI + 0x18) = *pValidationResult;
                     // WARNING: Subroutine does not return
         ReleaseSystemContextResources(*(uint8_t *)(RegisterR14 + 0x98));
@@ -9938,10 +9906,10 @@ int ProcessDataWithStack(int64_t *ObjectContextParameter,int64_t ValidationConte
  void FinalizeSecurityOperationWrapper(void)
 
 {
-  uint64_t in_stack_000000b0;
+  uint64_t StackParameterBufferB0;
   
                     // WARNING: Subroutine does not return
-  FinalizeSecurityOperation(in_stack_000000b0 ^ (uint64_t)&SystemSecurityValidationBuffer);
+  FinalizeSecurityOperation(StackParameterBufferB0 ^ (uint64_t)&SystemSecurityValidationBuffer);
 }
 
 
@@ -20702,7 +20670,7 @@ ValidateResourceIntegrity(void)
   ResourceTablePointer = (int64_t)(int)in_stack_00000050;
   ValidationResult = (int)*(uint *)(RegisterR15 + 0x2c) >> 0x1f;
   if (((int)((*(uint *)(RegisterR15 + 0x2c) ^ ValidationResult) - ValidationResult) < (int)in_stack_00000050) &&
-     (OperationResult = CheckResourceTableStatus(RegisterR15 + 0x20,in_stack_00000050), OperationResult != 0)) {
+     (OperationResult = CheckResourceTableStatus(RegisterR15 + 0x20,StackParameterBuffer50), OperationResult != 0)) {
     return;
   }
   OperationResult = *(int *)(RegisterR15 + 0x28);
