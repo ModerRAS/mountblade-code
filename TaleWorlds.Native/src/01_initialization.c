@@ -58024,7 +58024,7 @@ void FUN_180078550(void* *SystemResourcePointer,void* ConfigurationDataPointer,v
   void* unsignedSystemValue5;
   
   unsignedSystemValue5 = 0xfffffffffffffffe;
-  if (0 < *(int *)(_DAT_180c8aa00 + 0x40)) {
+  if (0 < *(int *)(SystemDataBufferPointer + 0x40)) {
     SystemResourcePointer[0x26] = *(void* *)(_DAT_180c8aa00 + 0x38);
   }
   SecondaryResourcePointer = SystemResourcePointer + 1;
