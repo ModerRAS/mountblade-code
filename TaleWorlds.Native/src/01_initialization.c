@@ -18660,7 +18660,7 @@ uint32_t FinalSystemInitialization(void)
   systemManager = (long long ****)SystemMemoryAllocationFunction(SystemMemoryAllocationTemplate,0xc0,8,3,systemFlags);
   stackManager8 = systemManager;
   InitializeSystemDataTableManager(systemManager);
-  *systemManager = (long long ***)&UNK_1809ff2f8;
+  *systemManager = (long long ***)&SystemManagerGlobalTable;
   stackManager20 = (long long ***)systemManager;
   (*(code *)(*systemManager)[5])(systemManager);
   systemObject = SystemAllocationFlagsTemplate;
@@ -18669,7 +18669,7 @@ uint32_t FinalSystemInitialization(void)
   (*(code *)(*systemManager)[5])(systemManager);
   SystemManagerInitialize(systemObject,&stackManager8);
   while( true ) {
-    if (*systemManager == (long long ***)&UNK_1809ff2f8) {
+    if (*systemManager == (long long ***)&SystemManagerGlobalTable) {
       IsActiveFlag = *(char *)(systemManager + 2) != '\0';
     }
     else {

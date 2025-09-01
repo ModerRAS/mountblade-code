@@ -33116,7 +33116,18 @@ void ExceptionStackCleanup(uint8_t ObjectContextParameter,int64_t ValidationCont
 
 
 
-void Unwind_180902e10(uint8_t ObjectContextParameter,int64_t ValidationContextParameter)
+/**
+ * @brief 处理资源表清理和验证
+ * 
+ * 该函数负责遍历资源表中的所有资源项，并对每个有效资源执行清理操作
+ * 如果资源表为空，则执行系统紧急退出
+ * 
+ * @param ObjectContextParameter 对象上下文参数
+ * @param ValidationContextParameter 验证上下文参数，包含资源表信息
+ * @note 此函数用于系统资源管理和清理
+ * @warning 如果资源表无效将触发系统紧急退出
+ */
+void ProcessResourceTableCleanup(uint8_t ObjectContextParameter, int64_t ValidationContextParameter)
 
 {
   int64_t *processPointer;
@@ -33139,7 +33150,18 @@ void Unwind_180902e10(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 
 
 
-void Unwind_180902e30(uint8_t ObjectContextParameter,int64_t ValidationContextParameter)
+/**
+ * @brief 处理辅助资源表清理
+ * 
+ * 该函数负责处理辅助资源表的清理工作
+ * 遍历资源表中的所有项并执行相应的清理操作
+ * 
+ * @param ObjectContextParameter 对象上下文参数
+ * @param ValidationContextParameter 验证上下文参数，包含辅助资源表信息
+ * @note 此函数用于辅助资源管理和清理
+ * @warning 如果资源表无效将触发系统紧急退出
+ */
+void ProcessSecondaryResourceTableCleanup(uint8_t ObjectContextParameter, int64_t ValidationContextParameter)
 
 {
   int64_t *processPointer;
