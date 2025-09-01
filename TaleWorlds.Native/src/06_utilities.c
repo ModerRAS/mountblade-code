@@ -6328,7 +6328,7 @@ void ProcessSystemBufferExpansion(uint8_t8 systemContext, uint8_t8 bufferContext
   }
   capacityCheck = (int)*(uint *)(stackPointerSecondary + 0x2c) >> 0x1f;
   bufferSize = (*(uint *)(stackPointerSecondary + 0x2c) ^ capacityCheck) - capacityCheck;
-  validationStatus = *(int *)(stackData2 + 0x28) + 1;
+  validationStatus = *(int *)(stackPointerSecondary + 0x28) + 1;
   if (iVar2 < iVar1) {
     iVar2 = (int)((float)iVar2 * 1.5);
     if (iVar1 <= iVar2) {
