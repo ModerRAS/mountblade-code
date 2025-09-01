@@ -13103,8 +13103,10 @@ void InitializeSystemEventManagerK(void)
 
 
 
-// 函数: void FUN_18003eb10(void)
-void FUN_18003eb10(void)
+// 函数: void InitializeSystemEventManagerL(void)
+// 功能: 初始化系统事件管理器L，用于管理特定类型的事件处理
+// 该函数会创建系统节点并设置系统回调指针
+void InitializeSystemEventManagerL(void)
 
 {
   char systemNodeFlag;
@@ -13153,8 +13155,10 @@ void FUN_18003eb10(void)
 
 
 
-// 函数: void FUN_18003ec10(void)
-void FUN_18003ec10(void)
+// 函数: void InitializeSystemEventManagerM(void)
+// 功能: 初始化系统事件管理器M，用于管理特定类型的事件处理
+// 该函数会创建系统节点并设置相关系统配置
+void InitializeSystemEventManagerM(void)
 
 {
   char systemNodeFlag;
