@@ -1239,7 +1239,7 @@ void* MemoryValidationContextData;
 void* MemoryIsolationConfigData;
 void* MemoryValidationStatusData;
 void* MemoryValidationConfigData;
-undefined DAT_180bf99a0;
+void* MemoryMappingDescriptor;
 
  void InitializeMemoryMapping;
 /**
@@ -1249,12 +1249,12 @@ undefined DAT_180bf99a0;
  * 设置虚拟地址到物理地址的映射
  */
 void InitializeMemoryMapping;
-undefined DAT_180bf99a8;
+void* MemoryMappingHandle;
 void* MemoryMappingConfigData;
-undefined DAT_180bf99f0;
-undefined DAT_180bf99f8;
-undefined DAT_180bf9a00;
-undefined DAT_180bf9a08;
+void* MemoryMappingTable;
+void* MemoryMappingStatus;
+void* MemoryMappingConfig;
+void* MemoryMappingBuffer;
 
  void SetupMemoryPaging;
 /**
@@ -1559,7 +1559,7 @@ undefined InvalidateCacheTable;
  * 设置内存段大小和分段管理
  */
 void InitializeMemorySegmentation;
-undefined DAT_180bfa230;
+void* MemorySegmentDescriptor;
 undefined DAT_180bfa238;
 undefined DAT_180bfa240;
 undefined DAT_180bfa248;
@@ -5092,14 +5092,14 @@ void ExecuteSystemCriticalShutdown(void)
 
 
 
- void ExecuteNonReturningFunctionAtLocation180d49fe0(void)
+ void ExecuteSystemForcedTermination(void)
 /**
- * @brief 执行位于0x180d49fe0的不返回函数
+ * @brief 执行系统强制终止
  * 
- * 该函数调用位于0x180d49fe0地址的函数，该函数不会返回
- * 用于处理特殊情况下的程序退出
+ * 该函数负责执行系统的强制终止操作，用于处理无法恢复的系统错误
+ * 这是一个不会返回的函数，调用后程序将立即终止
  */
-void ExecuteNonReturningFunctionAtLocation180d49fe0(void)
+void ExecuteSystemForcedTermination(void)
 
 {
                     // WARNING: Subroutine does not return
@@ -83533,8 +83533,7 @@ undefined4 InitializeNetworkBufferDataWithSecurity(undefined8 BufferHandle, long
 
 
 
- void FUN_180941486(undefined8 param_1,longlong param_2)
-/**
+ /**
  * @brief 执行条件性资源初始化
  * 
  * 该函数根据参数状态决定是否执行资源初始化操作
@@ -83556,11 +83555,18 @@ void ExecuteConditionalResourceInitialization(undefined8 ResourceHandle, longlon
 
 
 
- void FUN_1809414b5(undefined8 *param_1)
-void FUN_1809414b5(undefined8 *param_1)
+ /**
+ * @brief 触发资源句柄操作
+ * 
+ * 该函数接收一个资源句柄指针，并执行相应的资源操作
+ * 通过调用内部函数来处理具体的资源管理任务
+ * 
+ * @param ResourceHandlePtr 指向资源句柄的指针
+ */
+void TriggerResourceHandleOperation(undefined8 *ResourceHandlePtr)
 
 {
-  func_0x0001808fd024(*(undefined4 *)*param_1);
+  func_0x0001808fd024(*(undefined4 *)*ResourceHandlePtr);
   return;
 }
 
@@ -84546,7 +84552,7 @@ void FUN_1809421a0(void)
 void FUN_1809421c0(void)
 
 {
-  _DAT_180bf99f0 = &UNK_18098bcb0;
+  MemoryMappingTable = &UNK_18098bcb0;
   return;
 }
 

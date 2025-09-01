@@ -363,6 +363,17 @@ void* SystemEventCallbackPointer;     // FUN_180262b00
 void* SystemInitializationCallbackA;  // FUN_18025c000
 void* SystemInitializationCallbackB;  // FUN_18025d270
 void* SystemDebugCallback;            // FUN_18025e330
+
+// 系统全局数据指针
+void* SystemGlobalDataPointerA;        // UNK_180a3c3e0
+void* SystemGlobalDataPointerB;        // UNK_1809fcc58
+void* SystemGlobalDataPointerC;        // UNK_1809fcc28
+
+// 系统配置数据指针
+void* SystemConfigDataPointerA;        // _DAT_180bf52c0
+void* SystemConfigDataPointerB;        // _DAT_180bf52d8
+void* SystemConfigDataPointerC;        // _DAT_180bf52c8
+void* SystemConfigDataPointerD;        // _DAT_180bf52d0
 /**
  * @brief 系统内存分配器函数
  * 
@@ -1292,10 +1303,10 @@ int InitializeSystemGlobalVariables(void)
   SystemInitializationStatusD = 0;
   SystemInitializationStatusE = 0;
   uRam0000000180bf5298 = 0;
-  _DAT_180bf52a0 = 3;
-  _DAT_180bf52c0 = &UNK_180a3c3e0;
-  _DAT_180bf52d8 = 0;
-  _DAT_180bf52c8 = 0;
+  SystemInitializationStatusF = 3;
+  SystemConfigDataPointerA = &SystemGlobalDataPointerA;
+  SystemConfigDataPointerB = 0;
+  SystemConfigDataPointerC = 0;
   _DAT_180bf52d0 = 0;
   
   initializationStatus = 0;
@@ -2334,7 +2345,7 @@ void InitializeSystemDataTableStructureI(void)
   systemDataTable = (longlong *)GetSystemRootPointer();
   systemRootNode = (undefined8 *)*systemDataTable;
   systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
-  pcStackX_18 = FUN_180262b00;
+  pcStackX_18 = SystemEventCallbackPointer;
   systemPreviousNode = systemRootNode;
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
@@ -2498,7 +2509,7 @@ void InitializeSystemDataStructure(void)
   systemTablePointer = (longlong *)GetSystemRootPointer();
   systemRootPointer = (undefined8 *)*systemTablePointer;
   nodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
-  initializationFunction = (undefined8 *)FUN_18025c000;
+  initializationFunction = (undefined8 *)SystemInitializationCallbackA;
   previousNode = systemRootPointer;
   currentNode = (undefined8 *)systemRootPointer[1];
   while (nodeFlag == '\0') {
@@ -2600,7 +2611,7 @@ void InitializeSystemNodeTree(void)
   systemDataTable = (longlong *)GetSystemRootPointer();
   systemRootNode = (undefined8 *)*systemDataTable;
   systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
-  pcStackX_18 = FUN_18025d270;
+  pcStackX_18 = SystemInitializationCallbackB;
   systemPreviousNode = systemRootNode;
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
@@ -3026,7 +3037,7 @@ void InitializeSystemNodeTree(void)
   systemDataTable = (longlong *)GetSystemRootPointer();
   systemRootNode = (undefined8 *)*systemDataTable;
   systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
-  pcStackX_18 = FUN_18025d270;
+  pcStackX_18 = SystemInitializationCallbackB;
   systemPreviousNode = systemRootNode;
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
@@ -3415,7 +3426,7 @@ void InitializeSystemMemoryAllocator(void)
   systemDataTable = (longlong *)GetSystemRootPointer();
   systemRootNode = (undefined8 *)*systemDataTable;
   systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
-  pcStackX_18 = FUN_18025d270;
+  pcStackX_18 = SystemInitializationCallbackB;
   systemPreviousNode = systemRootNode;
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
@@ -3700,7 +3711,7 @@ void InitializeSystemDebugManager(void)
   systemDataTable = (longlong *)GetSystemRootPointer();
   systemRootNode = (undefined8 *)*systemDataTable;
   systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
-  debugInitializationCallback = FUN_18025e330;
+  debugInitializationCallback = SystemDebugCallback;
   systemPreviousNode = systemRootNode;
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
@@ -3928,7 +3939,7 @@ void InitializeSystemDataTableStructureA(void)
   systemDataTable = (longlong *)GetSystemRootPointer();
   systemRootNode = (undefined8 *)*systemDataTable;
   systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
-  pcStackX_18 = FUN_18025d270;
+  pcStackX_18 = SystemInitializationCallbackB;
   systemPreviousNode = systemRootNode;
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
@@ -5788,7 +5799,7 @@ void InitializeSystemNodeTreeProcessor(void)
   systemDataTable = (longlong *)GetSystemRootPointer();
   systemRootNode = (undefined8 *)*systemDataTable;
   systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
-  pcStackX_18 = FUN_18025d270;
+  pcStackX_18 = SystemInitializationCallbackB;
   systemPreviousNode = systemRootNode;
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
@@ -6194,7 +6205,7 @@ void InitializeSystemCommunicationManager(void)
   systemDataTable = (longlong *)GetSystemRootPointer();
   systemRootNode = (undefined8 *)*systemDataTable;
   systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
-  pcStackX_18 = FUN_18025d270;
+  pcStackX_18 = SystemInitializationCallbackB;
   systemPreviousNode = systemRootNode;
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
@@ -6896,7 +6907,7 @@ void InitializeSystemEventDispatcher(void)
   systemDataTable = (longlong *)GetSystemRootPointer();
   systemRootNode = (undefined8 *)*systemDataTable;
   systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
-  pcStackX_18 = FUN_18025d270;
+  pcStackX_18 = SystemInitializationCallbackB;
   systemPreviousNode = systemRootNode;
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
@@ -7186,7 +7197,7 @@ void InitializeSystemProcessManager(void)
   systemDataTable = (longlong *)GetSystemRootPointer();
   systemRootNode = (undefined8 *)*systemDataTable;
   systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
-  pcStackX_18 = FUN_180262b00;
+  pcStackX_18 = SystemEventCallbackPointer;
   systemPreviousNode = systemRootNode;
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
@@ -7398,7 +7409,7 @@ void InitializeSystemMemoryManager(void)
   systemDataTable = (longlong *)GetSystemRootPointer();
   systemRootNode = (undefined8 *)*systemDataTable;
   systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
-  pcStackX_18 = FUN_18025d270;
+  pcStackX_18 = SystemInitializationCallbackB;
   systemPreviousNode = systemRootNode;
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
@@ -7755,7 +7766,7 @@ void InitializeSystemConfigurationManager(void)
   systemDataTable = (longlong *)GetSystemRootPointer();
   systemRootNode = (undefined8 *)*systemDataTable;
   systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
-  pcStackX_18 = FUN_180262b00;
+  pcStackX_18 = SystemEventCallbackPointer;
   systemPreviousNode = systemRootNode;
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
@@ -8010,7 +8021,7 @@ void InitializeSystemDriverManager(void)
   systemDataTable = (longlong *)GetSystemRootPointer();
   systemRootNode = (undefined8 *)*systemDataTable;
   systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
-  pcStackX_18 = FUN_18025d270;
+  pcStackX_18 = SystemInitializationCallbackB;
   systemPreviousNode = systemRootNode;
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
@@ -8471,7 +8482,7 @@ void InitializeSystemMemoryNode(void)
   systemDataTable = (longlong *)GetSystemRootPointer();
   systemRootNode = (undefined8 *)*systemDataTable;
   systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
-  pcStackX_18 = FUN_18025d270;
+  pcStackX_18 = SystemInitializationCallbackB;
   systemPreviousNode = systemRootNode;
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
@@ -9737,7 +9748,7 @@ void InitializeSystemStringProcessorH(void)
   systemDataTable = (longlong *)GetSystemRootPointer();
   systemRootNode = (undefined8 *)*systemDataTable;
   systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
-  pcStackX_18 = FUN_18025d270;
+  pcStackX_18 = SystemInitializationCallbackB;
   systemPreviousNode = systemRootNode;
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
@@ -10087,7 +10098,7 @@ void InitializeSystemStringProcessorO(void)
   systemDataTable = (longlong *)GetSystemRootPointer();
   systemRootNode = (undefined8 *)*systemDataTable;
   systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
-  pcStackX_18 = FUN_18025d270;
+  pcStackX_18 = SystemInitializationCallbackB;
   systemPreviousNode = systemRootNode;
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
@@ -10437,7 +10448,7 @@ void InitializeSystemStringProcessorV(void)
   systemDataTable = (longlong *)GetSystemRootPointer();
   systemRootNode = (undefined8 *)*systemDataTable;
   systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
-  pcStackX_18 = FUN_18025d270;
+  pcStackX_18 = SystemInitializationCallbackB;
   systemPreviousNode = systemRootNode;
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
@@ -10787,7 +10798,7 @@ void InitializeSystemMemoryManagerC(void)
   systemDataTable = (longlong *)GetSystemRootPointer();
   systemRootNode = (undefined8 *)*systemDataTable;
   systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
-  pcStackX_18 = FUN_18025d270;
+  pcStackX_18 = SystemInitializationCallbackB;
   systemPreviousNode = systemRootNode;
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
@@ -12395,7 +12406,7 @@ void InitializeSystemDataNodeManager(void)
   systemDataTable = (longlong *)GetSystemRootPointer();
   systemRootNode = (undefined8 *)*systemDataTable;
   systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
-  pcStackX_18 = FUN_18025d270;
+  pcStackX_18 = SystemInitializationCallbackB;
   systemPreviousNode = systemRootNode;
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
@@ -12861,7 +12872,7 @@ void InitializeSystemSecurityNodeManager(void)
   systemDataTable = (longlong *)GetSystemRootPointer();
   systemRootNode = (undefined8 *)*systemDataTable;
   systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
-  pcStackX_18 = FUN_18025d270;
+  pcStackX_18 = SystemInitializationCallbackB;
   systemPreviousNode = systemRootNode;
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
@@ -13258,7 +13269,7 @@ void InitializeSystemEventManagerJ(void)
   systemDataTable = (longlong *)GetSystemRootPointer();
   systemRootNode = (undefined8 *)*systemDataTable;
   systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
-  pcStackX_18 = FUN_18025d270;
+  pcStackX_18 = SystemInitializationCallbackB;
   systemPreviousNode = systemRootNode;
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
@@ -15290,7 +15301,7 @@ void InitializeSystemSubcomponentB(void)
   systemDataTable = (longlong *)GetSystemRootPointer();
   systemRootNode = (undefined8 *)*systemDataTable;
   systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
-  pcStackX_18 = FUN_18025d270;
+  pcStackX_18 = SystemInitializationCallbackB;
   systemPreviousNode = systemRootNode;
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
@@ -16319,7 +16330,7 @@ void FUN_1800426d0(void)
   systemDataTable = (longlong *)GetSystemRootPointer();
   systemRootNode = (undefined8 *)*systemDataTable;
   systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
-  pcStackX_18 = FUN_18025d270;
+  pcStackX_18 = SystemInitializationCallbackB;
   systemPreviousNode = systemRootNode;
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
