@@ -18867,19 +18867,19 @@ void ProcessSystemStringCopy(long long targetBuffer,long long sourceString)
  * 并设置相应的结束标志。
  * 
  * @param SystemResourcePointer 目标缓冲区指针
- * @param param_2 源数据指针
- * @param param_3 要复制的字节数
+ * @param SourceDataPointer 源数据指针
+ * @param BytesToCopy 要复制的字节数
  * @note 这是系统内存处理的重要组成部分，确保内存复制的安全性
  */
-void ProcessSystemMemoryCopy(long long SystemResourcePointer,void* param_2,int param_3)
+void ProcessSystemMemoryCopy(long long SystemResourcePointer,void* SourceDataPointer,int BytesToCopy)
 
 {
-  if (param_3 + 1 < 0x1000) {
+  if (BytesToCopy + 1 < 0x1000) {
                     // WARNING: Subroutine does not return
-    memcpy(*(uint8_t **)(SystemResourcePointer + 8),param_2,(long long)param_3);
+    memcpy(*(uint8_t **)(SystemResourcePointer + 8),SourceDataPointer,(long long)BytesToCopy);
   }
-  **(uint8_t **)(targetBuffer + 8) = 0;
-  *(uint32_t *)(targetBuffer + 0x10) = 0;
+  **(uint8_t **)(SystemResourcePointer + 8) = 0;
+  *(uint32_t *)(SystemResourcePointer + 0x10) = 0;
   return;
 }
 
@@ -20019,41 +20019,41 @@ void InitializeSystemController(long long *SystemResourcePointer,void* *SystemCo
 
 {
   long long *PrimaryResourcePointer;
-  long long *plStackX_8;
-  void** systemPreviousNode;
-  long long *plStackX_18;
-  long long **pplStackX_20;
-  uint32_t systemStatusFlag;
-  void* systemMemoryHandle;
+  long long *ResourceStackPointer;
+  void** SystemPreviousNode;
+  long long *MemoryStackPointer;
+  long long **StackReferencePointer;
+  uint32_t SystemStatusFlag;
+  void* SystemMemoryHandle;
   
-  systemMemoryHandle = 0xfffffffffffffffe;
-  systemStatusFlag = 0;
-  plStackX_8 = SystemResourcePointer;
-  puStackX_10 = param_2;
+  SystemMemoryHandle = 0xfffffffffffffffe;
+  SystemStatusFlag = 0;
+  ResourceStackPointer = SystemResourcePointer;
+  puStackX_10 = SystemConfigurationPointer;
   FUN_180047fc0();
-  PrimaryResourcePointer = (long long *)SystemMemoryAllocationFunction(SystemMemoryAllocationTemplate,200,8,3,systemStatusFlag,systemMemoryHandle);
-  plStackX_8 = PrimaryResourcePointer;
+  PrimaryResourcePointer = (long long *)SystemMemoryAllocationFunction(SystemMemoryAllocationTemplate,200,8,3,SystemStatusFlag,SystemMemoryHandle);
+  ResourceStackPointer = PrimaryResourcePointer;
   InitializeSystemDataTableManager(PrimaryResourcePointer);
   *PrimaryResourcePointer = (long long)&SystemDataTableTemplate;
   PrimaryResourcePointer[0x18] = (long long)&UNK_180046dd0;
-  plStackX_18 = PrimaryResourcePointer;
+  MemoryStackPointer = PrimaryResourcePointer;
   (**(code **)(*PrimaryResourcePointer + 0x28))(PrimaryResourcePointer);
-  systemMemoryHandle = SystemAllocationFlagsTemplate;
-  pplStackX_20 = &plStackX_8;
-  plStackX_8 = PrimaryResourcePointer;
+  SystemMemoryHandle = SystemAllocationFlagsTemplate;
+  StackReferencePointer = &ResourceStackPointer;
+  ResourceStackPointer = PrimaryResourcePointer;
   (**(code **)(*PrimaryResourcePointer + 0x28))(PrimaryResourcePointer);
-  SystemManagerInitialize(systemMemoryHandle,&plStackX_8);
+  SystemManagerInitialize(SystemMemoryHandle,&ResourceStackPointer);
   (**(code **)(*PrimaryResourcePointer + 0x38))(PrimaryResourcePointer);
   SystemMemoryAllocationCounter = (long long)*(int *)(SystemStatusFlagsPointer + 0x224);
-  FUN_180627be0(&DAT_180bf52c0,param_2);
-  *param_2 = &SystemGlobalDataReference;
-  if (param_2[1] != 0) {
+  FUN_180627be0(&DAT_180bf52c0,SystemConfigurationPointer);
+  *SystemConfigurationPointer = &SystemGlobalDataReference;
+  if (SystemConfigurationPointer[1] != 0) {
                     // WARNING: Subroutine does not return
     SystemCleanupFunction();
   }
-  param_2[1] = 0;
-  *(uint32_t *)(param_2 + 3) = 0;
-  *param_2 = &SystemMemoryAllocatorReference;
+  SystemConfigurationPointer[1] = 0;
+  *(uint32_t *)(SystemConfigurationPointer + 3) = 0;
+  *SystemConfigurationPointer = &SystemMemoryAllocatorReference;
   return;
 }
 
