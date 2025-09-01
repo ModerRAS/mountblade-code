@@ -3492,8 +3492,15 @@ void InitializeSystemConfigurationManager(void)
 
 
 
-// 函数: void FUN_18002fe70(void)
-void FUN_18002fe70(void)
+/**
+ * @brief 初始化系统资源管理器
+ * 
+ * 初始化游戏引擎的资源管理器，设置系统资源的基础设施。
+ * 该函数负责创建资源管理的基本结构，为系统资源的存储和管理做准备。
+ * 
+ * @note 该函数在系统初始化阶段被调用，用于建立资源管理的基础
+ */
+void InitializeSystemResourceManager(void)
 
 {
   char systemNodeFlag;
@@ -3542,8 +3549,15 @@ void FUN_18002fe70(void)
 
 
 
-// 函数: void FUN_18002ff70(void)
-void FUN_18002ff70(void)
+/**
+ * @brief 初始化系统性能监控器
+ * 
+ * 初始化游戏引擎的性能监控器，设置性能监控和统计的基础设施。
+ * 该函数负责创建性能监控的基本结构，为系统性能的监控和统计做准备。
+ * 
+ * @note 该函数在系统初始化阶段被调用，用于建立性能监控的基础
+ */
+void InitializeSystemPerformanceMonitor(void)
 
 {
   char systemNodeFlag;
