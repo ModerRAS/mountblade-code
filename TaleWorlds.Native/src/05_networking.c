@@ -3768,7 +3768,7 @@ int ProcessNetworkPacketWithBuffer(longlong connectionContext, longlong packetDa
   encryptionFlag = *(NetworkByte *)(connectionContext + 0x1c);
   connectionState = *(NetworkStatus *)(connectionContext + 0x10);
   primaryBuffer = *(NetworkStatus *)(connectionContext + 0x18);
-  firstProcessingOffset = ProcessNetworkBufferData(packetData, dataSize, &UNK_1809840a0);
+  firstProcessingOffset = ProcessNetworkBufferData(packetData, dataSize, &NetworkFirstBufferTemplate);
   secondProcessingOffset = ProcessNetworkBufferData(packetData + firstProcessingOffset, dataSize - firstProcessingOffset, &g_NetworkBufferDataTemplate);
   firstProcessingOffset = firstProcessingOffset + secondProcessingOffset;
   secondProcessingOffset = ProcessNetworkBufferCopy(firstProcessingOffset + packetData, dataSize - firstProcessingOffset, connectionState);
@@ -15568,7 +15568,7 @@ NetworkHandle ExecuteNetworkConnectionValidation(longlong *connectionContext,int
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-NetworkHandle FUN_18084df0d(NetworkHandle connectionContext,int packetData)
+NetworkHandle InitializeNetworkConnectionBuffer(NetworkHandle connectionContext,int packetData)
 
 {
   int networkStatus1;
@@ -15731,7 +15731,7 @@ NetworkHandle ValidateNetworkConnectionContext(NetworkHandle connectionContext)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-NetworkHandle FUN_18084e00c(void)
+NetworkHandle GetNetworkConnectionIdleState(void)
 
 {
   longlong unaff_RBP;
@@ -15751,7 +15751,7 @@ NetworkHandle FUN_18084e00c(void)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-NetworkHandle FUN_18084e01e(void)
+NetworkHandle GetNetworkConnectionActiveState(void)
 
 {
   longlong unaff_RBP;
@@ -15769,7 +15769,7 @@ NetworkHandle FUN_18084e01e(void)
 
 
 
-NetworkHandle FUN_18084e065(void)
+NetworkHandle GetNetworkConnectionPendingState(void)
 
 {
   return 0x26;
