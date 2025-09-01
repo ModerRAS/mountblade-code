@@ -14765,7 +14765,7 @@ void engine_handle_system_notification(longlong engine_data_structure_ptr,uint64
   void* pengine_stack_uint_320;
   uint32 engine_stack_uint_318;
   uint64 engine_stack_uint_308;
-  char cStack_300;
+  char engine_stack_char_300;
   char engine_stack_char_array_2ff [7];
   longlong *pengine_stack_long_2f8;
   uint32 engine_stack_uint_2f0;
