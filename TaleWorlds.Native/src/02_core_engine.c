@@ -14602,7 +14602,7 @@ void engine_process_system_message(longlong engine_engine_param_1)
   engine_temp_uint2 = engine_temp_uint1;
   if (lVar7 / 0x1c != 0) {
     do {
-      FUN_1801edeb0(lVar7,engine_temp_uint2 * 0x1c + *(longlong *)(engine_data_pointer_50 + 0x10));
+      engine_process_memory_allocation(lVar7,engine_temp_uint2 * 0x1c + *(longlong *)(engine_data_pointer_50 + 0x10));
       engine_temp_uint0 = (int)engine_temp_uint1 + 1;
       engine_temp_uint1 = (ulonglong)engine_temp_uint0;
       lVar7 = *(longlong *)(engine_data_pointer_50 + 0x18) - *(longlong *)(engine_data_pointer_50 + 0x10);
@@ -14693,8 +14693,8 @@ void engine_handle_system_notification(longlong engine_engine_param_1,uint64 eng
   _engine_render_buffer_ptr = (longlong)(engine_temp_float_15 * 100000.0);
   _engine_shader_buffer_ptr = _engine_shader_buffer_ptr + _engine_render_buffer_ptr;
   _engine_texture_buffer_ptr = engine_temp_float_15;
-  engine_temp_uint6 = FUN_180091020();
-  engine_temp_uint6 = FUN_1801ed510(engine_temp_uint6,engine_engine_param_2);
+  engine_temp_uint6 = engine_get_system_handle();
+  engine_temp_uint6 = engine_configure_system_handle(engine_temp_uint6,engine_engine_param_2);
   engine_temp_char_flag = FUN_180160500(engine_temp_uint6,0x52);
   engine_temp_char_flag_2 = FUN_180160500(1,0x51);
   engine_temp_long2 = 0xe0;

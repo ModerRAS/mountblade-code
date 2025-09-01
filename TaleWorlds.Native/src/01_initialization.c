@@ -517,7 +517,7 @@ void* system_initialize_memory;
 
 void* system_initialize_graphics;
 
-void* system_internal_functioninitialize_network;
+void* system_initialize_network;
 void* system_graphics_data_primary;
 void* system_graphics_buffer_primary;
 void* system_graphics_buffer_secondary;
@@ -541,7 +541,7 @@ void* system_data_system_ptr_vargraphics_p;
 void* system_data_system_ptr_vargraphics_q;
 void* system_data_system_ptr_vargraphics_r;
 
-void* system_internal_functioninitialize_audio;
+void* system_initialize_audio;
 void* system_audio_primary_device;
 void* system_audio_secondary_device;
 void* system_audio_tertiary_device;
@@ -644,13 +644,13 @@ void* system_resource_tertiary_handle;
 void* system_resource_quaternary_handle;
 void* system_resource_quinary_handle;
 void* system_resource_senary_handle;
-void* system_resource_ptr_ca;
-void* system_resource_ptr_cb;
-void* system_resource_ptr_cc;
-void* system_resource_ptr_cd;
-void* system_resource_ptr_ce;
-void* system_resource_ptr_cf;
-void* system_resource_ptr_cg;
+void* system_resource_primary_stream;
+void* system_resource_secondary_stream;
+void* system_resource_tertiary_stream;
+void* system_resource_quaternary_stream;
+void* system_resource_quinary_stream;
+void* system_resource_senary_stream;
+void* system_resource_septenary_stream;
 void* system_resource_tertiary_data;
 void* system_resource_quaternary_data;
 void* system_resource_quinary_data;
@@ -658,45 +658,45 @@ void* system_resource_senary_data;
 void* system_resource_septenary_data;
 
 void* system_internal_functioninitialize_resource;
-void* system_resource_ptr_ch;
+void* system_resource_octonary_stream;
 void* system_resource_octonary_data;
-void* system_resource_ptr_ci;
-void* system_resource_ptr_cj;
-void* system_resource_ptr_ck;
-void* system_resource_ptr_cl;
-void* system_resource_ptr_cm;
-void* system_resource_ptr_cn;
-void* system_resource_ptr_co;
+void* system_resource_nonary_stream;
+void* system_resource_denary_stream;
+void* system_resource_primary_queue;
+void* system_resource_secondary_queue;
+void* system_resource_tertiary_queue;
+void* system_resource_quaternary_queue;
+void* system_resource_quinary_queue;
 void* system_resource_nonary_data;
-void* system_resource_ptr_cp;
-void* system_resource_ptr_cq;
-void* system_resource_ptr_cr;
-void* system_resource_ptr_cs;
-void* system_resource_ptr_ct;
-void* system_resource_ptr_cu;
+void* system_resource_senary_queue;
+void* system_resource_septenary_queue;
+void* system_resource_octonary_queue;
+void* system_resource_nonary_queue;
+void* system_resource_denary_queue;
+void* system_resource_primary_stack;
 void* system_resource_denary_data;
-void* system_resource_ptr_cv;
-void* system_resource_ptr_cw;
-void* system_resource_ptr_cx;
-void* system_resource_ptr_cy;
-void* system_resource_ptr_cz;
-void* system_resource_ptr_da;
-void* system_resource_ptr_db;
-void* system_resource_ptr_dc;
-void* system_resource_ptr_dd;
-void* system_resource_ptr_de;
-void* system_resource_ptr_df;
-void* system_resource_ptr_dg;
-void* system_resource_ptr_dh;
-void* system_resource_ptr_di;
-void* system_resource_ptr_dj;
-void* system_resource_ptr_dk;
-void* system_resource_ptr_dl;
-void* system_resource_ptr_dm;
-void* system_resource_ptr_dn;
-void* system_resource_ptr_do;
-void* system_resource_ptr_dp;
-void* system_resource_ptr_dq;
+void* system_resource_secondary_stack;
+void* system_resource_tertiary_stack;
+void* system_resource_quaternary_stack;
+void* system_resource_quinary_stack;
+void* system_resource_senary_stack;
+void* system_resource_primary_lock;
+void* system_resource_secondary_lock;
+void* system_resource_tertiary_lock;
+void* system_resource_quaternary_lock;
+void* system_resource_quinary_lock;
+void* system_resource_senary_lock;
+void* system_resource_septenary_lock;
+void* system_resource_octonary_lock;
+void* system_resource_nonary_lock;
+void* system_resource_denary_lock;
+void* system_resource_primary_mutex;
+void* system_resource_secondary_mutex;
+void* system_resource_tertiary_mutex;
+void* system_resource_quaternary_mutex;
+void* system_resource_quinary_mutex;
+void* system_resource_senary_mutex;
+void* system_resource_septenary_mutex;
 void* system_resource_ptr_dr;
 void* system_resource_ptr_ds;
 void* system_resource_ptr_dt;
@@ -15385,7 +15385,7 @@ void system_handle_bone_transforms_3(void)
 
 
 
-uint8_t * system_internal_functioninitialize_network(uint8_t *system_context_ptr)
+uint8_t * system_initialize_network_manager(uint8_t *system_context_ptr)
 
 {
   *system_context_ptr = &system_null_ptr;
@@ -17201,7 +17201,7 @@ void system_manage_memory_arena_3(void)
 
 
 
-uint8_t * system_internal_functioninitialize_memory(uint8_t *system_context_ptr)
+uint8_t * system_initialize_memory_manager(uint8_t *system_context_ptr)
 
 {
   *system_context_ptr = &system_null_ptr;
@@ -17343,7 +17343,7 @@ void system_manage_worker_threads_3(void)
 
 
 
-uint8_t * system_internal_functioninitialize_subsystem(uint8_t *system_context_ptr)
+uint8_t * system_initialize_subsystem_core(uint8_t *system_context_ptr)
 
 {
   *system_context_ptr = &system_null_ptr;
@@ -17492,7 +17492,7 @@ void system_process_performance_reports_3(void)
 
 
 
-void system_internal_functioninitialize_main(uint8_t *system_context_ptr)
+void system_initialize_main_system(uint8_t *system_context_ptr)
 
 {
   *system_context_ptr = &system_null_ptr;
@@ -24598,7 +24598,7 @@ system_label:
 
 
 
-void system_internal_functioninitialize_graphics(int64_t system_context_ptr)
+void system_initialize_graphics_manager(int64_t system_context_ptr)
 
 {
   if (*(int64_t **)(system_context_ptr + 0x10) != (int64_t *)0x0) {
