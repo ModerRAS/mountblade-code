@@ -5046,8 +5046,7 @@ uint32_t ValidateAndExecuteSystemExit(void)
 
 
 
- void ExecuteSystemEmergencyExit(void)
-/**
+ /**
  * @brief 执行系统紧急退出
  * 
  * 该函数负责执行系统的紧急退出操作，用于处理不可恢复的错误情况
@@ -5063,8 +5062,7 @@ void ExecuteSystemEmergencyExit(void)
 
 
 
- void EmptyFunction(void)
-/**
+ /**
  * @brief 空函数
  * 
  * 该函数不执行任何操作，直接返回
@@ -84125,7 +84123,7 @@ uint8_t4 SystemConfigurationFlag;
   systemStatus = func_0x0001808fd8d4();
   if ((systemStatus != 0) && (systemState == '\0')) {
     LOCK();
-    _DAT_180c821d0 = 0;
+    void* SystemDataStructurePointer;
     UNLOCK();
   }
   return;
@@ -84147,7 +84145,7 @@ uint8_t4 SystemConfigurationFlag;
   systemStatus = func_0x0001808fd8d4();
   if ((systemStatus != 0) && (systemState == '\0')) {
     LOCK();
-    _DAT_180c821d0 = 0;
+    void* SystemDataStructurePointer;
     UNLOCK();
   }
   return;
