@@ -4024,7 +4024,7 @@ uint8_t ValidateAndProcessObjectHandle(int64_t objectHandle)
  * 该函数从RAX寄存器获取对象指针，验证其有效性并执行相应操作
  * 这是validateObjectHandleFromRegister函数的另一个版本
  */
-uint32_t validateObjectHandleFromRegisterV2(void)
+uint32_t ValidateObjectHandleFromRegisterV2(void)
 
 {
   int64_t registerValue;
@@ -20345,8 +20345,16 @@ void ResourceDataValidationProcessor(void)
 
 
 
- bd61(void)
-bd61(void)
+ /**
+ * @brief 空函数占位符 (地址: 0xbd61)
+ * 
+ * 这是一个空的占位符函数，仅用于保持程序结构完整性
+ * 通常用于反编译过程中无法识别的函数位置
+ * 
+ * @return 无返回值
+ * @note 此函数不执行任何操作
+ */
+void EmptyFunctionPlaceholderBd61(void)
 
 {
   return;
@@ -20613,8 +20621,16 @@ LAB_18089bfc7:
 
 
 
- c019(void)
-c019(void)
+ /**
+ * @brief 空函数占位符 (地址: 0xc019)
+ * 
+ * 这是一个空的占位符函数，仅用于保持程序结构完整性
+ * 通常用于反编译过程中无法识别的函数位置
+ * 
+ * @return 无返回值
+ * @note 此函数不执行任何操作
+ */
+void EmptyFunctionPlaceholderC019(void)
 
 {
   return;
@@ -23749,15 +23765,25 @@ d0a3(void)
 
 
 
- d0b0(int64_t objectContextParam,uint8_t validationContextParam)
-d0b0(int64_t objectContextParam,uint8_t validationContextParam)
+ /**
+ * @brief 处理对象上下文验证 (地址: 0xd0b0)
+ * 
+ * 该函数负责处理对象上下文的验证操作，包括资源表处理和验证
+ * 主要用于系统资源的初始化和验证流程
+ * 
+ * @param objectContextParam 对象上下文参数，包含需要处理的资源信息
+ * @param validationContextParam 验证上下文参数，用于控制验证过程
+ * @return 无返回值
+ * @note 此函数在系统初始化过程中被调用
+ */
+void ProcessObjectContextValidation(int64_t objectContextParam, uint8_t validationContextParam)
 
 {
-  int operationResult;
+  int64_t processResult;
   
-  integerValue1 = ProcessResourceTable(objectContextParam + 0xd8);
-  if (integerValue1 == 0) {
-    ValidateResourceTable(objectContextParam,validationContextParam);
+  processResult = ProcessResourceTable(objectContextParam + 0xd8);
+  if (processResult == 0) {
+    ValidateResourceTable(objectContextParam, validationContextParam);
   }
   return;
 }
@@ -31880,35 +31906,47 @@ void ReleaseAudioResourceLock(uint8_t objectContextParam,int64_t validationConte
 
 
 
-void Unwind_180902ab0(uint8_t objectContextParam,int64_t validationContextParam)
+/**
+ * @brief 异常处理资源验证和清理函数
+ * 
+ * 该函数负责在异常处理过程中验证和清理资源
+ * 检查资源状态，执行必要的清理操作，并在适当的时候调用系统清理处理器
+ * 
+ * @param objectContextParam 对象上下文参数，包含异常对象的上下文信息
+ * @param validationContextParam 验证上下文参数，用于访问和验证资源状态
+ * @return 无返回值
+ * @note 此函数在异常处理过程中自动调用
+ * @warning 如果资源引用计数降为0，将触发系统清理处理器
+ */
+void UnwindExceptionResourceValidator(uint8_t objectContextParam,int64_t validationContextParam)
 
 {
-  int *pintegerValue1;
+  int *presourceReferenceCount;
   uint8_t *pvalidationResult;
   int64_t resourceIndex;
-  uint64_t unsignedResult4;
+  uint64_t memoryAddressMask;
   
   pvalidationResult = *(uint8_t **)(*(int64_t *)(validationContextParam + 0x70) + 0x30);
   if (pvalidationResult == (uint8_t *)0x0) {
     return;
   }
-  unsignedResult4 = (uint64_t)pvalidationResult & 0xffffffffffc00000;
-  if (unsignedResult4 != 0) {
-    resourceIndex = unsignedResult4 + 0x80 + ((int64_t)pvalidationResult - unsignedResult4 >> 0x10) * 0x50;
+  memoryAddressMask = (uint64_t)pvalidationResult & 0xffffffffffc00000;
+  if (memoryAddressMask != 0) {
+    resourceIndex = memoryAddressMask + 0x80 + ((int64_t)pvalidationResult - memoryAddressMask >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
+    if ((*(void ***)(memoryAddressMask + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t *)(resourceIndex + 0x20);
       *(uint8_t **)(resourceIndex + 0x20) = pvalidationResult;
-      pintegerValue1 = (int *)(resourceIndex + 0x18);
-      *pintegerValue1 = *pintegerValue1 + -1;
-      if (*pintegerValue1 == 0) {
+      presourceReferenceCount = (int *)(resourceIndex + 0x18);
+      *presourceReferenceCount = *presourceReferenceCount + -1;
+      if (*presourceReferenceCount == 0) {
         SystemCleanupHandler();
         return;
       }
     }
     else {
-      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
-                          pvalidationResult,unsignedResult4,0xfffffffffffffffe);
+      ValidateMemoryAccess(memoryAddressMask,CONCAT71(0xff000000,*(void ***)(memoryAddressMask + 0x70) == &ExceptionList),
+                          pvalidationResult,memoryAddressMask,0xfffffffffffffffe);
     }
   }
   return;
@@ -31947,21 +31985,45 @@ void ClearAudioMixerState(uint8_t objectContextParam,int64_t validationContextPa
 
 
 
-void Unwind_180902af0(uint8_t objectContextParam,int64_t validationContextParam)
+/**
+ * @brief 异常处理进程清理函数
+ * 
+ * 该函数负责在异常处理过程中清理进程相关的资源
+ * 通过进程指针调用相应的清理函数来释放资源
+ * 
+ * @param objectContextParam 对象上下文参数，包含异常对象的上下文信息
+ * @param validationContextParam 验证上下文参数，用于访问进程指针
+ * @return 无返回值
+ * @note 此函数在异常处理过程中自动调用
+ * @warning 如果进程指针为空，函数将直接返回
+ */
+void UnwindProcessCleanupHandler(uint8_t objectContextParam,int64_t validationContextParam)
 
 {
-  int64_t *processPointer;
+  int64_t *pprocessContext;
   
-  plocalContextPointer = *(int64_t **)(*(int64_t *)(validationContextParam + 0x70) + 8);
-  if (plocalContextPointer != (int64_t *)0x0) {
-    (**(code **)(*plocalContextPointer + 0x38))();
+  pprocessContext = *(int64_t **)(*(int64_t *)(validationContextParam + 0x70) + 8);
+  if (pprocessContext != (int64_t *)0x0) {
+    (**(code **)(*pprocessContext + 0x38))();
   }
   return;
 }
 
 
 
-void Unwind_180902b00(uint8_t objectContextParam,int64_t validationContextParam)
+/**
+ * @brief 异常处理资源处理器注册函数
+ * 
+ * 该函数负责在异常处理过程中注册资源处理器
+ * 为系统内存处理器配置资源处理参数，确保资源能够被正确处理
+ * 
+ * @param objectContextParam 对象上下文参数，包含异常对象的上下文信息
+ * @param validationContextParam 验证上下文参数，用于访问资源处理器配置
+ * @return 无返回值
+ * @note 此函数在异常处理过程中自动调用
+ * @warning 资源处理器注册失败可能导致资源泄漏
+ */
+void UnwindResourceHandlerRegistration(uint8_t objectContextParam,int64_t validationContextParam)
 
 {
   RegisterResourceHandler(*(int64_t *)(validationContextParam + 0x70) + 0x18,0x28,0x10,SystemMemoryHandler);
@@ -31970,16 +32032,29 @@ void Unwind_180902b00(uint8_t objectContextParam,int64_t validationContextParam)
 
 
 
-void Unwind_180902b30(uint8_t objectContextParam,int64_t validationContextParam)
+/**
+ * @brief 异常处理资源表清理函数
+ * 
+ * 该函数负责在异常处理过程中清理资源表
+ * 遍历资源表中的每个资源项，调用资源清理函数，并在必要时触发系统紧急退出
+ * 
+ * @param objectContextParam 对象上下文参数，包含异常对象的上下文信息
+ * @param validationContextParam 验证上下文参数，用于访问资源表
+ * @return 无返回值
+ * @note 此函数在异常处理过程中自动调用
+ * @warning 如果资源表为空但存在异常情况，将触发系统紧急退出
+ */
+void UnwindResourceTableCleanupHandler(uint8_t objectContextParam,int64_t validationContextParam)
 
 {
   int64_t loopCounter;
   int64_t *presourceTable;
   int64_t resourceIndex;
+  int64_t resourceTableEnd;
   
   presourceTable = *(int64_t **)(validationContextParam + 0x40);
-  localContextPointer = presourceTable[1];
-  for (resourceIndex = *presourceTable; resourceIndex != localContextPointer; resourceIndex = resourceIndex + 0x48) {
+  resourceTableEnd = presourceTable[1];
+  for (resourceIndex = *presourceTable; resourceIndex != resourceTableEnd; resourceIndex = resourceIndex + 0x48) {
     CleanupResourceHandle(resourceIndex);
   }
   if (*presourceTable == 0) {
@@ -32011,22 +32086,34 @@ void ResetNetworkConnectionState(uint8_t objectContextParam,int64_t validationCo
 
 
 
-void Unwind_180902b60(uint8_t objectContextParam,int64_t validationContextParam)
+/**
+ * @brief 异常处理批量资源释放函数
+ * 
+ * 该函数负责在异常处理过程中批量释放资源
+ * 遍历资源数组，对每个非空资源执行释放操作，并在必要时触发系统紧急退出
+ * 
+ * @param objectContextParam 对象上下文参数，包含异常对象的上下文信息
+ * @param validationContextParam 验证上下文参数，用于访问资源索引和计数
+ * @return 无返回值
+ * @note 此函数在异常处理过程中自动调用
+ * @warning 如果资源数量大于1且存在循环计数器，将触发系统紧急退出
+ */
+void UnwindBatchResourceReleaseHandler(uint8_t objectContextParam,int64_t validationContextParam)
 
 {
   int64_t loopCounter;
   int64_t resourceTable;
   int64_t resourceIndex;
-  uint64_t unsignedResult4;
-  uint64_t unsignedValue5;
+  uint64_t resourceCount;
+  uint64_t currentIndex;
   
   resourceIndex = *(int64_t *)(validationContextParam + 0x40);
-  unsignedResult4 = *(uint64_t *)(resourceIndex + 0x10);
+  resourceCount = *(uint64_t *)(resourceIndex + 0x10);
   loopCounter = *(int64_t *)(resourceIndex + 8);
-  unsignedValue5 = 0;
-  if (unsignedResult4 != 0) {
+  currentIndex = 0;
+  if (resourceCount != 0) {
     do {
-      resourceTable = *(int64_t *)(localContextPointer + unsignedValue5 * 8);
+      resourceTable = *(int64_t *)(localContextPointer + currentIndex * 8);
       if (resourceTable != 0) {
         if (*(int64_t **)(resourceTable + 0x10) != (int64_t *)0x0) {
           (**(code **)(**(int64_t **)(resourceTable + 0x10) + 0x38))();
@@ -32034,13 +32121,13 @@ void Unwind_180902b60(uint8_t objectContextParam,int64_t validationContextParam)
                     // WARNING: Subroutine does not return
         ReleaseResourceHandle(resourceTable);
       }
-      *(uint8_t *)(localContextPointer + unsignedValue5 * 8) = 0;
-      unsignedValue5 = unsignedValue5 + 1;
-    } while (unsignedValue5 < unsignedResult4);
-    unsignedResult4 = *(uint64_t *)(resourceIndex + 0x10);
+      *(uint8_t *)(localContextPointer + currentIndex * 8) = 0;
+      currentIndex = currentIndex + 1;
+    } while (currentIndex < resourceCount);
+    resourceCount = *(uint64_t *)(resourceIndex + 0x10);
   }
   *(uint8_t *)(resourceIndex + 0x18) = 0;
-  if ((1 < unsignedResult4) && (*(int64_t *)(resourceIndex + 8) != 0)) {
+  if ((1 < resourceCount) && (*(int64_t *)(resourceIndex + 8) != 0)) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
@@ -32049,22 +32136,34 @@ void Unwind_180902b60(uint8_t objectContextParam,int64_t validationContextParam)
 
 
 
-void Unwind_180902b70(uint8_t objectContextParam,int64_t validationContextParam)
+/**
+ * @brief 异常处理资源释放确认函数
+ * 
+ * 该函数负责在异常处理过程中确认资源释放操作
+ * 与批量资源释放函数类似，但用于不同的上下文环境
+ * 
+ * @param objectContextParam 对象上下文参数，包含异常对象的上下文信息
+ * @param validationContextParam 验证上下文参数，用于访问资源索引和计数
+ * @return 无返回值
+ * @note 此函数在异常处理过程中自动调用
+ * @warning 如果资源数量大于1且存在循环计数器，将触发系统紧急退出
+ */
+void UnwindResourceReleaseConfirmation(uint8_t objectContextParam,int64_t validationContextParam)
 
 {
   int64_t loopCounter;
   int64_t resourceTable;
   int64_t resourceIndex;
-  uint64_t unsignedResult4;
-  uint64_t unsignedValue5;
+  uint64_t resourceCount;
+  uint64_t currentIndex;
   
   resourceIndex = *(int64_t *)(validationContextParam + 0x40);
-  unsignedResult4 = *(uint64_t *)(resourceIndex + 0x10);
+  resourceCount = *(uint64_t *)(resourceIndex + 0x10);
   loopCounter = *(int64_t *)(resourceIndex + 8);
-  unsignedValue5 = 0;
-  if (unsignedResult4 != 0) {
+  currentIndex = 0;
+  if (resourceCount != 0) {
     do {
-      resourceTable = *(int64_t *)(localContextPointer + unsignedValue5 * 8);
+      resourceTable = *(int64_t *)(localContextPointer + currentIndex * 8);
       if (resourceTable != 0) {
         if (*(int64_t **)(resourceTable + 0x10) != (int64_t *)0x0) {
           (**(code **)(**(int64_t **)(resourceTable + 0x10) + 0x38))();
@@ -32072,13 +32171,13 @@ void Unwind_180902b70(uint8_t objectContextParam,int64_t validationContextParam)
                     // WARNING: Subroutine does not return
         ReleaseResourceHandle(resourceTable);
       }
-      *(uint8_t *)(localContextPointer + unsignedValue5 * 8) = 0;
-      unsignedValue5 = unsignedValue5 + 1;
-    } while (unsignedValue5 < unsignedResult4);
-    unsignedResult4 = *(uint64_t *)(resourceIndex + 0x10);
+      *(uint8_t *)(localContextPointer + currentIndex * 8) = 0;
+      currentIndex = currentIndex + 1;
+    } while (currentIndex < resourceCount);
+    resourceCount = *(uint64_t *)(resourceIndex + 0x10);
   }
   *(uint8_t *)(resourceIndex + 0x18) = 0;
-  if ((1 < unsignedResult4) && (*(int64_t *)(resourceIndex + 8) != 0)) {
+  if ((1 < resourceCount) && (*(int64_t *)(resourceIndex + 8) != 0)) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
@@ -32087,7 +32186,19 @@ void Unwind_180902b70(uint8_t objectContextParam,int64_t validationContextParam)
 
 
 
-void Unwind_180902b80(uint8_t objectContextParam,int64_t validationContextParam)
+/**
+ * @brief 异常处理系统资源处理器设置函数（上下文偏移0x20）
+ * 
+ * 该函数负责在异常处理过程中设置系统资源处理器
+ * 初始化资源处理器模板，并在必要时触发系统紧急退出
+ * 
+ * @param objectContextParam 对象上下文参数，包含异常对象的上下文信息
+ * @param validationContextParam 验证上下文参数，用于访问系统资源处理器配置
+ * @return 无返回值
+ * @note 此函数在异常处理过程中自动调用
+ * @warning 如果系统资源处理器已初始化，将触发系统紧急退出
+ */
+void UnwindSystemResourceProcessorSetup20(uint8_t objectContextParam,int64_t validationContextParam)
 
 {
   int64_t loopCounter;
