@@ -2270,10 +2270,10 @@ undefined SystemConfigurationDataStructureA;
 undefined SystemConfigurationDataStructureB;
 undefined SystemResourceTableTemplate;
 undefined SystemMemoryMapTemplate;
-undefined UNK_180a0b670;
-undefined UNK_1801bc6b0;
-undefined UNK_180a0b680;
-undefined UNK_180a0b690;
+undefined SystemThreadContextTemplate;
+undefined SystemSecurityContextTemplate;
+undefined SystemEventTableTemplate;
+undefined SystemNetworkTableTemplate;
 
  void AllocateMemoryBlock;
 /**
@@ -83697,8 +83697,7 @@ void InitializeGlobalModuleB(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void FUN_1809415d0(void)
-/**
+ /**
  * @brief 初始化系统数据结构A
  * 
  * 该函数负责初始化系统的数据结构A
