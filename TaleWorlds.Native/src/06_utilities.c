@@ -1515,9 +1515,9 @@ void ConfigureMemoryLogging;
  */
 void InitializeMemoryProfiling;
 undefined GlobalMemoryProfilerEnabled;
-undefined UNK_180a24340;
+undefined MemoryProfilerContext;
 undefined MemoryProfilingConfiguration;
-undefined UNK_180a24828;
+undefined MemoryProfilerDataBuffer;
 undefined SystemPerformanceCounter1;
 undefined SystemPerformanceCounter2;
 undefined SystemPerformanceCounter3;
@@ -1546,14 +1546,14 @@ undefined DAT_180bfa6e0;
 undefined DAT_180bfa6e8;
 undefined DAT_180bfa6f0;
 undefined DAT_180bfa6f8;
-undefined UNK_180942600;
-undefined UNK_180a0f168;
-undefined UNK_180a0f178;
-undefined UNK_180a0f188;
-undefined UNK_180a0f190;
-undefined UNK_180a0f5b8;
-undefined UNK_180a24c50;
-undefined UNK_180a24c60;
+undefined SystemResourceTable;
+undefined SystemResourceEntry1;
+undefined SystemResourceEntry2;
+undefined SystemResourceEntry3;
+undefined SystemResourceEntry4;
+undefined SystemResourceHandle;
+undefined SystemResourceContext;
+undefined SystemResourceConfiguration;
 undefined DAT_180bfa780;
 undefined DAT_180bfa788;
 undefined DAT_180bfa790;
@@ -17262,7 +17262,7 @@ undefined8 FUN_18089a7e0(longlong param_1,undefined8 *param_2)
 
 
 
-ulonglong FUN_18089a880(longlong param_1,undefined8 *param_2)
+ulonglong ValidateResourceHash(longlong resourceContext, undefined8 *resourceData)
 
 {
   ulonglong resourceHash;
@@ -17343,7 +17343,7 @@ ulonglong FUN_18089a880(longlong param_1,undefined8 *param_2)
 
 
 
-ulonglong FUN_18089a8b4(void)
+ulonglong ProcessResourceValidation(void)
 
 {
   ulonglong resourceHash;

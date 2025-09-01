@@ -8095,7 +8095,7 @@ void ProcessNetworkConnectionProtocolConfiguration(longlong connectionContext,Ne
 
 
 
-// 函数: void FUN_180848950(longlong connectionContext,NetworkHandle packetData)
+// 函数: void ProcessNetworkStatusConfiguration(longlong connectionContext,NetworkHandle packetData)
 /**
  * @brief 处理网络连接状态配置
  * 
@@ -8124,7 +8124,7 @@ void ConfigureNetworkConnectionStatus(longlong connectionContext,NetworkHandle p
 
 
 
-// 函数: void FUN_1808489a0(longlong connectionContext,NetworkHandle packetData)
+// 函数: void ProcessNetworkConnectionDataTransfer(longlong connectionContext,NetworkHandle packetData)
 /**
  * @brief 处理网络连接数据传输
  * 
@@ -8182,7 +8182,7 @@ void ProcessNetworkConnectionDataTransfer(longlong connectionContext,NetworkHand
 
 
 
-// 函数: void FUN_180848a20(longlong connectionContext,NetworkHandle packetData)
+// 函数: void ProcessNetworkBufferConfiguration(longlong connectionContext,NetworkHandle packetData)
 /**
  * @brief 处理网络连接缓冲区配置
  * 
@@ -8478,7 +8478,7 @@ void PerformNetworkConnectionPacketDualValidation(longlong connectionContext,Net
 
 
 
-// 函数: void FUN_180848d50(longlong *connectionContext,uint packetData,NetworkHandle dataSize)
+// 函数: void ProcessNetworkDataSizeManagement(longlong *connectionContext,uint packetData,NetworkHandle dataSize)
 /**
  * @brief 处理网络连接数据大小管理
  * 
@@ -8699,7 +8699,7 @@ NetworkContextValidationFailed:
 
 
 
-// 函数: void FUN_180848e82(void)
+// 函数: void ProcessNetworkPacketParser(void)
 /**
  * @brief 处理网络数据包解析和验证
  * 
@@ -9119,7 +9119,7 @@ NetworkHandle FinalizeNetworkConnectionHandler(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180849230(NetworkHandle connectionContext)
+// 函数: void CleanupNetworkConnectionResources(NetworkHandle connectionContext)
 /**
  * @brief 清理网络连接资源
  * 
@@ -9174,7 +9174,7 @@ LAB_1808492e6:
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180849360(ulonglong connectionContext)
+// 函数: void ValidateNetworkConnectionState(ulonglong connectionContext)
 /**
  * @brief 网络连接状态验证器
  * 
@@ -9233,7 +9233,7 @@ LAB_180849462:
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180849490(NetworkHandle connectionContext,NetworkHandle *packetData)
+// 函数: void ProcessNetworkPacketHandler(NetworkHandle connectionContext,NetworkHandle *packetData)
 /**
  * @brief 网络连接数据包处理器
  * 
@@ -9323,7 +9323,7 @@ LAB_1808494eb:
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180849600(NetworkHandle connectionContext,NetworkHandle packetData)
+// 函数: void InitializeNetworkConnectionValidation(NetworkHandle connectionContext,NetworkHandle packetData)
 /**
  * @brief 处理网络连接初始化和验证
  * 
@@ -10852,8 +10852,8 @@ void NetworkConnectionErrorHandler(NetworkHandle connectionContext)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_18084b380(NetworkHandle connectionContext)
-void FUN_18084b380(NetworkHandle connectionContext)
+// 函数: void ProcessNetworkSecurityValidation(NetworkHandle connectionContext)
+void ProcessNetworkSecurityValidation(NetworkHandle connectionContext)
 
 {
   int networkStatus1;
@@ -10879,8 +10879,8 @@ void FUN_18084b380(NetworkHandle connectionContext)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_18084b410(NetworkHandle connectionContext)
-void FUN_18084b410(NetworkHandle connectionContext)
+// 函数: void ValidateNetworkSecurityContext(NetworkHandle connectionContext)
+void ValidateNetworkSecurityContext(NetworkHandle connectionContext)
 
 {
   int networkStatus1;
@@ -10918,7 +10918,7 @@ LAB_18084b4a9:
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_18084b5a0(NetworkHandle connectionContext,NetworkHandle *packetData,longlong *dataSize)
+// 函数: void ProcessNetworkBufferValidation(NetworkHandle connectionContext,NetworkHandle *packetData,longlong *dataSize)
 /**
  * @brief 处理网络连接数据包验证和状态检查
  * 
@@ -10986,7 +10986,7 @@ void ProcessNetworkPacketValidationAndStatusCheck(NetworkHandle connectionContex
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_18084b6c0(longlong connectionContext,longlong packetData)
+// 函数: void ProcessNetworkPacketArray(longlong connectionContext,longlong packetData)
 /**
  * @brief 处理网络连接数据包数组
  * 
@@ -11030,7 +11030,7 @@ void ProcessNetworkPacketArrayData(longlong connectionContext,longlong packetDat
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_18084b760(longlong connectionContext,longlong packetData)
+// 函数: void ProcessNetworkPacketStatus(longlong connectionContext,longlong packetData)
 /**
  * @brief 处理网络连接数据包状态
  * 
@@ -11080,8 +11080,8 @@ void ProcessNetworkPacketStatus(longlong connectionContext,longlong packetData)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_18084b830(longlong connectionContext,longlong packetData)
-void FUN_18084b830(longlong connectionContext,longlong packetData)
+// 函数: void ProcessNetworkConnectionHandler(longlong connectionContext,longlong packetData)
+void ProcessNetworkConnectionHandler(longlong connectionContext,longlong packetData)
 
 {
   NetworkStatus *networkPointer1;
@@ -11135,7 +11135,7 @@ void FUN_18084b830(longlong connectionContext,longlong packetData)
 
 
 
-// 函数: void FUN_18084b92d(void)
+// 函数: void ProcessNetworkBufferTemplate(void)
 /**
  * @brief 处理网络缓冲区模板操作
  * 
@@ -11156,7 +11156,7 @@ void ProcessNetworkBufferTemplateOperation(void)
 
 
 
-// 函数: void FUN_18084b955(void)
+// 函数: void CleanupNetworkSecurityGuard(void)
 /**
  * @brief 执行网络安全守卫清理操作
  * 
@@ -11306,7 +11306,7 @@ LAB_18084bb9a:
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_18084bbd0(longlong connectionContext,longlong packetData)
+// 函数: void ValidateNetworkPacketTransfer(longlong connectionContext,longlong packetData)
 /**
  * @brief 处理网络连接数据包验证和状态设置
  * 
@@ -11379,8 +11379,8 @@ void ProcessNetworkPacketValidationAndStatusSetting(longlong connectionContext,l
 
 
 
-// 函数: void FUN_18084bc0e(NetworkHandle connectionContext,longlong packetData)
-void FUN_18084bc0e(NetworkHandle connectionContext,longlong packetData)
+// 函数: void ProcessNetworkConnectionManager(NetworkHandle connectionContext,longlong packetData)
+void ProcessNetworkConnectionManager(NetworkHandle connectionContext,longlong packetData)
 
 {
   int networkStatus1;
