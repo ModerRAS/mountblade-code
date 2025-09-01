@@ -11429,8 +11429,11 @@ void NetworkConnectionCleanup(void)
 
 
 
-// 函数: void FUN_18084bd18(void)
-void FUN_18084bd18(void)
+// 函数: void NetworkBufferReset(void)
+// 功能: 网络缓冲区重置器
+// 参数: 无
+// 返回值: 无
+void NetworkBufferReset(void)
 
 {
   ulonglong in_stack_00000098;
@@ -11442,8 +11445,11 @@ void FUN_18084bd18(void)
 
 
 
-// 函数: void FUN_18084bd22(void)
-void FUN_18084bd22(void)
+// 函数: void NetworkConnectionValidator(void)
+// 功能: 网络连接验证器
+// 参数: 无
+// 返回值: 无
+void NetworkConnectionValidator(void)
 
 {
   ulonglong in_stack_00000098;
@@ -11457,8 +11463,14 @@ void FUN_18084bd22(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_18084be00(longlong *connectionContext,longlong packetData,longlong *dataSize)
-void FUN_18084be00(longlong *connectionContext,longlong packetData,longlong *dataSize)
+// 函数: void NetworkDataTransferProcessor(longlong *connectionContext,longlong packetData,longlong *dataSize)
+// 功能: 网络数据传输处理器
+// 参数:
+//   connectionContext - 连接上下文指针
+//   packetData - 数据包数据
+//   dataSize - 数据大小指针
+// 返回值: 无
+void NetworkDataTransferProcessor(longlong *connectionContext,longlong packetData,longlong *dataSize)
 
 {
   char cVar1;

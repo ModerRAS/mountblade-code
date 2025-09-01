@@ -11474,7 +11474,17 @@ uint64_t ReturnArrayOperationError(void)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-ulonglong FUN_180896140(longlong param_1)
+/**
+ * @brief 初始化资源表结构
+ * 
+ * 该函数负责初始化资源表的基本结构，包括内存分配、
+ * 数据验证和资源项的创建。它处理不同类型的资源项，
+ * 并为每种类型设置相应的属性和配置
+ * 
+ * @param param_1 资源上下文指针，包含资源管理相关的配置信息
+ * @return 操作状态码，0表示成功，非0表示错误
+ */
+ulonglong InitializeResourceTableStructure(longlong param_1)
 
 {
   byte *pbVar1;
@@ -11882,7 +11892,17 @@ undefined8 * InitializeAlternativeDataStructure(undefined8 *dataPointer, ulonglo
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 FUN_1808968a0(longlong param_1)
+/**
+ * @brief 扩展资源表容量
+ * 
+ * 该函数负责扩展资源表的容量，为新增的资源条目分配内存空间。
+ * 它检查当前资源表的大小，如果超过阈值则进行扩容操作，
+ * 并确保资源表的连续性和完整性
+ * 
+ * @param param_1 资源表上下文指针，包含当前的资源表状态和扩展需求
+ * @return 操作状态码，0表示成功，非0表示错误
+ */
+undefined8 ExpandResourceTableCapacity(longlong param_1)
 
 {
   longlong lVar1;
