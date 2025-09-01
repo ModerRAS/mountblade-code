@@ -35852,29 +35852,39 @@ void InitializeSystemResourceManager(void* *SystemResourcePointer,void* Configur
 void InitializeSystemThread(void* SystemResourcePointer,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
 {
-  uint32_t unsignedSystemValue1;
+  uint32_t threadStatus;
   void** systemDataTable;
   void* *memoryAllocationEnd;
-  void* *puStack_48;
-  uint32_t uStack_40;
-  void* uStack_38;
+  void* *threadContextPointer;
+  uint32_t threadConfiguration;
+  void* threadHandle;
   
+  // 初始化内存分配和线程上下文
   memoryAllocationEnd = &SystemGlobalDataReference;
-  uStack_38 = 0;
-  puStack_48 = (void* *)0x0;
-  uStack_40 = 0;
-  pointerToUnsigned2 = (void* *)CreateSystemThreadObject(SystemMemoryAllocationTemplate,0x10,0x13,ConfigurationFlag,0xfffffffffffffffe);
-  *(uint8_t *)pointerToUnsigned2 = 0;
-  puStack_48 = pointerToUnsigned2;
-  unsignedSystemValue1 = StartSystemThread(pointerToUnsigned2);
-  uStack_38 = CONCAT44(uStack_38._4_4_,unsignedSystemValue1);
-  *pointerToUnsigned2 = 0x6e6f632072657355;
-  *(uint32_t *)(pointerToUnsigned2 + 1) = 0x676966;
-  uStack_40 = 0xb;
-  FUN_1800ae520(SystemResourcePointer,&memoryAllocationEnd);
+  threadHandle = 0;
+  threadContextPointer = (void* *)0x0;
+  threadConfiguration = 0;
+  
+  // 创建系统线程对象
+  void* *threadObject = (void* *)CreateSystemThreadObject(SystemMemoryAllocationTemplate, 0x10, 0x13, ConfigurationFlag, 0xfffffffffffffffe);
+  *(uint8_t *)threadObject = 0;
+  threadContextPointer = threadObject;
+  
+  // 启动系统线程
+  threadStatus = StartSystemThread(threadObject);
+  threadHandle = CONCAT44(threadHandle._4_4_, threadStatus);
+  
+  // 设置线程标识符
+  *threadObject = 0x6e6f632072657355;
+  *(uint32_t *)(threadObject + 1) = 0x676966;
+  threadConfiguration = 0xb;
+  
+  // 调用系统线程处理函数
+  FUN_1800ae520(SystemResourcePointer, &memoryAllocationEnd);
   memoryAllocationEnd = &SystemGlobalDataReference;
-                    // WARNING: Subroutine does not return
-  SystemCleanupFunction(pointerToUnsigned2);
+  
+  // WARNING: Subroutine does not return
+  SystemCleanupFunction(threadObject);
 }
 
 
