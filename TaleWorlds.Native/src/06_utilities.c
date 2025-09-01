@@ -280,12 +280,12 @@ void* g_graphicsMemoryPool;
  * 该函数负责初始化游戏动画系统
  * 设置骨骼管理、动画剪辑和状态控制等相关组件
  */
-undefined InitializeAnimationSystem;
-undefined g_animationEngineInstance;
-undefined g_skeletonManager;
-undefined g_animationClipManager;
-undefined g_boneTransformManager;
-undefined g_animationStateController;
+void* InitializeAnimationSystem;
+void* g_animationEngineInstance;
+void* g_skeletonManager;
+void* g_animationClipManager;
+void* g_boneTransformManager;
+void* g_animationStateController;
 
 // 函数: undefined InitializeMemoryManager;
 /**
@@ -294,12 +294,12 @@ undefined g_animationStateController;
  * 该函数负责初始化游戏内存管理系统
  * 设置堆分配器、内存池和垃圾回收等相关组件
  */
-undefined InitializeMemoryManager;
-undefined g_memoryManagerInstance;
-undefined g_heapAllocator;
-undefined g_memoryPoolManager;
-undefined g_garbageCollector;
-undefined g_memoryDebugger;
+void* InitializeMemoryManager;
+void* g_memoryManagerInstance;
+void* g_heapAllocator;
+void* g_memoryPoolManager;
+void* g_garbageCollector;
+void* g_memoryDebugger;
 
 // 函数: undefined InitializeScriptingSystem;
 /**
@@ -8823,8 +8823,8 @@ FUN_180895b89:
 
 
 
-// 函数: void FUN_1808953bf(longlong param_1,undefined8 param_2,int *param_3)
-void FUN_1808953bf(longlong param_1,undefined8 param_2,int *param_3)
+// 函数: void ProcessModuleInitialization(longlong param_1,void* param_2,int *param_3)
+void ProcessModuleInitialization(longlong param_1,void* param_2,int *param_3)
 
 {
   longlong lVar1;
