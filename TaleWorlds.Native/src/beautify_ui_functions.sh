@@ -90,6 +90,23 @@ declare -A function_mapping=(
     ["FUN_180743da0"]="GetUserInterfaceSliderValue"
     ["FUN_180743e10"]="SetUserInterfaceSliderValue"
     ["FUN_180743e50"]="ValidateUserInterfaceSlider"
+
+    # Thunk函数映射（用于处理间接函数调用）
+    ["thunk_FUN_1808fd8e0"]="GetUIInputState"
+    ["thunk_FUN_1808fe1a0"]="GetUIRenderState"
+    ["thunk_FUN_18066e7a0"]="ProcessUIWindowEvent"
+    ["thunk_FUN_180723b20"]="HandleUILayoutCalculation"
+    ["thunk_FUN_18078c0a0"]="CalculateUIElementBounds"
+    ["thunk_FUN_180742070"]="UpdateUIElementTransform"
+    ["thunk_FUN_180747c73"]="GetUIAnimationTime"
+    ["thunk_FUN_180762a50"]="ProcessUIInputEvents"
+    ["thunk_FUN_180752300"]="RenderUIElement"
+    ["thunk_FUN_1807524e0"]="GetUIRenderContext"
+    ["thunk_FUN_1808fea60"]="UpdateUITexture"
+    ["thunk_FUN_180848e50"]="ProcessUITextInput"
+    ["thunk_FUN_18085fbb0"]="HandleUIEventDispatch"
+    ["thunk_FUN_180865550"]="CheckUIElementVisibility"
+    ["thunk_FUN_1808e3970"]="ValidateUILayout"
 )
 
 # 获取脚本所在目录

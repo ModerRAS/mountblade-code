@@ -5715,33 +5715,40 @@ uint64_t ProcessDataConversionAndCalculation(uint64_t *DataArray)
  * @param color_data 颜色数据指针数组
  * @return 处理成功返回1，失败返回0
  */
-uint8_t normalize_color_luminance(uint64_t *color_data)
+/**
+ * 标准化颜色亮度值
+ * 对输入的颜色数据进行亮度标准化处理，支持两种颜色格式（0x20和0x21）
+ * 
+ * @param color_data 颜色数据指针，包含颜色格式信息和颜色值数组
+ * @return 标准化成功返回1，失败返回0
+ */
+uint8_t NormalizeColorLuminance(uint64_t *color_data)
 {
   float *red_component;
   float *green_component;
   float *blue_component;
   float *alpha_component;
-  float *component_5;
-  float *component_6;
-  float *component_7;
-  float *component_8;
-  float *component_9;
-  float *component_10;
-  float *component_11;
+  float *brightness_component;
+  float *contrast_component;
+  float *saturation_component;
+  float *hue_component;
+  float *lightness_component;
+  float *chroma_component;
+  float *gamma_component;
   float temp_float;
-  uint32_t loop_counter;
+  uint32_t batch_loop_counter;
   float *output_buffer;
   float *input_buffer;
   int total_elements;
   int processed_elements;
-  int batch_processed;
+  int batch_processed_elements;
   uint64_t remaining_elements;
   int64_t element_count;
   double luminance_sum;
-  // 检查颜色格式是否为0x20 (12字节格式)
+  // 处理0x20格式（12字节格式）的颜色数据
   if (*(int *)((int64_t)color_data + 0x54) == 0x20) {
     output_buffer = (float *)*color_data;
-    batch_processed = 0;
+    batch_processed_elements = 0;
     luminance_sum = 0.0;
     element_count = 0;
     processed_elements = 0;
@@ -5750,31 +5757,31 @@ uint8_t normalize_color_luminance(uint64_t *color_data)
     
     // 批量处理4个元素以提高性能
     if (3 < total_elements) {
-      loop_counter = (total_elements - 4U >> 2) + 1;
-      remaining_elements = (uint64_t)loop_counter;
-      element_count = (uint64_t)loop_counter * 4;
-      processed_elements = loop_counter * 4;
+      batch_loop_counter = (total_elements - 4U >> 2) + 1;
+      remaining_elements = (uint64_t)batch_loop_counter;
+      element_count = (uint64_t)batch_loop_counter * 4;
+      processed_elements = batch_loop_counter * 4;
       do {
         red_component = input_buffer + 3;
         temp_float = *input_buffer;
         green_component = input_buffer + 6;
         blue_component = input_buffer + 7;
         alpha_component = input_buffer + 5;
-        component_5 = input_buffer + 9;
-        component_6 = input_buffer + 10;
-        component_7 = input_buffer + 4;
-        component_8 = input_buffer + 1;
-        component_9 = input_buffer + 2;
-        component_10 = input_buffer + 8;
-        component_11 = input_buffer + 0xb;
+        brightness_component = input_buffer + 9;
+        contrast_component = input_buffer + 10;
+        saturation_component = input_buffer + 4;
+        hue_component = input_buffer + 1;
+        lightness_component = input_buffer + 2;
+        chroma_component = input_buffer + 8;
+        gamma_component = input_buffer + 0xb;
         input_buffer = input_buffer + 0xc;
         luminance_sum = luminance_sum + (double)*red_component * 0.2126 + (double)temp_float * 0.2126 +
-                          (double)*green_component * 0.2126 + (double)*component_5 * 0.2126 +
-                          (double)*component_6 * 0.7152 +
-                          (double)*blue_component * 0.7152 + (double)*component_7 * 0.7152 +
-                          (double)*component_8 * 0.7152 +
-                          (double)*alpha_component * 0.0722 + (double)*component_9 * 0.0722 +
-                          (double)*component_10 * 0.0722 + (double)*component_11 * 0.0722;
+                          (double)*green_component * 0.2126 + (double)*brightness_component * 0.2126 +
+                          (double)*contrast_component * 0.7152 +
+                          (double)*blue_component * 0.7152 + (double)*saturation_component * 0.7152 +
+                          (double)*hue_component * 0.7152 +
+                          (double)*alpha_component * 0.0722 + (double)*lightness_component * 0.0722 +
+                          (double)*chroma_component * 0.0722 + (double)*gamma_component * 0.0722;
         remaining_elements = remaining_elements - 1;
       } while (remaining_elements != 0);
     }
@@ -5800,9 +5807,9 @@ uint8_t normalize_color_luminance(uint64_t *color_data)
     
     // 应用标准化系数到输出缓冲区
     if (3 < total_elements) {
-      loop_counter = (total_elements - 4U >> 2) + 1;
-      remaining_elements = (uint64_t)loop_counter;
-      batch_processed = loop_counter * 4;
+      batch_loop_counter = (total_elements - 4U >> 2) + 1;
+      remaining_elements = (uint64_t)batch_loop_counter;
+      batch_processed_elements = batch_loop_counter * 4;
       do {
         *output_buffer = (float)((double)*output_buffer * luminance_sum);
         output_buffer[1] = (float)((double)output_buffer[1] * luminance_sum);
@@ -5822,9 +5829,9 @@ uint8_t normalize_color_luminance(uint64_t *color_data)
     }
     
     // 处理剩余元素的标准化
-    if (batch_processed < total_elements) {
+    if (batch_processed_elements < total_elements) {
       output_buffer = output_buffer + 2;
-      remaining_elements = (uint64_t)(uint32_t)(total_elements - batch_processed);
+      remaining_elements = (uint64_t)(uint32_t)(total_elements - batch_processed_elements);
       do {
         output_buffer[-2] = (float)((double)output_buffer[-2] * luminance_sum);
         output_buffer[-1] = (float)((double)output_buffer[-1] * luminance_sum);
@@ -5835,91 +5842,119 @@ uint8_t normalize_color_luminance(uint64_t *color_data)
     }
   }
   else {
-    if (*(int *)((longlong)param_1 + 0x54) != 0x21) {
+    // 处理0x21格式（16字节格式）的颜色数据
+    if (*(int *)((longlong)color_data + 0x54) != 0x21) {
       return 0;
     }
-    LoopCounter8 = 0;
-    pfVar14 = (float *)*param_1;
-    dVar21 = 0.0;
-    lVar20 = 0;
-    LoopCounter6 = 0;
-    LoopCounter7 = (int)((ulonglong)param_1[1] >> 4);
-    pfVar15 = pfVar14;
-    if (3 < LoopCounter7) {
-      MemoryAddress3 = (LoopCounter7 - 4U >> 2) + 1;
-      MemoryAddress9 = (ulonglong)MemoryAddress3;
-      lVar20 = (ulonglong)MemoryAddress3 * 4;
-      LoopCounter6 = MemoryAddress3 * 4;
+    
+    uint32_t format_21_loop_counter = 0;
+    float *format_21_output_buffer = (float *)*color_data;
+    double format_21_luminance_sum = 0.0;
+    int64_t format_21_element_count = 0;
+    uint32_t format_21_processed_elements = 0;
+    uint32_t format_21_total_elements = (int)((ulonglong)color_data[1] >> 4);
+    float *format_21_input_buffer = format_21_output_buffer;
+    
+    // 批量处理0x21格式的元素
+    if (3 < format_21_total_elements) {
+      uint32_t format_21_batch_counter = (format_21_total_elements - 4U >> 2) + 1;
+      uint64_t format_21_remaining_elements = (ulonglong)format_21_batch_counter;
+      format_21_element_count = (ulonglong)format_21_batch_counter * 4;
+      format_21_processed_elements = format_21_batch_counter * 4;
+      
       do {
-        pfVar1 = pfVar15 + 4;
-        fVar12 = *pfVar15;
-        pfVar2 = pfVar15 + 8;
-        pfVar3 = pfVar15 + 9;
-        pfVar4 = pfVar15 + 6;
-        pfVar5 = pfVar15 + 0xc;
-        pfVar6 = pfVar15 + 0xd;
-        pfVar7 = pfVar15 + 5;
-        pfVar8 = pfVar15 + 1;
-        pfVar9 = pfVar15 + 2;
-        pfVar10 = pfVar15 + 10;
-        pfVar11 = pfVar15 + 0xe;
-        pfVar15 = pfVar15 + 0x10;
-        dVar21 = dVar21 + (double)*pfVar1 * 0.2126 + (double)fVar12 * 0.2126 +
-                          (double)*pfVar2 * 0.2126 + (double)*pfVar5 * 0.2126 +
-                          (double)*pfVar6 * 0.7152 +
-                          (double)*pfVar3 * 0.7152 + (double)*pfVar7 * 0.7152 +
-                          (double)*pfVar8 * 0.7152 +
-                          (double)*pfVar4 * 0.0722 + (double)*pfVar9 * 0.0722 +
-                          (double)*pfVar10 * 0.0722 + (double)*pfVar11 * 0.0722;
-        MemoryAddress9 = MemoryAddress9 - 1;
-      } while (MemoryAddress9 != 0);
+        float *format_21_red_component = format_21_input_buffer + 4;
+        float format_21_temp_value = *format_21_input_buffer;
+        float *format_21_green_component = format_21_input_buffer + 8;
+        float *format_21_blue_component = format_21_input_buffer + 9;
+        float *format_21_alpha_component = format_21_input_buffer + 6;
+        float *format_21_brightness_component = format_21_input_buffer + 0xc;
+        float *format_21_contrast_component = format_21_input_buffer + 0xd;
+        float *format_21_saturation_component = format_21_input_buffer + 5;
+        float *format_21_hue_component = format_21_input_buffer + 1;
+        float *format_21_lightness_component = format_21_input_buffer + 2;
+        float *format_21_chroma_component = format_21_input_buffer + 10;
+        float *format_21_gamma_component = format_21_input_buffer + 0xe;
+        format_21_input_buffer = format_21_input_buffer + 0x10;
+        
+        format_21_luminance_sum = format_21_luminance_sum + 
+                                  (double)*format_21_red_component * 0.2126 + 
+                                  (double)format_21_temp_value * 0.2126 +
+                                  (double)*format_21_green_component * 0.2126 + 
+                                  (double)*format_21_brightness_component * 0.2126 +
+                                  (double)*format_21_contrast_component * 0.7152 +
+                                  (double)*format_21_blue_component * 0.7152 + 
+                                  (double)*format_21_saturation_component * 0.7152 +
+                                  (double)*format_21_hue_component * 0.7152 +
+                                  (double)*format_21_alpha_component * 0.0722 + 
+                                  (double)*format_21_lightness_component * 0.0722 +
+                                  (double)*format_21_chroma_component * 0.0722 + 
+                                  (double)*format_21_gamma_component * 0.0722;
+                                  
+        format_21_remaining_elements = format_21_remaining_elements - 1;
+      } while (format_21_remaining_elements != 0);
     }
-    if (LoopCounter6 < LoopCounter7) {
-      pfVar15 = pfVar15 + 2;
-      MemoryAddress9 = (ulonglong)(uint)(LoopCounter7 - LoopCounter6);
-      lVar20 = lVar20 + MemoryAddress9;
+    
+    // 处理0x21格式的剩余元素
+    if (format_21_processed_elements < format_21_total_elements) {
+      format_21_input_buffer = format_21_input_buffer + 2;
+      uint64_t format_21_remaining_elements = (ulonglong)(uint)(format_21_total_elements - format_21_processed_elements);
+      format_21_element_count = format_21_element_count + format_21_remaining_elements;
+      
       do {
-        pfVar1 = pfVar15 + -1;
-        pfVar2 = pfVar15 + -2;
-        fVar12 = *pfVar15;
-        pfVar15 = pfVar15 + 4;
-        dVar21 = dVar21 + (double)*pfVar1 * 0.7152 + (double)*pfVar2 * 0.2126 +
-                          (double)fVar12 * 0.0722;
-        MemoryAddress9 = MemoryAddress9 - 1;
-      } while (MemoryAddress9 != 0);
+        float *format_21_red_component = format_21_input_buffer + -1;
+        float *format_21_green_component = format_21_input_buffer + -2;
+        float format_21_temp_value = *format_21_input_buffer;
+        format_21_input_buffer = format_21_input_buffer + 4;
+        
+        format_21_luminance_sum = format_21_luminance_sum + 
+                                  (double)*format_21_red_component * 0.7152 + 
+                                  (double)*format_21_green_component * 0.2126 +
+                                  (double)format_21_temp_value * 0.0722;
+                                  
+        format_21_remaining_elements = format_21_remaining_elements - 1;
+      } while (format_21_remaining_elements != 0);
     }
-    dVar21 = 1.0 / (dVar21 / (double)lVar20);
-    if (3 < LoopCounter7) {
-      MemoryAddress3 = (LoopCounter7 - 4U >> 2) + 1;
-      MemoryAddress9 = (ulonglong)MemoryAddress3;
-      LoopCounter8 = MemoryAddress3 * 4;
+    
+    // 计算标准化系数
+    format_21_luminance_sum = 1.0 / (format_21_luminance_sum / (double)format_21_element_count);
+    
+    // 应用标准化系数到0x21格式的输出缓冲区
+    if (3 < format_21_total_elements) {
+      uint32_t format_21_batch_counter = (format_21_total_elements - 4U >> 2) + 1;
+      uint64_t format_21_remaining_elements = (ulonglong)format_21_batch_counter;
+      format_21_loop_counter = format_21_batch_counter * 4;
+      
       do {
-        *pfVar14 = (float)((double)*pfVar14 * dVar21);
-        pfVar14[1] = (float)((double)pfVar14[1] * dVar21);
-        pfVar14[2] = (float)((double)pfVar14[2] * dVar21);
-        pfVar14[4] = (float)((double)pfVar14[4] * dVar21);
-        pfVar14[5] = (float)((double)pfVar14[5] * dVar21);
-        pfVar14[6] = (float)((double)pfVar14[6] * dVar21);
-        pfVar14[8] = (float)((double)pfVar14[8] * dVar21);
-        pfVar14[9] = (float)((double)pfVar14[9] * dVar21);
-        pfVar14[10] = (float)((double)pfVar14[10] * dVar21);
-        pfVar14[0xc] = (float)((double)pfVar14[0xc] * dVar21);
-        pfVar14[0xd] = (float)((double)pfVar14[0xd] * dVar21);
-        pfVar14[0xe] = (float)((double)pfVar14[0xe] * dVar21);
-        pfVar14 = pfVar14 + 0x10;
-        MemoryAddress9 = MemoryAddress9 - 1;
-      } while (MemoryAddress9 != 0);
+        *format_21_output_buffer = (float)((double)*format_21_output_buffer * format_21_luminance_sum);
+        format_21_output_buffer[1] = (float)((double)format_21_output_buffer[1] * format_21_luminance_sum);
+        format_21_output_buffer[2] = (float)((double)format_21_output_buffer[2] * format_21_luminance_sum);
+        format_21_output_buffer[4] = (float)((double)format_21_output_buffer[4] * format_21_luminance_sum);
+        format_21_output_buffer[5] = (float)((double)format_21_output_buffer[5] * format_21_luminance_sum);
+        format_21_output_buffer[6] = (float)((double)format_21_output_buffer[6] * format_21_luminance_sum);
+        format_21_output_buffer[8] = (float)((double)format_21_output_buffer[8] * format_21_luminance_sum);
+        format_21_output_buffer[9] = (float)((double)format_21_output_buffer[9] * format_21_luminance_sum);
+        format_21_output_buffer[10] = (float)((double)format_21_output_buffer[10] * format_21_luminance_sum);
+        format_21_output_buffer[0xc] = (float)((double)format_21_output_buffer[0xc] * format_21_luminance_sum);
+        format_21_output_buffer[0xd] = (float)((double)format_21_output_buffer[0xd] * format_21_luminance_sum);
+        format_21_output_buffer[0xe] = (float)((double)format_21_output_buffer[0xe] * format_21_luminance_sum);
+        format_21_output_buffer = format_21_output_buffer + 0x10;
+        format_21_remaining_elements = format_21_remaining_elements - 1;
+      } while (format_21_remaining_elements != 0);
     }
-    if (LoopCounter8 < LoopCounter7) {
-      pfVar14 = pfVar14 + 2;
-      MemoryAddress9 = (ulonglong)(uint)(LoopCounter7 - LoopCounter8);
+    
+    // 处理0x21格式的剩余元素标准化
+    if (format_21_loop_counter < format_21_total_elements) {
+      format_21_output_buffer = format_21_output_buffer + 2;
+      uint64_t format_21_remaining_elements = (ulonglong)(uint)(format_21_total_elements - format_21_loop_counter);
+      
       do {
-        pfVar14[-2] = (float)((double)pfVar14[-2] * dVar21);
-        pfVar14[-1] = (float)((double)pfVar14[-1] * dVar21);
-        *pfVar14 = (float)((double)*pfVar14 * dVar21);
-        pfVar14 = pfVar14 + 4;
-        MemoryAddress9 = MemoryAddress9 - 1;
-      } while (MemoryAddress9 != 0);
+        format_21_output_buffer[-2] = (float)((double)format_21_output_buffer[-2] * format_21_luminance_sum);
+        format_21_output_buffer[-1] = (float)((double)format_21_output_buffer[-1] * format_21_luminance_sum);
+        *format_21_output_buffer = (float)((double)*format_21_output_buffer * format_21_luminance_sum);
+        format_21_output_buffer = format_21_output_buffer + 4;
+        format_21_remaining_elements = format_21_remaining_elements - 1;
+      } while (format_21_remaining_elements != 0);
     }
   }
   return 1;

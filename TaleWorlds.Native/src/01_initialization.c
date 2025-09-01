@@ -19011,17 +19011,17 @@ void _guard_check_icall(void)
  * 该函数管理系统内存分配器的引用，根据标志位决定是否释放内存。
  * 
  * @param SystemResourcePointer 指向内存分配器引用的指针
- * @param param_2 标志位，控制是否释放内存
- * @param param_3 内存释放参数
- * @param param_4 内存释放参数
+ * @param MemoryFlags 标志位，控制是否释放内存
+ * @param MemoryFreeParam1 内存释放参数1
+ * @param MemoryFreeParam2 内存释放参数2
  * @return 返回内存分配器引用指针
  */
-void* * SystemMemoryAllocatorReferenceManager(void* *SystemResourcePointer,ulong long param_2,void* param_3,void* param_4)
+void* * SystemMemoryAllocatorReferenceManager(void* *SystemResourcePointer,ulong long MemoryFlags,void* MemoryFreeParam1,void* MemoryFreeParam2)
 
 {
   *SystemResourcePointer = &SystemMemoryAllocatorReference;
-  if ((param_2 & 1) != 0) {
-    free(SystemResourcePointer,0x418,param_3,param_4,0xfffffffffffffffe);
+  if ((MemoryFlags & 1) != 0) {
+    free(SystemResourcePointer,0x418,MemoryFreeParam1,MemoryFreeParam2,0xfffffffffffffffe);
   }
   return SystemResourcePointer;
 }
@@ -21079,100 +21079,100 @@ void* AllocateSystemResources(void* SystemResourcePointer,ulong long param_2,voi
  * 它遍历内存链表，比较内存块的内容，并返回找到的节点。
  * 
  * @param SystemResourcePointer 内存链表头指针
- * @param param_2 输出参数，用于返回找到的节点
- * @param param_3 保留参数
- * @param param_4 要查找的节点指针
- * @param param_5 查找参数，包含字符串比较信息
+ * @param OutputNodePointer 输出参数，用于返回找到的节点
+ * @param ReservedParameter 保留参数
+ * @param TargetNodePointer 要查找的节点指针
+ * @param SearchParameters 查找参数，包含字符串比较信息
  * @return 返回找到的节点指针
  */
-void* * SystemMemoryNodeFinder(long long *SystemResourcePointer,void* *param_2,void* param_3,long long *param_4,
-             long long param_5)
+void* * SystemMemoryNodeFinder(long long *SystemResourcePointer,void* *OutputNodePointer,void* ReservedParameter,long long *TargetNodePointer,
+             long long SearchParameters)
 
 {
-  byte bVar1;
-  bool bVar2;
-  long long *plVar3;
-  long long* systemMemoryPointer;
-  byte *pbVar5;
-  uint uVar6;
-  long long lVar7;
-  void* uVar8;
-  long long *plStackX_8;
+  byte ByteValue;
+  bool ComparisonResult;
+  long long *MemoryListNode;
+  long long* SystemMemoryPointer;
+  byte *StringPointer;
+  uint UIntValue;
+  long long LongValue;
+  void* VoidPointer;
+  long long *StackPointer;
   
-  plVar4 = (long long *)*SystemResourcePointer;
-  if ((param_4 == plVar4) || (param_4 == SystemResourcePointer)) {
-    if ((SystemResourcePointer[4] != 0) && (*(int *)(param_5 + 0x10) != 0)) {
-      param_4 = plVar4;
-      if (*(int *)(plVar4 + 6) != 0) {
-        pbVar5 = *(byte **)(param_5 + 8);
-        lVar7 = plVar4[5] - (long long)pbVar5;
+  MemoryListNode = (long long *)*SystemResourcePointer;
+  if ((TargetNodePointer == MemoryListNode) || (TargetNodePointer == SystemResourcePointer)) {
+    if ((SystemResourcePointer[4] != 0) && (*(int *)(SearchParameters + 0x10) != 0)) {
+      TargetNodePointer = MemoryListNode;
+      if (*(int *)(MemoryListNode + 6) != 0) {
+        StringPointer = *(byte **)(SearchParameters + 8);
+        LongValue = MemoryListNode[5] - (long long)StringPointer;
         do {
-          bVar1 = *pbVar5;
-          uVar6 = (uint)pbVar5[lVar7];
-          if (bVar1 != uVar6) break;
-          pbVar5 = pbVar5 + 1;
-        } while (uVar6 != 0);
-        if ((int)(bVar1 - uVar6) < 1) goto LAB_180048dd7;
+          ByteValue = *StringPointer;
+          UIntValue = (uint)StringPointer[LongValue];
+          if (ByteValue != UIntValue) break;
+          StringPointer = StringPointer + 1;
+        } while (UIntValue != 0);
+        if ((int)(ByteValue - UIntValue) < 1) goto LAB_180048dd7;
       }
 LAB_180048db7:
-      uVar8 = 0;
+      VoidPointer = 0;
 LAB_180048dba:
-      if (param_4 != (long long *)0x0) {
-        FUN_180048ee0(SystemResourcePointer,param_2,param_4,uVar8,param_5);
-        return param_2;
+      if (TargetNodePointer != (long long *)0x0) {
+        FUN_180048ee0(SystemResourcePointer,OutputNodePointer,TargetNodePointer,VoidPointer,SearchParameters);
+        return OutputNodePointer;
       }
     }
   }
   else {
-    plVar4 = (long long *)func_0x00018066bd70(param_4);
-    if (*(int *)(param_5 + 0x10) != 0) {
-      if ((int)param_4[6] != 0) {
-        pbVar5 = *(byte **)(param_5 + 8);
-        lVar7 = param_4[5] - (long long)pbVar5;
+    MemoryListNode = (long long *)func_0x00018066bd70(TargetNodePointer);
+    if (*(int *)(SearchParameters + 0x10) != 0) {
+      if ((int)TargetNodePointer[6] != 0) {
+        StringPointer = *(byte **)(SearchParameters + 8);
+        LongValue = TargetNodePointer[5] - (long long)StringPointer;
         do {
-          bVar1 = *pbVar5;
-          uVar6 = (uint)pbVar5[lVar7];
-          if (bVar1 != uVar6) break;
-          pbVar5 = pbVar5 + 1;
-        } while (uVar6 != 0);
-        if ((int)(bVar1 - uVar6) < 1) goto LAB_180048dd7;
+          ByteValue = *StringPointer;
+          UIntValue = (uint)StringPointer[LongValue];
+          if (ByteValue != UIntValue) break;
+          StringPointer = StringPointer + 1;
+        } while (UIntValue != 0);
+        if ((int)(ByteValue - UIntValue) < 1) goto LAB_180048dd7;
       }
-      if ((int)plVar4[6] != 0) {
-        pbVar5 = (byte *)plVar4[5];
-        lVar7 = *(long long *)(param_5 + 8) - (long long)pbVar5;
+      if ((int)MemoryListNode[6] != 0) {
+        StringPointer = (byte *)MemoryListNode[5];
+        LongValue = *(long long *)(SearchParameters + 8) - (long long)StringPointer;
         do {
-          bVar1 = *pbVar5;
-          uVar6 = (uint)pbVar5[lVar7];
-          if (bVar1 != uVar6) break;
-          pbVar5 = pbVar5 + 1;
-        } while (uVar6 != 0);
-        if (0 < (int)(bVar1 - uVar6)) {
-          if (*param_4 == 0) goto LAB_180048db7;
-          uVar8 = 1;
-          param_4 = plVar4;
+          ByteValue = *StringPointer;
+          UIntValue = (uint)StringPointer[LongValue];
+          if (ByteValue != UIntValue) break;
+          StringPointer = StringPointer + 1;
+        } while (UIntValue != 0);
+        if (0 < (int)(ByteValue - UIntValue)) {
+          if (*TargetNodePointer == 0) goto LAB_180048db7;
+          VoidPointer = 1;
+          TargetNodePointer = MemoryListNode;
           goto LAB_180048dba;
         }
       }
     }
   }
 LAB_180048dd7:
-  bVar2 = true;
-  plVar4 = (long long *)SystemResourcePointer[2];
-  plVar3 = SystemResourcePointer;
-  while (plVar4 != (long long *)0x0) {
-    plVar3 = plVar4;
-    if ((int)plVar4[6] == 0) {
-      bVar2 = false;
+  ComparisonResult = true;
+  MemoryListNode = (long long *)SystemResourcePointer[2];
+  SystemMemoryPointer = SystemResourcePointer;
+  while (MemoryListNode != (long long *)0x0) {
+    SystemMemoryPointer = MemoryListNode;
+    if ((int)MemoryListNode[6] == 0) {
+      ComparisonResult = false;
 LAB_180048e00:
-      plVar4 = (long long *)*plVar4;
+      MemoryListNode = (long long *)*MemoryListNode;
     }
     else {
-      if (*(int *)(param_5 + 0x10) == 0) {
-        bVar2 = true;
+      if (*(int *)(SearchParameters + 0x10) == 0) {
+        ComparisonResult = true;
       }
       else {
-        pbVar5 = (byte *)plVar4[5];
-        lVar7 = *(long long *)(param_5 + 8) - (long long)pbVar5;
+        StringPointer = (byte *)MemoryListNode[5];
+        LongValue = *(long long *)(SearchParameters + 8) - (long long)StringPointer;
         do {
           bVar1 = *pbVar5;
           uVar6 = (uint)pbVar5[lVar7];
@@ -23218,26 +23218,39 @@ void SetSystemThreadId(uint32_t *threadIdPointer)
 
 
 
+/**
+ * @brief 使用模板初始化系统资源
+ * 
+ * 该函数使用指定的模板参数来初始化系统资源，包括内存分配器引用、
+ * 内存模板和字符串处理器的设置。函数会配置系统资源指针的各种属性，
+ * 并根据模板参数进行相应的初始化。
+ * 
+ * @param systemResourcePointer 系统资源指针的指针
+ * @param templateParameter 模板参数，包含配置信息
+ * @param reservedParam3 保留参数3
+ * @param reservedParam4 保留参数4
+ * @return 返回初始化后的系统资源指针
+ */
 void* *
-FUN_18004b640(void* *SystemResourcePointer,long long param_2,void* param_3,void* param_4)
+InitializeSystemResourceWithTemplate(void* *systemResourcePointer, long long templateParameter, void* reservedParam3, void* reservedParam4)
 
 {
-  void* *puVar1;
+  void* *resultPointer;
   
-  *SystemResourcePointer = &SystemMemoryAllocatorReference;
-  SystemResourcePointer[1] = 0;
-  *(uint32_t *)(SystemResourcePointer + 2) = 0;
-  *SystemResourcePointer = &SystemMemoryTemplateE;
-  SystemResourcePointer[1] = SystemResourcePointer + 3;
-  *(uint32_t *)(SystemResourcePointer + 2) = 0;
-  *(uint8_t *)(SystemResourcePointer + 3) = 0;
-  *(uint32_t *)(SystemResourcePointer + 2) = *(uint32_t *)(param_2 + 0x10);
-  puVar1 = &SystemStringTemplate;
-  if (*(void* **)(param_2 + 8) != (void* *)0x0) {
-    puVar1 = *(void* **)(param_2 + 8);
+  *systemResourcePointer = &SystemMemoryAllocatorReference;
+  systemResourcePointer[1] = 0;
+  *(uint32_t *)(systemResourcePointer + 2) = 0;
+  *systemResourcePointer = &SystemMemoryTemplateE;
+  systemResourcePointer[1] = systemResourcePointer + 3;
+  *(uint32_t *)(systemResourcePointer + 2) = 0;
+  *(uint8_t *)(systemResourcePointer + 3) = 0;
+  *(uint32_t *)(systemResourcePointer + 2) = *(uint32_t *)(templateParameter + 0x10);
+  resultPointer = &SystemStringTemplate;
+  if (*(void* **)(templateParameter + 8) != (void* *)0x0) {
+    resultPointer = *(void* **)(templateParameter + 8);
   }
-  strcpy_s(SystemResourcePointer[1],0x20,puVar1,param_4,0xfffffffffffffffe);
-  return SystemResourcePointer;
+  strcpy_s(systemResourcePointer[1], 0x20, resultPointer, reservedParam4, 0xfffffffffffffffe);
+  return systemResourcePointer;
 }
 
 
@@ -32937,16 +32950,16 @@ void FUN_180059bc0(void)
   *(uint32_t *)(lVar1 + 0x3c0) = 0;
   *(void* *)(lVar1 + 0x3c8) = 0;
   *(void*2 *)(lVar1 + 0x3d0) = 0x100;
-  *(void* *)(lVar1 + 0x4d8) = 0;
-  *(void* *)(lVar1 + 0x4e0) = 0;
-  *(uint32_t *)(lVar1 + 0x508) = 0;
-  *(void* *)(lVar1 + 0x510) = 0;
-  *(void*2 *)(lVar1 + 0x518) = 0x100;
-  *(void* *)(lVar1 + 0x620) = 0;
-  *(void* *)(lVar1 + 0x628) = 0;
-  *(uint32_t *)(lVar1 + 0x650) = 0;
-  *(void* *)(lVar1 + 0x658) = 0;
-  *(void*2 *)(lVar1 + 0x660) = 0x100;
+  *(void* *)(localMemoryPointer + 0x4d8) = 0;
+  *(void* *)(localMemoryPointer + 0x4e0) = 0;
+  *(uint32_t *)(localMemoryPointer + 0x508) = 0;
+  *(void* *)(localMemoryPointer + 0x510) = 0;
+  *(void*2 *)(localMemoryPointer + 0x518) = 0x100;
+  *(void* *)(localMemoryPointer + 0x620) = 0;
+  *(void* *)(localMemoryPointer + 0x628) = 0;
+  *(uint32_t *)(localMemoryPointer + 0x650) = 0;
+  *(void* *)(localMemoryPointer + 0x658) = 0;
+  *(void*2 *)(localMemoryPointer + 0x660) = 0x100;
   *(void* *)(lVar1 + 0x768) = 0;
   *(void* *)(lVar1 + 0x770) = 0;
   *(uint32_t *)(lVar1 + 0x798) = 0;
