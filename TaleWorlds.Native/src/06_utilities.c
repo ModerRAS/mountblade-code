@@ -30332,7 +30332,13 @@ void HandleResourceOperationExceptionRecovery(uint8_t objectContext,int64_t vali
 
 
 
-void Unwind_1809026e0(void)
+/**
+ * @brief 销毁互斥锁资源
+ * 
+ * 该函数负责销毁互斥锁资源
+ * 释放系统资源并清理相关数据结构
+ */
+void DestroyMutexResource(void)
 
 {
   _Mtx_destroy_in_situ();
@@ -30341,11 +30347,22 @@ void Unwind_1809026e0(void)
 
 
 
-void Unwind_180902700(uint8_t objectContextParam,int64_t validationContextParam,uint8_t param_3,uint8_t param_4)
+/**
+ * @brief 处理资源操作的异常恢复（版本2）
+ * 
+ * 该函数在资源操作异常时进行恢复处理
+ * 通过不同的上下文偏移量处理资源状态恢复
+ * 
+ * @param objectContext 对象上下文
+ * @param validationContext 验证上下文
+ * @param resourceDataParam 资源数据参数
+ * @param validationFlagsParam 验证标志参数
+ */
+void HandleResourceOperationExceptionRecoveryV2(uint8_t objectContext,int64_t validationContext,uint8_t resourceDataParam,uint8_t validationFlagsParam)
 
 {
-  ProcessResourceOperationEx(*(int64_t *)(validationContextParam + 0x78),*(uint8_t *)(*(int64_t *)(validationContextParam + 0x78) + 0x10),
-                param_3,param_4,0xfffffffffffffffe);
+  ProcessResourceOperationEx(*(int64_t *)(validationContext + 0x78),*(uint8_t *)(*(int64_t *)(validationContext + 0x78) + 0x10),
+                resourceDataParam,validationFlagsParam,0xfffffffffffffffe);
   return;
 }
 
