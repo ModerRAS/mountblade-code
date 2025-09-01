@@ -2462,7 +2462,7 @@ int ProcessNetworkPacketPhaseOne(longlong connectionContext, longlong packetData
 void ProcessNetworkConnectionRequest(longlong requestContext, NetworkHandle connectionInfo, NetworkStatus requestFlags)
 
 {
-  FUN_18083f850(packetData,dataSize,&NetworkDataProcessingBuffer,*(NetworkStatus *)(connectionContext + 0x10),
+  InitializeNetworkDataStream(packetData,dataSize,&NetworkDataProcessingBuffer,*(NetworkStatus *)(connectionContext + 0x10),
                 *(NetworkStatus *)(connectionContext + 0x18));
   return;
 }
@@ -2483,7 +2483,7 @@ void ProcessNetworkConnectionRequest(longlong requestContext, NetworkHandle conn
 void ProcessNetworkConnectionResponse(longlong responseContext, NetworkHandle responseData, NetworkStatus responseFlags)
 
 {
-  FUN_18083f8f0(responseData,responseFlags,&NetworkResponseBuffer,*(NetworkStatus *)(responseContext + 0x10),
+  ProcessNetworkResponseStream(responseData,responseFlags,&NetworkResponseBuffer,*(NetworkStatus *)(responseContext + 0x10),
                 *(NetworkStatus *)(responseContext + 0x18),*(NetworkStatus *)(responseContext + 0x1c));
   return;
 }
@@ -2556,7 +2556,7 @@ int SerializeNetworkConnectionData(longlong connectionData, longlong outputBuffe
 void ValidateNetworkConnectionStatus(longlong connectionContext, NetworkHandle validationData, NetworkStatus validationFlags)
 
 {
-  FUN_18083f850(validationData,validationFlags,&NetworkReservedMemoryRegion2ea0,*(NetworkStatus *)(connectionContext + 0x10),
+  InitializeNetworkDataStream(validationData,validationFlags,&NetworkReservedMemoryRegion2ea0,*(NetworkStatus *)(connectionContext + 0x10),
                 *(NetworkStatus *)(connectionContext + 0x18));
   return;
 }
@@ -2577,7 +2577,7 @@ void ValidateNetworkConnectionStatus(longlong connectionContext, NetworkHandle v
 void UpdateNetworkConnectionConfig(longlong configContext, NetworkHandle configData, NetworkStatus configFlags)
 
 {
-  FUN_18083f8f0(configData,configFlags,&NetworkReservedMemoryRegion2f20,*(NetworkStatus *)(configContext + 0x10),
+  ProcessNetworkResponseStream(configData,configFlags,&NetworkReservedMemoryRegion2f20,*(NetworkStatus *)(configContext + 0x10),
                 *(NetworkStatus *)(configContext + 0x18),*(NetworkStatus *)(configContext + 0x1c));
   return;
 }
@@ -2650,7 +2650,7 @@ int SerializeNetworkConfigData(longlong configData, longlong outputBuffer, int b
 void InitializeNetworkPool(longlong poolContext, NetworkHandle poolData, NetworkStatus poolFlags)
 
 {
-  FUN_18083f850(poolData,poolFlags,&UNK_180982c20,*(NetworkStatus *)(poolContext + 0x10),
+  InitializeNetworkDataStream(poolData,poolFlags,&UNK_180982c20,*(NetworkStatus *)(poolContext + 0x10),
                 *(NetworkStatus *)(poolContext + 0x18));
   return;
 }
@@ -2671,7 +2671,7 @@ void InitializeNetworkPool(longlong poolContext, NetworkHandle poolData, Network
 void CleanupNetworkPool(longlong poolContext, NetworkHandle cleanupData, NetworkStatus cleanupFlags)
 
 {
-  FUN_18083f850(cleanupData,cleanupFlags,&UNK_180982ca0,*(NetworkStatus *)(poolContext + 0x10),
+  InitializeNetworkDataStream(cleanupData,cleanupFlags,&UNK_180982ca0,*(NetworkStatus *)(poolContext + 0x10),
                 *(NetworkStatus *)(poolContext + 0x18));
   return;
 }
@@ -2692,7 +2692,7 @@ void CleanupNetworkPool(longlong poolContext, NetworkHandle cleanupData, Network
 void ResetNetworkPool(longlong poolContext, NetworkHandle resetData, NetworkStatus resetFlags)
 
 {
-  FUN_18083f850(resetData,resetFlags,&UNK_1809831a0,*(NetworkStatus *)(poolContext + 0x10),
+  InitializeNetworkDataStream(resetData,resetFlags,&UNK_1809831a0,*(NetworkStatus *)(poolContext + 0x10),
                 *(NetworkStatus *)(poolContext + 0x18));
   return;
 }
@@ -2713,7 +2713,7 @@ void ResetNetworkPool(longlong poolContext, NetworkHandle resetData, NetworkStat
 void ValidateNetworkPool(longlong poolContext, NetworkHandle validationData, NetworkStatus validationFlags)
 
 {
-  FUN_18083f8f0(validationData,validationFlags,&UNK_180983220,*(NetworkStatus *)(poolContext + 0x10),
+  ProcessNetworkResponseStream(validationData,validationFlags,&UNK_180983220,*(NetworkStatus *)(poolContext + 0x10),
                 *(NetworkStatus *)(poolContext + 0x18),*(NetworkStatus *)(poolContext + 0x1c));
   return;
 }
@@ -2932,7 +2932,7 @@ int SerializeNetworkStatsData(longlong statsData, longlong outputBuffer, int buf
 void ProcessNetworkHandshake(longlong handshakeContext, NetworkHandle handshakeData, NetworkStatus handshakeFlags)
 
 {
-  FUN_18083f9b0(handshakeData,handshakeFlags,&UNK_180984438,*(NetworkStatus *)(handshakeContext + 0x10),
+  InitializeNetworkHandshakeStream(handshakeData,handshakeFlags,&UNK_180984438,*(NetworkStatus *)(handshakeContext + 0x10),
                 *(NetworkByte *)(handshakeContext + 0x18));
   return;
 }
@@ -2953,7 +2953,7 @@ void ProcessNetworkHandshake(longlong handshakeContext, NetworkHandle handshakeD
 void InitializeNetworkHandshakeProtocol(longlong handshakeContext, NetworkHandle handshakeData, NetworkStatus handshakeFlags)
 
 {
-  FUN_18083f9b0(packetData,dataSize,&UNK_1809843c0,*(NetworkStatus *)(connectionContext + 0x10),
+  InitializeNetworkHandshakeStream(packetData,dataSize,&UNK_1809843c0,*(NetworkStatus *)(connectionContext + 0x10),
                 *(NetworkByte *)(connectionContext + 0x18));
   return;
 }
@@ -3782,7 +3782,7 @@ int ProcessNetworkPacketSimplified(longlong connectionContext, longlong packetDa
 void ProcessNetworkDataPacket(longlong connectionContext,NetworkHandle packetData,NetworkStatus dataSize)
 
 {
-  FUN_18083fa50(packetData,dataSize,&UNK_180983828,*(NetworkStatus *)(connectionContext + 0x10),
+  ProcessNetworkPacketStream(packetData,dataSize,&UNK_180983828,*(NetworkStatus *)(connectionContext + 0x10),
                 *(NetworkStatus *)(connectionContext + 0x18));
   return;
 }
@@ -3920,7 +3920,7 @@ int ProcessNetworkPacketWithBufferTemplate(longlong connectionContext,longlong p
 void SendNetworkDataPacket(longlong connectionContext,NetworkHandle packetData,NetworkStatus dataSize)
 
 {
-  FUN_18083fa50(packetData,dataSize,&UNK_1809837a0,*(NetworkStatus *)(connectionContext + 0x10),
+  ProcessNetworkPacketStream(packetData,dataSize,&UNK_1809837a0,*(NetworkStatus *)(connectionContext + 0x10),
                 *(NetworkStatus *)(connectionContext + 0x18));
   return;
 }
@@ -3989,7 +3989,18 @@ int ProcessNetworkConnectionAdvancedPacket(longlong connectionContext,longlong p
 
 
 
-int FUN_180843ce0(longlong connectionContext,longlong packetData,int dataSize)
+/**
+ * @brief 处理网络连接数据包第一阶段
+ * 
+ * 该函数负责处理网络连接数据包的第一阶段处理，
+ * 包括数据验证、缓冲区处理和初步的网络状态检查。
+ * 
+ * @param connectionContext 网络连接上下文指针
+ * @param packetData 数据包数据指针
+ * @param dataSize 数据包大小
+ * @return 处理结果状态码，0表示成功
+ */
+int ProcessNetworkConnectionPacketPhaseOne(longlong connectionContext,longlong packetData,int dataSize)
 
 {
   NetworkStatus uVar1;
@@ -4018,7 +4029,20 @@ int FUN_180843ce0(longlong connectionContext,longlong packetData,int dataSize)
 
 
 
-int FUN_180843d90(longlong connectionContext,longlong packetData,int dataSize)
+/**
+ * @brief 处理带超时的网络数据包流
+ * 
+ * 该函数处理网络数据包流，包括超时处理、缓冲区验证和数据处理。
+ * 主要用于需要超时控制的网络通信场景。
+ * 
+ * @param connectionContext 网络连接上下文指针
+ * @param packetData 数据包数据指针
+ * @param dataSize 数据包大小
+ * @return 处理后的数据包大小
+ * 
+ * 注意：这是一个反编译的函数实现
+ */
+int ProcessNetworkPacketStreamWithTimeout(longlong connectionContext,longlong packetData,int dataSize)
 
 {
   NetworkStatus uVar1;
@@ -4047,7 +4071,20 @@ int FUN_180843d90(longlong connectionContext,longlong packetData,int dataSize)
 
 
 
-int FUN_180843e40(longlong connectionContext,longlong packetData,int dataSize)
+/**
+ * @brief 处理网络数据包协议处理
+ * 
+ * 该函数负责处理网络数据包的协议相关操作，包括协议验证、
+ * 协议转换和协议特定的数据处理。
+ * 
+ * @param connectionContext 网络连接上下文指针
+ * @param packetData 数据包数据指针
+ * @param dataSize 数据包大小
+ * @return 协议处理结果状态码
+ * 
+ * 注意：这是一个反编译的函数实现
+ */
+int ProcessNetworkPacketProtocol(longlong connectionContext,longlong packetData,int dataSize)
 
 {
   NetworkStatus uVar1;
@@ -4086,7 +4123,20 @@ void ReceiveNetworkDataPacket(longlong connectionContext,NetworkHandle packetDat
 
 
 
-int FUN_180843ee0(longlong connectionContext,longlong packetData,int dataSize)
+/**
+ * @brief 处理网络握手协议
+ * 
+ * 该函数负责处理网络连接的握手协议，包括握手请求的发送、
+ * 握手响应的接收和握手状态的验证。
+ * 
+ * @param connectionContext 网络连接上下文指针
+ * @param packetData 握手数据包指针
+ * @param dataSize 握手数据包大小
+ * @return 握手协议处理结果
+ * 
+ * 注意：这是一个反编译的函数实现
+ */
+int ProcessNetworkHandshakeProtocol(longlong connectionContext,longlong packetData,int dataSize)
 
 {
   NetworkStatus uVar1;
@@ -7963,7 +8013,7 @@ LAB_1808491ce:
 
 
 
-NetworkHandle FUN_180849219(void)
+NetworkHandle FinalizeNetworkConnectionHandler(void)
 
 {
   return 0x26;
@@ -9100,7 +9150,7 @@ ulonglong FUN_18084afc0(NetworkHandle connectionContext)
 
 
 
-NetworkHandle FUN_18084b015(NetworkHandle connectionContext,longlong packetData)
+NetworkHandle ValidateNetworkConnectionProtocol(NetworkHandle connectionContext,longlong packetData)
 
 {
   int networkStatus1;
@@ -10274,7 +10324,7 @@ void FUN_18084c2d0(NetworkHandle *connectionContext)
 
 
 
-NetworkHandle FUN_18084c350(NetworkHandle connectionContext,ulonglong packetData)
+NetworkHandle ProcessNetworkConnectionPacket(NetworkHandle connectionContext,ulonglong packetData)
 
 {
   FUN_18084c2d0();
@@ -10301,7 +10351,7 @@ longlong FUN_18084c390(longlong connectionContext,ulonglong packetData)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-NetworkHandle FUN_18084c470(longlong *connectionContext,int packetData)
+NetworkHandle HandleNetworkConnectionEvent(longlong *connectionContext,int packetData)
 
 {
   int networkStatus1;
@@ -10349,7 +10399,7 @@ LAB_18084c510:
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-NetworkHandle FUN_18084c494(NetworkHandle connectionContext,int packetData)
+NetworkHandle ProcessNetworkConnectionData(NetworkHandle connectionContext,int packetData)
 
 {
   int networkStatus1;
