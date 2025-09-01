@@ -40,64 +40,64 @@ void* AudioSystemContext;                       // 音频系统上下文
 
 // 输入系统初始化函数和相关数据
 void* GameInputMainEntryPoint;                      // 游戏输入系统入口点
-void* InputSystemDataBuffer;
-void* InputSystemEventQueueManager;
-void* InputSystemCurrentStateData;
-void* InputSystemDeviceManager;
-void* InputSystemKeyMappingTable;
-void* InputSystemAxisMappingTable;
-void* InputSystemActionBindingsTable;
-void* InputSystemConfiguration;
-void* GameSubsystemMainEntryPoint;
-void* SubsystemMainContext;
-void* InputSystemDataTable;
-uint8_t InputSystemStatusFlags;
-void* InputSystemPrimaryConfig;
-void* InputSystemDeviceConfigTable;
-void* InputSystemMappingConfigTable;
-void* InputSystemProfileConfigTable;
+void* InputSystemDataBuffer;                    // 输入系统数据缓冲区
+void* InputSystemEventQueueManager;              // 输入系统事件队列管理器
+void* InputSystemCurrentStateData;               // 输入系统当前状态数据
+void* InputSystemDeviceManager;                  // 输入系统设备管理器
+void* InputSystemKeyMappingTable;                 // 输入系统按键映射表
+void* InputSystemAxisMappingTable;               // 输入系统轴映射表
+void* InputSystemActionBindingsTable;            // 输入系统动作绑定表
+void* InputSystemConfiguration;                  // 输入系统配置
+void* GameSubsystemMainEntryPoint;              // 游戏子系统主入口点
+void* SubsystemMainContext;                     // 子系统主上下文
+void* InputSystemDataTable;                     // 输入系统数据表
+uint8_t InputSystemStatusFlags;                  // 输入系统状态标志
+void* InputSystemPrimaryConfig;                 // 输入系统主配置
+void* InputSystemDeviceConfigTable;             // 输入系统设备配置表
+void* InputSystemMappingConfigTable;            // 输入系统映射配置表
+void* InputSystemProfileConfigTable;            // 输入系统配置文件表
 
 // 物理系统初始化函数
-void* GamePhysicsMainEntryPoint;
-void* PhysicsSystemContext;
+void* GamePhysicsMainEntryPoint;                 // 游戏物理系统主入口点
+void* PhysicsSystemContext;                      // 物理系统上下文
 
 // 文件系统初始化函数
-void* GameFileSystemMainEntryPoint;
+void* GameFileSystemMainEntryPoint;               // 游戏文件系统主入口点
 
 // 字符串处理系统初始化
-void* GameStringProcessingMainInitializer;
-void* StringProcessingDataBuffer;
-void* StringProcessingPrimaryStructure;
-void* StringProcessingSecondaryStructure;
-void* StringProcessingTertiaryStructure;
-void* StringProcessingQuaternaryStructure;
-void* StringProcessingGuardCheckHandler;
+void* GameStringProcessingMainInitializer;       // 游戏字符串处理主初始化器
+void* StringProcessingDataBuffer;                // 字符串处理数据缓冲区
+void* StringProcessingPrimaryStructure;          // 字符串处理主结构
+void* StringProcessingSecondaryStructure;         // 字符串处理次级结构
+void* StringProcessingTertiaryStructure;          // 字符串处理第三级结构
+void* StringProcessingQuaternaryStructure;        // 字符串处理第四级结构
+void* StringProcessingGuardCheckHandler;          // 字符串处理保护检查处理器
 
 // 内存管理系统初始化
-void* GameMemoryManagementMainInitializer;
+void* GameMemoryManagementMainInitializer;       // 游戏内存管理主初始化器
 
 // 系统资源管理器初始化
-void* GameResourceManagementMainInitializer;
-void* ResourceMemoryRegionPrimary;
-void* ResourceMemoryRegionSecondary;
-void* ResourceMemoryRegionTertiary;
-void* ResourceMemoryRegionQuaternary;
-void* ResourceMemoryRegionQuinary;
-void* ResourceMemoryRegionSenary;
-void* ResourceMemoryRegionSeptenary;
-void* ResourceMemoryRegionOctonary;
-void* ResourceMemoryRegionNonary;
-void* ResourceMemoryRegionDecary;
-void* ResourceMemoryRegionUndenary;
-void* ResourceMemoryRegionDuodenary;
-void* ResourceFunctionPointerPrimary;
-void* ResourceFunctionPointerSecondary;
-void* ResourceMemoryRegionTridecary;
-void* ResourceMemoryRegionQuattuordecary;
-void* ResourceMemoryRegionQuindecary;
-void* ResourceMemoryRegionSexdecary;
-void* ResourceSystemGlobalConstant;
-void* ResourceDataBufferSecondary;
+void* GameResourceManagementMainInitializer;     // 游戏资源管理主初始化器
+void* ResourceMemoryRegionPrimary;                // 资源内存区域主分区
+void* ResourceMemoryRegionSecondary;              // 资源内存区域次分区
+void* ResourceMemoryRegionTertiary;               // 资源内存区域第三分区
+void* ResourceMemoryRegionQuaternary;             // 资源内存区域第四分区
+void* ResourceMemoryRegionQuinary;                // 资源内存区域第五分区
+void* ResourceMemoryRegionSenary;                 // 资源内存区域第六分区
+void* ResourceMemoryRegionSeptenary;               // 资源内存区域第七分区
+void* ResourceMemoryRegionOctonary;               // 资源内存区域第八分区
+void* ResourceMemoryRegionNonary;                 // 资源内存区域第九分区
+void* ResourceMemoryRegionDecary;                  // 资源内存区域第十分区
+void* ResourceMemoryRegionUndenary;               // 资源内存区域第十一分区
+void* ResourceMemoryRegionDuodenary;              // 资源内存区域第十二分区
+void* ResourceFunctionPointerPrimary;             // 资源函数指针主入口
+void* ResourceFunctionPointerSecondary;           // 资源函数指针次入口
+void* ResourceMemoryRegionTridecary;              // 资源内存区域第十三分区
+void* ResourceMemoryRegionQuattuordecary;         // 资源内存区域第十四分区
+void* ResourceMemoryRegionQuindecary;             // 资源内存区域第十五分区
+void* ResourceMemoryRegionSexdecary;              // 资源内存区域第十六分区
+void* ResourceSystemGlobalConstant;                // 资源系统全局常量
+void* ResourceDataBufferSecondary;                 // 资源数据缓冲区次级区域
 void* ResourceDataTableSecondary;
 void* ResourceMemoryRegionSeptendecary;
 void* ResourceDataTableTertiary;
