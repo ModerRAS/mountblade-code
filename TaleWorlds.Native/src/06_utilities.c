@@ -6949,14 +6949,19 @@ void ProcessPointerValidationAndSystemObjectHandling(longlong *ObjectPointer, lo
 
 
 
- void FUN_1808924c8(void)
-void FUN_1808924c8(void)
+ /**
+ * @brief 安全令牌清理函数
+ * 
+ * 该函数执行安全令牌的清理操作，确保系统资源被正确释放
+ * 这是一个不返回的函数，调用后程序会终止
+ */
+void CleanupSecurityTokenFunction(void)
 
 {
-  ulonglong in_stack_00000050;
+  ulonglong securityToken;
   
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
+  CleanupSecurityToken(securityToken ^ (ulonglong)&stack0x00000000);
 }
 
 
