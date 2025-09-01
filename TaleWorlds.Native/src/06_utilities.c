@@ -966,10 +966,10 @@ undefined GarbageCollectorTable3;
  */
 void ConfigureMemoryStatistics;
 undefined UNK_180a22ba8;
-undefined DAT_180bf9510;
-undefined DAT_180bf9518;
-undefined DAT_180bf9520;
-undefined DAT_180bf9528;
+undefined MemoryStatisticsTable0;
+undefined MemoryStatisticsTable1;
+undefined MemoryStatisticsTable2;
+undefined MemoryStatisticsTable3;
 undefined UNK_180a22c48;
 
  void InitializeMemoryDebugger;
@@ -980,10 +980,10 @@ undefined UNK_180a22c48;
  * 设置内存调试和错误检测功能
  */
 void InitializeMemoryDebugger;
-undefined DAT_180bf9570;
-undefined DAT_180bf9578;
-undefined DAT_180bf9580;
-undefined DAT_180bf9588;
+undefined MemoryDebuggerTable0;
+undefined MemoryDebuggerTable1;
+undefined MemoryDebuggerTable2;
+undefined MemoryDebuggerTable3;
 undefined UNK_180a22c30;
 
  void SetupMemoryAlignment;
@@ -7793,19 +7793,19 @@ undefined8 ProcessObjectContextFloatRangeValidationAndClamping(void)
   longlong systemContext;
   float clampedValue;
   
-  uVar6 = in_RAX - 8;
-  if (in_RAX == 0) {
-    uVar6 = (ulonglong)in_R9D;
+  validationContext = contextPointer - 8;
+  if (contextPointer == 0) {
+    validationContext = (ulonglong)loopCounter;
   }
-  iVar2 = *(int *)(uVar6 + 0x28);
-  pfVar7 = (float *)(unaff_RBX + 0x20 + (longlong)*(int *)(unaff_RBX + 0x18) * 4);
-  if (0 < *(int *)(unaff_RBX + 0x18)) {
-    pfVar4 = pfVar7;
-    uVar8 = in_R9D;
+  validationRange = *(int *)(validationContext + 0x28);
+  floatArrayStart = (float *)(objectContext + 0x20 + (longlong)*(int *)(objectContext + 0x18) * 4);
+  if (0 < *(int *)(objectContext + 0x18)) {
+    floatArrayPointer = floatArrayStart;
+    iterationIndex = loopCounter;
     do {
-      iVar3 = *(int *)(((unaff_RBX + 0x20) - (longlong)pfVar7) + (longlong)pfVar4);
-      if (iVar3 != -1) {
-        fVar1 = *pfVar4;
+      arrayIndex = *(int *)(((objectContext + 0x20) - (longlong)floatArrayStart) + (longlong)floatArrayPointer);
+      if (arrayIndex != -1) {
+        inputValue = *floatArrayPointer;
         if (((uint)fVar1 & 0x7f800000) == 0x7f800000) {
           return 0x1d;
         }
@@ -7965,52 +7965,64 @@ void UpdateSystemConfigurationAndExecute(longlong configObject, longlong systemC
 
 
 
-undefined8 FUN_1808930e0(longlong param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
+/**
+ * @brief 验证并处理带参数的对象上下文
+ * 
+ * 该函数负责验证对象上下文的有效性，并根据提供的参数进行处理
+ * 包括浮点数验证、对象上下文验证和参数处理
+ * 
+ * @param param_1 对象上下文参数，包含对象的基本信息
+ * @param param_2 系统上下文参数，用于系统级操作
+ * @param param_3 附加参数1，用于扩展功能
+ * @param param_4 附加参数2，用于扩展功能
+ * @return undefined8 操作结果状态码，0表示成功，非0表示错误
+ */
+undefined8 ValidateAndProcessObjectContextWithParameters(longlong param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
 
 {
-  float fVar1;
-  undefined8 uVar2;
-  longlong lVar3;
+  float validationFloat;
+  undefined8 validationResult;
+  longlong contextPointer;
   undefined8 unaff_RDI;
-  longlong lStackX_8;
+  longlong stackBuffer;
   
-  fVar1 = *(float *)(param_1 + 0x18);
-  lStackX_8 = CONCAT44(lStackX_8._4_4_,fVar1);
-  if (((uint)fVar1 & 0x7f800000) == 0x7f800000) {
+  validationFloat = *(float *)(param_1 + 0x18);
+  stackBuffer = CONCAT44(stackBuffer._4_4_,validationFloat);
+  if (((uint)validationFloat & 0x7f800000) == 0x7f800000) {
     return 0x1d;
   }
-  if ((fVar1 < 0.0) || (3.4028235e+38 <= fVar1)) {
+  if ((validationFloat < 0.0) || (3.4028235e+38 <= validationFloat)) {
     return 0x1f;
   }
-  uVar2 = ValidateObjectContext(*(undefined4 *)(param_1 + 0x10),&lStackX_8);
-  if ((int)uVar2 != 0) {
-    return uVar2;
+  validationResult = ValidateObjectContext(*(undefined4 *)(param_1 + 0x10),&stackBuffer);
+  if ((int)validationResult != 0) {
+    return validationResult;
   }
-  if (lStackX_8 == 0) {
-    lVar3 = 0;
+  if (stackBuffer == 0) {
+    contextPointer = 0;
   }
   else {
-    lVar3 = lStackX_8 + -8;
+    contextPointer = stackBuffer + -8;
   }
-  *(undefined4 *)(lVar3 + 0x90) = *(undefined4 *)(param_1 + 0x18);
-  lVar3 = *(longlong *)(param_2 + 0x98);
-  if ((*(int *)(lVar3 + 0x180) != 0) || (*(int *)(lVar3 + 0x184) != 0)) {
-    lStackX_8 = 0;
-    FUN_180768b50(&lStackX_8,param_1,param_3,param_4,unaff_RDI);
-    if (lStackX_8 == *(longlong *)((longlong)*(int *)(lVar3 + 0x17c) * 8 + 0x180c4f450)) {
-      uVar2 = FUN_18088dd60(lVar3,param_1);
-      if ((int)uVar2 == 0) {
+  *(undefined4 *)(contextPointer + 0x90) = *(undefined4 *)(param_1 + 0x18);
+  contextPointer = *(longlong *)(param_2 + 0x98);
+  if ((*(int *)(contextPointer + 0x180) != 0) || (*(int *)(contextPointer + 0x184) != 0)) {
+    stackBuffer = 0;
+    FUN_180768b50(&stackBuffer,param_1,param_3,param_4,unaff_RDI);
+    if (stackBuffer == *(longlong *)((longlong)*(int *)(contextPointer + 0x17c) * 8 + 0x180c4f450)) {
+      validationResult = FUN_18088dd60(contextPointer,param_1);
+      if ((int)validationResult == 0) {
         return 0;
       }
-      return uVar2;
+      return validationResult;
     }
   }
   *(uint *)(param_1 + 8) = *(int *)(param_1 + 8) + 0xfU & 0xfffffff0;
-  uVar2 = func_0x0001808e64d0(*(undefined8 *)(lVar3 + 0x1e0));
-  if ((int)uVar2 == 0) {
+  validationResult = func_0x0001808e64d0(*(undefined8 *)(contextPointer + 0x1e0));
+  if ((int)validationResult == 0) {
     return 0;
   }
-  return uVar2;
+  return validationResult;
 }
 
 
@@ -8181,19 +8193,28 @@ undefined8 ValidateObjectContextAndProcessComplexFloatOperation(longlong param_1
 
 
  void FUN_1808933c0(longlong param_1,longlong param_2)
-void FUN_1808933c0(longlong param_1,longlong param_2)
+/**
+ * @brief 处理对象上下文验证并递增计数器
+ * 
+ * 该函数验证对象上下文的有效性，并在验证通过后递增相关计数器
+ * 主要用于对象引用计数和状态管理
+ * 
+ * @param param_1 对象上下文参数，包含对象的基本信息
+ * @param param_2 系统上下文参数，用于系统级操作
+ */
+void ProcessObjectContextValidationAndIncrement(longlong param_1,longlong param_2)
 
 {
-  int iVar1;
-  longlong lStackX_8;
+  int validationStatus;
+  longlong contextPointer;
   
-  iVar1 = ValidateObjectContext(*(undefined4 *)(param_1 + 0x10),&lStackX_8);
-  if (iVar1 == 0) {
-    if (lStackX_8 != 0) {
-      lStackX_8 = lStackX_8 + -8;
+  validationStatus = ValidateObjectContext(*(undefined4 *)(param_1 + 0x10),&contextPointer);
+  if (validationStatus == 0) {
+    if (contextPointer != 0) {
+      contextPointer = contextPointer + -8;
     }
-    *(int *)(lStackX_8 + 0x84) = *(int *)(lStackX_8 + 0x84) + 1;
-    *(undefined1 *)(lStackX_8 + 0xbd) = 1;
+    *(int *)(contextPointer + 0x84) = *(int *)(contextPointer + 0x84) + 1;
+    *(undefined1 *)(contextPointer + 0xbd) = 1;
                     // WARNING: Subroutine does not return
     FUN_18088d720(*(undefined8 *)(param_2 + 0x98),param_1);
   }
@@ -82738,7 +82759,7 @@ void FUN_180941fe0(void)
 void FUN_180942000(void)
 
 {
-  _DAT_180bf94b0 = &UNK_18098bcb0;
+  GarbageCollectorTable0 = &UNK_18098bcb0;
   return;
 }
 
