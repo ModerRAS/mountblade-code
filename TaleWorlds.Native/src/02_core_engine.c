@@ -11121,7 +11121,7 @@ LAB_180044db8:
     uStack_178 = 0;
     auStack_170[0] = 0;
     uStack_200 = 2;
-    engine_call_config_loader(&puStack_188,&engine_data_1809fd0a0,0x130a7);
+    engine_call_config_loader(&puStack_188,&engine_magic_header_data,0x130a7);
     puStack_220 = &engine_data_73;
     if (puStack_180 != (void*)0x0) {
       puStack_220 = puStack_180;
@@ -15855,7 +15855,7 @@ void engine_process_system_allocation(uint64 engine_engine_param_1,uint64 engine
   *(uint16*)(uVar8 + 4 + lStack_e8) = 0x203a;
   *(uint8*)(uVar8 + 6 + lStack_e8) = 0;
   uStack_e0 = 6;
-  engine_process_performance_data(acStack_58,&engine_data_1809fd0a0,engine_temp_uint_3);
+  engine_process_performance_data(acStack_58,&engine_magic_header_data,engine_temp_uint_3);
   engine_temp_long_2 = -1;
   do {
     engine_temp_long0 = engine_temp_long_2;
@@ -17386,7 +17386,7 @@ void engine_handle_system_interruption(longlong engine_engine_param_1)
     *(uint16*)(engine_temporary_pointer + 8) = 0x2072;
     *(uint8*)((longlong)engine_temporary_pointer + 0x22) = 0;
     uStack_88 = 0x3e;
-    engine_process_performance_data(acStack_60,&engine_data_1809fd0a0,900);
+    engine_process_performance_data(acStack_60,&engine_magic_header_data,900);
     engine_temp_uint_3 = uStack_88;
     engine_temp_long_4 = -1;
     do {
@@ -24639,7 +24639,7 @@ void FUN_180065160(uint64 engine_engine_param_1)
   uStack_b8 = 0;
   auStack_b0[0] = 0;
   uStack_310 = 4;
-  engine_call_config_loader(&puStack_c8,&engine_data_1809fd0a0,0x130a7);
+  engine_call_config_loader(&puStack_c8,&engine_magic_header_data,0x130a7);
   puStack_348 = &engine_data_73;
   if (puStack_c0 != (void*)0x0) {
     puStack_348 = puStack_c0;
@@ -27910,7 +27910,7 @@ void FUN_180070930(uint64 engine_engine_param_1,longlong engine_engine_param_2,u
   uStack_50 = 0;
   uStack_98 = engine_system_parameter_3;
   lStack_88 = engine_system_parameter_4;
-  FUN_1800634b0(&uStack_58,0x10,&engine_data_1809fd0a0,engine_system_parameter_3);
+  FUN_1800634b0(&uStack_58,0x10,&engine_magic_header_data,engine_system_parameter_3);
   lVar9 = FUN_180627910(&puStack_d8,engine_system_parameter_4);
   puStack_118 = &engine_system_context_data;
   uStack_100 = 0;
@@ -28816,7 +28816,7 @@ void FUN_180072000(uint64 engine_engine_param_1,longlong engine_engine_param_2,u
   if ((engine_data_60 != '\0') || (engine_render_flag != '\0')) goto LAB_180072d7b;
   uStack_58 = 0;
   uStack_50 = 0;
-  FUN_1800634b0(&uStack_58,0x10,&engine_data_1809fd0a0,engine_system_parameter_3);
+  FUN_1800634b0(&uStack_58,0x10,&engine_magic_header_data,engine_system_parameter_3);
   lVar9 = FUN_180627910(&puStack_f0,engine_system_parameter_4);
   puStack_110 = &engine_system_context_data;
   engine_temp_uint6 = 0;
