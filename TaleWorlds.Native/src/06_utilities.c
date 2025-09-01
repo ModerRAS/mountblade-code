@@ -86625,13 +86625,23 @@ void InitializeSystemDataStructureCB(void)
 
 
  /**
- * 初始化系统数据结构CC
- * 设置全局系统数据结构指针，用于系统初始化
+ * @brief 初始化系统数据结构CC
+ * 
+ * 该函数负责初始化系统的数据结构CC，管理资源计数器和内存分配
+ * 执行资源表的初始化和内存管理操作
+ * 
+ * @note 此函数通常在系统启动时调用，用于初始化核心数据结构
+ * @warning 调用此函数时确保系统处于安全状态
  */
 void InitializeSystemDataStructureCC(void)
 /**
- * 初始化系统数据结构CC
- * 设置全局系统数据结构指针，用于系统初始化
+ * @brief 初始化系统数据结构CC
+ * 
+ * 该函数负责初始化系统的数据结构CC，管理资源计数器和内存分配
+ * 执行资源表的初始化和内存管理操作
+ * 
+ * @note 此函数通常在系统启动时调用，用于初始化核心数据结构
+ * @warning 调用此函数时确保系统处于安全状态
  */
 void InitializeSystemDataStructureCC(void)
 
@@ -87339,14 +87349,17 @@ void DestroyMutexResource(void)
  /**
  * @brief 初始化全局数据指针
  * 
- * 该函数负责初始化系统的全局数据指针
- * 设置数据指针指向预定义的系统数据结构
+ * 该函数负责初始化系统的全局数据指针，设置SystemDataStructurePointer006
+ * 指向预定义的系统数据结构，为系统运行提供基础数据支持
+ * 
+ * @note 此函数在系统初始化阶段调用，确保数据指针正确设置
+ * @warning 调用此函数前必须确保SystemDataStructure已正确初始化
  */
 void InitializeGlobalDataPointer(void)
 void InitializeGlobalDataPointer(void)
 
 {
-  _DAT_180bf6048 = &SystemDataStructure;
+  SystemDataStructurePointer006 = &SystemDataStructure;
   return;
 }
 
@@ -87365,7 +87378,7 @@ void InitializeSecondaryDataPointer(void)
 void InitializeSecondaryDataPointer(void)
 
 {
-  _DAT_180bf6498 = &SystemDataStructure;
+  SecondarySystemDataPointer = &SystemDataStructure;
   return;
 }
 
