@@ -1013,7 +1013,7 @@ void* SystemTaskConfigTable2;
 void* SystemJobConfigTable2;
 void* SystemWorkConfigTable2;
 void* SystemQueueConfigTable2;
-void* MemoryAllocatorFunction;
+void* MemoryAllocatorFunctionPointer;
 /**
  * @brief 初始化系统资源
  * 
@@ -1027,7 +1027,7 @@ void* SystemBufferConfigTable2;
 void* SystemMemoryConfigTable4;
 void* MemoryManagerInstance;
 
- void* CreateMemoryManager;
+ void* CreateMemoryManagerPointer;
 /**
  * @brief 创建内存管理器
  * 
@@ -1036,7 +1036,6 @@ void* MemoryManagerInstance;
  * 
  * @return void* 内存管理器实例指针
  */
-void* CreateMemoryManager;
 /**
  * @brief 设置内存分配器
  * 
@@ -62743,38 +62742,38 @@ void Unwind_18090c480(void)
 void Unwind_18090c490(uint8_t8 param_1,longlong param_2)
 
 {
-  longlong lVar1;
-  int iVar2;
+  longlong ResourceEntry;
+  int ArraySize;
   longlong resourceIndex;
-  longlong *plVar4;
-  longlong lVar5;
+  longlong *ResourceTablePointer;
+  longlong MemoryPointer;
   
   if (0 < *(int *)(param_2 + 0x150)) {
-    lVar5 = *(longlong *)(_DAT_180c86938 + 0x1cd8);
-    if ((*(char *)(_DAT_180c86890 + 0x12e3) != '\0') || (*(char *)(_DAT_180c86890 + 0x12dd) != '\0')
+    MemoryPointer = *(longlong *)(SystemDataBuffer + 0x1cd8);
+    if ((*(char *)(SystemDataBufferSecondary + 0x12e3) != '\0') || (*(char *)(SystemDataBufferSecondary + 0x12dd) != '\0')
        ) {
-      plVar4 = (longlong *)(lVar5 + 0x80d8 + (longlong)*(int *)(lVar5 + 0x8088) * 0x20);
-      lVar1 = *plVar4;
-      lVar1 = *(longlong *)(lVar1 + ((longlong)(int)(plVar4[1] - lVar1 >> 3) + -1) * 8);
+      ResourceTablePointer = (longlong *)(MemoryPointer + 0x80d8 + (longlong)*(int *)(MemoryPointer + 0x8088) * 0x20);
+      ResourceEntry = *ResourceTablePointer;
+      ResourceEntry = *(longlong *)(ResourceEntry + ((longlong)(int)(ResourceTablePointer[1] - ResourceEntry >> 3) + -1) * 8);
       PerformMemoryOperation();
-      if (*(longlong *)(lVar1 + 0x68) == 0) {
-        *(longlong *)(lVar5 + 0x80b0 + (longlong)*(int *)(lVar5 + 0x8088) * 8) = lVar1;
+      if (*(longlong *)(ResourceEntry + 0x68) == 0) {
+        *(longlong *)(MemoryPointer + 0x80b0 + (longlong)*(int *)(MemoryPointer + 0x8088) * 8) = ResourceEntry;
       }
-      resourceIndex = (longlong)*(int *)(lVar5 + 0x8088) * 0x20;
-      lVar1 = *(longlong *)(resourceIndex + 200 + lVar5 + 0x7f20);
-      iVar2 = (int)(*(longlong *)(resourceIndex + 0xd0 + lVar5 + 0x7f20) - lVar1 >> 3) + -1;
-      if (-1 < iVar2) {
-        lVar5 = (longlong)iVar2;
+      resourceIndex = (longlong)*(int *)(MemoryPointer + 0x8088) * 0x20;
+      ResourceArrayStart = *(longlong *)(resourceIndex + 200 + MemoryPointer + 0x7f20);
+      ArraySize = (int)(*(longlong *)(resourceIndex + 0xd0 + MemoryPointer + 0x7f20) - ResourceArrayStart >> 3) + -1;
+      if (-1 < ArraySize) {
+        MemoryPointer = (longlong)ArraySize;
         do {
-          if (*(char *)(*(longlong *)(lVar1 + lVar5 * 8) + 0x60) == '\x01') {
-            if (iVar2 != -1) {
-              ProcessMemoryDataAccess(*(uint8_t8 *)(lVar1 + (longlong)iVar2 * 8));
+          if (*(char *)(*(longlong *)(ResourceArrayStart + MemoryPointer * 8) + 0x60) == '\x01') {
+            if (ArraySize != -1) {
+              ProcessMemoryDataAccess(*(uint8_t8 *)(ResourceArrayStart + (longlong)ArraySize * 8));
             }
             break;
           }
-          iVar2 = iVar2 + -1;
-          lVar5 = lVar5 + -1;
-        } while (-1 < lVar5);
+          ArraySize = ArraySize + -1;
+          MemoryPointer = MemoryPointer + -1;
+        } while (-1 < MemoryPointer);
       }
     }
   }
