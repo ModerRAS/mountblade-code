@@ -6383,8 +6383,16 @@ void SystemResourceCleanupCompleteFlag(void)
 
 
 
- void FUN_180891ff0(longlong param_1,longlong param_2)
-void FUN_180891ff0(longlong param_1,longlong param_2)
+ /**
+ * @brief 验证对象上下文并更新状态
+ * 
+ * 该函数验证对象上下文的有效性，并根据验证结果更新对象状态
+ * 如果验证通过，则执行相应的状态更新操作
+ * 
+ * @param objectContext 对象上下文指针
+ * @param systemContext 系统上下文指针
+ */
+void ValidateObjectContextAndUpdateStatus(longlong objectContext, longlong systemContext)
 
 {
   int iVar1;
@@ -6639,54 +6647,62 @@ undefined8 FUN_180892270(longlong param_1,longlong param_2)
 
 
 
-undefined8 FUN_1808922ad(void)
+/**
+ * @brief 验证系统缓冲区上下文
+ * 
+ * 该函数用于验证系统中的缓冲区上下文，检查每个缓冲区的有效性
+ * 主要用于系统初始化时的验证过程
+ * 
+ * @return uint64_t 验证结果，成功返回0，失败返回错误码
+ */
+uint64_t ValidateSystemBufferContext(void)
 
 {
-  longlong lVar1;
-  int iVar2;
-  undefined8 uVar3;
-  undefined *puVar4;
-  uint uVar5;
-  ulonglong uVar6;
-  longlong lVar7;
-  ulonglong uVar8;
-  ulonglong uVar9;
-  longlong unaff_R13;
-  longlong unaff_R14;
-  longlong in_stack_00000050;
+  longlong bufferDataPointer;
+  int validationStatus;
+  undefined8 operationResult;
+  undefined *stringPointer;
+  uint iterationCounter;
+  ulonglong systemStatus;
+  longlong contextPointer;
+  ulonglong contextOffset;
+  ulonglong arrayIndex;
+  longlong systemContext1;
+  longlong systemContext2;
+  longlong stackParameter;
   
-  uVar6 = 0;
-  uVar8 = uVar6;
-  if (in_stack_00000050 != 0) {
-    uVar8 = in_stack_00000050 - 8;
+  systemStatus = 0;
+  contextOffset = systemStatus;
+  if (stackParameter != 0) {
+    contextOffset = stackParameter - 8;
   }
-  uVar9 = uVar6;
-  if (0 < *(int *)(uVar8 + 0x28)) {
+  arrayIndex = systemStatus;
+  if (0 < *(int *)(contextOffset + 0x28)) {
     do {
-      lVar7 = *(longlong *)(uVar8 + 0x20) + uVar9;
-      lVar1 = *(longlong *)(lVar7 + 0x10);
-      if (lVar1 == 0) {
+      contextPointer = *(longlong *)(contextOffset + 0x20) + arrayIndex;
+      bufferDataPointer = *(longlong *)(contextPointer + 0x10);
+      if (bufferDataPointer == 0) {
         return 0x1e;
       }
-      if (*(int *)(lVar1 + 0x58) < 1) {
-        puVar4 = &DAT_18098bc73;
+      if (*(int *)(bufferDataPointer + 0x58) < 1) {
+        stringPointer = &DAT_18098bc73;
       }
       else {
-        puVar4 = *(undefined **)(lVar1 + 0x50);
+        stringPointer = *(undefined **)(bufferDataPointer + 0x50);
       }
-      iVar2 = func_0x00018076b630(puVar4);
-      if (iVar2 == 0) {
-        uVar3 = ValidateBufferContext(lVar7,unaff_R14 + 0x18);
-        if ((int)uVar3 != 0) {
-          return uVar3;
+      validationStatus = func_0x00018076b630(stringPointer);
+      if (validationStatus == 0) {
+        operationResult = ValidateBufferContext(contextPointer,systemContext2 + 0x18);
+        if ((int)operationResult != 0) {
+          return operationResult;
         }
-        uVar3 = FUN_18088d7c0(*(undefined8 *)(unaff_R13 + 0x98));
-        return uVar3;
+        operationResult = FUN_18088d7c0(*(undefined8 *)(systemContext1 + 0x98));
+        return operationResult;
       }
-      uVar5 = (int)uVar6 + 1;
-      uVar6 = (ulonglong)uVar5;
-      uVar9 = uVar9 + 0x18;
-    } while ((int)uVar5 < *(int *)(uVar8 + 0x28));
+      iterationCounter = (int)systemStatus + 1;
+      systemStatus = (ulonglong)iterationCounter;
+      arrayIndex = arrayIndex + 0x18;
+    } while ((int)iterationCounter < *(int *)(contextOffset + 0x28));
   }
   return 0x4a;
 }
