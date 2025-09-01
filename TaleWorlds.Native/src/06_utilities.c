@@ -186,6 +186,9 @@ void* CleanupContextTertiaryData;
  * 
  * 该函数负责初始化游戏资源管理器
  * 设置资源分配、管理和释放的基础设施
+ * 
+ * @return 无返回值
+ * @note 此函数必须在系统启动时调用，以确保资源管理系统的正常运行
  */
 void InitializeResourceManager(void);
 
@@ -194,6 +197,9 @@ void InitializeResourceManager(void);
  * 
  * 该函数负责配置系统资源的相关设置
  * 包括资源分配策略、缓存策略等配置参数
+ * 
+ * @return 无返回值
+ * @note 此函数必须在InitializeResourceManager之后调用
  */
 void ConfigureResourceSettings(void);
 
