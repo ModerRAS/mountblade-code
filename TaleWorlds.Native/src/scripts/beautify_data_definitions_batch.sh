@@ -1,0 +1,48 @@
+#!/bin/bash
+
+# 美化00_data_definitions.h文件中的DAT_变量
+# 这个脚本将DAT_变量重命名为有意义的名称
+
+INPUT_FILE="/dev/shm/mountblade-code/TaleWorlds.Native/src/00_data_definitions.h"
+
+# 使用sed命令进行批量替换
+sed -i 's/_DAT_180bf86d0/SystemMemoryPoolPointerUnvigesimal/g' "$INPUT_FILE"
+sed -i 's/_DAT_180bf86d8/SystemMemoryPoolPointerDuovigesimal/g' "$INPUT_FILE"
+sed -i 's/DAT_180bf86e8/SystemStringConstantUndenary/g' "$INPUT_FILE"
+sed -i 's/_DAT_180bf86e0/SystemMemoryPoolSizeUndenary/g' "$INPUT_FILE"
+sed -i 's/DAT_180bf86e8/SystemStringConstantUndenary/g' "$INPUT_FILE"
+sed -i 's/_DAT_180bf8728/SystemMemoryPoolPointerTrevigesimal/g' "$INPUT_FILE"
+sed -i 's/_DAT_180bf8730/SystemMemoryPoolPointerQuattuorvigesimal/g' "$INPUT_FILE"
+sed -i 's/DAT_180bf8740/SystemStringConstantDuodenary/g' "$INPUT_FILE"
+sed -i 's/_DAT_180bf8738/SystemMemoryPoolSizeDuodenary/g' "$INPUT_FILE"
+sed -i 's/DAT_180bf8740/SystemStringConstantDuodenary/g' "$INPUT_FILE"
+sed -i 's/_DAT_180bf8780/SystemMemoryPoolPointerQuinvigesimal/g' "$INPUT_FILE"
+sed -i 's/_DAT_180bf8788/SystemMemoryPoolPointerSexvigesimal/g' "$INPUT_FILE"
+sed -i 's/DAT_180bf8798/SystemStringConstantTredecenary/g' "$INPUT_FILE"
+sed -i 's/_DAT_180bf8790/SystemMemoryPoolSizeTredecenary/g' "$INPUT_FILE"
+sed -i 's/DAT_180bf8798/SystemStringConstantTredecenary/g' "$INPUT_FILE"
+sed -i 's/_DAT_180bf87d8/SystemMemoryPoolPointerSeptenvigesimal/g' "$INPUT_FILE"
+sed -i 's/_DAT_180bf87e0/SystemMemoryPoolPointerOctovigesimal/g' "$INPUT_FILE"
+sed -i 's/DAT_180bf87f0/SystemStringConstantQuattuordecenary/g' "$INPUT_FILE"
+sed -i 's/_DAT_180bf87e8/SystemMemoryPoolSizeQuattuordecenary/g' "$INPUT_FILE"
+sed -i 's/DAT_180bf87f0/SystemStringConstantQuattuordecenary/g' "$INPUT_FILE"
+sed -i 's/_DAT_180bf8830/SystemMemoryPoolPointerNovemvigesimal/g' "$INPUT_FILE"
+sed -i 's/_DAT_180bf8838/SystemMemoryPoolPointerTrigesimal/g' "$INPUT_FILE"
+sed -i 's/DAT_180bf8848/SystemStringConstantQuindecenary/g' "$INPUT_FILE"
+sed -i 's/_DAT_180bf8840/SystemMemoryPoolSizeQuindecenary/g' "$INPUT_FILE"
+sed -i 's/DAT_180bf8848/SystemStringConstantQuindecenary/g' "$INPUT_FILE"
+sed -i 's/_DAT_180bf8888/SystemMemoryPoolPointerUntrigesimal/g' "$INPUT_FILE"
+sed -i 's/_DAT_180bf8890/SystemMemoryPoolPointerDuotrigesimal/g' "$INPUT_FILE"
+sed -i 's/DAT_180bf88a0/SystemStringConstantSexdecenary/g' "$INPUT_FILE"
+sed -i 's/_DAT_180bf8898/SystemMemoryPoolSizeSexdecenary/g' "$INPUT_FILE"
+sed -i 's/DAT_180bf88a0/SystemStringConstantSexdecenary/g' "$INPUT_FILE"
+sed -i 's/_DAT_180bf88e0/SystemMemoryPoolPointerTritrigesimal/g' "$INPUT_FILE"
+sed -i 's/_DAT_180bf88e8/SystemMemoryPoolPointerQuattuortrigesimal/g' "$INPUT_FILE"
+sed -i 's/DAT_180bf88f8/SystemStringConstantSeptendecenary/g' "$INPUT_FILE"
+sed -i 's/_DAT_180bf88f0/SystemMemoryPoolSizeSeptendecenary/g' "$INPUT_FILE"
+sed -i 's/DAT_180bf88f8/SystemStringConstantSeptendecenary/g' "$INPUT_FILE"
+sed -i 's/_DAT_180bf8938/SystemMemoryPoolPointerQuintrigesimal/g' "$INPUT_FILE"
+sed -i 's/_DAT_180bf8940/SystemMemoryPoolPointerSextrigesimal/g' "$INPUT_FILE"
+sed -i 's/DAT_180bf8950/SystemStringConstantOctodecenary/g' "$INPUT_FILE"
+
+echo "变量重命名完成"

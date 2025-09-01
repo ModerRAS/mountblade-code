@@ -11408,10 +11408,10 @@ uint64_t UpdateResourcePoolEntryData(int64_t entryIndex, uint8_t reservedParam, 
  * @param maxValue 最大值，用于参数验证的比较值
  * @param systemContext 系统上下文信息，包含系统状态和配置
  * @param options 处理选项或标志，控制处理行为
- * @param additionalData 附加数据或配置信息
+ * @param AdditionalData 附加数据或配置信息
  * @return uint64_t 处理结果，成功返回0，失败返回错误码
  */
-uint64_t ValidateAndProcessParameters(int minValue,int maxValue,uint8_t systemContext,uint8_t options,uint8_t additionalData)
+uint64_t ValidateAndProcessParameters(int minValue,int maxValue,uint8_t systemContext,uint8_t options,uint8_t AdditionalData)
 
 {
   uint8_t resourceHash;
@@ -11429,7 +11429,7 @@ uint64_t ValidateAndProcessParameters(int minValue,int maxValue,uint8_t systemCo
     pvalidationResult = (uint8_t *)
              ((int64_t)*(int *)(unaff_RDI + 0x18) * 0x10 + *(int64_t *)(unaff_RDI + 0x10));
     *pvalidationResult = uStackX_20;
-    pvalidationResult[1] = additionalData;
+    pvalidationResult[1] = AdditionalData;
     *(int *)(unaff_RDI + 0x18) = *(int *)(unaff_RDI + 0x18) + 1;
     *ResourceContextPointer = unaff_EBP;
     *(int *)(unaff_RDI + 0x24) = *(int *)(unaff_RDI + 0x24) + 1;
@@ -14880,12 +14880,12 @@ LAB_1808989f7:
  * @param ArrayData 数组数据指针，包含数组的基本信息
  * @param SearchKey 搜索键值，要查找的目标值
  * @param SearchContext 搜索上下文，包含搜索的配置信息
- * @param searchFlags 搜索标志，控制搜索的行为
- * @param additionalData 附加数据，用于扩展搜索功能
+ * @param SearchFlags 搜索标志，控制搜索的行为
+ * @param AdditionalData 附加数据，用于扩展搜索功能
  * @return uint64_t 查找结果，成功返回找到的元素，失败返回错误码
  */
-uint64_t BinarySearchInArray(int64_t ArrayData,uint *SearchKey,uint8_t SearchContext,uint32_t searchFlags,
-             uint8_t additionalData)
+uint64_t BinarySearchInArray(int64_t ArrayData,uint *SearchKey,uint8_t SearchContext,uint32_t SearchFlags,
+             uint8_t AdditionalData)
 
 {
   uint resourceHash;
@@ -14924,7 +14924,7 @@ uint64_t BinarySearchInArray(int64_t ArrayData,uint *SearchKey,uint8_t SearchCon
         if (iVar7 < 0) {
           return 0x4a;
         }
-        ResourceContextOffset = ResourceDataSearcher(ArrayData,iVar7,0,SearchContext,searchFlags,additionalData);
+        ResourceContextOffset = ResourceDataSearcher(ArrayData,iVar7,0,SearchContext,SearchFlags,AdditionalData);
         return ResourceContextOffset;
       }
       iVar3 = iVar7 + -1;
