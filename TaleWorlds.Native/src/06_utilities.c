@@ -2577,14 +2577,14 @@ undefined8 ValidateObjectRegistration(longlong objectContext)
   if (objectHandle == 0) {
     return 0x1f;
   }
-  if (*(int *)(lVar2 + 0xe4) == -1) {
-    uVar4 = FUN_180853000(lVar2,acStackX_18);
-    if ((int)uVar4 != 0) {
-      return uVar4;
+  if (*(int *)(objectHandle + 0xe4) == -1) {
+    validationStatus = FUN_180853000(objectHandle, objectName);
+    if ((int)validationStatus != 0) {
+      return validationStatus;
     }
-    uVar5 = func_0x000180851460(lVar2);
-    if ((int)uVar5 != 0) {
-      return uVar5;
+    objectStatus = func_0x000180851460(objectHandle);
+    if ((int)objectStatus != 0) {
+      return objectStatus;
     }
     if ((char)uVar4 == (char)uVar5) {
       if (acStackX_18[0] == (char)uVar5) {
@@ -6730,7 +6730,11 @@ int FUN_18089379d(longlong param_1,undefined8 param_2)
 
 
 
-undefined8 FUN_1808938ab(void)
+/**
+ * @brief 返回错误状态码
+ * @return 固定错误状态码 0x1f
+ */
+undefined8 get_error_status_code(void)
 
 {
   return 0x1f;
@@ -82393,18 +82397,26 @@ void FUN_180943160(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180943180(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
-void FUN_180943180(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+/**
+ * @brief 初始化系统上下文并设置相关参数
+ * @param context_ptr 上下文指针
+ * @param param2 参数2
+ * @param param3 参数3
+ * @param param4 参数4
+ * 
+ * 该函数负责初始化系统上下文，设置必要的参数和回调函数
+ */
+void initializeSystemContext(undefined8 context_ptr, undefined8 param2, undefined8 param3, undefined8 param_4)
 
 {
-  undefined8 *puVar1;
+  undefined8 *system_handler;
   
-  puVar1 = _DAT_180c967a0;
-  if (_DAT_180c967a0 != (undefined8 *)0x0) {
-    FUN_180651560(&DAT_180c96790,*_DAT_180c967a0,param_3,param_4,0xfffffffffffffffe);
-    FUN_18063cfe0(puVar1 + 5);
+  system_handler = systemContextHandler;
+  if (systemContextHandler != (undefined8 *)0x0) {
+    FUN_180651560(&systemContextData, *systemContextHandler, param3, param_4, 0xfffffffffffffffe);
+    FUN_18063cfe0(system_handler + 5);
                     // WARNING: Subroutine does not return
-    FUN_18064e900(puVar1);
+    FUN_18064e900(system_handler);
   }
   return;
 }
@@ -82414,21 +82426,26 @@ void FUN_180943180(undefined8 param_1,undefined8 param_2,undefined8 param_3,unde
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_1809431a0(void)
-void FUN_1809431a0(void)
+/**
+ * @brief 重置线程本地存储并清理相关资源
+ * 
+ * 该函数负责重置线程本地存储状态，清理不再需要的资源
+ * 并将线程恢复到初始状态
+ */
+void resetThreadLocalStorage(void)
 
 {
-  longlong lVar1;
+  longlong thread_data;
   
-  lVar1 = *(longlong *)((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * 8);
-  *(undefined8 *)(lVar1 + 0x18) = &UNK_180a3c3e0;
-  if (*(longlong *)(lVar1 + 0x20) != 0) {
+  thread_data = *(longlong *)((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * 8);
+  *(undefined8 *)(thread_data + 0x18) = &threadResourcePointer;
+  if (*(longlong *)(thread_data + 0x20) != 0) {
                     // WARNING: Subroutine does not return
     FUN_18064e900();
   }
-  *(undefined8 *)(lVar1 + 0x20) = 0;
-  *(undefined4 *)(lVar1 + 0x30) = 0;
-  *(undefined8 *)(lVar1 + 0x18) = &UNK_18098bcb0;
+  *(undefined8 *)(thread_data + 0x20) = 0;
+  *(undefined4 *)(thread_data + 0x30) = 0;
+  *(undefined8 *)(thread_data + 0x18) = &defaultThreadResource;
   return;
 }
 
