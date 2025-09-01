@@ -1,14 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
 
-/**
- * @brief 初始化模块依赖关系
- * 
- * 该函数负责初始化模块间的依赖关系，建立模块间的连接
- * 和通信机制，确保模块能够正确加载和运行
- * 
- * @param ModuleHandle 模块句柄，用于标识特定的模块
- * @param ModuleContext 模块上下文，包含模块运行的环境信息
- */
 void InitializeModuleDependencies(longlong ModuleHandle, longlong ModuleContext);
 void* ModuleDependencyTable;
 uint32_t ModuleDependencyCount;
