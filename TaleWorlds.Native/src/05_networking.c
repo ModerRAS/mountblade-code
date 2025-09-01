@@ -8062,7 +8062,7 @@ void ProcessNetworkConnectionControlConfiguration(longlong connectionContext,Net
 
 
 
-// 函数: void FUN_180848900(longlong connectionContext,NetworkHandle packetData)
+// 函数: void ProcessNetworkProtocolConfiguration(longlong connectionContext,NetworkHandle packetData)
 /**
  * @brief 处理网络连接协议配置
  * 
