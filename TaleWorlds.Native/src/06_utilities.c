@@ -10571,13 +10571,13 @@ uint8_t ExpandResourcePoolCapacitySimple(void)
   uint ResourceContextOffset;
   int *pintegerValue6;
   int64_t *ResourceContextPointer;
-  int unaff_EDI;
+  int RegisterEDI;
   int ValidationStatus;
   uint64_t MemorySize;
   uint64_t AllocationSize;
   
-  if (unaff_EDI == in_EAX) {
-    iVar7 = unaff_EDI * 2;
+  if (RegisterEDI == in_EAX) {
+    iVar7 = RegisterEDI * 2;
     if (iVar7 < 4) {
       iVar7 = 4;
     }
@@ -11562,17 +11562,17 @@ uint64_t CleanupResourcePoolAndReleaseMemory(uint8_t resourcePool, int cleanupFl
   int64_t DataOffset;
   uint8_t *bytePointer5;
   int64_t *ResourceContextPointer;
-  int unaff_EDI;
+  int RegisterEDI;
   
   pValidationResult = (uint8_t *)0x0;
-  if (unaff_EDI == 0) {
+  if (RegisterEDI == 0) {
 LAB_180895fdc:
     if ((0 < *(int *)((int64_t)ResourceContextPointer + 0xc)) && (*ResourceContextPointer != 0)) {
                     // WARNING: Subroutine does not return
       ProcessResourceAllocation(*(uint8_t *)(SystemContextPointer + 0x1a0),*ResourceContextPointer,&ResourceTableTemplate,0x100,1);
     }
     *ResourceContextPointer = (int64_t)pValidationResult;
-    *(int *)((int64_t)ResourceContextPointer + 0xc) = unaff_EDI;
+    *(int *)((int64_t)ResourceContextPointer + 0xc) = RegisterEDI;
     return 0;
   }
   if (ValidationContextParameter * 0xc - 1U < 0x3fffffff) {
@@ -15522,17 +15522,17 @@ uint8_t ValidateResourceParameters(uint8_t ObjectContextParameter,int Validation
   int64_t DataOffset;
   uint8_t2 *resourcePointer5;
   int64_t *ResourceContextPointer;
-  int unaff_EDI;
+  int RegisterEDI;
   
   pValidationResult = (uint8_t2 *)0x0;
-  if (unaff_EDI == 0) {
+  if (RegisterEDI == 0) {
 LAB_180898e0b:
     if ((0 < *(int *)((int64_t)ResourceContextPointer + 0xc)) && (*ResourceContextPointer != 0)) {
                     // WARNING: Subroutine does not return
       ProcessResourceAllocation(*(uint8_t *)(SystemContextPointer + 0x1a0),*ResourceContextPointer,&ResourceTableTemplate,0x100,1);
     }
     *ResourceContextPointer = (int64_t)pValidationResult;
-    *(int *)((int64_t)ResourceContextPointer + 0xc) = unaff_EDI;
+    *(int *)((int64_t)ResourceContextPointer + 0xc) = RegisterEDI;
     return 0;
   }
   if (ValidationContextParameter * 3 - 1U < 0x3fffffff) {
@@ -18461,8 +18461,8 @@ uint64_t ValidateAndProcessResourceData(void)
   uint64_t ResourceContextOffset;
   int64_t *ResourceContextPointer;
   int64_t ExecutionContextPointer;
-  uint unaff_ESI;
-  uint unaff_EDI;
+  uint RegisterESI;
+  uint RegisterEDI;
   uint configurationFlags;
   uint SecurityHashValue;
   char CharStackValue30;
@@ -18474,14 +18474,14 @@ uint64_t ValidateAndProcessResourceData(void)
   SecurityHashValue = 0;
   if (in_EAX < 0x8c) {
     if (*(int *)(ResourceContextPointer[1] + 0x18) != 0) {
-      return (uint64_t)unaff_EDI;
+      return (uint64_t)RegisterEDI;
     }
     plocalContextPointer = (int64_t *)*ResourceContextPointer;
-    ValidationResult = unaff_EDI;
+    ValidationResult = RegisterEDI;
     if (*plocalContextPointer != 0) {
       if (plocalContextPointer[2] == 0) {
 LAB_18089af81:
-        ValidationResult = CalculateResourceHash(*plocalContextPointer,&ObjectStackBuffer30,unaff_ESI,unaff_ESI,0);
+        ValidationResult = CalculateResourceHash(*plocalContextPointer,&ObjectStackBuffer30,RegisterESI,RegisterESI,0);
       }
       else {
         uStack0000000000000034 = 0;
@@ -18492,7 +18492,7 @@ LAB_18089af81:
         }
       }
     }
-    validationResult = unaff_ESI;
+    validationResult = RegisterESI;
     if (ValidationResult == 0) {
       ContextValidationResult = (uint)(CharStackValue30 != '\0');
       ValidationResult = SecurityHashValue;
@@ -18510,7 +18510,7 @@ LAB_18089af81:
       LoopIncrement = ReadResourceData(*ResourceContextPointer,ExecutionContextPointer + 0xc4,4);
     }
     else {
-      LoopIncrement = (uint64_t)unaff_EDI;
+      LoopIncrement = (uint64_t)RegisterEDI;
     }
   }
   if ((int)LoopCondition != 0) {
@@ -18538,7 +18538,7 @@ LAB_18089af81:
       LoopIncrement = ReadResourceData(*ResourceContextPointer,ExecutionContextPointer + 0xcc,4);
     }
     else {
-      LoopIncrement = (uint64_t)unaff_EDI;
+      LoopIncrement = (uint64_t)RegisterEDI;
     }
   }
   if ((int)LoopCondition != 0) {
@@ -18550,7 +18550,7 @@ LAB_18089af81:
       LoopIncrement = ReadResourceData(*ResourceContextPointer,ExecutionContextPointer + 0xd0,4);
     }
     else {
-      LoopIncrement = (uint64_t)unaff_EDI;
+      LoopIncrement = (uint64_t)RegisterEDI;
     }
   }
   if ((int)LoopCondition != 0) {
@@ -18571,58 +18571,58 @@ LAB_18089af81:
       ResourceContextOffset = ReadResourceData(*ResourceContextPointer,ExecutionContextPointer + 200,4);
     }
     else {
-      ResourceContextOffset = (uint64_t)unaff_EDI;
+      ResourceContextOffset = (uint64_t)RegisterEDI;
     }
   }
   if ((int)ResourceContextOffset != 0) {
     return ResourceContextOffset;
   }
   ContextValidationResult = SecurityHashValue;
-  if ((0x8b < *(uint *)(ResourceContextPointer + 8)) && (ContextValidationResult = unaff_EDI, *(int *)(ResourceContextPointer[1] + 0x18) == 0))
+  if ((0x8b < *(uint *)(ResourceContextPointer + 8)) && (ContextValidationResult = RegisterEDI, *(int *)(ResourceContextPointer[1] + 0x18) == 0))
   {
     plocalContextPointer = (int64_t *)*ResourceContextPointer;
     if (*plocalContextPointer != 0) {
       if (plocalContextPointer[2] == 0) {
 LAB_18089b1ab:
-        unaff_EDI = CalculateResourceHash(*plocalContextPointer,&stack0x00000038,unaff_ESI,4,0);
+        RegisterEDI = CalculateResourceHash(*plocalContextPointer,&stack0x00000038,RegisterESI,4,0);
       }
       else {
         uStack0000000000000034 = 0;
-        unaff_EDI = ValidateResourceAccess(*plocalContextPointer,(int64_t)&ObjectStackBuffer30 + 4);
-        if (unaff_EDI == 0) {
+        RegisterEDI = ValidateResourceAccess(*plocalContextPointer,(int64_t)&ObjectStackBuffer30 + 4);
+        if (RegisterEDI == 0) {
           if ((uint64_t)uStack0000000000000034 + 4 <= (uint64_t)plocalContextPointer[2]) goto LAB_18089b1ab;
-          unaff_EDI = 0x11;
+          RegisterEDI = 0x11;
         }
       }
     }
-    ContextValidationResult = unaff_EDI;
-    if (unaff_EDI != 0) goto LAB_18089b22a;
+    ContextValidationResult = RegisterEDI;
+    if (RegisterEDI != 0) goto LAB_18089b22a;
     switch(in_stack_00000038) {
     case 0:
-      unaff_ESI = SecurityHashValue;
+      RegisterESI = SecurityHashValue;
       break;
     case 1:
       break;
     case 2:
-      unaff_ESI = 2;
+      RegisterESI = 2;
       break;
     case 3:
-      unaff_ESI = 3;
+      RegisterESI = 3;
       break;
     case 4:
-      unaff_ESI = 4;
+      RegisterESI = 4;
       break;
     case 5:
-      unaff_ESI = 5;
+      RegisterESI = 5;
       break;
     case 6:
-      unaff_ESI = 6;
+      RegisterESI = 6;
       break;
     default:
       ContextValidationResult = 0xd;
       goto LAB_18089b226;
     }
-    *(uint *)(ExecutionContextPointer + 0xd4) = unaff_ESI;
+    *(uint *)(ExecutionContextPointer + 0xd4) = RegisterESI;
     ContextValidationResult = SecurityHashValue;
   }
 LAB_18089b226:
@@ -18674,10 +18674,10 @@ int GetStatusFlagValue(void)
 
 {
   int64_t ExecutionContextPointer;
-  uint32_t unaff_ESI;
+  uint32_t RegisterESI;
   int RegisterR15D;
   
-  *(uint32_t *)(ExecutionContextPointer + 0xd4) = unaff_ESI;
+  *(uint32_t *)(ExecutionContextPointer + 0xd4) = RegisterESI;
   if (RegisterR15D != 0) {
     return RegisterR15D;
   }
@@ -22742,7 +22742,7 @@ uint64_t ResourceProcessingHandlerAlt3(void)
   int ValidationStatus;
   int64_t *ResourceContextPointer;
   int64_t ExecutionContextPointer;
-  uint32_t unaff_ESI;
+  uint32_t RegisterESI;
   uint ResourceCounter;
   uint ValidationCounter;
   uint64_t UnaffectedRegisterValue;
@@ -22764,7 +22764,7 @@ uint64_t ResourceProcessingHandlerAlt3(void)
   uint32_t resourceHash3;
   float extraout_XMM0_Da_09;
   
-  *(uint32_t *)(unaff_R13 + 0x30) = unaff_ESI;
+  *(uint32_t *)(unaff_R13 + 0x30) = RegisterESI;
   if ((int)unaff_RDI != 0) {
     return unaff_RDI & 0xffffffff;
   }
@@ -24723,7 +24723,7 @@ uint64_t ValidateResourceDataIntegrity(void)
   uint64_t validationResult;
   uint8_t *ResourceContextPointer;
   int64_t SystemContextPointer;
-  uint unaff_EDI;
+  uint RegisterEDI;
   
   resourceHash = *ResourceContextPointer;
   validationResult = CalculateResourceHash(resourceHash,&stack0x00000090);
@@ -24738,23 +24738,23 @@ uint64_t ValidateResourceDataIntegrity(void)
       validationResult = ReadResourceData(*ResourceContextPointer,SystemContextPointer + 0xf4,4);
     }
     else {
-      validationResult = (uint64_t)unaff_EDI;
+      validationResult = (uint64_t)RegisterEDI;
     }
     if ((int)validationResult == 0) {
       if (*(uint *)(ResourceContextPointer + 8) < 0x5e) {
-        unaff_EDI = 0;
+        RegisterEDI = 0;
       }
       else if (*(int *)(ResourceContextPointer[1] + 0x18) == 0) {
-        unaff_EDI = CalculateResourceHash(*ResourceContextPointer,SystemContextPointer + 0xfc);
+        RegisterEDI = CalculateResourceHash(*ResourceContextPointer,SystemContextPointer + 0xfc);
       }
-      if (unaff_EDI == 0) {
+      if (RegisterEDI == 0) {
         if ((0x84 < *(uint *)(ResourceContextPointer + 8)) && (validationResult = ResourceDataValidator(), (int)validationResult != 0)) {
           return validationResult;
         }
                     // WARNING: Subroutine does not return
         CleanupResourceData();
       }
-      validationResult = (uint64_t)unaff_EDI;
+      validationResult = (uint64_t)RegisterEDI;
     }
   }
   return validationResult;
@@ -24776,7 +24776,7 @@ uint64_t CheckResourceAvailability(void)
   uint64_t resourceHash;
   uint8_t *ResourceContextPointer;
   int64_t SystemContextPointer;
-  uint unaff_EDI;
+  uint RegisterEDI;
   
   if (*(uint *)(ResourceContextPointer + 8) < 0x39) {
     resourceHash = 0;
@@ -24785,23 +24785,23 @@ uint64_t CheckResourceAvailability(void)
     resourceHash = ReadResourceData(*ResourceContextPointer,SystemContextPointer + 0xf4,4);
   }
   else {
-    resourceHash = (uint64_t)unaff_EDI;
+    resourceHash = (uint64_t)RegisterEDI;
   }
   if ((int)resourceHash == 0) {
     if (*(uint *)(ResourceContextPointer + 8) < 0x5e) {
-      unaff_EDI = 0;
+      RegisterEDI = 0;
     }
     else if (*(int *)(ResourceContextPointer[1] + 0x18) == 0) {
-      unaff_EDI = CalculateResourceHash(*ResourceContextPointer,SystemContextPointer + 0xfc);
+      RegisterEDI = CalculateResourceHash(*ResourceContextPointer,SystemContextPointer + 0xfc);
     }
-    if (unaff_EDI == 0) {
+    if (RegisterEDI == 0) {
       if ((*(uint *)(ResourceContextPointer + 8) < 0x85) || (resourceHash = ResourceDataValidator(), (int)resourceHash == 0)) {
                     // WARNING: Subroutine does not return
         CleanupResourceData();
       }
     }
     else {
-      resourceHash = (uint64_t)unaff_EDI;
+      resourceHash = (uint64_t)RegisterEDI;
     }
   }
   return resourceHash;
@@ -27665,7 +27665,7 @@ uint64_t ValidateResourceCertificateChain(void)
   int64_t InputRegisterValue;
   uint64_t ValidationResult;
   int64_t ExecutionContextPointer;
-  uint unaff_ESI;
+  uint RegisterESI;
   int64_t *unaff_RDI;
   uint32_t in_stack_00000030;
   uint32_t uStack0000000000000038;
@@ -27674,22 +27674,22 @@ uint64_t ValidateResourceCertificateChain(void)
   uint8_t2 in_stack_000000a0;
   uint8_t2 in_stack_000000a8;
   
-  if (*(uint *)(InputRAX + 0x18) != unaff_ESI) {
+  if (*(uint *)(InputRAX + 0x18) != RegisterESI) {
     return 0x1c;
   }
   validationResult = GetResourceEntry(*unaff_RDI,ExecutionContextPointer + 0x10);
   ValidationResult = (uint64_t)validationResult;
   if (validationResult == 0) {
-    if (*(uint *)(unaff_RDI[1] + 0x18) != unaff_ESI) {
+    if (*(uint *)(unaff_RDI[1] + 0x18) != RegisterESI) {
       return 0x1c;
     }
     validationResult = GetResourceEntry(*unaff_RDI,ExecutionContextPointer + 0x20);
     ValidationResult = (uint64_t)validationResult;
     if (validationResult == 0) {
       ValidationResult = 0x1c;
-      validationResult = unaff_ESI;
+      validationResult = RegisterESI;
       if ((*(uint *)(unaff_RDI + 8) < 0x5a) &&
-         (validationResult = 0x1c, *(uint *)(unaff_RDI[1] + 0x18) == unaff_ESI)) {
+         (validationResult = 0x1c, *(uint *)(unaff_RDI[1] + 0x18) == RegisterESI)) {
         in_stack_00000030 = uStack0000000000000038;
         localContextPointer = *unaff_RDI;
         validationResult = (**(code **)**(uint8_t **)(localContextPointer + 8))
@@ -27738,7 +27738,7 @@ uint64_t ProcessResourceCertificateSigning(void)
   uint validationResult;
   uint64_t ValidationResult;
   int64_t ExecutionContextPointer;
-  uint unaff_ESI;
+  uint RegisterESI;
   int64_t *unaff_RDI;
   uint32_t in_stack_00000030;
   uint32_t uStack0000000000000038;
@@ -27751,9 +27751,9 @@ uint64_t ProcessResourceCertificateSigning(void)
   ValidationResult = (uint64_t)validationResult;
   if (validationResult == 0) {
     ValidationResult = 0x1c;
-    validationResult = unaff_ESI;
+    validationResult = RegisterESI;
     if ((*(uint *)(unaff_RDI + 8) < 0x5a) &&
-       (validationResult = 0x1c, *(uint *)(unaff_RDI[1] + 0x18) == unaff_ESI)) {
+       (validationResult = 0x1c, *(uint *)(unaff_RDI[1] + 0x18) == RegisterESI)) {
       in_stack_00000030 = uStack0000000000000038;
       localContextPointer = *unaff_RDI;
       validationResult = (**(code **)**(uint8_t **)(localContextPointer + 8))
@@ -27850,11 +27850,11 @@ uint64_t ValidateResourceCertificateTimestamp(void)
   uint64_t validationResult;
   uint64_t ResourceContextPointer;
   int64_t ExecutionContextPointer;
-  uint unaff_ESI;
+  uint RegisterESI;
   uint8_t *unaff_RDI;
   
-  if (unaff_ESI != 0) {
-    return (uint64_t)unaff_ESI;
+  if (RegisterESI != 0) {
+    return (uint64_t)RegisterESI;
   }
   if (*(int *)(unaff_RDI[1] + 0x18) == 0) {
     resourceHash = GetResourceEntry(*unaff_RDI,ExecutionContextPointer + 0x30);
