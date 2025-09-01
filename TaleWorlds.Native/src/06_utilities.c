@@ -20987,24 +20987,24 @@ LAB_18089c40a:
       presourceHash3 = presourceHash1;
       uVar9 = uVar8;
     }
-    if (integerValue19 < 0) {
-      localContextPointer8 = (longlong)-integerValue19;
-      if (integerValue19 < 0) {
-        localContextPointer7 = (longlong)integerValue19 * 0x18 + 0x14 + (longlong)presourceHash3;
+    if (resourceAllocationCount < 0) {
+      memoryAllocationSize = (longlong)-resourceAllocationCount;
+      if (resourceAllocationCount < 0) {
+        localContextPointer7 = (longlong)resourceAllocationCount * 0x18 + 0x14 + (longlong)presourceHash3;
         do {
-          pfVar14 = (float *)AllocateMemoryBlock();
-          matrixElementX = *pfVar14;
-          matrixElementY = pfVar14[1];
-          matrixElementZ = pfVar14[2];
-          matrixElementW = pfVar14[3];
+          matrixDataPointer = (float *)AllocateMemoryBlock();
+          matrixElementX = *matrixDataPointer;
+          matrixElementY = matrixDataPointer[1];
+          matrixElementZ = matrixDataPointer[2];
+          matrixElementW = matrixDataPointer[3];
           *(float *)(localContextPointer7 + -0x14) = matrixElementX;
           *(float *)(localContextPointer7 + -0x10) = matrixElementY;
           *(float *)(localContextPointer7 + -0xc) = matrixElementZ;
           *(float *)(localContextPointer7 + -8) = matrixElementW;
           *(uint8_t8 *)(localContextPointer7 + -4) = 0;
-          loopCounter = loopCounter + -1;
+          memoryAllocationSize = memoryAllocationSize + -1;
           localContextPointer7 = localContextPointer7 + 0x18;
-        } while (loopCounter != 0);
+        } while (memoryAllocationSize != 0);
         memoryBlockSize = *(uint *)(unaff_RBP + -0x1d);
       }
     }
