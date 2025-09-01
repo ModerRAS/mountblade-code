@@ -1127,12 +1127,12 @@ void ValidateNetworkPacketData(uint64_t connectionHandle, int64_t packetData, in
   
   stackGuard = _DAT_180bf00a8 ^ (uint64_t)securityBuffer;
   if (packetSize != 0) {
-    validationStatus = FUN_18076b6f0(packetSize,&UNK_180984620,10);
+    validationStatus = NetworkPacketValidateSize(packetSize,&NetworkPacketSizeTable,10);
     if (validationStatus == 0) {
-      validationStatus = FUN_180881fa0(connectionHandle,packetSize,packetHeader);
+      validationStatus = NetworkPacketValidateHeader(connectionHandle,packetSize,packetHeader);
       if (validationStatus == 0) {
         connectionInfo = *(int64_t *)(packetData + 0x18);
-        packetHash = FUN_18084dc20(packetHeader);
+        packetHash = NetworkPacketCalculateHash(packetHeader);
         validationStatus = *(int32_t *)(connectionInfo + 0x98);
         tableIndex = 0;
         if (0 < validationStatus) {
