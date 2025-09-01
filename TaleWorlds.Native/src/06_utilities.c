@@ -1428,7 +1428,7 @@ void CheckMemoryLeaks;
 uint8_t MemoryLeakConfig;
 uint8_t MemoryLeakStatus;
 uint8_t MemoryLeakHandle;
-uint8_t MemoryLeakData;
+uint8_t MemoryLeakDataBuffer;
 uint8_t MemoryLeakContext;
 
  void TrackMemoryUsage;
@@ -1456,7 +1456,7 @@ void LogMemoryStatistics;
 uint8_t MemoryStatsConfig;
 uint8_t MemoryStatsStatus;
 uint8_t MemoryStatsHandle;
-uint8_t MemoryStatsData;
+uint8_t MemoryStatsDataBuffer;
 uint8_t MemoryStatsContext;
 
  void GarbageCollectMemory;
@@ -1467,11 +1467,11 @@ uint8_t MemoryStatsContext;
  * 清理无用的内存对象和资源
  */
 void GarbageCollectMemory;
-uint8_t GarbageConfig;
-uint8_t GarbageStatus;
-uint8_t GarbageHandle;
-uint8_t GarbageData;
-uint8_t GarbageContext;
+uint8_t GarbageCollectionConfig;
+uint8_t GarbageCollectionStatus;
+uint8_t GarbageCollectionHandle;
+uint8_t GarbageCollectionDataBuffer;
+uint8_t GarbageCollectionContext;
 
  void CompactMemory;
 /**
@@ -1493,7 +1493,7 @@ void AllocateMemoryBlock;
 uint8_t MemoryBlockConfig;
 uint8_t MemoryBlockStatus;
 uint8_t MemoryBlockHandle;
-uint8_t MemoryBlockData;
+uint8_t MemoryBlockDataBuffer;
 uint8_t MemoryBlockContext;
 uint8_t MemoryBlockTable;
 
@@ -1509,8 +1509,8 @@ uint8_t FreeMemoryConfig;
 uint8_t FreeMemoryStatus;
 uint8_t FreeMemoryHandle;
 uint8_t FreeMemoryContext;
-uint8_t FreeMemoryTable;
-uint8_t FreeMemoryData;
+uint8_t FreeMemoryTableBuffer;
+uint8_t FreeMemoryDataBuffer;
 
  void ReallocateMemoryBlock;
 /**
@@ -2028,7 +2028,7 @@ uint8_t HashSaltBuffer;
 uint8_t HashIterationCount;
 uint8_t HashOutputBufferSize;
 uint8_t RandomSeedBuffer;
-uint8_t RandomGenerator;
+uint8_t RandomGeneratorBuffer;
 
  void GenerateSecureRandom;
 /**
@@ -2321,14 +2321,14 @@ uint8_t SystemDatabaseManagerData;
  * 设置内存分配策略和回收机制
  */
 void InitializeMemoryManager;
-uint8_t SystemDataBuffer;
-uint8_t SystemDataStream;
-uint8_t SystemDataPipeline;
-uint8_t MemoryPoolDescriptor;
-uint8_t SystemDataProcessor;
-uint8_t MemoryAllocatorState;
-uint8_t SystemConfigurationDataStructureA;
-uint8_t SystemConfigurationDataStructureB;
+uint8_t SystemDataBufferPrimary;
+uint8_t SystemDataStreamPrimary;
+uint8_t SystemDataPipelinePrimary;
+uint8_t MemoryPoolDescriptorBuffer;
+uint8_t SystemDataProcessorBuffer;
+uint8_t MemoryAllocatorStateBuffer;
+uint8_t SystemConfigurationDataStructurePrimary;
+uint8_t SystemConfigurationDataStructureSecondary;
 uint8_t SystemResourceTableTemplate;
 uint8_t SystemMemoryMapTemplate;
 uint8_t SystemThreadContextTemplate;
