@@ -85300,14 +85300,14 @@ void InitializeSystemDataStructureAK(void)
 
  /**
  * 初始化系统数据结构AL
- * 将全局变量 _DAT_180bf9270 设置为指向 SystemDataStructure001
+ * 将全局变量 SystemDataStructurePointer004 设置为指向 SystemDataStructure001
  * 这是一个简单的初始化函数，用于设置系统数据结构的指针
  */
 void InitializeSystemDataStructureAL(void)
 void InitializeSystemDataStructureAL(void)
 
 {
-  _DAT_180bf9270 = &SystemDataStructure;
+  SystemDataStructurePointer004 = &SystemDataStructure;
   return;
 }
 
