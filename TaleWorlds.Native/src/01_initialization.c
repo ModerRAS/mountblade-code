@@ -22,6 +22,11 @@ void* SystemEmergencyMemoryPool;               // 紧急系统内存池
 void* SystemEmergencyDataTable;                // 紧急系统数据表
 
 // 核心系统函数指针和相关数据
+/**
+ * @brief 游戏核心系统主入口点
+ * 
+ * 负责初始化游戏的核心系统组件，包括物理引擎、渲染系统等
+ */
 void* GameCoreSystemMainEntryPoint;
 void* CoreSystemMemoryAllocator;                // 核心系统内存分配器
 void* CoreSystemDataTable;                     // 核心系统数据表
@@ -38,7 +43,12 @@ void* GameLogicSystemPointer;                   // 游戏逻辑系统指针
 void* UISystemPointer;                          // UI系统指针
 
 // 渲染系统初始化函数
-void* GameRenderingMainEntryPoint;                  // 游戏渲染系统入口点
+/**
+ * @brief 游戏渲染系统主入口点
+ * 
+ * 负责初始化和管理游戏的渲染系统，包括图形管线、着色器等
+ */
+void* GameRenderingMainEntryPoint;
 void* RenderingSystemContext;                   // 渲染系统上下文
 
 // 网络系统初始化函数
