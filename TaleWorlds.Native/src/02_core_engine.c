@@ -1393,7 +1393,7 @@ void engine_register_texture_resource(void)
     current_data_pointer = local_resource_node;
   }
   current_data_pointer[6] = TEXTURE_RESOURCE_MAGIC_ID;
-  current_data_pointer[7] = 0xfab48faa65382fa5;
+  current_data_pointer[7] = TEXTURE_RESOURCE_MAGIC_ID2;
   current_data_pointer[8] = &engine_base_data_offset_60;
   current_data_pointer[9] = 0;
   current_data_pointer[10] = resource_handler_function;
@@ -3768,7 +3768,7 @@ void engine_configure_graphics_system(void)
     current_data_pointer = local_resource_node;
   }
   current_data_pointer[6] = TEXTURE_RESOURCE_MAGIC_ID;
-  current_data_pointer[7] = 0xfab48faa65382fa5;
+  current_data_pointer[7] = TEXTURE_RESOURCE_MAGIC_ID2;
   current_data_pointer[8] = &engine_base_data_offset_60;
   current_data_pointer[9] = 0;
   current_data_pointer[10] = resource_handler_function;
@@ -4818,7 +4818,7 @@ void engine_setup_stream_manager(void)
     current_data_pointer = local_resource_node;
   }
   current_data_pointer[6] = TEXTURE_RESOURCE_MAGIC_ID;
-  current_data_pointer[7] = 0xfab48faa65382fa5;
+  current_data_pointer[7] = TEXTURE_RESOURCE_MAGIC_ID2;
   current_data_pointer[8] = &engine_base_data_offset_60;
   current_data_pointer[9] = 0;
   current_data_pointer[10] = resource_handler_function;
@@ -6372,7 +6372,7 @@ void engine_validate_structure_operations(void)
     current_data_pointer = local_resource_node;
   }
   current_data_pointer[6] = TEXTURE_RESOURCE_MAGIC_ID;
-  current_data_pointer[7] = 0xfab48faa65382fa5;
+  current_data_pointer[7] = TEXTURE_RESOURCE_MAGIC_ID2;
   current_data_pointer[8] = &engine_base_data_offset_60;
   current_data_pointer[9] = 0;
   current_data_pointer[10] = resource_handler_function;
@@ -8388,7 +8388,7 @@ void engine_core_setup_communitysystem(void)
     current_data_pointer = local_resource_node;
   }
   current_data_pointer[6] = TEXTURE_RESOURCE_MAGIC_ID;
-  current_data_pointer[7] = 0xfab48faa65382fa5;
+  current_data_pointer[7] = TEXTURE_RESOURCE_MAGIC_ID2;
   current_data_pointer[8] = &engine_base_data_offset_60;
   current_data_pointer[9] = 0;
   current_data_pointer[10] = resource_handler_function;
