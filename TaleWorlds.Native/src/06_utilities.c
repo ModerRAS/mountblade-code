@@ -1219,9 +1219,9 @@ undefined SecurityContextData;
  * 设置内存访问控制和数据保护
  */
 void InitializeMemorySecurity;
-undefined DAT_180bf98d8;
-undefined DAT_180bf98e0;
-undefined DAT_180bf98e8;
+undefined SystemMemoryValidationFlag;
+undefined SystemSecurityContextFlag;
+undefined SystemMemoryProtectionFlag;
 void* MemorySecurityConfigData;
 undefined DAT_180bf9930;
 undefined DAT_180bf9938;
@@ -11710,11 +11710,11 @@ ulonglong InitializeResourceTableStructure(longlong param_1)
               uStack_a8 = *(undefined4 *)(lVar5 + 0xc + lVar15 * 0x10);
               uStack_b0 = 0;
               uStack_a0 = uStack_a0 & 0xffffff00;
-              FUN_180891ca0(&puStack_b8,*(undefined8 *)(param_1 + 0x58));
+              EncodeData(&puStack_b8,*(undefined8 *)(param_1 + 0x58));
               puStack_f0 = &UNK_1809841e0;
               uStack_e0 = *(undefined4 *)(lVar5 + 0xc + lVar15 * 0x10);
               uStack_e8 = 0;
-              FUN_180891de0(&puStack_f0,*(undefined8 *)(param_1 + 0x58));
+              DecodeData(&puStack_f0,*(undefined8 *)(param_1 + 0x58));
               plVar13 = plStack_108;
             }
           }
@@ -11726,7 +11726,7 @@ ulonglong InitializeResourceTableStructure(longlong param_1)
               uStack_a8 = *(undefined4 *)(lVar5 + 0xc + lVar15 * 0x10);
               uStack_b0 = 0;
               uStack_a0 = 0x3f800000;
-              FUN_180894300(&puStack_b8,*(undefined8 *)(param_1 + 0x58));
+              TransformData(&puStack_b8,*(undefined8 *)(param_1 + 0x58));
               plVar13 = plStack_108;
             }
           }
@@ -11755,7 +11755,7 @@ ulonglong InitializeResourceTableStructure(longlong param_1)
               else if (iVar16 < iVar7) {
                 iVar16 = iVar7;
               }
-              uVar8 = FUN_18084c470(&uStack_118,iVar16);
+              uVar8 = ValidateDataIntegrity(&uStack_118,iVar16);
               uVar6 = (ulonglong)uVar8;
               iVar4 = (int)uStack_110;
               if (uVar8 != 0) {
@@ -11795,7 +11795,7 @@ ulonglong InitializeResourceTableStructure(longlong param_1)
                 if (uVar9 == 0) {
                   return uVar6;
                 }
-                FUN_18084c470(&uStack_118,0);
+                ValidateDataIntegrity(&uStack_118,0);
                 return uVar6;
               }
               resourceHash0 = (ulonglong)uStack_110._4_4_;
@@ -11841,7 +11841,7 @@ LAB_1808962af:
         uStack_100 = uStack_100 & 0xffffffff00000000;
         plStack_108 = (longlong *)&UNK_180982dc0;
         aiStack_f8[0] = *(int *)(uVar6 + lVar5 * 4);
-        FUN_180891af0(&plStack_108,*(undefined8 *)(param_1 + 0x58));
+        NormalizeData(&plStack_108,*(undefined8 *)(param_1 + 0x58));
         lVar5 = lVar5 + -1;
       } while (-1 < lVar5);
     }
@@ -11875,7 +11875,7 @@ LAB_1808962af:
       iVar4 = -iVar4;
     }
     if (iVar4 != 0) {
-      FUN_18084c470(&uStack_118,0);
+      ValidateDataIntegrity(&uStack_118,0);
     }
   }
 LAB_18089638e:
@@ -11910,7 +11910,7 @@ LAB_1808963ec:
         aiStackX_8[0] = CONCAT31(aiStackX_8[0]._1_3_,1);
         auStackX_10[0] = 0;
         do {
-          uVar6 = FUN_180895360(param_1,aiStackX_8,auStackX_10);
+          uVar6 = ExecuteSystemCommand(param_1,aiStackX_8,auStackX_10);
           if ((int)uVar6 != 0) {
             return uVar6;
           }
@@ -18512,7 +18512,15 @@ ulonglong ExecuteResourceDataValidation(void)
 
 
 
-ulonglong FUN_18089b31f(void)
+/**
+ * @brief 获取资源哈希值A
+ * 
+ * 该函数负责获取系统的资源哈希值A
+ * 用于资源管理和数据完整性验证
+ * 
+ * @return 返回资源哈希值
+ */
+ulonglong GetResourceHashA(void)
 
 {
   undefined8 resourceHash;
@@ -18553,7 +18561,15 @@ ulonglong FUN_18089b31f(void)
 
 
 
-ulonglong FUN_18089b380(void)
+/**
+ * @brief 获取资源哈希值B
+ * 
+ * 该函数负责获取系统的资源哈希值B
+ * 用于资源管理和数据完整性验证
+ * 
+ * @return 返回资源哈希值
+ */
+ulonglong GetResourceHashB(void)
 
 {
   uint resourceHash;
@@ -19144,7 +19160,17 @@ b7c7(void)
 
 
 
-ulonglong FUN_18089b7d0(longlong param_1,longlong *param_2)
+/**
+ * @brief 处理资源数据A
+ * 
+ * 该函数负责处理系统的资源数据A
+ * 包括数据解析、验证和转换等操作
+ * 
+ * @param param_1 资源句柄，用于标识特定的资源
+ * @param param_2 资源数据指针，包含需要处理的数据
+ * @return 返回处理结果状态码
+ */
+ulonglong ProcessResourceDataA(longlong param_1,longlong *param_2)
 
 {
   longlong *plVar1;
@@ -19314,7 +19340,15 @@ LAB_18089bbcc:
 
 
 
-ulonglong FUN_18089b813(void)
+/**
+ * @brief 处理资源数据B
+ * 
+ * 该函数负责处理系统的资源数据B
+ * 包括数据解析、验证和转换等操作
+ * 
+ * @return 返回处理结果状态码
+ */
+ulonglong ProcessResourceDataB(void)
 
 {
   longlong *plVar1;
@@ -19478,7 +19512,15 @@ LAB_18089bbcc:
 
 
 
-ulonglong FUN_18089b86d(void)
+/**
+ * @brief 处理资源数据C
+ * 
+ * 该函数负责处理系统的资源数据C
+ * 包括数据解析、验证和转换等操作
+ * 
+ * @return 返回处理结果状态码
+ */
+ulonglong ProcessResourceDataC(void)
 
 {
   longlong *plVar1;
@@ -19624,7 +19666,15 @@ LAB_18089bbcc:
 
 
 
-ulonglong FUN_18089b896(void)
+/**
+ * @brief 处理资源数据D
+ * 
+ * 该函数负责处理系统的资源数据D
+ * 包括数据解析、验证和转换等操作
+ * 
+ * @return 返回处理结果状态码
+ */
+ulonglong ProcessResourceDataD(void)
 
 {
   longlong *plVar1;
@@ -20499,7 +20549,15 @@ LAB_18089c300:
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 * FUN_18089c1fb(void)
+/**
+ * @brief 获取资源数据指针A
+ * 
+ * 该函数负责获取系统的资源数据指针A
+ * 用于访问和操作资源数据
+ * 
+ * @return 返回资源数据指针
+ */
+undefined8 * GetResourceDataPointerA(void)
 
 {
   undefined8 resourceHash;
@@ -24187,7 +24245,17 @@ df30(void)
 
 
 
-undefined8 FUN_18089df40(longlong param_1,undefined8 *param_2)
+/**
+ * @brief 资源验证处理器
+ * 
+ * 该函数用于验证和处理资源数据，包括数据校验和计算、资源哈希验证，
+ * 以及根据验证结果执行相应的资源读取和处理操作。
+ * 
+ * @param param_1 资源上下文参数的指针
+ * @param param_2 资源数据句柄的指针
+ * @return undefined8 返回处理结果状态码，0表示成功，非0表示错误
+ */
+undefined8 ResourceValidationHandler(longlong param_1,undefined8 *param_2)
 
 {
   undefined8 resourceHash;
