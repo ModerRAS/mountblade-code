@@ -13550,7 +13550,7 @@ int InitializeSystemModuleA(void)
   long long systemStatus;
   
   ExecuteSystemPreInitialization();
-  systemStatus = FUN_1808fc7d0(FUN_180942890);
+  systemStatus = ValidateSystemConfiguration(SystemConfigValidatorPrimary);
   return (systemStatus != 0) - 1;
 }
 
@@ -13563,8 +13563,8 @@ int InitializeSystemModuleB(void)
   uint8_t systemConfigBuffer [32];
   
   systemConfigBuffer[0] = 1;
-  FUN_180477890(&DAT_180c92490,systemConfigBuffer);
-  systemStatus = FUN_1808fc7d0(FUN_1809428e0);
+  ConfigureSystemModule(&SystemConfigDataTableA,systemConfigBuffer);
+  systemStatus = ValidateSystemConfiguration(SystemConfigValidatorSecondary);
   return (systemStatus != 0) - 1;
 }
 

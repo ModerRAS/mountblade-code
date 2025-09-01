@@ -27699,7 +27699,7 @@ undefined8 ProcessResourceIdList(longlong param_1,undefined8 *param_2)
       }
       resourceHash = GetResourceEntry(*param_2,param_1 + 0xd8);
       if ((((int)resourceHash == 0) && (resourceHash = ValidateResourceMetadata(param_2,param_1 + 0xf8), (int)resourceHash == 0)) &&
-         (resourceHash = FUN_1808a6e50(param_2,param_1 + 0xe8,1,param_1), (int)resourceHash == 0)) {
+         (resourceHash = HandleSystemResource(param_2,param_1 + 0xe8,1,param_1), (int)resourceHash == 0)) {
                     // WARNING: Subroutine does not return
         CleanupResourceBuffer(param_2,resourceValidationBuffer);
       }
@@ -27727,7 +27727,7 @@ undefined8 ValidateTextureResourceId(undefined8 param_1,longlong param_2)
   undefined1 dataChecksumBuffer [32];
   
   if (*(uint *)(resourceData + 0x40) < 0x31) {
-    resourceHash = FUN_1808a3d50(param_1,param_2,0x544e5645);
+    resourceHash = ProcessSystemResource(param_1,param_2,0x544e5645);
     if ((int)resourceHash == 0) {
       resourceHash = 0;
     }
@@ -27735,9 +27735,9 @@ undefined8 ValidateTextureResourceId(undefined8 param_1,longlong param_2)
   else {
     resourceHash = CalculateDataChecksum(param_2,dataChecksumBuffer,1,0x5453494c,0x544e5645);
     if ((int)resourceHash == 0) {
-      resourceHash = FUN_1808a3d50(param_1,param_2,0x42545645);
+      resourceHash = ProcessSystemResource(param_1,param_2,0x42545645);
       if ((int)resourceHash == 0) {
-        resourceHash = FUN_1808a1610(param_1,param_2);
+        resourceHash = AccessSystemData(param_1,param_2);
         if ((int)resourceHash == 0) {
                     // WARNING: Subroutine does not return
           CleanupResourceBuffer(param_2,dataChecksumBuffer);
