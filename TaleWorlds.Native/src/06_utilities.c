@@ -2808,10 +2808,10 @@ void ValidateSystemObjects(void)
 void TerminateSystemProcess(void)
 
 {
-  ulonglong securityToken;
+  ulonglong processSecurityToken;
   
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(securityToken ^ (ulonglong)&stack0x00000000);
+  ExecuteSystemTermination(processSecurityToken ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -2827,16 +2827,16 @@ void TerminateSystemProcess(void)
 void CheckSystemFlags(void)
 
 {
-  longlong systemContext;
-  ulonglong securityToken;
+  longlong systemContextPointer;
+  ulonglong flagCheckSecurityToken;
   
-  if ((*(uint *)(systemContext + 0x2d8) >> 7 & 1) != 0) {
+  if ((*(uint *)(systemContextPointer + 0x2d8) >> 7 & 1) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_180862e00();
+    TriggerSystemFlagHandler();
   }
-  FUN_18085dbf0(&stack0x00000030);
+  ReleaseFlagCheckResources(&stack0x00000030);
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(securityToken ^ (ulonglong)&stack0x00000000);
+  ExecuteFlagCheckCleanup(flagCheckSecurityToken ^ (ulonglong)&stack0x00000000);
 }
 
 
