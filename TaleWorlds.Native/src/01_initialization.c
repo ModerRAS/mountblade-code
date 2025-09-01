@@ -31007,7 +31007,13 @@ void SystemExceptionHandler(void)
 
 
 // 函数: void FUN_180057830(long long *SystemResourcePointer)
-void FUN_180057830(long long *SystemResourcePointer)
+/**
+ * @brief 系统资源释放函数
+ * 
+ * 该函数负责释放系统资源，遍历资源指针数组并调用相应的释放函数。
+ * 用于系统资源管理和内存清理工作。
+ */
+void ReleaseSystemResources(long long *SystemResourcePointer)
 
 {
   long long *PrimaryResourcePointer;

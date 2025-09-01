@@ -7247,20 +7247,20 @@ uint8_t ValidateMatrixTransformationData(int64_t matrixDataPointer,int64_t conte
   if ((firstRowInfinityCheck != 0 || thirdRowInfinityCheck != 0) || secondRowInfinityCheck != 0) {
     return 0x1f;
   }
-  float matrixElementX = *(float *)(ObjectContextParameter + 0x44);
+  float matrixElementXCoordinate = *(float *)(ObjectContextParameter + 0x44);
   firstRowInfinityCheck = 0;
   uint32_t securityValidationContext = *(uint *)(ObjectContextParameter + 0x40);
-  float matrixElementW = *(float *)(ObjectContextParameter + 0x3c);
-  ValidationStackBuffer8[0] = CONCAT44(ValidationStackBuffer8[0]._4_4_,matrixElementX);
+  float matrixElementWComponent = *(float *)(ObjectContextParameter + 0x3c);
+  ValidationStackBuffer8[0] = CONCAT44(ValidationStackBuffer8[0]._4_4_,matrixElementXCoordinate);
   secondRowInfinityCheck = firstRowInfinityCheck;
-  if (((uint)matrixElementX & 0x7f800000) == 0x7f800000) {
+  if (((uint)matrixElementXCoordinate & 0x7f800000) == 0x7f800000) {
     secondRowInfinityCheck = 0x1d;
   }
   thirdRowInfinityCheck = firstRowInfinityCheck;
   if ((securityValidationContext & 0x7f800000) == 0x7f800000) {
     thirdRowInfinityCheck = 0x1d;
   }
-  if (((uint)matrixElementW & 0x7f800000) == 0x7f800000) {
+  if (((uint)matrixElementWComponent & 0x7f800000) == 0x7f800000) {
     firstRowInfinityCheck = 0x1d;
   }
   if ((secondRowInfinityCheck == 0 && thirdRowInfinityCheck == 0) && firstRowInfinityCheck == 0) {
@@ -7268,7 +7268,7 @@ uint8_t ValidateMatrixTransformationData(int64_t matrixDataPointer,int64_t conte
        (*(float *)(ObjectContextParameter + 0x38) == 0.0)) {
       return 0x1f;
     }
-    if (((matrixElementW == 0.0) && (*(float *)(ObjectContextParameter + 0x40) == 0.0)) && (matrixElementX == 0.0)) {
+    if (((matrixElementWComponent == 0.0) && (*(float *)(ObjectContextParameter + 0x40) == 0.0)) && (matrixElementXCoordinate == 0.0)) {
       return 0x1f;
     }
     uint32_t validationContextResult = ValidateObjectContext(*(uint32_t *)(ObjectContextParameter + 0x10),ValidationStackBuffer8);
@@ -21174,14 +21174,14 @@ LAB_18089c40a:
         localContextPointer7 = (int64_t)resourceAllocationCount * 0x18 + 0x14 + (int64_t)presourceHash3;
         do {
           matrixDataPointer = (float *)AllocateMemoryBlock();
-          matrixElementX = *matrixDataPointer;
+          matrixElementXCoordinate = *matrixDataPointer;
           matrixElementY = matrixDataPointer[1];
           matrixElementZ = matrixDataPointer[2];
-          matrixElementW = matrixDataPointer[3];
-          *(float *)(localContextPointer7 + -0x14) = matrixElementX;
+          matrixElementWComponent = matrixDataPointer[3];
+          *(float *)(localContextPointer7 + -0x14) = matrixElementXCoordinate;
           *(float *)(localContextPointer7 + -0x10) = matrixElementY;
           *(float *)(localContextPointer7 + -0xc) = matrixElementZ;
-          *(float *)(localContextPointer7 + -8) = matrixElementW;
+          *(float *)(localContextPointer7 + -8) = matrixElementWComponent;
           *(uint8_t *)(localContextPointer7 + -4) = 0;
           memoryAllocationSize = memoryAllocationSize + -1;
           localContextPointer7 = localContextPointer7 + 0x18;
@@ -21194,12 +21194,12 @@ LAB_18089c40a:
       memoryBlockSize = -memoryBlockSize;
     }
     if (memoryBlockSize != 0) {
-      matrixElementX = (float)FreeMemoryBlock(ExecutionContextPointer + -0x29,0);
+      matrixElementXCoordinate = (float)FreeMemoryBlock(ExecutionContextPointer + -0x29,0);
     }
   }
   else {
     presourceHash1 = (uint8_t *)OptimizeMemoryUsage(validationResult0,SystemContextPointer + 0x48);
-    matrixElementX = extraout_XMM0_Da_02;
+    matrixElementXCoordinate = extraout_XMM0_Da_02;
     if ((int)presourceHash1 != 0) {
       return presourceHash1;
     }
@@ -21209,18 +21209,18 @@ LAB_18089c586:
       (*(uint64_t *)(SystemContextPointer + 0x48) <= resourceHash5 &&
       (resourceHash5 < (int64_t)*(int *)(SystemContextPointer + 0x50) * 0x1c + *(uint64_t *)(SystemContextPointer + 0x48)));
       resourceHash5 = resourceHash5 + 0x1c) {
-    matrixElementX = (float)DefragmentMemory(SystemContextPointer + 0x58);
+    matrixElementXCoordinate = (float)DefragmentMemory(SystemContextPointer + 0x58);
   }
 LAB_18089c300:
   if ((0x70 < *(uint *)(RegisterRDI + 8)) && (resourceOperationResult = 0x1c, *(int *)(RegisterRDI[1] + 0x18) == 0)) {
     resourceOperationResult = ReadResourceData(*RegisterRDI,SystemContextPointer + 0x68,4);
-    matrixElementX = extraout_XMM0_Da_01;
+    matrixElementXCoordinate = extraout_XMM0_Da_01;
   }
   if (resourceOperationResult != 0) {
     return (uint8_t *)(uint64_t)resourceOperationResult;
   }
                     // WARNING: Subroutine does not return
-  CleanupResourceData(matrixElementX,ExecutionContextPointer + -9);
+  CleanupResourceData(matrixElementXCoordinate,ExecutionContextPointer + -9);
 }
 
 
