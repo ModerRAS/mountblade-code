@@ -76338,8 +76338,8 @@ LAB_1808820fa:
 
 
 
-// 函数: void FUN_180882120(void)
-void FUN_180882120(void)
+// 函数: void InitializeNetworkSystem(void)
+void InitializeNetworkSystem(void)
 
 {
                     // WARNING: Subroutine does not return
@@ -76349,8 +76349,8 @@ void FUN_180882120(void)
 
 
 
-// 函数: void FUN_180882143(longlong connectionContext)
-void FUN_180882143(longlong connectionContext)
+// 函数: void ResetNetworkConnection(longlong connectionContext)
+void ResetNetworkConnection(longlong connectionContext)
 
 {
   int networkStatus1;
@@ -76489,7 +76489,7 @@ LAB_18088229d:
 
 
 
-int FUN_18088217c(longlong connectionContext,NetworkHandle packetData,NetworkHandle dataSize,NetworkStatus param_4,
+int ValidateNetworkPacketHeader(longlong connectionContext,NetworkHandle packetData,NetworkHandle dataSize,NetworkStatus param_4,
                  NetworkHandle param_5,NetworkHandle param_6,NetworkHandle param_7,int param_8)
 
 {

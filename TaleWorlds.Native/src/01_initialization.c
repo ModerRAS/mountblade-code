@@ -1210,7 +1210,7 @@ void initializeSystemCoreData(void)
   }
   previousNode[6] = 0x421c3cedd07d816d;
   previousNode[7] = 0xbec25de793b7afa6;
-  previousNode[8] = &UNK_18098c880;
+  previousNode[8] = &SystemNodeLinkPointerA;
   previousNode[9] = 0;
   previousNode[10] = initializationCallback;
   return;
@@ -1244,7 +1244,7 @@ void initializeSystemDataTable(void)
   previousNode = systemRootPointer;
   currentNode = (undefined8 *)systemRootPointer[1];
   while (statusFlag == '\0') {
-    comparisonResult = memcmp(currentNode + 4,&DAT_18098c8c8,0x10);
+    comparisonResult = memcmp(currentNode + 4,&SystemDataComparisonTemplateB,0x10);
     if (comparisonResult < 0) {
       nextNode = (undefined8 *)currentNode[2];
       currentNode = previousNode;
@@ -1263,7 +1263,7 @@ void initializeSystemDataTable(void)
   }
   previousNode[6] = 0x4c22bb0c326587ce;
   previousNode[7] = 0x5e3cf00ce2978287;
-  previousNode[8] = &UNK_18098c898;
+  previousNode[8] = &SystemNodeLinkPointerB;
   previousNode[9] = 1;
   previousNode[10] = systemFlag;
   return;
@@ -1285,7 +1285,7 @@ int InitializeSystemGlobalVariables(void)
 {
   longlong initializationStatus;
   
-  _DAT_180bf5268 = 0;
+  SystemInitializationStatusA = 0;
   _DAT_180bf5270 = 0;
   uRam0000000180bf5278 = 0;
   _DAT_180bf5280 = 3;

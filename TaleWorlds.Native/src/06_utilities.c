@@ -83534,12 +83534,21 @@ undefined4 InitializeNetworkBufferDataWithSecurity(undefined8 BufferHandle, long
 
 
  void FUN_180941486(undefined8 param_1,longlong param_2)
-void FUN_180941486(undefined8 param_1,longlong param_2)
+/**
+ * @brief 执行条件性资源初始化
+ * 
+ * 该函数根据参数状态决定是否执行资源初始化操作
+ * 检查特定标志位，如果满足条件则调用相应的初始化函数
+ * 
+ * @param ResourceHandle 资源句柄，用于标识要初始化的资源
+ * @param ResourceContext 资源上下文，包含资源的状态和配置信息
+ */
+void ExecuteConditionalResourceInitialization(undefined8 ResourceHandle, longlong ResourceContext)
 
 {
-  if (*(char *)(param_2 + 0x20) == '\0') {
-    FUN_1808fc914(*(undefined8 *)(param_2 + 0x60),*(undefined8 *)(param_2 + 0x70),
-                  *(undefined8 *)(param_2 + 0x28),*(undefined8 *)(param_2 + 0x88));
+  if (*(char *)(ResourceContext + 0x20) == '\0') {
+    FUN_1808fc914(*(undefined8 *)(ResourceContext + 0x60),*(undefined8 *)(ResourceContext + 0x70),
+                  *(undefined8 *)(ResourceContext + 0x28),*(undefined8 *)(ResourceContext + 0x88));
   }
   return;
 }
