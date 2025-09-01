@@ -2555,7 +2555,7 @@ uint8_t InitializeResourceManager;
  uint8_t ConfigureResourceSettings;
 uint8_t ConfigureResourceSettings;
 uint8_t SystemMemoryConfigDataTemplateSpecialB;
-uint8_t1 ResourceAllocationTable;
+uint8_t ResourceAllocationTable;
 uint8_t SystemResourceQueue;
 uint8_t SystemResourceStack;
 uint8_t SystemResourceBuffer;
@@ -3250,7 +3250,7 @@ uint8_t SystemDataBuffer002;
 
  uint8_t MonitorResourcePerformance;
 uint8_t MonitorResourcePerformance;
-uint8_t1 SystemMemoryConfigDataTemplateSpecialC;
+uint8_t SystemMemoryConfigDataTemplateSpecialC;
 uint8_t SystemControlByteC;
 uint8_t SystemDataBufferD;
 uint8_t SystemMemoryFlagE;
@@ -3294,12 +3294,12 @@ void ProcessGameDataObjects(int64_t GameContext, int64_t SystemContext)
   int ProcessingStatus;
   int64_t CurrentObjectPointer;
   int ProcessedObjectCount;
-  uint8_t1 ObjectMetadataBuffer[32];
+  uint8_t ObjectMetadataBuffer[32];
   int64_t ContextHandles[2];
-  uint8_t1 *GameDataList;
+  uint8_t *GameDataList;
   int ListIterator;
   uint32_t MaximumItems;
-  uint8_t1 ObjectProcessingBuffer[512];
+  uint8_t ObjectProcessingBuffer[512];
   uint64_t SecurityAccessToken;
   
   SecurityAccessToken = SecurityEncryptionKey ^ (uint64_t)ObjectMetadataBuffer;
@@ -5409,7 +5409,7 @@ uint64_t ProcessFloatParameterAndUpdateSystem(int64_t parameterObject)
            (floatValue != *(float *)(systemData + 0x20))) {
           *(float *)(systemData + 0x20) = floatValue;
           UpdateSystemData(systemData);
-          *(uint8_t1 *)(systemData + 0x35) = 0;
+          *(uint8_t *)(systemData + 0x35) = 0;
         }
       }
     }
