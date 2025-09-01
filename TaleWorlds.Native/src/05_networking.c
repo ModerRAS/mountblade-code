@@ -16,16 +16,16 @@
  */
 uint CompareNetworkConnectionTimestamps(int64_t *firstConnection, int64_t *secondConnection);
 
-uint32_t NetworkConnectionTable;
-uint32_t NetworkConnectionStatus;
-uint32_t NetworkConnectionTimeout;
-uint32_t NetworkPacketBuffer;
-uint32_t NetworkPacketHeader;
-uint32_t NetworkConnectionLimit;
-uint32_t NetworkConnectionFlags;
-uint32_t NetworkConnectionType;
-uint32_t NetworkConnectionProtocol;
-uint32_t NetworkServerAddress;
+uint32_t NetworkConnectionTableHandle;
+uint32_t NetworkConnectionStatusFlags;
+uint32_t NetworkConnectionTimeoutDuration;
+uint32_t NetworkPacketBufferData;
+uint32_t NetworkPacketHeaderData;
+uint32_t NetworkConnectionMaximumLimit;
+uint32_t NetworkConnectionAttributeFlags;
+uint32_t NetworkConnectionProtocolType;
+uint32_t NetworkConnectionProtocolVersion;
+uint32_t NetworkServerIpAddress;
 uint32_t NetworkServerPort;
 uint32_t NetworkClientAddress;
 uint32_t NetworkClientPort;
@@ -208,7 +208,7 @@ uint32_t NetworkCallbackHandler;
 uint32_t ProcessNetworkTimeout;
 uint32_t NetworkConnectionStateMachine;
 uint32_t NetworkConnectionMode;
-uint32_t NetworkConnectionFlags;
+uint32_t NetworkConnectionAttributeFlags;
 uint32_t NetworkConnectionPriority;
 uint32_t NetworkConnectionQuality;
 uint32_t NetworkConnectionBandwidth;
@@ -719,12 +719,12 @@ void SendNetworkPacket(NetworkHandle packetId,NetworkHandle connectionId,Network
                   NetworkHandle sourceAddress,NetworkHandle networkContext,longlong packetData)
 
 {
-  longlong *plVar1;
-  int networkStatus2;
-  longlong lVar3;
-  NetworkStatus unaff_EBP;
-  longlong unaff_RSI;
-  longlong lVar4;
+  longlong *networkProcessor;
+  int networkStatus;
+  longlong packetEntry;
+  NetworkStatus packetFlags;
+  longlong packetIndex;
+  longlong packetArray;
   
   param_6 = 0;
   param_5 = 0;
@@ -1833,27 +1833,38 @@ int ProcessNetworkPacketValidationB(longlong connectionContext,longlong packetDa
 
 
 
-int FUN_180841790(longlong connectionContext,longlong packetData,int dataSize)
+/**
+ * @brief 处理网络连接数据包的头部信息
+ * 
+ * 该函数负责处理网络连接数据包的头部信息，包括数据包的解析、
+ * 验证和预处理，为后续的数据包处理做准备
+ * 
+ * @param connectionContext 网络连接上下文
+ * @param packetData 数据包数据指针
+ * @param dataSize 数据包大小
+ * @return 处理结果，成功返回处理的数据大小，失败返回错误码
+ */
+int ProcessNetworkPacketHeader(longlong connectionContext,longlong packetData,int dataSize)
 
 {
-  NetworkStatus uVar1;
-  int networkStatus2;
-  int networkStatus3;
-  NetworkStatus uStack_18;
-  NetworkStatus uStack_14;
-  NetworkStatus uStack_10;
-  NetworkStatus uStack_c;
+  NetworkStatus headerStatus1;
+  int processResult1;
+  int processResult2;
+  NetworkStatus connectionStatus1;
+  NetworkStatus connectionStatus2;
+  NetworkStatus connectionStatus3;
+  NetworkStatus connectionStatus4;
   
-  uStack_18 = *(NetworkStatus *)(connectionContext + 0x10);
-  uStack_14 = *(NetworkStatus *)(connectionContext + 0x14);
-  uStack_10 = *(NetworkStatus *)(connectionContext + 0x18);
-  uStack_c = *(NetworkStatus *)(connectionContext + 0x1c);
-  uVar1 = *(NetworkStatus *)(connectionContext + 0x20);
-  networkStatus2 = FUN_18074b650(packetData,dataSize,&uStack_18);
-  networkStatus3 = NetworkBufferCopyData(packetData + networkStatus2,dataSize - networkStatus2,&NetworkBufferDataTemplate);
-  networkStatus2 = networkStatus2 + networkStatus3;
-  networkStatus3 = func_0x00018074b800(networkStatus2 + packetData,dataSize - networkStatus2,uVar1);
-  return networkStatus3 + networkStatus2;
+  connectionStatus1 = *(NetworkStatus *)(connectionContext + 0x10);
+  connectionStatus2 = *(NetworkStatus *)(connectionContext + 0x14);
+  connectionStatus3 = *(NetworkStatus *)(connectionContext + 0x18);
+  connectionStatus4 = *(NetworkStatus *)(connectionContext + 0x1c);
+  headerStatus1 = *(NetworkStatus *)(connectionContext + 0x20);
+  processResult1 = ValidatePacketHeader(packetData,dataSize,&connectionStatus1);
+  processResult2 = NetworkBufferCopyData(packetData + processResult1,dataSize - processResult1,&NetworkBufferDataTemplate);
+  processResult1 = processResult1 + processResult2;
+  processResult2 = ProcessPacketHeaderData(processResult1 + packetData,dataSize - processResult1,headerStatus1);
+  return processResult2 + processResult1;
 }
 
 

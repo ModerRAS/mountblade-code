@@ -378,21 +378,13 @@ void* DatabaseTransactionLogger;
 void* DatabaseTransactionStateManager;
 void* DatabaseTransactionRollbackManager;
 void* DatabaseTransactionCommitManager;
-// 数据库系统配置表指针
 undefined DatabaseSystemConfigTable;
-// 数据库系统状态表指针
 undefined DatabaseSystemStatusTable;
-// 数据库系统索引表指针
 undefined DatabaseSystemIndexTable;
-// 数据库系统锁表指针
 undefined DatabaseSystemLockTable;
-// 数据库系统缓存表指针
 undefined DatabaseSystemCacheTable;
-// 数据库系统连接表指针
 undefined DatabaseSystemConnectionTable;
-// 数据库系统事务表指针
 undefined DatabaseSystemTransactionTable;
-// 数据库系统备份表指针
 undefined DatabaseSystemBackupTable;
 undefined DAT_180bf6c20;
 undefined DAT_180bf6c28;
@@ -81257,7 +81249,6 @@ void FUN_1809414f0(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 初始化全局模块A，设置相关数据结构指针
 void InitializeGlobalModuleA(void)
 
 {
@@ -81271,7 +81262,6 @@ void InitializeGlobalModuleA(void)
 
 
  void InitializeGlobalModuleB(void)
-// 初始化全局模块B，设置相关数据结构指针
 void InitializeGlobalModuleB(void)
 
 {
@@ -81377,7 +81367,6 @@ void FUN_1809416d0(void)
 
 
  void DestroyThreadSyncObjects(void)
-// 销毁线程同步对象，清理互斥锁和条件变量
 void DestroyThreadSyncObjects(void)
 
 {
@@ -81394,7 +81383,6 @@ void DestroyThreadSyncObjects(void)
 
 
  void CloseSystemHandle(void)
-// 关闭系统句柄，释放相关资源
 void CloseSystemHandle(void)
 
 {
@@ -81600,7 +81588,6 @@ void FUN_1809419a0(void)
 
 
  void DestroySpecificMutex(void)
-// 销毁特定的互斥锁对象，清理线程同步资源
 void DestroySpecificMutex(void)
 
 {
