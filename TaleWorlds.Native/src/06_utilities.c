@@ -9174,9 +9174,9 @@ uint8_t ValidateFloatDataAndExecute(void)
   float CalculatedFloatValue;
   int64_t resourceTable;
   uint8_t ValidationResult;
-  int64_t UnaffectedRegisterValue;
-  int64_t RegisterR14;
-  uint32_t StackParameterContext48;
+  int64_t PreservedRegisterValue;
+  int64_t ResourceContextHandle;
+  uint32_t ValidationParameter;
   
   resourceTable = LookupResourceIndex();
   if ((*(uint *)(resourceTable + 0x34) >> 4 & 1) != 0) {
@@ -9190,7 +9190,7 @@ uint8_t ValidateFloatDataAndExecute(void)
       ValidationResult = 0x1c;
     }
     else {
-      ValidationResult = ValidateResourceParameters(RegisterR14 + 0x60,StackParameterContext48);
+      ValidationResult = ValidateResourceParameters(ResourceContextHandle + 0x60,ValidationParameter);
       if ((int)ValidationResult == 0) {
                     // WARNING: Subroutine does not return
         ReleaseSystemContextResources(*(uint8_t *)(SystemContextHandle + 0x98));
@@ -9216,9 +9216,9 @@ uint8_t ValidateFloatDataAndExecuteSimple(void)
   float CalculatedFloatValue;
   uint8_t ResourceValidationResult;
   int64_t ResourceContextPointer;
-  int64_t UnaffectedRegisterValue;
-  int64_t RegisterR14;
-  uint32_t StackParameterContext48;
+  int64_t PreservedRegisterValue;
+  int64_t ResourceHandle;
+  uint32_t ValidationParameter;
   
   ResourceValidationResult = ValidateObjectContextAndProcessData();
   if ((int)ResourceValidationResult == 0) {
@@ -9228,7 +9228,7 @@ uint8_t ValidateFloatDataAndExecuteSimple(void)
       ResourceValidationResult = 0x1c;
     }
     else {
-      ResourceValidationResult = ValidateResourceParameters(RegisterR14 + 0x60,StackParameterContext48);
+      ResourceValidationResult = ValidateResourceParameters(ResourceHandle + 0x60,ValidationParameter);
       if ((int)ResourceValidationResult == 0) {
                     // WARNING: Subroutine does not return
         ReleaseSystemContextResources(*(uint8_t *)(SystemContextHandle + 0x98));
