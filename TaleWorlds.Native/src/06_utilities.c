@@ -8,6 +8,9 @@
  * 
  * @param ModuleHandle 模块句柄，用于标识特定的模块实例
  * @param ModuleContext 模块上下文，包含模块运行所需的环境信息
+ * @return 无返回值
+ * @note 此函数必须在系统启动时调用
+ * @warning 调用此函数前必须确保系统已准备好处理模块依赖关系
  */
 void InitializeModuleDependencies(longlong ModuleHandle, longlong ModuleContext);
 void* ModuleDependencyTable;
@@ -16,10 +19,10 @@ uint32_t ModuleDependencyConfigurationFlags;
 uint32_t ModuleDependencyInitializationStatus;
 void* ModuleDependencyAccessLock;
 void* ModuleDependencySynchronizationMutex;
-bool ModuleDependencyIsInitialized;
+bool ModuleDependencyInitialized;
 void* ModuleDependencyRuntimeContext;
 void* ModuleDependencySystemConfiguration;
-bool ModuleDependencyIsEnabled;
+bool ModuleDependencyEnabled;
 void* ModuleDependencyDataStorage;
 void* ModuleDependencyCacheStorage;
 void* ModuleDependencyDataBuffer;
@@ -30,13 +33,15 @@ void* ModuleDependencyDigitalSignature;
 void* ModuleDependencySystemHandle;
 
 /**
- * @brief 初始化全局模块A
+ * @brief 初始化核心引擎模块
  * 
- * 该函数负责初始化游戏引擎的全局模块A
- * 设置模块A所需的数据结构和运行环境
+ * 该函数负责初始化游戏引擎的核心引擎模块
+ * 设置核心引擎模块所需的数据结构和运行环境
+ * 包括内存管理、任务调度和基础服务
  * 
  * @return 无返回值
  * @note 此函数必须在系统启动时调用
+ * @warning 调用此函数前必须确保系统资源已准备就绪
  */
 void InitializeCoreEngineModule(void);
 void* CoreEngineModuleInstance;
@@ -45,13 +50,15 @@ uint32_t CoreEngineInitializationStatus;
 void* CoreEngineModuleHandle;
 
  /**
- * @brief 初始化全局模块B
+ * @brief 初始化渲染引擎模块
  * 
- * 该函数负责初始化游戏引擎的全局模块B
- * 设置模块B所需的数据结构和运行环境
+ * 该函数负责初始化游戏引擎的渲染引擎模块
+ * 设置渲染引擎模块所需的数据结构和运行环境
+ * 包括图形管线、着色器管理和渲染队列
  * 
  * @return 无返回值
  * @note 此函数必须在系统启动时调用
+ * @warning 调用此函数前必须确保图形设备已初始化
  */
 void InitializeRenderingEngineModule(void);
 void* RenderingEngineModuleInstance;
@@ -60,10 +67,15 @@ uint32_t RenderingEngineInitializationStatus;
 void* RenderingEngineModuleHandle;
 void* RenderingEngineExecutionContext;
 /**
- * @brief 初始化全局模块C
+ * @brief 初始化图形系统模块
  * 
- * 该函数负责初始化游戏引擎的全局模块C
- * 设置模块C所需的数据结构和运行环境
+ * 该函数负责初始化游戏引擎的图形系统模块
+ * 设置图形系统模块所需的数据结构和运行环境
+ * 包括图形设备管理、纹理处理和帧缓冲区
+ * 
+ * @return 无返回值
+ * @note 此函数必须在系统启动时调用
+ * @warning 调用此函数前必须确保渲染引擎已初始化
  */
 void InitializeGraphicsSystemModule(void);
 void* GraphicsSystemModuleInstance;
@@ -74,10 +86,15 @@ void* GraphicsSystemModuleExecutionContext;
 
 
 /**
- * @brief 初始化全局模块D
+ * @brief 初始化音频系统模块
  * 
- * 该函数负责初始化游戏引擎的全局模块D
- * 设置模块D所需的数据结构和运行环境
+ * 该函数负责初始化游戏引擎的音频系统模块
+ * 设置音频系统模块所需的数据结构和运行环境
+ * 包括音频设备管理、音效处理和音乐播放
+ * 
+ * @return 无返回值
+ * @note 此函数必须在系统启动时调用
+ * @warning 调用此函数前必须确保音频设备可用
  */
 void InitializeAudioSystemModule(void);
 void* AudioSystemModuleInstance;
@@ -2039,13 +2056,6 @@ uint8_t SystemMemoryConfigDataTemplateZ;
 uint8_t SystemMemoryConfigDataTemplateAA;
 
  void VerifyDataIntegrity(void);
-/**
- * @brief 验证数据完整性
- * 
- * 该函数负责验证数据的完整性
- * 确保数据未被篡改
- */
-void VerifyDataIntegrity(void);
 uint8_t SystemEnvironmentDataTemplateA;
 uint8_t SystemEnvironmentDataTemplateB;
 uint8_t SystemConfigurationDataTemplateC;
@@ -87306,18 +87316,18 @@ void ReleaseValidationResultTable(void)
   
   if (SystemMemoryBufferPointer != 0) {
     SystemMemoryAllocator(SystemMemoryBufferPointer,SystemMemoryAllocationSize);
-    validationResult = lRam0000000180d49da0 - lRam0000000180d49d90 & 0xfffffffffffffff0;
-    localContextPointer = lRam0000000180d49d90;
+    validationResult = SystemMemoryEndAddress - SystemMemoryBufferPointer & 0xfffffffffffffff0;
+    localContextPointer = SystemMemoryBufferPointer;
     if (0xfff < validationResult) {
-      loopCounter = *(longlong *)(lRam0000000180d49d90 + -8);
-      if (0x1f < (lRam0000000180d49d90 - localContextPointer) - 8U) {
+      loopCounter = *(longlong *)(SystemMemoryBufferPointer + -8);
+      if (0x1f < (SystemMemoryBufferPointer - localContextPointer) - 8U) {
                     // WARNING: Subroutine does not return
-        _invalid_parameter_noinfo_noreturn(lRam0000000180d49d90 - localContextPointer,validationResult + 0x27);
+        _invalid_parameter_noinfo_noreturn(SystemMemoryBufferPointer - localContextPointer,validationResult + 0x27);
       }
     }
     free(localContextPointer);
-    lRam0000000180d49d90 = 0;
-    uRam0000000180d49d98 = 0;
+    SystemMemoryBufferPointer = 0;
+    SystemMemoryAllocationSize = 0;
     lRam0000000180d49da0 = 0;
   }
   return;
@@ -87883,8 +87893,8 @@ void InitializeSystemContext(uint8_t8 contextPtr, uint8_t8 setupParam, uint8_t8 
   uint8_t8 *SystemHandler;
   
   SystemHandler = SystemContextHandler;
-  if (systemContextHandler != (uint8_t8 *)0x0) {
-    InitializeContextData(&systemContextData, *systemContextHandler, configParam, flagsParam, 0xfffffffffffffffe);
+  if (SystemContextHandler != (uint8_t8 *)0x0) {
+    InitializeContextData(&SystemContextData, *SystemContextHandler, configParam, flagsParam, 0xfffffffffffffffe);
     SetupSystemHandler(SystemHandler + 5);
                     // WARNING: Subroutine does not return
     ExecuteSystemHandler(SystemHandler);
