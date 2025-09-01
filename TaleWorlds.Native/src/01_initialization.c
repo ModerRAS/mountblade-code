@@ -393,12 +393,12 @@ void* SystemNodeLinkPointerB;        // UNK_18098c898
 void* SystemRootNodePointer;         // UNK_18098c870
 
 // 系统初始化状态变量
-uint32_t SystemInitializationStatusA;  // SystemInitializationStatusA
-uint32_t SystemInitializationStatusB;  // SystemInitializationStatusB
-uint32_t SystemInitializationStatusC;  // SystemInitializationStatusC
-uint32_t SystemInitializationStatusD;  // SystemInitializationStatusD
-uint32_t SystemInitializationStatusE;  // SystemInitializationStatusE
-uint32_t SystemInitializationStatusF;  // SystemInitializationStatusF
+uint32_t SystemInitializationStatusCode;      // 系统初始化状态码
+uint32_t SystemInitializationProgress;       // 系统初始化进度
+uint32_t SystemInitializationErrorFlag;       // 系统初始化错误标志
+uint32_t SystemInitializationMemoryStatus;   // 系统初始化内存状态
+uint32_t SystemInitializationThreadStatus;    // 系统初始化线程状态
+uint32_t SystemInitializationResourceStatus; // 系统初始化资源状态
 
 // 系统内存状态标志变量
 uint32_t SystemMemoryStatusFlagA;      // 系统内存状态标志A

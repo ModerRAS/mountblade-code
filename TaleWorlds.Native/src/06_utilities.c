@@ -255,6 +255,10 @@ void OptimizeResourceUsage(void);
  * 
  * 该函数负责监控系统资源的性能指标
  * 收集资源使用情况并生成性能报告
+ * 
+ * @return 无返回值
+ * @note 此函数会持续监控资源性能并记录数据
+ * @warning 监控过程会产生一定的性能开销
  */
 void MonitorResourcePerformance(void);
 
@@ -271,6 +275,10 @@ void* ResourceLargeBufferPool;
  * 
  * 该函数负责初始化游戏中的纹理管理系统
  * 设置纹理加载、缓存和释放的相关数据结构
+ * 
+ * @return 无返回值
+ * @note 此函数必须在系统启动时调用，以确保纹理管理系统的正常运行
+ * @warning 调用此函数前必须确保图形子系统已经初始化
  */
 void InitializeTextureManager(void);
 void* TextureManagerInstance;
