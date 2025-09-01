@@ -6915,27 +6915,35 @@ void ValidateObjectContextAndProcessPointerValidation(longlong ObjectContext, lo
 
 
 
- void FUN_18089246a(longlong *param_1,longlong param_2)
-void FUN_18089246a(longlong *param_1,longlong param_2)
+ /**
+ * @brief 处理指针验证和系统对象处理
+ * 
+ * 该函数处理指针验证操作，包括内存分配验证和指针完整性检查
+ * 如果验证失败则调用相应的错误处理函数
+ * 
+ * @param ObjectPointer 对象指针，包含要处理的对象信息
+ * @param SystemContext 系统上下文，包含系统运行环境信息
+ */
+void ProcessPointerValidationAndSystemObjectHandling(longlong *ObjectPointer, longlong SystemContext)
 
 {
-  longlong lVar1;
-  longlong *plVar2;
-  longlong unaff_RDI;
-  ulonglong in_stack_00000050;
+  longlong allocatedMemory;
+  longlong *pointerReference;
+  longlong systemContext;
+  ulonglong securityToken;
   
-  lVar1 = (**(code **)(*param_1 + 0x2f0))(param_1,param_2 + 0x30);
-  if (lVar1 == 0) {
+  allocatedMemory = (**(code **)(*ObjectPointer + 0x2f0))(ObjectPointer, SystemContext + 0x30);
+  if (allocatedMemory == 0) {
                     // WARNING: Subroutine does not return
-    FUN_18084b240(param_2 + 0x30,&stack0x00000028);
+    ProcessMemoryAllocationFailure(SystemContext + 0x30, &stack0x00000028);
   }
-  plVar2 = (longlong *)(lVar1 + 0x58);
-  if (((longlong *)*plVar2 == plVar2) && (*(longlong **)(lVar1 + 0x60) == plVar2)) {
+  pointerReference = (longlong *)(allocatedMemory + 0x58);
+  if (((longlong *)*pointerReference == pointerReference) && (*(longlong **)(allocatedMemory + 0x60) == pointerReference)) {
                     // WARNING: Subroutine does not return
-    FUN_1808fc050(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
+    CleanupSecurityToken(securityToken ^ (ulonglong)&stack0x00000000);
   }
                     // WARNING: Subroutine does not return
-  FUN_18088d720(*(undefined8 *)(unaff_RDI + 0x98));
+  ProcessSystemObject(*(undefined8 *)(systemContext + 0x98));
 }
 
 
