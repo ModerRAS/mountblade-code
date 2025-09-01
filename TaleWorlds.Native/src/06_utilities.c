@@ -8095,10 +8095,10 @@ uint8_t ProcessObjectContextFloatRangeValidationAndClamping(void)
         if (((uint)floatValue1 & 0x7f800000) == 0x7f800000) {
           return 0x1d;
         }
-        if ((iVar3 < 0) || (OperationResult <= iVar3)) {
+        if ((ProcessResult < 0) || (OperationResult <= ProcessResult)) {
           return 0x1f;
         }
-        ResourceTablePointer = *(int64_t *)(ContextValidationResult + 0x20) + (int64_t)iVar3 * 0x18;
+        ResourceTablePointer = *(int64_t *)(ContextValidationResult + 0x20) + (int64_t)ProcessResult * 0x18;
         if (ResourceTablePointer == 0) {
           return 0x1c;
         }
@@ -9417,8 +9417,8 @@ void ProcessFloatRangeClamping(void)
     floatValue4 = floatValue1;
   }
   *(float *)(ResourceContextPointer + 0x10) = floatValue4;
-  iVar3 = ValidateResourceParameters(RegisterRDI + 0x60,in_stack_00000040,floatValue4);
-  if (iVar3 == 0) {
+  ValidationStatus = ValidateResourceParameters(RegisterRDI + 0x60,in_stack_00000040,floatValue4);
+  if (ValidationStatus == 0) {
     pResourceValidationResult = (uint8_t *)GetResourcePointer(RegisterRDI + 0x60,&ObjectStackBuffer30,in_stack_00000040);
     *(uint8_t *)(ResourceContextPointer + 0x18) = *pResourceValidationResult;
                     // WARNING: Subroutine does not return
@@ -10324,10 +10324,14 @@ uint32_t ProcessSystemConfigurationAndValidation(int64_t SystemContext,uint8_t C
   uint ResourceValidationResult;
   int validationStatus;
   int64_t *contextPointer;
-  int tableEntry;
+  int EntryCounter;
   uint configurationFlags;
-  uint8_t uStackX_20;
+  uint8_t StackBufferSize;
   uint8_t dataChecksumBuffer [2];
+  int InitializationResult;
+  int ProcessingResult;
+  int64_t *LinkPointer;
+  int64_t *ResourceContextPointer;
   
   if (resultBuffer == 0) {
     return 0x1f;
@@ -10335,22 +10339,22 @@ uint32_t ProcessSystemConfigurationAndValidation(int64_t SystemContext,uint8_t C
   tableEntry = 0;
   ResourceValidationResult = *(uint *)(SystemContext + 0x20);
   dataChecksumBuffer[0] = 0;
-  iVar3 = InitializeProcessingQueue(dataChecksumBuffer,SystemContext);
-  if (iVar3 == 0) {
-    uStackX_20 = 0;
+  InitializationResult = InitializeProcessingQueue(dataChecksumBuffer,SystemContext);
+  if (InitializationResult == 0) {
+    StackBufferSize = 0;
     ContextValidationResult = validationFlags | 0x10000000;
     if ((ResourceValidationResult & 1) == 0) {
       ContextValidationResult = validationFlags;
     }
-    iVar3 = ProcessConfigurationData(SystemContext,ConfigurationData,ContextValidationResult,&uStackX_20);
-    if ((iVar3 == 0) && (ResourceContextPointer = (int64_t *)(resultBuffer + 8), ResourceContextPointer != (int64_t *)0x0)) {
-      plVar4 = (int64_t *)*ResourceContextPointer;
-      if (plVar4 != ResourceContextPointer) {
+    ProcessingResult = ProcessConfigurationData(SystemContext,ConfigurationData,ContextValidationResult,&StackBufferSize);
+    if ((ProcessingResult == 0) && (ResourceContextPointer = (int64_t *)(resultBuffer + 8), ResourceContextPointer != (int64_t *)0x0)) {
+      LinkPointer = (int64_t *)*ResourceContextPointer;
+      if (LinkPointer != ResourceContextPointer) {
         do {
-          plVar4 = (int64_t *)*plVar4;
-          tableEntry = tableEntry + 1;
-        } while (plVar4 != ResourceContextPointer);
-        if (tableEntry != 0) goto LAB_180894ebf;
+          LinkPointer = (int64_t *)*LinkPointer;
+          EntryCounter = EntryCounter + 1;
+        } while (LinkPointer != ResourceContextPointer);
+        if (EntryCounter != 0) goto LAB_180894ebf;
       }
       *(uint8_t *)(resultBuffer + 0x10) = *(uint8_t *)(SystemContext + 0x58);
       *ResourceContextPointer = SystemContext + 0x50;
