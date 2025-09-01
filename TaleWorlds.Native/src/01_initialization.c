@@ -1557,34 +1557,34 @@ void InitializeSystemCoreData(void)
   code *InitializationCallback;
   
   SystemHandle = (long long*)GetSystemRootPointer();
-  systemRootPointer = (void* *)*systemHandle;
-  StatusFlag = *(char*)((long long)systemRootPointer[1] + 0x19);
-  initializationCallback = GetSystemInitializationCallback;
-  previousNode = systemRootPointer;
-  currentNode = (void* *)systemRootPointer[1];
+  SystemRootPointer = (void* *)*SystemHandle;
+  StatusFlag = *(char*)((long long)SystemRootPointer[1] + 0x19);
+  InitializationCallback = GetSystemInitializationCallback;
+  PreviousNode = SystemRootPointer;
+  CurrentNode = (void* *)SystemRootPointer[1];
   while (StatusFlag == '\0') {
-    comparisonResult = memcmp(currentNode + 4,&SystemDataComparisonTemplateA,0x10);
-    if (comparisonResult < 0) {
-      nextNode = (void* *)currentNode[2];
-      currentNode = previousNode;
+    ComparisonResult = memcmp(CurrentNode + 4,&SystemDataComparisonTemplateA,0x10);
+    if (ComparisonResult < 0) {
+      NextNode = (void* *)CurrentNode[2];
+      CurrentNode = PreviousNode;
     }
     else {
-      nextNode = (void* *)*currentNode;
+      NextNode = (void* *)*CurrentNode;
     }
-    previousNode = currentNode;
-    currentNode = nextNode;
-    StatusFlag = *(char*)((long long)nextNode + 0x19);
+    PreviousNode = CurrentNode;
+    CurrentNode = NextNode;
+    StatusFlag = *(char*)((long long)NextNode + 0x19);
   }
-  if ((previousNode == systemRootPointer) || (comparisonResult = memcmp(&SystemDataComparisonTemplateA,previousNode + 4,0x10), comparisonResult < 0)) {
-    memorySize = GetSystemMemorySize(systemHandle);
-    AllocateSystemMemory(systemHandle,&newNode,previousNode,memorySize + 0x20,memorySize);
-    previousNode = newNode;
+  if ((PreviousNode == SystemRootPointer) || (ComparisonResult = memcmp(&SystemDataComparisonTemplateA,PreviousNode + 4,0x10), ComparisonResult < 0)) {
+    MemorySize = GetSystemMemorySize(SystemHandle);
+    AllocateSystemMemory(SystemHandle,&NewNode,PreviousNode,MemorySize + 0x20,MemorySize);
+    PreviousNode = NewNode;
   }
-  previousNode[6] = 0x421c3cedd07d816d;
-  previousNode[7] = 0xbec25de793b7afa6;
-  previousNode[8] = &SystemNodeLinkPointerA;
-  previousNode[9] = 0;
-  previousNode[10] = initializationCallback;
+  PreviousNode[6] = 0x421c3cedd07d816d;
+  PreviousNode[7] = 0xbec25de793b7afa6;
+  PreviousNode[8] = &SystemNodeLinkPointerA;
+  PreviousNode[9] = 0;
+  PreviousNode[10] = InitializationCallback;
   return;
 }
 
@@ -1600,44 +1600,44 @@ void InitializeSystemDataTable(void)
 {
   char StatusFlag;
   void** SystemRootPointer;
-  int comparisonResult;
-  long long *systemHandle;
-  long long memorySize;
+  int ComparisonResult;
+  long long *SystemHandle;
+  long long MemorySize;
   void** CurrentNode;
   void** PreviousNode;
   void** NextNode;
   void** NewNode;
-  void* systemFlag;
+  void* SystemFlag;
   
-  systemHandle = (long long*)GetSystemRootPointer();
-  systemRootPointer = (void* *)*systemHandle;
-  StatusFlag = *(char*)((long long)systemRootPointer[1] + 0x19);
-  systemFlag = 0;
-  previousNode = systemRootPointer;
-  currentNode = (void* *)systemRootPointer[1];
+  SystemHandle = (long long*)GetSystemRootPointer();
+  SystemRootPointer = (void* *)*SystemHandle;
+  StatusFlag = *(char*)((long long)SystemRootPointer[1] + 0x19);
+  SystemFlag = 0;
+  PreviousNode = SystemRootPointer;
+  CurrentNode = (void* )SystemRootPointer[1];
   while (StatusFlag == '\0') {
-    comparisonResult = memcmp(currentNode + 4,&SystemDataComparisonTemplateB,0x10);
-    if (comparisonResult < 0) {
-      nextNode = (void* *)currentNode[2];
-      currentNode = previousNode;
+    ComparisonResult = memcmp(CurrentNode + 4,&SystemDataComparisonTemplateB,0x10);
+    if (ComparisonResult < 0) {
+      NextNode = (void* )CurrentNode[2];
+      CurrentNode = PreviousNode;
     }
     else {
-      nextNode = (void* *)*currentNode;
+      NextNode = (void* )*CurrentNode;
     }
-    previousNode = currentNode;
-    currentNode = nextNode;
-    StatusFlag = *(char*)((long long)nextNode + 0x19);
+    PreviousNode = CurrentNode;
+    CurrentNode = NextNode;
+    StatusFlag = *(char*)((long long)NextNode + 0x19);
   }
-  if ((previousNode == systemRootPointer) || (comparisonResult = memcmp(&SystemDataComparisonTemplateB,previousNode + 4,0x10), comparisonResult < 0)) {
-    memorySize = GetSystemMemorySize(systemHandle);
-    AllocateSystemMemory(systemHandle,&newNode,previousNode,memorySize + 0x20,memorySize);
-    previousNode = newNode;
+  if ((PreviousNode == SystemRootPointer) || (ComparisonResult = memcmp(&SystemDataComparisonTemplateB,PreviousNode + 4,0x10), ComparisonResult < 0)) {
+    MemorySize = GetSystemMemorySize(SystemHandle);
+    AllocateSystemMemory(SystemHandle,&NewNode,PreviousNode,MemorySize + 0x20,MemorySize);
+    PreviousNode = NewNode;
   }
-  previousNode[6] = 0x4c22bb0c326587ce;
-  previousNode[7] = 0x5e3cf00ce2978287;
-  previousNode[8] = &SystemNodeLinkPointerB;
-  previousNode[9] = 1;
-  previousNode[10] = systemFlag;
+  PreviousNode[6] = 0x4c22bb0c326587ce;
+  PreviousNode[7] = 0x5e3cf00ce2978287;
+  PreviousNode[8] = &SystemNodeLinkPointerB;
+  PreviousNode[9] = 1;
+  PreviousNode[10] = SystemFlag;
   return;
 }
 
@@ -29032,8 +29032,16 @@ void InitializeSystemDataManager(void)
 
 
 
-// 函数: void FUN_180056150(long long SystemResourcePointer)
-void FUN_180056150(long long SystemResourcePointer)
+/**
+ * @brief 系统节点资源处理函数
+ * 
+ * 该函数负责处理系统节点资源，包括节点比较、内存管理和资源分配。
+ * 函数会遍历系统资源指针，比较节点数据，并根据比较结果进行相应的处理。
+ * 
+ * @param SystemResourcePointer 系统资源指针
+ * @note 该函数在系统资源管理中起到关键作用
+ */
+void ProcessSystemNodeResource(long long SystemResourcePointer)
 
 {
   char SystemNodeFlag;
@@ -29184,8 +29192,19 @@ LAB_180056228:
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180056410(long long SystemResourcePointer,void* param_2,void* param_3,void* param_4)
-void FUN_180056410(long long SystemResourcePointer,void* param_2,void* param_3,void* param_4)
+/**
+ * @brief 系统资源数据管理函数
+ * 
+ * 该函数负责管理系统资源数据，包括数据表的访问、系统标志的处理
+ * 和资源指针的操作。函数会根据传入的参数执行相应的资源管理操作。
+ * 
+ * @param SystemResourcePointer 系统资源指针
+ * @param param_2 参数2，用于传递额外的配置信息
+ * @param param_3 参数3，用于传递操作标志
+ * @param param_4 参数4，用于传递错误处理参数
+ * @note 该函数是系统资源管理的核心函数之一
+ */
+void ManageSystemResourceData(long long SystemResourcePointer,void* param_2,void* param_3,void* param_4)
 
 {
   ulong long *pointerToUnsigned1;
