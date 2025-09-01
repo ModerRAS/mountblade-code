@@ -9883,8 +9883,7 @@ LAB_180894aca:
 
 
 
- 4ad2(void)
-4ad2(void)
+ ExecuteSecurityFinalization(void)
 
 {
   ulonglong in_stack_000000a8;
