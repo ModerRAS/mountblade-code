@@ -20303,9 +20303,9 @@ void InitializeSystemCoreEngine(void)
       } while (-1 < localSystemFlags);
     }
     InitializeSystemConfiguration(&puStack_558,&puStack_538,iVar3 + 1,0xffffffff);
-    iVar3 = FUN_180046b80(&DAT_180bf5240,&puStack_538);
+    iVar3 = FindSystemResourceIndex(&DAT_180bf5240,&puStack_538);
     if (iVar3 == -1) {
-      iVar3 = FUN_180046890(&DAT_180bf5240,&puStack_538);
+      iVar3 = FindSystemResourceHandle(&DAT_180bf5240,&puStack_538);
     }
     localSystemFlags = (long long)iVar3 * 0x100;
     ppplStack_590 = (long long ***)(SystemInitializationDataStart + 0x30 + localSystemFlags);
