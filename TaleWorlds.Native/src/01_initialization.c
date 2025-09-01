@@ -51175,8 +51175,14 @@ void FUN_180073e0b(uint32_t *SystemResourcePointer)
 
 
 
-// 函数: void FUN_180073e23(void)
-void FUN_180073e23(void)
+// 函数: void ProcessSystemResourceOperationA(void)
+/**
+ * @brief 处理系统资源操作A
+ * 
+ * 该函数处理系统资源的操作，包括资源分配、数据复制和内存管理。
+ * 主要用于系统资源的管理和维护。
+ */
+void ProcessSystemResourceOperationA(void)
 
 {
   ushort unsignedSystemValue1;
@@ -51256,8 +51262,14 @@ void FUN_180073e23(void)
 
 
 
-// 函数: void FUN_180073f90(void)
-void FUN_180073f90(void)
+// 函数: void ProcessSystemResourceOperationB(void)
+/**
+ * @brief 处理系统资源操作B
+ * 
+ * 该函数处理系统资源的操作，包括数据复制和内存管理。
+ * 主要用于系统资源的维护和清理。
+ */
+void ProcessSystemResourceOperationB(void)
 
 {
   ushort unsignedSystemValue1;
@@ -51298,8 +51310,17 @@ void FUN_180073f90(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180074090(long long *SystemResourcePointer,long long param_2)
-void FUN_180074090(long long *SystemResourcePointer,long long param_2)
+// 函数: void ProcessSystemResourceOperationC(long long *SystemResourcePointer,long long param_2)
+/**
+ * @brief 处理系统资源操作C
+ * 
+ * 该函数处理系统资源的操作，包括资源分配、线程创建和内存管理。
+ * 主要用于系统资源的初始化和维护。
+ * 
+ * @param SystemResourcePointer 系统资源指针
+ * @param param_2 参数2，用于传递额外的系统参数
+ */
+void ProcessSystemResourceOperationC(long long *SystemResourcePointer,long long param_2)
 
 {
   long long *PrimaryResourcePointer;

@@ -3813,19 +3813,19 @@ uint8_t InitializeObjectHandleA(int64_t objectContext)
 
 {
   uint8_t resourceHash;
-  int64_t lStackX_8;
+  int64_t ObjectValidationContext;
   
-  resourceHash = ValidateObjectContext(*(uint32_t *)(objectContext + 0x10),&lStackX_8);
+  resourceHash = ValidateObjectContext(*(uint32_t *)(objectContext + 0x10),&ObjectValidationContext);
   if ((int)resourceHash == 0) {
-    if (lStackX_8 == 0) {
-      lStackX_8 = 0;
+    if (ObjectValidationContext == 0) {
+      ObjectValidationContext = 0;
     }
     else {
-      lStackX_8 = lStackX_8 + -8;
+      ObjectValidationContext = ObjectValidationContext + -8;
     }
-    if (*(int64_t *)(lStackX_8 + 0x10) != 0) {
+    if (*(int64_t *)(ObjectValidationContext + 0x10) != 0) {
                     // WARNING: Subroutine does not return
-      ExecuteSystemExitOperation(*(int64_t *)(lStackX_8 + 0x10),1);
+      ExecuteSystemExitOperation(*(int64_t *)(ObjectValidationContext + 0x10),1);
     }
     resourceHash = 0;
   }
@@ -4416,12 +4416,14 @@ uint8_t InitializeObjectHandleE(int64_t objectContext)
   uint64_t contextOffset;
   int64_t stackBuffer;
   uint64_t resourceIndex;
+  int64_t ObjectContextValidation;
+  int64_t ResourceValidationContext;
   
-  resourceHash = ValidateObjectContext(*(uint32_t *)(objectContextParam + 0x10),&lStackX_8);
+  resourceHash = ValidateObjectContext(*(uint32_t *)(objectContextParam + 0x10),&ObjectContextValidation);
   if ((int)resourceHash == 0) {
     unsignedValue5 = 0;
-    unsignedValue6 = lStackX_8 - 8;
-    if (lStackX_8 == 0) {
+    unsignedValue6 = ObjectContextValidation - 8;
+    if (ObjectContextValidation == 0) {
       unsignedValue6 = unsignedValue5;
     }
     punsignedResult3 = (uint32_t *)(objectContextParam + 0x20 + (int64_t)*(int *)(objectContextParam + 0x18) * 8);
@@ -4429,16 +4431,16 @@ uint8_t InitializeObjectHandleE(int64_t objectContext)
     if (0 < *(int *)(objectContextParam + 0x18)) {
       do {
         if ((*pintegerValue2 != SystemValidationCodeA) || (pintegerValue2[1] != SystemValidationCodeB)) {
-          lStackX_8 = 0;
-          resourceHash = ValidateResourceContext(unsignedValue6,(int *)(objectContextParam + 0x20) + (int64_t)(int)unsignedValue5 * 2,&lStackX_8)
+          ResourceValidationContext = 0;
+          resourceHash = ValidateResourceContext(unsignedValue6,(int *)(objectContextParam + 0x20) + (int64_t)(int)unsignedValue5 * 2,&ResourceValidationContext)
           ;
           if ((int)resourceHash != 0) {
             return resourceHash;
           }
-          if (*(int64_t *)(lStackX_8 + 8) == 0) {
+          if (*(int64_t *)(ResourceValidationContext + 8) == 0) {
             return 0x1c;
           }
-          resourceHash = ProcessResourceOperation(*(int64_t *)(lStackX_8 + 8),*punsignedResult3,*(uint8_t *)(objectContextParam + 0x1c)
+          resourceHash = ProcessResourceOperation(*(int64_t *)(ResourceValidationContext + 8),*punsignedResult3,*(uint8_t *)(objectContextParam + 0x1c)
                                );
           if ((int)resourceHash != 0) {
             return resourceHash;
