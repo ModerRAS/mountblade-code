@@ -32683,7 +32683,7 @@ void SystemExceptionHandler(uint8_t ObjectContextParameter,int64_t ValidationCon
 
 
 
-void Unwind_180902ca0(uint8_t ObjectContextParameter,int64_t ValidationContextParameter)
+void MemoryBlockCleanup(uint8_t ObjectContextParameter,int64_t ValidationContextParameter)
 
 {
   *(uint8_t **)(ValidationContextParameter + 0x50) = &SystemDataStructure;
@@ -32692,7 +32692,7 @@ void Unwind_180902ca0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 
 
 
-void Unwind_180902cb0(uint8_t ObjectContextParameter,int64_t ValidationContextParameter)
+void SystemResourceFinalizer(uint8_t ObjectContextParameter,int64_t ValidationContextParameter)
 
 {
   if (*(int64_t **)(ValidationContextParameter + 0x40) != (int64_t *)0x0) {
@@ -32703,7 +32703,7 @@ void Unwind_180902cb0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 
 
 
-void Unwind_180902cc0(uint8_t ObjectContextParameter,int64_t ValidationContextParameter)
+void ExceptionStackManager(uint8_t ObjectContextParameter,int64_t ValidationContextParameter)
 
 {
   *(uint8_t **)(ValidationContextParameter + 0x50) = &SystemDataStructure;
