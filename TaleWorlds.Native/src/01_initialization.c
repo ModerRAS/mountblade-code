@@ -22544,15 +22544,15 @@ void StartAndManageSystemThread(long long param_1,long long param_2)
 
 
 void* *
-FUN_18004a4b0(void* *param_1,ulong long param_2,void* param_3,void* param_4)
+InitializeDataBufferTemplates(void* *dataBufferRef,ulong long initializationFlags,void* reservedParam3,void* reservedParam4)
 
 {
-  *param_1 = &SystemDataBufferTemplateE;
-  *param_1 = &SystemDataBufferTemplateF;
-  if ((param_2 & 1) != 0) {
-    free(param_1,0x10,param_3,param_4,0xfffffffffffffffe);
+  *dataBufferRef = &SystemDataBufferInputTemplateE;
+  *dataBufferRef = &SystemDataBufferOutputTemplateF;
+  if ((initializationFlags & 1) != 0) {
+    free(dataBufferRef,0x10,reservedParam3,reservedParam4,0xfffffffffffffffe);
   }
-  return param_1;
+  return dataBufferRef;
 }
 
 
@@ -22874,7 +22874,7 @@ void ExecuteSystemFinalCleanup(void)
 
 
 void* *
-FUN_18004b100(void* *param_1,void* param_2,void* param_3,void* param_4)
+InitializeSystemPathBuffers(void* *pathBufferRef,void* reservedParam2,void* reservedParam3,void* reservedParam4)
 
 {
   uint32_t *puVar1;
@@ -64561,10 +64561,27 @@ void FUN_18007fd60(void* param_1,long long param_2,void* param_3,long long param
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void InitializeSystemEntryPoint(long long systemContext,void* entryPointData,void* memoryPool,void* initializationFlags);
+/**
+ * @brief 初始化系统入口点
+ * 
+ * 该函数负责初始化系统的主要入口点
+ * 设置系统上下文、入口点数据、内存池和初始化标志
+ * 
+ * @param systemContext 系统上下文，包含系统运行所需的环境信息
+ * @param entryPointData 入口点数据，包含入口点初始化所需的参数
+ * @param memoryPool 内存池，用于分配入口点所需的内存资源
+ * @param initializationFlags 初始化标志，控制初始化过程的选项
+ */
 void InitializeSystemEntryPoint(long long systemContext,void* entryPointData,void* memoryPool,void* initializationFlags);
 
-// 函数: void ExecuteSystemEntryPoint(void* *entryPointPtr);
+/**
+ * @brief 执行系统入口点
+ * 
+ * 该函数负责执行指定的系统入口点
+ * 调用入口点函数并传递必要的参数
+ * 
+ * @param entryPointPtr 入口点指针，指向要执行的入口点函数
+ */
 void ExecuteSystemEntryPoint(void* *entryPointPtr);
 
 // 函数: 系统初始化完成检查函数
