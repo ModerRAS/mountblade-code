@@ -2134,13 +2134,13 @@ undefined SystemModuleDataTemplateA;
 undefined SystemModuleDataTemplateB;
 undefined SystemModuleDataTemplateC;
 undefined SystemModuleDataTemplateE;
-undefined UNK_180a016e0;
-undefined UNK_180a02740;
-undefined UNK_180a01748;
-undefined UNK_180a02710;
-undefined UNK_180a02718;
-undefined UNK_180a02728;
-undefined UNK_180a028c8;
+undefined SystemModuleDataTemplateF;
+undefined SystemModuleDataTemplateG;
+undefined SystemModuleDataTemplateH;
+undefined SystemModuleDataTemplateI;
+undefined SystemModuleDataTemplateJ;
+undefined SystemModuleDataTemplateK;
+undefined SystemModuleDataTemplateL;
 
  void FlushLogBuffer;
 /**
@@ -2156,7 +2156,7 @@ undefined DAT_180d49248;
 undefined DAT_180d49240;
 undefined DAT_180d49258;
 undefined DAT_180d4925c;
-undefined UNK_180a02c10;
+undefined LogSystemConfigurationData;
 
  void SetLogLevel;
 /**
@@ -2166,9 +2166,9 @@ undefined UNK_180a02c10;
  * 控制哪些级别的日志消息会被记录
  */
 void SetLogLevel;
-undefined UNK_180a07328;
-undefined UNK_180a07370;
-undefined UNK_180a18a00;
+undefined LogLevelConfigurationData;
+undefined LogOutputConfigurationData;
+undefined LogMessageQueueData;
 undefined UNK_180a18a20;
 undefined UNK_180a18a40;
 undefined UNK_180a18a58;

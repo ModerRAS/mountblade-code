@@ -11662,8 +11662,15 @@ void InitializeSystemDeviceNodeManager(void)
 
 
 
-// 函数: void FUN_18003c3f0(void)
-void FUN_18003c3f0(void)
+/**
+ * @brief 初始化系统配置数据节点管理器
+ * 
+ * 该函数负责初始化系统的配置数据节点管理器，设置配置节点的相关配置和状态。
+ * 它会初始化配置管理所需的数据结构和节点信息。
+ * 
+ * @note 这是系统配置管理的重要组成部分，确保配置节点的正确管理
+ */
+void InitializeSystemConfigurationDataNodeManager(void)
 
 {
   char systemNodeFlag;
@@ -14243,8 +14250,9 @@ void FUN_18003ffb0(void)
 
 
 
-// 函数: void FUN_1800400b0(void)
-void FUN_1800400b0(void)
+// 函数: InitializeSystemResourceComponent
+// 初始化系统资源组件，负责管理系统资源的分配和释放
+void InitializeSystemResourceComponent(void)
 
 {
   char systemNodeFlag;
@@ -14293,8 +14301,9 @@ void FUN_1800400b0(void)
 
 
 
-// 函数: void FUN_1800401b0(void)
-void FUN_1800401b0(void)
+// 函数: InitializeSystemAllocatorComponent
+// 初始化系统内存分配器组件，负责管理内存分配策略
+void InitializeSystemAllocatorComponent(void)
 
 {
   char systemNodeFlag;
@@ -14343,8 +14352,9 @@ void FUN_1800401b0(void)
 
 
 
-// 函数: void FUN_1800402b0(void)
-void FUN_1800402b0(void)
+// 函数: InitializeSystemConfigurationComponent
+// 初始化系统配置组件，负责管理系统配置信息
+void InitializeSystemConfigurationComponent(void)
 
 {
   char systemNodeFlag;
@@ -14393,8 +14403,9 @@ void FUN_1800402b0(void)
 
 
 
-// 函数: void FUN_1800403b0(void)
-void FUN_1800403b0(void)
+// 函数: InitializeSystemCoreComponent
+// 初始化系统核心组件，负责管理核心系统功能
+void InitializeSystemCoreComponent(void)
 
 {
   char systemNodeFlag;
@@ -14443,8 +14454,9 @@ void FUN_1800403b0(void)
 
 
 
-// 函数: void FUN_1800404b0(void)
-void FUN_1800404b0(void)
+// 函数: InitializeSystemMemoryComponent
+// 初始化系统内存管理组件，负责内存池管理
+void InitializeSystemMemoryComponent(void)
 
 {
   char systemNodeFlag;
@@ -14493,8 +14505,9 @@ void FUN_1800404b0(void)
 
 
 
-// 函数: void FUN_1800405b0(void)
-void FUN_1800405b0(void)
+// 函数: InitializeSystemThreadComponent
+// 初始化系统线程组件，负责线程管理和同步
+void InitializeSystemThreadComponent(void)
 
 {
   char systemNodeFlag;
