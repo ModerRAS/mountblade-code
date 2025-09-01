@@ -725,6 +725,31 @@ void* SystemStatusControlBlock;
 void* SystemInitializationControlBlock;
 void* SystemShutdownControlBlock;
 
+// 系统进程和内存管理变量
+void* SystemCurrentProcessHandle;          // 当前系统进程句柄
+void* SystemMemoryRegionCacheA;            // 系统内存区域缓存A
+void* SystemMemoryRegionCacheB;            // 系统内存区域缓存B
+void* SystemMemoryRegionCacheC;            // 系统内存区域缓存C
+void* SystemMemoryRegionCacheD;            // 系统内存区域缓存D
+void* SystemMemoryRegionCacheE;            // 系统内存区域缓存E
+void* SystemNetworkBufferPointer;          // 系统网络缓冲区指针
+void* SystemPerformanceCounterA;           // 系统性能计数器A
+void* SystemPerformanceCounterB;           // 系统性能计数器B
+void* SystemPerformanceCounterC;           // 系统性能计数器C
+void* SystemPerformanceCounterD;           // 系统性能计数器D
+void* SystemPerformanceCounterE;           // 系统性能计数器E
+uint32_t SystemPerformanceStatusFlag;      // 系统性能状态标志
+long long SystemPerformanceTimestamp;      // 系统性能时间戳
+
+// 系统配置和状态变量
+uint32_t SystemConfigurationSize;          // 系统配置大小
+void* SystemDeviceContextPointer;          // 系统设备上下文指针
+uint32_t SystemDeviceStatusFlag;           // 系统设备状态标志
+void* SystemDisplayContextA;               // 系统显示上下文A
+void* SystemDisplayContextB;               // 系统显示上下文B
+void* SystemAudioContextA;                 // 系统音频上下文A
+void* SystemInputContextA;                 // 系统输入上下文A
+
 // 函数: 系统启动验证器 - 负责验证系统启动条件
 void* SystemStartupValidator;
 
@@ -17534,13 +17559,13 @@ int InitializeSystemConfiguration(void)
   long long callbackResult;
   int configIndex;
   
-  _DAT_180c0c6c0 = 0x100;
+  SystemConfigurationSize = 0x100;
   configIndex = 0;
   do {
     ConfigureSystemParameters(configIndex,0x4000000000000000,0xffff7fff,0);
     configIndex = configIndex + 1;
   } while (configIndex < 0xd);
-  *(uint *)(_DAT_180be14a0 + 0x330) = *(uint *)(_DAT_180be14a0 + 0x330) | 4;
+  *(uint *)(SystemDeviceContextPointer + 0x330) = *(uint *)(SystemDeviceContextPointer + 0x330) | 4;
   _DAT_180be1324 = 0xffffffff;
   callbackResult = SystemEventCallback(&SystemEventParameterA);
   return (callbackResult != 0) - 1;
