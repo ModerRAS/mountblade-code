@@ -1696,15 +1696,15 @@ undefined SystemMemoryConfigDataTemplateK;
 undefined SystemMemoryConfigDataTemplateM;
 undefined SystemMemoryConfigDataTemplateN;
 undefined SystemMemoryConfigDataTemplateO;
-undefined DAT_180bfab28;
-undefined DAT_180bfaba8;
-undefined DAT_180bfabb0;
-undefined DAT_180bfabb8;
-undefined DAT_180bfabc0;
-undefined DAT_180bfac40;
-undefined DAT_180bfac48;
-undefined DAT_180bfac50;
-undefined DAT_180bfac58;
+undefined SystemMemoryConfigDataTemplateP;
+undefined SystemMemoryConfigDataTemplateQ;
+undefined SystemMemoryConfigDataTemplateR;
+undefined SystemMemoryConfigDataTemplateS;
+undefined SystemMemoryConfigDataTemplateT;
+undefined SystemMemoryConfigDataTemplateU;
+undefined SystemMemoryConfigDataTemplateV;
+undefined SystemMemoryConfigDataTemplateW;
+undefined SystemMemoryConfigDataTemplateX;
 undefined DAT_180bfacd8;
 undefined DAT_180bface0;
 undefined DAT_180bface8;
@@ -19999,8 +19999,8 @@ undefined8 ProcessResourceValidation(longlong ValidationParam,undefined8 *Resour
 
 
 
- be10(longlong param_1,undefined8 *param_2,int param_3)
-be10(longlong param_1,undefined8 *param_2,int param_3)
+ ProcessResourceData(longlong ResourceContext, undefined8 *ResourceData, int ProcessFlags)
+ProcessResourceData(longlong ResourceContext, undefined8 *ResourceData, int ProcessFlags)
 
 {
   uint resourceHash;
@@ -20111,8 +20111,8 @@ LAB_18089bfc7:
 
 
 
- be41(void)
-be41(void)
+ ValidateResourceIntegrity(void)
+ValidateResourceIntegrity(void)
 
 {
   uint in_EAX;
