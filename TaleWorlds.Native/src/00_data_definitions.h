@@ -6472,7 +6472,7 @@ FUN_18045d980(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_
   _DAT_180c95dd0 = 0;
   _DAT_180c95dc8 = 0;
   _DAT_180c95d68 = 0xffdc;
-  DAT_180c95dd8 = 1;
+  SystemAudioEnabled = 1;
   FUN_1804aa090(&DAT_180c924d0);
   _DAT_180c95fe0 = 3;
   _DAT_180c95fc8 = 0;
@@ -6481,7 +6481,7 @@ FUN_18045d980(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_
   DAT_180c95fe8 = 1;
   _DAT_180c96120 = 0;
   _DAT_180c96118 = 0;
-  DAT_180c96140 = 1;
+  SystemInputEnabled = 1;
   _DAT_180c960dc = 0;
   _DAT_180c960fc = 0;
   _DAT_180c960c0 = 0;
@@ -6495,7 +6495,7 @@ FUN_18045d980(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_
   _DAT_180c960f0 = 0;
   _DAT_180c960f4 = 0;
   _DAT_180c960f8 = 3;
-  DAT_180c96100 = 1;
+  SystemAnimationActive = 1;
   FUN_1804b9ce0(0x180c95de0);
   DAT_180c96210 = 1;
   _DAT_180c9620c = 3;

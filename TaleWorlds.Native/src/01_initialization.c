@@ -17660,7 +17660,7 @@ void SetRenderSystemPointer(void)
   systemStatus = GetSystemStatus(0);
   SystemAudioContextA = 0x180be1c00;
   if (systemStatus != 0) {
-    _DAT_180c0d100 = 0x180be1c08;
+    SystemAudioContextA = 0x180be1c08;
   }
   return;
 }
