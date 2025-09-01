@@ -283,10 +283,10 @@ void* ResourceLargeBufferPool;
 void InitializeTextureManager(void);
 void* TextureManagerInstance;
 void* TextureManagementExecutionContext;
-void* TextureCacheManagementHandle;
-void* TextureLoaderManagementHandle;
+void* TextureCacheSystemHandle;
+void* TextureLoaderSystemHandle;
 void* TextureMemoryPool;
-void* TextureDescriptorLookupTable;
+void* TextureDescriptorTable;
 
  /**
  * @brief 初始化音频系统
