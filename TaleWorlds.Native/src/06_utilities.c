@@ -83738,6 +83738,12 @@ void FUN_180942fc0(void)
 
 
  void ProcessResourceOperations(void)
+/**
+ * @brief 处理资源操作
+ * 
+ * 该函数负责处理资源相关的操作任务
+ * 包括资源的分配、释放和管理等操作
+ */
 void ProcessResourceOperations(void)
 
 {
@@ -83751,6 +83757,12 @@ void ProcessResourceOperations(void)
 
 
  void ValidateResourceIntegrity(void)
+/**
+ * @brief 验证资源完整性
+ * 
+ * 该函数负责验证系统中的资源完整性
+ * 确保资源数据没有被损坏或篡改
+ */
 void ValidateResourceIntegrity(void)
 
 {
