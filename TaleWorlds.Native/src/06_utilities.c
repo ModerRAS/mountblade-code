@@ -3603,7 +3603,7 @@ undefined8 IncrementObjectReferenceCount(longlong objectContext)
   objectPointer = *(longlong *)(contextHandles[0] + 0x10);
   if (objectPointer != 0) {
     *(int *)(objectPointer + 500) = *(int *)(objectPointer + 500) + 1;
-    if ((*(char *)(objectPointer + 0x204) != '\0') && (operationResult = FUN_1808552c0(), (int)operationResult != 0)) {
+    if ((*(char *)(objectPointer + 0x204) != '\0') && (operationResult = CheckSystemStatus(), (int)operationResult != 0)) {
       return operationResult;
     }
     return 0;
@@ -3917,7 +3917,7 @@ undefined8 ProcessComplexObjectHandle(longlong ObjectContext)
         if (*(longlong *)(resultBuffer[0] + 8) == 0) {
           return 0x1c;
         }
-        operationResult = FUN_1808d73b0(*(longlong *)(resultBuffer[0] + 8), *(undefined4 *)(objectContext + 0x20),
+        operationResult = ProcessResourceOperation(*(longlong *)(resultBuffer[0] + 8), *(undefined4 *)(objectContext + 0x20),
                                       *(undefined1 *)(objectContext + 0x24));
         if ((int)operationResult != 0) {
           return operationResult;
@@ -3956,13 +3956,13 @@ undefined8 ValidateAndProcessObjectStatus(longlong objectContext)
       alStackX_18[0] = alStackX_18[0] + -8;
     }
     alStackX_8[0] = 0;
-    resourceHash = FUN_1808681d0(alStackX_18[0],param_1 + 0x20,alStackX_8);
+    resourceHash = ValidateResourceContext(alStackX_18[0],param_1 + 0x20,alStackX_8);
     if ((int)resourceHash == 0) {
       if (alStackX_8[0] != 0) {
         if (*(longlong *)(alStackX_8[0] + 8) == 0) {
           return 0x1c;
         }
-        resourceHash = FUN_1808d73b0(*(longlong *)(alStackX_8[0] + 8),*(undefined4 *)(param_1 + 0x18),
+        resourceHash = ProcessResourceOperation(*(longlong *)(alStackX_8[0] + 8),*(undefined4 *)(param_1 + 0x18),
                               *(undefined1 *)(param_1 + 0x1c));
         if ((int)resourceHash != 0) {
           return resourceHash;
@@ -4012,7 +4012,7 @@ undefined8 InitializeObjectHandleB(longlong param_1)
     for (puVar5 = *(undefined8 **)(lVar1 + 0x48);
         (*(undefined8 **)(lVar1 + 0x48) <= puVar5 &&
         (puVar5 < *(undefined8 **)(lVar1 + 0x48) + *(int *)(lVar1 + 0x50))); puVar5 = puVar5 + 1) {
-      uVar4 = FUN_1808d73b0(*puVar5,fVar7,0);
+      uVar4 = ProcessResourceOperation(*puVar5,fVar7,0);
       if ((int)uVar4 != 0) {
         return uVar4;
       }
@@ -4035,7 +4035,7 @@ undefined8 InitializeObjectHandleB(longlong param_1)
             ((*(uint *)(*(longlong *)(lVar1 + 0x18) + 0x34) >> 1 & 1) == 0)) &&
            (fVar7 != *(float *)(lVar1 + 0x20))) {
           *(float *)(lVar1 + 0x20) = fVar7;
-          FUN_1808d7020(lVar1);
+          ReleaseResourceHandle(lVar1);
           *(undefined1 *)(lVar1 + 0x35) = 0;
         }
       }
@@ -4086,7 +4086,7 @@ undefined8 InitializeObjectHandleC(longlong param_1)
           if ((lVar1 == 0) || (lVar1 = *(longlong *)(lVar1 + 8), lVar1 == 0)) {
             return 0x1c;
           }
-          uVar3 = FUN_1808d73b0(lVar1,*puVar4,0);
+          uVar3 = ProcessResourceOperation(lVar1,*puVar4,0);
           if ((int)uVar3 != 0) {
             return uVar3;
           }
@@ -4140,7 +4140,7 @@ undefined8 InitializeObjectHandleD(void)
         if ((lVar1 == 0) || (lVar1 = *(longlong *)(lVar1 + 8), lVar1 == 0)) {
           return 0x1c;
         }
-        uVar3 = FUN_1808d73b0(lVar1,*puVar4,0);
+        uVar3 = ProcessResourceOperation(lVar1,*puVar4,0);
         if ((int)uVar3 != 0) {
           return uVar3;
         }
@@ -4222,7 +4222,7 @@ undefined8 InitializeObjectHandleE(longlong param_1)
       do {
         if ((*piVar2 != _DAT_180c4eaa0) || (piVar2[1] != _DAT_180c4eaa4)) {
           lStackX_8 = 0;
-          resourceHash = FUN_1808681d0(uVar6,(int *)(param_1 + 0x20) + (longlong)(int)uVar5 * 2,&lStackX_8)
+          resourceHash = ValidateResourceContext(uVar6,(int *)(param_1 + 0x20) + (longlong)(int)uVar5 * 2,&lStackX_8)
           ;
           if ((int)resourceHash != 0) {
             return resourceHash;
@@ -4230,7 +4230,7 @@ undefined8 InitializeObjectHandleE(longlong param_1)
           if (*(longlong *)(lStackX_8 + 8) == 0) {
             return 0x1c;
           }
-          resourceHash = FUN_1808d73b0(*(longlong *)(lStackX_8 + 8),*puVar3,*(undefined1 *)(param_1 + 0x1c)
+          resourceHash = ProcessResourceOperation(*(longlong *)(lStackX_8 + 8),*puVar3,*(undefined1 *)(param_1 + 0x1c)
                                );
           if ((int)resourceHash != 0) {
             return resourceHash;
@@ -4283,7 +4283,7 @@ undefined8 InitializeObjectHandleF(void)
     do {
       if ((*piVar2 != _DAT_180c4eaa0) || (piVar2[1] != _DAT_180c4eaa4)) {
         lStack0000000000000050 = 0;
-        resourceHash = FUN_1808681d0(uVar6,(int *)(unaff_RBP + 0x20) + (longlong)(int)uVar5 * 2,
+        resourceHash = ValidateResourceContext(uVar6,(int *)(unaff_RBP + 0x20) + (longlong)(int)uVar5 * 2,
                               &stack0x00000050);
         if ((int)resourceHash != 0) {
           return resourceHash;
@@ -4291,7 +4291,7 @@ undefined8 InitializeObjectHandleF(void)
         if (*(longlong *)(lStack0000000000000050 + 8) == 0) {
           return 0x1c;
         }
-        resourceHash = FUN_1808d73b0(*(longlong *)(lStack0000000000000050 + 8),*puVar3,
+        resourceHash = ProcessResourceOperation(*(longlong *)(lStack0000000000000050 + 8),*puVar3,
                               *(undefined1 *)(unaff_RBP + 0x1c));
         if ((int)resourceHash != 0) {
           return resourceHash;
@@ -5501,7 +5501,7 @@ undefined8 ValidateSystemDataIntegrity(longlong dataBuffer, longlong validationC
   if (0 < *(int *)(param_1 + 0x10)) {
     do {
       if (((*piVar2 != _DAT_180c4eaa0) || (piVar2[1] != _DAT_180c4eaa4)) &&
-         (resourceHash = FUN_1808678e0(param_2 + 0x60,(int *)(param_1 + 0x18) + (longlong)iVar4 * 2,*puVar3
+         (resourceHash = CalculateResourceHash(param_2 + 0x60,(int *)(param_1 + 0x18) + (longlong)iVar4 * 2,*puVar3
                                 ,*(undefined1 *)(param_1 + 0x14)), (int)resourceHash != 0)) {
         return resourceHash;
       }
@@ -7179,7 +7179,7 @@ undefined8 ValidateObjectContextAndProcessFloatRange(longlong objectContext, lon
       contextBuffer[0] = contextBuffer[0] + -8;
     }
     stackBuffer = 0;
-    validationStatus = FUN_1808681d0(contextBuffer[0],objectContext + 0x18,&stackBuffer);
+    validationStatus = ValidateResourceContext(contextBuffer[0],objectContext + 0x18,&stackBuffer);
     if ((int)validationStatus == 0) {
       if (stackBuffer == 0) {
         return 0x4a;
@@ -7236,7 +7236,7 @@ undefined8 ValidateObjectContextAndProcessFloatComparison(longlong objectContext
       contextBuffer[0] = contextBuffer[0] + -8;
     }
     stackBuffer = 0;
-    validationStatus = FUN_1808681d0(contextBuffer[0],objectContext + 0x18,&stackBuffer);
+    validationStatus = ValidateResourceContext(contextBuffer[0],objectContext + 0x18,&stackBuffer);
     if ((int)validationStatus == 0) {
       if (stackBuffer == 0) {
         return 0x4a;
@@ -10010,7 +10010,15 @@ LAB_180894ebf:
 // WARNING: Removing unreachable block (ram,0x000180896027)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-uint FUN_180894ef0(longlong *param_1)
+/**
+ * @brief 验证并处理数据容器
+ * 
+ * 该函数负责验证数据容器的完整性，并进行相应的处理操作
+ * 
+ * @param param_1 数据容器指针
+ * @return 处理结果状态码
+ */
+uint ValidateAndProcessDataContainer(longlong *param_1)
 
 {
   int iVar1;
@@ -26662,6 +26670,14 @@ undefined8 FUN_18089ffe0(undefined8 param_1,longlong param_2)
 
 
  void FUN_180901ec0(undefined8 *param_1)
+/**
+ * @brief 使用参数初始化工具系统
+ * 
+ * 该函数通过传入的系统参数来初始化工具系统
+ * 解析参数并调用核心的初始化函数
+ * 
+ * @param systemParameters 系统参数指针，包含初始化所需的配置信息
+ */
 void InitializeUtilitySystemWithParameters(undefined8 *systemParameters)
 
 {
