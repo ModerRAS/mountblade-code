@@ -16,62 +16,110 @@
  */
 uint CompareNetworkConnectionTimestamps(longlong *connection1,longlong *connection2);
 
-undefined UNK_1808633a0;
-undefined UNK_180863400;
-undefined UNK_180984d50;
-undefined DAT_180c4eaac;
-undefined DAT_180c4eaa8;
-undefined UNK_180984dd0;
-undefined UNK_180984e88;
-undefined UNK_180984eb0;
-undefined UNK_180984ef0;
-undefined UNK_1809874b0;
-undefined DAT_180bef7b8;
-undefined UNK_180985010;
-undefined UNK_180985080;
-undefined UNK_180984ff8;
-undefined UNK_180985140;
-undefined UNK_180985170;
-undefined UNK_180985b90;
-undefined UNK_180873e8c;
-undefined UNK_180873e94;
-undefined UNK_1809855f8;
-undefined UNK_180985678;
-undefined UNK_1809856a0;
-undefined UNK_180985708;
-undefined UNK_1809851e8;
-undefined DAT_180c4eaf0;
-undefined UNK_180985738;
-undefined UNK_180985c10;
+undefined g_networkConnectionTable;
+undefined g_networkConnectionStatus;
+undefined g_networkConnectionTimeout;
+undefined g_networkPacketBuffer;
+undefined g_networkPacketHeader;
+undefined g_networkConnectionLimit;
+undefined g_networkConnectionFlags;
+undefined g_networkConnectionType;
+undefined g_networkConnectionProtocol;
+undefined g_networkServerAddress;
+undefined g_networkServerPort;
+undefined g_networkClientAddress;
+undefined g_networkClientPort;
+undefined g_networkSocketHandle;
+undefined g_networkSocketType;
+undefined g_networkSocketProtocol;
+undefined g_networkConnectionPool;
+undefined g_networkSendBuffer;
+undefined g_networkReceiveBuffer;
+undefined g_networkSendBufferSize;
+undefined g_networkReceiveBufferSize;
+undefined g_networkPacketSize;
+undefined g_networkMaxPacketSize;
+undefined g_networkConnectionTimeout;
+undefined g_networkEncryptionKey;
+undefined g_networkCompressionLevel;
+undefined g_networkConnectionStatus;
 
-// 函数: undefined FUN_180873f80;
-undefined FUN_180873f80;
-undefined UNK_180985f58;
+// 函数: void InitializeNetworkConnectionPool(void)
+/**
+ * @brief 初始化网络连接池
+ * 
+ * 该函数负责初始化网络连接池，设置连接池的基本参数
+ * 和数据结构，为后续的网络连接管理做准备
+ */
+void InitializeNetworkConnectionPool(void);
+undefined g_networkConnectionPoolData;
 
-// 函数: undefined FUN_1808793e0;
-undefined FUN_1808793e0;
+// 函数: void CreateNetworkSocket(void)
+/**
+ * @brief 创建网络套接字
+ * 
+ * 该函数负责创建网络通信所需的套接字
+ * 设置套接字参数和选项，为网络数据传输做准备
+ */
+void CreateNetworkSocket(void);
 
-// 函数: undefined FUN_1808777c0;
-undefined FUN_1808777c0;
-undefined UNK_180876e90;
+// 函数: void BindNetworkSocket(void)
+/**
+ * @brief 绑定网络套接字
+ * 
+ * 该函数负责将网络套接字绑定到指定的地址和端口
+ * 设置套接字的本地绑定信息，准备接收网络连接
+ */
+void BindNetworkSocket(void);
+undefined g_networkSocketBindingData;
 
-// 函数: undefined FUN_180877810;
-undefined FUN_180877810;
+// 函数: void ListenNetworkConnections(void)
+/**
+ * @brief 监听网络连接
+ * 
+ * 该函数负责开始监听网络连接请求
+ * 设置监听队列大小和连接参数，准备接受客户端连接
+ */
+void ListenNetworkConnections(void);
 
-// 函数: undefined FUN_180877f00;
-undefined FUN_180877f00;
+// 函数: void AcceptNetworkConnection(void)
+/**
+ * @brief 接受网络连接
+ * 
+ * 该函数负责接受客户端的网络连接请求
+ * 创建新的连接套接字，并初始化连接相关的数据结构
+ */
+void AcceptNetworkConnection(void);
 
-// 函数: undefined FUN_1808780d0;
-undefined FUN_1808780d0;
+// 函数: void CloseNetworkConnection(void)
+/**
+ * @brief 关闭网络连接
+ * 
+ * 该函数负责关闭指定的网络连接
+ * 释放相关资源，清理连接状态和数据
+ */
+void CloseNetworkConnection(void);
 
 // 函数: undefined FUN_1808794d0;
 undefined FUN_1808794d0;
 
-// 函数: undefined FUN_180879510;
-undefined FUN_180879510;
+// 函数: void SendNetworkData(void)
+/**
+ * @brief 发送网络数据
+ * 
+ * 该函数负责通过网络连接发送数据
+ * 处理数据分片、重传和确认机制
+ */
+void SendNetworkData(void);
 
-// 函数: undefined FUN_180876d70;
-undefined FUN_180876d70;
+// 函数: void ReceiveNetworkData(void)
+/**
+ * @brief 接收网络数据
+ * 
+ * 该函数负责从网络连接接收数据
+ * 处理数据重组、验证和错误检测
+ */
+void ReceiveNetworkData(void);
 
 // 函数: undefined FUN_180876d90;
 undefined FUN_180876d90;
@@ -273,7 +321,7 @@ void ResetNetworkConnectionPointer(void)
 // WARNING: Removing unreachable block (ram,0x000180849219)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-uint FUN_180840100(longlong *param_1)
+uint ValidateNetworkConnectionParameters(longlong *connectionParams)
 
 {
   int iVar1;
@@ -38264,43 +38312,43 @@ LAB_180863270:
 
 
 
-uint FUN_1808632b0(longlong *param_1,longlong *param_2)
+uint CompareNetworkConnectionTimestamps(longlong *connection1,longlong *connection2)
 
 {
-  longlong lVar1;
-  longlong lVar2;
-  char cVar3;
-  uint uVar4;
-  uint uVar5;
-  undefined4 uVar6;
-  float fVar7;
+  longlong connection1Data;
+  longlong connection2Data;
+  char connectionStatus;
+  uint comparisonResult1;
+  uint comparisonResult2;
+  undefined4 timestampUpdate;
+  float timeDifference;
   
-  lVar1 = *param_1;
-  lVar2 = *param_2;
-  if ((*(float *)(lVar1 + 0x2f0) <= 0.0 && *(float *)(lVar1 + 0x2f0) != 0.0) ||
-     (*(char *)(lVar1 + 0x5c) != '\0')) {
+  connection1Data = *connection1;
+  connection2Data = *connection2;
+  if ((*(float *)(connection1Data + 0x2f0) <= 0.0 && *(float *)(connection1Data + 0x2f0) != 0.0) ||
+     (*(char *)(connection1Data + 0x5c) != '\0')) {
 LAB_1808632ec:
-    uVar6 = FUN_1808d2430(lVar1 + 0x28,*(undefined8 *)(lVar1 + 0x2c8));
-    *(undefined4 *)(lVar1 + 0x2f0) = uVar6;
+    timestampUpdate = FUN_1808d2430(connection1Data + 0x28,*(undefined8 *)(connection1Data + 0x2c8));
+    *(undefined4 *)(connection1Data + 0x2f0) = timestampUpdate;
   }
   else {
-    cVar3 = func_0x0001808bc370(*(undefined8 *)(lVar1 + 0x2c8));
-    if (cVar3 != '\0') goto LAB_1808632ec;
+    connectionStatus = func_0x0001808bc370(*(undefined8 *)(connection1Data + 0x2c8));
+    if (connectionStatus != '\0') goto LAB_1808632ec;
   }
-  fVar7 = *(float *)(lVar1 + 0x2f0);
-  if ((0.0 < *(float *)(lVar2 + 0x2f0) || *(float *)(lVar2 + 0x2f0) == 0.0) &&
-     (*(char *)(lVar2 + 0x5c) == '\0')) {
-    cVar3 = func_0x0001808bc370(*(undefined8 *)(lVar2 + 0x2c8));
-    if (cVar3 == '\0') goto LAB_180863343;
+  timeDifference = *(float *)(connection1Data + 0x2f0);
+  if ((0.0 < *(float *)(connection2Data + 0x2f0) || *(float *)(connection2Data + 0x2f0) == 0.0) &&
+     (*(char *)(connection2Data + 0x5c) == '\0')) {
+    connectionStatus = func_0x0001808bc370(*(undefined8 *)(connection2Data + 0x2c8));
+    if (connectionStatus == '\0') goto LAB_180863343;
   }
-  uVar6 = FUN_1808d2430(lVar2 + 0x28,*(undefined8 *)(lVar2 + 0x2c8));
-  *(undefined4 *)(lVar2 + 0x2f0) = uVar6;
+  timestampUpdate = FUN_1808d2430(connection2Data + 0x28,*(undefined8 *)(connection2Data + 0x2c8));
+  *(undefined4 *)(connection2Data + 0x2f0) = timestampUpdate;
 LAB_180863343:
-  fVar7 = fVar7 - *(float *)(lVar2 + 0x2f0);
-  uVar5 = (uint)(0.0 < fVar7) - (uint)(fVar7 < 0.0);
-  uVar4 = (int)(uVar5 * -0x80000000) >> 0x1f;
-  return (*(int *)(lVar2 + 0x2e8) - *(int *)(lVar1 + 0x2e8) >> 0x1e & 0xfffffffeU) + 1 & ~uVar4 |
-         uVar4 & uVar5;
+  timeDifference = timeDifference - *(float *)(connection2Data + 0x2f0);
+  comparisonResult2 = (uint)(0.0 < timeDifference) - (uint)(timeDifference < 0.0);
+  comparisonResult1 = (int)(comparisonResult2 * -0x80000000) >> 0x1f;
+  return (*(int *)(connection2Data + 0x2e8) - *(int *)(connection1Data + 0x2e8) >> 0x1e & 0xfffffffeU) + 1 & ~comparisonResult1 |
+         comparisonResult1 & comparisonResult2;
 }
 
 
