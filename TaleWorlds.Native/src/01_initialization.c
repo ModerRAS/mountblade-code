@@ -27336,7 +27336,7 @@ void SystemFloatingPointProcessor(long long SystemResourcePointer,float paramete
       localMemoryAddress = *(long long *)((long long)ThreadLocalStoragePointer + (ulong long)__tls_index * 8);
       if ((*(int *)(localMemoryAddress + 0x48) < SystemDataValue1) &&
          (CheckSystemDataAvailability(&SystemDataValue1), SystemDataValue1 == -1)) {
-        _DAT_180d49144 = ConfigurationDataPointer;
+        SystemDataValue2 = ConfigurationDataPointer;
         InitializeSystemDataPointer(&SystemDataValue1);
       }
       fVar16 = (float)exp2f();
@@ -27344,7 +27344,7 @@ void SystemFloatingPointProcessor(long long SystemResourcePointer,float paramete
       fVar18 = (float)exp2f();
       fVar19 = (float)exp2f();
       fVar20 = (float)exp2f();
-      _DAT_180d49144 = (1.0 - fVar16) * _DAT_180d49144 + fVar16 * ConfigurationDataPointer;
+      SystemDataValue2 = (1.0 - fVar16) * SystemDataValue2 + fVar16 * ConfigurationDataPointer;
       fVar2 = (float)*(int *)(SystemNodeManagerPointer + 0x21b0);
       if (*(float *)(SystemStatusFlagsPointer + 0x1f8) <= (float)*(int *)(SystemNodeManagerPointer + 0x21b0)) {
         fVar2 = *(float *)(SystemStatusFlagsPointer + 0x1f8);
@@ -27357,13 +27357,13 @@ void SystemFloatingPointProcessor(long long SystemResourcePointer,float paramete
       if (fVar2 <= (float)((int)fVar22 + -1)) {
         fVar3 = fVar2;
       }
-      if ((*(int *)(localMemoryAddress + 0x48) < _DAT_180d49148) &&
-         (CheckSystemDataAvailability(&DAT_180d49148), _DAT_180d49148 == -1)) {
-        _DAT_180d4914c = fVar3;
-        InitializeSystemDataPointer(&DAT_180d49148);
+      if ((*(int *)(localMemoryAddress + 0x48) < SystemDataValue3) &&
+         (CheckSystemDataAvailability(&SystemDataValue3), SystemDataValue3 == -1)) {
+        SystemDataValue4 = fVar3;
+        InitializeSystemDataPointer(&SystemDataValue3);
       }
-      _DAT_180d4914c = (1.0 - fVar16) * _DAT_180d4914c + fVar3 * fVar16;
-      fVar18 = ((float)(int)((_DAT_180d49144 / _DAT_180d4914c) / fVar17) * fVar17 - 1.0) * fVar18 *
+      SystemDataValue4 = (1.0 - fVar16) * SystemDataValue4 + fVar3 * fVar16;
+      fVar18 = ((float)(int)((SystemDataValue2 / SystemDataValue4) / fVar17) * fVar17 - 1.0) * fVar18 *
                fVar19 + fVar18;
       if (fVar18 <= fVar15) {
         fVar18 = fVar15;
@@ -27378,7 +27378,7 @@ void SystemFloatingPointProcessor(long long SystemResourcePointer,float paramete
       *(float *)(SystemResourcePointer + 0x238) = fVar15;
       unsignedSystemValue21 = log2f();
       *(uint32_t *)(SystemResourcePointer + 0x248) = unsignedSystemValue21;
-      *(float *)(SystemResourcePointer + 0x250) = _DAT_180d49144;
+      *(float *)(SystemResourcePointer + 0x250) = SystemDataValue2;
       localAllocationFlags = SystemRenderManagerPointer;
       *(uint8_t *)(SystemRenderManagerPointer + 0x162b) = 1;
       localMemoryAddress = SystemNodeManagerPointer;
@@ -59843,11 +59843,11 @@ void* * FUN_180079430(long long SystemResourcePointer,void* ConfigurationDataPoi
     return (void* *)(*(long long *)(SystemResourcePointer + 0x1b8) + 0x10);
   }
   if (*(int *)(*(long long *)((long long)ThreadLocalStoragePointer + (ulong long)__tls_index * 8) +
-              0x48) < _DAT_180d49158) {
-    CheckSystemDataAvailability(&DAT_180d49158);
-    if (_DAT_180d49158 == -1) {
-      _DAT_180d49160 = &SystemResourceTemplatePrimary;
-      _DAT_180d49168 = &DAT_180d49178;
+              0x48) < SystemDataValue5) {
+    CheckSystemDataAvailability(&SystemDataValue5);
+    if (SystemDataValue5 == -1) {
+      SystemDataValue6 = &SystemResourceTemplatePrimary;
+      SystemDataValue7 = &SystemDataValue8;
 
 // 函数: void FUN_180079520(long long SystemResourcePointer)
 void FUN_180079520(long long SystemResourcePointer)
