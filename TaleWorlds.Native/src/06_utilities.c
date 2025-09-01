@@ -28790,7 +28790,16 @@ void ReleaseSpecificSystemResourceAtContext78(uint8_t8 objectContextParam, longl
 
 
 
-void Unwind_180902210(uint8_t8 objectContextParam,longlong validationContextParam)
+/**
+ * @brief 在异常处理时恢复系统数据结构到0x78偏移位置
+ * 
+ * 该函数负责在异常处理过程中将系统数据结构恢复到验证上下文的0x78偏移位置
+ * 确保系统数据结构在异常处理后能正确恢复
+ * 
+ * @param objectContextParam 对象上下文参数
+ * @param validationContextParam 验证上下文参数
+ */
+void RestoreSystemDataStructureToContext78(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
   *(uint8_t **)(validationContextParam + 0x78) = &SystemDataStructure;

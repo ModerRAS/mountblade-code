@@ -1,6 +1,11 @@
 #include "TaleWorlds.Native.Split.h"
 
 // 系统初始化模块
+/**
+ * @brief 游戏系统主入口点
+ * 
+ * 这是整个游戏系统的主要入口点，负责初始化和管理所有核心系统组件
+ */
 void* GameSystemMainEntryPoint;
 void* SystemGlobalDataReference;              // 全局系统数据引用
 void* SystemMainMemoryPool;                    // 主系统内存池
