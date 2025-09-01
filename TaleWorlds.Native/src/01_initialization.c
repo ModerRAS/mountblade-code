@@ -5155,7 +5155,15 @@ void InitializeRenderingSystem(void)
 
 
 // 函数: void FUN_180032ba0(void)
-void FUN_180032ba0(void)
+/**
+ * @brief 初始化系统配置管理器
+ * 
+ * 该函数负责初始化系统的配置管理组件，设置配置操作的基础结构。
+ * 它会遍历系统配置节点树，进行内存比较，分配必要的内存，并设置配置节点属性。
+ * 
+ * @note 这是系统初始化过程中的重要组成部分，确保配置管理系统的正常运行
+ */
+void InitializeSystemConfigurationManager(void)
 
 {
   char systemNodeFlag;
@@ -5207,7 +5215,15 @@ void FUN_180032ba0(void)
 
 
 // 函数: void FUN_180032ca0(void)
-void FUN_180032ca0(void)
+/**
+ * @brief 初始化系统消息处理器
+ * 
+ * 该函数负责初始化系统的消息处理组件，设置消息操作的基础结构。
+ * 它会创建消息处理缓冲区，配置消息回调函数，并建立消息处理标识符。
+ * 
+ * @note 这是系统初始化过程中的重要组成部分，确保消息处理系统的正常运行
+ */
+void InitializeSystemMessageProcessor(void)
 
 {
   undefined8 in_R9;
@@ -5229,7 +5245,16 @@ void FUN_180032ca0(void)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-int FUN_180032d30(void)
+/**
+ * @brief 初始化系统调试管理器
+ * 
+ * 该函数负责初始化系统的调试管理组件，设置调试操作的基础结构。
+ * 它会创建调试管理节点，配置调试回调函数，并建立调试管理标识符。
+ * 
+ * @return 初始化结果状态码
+ * @note 这是系统初始化过程中的重要组成部分，确保调试管理系统的正常运行
+ */
+int InitializeSystemDebugManager(void)
 
 {
   longlong lVar1;
@@ -5239,7 +5264,15 @@ int FUN_180032d30(void)
   _DAT_180bf7e98 = &DAT_180bf7ea8;
 
 // 函数: void FUN_180033780(void)
-void FUN_180033780(void)
+/**
+ * @brief 初始化系统日志管理器
+ * 
+ * 该函数负责初始化系统的日志管理组件，设置日志操作的基础结构。
+ * 它会创建日志处理缓冲区，配置日志回调函数，并建立日志处理标识符。
+ * 
+ * @note 这是系统初始化过程中的重要组成部分，确保日志管理系统的正常运行
+ */
+void InitializeSystemLogManager(void)
 
 {
   undefined8 in_R9;
@@ -5263,7 +5296,15 @@ void FUN_180033780(void)
 
 
 // 函数: void FUN_180033810(void)
-void FUN_180033810(void)
+/**
+ * @brief 初始化系统性能监控器
+ * 
+ * 该函数负责初始化系统的性能监控组件，设置性能监控的基础结构。
+ * 它会创建性能监控缓冲区，配置性能回调函数，并建立性能监控标识符。
+ * 
+ * @note 这是系统初始化过程中的重要组成部分，确保性能监控系统的正常运行
+ */
+void InitializeSystemPerformanceMonitor(void)
 
 {
   undefined8 in_R9;
@@ -5287,7 +5328,15 @@ void FUN_180033810(void)
 
 
 // 函数: void FUN_1800338a0(void)
-void FUN_1800338a0(void)
+/**
+ * @brief 初始化系统安全监控器
+ * 
+ * 该函数负责初始化系统的安全监控组件，设置安全监控的基础结构。
+ * 它会创建安全监控缓冲区，配置安全回调函数，并建立安全监控标识符。
+ * 
+ * @note 这是系统初始化过程中的重要组成部分，确保安全监控系统的正常运行
+ */
+void InitializeSystemSecurityMonitor(void)
 
 {
   undefined8 in_R9;
@@ -5311,7 +5360,15 @@ void FUN_1800338a0(void)
 
 
 // 函数: void FUN_180033930(void)
-void FUN_180033930(void)
+/**
+ * @brief 初始化系统资源管理器
+ * 
+ * 该函数负责初始化系统的资源管理组件，设置资源管理的基础结构。
+ * 它会创建资源管理缓冲区，配置资源回调函数，并建立资源管理标识符。
+ * 
+ * @note 这是系统初始化过程中的重要组成部分，确保资源管理系统的正常运行
+ */
+void InitializeSystemResourceManager(void)
 
 {
   undefined8 in_R9;
@@ -5335,7 +5392,15 @@ void FUN_180033930(void)
 
 
 // 函数: void FUN_1800339c0(void)
-void FUN_1800339c0(void)
+/**
+ * @brief 初始化系统网络管理器
+ * 
+ * 该函数负责初始化系统的网络管理组件，设置网络管理的基础结构。
+ * 它会创建网络管理缓冲区，配置网络回调函数，并建立网络管理标识符。
+ * 
+ * @note 这是系统初始化过程中的重要组成部分，确保网络管理系统的正常运行
+ */
+void InitializeSystemNetworkManager(void)
 
 {
   undefined8 in_R9;
@@ -17002,53 +17067,53 @@ LAB_180044db8:
 void InitializeSystemDebugSymbolManager(undefined8 systemContext,longlong initializationFlag)
 
 {
-  longlong **pplVar1;
-  int iVar2;
-  uint uVar3;
-  undefined4 uVar4;
-  undefined8 uVar5;
-  longlong *plVar6;
-  longlong lVar7;
-  undefined8 *systemNextNode;
-  undefined8 *puVar9;
-  undefined8 *puVar10;
-  undefined1 *puVar11;
-  char *pcVar12;
-  undefined *puVar13;
-  ulonglong uVar14;
-  uint uVar15;
-  char cVar16;
-  longlong *plStackX_10;
-  longlong **pplStackX_18;
-  longlong lStackX_20;
-  undefined *puStack_b8;
-  undefined *puStack_b0;
-  undefined4 uStack_a0;
-  undefined *puStack_98;
-  longlong lStack_90;
-  uint uStack_88;
-  undefined *puStack_78;
-  undefined *puStack_70;
-  undefined4 uStack_60;
-  undefined8 uStack_58;
-  longlong **pplStack_50;
-  longlong *plStack_48;
+  longlong **symbolTablePointer;
+  int initializationResult;
+  uint symbolFlags;
+  undefined4 symbolOptions;
+  undefined8 systemHandle;
+  longlong *libraryHandle;
+  longlong performanceFrequency;
+  undefined8 *symbolNextNode;
+  undefined8 *debugContextPointer;
+  undefined8 *threadContextPointer;
+  undefined1 *memoryAllocationFlag;
+  char *searchPathPointer;
+  undefined *stackPointer;
+  ulonglong systemTimestamp;
+  uint stackFlags;
+  char threadState;
+  longlong *threadLocalData;
+  longlong **threadManagerPointer;
+  longlong performanceCounter;
+  undefined *stackBufferLarge1;
+  undefined *stackBufferLarge2;
+  undefined4 stackParameter1;
+  undefined *stackBufferMedium1;
+  longlong stackParameter2;
+  uint stackParameter3;
+  undefined *stackBufferSmall1;
+  undefined *stackBufferSmall2;
+  undefined4 stackParameter4;
+  undefined8 stackParameter5;
+  longlong **mutexPointer;
+  longlong *threadLocalStorage;
   
-  uStack_58 = 0xfffffffffffffffe;
-  uVar5 = FUN_180043f90();
-  FUN_180629770();
-  plVar6 = (longlong *)FUN_18062b1e0(_DAT_180c8ed18,0x68,8,3);
-  pplVar1 = (longlong **)(plVar6 + 1);
-  plStackX_10 = plVar6;
-  pplStackX_18 = pplVar1;
-  _Mtx_init_in_situ(pplVar1,2);
-  plVar6[0xb] = 0;
-  plVar6[0xc] = 0;
-  *(undefined2 *)plVar6 = 0;
-  _DAT_180c8ed10 = plVar6;
-  if ((char)*plVar6 != '\0') goto LAB_180044faf;
-  pplStack_50 = pplVar1;
-  iVar2 = _Mtx_lock(pplVar1);
+  stackParameter5 = 0xfffffffffffffffe;
+  systemHandle = GetSystemDebugHandle();
+  InitializeSystemCore();
+  libraryHandle = (longlong *)AllocateSystemMemory(_DAT_180c8ed18,0x68,8,3);
+  symbolTablePointer = (longlong **)(libraryHandle + 1);
+  threadLocalData = libraryHandle;
+  threadManagerPointer = symbolTablePointer;
+  InitializeMutex(symbolTablePointer,2);
+  libraryHandle[0xb] = 0;
+  libraryHandle[0xc] = 0;
+  *(undefined2 *)libraryHandle = 0;
+  _DAT_180c8ed10 = libraryHandle;
+  if ((char)*libraryHandle != '\0') goto LAB_180044faf;
+  mutexPointer = symbolTablePointer;
+  initializationResult = LockMutex(symbolTablePointer);
   if (iVar2 != 0) {
     __Throw_C_error_std__YAXH_Z(iVar2);
   }
