@@ -4408,7 +4408,7 @@ uint8_t InitializeObjectHandleF(void)
   uint64_t ContextValidationResult;
   int64_t StackBufferPointer;
   uint64_t LoopCounter;
-  int64_t StackBuffer50;
+  int64_t ResourceValidationStackBuffer;
   
   LoopCounter = 0;
   ContextValidationResult = InputRAX - 8;
@@ -4420,16 +4420,16 @@ uint8_t InitializeObjectHandleF(void)
   if (0 < *(int *)(ExecutionContextPointer + 0x18)) {
     do {
       if ((*pOperationResult != SystemValidationCodeA) || (pOperationResult[1] != SystemValidationCodeB)) {
-        StackBuffer50 = 0;
+        ResourceValidationStackBuffer = 0;
         resourceHash = ValidateResourceContext(ContextValidationResult,(int *)(ExecutionContextPointer + 0x20) + (int64_t)(int)LoopCounter * 2,
                               &ObjectStackBufferResource50);
         if ((int)resourceHash != 0) {
           return resourceHash;
         }
-        if (*(int64_t *)(StackBuffer50 + 8) == 0) {
+        if (*(int64_t *)(ResourceValidationStackBuffer + 8) == 0) {
           return 0x1c;
         }
-        resourceHash = ProcessResourceOperation(*(int64_t *)(StackBuffer50 + 8),*pValidationResult,
+        resourceHash = ProcessResourceOperation(*(int64_t *)(ResourceValidationStackBuffer + 8),*pValidationResult,
                               *(uint8_t *)(ExecutionContextPointer + 0x1c));
         if ((int)resourceHash != 0) {
           return resourceHash;
