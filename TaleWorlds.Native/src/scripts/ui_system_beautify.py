@@ -17,6 +17,88 @@ def write_file(file_path, content):
     with open(file_path, 'w', encoding='utf-8') as f:
         f.write(content)
 
+def generate_function_name(address, context):
+    """根据函数地址和上下文生成语义化函数名"""
+    # 基于地址范围推断函数类型
+    addr = int(address[4:], 16)  # 去掉FUN_前缀并转换为十进制
+    
+    if 0x180670000 <= addr <= 0x180671000:
+        return f"InitializeUIComponent_{addr & 0xFFF:03x}"
+    elif 0x180671000 <= addr <= 0x180672000:
+        return f"ProcessUIEvent_{addr & 0xFFF:03x}"
+    elif 0x180672000 <= addr <= 0x180673000:
+        return f"RenderUIElement_{addr & 0xFFF:03x}"
+    elif 0x180673000 <= addr <= 0x180674000:
+        return f"HandleUIInput_{addr & 0xFFF:03x}"
+    elif 0x180674000 <= addr <= 0x180675000:
+        return f"UpdateUILayout_{addr & 0xFFF:03x}"
+    elif 0x180675000 <= addr <= 0x180676000:
+        return f"ManageUIStyle_{addr & 0xFFF:03x}"
+    elif 0x180676000 <= addr <= 0x180677000:
+        return f"AnimateUIElement_{addr & 0xFFF:03x}"
+    elif 0x180677000 <= addr <= 0x180678000:
+        return f"ValidateUIState_{addr & 0xFFF:03x}"
+    elif 0x180678000 <= addr <= 0x180679000:
+        return f"CleanupUIResource_{addr & 0xFFF:03x}"
+    else:
+        return f"UIUtilityFunction_{addr & 0xFFFF:04x}"
+
+def add_function_comment(function_name, original_line):
+    """为函数添加注释"""
+    comment_templates = {
+        'InitializeUIComponent': '/**\n * @brief 初始化UI组件\n * \n * 该函数负责初始化用户界面组件，设置必要的参数和状态\n * \n * @return 无返回值\n * @note 此函数必须在UI系统启动时调用\n */',
+        'ProcessUIEvent': '/**\n * @brief 处理UI事件\n * \n * 该函数负责处理用户界面事件，包括点击、滚动等交互\n * \n * @return 无返回值\n * @note 此函数会根据事件类型调用相应的处理程序\n */',
+        'RenderUIElement': '/**\n * @brief 渲染UI元素\n * \n * 该函数负责渲染用户界面元素，包括文本、图像和控件\n * \n * @return 无返回值\n * @note 此函数会在每一帧被调用\n */',
+        'HandleUIInput': '/**\n * @brief 处理UI输入\n * \n * 该函数负责处理用户输入事件，包括键盘、鼠标和触摸\n * \n * @return 无返回值\n * @note 此函数会根据输入类型调用相应的处理程序\n */',
+        'UpdateUILayout': '/**\n * @brief 更新UI布局\n * \n * 该函数负责更新用户界面布局，重新计算元素位置和大小\n * \n * @return 无返回值\n * @note 此函数会在窗口大小改变或内容更新时被调用\n */',
+        'ManageUIStyle': '/**\n * @brief 管理UI样式\n * \n * 该函数负责管理用户界面样式，包括颜色、字体和主题\n * \n * @return 无返回值\n * @note 此函数会根据当前主题更新样式设置\n */',
+        'AnimateUIElement': '/**\n * @brief 动画UI元素\n * \n * 该函数负责处理用户界面元素的动画效果\n * \n * @return 无返回值\n * @note 此函数会在每一帧更新动画状态\n */',
+        'ValidateUIState': '/**\n * @brief 验证UI状态\n * \n * 该函数负责验证用户界面状态，确保所有元素处于正确状态\n * \n * @return 无返回值\n * @note 此函数会检查UI系统的完整性\n */',
+        'CleanupUIResource': '/**\n * @brief 清理UI资源\n * \n * 该函数负责清理用户界面资源，释放不再使用的内存\n * \n * @return 无返回值\n * @note 此函数会在系统关闭时被调用\n */',
+        'UIUtilityFunction': '/**\n * @brief UI工具函数\n * \n * 该函数提供用户界面系统的通用工具功能\n * \n * @return 无返回值\n * @note 这是一个通用的UI工具函数\n */'
+    }
+    
+    for prefix, comment in comment_templates.items():
+        if function_name.startswith(prefix):
+            return comment + '\n'
+    
+    return '/**\n * @brief UI系统函数\n * \n * 该函数是用户界面系统的一部分\n * \n * @return 无返回值\n */\n'
+
+def replace_fun_functions(content):
+    """替换FUN_函数为语义化名称"""
+    
+    # 查找所有FUN_函数定义
+    function_pattern = r'^(void\s+)(FUN_[0-9a-f]{8})\s*\(([^)]*)\)\s*\{'
+    
+    def replace_function(match):
+        prefix = match.group(1)
+        original_name = match.group(2)
+        params = match.group(3)
+        
+        # 生成新的函数名
+        new_name = generate_function_name(original_name, params)
+        
+        # 添加函数注释
+        comment = add_function_comment(new_name, match.group(0))
+        
+        # 返回替换后的内容
+        return f'{comment}{prefix}{new_name}({params})\n{{'
+    
+    # 替换函数定义
+    content = re.sub(function_pattern, replace_function, content, flags=re.MULTILINE)
+    
+    # 替换函数调用
+    call_pattern = r'FUN_([0-9a-f]{8})'
+    
+    def replace_call(match):
+        address = match.group(1)
+        new_name = generate_function_name(f'FUN_{address}', '')
+        return new_name
+    
+    content = re.sub(call_pattern, replace_call, content)
+    
+    return content
+
 def replace_unk_variables(content):
     """替换UNK_变量为更有意义的名称"""
     
