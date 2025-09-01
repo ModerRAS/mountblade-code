@@ -25834,7 +25834,7 @@ void SystemCleanupHandler(void)
   *punsignedSystemValue6 = &UNK_1809fe220;
   apuStack_1c8[0] = punsignedSystemValue6;
   FUN_18020e840(punsignedSystemValue6);
-  FUN_18005ea90(localSystemHandle + 0x48,apuStack_1c8);
+  InitializeSystemHandle(localSystemHandle + 0x48,apuStack_1c8);
   *(void* **)(localBufferAddress + 0x18) = punsignedSystemValue6;
   puStack_168 = &SystemMemoryAllocatorReference;
   punsignedSystemValue8 = &SystemStringTemplate;
@@ -25856,17 +25856,17 @@ void SystemCleanupHandler(void)
   *(void* *)(lStack_1d8 + 0x20) = 0;
   *(long long *)(localResourceOffset + 0xa8) = lStack_1d8;
   lStack_1d0 = lStack_1d8;
-  FUN_1802567b0(*(void* *)(_DAT_180c868a8 + 0xa8),&DAT_180a012e0,&UNK_180a00350,FUN_180086670);
-  FUN_1802567b0(*(void* *)(_DAT_180c868a8 + 0xa8),&DAT_180a002e0,&DAT_180a00410,FUN_1800868d0);
-  FUN_1802567b0(*(void* *)(_DAT_180c868a8 + 0xa8),&DAT_180a012f0,&UNK_180a00340,FUN_180086600);
-  FUN_1802567b0(*(void* *)(_DAT_180c868a8 + 0xa8),&DAT_180a00ef8,&UNK_180a00420,FUN_180086960);
-  FUN_1802567b0(*(void* *)(_DAT_180c868a8 + 0xa8),&UNK_180a00e18,&UNK_180a00450,FUN_180086a00);
-  FUN_1802567b0(*(void* *)(_DAT_180c868a8 + 0xa8),&DAT_180a01228,&DAT_180a00360,FUN_180086740);
-  FUN_1802567b0(*(void* *)(_DAT_180c868a8 + 0xa8),&DAT_180a00c90,&UNK_180a00480,FUN_180086aa0);
-  FUN_1802567b0(*(void* *)(_DAT_180c868a8 + 0xa8),&UNK_180a00ab8,&UNK_180a00ac8,FUN_1800900c0);
-  FUN_1802567b0(*(void* *)(_DAT_180c868a8 + 0xa8),&UNK_180a01170,&UNK_180a00368,FUN_180086830);
-  FUN_1802567b0(*(void* *)(_DAT_180c868a8 + 0xa8),&DAT_180a009f0,&UNK_180a00a00,FUN_180090020);
-  FUN_1802567b0(*(void* *)(_DAT_180c868a8 + 0xa8),&DAT_180a00c80,&UNK_180a00490,FUN_180086b40);
+  RegisterSystemCallback(*(void* *)(_DAT_180c868a8 + 0xa8),&DAT_180a012e0,&UNK_180a00350,FUN_180086670);
+  RegisterSystemCallback(*(void* *)(_DAT_180c868a8 + 0xa8),&DAT_180a002e0,&DAT_180a00410,FUN_1800868d0);
+  RegisterSystemCallback(*(void* *)(_DAT_180c868a8 + 0xa8),&DAT_180a012f0,&UNK_180a00340,FUN_180086600);
+  RegisterSystemCallback(*(void* *)(_DAT_180c868a8 + 0xa8),&DAT_180a00ef8,&UNK_180a00420,FUN_180086960);
+  RegisterSystemCallback(*(void* *)(_DAT_180c868a8 + 0xa8),&UNK_180a00e18,&UNK_180a00450,FUN_180086a00);
+  RegisterSystemCallback(*(void* *)(_DAT_180c868a8 + 0xa8),&DAT_180a01228,&DAT_180a00360,FUN_180086740);
+  RegisterSystemCallback(*(void* *)(_DAT_180c868a8 + 0xa8),&DAT_180a00c90,&UNK_180a00480,FUN_180086aa0);
+  RegisterSystemCallback(*(void* *)(_DAT_180c868a8 + 0xa8),&UNK_180a00ab8,&UNK_180a00ac8,FUN_1800900c0);
+  RegisterSystemCallback(*(void* *)(_DAT_180c868a8 + 0xa8),&UNK_180a01170,&UNK_180a00368,FUN_180086830);
+  RegisterSystemCallback(*(void* *)(_DAT_180c868a8 + 0xa8),&DAT_180a009f0,&UNK_180a00a00,FUN_180090020);
+  RegisterSystemCallback(*(void* *)(_DAT_180c868a8 + 0xa8),&DAT_180a00c80,&UNK_180a00490,FUN_180086b40);
   SystemPreviousNode = (uint32_t *)FUN_18008d660(localResourceOffset + 0xe0,&DAT_180a009f0);
   *SystemPreviousNode = 1;
   SystemPreviousNode = (uint32_t *)FUN_18008d660(localResourceOffset + 0xe0,&DAT_180a012f0);
@@ -29361,7 +29361,7 @@ void InitializeSystemMemoryResource(long long *SystemResourcePointer)
   *plocalBufferAddress = (long long)&UNK_1809fe220;
   plStack_68 = plocalBufferAddress;
   FUN_18020e840(plocalBufferAddress);
-  FUN_18005ea90(localResourceOffset + 0x48,&plStack_68);
+  InitializeSystemHandle(localResourceOffset + 0x48,&plStack_68);
   SystemResourcePointer[1] = (long long)plocalBufferAddress;
   puStack_50 = &SystemMemoryAllocatorReference;
   pointerToUnsigned1 = (void* *)SystemResourcePointer[1];
@@ -36974,7 +36974,7 @@ void* * FUN_18005e4d0(long long SystemResourcePointer,void* param_2)
   *pointerToUnsigned1 = &UNK_1809fe220;
   puStackX_8 = pointerToUnsigned1;
   FUN_18020e840(pointerToUnsigned1);
-  FUN_18005ea90(SystemResourcePointer + 0x48,&puStackX_8);
+  InitializeSystemHandle(SystemResourcePointer + 0x48,&puStackX_8);
   return pointerToUnsigned1;
 }
 
@@ -37339,8 +37339,8 @@ void* * FUN_18005e950(void* *SystemResourcePointer)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_18005ea90(ulong long *SystemResourcePointer,void* *param_2)
-void FUN_18005ea90(ulong long *SystemResourcePointer,void* *param_2)
+// 函数: void InitializeSystemHandle(ulong long *SystemResourcePointer,void* *param_2)
+void InitializeSystemHandle(ulong long *SystemResourcePointer,void* *param_2)
 
 {
   long long localMemoryPointer;
@@ -39930,7 +39930,7 @@ void StartInputSystem(void* SystemResourcePointer,long long param_2)
   *pointerToUnsigned3 = &UNK_1809fe220;
   puStack_238 = pointerToUnsigned3;
   FUN_18020e840(pointerToUnsigned3);
-  FUN_18005ea90(localMemoryPointer + 0x48,&puStack_238);
+  InitializeSystemHandle(localMemoryPointer + 0x48,&puStack_238);
   *(void* **)(localSystemHandle + 400) = pointerToUnsigned3;
   puStack_1a8 = &SystemMemoryAllocatorReference;
   FUN_180627e10(SystemStatusFlagsPointer + 0x170,auStack_230,&DAT_1809fc8c8);
@@ -54492,7 +54492,7 @@ int FUN_180076c50(long long SystemResourcePointer,long long *param_2)
         systemValue = systemValue + 1;
         if (*param_2 != 0) {
           uStackX_8 = SystemResourcePointer;
-          FUN_18005ea90(*param_2,&uStackX_8);
+          InitializeSystemHandle(*param_2,&uStackX_8);
         }
       }
     }
