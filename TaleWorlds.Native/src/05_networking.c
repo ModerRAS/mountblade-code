@@ -474,6 +474,14 @@ void InitializeNetworkConnectionState(void)
  * 
  * 注意：这是一个反编译的函数实现
  */
+/**
+ * @brief 重置网络连接指针
+ * 
+ * 该函数负责重置网络连接的指针状态，确保连接状态的一致性。
+ * 主要用于网络连接失败或需要重新初始化时的清理工作。
+ * 
+ * @return void
+ */
 void ResetNetworkConnectionPointer(void)
 
 {
@@ -495,6 +503,18 @@ void ResetNetworkConnectionPointer(void)
 // WARNING: Removing unreachable block (ram,0x000180849219)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
+/**
+ * @brief 验证网络连接参数
+ * 
+ * 该函数负责验证网络连接的参数是否有效，包括：
+ * - 连接参数的完整性检查
+ * - 连接数量的验证
+ * - 安全性验证
+ * - 参数范围检查
+ * 
+ * @param connectionParams 网络连接参数数组指针
+ * @return 验证结果，0表示成功，非0表示错误代码
+ */
 uint ValidateNetworkConnectionParameters(longlong *connectionParams)
 
 {
@@ -557,6 +577,17 @@ uint ValidateNetworkConnectionParameters(longlong *connectionParams)
  * 
  * 注意：这是一个反编译的函数实现
  */
+/**
+ * @brief 处理网络数据包
+ * 
+ * 该函数负责处理网络通信中的数据包，包括：
+ * - 数据包验证和解析
+ * - 网络状态检查
+ * - 数据包路由和处理
+ * 
+ * @param packetHandle 数据包句柄
+ * @return void
+ */
 void ProcessNetworkPacket(uint64_t packetHandle)
 
 {
@@ -596,6 +627,18 @@ void ProcessNetworkPacket(uint64_t packetHandle)
  * @return 清理结果，0表示成功，非0表示错误代码
  * 
  * 注意：这是一个反编译的函数实现
+ */
+/**
+ * @brief 清理网络连接资源
+ * 
+ * 该函数负责清理网络连接相关的资源，包括：
+ * - 释放分配的内存
+ * - 重置连接状态
+ * - 清理临时数据
+ * - 关闭相关句柄
+ * 
+ * @param connectionContext 网络连接上下文指针
+ * @return 清理结果，0表示成功，非0表示错误代码
  */
 uint64_t CleanupNetworkConnectionResources(longlong *connectionContext)
 
@@ -4159,7 +4202,20 @@ int ProcessNetworkHandshakeProtocol(longlong connectionContext,longlong packetDa
 
 
 
-int FUN_180843fa0(longlong connectionContext,longlong packetData,int dataSize)
+/**
+ * @brief 处理类型G的网络数据包
+ * 
+ * 该函数负责处理特定类型G的网络数据包，包括：
+ * - 数据包格式验证
+ * - 数据解析和处理
+ * - 网络状态更新
+ * 
+ * @param connectionContext 网络连接上下文
+ * @param packetData 数据包数据指针
+ * @param dataSize 数据包大小
+ * @return 处理结果状态码，0表示成功
+ */
+int ProcessNetworkPacketTypeG(longlong connectionContext,longlong packetData,int dataSize)
 
 {
   NetworkStatus uVar1;
@@ -4188,7 +4244,20 @@ int FUN_180843fa0(longlong connectionContext,longlong packetData,int dataSize)
 
 
 
-int FUN_180844050(longlong connectionContext,longlong packetData,int dataSize)
+/**
+ * @brief 处理类型H的网络数据包
+ * 
+ * 该函数负责处理特定类型H的网络数据包，包括：
+ * - 数据包格式验证
+ * - 数据解析和处理
+ * - 网络状态更新
+ * 
+ * @param connectionContext 网络连接上下文
+ * @param packetData 数据包数据指针
+ * @param dataSize 数据包大小
+ * @return 处理结果状态码，0表示成功
+ */
+int ProcessNetworkPacketTypeH(longlong connectionContext,longlong packetData,int dataSize)
 
 {
   NetworkStatus uVar1;
@@ -4217,7 +4286,7 @@ int FUN_180844050(longlong connectionContext,longlong packetData,int dataSize)
 
 
 
-int FUN_180844100(longlong connectionContext,longlong packetData,int dataSize)
+int ProcessNetworkPacketTypeI(longlong connectionContext,longlong packetData,int dataSize)
 
 {
   NetworkStatus uVar1;
@@ -4246,7 +4315,7 @@ int FUN_180844100(longlong connectionContext,longlong packetData,int dataSize)
 
 
 
-int FUN_1808441b0(longlong connectionContext,longlong packetData,int dataSize)
+int ProcessNetworkPacketTypeJ(longlong connectionContext,longlong packetData,int dataSize)
 
 {
   NetworkStatus uVar1;
@@ -4275,7 +4344,7 @@ int FUN_1808441b0(longlong connectionContext,longlong packetData,int dataSize)
 
 
 
-int FUN_180844260(longlong connectionContext,longlong packetData,int dataSize)
+int ProcessNetworkPacketTypeK(longlong connectionContext,longlong packetData,int dataSize)
 
 {
   NetworkStatus uVar1;
@@ -4432,7 +4501,7 @@ int ProcessNetworkPacketComplete(longlong connectionContext,longlong packetData,
 
 
 
-int FUN_180844570(longlong connectionContext,longlong packetData,int dataSize)
+int ProcessNetworkPacketTypeL(longlong connectionContext,longlong packetData,int dataSize)
 
 {
   NetworkStatus uVar1;
@@ -4459,7 +4528,7 @@ int FUN_180844570(longlong connectionContext,longlong packetData,int dataSize)
 
 
 
-int FUN_180844650(longlong connectionContext,longlong packetData,int dataSize)
+int ProcessNetworkPacketTypeM(longlong connectionContext,longlong packetData,int dataSize)
 
 {
   NetworkStatus uVar1;
@@ -4500,7 +4569,7 @@ int FUN_180844650(longlong connectionContext,longlong packetData,int dataSize)
 
 
 
-int FUN_1808447d0(longlong connectionContext,longlong packetData,int dataSize)
+int ProcessNetworkPacketTypeN(longlong connectionContext,longlong packetData,int dataSize)
 
 {
   NetworkByte uVar1;
@@ -4555,7 +4624,7 @@ int FUN_1808447d0(longlong connectionContext,longlong packetData,int dataSize)
 
 
 
-int FUN_180844910(longlong connectionContext,longlong packetData,int dataSize)
+int ProcessNetworkPacketTypeO(longlong connectionContext,longlong packetData,int dataSize)
 
 {
   NetworkStatus uVar1;
@@ -4578,7 +4647,7 @@ int FUN_180844910(longlong connectionContext,longlong packetData,int dataSize)
 
 
 
-int FUN_1808449c0(longlong connectionContext,longlong packetData,int dataSize)
+int ProcessNetworkPacketTypeP(longlong connectionContext,longlong packetData,int dataSize)
 
 {
   NetworkStatus uVar1;

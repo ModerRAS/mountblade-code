@@ -5088,8 +5088,7 @@ void InitializeSystemResources(void)
 
 
 
- void FUN_180891185(void)
-/**
+ /**
  * @brief 执行紧急系统退出
  * 
  * 该函数直接调用系统退出函数，不会返回
@@ -6123,36 +6122,44 @@ LAB_180891fc0:
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void FUN_180891e7d(undefined8 param_1,undefined8 param_2)
-void FUN_180891e7d(undefined8 param_1,undefined8 param_2)
+ /**
+ * @brief 处理系统缓冲区扩展
+ * 
+ * 该函数处理系统缓冲区的扩展操作，根据需要重新分配内存
+ * 采用1.5倍的增长策略，最小容量为8个元素
+ * 
+ * @param systemContext 系统上下文指针
+ * @param bufferContext 缓冲区上下文指针
+ */
+void ProcessSystemBufferExpansion(undefined8 systemContext, undefined8 bufferContext)
 
 {
-  int iVar1;
-  int iVar2;
-  longlong lVar3;
-  longlong lVar4;
-  uint uVar5;
-  longlong unaff_RBP;
-  longlong unaff_R14;
-  longlong in_stack_00000060;
-  longlong in_stack_00000070;
+  int validationStatus;
+  int bufferSize;
+  longlong newBufferPointer;
+  longlong bufferOffset;
+  uint capacityCheck;
+  longlong systemBasePointer;
+  longlong systemRegister;
+  longlong stackData1;
+  longlong stackData2;
   
-  iVar1 = FUN_180868490(param_1,param_2,*(undefined8 *)(in_stack_00000070 + 8));
-  if (iVar1 != 0) {
+  validationStatus = FUN_180868490(systemContext, bufferContext, *(undefined8 *)(stackData2 + 8));
+  if (validationStatus != 0) {
     return;
   }
-  lVar3 = 0;
-  lVar4 = in_stack_00000060 + 8;
-  if (in_stack_00000060 == 0) {
-    lVar4 = lVar3;
+  newBufferPointer = 0;
+  bufferOffset = stackData1 + 8;
+  if (stackData1 == 0) {
+    bufferOffset = newBufferPointer;
   }
-  iVar1 = ValidateBufferContext(lVar4,unaff_RBP + 0x18);
-  if (iVar1 != 0) {
+  validationStatus = ValidateBufferContext(bufferOffset, systemBasePointer + 0x18);
+  if (validationStatus != 0) {
     return;
   }
-  uVar5 = (int)*(uint *)(in_stack_00000070 + 0x2c) >> 0x1f;
-  iVar2 = (*(uint *)(in_stack_00000070 + 0x2c) ^ uVar5) - uVar5;
-  iVar1 = *(int *)(in_stack_00000070 + 0x28) + 1;
+  capacityCheck = (int)*(uint *)(stackData2 + 0x2c) >> 0x1f;
+  bufferSize = (*(uint *)(stackData2 + 0x2c) ^ capacityCheck) - capacityCheck;
+  validationStatus = *(int *)(stackData2 + 0x28) + 1;
   if (iVar2 < iVar1) {
     iVar2 = (int)((float)iVar2 * 1.5);
     if (iVar1 <= iVar2) {
