@@ -5260,7 +5260,7 @@ void ExecuteEmergencySystemExit(void)
  * 该函数不执行任何操作，直接返回
  * 用作占位符或空操作
  */
-void NoOperationFunction(void)
+void PerformNoOperation(void)
 
 {
   return;
@@ -28635,7 +28635,13 @@ void ProcessResourceValidation(uint8_t8 objectContextParam,longlong validationCo
 
 
 
-void Unwind_180902140(uint8_t8 objectContextParam,longlong validationContextParam)
+/**
+ * 在异常处理时恢复系统数据结构指针到验证上下文的0xf0偏移位置
+ * 用于系统异常处理过程中的状态恢复
+ * @param objectContextParam 对象上下文参数
+ * @param validationContextParam 验证上下文参数
+ */
+void RestoreSystemDataStructureToContextF0(uint8_t8 objectContextParam, longlong validationContextParam)
 
 {
   *(uint8_t **)(validationContextParam + 0xf0) = &SystemDataStructure;
@@ -28644,7 +28650,13 @@ void Unwind_180902140(uint8_t8 objectContextParam,longlong validationContextPara
 
 
 
-void Unwind_180902150(uint8_t8 objectContextParam,longlong validationContextParam)
+/**
+ * 在异常处理时恢复系统数据结构指针到验证上下文的0x30偏移位置
+ * 用于系统异常处理过程中的状态恢复
+ * @param objectContextParam 对象上下文参数
+ * @param validationContextParam 验证上下文参数
+ */
+void RestoreSystemDataStructureToContext30(uint8_t8 objectContextParam, longlong validationContextParam)
 
 {
   *(uint8_t **)(validationContextParam + 0x30) = &SystemDataStructure;
@@ -28653,7 +28665,13 @@ void Unwind_180902150(uint8_t8 objectContextParam,longlong validationContextPara
 
 
 
-void Unwind_180902160(uint8_t8 objectContextParam,longlong validationContextParam)
+/**
+ * 在异常处理时恢复系统数据结构指针到验证上下文的0xf0偏移位置
+ * 用于系统异常处理过程中的状态恢复
+ * @param objectContextParam 对象上下文参数
+ * @param validationContextParam 验证上下文参数
+ */
+void RestoreSystemDataStructureToContextF0Duplicate(uint8_t8 objectContextParam, longlong validationContextParam)
 
 {
   *(uint8_t **)(validationContextParam + 0xf0) = &SystemDataStructure;
@@ -28662,7 +28680,13 @@ void Unwind_180902160(uint8_t8 objectContextParam,longlong validationContextPara
 
 
 
-void Unwind_180902170(uint8_t8 objectContextParam,longlong validationContextParam)
+/**
+ * 在异常处理时恢复资源描述符模板并重置相关状态
+ * 设置验证上下文的资源描述符模板，并检查并重置相关状态
+ * @param objectContextParam 对象上下文参数
+ * @param validationContextParam 验证上下文参数
+ */
+void RestoreResourceDescriptorTemplateAndResetState(uint8_t8 objectContextParam, longlong validationContextParam)
 
 {
   *(uint8_t8 *)(validationContextParam + 0x138) = &ResourceDescriptorTemplate;
@@ -86893,7 +86917,7 @@ void InitializeSystemDataStructureCN(void)
  * 该函数是一个空操作函数，不执行任何操作
  * 仅用于保持代码结构完整性或作为占位符
  */
-void NoOperationFunction(void)
+void PerformNoOperation(void)
 
 {
   return;
