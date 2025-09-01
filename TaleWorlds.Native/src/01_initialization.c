@@ -17992,7 +17992,7 @@ int InitializeVirtualFunctionTableArray(void)
   vtablePointer = (void* *)0x180c35590;
   VirtualFunctionCounter = 0x10;
   do {
-    func_0x000180767970(vtablePointer);
+    SystemVirtualTableInitialize(vtablePointer);
     *vtablePointer = &SystemVirtualTableTemplateA;
     vtablePointer = vtablePointer + 0x2b;
     VirtualFunctionCounter = VirtualFunctionCounter + -1;
@@ -19742,7 +19742,7 @@ void ReleaseMemoryBlockReference(ulong long *SystemResourcePointer)
       }
     }
     else {
-      func_0x00018064e870(unsignedSystemValue4,CONCAT71(0xff000000,*(void ***)(unsignedSystemValue4 + 0x70) == &ExceptionList),
+      SystemExceptionCheck(unsignedSystemValue4,CONCAT71(0xff000000,*(void ***)(unsignedSystemValue4 + 0x70) == &ExceptionList),
                           pointerToUnsigned2,unsignedSystemValue4,0xfffffffffffffffe);
     }
   }
@@ -20748,7 +20748,7 @@ void InitializeSystemConfigurationData(void* SystemResourcePointer,void* param_2
         pcStack_a0 = (char *)0x0;
         stackParameterC = stackParameterC & 0xffffffff00000000;
         puStack_a8 = &SystemMemoryAllocatorReference;
-        localMemoryPointer1 = func_0x00018066bd70(localMemoryPointer1);
+        localMemoryPointer1 = SystemMemoryNodeGetNext(localMemoryPointer1);
         unsignedSystemValue4 = unsignedSystemValue16;
       }
       FinalizeSystemConfiguration(punsignedSystemValue5,&SystemConfigurationTerminator);
@@ -20903,7 +20903,7 @@ void ProcessSystemExceptionList(ulong long *SystemResourcePointer)
       }
     }
     else {
-      func_0x00018064e870(unsignedSystemValue4,CONCAT71(0xff000000,*(void ***)(unsignedSystemValue4 + 0x70) == &ExceptionList),
+      SystemExceptionCheck(unsignedSystemValue4,CONCAT71(0xff000000,*(void ***)(unsignedSystemValue4 + 0x70) == &ExceptionList),
                           pointerToUnsigned2,unsignedSystemValue4,0xfffffffffffffffe);
     }
   }
@@ -21111,7 +21111,7 @@ LAB_180048dba:
     }
   }
   else {
-    MemoryListNode = (long long *)func_0x00018066bd70(TargetNodePointer);
+    MemoryListNode = (long long *)SystemMemoryNodeGetNext(TargetNodePointer);
     if (*(int *)(SearchParameters + 0x10) != 0) {
       if ((int)TargetNodePointer[6] != 0) {
         StringPointer = *(byte **)(SearchParameters + 8);
@@ -21175,7 +21175,7 @@ LAB_180048e00:
   plocalBufferAddress = plocalResourceOffset;
   if (bVar2) {
     if (plocalResourceOffset != (long long *)SystemResourcePointer[1]) {
-      plocalBufferAddress = (long long *)func_0x00018066b9a0(plocalResourceOffset);
+      plocalBufferAddress = (long long *)SystemResourceOffsetGet(plocalResourceOffset);
       goto LAB_180048e20;
     }
   }
@@ -23494,7 +23494,7 @@ void InitializeGameSettings(long long SystemResourcePointer,void* param_2,void* 
   uStack_28 = SystemEncryptionKeyTemplate ^ (ulong long)auStack_78;
   uStackX_18 = param_3;
   uStackX_20 = param_4;
-  pointerToUnsigned3 = (ulong long *)func_0x00018004b9a0();
+  pointerToUnsigned3 = (ulong long *)SystemGlobalDataAllocate();
   uStack_58 = 0;
   puStack_50 = &uStackX_18;
   __stdio_common_vsprintf(*pointerToUnsigned3 | 1,acStack_48,0x20,param_2);
@@ -23565,7 +23565,7 @@ int SystemStringFormatProcess(void* SystemResourcePointer,void* param_2,void* pa
   int systemStatus;
   ulong long *pointerToUnsigned2;
   
-  pointerToUnsigned2 = (ulong long *)func_0x00018004b9a0();
+  pointerToUnsigned2 = (ulong long *)SystemGlobalDataAllocate();
   systemStatus = __stdio_common_vsprintf(*pointerToUnsigned2 | 1,SystemResourcePointer,param_2,param_3,0,param_4);
   if (systemStatus < 0) {
     systemStatus = -1;
@@ -24102,7 +24102,7 @@ void CleanupSystemResources(long long ResourceHandle)
         }
       }
       else {
-        func_0x00018064e870(ResourceCount,CONCAT71(0xff000000,*(void ***)(ResourceCount + 0x70) == &ExceptionList),
+        SystemExceptionCheck(ResourceCount,CONCAT71(0xff000000,*(void ***)(ResourceCount + 0x70) == &ExceptionList),
                             ResourceArray,ResourceCount,0xfffffffffffffffe);
       }
     }
@@ -24263,7 +24263,7 @@ void SystemMemoryInitialize(long long SystemResourcePointer)
         }
       }
       else {
-        func_0x00018064e870(unsignedSystemValue6,CONCAT71(0xff000000,*(void ***)(unsignedSystemValue6 + 0x70) == &ExceptionList),
+        SystemExceptionCheck(unsignedSystemValue6,CONCAT71(0xff000000,*(void ***)(unsignedSystemValue6 + 0x70) == &ExceptionList),
                             pointerToUnsigned3,unsignedSystemValue6,0xfffffffffffffffe);
       }
     }
@@ -24338,7 +24338,7 @@ void ManageSystemResourceReferenceCount(ulong long *SystemResourcePointer)
       }
     }
     else {
-      func_0x00018064e870(unsignedSystemValue4,CONCAT71(0xff000000,*(void ***)(unsignedSystemValue4 + 0x70) == &ExceptionList),
+      SystemExceptionCheck(unsignedSystemValue4,CONCAT71(0xff000000,*(void ***)(unsignedSystemValue4 + 0x70) == &ExceptionList),
                           pointerToUnsigned2,unsignedSystemValue4,0xfffffffffffffffe);
     }
   }
@@ -25833,7 +25833,7 @@ void SystemMemoryManager(long long SystemResourcePointer)
         }
       }
       else {
-        func_0x00018064e870(unsignedSystemValue6,CONCAT71(0xff000000,*(void ***)(unsignedSystemValue6 + 0x70) == &ExceptionList),
+        SystemExceptionCheck(unsignedSystemValue6,CONCAT71(0xff000000,*(void ***)(unsignedSystemValue6 + 0x70) == &ExceptionList),
                             pointerToUnsigned3,unsignedSystemValue6,0xfffffffffffffffe);
       }
     }
@@ -25896,7 +25896,7 @@ void SystemMemoryCleanup(long long SystemResourcePointer)
         }
       }
       else {
-        func_0x00018064e870(unsignedSystemValue6,CONCAT71(0xff000000,*(void ***)(unsignedSystemValue6 + 0x70) == &ExceptionList),
+        SystemExceptionCheck(unsignedSystemValue6,CONCAT71(0xff000000,*(void ***)(unsignedSystemValue6 + 0x70) == &ExceptionList),
                             pointerToUnsigned3,unsignedSystemValue6,0xfffffffffffffffe);
       }
     }
@@ -26435,7 +26435,7 @@ void InitializeSystemResourceManager(long long systemResourcePointer)
       }
     }
     else {
-      func_0x00018064e870(unsignedSystemValue4,CONCAT71(0xff000000,*(void ***)(unsignedSystemValue4 + 0x70) == &ExceptionList),
+      SystemExceptionCheck(unsignedSystemValue4,CONCAT71(0xff000000,*(void ***)(unsignedSystemValue4 + 0x70) == &ExceptionList),
                           pointerToUnsigned2,unsignedSystemValue4,0xfffffffffffffffe);
     }
   }
@@ -28909,11 +28909,11 @@ void InitializeSystemDataManager(void)
     FUN_18010f010(&UNK_1809fda30,*(uint32_t *)(systemConfigPointer + 0x14));
     FUN_18010f010(&UNK_1809fda58,*(uint32_t *)(systemConfigPointer + 0x18));
     for (dataFieldPointer = *(char **)(systemConfigPointer + 0x28); dataFieldPointer != systemConfigPointer + 0x20;
-        dataFieldPointer = (char *)func_0x00018066bd70(dataFieldPointer)) {
+        dataFieldPointer = (char *)SystemMemoryNodeGetNext(dataFieldPointer)) {
       FUN_18010f010(&UNK_1809fda80,*(uint32_t *)(dataFieldPointer + 0x20),*(uint32_t *)(dataFieldPointer + 0x24));
     }
     for (dataFieldPointer = *(char **)(systemConfigPointer + 0x58); dataFieldPointer != systemConfigPointer + 0x50;
-        dataFieldPointer = (char *)func_0x00018066bd70(dataFieldPointer)) {
+        dataFieldPointer = (char *)SystemMemoryNodeGetNext(dataFieldPointer)) {
       FUN_18010f010(&UNK_1809fdaa8,*(uint32_t *)(dataFieldPointer + 0x20),*(uint32_t *)(dataFieldPointer + 0x24));
     }
     FUN_18010f010(&UNK_1809fdad0,*(uint32_t *)(systemConfigPointer + 0x80));
@@ -30368,7 +30368,7 @@ void ReleaseSystemMemoryHandles(long long SystemResourcePointer)
         }
       }
       else {
-        func_0x00018064e870(unsignedSystemValue6,CONCAT71(0xff000000,*(void ***)(unsignedSystemValue6 + 0x70) == &ExceptionList),
+        SystemExceptionCheck(unsignedSystemValue6,CONCAT71(0xff000000,*(void ***)(unsignedSystemValue6 + 0x70) == &ExceptionList),
                             pointerToUnsigned3,unsignedSystemValue6,0xfffffffffffffffe);
       }
     }
@@ -30431,7 +30431,7 @@ void CleanupSystemResourceArray(long long SystemResourcePointer)
         }
       }
       else {
-        func_0x00018064e870(unsignedSystemValue6,CONCAT71(0xff000000,*(void ***)(unsignedSystemValue6 + 0x70) == &ExceptionList),
+        SystemExceptionCheck(unsignedSystemValue6,CONCAT71(0xff000000,*(void ***)(unsignedSystemValue6 + 0x70) == &ExceptionList),
                             pointerToUnsigned3,unsignedSystemValue6,0xfffffffffffffffe);
       }
     }
@@ -30490,7 +30490,7 @@ void SystemCleanupFunction(void)
         }
       }
       else {
-        func_0x00018064e870(unsignedSystemValue4,CONCAT71(0xff000000,*(void ***)(unsignedSystemValue4 + 0x70) == &ExceptionList),
+        SystemExceptionCheck(unsignedSystemValue4,CONCAT71(0xff000000,*(void ***)(unsignedSystemValue4 + 0x70) == &ExceptionList),
                             pointerToUnsigned2,unsignedSystemValue4,0xfffffffffffffffe);
       }
     }
@@ -30537,7 +30537,7 @@ void InitializeSystemResourceManager(void)
         }
       }
       else {
-        func_0x00018064e870(unsignedSystemValue4,CONCAT71(0xff000000,*(void ***)(unsignedSystemValue4 + 0x70) == &ExceptionList),
+        SystemExceptionCheck(unsignedSystemValue4,CONCAT71(0xff000000,*(void ***)(unsignedSystemValue4 + 0x70) == &ExceptionList),
                             pointerToUnsigned2,unsignedSystemValue4,0xfffffffffffffffe);
       }
     }
@@ -30584,7 +30584,7 @@ void InitializeSystemResourceAllocator(void)
       }
     }
     else {
-      func_0x00018064e870(unsignedSystemValue4,CONCAT71(0xff000000,*(void ***)(unsignedSystemValue4 + 0x70) == &ExceptionList),
+      SystemExceptionCheck(unsignedSystemValue4,CONCAT71(0xff000000,*(void ***)(unsignedSystemValue4 + 0x70) == &ExceptionList),
                           pointerToUnsigned2,unsignedSystemValue4,0xfffffffffffffffe);
     }
   }
@@ -30783,7 +30783,7 @@ void CleanupSystemBuffer(long long SystemResourcePointer)
         }
       }
       else {
-        func_0x00018064e870(unsignedSystemValue6,CONCAT71(0xff000000,*(void ***)(unsignedSystemValue6 + 0x70) == &ExceptionList),
+        SystemExceptionCheck(unsignedSystemValue6,CONCAT71(0xff000000,*(void ***)(unsignedSystemValue6 + 0x70) == &ExceptionList),
                             pointerToUnsigned3,unsignedSystemValue6,0xfffffffffffffffe);
       }
     }
@@ -30847,7 +30847,7 @@ void DeepCleanupSystemResources(long long SystemResourcePointer)
         }
       }
       else {
-        func_0x00018064e870(unsignedSystemValue6,CONCAT71(0xff000000,*(void ***)(unsignedSystemValue6 + 0x70) == &ExceptionList),
+        SystemExceptionCheck(unsignedSystemValue6,CONCAT71(0xff000000,*(void ***)(unsignedSystemValue6 + 0x70) == &ExceptionList),
                             pointerToUnsigned3,unsignedSystemValue6,0xfffffffffffffffe);
       }
     }
@@ -31004,7 +31004,7 @@ void SystemExceptionHandler(void)
       }
     }
     else {
-      func_0x00018064e870(unsignedSystemValue4,CONCAT71(0xff000000,*(void ***)(unsignedSystemValue4 + 0x70) == &ExceptionList),
+      SystemExceptionCheck(unsignedSystemValue4,CONCAT71(0xff000000,*(void ***)(unsignedSystemValue4 + 0x70) == &ExceptionList),
                           pointerToUnsigned2,unsignedSystemValue4,0xfffffffffffffffe);
     }
   }
@@ -31098,7 +31098,7 @@ void DestroyRenderingSystem(void)
       }
     }
     else {
-      func_0x00018064e870(unsignedSystemValue4,CONCAT71(0xff000000,*(void ***)(unsignedSystemValue4 + 0x70) == &ExceptionList),
+      SystemExceptionCheck(unsignedSystemValue4,CONCAT71(0xff000000,*(void ***)(unsignedSystemValue4 + 0x70) == &ExceptionList),
                           pointerToUnsigned2,unsignedSystemValue4,0xfffffffffffffffe);
     }
   }
@@ -31581,7 +31581,7 @@ void FUN_180058160(ulong long *SystemResourcePointer)
       }
     }
     else {
-      func_0x00018064e870(unsignedSystemValue7,CONCAT71(0xff000000,*(void ***)(unsignedSystemValue7 + 0x70) == &ExceptionList),
+      SystemExceptionCheck(unsignedSystemValue7,CONCAT71(0xff000000,*(void ***)(unsignedSystemValue7 + 0x70) == &ExceptionList),
                           punsignedSystemValue4,unsignedSystemValue7,0xfffffffffffffffe);
     }
   }
@@ -32776,7 +32776,7 @@ void FUN_180059000(long long *SystemResourcePointer)
              (localMemoryPointer2 = localAllocationFlags, *(int *)(pppppppointerToUnsigned14 + 6) != 0)) {
             if ((pppppppointerToUnsigned14 != (void* *******)ppppppuStack_360) &&
                (pppppppointerToUnsigned14 != &ppppppuStack_360)) {
-              func_0x00018066bd70(pppppppointerToUnsigned14);
+              SystemMemoryNodeGetNext(pppppppointerToUnsigned14);
             }
             bVar26 = true;
             pppppppointerToUnsigned14 = &ppppppuStack_360;
@@ -32820,7 +32820,7 @@ void FUN_180059000(long long *SystemResourcePointer)
                     // WARNING: Subroutine does not return
                 FUN_18066bdc0(localAllocationFlags,pppppppointerToUnsigned14,&ppppppuStack_360,unsignedSystemValue7);
               }
-              pppppppointerToUnsigned14 = (void* *******)func_0x00018066b9a0(pppppppointerToUnsigned14);
+              pppppppointerToUnsigned14 = (void* *******)SystemResourceOffsetGet(pppppppointerToUnsigned14);
               localMemoryPointer2 = lStack_2c8;
               systemCode = iStack_374;
             }
@@ -33020,7 +33020,7 @@ void FUN_180059000(long long *SystemResourcePointer)
           puStack_330 = &SystemMemoryAllocatorReference;
         }
       }
-      pppppppointerToUnsigned14 = (void* *******)func_0x00018066bd70(pppppppointerToUnsigned14);
+      pppppppointerToUnsigned14 = (void* *******)SystemMemoryNodeGetNext(pppppppointerToUnsigned14);
     } while (pppppppointerToUnsigned14 != &ppppppuStack_360);
   }
   FUN_180058020(&ppppppuStack_360);
@@ -33088,7 +33088,7 @@ LAB_1800590e2:
       *param_2 = 1;
       return pointerToUnsigned3;
     }
-    punsignedSystemValue4 = (void* *)func_0x00018066b9a0(pointerToUnsigned3);
+    punsignedSystemValue4 = (void* *)SystemResourceOffsetGet(pointerToUnsigned3);
   }
   if (*(int *)(param_3 + 0x10) != 0) {
     if (*(int *)(punsignedSystemValue4 + 6) != 0) {
@@ -33685,7 +33685,7 @@ void FUN_180059ba0(void* *SystemResourcePointer)
       }
     }
     else {
-      func_0x00018064e870(unsignedSystemValue3,CONCAT71(0xff000000,*(void ***)(unsignedSystemValue3 + 0x70) == &ExceptionList),
+      SystemExceptionCheck(unsignedSystemValue3,CONCAT71(0xff000000,*(void ***)(unsignedSystemValue3 + 0x70) == &ExceptionList),
                           SystemResourcePointer,unsignedSystemValue3,0xfffffffffffffffe);
     }
   }
@@ -33875,7 +33875,7 @@ void CleanupSystemResources(long long *ResourceHandle)
       }
     }
     else {
-      func_0x00018064e870(unsignedSystemValue5,CONCAT71(0xff000000,*(void ***)(unsignedSystemValue5 + 0x70) == &ExceptionList),
+      SystemExceptionCheck(unsignedSystemValue5,CONCAT71(0xff000000,*(void ***)(unsignedSystemValue5 + 0x70) == &ExceptionList),
                           pointerToUnsigned3,unsignedSystemValue5,0xfffffffffffffffe);
     }
   }
@@ -33936,7 +33936,7 @@ void FUN_180059ee4(long long *SystemResourcePointer)
       }
     }
     else {
-      func_0x00018064e870(unsignedSystemValue5,CONCAT71(0xff000000,*(void ***)(unsignedSystemValue5 + 0x70) == &ExceptionList),
+      SystemExceptionCheck(unsignedSystemValue5,CONCAT71(0xff000000,*(void ***)(unsignedSystemValue5 + 0x70) == &ExceptionList),
                           pointerToUnsigned3,unsignedSystemValue5,0xfffffffffffffffe);
     }
   }
@@ -34005,7 +34005,7 @@ void FUN_180059f4f(void)
         }
       }
       else {
-        func_0x00018064e870(unsignedSystemValue5,CONCAT71(0xff000000,*(void ***)(unsignedSystemValue5 + 0x70) == &ExceptionList),
+        SystemExceptionCheck(unsignedSystemValue5,CONCAT71(0xff000000,*(void ***)(unsignedSystemValue5 + 0x70) == &ExceptionList),
                             pointerToUnsigned3,unsignedSystemValue5,0xfffffffffffffffe);
       }
     }
@@ -34040,7 +34040,7 @@ void FUN_180059fb0(void* *SystemResourcePointer)
       }
     }
     else {
-      func_0x00018064e870(unsignedSystemValue3,CONCAT71(0xff000000,*(void ***)(unsignedSystemValue3 + 0x70) == &ExceptionList),
+      SystemExceptionCheck(unsignedSystemValue3,CONCAT71(0xff000000,*(void ***)(unsignedSystemValue3 + 0x70) == &ExceptionList),
                           SystemResourcePointer,unsignedSystemValue3,0xfffffffffffffffe);
     }
   }
@@ -34103,7 +34103,7 @@ void FUN_180059fc0(long long *SystemResourcePointer)
       }
     }
     else {
-      func_0x00018064e870(unsignedSystemValue5,CONCAT71(0xff000000,*(void ***)(unsignedSystemValue5 + 0x70) == &ExceptionList),
+      SystemExceptionCheck(unsignedSystemValue5,CONCAT71(0xff000000,*(void ***)(unsignedSystemValue5 + 0x70) == &ExceptionList),
                           pointerToUnsigned3,unsignedSystemValue5,0xfffffffffffffffe);
     }
   }
@@ -34141,7 +34141,7 @@ void FUN_18005a010(long long SystemResourcePointer)
       }
     }
     else {
-      func_0x00018064e870(unsignedSystemValue4,CONCAT71(0xff000000,*(void ***)(unsignedSystemValue4 + 0x70) == &ExceptionList),
+      SystemExceptionCheck(unsignedSystemValue4,CONCAT71(0xff000000,*(void ***)(unsignedSystemValue4 + 0x70) == &ExceptionList),
                           pointerToUnsigned2,unsignedSystemValue4,0xfffffffffffffffe);
     }
   }
@@ -34215,7 +34215,7 @@ void FUN_18005a100(long long SystemResourcePointer)
         }
       }
       else {
-        func_0x00018064e870(unsignedSystemValue4,CONCAT71(0xff000000,*(void ***)(unsignedSystemValue4 + 0x70) == &ExceptionList),
+        SystemExceptionCheck(unsignedSystemValue4,CONCAT71(0xff000000,*(void ***)(unsignedSystemValue4 + 0x70) == &ExceptionList),
                             pointerToUnsigned2,unsignedSystemValue4,0xfffffffffffffffe);
       }
     }
@@ -34254,7 +34254,7 @@ void FUN_18005a130(long long SystemResourcePointer)
         }
       }
       else {
-        func_0x00018064e870(unsignedSystemValue4,CONCAT71(0xff000000,*(void ***)(unsignedSystemValue4 + 0x70) == &ExceptionList),
+        SystemExceptionCheck(unsignedSystemValue4,CONCAT71(0xff000000,*(void ***)(unsignedSystemValue4 + 0x70) == &ExceptionList),
                             pointerToUnsigned2,unsignedSystemValue4,0xfffffffffffffffe);
       }
     }
@@ -34293,7 +34293,7 @@ void FUN_18005a170(long long SystemResourcePointer)
         }
       }
       else {
-        func_0x00018064e870(unsignedSystemValue4,CONCAT71(0xff000000,*(void ***)(unsignedSystemValue4 + 0x70) == &ExceptionList),
+        SystemExceptionCheck(unsignedSystemValue4,CONCAT71(0xff000000,*(void ***)(unsignedSystemValue4 + 0x70) == &ExceptionList),
                             pointerToUnsigned2,unsignedSystemValue4,0xfffffffffffffffe);
       }
     }
@@ -34344,7 +34344,7 @@ void FUN_18005a200(void* *SystemResourcePointer)
   localSystemFlags = 0x20;
   SystemPreviousNode = punsignedSystemValue5;
   do {
-    func_0x000180059bb0(SystemPreviousNode);
+    SystemResourceCleanup(SystemPreviousNode);
     SystemPreviousNode = SystemPreviousNode + 2;
     localSystemFlags = localSystemFlags + -1;
   } while (localSystemFlags != 0);
@@ -35305,7 +35305,7 @@ void FUN_18005c930(void* *SystemResourcePointer,void* param_2,int *param_3)
   punsignedSystemValue5 = pointerToUnsigned3;
   if (bVar2) {
     if (pointerToUnsigned3 == (void* *)SystemResourcePointer[1]) goto LAB_18005c9be;
-    punsignedSystemValue5 = (void* *)func_0x00018066b9a0(pointerToUnsigned3);
+    punsignedSystemValue5 = (void* *)SystemResourceOffsetGet(pointerToUnsigned3);
   }
   if (*(int *)(localBufferAddress + 0x20) <= *(int *)(punsignedSystemValue5 + 4)) {
                     // WARNING: Subroutine does not return
@@ -35698,7 +35698,7 @@ void FUN_18005d0e0(ulong long SystemResourcePointer,long long param_2)
   uStackX_20 = (ulong long)(uint)(int)cVar1;
   dStackX_18 = (double)(fVar9 * fVar10);
   uStack_38 = SystemEncryptionKeyTemplate ^ (ulong long)auStack_478;
-  punsignedSystemValue4 = (ulong long *)func_0x00018004b9a0();
+  punsignedSystemValue4 = (ulong long *)SystemGlobalDataAllocate();
   localSystemPointer = 0;
   uStack_458 = 0;
   pdStack_450 = &dStackX_18;
@@ -35865,7 +35865,7 @@ void FUN_18005d3a0(void* SystemResourcePointer,void* param_2,void* param_3,void*
   uStackX_18 = param_3;
   uStackX_20 = param_4;
   unsignedSystemValue1 = __acrt_iob_func(1);
-  pointerToUnsigned2 = (void* *)func_0x00018004b9a0();
+  pointerToUnsigned2 = (void* *)SystemGlobalDataAllocate();
   __stdio_common_vfprintf(*pointerToUnsigned2,unsignedSystemValue1,SystemResourcePointer,0,&uStackX_10);
   return;
 }
@@ -37238,7 +37238,7 @@ void* * FUN_18005e950(void* *SystemResourcePointer)
   localDataPointer = 0x20;
   punsignedSystemValue6 = pointerToUnsigned3;
   do {
-    func_0x000180059bb0(punsignedSystemValue6);
+    SystemResourceCleanup(punsignedSystemValue6);
     punsignedSystemValue6 = punsignedSystemValue6 + 2;
     localDataPointer = localDataPointer + -1;
   } while (localDataPointer != 0);
@@ -39117,7 +39117,7 @@ int FUN_180060680(void* SystemResourcePointer,void* param_2,void* param_3,void* 
   
   uStackX_18 = param_3;
   uStackX_20 = param_4;
-  pointerToUnsigned2 = (ulong long *)func_0x00018004b9a0();
+  pointerToUnsigned2 = (ulong long *)SystemGlobalDataAllocate();
   systemStatus = __stdio_common_vsprintf(*pointerToUnsigned2 | 1,SystemResourcePointer,0xffffffffffffffff,param_2,0,&uStackX_18);
   if (systemStatus < 0) {
     systemStatus = -1;
@@ -40523,7 +40523,7 @@ int FUN_1800634b0(void* SystemResourcePointer,void* param_2,void* param_3,void* 
   void* uStackX_20;
   
   uStackX_20 = param_4;
-  pointerToUnsigned2 = (void* *)func_0x00018004b9a0();
+  pointerToUnsigned2 = (void* *)SystemGlobalDataAllocate();
   systemStatus = __stdio_common_vsprintf_s(*pointerToUnsigned2,SystemResourcePointer,param_2,param_3,0,&uStackX_20);
   if (systemStatus < 0) {
     systemStatus = -1;
@@ -40602,7 +40602,7 @@ int FUN_1800635e0(void* SystemResourcePointer,void* param_2,void* param_3,void* 
   int systemStatus;
   ulong long *pointerToUnsigned2;
   
-  pointerToUnsigned2 = (ulong long *)func_0x00018004b9a0();
+  pointerToUnsigned2 = (ulong long *)SystemGlobalDataAllocate();
   systemStatus = __stdio_common_vsprintf(*pointerToUnsigned2 | 2,SystemResourcePointer,param_2,param_3,0,param_4);
   if (systemStatus < 0) {
     systemStatus = -1;
@@ -45123,7 +45123,7 @@ void FUN_18006b940(void* *SystemResourcePointer)
   punsignedSystemValue4 = punsignedSystemValue5;
   puStack_60 = SystemResourcePointer;
   do {
-    func_0x000180059bb0(punsignedSystemValue4);
+    SystemResourceCleanup(punsignedSystemValue4);
     punsignedSystemValue4 = punsignedSystemValue4 + 2;
     localSystemFlags = localSystemFlags + -1;
   } while (localSystemFlags != 0);
@@ -47242,7 +47242,7 @@ void FUN_18006e4a0(long long *SystemResourcePointer)
       }
     }
     else {
-      func_0x00018064e870(unsignedSystemValue5,CONCAT71(0xff000000,*(void ***)(unsignedSystemValue5 + 0x70) == &ExceptionList),
+      SystemExceptionCheck(unsignedSystemValue5,CONCAT71(0xff000000,*(void ***)(unsignedSystemValue5 + 0x70) == &ExceptionList),
                           pointerToUnsigned3,unsignedSystemValue5,0xfffffffffffffffe);
     }
   }
@@ -47303,7 +47303,7 @@ void FUN_18006e4a4(long long *SystemResourcePointer)
       }
     }
     else {
-      func_0x00018064e870(unsignedSystemValue5,CONCAT71(0xff000000,*(void ***)(unsignedSystemValue5 + 0x70) == &ExceptionList),
+      SystemExceptionCheck(unsignedSystemValue5,CONCAT71(0xff000000,*(void ***)(unsignedSystemValue5 + 0x70) == &ExceptionList),
                           pointerToUnsigned3,unsignedSystemValue5,0xfffffffffffffffe);
     }
   }
@@ -47372,7 +47372,7 @@ void FUN_18006e50f(void)
         }
       }
       else {
-        func_0x00018064e870(unsignedSystemValue5,CONCAT71(0xff000000,*(void ***)(unsignedSystemValue5 + 0x70) == &ExceptionList),
+        SystemExceptionCheck(unsignedSystemValue5,CONCAT71(0xff000000,*(void ***)(unsignedSystemValue5 + 0x70) == &ExceptionList),
                             pointerToUnsigned3,unsignedSystemValue5,0xfffffffffffffffe);
       }
     }
@@ -47407,7 +47407,7 @@ void FUN_18006e570(void* *SystemResourcePointer)
       }
     }
     else {
-      func_0x00018064e870(unsignedSystemValue3,CONCAT71(0xff000000,*(void ***)(unsignedSystemValue3 + 0x70) == &ExceptionList),
+      SystemExceptionCheck(unsignedSystemValue3,CONCAT71(0xff000000,*(void ***)(unsignedSystemValue3 + 0x70) == &ExceptionList),
                           SystemResourcePointer,unsignedSystemValue3,0xfffffffffffffffe);
     }
   }
@@ -47470,7 +47470,7 @@ void FUN_18006e580(long long *SystemResourcePointer)
       }
     }
     else {
-      func_0x00018064e870(unsignedSystemValue5,CONCAT71(0xff000000,*(void ***)(unsignedSystemValue5 + 0x70) == &ExceptionList),
+      SystemExceptionCheck(unsignedSystemValue5,CONCAT71(0xff000000,*(void ***)(unsignedSystemValue5 + 0x70) == &ExceptionList),
                           pointerToUnsigned3,unsignedSystemValue5,0xfffffffffffffffe);
     }
   }
@@ -47543,7 +47543,7 @@ void* * FUN_18006e660(void* *SystemResourcePointer,void* param_2,void* param_3)
   localBufferAddress = 0x20;
   punsignedSystemValue5 = punsignedSystemValue6;
   do {
-    func_0x000180059bb0(punsignedSystemValue5);
+    SystemResourceCleanup(punsignedSystemValue5);
     punsignedSystemValue5 = punsignedSystemValue5 + 2;
     localBufferAddress = localBufferAddress + -1;
   } while (localBufferAddress != 0);
@@ -54835,7 +54835,7 @@ void FUN_180077710(long long SystemResourcePointer)
       }
     }
     else {
-      func_0x00018064e870(unsignedSystemValue4,CONCAT71(0xff000000,*(void ***)(unsignedSystemValue4 + 0x70) == &ExceptionList),
+      SystemExceptionCheck(unsignedSystemValue4,CONCAT71(0xff000000,*(void ***)(unsignedSystemValue4 + 0x70) == &ExceptionList),
                           pointerToUnsigned2,unsignedSystemValue4,0xfffffffffffffffe);
     }
   }
