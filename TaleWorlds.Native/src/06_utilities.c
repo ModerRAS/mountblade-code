@@ -23,38 +23,38 @@ undefined DAT_180bf5330;
 undefined DAT_180bf5338;
 undefined UNK_18098bb30;
 
-// 函数: undefined FUN_180941590;
-undefined FUN_180941590;
+// 函数: void InitializeGlobalModuleA(void)
+void InitializeGlobalModuleA(void);
 undefined DAT_180bf5770;
 undefined DAT_180bf5778;
 undefined DAT_180bf5780;
 undefined DAT_180bf5788;
 
-// 函数: undefined FUN_1809415b0;
-undefined FUN_1809415b0;
+// 函数: void InitializeGlobalModuleB(void)
+void InitializeGlobalModuleB(void);
 undefined DAT_180bf5208;
 undefined DAT_180bf5210;
 undefined DAT_180bf5218;
 undefined DAT_180bf5220;
 undefined UNK_18098bc80;
 
-// 函数: undefined FUN_1809415d0;
-undefined FUN_1809415d0;
+// 函数: void InitializeGlobalModuleC(void)
+void InitializeGlobalModuleC(void);
 undefined DAT_180bf5bc0;
 undefined DAT_180bf5bc8;
 undefined DAT_180bf5bd0;
 undefined DAT_180bf5bd8;
 undefined UNK_1809fcc58;
 
-// 函数: undefined FUN_1809415f0;
-undefined FUN_1809415f0;
+// 函数: void InitializeGlobalModuleD(void)
+void InitializeGlobalModuleD(void);
 undefined DAT_180bf5c30;
 undefined DAT_180bf5c38;
 undefined DAT_180bf5c40;
 undefined DAT_180bf5c48;
 
-// 函数: undefined FUN_180941610;
-undefined FUN_180941610;
+// 函数: void InitializeGlobalModuleE(void)
+void InitializeGlobalModuleE(void);
 undefined DAT_180bf6080;
 undefined DAT_180bf6088;
 undefined DAT_180bf6090;
@@ -76,16 +76,16 @@ undefined1 DAT_180c91238;
 undefined FUN_1809416d0;
 undefined1 DAT_180c912d8;
 
-// 函数: undefined FUN_180941710;
-undefined FUN_180941710;
+// 函数: void DestroyThreadSyncObjects(void)
+void DestroyThreadSyncObjects(void);
 undefined DAT_1809fe0d0;
 undefined UNK_1809fd0d8;
 
-// 函数: undefined FUN_1809417a0;
-undefined FUN_1809417a0;
+// 函数: void CloseSystemHandle(void)
+void CloseSystemHandle(void);
 
-// 函数: undefined FUN_1809417c0;
-undefined FUN_1809417c0;
+// 函数: void CleanupThreadResources(void)
+void CleanupThreadResources(void);
 undefined DAT_180c9190c;
 undefined UNK_1809fcc28;
 undefined UNK_1809ffa30;
@@ -80196,8 +80196,9 @@ void FUN_1809414f0(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180941590(void)
-void FUN_180941590(void)
+// 函数: void InitializeGlobalModuleA(void)
+// 初始化全局模块A，设置相关数据结构指针
+void InitializeGlobalModuleA(void)
 
 {
   _DAT_180bf5320 = &UNK_18098bcb0;
@@ -80209,8 +80210,9 @@ void FUN_180941590(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_1809415b0(void)
-void FUN_1809415b0(void)
+// 函数: void InitializeGlobalModuleB(void)
+// 初始化全局模块B，设置相关数据结构指针
+void InitializeGlobalModuleB(void)
 
 {
   _DAT_180bf5770 = &UNK_18098bcb0;
@@ -80314,8 +80316,9 @@ void FUN_1809416d0(void)
 
 
 
-// 函数: void FUN_180941710(void)
-void FUN_180941710(void)
+// 函数: void DestroyThreadSyncObjects(void)
+// 销毁线程同步对象，清理互斥锁和条件变量
+void DestroyThreadSyncObjects(void)
 
 {
   _Mtx_destroy_in_situ();
@@ -80330,8 +80333,9 @@ void FUN_180941710(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_1809417a0(void)
-void FUN_1809417a0(void)
+// 函数: void CloseSystemHandle(void)
+// 关闭系统句柄，释放相关资源
+void CloseSystemHandle(void)
 
 {
                     // WARNING: Could not recover jumptable at 0x0001809417b8. Too many branches

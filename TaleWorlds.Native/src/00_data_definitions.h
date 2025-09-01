@@ -1,78 +1,88 @@
 #ifndef DATA_DEFINITIONS_H
 #define DATA_DEFINITIONS_H
 
-undefined globalData_1809fc740;
-undefined unknownData_18098c790;
+undefined systemGlobalData;
+undefined unknownGlobalData;
 
 /**
- * 初始化模块A
- * 设置模块A所需的全局数据结构
+ * 初始化渲染系统模块
+ * 设置渲染系统所需的全局数据结构和状态标志
+ * 
+ * @return 初始化成功返回0，失败返回-1
  */
-int initializeModuleA(void)
+int initializeRenderingSystem(void)
 {
-  longlong result;
-  globalData_180bf5240 = 1;
-  globalData_180bf52a8 = 0;
-  globalData_180bf52b0 = 0x7fffffffffffffff;
-  globalData_180bf52e0 = 0;
-  result = registerSystemCallback(initializeModuleA_Callback);
-  return (result != 0) - 1;
+  longlong callbackResult;
+  g_renderingSystemEnabled = 1;
+  g_renderingSystemFlags = 0;
+  g_renderingSystemMaxValue = 0x7fffffffffffffff;
+  g_renderingSystemStatus = 0;
+  callbackResult = registerSystemCallback(renderingSystemCallback);
+  return (callbackResult != 0) - 1;
 }
 /**
- * 初始化模块B
- * 设置模块B所需的全局数据结构
+ * 初始化物理引擎模块
+ * 设置物理引擎所需的全局数据结构和碰撞检测参数
+ * 
+ * @return 初始化成功返回0，失败返回-1
  */
-int initializeModuleB(void)
+int initializePhysicsEngine(void)
 {
-  longlong result;
-  globalData_180bf5320 = &unknownData_18098bb30;
-  globalData_180bf5328 = &globalData_180bf5338;
-  globalData_180bf5330 = 0;
-  globalData_180bf5338 = 0;
-  result = registerSystemCallback(initializeModuleB_Callback);
-  return (result != 0) - 1;
+  longlong callbackResult;
+  g_physicsEngineData = &unknownGlobalData;
+  g_physicsEngineConfig = &g_physicsEngineState;
+  g_physicsEngineFlags = 0;
+  g_physicsEngineState = 0;
+  callbackResult = registerSystemCallback(physicsEngineCallback);
+  return (callbackResult != 0) - 1;
 }
 /**
- * 初始化模块C
- * 设置模块C所需的全局数据结构和回调
+ * 初始化音频系统模块
+ * 设置音频系统所需的全局数据结构和音效参数
+ * 
+ * @return 初始化成功返回0，失败返回-1
  */
-int initializeModuleC(void)
+int initializeAudioSystem(void)
 {
-  longlong result;
-  globalData_180bf5770 = &unknownData_18098bb30;
-  globalData_180bf5778 = &globalData_180bf5788;
-  globalData_180bf5780 = 0;
-  globalData_180bf5788 = 0;
-  result = registerSystemCallback(initializeModuleC_Callback);
-  return (result != 0) - 1;
+  longlong callbackResult;
+  g_audioSystemData = &unknownGlobalData;
+  g_audioSystemConfig = &g_audioSystemState;
+  g_audioSystemFlags = 0;
+  g_audioSystemState = 0;
+  callbackResult = registerSystemCallback(audioSystemCallback);
+  return (callbackResult != 0) - 1;
 }
 /**
- * 初始化模块D
- * 设置模块D所需的全局数据结构和回调
+ * 初始化输入系统模块
+ * 设置输入系统所需的全局数据结构和控制器映射
+ * 
+ * @return 初始化成功返回0，失败返回-1
  */
-int initializeModuleD(void)
+int initializeInputSystem(void)
 {
-  longlong result;
-  globalData_180bf5208 = &unknownData_18098bc80;
-  globalData_180bf5210 = &globalData_180bf5220;
-  globalData_180bf5218 = 0;
-  globalData_180bf5220 = 0;
-  result = registerSystemCallback(initializeModuleD_Callback);
-  return (result != 0) - 1;
+  longlong callbackResult;
+  g_inputSystemData = &unknownInputData;
+  g_inputSystemConfig = &g_inputSystemState;
+  g_inputSystemFlags = 0;
+  g_inputSystemState = 0;
+  callbackResult = registerSystemCallback(inputSystemCallback);
+  return (callbackResult != 0) - 1;
 }
 /**
- * 初始化模块E
- * 设置模块E所需的全局数据结构和回调
+ * 初始化网络系统模块
+ * 设置网络系统所需的全局数据结构和连接参数
+ * 
+ * @return 初始化成功返回0，失败返回-1
  */
-int initializeModuleE(void)
+int initializeNetworkSystem(void)
 {
-  longlong result;
-  globalData_180bf5bc0 = &unknownData_1809fcc58;
-  globalData_180bf5bc8 = &globalData_180bf5bd8;
-  globalData_180bf5bd0 = 0;
-  globalData_180bf5bd8 = 0;
-  result = registerSystemCallback(initializeModuleE_Callback);
-  return (result != 0) - 1;
+  longlong callbackResult;
+  g_networkSystemData = &unknownNetworkData;
+  g_networkSystemConfig = &g_networkSystemState;
+  g_networkSystemFlags = 0;
+  g_networkSystemState = 0;
+  callbackResult = registerSystemCallback(networkSystemCallback);
+  return (callbackResult != 0) - 1;
 }
 /**
  * 初始化模块F
@@ -232,29 +242,37 @@ int initializeStringProcessorD(void)
   result = registerSystemCallback(initializeStringProcessorD_Callback);
   return (result != 0) - 1;
 }
-int FUN_18002e610(void)
+/**
+ * 初始化字符串处理器E
+ * 设置字符串处理所需的数据结构和回调
+ */
+int initializeStringProcessorE(void)
 {
-  longlong lVar1;
-  undefined8 in_R9;
-  _DAT_180bf6620 = &UNK_1809fdc18;
-  _DAT_180bf6628 = &DAT_180bf6638;
-  DAT_180bf6638 = 0;
-  _DAT_180bf6630 = 0xc;
-  strcpy_s(&DAT_180bf6638,0x10,&UNK_180a00528,in_R9,0xfffffffffffffffe);
-  lVar1 = FUN_1808fc7d0(FUN_1809418a0);
-  return (lVar1 != 0) - 1;
+  longlong result;
+  undefined8 stringFlags;
+  globalData_180bf6620 = &unknownData_1809fdc18;
+  globalData_180bf6628 = &globalData_180bf6638;
+  globalData_180bf6638 = 0;
+  globalData_180bf6630 = 0xc;
+  strcpy_s(&globalData_180bf6638,0x10,&unknownData_180a00528,stringFlags,0xfffffffffffffffe);
+  result = registerSystemCallback(initializeStringProcessorE_Callback);
+  return (result != 0) - 1;
 }
-int FUN_18002e680(void)
+/**
+ * 初始化字符串处理器F
+ * 设置字符串处理所需的数据结构和回调
+ */
+int initializeStringProcessorF(void)
 {
-  longlong lVar1;
-  undefined8 in_R9;
-  _DAT_180bf6650 = &UNK_1809fdc18;
-  _DAT_180bf6658 = &DAT_180bf6668;
-  DAT_180bf6668 = 0;
-  _DAT_180bf6660 = 4;
-  strcpy_s(&DAT_180bf6668,0x10,&UNK_180a00538,in_R9,0xfffffffffffffffe);
-  lVar1 = FUN_1808fc7d0(FUN_1809418c0);
-  return (lVar1 != 0) - 1;
+  longlong result;
+  undefined8 stringFlags;
+  globalData_180bf6650 = &unknownData_1809fdc18;
+  globalData_180bf6658 = &globalData_180bf6668;
+  globalData_180bf6668 = 0;
+  globalData_180bf6660 = 4;
+  strcpy_s(&globalData_180bf6668,0x10,&unknownData_180a00538,stringFlags,0xfffffffffffffffe);
+  result = registerSystemCallback(initializeStringProcessorF_Callback);
+  return (result != 0) - 1;
 }
 int FUN_18002e6f0(void)
 {
