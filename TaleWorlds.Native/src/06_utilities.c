@@ -5672,7 +5672,7 @@ void ProcessSystemObjectQueue(longlong objectHandle, longlong queueContext)
       }
       QueueNode = QueueIterator + 2;
       if (QueueIterator == (longlong *)0x0) {
-        QueueNode = (longlong *)&DAT_00000018;
+        QueueNode = (longlong *)&QueueNullTerminator;
       }
       QueueIterator = QueueHead;
     } while ((*QueueNode == 0) || (ProcessingStatus = ProcessQueueOperation(queueContext), ProcessingStatus == 0));

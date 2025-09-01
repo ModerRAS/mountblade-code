@@ -14311,7 +14311,7 @@ void InitializeSystemDebugManagerA(void)
   }
   systemPreviousNode[6] = 0x46c54bc98fc3fc2a;
   systemPreviousNode[7] = 0x727b256e3af32585;
-  systemPreviousNode[8] = &UNK_180a2ca90;
+  systemPreviousNode[8] = &SystemMemoryNodeTemplateC;
   systemPreviousNode[9] = 2;
   systemPreviousNode[10] = resourceInitializationCallback;
   return;
@@ -14364,7 +14364,7 @@ void InitializeSystemDebugManagerB(void)
   }
   systemPreviousNode[6] = 0x41ffd0b76c1e136f;
   systemPreviousNode[7] = 0x25db30365f277abb;
-  systemPreviousNode[8] = &UNK_180a2cab0;
+  systemPreviousNode[8] = &SystemMemoryNodeTemplateD;
   systemPreviousNode[9] = 2;
   systemPreviousNode[10] = resourceInitializationCallback;
   return;
@@ -14941,7 +14941,7 @@ void InitializeSystemSecurityComponent(void)
   }
   systemPreviousNode[6] = 0x46c54bc98fc3fc2a;
   systemPreviousNode[7] = 0x727b256e3af32585;
-  systemPreviousNode[8] = &UNK_180a2ca90;
+  systemPreviousNode[8] = &SystemMemoryNodeTemplateC;
   systemPreviousNode[9] = 2;
   systemPreviousNode[10] = resourceInitializationCallback;
   return;
@@ -14992,7 +14992,7 @@ void InitializeSystemNetworkComponent(void)
   }
   systemPreviousNode[6] = 0x41ffd0b76c1e136f;
   systemPreviousNode[7] = 0x25db30365f277abb;
-  systemPreviousNode[8] = &UNK_180a2cab0;
+  systemPreviousNode[8] = &SystemMemoryNodeTemplateD;
   systemPreviousNode[9] = 2;
   systemPreviousNode[10] = resourceInitializationCallback;
   return;
@@ -15662,7 +15662,7 @@ void InitializeSystemSubcomponentG(void)
   }
   systemPreviousNode[6] = 0x46c54bc98fc3fc2a;
   systemPreviousNode[7] = 0x727b256e3af32585;
-  systemPreviousNode[8] = &UNK_180a2ca90;
+  systemPreviousNode[8] = &SystemMemoryNodeTemplateC;
   systemPreviousNode[9] = 2;
   systemPreviousNode[10] = resourceInitializationCallback;
   return;
@@ -15714,7 +15714,7 @@ void InitializeSystemSubcomponentH(void)
   }
   systemPreviousNode[6] = 0x41ffd0b76c1e136f;
   systemPreviousNode[7] = 0x25db30365f277abb;
-  systemPreviousNode[8] = &UNK_180a2cab0;
+  systemPreviousNode[8] = &SystemMemoryNodeTemplateD;
   systemPreviousNode[9] = 2;
   systemPreviousNode[10] = resourceInitializationCallback;
   return;
@@ -15823,7 +15823,7 @@ void InitializeSystemSubcomponentI(void)
   }
   systemPreviousNode[6] = 0x46c54bc98fc3fc2a;
   systemPreviousNode[7] = 0x727b256e3af32585;
-  systemPreviousNode[8] = &UNK_180a2ca90;
+  systemPreviousNode[8] = &SystemMemoryNodeTemplateC;
   systemPreviousNode[9] = 2;
   systemPreviousNode[10] = resourceInitializationCallback;
   return;
@@ -15875,7 +15875,7 @@ void InitializeSystemSubcomponentJ(void)
   }
   systemPreviousNode[6] = 0x41ffd0b76c1e136f;
   systemPreviousNode[7] = 0x25db30365f277abb;
-  systemPreviousNode[8] = &UNK_180a2cab0;
+  systemPreviousNode[8] = &SystemMemoryNodeTemplateD;
   systemPreviousNode[9] = 2;
   systemPreviousNode[10] = resourceInitializationCallback;
   return;
@@ -15927,7 +15927,7 @@ void InitializeSystemSubcomponentK(void)
   }
   systemPreviousNode[6] = 0x46c54bc98fc3fc2a;
   systemPreviousNode[7] = 0x727b256e3af32585;
-  systemPreviousNode[8] = &UNK_180a2ca90;
+  systemPreviousNode[8] = &SystemMemoryNodeTemplateC;
   systemPreviousNode[9] = 2;
   systemPreviousNode[10] = resourceInitializationCallback;
   return;
@@ -15979,7 +15979,7 @@ void InitializeSystemSubcomponentL(void)
   }
   systemPreviousNode[6] = 0x41ffd0b76c1e136f;
   systemPreviousNode[7] = 0x25db30365f277abb;
-  systemPreviousNode[8] = &UNK_180a2cab0;
+  systemPreviousNode[8] = &SystemMemoryNodeTemplateD;
   systemPreviousNode[9] = 2;
   systemPreviousNode[10] = resourceInitializationCallback;
   return;
@@ -16081,7 +16081,7 @@ void InitializeSystemSubcomponentN(void)
   }
   systemPreviousNode[6] = 0x46c54bc98fc3fc2a;
   systemPreviousNode[7] = 0x727b256e3af32585;
-  systemPreviousNode[8] = &UNK_180a2ca90;
+  systemPreviousNode[8] = &SystemMemoryNodeTemplateC;
   systemPreviousNode[9] = 2;
   systemPreviousNode[10] = resourceInitializationCallback;
   return;
@@ -16137,7 +16137,7 @@ void InitializeSystemNodeManagerPrimary(void)
   }
   systemPreviousNode[6] = 0x41ffd0b76c1e136f;
   systemPreviousNode[7] = 0x25db30365f277abb;
-  systemPreviousNode[8] = &UNK_180a2cab0;
+  systemPreviousNode[8] = &SystemMemoryNodeTemplateD;
   systemPreviousNode[9] = 2;
   systemPreviousNode[10] = resourceInitializationCallback;
   return;
