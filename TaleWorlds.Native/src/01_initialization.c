@@ -23824,8 +23824,8 @@ void CleanupSystemQueue(long long *QueueHeader)
 
 
 
-// 函数: void FUN_18004c030(long long *param_1)
-void FUN_18004c030(long long *param_1)
+// 函数: void SystemDataStructureProcess(long long *param_1)
+void SystemDataStructureProcess(long long *param_1)
 
 {
   long long *plVar1;
@@ -23888,8 +23888,8 @@ void ProcessSystemInitializationQueue(long long *queueHeader)
 
 
 
-// 函数: void FUN_18004c0b0(long long param_1)
-void FUN_18004c0b0(long long param_1)
+// 函数: void SystemMemoryInitialize(long long param_1)
+void SystemMemoryInitialize(long long param_1)
 
 {
   int *piVar1;
@@ -23943,8 +23943,8 @@ void FUN_18004c0b0(long long param_1)
 
 
 
-// 函数: void FUN_18004c0d0(long long param_1)
-void FUN_18004c0d0(long long param_1)
+// 函数: void SystemResourceAllocate(long long param_1)
+void SystemResourceAllocate(long long param_1)
 
 {
   void* *puVar1;
