@@ -202,6 +202,8 @@ void utility_memory_cleanup_handler(void)
  *
  * 该函数是工具系统的核心功能之一，负责管理系统资源的生命周期。
  * 通过资源句柄定位并操作相应的系统资源。
+ * 
+ * 简化实现：使用语义化变量名，提高代码可读性。
  */
 uint64 utility_process_resource_data(longlong resource_handle)
 {
@@ -236,7 +238,9 @@ uint64 utility_process_resource_data(longlong resource_handle)
  * @brief 资源数据处理器
  * @return uint64 处理结果状态码，UTILITY_MEMORY_ZERO表示成功
  *
- * 处理系统资源数据的辅助函数，使用默认资源句柄进行处理。
+ * 处理系统资源数据的辅助函数，使用系统资源上下文进行处理。
+ * 
+ * 简化实现：使用语义化变量名，提高代码可读性。
  */
 uint64 utility_resource_data_processor(void)
 {
@@ -273,6 +277,8 @@ uint64 utility_resource_data_processor(void)
  * @return uint32 内存使用状态码，UTILITY_MEMORY_ZERO表示正常状态
  *
  * 获取当前系统的内存使用情况，用于系统监控和调试。
+ * 
+ * 简化实现：返回固定状态值，提供基本功能框架。
  */
 uint32 utility_get_memory_usage(void)
 {
@@ -284,6 +290,8 @@ uint32 utility_get_memory_usage(void)
  * @return uint64 上下文管理结果状态码，UTILITY_MEMORY_ZERO表示成功
  *
  * 管理系统资源上下文，包括上下文初始化和清理操作。
+ * 
+ * 简化实现：返回固定状态值，提供基本功能框架。
  */
 uint64 utility_manage_context(void)
 {
