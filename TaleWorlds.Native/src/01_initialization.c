@@ -8281,7 +8281,7 @@ void InitializeSystemConfigurationManager(void)
   stackBuffer[0] = 0;
   stackParameterC = 0xc;
   strcpy_s(stackBuffer,0x80,&SystemConfigurationTemplateB,in_R9,0xfffffffffffffffe);
-  _DAT_180c91da4 = SystemMemoryAllocationFunction(&stackParameterA);
+  SystemMemoryAllocationTableEntry001 = SystemMemoryAllocationFunction(&stackParameterA);
   return;
 }
 
@@ -8323,7 +8323,7 @@ void InitializeSystemExtensionManager(void)
   stackBuffer[0] = 0;
   stackParameterC = 0x16;
   strcpy_s(stackBuffer,0x80,&SystemStringConstantA,in_R9,0xfffffffffffffffe);
-  _DAT_180c91da8 = SystemMemoryAllocationFunction(&stackParameterA);
+  SystemMemoryAllocationTableEntry002 = SystemMemoryAllocationFunction(&stackParameterA);
   return;
 }
 
@@ -8348,7 +8348,7 @@ void InitializeSystemLibraryManager(void)
   stackBuffer[0] = 0;
   stackParameterC = 0x16;
   strcpy_s(stackBuffer,0x80,&SystemStringConstantB,in_R9,0xfffffffffffffffe);
-  _DAT_180c91dac = SystemMemoryAllocationFunction(&stackParameterA);
+  SystemMemoryAllocationTableEntry003 = SystemMemoryAllocationFunction(&stackParameterA);
   return;
 }
 

@@ -3199,24 +3199,24 @@ uint8_t SystemMemoryFlagK;
 void ProcessGameDataObjects(longlong gameContext, longlong systemContext)
 
 {
-  uint8_t8 validationResult;
-  int operationStatus;
-  longlong currentObjectPointer;
-  int processedObjectCount;
-  uint8_t1 objectMetadataBuffer[32];
-  longlong contextHandles[2];
-  uint8_t1 *objectDataList;
-  int listIterator;
-  uint8_t4 maximumItems;
-  uint8_t1 processingBuffer[512];
-  ulonglong accessSecurityToken;
+  uint8_t8 ValidationResult;
+  int OperationStatus;
+  longlong CurrentObjectPointer;
+  int ProcessedObjectCount;
+  uint8_t1 ObjectMetadataBuffer[32];
+  longlong ContextHandles[2];
+  uint8_t1 *ObjectDataList;
+  int ListIterator;
+  uint8_t4 MaximumItems;
+  uint8_t1 ProcessingBuffer[512];
+  ulonglong AccessSecurityToken;
   
-  accessSecurityToken = SecurityEncryptionKey ^ (ulonglong)objectMetadataBuffer;
-  operationStatus = GetContextHandles(*(uint8_t4 *)(gameContext + 0x10), contextHandles);
-  if ((operationStatus == 0) && (*(longlong *)(contextHandles[0] + 8) != 0)) {
-    objectDataList = processingBuffer;
-    processedObjectCount = 0;
-    listIterator = 0;
+  AccessSecurityToken = SecurityEncryptionKey ^ (ulonglong)ObjectMetadataBuffer;
+  OperationStatus = GetContextHandles(*(uint8_t4 *)(gameContext + 0x10), ContextHandles);
+  if ((OperationStatus == 0) && (*(longlong *)(ContextHandles[0] + 8) != 0)) {
+    ObjectDataList = ProcessingBuffer;
+    ProcessedObjectCount = 0;
+    ListIterator = 0;
     maximumItems = 0xffffffc0;
     operationStatus = RetrieveObjectList(*(uint8_t8 *)(systemContext + 0x90), *(longlong *)(contextHandles[0] + 8),
                           &objectDataList);
