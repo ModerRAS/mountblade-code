@@ -1068,32 +1068,6 @@ void InitializeGameCoreSystem(void)
 
 
 /**
- * @brief 初始化系统数据表基础内存分配器
- * 
- * 负责初始化系统数据表的基础内存分配器，建立内存分配节点，
- * 并设置基础分配器的配置数据和函数指针。
- */
-/**
- * @brief 初始化系统数据表基础分配器
- * 
- * 此函数负责初始化系统数据表的基础内存分配器，为后续的系统组件提供内存管理支持。
- * 函数会查找或创建基础分配器节点，并配置相关的内存管理参数。
- * 
- * @note 函数使用BASE_ALLOCATOR_ID进行分配器识别
- * @note 函数依赖GetSystemRootPointer和GetSystemMemorySize等辅助函数
- * @note 函数会设置BaseAllocatorNodeData相关配置
- */
-/**
- * @brief 初始化系统数据表基础内存分配器
- * 
- * 此函数负责初始化系统数据表的基础内存分配器，为后续的系统组件提供内存管理支持。
- * 函数会遍历系统节点树，查找或创建基础分配器节点，并配置相关的内存管理参数。
- * 
- * @note 函数使用BASE_ALLOCATOR_ID进行分配器识别
- * @note 函数依赖GetSystemRootPointer和GetSystemMemorySize等辅助函数
- * @note 函数会设置BaseAllocatorNodeData相关配置
- */
-/**
  * @brief 初始化系统数据表基础分配器
  * 
  * 该函数负责初始化系统数据表的基础分配器，为数据表的内存分配
