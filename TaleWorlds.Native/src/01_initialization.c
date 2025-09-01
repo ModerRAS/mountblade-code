@@ -26488,9 +26488,9 @@ void InitializeSystemDataSynchronizer(long long systemResourcePointer,void* data
   _DAT_180c8ed30 = _DAT_180c8ed30 + _DAT_180c8ed20;
   _DAT_180bf3ff8 = floatValue;
   systemValue16 = FUN_180091020();
-  systemValue16 = FUN_1801ed510(systemValue16,dataSyncPointer);
-  systemFlag1 = FUN_180160500(systemValue16,0x52);
-  systemFlag2 = FUN_180160500(1,0x51);
+  systemValue16 = SynchronizeSystemData(systemValue16,dataSyncPointer);
+  systemFlag1 = CheckSystemFlag(systemValue16,0x52);
+  systemFlag2 = CheckSystemFlag(1,0x51);
   localMemoryPointer2 = 0xe0;
   if (systemFlag2 == '\0') {
     if (systemFlag1 == '\0') goto LAB_18005122d;
