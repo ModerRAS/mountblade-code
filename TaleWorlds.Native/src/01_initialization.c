@@ -781,10 +781,10 @@ void InitializeSystemDataTableAllocator(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -836,10 +836,10 @@ void InitializeSystemCoreConfig(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -891,10 +891,10 @@ void InitializeSystemMemoryPool(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -946,10 +946,10 @@ void InitializeSystemThreadPool(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -1001,10 +1001,10 @@ void InitializeSystemEventManager(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -1056,10 +1056,10 @@ void InitializeSystemResourceManager(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -1365,10 +1365,10 @@ void InitializeSystemMemoryManager(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   code *pcStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -1420,10 +1420,10 @@ void InitializeSystemMemoryAllocator(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   code *pcStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -1529,10 +1529,10 @@ void InitializeSystemThreadManager(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   code *pcStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -1584,10 +1584,10 @@ void InitializeSystemEventManager(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   code *pcStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -1920,10 +1920,10 @@ void InitializeSystemDataTableStructureC(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   code *pcStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -1976,10 +1976,10 @@ void InitializeSystemDataTableStructureD(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   code *pcStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -2032,10 +2032,10 @@ void InitializeSystemDataTableStructureE(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   code *pcStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -2088,10 +2088,10 @@ void InitializeSystemDataTableStructureF(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   code *pcStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -2144,10 +2144,10 @@ void InitializeSystemDataTableStructureG(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -2200,10 +2200,10 @@ void InitializeSystemDataTableStructureH(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   code *pcStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -2256,10 +2256,10 @@ void InitializeSystemDataTableStructureI(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   code *pcStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -2352,10 +2352,10 @@ void InitializeSystemMemoryManager(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   code *pcStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -2460,10 +2460,10 @@ void InitializeSystemDataTable(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -2511,10 +2511,10 @@ void InitializeSystemNodeTree(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   code *pcStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -2562,10 +2562,10 @@ void InitializeMemoryAllocator(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -2613,10 +2613,10 @@ void InitializeResourcePool(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   undefined *puStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -2664,10 +2664,10 @@ void InitializeConfigurationManager(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -2715,10 +2715,10 @@ void InitializeEventSystem(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   code *pcStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -2770,10 +2770,10 @@ void InitializeSystemMemoryManager(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   code *pcStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -2825,10 +2825,10 @@ void InitializeSystemThreadPoolManager(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   code *pcStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -2880,10 +2880,10 @@ void InitializeSystemResourceManager(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -2930,10 +2930,10 @@ void FUN_18002f470(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   code *pcStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -2980,10 +2980,10 @@ void FUN_18002f570(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -3021,8 +3021,13 @@ void FUN_18002f570(void)
 
 
 
-// 函数: void FUN_18002f670(void)
-void FUN_18002f670(void)
+/**
+ * @brief 初始化系统事件处理器
+ * 
+ * 该函数负责初始化系统的事件处理器，设置事件的监听、
+ * 分发和处理机制，确保系统事件的及时响应
+ */
+void InitializeSystemEventHandler(void)
 
 {
   char systemNodeFlag;
@@ -3030,10 +3035,10 @@ void FUN_18002f670(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   undefined *puStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -3071,8 +3076,13 @@ void FUN_18002f670(void)
 
 
 
-// 函数: void FUN_18002f770(void)
-void FUN_18002f770(void)
+/**
+ * @brief 初始化系统网络管理器
+ * 
+ * 该函数负责初始化系统的网络管理器，设置网络连接、
+ * 数据传输和协议处理机制，确保系统网络功能的正常运行
+ */
+void InitializeSystemNetworkManager(void)
 
 {
   char systemNodeFlag;
@@ -3080,10 +3090,10 @@ void FUN_18002f770(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -3121,8 +3131,13 @@ void FUN_18002f770(void)
 
 
 
-// 函数: void FUN_18002f870(void)
-void FUN_18002f870(void)
+/**
+ * @brief 初始化系统安全管理器
+ * 
+ * 该函数负责初始化系统的安全管理器，设置安全策略、
+ * 权限控制和防护机制，确保系统的安全性
+ */
+void InitializeSystemSecurityManager(void)
 
 {
   char systemNodeFlag;
@@ -3130,10 +3145,10 @@ void FUN_18002f870(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   code *pcStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -3180,10 +3195,10 @@ void FUN_18002f970(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   code *pcStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -3230,10 +3245,10 @@ void FUN_18002fa70(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -3280,10 +3295,10 @@ void FUN_18002fb70(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   code *pcStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -3330,10 +3345,10 @@ void FUN_18002fc70(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -3380,10 +3395,10 @@ void FUN_18002fd70(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   undefined *puStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -3430,10 +3445,10 @@ void FUN_18002fe70(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -3480,10 +3495,10 @@ void FUN_18002ff70(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -3530,10 +3545,10 @@ void FUN_180030070(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   code *pcStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -3580,10 +3595,10 @@ void FUN_180030170(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   code *pcStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -3630,10 +3645,10 @@ void FUN_180030270(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   code *pcStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -3680,10 +3695,10 @@ void FUN_180030370(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -3730,10 +3745,10 @@ void FUN_180030470(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   code *pcStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -3780,10 +3795,10 @@ void FUN_180030570(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -3830,10 +3845,10 @@ void FUN_180030670(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   undefined *puStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -3880,10 +3895,10 @@ void FUN_180030770(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -3964,10 +3979,10 @@ void FUN_180031a10(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   code *pcStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -4014,10 +4029,10 @@ void FUN_180031b10(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   code *pcStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -4064,10 +4079,10 @@ void FUN_180031c10(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   code *pcStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -4114,10 +4129,10 @@ void FUN_180031d10(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   code *pcStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -4164,10 +4179,10 @@ void FUN_180031e10(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   code *pcStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -4214,10 +4229,10 @@ void FUN_180031f10(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   code *pcStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -4264,10 +4279,10 @@ void FUN_180032010(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -4314,10 +4329,10 @@ void FUN_180032110(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   code *pcStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -4364,10 +4379,10 @@ void FUN_180032210(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -4414,10 +4429,10 @@ void FUN_180032310(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   undefined *puStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -4464,10 +4479,10 @@ void FUN_180032410(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -4538,10 +4553,10 @@ void FUN_1800325a0(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   code *pcStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -4588,10 +4603,10 @@ void FUN_1800326a0(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   code *pcStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -4638,10 +4653,10 @@ void FUN_1800327a0(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -4688,10 +4703,10 @@ void FUN_1800328a0(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   code *pcStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -4738,10 +4753,10 @@ void FUN_1800329a0(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -4788,10 +4803,10 @@ void FUN_180032aa0(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   undefined *puStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -4838,10 +4853,10 @@ void FUN_180032ba0(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -5040,10 +5055,10 @@ void FUN_180033a50(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   code *pcStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -5090,10 +5105,10 @@ void FUN_180033b50(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   code *pcStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -5140,10 +5155,10 @@ void FUN_180033c50(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   code *pcStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -5190,10 +5205,10 @@ void FUN_180033d50(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   code *pcStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -5240,10 +5255,10 @@ void FUN_180033e50(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -5290,10 +5305,10 @@ void FUN_180033f50(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   code *pcStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -5340,10 +5355,10 @@ void FUN_180034050(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -5390,10 +5405,10 @@ void FUN_180034150(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   undefined *puStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -5440,10 +5455,10 @@ void FUN_180034250(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -5490,10 +5505,10 @@ void FUN_180034350(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   code *pcStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -5540,10 +5555,10 @@ void FUN_180034450(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   code *pcStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -5590,10 +5605,10 @@ void FUN_180034550(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -5640,10 +5655,10 @@ void FUN_180034650(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   code *pcStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -5690,10 +5705,10 @@ void FUN_180034750(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -5740,10 +5755,10 @@ void FUN_180034850(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   undefined *puStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -5790,10 +5805,10 @@ void FUN_180034950(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -5897,10 +5912,10 @@ void FUN_180034b40(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   code *pcStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -5947,10 +5962,10 @@ void FUN_180034c40(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   code *pcStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -5997,10 +6012,10 @@ void FUN_180034d40(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   code *pcStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -6047,10 +6062,10 @@ void FUN_180034e40(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   code *pcStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -6097,10 +6112,10 @@ void FUN_180034f40(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   code *pcStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -6147,10 +6162,10 @@ void FUN_180035040(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   code *pcStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -6197,10 +6212,10 @@ void FUN_180035140(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -6247,10 +6262,10 @@ void FUN_180035240(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   code *pcStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -6297,10 +6312,10 @@ void FUN_180035340(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -6347,10 +6362,10 @@ void FUN_180035440(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   undefined *puStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -6397,10 +6412,10 @@ void FUN_180035540(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -6447,10 +6462,10 @@ void FUN_180035640(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   code *pcStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -6497,10 +6512,10 @@ void FUN_180035740(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   code *pcStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -6547,10 +6562,10 @@ void FUN_180035840(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   code *pcStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -6597,10 +6612,10 @@ void FUN_180035940(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   code *pcStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -6647,10 +6662,10 @@ void FUN_180035a40(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -6697,10 +6712,10 @@ void FUN_180035b40(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   code *pcStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -6747,10 +6762,10 @@ void FUN_180035c40(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -6797,10 +6812,10 @@ void FUN_180035d40(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   undefined *puStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -6847,10 +6862,10 @@ void FUN_180035e40(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -6897,10 +6912,10 @@ void FUN_180035f50(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   code *pcStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -6947,10 +6962,10 @@ void FUN_180036050(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   code *pcStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -6997,10 +7012,10 @@ void FUN_180036150(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   code *pcStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -7047,10 +7062,10 @@ void FUN_180036250(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   code *pcStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -7097,10 +7112,10 @@ void FUN_180036350(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -7147,10 +7162,10 @@ void FUN_180036450(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   code *pcStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -7197,10 +7212,10 @@ void FUN_180036550(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   code *pcStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -7247,10 +7262,10 @@ void FUN_180036650(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -7297,10 +7312,10 @@ void FUN_180036750(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   code *pcStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -7347,10 +7362,10 @@ void FUN_180036850(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -7397,10 +7412,10 @@ void FUN_180036950(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   undefined *puStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -7447,10 +7462,10 @@ void FUN_180036a50(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -7577,10 +7592,10 @@ void FUN_180036df0(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   code *pcStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -7627,10 +7642,10 @@ void FUN_180036ef0(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   code *pcStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -7677,10 +7692,10 @@ void FUN_180036ff0(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -7727,10 +7742,10 @@ void FUN_1800370f0(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   code *pcStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -7777,10 +7792,10 @@ void FUN_1800371f0(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -7827,10 +7842,10 @@ void FUN_1800372f0(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   undefined *puStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -7877,10 +7892,10 @@ void FUN_1800373f0(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -7927,10 +7942,10 @@ void FUN_1800374f0(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -8001,10 +8016,10 @@ void FUN_180037680(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   code *pcStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -8051,10 +8066,10 @@ void FUN_180037780(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -8101,10 +8116,10 @@ void FUN_180037880(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -8151,10 +8166,10 @@ void FUN_180037980(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -8201,10 +8216,10 @@ void FUN_180037a80(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -8251,10 +8266,10 @@ void FUN_180037b80(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -8301,10 +8316,10 @@ void FUN_180037c80(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -8351,10 +8366,10 @@ void FUN_180037d80(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -8401,10 +8416,10 @@ void FUN_180037e80(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   code *pcStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -8451,10 +8466,10 @@ void FUN_180037f80(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -8501,10 +8516,10 @@ void FUN_180038080(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   code *pcStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -8767,10 +8782,10 @@ void FUN_1800386a0(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   code *pcStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -8817,10 +8832,10 @@ void FUN_1800387a0(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   code *pcStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -8867,10 +8882,10 @@ void FUN_1800388a0(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -8917,10 +8932,10 @@ void FUN_1800389a0(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   code *pcStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -8967,10 +8982,10 @@ void FUN_180038aa0(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -9017,10 +9032,10 @@ void FUN_180038ba0(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   undefined *puStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -9067,10 +9082,10 @@ void FUN_180038ca0(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -9117,10 +9132,10 @@ void FUN_180038da0(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   code *pcStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -9167,10 +9182,10 @@ void FUN_180038ea0(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   code *pcStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -9217,10 +9232,10 @@ void FUN_180038fa0(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -9267,10 +9282,10 @@ void FUN_1800390a0(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   code *pcStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -9317,10 +9332,10 @@ void FUN_1800391a0(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -9367,10 +9382,10 @@ void FUN_1800392a0(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   undefined *puStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -9417,10 +9432,10 @@ void FUN_1800393a0(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -9467,10 +9482,10 @@ void FUN_1800394a0(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   code *pcStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -9517,10 +9532,10 @@ void FUN_1800395a0(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   code *pcStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -9567,10 +9582,10 @@ void FUN_1800396a0(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -9617,10 +9632,10 @@ void FUN_1800397a0(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   code *pcStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -9667,10 +9682,10 @@ void FUN_1800398a0(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -9717,10 +9732,10 @@ void FUN_1800399a0(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   undefined *puStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -9767,10 +9782,10 @@ void FUN_180039aa0(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -9817,10 +9832,10 @@ void FUN_180039bb0(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   code *pcStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -9867,10 +9882,10 @@ void FUN_180039cb0(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   code *pcStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -9917,10 +9932,10 @@ void FUN_180039db0(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -9967,10 +9982,10 @@ void FUN_180039eb0(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   code *pcStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -10017,10 +10032,10 @@ void FUN_180039fb0(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -10067,10 +10082,10 @@ void FUN_18003a0b0(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   undefined *puStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -10117,10 +10132,10 @@ void FUN_18003a1b0(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -10172,10 +10187,10 @@ void InitializeSystemMemoryAllocatorSetup(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   code *pcStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -10227,10 +10242,10 @@ void InitializeSystemDataTableConfigurator(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -10277,10 +10292,10 @@ void FUN_18003a4b0(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -10327,10 +10342,10 @@ void FUN_18003a5b0(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -10377,10 +10392,10 @@ void FUN_18003a6b0(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -10427,10 +10442,10 @@ void FUN_18003a7b0(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -10477,10 +10492,10 @@ void FUN_18003a8b0(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -10527,10 +10542,10 @@ void FUN_18003a9b0(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -10577,10 +10592,10 @@ void FUN_18003aab0(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   code *pcStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -10627,10 +10642,10 @@ void FUN_18003abb0(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -10711,10 +10726,10 @@ void FUN_18003c1f0(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   code *pcStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -10761,10 +10776,10 @@ void FUN_18003c2f0(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -10811,10 +10826,10 @@ void FUN_18003c3f0(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -10861,10 +10876,10 @@ void FUN_18003c4f0(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -10911,10 +10926,10 @@ void FUN_18003c5f0(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -10961,10 +10976,10 @@ void FUN_18003c6f0(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -11011,10 +11026,10 @@ void FUN_18003c7f0(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -11061,10 +11076,10 @@ void FUN_18003c8f0(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -11111,10 +11126,10 @@ void FUN_18003c9f0(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   code *pcStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -11161,10 +11176,10 @@ void FUN_18003caf0(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -11259,10 +11274,10 @@ void FUN_18003cd10(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   code *pcStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -11309,10 +11324,10 @@ void FUN_18003ce10(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   code *pcStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -11359,10 +11374,10 @@ void FUN_18003cf10(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -11409,10 +11424,10 @@ void FUN_18003d010(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   code *pcStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -11459,10 +11474,10 @@ void FUN_18003d110(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -11509,10 +11524,10 @@ void FUN_18003d210(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   undefined *puStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -11559,10 +11574,10 @@ void FUN_18003d310(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -11619,10 +11634,10 @@ void FUN_18003de10(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   code *pcStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -11669,10 +11684,10 @@ void FUN_18003df10(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   code *pcStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -11719,10 +11734,10 @@ void FUN_18003e010(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   code *pcStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -11769,10 +11784,10 @@ void FUN_18003e110(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -11819,10 +11834,10 @@ void FUN_18003e210(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   code *pcStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -11869,10 +11884,10 @@ void FUN_18003e310(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -11919,10 +11934,10 @@ void FUN_18003e410(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   undefined *puStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -11969,10 +11984,10 @@ void FUN_18003e510(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -12019,10 +12034,10 @@ void FUN_18003e610(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   code *pcStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -12069,10 +12084,10 @@ void FUN_18003e710(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   code *pcStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -12119,10 +12134,10 @@ void FUN_18003e810(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -12169,10 +12184,10 @@ void FUN_18003e910(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   code *pcStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -12219,10 +12234,10 @@ void FUN_18003ea10(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -12269,10 +12284,10 @@ void FUN_18003eb10(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   undefined *puStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -12319,10 +12334,10 @@ void FUN_18003ec10(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -12456,10 +12471,10 @@ void FUN_18003ee90(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   code *pcStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -12506,10 +12521,10 @@ void FUN_18003ef90(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -12556,10 +12571,10 @@ void FUN_18003f090(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -12606,10 +12621,10 @@ void FUN_18003f190(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -12656,10 +12671,10 @@ void FUN_18003f290(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -12706,10 +12721,10 @@ void FUN_18003f390(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -12756,10 +12771,10 @@ void FUN_18003f490(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -12806,10 +12821,10 @@ void FUN_18003f590(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -12856,10 +12871,10 @@ void FUN_18003f690(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   code *pcStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -12906,10 +12921,10 @@ void FUN_18003f790(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -13062,10 +13077,10 @@ void FUN_18003fbb0(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -13112,10 +13127,10 @@ void FUN_18003fcb0(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -13162,10 +13177,10 @@ void FUN_18003fdb0(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   code *pcStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -13212,10 +13227,10 @@ void FUN_18003feb0(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -13262,10 +13277,10 @@ void FUN_18003ffb0(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -13312,10 +13327,10 @@ void FUN_1800400b0(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -13362,10 +13377,10 @@ void FUN_1800401b0(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -13412,10 +13427,10 @@ void FUN_1800402b0(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -13462,10 +13477,10 @@ void FUN_1800403b0(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -13512,10 +13527,10 @@ void FUN_1800404b0(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -13562,10 +13577,10 @@ void FUN_1800405b0(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   code *pcStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -13612,10 +13627,10 @@ void FUN_1800406b0(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -13662,10 +13677,10 @@ void FUN_1800408d0(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -13712,10 +13727,10 @@ void FUN_1800409d0(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -13762,10 +13777,10 @@ void FUN_180040ae0(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   code *pcStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -13812,10 +13827,10 @@ void FUN_180040be0(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   code *pcStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -13862,10 +13877,10 @@ void FUN_180040ce0(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   code *pcStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -13912,10 +13927,10 @@ void FUN_180040de0(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   code *pcStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -13962,10 +13977,10 @@ void FUN_180040ee0(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   code *pcStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -14012,10 +14027,10 @@ void FUN_180040fe0(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   code *pcStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -14062,10 +14077,10 @@ void FUN_1800410e0(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -14112,10 +14127,10 @@ void FUN_1800411e0(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   code *pcStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -14162,10 +14177,10 @@ void FUN_1800412e0(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -14212,10 +14227,10 @@ void FUN_1800413e0(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   undefined *puStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -14262,10 +14277,10 @@ void FUN_1800414e0(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -14312,10 +14327,10 @@ void FUN_1800415e0(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -14362,10 +14377,10 @@ void FUN_1800416e0(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -14412,10 +14427,10 @@ void FUN_1800417e0(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -14502,10 +14517,10 @@ void FUN_180041af0(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -14552,10 +14567,10 @@ void FUN_180041bf0(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -14602,10 +14617,10 @@ void FUN_180041d10(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -14652,10 +14667,10 @@ void FUN_180041e10(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -14738,10 +14753,10 @@ void FUN_180041fd0(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -14788,10 +14803,10 @@ void FUN_1800420d0(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -14838,10 +14853,10 @@ void FUN_1800421d0(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   code *pcStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -14888,10 +14903,10 @@ void FUN_1800422d0(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   code *pcStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -14938,10 +14953,10 @@ void FUN_1800423d0(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   code *pcStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -14988,10 +15003,10 @@ void FUN_1800424d0(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   code *pcStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -15038,10 +15053,10 @@ void FUN_1800425d0(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -15088,10 +15103,10 @@ void FUN_1800426d0(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   code *pcStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -15138,10 +15153,10 @@ void FUN_1800427d0(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -15188,10 +15203,10 @@ void FUN_1800428d0(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   undefined *puStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -15238,10 +15253,10 @@ void FUN_1800429d0(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -15288,10 +15303,10 @@ void FUN_180042ad0(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   code *pcStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -15338,10 +15353,10 @@ void FUN_180042bd0(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -15388,10 +15403,10 @@ void FUN_180042cd0(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -15438,10 +15453,10 @@ void FUN_180042dd0(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -15488,10 +15503,10 @@ void FUN_180042ed0(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -15538,10 +15553,10 @@ void FUN_180042fd0(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -15588,10 +15603,10 @@ void FUN_1800430d0(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -15638,10 +15653,10 @@ void FUN_1800431d0(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -15688,10 +15703,10 @@ void FUN_1800432d0(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   code *pcStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -15738,10 +15753,10 @@ void FUN_1800433d0(void)
   int memoryCompareResult;
   longlong *systemMemoryPointer;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
+  undefined8 *systemPreviousNode;
   undefined8 uStackX_18;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
@@ -16672,7 +16687,7 @@ void FUN_180044dc0(undefined8 param_1,longlong param_2)
   undefined8 uVar5;
   longlong *plVar6;
   longlong lVar7;
-  undefined8 *puVar8;
+  undefined8 *systemNextNode;
   undefined8 *puVar9;
   undefined8 *puVar10;
   undefined1 *puVar11;
@@ -18001,7 +18016,7 @@ void FUN_180046ca0(longlong *param_1,undefined8 *param_2)
 {
   longlong *plVar1;
   longlong *plStackX_8;
-  undefined8 *puStackX_10;
+  undefined8 *systemPreviousNode;
   longlong *plStackX_18;
   longlong **pplStackX_20;
   undefined4 uVar2;
@@ -18054,7 +18069,7 @@ void FUN_180046e20(void)
   longlong ***ppplVar4;
   ulonglong uVar5;
   longlong lVar6;
-  undefined8 *puVar7;
+  undefined8 *systemCurrentNode;
   undefined4 *puVar8;
   undefined1 *puVar9;
   undefined4 uVar10;
@@ -18358,8 +18373,8 @@ void FUN_180047e70(undefined8 param_1,undefined8 param_2,longlong param_3,undefi
   undefined8 *puVar4;
   uint uVar5;
   byte *pbVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
   undefined8 *puVar9;
   longlong lVar10;
   undefined8 uStackX_8;
@@ -18869,9 +18884,9 @@ longlong FUN_180048a90(longlong param_1,longlong param_2,undefined8 param_3,unde
   undefined4 uVar3;
   undefined4 uVar4;
   undefined8 uVar5;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
   undefined8 *puVar9;
   undefined8 uVar10;
   
@@ -20007,7 +20022,7 @@ undefined8 FUN_18004a220(longlong param_1,undefined4 param_2,undefined8 param_3,
   longlong lVar3;
   undefined8 *puVar4;
   undefined8 *puVar5;
-  undefined8 *puVar6;
+  undefined8 *systemRootNode;
   undefined8 uVar7;
   
   uVar7 = 0xfffffffffffffffe;
@@ -21666,7 +21681,7 @@ undefined8 * FUN_18004c480(undefined8 *param_1)
   longlong *plVar3;
   longlong lVar4;
   undefined4 *puVar5;
-  undefined8 *puVar6;
+  undefined8 *systemRootNode;
   longlong *plVar7;
   undefined4 *puVar8;
   undefined4 *puVar9;
@@ -22681,7 +22696,7 @@ void FUN_18004ef60(void)
   longlong lVar3;
   longlong lVar4;
   int *piVar5;
-  undefined8 *puVar6;
+  undefined8 *systemRootNode;
   undefined4 *puVar7;
   undefined *puVar8;
   char cVar9;
@@ -23351,8 +23366,8 @@ void FUN_180051150(longlong param_1,undefined8 param_2)
   int iVar4;
   undefined4 uVar5;
   undefined1 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
   longlong lVar9;
   uint uVar10;
   longlong lVar12;
@@ -23688,7 +23703,7 @@ bool FUN_180051f00(longlong param_1)
   uint uVar5;
   int iVar6;
   longlong lVar7;
-  undefined8 *puVar8;
+  undefined8 *systemNextNode;
   undefined8 *puVar9;
   undefined8 *puVar10;
   undefined8 *puVar11;
@@ -26008,7 +26023,7 @@ void FUN_180056810(longlong param_1)
   uint uVar3;
   longlong lVar4;
   undefined4 *puVar5;
-  undefined8 *puVar6;
+  undefined8 *systemRootNode;
   int iVar7;
   longlong lVar8;
   undefined *puVar9;
@@ -27786,7 +27801,7 @@ void FUN_180057f30(longlong *param_1)
   undefined8 *puVar4;
   undefined8 *puVar5;
   longlong lVar6;
-  undefined8 *puVar7;
+  undefined8 *systemCurrentNode;
   
   FUN_180057110();
   lVar1 = *param_1;
@@ -27854,8 +27869,8 @@ undefined8 * FUN_180058080(undefined8 *param_1,undefined8 *param_2,longlong para
   uint uVar4;
   int iVar5;
   longlong lVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
   undefined8 *puVar9;
   undefined8 *puVar10;
   
@@ -28081,7 +28096,7 @@ void FUN_1800584e0(undefined8 *param_1,longlong param_2)
   undefined8 *puVar4;
   longlong systemTimeValue;
   longlong lVar6;
-  undefined8 *puVar7;
+  undefined8 *systemCurrentNode;
   
   puVar7 = (undefined8 *)param_1[1];
   puVar4 = (undefined8 *)*param_1;
@@ -28923,7 +28938,7 @@ void FUN_180059000(longlong *param_1)
   undefined8 *puVar3;
   undefined8 *puVar4;
   undefined8 *puVar5;
-  undefined8 *puVar6;
+  undefined8 *systemRootNode;
   undefined4 uVar7;
   int iVar8;
   undefined8 uVar9;
@@ -30708,7 +30723,7 @@ void FUN_18005a200(undefined8 *param_1)
   ulonglong uVar4;
   undefined8 *puVar5;
   longlong lVar6;
-  undefined8 *puVar7;
+  undefined8 *systemCurrentNode;
   longlong lVar8;
   
   uVar3 = 0;
@@ -33600,7 +33615,7 @@ undefined8 * FUN_18005e950(undefined8 *param_1)
   undefined8 *puVar3;
   ulonglong uVar4;
   ulonglong uVar5;
-  undefined8 *puVar6;
+  undefined8 *systemRootNode;
   longlong lVar7;
   longlong lVar8;
   
@@ -34102,7 +34117,7 @@ undefined8 * FUN_18005ee30(longlong *param_1,char param_2,undefined1 *param_3)
   longlong lVar3;
   longlong lVar4;
   undefined8 *puVar5;
-  undefined8 *puVar6;
+  undefined8 *systemRootNode;
   ulonglong uVar7;
   ulonglong uVar8;
   bool bVar9;
@@ -34357,8 +34372,8 @@ undefined8 FUN_18005f340(longlong param_1,longlong param_2)
   undefined8 *puVar4;
   ulonglong uVar5;
   ulonglong uVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
+  undefined8 *systemCurrentNode;
+  undefined8 *systemNextNode;
   longlong lVar9;
   
   lVar2 = *(longlong *)(param_1 + 0x68);
@@ -34408,7 +34423,7 @@ undefined8 * FUN_18005f430(longlong param_1)
   longlong lVar3;
   undefined8 *puVar4;
   undefined8 *puVar5;
-  undefined8 *puVar6;
+  undefined8 *systemRootNode;
   ulonglong uVar7;
   longlong lVar8;
   longlong lVar9;
@@ -34481,7 +34496,7 @@ undefined8 FUN_18005f490(void)
   longlong *unaff_RDI;
   undefined8 *in_R9;
   undefined8 *puVar5;
-  undefined8 *puVar6;
+  undefined8 *systemRootNode;
   
   puVar6 = (undefined8 *)((ulonglong)(-(int)in_RAX & 7) + in_RAX);
   puVar5 = (undefined8 *)
@@ -36599,7 +36614,7 @@ void FUN_180062920(int *param_1)
   longlong lVar4;
   undefined4 *puVar5;
   char *pcVar6;
-  undefined8 *puVar7;
+  undefined8 *systemCurrentNode;
   int iVar8;
   ulonglong uVar9;
   undefined1 auStack_1f8 [64];
@@ -37463,8 +37478,8 @@ ulonglong FUN_1800649d0(undefined8 param_1)
   undefined *puVar3;
   undefined8 *puVar4;
   longlong systemTimeValue;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
+  undefined8 *systemRootNode;
+  undefined8 *systemCurrentNode;
   undefined *puStack_b8;
   longlong lStack_b0;
   int iStack_a8;
@@ -37875,7 +37890,7 @@ void FUN_180065160(undefined8 param_1)
   bool bVar3;
   undefined8 *puVar4;
   undefined8 *puVar5;
-  undefined8 *puVar6;
+  undefined8 *systemRootNode;
   char cVar7;
   int iVar8;
   longlong lVar9;
@@ -39499,11 +39514,11 @@ void FUN_180067840(longlong *param_1)
   longlong lVar4;
   undefined8 uVar5;
   undefined8 uVar6;
-  undefined8 *puVar7;
+  undefined8 *systemCurrentNode;
   longlong *plVar8;
   int iVar9;
   longlong lStackX_8;
-  undefined8 *puStackX_10;
+  undefined8 *systemPreviousNode;
   longlong lStack_c8;
   longlong lStack_c0;
   undefined8 uStack_b8;
@@ -39776,7 +39791,7 @@ undefined8 FUN_180068250(longlong param_1,longlong param_2,longlong param_3)
   int memoryCompareResult;
   undefined8 uVar4;
   ulonglong uVar5;
-  undefined8 *puVar6;
+  undefined8 *systemRootNode;
   ulonglong uVar7;
   ulonglong uVar8;
   
@@ -40744,7 +40759,7 @@ undefined8 * FUN_180069920(longlong *param_1)
   uint uVar5;
   ulonglong uVar6;
   ulonglong *puVar7;
-  undefined8 *puVar8;
+  undefined8 *systemNextNode;
   longlong lVar9;
   longlong lVar10;
   undefined8 *puVar11;
@@ -41815,7 +41830,7 @@ void FUN_18006c070(longlong param_1)
   byte *pbVar3;
   undefined8 uVar4;
   undefined8 *puVar5;
-  undefined8 *puVar6;
+  undefined8 *systemRootNode;
   bool bVar7;
   longlong lVar8;
   char cVar9;
@@ -42627,7 +42642,7 @@ undefined8 * FUN_18006d0b0(longlong *param_1)
   uint uVar5;
   ulonglong uVar6;
   ulonglong *puVar7;
-  undefined8 *puVar8;
+  undefined8 *systemNextNode;
   longlong lVar9;
   longlong lVar10;
   undefined8 *puVar11;
@@ -43961,7 +43976,7 @@ undefined8 * FUN_18006e660(undefined8 *param_1,undefined8 param_2,undefined8 par
   ulonglong uVar3;
   longlong lVar4;
   undefined8 *puVar5;
-  undefined8 *puVar6;
+  undefined8 *systemRootNode;
   longlong lVar7;
   
   FUN_180049830();
@@ -45855,7 +45870,7 @@ void FUN_180071940(undefined8 param_1,longlong param_2,undefined4 param_3,longlo
   longlong lVar4;
   undefined *puVar5;
   undefined4 *puVar6;
-  undefined8 *puVar7;
+  undefined8 *systemCurrentNode;
   undefined1 *puVar8;
   undefined *puVar9;
   longlong lVar10;
@@ -46735,7 +46750,7 @@ bool FUN_180072f00(undefined8 param_1,undefined8 *param_2)
   int memoryCompareResult;
   longlong lVar4;
   undefined8 *puVar5;
-  undefined8 *puVar6;
+  undefined8 *systemRootNode;
   undefined8 **ppuVar7;
   undefined1 *puVar8;
   undefined8 uVar9;
@@ -49011,7 +49026,7 @@ void FUN_180074c20(undefined8 *param_1,ulonglong param_2)
   longlong *systemMemoryPointer;
   longlong *plVar5;
   ulonglong uVar6;
-  undefined8 *puVar7;
+  undefined8 *systemCurrentNode;
   longlong lVar8;
   ulonglong uVar9;
   
@@ -50686,7 +50701,7 @@ int FUN_180076c50(longlong param_1,longlong *param_2)
   undefined4 extraout_XMM0_Da;
   undefined4 uVar15;
   undefined8 uStackX_8;
-  undefined8 *puStackX_10;
+  undefined8 *systemPreviousNode;
   undefined8 *puStackX_18;
   uint in_stack_ffffffffffffff38;
   undefined8 uVar16;
@@ -52868,7 +52883,7 @@ void FUN_1800781e0(longlong param_1)
   undefined4 uVar4;
   char cVar5;
   undefined1 uVar6;
-  undefined8 *puVar7;
+  undefined8 *systemCurrentNode;
   longlong lVar8;
   uint uVar9;
   bool bVar10;
@@ -52972,7 +52987,7 @@ void FUN_1800781f4(longlong param_1)
   char cVar5;
   undefined1 uVar6;
   longlong in_RAX;
-  undefined8 *puVar7;
+  undefined8 *systemCurrentNode;
   uint uVar8;
   longlong unaff_RBX;
   bool bVar9;
@@ -53074,7 +53089,7 @@ void FUN_180078239(float param_1,float param_2,float param_3,float param_4)
   char cVar5;
   undefined1 uVar6;
   longlong in_RAX;
-  undefined8 *puVar7;
+  undefined8 *systemCurrentNode;
   longlong in_RCX;
   uint uVar8;
   longlong unaff_RBX;
@@ -53176,7 +53191,7 @@ void FUN_1800782a8(longlong param_1)
   undefined4 uVar4;
   char cVar5;
   undefined1 uVar6;
-  undefined8 *puVar7;
+  undefined8 *systemCurrentNode;
   uint uVar8;
   longlong unaff_RBX;
   bool bVar9;
@@ -57100,7 +57115,7 @@ ulonglong FUN_18007b240(longlong param_1,longlong *param_2,byte param_3,char par
   int iVar4;
   byte bVar5;
   longlong lVar6;
-  undefined8 *puVar7;
+  undefined8 *systemCurrentNode;
   ulonglong uVar8;
   undefined8 uVar9;
   longlong *plVar10;
@@ -59837,7 +59852,7 @@ void FUN_18007f0e0(longlong param_1,longlong param_2,int param_3)
   longlong lVar8;
   ulonglong uVar9;
   longlong lVar10;
-  undefined8 *puVar6;
+  undefined8 *systemRootNode;
   
   uVar9 = (ulonglong)param_3;
   if (**(longlong **)(param_1 + 0x2d0) != 0) {
