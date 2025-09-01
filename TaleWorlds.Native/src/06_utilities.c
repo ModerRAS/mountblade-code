@@ -1747,7 +1747,7 @@ uint8_t SystemMemoryConfigDataDuovigesimal;
 uint8_t SystemMemoryConfigDataTemplateDuodenary;
 uint8_t SystemMemoryConfigDataTemplateSenary;
 uint8_t SystemMemoryConfigDataTemplateSeptenary;
-uint8_t SystemMemoryConfigDataTemplateCore;
+uint8_t SystemMemoryConfigDataCore;
 uint8_t SystemMemoryConfigDataTemplateOctonary;
 uint8_t SystemMemoryConfigDataTemplateNonary;
 uint8_t SystemMemoryConfigDataTemplateDenary;
@@ -8133,7 +8133,7 @@ void UpdateSystemConfigurationAndExecute(longlong configObject, longlong systemC
  * @param operationMode 操作模式，指定处理方式
  * @return uint8_t8 操作结果状态码，0表示成功，非0表示错误
  */
-uint8_t8 ValidateAndProcessObjectContextWithParameters(longlong objectContextParam,longlong validationContextParam,uint8_t8 param_3,uint8_t8 param_4)
+uint8_t8 ValidateAndProcessObjectContextWithParameters(longlong objectContext,longlong validationContext,uint8_t8 securityFlags,uint8_t8 operationMode)
 
 {
   float validationFloat;
@@ -10594,7 +10594,7 @@ uint8_t8 ReturnResourcePoolErrorCode(void)
 void ProcessResourceCalculationAndValidation(longlong objectContextParam,uint8_t1 *validationContextParam,int *param_3)
 
 {
-  byte bVar1;
+  byte encryptionShiftValue;
   longlong resourceTable;
   char cVar3;
   int iVar4;
@@ -10654,7 +10654,7 @@ void ProcessResourceCalculationAndValidation(longlong objectContextParam,uint8_t
         lVar6 = resourceTable - ((longlong)fVar11 + lVar6);
         *(longlong *)(objectContextParam + 0x98) = lVar6;
       }
-      bVar1 = *(byte *)(objectContextParam + 0x6c);
+      encryptionShiftValue = *(byte *)(objectContextParam + 0x6c);
       if (*(longlong *)(objectContextParam + 0xc0) != 0) {
         unsignedValue5 = ProcessSystemParameters(objectContextParam);
         iVar4 = (**(code **)(objectContextParam + 0xc0))
@@ -10662,7 +10662,7 @@ void ProcessResourceCalculationAndValidation(longlong objectContextParam,uint8_t
                           );
         if (iVar4 != 0) goto HandleSystemError;
       }
-      if (((((bVar1 & 2) != 0 || (longlong)fVar10 + lVar7 < resourceTable - lVar6) &&
+      if (((((encryptionShiftValue & 2) != 0 || (longlong)fVar10 + lVar7 < resourceTable - lVar6) &&
            (iVar4 = *piStack_6f0, *piStack_6f0 = iVar4 + 1, iVar4 < 10)) &&
           ((*(uint *)(objectContextParam + 0x6c) >> 0x18 & 1) == 0)) &&
          (((*(uint *)(objectContextParam + 0x6c) >> 0x19 & 1) != 0 && (iVar8 == *(int *)(objectContextParam + 0xb0))))) {
@@ -11677,7 +11677,7 @@ uint64_t ReturnArrayOperationError(void)
 ulonglong InitializeResourceTableStructure(longlong objectContextParam)
 
 {
-  byte *pbVar1;
+  byte *pencryptionShiftValue;
   uint8_t4 validationResult;
   uint8_t8 unsignedResult3;
   int iVar4;
@@ -11693,7 +11693,7 @@ ulonglong InitializeResourceTableStructure(longlong objectContextParam)
   int integerValue14;
   longlong localContextPointer5;
   int integerValue16;
-  bool bVar17;
+  bool encryptionShiftValue7;
   int aiStackX_8 [2];
   uint auStackX_10 [2];
   uint8_t8 uStackX_18;
@@ -11899,9 +11899,9 @@ ulonglong InitializeResourceTableStructure(longlong objectContextParam)
         } while ((aiStackX_8[0] != -1) &&
                 (aiStackX_8[0] = *(int *)(plocalContextPointer3[2] + 4 + localContextPointer5 * 0x10), aiStackX_8[0] != -1));
         iVar7 = integerValue11 + 1;
-        bVar17 = integerValue11 != -1;
+        encryptionShiftValue7 = integerValue11 != -1;
         integerValue11 = 0;
-        if (bVar17) {
+        if (encryptionShiftValue7) {
           integerValue11 = iVar7;
         }
         if (integerValue11 != (int)plocalContextPointer3[1]) {
@@ -11971,8 +11971,8 @@ LAB_18089638e:
   if (0 < *(int *)(objectContextParam + 0x20)) {
     do {
       uVar8 = (int)resourceHash0 + 1;
-      pbVar1 = (byte *)(unsignedValue6 + 0xb + *(longlong *)(objectContextParam + 0x18));
-      *pbVar1 = *pbVar1 & 0xfe;
+      pencryptionShiftValue = (byte *)(unsignedValue6 + 0xb + *(longlong *)(objectContextParam + 0x18));
+      *pencryptionShiftValue = *pencryptionShiftValue & 0xfe;
       unsignedValue6 = unsignedValue6 + 0xc;
       resourceHash0 = (ulonglong)uVar8;
     } while ((int)uVar8 < *(int *)(objectContextParam + 0x20));
@@ -21318,7 +21318,7 @@ ulonglong ResourceProcessingHandler(uint8_t8 objectContextParam)
   int integerValue18;
   uint8_t8 *unaff_R12;
   uint unaff_R15D;
-  bool bVar19;
+  bool encryptionShiftValue9;
   float extraout_XMM0_Da;
   float extraout_XMM0_Da_00;
   float extraout_XMM0_Da_01;
@@ -21489,7 +21489,7 @@ LAB_18089c586:
   }
 LAB_18089c300:
   if ((0x70 < *(uint *)(unaff_RDI + 8)) &&
-     (bVar19 = *(uint *)(unaff_RDI[1] + 0x18) == uVar8, uVar8 = unaff_R15D, bVar19)) {
+     (encryptionShiftValue9 = *(uint *)(unaff_RDI[1] + 0x18) == uVar8, uVar8 = unaff_R15D, encryptionShiftValue9)) {
     uVar8 = ReadResourceData(*unaff_RDI,unaff_RSI + 0x68,4);
     fVar20 = extraout_XMM0_Da_00;
   }
@@ -28531,10 +28531,10 @@ void ReleaseSecondarySystemResource(uint8_t8 objectContextParam, longlong valida
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_1809020f0(void)
+void ReleaseCriticalSectionAndResetEvent(void)
 
 {
-  byte bVar1;
+  byte encryptionShiftValue;
   
   EnterCriticalSection(0x180c82210);
   CriticalSectionLock = 0;
@@ -28546,11 +28546,11 @@ void Unwind_1809020f0(void)
     ResetEvent(SystemEventHandle);
     return;
   }
-  bVar1 = (byte)SecurityEncryptionKey & 0x3f;
+  encryptionShiftValue = (byte)SecurityEncryptionKey & 0x3f;
                     // WARNING: Could not recover jumptable at 0x0001808ffe70. Too many branches
                     // WARNING: Treating indirect jump as call
-  (*(code *)((SecurityEncryptionKey ^ SystemFunctionPointer) >> bVar1 |
-            (SecurityEncryptionKey ^ SystemFunctionPointer) << 0x40 - bVar1))(0x180c82238);
+  (*(code *)((SecurityEncryptionKey ^ SystemFunctionPointer) >> encryptionShiftValue |
+            (SecurityEncryptionKey ^ SystemFunctionPointer) << 0x40 - encryptionShiftValue))(0x180c82238);
   return;
 }
 
@@ -28558,10 +28558,10 @@ void Unwind_1809020f0(void)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_180902100(void)
+void ResetSystemUnwindFlag(void)
 
 {
-  byte bVar1;
+  byte encryptionShiftValue;
   
   EnterCriticalSection(0x180c82210);
   SystemUnwindFlag = 0;
@@ -28573,17 +28573,17 @@ void Unwind_180902100(void)
     ResetEvent(SystemEventHandle);
     return;
   }
-  bVar1 = (byte)SecurityEncryptionKey & 0x3f;
+  encryptionShiftValue = (byte)SecurityEncryptionKey & 0x3f;
                     // WARNING: Could not recover jumptable at 0x0001808ffe70. Too many branches
                     // WARNING: Treating indirect jump as call
-  (*(code *)((SecurityEncryptionKey ^ SystemFunctionPointer) >> bVar1 |
-            (SecurityEncryptionKey ^ SystemFunctionPointer) << 0x40 - bVar1))(0x180c82238);
+  (*(code *)((SecurityEncryptionKey ^ SystemFunctionPointer) >> encryptionShiftValue |
+            (SecurityEncryptionKey ^ SystemFunctionPointer) << 0x40 - encryptionShiftValue))(0x180c82238);
   return;
 }
 
 
 
-void Unwind_180902110(uint8_t8 objectContextParam,longlong validationContextParam,uint8_t8 param_3,uint8_t8 param_4)
+void ProcessObjectContextCleanup(uint8_t8 objectContextParam,longlong validationContextParam,uint8_t8 param_3,uint8_t8 param_4)
 
 {
   code *pcVar1;
@@ -28597,7 +28597,7 @@ void Unwind_180902110(uint8_t8 objectContextParam,longlong validationContextPara
 
 
 
-void Unwind_180902120(uint8_t8 objectContextParam,longlong validationContextParam)
+void ExecuteValidationCleanup(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
   if (*(longlong **)(validationContextParam + 0xa8) != (longlong *)0x0) {
@@ -46773,7 +46773,7 @@ void Unwind_180906bd0(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_180906c00(void)
 
 {
-  byte bVar1;
+  byte encryptionShiftValue;
   
   EnterCriticalSection(0x180c82210);
   MemoryAllocationCounter = 0;
@@ -46785,11 +46785,11 @@ void Unwind_180906c00(void)
     ResetEvent(SystemEventHandle);
     return;
   }
-  bVar1 = (byte)SecurityEncryptionKey & 0x3f;
+  encryptionShiftValue = (byte)SecurityEncryptionKey & 0x3f;
                     // WARNING: Could not recover jumptable at 0x0001808ffe70. Too many branches
                     // WARNING: Treating indirect jump as call
-  (*(code *)((SecurityEncryptionKey ^ SystemFunctionPointer) >> bVar1 |
-            (SecurityEncryptionKey ^ SystemFunctionPointer) << 0x40 - bVar1))(0x180c82238);
+  (*(code *)((SecurityEncryptionKey ^ SystemFunctionPointer) >> encryptionShiftValue |
+            (SecurityEncryptionKey ^ SystemFunctionPointer) << 0x40 - encryptionShiftValue))(0x180c82238);
   return;
 }
 
@@ -48304,7 +48304,7 @@ void Unwind_180907120(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_180907130(void)
 
 {
-  byte bVar1;
+  byte encryptionShiftValue;
   
   EnterCriticalSection(0x180c82210);
   uRam0000000180d49150 = 0;
@@ -48316,11 +48316,11 @@ void Unwind_180907130(void)
     ResetEvent(SystemEventHandle);
     return;
   }
-  bVar1 = (byte)SecurityEncryptionKey & 0x3f;
+  encryptionShiftValue = (byte)SecurityEncryptionKey & 0x3f;
                     // WARNING: Could not recover jumptable at 0x0001808ffe70. Too many branches
                     // WARNING: Treating indirect jump as call
-  (*(code *)((SecurityEncryptionKey ^ SystemFunctionPointer) >> bVar1 |
-            (SecurityEncryptionKey ^ SystemFunctionPointer) << 0x40 - bVar1))(0x180c82238);
+  (*(code *)((SecurityEncryptionKey ^ SystemFunctionPointer) >> encryptionShiftValue |
+            (SecurityEncryptionKey ^ SystemFunctionPointer) << 0x40 - encryptionShiftValue))(0x180c82238);
   return;
 }
 
@@ -50047,22 +50047,22 @@ void ProcessResourceCleanup(uint8_t8 objectContextParam,longlong validationConte
     return;
   }
   memoryAddress = (ulonglong)validationResult & 0xffffffffffc00000;
-  if (unsignedResult4 != 0) {
-    resourceIndex = unsignedResult4 + 0x80 + ((longlong)pvalidationResult - unsignedResult4 >> 0x10) * 0x50;
+  if (memoryAddress != 0) {
+    resourceIndex = memoryAddress + 0x80 + ((longlong)validationResult - memoryAddress >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(unsignedResult4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
-      *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      pintegerValue1 = (int *)(resourceIndex + 0x18);
-      *pintegerValue1 = *pintegerValue1 + -1;
-      if (*pintegerValue1 == 0) {
+    if ((*(void ***)(memoryAddress + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
+      *validationResult = *(uint8_t8 *)(resourceIndex + 0x20);
+      *(uint8_t8 **)(resourceIndex + 0x20) = validationResult;
+      referenceCount = (int *)(resourceIndex + 0x18);
+      *referenceCount = *referenceCount - 1;
+      if (*referenceCount == 0) {
         SystemCleanupHandler();
         return;
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
-                          pvalidationResult,unsignedResult4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryAddress,CONCAT71(0xff000000,*(void ***)(memoryAddress + 0x70) == &ExceptionList),
+                          validationResult,memoryAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -51587,7 +51587,7 @@ void Unwind_180908030(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_180908040(void)
 
 {
-  byte bVar1;
+  byte encryptionShiftValue;
   
   EnterCriticalSection(0x180c82210);
   MemoryOperationFlag = 0;
@@ -51599,11 +51599,11 @@ void Unwind_180908040(void)
     ResetEvent(SystemEventHandle);
     return;
   }
-  bVar1 = (byte)SecurityEncryptionKey & 0x3f;
+  encryptionShiftValue = (byte)SecurityEncryptionKey & 0x3f;
                     // WARNING: Could not recover jumptable at 0x0001808ffe70. Too many branches
                     // WARNING: Treating indirect jump as call
-  (*(code *)((SecurityEncryptionKey ^ SystemFunctionPointer) >> bVar1 |
-            (SecurityEncryptionKey ^ SystemFunctionPointer) << 0x40 - bVar1))(0x180c82238);
+  (*(code *)((SecurityEncryptionKey ^ SystemFunctionPointer) >> encryptionShiftValue |
+            (SecurityEncryptionKey ^ SystemFunctionPointer) << 0x40 - encryptionShiftValue))(0x180c82238);
   return;
 }
 
@@ -53962,7 +53962,7 @@ void Unwind_180908d00(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_180908d30(void)
 
 {
-  byte bVar1;
+  byte encryptionShiftValue;
   
   EnterCriticalSection(0x180c82210);
   SystemEventCleanupFlag = 0;
@@ -53974,11 +53974,11 @@ void Unwind_180908d30(void)
     ResetEvent(SystemEventHandle);
     return;
   }
-  bVar1 = (byte)SecurityEncryptionKey & 0x3f;
+  encryptionShiftValue = (byte)SecurityEncryptionKey & 0x3f;
                     // WARNING: Could not recover jumptable at 0x0001808ffe70. Too many branches
                     // WARNING: Treating indirect jump as call
-  (*(code *)((SecurityEncryptionKey ^ SystemFunctionPointer) >> bVar1 |
-            (SecurityEncryptionKey ^ SystemFunctionPointer) << 0x40 - bVar1))(0x180c82238);
+  (*(code *)((SecurityEncryptionKey ^ SystemFunctionPointer) >> encryptionShiftValue |
+            (SecurityEncryptionKey ^ SystemFunctionPointer) << 0x40 - encryptionShiftValue))(0x180c82238);
   return;
 }
 
@@ -58560,7 +58560,7 @@ void Unwind_18090a6d0(void)
 void Unwind_18090a6e0(void)
 
 {
-  byte bVar1;
+  byte encryptionShiftValue;
   
   EnterCriticalSection(0x180c82210);
   SystemGlobalDataBufferD49238 = 0;
@@ -58572,11 +58572,11 @@ void Unwind_18090a6e0(void)
     ResetEvent(SystemEventHandle);
     return;
   }
-  bVar1 = (byte)SecurityEncryptionKey & 0x3f;
+  encryptionShiftValue = (byte)SecurityEncryptionKey & 0x3f;
                     // WARNING: Could not recover jumptable at 0x0001808ffe70. Too many branches
                     // WARNING: Treating indirect jump as call
-  (*(code *)((SecurityEncryptionKey ^ SystemFunctionPointer) >> bVar1 |
-            (SecurityEncryptionKey ^ SystemFunctionPointer) << 0x40 - bVar1))(0x180c82238);
+  (*(code *)((SecurityEncryptionKey ^ SystemFunctionPointer) >> encryptionShiftValue |
+            (SecurityEncryptionKey ^ SystemFunctionPointer) << 0x40 - encryptionShiftValue))(0x180c82238);
   return;
 }
 
@@ -83957,7 +83957,7 @@ void Unwind_1809127c0(uint8_t8 objectContextParam,longlong validationContextPara
 void Unwind_1809127d0(void)
 
 {
-  byte bVar1;
+  byte encryptionShiftValue;
   
   EnterCriticalSection(0x180c82210);
   SystemMemoryManager = 0;
@@ -83969,11 +83969,11 @@ void Unwind_1809127d0(void)
     ResetEvent(SystemEventHandle);
     return;
   }
-  bVar1 = (byte)SecurityEncryptionKey & 0x3f;
+  encryptionShiftValue = (byte)SecurityEncryptionKey & 0x3f;
                     // WARNING: Could not recover jumptable at 0x0001808ffe70. Too many branches
                     // WARNING: Treating indirect jump as call
-  (*(code *)((SecurityEncryptionKey ^ SystemFunctionPointer) >> bVar1 |
-            (SecurityEncryptionKey ^ SystemFunctionPointer) << 0x40 - bVar1))(0x180c82238);
+  (*(code *)((SecurityEncryptionKey ^ SystemFunctionPointer) >> encryptionShiftValue |
+            (SecurityEncryptionKey ^ SystemFunctionPointer) << 0x40 - encryptionShiftValue))(0x180c82238);
   return;
 }
 
