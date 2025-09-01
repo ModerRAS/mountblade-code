@@ -643,10 +643,10 @@ void* SystemDataBufferPrimaryFirst;
 void* SystemDataBufferPrimarySecond;
 void* SystemDataBufferPrimaryThird;
 void* SystemDataBufferPrimaryFourth;
-void* SystemDataBufferPrimary005;
-void* SystemDataBufferPrimary006;
-void* SystemDataBufferPrimary007;
-void* SystemDataBufferPrimary008;
+void* SystemDataBufferPrimaryFifth;
+void* SystemDataBufferPrimarySixth;
+void* SystemDataBufferPrimarySeventh;
+void* SystemDataBufferPrimaryEighth;
 void* SystemDataBufferPrimary009;
 
 // 函数: 系统配置加载器 - 负责加载系统配置参数

@@ -175,10 +175,10 @@ void CloseSystemHandle(void);
  * @warning 调用此函数后，线程资源将被完全释放
  */
 void CleanupThreadResources(void);
-uint32_t ThreadResourceManagementFlag;
-void* CleanupContextPrimaryDataStorage;
-void* CleanupContextSecondaryDataStorage;
-void* CleanupResourceManagementHandle;
+uint32_t ThreadResourceCleanupFlag;
+void* ThreadCleanupPrimaryDataStorage;
+void* ThreadCleanupSecondaryDataStorage;
+void* ThreadCleanupResourceHandle;
 void* CleanupContextTertiaryDataStorage;
 
  /**
