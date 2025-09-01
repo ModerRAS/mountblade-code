@@ -64996,6 +64996,17 @@ void* FUN_180779635(int param_1,void* param_2,void* param_3,float param_4)
 
 
 
+/**
+ * @brief 计算旋转变换矩阵
+ * 
+ * 该函数根据给定的旋转位数计算变换矩阵，用于3D图形渲染中的旋转操作。
+ * 这是一个复杂的数学计算函数，涉及位操作、三角函数和矩阵运算。
+ * 
+ * @param transformContext 变换上下文指针，包含变换所需的数据
+ * @param rotationBits 旋转位数，控制旋转的精度
+ * @return 变换结果指针
+ * @note 这是一个简化的实现，部分变量名仍需要进一步美化
+ */
 void* CalculateRotationTransform(long long transformContext, uint rotationBits)
 
 {
@@ -65024,11 +65035,11 @@ void* CalculateRotationTransform(long long transformContext, uint rotationBits)
   float tempFloat2;
   uint32_t loopCounter;
   
-  uVar8 = (ulong long)param_2;
-  uStackX_10 = 1;
-  iVar5 = 1 << ((byte)param_2 & 0x1f);
-  uVar6 = iVar5 / 2;
-  if (0 < (int)param_2) {
+  maxBits = (ulong long)rotationBits;
+  loopCounter = 1;
+  bitMask = 1 << ((byte)rotationBits & 0x1f);
+  halfRange = bitMask / 2;
+  if (0 < (int)rotationBits) {
     do {
       iVar13 = 0;
       if (0 < (int)uStackX_10) {
