@@ -2749,8 +2749,8 @@ undefined SystemConfigEntry09;
 undefined SystemConfigEntry10;
 undefined SystemConfigEntry11;
 undefined SystemConfigEntry12;
-byte DAT_180c91d14;
-undefined DAT_180c91d18;
+byte SystemConfigurationFlag;
+undefined SystemStatusIndicator;
 undefined SystemConfigEntry13;
 undefined SystemConfigEntry14;
 undefined SystemConfigEntry15;
@@ -31090,8 +31090,8 @@ void Unwind_180902d40(undefined8 param_1,longlong param_2)
   _Mtx_destroy_in_situ();
   RegisterResourceHandler(lVar1 + 0x3e0,0x20,0x20,ReleaseSystemResource,validationResult);
   InitializeResourceSystem();
-  RegisterResourceHandler(lVar1 + 0x138,8,0x20,FUN_180045af0);
-  RegisterResourceHandler(lVar1 + 0x38,8,0x20,FUN_180045af0);
+  RegisterResourceHandler(lVar1 + 0x138,8,0x20,ProcessResourceOperation);
+  RegisterResourceHandler(lVar1 + 0x38,8,0x20,ProcessResourceOperation);
   return;
 }
 
@@ -31119,7 +31119,7 @@ void Unwind_180902d50(undefined8 param_1,longlong param_2)
     (**(code **)(**(longlong **)(resourceTable + 0x15d0) + 0x38))();
   }
   RegisterResourceHandler(resourceTable + 0x8e0,0x20,0x50,ReleaseSystemResource,uVar3);
-  RegisterResourceHandler(resourceTable + 0x8b8,8,4,FUN_180045af0);
+  RegisterResourceHandler(resourceTable + 0x8b8,8,4,ProcessResourceOperation);
   plVar1 = *(longlong **)(resourceTable + 0x8b0);
   if (plVar1 != (longlong *)0x0) {
     (**(code **)(*plVar1 + 0x38))();
@@ -38586,7 +38586,7 @@ void Unwind_1809048f0(undefined8 param_1,longlong param_2)
 void Unwind_180904900(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
 
 {
-  FUN_18005d260(*(longlong *)(param_2 + 0x40),*(undefined8 *)(*(longlong *)(param_2 + 0x40) + 0x10),
+  ProcessResourceData(*(longlong *)(param_2 + 0x40),*(undefined8 *)(*(longlong *)(param_2 + 0x40) + 0x10),
                 param_3,param_4,0xfffffffffffffffe);
   return;
 }
@@ -38596,7 +38596,7 @@ void Unwind_180904900(undefined8 param_1,longlong param_2,undefined8 param_3,und
 void Unwind_180904910(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
 
 {
-  FUN_18005d260(*(longlong *)(param_2 + 0x40),*(undefined8 *)(*(longlong *)(param_2 + 0x40) + 0x10),
+  ProcessResourceData(*(longlong *)(param_2 + 0x40),*(undefined8 *)(*(longlong *)(param_2 + 0x40) + 0x10),
                 param_3,param_4,0xfffffffffffffffe);
   return;
 }
@@ -45483,7 +45483,7 @@ void Unwind_180906740(undefined8 param_1,longlong param_2)
 void Unwind_180906760(undefined8 param_1,longlong param_2)
 
 {
-  FUN_180080870(*(longlong *)(param_2 + 0xa0) + 0x2f0);
+  FinalizeResourceOperation(*(longlong *)(param_2 + 0xa0) + 0x2f0);
   return;
 }
 
@@ -45675,7 +45675,7 @@ void Unwind_1809068b0(undefined8 param_1,longlong param_2)
 void Unwind_1809068d0(undefined8 param_1,longlong param_2)
 
 {
-  FUN_1800809a0(*(longlong *)(param_2 + 0x50) + 0x2e0);
+  ExecuteResourceOperation(*(longlong *)(param_2 + 0x50) + 0x2e0);
   return;
 }
 
@@ -45684,7 +45684,7 @@ void Unwind_1809068d0(undefined8 param_1,longlong param_2)
 void Unwind_1809068f0(undefined8 param_1,longlong param_2)
 
 {
-  FUN_180080870(*(longlong *)(param_2 + 0x50) + 0x2f0);
+  ValidateResourceParameters(*(longlong *)(param_2 + 0x50) + 0x2f0);
   return;
 }
 
@@ -45693,7 +45693,7 @@ void Unwind_1809068f0(undefined8 param_1,longlong param_2)
 void Unwind_180906910(undefined8 param_1,longlong param_2)
 
 {
-  RegisterResourceHandler(*(undefined8 *)(param_2 + 0x28),0x18,0x10,FUN_18007bb70);
+  RegisterResourceHandler(*(undefined8 *)(param_2 + 0x28),0x18,0x10,HandleResourceEvent);
   return;
 }
 
@@ -45734,7 +45734,7 @@ void Unwind_180906950(undefined8 param_1,longlong param_2)
 void Unwind_180906960(undefined8 param_1,longlong param_2)
 
 {
-  FUN_18007f6a0();
+  BeginResourceTransaction();
   if (*(longlong **)(param_2 + 0x58) != (longlong *)0x0) {
     (**(code **)(**(longlong **)(param_2 + 0x58) + 0x38))();
   }
@@ -45746,7 +45746,7 @@ void Unwind_180906960(undefined8 param_1,longlong param_2)
 void Unwind_180906970(undefined8 param_1,longlong param_2)
 
 {
-  FUN_18007f840(param_2 + 0x28);
+  CommitResourceTransaction(param_2 + 0x28);
   return;
 }
 
@@ -45766,7 +45766,7 @@ void Unwind_180906980(undefined8 param_1,longlong param_2)
 void Unwind_180906990(undefined8 param_1,longlong param_2)
 
 {
-  FUN_18007f840(param_2 + 0x40);
+  CommitResourceTransaction(param_2 + 0x40);
   return;
 }
 
@@ -45786,7 +45786,7 @@ void Unwind_1809069a0(undefined8 param_1,longlong param_2)
 void Unwind_1809069b0(undefined8 param_1,longlong param_2)
 
 {
-  FUN_18007f6a0();
+  BeginResourceTransaction();
   if (*(longlong **)(param_2 + 0x48) != (longlong *)0x0) {
     (**(code **)(**(longlong **)(param_2 + 0x48) + 0x38))();
   }
@@ -45812,9 +45812,9 @@ void Unwind_1809069d0(undefined8 param_1,longlong param_2)
   longlong *plVar1;
   
   if (*(longlong *)(param_2 + 0x68) != 0) {
-    FUN_18022f390();
+    RollbackResourceTransaction();
   }
-  FUN_18007f6a0(param_2 + 0x78);
+  BeginResourceTransaction(param_2 + 0x78);
   if (*(longlong **)(param_2 + 0x90) != (longlong *)0x0) {
     (**(code **)(**(longlong **)(param_2 + 0x90) + 0x38))();
   }
@@ -45833,7 +45833,7 @@ void Unwind_1809069d0(undefined8 param_1,longlong param_2)
 void Unwind_1809069e0(undefined8 param_1,longlong param_2)
 
 {
-  FUN_18007f840(param_2 + 0x50);
+  CommitResourceTransaction(param_2 + 0x50);
   return;
 }
 
@@ -45856,9 +45856,9 @@ void Unwind_180906a00(undefined8 param_1,longlong param_2)
   longlong *plVar1;
   
   if (*(longlong *)(param_2 + 0xa0) != 0) {
-    FUN_18022f390();
+    RollbackResourceTransaction();
   }
-  FUN_18007f6a0(param_2 + 0xb0);
+  BeginResourceTransaction(param_2 + 0xb0);
   if (*(longlong **)(param_2 + 200) != (longlong *)0x0) {
     (**(code **)(**(longlong **)(param_2 + 200) + 0x38))();
   }
@@ -45910,7 +45910,7 @@ void Unwind_180906a30(undefined8 param_1,longlong param_2)
 void Unwind_180906a40(undefined8 param_1,longlong param_2)
 
 {
-  FUN_18007f6a0();
+  BeginResourceTransaction();
   if (*(longlong **)(param_2 + 0x90) != (longlong *)0x0) {
     (**(code **)(**(longlong **)(param_2 + 0x90) + 0x38))();
   }
@@ -45958,7 +45958,7 @@ void Unwind_180906a70(undefined8 param_1,longlong param_2)
 void Unwind_180906a80(undefined8 param_1,longlong param_2)
 
 {
-  FUN_18007f6a0();
+  BeginResourceTransaction();
   if (*(longlong **)(param_2 + 200) != (longlong *)0x0) {
     (**(code **)(**(longlong **)(param_2 + 200) + 0x38))();
   }
@@ -45972,7 +45972,7 @@ void Unwind_180906a90(undefined8 param_1,longlong param_2)
 {
   if ((*(uint *)(resourceData + 0x20) & 1) != 0) {
     *(uint *)(resourceData + 0x20) = *(uint *)(resourceData + 0x20) & 0xfffffffe;
-    FUN_180045af0(*(undefined8 *)(param_2 + 0x58));
+    ProcessResourceOperation(*(undefined8 *)(param_2 + 0x58));
   }
   return;
 }
@@ -45985,9 +45985,9 @@ void Unwind_180906ac0(undefined8 param_1,longlong param_2)
   longlong *plVar1;
   
   if (*(longlong *)(param_2 + 0x28) != 0) {
-    FUN_18022f390();
+    RollbackResourceTransaction();
   }
-  FUN_18007f6a0(param_2 + 0x38);
+  BeginResourceTransaction(param_2 + 0x38);
   if (*(longlong **)(param_2 + 0x50) != (longlong *)0x0) {
     (**(code **)(**(longlong **)(param_2 + 0x50) + 0x38))();
   }
@@ -46017,7 +46017,7 @@ void Unwind_180906ad0(undefined8 param_1,longlong param_2)
 void Unwind_180906ae0(undefined8 param_1,longlong param_2)
 
 {
-  FUN_18007f6a0();
+  BeginResourceTransaction();
   if (*(longlong **)(param_2 + 0x50) != (longlong *)0x0) {
     (**(code **)(**(longlong **)(param_2 + 0x50) + 0x38))();
   }
@@ -46195,9 +46195,9 @@ void Unwind_180906b70(undefined8 param_1,longlong param_2)
   longlong *plVar1;
   
   if (*(longlong *)(param_2 + 0x30) != 0) {
-    FUN_18022f390();
+    RollbackResourceTransaction();
   }
-  FUN_18007f6a0(param_2 + 0x40);
+  BeginResourceTransaction(param_2 + 0x40);
   if (*(longlong **)(param_2 + 0x58) != (longlong *)0x0) {
     (**(code **)(**(longlong **)(param_2 + 0x58) + 0x38))();
   }
@@ -46227,7 +46227,7 @@ void Unwind_180906b80(undefined8 param_1,longlong param_2)
 void Unwind_180906b90(undefined8 param_1,longlong param_2)
 
 {
-  FUN_18007f6a0();
+  BeginResourceTransaction();
   if (*(longlong **)(param_2 + 0x58) != (longlong *)0x0) {
     (**(code **)(**(longlong **)(param_2 + 0x58) + 0x38))();
   }
@@ -46325,7 +46325,7 @@ void Unwind_180906bc0(undefined8 param_1,longlong param_2)
 void Unwind_180906bd0(undefined8 param_1,longlong param_2)
 
 {
-  RegisterResourceHandler(*(longlong *)(param_2 + 0x40) + 8,8,7,FUN_180045af0);
+  RegisterResourceHandler(*(longlong *)(param_2 + 0x40) + 8,8,7,ProcessResourceOperation);
   return;
 }
 
@@ -46372,7 +46372,7 @@ void Unwind_180906c10(void)
 void Unwind_180906c20(undefined8 param_1,longlong param_2)
 
 {
-  FUN_18007f6a0();
+  BeginResourceTransaction();
   if (*(longlong **)(param_2 + 0x60) != (longlong *)0x0) {
     (**(code **)(**(longlong **)(param_2 + 0x60) + 0x38))();
   }
@@ -47224,7 +47224,7 @@ void Unwind_180906de0(undefined8 param_1,longlong param_2)
 void Unwind_180906df0(undefined8 param_1,longlong param_2)
 
 {
-  FUN_18007f840(param_2 + 0xd8);
+  CommitResourceTransaction(param_2 + 0xd8);
   return;
 }
 
@@ -47277,7 +47277,7 @@ void Unwind_180906e30(undefined8 param_1,longlong param_2)
 void Unwind_180906e40(undefined8 param_1,longlong param_2)
 
 {
-  FUN_18007f6a0();
+  BeginResourceTransaction();
   if (*(longlong **)(param_2 + 0xd0) != (longlong *)0x0) {
     (**(code **)(**(longlong **)(param_2 + 0xd0) + 0x38))();
   }
@@ -47521,7 +47521,7 @@ void Unwind_180906f50(undefined8 param_1,longlong param_2)
 void Unwind_180906f60(undefined8 param_1,longlong param_2)
 
 {
-  FUN_18007f6a0();
+  BeginResourceTransaction();
   if (*(longlong **)(param_2 + 0x40) != (longlong *)0x0) {
     (**(code **)(**(longlong **)(param_2 + 0x40) + 0x38))();
   }
@@ -47558,7 +47558,7 @@ void Unwind_180906f80(undefined8 param_1,longlong param_2)
 void Unwind_180906f90(undefined8 param_1,longlong param_2)
 
 {
-  RegisterResourceHandler(*(undefined8 *)(param_2 + 0x50),0x18,0x10,FUN_18007bb70);
+  RegisterResourceHandler(*(undefined8 *)(param_2 + 0x50),0x18,0x10,HandleResourceEvent);
   return;
 }
 
@@ -47567,7 +47567,7 @@ void Unwind_180906f90(undefined8 param_1,longlong param_2)
 void Unwind_180906fc0(undefined8 param_1,longlong param_2)
 
 {
-  RegisterResourceHandler(*(undefined8 *)(param_2 + 0x50),0x18,0x10,FUN_18007bb70);
+  RegisterResourceHandler(*(undefined8 *)(param_2 + 0x50),0x18,0x10,HandleResourceEvent);
   return;
 }
 
@@ -47894,7 +47894,7 @@ void Unwind_180907140(undefined8 param_1,longlong param_2)
 {
   if ((*(uint *)(resourceData + 0x20) & 1) != 0) {
     *(uint *)(resourceData + 0x20) = *(uint *)(resourceData + 0x20) & 0xfffffffe;
-    FUN_180045af0(param_2 + 0x178);
+    ProcessResourceOperation(param_2 + 0x178);
   }
   return;
 }
@@ -47949,7 +47949,7 @@ void Unwind_1809071a0(undefined8 param_1,longlong param_2)
 void Unwind_1809071b0(undefined8 param_1,longlong param_2)
 
 {
-  FUN_18007f840(param_2 + 0x38);
+  CommitResourceTransaction(param_2 + 0x38);
   return;
 }
 
@@ -48421,7 +48421,7 @@ void Unwind_180907400(undefined8 param_1,longlong param_2)
 {
   if ((*(uint *)(resourceData + 0x20) & 1) != 0) {
     *(uint *)(resourceData + 0x20) = *(uint *)(resourceData + 0x20) & 0xfffffffe;
-    FUN_180045af0(*(undefined8 *)(param_2 + 0x30));
+    ProcessResourceOperation(*(undefined8 *)(param_2 + 0x30));
   }
   return;
 }
@@ -48442,7 +48442,7 @@ void Unwind_180907440(undefined8 param_1,longlong param_2)
 {
   if ((*(uint *)(resourceData + 0x20) & 2) != 0) {
     *(uint *)(resourceData + 0x20) = *(uint *)(resourceData + 0x20) & 0xfffffffd;
-    FUN_180045af0(*(undefined8 *)(param_2 + 0x30));
+    ProcessResourceOperation(*(undefined8 *)(param_2 + 0x30));
   }
   return;
 }
@@ -48454,7 +48454,7 @@ void Unwind_180907470(undefined8 param_1,longlong param_2)
 {
   if ((*(uint *)(resourceData + 0x20) & 1) != 0) {
     *(uint *)(resourceData + 0x20) = *(uint *)(resourceData + 0x20) & 0xfffffffe;
-    FUN_180045af0(param_2 + 0x28);
+    ProcessResourceOperation(param_2 + 0x28);
   }
   return;
 }
@@ -48466,7 +48466,7 @@ void Unwind_1809074a0(undefined8 param_1,longlong param_2)
 {
   if ((*(uint *)(resourceData + 0x20) & 2) != 0) {
     *(uint *)(resourceData + 0x20) = *(uint *)(resourceData + 0x20) & 0xfffffffd;
-    FUN_180045af0(param_2 + 0x28);
+    ProcessResourceOperation(param_2 + 0x28);
   }
   return;
 }
@@ -48586,7 +48586,7 @@ void Unwind_180907500(undefined8 param_1,longlong param_2)
 {
   if ((*(uint *)(resourceData + 0x20) & 1) != 0) {
     *(uint *)(resourceData + 0x20) = *(uint *)(resourceData + 0x20) & 0xfffffffe;
-    FUN_180045af0(*(undefined8 *)(param_2 + 0x78));
+    ProcessResourceOperation(*(undefined8 *)(param_2 + 0x78));
   }
   return;
 }
@@ -48823,7 +48823,7 @@ void Unwind_180907630(undefined8 param_1,longlong param_2)
 void Unwind_180907640(undefined8 param_1,longlong param_2)
 
 {
-  RegisterResourceHandler(*(longlong *)(param_2 + 0x40) + 0x18,8,0x10,FUN_180045af0);
+  RegisterResourceHandler(*(longlong *)(param_2 + 0x40) + 0x18,8,0x10,ProcessResourceOperation);
   return;
 }
 
@@ -48832,7 +48832,7 @@ void Unwind_180907640(undefined8 param_1,longlong param_2)
 void Unwind_180907670(undefined8 param_1,longlong param_2)
 
 {
-  RegisterResourceHandler(*(longlong *)(param_2 + 0x50) + 0x18,8,0x10,FUN_180045af0);
+  RegisterResourceHandler(*(longlong *)(param_2 + 0x50) + 0x18,8,0x10,ProcessResourceOperation);
   return;
 }
 
@@ -49177,7 +49177,7 @@ void Unwind_180907810(undefined8 param_1,longlong param_2,undefined8 param_3,und
 void Unwind_180907820(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
 
 {
-  FUN_18005d260(*(longlong *)(param_2 + 0x20) + 0x48,
+  ProcessResourceData(*(longlong *)(param_2 + 0x20) + 0x48,
                 *(undefined8 *)(*(longlong *)(param_2 + 0x20) + 0x58),param_3,param_4,
                 0xfffffffffffffffe);
   return;
@@ -49311,7 +49311,7 @@ void Unwind_1809078b0(undefined8 param_1,longlong param_2,undefined8 param_3,und
 void Unwind_1809078c0(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
 
 {
-  FUN_18005d260(*(longlong *)(param_2 + 0x28),*(undefined8 *)(*(longlong *)(param_2 + 0x28) + 0x10),
+  ProcessResourceData(*(longlong *)(param_2 + 0x28),*(undefined8 *)(*(longlong *)(param_2 + 0x28) + 0x10),
                 param_3,param_4,0xfffffffffffffffe);
   return;
 }
@@ -49321,7 +49321,7 @@ void Unwind_1809078c0(undefined8 param_1,longlong param_2,undefined8 param_3,und
 void Unwind_1809078d0(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
 
 {
-  FUN_18005d260(*(longlong *)(param_2 + 0x28),*(undefined8 *)(*(longlong *)(param_2 + 0x28) + 0x10),
+  ProcessResourceData(*(longlong *)(param_2 + 0x28),*(undefined8 *)(*(longlong *)(param_2 + 0x28) + 0x10),
                 param_3,param_4,0xfffffffffffffffe);
   return;
 }
@@ -49690,7 +49690,7 @@ void Unwind_180907a10(undefined8 param_1,longlong param_2)
 void Unwind_180907a20(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
 
 {
-  FUN_18005d260(param_2 + 0xe8,*(undefined8 *)(param_2 + 0xf8),param_3,param_4,0xfffffffffffffffe);
+  ProcessResourceData(param_2 + 0xe8,*(undefined8 *)(param_2 + 0xf8),param_3,param_4,0xfffffffffffffffe);
   return;
 }
 
@@ -49805,7 +49805,7 @@ void Unwind_180907a60(undefined8 param_1,longlong param_2)
 void Unwind_180907a70(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
 
 {
-  FUN_18005d260(param_2 + 0xe8,*(undefined8 *)(param_2 + 0xf8),param_3,param_4,0xfffffffffffffffe);
+  ProcessResourceData(param_2 + 0xe8,*(undefined8 *)(param_2 + 0xf8),param_3,param_4,0xfffffffffffffffe);
   return;
 }
 
@@ -49814,7 +49814,7 @@ void Unwind_180907a70(undefined8 param_1,longlong param_2,undefined8 param_3,und
 void Unwind_180907a80(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
 
 {
-  FUN_18005d260(param_2 + 0xe8,*(undefined8 *)(param_2 + 0xf8),param_3,param_4,0xfffffffffffffffe);
+  ProcessResourceData(param_2 + 0xe8,*(undefined8 *)(param_2 + 0xf8),param_3,param_4,0xfffffffffffffffe);
   return;
 }
 
@@ -51580,7 +51580,7 @@ void Catch_180908290(undefined8 param_1,longlong param_2)
 void Unwind_1809082c0(undefined8 param_1,longlong param_2)
 
 {
-  RegisterResourceHandler(*(longlong *)(param_2 + 0x80) + 8,8,0x20,FUN_180045af0);
+  RegisterResourceHandler(*(longlong *)(param_2 + 0x80) + 8,8,0x20,ProcessResourceOperation);
   return;
 }
 
@@ -51589,7 +51589,7 @@ void Unwind_1809082c0(undefined8 param_1,longlong param_2)
 void Unwind_180908300(undefined8 param_1,longlong param_2)
 
 {
-  RegisterResourceHandler(*(longlong *)(param_2 + 0x80) + 0x108,8,0x20,FUN_180045af0);
+  RegisterResourceHandler(*(longlong *)(param_2 + 0x80) + 0x108,8,0x20,ProcessResourceOperation);
   return;
 }
 
@@ -51662,7 +51662,7 @@ void Unwind_1809083e0(undefined8 param_1,longlong param_2)
 void Unwind_1809083f0(undefined8 param_1,longlong param_2)
 
 {
-  RegisterResourceHandler(*(longlong *)(param_2 + 0x40) + 8,8,0x20,FUN_180045af0);
+  RegisterResourceHandler(*(longlong *)(param_2 + 0x40) + 8,8,0x20,ProcessResourceOperation);
   return;
 }
 
@@ -51671,7 +51671,7 @@ void Unwind_1809083f0(undefined8 param_1,longlong param_2)
 void Unwind_180908420(undefined8 param_1,longlong param_2)
 
 {
-  RegisterResourceHandler(*(longlong *)(param_2 + 0x40) + 0x108,8,0x20,FUN_180045af0);
+  RegisterResourceHandler(*(longlong *)(param_2 + 0x40) + 0x108,8,0x20,ProcessResourceOperation);
   return;
 }
 
@@ -51730,7 +51730,7 @@ void Unwind_1809084c0(undefined8 param_1,longlong param_2)
 void Unwind_1809084f0(undefined8 param_1,longlong param_2)
 
 {
-  RegisterResourceHandler(*(longlong *)(param_2 + 0x40) + 8,8,4,FUN_180045af0);
+  RegisterResourceHandler(*(longlong *)(param_2 + 0x40) + 8,8,4,ProcessResourceOperation);
   return;
 }
 
@@ -51807,7 +51807,7 @@ void Unwind_1809085c0(undefined8 param_1,longlong param_2)
 void Unwind_1809085d0(undefined8 param_1,longlong param_2)
 
 {
-  RegisterResourceHandler(*(longlong *)(param_2 + 0x50) + 8,8,4,FUN_180045af0);
+  RegisterResourceHandler(*(longlong *)(param_2 + 0x50) + 8,8,4,ProcessResourceOperation);
   return;
 }
 
@@ -51883,8 +51883,8 @@ void Unwind_180908660(undefined8 param_1,longlong param_2)
   _Mtx_destroy_in_situ();
   RegisterResourceHandler(lVar1 + 0x3e0,0x20,0x20,ReleaseSystemResource,validationResult);
   InitializeResourceSystem();
-  RegisterResourceHandler(lVar1 + 0x138,8,0x20,FUN_180045af0);
-  RegisterResourceHandler(lVar1 + 0x38,8,0x20,FUN_180045af0);
+  RegisterResourceHandler(lVar1 + 0x138,8,0x20,ProcessResourceOperation);
+  RegisterResourceHandler(lVar1 + 0x38,8,0x20,ProcessResourceOperation);
   return;
 }
 
@@ -51912,7 +51912,7 @@ void Unwind_180908670(undefined8 param_1,longlong param_2)
     (**(code **)(**(longlong **)(resourceTable + 0x15d0) + 0x38))();
   }
   RegisterResourceHandler(resourceTable + 0x8e0,0x20,0x50,ReleaseSystemResource,uVar3);
-  RegisterResourceHandler(resourceTable + 0x8b8,8,4,FUN_180045af0);
+  RegisterResourceHandler(resourceTable + 0x8b8,8,4,ProcessResourceOperation);
   plVar1 = *(longlong **)(resourceTable + 0x8b0);
   if (plVar1 != (longlong *)0x0) {
     (**(code **)(*plVar1 + 0x38))();
@@ -52374,7 +52374,7 @@ void Unwind_1809088a0(undefined8 param_1,longlong param_2)
 {
   if ((*(uint *)(resourceData + 0x20) & 1) != 0) {
     *(uint *)(resourceData + 0x20) = *(uint *)(resourceData + 0x20) & 0xfffffffe;
-    FUN_180045af0(*(undefined8 *)(param_2 + 0x48));
+    ProcessResourceOperation(*(undefined8 *)(param_2 + 0x48));
   }
   return;
 }
@@ -52460,7 +52460,7 @@ void Unwind_180908920(undefined8 param_1,longlong param_2)
 {
   if ((*(uint *)(resourceData + 0x30) & 1) != 0) {
     *(uint *)(resourceData + 0x30) = *(uint *)(resourceData + 0x30) & 0xfffffffe;
-    FUN_180045af0(*(undefined8 *)(param_2 + 0x40));
+    ProcessResourceOperation(*(undefined8 *)(param_2 + 0x40));
   }
   return;
 }
@@ -52472,7 +52472,7 @@ void Unwind_180908950(undefined8 param_1,longlong param_2)
 {
   if ((*(uint *)(resourceData + 0x30) & 2) != 0) {
     *(uint *)(resourceData + 0x30) = *(uint *)(resourceData + 0x30) & 0xfffffffd;
-    FUN_180045af0(*(undefined8 *)(param_2 + 0x40));
+    ProcessResourceOperation(*(undefined8 *)(param_2 + 0x40));
   }
   return;
 }
@@ -52485,9 +52485,9 @@ void Unwind_180908980(undefined8 param_1,longlong param_2)
   longlong *plVar1;
   
   if (*(longlong *)(param_2 + 0x70) != 0) {
-    FUN_18022f390();
+    RollbackResourceTransaction();
   }
-  FUN_18007f6a0(param_2 + 0x80);
+  BeginResourceTransaction(param_2 + 0x80);
   if (*(longlong **)(param_2 + 0x98) != (longlong *)0x0) {
     (**(code **)(**(longlong **)(param_2 + 0x98) + 0x38))();
   }
@@ -52517,7 +52517,7 @@ void Unwind_180908990(undefined8 param_1,longlong param_2)
 void Unwind_1809089a0(undefined8 param_1,longlong param_2)
 
 {
-  FUN_18007f6a0();
+  BeginResourceTransaction();
   if (*(longlong **)(param_2 + 0x98) != (longlong *)0x0) {
     (**(code **)(**(longlong **)(param_2 + 0x98) + 0x38))();
   }
@@ -53414,7 +53414,7 @@ void Unwind_180908c80(undefined8 param_1,longlong param_2)
 void Unwind_180908c90(undefined8 param_1,longlong param_2)
 
 {
-  RegisterResourceHandler(param_2 + 0xc0,8,0x10,FUN_180045af0,0xfffffffffffffffe);
+  RegisterResourceHandler(param_2 + 0xc0,8,0x10,ProcessResourceOperation,0xfffffffffffffffe);
   return;
 }
 
@@ -53423,7 +53423,7 @@ void Unwind_180908c90(undefined8 param_1,longlong param_2)
 void Unwind_180908ca0(undefined8 param_1,longlong param_2)
 
 {
-  RegisterResourceHandler(param_2 + 0xc0,8,0x10,FUN_180045af0);
+  RegisterResourceHandler(param_2 + 0xc0,8,0x10,ProcessResourceOperation);
   return;
 }
 
@@ -53432,7 +53432,7 @@ void Unwind_180908ca0(undefined8 param_1,longlong param_2)
 void Unwind_180908cd0(undefined8 param_1,longlong param_2)
 
 {
-  RegisterResourceHandler(param_2 + 0xc0,8,0x10,FUN_180045af0);
+  RegisterResourceHandler(param_2 + 0xc0,8,0x10,ProcessResourceOperation);
   return;
 }
 
@@ -53441,7 +53441,7 @@ void Unwind_180908cd0(undefined8 param_1,longlong param_2)
 void Unwind_180908d00(undefined8 param_1,longlong param_2)
 
 {
-  RegisterResourceHandler(*(undefined8 *)(param_2 + 0x40),8,0x10,FUN_180045af0);
+  RegisterResourceHandler(*(undefined8 *)(param_2 + 0x40),8,0x10,ProcessResourceOperation);
   return;
 }
 
@@ -53684,7 +53684,7 @@ void Unwind_180908e10(undefined8 param_1,longlong param_2)
 {
   if ((*(uint *)(resourceData + 0x20) & 1) != 0) {
     *(uint *)(resourceData + 0x20) = *(uint *)(resourceData + 0x20) & 0xfffffffe;
-    FUN_180045af0(*(undefined8 *)(param_2 + 0x88));
+    ProcessResourceOperation(*(undefined8 *)(param_2 + 0x88));
   }
   return;
 }
@@ -56110,7 +56110,7 @@ void Unwind_180909860(undefined8 param_1,longlong param_2)
 void Unwind_180909870(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
 
 {
-  FUN_18005d260(*(longlong *)(param_2 + 0x40) + 0x90,
+  ProcessResourceData(*(longlong *)(param_2 + 0x40) + 0x90,
                 *(undefined8 *)(*(longlong *)(param_2 + 0x40) + 0xa0),param_3,param_4,
                 0xfffffffffffffffe);
   return;
@@ -56121,7 +56121,7 @@ void Unwind_180909870(undefined8 param_1,longlong param_2,undefined8 param_3,und
 void Unwind_180909890(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
 
 {
-  FUN_18005d260(*(longlong *)(param_2 + 0x50),*(undefined8 *)(*(longlong *)(param_2 + 0x50) + 0x10),
+  ProcessResourceData(*(longlong *)(param_2 + 0x50),*(undefined8 *)(*(longlong *)(param_2 + 0x50) + 0x10),
                 param_3,param_4,0xfffffffffffffffe);
   return;
 }
@@ -56131,7 +56131,7 @@ void Unwind_180909890(undefined8 param_1,longlong param_2,undefined8 param_3,und
 void Unwind_1809098a0(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
 
 {
-  FUN_18005d260(*(longlong *)(param_2 + 0x50),*(undefined8 *)(*(longlong *)(param_2 + 0x50) + 0x10),
+  ProcessResourceData(*(longlong *)(param_2 + 0x50),*(undefined8 *)(*(longlong *)(param_2 + 0x50) + 0x10),
                 param_3,param_4,0xfffffffffffffffe);
   return;
 }
@@ -56141,7 +56141,7 @@ void Unwind_1809098a0(undefined8 param_1,longlong param_2,undefined8 param_3,und
 void Unwind_1809098b0(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
 
 {
-  FUN_18005d260(*(longlong *)(param_2 + 0x48),*(undefined8 *)(*(longlong *)(param_2 + 0x48) + 0x10),
+  ProcessResourceData(*(longlong *)(param_2 + 0x48),*(undefined8 *)(*(longlong *)(param_2 + 0x48) + 0x10),
                 param_3,param_4,0xfffffffffffffffe);
   return;
 }
@@ -56151,7 +56151,7 @@ void Unwind_1809098b0(undefined8 param_1,longlong param_2,undefined8 param_3,und
 void Unwind_1809098c0(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
 
 {
-  FUN_18005d260(*(longlong *)(param_2 + 0x48),*(undefined8 *)(*(longlong *)(param_2 + 0x48) + 0x10),
+  ProcessResourceData(*(longlong *)(param_2 + 0x48),*(undefined8 *)(*(longlong *)(param_2 + 0x48) + 0x10),
                 param_3,param_4,0xfffffffffffffffe);
   return;
 }
@@ -56175,7 +56175,7 @@ void Unwind_180909900(undefined8 param_1,longlong param_2)
 {
   if ((*(uint *)(resourceData + 0x30) & 1) != 0) {
     *(uint *)(resourceData + 0x30) = *(uint *)(resourceData + 0x30) & 0xfffffffe;
-    FUN_180045af0(*(undefined8 *)(param_2 + 0x88));
+    ProcessResourceOperation(*(undefined8 *)(param_2 + 0x88));
   }
   return;
 }
@@ -56187,7 +56187,7 @@ void Unwind_180909930(undefined8 param_1,longlong param_2)
 {
   if ((*(uint *)(resourceData + 0x5c) & 1) != 0) {
     *(uint *)(resourceData + 0x5c) = *(uint *)(resourceData + 0x5c) & 0xfffffffe;
-    FUN_180045af0(*(undefined8 *)(param_2 + 200));
+    ProcessResourceOperation(*(undefined8 *)(param_2 + 200));
   }
   return;
 }
@@ -56271,7 +56271,7 @@ void Unwind_1809099d0(undefined8 param_1,longlong param_2)
 {
   if ((*(uint *)(resourceData + 0x58) & 1) != 0) {
     *(uint *)(resourceData + 0x58) = *(uint *)(resourceData + 0x58) & 0xfffffffe;
-    FUN_180045af0(*(undefined8 *)(param_2 + 0xd0));
+    ProcessResourceOperation(*(undefined8 *)(param_2 + 0xd0));
   }
   return;
 }
@@ -56432,7 +56432,7 @@ void Unwind_180909a70(undefined8 param_1,longlong param_2)
 {
   if ((*(uint *)(resourceData + 0x38) & 1) != 0) {
     *(uint *)(resourceData + 0x38) = *(uint *)(resourceData + 0x38) & 0xfffffffe;
-    FUN_180045af0(*(undefined8 *)(param_2 + 0xb8));
+    ProcessResourceOperation(*(undefined8 *)(param_2 + 0xb8));
   }
   return;
 }
@@ -56489,7 +56489,7 @@ void Unwind_180909af0(undefined8 param_1,longlong param_2)
 {
   if ((*(uint *)(resourceData + 0x20) & 1) != 0) {
     *(uint *)(resourceData + 0x20) = *(uint *)(resourceData + 0x20) & 0xfffffffe;
-    FUN_180045af0(*(undefined8 *)(param_2 + 0x70));
+    ProcessResourceOperation(*(undefined8 *)(param_2 + 0x70));
   }
   return;
 }
@@ -56611,7 +56611,7 @@ void Unwind_180909bb0(undefined8 param_1,longlong param_2)
 {
   if ((*(uint *)(resourceData + 0x20) & 1) != 0) {
     *(uint *)(resourceData + 0x20) = *(uint *)(resourceData + 0x20) & 0xfffffffe;
-    FUN_180045af0(*(undefined8 *)(param_2 + 0xa8));
+    ProcessResourceOperation(*(undefined8 *)(param_2 + 0xa8));
   }
   return;
 }
@@ -56637,7 +56637,7 @@ void Unwind_180909bf0(undefined8 param_1,longlong param_2)
 {
   if ((*(uint *)(resourceData + 0x20) & 1) != 0) {
     *(uint *)(resourceData + 0x20) = *(uint *)(resourceData + 0x20) & 0xfffffffe;
-    FUN_180045af0(*(undefined8 *)(param_2 + 0xb8));
+    ProcessResourceOperation(*(undefined8 *)(param_2 + 0xb8));
   }
   return;
 }
@@ -57115,7 +57115,7 @@ void Unwind_180909fc0(undefined8 param_1,longlong param_2,undefined8 param_3,und
 void Unwind_180909fe0(undefined8 param_1,longlong param_2)
 
 {
-  RegisterResourceHandler(*(longlong *)(param_2 + 0x40) + 0xc08,8,10,FUN_180045af0,0xfffffffffffffffe);
+  RegisterResourceHandler(*(longlong *)(param_2 + 0x40) + 0xc08,8,10,ProcessResourceOperation,0xfffffffffffffffe);
   return;
 }
 
@@ -57138,7 +57138,7 @@ void Unwind_18090a000(undefined8 param_1,longlong param_2)
 void Unwind_18090a020(undefined8 param_1,longlong param_2)
 
 {
-  RegisterResourceHandler(*(longlong *)(param_2 + 0x40) + 0xc60,8,0x14,FUN_180045af0);
+  RegisterResourceHandler(*(longlong *)(param_2 + 0x40) + 0xc60,8,0x14,ProcessResourceOperation);
   return;
 }
 
@@ -57170,7 +57170,7 @@ void Unwind_18090a060(undefined8 param_1,longlong param_2)
 void Unwind_18090a080(undefined8 param_1,longlong param_2)
 
 {
-  RegisterResourceHandler(*(undefined8 *)(param_2 + 0x48),8,10,FUN_180045af0);
+  RegisterResourceHandler(*(undefined8 *)(param_2 + 0x48),8,10,ProcessResourceOperation);
   return;
 }
 
@@ -57327,7 +57327,7 @@ void Unwind_18090a160(undefined8 param_1,longlong param_2,undefined8 param_3,und
 void Unwind_18090a170(undefined8 param_1,longlong param_2)
 
 {
-  RegisterResourceHandler(*(undefined8 *)(param_2 + 0x40),8,10,FUN_180045af0);
+  RegisterResourceHandler(*(undefined8 *)(param_2 + 0x40),8,10,ProcessResourceOperation);
   return;
 }
 
@@ -57680,7 +57680,7 @@ void Unwind_18090a4b0(undefined8 param_1,longlong param_2,undefined8 param_3,und
 void Unwind_18090a4d0(undefined8 param_1,longlong param_2)
 
 {
-  RegisterResourceHandler(*(longlong *)(param_2 + 0x60) + 0xc08,8,10,FUN_180045af0,0xfffffffffffffffe);
+  RegisterResourceHandler(*(longlong *)(param_2 + 0x60) + 0xc08,8,10,ProcessResourceOperation,0xfffffffffffffffe);
   return;
 }
 
@@ -57703,7 +57703,7 @@ void Unwind_18090a4f0(undefined8 param_1,longlong param_2)
 void Unwind_18090a510(undefined8 param_1,longlong param_2)
 
 {
-  RegisterResourceHandler(*(longlong *)(param_2 + 0x60) + 0xc60,8,0x14,FUN_180045af0);
+  RegisterResourceHandler(*(longlong *)(param_2 + 0x60) + 0xc60,8,0x14,ProcessResourceOperation);
   return;
 }
 
@@ -57913,7 +57913,7 @@ void Unwind_18090a600(undefined8 param_1,longlong param_2,undefined8 param_3,und
 void Unwind_18090a610(undefined8 param_1,longlong param_2)
 
 {
-  RegisterResourceHandler(*(undefined8 *)(param_2 + 0x68),8,10,FUN_180045af0);
+  RegisterResourceHandler(*(undefined8 *)(param_2 + 0x68),8,10,ProcessResourceOperation);
   return;
 }
 
@@ -57960,7 +57960,7 @@ void Unwind_18090a670(undefined8 param_1,longlong param_2)
 {
   if ((*(uint *)(resourceData + 0x20) & 1) != 0) {
     *(uint *)(resourceData + 0x20) = *(uint *)(resourceData + 0x20) & 0xfffffffe;
-    FUN_180045af0(*(undefined8 *)(param_2 + 0x60));
+    ProcessResourceOperation(*(undefined8 *)(param_2 + 0x60));
   }
   return;
 }
@@ -57972,7 +57972,7 @@ void Unwind_18090a6a0(undefined8 param_1,longlong param_2)
 {
   if ((*(uint *)(resourceData + 0x20) & 2) != 0) {
     *(uint *)(resourceData + 0x20) = *(uint *)(resourceData + 0x20) & 0xfffffffd;
-    FUN_180045af0(param_2 + 0x50);
+    ProcessResourceOperation(param_2 + 0x50);
   }
   return;
 }
@@ -58228,7 +58228,7 @@ void Unwind_18090a800(undefined8 param_1,longlong param_2)
 {
   if ((*(uint *)(resourceData + 0x20) & 1) != 0) {
     *(uint *)(resourceData + 0x20) = *(uint *)(resourceData + 0x20) & 0xfffffffe;
-    FUN_180045af0(*(undefined8 *)(param_2 + 0x68));
+    ProcessResourceOperation(*(undefined8 *)(param_2 + 0x68));
   }
   return;
 }
@@ -58261,7 +58261,7 @@ void Unwind_18090a840(undefined8 param_1,longlong param_2)
 {
   if ((*(uint *)(resourceData + 0x20) & 2) != 0) {
     *(uint *)(resourceData + 0x20) = *(uint *)(resourceData + 0x20) & 0xfffffffd;
-    FUN_180045af0(*(undefined8 *)(param_2 + 0x68));
+    ProcessResourceOperation(*(undefined8 *)(param_2 + 0x68));
   }
   return;
 }
@@ -59260,7 +59260,7 @@ void Unwind_18090add0(undefined8 param_1,longlong param_2)
 void Unwind_18090adf0(undefined8 param_1,longlong param_2)
 
 {
-  RegisterResourceHandler(*(longlong *)(param_2 + 0x50) + 0xf0,8,0x10,FUN_180045af0);
+  RegisterResourceHandler(*(longlong *)(param_2 + 0x50) + 0xf0,8,0x10,ProcessResourceOperation);
   return;
 }
 
@@ -59269,7 +59269,7 @@ void Unwind_18090adf0(undefined8 param_1,longlong param_2)
 void Unwind_18090ae30(undefined8 param_1,longlong param_2)
 
 {
-  RegisterResourceHandler(*(longlong *)(param_2 + 0x50) + 0x170,8,0x10,FUN_180045af0);
+  RegisterResourceHandler(*(longlong *)(param_2 + 0x50) + 0x170,8,0x10,ProcessResourceOperation);
   return;
 }
 
@@ -59278,7 +59278,7 @@ void Unwind_18090ae30(undefined8 param_1,longlong param_2)
 void Unwind_18090ae70(undefined8 param_1,longlong param_2)
 
 {
-  RegisterResourceHandler(*(longlong *)(param_2 + 0x50) + 0x1f0,8,0x10,FUN_180045af0);
+  RegisterResourceHandler(*(longlong *)(param_2 + 0x50) + 0x1f0,8,0x10,ProcessResourceOperation);
   return;
 }
 
@@ -60302,7 +60302,7 @@ void Unwind_18090b630(undefined8 param_1,longlong param_2)
 void Unwind_18090b650(undefined8 param_1,longlong param_2)
 
 {
-  RegisterResourceHandler(*(longlong *)(param_2 + 0x40) + 0xf0,8,0x10,FUN_180045af0);
+  RegisterResourceHandler(*(longlong *)(param_2 + 0x40) + 0xf0,8,0x10,ProcessResourceOperation);
   return;
 }
 
@@ -60311,7 +60311,7 @@ void Unwind_18090b650(undefined8 param_1,longlong param_2)
 void Unwind_18090b690(undefined8 param_1,longlong param_2)
 
 {
-  RegisterResourceHandler(*(longlong *)(param_2 + 0x40) + 0x170,8,0x10,FUN_180045af0);
+  RegisterResourceHandler(*(longlong *)(param_2 + 0x40) + 0x170,8,0x10,ProcessResourceOperation);
   return;
 }
 
@@ -60320,7 +60320,7 @@ void Unwind_18090b690(undefined8 param_1,longlong param_2)
 void Unwind_18090b6d0(undefined8 param_1,longlong param_2)
 
 {
-  RegisterResourceHandler(*(longlong *)(param_2 + 0x40) + 0x1f0,8,0x10,FUN_180045af0);
+  RegisterResourceHandler(*(longlong *)(param_2 + 0x40) + 0x1f0,8,0x10,ProcessResourceOperation);
   return;
 }
 
@@ -61156,9 +61156,9 @@ void Unwind_18090bd80(undefined8 param_1,longlong param_2)
   longlong *plVar1;
   
   if (*(longlong *)(param_2 + 0x58) != 0) {
-    FUN_18022f390();
+    RollbackResourceTransaction();
   }
-  FUN_18007f6a0(param_2 + 0x68);
+  BeginResourceTransaction(param_2 + 0x68);
   if (*(longlong **)(param_2 + 0x80) != (longlong *)0x0) {
     (**(code **)(**(longlong **)(param_2 + 0x80) + 0x38))();
   }
@@ -61179,7 +61179,7 @@ void Unwind_18090bd90(undefined8 param_1,longlong param_2)
 {
   if ((*(uint *)(resourceData + 0x30) & 1) != 0) {
     *(uint *)(resourceData + 0x30) = *(uint *)(resourceData + 0x30) & 0xfffffffe;
-    FUN_180045af0(*(undefined8 *)(param_2 + 200));
+    ProcessResourceOperation(*(undefined8 *)(param_2 + 200));
   }
   return;
 }
@@ -61200,7 +61200,7 @@ void Unwind_18090bdc0(undefined8 param_1,longlong param_2)
 void Unwind_18090bdd0(undefined8 param_1,longlong param_2)
 
 {
-  FUN_18007f6a0();
+  BeginResourceTransaction();
   if (*(longlong **)(param_2 + 0x80) != (longlong *)0x0) {
     (**(code **)(**(longlong **)(param_2 + 0x80) + 0x38))();
   }
@@ -61229,9 +61229,9 @@ void Unwind_18090bdf0(undefined8 param_1,longlong param_2)
   longlong *plVar1;
   
   if (*(longlong *)(param_2 + 0x60) != 0) {
-    FUN_18022f390();
+    RollbackResourceTransaction();
   }
-  FUN_18007f6a0(param_2 + 0x70);
+  BeginResourceTransaction(param_2 + 0x70);
   if (*(longlong **)(param_2 + 0x88) != (longlong *)0x0) {
     (**(code **)(**(longlong **)(param_2 + 0x88) + 0x38))();
   }
@@ -61252,7 +61252,7 @@ void Unwind_18090be00(undefined8 param_1,longlong param_2)
 {
   if ((*(uint *)(resourceData + 0x30) & 1) != 0) {
     *(uint *)(resourceData + 0x30) = *(uint *)(resourceData + 0x30) & 0xfffffffe;
-    FUN_180045af0(*(undefined8 *)(param_2 + 0xd8));
+    ProcessResourceOperation(*(undefined8 *)(param_2 + 0xd8));
   }
   return;
 }
@@ -61273,7 +61273,7 @@ void Unwind_18090be30(undefined8 param_1,longlong param_2)
 void Unwind_18090be40(undefined8 param_1,longlong param_2)
 
 {
-  FUN_18007f6a0();
+  BeginResourceTransaction();
   if (*(longlong **)(param_2 + 0x88) != (longlong *)0x0) {
     (**(code **)(**(longlong **)(param_2 + 0x88) + 0x38))();
   }
@@ -61287,7 +61287,7 @@ void Unwind_18090be50(undefined8 param_1,longlong param_2)
 {
   if ((*(uint *)(resourceData + 0x20) & 1) != 0) {
     *(uint *)(resourceData + 0x20) = *(uint *)(resourceData + 0x20) & 0xfffffffe;
-    FUN_180045af0(param_2 + 0x90);
+    ProcessResourceOperation(param_2 + 0x90);
   }
   return;
 }
@@ -61299,7 +61299,7 @@ void Unwind_18090be80(undefined8 param_1,longlong param_2)
 {
   if ((*(uint *)(resourceData + 0x20) & 2) != 0) {
     *(uint *)(resourceData + 0x20) = *(uint *)(resourceData + 0x20) & 0xfffffffd;
-    FUN_180045af0(param_2 + 0x90);
+    ProcessResourceOperation(param_2 + 0x90);
   }
   return;
 }
@@ -61311,7 +61311,7 @@ void Unwind_18090beb0(undefined8 param_1,longlong param_2)
 {
   if ((*(uint *)(resourceData + 0x48) & 1) != 0) {
     *(uint *)(resourceData + 0x48) = *(uint *)(resourceData + 0x48) & 0xfffffffe;
-    FUN_180045af0(*(undefined8 *)(param_2 + 0x98));
+    ProcessResourceOperation(*(undefined8 *)(param_2 + 0x98));
   }
   return;
 }
@@ -61323,7 +61323,7 @@ void Unwind_18090bee0(undefined8 param_1,longlong param_2)
 {
   if ((*(uint *)(resourceData + 0x20) & 1) != 0) {
     *(uint *)(resourceData + 0x20) = *(uint *)(resourceData + 0x20) & 0xfffffffe;
-    FUN_180045af0(*(undefined8 *)(param_2 + 0x38));
+    ProcessResourceOperation(*(undefined8 *)(param_2 + 0x38));
   }
   return;
 }
@@ -61335,7 +61335,7 @@ void Unwind_18090bf10(undefined8 param_1,longlong param_2)
 {
   if ((*(uint *)(resourceData + 0x30) & 1) != 0) {
     *(uint *)(resourceData + 0x30) = *(uint *)(resourceData + 0x30) & 0xfffffffe;
-    FUN_180045af0(*(undefined8 *)(param_2 + 0x98));
+    ProcessResourceOperation(*(undefined8 *)(param_2 + 0x98));
   }
   return;
 }
@@ -61385,9 +61385,9 @@ void Unwind_18090bf70(undefined8 param_1,longlong param_2)
   longlong *plVar1;
   
   if (*(longlong *)(param_2 + 0x38) != 0) {
-    FUN_18022f390();
+    RollbackResourceTransaction();
   }
-  FUN_18007f6a0(param_2 + 0x48);
+  BeginResourceTransaction(param_2 + 0x48);
   if (*(longlong **)(param_2 + 0x60) != (longlong *)0x0) {
     (**(code **)(**(longlong **)(param_2 + 0x60) + 0x38))();
   }
@@ -61417,7 +61417,7 @@ void Unwind_18090bf80(undefined8 param_1,longlong param_2)
 void Unwind_18090bf90(undefined8 param_1,longlong param_2)
 
 {
-  FUN_18007f6a0();
+  BeginResourceTransaction();
   if (*(longlong **)(param_2 + 0x60) != (longlong *)0x0) {
     (**(code **)(**(longlong **)(param_2 + 0x60) + 0x38))();
   }
@@ -62012,7 +62012,7 @@ void Unwind_18090c240(undefined8 param_1,longlong param_2)
 void Unwind_18090c260(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
 
 {
-  FUN_18005d260(param_2 + 0x48,*(undefined8 *)(param_2 + 0x58),param_3,param_4,0xfffffffffffffffe);
+  ProcessResourceData(param_2 + 0x48,*(undefined8 *)(param_2 + 0x58),param_3,param_4,0xfffffffffffffffe);
   return;
 }
 
@@ -62066,7 +62066,7 @@ void Unwind_18090c280(undefined8 param_1,longlong param_2)
 void Unwind_18090c290(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
 
 {
-  FUN_18005d260(param_2 + 0x48,*(undefined8 *)(param_2 + 0x58),param_3,param_4,0xfffffffffffffffe);
+  ProcessResourceData(param_2 + 0x48,*(undefined8 *)(param_2 + 0x58),param_3,param_4,0xfffffffffffffffe);
   return;
 }
 
@@ -62075,7 +62075,7 @@ void Unwind_18090c290(undefined8 param_1,longlong param_2,undefined8 param_3,und
 void Unwind_18090c2a0(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
 
 {
-  FUN_18005d260(param_2 + 0x48,*(undefined8 *)(param_2 + 0x58),param_3,param_4,0xfffffffffffffffe);
+  ProcessResourceData(param_2 + 0x48,*(undefined8 *)(param_2 + 0x58),param_3,param_4,0xfffffffffffffffe);
   return;
 }
 
@@ -63261,7 +63261,7 @@ void Unwind_18090c700(undefined8 param_1,longlong param_2)
 {
   if ((*(uint *)(resourceData + 0x30) & 1) != 0) {
     *(uint *)(resourceData + 0x30) = *(uint *)(resourceData + 0x30) & 0xfffffffe;
-    FUN_180045af0(param_2 + 0x178);
+    ProcessResourceOperation(param_2 + 0x178);
   }
   return;
 }
@@ -63661,7 +63661,7 @@ void Unwind_18090c9a0(undefined8 param_1,longlong param_2)
 {
   if ((*(uint *)(resourceData + 0x30) & 1) != 0) {
     *(uint *)(resourceData + 0x30) = *(uint *)(resourceData + 0x30) & 0xfffffffe;
-    FUN_180045af0(param_2 + 0x38);
+    ProcessResourceOperation(param_2 + 0x38);
   }
   return;
 }
@@ -63673,7 +63673,7 @@ void Unwind_18090c9d0(undefined8 param_1,longlong param_2)
 {
   if ((*(uint *)(resourceData + 0x30) & 2) != 0) {
     *(uint *)(resourceData + 0x30) = *(uint *)(resourceData + 0x30) & 0xfffffffd;
-    FUN_180045af0(param_2 + 0x38);
+    ProcessResourceOperation(param_2 + 0x38);
   }
   return;
 }
@@ -68289,16 +68289,16 @@ void Unwind_18090d660(undefined8 param_1,longlong param_2)
   if (*(longlong **)(lVar1 + 0xed0) != (longlong *)0x0) {
     (**(code **)(**(longlong **)(lVar1 + 0xed0) + 0x38))();
   }
-  RegisterResourceHandler(lVar1 + 0xec0,8,2,FUN_180045af0,validationResult);
+  RegisterResourceHandler(lVar1 + 0xec0,8,2,ProcessResourceOperation,validationResult);
   if (*(longlong **)(lVar1 + 0xeb8) != (longlong *)0x0) {
     (**(code **)(**(longlong **)(lVar1 + 0xeb8) + 0x38))();
   }
   if (*(longlong **)(lVar1 + 0xeb0) != (longlong *)0x0) {
     (**(code **)(**(longlong **)(lVar1 + 0xeb0) + 0x38))();
   }
-  RegisterResourceHandler(lVar1 + 0xea0,8,2,FUN_180045af0,validationResult);
-  RegisterResourceHandler(lVar1 + 0xe90,8,2,FUN_180045af0);
-  RegisterResourceHandler(lVar1 + 0xe80,8,2,FUN_180045af0);
+  RegisterResourceHandler(lVar1 + 0xea0,8,2,ProcessResourceOperation,validationResult);
+  RegisterResourceHandler(lVar1 + 0xe90,8,2,ProcessResourceOperation);
+  RegisterResourceHandler(lVar1 + 0xe80,8,2,ProcessResourceOperation);
   RegisterResourceHandler(lVar1 + 0xc28,0x128,2,FUN_1801b9690);
   RegisterResourceHandler(lVar1 + 0x9d0,0x128,2,FUN_1801b9690);
   RegisterResourceHandler(lVar1 + 0xb8,0x488,2,FUN_1800e7ca0);
@@ -68598,7 +68598,7 @@ void Unwind_18090d8e0(undefined8 param_1,longlong param_2)
 void Unwind_18090d900(undefined8 param_1,longlong param_2)
 
 {
-  RegisterResourceHandler(*(longlong *)(param_2 + 0x40) + 0x1558,8,2,FUN_180045af0);
+  RegisterResourceHandler(*(longlong *)(param_2 + 0x40) + 0x1558,8,2,ProcessResourceOperation);
   return;
 }
 
@@ -68607,7 +68607,7 @@ void Unwind_18090d900(undefined8 param_1,longlong param_2)
 void Unwind_18090d940(undefined8 param_1,longlong param_2)
 
 {
-  RegisterResourceHandler(*(longlong *)(param_2 + 0x40) + 0x1568,8,2,FUN_180045af0);
+  RegisterResourceHandler(*(longlong *)(param_2 + 0x40) + 0x1568,8,2,ProcessResourceOperation);
   return;
 }
 
@@ -68616,7 +68616,7 @@ void Unwind_18090d940(undefined8 param_1,longlong param_2)
 void Unwind_18090d980(undefined8 param_1,longlong param_2)
 
 {
-  RegisterResourceHandler(*(longlong *)(param_2 + 0x40) + 0x1578,8,2,FUN_180045af0);
+  RegisterResourceHandler(*(longlong *)(param_2 + 0x40) + 0x1578,8,2,ProcessResourceOperation);
   return;
 }
 
@@ -69063,16 +69063,16 @@ void Unwind_18090de80(undefined8 param_1,longlong param_2)
   if (*(longlong **)(lVar1 + 0xed0) != (longlong *)0x0) {
     (**(code **)(**(longlong **)(lVar1 + 0xed0) + 0x38))();
   }
-  RegisterResourceHandler(lVar1 + 0xec0,8,2,FUN_180045af0,validationResult);
+  RegisterResourceHandler(lVar1 + 0xec0,8,2,ProcessResourceOperation,validationResult);
   if (*(longlong **)(lVar1 + 0xeb8) != (longlong *)0x0) {
     (**(code **)(**(longlong **)(lVar1 + 0xeb8) + 0x38))();
   }
   if (*(longlong **)(lVar1 + 0xeb0) != (longlong *)0x0) {
     (**(code **)(**(longlong **)(lVar1 + 0xeb0) + 0x38))();
   }
-  RegisterResourceHandler(lVar1 + 0xea0,8,2,FUN_180045af0,validationResult);
-  RegisterResourceHandler(lVar1 + 0xe90,8,2,FUN_180045af0);
-  RegisterResourceHandler(lVar1 + 0xe80,8,2,FUN_180045af0);
+  RegisterResourceHandler(lVar1 + 0xea0,8,2,ProcessResourceOperation,validationResult);
+  RegisterResourceHandler(lVar1 + 0xe90,8,2,ProcessResourceOperation);
+  RegisterResourceHandler(lVar1 + 0xe80,8,2,ProcessResourceOperation);
   RegisterResourceHandler(lVar1 + 0xc28,0x128,2,FUN_1801b9690);
   RegisterResourceHandler(lVar1 + 0x9d0,0x128,2,FUN_1801b9690);
   RegisterResourceHandler(lVar1 + 0xb8,0x488,2,FUN_1800e7ca0);
@@ -69372,7 +69372,7 @@ void Unwind_18090e100(undefined8 param_1,longlong param_2)
 void Unwind_18090e120(undefined8 param_1,longlong param_2)
 
 {
-  RegisterResourceHandler(*(longlong *)(param_2 + 0xe0) + 0x1558,8,2,FUN_180045af0);
+  RegisterResourceHandler(*(longlong *)(param_2 + 0xe0) + 0x1558,8,2,ProcessResourceOperation);
   return;
 }
 
@@ -69381,7 +69381,7 @@ void Unwind_18090e120(undefined8 param_1,longlong param_2)
 void Unwind_18090e160(undefined8 param_1,longlong param_2)
 
 {
-  RegisterResourceHandler(*(longlong *)(param_2 + 0xe0) + 0x1568,8,2,FUN_180045af0);
+  RegisterResourceHandler(*(longlong *)(param_2 + 0xe0) + 0x1568,8,2,ProcessResourceOperation);
   return;
 }
 
@@ -69390,7 +69390,7 @@ void Unwind_18090e160(undefined8 param_1,longlong param_2)
 void Unwind_18090e1a0(undefined8 param_1,longlong param_2)
 
 {
-  RegisterResourceHandler(*(longlong *)(param_2 + 0xe0) + 0x1578,8,2,FUN_180045af0);
+  RegisterResourceHandler(*(longlong *)(param_2 + 0xe0) + 0x1578,8,2,ProcessResourceOperation);
   return;
 }
 
@@ -69675,7 +69675,7 @@ void Unwind_18090e440(undefined8 param_1,longlong param_2)
 void Unwind_18090e460(undefined8 param_1,longlong param_2)
 
 {
-  RegisterResourceHandler(*(longlong *)(param_2 + 0x30) + 0xdc8,8,2,FUN_180045af0);
+  RegisterResourceHandler(*(longlong *)(param_2 + 0x30) + 0xdc8,8,2,ProcessResourceOperation);
   return;
 }
 
@@ -69684,7 +69684,7 @@ void Unwind_18090e460(undefined8 param_1,longlong param_2)
 void Unwind_18090e4a0(undefined8 param_1,longlong param_2)
 
 {
-  RegisterResourceHandler(*(longlong *)(param_2 + 0x30) + 0xdd8,8,2,FUN_180045af0);
+  RegisterResourceHandler(*(longlong *)(param_2 + 0x30) + 0xdd8,8,2,ProcessResourceOperation);
   return;
 }
 
@@ -69693,7 +69693,7 @@ void Unwind_18090e4a0(undefined8 param_1,longlong param_2)
 void Unwind_18090e4e0(undefined8 param_1,longlong param_2)
 
 {
-  RegisterResourceHandler(*(longlong *)(param_2 + 0x30) + 0xde8,8,2,FUN_180045af0);
+  RegisterResourceHandler(*(longlong *)(param_2 + 0x30) + 0xde8,8,2,ProcessResourceOperation);
   return;
 }
 
@@ -69730,7 +69730,7 @@ void Unwind_18090e540(undefined8 param_1,longlong param_2)
 void Unwind_18090e560(undefined8 param_1,longlong param_2)
 
 {
-  RegisterResourceHandler(*(longlong *)(param_2 + 0x30) + 0xe08,8,2,FUN_180045af0);
+  RegisterResourceHandler(*(longlong *)(param_2 + 0x30) + 0xe08,8,2,ProcessResourceOperation);
   return;
 }
 
@@ -69846,7 +69846,7 @@ void Unwind_18090e730(undefined8 param_1,longlong param_2)
 {
   if ((*(uint *)(resourceData + 0x20) & 1) != 0) {
     *(uint *)(resourceData + 0x20) = *(uint *)(resourceData + 0x20) & 0xfffffffe;
-    FUN_180045af0(param_2 + 0x30);
+    ProcessResourceOperation(param_2 + 0x30);
   }
   return;
 }
@@ -69904,7 +69904,7 @@ void Unwind_18090e770(undefined8 param_1,longlong param_2)
 {
   if ((*(uint *)(resourceData + 0x34) & 1) != 0) {
     *(uint *)(resourceData + 0x34) = *(uint *)(resourceData + 0x34) & 0xfffffffe;
-    FUN_180045af0(param_2 + 0x70);
+    ProcessResourceOperation(param_2 + 0x70);
   }
   return;
 }
@@ -70939,7 +70939,7 @@ void Unwind_18090eb60(undefined8 param_1,longlong param_2)
 void Unwind_18090eb70(undefined8 param_1,longlong param_2)
 
 {
-  RegisterResourceHandler(param_2 + 0xa0,8,0x10,FUN_180045af0,0xfffffffffffffffe);
+  RegisterResourceHandler(param_2 + 0xa0,8,0x10,ProcessResourceOperation,0xfffffffffffffffe);
   return;
 }
 
@@ -70957,7 +70957,7 @@ void Unwind_18090eb80(undefined8 param_1,longlong param_2)
 void Unwind_18090eb90(undefined8 param_1,longlong param_2)
 
 {
-  RegisterResourceHandler(param_2 + 0xa0,8,0x10,FUN_180045af0);
+  RegisterResourceHandler(param_2 + 0xa0,8,0x10,ProcessResourceOperation);
   return;
 }
 
@@ -70966,7 +70966,7 @@ void Unwind_18090eb90(undefined8 param_1,longlong param_2)
 void Unwind_18090ebc0(undefined8 param_1,longlong param_2)
 
 {
-  RegisterResourceHandler(param_2 + 0xa0,8,0x10,FUN_180045af0);
+  RegisterResourceHandler(param_2 + 0xa0,8,0x10,ProcessResourceOperation);
   return;
 }
 
@@ -71139,7 +71139,7 @@ void Unwind_18090eca0(undefined8 param_1,longlong param_2)
 {
   if ((*(uint *)(resourceData + 0xd0) & 1) != 0) {
     *(uint *)(resourceData + 0xd0) = *(uint *)(resourceData + 0xd0) & 0xfffffffe;
-    FUN_180045af0(*(undefined8 *)(param_2 + 0x198));
+    ProcessResourceOperation(*(undefined8 *)(param_2 + 0x198));
   }
   return;
 }
@@ -72864,7 +72864,7 @@ void Unwind_18090f3b0(undefined8 param_1,longlong param_2)
   if (*(longlong **)(lVar1 + 0x370) != (longlong *)0x0) {
     (**(code **)(**(longlong **)(lVar1 + 0x370) + 0x38))();
   }
-  RegisterResourceHandler(lVar1 + 0x308,8,0xd,FUN_180045af0);
+  RegisterResourceHandler(lVar1 + 0x308,8,0xd,ProcessResourceOperation);
   return;
 }
 
@@ -72873,7 +72873,7 @@ void Unwind_18090f3b0(undefined8 param_1,longlong param_2)
 void Unwind_18090f3d0(undefined8 param_1,longlong param_2)
 
 {
-  RegisterResourceHandler(*(longlong *)(param_2 + 0x60) + 0x3a8,8,0xd,FUN_180045af0);
+  RegisterResourceHandler(*(longlong *)(param_2 + 0x60) + 0x3a8,8,0xd,ProcessResourceOperation);
   return;
 }
 
@@ -73204,7 +73204,7 @@ void Unwind_18090f6b0(undefined8 param_1,longlong param_2,undefined8 param_3,und
 void Unwind_18090f6c0(undefined8 param_1,longlong param_2)
 
 {
-  RegisterResourceHandler(*(undefined8 *)(param_2 + 0x68),8,0xd,FUN_180045af0);
+  RegisterResourceHandler(*(undefined8 *)(param_2 + 0x68),8,0xd,ProcessResourceOperation);
   return;
 }
 
@@ -73398,7 +73398,7 @@ void Unwind_18090f800(undefined8 param_1,longlong param_2,undefined8 param_3,und
 void Unwind_18090f810(undefined8 param_1,longlong param_2)
 
 {
-  RegisterResourceHandler(*(undefined8 *)(param_2 + 0x40),8,0xd,FUN_180045af0);
+  RegisterResourceHandler(*(undefined8 *)(param_2 + 0x40),8,0xd,ProcessResourceOperation);
   return;
 }
 
@@ -73543,7 +73543,7 @@ void Unwind_18090f900(undefined8 param_1,longlong param_2)
 {
   if ((*(uint *)(resourceData + 0x24) & 1) != 0) {
     *(uint *)(resourceData + 0x24) = *(uint *)(resourceData + 0x24) & 0xfffffffe;
-    FUN_180045af0(param_2 + 0xb8);
+    ProcessResourceOperation(param_2 + 0xb8);
   }
   return;
 }
@@ -73555,7 +73555,7 @@ void Unwind_18090f930(undefined8 param_1,longlong param_2)
 {
   if ((*(uint *)(resourceData + 0x24) & 2) != 0) {
     *(uint *)(resourceData + 0x24) = *(uint *)(resourceData + 0x24) & 0xfffffffd;
-    FUN_180045af0(param_2 + 0xc0);
+    ProcessResourceOperation(param_2 + 0xc0);
   }
   return;
 }
@@ -74030,7 +74030,7 @@ void Unwind_18090fbc0(undefined8 param_1,longlong param_2)
 {
   if ((*(uint *)(resourceData + 0x60) & 1) != 0) {
     *(uint *)(resourceData + 0x60) = *(uint *)(resourceData + 0x60) & 0xfffffffe;
-    FUN_180045af0(param_2 + 0x70);
+    ProcessResourceOperation(param_2 + 0x70);
   }
   return;
 }
@@ -74073,7 +74073,7 @@ void Unwind_18090fc20(undefined8 param_1,longlong param_2)
 {
   if ((*(uint *)(resourceData + 0x60) & 1) != 0) {
     *(uint *)(resourceData + 0x60) = *(uint *)(resourceData + 0x60) & 0xfffffffe;
-    FUN_180045af0(param_2 + 0x68);
+    ProcessResourceOperation(param_2 + 0x68);
   }
   return;
 }
@@ -74085,7 +74085,7 @@ void Unwind_18090fc50(undefined8 param_1,longlong param_2)
 {
   if ((*(uint *)(resourceData + 0x60) & 2) != 0) {
     *(uint *)(resourceData + 0x60) = *(uint *)(resourceData + 0x60) & 0xfffffffd;
-    FUN_180045af0(param_2 + 0x68);
+    ProcessResourceOperation(param_2 + 0x68);
   }
   return;
 }
@@ -74179,7 +74179,7 @@ void Unwind_18090fd00(undefined8 param_1,longlong param_2)
 {
   if ((*(uint *)(resourceData + 0x30) & 1) != 0) {
     *(uint *)(resourceData + 0x30) = *(uint *)(resourceData + 0x30) & 0xfffffffe;
-    FUN_180045af0(param_2 + 0x98);
+    ProcessResourceOperation(param_2 + 0x98);
   }
   return;
 }
@@ -74191,7 +74191,7 @@ void Unwind_18090fd30(undefined8 param_1,longlong param_2)
 {
   if ((*(uint *)(resourceData + 0x30) & 2) != 0) {
     *(uint *)(resourceData + 0x30) = *(uint *)(resourceData + 0x30) & 0xfffffffd;
-    FUN_180045af0(param_2 + 0xf8);
+    ProcessResourceOperation(param_2 + 0xf8);
   }
   return;
 }
@@ -74203,7 +74203,7 @@ void Unwind_18090fd60(undefined8 param_1,longlong param_2)
 {
   if ((*(uint *)(resourceData + 0x30) & 4) != 0) {
     *(uint *)(resourceData + 0x30) = *(uint *)(resourceData + 0x30) & 0xfffffffb;
-    FUN_180045af0(param_2 + 0xf8);
+    ProcessResourceOperation(param_2 + 0xf8);
   }
   return;
 }
@@ -74215,7 +74215,7 @@ void Unwind_18090fd90(undefined8 param_1,longlong param_2)
 {
   if ((*(uint *)(resourceData + 0x30) & 8) != 0) {
     *(uint *)(resourceData + 0x30) = *(uint *)(resourceData + 0x30) & 0xfffffff7;
-    FUN_180045af0(param_2 + 0x100);
+    ProcessResourceOperation(param_2 + 0x100);
   }
   return;
 }
@@ -74227,7 +74227,7 @@ void Unwind_18090fdc0(undefined8 param_1,longlong param_2)
 {
   if ((*(uint *)(resourceData + 0x30) & 0x10) != 0) {
     *(uint *)(resourceData + 0x30) = *(uint *)(resourceData + 0x30) & 0xffffffef;
-    FUN_180045af0(param_2 + 0x108);
+    ProcessResourceOperation(param_2 + 0x108);
   }
   return;
 }
@@ -76147,7 +76147,7 @@ void Unwind_1809106f0(undefined8 param_1,longlong param_2)
 {
   if ((*(uint *)(resourceData + 0x20) & 1) != 0) {
     *(uint *)(resourceData + 0x20) = *(uint *)(resourceData + 0x20) & 0xfffffffe;
-    FUN_180045af0(param_2 + 0x38);
+    ProcessResourceOperation(param_2 + 0x38);
   }
   return;
 }
@@ -76159,7 +76159,7 @@ void Unwind_180910720(undefined8 param_1,longlong param_2)
 {
   if ((*(uint *)(resourceData + 0x20) & 2) != 0) {
     *(uint *)(resourceData + 0x20) = *(uint *)(resourceData + 0x20) & 0xfffffffd;
-    FUN_180045af0(param_2 + 0x38);
+    ProcessResourceOperation(param_2 + 0x38);
   }
   return;
 }
@@ -85992,7 +85992,7 @@ void ProcessSystemOperationD(undefined8 param_1,undefined8 param_2,undefined8 pa
   undefined8 *presourceHash;
   undefined8 *pvalidationResult;
   
-  FUN_18005d260(&DAT_180bfaec0,_DAT_180bfaed0,param_3,param_4,0xfffffffffffffffe);
+  ProcessResourceData(&DAT_180bfaec0,_DAT_180bfaed0,param_3,param_4,0xfffffffffffffffe);
   presourceHash = _DAT_180bfaea8;
   for (pvalidationResult = _DAT_180bfaea0; pvalidationResult != presourceHash; pvalidationResult = pvalidationResult + 7) {
     *pvalidationResult = &SystemResourceHandlerTemplate;

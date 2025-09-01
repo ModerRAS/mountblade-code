@@ -18044,13 +18044,13 @@ void InitializeSystemInfoAndUserEnvironment(void)
   uStack_28 = _DAT_180bf00a8 ^ (ulong long)auStack_248;
   uStack_200 = 0;
   if (*(char *)(_DAT_180c86928 + 0x18) == '\0') {
-    FUN_18004b560(&puStack_1b8);
+    InitializeGameController(&puStack_1b8);
     (**(code **)(**(long long **)(_DAT_180c86870 + 0x2b0) + 0x98))
               (*(long long **)(_DAT_180c86870 + 0x2b0),&puStack_1b8);
-    FUN_180061380();
+    StartInputSystem();
     lVar3 = _DAT_180c86928;
     uVar5 = SystemMemoryAllocationFunction(_DAT_180c8ed18,0x70,8,3);
-    plVar6 = (long long *)FUN_1800636f0(uVar5,8,lVar3);
+    plVar6 = (long long *)AllocateSystemMemory(uVar5,8,lVar3);
     plStack_190 = plVar6;
     if (plVar6 != (long long *)0x0) {
       (**(code **)(*plVar6 + 0x28))(plVar6);
@@ -18421,7 +18421,7 @@ uint32_t FinalSystemInitialization(void)
   FUN_1800623e0();
   systemObject = _DAT_180c86928;
   allocationFlags = SystemMemoryAllocationFunction(_DAT_180c8ed18,0x70,8,3);
-  tempManager8 = (long long ****)FUN_1800636f0(allocationFlags,2,systemObject);
+  tempManager8 = (long long ****)AllocateSystemMemory(allocationFlags,2,systemObject);
   tempManager14 = tempManager8;
   if (tempManager8 != (long long ****)0x0) {
     (*(code *)(*tempManager8)[5])(tempManager8);
@@ -18435,7 +18435,7 @@ uint32_t FinalSystemInitialization(void)
   }
   (*systemCallback)(systemPtr,&stackManager10);
   systemFlags = SystemMemoryAllocationFunction(_DAT_180c8ed18,0x70,8,3,systemFlags,systemSuperManager,tempManager14);
-  tempManager9 = (long long ***)FUN_1800636f0(systemFlags,0,systemObject);
+  tempManager9 = (long long ***)AllocateSystemMemory(systemFlags,0,systemObject);
   if (tempManager9 != (long long ***)0x0) {
     (*(code *)(*tempManager9)[5])(tempManager9);
   }
@@ -19734,8 +19734,14 @@ LAB_180046c5e:
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180046ca0(long long *param_1,void* *param_2)
-void FUN_180046ca0(long long *param_1,void* *param_2)
+/**
+ * 初始化系统控制器
+ * 设置系统控制器并分配必要的内存资源
+ * 
+ * @param param_1 系统参数指针
+ * @param param_2 系统配置指针
+ */
+void InitializeSystemController(long long *param_1,void* *param_2)
 
 {
   long long *plVar1;
@@ -20671,7 +20677,17 @@ void CleanupSystemResource(long long param_1)
 
 
 
-long long FUN_180048a90(long long param_1,long long param_2,void* param_3,void* param_4)
+/**
+ * 管理系统资源
+ * 分配和管理系统资源，包括内存和系统对象
+ * 
+ * @param param_1 资源类型参数
+ * @param param_2 资源大小参数
+ * @param param_3 资源配置参数
+ * @param param_4 资源标志参数
+ * @return 操作结果状态码
+ */
+long long ManageSystemResources(long long param_1,long long param_2,void* param_3,void* param_4)
 
 {
   void* *puVar1;
@@ -20756,7 +20772,17 @@ long long FUN_180048a90(long long param_1,long long param_2,void* param_3,void* 
 
 
 
-void* FUN_180048c70(void* param_1,ulong long param_2,void* param_3,void* param_4)
+/**
+ * 分配系统资源
+ * 根据参数分配系统资源并返回资源指针
+ * 
+ * @param param_1 资源指针
+ * @param param_2 资源大小标志
+ * @param param_3 资源配置参数
+ * @param param_4 资源标志参数
+ * @return 分配的资源指针
+ */
+void* AllocateSystemResources(void* param_1,ulong long param_2,void* param_3,void* param_4)
 
 {
   void* uVar1;
@@ -21034,8 +21060,20 @@ void* * FUN_180049110(long long param_1,long long param_2,void* param_3,void* pa
 
 
 
-void* *
-FUN_1800491b0(void* *param_1,long long *param_2,long long *param_3,void* *param_4)
+// 函数: void FUN_1800491b0(void* *param_1,long long *param_2,long long *param_3,void* *param_4)
+/**
+ * @brief 系统内存块批量初始化函数
+ * 
+ * 该函数批量初始化系统内存块，设置内存分配器引用和全局数据引用。
+ * 它遍历指定的内存区域，为每个内存块设置相应的引用和参数。
+ * 
+ * @param param_1 输出参数，用于返回初始化后的内存块
+ * @param param_2 内存区域的起始地址
+ * @param param_3 内存区域的结束地址
+ * @param param_4 要初始化的内存块指针
+ * @return 返回初始化后的内存块指针
+ */
+void* * SystemMemoryBatchInitializer(void* *param_1,long long *param_2,long long *param_3,void* *param_4)
 
 {
   long long *plVar1;
@@ -21557,7 +21595,17 @@ void* * InitializeMemoryAllocatorStructure(void* *memoryAllocator)
 
 
 // 函数: void FUN_1800499c0(long long param_1,long long param_2,long long param_3)
-void FUN_1800499c0(long long param_1,long long param_2,long long param_3)
+/**
+ * @brief 系统字符串处理和内存管理函数
+ * 
+ * 该函数处理系统字符串操作，包括字符串搜索、长度计算和内存复制。
+ * 它还涉及到内存分配器的引用管理和堆栈操作。
+ * 
+ * @param param_1 字符串参数1，包含要处理的字符串
+ * @param param_2 字符串参数2，用于长度计算
+ * @param param_3 字符串参数3，用于长度计算
+ */
+void SystemStringProcessor(long long param_1,long long param_2,long long param_3)
 
 {
   long long lVar1;
@@ -21597,8 +21645,19 @@ void FUN_1800499c0(long long param_1,long long param_2,long long param_3)
 
 
 
-void* *
-FUN_180049b30(void* *param_1,long long param_2,void* param_3,void* param_4)
+// 函数: void FUN_180049b30(void* *param_1,long long param_2,void* param_3,void* param_4)
+/**
+ * @brief 系统内存分配器初始化函数
+ * 
+ * 该函数初始化系统内存分配器，设置内存分配器引用和初始参数。
+ * 
+ * @param param_1 指向内存分配器指针的指针
+ * @param param_2 保留参数
+ * @param param_3 保留参数
+ * @param param_4 保留参数
+ * @return 返回初始化后的内存分配器指针
+ */
+void* * SystemMemoryAllocatorInitializer(void* *param_1,long long param_2,void* param_3,void* param_4)
 
 {
   undefined *puVar1;
@@ -22625,7 +22684,7 @@ void FUN_18004b3f0(void* *param_1)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-long long * FUN_18004b560(long long *param_1,void* param_2,void* param_3,void* param_4)
+long long * InitializeGameController(long long *param_1,void* param_2,void* param_3,void* param_4)
 
 {
   *param_1 = (long long)&SystemMemoryAllocatorReference;
@@ -38231,8 +38290,8 @@ FUN_180061300(void* *param_1,ulong long param_2,void* param_3,void* param_4)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180061380(void* param_1,long long param_2)
-void FUN_180061380(void* param_1,long long param_2)
+// 函数: void StartInputSystem(void* param_1,long long param_2)
+void StartInputSystem(void* param_1,long long param_2)
 
 {
   long long lVar1;
@@ -38311,7 +38370,7 @@ void FUN_180061be0(long long *param_1)
   lVar3 = _DAT_180c86928;
   plStackX_8 = param_1;
   uVar4 = SystemMemoryAllocationFunction(_DAT_180c8ed18,0x70,8,3,0xfffffffffffffffe);
-  plVar5 = (long long *)FUN_1800636f0(uVar4,0,lVar3);
+  plVar5 = (long long *)AllocateSystemMemory(uVar4,0,lVar3);
   plStackX_18 = plVar5;
   if (plVar5 != (long long *)0x0) {
     (**(code **)(*plVar5 + 0x28))(plVar5);
@@ -38325,7 +38384,7 @@ void FUN_180061be0(long long *param_1)
   }
   (*pcVar2)(puVar1,&plStackX_8);
   uVar4 = SystemMemoryAllocationFunction(_DAT_180c8ed18,0x70,8,3);
-  plVar6 = (long long *)FUN_1800636f0(uVar4,4,lVar3);
+  plVar6 = (long long *)AllocateSystemMemory(uVar4,4,lVar3);
   plStackX_20 = plVar6;
   if (plVar6 != (long long *)0x0) {
     (**(code **)(*plVar6 + 0x28))(plVar6);
@@ -38339,7 +38398,7 @@ void FUN_180061be0(long long *param_1)
   }
   (*pcVar2)(puVar1,&plStackX_8);
   uVar4 = SystemMemoryAllocationFunction(_DAT_180c8ed18,0x70,8,3);
-  plVar7 = (long long *)FUN_1800636f0(uVar4,0,lVar3);
+  plVar7 = (long long *)AllocateSystemMemory(uVar4,0,lVar3);
   if (plVar7 != (long long *)0x0) {
     pplStackX_10 = (long long **)plVar7;
     (**(code **)(*plVar7 + 0x28))(plVar7);
@@ -38391,7 +38450,7 @@ void FUN_180061db0(long long *param_1)
   lVar3 = _DAT_180c86928;
   plStackX_8 = param_1;
   uVar4 = SystemMemoryAllocationFunction(_DAT_180c8ed18,0x70,8,3,0xfffffffffffffffe);
-  plVar5 = (long long *)FUN_1800636f0(uVar4,0,lVar3);
+  plVar5 = (long long *)AllocateSystemMemory(uVar4,0,lVar3);
   plStackX_18 = plVar5;
   if (plVar5 != (long long *)0x0) {
     (**(code **)(*plVar5 + 0x28))(plVar5);
@@ -38405,7 +38464,7 @@ void FUN_180061db0(long long *param_1)
   }
   (*pcVar2)(puVar1,&plStackX_8);
   uVar4 = SystemMemoryAllocationFunction(_DAT_180c8ed18,0x70,8,3);
-  plVar6 = (long long *)FUN_1800636f0(uVar4,3,lVar3);
+  plVar6 = (long long *)AllocateSystemMemory(uVar4,3,lVar3);
   plStackX_20 = plVar6;
   if (plVar6 != (long long *)0x0) {
     (**(code **)(*plVar6 + 0x28))(plVar6);
@@ -38419,7 +38478,7 @@ void FUN_180061db0(long long *param_1)
   }
   (*pcVar2)(puVar1,&plStackX_8);
   uVar4 = SystemMemoryAllocationFunction(_DAT_180c8ed18,0x70,8,3);
-  plVar7 = (long long *)FUN_1800636f0(uVar4,0,lVar3);
+  plVar7 = (long long *)AllocateSystemMemory(uVar4,0,lVar3);
   if (plVar7 != (long long *)0x0) {
     pplStackX_10 = (long long **)plVar7;
     (**(code **)(*plVar7 + 0x28))(plVar7);
@@ -38543,7 +38602,7 @@ void FUN_1800623e0(long long *param_1)
   if (*(char *)(_DAT_180c86928 + 0x18) != '\0') {
     plStackX_8 = param_1;
     uVar4 = SystemMemoryAllocationFunction(_DAT_180c8ed18,0x70,8,3,0xfffffffffffffffe);
-    plVar5 = (long long *)FUN_1800636f0(uVar4,6,lVar3);
+    plVar5 = (long long *)AllocateSystemMemory(uVar4,6,lVar3);
     plStackX_10 = plVar5;
     if (plVar5 != (long long *)0x0) {
       (**(code **)(*plVar5 + 0x28))(plVar5);
@@ -39041,7 +39100,7 @@ FUN_180063650(void* *param_1,ulong long param_2,void* param_3,void* param_4)
 
 
 void* *
-FUN_1800636f0(void* *param_1,uint32_t param_2,void* param_3,void* param_4)
+AllocateSystemMemory(void* *param_1,uint32_t param_2,void* param_3,void* param_4)
 
 {
   long long *plVar1;
