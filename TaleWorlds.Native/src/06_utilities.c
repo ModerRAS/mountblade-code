@@ -1715,27 +1715,27 @@ uint8_t SystemMemoryConfigDataNovendenary;
 uint8_t SystemMemoryConfigDataVigesimal;
 uint8_t SystemMemoryConfigDataUnvigesimal;
 uint8_t SystemMemoryConfigDataDuovigesimal;
-uint8_t SystemMemoryConfigDataTemplateAudio;
-uint8_t SystemMemoryConfigDataTemplatePhysics;
-uint8_t SystemMemoryConfigDataTemplateInput;
+uint8_t SystemMemoryConfigTemplateAudio;
+uint8_t SystemMemoryConfigTemplatePhysics;
+uint8_t SystemMemoryConfigTemplateInput;
 uint8_t SystemMemoryConfigDataCore;
-uint8_t SystemMemoryConfigDataTemplateNetwork;
-uint8_t SystemMemoryConfigDataTemplateGraphics;
-uint8_t SystemMemoryConfigDataTemplateResources;
-uint8_t SystemMemoryConfigDataTemplateAudioSystem;
-uint8_t SystemMemoryConfigDataTemplateThreadManager;
-uint8_t SystemMemoryConfigDataTemplateMemoryPool;
-uint8_t SystemMemoryConfigDataTemplateFileSystem;
-uint8_t SystemMemoryConfigDataTemplateSecurity;
-uint8_t SystemMemoryConfigDataTemplateEncryption;
-uint8_t SystemMemoryConfigDataTemplateOptimization;
-uint8_t SystemMemoryConfigDataTemplateNormalSettings;
-uint8_t SystemMemoryConfigDataTemplateVigesimal;
-uint8_t SystemMemoryConfigDataTemplateUnvigesimal;
-uint8_t SystemMemoryConfigDataTemplateDuovigesimal;
-uint8_t SystemMemoryConfigDataTemplateTervigesimal;
-uint8_t SystemMemoryConfigDataTemplateQuickuattuorvigesimal;
-uint8_t SystemMemoryConfigDataTemplateAlternate;
+uint8_t SystemMemoryConfigTemplateNetwork;
+uint8_t SystemMemoryConfigTemplateGraphics;
+uint8_t SystemMemoryConfigTemplateResources;
+uint8_t SystemMemoryConfigTemplateAudioSystem;
+uint8_t SystemMemoryConfigTemplateThreadManager;
+uint8_t SystemMemoryConfigTemplateMemoryPool;
+uint8_t SystemMemoryConfigTemplateFileSystem;
+uint8_t SystemMemoryConfigTemplateSecurity;
+uint8_t SystemMemoryConfigTemplateEncryption;
+uint8_t SystemMemoryConfigTemplateOptimization;
+uint8_t SystemMemoryConfigTemplateNormalSettings;
+uint8_t SystemMemoryConfigTemplateVigesimal;
+uint8_t SystemMemoryConfigTemplateUnvigesimal;
+uint8_t SystemMemoryConfigTemplateDuovigesimal;
+uint8_t SystemMemoryConfigTemplateTervigesimal;
+uint8_t SystemMemoryConfigTemplateQuattuorvigesimal;
+uint8_t SystemMemoryConfigTemplateAlternate;
 uint8_t SystemMemoryPoolBufferPool;
 uint8_t SystemMemoryCachePool;
 uint8_t SystemMemoryDescriptorPool;
@@ -8830,13 +8830,13 @@ void ExecuteDataValidationAndProcessing(int64_t data_context, int64_t operation_
  * @param operation_context 操作上下文指针
  * @return 操作结果状态码
  */
-int process_data_block_operation(int64_t data_context, int64_t operation_context)
+int ProcessDataBlockOperation(int64_t data_context, int64_t operation_context)
 
 {
-  uint OperationMode;
-  int ResultStatus;
-  int64_t AllocatedBuffer;
-  int64_t TempStackBuffer;
+  uint DataOperationMode;
+  int ProcessingResult;
+  int64_t MemoryBufferPointer;
+  int64_t TemporaryStackBuffer;
   
   OperationMode = *(uint *)(data_context + 0x1c);
   if ((((OperationMode != 1) || ((*(byte *)(data_context + 0x10) & 0x1f) == 0)) && (0 < *(int *)(data_context + 0x18))
