@@ -2104,7 +2104,7 @@ int InitializeSystemSecurityManager(void)
   return (ModuleInitializationResult != 0) - 1;
 }
   DAT_180c82841 = 1;
-  DAT_180c82840 = 0;
+  SystemInitializationStatus = 0;
   auStackX_18[0] = GetModuleHandleA(0);
   InitializeSystemData(param_1,auStackX_18);
   ProcessSystemInitialization();
@@ -2115,7 +2115,7 @@ void InitializeNativeSDLL(uint64_t initFlags)
 {
   uint64_t auStackX_18 [2];
   DAT_180c82841 = 0;
-  DAT_180c82840 = 0;
+  SystemInitializationStatus = 0;
   auStackX_18[0] = GetModuleHandleA(0);
   InitializeSystemData(param_1,auStackX_18);
   ProcessSystemInitialization();
@@ -2210,7 +2210,7 @@ LAB_1800451ca:
   CleanupSystemResources();
 }
   DAT_180c82841 = 1;
-  DAT_180c82840 = 0;
+  SystemInitializationStatus = 0;
   auStackX_18[0] = GetModuleHandleA(0);
   InitializeSystemData(param_1,auStackX_18);
   ProcessSystemInitialization();
@@ -2221,7 +2221,7 @@ void InitializeNativeCore(uint64_t initFlags)
 {
   uint64_t auStackX_18 [2];
   DAT_180c82841 = 0;
-  DAT_180c82840 = 0;
+  SystemInitializationStatus = 0;
   auStackX_18[0] = GetModuleHandleA(0);
   InitializeSystemData(param_1,auStackX_18);
   ProcessSystemInitialization();

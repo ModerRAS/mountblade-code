@@ -143,6 +143,10 @@ bool SystemStatusFlag4Initialized;
  * 
  * 该函数负责销毁系统中所有的线程同步对象
  * 释放相关资源，清理同步状态
+ * 
+ * @return 无返回值
+ * @note 此函数通常在系统关闭或线程终止时调用
+ * @warning 调用此函数后，所有相关的同步对象将不再可用
  */
 void DestroyThreadSyncObjects(void);
 void* ThreadSyncObjectHandle;
@@ -153,6 +157,10 @@ void* ThreadSyncContext;
  * 
  * 该函数负责关闭系统的句柄资源
  * 释放句柄占用的系统资源
+ * 
+ * @return 无返回值
+ * @note 此函数会释放所有系统句柄占用的资源
+ * @warning 调用此函数后，所有系统句柄将失效
  */
 void CloseSystemHandle(void);
 
@@ -161,6 +169,10 @@ void CloseSystemHandle(void);
  * 
  * 该函数负责清理线程运行过程中使用的资源
  * 释放内存，关闭句柄，重置状态
+ * 
+ * @return 无返回值
+ * @note 此函数会清理所有与线程相关的资源
+ * @warning 调用此函数后，线程资源将被完全释放
  */
 void CleanupThreadResources(void);
 uint32_t ThreadResourceFlag;

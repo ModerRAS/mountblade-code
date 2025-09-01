@@ -18860,10 +18860,10 @@ void ExecuteSystemMemoryCopyOperation(void)
 void ResetSystemBuffer(uint8_t *bufferPointer)
 
 {
-  long long unaff_RDI;
+  long long systemRegister;
   
-  *param_1 = 0;
-  *(uint32_t *)(unaff_RDI + 0x10) = 0;
+  *bufferPointer = 0;
+  *(uint32_t *)(systemRegister + 0x10) = 0;
   return;
 }
 
