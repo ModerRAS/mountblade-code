@@ -25908,15 +25908,15 @@ void SystemDataInitializer(void)
   localBufferAddress = SystemStatusFlagsPointer;
   uStack_58 = 0xfffffffffffffffe;
   uStack_28 = SystemEncryptionKeyTemplate ^ (ulong long)auStack_a8;
-  FUN_18005e630(SystemAllocationFlagsTemplate);
+  InitializeMemoryAllocationFlags(SystemAllocationFlagsTemplate);
   do {
     unsignedSystemValue3 = SystemAllocationFlagsTemplate;
-    localMemoryAddress = FUN_18005e890(SystemAllocationFlagsTemplate);
+    localMemoryAddress = AllocateSystemMemory(SystemAllocationFlagsTemplate);
     if (localMemoryAddress == 0) break;
     plocalResourcePointer = (long long *)FUN_18005e890(unsignedSystemValue3);
     cVar5 = (**(code **)(*plocalResourcePointer + 0x20))(plocalResourcePointer,1);
   } while (cVar5 != '\0');
-  FUN_18005e630(SystemAllocationFlagsTemplate);
+  InitializeMemoryAllocationFlags(SystemAllocationFlagsTemplate);
   pointerToUnsigned1 = SystemResourceManagerPointer;
   if (*(char *)(SystemResourceManagerPointer + 7) != '\0') {
     plStack_88 = (long long *)0x180c91970;
@@ -25957,11 +25957,11 @@ void SystemDataInitializer(void)
     (**(code **)(*SystemGlobalControllerPointer + 0x28))();
     FUN_18005e6a0(unsignedSystemValue3,&plStack_88,0);
   }
-  FUN_18005e630(SystemAllocationFlagsTemplate);
+  InitializeMemoryAllocationFlags(SystemAllocationFlagsTemplate);
   if (SystemInitializationFlag != 0) {
     FUN_18006eb30();
   }
-  FUN_18005e630(SystemAllocationFlagsTemplate);
+  InitializeMemoryAllocationFlags(SystemAllocationFlagsTemplate);
   if (*(long long **)(localBufferAddress + 0x2b0) != (long long *)0x0) {
     (**(code **)(**(long long **)(localBufferAddress + 0x2b0) + 0x20))();
   }
@@ -25977,11 +25977,11 @@ void SystemDataInitializer(void)
     (**(code **)(*SystemGlobalControllerPointer + 0x28))();
     FUN_18005e6a0(unsignedSystemValue3,&plStack_88,0);
   }
-  FUN_18005e630(SystemAllocationFlagsTemplate);
+  InitializeMemoryAllocationFlags(SystemAllocationFlagsTemplate);
   if (SystemInitializationFlag != 0) {
     FUN_18006eb30();
   }
-  FUN_18005e630(SystemAllocationFlagsTemplate);
+  InitializeMemoryAllocationFlags(SystemAllocationFlagsTemplate);
   unsignedSystemValue3 = SystemAllocationFlagsTemplate;
   if (SystemGlobalControllerPointer != (long long *)0x0) {
     pplStack_80 = &plStack_88;
@@ -25989,11 +25989,11 @@ void SystemDataInitializer(void)
     (**(code **)(*SystemGlobalControllerPointer + 0x28))();
     FUN_18005e6a0(unsignedSystemValue3,&plStack_88,0);
   }
-  FUN_18005e630(SystemAllocationFlagsTemplate);
+  InitializeMemoryAllocationFlags(SystemAllocationFlagsTemplate);
   if (SystemInitializationFlag != 0) {
     FUN_18006eb30();
   }
-  FUN_18005e630(SystemAllocationFlagsTemplate);
+  InitializeMemoryAllocationFlags(SystemAllocationFlagsTemplate);
   puStack_50 = &UNK_1809fdc18;
   puStack_48 = auStack_38;
   auStack_38[0] = 0;
@@ -29432,18 +29432,18 @@ void ManageSystemResourceBuffer(void* SystemResourcePointer,void* ConfigurationD
   puStack_18 = &UNK_180058ec0;
   ProcessSystemResourceData(auStack_30);
   *(uint8_t *)(_DAT_180c8a980 + 0x3a0) = 1;
-  FUN_18005e630(SystemAllocationFlagsTemplate);
-  FUN_18005e630(SystemAllocationFlagsTemplate);
+  InitializeMemoryAllocationFlags(SystemAllocationFlagsTemplate);
+  InitializeMemoryAllocationFlags(SystemAllocationFlagsTemplate);
   if (SystemInitializationFlag != 0) {
     FUN_18006eb30();
   }
-  FUN_18005e630(SystemAllocationFlagsTemplate);
-  FUN_18005e630(SystemAllocationFlagsTemplate);
-  FUN_18005e630(SystemAllocationFlagsTemplate);
+  InitializeMemoryAllocationFlags(SystemAllocationFlagsTemplate);
+  InitializeMemoryAllocationFlags(SystemAllocationFlagsTemplate);
+  InitializeMemoryAllocationFlags(SystemAllocationFlagsTemplate);
   if (SystemInitializationFlag != 0) {
     FUN_18006eb30();
   }
-  FUN_18005e630(SystemAllocationFlagsTemplate);
+  InitializeMemoryAllocationFlags(SystemAllocationFlagsTemplate);
   FUN_1800b4ec0();
   localMemoryPointer = SystemMemoryContext;
   *(uint8_t *)(SystemMemoryContext + 0x1504) = 0;
@@ -42278,7 +42278,7 @@ void FUN_180065f00(void* SystemResourcePointer,long long ConfigurationDataPointe
   uStack_70 = 0;
   puStack_88 = &SystemMemoryAllocatorReference;
   if (sourceString == 0) {
-    localBufferAddress = FUN_18005e890(SystemAllocationFlagsTemplate);
+    localBufferAddress = AllocateSystemMemory(SystemAllocationFlagsTemplate);
     (**(code **)(*plStack_b0 + 8))(plStack_b0,SystemResourcePointer,*(uint32_t *)(localBufferAddress + 0x38));
   }
   else {
@@ -42861,14 +42861,14 @@ long long FUN_180066f90(long long SystemResourcePointer,ulong long Configuration
   long long localBufferAddress;
   
   if (DataSize <= ConfigurationDataPointer) {
-    if (param_5 == 0) {
+    if (DataSize == 0) {
       return 0;
     }
     cVar1 = *ConfigurationFlag;
-    localBufferAddress = (SystemResourcePointer - param_5) + ConfigurationDataPointer;
+    localBufferAddress = (SystemResourcePointer - DataSize) + ConfigurationDataPointer;
     for (localResourceOffset = memchr(SystemResourcePointer,(int)cVar1,(localBufferAddress + 1) - SystemResourcePointer); localResourceOffset != 0;
         localResourceOffset = memchr(localResourceOffset + 1,(int)cVar1,(localBufferAddress + 1) - (localResourceOffset + 1))) {
-      systemResult = memcmp(localResourceOffset,ConfigurationFlag,param_5);
+      systemResult = memcmp(localResourceOffset,ConfigurationFlag,DataSize);
       if (systemResult == 0) {
         return localResourceOffset - SystemResourcePointer;
       }
@@ -43776,7 +43776,7 @@ void FUN_1800687d0(long long SystemResourcePointer,void* *ConfigurationDataPoint
 
 long long *
 FUN_180068860(long long SystemResourcePointer,long long *ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag,
-             ulong long param_5)
+             ulong long ArraySize)
 
 {
   long long localMemoryPointer;
@@ -43784,21 +43784,21 @@ FUN_180068860(long long SystemResourcePointer,long long *ConfigurationDataPointe
   long long localResourceOffset;
   void* unsignedSystemValue4;
   
-  unsignedSystemValue2 = param_5 % (ulong long)*(uint *)(SystemResourcePointer + 0x10);
+  unsignedSystemValue2 = ArraySize % (ulong long)*(uint *)(SystemResourcePointer + 0x10);
   localResourceOffset = func_0x0001800694c0(SystemResourcePointer,*(void* *)(*(long long *)(SystemResourcePointer + 8) + unsignedSystemValue2 * 8),
                               ConfigurationFlag);
   if (localResourceOffset == 0) {
-    FUN_18066c220(SystemResourcePointer + 0x20,&param_5,*(uint32_t *)(SystemResourcePointer + 0x10),
+    FUN_18066c220(SystemResourcePointer + 0x20,&ArraySize,*(uint32_t *)(SystemResourcePointer + 0x10),
                   *(uint32_t *)(SystemResourcePointer + 0x18),1);
     localResourceOffset = CreateSystemThreadObject(SystemMemoryAllocationTemplate,0x128,*(uint8_t *)(SystemResourcePointer + 0x2c));
     FUN_180068ff0(localResourceOffset,ConfigurationFlag);
     *(void* *)(localResourceOffset + 0x118) = 0;
     *(void* *)(localResourceOffset + 0x120) = 0;
-    if ((char)param_5 != '\0') {
-      unsignedSystemValue4 = SystemMemoryAllocationFunction(SystemMemoryAllocationTemplate,(ulong long)param_5._4_4_ * 8 + 8,8,
+    if ((char)ArraySize != '\0') {
+      unsignedSystemValue4 = SystemMemoryAllocationFunction(SystemMemoryAllocationTemplate,(ulong long)ArraySize._4_4_ * 8 + 8,8,
                             *(uint8_t *)(SystemResourcePointer + 0x2c));
                     // WARNING: Subroutine does not return
-      memset(unsignedSystemValue4,0,(ulong long)param_5._4_4_ * 8);
+      memset(unsignedSystemValue4,0,(ulong long)ArraySize._4_4_ * 8);
     }
     *(void* *)(localResourceOffset + 0x120) = *(void* *)(*(long long *)(SystemResourcePointer + 8) + unsignedSystemValue2 * 8);
     *(long long *)(*(long long *)(SystemResourcePointer + 8) + unsignedSystemValue2 * 8) = localResourceOffset;
@@ -45471,7 +45471,7 @@ void FUN_18006bd80(long long SystemResourcePointer)
 
 void*
 FUN_18006bda0(long long SystemResourcePointer,long long ConfigurationDataPointer,long long *AdditionalParameter,long long *ConfigurationFlag,
-             long long *param_5)
+             long long *OutputResult)
 
 {
   long long localMemoryPointer;
@@ -45515,14 +45515,14 @@ FUN_18006bda0(long long SystemResourcePointer,long long ConfigurationDataPointer
         localResourceOffset = CreateSystemThreadObject(SystemMemoryAllocationTemplate,localResourceOffset,CONCAT71(unsignedSystemValue7,3));
         *AdditionalParameter = localResourceOffset;
         *(long long *)(ConfigurationDataPointer + 0x198) = localResourceOffset;
-        *param_5 = *AdditionalParameter;
+        *OutputResult = *AdditionalParameter;
       }
     }
     else {
       localResourceOffset = CreateSystemThreadObject(SystemMemoryAllocationTemplate,localResourceOffset,CONCAT71(unsignedSystemValue7,3));
       *ConfigurationFlag = localResourceOffset;
       *(long long *)(ConfigurationDataPointer + 0x198) = localResourceOffset;
-      *param_5 = *ConfigurationFlag;
+      *OutputResult = *ConfigurationFlag;
       if (*AdditionalParameter == 0) {
         localResourceOffset = CreateSystemThreadObject(SystemMemoryAllocationTemplate,*(void* *)(ConfigurationDataPointer + 0x138),3);
         *AdditionalParameter = localResourceOffset;
@@ -45537,7 +45537,7 @@ FUN_18006bda0(long long SystemResourcePointer,long long ConfigurationDataPointer
       if (SecondaryResourcePointer == (long long *)0x0) goto LAB_18006bf7f;
       localResourceOffset = *(long long *)(SystemResourcePointer + 800) + *SecondaryResourcePointer;
       *AdditionalParameter = localResourceOffset;
-      *param_5 = localResourceOffset;
+      *OutputResult = localResourceOffset;
     }
   }
   else {
@@ -45551,7 +45551,7 @@ LAB_18006bf7f:
     }
     localResourceOffset = *SecondaryResourcePointer + *(long long *)(SystemResourcePointer + 800);
     *ConfigurationFlag = localResourceOffset;
-    *param_5 = localResourceOffset;
+    *OutputResult = localResourceOffset;
     if (*AdditionalParameter == 0) {
       SecondaryResourcePointer = (long long *)FUN_18006e000(SystemResourcePointer,*(void* *)(ConfigurationDataPointer + 0x138));
       *(long long **)(ConfigurationDataPointer + 400) = SecondaryResourcePointer;
