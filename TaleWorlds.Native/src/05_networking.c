@@ -5972,15 +5972,23 @@ uint8_t SetNetworkConnectionParameter(longlong connectionHandle, uint8_t paramet
 
 
 
-// 函数: void FUN_180848590(longlong param_1,undefined8 param_2)
-void FUN_180848590(longlong param_1,undefined8 param_2)
+/**
+ * 设置网络连接超时参数
+ * 
+ * 该函数负责设置网络连接的超时参数，包括连接超时和数据传输超时。
+ * 首先验证连接状态，然后设置超时参数。
+ * 
+ * @param connectionHandle 连接句柄
+ * @param timeoutValue 超时值
+ */
+void SetNetworkConnectionTimeout(longlong connectionHandle, uint8_t timeoutValue)
 
 {
-  int iVar1;
+  int validationResult;
   
-  iVar1 = FUN_18088ee60(param_2,param_1 + 0x10);
-  if (iVar1 == 0) {
-    FUN_18088f010(param_2,param_1 + 0x18);
+  validationResult = ValidateNetworkConnectionState(timeoutValue, connectionHandle + 0x10);
+  if (validationResult == 0) {
+    ApplyNetworkTimeoutSettings(timeoutValue, connectionHandle + 0x18);
   }
   return;
 }
@@ -5988,15 +5996,23 @@ void FUN_180848590(longlong param_1,undefined8 param_2)
 
 
 
-// 函数: void FUN_1808485d0(longlong param_1,undefined8 param_2)
-void FUN_1808485d0(longlong param_1,undefined8 param_2)
+/**
+ * 设置网络连接缓冲区大小
+ * 
+ * 该函数负责设置网络连接的缓冲区大小，包括发送缓冲区和接收缓冲区。
+ * 首先验证连接状态，然后设置缓冲区大小参数。
+ * 
+ * @param connectionHandle 连接句柄
+ * @param bufferSizeValue 缓冲区大小值
+ */
+void SetNetworkConnectionBufferSize(longlong connectionHandle, uint8_t bufferSizeValue)
 
 {
-  int iVar1;
+  int validationResult;
   
-  iVar1 = FUN_18088ee60(param_2,param_1 + 0x10);
-  if (iVar1 == 0) {
-    FUN_18088f470(param_2,param_1 + 0x18);
+  validationResult = ValidateNetworkConnectionState(bufferSizeValue, connectionHandle + 0x10);
+  if (validationResult == 0) {
+    ApplyNetworkBufferSizeSettings(bufferSizeValue, connectionHandle + 0x18);
   }
   return;
 }
@@ -6004,15 +6020,23 @@ void FUN_1808485d0(longlong param_1,undefined8 param_2)
 
 
 
-// 函数: void FUN_180848610(longlong param_1,undefined8 param_2)
-void FUN_180848610(longlong param_1,undefined8 param_2)
+/**
+ * 设置网络连接优先级
+ * 
+ * 该函数负责设置网络连接的优先级，用于处理不同重要性的连接。
+ * 首先验证连接状态，然后设置连接优先级。
+ * 
+ * @param connectionHandle 连接句柄
+ * @param priorityValue 优先级值
+ */
+void SetNetworkConnectionPriority(longlong connectionHandle, uint8_t priorityValue)
 
 {
-  int iVar1;
+  int validationResult;
   
-  iVar1 = FUN_18088ee60(param_2,param_1 + 0x10);
-  if (iVar1 == 0) {
-    FUN_18088eea0(param_2,param_1 + 0x18);
+  validationResult = ValidateNetworkConnectionState(priorityValue, connectionHandle + 0x10);
+  if (validationResult == 0) {
+    ApplyNetworkPrioritySettings(priorityValue, connectionHandle + 0x18);
   }
   return;
 }
@@ -6020,15 +6044,23 @@ void FUN_180848610(longlong param_1,undefined8 param_2)
 
 
 
-// 函数: void FUN_180848650(longlong param_1,undefined8 param_2)
-void FUN_180848650(longlong param_1,undefined8 param_2)
+/**
+ * 设置网络连接状态标志
+ * 
+ * 该函数负责设置网络连接的状态标志，用于标记连接的各种状态。
+ * 首先验证连接状态，然后设置状态标志。
+ * 
+ * @param connectionHandle 连接句柄
+ * @param stateFlagValue 状态标志值
+ */
+void SetNetworkConnectionStateFlag(longlong connectionHandle, uint8_t stateFlagValue)
 
 {
-  int iVar1;
+  int validationResult;
   
-  iVar1 = FUN_18088ee60(param_2,param_1 + 0x10);
-  if (iVar1 == 0) {
-    FUN_18088ee60(param_2,param_1 + 0x18);
+  validationResult = ValidateNetworkConnectionState(stateFlagValue, connectionHandle + 0x10);
+  if (validationResult == 0) {
+    ApplyNetworkStateFlagSettings(stateFlagValue, connectionHandle + 0x18);
   }
   return;
 }
@@ -6036,17 +6068,25 @@ void FUN_180848650(longlong param_1,undefined8 param_2)
 
 
 
-// 函数: void FUN_180848690(longlong param_1,undefined8 param_2)
-void FUN_180848690(longlong param_1,undefined8 param_2)
+/**
+ * 设置网络连接安全参数
+ * 
+ * 该函数负责设置网络连接的安全参数，包括加密和认证设置。
+ * 首先验证连接状态，然后设置安全参数和相关配置。
+ * 
+ * @param connectionHandle 连接句柄
+ * @param securityValue 安全参数值
+ */
+void SetNetworkConnectionSecurity(longlong connectionHandle, uint8_t securityValue)
 
 {
-  int iVar1;
+  int validationResult;
   
-  iVar1 = FUN_18088ee60(param_2,param_1 + 0x10);
-  if (iVar1 == 0) {
-    iVar1 = FUN_18088ee20(param_2,param_1 + 0x18);
-    if (iVar1 == 0) {
-      FUN_18088ee60(param_2,param_1 + 0x1c);
+  validationResult = ValidateNetworkConnectionState(securityValue, connectionHandle + 0x10);
+  if (validationResult == 0) {
+    validationResult = GetNetworkSecurityInfo(securityValue, connectionHandle + 0x18);
+    if (validationResult == 0) {
+      ApplyNetworkSecurityConfiguration(securityValue, connectionHandle + 0x1c);
     }
   }
   return;
@@ -6055,15 +6095,23 @@ void FUN_180848690(longlong param_1,undefined8 param_2)
 
 
 
-// 函数: void FUN_1808486e0(longlong param_1,undefined8 param_2)
-void FUN_1808486e0(longlong param_1,undefined8 param_2)
+/**
+ * 设置网络连接压缩参数
+ * 
+ * 该函数负责设置网络连接的压缩参数，用于优化数据传输效率。
+ * 首先验证连接状态，然后设置压缩参数。
+ * 
+ * @param connectionHandle 连接句柄
+ * @param compressionValue 压缩参数值
+ */
+void SetNetworkConnectionCompression(longlong connectionHandle, uint8_t compressionValue)
 
 {
-  int iVar1;
+  int validationResult;
   
-  iVar1 = FUN_18088ee60(param_2,param_1 + 0x10);
-  if (iVar1 == 0) {
-    FUN_18088f050(param_2,param_1 + 0x18);
+  validationResult = ValidateNetworkConnectionState(compressionValue, connectionHandle + 0x10);
+  if (validationResult == 0) {
+    ApplyNetworkCompressionSettings(compressionValue, connectionHandle + 0x18);
   }
   return;
 }
@@ -6071,19 +6119,27 @@ void FUN_1808486e0(longlong param_1,undefined8 param_2)
 
 
 
-// 函数: void FUN_180848720(longlong param_1,undefined8 param_2)
-void FUN_180848720(longlong param_1,undefined8 param_2)
+/**
+ * 设置网络连接完整配置
+ * 
+ * 该函数负责设置网络连接的完整配置，包括多个参数的设置。
+ * 首先验证连接状态，然后依次设置各种配置参数。
+ * 
+ * @param connectionHandle 连接句柄
+ * @param configValue 配置参数值
+ */
+void SetNetworkConnectionFullConfiguration(longlong connectionHandle, uint8_t configValue)
 
 {
-  int iVar1;
+  int validationResult;
   
-  iVar1 = FUN_18088ee60(param_2,param_1 + 0x10);
-  if (iVar1 == 0) {
-    iVar1 = FUN_18088f310(param_2,param_1 + 0x18);
-    if (iVar1 == 0) {
-      iVar1 = FUN_18088eea0(param_2,param_1 + 0x20);
-      if (iVar1 == 0) {
-        FUN_18088f470(param_2,param_1 + 0x24);
+  validationResult = ValidateNetworkConnectionState(configValue, connectionHandle + 0x10);
+  if (validationResult == 0) {
+    validationResult = ApplyNetworkBasicConfiguration(configValue, connectionHandle + 0x18);
+    if (validationResult == 0) {
+      validationResult = ApplyNetworkPriorityConfiguration(configValue, connectionHandle + 0x20);
+      if (validationResult == 0) {
+        ApplyNetworkBufferSizeConfiguration(configValue, connectionHandle + 0x24);
       }
     }
   }
