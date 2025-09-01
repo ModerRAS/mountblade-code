@@ -5482,29 +5482,29 @@ void ProcessSystemObjectQueue(longlong objectHandle, longlong queueContext)
   StackBuffer[0] = 0;
   ProcessingStatus = FUN_18088c740(StackBuffer);
   if ((ProcessingStatus == 0) && (ProcessingStatus = FUN_1808bdd90(*(undefined8 *)(queueContext + 0x90)), ProcessingStatus == 0)) {
-    plVar4 = (longlong *)(*(longlong *)(param_2 + 0x50) + -8);
-    if (*(longlong *)(param_2 + 0x50) == 0) {
-      plVar4 = plVar5;
+    QueueHead = (longlong *)(*(longlong *)(queueContext + 0x50) + -8);
+    if (*(longlong *)(queueContext + 0x50) == 0) {
+      QueueHead = QueueTail;
     }
-    plVar1 = plVar5;
-    if (plVar4 != (longlong *)0x0) {
-      plVar1 = plVar4 + 1;
+    QueueIterator = QueueTail;
+    if (QueueHead != (longlong *)0x0) {
+      QueueIterator = QueueHead + 1;
     }
     do {
-      if (plVar1 == (longlong *)(param_2 + 0x50)) {
-        if (*(char *)(param_1 + 0x10) != '\0') {
-          func_0x00018088aed0(param_2);
+      if (QueueIterator == (longlong *)(queueContext + 0x50)) {
+        if (*(char *)(objectHandle + 0x10) != '\0') {
+          ProcessQueueEvent(queueContext);
         }
         break;
       }
-      plVar4 = plVar1;
-      if (plVar1 != (longlong *)(param_2 + 0x50)) {
-        plVar3 = (longlong *)(*plVar1 + -8);
-        if (*plVar1 == 0) {
-          plVar3 = plVar5;
+      QueueHead = QueueIterator;
+      if (QueueIterator != (longlong *)(queueContext + 0x50)) {
+        QueueNode = (longlong *)(*QueueIterator + -8);
+        if (*QueueIterator == 0) {
+          QueueNode = QueueTail;
         }
-        plVar4 = plVar5;
-        if (plVar3 != (longlong *)0x0) {
+        QueueHead = QueueTail;
+        if (QueueNode != (longlong *)0x0) {
           plVar4 = plVar3 + 1;
         }
       }
