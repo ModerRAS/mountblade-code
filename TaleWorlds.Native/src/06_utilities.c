@@ -287,7 +287,7 @@ void* g_animationClipManager;
 void* g_boneTransformManager;
 void* g_animationStateController;
 
-// 函数: undefined InitializeMemoryManager;
+// 函数: void* InitializeMemoryManager;
 /**
  * @brief 初始化内存管理器
  * 
@@ -301,7 +301,7 @@ void* g_memoryPoolManager;
 void* g_garbageCollector;
 void* g_memoryDebugger;
 
-// 函数: undefined InitializeScriptingSystem;
+// 函数: void* InitializeScriptingSystem;
 /**
  * @brief 初始化脚本系统
  * 
@@ -347,23 +347,23 @@ void* g_databaseSchemaTable;
 void* g_databaseRecordTable;
 void* g_databaseLockTable;
 void* g_databaseBackupTable;
-void* g_databaseStatistics;
-void* g_databaseMetrics;
-undefined g_databasePerformance;
-undefined g_databaseLogger;
-undefined g_databaseCache;
-undefined g_databaseBuffer;
-undefined g_databaseQueue;
-undefined g_databaseEvent;
-undefined g_databaseSignal;
-undefined g_databaseThread;
-undefined g_databaseMutex;
-undefined g_databaseSemaphore;
-undefined g_databaseCondition;
-undefined g_databaseMemory;
-undefined g_databaseHeap;
-undefined g_databaseStack;
-undefined g_databasePool;
+void* DatabaseStatistics;
+void* DatabaseMetrics;
+void* DatabasePerformance;
+void* DatabaseLogger;
+void* DatabaseCache;
+void* DatabaseBuffer;
+void* DatabaseQueue;
+void* DatabaseEvent;
+void* DatabaseSignal;
+void* DatabaseThread;
+void* DatabaseMutex;
+void* DatabaseSemaphore;
+void* DatabaseCondition;
+void* DatabaseMemory;
+void* DatabaseHeap;
+void* DatabaseStack;
+void* DatabasePool;
 // 数据库连接池实例
 void* DatabaseConnectionPoolInstance;
 // 数据库连接池配置
@@ -2934,7 +2934,18 @@ undefined8 ValidateObjectRegistration(longlong objectContext)
 
 
 
-ulonglong FUN_1808902b0(longlong param_1,longlong param_2)
+// 函数: ulonglong ProcessSystemRequest(longlong param_1,longlong param_2)
+/**
+ * @brief 处理系统请求
+ * 
+ * 该函数负责处理来自系统模块的各种请求
+ * 包括参数验证、权限检查和请求分发等功能
+ * 
+ * @param param_1 请求参数1，包含请求类型和相关信息
+ * @param param_2 请求参数2，包含系统上下文和状态信息
+ * @return 处理结果，成功返回0，失败返回错误码
+ */
+ulonglong ProcessSystemRequest(longlong param_1,longlong param_2)
 
 {
   longlong *plVar1;
@@ -3025,7 +3036,18 @@ ulonglong FUN_1808902b0(longlong param_1,longlong param_2)
 
 
 
-undefined8 FUN_180890450(longlong param_1,longlong param_2)
+// 函数: undefined8 ValidateSystemAccess(longlong param_1,longlong param_2)
+/**
+ * @brief 验证系统访问权限
+ * 
+ * 该函数负责验证对系统资源的访问权限
+ * 检查访问权限等级和安全状态
+ * 
+ * @param param_1 访问请求参数，包含资源标识和访问类型
+ * @param param_2 系统上下文参数，包含安全策略和权限信息
+ * @return 验证结果，成功返回0，失败返回错误码
+ */
+undefined8 ValidateSystemAccess(longlong param_1,longlong param_2)
 
 {
   longlong lVar1;
