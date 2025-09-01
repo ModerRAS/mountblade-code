@@ -82,8 +82,8 @@ void* GraphicsSystemModuleExecutionContext;
 void InitializeAudioSystemModule(void);
 void* AudioSystemModuleInstance;
 void* AudioSystemModuleConfiguration;
-uint32_t GlobalModuleAudioInitializationStatus;
-void* GlobalModuleDHandle;
+uint32_t AudioSystemInitializationStatus;
+void* AudioSystemModuleHandle;
 
 
 /**
@@ -92,9 +92,9 @@ void* GlobalModuleDHandle;
  * 该函数负责初始化游戏引擎的全局模块E
  * 设置模块E所需的数据结构和运行环境
  */
-void InitializeGlobalModuleE(void);
-void* GlobalModuleEInstance;
-void* GlobalModuleEConfiguration;
+void InitializeNetworkSystemModule(void);
+void* NetworkSystemModuleInstance;
+void* NetworkSystemModuleConfiguration;
 uint32_t GlobalModuleNetworkInitializationStatus;
 void* GlobalModuleEHandle;
 
