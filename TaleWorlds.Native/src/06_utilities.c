@@ -40085,6 +40085,18 @@ void ResetSystemResourceHandler(uint8_t objectContextParam,int64_t validationCon
 
 
 
+/**
+ * @brief 重置系统数据指针
+ * 
+ * 该函数负责重置系统数据指针，将其指向系统数据结构
+ * 通过间接寻址方式重置特定位置的数据指针
+ * 
+ * @param objectContextParam 对象上下文参数，包含对象相关的上下文信息
+ * @param validationContextParam 验证上下文参数，用于验证和重置数据指针
+ * @return 无返回值
+ * @note 此函数通过间接寻址方式重置数据指针
+ * @warning 调用此函数会修改系统数据指针的指向
+ */
 void ResetSystemDataPointer(uint8_t objectContextParam,int64_t validationContextParam)
 
 {
