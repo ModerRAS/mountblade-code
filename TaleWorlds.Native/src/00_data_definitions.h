@@ -2952,10 +2952,10 @@ void InitializeNativeCoreCLR(uint64_t initFlags)
             StringSearchResult = -1;
             do {
               stringIndex = StringSearchResult;
-              StringSearchResult = lVar9 + 1;
+              StringSearchResult = stringIndex + 1;
             } while (pMemoryAddress7[StringSearchResult] != '\0');
             if ((int)StringSearchResult != 0) {
-              LoopCounter9 = (int)lVar9 + 2;
+              LoopCounter9 = (int)stringIndex + 2;
               LoopCounterValue = LoopCounter9;
               if (LoopCounter9 < 0x10) {
                 LoopCounterValue = 0x10;
