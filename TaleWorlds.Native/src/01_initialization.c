@@ -13,7 +13,7 @@
  * 和管理系统的生命周期。所有其他系统的初始化都通过这个入口点进行协调。
  */
 void* GameSystemMainEntryPoint;
-void* SystemGlobalDataReferenceA;              // 全局系统数据引用A
+void* SystemGlobalDataReference;              // 全局系统数据引用
 void* SystemPrimaryMemoryPool;                 // 主系统内存池
 void* SystemPrimaryDataTable;                // 系统数据表引用
 void* SystemSecondaryMemoryPool;               // 次级系统内存池
@@ -35,9 +35,9 @@ void* SystemSenaryDataTable;                   // 第六级系统数据表
  * 任务调度等基础系统服务。这是系统启动的第二阶段。
  */
 void* GameCoreSystemMainEntryPoint;
-void* CoreSystemMainMemoryAllocator;                // 核心系统内存分配器
-void* CoreSystemMainDataTable;                     // 核心系统数据表
-void* CoreSystemMainMemoryBuffer;                  // 核心系统内存缓冲区
+void* CoreSystemMemoryAllocator;                // 核心系统内存分配器
+void* CoreSystemDataTable;                     // 核心系统数据表
+void* CoreSystemMemoryBuffer;                  // 核心系统内存缓冲区
 void* CoreSystemPrimaryConfig;                    // 核心系统主配置
 void* CoreSystemSecondaryConfig;                // 核心系统次级配置
 void* CoreSystemTertiaryConfig;                 // 核心系统第三级配置
@@ -57,17 +57,17 @@ void* AudioSystemContext;                       // 音频系统上下文
 
 // 输入系统初始化函数和相关数据
 void* GameInputMainEntryPoint;                      // 游戏输入系统入口点
-void* InputSystemMainDataBuffer;
+void* InputSystemDataBuffer;
 void* InputSystemEventQueueManager;
 void* InputSystemCurrentStateData;
 void* InputSystemDeviceManager;
 void* InputSystemKeyMappingTable;
 void* InputSystemAxisMappingTable;
 void* InputSystemActionBindingsTable;
-void* InputSystemMainConfiguration;
+void* InputSystemConfiguration;
 void* GameSubsystemMainEntryPoint;
 void* SubsystemMainContext;
-void* InputSystemMainDataTable;
+void* InputSystemDataTable;
 uint8_t InputSystemStatusFlags;
 void* InputSystemPrimaryConfig;
 void* InputSystemDeviceConfigTable;
@@ -76,14 +76,14 @@ void* InputSystemProfileConfigTable;
 
 // 物理系统初始化函数
 void* GamePhysicsMainEntryPoint;
-void* PhysicsSystemMainContext;
+void* PhysicsSystemContext;
 
 // 文件系统初始化函数
 void* GameFileSystemMainEntryPoint;
 
 // 函数: 系统初始化函数A - 字符串处理系统初始化
 void* GameStringProcessingMainInitializer;
-void* StringProcessingMainDataBuffer;
+void* StringProcessingDataBuffer;
 void* StringProcessingPrimaryStructure;
 void* StringProcessingSecondaryStructure;
 void* StringProcessingTertiaryStructure;
@@ -765,38 +765,11 @@ void* GetSystemInitializationFunction;
 /**
  * @brief 初始化游戏核心系统
  * 
- * 该函数负责初始化游戏的核心系统组件，包括系统根节点、数据表指针
- * 和内存分配器。它会设置系统的基础数据结构，为游戏运行做准备。
- * 
- * @note 此函数在系统启动时被调用，是初始化流程的关键部分
- */
-/**
- * @brief 初始化游戏核心系统
- * 
- * 初始化游戏引擎的核心系统组件，包括内存管理、数据表和系统配置。
- * 设置系统根节点和数据结构，为游戏运行提供基础支持。
- * 
- * @note 该函数在游戏启动时被调用，是系统初始化流程的关键部分
- */
-/**
- * @brief 初始化游戏核心系统
- * 
- * 该函数负责初始化游戏的核心系统组件，包括系统数据表的设置、
- * 节点管理和内存分配。它会遍历系统节点树，查找核心系统节点，
- * 如果找不到合适的节点，则分配新的内存空间并初始化核心系统数据。
- * 
- * @note 这是系统启动过程中的关键步骤，确保核心系统正确初始化
- */
-/**
- * @brief 初始化游戏核心系统
- * 
  * 该函数负责初始化游戏的核心系统组件，包括系统数据表、内存分配、
  * 节点管理和事件回调设置。这是游戏引擎启动过程中的关键步骤。
  * 
  * @note 该函数会设置核心系统节点的标识符和数据结构
  */
-/**
- * @brief 初始化游戏核心系统
  * 
  * 该函数负责初始化游戏的核心系统组件，包括系统节点管理、内存分配和
  * 数据表设置。它会遍历系统节点树，查找或创建游戏核心系统节点，
@@ -812,6 +785,12 @@ void* GetSystemInitializationFunction;
  * 
  * @note 这是系统初始化的关键函数，在游戏启动时被调用
  * @note 函数会设置系统数据表指针并初始化核心系统节点
+ */
+/**
+ * @brief 初始化游戏核心系统
+ * 
+ * 负责初始化游戏的核心系统组件，建立系统节点链表，
+ * 分配必要的内存资源，并设置核心系统的配置数据。
  */
 void InitializeGameCoreSystem(void)
 {
@@ -872,6 +851,12 @@ void InitializeGameCoreSystem(void)
  * 它会设置数据表的基本结构，包括内存块标识符、分配器指针和状态标志。
  * 
  * @note 这是系统初始化过程中的关键步骤，为后续的内存管理奠定基础
+ */
+/**
+ * @brief 初始化系统数据表基础分配器
+ * 
+ * 负责初始化系统数据表的基础内存分配器，建立内存分配节点，
+ * 并设置基础分配器的配置数据和函数指针。
  */
 void InitializeSystemDataTableBaseAllocator(void)
 {
@@ -18805,30 +18790,39 @@ void* * SystemMemoryAllocatorReferenceManager(void* *param_1,ulong long param_2,
  * @param targetBuffer 目标缓冲区指针
  * @param sourceString 源字符串指针
  */
+/**
+ * @brief 处理系统字符串复制操作
+ * 
+ * 该函数负责处理系统字符串的复制操作，包括字符串长度计算和
+ * 安全复制。当字符串长度超过限制时，会调用字符串分配函数。
+ * 
+ * @param targetBuffer 目标缓冲区指针
+ * @param sourceString 源字符串指针
+ */
 void ProcessSystemStringCopy(long long targetBuffer,long long sourceString)
 
 {
-  long long lVar1;
+  long long stringLength;
   
-  if (param_2 == 0) {
-    *(uint32_t *)(param_1 + 0x10) = 0;
-    **(uint8_t **)(param_1 + 8) = 0;
+  if (sourceString == 0) {
+    *(uint32_t *)(targetBuffer + 0x10) = 0;
+    **(uint8_t **)(targetBuffer + 8) = 0;
     return;
   }
-  lVar1 = -1;
+  stringLength = -1;
   do {
-    lVar1 = lVar1 + 1;
-  } while (*(char *)(param_2 + lVar1) != '\0');
-  if ((int)lVar1 < 0x400) {
-    *(int *)(param_1 + 0x10) = (int)lVar1;
+    stringLength = stringLength + 1;
+  } while (*(char *)(sourceString + stringLength) != '\0');
+  if ((int)stringLength < 0x400) {
+    *(int *)(targetBuffer + 0x10) = (int)stringLength;
                     // WARNING: Could not recover jumptable at 0x000180045f19. Too many branches
                     // WARNING: Treating indirect jump as call
-    strcpy_s(*(void* *)(param_1 + 8),0x400);
+    strcpy_s(*(void* *)(targetBuffer + 8),0x400);
     return;
   }
-  ProcessSystemStringAllocation(&UNK_18098bc48,0x400,param_2);
-  *(uint32_t *)(param_1 + 0x10) = 0;
-  **(uint8_t **)(param_1 + 8) = 0;
+  ProcessSystemStringAllocation(&SystemStringAllocationHandler,0x400,sourceString);
+  *(uint32_t *)(targetBuffer + 0x10) = 0;
+  **(uint8_t **)(targetBuffer + 8) = 0;
   return;
 }
 
