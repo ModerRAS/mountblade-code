@@ -9247,13 +9247,13 @@ void NetworkConnectionStatusValidator(ulonglong connectionContext)
   networkStatus1 = NetworkConnectionIdInitialize(connectionContext,networkHandleArray + 2);
   if (networkStatus1 == 0) {
     if ((*(uint *)(networkHandleArray[2] + 0x24) >> 1 & 1) != 0) {
-      FUN_18084b0c0(connectionContext);
+      InitializeNetworkConnectionPool(connectionContext);
       networkHandleArray[1] = 0;
       networkStatus1 = NetworkConnectionIdInitialize(connectionContext & 0xffffffff,networkHandleArray);
       if (((networkStatus1 != 0) ||
           (((*(uint *)(networkHandleArray[0] + 0x24) >> 1 & 1) != 0 &&
            (networkStatus2 = NetworkConnectionHandleInitialize(networkHandleArray + 1), networkStatus2 == 0)))) && (networkStatus1 == 0)) {
-        FUN_18088da50(*(NetworkHandle *)(networkHandleArray[0] + 0x98));
+        ProcessNetworkConnection(*(NetworkHandle *)(networkHandleArray[0] + 0x98));
       }
                     // WARNING: Subroutine does not return
       NetworkCleanupConnectionContext(networkHandleArray + 1);
@@ -88362,7 +88362,7 @@ void FUN_18088da49(void)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-NetworkHandle FUN_18088da50(longlong connectionContext)
+NetworkHandle ProcessNetworkConnection(longlong connectionContext)
 
 {
   longlong *plVar1;
