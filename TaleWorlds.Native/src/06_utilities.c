@@ -24028,7 +24028,15 @@ ulonglong ProcessResourceValidationAndAllocation(longlong param_1,undefined8 *pa
 
 
 
-ulonglong FUN_18089dd54(void)
+/**
+ * @brief 验证并分配资源数据
+ * 
+ * 该函数负责验证资源的完整性并分配必要的资源数据
+ * 执行资源数据读取、验证和分配操作
+ * 
+ * @return 返回操作结果状态码
+ */
+ulonglong ValidateAndAllocateResourceData(void)
 
 {
   undefined8 resourceHash;
@@ -24110,7 +24118,15 @@ ulonglong FUN_18089dd54(void)
 
 
 
-ulonglong FUN_18089dd78(void)
+/**
+ * @brief 处理资源读取和验证
+ * 
+ * 该函数负责读取资源数据并验证其完整性
+ * 执行资源数据读取、验证和状态检查操作
+ * 
+ * @return 返回操作结果状态码
+ */
+ulonglong ProcessResourceReadAndValidation(void)
 
 {
   undefined8 resourceHash;
