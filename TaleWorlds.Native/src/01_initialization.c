@@ -907,6 +907,12 @@ void* GetSystemInitializationFunction;
  * @note 函数依赖GetSystemRootPointer和GetGameCoreSystemInitializationFunction等辅助函数
  * @note 函数会修改系统数据表结构并设置核心节点数据
  */
+/**
+ * @brief 初始化游戏核心系统
+ * 
+ * 此函数负责初始化游戏的核心系统组件，包括系统节点管理、内存分配和核心系统配置。
+ * 函数会遍历系统节点树，查找并初始化游戏核心系统节点。
+ */
 void InitializeGameCoreSystem(void)
 {
   bool IsSystemNodeActive;
@@ -1109,39 +1115,39 @@ void InitializeSystemCoreConfig(void)
   uint64_t SystemInitializationFlag;
   long long MemoryAllocationSize;
   
-  systemDataTablePointer = (long long*)GetSystemRootPointer();
-  systemRootNodePointer = (void**)*systemDataTablePointer;
-  isSystemNodeActive = *(char*)((long long)systemRootNodePointer[1] + 0x19);
-  systemInitializationFlag = 0;
-  previousSystemNode = systemRootNodePointer;
-  currentSystemNode = (void**)systemRootNodePointer[1];
+  SystemDataTablePointer = (long long*)GetSystemRootPointer();
+  SystemRootNodePointer = (void**)*SystemDataTablePointer;
+  IsSystemNodeActive = *(char*)((long long)SystemRootNodePointer[1] + 0x19);
+  SystemInitializationFlag = 0;
+  PreviousSystemNode = SystemRootNodePointer;
+  CurrentSystemNode = (void**)SystemRootNodePointer[1];
   
-  while (isSystemNodeActive == '\0') {
-    memoryCompareResult = memcmp(currentSystemNode + 4, &SystemMemoryIdentifier, 0x10);
-    if (memoryCompareResult < 0) {
-      nextSystemNode = (void**)currentSystemNode[2];
-      currentSystemNode = previousSystemNode;
+  while (IsSystemNodeActive == '\0') {
+    MemoryCompareResult = memcmp(CurrentSystemNode + 4, &SystemMemoryIdentifier, 0x10);
+    if (MemoryCompareResult < 0) {
+      NextSystemNode = (void**)CurrentSystemNode[2];
+      CurrentSystemNode = PreviousSystemNode;
     }
     else {
-      nextSystemNode = (void**)*currentSystemNode;
+      NextSystemNode = (void**)*CurrentSystemNode;
     }
-    previousSystemNode = currentSystemNode;
-    currentSystemNode = nextSystemNode;
-    isSystemNodeActive = *(char*)((long long)nextSystemNode + 0x19);
+    PreviousSystemNode = CurrentSystemNode;
+    CurrentSystemNode = NextSystemNode;
+    IsSystemNodeActive = *(char*)((long long)NextSystemNode + 0x19);
   }
   
-  if ((previousSystemNode == systemRootNodePointer) || 
-      (memoryCompareResult = memcmp(&SystemMemoryIdentifier, previousSystemNode + 4, 0x10), memoryCompareResult < 0)) {
-    memoryAllocationSize = GetSystemMemorySize(systemDataTablePointer);
-    AllocateSystemMemory(systemDataTablePointer, &allocatedSystemNode, previousSystemNode, memoryAllocationSize + 0x20, memoryAllocationSize);
-    previousSystemNode = allocatedSystemNode;
+  if ((PreviousSystemNode == SystemRootNodePointer) || 
+      (MemoryCompareResult = memcmp(&SystemMemoryIdentifier, PreviousSystemNode + 4, 0x10), MemoryCompareResult < 0)) {
+    MemoryAllocationSize = GetSystemMemorySize(SystemDataTablePointer);
+    AllocateSystemMemory(SystemDataTablePointer, &AllocatedSystemNode, PreviousSystemNode, MemoryAllocationSize + 0x20, MemoryAllocationSize);
+    PreviousSystemNode = AllocatedSystemNode;
   }
   
-  previousSystemNode[6] = 0x46ecbd4daf41613e;
-  previousSystemNode[7] = 0xdc42c056bbde8482;
-  previousSystemNode[8] = &SystemMemoryNodeId;
-  previousSystemNode[9] = 0;
-  previousSystemNode[10] = resourceInitializationCallback;
+  PreviousSystemNode[6] = 0x46ecbd4daf41613e;
+  PreviousSystemNode[7] = 0xdc42c056bbde8482;
+  PreviousSystemNode[8] = &SystemMemoryNodeId;
+  PreviousSystemNode[9] = 0;
+  PreviousSystemNode[10] = ResourceInitializationCallback;
   return;
 }
 
@@ -18473,9 +18479,9 @@ void InitializeThreadManager(void)
   void* *threadManager;
   void* registerR9;
   void* *errorPtr;
-  void* *tempStack60;
-  uint32_t stack58;
-  void* stack50;
+  void* *ThreadStackBuffer60;
+  uint32_t ThreadStatusFlags;
+  void* ThreadStackPointer50;
   
   errorPtr = &SystemGlobalDataReference;
   stack50 = 0;
