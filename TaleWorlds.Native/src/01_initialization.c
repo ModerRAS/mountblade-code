@@ -20342,16 +20342,16 @@ void* CopySystemDataStructure(void* *SystemResourcePointer,void* *sourceDataPoin
   *SystemResourcePointer = *sourceDataPointer;
   *(uint32_t *)(SystemResourcePointer + 1) = *(uint32_t *)(sourceDataPointer + 1);
   InitializeSystemResourceExtended(SystemResourcePointer + 2,sourceDataPointer + 2,copyFlags,additionalParams,0xfffffffffffffffe);
-  *(uint32_t *)(SystemResourcePointer + 0x15) = *(uint32_t *)(param_2 + 0x15);
-  *(uint32_t *)((long long)SystemResourcePointer + 0xac) = *(uint32_t *)((long long)param_2 + 0xac);
-  SystemResourcePointer[0x16] = param_2[0x16];
-  SystemResourcePointer[0x17] = param_2[0x17];
-  SystemResourcePointer[0x18] = param_2[0x18];
-  *(uint8_t *)(SystemResourcePointer + 0x19) = *(uint8_t *)(param_2 + 0x19);
-  *(uint8_t *)((long long)SystemResourcePointer + 0xc9) = *(uint8_t *)((long long)param_2 + 0xc9);
-  *(uint8_t *)((long long)SystemResourcePointer + 0xca) = *(uint8_t *)((long long)param_2 + 0xca);
-  *(uint8_t *)((long long)SystemResourcePointer + 0xcb) = *(uint8_t *)((long long)param_2 + 0xcb);
-  *(uint8_t *)((long long)SystemResourcePointer + 0xcc) = *(uint8_t *)((long long)param_2 + 0xcc);
+  *(uint32_t *)(SystemResourcePointer + 0x15) = *(uint32_t *)(sourceDataPointer + 0x15);
+  *(uint32_t *)((long long)SystemResourcePointer + 0xac) = *(uint32_t *)((long long)sourceDataPointer + 0xac);
+  SystemResourcePointer[0x16] = sourceDataPointer[0x16];
+  SystemResourcePointer[0x17] = sourceDataPointer[0x17];
+  SystemResourcePointer[0x18] = sourceDataPointer[0x18];
+  *(uint8_t *)(SystemResourcePointer + 0x19) = *(uint8_t *)(sourceDataPointer + 0x19);
+  *(uint8_t *)((long long)SystemResourcePointer + 0xc9) = *(uint8_t *)((long long)sourceDataPointer + 0xc9);
+  *(uint8_t *)((long long)SystemResourcePointer + 0xca) = *(uint8_t *)((long long)sourceDataPointer + 0xca);
+  *(uint8_t *)((long long)SystemResourcePointer + 0xcb) = *(uint8_t *)((long long)sourceDataPointer + 0xcb);
+  *(uint8_t *)((long long)SystemResourcePointer + 0xcc) = *(uint8_t *)((long long)sourceDataPointer + 0xcc);
   return SystemResourcePointer;
 }
 

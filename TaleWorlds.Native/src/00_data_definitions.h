@@ -11078,7 +11078,7 @@ uint64_t SystemMemoryResize(uint64_t memoryAddress, uint64_t newSize)
   UNLOCK();
   return BufferSize;
 }
-longlong SystemMemoryFree(longlong *param_1)
+longlong SystemMemoryFree(longlong *memoryPtr)
 {
   int *pLoopCounter;
   longlong lVar2;
@@ -11090,10 +11090,10 @@ longlong SystemMemoryFree(longlong *param_1)
   lVar2 = _DAT_180c967c8 - lVar2;
   _DAT_180c967c8 = lVar2;
   UNLOCK();
-  if (param_1 == (longlong *)0x0) {
+  if (memoryPtr == (longlong *)0x0) {
     return lVar3;
   }
-  NetworkRequestResult = (ulonglong)param_1 & 0xffffffffffc00000;
+  NetworkRequestResult = (ulonglong)memoryPtr & 0xffffffffffc00000;
   if (NetworkRequestResult != 0) {
     lVar2 = NetworkRequestResult + 0x80 + ((longlong)param_1 - NetworkRequestResult >> 0x10) * 0x50;
     lVar2 = lVar2 - (ulonglong)*(uint *)(lVar2 + 4);
