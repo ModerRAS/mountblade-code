@@ -26605,9 +26605,9 @@ undefined8 ResourceBatchProcessor(longlong param_1,longlong *param_2)
         resourceHash = (**(code **)**(undefined8 **)(*param_2 + 8))
                           (*(undefined8 **)(*param_2 + 8),auStackX_10,4);
         if (((((int)resourceHash == 0) && (resourceHash = ComputeDataHash(param_2,param_1 + 100), (int)resourceHash == 0))
-            && (resourceHash = FUN_180898eb0(param_2,param_1 + 0x68), (int)resourceHash == 0)) &&
-           (((resourceHash = FUN_180898eb0(param_2,param_1 + 0x6c), (int)resourceHash == 0 &&
-             (resourceHash = FUN_180898eb0(param_2,dataContext + 0x70), (int)resourceHash == 0)) &&
+            && (resourceHash = ComputeDataHash(param_2,param_1 + 0x68), (int)resourceHash == 0)) &&
+           (((resourceHash = ComputeDataHash(param_2,param_1 + 0x6c), (int)resourceHash == 0 &&
+             (resourceHash = ComputeDataHash(param_2,dataContext + 0x70), (int)resourceHash == 0)) &&
             ((resourceHash = FUN_180898eb0(param_2,param_1 + 0x74), (int)resourceHash == 0 &&
              (resourceHash = FUN_180898eb0(param_2,dataContext + 0x78), (int)resourceHash == 0)))))) {
           resourceHash = FUN_1808a7c40(param_2,param_1 + 0x5c,0x74);
@@ -27667,7 +27667,7 @@ undefined8 ValidateResourceId(longlong param_1,longlong *param_2)
       }
     }
     else {
-      resourceHash = FUN_180898eb0(param_2,dataContext + 0x70);
+      resourceHash = ComputeDataHash(param_2,dataContext + 0x70);
       if ((int)resourceHash != 0) {
         return resourceHash;
       }
