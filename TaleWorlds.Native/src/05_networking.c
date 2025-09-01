@@ -5795,7 +5795,7 @@ void GetNetworkPacketSize(ulonglong connectionContext,uint *packetData)
     ProcessNetworkBufferDataWithZeroInit(networkTempBuffer,0x100,0);
     networkErrorBuffer = networkTempBuffer;
                     // WARNING: Subroutine does not return
-    LogNetworkConnectionError(0x1f,0xc,connectionContext,&UNK_180984790);
+    LogNetworkConnectionError(0x1f,0xc,connectionContext,&NetworkErrorMessageInvalidPacket);
   }
   *packetData = 0;
   networkConnectionHandle = 0;
@@ -5917,7 +5917,7 @@ void ProcessNetworkDataTransfer(NetworkHandle connectionContext,longlong packetD
       ProcessNetworkBufferDataWithSize(errorLogBuffer + (networkStatus1 + networkStatus2),0x100 - (networkStatus1 + networkStatus2),param_4);
       errorMessageBuffer = errorLogBuffer;
                     // WARNING: Subroutine does not return
-      LogNetworkConnectionError(0x1f,0xb,connectionContext,&UNK_180984690);
+      LogNetworkConnectionError(0x1f,0xb,connectionContext,&NetworkErrorMessageConnectionRefused);
     }
                     // WARNING: Subroutine does not return
     NetworkSecurityGuardCleanup(securityGuardValue ^ (ulonglong)networkSecurityBuffer);
@@ -19887,7 +19887,7 @@ LAB_180850eb0:
     }
 LAB_1808511a4:
     plVar20 = plStack_118;
-    iVar5 = FUN_18084e9e0(plStack_118);
+    iVar5 = NetworkValidateConnectionData(plStack_118);
     if ((((iVar5 != 0) ||
          (primaryNetworkFlag1 = *(uint *)(plVar20 + 0x18),
          iVar5 = FUN_18084ead0(plVar20,CONCAT31((uint3)(primaryNetworkFlag1 >> 9),(char)(primaryNetworkFlag1 >> 1)) &
@@ -19900,7 +19900,7 @@ LAB_1808511a4:
          lVar17 = lStack_b8, lVar18 = lStack_e0, plVar20 = plStack_88, iVar5 != 0)) ||
         ((iVar5 = FUN_18084ec10(plStack_118), lVar13 = lStack_b0, lVar15 = lStack_d8,
          lVar17 = lStack_b8, lVar18 = lStack_e0, plVar20 = plStack_88, iVar5 != 0 ||
-         (iVar5 = FUN_18073dc80(plStack_118[0xf],1), lVar13 = lStack_b0, lVar15 = lStack_d8,
+         (iVar5 = InitializeNetworkSession(plStack_118[0xf],1), lVar13 = lStack_b0, lVar15 = lStack_d8,
          lVar17 = lStack_b8, lVar18 = lStack_e0, plVar20 = plStack_88, iVar5 != 0))))))
     goto LAB_1808513ac;
     iVar5 = 0x1c;
@@ -20244,7 +20244,7 @@ LAB_180850eb0:
       goto LAB_180851223;
     }
 LAB_1808511a4:
-    iVar7 = FUN_18084e9e0(in_stack_00000030);
+    iVar7 = NetworkValidateConnectionData(in_stack_00000030);
     if ((((iVar7 != 0) ||
          (iVar7 = FUN_18084ead0(in_stack_00000030,
                                 CONCAT31((uint3)(*(uint *)(in_stack_00000030 + 0x18) >> 9),
@@ -21768,7 +21768,7 @@ LAB_180852943:
   }
 LAB_180852980:
   primaryNetworkFlag5 = 0;
-  iVar5 = FUN_18084e9e0(connectionContext);
+  iVar5 = NetworkValidateConnectionData(connectionContext);
   if (iVar5 != 0) goto FUN_180852aaa;
   primaryNetworkFlag4 = primaryNetworkFlag5;
   secondaryNetworkFlag3 = primaryNetworkFlag5;
@@ -22247,7 +22247,7 @@ LAB_180852943:
   }
 LAB_180852980:
   primaryNetworkFlag4 = 0;
-  networkStatus3 = FUN_18084e9e0();
+  networkStatus3 = NetworkValidateConnectionData();
   if (networkStatus3 != 0) goto LAB_180852a9a;
   primaryNetworkFlag3 = primaryNetworkFlag4;
   uVar9 = primaryNetworkFlag4;
