@@ -66,6 +66,36 @@ char SystemConfigDataTemplate01300[] = "SystemConfigTemplateKK";
 char SystemConfigDataTemplate01330[] = "SystemConfigTemplateLL";
 char SystemConfigDataTemplate22B38[] = "SystemConfigTemplateMM";
 
+// 系统模块配置字符串模板 - 用于模块初始化和配置
+char SystemModuleConfigTemplate22C70[] = "SystemModuleConfigA";
+char SystemModuleConfigTemplate22C58[] = "SystemModuleConfigB";
+char SystemModuleConfigTemplate22D28[] = "SystemModuleConfigC";
+char SystemModuleConfigTemplate22D08[] = "SystemModuleConfigD";
+char SystemModuleConfigTemplate22CE8[] = "SystemModuleConfigE";
+char SystemModuleConfigTemplate22CC8[] = "SystemModuleConfigF";
+char SystemModuleConfigTemplate22DB0[] = "SystemModuleConfigG";
+char SystemModuleConfigTemplate22D88[] = "SystemModuleConfigH";
+char SystemModuleConfigTemplate22D68[] = "SystemModuleConfigI";
+char SystemModuleConfigTemplate22E40[] = "SystemModuleConfigJ";
+char SystemModuleConfigTemplate22E20[] = "SystemModuleConfigK";
+char SystemModuleConfigTemplate22DF8[] = "SystemModuleConfigL";
+char SystemModuleConfigTemplate22DD0[] = "SystemModuleConfigM";
+char SystemModuleConfigTemplate22EB0[] = "SystemModuleConfigN";
+char SystemModuleConfigTemplate22E90[] = "SystemModuleConfigO";
+char SystemModuleConfigTemplate22E70[] = "SystemModuleConfigP";
+char SystemModuleConfigTemplate22E58[] = "SystemModuleConfigQ";
+char SystemModuleConfigTemplate22F28[] = "SystemModuleConfigR";
+char SystemModuleConfigTemplate22F10[] = "SystemModuleConfigS";
+char SystemModuleConfigTemplate22EF8[] = "SystemModuleConfigT";
+char SystemModuleConfigTemplate22ED8[] = "SystemModuleConfigU";
+char SystemModuleConfigTemplate22F90[] = "SystemModuleConfigV";
+char SystemModuleConfigTemplate22F78[] = "SystemModuleConfigW";
+char SystemModuleConfigTemplate22F60[] = "SystemModuleConfigX";
+char SystemModuleConfigTemplate22F40[] = "SystemModuleConfigY";
+char SystemModuleConfigTemplate23018[] = "SystemModuleConfigZ";
+char SystemModuleConfigTemplate23000[] = "SystemModuleConfigAA";
+char SystemModuleConfigTemplate23068[] = "SystemModuleConfigBB";
+
 /**
  * 初始化渲染系统模块
  * 设置渲染系统所需的全局数据结构和状态标志

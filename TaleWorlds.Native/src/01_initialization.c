@@ -13348,8 +13348,10 @@ void InitializeSystemResourceManagerA(void)
 
 
 
-// 函数: void FUN_18003ef90(void)
-void FUN_18003ef90(void)
+// 函数: void InitializeSystemResourceManagerB(void)
+// 功能: 初始化系统资源管理器B，用于管理特定类型的系统资源
+// 该函数会创建系统节点并设置资源管理相关的回调函数
+void InitializeSystemResourceManagerB(void)
 
 {
   char systemNodeFlag;
@@ -13398,8 +13400,10 @@ void FUN_18003ef90(void)
 
 
 
-// 函数: void FUN_18003f090(void)
-void FUN_18003f090(void)
+// 函数: void InitializeSystemResourceManagerC(void)
+// 功能: 初始化系统资源管理器C，用于管理特定类型的系统资源
+// 该函数会创建系统节点并设置资源管理相关的配置参数
+void InitializeSystemResourceManagerC(void)
 
 {
   char systemNodeFlag;
@@ -13448,8 +13452,10 @@ void FUN_18003f090(void)
 
 
 
-// 函数: void FUN_18003f190(void)
-void FUN_18003f190(void)
+// 函数: void InitializeSystemResourceManagerD(void)
+// 功能: 初始化系统资源管理器D，用于管理特定类型的系统资源
+// 该函数会创建系统节点并设置资源管理相关的处理函数
+void InitializeSystemResourceManagerD(void)
 
 {
   char systemNodeFlag;
@@ -13498,8 +13504,10 @@ void FUN_18003f190(void)
 
 
 
-// 函数: void FUN_18003f290(void)
-void FUN_18003f290(void)
+// 函数: void InitializeSystemResourceManagerE(void)
+// 功能: 初始化系统资源管理器E，用于管理特定类型的系统资源
+// 该函数会创建系统节点并设置资源管理相关的初始化参数
+void InitializeSystemResourceManagerE(void)
 
 {
   char systemNodeFlag;
