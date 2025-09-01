@@ -1119,8 +1119,7 @@ void* GarbageCollectorProcessTable;
 void* GarbageCollectorMemoryTable;
 void* GarbageCollectorControlTable;
 
- void ConfigureMemoryStatistics(void);
-/**
+ /**
  * @brief 配置内存统计
  * 
  * 该函数负责配置内存统计系统
@@ -1134,8 +1133,7 @@ void* MemoryStatisticsMemoryTable;
 void* MemoryStatisticsControlTable;
 void* MemoryStatisticsExtendedData;
 
- void InitializeMemoryDebugger(void);
-/**
+ /**
  * @brief 初始化内存调试器
  * 
  * 该函数负责初始化内存调试系统
@@ -9498,12 +9496,12 @@ uint8_t8 ValidateObjectContextAndProcessFloatValidation(longlong objectContextPa
  * 该函数负责解析带有验证器的数据，它会先处理验证器部分，
  * 然后处理数据部分，最后处理结束标记
  * 
- * @param objectContextParam 数据对象指针，包含验证器和数据信息
- * @param validationContextParam 数据缓冲区指针，包含要解析的数据
- * @param param_3 数据长度，表示要解析的数据大小
+ * @param objectContext 数据对象指针，包含验证器和数据信息
+ * @param validationContext 数据缓冲区指针，包含要解析的数据
+ * @param dataLength 数据长度，表示要解析的数据大小
  * @return int 解析结果状态码，0表示成功，非0表示错误
  */
-int ProcessDataWithValidator(longlong objectContextParam,longlong validationContextParam,int param_3)
+int ProcessDataWithValidator(longlong objectContext,longlong validationContext,int dataLength)
 
 {
   int operationResult;
@@ -28606,7 +28604,7 @@ void ExecuteValidationCleanup(uint8_t8 objectContextParam,longlong validationCon
 
 
 
-void Unwind_180902130(uint8_t8 objectContextParam,longlong validationContextParam,uint8_t8 param_3,uint8_t8 param_4)
+void ProcessResourceValidation(uint8_t8 objectContextParam,longlong validationContextParam,uint8_t8 param_3,uint8_t8 param_4)
 
 {
   code *pcVar1;
