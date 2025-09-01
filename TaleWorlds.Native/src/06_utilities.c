@@ -12,7 +12,7 @@
  * @note 此函数必须在系统启动时调用
  * @warning 调用此函数前必须确保系统已准备好处理模块依赖关系
  */
-void InitializeModuleDependencies(long long ModuleHandle, long long ModuleContext);
+void InitializeModuleDependencies(int64_t ModuleHandle, int64_t ModuleContext);
 void* ModuleDependencyTable;
 uint32_t ModuleDependencyEntryCount;
 uint32_t ModuleDependencyConfigurationFlags;
@@ -2539,7 +2539,7 @@ uint8_t AnimationLayerTable;
 uint8_t AnimationMixerTable;
 uint8_t SystemResourceTracker;
 uint32_t SystemResourceFlags;
-uint8_t4 SystemResourceState;
+uint32_t SystemResourceState;
 uint8_t SystemResourceHandler;
 uint8_t ScriptFunctionTable;
 uint8_t SystemResourceManager;
@@ -3275,7 +3275,19 @@ uint8_t SystemMemoryFlagK;
  * @param gameContext 游戏上下文指针，包含游戏相关的状态信息
  * @param systemContext 系统上下文指针，包含系统相关的配置信息
  */
-void ProcessGameDataObjects(int64_t gameContext, int64_t systemContext)
+/**
+ * @brief 处理游戏数据对象
+ * 
+ * 该函数负责处理游戏中的数据对象，包括验证、处理和清理
+ * 确保游戏数据对象的完整性和安全性
+ * 
+ * @param GameContext 游戏上下文，包含游戏相关的状态信息
+ * @param SystemContext 系统上下文，包含系统运行的环境信息
+ * @return 无返回值
+ * @note 此函数在游戏运行时定期调用
+ * @warning 调用此函数前必须确保游戏和系统上下文已正确初始化
+ */
+void ProcessGameDataObjects(int64_t GameContext, int64_t SystemContext)
 
 {
   uint8_t ValidationResult;
@@ -3286,12 +3298,12 @@ void ProcessGameDataObjects(int64_t gameContext, int64_t systemContext)
   int64_t ContextHandles[2];
   uint8_t1 *ObjectDataList;
   int ListIterator;
-  uint8_t4 MaximumItems;
+  uint32_t MaximumItems;
   uint8_t1 ObjectProcessingBuffer[512];
   uint64_t SecurityAccessToken;
   
   SecurityAccessToken = SecurityEncryptionKey ^ (uint64_t)ObjectMetadataBuffer;
-  OperationStatus = GetContextHandles(*(uint8_t4 *)(gameContext + 0x10), ContextHandles);
+  OperationStatus = GetContextHandles(*(uint32_t *)(gameContext + 0x10), ContextHandles);
   if ((OperationStatus == 0) && (*(int64_t *)(ContextHandles[0] + 8) != 0)) {
     ObjectDataList = ObjectProcessingBuffer;
     ProcessedObjectCount = 0;
@@ -3344,7 +3356,7 @@ void ValidateSystemObjects(void)
   int ProcessedObjectCount;
   uint8_t1 *ObjectCollectionArray;
   int RetrievedObjectCount;
-  uint8_t4 MaximumCapacity;
+  uint32_t MaximumCapacity;
   uint64_t SecurityValidationHash;
   
   if (*(int64_t *)(SystemObjectContext + 8) != 0) {
@@ -3441,7 +3453,7 @@ uint8_t ValidateObjectRegistration(int64_t objectContext)
   int64_t contextStackData;
   char registeredObjectName[16];
   
-  registrationValidationStatus = GetRegistrationContextData(*(uint8_t4 *)(objectContext + 0x10), &contextStackData);
+  registrationValidationStatus = GetRegistrationContextData(*(uint32_t *)(objectContext + 0x10), &contextStackData);
   if ((int)registrationValidationStatus != 0) {
     return registrationValidationStatus;
   }
@@ -3548,7 +3560,7 @@ uint64_t ProcessSystemRequest(int64_t requestParameters,int64_t systemContext)
   int64_t memoryContextHandle;
   int64_t validationContext;
   
-  operationResult = ValidateObjectContext(*(uint8_t4 *)(requestParameters + 0x18),&validationContext);
+  operationResult = ValidateObjectContext(*(uint32_t *)(requestParameters + 0x18),&validationContext);
   validationStatus = (int)operationResult;
   if (validationStatus == 0) {
     nullPointer = (int64_t *)0x0;
@@ -3556,7 +3568,7 @@ uint64_t ProcessSystemRequest(int64_t requestParameters,int64_t systemContext)
     if (validationContext != 0) {
       cleanupPointer = (int64_t *)(validationContext + -8);
     }
-    operationResult = ValidateObjectContext(*(uint8_t4 *)(requestParameters + 0x10),&validationContext);
+    operationResult = ValidateObjectContext(*(uint32_t *)(requestParameters + 0x10),&validationContext);
     validationStatus = (int)operationResult;
     if (validationStatus == 0) {
       memoryContextHandle = 0;
@@ -3641,7 +3653,7 @@ uint8_t ValidateSystemAccess(int64_t accessRequestParameters,int64_t systemConte
   uint8_t accessValidationResult;
   int64_t validationContext [2];
   
-  accessValidationResult = ValidateObjectContext(*(uint8_t4 *)(objectContextParam + 0x10),validationContext);
+  accessValidationResult = ValidateObjectContext(*(uint32_t *)(objectContextParam + 0x10),validationContext);
   objectHandle = validationContext[0];
   if ((int)accessValidationResult != 0) {
     return accessValidationResult;
@@ -3721,7 +3733,7 @@ uint64_t DecrementSystemResourceCounter(int64_t SystemContext, uint64_t Resource
   int ResourceCounter;
   int64_t ContextHandles[2];
   
-  OperationResult = ValidateObjectContext(*(uint8_t4 *)(SystemContext + 0x10), ContextHandles);
+  OperationResult = ValidateObjectContext(*(uint32_t *)(SystemContext + 0x10), ContextHandles);
   ContextData = ContextHandles[0];
   if ((int)OperationResult != 0) {
     return OperationResult;
@@ -3768,7 +3780,7 @@ uint8_t IncrementObjectReferenceCount(int64_t objectContext)
   uint8_t operationResult;
   int64_t contextHandles [4];
   
-  operationResult = ValidateObjectContext(*(uint8_t4 *)(objectContext + 0x10), contextHandles);
+  operationResult = ValidateObjectContext(*(uint32_t *)(objectContext + 0x10), contextHandles);
   if ((int)operationResult != 0) {
     return operationResult;
   }
@@ -3803,7 +3815,7 @@ uint8_t InitializeObjectHandleA(int64_t objectContext)
   uint8_t resourceHash;
   int64_t lStackX_8;
   
-  resourceHash = ValidateObjectContext(*(uint8_t4 *)(objectContext + 0x10),&lStackX_8);
+  resourceHash = ValidateObjectContext(*(uint32_t *)(objectContext + 0x10),&lStackX_8);
   if ((int)resourceHash == 0) {
     if (lStackX_8 == 0) {
       lStackX_8 = 0;
@@ -3897,7 +3909,7 @@ uint8_t ValidateObjectHandle(int64_t objectPointer)
   uint8_t validationResult;
   int64_t handleStorage;
   
-  validationResult = ValidateObjectContext(*(uint8_t4 *)(objectPointer + 0x10), &handleStorage);
+  validationResult = ValidateObjectContext(*(uint32_t *)(objectPointer + 0x10), &handleStorage);
   if ((int)validationResult != 0) {
     return validationResult;
   }
@@ -3922,7 +3934,7 @@ uint8_t ValidateObjectHandle(int64_t objectPointer)
  * 
  * 该函数从RAX寄存器获取对象指针，验证其有效性并执行相应操作
  */
-uint8_t4 ValidateObjectHandleFromRegister(void)
+uint32_t ValidateObjectHandleFromRegister(void)
 
 {
   int64_t registerValue;
@@ -3986,7 +3998,7 @@ uint8_t ValidateAndProcessObjectHandle(int64_t objectHandle)
   uint8_t operationResult;
   int64_t handleBuffer;
   
-  operationResult = ValidateObjectContext(*(uint8_t4 *)(objectHandle + 0x10), &handleBuffer);
+  operationResult = ValidateObjectContext(*(uint32_t *)(objectHandle + 0x10), &handleBuffer);
   if ((int)operationResult != 0) {
     return operationResult;
   }
@@ -4012,7 +4024,7 @@ uint8_t ValidateAndProcessObjectHandle(int64_t objectHandle)
  * 该函数从RAX寄存器获取对象指针，验证其有效性并执行相应操作
  * 这是validateObjectHandleFromRegister函数的另一个版本
  */
-uint8_t4 validateObjectHandleFromRegisterV2(void)
+uint32_t validateObjectHandleFromRegisterV2(void)
 
 {
   int64_t registerValue;
@@ -4089,7 +4101,7 @@ uint8_t ProcessComplexObjectHandle(int64_t ObjectContext)
   int64_t resultBuffer[2];
   int64_t handleBuffer[2];
   
-  operationResult = ValidateObjectContext(*(uint8_t4 *)(ObjectContext + 0x10), handleBuffer);
+  operationResult = ValidateObjectContext(*(uint32_t *)(ObjectContext + 0x10), handleBuffer);
   if ((int)operationResult == 0) {
     if (handleBuffer[0] == 0) {
       handleBuffer[0] = 0;
@@ -4104,7 +4116,7 @@ uint8_t ProcessComplexObjectHandle(int64_t ObjectContext)
         if (*(int64_t *)(resultBuffer[0] + 8) == 0) {
           return 0x1c;
         }
-        operationResult = ProcessResourceOperation(*(int64_t *)(resultBuffer[0] + 8), *(uint8_t4 *)(objectContext + 0x20),
+        operationResult = ProcessResourceOperation(*(int64_t *)(resultBuffer[0] + 8), *(uint32_t *)(objectContext + 0x20),
                                       *(uint8_t1 *)(objectContext + 0x24));
         if ((int)operationResult != 0) {
           return operationResult;
@@ -4134,7 +4146,7 @@ uint8_t ValidateAndProcessObjectStatus(int64_t objectContext)
   int64_t ValidationStackBuffer8 [2];
   int64_t ValidationStackBuffer18 [2];
   
-  resourceHash = ValidateObjectContext(*(uint8_t4 *)(objectContextParam + 0x10),ValidationStackBuffer18);
+  resourceHash = ValidateObjectContext(*(uint32_t *)(objectContextParam + 0x10),ValidationStackBuffer18);
   if ((int)resourceHash == 0) {
     if (ValidationStackBuffer18[0] == 0) {
       ValidationStackBuffer18[0] = 0;
@@ -4149,7 +4161,7 @@ uint8_t ValidateAndProcessObjectStatus(int64_t objectContext)
         if (*(int64_t *)(ValidationStackBuffer8[0] + 8) == 0) {
           return 0x1c;
         }
-        resourceHash = ProcessResourceOperation(*(int64_t *)(ValidationStackBuffer8[0] + 8),*(uint8_t4 *)(objectContextParam + 0x18),
+        resourceHash = ProcessResourceOperation(*(int64_t *)(ValidationStackBuffer8[0] + 8),*(uint32_t *)(objectContextParam + 0x18),
                               *(uint8_t1 *)(objectContextParam + 0x1c));
         if ((int)resourceHash != 0) {
           return resourceHash;
@@ -4189,7 +4201,7 @@ uint8_t InitializeObjectHandleB(int64_t objectContext)
   uint8_t1 byteArray8 [16];
   int64_t lStackX_8;
   
-  byteValue4 = ValidateObjectContext(*(uint8_t4 *)(objectContextParam + 0x1c),&lStackX_8);
+  byteValue4 = ValidateObjectContext(*(uint32_t *)(objectContextParam + 0x1c),&lStackX_8);
   if ((int)byteValue4 != 0) {
     return byteValue4;
   }
@@ -4249,21 +4261,21 @@ uint8_t InitializeObjectHandleC(int64_t objectContext)
   int64_t loopCounter;
   int integerValue2;
   uint8_t unsignedResult3;
-  uint8_t4 *punsignedResult4;
+  uint32_t *punsignedResult4;
   uint64_t unsignedValue5;
   uint configurationFlags;
   uint64_t unsignedValue7;
   int64_t longValue8;
   int64_t lStackX_8;
   
-  unsignedResult3 = ValidateObjectContext(*(uint8_t4 *)(objectContextParam + 0x10),&lStackX_8);
+  unsignedResult3 = ValidateObjectContext(*(uint32_t *)(objectContextParam + 0x10),&lStackX_8);
   if ((int)unsignedResult3 == 0) {
     unsignedValue7 = 0;
     unsignedValue5 = lStackX_8 - 8;
     if (lStackX_8 == 0) {
       unsignedValue5 = unsignedValue7;
     }
-    punsignedResult4 = (uint8_t4 *)(objectContextParam + 0x20 + (int64_t)*(int *)(objectContextParam + 0x18) * 4);
+    punsignedResult4 = (uint32_t *)(objectContextParam + 0x20 + (int64_t)*(int *)(objectContextParam + 0x18) * 4);
     if (0 < *(int *)(objectContextParam + 0x18)) {
       longValue8 = (objectContextParam + 0x20) - (int64_t)punsignedResult4;
       do {
@@ -4305,7 +4317,7 @@ uint8_t InitializeObjectHandleD(void)
   int integerValue2;
   int64_t InputRegisterValue;
   uint8_t unsignedResult3;
-  uint8_t4 *punsignedResult4;
+  uint32_t *punsignedResult4;
   uint64_t unsignedValue5;
   int64_t SystemContextPointer;
   uint configurationFlags;
@@ -4317,7 +4329,7 @@ uint8_t InitializeObjectHandleD(void)
   if (in_RAX == 0) {
     unsignedValue5 = unsignedValue7;
   }
-  punsignedResult4 = (uint8_t4 *)(SystemContextPointer + 0x20 + (int64_t)*(int *)(SystemContextPointer + 0x18) * 4);
+  punsignedResult4 = (uint32_t *)(SystemContextPointer + 0x20 + (int64_t)*(int *)(SystemContextPointer + 0x18) * 4);
   if (0 < *(int *)(SystemContextPointer + 0x18)) {
     longValue8 = (SystemContextPointer + 0x20) - (int64_t)punsignedResult4;
     do {
@@ -4390,20 +4402,20 @@ uint8_t InitializeObjectHandleE(int64_t objectContext)
 {
   uint8_t resourceHash;
   int *validationCodePointer;
-  uint8_t4 *resourceDataPointer;
+  uint32_t *resourceDataPointer;
   uint loopCounter;
   uint64_t contextOffset;
   int64_t stackBuffer;
   uint64_t resourceIndex;
   
-  resourceHash = ValidateObjectContext(*(uint8_t4 *)(objectContextParam + 0x10),&lStackX_8);
+  resourceHash = ValidateObjectContext(*(uint32_t *)(objectContextParam + 0x10),&lStackX_8);
   if ((int)resourceHash == 0) {
     unsignedValue5 = 0;
     unsignedValue6 = lStackX_8 - 8;
     if (lStackX_8 == 0) {
       unsignedValue6 = unsignedValue5;
     }
-    punsignedResult3 = (uint8_t4 *)(objectContextParam + 0x20 + (int64_t)*(int *)(objectContextParam + 0x18) * 8);
+    punsignedResult3 = (uint32_t *)(objectContextParam + 0x20 + (int64_t)*(int *)(objectContextParam + 0x18) * 8);
     pintegerValue2 = (int *)(objectContextParam + 0x20);
     if (0 < *(int *)(objectContextParam + 0x18)) {
       do {
@@ -4453,7 +4465,7 @@ uint8_t InitializeObjectHandleF(void)
   uint8_t resourceHash;
   int *pintegerValue2;
   int64_t ExecutionContextPointer;
-  uint8_t4 *punsignedResult3;
+  uint32_t *punsignedResult3;
   uint unsignedResult4;
   uint64_t unsignedValue6;
   int64_t StackBufferPointer;
@@ -4464,7 +4476,7 @@ uint8_t InitializeObjectHandleF(void)
   if (in_RAX == 0) {
     unsignedValue6 = unsignedValue5;
   }
-  punsignedResult3 = (uint8_t4 *)(ExecutionContextPointer + 0x20 + (int64_t)*(int *)(ExecutionContextPointer + 0x18) * 8);
+  punsignedResult3 = (uint32_t *)(ExecutionContextPointer + 0x20 + (int64_t)*(int *)(ExecutionContextPointer + 0x18) * 8);
   pintegerValue2 = (int *)(ExecutionContextPointer + 0x20);
   if (0 < *(int *)(ExecutionContextPointer + 0x18)) {
     do {
@@ -4540,7 +4552,7 @@ uint8_t ValidateResourceHandle(int64_t resourceHandle)
   uint8_t validationResult;
   int64_t adjustedHandle;
   
-  validationResult = ValidateObjectContext(*(uint8_t4 *)(resourceHandle + 0x10),&adjustedHandle);
+  validationResult = ValidateObjectContext(*(uint32_t *)(resourceHandle + 0x10),&adjustedHandle);
   if ((int)validationResult != 0) {
     return validationResult;
   }
@@ -4637,7 +4649,7 @@ uint64_t ProcessResourceHandle(int64_t resourceHandle)
   uint8_t resourceHash;
   int64_t lStackX_8;
   
-  resourceHash = ValidateObjectContext(*(uint8_t4 *)(objectContextParam + 0x10),&lStackX_8);
+  resourceHash = ValidateObjectContext(*(uint32_t *)(objectContextParam + 0x10),&lStackX_8);
   if ((int)resourceHash != 0) {
     return resourceHash;
   }
@@ -4736,7 +4748,7 @@ uint64_t HandleResourceOperation(int64_t resourceHandle)
   int64_t resourceTable;
   int64_t lStackX_8;
   
-  resourceHash = ValidateObjectContext(*(uint8_t4 *)(objectContextParam + 0x10),&lStackX_8);
+  resourceHash = ValidateObjectContext(*(uint32_t *)(objectContextParam + 0x10),&lStackX_8);
   if ((int)resourceHash != 0) {
     return resourceHash;
   }
@@ -5115,7 +5127,7 @@ uint64_t ValidateObjectPointerAndExecuteExit(int64_t objectPointer)
   uint64_t validationResult;
   int64_t stackOffset;
   
-  validationResult = ValidateObjectContext(*(uint8_t4 *)(objectPointer + 0x10),&stackOffset);
+  validationResult = ValidateObjectContext(*(uint32_t *)(objectPointer + 0x10),&stackOffset);
   if ((int)validationResult != 0) {
     return validationResult;
   }
@@ -5211,7 +5223,7 @@ uint8_t ValidateObjectPointer(int64_t ObjectPointer)
   uint8_t ValidationResult;
   int64_t StackOffset;
   
-  ValidationResult = ValidateObjectContext(*(uint8_t4 *)(ObjectPointer + 0x10),&StackOffset);
+  ValidationResult = ValidateObjectContext(*(uint32_t *)(ObjectPointer + 0x10),&StackOffset);
   if ((int)ValidationResult != 0) {
     return ValidationResult;
   }
@@ -5234,7 +5246,7 @@ uint8_t ValidateObjectPointer(int64_t ObjectPointer)
  * 
  * @return 验证结果状态码
  */
-uint8_t4 ValidateStackObject(void)
+uint32_t ValidateStackObject(void)
 
 {
   int64_t StackPointer;
@@ -5312,14 +5324,14 @@ void ProcessObjectConfiguration(int64_t objectPointer, uint8_t configData)
 {
   int processResult;
   uint8_t tempBuffer [4];
-  uint8_t4 configParams [2];
+  uint32_t configParams [2];
   uint8_t objectConfig;
-  uint8_t4 objectFlags;
+  uint32_t objectFlags;
   
   objectConfig = *(uint8_t *)(objectPointer + 0x10);
-  objectFlags = *(uint8_t4 *)(objectPointer + 0x18);
+  objectFlags = *(uint32_t *)(objectPointer + 0x18);
   configParams[0] = 2;
-  processResult = ProcessConfigurationData(configData, configParams, *(uint8_t4 *)(objectPointer + 0x1c), tempBuffer);
+  processResult = ProcessConfigurationData(configData, configParams, *(uint32_t *)(objectPointer + 0x1c), tempBuffer);
   if (processResult == 0) {
     InitializeObjectWithConfig(configData, tempBuffer[0]);
   }
@@ -5354,7 +5366,7 @@ uint64_t ProcessFloatParameterAndUpdateSystem(int64_t parameterObject)
   uint8_t1 vectorData [16];
   int64_t stackOffset;
   
-  processResult = ValidateObjectContext(*(uint8_t4 *)(parameterObject + 0x10),&stackOffset);
+  processResult = ValidateObjectContext(*(uint32_t *)(parameterObject + 0x10),&stackOffset);
   if ((int)processResult != 0) {
     return processResult;
   }
@@ -5423,7 +5435,7 @@ int InitializeSystemManager(int64_t managerHandle)
   if (0 < *(int *)(objectContextParam + 0x20)) {
     resourceTable = *(int64_t *)(objectContextParam + 0x18);
   }
-  operationResult = ValidateObjectContext(*(uint8_t4 *)(objectContextParam + 0x4c),validationContextBuffer);
+  operationResult = ValidateObjectContext(*(uint32_t *)(objectContextParam + 0x4c),validationContextBuffer);
   if (operationResult == 0) {
     operationResult = *(int *)(objectContextParam + 0x10);
     if (0x38 < *(int *)(objectContextParam + 0x10)) {
@@ -5458,10 +5470,10 @@ void ProcessSystemMessageQueue(int64_t messageQueueHandle, uint8_t configuration
   int operationResult [2];
   int64_t messageDataOffset;
   
-  operationResult[0] = ValidateObjectContext(*(uint8_t4 *)(messageQueueHandle + 0x10),&validationContext);
+  operationResult[0] = ValidateObjectContext(*(uint32_t *)(messageQueueHandle + 0x10),&validationContext);
   if (operationResult[0] == 0) {
     messageDataOffset = messageQueueHandle + 0x18;
-    ProcessResourceOperationEx(configurationData,operationResult,*(uint8_t4 *)(messageQueueHandle + 0x14),validationContext);
+    ProcessResourceOperationEx(configurationData,operationResult,*(uint32_t *)(messageQueueHandle + 0x14),validationContext);
   }
   return;
 }
@@ -5487,11 +5499,11 @@ uint64_t ProcessSystemResourceAllocation(int64_t resourceHandle, uint8_t operati
   uint64_t validationResult;
   int64_t resourceIndex;
   uint8_t ValidationContext;
-  uint8_t4 ResourceOperationBuffer [2];
+  uint32_t ResourceOperationBuffer [2];
   int64_t ResourceHandleValue;
   int ResourceCount;
   
-  validationResult = ValidateObjectContext(*(uint8_t4 *)(resourceHandle + 0x24),&ValidationContext);
+  validationResult = ValidateObjectContext(*(uint32_t *)(resourceHandle + 0x24),&ValidationContext);
   if ((int)validationResult == 0) {
     ResourceCount = *(int *)(resourceHandle + 0x18);
     if ((0 < ResourceCount) && (*(uint *)(resourceHandle + 0x1c) < 2)) {
@@ -5505,7 +5517,7 @@ uint64_t ProcessSystemResourceAllocation(int64_t resourceHandle, uint8_t operati
         ResourceHandleValue = *(int64_t *)(resourceHandle + 0x10);
         ResourceOperationBuffer[0] = 2;
       }
-      resourceHash = ProcessResourceOperationEx(operationFlag,ResourceOperationBuffer,*(uint8_t4 *)(resourceHandle + 0x20),ValidationContext);
+      resourceHash = ProcessResourceOperationEx(operationFlag,ResourceOperationBuffer,*(uint32_t *)(resourceHandle + 0x20),ValidationContext);
       validationResult = (uint64_t)resourceHash;
       if (resourceHash == 0) {
         validationResult = 0;
@@ -5534,16 +5546,16 @@ uint64_t ProcessSystemResourceAllocation(int64_t resourceHandle, uint8_t operati
  * @param configParameter 配置参数，包含要验证的配置信息
  * @return 验证结果，0表示验证成功，非0表示验证失败
  */
-int ValidateSystemConfigurationParameter(uint8_t4 configParameter)
+int ValidateSystemConfigurationParameter(uint32_t configParameter)
 
 {
   int InputRegisterResult;
   int operationResult;
   int64_t resourceTable;
   int64_t UnaffectedRegisterValue;
-  uint8_t4 unsignedResult3;
+  uint32_t unsignedResult3;
   int64_t StackMemoryOffset;
-  uint8_t4 StackValidationBuffer;
+  uint32_t StackValidationBuffer;
   
   resourceTable = 0;
   if (in_EAX == 0) {
@@ -5616,7 +5628,7 @@ void ProcessSystemDataPacketTransmission(int64_t packetHandle, int64_t transmiss
 {
   int operationResult;
   
-  integerValue1 = ProcessResourceRequest(*(uint8_t *)(validationContextParam + 0x78),*(uint8_t4 *)(objectContextParam + 0x10),
+  integerValue1 = ProcessResourceRequest(*(uint8_t *)(validationContextParam + 0x78),*(uint32_t *)(objectContextParam + 0x10),
                         objectContextParam + 0x14,objectContextParam + 0x20,objectContextParam + 0x2c,objectContextParam + 0x38);
   if ((integerValue1 == 0) &&
      (integerValue1 = InitializeDataStructure((int64_t)*(int *)(objectContextParam + 0x10) * 0x44 +
@@ -5651,9 +5663,9 @@ void ProcessSystemObjectLifecycle(int64_t objectHandle, int64_t lifecycleConfig)
 {
   int validationStatus;
   
-  validationStatus = ProcessResourceValidationCheck(*(uint8_t *)(lifecycleConfig + 0x78),*(uint8_t4 *)(objectHandle + 0x10));
+  validationStatus = ProcessResourceValidationCheck(*(uint8_t *)(lifecycleConfig + 0x78),*(uint32_t *)(objectHandle + 0x10));
   if (validationStatus == 0) {
-    ProcessObjectLifecycle(*(uint8_t *)(lifecycleConfig + 0x90),*(uint8_t4 *)(objectHandle + 0x10));
+    ProcessObjectLifecycle(*(uint8_t *)(lifecycleConfig + 0x90),*(uint32_t *)(objectHandle + 0x10));
   }
   return;
 }
@@ -5677,11 +5689,11 @@ uint8_t ValidateSystemDataIntegrity(int64_t dataBuffer, int64_t validationConfig
 {
   uint8_t resourceHash;
   int *pintegerValue2;
-  uint8_t4 *punsignedResult3;
+  uint32_t *punsignedResult3;
   int validationIndex;
   
   validationIndex = 0;
-  punsignedResult3 = (uint8_t4 *)(objectContextParam + 0x18 + (int64_t)*(int *)(objectContextParam + 0x10) * 8);
+  punsignedResult3 = (uint32_t *)(objectContextParam + 0x18 + (int64_t)*(int *)(objectContextParam + 0x10) * 8);
   pintegerValue2 = (int *)(objectContextParam + 0x18);
   if (0 < *(int *)(objectContextParam + 0x10)) {
     do {
@@ -5778,9 +5790,9 @@ uint8_t ValidateSystemConfiguration(int64_t configHandle)
   uint8_t ValidationResult;
   int64_t ConfigBuffer [4];
   
-  ValidationResult = ValidateObjectContext(*(uint8_t4 *)(configHandle + 0x10),ConfigBuffer);
+  ValidationResult = ValidateObjectContext(*(uint32_t *)(configHandle + 0x10),ConfigBuffer);
   if ((int)ValidationResult == 0) {
-    *(uint8_t4 *)(*(int64_t *)(ConfigBuffer[0] + 0x10) + 0x50) = *(uint8_t4 *)(configHandle + 0x18);
+    *(uint32_t *)(*(int64_t *)(ConfigBuffer[0] + 0x10) + 0x50) = *(uint32_t *)(configHandle + 0x18);
     if ((*(int64_t *)(ConfigBuffer[0] + 8) != 0) && (ValidationResult = ValidateSecurityContext(), (int)ValidationResult != 0)) {
       return ValidationResult;
     }
@@ -5873,10 +5885,10 @@ void InitializeObjectPropertiesAndDispatch(int64_t objectContext, int64_t schedu
   int initializationStatus;
   int64_t propertyBuffer;
   
-  initializationStatus = ValidateObjectContext(*(uint8_t4 *)(objectContext + 0x10),&propertyBuffer);
+  initializationStatus = ValidateObjectContext(*(uint32_t *)(objectContext + 0x10),&propertyBuffer);
   if (initializationStatus == 0) {
-    *(uint8_t4 *)(objectContext + 0x18) = *(uint8_t4 *)(propertyBuffer + 0x30);
-    *(uint8_t4 *)(objectContext + 0x1c) = *(uint8_t4 *)(propertyBuffer + 0x34);
+    *(uint32_t *)(objectContext + 0x18) = *(uint32_t *)(propertyBuffer + 0x30);
+    *(uint32_t *)(objectContext + 0x1c) = *(uint32_t *)(propertyBuffer + 0x34);
     CleanupSystemContextData(*(uint8_t *)(schedulerContext + 0x98),objectContext);
   }
   return;
@@ -5901,7 +5913,7 @@ void ValidateObjectPropertiesAndDispatch(int64_t objectContext, int64_t schedule
   int validationStatus;
   uint8_t propertyBuffer;
   
-  validationStatus = ValidateObjectContext(*(uint8_t4 *)(objectContext + 0x10),&propertyBuffer);
+  validationStatus = ValidateObjectContext(*(uint32_t *)(objectContext + 0x10),&propertyBuffer);
   if (validationStatus == 0) {
     validationStatus = ValidatePropertyBuffer(propertyBuffer,objectContext + 0x18);
     if (validationStatus == 0) {
@@ -5963,7 +5975,7 @@ uint8_t CheckObjectPropertiesAndIncrementCounter(int64_t objectContext, int64_t 
   uint8_t operationResult;
   int64_t propertyBuffer;
   
-  operationResult = ValidateObjectContext(*(uint8_t4 *)(objectContext + 0x10),&propertyBuffer);
+  operationResult = ValidateObjectContext(*(uint32_t *)(objectContext + 0x10),&propertyBuffer);
   if ((int)operationResult == 0) {
     if (*(int *)(propertyBuffer + 0x34) != 0) {
       return 0x2e;
@@ -5997,9 +6009,9 @@ void ResetObjectPropertiesAndDispatch(int64_t objectContext, int64_t schedulerCo
   int initializationStatus;
   int64_t propertyBuffer;
   
-  initializationStatus = ValidateObjectContext(*(uint8_t4 *)(objectContext + 0x10),&propertyBuffer);
+  initializationStatus = ValidateObjectContext(*(uint32_t *)(objectContext + 0x10),&propertyBuffer);
   if (initializationStatus == 0) {
-    *(uint8_t4 *)(propertyBuffer + 0x30) = 0;
+    *(uint32_t *)(propertyBuffer + 0x30) = 0;
                     // WARNING: Subroutine does not return
     ReleaseSystemContextResources(*(uint8_t *)(schedulerContext + 0x98),objectContext);
   }
@@ -6027,7 +6039,7 @@ uint8_t CheckObjectPropertiesAndDecrementCounter(int64_t objectContext, int64_t 
   uint8_t operationResult;
   int64_t propertyBuffer;
   
-  operationResult = ValidateObjectContext(*(uint8_t4 *)(objectContext + 0x10),&propertyBuffer);
+  operationResult = ValidateObjectContext(*(uint32_t *)(objectContext + 0x10),&propertyBuffer);
   if ((int)operationResult == 0) {
     if (*(int *)(propertyBuffer + 0x34) != 0) {
       return 0x2e;
@@ -6068,7 +6080,7 @@ uint8_t ExtractObjectPropertiesAndDispatch(int64_t objectContext, int64_t schedu
   uint8_t operationResult;
   int64_t propertyBuffer;
   
-  operationResult = ValidateObjectContext(*(uint8_t4 *)(objectContext + 0x10),&propertyBuffer);
+  operationResult = ValidateObjectContext(*(uint32_t *)(objectContext + 0x10),&propertyBuffer);
   if ((int)operationResult == 0) {
     if (*(int64_t *)(propertyBuffer + 8) == 0) {
       return 0x4c;
@@ -6098,7 +6110,7 @@ uint8_t ActivateObjectPropertiesAndDispatch(int64_t objectContext, int64_t sched
   uint8_t operationResult;
   int64_t propertyBuffer;
   
-  operationResult = ValidateObjectContext(*(uint8_t4 *)(objectContext + 0x10),&propertyBuffer);
+  operationResult = ValidateObjectContext(*(uint32_t *)(objectContext + 0x10),&propertyBuffer);
   if ((int)operationResult != 0) {
     return operationResult;
   }
@@ -6128,7 +6140,7 @@ void SetObjectContextByte29(int64_t objectContext, int64_t processContext)
   int validationStatus;
   int64_t contextBuffer;
   
-  validationStatus = ValidateObjectContext(*(uint8_t4 *)(objectContext + 0x10),&contextBuffer);
+  validationStatus = ValidateObjectContext(*(uint32_t *)(objectContext + 0x10),&contextBuffer);
   if (validationStatus == 0) {
     *(uint8_t1 *)(contextBuffer + 0x29) = *(uint8_t1 *)(objectContext + 0x18);
                     // WARNING: Subroutine does not return
@@ -6155,7 +6167,7 @@ void SetObjectContextByte28(int64_t objectContext, int64_t processContext)
   int validationStatus;
   int64_t contextBuffer;
   
-  validationStatus = ValidateObjectContext(*(uint8_t4 *)(objectContext + 0x10),&contextBuffer);
+  validationStatus = ValidateObjectContext(*(uint32_t *)(objectContext + 0x10),&contextBuffer);
   if (validationStatus == 0) {
     *(uint8_t1 *)(contextBuffer + 0x28) = *(uint8_t1 *)(objectContext + 0x18);
                     // WARNING: Subroutine does not return
@@ -6181,15 +6193,15 @@ uint8_t ValidateObjectContextAndUpdateStatus(int64_t ObjectContext, int64_t Syst
 {
   uint8_t resourceHash;
   uint ValidationContext;
-  uint8_t4 uStackX_c;
+  uint32_t uStackX_c;
   
   ValidationContext = *(uint *)(objectContextParam + 0x18);
   if ((ValidationContext & 0x7f800000) == 0x7f800000) {
     return 0x1d;
   }
-  resourceHash = ValidateObjectContext(*(uint8_t4 *)(objectContextParam + 0x10),&ValidationContext);
+  resourceHash = ValidateObjectContext(*(uint32_t *)(objectContextParam + 0x10),&ValidationContext);
   if ((int)resourceHash == 0) {
-    *(uint8_t4 *)(CONCAT44(uStackX_c,ValidationContext) + 0x24) = *(uint8_t4 *)(objectContextParam + 0x18);
+    *(uint32_t *)(CONCAT44(uStackX_c,ValidationContext) + 0x24) = *(uint32_t *)(objectContextParam + 0x18);
                     // WARNING: Subroutine does not return
     ReleaseSystemContextResources(*(uint8_t *)(validationContextParam + 0x98),objectContextParam);
   }
@@ -6214,7 +6226,7 @@ uint8_t ValidateAndClearObjectState(int64_t objectContext, int64_t systemContext
   uint8_t validationResult;
   int64_t contextBuffer;
   
-  validationResult = ValidateObjectContext(*(uint8_t4 *)(objectContext + 0x10),&contextBuffer);
+  validationResult = ValidateObjectContext(*(uint32_t *)(objectContext + 0x10),&contextBuffer);
   if ((int)validationResult != 0) {
     return validationResult;
   }
@@ -6251,7 +6263,7 @@ void ExpandDynamicBufferCapacity(int64_t objectContext, int64_t systemContext)
   int64_t tempStackBuffer;
   int64_t bufferContext;
   
-  validationStatus = ValidateObjectContext(*(uint8_t4 *)(objectContext + 0x10),&bufferContext);
+  validationStatus = ValidateObjectContext(*(uint32_t *)(objectContext + 0x10),&bufferContext);
   if (((validationStatus != 0) || (validationStatus = InitializeTempBuffer(&tempStackBuffer), validationStatus != 0)) ||
      (validationStatus = ProcessSystemContext(tempStackBuffer,systemContext,*(uint8_t *)(bufferContext + 8)), validationStatus != 0)) {
     return;
@@ -6582,7 +6594,7 @@ void ValidateObjectContextAndUpdateStatus(int64_t objectContext, int64_t systemC
   int operationResult;
   uint8_t ValidationContext;
   
-  integerValue1 = ValidateObjectContext(*(uint8_t4 *)(objectContextParam + 0x10),&ValidationContext);
+  integerValue1 = ValidateObjectContext(*(uint32_t *)(objectContextParam + 0x10),&ValidationContext);
   if (integerValue1 == 0) {
     integerValue1 = ValidateSystemParameter(ValidationContext);
     if (integerValue1 < 1) {
@@ -6592,7 +6604,7 @@ void ValidateObjectContextAndUpdateStatus(int64_t objectContext, int64_t systemC
     else {
       integerValue1 = ValidateSystemContext(ValidationContext);
       if (integerValue1 < 1) {
-        *(uint8_t4 *)(objectContextParam + 0x18) = 2;
+        *(uint32_t *)(objectContextParam + 0x18) = 2;
       }
       else {
         integerValue1 = CalculateObjectHash(ValidationContext,objectContextParam + 0x18);
@@ -6632,7 +6644,7 @@ void ValidateAndProcessSystemStatusData(void)
   else {
     validationStatus = ValidateSystemContext(systemParameter);
     if (validationStatus < 1) {
-      *(uint8_t4 *)(systemStatusPointer + 0x18) = 2;
+      *(uint32_t *)(systemStatusPointer + 0x18) = 2;
     }
     else {
       validationStatus = ProcessSystemData(systemParameter, systemStatusPointer + 0x18);
@@ -6679,7 +6691,7 @@ void ProcessObjectContextRelease(int64_t ObjectHandle, int64_t SystemContext)
   int validationStatus;
   uint8_t contextBuffer;
   
-  validationStatus = ValidateObjectContext(*(uint8_t4 *)(ObjectHandle + 0x10), &contextBuffer);
+  validationStatus = ValidateObjectContext(*(uint32_t *)(ObjectHandle + 0x10), &contextBuffer);
   if (validationStatus == 0) {
     validationStatus = ProcessSystemValidation(contextBuffer);
     if (validationStatus == 0) {
@@ -6708,7 +6720,7 @@ void ProcessObjectValidation(int64_t ObjectContext, int64_t SystemContext)
   int validationStatus;
   uint8_t1 validationBuffer [8];
   
-  validationStatus = ValidateObjectContext(*(uint8_t4 *)(ObjectContext + 0x10), validationBuffer);
+  validationStatus = ValidateObjectContext(*(uint32_t *)(ObjectContext + 0x10), validationBuffer);
   if (validationStatus == 0) {
                     // WARNING: Subroutine does not return
     ProcessSystemObject(*(uint8_t *)(SystemContext + 0x98), ObjectContext);
@@ -6734,7 +6746,7 @@ void ExecuteDualValidationObjectProcessing(int64_t ObjectContext, int64_t System
   int primaryValidationStatus;
   uint8_t processingResult;
   
-  primaryValidationStatus = ValidateObjectContext(*(uint8_t4 *)(ObjectContext + 0x10), &processingResult);
+  primaryValidationStatus = ValidateObjectContext(*(uint32_t *)(ObjectContext + 0x10), &processingResult);
   if (primaryValidationStatus == 0) {
     primaryValidationStatus = ProcessValidationResult(processingResult);
     if (primaryValidationStatus == 0) {
@@ -6763,7 +6775,7 @@ uint8_t ValidateAndProcessObjectAttributeSetting(int64_t ObjectContext, int64_t 
   uint8_t processingResult;
   int64_t objectContextBuffer;
   
-  processingResult = ValidateObjectContext(*(uint8_t4 *)(ObjectContext + 0x10), &objectContextBuffer);
+  processingResult = ValidateObjectContext(*(uint32_t *)(ObjectContext + 0x10), &objectContextBuffer);
   if ((int)processingResult == 0) {
     if (objectContextBuffer != 0) {
       objectContextBuffer = objectContextBuffer + -8;
@@ -6796,7 +6808,7 @@ uint8_t ValidateObjectAndProcessBufferContext(int64_t ObjectContext, int64_t Sys
   uint8_t processingResult;
   int64_t objectContextBuffer;
   
-  processingResult = ValidateObjectContext(*(uint8_t4 *)(ObjectContext + 0x10), &objectContextBuffer);
+  processingResult = ValidateObjectContext(*(uint32_t *)(ObjectContext + 0x10), &objectContextBuffer);
   if ((int)processingResult == 0) {
     if (objectContextBuffer != 0) {
       objectContextBuffer = objectContextBuffer + -8;
@@ -6842,7 +6854,7 @@ uint8_t ValidateObjectContextAndProcessBuffers(int64_t objectContext, int64_t sy
   if (objectContext + 0x1c == 0) {
     return 0x1f;
   }
-  validationStatus = ValidateObjectContext(*(uint8_t4 *)(objectContext + 0x10),&stackBuffer);
+  validationStatus = ValidateObjectContext(*(uint32_t *)(objectContext + 0x10),&stackBuffer);
   if ((int)validationStatus == 0) {
     bufferIndex = 0;
     bufferArrayOffset = bufferIndex;
@@ -7007,7 +7019,7 @@ uint8_t ValidateAndProcessComplexObjectContext(int64_t ObjectContext, int64_t Sy
   int64_t contextPointer;
   int64_t validationBuffer;
   
-  processingResult = ValidateObjectContext(*(uint8_t4 *)(ObjectContext + 0x10), &validationBuffer);
+  processingResult = ValidateObjectContext(*(uint32_t *)(ObjectContext + 0x10), &validationBuffer);
   if ((int)processingResult != 0) {
     return processingResult;
   }
@@ -7074,7 +7086,7 @@ void ValidateObjectContextAndProcessPointerValidation(int64_t ObjectContext, int
   uint64_t securityToken;
   
   securityToken = SecurityEncryptionKey ^ (uint64_t)securityBuffer;
-  validationStatus = ValidateObjectContext(*(uint8_t4 *)(ObjectContext + 0x10), &contextBuffer);
+  validationStatus = ValidateObjectContext(*(uint32_t *)(ObjectContext + 0x10), &contextBuffer);
   if (validationStatus == 0) {
     if (contextBuffer != 0) {
       contextBuffer = contextBuffer + -8;
@@ -7248,7 +7260,7 @@ uint8_t ValidateMatrixTransformationData(int64_t matrixDataPointer,int64_t conte
     if (((fStackX_20 == 0.0) && (*(float *)(objectContextParam + 0x40) == 0.0)) && (fVar1 == 0.0)) {
       return 0x1f;
     }
-    unsignedValue5 = ValidateObjectContext(*(uint8_t4 *)(objectContextParam + 0x10),ValidationStackBuffer8);
+    unsignedValue5 = ValidateObjectContext(*(uint32_t *)(objectContextParam + 0x10),ValidationStackBuffer8);
     if ((int)unsignedValue5 != 0) {
       return unsignedValue5;
     }
@@ -7258,20 +7270,20 @@ uint8_t ValidateMatrixTransformationData(int64_t matrixDataPointer,int64_t conte
     unsignedValue5 = *(uint8_t *)(objectContextParam + 0x20);
     *(uint8_t *)(localContextPointer0 + 0x38) = *(uint8_t *)(objectContextParam + 0x18);
     *(uint8_t *)(localContextPointer0 + 0x40) = unsignedValue5;
-    validationResult = *(uint8_t4 *)(objectContextParam + 0x2c);
-    unsignedResult3 = *(uint8_t4 *)(objectContextParam + 0x30);
-    unsignedResult4 = *(uint8_t4 *)(objectContextParam + 0x34);
-    *(uint8_t4 *)(localContextPointer0 + 0x48) = *(uint8_t4 *)(objectContextParam + 0x28);
-    *(uint8_t4 *)(localContextPointer0 + 0x4c) = validationResult;
-    *(uint8_t4 *)(localContextPointer0 + 0x50) = unsignedResult3;
-    *(uint8_t4 *)(localContextPointer0 + 0x54) = unsignedResult4;
-    validationResult = *(uint8_t4 *)(objectContextParam + 0x3c);
-    unsignedResult3 = *(uint8_t4 *)(objectContextParam + 0x40);
-    unsignedResult4 = *(uint8_t4 *)(objectContextParam + 0x44);
-    *(uint8_t4 *)(localContextPointer0 + 0x58) = *(uint8_t4 *)(objectContextParam + 0x38);
-    *(uint8_t4 *)(localContextPointer0 + 0x5c) = validationResult;
-    *(uint8_t4 *)(localContextPointer0 + 0x60) = unsignedResult3;
-    *(uint8_t4 *)(localContextPointer0 + 100) = unsignedResult4;
+    validationResult = *(uint32_t *)(objectContextParam + 0x2c);
+    unsignedResult3 = *(uint32_t *)(objectContextParam + 0x30);
+    unsignedResult4 = *(uint32_t *)(objectContextParam + 0x34);
+    *(uint32_t *)(localContextPointer0 + 0x48) = *(uint32_t *)(objectContextParam + 0x28);
+    *(uint32_t *)(localContextPointer0 + 0x4c) = validationResult;
+    *(uint32_t *)(localContextPointer0 + 0x50) = unsignedResult3;
+    *(uint32_t *)(localContextPointer0 + 0x54) = unsignedResult4;
+    validationResult = *(uint32_t *)(objectContextParam + 0x3c);
+    unsignedResult3 = *(uint32_t *)(objectContextParam + 0x40);
+    unsignedResult4 = *(uint32_t *)(objectContextParam + 0x44);
+    *(uint32_t *)(localContextPointer0 + 0x58) = *(uint32_t *)(objectContextParam + 0x38);
+    *(uint32_t *)(localContextPointer0 + 0x5c) = validationResult;
+    *(uint32_t *)(localContextPointer0 + 0x60) = unsignedResult3;
+    *(uint32_t *)(localContextPointer0 + 100) = unsignedResult4;
     localContextPointer0 = *(int64_t *)(validationContextParam + 0x98);
     if ((*(int *)(localContextPointer0 + 0x180) != 0) || (*(int *)(localContextPointer0 + 0x184) != 0)) {
       ValidationStackBuffer8[0] = 0;
@@ -7313,7 +7325,7 @@ void ValidateObjectContextAndProcessOperation(int64_t ObjectContext, int64_t Sys
   int64_t objectPropertyPointer;
   uint8_t stackBuffer;
   
-  validationStatus = ValidateObjectContext(*(uint8_t4 *)(ObjectContext + 0x10));
+  validationStatus = ValidateObjectContext(*(uint32_t *)(ObjectContext + 0x10));
   if (validationStatus == 0) {
     if (stackBuffer == 0) {
       objectPropertyPointer = 0;
@@ -7321,7 +7333,7 @@ void ValidateObjectContextAndProcessOperation(int64_t ObjectContext, int64_t Sys
     else {
       objectPropertyPointer = stackBuffer + -8;
     }
-    *(uint8_t4 *)(objectPropertyPointer + 0x88) = *(uint8_t4 *)(ObjectContext + 0x18);
+    *(uint32_t *)(objectPropertyPointer + 0x88) = *(uint32_t *)(ObjectContext + 0x18);
                     // WARNING: Subroutine does not return
     ProcessObjectOperation(*(uint8_t *)(SystemContext + 0x98), ObjectContext);
   }
@@ -7354,7 +7366,7 @@ uint8_t ValidateObjectContextAndProcessFloatRange(int64_t objectContext, int64_t
   if ((*(uint *)(objectContext + 0x20) & 0x7f800000) == 0x7f800000) {
     return 0x1d;
   }
-  validationStatus = ValidateObjectContext(*(uint8_t4 *)(objectContext + 0x10),contextBuffer);
+  validationStatus = ValidateObjectContext(*(uint32_t *)(objectContext + 0x10),contextBuffer);
   if ((int)validationStatus == 0) {
     if (contextBuffer[0] == 0) {
       contextBuffer[0] = 0;
@@ -7411,7 +7423,7 @@ uint8_t ValidateObjectContextAndProcessFloatComparison(int64_t objectContext, in
   int64_t stackBuffer;
   int64_t contextBuffer [2];
   
-  validationStatus = ValidateObjectContext(*(uint8_t4 *)(objectContext + 0x10),contextBuffer);
+  validationStatus = ValidateObjectContext(*(uint32_t *)(objectContext + 0x10),contextBuffer);
   if ((int)validationStatus == 0) {
     if (contextBuffer[0] == 0) {
       contextBuffer[0] = 0;
@@ -7548,7 +7560,7 @@ uint8_t ProcessBufferedFloatComparison(void)
  * @param parameter 操作参数，用于控制比较行为
  * @return uint8_t 操作结果，成功返回0，失败返回错误码
  */
-uint8_t ProcessParameterizedFloatComparison(uint8_t4 parameter)
+uint8_t ProcessParameterizedFloatComparison(uint32_t parameter)
 
 {
   float floatValue;
@@ -7587,7 +7599,7 @@ uint8_t ProcessParameterizedFloatComparison(uint8_t4 parameter)
  * @param parameter 操作参数，用于控制比较行为
  * @return uint8_t 操作结果，成功返回0，失败返回错误码
  */
-uint8_t ProcessSimplifiedParameterizedFloatComparison(uint8_t4 parameter)
+uint8_t ProcessSimplifiedParameterizedFloatComparison(uint32_t parameter)
 
 {
   float floatValue;
@@ -7672,7 +7684,7 @@ uint8_t ValidateObjectContextAndProcessFloatRange(int64_t objectContext, int64_t
     return 0x1d;
   }
   if (objectContext + 0x28 != 0) {
-    validationStatus = ValidateObjectContext(*(uint8_t4 *)(objectContext + 0x10), &stackContext);
+    validationStatus = ValidateObjectContext(*(uint32_t *)(objectContext + 0x10), &stackContext);
     if ((int)validationStatus != 0) {
       return validationStatus;
     }
@@ -7734,7 +7746,7 @@ uint8_t ValidateObjectContextAndProcessComplexFloatOperation(int64_t objectConte
   int64_t stackBuffer;
   
   if (objectContext + 0x28 != 0) {
-    validationStatus = ValidateObjectContext(*(uint8_t4 *)(objectContext + 0x10),&stackBuffer);
+    validationStatus = ValidateObjectContext(*(uint32_t *)(objectContext + 0x10),&stackBuffer);
     if ((int)validationStatus != 0) {
       return validationStatus;
     }
@@ -7804,7 +7816,7 @@ uint8_t ValidateObjectContextAndProcessParameterizedComplexFloatOperation(int64_
   if ((*(uint *)(objectContextParam + 0x20) & 0x7f800000) == 0x7f800000) {
     return 0x1d;
   }
-  byteValue4 = ValidateObjectContext(*(uint8_t4 *)(objectContextParam + 0x10),&lStackX_8);
+  byteValue4 = ValidateObjectContext(*(uint32_t *)(objectContextParam + 0x10),&lStackX_8);
   if ((int)byteValue4 != 0) {
     return byteValue4;
   }
@@ -7872,10 +7884,10 @@ uint8_t ValidateObjectContextAndProcessFloatRange(int64_t objectContext,int64_t 
   float minValue;
   float maxValue;
   float currentValue;
-  uint8_t4 stackBuffer;
+  uint32_t stackBuffer;
   uint64_t resourceHash;
   
-  validationResult = ValidateObjectContext(*(uint8_t4 *)(objectContextParam + 0x10),&currentValue);
+  validationResult = ValidateObjectContext(*(uint32_t *)(objectContextParam + 0x10),&currentValue);
   if ((int)validationResult != 0) {
     return validationResult;
   }
@@ -8080,7 +8092,7 @@ void ValidateObjectContextAndProcessOperation(int64_t objectContext, uint8_t ope
   
   securityToken = SecurityEncryptionKey ^ (uint64_t)stackBuffer;
   securityHandle = operationHandle;
-  validationStatus = ValidateObjectContext(*(uint8_t4 *)(objectContext + 0x10), stackBuffer);
+  validationStatus = ValidateObjectContext(*(uint32_t *)(objectContext + 0x10), stackBuffer);
   if (validationStatus == 0) {
     isZeroSize = stackBuffer[0] == 0;
     stackBuffer[0] = stackBuffer[0] + -8;
@@ -8119,7 +8131,7 @@ void UpdateSystemConfigurationAndExecute(int64_t configObject, int64_t systemCon
   int64_t configOffset;
   uint8_t configBuffer;
   
-  validationStatus = ValidateObjectContext(*(uint8_t4 *)(configObject + 0x10));
+  validationStatus = ValidateObjectContext(*(uint32_t *)(configObject + 0x10));
   if (validationStatus == 0) {
     if (configBuffer == 0) {
       configOffset = 0;
@@ -8165,7 +8177,7 @@ uint8_t ValidateAndProcessObjectContextWithParameters(int64_t objectContext,int6
   if ((validationFloat < 0.0) || (3.4028235e+38 <= validationFloat)) {
     return 0x1f;
   }
-  validationResult = ValidateObjectContext(*(uint8_t4 *)(objectContextParam + 0x10),&stackBuffer);
+  validationResult = ValidateObjectContext(*(uint32_t *)(objectContextParam + 0x10),&stackBuffer);
   if ((int)validationResult != 0) {
     return validationResult;
   }
@@ -8175,7 +8187,7 @@ uint8_t ValidateAndProcessObjectContextWithParameters(int64_t objectContext,int6
   else {
     contextPointer = stackBuffer + -8;
   }
-  *(uint8_t4 *)(contextPointer + 0x90) = *(uint8_t4 *)(objectContextParam + 0x18);
+  *(uint32_t *)(contextPointer + 0x90) = *(uint32_t *)(objectContextParam + 0x18);
   contextPointer = *(int64_t *)(validationContextParam + 0x98);
   if ((*(int *)(contextPointer + 0x180) != 0) || (*(int *)(contextPointer + 0x184) != 0)) {
     stackBuffer = 0;
@@ -8218,7 +8230,7 @@ uint8_t ValidateObjectContextAndProcessFloatRange(int64_t objectContextParam, in
   if (((uint)FloatValueToValidate & 0x7f800000) == 0x7f800000) {
     return 0x1d;
   }
-  switch(*(uint8_t4 *)(objectContextParam + 0x18)) {
+  switch(*(uint32_t *)(objectContextParam + 0x18)) {
   case 0:
     if ((0.0 <= FloatValueToValidate) && (FloatValueToValidate <= 256.0)) goto code_r0x00018089322c;
     goto joined_r0x00018089322a;
@@ -8240,7 +8252,7 @@ code_r0x000180893206:
     }
   }
 code_r0x00018089322c:
-  validationResult = ValidateObjectContext(*(uint8_t4 *)(objectContextParam + 0x10));
+  validationResult = ValidateObjectContext(*(uint32_t *)(objectContextParam + 0x10));
   if ((int)validationResult != 0) {
     return validationResult;
   }
@@ -8250,8 +8262,8 @@ code_r0x00018089322c:
   else {
     resourceIndex = lStackX_8 + -8;
   }
-  *(uint8_t4 *)(resourceIndex + 0xa4 + (int64_t)*(int *)(objectContextParam + 0x18) * 4) =
-       *(uint8_t4 *)(objectContextParam + 0x1c);
+  *(uint32_t *)(resourceIndex + 0xa4 + (int64_t)*(int *)(objectContextParam + 0x18) * 4) =
+       *(uint32_t *)(objectContextParam + 0x1c);
   resourceIndex = *(int64_t *)(validationContextParam + 0x98);
   if ((*(int *)(resourceIndex + 0x180) != 0) || (*(int *)(resourceIndex + 0x184) != 0)) {
     lStackX_8 = 0;
@@ -8294,7 +8306,7 @@ uint8_t ValidateObjectContextAndProcessFloatComparison(int64_t objectContextPara
   if ((*(uint *)(objectContextParam + 0x1c) & 0x7f800000) == 0x7f800000) {
     return 0x1d;
   }
-  resourceHash = ValidateObjectContext(*(uint8_t4 *)(objectContextParam + 0x10));
+  resourceHash = ValidateObjectContext(*(uint32_t *)(objectContextParam + 0x10));
   if ((int)resourceHash != 0) {
     return resourceHash;
   }
@@ -8304,8 +8316,8 @@ uint8_t ValidateObjectContextAndProcessFloatComparison(int64_t objectContextPara
   else {
     resourceTable = lStackX_8 + -8;
   }
-  *(uint8_t4 *)(resourceTable + 0x94 + (int64_t)*(int *)(objectContextParam + 0x18) * 4) =
-       *(uint8_t4 *)(objectContextParam + 0x1c);
+  *(uint32_t *)(resourceTable + 0x94 + (int64_t)*(int *)(objectContextParam + 0x18) * 4) =
+       *(uint32_t *)(objectContextParam + 0x1c);
   resourceTable = *(int64_t *)(validationContextParam + 0x98);
   if ((*(int *)(resourceTable + 0x180) != 0) || (*(int *)(resourceTable + 0x184) != 0)) {
     lStackX_8 = 0;
@@ -8340,13 +8352,13 @@ uint8_t ValidateObjectContextAndProcessComplexFloatOperation(int64_t objectConte
   uint8_t resourceHash;
   int64_t resourceTable;
   uint ValidationContext;
-  uint8_t4 uStackX_c;
+  uint32_t uStackX_c;
   
   ValidationContext = *(uint *)(objectContextParam + 0x18);
   if ((ValidationContext & 0x7f800000) == 0x7f800000) {
     return 0x1d;
   }
-  resourceHash = ValidateObjectContext(*(uint8_t4 *)(objectContextParam + 0x10),&ValidationContext);
+  resourceHash = ValidateObjectContext(*(uint32_t *)(objectContextParam + 0x10),&ValidationContext);
   if ((int)resourceHash == 0) {
     if (CONCAT44(uStackX_c,ValidationContext) == 0) {
       resourceTable = 0;
@@ -8354,7 +8366,7 @@ uint8_t ValidateObjectContextAndProcessComplexFloatOperation(int64_t objectConte
     else {
       resourceTable = CONCAT44(uStackX_c,ValidationContext) + -8;
     }
-    *(uint8_t4 *)(resourceTable + 0x8c) = *(uint8_t4 *)(objectContextParam + 0x18);
+    *(uint32_t *)(resourceTable + 0x8c) = *(uint32_t *)(objectContextParam + 0x18);
                     // WARNING: Subroutine does not return
     ReleaseSystemContextResources(*(uint8_t *)(validationContextParam + 0x98),objectContextParam);
   }
@@ -8380,7 +8392,7 @@ void ProcessObjectContextValidationAndIncrement(int64_t objectContextParam,int64
   int validationStatus;
   int64_t contextPointer;
   
-  validationStatus = ValidateObjectContext(*(uint8_t4 *)(objectContextParam + 0x10),&contextPointer);
+  validationStatus = ValidateObjectContext(*(uint32_t *)(objectContextParam + 0x10),&contextPointer);
   if (validationStatus == 0) {
     if (contextPointer != 0) {
       contextPointer = contextPointer + -8;
@@ -8411,7 +8423,7 @@ void ProcessObjectContextValidationAndReset(int64_t objectContextParam,int64_t v
   int validationStatus;
   int64_t contextPointer;
   
-  validationStatus = ValidateObjectContext(*(uint8_t4 *)(objectContextParam + 0x10),&contextPointer);
+  validationStatus = ValidateObjectContext(*(uint32_t *)(objectContextParam + 0x10),&contextPointer);
   if (validationStatus == 0) {
     if (contextPointer != 0) {
       contextPointer = contextPointer + -8;
@@ -8434,13 +8446,13 @@ uint8_t ProcessObjectContextFloatRangeValidationAndClamping(int64_t objectContex
   uint8_t unsignedResult3;
   float SecondaryFloatValue;
   uint ValidationContext;
-  uint8_t4 uStackX_c;
+  uint32_t uStackX_c;
   
   ValidationContext = *(uint *)(objectContextParam + 0x14);
   if ((ValidationContext & 0x7f800000) == 0x7f800000) {
     return 0x1d;
   }
-  unsignedResult3 = ValidateObjectContext(*(uint8_t4 *)(objectContextParam + 0x10),&ValidationContext);
+  unsignedResult3 = ValidateObjectContext(*(uint32_t *)(objectContextParam + 0x10),&ValidationContext);
   if ((int)unsignedResult3 != 0) {
     return unsignedResult3;
   }
@@ -8476,15 +8488,15 @@ uint8_t ProcessParameterizedFloatComparison(int64_t objectContextParam, int64_t 
 {
   int64_t loopCounter;
   uint8_t validationResult;
-  uint8_t4 OperationParam1;
-  uint8_t4 OperationParam2;
-  uint8_t4 OperationParam3;
-  uint8_t4 contextFlag;
+  uint32_t OperationParam1;
+  uint32_t OperationParam2;
+  uint32_t OperationParam3;
+  uint32_t contextFlag;
   
-  OperationParam1 = *(uint8_t4 *)(objectContextParam + 0x10);
-  OperationParam2 = *(uint8_t4 *)(objectContextParam + 0x14);
-  OperationParam3 = *(uint8_t4 *)(objectContextParam + 0x18);
-  contextFlag = *(uint8_t4 *)(objectContextParam + 0x1c);
+  OperationParam1 = *(uint32_t *)(objectContextParam + 0x10);
+  OperationParam2 = *(uint32_t *)(objectContextParam + 0x14);
+  OperationParam3 = *(uint32_t *)(objectContextParam + 0x18);
+  contextFlag = *(uint32_t *)(objectContextParam + 0x1c);
   localContextPointer = (**(code **)(**(int64_t **)(validationContextParam + 800) + 600))
                     (*(int64_t **)(validationContextParam + 800),&OperationParam1,1);
   if ((localContextPointer == 0) || (*(int64_t *)(localContextPointer + 0x2e8) == 0)) {
@@ -8513,15 +8525,15 @@ uint8_t ProcessSimplifiedParameterizedFloatComparison(int64_t objectContextParam
 {
   int64_t loopCounter;
   uint8_t validationResult;
-  uint8_t4 OperationParam1;
-  uint8_t4 OperationParam2;
-  uint8_t4 OperationParam3;
-  uint8_t4 contextFlag;
+  uint32_t OperationParam1;
+  uint32_t OperationParam2;
+  uint32_t OperationParam3;
+  uint32_t contextFlag;
   
-  OperationParam1 = *(uint8_t4 *)(objectContextParam + 0x10);
-  OperationParam2 = *(uint8_t4 *)(objectContextParam + 0x14);
-  OperationParam3 = *(uint8_t4 *)(objectContextParam + 0x18);
-  contextFlag = *(uint8_t4 *)(objectContextParam + 0x1c);
+  OperationParam1 = *(uint32_t *)(objectContextParam + 0x10);
+  OperationParam2 = *(uint32_t *)(objectContextParam + 0x14);
+  OperationParam3 = *(uint32_t *)(objectContextParam + 0x18);
+  contextFlag = *(uint32_t *)(objectContextParam + 0x1c);
   localContextPointer = (**(code **)(**(int64_t **)(validationContextParam + 800) + 600))
                     (*(int64_t **)(validationContextParam + 800),&OperationParam1,1);
   if ((localContextPointer == 0) || (*(int64_t *)(localContextPointer + 0x2e8) == 0)) {
@@ -8663,9 +8675,9 @@ int ProcessObjectContextValidationAndStatusUpdate(int64_t objectContextParam,int
     if (*(int *)(objectContextParam + 0x20) < 1) {
       integerValue1 = ProcessDataValidation(validationContextParam,objectContextParam + 0x4c);
       if ((integerValue1 == 0) &&
-         (integerValue1 = ValidateObjectContext(*(uint8_t4 *)(objectContextParam + 0x4c),&lStackX_8), integerValue1 == 0)) {
+         (integerValue1 = ValidateObjectContext(*(uint32_t *)(objectContextParam + 0x4c),&lStackX_8), integerValue1 == 0)) {
         if (*(int *)(lStackX_8 + 0x30) == 1) {
-          *(uint8_t4 *)(lStackX_8 + 0x30) = 2;
+          *(uint32_t *)(lStackX_8 + 0x30) = 2;
         }
                     // WARNING: Subroutine does not return
         ReleaseSystemContextResources(*(uint8_t *)(validationContextParam + 0x98),objectContextParam);
@@ -8715,10 +8727,10 @@ int ProcessObjectContextValidationAndStatusUpdateSimple(int64_t objectContextPar
   if ((int)validationContextParam < 1) {
     integerValue1 = ProcessDataValidation();
     if ((integerValue1 == 0) &&
-       (integerValue1 = ValidateObjectContext(*(uint8_t4 *)(unaff_RDI + 0x4c),&stack0x00000060), integerValue1 == 0)
+       (integerValue1 = ValidateObjectContext(*(uint32_t *)(unaff_RDI + 0x4c),&stack0x00000060), integerValue1 == 0)
        ) {
       if (*(int *)(in_stack_00000060 + 0x30) == 1) {
-        *(uint8_t4 *)(in_stack_00000060 + 0x30) = 2;
+        *(uint32_t *)(in_stack_00000060 + 0x30) = 2;
       }
                     // WARNING: Subroutine does not return
       ReleaseSystemContextResources(*(uint8_t *)(unaff_R15 + 0x98));
@@ -8773,10 +8785,10 @@ void ExecuteDataValidationAndProcessing(int64_t data_context, int64_t operation_
   
   DataValidationResult = validate_data_format(operation_context, data_context + 0x10);
   if (DataValidationResult == 0) {
-    DataValidationResult = check_data_integrity(*(uint8_t4 *)(data_context + 0x10), &TemporaryBuffer);
+    DataValidationResult = check_data_integrity(*(uint32_t *)(data_context + 0x10), &TemporaryBuffer);
     if (DataValidationResult == 0) {
       if (*(int *)(TemporaryBuffer + 0x30) == 1) {
-        *(uint8_t4 *)(TemporaryBuffer + 0x30) = 2;
+        *(uint32_t *)(TemporaryBuffer + 0x30) = 2;
       }
                     // WARNING: Subroutine does not return
       execute_data_operation(*(uint8_t *)(operation_context + 0x98), data_context);
@@ -8819,9 +8831,9 @@ int process_data_block_operation(int64_t data_context, int64_t operation_context
     else {
       ResultStatus = validate_data_format(operation_context, data_context + 0x24);
       if ((ResultStatus == 0) &&
-         (ResultStatus = check_data_integrity(*(uint8_t4 *)(data_context + 0x24), &TempStackBuffer), ResultStatus == 0)) {
+         (ResultStatus = check_data_integrity(*(uint32_t *)(data_context + 0x24), &TempStackBuffer), ResultStatus == 0)) {
         if (*(int *)(TempStackBuffer + 0x30) == 1) {
-          *(uint8_t4 *)(TempStackBuffer + 0x30) = 2;
+          *(uint32_t *)(TempStackBuffer + 0x30) = 2;
         }
                     // WARNING: Subroutine does not return
         execute_data_operation(*(uint8_t *)(operation_context + 0x98), data_context);
@@ -8870,10 +8882,10 @@ int ProcessDataBlockOperationAndMemoryAllocation(uint8_t objectContextParam, uin
   else {
     OperationStatus = ProcessDataValidation();
     if ((OperationStatus == 0) &&
-       (OperationStatus = ValidateObjectContext(*(uint8_t4 *)(unaff_RDI + 0x24),&stack0x00000060), OperationStatus == 0)
+       (OperationStatus = ValidateObjectContext(*(uint32_t *)(unaff_RDI + 0x24),&stack0x00000060), OperationStatus == 0)
        ) {
       if (*(int *)(in_stack_00000060 + 0x30) == 1) {
-        *(uint8_t4 *)(in_stack_00000060 + 0x30) = 2;
+        *(uint32_t *)(in_stack_00000060 + 0x30) = 2;
       }
                     // WARNING: Subroutine does not return
       ReleaseSystemContextResources(*(uint8_t *)(unaff_R15 + 0x98));
@@ -8909,7 +8921,7 @@ uint8_t ProcessFloatDataValidationAndConversion(int64_t objectContextParam, int6
   uint8_t validationResult;
   int64_t resourceIndex;
   float SecondaryFloatValue;
-  uint8_t4 aSecurityValidationContext [2];
+  uint32_t aSecurityValidationContext [2];
   
   if ((*(uint *)(objectContextParam + 0x18) & 0x7f800000) == 0x7f800000) {
     return 0x1d;
@@ -8954,7 +8966,7 @@ uint8_t ProcessFloatDataValidationAndConversionNoParams(uint8_t objectContextPar
   int64_t ResourceContextPointer;
   int64_t SystemContextPointer;
   float SecondaryFloatValue;
-  uint8_t4 StackProcessingBuffer;
+  uint32_t StackProcessingBuffer;
   
   uStack0000000000000040 = 0;
   validationResult = ProcessDataHashing(SystemContextPointer + 0x60,validationContextParam,&ObjectStackBuffer40);
@@ -8995,13 +9007,13 @@ void ProcessObjectContextFloatRangeValidationAndClamping(void)
 
 {
   float inputValue;
-  uint8_t4 eaxRegister;
+  uint32_t eaxRegister;
   int validationStatus;
-  uint8_t4 parameterRegister;
+  uint32_t parameterRegister;
   int64_t contextPointer;
   int64_t systemPointer;
   float rangeMinValue;
-  uint8_t4 stackParameter;
+  uint32_t stackParameter;
   
   rangeMinValue = *(float *)(CONCAT44(parameterRegister,eaxRegister) + 0x38);
   inputValue = *(float *)(contextPointer + 0x18);
@@ -9036,7 +9048,7 @@ uint8_t ProcessFloatDataValidationAndConversion(int64_t objectContextParam,int64
   float CalculatedFloatValue;
   uint8_t validationResult;
   int64_t resourceIndex;
-  uint8_t4 ArrayStackBuffer [2];
+  uint32_t ArrayStackBuffer [2];
   
   auStackX_10[0] = 0;
   validationResult = ProcessDataHashing(validationContextParam + 0x60,objectContextParam + 0x10,auStackX_10);
@@ -9082,7 +9094,7 @@ uint8_t ValidateFloatDataAndExecute(void)
   uint8_t unsignedResult3;
   int64_t UnaffectedRegisterValue;
   int64_t unaff_R14;
-  uint8_t4 in_stack_00000048;
+  uint32_t in_stack_00000048;
   
   resourceTable = LookupResourceIndex();
   if ((*(uint *)(resourceTable + 0x34) >> 4 & 1) != 0) {
@@ -9124,7 +9136,7 @@ uint8_t ValidateFloatDataAndExecuteSimple(void)
   int64_t ResourceContextPointer;
   int64_t UnaffectedRegisterValue;
   int64_t unaff_R14;
-  uint8_t4 in_stack_00000048;
+  uint32_t in_stack_00000048;
   
   validationResult = ValidateObjectContextAndProcessData();
   if ((int)validationResult == 0) {
@@ -9180,7 +9192,7 @@ uint8_t ProcessDataValidationAndSystemOperation(int64_t objectContextParam,int64
   uint8_t *punsignedResult4;
   float TertiaryFloatValue;
   uint ArrayUnionStackX8 [2];
-  uint8_t4 aSecurityValidationContext [2];
+  uint32_t aSecurityValidationContext [2];
   
   ArrayUnionStackX8[0] = *(uint *)(objectContextParam + 0x10);
   if ((ArrayUnionStackX8[0] & 0x7f800000) == 0x7f800000) {
@@ -9231,7 +9243,7 @@ uint64_t GetSystemRuntimeStatus(void)
   int64_t ResourceContextPointer;
   int64_t UnaffectedRegisterValue;
   float TertiaryFloatValue;
-  uint8_t4 in_stack_00000040;
+  uint32_t in_stack_00000040;
   
   resourceTable = LookupResourceIndex();
   if ((*(uint *)(resourceTable + 0x34) >> 4 & 1) != 0) {
@@ -9272,13 +9284,13 @@ void ProcessFloatRangeClamping(void)
 {
   float CalculatedFloatValue;
   uint8_t *pvalidationResult;
-  uint8_t4 in_EAX;
+  uint32_t in_EAX;
   int validationStatus;
-  uint8_t4 in_register_00000004;
+  uint32_t in_register_00000004;
   int64_t ResourceContextPointer;
   int64_t UnaffectedRegisterValue;
   float SecondaryFloatValue;
-  uint8_t4 in_stack_00000040;
+  uint32_t in_stack_00000040;
   
   fVar4 = *(float *)(CONCAT44(in_register_00000004,in_EAX) + 0x38);
   fVar1 = *(float *)(ResourceContextPointer + 0x10);
@@ -9332,7 +9344,7 @@ uint8_t ProcessFloatRangeValidationAndDataHandling(int64_t objectContextParam,in
   int64_t resourceIndex;
   uint8_t *punsignedResult4;
   uint8_t1 ArrayUnionStackX8 [8];
-  uint8_t4 aSecurityValidationContext [2];
+  uint32_t aSecurityValidationContext [2];
   
   aSecurityValidationContext[0] = 0;
   validationResult = ProcessDataValidationAdvanced(validationContextParam,objectContextParam + 0x20,aSecurityValidationContext);
@@ -9381,7 +9393,7 @@ uint8_t ProcessFloatRangeValidationAndDataHandlingNoParams(void)
   uint8_t *punsignedResult4;
   int64_t UnaffectedRegisterValue;
   int64_t unaff_R14;
-  uint8_t4 in_stack_00000050;
+  uint32_t in_stack_00000050;
   
   resourceTable = LookupResourceIndex();
   if ((*(uint *)(resourceTable + 0x34) >> 4 & 1) != 0) {
@@ -9427,7 +9439,7 @@ uint64_t ProcessFloatDataValidation(void)
   int64_t ResourceContextPointer;
   int64_t UnaffectedRegisterValue;
   int64_t unaff_R14;
-  uint8_t4 in_stack_00000050;
+  uint32_t in_stack_00000050;
   
   validationResult = ValidateObjectContextAndProcessData();
   if ((int)validationResult == 0) {
@@ -9506,15 +9518,15 @@ uint8_t ValidateObjectContextAndProcessFloatValidation(int64_t objectContextPara
 {
   uint8_t resourceHash;
   uint ValidationContext;
-  uint8_t4 uStackX_c;
+  uint32_t uStackX_c;
   
   ValidationContext = *(uint *)(objectContextParam + 0x18);
   if ((ValidationContext & 0x7f800000) == 0x7f800000) {
     return 0x1d;
   }
-  resourceHash = ValidateObjectContext(*(uint8_t4 *)(objectContextParam + 0x10),&ValidationContext);
+  resourceHash = ValidateObjectContext(*(uint32_t *)(objectContextParam + 0x10),&ValidationContext);
   if ((int)resourceHash == 0) {
-    *(uint8_t4 *)(CONCAT44(uStackX_c,ValidationContext) + 0x18) = *(uint8_t4 *)(objectContextParam + 0x18);
+    *(uint32_t *)(CONCAT44(uStackX_c,ValidationContext) + 0x18) = *(uint32_t *)(objectContextParam + 0x18);
                     // WARNING: Subroutine does not return
     ReleaseSystemContextResources(*(uint8_t *)(validationContextParam + 0x98),objectContextParam);
   }
@@ -9540,15 +9552,15 @@ int ProcessDataWithValidator(int64_t objectContext,int64_t validationContext,int
   int operationResult;
   int integerValue2;
   
-  operationResult = ValidateDataFormat(validationContext, dataLength, *(uint8_t4 *)(objectContext + 0x10));
+  operationResult = ValidateDataFormat(validationContext, dataLength, *(uint32_t *)(objectContext + 0x10));
   integerValue2 = ProcessStringOperation(validationContext + operationResult, dataLength - operationResult, &StringProcessingTemplate);
   operationResult = operationResult + integerValue2;
-  integerValue2 = ParseDataContent(operationResult + validationContext, dataLength - operationResult, *(uint8_t4 *)(objectContext + 0x18));
+  integerValue2 = ParseDataContent(operationResult + validationContext, dataLength - operationResult, *(uint32_t *)(objectContext + 0x18));
   operationResult = operationResult + integerValue2;
   integerValue2 = ProcessStringOperation(operationResult + validationContext, dataLength - operationResult, &StringProcessingTemplate);
   operationResult = operationResult + integerValue2;
   integerValue2 = ProcessStringEncoding(operationResult + validationContext, dataLength - operationResult, objectContext + 0x20,
-                        *(uint8_t4 *)(objectContext + 0x18));
+                        *(uint32_t *)(objectContext + 0x18));
   operationResult = operationResult + integerValue2;
   integerValue2 = ProcessStringOperation(operationResult + validationContext, dataLength - operationResult, &StringProcessingTemplate);
   operationResult = operationResult + integerValue2;
@@ -9576,15 +9588,15 @@ int ProcessDataWithExtendedValidator(int64_t objectContext,int64_t validationCon
   int operationResult;
   int integerValue2;
   
-  operationResult = ValidateDataFormat(validationContext,dataLength,*(uint8_t4 *)(objectContext + 0x10));
+  operationResult = ValidateDataFormat(validationContext,dataLength,*(uint32_t *)(objectContext + 0x10));
   integerValue2 = ProcessStringOperation(validationContext + operationResult,dataLength - operationResult,&StringProcessingTemplate);
   operationResult = operationResult + integerValue2;
-  integerValue2 = ParseDataContent(operationResult + validationContext,dataLength - operationResult,*(uint8_t4 *)(objectContext + 0x18));
+  integerValue2 = ParseDataContent(operationResult + validationContext,dataLength - operationResult,*(uint32_t *)(objectContext + 0x18));
   operationResult = operationResult + integerValue2;
   integerValue2 = ProcessStringOperation(operationResult + validationContext,dataLength - operationResult,&StringProcessingTemplate);
   operationResult = operationResult + integerValue2;
   integerValue2 = ProcessStringValidation(operationResult + validationContext,dataLength - operationResult,objectContext + 0x20,
-                        *(uint8_t4 *)(objectContext + 0x18));
+                        *(uint32_t *)(objectContext + 0x18));
   operationResult = operationResult + integerValue2;
   integerValue2 = ProcessStringOperation(operationResult + validationContext,dataLength - operationResult,&StringProcessingTemplate);
   operationResult = operationResult + integerValue2;
@@ -9616,11 +9628,11 @@ int ProcessDataWithSimplifiedValidator(int64_t objectContextParam,int64_t valida
   int operationResult;
   int integerValue2;
   
-  integerValue1 = ParseDataContent(validationContextParam,dataLength,*(uint8_t4 *)(objectContextParam + 0x10));
+  integerValue1 = ParseDataContent(validationContextParam,dataLength,*(uint32_t *)(objectContextParam + 0x10));
   integerValue2 = ProcessStringOperation(validationContextParam + integerValue1,dataLength - integerValue1,&StringProcessingTemplate);
   integerValue1 = integerValue1 + integerValue2;
   integerValue2 = ProcessStringValidation(integerValue1 + validationContextParam,dataLength - integerValue1,objectContextParam + 0x18,
-                        *(uint8_t4 *)(objectContextParam + 0x10));
+                        *(uint32_t *)(objectContextParam + 0x10));
   integerValue1 = integerValue1 + integerValue2;
   integerValue2 = ProcessStringOperation(integerValue1 + validationContextParam,dataLength - integerValue1,&StringProcessingTemplate);
   integerValue1 = integerValue1 + integerValue2;
@@ -9744,7 +9756,7 @@ int ProcessDataWithStack(int64_t *objectContextParam,int64_t validationContextPa
   uint ResourceFlag6;
   uint ResourceFlag7;
   uint ResourceFlag8;
-  uint8_t4 ResourceFlag9;
+  uint32_t ResourceFlag9;
   uint ResourceFlag10;
   uint ResourceFlag11;
   uint ResourceFlag12;
@@ -9810,8 +9822,8 @@ int ProcessDataWithStack(int64_t *objectContextParam,int64_t validationContextPa
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void ProcessResourceIndexAndSecurity(int64_t objectContextParam,uint8_t4 *validationContextParam,int64_t *resourceIndexOutput)
-void ProcessResourceIndexAndSecurity(int64_t objectContextParam,uint8_t4 *validationContextParam,int64_t *resourceIndexOutput)
+ void ProcessResourceIndexAndSecurity(int64_t objectContextParam,uint32_t *validationContextParam,int64_t *resourceIndexOutput)
+void ProcessResourceIndexAndSecurity(int64_t objectContextParam,uint32_t *validationContextParam,int64_t *resourceIndexOutput)
 
 {
   int64_t *processPointer;
@@ -9828,7 +9840,7 @@ void ProcessResourceIndexAndSecurity(int64_t objectContextParam,uint8_t4 *valida
   uint ResourceFlag8;
   uint ResourceFlag9;
   uint ResourceFlag11;
-  uint8_t4 ValidationParam1;
+  uint32_t ValidationParam1;
   uint ValidationParam2;
   uint ValidationParam3;
   uint ValidationParam4;
@@ -9858,7 +9870,7 @@ void ProcessResourceIndexAndSecurity(int64_t objectContextParam,uint8_t4 *valida
       ExecuteSecurityOperation(aEncryptedValue,0x27,&SecurityOperationData,ValidationParam1);
     }
     if ((**(int **)(resourceIndex + 0xd0) != 0) ||
-       (integerValue2 = CheckResourceAvailability(*(uint8_t4 *)(objectContextParam + 0x18)), integerValue2 == 0)) {
+       (integerValue2 = CheckResourceAvailability(*(uint32_t *)(objectContextParam + 0x18)), integerValue2 == 0)) {
       *resourceIndexOutput = resourceIndex;
     }
   }
@@ -9896,7 +9908,7 @@ ValidateResourceTableAccess(uint64_t resource_handle)
                   uStack0000000000000070._4_2_);
   }
   if (**(int **)(resourceTable + 0xd0) == 0) {
-    integerValue1 = CheckResourceAvailability(*(uint8_t4 *)(unaff_RDI + 0x18));
+    integerValue1 = CheckResourceAvailability(*(uint32_t *)(unaff_RDI + 0x18));
     if (integerValue1 != 0) goto LAB_180894aca;
   }
   *SystemContextPointer = resourceTable;
@@ -9938,7 +9950,7 @@ ExecuteSecurityFinalization(void)
  * @param resource_data 资源数据指针，包含资源的具体信息
  * @param resource_index 资源索引指针，用于返回资源索引信息
  */
-ProcessResourceIndexOperation(int64_t resource_handle, uint8_t4 *resource_data, int64_t *resource_index)
+ProcessResourceIndexOperation(int64_t resource_handle, uint32_t *resource_data, int64_t *resource_index)
 
 {
   int64_t *processPointer;
@@ -9955,7 +9967,7 @@ ProcessResourceIndexOperation(int64_t resource_handle, uint8_t4 *resource_data, 
   uint ResourceFlag6;
   uint ResourceFlag7;
   uint ResourceFlag8;
-  uint8_t4 ResourceFlag9;
+  uint32_t ResourceFlag9;
   uint ResourceFlag10;
   uint ResourceFlag11;
   uint ResourceFlag12;
@@ -10043,7 +10055,7 @@ void ValidateAndInitializeResource(int64_t objectContextParam,uint8_t validation
   
   HashCalculationResult = CalculateResourceHash(validationContextParam,objectContextParam + 0x10);
   if (((HashCalculationResult == 0) && (HashCalculationResult = ValidateResourceHash(validationContextParam,objectContextParam + 0x18), HashCalculationResult == 0)) &&
-     (HashCalculationResult = ProcessResourceTableEntries(validationContextParam,objectContextParam + 0x20,*(uint8_t4 *)(objectContextParam + 0x18)), HashCalculationResult == 0)) {
+     (HashCalculationResult = ProcessResourceTableEntries(validationContextParam,objectContextParam + 0x20,*(uint32_t *)(objectContextParam + 0x18)), HashCalculationResult == 0)) {
     InitializeResourceBuffer(validationContextParam,objectContextParam + 0x20 + (int64_t)*(int *)(objectContextParam + 0x18) * 4);
   }
   return;
@@ -10089,7 +10101,7 @@ void ProcessResourceValidationAndFinalization(int64_t objectContextParam,uint8_t
   
   integerValue1 = CalculateResourceHash(validationContextParam,objectContextParam + 0x10);
   if ((((integerValue1 == 0) && (integerValue1 = ValidateResourceHash(validationContextParam,objectContextParam + 0x18), integerValue1 == 0)) &&
-      (integerValue1 = ValidateResourceTable(validationContextParam,objectContextParam + 0x20,*(uint8_t4 *)(objectContextParam + 0x18)), integerValue1 == 0))
+      (integerValue1 = ValidateResourceTable(validationContextParam,objectContextParam + 0x20,*(uint32_t *)(objectContextParam + 0x18)), integerValue1 == 0))
      && (integerValue1 = InitializeResourceBuffer(validationContextParam,objectContextParam + 0x20 + (int64_t)*(int *)(objectContextParam + 0x18) * 8),
         integerValue1 == 0)) {
     FinalizeResourceProcessing(validationContextParam,objectContextParam + 0x1c);
@@ -10140,7 +10152,7 @@ void ValidateAndCleanupResourceEntry(int64_t objectContextParam,uint8_t validati
   
   integerValue1 = ValidateResourceHash(validationContextParam,objectContextParam + 0x10);
   if (integerValue1 == 0) {
-    integerValue1 = ValidateResourceTable(validationContextParam,objectContextParam + 0x18,*(uint8_t4 *)(objectContextParam + 0x10));
+    integerValue1 = ValidateResourceTable(validationContextParam,objectContextParam + 0x18,*(uint32_t *)(objectContextParam + 0x10));
     if (integerValue1 == 0) {
       integerValue1 = ProcessResourceEntryWithValidation(validationContextParam,objectContextParam + 0x18 + (int64_t)*(int *)(objectContextParam + 0x10) * 8);
       if (integerValue1 == 0) {
@@ -10251,7 +10263,7 @@ uint ValidateAndProcessDataContainer(int64_t *objectContextParam)
     }
     *objectContextParam = 0;
     unsignedResult3 = 0;
-    *(uint8_t4 *)((int64_t)objectContextParam + 0xc) = 0;
+    *(uint32_t *)((int64_t)objectContextParam + 0xc) = 0;
   }
   integerValue1 = (int)objectContextParam[1];
   if (integerValue1 < 0) {
@@ -10260,7 +10272,7 @@ uint ValidateAndProcessDataContainer(int64_t *objectContextParam)
       memset(*objectContextParam + (int64_t)integerValue1 * 0xc,0,(uint64_t)(uint)-integerValue1 * 0xc);
     }
   }
-  *(uint8_t4 *)(objectContextParam + 1) = 0;
+  *(uint32_t *)(objectContextParam + 1) = 0;
   unsignedResult3 = (unsignedResult3 ^ (int)unsignedResult3 >> 0x1f) - ((int)unsignedResult3 >> 0x1f);
   if ((int)unsignedResult3 < 1) {
     return unsignedResult3;
@@ -10273,7 +10285,7 @@ uint ValidateAndProcessDataContainer(int64_t *objectContextParam)
     ProcessResourceAllocation(*(uint8_t *)(SystemContextPointer + 0x1a0),*objectContextParam,&ResourceTableTemplate,0x100,1);
   }
   *objectContextParam = 0;
-  *(uint8_t4 *)((int64_t)objectContextParam + 0xc) = 0;
+  *(uint32_t *)((int64_t)objectContextParam + 0xc) = 0;
   return 0;
 }
 
@@ -10302,15 +10314,15 @@ uint64_t ProcessObjectLifecycleManagement(int64_t objectHandle)
   FreeMemoryResource(objectContextParam + 0xd8);
   integerValue2 = ProcessDataContextOperations(dataContext + 0x70);
   if ((integerValue2 == 0) && (integerValue2 = FindEntryInResourcePool(dataContext + 0x80), integerValue2 == 0)) {
-    *(uint8_t4 *)(objectContextParam + 0x90) = 0xffffffff;
-    *(uint8_t4 *)(dataContext + 0x94) = 0;
+    *(uint32_t *)(objectContextParam + 0x90) = 0xffffffff;
+    *(uint32_t *)(dataContext + 0x94) = 0;
   }
   FindEntryInResourcePool(dataContext + 0x80);
   ProcessDataContextOperations(dataContext + 0x70);
   integerValue2 = ProcessDataContextOperations(objectContextParam + 0x28);
   if ((integerValue2 == 0) && (integerValue2 = ValidateResourceEntryIntegrity(objectContextParam + 0x38), integerValue2 == 0)) {
-    *(uint8_t4 *)(objectContextParam + 0x48) = 0xffffffff;
-    *(uint8_t4 *)(objectContextParam + 0x4c) = 0;
+    *(uint32_t *)(objectContextParam + 0x48) = 0xffffffff;
+    *(uint32_t *)(objectContextParam + 0x4c) = 0;
   }
   ValidateResourceEntryIntegrity(objectContextParam + 0x38);
   ProcessDataContextOperations(objectContextParam + 0x28);
@@ -10327,14 +10339,14 @@ uint64_t ProcessObjectLifecycleManagement(int64_t objectHandle)
     }
     *plocalContextPointer = 0;
     unsignedResult4 = 0;
-    *(uint8_t4 *)(objectContextParam + 0x14) = 0;
+    *(uint32_t *)(objectContextParam + 0x14) = 0;
   }
   integerValue2 = *(int *)(objectContextParam + 0x10);
   if (integerValue2 < 0) {
                     // WARNING: Subroutine does not return
     memset((int64_t)integerValue2 + *plocalContextPointer,0,(int64_t)-integerValue2);
   }
-  *(uint8_t4 *)(objectContextParam + 0x10) = 0;
+  *(uint32_t *)(objectContextParam + 0x10) = 0;
   if ((0 < (int)((unsignedResult4 ^ (int)byteValue4 >> 0x1f) - ((int)byteValue4 >> 0x1f))) &&
      (unsignedResult3 = CheckResourceTableStatus(plocalContextPointer,0), (int)unsignedResult3 != 0)) {
     return unsignedResult3;
@@ -10374,14 +10386,14 @@ uint8_t CleanupResourcePoolAndReleaseMemory(int64_t *objectContextParam)
     }
     *objectContextParam = 0;
     unsignedResult3 = 0;
-    *(uint8_t4 *)((int64_t)objectContextParam + 0xc) = 0;
+    *(uint32_t *)((int64_t)objectContextParam + 0xc) = 0;
   }
   integerValue1 = (int)objectContextParam[1];
   if (integerValue1 < 0) {
                     // WARNING: Subroutine does not return
     memset(*objectContextParam + (int64_t)integerValue1 * 0xc,0,(int64_t)-integerValue1 * 0xc);
   }
-  *(uint8_t4 *)(objectContextParam + 1) = 0;
+  *(uint32_t *)(objectContextParam + 1) = 0;
   if ((0 < (int)((unsignedResult3 ^ (int)unsignedResult3 >> 0x1f) - ((int)unsignedResult3 >> 0x1f))) &&
      (validationResult = InitializeSystemComponent(objectContextParam,0), (int)validationResult != 0)) {
     return validationResult;
@@ -10405,7 +10417,7 @@ uint8_t CleanupResourcePoolAndReleaseMemory(int64_t *ResourcePoolHandle)
 
 {
   int ResourcePoolCount;
-  uint8_t4 *ResourceEntryPointer;
+  uint32_t *ResourceEntryPointer;
   uint8_t OperationStatus;
   int64_t LoopCounter;
   uint ResourcePoolFlags;
@@ -10420,14 +10432,14 @@ uint8_t CleanupResourcePoolAndReleaseMemory(int64_t *ResourcePoolHandle)
       ProcessResourceAllocation(*(uint8_t *)(SystemContextPointer + 0x1a0),*ResourcePoolHandle,&ResourceTableTemplate,0x100,1);
     }
     *ResourcePoolHandle = 0;
-    *(uint8_t4 *)((int64_t)ResourcePoolHandle + 0xc) = 0;
+    *(uint32_t *)((int64_t)ResourcePoolHandle + 0xc) = 0;
     ResourcePoolFlags = 0;
   }
   ResourcePoolCount = (int)ResourcePoolHandle[1];
   if (ResourcePoolCount < 0) {
     LoopCounter = (int64_t)-ResourcePoolCount;
     if (ResourcePoolCount < 0) {
-      ResourceEntryPointer = (uint8_t4 *)((int64_t)ResourcePoolCount * 0x10 + *ResourcePoolHandle + 4);
+      ResourceEntryPointer = (uint32_t *)((int64_t)ResourcePoolCount * 0x10 + *ResourcePoolHandle + 4);
       do {
         ResourceEntryPointer[-1] = 0;
         *ResourceEntryPointer = 0xffffffff;
@@ -10438,7 +10450,7 @@ uint8_t CleanupResourcePoolAndReleaseMemory(int64_t *ResourcePoolHandle)
       ResourcePoolFlags = *(uint *)((int64_t)ResourcePoolHandle + 0xc);
     }
   }
-  *(uint8_t4 *)(ResourcePoolHandle + 1) = 0;
+  *(uint32_t *)(ResourcePoolHandle + 1) = 0;
   if ((0 < (int)((ResourcePoolFlags ^ (int)ResourcePoolFlags >> 0x1f) - ((int)ResourcePoolFlags >> 0x1f))) &&
      (OperationStatus = ResourcePoolOperation(ResourcePoolHandle,0), (int)OperationStatus != 0)) {
     return OperationStatus;
@@ -10497,7 +10509,7 @@ uint8_t ExpandResourcePoolCapacity(int64_t *ResourcePoolHandle)
     LoopCounter = InitializationCounter;
     if (0 < ResourceCapacity) {
       do {
-        *(uint8_t4 *)(*ResourcePoolHandle + LoopCounter * 4) = 0xffffffff;
+        *(uint32_t *)(*ResourcePoolHandle + LoopCounter * 4) = 0xffffffff;
         LoopCounter = LoopCounter + 1;
       } while ((int64_t)LoopCounter < (int64_t)ResourceCapacity);
     }
@@ -10519,7 +10531,7 @@ uint8_t ExpandResourcePoolCapacity(int64_t *ResourcePoolHandle)
         *ResourceIndexPointer = (int)InitializationCounter;
         CopyCounter = CopyCounter + 1;
         InitializationCounter = (uint64_t)((int)InitializationCounter + 1);
-        *(uint8_t4 *)(ResourcePoolHandle[2] + 4 + LoopCounter) = 0xffffffff;
+        *(uint32_t *)(ResourcePoolHandle[2] + 4 + LoopCounter) = 0xffffffff;
         LoopCounter = LoopCounter + 0x10;
       } while ((int64_t)CopyCounter < (int64_t)(int)ResourceCount);
     }
@@ -10574,7 +10586,7 @@ uint8_t ExpandResourcePoolCapacitySimple(void)
     unsignedResult3 = uVar8;
     if (0 < iVar7) {
       do {
-        *(uint8_t4 *)(*ResourceContextPointer + unsignedResult3 * 4) = 0xffffffff;
+        *(uint32_t *)(*ResourceContextPointer + unsignedResult3 * 4) = 0xffffffff;
         unsignedResult3 = unsignedResult3 + 1;
       } while ((int64_t)unsignedResult3 < (int64_t)iVar7);
     }
@@ -10596,7 +10608,7 @@ uint8_t ExpandResourcePoolCapacitySimple(void)
         *pintegerValue6 = (int)uVar8;
         uVar9 = uVar9 + 1;
         uVar8 = (uint64_t)((int)uVar8 + 1);
-        *(uint8_t4 *)(ResourceContextPointer[2] + 4 + unsignedResult3) = 0xffffffff;
+        *(uint32_t *)(ResourceContextPointer[2] + 4 + unsignedResult3) = 0xffffffff;
         unsignedResult3 = unsignedResult3 + 0x10;
       } while ((int64_t)uVar9 < (int64_t)(int)localContextPointer);
     }
@@ -10641,7 +10653,7 @@ void ProcessResourceCalculationAndValidation(int64_t objectContextParam,uint8_t1
   float ResultFloatValue;
   float fVar11;
   uint8_t1 SecurityValidationBuffer [68];
-  uint8_t4 SecurityValidationFlag;
+  uint32_t SecurityValidationFlag;
   int *ParameterPointer;
   int64_t ObjectContextOffset;
   int64_t SecurityContextOffset;
@@ -10669,8 +10681,8 @@ void ProcessResourceCalculationAndValidation(int64_t objectContextParam,uint8_t1
       if (iVar8 != -1) {
         fVar11 = *(float *)(objectContextParam + 0xb4);
         iVar8 = -1;
-        *(uint8_t4 *)(objectContextParam + 0xb0) = 0xffffffff;
-        *(uint8_t4 *)(objectContextParam + 0xb4) = 0xbf800000;
+        *(uint32_t *)(objectContextParam + 0xb0) = 0xffffffff;
+        *(uint32_t *)(objectContextParam + 0xb4) = 0xbf800000;
       }
       *(float *)(objectContextParam + 0xa8) = fVar10;
       lVar7 = 0;
@@ -10693,7 +10705,7 @@ void ProcessResourceCalculationAndValidation(int64_t objectContextParam,uint8_t1
       if (*(int64_t *)(objectContextParam + 0xc0) != 0) {
         unsignedValue5 = ProcessSystemParameters(objectContextParam);
         iVar4 = (**(code **)(objectContextParam + 0xc0))
-                          (unsignedValue5,iVar4,*(uint8_t4 *)(lVar9 + 0x18),*(uint8_t *)(objectContextParam + 0xb8)
+                          (unsignedValue5,iVar4,*(uint32_t *)(lVar9 + 0x18),*(uint8_t *)(objectContextParam + 0xb8)
                           );
         if (iVar4 != 0) goto HandleSystemError;
       }
@@ -10726,7 +10738,7 @@ LAB_18089555d:
       }
       else {
         if ((cVar3 != '\x02') || ((*(byte *)(objectContextParam + 0x6c) & 4) != 0)) goto LAB_18089555d;
-        SecurityValidationFlag = *(uint8_t4 *)(lVar9 + 0x20);
+        SecurityValidationFlag = *(uint32_t *)(lVar9 + 0x20);
         iVar4 = ProcessDataWithContext(objectContextParam,iVar4,&SecurityValidationFlag);
         if (iVar4 != 0) goto HandleSystemError;
         iVar4 = ValidateObjectContext(SecurityValidationFlag,SecurityContextArray);
@@ -10772,7 +10784,7 @@ void ProcessModuleInitialization(int64_t ModuleHandle, void* ModuleContext, int*
   uint8_t unsignedValue6;
   int64_t BufferPointer;
   int unaff_EBX;
-  uint8_t4 unaff_0000001c;
+  uint32_t unaff_0000001c;
   int64_t ExecutionContextPointer;
   int64_t UnaffectedRegisterValue;
   char in_R11B;
@@ -10798,8 +10810,8 @@ void ProcessModuleInitialization(int64_t ModuleHandle, void* ModuleContext, int*
     if (iVar4 != -1) {
       fVar10 = *(float *)(objectContextParam + 0xb4);
       iVar4 = -1;
-      *(uint8_t4 *)(objectContextParam + 0xb0) = 0xffffffff;
-      *(uint8_t4 *)(objectContextParam + 0xb4) = 0xbf800000;
+      *(uint32_t *)(objectContextParam + 0xb0) = 0xffffffff;
+      *(uint32_t *)(objectContextParam + 0xb4) = 0xbf800000;
     }
     *(float *)(objectContextParam + 0xa8) = fVar9;
     lVar5 = 0;
@@ -10825,7 +10837,7 @@ void ProcessModuleInitialization(int64_t ModuleHandle, void* ModuleContext, int*
     if (*(int64_t *)(unaff_RDI + 0xc0) != 0) {
       unsignedValue6 = ProcessSystemParameters();
       iVar3 = (**(code **)(unaff_RDI + 0xc0))
-                        (unsignedValue6,unaff_EBX,*(uint8_t4 *)(longValue8 + 0x18),
+                        (unsignedValue6,unaff_EBX,*(uint32_t *)(longValue8 + 0x18),
                          *(uint8_t *)(unaff_RDI + 0xb8));
       calculationResult = in_stack_00000048;
       if (iVar3 != 0) goto LAB_180895b69;
@@ -10859,7 +10871,7 @@ LAB_18089555d:
     }
     else {
       if ((cVar2 != '\x02') || ((*(byte *)(objectContextParam + 0x6c) & 4) != 0)) goto LAB_18089555d;
-      in_stack_00000040._4_4_ = *(uint8_t4 *)(longValue8 + 0x20);
+      in_stack_00000040._4_4_ = *(uint32_t *)(longValue8 + 0x20);
       iVar4 = ProcessDataWithContext(objectContextParam,unaff_EBX,(int64_t)&ObjectStackBuffer40 + 4);
       if (iVar4 != 0) goto LAB_180895b69;
       iVar4 = ValidateObjectContext(in_stack_00000040._4_4_,ExecutionContextPointer + -0x78);
@@ -10951,7 +10963,7 @@ uint64_t ProcessParameterizedDataValidationAndOperation(int64_t dataContext,int 
   int64_t resourceIndex;
   uint8_t *callbackFunction;
   int tableEntry;
-  uint8_t4 validationResult;
+  uint32_t validationResult;
   
   if (validationFlags != (uint *)0x0) {
     resourceHash = *validationFlags;
@@ -11216,13 +11228,13 @@ uint64_t FindOrInsertInResourcePool(uint8_t resourcePool, int searchKey)
   uint8_t *entryPointer;
   int entryCount;
   int64_t entryOffset;
-  uint8_t4 *entryData;
+  uint32_t *entryData;
   uint capacity;
   int expandedCapacity;
   int *indexPointer;
   int64_t *poolHeader;
   uint8_t *valuePointer;
-  uint8_t4 *keyPointer;
+  uint32_t *keyPointer;
   uint8_t newValue;
   
   indexPointer = (int *)(*poolHeader + (int64_t)index * 4);
@@ -11269,8 +11281,8 @@ uint64_t FindOrInsertInResourcePool(uint8_t resourcePool, int searchKey)
     *(int *)(poolHeader + 3) = (int)poolHeader[3] + 1;
   }
   else {
-    entryData = (uint8_t4 *)((int64_t)currentEntry * 0x10 + poolHeader[2]);
-    *(uint8_t4 *)(poolHeader + 4) = entryData[1];
+    entryData = (uint32_t *)((int64_t)currentEntry * 0x10 + poolHeader[2]);
+    *(uint32_t *)(poolHeader + 4) = entryData[1];
     entryData[1] = 0xffffffff;
     *entryData = *keyPointer;
     *(uint8_t *)(entryData + 2) = *valuePointer;
@@ -11292,21 +11304,21 @@ uint64_t FindOrInsertInResourcePool(uint8_t resourcePool, int searchKey)
  * @param operationFlags 操作标志，控制处理流程
  * @return uint64_t 处理结果状态码
  */
-uint64_t ProcessExtendedResourcePoolDataValidation(uint8_t extendedResourcePool, uint8_t4 operationFlags)
+uint64_t ProcessExtendedResourcePoolDataValidation(uint8_t extendedResourcePool, uint32_t operationFlags)
 
 {
   int operationResult;
   uint8_t validationResult;
   uint8_t *punsignedResult3;
   int ResultIndex;
-  uint8_t4 *resourcePointer5;
+  uint32_t *resourcePointer5;
   uint configurationFlags;
   int ValidationStatus;
   int *ResourceContextPointer;
   int OperationCounter;
   int64_t UnaffectedRegisterValue;
   uint8_t *unaff_R14;
-  uint8_t4 *unaff_R15;
+  uint32_t *unaff_R15;
   uint8_t uStack0000000000000028;
   
   iVar8 = *(int *)(unaff_RDI + 0x20);
@@ -11340,8 +11352,8 @@ uint64_t ProcessExtendedResourcePoolDataValidation(uint8_t extendedResourcePool,
     *(int *)(unaff_RDI + 0x18) = *(int *)(unaff_RDI + 0x18) + 1;
   }
   else {
-    resourcePointer5 = (uint8_t4 *)((int64_t)iVar8 * 0x10 + *(int64_t *)(unaff_RDI + 0x10));
-    *(uint8_t4 *)(unaff_RDI + 0x20) = resourcePointer5[1];
+    resourcePointer5 = (uint32_t *)((int64_t)iVar8 * 0x10 + *(int64_t *)(unaff_RDI + 0x10));
+    *(uint32_t *)(unaff_RDI + 0x20) = resourcePointer5[1];
     resourcePointer5[1] = 0xffffffff;
     *resourcePointer5 = *unaff_R15;
     *(uint8_t *)(resourcePointer5 + 2) = *unaff_R14;
@@ -11393,8 +11405,8 @@ uint64_t ValidateAndProcessParameters(int minValue,int maxValue,uint8_t systemCo
 {
   uint8_t resourceHash;
   uint8_t *pvalidationResult;
-  uint8_t4 *ResourceContextPointer;
-  uint8_t4 unaff_EBP;
+  uint32_t *ResourceContextPointer;
+  uint32_t unaff_EBP;
   int64_t UnaffectedRegisterValue;
   uint8_t uStackX_20;
   
@@ -11495,8 +11507,8 @@ uint64_t AllocateAndCopyArrayData(int64_t *arrayPointer,int newSize)
           destinationPointer = newArrayBuffer;
           do {
             *destinationPointer = *(uint8_t *)((sourceDataPointer - (int64_t)newArrayBuffer) + (int64_t)destinationPointer);
-            *(uint8_t4 *)(destinationPointer + 1) =
-                 *(uint8_t4 *)((sourceDataPointer - (int64_t)newArrayBuffer) + 8 + (int64_t)destinationPointer);
+            *(uint32_t *)(destinationPointer + 1) =
+                 *(uint32_t *)((sourceDataPointer - (int64_t)newArrayBuffer) + 8 + (int64_t)destinationPointer);
             destinationPointer = (uint8_t *)((int64_t)destinationPointer + 0xc);
             iterationCounter = iterationCounter + -1;
           } while (iterationCounter != 0);
@@ -11563,8 +11575,8 @@ LAB_180895fdc:
         resourcePointer5 = punsignedResult3;
         do {
           *resourcePointer5 = *(uint8_t *)((resourceTable - (int64_t)punsignedResult3) + (int64_t)resourcePointer5);
-          *(uint8_t4 *)(resourcePointer5 + 1) =
-               *(uint8_t4 *)((resourceTable - (int64_t)punsignedResult3) + 8 + (int64_t)resourcePointer5);
+          *(uint32_t *)(resourcePointer5 + 1) =
+               *(uint32_t *)((resourceTable - (int64_t)punsignedResult3) + 8 + (int64_t)resourcePointer5);
           resourcePointer5 = (uint8_t *)((int64_t)resourcePointer5 + 0xc);
           lVar4 = lVar4 + -1;
         } while (lVar4 != 0);
@@ -11713,7 +11725,7 @@ uint64_t InitializeResourceTableStructure(int64_t objectContextParam)
 
 {
   byte *pencryptionShiftValue;
-  uint8_t4 validationResult;
+  uint32_t validationResult;
   uint8_t unsignedResult3;
   int ResultIndex;
   int64_t MemoryRegion;
@@ -11723,7 +11735,7 @@ uint64_t InitializeResourceTableStructure(int64_t objectContextParam)
   uint uVar9;
   uint64_t resourceHash0;
   int integerValue11;
-  uint8_t4 *presourceHash2;
+  uint32_t *presourceHash2;
   int64_t *plocalContextPointer3;
   int integerValue14;
   int64_t localContextPointer5;
@@ -11739,19 +11751,19 @@ uint64_t InitializeResourceTableStructure(int64_t objectContextParam)
   uint64_t ResourceHandlerParam;
   int ResourceHandlerArray [2];
   uint8_t *puStack_f0;
-  uint8_t4 uStack_e8;
-  uint8_t4 uStack_e0;
+  uint32_t uStack_e8;
+  uint32_t uStack_e0;
   uint8_t *puStack_d8;
-  uint8_t4 uStack_d0;
-  uint8_t4 uStack_c8;
-  uint8_t4 uStack_c0;
+  uint32_t uStack_d0;
+  uint32_t uStack_c8;
+  uint32_t uStack_c0;
   uint8_t *puStack_b8;
-  uint8_t4 uStack_b0;
-  uint8_t4 uStack_a8;
+  uint32_t uStack_b0;
+  uint32_t uStack_a8;
   uint resourceFlagLow;
   uint8_t *pResourceFlag1;
-  uint8_t4 ResourceFlag2;
-  uint8_t4 ResourceFlag3;
+  uint32_t ResourceFlag2;
+  uint32_t ResourceFlag3;
   uint8_t1 ResourceFlag4;
   uint8_t1 aResourceFlag5 [8];
   uint8_t1 aResourceFlag6 [8];
@@ -11782,13 +11794,13 @@ uint64_t InitializeResourceTableStructure(int64_t objectContextParam)
           localContextPointer5 = (int64_t)aiStackX_8[0];
           iVar4 = *(int *)(lVar5 + 8 + localContextPointer5 * 0x10);
           if (iVar4 == 2) {
-            iVar4 = ValidateObjectContext(*(uint8_t4 *)(lVar5 + 0xc + localContextPointer5 * 0x10),&SecurityValidationContext);
+            iVar4 = ValidateObjectContext(*(uint32_t *)(lVar5 + 0xc + localContextPointer5 * 0x10),&SecurityValidationContext);
             unsignedResult3 = SecurityValidationContext;
             plocalContextPointer3 = DataHandlerContextPointer;
             if ((iVar4 == 0) &&
                (iVar4 = func_0x0001808c7ed0(SecurityValidationContext), plocalContextPointer3 = DataHandlerContextPointer, 0 < iVar4)) {
               do {
-                uStack_e0 = *(uint8_t4 *)(lVar5 + 0xc + localContextPointer5 * 0x10);
+                uStack_e0 = *(uint32_t *)(lVar5 + 0xc + localContextPointer5 * 0x10);
                 uStack_e8 = 0;
                 puStack_f0 = &SystemDataBufferA;
                 ParseDataStructure(&puStack_f0,*(uint8_t *)(objectContextParam + 0x58));
@@ -11799,53 +11811,53 @@ uint64_t InitializeResourceTableStructure(int64_t objectContextParam)
             }
           }
           else if (iVar4 == 3) {
-            iVar4 = ValidateObjectContext(*(uint8_t4 *)(lVar5 + 0xc + localContextPointer5 * 0x10),auStackX_20);
+            iVar4 = ValidateObjectContext(*(uint32_t *)(lVar5 + 0xc + localContextPointer5 * 0x10),auStackX_20);
             plocalContextPointer3 = DataHandlerContextPointer;
             if (iVar4 == 0) {
               puStack_d8 = &SerializationTemplate;
-              uStack_c8 = *(uint8_t4 *)(lVar5 + 0xc + localContextPointer5 * 0x10);
+              uStack_c8 = *(uint32_t *)(lVar5 + 0xc + localContextPointer5 * 0x10);
               uStack_d0 = 0;
               uStack_c0 = 1;
               SerializeData(&puStack_d8,*(uint8_t *)(objectContextParam + 0x58));
               puStack_f0 = &DeserializationTemplate;
-              uStack_e0 = *(uint8_t4 *)(lVar5 + 0xc + localContextPointer5 * 0x10);
+              uStack_e0 = *(uint32_t *)(lVar5 + 0xc + localContextPointer5 * 0x10);
               uStack_e8 = 0;
               DeserializeData(&puStack_f0,*(uint8_t *)(objectContextParam + 0x58));
               plocalContextPointer3 = DataHandlerContextPointer;
             }
           }
           else if (iVar4 == 5) {
-            iVar4 = ValidateObjectContext(*(uint8_t4 *)(lVar5 + 0xc + localContextPointer5 * 0x10),aResourceFlag5);
+            iVar4 = ValidateObjectContext(*(uint32_t *)(lVar5 + 0xc + localContextPointer5 * 0x10),aResourceFlag5);
             plocalContextPointer3 = DataHandlerContextPointer;
             if (iVar4 == 0) {
               puStack_d8 = &CompressionTemplate;
-              uStack_c8 = *(uint8_t4 *)(lVar5 + 0xc + localContextPointer5 * 0x10);
+              uStack_c8 = *(uint32_t *)(lVar5 + 0xc + localContextPointer5 * 0x10);
               uStack_d0 = 0;
               uStack_c0 = 0x3f800000;
               CompressData(&puStack_d8,*(uint8_t *)(objectContextParam + 0x58));
               pResourceFlag1 = &DecompressionTemplate;
-              ResourceFlag3 = *(uint8_t4 *)(lVar5 + 0xc + localContextPointer5 * 0x10);
+              ResourceFlag3 = *(uint32_t *)(lVar5 + 0xc + localContextPointer5 * 0x10);
               ResourceFlag2 = 0;
               ResourceFlag4 = 0;
               DecompressData(&pResourceFlag1,*(uint8_t *)(objectContextParam + 0x58));
               puStack_b8 = &EncodingTemplate;
-              uStack_a8 = *(uint8_t4 *)(lVar5 + 0xc + localContextPointer5 * 0x10);
+              uStack_a8 = *(uint32_t *)(lVar5 + 0xc + localContextPointer5 * 0x10);
               uStack_b0 = 0;
               uStack_a0 = uStack_a0 & 0xffffff00;
               EncodeData(&puStack_b8,*(uint8_t *)(objectContextParam + 0x58));
               puStack_f0 = &DecodingTemplate;
-              uStack_e0 = *(uint8_t4 *)(lVar5 + 0xc + localContextPointer5 * 0x10);
+              uStack_e0 = *(uint32_t *)(lVar5 + 0xc + localContextPointer5 * 0x10);
               uStack_e8 = 0;
               DecodeData(&puStack_f0,*(uint8_t *)(objectContextParam + 0x58));
               plocalContextPointer3 = DataHandlerContextPointer;
             }
           }
           else if (iVar4 == 6) {
-            iVar4 = ValidateObjectContext(*(uint8_t4 *)(lVar5 + 0xc + localContextPointer5 * 0x10),aResourceFlag6);
+            iVar4 = ValidateObjectContext(*(uint32_t *)(lVar5 + 0xc + localContextPointer5 * 0x10),aResourceFlag6);
             plocalContextPointer3 = DataHandlerContextPointer;
             if (iVar4 == 0) {
               puStack_b8 = &TransformationTemplate;
-              uStack_a8 = *(uint8_t4 *)(lVar5 + 0xc + localContextPointer5 * 0x10);
+              uStack_a8 = *(uint32_t *)(lVar5 + 0xc + localContextPointer5 * 0x10);
               uStack_b0 = 0;
               uStack_a0 = 0x3f800000;
               TransformData(&puStack_b8,*(uint8_t *)(objectContextParam + 0x58));
@@ -11853,9 +11865,9 @@ uint64_t InitializeResourceTableStructure(int64_t objectContextParam)
             }
           }
           else if ((iVar4 == 7) &&
-                  (iVar4 = ValidateObjectContext(*(uint8_t4 *)(lVar5 + 0xc + localContextPointer5 * 0x10),
+                  (iVar4 = ValidateObjectContext(*(uint32_t *)(lVar5 + 0xc + localContextPointer5 * 0x10),
                                                EncryptionBuffer), plocalContextPointer3 = DataHandlerContextPointer, iVar4 == 0)) {
-            validationResult = *(uint8_t4 *)(lVar5 + 0xc + localContextPointer5 * 0x10);
+            validationResult = *(uint32_t *)(lVar5 + 0xc + localContextPointer5 * 0x10);
             iVar7 = (int)unsignedValue6 + 1;
             iVar4 = integerValue16;
             if (integerValue16 < 0) {
@@ -11901,7 +11913,7 @@ uint64_t InitializeResourceTableStructure(int64_t objectContextParam)
                   uVar9 = 0;
                 }
                 if (iVar4 < 0) {
-                  presourceHash2 = (uint8_t4 *)(ResourceHandlerFlag1 + lVar5 * 4);
+                  presourceHash2 = (uint32_t *)(ResourceHandlerFlag1 + lVar5 * 4);
                   lVar5 = (int64_t)-iVar4;
                   if (iVar4 < 0) {
                     for (; lVar5 != 0; lVar5 = lVar5 + -1) {
@@ -11926,7 +11938,7 @@ uint64_t InitializeResourceTableStructure(int64_t objectContextParam)
             auStackX_10[0] = integerValue14 + 1;
             unsignedValue6 = (uint64_t)auStackX_10[0];
             ResourceHandlerFlag2 = CONCAT44(ResourceHandlerFlag2._4_4_,auStackX_10[0]);
-            *(uint8_t4 *)(ResourceHandlerFlag1 + (int64_t)integerValue14 * 4) = validationResult;
+            *(uint32_t *)(ResourceHandlerFlag1 + (int64_t)integerValue14 * 4) = validationResult;
             plocalContextPointer3 = DataHandlerContextPointer;
           }
           iVar4 = (int)resourceHash0;
@@ -11984,7 +11996,7 @@ LAB_1808962af:
     }
     if (integerValue16 < 0) {
       lVar5 = (int64_t)-integerValue16;
-      presourceHash2 = (uint8_t4 *)(unsignedValue6 + (int64_t)integerValue16 * 4);
+      presourceHash2 = (uint32_t *)(unsignedValue6 + (int64_t)integerValue16 * 4);
       if (integerValue16 < 0) {
         for (; lVar5 != 0; lVar5 = lVar5 + -1) {
           *presourceHash2 = 0;
@@ -12014,8 +12026,8 @@ LAB_18089638e:
   }
   iVar4 = ProcessDataContextOperations(dataContext + 0x70);
   if ((iVar4 == 0) && (iVar4 = FindEntryInResourcePool(dataContext + 0x80), iVar4 == 0)) {
-    *(uint8_t4 *)(objectContextParam + 0x90) = 0xffffffff;
-    *(uint8_t4 *)(dataContext + 0x94) = 0;
+    *(uint32_t *)(objectContextParam + 0x90) = 0xffffffff;
+    *(uint32_t *)(dataContext + 0x94) = 0;
   }
   *(uint *)(objectContextParam + 0x6c) = *(uint *)(objectContextParam + 0x6c) & 0xfbffffff;
   uVar8 = *(uint *)(objectContextParam + 0x6c);
@@ -12157,7 +12169,7 @@ uint8_t ExpandResourceTableCapacity(int64_t objectContextParam)
     *(uint8_t1 *)((int64_t)piVar3 + 10) = 3;
     piVar3[3] = 1;
     resourceTable = *(int64_t *)(*(int64_t *)(objectContextParam + 8) + 0x90);
-    unsignedResult4 = func_0x0001808e3470(*(uint8_t *)(resourceTable + 0x4d0),*(uint8_t4 *)(resourceTable + 0x774));
+    unsignedResult4 = func_0x0001808e3470(*(uint8_t *)(resourceTable + 0x4d0),*(uint32_t *)(resourceTable + 0x774));
     *(uint8_t *)(piVar3 + 4) = unsignedResult4;
                     // WARNING: Subroutine does not return
     memcpy(piVar3 + 6,localContextPointer,(int64_t)tableEntry);
@@ -12180,12 +12192,12 @@ uint8_t ExpandResourceTableCapacity(int64_t objectContextParam)
 int ProcessDataBlockOperationWithBasicValidator(int64_t objectContextParam,int64_t validationContextParam,int validationFlag)
 
 {
-  uint8_t4 resourceHash;
+  uint32_t resourceHash;
   int integerValue2;
   int validationStatus;
   
-  resourceHash = *(uint8_t4 *)(objectContextParam + 0x14);
-  integerValue2 = ParseDataContent(validationContextParam,validationFlag,*(uint8_t4 *)(objectContextParam + 0x10));
+  resourceHash = *(uint32_t *)(objectContextParam + 0x14);
+  integerValue2 = ParseDataContent(validationContextParam,validationFlag,*(uint32_t *)(objectContextParam + 0x10));
   iVar3 = ProcessStringOperation(validationContextParam + integerValue2,validationFlag - integerValue2,&StringProcessingTemplate);
   integerValue2 = integerValue2 + iVar3;
   iVar3 = ValidateDataFormat(integerValue2 + validationContextParam,validationFlag - integerValue2,resourceHash);
@@ -12234,13 +12246,13 @@ int ProcessDataBlockOperationWithExtendedValidator(int64_t objectContextParam,in
 int ProcessDataBlockOperationWithSimplifiedValidator(int64_t objectContextParam,int64_t validationContextParam,int validationFlag)
 
 {
-  uint8_t4 resourceHash;
-  uint8_t4 validationResult;
+  uint32_t resourceHash;
+  uint32_t validationResult;
   int validationStatus;
   int ResultIndex;
   
-  resourceHash = *(uint8_t4 *)(objectContextParam + 0x14);
-  validationResult = *(uint8_t4 *)(objectContextParam + 0x10);
+  resourceHash = *(uint32_t *)(objectContextParam + 0x14);
+  validationResult = *(uint32_t *)(objectContextParam + 0x10);
   iVar3 = ProcessStringOperation(validationContextParam,param_3,&StringProcessingTemplate);
   iVar4 = ProcessStringOperation(iVar3 + validationContextParam,param_3 - iVar3,&StringProcessingTemplate);
   iVar3 = iVar3 + iVar4;
@@ -12271,7 +12283,7 @@ uint8_t ValidateAndGetBufferContext(int64_t objectContextParam,uint8_t validatio
   
   resourceHash = ValidateResourceHash(param_3,objectContextParam + 0x10);
   if ((int)resourceHash == 0) {
-    *(uint8_t4 *)(objectContextParam + 0x14) = 0;
+    *(uint32_t *)(objectContextParam + 0x14) = 0;
     if ((1 < *(int *)(objectContextParam + 0x10)) && (resourceHash = CalculateResourceHash(param_3), (int)resourceHash != 0)) {
       return resourceHash;
     }
@@ -12297,7 +12309,7 @@ void ProcessComplexResourceOperation(uint8_t objectContextParam,int64_t validati
   uint8_t **ppunsignedValue6;
   int ValidationStatus;
   uint8_t1 GraphicsDataBuffer [32];
-  uint8_t4 GraphicsDataFlag;
+  uint32_t GraphicsDataFlag;
   float GraphicsTransformMatrix [3];
   uint8_t *GraphicsDataPointer;
   int GraphicsDataIndex;
@@ -12308,22 +12320,22 @@ void ProcessComplexResourceOperation(uint8_t objectContextParam,int64_t validati
   uint8_t GraphicsOperationFlag4;
   uint8_t GraphicsOperationFlag5;
   uint8_t GraphicsOperationFlag6;
-  uint8_t4 GraphicsOperationFlag7;
+  uint32_t GraphicsOperationFlag7;
   uint GraphicsOperationFlag8;
   uint8_t *GraphicsDataPointer2;
   int GraphicsDataIndex2;
   uint uStack_298;
-  uint8_t4 uStack_294;
+  uint32_t uStack_294;
   int iStack_290;
-  uint8_t4 uStack_28c;
+  uint32_t uStack_28c;
   uint uStack_288;
-  uint8_t4 uStack_284;
-  uint8_t4 uStack_280;
-  uint8_t4 uStack_27c;
+  uint32_t uStack_284;
+  uint32_t uStack_280;
+  uint32_t uStack_27c;
   uint8_t *puStack_278;
-  uint8_t4 uStack_270;
+  uint32_t uStack_270;
   uint uStack_268;
-  uint8_t4 uStack_264;
+  uint32_t uStack_264;
   uint8_t1 auStack_260 [520];
   uint64_t ResourceFlag9;
   
@@ -12360,14 +12372,14 @@ LAB_180896ce3:
       GraphicsDataPointer = &BufferTemplate3;
       GraphicsContextOffset = (uint64_t)param_3 << 0x20;
       GraphicsOperationFlag1 = *(uint8_t *)(validationContextParam + 0x228);
-      GraphicsOperationFlag2 = (uint64_t)CONCAT14(iVar3 != 1,*(uint8_t4 *)(validationContextParam + 0x230));
+      GraphicsOperationFlag2 = (uint64_t)CONCAT14(iVar3 != 1,*(uint32_t *)(validationContextParam + 0x230));
       iVar3 = GetAndValidateResourceData(objectContextParam,&GraphicsDataPointer);
     }
     if (iVar3 != 0) goto ResourceErrorHandler;
     uStack_298 = *(uint *)(resourceData + 0x10);
-    uStack_294 = *(uint8_t4 *)(validationContextParam + 0x14);
+    uStack_294 = *(uint32_t *)(validationContextParam + 0x14);
     iStack_290 = *(int *)(validationContextParam + 0x18);
-    uStack_28c = *(uint8_t4 *)(validationContextParam + 0x1c);
+    uStack_28c = *(uint32_t *)(validationContextParam + 0x1c);
     GraphicsDataIndex2 = 0;
     GraphicsDataPointer2 = &BufferTemplate4;
     uStack_284 = 0;
@@ -12396,10 +12408,10 @@ LAB_180896ce3:
         GraphicsDataFlag = 0;
         iVar7 = ValidateBufferContext(resourceTable,&GraphicsDataFlag);
         if (iVar7 != 0) goto ResourceErrorHandler;
-        uStack_28c = *(uint8_t4 *)(localContextPointer + 0x10);
+        uStack_28c = *(uint32_t *)(localContextPointer + 0x10);
         uStack_288 = *(uint *)(localContextPointer + 0x14);
-        uStack_284 = *(uint8_t4 *)(localContextPointer + 0x18);
-        uStack_280 = *(uint8_t4 *)(localContextPointer + 0x1c);
+        uStack_284 = *(uint32_t *)(localContextPointer + 0x18);
+        uStack_280 = *(uint32_t *)(localContextPointer + 0x1c);
         GraphicsDataPointer2 = &BufferTemplate6;
         iVar4 = tableEntry + 1;
         uStack_27c = GraphicsDataFlag;
@@ -12443,10 +12455,10 @@ LAB_180896ce3:
         GraphicsDataFlag = 0;
         iVar7 = ValidateBufferContext(resourceTable,&GraphicsDataFlag);
         if (iVar7 != 0) goto ResourceErrorHandler;
-        uStack_28c = *(uint8_t4 *)(localContextPointer + 0x10);
+        uStack_28c = *(uint32_t *)(localContextPointer + 0x10);
         uStack_288 = *(uint *)(localContextPointer + 0x14);
-        uStack_284 = *(uint8_t4 *)(localContextPointer + 0x18);
-        uStack_280 = *(uint8_t4 *)(localContextPointer + 0x1c);
+        uStack_284 = *(uint32_t *)(localContextPointer + 0x18);
+        uStack_280 = *(uint32_t *)(localContextPointer + 0x1c);
         GraphicsDataPointer2 = &BufferTemplate6;
         iVar4 = tableEntry + 1;
         uStack_27c = GraphicsDataFlag;
@@ -12490,10 +12502,10 @@ LAB_180896ce3:
         GraphicsDataFlag = 0;
         iVar7 = ValidateBufferContext(resourceTable,&GraphicsDataFlag);
         if (iVar7 != 0) goto ResourceErrorHandler;
-        uStack_28c = *(uint8_t4 *)(localContextPointer + 0x10);
+        uStack_28c = *(uint32_t *)(localContextPointer + 0x10);
         uStack_288 = *(uint *)(localContextPointer + 0x14);
-        uStack_284 = *(uint8_t4 *)(localContextPointer + 0x18);
-        uStack_280 = *(uint8_t4 *)(localContextPointer + 0x1c);
+        uStack_284 = *(uint32_t *)(localContextPointer + 0x18);
+        uStack_280 = *(uint32_t *)(localContextPointer + 0x1c);
         GraphicsDataPointer2 = &BufferTemplate6;
         iVar4 = tableEntry + 1;
         uStack_27c = GraphicsDataFlag;
@@ -12537,10 +12549,10 @@ LAB_180896ce3:
         GraphicsDataFlag = 0;
         iVar7 = ValidateBufferContext(resourceTable,&GraphicsDataFlag);
         if (iVar7 != 0) goto ResourceErrorHandler;
-        uStack_28c = *(uint8_t4 *)(localContextPointer + 0x10);
+        uStack_28c = *(uint32_t *)(localContextPointer + 0x10);
         uStack_288 = *(uint *)(localContextPointer + 0x14);
-        uStack_284 = *(uint8_t4 *)(localContextPointer + 0x18);
-        uStack_280 = *(uint8_t4 *)(localContextPointer + 0x1c);
+        uStack_284 = *(uint32_t *)(localContextPointer + 0x18);
+        uStack_280 = *(uint32_t *)(localContextPointer + 0x1c);
         GraphicsDataPointer2 = &BufferTemplate6;
         iVar4 = tableEntry + 1;
         uStack_27c = GraphicsDataFlag;
@@ -12587,10 +12599,10 @@ LAB_180896ce3:
         GraphicsDataFlag = 0;
         iVar7 = ValidateBufferContext(resourceTable,&GraphicsDataFlag);
         if (iVar7 != 0) break;
-        uStack_28c = *(uint8_t4 *)(localContextPointer + 0x10);
+        uStack_28c = *(uint32_t *)(localContextPointer + 0x10);
         uStack_288 = *(uint *)(localContextPointer + 0x14);
-        uStack_284 = *(uint8_t4 *)(localContextPointer + 0x18);
-        uStack_280 = *(uint8_t4 *)(localContextPointer + 0x1c);
+        uStack_284 = *(uint32_t *)(localContextPointer + 0x18);
+        uStack_280 = *(uint32_t *)(localContextPointer + 0x1c);
         GraphicsDataPointer2 = &BufferTemplate7;
         iVar4 = tableEntry + 1;
         uStack_27c = GraphicsDataFlag;
@@ -12647,14 +12659,14 @@ void ProcessComplexResourceWithRegisters(void)
 {
   int64_t resourceIndex;
   int64_t resourceTablePointer;
-  uint8_t4 validationStatus1;
-  uint8_t4 validationStatus2;
-  uint8_t4 resourceData1;
-  uint8_t4 resourceData2;
+  uint32_t validationStatus1;
+  uint32_t validationStatus2;
+  uint32_t resourceData1;
+  uint32_t resourceData2;
   int operationResult;
   int processingCounter;
   int tempIndex;
-  uint8_t4 systemRegister1;
+  uint32_t systemRegister1;
   int64_t executionContext;
   int systemRegister2;
   int64_t systemRegister3;
@@ -12667,11 +12679,11 @@ void ProcessComplexResourceWithRegisters(void)
   float calculatedFloat6;
   float calculatedFloat7;
   float resultFloat;
-  uint8_t4 contextFlags;
+  uint32_t contextFlags;
   float stackFloat1;
   uint8_t *dataTypeTemplate;
   int validationErrorCode;
-  uint8_t4 stackValidationFlags;
+  uint32_t stackValidationFlags;
   float stackResourceValue;
   
   if (((systemFlag1 != '\0') || (*(int *)(*(int64_t *)(systemRegister3 + 0x2e8) + 0x34) == systemRegister2)) &&
@@ -12683,20 +12695,20 @@ void ProcessComplexResourceWithRegisters(void)
         contextFlags = 0;
         validationErrorCode = ValidateBufferContext(resourceTablePointer,&contextFlags);
         if (validationErrorCode != 0) goto LAB_1808974ec;
-        validationStatus1 = *(uint8_t4 *)(localContextPointer + 0x10);
-        validationStatus2 = *(uint8_t4 *)(localContextPointer + 0x14);
-        resourceData1 = *(uint8_t4 *)(localContextPointer + 0x18);
-        resourceData2 = *(uint8_t4 *)(localContextPointer + 0x1c);
-        *(uint8_t4 *)(executionContext + -0x78) = 0;
+        validationStatus1 = *(uint32_t *)(localContextPointer + 0x10);
+        validationStatus2 = *(uint32_t *)(localContextPointer + 0x14);
+        resourceData1 = *(uint32_t *)(localContextPointer + 0x18);
+        resourceData2 = *(uint32_t *)(localContextPointer + 0x1c);
+        *(uint32_t *)(executionContext + -0x78) = 0;
         *(int *)(executionContext + -0x68) = systemRegister2;
         *(uint8_t **)(executionContext + -0x80) = &SystemResourceTemplateA;
         systemRegister2 = systemRegister2 + 1;
-        *(uint8_t4 *)(executionContext + -0x54) = contextFlags;
-        *(uint8_t4 *)(executionContext + -0x70) = systemRegister1;
-        *(uint8_t4 *)(executionContext + -100) = validationStatus1;
-        *(uint8_t4 *)(executionContext + -0x60) = validationStatus2;
-        *(uint8_t4 *)(executionContext + -0x5c) = resourceData1;
-        *(uint8_t4 *)(executionContext + -0x58) = resourceData2;
+        *(uint32_t *)(executionContext + -0x54) = contextFlags;
+        *(uint32_t *)(executionContext + -0x70) = systemRegister1;
+        *(uint32_t *)(executionContext + -100) = validationStatus1;
+        *(uint32_t *)(executionContext + -0x60) = validationStatus2;
+        *(uint32_t *)(executionContext + -0x5c) = resourceData1;
+        *(uint32_t *)(executionContext + -0x58) = resourceData2;
         validationErrorCode = GetAndValidateResourceData(validationStatus1,executionContext + -0x80);
         if ((validationErrorCode != 0) || (validationErrorCode = FindResourceEntry(resourceTablePointer,&stackFloat1), validationErrorCode != 0))
         goto LAB_1808974ec;
@@ -12736,20 +12748,20 @@ void ProcessComplexResourceWithRegisters(void)
         contextFlags = 0;
         validationErrorCode = ValidateBufferContext(resourceTablePointer,&contextFlags);
         if (validationErrorCode != 0) goto LAB_1808974ec;
-        validationStatus1 = *(uint8_t4 *)(localContextPointer + 0x10);
-        validationStatus2 = *(uint8_t4 *)(localContextPointer + 0x14);
-        resourceData1 = *(uint8_t4 *)(localContextPointer + 0x18);
-        resourceData2 = *(uint8_t4 *)(localContextPointer + 0x1c);
-        *(uint8_t4 *)(executionContext + -0x78) = 0;
+        validationStatus1 = *(uint32_t *)(localContextPointer + 0x10);
+        validationStatus2 = *(uint32_t *)(localContextPointer + 0x14);
+        resourceData1 = *(uint32_t *)(localContextPointer + 0x18);
+        resourceData2 = *(uint32_t *)(localContextPointer + 0x1c);
+        *(uint32_t *)(executionContext + -0x78) = 0;
         *(int *)(executionContext + -0x68) = systemRegister2;
         *(uint8_t **)(executionContext + -0x80) = &SystemResourceTemplateA;
         systemRegister2 = systemRegister2 + 1;
-        *(uint8_t4 *)(executionContext + -0x54) = contextFlags;
-        *(uint8_t4 *)(executionContext + -0x70) = systemRegister1;
-        *(uint8_t4 *)(executionContext + -100) = validationStatus1;
-        *(uint8_t4 *)(executionContext + -0x60) = validationStatus2;
-        *(uint8_t4 *)(executionContext + -0x5c) = resourceData1;
-        *(uint8_t4 *)(executionContext + -0x58) = resourceData2;
+        *(uint32_t *)(executionContext + -0x54) = contextFlags;
+        *(uint32_t *)(executionContext + -0x70) = systemRegister1;
+        *(uint32_t *)(executionContext + -100) = validationStatus1;
+        *(uint32_t *)(executionContext + -0x60) = validationStatus2;
+        *(uint32_t *)(executionContext + -0x5c) = resourceData1;
+        *(uint32_t *)(executionContext + -0x58) = resourceData2;
         validationErrorCode = GetAndValidateResourceData(validationStatus1,executionContext + -0x80);
         if ((validationErrorCode != 0) || (validationErrorCode = FindResourceEntry(resourceTablePointer,&stackFloat1), validationErrorCode != 0))
         goto LAB_1808974ec;
@@ -12789,20 +12801,20 @@ void ProcessComplexResourceWithRegisters(void)
         contextFlags = 0;
         validationErrorCode = ValidateBufferContext(resourceTablePointer,&contextFlags);
         if (validationErrorCode != 0) goto LAB_1808974ec;
-        validationStatus1 = *(uint8_t4 *)(localContextPointer + 0x10);
-        validationStatus2 = *(uint8_t4 *)(localContextPointer + 0x14);
-        resourceData1 = *(uint8_t4 *)(localContextPointer + 0x18);
-        resourceData2 = *(uint8_t4 *)(localContextPointer + 0x1c);
-        *(uint8_t4 *)(executionContext + -0x78) = 0;
+        validationStatus1 = *(uint32_t *)(localContextPointer + 0x10);
+        validationStatus2 = *(uint32_t *)(localContextPointer + 0x14);
+        resourceData1 = *(uint32_t *)(localContextPointer + 0x18);
+        resourceData2 = *(uint32_t *)(localContextPointer + 0x1c);
+        *(uint32_t *)(executionContext + -0x78) = 0;
         *(int *)(executionContext + -0x68) = systemRegister2;
         *(uint8_t **)(executionContext + -0x80) = &SystemResourceTemplateA;
         systemRegister2 = systemRegister2 + 1;
-        *(uint8_t4 *)(executionContext + -0x54) = contextFlags;
-        *(uint8_t4 *)(executionContext + -0x70) = systemRegister1;
-        *(uint8_t4 *)(executionContext + -100) = validationStatus1;
-        *(uint8_t4 *)(executionContext + -0x60) = validationStatus2;
-        *(uint8_t4 *)(executionContext + -0x5c) = resourceData1;
-        *(uint8_t4 *)(executionContext + -0x58) = resourceData2;
+        *(uint32_t *)(executionContext + -0x54) = contextFlags;
+        *(uint32_t *)(executionContext + -0x70) = systemRegister1;
+        *(uint32_t *)(executionContext + -100) = validationStatus1;
+        *(uint32_t *)(executionContext + -0x60) = validationStatus2;
+        *(uint32_t *)(executionContext + -0x5c) = resourceData1;
+        *(uint32_t *)(executionContext + -0x58) = resourceData2;
         validationErrorCode = GetAndValidateResourceData(validationStatus1,executionContext + -0x80);
         if ((validationErrorCode != 0) || (validationErrorCode = FindResourceEntry(resourceTablePointer,&stackFloat1), validationErrorCode != 0))
         goto LAB_1808974ec;
@@ -12842,20 +12854,20 @@ void ProcessComplexResourceWithRegisters(void)
         contextFlags = 0;
         validationErrorCode = ValidateBufferContext(resourceTablePointer,&contextFlags);
         if (validationErrorCode != 0) goto LAB_1808974ec;
-        validationStatus1 = *(uint8_t4 *)(localContextPointer + 0x10);
-        validationStatus2 = *(uint8_t4 *)(localContextPointer + 0x14);
-        resourceData1 = *(uint8_t4 *)(localContextPointer + 0x18);
-        resourceData2 = *(uint8_t4 *)(localContextPointer + 0x1c);
-        *(uint8_t4 *)(executionContext + -0x78) = 0;
+        validationStatus1 = *(uint32_t *)(localContextPointer + 0x10);
+        validationStatus2 = *(uint32_t *)(localContextPointer + 0x14);
+        resourceData1 = *(uint32_t *)(localContextPointer + 0x18);
+        resourceData2 = *(uint32_t *)(localContextPointer + 0x1c);
+        *(uint32_t *)(executionContext + -0x78) = 0;
         *(int *)(executionContext + -0x68) = systemRegister2;
         *(uint8_t **)(executionContext + -0x80) = &SystemResourceTemplateA;
         systemRegister2 = systemRegister2 + 1;
-        *(uint8_t4 *)(executionContext + -0x54) = contextFlags;
-        *(uint8_t4 *)(executionContext + -0x70) = systemRegister1;
-        *(uint8_t4 *)(executionContext + -100) = validationStatus1;
-        *(uint8_t4 *)(executionContext + -0x60) = validationStatus2;
-        *(uint8_t4 *)(executionContext + -0x5c) = resourceData1;
-        *(uint8_t4 *)(executionContext + -0x58) = resourceData2;
+        *(uint32_t *)(executionContext + -0x54) = contextFlags;
+        *(uint32_t *)(executionContext + -0x70) = systemRegister1;
+        *(uint32_t *)(executionContext + -100) = validationStatus1;
+        *(uint32_t *)(executionContext + -0x60) = validationStatus2;
+        *(uint32_t *)(executionContext + -0x5c) = resourceData1;
+        *(uint32_t *)(executionContext + -0x58) = resourceData2;
         validationErrorCode = GetAndValidateResourceData(validationStatus1,executionContext + -0x80);
         if ((validationErrorCode != 0) || (validationErrorCode = FindResourceEntry(resourceTablePointer,&stackFloat1), validationErrorCode != 0))
         goto LAB_1808974ec;
@@ -12898,20 +12910,20 @@ void ProcessComplexResourceWithRegisters(void)
         contextFlags = 0;
         tempIndex = ValidateBufferContext(resourceTablePointer,&contextFlags);
         if (tempIndex != 0) break;
-        validationStatus1 = *(uint8_t4 *)(localContextPointer + 0x10);
-        validationStatus2 = *(uint8_t4 *)(localContextPointer + 0x14);
-        resourceData1 = *(uint8_t4 *)(localContextPointer + 0x18);
-        resourceData2 = *(uint8_t4 *)(localContextPointer + 0x1c);
-        *(uint8_t4 *)(executionContext + -0x78) = 0;
+        validationStatus1 = *(uint32_t *)(localContextPointer + 0x10);
+        validationStatus2 = *(uint32_t *)(localContextPointer + 0x14);
+        resourceData1 = *(uint32_t *)(localContextPointer + 0x18);
+        resourceData2 = *(uint32_t *)(localContextPointer + 0x1c);
+        *(uint32_t *)(executionContext + -0x78) = 0;
         *(int *)(executionContext + -0x68) = validationErrorCode;
         *(uint8_t **)(executionContext + -0x80) = &SystemResourceTemplateB;
         validationErrorCode = validationErrorCode + 1;
-        *(uint8_t4 *)(executionContext + -0x54) = contextFlags;
-        *(uint8_t4 *)(executionContext + -0x70) = systemRegister1;
-        *(uint8_t4 *)(executionContext + -100) = validationStatus1;
-        *(uint8_t4 *)(executionContext + -0x60) = validationStatus2;
-        *(uint8_t4 *)(executionContext + -0x5c) = resourceData1;
-        *(uint8_t4 *)(executionContext + -0x58) = resourceData2;
+        *(uint32_t *)(executionContext + -0x54) = contextFlags;
+        *(uint32_t *)(executionContext + -0x70) = systemRegister1;
+        *(uint32_t *)(executionContext + -100) = validationStatus1;
+        *(uint32_t *)(executionContext + -0x60) = validationStatus2;
+        *(uint32_t *)(executionContext + -0x5c) = resourceData1;
+        *(uint32_t *)(executionContext + -0x58) = resourceData2;
         tempIndex = GetAndValidateResourceData(validationStatus1,executionContext + -0x80);
         if ((tempIndex != 0) || (tempIndex = SearchResourceTable(resourceTablePointer,&stackFloat1,0), tempIndex != 0)) break;
         if (stackFloat1 != 1.0) {
@@ -13081,40 +13093,40 @@ int SystemResourceProcessorB(int64_t ObjectContext,int64_t ValidationContext)
   float *pfVar15;
   uint8_t *presourceHash6;
   uint8_t1 auStack_1e8 [32];
-  uint8_t4 uStack_1c8;
+  uint32_t uStack_1c8;
   char acStack_1c4 [4];
   uint8_t *puStack_1c0;
-  uint8_t4 uStack_1b8;
-  uint8_t4 uStack_1b0;
+  uint32_t uStack_1b8;
+  uint32_t uStack_1b0;
   float fStack_1a8;
   float fStack_1a4;
-  uint8_t4 uStack_1a0;
+  uint32_t uStack_1a0;
   float fStack_19c;
   float afStack_198 [2];
   uint8_t *puStack_190;
   int64_t lStack_188;
   int64_t lStack_180;
   uint8_t *puStack_178;
-  uint8_t4 uStack_170;
-  uint8_t4 uStack_168;
-  uint8_t4 uStack_160;
+  uint32_t uStack_170;
+  uint32_t uStack_168;
+  uint32_t uStack_160;
   uint8_t *puStack_158;
-  uint8_t4 uStack_150;
-  uint8_t4 OperationParam28;
+  uint32_t uStack_150;
+  uint32_t OperationParam28;
   uint8_t OperationParam20;
   uint8_t uStack_138;
-  uint8_t4 uStack_130;
-  uint8_t4 uStack_12c;
-  uint8_t4 uStack_128;
-  uint8_t4 uStack_124;
-  uint8_t4 uStack_120;
-  uint8_t4 uStack_11c;
-  uint8_t4 ResourceHandlerFlag1;
-  uint8_t4 uStack_114;
+  uint32_t uStack_130;
+  uint32_t uStack_12c;
+  uint32_t uStack_128;
+  uint32_t uStack_124;
+  uint32_t uStack_120;
+  uint32_t uStack_11c;
+  uint32_t ResourceHandlerFlag1;
+  uint32_t uStack_114;
   uint8_t *pOperationParam38;
-  uint8_t4 ResourceHandlerParam;
-  uint8_t4 uStack_f8;
-  uint8_t4 uStack_f0;
+  uint32_t ResourceHandlerParam;
+  uint32_t uStack_f8;
+  uint32_t uStack_f0;
   uint8_t1 uStack_ec;
   uint8_t uStack_e8;
   uint8_t1 auStack_e0 [136];
@@ -13153,7 +13165,7 @@ int SystemResourceProcessorB(int64_t ObjectContext,int64_t ValidationContext)
             cVar5 = func_0x000180894c50(resourceIndex,1);
             presourceHash6 = puStack_190;
             if ((cVar5 == '\0') && (*(float *)(resourceIndex + 0x4c) != *(float *)(lVar4 + 0x28))) {
-              uStack_f0 = *(uint8_t4 *)(localContextPointer4 + 4 + lVar9);
+              uStack_f0 = *(uint32_t *)(localContextPointer4 + 4 + lVar9);
               pOperationParam38 = &SystemResourceTemplateD;
               uStack_f8 = uStack_1c8;
               ResourceHandlerParam = 0;
@@ -13185,16 +13197,16 @@ int SystemResourceProcessorB(int64_t ObjectContext,int64_t ValidationContext)
             if (integerValue6 != 0) {
               OperationParam20 = *(uint8_t *)(resourceTable + 0x38);
               uStack_138 = *(uint8_t *)(resourceTable + 0x40);
-              uStack_130 = *(uint8_t4 *)(resourceTable + 0x48);
-              uStack_12c = *(uint8_t4 *)(resourceTable + 0x4c);
-              uStack_128 = *(uint8_t4 *)(resourceTable + 0x50);
-              uStack_124 = *(uint8_t4 *)(resourceTable + 0x54);
+              uStack_130 = *(uint32_t *)(resourceTable + 0x48);
+              uStack_12c = *(uint32_t *)(resourceTable + 0x4c);
+              uStack_128 = *(uint32_t *)(resourceTable + 0x50);
+              uStack_124 = *(uint32_t *)(resourceTable + 0x54);
               puStack_158 = &SystemResourceTemplateE;
               uStack_150 = 0;
-              uStack_120 = *(uint8_t4 *)(resourceTable + 0x58);
-              uStack_11c = *(uint8_t4 *)(resourceTable + 0x5c);
-              ResourceHandlerFlag1 = *(uint8_t4 *)(resourceTable + 0x60);
-              uStack_114 = *(uint8_t4 *)(resourceTable + 100);
+              uStack_120 = *(uint32_t *)(resourceTable + 0x58);
+              uStack_11c = *(uint32_t *)(resourceTable + 0x5c);
+              ResourceHandlerFlag1 = *(uint32_t *)(resourceTable + 0x60);
+              uStack_114 = *(uint32_t *)(resourceTable + 100);
               OperationParam28 = uStack_1c8;
               integerValue6 = GetAndValidateResourceData(objectContextParam,&puStack_158);
               if (integerValue6 != 0) goto HandleMemoryCleanup;
@@ -13335,13 +13347,13 @@ void SystemInitializerA(void)
   int64_t resourceTable;
   int64_t resourceIndex;
   uint8_t *punsignedResult4;
-  uint8_t4 unsignedValue5;
-  uint8_t4 unsignedValue6;
-  uint8_t4 unsignedValue7;
-  uint8_t4 uVar8;
-  uint8_t4 uVar9;
-  uint8_t4 resourceHash0;
-  uint8_t4 resourceHash1;
+  uint32_t unsignedValue5;
+  uint32_t unsignedValue6;
+  uint32_t unsignedValue7;
+  uint32_t uVar8;
+  uint32_t uVar9;
+  uint32_t resourceHash0;
+  uint32_t resourceHash1;
   char cVar12;
   int integerValue13;
   uint resourceHash4;
@@ -13360,24 +13372,24 @@ void SystemInitializerA(void)
   int64_t unaff_R14;
   uint64_t validationResult3;
   int64_t unaff_R15;
-  uint8_t4 extraout_XMM0_Da;
-  uint8_t4 validationResult4;
-  uint8_t4 extraout_XMM0_Da_00;
-  uint8_t4 extraout_XMM0_Da_01;
-  uint8_t4 extraout_XMM0_Da_02;
+  uint32_t extraout_XMM0_Da;
+  uint32_t validationResult4;
+  uint32_t extraout_XMM0_Da_00;
+  uint32_t extraout_XMM0_Da_01;
+  uint32_t extraout_XMM0_Da_02;
   float extraout_XMM0_Da_03;
-  uint8_t4 extraout_XMM0_Da_04;
-  uint8_t4 extraout_XMM0_Da_05;
-  uint8_t4 extraout_XMM0_Da_06;
-  uint8_t4 extraout_XMM0_Da_07;
-  uint8_t4 extraout_XMM0_Da_08;
-  uint8_t4 unaff_XMM6_Da;
-  uint8_t4 unaff_XMM6_Dc;
-  uint8_t4 uStackX_20;
+  uint32_t extraout_XMM0_Da_04;
+  uint32_t extraout_XMM0_Da_05;
+  uint32_t extraout_XMM0_Da_06;
+  uint32_t extraout_XMM0_Da_07;
+  uint32_t extraout_XMM0_Da_08;
+  uint32_t unaff_XMM6_Da;
+  uint32_t unaff_XMM6_Dc;
+  uint32_t uStackX_20;
   char acStackX_24 [4];
   uint8_t *in_stack_00000028;
   float in_stack_00000030;
-  uint8_t4 in_stack_00000038;
+  uint32_t in_stack_00000038;
   float fStack0000000000000040;
   float fStack0000000000000044;
   float fStack0000000000000048;
@@ -13388,8 +13400,8 @@ void SystemInitializerA(void)
   int64_t in_stack_00000068;
   uint8_t *in_stack_00000070;
   float in_stack_00000078;
-  uint8_t4 in_stack_000001a0;
-  uint8_t4 in_stack_000001a8;
+  uint32_t in_stack_000001a0;
+  uint32_t in_stack_000001a8;
   
   pvalidationResult2 = (uint8_t *)(unaff_R14 + 8);
   fStack0000000000000048 = unaff_R13D;
@@ -13398,7 +13410,7 @@ void SystemInitializerA(void)
   integerValue13 = ValidateBufferContext(*(uint8_t *)(localContextPointer5 + 0xd0),&stack0x00000048);
   if (integerValue13 == 0) {
     in_stack_00000070 = &SystemResourceTemplateC;
-    *(uint8_t4 *)(ExecutionContextPointer + -0xf) = uStackX_20;
+    *(uint32_t *)(ExecutionContextPointer + -0xf) = uStackX_20;
     *(float *)(ExecutionContextPointer + -0x10) = fStack0000000000000048;
     in_stack_00000078 = unaff_R13D;
     integerValue13 = GetAndValidateResourceData(extraout_XMM0_Da,&stack0x00000070);
@@ -13414,12 +13426,12 @@ void SystemInitializerA(void)
           cVar12 = func_0x000180894c50(resourceTable,1);
           pvalidationResult2 = puStack0000000000000058;
           if ((cVar12 == '\0') && (*(float *)(resourceTable + 0x4c) != *(float *)(resourceIndex + 0x28))) {
-            validationResult4 = *(uint8_t4 *)(validationResult0 + 4 + localContextPointer5);
+            validationResult4 = *(uint32_t *)(validationResult0 + 4 + localContextPointer5);
             ExecutionContextPointer[-4] = &SystemResourceTemplateD;
-            *(uint8_t4 *)(ExecutionContextPointer + -2) = uStackX_20;
+            *(uint32_t *)(ExecutionContextPointer + -2) = uStackX_20;
             punsignedResult4 = (uint8_t *)*puStack0000000000000058;
-            *(uint8_t4 *)(ExecutionContextPointer + -1) = validationResult4;
-            *(uint8_t4 *)(ExecutionContextPointer + -3) = 0;
+            *(uint32_t *)(ExecutionContextPointer + -1) = validationResult4;
+            *(uint32_t *)(ExecutionContextPointer + -3) = 0;
             localContextPointer5 = (*(code *)*punsignedResult4)(puStack0000000000000058);
             *ExecutionContextPointer = *(uint8_t *)(*(int64_t *)(localContextPointer5 + 0x90) + validationResult3 * 8);
             *(uint8_t1 *)((int64_t)ExecutionContextPointer + -4) = 0;
@@ -13451,27 +13463,27 @@ void SystemInitializerA(void)
           if (integerValue13 != 0) {
             resourceHash7 = *(uint8_t *)(unaff_R15 + 0x38);
             resourceHash6 = *(uint8_t *)(unaff_R15 + 0x40);
-            validationResult4 = *(uint8_t4 *)(unaff_R15 + 0x48);
-            unsignedValue5 = *(uint8_t4 *)(unaff_R15 + 0x4c);
-            unsignedValue6 = *(uint8_t4 *)(unaff_R15 + 0x50);
-            unsignedValue7 = *(uint8_t4 *)(unaff_R15 + 0x54);
+            validationResult4 = *(uint32_t *)(unaff_R15 + 0x48);
+            unsignedValue5 = *(uint32_t *)(unaff_R15 + 0x4c);
+            unsignedValue6 = *(uint32_t *)(unaff_R15 + 0x50);
+            unsignedValue7 = *(uint32_t *)(unaff_R15 + 0x54);
             ExecutionContextPointer[-0xe] = &SystemResourceTemplateE;
             ExecutionContextPointer[-0xb] = resourceHash7;
             ExecutionContextPointer[-10] = resourceHash6;
             *(float *)(ExecutionContextPointer + -0xd) = unaff_R13D;
-            uVar8 = *(uint8_t4 *)(unaff_R15 + 0x58);
-            uVar9 = *(uint8_t4 *)(unaff_R15 + 0x5c);
-            resourceHash0 = *(uint8_t4 *)(unaff_R15 + 0x60);
-            resourceHash1 = *(uint8_t4 *)(unaff_R15 + 100);
-            *(uint8_t4 *)(ExecutionContextPointer + -0xc) = uStackX_20;
-            *(uint8_t4 *)(ExecutionContextPointer + -9) = validationResult4;
-            *(uint8_t4 *)((int64_t)ExecutionContextPointer + -0x44) = unsignedValue5;
-            *(uint8_t4 *)(ExecutionContextPointer + -8) = unsignedValue6;
-            *(uint8_t4 *)((int64_t)ExecutionContextPointer + -0x3c) = unsignedValue7;
-            *(uint8_t4 *)(ExecutionContextPointer + -7) = uVar8;
-            *(uint8_t4 *)((int64_t)ExecutionContextPointer + -0x34) = uVar9;
-            *(uint8_t4 *)(ExecutionContextPointer + -6) = resourceHash0;
-            *(uint8_t4 *)((int64_t)ExecutionContextPointer + -0x2c) = resourceHash1;
+            uVar8 = *(uint32_t *)(unaff_R15 + 0x58);
+            uVar9 = *(uint32_t *)(unaff_R15 + 0x5c);
+            resourceHash0 = *(uint32_t *)(unaff_R15 + 0x60);
+            resourceHash1 = *(uint32_t *)(unaff_R15 + 100);
+            *(uint32_t *)(ExecutionContextPointer + -0xc) = uStackX_20;
+            *(uint32_t *)(ExecutionContextPointer + -9) = validationResult4;
+            *(uint32_t *)((int64_t)ExecutionContextPointer + -0x44) = unsignedValue5;
+            *(uint32_t *)(ExecutionContextPointer + -8) = unsignedValue6;
+            *(uint32_t *)((int64_t)ExecutionContextPointer + -0x3c) = unsignedValue7;
+            *(uint32_t *)(ExecutionContextPointer + -7) = uVar8;
+            *(uint32_t *)((int64_t)ExecutionContextPointer + -0x34) = uVar9;
+            *(uint32_t *)(ExecutionContextPointer + -6) = resourceHash0;
+            *(uint32_t *)((int64_t)ExecutionContextPointer + -0x2c) = resourceHash1;
             integerValue13 = GetAndValidateResourceData(uVar8,ExecutionContextPointer + -0xe);
             validationResult4 = extraout_XMM0_Da_02;
             if (integerValue13 != 0) goto ProcessMemoryRelease;
@@ -13612,13 +13624,13 @@ void DataProcessingErrorHandler(void)
   int64_t resourceTable;
   int64_t resourceIndex;
   uint8_t *punsignedResult4;
-  uint8_t4 unsignedValue5;
-  uint8_t4 unsignedValue6;
-  uint8_t4 unsignedValue7;
-  uint8_t4 uVar8;
-  uint8_t4 uVar9;
-  uint8_t4 resourceHash0;
-  uint8_t4 resourceHash1;
+  uint32_t unsignedValue5;
+  uint32_t unsignedValue6;
+  uint32_t unsignedValue7;
+  uint32_t uVar8;
+  uint32_t uVar9;
+  uint32_t resourceHash0;
+  uint32_t resourceHash1;
   char cVar12;
   int integerValue13;
   uint resourceHash4;
@@ -13637,23 +13649,23 @@ void DataProcessingErrorHandler(void)
   int64_t unaff_R14;
   uint64_t validationResult2;
   int64_t unaff_R15;
-  uint8_t4 validationResult3;
-  uint8_t4 extraout_XMM0_Da;
-  uint8_t4 extraout_XMM0_Da_00;
-  uint8_t4 extraout_XMM0_Da_01;
+  uint32_t validationResult3;
+  uint32_t extraout_XMM0_Da;
+  uint32_t extraout_XMM0_Da_00;
+  uint32_t extraout_XMM0_Da_01;
   float extraout_XMM0_Da_02;
-  uint8_t4 extraout_XMM0_Da_03;
-  uint8_t4 extraout_XMM0_Da_04;
-  uint8_t4 extraout_XMM0_Da_05;
-  uint8_t4 extraout_XMM0_Da_06;
-  uint8_t4 extraout_XMM0_Da_07;
-  uint8_t4 unaff_XMM6_Da;
-  uint8_t4 unaff_XMM6_Dc;
-  uint8_t4 uStackX_20;
+  uint32_t extraout_XMM0_Da_03;
+  uint32_t extraout_XMM0_Da_04;
+  uint32_t extraout_XMM0_Da_05;
+  uint32_t extraout_XMM0_Da_06;
+  uint32_t extraout_XMM0_Da_07;
+  uint32_t unaff_XMM6_Da;
+  uint32_t unaff_XMM6_Dc;
+  uint32_t uStackX_20;
   char acStackX_24 [4];
   uint8_t *in_stack_00000028;
   float in_stack_00000030;
-  uint8_t4 in_stack_00000038;
+  uint32_t in_stack_00000038;
   float fStack0000000000000040;
   float fStack0000000000000044;
   uint8_t in_stack_00000048;
@@ -13661,8 +13673,8 @@ void DataProcessingErrorHandler(void)
   uint8_t *in_stack_00000058;
   int64_t lStack0000000000000060;
   int64_t in_stack_00000068;
-  uint8_t4 in_stack_000001a0;
-  uint8_t4 in_stack_000001a8;
+  uint32_t in_stack_000001a0;
+  uint32_t in_stack_000001a8;
   
   if (0 < in_RAX) {
     validationResult2 = (uint64_t)(uint)unaff_R13D;
@@ -13675,12 +13687,12 @@ void DataProcessingErrorHandler(void)
       cVar12 = func_0x000180894c50(resourceTable,1);
       unaff_R12 = in_stack_00000058;
       if ((cVar12 == '\0') && (*(float *)(resourceTable + 0x4c) != *(float *)(resourceIndex + 0x28))) {
-        validationResult3 = *(uint8_t4 *)(validationResult0 + 4 + localContextPointer5);
+        validationResult3 = *(uint32_t *)(validationResult0 + 4 + localContextPointer5);
         ExecutionContextPointer[-4] = &SystemResourceTemplateD;
-        *(uint8_t4 *)(ExecutionContextPointer + -2) = uStackX_20;
+        *(uint32_t *)(ExecutionContextPointer + -2) = uStackX_20;
         punsignedResult4 = (uint8_t *)*in_stack_00000058;
-        *(uint8_t4 *)(ExecutionContextPointer + -1) = validationResult3;
-        *(uint8_t4 *)(ExecutionContextPointer + -3) = 0;
+        *(uint32_t *)(ExecutionContextPointer + -1) = validationResult3;
+        *(uint32_t *)(ExecutionContextPointer + -3) = 0;
         localContextPointer5 = (*(code *)*punsignedResult4)(in_stack_00000058);
         *ExecutionContextPointer = *(uint8_t *)(*(int64_t *)(localContextPointer5 + 0x90) + validationResult2 * 8);
         *(uint8_t1 *)((int64_t)ExecutionContextPointer + -4) = 0;
@@ -13712,27 +13724,27 @@ void DataProcessingErrorHandler(void)
       if (integerValue13 != 0) {
         resourceHash7 = *(uint8_t *)(unaff_R15 + 0x38);
         resourceHash6 = *(uint8_t *)(unaff_R15 + 0x40);
-        validationResult3 = *(uint8_t4 *)(unaff_R15 + 0x48);
-        unsignedValue5 = *(uint8_t4 *)(unaff_R15 + 0x4c);
-        unsignedValue6 = *(uint8_t4 *)(unaff_R15 + 0x50);
-        unsignedValue7 = *(uint8_t4 *)(unaff_R15 + 0x54);
+        validationResult3 = *(uint32_t *)(unaff_R15 + 0x48);
+        unsignedValue5 = *(uint32_t *)(unaff_R15 + 0x4c);
+        unsignedValue6 = *(uint32_t *)(unaff_R15 + 0x50);
+        unsignedValue7 = *(uint32_t *)(unaff_R15 + 0x54);
         ExecutionContextPointer[-0xe] = &SystemResourceTemplateE;
         ExecutionContextPointer[-0xb] = resourceHash7;
         ExecutionContextPointer[-10] = resourceHash6;
         *(float *)(ExecutionContextPointer + -0xd) = unaff_R13D;
-        uVar8 = *(uint8_t4 *)(unaff_R15 + 0x58);
-        uVar9 = *(uint8_t4 *)(unaff_R15 + 0x5c);
-        resourceHash0 = *(uint8_t4 *)(unaff_R15 + 0x60);
-        resourceHash1 = *(uint8_t4 *)(unaff_R15 + 100);
-        *(uint8_t4 *)(ExecutionContextPointer + -0xc) = uStackX_20;
-        *(uint8_t4 *)(ExecutionContextPointer + -9) = validationResult3;
-        *(uint8_t4 *)((int64_t)ExecutionContextPointer + -0x44) = unsignedValue5;
-        *(uint8_t4 *)(ExecutionContextPointer + -8) = unsignedValue6;
-        *(uint8_t4 *)((int64_t)ExecutionContextPointer + -0x3c) = unsignedValue7;
-        *(uint8_t4 *)(ExecutionContextPointer + -7) = uVar8;
-        *(uint8_t4 *)((int64_t)ExecutionContextPointer + -0x34) = uVar9;
-        *(uint8_t4 *)(ExecutionContextPointer + -6) = resourceHash0;
-        *(uint8_t4 *)((int64_t)ExecutionContextPointer + -0x2c) = resourceHash1;
+        uVar8 = *(uint32_t *)(unaff_R15 + 0x58);
+        uVar9 = *(uint32_t *)(unaff_R15 + 0x5c);
+        resourceHash0 = *(uint32_t *)(unaff_R15 + 0x60);
+        resourceHash1 = *(uint32_t *)(unaff_R15 + 100);
+        *(uint32_t *)(ExecutionContextPointer + -0xc) = uStackX_20;
+        *(uint32_t *)(ExecutionContextPointer + -9) = validationResult3;
+        *(uint32_t *)((int64_t)ExecutionContextPointer + -0x44) = unsignedValue5;
+        *(uint32_t *)(ExecutionContextPointer + -8) = unsignedValue6;
+        *(uint32_t *)((int64_t)ExecutionContextPointer + -0x3c) = unsignedValue7;
+        *(uint32_t *)(ExecutionContextPointer + -7) = uVar8;
+        *(uint32_t *)((int64_t)ExecutionContextPointer + -0x34) = uVar9;
+        *(uint32_t *)(ExecutionContextPointer + -6) = resourceHash0;
+        *(uint32_t *)((int64_t)ExecutionContextPointer + -0x2c) = resourceHash1;
         integerValue13 = GetAndValidateResourceData(uVar8,ExecutionContextPointer + -0xe);
         validationResult3 = extraout_XMM0_Da_01;
         if (integerValue13 != 0) goto ExecuteMemoryDeallocation;
@@ -13877,16 +13889,16 @@ void FloatProcessingErrorHandler(void)
   int64_t unaff_R14;
   int64_t unaff_R15;
   float extraout_XMM0_Da;
-  uint8_t4 extraout_XMM0_Da_00;
-  uint8_t4 extraout_XMM0_Da_01;
-  uint8_t4 extraout_XMM0_Da_02;
-  uint8_t4 extraout_XMM0_Da_03;
-  uint8_t4 extraout_XMM0_Da_04;
-  uint8_t4 unsignedValue6;
-  uint8_t4 uStackX_20;
+  uint32_t extraout_XMM0_Da_00;
+  uint32_t extraout_XMM0_Da_01;
+  uint32_t extraout_XMM0_Da_02;
+  uint32_t extraout_XMM0_Da_03;
+  uint32_t extraout_XMM0_Da_04;
+  uint32_t unsignedValue6;
+  uint32_t uStackX_20;
   uint8_t *in_stack_00000028;
   float in_stack_00000030;
-  uint8_t4 in_stack_00000038;
+  uint32_t in_stack_00000038;
   float fStack0000000000000040;
   float fStack0000000000000044;
   float in_stack_00000050;
@@ -14036,8 +14048,8 @@ LAB_180897af6:
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- 7b40(int64_t *objectContextParam,int64_t validationContextParam,uint8_t4 param_3)
-7b40(int64_t *objectContextParam,int64_t validationContextParam,uint8_t4 param_3)
+ 7b40(int64_t *objectContextParam,int64_t validationContextParam,uint32_t param_3)
+7b40(int64_t *objectContextParam,int64_t validationContextParam,uint32_t param_3)
 
 {
   int64_t loopCounter;
@@ -14048,19 +14060,19 @@ LAB_180897af6:
   int integerValue6;
   int ValidationStatus;
   uint8_t1 auStack_2a8 [32];
-  uint8_t4 dataChecksumBuffer8 [2];
+  uint32_t dataChecksumBuffer8 [2];
   uint8_t *puStack_280;
-  uint8_t4 uStack_278;
-  uint8_t4 uStack_270;
+  uint32_t uStack_278;
+  uint32_t uStack_270;
   uint8_t *puStack_268;
-  uint8_t4 uStack_260;
-  uint8_t4 uStack_258;
+  uint32_t uStack_260;
+  uint32_t uStack_258;
   int iStack_250;
-  uint8_t4 uStack_24c;
-  uint8_t4 uStack_248;
-  uint8_t4 uStack_244;
-  uint8_t4 uStack_240;
-  uint8_t4 uStack_23c;
+  uint32_t uStack_24c;
+  uint32_t uStack_248;
+  uint32_t uStack_244;
+  uint32_t uStack_240;
+  uint32_t uStack_23c;
   uint8_t auStack_238 [64];
   uint64_t EncryptedValue;
   
@@ -14078,10 +14090,10 @@ LAB_180897ce8:
                     // WARNING: Subroutine does not return
         FinalizeSecurityOperation(EncryptedValue ^ (uint64_t)auStack_2a8);
       }
-      uStack_24c = *(uint8_t4 *)(localContextPointer + 0x10);
-      uStack_248 = *(uint8_t4 *)(localContextPointer + 0x14);
-      uStack_244 = *(uint8_t4 *)(localContextPointer + 0x18);
-      uStack_240 = *(uint8_t4 *)(localContextPointer + 0x1c);
+      uStack_24c = *(uint32_t *)(localContextPointer + 0x10);
+      uStack_248 = *(uint32_t *)(localContextPointer + 0x14);
+      uStack_244 = *(uint32_t *)(localContextPointer + 0x18);
+      uStack_240 = *(uint32_t *)(localContextPointer + 0x1c);
       uStack_260 = 0;
       iVar3 = iVar4 + 1;
       puStack_268 = &SystemMemoryTemplateA;
@@ -14161,15 +14173,15 @@ uint8_t InitializeResourceRenderingConfiguration(int64_t *objectContextParam)
   int64_t loopCounter;
   uint8_t validationResult;
   int64_t resourceIndex;
-  uint8_t4 unsignedResult4;
-  uint8_t4 unsignedValue5;
-  uint8_t4 unsignedValue6;
-  uint8_t4 unsignedValue7;
-  uint8_t4 uVar8;
+  uint32_t unsignedResult4;
+  uint32_t unsignedValue5;
+  uint32_t unsignedValue6;
+  uint32_t unsignedValue7;
+  uint32_t uVar8;
   uint8_t *puStack_28;
-  uint8_t4 uStack_20;
-  uint8_t4 OperationParam1;
-  uint8_t4 OperationParam2;
+  uint32_t uStack_20;
+  uint32_t OperationParam1;
+  uint32_t OperationParam2;
   
   uStack_20 = 0;
   puStack_28 = &NetworkRequestTemplate;
@@ -14188,40 +14200,40 @@ uint8_t InitializeResourceRenderingConfiguration(int64_t *objectContextParam)
         unsignedResult4 = 0x14;
         validationResult = ProcessNetworkRequest(objectContextParam,&ResourceConfigTable,2,2,0x14);
         if (((((int)validationResult == 0) &&
-             (validationResult = ProcessNetworkRequest(objectContextParam,&ResourceMetadataTable,*(uint8_t4 *)(localContextPointer + 0x116bc)),
+             (validationResult = ProcessNetworkRequest(objectContextParam,&ResourceMetadataTable,*(uint32_t *)(localContextPointer + 0x116bc)),
              (int)validationResult == 0)) &&
             (validationResult = ProcessNetworkRequest(objectContextParam,&ResourceDataTable,(uint64_t)*(uint *)(localContextPointer + 0x6d8),
                                    (uint64_t)*(uint *)(localContextPointer + 0x6dc) /
                                    (uint64_t)*(uint *)(localContextPointer + 0x6d8),unsignedResult4), (int)validationResult == 0)) &&
-           (validationResult = ProcessNetworkRequest(objectContextParam,&NetworkOperationTemplate,*(uint8_t4 *)(localContextPointer + 0x6d0),
-                                  *(uint8_t4 *)(localContextPointer + 0x1193c),*(uint8_t4 *)(localContextPointer + 0x6d4)),
+           (validationResult = ProcessNetworkRequest(objectContextParam,&NetworkOperationTemplate,*(uint32_t *)(localContextPointer + 0x6d0),
+                                  *(uint32_t *)(localContextPointer + 0x1193c),*(uint32_t *)(localContextPointer + 0x6d4)),
            (int)validationResult == 0)) {
-          unsignedResult4 = *(uint8_t4 *)(localContextPointer + 0x11668);
-          uVar8 = *(uint8_t4 *)(localContextPointer + 0x11624);
-          unsignedValue7 = *(uint8_t4 *)(localContextPointer + 0x11620);
-          unsignedValue6 = *(uint8_t4 *)(localContextPointer + 0x1161c);
-          validationResult = ProcessNetworkRequest(objectContextParam,&NetworkRequestTemplate2,*(uint8_t4 *)(localContextPointer + 0x1160c),
-                                *(uint8_t4 *)(localContextPointer + 0x11610),*(uint8_t4 *)(localContextPointer + 0x11614),
-                                *(uint8_t4 *)(localContextPointer + 0x11618),unsignedValue6,unsignedValue7,uVar8,unsignedResult4);
+          unsignedResult4 = *(uint32_t *)(localContextPointer + 0x11668);
+          uVar8 = *(uint32_t *)(localContextPointer + 0x11624);
+          unsignedValue7 = *(uint32_t *)(localContextPointer + 0x11620);
+          unsignedValue6 = *(uint32_t *)(localContextPointer + 0x1161c);
+          validationResult = ProcessNetworkRequest(objectContextParam,&NetworkRequestTemplate2,*(uint32_t *)(localContextPointer + 0x1160c),
+                                *(uint32_t *)(localContextPointer + 0x11610),*(uint32_t *)(localContextPointer + 0x11614),
+                                *(uint32_t *)(localContextPointer + 0x11618),unsignedValue6,unsignedValue7,uVar8,unsignedResult4);
           if (((int)validationResult == 0) &&
-             (validationResult = ProcessNetworkRequest(objectContextParam,&NetworkConfigTemplate,*(uint8_t4 *)(localContextPointer + 0x11628),
+             (validationResult = ProcessNetworkRequest(objectContextParam,&NetworkConfigTemplate,*(uint32_t *)(localContextPointer + 0x11628),
                                     (double)*(float *)(localContextPointer + 0x11640),
-                                    *(uint8_t4 *)(localContextPointer + 0x11644),
-                                    *(uint8_t4 *)(localContextPointer + 0x1164c),unsignedValue6,unsignedValue7,uVar8,unsignedResult4),
+                                    *(uint32_t *)(localContextPointer + 0x11644),
+                                    *(uint32_t *)(localContextPointer + 0x1164c),unsignedValue6,unsignedValue7,uVar8,unsignedResult4),
              (int)validationResult == 0)) {
-            unsignedValue6 = *(uint8_t4 *)(localContextPointer + 0x11660);
+            unsignedValue6 = *(uint32_t *)(localContextPointer + 0x11660);
             validationResult = ProcessNetworkRequest(objectContextParam,&NetworkDataTemplate,(double)*(float *)(localContextPointer + 0x11650),
-                                  *(uint8_t4 *)(localContextPointer + 0x11654),*(uint8_t4 *)(localContextPointer + 0x11658),
-                                  *(uint8_t4 *)(localContextPointer + 0x1165c),unsignedValue6,unsignedValue7,uVar8,unsignedResult4);
+                                  *(uint32_t *)(localContextPointer + 0x11654),*(uint32_t *)(localContextPointer + 0x11658),
+                                  *(uint32_t *)(localContextPointer + 0x1165c),unsignedValue6,unsignedValue7,uVar8,unsignedResult4);
             if ((int)validationResult == 0) {
-              unsignedValue5 = *(uint8_t4 *)(resourceIndex + 0x10);
-              validationResult = ProcessNetworkRequest(objectContextParam,&NetworkStreamTemplate,*(uint8_t4 *)(resourceIndex + 4),
-                                    *(uint8_t4 *)(resourceIndex + 8),*(uint8_t4 *)(resourceIndex + 0xc),unsignedValue5,
+              unsignedValue5 = *(uint32_t *)(resourceIndex + 0x10);
+              validationResult = ProcessNetworkRequest(objectContextParam,&NetworkStreamTemplate,*(uint32_t *)(resourceIndex + 4),
+                                    *(uint32_t *)(resourceIndex + 8),*(uint32_t *)(resourceIndex + 0xc),unsignedValue5,
                                     unsignedValue6,unsignedValue7,uVar8,unsignedResult4);
               if ((((int)validationResult == 0) &&
-                  (validationResult = ProcessNetworkRequest(objectContextParam,&NetworkConnectionTemplate,*(uint8_t4 *)(localContextPointer + 0x1e0),
-                                         *(uint8_t4 *)(objectContextParam[1] + 0x20),
-                                         *(uint8_t4 *)(localContextPointer + 0x78),unsignedValue5,unsignedValue6,unsignedValue7,uVar8,unsignedResult4
+                  (validationResult = ProcessNetworkRequest(objectContextParam,&NetworkConnectionTemplate,*(uint32_t *)(localContextPointer + 0x1e0),
+                                         *(uint32_t *)(objectContextParam[1] + 0x20),
+                                         *(uint32_t *)(localContextPointer + 0x78),unsignedValue5,unsignedValue6,unsignedValue7,uVar8,unsignedResult4
                                         ), (int)validationResult == 0)) &&
                  ((validationResult = (**(code **)(*objectContextParam + 8))(objectContextParam,&NetworkValidationTemplate), (int)validationResult == 0 &&
                   (((*(uint *)(objectContextParam + 3) & 2) != 0 ||
@@ -14300,7 +14312,7 @@ uint8_t ValidateResourceRenderingState(void)
 {
   float CalculatedFloatValue;
   uint8_t *pvalidationResult;
-  uint8_t4 *punsignedResult3;
+  uint32_t *punsignedResult3;
   int64_t DataOffset;
   char cVar5;
   int integerValue6;
@@ -14331,18 +14343,18 @@ uint8_t ValidateResourceRenderingState(void)
   uint8_t1 auStack_2f0 [8];
   uint8_t aGraphicsOperationFlag1 [2];
   uint8_t *puStack_2d8;
-  uint8_t4 GraphicsOperationFlag3;
+  uint32_t GraphicsOperationFlag3;
   float fStack_2c8;
   uint uStack_2c4;
-  uint8_t4 GraphicsOperationFlag5;
-  uint8_t4 uStack_2bc;
-  uint8_t4 GraphicsOperationFlag6;
+  uint32_t GraphicsOperationFlag5;
+  uint32_t uStack_2bc;
+  uint32_t GraphicsOperationFlag6;
   uint8_t uStack_2b4;
   uint8_t GraphicsOperationFlag8;
-  uint8_t4 uStack_2a4;
-  uint8_t4 uStack_2a0;
-  uint8_t4 uStack_29c;
-  uint8_t4 uStack_298;
+  uint32_t uStack_2a4;
+  uint32_t uStack_2a0;
+  uint32_t uStack_29c;
+  uint32_t uStack_298;
   int64_t lStack_294;
   uint uStack_28c;
   uint8_t1 uStack_288;
@@ -14415,13 +14427,13 @@ uint8_t ValidateResourceRenderingState(void)
           localContextPointer1 = *plocalContextPointer3;
           uVar9 = plocalContextPointer3[1];
           uStack_2c4 = (uint)localContextPointer1;
-          GraphicsOperationFlag5 = (uint8_t4)((uint64_t)localContextPointer1 >> 0x20);
-          uStack_2bc = (uint8_t4)uVar9;
-          GraphicsOperationFlag6 = (uint8_t4)(uVar9 >> 0x20);
+          GraphicsOperationFlag5 = (uint32_t)((uint64_t)localContextPointer1 >> 0x20);
+          uStack_2bc = (uint32_t)uVar9;
+          GraphicsOperationFlag6 = (uint32_t)(uVar9 >> 0x20);
           pvalidationResult = (uint8_t *)(localContextPointer5 + 0xf0 + (int64_t)plocalContextPointer0);
           uStack_2b4 = *pvalidationResult;
           GraphicsOperationFlag8 = pvalidationResult[1];
-          punsignedResult3 = (uint8_t4 *)(localContextPointer5 + 0x100 + (int64_t)plocalContextPointer0);
+          punsignedResult3 = (uint32_t *)(localContextPointer5 + 0x100 + (int64_t)plocalContextPointer0);
           uStack_2a4 = *punsignedResult3;
           uStack_2a0 = punsignedResult3[1];
           uStack_29c = punsignedResult3[2];
@@ -14701,7 +14713,7 @@ uint8_t ProcessResourceTimeSynchronization(int64_t *objectContextParam,char vali
   uint8_t ValidationContext;
   int64_t ValidationStackBuffer18 [2];
   uint8_t *puStack_28;
-  uint8_t4 uStack_20;
+  uint32_t uStack_20;
   uint64_t OperationParam1;
   
   *(uint8_t1 *)(objectContextParam + 4) = 1;
@@ -14838,7 +14850,7 @@ LAB_1808989f7:
  * @param additionalData 附加数据，用于扩展搜索功能
  * @return uint64_t 查找结果，成功返回找到的元素，失败返回错误码
  */
-uint64_t BinarySearchInArray(int64_t arrayData,uint *searchKey,uint8_t searchContext,uint8_t4 searchFlags,
+uint64_t BinarySearchInArray(int64_t arrayData,uint *searchKey,uint8_t searchContext,uint32_t searchFlags,
              uint8_t additionalData)
 
 {
@@ -14910,17 +14922,17 @@ uint64_t BinarySearchInArray(int64_t arrayData,uint *searchKey,uint8_t searchCon
  * @param ProcessedCount 输出参数，返回已处理的资源数量
  * @return 处理状态码，0x1f表示无效索引，0x41表示成功处理
  */
-uint8_t4
-ProcessResourceHashData(int64_t *ResourceTable,int ResourceIndex,uint8_t4 *HashDataOutput,uint8_t1 *ResourceBuffer,int BufferSize,
+uint32_t
+ProcessResourceHashData(int64_t *ResourceTable,int ResourceIndex,uint32_t *HashDataOutput,uint8_t1 *ResourceBuffer,int BufferSize,
              int *ProcessedCount)
 
 {
-  uint8_t4 *HashEntryPointer;
+  uint32_t *HashEntryPointer;
   uint8_t1 DataByte;
   uint HashValue;
   uint3 HashIndex;
-  uint8_t4 HashComponent1;
-  uint8_t4 HashComponent2;
+  uint32_t HashComponent1;
+  uint32_t HashComponent2;
   uint EntryIndex;
   int DataLength;
   int CopyLength;
@@ -14930,12 +14942,12 @@ ProcessResourceHashData(int64_t *ResourceTable,int ResourceIndex,uint8_t4 *HashD
   int64_t ResourceOffset;
   uint8_t1 *ResourceData;
   int RemainingLength;
-  uint8_t4 StatusFlag;
+  uint32_t StatusFlag;
   int TotalProcessed;
   
   if ((-1 < ResourceIndex) && (ResourceIndex < (int)ResourceTable[3])) {
-    if (HashDataOutput != (uint8_t4 *)0x0) {
-      HashEntryPointer = (uint8_t4 *)(ResourceTable[2] + (int64_t)ResourceIndex * 0x10);
+    if (HashDataOutput != (uint32_t *)0x0) {
+      HashEntryPointer = (uint32_t *)(ResourceTable[2] + (int64_t)ResourceIndex * 0x10);
       StatusFlag = HashEntryPointer[1];
       HashComponent1 = HashEntryPointer[2];
       HashComponent2 = HashEntryPointer[3];
@@ -15044,15 +15056,15 @@ ProcessResourceHashData(int64_t *ResourceTable,int ResourceIndex,uint8_t4 *HashD
  * @param param_3 输出参数，用于返回提取的哈希数据
  * @return 操作状态码，0表示成功，非0表示错误
  */
-uint8_t4 ExtractResourceHashData(uint8_t objectContextParam,int validationContextParam,uint8_t4 *param_3)
+uint32_t ExtractResourceHashData(uint8_t objectContextParam,int validationContextParam,uint32_t *param_3)
 
 {
-  uint8_t4 *presourceHash;
+  uint32_t *presourceHash;
   uint8_t1 validationResult;
   uint unsignedValue3;
   uint3 unsignedResult4;
-  uint8_t4 unsignedValue5;
-  uint8_t4 unsignedValue6;
+  uint32_t unsignedValue5;
+  uint32_t unsignedValue6;
   uint unsignedValue7;
   int OperationCounter;
   int iVar9;
@@ -15065,13 +15077,13 @@ uint8_t4 ExtractResourceHashData(uint8_t objectContextParam,int validationContex
   int64_t localContextPointer4;
   uint8_t1 *presourceHash5;
   int integerValue16;
-  uint8_t4 resourceHash7;
+  uint32_t resourceHash7;
   int64_t *unaff_R14;
   int integerValue18;
   int *in_stack_00000078;
   
-  if (param_3 != (uint8_t4 *)0x0) {
-    presourceHash = (uint8_t4 *)(unaff_R14[2] + (int64_t)validationContextParam * 0x10);
+  if (param_3 != (uint32_t *)0x0) {
+    presourceHash = (uint32_t *)(unaff_R14[2] + (int64_t)validationContextParam * 0x10);
     resourceHash7 = presourceHash[1];
     unsignedValue5 = presourceHash[2];
     unsignedValue6 = presourceHash[3];
@@ -15178,7 +15190,7 @@ uint8_t4 ExtractResourceHashData(uint8_t objectContextParam,int validationContex
  * @param validationContextParam 哈希索引，指定要验证的资源索引
  * @return 验证状态码，0表示成功，非0表示错误
  */
-uint8_t4 ValidateResourceHashIndex(uint8_t objectContextParam,uint64_t validationContextParam)
+uint32_t ValidateResourceHashIndex(uint8_t objectContextParam,uint64_t validationContextParam)
 
 {
   uint8_t1 resourceHash;
@@ -15194,7 +15206,7 @@ uint8_t4 ValidateResourceHashIndex(uint8_t objectContextParam,uint64_t validatio
   int64_t longValue8;
   uint8_t1 *puVar9;
   int integerValue10;
-  uint8_t4 unaff_R13D;
+  uint32_t unaff_R13D;
   int64_t *unaff_R14;
   int unaff_R15D;
   int *in_stack_00000078;
@@ -15291,7 +15303,7 @@ uint8_t4 ValidateResourceHashIndex(uint8_t objectContextParam,uint64_t validatio
  * 
  * @return 资源表状态码，包含各种状态信息
  */
-uint8_t4 GetResourceTableStatus(void)
+uint32_t GetResourceTableStatus(void)
 
 {
   uint8_t1 resourceHash;
@@ -15302,7 +15314,7 @@ uint8_t4 GetResourceTableStatus(void)
   int64_t ExecutionContextPointer;
   uint8_t1 *SystemContextPointer;
   uint8_t1 *resourcePointer5;
-  uint8_t4 unaff_R13D;
+  uint32_t unaff_R13D;
   int unaff_R15D;
   int *in_stack_00000078;
   
@@ -15367,10 +15379,10 @@ uint8_t4 GetResourceTableStatus(void)
  * @param validationContextParam 输出参数，用于返回查询到的索引值
  * @return 查询状态码，0表示成功，非0表示错误
  */
-uint8_t4 ProcessResourceIndexQuery(uint8_t objectContextParam,int *validationContextParam)
+uint32_t ProcessResourceIndexQuery(uint8_t objectContextParam,int *validationContextParam)
 
 {
-  uint8_t4 unaff_R13D;
+  uint32_t unaff_R13D;
   int unaff_R15D;
   
   *validationContextParam = unaff_R15D + 1;
@@ -15540,11 +15552,11 @@ uint8_t GetSystemResourceStatus(void)
  * @param validationContextParam 参数2，哈希键值
  * @return uint8_t 查找结果
  */
-uint8_t FindResourceHash(int64_t *objectContextParam,uint8_t4 *validationContextParam)
+uint8_t FindResourceHash(int64_t *objectContextParam,uint32_t *validationContextParam)
 
 {
   uint8_t resourceHash;
-  uint8_t4 ArrayUnionStackX8 [8];
+  uint32_t ArrayUnionStackX8 [8];
   
   if (*(int *)(objectContextParam[1] + 0x18) != 0) {
     return 0x1c;
@@ -15566,11 +15578,11 @@ uint8_t FindResourceHash(int64_t *objectContextParam,uint8_t4 *validationContext
  * @param validationContextParam 参数2，搜索键值
  * @return uint8_t 搜索结果
  */
-uint8_t SearchResourceEntry(int64_t *objectContextParam,uint8_t4 *validationContextParam)
+uint8_t SearchResourceEntry(int64_t *objectContextParam,uint32_t *validationContextParam)
 
 {
   uint8_t resourceHash;
-  uint8_t4 ArrayUnionStackX8 [8];
+  uint32_t ArrayUnionStackX8 [8];
   
   if (*(int *)(objectContextParam[1] + 0x18) != 0) {
     return 0x1c;
@@ -15619,14 +15631,14 @@ uint8_t ProcessResourceHashValidation(uint8_t *resourceHandle,int64_t offset)
  * @param dataBuffer 数据缓冲区
  * @return 解析结果，0x1c表示失败，其他值表示解析结果
  */
-uint8_t ProcessResourceDataParsing(int64_t *dataContext,uint8_t4 *dataBuffer)
+uint8_t ProcessResourceDataParsing(int64_t *dataContext,uint32_t *dataBuffer)
 
 {
   int64_t loopCounter;
   uint8_t *pvalidationResult;
   uint8_t unsignedResult3;
-  uint8_t4 ArrayUnionStackX8 [2];
-  uint8_t4 aSecurityValidationContext [4];
+  uint32_t ArrayUnionStackX8 [2];
+  uint32_t aSecurityValidationContext [4];
   
   if (*(int *)(objectContextParam[1] + 0x18) != 0) {
     return 0x1c;
@@ -15715,14 +15727,14 @@ uint8_t ProcessResourceDataParsing(int64_t *dataContext,uint8_t4 *dataBuffer)
 
 
 
- 9100(int64_t objectContextParam,uint8_t4 *validationContextParam)
-9100(int64_t objectContextParam,uint8_t4 *validationContextParam)
+ 9100(int64_t objectContextParam,uint32_t *validationContextParam)
+9100(int64_t objectContextParam,uint32_t *validationContextParam)
 
 {
   int operationResult;
-  uint8_t4 ArrayUnionStackX8 [2];
-  uint8_t4 ArrayStackBuffer [2];
-  uint8_t4 aSecurityValidationContext [2];
+  uint32_t ArrayUnionStackX8 [2];
+  uint32_t ArrayStackBuffer [2];
+  uint32_t aSecurityValidationContext [2];
   
   ArrayUnionStackX8[0] = *validationContextParam;
   integerValue1 = (**(code **)**(uint8_t **)(objectContextParam + 8))(*(uint8_t **)(objectContextParam + 8),ArrayUnionStackX8,4);
@@ -15897,14 +15909,14 @@ LAB_1808992a5:
  * @param dataBuffer 数据缓冲区
  * @return 序列化结果，0x1c表示失败，其他值表示序列化结果
  */
-uint8_t ProcessResourceDataSerialization(int64_t *dataContext,uint8_t4 *dataBuffer)
+uint8_t ProcessResourceDataSerialization(int64_t *dataContext,uint32_t *dataBuffer)
 
 {
   int64_t loopCounter;
   uint8_t *pvalidationResult;
   uint8_t unsignedResult3;
-  uint8_t4 ArrayUnionStackX8 [2];
-  uint8_t4 aSecurityValidationContext [4];
+  uint32_t ArrayUnionStackX8 [2];
+  uint32_t aSecurityValidationContext [4];
   
   if (*(int *)(objectContextParam[1] + 0x18) != 0) {
     return 0x1c;
@@ -16056,13 +16068,13 @@ LAB_180899546:
 
 
 
- 95c0(int64_t *objectContextParam,uint8_t4 *validationContextParam)
-95c0(int64_t *objectContextParam,uint8_t4 *validationContextParam)
+ 95c0(int64_t *objectContextParam,uint32_t *validationContextParam)
+95c0(int64_t *objectContextParam,uint32_t *validationContextParam)
 
 {
   int operationResult;
   uint ArrayUnionStackX8 [2];
-  uint8_t4 aSecurityValidationContext [4];
+  uint32_t aSecurityValidationContext [4];
   
   if (*objectContextParam == 0) {
     integerValue1 = 0x1c;
@@ -16160,7 +16172,7 @@ LAB_1808996c5:
  * @param validationContextParam 哈希计算参数
  * @return 计算得到的哈希值
  */
-uint8_t CalculateResourceHash(uint8_t objectContextParam, uint8_t4 *validationContextParam)
+uint8_t CalculateResourceHash(uint8_t objectContextParam, uint32_t *validationContextParam)
 
 {
   uint8_t resourceHash;
@@ -16187,7 +16199,7 @@ uint8_t ValidateResourceHash(void)
 
 {
   uint8_t resourceHash;
-  uint8_t4 *ResourceContextPointer;
+  uint32_t *ResourceContextPointer;
   
   resourceHash = ReadResourceData();
   if ((int)resourceHash != 0x11) {
@@ -16394,8 +16406,8 @@ uint8_t ProcessResourceTableEntries(int64_t objectContextParam, int64_t *validat
 
 
 
- 9950(int64_t objectContextParam,uint8_t4 *validationContextParam)
-9950(int64_t objectContextParam,uint8_t4 *validationContextParam)
+ 9950(int64_t objectContextParam,uint32_t *validationContextParam)
+9950(int64_t objectContextParam,uint32_t *validationContextParam)
 
 {
   int operationResult;
@@ -16404,7 +16416,7 @@ uint8_t ProcessResourceTableEntries(int64_t objectContextParam, int64_t *validat
   uint64_t unsignedResult4;
   int64_t MemoryRegion;
   uint64_t unsignedValue6;
-  uint8_t4 unsignedValue7;
+  uint32_t unsignedValue7;
   uint64_t MemorySize;
   uint8_t ValidationContext;
   
@@ -16457,7 +16469,7 @@ uint8_t ProcessResourceTableEntries(int64_t objectContextParam, int64_t *validat
             if (0 < integerValue1) {
               do {
                 ValidationContext = CONCAT44(ValidationContext._4_4_,
-                                     *(uint8_t4 *)(*(int64_t *)(validationContextParam + 0x10) + unsignedResult4 * 4));
+                                     *(uint32_t *)(*(int64_t *)(validationContextParam + 0x10) + unsignedResult4 * 4));
                 integerValue2 = (**(code **)**(uint8_t **)(objectContextParam + 8))
                                   (*(uint8_t **)(objectContextParam + 8),&ValidationContext,4);
                 if (integerValue2 != 0) {
@@ -16513,13 +16525,13 @@ uint8_t ProcessResourceTableEntries(int64_t objectContextParam, int64_t *validat
                   if (0 < integerValue1) {
                     do {
                       lVar5 = *(int64_t *)(validationContextParam + 0x1c);
-                      ValidationContext._0_4_ = *(uint8_t4 *)(lVar5 + unsignedValue6 * 8);
+                      ValidationContext._0_4_ = *(uint32_t *)(lVar5 + unsignedValue6 * 8);
                       integerValue2 = (**(code **)**(uint8_t **)(objectContextParam + 8))
                                         (*(uint8_t **)(objectContextParam + 8),&ValidationContext,4);
                       if (integerValue2 != 0) {
                         return;
                       }
-                      ValidationContext = CONCAT44(ValidationContext._4_4_,*(uint8_t4 *)(lVar5 + 4 + unsignedValue6 * 8));
+                      ValidationContext = CONCAT44(ValidationContext._4_4_,*(uint32_t *)(lVar5 + 4 + unsignedValue6 * 8));
                       integerValue2 = (**(code **)**(uint8_t **)(objectContextParam + 8))
                                         (*(uint8_t **)(objectContextParam + 8),&ValidationContext,4);
                       if (integerValue2 != 0) {
@@ -16560,14 +16572,14 @@ uint8_t ProcessResourceTableEntries(int64_t objectContextParam, int64_t *validat
   uint64_t unsignedValue7;
   int64_t unaff_R14;
   uint64_t MemorySize;
-  uint8_t4 extraout_XMM0_Da;
-  uint8_t4 extraout_XMM0_Da_00;
-  uint8_t4 extraout_XMM0_Da_01;
-  uint8_t4 extraout_XMM0_Da_02;
-  uint8_t4 extraout_XMM0_Da_03;
-  uint8_t4 extraout_XMM0_Da_04;
-  uint8_t4 extraout_XMM0_Da_05;
-  uint8_t4 uVar9;
+  uint32_t extraout_XMM0_Da;
+  uint32_t extraout_XMM0_Da_00;
+  uint32_t extraout_XMM0_Da_01;
+  uint32_t extraout_XMM0_Da_02;
+  uint32_t extraout_XMM0_Da_03;
+  uint32_t extraout_XMM0_Da_04;
+  uint32_t extraout_XMM0_Da_05;
+  uint32_t uVar9;
   
   iVar3 = *(int *)(unaff_R14 + 0x28);
   *(int *)(ExecutionContextPointer + 0x20) = iVar3;
@@ -16615,8 +16627,8 @@ uint8_t ProcessResourceTableEntries(int64_t objectContextParam, int64_t *validat
         if (0 < iVar3) {
           do {
             presourceHash = *(uint8_t **)(ResourceContextPointer + 8);
-            *(uint8_t4 *)(ExecutionContextPointer + 0x20) =
-                 *(uint8_t4 *)(*(int64_t *)(unaff_R14 + 0x40) + unsignedValue5 * 4);
+            *(uint32_t *)(ExecutionContextPointer + 0x20) =
+                 *(uint32_t *)(*(int64_t *)(unaff_R14 + 0x40) + unsignedValue5 * 4);
             integerValue2 = (**(code **)*presourceHash)(presourceHash,ExecutionContextPointer + 0x20,4);
             if (integerValue2 != 0) {
               return;
@@ -16673,13 +16685,13 @@ uint8_t ProcessResourceTableEntries(int64_t objectContextParam, int64_t *validat
                 do {
                   lVar6 = *(int64_t *)(unaff_R14 + 0x70);
                   presourceHash = *(uint8_t **)(ResourceContextPointer + 8);
-                  *(uint8_t4 *)(ExecutionContextPointer + 0x20) = *(uint8_t4 *)(lVar6 + unsignedValue7 * 8);
+                  *(uint32_t *)(ExecutionContextPointer + 0x20) = *(uint32_t *)(lVar6 + unsignedValue7 * 8);
                   integerValue2 = (**(code **)*presourceHash)(presourceHash,ExecutionContextPointer + 0x20,4);
                   if (integerValue2 != 0) {
                     return;
                   }
                   presourceHash = *(uint8_t **)(ResourceContextPointer + 8);
-                  *(uint8_t4 *)(ExecutionContextPointer + 0x20) = *(uint8_t4 *)(lVar6 + 4 + unsignedValue7 * 8);
+                  *(uint32_t *)(ExecutionContextPointer + 0x20) = *(uint32_t *)(lVar6 + 4 + unsignedValue7 * 8);
                   integerValue2 = (**(code **)*presourceHash)(presourceHash,ExecutionContextPointer + 0x20,4);
                   if (integerValue2 != 0) {
                     return;
@@ -16688,7 +16700,7 @@ uint8_t ProcessResourceTableEntries(int64_t objectContextParam, int64_t *validat
                 } while ((int64_t)unsignedValue7 < (int64_t)iVar3);
               }
               presourceHash = *(uint8_t **)(ResourceContextPointer + 8);
-              *(uint8_t4 *)(ExecutionContextPointer + 0x20) = *(uint8_t4 *)(unaff_R14 + 0x80);
+              *(uint32_t *)(ExecutionContextPointer + 0x20) = *(uint32_t *)(unaff_R14 + 0x80);
               (**(code **)*presourceHash)(presourceHash,ExecutionContextPointer + 0x20,4);
             }
           }
@@ -16718,10 +16730,10 @@ uint8_t ProcessResourceTableEntries(int64_t objectContextParam, int64_t *validat
   int64_t MemoryAddress;
   int64_t unaff_R14;
   int64_t BufferPointer;
-  uint8_t4 extraout_XMM0_Da;
-  uint8_t4 extraout_XMM0_Da_00;
-  uint8_t4 extraout_XMM0_Da_01;
-  uint8_t4 uVar8;
+  uint32_t extraout_XMM0_Da;
+  uint32_t extraout_XMM0_Da_00;
+  uint32_t extraout_XMM0_Da_01;
+  uint32_t uVar8;
   
   iVar3 = (**(code **)*objectContextParam)();
   if (iVar3 == 0) {
@@ -16769,13 +16781,13 @@ uint8_t ProcessResourceTableEntries(int64_t objectContextParam, int64_t *validat
           do {
             lVar6 = *(int64_t *)(unaff_R14 + 0x70);
             pvalidationResult = *(uint8_t **)(ResourceContextPointer + 8);
-            *(uint8_t4 *)(ExecutionContextPointer + 0x20) = *(uint8_t4 *)(lVar6 + unaff_RDI * 8);
+            *(uint32_t *)(ExecutionContextPointer + 0x20) = *(uint32_t *)(lVar6 + unaff_RDI * 8);
             iVar4 = (**(code **)*pvalidationResult)(pvalidationResult,ExecutionContextPointer + 0x20,4);
             if (iVar4 != 0) {
               return;
             }
             pvalidationResult = *(uint8_t **)(ResourceContextPointer + 8);
-            *(uint8_t4 *)(ExecutionContextPointer + 0x20) = *(uint8_t4 *)(lVar6 + 4 + unaff_RDI * 8);
+            *(uint32_t *)(ExecutionContextPointer + 0x20) = *(uint32_t *)(lVar6 + 4 + unaff_RDI * 8);
             iVar4 = (**(code **)*pvalidationResult)(pvalidationResult,ExecutionContextPointer + 0x20,4);
             if (iVar4 != 0) {
               return;
@@ -16784,7 +16796,7 @@ uint8_t ProcessResourceTableEntries(int64_t objectContextParam, int64_t *validat
           } while (unaff_RDI < iVar3);
         }
         pvalidationResult = *(uint8_t **)(ResourceContextPointer + 8);
-        *(uint8_t4 *)(ExecutionContextPointer + 0x20) = *(uint8_t4 *)(unaff_R14 + 0x80);
+        *(uint32_t *)(ExecutionContextPointer + 0x20) = *(uint32_t *)(unaff_R14 + 0x80);
         (**(code **)*pvalidationResult)(pvalidationResult,ExecutionContextPointer + 0x20,4);
       }
     }
@@ -16815,12 +16827,12 @@ uint8_t ProcessResourceTableEntries(int64_t objectContextParam, int64_t *validat
 
 
 
- 9c60(int64_t objectContextParam,uint8_t4 *validationContextParam)
-9c60(int64_t objectContextParam,uint8_t4 *validationContextParam)
+ 9c60(int64_t objectContextParam,uint32_t *validationContextParam)
+9c60(int64_t objectContextParam,uint32_t *validationContextParam)
 
 {
   int operationResult;
-  uint8_t4 ArrayUnionStackX8 [2];
+  uint32_t ArrayUnionStackX8 [2];
   
   ArrayUnionStackX8[0] = *validationContextParam;
   integerValue1 = (**(code **)**(uint8_t **)(objectContextParam + 8))(*(uint8_t **)(objectContextParam + 8),ArrayUnionStackX8,4);
@@ -16862,7 +16874,7 @@ uint8_t ProcessResourceTableEntries(int64_t objectContextParam, int64_t *validat
   int operationResult;
   int64_t ResourceContextPointer;
   int64_t UnaffectedRegisterValue;
-  uint8_t4 in_stack_00000030;
+  uint32_t in_stack_00000030;
   
   integerValue1 = ValidateResourceEntry();
   if (integerValue1 == 0) {
@@ -16873,7 +16885,7 @@ uint8_t ProcessResourceTableEntries(int64_t objectContextParam, int64_t *validat
     if ((((integerValue1 == 0) && (integerValue1 = VerifyResourceIntegrity(), integerValue1 == 0)) &&
         (integerValue1 = VerifyResourceIntegrity(), integerValue1 == 0)) && (integerValue1 = VerifyResourceIntegrity(), integerValue1 == 0)) {
       if ((*(uint *)(ResourceContextPointer + 4) & 0x100) != 0) {
-        in_stack_00000030 = *(uint8_t4 *)(ResourceContextPointer + 0x48);
+        in_stack_00000030 = *(uint32_t *)(ResourceContextPointer + 0x48);
         integerValue1 = (**(code **)**(uint8_t **)(unaff_RDI + 8))
                           (*(uint8_t **)(unaff_RDI + 8),&ObjectStackBuffer30,4);
         if (integerValue1 != 0) {
@@ -17054,12 +17066,12 @@ uint8_t ProcessResourceDataNormalizationSimple(void)
 
 
 
- 9ef0(int64_t objectContextParam,uint8_t4 *validationContextParam)
-9ef0(int64_t objectContextParam,uint8_t4 *validationContextParam)
+ 9ef0(int64_t objectContextParam,uint32_t *validationContextParam)
+9ef0(int64_t objectContextParam,uint32_t *validationContextParam)
 
 {
   int operationResult;
-  uint8_t4 ArrayUnionStackX8 [2];
+  uint32_t ArrayUnionStackX8 [2];
   
   ArrayUnionStackX8[0] = *validationContextParam;
   integerValue1 = (**(code **)**(uint8_t **)(objectContextParam + 8))(*(uint8_t **)(objectContextParam + 8),ArrayUnionStackX8,4);
@@ -17081,12 +17093,12 @@ uint8_t ProcessResourceDataNormalizationSimple(void)
 
 
 
- 9f80(int64_t objectContextParam,uint8_t4 *validationContextParam)
-9f80(int64_t objectContextParam,uint8_t4 *validationContextParam)
+ 9f80(int64_t objectContextParam,uint32_t *validationContextParam)
+9f80(int64_t objectContextParam,uint32_t *validationContextParam)
 
 {
   int operationResult;
-  uint8_t4 ArrayUnionStackX8 [2];
+  uint32_t ArrayUnionStackX8 [2];
   
   ArrayUnionStackX8[0] = *validationContextParam;
   integerValue1 = (**(code **)**(uint8_t **)(objectContextParam + 8))(*(uint8_t **)(objectContextParam + 8),ArrayUnionStackX8,4);
@@ -17100,8 +17112,8 @@ uint8_t ProcessResourceDataNormalizationSimple(void)
 
 
 
- 9fe0(int64_t objectContextParam,uint8_t4 *validationContextParam)
-9fe0(int64_t objectContextParam,uint8_t4 *validationContextParam)
+ 9fe0(int64_t objectContextParam,uint32_t *validationContextParam)
+9fe0(int64_t objectContextParam,uint32_t *validationContextParam)
 
 {
   uint resourceHash;
@@ -17243,7 +17255,7 @@ uint8_t ProcessResourceDataNormalizationSimple(void)
  * @return 无返回值
  * @note 此函数会在资源验证过程中调用多个资源属性检查函数
  */
-void ValidateResourcePropertiesAndProcessHash(uint8_t4 resourceId)
+void ValidateResourcePropertiesAndProcessHash(uint32_t resourceId)
 {
   uint resourceHash;
   uint8_t *validationResult;
@@ -17254,11 +17266,11 @@ void ValidateResourcePropertiesAndProcessHash(uint8_t4 resourceId)
   int64_t resourceDataPointer;
   uint8_t hashType;
   int propertyIndex;
-  uint8_t4 resourceProperty1;
-  uint8_t4 resourceProperty2;
-  uint8_t4 resourceProperty3;
-  uint8_t4 resourceProperty4;
-  uint8_t4 resourceProperty5;
+  uint32_t resourceProperty1;
+  uint32_t resourceProperty2;
+  uint32_t resourceProperty3;
+  uint32_t resourceProperty4;
+  uint32_t resourceProperty5;
   
   integerValue6 = 0;
   if (0 < *(int *)(unaff_RDI + 0x1a0)) {
@@ -17297,36 +17309,36 @@ void ValidateResourcePropertiesAndProcessHash(uint8_t4 resourceId)
   integerValue6 = (**(code **)*pvalidationResult)(pvalidationResult,ExecutionContextPointer + 0x20,unsignedValue5);
   if (integerValue6 == 0) {
     pvalidationResult = *(uint8_t **)(ResourceContextPointer + 8);
-    *(uint8_t4 *)(ExecutionContextPointer + 0x20) = *(uint8_t4 *)(unaff_RDI + 0x194);
+    *(uint32_t *)(ExecutionContextPointer + 0x20) = *(uint32_t *)(unaff_RDI + 0x194);
     integerValue6 = (**(code **)*pvalidationResult)(pvalidationResult,ExecutionContextPointer + 0x20,4);
     if (((integerValue6 == 0) && (integerValue6 = CheckResourceAvailability(extraout_XMM0_Da_03,unaff_RDI + 0x198), integerValue6 == 0))
        && (integerValue6 = CheckResourceAvailability(extraout_XMM0_Da_04,unaff_RDI + 0x19c), integerValue6 == 0)) {
       pvalidationResult = *(uint8_t **)(ResourceContextPointer + 8);
-      *(uint8_t4 *)(ExecutionContextPointer + 0x20) = *(uint8_t4 *)(unaff_RDI + 0x1a4);
+      *(uint32_t *)(ExecutionContextPointer + 0x20) = *(uint32_t *)(unaff_RDI + 0x1a4);
       integerValue6 = (**(code **)*pvalidationResult)(pvalidationResult,ExecutionContextPointer + 0x20,4);
       if (integerValue6 == 0) {
         pvalidationResult = *(uint8_t **)(ResourceContextPointer + 8);
-        *(uint8_t4 *)(ExecutionContextPointer + 0x20) = *(uint8_t4 *)(unaff_RDI + 0x1a8);
+        *(uint32_t *)(ExecutionContextPointer + 0x20) = *(uint32_t *)(unaff_RDI + 0x1a8);
         integerValue6 = (**(code **)*pvalidationResult)(pvalidationResult,ExecutionContextPointer + 0x20,4);
         if (integerValue6 == 0) {
           pvalidationResult = *(uint8_t **)(ResourceContextPointer + 8);
-          *(uint8_t4 *)(ExecutionContextPointer + 0x20) = *(uint8_t4 *)(unaff_RDI + 0x1ac);
+          *(uint32_t *)(ExecutionContextPointer + 0x20) = *(uint32_t *)(unaff_RDI + 0x1ac);
           integerValue6 = (**(code **)*pvalidationResult)(pvalidationResult,ExecutionContextPointer + 0x20,4);
           if (integerValue6 == 0) {
             pvalidationResult = *(uint8_t **)(ResourceContextPointer + 8);
-            *(uint8_t4 *)(ExecutionContextPointer + 0x20) = *(uint8_t4 *)(unaff_RDI + 0x1b4);
+            *(uint32_t *)(ExecutionContextPointer + 0x20) = *(uint32_t *)(unaff_RDI + 0x1b4);
             integerValue6 = (**(code **)*pvalidationResult)(pvalidationResult,ExecutionContextPointer + 0x20,4);
             if (integerValue6 == 0) {
               pvalidationResult = *(uint8_t **)(ResourceContextPointer + 8);
-              *(uint8_t4 *)(ExecutionContextPointer + 0x20) = *(uint8_t4 *)(unaff_RDI + 0x1b8);
+              *(uint32_t *)(ExecutionContextPointer + 0x20) = *(uint32_t *)(unaff_RDI + 0x1b8);
               integerValue6 = (**(code **)*pvalidationResult)(pvalidationResult,ExecutionContextPointer + 0x20,4);
               if (integerValue6 == 0) {
                 pvalidationResult = *(uint8_t **)(ResourceContextPointer + 8);
-                *(uint8_t4 *)(ExecutionContextPointer + 0x20) = *(uint8_t4 *)(unaff_RDI + 0x1b0);
+                *(uint32_t *)(ExecutionContextPointer + 0x20) = *(uint32_t *)(unaff_RDI + 0x1b0);
                 integerValue6 = (**(code **)*pvalidationResult)(pvalidationResult,ExecutionContextPointer + 0x20,4);
                 if (integerValue6 == 0) {
                   pvalidationResult = *(uint8_t **)(ResourceContextPointer + 8);
-                  *(uint8_t4 *)(ExecutionContextPointer + 0x20) = *(uint8_t4 *)(unaff_RDI + 0x1bc);
+                  *(uint32_t *)(ExecutionContextPointer + 0x20) = *(uint32_t *)(unaff_RDI + 0x1bc);
                   integerValue6 = (**(code **)*pvalidationResult)(pvalidationResult,ExecutionContextPointer + 0x20,4);
                   if (integerValue6 == 0) {
                     pvalidationResult = *(uint8_t **)(ResourceContextPointer + 8);
@@ -17342,15 +17354,15 @@ void ValidateResourcePropertiesAndProcessHash(uint8_t4 resourceId)
                         integerValue6 = (**(code **)*pvalidationResult)(pvalidationResult,ExecutionContextPointer + 0x20,8);
                         if (integerValue6 == 0) {
                           pvalidationResult = *(uint8_t **)(ResourceContextPointer + 8);
-                          *(uint8_t4 *)(ExecutionContextPointer + 0x20) = *(uint8_t4 *)(unaff_RDI + 0x1dc);
+                          *(uint32_t *)(ExecutionContextPointer + 0x20) = *(uint32_t *)(unaff_RDI + 0x1dc);
                           integerValue6 = (**(code **)*pvalidationResult)(pvalidationResult,ExecutionContextPointer + 0x20,4);
                           if (integerValue6 == 0) {
                             pvalidationResult = *(uint8_t **)(ResourceContextPointer + 8);
-                            *(uint8_t4 *)(ExecutionContextPointer + 0x20) = *(uint8_t4 *)(unaff_RDI + 0x1d8);
+                            *(uint32_t *)(ExecutionContextPointer + 0x20) = *(uint32_t *)(unaff_RDI + 0x1d8);
                             integerValue6 = (**(code **)*pvalidationResult)(pvalidationResult,ExecutionContextPointer + 0x20,4);
                             if (integerValue6 == 0) {
                               pvalidationResult = *(uint8_t **)(ResourceContextPointer + 8);
-                              *(uint8_t4 *)(ExecutionContextPointer + 0x20) = *(uint8_t4 *)(unaff_RDI + 0x1e0)
+                              *(uint32_t *)(ExecutionContextPointer + 0x20) = *(uint32_t *)(unaff_RDI + 0x1e0)
                               ;
                               (**(code **)*pvalidationResult)(pvalidationResult,ExecutionContextPointer + 0x20,4);
                             }
@@ -17609,7 +17621,7 @@ void InitializeSystemState(void)
  * @param configData 配置数据指针，包含具体的配置参数
  * @return 处理结果，0表示成功，非0表示失败
  */
-uint8_t ProcessResourceConfigurationData(int64_t configContext, uint8_t4 *configData)
+uint8_t ProcessResourceConfigurationData(int64_t configContext, uint32_t *configData)
 
 {
   int operationResult;
@@ -17721,7 +17733,7 @@ void ProcessResourceHash(int64_t resourceContext, uint *hashPointer)
   uint resourceHash;
   int processResult;
   uint8_t hashType;
-  uint8_t4 formattedHash;
+  uint32_t formattedHash;
   
   resourceHash = *hashPointer;
   if (resourceHash + 0x4000 < 0x8000) {
@@ -17878,7 +17890,7 @@ uint64_t ProcessResourceValidation(void)
   int64_t SystemContextPointer;
   uint *unaff_RDI;
   uint8_t in_R9;
-  uint8_t4 extraout_XMM0_Da;
+  uint32_t extraout_XMM0_Da;
   uint uStack0000000000000068;
   uint in_stack_00000070;
   uint in_stack_00000078;
@@ -17995,23 +18007,23 @@ void ProcessObjectContextValidation(int64_t objectContextParam,int *validationCo
   char *PointerVar1;
   code *CodePointer;
   char StatusFlag;
-  uint8_t4 RegisterEAX;
+  uint32_t RegisterEAX;
   uint8_t3 UnsignedValue6;
   int TableEntry;
-  uint8_t4 RegisterParam4;
+  uint32_t RegisterParam4;
   uint UnregisterEBP;
   char CarryFlag;
   int *StackPointer8;
-  uint8_t4 UnsignedResult4;
+  uint32_t UnsignedResult4;
   
   unsignedValue6 = (uint8_t3)((uint)in_EAX >> 8);
   cVar3 = (char)in_EAX + -0x57 + in_CF;
   unsignedResult4 = CONCAT31(unsignedValue6,cVar3);
-  *(uint8_t4 *)CONCAT44(in_register_00000004,unsignedResult4) = unsignedResult4;
+  *(uint32_t *)CONCAT44(in_register_00000004,unsignedResult4) = unsignedResult4;
   *(uint *)(objectContextParam + -0x565dff77) = *(uint *)(objectContextParam + -0x565dff77) & unaff_EBP;
-  *(uint8_t4 *)CONCAT44(in_register_00000004,unsignedResult4) = unsignedResult4;
+  *(uint32_t *)CONCAT44(in_register_00000004,unsignedResult4) = unsignedResult4;
   piStack_8 = validationContextParam;
-  *(uint8_t4 *)CONCAT44(in_register_00000004,unsignedResult4) = unsignedResult4;
+  *(uint32_t *)CONCAT44(in_register_00000004,unsignedResult4) = unsignedResult4;
   *(char *)CONCAT44(in_register_00000004,unsignedResult4) =
        *(char *)CONCAT44(in_register_00000004,unsignedResult4) + cVar3;
   *(char *)CONCAT44(in_register_00000004,unsignedResult4) =
@@ -18289,7 +18301,7 @@ uint8_t InitializeResourceTableCache(void)
           }
           punsignedResult3[1] = ExecutionContextPointer;
           *punsignedResult3 = &ResourceDataTemplate;
-          *(uint8_t4 *)(punsignedResult3 + 2) = 1;
+          *(uint32_t *)(punsignedResult3 + 2) = 1;
           *(int *)(punsignedResult3 + 3) = (int)ExecutionContextPointer;
           **(uint8_t **)(unaff_RDI + 0x48) = punsignedResult3;
           *(int *)(punsignedResult3 + 3) = (int)fVar1;
@@ -18382,7 +18394,7 @@ void InitializeNetworkSystem(void)
  * @param authenticationFlag 认证标志，指示是否需要进行数据认证
  * @return 无返回值
  */
-void ValidateAndProcessResourceData(int64_t resourceContext, uint8_t resourceData, uint8_t4 checksumParam1, uint8_t4 checksumParam2,
+void ValidateAndProcessResourceData(int64_t resourceContext, uint8_t resourceData, uint32_t checksumParam1, uint32_t checksumParam2,
                   char authenticationFlag)
 
 {
@@ -18421,7 +18433,7 @@ uint64_t ValidateAndProcessResourceData(void)
   uint unsignedValue7;
   char cStack0000000000000030;
   uint uStack0000000000000034;
-  uint8_t4 in_stack_00000038;
+  uint32_t in_stack_00000038;
   
   unsignedValue5 = 0;
   unsignedValue6 = 0;
@@ -18605,7 +18617,7 @@ int SetStatusFlagToSeven(void)
   int64_t ExecutionContextPointer;
   int unaff_R15D;
   
-  *(uint8_t4 *)(ExecutionContextPointer + 0xd4) = 7;
+  *(uint32_t *)(ExecutionContextPointer + 0xd4) = 7;
   if (unaff_R15D != 0) {
     return unaff_R15D;
   }
@@ -18628,10 +18640,10 @@ int GetStatusFlagValue(void)
 
 {
   int64_t ExecutionContextPointer;
-  uint8_t4 unaff_ESI;
+  uint32_t unaff_ESI;
   int unaff_R15D;
   
-  *(uint8_t4 *)(ExecutionContextPointer + 0xd4) = unaff_ESI;
+  *(uint32_t *)(ExecutionContextPointer + 0xd4) = unaff_ESI;
   if (unaff_R15D != 0) {
     return unaff_R15D;
   }
@@ -18672,16 +18684,16 @@ uint64_t ProcessResourceDataReadAndValidate(int64_t ResourceHandle,uint8_t *Reso
 
 {
   uint8_t resourceHash;
-  uint8_t4 *pvalidationResult;
+  uint32_t *pvalidationResult;
   uint64_t unsignedResult3;
   uint unsignedResult4;
-  uint8_t4 EncryptedValue;
-  uint8_t4 uStack_34;
-  uint8_t4 uStack_30;
-  uint8_t4 uStack_2c;
+  uint32_t EncryptedValue;
+  uint32_t uStack_34;
+  uint32_t uStack_30;
+  uint32_t uStack_2c;
   uint8_t1 dataChecksumBuffer [32];
   
-  pvalidationResult = (uint8_t4 *)AllocateMemoryBlock();
+  pvalidationResult = (uint32_t *)AllocateMemoryBlock();
   EncryptedValue = *pvalidationResult;
   uStack_34 = pvalidationResult[1];
   uStack_30 = pvalidationResult[2];
@@ -19227,7 +19239,7 @@ uint8_t InitializeSystemResourceCheck(int ResourceCheckFlag)
   char in_stack_00000030;
   uint8_t in_stack_00000038;
   uint uStack0000000000000040;
-  uint8_t4 uStack0000000000000044;
+  uint32_t uStack0000000000000044;
   
   if (objectContextParam != 0) {
     return 0x1c;
@@ -20670,13 +20682,13 @@ uint64_t ProcessResourceAllocation(int64_t ResourceHandle,uint8_t *ResourceData)
 
 {
   uint8_t resourceHash;
-  uint8_t4 validationResult;
-  uint8_t4 unsignedResult3;
-  uint8_t4 unsignedResult4;
+  uint32_t validationResult;
+  uint32_t unsignedResult3;
+  uint32_t unsignedResult4;
   uint unsignedValue5;
   uint configurationFlags;
   uint64_t unsignedValue7;
-  uint8_t4 *puVar8;
+  uint32_t *puVar8;
   uint uVar9;
   uint8_t *presourceHash0;
   int64_t localContextPointer1;
@@ -20685,10 +20697,10 @@ uint64_t ProcessResourceAllocation(int64_t ResourceHandle,uint8_t *ResourceData)
   uint8_t *pSecurityValidationContext;
   uint8_t *pResourceFlag3;
   uint8_t ResourceFlag4;
-  uint8_t4 ResourceFlag5;
-  uint8_t4 uStack_74;
-  uint8_t4 ResourceFlag6;
-  uint8_t4 uStack_6c;
+  uint32_t ResourceFlag5;
+  uint32_t uStack_74;
+  uint32_t ResourceFlag6;
+  uint32_t uStack_6c;
   uint8_t1 EncryptionBuffer [32];
   uint8_t1 resourceValidationBuffer [32];
   
@@ -20711,7 +20723,7 @@ uint64_t ProcessResourceAllocation(int64_t ResourceHandle,uint8_t *ResourceData)
   if ((int)unsignedValue7 != 0) {
     return unsignedValue7;
   }
-  puVar8 = (uint8_t4 *)AllocateMemoryBlock();
+  puVar8 = (uint32_t *)AllocateMemoryBlock();
   unsignedValue7 = 0;
   ResourceFlag5 = *puVar8;
   uStack_74 = puVar8[1];
@@ -20779,14 +20791,14 @@ LAB_18089c40a:
         if (integerValue13 < 0) {
           localContextPointer1 = (int64_t)integerValue13 * 0x18 + 0x14 + (int64_t)pResourceFlag3;
           do {
-            puVar8 = (uint8_t4 *)AllocateMemoryBlock();
+            puVar8 = (uint32_t *)AllocateMemoryBlock();
             validationResult = puVar8[1];
             unsignedResult3 = puVar8[2];
             unsignedResult4 = puVar8[3];
-            *(uint8_t4 *)(localContextPointer1 + -0x14) = *puVar8;
-            *(uint8_t4 *)(localContextPointer1 + -0x10) = validationResult;
-            *(uint8_t4 *)(localContextPointer1 + -0xc) = unsignedResult3;
-            *(uint8_t4 *)(localContextPointer1 + -8) = unsignedResult4;
+            *(uint32_t *)(localContextPointer1 + -0x14) = *puVar8;
+            *(uint32_t *)(localContextPointer1 + -0x10) = validationResult;
+            *(uint32_t *)(localContextPointer1 + -0xc) = unsignedResult3;
+            *(uint32_t *)(localContextPointer1 + -8) = unsignedResult4;
             *(uint8_t *)(localContextPointer1 + -4) = 0;
             localContextPointer2 = localContextPointer2 + -1;
             localContextPointer1 = localContextPointer1 + 0x18;
@@ -20825,7 +20837,7 @@ LAB_18089c40a:
         resourceHash = presourceHash0[1];
         *pSecurityValidationContext = *presourceHash0;
         pSecurityValidationContext[1] = resourceHash;
-        *(uint8_t4 *)(pSecurityValidationContext + 2) = *(uint8_t4 *)(presourceHash0 + 2);
+        *(uint32_t *)(pSecurityValidationContext + 2) = *(uint32_t *)(presourceHash0 + 2);
         *(float *)((int64_t)pSecurityValidationContext + 0x14) =
              *(float *)((int64_t)presourceHash0 + 0x14) + *(float *)(presourceHash0 + 2);
         *(uint8_t1 *)(pSecurityValidationContext + 3) = 1;
@@ -20851,14 +20863,14 @@ LAB_18089c40a:
       if (integerValue13 < 0) {
         localContextPointer1 = (int64_t)integerValue13 * 0x18 + 0x14 + (int64_t)pResourceFlag3;
         do {
-          puVar8 = (uint8_t4 *)AllocateMemoryBlock();
+          puVar8 = (uint32_t *)AllocateMemoryBlock();
           validationResult = puVar8[1];
           unsignedResult3 = puVar8[2];
           unsignedResult4 = puVar8[3];
-          *(uint8_t4 *)(localContextPointer1 + -0x14) = *puVar8;
-          *(uint8_t4 *)(localContextPointer1 + -0x10) = validationResult;
-          *(uint8_t4 *)(localContextPointer1 + -0xc) = unsignedResult3;
-          *(uint8_t4 *)(localContextPointer1 + -8) = unsignedResult4;
+          *(uint32_t *)(localContextPointer1 + -0x14) = *puVar8;
+          *(uint32_t *)(localContextPointer1 + -0x10) = validationResult;
+          *(uint32_t *)(localContextPointer1 + -0xc) = unsignedResult3;
+          *(uint32_t *)(localContextPointer1 + -8) = unsignedResult4;
           *(uint8_t *)(localContextPointer1 + -4) = 0;
           localContextPointer2 = localContextPointer2 + -1;
           localContextPointer1 = localContextPointer1 + 0x18;
@@ -20914,9 +20926,9 @@ uint8_t * GetResourceDataPointerA(void)
 
 {
   uint8_t resourceHash;
-  uint8_t4 validationResult;
-  uint8_t4 unsignedResult3;
-  uint8_t4 unsignedResult4;
+  uint32_t validationResult;
+  uint32_t unsignedResult3;
+  uint32_t unsignedResult4;
   float TertiaryFloatValue;
   float fVar6;
   float floatValue7;
@@ -20925,7 +20937,7 @@ uint8_t * GetResourceDataPointerA(void)
   uint resourceHash0;
   int64_t InputRegisterValue;
   uint8_t *presourceHash1;
-  uint8_t4 *presourceHash2;
+  uint32_t *presourceHash2;
   uint8_t *presourceHash3;
   float *pfVar14;
   uint64_t resourceHash5;
@@ -20936,8 +20948,8 @@ uint8_t * GetResourceDataPointerA(void)
   uint8_t *unaff_RDI;
   int64_t localContextPointer8;
   int integerValue19;
-  uint8_t4 extraout_XMM0_Da;
-  uint8_t4 validationResult0;
+  uint32_t extraout_XMM0_Da;
+  uint32_t validationResult0;
   float extraout_XMM0_Da_00;
   float extraout_XMM0_Da_01;
   float extraout_XMM0_Da_02;
@@ -20952,17 +20964,17 @@ uint8_t * GetResourceDataPointerA(void)
   if ((int)presourceHash1 != 0) {
     return presourceHash1;
   }
-  presourceHash2 = (uint8_t4 *)AllocateMemoryBlock();
+  presourceHash2 = (uint32_t *)AllocateMemoryBlock();
   presourceHash1 = (uint8_t *)0x0;
   uVar9 = *(uint *)(unaff_RDI + 8);
   validationResult0 = *presourceHash2;
   validationResult = presourceHash2[1];
   unsignedResult3 = presourceHash2[2];
   unsignedResult4 = presourceHash2[3];
-  *(uint8_t4 *)(ExecutionContextPointer + -0x19) = validationResult0;
-  *(uint8_t4 *)(ExecutionContextPointer + -0x15) = validationResult;
-  *(uint8_t4 *)(ExecutionContextPointer + -0x11) = unsignedResult3;
-  *(uint8_t4 *)(ExecutionContextPointer + -0xd) = unsignedResult4;
+  *(uint32_t *)(ExecutionContextPointer + -0x19) = validationResult0;
+  *(uint32_t *)(ExecutionContextPointer + -0x15) = validationResult;
+  *(uint32_t *)(ExecutionContextPointer + -0x11) = unsignedResult3;
+  *(uint32_t *)(ExecutionContextPointer + -0xd) = unsignedResult4;
   uVar8 = 0;
   presourceHash3 = presourceHash1;
   if (uVar9 < 0x6d) {
@@ -21021,7 +21033,7 @@ LAB_18089c40a:
                         &ResourceTableTemplate,0x100,1);
         }
         *(uint8_t *)(ExecutionContextPointer + -0x29) = 0;
-        *(uint8_t4 *)(ExecutionContextPointer + -0x1d) = 0;
+        *(uint32_t *)(ExecutionContextPointer + -0x1d) = 0;
         uVar9 = uVar8;
       }
       else {
@@ -21032,14 +21044,14 @@ LAB_18089c40a:
         if (integerValue19 < 0) {
           localContextPointer7 = (int64_t)integerValue19 * 0x18 + 0x14 + (int64_t)presourceHash1;
           do {
-            presourceHash2 = (uint8_t4 *)AllocateMemoryBlock();
+            presourceHash2 = (uint32_t *)AllocateMemoryBlock();
             validationResult0 = presourceHash2[1];
             validationResult = presourceHash2[2];
             unsignedResult3 = presourceHash2[3];
-            *(uint8_t4 *)(localContextPointer7 + -0x14) = *presourceHash2;
-            *(uint8_t4 *)(localContextPointer7 + -0x10) = validationResult0;
-            *(uint8_t4 *)(localContextPointer7 + -0xc) = validationResult;
-            *(uint8_t4 *)(localContextPointer7 + -8) = unsignedResult3;
+            *(uint32_t *)(localContextPointer7 + -0x14) = *presourceHash2;
+            *(uint32_t *)(localContextPointer7 + -0x10) = validationResult0;
+            *(uint32_t *)(localContextPointer7 + -0xc) = validationResult;
+            *(uint32_t *)(localContextPointer7 + -8) = unsignedResult3;
             *(uint8_t *)(localContextPointer7 + -4) = 0;
             localContextPointer8 = localContextPointer8 + -1;
             localContextPointer7 = localContextPointer7 + 0x18;
@@ -21047,7 +21059,7 @@ LAB_18089c40a:
           uVar9 = *(uint *)(ExecutionContextPointer + -0x1d);
         }
       }
-      *(uint8_t4 *)(ExecutionContextPointer + -0x21) = 0;
+      *(uint32_t *)(ExecutionContextPointer + -0x21) = 0;
       if ((int)uVar9 < 0) {
         uVar9 = -uVar9;
       }
@@ -21082,7 +21094,7 @@ LAB_18089c40a:
         presourceHash3 = *(uint8_t **)(ExecutionContextPointer + 0x77);
         *presourceHash3 = *presourceHash6;
         presourceHash3[1] = resourceHash;
-        *(uint8_t4 *)(presourceHash3 + 2) = *(uint8_t4 *)(presourceHash6 + 2);
+        *(uint32_t *)(presourceHash3 + 2) = *(uint32_t *)(presourceHash6 + 2);
         fVar21 = *(float *)((int64_t)presourceHash6 + 0x14) + *(float *)(presourceHash6 + 2);
         *(float *)((int64_t)presourceHash3 + 0x14) = fVar21;
         *(uint8_t1 *)(presourceHash3 + 3) = 1;
@@ -21102,7 +21114,7 @@ LAB_18089c40a:
         ProcessResourceAllocation(*(uint8_t *)(SystemContextPointer + 0x1a0),presourceHash3,&ResourceTableTemplate,0x100,1);
       }
       *(uint8_t *)(ExecutionContextPointer + -0x29) = 0;
-      *(uint8_t4 *)(ExecutionContextPointer + -0x1d) = 0;
+      *(uint32_t *)(ExecutionContextPointer + -0x1d) = 0;
       presourceHash3 = presourceHash1;
       uVar9 = uVar8;
     }
@@ -21127,7 +21139,7 @@ LAB_18089c40a:
         memoryBlockSize = *(uint *)(ExecutionContextPointer + -0x1d);
       }
     }
-    *(uint8_t4 *)(ExecutionContextPointer + -0x21) = 0;
+    *(uint32_t *)(ExecutionContextPointer + -0x21) = 0;
     if ((int)memoryBlockSize < 0) {
       memoryBlockSize = -memoryBlockSize;
     }
@@ -21177,16 +21189,16 @@ uint8_t * GetResourceDataPointerB(void)
 
 {
   uint8_t resourceHash;
-  uint8_t4 validationResult;
-  uint8_t4 unsignedResult3;
-  uint8_t4 unsignedResult4;
+  uint32_t validationResult;
+  uint32_t unsignedResult3;
+  uint32_t unsignedResult4;
   float TertiaryFloatValue;
   float fVar6;
   float floatValue7;
   uint uVar8;
   uint uVar9;
   uint resourceHash0;
-  uint8_t4 *presourceHash1;
+  uint32_t *presourceHash1;
   uint8_t *presourceHash2;
   uint8_t *presourceHash3;
   float *pfVar14;
@@ -21198,8 +21210,8 @@ uint8_t * GetResourceDataPointerB(void)
   uint8_t *unaff_RDI;
   int64_t localContextPointer8;
   int integerValue19;
-  uint8_t4 extraout_XMM0_Da;
-  uint8_t4 validationResult0;
+  uint32_t extraout_XMM0_Da;
+  uint32_t validationResult0;
   float extraout_XMM0_Da_00;
   float extraout_XMM0_Da_01;
   float extraout_XMM0_Da_02;
@@ -21207,17 +21219,17 @@ uint8_t * GetResourceDataPointerB(void)
   float extraout_XMM0_Da_04;
   float fVar21;
   
-  presourceHash1 = (uint8_t4 *)AllocateMemoryBlock();
+  presourceHash1 = (uint32_t *)AllocateMemoryBlock();
   presourceHash3 = (uint8_t *)0x0;
   uVar9 = *(uint *)(unaff_RDI + 8);
   validationResult0 = *presourceHash1;
   validationResult = presourceHash1[1];
   unsignedResult3 = presourceHash1[2];
   unsignedResult4 = presourceHash1[3];
-  *(uint8_t4 *)(ExecutionContextPointer + -0x19) = validationResult0;
-  *(uint8_t4 *)(ExecutionContextPointer + -0x15) = validationResult;
-  *(uint8_t4 *)(ExecutionContextPointer + -0x11) = unsignedResult3;
-  *(uint8_t4 *)(ExecutionContextPointer + -0xd) = unsignedResult4;
+  *(uint32_t *)(ExecutionContextPointer + -0x19) = validationResult0;
+  *(uint32_t *)(ExecutionContextPointer + -0x15) = validationResult;
+  *(uint32_t *)(ExecutionContextPointer + -0x11) = unsignedResult3;
+  *(uint32_t *)(ExecutionContextPointer + -0xd) = unsignedResult4;
   uVar8 = 0;
   presourceHash2 = presourceHash3;
   if (uVar9 < 0x6d) {
@@ -21276,7 +21288,7 @@ LAB_18089c40a:
                         &ResourceTableTemplate,0x100,1);
         }
         *(uint8_t *)(ExecutionContextPointer + -0x29) = 0;
-        *(uint8_t4 *)(ExecutionContextPointer + -0x1d) = 0;
+        *(uint32_t *)(ExecutionContextPointer + -0x1d) = 0;
         uVar9 = uVar8;
       }
       else {
@@ -21287,14 +21299,14 @@ LAB_18089c40a:
         if (integerValue19 < 0) {
           localContextPointer7 = (int64_t)integerValue19 * 0x18 + 0x14 + (int64_t)presourceHash3;
           do {
-            presourceHash1 = (uint8_t4 *)AllocateMemoryBlock();
+            presourceHash1 = (uint32_t *)AllocateMemoryBlock();
             validationResult0 = presourceHash1[1];
             validationResult = presourceHash1[2];
             unsignedResult3 = presourceHash1[3];
-            *(uint8_t4 *)(localContextPointer7 + -0x14) = *presourceHash1;
-            *(uint8_t4 *)(localContextPointer7 + -0x10) = validationResult0;
-            *(uint8_t4 *)(localContextPointer7 + -0xc) = validationResult;
-            *(uint8_t4 *)(localContextPointer7 + -8) = unsignedResult3;
+            *(uint32_t *)(localContextPointer7 + -0x14) = *presourceHash1;
+            *(uint32_t *)(localContextPointer7 + -0x10) = validationResult0;
+            *(uint32_t *)(localContextPointer7 + -0xc) = validationResult;
+            *(uint32_t *)(localContextPointer7 + -8) = unsignedResult3;
             *(uint8_t *)(localContextPointer7 + -4) = 0;
             localContextPointer8 = localContextPointer8 + -1;
             localContextPointer7 = localContextPointer7 + 0x18;
@@ -21302,7 +21314,7 @@ LAB_18089c40a:
           uVar9 = *(uint *)(ExecutionContextPointer + -0x1d);
         }
       }
-      *(uint8_t4 *)(ExecutionContextPointer + -0x21) = 0;
+      *(uint32_t *)(ExecutionContextPointer + -0x21) = 0;
       if ((int)uVar9 < 0) {
         uVar9 = -uVar9;
       }
@@ -21337,7 +21349,7 @@ LAB_18089c40a:
         presourceHash2 = *(uint8_t **)(ExecutionContextPointer + 0x77);
         *presourceHash2 = *presourceHash6;
         presourceHash2[1] = resourceHash;
-        *(uint8_t4 *)(presourceHash2 + 2) = *(uint8_t4 *)(presourceHash6 + 2);
+        *(uint32_t *)(presourceHash2 + 2) = *(uint32_t *)(presourceHash6 + 2);
         fVar21 = *(float *)((int64_t)presourceHash6 + 0x14) + *(float *)(presourceHash6 + 2);
         *(float *)((int64_t)presourceHash2 + 0x14) = fVar21;
         *(uint8_t1 *)(presourceHash2 + 3) = 1;
@@ -21357,7 +21369,7 @@ LAB_18089c40a:
         ProcessResourceAllocation(*(uint8_t *)(SystemContextPointer + 0x1a0),presourceHash2,&ResourceTableTemplate,0x100,1);
       }
       *(uint8_t *)(ExecutionContextPointer + -0x29) = 0;
-      *(uint8_t4 *)(ExecutionContextPointer + -0x1d) = 0;
+      *(uint32_t *)(ExecutionContextPointer + -0x1d) = 0;
       presourceHash2 = presourceHash3;
       uVar9 = uVar8;
     }
@@ -21382,7 +21394,7 @@ LAB_18089c40a:
         uVar9 = *(uint *)(ExecutionContextPointer + -0x1d);
       }
     }
-    *(uint8_t4 *)(ExecutionContextPointer + -0x21) = 0;
+    *(uint32_t *)(ExecutionContextPointer + -0x21) = 0;
     if ((int)uVar9 < 0) {
       uVar9 = -uVar9;
     }
@@ -21432,9 +21444,9 @@ LAB_18089c300:
 uint64_t ResourceProcessingHandler(uint8_t objectContextParam)
 
 {
-  uint8_t4 resourceHash;
-  uint8_t4 validationResult;
-  uint8_t4 unsignedResult3;
+  uint32_t resourceHash;
+  uint32_t validationResult;
+  uint32_t unsignedResult3;
   float SecondaryFloatValue;
   float TertiaryFloatValue;
   float fVar6;
@@ -21444,7 +21456,7 @@ uint64_t ResourceProcessingHandler(uint8_t objectContextParam)
   uint uVar9;
   uint resourceHash0;
   uint64_t resourceHash1;
-  uint8_t4 *presourceHash2;
+  uint32_t *presourceHash2;
   float *pfVar13;
   uint8_t *presourceHash4;
   uint8_t *presourceHash5;
@@ -21508,14 +21520,14 @@ LAB_18089c40a:
         if (integerValue18 < 0) {
           localContextPointer6 = (int64_t)integerValue18 * 0x18 + 0x14 + (int64_t)presourceHash4;
           do {
-            presourceHash2 = (uint8_t4 *)AllocateMemoryBlock();
+            presourceHash2 = (uint32_t *)AllocateMemoryBlock();
             resourceHash = presourceHash2[1];
             validationResult = presourceHash2[2];
             unsignedResult3 = presourceHash2[3];
-            *(uint8_t4 *)(localContextPointer6 + -0x14) = *presourceHash2;
-            *(uint8_t4 *)(localContextPointer6 + -0x10) = resourceHash;
-            *(uint8_t4 *)(localContextPointer6 + -0xc) = validationResult;
-            *(uint8_t4 *)(localContextPointer6 + -8) = unsignedResult3;
+            *(uint32_t *)(localContextPointer6 + -0x14) = *presourceHash2;
+            *(uint32_t *)(localContextPointer6 + -0x10) = resourceHash;
+            *(uint32_t *)(localContextPointer6 + -0xc) = validationResult;
+            *(uint32_t *)(localContextPointer6 + -8) = unsignedResult3;
             *(uint8_t **)(localContextPointer6 + -4) = unaff_R12;
             localContextPointer7 = localContextPointer7 + -1;
             localContextPointer6 = localContextPointer6 + 0x18;
@@ -21558,7 +21570,7 @@ LAB_18089c40a:
         presourceHash4 = *(uint8_t **)(ExecutionContextPointer + 0x77);
         *presourceHash4 = *presourceHash5;
         presourceHash4[1] = unsignedValue7;
-        *(uint8_t4 *)(presourceHash4 + 2) = *(uint8_t4 *)(presourceHash5 + 2);
+        *(uint32_t *)(presourceHash4 + 2) = *(uint32_t *)(presourceHash5 + 2);
         fVar20 = *(float *)((int64_t)presourceHash5 + 0x14) + *(float *)(presourceHash5 + 2);
         *(float *)((int64_t)presourceHash4 + 0x14) = fVar20;
         *(uint8_t1 *)(presourceHash4 + 3) = 1;
@@ -21686,7 +21698,7 @@ uint64_t ResourceDataManager(int64_t objectContextParam,int64_t *validationConte
   int64_t *processPointer;
   uint validationResult;
   uint64_t unsignedResult3;
-  uint8_t4 unsignedResult4;
+  uint32_t unsignedResult4;
   uint unsignedValue5;
   uint unsignedValue7;
   uint uVar8;
@@ -21829,7 +21841,7 @@ LAB_18089c808:
     unsignedResult3 = 0xd;
     goto LAB_18089c878;
   }
-  *(uint8_t4 *)(objectContextParam + 0x30) = unsignedResult4;
+  *(uint32_t *)(objectContextParam + 0x30) = unsignedResult4;
   unsignedResult3 = unsignedValue6;
 LAB_18089c878:
   if ((int)unsignedResult3 != 0) {
@@ -22064,9 +22076,9 @@ uint64_t ResourceProcessingHandlerAlt1(void)
   float extraout_XMM0_Da_05;
   float RangeValue;
   float extraout_XMM0_Da_06;
-  uint8_t4 extraout_XMM0_Da_07;
-  uint8_t4 extraout_XMM0_Da_08;
-  uint8_t4 resourceHash0;
+  uint32_t extraout_XMM0_Da_07;
+  uint32_t extraout_XMM0_Da_08;
+  uint32_t resourceHash0;
   float extraout_XMM0_Da_09;
   uint64_t unsignedValue7;
   
@@ -22101,7 +22113,7 @@ LAB_18089c743:
       uVar8 = CalculateResourceHash(*plocalContextPointer,ExecutionContextPointer + 0x77,unaff_R14D,unaff_R14D,0);
     }
     else {
-      *(uint8_t4 *)(ExecutionContextPointer + 0x7f) = 0;
+      *(uint32_t *)(ExecutionContextPointer + 0x7f) = 0;
       uVar8 = func_0x00018076a7d0(resourceTable,ExecutionContextPointer + 0x7f);
       if (uVar8 == 0) {
         if ((uint64_t)*(uint *)(ExecutionContextPointer + 0x7f) + 1 <= (uint64_t)plocalContextPointer[2]) goto LAB_18089c743;
@@ -22114,7 +22126,7 @@ LAB_18089c743:
       uVar8 = 0;
     }
     else {
-      *(uint8_t4 *)(ExecutionContextPointer + 0x7f) = 0;
+      *(uint32_t *)(ExecutionContextPointer + 0x7f) = 0;
       *(uint *)(ExecutionContextPointer + -0x29) = unaff_R14D;
       if (uVar8 == 0) {
         uVar8 = unsignedValue6;
@@ -22124,7 +22136,7 @@ LAB_18089c743:
   else {
 LAB_18089c78f:
     *(uint *)(ExecutionContextPointer + -0x29) = unaff_R14D;
-    *(uint8_t4 *)(ExecutionContextPointer + 0x7f) = 0;
+    *(uint32_t *)(ExecutionContextPointer + 0x7f) = 0;
   }
   if (uVar8 != 0) {
     return (uint64_t)uVar8;
@@ -22139,7 +22151,7 @@ LAB_18089c78f:
   }
   else {
     if (plocalContextPointer[2] != 0) {
-      *(uint8_t4 *)(ExecutionContextPointer + 0x77) = 0;
+      *(uint32_t *)(ExecutionContextPointer + 0x77) = 0;
       unsignedResult4 = func_0x00018076a7d0(resourceTable,ExecutionContextPointer + 0x77);
       if ((int)byteValue4 != 0) {
         return byteValue4;
@@ -22155,7 +22167,7 @@ LAB_18089c808:
   if ((int)byteValue4 != 0) {
     return byteValue4;
   }
-  switch(*(uint8_t4 *)(ExecutionContextPointer + -0x25)) {
+  switch(*(uint32_t *)(ExecutionContextPointer + -0x25)) {
   case 0:
     unsignedValue5 = 0;
     break;
@@ -22254,7 +22266,7 @@ LAB_18089c9a8:
         fVar9 = extraout_XMM0_Da_01;
       }
       else {
-        *(uint8_t4 *)(ExecutionContextPointer + -0x25) = 0;
+        *(uint32_t *)(ExecutionContextPointer + -0x25) = 0;
         unsignedResult3 = func_0x00018076a7d0(resourceTable,ExecutionContextPointer + -0x25);
         fVar9 = extraout_XMM0_Da_00;
         if (unsignedResult3 == 0) {
@@ -22317,7 +22329,7 @@ LAB_18089ca9c:
     fVar9 = extraout_XMM0_Da_05;
   }
   else {
-    *(uint8_t4 *)(ExecutionContextPointer + -0x25) = 0;
+    *(uint32_t *)(ExecutionContextPointer + -0x25) = 0;
     unsignedResult3 = func_0x00018076a7d0(resourceTable,ExecutionContextPointer + -0x25);
     fVar9 = extraout_XMM0_Da_04;
     if (unsignedResult3 == 0) {
@@ -22353,7 +22365,7 @@ LAB_18089cad8:
   }
   if (0x8a < unsignedResult3) {
     resourceTable = *ResourceContextPointer;
-    *(uint8_t4 *)(ExecutionContextPointer + 0x7f) = 0;
+    *(uint32_t *)(ExecutionContextPointer + 0x7f) = 0;
     unsignedResult4 = LoadResourceData(resourceTable,ExecutionContextPointer + 0x7f);
     if ((int)byteValue4 != 0) {
       return byteValue4;
@@ -22363,7 +22375,7 @@ LAB_18089cad8:
     if ((int)byteValue4 != 0) {
       return byteValue4;
     }
-    *(uint8_t4 *)(ExecutionContextPointer + 0x77) = 0;
+    *(uint32_t *)(ExecutionContextPointer + 0x77) = 0;
     unsignedResult4 = unsignedValue7;
     fVar9 = extraout_XMM0_Da_06;
     if (unsignedValue5 >> 1 != 0) {
@@ -22439,12 +22451,12 @@ uint64_t ResourceProcessingHandlerAlt2(void)
   float extraout_XMM0_Da_05;
   float fVar12;
   float extraout_XMM0_Da_06;
-  uint8_t4 extraout_XMM0_Da_07;
-  uint8_t4 extraout_XMM0_Da_08;
-  uint8_t4 resourceHash3;
+  uint32_t extraout_XMM0_Da_07;
+  uint32_t extraout_XMM0_Da_08;
+  uint32_t resourceHash3;
   float extraout_XMM0_Da_09;
   
-  *(uint8_t4 *)(unaff_R13 + 0x30) = 10;
+  *(uint32_t *)(unaff_R13 + 0x30) = 10;
   if ((int)unaff_RDI != 0) {
     return unaff_RDI & 0xffffffff;
   }
@@ -22508,7 +22520,7 @@ LAB_18089c9a8:
         fVar12 = extraout_XMM0_Da_01;
       }
       else {
-        *(uint8_t4 *)(ExecutionContextPointer + -0x25) = 0;
+        *(uint32_t *)(ExecutionContextPointer + -0x25) = 0;
         unsignedResult4 = func_0x00018076a7d0(resourceTable,ExecutionContextPointer + -0x25);
         fVar12 = extraout_XMM0_Da_00;
         if (unsignedResult4 == 0) {
@@ -22575,7 +22587,7 @@ LAB_18089ca9c:
     fVar12 = extraout_XMM0_Da_05;
   }
   else {
-    *(uint8_t4 *)(ExecutionContextPointer + -0x25) = 0;
+    *(uint32_t *)(ExecutionContextPointer + -0x25) = 0;
     unsignedResult4 = func_0x00018076a7d0(resourceTable,ExecutionContextPointer + -0x25);
     fVar12 = extraout_XMM0_Da_04;
     if (unsignedResult4 == 0) {
@@ -22610,7 +22622,7 @@ LAB_18089cad8:
   }
   if (0x8a < unsignedResult4) {
     resourceTable = *ResourceContextPointer;
-    *(uint8_t4 *)(ExecutionContextPointer + 0x7f) = 0;
+    *(uint32_t *)(ExecutionContextPointer + 0x7f) = 0;
     unsignedValue5 = LoadResourceData(resourceTable,ExecutionContextPointer + 0x7f);
     if ((int)unsignedValue5 != 0) {
       return unsignedValue5;
@@ -22620,7 +22632,7 @@ LAB_18089cad8:
     if ((int)unsignedValue5 != 0) {
       return unsignedValue5;
     }
-    *(uint8_t4 *)(ExecutionContextPointer + 0x77) = 0;
+    *(uint32_t *)(ExecutionContextPointer + 0x77) = 0;
     unsignedValue5 = unaff_RDI & 0xffffffff;
     fVar12 = extraout_XMM0_Da_06;
     if (unsignedResult4 >> 1 != 0) {
@@ -22680,7 +22692,7 @@ uint64_t ResourceProcessingHandlerAlt3(void)
   int ValidationStatus;
   int64_t *ResourceContextPointer;
   int64_t ExecutionContextPointer;
-  uint8_t4 unaff_ESI;
+  uint32_t unaff_ESI;
   uint uVar8;
   uint uVar9;
   uint64_t UnaffectedRegisterValue;
@@ -22697,12 +22709,12 @@ uint64_t ResourceProcessingHandlerAlt3(void)
   float extraout_XMM0_Da_05;
   float fVar12;
   float extraout_XMM0_Da_06;
-  uint8_t4 extraout_XMM0_Da_07;
-  uint8_t4 extraout_XMM0_Da_08;
-  uint8_t4 resourceHash3;
+  uint32_t extraout_XMM0_Da_07;
+  uint32_t extraout_XMM0_Da_08;
+  uint32_t resourceHash3;
   float extraout_XMM0_Da_09;
   
-  *(uint8_t4 *)(unaff_R13 + 0x30) = unaff_ESI;
+  *(uint32_t *)(unaff_R13 + 0x30) = unaff_ESI;
   if ((int)unaff_RDI != 0) {
     return unaff_RDI & 0xffffffff;
   }
@@ -22766,7 +22778,7 @@ LAB_18089c9a8:
         fVar12 = extraout_XMM0_Da_01;
       }
       else {
-        *(uint8_t4 *)(ExecutionContextPointer + -0x25) = 0;
+        *(uint32_t *)(ExecutionContextPointer + -0x25) = 0;
         unsignedResult4 = func_0x00018076a7d0(resourceTable,ExecutionContextPointer + -0x25);
         fVar12 = extraout_XMM0_Da_00;
         if (unsignedResult4 == 0) {
@@ -22833,7 +22845,7 @@ LAB_18089ca9c:
     fVar12 = extraout_XMM0_Da_05;
   }
   else {
-    *(uint8_t4 *)(ExecutionContextPointer + -0x25) = 0;
+    *(uint32_t *)(ExecutionContextPointer + -0x25) = 0;
     unsignedResult4 = func_0x00018076a7d0(resourceTable,ExecutionContextPointer + -0x25);
     fVar12 = extraout_XMM0_Da_04;
     if (unsignedResult4 == 0) {
@@ -22868,7 +22880,7 @@ LAB_18089cad8:
   }
   if (0x8a < unsignedResult4) {
     resourceTable = *ResourceContextPointer;
-    *(uint8_t4 *)(ExecutionContextPointer + 0x7f) = 0;
+    *(uint32_t *)(ExecutionContextPointer + 0x7f) = 0;
     unsignedValue5 = LoadResourceData(resourceTable,ExecutionContextPointer + 0x7f);
     if ((int)unsignedValue5 != 0) {
       return unsignedValue5;
@@ -22878,7 +22890,7 @@ LAB_18089cad8:
     if ((int)unsignedValue5 != 0) {
       return unsignedValue5;
     }
-    *(uint8_t4 *)(ExecutionContextPointer + 0x77) = 0;
+    *(uint32_t *)(ExecutionContextPointer + 0x77) = 0;
     unsignedValue5 = unaff_RDI & 0xffffffff;
     fVar12 = extraout_XMM0_Da_06;
     if (unsignedResult4 >> 1 != 0) {
@@ -22956,9 +22968,9 @@ uint64_t ProcessFloatParameterResourceHash(float objectContextParam)
   float extraout_XMM0_Da_04;
   float extraout_XMM0_Da_05;
   float fVar13;
-  uint8_t4 extraout_XMM0_Da_06;
-  uint8_t4 extraout_XMM0_Da_07;
-  uint8_t4 resourceHash4;
+  uint32_t extraout_XMM0_Da_06;
+  uint32_t extraout_XMM0_Da_07;
+  uint32_t resourceHash4;
   float extraout_XMM0_Da_08;
   
   iVar9 = (int)unaff_RDI;
@@ -23489,7 +23501,7 @@ LAB_18089d06e:
     return (uint64_t)unsignedResult3;
   }
   if (bVar4) {
-    *(uint8_t4 *)(objectContextParam + 0x10) = 3;
+    *(uint32_t *)(objectContextParam + 0x10) = 3;
   }
 LAB_18089d07f:
                     // WARNING: Subroutine does not return
@@ -23614,7 +23626,7 @@ LAB_18089d06e:
     return (uint64_t)unsignedResult3;
   }
   if (bVar4) {
-    *(uint8_t4 *)(unaff_R14 + 0x10) = 3;
+    *(uint32_t *)(unaff_R14 + 0x10) = 3;
   }
 LAB_18089d07f:
                     // WARNING: Subroutine does not return
@@ -23668,7 +23680,7 @@ LAB_18089d06e:
     return ResourceContextPointer & 0xffffffff;
   }
   if (validationResult == 0 && in_stack_00000090 != (char)unaff_R15) {
-    *(uint8_t4 *)(unaff_R14 + 0x10) = 3;
+    *(uint32_t *)(unaff_R14 + 0x10) = 3;
   }
 LAB_18089d07f:
                     // WARNING: Subroutine does not return
@@ -23907,7 +23919,7 @@ uint8_t ProcessSPRPResource(uint8_t ResourceHandle,int64_t *ResourceTable)
   uint8_t unsignedResult3;
   int aiStackX_18 [2];
   uint auStackX_20 [2];
-  uint8_t4 EncryptionBuffer [2];
+  uint32_t EncryptionBuffer [2];
   int64_t ValidationContextOffset;
   uint8_t1 ResourceOperationBuffer [32];
   uint8_t1 aEncryptedValue [32];
@@ -23981,7 +23993,7 @@ LAB_18089d378:
         }
         unsignedResult3 = ValidateResourceHash(validationContextParam,resourceTable + 0x10,0);
         if ((int)unsignedResult3 == 0) {
-          *(uint8_t4 *)(resourceTable + 0x44) = 0xffffffff;
+          *(uint32_t *)(resourceTable + 0x44) = 0xffffffff;
           goto LAB_18089d435;
         }
       }
@@ -24015,7 +24027,7 @@ uint8_t ManageResourceTable(void)
   int64_t resourceTable;
   uint8_t unsignedResult3;
   int64_t *ResourceContextPointer;
-  uint8_t4 in_stack_00000030;
+  uint32_t in_stack_00000030;
   int64_t in_stack_00000038;
   int iStack00000000000000b0;
   uint in_stack_000000b8;
@@ -24085,7 +24097,7 @@ LAB_18089d378:
         }
         unsignedResult3 = ValidateResourceHash();
         if ((int)unsignedResult3 == 0) {
-          *(uint8_t4 *)(resourceTable + 0x44) = 0xffffffff;
+          *(uint32_t *)(resourceTable + 0x44) = 0xffffffff;
           goto LAB_18089d435;
         }
       }
@@ -24185,7 +24197,7 @@ d520(int64_t objectContextParam,uint8_t *validationContextParam)
       integerValue1 = 0x1c;
     }
     if (integerValue1 == 0) {
-      *(uint8_t4 *)(objectContextParam + 0x218) = *(uint8_t4 *)(validationContextParam + 8);
+      *(uint32_t *)(objectContextParam + 0x218) = *(uint32_t *)(validationContextParam + 8);
       if (*(uint *)(resourceData + 8) < 0x41) {
         integerValue1 = 0;
       }
@@ -24206,10 +24218,10 @@ d520(int64_t objectContextParam,uint8_t *validationContextParam)
           integerValue1 = 0x1c;
         }
         if (integerValue1 == 0) {
-          *(uint8_t4 *)(objectContextParam + 0x200) = *(uint8_t4 *)(objectContextParam + 0x10);
-          *(uint8_t4 *)(objectContextParam + 0x204) = *(uint8_t4 *)(objectContextParam + 0x14);
-          *(uint8_t4 *)(objectContextParam + 0x208) = *(uint8_t4 *)(objectContextParam + 0x18);
-          *(uint8_t4 *)(objectContextParam + 0x20c) = *(uint8_t4 *)(objectContextParam + 0x1c);
+          *(uint32_t *)(objectContextParam + 0x200) = *(uint32_t *)(objectContextParam + 0x10);
+          *(uint32_t *)(objectContextParam + 0x204) = *(uint32_t *)(objectContextParam + 0x14);
+          *(uint32_t *)(objectContextParam + 0x208) = *(uint32_t *)(objectContextParam + 0x18);
+          *(uint32_t *)(objectContextParam + 0x20c) = *(uint32_t *)(objectContextParam + 0x1c);
                     // WARNING: Subroutine does not return
           CleanupResourceData(validationContextParam,resourceValidationBuffer);
         }
@@ -24222,14 +24234,14 @@ d520(int64_t objectContextParam,uint8_t *validationContextParam)
 
 
 
- d557(uint8_t4 objectContextParam)
-d557(uint8_t4 objectContextParam)
+ d557(uint32_t objectContextParam)
+d557(uint32_t objectContextParam)
 
 {
   int operationResult;
   uint8_t *ResourceContextPointer;
   int64_t UnaffectedRegisterValue;
-  uint8_t4 extraout_XMM0_Da;
+  uint32_t extraout_XMM0_Da;
   
   integerValue1 = ComputeDataChecksum(objectContextParam,&ObjectStackBuffer30,0);
   if (integerValue1 == 0) {
@@ -24245,7 +24257,7 @@ d557(uint8_t4 objectContextParam)
         integerValue1 = 0x1c;
       }
       if (integerValue1 == 0) {
-        *(uint8_t4 *)(unaff_RDI + 0x218) = *(uint8_t4 *)(ResourceContextPointer + 8);
+        *(uint32_t *)(unaff_RDI + 0x218) = *(uint32_t *)(ResourceContextPointer + 8);
         if (*(uint *)(ResourceContextPointer + 8) < 0x41) {
           integerValue1 = 0;
         }
@@ -24266,12 +24278,12 @@ d557(uint8_t4 objectContextParam)
             integerValue1 = 0x1c;
           }
           if (integerValue1 == 0) {
-            *(uint8_t4 *)(unaff_RDI + 0x200) = *(uint8_t4 *)(unaff_RDI + 0x10);
-            *(uint8_t4 *)(unaff_RDI + 0x204) = *(uint8_t4 *)(unaff_RDI + 0x14);
-            *(uint8_t4 *)(unaff_RDI + 0x208) = *(uint8_t4 *)(unaff_RDI + 0x18);
-            *(uint8_t4 *)(unaff_RDI + 0x20c) = *(uint8_t4 *)(unaff_RDI + 0x1c);
+            *(uint32_t *)(unaff_RDI + 0x200) = *(uint32_t *)(unaff_RDI + 0x10);
+            *(uint32_t *)(unaff_RDI + 0x204) = *(uint32_t *)(unaff_RDI + 0x14);
+            *(uint32_t *)(unaff_RDI + 0x208) = *(uint32_t *)(unaff_RDI + 0x18);
+            *(uint32_t *)(unaff_RDI + 0x20c) = *(uint32_t *)(unaff_RDI + 0x1c);
                     // WARNING: Subroutine does not return
-            CleanupResourceData(*(uint8_t4 *)(unaff_RDI + 0x10),&ObjectStackBuffer30);
+            CleanupResourceData(*(uint32_t *)(unaff_RDI + 0x10),&ObjectStackBuffer30);
           }
         }
       }
@@ -24321,7 +24333,7 @@ uint64_t ProcessResourceValidationAndAllocation(int64_t objectContextParam,uint8
       if (validationResult == 0) {
         if (((*(uint *)(resourceData + 8) < 0x8a) && (*(int *)(objectContextParam + 0xf8) == 0)) ||
            ((*(uint *)(resourceData + 8) < 0x8e && (*(int *)(objectContextParam + 0xf8) == 0x7fffffff)))) {
-          *(uint8_t4 *)(objectContextParam + 0xf8) = 0x21;
+          *(uint32_t *)(objectContextParam + 0xf8) = 0x21;
         }
         unsignedResult3 = ValidateResourceLoading(validationContextParam,objectContextParam + 0x100);
         if ((int)unsignedResult3 == 0) {
@@ -24410,7 +24422,7 @@ uint64_t ValidateAndAllocateResourceData(void)
       if (validationResult == 0) {
         if (((*(uint *)(ResourceContextPointer + 8) < 0x8a) && (*(int *)(SystemContextPointer + 0xf8) == 0)) ||
            ((*(uint *)(ResourceContextPointer + 8) < 0x8e && (*(int *)(SystemContextPointer + 0xf8) == 0x7fffffff)))) {
-          *(uint8_t4 *)(SystemContextPointer + 0xf8) = 0x21;
+          *(uint32_t *)(SystemContextPointer + 0xf8) = 0x21;
         }
         unsignedResult3 = ValidateResourceLoading();
         if ((int)unsignedResult3 == 0) {
@@ -24498,7 +24510,7 @@ uint64_t ProcessResourceReadAndValidation(void)
     if (validationResult == 0) {
       if (((*(uint *)(ResourceContextPointer + 8) < 0x8a) && (*(int *)(SystemContextPointer + 0xf8) == 0)) ||
          ((*(uint *)(ResourceContextPointer + 8) < 0x8e && (*(int *)(SystemContextPointer + 0xf8) == 0x7fffffff)))) {
-        *(uint8_t4 *)(SystemContextPointer + 0xf8) = 0x21;
+        *(uint32_t *)(SystemContextPointer + 0xf8) = 0x21;
       }
       unsignedResult3 = ValidateResourceLoading();
       if ((int)unsignedResult3 == 0) {
@@ -24579,7 +24591,7 @@ uint64_t ProcessResourceValidationAndAllocation(void)
     if (validationResult == 0) {
       if (((*(uint *)(ResourceContextPointer + 8) < 0x8a) && (*(int *)(SystemContextPointer + 0xf8) == 0)) ||
          ((*(uint *)(ResourceContextPointer + 8) < 0x8e && (*(int *)(SystemContextPointer + 0xf8) == 0x7fffffff)))) {
-        *(uint8_t4 *)(SystemContextPointer + 0xf8) = 0x21;
+        *(uint32_t *)(SystemContextPointer + 0xf8) = 0x21;
       }
       unsignedResult3 = ValidateResourceLoading();
       if ((int)unsignedResult3 == 0) {
@@ -25513,18 +25525,18 @@ void PerformNoOperation(void)
 uint64_t ProcessComplexResourceOperations(int64_t objectContextParam,uint8_t *validationContextParam)
 
 {
-  uint8_t4 resourceHash;
+  uint32_t resourceHash;
   uint8_t validationResult;
   uint unsignedValue3;
   uint64_t unsignedResult4;
-  uint8_t4 *resourcePointer5;
+  uint32_t *resourcePointer5;
   int64_t MemoryAddress;
-  uint8_t4 *pResourceFlag3;
+  uint32_t *pResourceFlag3;
   uint8_t ResourceFlag4;
-  uint8_t4 ResourceFlag5;
-  uint8_t4 uStack_74;
-  uint8_t4 ResourceFlag6;
-  uint8_t4 uStack_6c;
+  uint32_t ResourceFlag5;
+  uint32_t uStack_74;
+  uint32_t ResourceFlag6;
+  uint32_t uStack_6c;
   uint8_t1 ResourceOperationBuffer [32];
   uint8_t1 aEncryptedValue [32];
   
@@ -25532,7 +25544,7 @@ uint64_t ProcessComplexResourceOperations(int64_t objectContextParam,uint8_t *va
   if ((((int)byteValue4 == 0) &&
       (unsignedResult4 = ComputeDataChecksum(validationContextParam,ResourceOperationBuffer,0,0x424e4c54), (int)byteValue4 == 0)) &&
      (unsignedResult4 = ValidateResourceHash(validationContextParam,objectContextParam + 0x10), (int)byteValue4 == 0)) {
-    resourcePointer5 = (uint8_t4 *)AllocateMemoryBlock();
+    resourcePointer5 = (uint32_t *)AllocateMemoryBlock();
     unsignedResult4 = 0;
     ResourceFlag5 = *resourcePointer5;
     uStack_74 = resourcePointer5[1];
@@ -25562,7 +25574,7 @@ uint64_t ProcessComplexResourceOperations(int64_t objectContextParam,uint8_t *va
     if ((((int)byteValue4 == 0) && (unsignedResult4 = CheckResourceHash(validationContextParam,objectContextParam + 0x38,0), (int)byteValue4 == 0)) &&
        (unsignedResult4 = CheckResourceHash(validationContextParam,objectContextParam + 0x48,0), (int)byteValue4 == 0)) {
       if (*(uint *)(resourceData + 8) < 0x84) {
-        pResourceFlag3 = (uint8_t4 *)0x0;
+        pResourceFlag3 = (uint32_t *)0x0;
         ResourceFlag4 = 0;
         unsignedResult3 = ProcessResourceHash(validationContextParam,&pResourceFlag3,0);
         unsignedResult4 = (uint64_t)unsignedResult3;
@@ -25584,9 +25596,9 @@ LAB_18089e70b:
             resourceHash = *resourcePointer5;
             *(int64_t *)lVar6 = lVar6;
             *(int64_t *)(lVar6 + 8) = lVar6;
-            *(uint8_t4 *)(lVar6 + 0x10) = resourceHash;
+            *(uint32_t *)(lVar6 + 0x10) = resourceHash;
             *(uint8_t *)(lVar6 + 0x18) = 0;
-            *(uint8_t4 *)(lVar6 + 0x20) = 0;
+            *(uint32_t *)(lVar6 + 0x20) = 0;
             unsignedResult3 = func_0x0001808aec10(objectContextParam + 0x58,lVar6);
             unsignedResult4 = (uint64_t)unsignedResult3;
             if (unsignedResult3 != 0) goto LAB_18089e70b;
@@ -25629,37 +25641,37 @@ uint64_t ProcessResourceHashCalculationAndValidation(void)
 
 {
   uint8_t resourceHash;
-  uint8_t4 validationResult;
-  uint8_t4 unsignedResult3;
-  uint8_t4 unsignedResult4;
+  uint32_t validationResult;
+  uint32_t unsignedResult3;
+  uint32_t unsignedResult4;
   uint unsignedValue5;
   int integerValue6;
-  uint8_t4 *punsignedValue7;
+  uint32_t *punsignedValue7;
   uint64_t MemorySize;
   int64_t ResourceHandle;
   int64_t ExecutionContextPointer;
-  uint8_t4 *presourceHash0;
+  uint32_t *presourceHash0;
   uint8_t *unaff_RDI;
   int64_t unaff_R15;
-  uint8_t4 extraout_XMM0_Da;
-  uint8_t4 extraout_XMM0_Da_00;
-  uint8_t4 extraout_XMM0_Da_01;
-  uint8_t4 extraout_XMM0_Da_02;
-  uint8_t4 resourceHash1;
-  uint8_t4 extraout_XMM0_Da_03;
-  uint8_t4 extraout_XMM0_Da_04;
+  uint32_t extraout_XMM0_Da;
+  uint32_t extraout_XMM0_Da_00;
+  uint32_t extraout_XMM0_Da_01;
+  uint32_t extraout_XMM0_Da_02;
+  uint32_t resourceHash1;
+  uint32_t extraout_XMM0_Da_03;
+  uint32_t extraout_XMM0_Da_04;
   
-  punsignedValue7 = (uint8_t4 *)AllocateMemoryBlock();
+  punsignedValue7 = (uint32_t *)AllocateMemoryBlock();
   uVar8 = 0;
   unsignedValue5 = *(uint *)(unaff_RDI + 8);
   resourceHash1 = *punsignedValue7;
   validationResult = punsignedValue7[1];
   unsignedResult3 = punsignedValue7[2];
   unsignedResult4 = punsignedValue7[3];
-  *(uint8_t4 *)(ExecutionContextPointer + -0x19) = resourceHash1;
-  *(uint8_t4 *)(ExecutionContextPointer + -0x15) = validationResult;
-  *(uint8_t4 *)(ExecutionContextPointer + -0x11) = unsignedResult3;
-  *(uint8_t4 *)(ExecutionContextPointer + -0xd) = unsignedResult4;
+  *(uint32_t *)(ExecutionContextPointer + -0x19) = resourceHash1;
+  *(uint32_t *)(ExecutionContextPointer + -0x15) = validationResult;
+  *(uint32_t *)(ExecutionContextPointer + -0x11) = unsignedResult3;
+  *(uint32_t *)(ExecutionContextPointer + -0xd) = unsignedResult4;
   if (unsignedValue5 < 0x6d) {
     if (*(int *)(unaff_RDI[1] + 0x18) == 0) {
       resourceHash = *unaff_RDI;
@@ -25696,7 +25708,7 @@ LAB_18089e70b:
       }
       integerValue6 = *(int *)(ExecutionContextPointer + -0x21);
       if (integerValue6 != 0) {
-        punsignedValue7 = *(uint8_t4 **)(ExecutionContextPointer + -0x29);
+        punsignedValue7 = *(uint32_t **)(ExecutionContextPointer + -0x29);
         for (presourceHash0 = punsignedValue7; (punsignedValue7 <= presourceHash0 && (presourceHash0 < punsignedValue7 + integerValue6));
             presourceHash0 = presourceHash0 + 1) {
           lVar9 = AllocateMemoryBlock(*(uint8_t *)(SystemContextPointer + 0x1a0),0x28,&MemoryBlockTemplate,0xc1c,0)
@@ -25708,14 +25720,14 @@ LAB_18089e70b:
           resourceHash1 = *presourceHash0;
           *(int64_t *)lVar9 = lVar9;
           *(int64_t *)(lVar9 + 8) = lVar9;
-          *(uint8_t4 *)(lVar9 + 0x10) = resourceHash1;
+          *(uint32_t *)(lVar9 + 0x10) = resourceHash1;
           *(uint8_t *)(lVar9 + 0x18) = 0;
-          *(uint8_t4 *)(lVar9 + 0x20) = 0;
+          *(uint32_t *)(lVar9 + 0x20) = 0;
           unsignedValue5 = func_0x0001808aec10(unaff_R15 + 0x58,lVar9);
           uVar8 = (uint64_t)unsignedValue5;
           if (unsignedValue5 != 0) goto LAB_18089e70b;
           integerValue6 = *(int *)(ExecutionContextPointer + -0x21);
-          punsignedValue7 = *(uint8_t4 **)(ExecutionContextPointer + -0x29);
+          punsignedValue7 = *(uint32_t **)(ExecutionContextPointer + -0x29);
         }
       }
       resourceHash1 = ReleaseResourceBuffer(ExecutionContextPointer + -0x29);
@@ -25755,15 +25767,15 @@ LAB_18089e70b:
 uint64_t ProcessResourceValidationAndMemoryAllocation(void)
 
 {
-  uint8_t4 resourceHash;
+  uint32_t resourceHash;
   uint validationResult;
   int validationStatus;
   uint64_t unsignedResult4;
   int64_t MemoryRegion;
-  uint8_t4 *punsignedValue6;
+  uint32_t *punsignedValue6;
   uint8_t ResourceContextPointer;
   int64_t ExecutionContextPointer;
-  uint8_t4 *punsignedValue7;
+  uint32_t *punsignedValue7;
   int64_t UnaffectedRegisterValue;
   int64_t unaff_R15;
   
@@ -25779,7 +25791,7 @@ LAB_18089e70b:
     }
     iVar3 = *(int *)(ExecutionContextPointer + -0x21);
     if (iVar3 != 0) {
-      punsignedValue6 = *(uint8_t4 **)(ExecutionContextPointer + -0x29);
+      punsignedValue6 = *(uint32_t **)(ExecutionContextPointer + -0x29);
       for (punsignedValue7 = punsignedValue6; (punsignedValue6 <= punsignedValue7 && (punsignedValue7 < punsignedValue6 + iVar3)); punsignedValue7 = punsignedValue7 + 1) {
         lVar5 = AllocateMemoryBlock(*(uint8_t *)(SystemContextPointer + 0x1a0),0x28,&MemoryBlockTemplate,0xc1c);
         if (lVar5 == 0) {
@@ -25789,14 +25801,14 @@ LAB_18089e70b:
         resourceHash = *punsignedValue7;
         *(int64_t *)lVar5 = lVar5;
         *(int64_t *)(lVar5 + 8) = lVar5;
-        *(uint8_t4 *)(lVar5 + 0x10) = resourceHash;
+        *(uint32_t *)(lVar5 + 0x10) = resourceHash;
         *(uint8_t *)(lVar5 + 0x18) = ResourceContextPointer;
         *(int *)(lVar5 + 0x20) = (int)ResourceContextPointer;
         validationResult = func_0x0001808aec10(unaff_R15 + 0x58,lVar5);
         unsignedResult4 = (uint64_t)validationResult;
         if (validationResult != 0) goto LAB_18089e70b;
         iVar3 = *(int *)(ExecutionContextPointer + -0x21);
-        punsignedValue6 = *(uint8_t4 **)(ExecutionContextPointer + -0x29);
+        punsignedValue6 = *(uint32_t **)(ExecutionContextPointer + -0x29);
       }
     }
     ReleaseResourceBuffer(ExecutionContextPointer + -0x29);
@@ -25857,7 +25869,7 @@ uint64_t ProcessResourceTableOperationsAndDataValidation(int64_t objectContextPa
   uint unsignedValue3;
   uint64_t unsignedResult4;
   uint64_t unsignedValue5;
-  uint8_t4 unsignedValue6;
+  uint32_t unsignedValue6;
   bool bVar7;
   bool bVar8;
   bool bVar9;
@@ -26139,7 +26151,7 @@ LAB_18089ecba:
   if ((((!bVar7) && ((char)aSecurityValidationContext[0] == '\0')) && (cStackX_20 == '\0')) && (!bVar9)) {
     unsignedValue6 = 0;
   }
-  *(uint8_t4 *)(objectContextParam + 0x38) = unsignedValue6;
+  *(uint32_t *)(objectContextParam + 0x38) = unsignedValue6;
   unsignedResult3 = *(uint *)(resourceData + 8);
 LAB_18089ed1b:
   unsignedResult4 = 0;
@@ -26252,7 +26264,7 @@ LAB_18089ea0f:
     unsignedResult4 = CalculateResourceHash(*presourceTable,ExecutionContextPointer + -0x41,unaff_R12D,4,0);
   }
   else {
-    *(uint8_t4 *)(ExecutionContextPointer + 0x77) = 0;
+    *(uint32_t *)(ExecutionContextPointer + 0x77) = 0;
     unsignedResult4 = func_0x00018076a7d0(localContextPointer,ExecutionContextPointer + 0x77);
     if ((int)byteValue4 == 0) {
       if ((uint64_t)*(uint *)(ExecutionContextPointer + 0x77) + 4 <= (uint64_t)presourceTable[2]) goto LAB_18089ea0f;
@@ -26286,7 +26298,7 @@ LAB_18089ea93:
           unsignedResult3 = CalculateResourceHash(*presourceTable,ExecutionContextPointer + -0x49,unaff_R12D,unaff_R12D,0);
           goto LAB_18089eaae;
         }
-        *(uint8_t4 *)(ExecutionContextPointer + -0x45) = 0;
+        *(uint32_t *)(ExecutionContextPointer + -0x45) = 0;
         unsignedResult3 = func_0x00018076a7d0(localContextPointer,ExecutionContextPointer + -0x45);
         bVar7 = unsignedResult3 == 0;
         if (bVar7) {
@@ -26322,7 +26334,7 @@ LAB_18089eb22:
         unsignedResult3 = CalculateResourceHash(*presourceTable,ExecutionContextPointer + -0x49,unaff_R12D,unaff_R12D,0);
       }
       else {
-        *(uint8_t4 *)(ExecutionContextPointer + -0x45) = 0;
+        *(uint32_t *)(ExecutionContextPointer + -0x45) = 0;
         unsignedResult3 = func_0x00018076a7d0(localContextPointer,ExecutionContextPointer + -0x45);
         if (unsignedResult3 == 0) {
           if ((uint64_t)*(uint *)(ExecutionContextPointer + -0x45) + 1 <= (uint64_t)presourceTable[2])
@@ -26358,7 +26370,7 @@ LAB_18089ebaa:
         unsignedResult3 = CalculateResourceHash(*presourceTable,ExecutionContextPointer + -0x49,unaff_R12D,unaff_R12D,0);
       }
       else {
-        *(uint8_t4 *)(ExecutionContextPointer + -0x45) = 0;
+        *(uint32_t *)(ExecutionContextPointer + -0x45) = 0;
         unsignedResult3 = func_0x00018076a7d0(localContextPointer,ExecutionContextPointer + -0x45);
         if (unsignedResult3 == 0) {
           if ((uint64_t)*(uint *)(ExecutionContextPointer + -0x45) + 1 <= (uint64_t)presourceTable[2])
@@ -26394,7 +26406,7 @@ LAB_18089ec32:
         unsignedResult3 = CalculateResourceHash(*presourceTable,ExecutionContextPointer + -0x49,unaff_R12D,unaff_R12D,0);
       }
       else {
-        *(uint8_t4 *)(ExecutionContextPointer + -0x45) = 0;
+        *(uint32_t *)(ExecutionContextPointer + -0x45) = 0;
         unsignedResult3 = func_0x00018076a7d0(localContextPointer,ExecutionContextPointer + -0x45);
         if (unsignedResult3 == 0) {
           if ((uint64_t)*(uint *)(ExecutionContextPointer + -0x45) + 1 <= (uint64_t)presourceTable[2])
@@ -26430,7 +26442,7 @@ LAB_18089ecba:
         unsignedResult3 = CalculateResourceHash(*presourceTable,ExecutionContextPointer + -0x49,unaff_R12D,unaff_R12D,0);
       }
       else {
-        *(uint8_t4 *)(ExecutionContextPointer + -0x45) = 0;
+        *(uint32_t *)(ExecutionContextPointer + -0x45) = 0;
         unsignedResult3 = func_0x00018076a7d0(localContextPointer,ExecutionContextPointer + -0x45);
         if (unsignedResult3 == 0) {
           if ((uint64_t)*(uint *)(ExecutionContextPointer + -0x45) + 1 <= (uint64_t)presourceTable[2])
@@ -26485,7 +26497,7 @@ uint64_t ProcessResourceDataValidationAndAllocation(uint8_t objectContextParam,u
   uint64_t unsignedValue5;
   int64_t ExecutionContextPointer;
   int64_t *unaff_RDI;
-  uint8_t4 unaff_R12D;
+  uint32_t unaff_R12D;
   int64_t unaff_R15;
   bool bVar6;
   bool bVar7;
@@ -26746,9 +26758,9 @@ LAB_18089ecd4:
   }
   if ((((!bVar6) && (*(char *)(ExecutionContextPointer + 0x77) == '\0')) && (*(char *)(ExecutionContextPointer + 0x7f) == '\0'))
      && (!bVar8)) {
-    unaff_R12D = (uint8_t4)param_3;
+    unaff_R12D = (uint32_t)param_3;
   }
-  *(uint8_t4 *)(unaff_R15 + 0x38) = unaff_R12D;
+  *(uint32_t *)(unaff_R15 + 0x38) = unaff_R12D;
   in_EAX = *(uint *)(unaff_RDI + 8);
 LAB_18089ed1b:
   if (in_EAX < 0x7f) {
@@ -26935,33 +26947,33 @@ uint8_t ResourceBatchProcessor(int64_t objectContextParam,int64_t *validationCon
 
 {
   uint8_t resourceHash;
-  uint8_t4 auStackX_10 [6];
+  uint32_t auStackX_10 [6];
   
   if (*(int *)(resourceData[1] + 0x18) != 0) {
     return 0x1c;
   }
-  auStackX_10[0] = *(uint8_t4 *)(objectContextParam + 0x50);
+  auStackX_10[0] = *(uint32_t *)(objectContextParam + 0x50);
   resourceHash = (**(code **)**(uint8_t **)(*validationContextParam + 8))(*(uint8_t **)(*validationContextParam + 8),auStackX_10,4)
   ;
   if ((int)resourceHash == 0) {
     if (*(int *)(resourceData[1] + 0x18) != 0) {
       return 0x1c;
     }
-    auStackX_10[0] = *(uint8_t4 *)(objectContextParam + 0x54);
+    auStackX_10[0] = *(uint32_t *)(objectContextParam + 0x54);
     resourceHash = (**(code **)**(uint8_t **)(*validationContextParam + 8))
                       (*(uint8_t **)(*validationContextParam + 8),auStackX_10,4);
     if ((int)resourceHash == 0) {
       if (*(int *)(resourceData[1] + 0x18) != 0) {
         return 0x1c;
       }
-      auStackX_10[0] = *(uint8_t4 *)(objectContextParam + 0x58);
+      auStackX_10[0] = *(uint32_t *)(objectContextParam + 0x58);
       resourceHash = (**(code **)**(uint8_t **)(*validationContextParam + 8))
                         (*(uint8_t **)(*validationContextParam + 8),auStackX_10,4);
       if ((int)resourceHash == 0) {
         if (*(int *)(resourceData[1] + 0x18) != 0) {
           return 0x1c;
         }
-        auStackX_10[0] = *(uint8_t4 *)(objectContextParam + 0x60);
+        auStackX_10[0] = *(uint32_t *)(objectContextParam + 0x60);
         resourceHash = (**(code **)**(uint8_t **)(*validationContextParam + 8))
                           (*(uint8_t **)(*validationContextParam + 8),auStackX_10,4);
         if (((((int)resourceHash == 0) && (resourceHash = ComputeDataHash(validationContextParam,objectContextParam + 100), (int)resourceHash == 0))
@@ -26994,7 +27006,7 @@ uint8_t ResourceIdentifierProcessor(int64_t objectContextParam,int64_t *validati
 
 {
   uint8_t resourceHash;
-  uint8_t4 aSecurityValidationContext [2];
+  uint32_t aSecurityValidationContext [2];
   uint8_t1 EncryptionBuffer [64];
   uint8_t1 dataChecksumBuffer [32];
   
@@ -27007,7 +27019,7 @@ uint8_t ResourceIdentifierProcessor(int64_t objectContextParam,int64_t *validati
          ((0x5a < *(uint *)(resourceData + 8) ||
           (resourceHash = ValidateResourceFormat(validationContextParam,objectContextParam + 0x44), (int)resourceHash == 0)))) {
         if (*(int *)(resourceData[1] + 0x18) == 0) {
-          switch(*(uint8_t4 *)(objectContextParam + 0x60)) {
+          switch(*(uint32_t *)(objectContextParam + 0x60)) {
           default:
             aSecurityValidationContext[0] = 0;
             break;
@@ -27156,14 +27168,14 @@ uint8_t ResourceValidationService(void)
   uint8_t resourceHash;
   int64_t *ResourceContextPointer;
   int64_t SystemContextPointer;
-  uint8_t4 in_stack_000000b0;
+  uint32_t in_stack_000000b0;
   
   if (*(int *)(in_RAX + 0x18) == 0) {
     resourceHash = GetResourceEntry(*ResourceContextPointer,SystemContextPointer + 0x10);
     if (((int)resourceHash == 0) &&
        ((0x5a < *(uint *)(ResourceContextPointer + 8) || (resourceHash = ValidateResourceFormat(), (int)resourceHash == 0)))) {
       if (*(int *)(ResourceContextPointer[1] + 0x18) == 0) {
-        switch(*(uint8_t4 *)(SystemContextPointer + 0x60)) {
+        switch(*(uint32_t *)(SystemContextPointer + 0x60)) {
         default:
           in_stack_000000b0 = 0;
           break;
@@ -27306,7 +27318,7 @@ f31e(void)
   int64_t *ResourceContextPointer;
   int unaff_EBP;
   int64_t SystemContextPointer;
-  uint8_t4 in_stack_000000b0;
+  uint32_t in_stack_000000b0;
   
   if (in_EAX == 0x1b) {
     if (*(uint *)(ResourceContextPointer + 8) < 0x3b) {
@@ -27384,7 +27396,7 @@ f47c(void)
 
 
 
-uint64_t ValidateResourceDataIntegrity(int64_t objectContextParam,uint8_t *validationContextParam,uint8_t4 param_3,uint8_t4 param_4,
+uint64_t ValidateResourceDataIntegrity(int64_t objectContextParam,uint8_t *validationContextParam,uint32_t param_3,uint32_t param_4,
                        char param_5)
 
 {
@@ -27468,7 +27480,7 @@ uint8_t ModelResourceProcessor(int64_t objectContextParam,int64_t *validationCon
 
 {
   uint8_t resourceHash;
-  uint8_t4 aSecurityValidationContext [4];
+  uint32_t aSecurityValidationContext [4];
   uint8_t1 resourceValidationBuffer [32];
   uint8_t1 dataChecksumBuffer [32];
   
@@ -27483,7 +27495,7 @@ uint8_t ModelResourceProcessor(int64_t objectContextParam,int64_t *validationCon
       if (*(int *)(resourceData[1] + 0x18) != 0) {
         return 0x1c;
       }
-      aSecurityValidationContext[0] = *(uint8_t4 *)(objectContextParam + 0xd8);
+      aSecurityValidationContext[0] = *(uint32_t *)(objectContextParam + 0xd8);
       resourceHash = (**(code **)**(uint8_t **)(*validationContextParam + 8))
                         (*(uint8_t **)(*validationContextParam + 8),aSecurityValidationContext,4);
       if ((int)resourceHash == 0) {
@@ -27509,18 +27521,18 @@ uint64_t ProcessResourceCertificateValidation(int64_t objectContextParam,int64_t
 {
   int64_t loopCounter;
   uint validationResult;
-  uint8_t4 *punsignedResult3;
+  uint32_t *punsignedResult3;
   uint64_t unsignedResult4;
   uint8_t2 aSecurityValidationContext [4];
   uint8_t2 auStackX_20 [4];
-  uint8_t4 ResourceOperationBuffer [2];
-  uint8_t4 ResourceFlag11;
-  uint8_t4 ResourceFlag12;
-  uint8_t4 ValidationParam1;
-  uint8_t4 ValidationParam2;
+  uint32_t ResourceOperationBuffer [2];
+  uint32_t ResourceFlag11;
+  uint32_t ResourceFlag12;
+  uint32_t ValidationParam1;
+  uint32_t ValidationParam2;
   uint8_t1 ResourceDataBuffer [40];
   
-  punsignedResult3 = (uint8_t4 *)AllocateMemoryBlock();
+  punsignedResult3 = (uint32_t *)AllocateMemoryBlock();
   ResourceFlag11 = *punsignedResult3;
   ResourceFlag12 = punsignedResult3[1];
   ValidationParam1 = punsignedResult3[2];
@@ -27595,8 +27607,8 @@ uint64_t ValidateResourceCertificateChain(void)
   int64_t ExecutionContextPointer;
   uint unaff_ESI;
   int64_t *unaff_RDI;
-  uint8_t4 in_stack_00000030;
-  uint8_t4 uStack0000000000000038;
+  uint32_t in_stack_00000030;
+  uint32_t uStack0000000000000038;
   uint8_t2 uStack000000000000003c;
   uint8_t2 uStack000000000000003e;
   uint8_t2 in_stack_000000a0;
@@ -27668,8 +27680,8 @@ uint64_t ProcessResourceCertificateSigning(void)
   int64_t ExecutionContextPointer;
   uint unaff_ESI;
   int64_t *unaff_RDI;
-  uint8_t4 in_stack_00000030;
-  uint8_t4 uStack0000000000000038;
+  uint32_t in_stack_00000030;
+  uint32_t uStack0000000000000038;
   uint8_t2 uStack000000000000003c;
   uint8_t2 uStack000000000000003e;
   uint8_t2 in_stack_000000a0;
@@ -27968,13 +27980,13 @@ uint8_t ValidateResourceId(int64_t objectContextParam,int64_t *validationContext
 
 {
   uint8_t resourceHash;
-  uint8_t4 auStackX_10 [6];
+  uint32_t auStackX_10 [6];
   
   if (*(uint *)(resourceData + 8) < 0x55) {
     if (*(int *)(resourceData[1] + 0x18) != 0) {
       return 0x1c;
     }
-    auStackX_10[0] = *(uint8_t4 *)(objectContextParam + 0x50);
+    auStackX_10[0] = *(uint32_t *)(objectContextParam + 0x50);
     resourceHash = (**(code **)**(uint8_t **)(*validationContextParam + 8))
                       (*(uint8_t **)(*validationContextParam + 8),auStackX_10,4);
     if ((int)resourceHash != 0) {
@@ -27983,7 +27995,7 @@ uint8_t ValidateResourceId(int64_t objectContextParam,int64_t *validationContext
     if (*(int *)(resourceData[1] + 0x18) != 0) {
       return 0x1c;
     }
-    auStackX_10[0] = *(uint8_t4 *)(objectContextParam + 0x54);
+    auStackX_10[0] = *(uint32_t *)(objectContextParam + 0x54);
     resourceHash = (**(code **)**(uint8_t **)(*validationContextParam + 8))
                       (*(uint8_t **)(*validationContextParam + 8),auStackX_10,4);
     if ((int)resourceHash != 0) {
@@ -27994,7 +28006,7 @@ uint8_t ValidateResourceId(int64_t objectContextParam,int64_t *validationContext
     if (*(int *)(resourceData[1] + 0x18) != 0) {
       return 0x1c;
     }
-    auStackX_10[0] = *(uint8_t4 *)(dataContext + 0x78);
+    auStackX_10[0] = *(uint32_t *)(dataContext + 0x78);
     resourceHash = (**(code **)**(uint8_t **)(*validationContextParam + 8))
                       (*(uint8_t **)(*validationContextParam + 8),auStackX_10,4);
     if ((int)resourceHash != 0) {
@@ -28004,7 +28016,7 @@ uint8_t ValidateResourceId(int64_t objectContextParam,int64_t *validationContext
   if (*(int *)(resourceData[1] + 0x18) != 0) {
     return 0x1c;
   }
-  auStackX_10[0] = *(uint8_t4 *)(objectContextParam + 0x58);
+  auStackX_10[0] = *(uint32_t *)(objectContextParam + 0x58);
   resourceHash = (**(code **)**(uint8_t **)(*validationContextParam + 8))(*(uint8_t **)(*validationContextParam + 8),auStackX_10,4)
   ;
   if ((int)resourceHash != 0) {
@@ -28013,7 +28025,7 @@ uint8_t ValidateResourceId(int64_t objectContextParam,int64_t *validationContext
   if (*(int *)(resourceData[1] + 0x18) != 0) {
     return 0x1c;
   }
-  auStackX_10[0] = *(uint8_t4 *)(objectContextParam + 0x5c);
+  auStackX_10[0] = *(uint32_t *)(objectContextParam + 0x5c);
   resourceHash = (**(code **)**(uint8_t **)(*validationContextParam + 8))(*(uint8_t **)(*validationContextParam + 8),auStackX_10,4)
   ;
   if ((int)resourceHash == 0) {
@@ -28137,7 +28149,7 @@ uint8_t ValidateTextureResourceId(uint8_t objectContextParam,int64_t validationC
 void InitializeUtilitySystemWithParameters(uint8_t *systemParameters)
 
 {
-  InitializeUtilitySystem(*(uint8_t4 *)*systemParameters,systemParameters);
+  InitializeUtilitySystem(*(uint32_t *)*systemParameters,systemParameters);
   return;
 }
 
@@ -28610,7 +28622,7 @@ void ResetResourceDescriptor(uint8_t exceptionCode, int64_t exceptionContext)
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(exceptionContext + 0x70) = 0;
-  *(uint8_t4 *)(exceptionContext + 0x80) = 0;
+  *(uint32_t *)(exceptionContext + 0x80) = 0;
   *(uint8_t *)(exceptionContext + 0x68) = &SystemDataStructure;
   return;
 }
@@ -28830,7 +28842,7 @@ void RestoreResourceDescriptorTemplateAndResetState(uint8_t objectContextParam, 
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(validationContextParam + 0x140) = 0;
-  *(uint8_t4 *)(validationContextParam + 0x150) = 0;
+  *(uint32_t *)(validationContextParam + 0x150) = 0;
   *(uint8_t *)(validationContextParam + 0x138) = &SystemDataStructure;
   return;
 }
@@ -28846,7 +28858,7 @@ void Unwind_180902180(uint8_t objectContextParam,int64_t validationContextParam)
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(validationContextParam + 0x1a8) = 0;
-  *(uint8_t4 *)(validationContextParam + 0x1b8) = 0;
+  *(uint32_t *)(validationContextParam + 0x1b8) = 0;
   *(uint8_t *)(validationContextParam + 0x1a0) = &SystemDataStructure;
   return;
 }
@@ -28886,7 +28898,7 @@ void RestoreSystemResourceHandlerTemplateToContext180(uint8_t objectContextParam
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(validationContextParam + 0x188) = 0;
-  *(uint8_t4 *)(validationContextParam + 0x198) = 0;
+  *(uint32_t *)(validationContextParam + 0x198) = 0;
   *(uint8_t *)(validationContextParam + 0x180) = &SystemDataStructure;
   return;
 }
@@ -29343,7 +29355,7 @@ void ResetAuxiliaryResourceHandlerPointer(uint8_t objectContextParam, int64_t va
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(validationContextParam + 0x80) = 0;
-  *(uint8_t4 *)(validationContextParam + 0x90) = 0;
+  *(uint32_t *)(validationContextParam + 0x90) = 0;
   *(uint8_t *)(validationContextParam + 0x78) = &SystemDataStructure;
   return;
 }
@@ -29379,7 +29391,7 @@ void Unwind_180902430(uint8_t objectContextParam,int64_t validationContextParam)
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(validationContextParam + 0xb0) = 0;
-  *(uint8_t4 *)(validationContextParam + 0xc0) = 0;
+  *(uint32_t *)(validationContextParam + 0xc0) = 0;
   *(uint8_t *)(validationContextParam + 0xa8) = &SystemDataStructure;
   return;
 }
@@ -29395,7 +29407,7 @@ void Unwind_180902440(uint8_t objectContextParam,int64_t validationContextParam)
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(validationContextParam + 0xd8) = 0;
-  *(uint8_t4 *)(validationContextParam + 0xe8) = 0;
+  *(uint32_t *)(validationContextParam + 0xe8) = 0;
   *(uint8_t *)(validationContextParam + 0xd0) = &SystemDataStructure;
   return;
 }
@@ -29411,7 +29423,7 @@ void Unwind_180902450(uint8_t objectContextParam,int64_t validationContextParam)
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(validationContextParam + 0x80) = 0;
-  *(uint8_t4 *)(validationContextParam + 0x90) = 0;
+  *(uint32_t *)(validationContextParam + 0x90) = 0;
   *(uint8_t *)(validationContextParam + 0x78) = &SystemDataStructure;
   return;
 }
@@ -29496,7 +29508,7 @@ void Unwind_1809024e0(uint8_t objectContextParam,int64_t validationContextParam)
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(validationContextParam + 0x108) = 0;
-  *(uint8_t4 *)(validationContextParam + 0x118) = 0;
+  *(uint32_t *)(validationContextParam + 0x118) = 0;
   *(uint8_t *)(validationContextParam + 0x100) = &SystemDataStructure;
   return;
 }
@@ -29512,7 +29524,7 @@ void Unwind_1809024f0(uint8_t objectContextParam,int64_t validationContextParam)
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(validationContextParam + 0x90) = 0;
-  *(uint8_t4 *)(validationContextParam + 0xa0) = 0;
+  *(uint32_t *)(validationContextParam + 0xa0) = 0;
   *(uint8_t *)(validationContextParam + 0x88) = &SystemDataStructure;
   return;
 }
@@ -29612,7 +29624,7 @@ void Unwind_180902540(uint8_t objectContextParam,int64_t validationContextParam)
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x60) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x70) = 0;
+  *(uint32_t *)(localContextPointer + 0x70) = 0;
   *(uint8_t *)(localContextPointer + 0x58) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x28) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x30) != 0) {
@@ -29620,7 +29632,7 @@ void Unwind_180902540(uint8_t objectContextParam,int64_t validationContextParam)
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x30) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x40) = 0;
+  *(uint32_t *)(localContextPointer + 0x40) = 0;
   *(uint8_t *)(localContextPointer + 0x28) = &SystemDataStructure;
   return;
 }
@@ -29645,7 +29657,7 @@ void Unwind_180902550(uint8_t objectContextParam,int64_t validationContextParam)
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x118) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x128) = 0;
+  *(uint32_t *)(localContextPointer + 0x128) = 0;
   *(uint8_t *)(localContextPointer + 0x110) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0xe0) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0xe8) != 0) {
@@ -29653,7 +29665,7 @@ void Unwind_180902550(uint8_t objectContextParam,int64_t validationContextParam)
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0xe8) = 0;
-  *(uint8_t4 *)(localContextPointer + 0xf8) = 0;
+  *(uint32_t *)(localContextPointer + 0xf8) = 0;
   *(uint8_t *)(localContextPointer + 0xe0) = &SystemDataStructure;
   return;
 }
@@ -29678,7 +29690,7 @@ void Unwind_180902570(uint8_t objectContextParam,int64_t validationContextParam)
     ExecuteSystemEmergencyExit();
   }
   presourceHash[8] = 0;
-  *(uint8_t4 *)(presourceHash + 10) = 0;
+  *(uint32_t *)(presourceHash + 10) = 0;
   presourceHash[7] = &SystemDataStructure;
   presourceHash[1] = &SystemResourceHandlerTemplate;
   if (presourceHash[2] != 0) {
@@ -29686,7 +29698,7 @@ void Unwind_180902570(uint8_t objectContextParam,int64_t validationContextParam)
     ExecuteSystemEmergencyExit();
   }
   presourceHash[2] = 0;
-  *(uint8_t4 *)(presourceHash + 4) = 0;
+  *(uint32_t *)(presourceHash + 4) = 0;
   presourceHash[1] = &SystemDataStructure;
   return;
 }
@@ -29707,7 +29719,7 @@ void Unwind_180902580(uint8_t objectContextParam,int64_t validationContextParam)
     ExecuteSystemEmergencyExit();
   }
   presourceHash[8] = 0;
-  *(uint8_t4 *)(presourceHash + 10) = 0;
+  *(uint32_t *)(presourceHash + 10) = 0;
   presourceHash[7] = &SystemDataStructure;
   presourceHash[1] = &SystemResourceHandlerTemplate;
   if (presourceHash[2] != 0) {
@@ -29715,7 +29727,7 @@ void Unwind_180902580(uint8_t objectContextParam,int64_t validationContextParam)
     ExecuteSystemEmergencyExit();
   }
   presourceHash[2] = 0;
-  *(uint8_t4 *)(presourceHash + 4) = 0;
+  *(uint32_t *)(presourceHash + 4) = 0;
   presourceHash[1] = &SystemDataStructure;
   return;
 }
@@ -30228,7 +30240,7 @@ void Unwind_1809027c0(uint8_t objectContextParam,int64_t validationContextParam)
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x30) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x40) = 0;
+  *(uint32_t *)(localContextPointer + 0x40) = 0;
   *(uint8_t *)(localContextPointer + 0x28) = &SystemDataStructure;
   return;
 }
@@ -30247,7 +30259,7 @@ void Unwind_1809027d0(uint8_t objectContextParam,int64_t validationContextParam)
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x58) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x68) = 0;
+  *(uint32_t *)(localContextPointer + 0x68) = 0;
   *(uint8_t *)(localContextPointer + 0x50) = &SystemDataStructure;
   return;
 }
@@ -30495,7 +30507,7 @@ void Unwind_1809028e0(uint8_t objectContextParam,int64_t validationContextParam)
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x48) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x58) = 0;
+  *(uint32_t *)(localContextPointer + 0x58) = 0;
   *(uint8_t *)(localContextPointer + 0x40) = &SystemDataStructure;
   return;
 }
@@ -31237,7 +31249,7 @@ void Unwind_180902b80(uint8_t objectContextParam,int64_t validationContextParam)
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x10) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x20) = 0;
+  *(uint32_t *)(localContextPointer + 0x20) = 0;
   *(uint8_t *)(localContextPointer + 8) = &SystemDataStructure;
   return;
 }
@@ -31256,7 +31268,7 @@ void Unwind_180902b90(uint8_t objectContextParam,int64_t validationContextParam)
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x10) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x20) = 0;
+  *(uint32_t *)(localContextPointer + 0x20) = 0;
   *(uint8_t *)(localContextPointer + 8) = &SystemDataStructure;
   return;
 }
@@ -31275,7 +31287,7 @@ void Unwind_180902ba0(uint8_t objectContextParam,int64_t validationContextParam)
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x28) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x38) = 0;
+  *(uint32_t *)(localContextPointer + 0x38) = 0;
   *(uint8_t *)(localContextPointer + 0x20) = &SystemDataStructure;
   return;
 }
@@ -31339,7 +31351,7 @@ void Unwind_180902bd0(uint8_t objectContextParam,int64_t validationContextParam)
     ExecuteSystemEmergencyExit();
   }
   presourceHash[1] = 0;
-  *(uint8_t4 *)(presourceHash + 3) = 0;
+  *(uint32_t *)(presourceHash + 3) = 0;
   *presourceHash = &SystemDataStructure;
   return;
 }
@@ -31358,7 +31370,7 @@ void Unwind_180902be0(uint8_t objectContextParam,int64_t validationContextParam)
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x28) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x38) = 0;
+  *(uint32_t *)(localContextPointer + 0x38) = 0;
   *(uint8_t *)(localContextPointer + 0x20) = &SystemDataStructure;
   return;
 }
@@ -31648,7 +31660,7 @@ void Unwind_180902c90(uint8_t objectContextParam,int64_t validationContextParam)
     ExecuteSystemEmergencyExit();
   }
   presourceHash[1] = 0;
-  *(uint8_t4 *)(presourceHash + 3) = 0;
+  *(uint32_t *)(presourceHash + 3) = 0;
   *presourceHash = &SystemDataStructure;
   return;
 }
@@ -31855,7 +31867,7 @@ void Unwind_180902d50(uint8_t objectContextParam,int64_t validationContextParam)
   *(int64_t *)(resourceTable + 0x15d8) =
        *(int64_t *)(&SystemDataBufferC8ed30 + (int64_t)*(int *)(resourceTable + 0x15e0) * 8) + -100000;
   SetupResourceTableContext((int64_t *)(resourceTable + 0x8b0));
-  *(uint8_t4 *)(resourceTable + 0x15e8) = 0;
+  *(uint32_t *)(resourceTable + 0x15e8) = 0;
   plocalContextPointer = *(int64_t **)(resourceTable + 0x15d0);
   *(uint8_t *)(resourceTable + 0x15d0) = 0;
   if (plocalContextPointer != (int64_t *)0x0) {
@@ -31998,7 +32010,7 @@ void Unwind_180902e40(uint8_t objectContextParam,int64_t validationContextParam)
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x28) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x38) = 0;
+  *(uint32_t *)(localContextPointer + 0x38) = 0;
   *(uint8_t *)(localContextPointer + 0x20) = &SystemDataStructure;
   return;
 }
@@ -32168,7 +32180,7 @@ void Unwind_180902e90(uint8_t objectContextParam,int64_t validationContextParam)
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x150) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x160) = 0;
+  *(uint32_t *)(localContextPointer + 0x160) = 0;
   *(uint8_t *)(localContextPointer + 0x148) = &SystemDataStructure;
   return;
 }
@@ -32395,7 +32407,7 @@ void Unwind_180902fa0(uint8_t objectContextParam,int64_t validationContextParam)
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x920) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x930) = 0;
+  *(uint32_t *)(localContextPointer + 0x930) = 0;
   *(uint8_t *)(localContextPointer + 0x918) = &SystemDataStructure;
   return;
 }
@@ -32638,7 +32650,7 @@ void Unwind_1809030f0(uint8_t objectContextParam,int64_t validationContextParam)
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x28) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x38) = 0;
+  *(uint32_t *)(localContextPointer + 0x38) = 0;
   *(uint8_t *)(localContextPointer + 0x20) = &SystemDataStructure;
   return;
 }
@@ -32677,7 +32689,7 @@ void Unwind_180903110(uint8_t objectContextParam,int64_t validationContextParam)
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x28) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x38) = 0;
+  *(uint32_t *)(localContextPointer + 0x38) = 0;
   *(uint8_t *)(localContextPointer + 0x20) = &SystemDataStructure;
   return;
 }
@@ -32700,7 +32712,7 @@ void Unwind_180903120(uint8_t objectContextParam,int64_t validationContextParam)
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x28) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x38) = 0;
+  *(uint32_t *)(localContextPointer + 0x38) = 0;
   *(uint8_t *)(localContextPointer + 0x20) = &SystemDataStructure;
   return;
 }
@@ -32795,7 +32807,7 @@ void Unwind_180903150(uint8_t objectContextParam,int64_t validationContextParam)
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x28) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x38) = 0;
+  *(uint32_t *)(localContextPointer + 0x38) = 0;
   *(uint8_t *)(localContextPointer + 0x20) = &SystemDataStructure;
   return;
 }
@@ -32854,7 +32866,7 @@ void Unwind_180903170(uint8_t objectContextParam,int64_t validationContextParam)
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x28) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x38) = 0;
+  *(uint32_t *)(localContextPointer + 0x38) = 0;
   *(uint8_t *)(localContextPointer + 0x20) = &SystemDataStructure;
   return;
 }
@@ -32873,7 +32885,7 @@ void Unwind_180903180(uint8_t objectContextParam,int64_t validationContextParam)
     ExecuteSystemEmergencyExit();
   }
   presourceHash[1] = 0;
-  *(uint8_t4 *)(presourceHash + 3) = 0;
+  *(uint32_t *)(presourceHash + 3) = 0;
   *presourceHash = &SystemDataStructure;
   return;
 }
@@ -33248,7 +33260,7 @@ void Unwind_180903320(uint8_t objectContextParam,int64_t validationContextParam)
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x28) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x38) = 0;
+  *(uint32_t *)(localContextPointer + 0x38) = 0;
   *(uint8_t *)(localContextPointer + 0x20) = &SystemDataStructure;
   return;
 }
@@ -33315,7 +33327,7 @@ void Unwind_180903360(uint8_t objectContextParam,int64_t validationContextParam)
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x48) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x58) = 0;
+  *(uint32_t *)(localContextPointer + 0x58) = 0;
   *(uint8_t *)(localContextPointer + 0x40) = &SystemDataStructure;
   return;
 }
@@ -34033,7 +34045,7 @@ void Unwind_180903610(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   presourceHash[0x19] = 0;
-  *(uint8_t4 *)(presourceHash + 0x1b) = 0;
+  *(uint32_t *)(presourceHash + 0x1b) = 0;
   presourceHash[0x18] = &SystemDataStructure;
   ProcessResourceValidation(presourceHash + 0x12,presourceHash[0x14],param_3,param_4,0xfffffffffffffffe);
   if (presourceHash[0xd] != 0) {
@@ -34072,7 +34084,7 @@ void Unwind_180903620(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x110) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x120) = 0;
+  *(uint32_t *)(localContextPointer + 0x120) = 0;
   *(uint8_t *)(localContextPointer + 0x108) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0xe8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0xf0) != 0) {
@@ -34080,7 +34092,7 @@ void Unwind_180903620(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0xf0) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x100) = 0;
+  *(uint32_t *)(localContextPointer + 0x100) = 0;
   *(uint8_t *)(localContextPointer + 0xe8) = &SystemDataStructure;
   return;
 }
@@ -34102,7 +34114,7 @@ void Unwind_180903640(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x180) = 0;
-  *(uint8_t4 *)(localContextPointer + 400) = 0;
+  *(uint32_t *)(localContextPointer + 400) = 0;
   *(uint8_t *)(localContextPointer + 0x178) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x158) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x160) != 0) {
@@ -34110,7 +34122,7 @@ void Unwind_180903640(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x160) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x170) = 0;
+  *(uint32_t *)(localContextPointer + 0x170) = 0;
   *(uint8_t *)(localContextPointer + 0x158) = &SystemDataStructure;
   return;
 }
@@ -34132,7 +34144,7 @@ void Unwind_180903660(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x1f0) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x200) = 0;
+  *(uint32_t *)(localContextPointer + 0x200) = 0;
   *(uint8_t *)(localContextPointer + 0x1e8) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x1c8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x1d0) != 0) {
@@ -34140,7 +34152,7 @@ void Unwind_180903660(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x1d0) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x1e0) = 0;
+  *(uint32_t *)(localContextPointer + 0x1e0) = 0;
   *(uint8_t *)(localContextPointer + 0x1c8) = &SystemDataStructure;
   return;
 }
@@ -34162,7 +34174,7 @@ void Unwind_180903680(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x260) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x270) = 0;
+  *(uint32_t *)(localContextPointer + 0x270) = 0;
   *(uint8_t *)(localContextPointer + 600) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x238) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x240) != 0) {
@@ -34170,7 +34182,7 @@ void Unwind_180903680(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x240) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x250) = 0;
+  *(uint32_t *)(localContextPointer + 0x250) = 0;
   *(uint8_t *)(localContextPointer + 0x238) = &SystemDataStructure;
   return;
 }
@@ -34192,7 +34204,7 @@ void Unwind_1809036a0(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x2d0) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x2e0) = 0;
+  *(uint32_t *)(localContextPointer + 0x2e0) = 0;
   *(uint8_t *)(localContextPointer + 0x2c8) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x2a8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x2b0) != 0) {
@@ -34200,7 +34212,7 @@ void Unwind_1809036a0(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x2b0) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x2c0) = 0;
+  *(uint32_t *)(localContextPointer + 0x2c0) = 0;
   *(uint8_t *)(localContextPointer + 0x2a8) = &SystemDataStructure;
   return;
 }
@@ -34222,7 +34234,7 @@ void Unwind_1809036c0(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x340) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x350) = 0;
+  *(uint32_t *)(localContextPointer + 0x350) = 0;
   *(uint8_t *)(localContextPointer + 0x338) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x318) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 800) != 0) {
@@ -34230,7 +34242,7 @@ void Unwind_1809036c0(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 800) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x330) = 0;
+  *(uint32_t *)(localContextPointer + 0x330) = 0;
   *(uint8_t *)(localContextPointer + 0x318) = &SystemDataStructure;
   return;
 }
@@ -34252,7 +34264,7 @@ void Unwind_1809036e0(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x3b0) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x3c0) = 0;
+  *(uint32_t *)(localContextPointer + 0x3c0) = 0;
   *(uint8_t *)(localContextPointer + 0x3a8) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x388) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x390) != 0) {
@@ -34260,7 +34272,7 @@ void Unwind_1809036e0(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x390) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x3a0) = 0;
+  *(uint32_t *)(localContextPointer + 0x3a0) = 0;
   *(uint8_t *)(localContextPointer + 0x388) = &SystemDataStructure;
   return;
 }
@@ -34282,7 +34294,7 @@ void Unwind_180903700(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x420) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x430) = 0;
+  *(uint32_t *)(localContextPointer + 0x430) = 0;
   *(uint8_t *)(localContextPointer + 0x418) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x3f8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x400) != 0) {
@@ -34290,7 +34302,7 @@ void Unwind_180903700(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x400) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x410) = 0;
+  *(uint32_t *)(localContextPointer + 0x410) = 0;
   *(uint8_t *)(localContextPointer + 0x3f8) = &SystemDataStructure;
   return;
 }
@@ -34312,7 +34324,7 @@ void Unwind_180903720(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x4e8) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x4f8) = 0;
+  *(uint32_t *)(localContextPointer + 0x4f8) = 0;
   *(uint8_t *)(localContextPointer + 0x4e0) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x4c0) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x4c8) != 0) {
@@ -34320,7 +34332,7 @@ void Unwind_180903720(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x4c8) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x4d8) = 0;
+  *(uint32_t *)(localContextPointer + 0x4d8) = 0;
   *(uint8_t *)(localContextPointer + 0x4c0) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x4a0) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x4a8) != 0) {
@@ -34328,7 +34340,7 @@ void Unwind_180903720(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x4a8) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x4b8) = 0;
+  *(uint32_t *)(localContextPointer + 0x4b8) = 0;
   *(uint8_t *)(localContextPointer + 0x4a0) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x480) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x488) != 0) {
@@ -34336,7 +34348,7 @@ void Unwind_180903720(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x488) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x498) = 0;
+  *(uint32_t *)(localContextPointer + 0x498) = 0;
   *(uint8_t *)(localContextPointer + 0x480) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x460) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x468) != 0) {
@@ -34344,7 +34356,7 @@ void Unwind_180903720(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x468) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x478) = 0;
+  *(uint32_t *)(localContextPointer + 0x478) = 0;
   *(uint8_t *)(localContextPointer + 0x460) = &SystemDataStructure;
   return;
 }
@@ -34366,7 +34378,7 @@ void Unwind_180903740(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x550) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x560) = 0;
+  *(uint32_t *)(localContextPointer + 0x560) = 0;
   *(uint8_t *)(localContextPointer + 0x548) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x528) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x530) != 0) {
@@ -34374,7 +34386,7 @@ void Unwind_180903740(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x530) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x540) = 0;
+  *(uint32_t *)(localContextPointer + 0x540) = 0;
   *(uint8_t *)(localContextPointer + 0x528) = &SystemDataStructure;
   return;
 }
@@ -34394,7 +34406,7 @@ void Unwind_180903760(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   presourceHash[0x19] = 0;
-  *(uint8_t4 *)(presourceHash + 0x1b) = 0;
+  *(uint32_t *)(presourceHash + 0x1b) = 0;
   presourceHash[0x18] = &SystemDataStructure;
   ProcessResourceValidation(presourceHash + 0x12,presourceHash[0x14],param_3,param_4,0xfffffffffffffffe);
   if (presourceHash[0xd] != 0) {
@@ -34433,7 +34445,7 @@ void Unwind_180903770(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x110) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x120) = 0;
+  *(uint32_t *)(localContextPointer + 0x120) = 0;
   *(uint8_t *)(localContextPointer + 0x108) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0xe8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0xf0) != 0) {
@@ -34441,7 +34453,7 @@ void Unwind_180903770(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0xf0) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x100) = 0;
+  *(uint32_t *)(localContextPointer + 0x100) = 0;
   *(uint8_t *)(localContextPointer + 0xe8) = &SystemDataStructure;
   return;
 }
@@ -34463,7 +34475,7 @@ void Unwind_180903790(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x180) = 0;
-  *(uint8_t4 *)(localContextPointer + 400) = 0;
+  *(uint32_t *)(localContextPointer + 400) = 0;
   *(uint8_t *)(localContextPointer + 0x178) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x158) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x160) != 0) {
@@ -34471,7 +34483,7 @@ void Unwind_180903790(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x160) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x170) = 0;
+  *(uint32_t *)(localContextPointer + 0x170) = 0;
   *(uint8_t *)(localContextPointer + 0x158) = &SystemDataStructure;
   return;
 }
@@ -34493,7 +34505,7 @@ void Unwind_1809037b0(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x1f0) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x200) = 0;
+  *(uint32_t *)(localContextPointer + 0x200) = 0;
   *(uint8_t *)(localContextPointer + 0x1e8) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x1c8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x1d0) != 0) {
@@ -34501,7 +34513,7 @@ void Unwind_1809037b0(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x1d0) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x1e0) = 0;
+  *(uint32_t *)(localContextPointer + 0x1e0) = 0;
   *(uint8_t *)(localContextPointer + 0x1c8) = &SystemDataStructure;
   return;
 }
@@ -34523,7 +34535,7 @@ void Unwind_1809037d0(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x260) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x270) = 0;
+  *(uint32_t *)(localContextPointer + 0x270) = 0;
   *(uint8_t *)(localContextPointer + 600) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x238) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x240) != 0) {
@@ -34531,7 +34543,7 @@ void Unwind_1809037d0(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x240) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x250) = 0;
+  *(uint32_t *)(localContextPointer + 0x250) = 0;
   *(uint8_t *)(localContextPointer + 0x238) = &SystemDataStructure;
   return;
 }
@@ -34553,7 +34565,7 @@ void Unwind_1809037f0(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x2d0) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x2e0) = 0;
+  *(uint32_t *)(localContextPointer + 0x2e0) = 0;
   *(uint8_t *)(localContextPointer + 0x2c8) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x2a8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x2b0) != 0) {
@@ -34561,7 +34573,7 @@ void Unwind_1809037f0(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x2b0) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x2c0) = 0;
+  *(uint32_t *)(localContextPointer + 0x2c0) = 0;
   *(uint8_t *)(localContextPointer + 0x2a8) = &SystemDataStructure;
   return;
 }
@@ -34583,7 +34595,7 @@ void Unwind_180903810(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x340) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x350) = 0;
+  *(uint32_t *)(localContextPointer + 0x350) = 0;
   *(uint8_t *)(localContextPointer + 0x338) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x318) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 800) != 0) {
@@ -34591,7 +34603,7 @@ void Unwind_180903810(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 800) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x330) = 0;
+  *(uint32_t *)(localContextPointer + 0x330) = 0;
   *(uint8_t *)(localContextPointer + 0x318) = &SystemDataStructure;
   return;
 }
@@ -34613,7 +34625,7 @@ void Unwind_180903830(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x3b0) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x3c0) = 0;
+  *(uint32_t *)(localContextPointer + 0x3c0) = 0;
   *(uint8_t *)(localContextPointer + 0x3a8) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x388) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x390) != 0) {
@@ -34621,7 +34633,7 @@ void Unwind_180903830(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x390) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x3a0) = 0;
+  *(uint32_t *)(localContextPointer + 0x3a0) = 0;
   *(uint8_t *)(localContextPointer + 0x388) = &SystemDataStructure;
   return;
 }
@@ -34643,7 +34655,7 @@ void Unwind_180903850(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x420) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x430) = 0;
+  *(uint32_t *)(localContextPointer + 0x430) = 0;
   *(uint8_t *)(localContextPointer + 0x418) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x3f8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x400) != 0) {
@@ -34651,7 +34663,7 @@ void Unwind_180903850(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x400) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x410) = 0;
+  *(uint32_t *)(localContextPointer + 0x410) = 0;
   *(uint8_t *)(localContextPointer + 0x3f8) = &SystemDataStructure;
   return;
 }
@@ -34673,7 +34685,7 @@ void Unwind_180903870(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x4e8) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x4f8) = 0;
+  *(uint32_t *)(localContextPointer + 0x4f8) = 0;
   *(uint8_t *)(localContextPointer + 0x4e0) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x4c0) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x4c8) != 0) {
@@ -34681,7 +34693,7 @@ void Unwind_180903870(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x4c8) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x4d8) = 0;
+  *(uint32_t *)(localContextPointer + 0x4d8) = 0;
   *(uint8_t *)(localContextPointer + 0x4c0) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x4a0) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x4a8) != 0) {
@@ -34689,7 +34701,7 @@ void Unwind_180903870(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x4a8) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x4b8) = 0;
+  *(uint32_t *)(localContextPointer + 0x4b8) = 0;
   *(uint8_t *)(localContextPointer + 0x4a0) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x480) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x488) != 0) {
@@ -34697,7 +34709,7 @@ void Unwind_180903870(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x488) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x498) = 0;
+  *(uint32_t *)(localContextPointer + 0x498) = 0;
   *(uint8_t *)(localContextPointer + 0x480) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x460) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x468) != 0) {
@@ -34705,7 +34717,7 @@ void Unwind_180903870(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x468) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x478) = 0;
+  *(uint32_t *)(localContextPointer + 0x478) = 0;
   *(uint8_t *)(localContextPointer + 0x460) = &SystemDataStructure;
   return;
 }
@@ -34727,7 +34739,7 @@ void Unwind_180903890(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x550) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x560) = 0;
+  *(uint32_t *)(localContextPointer + 0x560) = 0;
   *(uint8_t *)(localContextPointer + 0x548) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x528) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x530) != 0) {
@@ -34735,7 +34747,7 @@ void Unwind_180903890(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x530) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x540) = 0;
+  *(uint32_t *)(localContextPointer + 0x540) = 0;
   *(uint8_t *)(localContextPointer + 0x528) = &SystemDataStructure;
   return;
 }
@@ -34754,7 +34766,7 @@ void Unwind_1809038b0(uint8_t objectContextParam,int64_t validationContextParam)
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x10) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x20) = 0;
+  *(uint32_t *)(localContextPointer + 0x20) = 0;
   *(uint8_t *)(localContextPointer + 8) = &SystemDataStructure;
   return;
 }
@@ -34773,7 +34785,7 @@ void Unwind_1809038c0(uint8_t objectContextParam,int64_t validationContextParam)
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x30) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x40) = 0;
+  *(uint32_t *)(localContextPointer + 0x40) = 0;
   *(uint8_t *)(localContextPointer + 0x28) = &SystemDataStructure;
   return;
 }
@@ -34823,7 +34835,7 @@ void Unwind_1809038f0(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x490) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x4a0) = 0;
+  *(uint32_t *)(localContextPointer + 0x4a0) = 0;
   *(uint8_t *)(localContextPointer + 0x488) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x468) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x470) != 0) {
@@ -34831,7 +34843,7 @@ void Unwind_1809038f0(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x470) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x480) = 0;
+  *(uint32_t *)(localContextPointer + 0x480) = 0;
   *(uint8_t *)(localContextPointer + 0x468) = &SystemDataStructure;
   return;
 }
@@ -34853,7 +34865,7 @@ void Unwind_180903910(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x500) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x510) = 0;
+  *(uint32_t *)(localContextPointer + 0x510) = 0;
   *(uint8_t *)(localContextPointer + 0x4f8) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x4d8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x4e0) != 0) {
@@ -34861,7 +34873,7 @@ void Unwind_180903910(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x4e0) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x4f0) = 0;
+  *(uint32_t *)(localContextPointer + 0x4f0) = 0;
   *(uint8_t *)(localContextPointer + 0x4d8) = &SystemDataStructure;
   return;
 }
@@ -34883,7 +34895,7 @@ void Unwind_180903930(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x570) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x580) = 0;
+  *(uint32_t *)(localContextPointer + 0x580) = 0;
   *(uint8_t *)(localContextPointer + 0x568) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x548) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x550) != 0) {
@@ -34891,7 +34903,7 @@ void Unwind_180903930(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x550) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x560) = 0;
+  *(uint32_t *)(localContextPointer + 0x560) = 0;
   *(uint8_t *)(localContextPointer + 0x548) = &SystemDataStructure;
   return;
 }
@@ -34913,7 +34925,7 @@ void Unwind_180903950(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x5e0) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x5f0) = 0;
+  *(uint32_t *)(localContextPointer + 0x5f0) = 0;
   *(uint8_t *)(localContextPointer + 0x5d8) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x5b8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x5c0) != 0) {
@@ -34921,7 +34933,7 @@ void Unwind_180903950(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x5c0) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x5d0) = 0;
+  *(uint32_t *)(localContextPointer + 0x5d0) = 0;
   *(uint8_t *)(localContextPointer + 0x5b8) = &SystemDataStructure;
   return;
 }
@@ -34943,7 +34955,7 @@ void Unwind_180903970(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x650) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x660) = 0;
+  *(uint32_t *)(localContextPointer + 0x660) = 0;
   *(uint8_t *)(localContextPointer + 0x648) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x628) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x630) != 0) {
@@ -34951,7 +34963,7 @@ void Unwind_180903970(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x630) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x640) = 0;
+  *(uint32_t *)(localContextPointer + 0x640) = 0;
   *(uint8_t *)(localContextPointer + 0x628) = &SystemDataStructure;
   return;
 }
@@ -34973,7 +34985,7 @@ void Unwind_180903990(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x6c0) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x6d0) = 0;
+  *(uint32_t *)(localContextPointer + 0x6d0) = 0;
   *(uint8_t *)(localContextPointer + 0x6b8) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x698) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x6a0) != 0) {
@@ -34981,7 +34993,7 @@ void Unwind_180903990(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x6a0) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x6b0) = 0;
+  *(uint32_t *)(localContextPointer + 0x6b0) = 0;
   *(uint8_t *)(localContextPointer + 0x698) = &SystemDataStructure;
   return;
 }
@@ -35003,7 +35015,7 @@ void Unwind_1809039b0(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x730) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x740) = 0;
+  *(uint32_t *)(localContextPointer + 0x740) = 0;
   *(uint8_t *)(localContextPointer + 0x728) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x708) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x710) != 0) {
@@ -35011,7 +35023,7 @@ void Unwind_1809039b0(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x710) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x720) = 0;
+  *(uint32_t *)(localContextPointer + 0x720) = 0;
   *(uint8_t *)(localContextPointer + 0x708) = &SystemDataStructure;
   return;
 }
@@ -35033,7 +35045,7 @@ void Unwind_1809039d0(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x7a0) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x7b0) = 0;
+  *(uint32_t *)(localContextPointer + 0x7b0) = 0;
   *(uint8_t *)(localContextPointer + 0x798) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x778) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x780) != 0) {
@@ -35041,7 +35053,7 @@ void Unwind_1809039d0(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x780) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x790) = 0;
+  *(uint32_t *)(localContextPointer + 0x790) = 0;
   *(uint8_t *)(localContextPointer + 0x778) = &SystemDataStructure;
   return;
 }
@@ -35063,7 +35075,7 @@ void Unwind_1809039f0(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x810) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x820) = 0;
+  *(uint32_t *)(localContextPointer + 0x820) = 0;
   *(uint8_t *)(localContextPointer + 0x808) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x7e8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x7f0) != 0) {
@@ -35071,7 +35083,7 @@ void Unwind_1809039f0(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x7f0) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x800) = 0;
+  *(uint32_t *)(localContextPointer + 0x800) = 0;
   *(uint8_t *)(localContextPointer + 0x7e8) = &SystemDataStructure;
   return;
 }
@@ -35093,7 +35105,7 @@ void Unwind_180903a10(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x880) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x890) = 0;
+  *(uint32_t *)(localContextPointer + 0x890) = 0;
   *(uint8_t *)(localContextPointer + 0x878) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x858) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x860) != 0) {
@@ -35101,7 +35113,7 @@ void Unwind_180903a10(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x860) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x870) = 0;
+  *(uint32_t *)(localContextPointer + 0x870) = 0;
   *(uint8_t *)(localContextPointer + 0x858) = &SystemDataStructure;
   return;
 }
@@ -35123,7 +35135,7 @@ void Unwind_180903a30(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x8f0) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x900) = 0;
+  *(uint32_t *)(localContextPointer + 0x900) = 0;
   *(uint8_t *)(localContextPointer + 0x8e8) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x8c8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x8d0) != 0) {
@@ -35131,7 +35143,7 @@ void Unwind_180903a30(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x8d0) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x8e0) = 0;
+  *(uint32_t *)(localContextPointer + 0x8e0) = 0;
   *(uint8_t *)(localContextPointer + 0x8c8) = &SystemDataStructure;
   return;
 }
@@ -35153,7 +35165,7 @@ void Unwind_180903a50(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x960) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x970) = 0;
+  *(uint32_t *)(localContextPointer + 0x970) = 0;
   *(uint8_t *)(localContextPointer + 0x958) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x938) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x940) != 0) {
@@ -35161,7 +35173,7 @@ void Unwind_180903a50(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x940) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x950) = 0;
+  *(uint32_t *)(localContextPointer + 0x950) = 0;
   *(uint8_t *)(localContextPointer + 0x938) = &SystemDataStructure;
   return;
 }
@@ -35183,7 +35195,7 @@ void Unwind_180903a70(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x9d8) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x9e8) = 0;
+  *(uint32_t *)(localContextPointer + 0x9e8) = 0;
   *(uint8_t *)(localContextPointer + 0x9d0) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x9b0) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x9b8) != 0) {
@@ -35191,7 +35203,7 @@ void Unwind_180903a70(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x9b8) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x9c8) = 0;
+  *(uint32_t *)(localContextPointer + 0x9c8) = 0;
   *(uint8_t *)(localContextPointer + 0x9b0) = &SystemDataStructure;
   return;
 }
@@ -35213,7 +35225,7 @@ void Unwind_180903a90(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0xa50) = 0;
-  *(uint8_t4 *)(localContextPointer + 0xa60) = 0;
+  *(uint32_t *)(localContextPointer + 0xa60) = 0;
   *(uint8_t *)(localContextPointer + 0xa48) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0xa28) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0xa30) != 0) {
@@ -35221,7 +35233,7 @@ void Unwind_180903a90(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0xa30) = 0;
-  *(uint8_t4 *)(localContextPointer + 0xa40) = 0;
+  *(uint32_t *)(localContextPointer + 0xa40) = 0;
   *(uint8_t *)(localContextPointer + 0xa28) = &SystemDataStructure;
   return;
 }
@@ -35254,7 +35266,7 @@ void Unwind_180903ac0(uint8_t objectContextParam,int64_t validationContextParam)
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x18) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x28) = 0;
+  *(uint32_t *)(localContextPointer + 0x28) = 0;
   *(uint8_t *)(localContextPointer + 0x10) = &SystemDataStructure;
   return;
 }
@@ -35273,7 +35285,7 @@ void Unwind_180903ad0(uint8_t objectContextParam,int64_t validationContextParam)
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x38) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x48) = 0;
+  *(uint32_t *)(localContextPointer + 0x48) = 0;
   *(uint8_t *)(localContextPointer + 0x30) = &SystemDataStructure;
   return;
 }
@@ -35323,7 +35335,7 @@ void Unwind_180903b00(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x490) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x4a0) = 0;
+  *(uint32_t *)(localContextPointer + 0x4a0) = 0;
   *(uint8_t *)(localContextPointer + 0x488) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x468) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x470) != 0) {
@@ -35331,7 +35343,7 @@ void Unwind_180903b00(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x470) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x480) = 0;
+  *(uint32_t *)(localContextPointer + 0x480) = 0;
   *(uint8_t *)(localContextPointer + 0x468) = &SystemDataStructure;
   return;
 }
@@ -35353,7 +35365,7 @@ void Unwind_180903b20(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x500) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x510) = 0;
+  *(uint32_t *)(localContextPointer + 0x510) = 0;
   *(uint8_t *)(localContextPointer + 0x4f8) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x4d8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x4e0) != 0) {
@@ -35361,7 +35373,7 @@ void Unwind_180903b20(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x4e0) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x4f0) = 0;
+  *(uint32_t *)(localContextPointer + 0x4f0) = 0;
   *(uint8_t *)(localContextPointer + 0x4d8) = &SystemDataStructure;
   return;
 }
@@ -35383,7 +35395,7 @@ void Unwind_180903b40(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x570) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x580) = 0;
+  *(uint32_t *)(localContextPointer + 0x580) = 0;
   *(uint8_t *)(localContextPointer + 0x568) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x548) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x550) != 0) {
@@ -35391,7 +35403,7 @@ void Unwind_180903b40(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x550) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x560) = 0;
+  *(uint32_t *)(localContextPointer + 0x560) = 0;
   *(uint8_t *)(localContextPointer + 0x548) = &SystemDataStructure;
   return;
 }
@@ -35413,7 +35425,7 @@ void Unwind_180903b60(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x5e0) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x5f0) = 0;
+  *(uint32_t *)(localContextPointer + 0x5f0) = 0;
   *(uint8_t *)(localContextPointer + 0x5d8) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x5b8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x5c0) != 0) {
@@ -35421,7 +35433,7 @@ void Unwind_180903b60(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x5c0) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x5d0) = 0;
+  *(uint32_t *)(localContextPointer + 0x5d0) = 0;
   *(uint8_t *)(localContextPointer + 0x5b8) = &SystemDataStructure;
   return;
 }
@@ -35443,7 +35455,7 @@ void Unwind_180903b80(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x650) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x660) = 0;
+  *(uint32_t *)(localContextPointer + 0x660) = 0;
   *(uint8_t *)(localContextPointer + 0x648) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x628) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x630) != 0) {
@@ -35451,7 +35463,7 @@ void Unwind_180903b80(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x630) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x640) = 0;
+  *(uint32_t *)(localContextPointer + 0x640) = 0;
   *(uint8_t *)(localContextPointer + 0x628) = &SystemDataStructure;
   return;
 }
@@ -35473,7 +35485,7 @@ void Unwind_180903ba0(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x6c0) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x6d0) = 0;
+  *(uint32_t *)(localContextPointer + 0x6d0) = 0;
   *(uint8_t *)(localContextPointer + 0x6b8) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x698) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x6a0) != 0) {
@@ -35481,7 +35493,7 @@ void Unwind_180903ba0(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x6a0) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x6b0) = 0;
+  *(uint32_t *)(localContextPointer + 0x6b0) = 0;
   *(uint8_t *)(localContextPointer + 0x698) = &SystemDataStructure;
   return;
 }
@@ -35503,7 +35515,7 @@ void Unwind_180903bc0(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x730) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x740) = 0;
+  *(uint32_t *)(localContextPointer + 0x740) = 0;
   *(uint8_t *)(localContextPointer + 0x728) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x708) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x710) != 0) {
@@ -35511,7 +35523,7 @@ void Unwind_180903bc0(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x710) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x720) = 0;
+  *(uint32_t *)(localContextPointer + 0x720) = 0;
   *(uint8_t *)(localContextPointer + 0x708) = &SystemDataStructure;
   return;
 }
@@ -35533,7 +35545,7 @@ void Unwind_180903be0(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x7a0) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x7b0) = 0;
+  *(uint32_t *)(localContextPointer + 0x7b0) = 0;
   *(uint8_t *)(localContextPointer + 0x798) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x778) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x780) != 0) {
@@ -35541,7 +35553,7 @@ void Unwind_180903be0(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x780) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x790) = 0;
+  *(uint32_t *)(localContextPointer + 0x790) = 0;
   *(uint8_t *)(localContextPointer + 0x778) = &SystemDataStructure;
   return;
 }
@@ -35563,7 +35575,7 @@ void Unwind_180903c00(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x810) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x820) = 0;
+  *(uint32_t *)(localContextPointer + 0x820) = 0;
   *(uint8_t *)(localContextPointer + 0x808) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x7e8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x7f0) != 0) {
@@ -35571,7 +35583,7 @@ void Unwind_180903c00(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x7f0) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x800) = 0;
+  *(uint32_t *)(localContextPointer + 0x800) = 0;
   *(uint8_t *)(localContextPointer + 0x7e8) = &SystemDataStructure;
   return;
 }
@@ -35593,7 +35605,7 @@ void Unwind_180903c20(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x880) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x890) = 0;
+  *(uint32_t *)(localContextPointer + 0x890) = 0;
   *(uint8_t *)(localContextPointer + 0x878) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x858) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x860) != 0) {
@@ -35601,7 +35613,7 @@ void Unwind_180903c20(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x860) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x870) = 0;
+  *(uint32_t *)(localContextPointer + 0x870) = 0;
   *(uint8_t *)(localContextPointer + 0x858) = &SystemDataStructure;
   return;
 }
@@ -35623,7 +35635,7 @@ void Unwind_180903c40(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x8f0) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x900) = 0;
+  *(uint32_t *)(localContextPointer + 0x900) = 0;
   *(uint8_t *)(localContextPointer + 0x8e8) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x8c8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x8d0) != 0) {
@@ -35631,7 +35643,7 @@ void Unwind_180903c40(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x8d0) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x8e0) = 0;
+  *(uint32_t *)(localContextPointer + 0x8e0) = 0;
   *(uint8_t *)(localContextPointer + 0x8c8) = &SystemDataStructure;
   return;
 }
@@ -35653,7 +35665,7 @@ void Unwind_180903c60(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x960) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x970) = 0;
+  *(uint32_t *)(localContextPointer + 0x970) = 0;
   *(uint8_t *)(localContextPointer + 0x958) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x938) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x940) != 0) {
@@ -35661,7 +35673,7 @@ void Unwind_180903c60(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x940) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x950) = 0;
+  *(uint32_t *)(localContextPointer + 0x950) = 0;
   *(uint8_t *)(localContextPointer + 0x938) = &SystemDataStructure;
   return;
 }
@@ -35683,7 +35695,7 @@ void Unwind_180903c80(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x9d8) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x9e8) = 0;
+  *(uint32_t *)(localContextPointer + 0x9e8) = 0;
   *(uint8_t *)(localContextPointer + 0x9d0) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x9b0) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x9b8) != 0) {
@@ -35691,7 +35703,7 @@ void Unwind_180903c80(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x9b8) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x9c8) = 0;
+  *(uint32_t *)(localContextPointer + 0x9c8) = 0;
   *(uint8_t *)(localContextPointer + 0x9b0) = &SystemDataStructure;
   return;
 }
@@ -35713,7 +35725,7 @@ void Unwind_180903ca0(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0xa50) = 0;
-  *(uint8_t4 *)(localContextPointer + 0xa60) = 0;
+  *(uint32_t *)(localContextPointer + 0xa60) = 0;
   *(uint8_t *)(localContextPointer + 0xa48) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0xa28) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0xa30) != 0) {
@@ -35721,7 +35733,7 @@ void Unwind_180903ca0(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0xa30) = 0;
-  *(uint8_t4 *)(localContextPointer + 0xa40) = 0;
+  *(uint32_t *)(localContextPointer + 0xa40) = 0;
   *(uint8_t *)(localContextPointer + 0xa28) = &SystemDataStructure;
   return;
 }
@@ -35740,7 +35752,7 @@ void Unwind_180903cc0(uint8_t objectContextParam,int64_t validationContextParam)
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x18) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x28) = 0;
+  *(uint32_t *)(localContextPointer + 0x28) = 0;
   *(uint8_t *)(localContextPointer + 0x10) = &SystemDataStructure;
   return;
 }
@@ -35759,7 +35771,7 @@ void Unwind_180903cd0(uint8_t objectContextParam,int64_t validationContextParam)
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x38) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x48) = 0;
+  *(uint32_t *)(localContextPointer + 0x48) = 0;
   *(uint8_t *)(localContextPointer + 0x30) = &SystemDataStructure;
   return;
 }
@@ -35795,7 +35807,7 @@ void Unwind_180903cf0(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x168) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x178) = 0;
+  *(uint32_t *)(localContextPointer + 0x178) = 0;
   *(uint8_t *)(localContextPointer + 0x160) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x140) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x148) != 0) {
@@ -35803,7 +35815,7 @@ void Unwind_180903cf0(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x148) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x158) = 0;
+  *(uint32_t *)(localContextPointer + 0x158) = 0;
   *(uint8_t *)(localContextPointer + 0x140) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x120) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x128) != 0) {
@@ -35811,7 +35823,7 @@ void Unwind_180903cf0(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x128) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x138) = 0;
+  *(uint32_t *)(localContextPointer + 0x138) = 0;
   *(uint8_t *)(localContextPointer + 0x120) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x100) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x108) != 0) {
@@ -35819,7 +35831,7 @@ void Unwind_180903cf0(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x108) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x118) = 0;
+  *(uint32_t *)(localContextPointer + 0x118) = 0;
   *(uint8_t *)(localContextPointer + 0x100) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0xe0) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0xe8) != 0) {
@@ -35827,7 +35839,7 @@ void Unwind_180903cf0(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0xe8) = 0;
-  *(uint8_t4 *)(localContextPointer + 0xf8) = 0;
+  *(uint32_t *)(localContextPointer + 0xf8) = 0;
   *(uint8_t *)(localContextPointer + 0xe0) = &SystemDataStructure;
   return;
 }
@@ -35849,7 +35861,7 @@ void Unwind_180903d10(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x228) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x238) = 0;
+  *(uint32_t *)(localContextPointer + 0x238) = 0;
   *(uint8_t *)(localContextPointer + 0x220) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x200) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x208) != 0) {
@@ -35857,7 +35869,7 @@ void Unwind_180903d10(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x208) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x218) = 0;
+  *(uint32_t *)(localContextPointer + 0x218) = 0;
   *(uint8_t *)(localContextPointer + 0x200) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x1e0) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x1e8) != 0) {
@@ -35865,7 +35877,7 @@ void Unwind_180903d10(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x1e8) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x1f8) = 0;
+  *(uint32_t *)(localContextPointer + 0x1f8) = 0;
   *(uint8_t *)(localContextPointer + 0x1e0) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x1c0) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x1c8) != 0) {
@@ -35873,7 +35885,7 @@ void Unwind_180903d10(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x1c8) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x1d8) = 0;
+  *(uint32_t *)(localContextPointer + 0x1d8) = 0;
   *(uint8_t *)(localContextPointer + 0x1c0) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x1a0) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x1a8) != 0) {
@@ -35881,7 +35893,7 @@ void Unwind_180903d10(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x1a8) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x1b8) = 0;
+  *(uint32_t *)(localContextPointer + 0x1b8) = 0;
   *(uint8_t *)(localContextPointer + 0x1a0) = &SystemDataStructure;
   return;
 }
@@ -35903,7 +35915,7 @@ void Unwind_180903d30(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x2e8) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x2f8) = 0;
+  *(uint32_t *)(localContextPointer + 0x2f8) = 0;
   *(uint8_t *)(localContextPointer + 0x2e0) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x2c0) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x2c8) != 0) {
@@ -35911,7 +35923,7 @@ void Unwind_180903d30(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x2c8) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x2d8) = 0;
+  *(uint32_t *)(localContextPointer + 0x2d8) = 0;
   *(uint8_t *)(localContextPointer + 0x2c0) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x2a0) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x2a8) != 0) {
@@ -35919,7 +35931,7 @@ void Unwind_180903d30(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x2a8) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x2b8) = 0;
+  *(uint32_t *)(localContextPointer + 0x2b8) = 0;
   *(uint8_t *)(localContextPointer + 0x2a0) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x280) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x288) != 0) {
@@ -35927,7 +35939,7 @@ void Unwind_180903d30(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x288) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x298) = 0;
+  *(uint32_t *)(localContextPointer + 0x298) = 0;
   *(uint8_t *)(localContextPointer + 0x280) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x260) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x268) != 0) {
@@ -35935,7 +35947,7 @@ void Unwind_180903d30(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x268) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x278) = 0;
+  *(uint32_t *)(localContextPointer + 0x278) = 0;
   *(uint8_t *)(localContextPointer + 0x260) = &SystemDataStructure;
   return;
 }
@@ -35957,7 +35969,7 @@ void Unwind_180903d50(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x3a8) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x3b8) = 0;
+  *(uint32_t *)(localContextPointer + 0x3b8) = 0;
   *(uint8_t *)(localContextPointer + 0x3a0) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x380) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x388) != 0) {
@@ -35965,7 +35977,7 @@ void Unwind_180903d50(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x388) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x398) = 0;
+  *(uint32_t *)(localContextPointer + 0x398) = 0;
   *(uint8_t *)(localContextPointer + 0x380) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x360) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x368) != 0) {
@@ -35973,7 +35985,7 @@ void Unwind_180903d50(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x368) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x378) = 0;
+  *(uint32_t *)(localContextPointer + 0x378) = 0;
   *(uint8_t *)(localContextPointer + 0x360) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x340) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x348) != 0) {
@@ -35981,7 +35993,7 @@ void Unwind_180903d50(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x348) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x358) = 0;
+  *(uint32_t *)(localContextPointer + 0x358) = 0;
   *(uint8_t *)(localContextPointer + 0x340) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 800) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x328) != 0) {
@@ -35989,7 +36001,7 @@ void Unwind_180903d50(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x328) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x338) = 0;
+  *(uint32_t *)(localContextPointer + 0x338) = 0;
   *(uint8_t *)(localContextPointer + 800) = &SystemDataStructure;
   return;
 }
@@ -36011,7 +36023,7 @@ void Unwind_180903d70(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x468) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x478) = 0;
+  *(uint32_t *)(localContextPointer + 0x478) = 0;
   *(uint8_t *)(localContextPointer + 0x460) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x440) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x448) != 0) {
@@ -36019,7 +36031,7 @@ void Unwind_180903d70(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x448) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x458) = 0;
+  *(uint32_t *)(localContextPointer + 0x458) = 0;
   *(uint8_t *)(localContextPointer + 0x440) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x420) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x428) != 0) {
@@ -36027,7 +36039,7 @@ void Unwind_180903d70(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x428) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x438) = 0;
+  *(uint32_t *)(localContextPointer + 0x438) = 0;
   *(uint8_t *)(localContextPointer + 0x420) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x400) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x408) != 0) {
@@ -36035,7 +36047,7 @@ void Unwind_180903d70(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x408) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x418) = 0;
+  *(uint32_t *)(localContextPointer + 0x418) = 0;
   *(uint8_t *)(localContextPointer + 0x400) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x3e0) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 1000) != 0) {
@@ -36043,7 +36055,7 @@ void Unwind_180903d70(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 1000) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x3f8) = 0;
+  *(uint32_t *)(localContextPointer + 0x3f8) = 0;
   *(uint8_t *)(localContextPointer + 0x3e0) = &SystemDataStructure;
   return;
 }
@@ -36065,7 +36077,7 @@ void Unwind_180903d90(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x528) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x538) = 0;
+  *(uint32_t *)(localContextPointer + 0x538) = 0;
   *(uint8_t *)(localContextPointer + 0x520) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x500) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x508) != 0) {
@@ -36073,7 +36085,7 @@ void Unwind_180903d90(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x508) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x518) = 0;
+  *(uint32_t *)(localContextPointer + 0x518) = 0;
   *(uint8_t *)(localContextPointer + 0x500) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x4e0) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x4e8) != 0) {
@@ -36081,7 +36093,7 @@ void Unwind_180903d90(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x4e8) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x4f8) = 0;
+  *(uint32_t *)(localContextPointer + 0x4f8) = 0;
   *(uint8_t *)(localContextPointer + 0x4e0) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x4c0) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x4c8) != 0) {
@@ -36089,7 +36101,7 @@ void Unwind_180903d90(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x4c8) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x4d8) = 0;
+  *(uint32_t *)(localContextPointer + 0x4d8) = 0;
   *(uint8_t *)(localContextPointer + 0x4c0) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x4a0) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x4a8) != 0) {
@@ -36097,7 +36109,7 @@ void Unwind_180903d90(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x4a8) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x4b8) = 0;
+  *(uint32_t *)(localContextPointer + 0x4b8) = 0;
   *(uint8_t *)(localContextPointer + 0x4a0) = &SystemDataStructure;
   return;
 }
@@ -36119,7 +36131,7 @@ void Unwind_180903db0(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x5e8) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x5f8) = 0;
+  *(uint32_t *)(localContextPointer + 0x5f8) = 0;
   *(uint8_t *)(localContextPointer + 0x5e0) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x5c0) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x5c8) != 0) {
@@ -36127,7 +36139,7 @@ void Unwind_180903db0(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x5c8) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x5d8) = 0;
+  *(uint32_t *)(localContextPointer + 0x5d8) = 0;
   *(uint8_t *)(localContextPointer + 0x5c0) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x5a0) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x5a8) != 0) {
@@ -36135,7 +36147,7 @@ void Unwind_180903db0(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x5a8) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x5b8) = 0;
+  *(uint32_t *)(localContextPointer + 0x5b8) = 0;
   *(uint8_t *)(localContextPointer + 0x5a0) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x580) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x588) != 0) {
@@ -36143,7 +36155,7 @@ void Unwind_180903db0(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x588) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x598) = 0;
+  *(uint32_t *)(localContextPointer + 0x598) = 0;
   *(uint8_t *)(localContextPointer + 0x580) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x560) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x568) != 0) {
@@ -36151,7 +36163,7 @@ void Unwind_180903db0(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x568) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x578) = 0;
+  *(uint32_t *)(localContextPointer + 0x578) = 0;
   *(uint8_t *)(localContextPointer + 0x560) = &SystemDataStructure;
   return;
 }
@@ -36173,7 +36185,7 @@ void Unwind_180903dd0(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x6a8) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x6b8) = 0;
+  *(uint32_t *)(localContextPointer + 0x6b8) = 0;
   *(uint8_t *)(localContextPointer + 0x6a0) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x680) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x688) != 0) {
@@ -36181,7 +36193,7 @@ void Unwind_180903dd0(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x688) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x698) = 0;
+  *(uint32_t *)(localContextPointer + 0x698) = 0;
   *(uint8_t *)(localContextPointer + 0x680) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x660) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x668) != 0) {
@@ -36189,7 +36201,7 @@ void Unwind_180903dd0(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x668) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x678) = 0;
+  *(uint32_t *)(localContextPointer + 0x678) = 0;
   *(uint8_t *)(localContextPointer + 0x660) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x640) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x648) != 0) {
@@ -36197,7 +36209,7 @@ void Unwind_180903dd0(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x648) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x658) = 0;
+  *(uint32_t *)(localContextPointer + 0x658) = 0;
   *(uint8_t *)(localContextPointer + 0x640) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x620) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x628) != 0) {
@@ -36205,7 +36217,7 @@ void Unwind_180903dd0(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x628) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x638) = 0;
+  *(uint32_t *)(localContextPointer + 0x638) = 0;
   *(uint8_t *)(localContextPointer + 0x620) = &SystemDataStructure;
   return;
 }
@@ -36227,7 +36239,7 @@ void Unwind_180903df0(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x768) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x778) = 0;
+  *(uint32_t *)(localContextPointer + 0x778) = 0;
   *(uint8_t *)(localContextPointer + 0x760) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x740) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x748) != 0) {
@@ -36235,7 +36247,7 @@ void Unwind_180903df0(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x748) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x758) = 0;
+  *(uint32_t *)(localContextPointer + 0x758) = 0;
   *(uint8_t *)(localContextPointer + 0x740) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x720) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x728) != 0) {
@@ -36243,7 +36255,7 @@ void Unwind_180903df0(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x728) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x738) = 0;
+  *(uint32_t *)(localContextPointer + 0x738) = 0;
   *(uint8_t *)(localContextPointer + 0x720) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x700) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x708) != 0) {
@@ -36251,7 +36263,7 @@ void Unwind_180903df0(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x708) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x718) = 0;
+  *(uint32_t *)(localContextPointer + 0x718) = 0;
   *(uint8_t *)(localContextPointer + 0x700) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x6e0) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x6e8) != 0) {
@@ -36259,7 +36271,7 @@ void Unwind_180903df0(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x6e8) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x6f8) = 0;
+  *(uint32_t *)(localContextPointer + 0x6f8) = 0;
   *(uint8_t *)(localContextPointer + 0x6e0) = &SystemDataStructure;
   return;
 }
@@ -36281,7 +36293,7 @@ void Unwind_180903e10(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x828) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x838) = 0;
+  *(uint32_t *)(localContextPointer + 0x838) = 0;
   *(uint8_t *)(localContextPointer + 0x820) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x800) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x808) != 0) {
@@ -36289,7 +36301,7 @@ void Unwind_180903e10(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x808) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x818) = 0;
+  *(uint32_t *)(localContextPointer + 0x818) = 0;
   *(uint8_t *)(localContextPointer + 0x800) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x7e0) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x7e8) != 0) {
@@ -36297,7 +36309,7 @@ void Unwind_180903e10(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x7e8) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x7f8) = 0;
+  *(uint32_t *)(localContextPointer + 0x7f8) = 0;
   *(uint8_t *)(localContextPointer + 0x7e0) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x7c0) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x7c8) != 0) {
@@ -36305,7 +36317,7 @@ void Unwind_180903e10(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x7c8) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x7d8) = 0;
+  *(uint32_t *)(localContextPointer + 0x7d8) = 0;
   *(uint8_t *)(localContextPointer + 0x7c0) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x7a0) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x7a8) != 0) {
@@ -36313,7 +36325,7 @@ void Unwind_180903e10(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x7a8) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x7b8) = 0;
+  *(uint32_t *)(localContextPointer + 0x7b8) = 0;
   *(uint8_t *)(localContextPointer + 0x7a0) = &SystemDataStructure;
   return;
 }
@@ -36335,7 +36347,7 @@ void Unwind_180903e30(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x8e8) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x8f8) = 0;
+  *(uint32_t *)(localContextPointer + 0x8f8) = 0;
   *(uint8_t *)(localContextPointer + 0x8e0) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x8c0) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x8c8) != 0) {
@@ -36343,7 +36355,7 @@ void Unwind_180903e30(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x8c8) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x8d8) = 0;
+  *(uint32_t *)(localContextPointer + 0x8d8) = 0;
   *(uint8_t *)(localContextPointer + 0x8c0) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x8a0) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x8a8) != 0) {
@@ -36351,7 +36363,7 @@ void Unwind_180903e30(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x8a8) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x8b8) = 0;
+  *(uint32_t *)(localContextPointer + 0x8b8) = 0;
   *(uint8_t *)(localContextPointer + 0x8a0) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x880) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x888) != 0) {
@@ -36359,7 +36371,7 @@ void Unwind_180903e30(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x888) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x898) = 0;
+  *(uint32_t *)(localContextPointer + 0x898) = 0;
   *(uint8_t *)(localContextPointer + 0x880) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x860) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x868) != 0) {
@@ -36367,7 +36379,7 @@ void Unwind_180903e30(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x868) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x878) = 0;
+  *(uint32_t *)(localContextPointer + 0x878) = 0;
   *(uint8_t *)(localContextPointer + 0x860) = &SystemDataStructure;
   return;
 }
@@ -36389,7 +36401,7 @@ void Unwind_180903e50(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x9a8) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x9b8) = 0;
+  *(uint32_t *)(localContextPointer + 0x9b8) = 0;
   *(uint8_t *)(localContextPointer + 0x9a0) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x980) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x988) != 0) {
@@ -36397,7 +36409,7 @@ void Unwind_180903e50(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x988) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x998) = 0;
+  *(uint32_t *)(localContextPointer + 0x998) = 0;
   *(uint8_t *)(localContextPointer + 0x980) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x960) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x968) != 0) {
@@ -36405,7 +36417,7 @@ void Unwind_180903e50(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x968) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x978) = 0;
+  *(uint32_t *)(localContextPointer + 0x978) = 0;
   *(uint8_t *)(localContextPointer + 0x960) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x940) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x948) != 0) {
@@ -36413,7 +36425,7 @@ void Unwind_180903e50(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x948) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x958) = 0;
+  *(uint32_t *)(localContextPointer + 0x958) = 0;
   *(uint8_t *)(localContextPointer + 0x940) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x920) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x928) != 0) {
@@ -36421,7 +36433,7 @@ void Unwind_180903e50(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x928) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x938) = 0;
+  *(uint32_t *)(localContextPointer + 0x938) = 0;
   *(uint8_t *)(localContextPointer + 0x920) = &SystemDataStructure;
   return;
 }
@@ -36443,7 +36455,7 @@ void Unwind_180903e70(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0xa68) = 0;
-  *(uint8_t4 *)(localContextPointer + 0xa78) = 0;
+  *(uint32_t *)(localContextPointer + 0xa78) = 0;
   *(uint8_t *)(localContextPointer + 0xa60) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0xa40) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0xa48) != 0) {
@@ -36451,7 +36463,7 @@ void Unwind_180903e70(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0xa48) = 0;
-  *(uint8_t4 *)(localContextPointer + 0xa58) = 0;
+  *(uint32_t *)(localContextPointer + 0xa58) = 0;
   *(uint8_t *)(localContextPointer + 0xa40) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0xa20) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0xa28) != 0) {
@@ -36459,7 +36471,7 @@ void Unwind_180903e70(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0xa28) = 0;
-  *(uint8_t4 *)(localContextPointer + 0xa38) = 0;
+  *(uint32_t *)(localContextPointer + 0xa38) = 0;
   *(uint8_t *)(localContextPointer + 0xa20) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0xa00) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0xa08) != 0) {
@@ -36467,7 +36479,7 @@ void Unwind_180903e70(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0xa08) = 0;
-  *(uint8_t4 *)(localContextPointer + 0xa18) = 0;
+  *(uint32_t *)(localContextPointer + 0xa18) = 0;
   *(uint8_t *)(localContextPointer + 0xa00) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x9e0) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x9e8) != 0) {
@@ -36475,7 +36487,7 @@ void Unwind_180903e70(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x9e8) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x9f8) = 0;
+  *(uint32_t *)(localContextPointer + 0x9f8) = 0;
   *(uint8_t *)(localContextPointer + 0x9e0) = &SystemDataStructure;
   return;
 }
@@ -36497,7 +36509,7 @@ void Unwind_180903e90(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0xb28) = 0;
-  *(uint8_t4 *)(localContextPointer + 0xb38) = 0;
+  *(uint32_t *)(localContextPointer + 0xb38) = 0;
   *(uint8_t *)(localContextPointer + 0xb20) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0xb00) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0xb08) != 0) {
@@ -36505,7 +36517,7 @@ void Unwind_180903e90(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0xb08) = 0;
-  *(uint8_t4 *)(localContextPointer + 0xb18) = 0;
+  *(uint32_t *)(localContextPointer + 0xb18) = 0;
   *(uint8_t *)(localContextPointer + 0xb00) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0xae0) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0xae8) != 0) {
@@ -36513,7 +36525,7 @@ void Unwind_180903e90(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0xae8) = 0;
-  *(uint8_t4 *)(localContextPointer + 0xaf8) = 0;
+  *(uint32_t *)(localContextPointer + 0xaf8) = 0;
   *(uint8_t *)(localContextPointer + 0xae0) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0xac0) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0xac8) != 0) {
@@ -36521,7 +36533,7 @@ void Unwind_180903e90(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0xac8) = 0;
-  *(uint8_t4 *)(localContextPointer + 0xad8) = 0;
+  *(uint32_t *)(localContextPointer + 0xad8) = 0;
   *(uint8_t *)(localContextPointer + 0xac0) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0xaa0) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0xaa8) != 0) {
@@ -36529,7 +36541,7 @@ void Unwind_180903e90(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0xaa8) = 0;
-  *(uint8_t4 *)(localContextPointer + 0xab8) = 0;
+  *(uint32_t *)(localContextPointer + 0xab8) = 0;
   *(uint8_t *)(localContextPointer + 0xaa0) = &SystemDataStructure;
   return;
 }
@@ -36551,7 +36563,7 @@ void Unwind_180903eb0(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0xbe8) = 0;
-  *(uint8_t4 *)(localContextPointer + 0xbf8) = 0;
+  *(uint32_t *)(localContextPointer + 0xbf8) = 0;
   *(uint8_t *)(localContextPointer + 0xbe0) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0xbc0) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0xbc8) != 0) {
@@ -36559,7 +36571,7 @@ void Unwind_180903eb0(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0xbc8) = 0;
-  *(uint8_t4 *)(localContextPointer + 0xbd8) = 0;
+  *(uint32_t *)(localContextPointer + 0xbd8) = 0;
   *(uint8_t *)(localContextPointer + 0xbc0) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0xba0) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0xba8) != 0) {
@@ -36567,7 +36579,7 @@ void Unwind_180903eb0(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0xba8) = 0;
-  *(uint8_t4 *)(localContextPointer + 3000) = 0;
+  *(uint32_t *)(localContextPointer + 3000) = 0;
   *(uint8_t *)(localContextPointer + 0xba0) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0xb80) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0xb88) != 0) {
@@ -36575,7 +36587,7 @@ void Unwind_180903eb0(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0xb88) = 0;
-  *(uint8_t4 *)(localContextPointer + 0xb98) = 0;
+  *(uint32_t *)(localContextPointer + 0xb98) = 0;
   *(uint8_t *)(localContextPointer + 0xb80) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0xb60) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0xb68) != 0) {
@@ -36583,7 +36595,7 @@ void Unwind_180903eb0(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0xb68) = 0;
-  *(uint8_t4 *)(localContextPointer + 0xb78) = 0;
+  *(uint32_t *)(localContextPointer + 0xb78) = 0;
   *(uint8_t *)(localContextPointer + 0xb60) = &SystemDataStructure;
   return;
 }
@@ -36605,7 +36617,7 @@ void Unwind_180903ed0(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0xca8) = 0;
-  *(uint8_t4 *)(localContextPointer + 0xcb8) = 0;
+  *(uint32_t *)(localContextPointer + 0xcb8) = 0;
   *(uint8_t *)(localContextPointer + 0xca0) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0xc80) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0xc88) != 0) {
@@ -36613,7 +36625,7 @@ void Unwind_180903ed0(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0xc88) = 0;
-  *(uint8_t4 *)(localContextPointer + 0xc98) = 0;
+  *(uint32_t *)(localContextPointer + 0xc98) = 0;
   *(uint8_t *)(localContextPointer + 0xc80) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0xc60) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0xc68) != 0) {
@@ -36621,7 +36633,7 @@ void Unwind_180903ed0(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0xc68) = 0;
-  *(uint8_t4 *)(localContextPointer + 0xc78) = 0;
+  *(uint32_t *)(localContextPointer + 0xc78) = 0;
   *(uint8_t *)(localContextPointer + 0xc60) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0xc40) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0xc48) != 0) {
@@ -36629,7 +36641,7 @@ void Unwind_180903ed0(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0xc48) = 0;
-  *(uint8_t4 *)(localContextPointer + 0xc58) = 0;
+  *(uint32_t *)(localContextPointer + 0xc58) = 0;
   *(uint8_t *)(localContextPointer + 0xc40) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0xc20) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0xc28) != 0) {
@@ -36637,7 +36649,7 @@ void Unwind_180903ed0(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0xc28) = 0;
-  *(uint8_t4 *)(localContextPointer + 0xc38) = 0;
+  *(uint32_t *)(localContextPointer + 0xc38) = 0;
   *(uint8_t *)(localContextPointer + 0xc20) = &SystemDataStructure;
   return;
 }
@@ -36659,7 +36671,7 @@ void Unwind_180903ef0(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0xd10) = 0;
-  *(uint8_t4 *)(localContextPointer + 0xd20) = 0;
+  *(uint32_t *)(localContextPointer + 0xd20) = 0;
   *(uint8_t *)(localContextPointer + 0xd08) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0xce8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0xcf0) != 0) {
@@ -36667,7 +36679,7 @@ void Unwind_180903ef0(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0xcf0) = 0;
-  *(uint8_t4 *)(localContextPointer + 0xd00) = 0;
+  *(uint32_t *)(localContextPointer + 0xd00) = 0;
   *(uint8_t *)(localContextPointer + 0xce8) = &SystemDataStructure;
   return;
 }
@@ -36689,7 +36701,7 @@ void Unwind_180903f10(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0xd80) = 0;
-  *(uint8_t4 *)(localContextPointer + 0xd90) = 0;
+  *(uint32_t *)(localContextPointer + 0xd90) = 0;
   *(uint8_t *)(localContextPointer + 0xd78) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0xd58) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0xd60) != 0) {
@@ -36697,7 +36709,7 @@ void Unwind_180903f10(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0xd60) = 0;
-  *(uint8_t4 *)(localContextPointer + 0xd70) = 0;
+  *(uint32_t *)(localContextPointer + 0xd70) = 0;
   *(uint8_t *)(localContextPointer + 0xd58) = &SystemDataStructure;
   return;
 }
@@ -36719,7 +36731,7 @@ void Unwind_180903f30(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0xdf0) = 0;
-  *(uint8_t4 *)(localContextPointer + 0xe00) = 0;
+  *(uint32_t *)(localContextPointer + 0xe00) = 0;
   *(uint8_t *)(localContextPointer + 0xde8) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0xdc8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0xdd0) != 0) {
@@ -36727,7 +36739,7 @@ void Unwind_180903f30(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0xdd0) = 0;
-  *(uint8_t4 *)(localContextPointer + 0xde0) = 0;
+  *(uint32_t *)(localContextPointer + 0xde0) = 0;
   *(uint8_t *)(localContextPointer + 0xdc8) = &SystemDataStructure;
   return;
 }
@@ -36749,7 +36761,7 @@ void Unwind_180903f50(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0xeb8) = 0;
-  *(uint8_t4 *)(localContextPointer + 0xec8) = 0;
+  *(uint32_t *)(localContextPointer + 0xec8) = 0;
   *(uint8_t *)(localContextPointer + 0xeb0) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0xe90) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0xe98) != 0) {
@@ -36757,7 +36769,7 @@ void Unwind_180903f50(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0xe98) = 0;
-  *(uint8_t4 *)(localContextPointer + 0xea8) = 0;
+  *(uint32_t *)(localContextPointer + 0xea8) = 0;
   *(uint8_t *)(localContextPointer + 0xe90) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0xe70) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0xe78) != 0) {
@@ -36765,7 +36777,7 @@ void Unwind_180903f50(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0xe78) = 0;
-  *(uint8_t4 *)(localContextPointer + 0xe88) = 0;
+  *(uint32_t *)(localContextPointer + 0xe88) = 0;
   *(uint8_t *)(localContextPointer + 0xe70) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0xe50) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0xe58) != 0) {
@@ -36773,7 +36785,7 @@ void Unwind_180903f50(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0xe58) = 0;
-  *(uint8_t4 *)(localContextPointer + 0xe68) = 0;
+  *(uint32_t *)(localContextPointer + 0xe68) = 0;
   *(uint8_t *)(localContextPointer + 0xe50) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0xe30) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0xe38) != 0) {
@@ -36781,7 +36793,7 @@ void Unwind_180903f50(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0xe38) = 0;
-  *(uint8_t4 *)(localContextPointer + 0xe48) = 0;
+  *(uint32_t *)(localContextPointer + 0xe48) = 0;
   *(uint8_t *)(localContextPointer + 0xe30) = &SystemDataStructure;
   return;
 }
@@ -36803,7 +36815,7 @@ void Unwind_180903f70(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0xf78) = 0;
-  *(uint8_t4 *)(localContextPointer + 0xf88) = 0;
+  *(uint32_t *)(localContextPointer + 0xf88) = 0;
   *(uint8_t *)(localContextPointer + 0xf70) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0xf50) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0xf58) != 0) {
@@ -36811,7 +36823,7 @@ void Unwind_180903f70(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0xf58) = 0;
-  *(uint8_t4 *)(localContextPointer + 0xf68) = 0;
+  *(uint32_t *)(localContextPointer + 0xf68) = 0;
   *(uint8_t *)(localContextPointer + 0xf50) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0xf30) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0xf38) != 0) {
@@ -36819,7 +36831,7 @@ void Unwind_180903f70(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0xf38) = 0;
-  *(uint8_t4 *)(localContextPointer + 0xf48) = 0;
+  *(uint32_t *)(localContextPointer + 0xf48) = 0;
   *(uint8_t *)(localContextPointer + 0xf30) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0xf10) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0xf18) != 0) {
@@ -36827,7 +36839,7 @@ void Unwind_180903f70(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0xf18) = 0;
-  *(uint8_t4 *)(localContextPointer + 0xf28) = 0;
+  *(uint32_t *)(localContextPointer + 0xf28) = 0;
   *(uint8_t *)(localContextPointer + 0xf10) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0xef0) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0xef8) != 0) {
@@ -36835,7 +36847,7 @@ void Unwind_180903f70(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0xef8) = 0;
-  *(uint8_t4 *)(localContextPointer + 0xf08) = 0;
+  *(uint32_t *)(localContextPointer + 0xf08) = 0;
   *(uint8_t *)(localContextPointer + 0xef0) = &SystemDataStructure;
   return;
 }
@@ -36857,7 +36869,7 @@ void Unwind_180903f90(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x1038) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x1048) = 0;
+  *(uint32_t *)(localContextPointer + 0x1048) = 0;
   *(uint8_t *)(localContextPointer + 0x1030) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x1010) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x1018) != 0) {
@@ -36865,7 +36877,7 @@ void Unwind_180903f90(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x1018) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x1028) = 0;
+  *(uint32_t *)(localContextPointer + 0x1028) = 0;
   *(uint8_t *)(localContextPointer + 0x1010) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0xff0) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0xff8) != 0) {
@@ -36873,7 +36885,7 @@ void Unwind_180903f90(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0xff8) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x1008) = 0;
+  *(uint32_t *)(localContextPointer + 0x1008) = 0;
   *(uint8_t *)(localContextPointer + 0xff0) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0xfd0) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0xfd8) != 0) {
@@ -36881,7 +36893,7 @@ void Unwind_180903f90(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0xfd8) = 0;
-  *(uint8_t4 *)(localContextPointer + 0xfe8) = 0;
+  *(uint32_t *)(localContextPointer + 0xfe8) = 0;
   *(uint8_t *)(localContextPointer + 0xfd0) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0xfb0) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0xfb8) != 0) {
@@ -36889,7 +36901,7 @@ void Unwind_180903f90(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0xfb8) = 0;
-  *(uint8_t4 *)(localContextPointer + 0xfc8) = 0;
+  *(uint32_t *)(localContextPointer + 0xfc8) = 0;
   *(uint8_t *)(localContextPointer + 0xfb0) = &SystemDataStructure;
   return;
 }
@@ -36911,7 +36923,7 @@ void Unwind_180903fb0(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x10a0) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x10b0) = 0;
+  *(uint32_t *)(localContextPointer + 0x10b0) = 0;
   *(uint8_t *)(localContextPointer + 0x1098) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x1078) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x1080) != 0) {
@@ -36919,7 +36931,7 @@ void Unwind_180903fb0(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x1080) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x1090) = 0;
+  *(uint32_t *)(localContextPointer + 0x1090) = 0;
   *(uint8_t *)(localContextPointer + 0x1078) = &SystemDataStructure;
   return;
 }
@@ -36941,7 +36953,7 @@ void Unwind_180903fd0(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x1110) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x1120) = 0;
+  *(uint32_t *)(localContextPointer + 0x1120) = 0;
   *(uint8_t *)(localContextPointer + 0x1108) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x10e8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x10f0) != 0) {
@@ -36949,7 +36961,7 @@ void Unwind_180903fd0(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x10f0) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x1100) = 0;
+  *(uint32_t *)(localContextPointer + 0x1100) = 0;
   *(uint8_t *)(localContextPointer + 0x10e8) = &SystemDataStructure;
   return;
 }
@@ -36971,7 +36983,7 @@ void Unwind_180903ff0(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x1180) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x1190) = 0;
+  *(uint32_t *)(localContextPointer + 0x1190) = 0;
   *(uint8_t *)(localContextPointer + 0x1178) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x1158) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x1160) != 0) {
@@ -36979,7 +36991,7 @@ void Unwind_180903ff0(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x1160) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x1170) = 0;
+  *(uint32_t *)(localContextPointer + 0x1170) = 0;
   *(uint8_t *)(localContextPointer + 0x1158) = &SystemDataStructure;
   return;
 }
@@ -37001,7 +37013,7 @@ void Unwind_180904010(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x11f0) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x1200) = 0;
+  *(uint32_t *)(localContextPointer + 0x1200) = 0;
   *(uint8_t *)(localContextPointer + 0x11e8) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x11c8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x11d0) != 0) {
@@ -37009,7 +37021,7 @@ void Unwind_180904010(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x11d0) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x11e0) = 0;
+  *(uint32_t *)(localContextPointer + 0x11e0) = 0;
   *(uint8_t *)(localContextPointer + 0x11c8) = &SystemDataStructure;
   return;
 }
@@ -37031,7 +37043,7 @@ void Unwind_180904030(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x1260) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x1270) = 0;
+  *(uint32_t *)(localContextPointer + 0x1270) = 0;
   *(uint8_t *)(localContextPointer + 0x1258) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x1238) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x1240) != 0) {
@@ -37039,7 +37051,7 @@ void Unwind_180904030(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x1240) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x1250) = 0;
+  *(uint32_t *)(localContextPointer + 0x1250) = 0;
   *(uint8_t *)(localContextPointer + 0x1238) = &SystemDataStructure;
   return;
 }
@@ -37061,7 +37073,7 @@ void Unwind_180904050(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x12d0) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x12e0) = 0;
+  *(uint32_t *)(localContextPointer + 0x12e0) = 0;
   *(uint8_t *)(localContextPointer + 0x12c8) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x12a8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x12b0) != 0) {
@@ -37069,7 +37081,7 @@ void Unwind_180904050(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x12b0) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x12c0) = 0;
+  *(uint32_t *)(localContextPointer + 0x12c0) = 0;
   *(uint8_t *)(localContextPointer + 0x12a8) = &SystemDataStructure;
   return;
 }
@@ -37091,7 +37103,7 @@ void Unwind_180904070(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x1340) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x1350) = 0;
+  *(uint32_t *)(localContextPointer + 0x1350) = 0;
   *(uint8_t *)(localContextPointer + 0x1338) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x1318) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x1320) != 0) {
@@ -37099,7 +37111,7 @@ void Unwind_180904070(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x1320) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x1330) = 0;
+  *(uint32_t *)(localContextPointer + 0x1330) = 0;
   *(uint8_t *)(localContextPointer + 0x1318) = &SystemDataStructure;
   return;
 }
@@ -37164,7 +37176,7 @@ void Unwind_1809040d0(uint8_t objectContextParam,int64_t validationContextParam)
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x30) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x40) = 0;
+  *(uint32_t *)(localContextPointer + 0x40) = 0;
   *(uint8_t *)(localContextPointer + 0x28) = &SystemDataStructure;
   return;
 }
@@ -37211,7 +37223,7 @@ void Unwind_180904100(uint8_t objectContextParam,int64_t validationContextParam)
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x30) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x40) = 0;
+  *(uint32_t *)(localContextPointer + 0x40) = 0;
   *(uint8_t *)(localContextPointer + 0x28) = &SystemDataStructure;
   return;
 }
@@ -37244,7 +37256,7 @@ void Unwind_180904120(uint8_t objectContextParam,int64_t validationContextParam)
     ExecuteSystemEmergencyExit();
   }
   presourceHash[1] = 0;
-  *(uint8_t4 *)(presourceHash + 3) = 0;
+  *(uint32_t *)(presourceHash + 3) = 0;
   *presourceHash = &SystemDataStructure;
   return;
 }
@@ -37263,7 +37275,7 @@ void Unwind_180904130(uint8_t objectContextParam,int64_t validationContextParam)
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x28) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x38) = 0;
+  *(uint32_t *)(localContextPointer + 0x38) = 0;
   *(uint8_t *)(localContextPointer + 0x20) = &SystemDataStructure;
   return;
 }
@@ -37282,7 +37294,7 @@ void Unwind_180904140(uint8_t objectContextParam,int64_t validationContextParam)
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x48) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x58) = 0;
+  *(uint32_t *)(localContextPointer + 0x58) = 0;
   *(uint8_t *)(localContextPointer + 0x40) = &SystemDataStructure;
   return;
 }
@@ -37301,7 +37313,7 @@ void Unwind_180904150(uint8_t objectContextParam,int64_t validationContextParam)
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x68) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x78) = 0;
+  *(uint32_t *)(localContextPointer + 0x78) = 0;
   *(uint8_t *)(localContextPointer + 0x60) = &SystemDataStructure;
   return;
 }
@@ -37320,7 +37332,7 @@ void Unwind_180904160(uint8_t objectContextParam,int64_t validationContextParam)
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x88) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x98) = 0;
+  *(uint32_t *)(localContextPointer + 0x98) = 0;
   *(uint8_t *)(localContextPointer + 0x80) = &SystemDataStructure;
   return;
 }
@@ -37353,7 +37365,7 @@ void Unwind_1809041a0(uint8_t objectContextParam,int64_t validationContextParam)
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x68) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x78) = 0;
+  *(uint32_t *)(localContextPointer + 0x78) = 0;
   *(uint8_t *)(localContextPointer + 0x60) = &SystemDataStructure;
   return;
 }
@@ -37389,7 +37401,7 @@ void Unwind_1809041d0(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x168) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x178) = 0;
+  *(uint32_t *)(localContextPointer + 0x178) = 0;
   *(uint8_t *)(localContextPointer + 0x160) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x140) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x148) != 0) {
@@ -37397,7 +37409,7 @@ void Unwind_1809041d0(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x148) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x158) = 0;
+  *(uint32_t *)(localContextPointer + 0x158) = 0;
   *(uint8_t *)(localContextPointer + 0x140) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x120) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x128) != 0) {
@@ -37405,7 +37417,7 @@ void Unwind_1809041d0(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x128) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x138) = 0;
+  *(uint32_t *)(localContextPointer + 0x138) = 0;
   *(uint8_t *)(localContextPointer + 0x120) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x100) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x108) != 0) {
@@ -37413,7 +37425,7 @@ void Unwind_1809041d0(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x108) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x118) = 0;
+  *(uint32_t *)(localContextPointer + 0x118) = 0;
   *(uint8_t *)(localContextPointer + 0x100) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0xe0) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0xe8) != 0) {
@@ -37421,7 +37433,7 @@ void Unwind_1809041d0(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0xe8) = 0;
-  *(uint8_t4 *)(localContextPointer + 0xf8) = 0;
+  *(uint32_t *)(localContextPointer + 0xf8) = 0;
   *(uint8_t *)(localContextPointer + 0xe0) = &SystemDataStructure;
   return;
 }
@@ -37443,7 +37455,7 @@ void Unwind_1809041f0(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x228) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x238) = 0;
+  *(uint32_t *)(localContextPointer + 0x238) = 0;
   *(uint8_t *)(localContextPointer + 0x220) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x200) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x208) != 0) {
@@ -37451,7 +37463,7 @@ void Unwind_1809041f0(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x208) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x218) = 0;
+  *(uint32_t *)(localContextPointer + 0x218) = 0;
   *(uint8_t *)(localContextPointer + 0x200) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x1e0) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x1e8) != 0) {
@@ -37459,7 +37471,7 @@ void Unwind_1809041f0(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x1e8) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x1f8) = 0;
+  *(uint32_t *)(localContextPointer + 0x1f8) = 0;
   *(uint8_t *)(localContextPointer + 0x1e0) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x1c0) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x1c8) != 0) {
@@ -37467,7 +37479,7 @@ void Unwind_1809041f0(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x1c8) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x1d8) = 0;
+  *(uint32_t *)(localContextPointer + 0x1d8) = 0;
   *(uint8_t *)(localContextPointer + 0x1c0) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x1a0) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x1a8) != 0) {
@@ -37475,7 +37487,7 @@ void Unwind_1809041f0(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x1a8) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x1b8) = 0;
+  *(uint32_t *)(localContextPointer + 0x1b8) = 0;
   *(uint8_t *)(localContextPointer + 0x1a0) = &SystemDataStructure;
   return;
 }
@@ -37497,7 +37509,7 @@ void Unwind_180904210(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x2e8) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x2f8) = 0;
+  *(uint32_t *)(localContextPointer + 0x2f8) = 0;
   *(uint8_t *)(localContextPointer + 0x2e0) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x2c0) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x2c8) != 0) {
@@ -37505,7 +37517,7 @@ void Unwind_180904210(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x2c8) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x2d8) = 0;
+  *(uint32_t *)(localContextPointer + 0x2d8) = 0;
   *(uint8_t *)(localContextPointer + 0x2c0) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x2a0) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x2a8) != 0) {
@@ -37513,7 +37525,7 @@ void Unwind_180904210(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x2a8) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x2b8) = 0;
+  *(uint32_t *)(localContextPointer + 0x2b8) = 0;
   *(uint8_t *)(localContextPointer + 0x2a0) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x280) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x288) != 0) {
@@ -37521,7 +37533,7 @@ void Unwind_180904210(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x288) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x298) = 0;
+  *(uint32_t *)(localContextPointer + 0x298) = 0;
   *(uint8_t *)(localContextPointer + 0x280) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x260) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x268) != 0) {
@@ -37529,7 +37541,7 @@ void Unwind_180904210(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x268) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x278) = 0;
+  *(uint32_t *)(localContextPointer + 0x278) = 0;
   *(uint8_t *)(localContextPointer + 0x260) = &SystemDataStructure;
   return;
 }
@@ -37551,7 +37563,7 @@ void Unwind_180904230(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x3a8) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x3b8) = 0;
+  *(uint32_t *)(localContextPointer + 0x3b8) = 0;
   *(uint8_t *)(localContextPointer + 0x3a0) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x380) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x388) != 0) {
@@ -37559,7 +37571,7 @@ void Unwind_180904230(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x388) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x398) = 0;
+  *(uint32_t *)(localContextPointer + 0x398) = 0;
   *(uint8_t *)(localContextPointer + 0x380) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x360) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x368) != 0) {
@@ -37567,7 +37579,7 @@ void Unwind_180904230(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x368) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x378) = 0;
+  *(uint32_t *)(localContextPointer + 0x378) = 0;
   *(uint8_t *)(localContextPointer + 0x360) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x340) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x348) != 0) {
@@ -37575,7 +37587,7 @@ void Unwind_180904230(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x348) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x358) = 0;
+  *(uint32_t *)(localContextPointer + 0x358) = 0;
   *(uint8_t *)(localContextPointer + 0x340) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 800) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x328) != 0) {
@@ -37583,7 +37595,7 @@ void Unwind_180904230(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x328) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x338) = 0;
+  *(uint32_t *)(localContextPointer + 0x338) = 0;
   *(uint8_t *)(localContextPointer + 800) = &SystemDataStructure;
   return;
 }
@@ -37605,7 +37617,7 @@ void Unwind_180904250(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x468) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x478) = 0;
+  *(uint32_t *)(localContextPointer + 0x478) = 0;
   *(uint8_t *)(localContextPointer + 0x460) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x440) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x448) != 0) {
@@ -37613,7 +37625,7 @@ void Unwind_180904250(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x448) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x458) = 0;
+  *(uint32_t *)(localContextPointer + 0x458) = 0;
   *(uint8_t *)(localContextPointer + 0x440) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x420) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x428) != 0) {
@@ -37621,7 +37633,7 @@ void Unwind_180904250(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x428) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x438) = 0;
+  *(uint32_t *)(localContextPointer + 0x438) = 0;
   *(uint8_t *)(localContextPointer + 0x420) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x400) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x408) != 0) {
@@ -37629,7 +37641,7 @@ void Unwind_180904250(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x408) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x418) = 0;
+  *(uint32_t *)(localContextPointer + 0x418) = 0;
   *(uint8_t *)(localContextPointer + 0x400) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x3e0) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 1000) != 0) {
@@ -37637,7 +37649,7 @@ void Unwind_180904250(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 1000) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x3f8) = 0;
+  *(uint32_t *)(localContextPointer + 0x3f8) = 0;
   *(uint8_t *)(localContextPointer + 0x3e0) = &SystemDataStructure;
   return;
 }
@@ -37659,7 +37671,7 @@ void Unwind_180904270(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x528) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x538) = 0;
+  *(uint32_t *)(localContextPointer + 0x538) = 0;
   *(uint8_t *)(localContextPointer + 0x520) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x500) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x508) != 0) {
@@ -37667,7 +37679,7 @@ void Unwind_180904270(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x508) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x518) = 0;
+  *(uint32_t *)(localContextPointer + 0x518) = 0;
   *(uint8_t *)(localContextPointer + 0x500) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x4e0) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x4e8) != 0) {
@@ -37675,7 +37687,7 @@ void Unwind_180904270(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x4e8) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x4f8) = 0;
+  *(uint32_t *)(localContextPointer + 0x4f8) = 0;
   *(uint8_t *)(localContextPointer + 0x4e0) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x4c0) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x4c8) != 0) {
@@ -37683,7 +37695,7 @@ void Unwind_180904270(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x4c8) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x4d8) = 0;
+  *(uint32_t *)(localContextPointer + 0x4d8) = 0;
   *(uint8_t *)(localContextPointer + 0x4c0) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x4a0) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x4a8) != 0) {
@@ -37691,7 +37703,7 @@ void Unwind_180904270(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x4a8) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x4b8) = 0;
+  *(uint32_t *)(localContextPointer + 0x4b8) = 0;
   *(uint8_t *)(localContextPointer + 0x4a0) = &SystemDataStructure;
   return;
 }
@@ -37713,7 +37725,7 @@ void Unwind_180904290(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x5e8) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x5f8) = 0;
+  *(uint32_t *)(localContextPointer + 0x5f8) = 0;
   *(uint8_t *)(localContextPointer + 0x5e0) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x5c0) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x5c8) != 0) {
@@ -37721,7 +37733,7 @@ void Unwind_180904290(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x5c8) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x5d8) = 0;
+  *(uint32_t *)(localContextPointer + 0x5d8) = 0;
   *(uint8_t *)(localContextPointer + 0x5c0) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x5a0) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x5a8) != 0) {
@@ -37729,7 +37741,7 @@ void Unwind_180904290(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x5a8) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x5b8) = 0;
+  *(uint32_t *)(localContextPointer + 0x5b8) = 0;
   *(uint8_t *)(localContextPointer + 0x5a0) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x580) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x588) != 0) {
@@ -37737,7 +37749,7 @@ void Unwind_180904290(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x588) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x598) = 0;
+  *(uint32_t *)(localContextPointer + 0x598) = 0;
   *(uint8_t *)(localContextPointer + 0x580) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x560) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x568) != 0) {
@@ -37745,7 +37757,7 @@ void Unwind_180904290(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x568) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x578) = 0;
+  *(uint32_t *)(localContextPointer + 0x578) = 0;
   *(uint8_t *)(localContextPointer + 0x560) = &SystemDataStructure;
   return;
 }
@@ -37767,7 +37779,7 @@ void Unwind_1809042b0(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x6a8) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x6b8) = 0;
+  *(uint32_t *)(localContextPointer + 0x6b8) = 0;
   *(uint8_t *)(localContextPointer + 0x6a0) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x680) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x688) != 0) {
@@ -37775,7 +37787,7 @@ void Unwind_1809042b0(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x688) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x698) = 0;
+  *(uint32_t *)(localContextPointer + 0x698) = 0;
   *(uint8_t *)(localContextPointer + 0x680) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x660) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x668) != 0) {
@@ -37783,7 +37795,7 @@ void Unwind_1809042b0(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x668) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x678) = 0;
+  *(uint32_t *)(localContextPointer + 0x678) = 0;
   *(uint8_t *)(localContextPointer + 0x660) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x640) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x648) != 0) {
@@ -37791,7 +37803,7 @@ void Unwind_1809042b0(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x648) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x658) = 0;
+  *(uint32_t *)(localContextPointer + 0x658) = 0;
   *(uint8_t *)(localContextPointer + 0x640) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x620) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x628) != 0) {
@@ -37799,7 +37811,7 @@ void Unwind_1809042b0(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x628) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x638) = 0;
+  *(uint32_t *)(localContextPointer + 0x638) = 0;
   *(uint8_t *)(localContextPointer + 0x620) = &SystemDataStructure;
   return;
 }
@@ -37821,7 +37833,7 @@ void Unwind_1809042d0(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x768) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x778) = 0;
+  *(uint32_t *)(localContextPointer + 0x778) = 0;
   *(uint8_t *)(localContextPointer + 0x760) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x740) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x748) != 0) {
@@ -37829,7 +37841,7 @@ void Unwind_1809042d0(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x748) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x758) = 0;
+  *(uint32_t *)(localContextPointer + 0x758) = 0;
   *(uint8_t *)(localContextPointer + 0x740) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x720) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x728) != 0) {
@@ -37837,7 +37849,7 @@ void Unwind_1809042d0(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x728) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x738) = 0;
+  *(uint32_t *)(localContextPointer + 0x738) = 0;
   *(uint8_t *)(localContextPointer + 0x720) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x700) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x708) != 0) {
@@ -37845,7 +37857,7 @@ void Unwind_1809042d0(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x708) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x718) = 0;
+  *(uint32_t *)(localContextPointer + 0x718) = 0;
   *(uint8_t *)(localContextPointer + 0x700) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x6e0) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x6e8) != 0) {
@@ -37853,7 +37865,7 @@ void Unwind_1809042d0(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x6e8) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x6f8) = 0;
+  *(uint32_t *)(localContextPointer + 0x6f8) = 0;
   *(uint8_t *)(localContextPointer + 0x6e0) = &SystemDataStructure;
   return;
 }
@@ -37875,7 +37887,7 @@ void Unwind_1809042f0(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x828) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x838) = 0;
+  *(uint32_t *)(localContextPointer + 0x838) = 0;
   *(uint8_t *)(localContextPointer + 0x820) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x800) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x808) != 0) {
@@ -37883,7 +37895,7 @@ void Unwind_1809042f0(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x808) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x818) = 0;
+  *(uint32_t *)(localContextPointer + 0x818) = 0;
   *(uint8_t *)(localContextPointer + 0x800) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x7e0) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x7e8) != 0) {
@@ -37891,7 +37903,7 @@ void Unwind_1809042f0(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x7e8) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x7f8) = 0;
+  *(uint32_t *)(localContextPointer + 0x7f8) = 0;
   *(uint8_t *)(localContextPointer + 0x7e0) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x7c0) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x7c8) != 0) {
@@ -37899,7 +37911,7 @@ void Unwind_1809042f0(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x7c8) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x7d8) = 0;
+  *(uint32_t *)(localContextPointer + 0x7d8) = 0;
   *(uint8_t *)(localContextPointer + 0x7c0) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x7a0) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x7a8) != 0) {
@@ -37907,7 +37919,7 @@ void Unwind_1809042f0(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x7a8) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x7b8) = 0;
+  *(uint32_t *)(localContextPointer + 0x7b8) = 0;
   *(uint8_t *)(localContextPointer + 0x7a0) = &SystemDataStructure;
   return;
 }
@@ -37929,7 +37941,7 @@ void Unwind_180904310(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x8e8) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x8f8) = 0;
+  *(uint32_t *)(localContextPointer + 0x8f8) = 0;
   *(uint8_t *)(localContextPointer + 0x8e0) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x8c0) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x8c8) != 0) {
@@ -37937,7 +37949,7 @@ void Unwind_180904310(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x8c8) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x8d8) = 0;
+  *(uint32_t *)(localContextPointer + 0x8d8) = 0;
   *(uint8_t *)(localContextPointer + 0x8c0) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x8a0) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x8a8) != 0) {
@@ -37945,7 +37957,7 @@ void Unwind_180904310(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x8a8) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x8b8) = 0;
+  *(uint32_t *)(localContextPointer + 0x8b8) = 0;
   *(uint8_t *)(localContextPointer + 0x8a0) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x880) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x888) != 0) {
@@ -37953,7 +37965,7 @@ void Unwind_180904310(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x888) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x898) = 0;
+  *(uint32_t *)(localContextPointer + 0x898) = 0;
   *(uint8_t *)(localContextPointer + 0x880) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x860) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x868) != 0) {
@@ -37961,7 +37973,7 @@ void Unwind_180904310(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x868) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x878) = 0;
+  *(uint32_t *)(localContextPointer + 0x878) = 0;
   *(uint8_t *)(localContextPointer + 0x860) = &SystemDataStructure;
   return;
 }
@@ -37983,7 +37995,7 @@ void Unwind_180904330(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x9a8) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x9b8) = 0;
+  *(uint32_t *)(localContextPointer + 0x9b8) = 0;
   *(uint8_t *)(localContextPointer + 0x9a0) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x980) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x988) != 0) {
@@ -37991,7 +38003,7 @@ void Unwind_180904330(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x988) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x998) = 0;
+  *(uint32_t *)(localContextPointer + 0x998) = 0;
   *(uint8_t *)(localContextPointer + 0x980) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x960) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x968) != 0) {
@@ -37999,7 +38011,7 @@ void Unwind_180904330(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x968) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x978) = 0;
+  *(uint32_t *)(localContextPointer + 0x978) = 0;
   *(uint8_t *)(localContextPointer + 0x960) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x940) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x948) != 0) {
@@ -38007,7 +38019,7 @@ void Unwind_180904330(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x948) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x958) = 0;
+  *(uint32_t *)(localContextPointer + 0x958) = 0;
   *(uint8_t *)(localContextPointer + 0x940) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x920) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x928) != 0) {
@@ -38015,7 +38027,7 @@ void Unwind_180904330(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x928) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x938) = 0;
+  *(uint32_t *)(localContextPointer + 0x938) = 0;
   *(uint8_t *)(localContextPointer + 0x920) = &SystemDataStructure;
   return;
 }
@@ -38037,7 +38049,7 @@ void Unwind_180904350(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0xa68) = 0;
-  *(uint8_t4 *)(localContextPointer + 0xa78) = 0;
+  *(uint32_t *)(localContextPointer + 0xa78) = 0;
   *(uint8_t *)(localContextPointer + 0xa60) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0xa40) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0xa48) != 0) {
@@ -38045,7 +38057,7 @@ void Unwind_180904350(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0xa48) = 0;
-  *(uint8_t4 *)(localContextPointer + 0xa58) = 0;
+  *(uint32_t *)(localContextPointer + 0xa58) = 0;
   *(uint8_t *)(localContextPointer + 0xa40) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0xa20) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0xa28) != 0) {
@@ -38053,7 +38065,7 @@ void Unwind_180904350(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0xa28) = 0;
-  *(uint8_t4 *)(localContextPointer + 0xa38) = 0;
+  *(uint32_t *)(localContextPointer + 0xa38) = 0;
   *(uint8_t *)(localContextPointer + 0xa20) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0xa00) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0xa08) != 0) {
@@ -38061,7 +38073,7 @@ void Unwind_180904350(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0xa08) = 0;
-  *(uint8_t4 *)(localContextPointer + 0xa18) = 0;
+  *(uint32_t *)(localContextPointer + 0xa18) = 0;
   *(uint8_t *)(localContextPointer + 0xa00) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x9e0) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x9e8) != 0) {
@@ -38069,7 +38081,7 @@ void Unwind_180904350(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x9e8) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x9f8) = 0;
+  *(uint32_t *)(localContextPointer + 0x9f8) = 0;
   *(uint8_t *)(localContextPointer + 0x9e0) = &SystemDataStructure;
   return;
 }
@@ -38091,7 +38103,7 @@ void Unwind_180904370(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0xb28) = 0;
-  *(uint8_t4 *)(localContextPointer + 0xb38) = 0;
+  *(uint32_t *)(localContextPointer + 0xb38) = 0;
   *(uint8_t *)(localContextPointer + 0xb20) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0xb00) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0xb08) != 0) {
@@ -38099,7 +38111,7 @@ void Unwind_180904370(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0xb08) = 0;
-  *(uint8_t4 *)(localContextPointer + 0xb18) = 0;
+  *(uint32_t *)(localContextPointer + 0xb18) = 0;
   *(uint8_t *)(localContextPointer + 0xb00) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0xae0) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0xae8) != 0) {
@@ -38107,7 +38119,7 @@ void Unwind_180904370(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0xae8) = 0;
-  *(uint8_t4 *)(localContextPointer + 0xaf8) = 0;
+  *(uint32_t *)(localContextPointer + 0xaf8) = 0;
   *(uint8_t *)(localContextPointer + 0xae0) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0xac0) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0xac8) != 0) {
@@ -38115,7 +38127,7 @@ void Unwind_180904370(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0xac8) = 0;
-  *(uint8_t4 *)(localContextPointer + 0xad8) = 0;
+  *(uint32_t *)(localContextPointer + 0xad8) = 0;
   *(uint8_t *)(localContextPointer + 0xac0) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0xaa0) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0xaa8) != 0) {
@@ -38123,7 +38135,7 @@ void Unwind_180904370(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0xaa8) = 0;
-  *(uint8_t4 *)(localContextPointer + 0xab8) = 0;
+  *(uint32_t *)(localContextPointer + 0xab8) = 0;
   *(uint8_t *)(localContextPointer + 0xaa0) = &SystemDataStructure;
   return;
 }
@@ -38145,7 +38157,7 @@ void Unwind_180904390(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0xbe8) = 0;
-  *(uint8_t4 *)(localContextPointer + 0xbf8) = 0;
+  *(uint32_t *)(localContextPointer + 0xbf8) = 0;
   *(uint8_t *)(localContextPointer + 0xbe0) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0xbc0) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0xbc8) != 0) {
@@ -38153,7 +38165,7 @@ void Unwind_180904390(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0xbc8) = 0;
-  *(uint8_t4 *)(localContextPointer + 0xbd8) = 0;
+  *(uint32_t *)(localContextPointer + 0xbd8) = 0;
   *(uint8_t *)(localContextPointer + 0xbc0) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0xba0) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0xba8) != 0) {
@@ -38161,7 +38173,7 @@ void Unwind_180904390(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0xba8) = 0;
-  *(uint8_t4 *)(localContextPointer + 3000) = 0;
+  *(uint32_t *)(localContextPointer + 3000) = 0;
   *(uint8_t *)(localContextPointer + 0xba0) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0xb80) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0xb88) != 0) {
@@ -38169,7 +38181,7 @@ void Unwind_180904390(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0xb88) = 0;
-  *(uint8_t4 *)(localContextPointer + 0xb98) = 0;
+  *(uint32_t *)(localContextPointer + 0xb98) = 0;
   *(uint8_t *)(localContextPointer + 0xb80) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0xb60) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0xb68) != 0) {
@@ -38177,7 +38189,7 @@ void Unwind_180904390(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0xb68) = 0;
-  *(uint8_t4 *)(localContextPointer + 0xb78) = 0;
+  *(uint32_t *)(localContextPointer + 0xb78) = 0;
   *(uint8_t *)(localContextPointer + 0xb60) = &SystemDataStructure;
   return;
 }
@@ -38199,7 +38211,7 @@ void Unwind_1809043b0(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0xca8) = 0;
-  *(uint8_t4 *)(localContextPointer + 0xcb8) = 0;
+  *(uint32_t *)(localContextPointer + 0xcb8) = 0;
   *(uint8_t *)(localContextPointer + 0xca0) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0xc80) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0xc88) != 0) {
@@ -38207,7 +38219,7 @@ void Unwind_1809043b0(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0xc88) = 0;
-  *(uint8_t4 *)(localContextPointer + 0xc98) = 0;
+  *(uint32_t *)(localContextPointer + 0xc98) = 0;
   *(uint8_t *)(localContextPointer + 0xc80) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0xc60) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0xc68) != 0) {
@@ -38215,7 +38227,7 @@ void Unwind_1809043b0(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0xc68) = 0;
-  *(uint8_t4 *)(localContextPointer + 0xc78) = 0;
+  *(uint32_t *)(localContextPointer + 0xc78) = 0;
   *(uint8_t *)(localContextPointer + 0xc60) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0xc40) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0xc48) != 0) {
@@ -38223,7 +38235,7 @@ void Unwind_1809043b0(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0xc48) = 0;
-  *(uint8_t4 *)(localContextPointer + 0xc58) = 0;
+  *(uint32_t *)(localContextPointer + 0xc58) = 0;
   *(uint8_t *)(localContextPointer + 0xc40) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0xc20) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0xc28) != 0) {
@@ -38231,7 +38243,7 @@ void Unwind_1809043b0(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0xc28) = 0;
-  *(uint8_t4 *)(localContextPointer + 0xc38) = 0;
+  *(uint32_t *)(localContextPointer + 0xc38) = 0;
   *(uint8_t *)(localContextPointer + 0xc20) = &SystemDataStructure;
   return;
 }
@@ -38253,7 +38265,7 @@ void Unwind_1809043d0(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0xd10) = 0;
-  *(uint8_t4 *)(localContextPointer + 0xd20) = 0;
+  *(uint32_t *)(localContextPointer + 0xd20) = 0;
   *(uint8_t *)(localContextPointer + 0xd08) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0xce8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0xcf0) != 0) {
@@ -38261,7 +38273,7 @@ void Unwind_1809043d0(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0xcf0) = 0;
-  *(uint8_t4 *)(localContextPointer + 0xd00) = 0;
+  *(uint32_t *)(localContextPointer + 0xd00) = 0;
   *(uint8_t *)(localContextPointer + 0xce8) = &SystemDataStructure;
   return;
 }
@@ -38283,7 +38295,7 @@ void Unwind_1809043f0(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0xd80) = 0;
-  *(uint8_t4 *)(localContextPointer + 0xd90) = 0;
+  *(uint32_t *)(localContextPointer + 0xd90) = 0;
   *(uint8_t *)(localContextPointer + 0xd78) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0xd58) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0xd60) != 0) {
@@ -38291,7 +38303,7 @@ void Unwind_1809043f0(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0xd60) = 0;
-  *(uint8_t4 *)(localContextPointer + 0xd70) = 0;
+  *(uint32_t *)(localContextPointer + 0xd70) = 0;
   *(uint8_t *)(localContextPointer + 0xd58) = &SystemDataStructure;
   return;
 }
@@ -38313,7 +38325,7 @@ void Unwind_180904410(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0xdf0) = 0;
-  *(uint8_t4 *)(localContextPointer + 0xe00) = 0;
+  *(uint32_t *)(localContextPointer + 0xe00) = 0;
   *(uint8_t *)(localContextPointer + 0xde8) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0xdc8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0xdd0) != 0) {
@@ -38321,7 +38333,7 @@ void Unwind_180904410(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0xdd0) = 0;
-  *(uint8_t4 *)(localContextPointer + 0xde0) = 0;
+  *(uint32_t *)(localContextPointer + 0xde0) = 0;
   *(uint8_t *)(localContextPointer + 0xdc8) = &SystemDataStructure;
   return;
 }
@@ -38343,7 +38355,7 @@ void Unwind_180904430(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0xeb8) = 0;
-  *(uint8_t4 *)(localContextPointer + 0xec8) = 0;
+  *(uint32_t *)(localContextPointer + 0xec8) = 0;
   *(uint8_t *)(localContextPointer + 0xeb0) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0xe90) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0xe98) != 0) {
@@ -38351,7 +38363,7 @@ void Unwind_180904430(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0xe98) = 0;
-  *(uint8_t4 *)(localContextPointer + 0xea8) = 0;
+  *(uint32_t *)(localContextPointer + 0xea8) = 0;
   *(uint8_t *)(localContextPointer + 0xe90) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0xe70) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0xe78) != 0) {
@@ -38359,7 +38371,7 @@ void Unwind_180904430(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0xe78) = 0;
-  *(uint8_t4 *)(localContextPointer + 0xe88) = 0;
+  *(uint32_t *)(localContextPointer + 0xe88) = 0;
   *(uint8_t *)(localContextPointer + 0xe70) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0xe50) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0xe58) != 0) {
@@ -38367,7 +38379,7 @@ void Unwind_180904430(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0xe58) = 0;
-  *(uint8_t4 *)(localContextPointer + 0xe68) = 0;
+  *(uint32_t *)(localContextPointer + 0xe68) = 0;
   *(uint8_t *)(localContextPointer + 0xe50) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0xe30) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0xe38) != 0) {
@@ -38375,7 +38387,7 @@ void Unwind_180904430(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0xe38) = 0;
-  *(uint8_t4 *)(localContextPointer + 0xe48) = 0;
+  *(uint32_t *)(localContextPointer + 0xe48) = 0;
   *(uint8_t *)(localContextPointer + 0xe30) = &SystemDataStructure;
   return;
 }
@@ -38397,7 +38409,7 @@ void Unwind_180904450(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0xf78) = 0;
-  *(uint8_t4 *)(localContextPointer + 0xf88) = 0;
+  *(uint32_t *)(localContextPointer + 0xf88) = 0;
   *(uint8_t *)(localContextPointer + 0xf70) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0xf50) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0xf58) != 0) {
@@ -38405,7 +38417,7 @@ void Unwind_180904450(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0xf58) = 0;
-  *(uint8_t4 *)(localContextPointer + 0xf68) = 0;
+  *(uint32_t *)(localContextPointer + 0xf68) = 0;
   *(uint8_t *)(localContextPointer + 0xf50) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0xf30) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0xf38) != 0) {
@@ -38413,7 +38425,7 @@ void Unwind_180904450(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0xf38) = 0;
-  *(uint8_t4 *)(localContextPointer + 0xf48) = 0;
+  *(uint32_t *)(localContextPointer + 0xf48) = 0;
   *(uint8_t *)(localContextPointer + 0xf30) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0xf10) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0xf18) != 0) {
@@ -38421,7 +38433,7 @@ void Unwind_180904450(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0xf18) = 0;
-  *(uint8_t4 *)(localContextPointer + 0xf28) = 0;
+  *(uint32_t *)(localContextPointer + 0xf28) = 0;
   *(uint8_t *)(localContextPointer + 0xf10) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0xef0) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0xef8) != 0) {
@@ -38429,7 +38441,7 @@ void Unwind_180904450(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0xef8) = 0;
-  *(uint8_t4 *)(localContextPointer + 0xf08) = 0;
+  *(uint32_t *)(localContextPointer + 0xf08) = 0;
   *(uint8_t *)(localContextPointer + 0xef0) = &SystemDataStructure;
   return;
 }
@@ -38451,7 +38463,7 @@ void Unwind_180904470(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x1038) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x1048) = 0;
+  *(uint32_t *)(localContextPointer + 0x1048) = 0;
   *(uint8_t *)(localContextPointer + 0x1030) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x1010) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x1018) != 0) {
@@ -38459,7 +38471,7 @@ void Unwind_180904470(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x1018) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x1028) = 0;
+  *(uint32_t *)(localContextPointer + 0x1028) = 0;
   *(uint8_t *)(localContextPointer + 0x1010) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0xff0) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0xff8) != 0) {
@@ -38467,7 +38479,7 @@ void Unwind_180904470(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0xff8) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x1008) = 0;
+  *(uint32_t *)(localContextPointer + 0x1008) = 0;
   *(uint8_t *)(localContextPointer + 0xff0) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0xfd0) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0xfd8) != 0) {
@@ -38475,7 +38487,7 @@ void Unwind_180904470(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0xfd8) = 0;
-  *(uint8_t4 *)(localContextPointer + 0xfe8) = 0;
+  *(uint32_t *)(localContextPointer + 0xfe8) = 0;
   *(uint8_t *)(localContextPointer + 0xfd0) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0xfb0) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0xfb8) != 0) {
@@ -38483,7 +38495,7 @@ void Unwind_180904470(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0xfb8) = 0;
-  *(uint8_t4 *)(localContextPointer + 0xfc8) = 0;
+  *(uint32_t *)(localContextPointer + 0xfc8) = 0;
   *(uint8_t *)(localContextPointer + 0xfb0) = &SystemDataStructure;
   return;
 }
@@ -38505,7 +38517,7 @@ void Unwind_180904490(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x10a0) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x10b0) = 0;
+  *(uint32_t *)(localContextPointer + 0x10b0) = 0;
   *(uint8_t *)(localContextPointer + 0x1098) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x1078) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x1080) != 0) {
@@ -38513,7 +38525,7 @@ void Unwind_180904490(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x1080) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x1090) = 0;
+  *(uint32_t *)(localContextPointer + 0x1090) = 0;
   *(uint8_t *)(localContextPointer + 0x1078) = &SystemDataStructure;
   return;
 }
@@ -38535,7 +38547,7 @@ void Unwind_1809044b0(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x1110) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x1120) = 0;
+  *(uint32_t *)(localContextPointer + 0x1120) = 0;
   *(uint8_t *)(localContextPointer + 0x1108) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x10e8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x10f0) != 0) {
@@ -38543,7 +38555,7 @@ void Unwind_1809044b0(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x10f0) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x1100) = 0;
+  *(uint32_t *)(localContextPointer + 0x1100) = 0;
   *(uint8_t *)(localContextPointer + 0x10e8) = &SystemDataStructure;
   return;
 }
@@ -38565,7 +38577,7 @@ void Unwind_1809044d0(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x1180) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x1190) = 0;
+  *(uint32_t *)(localContextPointer + 0x1190) = 0;
   *(uint8_t *)(localContextPointer + 0x1178) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x1158) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x1160) != 0) {
@@ -38573,7 +38585,7 @@ void Unwind_1809044d0(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x1160) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x1170) = 0;
+  *(uint32_t *)(localContextPointer + 0x1170) = 0;
   *(uint8_t *)(localContextPointer + 0x1158) = &SystemDataStructure;
   return;
 }
@@ -38595,7 +38607,7 @@ void Unwind_1809044f0(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x11f0) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x1200) = 0;
+  *(uint32_t *)(localContextPointer + 0x1200) = 0;
   *(uint8_t *)(localContextPointer + 0x11e8) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x11c8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x11d0) != 0) {
@@ -38603,7 +38615,7 @@ void Unwind_1809044f0(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x11d0) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x11e0) = 0;
+  *(uint32_t *)(localContextPointer + 0x11e0) = 0;
   *(uint8_t *)(localContextPointer + 0x11c8) = &SystemDataStructure;
   return;
 }
@@ -38625,7 +38637,7 @@ void Unwind_180904510(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x1260) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x1270) = 0;
+  *(uint32_t *)(localContextPointer + 0x1270) = 0;
   *(uint8_t *)(localContextPointer + 0x1258) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x1238) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x1240) != 0) {
@@ -38633,7 +38645,7 @@ void Unwind_180904510(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x1240) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x1250) = 0;
+  *(uint32_t *)(localContextPointer + 0x1250) = 0;
   *(uint8_t *)(localContextPointer + 0x1238) = &SystemDataStructure;
   return;
 }
@@ -38655,7 +38667,7 @@ void Unwind_180904530(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x12d0) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x12e0) = 0;
+  *(uint32_t *)(localContextPointer + 0x12e0) = 0;
   *(uint8_t *)(localContextPointer + 0x12c8) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x12a8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x12b0) != 0) {
@@ -38663,7 +38675,7 @@ void Unwind_180904530(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x12b0) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x12c0) = 0;
+  *(uint32_t *)(localContextPointer + 0x12c0) = 0;
   *(uint8_t *)(localContextPointer + 0x12a8) = &SystemDataStructure;
   return;
 }
@@ -38685,7 +38697,7 @@ void Unwind_180904550(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x1340) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x1350) = 0;
+  *(uint32_t *)(localContextPointer + 0x1350) = 0;
   *(uint8_t *)(localContextPointer + 0x1338) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x1318) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x1320) != 0) {
@@ -38693,7 +38705,7 @@ void Unwind_180904550(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x1320) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x1330) = 0;
+  *(uint32_t *)(localContextPointer + 0x1330) = 0;
   *(uint8_t *)(localContextPointer + 0x1318) = &SystemDataStructure;
   return;
 }
@@ -38927,7 +38939,7 @@ void Unwind_1809046c0(uint8_t objectContextParam,int64_t validationContextParam)
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x20) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x30) = 0;
+  *(uint32_t *)(localContextPointer + 0x30) = 0;
   *(uint8_t *)(localContextPointer + 0x18) = &SystemDataStructure;
   return;
 }
@@ -38946,7 +38958,7 @@ void Unwind_1809046d0(uint8_t objectContextParam,int64_t validationContextParam)
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x20) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x30) = 0;
+  *(uint32_t *)(localContextPointer + 0x30) = 0;
   *(uint8_t *)(localContextPointer + 0x18) = &SystemDataStructure;
   return;
 }
@@ -39156,7 +39168,7 @@ void Unwind_180904810(uint8_t objectContextParam,int64_t validationContextParam)
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x48) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x58) = 0;
+  *(uint32_t *)(localContextPointer + 0x58) = 0;
   *(uint8_t *)(localContextPointer + 0x40) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x20) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x28) != 0) {
@@ -39164,7 +39176,7 @@ void Unwind_180904810(uint8_t objectContextParam,int64_t validationContextParam)
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x28) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x38) = 0;
+  *(uint32_t *)(localContextPointer + 0x38) = 0;
   *(uint8_t *)(localContextPointer + 0x20) = &SystemDataStructure;
   return;
 }
@@ -39183,7 +39195,7 @@ void Unwind_180904820(uint8_t objectContextParam,int64_t validationContextParam)
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x28) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x38) = 0;
+  *(uint32_t *)(localContextPointer + 0x38) = 0;
   *(uint8_t *)(localContextPointer + 0x20) = &SystemDataStructure;
   return;
 }
@@ -39220,7 +39232,7 @@ void Unwind_180904870(uint8_t objectContextParam,int64_t validationContextParam)
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(validationContextParam + 0x58) = 0;
-  *(uint8_t4 *)(validationContextParam + 0x68) = 0;
+  *(uint32_t *)(validationContextParam + 0x68) = 0;
   *(uint8_t *)(validationContextParam + 0x50) = &SystemDataStructure;
   return;
 }
@@ -39303,7 +39315,7 @@ void Unwind_1809048e0(uint8_t objectContextParam,int64_t validationContextParam)
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x28) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x38) = 0;
+  *(uint32_t *)(localContextPointer + 0x38) = 0;
   *(uint8_t *)(localContextPointer + 0x20) = &SystemDataStructure;
   return;
 }
@@ -39322,7 +39334,7 @@ void Unwind_1809048f0(uint8_t objectContextParam,int64_t validationContextParam)
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x28) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x38) = 0;
+  *(uint32_t *)(localContextPointer + 0x38) = 0;
   *(uint8_t *)(localContextPointer + 0x20) = &SystemDataStructure;
   return;
 }
@@ -40407,7 +40419,7 @@ void Unwind_180904dd0(uint8_t objectContextParam,int64_t validationContextParam)
     ExecuteSystemEmergencyExit();
   }
   presourceHash[8] = 0;
-  *(uint8_t4 *)(presourceHash + 10) = 0;
+  *(uint32_t *)(presourceHash + 10) = 0;
   presourceHash[7] = &SystemDataStructure;
   presourceHash[1] = &SystemResourceHandlerTemplate;
   if (presourceHash[2] != 0) {
@@ -40415,7 +40427,7 @@ void Unwind_180904dd0(uint8_t objectContextParam,int64_t validationContextParam)
     ExecuteSystemEmergencyExit();
   }
   presourceHash[2] = 0;
-  *(uint8_t4 *)(presourceHash + 4) = 0;
+  *(uint32_t *)(presourceHash + 4) = 0;
   presourceHash[1] = &SystemDataStructure;
   return;
 }
@@ -40436,7 +40448,7 @@ void Unwind_180904de0(uint8_t objectContextParam,int64_t validationContextParam)
     ExecuteSystemEmergencyExit();
   }
   presourceHash[8] = 0;
-  *(uint8_t4 *)(presourceHash + 10) = 0;
+  *(uint32_t *)(presourceHash + 10) = 0;
   presourceHash[7] = &SystemDataStructure;
   presourceHash[1] = &SystemResourceHandlerTemplate;
   if (presourceHash[2] != 0) {
@@ -40444,7 +40456,7 @@ void Unwind_180904de0(uint8_t objectContextParam,int64_t validationContextParam)
     ExecuteSystemEmergencyExit();
   }
   presourceHash[2] = 0;
-  *(uint8_t4 *)(presourceHash + 4) = 0;
+  *(uint32_t *)(presourceHash + 4) = 0;
   presourceHash[1] = &SystemDataStructure;
   return;
 }
@@ -40464,7 +40476,7 @@ void Unwind_180904df0(uint8_t objectContextParam,int64_t validationContextParam)
     ExecuteSystemEmergencyExit();
   }
   presourceHash[8] = 0;
-  *(uint8_t4 *)(presourceHash + 10) = 0;
+  *(uint32_t *)(presourceHash + 10) = 0;
   presourceHash[7] = &SystemDataStructure;
   presourceHash[1] = &SystemResourceHandlerTemplate;
   if (presourceHash[2] != 0) {
@@ -40472,7 +40484,7 @@ void Unwind_180904df0(uint8_t objectContextParam,int64_t validationContextParam)
     ExecuteSystemEmergencyExit();
   }
   presourceHash[2] = 0;
-  *(uint8_t4 *)(presourceHash + 4) = 0;
+  *(uint32_t *)(presourceHash + 4) = 0;
   presourceHash[1] = &SystemDataStructure;
   return;
 }
@@ -40840,7 +40852,7 @@ void Unwind_180904f70(uint8_t objectContextParam,int64_t validationContextParam)
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x38) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x48) = 0;
+  *(uint32_t *)(localContextPointer + 0x48) = 0;
   *(uint8_t *)(localContextPointer + 0x30) = &SystemDataStructure;
   return;
 }
@@ -40859,7 +40871,7 @@ void Unwind_180904f80(uint8_t objectContextParam,int64_t validationContextParam)
     ExecuteSystemEmergencyExit();
   }
   presourceHash[1] = 0;
-  *(uint8_t4 *)(presourceHash + 3) = 0;
+  *(uint32_t *)(presourceHash + 3) = 0;
   *presourceHash = &SystemDataStructure;
   return;
 }
@@ -40953,7 +40965,7 @@ void Unwind_180904fc0(uint8_t objectContextParam,int64_t validationContextParam)
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(validationContextParam + 0xc0) = 0;
-  *(uint8_t4 *)(validationContextParam + 0xd0) = 0;
+  *(uint32_t *)(validationContextParam + 0xd0) = 0;
   *(uint8_t *)(validationContextParam + 0xb8) = &SystemDataStructure;
   return;
 }
@@ -41007,7 +41019,7 @@ void Unwind_180904ff0(uint8_t objectContextParam,int64_t validationContextParam)
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(validationContextParam + 0xe0) = 0;
-  *(uint8_t4 *)(validationContextParam + 0xf0) = 0;
+  *(uint32_t *)(validationContextParam + 0xf0) = 0;
   *(uint8_t *)(validationContextParam + 0xd8) = &SystemDataStructure;
   return;
 }
@@ -41040,7 +41052,7 @@ void Unwind_180905010(uint8_t objectContextParam,int64_t validationContextParam)
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(validationContextParam + 0x100) = 0;
-  *(uint8_t4 *)(validationContextParam + 0x110) = 0;
+  *(uint32_t *)(validationContextParam + 0x110) = 0;
   *(uint8_t *)(validationContextParam + 0xf8) = &SystemDataStructure;
   return;
 }
@@ -41209,7 +41221,7 @@ void Unwind_1809050c0(uint8_t objectContextParam,int64_t validationContextParam)
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(validationContextParam + 0x1f0) = 0;
-  *(uint8_t4 *)(validationContextParam + 0x200) = 0;
+  *(uint32_t *)(validationContextParam + 0x200) = 0;
   *(uint8_t *)(validationContextParam + 0x1e8) = &SystemDataStructure;
   return;
 }
@@ -41242,7 +41254,7 @@ void Unwind_1809050e0(uint8_t objectContextParam,int64_t validationContextParam)
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(validationContextParam + 0x170) = 0;
-  *(uint8_t4 *)(validationContextParam + 0x180) = 0;
+  *(uint32_t *)(validationContextParam + 0x180) = 0;
   *(uint8_t *)(validationContextParam + 0x168) = &SystemDataStructure;
   return;
 }
@@ -41258,7 +41270,7 @@ void Unwind_1809050f0(uint8_t objectContextParam,int64_t validationContextParam)
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(validationContextParam + 0x1b0) = 0;
-  *(uint8_t4 *)(validationContextParam + 0x1c0) = 0;
+  *(uint32_t *)(validationContextParam + 0x1c0) = 0;
   *(uint8_t *)(validationContextParam + 0x1a8) = &SystemDataStructure;
   return;
 }
@@ -41274,7 +41286,7 @@ void Unwind_180905100(uint8_t objectContextParam,int64_t validationContextParam)
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(validationContextParam + 400) = 0;
-  *(uint8_t4 *)(validationContextParam + 0x1a0) = 0;
+  *(uint32_t *)(validationContextParam + 0x1a0) = 0;
   *(uint8_t *)(validationContextParam + 0x188) = &SystemDataStructure;
   return;
 }
@@ -41350,7 +41362,7 @@ void Unwind_180905150(uint8_t objectContextParam,int64_t validationContextParam)
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(validationContextParam + 0x130) = 0;
-  *(uint8_t4 *)(validationContextParam + 0x140) = 0;
+  *(uint32_t *)(validationContextParam + 0x140) = 0;
   *(uint8_t *)(validationContextParam + 0x128) = &SystemDataStructure;
   return;
 }
@@ -41408,7 +41420,7 @@ void Unwind_180905180(uint8_t objectContextParam,int64_t validationContextParam)
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(validationContextParam + 0xd0) = 0;
-  *(uint8_t4 *)(validationContextParam + 0xe0) = 0;
+  *(uint32_t *)(validationContextParam + 0xe0) = 0;
   *(uint8_t *)(validationContextParam + 200) = &SystemDataStructure;
   return;
 }
@@ -41424,7 +41436,7 @@ void Unwind_180905190(uint8_t objectContextParam,int64_t validationContextParam)
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(validationContextParam + 0x1d0) = 0;
-  *(uint8_t4 *)(validationContextParam + 0x1e0) = 0;
+  *(uint32_t *)(validationContextParam + 0x1e0) = 0;
   *(uint8_t *)(validationContextParam + 0x1c8) = &SystemDataStructure;
   return;
 }
@@ -41782,7 +41794,7 @@ void Unwind_180905350(uint8_t objectContextParam,int64_t validationContextParam)
     ExecuteSystemEmergencyExit();
   }
   presourceHash[1] = 0;
-  *(uint8_t4 *)(presourceHash + 3) = 0;
+  *(uint32_t *)(presourceHash + 3) = 0;
   *presourceHash = &SystemDataStructure;
   return;
 }
@@ -41798,7 +41810,7 @@ void Unwind_180905360(uint8_t objectContextParam,int64_t validationContextParam)
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(validationContextParam + 0x110) = 0;
-  *(uint8_t4 *)(validationContextParam + 0x120) = 0;
+  *(uint32_t *)(validationContextParam + 0x120) = 0;
   *(uint8_t *)(validationContextParam + 0x108) = &SystemDataStructure;
   return;
 }
@@ -42112,7 +42124,7 @@ void Unwind_1809054c0(uint8_t objectContextParam,int64_t validationContextParam)
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(validationContextParam + 0x98) = 0;
-  *(uint8_t4 *)(validationContextParam + 0xa8) = 0;
+  *(uint32_t *)(validationContextParam + 0xa8) = 0;
   *(uint8_t *)(validationContextParam + 0x90) = &SystemDataStructure;
   return;
 }
@@ -42128,7 +42140,7 @@ void Unwind_1809054d0(uint8_t objectContextParam,int64_t validationContextParam)
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(validationContextParam + 0x98) = 0;
-  *(uint8_t4 *)(validationContextParam + 0xa8) = 0;
+  *(uint32_t *)(validationContextParam + 0xa8) = 0;
   *(uint8_t *)(validationContextParam + 0x90) = &SystemDataStructure;
   return;
 }
@@ -42608,7 +42620,7 @@ void Unwind_1809057b0(uint8_t objectContextParam,int64_t validationContextParam)
         }
       }
       InitializeResourceBuffer(resourcePointer5 + 10,&plStackX_10,(uint64_t)*(uint *)(resourcePointer5 + 8),
-                    *(uint8_t4 *)(resourcePointer5 + 9),1);
+                    *(uint32_t *)(resourcePointer5 + 9),1);
       piVar7 = (int *)AllocateResourceBuffer(ResourceBufferPool,0x18,*(uint8_t1 *)((int64_t)resourcePointer5 + 0x5c));
       *piVar7 = integerValue6;
       piVar7[2] = 0;
@@ -42703,7 +42715,7 @@ void Unwind_1809057c0(uint8_t objectContextParam,int64_t validationContextParam)
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 200) = 0;
-  *(uint8_t4 *)(localContextPointer + 0xd8) = 0;
+  *(uint32_t *)(localContextPointer + 0xd8) = 0;
   *(uint8_t *)(localContextPointer + 0xc0) = &SystemDataStructure;
   return;
 }
@@ -42719,7 +42731,7 @@ void Unwind_1809057e0(uint8_t objectContextParam,int64_t validationContextParam)
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(validationContextParam + 0x108) = 0;
-  *(uint8_t4 *)(validationContextParam + 0x118) = 0;
+  *(uint32_t *)(validationContextParam + 0x118) = 0;
   *(uint8_t *)(validationContextParam + 0x100) = &SystemDataStructure;
   *(uint8_t *)(validationContextParam + 0xe0) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(validationContextParam + 0xe8) != 0) {
@@ -42727,7 +42739,7 @@ void Unwind_1809057e0(uint8_t objectContextParam,int64_t validationContextParam)
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(validationContextParam + 0xe8) = 0;
-  *(uint8_t4 *)(validationContextParam + 0xf8) = 0;
+  *(uint32_t *)(validationContextParam + 0xf8) = 0;
   *(uint8_t *)(validationContextParam + 0xe0) = &SystemDataStructure;
   *(uint8_t *)(validationContextParam + 0xb8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(validationContextParam + 0xc0) != 0) {
@@ -42735,7 +42747,7 @@ void Unwind_1809057e0(uint8_t objectContextParam,int64_t validationContextParam)
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(validationContextParam + 0xc0) = 0;
-  *(uint8_t4 *)(validationContextParam + 0xd0) = 0;
+  *(uint32_t *)(validationContextParam + 0xd0) = 0;
   *(uint8_t *)(validationContextParam + 0xb8) = &SystemDataStructure;
   *(uint8_t *)(validationContextParam + 0x98) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(validationContextParam + 0xa0) != 0) {
@@ -42743,7 +42755,7 @@ void Unwind_1809057e0(uint8_t objectContextParam,int64_t validationContextParam)
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(validationContextParam + 0xa0) = 0;
-  *(uint8_t4 *)(validationContextParam + 0xb0) = 0;
+  *(uint32_t *)(validationContextParam + 0xb0) = 0;
   *(uint8_t *)(validationContextParam + 0x98) = &SystemDataStructure;
   *(uint8_t *)(validationContextParam + 0x68) = &ResourceDescriptorTemplate;
   if (*(int64_t *)(validationContextParam + 0x70) != 0) {
@@ -42751,7 +42763,7 @@ void Unwind_1809057e0(uint8_t objectContextParam,int64_t validationContextParam)
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(validationContextParam + 0x70) = 0;
-  *(uint8_t4 *)(validationContextParam + 0x80) = 0;
+  *(uint32_t *)(validationContextParam + 0x80) = 0;
   *(uint8_t *)(validationContextParam + 0x68) = &SystemDataStructure;
   return;
 }
@@ -42924,7 +42936,7 @@ void Unwind_180905890(uint8_t objectContextParam,int64_t validationContextParam)
       ExecuteSystemEmergencyExit();
     }
     *(uint8_t *)(resourceIndex + 0x10) = 0;
-    *(uint8_t4 *)(resourceIndex + 0x20) = 0;
+    *(uint32_t *)(resourceIndex + 0x20) = 0;
     *(uint8_t *)(resourceIndex + 8) = &SystemDataStructure;
   }
   if (*presourceTable != 0) {
@@ -42998,7 +43010,7 @@ void Unwind_1809058c0(uint8_t objectContextParam,int64_t validationContextParam)
       ExecuteSystemEmergencyExit();
     }
     *(uint8_t *)(resourceIndex + 0x10) = 0;
-    *(uint8_t4 *)(resourceIndex + 0x20) = 0;
+    *(uint32_t *)(resourceIndex + 0x20) = 0;
     *(uint8_t *)(resourceIndex + 8) = &SystemDataStructure;
   }
   if (*presourceTable != 0) {
@@ -43019,7 +43031,7 @@ void Unwind_1809058d0(uint8_t objectContextParam,int64_t validationContextParam)
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(validationContextParam + 0x208) = 0;
-  *(uint8_t4 *)(validationContextParam + 0x218) = 0;
+  *(uint32_t *)(validationContextParam + 0x218) = 0;
   *(uint8_t *)(validationContextParam + 0x200) = &SystemDataStructure;
   return;
 }
@@ -43205,7 +43217,7 @@ void Unwind_180905950(uint8_t objectContextParam,int64_t validationContextParam)
         }
       }
       InitializeResourceBuffer(resourcePointer5 + 10,&plStackX_10,(uint64_t)*(uint *)(resourcePointer5 + 8),
-                    *(uint8_t4 *)(resourcePointer5 + 9),1);
+                    *(uint32_t *)(resourcePointer5 + 9),1);
       piVar7 = (int *)AllocateResourceBuffer(ResourceBufferPool,0x18,*(uint8_t1 *)((int64_t)resourcePointer5 + 0x5c));
       *piVar7 = integerValue6;
       piVar7[2] = 0;
@@ -43327,7 +43339,7 @@ void Unwind_180905980(uint8_t objectContextParam,int64_t validationContextParam)
       ExecuteSystemEmergencyExit();
     }
     punsignedResult3[1] = 0;
-    *(uint8_t4 *)(punsignedResult3 + 3) = 0;
+    *(uint32_t *)(punsignedResult3 + 3) = 0;
     *punsignedResult3 = &SystemDataStructure;
   }
   if (*presourceTable != 0) {
@@ -43478,7 +43490,7 @@ void Unwind_180905a80(uint8_t objectContextParam,int64_t validationContextParam)
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(validationContextParam + 0x70) = 0;
-  *(uint8_t4 *)(validationContextParam + 0x80) = 0;
+  *(uint32_t *)(validationContextParam + 0x80) = 0;
   *(uint8_t *)(validationContextParam + 0x68) = &SystemDataStructure;
   return;
 }
@@ -43494,7 +43506,7 @@ void Unwind_180905a90(uint8_t objectContextParam,int64_t validationContextParam)
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(validationContextParam + 0xa0) = 0;
-  *(uint8_t4 *)(validationContextParam + 0xb0) = 0;
+  *(uint32_t *)(validationContextParam + 0xb0) = 0;
   *(uint8_t *)(validationContextParam + 0x98) = &SystemDataStructure;
   return;
 }
@@ -43510,7 +43522,7 @@ void Unwind_180905aa0(uint8_t objectContextParam,int64_t validationContextParam)
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(validationContextParam + 0xc0) = 0;
-  *(uint8_t4 *)(validationContextParam + 0xd0) = 0;
+  *(uint32_t *)(validationContextParam + 0xd0) = 0;
   *(uint8_t *)(validationContextParam + 0xb8) = &SystemDataStructure;
   return;
 }
@@ -43526,7 +43538,7 @@ void Unwind_180905ab0(uint8_t objectContextParam,int64_t validationContextParam)
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(validationContextParam + 0xe8) = 0;
-  *(uint8_t4 *)(validationContextParam + 0xf8) = 0;
+  *(uint32_t *)(validationContextParam + 0xf8) = 0;
   *(uint8_t *)(validationContextParam + 0xe0) = &SystemDataStructure;
   return;
 }
@@ -43542,7 +43554,7 @@ void Unwind_180905ad0(uint8_t objectContextParam,int64_t validationContextParam)
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(validationContextParam + 0x108) = 0;
-  *(uint8_t4 *)(validationContextParam + 0x118) = 0;
+  *(uint32_t *)(validationContextParam + 0x118) = 0;
   *(uint8_t *)(validationContextParam + 0x100) = &SystemDataStructure;
   return;
 }
@@ -43610,7 +43622,7 @@ void Unwind_180905b40(uint8_t objectContextParam,int64_t validationContextParam)
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x28) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x38) = 0;
+  *(uint32_t *)(localContextPointer + 0x38) = 0;
   *(uint8_t *)(localContextPointer + 0x20) = &SystemDataStructure;
   return;
 }
@@ -44468,7 +44480,7 @@ void Unwind_180905e40(uint8_t objectContextParam,int64_t validationContextParam)
       longValue8 = *(int64_t *)(lVar6 + 0x28);
       do {
         *(int64_t *)(lVar5 + 0x3538) = longValue8;
-        *(uint8_t4 *)(lVar5 + 0x3530) = 1;
+        *(uint32_t *)(lVar5 + 0x3530) = 1;
         plocalContextPointer = (int64_t *)(lVar6 + 0x28);
         LOCK();
         lVar7 = *plocalContextPointer;
@@ -45494,7 +45506,7 @@ void Unwind_1809062b0(uint8_t objectContextParam,int64_t validationContextParam)
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(validationContextParam + 0xb8) = 0;
-  *(uint8_t4 *)(validationContextParam + 200) = 0;
+  *(uint32_t *)(validationContextParam + 200) = 0;
   *(uint8_t *)(validationContextParam + 0xb0) = &SystemDataStructure;
   return;
 }
@@ -45714,7 +45726,7 @@ void Unwind_180906480(uint8_t objectContextParam,int64_t validationContextParam)
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(validationContextParam + 0x38) = 0;
-  *(uint8_t4 *)(validationContextParam + 0x48) = 0;
+  *(uint32_t *)(validationContextParam + 0x48) = 0;
   *(uint8_t *)(validationContextParam + 0x30) = &SystemDataStructure;
   return;
 }
@@ -46422,7 +46434,7 @@ void Unwind_1809067b0(uint8_t objectContextParam,int64_t validationContextParam)
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x28) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x38) = 0;
+  *(uint32_t *)(localContextPointer + 0x38) = 0;
   *(uint8_t *)(localContextPointer + 0x20) = &SystemDataStructure;
   return;
 }
@@ -46955,7 +46967,7 @@ void Unwind_180906b10(uint8_t objectContextParam,int64_t validationContextParam)
       ExecuteSystemEmergencyExit();
     }
     pvalidationResult[1] = 0;
-    *(uint8_t4 *)(pvalidationResult + 3) = 0;
+    *(uint32_t *)(pvalidationResult + 3) = 0;
     *pvalidationResult = &SystemDataStructure;
   }
   if (*(int64_t *)(validationContextParam + 0x88) != 0) {
@@ -47003,7 +47015,7 @@ void Unwind_180906b40(uint8_t objectContextParam,int64_t validationContextParam)
       ExecuteSystemEmergencyExit();
     }
     pvalidationResult[1] = 0;
-    *(uint8_t4 *)(pvalidationResult + 3) = 0;
+    *(uint32_t *)(pvalidationResult + 3) = 0;
     *pvalidationResult = &SystemDataStructure;
   }
   if (*(int64_t *)(validationContextParam + 0x88) != 0) {
@@ -47067,7 +47079,7 @@ void Unwind_180906b60(uint8_t objectContextParam,int64_t validationContextParam)
       ExecuteSystemEmergencyExit();
     }
     punsignedResult3[1] = 0;
-    *(uint8_t4 *)(punsignedResult3 + 3) = 0;
+    *(uint32_t *)(punsignedResult3 + 3) = 0;
     *punsignedResult3 = &SystemDataStructure;
   }
   if (*presourceTable != 0) {
@@ -49810,7 +49822,7 @@ void Unwind_180907700(uint8_t objectContextParam,int64_t validationContextParam)
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x28) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x38) = 0;
+  *(uint32_t *)(localContextPointer + 0x38) = 0;
   *(uint8_t *)(localContextPointer + 0x20) = &SystemDataStructure;
   return;
 }
@@ -49846,7 +49858,7 @@ void Unwind_180907710(uint8_t objectContextParam,int64_t validationContextParam)
     ExecuteSystemEmergencyExit();
   }
   pvalidationResult[0xe] = 0;
-  *(uint8_t4 *)(pvalidationResult + 0x10) = 0;
+  *(uint32_t *)(pvalidationResult + 0x10) = 0;
   pvalidationResult[0xd] = &SystemDataStructure;
   ValidateResourceIntegrity(pvalidationResult + 7,pvalidationResult[9]);
   *pvalidationResult = &ResourceValidationTable002;
@@ -49898,7 +49910,7 @@ void Unwind_180907740(uint8_t objectContextParam,int64_t validationContextParam)
     ExecuteSystemEmergencyExit();
   }
   pvalidationResult[0xe] = 0;
-  *(uint8_t4 *)(pvalidationResult + 0x10) = 0;
+  *(uint32_t *)(pvalidationResult + 0x10) = 0;
   pvalidationResult[0xd] = &SystemDataStructure;
   ValidateResourceIntegrity(pvalidationResult + 7,pvalidationResult[9]);
   *pvalidationResult = &ResourceValidationTable002;
@@ -50381,7 +50393,7 @@ void Unwind_180907950(uint8_t objectContextParam,int64_t validationContextParam)
     ExecuteSystemEmergencyExit();
   }
   presourceHash[1] = 0;
-  *(uint8_t4 *)(presourceHash + 3) = 0;
+  *(uint32_t *)(presourceHash + 3) = 0;
   *presourceHash = &SystemDataStructure;
   return;
 }
@@ -50400,7 +50412,7 @@ void Unwind_180907960(uint8_t objectContextParam,int64_t validationContextParam)
     ExecuteSystemEmergencyExit();
   }
   presourceHash[1] = 0;
-  *(uint8_t4 *)(presourceHash + 3) = 0;
+  *(uint32_t *)(presourceHash + 3) = 0;
   *presourceHash = &SystemDataStructure;
   return;
 }
@@ -50457,7 +50469,7 @@ void Unwind_1809079a0(uint8_t objectContextParam,int64_t validationContextParam)
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x20) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x30) = 0;
+  *(uint32_t *)(localContextPointer + 0x30) = 0;
   *(uint8_t *)(localContextPointer + 0x18) = &SystemDataStructure;
   return;
 }
@@ -50476,7 +50488,7 @@ void Unwind_1809079b0(uint8_t objectContextParam,int64_t validationContextParam)
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x40) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x50) = 0;
+  *(uint32_t *)(localContextPointer + 0x50) = 0;
   *(uint8_t *)(localContextPointer + 0x38) = &SystemDataStructure;
   return;
 }
@@ -50495,7 +50507,7 @@ void UnwindSystemResourceHandler001(uint8_t objectContextParam,int64_t validatio
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x60) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x70) = 0;
+  *(uint32_t *)(localContextPointer + 0x70) = 0;
   *(uint8_t *)(localContextPointer + 0x58) = &SystemDataStructure;
   return;
 }
@@ -50592,7 +50604,7 @@ void ResetResourceValidationTable(uint8_t objectContextParam,int64_t validationC
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(uint8_t4 *)(presourceHash + 4) = 0;
+  *(uint32_t *)(presourceHash + 4) = 0;
   presourceHash[3] = 0;
   return;
 }
@@ -50780,7 +50792,7 @@ void Unwind_180907a90(uint8_t objectContextParam,int64_t validationContextParam)
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x28) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x38) = 0;
+  *(uint32_t *)(localContextPointer + 0x38) = 0;
   *(uint8_t *)(localContextPointer + 0x20) = &SystemDataStructure;
   return;
 }
@@ -50982,7 +50994,7 @@ void SystemUnwindResourceHandler(uint8_t objectContextParam,int64_t validationCo
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(validationContextParam + 0x38) = 0;
-  *(uint8_t4 *)(validationContextParam + 0x48) = 0;
+  *(uint32_t *)(validationContextParam + 0x48) = 0;
   *(uint8_t *)(validationContextParam + 0x30) = &SystemDataStructure;
   return;
 }
@@ -51104,7 +51116,7 @@ void SystemUnwindResourceHashHandler(uint8_t objectContextParam,int64_t validati
     ExecuteSystemEmergencyExit();
   }
   ResourceHashPointer[1] = 0;
-  *(uint8_t4 *)(ResourceHashPointer + 3) = 0;
+  *(uint32_t *)(ResourceHashPointer + 3) = 0;
   *ResourceHashPointer = &SystemDataStructure;
   return;
 }
@@ -51371,7 +51383,7 @@ void Unwind_180907cf0(uint8_t objectContextParam,int64_t validationContextParam)
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(validationContextParam + 0x1c8) = 0;
-  *(uint8_t4 *)(validationContextParam + 0x1d8) = 0;
+  *(uint32_t *)(validationContextParam + 0x1d8) = 0;
   *(uint8_t *)(validationContextParam + 0x1c0) = &SystemDataStructure;
   return;
 }
@@ -51390,7 +51402,7 @@ void Unwind_180907d00(uint8_t objectContextParam,int64_t validationContextParam)
     ExecuteSystemEmergencyExit();
   }
   presourceHash[1] = 0;
-  *(uint8_t4 *)(presourceHash + 3) = 0;
+  *(uint32_t *)(presourceHash + 3) = 0;
   *presourceHash = &SystemDataStructure;
   return;
 }
@@ -51929,7 +51941,7 @@ void Unwind_180907f90(uint8_t objectContextParam,int64_t validationContextParam)
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(validationContextParam + 0xa8) = 0;
-  *(uint8_t4 *)(validationContextParam + 0xb8) = 0;
+  *(uint32_t *)(validationContextParam + 0xb8) = 0;
   *(uint8_t *)(validationContextParam + 0xa0) = &SystemDataStructure;
   return;
 }
@@ -51945,7 +51957,7 @@ void Unwind_180907fa0(uint8_t objectContextParam,int64_t validationContextParam)
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(validationContextParam + 0xa8) = 0;
-  *(uint8_t4 *)(validationContextParam + 0xb8) = 0;
+  *(uint32_t *)(validationContextParam + 0xb8) = 0;
   *(uint8_t *)(validationContextParam + 0xa0) = &SystemDataStructure;
   return;
 }
@@ -52328,7 +52340,7 @@ void Unwind_180908130(uint8_t objectContextParam,int64_t validationContextParam)
     ExecuteSystemEmergencyExit();
   }
   presourceHash[1] = 0;
-  *(uint8_t4 *)(presourceHash + 3) = 0;
+  *(uint32_t *)(presourceHash + 3) = 0;
   *presourceHash = &SystemDataStructure;
   return;
 }
@@ -52896,7 +52908,7 @@ void Unwind_180908670(uint8_t objectContextParam,int64_t validationContextParam)
   *(int64_t *)(resourceTable + 0x15d8) =
        *(int64_t *)(&SystemDataBufferC8ed30 + (int64_t)*(int *)(resourceTable + 0x15e0) * 8) + -100000;
   SetupResourceTableContext((int64_t *)(resourceTable + 0x8b0));
-  *(uint8_t4 *)(resourceTable + 0x15e8) = 0;
+  *(uint32_t *)(resourceTable + 0x15e8) = 0;
   plocalContextPointer = *(int64_t **)(resourceTable + 0x15d0);
   *(uint8_t *)(resourceTable + 0x15d0) = 0;
   if (plocalContextPointer != (int64_t *)0x0) {
@@ -53423,7 +53435,7 @@ void Unwind_180908900(uint8_t objectContextParam,int64_t validationContextParam)
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x20) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x30) = 0;
+  *(uint32_t *)(localContextPointer + 0x30) = 0;
   *(uint8_t *)(localContextPointer + 0x18) = &SystemDataStructure;
   return;
 }
@@ -53442,7 +53454,7 @@ void Unwind_180908910(uint8_t objectContextParam,int64_t validationContextParam)
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x20) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x30) = 0;
+  *(uint32_t *)(localContextPointer + 0x30) = 0;
   *(uint8_t *)(localContextPointer + 0x18) = &SystemDataStructure;
   return;
 }
@@ -54073,7 +54085,7 @@ void Unwind_180908b00(uint8_t objectContextParam,int64_t validationContextParam)
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x28) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x38) = 0;
+  *(uint32_t *)(localContextPointer + 0x38) = 0;
   *(uint8_t *)(localContextPointer + 0x20) = &SystemDataStructure;
   return;
 }
@@ -54223,7 +54235,7 @@ void Unwind_180908ba0(uint8_t objectContextParam,int64_t validationContextParam)
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(validationContextParam + 0xb0) = 0;
-  *(uint8_t4 *)(validationContextParam + 0xc0) = 0;
+  *(uint32_t *)(validationContextParam + 0xc0) = 0;
   *(uint8_t *)(validationContextParam + 0xa8) = &SystemDataStructure;
   if (*(int64_t **)(validationContextParam + 0xa0) != (int64_t *)0x0) {
     (**(code **)(**(int64_t **)(validationContextParam + 0xa0) + 0x38))();
@@ -54256,7 +54268,7 @@ void Unwind_180908bc0(uint8_t objectContextParam,int64_t validationContextParam)
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(validationContextParam + 0x50) = 0;
-  *(uint8_t4 *)(validationContextParam + 0x60) = 0;
+  *(uint32_t *)(validationContextParam + 0x60) = 0;
   *(uint8_t *)(validationContextParam + 0x48) = &SystemDataStructure;
   if (*(int64_t **)(validationContextParam + 0x40) != (int64_t *)0x0) {
     (**(code **)(**(int64_t **)(validationContextParam + 0x40) + 0x38))();
@@ -54281,7 +54293,7 @@ void Unwind_180908bd0(uint8_t objectContextParam,int64_t validationContextParam)
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x30) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x40) = 0;
+  *(uint32_t *)(localContextPointer + 0x40) = 0;
   *(uint8_t *)(localContextPointer + 0x28) = &SystemDataStructure;
   if (*(int64_t **)(localContextPointer + 0x20) != (int64_t *)0x0) {
     (**(code **)(**(int64_t **)(localContextPointer + 0x20) + 0x38))();
@@ -54311,7 +54323,7 @@ void Unwind_180908bf0(uint8_t objectContextParam,int64_t validationContextParam)
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(validationContextParam + 0xb0) = 0;
-  *(uint8_t4 *)(validationContextParam + 0xc0) = 0;
+  *(uint32_t *)(validationContextParam + 0xc0) = 0;
   *(uint8_t *)(validationContextParam + 0xa8) = &SystemDataStructure;
   return;
 }
@@ -54358,7 +54370,7 @@ void Unwind_180908c30(uint8_t objectContextParam,int64_t validationContextParam)
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(validationContextParam + 0x50) = 0;
-  *(uint8_t4 *)(validationContextParam + 0x60) = 0;
+  *(uint32_t *)(validationContextParam + 0x60) = 0;
   *(uint8_t *)(validationContextParam + 0x48) = &SystemDataStructure;
   return;
 }
@@ -54402,7 +54414,7 @@ void Unwind_180908c60(uint8_t objectContextParam,int64_t validationContextParam)
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x30) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x40) = 0;
+  *(uint32_t *)(localContextPointer + 0x40) = 0;
   *(uint8_t *)(localContextPointer + 0x28) = &SystemDataStructure;
   return;
 }
@@ -54557,7 +54569,7 @@ void Unwind_180908db0(uint8_t objectContextParam,int64_t validationContextParam)
     ExecuteSystemEmergencyExit();
   }
   presourceHash[1] = 0;
-  *(uint8_t4 *)(presourceHash + 3) = 0;
+  *(uint32_t *)(presourceHash + 3) = 0;
   *presourceHash = &SystemDataStructure;
   return;
 }
@@ -54576,7 +54588,7 @@ void Unwind_180908dc0(uint8_t objectContextParam,int64_t validationContextParam)
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x28) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x38) = 0;
+  *(uint32_t *)(localContextPointer + 0x38) = 0;
   *(uint8_t *)(localContextPointer + 0x20) = &SystemDataStructure;
   return;
 }
@@ -54868,7 +54880,7 @@ void Unwind_180908e90(uint8_t objectContextParam,int64_t validationContextParam)
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x30) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x40) = 0;
+  *(uint32_t *)(localContextPointer + 0x40) = 0;
   *(uint8_t *)(localContextPointer + 0x28) = &SystemDataStructure;
   return;
 }
@@ -56211,7 +56223,7 @@ void Unwind_1809094f0(uint8_t objectContextParam,int64_t validationContextParam)
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(validationContextParam + 0x220) = 0;
-  *(uint8_t4 *)(validationContextParam + 0x230) = 0;
+  *(uint32_t *)(validationContextParam + 0x230) = 0;
   *(uint8_t *)(validationContextParam + 0x218) = &SystemDataStructure;
   return;
 }
@@ -56227,7 +56239,7 @@ void Unwind_180909500(uint8_t objectContextParam,int64_t validationContextParam)
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(validationContextParam + 0x2a0) = 0;
-  *(uint8_t4 *)(validationContextParam + 0x2b0) = 0;
+  *(uint32_t *)(validationContextParam + 0x2b0) = 0;
   *(uint8_t *)(validationContextParam + 0x298) = &SystemDataStructure;
   return;
 }
@@ -56252,7 +56264,7 @@ void Unwind_180909520(uint8_t objectContextParam,int64_t validationContextParam)
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(validationContextParam + 0x280) = 0;
-  *(uint8_t4 *)(validationContextParam + 0x290) = 0;
+  *(uint32_t *)(validationContextParam + 0x290) = 0;
   *(uint8_t *)(validationContextParam + 0x278) = &SystemDataStructure;
   return;
 }
@@ -56314,7 +56326,7 @@ void Unwind_180909560(uint8_t objectContextParam,int64_t validationContextParam)
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(validationContextParam + 0x200) = 0;
-  *(uint8_t4 *)(validationContextParam + 0x210) = 0;
+  *(uint32_t *)(validationContextParam + 0x210) = 0;
   *(uint8_t *)(validationContextParam + 0x1f8) = &SystemDataStructure;
   return;
 }
@@ -56347,7 +56359,7 @@ void Unwind_180909580(uint8_t objectContextParam,int64_t validationContextParam)
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(validationContextParam + 0xf8) = 0;
-  *(uint8_t4 *)(validationContextParam + 0x108) = 0;
+  *(uint32_t *)(validationContextParam + 0x108) = 0;
   *(uint8_t *)(validationContextParam + 0xf0) = &SystemDataStructure;
   return;
 }
@@ -56380,7 +56392,7 @@ void Unwind_1809095a0(uint8_t objectContextParam,int64_t validationContextParam)
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(validationContextParam + 0x1a0) = 0;
-  *(uint8_t4 *)(validationContextParam + 0x1b0) = 0;
+  *(uint32_t *)(validationContextParam + 0x1b0) = 0;
   *(uint8_t *)(validationContextParam + 0x198) = &SystemDataStructure;
   return;
 }
@@ -56435,7 +56447,7 @@ void Unwind_180909610(uint8_t objectContextParam,int64_t validationContextParam)
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(validationContextParam + 0x2f8) = 0;
-  *(uint8_t4 *)(validationContextParam + 0x308) = 0;
+  *(uint32_t *)(validationContextParam + 0x308) = 0;
   *(uint8_t *)(validationContextParam + 0x2f0) = &SystemDataStructure;
   return;
 }
@@ -56888,7 +56900,7 @@ void Unwind_180909740(uint8_t objectContextParam,int64_t validationContextParam)
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x60) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x70) = 0;
+  *(uint32_t *)(localContextPointer + 0x70) = 0;
   *(uint8_t *)(localContextPointer + 0x58) = &SystemDataStructure;
   return;
 }
@@ -56904,7 +56916,7 @@ void Unwind_180909750(uint8_t objectContextParam,int64_t validationContextParam)
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(validationContextParam + 0x10) = 0;
-  *(uint8_t4 *)(validationContextParam + 0x20) = 0;
+  *(uint32_t *)(validationContextParam + 0x20) = 0;
   *(uint8_t *)(validationContextParam + 8) = &SystemDataStructure;
   return;
 }
@@ -56932,7 +56944,7 @@ void Unwind_180909770(uint8_t objectContextParam,int64_t validationContextParam)
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x30) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x40) = 0;
+  *(uint32_t *)(localContextPointer + 0x40) = 0;
   *(uint8_t *)(localContextPointer + 0x28) = &SystemDataStructure;
   return;
 }
@@ -56951,7 +56963,7 @@ void Unwind_180909780(uint8_t objectContextParam,int64_t validationContextParam)
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x10) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x20) = 0;
+  *(uint32_t *)(localContextPointer + 0x20) = 0;
   *(uint8_t *)(localContextPointer + 8) = &SystemDataStructure;
   return;
 }
@@ -57712,7 +57724,7 @@ void UnwindThreadContextA(uint8_t objectContextParam,int64_t validationContextPa
   integerValue1 = *(int *)(**(int64_t **)(GlobalThreadManager + 8) + 0x48);
   integerValue2 = _Thrd_id();
   if (integerValue2 != integerValue1) {
-    GlobalThreadContext = *(uint8_t4 *)(validationContextParam + 0x90);
+    GlobalThreadContext = *(uint32_t *)(validationContextParam + 0x90);
   }
   return;
 }
@@ -57810,7 +57822,7 @@ void Unwind_180909ce0(uint8_t objectContextParam,int64_t validationContextParam)
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x568) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x578) = 0;
+  *(uint32_t *)(localContextPointer + 0x578) = 0;
   *(uint8_t *)(localContextPointer + 0x560) = &SystemDataStructure;
   return;
 }
@@ -58430,7 +58442,7 @@ void Unwind_18090a1d0(uint8_t objectContextParam,int64_t validationContextParam)
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x568) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x578) = 0;
+  *(uint32_t *)(localContextPointer + 0x578) = 0;
   *(uint8_t *)(localContextPointer + 0x560) = &SystemDataStructure;
   return;
 }
@@ -59227,7 +59239,7 @@ void Unwind_18090a7b0(uint8_t objectContextParam,int64_t validationContextParam)
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(validationContextParam + 0x30) = 0;
-  *(uint8_t4 *)(validationContextParam + 0x40) = 0;
+  *(uint32_t *)(validationContextParam + 0x40) = 0;
   *(uint8_t *)(validationContextParam + 0x28) = &SystemDataStructure;
   return;
 }
@@ -59257,7 +59269,7 @@ void Unwind_18090a7d0(uint8_t objectContextParam,int64_t validationContextParam)
     ExecuteSystemEmergencyExit();
   }
   presourceHash[1] = 0;
-  *(uint8_t4 *)(presourceHash + 3) = 0;
+  *(uint32_t *)(presourceHash + 3) = 0;
   *presourceHash = &SystemDataStructure;
   return;
 }
@@ -59588,7 +59600,7 @@ void Unwind_18090a910(uint8_t objectContextParam,int64_t validationContextParam)
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x28) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x38) = 0;
+  *(uint32_t *)(localContextPointer + 0x38) = 0;
   *(uint8_t *)(localContextPointer + 0x20) = &SystemDataStructure;
   return;
 }
@@ -59926,7 +59938,7 @@ void Unwind_18090aae0(uint8_t objectContextParam,int64_t validationContextParam)
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(validationContextParam + 0xa0) = 0;
-  *(uint8_t4 *)(validationContextParam + 0xb0) = 0;
+  *(uint32_t *)(validationContextParam + 0xb0) = 0;
   *(uint8_t *)(validationContextParam + 0x98) = &SystemDataStructure;
   return;
 }
@@ -62854,7 +62866,7 @@ void Unwind_18090c150(uint8_t objectContextParam,int64_t validationContextParam)
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x28) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x38) = 0;
+  *(uint32_t *)(localContextPointer + 0x38) = 0;
   *(uint8_t *)(localContextPointer + 0x20) = &SystemDataStructure;
   return;
 }
@@ -62890,7 +62902,7 @@ void Unwind_18090c170(uint8_t objectContextParam,int64_t validationContextParam)
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x28) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x38) = 0;
+  *(uint32_t *)(localContextPointer + 0x38) = 0;
   *(uint8_t *)(localContextPointer + 0x20) = &SystemDataStructure;
   return;
 }
@@ -63277,7 +63289,7 @@ void Unwind_18090c310(uint8_t objectContextParam,int64_t validationContextParam)
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x28) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x38) = 0;
+  *(uint32_t *)(localContextPointer + 0x38) = 0;
   *(uint8_t *)(localContextPointer + 0x20) = &SystemDataStructure;
   return;
 }
@@ -63587,7 +63599,7 @@ void Unwind_18090c4a0(uint8_t objectContextParam,int64_t validationContextParam)
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(validationContextParam + 0xe0) = 0;
-  *(uint8_t4 *)(validationContextParam + 0xf0) = 0;
+  *(uint32_t *)(validationContextParam + 0xf0) = 0;
   *(uint8_t *)(validationContextParam + 0xd8) = &SystemDataStructure;
   if (*(int64_t **)(validationContextParam + 0xd0) != (int64_t *)0x0) {
     (**(code **)(**(int64_t **)(validationContextParam + 0xd0) + 0x38))();
@@ -63612,7 +63624,7 @@ void Unwind_18090c4b0(uint8_t objectContextParam,int64_t validationContextParam)
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x30) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x40) = 0;
+  *(uint32_t *)(localContextPointer + 0x40) = 0;
   *(uint8_t *)(localContextPointer + 0x28) = &SystemDataStructure;
   if (*(int64_t **)(localContextPointer + 0x20) != (int64_t *)0x0) {
     (**(code **)(**(int64_t **)(localContextPointer + 0x20) + 0x38))();
@@ -63651,7 +63663,7 @@ void Unwind_18090c4e0(uint8_t objectContextParam,int64_t validationContextParam)
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(validationContextParam + 0xe0) = 0;
-  *(uint8_t4 *)(validationContextParam + 0xf0) = 0;
+  *(uint32_t *)(validationContextParam + 0xf0) = 0;
   *(uint8_t *)(validationContextParam + 0xd8) = &SystemDataStructure;
   return;
 }
@@ -63695,7 +63707,7 @@ void Unwind_18090c510(uint8_t objectContextParam,int64_t validationContextParam)
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x30) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x40) = 0;
+  *(uint32_t *)(localContextPointer + 0x40) = 0;
   *(uint8_t *)(localContextPointer + 0x28) = &SystemDataStructure;
   return;
 }
@@ -64419,7 +64431,7 @@ void Unwind_18090c790(uint8_t objectContextParam,int64_t validationContextParam)
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(validationContextParam + 0x150) = 0;
-  *(uint8_t4 *)(validationContextParam + 0x160) = 0;
+  *(uint32_t *)(validationContextParam + 0x160) = 0;
   *(uint8_t *)(validationContextParam + 0x148) = &SystemDataStructure;
   return;
 }
@@ -65783,7 +65795,7 @@ void Unwind_18090cdf0(uint8_t objectContextParam,int64_t validationContextParam)
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(validationContextParam + 0x150) = 0;
-  *(uint8_t4 *)(validationContextParam + 0x160) = 0;
+  *(uint32_t *)(validationContextParam + 0x160) = 0;
   *(uint8_t *)(validationContextParam + 0x148) = &SystemDataStructure;
   if (*(int64_t **)(validationContextParam + 0x140) != (int64_t *)0x0) {
     (**(code **)(**(int64_t **)(validationContextParam + 0x140) + 0x38))();
@@ -65808,7 +65820,7 @@ void Unwind_18090ce00(uint8_t objectContextParam,int64_t validationContextParam)
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x30) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x40) = 0;
+  *(uint32_t *)(localContextPointer + 0x40) = 0;
   *(uint8_t *)(localContextPointer + 0x28) = &SystemDataStructure;
   if (*(int64_t **)(localContextPointer + 0x20) != (int64_t *)0x0) {
     (**(code **)(**(int64_t **)(localContextPointer + 0x20) + 0x38))();
@@ -65830,7 +65842,7 @@ void Unwind_18090ce10(uint8_t objectContextParam,int64_t validationContextParam)
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(validationContextParam + 0x360) = 0;
-  *(uint8_t4 *)(validationContextParam + 0x370) = 0;
+  *(uint32_t *)(validationContextParam + 0x370) = 0;
   *(uint8_t *)(validationContextParam + 0x358) = &SystemDataStructure;
   if (*(int64_t **)(validationContextParam + 0x350) != (int64_t *)0x0) {
     (**(code **)(**(int64_t **)(validationContextParam + 0x350) + 0x38))();
@@ -65855,7 +65867,7 @@ void Unwind_18090ce20(uint8_t objectContextParam,int64_t validationContextParam)
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x30) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x40) = 0;
+  *(uint32_t *)(localContextPointer + 0x40) = 0;
   *(uint8_t *)(localContextPointer + 0x28) = &SystemDataStructure;
   if (*(int64_t **)(localContextPointer + 0x20) != (int64_t *)0x0) {
     (**(code **)(**(int64_t **)(localContextPointer + 0x20) + 0x38))();
@@ -65877,7 +65889,7 @@ void Unwind_18090ce30(uint8_t objectContextParam,int64_t validationContextParam)
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(validationContextParam + 0x200) = 0;
-  *(uint8_t4 *)(validationContextParam + 0x210) = 0;
+  *(uint32_t *)(validationContextParam + 0x210) = 0;
   *(uint8_t *)(validationContextParam + 0x1f8) = &SystemDataStructure;
   if (*(int64_t **)(validationContextParam + 0x1f0) != (int64_t *)0x0) {
     (**(code **)(**(int64_t **)(validationContextParam + 0x1f0) + 0x38))();
@@ -65899,7 +65911,7 @@ void Unwind_18090ce40(uint8_t objectContextParam,int64_t validationContextParam)
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(validationContextParam + 0x260) = 0;
-  *(uint8_t4 *)(validationContextParam + 0x270) = 0;
+  *(uint32_t *)(validationContextParam + 0x270) = 0;
   *(uint8_t *)(validationContextParam + 600) = &SystemDataStructure;
   if (*(int64_t **)(validationContextParam + 0x250) != (int64_t *)0x0) {
     (**(code **)(**(int64_t **)(validationContextParam + 0x250) + 0x38))();
@@ -65921,7 +65933,7 @@ void Unwind_18090ce50(uint8_t objectContextParam,int64_t validationContextParam)
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(validationContextParam + 0x2c0) = 0;
-  *(uint8_t4 *)(validationContextParam + 0x2d0) = 0;
+  *(uint32_t *)(validationContextParam + 0x2d0) = 0;
   *(uint8_t *)(validationContextParam + 0x2b8) = &SystemDataStructure;
   if (*(int64_t **)(validationContextParam + 0x2b0) != (int64_t *)0x0) {
     (**(code **)(**(int64_t **)(validationContextParam + 0x2b0) + 0x38))();
@@ -65943,7 +65955,7 @@ void Unwind_18090ce60(uint8_t objectContextParam,int64_t validationContextParam)
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(validationContextParam + 0x3c0) = 0;
-  *(uint8_t4 *)(validationContextParam + 0x3d0) = 0;
+  *(uint32_t *)(validationContextParam + 0x3d0) = 0;
   *(uint8_t *)(validationContextParam + 0x3b8) = &SystemDataStructure;
   if (*(int64_t **)(validationContextParam + 0x3b0) != (int64_t *)0x0) {
     (**(code **)(**(int64_t **)(validationContextParam + 0x3b0) + 0x38))();
@@ -65968,7 +65980,7 @@ void Unwind_18090ce70(uint8_t objectContextParam,int64_t validationContextParam)
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x30) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x40) = 0;
+  *(uint32_t *)(localContextPointer + 0x40) = 0;
   *(uint8_t *)(localContextPointer + 0x28) = &SystemDataStructure;
   if (*(int64_t **)(localContextPointer + 0x20) != (int64_t *)0x0) {
     (**(code **)(**(int64_t **)(localContextPointer + 0x20) + 0x38))();
@@ -65998,7 +66010,7 @@ void Unwind_18090ce90(uint8_t objectContextParam,int64_t validationContextParam)
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(validationContextParam + 0x150) = 0;
-  *(uint8_t4 *)(validationContextParam + 0x160) = 0;
+  *(uint32_t *)(validationContextParam + 0x160) = 0;
   *(uint8_t *)(validationContextParam + 0x148) = &SystemDataStructure;
   return;
 }
@@ -66042,7 +66054,7 @@ void Unwind_18090cec0(uint8_t objectContextParam,int64_t validationContextParam)
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x30) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x40) = 0;
+  *(uint32_t *)(localContextPointer + 0x40) = 0;
   *(uint8_t *)(localContextPointer + 0x28) = &SystemDataStructure;
   return;
 }
@@ -66083,7 +66095,7 @@ void Unwind_18090cef0(uint8_t objectContextParam,int64_t validationContextParam)
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(validationContextParam + 0x360) = 0;
-  *(uint8_t4 *)(validationContextParam + 0x370) = 0;
+  *(uint32_t *)(validationContextParam + 0x370) = 0;
   *(uint8_t *)(validationContextParam + 0x358) = &SystemDataStructure;
   return;
 }
@@ -66121,7 +66133,7 @@ void Unwind_18090cf20(uint8_t objectContextParam,int64_t validationContextParam)
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(validationContextParam + 0x200) = 0;
-  *(uint8_t4 *)(validationContextParam + 0x210) = 0;
+  *(uint32_t *)(validationContextParam + 0x210) = 0;
   *(uint8_t *)(validationContextParam + 0x1f8) = &SystemDataStructure;
   return;
 }
@@ -66159,7 +66171,7 @@ void Unwind_18090cf50(uint8_t objectContextParam,int64_t validationContextParam)
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(validationContextParam + 0x260) = 0;
-  *(uint8_t4 *)(validationContextParam + 0x270) = 0;
+  *(uint32_t *)(validationContextParam + 0x270) = 0;
   *(uint8_t *)(validationContextParam + 600) = &SystemDataStructure;
   return;
 }
@@ -66197,7 +66209,7 @@ void Unwind_18090cf80(uint8_t objectContextParam,int64_t validationContextParam)
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(validationContextParam + 0x2c0) = 0;
-  *(uint8_t4 *)(validationContextParam + 0x2d0) = 0;
+  *(uint32_t *)(validationContextParam + 0x2d0) = 0;
   *(uint8_t *)(validationContextParam + 0x2b8) = &SystemDataStructure;
   return;
 }
@@ -66235,7 +66247,7 @@ void Unwind_18090cfb0(uint8_t objectContextParam,int64_t validationContextParam)
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(validationContextParam + 0x3c0) = 0;
-  *(uint8_t4 *)(validationContextParam + 0x3d0) = 0;
+  *(uint32_t *)(validationContextParam + 0x3d0) = 0;
   *(uint8_t *)(validationContextParam + 0x3b8) = &SystemDataStructure;
   return;
 }
@@ -69108,7 +69120,7 @@ void Unwind_18090d530(uint8_t objectContextParam,int64_t validationContextParam)
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x30) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x40) = 0;
+  *(uint32_t *)(localContextPointer + 0x40) = 0;
   *(uint8_t *)(localContextPointer + 0x28) = &SystemDataStructure;
   if (*(int64_t **)(localContextPointer + 0x20) != (int64_t *)0x0) {
     (**(code **)(**(int64_t **)(localContextPointer + 0x20) + 0x38))();
@@ -69153,7 +69165,7 @@ void Unwind_18090d560(uint8_t objectContextParam,int64_t validationContextParam)
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x30) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x40) = 0;
+  *(uint32_t *)(localContextPointer + 0x40) = 0;
   *(uint8_t *)(localContextPointer + 0x28) = &SystemDataStructure;
   return;
 }
@@ -69186,7 +69198,7 @@ void Unwind_18090d580(uint8_t objectContextParam,int64_t validationContextParam)
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(validationContextParam + 0x90) = 0;
-  *(uint8_t4 *)(validationContextParam + 0xa0) = 0;
+  *(uint32_t *)(validationContextParam + 0xa0) = 0;
   *(uint8_t *)(validationContextParam + 0x88) = &SystemDataStructure;
   if (*(int64_t **)(validationContextParam + 0x80) != (int64_t *)0x0) {
     (**(code **)(**(int64_t **)(validationContextParam + 0x80) + 0x38))();
@@ -69211,7 +69223,7 @@ void Unwind_18090d590(uint8_t objectContextParam,int64_t validationContextParam)
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x30) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x40) = 0;
+  *(uint32_t *)(localContextPointer + 0x40) = 0;
   *(uint8_t *)(localContextPointer + 0x28) = &SystemDataStructure;
   if (*(int64_t **)(localContextPointer + 0x20) != (int64_t *)0x0) {
     (**(code **)(**(int64_t **)(localContextPointer + 0x20) + 0x38))();
@@ -69241,7 +69253,7 @@ void Unwind_18090d5b0(uint8_t objectContextParam,int64_t validationContextParam)
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(validationContextParam + 0x90) = 0;
-  *(uint8_t4 *)(validationContextParam + 0xa0) = 0;
+  *(uint32_t *)(validationContextParam + 0xa0) = 0;
   *(uint8_t *)(validationContextParam + 0x88) = &SystemDataStructure;
   return;
 }
@@ -69927,7 +69939,7 @@ void Unwind_18090dd00(uint8_t objectContextParam,int64_t validationContextParam)
       ExecuteSystemEmergencyExit();
     }
     punsignedResult3[1] = 0;
-    *(uint8_t4 *)(punsignedResult3 + 3) = 0;
+    *(uint32_t *)(punsignedResult3 + 3) = 0;
     *punsignedResult3 = &SystemDataStructure;
   }
   if (*presourceTable != 0) {
@@ -69955,7 +69967,7 @@ void Unwind_18090dd10(uint8_t objectContextParam,int64_t validationContextParam)
       ExecuteSystemEmergencyExit();
     }
     punsignedResult3[1] = 0;
-    *(uint8_t4 *)(punsignedResult3 + 3) = 0;
+    *(uint32_t *)(punsignedResult3 + 3) = 0;
     *punsignedResult3 = &SystemDataStructure;
   }
   if (*presourceTable != 0) {
@@ -71552,7 +71564,7 @@ void Unwind_18090e8d0(uint8_t objectContextParam,int64_t validationContextParam)
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(validationContextParam + 0x70) = 0;
-  *(uint8_t4 *)(validationContextParam + 0x80) = 0;
+  *(uint32_t *)(validationContextParam + 0x80) = 0;
   *(uint8_t *)(validationContextParam + 0x68) = &SystemDataStructure;
   if (*(int64_t **)(validationContextParam + 0x60) != (int64_t *)0x0) {
     (**(code **)(**(int64_t **)(validationContextParam + 0x60) + 0x38))();
@@ -71577,7 +71589,7 @@ void Unwind_18090e8e0(uint8_t objectContextParam,int64_t validationContextParam)
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x30) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x40) = 0;
+  *(uint32_t *)(localContextPointer + 0x40) = 0;
   *(uint8_t *)(localContextPointer + 0x28) = &SystemDataStructure;
   if (*(int64_t **)(localContextPointer + 0x20) != (int64_t *)0x0) {
     (**(code **)(**(int64_t **)(localContextPointer + 0x20) + 0x38))();
@@ -71599,7 +71611,7 @@ void Unwind_18090e8f0(uint8_t objectContextParam,int64_t validationContextParam)
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(validationContextParam + 0x100) = 0;
-  *(uint8_t4 *)(validationContextParam + 0x110) = 0;
+  *(uint32_t *)(validationContextParam + 0x110) = 0;
   *(uint8_t *)(validationContextParam + 0xf8) = &SystemDataStructure;
   if (*(int64_t **)(validationContextParam + 0xf0) != (int64_t *)0x0) {
     (**(code **)(**(int64_t **)(validationContextParam + 0xf0) + 0x38))();
@@ -71638,7 +71650,7 @@ void Unwind_18090e920(uint8_t objectContextParam,int64_t validationContextParam)
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(validationContextParam + 0x70) = 0;
-  *(uint8_t4 *)(validationContextParam + 0x80) = 0;
+  *(uint32_t *)(validationContextParam + 0x80) = 0;
   *(uint8_t *)(validationContextParam + 0x68) = &SystemDataStructure;
   return;
 }
@@ -71682,7 +71694,7 @@ void Unwind_18090e950(uint8_t objectContextParam,int64_t validationContextParam)
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x30) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x40) = 0;
+  *(uint32_t *)(localContextPointer + 0x40) = 0;
   *(uint8_t *)(localContextPointer + 0x28) = &SystemDataStructure;
   return;
 }
@@ -71723,7 +71735,7 @@ void Unwind_18090e980(uint8_t objectContextParam,int64_t validationContextParam)
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(validationContextParam + 0x100) = 0;
-  *(uint8_t4 *)(validationContextParam + 0x110) = 0;
+  *(uint32_t *)(validationContextParam + 0x110) = 0;
   *(uint8_t *)(validationContextParam + 0xf8) = &SystemDataStructure;
   return;
 }
@@ -71946,7 +71958,7 @@ void Unwind_18090eb20(uint8_t objectContextParam,int64_t validationContextParam)
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x30) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x40) = 0;
+  *(uint32_t *)(localContextPointer + 0x40) = 0;
   *(uint8_t *)(localContextPointer + 0x28) = &SystemDataStructure;
   if (*(int64_t **)(localContextPointer + 0x20) != (int64_t *)0x0) {
     (**(code **)(**(int64_t **)(localContextPointer + 0x20) + 0x38))();
@@ -71991,7 +72003,7 @@ void Unwind_18090eb50(uint8_t objectContextParam,int64_t validationContextParam)
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x30) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x40) = 0;
+  *(uint32_t *)(localContextPointer + 0x40) = 0;
   *(uint8_t *)(localContextPointer + 0x28) = &SystemDataStructure;
   return;
 }
@@ -72060,7 +72072,7 @@ void Unwind_18090ebf0(uint8_t objectContextParam,int64_t validationContextParam)
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(validationContextParam + 0xa0) = 0;
-  *(uint8_t4 *)(validationContextParam + 0xb0) = 0;
+  *(uint32_t *)(validationContextParam + 0xb0) = 0;
   *(uint8_t *)(validationContextParam + 0x98) = &SystemDataStructure;
   if (*(int64_t **)(validationContextParam + 0x90) != (int64_t *)0x0) {
     (**(code **)(**(int64_t **)(validationContextParam + 0x90) + 0x38))();
@@ -72085,7 +72097,7 @@ void Unwind_18090ec00(uint8_t objectContextParam,int64_t validationContextParam)
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x30) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x40) = 0;
+  *(uint32_t *)(localContextPointer + 0x40) = 0;
   *(uint8_t *)(localContextPointer + 0x28) = &SystemDataStructure;
   if (*(int64_t **)(localContextPointer + 0x20) != (int64_t *)0x0) {
     (**(code **)(**(int64_t **)(localContextPointer + 0x20) + 0x38))();
@@ -72115,7 +72127,7 @@ void Unwind_18090ec20(uint8_t objectContextParam,int64_t validationContextParam)
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(validationContextParam + 0xa0) = 0;
-  *(uint8_t4 *)(validationContextParam + 0xb0) = 0;
+  *(uint32_t *)(validationContextParam + 0xb0) = 0;
   *(uint8_t *)(validationContextParam + 0x98) = &SystemDataStructure;
   return;
 }
@@ -72145,7 +72157,7 @@ void Unwind_18090ec40(uint8_t objectContextParam,int64_t validationContextParam)
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x30) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x40) = 0;
+  *(uint32_t *)(localContextPointer + 0x40) = 0;
   *(uint8_t *)(localContextPointer + 0x28) = &SystemDataStructure;
   return;
 }
@@ -72298,7 +72310,7 @@ void Unwind_18090ed20(uint8_t objectContextParam,int64_t validationContextParam)
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(validationContextParam + 0xd0) = 0;
-  *(uint8_t4 *)(validationContextParam + 0xe0) = 0;
+  *(uint32_t *)(validationContextParam + 0xe0) = 0;
   *(uint8_t *)(validationContextParam + 200) = &SystemDataStructure;
   if (*(int64_t **)(validationContextParam + 0xc0) != (int64_t *)0x0) {
     (**(code **)(**(int64_t **)(validationContextParam + 0xc0) + 0x38))();
@@ -72323,7 +72335,7 @@ void Unwind_18090ed30(uint8_t objectContextParam,int64_t validationContextParam)
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x30) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x40) = 0;
+  *(uint32_t *)(localContextPointer + 0x40) = 0;
   *(uint8_t *)(localContextPointer + 0x28) = &SystemDataStructure;
   if (*(int64_t **)(localContextPointer + 0x20) != (int64_t *)0x0) {
     (**(code **)(**(int64_t **)(localContextPointer + 0x20) + 0x38))();
@@ -72353,7 +72365,7 @@ void Unwind_18090ed50(uint8_t objectContextParam,int64_t validationContextParam)
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(validationContextParam + 0xd0) = 0;
-  *(uint8_t4 *)(validationContextParam + 0xe0) = 0;
+  *(uint32_t *)(validationContextParam + 0xe0) = 0;
   *(uint8_t *)(validationContextParam + 200) = &SystemDataStructure;
   return;
 }
@@ -72383,7 +72395,7 @@ void Unwind_18090ed70(uint8_t objectContextParam,int64_t validationContextParam)
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x30) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x40) = 0;
+  *(uint32_t *)(localContextPointer + 0x40) = 0;
   *(uint8_t *)(localContextPointer + 0x28) = &SystemDataStructure;
   return;
 }
@@ -73351,7 +73363,7 @@ void Unwind_18090f140(uint8_t objectContextParam,int64_t validationContextParam)
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x30) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x40) = 0;
+  *(uint32_t *)(localContextPointer + 0x40) = 0;
   *(uint8_t *)(localContextPointer + 0x28) = &SystemDataStructure;
   return;
 }
@@ -73370,7 +73382,7 @@ void Unwind_18090f150(uint8_t objectContextParam,int64_t validationContextParam)
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x10) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x20) = 0;
+  *(uint32_t *)(localContextPointer + 0x20) = 0;
   *(uint8_t *)(localContextPointer + 8) = &SystemDataStructure;
   return;
 }
@@ -73389,7 +73401,7 @@ void Unwind_18090f160(uint8_t objectContextParam,int64_t validationContextParam)
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x10) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x20) = 0;
+  *(uint32_t *)(localContextPointer + 0x20) = 0;
   *(uint8_t *)(localContextPointer + 8) = &SystemDataStructure;
   return;
 }
@@ -73436,7 +73448,7 @@ void Unwind_18090f190(uint8_t objectContextParam,int64_t validationContextParam)
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x10) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x20) = 0;
+  *(uint32_t *)(localContextPointer + 0x20) = 0;
   *(uint8_t *)(localContextPointer + 8) = &SystemDataStructure;
   return;
 }
@@ -74210,7 +74222,7 @@ void Unwind_18090f650(uint8_t objectContextParam,int64_t validationContextParam)
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x4148) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x4158) = 0;
+  *(uint32_t *)(localContextPointer + 0x4158) = 0;
   *(uint8_t *)(localContextPointer + 0x4140) = &SystemDataStructure;
   return;
 }
@@ -74229,7 +74241,7 @@ void Unwind_18090f670(uint8_t objectContextParam,int64_t validationContextParam)
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x4198) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x41a8) = 0;
+  *(uint32_t *)(localContextPointer + 0x41a8) = 0;
   *(uint8_t *)(localContextPointer + 0x4190) = &SystemDataStructure;
   return;
 }
@@ -74922,7 +74934,7 @@ void Unwind_18090fac0(uint8_t objectContextParam,int64_t validationContextParam)
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x30) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x40) = 0;
+  *(uint32_t *)(localContextPointer + 0x40) = 0;
   *(uint8_t *)(localContextPointer + 0x28) = &SystemDataStructure;
   if (*(int64_t **)(localContextPointer + 0x20) != (int64_t *)0x0) {
     (**(code **)(**(int64_t **)(localContextPointer + 0x20) + 0x38))();
@@ -74967,7 +74979,7 @@ void Unwind_18090faf0(uint8_t objectContextParam,int64_t validationContextParam)
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x30) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x40) = 0;
+  *(uint32_t *)(localContextPointer + 0x40) = 0;
   *(uint8_t *)(localContextPointer + 0x28) = &SystemDataStructure;
   return;
 }
@@ -75054,7 +75066,7 @@ void Unwind_18090fb70(uint8_t objectContextParam,int64_t validationContextParam)
     ExecuteSystemEmergencyExit();
   }
   presourceHash[1] = 0;
-  *(uint8_t4 *)(presourceHash + 3) = 0;
+  *(uint32_t *)(presourceHash + 3) = 0;
   *presourceHash = &SystemDataStructure;
   return;
 }
@@ -76087,7 +76099,7 @@ void Unwind_180910110(uint8_t objectContextParam,int64_t validationContextParam)
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x110) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x120) = 0;
+  *(uint32_t *)(localContextPointer + 0x120) = 0;
   *(uint8_t *)(localContextPointer + 0x108) = &SystemDataStructure;
   return;
 }
@@ -76106,7 +76118,7 @@ void Unwind_180910130(uint8_t objectContextParam,int64_t validationContextParam)
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x110) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x120) = 0;
+  *(uint32_t *)(localContextPointer + 0x120) = 0;
   *(uint8_t *)(localContextPointer + 0x108) = &SystemDataStructure;
   return;
 }
@@ -76164,7 +76176,7 @@ void Unwind_1809101c0(uint8_t objectContextParam,int64_t validationContextParam)
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x110) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x120) = 0;
+  *(uint32_t *)(localContextPointer + 0x120) = 0;
   *(uint8_t *)(localContextPointer + 0x108) = &SystemDataStructure;
   return;
 }
@@ -77423,7 +77435,7 @@ void Unwind_1809107a0(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x9d0) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x9e0) = 0;
+  *(uint32_t *)(localContextPointer + 0x9e0) = 0;
   *(uint8_t *)(localContextPointer + 0x9c8) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x9a8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x9b0) != 0) {
@@ -77431,7 +77443,7 @@ void Unwind_1809107a0(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x9b0) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x9c0) = 0;
+  *(uint32_t *)(localContextPointer + 0x9c0) = 0;
   *(uint8_t *)(localContextPointer + 0x9a8) = &SystemDataStructure;
   return;
 }
@@ -77453,7 +77465,7 @@ void Unwind_1809107c0(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0xa40) = 0;
-  *(uint8_t4 *)(localContextPointer + 0xa50) = 0;
+  *(uint32_t *)(localContextPointer + 0xa50) = 0;
   *(uint8_t *)(localContextPointer + 0xa38) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0xa18) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0xa20) != 0) {
@@ -77461,7 +77473,7 @@ void Unwind_1809107c0(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0xa20) = 0;
-  *(uint8_t4 *)(localContextPointer + 0xa30) = 0;
+  *(uint32_t *)(localContextPointer + 0xa30) = 0;
   *(uint8_t *)(localContextPointer + 0xa18) = &SystemDataStructure;
   return;
 }
@@ -77483,7 +77495,7 @@ void Unwind_1809107e0(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0xab0) = 0;
-  *(uint8_t4 *)(localContextPointer + 0xac0) = 0;
+  *(uint32_t *)(localContextPointer + 0xac0) = 0;
   *(uint8_t *)(localContextPointer + 0xaa8) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0xa88) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0xa90) != 0) {
@@ -77491,7 +77503,7 @@ void Unwind_1809107e0(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0xa90) = 0;
-  *(uint8_t4 *)(localContextPointer + 0xaa0) = 0;
+  *(uint32_t *)(localContextPointer + 0xaa0) = 0;
   *(uint8_t *)(localContextPointer + 0xa88) = &SystemDataStructure;
   return;
 }
@@ -77513,7 +77525,7 @@ void Unwind_180910800(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0xb20) = 0;
-  *(uint8_t4 *)(localContextPointer + 0xb30) = 0;
+  *(uint32_t *)(localContextPointer + 0xb30) = 0;
   *(uint8_t *)(localContextPointer + 0xb18) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0xaf8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0xb00) != 0) {
@@ -77521,7 +77533,7 @@ void Unwind_180910800(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0xb00) = 0;
-  *(uint8_t4 *)(localContextPointer + 0xb10) = 0;
+  *(uint32_t *)(localContextPointer + 0xb10) = 0;
   *(uint8_t *)(localContextPointer + 0xaf8) = &SystemDataStructure;
   return;
 }
@@ -77543,7 +77555,7 @@ void Unwind_180910820(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0xb90) = 0;
-  *(uint8_t4 *)(localContextPointer + 0xba0) = 0;
+  *(uint32_t *)(localContextPointer + 0xba0) = 0;
   *(uint8_t *)(localContextPointer + 0xb88) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0xb68) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0xb70) != 0) {
@@ -77551,7 +77563,7 @@ void Unwind_180910820(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0xb70) = 0;
-  *(uint8_t4 *)(localContextPointer + 0xb80) = 0;
+  *(uint32_t *)(localContextPointer + 0xb80) = 0;
   *(uint8_t *)(localContextPointer + 0xb68) = &SystemDataStructure;
   return;
 }
@@ -77573,7 +77585,7 @@ void Unwind_180910840(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0xc00) = 0;
-  *(uint8_t4 *)(localContextPointer + 0xc10) = 0;
+  *(uint32_t *)(localContextPointer + 0xc10) = 0;
   *(uint8_t *)(localContextPointer + 0xbf8) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0xbd8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0xbe0) != 0) {
@@ -77581,7 +77593,7 @@ void Unwind_180910840(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0xbe0) = 0;
-  *(uint8_t4 *)(localContextPointer + 0xbf0) = 0;
+  *(uint32_t *)(localContextPointer + 0xbf0) = 0;
   *(uint8_t *)(localContextPointer + 0xbd8) = &SystemDataStructure;
   return;
 }
@@ -77603,7 +77615,7 @@ void Unwind_180910860(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0xc70) = 0;
-  *(uint8_t4 *)(localContextPointer + 0xc80) = 0;
+  *(uint32_t *)(localContextPointer + 0xc80) = 0;
   *(uint8_t *)(localContextPointer + 0xc68) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0xc48) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0xc50) != 0) {
@@ -77611,7 +77623,7 @@ void Unwind_180910860(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0xc50) = 0;
-  *(uint8_t4 *)(localContextPointer + 0xc60) = 0;
+  *(uint32_t *)(localContextPointer + 0xc60) = 0;
   *(uint8_t *)(localContextPointer + 0xc48) = &SystemDataStructure;
   return;
 }
@@ -77633,7 +77645,7 @@ void Unwind_180910880(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0xce0) = 0;
-  *(uint8_t4 *)(localContextPointer + 0xcf0) = 0;
+  *(uint32_t *)(localContextPointer + 0xcf0) = 0;
   *(uint8_t *)(localContextPointer + 0xcd8) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0xcb8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0xcc0) != 0) {
@@ -77641,7 +77653,7 @@ void Unwind_180910880(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0xcc0) = 0;
-  *(uint8_t4 *)(localContextPointer + 0xcd0) = 0;
+  *(uint32_t *)(localContextPointer + 0xcd0) = 0;
   *(uint8_t *)(localContextPointer + 0xcb8) = &SystemDataStructure;
   return;
 }
@@ -77663,7 +77675,7 @@ void Unwind_1809108a0(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0xd50) = 0;
-  *(uint8_t4 *)(localContextPointer + 0xd60) = 0;
+  *(uint32_t *)(localContextPointer + 0xd60) = 0;
   *(uint8_t *)(localContextPointer + 0xd48) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0xd28) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0xd30) != 0) {
@@ -77671,7 +77683,7 @@ void Unwind_1809108a0(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0xd30) = 0;
-  *(uint8_t4 *)(localContextPointer + 0xd40) = 0;
+  *(uint32_t *)(localContextPointer + 0xd40) = 0;
   *(uint8_t *)(localContextPointer + 0xd28) = &SystemDataStructure;
   return;
 }
@@ -77693,7 +77705,7 @@ void Unwind_1809108c0(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0xdc0) = 0;
-  *(uint8_t4 *)(localContextPointer + 0xdd0) = 0;
+  *(uint32_t *)(localContextPointer + 0xdd0) = 0;
   *(uint8_t *)(localContextPointer + 0xdb8) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0xd98) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0xda0) != 0) {
@@ -77701,7 +77713,7 @@ void Unwind_1809108c0(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0xda0) = 0;
-  *(uint8_t4 *)(localContextPointer + 0xdb0) = 0;
+  *(uint32_t *)(localContextPointer + 0xdb0) = 0;
   *(uint8_t *)(localContextPointer + 0xd98) = &SystemDataStructure;
   return;
 }
@@ -77723,7 +77735,7 @@ void Unwind_1809108e0(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0xe30) = 0;
-  *(uint8_t4 *)(localContextPointer + 0xe40) = 0;
+  *(uint32_t *)(localContextPointer + 0xe40) = 0;
   *(uint8_t *)(localContextPointer + 0xe28) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0xe08) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0xe10) != 0) {
@@ -77731,7 +77743,7 @@ void Unwind_1809108e0(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0xe10) = 0;
-  *(uint8_t4 *)(localContextPointer + 0xe20) = 0;
+  *(uint32_t *)(localContextPointer + 0xe20) = 0;
   *(uint8_t *)(localContextPointer + 0xe08) = &SystemDataStructure;
   return;
 }
@@ -77753,7 +77765,7 @@ void Unwind_180910900(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0xea0) = 0;
-  *(uint8_t4 *)(localContextPointer + 0xeb0) = 0;
+  *(uint32_t *)(localContextPointer + 0xeb0) = 0;
   *(uint8_t *)(localContextPointer + 0xe98) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0xe78) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0xe80) != 0) {
@@ -77761,7 +77773,7 @@ void Unwind_180910900(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0xe80) = 0;
-  *(uint8_t4 *)(localContextPointer + 0xe90) = 0;
+  *(uint32_t *)(localContextPointer + 0xe90) = 0;
   *(uint8_t *)(localContextPointer + 0xe78) = &SystemDataStructure;
   return;
 }
@@ -77783,7 +77795,7 @@ void Unwind_180910920(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0xf10) = 0;
-  *(uint8_t4 *)(localContextPointer + 0xf20) = 0;
+  *(uint32_t *)(localContextPointer + 0xf20) = 0;
   *(uint8_t *)(localContextPointer + 0xf08) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0xee8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0xef0) != 0) {
@@ -77791,7 +77803,7 @@ void Unwind_180910920(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0xef0) = 0;
-  *(uint8_t4 *)(localContextPointer + 0xf00) = 0;
+  *(uint32_t *)(localContextPointer + 0xf00) = 0;
   *(uint8_t *)(localContextPointer + 0xee8) = &SystemDataStructure;
   return;
 }
@@ -77813,7 +77825,7 @@ void Unwind_180910940(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0xf80) = 0;
-  *(uint8_t4 *)(localContextPointer + 0xf90) = 0;
+  *(uint32_t *)(localContextPointer + 0xf90) = 0;
   *(uint8_t *)(localContextPointer + 0xf78) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0xf58) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0xf60) != 0) {
@@ -77821,7 +77833,7 @@ void Unwind_180910940(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0xf60) = 0;
-  *(uint8_t4 *)(localContextPointer + 0xf70) = 0;
+  *(uint32_t *)(localContextPointer + 0xf70) = 0;
   *(uint8_t *)(localContextPointer + 0xf58) = &SystemDataStructure;
   return;
 }
@@ -77843,7 +77855,7 @@ void Unwind_180910960(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0xff0) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x1000) = 0;
+  *(uint32_t *)(localContextPointer + 0x1000) = 0;
   *(uint8_t *)(localContextPointer + 0xfe8) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0xfc8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0xfd0) != 0) {
@@ -77851,7 +77863,7 @@ void Unwind_180910960(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0xfd0) = 0;
-  *(uint8_t4 *)(localContextPointer + 0xfe0) = 0;
+  *(uint32_t *)(localContextPointer + 0xfe0) = 0;
   *(uint8_t *)(localContextPointer + 0xfc8) = &SystemDataStructure;
   return;
 }
@@ -77873,7 +77885,7 @@ void Unwind_180910980(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x1060) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x1070) = 0;
+  *(uint32_t *)(localContextPointer + 0x1070) = 0;
   *(uint8_t *)(localContextPointer + 0x1058) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x1038) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x1040) != 0) {
@@ -77881,7 +77893,7 @@ void Unwind_180910980(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x1040) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x1050) = 0;
+  *(uint32_t *)(localContextPointer + 0x1050) = 0;
   *(uint8_t *)(localContextPointer + 0x1038) = &SystemDataStructure;
   return;
 }
@@ -77903,7 +77915,7 @@ void Unwind_1809109a0(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x10d0) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x10e0) = 0;
+  *(uint32_t *)(localContextPointer + 0x10e0) = 0;
   *(uint8_t *)(localContextPointer + 0x10c8) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x10a8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x10b0) != 0) {
@@ -77911,7 +77923,7 @@ void Unwind_1809109a0(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x10b0) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x10c0) = 0;
+  *(uint32_t *)(localContextPointer + 0x10c0) = 0;
   *(uint8_t *)(localContextPointer + 0x10a8) = &SystemDataStructure;
   return;
 }
@@ -77933,7 +77945,7 @@ void Unwind_1809109c0(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x1140) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x1150) = 0;
+  *(uint32_t *)(localContextPointer + 0x1150) = 0;
   *(uint8_t *)(localContextPointer + 0x1138) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x1118) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x1120) != 0) {
@@ -77941,7 +77953,7 @@ void Unwind_1809109c0(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x1120) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x1130) = 0;
+  *(uint32_t *)(localContextPointer + 0x1130) = 0;
   *(uint8_t *)(localContextPointer + 0x1118) = &SystemDataStructure;
   return;
 }
@@ -77963,7 +77975,7 @@ void Unwind_1809109e0(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x11b0) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x11c0) = 0;
+  *(uint32_t *)(localContextPointer + 0x11c0) = 0;
   *(uint8_t *)(localContextPointer + 0x11a8) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x1188) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x1190) != 0) {
@@ -77971,7 +77983,7 @@ void Unwind_1809109e0(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x1190) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x11a0) = 0;
+  *(uint32_t *)(localContextPointer + 0x11a0) = 0;
   *(uint8_t *)(localContextPointer + 0x1188) = &SystemDataStructure;
   return;
 }
@@ -77993,7 +78005,7 @@ void Unwind_180910a00(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x1220) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x1230) = 0;
+  *(uint32_t *)(localContextPointer + 0x1230) = 0;
   *(uint8_t *)(localContextPointer + 0x1218) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x11f8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x1200) != 0) {
@@ -78001,7 +78013,7 @@ void Unwind_180910a00(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x1200) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x1210) = 0;
+  *(uint32_t *)(localContextPointer + 0x1210) = 0;
   *(uint8_t *)(localContextPointer + 0x11f8) = &SystemDataStructure;
   return;
 }
@@ -78023,7 +78035,7 @@ void Unwind_180910a20(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x1290) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x12a0) = 0;
+  *(uint32_t *)(localContextPointer + 0x12a0) = 0;
   *(uint8_t *)(localContextPointer + 0x1288) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x1268) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x1270) != 0) {
@@ -78031,7 +78043,7 @@ void Unwind_180910a20(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x1270) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x1280) = 0;
+  *(uint32_t *)(localContextPointer + 0x1280) = 0;
   *(uint8_t *)(localContextPointer + 0x1268) = &SystemDataStructure;
   return;
 }
@@ -78053,7 +78065,7 @@ void Unwind_180910a40(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x1300) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x1310) = 0;
+  *(uint32_t *)(localContextPointer + 0x1310) = 0;
   *(uint8_t *)(localContextPointer + 0x12f8) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x12d8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x12e0) != 0) {
@@ -78061,7 +78073,7 @@ void Unwind_180910a40(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x12e0) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x12f0) = 0;
+  *(uint32_t *)(localContextPointer + 0x12f0) = 0;
   *(uint8_t *)(localContextPointer + 0x12d8) = &SystemDataStructure;
   return;
 }
@@ -78083,7 +78095,7 @@ void Unwind_180910a60(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x1370) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x1380) = 0;
+  *(uint32_t *)(localContextPointer + 0x1380) = 0;
   *(uint8_t *)(localContextPointer + 0x1368) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x1348) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x1350) != 0) {
@@ -78091,7 +78103,7 @@ void Unwind_180910a60(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x1350) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x1360) = 0;
+  *(uint32_t *)(localContextPointer + 0x1360) = 0;
   *(uint8_t *)(localContextPointer + 0x1348) = &SystemDataStructure;
   return;
 }
@@ -78113,7 +78125,7 @@ void Unwind_180910a80(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x13e0) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x13f0) = 0;
+  *(uint32_t *)(localContextPointer + 0x13f0) = 0;
   *(uint8_t *)(localContextPointer + 0x13d8) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x13b8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x13c0) != 0) {
@@ -78121,7 +78133,7 @@ void Unwind_180910a80(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x13c0) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x13d0) = 0;
+  *(uint32_t *)(localContextPointer + 0x13d0) = 0;
   *(uint8_t *)(localContextPointer + 0x13b8) = &SystemDataStructure;
   return;
 }
@@ -78143,7 +78155,7 @@ void Unwind_180910aa0(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x1450) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x1460) = 0;
+  *(uint32_t *)(localContextPointer + 0x1460) = 0;
   *(uint8_t *)(localContextPointer + 0x1448) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x1428) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x1430) != 0) {
@@ -78151,7 +78163,7 @@ void Unwind_180910aa0(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x1430) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x1440) = 0;
+  *(uint32_t *)(localContextPointer + 0x1440) = 0;
   *(uint8_t *)(localContextPointer + 0x1428) = &SystemDataStructure;
   return;
 }
@@ -78173,7 +78185,7 @@ void Unwind_180910ac0(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x14c0) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x14d0) = 0;
+  *(uint32_t *)(localContextPointer + 0x14d0) = 0;
   *(uint8_t *)(localContextPointer + 0x14b8) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x1498) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x14a0) != 0) {
@@ -78181,7 +78193,7 @@ void Unwind_180910ac0(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x14a0) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x14b0) = 0;
+  *(uint32_t *)(localContextPointer + 0x14b0) = 0;
   *(uint8_t *)(localContextPointer + 0x1498) = &SystemDataStructure;
   return;
 }
@@ -78203,7 +78215,7 @@ void Unwind_180910ae0(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x1530) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x1540) = 0;
+  *(uint32_t *)(localContextPointer + 0x1540) = 0;
   *(uint8_t *)(localContextPointer + 0x1528) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x1508) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x1510) != 0) {
@@ -78211,7 +78223,7 @@ void Unwind_180910ae0(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x1510) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x1520) = 0;
+  *(uint32_t *)(localContextPointer + 0x1520) = 0;
   *(uint8_t *)(localContextPointer + 0x1508) = &SystemDataStructure;
   return;
 }
@@ -78233,7 +78245,7 @@ void Unwind_180910b00(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x15a0) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x15b0) = 0;
+  *(uint32_t *)(localContextPointer + 0x15b0) = 0;
   *(uint8_t *)(localContextPointer + 0x1598) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x1578) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x1580) != 0) {
@@ -78241,7 +78253,7 @@ void Unwind_180910b00(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x1580) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x1590) = 0;
+  *(uint32_t *)(localContextPointer + 0x1590) = 0;
   *(uint8_t *)(localContextPointer + 0x1578) = &SystemDataStructure;
   return;
 }
@@ -78263,7 +78275,7 @@ void Unwind_180910b20(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x1610) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x1620) = 0;
+  *(uint32_t *)(localContextPointer + 0x1620) = 0;
   *(uint8_t *)(localContextPointer + 0x1608) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x15e8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x15f0) != 0) {
@@ -78271,7 +78283,7 @@ void Unwind_180910b20(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x15f0) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x1600) = 0;
+  *(uint32_t *)(localContextPointer + 0x1600) = 0;
   *(uint8_t *)(localContextPointer + 0x15e8) = &SystemDataStructure;
   return;
 }
@@ -78293,7 +78305,7 @@ void Unwind_180910b40(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x1680) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x1690) = 0;
+  *(uint32_t *)(localContextPointer + 0x1690) = 0;
   *(uint8_t *)(localContextPointer + 0x1678) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x1658) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x1660) != 0) {
@@ -78301,7 +78313,7 @@ void Unwind_180910b40(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x1660) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x1670) = 0;
+  *(uint32_t *)(localContextPointer + 0x1670) = 0;
   *(uint8_t *)(localContextPointer + 0x1658) = &SystemDataStructure;
   return;
 }
@@ -78323,7 +78335,7 @@ void Unwind_180910b60(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x16f0) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x1700) = 0;
+  *(uint32_t *)(localContextPointer + 0x1700) = 0;
   *(uint8_t *)(localContextPointer + 0x16e8) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x16c8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x16d0) != 0) {
@@ -78331,7 +78343,7 @@ void Unwind_180910b60(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x16d0) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x16e0) = 0;
+  *(uint32_t *)(localContextPointer + 0x16e0) = 0;
   *(uint8_t *)(localContextPointer + 0x16c8) = &SystemDataStructure;
   return;
 }
@@ -78353,7 +78365,7 @@ void Unwind_180910b80(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x1760) = 0;
-  *(uint8_t4 *)(localContextPointer + 6000) = 0;
+  *(uint32_t *)(localContextPointer + 6000) = 0;
   *(uint8_t *)(localContextPointer + 0x1758) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x1738) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x1740) != 0) {
@@ -78361,7 +78373,7 @@ void Unwind_180910b80(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x1740) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x1750) = 0;
+  *(uint32_t *)(localContextPointer + 0x1750) = 0;
   *(uint8_t *)(localContextPointer + 0x1738) = &SystemDataStructure;
   return;
 }
@@ -78383,7 +78395,7 @@ void Unwind_180910ba0(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x17d0) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x17e0) = 0;
+  *(uint32_t *)(localContextPointer + 0x17e0) = 0;
   *(uint8_t *)(localContextPointer + 0x17c8) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x17a8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x17b0) != 0) {
@@ -78391,7 +78403,7 @@ void Unwind_180910ba0(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x17b0) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x17c0) = 0;
+  *(uint32_t *)(localContextPointer + 0x17c0) = 0;
   *(uint8_t *)(localContextPointer + 0x17a8) = &SystemDataStructure;
   return;
 }
@@ -78413,7 +78425,7 @@ void Unwind_180910bc0(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x1840) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x1850) = 0;
+  *(uint32_t *)(localContextPointer + 0x1850) = 0;
   *(uint8_t *)(localContextPointer + 0x1838) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x1818) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x1820) != 0) {
@@ -78421,7 +78433,7 @@ void Unwind_180910bc0(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x1820) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x1830) = 0;
+  *(uint32_t *)(localContextPointer + 0x1830) = 0;
   *(uint8_t *)(localContextPointer + 0x1818) = &SystemDataStructure;
   return;
 }
@@ -78443,7 +78455,7 @@ void Unwind_180910be0(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x18b0) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x18c0) = 0;
+  *(uint32_t *)(localContextPointer + 0x18c0) = 0;
   *(uint8_t *)(localContextPointer + 0x18a8) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x1888) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x1890) != 0) {
@@ -78451,7 +78463,7 @@ void Unwind_180910be0(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x1890) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x18a0) = 0;
+  *(uint32_t *)(localContextPointer + 0x18a0) = 0;
   *(uint8_t *)(localContextPointer + 0x1888) = &SystemDataStructure;
   return;
 }
@@ -78473,7 +78485,7 @@ void Unwind_180910c00(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x1920) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x1930) = 0;
+  *(uint32_t *)(localContextPointer + 0x1930) = 0;
   *(uint8_t *)(localContextPointer + 0x1918) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x18f8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x1900) != 0) {
@@ -78481,7 +78493,7 @@ void Unwind_180910c00(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x1900) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x1910) = 0;
+  *(uint32_t *)(localContextPointer + 0x1910) = 0;
   *(uint8_t *)(localContextPointer + 0x18f8) = &SystemDataStructure;
   return;
 }
@@ -78503,7 +78515,7 @@ void Unwind_180910c20(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x1990) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x19a0) = 0;
+  *(uint32_t *)(localContextPointer + 0x19a0) = 0;
   *(uint8_t *)(localContextPointer + 0x1988) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x1968) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x1970) != 0) {
@@ -78511,7 +78523,7 @@ void Unwind_180910c20(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x1970) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x1980) = 0;
+  *(uint32_t *)(localContextPointer + 0x1980) = 0;
   *(uint8_t *)(localContextPointer + 0x1968) = &SystemDataStructure;
   return;
 }
@@ -78533,7 +78545,7 @@ void Unwind_180910c40(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x1a00) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x1a10) = 0;
+  *(uint32_t *)(localContextPointer + 0x1a10) = 0;
   *(uint8_t *)(localContextPointer + 0x19f8) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x19d8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x19e0) != 0) {
@@ -78541,7 +78553,7 @@ void Unwind_180910c40(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x19e0) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x19f0) = 0;
+  *(uint32_t *)(localContextPointer + 0x19f0) = 0;
   *(uint8_t *)(localContextPointer + 0x19d8) = &SystemDataStructure;
   return;
 }
@@ -78563,7 +78575,7 @@ void Unwind_180910c60(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x1a70) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x1a80) = 0;
+  *(uint32_t *)(localContextPointer + 0x1a80) = 0;
   *(uint8_t *)(localContextPointer + 0x1a68) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x1a48) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x1a50) != 0) {
@@ -78571,7 +78583,7 @@ void Unwind_180910c60(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x1a50) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x1a60) = 0;
+  *(uint32_t *)(localContextPointer + 0x1a60) = 0;
   *(uint8_t *)(localContextPointer + 0x1a48) = &SystemDataStructure;
   return;
 }
@@ -78593,7 +78605,7 @@ void Unwind_180910c80(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x1ae0) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x1af0) = 0;
+  *(uint32_t *)(localContextPointer + 0x1af0) = 0;
   *(uint8_t *)(localContextPointer + 0x1ad8) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x1ab8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x1ac0) != 0) {
@@ -78601,7 +78613,7 @@ void Unwind_180910c80(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x1ac0) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x1ad0) = 0;
+  *(uint32_t *)(localContextPointer + 0x1ad0) = 0;
   *(uint8_t *)(localContextPointer + 0x1ab8) = &SystemDataStructure;
   return;
 }
@@ -78623,7 +78635,7 @@ void Unwind_180910ca0(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x1b50) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x1b60) = 0;
+  *(uint32_t *)(localContextPointer + 0x1b60) = 0;
   *(uint8_t *)(localContextPointer + 0x1b48) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x1b28) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x1b30) != 0) {
@@ -78631,7 +78643,7 @@ void Unwind_180910ca0(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x1b30) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x1b40) = 0;
+  *(uint32_t *)(localContextPointer + 0x1b40) = 0;
   *(uint8_t *)(localContextPointer + 0x1b28) = &SystemDataStructure;
   return;
 }
@@ -78653,7 +78665,7 @@ void Unwind_180910cc0(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x1bc0) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x1bd0) = 0;
+  *(uint32_t *)(localContextPointer + 0x1bd0) = 0;
   *(uint8_t *)(localContextPointer + 0x1bb8) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x1b98) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x1ba0) != 0) {
@@ -78661,7 +78673,7 @@ void Unwind_180910cc0(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x1ba0) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x1bb0) = 0;
+  *(uint32_t *)(localContextPointer + 0x1bb0) = 0;
   *(uint8_t *)(localContextPointer + 0x1b98) = &SystemDataStructure;
   return;
 }
@@ -78683,7 +78695,7 @@ void Unwind_180910ce0(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x1c30) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x1c40) = 0;
+  *(uint32_t *)(localContextPointer + 0x1c40) = 0;
   *(uint8_t *)(localContextPointer + 0x1c28) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x1c08) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x1c10) != 0) {
@@ -78691,7 +78703,7 @@ void Unwind_180910ce0(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x1c10) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x1c20) = 0;
+  *(uint32_t *)(localContextPointer + 0x1c20) = 0;
   *(uint8_t *)(localContextPointer + 0x1c08) = &SystemDataStructure;
   return;
 }
@@ -78713,7 +78725,7 @@ void Unwind_180910d00(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x1ca0) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x1cb0) = 0;
+  *(uint32_t *)(localContextPointer + 0x1cb0) = 0;
   *(uint8_t *)(localContextPointer + 0x1c98) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x1c78) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x1c80) != 0) {
@@ -78721,7 +78733,7 @@ void Unwind_180910d00(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x1c80) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x1c90) = 0;
+  *(uint32_t *)(localContextPointer + 0x1c90) = 0;
   *(uint8_t *)(localContextPointer + 0x1c78) = &SystemDataStructure;
   return;
 }
@@ -78743,7 +78755,7 @@ void Unwind_180910d20(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x1d10) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x1d20) = 0;
+  *(uint32_t *)(localContextPointer + 0x1d20) = 0;
   *(uint8_t *)(localContextPointer + 0x1d08) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x1ce8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x1cf0) != 0) {
@@ -78751,7 +78763,7 @@ void Unwind_180910d20(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x1cf0) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x1d00) = 0;
+  *(uint32_t *)(localContextPointer + 0x1d00) = 0;
   *(uint8_t *)(localContextPointer + 0x1ce8) = &SystemDataStructure;
   return;
 }
@@ -78773,7 +78785,7 @@ void Unwind_180910d40(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x1d80) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x1d90) = 0;
+  *(uint32_t *)(localContextPointer + 0x1d90) = 0;
   *(uint8_t *)(localContextPointer + 0x1d78) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x1d58) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x1d60) != 0) {
@@ -78781,7 +78793,7 @@ void Unwind_180910d40(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x1d60) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x1d70) = 0;
+  *(uint32_t *)(localContextPointer + 0x1d70) = 0;
   *(uint8_t *)(localContextPointer + 0x1d58) = &SystemDataStructure;
   return;
 }
@@ -78803,7 +78815,7 @@ void Unwind_180910d60(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x1df0) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x1e00) = 0;
+  *(uint32_t *)(localContextPointer + 0x1e00) = 0;
   *(uint8_t *)(localContextPointer + 0x1de8) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x1dc8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x1dd0) != 0) {
@@ -78811,7 +78823,7 @@ void Unwind_180910d60(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x1dd0) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x1de0) = 0;
+  *(uint32_t *)(localContextPointer + 0x1de0) = 0;
   *(uint8_t *)(localContextPointer + 0x1dc8) = &SystemDataStructure;
   return;
 }
@@ -78833,7 +78845,7 @@ void Unwind_180910d80(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x1e60) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x1e70) = 0;
+  *(uint32_t *)(localContextPointer + 0x1e70) = 0;
   *(uint8_t *)(localContextPointer + 0x1e58) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x1e38) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x1e40) != 0) {
@@ -78841,7 +78853,7 @@ void Unwind_180910d80(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x1e40) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x1e50) = 0;
+  *(uint32_t *)(localContextPointer + 0x1e50) = 0;
   *(uint8_t *)(localContextPointer + 0x1e38) = &SystemDataStructure;
   return;
 }
@@ -78863,7 +78875,7 @@ void Unwind_180910da0(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x1ed0) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x1ee0) = 0;
+  *(uint32_t *)(localContextPointer + 0x1ee0) = 0;
   *(uint8_t *)(localContextPointer + 0x1ec8) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x1ea8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x1eb0) != 0) {
@@ -78871,7 +78883,7 @@ void Unwind_180910da0(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x1eb0) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x1ec0) = 0;
+  *(uint32_t *)(localContextPointer + 0x1ec0) = 0;
   *(uint8_t *)(localContextPointer + 0x1ea8) = &SystemDataStructure;
   return;
 }
@@ -78893,7 +78905,7 @@ void Unwind_180910dc0(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 8000) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x1f50) = 0;
+  *(uint32_t *)(localContextPointer + 0x1f50) = 0;
   *(uint8_t *)(localContextPointer + 0x1f38) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x1f18) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x1f20) != 0) {
@@ -78901,7 +78913,7 @@ void Unwind_180910dc0(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x1f20) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x1f30) = 0;
+  *(uint32_t *)(localContextPointer + 0x1f30) = 0;
   *(uint8_t *)(localContextPointer + 0x1f18) = &SystemDataStructure;
   return;
 }
@@ -78923,7 +78935,7 @@ void Unwind_180910de0(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x1fb0) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x1fc0) = 0;
+  *(uint32_t *)(localContextPointer + 0x1fc0) = 0;
   *(uint8_t *)(localContextPointer + 0x1fa8) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x1f88) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x1f90) != 0) {
@@ -78931,7 +78943,7 @@ void Unwind_180910de0(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x1f90) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x1fa0) = 0;
+  *(uint32_t *)(localContextPointer + 0x1fa0) = 0;
   *(uint8_t *)(localContextPointer + 0x1f88) = &SystemDataStructure;
   return;
 }
@@ -78953,7 +78965,7 @@ void Unwind_180910e00(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x2020) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x2030) = 0;
+  *(uint32_t *)(localContextPointer + 0x2030) = 0;
   *(uint8_t *)(localContextPointer + 0x2018) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x1ff8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x2000) != 0) {
@@ -78961,7 +78973,7 @@ void Unwind_180910e00(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x2000) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x2010) = 0;
+  *(uint32_t *)(localContextPointer + 0x2010) = 0;
   *(uint8_t *)(localContextPointer + 0x1ff8) = &SystemDataStructure;
   return;
 }
@@ -78983,7 +78995,7 @@ void Unwind_180910e20(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x2090) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x20a0) = 0;
+  *(uint32_t *)(localContextPointer + 0x20a0) = 0;
   *(uint8_t *)(localContextPointer + 0x2088) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x2068) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x2070) != 0) {
@@ -78991,7 +79003,7 @@ void Unwind_180910e20(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x2070) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x2080) = 0;
+  *(uint32_t *)(localContextPointer + 0x2080) = 0;
   *(uint8_t *)(localContextPointer + 0x2068) = &SystemDataStructure;
   return;
 }
@@ -79013,7 +79025,7 @@ void Unwind_180910e40(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x2100) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x2110) = 0;
+  *(uint32_t *)(localContextPointer + 0x2110) = 0;
   *(uint8_t *)(localContextPointer + 0x20f8) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x20d8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x20e0) != 0) {
@@ -79021,7 +79033,7 @@ void Unwind_180910e40(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x20e0) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x20f0) = 0;
+  *(uint32_t *)(localContextPointer + 0x20f0) = 0;
   *(uint8_t *)(localContextPointer + 0x20d8) = &SystemDataStructure;
   return;
 }
@@ -79043,7 +79055,7 @@ void Unwind_180910e60(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x2170) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x2180) = 0;
+  *(uint32_t *)(localContextPointer + 0x2180) = 0;
   *(uint8_t *)(localContextPointer + 0x2168) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x2148) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x2150) != 0) {
@@ -79051,7 +79063,7 @@ void Unwind_180910e60(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x2150) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x2160) = 0;
+  *(uint32_t *)(localContextPointer + 0x2160) = 0;
   *(uint8_t *)(localContextPointer + 0x2148) = &SystemDataStructure;
   return;
 }
@@ -79073,7 +79085,7 @@ void Unwind_180910e80(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x21e0) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x21f0) = 0;
+  *(uint32_t *)(localContextPointer + 0x21f0) = 0;
   *(uint8_t *)(localContextPointer + 0x21d8) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x21b8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x21c0) != 0) {
@@ -79081,7 +79093,7 @@ void Unwind_180910e80(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x21c0) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x21d0) = 0;
+  *(uint32_t *)(localContextPointer + 0x21d0) = 0;
   *(uint8_t *)(localContextPointer + 0x21b8) = &SystemDataStructure;
   return;
 }
@@ -79103,7 +79115,7 @@ void Unwind_180910ea0(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x2250) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x2260) = 0;
+  *(uint32_t *)(localContextPointer + 0x2260) = 0;
   *(uint8_t *)(localContextPointer + 0x2248) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x2228) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x2230) != 0) {
@@ -79111,7 +79123,7 @@ void Unwind_180910ea0(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x2230) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x2240) = 0;
+  *(uint32_t *)(localContextPointer + 0x2240) = 0;
   *(uint8_t *)(localContextPointer + 0x2228) = &SystemDataStructure;
   return;
 }
@@ -79133,7 +79145,7 @@ void Unwind_180910ec0(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x22c0) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x22d0) = 0;
+  *(uint32_t *)(localContextPointer + 0x22d0) = 0;
   *(uint8_t *)(localContextPointer + 0x22b8) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x2298) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x22a0) != 0) {
@@ -79141,7 +79153,7 @@ void Unwind_180910ec0(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x22a0) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x22b0) = 0;
+  *(uint32_t *)(localContextPointer + 0x22b0) = 0;
   *(uint8_t *)(localContextPointer + 0x2298) = &SystemDataStructure;
   return;
 }
@@ -79163,7 +79175,7 @@ void Unwind_180910ee0(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x2330) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x2340) = 0;
+  *(uint32_t *)(localContextPointer + 0x2340) = 0;
   *(uint8_t *)(localContextPointer + 9000) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x2308) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x2310) != 0) {
@@ -79171,7 +79183,7 @@ void Unwind_180910ee0(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x2310) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x2320) = 0;
+  *(uint32_t *)(localContextPointer + 0x2320) = 0;
   *(uint8_t *)(localContextPointer + 0x2308) = &SystemDataStructure;
   return;
 }
@@ -79193,7 +79205,7 @@ void Unwind_180910f00(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x23a0) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x23b0) = 0;
+  *(uint32_t *)(localContextPointer + 0x23b0) = 0;
   *(uint8_t *)(localContextPointer + 0x2398) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x2378) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x2380) != 0) {
@@ -79201,7 +79213,7 @@ void Unwind_180910f00(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x2380) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x2390) = 0;
+  *(uint32_t *)(localContextPointer + 0x2390) = 0;
   *(uint8_t *)(localContextPointer + 0x2378) = &SystemDataStructure;
   return;
 }
@@ -79223,7 +79235,7 @@ void Unwind_180910f20(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x2410) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x2420) = 0;
+  *(uint32_t *)(localContextPointer + 0x2420) = 0;
   *(uint8_t *)(localContextPointer + 0x2408) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x23e8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x23f0) != 0) {
@@ -79231,7 +79243,7 @@ void Unwind_180910f20(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x23f0) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x2400) = 0;
+  *(uint32_t *)(localContextPointer + 0x2400) = 0;
   *(uint8_t *)(localContextPointer + 0x23e8) = &SystemDataStructure;
   return;
 }
@@ -79253,7 +79265,7 @@ void Unwind_180910f40(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x2480) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x2490) = 0;
+  *(uint32_t *)(localContextPointer + 0x2490) = 0;
   *(uint8_t *)(localContextPointer + 0x2478) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x2458) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x2460) != 0) {
@@ -79261,7 +79273,7 @@ void Unwind_180910f40(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x2460) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x2470) = 0;
+  *(uint32_t *)(localContextPointer + 0x2470) = 0;
   *(uint8_t *)(localContextPointer + 0x2458) = &SystemDataStructure;
   return;
 }
@@ -79283,7 +79295,7 @@ void Unwind_180910f60(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x24f0) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x2500) = 0;
+  *(uint32_t *)(localContextPointer + 0x2500) = 0;
   *(uint8_t *)(localContextPointer + 0x24e8) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x24c8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x24d0) != 0) {
@@ -79291,7 +79303,7 @@ void Unwind_180910f60(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x24d0) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x24e0) = 0;
+  *(uint32_t *)(localContextPointer + 0x24e0) = 0;
   *(uint8_t *)(localContextPointer + 0x24c8) = &SystemDataStructure;
   return;
 }
@@ -79313,7 +79325,7 @@ void Unwind_180910f80(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x2560) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x2570) = 0;
+  *(uint32_t *)(localContextPointer + 0x2570) = 0;
   *(uint8_t *)(localContextPointer + 0x2558) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x2538) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x2540) != 0) {
@@ -79321,7 +79333,7 @@ void Unwind_180910f80(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x2540) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x2550) = 0;
+  *(uint32_t *)(localContextPointer + 0x2550) = 0;
   *(uint8_t *)(localContextPointer + 0x2538) = &SystemDataStructure;
   return;
 }
@@ -79343,7 +79355,7 @@ void Unwind_180910fa0(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x25d0) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x25e0) = 0;
+  *(uint32_t *)(localContextPointer + 0x25e0) = 0;
   *(uint8_t *)(localContextPointer + 0x25c8) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x25a8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x25b0) != 0) {
@@ -79351,7 +79363,7 @@ void Unwind_180910fa0(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x25b0) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x25c0) = 0;
+  *(uint32_t *)(localContextPointer + 0x25c0) = 0;
   *(uint8_t *)(localContextPointer + 0x25a8) = &SystemDataStructure;
   return;
 }
@@ -79419,7 +79431,7 @@ void Unwind_180911000(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x9d0) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x9e0) = 0;
+  *(uint32_t *)(localContextPointer + 0x9e0) = 0;
   *(uint8_t *)(localContextPointer + 0x9c8) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x9a8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x9b0) != 0) {
@@ -79427,7 +79439,7 @@ void Unwind_180911000(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x9b0) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x9c0) = 0;
+  *(uint32_t *)(localContextPointer + 0x9c0) = 0;
   *(uint8_t *)(localContextPointer + 0x9a8) = &SystemDataStructure;
   return;
 }
@@ -79449,7 +79461,7 @@ void Unwind_180911020(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0xa40) = 0;
-  *(uint8_t4 *)(localContextPointer + 0xa50) = 0;
+  *(uint32_t *)(localContextPointer + 0xa50) = 0;
   *(uint8_t *)(localContextPointer + 0xa38) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0xa18) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0xa20) != 0) {
@@ -79457,7 +79469,7 @@ void Unwind_180911020(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0xa20) = 0;
-  *(uint8_t4 *)(localContextPointer + 0xa30) = 0;
+  *(uint32_t *)(localContextPointer + 0xa30) = 0;
   *(uint8_t *)(localContextPointer + 0xa18) = &SystemDataStructure;
   return;
 }
@@ -79479,7 +79491,7 @@ void Unwind_180911040(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0xab0) = 0;
-  *(uint8_t4 *)(localContextPointer + 0xac0) = 0;
+  *(uint32_t *)(localContextPointer + 0xac0) = 0;
   *(uint8_t *)(localContextPointer + 0xaa8) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0xa88) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0xa90) != 0) {
@@ -79487,7 +79499,7 @@ void Unwind_180911040(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0xa90) = 0;
-  *(uint8_t4 *)(localContextPointer + 0xaa0) = 0;
+  *(uint32_t *)(localContextPointer + 0xaa0) = 0;
   *(uint8_t *)(localContextPointer + 0xa88) = &SystemDataStructure;
   return;
 }
@@ -79509,7 +79521,7 @@ void Unwind_180911060(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0xb20) = 0;
-  *(uint8_t4 *)(localContextPointer + 0xb30) = 0;
+  *(uint32_t *)(localContextPointer + 0xb30) = 0;
   *(uint8_t *)(localContextPointer + 0xb18) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0xaf8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0xb00) != 0) {
@@ -79517,7 +79529,7 @@ void Unwind_180911060(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0xb00) = 0;
-  *(uint8_t4 *)(localContextPointer + 0xb10) = 0;
+  *(uint32_t *)(localContextPointer + 0xb10) = 0;
   *(uint8_t *)(localContextPointer + 0xaf8) = &SystemDataStructure;
   return;
 }
@@ -79539,7 +79551,7 @@ void Unwind_180911080(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0xb90) = 0;
-  *(uint8_t4 *)(localContextPointer + 0xba0) = 0;
+  *(uint32_t *)(localContextPointer + 0xba0) = 0;
   *(uint8_t *)(localContextPointer + 0xb88) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0xb68) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0xb70) != 0) {
@@ -79547,7 +79559,7 @@ void Unwind_180911080(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0xb70) = 0;
-  *(uint8_t4 *)(localContextPointer + 0xb80) = 0;
+  *(uint32_t *)(localContextPointer + 0xb80) = 0;
   *(uint8_t *)(localContextPointer + 0xb68) = &SystemDataStructure;
   return;
 }
@@ -79569,7 +79581,7 @@ void Unwind_1809110a0(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0xc00) = 0;
-  *(uint8_t4 *)(localContextPointer + 0xc10) = 0;
+  *(uint32_t *)(localContextPointer + 0xc10) = 0;
   *(uint8_t *)(localContextPointer + 0xbf8) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0xbd8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0xbe0) != 0) {
@@ -79577,7 +79589,7 @@ void Unwind_1809110a0(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0xbe0) = 0;
-  *(uint8_t4 *)(localContextPointer + 0xbf0) = 0;
+  *(uint32_t *)(localContextPointer + 0xbf0) = 0;
   *(uint8_t *)(localContextPointer + 0xbd8) = &SystemDataStructure;
   return;
 }
@@ -79599,7 +79611,7 @@ void Unwind_1809110c0(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0xc70) = 0;
-  *(uint8_t4 *)(localContextPointer + 0xc80) = 0;
+  *(uint32_t *)(localContextPointer + 0xc80) = 0;
   *(uint8_t *)(localContextPointer + 0xc68) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0xc48) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0xc50) != 0) {
@@ -79607,7 +79619,7 @@ void Unwind_1809110c0(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0xc50) = 0;
-  *(uint8_t4 *)(localContextPointer + 0xc60) = 0;
+  *(uint32_t *)(localContextPointer + 0xc60) = 0;
   *(uint8_t *)(localContextPointer + 0xc48) = &SystemDataStructure;
   return;
 }
@@ -79629,7 +79641,7 @@ void Unwind_1809110e0(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0xce0) = 0;
-  *(uint8_t4 *)(localContextPointer + 0xcf0) = 0;
+  *(uint32_t *)(localContextPointer + 0xcf0) = 0;
   *(uint8_t *)(localContextPointer + 0xcd8) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0xcb8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0xcc0) != 0) {
@@ -79637,7 +79649,7 @@ void Unwind_1809110e0(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0xcc0) = 0;
-  *(uint8_t4 *)(localContextPointer + 0xcd0) = 0;
+  *(uint32_t *)(localContextPointer + 0xcd0) = 0;
   *(uint8_t *)(localContextPointer + 0xcb8) = &SystemDataStructure;
   return;
 }
@@ -79659,7 +79671,7 @@ void Unwind_180911100(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0xd50) = 0;
-  *(uint8_t4 *)(localContextPointer + 0xd60) = 0;
+  *(uint32_t *)(localContextPointer + 0xd60) = 0;
   *(uint8_t *)(localContextPointer + 0xd48) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0xd28) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0xd30) != 0) {
@@ -79667,7 +79679,7 @@ void Unwind_180911100(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0xd30) = 0;
-  *(uint8_t4 *)(localContextPointer + 0xd40) = 0;
+  *(uint32_t *)(localContextPointer + 0xd40) = 0;
   *(uint8_t *)(localContextPointer + 0xd28) = &SystemDataStructure;
   return;
 }
@@ -79689,7 +79701,7 @@ void Unwind_180911120(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0xdc0) = 0;
-  *(uint8_t4 *)(localContextPointer + 0xdd0) = 0;
+  *(uint32_t *)(localContextPointer + 0xdd0) = 0;
   *(uint8_t *)(localContextPointer + 0xdb8) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0xd98) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0xda0) != 0) {
@@ -79697,7 +79709,7 @@ void Unwind_180911120(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0xda0) = 0;
-  *(uint8_t4 *)(localContextPointer + 0xdb0) = 0;
+  *(uint32_t *)(localContextPointer + 0xdb0) = 0;
   *(uint8_t *)(localContextPointer + 0xd98) = &SystemDataStructure;
   return;
 }
@@ -79719,7 +79731,7 @@ void Unwind_180911140(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0xe30) = 0;
-  *(uint8_t4 *)(localContextPointer + 0xe40) = 0;
+  *(uint32_t *)(localContextPointer + 0xe40) = 0;
   *(uint8_t *)(localContextPointer + 0xe28) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0xe08) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0xe10) != 0) {
@@ -79727,7 +79739,7 @@ void Unwind_180911140(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0xe10) = 0;
-  *(uint8_t4 *)(localContextPointer + 0xe20) = 0;
+  *(uint32_t *)(localContextPointer + 0xe20) = 0;
   *(uint8_t *)(localContextPointer + 0xe08) = &SystemDataStructure;
   return;
 }
@@ -79749,7 +79761,7 @@ void Unwind_180911160(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0xea0) = 0;
-  *(uint8_t4 *)(localContextPointer + 0xeb0) = 0;
+  *(uint32_t *)(localContextPointer + 0xeb0) = 0;
   *(uint8_t *)(localContextPointer + 0xe98) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0xe78) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0xe80) != 0) {
@@ -79757,7 +79769,7 @@ void Unwind_180911160(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0xe80) = 0;
-  *(uint8_t4 *)(localContextPointer + 0xe90) = 0;
+  *(uint32_t *)(localContextPointer + 0xe90) = 0;
   *(uint8_t *)(localContextPointer + 0xe78) = &SystemDataStructure;
   return;
 }
@@ -79779,7 +79791,7 @@ void Unwind_180911180(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0xf10) = 0;
-  *(uint8_t4 *)(localContextPointer + 0xf20) = 0;
+  *(uint32_t *)(localContextPointer + 0xf20) = 0;
   *(uint8_t *)(localContextPointer + 0xf08) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0xee8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0xef0) != 0) {
@@ -79787,7 +79799,7 @@ void Unwind_180911180(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0xef0) = 0;
-  *(uint8_t4 *)(localContextPointer + 0xf00) = 0;
+  *(uint32_t *)(localContextPointer + 0xf00) = 0;
   *(uint8_t *)(localContextPointer + 0xee8) = &SystemDataStructure;
   return;
 }
@@ -79809,7 +79821,7 @@ void Unwind_1809111a0(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0xf80) = 0;
-  *(uint8_t4 *)(localContextPointer + 0xf90) = 0;
+  *(uint32_t *)(localContextPointer + 0xf90) = 0;
   *(uint8_t *)(localContextPointer + 0xf78) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0xf58) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0xf60) != 0) {
@@ -79817,7 +79829,7 @@ void Unwind_1809111a0(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0xf60) = 0;
-  *(uint8_t4 *)(localContextPointer + 0xf70) = 0;
+  *(uint32_t *)(localContextPointer + 0xf70) = 0;
   *(uint8_t *)(localContextPointer + 0xf58) = &SystemDataStructure;
   return;
 }
@@ -79839,7 +79851,7 @@ void Unwind_1809111c0(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0xff0) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x1000) = 0;
+  *(uint32_t *)(localContextPointer + 0x1000) = 0;
   *(uint8_t *)(localContextPointer + 0xfe8) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0xfc8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0xfd0) != 0) {
@@ -79847,7 +79859,7 @@ void Unwind_1809111c0(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0xfd0) = 0;
-  *(uint8_t4 *)(localContextPointer + 0xfe0) = 0;
+  *(uint32_t *)(localContextPointer + 0xfe0) = 0;
   *(uint8_t *)(localContextPointer + 0xfc8) = &SystemDataStructure;
   return;
 }
@@ -79869,7 +79881,7 @@ void Unwind_1809111e0(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x1060) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x1070) = 0;
+  *(uint32_t *)(localContextPointer + 0x1070) = 0;
   *(uint8_t *)(localContextPointer + 0x1058) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x1038) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x1040) != 0) {
@@ -79877,7 +79889,7 @@ void Unwind_1809111e0(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x1040) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x1050) = 0;
+  *(uint32_t *)(localContextPointer + 0x1050) = 0;
   *(uint8_t *)(localContextPointer + 0x1038) = &SystemDataStructure;
   return;
 }
@@ -79899,7 +79911,7 @@ void Unwind_180911200(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x10d0) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x10e0) = 0;
+  *(uint32_t *)(localContextPointer + 0x10e0) = 0;
   *(uint8_t *)(localContextPointer + 0x10c8) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x10a8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x10b0) != 0) {
@@ -79907,7 +79919,7 @@ void Unwind_180911200(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x10b0) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x10c0) = 0;
+  *(uint32_t *)(localContextPointer + 0x10c0) = 0;
   *(uint8_t *)(localContextPointer + 0x10a8) = &SystemDataStructure;
   return;
 }
@@ -79929,7 +79941,7 @@ void Unwind_180911220(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x1140) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x1150) = 0;
+  *(uint32_t *)(localContextPointer + 0x1150) = 0;
   *(uint8_t *)(localContextPointer + 0x1138) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x1118) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x1120) != 0) {
@@ -79937,7 +79949,7 @@ void Unwind_180911220(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x1120) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x1130) = 0;
+  *(uint32_t *)(localContextPointer + 0x1130) = 0;
   *(uint8_t *)(localContextPointer + 0x1118) = &SystemDataStructure;
   return;
 }
@@ -79959,7 +79971,7 @@ void Unwind_180911240(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x11b0) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x11c0) = 0;
+  *(uint32_t *)(localContextPointer + 0x11c0) = 0;
   *(uint8_t *)(localContextPointer + 0x11a8) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x1188) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x1190) != 0) {
@@ -79967,7 +79979,7 @@ void Unwind_180911240(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x1190) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x11a0) = 0;
+  *(uint32_t *)(localContextPointer + 0x11a0) = 0;
   *(uint8_t *)(localContextPointer + 0x1188) = &SystemDataStructure;
   return;
 }
@@ -79989,7 +80001,7 @@ void Unwind_180911260(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x1220) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x1230) = 0;
+  *(uint32_t *)(localContextPointer + 0x1230) = 0;
   *(uint8_t *)(localContextPointer + 0x1218) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x11f8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x1200) != 0) {
@@ -79997,7 +80009,7 @@ void Unwind_180911260(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x1200) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x1210) = 0;
+  *(uint32_t *)(localContextPointer + 0x1210) = 0;
   *(uint8_t *)(localContextPointer + 0x11f8) = &SystemDataStructure;
   return;
 }
@@ -80019,7 +80031,7 @@ void Unwind_180911280(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x1290) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x12a0) = 0;
+  *(uint32_t *)(localContextPointer + 0x12a0) = 0;
   *(uint8_t *)(localContextPointer + 0x1288) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x1268) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x1270) != 0) {
@@ -80027,7 +80039,7 @@ void Unwind_180911280(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x1270) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x1280) = 0;
+  *(uint32_t *)(localContextPointer + 0x1280) = 0;
   *(uint8_t *)(localContextPointer + 0x1268) = &SystemDataStructure;
   return;
 }
@@ -80049,7 +80061,7 @@ void Unwind_1809112a0(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x1300) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x1310) = 0;
+  *(uint32_t *)(localContextPointer + 0x1310) = 0;
   *(uint8_t *)(localContextPointer + 0x12f8) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x12d8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x12e0) != 0) {
@@ -80057,7 +80069,7 @@ void Unwind_1809112a0(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x12e0) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x12f0) = 0;
+  *(uint32_t *)(localContextPointer + 0x12f0) = 0;
   *(uint8_t *)(localContextPointer + 0x12d8) = &SystemDataStructure;
   return;
 }
@@ -80079,7 +80091,7 @@ void Unwind_1809112c0(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x1370) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x1380) = 0;
+  *(uint32_t *)(localContextPointer + 0x1380) = 0;
   *(uint8_t *)(localContextPointer + 0x1368) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x1348) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x1350) != 0) {
@@ -80087,7 +80099,7 @@ void Unwind_1809112c0(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x1350) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x1360) = 0;
+  *(uint32_t *)(localContextPointer + 0x1360) = 0;
   *(uint8_t *)(localContextPointer + 0x1348) = &SystemDataStructure;
   return;
 }
@@ -80109,7 +80121,7 @@ void Unwind_1809112e0(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x13e0) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x13f0) = 0;
+  *(uint32_t *)(localContextPointer + 0x13f0) = 0;
   *(uint8_t *)(localContextPointer + 0x13d8) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x13b8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x13c0) != 0) {
@@ -80117,7 +80129,7 @@ void Unwind_1809112e0(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x13c0) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x13d0) = 0;
+  *(uint32_t *)(localContextPointer + 0x13d0) = 0;
   *(uint8_t *)(localContextPointer + 0x13b8) = &SystemDataStructure;
   return;
 }
@@ -80139,7 +80151,7 @@ void Unwind_180911300(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x1450) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x1460) = 0;
+  *(uint32_t *)(localContextPointer + 0x1460) = 0;
   *(uint8_t *)(localContextPointer + 0x1448) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x1428) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x1430) != 0) {
@@ -80147,7 +80159,7 @@ void Unwind_180911300(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x1430) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x1440) = 0;
+  *(uint32_t *)(localContextPointer + 0x1440) = 0;
   *(uint8_t *)(localContextPointer + 0x1428) = &SystemDataStructure;
   return;
 }
@@ -80169,7 +80181,7 @@ void Unwind_180911320(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x14c0) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x14d0) = 0;
+  *(uint32_t *)(localContextPointer + 0x14d0) = 0;
   *(uint8_t *)(localContextPointer + 0x14b8) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x1498) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x14a0) != 0) {
@@ -80177,7 +80189,7 @@ void Unwind_180911320(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x14a0) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x14b0) = 0;
+  *(uint32_t *)(localContextPointer + 0x14b0) = 0;
   *(uint8_t *)(localContextPointer + 0x1498) = &SystemDataStructure;
   return;
 }
@@ -80199,7 +80211,7 @@ void Unwind_180911340(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x1530) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x1540) = 0;
+  *(uint32_t *)(localContextPointer + 0x1540) = 0;
   *(uint8_t *)(localContextPointer + 0x1528) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x1508) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x1510) != 0) {
@@ -80207,7 +80219,7 @@ void Unwind_180911340(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x1510) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x1520) = 0;
+  *(uint32_t *)(localContextPointer + 0x1520) = 0;
   *(uint8_t *)(localContextPointer + 0x1508) = &SystemDataStructure;
   return;
 }
@@ -80229,7 +80241,7 @@ void Unwind_180911360(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x15a0) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x15b0) = 0;
+  *(uint32_t *)(localContextPointer + 0x15b0) = 0;
   *(uint8_t *)(localContextPointer + 0x1598) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x1578) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x1580) != 0) {
@@ -80237,7 +80249,7 @@ void Unwind_180911360(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x1580) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x1590) = 0;
+  *(uint32_t *)(localContextPointer + 0x1590) = 0;
   *(uint8_t *)(localContextPointer + 0x1578) = &SystemDataStructure;
   return;
 }
@@ -80259,7 +80271,7 @@ void Unwind_180911380(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x1610) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x1620) = 0;
+  *(uint32_t *)(localContextPointer + 0x1620) = 0;
   *(uint8_t *)(localContextPointer + 0x1608) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x15e8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x15f0) != 0) {
@@ -80267,7 +80279,7 @@ void Unwind_180911380(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x15f0) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x1600) = 0;
+  *(uint32_t *)(localContextPointer + 0x1600) = 0;
   *(uint8_t *)(localContextPointer + 0x15e8) = &SystemDataStructure;
   return;
 }
@@ -80289,7 +80301,7 @@ void Unwind_1809113a0(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x1680) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x1690) = 0;
+  *(uint32_t *)(localContextPointer + 0x1690) = 0;
   *(uint8_t *)(localContextPointer + 0x1678) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x1658) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x1660) != 0) {
@@ -80297,7 +80309,7 @@ void Unwind_1809113a0(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x1660) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x1670) = 0;
+  *(uint32_t *)(localContextPointer + 0x1670) = 0;
   *(uint8_t *)(localContextPointer + 0x1658) = &SystemDataStructure;
   return;
 }
@@ -80319,7 +80331,7 @@ void Unwind_1809113c0(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x16f0) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x1700) = 0;
+  *(uint32_t *)(localContextPointer + 0x1700) = 0;
   *(uint8_t *)(localContextPointer + 0x16e8) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x16c8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x16d0) != 0) {
@@ -80327,7 +80339,7 @@ void Unwind_1809113c0(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x16d0) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x16e0) = 0;
+  *(uint32_t *)(localContextPointer + 0x16e0) = 0;
   *(uint8_t *)(localContextPointer + 0x16c8) = &SystemDataStructure;
   return;
 }
@@ -80349,7 +80361,7 @@ void Unwind_1809113e0(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x1760) = 0;
-  *(uint8_t4 *)(localContextPointer + 6000) = 0;
+  *(uint32_t *)(localContextPointer + 6000) = 0;
   *(uint8_t *)(localContextPointer + 0x1758) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x1738) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x1740) != 0) {
@@ -80357,7 +80369,7 @@ void Unwind_1809113e0(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x1740) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x1750) = 0;
+  *(uint32_t *)(localContextPointer + 0x1750) = 0;
   *(uint8_t *)(localContextPointer + 0x1738) = &SystemDataStructure;
   return;
 }
@@ -80379,7 +80391,7 @@ void Unwind_180911400(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x17d0) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x17e0) = 0;
+  *(uint32_t *)(localContextPointer + 0x17e0) = 0;
   *(uint8_t *)(localContextPointer + 0x17c8) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x17a8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x17b0) != 0) {
@@ -80387,7 +80399,7 @@ void Unwind_180911400(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x17b0) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x17c0) = 0;
+  *(uint32_t *)(localContextPointer + 0x17c0) = 0;
   *(uint8_t *)(localContextPointer + 0x17a8) = &SystemDataStructure;
   return;
 }
@@ -80409,7 +80421,7 @@ void Unwind_180911420(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x1840) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x1850) = 0;
+  *(uint32_t *)(localContextPointer + 0x1850) = 0;
   *(uint8_t *)(localContextPointer + 0x1838) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x1818) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x1820) != 0) {
@@ -80417,7 +80429,7 @@ void Unwind_180911420(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x1820) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x1830) = 0;
+  *(uint32_t *)(localContextPointer + 0x1830) = 0;
   *(uint8_t *)(localContextPointer + 0x1818) = &SystemDataStructure;
   return;
 }
@@ -80439,7 +80451,7 @@ void Unwind_180911440(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x18b0) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x18c0) = 0;
+  *(uint32_t *)(localContextPointer + 0x18c0) = 0;
   *(uint8_t *)(localContextPointer + 0x18a8) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x1888) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x1890) != 0) {
@@ -80447,7 +80459,7 @@ void Unwind_180911440(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x1890) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x18a0) = 0;
+  *(uint32_t *)(localContextPointer + 0x18a0) = 0;
   *(uint8_t *)(localContextPointer + 0x1888) = &SystemDataStructure;
   return;
 }
@@ -80469,7 +80481,7 @@ void Unwind_180911460(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x1920) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x1930) = 0;
+  *(uint32_t *)(localContextPointer + 0x1930) = 0;
   *(uint8_t *)(localContextPointer + 0x1918) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x18f8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x1900) != 0) {
@@ -80477,7 +80489,7 @@ void Unwind_180911460(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x1900) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x1910) = 0;
+  *(uint32_t *)(localContextPointer + 0x1910) = 0;
   *(uint8_t *)(localContextPointer + 0x18f8) = &SystemDataStructure;
   return;
 }
@@ -80499,7 +80511,7 @@ void Unwind_180911480(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x1990) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x19a0) = 0;
+  *(uint32_t *)(localContextPointer + 0x19a0) = 0;
   *(uint8_t *)(localContextPointer + 0x1988) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x1968) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x1970) != 0) {
@@ -80507,7 +80519,7 @@ void Unwind_180911480(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x1970) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x1980) = 0;
+  *(uint32_t *)(localContextPointer + 0x1980) = 0;
   *(uint8_t *)(localContextPointer + 0x1968) = &SystemDataStructure;
   return;
 }
@@ -80529,7 +80541,7 @@ void Unwind_1809114a0(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x1a00) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x1a10) = 0;
+  *(uint32_t *)(localContextPointer + 0x1a10) = 0;
   *(uint8_t *)(localContextPointer + 0x19f8) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x19d8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x19e0) != 0) {
@@ -80537,7 +80549,7 @@ void Unwind_1809114a0(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x19e0) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x19f0) = 0;
+  *(uint32_t *)(localContextPointer + 0x19f0) = 0;
   *(uint8_t *)(localContextPointer + 0x19d8) = &SystemDataStructure;
   return;
 }
@@ -80559,7 +80571,7 @@ void Unwind_1809114c0(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x1a70) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x1a80) = 0;
+  *(uint32_t *)(localContextPointer + 0x1a80) = 0;
   *(uint8_t *)(localContextPointer + 0x1a68) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x1a48) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x1a50) != 0) {
@@ -80567,7 +80579,7 @@ void Unwind_1809114c0(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x1a50) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x1a60) = 0;
+  *(uint32_t *)(localContextPointer + 0x1a60) = 0;
   *(uint8_t *)(localContextPointer + 0x1a48) = &SystemDataStructure;
   return;
 }
@@ -80589,7 +80601,7 @@ void Unwind_1809114e0(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x1ae0) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x1af0) = 0;
+  *(uint32_t *)(localContextPointer + 0x1af0) = 0;
   *(uint8_t *)(localContextPointer + 0x1ad8) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x1ab8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x1ac0) != 0) {
@@ -80597,7 +80609,7 @@ void Unwind_1809114e0(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x1ac0) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x1ad0) = 0;
+  *(uint32_t *)(localContextPointer + 0x1ad0) = 0;
   *(uint8_t *)(localContextPointer + 0x1ab8) = &SystemDataStructure;
   return;
 }
@@ -80619,7 +80631,7 @@ void Unwind_180911500(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x1b50) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x1b60) = 0;
+  *(uint32_t *)(localContextPointer + 0x1b60) = 0;
   *(uint8_t *)(localContextPointer + 0x1b48) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x1b28) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x1b30) != 0) {
@@ -80627,7 +80639,7 @@ void Unwind_180911500(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x1b30) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x1b40) = 0;
+  *(uint32_t *)(localContextPointer + 0x1b40) = 0;
   *(uint8_t *)(localContextPointer + 0x1b28) = &SystemDataStructure;
   return;
 }
@@ -80649,7 +80661,7 @@ void Unwind_180911520(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x1bc0) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x1bd0) = 0;
+  *(uint32_t *)(localContextPointer + 0x1bd0) = 0;
   *(uint8_t *)(localContextPointer + 0x1bb8) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x1b98) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x1ba0) != 0) {
@@ -80657,7 +80669,7 @@ void Unwind_180911520(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x1ba0) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x1bb0) = 0;
+  *(uint32_t *)(localContextPointer + 0x1bb0) = 0;
   *(uint8_t *)(localContextPointer + 0x1b98) = &SystemDataStructure;
   return;
 }
@@ -80679,7 +80691,7 @@ void Unwind_180911540(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x1c30) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x1c40) = 0;
+  *(uint32_t *)(localContextPointer + 0x1c40) = 0;
   *(uint8_t *)(localContextPointer + 0x1c28) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x1c08) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x1c10) != 0) {
@@ -80687,7 +80699,7 @@ void Unwind_180911540(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x1c10) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x1c20) = 0;
+  *(uint32_t *)(localContextPointer + 0x1c20) = 0;
   *(uint8_t *)(localContextPointer + 0x1c08) = &SystemDataStructure;
   return;
 }
@@ -80709,7 +80721,7 @@ void Unwind_180911560(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x1ca0) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x1cb0) = 0;
+  *(uint32_t *)(localContextPointer + 0x1cb0) = 0;
   *(uint8_t *)(localContextPointer + 0x1c98) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x1c78) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x1c80) != 0) {
@@ -80717,7 +80729,7 @@ void Unwind_180911560(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x1c80) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x1c90) = 0;
+  *(uint32_t *)(localContextPointer + 0x1c90) = 0;
   *(uint8_t *)(localContextPointer + 0x1c78) = &SystemDataStructure;
   return;
 }
@@ -80739,7 +80751,7 @@ void Unwind_180911580(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x1d10) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x1d20) = 0;
+  *(uint32_t *)(localContextPointer + 0x1d20) = 0;
   *(uint8_t *)(localContextPointer + 0x1d08) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x1ce8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x1cf0) != 0) {
@@ -80747,7 +80759,7 @@ void Unwind_180911580(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x1cf0) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x1d00) = 0;
+  *(uint32_t *)(localContextPointer + 0x1d00) = 0;
   *(uint8_t *)(localContextPointer + 0x1ce8) = &SystemDataStructure;
   return;
 }
@@ -80769,7 +80781,7 @@ void Unwind_1809115a0(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x1d80) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x1d90) = 0;
+  *(uint32_t *)(localContextPointer + 0x1d90) = 0;
   *(uint8_t *)(localContextPointer + 0x1d78) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x1d58) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x1d60) != 0) {
@@ -80777,7 +80789,7 @@ void Unwind_1809115a0(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x1d60) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x1d70) = 0;
+  *(uint32_t *)(localContextPointer + 0x1d70) = 0;
   *(uint8_t *)(localContextPointer + 0x1d58) = &SystemDataStructure;
   return;
 }
@@ -80799,7 +80811,7 @@ void Unwind_1809115c0(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x1df0) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x1e00) = 0;
+  *(uint32_t *)(localContextPointer + 0x1e00) = 0;
   *(uint8_t *)(localContextPointer + 0x1de8) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x1dc8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x1dd0) != 0) {
@@ -80807,7 +80819,7 @@ void Unwind_1809115c0(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x1dd0) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x1de0) = 0;
+  *(uint32_t *)(localContextPointer + 0x1de0) = 0;
   *(uint8_t *)(localContextPointer + 0x1dc8) = &SystemDataStructure;
   return;
 }
@@ -80829,7 +80841,7 @@ void Unwind_1809115e0(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x1e60) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x1e70) = 0;
+  *(uint32_t *)(localContextPointer + 0x1e70) = 0;
   *(uint8_t *)(localContextPointer + 0x1e58) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x1e38) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x1e40) != 0) {
@@ -80837,7 +80849,7 @@ void Unwind_1809115e0(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x1e40) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x1e50) = 0;
+  *(uint32_t *)(localContextPointer + 0x1e50) = 0;
   *(uint8_t *)(localContextPointer + 0x1e38) = &SystemDataStructure;
   return;
 }
@@ -80859,7 +80871,7 @@ void Unwind_180911600(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x1ed0) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x1ee0) = 0;
+  *(uint32_t *)(localContextPointer + 0x1ee0) = 0;
   *(uint8_t *)(localContextPointer + 0x1ec8) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x1ea8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x1eb0) != 0) {
@@ -80867,7 +80879,7 @@ void Unwind_180911600(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x1eb0) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x1ec0) = 0;
+  *(uint32_t *)(localContextPointer + 0x1ec0) = 0;
   *(uint8_t *)(localContextPointer + 0x1ea8) = &SystemDataStructure;
   return;
 }
@@ -80889,7 +80901,7 @@ void Unwind_180911620(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 8000) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x1f50) = 0;
+  *(uint32_t *)(localContextPointer + 0x1f50) = 0;
   *(uint8_t *)(localContextPointer + 0x1f38) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x1f18) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x1f20) != 0) {
@@ -80897,7 +80909,7 @@ void Unwind_180911620(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x1f20) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x1f30) = 0;
+  *(uint32_t *)(localContextPointer + 0x1f30) = 0;
   *(uint8_t *)(localContextPointer + 0x1f18) = &SystemDataStructure;
   return;
 }
@@ -80919,7 +80931,7 @@ void Unwind_180911640(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x1fb0) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x1fc0) = 0;
+  *(uint32_t *)(localContextPointer + 0x1fc0) = 0;
   *(uint8_t *)(localContextPointer + 0x1fa8) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x1f88) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x1f90) != 0) {
@@ -80927,7 +80939,7 @@ void Unwind_180911640(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x1f90) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x1fa0) = 0;
+  *(uint32_t *)(localContextPointer + 0x1fa0) = 0;
   *(uint8_t *)(localContextPointer + 0x1f88) = &SystemDataStructure;
   return;
 }
@@ -80949,7 +80961,7 @@ void Unwind_180911660(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x2020) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x2030) = 0;
+  *(uint32_t *)(localContextPointer + 0x2030) = 0;
   *(uint8_t *)(localContextPointer + 0x2018) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x1ff8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x2000) != 0) {
@@ -80957,7 +80969,7 @@ void Unwind_180911660(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x2000) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x2010) = 0;
+  *(uint32_t *)(localContextPointer + 0x2010) = 0;
   *(uint8_t *)(localContextPointer + 0x1ff8) = &SystemDataStructure;
   return;
 }
@@ -80979,7 +80991,7 @@ void Unwind_180911680(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x2090) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x20a0) = 0;
+  *(uint32_t *)(localContextPointer + 0x20a0) = 0;
   *(uint8_t *)(localContextPointer + 0x2088) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x2068) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x2070) != 0) {
@@ -80987,7 +80999,7 @@ void Unwind_180911680(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x2070) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x2080) = 0;
+  *(uint32_t *)(localContextPointer + 0x2080) = 0;
   *(uint8_t *)(localContextPointer + 0x2068) = &SystemDataStructure;
   return;
 }
@@ -81009,7 +81021,7 @@ void Unwind_1809116a0(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x2100) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x2110) = 0;
+  *(uint32_t *)(localContextPointer + 0x2110) = 0;
   *(uint8_t *)(localContextPointer + 0x20f8) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x20d8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x20e0) != 0) {
@@ -81017,7 +81029,7 @@ void Unwind_1809116a0(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x20e0) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x20f0) = 0;
+  *(uint32_t *)(localContextPointer + 0x20f0) = 0;
   *(uint8_t *)(localContextPointer + 0x20d8) = &SystemDataStructure;
   return;
 }
@@ -81039,7 +81051,7 @@ void Unwind_1809116c0(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x2170) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x2180) = 0;
+  *(uint32_t *)(localContextPointer + 0x2180) = 0;
   *(uint8_t *)(localContextPointer + 0x2168) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x2148) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x2150) != 0) {
@@ -81047,7 +81059,7 @@ void Unwind_1809116c0(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x2150) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x2160) = 0;
+  *(uint32_t *)(localContextPointer + 0x2160) = 0;
   *(uint8_t *)(localContextPointer + 0x2148) = &SystemDataStructure;
   return;
 }
@@ -81069,7 +81081,7 @@ void Unwind_1809116e0(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x21e0) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x21f0) = 0;
+  *(uint32_t *)(localContextPointer + 0x21f0) = 0;
   *(uint8_t *)(localContextPointer + 0x21d8) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x21b8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x21c0) != 0) {
@@ -81077,7 +81089,7 @@ void Unwind_1809116e0(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x21c0) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x21d0) = 0;
+  *(uint32_t *)(localContextPointer + 0x21d0) = 0;
   *(uint8_t *)(localContextPointer + 0x21b8) = &SystemDataStructure;
   return;
 }
@@ -81099,7 +81111,7 @@ void Unwind_180911700(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x2250) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x2260) = 0;
+  *(uint32_t *)(localContextPointer + 0x2260) = 0;
   *(uint8_t *)(localContextPointer + 0x2248) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x2228) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x2230) != 0) {
@@ -81107,7 +81119,7 @@ void Unwind_180911700(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x2230) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x2240) = 0;
+  *(uint32_t *)(localContextPointer + 0x2240) = 0;
   *(uint8_t *)(localContextPointer + 0x2228) = &SystemDataStructure;
   return;
 }
@@ -81129,7 +81141,7 @@ void Unwind_180911720(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x22c0) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x22d0) = 0;
+  *(uint32_t *)(localContextPointer + 0x22d0) = 0;
   *(uint8_t *)(localContextPointer + 0x22b8) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x2298) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x22a0) != 0) {
@@ -81137,7 +81149,7 @@ void Unwind_180911720(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x22a0) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x22b0) = 0;
+  *(uint32_t *)(localContextPointer + 0x22b0) = 0;
   *(uint8_t *)(localContextPointer + 0x2298) = &SystemDataStructure;
   return;
 }
@@ -81159,7 +81171,7 @@ void Unwind_180911740(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x2330) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x2340) = 0;
+  *(uint32_t *)(localContextPointer + 0x2340) = 0;
   *(uint8_t *)(localContextPointer + 9000) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x2308) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x2310) != 0) {
@@ -81167,7 +81179,7 @@ void Unwind_180911740(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x2310) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x2320) = 0;
+  *(uint32_t *)(localContextPointer + 0x2320) = 0;
   *(uint8_t *)(localContextPointer + 0x2308) = &SystemDataStructure;
   return;
 }
@@ -81189,7 +81201,7 @@ void Unwind_180911760(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x23a0) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x23b0) = 0;
+  *(uint32_t *)(localContextPointer + 0x23b0) = 0;
   *(uint8_t *)(localContextPointer + 0x2398) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x2378) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x2380) != 0) {
@@ -81197,7 +81209,7 @@ void Unwind_180911760(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x2380) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x2390) = 0;
+  *(uint32_t *)(localContextPointer + 0x2390) = 0;
   *(uint8_t *)(localContextPointer + 0x2378) = &SystemDataStructure;
   return;
 }
@@ -81219,7 +81231,7 @@ void Unwind_180911780(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x2410) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x2420) = 0;
+  *(uint32_t *)(localContextPointer + 0x2420) = 0;
   *(uint8_t *)(localContextPointer + 0x2408) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x23e8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x23f0) != 0) {
@@ -81227,7 +81239,7 @@ void Unwind_180911780(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x23f0) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x2400) = 0;
+  *(uint32_t *)(localContextPointer + 0x2400) = 0;
   *(uint8_t *)(localContextPointer + 0x23e8) = &SystemDataStructure;
   return;
 }
@@ -81249,7 +81261,7 @@ void Unwind_1809117a0(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x2480) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x2490) = 0;
+  *(uint32_t *)(localContextPointer + 0x2490) = 0;
   *(uint8_t *)(localContextPointer + 0x2478) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x2458) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x2460) != 0) {
@@ -81257,7 +81269,7 @@ void Unwind_1809117a0(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x2460) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x2470) = 0;
+  *(uint32_t *)(localContextPointer + 0x2470) = 0;
   *(uint8_t *)(localContextPointer + 0x2458) = &SystemDataStructure;
   return;
 }
@@ -81279,7 +81291,7 @@ void Unwind_1809117c0(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x24f0) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x2500) = 0;
+  *(uint32_t *)(localContextPointer + 0x2500) = 0;
   *(uint8_t *)(localContextPointer + 0x24e8) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x24c8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x24d0) != 0) {
@@ -81287,7 +81299,7 @@ void Unwind_1809117c0(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x24d0) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x24e0) = 0;
+  *(uint32_t *)(localContextPointer + 0x24e0) = 0;
   *(uint8_t *)(localContextPointer + 0x24c8) = &SystemDataStructure;
   return;
 }
@@ -81309,7 +81321,7 @@ void Unwind_1809117e0(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x2560) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x2570) = 0;
+  *(uint32_t *)(localContextPointer + 0x2570) = 0;
   *(uint8_t *)(localContextPointer + 0x2558) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x2538) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x2540) != 0) {
@@ -81317,7 +81329,7 @@ void Unwind_1809117e0(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x2540) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x2550) = 0;
+  *(uint32_t *)(localContextPointer + 0x2550) = 0;
   *(uint8_t *)(localContextPointer + 0x2538) = &SystemDataStructure;
   return;
 }
@@ -81339,7 +81351,7 @@ void Unwind_180911800(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x25d0) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x25e0) = 0;
+  *(uint32_t *)(localContextPointer + 0x25e0) = 0;
   *(uint8_t *)(localContextPointer + 0x25c8) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x25a8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x25b0) != 0) {
@@ -81347,7 +81359,7 @@ void Unwind_180911800(uint8_t objectContextParam,int64_t validationContextParam,
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x25b0) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x25c0) = 0;
+  *(uint32_t *)(localContextPointer + 0x25c0) = 0;
   *(uint8_t *)(localContextPointer + 0x25a8) = &SystemDataStructure;
   return;
 }
@@ -82078,7 +82090,7 @@ void Unwind_180911b90(uint8_t objectContextParam,int64_t validationContextParam)
   *(uint8_t1 *)(localContextPointer + 0x88) = 0;
   *(uint8_t *)(localContextPointer + 0x90) = 0;
   *(uint8_t *)(localContextPointer + 0x9c) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x98) = 0;
+  *(uint32_t *)(localContextPointer + 0x98) = 0;
   *(uint8_t *)(localContextPointer + 0xac) = 0;
   *(uint8_t *)(localContextPointer + 0xa4) = 0;
   return;
@@ -82447,7 +82459,7 @@ void Unwind_180911de0(uint8_t objectContextParam,int64_t validationContextParam,
   }
   resourceIndex = *(int64_t *)(lVar4 + 0x1e68);
   if (resourceIndex == 0) {
-    *(uint8_t4 *)(lVar4 + 0x1e80) = 0;
+    *(uint32_t *)(lVar4 + 0x1e80) = 0;
     resourceIndex = *(int64_t *)(lVar4 + 0x1e78);
     if (resourceIndex != 0) {
       if (GlobalUnwindContext != 0) {
@@ -84111,7 +84123,7 @@ void Unwind_180912590(uint8_t objectContextParam,int64_t validationContextParam,
                     // WARNING: Subroutine does not return
     ProcessResourceOperation(localContextPointer,SystemResourcePointer002,param_3,param_4,0xfffffffffffffffe);
   }
-  *(uint8_t4 *)(validationContextParam + 0x60) = 0;
+  *(uint32_t *)(validationContextParam + 0x60) = 0;
   loopCounter = *(int64_t *)(validationContextParam + 0x58);
   if (loopCounter != 0) {
     if (GlobalUnwindContext != 0) {
@@ -84559,7 +84571,7 @@ void Unwind_180912810(uint8_t objectContextParam,int64_t validationContextParam)
   *(uint8_t1 *)(localContextPointer + 0x88) = 0;
   *(uint8_t *)(localContextPointer + 0x90) = 0;
   *(uint8_t *)(localContextPointer + 0x9c) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x98) = 0;
+  *(uint32_t *)(localContextPointer + 0x98) = 0;
   *(uint8_t *)(localContextPointer + 0xac) = 0;
   *(uint8_t *)(localContextPointer + 0xa4) = 0;
   return;
@@ -84645,7 +84657,7 @@ void Unwind_180912910(uint8_t objectContextParam,int64_t validationContextParam)
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x220) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x230) = 0;
+  *(uint32_t *)(localContextPointer + 0x230) = 0;
   *(uint8_t *)(localContextPointer + 0x218) = &SystemDataStructure;
   *(uint8_t *)(localContextPointer + 0x1f8) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x200) != 0) {
@@ -84653,7 +84665,7 @@ void Unwind_180912910(uint8_t objectContextParam,int64_t validationContextParam)
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x200) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x210) = 0;
+  *(uint32_t *)(localContextPointer + 0x210) = 0;
   *(uint8_t *)(localContextPointer + 0x1f8) = &SystemDataStructure;
   return;
 }
@@ -84708,7 +84720,7 @@ void Unwind_180912950(uint8_t objectContextParam,int64_t validationContextParam)
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x390) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x3a0) = 0;
+  *(uint32_t *)(localContextPointer + 0x3a0) = 0;
   *(uint8_t *)(localContextPointer + 0x388) = &SystemDataStructure;
   return;
 }
@@ -84727,13 +84739,13 @@ void Unwind_180912970(uint8_t objectContextParam,int64_t validationContextParam)
     ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(localContextPointer + 0x3b0) = 0;
-  *(uint8_t4 *)(localContextPointer + 0x3c0) = 0;
+  *(uint32_t *)(localContextPointer + 0x3c0) = 0;
   *(uint8_t *)(localContextPointer + 0x3a8) = &SystemDataStructure;
   return;
 }
 
 
-uint8_t4 SystemConfigurationFlag;
+uint32_t SystemConfigurationFlag;
 
  void ProcessSystemStateReset(uint8_t systemHandle, int64_t contextPointer)
 
@@ -84779,8 +84791,8 @@ uint8_t4 SystemConfigurationFlag;
  void ConfigureSystemParameters(uint8_t *parameterArray, int64_t configurationContext)
 
 {
-  ConfigureResourceSystem(*(uint8_t *)(configurationContext + 0x60),*(uint8_t4 *)(configurationContext + 0x68),
-                *(uint8_t *)(configurationContext + 0x70),ProcessResourceCallback,*(uint8_t4 *)*parameterArray,parameterArray);
+  ConfigureResourceSystem(*(uint8_t *)(configurationContext + 0x60),*(uint32_t *)(configurationContext + 0x68),
+                *(uint8_t *)(configurationContext + 0x70),ProcessResourceCallback,*(uint32_t *)*parameterArray,parameterArray);
   return;
 }
 
@@ -84829,15 +84841,15 @@ void ProcessNetworkConnectionDataTransfer(uint8_t ConnectionHandle, int64_t Conn
 
 
 
-uint8_t4 InitializeNetworkBufferDataWithSecurity(uint8_t BufferHandle, int64_t BufferContext)
+uint32_t InitializeNetworkBufferDataWithSecurity(uint8_t BufferHandle, int64_t BufferContext)
 
 {
   *(uint8_t *)(BufferContext + 0x40) = BufferHandle;
   *(uint8_t *)(BufferContext + 0x30) = BufferHandle;
   *(uint8_t *)(BufferContext + 0x38) = **(uint8_t **)(BufferContext + 0x30);
   if (**(int **)(BufferContext + 0x38) != -0x1f928c9d) {
-    *(uint8_t4 *)(BufferContext + 0x20) = 0;
-    return *(uint8_t4 *)(BufferContext + 0x20);
+    *(uint32_t *)(BufferContext + 0x20) = 0;
+    return *(uint32_t *)(BufferContext + 0x20);
   }
                     // WARNING: Subroutine does not return
   terminate();
@@ -84879,7 +84891,7 @@ void ExecuteConditionalResourceInitialization(uint8_t ResourceHandle, int64_t Re
 void TriggerResourceHandleOperation(uint8_t *ResourceHandlePtr)
 
 {
-  func_0x0001808fd024(*(uint8_t4 *)*ResourceHandlePtr);
+  func_0x0001808fd024(*(uint32_t *)*ResourceHandlePtr);
   return;
 }
 
@@ -87075,7 +87087,7 @@ void ProcessSystemOperationD(uint8_t objectContextParam,uint8_t validationContex
       ExecuteSystemEmergencyExit();
     }
     pvalidationResult[1] = 0;
-    *(uint8_t4 *)(pvalidationResult + 3) = 0;
+    *(uint32_t *)(pvalidationResult + 3) = 0;
     *pvalidationResult = &SystemDataStructure;
   }
   if (SystemResourceValidationPointer001 != (uint8_t *)0x0) {
@@ -88223,7 +88235,7 @@ void ResetThreadLocalStorage(void)
     CleanupThreadResources();
   }
   *(uint8_t *)(ThreadContextData + 0x20) = 0;
-  *(uint8_t4 *)(ThreadContextData + 0x30) = 0;
+  *(uint32_t *)(ThreadContextData + 0x30) = 0;
   *(uint8_t *)(ThreadContextData + 0x18) = &DefaultThreadResource;
   return;
 }
@@ -88262,7 +88274,7 @@ void CleanupSystemResources(uint8_t ResourceType, uint8_t ResourceInstance, uint
     EmergencyResourceCleanup();
   }
   ResourceManagementHandle[5] = 0;
-  *(UInt8Type4 *)(ResourceManagementHandle + 7) = 0;
+  *(uint32_t *)(ResourceManagementHandle + 7) = 0;
   ResourceManagementHandle[4] = &ResourceResetMarker;
   FinalizeResourceCleanup(ResourceManagementHandle);
 }
