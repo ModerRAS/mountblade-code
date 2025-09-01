@@ -3374,7 +3374,7 @@ int ProcessNetworkPacketWithSpecialBuffer(longlong connectionContext,longlong pa
   int copiedDataSize;
   
   specialBufferStatus = *(NetworkStatus *)(connectionContext + 0x10);
-  initialProcessedSize = ProcessNetworkBufferData(packetData,dataSize,&UNK_1809835f0);
+  initialProcessedSize = ProcessNetworkBufferData(packetData,dataSize,&NetworkProtocolTemplate);
   copiedDataSize = NetworkBufferCopyData(packetData + initialProcessedSize,dataSize - initialProcessedSize,&NetworkBufferDataTemplate);
   initialProcessedSize = initialProcessedSize + copiedDataSize;
   copiedDataSize = ProcessNetworkBufferCopy(initialProcessedSize + packetData,dataSize - initialProcessedSize,specialBufferStatus);
@@ -3404,7 +3404,7 @@ int ProcessNetworkPacketWithHandle(longlong connectionContext,longlong packetDat
   
   networkHandle = *(NetworkHandle *)(connectionContext + 0x18);
   bufferStatus = *(NetworkStatus *)(connectionContext + 0x10);
-  firstProcessingOffset = ProcessNetworkBufferData(packetData,dataSize,&UNK_180983e68);
+  firstProcessingOffset = ProcessNetworkBufferData(packetData,dataSize,&NetworkStreamTemplate);
   secondProcessingOffset = ProcessNetworkBufferData(firstProcessingOffset + packetData,dataSize - firstProcessingOffset,&g_NetworkBufferDataTemplate);
   firstProcessingOffset = firstProcessingOffset + secondProcessingOffset;
   secondProcessingOffset = ProcessNetworkBufferCopy(firstProcessingOffset + packetData,dataSize - firstProcessingOffset,bufferStatus);
@@ -3439,7 +3439,7 @@ int ProcessNetworkPacketStream(longlong connectionContext,longlong packetData,in
   
   connectionState = *(NetworkStatus *)(connectionContext + 0x18);
   networkFlags = *(NetworkStatus *)(connectionContext + 0x10);
-  streamOffset = ProcessNetworkBufferData(packetData,dataSize,&UNK_180983de0);
+  streamOffset = ProcessNetworkBufferData(packetData,dataSize,&NetworkDataStreamTemplate);
   processedBytes = ProcessNetworkBufferData(streamOffset + packetData,dataSize - streamOffset,&g_NetworkBufferDataTemplate);
   streamOffset = streamOffset + processedBytes;
   processedBytes = ProcessNetworkBufferCopy(streamOffset + packetData,dataSize - streamOffset,networkFlags);
@@ -3472,7 +3472,7 @@ int DecodePacketDataStream(longlong connectionContext,longlong packetData,int da
   int decodedSize;
   
   connectionStatus = *(NetworkStatus *)(connectionContext + 0x10);
-  dataOffset = ProcessNetworkBufferData(packetData,dataSize,&UNK_180983ce0);
+  dataOffset = ProcessNetworkBufferData(packetData,dataSize,&NetworkDataDecoderTemplate);
   decodedSize = NetworkBufferCopyData(packetData + dataOffset,dataSize - dataOffset,&NetworkBufferDataTemplate);
   dataOffset = dataOffset + decodedSize;
   decodedSize = ProcessNetworkBufferCopy(dataOffset + packetData,dataSize - dataOffset,connectionStatus);
@@ -9151,7 +9151,20 @@ LAB_1808492e6:
 
 
 // 函数: void FUN_180849360(ulonglong connectionContext)
-void FUN_180849360(ulonglong connectionContext)
+/**
+ * @brief 网络连接状态验证器
+ * 
+ * 该函数负责验证网络连接的状态，包括：
+ * - 网络连接ID初始化和验证
+ * - 连接状态检查
+ * - 错误处理和日志记录
+ * - 安全检查
+ * 
+ * @param connectionContext 网络连接上下文标识符
+ * 
+ * 注意：这是一个反编译的函数实现
+ */
+void NetworkConnectionStatusValidator(ulonglong connectionContext)
 
 {
   int networkStatus1;
@@ -9197,7 +9210,21 @@ LAB_180849462:
 
 
 // 函数: void FUN_180849490(NetworkHandle connectionContext,NetworkHandle *packetData)
-void FUN_180849490(NetworkHandle connectionContext,NetworkHandle *packetData)
+/**
+ * @brief 网络连接数据包处理器
+ * 
+ * 该函数负责处理网络连接中的数据包，包括：
+ * - 网络连接ID初始化
+ * - 数据包验证和处理
+ * - 网络状态检查
+ * - 错误处理和日志记录
+ * 
+ * @param connectionContext 网络连接上下文句柄
+ * @param packetData 用于返回数据包数据的指针
+ * 
+ * 注意：这是一个反编译的函数实现
+ */
+void NetworkConnectionPacketProcessor(NetworkHandle connectionContext,NetworkHandle *packetData)
 
 {
   NetworkStatus primaryNetworkFlag;
@@ -9340,8 +9367,18 @@ LAB_180849763:
 
 
 
-// 函数: void FUN_180849782(void)
-void FUN_180849782(void)
+/**
+ * @brief 处理网络地址验证和错误日志记录
+ * 
+ * 该函数负责处理网络地址验证和错误日志记录，包括：
+ * - 网络地址验证
+ * - 缓冲区数据处理
+ * - 缓冲区数据复制
+ * - 网络连接错误日志记录
+ * 
+ * @return void
+ */
+void ProcessNetworkAddressValidationAndErrorLogging(void)
 
 {
   int networkStatus1;
@@ -9359,8 +9396,15 @@ void FUN_180849782(void)
 
 
 
-// 函数: void FUN_1808497fa(void)
-void FUN_1808497fa(void)
+/**
+ * @brief 执行网络安全守卫清理操作
+ * 
+ * 该函数负责执行网络安全守卫的清理操作，确保网络资源的正确释放。
+ * 主要用于网络连接结束后的资源清理工作。
+ * 
+ * @return void
+ */
+void ExecuteNetworkSecurityGuardCleanup(void)
 
 {
   ulonglong in_stack_00000150;
@@ -9374,8 +9418,21 @@ void FUN_1808497fa(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180849820(NetworkStatus connectionContext,longlong packetData,NetworkStatus dataSize)
-void FUN_180849820(NetworkStatus connectionContext,longlong packetData,NetworkStatus dataSize)
+/**
+ * @brief 初始化网络连接ID和句柄
+ * 
+ * 该函数负责初始化网络连接ID和句柄，包括：
+ * - 网络连接ID初始化
+ * - 网络连接句柄初始化
+ * - 网络连接标志验证
+ * - 数据包数据处理
+ * 
+ * @param connectionContext 网络连接上下文状态
+ * @param packetData 数据包数据指针
+ * @param dataSize 数据包大小
+ * @return void
+ */
+void InitializeNetworkConnectionIdAndHandle(NetworkStatus connectionContext,longlong packetData,NetworkStatus dataSize)
 
 {
   int networkStatus1;
