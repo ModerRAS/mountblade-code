@@ -2247,7 +2247,7 @@ undefined SystemDatabaseManagerData;
 void InitializeMemoryManager;
 undefined SystemDataBuffer;
 undefined SystemDataStream;
-undefined DAT_180d49650;
+undefined SystemDataPipeline;
 undefined MemoryPoolDescriptor;
 undefined DAT_180d49638;
 undefined MemoryAllocatorState;

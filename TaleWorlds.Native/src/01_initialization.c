@@ -20535,8 +20535,12 @@ void ProcessSystemMemoryRegion(long long *param_1)
 
 
 
-// 函数: void FUN_180048980(long long *param_1)
-void FUN_180048980(long long *param_1)
+// 函数: void InitializeSystemDataTable(long long *param_1)
+/**
+ * @brief 初始化系统数据表
+ * 初始化系统数据表，设置全局数据引用和内存分配器引用
+ */
+void InitializeSystemDataTable(long long *param_1)
 
 {
   void* *puVar1;
@@ -20563,8 +20567,12 @@ void FUN_180048980(long long *param_1)
 
 
 
-// 函数: void FUN_180048a20(ulong long *param_1)
-void FUN_180048a20(ulong long *param_1)
+// 函数: void ProcessSystemExceptionList(ulong long *param_1)
+/**
+ * @brief 处理系统异常列表
+ * 处理系统异常列表，管理异常处理机制
+ */
+void ProcessSystemExceptionList(ulong long *param_1)
 
 {
   int *piVar1;
@@ -21220,7 +21228,15 @@ uint8_t FUN_1800496b0(long long param_1,void* param_2,void* param_3,void* param_
 
 
 // 函数: void FUN_180049770(void)
-void FUN_180049770(void)
+/**
+ * @brief 销毁系统条件变量
+ * 
+ * 该函数负责销毁系统中的条件变量，释放相关资源。
+ * 这是一个清理函数，通常在系统关闭或重置时调用。
+ * 
+ * @note 这是一个系统清理函数，确保条件变量资源的正确释放
+ */
+void DestroySystemConditionVariable(void)
 
 {
   _Cnd_destroy_in_situ();
