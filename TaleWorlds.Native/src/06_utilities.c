@@ -3526,86 +3526,86 @@ uint8_t VerifyObjectRegistration(int64_t objectContext)
 uint64_t ProcessSystemRequest(int64_t requestParameters,int64_t SystemContext)
 
 {
-  int64_t *ProcessResultPointer;
-  int64_t *ResourceTablePointer;
-  int64_t *ResourceIndexPointer;
-  int ValidationStatusCode;
-  uint ProcessResult;
-  uint64_t OperationResult;
-  int64_t *ResourceDataPointer;
-  int64_t *ContextDataPointer;
-  int64_t *CleanupDataPointer;
-  int64_t *NullDataPointer;
+  int64_t *processResultPointer;
+  int64_t *resourceTablePointer;
+  int64_t *resourceIndexPointer;
+  int validationStatusCode;
+  uint processResult;
+  uint64_t operationResult;
+  int64_t *resourceDataPointer;
+  int64_t *contextDataPointer;
+  int64_t *cleanupDataPointer;
+  int64_t *nullDataPointer;
   int64_t memoryContextHandle;
   int64_t validationContext;
   
-  OperationResult = ValidateObjectContext(*(uint32_t *)(requestParameters + 0x18),&validationContext);
-  ValidationStatusCode = (int)OperationResult;
-  if (ValidationStatusCode == 0) {
-    NullDataPointer = (int64_t *)0x0;
-    CleanupDataPointer = NullDataPointer;
+  operationResult = ValidateObjectContext(*(uint32_t *)(requestParameters + 0x18),&validationContext);
+  validationStatusCode = (int)operationResult;
+  if (validationStatusCode == 0) {
+    nullDataPointer = (int64_t *)0x0;
+    cleanupDataPointer = nullDataPointer;
     if (validationContext != 0) {
-      CleanupDataPointer = (int64_t *)(validationContext + -8);
+      cleanupDataPointer = (int64_t *)(validationContext + -8);
     }
-    OperationResult = ValidateObjectContext(*(uint32_t *)(requestParameters + 0x10),&validationContext);
-    ValidationStatusCode = (int)OperationResult;
-    if (ValidationStatusCode == 0) {
+    operationResult = ValidateObjectContext(*(uint32_t *)(requestParameters + 0x10),&validationContext);
+    validationStatusCode = (int)operationResult;
+    if (validationStatusCode == 0) {
       memoryContextHandle = 0;
-      ProcessResult = ProcessSystemObjectValidation(*(uint8_t *)(SystemContext + 0x90),*(int64_t *)(validationContext + 8) + 0x10,
+      processResult = ProcessSystemObjectValidation(*(uint8_t *)(SystemContext + 0x90),*(int64_t *)(validationContext + 8) + 0x10,
                             &memoryContextHandle);
-      if (ProcessResult != 0) {
-        CleanupValidationData(CleanupDataPointer);
-        return (uint64_t)ProcessResult;
+      if (processResult != 0) {
+        CleanupValidationData(cleanupDataPointer);
+        return (uint64_t)processResult;
       }
       if (((*(uint *)(*(int64_t *)(validationContext + 8) + 0xf8) >> 2 & 1) == 0) &&
-         (OperationResult = InitializeMemoryContext(memoryContextHandle), (int)OperationResult != 0)) {
-        return OperationResult;
+         (operationResult = InitializeMemoryContext(memoryContextHandle), (int)operationResult != 0)) {
+        return operationResult;
       }
-      ResourceTablePointer = (int64_t *)(memoryContextHandle + 0x240);
-      ResourceDataPointer = (int64_t *)(*ResourceTablePointer + -0x18);
-      if (*ResourceTablePointer == 0) {
-        ResourceDataPointer = NullDataPointer;
+      resourceTablePointer = (int64_t *)(memoryContextHandle + 0x240);
+      resourceDataPointer = (int64_t *)(*resourceTablePointer + -0x18);
+      if (*resourceTablePointer == 0) {
+        resourceDataPointer = nullDataPointer;
       }
-      ContextDataPointer = NullDataPointer;
-      ResourceIndexPointer = NullDataPointer;
-      if (ResourceDataPointer != (int64_t *)0x0) {
-        ContextDataPointer = ResourceDataPointer + 3;
+      contextDataPointer = nullDataPointer;
+      resourceIndexPointer = nullDataPointer;
+      if (resourceDataPointer != (int64_t *)0x0) {
+        contextDataPointer = resourceDataPointer + 3;
       }
       while( true ) {
-        if (ContextDataPointer == ResourceTablePointer) {
-          *(int64_t **)(memoryContextHandle + 0x80) = CleanupDataPointer;
-          ProcessMemoryData(memoryContextHandle,CleanupDataPointer);
-          CleanupDataPointer[2] = memoryContextHandle;
-          OperationResult = ProcessSystemObjectOperation(memoryContextHandle);
-          if ((int)OperationResult == 0) {
+        if (contextDataPointer == resourceTablePointer) {
+          *(int64_t **)(memoryContextHandle + 0x80) = cleanupDataPointer;
+          ProcessMemoryData(memoryContextHandle,cleanupDataPointer);
+          cleanupDataPointer[2] = memoryContextHandle;
+          operationResult = ProcessSystemObjectOperation(memoryContextHandle);
+          if ((int)operationResult == 0) {
             return 0;
           }
-          return OperationResult;
+          return operationResult;
         }
-        if ((int)CleanupDataPointer[5] <= (int)ResourceIndexPointer) {
+        if ((int)cleanupDataPointer[5] <= (int)resourceIndexPointer) {
           return 0x1c;
         }
-        ResourceDataPointer = ContextDataPointer + 4;
-        if (ContextDataPointer == (int64_t *)0x0) {
-          ResourceDataPointer = (int64_t *)0x38;
+        resourceDataPointer = contextDataPointer + 4;
+        if (contextDataPointer == (int64_t *)0x0) {
+          resourceDataPointer = (int64_t *)0x38;
         }
-        *(int64_t *)(CleanupDataPointer[4] + 8 + (int64_t)ResourceTablePointer) = *ResourceDataPointer;
-        if (ContextDataPointer == ResourceTablePointer) break;
-        ResourceDataPointer = (int64_t *)(*ContextDataPointer + -0x18);
-        if (*ContextDataPointer == 0) {
-          ResourceDataPointer = NullDataPointer;
+        *(int64_t *)(cleanupDataPointer[4] + 8 + (int64_t)resourceTablePointer) = *resourceDataPointer;
+        if (contextDataPointer == resourceTablePointer) break;
+        resourceDataPointer = (int64_t *)(*contextDataPointer + -0x18);
+        if (*contextDataPointer == 0) {
+          resourceDataPointer = nullDataPointer;
         }
-        ContextDataPointer = NullDataPointer;
-        if (ResourceDataPointer != (int64_t *)0x0) {
-          ContextDataPointer = ResourceDataPointer + 3;
+        contextDataPointer = nullDataPointer;
+        if (resourceDataPointer != (int64_t *)0x0) {
+          contextDataPointer = resourceDataPointer + 3;
         }
-        ResourceTablePointer = ResourceTablePointer + 3;
-        ResourceIndexPointer = (int64_t *)(uint64_t)((int)ResourceIndexPointer + 1);
+        resourceTablePointer = resourceTablePointer + 3;
+        resourceIndexPointer = (int64_t *)(uint64_t)((int)resourceIndexPointer + 1);
       }
       return 0x1c;
     }
   }
-  if (validationStatus == 0x1e) {
+  if (validationStatusCode == 0x1e) {
     return 0;
   }
   return operationResult;
@@ -9384,10 +9384,10 @@ void ProcessFloatRangeClamping(void)
   float SecondaryFloatValue;
   uint32_t StackParameter40;
   
-  floatValue4 = *(float *)(CONCAT44(in_register_00000004,in_EAX) + 0x38);
+  floatValue4 = *(float *)(CONCAT44(InputRegisterHigh,InputRegisterLow) + 0x38);
   floatValue1 = *(float *)(ResourceContextPointer + 0x10);
   if ((floatValue4 <= floatValue1) &&
-     (floatValue4 = *(float *)(CONCAT44(in_register_00000004,in_EAX) + 0x3c), floatValue1 <= floatValue4)) {
+     (floatValue4 = *(float *)(CONCAT44(InputRegisterHigh,InputRegisterLow) + 0x3c), floatValue1 <= floatValue4)) {
     floatValue4 = floatValue1;
   }
   *(float *)(ResourceContextPointer + 0x10) = floatValue4;
