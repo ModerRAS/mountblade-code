@@ -2092,9 +2092,9 @@ undefined DAT_180d49178;
 undefined SystemMemoryConfigDataTemplateB;
 undefined DAT_180a001d0;
 undefined SystemMemoryConfigDataTemplateC;
-undefined UNK_180a00030;
-undefined UNK_180a00100;
-undefined UNK_180a00168;
+undefined SystemMemoryConfigDataTemplateD;
+undefined SystemMemoryConfigDataTemplateE;
+undefined SystemMemoryConfigDataTemplateF;
 
  void ConfigureLogOutput;
 /**
@@ -2105,8 +2105,8 @@ undefined UNK_180a00168;
  */
 void ConfigureLogOutput;
 undefined SystemMemoryConfigDataTemplateB;
-undefined UNK_180a00a18;
-undefined UNK_180a00ae8;
+undefined LogOutputConfigDataTemplateA;
+undefined LogOutputConfigDataTemplateB;
 
  void ProcessLogMessage;
 /**
@@ -10329,7 +10329,7 @@ undefined8 CleanupResourcePoolAndReleaseMemory(longlong *ResourcePoolHandle)
   }
   *(undefined4 *)(ResourcePoolHandle + 1) = 0;
   if ((0 < (int)((ResourcePoolFlags ^ (int)ResourcePoolFlags >> 0x1f) - ((int)ResourcePoolFlags >> 0x1f))) &&
-     (OperationStatus = FUN_1807d3f50(ResourcePoolHandle,0), (int)OperationStatus != 0)) {
+     (OperationStatus = ResourcePoolOperation(ResourcePoolHandle,0), (int)OperationStatus != 0)) {
     return OperationStatus;
   }
   return 0;
@@ -10375,10 +10375,10 @@ undefined8 ExpandResourcePoolCapacity(longlong *ResourcePoolHandle)
     }
     SignExtendValue = (int)*(uint *)((longlong)ResourcePoolHandle + 0x1c) >> 0x1f;
     if (((int)((*(uint *)((longlong)ResourcePoolHandle + 0x1c) ^ SignExtendValue) - SignExtendValue) < ResourceCapacity) &&
-       (OperationStatus = FUN_1807d3f50(ResourcePoolHandle + 2,ResourceCapacity), (int)OperationStatus != 0)) {
+       (OperationStatus = ResourcePoolOperation(ResourcePoolHandle + 2,ResourceCapacity), (int)OperationStatus != 0)) {
       return OperationStatus;
     }
-    OperationStatus = FUN_1807703c0(ResourcePoolHandle,ResourceCapacity);
+    OperationStatus = InitializeResourcePool(ResourcePoolHandle,ResourceCapacity);
     if ((int)OperationStatus != 0) {
       return OperationStatus;
     }
@@ -10452,10 +10452,10 @@ undefined8 ExpandResourcePoolCapacitySimple(void)
     }
     uVar5 = (int)*(uint *)((longlong)unaff_RBX + 0x1c) >> 0x1f;
     if (((int)((*(uint *)((longlong)unaff_RBX + 0x1c) ^ uVar5) - uVar5) < iVar7) &&
-       (uVar2 = FUN_1807d3f50(unaff_RBX + 2,iVar7), (int)uVar2 != 0)) {
+       (uVar2 = ResourcePoolOperation(unaff_RBX + 2,iVar7), (int)uVar2 != 0)) {
       return uVar2;
     }
-    uVar2 = FUN_1807703c0();
+    uVar2 = InitializeResourcePool();
     if ((int)uVar2 != 0) {
       return uVar2;
     }
@@ -10580,7 +10580,7 @@ undefined8 ReturnResourcePoolErrorCode(void)
       }
       bVar1 = *(byte *)(param_1 + 0x6c);
       if (*(longlong *)(param_1 + 0xc0) != 0) {
-        uVar5 = FUN_180895ef0(param_1);
+        uVar5 = ProcessSystemParameters(param_1);
         iVar4 = (**(code **)(param_1 + 0xc0))
                           (uVar5,iVar4,*(undefined4 *)(lVar9 + 0x18),*(undefined8 *)(param_1 + 0xb8)
                           );
@@ -10616,7 +10616,7 @@ LAB_18089555d:
       else {
         if ((cVar3 != '\x02') || ((*(byte *)(param_1 + 0x6c) & 4) != 0)) goto LAB_18089555d;
         uStack_6f4 = *(undefined4 *)(lVar9 + 0x20);
-        iVar4 = FUN_180895c60(param_1,iVar4,&uStack_6f4);
+        iVar4 = ProcessDataWithContext(param_1,iVar4,&uStack_6f4);
         if (iVar4 != 0) goto FUN_180895b89;
         iVar4 = ValidateObjectContext(uStack_6f4,alStack_6b0);
         if ((iVar4 != 0) || (*(int *)(alStack_6b0[0] + 0x30) != 2)) goto LAB_18089555d;
@@ -10701,7 +10701,7 @@ void ProcessModuleInitialization(longlong param_1,void* param_2,int *param_3)
       cVar2 = in_R11B;
     }
     if (*(longlong *)(unaff_RDI + 0xc0) != 0) {
-      uVar6 = FUN_180895ef0();
+      uVar6 = ProcessSystemParameters();
       iVar3 = (**(code **)(unaff_RDI + 0xc0))
                         (uVar6,unaff_EBX,*(undefined4 *)(lVar8 + 0x18),
                          *(undefined8 *)(unaff_RDI + 0xb8));
@@ -10738,7 +10738,7 @@ LAB_18089555d:
     else {
       if ((cVar2 != '\x02') || ((*(byte *)(param_1 + 0x6c) & 4) != 0)) goto LAB_18089555d;
       in_stack_00000040._4_4_ = *(undefined4 *)(lVar8 + 0x20);
-      iVar4 = FUN_180895c60(param_1,unaff_EBX,(longlong)&stack0x00000040 + 4);
+      iVar4 = ProcessDataWithContext(param_1,unaff_EBX,(longlong)&stack0x00000040 + 4);
       if (iVar4 != 0) goto LAB_180895b69;
       iVar4 = ValidateObjectContext(in_stack_00000040._4_4_,unaff_RBP + -0x78);
       if ((iVar4 != 0) || (*(int *)(*(longlong *)(unaff_RBP + -0x78) + 0x30) != 2))
@@ -11136,7 +11136,7 @@ uint64_t FindOrInsertInResourcePool(undefined8 resourcePool, int searchKey)
       else if (expandedCapacity < entryCount) {
         expandedCapacity = entryCount;
       }
-      operationResult = FUN_1807d3f50(poolHeader + 2, expandedCapacity);
+      operationResult = ResourcePoolOperation(poolHeader + 2, expandedCapacity);
       if ((int)operationResult != 0) {
         return operationResult;
       }
@@ -11206,7 +11206,7 @@ uint64_t ProcessExtendedResourcePoolDataValidation(undefined8 extendedResourcePo
       else if (iVar7 < iVar4) {
         iVar7 = iVar4;
       }
-      uVar2 = FUN_1807d3f50(unaff_RDI + 0x10,iVar7);
+      uVar2 = ResourcePoolOperation(unaff_RDI + 0x10,iVar7);
       if ((int)uVar2 != 0) {
         return uVar2;
       }
@@ -11279,7 +11279,7 @@ uint64_t ValidateAndProcessParameters(int minValue,int maxValue,undefined8 syste
   if (maxValue < minValue) {
     maxValue = minValue;
   }
-  resourceHash = FUN_1807d3f50(unaff_RDI + 0x10,maxValue);
+  resourceHash = ResourcePoolOperation(unaff_RDI + 0x10,maxValue);
   if ((int)resourceHash == 0) {
     puVar2 = (undefined8 *)
              ((longlong)*(int *)(unaff_RDI + 0x18) * 0x10 + *(longlong *)(unaff_RDI + 0x10));
@@ -12217,7 +12217,7 @@ undefined8 ValidateAndGetBufferContext(longlong param_1,undefined8 param_2,undef
       func_0x00018076b450(auStack_260,*(undefined8 *)(param_2 + 0x228),0x200);
       ppuVar6 = &puStack_278;
 LAB_180896ce3:
-      iVar3 = FUN_180897520(param_1,ppuVar6);
+      iVar3 = GetAndValidateResourceData(param_1,ppuVar6);
     }
     else {
       iStack_2f0 = 0;
@@ -12239,7 +12239,7 @@ LAB_180896ce3:
       lStack_2d8 = (ulonglong)param_3 << 0x20;
       uStack_2e8 = *(undefined8 *)(param_2 + 0x228);
       uStack_2e0 = (ulonglong)CONCAT14(iVar3 != 1,*(undefined4 *)(param_2 + 0x230));
-      iVar3 = FUN_180897520(param_1,&puStack_2f8);
+      iVar3 = GetAndValidateResourceData(param_1,&puStack_2f8);
     }
     if (iVar3 != 0) goto FUN_1808974f4;
     uStack_298 = *(uint *)(resourceData + 0x10);
@@ -12250,7 +12250,7 @@ LAB_180896ce3:
     puStack_2a8 = &UNK_180985a80;
     uStack_284 = 0;
     uStack_288 = param_3;
-    iVar3 = FUN_180897520(param_1,&puStack_2a8);
+    iVar3 = GetAndValidateResourceData(param_1,&puStack_2a8);
     if (iVar3 != 0) goto FUN_1808974f4;
     iVar7 = 0;
     iVar3 = *(int *)(*(longlong *)(param_2 + 0x2e8) + 0x2c);
@@ -12259,7 +12259,7 @@ LAB_180896ce3:
         iStack_2f0 = 0;
         puStack_2f8 = &UNK_180982cc0;
         uStack_2e8 = CONCAT44(uStack_2e8._4_4_,param_3);
-        iVar4 = FUN_180897520(param_1,&puStack_2f8);
+        iVar4 = GetAndValidateResourceData(param_1,&puStack_2f8);
         if (iVar4 != 0) goto FUN_1808974f4;
         iVar7 = iVar7 + 1;
       } while (iVar7 < iVar3);
@@ -12284,7 +12284,7 @@ LAB_180896ce3:
         iStack_2a0 = iVar7;
         uStack_298 = param_3;
         iStack_290 = tableEntry;
-        tableEntry = FUN_180897520(param_1,&puStack_2a8);
+        tableEntry = GetAndValidateResourceData(param_1,&puStack_2a8);
         if ((tableEntry != 0) || (tableEntry = FUN_18088c970(resourceTable,afStack_304), tableEntry != 0))
         goto FUN_1808974f4;
         if (afStack_304[0] != 1.0) {
@@ -12292,7 +12292,7 @@ LAB_180896ce3:
           puStack_2f8 = &UNK_1809842e0;
           uStack_2e8 = CONCAT44(uStack_2e8._4_4_,uStack_308);
           iStack_2f0 = tableEntry;
-          tableEntry = FUN_180897520(param_1,&puStack_2f8);
+          tableEntry = GetAndValidateResourceData(param_1,&puStack_2f8);
           if (tableEntry != 0) goto FUN_1808974f4;
         }
         if (*(char *)(resourceTable + 0x28) != '\0') {
@@ -12300,7 +12300,7 @@ LAB_180896ce3:
           puStack_2f8 = &UNK_180984358;
           uStack_2e8 = CONCAT44(uStack_2e8._4_4_,uStack_308);
           uStack_2e0 = CONCAT71(uStack_2e0._1_7_,1);
-          tableEntry = FUN_180897520(param_1,&puStack_2f8);
+          tableEntry = GetAndValidateResourceData(param_1,&puStack_2f8);
           if (tableEntry != 0) goto FUN_1808974f4;
         }
         tableEntry = iVar4;
@@ -12309,7 +12309,7 @@ LAB_180896ce3:
           puStack_2f8 = &UNK_1809843d0;
           uStack_2e8 = CONCAT44(uStack_2e8._4_4_,uStack_308);
           uStack_2e0 = CONCAT71(uStack_2e0._1_7_,1);
-          iVar7 = FUN_180897520(param_1,&puStack_2f8);
+          iVar7 = GetAndValidateResourceData(param_1,&puStack_2f8);
           if (iVar7 != 0) goto FUN_1808974f4;
         }
       }
@@ -12331,7 +12331,7 @@ LAB_180896ce3:
         iStack_2a0 = iVar7;
         uStack_298 = param_3;
         iStack_290 = tableEntry;
-        tableEntry = FUN_180897520(param_1,&puStack_2a8);
+        tableEntry = GetAndValidateResourceData(param_1,&puStack_2a8);
         if ((tableEntry != 0) || (tableEntry = FUN_18088c970(resourceTable,afStack_304), tableEntry != 0))
         goto FUN_1808974f4;
         if (afStack_304[0] != 1.0) {
@@ -12339,7 +12339,7 @@ LAB_180896ce3:
           puStack_2f8 = &UNK_1809842e0;
           uStack_2e8 = CONCAT44(uStack_2e8._4_4_,uStack_308);
           iStack_2f0 = tableEntry;
-          tableEntry = FUN_180897520(param_1,&puStack_2f8);
+          tableEntry = GetAndValidateResourceData(param_1,&puStack_2f8);
           if (tableEntry != 0) goto FUN_1808974f4;
         }
         if (*(char *)(resourceTable + 0x28) != '\0') {
@@ -12347,7 +12347,7 @@ LAB_180896ce3:
           puStack_2f8 = &UNK_180984358;
           uStack_2e8 = CONCAT44(uStack_2e8._4_4_,uStack_308);
           uStack_2e0 = CONCAT71(uStack_2e0._1_7_,1);
-          tableEntry = FUN_180897520(param_1,&puStack_2f8);
+          tableEntry = GetAndValidateResourceData(param_1,&puStack_2f8);
           if (tableEntry != 0) goto FUN_1808974f4;
         }
         tableEntry = iVar4;
@@ -12356,7 +12356,7 @@ LAB_180896ce3:
           puStack_2f8 = &UNK_1809843d0;
           uStack_2e8 = CONCAT44(uStack_2e8._4_4_,uStack_308);
           uStack_2e0 = CONCAT71(uStack_2e0._1_7_,1);
-          iVar7 = FUN_180897520(param_1,&puStack_2f8);
+          iVar7 = GetAndValidateResourceData(param_1,&puStack_2f8);
           if (iVar7 != 0) goto FUN_1808974f4;
         }
       }
@@ -12378,7 +12378,7 @@ LAB_180896ce3:
         iStack_2a0 = iVar7;
         uStack_298 = param_3;
         iStack_290 = tableEntry;
-        tableEntry = FUN_180897520(param_1,&puStack_2a8);
+        tableEntry = GetAndValidateResourceData(param_1,&puStack_2a8);
         if ((tableEntry != 0) || (tableEntry = FUN_18088c970(resourceTable,afStack_304), tableEntry != 0))
         goto FUN_1808974f4;
         if (afStack_304[0] != 1.0) {
@@ -12386,7 +12386,7 @@ LAB_180896ce3:
           puStack_2f8 = &UNK_1809842e0;
           uStack_2e8 = CONCAT44(uStack_2e8._4_4_,uStack_308);
           iStack_2f0 = tableEntry;
-          tableEntry = FUN_180897520(param_1,&puStack_2f8);
+          tableEntry = GetAndValidateResourceData(param_1,&puStack_2f8);
           if (tableEntry != 0) goto FUN_1808974f4;
         }
         if (*(char *)(resourceTable + 0x28) != '\0') {
@@ -12394,7 +12394,7 @@ LAB_180896ce3:
           puStack_2f8 = &UNK_180984358;
           uStack_2e8 = CONCAT44(uStack_2e8._4_4_,uStack_308);
           uStack_2e0 = CONCAT71(uStack_2e0._1_7_,1);
-          tableEntry = FUN_180897520(param_1,&puStack_2f8);
+          tableEntry = GetAndValidateResourceData(param_1,&puStack_2f8);
           if (tableEntry != 0) goto FUN_1808974f4;
         }
         tableEntry = iVar4;
@@ -12403,7 +12403,7 @@ LAB_180896ce3:
           puStack_2f8 = &UNK_1809843d0;
           uStack_2e8 = CONCAT44(uStack_2e8._4_4_,uStack_308);
           uStack_2e0 = CONCAT71(uStack_2e0._1_7_,1);
-          iVar7 = FUN_180897520(param_1,&puStack_2f8);
+          iVar7 = GetAndValidateResourceData(param_1,&puStack_2f8);
           if (iVar7 != 0) goto FUN_1808974f4;
         }
       }
@@ -12425,7 +12425,7 @@ LAB_180896ce3:
         iStack_2a0 = iVar7;
         uStack_298 = param_3;
         iStack_290 = tableEntry;
-        tableEntry = FUN_180897520(param_1,&puStack_2a8);
+        tableEntry = GetAndValidateResourceData(param_1,&puStack_2a8);
         if ((tableEntry != 0) || (tableEntry = FUN_18088c970(resourceTable,afStack_304), tableEntry != 0))
         goto FUN_1808974f4;
         if (afStack_304[0] != 1.0) {
@@ -12433,7 +12433,7 @@ LAB_180896ce3:
           puStack_2f8 = &UNK_1809842e0;
           uStack_2e8 = CONCAT44(uStack_2e8._4_4_,uStack_308);
           iStack_2f0 = tableEntry;
-          tableEntry = FUN_180897520(param_1,&puStack_2f8);
+          tableEntry = GetAndValidateResourceData(param_1,&puStack_2f8);
           if (tableEntry != 0) goto FUN_1808974f4;
         }
         if (*(char *)(resourceTable + 0x28) != '\0') {
@@ -12441,7 +12441,7 @@ LAB_180896ce3:
           puStack_2f8 = &UNK_180984358;
           uStack_2e8 = CONCAT44(uStack_2e8._4_4_,uStack_308);
           uStack_2e0 = CONCAT71(uStack_2e0._1_7_,1);
-          tableEntry = FUN_180897520(param_1,&puStack_2f8);
+          tableEntry = GetAndValidateResourceData(param_1,&puStack_2f8);
           if (tableEntry != 0) goto FUN_1808974f4;
         }
         tableEntry = iVar4;
@@ -12450,7 +12450,7 @@ LAB_180896ce3:
           puStack_2f8 = &UNK_1809843d0;
           uStack_2e8 = CONCAT44(uStack_2e8._4_4_,uStack_308);
           uStack_2e0 = CONCAT71(uStack_2e0._1_7_,1);
-          iVar7 = FUN_180897520(param_1,&puStack_2f8);
+          iVar7 = GetAndValidateResourceData(param_1,&puStack_2f8);
           if (iVar7 != 0) goto FUN_1808974f4;
         }
       }
@@ -12475,7 +12475,7 @@ LAB_180896ce3:
         iStack_2a0 = iVar7;
         uStack_298 = param_3;
         iStack_290 = tableEntry;
-        tableEntry = FUN_180897520(param_1,&puStack_2a8);
+        tableEntry = GetAndValidateResourceData(param_1,&puStack_2a8);
         if ((tableEntry != 0) || (iVar7 = FUN_18088cbb0(resourceTable,afStack_304,0), iVar7 != 0)) break;
         tableEntry = iVar4;
         if (afStack_304[0] != 1.0) {
@@ -12483,7 +12483,7 @@ LAB_180896ce3:
           puStack_2f8 = &UNK_1809844c8;
           uStack_2e8 = CONCAT44(uStack_2e8._4_4_,uStack_308);
           iStack_2f0 = iVar7;
-          iVar7 = FUN_180897520(param_1,&puStack_2f8);
+          iVar7 = GetAndValidateResourceData(param_1,&puStack_2f8);
           if (iVar7 != 0) break;
         }
       }
@@ -12570,7 +12570,7 @@ void ModuleProcessErrorHandler(void)
         *(undefined4 *)(unaff_RBP + -0x60) = uVar4;
         *(undefined4 *)(unaff_RBP + -0x5c) = uVar5;
         *(undefined4 *)(unaff_RBP + -0x58) = uVar6;
-        iVar8 = FUN_180897520(uVar3,unaff_RBP + -0x80);
+        iVar8 = GetAndValidateResourceData(uVar3,unaff_RBP + -0x80);
         if ((iVar8 != 0) || (iVar8 = FUN_18088c970(resourceTable,&fStackX_24), iVar8 != 0))
         goto LAB_1808974ec;
         fVar10 = fStackX_24;
@@ -12579,7 +12579,7 @@ void ModuleProcessErrorHandler(void)
           in_stack_00000030 = &UNK_1809842e0;
           in_stack_00000040 = uStackX_20;
           in_stack_00000038 = iVar8;
-          iVar8 = FUN_180897520(fStackX_24,&stack0x00000030);
+          iVar8 = GetAndValidateResourceData(fStackX_24,&stack0x00000030);
           fVar10 = extraout_XMM0_Da;
           if (iVar8 != 0) goto LAB_1808974ec;
         }
@@ -12588,7 +12588,7 @@ void ModuleProcessErrorHandler(void)
           in_stack_00000030 = &UNK_180984358;
           in_stack_00000040 = uStackX_20;
           in_stack_00000048 = (float)CONCAT31(in_stack_00000048._1_3_,1);
-          iVar8 = FUN_180897520(fVar10,&stack0x00000030);
+          iVar8 = GetAndValidateResourceData(fVar10,&stack0x00000030);
           fVar10 = extraout_XMM0_Da_00;
           if (iVar8 != 0) goto LAB_1808974ec;
         }
@@ -12597,7 +12597,7 @@ void ModuleProcessErrorHandler(void)
           in_stack_00000030 = &UNK_1809843d0;
           in_stack_00000040 = uStackX_20;
           in_stack_00000048 = (float)CONCAT31(in_stack_00000048._1_3_,1);
-          iVar8 = FUN_180897520(fVar10,&stack0x00000030);
+          iVar8 = GetAndValidateResourceData(fVar10,&stack0x00000030);
           if (iVar8 != 0) goto LAB_1808974ec;
         }
       }
@@ -12623,7 +12623,7 @@ void ModuleProcessErrorHandler(void)
         *(undefined4 *)(unaff_RBP + -0x60) = uVar4;
         *(undefined4 *)(unaff_RBP + -0x5c) = uVar5;
         *(undefined4 *)(unaff_RBP + -0x58) = uVar6;
-        iVar8 = FUN_180897520(uVar3,unaff_RBP + -0x80);
+        iVar8 = GetAndValidateResourceData(uVar3,unaff_RBP + -0x80);
         if ((iVar8 != 0) || (iVar8 = FUN_18088c970(resourceTable,&fStackX_24), iVar8 != 0))
         goto LAB_1808974ec;
         fVar10 = fStackX_24;
@@ -12632,7 +12632,7 @@ void ModuleProcessErrorHandler(void)
           in_stack_00000030 = &UNK_1809842e0;
           in_stack_00000040 = uStackX_20;
           in_stack_00000038 = iVar8;
-          iVar8 = FUN_180897520(fStackX_24,&stack0x00000030);
+          iVar8 = GetAndValidateResourceData(fStackX_24,&stack0x00000030);
           fVar10 = extraout_XMM0_Da_01;
           if (iVar8 != 0) goto LAB_1808974ec;
         }
@@ -12641,7 +12641,7 @@ void ModuleProcessErrorHandler(void)
           in_stack_00000030 = &UNK_180984358;
           in_stack_00000040 = uStackX_20;
           in_stack_00000048 = (float)CONCAT31(in_stack_00000048._1_3_,1);
-          iVar8 = FUN_180897520(fVar10,&stack0x00000030);
+          iVar8 = GetAndValidateResourceData(fVar10,&stack0x00000030);
           fVar10 = extraout_XMM0_Da_02;
           if (iVar8 != 0) goto LAB_1808974ec;
         }
@@ -12650,7 +12650,7 @@ void ModuleProcessErrorHandler(void)
           in_stack_00000030 = &UNK_1809843d0;
           in_stack_00000040 = uStackX_20;
           in_stack_00000048 = (float)CONCAT31(in_stack_00000048._1_3_,1);
-          iVar8 = FUN_180897520(fVar10,&stack0x00000030);
+          iVar8 = GetAndValidateResourceData(fVar10,&stack0x00000030);
           if (iVar8 != 0) goto LAB_1808974ec;
         }
       }
@@ -12676,7 +12676,7 @@ void ModuleProcessErrorHandler(void)
         *(undefined4 *)(unaff_RBP + -0x60) = uVar4;
         *(undefined4 *)(unaff_RBP + -0x5c) = uVar5;
         *(undefined4 *)(unaff_RBP + -0x58) = uVar6;
-        iVar8 = FUN_180897520(uVar3,unaff_RBP + -0x80);
+        iVar8 = GetAndValidateResourceData(uVar3,unaff_RBP + -0x80);
         if ((iVar8 != 0) || (iVar8 = FUN_18088c970(resourceTable,&fStackX_24), iVar8 != 0))
         goto LAB_1808974ec;
         fVar10 = fStackX_24;
@@ -12685,7 +12685,7 @@ void ModuleProcessErrorHandler(void)
           in_stack_00000030 = &UNK_1809842e0;
           in_stack_00000040 = uStackX_20;
           in_stack_00000038 = iVar8;
-          iVar8 = FUN_180897520(fStackX_24,&stack0x00000030);
+          iVar8 = GetAndValidateResourceData(fStackX_24,&stack0x00000030);
           fVar10 = extraout_XMM0_Da_03;
           if (iVar8 != 0) goto LAB_1808974ec;
         }
@@ -12694,7 +12694,7 @@ void ModuleProcessErrorHandler(void)
           in_stack_00000030 = &UNK_180984358;
           in_stack_00000040 = uStackX_20;
           in_stack_00000048 = (float)CONCAT31(in_stack_00000048._1_3_,1);
-          iVar8 = FUN_180897520(fVar10,&stack0x00000030);
+          iVar8 = GetAndValidateResourceData(fVar10,&stack0x00000030);
           fVar10 = extraout_XMM0_Da_04;
           if (iVar8 != 0) goto LAB_1808974ec;
         }
@@ -12703,7 +12703,7 @@ void ModuleProcessErrorHandler(void)
           in_stack_00000030 = &UNK_1809843d0;
           in_stack_00000040 = uStackX_20;
           in_stack_00000048 = (float)CONCAT31(in_stack_00000048._1_3_,1);
-          iVar8 = FUN_180897520(fVar10,&stack0x00000030);
+          iVar8 = GetAndValidateResourceData(fVar10,&stack0x00000030);
           if (iVar8 != 0) goto LAB_1808974ec;
         }
       }
@@ -12729,7 +12729,7 @@ void ModuleProcessErrorHandler(void)
         *(undefined4 *)(unaff_RBP + -0x60) = uVar4;
         *(undefined4 *)(unaff_RBP + -0x5c) = uVar5;
         *(undefined4 *)(unaff_RBP + -0x58) = uVar6;
-        iVar8 = FUN_180897520(uVar3,unaff_RBP + -0x80);
+        iVar8 = GetAndValidateResourceData(uVar3,unaff_RBP + -0x80);
         if ((iVar8 != 0) || (iVar8 = FUN_18088c970(resourceTable,&fStackX_24), iVar8 != 0))
         goto LAB_1808974ec;
         fVar10 = fStackX_24;
@@ -12738,7 +12738,7 @@ void ModuleProcessErrorHandler(void)
           in_stack_00000030 = &UNK_1809842e0;
           in_stack_00000040 = uStackX_20;
           in_stack_00000038 = iVar8;
-          iVar8 = FUN_180897520(fStackX_24,&stack0x00000030);
+          iVar8 = GetAndValidateResourceData(fStackX_24,&stack0x00000030);
           fVar10 = extraout_XMM0_Da_05;
           if (iVar8 != 0) goto LAB_1808974ec;
         }
@@ -12747,7 +12747,7 @@ void ModuleProcessErrorHandler(void)
           in_stack_00000030 = &UNK_180984358;
           in_stack_00000040 = uStackX_20;
           in_stack_00000048 = (float)CONCAT31(in_stack_00000048._1_3_,1);
-          iVar8 = FUN_180897520(fVar10,&stack0x00000030);
+          iVar8 = GetAndValidateResourceData(fVar10,&stack0x00000030);
           fVar10 = extraout_XMM0_Da_06;
           if (iVar8 != 0) goto LAB_1808974ec;
         }
@@ -12756,7 +12756,7 @@ void ModuleProcessErrorHandler(void)
           in_stack_00000030 = &UNK_1809843d0;
           in_stack_00000040 = uStackX_20;
           in_stack_00000048 = (float)CONCAT31(in_stack_00000048._1_3_,1);
-          iVar8 = FUN_180897520(fVar10,&stack0x00000030);
+          iVar8 = GetAndValidateResourceData(fVar10,&stack0x00000030);
           if (iVar8 != 0) goto LAB_1808974ec;
         }
       }
@@ -12785,14 +12785,14 @@ void ModuleProcessErrorHandler(void)
         *(undefined4 *)(unaff_RBP + -0x60) = uVar4;
         *(undefined4 *)(unaff_RBP + -0x5c) = uVar5;
         *(undefined4 *)(unaff_RBP + -0x58) = uVar6;
-        iVar9 = FUN_180897520(uVar3,unaff_RBP + -0x80);
+        iVar9 = GetAndValidateResourceData(uVar3,unaff_RBP + -0x80);
         if ((iVar9 != 0) || (iVar9 = FUN_18088cbb0(resourceTable,&fStackX_24,0), iVar9 != 0)) break;
         if (fStackX_24 != 1.0) {
           in_stack_00000048 = fStackX_24;
           in_stack_00000030 = &UNK_1809844c8;
           in_stack_00000040 = uStackX_20;
           in_stack_00000038 = iVar9;
-          iVar9 = FUN_180897520(fStackX_24,&stack0x00000030);
+          iVar9 = GetAndValidateResourceData(fStackX_24,&stack0x00000030);
           if (iVar9 != 0) break;
         }
       }
@@ -12834,7 +12834,7 @@ LAB_1808974ec:
   
   uStack_28 = _DAT_180bf00a8 ^ (ulonglong)auStack_248;
   lVar1 = param_1[4];
-  if (((char)lVar1 != '\0') || (iVar2 = FUN_1808987e0(param_1,1), iVar2 == 0)) {
+  if (((char)lVar1 != '\0') || (iVar2 = CheckSystemStatus(param_1,1), iVar2 == 0)) {
     iVar2 = (**(code **)(*param_2 + 0x10))(param_2,auStack_228,0x200);
     func_0x00018074b7b0(auStack_228 + iVar2,0x200 - iVar2,10);
     iVar2 = (**(code **)(*param_1 + 8))(param_1,auStack_228);
@@ -12977,7 +12977,7 @@ LAB_1808974ec:
       puStack_178 = &UNK_1809832b8;
       uStack_160 = uStack_1c8;
       uStack_168 = uStack_1a0;
-      iVar6 = FUN_180897520(param_1,&puStack_178);
+      iVar6 = GetAndValidateResourceData(param_1,&puStack_178);
       if (iVar6 == 0) {
         lStack_188 = (longlong)*(int *)(resourceTable + 0x28);
         lVar8 = lVar14;
@@ -13003,7 +13003,7 @@ LAB_1808974ec:
                 presourceHash2 = *(undefined **)(resourceIndex + 0x50);
               }
               func_0x00018076b450(auStack_e0,presourceHash2,0x80);
-              iVar6 = FUN_180897520(param_1,&puStack_108);
+              iVar6 = GetAndValidateResourceData(param_1,&puStack_108);
               if (iVar6 != 0) goto FUN_180897b16;
             }
             lVar8 = lVar8 + 1;
@@ -13032,7 +13032,7 @@ LAB_1808974ec:
               uStack_118 = *(undefined4 *)(resourceTable + 0x60);
               uStack_114 = *(undefined4 *)(resourceTable + 100);
               uStack_148 = uStack_1c8;
-              iVar6 = FUN_180897520(param_1,&puStack_158);
+              iVar6 = GetAndValidateResourceData(param_1,&puStack_158);
               if (iVar6 != 0) goto FUN_180897b16;
             }
           }
@@ -13043,7 +13043,7 @@ LAB_1808974ec:
               puStack_1c0 = &UNK_180983738;
               uStack_1b0 = uStack_1c8;
               uStack_1b8 = 0;
-              iVar6 = FUN_180897520(param_1,&puStack_1c0);
+              iVar6 = GetAndValidateResourceData(param_1,&puStack_1c0);
               if (iVar6 != 0) goto FUN_180897b16;
             }
             iVar6 = FUN_180868270(resourceTable,afStack_198,0);
@@ -13053,7 +13053,7 @@ LAB_1808974ec:
                 puStack_1c0 = &UNK_1809837c0;
                 uStack_1b0 = uStack_1c8;
                 uStack_1b8 = 0;
-                iVar6 = FUN_180897520(param_1,&puStack_1c0);
+                iVar6 = GetAndValidateResourceData(param_1,&puStack_1c0);
                 if (iVar6 != 0) goto FUN_180897b16;
               }
               fVar13 = 0.0;
@@ -13065,7 +13065,7 @@ LAB_1808974ec:
                   puStack_1c0 = &UNK_1809839d8;
                   fStack_1a8 = fVar13;
                   fStack_1a4 = *pfVar15;
-                  iVar6 = FUN_180897520(param_1,&puStack_1c0);
+                  iVar6 = GetAndValidateResourceData(param_1,&puStack_1c0);
                   if (iVar6 != 0) goto FUN_180897b16;
                 }
                 fVar13 = (float)((int)fVar13 + 1);
@@ -13081,7 +13081,7 @@ LAB_1808974ec:
                   puStack_1c0 = &UNK_180983950;
                   fStack_1a8 = fVar13;
                   fStack_1a4 = fVar1;
-                  iVar6 = FUN_180897520(param_1,&puStack_1c0);
+                  iVar6 = GetAndValidateResourceData(param_1,&puStack_1c0);
                   if (iVar6 != 0) goto FUN_180897b16;
                 }
                 fVar13 = (float)((int)fVar13 + 1);
@@ -13093,7 +13093,7 @@ LAB_1808974ec:
                 uStack_1b0 = uStack_1c8;
                 uStack_1b8 = 0;
                 fStack_1a8 = (float)(uVar7 / 0x30);
-                iVar6 = FUN_180897520(param_1,&puStack_1c0);
+                iVar6 = GetAndValidateResourceData(param_1,&puStack_1c0);
                 if (iVar6 != 0) goto FUN_180897b16;
               }
               if ((*(uint *)(resourceData + 0x2d8) >> 1 & 1) != 0) {
@@ -13101,7 +13101,7 @@ LAB_1808974ec:
                 puStack_1c0 = &UNK_180983a60;
                 uStack_1b0 = uStack_1c8;
                 fStack_1a8 = (float)CONCAT31(fStack_1a8._1_3_,1);
-                iVar6 = FUN_180897520(param_1,&puStack_1c0);
+                iVar6 = GetAndValidateResourceData(param_1,&puStack_1c0);
                 if (iVar6 != 0) goto FUN_180897b16;
               }
               iVar6 = FUN_1808605e0(param_2);
@@ -13109,7 +13109,7 @@ LAB_1808974ec:
                 uStack_1b8 = 0;
                 puStack_1c0 = &UNK_180983ae8;
                 uStack_1b0 = uStack_1c8;
-                iVar6 = FUN_180897520(param_1,&puStack_1c0);
+                iVar6 = GetAndValidateResourceData(param_1,&puStack_1c0);
                 if (iVar6 != 0) goto FUN_180897b16;
               }
               iVar6 = FUN_1808605e0(param_2);
@@ -13118,14 +13118,14 @@ LAB_1808974ec:
                 puStack_1c0 = &UNK_180983b68;
                 uStack_1b0 = uStack_1c8;
                 fStack_1a8 = 0.0;
-                iVar6 = FUN_180897520(param_1,&puStack_1c0);
+                iVar6 = GetAndValidateResourceData(param_1,&puStack_1c0);
                 if (iVar6 != 0) goto FUN_180897b16;
               }
               if ((*(uint *)(resourceData + 0x2d8) >> 3 & 1) != 0) {
                 uStack_1b8 = 0;
                 puStack_1c0 = &UNK_180983cf8;
                 uStack_1b0 = uStack_1c8;
-                FUN_180897520(param_1,&puStack_1c0);
+                GetAndValidateResourceData(param_1,&puStack_1c0);
               }
             }
           }
@@ -13230,7 +13230,7 @@ void BufferValidationErrorHandler(void)
     *(undefined4 *)(unaff_RBP + -0xf) = uStackX_20;
     *(float *)(unaff_RBP + -0x10) = fStack0000000000000048;
     in_stack_00000078 = unaff_R13D;
-    iVar13 = FUN_180897520(extraout_XMM0_Da,&stack0x00000070);
+    iVar13 = GetAndValidateResourceData(extraout_XMM0_Da,&stack0x00000070);
     if (iVar13 == 0) {
       in_stack_00000060 = (longlong)*(int *)(unaff_R15 + 0x28);
       if (0 < in_stack_00000060) {
@@ -13259,7 +13259,7 @@ void BufferValidationErrorHandler(void)
               presourceHash8 = *(undefined **)(resourceTable + 0x50);
             }
             uVar24 = func_0x00018076b450(unaff_RBP + 1,presourceHash8,0x80);
-            iVar13 = FUN_180897520(uVar24,unaff_RBP + -4);
+            iVar13 = GetAndValidateResourceData(uVar24,unaff_RBP + -4);
             if (iVar13 != 0) goto FUN_180897b0e;
           }
           unaff_R13D = 0.0;
@@ -13301,7 +13301,7 @@ void BufferValidationErrorHandler(void)
             *(undefined4 *)((longlong)unaff_RBP + -0x34) = uVar9;
             *(undefined4 *)(unaff_RBP + -6) = resourceHash0;
             *(undefined4 *)((longlong)unaff_RBP + -0x2c) = resourceHash1;
-            iVar13 = FUN_180897520(uVar8,unaff_RBP + -0xe);
+            iVar13 = GetAndValidateResourceData(uVar8,unaff_RBP + -0xe);
             uVar24 = extraout_XMM0_Da_02;
             if (iVar13 != 0) goto FUN_180897b0e;
           }
@@ -13315,7 +13315,7 @@ void BufferValidationErrorHandler(void)
             in_stack_00000028 = &UNK_180983738;
             in_stack_00000038 = uStackX_20;
             in_stack_00000030 = unaff_R13D;
-            iVar13 = FUN_180897520(fStack000000000000004c,&stack0x00000028);
+            iVar13 = GetAndValidateResourceData(fStack000000000000004c,&stack0x00000028);
             fStack000000000000004c = extraout_XMM0_Da_03;
             if (iVar13 != 0) goto FUN_180897b0e;
           }
@@ -13326,7 +13326,7 @@ void BufferValidationErrorHandler(void)
               in_stack_00000028 = &UNK_1809837c0;
               in_stack_00000038 = uStackX_20;
               in_stack_00000030 = unaff_R13D;
-              iVar13 = FUN_180897520(in_stack_00000050,&stack0x00000028);
+              iVar13 = GetAndValidateResourceData(in_stack_00000050,&stack0x00000028);
               if (iVar13 != 0) goto FUN_180897b0e;
             }
             pfVar21 = (float *)(unaff_R15 + 0x94);
@@ -13339,7 +13339,7 @@ void BufferValidationErrorHandler(void)
                 in_stack_00000030 = unaff_R13D;
                 fStack0000000000000040 = fVar19;
                 fStack0000000000000044 = fVar1;
-                iVar13 = FUN_180897520(fVar1,&stack0x00000028);
+                iVar13 = GetAndValidateResourceData(fVar1,&stack0x00000028);
                 if (iVar13 != 0) goto FUN_180897b0e;
               }
               fVar19 = (float)((int)fVar19 + 1);
@@ -13355,7 +13355,7 @@ void BufferValidationErrorHandler(void)
                 in_stack_00000030 = unaff_R13D;
                 fStack0000000000000040 = fVar19;
                 fStack0000000000000044 = fVar1;
-                iVar13 = FUN_180897520(fVar1,&stack0x00000028);
+                iVar13 = GetAndValidateResourceData(fVar1,&stack0x00000028);
                 if (iVar13 != 0) goto FUN_180897b0e;
               }
               fVar19 = (float)((int)fVar19 + 1);
@@ -13368,7 +13368,7 @@ void BufferValidationErrorHandler(void)
               in_stack_00000038 = uStackX_20;
               in_stack_00000030 = unaff_R13D;
               fStack0000000000000040 = (float)(resourceHash4 / 0x30);
-              iVar13 = FUN_180897520(extraout_XMM0_Da_04,&stack0x00000028);
+              iVar13 = GetAndValidateResourceData(extraout_XMM0_Da_04,&stack0x00000028);
               uVar24 = extraout_XMM0_Da_05;
               if (iVar13 != 0) goto FUN_180897b0e;
             }
@@ -13377,7 +13377,7 @@ void BufferValidationErrorHandler(void)
               in_stack_00000038 = uStackX_20;
               fStack0000000000000040 = (float)CONCAT31(fStack0000000000000040._1_3_,1);
               in_stack_00000030 = unaff_R13D;
-              iVar13 = FUN_180897520(uVar24,&stack0x00000028);
+              iVar13 = GetAndValidateResourceData(uVar24,&stack0x00000028);
               if (iVar13 != 0) goto FUN_180897b0e;
             }
             iVar13 = FUN_1808605e0(unaff_R14);
@@ -13385,7 +13385,7 @@ void BufferValidationErrorHandler(void)
               in_stack_00000028 = &UNK_180983ae8;
               in_stack_00000038 = uStackX_20;
               in_stack_00000030 = unaff_R13D;
-              iVar13 = FUN_180897520(extraout_XMM0_Da_06,&stack0x00000028);
+              iVar13 = GetAndValidateResourceData(extraout_XMM0_Da_06,&stack0x00000028);
               if (iVar13 != 0) goto FUN_180897b0e;
             }
             iVar13 = FUN_1808605e0(unaff_R14);
@@ -13395,7 +13395,7 @@ void BufferValidationErrorHandler(void)
               in_stack_00000038 = uStackX_20;
               in_stack_00000030 = unaff_R13D;
               fStack0000000000000040 = unaff_R13D;
-              iVar13 = FUN_180897520(extraout_XMM0_Da_07,&stack0x00000028);
+              iVar13 = GetAndValidateResourceData(extraout_XMM0_Da_07,&stack0x00000028);
               uVar24 = extraout_XMM0_Da_08;
               if (iVar13 != 0) goto FUN_180897b0e;
             }
@@ -13403,7 +13403,7 @@ void BufferValidationErrorHandler(void)
               in_stack_00000028 = &UNK_180983cf8;
               in_stack_00000038 = uStackX_20;
               in_stack_00000030 = unaff_R13D;
-              FUN_180897520(uVar24,&stack0x00000028);
+              GetAndValidateResourceData(uVar24,&stack0x00000028);
             }
           }
         }
@@ -13520,7 +13520,7 @@ void DataProcessingErrorHandler(void)
           presourceHash8 = *(undefined **)(resourceTable + 0x50);
         }
         uVar23 = func_0x00018076b450(unaff_RBP + 1,presourceHash8,0x80);
-        iVar13 = FUN_180897520(uVar23,unaff_RBP + -4);
+        iVar13 = GetAndValidateResourceData(uVar23,unaff_RBP + -4);
         if (iVar13 != 0) goto FUN_180897afe;
       }
       unaff_R13D = 0.0;
@@ -13562,7 +13562,7 @@ void DataProcessingErrorHandler(void)
         *(undefined4 *)((longlong)unaff_RBP + -0x34) = uVar9;
         *(undefined4 *)(unaff_RBP + -6) = resourceHash0;
         *(undefined4 *)((longlong)unaff_RBP + -0x2c) = resourceHash1;
-        iVar13 = FUN_180897520(uVar8,unaff_RBP + -0xe);
+        iVar13 = GetAndValidateResourceData(uVar8,unaff_RBP + -0xe);
         uVar23 = extraout_XMM0_Da_01;
         if (iVar13 != 0) goto FUN_180897afe;
       }
@@ -13576,7 +13576,7 @@ void DataProcessingErrorHandler(void)
         in_stack_00000028 = &UNK_180983738;
         in_stack_00000038 = uStackX_20;
         in_stack_00000030 = unaff_R13D;
-        iVar13 = FUN_180897520(in_stack_00000048._4_4_,&stack0x00000028);
+        iVar13 = GetAndValidateResourceData(in_stack_00000048._4_4_,&stack0x00000028);
         in_stack_00000048._4_4_ = extraout_XMM0_Da_02;
         if (iVar13 != 0) goto FUN_180897afe;
       }
@@ -13587,7 +13587,7 @@ void DataProcessingErrorHandler(void)
           in_stack_00000028 = &UNK_1809837c0;
           in_stack_00000038 = uStackX_20;
           in_stack_00000030 = unaff_R13D;
-          iVar13 = FUN_180897520(in_stack_00000050,&stack0x00000028);
+          iVar13 = GetAndValidateResourceData(in_stack_00000050,&stack0x00000028);
           if (iVar13 != 0) goto FUN_180897afe;
         }
         pfVar21 = (float *)(unaff_R15 + 0x94);
@@ -13600,7 +13600,7 @@ void DataProcessingErrorHandler(void)
             in_stack_00000030 = unaff_R13D;
             fStack0000000000000040 = fVar19;
             fStack0000000000000044 = fVar1;
-            iVar13 = FUN_180897520(fVar1,&stack0x00000028);
+            iVar13 = GetAndValidateResourceData(fVar1,&stack0x00000028);
             if (iVar13 != 0) goto FUN_180897afe;
           }
           fVar19 = (float)((int)fVar19 + 1);
@@ -13616,7 +13616,7 @@ void DataProcessingErrorHandler(void)
             in_stack_00000030 = unaff_R13D;
             fStack0000000000000040 = fVar19;
             fStack0000000000000044 = fVar1;
-            iVar13 = FUN_180897520(fVar1,&stack0x00000028);
+            iVar13 = GetAndValidateResourceData(fVar1,&stack0x00000028);
             if (iVar13 != 0) goto FUN_180897afe;
           }
           fVar19 = (float)((int)fVar19 + 1);
@@ -13629,7 +13629,7 @@ void DataProcessingErrorHandler(void)
           in_stack_00000038 = uStackX_20;
           in_stack_00000030 = unaff_R13D;
           fStack0000000000000040 = (float)(resourceHash4 / 0x30);
-          iVar13 = FUN_180897520(extraout_XMM0_Da_03,&stack0x00000028);
+          iVar13 = GetAndValidateResourceData(extraout_XMM0_Da_03,&stack0x00000028);
           uVar23 = extraout_XMM0_Da_04;
           if (iVar13 != 0) goto FUN_180897afe;
         }
@@ -13638,7 +13638,7 @@ void DataProcessingErrorHandler(void)
           in_stack_00000038 = uStackX_20;
           fStack0000000000000040 = (float)CONCAT31(fStack0000000000000040._1_3_,1);
           in_stack_00000030 = unaff_R13D;
-          iVar13 = FUN_180897520(uVar23,&stack0x00000028);
+          iVar13 = GetAndValidateResourceData(uVar23,&stack0x00000028);
           if (iVar13 != 0) goto FUN_180897afe;
         }
         iVar13 = FUN_1808605e0(unaff_R14);
@@ -13646,7 +13646,7 @@ void DataProcessingErrorHandler(void)
           in_stack_00000028 = &UNK_180983ae8;
           in_stack_00000038 = uStackX_20;
           in_stack_00000030 = unaff_R13D;
-          iVar13 = FUN_180897520(extraout_XMM0_Da_05,&stack0x00000028);
+          iVar13 = GetAndValidateResourceData(extraout_XMM0_Da_05,&stack0x00000028);
           if (iVar13 != 0) goto FUN_180897afe;
         }
         iVar13 = FUN_1808605e0(unaff_R14);
@@ -13656,7 +13656,7 @@ void DataProcessingErrorHandler(void)
           in_stack_00000038 = uStackX_20;
           in_stack_00000030 = unaff_R13D;
           fStack0000000000000040 = unaff_R13D;
-          iVar13 = FUN_180897520(extraout_XMM0_Da_06,&stack0x00000028);
+          iVar13 = GetAndValidateResourceData(extraout_XMM0_Da_06,&stack0x00000028);
           uVar23 = extraout_XMM0_Da_07;
           if (iVar13 != 0) goto FUN_180897afe;
         }
@@ -13664,7 +13664,7 @@ void DataProcessingErrorHandler(void)
           in_stack_00000028 = &UNK_180983cf8;
           in_stack_00000038 = uStackX_20;
           in_stack_00000030 = unaff_R13D;
-          FUN_180897520(uVar23,&stack0x00000028);
+          GetAndValidateResourceData(uVar23,&stack0x00000028);
         }
       }
     }
@@ -13725,7 +13725,7 @@ void FloatProcessingErrorHandler(void)
     in_stack_00000038 = uStackX_20;
     in_stack_00000030 = unaff_R13D;
     fStack0000000000000040 = param_1;
-    iVar2 = FUN_180897520(param_1,&stack0x00000028);
+    iVar2 = GetAndValidateResourceData(param_1,&stack0x00000028);
     param_1 = extraout_XMM0_Da;
     if (iVar2 != 0) goto LAB_180897af6;
   }
@@ -13736,7 +13736,7 @@ void FloatProcessingErrorHandler(void)
       in_stack_00000028 = &UNK_1809837c0;
       in_stack_00000038 = uStackX_20;
       in_stack_00000030 = unaff_R13D;
-      iVar2 = FUN_180897520(in_stack_00000050,&stack0x00000028);
+      iVar2 = GetAndValidateResourceData(in_stack_00000050,&stack0x00000028);
       if (iVar2 != 0) goto LAB_180897af6;
     }
     pfVar5 = (float *)(unaff_R15 + 0x94);
@@ -13749,7 +13749,7 @@ void FloatProcessingErrorHandler(void)
         in_stack_00000030 = unaff_R13D;
         fStack0000000000000040 = fVar4;
         fStack0000000000000044 = fVar1;
-        iVar2 = FUN_180897520(fVar1,&stack0x00000028);
+        iVar2 = GetAndValidateResourceData(fVar1,&stack0x00000028);
         if (iVar2 != 0) goto LAB_180897af6;
       }
       fVar4 = (float)((int)fVar4 + 1);
@@ -13765,7 +13765,7 @@ void FloatProcessingErrorHandler(void)
         in_stack_00000030 = unaff_R13D;
         fStack0000000000000040 = fVar4;
         fStack0000000000000044 = fVar1;
-        iVar2 = FUN_180897520(fVar1,&stack0x00000028);
+        iVar2 = GetAndValidateResourceData(fVar1,&stack0x00000028);
         if (iVar2 != 0) goto LAB_180897af6;
       }
       fVar4 = (float)((int)fVar4 + 1);
@@ -13778,7 +13778,7 @@ void FloatProcessingErrorHandler(void)
       in_stack_00000038 = uStackX_20;
       in_stack_00000030 = unaff_R13D;
       fStack0000000000000040 = (float)(uVar3 / 0x30);
-      iVar2 = FUN_180897520(extraout_XMM0_Da_00,&stack0x00000028);
+      iVar2 = GetAndValidateResourceData(extraout_XMM0_Da_00,&stack0x00000028);
       uVar6 = extraout_XMM0_Da_01;
       if (iVar2 != 0) goto LAB_180897af6;
     }
@@ -13787,7 +13787,7 @@ void FloatProcessingErrorHandler(void)
       in_stack_00000038 = uStackX_20;
       fStack0000000000000040 = (float)CONCAT31(fStack0000000000000040._1_3_,1);
       in_stack_00000030 = unaff_R13D;
-      iVar2 = FUN_180897520(uVar6,&stack0x00000028);
+      iVar2 = GetAndValidateResourceData(uVar6,&stack0x00000028);
       if (iVar2 != 0) goto LAB_180897af6;
     }
     iVar2 = FUN_1808605e0();
@@ -13795,7 +13795,7 @@ void FloatProcessingErrorHandler(void)
       in_stack_00000028 = &UNK_180983ae8;
       in_stack_00000038 = uStackX_20;
       in_stack_00000030 = unaff_R13D;
-      iVar2 = FUN_180897520(extraout_XMM0_Da_02,&stack0x00000028);
+      iVar2 = GetAndValidateResourceData(extraout_XMM0_Da_02,&stack0x00000028);
       if (iVar2 != 0) goto LAB_180897af6;
     }
     iVar2 = FUN_1808605e0();
@@ -13805,7 +13805,7 @@ void FloatProcessingErrorHandler(void)
       in_stack_00000038 = uStackX_20;
       in_stack_00000030 = unaff_R13D;
       fStack0000000000000040 = unaff_R13D;
-      iVar2 = FUN_180897520(extraout_XMM0_Da_03,&stack0x00000028);
+      iVar2 = GetAndValidateResourceData(extraout_XMM0_Da_03,&stack0x00000028);
       uVar6 = extraout_XMM0_Da_04;
       if (iVar2 != 0) goto LAB_180897af6;
     }
@@ -13813,7 +13813,7 @@ void FloatProcessingErrorHandler(void)
       in_stack_00000028 = &UNK_180983cf8;
       in_stack_00000038 = uStackX_20;
       in_stack_00000030 = unaff_R13D;
-      FUN_180897520(uVar6,&stack0x00000028);
+      GetAndValidateResourceData(uVar6,&stack0x00000028);
     }
   }
 LAB_180897af6:
@@ -13917,7 +13917,7 @@ LAB_180897ce8:
       uStack_23c = auStack_288[0];
       uStack_258 = param_3;
       iStack_250 = iVar4;
-      iVar4 = FUN_180897520(param_1,&puStack_268);
+      iVar4 = GetAndValidateResourceData(param_1,&puStack_268);
       if (iVar4 != 0) goto LAB_180897ce8;
       iVar6 = 0;
       tableEntry = func_0x0001808c7ed0(*(undefined8 *)(lVar1 + 0xd0));
@@ -13928,7 +13928,7 @@ LAB_180897ce8:
           resourceTable = param_1[4];
           puStack_280 = &UNK_1809834f8;
           uStack_270 = auStack_288[0];
-          if (((char)resourceTable == '\0') && (iVar3 = FUN_1808987e0(param_1,1), iVar3 != 0))
+          if (((char)resourceTable == '\0') && (iVar3 = CheckSystemStatus(param_1,1), iVar3 != 0))
           goto LAB_180897ce8;
           iVar3 = (**(code **)(puStack_280 + 0x10))(&puStack_280,auStack_238,0x200);
           func_0x00018074b7b0((longlong)auStack_238 + (longlong)iVar3,0x200 - iVar3,10);
@@ -14004,7 +14004,7 @@ undefined8 InitializeResourceRenderingConfiguration(longlong *param_1)
   puStack_28 = &UNK_180986408;
   uStack_18 = 2;
   uStack_14 = 0x20214;
-  uVar2 = FUN_180897520(param_1,&puStack_28);
+  uVar2 = GetAndValidateResourceData(param_1,&puStack_28);
   if ((int)uVar2 == 0) {
     lVar1 = *(longlong *)(param_1[1] + 0x78);
     resourceIndex = func_0x000180879a40();
@@ -14182,7 +14182,7 @@ undefined8 ValidateResourceRenderingState(void)
   plVar16 = (longlong *)0x0;
   alStack_300[1] = 0;
   iVar6 = InitializeProcessingQueue(alStack_300 + 1,param_1[1]);
-  if ((iVar6 == 0) && (iVar6 = FUN_1808987e0(param_1,1), iVar6 == 0)) {
+  if ((iVar6 == 0) && (iVar6 = CheckSystemStatus(param_1,1), iVar6 == 0)) {
     (**(code **)(*param_1 + 8))(param_1,&UNK_180986488);
     if (((*(uint *)(param_1 + 3) & 0x1000000) == 0) ||
        (iVar6 = FUN_180896c60(param_1,*(undefined8 *)(param_1[1] + 0xc0),0,1), iVar6 == 0)) {
@@ -14226,7 +14226,7 @@ undefined8 ValidateResourceRenderingState(void)
         uStack_338 = uStack_338 & 0xffffffff00000000;
         plStack_340 = (longlong *)&UNK_180982378;
         aplStack_330[0] = (longlong *)CONCAT44(aplStack_330[0]._4_4_,iVar6);
-        iVar7 = FUN_180897520(param_1,&plStack_340);
+        iVar7 = GetAndValidateResourceData(param_1,&plStack_340);
         if (iVar7 != 0) goto LAB_18089866f;
       }
       plVar14 = plVar16;
@@ -14265,7 +14265,7 @@ undefined8 ValidateResourceRenderingState(void)
           uStack_288 = lVar11 == 0;
           fStack_2c8 = fVar18;
           if (((char)lVar15 == '\0') &&
-             (iVar6 = FUN_1808987e0(param_1,CONCAT71((uint7)(uint3)(uStack_28c >> 8),1)), iVar6 != 0
+             (iVar6 = CheckSystemStatus(param_1,CONCAT71((uint7)(uint3)(uStack_28c >> 8),1)), iVar6 != 0
              )) goto LAB_18089866f;
           iVar6 = (**(code **)(puStack_2d8 + 0x10))(&puStack_2d8,auStack_238,0x200);
           func_0x00018074b7b0(auStack_238 + iVar6,0x200 - iVar6,10);
@@ -14322,7 +14322,7 @@ undefined8 ValidateResourceRenderingState(void)
               if (lVar4 != 0) {
                 aplStack_330[0] = (longlong *)(uVar9 - lVar4);
               }
-              iVar7 = FUN_180897520(param_1,&plStack_340);
+              iVar7 = GetAndValidateResourceData(param_1,&plStack_340);
               if (iVar7 != 0) goto LAB_18089866f;
             }
             iVar7 = (**(code **)(puStack_2d8 + 0x10))(&puStack_2d8,auStack_238,0x200);
@@ -14548,7 +14548,7 @@ undefined8 ProcessResourceTimeSynchronization(longlong *param_1,char param_2)
         uStack_18 = uVar4;
       }
       puStack_28 = &UNK_180986390;
-      uVar2 = FUN_180897520(param_1,&puStack_28);
+      uVar2 = GetAndValidateResourceData(param_1,&puStack_28);
       if ((int)uVar2 != 0) {
         return uVar2;
       }
@@ -15416,9 +15416,9 @@ undefined8 ProcessResourceHashValidation(undefined8 *resourceHandle,longlong off
     return 0x1c;
   }
   resourceHash = *param_1;
-  uVar2 = FUN_1808995c0(resourceHash);
+  uVar2 = CalculateResourceHash(resourceHash);
   if ((int)uVar2 == 0) {
-    uVar2 = FUN_1808995c0(resourceHash,param_2 + 4);
+    uVar2 = CalculateResourceHash(resourceHash,param_2 + 4);
   }
   return uVar2;
 }
@@ -15467,15 +15467,15 @@ undefined8 ProcessResourceDataParsing(longlong *dataContext,undefined4 *dataBuff
 {
   int iVar1;
   
-  iVar1 = FUN_1808aed00(param_1,param_2,4);
+  iVar1 = ReadResourceData(param_1,param_2,4);
   if (iVar1 == 0) {
-    iVar1 = FUN_1808aed00(param_1,param_2 + 4,2);
+    iVar1 = ReadResourceData(param_1,param_2 + 4,2);
     if (iVar1 == 0) {
-      iVar1 = FUN_1808aed00(param_1,param_2 + 6,2);
+      iVar1 = ReadResourceData(param_1,param_2 + 6,2);
       if (iVar1 == 0) {
-        iVar1 = FUN_1808aed00(param_1,param_2 + 8,8);
+        iVar1 = ReadResourceData(param_1,param_2 + 8,8);
         if (iVar1 == 0) {
-          FUN_1808aed00(param_1,param_2 + 0x10,4);
+          ReadResourceData(param_1,param_2 + 0x10,4);
         }
       }
     }
@@ -15514,13 +15514,13 @@ undefined8 ProcessResourceDataParsing(longlong *dataContext,undefined4 *dataBuff
 {
   int iVar1;
   
-  iVar1 = FUN_1808aed00(param_1,param_2,4);
+  iVar1 = ReadResourceData(param_1,param_2,4);
   if (iVar1 == 0) {
-    iVar1 = FUN_1808aed00(param_1,param_2 + 4,2);
+    iVar1 = ReadResourceData(param_1,param_2 + 4,2);
     if (iVar1 == 0) {
-      iVar1 = FUN_1808aed00(param_1,param_2 + 6,2);
+      iVar1 = ReadResourceData(param_1,param_2 + 6,2);
       if (iVar1 == 0) {
-        FUN_1808aed00(param_1,param_2 + 8,8);
+        ReadResourceData(param_1,param_2 + 8,8);
       }
     }
   }
@@ -15574,17 +15574,17 @@ undefined8 ProcessResourceDataValidation(undefined8 *resourceHandle,longlong off
     return 0x1c;
   }
   resourceHash = *param_1;
-  uVar2 = FUN_1808aed00(resourceHash,param_2,4);
+  uVar2 = ReadResourceData(resourceHash,param_2,4);
   if ((int)uVar2 == 0) {
-    uVar2 = FUN_1808aed00(resourceHash,param_2 + 4,2);
+    uVar2 = ReadResourceData(resourceHash,param_2 + 4,2);
     if ((int)uVar2 == 0) {
-      uVar2 = FUN_1808aed00(resourceHash,param_2 + 6,2);
+      uVar2 = ReadResourceData(resourceHash,param_2 + 6,2);
       if ((int)uVar2 == 0) {
-        uVar2 = FUN_1808aed00(resourceHash,param_2 + 8,8);
+        uVar2 = ReadResourceData(resourceHash,param_2 + 8,8);
         if ((int)uVar2 == 0) {
-          uVar2 = FUN_1808995c0(resourceHash,param_2 + 0x10);
+          uVar2 = CalculateResourceHash(resourceHash,param_2 + 0x10);
           if ((int)uVar2 == 0) {
-            uVar2 = FUN_1808995c0(resourceHash,param_2 + 0x14);
+            uVar2 = CalculateResourceHash(resourceHash,param_2 + 0x14);
           }
         }
       }
@@ -15638,7 +15638,7 @@ LAB_1808992a5:
     if (2 < auStackX_18[0]) {
       return 0xd;
     }
-    resourceHash = FUN_1808aed00(param_1,param_2 + 1,4);
+    resourceHash = ReadResourceData(param_1,param_2 + 1,4);
   }
   return resourceHash;
 }
@@ -15685,7 +15685,7 @@ LAB_1808992a5:
     if (2 < in_stack_00000050) {
       return 0xd;
     }
-    resourceHash = FUN_1808aed00(param_1,unaff_RDI + 1,4);
+    resourceHash = ReadResourceData(param_1,unaff_RDI + 1,4);
   }
   return resourceHash;
 }
@@ -15697,7 +15697,7 @@ LAB_1808992a5:
 92c4(void)
 
 {
-  FUN_1808aed00();
+  ReadResourceData();
   return;
 }
 
@@ -15757,13 +15757,13 @@ undefined8 ProcessResourceDataRead(undefined8 *resourceHandle,longlong offset)
     return 0x1c;
   }
   resourceHash = *param_1;
-  uVar2 = FUN_1808aed00(resourceHash,param_2,4);
+  uVar2 = ReadResourceData(resourceHash,param_2,4);
   if ((int)uVar2 == 0) {
-    uVar2 = FUN_1808aed00(resourceHash,param_2 + 4,2);
+    uVar2 = ReadResourceData(resourceHash,param_2 + 4,2);
     if ((int)uVar2 == 0) {
-      uVar2 = FUN_1808aed00(resourceHash,param_2 + 6,2);
+      uVar2 = ReadResourceData(resourceHash,param_2 + 6,2);
       if ((int)uVar2 == 0) {
-        uVar2 = FUN_1808aed00(resourceHash,param_2 + 8,8);
+        uVar2 = ReadResourceData(resourceHash,param_2 + 8,8);
       }
     }
   }
@@ -15813,7 +15813,7 @@ LAB_180899456:
     FUN_1808b0fb0(param_1,aiStackX_8[0]);
     puVar3 = (uint *)*param_1;
     while (0 < aiStackX_8[0]) {
-      resourceHash = FUN_1808aed00(param_2,puVar3,4);
+      resourceHash = ReadResourceData(param_2,puVar3,4);
       if ((int)resourceHash != 0) {
         return resourceHash;
       }
@@ -15830,7 +15830,7 @@ LAB_180899456:
       default:
         goto LAB_180899546;
       case 0x10:
-        resourceHash = FUN_1808995c0(param_2,puVar3 + 1);
+        resourceHash = CalculateResourceHash(param_2,puVar3 + 1);
         if ((int)resourceHash != 0) {
           return resourceHash;
         }
@@ -15846,11 +15846,11 @@ LAB_180899456:
         aiStackX_8[0] = aiStackX_8[0] + -0x14;
         break;
       case 0x20:
-        resourceHash = FUN_1808995c0(param_2,puVar3 + 1);
+        resourceHash = CalculateResourceHash(param_2,puVar3 + 1);
         if ((int)resourceHash != 0) {
           return resourceHash;
         }
-        resourceHash = FUN_1808995c0(param_2,puVar3 + 2);
+        resourceHash = CalculateResourceHash(param_2,puVar3 + 2);
         if ((int)resourceHash != 0) {
           return resourceHash;
         }
@@ -15980,8 +15980,8 @@ undefined8 CalculateResourceHash(undefined8 param_1, undefined4 *param_2)
 {
   undefined8 resourceHash;
   
-  resourceHash = FUN_1808aed00(param_1,param_2,4);
-  if (((int)resourceHash == 0) && (resourceHash = FUN_1808aed00(param_1,param_2 + 1,4), (int)resourceHash == 0x11)) {
+  resourceHash = ReadResourceData(param_1,param_2,4);
+  if (((int)resourceHash == 0) && (resourceHash = ReadResourceData(param_1,param_2 + 1,4), (int)resourceHash == 0x11)) {
     param_2[1] = *param_2;
     return 0;
   }
@@ -16004,7 +16004,7 @@ undefined8 ValidateResourceHash(void)
   undefined8 resourceHash;
   undefined4 *unaff_RBX;
   
-  resourceHash = FUN_1808aed00();
+  resourceHash = ReadResourceData();
   if ((int)resourceHash != 0x11) {
     return resourceHash;
   }
@@ -16041,9 +16041,9 @@ undefined8 ValidateResourceHash(void)
 {
   int iVar1;
   
-  iVar1 = FUN_1808aed00(param_1,param_2,4);
+  iVar1 = ReadResourceData(param_1,param_2,4);
   if (iVar1 == 0) {
-    FUN_1808aed00(param_1,param_2 + 4,4);
+    ReadResourceData(param_1,param_2 + 4,4);
   }
   return;
 }
@@ -16092,7 +16092,7 @@ undefined8 QueryResourceTable(undefined8 param_1, longlong *param_2)
       memset((longlong)iVar1 + *param_2,0,(longlong)(tableEntry - iVar1));
     }
     *(int *)(param_2 + 1) = tableEntry;
-    uVar2 = FUN_1808aed00(param_1,*param_2,lVar4);
+    uVar2 = ReadResourceData(param_1,*param_2,lVar4);
     if ((int)uVar2 != 0) {
       return uVar2;
     }
@@ -16137,7 +16137,7 @@ undefined8 InitializeResourceBuffer(void)
       memset((longlong)iVar1 + *unaff_RBX,0,(longlong)(iVar4 - iVar1));
     }
     *(int *)(unaff_RBX + 1) = iVar4;
-    uVar2 = FUN_1808aed00();
+    uVar2 = ReadResourceData();
     if ((int)uVar2 != 0) {
       return uVar2;
     }
@@ -16187,7 +16187,7 @@ undefined8 ProcessResourceTableEntries(longlong param_1, longlong *param_2)
       lVar5 = lVar4;
       do {
         resourceTable = *param_2;
-        uVar3 = FUN_180899ef0(param_1,resourceTable + lVar5);
+        uVar3 = GetResourceEntry(param_1,resourceTable + lVar5);
         if ((int)uVar3 != 0) {
           return uVar3;
         }
@@ -16254,7 +16254,7 @@ undefined8 ProcessResourceTableEntries(longlong param_1, longlong *param_2)
           uVar4 = uVar6;
           if (0 < iVar1) {
             do {
-              iVar2 = FUN_180899ef0(param_1,(longlong)(int)uVar4 * 0x10 +
+              iVar2 = GetResourceEntry(param_1,(longlong)(int)uVar4 * 0x10 +
                                             *(longlong *)(param_2 + 0xc));
               if (iVar2 != 0) {
                 return;
@@ -16291,7 +16291,7 @@ undefined8 ProcessResourceTableEntries(longlong param_1, longlong *param_2)
               if (0 < iVar1) {
                 do {
                   lVar5 = *(longlong *)(param_2 + 0x14) + uVar4;
-                  iVar2 = FUN_180899ef0(param_1,lVar5);
+                  iVar2 = GetResourceEntry(param_1,lVar5);
                   if (iVar2 != 0) {
                     return;
                   }
@@ -16310,7 +16310,7 @@ undefined8 ProcessResourceTableEntries(longlong param_1, longlong *param_2)
                   if (iVar2 != 0) {
                     return;
                   }
-                  iVar2 = FUN_1808affb0(param_1,lVar5 + 0x14);
+                  iVar2 = ValidateResourceEntry(param_1,lVar5 + 0x14);
                   if (iVar2 != 0) {
                     return;
                   }
@@ -16411,7 +16411,7 @@ undefined8 ProcessResourceTableEntries(longlong param_1, longlong *param_2)
       uVar9 = extraout_XMM0_Da_01;
       if (0 < iVar3) {
         do {
-          iVar2 = FUN_180899ef0(uVar9,(longlong)(int)uVar5 * 0x10 + *(longlong *)(unaff_R14 + 0x30))
+          iVar2 = GetResourceEntry(uVar9,(longlong)(int)uVar5 * 0x10 + *(longlong *)(unaff_R14 + 0x30))
           ;
           if (iVar2 != 0) {
             return;
@@ -16450,7 +16450,7 @@ undefined8 ProcessResourceTableEntries(longlong param_1, longlong *param_2)
           if (0 < iVar3) {
             do {
               lVar6 = *(longlong *)(unaff_R14 + 0x50) + uVar5;
-              iVar2 = FUN_180899ef0(uVar9,lVar6);
+              iVar2 = GetResourceEntry(uVar9,lVar6);
               if (iVar2 != 0) {
                 return;
               }
@@ -16468,7 +16468,7 @@ undefined8 ProcessResourceTableEntries(longlong param_1, longlong *param_2)
               if (iVar2 != 0) {
                 return;
               }
-              iVar2 = FUN_1808affb0(extraout_XMM0_Da_04,lVar6 + 0x14);
+              iVar2 = ValidateResourceEntry(extraout_XMM0_Da_04,lVar6 + 0x14);
               if (iVar2 != 0) {
                 return;
               }
@@ -16546,7 +16546,7 @@ undefined8 ProcessResourceTableEntries(longlong param_1, longlong *param_2)
     if (0 < (int)unaff_RSI) {
       do {
         lVar5 = *(longlong *)(unaff_R14 + 0x50) + lVar6;
-        iVar3 = FUN_180899ef0(uVar8,lVar5);
+        iVar3 = GetResourceEntry(uVar8,lVar5);
         if (iVar3 != 0) {
           return;
         }
@@ -16564,7 +16564,7 @@ undefined8 ProcessResourceTableEntries(longlong param_1, longlong *param_2)
         if (iVar3 != 0) {
           return;
         }
-        iVar3 = FUN_1808affb0(extraout_XMM0_Da_00,lVar5 + 0x14);
+        iVar3 = ValidateResourceEntry(extraout_XMM0_Da_00,lVar5 + 0x14);
         if (iVar3 != 0) {
           return;
         }
@@ -16639,7 +16639,7 @@ undefined8 ProcessResourceTableEntries(longlong param_1, longlong *param_2)
   
   auStackX_8[0] = *param_2;
   iVar1 = (**(code **)**(undefined8 **)(param_1 + 8))(*(undefined8 **)(param_1 + 8),auStackX_8,4);
-  if (((((iVar1 == 0) && (iVar1 = FUN_1808affb0(param_1,param_2 + 1), iVar1 == 0)) &&
+  if (((((iVar1 == 0) && (iVar1 = ValidateResourceEntry(param_1,param_2 + 1), iVar1 == 0)) &&
        (((*(byte *)(param_2 + 1) & 0x20) == 0 ||
         (iVar1 = FUN_180899040(param_1,param_2 + 2), iVar1 == 0)))) &&
       (((iVar1 = FUN_1808b0010(param_1,param_2 + 0xe), iVar1 == 0 &&
@@ -16653,7 +16653,7 @@ undefined8 ProcessResourceTableEntries(longlong param_1, longlong *param_2)
       if (iVar1 != 0) {
         return;
       }
-      iVar1 = FUN_180899ef0(param_1,param_2 + 0x13);
+      iVar1 = GetResourceEntry(param_1,param_2 + 0x13);
       if (iVar1 != 0) {
         return;
       }
@@ -16679,7 +16679,7 @@ undefined8 ProcessResourceTableEntries(longlong param_1, longlong *param_2)
   longlong unaff_RDI;
   undefined4 in_stack_00000030;
   
-  iVar1 = FUN_1808affb0();
+  iVar1 = ValidateResourceEntry();
   if (iVar1 == 0) {
     if (((*(byte *)(unaff_RBX + 4) & 0x20) != 0) && (iVar1 = FUN_180899040(), iVar1 != 0)) {
       return;
@@ -16694,7 +16694,7 @@ undefined8 ProcessResourceTableEntries(longlong param_1, longlong *param_2)
         if (iVar1 != 0) {
           return;
         }
-        iVar1 = FUN_180899ef0();
+        iVar1 = GetResourceEntry();
         if (iVar1 != 0) {
           return;
         }
@@ -17244,7 +17244,7 @@ undefined8 ValidateResourceStatusFlags(longlong resourceContext, longlong status
      (*(int *)(param_2 + 0x44) != 0)) {
     uVar5 = uVar5 | 0x100;
   }
-  uVar4 = FUN_180899ef0(param_1);
+  uVar4 = GetResourceEntry(param_1);
   if ((int)uVar4 == 0) {
     aiStack_48[0] = *(int *)(param_2 + 0x20);
     uVar4 = (**(code **)**(undefined8 **)(param_1 + 8))(*(undefined8 **)(param_1 + 8),aiStack_48,4);
@@ -17280,7 +17280,7 @@ undefined8 ValidateResourceStatusFlags(longlong resourceContext, longlong status
               do {
                 lVar6 = *(longlong *)(param_2 + 600) + lVar7;
                 sVar1 = *(short *)(lVar6 + 0x114);
-                uVar4 = FUN_180899ef0(param_1,lVar6);
+                uVar4 = GetResourceEntry(param_1,lVar6);
                 if ((int)uVar4 != 0) {
                   return uVar4;
                 }
@@ -17302,9 +17302,9 @@ undefined8 ValidateResourceStatusFlags(longlong resourceContext, longlong status
           if ((((((uVar5 & 0x20) == 0) ||
                 (uVar4 = FUN_1808ac8a0(param_1,param_2 + 0x268), (int)uVar4 == 0)) &&
                (((uVar5 & 0x40) == 0 ||
-                ((uVar4 = FUN_1808affb0(param_1,param_2 + 0x34), (int)uVar4 == 0 &&
-                 (uVar4 = FUN_1808affb0(param_1,param_2 + 0x38), (int)uVar4 == 0)))))) &&
-              ((-1 < (char)uVar5 || (uVar4 = FUN_180899ef0(param_1,param_2 + 0x10), (int)uVar4 == 0)
+                ((uVar4 = ValidateResourceEntry(param_1,param_2 + 0x34), (int)uVar4 == 0 &&
+                 (uVar4 = ValidateResourceEntry(param_1,param_2 + 0x38), (int)uVar4 == 0)))))) &&
+              ((-1 < (char)uVar5 || (uVar4 = GetResourceEntry(param_1,param_2 + 0x10), (int)uVar4 == 0)
                ))) && (((uVar5 & 0x100) == 0 ||
                        (((uVar4 = FUN_1808aff40(param_1,param_2 + 0x3c), (int)uVar4 == 0 &&
                          (uVar4 = FUN_1808aff40(param_1,param_2 + 0x40), (int)uVar4 == 0)) &&
@@ -17352,7 +17352,7 @@ undefined8 InitializeResourceProcessingContext(void)
     if (0 < iVar2) {
       do {
         sVar1 = *(short *)(*(longlong *)(unaff_RDI + 600) + unaff_R14 + 0x114);
-        uVar3 = FUN_180899ef0();
+        uVar3 = GetResourceEntry();
         if ((int)uVar3 != 0) {
           return uVar3;
         }
@@ -17371,8 +17371,8 @@ undefined8 InitializeResourceProcessingContext(void)
   }
   if ((((((unaff_RSI & 0x20) == 0) || (uVar3 = FUN_1808ac8a0(), (int)uVar3 == 0)) &&
        (((unaff_RSI & 0x40) == 0 ||
-        ((uVar3 = FUN_1808affb0(), (int)uVar3 == 0 && (uVar3 = FUN_1808affb0(), (int)uVar3 == 0)))))
-       ) && ((-1 < (char)unaff_RSI || (uVar3 = FUN_180899ef0(), (int)uVar3 == 0)))) &&
+        ((uVar3 = ValidateResourceEntry(), (int)uVar3 == 0 && (uVar3 = ValidateResourceEntry(), (int)uVar3 == 0)))))
+       ) && ((-1 < (char)unaff_RSI || (uVar3 = GetResourceEntry(), (int)uVar3 == 0)))) &&
      (((unaff_RSI & 0x100) == 0 ||
       (((uVar3 = FUN_1808aff40(), (int)uVar3 == 0 && (uVar3 = FUN_1808aff40(), (int)uVar3 == 0)) &&
        (uVar3 = FUN_1808aff40(), (int)uVar3 == 0)))))) {
@@ -17614,7 +17614,7 @@ ulonglong ValidateResourceHash(longlong resourceContext, undefined8 *resourceDat
         iVar3 = -8;
         break;
       case 0x11:
-        resourceHash = FUN_180899ef0(param_1,puVar5 + 1);
+        resourceHash = GetResourceEntry(param_1,puVar5 + 1);
         if ((int)resourceHash != 0) {
           return resourceHash;
         }
@@ -17692,7 +17692,7 @@ ulonglong ProcessResourceValidation(void)
         iVar3 = -8;
         break;
       case 0x11:
-        resourceHash = FUN_180899ef0(extraout_XMM0_Da,unaff_RDI + 1);
+        resourceHash = GetResourceEntry(extraout_XMM0_Da,unaff_RDI + 1);
         if ((int)resourceHash != 0) {
           return resourceHash;
         }
@@ -17807,58 +17807,58 @@ undefined8 ProcessResourceTableEntry(longlong resourceContext, undefined8 *resou
   if (*(int *)(resourceData[1] + 0x18) != 0) {
     return 0x1c;
   }
-  resourceHash = FUN_1808995c0(*resourceData,resourceContext + 0x50);
+  resourceHash = CalculateResourceHash(*resourceData,resourceContext + 0x50);
   if ((int)resourceHash == 0) {
     if (*(int *)(resourceData[1] + 0x18) != 0) {
       return 0x1c;
     }
-    resourceHash = FUN_1808995c0(*resourceData,resourceContext + 0x54);
+    resourceHash = CalculateResourceHash(*resourceData,resourceContext + 0x54);
     if ((int)resourceHash == 0) {
       if (*(int *)(resourceData[1] + 0x18) != 0) {
         return 0x1c;
       }
-      resourceHash = FUN_1808995c0(*resourceData,resourceContext + 0x58);
+      resourceHash = CalculateResourceHash(*resourceData,resourceContext + 0x58);
       if ((int)resourceHash == 0) {
         if (*(int *)(resourceData[1] + 0x18) != 0) {
           return 0x1c;
         }
-        resourceHash = FUN_1808995c0(*resourceData,resourceContext + 0x60);
+        resourceHash = CalculateResourceHash(*resourceData,resourceContext + 0x60);
         if ((int)resourceHash == 0) {
           if (*(int *)(resourceData[1] + 0x18) != 0) {
             return 0x1c;
           }
-          resourceHash = FUN_1808995c0(*resourceData,resourceContext + 100);
+          resourceHash = CalculateResourceHash(*resourceData,resourceContext + 100);
           if ((int)resourceHash == 0) {
             if (*(int *)(resourceData[1] + 0x18) != 0) {
               return 0x1c;
             }
-            resourceHash = FUN_1808995c0(*resourceData,resourceContext + 0x68);
+            resourceHash = CalculateResourceHash(*resourceData,resourceContext + 0x68);
             if ((int)resourceHash == 0) {
               if (*(int *)(resourceData[1] + 0x18) != 0) {
                 return 0x1c;
               }
-              resourceHash = FUN_1808995c0(*resourceData,resourceContext + 0x6c);
+              resourceHash = CalculateResourceHash(*resourceData,resourceContext + 0x6c);
               if ((int)resourceHash == 0) {
                 if (*(int *)(resourceData[1] + 0x18) != 0) {
                   return 0x1c;
                 }
-                resourceHash = FUN_1808995c0(*param_2,dataContext + 0x70);
+                resourceHash = CalculateResourceHash(*param_2,dataContext + 0x70);
                 if ((int)resourceHash == 0) {
                   if (*(int *)(resourceData[1] + 0x18) != 0) {
                     return 0x1c;
                   }
-                  resourceHash = FUN_1808995c0(*resourceData,resourceContext + 0x74);
+                  resourceHash = CalculateResourceHash(*resourceData,resourceContext + 0x74);
                   if ((int)resourceHash == 0) {
                     if (*(int *)(resourceData[1] + 0x18) != 0) {
                       return 0x1c;
                     }
-                    resourceHash = FUN_1808995c0(*param_2,dataContext + 0x78);
+                    resourceHash = CalculateResourceHash(*param_2,dataContext + 0x78);
                     if ((int)resourceHash == 0) {
                       if (*(uint *)(resourceData + 8) < 0x74) {
                         resourceHash = 0;
                       }
                       else if (*(int *)(resourceData[1] + 0x18) == 0) {
-                        resourceHash = FUN_1808995c0(*resourceData,resourceContext + 0x5c);
+                        resourceHash = CalculateResourceHash(*resourceData,resourceContext + 0x5c);
                       }
                       else {
                         resourceHash = 0x1c;
@@ -18182,7 +18182,7 @@ LAB_18089af81:
   uVar4 = uVar5;
   if (0x8b < in_EAX) {
     if (*(int *)(unaff_RBX[1] + 0x18) == 0) {
-      uVar4 = FUN_1808aed00(*unaff_RBX,unaff_RBP + 0xc4,4);
+      uVar4 = ReadResourceData(*unaff_RBX,unaff_RBP + 0xc4,4);
     }
     else {
       uVar4 = (ulonglong)unaff_EDI;
@@ -18203,14 +18203,14 @@ LAB_18089af81:
   if ((int)uVar4 != 0) {
     return uVar4;
   }
-  uVar4 = FUN_18089bd70();
+  uVar4 = ProcessResourceValidation();
   if ((int)uVar4 != 0) {
     return uVar4;
   }
   uVar4 = uVar5;
   if (0x41 < *(uint *)(unaff_RBX + 8)) {
     if (*(int *)(unaff_RBX[1] + 0x18) == 0) {
-      uVar4 = FUN_1808aed00(*unaff_RBX,unaff_RBP + 0xcc,4);
+      uVar4 = ReadResourceData(*unaff_RBX,unaff_RBP + 0xcc,4);
     }
     else {
       uVar4 = (ulonglong)unaff_EDI;
@@ -18222,7 +18222,7 @@ LAB_18089af81:
   uVar4 = uVar5;
   if (0x41 < *(uint *)(unaff_RBX + 8)) {
     if (*(int *)(unaff_RBX[1] + 0x18) == 0) {
-      uVar4 = FUN_1808aed00(*unaff_RBX,unaff_RBP + 0xd0,4);
+      uVar4 = ReadResourceData(*unaff_RBX,unaff_RBP + 0xd0,4);
     }
     else {
       uVar4 = (ulonglong)unaff_EDI;
@@ -18243,7 +18243,7 @@ LAB_18089af81:
   }
   if (0x6e < *(uint *)(unaff_RBX + 8)) {
     if (*(int *)(unaff_RBX[1] + 0x18) == 0) {
-      uVar5 = FUN_1808aed00(*unaff_RBX,unaff_RBP + 200,4);
+      uVar5 = ReadResourceData(*unaff_RBX,unaff_RBP + 200,4);
     }
     else {
       uVar5 = (ulonglong)unaff_EDI;
@@ -18397,10 +18397,10 @@ ulonglong FUN_18089b2a0(longlong param_1,undefined8 *param_2)
     if (*(uint *)(resourceData + 8) < 0x5a) {
       if (*(int *)(resourceData[1] + 0x18) == 0) {
         resourceHash = *param_2;
-        uVar3 = FUN_1808aed00(resourceHash,&uStack_38,4);
-        if ((((int)uVar3 == 0) && (uVar3 = FUN_1808aed00(resourceHash,&uStack_34,2), (int)uVar3 == 0)) &&
-           (uVar3 = FUN_1808aed00(resourceHash,(longlong)&uStack_34 + 2,2), (int)uVar3 == 0)) {
-          uVar3 = FUN_1808aed00(resourceHash,&uStack_30,8);
+        uVar3 = ReadResourceData(resourceHash,&uStack_38,4);
+        if ((((int)uVar3 == 0) && (uVar3 = ReadResourceData(resourceHash,&uStack_34,2), (int)uVar3 == 0)) &&
+           (uVar3 = ReadResourceData(resourceHash,(longlong)&uStack_34 + 2,2), (int)uVar3 == 0)) {
+          uVar3 = ReadResourceData(resourceHash,&uStack_30,8);
         }
       }
       else {
@@ -18417,7 +18417,7 @@ ulonglong FUN_18089b2a0(longlong param_1,undefined8 *param_2)
           return uVar3;
         }
         if ((*(int *)(resourceData[1] + 0x18) == 0) &&
-           (uVar4 = FUN_1808aed00(*param_2,param_1 + 0x40,4), uVar4 == 0)) {
+           (uVar4 = ReadResourceData(*param_2,param_1 + 0x40,4), uVar4 == 0)) {
                     // WARNING: Subroutine does not return
           FUN_1808ddf80(param_2,auStack_28);
         }
@@ -18448,10 +18448,10 @@ ulonglong FUN_18089b307(void)
   if (in_CF) {
     if (*(int *)(unaff_RBX[1] + 0x18) == 0) {
       resourceHash = *unaff_RBX;
-      uVar2 = FUN_1808aed00(resourceHash,auStackX_20,4);
-      if ((((int)uVar2 == 0) && (uVar2 = FUN_1808aed00(resourceHash,auStackX_24,2), (int)uVar2 == 0)) &&
-         (uVar2 = FUN_1808aed00(resourceHash,auStackX_26,2), (int)uVar2 == 0)) {
-        uVar2 = FUN_1808aed00(resourceHash,&stack0x00000028,8);
+      uVar2 = ReadResourceData(resourceHash,auStackX_20,4);
+      if ((((int)uVar2 == 0) && (uVar2 = ReadResourceData(resourceHash,auStackX_24,2), (int)uVar2 == 0)) &&
+         (uVar2 = ReadResourceData(resourceHash,auStackX_26,2), (int)uVar2 == 0)) {
+        uVar2 = ReadResourceData(resourceHash,&stack0x00000028,8);
       }
     }
     else {
@@ -18470,7 +18470,7 @@ ulonglong FUN_18089b307(void)
       return uVar2;
     }
     if ((*(int *)(unaff_RBX[1] + 0x18) == 0) &&
-       (uVar3 = FUN_1808aed00(*unaff_RBX,unaff_RBP + 0x40,4), uVar3 == 0)) {
+       (uVar3 = ReadResourceData(*unaff_RBX,unaff_RBP + 0x40,4), uVar3 == 0)) {
                     // WARNING: Subroutine does not return
       FUN_1808ddf80();
     }
@@ -18494,10 +18494,10 @@ ulonglong FUN_18089b31f(void)
   undefined1 auStackX_26 [2];
   
   resourceHash = *unaff_RBX;
-  uVar3 = FUN_1808aed00(resourceHash,auStackX_20,4);
-  if ((((int)uVar3 == 0) && (uVar3 = FUN_1808aed00(resourceHash,auStackX_24,2), (int)uVar3 == 0)) &&
-     (uVar3 = FUN_1808aed00(resourceHash,auStackX_26,2), (int)uVar3 == 0)) {
-    uVar3 = FUN_1808aed00(resourceHash,&stack0x00000028,8);
+  uVar3 = ReadResourceData(resourceHash,auStackX_20,4);
+  if ((((int)uVar3 == 0) && (uVar3 = ReadResourceData(resourceHash,auStackX_24,2), (int)uVar3 == 0)) &&
+     (uVar3 = ReadResourceData(resourceHash,auStackX_26,2), (int)uVar3 == 0)) {
+    uVar3 = ReadResourceData(resourceHash,&stack0x00000028,8);
   }
   if ((int)uVar3 != 0) {
     return uVar3;
@@ -18508,7 +18508,7 @@ ulonglong FUN_18089b31f(void)
       return uVar3;
     }
     if (*(int *)(unaff_RBX[1] + 0x18) == 0) {
-      uVar2 = FUN_1808aed00(*unaff_RBX,unaff_RBP + 0x40,4);
+      uVar2 = ReadResourceData(*unaff_RBX,unaff_RBP + 0x40,4);
       unaff_RDI = (ulonglong)uVar2;
       if (uVar2 == 0) {
                     // WARNING: Subroutine does not return
@@ -18536,7 +18536,7 @@ ulonglong FUN_18089b380(void)
       return uVar2;
     }
     if (*(int *)(unaff_RBX[1] + 0x18) == 0) {
-      resourceHash = FUN_1808aed00(*unaff_RBX,unaff_RBP + 0x40,4);
+      resourceHash = ReadResourceData(*unaff_RBX,unaff_RBP + 0x40,4);
       unaff_RDI = (ulonglong)resourceHash;
       if (resourceHash == 0) {
                     // WARNING: Subroutine does not return
@@ -18613,14 +18613,14 @@ undefined8 ProcessResourceBufferData(longlong ResourceContext, longlong *Resourc
     if (*(int *)(resourceData[1] + 0x18) != 0) {
       return 0x1c;
     }
-    uVar2 = FUN_1808995c0(*resourceData,resourceContext + 0x50);
+    uVar2 = CalculateResourceHash(*resourceData,resourceContext + 0x50);
     if ((int)uVar2 != 0) {
       return uVar2;
     }
     if (*(int *)(resourceData[1] + 0x18) != 0) {
       return 0x1c;
     }
-    uVar2 = FUN_1808995c0(*resourceData,resourceContext + 0x54);
+    uVar2 = CalculateResourceHash(*resourceData,resourceContext + 0x54);
     if ((int)uVar2 != 0) {
       return uVar2;
     }
@@ -18629,7 +18629,7 @@ undefined8 ProcessResourceBufferData(longlong ResourceContext, longlong *Resourc
     if (*(int *)(resourceData[1] + 0x18) != 0) {
       return 0x1c;
     }
-    uVar2 = FUN_1808995c0(*param_2,dataContext + 0x78);
+    uVar2 = CalculateResourceHash(*param_2,dataContext + 0x78);
     if ((int)uVar2 != 0) {
       return uVar2;
     }
@@ -18637,14 +18637,14 @@ undefined8 ProcessResourceBufferData(longlong ResourceContext, longlong *Resourc
   if (*(int *)(resourceData[1] + 0x18) != 0) {
     return 0x1c;
   }
-  uVar2 = FUN_1808995c0(*resourceData,resourceContext + 0x58);
+  uVar2 = CalculateResourceHash(*resourceData,resourceContext + 0x58);
   if ((int)uVar2 != 0) {
     return uVar2;
   }
   if (*(int *)(resourceData[1] + 0x18) != 0) {
     return 0x1c;
   }
-  uVar2 = FUN_1808995c0(*resourceData,resourceContext + 0x5c);
+  uVar2 = CalculateResourceHash(*resourceData,resourceContext + 0x5c);
   if ((int)uVar2 != 0) {
     return uVar2;
   }
@@ -18653,10 +18653,10 @@ undefined8 ProcessResourceBufferData(longlong ResourceContext, longlong *Resourc
       return 0x1c;
     }
     lVar1 = *param_2;
-    uVar2 = FUN_1808aed00(lVar1,param_1 + 0x60,4);
-    if ((((int)uVar2 == 0) && (uVar2 = FUN_1808aed00(lVar1,param_1 + 100,2), (int)uVar2 == 0)) &&
-       (uVar2 = FUN_1808aed00(lVar1,param_1 + 0x66,2), (int)uVar2 == 0)) {
-      uVar2 = FUN_1808aed00(lVar1,param_1 + 0x68,8);
+    uVar2 = ReadResourceData(lVar1,param_1 + 0x60,4);
+    if ((((int)uVar2 == 0) && (uVar2 = ReadResourceData(lVar1,param_1 + 100,2), (int)uVar2 == 0)) &&
+       (uVar2 = ReadResourceData(lVar1,param_1 + 0x66,2), (int)uVar2 == 0)) {
+      uVar2 = ReadResourceData(lVar1,param_1 + 0x68,8);
     }
     in_stack_00000008 = unaff_BPL;
     if ((int)uVar2 != 0) {
@@ -18667,14 +18667,14 @@ undefined8 ProcessResourceBufferData(longlong ResourceContext, longlong *Resourc
     if (*(int *)(resourceData[1] + 0x18) != 0) {
       return 0x1c;
     }
-    uVar2 = FUN_1808995c0(*param_2,dataContext + 0x70);
+    uVar2 = CalculateResourceHash(*param_2,dataContext + 0x70);
     if ((int)uVar2 != 0) {
       return uVar2;
     }
     if (*(int *)(resourceData[1] + 0x18) != 0) {
       return 0x1c;
     }
-    uVar2 = FUN_1808995c0(*resourceData,resourceContext + 0x74);
+    uVar2 = CalculateResourceHash(*resourceData,resourceContext + 0x74);
     if ((int)uVar2 != 0) {
       return uVar2;
     }
@@ -18739,10 +18739,10 @@ undefined8 GetResourcePoolInfo(void)
     }
     lVar1 = *unaff_RBX;
     _cStack0000000000000030 = unaff_RBP;
-    uVar3 = FUN_1808aed00(lVar1,unaff_RDI + 0x60,4);
-    if ((((int)uVar3 == 0) && (uVar3 = FUN_1808aed00(lVar1,unaff_RDI + 100,2), (int)uVar3 == 0)) &&
-       (uVar3 = FUN_1808aed00(lVar1,unaff_RDI + 0x66,2), (int)uVar3 == 0)) {
-      uVar3 = FUN_1808aed00(lVar1,unaff_RDI + 0x68,8);
+    uVar3 = ReadResourceData(lVar1,unaff_RDI + 0x60,4);
+    if ((((int)uVar3 == 0) && (uVar3 = ReadResourceData(lVar1,unaff_RDI + 100,2), (int)uVar3 == 0)) &&
+       (uVar3 = ReadResourceData(lVar1,unaff_RDI + 0x66,2), (int)uVar3 == 0)) {
+      uVar3 = ReadResourceData(lVar1,unaff_RDI + 0x68,8);
     }
     if ((int)uVar3 != 0) {
       return uVar3;
@@ -18752,14 +18752,14 @@ undefined8 GetResourcePoolInfo(void)
     if (*(int *)(in_RAX + 0x18) != 0) {
       return 0x1c;
     }
-    uVar3 = FUN_1808995c0(*unaff_RBX,unaff_RDI + 0x70);
+    uVar3 = CalculateResourceHash(*unaff_RBX,unaff_RDI + 0x70);
     if ((int)uVar3 != 0) {
       return uVar3;
     }
     if (*(int *)(unaff_RBX[1] + 0x18) != 0) {
       return 0x1c;
     }
-    uVar3 = FUN_1808995c0(*unaff_RBX,unaff_RDI + 0x74);
+    uVar3 = CalculateResourceHash(*unaff_RBX,unaff_RDI + 0x74);
     if ((int)uVar3 != 0) {
       return uVar3;
     }
@@ -18817,10 +18817,10 @@ undefined8 ValidateResourceTableIntegrity(void)
   uint in_stack_00000040;
   
   lVar1 = *unaff_RBX;
-  uVar3 = FUN_1808aed00(lVar1,unaff_RDI + 0x60);
-  if ((((int)uVar3 == 0) && (uVar3 = FUN_1808aed00(lVar1,unaff_RDI + 100,2), (int)uVar3 == 0)) &&
-     (uVar3 = FUN_1808aed00(lVar1,unaff_RDI + 0x66,2), (int)uVar3 == 0)) {
-    uVar3 = FUN_1808aed00(lVar1,unaff_RDI + 0x68,8);
+  uVar3 = ReadResourceData(lVar1,unaff_RDI + 0x60);
+  if ((((int)uVar3 == 0) && (uVar3 = ReadResourceData(lVar1,unaff_RDI + 100,2), (int)uVar3 == 0)) &&
+     (uVar3 = ReadResourceData(lVar1,unaff_RDI + 0x66,2), (int)uVar3 == 0)) {
+    uVar3 = ReadResourceData(lVar1,unaff_RDI + 0x68,8);
   }
   if ((int)uVar3 != 0) {
     return uVar3;
@@ -18868,7 +18868,13 @@ b599(void)
 
 
 
-undefined8 FUN_18089b5a9(int param_1)
+/**
+ * 初始化系统资源检查函数
+ * 检查系统资源初始化状态并返回相应的错误码
+ * @param ResourceCheckFlag 资源检查标志
+ * @return 错误码：0x1c表示资源未初始化
+ */
+undefined8 InitializeSystemResourceCheck(int ResourceCheckFlag)
 
 {
   longlong *plVar1;
@@ -18883,14 +18889,14 @@ undefined8 FUN_18089b5a9(int param_1)
   if (param_1 != 0) {
     return 0x1c;
   }
-  uVar2 = FUN_1808995c0(*unaff_RBX,unaff_RDI + 0x70);
+  uVar2 = CalculateResourceHash(*unaff_RBX,unaff_RDI + 0x70);
   if ((int)uVar2 != 0) {
     return uVar2;
   }
   if (*(int *)(unaff_RBX[1] + 0x18) != 0) {
     return 0x1c;
   }
-  uVar2 = FUN_1808995c0(*unaff_RBX,unaff_RDI + 0x74);
+  uVar2 = CalculateResourceHash(*unaff_RBX,unaff_RDI + 0x74);
   if ((int)uVar2 != 0) {
     return uVar2;
   }
@@ -18969,7 +18975,12 @@ LAB_1808a2e6d:
 
 
 
-undefined8 FUN_18089b617(void)
+/**
+ * 获取系统状态函数
+ * 获取当前系统状态，返回0表示系统正常
+ * @return 系统状态码：0表示正常
+ */
+undefined8 GetSystemStatus(void)
 
 {
   return 0;
@@ -18987,7 +18998,14 @@ b61e(void)
 
 
 
-undefined8 FUN_18089b630(longlong param_1,undefined8 *param_2)
+/**
+ * 验证资源哈希函数
+ * 验证资源的TIVE和BIVE哈希值，确保资源完整性
+ * @param ResourceContext 资源上下文指针
+ * @param ResourceData 资源数据指针
+ * @return 错误码：0x1c表示验证失败
+ */
+undefined8 ValidateResourceHash(longlong ResourceContext,undefined8 *ResourceData)
 
 {
   undefined8 resourceHash;
@@ -19007,7 +19025,7 @@ undefined8 FUN_18089b630(longlong param_1,undefined8 *param_2)
     if (*(int *)(resourceData[1] + 0x18) != 0) {
       return 0x1c;
     }
-    resourceHash = FUN_1808995c0(*resourceData,resourceContext + 0xf8);
+    resourceHash = CalculateResourceHash(*resourceData,resourceContext + 0xf8);
     if ((int)resourceHash == 0) {
       auStackX_20[0] = 0;
       resourceHash = FUN_1808afe30(*param_2,auStackX_20);
@@ -19120,21 +19138,21 @@ ulonglong FUN_18089b7d0(longlong param_1,longlong *param_2)
   if (*(int *)(resourceData[1] + 0x18) != 0) {
     return 0x1c;
   }
-  uVar3 = FUN_1808995c0(*resourceData,resourceContext + 0x90);
+  uVar3 = CalculateResourceHash(*resourceData,resourceContext + 0x90);
   if (uVar3 != 0) {
     return (ulonglong)uVar3;
   }
   if (*(int *)(resourceData[1] + 0x18) != 0) {
     return 0x1c;
   }
-  uVar3 = FUN_1808995c0(*resourceData,resourceContext + 0xa4);
+  uVar3 = CalculateResourceHash(*resourceData,resourceContext + 0xa4);
   if (uVar3 != 0) {
     return (ulonglong)uVar3;
   }
   if (*(int *)(resourceData[1] + 0x18) != 0) {
     return 0x1c;
   }
-  uVar3 = FUN_1808aed00(*param_2,param_1 + 0xb0,4);
+  uVar3 = ReadResourceData(*param_2,param_1 + 0xb0,4);
   if (uVar3 != 0) {
     return (ulonglong)uVar3;
   }
@@ -19176,35 +19194,35 @@ LAB_18089b91c:
     if (*(int *)(resourceData[1] + 0x18) != 0) {
       return 0x1c;
     }
-    uVar6 = FUN_1808aed00(*param_2,param_1 + 0xb8,4);
+    uVar6 = ReadResourceData(*param_2,param_1 + 0xb8,4);
     if ((int)uVar6 != 0) {
       return uVar6;
     }
   }
   uVar6 = uVar8;
   if ((((*(int *)(resourceData[1] + 0x18) == 0) &&
-       (uVar6 = FUN_1808995c0(*param_2,dataContext + 0x94), (int)uVar6 == 0)) &&
+       (uVar6 = CalculateResourceHash(*param_2,dataContext + 0x94), (int)uVar6 == 0)) &&
       (uVar6 = uVar8, *(int *)(resourceData[1] + 0x18) == 0)) &&
-     ((uVar6 = FUN_1808995c0(*resourceData,resourceContext + 0x98), (int)uVar6 == 0 &&
+     ((uVar6 = CalculateResourceHash(*resourceData,resourceContext + 0x98), (int)uVar6 == 0 &&
       (uVar6 = uVar8, *(int *)(resourceData[1] + 0x18) == 0)))) {
     resourceTable = *param_2;
-    uVar6 = FUN_1808995c0(resourceTable,dataContext + 0x80);
+    uVar6 = CalculateResourceHash(resourceTable,dataContext + 0x80);
     if (((((int)uVar6 == 0) &&
-         ((uVar6 = FUN_1808995c0(resourceTable,param_1 + 0x84), (int)uVar6 == 0 &&
+         ((uVar6 = CalculateResourceHash(resourceTable,param_1 + 0x84), (int)uVar6 == 0 &&
           (uVar6 = FUN_180899220(param_2,param_1 + 0x88), (int)uVar6 == 0)))) &&
         (uVar6 = uVar8, *(int *)(resourceData[1] + 0x18) == 0)) &&
        ((((uVar6 = FUN_180899090(*param_2,dataContext + 0x70), (int)uVar6 == 0 &&
           (uVar6 = uVar8, *(int *)(resourceData[1] + 0x18) == 0)) &&
-         (uVar6 = FUN_1808995c0(*resourceData,resourceContext + 0xa8), (int)uVar6 == 0)) &&
+         (uVar6 = CalculateResourceHash(*resourceData,resourceContext + 0xa8), (int)uVar6 == 0)) &&
         (((uVar6 = uVar8, *(int *)(resourceData[1] + 0x18) == 0 &&
-          (uVar6 = FUN_1808995c0(*resourceData,resourceContext + 0x9c), (int)uVar6 == 0)) &&
+          (uVar6 = CalculateResourceHash(*resourceData,resourceContext + 0x9c), (int)uVar6 == 0)) &&
          ((uVar6 = uVar8, *(int *)(resourceData[1] + 0x18) == 0 &&
-          ((uVar6 = FUN_1808aed00(*param_2,param_1 + 0xb4,4), (int)uVar6 == 0 &&
+          ((uVar6 = ReadResourceData(*param_2,param_1 + 0xb4,4), (int)uVar6 == 0 &&
            (uVar6 = FUN_18089d490(param_1 + 0x30,param_2), (int)uVar6 == 0)))))))))) {
       uVar6 = uVar5;
       if (0x34 < *(uint *)(resourceData + 8)) {
         if (*(int *)(resourceData[1] + 0x18) == 0) {
-          uVar6 = FUN_1808aed00(*param_2,param_1 + 0xbc,4);
+          uVar6 = ReadResourceData(*param_2,param_1 + 0xbc,4);
         }
         else {
           uVar6 = 0x1c;
@@ -19214,7 +19232,7 @@ LAB_18089b91c:
         uVar6 = uVar5;
         if (0x46 < *(uint *)(resourceData + 8)) {
           if (*(int *)(resourceData[1] + 0x18) == 0) {
-            uVar6 = FUN_1808aed00(*param_2,param_1 + 0xc0,4);
+            uVar6 = ReadResourceData(*param_2,param_1 + 0xc0,4);
           }
           else {
             uVar6 = 0x1c;
@@ -19224,7 +19242,7 @@ LAB_18089b91c:
           uVar6 = uVar5;
           if (0x47 < *(uint *)(resourceData + 8)) {
             if (*(int *)(resourceData[1] + 0x18) == 0) {
-              uVar6 = FUN_1808995c0(*resourceData,resourceContext + 0xa0);
+              uVar6 = CalculateResourceHash(*resourceData,resourceContext + 0xa0);
             }
             else {
               uVar6 = 0x1c;
@@ -19234,7 +19252,7 @@ LAB_18089b91c:
             uVar6 = uVar5;
             if (0x4f < *(uint *)(resourceData + 8)) {
               if (*(int *)(resourceData[1] + 0x18) == 0) {
-                uVar3 = FUN_1808995c0(*resourceData,resourceContext + 0xac);
+                uVar3 = CalculateResourceHash(*resourceData,resourceContext + 0xac);
                 uVar6 = (ulonglong)uVar3;
               }
               else {
@@ -19284,21 +19302,21 @@ ulonglong FUN_18089b813(void)
   if (*(int *)(in_RAX + 0x18) != 0) {
     return 0x1c;
   }
-  uVar3 = FUN_1808995c0(*unaff_RBX,unaff_RSI + 0x90);
+  uVar3 = CalculateResourceHash(*unaff_RBX,unaff_RSI + 0x90);
   if (uVar3 != 0) {
     return (ulonglong)uVar3;
   }
   if (*(int *)(unaff_RBX[1] + 0x18) != 0) {
     return 0x1c;
   }
-  uVar3 = FUN_1808995c0(*unaff_RBX,unaff_RSI + 0xa4);
+  uVar3 = CalculateResourceHash(*unaff_RBX,unaff_RSI + 0xa4);
   if (uVar3 != 0) {
     return (ulonglong)uVar3;
   }
   if (*(int *)(unaff_RBX[1] + 0x18) != 0) {
     return 0x1c;
   }
-  uVar3 = FUN_1808aed00(*unaff_RBX,unaff_RSI + 0xb0,4);
+  uVar3 = ReadResourceData(*unaff_RBX,unaff_RSI + 0xb0,4);
   if (uVar3 != 0) {
     return (ulonglong)uVar3;
   }
@@ -19340,35 +19358,35 @@ LAB_18089b91c:
     if (*(int *)(unaff_RBX[1] + 0x18) != 0) {
       return 0x1c;
     }
-    uVar5 = FUN_1808aed00(*unaff_RBX,unaff_RSI + 0xb8,4);
+    uVar5 = ReadResourceData(*unaff_RBX,unaff_RSI + 0xb8,4);
     if ((int)uVar5 != 0) {
       return uVar5;
     }
   }
   uVar5 = uVar8;
   if ((((*(int *)(unaff_RBX[1] + 0x18) == 0) &&
-       (uVar5 = FUN_1808995c0(*unaff_RBX,unaff_RSI + 0x94), (int)uVar5 == 0)) &&
+       (uVar5 = CalculateResourceHash(*unaff_RBX,unaff_RSI + 0x94), (int)uVar5 == 0)) &&
       (uVar5 = uVar8, *(int *)(unaff_RBX[1] + 0x18) == 0)) &&
-     ((uVar5 = FUN_1808995c0(*unaff_RBX,unaff_RSI + 0x98), (int)uVar5 == 0 &&
+     ((uVar5 = CalculateResourceHash(*unaff_RBX,unaff_RSI + 0x98), (int)uVar5 == 0 &&
       (uVar5 = uVar8, *(int *)(unaff_RBX[1] + 0x18) == 0)))) {
     resourceTable = *unaff_RBX;
-    uVar5 = FUN_1808995c0(resourceTable,unaff_RSI + 0x80);
+    uVar5 = CalculateResourceHash(resourceTable,unaff_RSI + 0x80);
     if (((((int)uVar5 == 0) &&
-         ((uVar5 = FUN_1808995c0(resourceTable,unaff_RSI + 0x84), (int)uVar5 == 0 &&
+         ((uVar5 = CalculateResourceHash(resourceTable,unaff_RSI + 0x84), (int)uVar5 == 0 &&
           (uVar5 = FUN_180899220(), (int)uVar5 == 0)))) &&
         (uVar5 = uVar8, *(int *)(unaff_RBX[1] + 0x18) == 0)) &&
        ((((uVar5 = FUN_180899090(*unaff_RBX,unaff_RSI + 0x70), (int)uVar5 == 0 &&
           (uVar5 = uVar8, *(int *)(unaff_RBX[1] + 0x18) == 0)) &&
-         (uVar5 = FUN_1808995c0(*unaff_RBX,unaff_RSI + 0xa8), (int)uVar5 == 0)) &&
+         (uVar5 = CalculateResourceHash(*unaff_RBX,unaff_RSI + 0xa8), (int)uVar5 == 0)) &&
         (((uVar5 = uVar8, *(int *)(unaff_RBX[1] + 0x18) == 0 &&
-          (uVar5 = FUN_1808995c0(*unaff_RBX,unaff_RSI + 0x9c), (int)uVar5 == 0)) &&
+          (uVar5 = CalculateResourceHash(*unaff_RBX,unaff_RSI + 0x9c), (int)uVar5 == 0)) &&
          ((uVar5 = uVar8, *(int *)(unaff_RBX[1] + 0x18) == 0 &&
-          ((uVar5 = FUN_1808aed00(*unaff_RBX,unaff_RSI + 0xb4,4), (int)uVar5 == 0 &&
+          ((uVar5 = ReadResourceData(*unaff_RBX,unaff_RSI + 0xb4,4), (int)uVar5 == 0 &&
            (uVar5 = FUN_18089d490(unaff_RSI + 0x30), (int)uVar5 == 0)))))))))) {
       uVar5 = uVar7;
       if (0x34 < *(uint *)(unaff_RBX + 8)) {
         if (*(int *)(unaff_RBX[1] + 0x18) == 0) {
-          uVar5 = FUN_1808aed00(*unaff_RBX,unaff_RSI + 0xbc,4);
+          uVar5 = ReadResourceData(*unaff_RBX,unaff_RSI + 0xbc,4);
         }
         else {
           uVar5 = 0x1c;
@@ -19378,7 +19396,7 @@ LAB_18089b91c:
         uVar5 = uVar7;
         if (0x46 < *(uint *)(unaff_RBX + 8)) {
           if (*(int *)(unaff_RBX[1] + 0x18) == 0) {
-            uVar5 = FUN_1808aed00(*unaff_RBX,unaff_RSI + 0xc0,4);
+            uVar5 = ReadResourceData(*unaff_RBX,unaff_RSI + 0xc0,4);
           }
           else {
             uVar5 = 0x1c;
@@ -19388,7 +19406,7 @@ LAB_18089b91c:
           uVar5 = uVar7;
           if (0x47 < *(uint *)(unaff_RBX + 8)) {
             if (*(int *)(unaff_RBX[1] + 0x18) == 0) {
-              uVar5 = FUN_1808995c0(*unaff_RBX,unaff_RSI + 0xa0);
+              uVar5 = CalculateResourceHash(*unaff_RBX,unaff_RSI + 0xa0);
             }
             else {
               uVar5 = 0x1c;
@@ -19397,7 +19415,7 @@ LAB_18089b91c:
           if ((int)uVar5 == 0) {
             if (0x4f < *(uint *)(unaff_RBX + 8)) {
               if (*(int *)(unaff_RBX[1] + 0x18) == 0) {
-                uVar3 = FUN_1808995c0(*unaff_RBX,unaff_RSI + 0xac);
+                uVar3 = CalculateResourceHash(*unaff_RBX,unaff_RSI + 0xac);
                 uVar7 = (ulonglong)uVar3;
               }
               else {
@@ -19444,7 +19462,7 @@ ulonglong FUN_18089b86d(void)
   char in_stack_00000090;
   uint in_stack_00000098;
   
-  uVar3 = FUN_1808aed00(*unaff_RBX,unaff_RSI + 0xb0,4);
+  uVar3 = ReadResourceData(*unaff_RBX,unaff_RSI + 0xb0,4);
   if (uVar3 != 0) {
     return (ulonglong)uVar3;
   }
@@ -19486,35 +19504,35 @@ LAB_18089b91c:
     if (*(int *)(unaff_RBX[1] + 0x18) != 0) {
       return 0x1c;
     }
-    uVar5 = FUN_1808aed00(*unaff_RBX,unaff_RSI + 0xb8,4);
+    uVar5 = ReadResourceData(*unaff_RBX,unaff_RSI + 0xb8,4);
     if ((int)uVar5 != 0) {
       return uVar5;
     }
   }
   uVar5 = uVar8;
   if ((((*(int *)(unaff_RBX[1] + 0x18) == 0) &&
-       (uVar5 = FUN_1808995c0(*unaff_RBX,unaff_RSI + 0x94), (int)uVar5 == 0)) &&
+       (uVar5 = CalculateResourceHash(*unaff_RBX,unaff_RSI + 0x94), (int)uVar5 == 0)) &&
       (uVar5 = uVar8, *(int *)(unaff_RBX[1] + 0x18) == 0)) &&
-     ((uVar5 = FUN_1808995c0(*unaff_RBX,unaff_RSI + 0x98), (int)uVar5 == 0 &&
+     ((uVar5 = CalculateResourceHash(*unaff_RBX,unaff_RSI + 0x98), (int)uVar5 == 0 &&
       (uVar5 = uVar8, *(int *)(unaff_RBX[1] + 0x18) == 0)))) {
     resourceTable = *unaff_RBX;
-    uVar5 = FUN_1808995c0(resourceTable,unaff_RSI + 0x80);
+    uVar5 = CalculateResourceHash(resourceTable,unaff_RSI + 0x80);
     if (((((int)uVar5 == 0) &&
-         ((uVar5 = FUN_1808995c0(resourceTable,unaff_RSI + 0x84), (int)uVar5 == 0 &&
+         ((uVar5 = CalculateResourceHash(resourceTable,unaff_RSI + 0x84), (int)uVar5 == 0 &&
           (uVar5 = FUN_180899220(), (int)uVar5 == 0)))) &&
         (uVar5 = uVar8, *(int *)(unaff_RBX[1] + 0x18) == 0)) &&
        ((((uVar5 = FUN_180899090(*unaff_RBX,unaff_RSI + 0x70), (int)uVar5 == 0 &&
           (uVar5 = uVar8, *(int *)(unaff_RBX[1] + 0x18) == 0)) &&
-         (uVar5 = FUN_1808995c0(*unaff_RBX,unaff_RSI + 0xa8), (int)uVar5 == 0)) &&
+         (uVar5 = CalculateResourceHash(*unaff_RBX,unaff_RSI + 0xa8), (int)uVar5 == 0)) &&
         (((uVar5 = uVar8, *(int *)(unaff_RBX[1] + 0x18) == 0 &&
-          (uVar5 = FUN_1808995c0(*unaff_RBX,unaff_RSI + 0x9c), (int)uVar5 == 0)) &&
+          (uVar5 = CalculateResourceHash(*unaff_RBX,unaff_RSI + 0x9c), (int)uVar5 == 0)) &&
          ((uVar5 = uVar8, *(int *)(unaff_RBX[1] + 0x18) == 0 &&
-          ((uVar5 = FUN_1808aed00(*unaff_RBX,unaff_RSI + 0xb4,4), (int)uVar5 == 0 &&
+          ((uVar5 = ReadResourceData(*unaff_RBX,unaff_RSI + 0xb4,4), (int)uVar5 == 0 &&
            (uVar5 = FUN_18089d490(unaff_RSI + 0x30), (int)uVar5 == 0)))))))))) {
       uVar5 = uVar7;
       if (0x34 < *(uint *)(unaff_RBX + 8)) {
         if (*(int *)(unaff_RBX[1] + 0x18) == 0) {
-          uVar5 = FUN_1808aed00(*unaff_RBX,unaff_RSI + 0xbc,4);
+          uVar5 = ReadResourceData(*unaff_RBX,unaff_RSI + 0xbc,4);
         }
         else {
           uVar5 = 0x1c;
@@ -19524,7 +19542,7 @@ LAB_18089b91c:
         uVar5 = uVar7;
         if (0x46 < *(uint *)(unaff_RBX + 8)) {
           if (*(int *)(unaff_RBX[1] + 0x18) == 0) {
-            uVar5 = FUN_1808aed00(*unaff_RBX,unaff_RSI + 0xc0,4);
+            uVar5 = ReadResourceData(*unaff_RBX,unaff_RSI + 0xc0,4);
           }
           else {
             uVar5 = 0x1c;
@@ -19534,7 +19552,7 @@ LAB_18089b91c:
           uVar5 = uVar7;
           if (0x47 < *(uint *)(unaff_RBX + 8)) {
             if (*(int *)(unaff_RBX[1] + 0x18) == 0) {
-              uVar5 = FUN_1808995c0(*unaff_RBX,unaff_RSI + 0xa0);
+              uVar5 = CalculateResourceHash(*unaff_RBX,unaff_RSI + 0xa0);
             }
             else {
               uVar5 = 0x1c;
@@ -19543,7 +19561,7 @@ LAB_18089b91c:
           if ((int)uVar5 == 0) {
             if (0x4f < *(uint *)(unaff_RBX + 8)) {
               if (*(int *)(unaff_RBX[1] + 0x18) == 0) {
-                uVar3 = FUN_1808995c0(*unaff_RBX,unaff_RSI + 0xac);
+                uVar3 = CalculateResourceHash(*unaff_RBX,unaff_RSI + 0xac);
                 uVar7 = (ulonglong)uVar3;
               }
               else {
@@ -19628,35 +19646,35 @@ LAB_18089b91c:
     if (*(int *)(unaff_RBX[1] + 0x18) != 0) {
       return 0x1c;
     }
-    uVar5 = FUN_1808aed00(*unaff_RBX,unaff_RSI + 0xb8,4);
+    uVar5 = ReadResourceData(*unaff_RBX,unaff_RSI + 0xb8,4);
     if ((int)uVar5 != 0) {
       return uVar5;
     }
   }
   uVar5 = uVar8;
   if ((((*(int *)(unaff_RBX[1] + 0x18) == 0) &&
-       (uVar5 = FUN_1808995c0(*unaff_RBX,unaff_RSI + 0x94), (int)uVar5 == 0)) &&
+       (uVar5 = CalculateResourceHash(*unaff_RBX,unaff_RSI + 0x94), (int)uVar5 == 0)) &&
       (uVar5 = uVar8, *(int *)(unaff_RBX[1] + 0x18) == 0)) &&
-     ((uVar5 = FUN_1808995c0(*unaff_RBX,unaff_RSI + 0x98), (int)uVar5 == 0 &&
+     ((uVar5 = CalculateResourceHash(*unaff_RBX,unaff_RSI + 0x98), (int)uVar5 == 0 &&
       (uVar5 = uVar8, *(int *)(unaff_RBX[1] + 0x18) == 0)))) {
     resourceTable = *unaff_RBX;
-    uVar5 = FUN_1808995c0(resourceTable,unaff_RSI + 0x80);
+    uVar5 = CalculateResourceHash(resourceTable,unaff_RSI + 0x80);
     if (((((int)uVar5 == 0) &&
-         ((uVar5 = FUN_1808995c0(resourceTable,unaff_RSI + 0x84), (int)uVar5 == 0 &&
+         ((uVar5 = CalculateResourceHash(resourceTable,unaff_RSI + 0x84), (int)uVar5 == 0 &&
           (uVar5 = FUN_180899220(), (int)uVar5 == 0)))) &&
         (uVar5 = uVar8, *(int *)(unaff_RBX[1] + 0x18) == 0)) &&
        ((((uVar5 = FUN_180899090(*unaff_RBX,unaff_RSI + 0x70), (int)uVar5 == 0 &&
           (uVar5 = uVar8, *(int *)(unaff_RBX[1] + 0x18) == 0)) &&
-         (uVar5 = FUN_1808995c0(*unaff_RBX,unaff_RSI + 0xa8), (int)uVar5 == 0)) &&
+         (uVar5 = CalculateResourceHash(*unaff_RBX,unaff_RSI + 0xa8), (int)uVar5 == 0)) &&
         (((uVar5 = uVar8, *(int *)(unaff_RBX[1] + 0x18) == 0 &&
-          (uVar5 = FUN_1808995c0(*unaff_RBX,unaff_RSI + 0x9c), (int)uVar5 == 0)) &&
+          (uVar5 = CalculateResourceHash(*unaff_RBX,unaff_RSI + 0x9c), (int)uVar5 == 0)) &&
          ((uVar5 = uVar8, *(int *)(unaff_RBX[1] + 0x18) == 0 &&
-          ((uVar5 = FUN_1808aed00(*unaff_RBX,unaff_RSI + 0xb4,4), (int)uVar5 == 0 &&
+          ((uVar5 = ReadResourceData(*unaff_RBX,unaff_RSI + 0xb4,4), (int)uVar5 == 0 &&
            (uVar5 = FUN_18089d490(unaff_RSI + 0x30), (int)uVar5 == 0)))))))))) {
       uVar5 = uVar7;
       if (0x34 < *(uint *)(unaff_RBX + 8)) {
         if (*(int *)(unaff_RBX[1] + 0x18) == 0) {
-          uVar5 = FUN_1808aed00(*unaff_RBX,unaff_RSI + 0xbc,4);
+          uVar5 = ReadResourceData(*unaff_RBX,unaff_RSI + 0xbc,4);
         }
         else {
           uVar5 = 0x1c;
@@ -19666,7 +19684,7 @@ LAB_18089b91c:
         uVar5 = uVar7;
         if (0x46 < *(uint *)(unaff_RBX + 8)) {
           if (*(int *)(unaff_RBX[1] + 0x18) == 0) {
-            uVar5 = FUN_1808aed00(*unaff_RBX,unaff_RSI + 0xc0,4);
+            uVar5 = ReadResourceData(*unaff_RBX,unaff_RSI + 0xc0,4);
           }
           else {
             uVar5 = 0x1c;
@@ -19676,7 +19694,7 @@ LAB_18089b91c:
           uVar5 = uVar7;
           if (0x47 < *(uint *)(unaff_RBX + 8)) {
             if (*(int *)(unaff_RBX[1] + 0x18) == 0) {
-              uVar5 = FUN_1808995c0(*unaff_RBX,unaff_RSI + 0xa0);
+              uVar5 = CalculateResourceHash(*unaff_RBX,unaff_RSI + 0xa0);
             }
             else {
               uVar5 = 0x1c;
@@ -19685,7 +19703,7 @@ LAB_18089b91c:
           if ((int)uVar5 == 0) {
             if (0x4f < *(uint *)(unaff_RBX + 8)) {
               if (*(int *)(unaff_RBX[1] + 0x18) == 0) {
-                uVar4 = FUN_1808995c0(*unaff_RBX,unaff_RSI + 0xac);
+                uVar4 = CalculateResourceHash(*unaff_RBX,unaff_RSI + 0xac);
                 uVar7 = (ulonglong)uVar4;
               }
               else {
@@ -19763,11 +19781,11 @@ bc10(longlong param_1,undefined8 *param_2)
             if (*(int *)(resourceData[1] + 0x18) == 0) {
               uVar2 = *param_2;
               lVar1 = *(longlong *)(param_1 + 0x20) + (longlong)iVar4 * 8;
-              tableEntry = FUN_1808995c0(uVar2,lVar1);
+              tableEntry = CalculateResourceHash(uVar2,lVar1);
               if (tableEntry != 0) {
                 return;
               }
-              tableEntry = FUN_1808995c0(uVar2,lVar1 + 4);
+              tableEntry = CalculateResourceHash(uVar2,lVar1 + 4);
             }
             else {
               tableEntry = 0x1c;
@@ -19825,11 +19843,11 @@ bc5a(void)
           if (*(int *)(unaff_RDI[1] + 0x18) == 0) {
             uVar2 = *unaff_RDI;
             lVar1 = *(longlong *)(unaff_RBX + 0x20) + (longlong)iVar4 * 8;
-            tableEntry = FUN_1808995c0(uVar2,lVar1);
+            tableEntry = CalculateResourceHash(uVar2,lVar1);
             if (tableEntry != 0) {
               return;
             }
-            tableEntry = FUN_1808995c0(uVar2,lVar1 + 4);
+            tableEntry = CalculateResourceHash(uVar2,lVar1 + 4);
           }
           else {
             tableEntry = 0x1c;
@@ -19863,7 +19881,14 @@ bd61(void)
 
 
 
-undefined8 FUN_18089bd70(longlong param_1,undefined8 *param_2)
+/**
+ * 处理资源验证函数
+ * 执行资源验证流程，包括哈希计算和资源完整性检查
+ * @param ValidationParam 验证参数
+ * @param ResourcePointer 资源指针
+ * @return 错误码：0x1c表示验证失败
+ */
+undefined8 ProcessResourceValidation(longlong ValidationParam,undefined8 *ResourcePointer)
 
 {
   undefined8 resourceHash;
@@ -19873,12 +19898,12 @@ undefined8 FUN_18089bd70(longlong param_1,undefined8 *param_2)
     if (*(int *)(resourceData[1] + 0x18) != 0) {
       return 0x1c;
     }
-    resourceHash = FUN_1808995c0(*resourceData,resourceContext + 0x30);
+    resourceHash = CalculateResourceHash(*resourceData,resourceContext + 0x30);
     if ((int)resourceHash == 0) {
       if (*(int *)(resourceData[1] + 0x18) != 0) {
         return 0x1c;
       }
-      resourceHash = FUN_1808995c0(*resourceData,resourceContext + 0x34);
+      resourceHash = CalculateResourceHash(*resourceData,resourceContext + 0x34);
       if (((int)resourceHash == 0) && (resourceHash = FUN_1808de0e0(param_2,0), (int)resourceHash == 0)) {
         if ((0x6b < *(uint *)(resourceData + 8)) &&
            (resourceHash = FUN_1808a6150(param_2,param_1 + 0x38,0), (int)resourceHash != 0)) {
@@ -19976,7 +20001,7 @@ be10(longlong param_1,undefined8 *param_2,int param_3)
   *(uint *)(param_1 + 0x28) = resourceHash;
   if (resourceHash != 0) {
     if (*(int *)(resourceData[1] + 0x18) == 0) {
-      iVar2 = FUN_1808aed00(*param_2,*(undefined8 *)(param_1 + 0x20),lVar6);
+      iVar2 = ReadResourceData(*param_2,*(undefined8 *)(param_1 + 0x20),lVar6);
       if (iVar2 == 0) goto LAB_18089bfc7;
     }
     else {
@@ -20085,7 +20110,7 @@ be41(void)
   *(int *)(unaff_R15 + 0x28) = iVar1;
   if (iVar1 != 0) {
     if (*(int *)(unaff_RBX[1] + 0x18) == 0) {
-      iVar1 = FUN_1808aed00(*unaff_RBX,*(undefined8 *)(unaff_R15 + 0x20),lVar5);
+      iVar1 = ReadResourceData(*unaff_RBX,*(undefined8 *)(unaff_R15 + 0x20),lVar5);
       if (iVar1 == 0) goto LAB_18089bfc7;
     }
     else {
@@ -20139,7 +20164,7 @@ ulonglong FUN_18089c030(longlong param_1,undefined8 *param_2)
   if (*(int *)(resourceData[1] + 0x18) != 0) {
     return 0x1c;
   }
-  uVar4 = FUN_1808aed00(*param_2,param_1,4);
+  uVar4 = ReadResourceData(*param_2,param_1,4);
   if ((int)uVar4 != 0) {
     return uVar4;
   }
@@ -20173,7 +20198,7 @@ ulonglong FUN_18089c030(longlong param_1,undefined8 *param_2)
   *(int *)(param_1 + 0x10) = iVar2;
   if (iVar2 != 0) {
     if (*(int *)(resourceData[1] + 0x18) == 0) {
-      uVar4 = FUN_1808aed00(*param_2,*(undefined8 *)(param_1 + 8),lVar7 << 3);
+      uVar4 = ReadResourceData(*param_2,*(undefined8 *)(param_1 + 8),lVar7 << 3);
       if ((int)uVar4 == 0) goto LAB_18089c131;
     }
     else {
@@ -20190,7 +20215,7 @@ LAB_18089c131:
       uVar3 = 0;
     }
     else if (*(int *)(resourceData[1] + 0x18) == 0) {
-      uVar3 = FUN_1808aed00(*param_2,param_1 + 4,4);
+      uVar3 = ReadResourceData(*param_2,param_1 + 4,4);
     }
     if (uVar3 == 0) {
       uVar4 = func_0x000180069ee0(param_1);
@@ -20261,19 +20286,19 @@ ulonglong ProcessResourceAllocation(longlong ResourceHandle,undefined8 *Resource
   if (*(uint *)(resourceData + 8) < 0x6d) {
     if (*(int *)(resourceData[1] + 0x18) == 0) {
       resourceHash = *param_2;
-      uVar7 = FUN_1808aed00(resourceHash,&uStack_78,4);
+      uVar7 = ReadResourceData(resourceHash,&uStack_78,4);
       if ((int)uVar7 != 0) {
         return uVar7;
       }
-      uVar7 = FUN_1808aed00(resourceHash,&uStack_74,2);
+      uVar7 = ReadResourceData(resourceHash,&uStack_74,2);
       if ((int)uVar7 != 0) {
         return uVar7;
       }
-      uVar7 = FUN_1808aed00(resourceHash,(longlong)&uStack_74 + 2,2);
+      uVar7 = ReadResourceData(resourceHash,(longlong)&uStack_74 + 2,2);
       if ((int)uVar7 != 0) {
         return uVar7;
       }
-      uVar7 = FUN_1808aed00(resourceHash,&uStack_70,8);
+      uVar7 = ReadResourceData(resourceHash,&uStack_70,8);
     }
     else {
       uVar7 = 0x1c;
@@ -20429,7 +20454,7 @@ LAB_18089c586:
   }
 LAB_18089c300:
   if ((0x70 < *(uint *)(resourceData + 8)) && (uVar5 = 0x1c, *(int *)(resourceData[1] + 0x18) == 0)) {
-    uVar5 = FUN_1808aed00(*param_2,param_1 + 0x68,4);
+    uVar5 = ReadResourceData(*param_2,param_1 + 0x68,4);
   }
   if (uVar5 != 0) {
     return (ulonglong)uVar5;
@@ -20500,19 +20525,19 @@ undefined8 * FUN_18089c1fb(void)
   if (uVar9 < 0x6d) {
     if (*(int *)(unaff_RDI[1] + 0x18) == 0) {
       resourceHash = *unaff_RDI;
-      presourceHash3 = (undefined8 *)FUN_1808aed00(resourceHash,unaff_RBP + -0x19,4);
+      presourceHash3 = (undefined8 *)ReadResourceData(resourceHash,unaff_RBP + -0x19,4);
       if ((int)presourceHash3 != 0) {
         return presourceHash3;
       }
-      presourceHash3 = (undefined8 *)FUN_1808aed00(resourceHash,unaff_RBP + -0x15,2);
+      presourceHash3 = (undefined8 *)ReadResourceData(resourceHash,unaff_RBP + -0x15,2);
       if ((int)presourceHash3 != 0) {
         return presourceHash3;
       }
-      presourceHash3 = (undefined8 *)FUN_1808aed00(resourceHash,unaff_RBP + -0x13,2);
+      presourceHash3 = (undefined8 *)ReadResourceData(resourceHash,unaff_RBP + -0x13,2);
       if ((int)presourceHash3 != 0) {
         return presourceHash3;
       }
-      presourceHash3 = (undefined8 *)FUN_1808aed00(resourceHash,unaff_RBP + -0x11,8);
+      presourceHash3 = (undefined8 *)ReadResourceData(resourceHash,unaff_RBP + -0x11,8);
       uVar20 = extraout_XMM0_Da;
     }
     else {
@@ -20683,7 +20708,7 @@ LAB_18089c586:
   }
 LAB_18089c300:
   if ((0x70 < *(uint *)(unaff_RDI + 8)) && (uVar8 = 0x1c, *(int *)(unaff_RDI[1] + 0x18) == 0)) {
-    uVar8 = FUN_1808aed00(*unaff_RDI,unaff_RSI + 0x68,4);
+    uVar8 = ReadResourceData(*unaff_RDI,unaff_RSI + 0x68,4);
     fVar21 = extraout_XMM0_Da_01;
   }
   if (uVar8 != 0) {
@@ -20747,19 +20772,19 @@ undefined8 * FUN_18089c22e(void)
   if (uVar9 < 0x6d) {
     if (*(int *)(unaff_RDI[1] + 0x18) == 0) {
       resourceHash = *unaff_RDI;
-      presourceHash2 = (undefined8 *)FUN_1808aed00(resourceHash,unaff_RBP + -0x19,4);
+      presourceHash2 = (undefined8 *)ReadResourceData(resourceHash,unaff_RBP + -0x19,4);
       if ((int)presourceHash2 != 0) {
         return presourceHash2;
       }
-      presourceHash2 = (undefined8 *)FUN_1808aed00(resourceHash,unaff_RBP + -0x15,2);
+      presourceHash2 = (undefined8 *)ReadResourceData(resourceHash,unaff_RBP + -0x15,2);
       if ((int)presourceHash2 != 0) {
         return presourceHash2;
       }
-      presourceHash2 = (undefined8 *)FUN_1808aed00(resourceHash,unaff_RBP + -0x13,2);
+      presourceHash2 = (undefined8 *)ReadResourceData(resourceHash,unaff_RBP + -0x13,2);
       if ((int)presourceHash2 != 0) {
         return presourceHash2;
       }
-      presourceHash2 = (undefined8 *)FUN_1808aed00(resourceHash,unaff_RBP + -0x11,8);
+      presourceHash2 = (undefined8 *)ReadResourceData(resourceHash,unaff_RBP + -0x11,8);
       uVar20 = extraout_XMM0_Da;
     }
     else {
@@ -20930,7 +20955,7 @@ LAB_18089c586:
   }
 LAB_18089c300:
   if ((0x70 < *(uint *)(unaff_RDI + 8)) && (uVar8 = 0x1c, *(int *)(unaff_RDI[1] + 0x18) == 0)) {
-    uVar8 = FUN_1808aed00(*unaff_RDI,unaff_RSI + 0x68,4);
+    uVar8 = ReadResourceData(*unaff_RDI,unaff_RSI + 0x68,4);
     fVar21 = extraout_XMM0_Da_01;
   }
   if (uVar8 != 0) {
@@ -21143,7 +21168,7 @@ LAB_18089c586:
 LAB_18089c300:
   if ((0x70 < *(uint *)(unaff_RDI + 8)) &&
      (bVar19 = *(uint *)(unaff_RDI[1] + 0x18) == uVar8, uVar8 = unaff_R15D, bVar19)) {
-    uVar8 = FUN_1808aed00(*unaff_RDI,unaff_RSI + 0x68,4);
+    uVar8 = ReadResourceData(*unaff_RDI,unaff_RSI + 0x68,4);
     fVar20 = extraout_XMM0_Da_00;
   }
   if (uVar8 != 0) {
@@ -21223,7 +21248,7 @@ ulonglong FUN_18089c630(longlong param_1,longlong *param_2)
   uVar3 = uVar6;
   if (0x6f < *(uint *)(resourceData + 8)) {
     if (*(int *)(resourceData[1] + 0x18) == 0) {
-      uVar3 = FUN_1808aed00(*param_2,param_1 + 0x34,4);
+      uVar3 = ReadResourceData(*param_2,param_1 + 0x34,4);
     }
     else {
       uVar3 = 0x1c;
@@ -21350,35 +21375,35 @@ LAB_18089c878:
   if (*(int *)(resourceData[1] + 0x18) != 0) {
     return 0x1c;
   }
-  uVar3 = FUN_1808995c0(*resourceData,resourceContext + 0x38);
+  uVar3 = CalculateResourceHash(*resourceData,resourceContext + 0x38);
   if ((int)uVar3 != 0) {
     return uVar3;
   }
   if (*(int *)(resourceData[1] + 0x18) != 0) {
     return 0x1c;
   }
-  uVar3 = FUN_1808995c0(*resourceData,resourceContext + 0x3c);
+  uVar3 = CalculateResourceHash(*resourceData,resourceContext + 0x3c);
   if ((int)uVar3 != 0) {
     return uVar3;
   }
   if (*(int *)(resourceData[1] + 0x18) != 0) {
     return 0x1c;
   }
-  uVar3 = FUN_1808995c0(*resourceData,resourceContext + 0x4c);
+  uVar3 = CalculateResourceHash(*resourceData,resourceContext + 0x4c);
   if ((int)uVar3 != 0) {
     return uVar3;
   }
   if (*(int *)(resourceData[1] + 0x18) != 0) {
     return 0x1c;
   }
-  uVar3 = FUN_1808995c0(*resourceData,resourceContext + 0x40);
+  uVar3 = CalculateResourceHash(*resourceData,resourceContext + 0x40);
   if ((int)uVar3 != 0) {
     return uVar3;
   }
   if (*(int *)(resourceData[1] + 0x18) != 0) {
     return 0x1c;
   }
-  uVar3 = FUN_1808995c0(*resourceData,resourceContext + 0x44);
+  uVar3 = CalculateResourceHash(*resourceData,resourceContext + 0x44);
   if ((int)uVar3 != 0) {
     return uVar3;
   }
@@ -21432,7 +21457,7 @@ LAB_18089c9ee:
   uVar3 = uVar6;
   if (0x51 < *(uint *)(resourceData + 8)) {
     if (*(int *)(resourceData[1] + 0x18) == 0) {
-      uVar3 = FUN_1808995c0(*resourceData,resourceContext + 0x48);
+      uVar3 = CalculateResourceHash(*resourceData,resourceContext + 0x48);
     }
     else {
       uVar3 = 0x1c;
@@ -21573,7 +21598,7 @@ ulonglong FUN_18089c69d(void)
   uVar4 = uVar7;
   if (0x6f < *(uint *)(unaff_RBX + 8)) {
     if (*(int *)(unaff_RBX[1] + 0x18) == 0) {
-      uVar4 = FUN_1808aed00(*unaff_RBX,unaff_R13 + 0x34,(ulonglong)uVar5);
+      uVar4 = ReadResourceData(*unaff_RBX,unaff_R13 + 0x34,(ulonglong)uVar5);
     }
     else {
       uVar4 = 0x1c;
@@ -21702,35 +21727,35 @@ LAB_18089c878:
   if (*(int *)(unaff_RBX[1] + 0x18) != 0) {
     return 0x1c;
   }
-  uVar4 = FUN_1808995c0(*unaff_RBX,unaff_R13 + 0x38);
+  uVar4 = CalculateResourceHash(*unaff_RBX,unaff_R13 + 0x38);
   if ((int)uVar4 != 0) {
     return uVar4;
   }
   if (*(int *)(unaff_RBX[1] + 0x18) != 0) {
     return 0x1c;
   }
-  uVar4 = FUN_1808995c0(*unaff_RBX,unaff_R13 + 0x3c);
+  uVar4 = CalculateResourceHash(*unaff_RBX,unaff_R13 + 0x3c);
   if ((int)uVar4 != 0) {
     return uVar4;
   }
   if (*(int *)(unaff_RBX[1] + 0x18) != 0) {
     return 0x1c;
   }
-  uVar4 = FUN_1808995c0(*unaff_RBX,unaff_R13 + 0x4c);
+  uVar4 = CalculateResourceHash(*unaff_RBX,unaff_R13 + 0x4c);
   if ((int)uVar4 != 0) {
     return uVar4;
   }
   if (*(int *)(unaff_RBX[1] + 0x18) != 0) {
     return 0x1c;
   }
-  uVar4 = FUN_1808995c0(*unaff_RBX,unaff_R13 + 0x40);
+  uVar4 = CalculateResourceHash(*unaff_RBX,unaff_R13 + 0x40);
   if ((int)uVar4 != 0) {
     return uVar4;
   }
   if (*(int *)(unaff_RBX[1] + 0x18) != 0) {
     return 0x1c;
   }
-  uVar4 = FUN_1808995c0(*unaff_RBX,unaff_R13 + 0x44);
+  uVar4 = CalculateResourceHash(*unaff_RBX,unaff_R13 + 0x44);
   if ((int)uVar4 != 0) {
     return uVar4;
   }
@@ -21787,7 +21812,7 @@ LAB_18089c9a8:
   uVar4 = uVar7;
   if (0x51 < *(uint *)(unaff_RBX + 8)) {
     if (*(int *)(unaff_RBX[1] + 0x18) == 0) {
-      uVar4 = FUN_1808995c0(*unaff_RBX,unaff_R13 + 0x48);
+      uVar4 = CalculateResourceHash(*unaff_RBX,unaff_R13 + 0x48);
       fVar9 = extraout_XMM0_Da_03;
     }
     else {
@@ -21947,35 +21972,35 @@ ulonglong FUN_18089c86d(void)
   if (*(int *)(unaff_RBX[1] + 0x18) != 0) {
     return 0x1c;
   }
-  uVar5 = FUN_1808995c0(*unaff_RBX,unaff_R13 + 0x38);
+  uVar5 = CalculateResourceHash(*unaff_RBX,unaff_R13 + 0x38);
   if ((int)uVar5 != 0) {
     return uVar5;
   }
   if (*(int *)(unaff_RBX[1] + 0x18) != 0) {
     return 0x1c;
   }
-  uVar5 = FUN_1808995c0(*unaff_RBX,unaff_R13 + 0x3c);
+  uVar5 = CalculateResourceHash(*unaff_RBX,unaff_R13 + 0x3c);
   if ((int)uVar5 != 0) {
     return uVar5;
   }
   if (*(int *)(unaff_RBX[1] + 0x18) != 0) {
     return 0x1c;
   }
-  uVar5 = FUN_1808995c0(*unaff_RBX,unaff_R13 + 0x4c);
+  uVar5 = CalculateResourceHash(*unaff_RBX,unaff_R13 + 0x4c);
   if ((int)uVar5 != 0) {
     return uVar5;
   }
   if (*(int *)(unaff_RBX[1] + 0x18) != 0) {
     return 0x1c;
   }
-  uVar5 = FUN_1808995c0(*unaff_RBX,unaff_R13 + 0x40);
+  uVar5 = CalculateResourceHash(*unaff_RBX,unaff_R13 + 0x40);
   if ((int)uVar5 != 0) {
     return uVar5;
   }
   if (*(int *)(unaff_RBX[1] + 0x18) != 0) {
     return 0x1c;
   }
-  uVar5 = FUN_1808995c0(*unaff_RBX,unaff_R13 + 0x44);
+  uVar5 = CalculateResourceHash(*unaff_RBX,unaff_R13 + 0x44);
   if ((int)uVar5 != 0) {
     return uVar5;
   }
@@ -22036,7 +22061,7 @@ LAB_18089c9a8:
     uVar5 = unaff_RDI & 0xffffffff;
   }
   else if (*(int *)(unaff_RBX[1] + 0x18) == 0) {
-    uVar5 = FUN_1808995c0(*unaff_RBX,unaff_R13 + 0x48);
+    uVar5 = CalculateResourceHash(*unaff_RBX,unaff_R13 + 0x48);
     fVar12 = extraout_XMM0_Da_03;
   }
   else {
@@ -22197,35 +22222,35 @@ ulonglong FUN_18089c872(void)
   if (*(int *)(unaff_RBX[1] + 0x18) != 0) {
     return 0x1c;
   }
-  uVar5 = FUN_1808995c0(*unaff_RBX,unaff_R13 + 0x38);
+  uVar5 = CalculateResourceHash(*unaff_RBX,unaff_R13 + 0x38);
   if ((int)uVar5 != 0) {
     return uVar5;
   }
   if (*(int *)(unaff_RBX[1] + 0x18) != 0) {
     return 0x1c;
   }
-  uVar5 = FUN_1808995c0(*unaff_RBX,unaff_R13 + 0x3c);
+  uVar5 = CalculateResourceHash(*unaff_RBX,unaff_R13 + 0x3c);
   if ((int)uVar5 != 0) {
     return uVar5;
   }
   if (*(int *)(unaff_RBX[1] + 0x18) != 0) {
     return 0x1c;
   }
-  uVar5 = FUN_1808995c0(*unaff_RBX,unaff_R13 + 0x4c);
+  uVar5 = CalculateResourceHash(*unaff_RBX,unaff_R13 + 0x4c);
   if ((int)uVar5 != 0) {
     return uVar5;
   }
   if (*(int *)(unaff_RBX[1] + 0x18) != 0) {
     return 0x1c;
   }
-  uVar5 = FUN_1808995c0(*unaff_RBX,unaff_R13 + 0x40);
+  uVar5 = CalculateResourceHash(*unaff_RBX,unaff_R13 + 0x40);
   if ((int)uVar5 != 0) {
     return uVar5;
   }
   if (*(int *)(unaff_RBX[1] + 0x18) != 0) {
     return 0x1c;
   }
-  uVar5 = FUN_1808995c0(*unaff_RBX,unaff_R13 + 0x44);
+  uVar5 = CalculateResourceHash(*unaff_RBX,unaff_R13 + 0x44);
   if ((int)uVar5 != 0) {
     return uVar5;
   }
@@ -22286,7 +22311,7 @@ LAB_18089c9a8:
     uVar5 = unaff_RDI & 0xffffffff;
   }
   else if (*(int *)(unaff_RBX[1] + 0x18) == 0) {
-    uVar5 = FUN_1808995c0(*unaff_RBX,unaff_R13 + 0x48);
+    uVar5 = CalculateResourceHash(*unaff_RBX,unaff_R13 + 0x48);
     fVar12 = extraout_XMM0_Da_03;
   }
   else {
@@ -22489,7 +22514,7 @@ LAB_18089c9a8:
     uVar6 = unaff_RDI & 0xffffffff;
   }
   else if (*(int *)(unaff_RBX[1] + 0x18) == iVar9) {
-    uVar6 = FUN_1808995c0(*unaff_RBX,unaff_R13 + 0x48);
+    uVar6 = CalculateResourceHash(*unaff_RBX,unaff_R13 + 0x48);
     param_1 = extraout_XMM0_Da_02;
   }
   else {
@@ -22790,7 +22815,12 @@ LAB_18089cd76:
 
 
 
-undefined8 FUN_18089ce03(void)
+/**
+ * 初始化资源系统函数
+ * 初始化资源系统并返回初始化状态
+ * @return 初始化状态码：0表示成功
+ */
+undefined8 InitializeResourceSystem(void)
 
 {
   return 0;
@@ -22798,7 +22828,12 @@ undefined8 FUN_18089ce03(void)
 
 
 
-undefined8 FUN_18089ce16(void)
+/**
+ * 获取资源错误码函数
+ * 获取资源处理过程中的标准错误码
+ * @return 错误码：0xd表示标准错误
+ */
+undefined8 GetResourceErrorCode(void)
 
 {
   return 0xd;
@@ -23305,7 +23340,14 @@ d23a(void)
 
 
 
-undefined8 FUN_18089d250(undefined8 param_1,longlong *param_2)
+/**
+ * 处理SPRP资源函数
+ * 处理SPRP类型资源的哈希计算和验证
+ * @param ResourceHandle 资源句柄
+ * @param ResourceTable 资源表指针
+ * @return 错误码：非0表示处理失败
+ */
+undefined8 ProcessSPRPResource(undefined8 ResourceHandle,longlong *ResourceTable)
 
 {
   longlong *plVar1;
@@ -23368,12 +23410,12 @@ LAB_18089d378:
       return uVar3;
     }
     if (*(int *)(resourceData[1] + 0x18) == 0) {
-      uVar3 = FUN_1808aed00(*param_2,lStack_60 + 0x48,2);
+      uVar3 = ReadResourceData(*param_2,lStack_60 + 0x48,2);
       if ((int)uVar3 != 0) {
         return uVar3;
       }
       if (*(int *)(resourceData[1] + 0x18) == 0) {
-        uVar3 = FUN_1808aed00(*param_2,resourceTable + 0x4a,2);
+        uVar3 = ReadResourceData(*param_2,resourceTable + 0x4a,2);
         if ((int)uVar3 != 0) {
           return uVar3;
         }
@@ -23409,7 +23451,12 @@ LAB_18089d435:
 
 
 
-undefined8 FUN_18089d281(void)
+/**
+ * 管理资源表函数
+ * 管理资源表的创建、更新和错误处理
+ * @return 错误码：非0表示处理失败
+ */
+undefined8 ManageResourceTable(void)
 
 {
   longlong *plVar1;
@@ -23467,12 +23514,12 @@ LAB_18089d378:
       return uVar3;
     }
     if (*(int *)(unaff_RBX[1] + 0x18) == 0) {
-      uVar3 = FUN_1808aed00(*unaff_RBX,in_stack_00000038 + 0x48,2);
+      uVar3 = ReadResourceData(*unaff_RBX,in_stack_00000038 + 0x48,2);
       if ((int)uVar3 != 0) {
         return uVar3;
       }
       if (*(int *)(unaff_RBX[1] + 0x18) == 0) {
-        uVar3 = FUN_1808aed00(*unaff_RBX,resourceTable + 0x4a,2);
+        uVar3 = ReadResourceData(*unaff_RBX,resourceTable + 0x4a,2);
         if ((int)uVar3 != 0) {
           return uVar3;
         }
@@ -23518,7 +23565,12 @@ d47a(void)
 
 
 
-undefined8 FUN_18089d484(void)
+/**
+ * 获取资源访问错误码函数
+ * 获取资源访问过程中的标准错误码
+ * @return 错误码：0x1c表示访问失败
+ */
+undefined8 GetResourceAccessError(void)
 
 {
   return 0x1c;
@@ -23526,7 +23578,14 @@ undefined8 FUN_18089d484(void)
 
 
 
-undefined8 FUN_18089d490(longlong param_1,undefined8 *param_2)
+/**
+ * 验证资源访问权限函数
+ * 验证资源访问权限并检查资源完整性
+ * @param ResourceOffset 资源偏移量
+ * @param ResourceData 资源数据指针
+ * @return 错误码：0x1c表示验证失败
+ */
+undefined8 ValidateResourceAccess(longlong ResourceOffset,undefined8 *ResourceData)
 
 {
   undefined8 resourceHash;
@@ -23541,7 +23600,7 @@ undefined8 FUN_18089d490(longlong param_1,undefined8 *param_2)
       if (*(int *)(resourceData[1] + 0x18) != 0) {
         return 0x1c;
       }
-      resourceHash = FUN_1808aed00(*param_2,param_1 + 0xc,4);
+      resourceHash = ReadResourceData(*param_2,param_1 + 0xc,4);
       if ((int)resourceHash == 0) {
         resourceHash = FUN_1808de0e0(param_2,0);
       }
@@ -23568,7 +23627,7 @@ d520(longlong param_1,undefined8 *param_2)
       iVar1 = 0;
     }
     else if (*(int *)(resourceData[1] + 0x18) == 0) {
-      iVar1 = FUN_1808aed00(*param_2,param_1 + 0x210,8);
+      iVar1 = ReadResourceData(*param_2,param_1 + 0x210,8);
     }
     else {
       iVar1 = 0x1c;
@@ -23579,7 +23638,7 @@ d520(longlong param_1,undefined8 *param_2)
         iVar1 = 0;
       }
       else if (*(int *)(resourceData[1] + 0x18) == 0) {
-        iVar1 = FUN_1808aed00(*param_2,param_1 + 0x2f4,4);
+        iVar1 = ReadResourceData(*param_2,param_1 + 0x2f4,4);
       }
       else {
         iVar1 = 0x1c;
@@ -23589,7 +23648,7 @@ d520(longlong param_1,undefined8 *param_2)
           iVar1 = 0;
         }
         else if (*(int *)(resourceData[1] + 0x18) == 0) {
-          iVar1 = FUN_1808aed00(*param_2,param_1 + 0x21c,4);
+          iVar1 = ReadResourceData(*param_2,param_1 + 0x21c,4);
         }
         else {
           iVar1 = 0x1c;
@@ -23628,7 +23687,7 @@ d557(undefined4 param_1)
         iVar1 = 0;
       }
       else if (*(int *)(unaff_RBX[1] + 0x18) == 0) {
-        iVar1 = FUN_1808aed00(*unaff_RBX,unaff_RDI + 0x210,8);
+        iVar1 = ReadResourceData(*unaff_RBX,unaff_RDI + 0x210,8);
       }
       else {
         iVar1 = 0x1c;
@@ -23639,7 +23698,7 @@ d557(undefined4 param_1)
           iVar1 = 0;
         }
         else if (*(int *)(unaff_RBX[1] + 0x18) == 0) {
-          iVar1 = FUN_1808aed00(*unaff_RBX,unaff_RDI + 0x2f4,4);
+          iVar1 = ReadResourceData(*unaff_RBX,unaff_RDI + 0x2f4,4);
         }
         else {
           iVar1 = 0x1c;
@@ -23649,7 +23708,7 @@ d557(undefined4 param_1)
             iVar1 = 0;
           }
           else if (*(int *)(unaff_RBX[1] + 0x18) == 0) {
-            iVar1 = FUN_1808aed00(*unaff_RBX,unaff_RDI + 0x21c,4);
+            iVar1 = ReadResourceData(*unaff_RBX,unaff_RDI + 0x21c,4);
           }
           else {
             iVar1 = 0x1c;
@@ -23700,12 +23759,12 @@ ulonglong FUN_18089dcf0(longlong param_1,undefined8 *param_2)
     if (*(int *)(resourceData[1] + 0x18) != 0) {
       return 0x1c;
     }
-    uVar3 = FUN_1808aed00(*param_2,param_1 + 0xf0,4);
+    uVar3 = ReadResourceData(*param_2,param_1 + 0xf0,4);
     if ((int)uVar3 != 0) {
       return uVar3;
     }
     if (*(int *)(resourceData[1] + 0x18) == 0) {
-      uVar2 = FUN_1808aed00(*param_2,param_1 + 0xf8,4);
+      uVar2 = ReadResourceData(*param_2,param_1 + 0xf8,4);
       uVar3 = (ulonglong)uVar2;
       if (uVar2 == 0) {
         if (((*(uint *)(resourceData + 8) < 0x8a) && (*(int *)(param_1 + 0xf8) == 0)) ||
@@ -23719,9 +23778,9 @@ ulonglong FUN_18089dcf0(longlong param_1,undefined8 *param_2)
             uVar3 = uVar4;
             if (*(int *)(resourceData[1] + 0x18) == 0) {
               resourceHash = *param_2;
-              uVar3 = FUN_1808995c0(resourceHash,auStackX_18);
+              uVar3 = CalculateResourceHash(resourceHash,auStackX_18);
               if ((int)uVar3 == 0) {
-                uVar3 = FUN_1808995c0(resourceHash,auStackX_1c);
+                uVar3 = CalculateResourceHash(resourceHash,auStackX_1c);
               }
             }
           }
@@ -23735,7 +23794,7 @@ ulonglong FUN_18089dcf0(longlong param_1,undefined8 *param_2)
             else {
               uVar3 = uVar4;
               if (*(int *)(resourceData[1] + 0x18) == 0) {
-                uVar3 = FUN_1808aed00(*param_2,param_1 + 0xf4,4);
+                uVar3 = ReadResourceData(*param_2,param_1 + 0xf4,4);
               }
             }
             if ((int)uVar3 == 0) {
@@ -23745,7 +23804,7 @@ ulonglong FUN_18089dcf0(longlong param_1,undefined8 *param_2)
               else {
                 uVar3 = uVar4;
                 if (*(int *)(resourceData[1] + 0x18) == 0) {
-                  uVar2 = FUN_1808995c0(*resourceData,resourceContext + 0xfc);
+                  uVar2 = CalculateResourceHash(*resourceData,resourceContext + 0xfc);
                   uVar3 = (ulonglong)uVar2;
                 }
               }
@@ -23783,10 +23842,10 @@ ulonglong FUN_18089dd54(void)
   if (*(int *)(in_RAX + 0x18) != 0) {
     return 0x1c;
   }
-  uVar3 = FUN_1808aed00(*unaff_RBX,unaff_RSI + 0xf0,4);
+  uVar3 = ReadResourceData(*unaff_RBX,unaff_RSI + 0xf0,4);
   if ((int)uVar3 == 0) {
     if (*(int *)(unaff_RBX[1] + 0x18) == 0) {
-      uVar2 = FUN_1808aed00(*unaff_RBX,unaff_RSI + 0xf8,4);
+      uVar2 = ReadResourceData(*unaff_RBX,unaff_RSI + 0xf8,4);
       uVar3 = (ulonglong)uVar2;
       if (uVar2 == 0) {
         if (((*(uint *)(unaff_RBX + 8) < 0x8a) && (*(int *)(unaff_RSI + 0xf8) == 0)) ||
@@ -23800,9 +23859,9 @@ ulonglong FUN_18089dd54(void)
             uVar3 = uVar4;
             if (*(int *)(unaff_RBX[1] + 0x18) == 0) {
               resourceHash = *unaff_RBX;
-              uVar3 = FUN_1808995c0(resourceHash,&stack0x00000090);
+              uVar3 = CalculateResourceHash(resourceHash,&stack0x00000090);
               if ((int)uVar3 == 0) {
-                uVar3 = FUN_1808995c0(resourceHash,&stack0x00000094);
+                uVar3 = CalculateResourceHash(resourceHash,&stack0x00000094);
               }
             }
           }
@@ -23816,7 +23875,7 @@ ulonglong FUN_18089dd54(void)
             else {
               uVar3 = uVar4;
               if (*(int *)(unaff_RBX[1] + 0x18) == 0) {
-                uVar3 = FUN_1808aed00(*unaff_RBX,unaff_RSI + 0xf4,4);
+                uVar3 = ReadResourceData(*unaff_RBX,unaff_RSI + 0xf4,4);
               }
             }
             if ((int)uVar3 == 0) {
@@ -23826,7 +23885,7 @@ ulonglong FUN_18089dd54(void)
               else {
                 uVar3 = uVar4;
                 if (*(int *)(unaff_RBX[1] + 0x18) == 0) {
-                  uVar2 = FUN_1808995c0(*unaff_RBX,unaff_RSI + 0xfc);
+                  uVar2 = CalculateResourceHash(*unaff_RBX,unaff_RSI + 0xfc);
                   uVar3 = (ulonglong)uVar2;
                 }
               }
@@ -23861,12 +23920,12 @@ ulonglong FUN_18089dd78(void)
   longlong unaff_RSI;
   ulonglong uVar4;
   
-  uVar3 = FUN_1808aed00(*unaff_RBX,unaff_RSI + 0xf0,4);
+  uVar3 = ReadResourceData(*unaff_RBX,unaff_RSI + 0xf0,4);
   if ((int)uVar3 != 0) {
     return uVar3;
   }
   if (*(int *)(unaff_RBX[1] + 0x18) == 0) {
-    uVar2 = FUN_1808aed00(*unaff_RBX,unaff_RSI + 0xf8,4);
+    uVar2 = ReadResourceData(*unaff_RBX,unaff_RSI + 0xf8,4);
     uVar3 = (ulonglong)uVar2;
     if (uVar2 == 0) {
       if (((*(uint *)(unaff_RBX + 8) < 0x8a) && (*(int *)(unaff_RSI + 0xf8) == 0)) ||
@@ -23880,9 +23939,9 @@ ulonglong FUN_18089dd78(void)
           uVar3 = uVar4;
           if (*(int *)(unaff_RBX[1] + 0x18) == 0) {
             resourceHash = *unaff_RBX;
-            uVar3 = FUN_1808995c0(resourceHash,&stack0x00000090);
+            uVar3 = CalculateResourceHash(resourceHash,&stack0x00000090);
             if ((int)uVar3 == 0) {
-              uVar3 = FUN_1808995c0(resourceHash,&stack0x00000094);
+              uVar3 = CalculateResourceHash(resourceHash,&stack0x00000094);
             }
           }
         }
@@ -23896,7 +23955,7 @@ ulonglong FUN_18089dd78(void)
           else {
             uVar3 = uVar4;
             if (*(int *)(unaff_RBX[1] + 0x18) == 0) {
-              uVar3 = FUN_1808aed00(*unaff_RBX,unaff_RSI + 0xf4,4);
+              uVar3 = ReadResourceData(*unaff_RBX,unaff_RSI + 0xf4,4);
             }
           }
           if ((int)uVar3 == 0) {
@@ -23906,7 +23965,7 @@ ulonglong FUN_18089dd78(void)
             else {
               uVar3 = uVar4;
               if (*(int *)(unaff_RBX[1] + 0x18) == 0) {
-                uVar2 = FUN_1808995c0(*unaff_RBX,unaff_RSI + 0xfc);
+                uVar2 = CalculateResourceHash(*unaff_RBX,unaff_RSI + 0xfc);
                 uVar3 = (ulonglong)uVar2;
               }
             }
@@ -23939,7 +23998,7 @@ ulonglong FUN_18089dda2(void)
   ulonglong uVar4;
   
   if (*(int *)(unaff_RBX[1] + 0x18) == 0) {
-    uVar2 = FUN_1808aed00(*unaff_RBX,unaff_RSI + 0xf8,4);
+    uVar2 = ReadResourceData(*unaff_RBX,unaff_RSI + 0xf8,4);
     uVar3 = (ulonglong)uVar2;
     if (uVar2 == 0) {
       if (((*(uint *)(unaff_RBX + 8) < 0x8a) && (*(int *)(unaff_RSI + 0xf8) == 0)) ||
@@ -23953,9 +24012,9 @@ ulonglong FUN_18089dda2(void)
           uVar3 = uVar4;
           if (*(int *)(unaff_RBX[1] + 0x18) == 0) {
             resourceHash = *unaff_RBX;
-            uVar3 = FUN_1808995c0(resourceHash,&stack0x00000090);
+            uVar3 = CalculateResourceHash(resourceHash,&stack0x00000090);
             if ((int)uVar3 == 0) {
-              uVar3 = FUN_1808995c0(resourceHash,&stack0x00000094);
+              uVar3 = CalculateResourceHash(resourceHash,&stack0x00000094);
             }
           }
         }
@@ -23969,7 +24028,7 @@ ulonglong FUN_18089dda2(void)
           else {
             uVar3 = uVar4;
             if (*(int *)(unaff_RBX[1] + 0x18) == 0) {
-              uVar3 = FUN_1808aed00(*unaff_RBX,unaff_RSI + 0xf4,4);
+              uVar3 = ReadResourceData(*unaff_RBX,unaff_RSI + 0xf4,4);
             }
           }
           if ((int)uVar3 == 0) {
@@ -23979,7 +24038,7 @@ ulonglong FUN_18089dda2(void)
             else {
               uVar3 = uVar4;
               if (*(int *)(unaff_RBX[1] + 0x18) == 0) {
-                uVar2 = FUN_1808995c0(*unaff_RBX,unaff_RSI + 0xfc);
+                uVar2 = CalculateResourceHash(*unaff_RBX,unaff_RSI + 0xfc);
                 uVar3 = (ulonglong)uVar2;
               }
             }
@@ -24011,16 +24070,16 @@ ulonglong FUN_18089de39(void)
   uint unaff_EDI;
   
   resourceHash = *unaff_RBX;
-  uVar2 = FUN_1808995c0(resourceHash,&stack0x00000090);
+  uVar2 = CalculateResourceHash(resourceHash,&stack0x00000090);
   if ((int)uVar2 == 0) {
-    uVar2 = FUN_1808995c0(resourceHash,&stack0x00000094);
+    uVar2 = CalculateResourceHash(resourceHash,&stack0x00000094);
   }
   if ((int)uVar2 == 0) {
     if (*(uint *)(unaff_RBX + 8) < 0x39) {
       uVar2 = 0;
     }
     else if (*(int *)(unaff_RBX[1] + 0x18) == 0) {
-      uVar2 = FUN_1808aed00(*unaff_RBX,unaff_RSI + 0xf4,4);
+      uVar2 = ReadResourceData(*unaff_RBX,unaff_RSI + 0xf4,4);
     }
     else {
       uVar2 = (ulonglong)unaff_EDI;
@@ -24030,7 +24089,7 @@ ulonglong FUN_18089de39(void)
         unaff_EDI = 0;
       }
       else if (*(int *)(unaff_RBX[1] + 0x18) == 0) {
-        unaff_EDI = FUN_1808995c0(*unaff_RBX,unaff_RSI + 0xfc);
+        unaff_EDI = CalculateResourceHash(*unaff_RBX,unaff_RSI + 0xfc);
       }
       if (unaff_EDI == 0) {
         if ((0x84 < *(uint *)(unaff_RBX + 8)) && (uVar2 = FUN_180899220(), (int)uVar2 != 0)) {
@@ -24059,7 +24118,7 @@ ulonglong FUN_18089de72(void)
     resourceHash = 0;
   }
   else if (*(int *)(unaff_RBX[1] + 0x18) == 0) {
-    resourceHash = FUN_1808aed00(*unaff_RBX,unaff_RSI + 0xf4,4);
+    resourceHash = ReadResourceData(*unaff_RBX,unaff_RSI + 0xf4,4);
   }
   else {
     resourceHash = (ulonglong)unaff_EDI;
@@ -24069,7 +24128,7 @@ ulonglong FUN_18089de72(void)
       unaff_EDI = 0;
     }
     else if (*(int *)(unaff_RBX[1] + 0x18) == 0) {
-      unaff_EDI = FUN_1808995c0(*unaff_RBX,unaff_RSI + 0xfc);
+      unaff_EDI = CalculateResourceHash(*unaff_RBX,unaff_RSI + 0xfc);
     }
     if (unaff_EDI == 0) {
       if ((*(uint *)(unaff_RBX + 8) < 0x85) || (resourceHash = FUN_180899220(), (int)resourceHash == 0)) {
@@ -24114,16 +24173,16 @@ undefined8 FUN_18089df40(longlong param_1,undefined8 *param_2)
       return 0x1c;
     }
     resourceHash = *param_2;
-    uVar2 = FUN_1808aed00(resourceHash,param_1 + 0x4c,4);
-    if ((((int)uVar2 == 0) && (uVar2 = FUN_1808aed00(resourceHash,param_1 + 0x50,2), (int)uVar2 == 0)) &&
-       (uVar2 = FUN_1808aed00(resourceHash,param_1 + 0x52,2), (int)uVar2 == 0)) {
-      uVar2 = FUN_1808aed00(resourceHash,param_1 + 0x54,8);
+    uVar2 = ReadResourceData(resourceHash,param_1 + 0x4c,4);
+    if ((((int)uVar2 == 0) && (uVar2 = ReadResourceData(resourceHash,param_1 + 0x50,2), (int)uVar2 == 0)) &&
+       (uVar2 = ReadResourceData(resourceHash,param_1 + 0x52,2), (int)uVar2 == 0)) {
+      uVar2 = ReadResourceData(resourceHash,param_1 + 0x54,8);
     }
     if ((int)uVar2 == 0) {
       if (*(int *)(resourceData[1] + 0x18) != 0) {
         return 0x1c;
       }
-      uVar2 = FUN_1808995c0(*resourceData,resourceContext + 0x48);
+      uVar2 = CalculateResourceHash(*resourceData,resourceContext + 0x48);
       if ((int)uVar2 == 0) {
         if (*(uint *)(resourceData + 8) < 0x3d) {
           uVar2 = 0;
@@ -24159,16 +24218,16 @@ undefined8 FUN_18089dfc1(void)
     return 0x1c;
   }
   resourceHash = *unaff_RBX;
-  uVar2 = FUN_1808aed00(resourceHash,unaff_RDI + 0x4c,4);
-  if ((((int)uVar2 == 0) && (uVar2 = FUN_1808aed00(resourceHash,unaff_RDI + 0x50,2), (int)uVar2 == 0)) &&
-     (uVar2 = FUN_1808aed00(resourceHash,unaff_RDI + 0x52,2), (int)uVar2 == 0)) {
-    uVar2 = FUN_1808aed00(resourceHash,unaff_RDI + 0x54,8);
+  uVar2 = ReadResourceData(resourceHash,unaff_RDI + 0x4c,4);
+  if ((((int)uVar2 == 0) && (uVar2 = ReadResourceData(resourceHash,unaff_RDI + 0x50,2), (int)uVar2 == 0)) &&
+     (uVar2 = ReadResourceData(resourceHash,unaff_RDI + 0x52,2), (int)uVar2 == 0)) {
+    uVar2 = ReadResourceData(resourceHash,unaff_RDI + 0x54,8);
   }
   if ((int)uVar2 == 0) {
     if (*(int *)(unaff_RBX[1] + 0x18) != 0) {
       return 0x1c;
     }
-    uVar2 = FUN_1808995c0(*unaff_RBX,unaff_RDI + 0x48);
+    uVar2 = CalculateResourceHash(*unaff_RBX,unaff_RDI + 0x48);
     if ((int)uVar2 == 0) {
       if (*(uint *)(unaff_RBX + 8) < 0x3d) {
         uVar2 = 0;
@@ -24199,13 +24258,13 @@ undefined8 FUN_18089dfe4(void)
   longlong unaff_RDI;
   
   resourceHash = *unaff_RBX;
-  uVar2 = FUN_1808aed00(resourceHash,unaff_RDI + 0x4c,4);
+  uVar2 = ReadResourceData(resourceHash,unaff_RDI + 0x4c,4);
   if ((int)uVar2 == 0) {
-    uVar2 = FUN_1808aed00(resourceHash,unaff_RDI + 0x50,2);
+    uVar2 = ReadResourceData(resourceHash,unaff_RDI + 0x50,2);
     if ((int)uVar2 == 0) {
-      uVar2 = FUN_1808aed00(resourceHash,unaff_RDI + 0x52,2);
+      uVar2 = ReadResourceData(resourceHash,unaff_RDI + 0x52,2);
       if ((int)uVar2 == 0) {
-        uVar2 = FUN_1808aed00(resourceHash,unaff_RDI + 0x54,8);
+        uVar2 = ReadResourceData(resourceHash,unaff_RDI + 0x54,8);
       }
     }
   }
@@ -24213,7 +24272,7 @@ undefined8 FUN_18089dfe4(void)
     if (*(int *)(unaff_RBX[1] + 0x18) != 0) {
       return 0x1c;
     }
-    uVar2 = FUN_1808995c0(*unaff_RBX,unaff_RDI + 0x48);
+    uVar2 = CalculateResourceHash(*unaff_RBX,unaff_RDI + 0x48);
     if ((int)uVar2 == 0) {
       if (*(uint *)(unaff_RBX + 8) < 0x3d) {
         uVar2 = 0;
@@ -24245,7 +24304,7 @@ undefined8 FUN_18089e043(void)
   if (*(int *)(unaff_RBX[1] + 0x18) != 0) {
     return 0x1c;
   }
-  resourceHash = FUN_1808995c0(*unaff_RBX,unaff_RDI + 0x48);
+  resourceHash = CalculateResourceHash(*unaff_RBX,unaff_RDI + 0x48);
   if ((int)resourceHash == 0) {
     if (*(uint *)(unaff_RBX + 8) < 0x3d) {
       resourceHash = 0;
@@ -24306,7 +24365,7 @@ undefined8 FUN_18089e0d0(longlong param_1,undefined8 *param_2)
         resourceHash = 0;
       }
       else if (*(int *)(resourceData[1] + 0x18) == 0) {
-        resourceHash = FUN_1808995c0(*resourceData,resourceContext + 0x68);
+        resourceHash = CalculateResourceHash(*resourceData,resourceContext + 0x68);
       }
       else {
         resourceHash = 0x1c;
@@ -24352,7 +24411,7 @@ ulonglong FUN_18089e230(longlong param_1,longlong *param_2)
   if (*(int *)(resourceData[1] + 0x18) != 0) {
     return 0x1c;
   }
-  uVar2 = FUN_1808aed00(*param_2,param_1 + 0x44,4);
+  uVar2 = ReadResourceData(*param_2,param_1 + 0x44,4);
   if ((int)uVar2 != 0) {
     return uVar2;
   }
@@ -24425,7 +24484,7 @@ LAB_18089e447:
     if ((int)uVar2 == 0) {
       uVar2 = uVar7;
       if ((0x32 < *(uint *)(resourceData + 8)) && (uVar2 = 0x1c, *(int *)(resourceData[1] + 0x18) == 0)) {
-        uVar3 = FUN_1808995c0(*resourceData,resourceContext + 0x40);
+        uVar3 = CalculateResourceHash(*resourceData,resourceContext + 0x40);
         uVar2 = (ulonglong)uVar3;
       }
       if ((int)uVar2 == 0) {
@@ -24458,7 +24517,7 @@ ulonglong FUN_18089e297(void)
   if (*(int *)(in_RAX + 0x18) != 0) {
     return 0x1c;
   }
-  uVar2 = FUN_1808aed00(*unaff_RBX,unaff_RSI + 0x44,4);
+  uVar2 = ReadResourceData(*unaff_RBX,unaff_RSI + 0x44,4);
   if ((int)uVar2 != 0) {
     return uVar2;
   }
@@ -24529,7 +24588,7 @@ LAB_18089e447:
     if ((int)uVar2 == 0) {
       uVar2 = uVar7;
       if ((0x32 < *(uint *)(unaff_RBX + 8)) && (uVar2 = 0x1c, *(int *)(unaff_RBX[1] + 0x18) == 0)) {
-        uVar4 = FUN_1808995c0(*unaff_RBX,unaff_RSI + 0x40);
+        uVar4 = CalculateResourceHash(*unaff_RBX,unaff_RSI + 0x40);
         uVar2 = (ulonglong)uVar4;
       }
       if ((int)uVar2 == 0) {
@@ -24558,7 +24617,7 @@ ulonglong FUN_18089e2be(void)
   uint in_stack_000000b0;
   uint in_stack_000000b8;
   
-  uVar2 = FUN_1808aed00(*unaff_RBX,unaff_RSI + 0x44,4);
+  uVar2 = ReadResourceData(*unaff_RBX,unaff_RSI + 0x44,4);
   if ((int)uVar2 != 0) {
     return uVar2;
   }
@@ -24629,7 +24688,7 @@ LAB_18089e447:
     if ((int)uVar2 == 0) {
       uVar2 = uVar7;
       if ((0x32 < *(uint *)(unaff_RBX + 8)) && (uVar2 = 0x1c, *(int *)(unaff_RBX[1] + 0x18) == 0)) {
-        uVar4 = FUN_1808995c0(*unaff_RBX,unaff_RSI + 0x40);
+        uVar4 = CalculateResourceHash(*unaff_RBX,unaff_RSI + 0x40);
         uVar2 = (ulonglong)uVar4;
       }
       if ((int)uVar2 == 0) {
@@ -24725,7 +24784,7 @@ LAB_18089e447:
     if ((int)uVar2 == 0) {
       uVar2 = uVar7;
       if ((0x32 < *(uint *)(unaff_RBX + 8)) && (uVar2 = 0x1c, *(int *)(unaff_RBX[1] + 0x18) == 0)) {
-        uVar4 = FUN_1808995c0(*unaff_RBX,unaff_RSI + 0x40);
+        uVar4 = CalculateResourceHash(*unaff_RBX,unaff_RSI + 0x40);
         uVar2 = (ulonglong)uVar4;
       }
       if ((int)uVar2 == 0) {
@@ -24782,19 +24841,19 @@ ulonglong FUN_18089e4f0(longlong param_1,undefined8 *param_2)
     if (*(uint *)(resourceData + 8) < 0x6d) {
       if (*(int *)(resourceData[1] + 0x18) == 0) {
         uVar2 = *param_2;
-        uVar4 = FUN_1808aed00(uVar2,&uStack_78,4);
+        uVar4 = ReadResourceData(uVar2,&uStack_78,4);
         if ((int)uVar4 != 0) {
           return uVar4;
         }
-        uVar4 = FUN_1808aed00(uVar2,&uStack_74,2);
+        uVar4 = ReadResourceData(uVar2,&uStack_74,2);
         if ((int)uVar4 != 0) {
           return uVar4;
         }
-        uVar4 = FUN_1808aed00(uVar2,(longlong)&uStack_74 + 2,2);
+        uVar4 = ReadResourceData(uVar2,(longlong)&uStack_74 + 2,2);
         if ((int)uVar4 != 0) {
           return uVar4;
         }
-        uVar4 = FUN_1808aed00(uVar2,&uStack_70,8);
+        uVar4 = ReadResourceData(uVar2,&uStack_70,8);
       }
       else {
         uVar4 = 0x1c;
@@ -24893,19 +24952,19 @@ ulonglong FUN_18089e558(void)
   if (uVar5 < 0x6d) {
     if (*(int *)(unaff_RDI[1] + 0x18) == 0) {
       resourceHash = *unaff_RDI;
-      uVar8 = FUN_1808aed00(resourceHash,unaff_RBP + -0x19,4);
+      uVar8 = ReadResourceData(resourceHash,unaff_RBP + -0x19,4);
       if ((int)uVar8 != 0) {
         return uVar8;
       }
-      uVar8 = FUN_1808aed00(resourceHash,unaff_RBP + -0x15,2);
+      uVar8 = ReadResourceData(resourceHash,unaff_RBP + -0x15,2);
       if ((int)uVar8 != 0) {
         return uVar8;
       }
-      uVar8 = FUN_1808aed00(resourceHash,unaff_RBP + -0x13,2);
+      uVar8 = ReadResourceData(resourceHash,unaff_RBP + -0x13,2);
       if ((int)uVar8 != 0) {
         return uVar8;
       }
-      uVar8 = FUN_1808aed00(resourceHash,unaff_RBP + -0x11,8);
+      uVar8 = ReadResourceData(resourceHash,unaff_RBP + -0x11,8);
       resourceHash1 = extraout_XMM0_Da;
     }
     else {
@@ -25089,16 +25148,16 @@ ulonglong FUN_18089e820(longlong param_1,longlong *param_2)
     return 0x1c;
   }
   lVar1 = *param_2;
-  uVar3 = FUN_1808aed00(lVar1,param_1 + 0x10,4);
+  uVar3 = ReadResourceData(lVar1,param_1 + 0x10,4);
   uVar4 = (ulonglong)uVar3;
   if (uVar3 == 0) {
-    uVar3 = FUN_1808aed00(lVar1,param_1 + 0x14,2);
+    uVar3 = ReadResourceData(lVar1,param_1 + 0x14,2);
     uVar4 = (ulonglong)uVar3;
     if (uVar3 == 0) {
-      uVar3 = FUN_1808aed00(lVar1,param_1 + 0x16,2);
+      uVar3 = ReadResourceData(lVar1,param_1 + 0x16,2);
       uVar4 = (ulonglong)uVar3;
       if (uVar3 == 0) {
-        uVar3 = FUN_1808aed00(lVar1,param_1 + 0x18,8);
+        uVar3 = ReadResourceData(lVar1,param_1 + 0x18,8);
         uVar4 = (ulonglong)uVar3;
       }
     }
@@ -25113,14 +25172,14 @@ ulonglong FUN_18089e820(longlong param_1,longlong *param_2)
   if (*(int *)(resourceData[1] + 0x18) != 0) {
     return 0x1c;
   }
-  uVar3 = FUN_1808aed00(*param_2,param_1 + 0x30,4);
+  uVar3 = ReadResourceData(*param_2,param_1 + 0x30,4);
   if (uVar3 != 0) {
     return (ulonglong)uVar3;
   }
   if (*(int *)(resourceData[1] + 0x18) != 0) {
     return 0x1c;
   }
-  uVar3 = FUN_1808aed00(*param_2,param_1 + 0x34);
+  uVar3 = ReadResourceData(*param_2,param_1 + 0x34);
   if (uVar3 != 0) {
     return (ulonglong)uVar3;
   }
@@ -25135,7 +25194,7 @@ ulonglong FUN_18089e820(longlong param_1,longlong *param_2)
   if (*(int *)(resourceData[1] + 0x18) != 0) {
     return 0x1c;
   }
-  uVar3 = FUN_1808995c0(*resourceData,resourceContext + 0x58);
+  uVar3 = CalculateResourceHash(*resourceData,resourceContext + 0x58);
   if (uVar3 != 0) {
     return (ulonglong)uVar3;
   }
@@ -25351,7 +25410,7 @@ LAB_18089ecba:
 LAB_18089ed1b:
   uVar4 = 0;
   if ((0x7e < uVar3) && (uVar4 = 0x1c, *(int *)(resourceData[1] + 0x18) == 0)) {
-    uVar3 = FUN_1808aed00(*param_2,param_1 + 0x38,4);
+    uVar3 = ReadResourceData(*param_2,param_1 + 0x38,4);
     uVar4 = (ulonglong)uVar3;
   }
   if ((int)uVar4 == 0) {
@@ -25384,16 +25443,16 @@ ulonglong FUN_18089e87d(void)
     return 0x1c;
   }
   lVar1 = *unaff_RDI;
-  uVar3 = FUN_1808aed00(lVar1,unaff_R15 + 0x10,unaff_R12D + 3);
+  uVar3 = ReadResourceData(lVar1,unaff_R15 + 0x10,unaff_R12D + 3);
   uVar4 = (ulonglong)uVar3;
   if (uVar3 == 0) {
-    uVar3 = FUN_1808aed00(lVar1,unaff_R15 + 0x14,unaff_R12D + 1);
+    uVar3 = ReadResourceData(lVar1,unaff_R15 + 0x14,unaff_R12D + 1);
     uVar4 = (ulonglong)uVar3;
     if (uVar3 == 0) {
-      uVar3 = FUN_1808aed00(lVar1,unaff_R15 + 0x16,unaff_R12D + 1);
+      uVar3 = ReadResourceData(lVar1,unaff_R15 + 0x16,unaff_R12D + 1);
       uVar4 = (ulonglong)uVar3;
       if (uVar3 == 0) {
-        uVar3 = FUN_1808aed00(lVar1,unaff_R15 + 0x18,unaff_R12D + 7);
+        uVar3 = ReadResourceData(lVar1,unaff_R15 + 0x18,unaff_R12D + 7);
         uVar4 = (ulonglong)uVar3;
       }
     }
@@ -25408,14 +25467,14 @@ ulonglong FUN_18089e87d(void)
   if (*(int *)(unaff_RDI[1] + 0x18) != 0) {
     return 0x1c;
   }
-  uVar3 = FUN_1808aed00(*unaff_RDI,unaff_R15 + 0x30,4);
+  uVar3 = ReadResourceData(*unaff_RDI,unaff_R15 + 0x30,4);
   if (uVar3 != 0) {
     return (ulonglong)uVar3;
   }
   if (*(int *)(unaff_RDI[1] + 0x18) != 0) {
     return 0x1c;
   }
-  uVar3 = FUN_1808aed00(*unaff_RDI,unaff_R15 + 0x34);
+  uVar3 = ReadResourceData(*unaff_RDI,unaff_R15 + 0x34);
   if (uVar3 != 0) {
     return (ulonglong)uVar3;
   }
@@ -25430,7 +25489,7 @@ ulonglong FUN_18089e87d(void)
   if (*(int *)(unaff_RDI[1] + 0x18) != 0) {
     return 0x1c;
   }
-  uVar3 = FUN_1808995c0(*unaff_RDI,unaff_R15 + 0x58);
+  uVar3 = CalculateResourceHash(*unaff_RDI,unaff_R15 + 0x58);
   if (uVar3 != 0) {
     return (ulonglong)uVar3;
   }
@@ -25659,7 +25718,7 @@ LAB_18089ecba:
 LAB_18089ed1b:
   uVar4 = 0;
   if ((0x7e < uVar3) && (uVar4 = 0x1c, *(int *)(unaff_RDI[1] + 0x18) == 0)) {
-    uVar3 = FUN_1808aed00(*unaff_RDI,unaff_R15 + 0x38,4);
+    uVar3 = ReadResourceData(*unaff_RDI,unaff_R15 + 0x38,4);
     uVar4 = (ulonglong)uVar3;
   }
   if ((int)uVar4 == 0) {
@@ -25952,7 +26011,7 @@ LAB_18089ed1b:
     uVar5 = param_3 & 0xffffffff;
   }
   else if (*(int *)(unaff_RDI[1] + 0x18) == 0) {
-    uVar3 = FUN_1808aed00(*unaff_RDI,unaff_R15 + 0x38,4);
+    uVar3 = ReadResourceData(*unaff_RDI,unaff_R15 + 0x38,4);
     uVar5 = (ulonglong)uVar3;
   }
   if ((int)uVar5 != 0) {
@@ -26002,10 +26061,10 @@ undefined8 FUN_18089ede0(longlong param_1,undefined8 *param_2)
       return 0x1c;
     }
     resourceHash = *param_2;
-    uVar2 = FUN_1808aed00(resourceHash,param_1 + 0xdc,4);
-    if ((((int)uVar2 == 0) && (uVar2 = FUN_1808aed00(resourceHash,param_1 + 0xe0,2), (int)uVar2 == 0)) &&
-       (uVar2 = FUN_1808aed00(resourceHash,param_1 + 0xe2,2), (int)uVar2 == 0)) {
-      uVar2 = FUN_1808aed00(resourceHash,param_1 + 0xe4,8);
+    uVar2 = ReadResourceData(resourceHash,param_1 + 0xdc,4);
+    if ((((int)uVar2 == 0) && (uVar2 = ReadResourceData(resourceHash,param_1 + 0xe0,2), (int)uVar2 == 0)) &&
+       (uVar2 = ReadResourceData(resourceHash,param_1 + 0xe2,2), (int)uVar2 == 0)) {
+      uVar2 = ReadResourceData(resourceHash,param_1 + 0xe4,8);
     }
     if ((int)uVar2 == 0) {
                     // WARNING: Subroutine does not return
@@ -26030,13 +26089,13 @@ undefined8 FUN_18089ee64(void)
     return 0x1c;
   }
   resourceHash = *unaff_RBX;
-  uVar2 = FUN_1808aed00(resourceHash,unaff_RDI + 0xdc,4);
+  uVar2 = ReadResourceData(resourceHash,unaff_RDI + 0xdc,4);
   if ((int)uVar2 == 0) {
-    uVar2 = FUN_1808aed00(resourceHash,unaff_RDI + 0xe0,2);
+    uVar2 = ReadResourceData(resourceHash,unaff_RDI + 0xe0,2);
     if ((int)uVar2 == 0) {
-      uVar2 = FUN_1808aed00(resourceHash,unaff_RDI + 0xe2,2);
+      uVar2 = ReadResourceData(resourceHash,unaff_RDI + 0xe2,2);
       if ((int)uVar2 == 0) {
-        uVar2 = FUN_1808aed00(resourceHash,unaff_RDI + 0xe4,8);
+        uVar2 = ReadResourceData(resourceHash,unaff_RDI + 0xe4,8);
       }
     }
   }
@@ -26060,13 +26119,13 @@ ee87(void)
   longlong unaff_RDI;
   
   resourceHash = *unaff_RBX;
-  iVar2 = FUN_1808aed00(resourceHash,unaff_RDI + 0xdc,4);
+  iVar2 = ReadResourceData(resourceHash,unaff_RDI + 0xdc,4);
   if (iVar2 == 0) {
-    iVar2 = FUN_1808aed00(resourceHash,unaff_RDI + 0xe0,2);
+    iVar2 = ReadResourceData(resourceHash,unaff_RDI + 0xe0,2);
     if (iVar2 == 0) {
-      iVar2 = FUN_1808aed00(resourceHash,unaff_RDI + 0xe2,2);
+      iVar2 = ReadResourceData(resourceHash,unaff_RDI + 0xe2,2);
       if (iVar2 == 0) {
-        iVar2 = FUN_1808aed00(resourceHash,unaff_RDI + 0xe4,8);
+        iVar2 = ReadResourceData(resourceHash,unaff_RDI + 0xe4,8);
       }
     }
   }
@@ -26161,7 +26220,7 @@ undefined8 FUN_18089f0b0(longlong param_1,longlong *param_2)
   if (((int)resourceHash == 0) &&
      (resourceHash = FUN_1808ddd30(param_2,auStack_68,0,0x42464542,0), (int)resourceHash == 0)) {
     if (*(int *)(resourceData[1] + 0x18) == 0) {
-      resourceHash = FUN_180899ef0(*param_2,param_1 + 0x10);
+      resourceHash = GetResourceEntry(*param_2,param_1 + 0x10);
       if (((int)resourceHash == 0) &&
          ((0x5a < *(uint *)(resourceData + 8) ||
           (resourceHash = FUN_1808afd90(param_2,param_1 + 0x44), (int)resourceHash == 0)))) {
@@ -26310,7 +26369,7 @@ undefined8 FUN_18089f112(void)
   undefined4 in_stack_000000b0;
   
   if (*(int *)(in_RAX + 0x18) == 0) {
-    resourceHash = FUN_180899ef0(*unaff_RBX,unaff_RSI + 0x10);
+    resourceHash = GetResourceEntry(*unaff_RBX,unaff_RSI + 0x10);
     if (((int)resourceHash == 0) &&
        ((0x5a < *(uint *)(unaff_RBX + 8) || (resourceHash = FUN_1808afd90(), (int)resourceHash == 0)))) {
       if (*(int *)(unaff_RBX[1] + 0x18) == 0) {
@@ -26548,7 +26607,7 @@ ulonglong FUN_18089f530(longlong param_1,undefined8 *param_2,undefined4 param_3,
   if (((int)uVar2 == 0) && (uVar2 = FUN_1808ddd30(param_2,auStack_70,0,param_4,0), (int)uVar2 == 0))
   {
     if (*(int *)(resourceData[1] + 0x18) == 0) {
-      resourceHash = FUN_180899ef0(*param_2,param_1 + 0x10);
+      resourceHash = GetResourceEntry(*param_2,param_1 + 0x10);
       uVar2 = (ulonglong)resourceHash;
       if ((resourceHash == 0) &&
          ((param_5 == '\0' || (uVar2 = FUN_1808a1870(param_1 + 0x48,param_2), (int)uVar2 == 0)))) {
@@ -26577,7 +26636,7 @@ ulonglong FUN_18089f571(void)
   uVar2 = FUN_1808ddd30();
   if ((int)uVar2 == 0) {
     if (*(int *)(unaff_RBX[1] + 0x18) == 0) {
-      resourceHash = FUN_180899ef0(*unaff_RBX,unaff_RBP + 0x10);
+      resourceHash = GetResourceEntry(*unaff_RBX,unaff_RBP + 0x10);
       uVar2 = (ulonglong)resourceHash;
       if ((resourceHash == 0) &&
          ((in_stack_000000d0 == '\0' || (uVar2 = FUN_1808a1870(unaff_RBP + 0x48), (int)uVar2 == 0)))
@@ -26619,7 +26678,7 @@ undefined8 FUN_18089f830(longlong param_1,longlong *param_2)
     if (*(int *)(resourceData[1] + 0x18) != 0) {
       return 0x1c;
     }
-    resourceHash = FUN_180899ef0(*param_2,param_1 + 0x10);
+    resourceHash = GetResourceEntry(*param_2,param_1 + 0x10);
     if ((int)resourceHash == 0) {
       if (*(int *)(resourceData[1] + 0x18) != 0) {
         return 0x1c;
@@ -26631,7 +26690,7 @@ undefined8 FUN_18089f830(longlong param_1,longlong *param_2)
         if (*(int *)(resourceData[1] + 0x18) != 0) {
           return 0x1c;
         }
-        resourceHash = FUN_180899ef0(*param_2,param_1 + 0xdc);
+        resourceHash = GetResourceEntry(*param_2,param_1 + 0xdc);
         if (((int)resourceHash == 0) &&
            (resourceHash = FUN_1808a7c40(param_2,param_1 + 0xec,0x80), (int)resourceHash == 0)) {
                     // WARNING: Subroutine does not return
@@ -26671,13 +26730,13 @@ ulonglong FUN_18089f970(longlong param_1,longlong *param_2)
     return uVar4;
   }
   if (*(int *)(resourceData[1] + 0x18) == 0) {
-    uVar2 = FUN_180899ef0(*param_2,param_1 + 0x10);
+    uVar2 = GetResourceEntry(*param_2,param_1 + 0x10);
     uVar4 = (ulonglong)uVar2;
     if (uVar2 == 0) {
       if (*(int *)(resourceData[1] + 0x18) != 0) {
         return 0x1c;
       }
-      uVar2 = FUN_180899ef0(*param_2,param_1 + 0x20);
+      uVar2 = GetResourceEntry(*param_2,param_1 + 0x20);
       uVar4 = (ulonglong)uVar2;
       if (uVar2 == 0) {
         uVar4 = 0x1c;
@@ -26706,7 +26765,7 @@ ulonglong FUN_18089f970(longlong param_1,longlong *param_2)
           return (ulonglong)uVar2;
         }
         if (*(int *)(resourceData[1] + 0x18) == 0) {
-          uVar2 = FUN_180899ef0(*param_2,param_1 + 0x30);
+          uVar2 = GetResourceEntry(*param_2,param_1 + 0x30);
           uVar4 = (ulonglong)uVar2;
           if (uVar2 == 0) {
             uVar4 = FUN_180898e70(param_2,param_1 + 0x40);
@@ -26746,13 +26805,13 @@ ulonglong FUN_18089f9b3(void)
   if (*(uint *)(in_RAX + 0x18) != unaff_ESI) {
     return 0x1c;
   }
-  uVar2 = FUN_180899ef0(*unaff_RDI,unaff_RBP + 0x10);
+  uVar2 = GetResourceEntry(*unaff_RDI,unaff_RBP + 0x10);
   uVar3 = (ulonglong)uVar2;
   if (uVar2 == 0) {
     if (*(uint *)(unaff_RDI[1] + 0x18) != unaff_ESI) {
       return 0x1c;
     }
-    uVar2 = FUN_180899ef0(*unaff_RDI,unaff_RBP + 0x20);
+    uVar2 = GetResourceEntry(*unaff_RDI,unaff_RBP + 0x20);
     uVar3 = (ulonglong)uVar2;
     if (uVar2 == 0) {
       uVar3 = 0x1c;
@@ -26782,7 +26841,7 @@ ulonglong FUN_18089f9b3(void)
         return (ulonglong)uVar2;
       }
       if (*(int *)(unaff_RDI[1] + 0x18) == 0) {
-        uVar2 = FUN_180899ef0(*unaff_RDI,unaff_RBP + 0x30);
+        uVar2 = GetResourceEntry(*unaff_RDI,unaff_RBP + 0x30);
         uVar3 = (ulonglong)uVar2;
         if (uVar2 == 0) {
           uVar3 = FUN_180898e70();
@@ -26816,7 +26875,7 @@ ulonglong FUN_18089f9f6(void)
   undefined2 in_stack_000000a0;
   undefined2 in_stack_000000a8;
   
-  uVar2 = FUN_180899ef0(*unaff_RDI,unaff_RBP + 0x20);
+  uVar2 = GetResourceEntry(*unaff_RDI,unaff_RBP + 0x20);
   uVar3 = (ulonglong)uVar2;
   if (uVar2 == 0) {
     uVar3 = 0x1c;
@@ -26846,7 +26905,7 @@ ulonglong FUN_18089f9f6(void)
       return (ulonglong)uVar2;
     }
     if (*(int *)(unaff_RDI[1] + 0x18) == 0) {
-      uVar2 = FUN_180899ef0(*unaff_RDI,unaff_RBP + 0x30);
+      uVar2 = GetResourceEntry(*unaff_RDI,unaff_RBP + 0x30);
       uVar3 = (ulonglong)uVar2;
       if (uVar2 == 0) {
         uVar3 = FUN_180898e70();
@@ -26896,7 +26955,7 @@ ulonglong FUN_18089fa3c(void)
     return (ulonglong)uVar2;
   }
   if (*(int *)(unaff_RDI[1] + 0x18) == 0) {
-    uVar2 = FUN_180899ef0(*unaff_RDI,unaff_RBP + 0x30);
+    uVar2 = GetResourceEntry(*unaff_RDI,unaff_RBP + 0x30);
     unaff_RBX = (ulonglong)uVar2;
     if (uVar2 == 0) {
       uVar3 = FUN_180898e70();
@@ -26926,7 +26985,7 @@ ulonglong FUN_18089fac2(void)
     return (ulonglong)unaff_ESI;
   }
   if (*(int *)(unaff_RDI[1] + 0x18) == 0) {
-    resourceHash = FUN_180899ef0(*unaff_RDI,unaff_RBP + 0x30);
+    resourceHash = GetResourceEntry(*unaff_RDI,unaff_RBP + 0x30);
     unaff_RBX = (ulonglong)resourceHash;
     if (resourceHash == 0) {
       uVar2 = FUN_180898e70();
@@ -26952,7 +27011,7 @@ ulonglong FUN_18089fad8(void)
   undefined8 *unaff_RDI;
   
   if (*(int *)(unaff_RDI[1] + 0x18) == 0) {
-    resourceHash = FUN_180899ef0(*unaff_RDI,unaff_RBP + 0x30);
+    resourceHash = GetResourceEntry(*unaff_RDI,unaff_RBP + 0x30);
     unaff_RBX = (ulonglong)resourceHash;
     if (resourceHash == 0) {
       uVar2 = FUN_180898e70();
@@ -27027,12 +27086,12 @@ undefined8 FUN_18089fba0(longlong param_1,undefined8 *param_2)
     if (*(int *)(resourceData[1] + 0x18) != 0) {
       return 0x1c;
     }
-    resourceHash = FUN_180899ef0(*param_2,param_1 + 0x10);
+    resourceHash = GetResourceEntry(*param_2,param_1 + 0x10);
     if ((int)resourceHash == 0) {
       if (*(int *)(resourceData[1] + 0x18) != 0) {
         return 0x1c;
       }
-      resourceHash = FUN_180899ef0(*param_2,param_1 + 0x20);
+      resourceHash = GetResourceEntry(*param_2,param_1 + 0x20);
       if (((int)resourceHash == 0) && (resourceHash = FUN_1808a4fb0(param_2,param_1 + 0x30,1,0), (int)resourceHash == 0))
       {
                     // WARNING: Subroutine does not return
@@ -27058,12 +27117,12 @@ undefined8 FUN_18089fc50(longlong param_1,undefined8 *param_2)
     if (*(int *)(resourceData[1] + 0x18) != 0) {
       return 0x1c;
     }
-    resourceHash = FUN_180899ef0(*param_2,param_1 + 0x10);
+    resourceHash = GetResourceEntry(*param_2,param_1 + 0x10);
     if ((int)resourceHash == 0) {
       if (*(int *)(resourceData[1] + 0x18) != 0) {
         return 0x1c;
       }
-      resourceHash = FUN_180899ef0(*param_2,param_1 + 0xd8);
+      resourceHash = GetResourceEntry(*param_2,param_1 + 0xd8);
       if ((int)resourceHash == 0) {
                     // WARNING: Subroutine does not return
         FUN_1808de000(param_2,auStack_48);
@@ -27142,7 +27201,7 @@ undefined8 ValidateResourceId(longlong param_1,longlong *param_2)
       if (*(int *)(resourceData[1] + 0x18) != 0) {
         return 0x1c;
       }
-      resourceHash = FUN_180899ef0(*param_2,param_1 + 0x60);
+      resourceHash = GetResourceEntry(*param_2,param_1 + 0x60);
       if ((int)resourceHash != 0) {
         return resourceHash;
       }
@@ -27188,12 +27247,12 @@ undefined8 ProcessResourceIdList(longlong param_1,undefined8 *param_2)
     if (*(int *)(resourceData[1] + 0x18) != 0) {
       return 0x1c;
     }
-    resourceHash = FUN_180899ef0(*param_2,param_1 + 0x10);
+    resourceHash = GetResourceEntry(*param_2,param_1 + 0x10);
     if ((int)resourceHash == 0) {
       if (*(int *)(resourceData[1] + 0x18) != 0) {
         return 0x1c;
       }
-      resourceHash = FUN_180899ef0(*param_2,param_1 + 0xd8);
+      resourceHash = GetResourceEntry(*param_2,param_1 + 0xd8);
       if ((((int)resourceHash == 0) && (resourceHash = FUN_180898eb0(param_2,param_1 + 0xf8), (int)resourceHash == 0)) &&
          (resourceHash = FUN_1808a6e50(param_2,param_1 + 0xe8,1,param_1), (int)resourceHash == 0)) {
                     // WARNING: Subroutine does not return

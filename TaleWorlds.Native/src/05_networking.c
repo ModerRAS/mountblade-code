@@ -6617,7 +6617,7 @@ void ProcessNetworkConnectionDataTransfer(NetworkHandle connectionContext,Networ
   ulonglong networkBuffer;
   
   networkBuffer = NetworkSecurityGuardValue ^ (ulonglong)networkStackBuffer;
-  networkStatus1 = FUN_180840790();
+  networkStatus1 = NetworkSystemStatusChecker();
   if ((networkStatus1 != 0) && ((*(byte *)(g_NetworkConnectionTable + 0x10) & 0x80) != 0)) {
     networkStatus2 = ProcessNetworkBufferData(auStack_138,0x100,packetData);
     networkStatus3 = ProcessNetworkBufferData(auStack_138 + networkStatus2,0x100 - networkStatus2,&g_NetworkBufferDataTemplate);
@@ -6713,7 +6713,7 @@ void ProcessNetworkConnectionSecureDataTransfer(NetworkHandle connectionContext,
   ulonglong networkBuffer;
   
   networkBuffer = NetworkSecurityGuardValue ^ (ulonglong)networkStackBuffer;
-  networkStatus1 = FUN_18083ff70();
+  networkStatus1 = NetworkConnectionValidator();
   if ((networkStatus1 != 0) && ((*(byte *)(g_NetworkConnectionTable + 0x10) & 0x80) != 0)) {
     networkStatus2 = ProcessNetworkBufferData(auStack_138,0x100,packetData);
     networkStatus3 = ProcessNetworkBufferData(auStack_138 + networkStatus2,0x100 - networkStatus2,&g_NetworkBufferDataTemplate);
@@ -6885,7 +6885,7 @@ void ProcessNetworkConnectionContextData(longlong connectionContext,NetworkHandl
   uStack_34 = *(NetworkStatus *)(connectionContext + 0x14);
   uStack_30 = *(NetworkStatus *)(connectionContext + 0x18);
   uStack_2c = *(NetworkStatus *)(connectionContext + 0x1c);
-  uVar7 = FUN_18084dc20(&networkBuffer);
+  uVar7 = NetworkBufferProcessor(&networkBuffer);
   packetData[1] = uVar7;
   *(NetworkStatus *)(packetData + 2) = *(NetworkStatus *)(connectionContext + 0x38);
   *(NetworkStatus *)((longlong)packetData + 0x14) = *(NetworkStatus *)(connectionContext + 0x3c);
@@ -6961,7 +6961,7 @@ void ProcessNetworkConnectionMultiParameterDataTransfer(NetworkHandle connection
   networkStatus1 = NetworkConnectionIdInitialize(connectionContext,auStack_158);
   if (networkStatus1 == 0) {
     puStack_168 = (NetworkByte *)param_5;
-    networkStatus1 = FUN_18087cbd0(auStack_158[0],packetData,dataSize,param_4);
+    networkStatus1 = NetworkPacketDataProcessor(auStack_158[0],packetData,dataSize,param_4);
     if (networkStatus1 == 0) goto LAB_1808477fa;
   }
   if ((networkStatus1 != 0) && ((*(byte *)(g_NetworkConnectionTable + 0x10) & 0x80) != 0)) {
@@ -13178,7 +13178,19 @@ void ProcessNetworkDataProcessor(NetworkHandle connectionContext,NetworkHandle p
 
 
 
-NetworkHandle * FUN_18084cb70(NetworkHandle *connectionContext,ulonglong packetData)
+/**
+ * @brief 网络连接上下文初始化器
+ * 
+ * 该函数负责初始化网络连接上下文，设置连接句柄和安全标志。
+ * 主要用于网络连接建立时的初始化工作。
+ * 
+ * @param connectionContext 网络连接上下文指针
+ * @param packetData 数据包数据，包含连接参数
+ * @return 初始化后的网络连接句柄指针
+ * 
+ * 注意：这是一个反编译的函数实现
+ */
+NetworkHandle * InitializeNetworkConnectionContext(NetworkHandle *connectionContext,ulonglong packetData)
 
 {
   *(NetworkStatus *)(connectionContext + 1) = 0xdeadf00d;
@@ -13204,7 +13216,7 @@ NetworkHandle * FUN_18084cb70(NetworkHandle *connectionContext,ulonglong packetD
 NetworkHandle ProcessNetworkConnectionCleanup(NetworkHandle connectionContext,ulonglong packetData)
 
 {
-  NetworkCleanupHandler();
+  ProcessNetworkConnectionMemoryCleanup();
   if ((packetData & 1) != 0) {
     free(connectionContext,0x98);
   }
@@ -13213,48 +13225,60 @@ NetworkHandle ProcessNetworkConnectionCleanup(NetworkHandle connectionContext,ul
 
 
 
-NetworkStatus FUN_18084cbf0(longlong connectionContext,uint packetData,double dataSize,int *param_4)
+/**
+ * @brief 处理网络数据验证和过滤
+ * 
+ * 该函数负责对网络数据进行验证和过滤操作，确保数据的有效性和安全性。
+ * 主要用于网络通信中的数据处理和筛选。
+ * 
+ * @param connectionContext 网络连接上下文
+ * @param packetData 数据包数据
+ * @param dataSize 数据大小
+ * @param param_4 参数4，用于返回处理结果
+ * @return 网络状态码
+ */
+NetworkStatus ProcessNetworkDataValidationAndFiltering(longlong connectionContext,uint packetData,double dataSize,int *param_4)
 
 {
-  NetworkByte *networkPointer1;
-  uint secondaryNetworkFlag;
-  NetworkStatus *ptertiaryNetworkFlag;
-  uint quaternaryNetworkFlag;
-  NetworkByte *networkPointer5;
-  NetworkByte *puVar6;
-  NetworkByte *puVar7;
-  uint uVar8;
-  uint uVar9;
-  int networkStatus10;
-  int networkStatus11;
-  double dVar12;
-  NetworkByte auStack_58 [16];
-  NetworkHandle uStack_48;
-  NetworkStatus uStack_40;
-  NetworkStatus uStack_3c;
+  NetworkByte *networkDataPointer;
+  uint primaryValidationFlag;
+  NetworkStatus *networkStatusPointer;
+  uint secondaryValidationFlag;
+  NetworkByte *filteredDataPointer;
+  NetworkByte *currentDataPointer;
+  NetworkByte *nextDataPointer;
+  uint validationCounter1;
+  uint validationCounter2;
+  int networkIterationCount;
+  int networkProcessingStatus;
+  double dataThresholdValue;
+  NetworkByte stackBuffer [16];
+  NetworkHandle networkHandle;
+  NetworkStatus networkStatus1;
+  NetworkStatus networkStatus2;
   
   if (param_4 != (int *)0x0) {
-    ptertiaryNetworkFlag = (NetworkStatus *)FUN_18084da10();
-    FUN_180847820();
-    networkStatus10 = 0;
-    networkPointer1 = *(NetworkByte **)(connectionContext + 0x88);
-    uStack_48 = 0x400000004;
-    uStack_3c = 0x42f00000;
-    uStack_40 = *ptertiaryNetworkFlag;
-    puVar6 = networkPointer1;
-    networkPointer5 = (NetworkByte *)0x0;
-    while (((puVar7 = puVar6, puVar6 = (NetworkByte *)0x0, networkStatus11 = 0, networkPointer1 <= puVar7 &&
-            (puVar7 < networkPointer1 + (longlong)*(int *)(connectionContext + 0x90) * 0x20)) &&
-           (puVar6 = puVar7, networkStatus11 = networkStatus10, *(uint *)(puVar7 + 0x18) <= packetData))) {
-      networkStatus10 = networkStatus10 + 1;
-      networkPointer5 = puVar7;
-      puVar6 = puVar7 + 0x20;
+    networkStatusPointer = (NetworkStatus *)GetNetworkDataBuffer();
+    InitializeNetworkDataHandler();
+    networkIterationCount = 0;
+    networkDataPointer = *(NetworkByte **)(connectionContext + 0x88);
+    networkHandle = 0x400000004;
+    networkStatus2 = 0x42f00000;
+    networkStatus1 = *networkStatusPointer;
+    currentDataPointer = networkDataPointer;
+    filteredDataPointer = (NetworkByte *)0x0;
+    while (((nextDataPointer = currentDataPointer, currentDataPointer = (NetworkByte *)0x0, networkProcessingStatus = 0, networkDataPointer <= nextDataPointer &&
+            (nextDataPointer < networkDataPointer + (longlong)*(int *)(connectionContext + 0x90) * 0x20)) &&
+           (currentDataPointer = nextDataPointer, networkProcessingStatus = networkIterationCount, *(uint *)(nextDataPointer + 0x18) <= packetData))) {
+      networkIterationCount = networkIterationCount + 1;
+      filteredDataPointer = nextDataPointer;
+      currentDataPointer = nextDataPointer + 0x20;
     }
-    if ((networkPointer5 == (NetworkByte *)0x0) &&
-       ((*(int *)(connectionContext + 0x90) == 0 || (networkPointer5 = puVar6, puVar6 == (NetworkByte *)0x0)))) {
-      networkPointer5 = auStack_58;
+    if ((filteredDataPointer == (NetworkByte *)0x0) &&
+       ((*(int *)(connectionContext + 0x90) == 0 || (filteredDataPointer = currentDataPointer, currentDataPointer == (NetworkByte *)0x0)))) {
+      filteredDataPointer = stackBuffer;
     }
-    networkStatus10 = 0;
+    networkIterationCount = 0;
     if (0.0 < dataSize) {
       do {
         puVar7 = (NetworkByte *)0x0;
@@ -13291,7 +13315,17 @@ NetworkStatus FUN_18084cbf0(longlong connectionContext,uint packetData,double da
 
 
 
-NetworkHandle FUN_18084cc23(void)
+/**
+ * @brief 网络连接池管理器
+ * 
+ * 该函数负责管理网络连接池的状态和资源。
+ * 主要用于网络连接池的维护和管理工作。
+ * 
+ * @return 网络连接池状态
+ * 
+ * 注意：这是一个反编译的函数实现
+ */
+NetworkHandle ManageNetworkConnectionPool(void)
 
 {
   NetworkByte *networkPointer1;
@@ -13369,7 +13403,19 @@ NetworkHandle FUN_18084cc23(void)
 
 
 
-NetworkHandle FUN_18084ccf0(NetworkHandle connectionContext,int packetData)
+/**
+ * @brief 网络连接控制器
+ * 
+ * 该函数负责控制网络连接的建立和维护。
+ * 主要用于网络连接的主动控制工作。
+ * 
+ * @param connectionContext 网络连接上下文句柄
+ * @param packetData 数据包数据标识符
+ * @return 控制结果状态
+ * 
+ * 注意：这是一个反编译的函数实现
+ */
+NetworkHandle ControlNetworkConnection(NetworkHandle connectionContext,int packetData)
 
 {
   uint primaryNetworkFlag;
@@ -13574,7 +13620,19 @@ LAB_18084cfd9:
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-uint * FUN_18084cde8(longlong connectionContext,uint *packetData)
+/**
+ * @brief 网络数据包验证器
+ * 
+ * 该函数负责验证网络数据包的有效性和完整性。
+ * 主要用于网络通信中的数据包验证工作。
+ * 
+ * @param connectionContext 网络连接上下文
+ * @param packetData 数据包数据指针
+ * @return 验证结果指针
+ * 
+ * 注意：这是一个反编译的函数实现
+ */
+uint * ValidateNetworkDataPacket(longlong connectionContext,uint *packetData)
 
 {
   ulonglong primaryNetworkFlag;
