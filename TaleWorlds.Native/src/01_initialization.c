@@ -1704,7 +1704,7 @@ void InitializeRenderingSystemConfig(void)
   SystemTablePointer = (long long*)GetSystemRootPointer();
   SystemRootPointer = (void* *)*SystemTablePointer;
   SystemNodeFlag = *(char*)((long long)SystemRootPointer[1] + 0x19);
-  renderingInitializationFlag = 0;
+  RenderingInitializationFlag = 0;
   systemPreviousNode = SystemRootPointer;
   systemCurrentNode = (void* *)SystemRootPointer[1];
   while (SystemNodeFlag == '\0') {
@@ -1729,7 +1729,7 @@ void InitializeRenderingSystemConfig(void)
   systemPreviousNode[7] = 0x1aa83fc0020dc1b6;
   systemPreviousNode[8] = &SystemDataNodeSecondaryRoot;
   systemPreviousNode[9] = 0;
-  systemPreviousNode[10] = renderingInitializationFlag;
+  systemPreviousNode[10] = RenderingInitializationFlag;
   return;
 }
 
