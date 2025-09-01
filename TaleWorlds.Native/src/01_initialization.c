@@ -35758,53 +35758,77 @@ void** InitializeSystemResourcePointer(void** systemResourcePointer)
 
 
 
-// 函数: void FUN_18005b960(void* *SystemResourcePointer,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
-void FUN_18005b960(void* *SystemResourcePointer,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
+/**
+ * @brief 系统资源管理器初始化函数
+ * 
+ * 该函数负责初始化系统资源管理器，设置系统资源指针和内存分配器。
+ * 用于系统资源管理的前期准备工作，确保资源分配的正确性。
+ * 
+ * @param SystemResourcePointer 系统资源指针数组
+ * @param ConfigurationDataPointer 配置数据指针
+ * @param AdditionalParameter 额外参数
+ * @param ConfigurationFlag 配置标志
+ * 
+ * 原始函数名为FUN_18005b960，现已重命名为InitializeSystemResourceManager
+ */
+void InitializeSystemResourceManager(void* *SystemResourcePointer,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
 {
+  // 初始化第四组系统资源
   if ((code *)SystemResourcePointer[0x16] != (code *)0x0) {
-    (*(code *)SystemResourcePointer[0x16])(SystemResourcePointer + 0x14,0,0,ConfigurationFlag,0xfffffffffffffffe);
+    (*(code *)SystemResourcePointer[0x16])(SystemResourcePointer + 0x14, 0, 0, ConfigurationFlag, 0xfffffffffffffffe);
   }
+  
+  // 设置全局数据引用和内存分配器
   SystemResourcePointer[0x10] = &SystemGlobalDataReference;
   if (SystemResourcePointer[0x11] != 0) {
-                    // WARNING: Subroutine does not return
+    // WARNING: Subroutine does not return
     SystemCleanupFunction();
   }
   SystemResourcePointer[0x11] = 0;
   *(uint32_t *)(SystemResourcePointer + 0x13) = 0;
   SystemResourcePointer[0x10] = &SystemMemoryAllocatorReference;
+  
+  // 初始化第三组系统资源
   SystemResourcePointer[0xc] = &SystemGlobalDataReference;
   if (SystemResourcePointer[0xd] != 0) {
-                    // WARNING: Subroutine does not return
+    // WARNING: Subroutine does not return
     SystemCleanupFunction();
   }
   SystemResourcePointer[0xd] = 0;
   *(uint32_t *)(SystemResourcePointer + 0xf) = 0;
   SystemResourcePointer[0xc] = &SystemMemoryAllocatorReference;
+  
+  // 初始化第二组系统资源
   SystemResourcePointer[8] = &SystemGlobalDataReference;
   if (SystemResourcePointer[9] != 0) {
-                    // WARNING: Subroutine does not return
+    // WARNING: Subroutine does not return
     SystemCleanupFunction();
   }
   SystemResourcePointer[9] = 0;
   *(uint32_t *)(SystemResourcePointer + 0xb) = 0;
   SystemResourcePointer[8] = &SystemMemoryAllocatorReference;
+  
+  // 初始化第一组系统资源
   SystemResourcePointer[4] = &SystemGlobalDataReference;
   if (SystemResourcePointer[5] != 0) {
-                    // WARNING: Subroutine does not return
+    // WARNING: Subroutine does not return
     SystemCleanupFunction();
   }
   SystemResourcePointer[5] = 0;
   *(uint32_t *)(SystemResourcePointer + 7) = 0;
   SystemResourcePointer[4] = &SystemMemoryAllocatorReference;
+  
+  // 初始化主系统资源
   *SystemResourcePointer = &SystemGlobalDataReference;
   if (SystemResourcePointer[1] != 0) {
-                    // WARNING: Subroutine does not return
+    // WARNING: Subroutine does not return
     SystemCleanupFunction();
   }
   SystemResourcePointer[1] = 0;
   *(uint32_t *)(SystemResourcePointer + 3) = 0;
   *SystemResourcePointer = &SystemMemoryAllocatorReference;
+  
   return;
 }
 
@@ -35812,8 +35836,20 @@ void FUN_18005b960(void* *SystemResourcePointer,void* ConfigurationDataPointer,v
 
 
 
-// 函数: void FUN_18005ba80(void* SystemResourcePointer,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
-void FUN_18005ba80(void* SystemResourcePointer,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
+/**
+ * @brief 系统线程初始化函数
+ * 
+ * 该函数负责初始化系统线程，创建线程对象并启动线程执行。
+ * 用于系统并发处理和多任务管理的前期准备工作。
+ * 
+ * @param SystemResourcePointer 系统资源指针
+ * @param ConfigurationDataPointer 配置数据指针
+ * @param AdditionalParameter 额外参数
+ * @param ConfigurationFlag 配置标志
+ * 
+ * 原始函数名为FUN_18005ba80，现已重命名为InitializeSystemThread
+ */
+void InitializeSystemThread(void* SystemResourcePointer,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
 {
   uint32_t unsignedSystemValue1;
