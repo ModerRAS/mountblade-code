@@ -8076,7 +8076,20 @@ void ProcessNetworkConnectionProtocolConfiguration(longlong connectionContext,Ne
 
 
 // 函数: void FUN_180848950(longlong connectionContext,NetworkHandle packetData)
-void FUN_180848950(longlong connectionContext,NetworkHandle packetData)
+/**
+ * @brief 处理网络连接状态配置
+ * 
+ * 该函数负责处理网络连接的状态配置，包括：
+ * - 网络状态验证
+ * - 连接配置设置
+ * - 状态同步操作
+ * 
+ * @param connectionContext 网络连接上下文
+ * @param packetData 网络数据包数据
+ * 
+ * 注意：这是一个反编译的函数实现
+ */
+void ConfigureNetworkConnectionStatus(longlong connectionContext,NetworkHandle packetData)
 
 {
   int networkStatus1;
@@ -8092,7 +8105,20 @@ void FUN_180848950(longlong connectionContext,NetworkHandle packetData)
 
 
 // 函数: void FUN_1808489a0(longlong connectionContext,NetworkHandle packetData)
-void FUN_1808489a0(longlong connectionContext,NetworkHandle packetData)
+/**
+ * @brief 处理网络连接数据传输
+ * 
+ * 该函数负责处理网络连接的数据传输操作，包括：
+ * - 数据传输验证
+ * - 数据包发送
+ * - 传输状态检查
+ * 
+ * @param connectionContext 网络连接上下文
+ * @param packetData 网络数据包数据
+ * 
+ * 注意：这是一个反编译的函数实现
+ */
+void ProcessNetworkConnectionDataTransfer(longlong connectionContext,NetworkHandle packetData)
 
 {
   int networkStatus1;

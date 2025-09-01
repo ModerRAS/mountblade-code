@@ -10100,19 +10100,28 @@ undefined8 CleanupResourcePoolAndReleaseMemory(longlong *ResourcePoolHandle)
 
 
 
-undefined8 FUN_180895210(longlong *param_1)
+/**
+ * @brief 扩展资源池容量
+ * 
+ * 该函数负责扩展资源池的容量，当资源池空间不足时，
+ * 会重新分配更大的内存空间，并复制现有资源到新位置。
+ * 
+ * @param ResourcePoolHandle 资源池句柄，指向需要扩展的资源池
+ * @return 返回操作状态码，0表示成功，非0表示失败
+ */
+undefined8 ExpandResourcePoolCapacity(longlong *ResourcePoolHandle)
 
 {
-  int iVar1;
-  longlong lVar2;
-  undefined8 uVar3;
-  ulonglong uVar4;
-  longlong lVar5;
-  uint uVar6;
-  int *piVar7;
-  int iVar8;
-  ulonglong uVar9;
-  ulonglong uVar10;
+  int CurrentPoolSize;
+  longlong ResourceCount;
+  undefined8 OperationStatus;
+  ulonglong LoopCounter;
+  longlong NewPoolSize;
+  uint SignExtendValue;
+  int *ResourceIndexPointer;
+  int ResourceCapacity;
+  ulonglong InitializationCounter;
+  ulonglong CopyCounter;
   
   iVar8 = *(int *)((longlong)param_1 + 0x24);
   if (iVar8 == -1) {
