@@ -1623,15 +1623,27 @@ undefined DAT_180c92058;
 undefined DAT_180c92060;
 undefined DAT_180c92068;
 
-// 函数: undefined FUN_180942790;
-undefined FUN_180942790;
+// 函数: void ConfigureMemoryRecovery;
+/**
+ * @brief 配置内存恢复
+ * 
+ * 该函数负责配置内存恢复系统
+ * 设置内存错误恢复和数据修复机制
+ */
+void ConfigureMemoryRecovery;
 undefined DAT_180bfaef0;
 undefined DAT_180bfaef8;
 undefined DAT_180bfaf00;
 undefined DAT_180bfaf08;
 
-// 函数: undefined FUN_1809427d0;
-undefined FUN_1809427d0;
+// 函数: void SetupMemoryAuditing;
+/**
+ * @brief 设置内存审计
+ * 
+ * 该函数负责设置内存审计系统
+ * 配置内存访问审计和安全检查
+ */
+void SetupMemoryAuditing;
 undefined UNK_180a27a58;
 undefined DAT_180bfb310;
 undefined DAT_180bfb318;
