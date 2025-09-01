@@ -391,7 +391,7 @@ int InitializeConfigurationMutex(uint64_t threadId,uint64_t syncPtr,uint64_t mut
   CONFIG_DATA_BUFFER_A = 0;
   g_configDataBufferSizeA = 0x13;
   strcpy_s(&CONFIG_DATA_BUFFER_A,0x40,&UNK_180a0cb48,in_R9,0xfffffffffffffffe);
-  _DAT_180bf67a8 = &UNK_1809fcc58;
+  g_configDataPointerA = &UNK_1809fcc58;
   _DAT_180bf67b0 = &CONFIG_DATA_BUFFER_B;
   CONFIG_DATA_BUFFER_B = 0;
   _DAT_180bf67b8 = 0xd;

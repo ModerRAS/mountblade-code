@@ -2505,30 +2505,50 @@ int SerializeNetworkConnectionInfo(longlong connectionInfo, longlong outputBuffe
 
 
 
-int FUN_180842750(longlong param_1,longlong param_2,int param_3)
+/**
+ * @brief 序列化网络统计数据
+ * 
+ * 该函数负责将网络统计相关的数据进行序列化处理，
+ * 将统计信息转换为可传输的字节流格式。
+ * 
+ * @param statsData 统计数据指针
+ * @param outputBuffer 输出缓冲区指针
+ * @param bufferSize 缓冲区大小
+ * @return 序列化后的数据大小
+ */
+int SerializeNetworkStatsData(longlong statsData, longlong outputBuffer, int bufferSize)
 
 {
-  undefined4 uVar1;
-  int iVar2;
-  int iVar3;
+  undefined4 statsField;
+  int bytesProcessed;
+  int currentOffset;
   
-  uVar1 = *(undefined4 *)(param_1 + 0x10);
-  iVar2 = FUN_18074b880(param_2,param_3,&UNK_1809841c8);
-  iVar3 = FUN_18074b880(param_2 + iVar2,param_3 - iVar2,&DAT_180a06434);
-  iVar2 = iVar2 + iVar3;
-  iVar3 = func_0x00018074b800(iVar2 + param_2,param_3 - iVar2,uVar1);
-  return iVar3 + iVar2;
+  statsField = *(undefined4 *)(statsData + 0x10);
+  bytesProcessed = FUN_18074b880(outputBuffer,bufferSize,&UNK_1809841c8);
+  currentOffset = FUN_18074b880(outputBuffer + bytesProcessed,bufferSize - bytesProcessed,&DAT_180a06434);
+  bytesProcessed = bytesProcessed + currentOffset;
+  currentOffset = func_0x00018074b800(bytesProcessed + outputBuffer,bufferSize - bytesProcessed,statsField);
+  return currentOffset + bytesProcessed;
 }
 
 
 
 
-// 函数: void FUN_1808427c0(longlong param_1,undefined8 param_2,undefined4 param_3)
-void FUN_1808427c0(longlong param_1,undefined8 param_2,undefined4 param_3)
+/**
+ * @brief 处理网络连接握手
+ * 
+ * 该函数负责处理网络连接的握手过程，包括协议版本交换
+ * 和连接参数协商。
+ * 
+ * @param handshakeContext 握手上下文指针
+ * @param handshakeData 握手数据指针
+ * @param handshakeFlags 握手标志位
+ */
+void ProcessNetworkHandshake(longlong handshakeContext, undefined8 handshakeData, undefined4 handshakeFlags)
 
 {
-  FUN_18083f9b0(param_2,param_3,&UNK_180984438,*(undefined4 *)(param_1 + 0x10),
-                *(undefined1 *)(param_1 + 0x18));
+  FUN_18083f9b0(handshakeData,handshakeFlags,&UNK_180984438,*(undefined4 *)(handshakeContext + 0x10),
+                *(undefined1 *)(handshakeContext + 0x18));
   return;
 }
 

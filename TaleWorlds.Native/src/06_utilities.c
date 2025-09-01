@@ -363,11 +363,11 @@ void* g_databaseCondition;
 void* g_databaseMemory;
 void* g_databaseHeap;
 void* g_databaseStack;
-void* g_databasePool;
+void* DatabasePool;
 // 数据库连接池实例
-void* g_databaseConnectionPoolInstance;
+void* DatabaseConnectionPoolInstance;
 // 数据库连接池配置
-void* g_databaseConnectionPoolConfig;
+void* DatabaseConnectionPoolConfig;
 undefined DAT_180bf6a10;
 undefined DAT_180bf6a18;
 undefined DAT_180bf6a20;
