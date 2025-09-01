@@ -31,10 +31,10 @@ void* GameCoreSystemMainEntryPoint;
 void* CoreSystemMemoryAllocator;                // 核心系统内存分配器
 void* CoreSystemDataTable;                     // 核心系统数据表
 void* CoreSystemMemoryBuffer;                  // 核心系统内存缓冲区
-void* CoreSystemMainConfiguration;              // 核心系统主配置
-void* CoreSystemBackupConfiguration;            // 核心系统备份配置
-void* CoreSystemCacheConfiguration;             // 核心系统缓存配置
-void* CoreSystemEmergencyConfiguration;         // 核心系统紧急配置
+void* CoreSystemPrimaryConfiguration;           // 核心系统主配置
+void* CoreSystemBackupConfiguration;           // 核心系统备份配置
+void* CoreSystemCacheConfiguration;            // 核心系统缓存配置
+void* CoreSystemEmergencyConfiguration;        // 核心系统紧急配置
 
 // 系统指针变量
 void* PhysicsSystemPointer;                     // 物理系统指针
@@ -18074,82 +18074,91 @@ void WotsMainSDLL(void* SystemParameter)
  * 
  * @param systemParameter 系统参数
  */
+/**
+ * @brief 初始化主系统控制器
+ * 
+ * 此函数负责初始化游戏主系统控制器，处理系统状态和事件管理。
+ * 函数会创建系统控制器对象，初始化数据表管理器，并设置系统事件分发器。
+ * 
+ * @param systemParameter 系统参数，用于配置系统控制器的初始化
+ * @note 函数会调用InitializeSystemMemoryPool和InitializeCoreEngine进行基础初始化
+ * @note 函数会管理系统全局控制器的生命周期和状态切换
+ */
 void InitializeMainSystemController(long long systemParameter)
-
 {
-  long long systemObject;
-  long long *controllerPtr;
-  char isActiveFlag;
-  long long *tempSystemData8;
-  long long **tempSystemData10;
-  long long *tempSystemData18;
-  long long* SystemInitializationCounter;
-  void* SystemMemoryAllocationFlags;
+  long long SystemObject;
+  long long *ControllerPointer;
+  bool IsActiveFlag;
+  long long *SystemDataBuffer8;
+  long long **SystemDataBuffer10;
+  long long *SystemDataBuffer18;
+  long long* InitializationCounter;
+  void* MemoryAllocationFlags;
   
-  SystemMemoryAllocationFlags = 0xfffffffffffffffe;
+  MemoryAllocationFlags = (void*)0xfffffffffffffffe;
   InitializeSystemMemoryPool();
-  SystemInitializationCounter = SystemInitializationCounter + 1;
+  InitializationCounter = InitializationCounter + 1;
   InitializeCoreEngine();
   if (SystemGlobalControllerPointer != (long long *)0x0) {
-    if ((void* *)*SystemGlobalControllerPointer == &SystemCoreObjectTemplate) {
-      isActiveFlag = (char)SystemGlobalControllerPointer[2] != '\0';
+    if ((void* )SystemGlobalControllerPointer == &SystemCoreObjectTemplate) {
+      IsActiveFlag = (bool)SystemGlobalControllerPointer[2] != false;
     }
     else {
-      isActiveFlag = (**(code **)((void* *)*SystemGlobalControllerPointer + 0x68))();
+      IsActiveFlag = (**(code **)((void* )SystemGlobalControllerPointer + 0x68))();
     }
-    if (isActiveFlag == '\0') goto LAB_180043e47;
+    if (!IsActiveFlag) goto LAB_180043e47;
   }
-  controllerPtr = (long long *)SystemMemoryAllocationFunction(SystemMemoryAllocationTemplate,0xc0,8,3,allocationFlags);
-  tempSystemData20 = controllerPtr;
-  InitializeSystemDataTableManager(controllerPtr);
-  *controllerPtr = (long long)&SystemVirtualTableTemplateB;
-  controllerPtr[3] = -4;
-  tempSystemData10 = (long long **)controllerPtr;
-  (**(code **)(*controllerPtr + 0x28))(controllerPtr);
-  tempSystemData10 = (long long **)SystemGlobalControllerPointer;
-  if (SystemGlobalControllerPointer != (long long *)0x0) {
-    systemObject = *SystemGlobalControllerPointer;
-    SystemGlobalControllerPointer = controllerPtr;
-    (**(code **)(systemObject + 0x38))();
-    controllerPtr = SystemGlobalControllerPointer;
+  ControllerPointer = (long long )SystemMemoryAllocationFunction(SystemMemoryAllocationTemplate,0xc0,8,3,allocationFlags);
+  SystemDataBuffer20 = ControllerPointer;
+  InitializeSystemDataTableManager(ControllerPointer);
+  ControllerPointer = (long long)&SystemVirtualTableTemplateB;
+  ControllerPointer[3] = -4;
+  SystemDataBuffer10 = (long long )ControllerPointer;
+  (**(code **)(ControllerPointer + 0x28))(ControllerPointer);
+  SystemDataBuffer10 = (long long )SystemGlobalControllerPointer;
+  if (SystemGlobalControllerPointer != (long long )0x0) {
+    SystemObject = SystemGlobalControllerPointer;
+    SystemGlobalControllerPointer = ControllerPointer;
+    (**(code **)(SystemObject + 0x38))();
+    ControllerPointer = SystemGlobalControllerPointer;
   }
-  SystemGlobalControllerPointer = controllerPtr;
-  if ((void* *)*SystemGlobalControllerPointer == &SystemVirtualTableTemplateB) {
+  SystemGlobalControllerPointer = ControllerPointer;
+  if ((void* )SystemGlobalControllerPointer == &SystemVirtualTableTemplateB) {
     if (SystemInitializationFlag != 0) {
       InitializeSystemEventDispatcher();
     }
   }
   else {
-    (**(code **)((void* *)*SystemGlobalControllerPointer + 0x60))();
+    (**(code **)((void* )SystemGlobalControllerPointer + 0x60))();
   }
-  controllerPtr = SystemGlobalControllerPointer;
-  tempSystemData18 = SystemGlobalControllerPointer;
-  SystemGlobalControllerPointer = (long long *)0x0;
-  if (controllerPtr != (long long *)0x0) {
-    (**(code **)(*controllerPtr + 0x38))();
+  ControllerPointer = SystemGlobalControllerPointer;
+  SystemDataBuffer18 = SystemGlobalControllerPointer;
+  SystemGlobalControllerPointer = (long long )0x0;
+  if (ControllerPointer != (long long )0x0) {
+    (**(code **)(ControllerPointer + 0x38))();
   }
 LAB_180043e47:
-  SystemThreadSyncBroadcast(*(void* *)(SystemResourcePointer + 0x20));
-  if (*(char *)(SystemStatusFlagsPointer + 0x1ed) != '\0') {
-    controllerPtr = (long long *)SystemMemoryAllocationFunction(SystemMemoryAllocationTemplate,0x28,8,3);
-    *controllerPtr = (long long)&SystemMemoryTemplateA;
-    *controllerPtr = (long long)&SystemMemoryTemplateB;
-    *(uint32_t *)(controllerPtr + 1) = 0;
-    *controllerPtr = (long long)&SystemMemoryTemplateC;
+  SystemThreadSyncBroadcast((void* )(SystemResourcePointer + 0x20));
+  if ((char )(SystemStatusFlagsPointer + 0x1ed) != '\0') {
+    ControllerPointer = (long long )SystemMemoryAllocationFunction(SystemMemoryAllocationTemplate,0x28,8,3);
+    ControllerPointer = (long long)&SystemMemoryTemplateA;
+    ControllerPointer = (long long)&SystemMemoryTemplateB;
+    (uint32_t )(ControllerPointer + 1) = 0;
+    ControllerPointer = (long long)&SystemMemoryTemplateC;
     LOCK();
-    *(uint8_t *)(controllerPtr + 2) = 0;
+    (uint8_t )(ControllerPointer + 2) = 0;
     UNLOCK();
-    controllerPtr[3] = -1;
-    *controllerPtr = (long long)&SystemMemoryTemplateD;
-    controllerPtr[4] = 0x180c91060;
-    tempSystemData20 = controllerPtr;
-    (**(code **)(*controllerPtr + 0x28))(controllerPtr);
+    ControllerPointer[3] = -1;
+    ControllerPointer = (long long)&SystemMemoryTemplateD;
+    ControllerPointer[4] = 0x180c91060;
+    SystemDataBuffer20 = ControllerPointer;
+    (**(code **)(ControllerPointer + 0x28))(ControllerPointer);
     allocationFlags = SystemAllocationFlagsTemplate;
-    tempSystemData10 = &tempSystemData8;
-    tempSystemData8 = controllerPtr;
-    (**(code **)(*controllerPtr + 0x28))(controllerPtr);
-    SystemManagerInitialize(allocationFlags,&tempSystemData8);
-    (**(code **)(*controllerPtr + 0x38))(controllerPtr);
+    SystemDataBuffer10 = &SystemDataBuffer8;
+    SystemDataBuffer8 = ControllerPointer;
+    (**(code **)(ControllerPointer + 0x28))(ControllerPointer);
+    SystemManagerInitialize(allocationFlags,&SystemDataBuffer8);
+    (**(code **)(ControllerPointer + 0x38))(ControllerPointer);
   }
   return;
 }
