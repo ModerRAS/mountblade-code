@@ -5226,18 +5226,18 @@ void InitializeSystemConfigurationManager(void)
 void InitializeSystemMessageProcessor(void)
 
 {
-  undefined8 systemParameter;
-  undefined *messageProcessorPointer;
-  undefined1 *messageBufferPointer;
-  uint32_t messageBufferSize;
-  undefined1 messageBuffer [136];
+  undefined8 systemContextParameter;
+  undefined8 *messageProcessorReference;
+  undefined1 *messageConfigurationBuffer;
+  uint32_t configurationBufferSize;
+  undefined1 messageConfigurationBuffer [136];
   
-  messageProcessorPointer = &SystemMessageProcessorNode;
-  messageBufferPointer = messageBuffer;
-  messageBuffer[0] = 0;
-  messageBufferSize = 10;
-  strcpy_s(messageBuffer,0x80,&SystemMessageProcessorTemplate,systemParameter,0xfffffffffffffffe);
-  SystemMessageProcessorHandle = InitializeMessageProcessorCallback(&messageProcessorPointer);
+  messageProcessorReference = &SystemMessageProcessorNode;
+  messageConfigurationBuffer = messageConfigurationBuffer;
+  messageConfigurationBuffer[0] = 0;
+  configurationBufferSize = 10;
+  strcpy_s(messageConfigurationBuffer,0x80,&SystemMessageProcessorTemplate,systemContextParameter,0xfffffffffffffffe);
+  SystemMessageProcessorHandle = InitializeMessageProcessorCallback(&messageProcessorReference);
   return;
 }
 
@@ -5275,18 +5275,18 @@ int InitializeSystemDebugManager(void)
 void InitializeSystemLogManager(void)
 
 {
-  undefined8 systemParameter;
-  undefined *logManagerPointer;
-  undefined1 *logBufferPointer;
-  uint32_t logBufferSize;
-  undefined1 logBuffer [136];
+  undefined8 systemContextParameter;
+  undefined8 *logManagerReference;
+  undefined1 *logConfigurationBuffer;
+  uint32_t configurationBufferSize;
+  undefined1 logConfigurationBuffer [136];
   
-  logManagerPointer = &SystemLogManagerNode;
-  logBufferPointer = logBuffer;
-  logBuffer[0] = 0;
-  logBufferSize = 9;
-  strcpy_s(logBuffer,0x80,&SystemLogManagerTemplate,systemParameter,0xfffffffffffffffe);
-  SystemLogManagerHandle = InitializeLogManagerCallback(&logManagerPointer);
+  logManagerReference = &SystemLogManagerNode;
+  logConfigurationBuffer = logConfigurationBuffer;
+  logConfigurationBuffer[0] = 0;
+  configurationBufferSize = 9;
+  strcpy_s(logConfigurationBuffer,0x80,&SystemLogManagerTemplate,systemContextParameter,0xfffffffffffffffe);
+  SystemLogManagerHandle = InitializeLogManagerCallback(&logManagerReference);
   return;
 }
 
@@ -5307,18 +5307,18 @@ void InitializeSystemLogManager(void)
 void InitializeSystemPerformanceMonitor(void)
 
 {
-  undefined8 systemParameter;
-  undefined *performanceMonitorPointer;
-  undefined1 *performanceBufferPointer;
-  uint32_t performanceBufferSize;
-  undefined1 performanceBuffer [136];
+  undefined8 systemContextParameter;
+  undefined8 *performanceMonitorReference;
+  undefined1 *performanceConfigurationBuffer;
+  uint32_t configurationBufferSize;
+  undefined1 performanceConfigurationBuffer [136];
   
-  performanceMonitorPointer = &SystemPerformanceMonitorNode;
-  performanceBufferPointer = performanceBuffer;
-  performanceBuffer[0] = 0;
-  performanceBufferSize = 0xf;
-  strcpy_s(performanceBuffer,0x80,&SystemPerformanceMonitorTemplate,systemParameter,0xfffffffffffffffe);
-  SystemPerformanceMonitorHandle = InitializePerformanceMonitorCallback(&performanceMonitorPointer);
+  performanceMonitorReference = &SystemPerformanceMonitorNode;
+  performanceConfigurationBuffer = performanceConfigurationBuffer;
+  performanceConfigurationBuffer[0] = 0;
+  configurationBufferSize = 0xf;
+  strcpy_s(performanceConfigurationBuffer,0x80,&SystemPerformanceMonitorTemplate,systemContextParameter,0xfffffffffffffffe);
+  SystemPerformanceMonitorHandle = InitializePerformanceMonitorCallback(&performanceMonitorReference);
   return;
 }
 
@@ -5339,18 +5339,18 @@ void InitializeSystemPerformanceMonitor(void)
 void InitializeSystemSecurityMonitor(void)
 
 {
-  undefined8 systemParameter;
-  undefined *securityMonitorPointer;
-  undefined1 *securityBufferPointer;
-  uint32_t securityBufferSize;
-  undefined1 securityBuffer [136];
+  undefined8 systemContextParameter;
+  undefined8 *securityMonitorReference;
+  undefined1 *securityConfigurationBuffer;
+  uint32_t configurationBufferSize;
+  undefined1 securityConfigurationBuffer [136];
   
-  securityMonitorPointer = &SystemSecurityMonitorNode;
-  securityBufferPointer = securityBuffer;
-  securityBuffer[0] = 0;
-  securityBufferSize = 0xc;
-  strcpy_s(securityBuffer,0x80,&SystemSecurityMonitorTemplate,systemParameter,0xfffffffffffffffe);
-  SystemSecurityMonitorHandle = InitializeSecurityMonitorCallback(&securityMonitorPointer);
+  securityMonitorReference = &SystemSecurityMonitorNode;
+  securityConfigurationBuffer = securityConfigurationBuffer;
+  securityConfigurationBuffer[0] = 0;
+  configurationBufferSize = 0xc;
+  strcpy_s(securityConfigurationBuffer,0x80,&SystemSecurityMonitorTemplate,systemContextParameter,0xfffffffffffffffe);
+  SystemSecurityMonitorHandle = InitializeSecurityMonitorCallback(&securityMonitorReference);
   return;
 }
 
@@ -5371,18 +5371,18 @@ void InitializeSystemSecurityMonitor(void)
 void InitializeSystemResourceManager(void)
 
 {
-  undefined8 systemParameter;
-  undefined *resourceManagerPointer;
-  undefined1 *resourceBufferPointer;
-  uint32_t resourceBufferSize;
-  undefined1 resourceBuffer [136];
+  undefined8 systemContextParameter;
+  undefined8 *resourceManagerReference;
+  undefined1 *resourceConfigurationBuffer;
+  uint32_t configurationBufferSize;
+  undefined1 resourceConfigurationBuffer [136];
   
-  resourceManagerPointer = &SystemResourceManagerNode;
-  resourceBufferPointer = resourceBuffer;
-  resourceBuffer[0] = 0;
-  resourceBufferSize = 7;
-  strcpy_s(resourceBuffer,0x80,&SystemResourceManagerTemplate,systemParameter,0xfffffffffffffffe);
-  SystemResourceManagerHandle = InitializeResourceManagerCallback(&resourceManagerPointer);
+  resourceManagerReference = &SystemResourceManagerNode;
+  resourceConfigurationBuffer = resourceConfigurationBuffer;
+  resourceConfigurationBuffer[0] = 0;
+  configurationBufferSize = 7;
+  strcpy_s(resourceConfigurationBuffer,0x80,&SystemResourceManagerTemplate,systemContextParameter,0xfffffffffffffffe);
+  SystemResourceManagerHandle = InitializeResourceManagerCallback(&resourceManagerReference);
   return;
 }
 
@@ -5403,18 +5403,18 @@ void InitializeSystemResourceManager(void)
 void InitializeSystemNetworkManager(void)
 
 {
-  undefined8 systemParameter;
-  undefined *networkManagerPointer;
-  undefined1 *networkBufferPointer;
-  uint32_t networkBufferSize;
-  undefined1 networkBuffer [136];
+  undefined8 systemContextParameter;
+  undefined8 *networkManagerReference;
+  undefined1 *networkConfigurationBuffer;
+  uint32_t configurationBufferSize;
+  undefined1 networkConfigurationBuffer [136];
   
-  networkManagerPointer = &SystemNetworkManagerNode;
-  networkBufferPointer = networkBuffer;
-  networkBuffer[0] = 0;
-  networkBufferSize = 0x13;
-  strcpy_s(networkBuffer,0x80,&SystemNetworkManagerTemplate,systemParameter,0xfffffffffffffffe);
-  SystemNetworkManagerHandle = InitializeNetworkManagerCallback(&networkManagerPointer);
+  networkManagerReference = &SystemNetworkManagerNode;
+  networkConfigurationBuffer = networkConfigurationBuffer;
+  networkConfigurationBuffer[0] = 0;
+  configurationBufferSize = 0x13;
+  strcpy_s(networkConfigurationBuffer,0x80,&SystemNetworkManagerTemplate,systemContextParameter,0xfffffffffffffffe);
+  SystemNetworkManagerHandle = InitializeNetworkManagerCallback(&networkManagerReference);
   return;
 }
 
@@ -5433,46 +5433,47 @@ void InitializeSystemNetworkManager(void)
 void InitializeSystemStorageManager(void)
 
 {
-  char systemNodeFlag;
-  undefined8 *systemDataTable;
-  int memoryCompareResult;
-  longlong *systemMemoryPointer;
-  longlong systemTimeValue;
-  undefined8 *systemRootNode;
-  undefined8 *systemCurrentNode;
-  undefined8 *systemNextNode;
-  undefined8 *systemPreviousNode;
-  void* storageManagerCallbackPointer;
+  char systemNodeTraversalFlag;
+  undefined8 *systemDataTableReference;
+  int memoryComparisonResult;
+  longlong *systemMemoryAllocationPointer;
+  longlong systemTimestamp;
+  undefined8 *systemRootStorageNode;
+  undefined8 *systemCurrentStorageNode;
+  undefined8 *systemNextStorageNode;
+  undefined8 *systemPreviousStorageNode;
+  void* storageManagerCallbackFunction;
   
-  systemDataTable = (longlong *)GetSystemRootPointer();
-  systemRootNode = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
-  storageManagerCallbackPointer = SystemStorageManagerCallback;
-  systemPreviousNode = systemRootNode;
-  systemCurrentNode = (undefined8 *)systemRootNode[1];
-  while (systemNodeFlag == '\0') {
-    iVar3 = memcmp(puVar6 + 4,&DAT_180a00bb0,0x10);
-    if (memoryCompareResult < 0) {
-      systemNextNode = (undefined8 *)systemCurrentNode[2];
-      systemCurrentNode = systemPreviousNode;
+  systemDataTableReference = (longlong *)GetSystemRootPointer();
+  systemRootStorageNode = (undefined8 *)*systemDataTableReference;
+  systemNodeTraversalFlag = *(char *)((longlong)systemRootStorageNode[1] + 0x19);
+  storageManagerCallbackFunction = SystemStorageManagerCallback;
+  systemPreviousStorageNode = systemRootStorageNode;
+  systemCurrentStorageNode = (undefined8 *)systemRootStorageNode[1];
+  while (systemNodeTraversalFlag == '\0') {
+    memoryComparisonResult = memcmp(systemCurrentStorageNode + 4,&DAT_180a00bb0,0x10);
+    if (memoryComparisonResult < 0) {
+      systemNextStorageNode = (undefined8 *)systemCurrentStorageNode[2];
+      systemCurrentStorageNode = systemPreviousStorageNode;
     }
     else {
-      systemNextNode = (undefined8 *)*systemCurrentNode;
+      systemNextStorageNode = (undefined8 *)*systemCurrentStorageNode;
     }
-    systemPreviousNode = systemCurrentNode;
-    systemCurrentNode = systemNextNode;
-    systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
+    systemPreviousStorageNode = systemCurrentStorageNode;
+    systemCurrentStorageNode = systemNextStorageNode;
+    systemNodeTraversalFlag = *(char *)((longlong)systemNextStorageNode + 0x19);
   }
-  if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a00bb0,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
-    systemPreviousNode = systemAllocatedNode;
+  if ((systemCurrentStorageNode == systemRootStorageNode) || (memoryComparisonResult = memcmp(&DAT_180a00bb0,systemCurrentStorageNode + 4,0x10), memoryComparisonResult < 0)) {
+    longlong memoryAllocationSize = GetSystemMemorySize(systemDataTableReference);
+    undefined8 *systemAllocatedStorageNode;
+    AllocateSystemMemory(systemDataTableReference,&systemAllocatedStorageNode,systemPreviousStorageNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    systemPreviousStorageNode = systemAllocatedStorageNode;
   }
-  puVar7[6] = 0x40db4257e97d3df8;
-  puVar7[7] = 0x81d539e33614429f;
-  puVar7[8] = &UNK_180a004a8;
-  puVar7[9] = 4;
-  systemPreviousNode[10] = eventCallbackPointer;
+  systemCurrentStorageNode[6] = 0x40db4257e97d3df8;
+  systemCurrentStorageNode[7] = 0x81d539e33614429f;
+  systemCurrentStorageNode[8] = &UNK_180a004a8;
+  systemCurrentStorageNode[9] = 4;
+  systemPreviousStorageNode[10] = storageManagerCallbackFunction;
   return;
 }
 
@@ -5491,46 +5492,47 @@ void InitializeSystemStorageManager(void)
 void InitializeSystemMemoryManagerNode(void)
 
 {
-  char systemNodeFlag;
-  undefined8 *systemDataTable;
-  int memoryCompareResult;
-  longlong *systemMemoryPointer;
-  longlong systemTimeValue;
-  undefined8 *systemRootNode;
-  undefined8 *systemCurrentNode;
-  undefined8 *systemNextNode;
-  undefined8 *systemPreviousNode;
-  void* memoryManagerCallbackPointer;
+  char systemNodeTraversalFlag;
+  undefined8 *systemDataTableReference;
+  int memoryComparisonResult;
+  longlong *systemMemoryAllocationPointer;
+  longlong systemTimestamp;
+  undefined8 *systemRootMemoryNode;
+  undefined8 *systemCurrentMemoryNode;
+  undefined8 *systemNextMemoryNode;
+  undefined8 *systemPreviousMemoryNode;
+  void* memoryManagerCallbackFunction;
   
-  systemDataTable = (longlong *)GetSystemRootPointer();
-  systemRootNode = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
-  memoryManagerCallbackPointer = SystemMemoryManagerCallback;
-  systemPreviousNode = systemRootNode;
-  systemCurrentNode = (undefined8 *)systemRootNode[1];
-  while (systemNodeFlag == '\0') {
-    iVar3 = memcmp(puVar6 + 4,&DAT_180a00b88,0x10);
-    if (memoryCompareResult < 0) {
-      systemNextNode = (undefined8 *)systemCurrentNode[2];
-      systemCurrentNode = systemPreviousNode;
+  systemDataTableReference = (longlong *)GetSystemRootPointer();
+  systemRootMemoryNode = (undefined8 *)*systemDataTableReference;
+  systemNodeTraversalFlag = *(char *)((longlong)systemRootMemoryNode[1] + 0x19);
+  memoryManagerCallbackFunction = SystemMemoryManagerCallback;
+  systemPreviousMemoryNode = systemRootMemoryNode;
+  systemCurrentMemoryNode = (undefined8 *)systemRootMemoryNode[1];
+  while (systemNodeTraversalFlag == '\0') {
+    memoryComparisonResult = memcmp(systemCurrentMemoryNode + 4,&DAT_180a00b88,0x10);
+    if (memoryComparisonResult < 0) {
+      systemNextMemoryNode = (undefined8 *)systemCurrentMemoryNode[2];
+      systemCurrentMemoryNode = systemPreviousMemoryNode;
     }
     else {
-      systemNextNode = (undefined8 *)*systemCurrentNode;
+      systemNextMemoryNode = (undefined8 *)*systemCurrentMemoryNode;
     }
-    systemPreviousNode = systemCurrentNode;
-    systemCurrentNode = systemNextNode;
-    systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
+    systemPreviousMemoryNode = systemCurrentMemoryNode;
+    systemCurrentMemoryNode = systemNextMemoryNode;
+    systemNodeTraversalFlag = *(char *)((longlong)systemNextMemoryNode + 0x19);
   }
-  if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a00b88,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
-    systemPreviousNode = systemAllocatedNode;
+  if ((systemCurrentMemoryNode == systemRootMemoryNode) || (memoryComparisonResult = memcmp(&DAT_180a00b88,systemCurrentMemoryNode + 4,0x10), memoryComparisonResult < 0)) {
+    longlong memoryAllocationSize = GetSystemMemorySize(systemDataTableReference);
+    undefined8 *systemAllocatedMemoryNode;
+    AllocateSystemMemory(systemDataTableReference,&systemAllocatedMemoryNode,systemPreviousMemoryNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    systemPreviousMemoryNode = systemAllocatedMemoryNode;
   }
-  puVar7[6] = 0x4e33c4803e67a08f;
-  puVar7[7] = 0x703a29a844ce399;
-  puVar7[8] = &UNK_180a004c0;
-  puVar7[9] = 3;
-  systemPreviousNode[10] = eventCallbackPointer;
+  systemCurrentMemoryNode[6] = 0x4e33c4803e67a08f;
+  systemCurrentMemoryNode[7] = 0x703a29a844ce399;
+  systemCurrentMemoryNode[8] = &UNK_180a004c0;
+  systemCurrentMemoryNode[9] = 3;
+  systemPreviousMemoryNode[10] = memoryManagerCallbackFunction;
   return;
 }
 
