@@ -3282,7 +3282,17 @@ uint8_t SystemMemoryFlagKernel;
  * @note 此函数在游戏运行时定期调用
  * @warning 调用此函数前必须确保游戏和系统上下文已正确初始化
  */
-void ProcessGameDataObjects(int64_t GameContext, int64_t SystemContext)
+/**
+ * @brief 处理游戏数据对象
+ * 
+ * 该函数负责处理游戏中的数据对象
+ * 包括对象的创建、更新和销毁
+ * 
+ * @param GameContext 游戏上下文，包含游戏相关的状态信息
+ * @param SystemContext 系统上下文，包含系统相关的状态信息
+ * @return 无返回值
+ */
+void HandleGameDataObjects(int64_t GameContext, int64_t SystemContext)
 
 {
   uint8_t ObjectValidationResult;
@@ -3333,13 +3343,13 @@ void ProcessGameDataObjects(int64_t GameContext, int64_t SystemContext)
 
 
 
- void ValidateSystemObjects(void)
-/**
+ /**
  * @brief 验证系统对象
  * 
  * 该函数用于验证系统中的对象状态，确保所有对象都处于有效状态
  * 对无效对象进行相应处理，维护系统稳定性
  */
+void VerifySystemObjects(void)
 void ValidateSystemObjects(void)
 
 {

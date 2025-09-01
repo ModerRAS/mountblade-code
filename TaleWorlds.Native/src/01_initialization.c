@@ -18210,9 +18210,9 @@ LAB_180043e47:
  * 清理内存管理器相关的指针和资源
  * 
  * @param SystemResourcePointer 内存管理器指针
- * @param param_2 清理标志
- * @param param_3 保留参数
- * @param param_4 保留参数
+ * @param cleanupFlags 清理标志
+ * @param reservedParam3 保留参数
+ * @param reservedParam4 保留参数
  * @return 返回内存管理器指针
  */
 void* *
@@ -19025,7 +19025,7 @@ void* * SystemMemoryAllocatorReferenceManager(void* *SystemResourcePointer,ulong
 
 
 
-// 函数: void InitializeSystemResources(long long SystemResourcePointer,long long param_2)
+// 函数: void InitializeSystemResources(long long SystemResourcePointer,long long ResourceFlags)
 /**
  * @brief 系统字符串复制处理器
  * 
@@ -19406,7 +19406,7 @@ FreeSystemMemoryResource(void* resourcePointer, uint64_t freeFlags, uint64_t fre
  * 则调用系统错误处理函数。
  * 
  * @param SystemResourcePointer 目标字符串结构体指针
- * @param param_2 源字符串指针
+ * @param sourceString 源字符串指针
  * @note 最大字符串长度限制为0x20字节
  */
 void ProcessSystemStringCopyWithLimit(long long targetBuffer,long long sourceString)
@@ -19757,10 +19757,10 @@ void ReleaseMemoryBlockReference(ulong long *SystemResourcePointer)
  * 负责初始化游戏引擎的核心系统和组件
  * 
  * @param SystemResourcePointer 系统配置参数
- * @param param_2 初始化选项标志
+ * @param InitializationFlags 初始化选项标志
  * @return 初始化结果状态码
  */
-int InitializeSystemCoreComponents(long long SystemResourcePointer,long long param_2)
+int InitializeSystemCoreComponents(long long SystemResourcePointer,long long InitializationFlags)
 
 {
   void* ***pppointerToUnsigned1;
