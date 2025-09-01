@@ -84974,7 +84974,7 @@ void ExecuteSystemStatusCheckAndCleanup(void)
     if (SystemInitializationManager != (longlong *)0x0) {
       (**(code **)(*SystemInitializationManager + 0x38))();
     }
-    if (_DAT_180c91cf0 != 0) {
+    if (SystemInitializationTimer != 0) {
                     // WARNING: Subroutine does not return
       ExecuteSystemEmergencyExit();
     }
@@ -84984,14 +84984,14 @@ void ExecuteSystemStatusCheckAndCleanup(void)
 
  /**
  * 初始化系统数据结构AC
- * 将全局变量 _DAT_180bf90b0 设置为指向 SystemDataStructure001
+ * 将全局变量 ModuleDataPointerA 设置为指向 SystemDataStructure001
  * 这是一个简单的初始化函数，用于设置系统数据结构的指针
  */
 void InitializeSystemDataStructureAC(void)
 void InitializeSystemDataStructureAC(void)
 
 {
-  _DAT_180bf90b0 = &SystemDataStructure;
+  ModuleDataPointerA = &SystemDataStructure;
   return;
 }
 
@@ -85002,14 +85002,14 @@ void InitializeSystemDataStructureAC(void)
 
  /**
  * 初始化系统数据结构AD
- * 将全局变量 _DAT_180bf5b88 设置为指向 SystemDataStructure001
+ * 将全局变量 ModuleDataPointerB 设置为指向 SystemDataStructure001
  * 这是一个简单的初始化函数，用于设置系统数据结构的指针
  */
 void InitializeSystemDataStructureAD(void)
 void InitializeSystemDataStructureAD(void)
 
 {
-  _DAT_180bf5b88 = &SystemDataStructure;
+  ModuleDataPointerB = &SystemDataStructure;
   return;
 }
 
@@ -85020,26 +85020,26 @@ void InitializeSystemDataStructureAD(void)
 
  /**
  * 初始化系统数据结构AE
- * 初始化全局数据结构 _DAT_180d48db8 并重置相关计数器
+ * 初始化全局数据结构 MemoryPoolManager 并重置相关计数器
  * 
  * 功能：
- * 1. 将 _DAT_180d48db8 设置为指向 SystemMemoryStructure001
- * 2. 检查 _DAT_180d48dc0 是否为0，如果不为0则调用错误处理函数
- * 3. 重置计数器 _DAT_180d48dc0 和 _DAT_180d48dd0 为0
- * 4. 最后将 _DAT_180d48db8 设置为指向 SystemDataStructure001
+ * 1. 将 MemoryPoolManager 设置为指向 SystemMemoryStructure001
+ * 2. 检查 MemoryPoolManagerFlag 是否为0，如果不为0则调用错误处理函数
+ * 3. 重置计数器 MemoryPoolManagerFlag 和 MemoryPoolManagerLock 为0
+ * 4. 最后将 MemoryPoolManager 设置为指向 SystemDataStructure001
  */
 void InitializeSystemDataStructureAE(void)
 void InitializeSystemDataStructureAE(void)
 
 {
-  _DAT_180d48db8 = &SystemResourceHandlerTemplate;
-  if (_DAT_180d48dc0 != 0) {
+  MemoryPoolManager = &SystemResourceHandlerTemplate;
+  if (MemoryPoolManagerFlag != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  _DAT_180d48dc0 = 0;
-  _DAT_180d48dd0 = 0;
-  _DAT_180d48db8 = &SystemDataStructure;
+  MemoryPoolManagerFlag = 0;
+  MemoryPoolManagerLock = 0;
+  MemoryPoolManager = &SystemDataStructure;
   return;
 }
 
