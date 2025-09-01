@@ -2298,14 +2298,25 @@ void InitializeSystemDataTableStructureI(void)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-int FUN_18002e3e0(void)
+/**
+ * @brief 初始化系统字符串处理全局变量
+ * 
+ * 初始化游戏引擎字符串处理系统的全局变量和数据结构。
+ * 该函数负责设置字符串处理系统的基础配置和引用。
+ * 
+ * @return 初始化状态，成功返回0，失败返回非零值
+ */
+int InitializeSystemStringProcessingGlobals(void)
 
 {
-  longlong lVar1;
-  undefined8 in_R9;
+  longlong systemInitializationStatus;
+  undefined8 systemConfigurationValue;
   
-  _DAT_180bf64d0 = &UNK_1809fdc18;
-  _DAT_180bf64d8 = &DAT_180bf64e8;
+  SystemStringProcessingPrimaryBuffer = &SystemStringProcessingReferenceTable;
+  SystemStringProcessingSecondaryBuffer = &SystemStringProcessingConfigurationTable;
+  
+  return systemInitializationStatus;
+}
 
 /**
  * @brief 初始化系统字符串处理功能
@@ -2921,8 +2932,15 @@ void InitializeSystemResourceManager(void)
 
 
 
-// 函数: void FUN_18002f470(void)
-void FUN_18002f470(void)
+/**
+ * @brief 初始化系统节点树结构
+ * 
+ * 初始化游戏引擎的系统节点树，构建节点之间的链接关系。
+ * 该函数负责设置系统节点的内存分配和初始化节点数据结构。
+ * 
+ * @note 该函数在系统初始化阶段被调用，用于构建系统树形结构
+ */
+void InitializeSystemNodeTree(void)
 
 {
   char systemNodeFlag;
@@ -2971,8 +2989,15 @@ void FUN_18002f470(void)
 
 
 
-// 函数: void FUN_18002f570(void)
-void FUN_18002f570(void)
+/**
+ * @brief 初始化系统数据表结构
+ * 
+ * 初始化游戏引擎的数据表结构，设置数据表的基本配置和内存分配。
+ * 该函数负责创建数据表的基本框架，为后续的数据存储和访问做准备。
+ * 
+ * @note 该函数在系统初始化阶段被调用，用于建立数据表的基础结构
+ */
+void InitializeSystemDataTable(void)
 
 {
   char systemNodeFlag;
@@ -3296,8 +3321,15 @@ void InitializeSystemDebugManager(void)
 
 
 
-// 函数: void FUN_18002fb70(void)
-void FUN_18002fb70(void)
+/**
+ * @brief 初始化系统内存分配器
+ * 
+ * 初始化游戏引擎的内存分配器，设置内存池和分配策略。
+ * 该函数负责配置内存管理的基础设施，为系统运行提供内存支持。
+ * 
+ * @note 该函数在系统初始化阶段被调用，是内存管理的核心组件
+ */
+void InitializeSystemMemoryAllocator(void)
 
 {
   char systemNodeFlag;
@@ -3346,8 +3378,15 @@ void FUN_18002fb70(void)
 
 
 
-// 函数: void FUN_18002fc70(void)
-void FUN_18002fc70(void)
+/**
+ * @brief 初始化系统资源池
+ * 
+ * 初始化游戏引擎的资源池，设置资源管理和分配的基础设施。
+ * 该函数负责创建资源池的基本结构，为系统资源的存储和管理做准备。
+ * 
+ * @note 该函数在系统初始化阶段被调用，用于建立资源管理的基础
+ */
+void InitializeSystemResourcePool(void)
 
 {
   char systemNodeFlag;
@@ -20778,17 +20817,28 @@ void FUN_18004b6d0(undefined8 *param_1)
 
 
 
-// 函数: void FUN_18004b6f0(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
-void FUN_18004b6f0(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+// 函数: void InitializeSystemEntryPoint(longlong systemContext,undefined8 entryPointData,undefined8 memoryPool,undefined8 initializationFlags)
+/**
+ * @brief 初始化系统入口点
+ * 
+ * 该函数负责初始化系统的主要入口点，设置系统上下文和入口点数据。
+ * 它会检查系统上下文中的入口点指针，如果存在则调用相应的初始化函数。
+ * 
+ * @param systemContext 系统上下文指针，包含系统状态和配置信息
+ * @param entryPointData 入口点数据指针，包含入口点相关的配置
+ * @param memoryPool 内存池指针，用于系统内存分配
+ * @param initializationFlags 初始化标志，控制初始化过程的行为
+ */
+void InitializeSystemEntryPoint(longlong systemContext,undefined8 entryPointData,undefined8 memoryPool,undefined8 initializationFlags)
 
 {
-  undefined8 *puVar1;
+  undefined8 *entryPointPtr;
   
-  puVar1 = *(undefined8 **)(param_1 + 0x10);
-  if (puVar1 != (undefined8 *)0x0) {
-    FUN_18004b790(param_1,*puVar1,param_3,param_4,0xfffffffffffffffe);
+  entryPointPtr = *(undefined8 **)(systemContext + 0x10);
+  if (entryPointPtr != (undefined8 *)0x0) {
+    FUN_18004b790(systemContext,*entryPointPtr,memoryPool,initializationFlags,0xfffffffffffffffe);
                     // WARNING: Subroutine does not return
-    FUN_18064e900(puVar1);
+    FUN_18064e900(entryPointPtr);
   }
   return;
 }
@@ -21412,18 +21462,26 @@ undefined8 * FUN_18004c050(undefined8 *param_1)
 
 
 
-// 函数: void FUN_18004c090(longlong *param_1)
-void FUN_18004c090(longlong *param_1)
+// 函数: void ProcessSystemInitializationQueue(longlong *queueHeader)
+/**
+ * @brief 处理系统初始化队列
+ * 
+ * 该函数负责处理系统初始化队列中的所有项目。它会遍历队列中的每个项目，
+ * 调用相应的处理函数，直到所有项目都被处理完毕。
+ * 
+ * @param queueHeader 队列头指针，包含队列的起始和结束信息
+ */
+void ProcessSystemInitializationQueue(longlong *queueHeader)
 
 {
-  longlong lVar1;
-  longlong lVar2;
+  longlong queueEnd;
+  longlong currentQueueItem;
   
-  lVar1 = param_1[1];
-  for (lVar2 = *param_1; lVar2 != lVar1; lVar2 = lVar2 + 0x18) {
-    FUN_18004bf50(lVar2);
+  queueEnd = queueHeader[1];
+  for (currentQueueItem = *queueHeader; currentQueueItem != queueEnd; currentQueueItem = currentQueueItem + 0x18) {
+    FUN_18004bf50(currentQueueItem);
   }
-  if (*param_1 == 0) {
+  if (*queueHeader == 0) {
     return;
   }
                     // WARNING: Subroutine does not return
@@ -44425,18 +44483,26 @@ LAB_18006f48d:
 
 
 
-// 函数: void FUN_18006f4c0(undefined8 *param_1)
-void FUN_18006f4c0(undefined8 *param_1)
+// 函数: void ExecuteSystemEntryPoint(undefined8 *entryPointPtr)
+/**
+ * @brief 执行系统入口点
+ * 
+ * 该函数负责执行系统的入口点函数。它会检查入口点指针是否有效，
+ * 如果有效则调用相应的函数指针，并处理运行时类型转换。
+ * 
+ * @param entryPointPtr 入口点指针，指向要执行的函数
+ */
+void ExecuteSystemEntryPoint(undefined8 *entryPointPtr)
 
 {
-  longlong lVar1;
+  longlong runtimeCastResult;
   
-  if (param_1 != (undefined8 *)0x0) {
-    lVar1 = __RTCastToVoid();
-    (**(code **)*param_1)(param_1,0);
-    if (lVar1 != 0) {
+  if (entryPointPtr != (undefined8 *)0x0) {
+    runtimeCastResult = __RTCastToVoid();
+    (**(code **)*entryPointPtr)(entryPointPtr,0);
+    if (runtimeCastResult != 0) {
                     // WARNING: Subroutine does not return
-      FUN_18064e900(lVar1);
+      FUN_18064e900(runtimeCastResult);
     }
   }
   return;
@@ -61771,11 +61837,11 @@ void FUN_18007fd60(undefined8 param_1,longlong param_2,undefined8 param_3,longlo
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: undefined FUN_18004b6f0;
-undefined FUN_18004b6f0;
+// 函数: void InitializeSystemEntryPoint(longlong systemContext,undefined8 entryPointData,undefined8 memoryPool,undefined8 initializationFlags);
+void InitializeSystemEntryPoint(longlong systemContext,undefined8 entryPointData,undefined8 memoryPool,undefined8 initializationFlags);
 
-// 函数: undefined FUN_18006f4c0;
-undefined FUN_18006f4c0;
+// 函数: void ExecuteSystemEntryPoint(undefined8 *entryPointPtr);
+void ExecuteSystemEntryPoint(undefined8 *entryPointPtr);
 
 // 函数: undefined FUN_18004c090;
 undefined FUN_18004c090;
