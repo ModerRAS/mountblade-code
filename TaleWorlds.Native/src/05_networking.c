@@ -11801,7 +11801,7 @@ NetworkErrorHandlerLabel:
 
 
 
-// 函数: NetworkHandle * FUN_18084c050(NetworkHandle *connectionContext,NetworkHandle packetData,byte dataSize)
+// 函数: NetworkHandle * ProcessNetworkConnectionDataPacket(NetworkHandle *connectionContext,NetworkHandle packetData,byte dataSize)
 /**
  * @brief 网络连接上下文初始化器
  * 
@@ -12062,7 +12062,7 @@ NetworkHandle ProcessNetworkConnectionPacket(NetworkHandle connectionContext,ulo
 
 
 
-// 函数: longlong FUN_18084c390(longlong connectionContext,ulonglong packetData)
+// 函数: longlong HandleNetworkPacketTransmission(longlong connectionContext,ulonglong packetData)
 /**
  * @brief 网络连接上下文释放器
  * 
@@ -15448,7 +15448,20 @@ void ProcessNetworkBufferProcessor(NetworkStatus *connectionContext)
 
 
 
-NetworkHandle FUN_18084de40(longlong connectionContext,longlong packetData,float *dataSize)
+/**
+ * @brief 处理网络连接数据传输
+ * 
+ * 该函数负责处理网络连接的数据传输操作，包括数据包的
+ * 发送、接收和状态管理。主要用于网络通信的核心数据处理。
+ * 
+ * @param connectionContext 网络连接上下文指针
+ * @param packetData 数据包数据
+ * @param dataSize 数据大小指针
+ * @return 传输结果状态码
+ * 
+ * 注意：这是一个反编译的函数实现
+ */
+NetworkHandle ProcessNetworkConnectionDataTransfer(longlong connectionContext,longlong packetData,float *dataSize)
 
 {
   int networkStatus1;
@@ -15485,7 +15498,19 @@ NetworkHandle FUN_18084de40(longlong connectionContext,longlong packetData,float
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-NetworkHandle FUN_18084def0(longlong *connectionContext,int packetData)
+/**
+ * @brief 执行网络连接验证操作
+ * 
+ * 该函数负责执行网络连接的验证操作，检查连接的有效性
+ * 和状态。主要用于网络连接的安全验证和状态确认。
+ * 
+ * @param connectionContext 网络连接上下文指针
+ * @param packetData 数据包数据
+ * @return 验证结果状态码
+ * 
+ * 注意：这是一个反编译的函数实现
+ */
+NetworkHandle ExecuteNetworkConnectionValidation(longlong *connectionContext,int packetData)
 
 {
   int networkStatus1;
@@ -15600,7 +15625,17 @@ NetworkHandle FUN_18084df0d(NetworkHandle connectionContext,int packetData)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-NetworkHandle FUN_18084df73(void)
+/**
+ * @brief 获取网络连接状态信息
+ * 
+ * 该函数负责获取网络连接的状态信息，包括连接的当前状态
+ * 和相关参数。主要用于网络连接状态的查询和监控。
+ * 
+ * @return 网络连接状态信息
+ * 
+ * 注意：这是一个反编译的函数实现
+ */
+NetworkHandle GetNetworkConnectionStatusInfo(void)
 
 {
   longlong lVar1;
@@ -15644,7 +15679,18 @@ NetworkHandle FUN_18084df73(void)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-NetworkHandle FUN_18084df94(NetworkHandle connectionContext)
+/**
+ * @brief 验证网络连接上下文
+ * 
+ * 该函数负责验证网络连接上下文的有效性和完整性。
+ * 主要用于网络连接的安全检查和状态确认。
+ * 
+ * @param connectionContext 网络连接上下文
+ * @return 验证结果状态码
+ * 
+ * 注意：这是一个反编译的函数实现
+ */
+NetworkHandle ValidateNetworkConnectionContext(NetworkHandle connectionContext)
 
 {
   NetworkStatus *networkPointer1;
@@ -29012,7 +29058,7 @@ NetworkData * GetNetworkData(void)
       FUN_1808fcb30(&NetworkConnectionRetryCounter);
     }
   }
-  return &DAT_180c4eaa8;
+  return &NetworkDataInstance;
 }
 
 
@@ -45258,7 +45304,7 @@ LAB_1808659de:
         do {
           plVar9 = plVar8 + 2;
           if (plVar8 == (longlong *)0x0) {
-            plVar9 = (longlong *)&DAT_00000018;
+            plVar9 = (longlong *)&GlobalNetworkDataReference;
           }
           if ((*(uint *)(*plVar9 + 0x34) >> 1 & 1) == 0) {
             plVar7 = plVar8 + -1;
@@ -45371,7 +45417,7 @@ LAB_1808659de:
       do {
         plVar9 = plVar8 + 2;
         if (plVar8 == (longlong *)0x0) {
-          plVar9 = (longlong *)&DAT_00000018;
+          plVar9 = (longlong *)&GlobalNetworkDataReference;
         }
         if ((*(uint *)(*plVar9 + 0x34) >> 1 & 1) == 0) {
           plVar7 = plVar8 + -1;
@@ -93877,7 +93923,7 @@ void FUN_1808916f0(longlong connectionContext,longlong packetData)
       }
       plVar3 = plVar1 + 2;
       if (plVar1 == (longlong *)0x0) {
-        plVar3 = (longlong *)&DAT_00000018;
+        plVar3 = (longlong *)&GlobalNetworkDataReference;
       }
       plVar1 = plVar4;
     } while ((*plVar3 == 0) || (networkStatus2 = ControlNetworkConnection(packetData), networkStatus2 == 0));
