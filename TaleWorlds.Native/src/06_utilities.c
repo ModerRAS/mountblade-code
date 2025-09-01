@@ -3257,13 +3257,13 @@ void ProcessGameDataObjects(longlong gameContext, longlong systemContext)
   uint8_t1 *ObjectDataList;
   int ListIterator;
   uint8_t4 MaximumItems;
-  uint8_t1 ProcessingBuffer[512];
-  ulonglong AccessSecurityToken;
+  uint8_t1 ObjectProcessingBuffer[512];
+  ulonglong SecurityAccessToken;
   
-  AccessSecurityToken = SecurityEncryptionKey ^ (ulonglong)ObjectMetadataBuffer;
+  SecurityAccessToken = SecurityEncryptionKey ^ (ulonglong)ObjectMetadataBuffer;
   OperationStatus = GetContextHandles(*(uint8_t4 *)(gameContext + 0x10), ContextHandles);
   if ((OperationStatus == 0) && (*(longlong *)(ContextHandles[0] + 8) != 0)) {
-    ObjectDataList = ProcessingBuffer;
+    ObjectDataList = ObjectProcessingBuffer;
     ProcessedObjectCount = 0;
     ListIterator = 0;
     MaximumItems = 0xffffffc0;
@@ -3273,11 +3273,11 @@ void ProcessGameDataObjects(longlong gameContext, longlong systemContext)
       if (0 < ListIterator) {
         CurrentObjectPointer = 0;
         do {
-          ValidationResult = *(uint8_t8 *)(ObjectDataList + CurrentObjectPointer);
-          OperationStatus = ValidateObjectStatus(ValidationResult);
+          ObjectValidationResult = *(uint8_t8 *)(ObjectDataList + CurrentObjectPointer);
+          OperationStatus = ValidateObjectStatus(ObjectValidationResult);
           if (OperationStatus != 2) {
                     // WARNING: Subroutine does not return
-            HandleInvalidObject(ValidationResult, 1);
+            HandleInvalidObject(ObjectValidationResult, 1);
           }
           ProcessedObjectCount = ProcessedObjectCount + 1;
           CurrentObjectPointer = CurrentObjectPointer + 8;
@@ -12130,10 +12130,10 @@ uint8_t8 ExpandResourceTableCapacity(longlong objectContextParam)
  * 
  * @param objectContextParam 数据上下文指针
  * @param validationContextParam 操作上下文指针  
- * @param param_3 验证标志
+ * @param validationFlag 验证标志
  * @return 处理结果状态码
  */
-int ProcessDataBlockOperationWithBasicValidator(longlong objectContextParam,longlong validationContextParam,int param_3)
+int ProcessDataBlockOperationWithBasicValidator(longlong objectContextParam,longlong validationContextParam,int validationFlag)
 
 {
   uint8_t4 resourceHash;
@@ -12141,10 +12141,10 @@ int ProcessDataBlockOperationWithBasicValidator(longlong objectContextParam,long
   int validationStatus;
   
   resourceHash = *(uint8_t4 *)(objectContextParam + 0x14);
-  integerValue2 = func_0x00018074b7d0(validationContextParam,param_3,*(uint8_t4 *)(objectContextParam + 0x10));
-  iVar3 = ProcessStringOperation(validationContextParam + integerValue2,param_3 - integerValue2,&StringProcessingTemplate);
+  integerValue2 = func_0x00018074b7d0(validationContextParam,validationFlag,*(uint8_t4 *)(objectContextParam + 0x10));
+  iVar3 = ProcessStringOperation(validationContextParam + integerValue2,validationFlag - integerValue2,&StringProcessingTemplate);
   integerValue2 = integerValue2 + iVar3;
-  iVar3 = func_0x00018074b800(integerValue2 + validationContextParam,param_3 - integerValue2,resourceHash);
+  iVar3 = func_0x00018074b800(integerValue2 + validationContextParam,validationFlag - integerValue2,resourceHash);
   return iVar3 + integerValue2;
 }
 
@@ -12157,10 +12157,10 @@ int ProcessDataBlockOperationWithBasicValidator(longlong objectContextParam,long
  * 
  * @param objectContextParam 数据上下文指针
  * @param validationContextParam 操作上下文指针
- * @param param_3 验证标志
+ * @param validationFlag 验证标志
  * @return 处理结果状态码
  */
-int ProcessDataBlockOperationWithExtendedValidator(longlong objectContextParam,longlong validationContextParam,int param_3)
+int ProcessDataBlockOperationWithExtendedValidator(longlong objectContextParam,longlong validationContextParam,int validationFlag)
 
 {
   uint8_t8 resourceHash;
@@ -12168,10 +12168,10 @@ int ProcessDataBlockOperationWithExtendedValidator(longlong objectContextParam,l
   int validationStatus;
   
   resourceHash = *(uint8_t8 *)(objectContextParam + 0x10);
-  integerValue2 = ProcessStringOperation(validationContextParam,param_3,&StringOperationTemplate);
-  iVar3 = ProcessStringOperation(validationContextParam + integerValue2,param_3 - integerValue2,&StringProcessingTemplate);
+  integerValue2 = ProcessStringOperation(validationContextParam,validationFlag,&StringOperationTemplate);
+  iVar3 = ProcessStringOperation(validationContextParam + integerValue2,validationFlag - integerValue2,&StringProcessingTemplate);
   integerValue2 = integerValue2 + iVar3;
-  iVar3 = func_0x00018074be80(integerValue2 + validationContextParam,param_3 - integerValue2,resourceHash);
+  iVar3 = func_0x00018074be80(integerValue2 + validationContextParam,validationFlag - integerValue2,resourceHash);
   return iVar3 + integerValue2;
 }
 
