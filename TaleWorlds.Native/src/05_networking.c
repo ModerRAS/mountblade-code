@@ -6247,8 +6247,20 @@ void ProcessNetworkConnectionData(ulonglong connectionContext,NetworkStatus *pac
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180846bc0(ulonglong connectionContext,uint packetData,NetworkStatus *dataSize)
-void FUN_180846bc0(ulonglong connectionContext,uint packetData,NetworkStatus *dataSize)
+// 函数: void GetNetworkConnectionStatusData(ulonglong connectionContext,uint packetData,NetworkStatus *dataSize)
+/**
+ * @brief 获取网络连接状态数据
+ * 
+ * 该函数根据连接上下文和数据包类型，获取相应的网络连接状态数据。
+ * 主要用于查询和返回网络连接的当前状态信息。
+ * 
+ * @param connectionContext 网络连接上下文标识符
+ * @param packetData 数据包类型标识
+ * @param dataSize 用于返回状态数据的指针
+ * 
+ * 注意：这是一个反编译的函数实现
+ */
+void GetNetworkConnectionStatusData(ulonglong connectionContext,uint packetData,NetworkStatus *dataSize)
 
 {
   int networkStatus1;
@@ -6304,8 +6316,19 @@ void FUN_180846bc0(ulonglong connectionContext,uint packetData,NetworkStatus *da
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180846d30(NetworkHandle connectionContext,NetworkStatus *packetData)
-void FUN_180846d30(NetworkHandle connectionContext,NetworkStatus *packetData)
+// 函数: void ProcessNetworkConnectionPacketData(NetworkHandle connectionContext,NetworkStatus *packetData)
+/**
+ * @brief 处理网络连接数据包信息
+ * 
+ * 该函数负责处理网络连接的数据包信息，包括连接状态检查、
+ * 数据包处理和连接资源的清理。主要用于管理网络连接的数据流。
+ * 
+ * @param connectionContext 网络连接句柄
+ * @param packetData 用于返回数据包状态信息的指针
+ * 
+ * 注意：这是一个反编译的函数实现
+ */
+void ProcessNetworkConnectionPacketData(NetworkHandle connectionContext,NetworkStatus *packetData)
 
 {
   int networkStatus1;
@@ -6363,8 +6386,19 @@ LAB_180846d91:
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180846e90(ulonglong connectionContext,uint *packetData)
-void FUN_180846e90(ulonglong connectionContext,uint *packetData)
+// 函数: void ValidateNetworkConnectionPacket(ulonglong connectionContext,uint *packetData)
+/**
+ * @brief 验证网络连接数据包
+ * 
+ * 该函数负责验证网络连接的数据包的有效性和完整性。
+ * 主要用于确保网络数据包的合法性和安全性。
+ * 
+ * @param connectionContext 网络连接上下文标识符
+ * @param packetData 用于返回数据包验证结果的指针
+ * 
+ * 注意：这是一个反编译的函数实现
+ */
+void ValidateNetworkConnectionPacket(ulonglong connectionContext,uint *packetData)
 
 {
   int networkStatus1;
@@ -6422,8 +6456,19 @@ void FUN_180846e90(ulonglong connectionContext,uint *packetData)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180846fe0(ulonglong connectionContext,NetworkHandle *packetData)
-void FUN_180846fe0(ulonglong connectionContext,NetworkHandle *packetData)
+// 函数: void ProcessNetworkConnectionHandle(ulonglong connectionContext,NetworkHandle *packetData)
+/**
+ * @brief 处理网络连接句柄
+ * 
+ * 该函数负责处理网络连接的句柄信息，包括句柄的初始化、
+ * 验证和数据处理。主要用于管理网络连接的生命周期。
+ * 
+ * @param connectionContext 网络连接上下文标识符
+ * @param packetData 用于返回网络连接句柄的指针
+ * 
+ * 注意：这是一个反编译的函数实现
+ */
+void ProcessNetworkConnectionHandle(ulonglong connectionContext,NetworkHandle *packetData)
 
 {
   int networkStatus1;
@@ -6471,7 +6516,20 @@ void FUN_180846fe0(ulonglong connectionContext,NetworkHandle *packetData)
 
 
 // 函数: void FUN_180847110(ulonglong connectionContext,NetworkHandle *packetData)
-void FUN_180847110(ulonglong connectionContext,NetworkHandle *packetData)
+/**
+ * @brief 处理网络连接上下文句柄
+ * 
+ * 该函数负责处理网络连接的上下文句柄，包括：
+ * - 句柄初始化和验证
+ * - 连接标志验证
+ * - 上下文数据处理
+ * 
+ * @param connectionContext 网络连接上下文标识符
+ * @param packetData 用于返回网络连接句柄的指针
+ * 
+ * 注意：这是一个反编译的函数实现
+ */
+void ProcessNetworkConnectionContextHandle(ulonglong connectionContext,NetworkHandle *packetData)
 
 {
   int networkStatus1;
@@ -6522,7 +6580,21 @@ void FUN_180847110(ulonglong connectionContext,NetworkHandle *packetData)
 
 
 // 函数: void FUN_180847230(NetworkHandle connectionContext,NetworkHandle packetData,NetworkHandle dataSize)
-void FUN_180847230(NetworkHandle connectionContext,NetworkHandle packetData,NetworkHandle dataSize)
+/**
+ * @brief 处理网络连接数据传输
+ * 
+ * 该函数负责处理网络连接中的数据传输，包括：
+ * - 网络状态检查
+ * - 数据包处理和验证
+ * - 错误处理和日志记录
+ * 
+ * @param connectionContext 网络连接上下文句柄
+ * @param packetData 网络数据包数据
+ * @param dataSize 数据大小
+ * 
+ * 注意：这是一个反编译的函数实现
+ */
+void ProcessNetworkConnectionDataTransfer(NetworkHandle connectionContext,NetworkHandle packetData,NetworkHandle dataSize)
 
 {
   int networkStatus1;
@@ -6551,7 +6623,18 @@ void FUN_180847230(NetworkHandle connectionContext,NetworkHandle packetData,Netw
 
 
 // 函数: void FUN_180847274(void)
-void FUN_180847274(void)
+/**
+ * @brief 处理网络连接缓冲区数据
+ * 
+ * 该函数负责处理网络连接的缓冲区数据，包括：
+ * - 数据缓冲区处理
+ * - 模板数据处理
+ * - 地址验证
+ * - 错误日志记录
+ * 
+ * 注意：这是一个反编译的函数实现
+ */
+void ProcessNetworkConnectionBufferData(void)
 
 {
   int networkStatus1;
@@ -6568,8 +6651,16 @@ void FUN_180847274(void)
 
 
 
-// 函数: void FUN_1808472ec(void)
-void FUN_1808472ec(void)
+// 函数: void CleanupNetworkSecurityGuard(void)
+/**
+ * @brief 清理网络安全保护器
+ * 
+ * 该函数负责清理网络安全保护器，释放相关资源。
+ * 主要用于网络连接结束后的资源清理工作。
+ * 
+ * 注意：这是一个反编译的函数实现
+ */
+void CleanupNetworkSecurityGuard(void)
 
 {
   ulonglong in_stack_00000130;
@@ -6583,8 +6674,23 @@ void FUN_1808472ec(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180847310(NetworkHandle connectionContext,NetworkHandle packetData,NetworkHandle dataSize)
-void FUN_180847310(NetworkHandle connectionContext,NetworkHandle packetData,NetworkHandle dataSize)
+// 函数: void ProcessNetworkConnectionSecureDataTransfer(NetworkHandle connectionContext,NetworkHandle packetData,NetworkHandle dataSize)
+/**
+ * @brief 处理网络连接安全数据传输
+ * 
+ * 该函数负责处理网络连接中的安全数据传输，包括：
+ * - 网络状态检查
+ * - 数据包处理和验证
+ * - 安全保护机制
+ * - 错误处理和日志记录
+ * 
+ * @param connectionContext 网络连接上下文句柄
+ * @param packetData 网络数据包数据
+ * @param dataSize 数据大小
+ * 
+ * 注意：这是一个反编译的函数实现
+ */
+void ProcessNetworkConnectionSecureDataTransfer(NetworkHandle connectionContext,NetworkHandle packetData,NetworkHandle dataSize)
 
 {
   int networkStatus1;
@@ -6612,8 +6718,19 @@ void FUN_180847310(NetworkHandle connectionContext,NetworkHandle packetData,Netw
 
 
 
-// 函数: void FUN_180847354(void)
-void FUN_180847354(void)
+// 函数: void ProcessNetworkConnectionSecureBufferData(void)
+/**
+ * @brief 处理网络连接安全缓冲区数据
+ * 
+ * 该函数负责处理网络连接的安全缓冲区数据，包括：
+ * - 数据缓冲区处理
+ * - 模板数据处理
+ * - 地址验证
+ * - 错误日志记录
+ * 
+ * 注意：这是一个反编译的函数实现
+ */
+void ProcessNetworkConnectionSecureBufferData(void)
 
 {
   int networkStatus1;
@@ -6630,14 +6747,22 @@ void FUN_180847354(void)
 
 
 
-// 函数: void FUN_1808473cc(void)
-void FUN_1808473cc(void)
+// 函数: void CleanupNetworkSecurityGuardAlternate(void)
+/**
+ * @brief 清理网络安全保护器（备用实现）
+ * 
+ * 该函数负责清理网络安全保护器的备用实现，释放相关资源
+ * 确保网络连接的安全资源被正确释放，使用不同的清理策略
+ * 
+ * 注意：这是一个反编译的函数实现
+ */
+void CleanupNetworkSecurityGuardAlternate(void)
 
 {
-  ulonglong in_stack_00000130;
+  ulonglong securityGuardContext;
   
                     // WARNING: Subroutine does not return
-  NetworkSecurityGuardCleanup(in_stack_00000130 ^ (ulonglong)&stack0x00000000);
+  NetworkSecurityGuardCleanup(securityGuardContext ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -6805,7 +6930,18 @@ LAB_1808477fa:
 
 
 // 函数: void FUN_180847710(void)
-void FUN_180847710(void)
+/**
+ * @brief 处理网络数据验证和缓冲区操作
+ * 
+ * 该函数负责处理网络数据的验证和缓冲区操作，包括：
+ * - 网络数据验证
+ * - 缓冲区数据处理
+ * - 数据复制操作
+ * - 地址验证处理
+ * 
+ * 注意：这是一个反编译的函数实现
+ */
+void ProcessNetworkDataValidationAndBufferOperations(void)
 
 {
   int networkStatus1;
