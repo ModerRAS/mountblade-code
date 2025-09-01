@@ -40003,7 +40003,16 @@ void Unwind_180904df0(uint8_t8 objectContextParam,longlong validationContextPara
 
 
 
-void Unwind_180904e00(void)
+/**
+ * @brief 销毁互斥量
+ * 
+ * 该函数负责销毁系统中的互斥量资源
+ * 释放互斥量占用的内存和相关资源
+ * 
+ * @return 无返回值
+ * @note 此函数会销毁所有静态分配的互斥量
+ */
+void DestroyMutexInSitu(void)
 
 {
   _Mtx_destroy_in_situ();
@@ -40012,7 +40021,18 @@ void Unwind_180904e00(void)
 
 
 
-void Unwind_180904e10(uint8_t8 objectContextParam,longlong validationContextParam)
+/**
+ * @brief 设置系统数据结构指针
+ * 
+ * 该函数负责在验证上下文中设置系统数据结构的指针
+ * 将系统数据结构的地址存储到验证上下文的指定偏移量处
+ * 
+ * @param objectContextParam 对象上下文参数
+ * @param validationContextParam 验证上下文参数
+ * @return 无返回值
+ * @note 此函数主要用于系统初始化和配置
+ */
+void SetSystemDataStructurePointer(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
   *(uint8_t **)(validationContextParam + 0xc0) = &SystemDataStructure;
@@ -40021,7 +40041,18 @@ void Unwind_180904e10(uint8_t8 objectContextParam,longlong validationContextPara
 
 
 
-void Unwind_180904e20(uint8_t8 objectContextParam,longlong validationContextParam)
+/**
+ * @brief 设置系统数据结构指针（备用位置）
+ * 
+ * 该函数负责在验证上下文的备用位置设置系统数据结构的指针
+ * 将系统数据结构的地址存储到验证上下文的另一个指定偏移量处
+ * 
+ * @param objectContextParam 对象上下文参数
+ * @param validationContextParam 验证上下文参数
+ * @return 无返回值
+ * @note 此函数主要用于系统初始化和配置，使用备用偏移量
+ */
+void SetSystemDataStructurePointerAlternate(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
   *(uint8_t **)(validationContextParam + 0xe8) = &SystemDataStructure;
