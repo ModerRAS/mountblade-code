@@ -17661,8 +17661,8 @@ int InitializeEngineCoreSystem(void)
 int InitializeSystemConfiguration(void)
 
 {
-  long long callbackResult;
-  int configIndex;
+  long long SystemCallbackResult;
+  int ConfigurationIndex;
   
   SystemConfigurationSize = 0x100;
   configIndex = 0;
