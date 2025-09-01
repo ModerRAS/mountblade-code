@@ -2453,7 +2453,7 @@ undefined SystemResourcePool;
 undefined ScriptVariableTable;
 undefined ScriptClassTable;
 undefined ScriptMethodTable;
-undefined DAT_180bfbb80;
+undefined ScriptObjectTable;
 
  undefined InitializeResourceManager;
 undefined InitializeResourceManager;
@@ -2461,7 +2461,7 @@ undefined InitializeResourceManager;
  undefined ConfigureResourceSettings;
 undefined ConfigureResourceSettings;
 undefined SystemMemoryConfigDataTemplateA2DE40;
-undefined1 DAT_180d49e30;
+undefined1 ResourceAllocationTable;
 undefined SystemResourceQueue;
 undefined SystemResourceStack;
 undefined SystemResourceBuffer;

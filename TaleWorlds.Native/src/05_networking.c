@@ -33900,10 +33900,18 @@ LAB_18085b8b5:
 
 
 // 函数: void FUN_18085b8e0(void)
-void FUN_18085b8e0(void)
+/**
+ * @brief 验证网络连接表中的关键连接数据
+ * 
+ * 该函数验证网络连接表中的关键连接数据的有效性。
+ * 如果验证失败，程序将不会返回（可能导致程序终止）。
+ * 
+ * 注意：这是一个不返回的函数，验证失败时程序会终止
+ */
+void ValidateCriticalNetworkConnectionData(void)
 
 {
-                    // WARNING: Subroutine does not return
+  // 验证网络连接表中的关键连接数据，失败时不返回
   ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0));
 }
 

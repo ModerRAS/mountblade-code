@@ -29,14 +29,14 @@ void* CoreSystemMainMemoryBuffer;                  // 核心系统内存缓冲�
 void* CoreSystemPrimaryConfig;                    // 核心系统主配置
 void* CoreSystemSecondaryConfig;                // 核心系统次级配置
 void* CoreSystemTertiaryConfig;                 // 核心系统第三级配置
-void* CoreSystemConfigQuaternary;               // 核心系统第四级配置
+void* CoreSystemQuaternaryConfig;               // 核心系统第四级配置
 
 // 渲染系统初始化函数
-void* GameRenderingEntryPoint;                  // 游戏渲染系统入口点
+void* GameRenderingMainEntryPoint;                  // 游戏渲染系统入口点
 void* RenderingSystemContext;                   // 渲染系统上下文
 
 // 网络系统初始化函数
-void* GameNetworkEntryPoint;                    // 游戏网络系统入口点
+void* GameNetworkMainEntryPoint;                    // 游戏网络系统入口点
 void* NetworkSystemContext;                     // 网络系统上下文
 
 // 音频系统初始化函数
