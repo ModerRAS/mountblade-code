@@ -716,10 +716,10 @@ void InitializeNetworkConnection(ulonglong *connectionHandle,int connectionType)
       connectionData = 0;
       status = InitializeNetworkConnectionData(&connectionData);
       if (status == 0) {
-        connectionInfo[0] = 0;
+        connectionContext[0] = 0;
         status = EstablishNetworkConnection(*(NetworkHandle *)(connectionData + 0x78),connectionInfo);
         if (status == 0) {
-          if (connectionInfo[0] != 0x20214) {
+          if (connectionContext[0] != 0x20214) {
             HandleNetworkConnectionError();
             goto error_handling;
           }
@@ -796,8 +796,8 @@ void ValidateNetworkConnection(NetworkHandle connectionId,ulonglong *connectionS
   connectionContext[1] = 0;
   validationStatus = NetworkConnectionIdInitialize(connectionId,connectionContext);
   if (validationStatus == 0) {
-    if ((*(uint *)(connectionInfo[0] + 0x24) >> 1 & 1) == 0) goto cleanup;
-    connectionStatus = ValidateNetworkConnection(connectionInfo + 1);
+    if ((*(uint *)(connectionContext[0] + 0x24) >> 1 & 1) == 0) goto cleanup;
+    connectionStatus = ValidateNetworkConnection(connectionContext + 1);
     if (connectionStatus == 0) goto validation_failed;
   }
   else {
@@ -805,22 +805,22 @@ validation_failed:
     connectionStatus = validationStatus;
   }
   if ((connectionStatus == 0) &&
-     (validationStatus = ProcessNetworkPacketData(*(NetworkHandle *)(connectionInfo[0] + 0x98),connectionDetails,0x20), validationStatus == 0))
+     (validationStatus = ProcessNetworkPacketData(*(NetworkHandle *)(connectionContext[0] + 0x98),connectionDetails,0x20), validationStatus == 0))
   {
     *connectionDetails[0] = &NetworkReservedMemoryRegion32b8;
     *(NetworkStatus *)(connectionDetails[0] + 3) = 0;
     *(NetworkStatus *)(connectionDetails[0] + 1) = 0x20;
     *(int *)(connectionDetails[0] + 2) = (int)connectionId;
-    validationStatus = SendNetworkPacket(*(NetworkHandle *)(connectionInfo[0] + 0x98),connectionDetails[0]);
+    validationStatus = SendNetworkPacket(*(NetworkHandle *)(connectionContext[0] + 0x98),connectionDetails[0]);
     if (validationStatus == 0) {
       *connectionStatus = (ulonglong)*(uint *)(connectionDetails[0] + 3);
                     // WARNING: Subroutine does not return
-      CleanupNetworkConnection(connectionInfo + 1);
+      CleanupNetworkConnection(connectionContext + 1);
     }
   }
 cleanup:
                     // WARNING: Subroutine does not return
-  CleanupNetworkConnection(connectionInfo + 1);
+  CleanupNetworkConnection(connectionContext + 1);
 }
 
 
@@ -845,7 +845,7 @@ cleanup:
 void ProcessNetworkPacket(NetworkStatus packetId,int packetIndex,longlong packetData)
 
 {
-  longlong *packetProcessor;
+  longlong *networkPacketProcessor;
   int processingStatus;
   longlong packetEntry;
   longlong packetArray;
@@ -871,8 +871,8 @@ void ProcessNetworkPacket(NetworkStatus packetId,int packetIndex,longlong packet
      ((packetTable = *(longlong *)(packetInfo + 8), -1 < packetIndex &&
       (packetIndex < *(int *)(packetTable + 0x88))))) {
     packetArray = (longlong)packetIndex * 0x10 + *(longlong *)(packetTable + 0x80);
-    packetProcessor = *(longlong **)(networkContext + 800);
-    packetEntry = (**(code **)(*packetProcessor + 0x270))(packetProcessor,packetArray,1);
+    networkPacketProcessor = *(longlong **)(networkContext + 800);
+    packetEntry = (**(code **)(*networkPacketProcessor + 0x270))(networkPacketProcessor,packetArray,1);
     if (packetEntry == 0) {
                     // WARNING: Subroutine does not return
       ProcessNetworkPacketArray(packetArray,processingBuffer);
@@ -895,7 +895,7 @@ void SendNetworkPacket(NetworkHandle packetId,NetworkHandle connectionId,Network
                   NetworkHandle sourceAddress,NetworkHandle networkContext,longlong packetData)
 
 {
-  longlong *networkProcessor;
+  longlong *networkDataProcessor;
   int networkStatus;
   longlong packetEntry;
   NetworkStatus packetFlags;
@@ -89711,12 +89711,12 @@ void ProcessNetworkConnectionResources(longlong connectionHandle, longlong netwo
   
   stackGuard = NetworkSecurityGuardValue ^ (ulonglong)securityStackBuffer;
   operationStatus = NetworkConnectionFlagsValidate(*(NetworkStatus *)(connectionHandle + 0x10), connectionInfo);
-  if ((operationStatus == 0) && (*(longlong *)(connectionInfo[0] + 8) != 0)) {
+  if ((operationStatus == 0) && (*(longlong *)(connectionContext[0] + 8) != 0)) {
     resourceBuffer = processingBuffer;
     resourceCount = 0;
     bufferLength = 0;
     bufferFlags = 0xffffffc0;
-    operationStatus = FUN_1808bf350(*(NetworkHandle *)(networkContext + 0x90),*(longlong *)(connectionInfo[0] + 8),
+    operationStatus = FUN_1808bf350(*(NetworkHandle *)(networkContext + 0x90),*(longlong *)(connectionContext[0] + 8),
                           &resourceBuffer);
     if (operationStatus == 0) {
       if (0 < bufferLength) {
