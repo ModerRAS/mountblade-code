@@ -859,18 +859,29 @@ void ResetNetworkConnectionState(void)
 
 
 
-undefined4 FUN_180840790(undefined4 param_1,longlong param_2,undefined8 *param_3)
+/**
+ * @brief 初始化网络连接上下文
+ * 
+ * 该函数负责初始化网络连接的上下文信息，包括连接参数、
+ * 缓冲区设置和网络状态初始化
+ * 
+ * @param connectionFlags 连接标志位
+ * @param connectionHandle 连接句柄
+ * @param contextPointer 上下文指针输出参数
+ * @return 初始化结果状态码
+ */
+uint32_t InitializeNetworkConnectionContext(uint32_t connectionFlags, int64_t connectionHandle, uint64_t *contextPointer)
 
 {
-  undefined8 *puVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  undefined *puVar4;
-  undefined *puVar5;
-  longlong alStackX_18 [2];
-  undefined8 uStack_38;
-  undefined8 uStack_30;
-  longlong lStack_28;
+  uint64_t *connectionTable;
+  uint64_t *connectionEntry;
+  int32_t status;
+  uint8_t *connectionData;
+  uint8_t *connectionResult;
+  int64_t connectionParams[2];
+  uint64_t networkContext;
+  uint64_t connectionId;
+  int64_t connectionOffset;
   
   if (param_3 == (undefined8 *)0x0) {
     return 0x1f;

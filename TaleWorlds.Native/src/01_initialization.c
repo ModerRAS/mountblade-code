@@ -10,118 +10,118 @@
  */
 
 // 全局函数指针 - 系统初始化相关
-undefined SystemInitializationEntryPoint;
-undefined GlobalSystemDataPointer;
-undefined UnknownSystemMemoryBlock;
-undefined SystemDataTablePointer;
-undefined SystemMemoryBlockA;
-undefined DataTablePointerA;
-undefined SystemMemoryBlockB;
-undefined DataTablePointerB;
-undefined SystemMemoryBlockC;
-undefined DataTablePointerC;
-undefined SystemMemoryBlockD;
-undefined DataTablePointerD;
-undefined SystemMemoryBlockE;
-undefined DataTablePointerE;
-undefined SystemMemoryBlockF;
-undefined DataTablePointerF;
+void* SystemInitializationEntryPoint;
+void* GlobalSystemDataPointer;
+void* SystemMemoryPool;
+void* SystemDataTablePointer;
+void* SystemMemoryBlockA;
+void* DataTablePointerA;
+void* SystemMemoryBlockB;
+void* DataTablePointerB;
+void* SystemMemoryBlockC;
+void* DataTablePointerC;
+void* SystemMemoryBlockD;
+void* DataTablePointerD;
+void* SystemMemoryBlockE;
+void* DataTablePointerE;
+void* SystemMemoryBlockF;
+void* DataTablePointerF;
 
 // 核心系统函数指针和相关数据
-undefined CoreSystemEntryPoint;
-undefined CoreSystemMemoryBlock;
-undefined CoreSystemDataTable;
-undefined CoreSystemMemoryBuffer;
-undefined CoreSystemConfigA;
-undefined CoreSystemConfigB;
-undefined CoreSystemConfigC;
-undefined CoreSystemConfigD;
+void* CoreSystemEntryPoint;
+void* CoreSystemMemoryBlock;
+void* CoreSystemDataTable;
+void* CoreSystemMemoryBuffer;
+void* CoreSystemConfigA;
+void* CoreSystemConfigB;
+void* CoreSystemConfigC;
+void* CoreSystemConfigD;
 
 // 渲染系统初始化函数
-undefined RenderingSystemEntryPoint;
-undefined RenderingSystemData;
+void* RenderingSystemEntryPoint;
+void* RenderingSystemData;
 
 // 网络系统初始化函数
-undefined NetworkSystemEntryPoint;
-undefined NetworkSystemData;
+void* NetworkSystemEntryPoint;
+void* NetworkSystemData;
 
 // 音频系统初始化函数
-undefined AudioSystemEntryPoint;
-undefined AudioSystemData;
+void* AudioSystemEntryPoint;
+void* AudioSystemData;
 
 // 输入系统初始化函数和相关数据
-undefined InputSystemEntryPoint;
-undefined InputSystemDataA;
-undefined InputSystemDataB;
-undefined InputSystemDataC;
-undefined InputSystemDataD;
-undefined InputSystemDataE;
-undefined InputSystemDataF;
-undefined InputSystemDataG;
-undefined InputSystemDataH;
-undefined SubsystemEntryPoint;
-undefined SubsystemData;
-undefined InputSystemDataTable;
-undefined8 InputSystemFlags;
-undefined InputSystemConfigA;
-undefined InputSystemConfigB;
-undefined InputSystemConfigC;
-undefined InputSystemConfigD;
+void* InputSystemEntryPoint;
+void* InputSystemDataA;
+void* InputSystemDataB;
+void* InputSystemDataC;
+void* InputSystemDataD;
+void* InputSystemDataE;
+void* InputSystemDataF;
+void* InputSystemDataG;
+void* InputSystemDataH;
+void* SubsystemEntryPoint;
+void* SubsystemData;
+void* InputSystemDataTable;
+uint8_t InputSystemFlags;
+void* InputSystemConfigA;
+void* InputSystemConfigB;
+void* InputSystemConfigC;
+void* InputSystemConfigD;
 
 // 物理系统初始化函数
-undefined PhysicsSystemEntryPoint;
-undefined PhysicsSystemData;
+void* PhysicsSystemEntryPoint;
+void* PhysicsSystemData;
 
 // 文件系统初始化函数
-undefined FileSystemEntryPoint;
+void* FileSystemEntryPoint;
 
-// 函数: undefined FUN_180044a30;
-undefined SystemInitializationFunctionA;
-undefined SystemDataBufferA;
-undefined UnknownSystemDataA;
-undefined UnknownSystemDataB;
-undefined UnknownSystemDataC;
-undefined UnknownSystemDataD;
-undefined SystemGuardCheckFunction;
+// 函数: 系统初始化函数A
+void* SystemInitializationFunctionA;
+void* SystemDataBufferA;
+void* SystemDataStructureA;
+void* SystemDataStructureB;
+void* SystemDataStructureC;
+void* SystemDataStructureD;
+void* SystemGuardCheckFunction;
 
-// 函数: undefined FUN_180046860;
-undefined SystemInitializationFunctionB;
+// 函数: 系统初始化函数B
+void* SystemInitializationFunctionB;
 
-// 函数: undefined FUN_18005c060;
-undefined SystemInitializationFunctionC;
-undefined SystemMemoryRegionA;
-undefined SystemMemoryRegionB;
-undefined SystemMemoryRegionC;
-undefined SystemMemoryRegionD;
-undefined SystemMemoryRegionE;
-undefined SystemMemoryRegionF;
-undefined SystemMemoryRegionG;
-undefined SystemMemoryRegionH;
-undefined SystemMemoryRegionI;
-undefined SystemMemoryRegionJ;
-undefined SystemMemoryRegionK;
-undefined SystemMemoryRegionL;
-undefined SystemFunctionPointerA;
-undefined SystemFunctionPointerB;
-undefined SystemMemoryRegionM;
-undefined SystemMemoryRegionN;
-undefined SystemMemoryRegionO;
-undefined SystemMemoryRegionP;
-undefined SystemGlobalConstant;
-undefined SystemDataBufferB;
-undefined SystemDataTableB;
-undefined SystemMemoryRegionQ;
-undefined SystemDataTableC;
-undefined SystemMemoryRegionR;
-undefined SystemDataTableD;
-undefined SystemEntryPointA;
-undefined SystemMemoryRegionS;
-undefined SystemMemoryRegionT;
-undefined SystemMemoryRegionU;
-undefined SystemMemoryRegionV;
+// 函数: 系统初始化函数C
+void* SystemInitializationFunctionC;
+void* SystemMemoryRegionA;
+void* SystemMemoryRegionB;
+void* SystemMemoryRegionC;
+void* SystemMemoryRegionD;
+void* SystemMemoryRegionE;
+void* SystemMemoryRegionF;
+void* SystemMemoryRegionG;
+void* SystemMemoryRegionH;
+void* SystemMemoryRegionI;
+void* SystemMemoryRegionJ;
+void* SystemMemoryRegionK;
+void* SystemMemoryRegionL;
+void* SystemFunctionPointerA;
+void* SystemFunctionPointerB;
+void* SystemMemoryRegionM;
+void* SystemMemoryRegionN;
+void* SystemMemoryRegionO;
+void* SystemMemoryRegionP;
+void* SystemGlobalConstant;
+void* SystemDataBufferB;
+void* SystemDataTableB;
+void* SystemMemoryRegionQ;
+void* SystemDataTableC;
+void* SystemMemoryRegionR;
+void* SystemDataTableD;
+void* SystemEntryPointA;
+void* SystemMemoryRegionS;
+void* SystemMemoryRegionT;
+void* SystemMemoryRegionU;
+void* SystemMemoryRegionV;
 int SystemStatusFlag;
-longlong SystemTimestamp;
-undefined SystemMemoryRegionW;
+long long SystemTimestamp;
+void* SystemMemoryRegionW;
 
 // 函数: undefined FUN_180066dd0;
 undefined SystemInitializationFunctionD;
