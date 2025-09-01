@@ -669,44 +669,55 @@ undefined GetSystemInitializationFunction;
  * 
  * @note 这是系统启动过程中的关键步骤，确保核心系统正确初始化
  */
+/**
+ * @brief 初始化游戏核心系统
+ * 
+ * 该函数负责初始化游戏的核心系统组件，包括系统数据表、内存分配、
+ * 节点管理和事件回调设置。这是游戏引擎启动过程中的关键步骤。
+ * 
+ * @note 该函数会设置核心系统节点的标识符和数据结构
+ */
 void InitializeGameCoreSystem(void)
-
 {
-  char systemNodeFlag;
-  undefined8 *systemRootNode;
-  int memoryCompareResult;
-  longlong *systemDataTable;
-  longlong memoryAllocationSize;
-  undefined8 *systemCurrentNode;
-  undefined8 *systemPreviousNode;
-  undefined8 *systemNextNode;
-  undefined8 *systemAllocatedNode;
-  code *systemInitializationFunction;
+  bool systemNodeIsActive;
+  void** systemRootNode;
+  int memoryComparisonResult;
+  long long* systemDataTable;
+  long long memoryAllocationSize;
+  void** systemCurrentNode;
+  void** systemPreviousNode;
+  void** systemNextNode;
+  void** systemAllocatedNode;
+  void* systemInitializationFunction;
   
-  systemDataTable = (longlong *)GetSystemRootPointer();
-  systemRootNode = (undefined8 *)*systemDataTable;
-  systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
+  systemDataTable = (long long*)GetSystemRootPointer();
+  systemRootNode = (void**)*systemDataTable;
+  systemNodeIsActive = *(bool*)((long long)systemRootNode[1] + 0x19);
   systemInitializationFunction = GetGameCoreSystemInitializationFunction;
   systemPreviousNode = systemRootNode;
-  systemCurrentNode = (undefined8 *)systemRootNode[1];
-  while (systemNodeFlag == '\0') {
-    memoryCompareResult = memcmp(systemCurrentNode + 4,&GAME_CORE_SYSTEM_ID,0x10);
-    if (memoryCompareResult < 0) {
-      systemNextNode = (undefined8 *)systemCurrentNode[2];
+  systemCurrentNode = (void**)systemRootNode[1];
+  
+  while (!systemNodeIsActive) {
+    memoryComparisonResult = memcmp(systemCurrentNode + 4, &GAME_CORE_SYSTEM_ID, 0x10);
+    if (memoryComparisonResult < 0) {
+      systemNextNode = (void**)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
     }
     else {
-      systemNextNode = (undefined8 *)*systemCurrentNode;
+      systemNextNode = (void**)*systemCurrentNode;
     }
     systemPreviousNode = systemCurrentNode;
     systemCurrentNode = systemNextNode;
-    systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
+    systemNodeIsActive = *(bool*)((long long)systemNextNode + 0x19);
   }
-  if ((systemPreviousNode == systemRootNode) || (memoryCompareResult = memcmp(&GAME_CORE_SYSTEM_ID,systemPreviousNode + 4,0x10), memoryCompareResult < 0)) {
+  
+  if ((systemPreviousNode == systemRootNode) || 
+      (memoryComparisonResult = memcmp(&GAME_CORE_SYSTEM_ID, systemPreviousNode + 4, 0x10), memoryComparisonResult < 0)) {
     memoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    AllocateSystemMemory(systemDataTable, &systemAllocatedNode, systemPreviousNode, memoryAllocationSize + 0x20, memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
+  
   systemPreviousNode[6] = 0x4fc124d23d41985f;
   systemPreviousNode[7] = 0xe2f4a30d6e6ae482;
   systemPreviousNode[8] = &GAME_CORE_NODE_DATA;
@@ -4091,18 +4102,18 @@ void InitializeSystemDebugManager(void)
 void InitializeSystemStringProcessor(void)
 
 {
-  undefined8 in_R9;
-  undefined *puStack_a0;
-  undefined1 *puStack_98;
-  undefined4 uStack_90;
-  undefined1 auStack_88 [136];
+  longlong systemStringParameter;
+  undefined8 *stringProcessCallbackPointer;
+  undefined1 *stringDataBufferPointer;
+  int stringBufferSize;
+  undefined1 stringDataBuffer [136];
   
-  puStack_a0 = &UNK_1809fcc28;
-  puStack_98 = auStack_88;
-  auStack_88[0] = 0;
-  uStack_90 = 8;
-  strcpy_s(auStack_88,0x80,&UNK_180a0b1c8,in_R9,0xfffffffffffffffe);
-  _DAT_180c919e0 = FUN_180623800(&puStack_a0);
+  stringProcessCallbackPointer = &SystemStringProcessorNode;
+  stringDataBufferPointer = stringDataBuffer;
+  stringDataBuffer[0] = 0;
+  stringBufferSize = 8;
+  strcpy_s(stringDataBuffer,0x80,&SystemStringProcessorTemplate,systemStringParameter,0xfffffffffffffffe);
+  SystemStringProcessorHandle = InitializeStringProcessorCallback(&stringProcessCallbackPointer);
   return;
 }
 
@@ -4531,7 +4542,15 @@ void InitializeSystemResourceNode(void)
 
 
 // 函数: void FUN_180032110(void)
-void FUN_180032110(void)
+/**
+ * @brief 初始化系统节点管理器
+ * 
+ * 该函数负责初始化系统的节点管理组件，设置节点操作的基础结构。
+ * 它会遍历系统节点树，进行内存比较，分配必要的内存，并设置节点属性。
+ * 
+ * @note 这是系统初始化过程中的重要组成部分，确保节点管理系统的正常运行
+ */
+void InitializeSystemNodeManager(void)
 
 {
   char systemNodeFlag;
@@ -4581,7 +4600,15 @@ void FUN_180032110(void)
 
 
 // 函数: void FUN_180032210(void)
-void FUN_180032210(void)
+/**
+ * @brief 初始化系统数据节点管理器
+ * 
+ * 该函数负责初始化系统的数据节点管理组件，设置数据节点操作的基础结构。
+ * 它会遍历系统数据节点树，进行内存比较，分配必要的内存，并设置数据节点属性。
+ * 
+ * @note 这是系统初始化过程中的重要组成部分，确保数据节点管理系统的正常运行
+ */
+void InitializeSystemDataNodeManager(void)
 
 {
   char systemNodeFlag;
@@ -4631,7 +4658,15 @@ void FUN_180032210(void)
 
 
 // 函数: void FUN_180032310(void)
-void FUN_180032310(void)
+/**
+ * @brief 初始化系统资源节点管理器
+ * 
+ * 该函数负责初始化系统的资源节点管理组件，设置资源节点操作的基础结构。
+ * 它会遍历系统资源节点树，进行内存比较，分配必要的内存，并设置资源节点属性。
+ * 
+ * @note 这是系统初始化过程中的重要组成部分，确保资源节点管理系统的正常运行
+ */
+void InitializeSystemResourceNodeManager(void)
 
 {
   char systemNodeFlag;
@@ -4681,7 +4716,15 @@ void FUN_180032310(void)
 
 
 // 函数: void FUN_180032410(void)
-void FUN_180032410(void)
+/**
+ * @brief 初始化系统内存节点管理器
+ * 
+ * 该函数负责初始化系统的内存节点管理组件，设置内存节点操作的基础结构。
+ * 它会遍历系统内存节点树，进行内存比较，分配必要的内存，并设置内存节点属性。
+ * 
+ * @note 这是系统初始化过程中的重要组成部分，确保内存节点管理系统的正常运行
+ */
+void InitializeSystemMemoryNodeManager(void)
 
 {
   char systemNodeFlag;
@@ -4733,7 +4776,15 @@ void FUN_180032410(void)
 
 
 // 函数: void FUN_180032510(void)
-void FUN_180032510(void)
+/**
+ * @brief 初始化系统字符串配置管理器
+ * 
+ * 该函数负责初始化系统的字符串配置管理组件，设置字符串配置操作的基础结构。
+ * 它会创建字符串配置缓冲区，配置字符串复制操作，并建立字符串配置标识符。
+ * 
+ * @note 这是系统初始化过程中的重要组成部分，确保字符串配置管理系统的正常运行
+ */
+void InitializeSystemStringConfigurationManager(void)
 
 {
   undefined8 in_R9;
@@ -4755,7 +4806,15 @@ void FUN_180032510(void)
 
 
 // 函数: void FUN_1800325a0(void)
-void FUN_1800325a0(void)
+/**
+ * @brief 初始化系统配置节点管理器
+ * 
+ * 该函数负责初始化系统的配置节点管理组件，设置配置节点操作的基础结构。
+ * 它会遍历系统配置节点树，进行内存比较，分配必要的内存，并设置配置节点属性。
+ * 
+ * @note 这是系统初始化过程中的重要组成部分，确保配置节点管理系统的正常运行
+ */
+void InitializeSystemConfigurationNodeManager(void)
 
 {
   char systemNodeFlag;
@@ -4805,7 +4864,15 @@ void FUN_1800325a0(void)
 
 
 // 函数: void FUN_1800326a0(void)
-void FUN_1800326a0(void)
+/**
+ * @brief 初始化系统事件节点管理器
+ * 
+ * 该函数负责初始化系统的事件节点管理组件，设置事件节点操作的基础结构。
+ * 它会遍历系统事件节点树，进行内存比较，分配必要的内存，并设置事件节点属性。
+ * 
+ * @note 这是系统初始化过程中的重要组成部分，确保事件节点管理系统的正常运行
+ */
+void InitializeSystemEventNodeManager(void)
 
 {
   char systemNodeFlag;
