@@ -1,17 +1,6 @@
 #include "TaleWorlds.Native.Split.h"
 
-/**
- * @file 01_initialization.c
- * @brief 系统初始化模块
- */
-
-// 全局函数指针 - 系统初始化相关
-/**
- * @brief 游戏系统主入口点
- * 
- * 这是整个游戏系统的主要入口点，负责初始化所有核心系统组件
- * 和管理系统的生命周期。所有其他系统的初始化都通过这个入口点进行协调。
- */
+// 系统初始化模块
 void* GameSystemMainEntryPoint;
 void* SystemGlobalDataReference;              // 全局系统数据引用
 void* SystemPrimaryMemoryPool;                 // 主系统内存池
@@ -28,12 +17,6 @@ void* SystemSenaryMemoryPool;                  // 第六级系统内存池
 void* SystemSenaryDataTable;                   // 第六级系统数据表
 
 // 核心系统函数指针和相关数据
-/**
- * @brief 游戏核心系统入口点
- * 
- * 负责初始化游戏的核心系统组件，包括内存管理、线程管理、
- * 任务调度等基础系统服务。这是系统启动的第二阶段。
- */
 void* GameCoreSystemMainEntryPoint;
 void* CoreSystemMemoryAllocator;                // 核心系统内存分配器
 void* CoreSystemDataTable;                     // 核心系统数据表
@@ -81,7 +64,7 @@ void* PhysicsSystemContext;
 // 文件系统初始化函数
 void* GameFileSystemMainEntryPoint;
 
-// 函数: 系统初始化函数A - 字符串处理系统初始化
+// 字符串处理系统初始化
 void* GameStringProcessingMainInitializer;
 void* StringProcessingDataBuffer;
 void* StringProcessingPrimaryStructure;
@@ -90,7 +73,7 @@ void* StringProcessingTertiaryStructure;
 void* StringProcessingQuaternaryStructure;
 void* StringProcessingGuardCheckHandler;
 
-// 函数: 系统初始化函数B - 内存管理系统初始化
+// 内存管理系统初始化
 void* GameMemoryManagementMainInitializer;
 
 // 函数: 系统初始化函数C - 系统资源管理器初始化
@@ -776,52 +759,58 @@ void* GetSystemInitializationFunction;
  * 负责初始化游戏的核心系统组件，包括系统节点管理、内存分配、
  * 数据表设置等核心功能。这是游戏系统启动的关键初始化函数。
  */
+/**
+ * @brief 初始化游戏核心系统
+ * 
+ * 该函数负责初始化游戏的核心系统组件，包括系统节点管理、内存分配和
+ * 核心系统标识符设置。这是系统启动的关键步骤。
+ */
 void InitializeGameCoreSystem(void)
 {
-  bool isSystemNodeActive;
-  void** systemRootNodePointer;
-  int memoryComparisonResult;
-  long long* systemDataTablePointer;
-  long long memoryAllocationSize;
-  void** currentSystemNode;
-  void** previousSystemNode;
-  void** nextSystemNode;
-  void** allocatedSystemNode;
-  void* coreSystemInitializationFunction;
+  bool IsSystemNodeActive;
+  void** SystemRootNodePointer;
+  int MemoryComparisonResult;
+  long long* SystemDataTablePointer;
+  long long MemoryAllocationSize;
+  void** CurrentSystemNode;
+  void** PreviousSystemNode;
+  void** NextSystemNode;
+  void** AllocatedSystemNode;
+  void* CoreSystemInitializationFunction;
   
-  systemDataTablePointer = (long long*)GetSystemRootPointer();
-  systemRootNodePointer = (void**)*systemDataTablePointer;
-  isSystemNodeActive = *(bool*)((long long)systemRootNodePointer[1] + 0x19);
-  coreSystemInitializationFunction = GetGameCoreSystemInitializationFunction;
-  previousSystemNode = systemRootNodePointer;
-  currentSystemNode = (void**)systemRootNodePointer[1];
+  SystemDataTablePointer = (long long*)GetSystemRootPointer();
+  SystemRootNodePointer = (void**)*SystemDataTablePointer;
+  IsSystemNodeActive = *(bool*)((long long)SystemRootNodePointer[1] + 0x19);
+  CoreSystemInitializationFunction = GetGameCoreSystemInitializationFunction;
+  PreviousSystemNode = SystemRootNodePointer;
+  CurrentSystemNode = (void**)SystemRootNodePointer[1];
   
-  while (!isSystemNodeActive) {
-    memoryComparisonResult = memcmp(currentSystemNode + 4, &GAME_CORE_SYSTEM_ID, 0x10);
-    if (memoryCompareResult < 0) {
-      nextSystemNode = (void**)currentSystemNode[2];
-      currentSystemNode = previousSystemNode;
+  while (!IsSystemNodeActive) {
+    MemoryComparisonResult = memcmp(CurrentSystemNode + 4, &GAME_CORE_SYSTEM_ID, 0x10);
+    if (MemoryComparisonResult < 0) {
+      NextSystemNode = (void**)CurrentSystemNode[2];
+      CurrentSystemNode = PreviousSystemNode;
     }
     else {
-      nextSystemNode = (void**)*currentSystemNode;
+      NextSystemNode = (void**)*CurrentSystemNode;
     }
-    previousSystemNode = currentSystemNode;
-    currentSystemNode = nextSystemNode;
-    isSystemNodeActive = *(bool*)((long long)nextSystemNode + 0x19);
+    PreviousSystemNode = CurrentSystemNode;
+    CurrentSystemNode = NextSystemNode;
+    IsSystemNodeActive = *(bool*)((long long)NextSystemNode + 0x19);
   }
   
-  if ((previousSystemNode == systemRootNodePointer) || 
-      (memoryCompareResult = memcmp(&GAME_CORE_SYSTEM_ID, previousSystemNode + 4, 0x10), memoryCompareResult < 0)) {
-    memoryAllocationSize = GetSystemMemorySize(systemDataTablePointer);
-    AllocateSystemMemory(systemDataTablePointer, &allocatedSystemNode, previousSystemNode, memoryAllocationSize + 0x20, memoryAllocationSize);
-    previousSystemNode = allocatedSystemNode;
+  if ((PreviousSystemNode == SystemRootNodePointer) || 
+      (MemoryComparisonResult = memcmp(&GAME_CORE_SYSTEM_ID, PreviousSystemNode + 4, 0x10), MemoryComparisonResult < 0)) {
+    MemoryAllocationSize = GetSystemMemorySize(SystemDataTablePointer);
+    AllocateSystemMemory(SystemDataTablePointer, &AllocatedSystemNode, PreviousSystemNode, MemoryAllocationSize + 0x20, MemoryAllocationSize);
+    PreviousSystemNode = AllocatedSystemNode;
   }
   
-  previousSystemNode[6] = 0x4fc124d23d41985f;
-  previousSystemNode[7] = 0xe2f4a30d6e6ae482;
-  previousSystemNode[8] = &GAME_CORE_NODE_DATA;
-  previousSystemNode[9] = 0;
-  previousSystemNode[10] = eventCallbackPointer;
+  PreviousSystemNode[6] = 0x4fc124d23d41985f;
+  PreviousSystemNode[7] = 0xe2f4a30d6e6ae482;
+  PreviousSystemNode[8] = &GAME_CORE_NODE_DATA;
+  PreviousSystemNode[9] = 0;
+  PreviousSystemNode[10] = EventCallbackPointer;
   return;
 }
 
@@ -836,51 +825,51 @@ void InitializeGameCoreSystem(void)
  */
 void InitializeSystemDataTableBaseAllocator(void)
 {
-  char isSystemNodeActive;
-  void** systemRootNodePointer;
-  int memoryCompareResult;
-  long long* systemDataTablePointer;
-  long long memoryAllocationSize;
-  void** currentSystemNode;
-  void** previousSystemNode;
-  void** nextSystemNode;
-  void** allocatedSystemNode;
-  void** tempSystemNode;
-  void* baseAllocatorFunctionPointer;
+  char IsSystemNodeActive;
+  void** SystemRootNodePointer;
+  int MemoryCompareResult;
+  long long* SystemDataTablePointer;
+  long long MemoryAllocationSize;
+  void** CurrentSystemNode;
+  void** PreviousSystemNode;
+  void** NextSystemNode;
+  void** AllocatedSystemNode;
+  void** TempSystemNode;
+  void* BaseAllocatorFunctionPointer;
   
-  systemDataTablePointer = (long long*)GetSystemRootPointer();
-  systemRootNodePointer = (void**)*systemDataTablePointer;
-  isSystemNodeActive = *(char*)((long long)systemRootNodePointer[1] + 0x19);
-  baseAllocatorFunctionPointer = 0;
-  previousSystemNode = systemRootNodePointer;
-  currentSystemNode = (void**)systemRootNodePointer[1];
+  SystemDataTablePointer = (long long*)GetSystemRootPointer();
+  SystemRootNodePointer = (void**)*SystemDataTablePointer;
+  IsSystemNodeActive = *(char*)((long long)SystemRootNodePointer[1] + 0x19);
+  BaseAllocatorFunctionPointer = 0;
+  PreviousSystemNode = SystemRootNodePointer;
+  CurrentSystemNode = (void**)SystemRootNodePointer[1];
   
-  while (isSystemNodeActive == '\0') {
-    memoryCompareResult = memcmp(currentSystemNode + 4, &BASE_ALLOCATOR_ID, 0x10);
-    if (memoryCompareResult < 0) {
-      nextSystemNode = (void**)currentSystemNode[2];
-      currentSystemNode = previousSystemNode;
+  while (IsSystemNodeActive == '\0') {
+    MemoryCompareResult = memcmp(CurrentSystemNode + 4, &BASE_ALLOCATOR_ID, 0x10);
+    if (MemoryCompareResult < 0) {
+      NextSystemNode = (void**)CurrentSystemNode[2];
+      CurrentSystemNode = PreviousSystemNode;
     }
     else {
-      nextSystemNode = (void**)*currentSystemNode;
+      NextSystemNode = (void**)*CurrentSystemNode;
     }
-    previousSystemNode = currentSystemNode;
-    currentSystemNode = nextSystemNode;
-    isSystemNodeActive = *(char*)((long long)nextSystemNode + 0x19);
+    PreviousSystemNode = CurrentSystemNode;
+    CurrentSystemNode = NextSystemNode;
+    IsSystemNodeActive = *(char*)((long long)NextSystemNode + 0x19);
   }
   
-  if ((previousSystemNode == systemRootNodePointer) || 
-      (memoryCompareResult = memcmp(&BASE_ALLOCATOR_ID, previousSystemNode + 4, 0x10), memoryCompareResult < 0)) {
-    memoryAllocationSize = GetSystemMemorySize(systemDataTablePointer);
-    AllocateSystemMemory(systemDataTablePointer, &allocatedSystemNode, previousSystemNode, memoryAllocationSize + 0x20, memoryAllocationSize);
-    previousSystemNode = allocatedSystemNode;
+  if ((PreviousSystemNode == SystemRootNodePointer) || 
+      (MemoryCompareResult = memcmp(&BASE_ALLOCATOR_ID, PreviousSystemNode + 4, 0x10), MemoryCompareResult < 0)) {
+    MemoryAllocationSize = GetSystemMemorySize(SystemDataTablePointer);
+    AllocateSystemMemory(SystemDataTablePointer, &AllocatedSystemNode, PreviousSystemNode, MemoryAllocationSize + 0x20, MemoryAllocationSize);
+    PreviousSystemNode = AllocatedSystemNode;
   }
   
-  previousSystemNode[6] = 0x4770584fbb1df897;
-  previousSystemNode[7] = 0x47f249e43f66f2ab;
-  previousSystemNode[8] = &BaseAllocatorNodeData;
-  previousSystemNode[9] = 1;
-  previousSystemNode[10] = baseAllocatorFunctionPointer;
+  PreviousSystemNode[6] = 0x4770584fbb1df897;
+  PreviousSystemNode[7] = 0x47f249e43f66f2ab;
+  PreviousSystemNode[8] = &BaseAllocatorNodeData;
+  PreviousSystemNode[9] = 1;
+  PreviousSystemNode[10] = BaseAllocatorFunctionPointer;
   return;
 }
 
@@ -26779,7 +26768,18 @@ void FUN_180052ef0(long long *param_1,void* param_2,void* param_3,uint8_t param_
 
 
 // 函数: void FUN_180053200(void* param_1,long long param_2)
-void FUN_180053200(void* param_1,long long param_2)
+/**
+ * @brief 系统字符串格式化处理器
+ * 
+ * 该函数负责处理系统字符串的格式化操作，包括字符串前缀添加、
+ * 数据复制和内存管理。它主要用于构建特定格式的字符串数据结构。
+ * 
+ * @param formatData 格式化数据指针
+ * @param stringBuffer 字符串缓冲区指针
+ * 
+ * @note 该函数在系统初始化过程中用于构建特定的字符串格式
+ */
+void SystemStringFormatter(void* formatData,long long stringBuffer)
 
 {
   uint32_t *puVar1;
@@ -65041,190 +65041,203 @@ void* CalculateRotationTransform(long long transformContext, uint rotationBits)
   halfRange = bitMask / 2;
   if (0 < (int)rotationBits) {
     do {
-      iVar13 = 0;
-      if (0 < (int)uStackX_10) {
-        uVar17 = (ulong long)uStackX_10;
+      int rowIndex = 0;
+      if (0 < (int)loopCounter) {
+        ulong long columnCount = (ulong long)loopCounter;
         do {
-          uVar7 = (long long)iVar13 / (long long)(int)uVar6 & 0xffffffff;
-          uVar10 = 0;
-          uVar14 = param_2;
-          if (param_2 != 0) {
+          ulong long normalizedIndex = (long long)rowIndex / (long long)(int)halfRange & 0xffffffff;
+          uint reversedBits = 0;
+          uint bitCount = rotationBits;
+          if (rotationBits != 0) {
             do {
-              uVar9 = (uint)uVar7;
-              uVar7 = uVar7 >> 1;
-              uVar10 = uVar10 * 2 | uVar9 & 1;
-              uVar14 = uVar14 - 1;
-            } while (uVar14 != 0);
+              uint currentBit = (uint)normalizedIndex;
+              normalizedIndex = normalizedIndex >> 1;
+              reversedBits = reversedBits * 2 | currentBit & 1;
+              bitCount = bitCount - 1;
+            } while (bitCount != 0);
           }
-          fVar19 = (float)(int)uVar10 * (1.0 / (float)iVar5);
-          uVar14 = (uint)(fVar19 * 32768.0);
-          if ((int)uVar14 < 0) {
-            uVar14 = -uVar14;
+          float angleValue = (float)(int)reversedBits * (1.0 / (float)bitMask);
+          uint lookupIndex = (uint)(angleValue * 32768.0);
+          if ((int)lookupIndex < 0) {
+            lookupIndex = -lookupIndex;
           }
-          uVar14 = uVar14 & 0x7fff;
-          uVar7 = (ulong long)uVar14;
-          uVar10 = uVar14 >> 0xd;
-          if (uVar14 >> 0xd == 0) {
-            fVar22 = *(float *)(param_1 + 0x4cc + uVar7 * 4);
+          lookupIndex = lookupIndex & 0x7fff;
+          ulong long sineLookupIndex = (ulong long)lookupIndex;
+          uint quadrant = lookupIndex >> 0xd;
+          float sineValue;
+          if (lookupIndex >> 0xd == 0) {
+            sineValue = *(float *)(transformContext + 0x4cc + sineLookupIndex * 4);
           }
-          else if (uVar10 == 1) {
-            fVar22 = -*(float *)(param_1 + (0x4132 - (ulong long)uVar14) * 4);
+          else if (quadrant == 1) {
+            sineValue = -*(float *)(transformContext + (0x4132 - (ulong long)lookupIndex) * 4);
           }
-          else if (uVar10 == 2) {
-            fVar22 = -*(float *)(param_1 + -0xfb34 + uVar7 * 4);
+          else if (quadrant == 2) {
+            sineValue = -*(float *)(transformContext + -0xfb34 + sineLookupIndex * 4);
           }
-          else if (uVar10 == 3) {
-            fVar22 = *(float *)(param_1 + (0x8132 - uVar7) * 4);
-          }
-          else {
-            fVar22 = 0.0;
-          }
-          uVar14 = (uint)((fVar19 - 0.25) * 32768.0);
-          if ((int)uVar14 < 0) {
-            uVar14 = -uVar14;
-          }
-          uVar14 = uVar14 & 0x7fff;
-          uVar7 = (ulong long)uVar14;
-          uVar10 = uVar14 >> 0xd;
-          if (uVar14 >> 0xd == 0) {
-            fVar19 = *(float *)(param_1 + 0x4cc + uVar7 * 4);
-          }
-          else if (uVar10 == 1) {
-            fVar19 = -*(float *)(param_1 + (0x4132 - (ulong long)uVar14) * 4);
-          }
-          else if (uVar10 == 2) {
-            fVar19 = -*(float *)(param_1 + -0xfb34 + uVar7 * 4);
-          }
-          else if (uVar10 == 3) {
-            fVar19 = *(float *)(param_1 + (0x8132 - uVar7) * 4);
+          else if (quadrant == 3) {
+            sineValue = *(float *)(transformContext + (0x8132 - sineLookupIndex) * 4);
           }
           else {
-            fVar19 = 0.0;
+            sineValue = 0.0;
           }
-          lVar16 = (long long)iVar13;
-          lVar11 = (long long)(int)(iVar13 + uVar6);
-          fVar19 = -fVar19;
-          if (lVar16 < lVar11) {
-            iVar12 = iVar13;
-            if (3 < lVar11 - lVar16) {
-              uVar14 = iVar13 + uVar6 + 3;
-              iVar12 = iVar13 + ((int)(((lVar11 + -3) - lVar16) - 1U >> 2) + 1) * 4;
+          lookupIndex = (uint)((angleValue - 0.25) * 32768.0);
+          if ((int)lookupIndex < 0) {
+            lookupIndex = -lookupIndex;
+          }
+          lookupIndex = lookupIndex & 0x7fff;
+          sineLookupIndex = (ulong long)lookupIndex;
+          quadrant = lookupIndex >> 0xd;
+          float cosineValue;
+          if (lookupIndex >> 0xd == 0) {
+            cosineValue = *(float *)(transformContext + 0x4cc + sineLookupIndex * 4);
+          }
+          else if (quadrant == 1) {
+            cosineValue = -*(float *)(transformContext + (0x4132 - (ulong long)lookupIndex) * 4);
+          }
+          else if (quadrant == 2) {
+            cosineValue = -*(float *)(transformContext + -0xfb34 + sineLookupIndex * 4);
+          }
+          else if (quadrant == 3) {
+            cosineValue = *(float *)(transformContext + (0x8132 - sineLookupIndex) * 4);
+          }
+          else {
+            cosineValue = 0.0;
+          }
+          long long startRow = (long long)rowIndex;
+          long long endRow = (long long)(int)(rowIndex + halfRange);
+          cosineValue = -cosineValue;
+          if (startRow < endRow) {
+            int currentRow = rowIndex;
+            if (3 < endRow - startRow) {
+              uint targetRow = rowIndex + halfRange + 3;
+              currentRow = rowIndex + ((int)(((endRow + -3) - startRow) - 1U >> 2) + 1) * 4;
               do {
-                uVar18 = (ulong long)uVar14;
-                lVar4 = *(long long *)(param_1 + 0x218);
-                uVar15 = (ulong long)(uVar14 - 1);
-                uVar7 = (ulong long)(uVar14 - 2);
-                uVar10 = uVar14 - 3;
-                fVar21 = *(float *)(lVar4 + 4 + (ulong long)uVar10 * 8);
-                fVar1 = *(float *)(lVar4 + (ulong long)uVar10 * 8);
-                fVar2 = *(float *)(lVar4 + lVar16 * 8);
-                fVar3 = *(float *)(lVar4 + 4 + lVar16 * 8);
-                fVar20 = fVar1 * fVar22 - fVar21 * fVar19;
-                fVar21 = fVar21 * fVar22 + fVar1 * fVar19;
-                *(float *)(lVar4 + lVar16 * 8) = fVar20 + fVar2;
-                *(float *)(*(long long *)(param_1 + 0x218) + 4 + lVar16 * 8) = fVar21 + fVar3;
-                *(float *)(*(long long *)(param_1 + 0x218) + (ulong long)uVar10 * 8) = fVar2 - fVar20;
-                *(float *)(*(long long *)(param_1 + 0x218) + 4 + (ulong long)uVar10 * 8) =
-                     fVar3 - fVar21;
-                lVar4 = *(long long *)(param_1 + 0x218);
-                fVar21 = *(float *)(lVar4 + 4 + uVar7 * 8);
-                fVar1 = *(float *)(lVar4 + uVar7 * 8);
-                fVar2 = *(float *)(lVar4 + 8 + lVar16 * 8);
-                fVar3 = *(float *)(lVar4 + 0xc + lVar16 * 8);
-                fVar20 = fVar1 * fVar22 - fVar21 * fVar19;
-                fVar21 = fVar21 * fVar22 + fVar1 * fVar19;
-                *(float *)(lVar4 + 8 + lVar16 * 8) = fVar20 + fVar2;
-                *(float *)(*(long long *)(param_1 + 0x218) + 0xc + lVar16 * 8) = fVar21 + fVar3;
-                *(float *)(*(long long *)(param_1 + 0x218) + uVar7 * 8) = fVar2 - fVar20;
-                *(float *)(*(long long *)(param_1 + 0x218) + 4 + uVar7 * 8) = fVar3 - fVar21;
-                lVar4 = *(long long *)(param_1 + 0x218);
-                fVar21 = *(float *)(lVar4 + uVar15 * 8);
-                fVar1 = *(float *)(lVar4 + 4 + uVar15 * 8);
-                fVar2 = *(float *)(lVar4 + 0x10 + lVar16 * 8);
-                fVar3 = *(float *)(lVar4 + 0x14 + lVar16 * 8);
-                fVar20 = fVar21 * fVar22 - fVar1 * fVar19;
-                fVar21 = fVar1 * fVar22 + fVar21 * fVar19;
-                *(float *)(lVar4 + 0x10 + lVar16 * 8) = fVar20 + fVar2;
-                *(float *)(*(long long *)(param_1 + 0x218) + 0x14 + lVar16 * 8) = fVar21 + fVar3;
-                *(float *)(*(long long *)(param_1 + 0x218) + uVar15 * 8) = fVar2 - fVar20;
-                *(float *)(*(long long *)(param_1 + 0x218) + 4 + uVar15 * 8) = fVar3 - fVar21;
-                lVar4 = *(long long *)(param_1 + 0x218);
-                fVar21 = *(float *)(lVar4 + uVar18 * 8);
-                fVar1 = *(float *)(lVar4 + 4 + uVar18 * 8);
-                fVar2 = *(float *)(lVar4 + 0x18 + lVar16 * 8);
-                fVar3 = *(float *)(lVar4 + 0x1c + lVar16 * 8);
-                fVar20 = fVar21 * fVar22 - fVar1 * fVar19;
-                fVar21 = fVar1 * fVar22 + fVar21 * fVar19;
-                *(float *)(lVar4 + 0x18 + lVar16 * 8) = fVar20 + fVar2;
-                *(float *)(*(long long *)(param_1 + 0x218) + 0x1c + lVar16 * 8) = fVar21 + fVar3;
-                lVar16 = lVar16 + 4;
-                *(float *)(*(long long *)(param_1 + 0x218) + uVar18 * 8) = fVar2 - fVar20;
-                *(float *)(*(long long *)(param_1 + 0x218) + 4 + uVar18 * 8) = fVar3 - fVar21;
-                uVar14 = uVar14 + 4;
-              } while (lVar16 < lVar11 + -3);
+                ulong long row4 = (ulong long)targetRow;
+                long long matrixPointer = *(long long *)(transformContext + 0x218);
+                ulong long row3 = (ulong long)(targetRow - 1);
+                ulong long row2 = (ulong long)(targetRow - 2);
+                uint row1 = targetRow - 3;
+                float sine4 = *(float *)(matrixPointer + 4 + (ulong long)row1 * 8);
+                float cosine4 = *(float *)(matrixPointer + (ulong long)row1 * 8);
+                float matrixVal1 = *(float *)(matrixPointer + startRow * 8);
+                float matrixVal2 = *(float *)(matrixPointer + 4 + startRow * 8);
+                float result1 = cosine4 * sineValue - sine4 * cosineValue;
+                float result2 = sine4 * sineValue + cosine4 * cosineValue;
+                *(float *)(matrixPointer + startRow * 8) = result1 + matrixVal1;
+                *(float *)(*(long long *)(transformContext + 0x218) + 4 + startRow * 8) = result2 + matrixVal2;
+                *(float *)(*(long long *)(transformContext + 0x218) + (ulong long)row1 * 8) = matrixVal1 - result1;
+                *(float *)(*(long long *)(transformContext + 0x218) + 4 + (ulong long)row1 * 8) =
+                     matrixVal2 - result2;
+                matrixPointer = *(long long *)(transformContext + 0x218);
+                result2 = *(float *)(matrixPointer + 4 + row2 * 8);
+                result1 = *(float *)(matrixPointer + row2 * 8);
+                matrixVal1 = *(float *)(matrixPointer + 8 + startRow * 8);
+                matrixVal2 = *(float *)(matrixPointer + 0xc + startRow * 8);
+                float tempResult1 = result1 * sineValue - result2 * cosineValue;
+                result2 = result2 * sineValue + result1 * cosineValue;
+                *(float *)(matrixPointer + 8 + startRow * 8) = tempResult1 + matrixVal1;
+                *(float *)(*(long long *)(transformContext + 0x218) + 0xc + startRow * 8) = result2 + matrixVal2;
+                *(float *)(*(long long *)(transformContext + 0x218) + row2 * 8) = matrixVal1 - tempResult1;
+                *(float *)(*(long long *)(transformContext + 0x218) + 4 + row2 * 8) = matrixVal2 - result2;
+                matrixPointer = *(long long *)(transformContext + 0x218);
+                result2 = *(float *)(matrixPointer + row3 * 8);
+                result1 = *(float *)(matrixPointer + 4 + row3 * 8);
+                matrixVal1 = *(float *)(matrixPointer + 0x10 + startRow * 8);
+                matrixVal2 = *(float *)(matrixPointer + 0x14 + startRow * 8);
+                tempResult1 = result2 * sineValue - result1 * cosineValue;
+                result2 = result1 * sineValue + result2 * cosineValue;
+                *(float *)(matrixPointer + 0x10 + startRow * 8) = tempResult1 + matrixVal1;
+                *(float *)(*(long long *)(transformContext + 0x218) + 0x14 + startRow * 8) = result2 + matrixVal2;
+                *(float *)(*(long long *)(transformContext + 0x218) + row3 * 8) = matrixVal1 - tempResult1;
+                *(float *)(*(long long *)(transformContext + 0x218) + 4 + row3 * 8) = matrixVal2 - result2;
+                matrixPointer = *(long long *)(transformContext + 0x218);
+                result2 = *(float *)(matrixPointer + row4 * 8);
+                result1 = *(float *)(matrixPointer + 4 + row4 * 8);
+                matrixVal1 = *(float *)(matrixPointer + 0x18 + startRow * 8);
+                matrixVal2 = *(float *)(matrixPointer + 0x1c + startRow * 8);
+                tempResult1 = result2 * sineValue - result1 * cosineValue;
+                result2 = result1 * sineValue + result2 * cosineValue;
+                *(float *)(matrixPointer + 0x18 + startRow * 8) = tempResult1 + matrixVal1;
+                *(float *)(*(long long *)(transformContext + 0x218) + 0x1c + startRow * 8) = result2 + matrixVal2;
+                startRow = startRow + 4;
+                *(float *)(*(long long *)(transformContext + 0x218) + row4 * 8) = matrixVal1 - tempResult1;
+                *(float *)(*(long long *)(transformContext + 0x218) + 4 + row4 * 8) = matrixVal2 - result2;
+                targetRow = targetRow + 4;
+              } while (startRow < endRow + -3);
             }
-            if (lVar16 < lVar11) {
-              uVar14 = iVar12 + uVar6;
+            if (startRow < endRow) {
+              targetRow = currentRow + halfRange;
               do {
-                uVar7 = (ulong long)uVar14;
-                lVar4 = *(long long *)(param_1 + 0x218);
-                fVar21 = *(float *)(lVar4 + uVar7 * 8);
-                fVar1 = *(float *)(lVar4 + 4 + uVar7 * 8);
-                fVar2 = *(float *)(lVar4 + lVar16 * 8);
-                fVar3 = *(float *)(lVar4 + 4 + lVar16 * 8);
-                fVar20 = fVar21 * fVar22 - fVar1 * fVar19;
-                fVar21 = fVar1 * fVar22 + fVar21 * fVar19;
-                *(float *)(lVar4 + lVar16 * 8) = fVar20 + fVar2;
-                *(float *)(*(long long *)(param_1 + 0x218) + 4 + lVar16 * 8) = fVar21 + fVar3;
-                lVar16 = lVar16 + 1;
-                *(float *)(*(long long *)(param_1 + 0x218) + uVar7 * 8) = fVar2 - fVar20;
-                *(float *)(*(long long *)(param_1 + 0x218) + 4 + uVar7 * 8) = fVar3 - fVar21;
-                uVar14 = uVar14 + 1;
-              } while (lVar16 < lVar11);
+                ulong long targetIndex = (ulong long)targetRow;
+                matrixPointer = *(long long *)(transformContext + 0x218);
+                result2 = *(float *)(matrixPointer + targetIndex * 8);
+                result1 = *(float *)(matrixPointer + 4 + targetIndex * 8);
+                matrixVal1 = *(float *)(matrixPointer + startRow * 8);
+                matrixVal2 = *(float *)(matrixPointer + 4 + startRow * 8);
+                tempResult1 = result2 * sineValue - result1 * cosineValue;
+                result2 = result1 * sineValue + result2 * cosineValue;
+                *(float *)(matrixPointer + startRow * 8) = tempResult1 + matrixVal1;
+                *(float *)(*(long long *)(transformContext + 0x218) + 4 + startRow * 8) = result2 + matrixVal2;
+                startRow = startRow + 1;
+                *(float *)(*(long long *)(transformContext + 0x218) + targetIndex * 8) = matrixVal1 - tempResult1;
+                *(float *)(*(long long *)(transformContext + 0x218) + 4 + targetIndex * 8) = matrixVal2 - result2;
+                targetRow = targetRow + 1;
+              } while (startRow < endRow);
             }
           }
-          iVar13 = iVar13 + uVar6 * 2;
-          uVar17 = uVar17 - 1;
-        } while (uVar17 != 0);
+          rowIndex = rowIndex + halfRange * 2;
+          columnCount = columnCount - 1;
+        } while (columnCount != 0);
       }
-      uStackX_10 = uStackX_10 * 2;
-      uVar6 = uVar6 >> 1;
-      uVar8 = uVar8 - 1;
-    } while (uVar8 != 0);
+      loopCounter = loopCounter * 2;
+      halfRange = halfRange >> 1;
+      maxBits = maxBits - 1;
+    } while (maxBits != 0);
   }
   return 0;
 }
 
 
 
-void* FUN_180779832(void* param_1,void* param_2,uint param_3)
+/**
+ * @brief 执行快速傅里叶变换
+ * 
+ * 该函数实现了快速傅里叶变换算法，用于在频域分析信号数据。
+ * 主要用于音频处理、图像处理和信号分析等场景。
+ * 
+ * @param context 上下文指针，包含变换所需的配置数据
+ * @param dataBuffer 数据缓冲区，包含要变换的输入数据
+ * @param dataSize 数据大小，指定要处理的数据点数
+ * @return 执行结果状态码
+ */
+void* FastFourierTransform(void* context, void* dataBuffer, uint dataSize)
 
 {
-  float fVar1;
-  float fVar2;
-  float fVar3;
-  long long lVar4;
-  ulong long uVar5;
-  ulong long uVar6;
-  uint uVar7;
-  uint uVar8;
-  long long lVar9;
-  int iVar10;
-  int iVar11;
-  uint uVar12;
-  ulong long uVar13;
-  long long lVar14;
-  long long in_R11;
-  ulong long uVar15;
-  uint unaff_R13D;
-  uint unaff_R14D;
-  ulong long uVar16;
-  float fVar17;
-  float fVar18;
-  float fVar19;
-  float fVar20;
-  float unaff_XMM10_Da;
-  uint in_stack_000000a8;
+  float tempFloat1;
+  float tempFloat2;
+  float tempFloat3;
+  long long matrixPointer;
+  ulong long bitValue;
+  ulong long maxBits;
+  uint reversedBits;
+  uint currentBit;
+  long long endRow;
+  int currentRow;
+  int rowIndex;
+  uint lookupIndex;
+  ulong long targetRow;
+  long long startRow;
+  long long contextData;
+  ulong long targetIndex;
+  uint bitCount;
+  uint halfRange;
+  ulong long row4;
+  float sineValue;
+  float cosineValue;
+  float angleValue;
+  float resultValue;
+  float scaleValue;
+  uint stackParam;
   
   uVar6 = (ulong long)unaff_R13D;
   do {

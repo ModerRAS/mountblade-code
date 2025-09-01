@@ -2002,8 +2002,7 @@ uint8_t AuthResponseConfig;
  */
 void EncryptDataBuffer(void);
 
- void DecryptDataBuffer(void);
-/**
+ /**
  * @brief 解密数据缓冲区
  * 
  * 该函数负责解密数据缓冲区中的内容
@@ -2013,8 +2012,7 @@ void DecryptDataBuffer(void);
 uint8_t EncryptionKey;
 uint8_t EncryptionIV;
 
- void HashDataBuffer(void);
-/**
+ /**
  * @brief 哈希数据缓冲区
  * 
  * 该函数负责计算数据缓冲区的哈希值
@@ -2022,15 +2020,14 @@ uint8_t EncryptionIV;
  */
 void HashDataBuffer(void);
 uint8_t HashAlgorithm;
-uint8_t HashDigestBuffer;
-uint8_t HashSaltBuffer;
+uint8_t HashDigestValue;
+uint8_t HashSaltValue;
 uint8_t HashIterationCount;
 uint8_t HashOutputBufferSize;
-uint8_t RandomSeedBuffer;
-uint8_t RandomGeneratorBuffer;
+uint8_t RandomSeedValue;
+uint8_t RandomGeneratorState;
 
- void GenerateSecureRandom(void);
-/**
+ /**
  * @brief 生成安全随机数
  * 
  * 该函数负责生成安全的随机数
@@ -2080,7 +2077,7 @@ bool SystemStatusFlagPrimary;
 bool SystemStatusFlagSecondary;
 uint8_t SystemStatusFlagTertiary;
 uint8_t SystemStatusFlagQuaternary;
-uint8_t ResourceBufferPool;
+uint8_t ResourceBufferPoolSize;
 uint8_t ResourceBufferConfigPrimary;
 uint8_t ResourceBufferConfigSecondary;
 uint8_t ResourceBufferConfigTertiary;
@@ -2136,8 +2133,7 @@ uint8_t SystemMemoryConfigDataTemplateAlternateTwo;
 uint8_t SystemResourceManager;
 uint8_t SystemEventHandler;
 
- void InitializeSystemLogging(void);
-/**
+ /**
  * @brief 初始化系统日志
  * 
  * 该函数负责初始化系统的日志记录功能
@@ -17125,25 +17121,32 @@ uint8_t8 ProcessResourceDataNormalizationSimple(void)
 
 
 
- a059(uint8_t4 param_1)
-a059(uint8_t4 param_1)
-
+ /**
+ * @brief 验证资源属性并处理资源哈希
+ * 
+ * 该函数负责验证资源的各种属性，并处理资源的哈希值
+ * 检查资源属性的有效性，并根据哈希值进行相应的处理
+ * 
+ * @param resourceId 资源ID，用于标识要验证的资源
+ * @return 无返回值
+ * @note 此函数会在资源验证过程中调用多个资源属性检查函数
+ */
+void ValidateResourcePropertiesAndProcessHash(uint8_t4 resourceId)
 {
   uint resourceHash;
-  uint8_t8 *pvalidationResult;
-  int iVar3;
-  longlong unaff_RBX;
-  longlong unaff_RBP;
-  longlong lVar4;
-  longlong unaff_RDI;
-  uint8_t8 uVar5;
-  int iVar6;
-  uint8_t4 extraout_XMM0_Da;
-  uint8_t4 extraout_XMM0_Da_00;
-  uint8_t4 extraout_XMM0_Da_01;
-  uint8_t4 extraout_XMM0_Da_02;
-  uint8_t4 extraout_XMM0_Da_03;
-  uint8_t4 extraout_XMM0_Da_04;
+  uint8_t8 *validationResult;
+  int propertyCheckResult;
+  longlong resourceContextBase;
+  longlong hashProcessingBase;
+  longlong resourceEntryPointer;
+  longlong resourceDataPointer;
+  uint8_t8 hashType;
+  int propertyIndex;
+  uint8_t4 resourceProperty1;
+  uint8_t4 resourceProperty2;
+  uint8_t4 resourceProperty3;
+  uint8_t4 resourceProperty4;
+  uint8_t4 resourceProperty5;
   
   iVar6 = 0;
   if (0 < *(int *)(unaff_RDI + 0x1a0)) {
@@ -84382,7 +84385,6 @@ void InitializeSystemDataStructureJ(void)
  * 这是系统数据结构初始化的一部分
  */
 void InitializeSystemDataStructureK(void)
-void InitializeSystemDataStructureK(void)
 
 {
   SystemDataPointer001 = &SystemDataStructure;
@@ -84400,7 +84402,6 @@ void InitializeSystemDataStructureK(void)
  * 该函数负责将全局指针变量_DAT_180bf6590设置为指向SystemDataStructure001
  * 这是系统数据结构初始化的一部分
  */
-void InitializeSystemDataStructureL(void)
 void InitializeSystemDataStructureL(void)
 
 {
@@ -86398,11 +86399,6 @@ void InitializeSystemDataStructureCJ(void)
 
 
  /**
- * 初始化系统数据结构CK
- * 设置全局系统数据结构指针，用于系统初始化
- */
-void InitializeSystemDataStructureCK(void)
-/**
  * 初始化系统数据结构CK
  * 设置全局系统数据结构指针，用于系统初始化
  */
