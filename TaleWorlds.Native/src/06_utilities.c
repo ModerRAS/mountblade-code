@@ -53,8 +53,6 @@ void* GlobalModuleBConfiguration;
 uint32_t GlobalModuleBStatus;
 void* GlobalModuleBHandle;
 void* GlobalModuleBContext;
-
- void InitializeGlobalModuleC(void)
 /**
  * @brief 初始化全局模块C
  * 
@@ -68,7 +66,7 @@ uint32_t GlobalModuleCStatus;
 void* GlobalModuleCHandle;
 void* GlobalModuleCContext;
 
- void InitializeGlobalModuleD(void)
+
 /**
  * @brief 初始化全局模块D
  * 
@@ -81,7 +79,7 @@ void* GlobalModuleDConfiguration;
 uint32_t GlobalModuleDStatus;
 void* GlobalModuleDHandle;
 
- void InitializeGlobalModuleE(void)
+
 /**
  * @brief 初始化全局模块E
  * 
@@ -4591,48 +4589,65 @@ void ReturnEmptyFunction(void)
 
 
 
-undefined8 FUN_180890d60(longlong param_1)
+/**
+ * @brief 验证并处理对象句柄
+ * 
+ * 该函数负责验证对象句柄的有效性，并执行相应的处理操作
+ * 主要用于对象管理和资源清理
+ * 
+ * @param objectHandle 对象句柄指针
+ * @return 处理结果，成功返回0，失败返回错误码
+ */
+uint64_t ValidateAndProcessObjectHandle(uint64_t objectHandle)
 
 {
-  undefined8 uVar1;
-  longlong lStackX_8;
+  uint64_t validationResult;
+  int64_t stackOffset;
   
-  uVar1 = func_0x00018088c530(*(undefined4 *)(param_1 + 0x10),&lStackX_8);
-  if ((int)uVar1 != 0) {
-    return uVar1;
+  validationResult = func_0x00018088c530(*(uint32_t *)(objectHandle + 0x10),&stackOffset);
+  if ((int)validationResult != 0) {
+    return validationResult;
   }
-  if (lStackX_8 == 0) {
-    lStackX_8 = 0;
+  if (stackOffset == 0) {
+    stackOffset = 0;
   }
   else {
-    lStackX_8 = lStackX_8 + -8;
+    stackOffset = stackOffset + -8;
   }
-  if (*(longlong *)(lStackX_8 + 0x10) == 0) {
+  if (*(int64_t *)(stackOffset + 0x10) == 0) {
     return 0x1c;
   }
                     // WARNING: Subroutine does not return
-  FUN_180862e00(*(longlong *)(lStackX_8 + 0x10),1);
+  FUN_180862e00(*(int64_t *)(stackOffset + 0x10),1);
 }
 
 
 
-undefined4 FUN_180890d83(void)
+/**
+ * @brief 验证并处理当前对象句柄
+ * 
+ * 该函数负责验证当前寄存器中的对象句柄，并执行相应的处理操作
+ * 主要用于对象管理和资源清理
+ * 
+ * @return 处理结果，成功返回0，失败返回错误码
+ */
+uint32_t ValidateAndProcessCurrentObjectHandle(void)
 
 {
-  longlong in_RAX;
-  longlong lVar1;
+  int64_t currentRegister;
+  int64_t processedValue;
   
-  if (in_RAX == 0) {
-    lVar1 = 0;
+  if (currentRegister == 0) {
+    processedValue = 0;
   }
   else {
-    lVar1 = in_RAX + -8;
+    processedValue = currentRegister + -8;
   }
-  if (*(longlong *)(lVar1 + 0x10) == 0) {
+  if (*(int64_t *)(processedValue + 0x10) == 0) {
     return 0x1c;
   }
                     // WARNING: Subroutine does not return
-  FUN_180862e00(*(longlong *)(lVar1 + 0x10),1);
+  FUN_180862e00(*(int64_t *)(processedValue + 0x10),1);
 }
 
 
@@ -4670,48 +4685,65 @@ void ReturnNoOperation(void)
 
 
 
-undefined8 FUN_180890e10(longlong param_1)
+/**
+ * @brief 验证并处理对象句柄扩展
+ * 
+ * 该函数负责验证对象句柄的有效性，并执行相应的处理操作
+ * 这是ValidateAndProcessObjectHandle的扩展版本
+ * 
+ * @param extendedObjectHandle 扩展对象句柄指针
+ * @return 处理结果，成功返回0，失败返回错误码
+ */
+uint64_t ValidateAndProcessExtendedObjectHandle(uint64_t extendedObjectHandle)
 
 {
-  undefined8 uVar1;
-  longlong lStackX_8;
+  uint64_t validationResult;
+  int64_t stackOffset;
   
-  uVar1 = func_0x00018088c530(*(undefined4 *)(param_1 + 0x10),&lStackX_8);
-  if ((int)uVar1 != 0) {
-    return uVar1;
+  validationResult = func_0x00018088c530(*(uint32_t *)(extendedObjectHandle + 0x10),&stackOffset);
+  if ((int)validationResult != 0) {
+    return validationResult;
   }
-  if (lStackX_8 == 0) {
-    lStackX_8 = 0;
+  if (stackOffset == 0) {
+    stackOffset = 0;
   }
   else {
-    lStackX_8 = lStackX_8 + -8;
+    stackOffset = stackOffset + -8;
   }
-  if (*(longlong *)(lStackX_8 + 0x10) == 0) {
+  if (*(int64_t *)(stackOffset + 0x10) == 0) {
     return 0x1c;
   }
                     // WARNING: Subroutine does not return
-  FUN_180862e00(*(longlong *)(lStackX_8 + 0x10),1);
+  FUN_180862e00(*(int64_t *)(stackOffset + 0x10),1);
 }
 
 
 
-undefined4 FUN_180890e33(void)
+/**
+ * @brief 验证并处理当前对象句柄扩展
+ * 
+ * 该函数负责验证当前寄存器中的对象句柄，并执行相应的处理操作
+ * 这是ValidateAndProcessCurrentObjectHandle的扩展版本
+ * 
+ * @return 处理结果，成功返回0，失败返回错误码
+ */
+uint32_t ValidateAndProcessCurrentObjectHandleExtended(void)
 
 {
-  longlong in_RAX;
-  longlong lVar1;
+  int64_t currentRegister;
+  int64_t processedValue;
   
-  if (in_RAX == 0) {
-    lVar1 = 0;
+  if (currentRegister == 0) {
+    processedValue = 0;
   }
   else {
-    lVar1 = in_RAX + -8;
+    processedValue = currentRegister + -8;
   }
-  if (*(longlong *)(lVar1 + 0x10) == 0) {
+  if (*(int64_t *)(processedValue + 0x10) == 0) {
     return 0x1c;
   }
                     // WARNING: Subroutine does not return
-  FUN_180862e00(*(longlong *)(lVar1 + 0x10),1);
+  FUN_180862e00(*(int64_t *)(processedValue + 0x10),1);
 }
 
 
@@ -4749,27 +4781,36 @@ void SystemCleanupHandler(void)
 
 
 
-undefined8 FUN_180890ee0(longlong param_1)
+/**
+ * @brief 验证并处理高级对象句柄
+ * 
+ * 该函数负责验证高级对象句柄的有效性，并执行相应的处理操作
+ * 主要用于高级对象管理和资源清理
+ * 
+ * @param advancedObjectHandle 高级对象句柄指针
+ * @return 处理结果，成功返回0，失败返回错误码
+ */
+uint64_t ValidateAndProcessAdvancedObjectHandle(uint64_t advancedObjectHandle)
 
 {
-  undefined8 uVar1;
-  longlong lStackX_8;
+  uint64_t validationResult;
+  int64_t stackOffset;
   
-  uVar1 = func_0x00018088c530(*(undefined4 *)(param_1 + 0x10),&lStackX_8);
-  if ((int)uVar1 != 0) {
-    return uVar1;
+  validationResult = func_0x00018088c530(*(uint32_t *)(advancedObjectHandle + 0x10),&stackOffset);
+  if ((int)validationResult != 0) {
+    return validationResult;
   }
-  if (lStackX_8 == 0) {
-    lStackX_8 = 0;
+  if (stackOffset == 0) {
+    stackOffset = 0;
   }
   else {
-    lStackX_8 = lStackX_8 + -8;
+    stackOffset = stackOffset + -8;
   }
-  if (*(longlong *)(lStackX_8 + 0x10) == 0) {
+  if (*(int64_t *)(stackOffset + 0x10) == 0) {
     return 0x1c;
   }
                     // WARNING: Subroutine does not return
-  FUN_180862e00(*(longlong *)(lStackX_8 + 0x10),1);
+  FUN_180862e00(*(int64_t *)(stackOffset + 0x10),1);
 }
 
 
