@@ -3246,7 +3246,7 @@ uint8_t SystemDataBuffer002;
  uint8_t MonitorResourcePerformance;
 uint8_t MonitorResourcePerformance;
 uint8_t SystemMemoryConfigDataTemplateSecurepecialC;
-uint8_t SystemControlByteC;
+uint8_t SystemControlByteControl;
 uint8_t SystemDataBufferD;
 uint8_t SystemMemoryFlagEnabled;
 uint8_t SystemSyncFlagFast;
