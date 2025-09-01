@@ -18,6 +18,101 @@ void* GlobalUnknownData;
 // 系统内存池 - 用于动态内存分配
 void* SystemMemoryPool;
 
+// 字符串处理器数据基址 - 用于存储字符串处理器的数据结构
+void* StringProcessorDataBaseD;
+void* StringProcessorDataBaseE;
+void* StringProcessorDataBaseF;
+void* StringProcessorDataBaseN;
+void* StringProcessorDataBaseO;
+void* StringProcessorDataBaseP;
+void* StringProcessorDataBaseQ;
+void* StringProcessorDataBaseR;
+void* StringProcessorDataBaseS;
+void* StringProcessorDataBaseT;
+void* StringProcessorDataBaseU;
+void* StringProcessorDataBaseV;
+void* StringProcessorDataBaseW;
+void* StringProcessorDataBaseX;
+void* StringProcessorDataBaseY;
+void* StringProcessorDataBaseZ;
+void* StringProcessorDataBaseAA;
+void* StringProcessorDataBaseAB;
+void* StringProcessorDataBaseAC;
+
+// 字符串处理器数据模板 - 用于存储字符串处理器的模板数据
+void* StringProcessorDataTemplateD;
+void* StringProcessorDataTemplateE;
+void* StringProcessorDataTemplateF;
+void* StringProcessorDataTemplateN;
+void* StringProcessorDataTemplateO;
+void* StringProcessorDataTemplateP;
+void* StringProcessorDataTemplateQ;
+void* StringProcessorDataTemplateR;
+void* StringProcessorDataTemplateS;
+void* StringProcessorDataTemplateT;
+void* StringProcessorDataTemplateU;
+void* StringProcessorDataTemplateV;
+void* StringProcessorDataTemplateW;
+void* StringProcessorDataTemplateX;
+void* StringProcessorDataTemplateY;
+void* StringProcessorDataTemplateZ;
+void* StringProcessorDataTemplateAA;
+void* StringProcessorDataTemplateAB;
+void* StringProcessorDataTemplateAC;
+
+// 全局字符串数据指针和缓冲区 - 用于存储全局字符串数据
+void* GlobalStringDataPointerF;
+void* GlobalStringDataBufferF;
+void* GlobalStringDataLengthF;
+
+// 系统配置数据指针和缓冲区 - 用于存储系统配置数据
+void* SystemConfigDataPointerA;
+void* SystemConfigDataPointerB;
+void* SystemConfigDataPointerC;
+void* SystemConfigDataPointerD;
+void* SystemConfigDataPointerE;
+void* SystemConfigDataPointerF;
+void* SystemConfigDataPointerG;
+void* SystemConfigDataPointerH;
+void* SystemConfigDataPointerI;
+void* SystemConfigDataPointerJ;
+void* SystemConfigDataPointerK;
+void* SystemConfigDataPointerL;
+void* SystemConfigDataPointerM;
+void* SystemConfigDataPointerN;
+void* SystemConfigDataPointerO;
+void* SystemConfigDataPointerP;
+void* SystemConfigDataPointerQ;
+void* SystemConfigDataPointerR;
+void* SystemConfigDataPointerS;
+void* SystemConfigDataPointerT;
+
+// 系统配置数据缓冲区 - 用于存储系统配置数据
+void* SystemConfigDataBufferA;
+void* SystemConfigDataBufferB;
+void* SystemConfigDataBufferC;
+void* SystemConfigDataBufferD;
+void* SystemConfigDataBufferE;
+void* SystemConfigDataBufferF;
+void* SystemConfigDataBufferG;
+void* SystemConfigDataBufferH;
+void* SystemConfigDataBufferI;
+void* SystemConfigDataBufferJ;
+void* SystemConfigDataBufferK;
+
+// 系统配置数据长度 - 用于存储系统配置数据的长度
+void* SystemConfigDataLengthA;
+void* SystemConfigDataLengthB;
+void* SystemConfigDataLengthC;
+void* SystemConfigDataLengthD;
+void* SystemConfigDataLengthE;
+void* SystemConfigDataLengthF;
+void* SystemConfigDataLengthG;
+void* SystemConfigDataLengthH;
+void* SystemConfigDataLengthI;
+void* SystemConfigDataLengthJ;
+void* SystemConfigDataLengthK;
+
 // 系统配置缓冲区组 - 用于存储各种系统配置数据
 char SystemConfigBufferA[0x40];
 char SystemConfigBufferB[0x40];
@@ -742,173 +837,173 @@ int InitializeMultiStringProcessorSystem(void)
   uint64_t systemFlags;
   
   // 初始化字符串处理器N
-  g_stringProcessorN_Base = &unknownData_1809fcc28;
+  g_stringProcessorN_Base = &StringProcessorDataBaseN;
   g_stringProcessorN_BufferPtr = &g_stringProcessorN_Buffer;
   g_stringProcessorN_Buffer = 0;
   g_stringProcessorN_Length = 0xb;
-  strcpy_s(&g_stringProcessorN_Buffer,0x80,&unknownData_180a0fd60,systemFlags,SystemMutexFlags);
+  strcpy_s(&g_stringProcessorN_Buffer,0x80,&StringProcessorDataTemplateN,systemFlags,SystemMutexFlags);
   
   // 初始化字符串处理器O
-  g_stringProcessorO_Base = &unknownData_1809fcc28;
+  g_stringProcessorO_Base = &StringProcessorDataBaseO;
   g_stringProcessorO_BufferPtr = &g_stringProcessorO_Buffer;
   g_stringProcessorO_Buffer = 0;
   g_stringProcessorO_Length = 0x10;
-  strcpy_s(&g_stringProcessorO_Buffer,0x80,&unknownData_180a0fd70);
+  strcpy_s(&g_stringProcessorO_Buffer,0x80,&StringProcessorDataTemplateO);
   
   // 初始化字符串处理器P
-  g_stringProcessorP_Base = &unknownData_1809fcc28;
+  g_stringProcessorP_Base = &StringProcessorDataBaseP;
   g_stringProcessorP_BufferPtr = &g_stringProcessorP_Buffer;
   g_stringProcessorP_Buffer = 0;
   g_stringProcessorP_Length = 0xd;
-  strcpy_s(&g_stringProcessorP_Buffer,0x80,&unknownData_180a0fd40);
+  strcpy_s(&g_stringProcessorP_Buffer,0x80,&StringProcessorDataTemplateP);
   
   // 初始化字符串处理器Q
-  g_stringProcessorQ_Base = &unknownData_1809fcc28;
+  g_stringProcessorQ_Base = &StringProcessorDataBaseQ;
   g_stringProcessorQ_BufferPtr = &g_stringProcessorQ_Buffer;
   g_stringProcessorQ_Buffer = 0;
   g_stringProcessorQ_Length = 0xd;
-  strcpy_s(&g_stringProcessorQ_Buffer,0x80,&unknownData_180a0fd50);
+  strcpy_s(&g_stringProcessorQ_Buffer,0x80,&StringProcessorDataTemplateQ);
   
   // 初始化字符串处理器R
-  g_stringProcessorR_Base = &unknownData_1809fcc28;
+  g_stringProcessorR_Base = &StringProcessorDataBaseR;
   g_stringProcessorR_BufferPtr = &g_stringProcessorR_Buffer;
   g_stringProcessorR_Buffer = 0;
   g_stringProcessorR_Length = 0xc;
-  strcpy_s(&g_stringProcessorR_Buffer,0x80,&unknownData_180a0fda8);
+  strcpy_s(&g_stringProcessorR_Buffer,0x80,&StringProcessorDataTemplateR);
   
   // 初始化字符串处理器S
-  g_stringProcessorS_Base = &unknownData_1809fcc28;
+  g_stringProcessorS_Base = &StringProcessorDataBaseS;
   g_stringProcessorS_BufferPtr = &g_stringProcessorS_Buffer;
   g_stringProcessorS_Buffer = 0;
   g_stringProcessorS_Length = 0x13;
-  strcpy_s(&g_stringProcessorS_Buffer,0x80,&unknownData_180a0fdb8);
+  strcpy_s(&g_stringProcessorS_Buffer,0x80,&StringProcessorDataTemplateS);
   
   // 初始化字符串处理器T
-  g_stringProcessorT_Base = &unknownData_1809fcc28;
+  g_stringProcessorT_Base = &StringProcessorDataBaseT;
   g_stringProcessorT_BufferPtr = &g_stringProcessorT_Buffer;
   g_stringProcessorT_Buffer = 0;
   g_stringProcessorT_Length = 10;
-  strcpy_s(&g_stringProcessorT_Buffer,0x80,&unknownData_180a0fd88);
+  strcpy_s(&g_stringProcessorT_Buffer,0x80,&StringProcessorDataTemplateT);
   
   // 初始化字符串处理器U
-  g_stringProcessorU_Base = &unknownData_1809fcc28;
+  g_stringProcessorU_Base = &StringProcessorDataBaseU;
   g_stringProcessorU_BufferPtr = &g_stringProcessorU_Buffer;
   g_stringProcessorU_Buffer = 0;
   g_stringProcessorU_Length = 0xc;
-  strcpy_s(&g_stringProcessorU_Buffer,0x80,&unknownData_180a0fd98);
+  strcpy_s(&g_stringProcessorU_Buffer,0x80,&StringProcessorDataTemplateU);
   
   // 初始化字符串处理器V
-  g_stringProcessorV_Base = &unknownData_1809fcc28;
+  g_stringProcessorV_Base = &StringProcessorDataBaseV;
   g_stringProcessorV_BufferPtr = &g_stringProcessorV_Buffer;
   g_stringProcessorV_Buffer = 0;
   g_stringProcessorV_Length = 0x11;
-  strcpy_s(&g_stringProcessorV_Buffer,0x80,&unknownData_180a0fe10);
+  strcpy_s(&g_stringProcessorV_Buffer,0x80,&StringProcessorDataTemplateV);
   
   // 初始化字符串处理器W
-  g_stringProcessorW_Base = &unknownData_1809fcc28;
+  g_stringProcessorW_Base = &StringProcessorDataBaseW;
   g_stringProcessorW_BufferPtr = &g_stringProcessorW_Buffer;
   g_stringProcessorW_Buffer = 0;
   g_stringProcessorW_Length = 0x11;
-  strcpy_s(&g_stringProcessorW_Buffer,0x80,&unknownData_180a0fe28);
+  strcpy_s(&g_stringProcessorW_Buffer,0x80,&StringProcessorDataTemplateW);
   
   // 初始化字符串处理器X
-  g_stringProcessorX_Base = &unknownData_1809fcc28;
+  g_stringProcessorX_Base = &StringProcessorDataBaseX;
   g_stringProcessorX_BufferPtr = &g_stringProcessorX_Buffer;
   g_stringProcessorX_Buffer = 0;
   g_stringProcessorX_Length = 0x19;
-  strcpy_s(&g_stringProcessorX_Buffer,0x80,&unknownData_180a0fdd0);
+  strcpy_s(&g_stringProcessorX_Buffer,0x80,&StringProcessorDataTemplateX);
   
   // 初始化字符串处理器Y
-  g_stringProcessorY_Base = &unknownData_1809fcc28;
+  g_stringProcessorY_Base = &StringProcessorDataBaseY;
   g_stringProcessorY_BufferPtr = &g_stringProcessorY_Buffer;
   g_stringProcessorY_Buffer = 0;
   g_stringProcessorY_Length = 0x1a;
-  strcpy_s(&g_stringProcessorY_Buffer,0x80,&unknownData_180a0fdf0);
+  strcpy_s(&g_stringProcessorY_Buffer,0x80,&StringProcessorDataTemplateY);
   
   // 初始化字符串处理器Z
-  g_stringProcessorZ_Base = &unknownData_1809fcc28;
+  g_stringProcessorZ_Base = &StringProcessorDataBaseZ;
   g_stringProcessorZ_BufferPtr = &g_stringProcessorZ_Buffer;
   g_stringProcessorZ_Buffer = 0;
   g_stringProcessorZ_Length = 0x1b;
-  strcpy_s(&g_stringProcessorZ_Buffer,0x80,&unknownData_180a0fe70);
+  strcpy_s(&g_stringProcessorZ_Buffer,0x80,&StringProcessorDataTemplateZ);
   
   // 初始化字符串处理器AA
-  g_stringProcessorAA_Base = &unknownData_1809fcc28;
+  g_stringProcessorAA_Base = &StringProcessorDataBaseAA;
   g_stringProcessorAA_BufferPtr = &g_stringProcessorAA_Buffer;
   g_stringProcessorAA_Buffer = 0;
   g_stringProcessorAA_Length = 0xc;
-  strcpy_s(&g_stringProcessorAA_Buffer,0x80,&unknownData_180a0fe90);
+  strcpy_s(&g_stringProcessorAA_Buffer,0x80,&StringProcessorDataTemplateAA);
   
   // 初始化字符串处理器AB
-  g_stringProcessorAB_Base = &unknownData_1809fcc28;
+  g_stringProcessorAB_Base = &StringProcessorDataBaseAB;
   g_stringProcessorAB_BufferPtr = &g_stringProcessorAB_Buffer;
   g_stringProcessorAB_Buffer = 0;
   g_stringProcessorAB_Length = 0x11;
-  strcpy_s(&g_stringProcessorAB_Buffer,0x80,&unknownData_180a0fe40);
+  strcpy_s(&g_stringProcessorAB_Buffer,0x80,&StringProcessorDataTemplateAB);
   
   // 初始化字符串处理器AC
-  g_stringProcessorAC_Base = &unknownData_1809fcc28;
+  g_stringProcessorAC_Base = &StringProcessorDataBaseAC;
   g_stringProcessorAC_BufferPtr = &g_stringProcessorAC_Buffer;
   g_stringProcessorAC_Buffer = 0;
   g_stringProcessorAC_Length = 0x11;
-  strcpy_s(&g_stringProcessorAC_Buffer,0x80,&unknownData_180a0fe58);
+  strcpy_s(&g_stringProcessorAC_Buffer,0x80,&StringProcessorDataTemplateAC);
   
   CallbackResult = RegisterSystemCallback(InitializeMultiStringProcessorSystem_Callback);
   return (CallbackResult != 0) - 1;
 }
-  DAT_180bf7ea8 = 0;
-  _DAT_180bf7ea0 = 0x13;
-  strcpy_s(&DAT_180bf7ea8,0x40,&SystemConfigStringA,StringProcessorFlags,SystemMutexFlags);
-  _DAT_180bf7ee8 = &SystemMemoryPool;
-  _DAT_180bf7ef0 = &DAT_180bf7f00;
-  DAT_180bf7f00 = 0;
-  _DAT_180bf7ef8 = 0xd;
-  strcpy_s(&DAT_180bf7f00,0x40,&SystemConfigStringB);
-  _DAT_180bf7f40 = &SystemMemoryPool;
-  _DAT_180bf7f48 = &DAT_180bf7f58;
-  DAT_180bf7f58 = 0;
-  _DAT_180bf7f50 = 0x17;
-  strcpy_s(&DAT_180bf7f58,0x40,&SystemConfigStringC);
-  _DAT_180bf7f98 = &SystemMemoryPool;
-  _DAT_180bf7fa0 = &DAT_180bf7fb0;
-  DAT_180bf7fb0 = 0;
-  _DAT_180bf7fa8 = 0xd;
-  strcpy_s(&DAT_180bf7fb0,0x40,&SystemConfigStringD);
-  _DAT_180bf7ff0 = &SystemMemoryPool;
-  _DAT_180bf7ff8 = &DAT_180bf8008;
-  DAT_180bf8008 = 0;
-  _DAT_180bf8000 = 0xc;
-  strcpy_s(&DAT_180bf8008,0x40,&UnknownConfigTemplateA);
-  _DAT_180bf8048 = &SystemMemoryPool;
-  _DAT_180bf8050 = &DAT_180bf8060;
-  DAT_180bf8060 = 0;
-  _DAT_180bf8058 = 0xc;
-  strcpy_s(&DAT_180bf8060,0x40,&UnknownConfigTemplateB);
-  _DAT_180bf80a0 = &SystemMemoryPool;
-  _DAT_180bf80a8 = &DAT_180bf80b8;
-  DAT_180bf80b8 = 0;
-  _DAT_180bf80b0 = 0x10;
-  strcpy_s(&DAT_180bf80b8,0x40,&UnknownConfigTemplateC);
-  _DAT_180bf80f8 = &SystemMemoryPool;
-  _DAT_180bf8100 = &DAT_180bf8110;
-  DAT_180bf8110 = 0;
-  _DAT_180bf8108 = 0x1f;
-  strcpy_s(&DAT_180bf8110,0x40,&UNK_180a0cba8);
-  _DAT_180bf8150 = &SystemMemoryPool;
-  _DAT_180bf8158 = &DAT_180bf8168;
-  DAT_180bf8168 = 0;
-  _DAT_180bf8160 = 0x17;
-  strcpy_s(&DAT_180bf8168,0x40,&UNK_180a05740);
-  _DAT_180bf81a8 = &SystemMemoryPool;
-  _DAT_180bf81b0 = &DAT_180bf81c0;
-  DAT_180bf81c0 = 0;
-  _DAT_180bf81b8 = 0x13;
-  strcpy_s(&DAT_180bf81c0,0x40,&UNK_180a0cbc8);
-  _DAT_180bf8200 = &SystemMemoryPool;
-  _DAT_180bf8208 = &DAT_180bf8218;
-  DAT_180bf8218 = 0;
-  _DAT_180bf8210 = 0x14;
-  strcpy_s(&DAT_180bf8218,0x40,&UNK_180a0cc30);
+  SystemConfigDataBufferA = 0;
+  SystemConfigDataLengthA = 0x13;
+  strcpy_s(&SystemConfigDataBufferA,0x40,&SystemConfigStringA,StringProcessorFlags,SystemMutexFlags);
+  SystemConfigDataPointerA = &SystemMemoryPool;
+  SystemConfigDataPointerB = &SystemConfigDataBufferB;
+  SystemConfigDataBufferB = 0;
+  SystemConfigDataLengthB = 0xd;
+  strcpy_s(&SystemConfigDataBufferB,0x40,&SystemConfigStringB);
+  SystemConfigDataPointerC = &SystemMemoryPool;
+  SystemConfigDataPointerD = &SystemConfigDataBufferC;
+  SystemConfigDataBufferC = 0;
+  SystemConfigDataLengthC = 0x17;
+  strcpy_s(&SystemConfigDataBufferC,0x40,&SystemConfigStringC);
+  SystemConfigDataPointerE = &SystemMemoryPool;
+  SystemConfigDataPointerF = &SystemConfigDataBufferD;
+  SystemConfigDataBufferD = 0;
+  SystemConfigDataLengthD = 0xd;
+  strcpy_s(&SystemConfigDataBufferD,0x40,&SystemConfigStringD);
+  SystemConfigDataPointerG = &SystemMemoryPool;
+  SystemConfigDataPointerH = &SystemConfigDataBufferE;
+  SystemConfigDataBufferE = 0;
+  SystemConfigDataLengthE = 0xc;
+  strcpy_s(&SystemConfigDataBufferE,0x40,&UnknownConfigTemplateA);
+  SystemConfigDataPointerI = &SystemMemoryPool;
+  SystemConfigDataPointerJ = &SystemConfigDataBufferF;
+  SystemConfigDataBufferF = 0;
+  SystemConfigDataLengthF = 0xc;
+  strcpy_s(&SystemConfigDataBufferF,0x40,&UnknownConfigTemplateB);
+  SystemConfigDataPointerK = &SystemMemoryPool;
+  SystemConfigDataPointerL = &SystemConfigDataBufferG;
+  SystemConfigDataBufferG = 0;
+  SystemConfigDataLengthG = 0x10;
+  strcpy_s(&SystemConfigDataBufferG,0x40,&UnknownConfigTemplateC);
+  SystemConfigDataPointerM = &SystemMemoryPool;
+  SystemConfigDataPointerN = &SystemConfigDataBufferH;
+  SystemConfigDataBufferH = 0;
+  SystemConfigDataLengthH = 0x1f;
+  strcpy_s(&SystemConfigDataBufferH,0x40,&UnknownConfigTemplateD);
+  SystemConfigDataPointerO = &SystemMemoryPool;
+  SystemConfigDataPointerP = &SystemConfigDataBufferI;
+  SystemConfigDataBufferI = 0;
+  SystemConfigDataLengthI = 0x17;
+  strcpy_s(&SystemConfigDataBufferI,0x40,&UnknownConfigTemplateE);
+  SystemConfigDataPointerQ = &SystemMemoryPool;
+  SystemConfigDataPointerR = &SystemConfigDataBufferJ;
+  SystemConfigDataBufferJ = 0;
+  SystemConfigDataLengthJ = 0x13;
+  strcpy_s(&SystemConfigDataBufferJ,0x40,&UnknownConfigTemplateF);
+  SystemConfigDataPointerS = &SystemMemoryPool;
+  SystemConfigDataPointerT = &SystemConfigDataBufferK;
+  SystemConfigDataBufferK = 0;
+  SystemConfigDataLengthK = 0x14;
+  strcpy_s(&SystemConfigDataBufferK,0x40,&UnknownConfigTemplateG);
   _DAT_180bf8258 = &SystemMemoryPool;
   _DAT_180bf8260 = &DAT_180bf8270;
   DAT_180bf8270 = 0;
