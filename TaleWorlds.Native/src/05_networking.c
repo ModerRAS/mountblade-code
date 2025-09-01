@@ -5994,7 +5994,7 @@ void ProcessNetworkDataBufferOperations(ulonglong connectionContext,NetworkByte 
     uStack_150 = *(NetworkStatus *)(lStack_168 + 0x18);
     uStack_14c = *(NetworkStatus *)(lStack_168 + 0x1c);
     puStack_188 = param_4;
-    FUN_180882160(uStack_170,&uStack_158,packetData,dataSize);
+    ProcessNetworkConnectionDataStreamTransfer(uStack_170,&uStack_158,packetData,dataSize);
                     // WARNING: Subroutine does not return
     NetworkConnectionHandleRelease(&uStack_178);
   }
@@ -6102,7 +6102,7 @@ void ProcessNetworkPacketSecurityValidation(ulonglong connectionContext,NetworkB
                     // WARNING: Subroutine does not return
       NetworkSecurityGuardCleanup(uStack_28 ^ (ulonglong)auStack_178);
     }
-    FUN_18074be30(auStack_128,0x100,0);
+    ProcessNetworkBufferDataWithSecurity(auStack_128,0x100,0);
     puStack_158 = auStack_128;
                     // WARNING: Subroutine does not return
     LogNetworkConnectionError(0x1f,0xd,connectionContext,&UNK_180984948);
@@ -6304,7 +6304,7 @@ void GetNetworkConnectionStatusData(ulonglong connectionContext,uint packetData,
   }
   networkStatus1 = ProcessNetworkDataValidation(auStack_138,0x100,packetData);
   networkStatus2 = ProcessNetworkBufferData(auStack_138 + networkStatus1,0x100 - networkStatus1,&g_NetworkBufferDataTemplate);
-  FUN_18074bac0(auStack_138 + (networkStatus1 + networkStatus2),0x100 - (networkStatus1 + networkStatus2),dataSize);
+  ProcessNetworkBufferDataWithSize(auStack_138 + (networkStatus1 + networkStatus2),0x100 - (networkStatus1 + networkStatus2),dataSize);
   puStack_168 = auStack_138;
                     // WARNING: Subroutine does not return
   LogNetworkConnectionError(0x1f,0xd,connectionContext,&UNK_180984928);
@@ -7105,7 +7105,7 @@ void ProcessNetworkPacketTransfer(ulonglong connectionContext,NetworkByte *packe
                     // WARNING: Subroutine does not return
       NetworkSecurityGuardCheck(uStack_18 ^ (ulonglong)networkStackBuffer);
     }
-    FUN_18074be30(auStack_118,0x100,0);
+    ProcessNetworkBufferDataWithSecurity(auStack_118,0x100,0);
     puStack_148 = auStack_118;
                     // WARNING: Subroutine does not return
     LogNetworkConnectionError(0x1f,0xc,connectionContext,&UNK_1809847f8);
@@ -7363,7 +7363,7 @@ void ProcessNetworkConnectionContextPacket(ulonglong connectionContext,NetworkBy
                     // WARNING: Subroutine does not return
       NetworkSecurityGuardCheck(uStack_18 ^ (ulonglong)networkStackBuffer);
     }
-    FUN_18074be30(auStack_118,0x100,0);
+    ProcessNetworkBufferDataWithSecurity(auStack_118,0x100,0);
     puStack_148 = auStack_118;
                     // WARNING: Subroutine does not return
     LogNetworkConnectionError(0x1f,0xc,connectionContext,&UNK_1809847d8);
@@ -46964,7 +46964,7 @@ NetworkHandle FUN_18086825f(void)
 
 
 
-NetworkHandle FUN_180868270(longlong connectionContext,NetworkStatus *packetData,NetworkStatus *dataSize)
+NetworkHandle GetNetworkConnectionData(longlong connectionContext,NetworkStatus *packetData,NetworkStatus *dataSize)
 
 {
   NetworkStatus primaryNetworkFlag;
