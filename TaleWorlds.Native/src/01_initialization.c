@@ -17821,12 +17821,21 @@ int InitializeThreadSafetyMutex(void)
 
 
 
+/**
+ * @brief Wots主SDL入口点函数
+ * 
+ * 这是Wots系统的主SDL入口点函数，负责初始化和启动系统。
+ * 
+ * @param param_1 系统参数指针
+ * @return 无返回值
+ * @note 这是系统的主入口函数，处理SDL相关的初始化工作
+ */
 void WotsMainSDLL(void* param_1)
 
 {
-  void* auStackX_18 [2];
+  void* stackVariables [2];
   
-                    // 0x43d20  31  WotsMainSDLL
+  // SDL主入口点初始化
 
 /**
  * 初始化主系统控制器
