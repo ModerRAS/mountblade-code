@@ -3465,7 +3465,7 @@ LAB_18005122d:
     uStack_318 = 0x20000;
     puStack_320 = &UNK_1809fdfc0;
     pplStack_328 = (longlong **)&uStack_308;
-    FUN_180114450(&UNK_1809fd970,4,_DAT_180c86950 + 0x168c,&plStack_2f8);
+    RegisterSystemConfigurationParameter(&UNK_1809fd970,4,_DAT_180c86950 + 0x168c,&plStack_2f8);
     if (*(float *)(_DAT_180c86950 + 0x168c) == 0.0) {
       *(uint32_t *)(_DAT_180c86950 + 0x168c) = 0x3f800000;
     }
@@ -3552,10 +3552,10 @@ LAB_18005122d:
       do {
         uStack_2f0 = *(uint32_t *)(MemoryAddress3 + *pModuleInitializationResult4);
         ModuleInitializationResult2 = *(longlong *)(param_1 + 0x3c0) + 0x10;
-        FUN_180194a50(ModuleInitializationResult2,&uStack_2f0);
-        FUN_180194a50(ModuleInitializationResult2,(longlong)&uStack_2f0 + 1);
-        FUN_180194a50(ModuleInitializationResult2,(longlong)&uStack_2f0 + 2);
-        FUN_180194a50(ModuleInitializationResult2,(longlong)&uStack_2f0 + 3);
+        SetModuleParameter(ModuleInitializationResult2,&uStack_2f0);
+        SetModuleParameter(ModuleInitializationResult2,(longlong)&uStack_2f0 + 1);
+        SetModuleParameter(ModuleInitializationResult2,(longlong)&uStack_2f0 + 2);
+        SetModuleParameter(ModuleInitializationResult2,(longlong)&uStack_2f0 + 3);
         MemoryAddress0 = (int)MemoryAddress1 + 1;
         MemoryAddress1 = (ulonglong)MemoryAddress0;
         pModuleInitializationResult4 = (longlong *)(_DAT_180c868d0 + 0x2030);
@@ -3595,9 +3595,9 @@ LAB_18005122d:
     plStack_2f8 = (longlong *)0x0;
     uStack_308 = (longlong *)0x0;
     pplStack_328 = (longlong **)&cStack_300;
-    FUN_18016bdb0(ModuleInitializationResult2,&puStack_2e8,&plStack_2f8,&uStack_308);
+    ConfigureModuleInitialization(ModuleInitializationResult2,&puStack_2e8,&plStack_2f8,&uStack_308);
     if (*(char *)(ModuleInitializationResult2 + 0x60) != '\0') {
-      FUN_18016c970(ModuleInitializationResult2,&plStack_2f8,&uStack_308,acStack_2ff);
+      ValidateModuleInitialization(ModuleInitializationResult2,&plStack_2f8,&uStack_308,acStack_2ff);
     }
     if ((cStack_300 == '\0') && (acStack_2ff[0] == '\0')) {
       *(uint8_t *)(ModuleInitializationResult2 + 0x60) = 0;
@@ -3687,10 +3687,10 @@ uint64_t * InitializeMemoryBuffer(uint64_t *param_1)
     SystemBufferValidate(lVar2);
   }
   _DAT_180c86870 = 0;
-  FUN_180629020(_DAT_180c8ed10);
+  CleanupSystemDataStructure(_DAT_180c8ed10);
   lVar2 = _DAT_180c8ed10;
   if (_DAT_180c8ed10 != 0) {
-    FUN_180629020(_DAT_180c8ed10);
+    CleanupSystemDataStructure(_DAT_180c8ed10);
     _Mtx_destroy_in_situ();
     SystemBufferValidate(lVar2);
   }
@@ -3776,8 +3776,8 @@ uint HandleMutexOperations(void)
       DAT_180d49178 = 0;
       _DAT_180d49170 = 0;
       strcpy_s(&DAT_180d49178,0x80,&DAT_18098bc73,param_4,MemoryAddress);
-      FUN_1808fc820(FUN_1809417e0);
-      FUN_1808fcb30(&DAT_180d49158);
+      InitializeSystemCallback(FUN_1809417e0);
+      ConfigureSystemData(&DAT_180d49158);
       return &DAT_180d49160;
     }
   }
@@ -3802,9 +3802,9 @@ uint HandleMutexOperations(void)
   }
 LAB_1800d37d8:
   if (*(char *)(_DAT_180c86870 + 0xa0) != '\0') {
-    MemoryAddress4 = FUN_1800c4960(ModuleInitializationResult6);
+    MemoryAddress4 = AllocateSystemMemoryRegion(ModuleInitializationResult6);
     *(uint64_t *)(_DAT_180c86870 + 0xa8) = MemoryAddress4;
-    MemoryAddress4 = FUN_1800c4da0(ModuleInitializationResult6);
+    MemoryAddress4 = InitializeSystemMemoryBuffer(ModuleInitializationResult6);
     *(uint64_t *)(_DAT_180c86870 + 0xb0) = MemoryAddress4;
   }
   pcVar12 = _DAT_180c82868;
