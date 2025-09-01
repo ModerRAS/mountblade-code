@@ -29212,6 +29212,12 @@ LAB_180857c4e:
 
 
 // 函数: void NetworkSystemNoOperation(void)
+/**
+ * 网络系统空操作函数
+ * 
+ * 这是一个空操作函数，用于保持系统架构的完整性。
+ * 在某些情况下，可能需要一个什么都不做的函数来满足接口要求。
+ */
 void NetworkSystemNoOperation(void)
 
 {
@@ -29225,6 +29231,14 @@ void NetworkSystemNoOperation(void)
 
 
 // 函数: void NetworkConnectionStateManager(NetworkStatus connectionContext)
+/**
+ * 网络连接状态管理函数
+ * 
+ * 此函数管理网络连接的状态，包括连接的建立、维护和断开。
+ * 它会处理连接状态的变化，并执行相应的状态转换操作。
+ * 
+ * @param connectionContext 网络连接上下文，包含连接状态信息
+ */
 void NetworkConnectionStateManager(NetworkStatus connectionContext)
 
 {
@@ -29381,6 +29395,12 @@ NetworkHandle HandleNetworkConnectionError(longlong connectionContext, longlong 
  * @return 超时处理结果状态码
  */
 NetworkHandle HandleNetworkConnectionTimeout(longlong connectionContext);
+/**
+ * 网络连接清理函数
+ * 
+ * 此函数负责清理网络连接资源，释放内存和关闭连接。
+ * 在网络连接结束时调用，确保系统资源被正确释放。
+ */
 void NetworkConnectionCleanup(void)
 
 {
@@ -29412,6 +29432,18 @@ NetworkData * GetNetworkData(void)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
+/**
+ * 网络数据处理函数
+ * 
+ * 此函数处理网络数据的接收、解析和转发。
+ * 它会验证数据包的完整性，提取有效数据，并将其传递给相应的处理模块。
+ * 
+ * @param connectionContext 网络连接上下文
+ * @param packetData 数据包数据指针
+ * @param dataSize 数据包大小
+ * @param param_4 处理参数
+ * @return 处理结果状态码
+ */
 ulonglong NetworkDataProcessor(longlong connectionContext,uint *packetData,int dataSize,uint param_4)
 
 {
