@@ -1236,30 +1236,48 @@ undefined g_memoryProtectStatus;
 undefined g_memoryProtectData;
 undefined g_memoryProtectBuffer;
 
-// 函数: undefined FUN_180942400;
-undefined FUN_180942400;
-undefined UNK_180a22f40;
-undefined DAT_180bfa110;
-undefined DAT_180bfa118;
-undefined DAT_180bfa120;
-undefined DAT_180bfa128;
-undefined UNK_180a23018;
+// 函数: void GetMemoryProtection;
+/**
+ * @brief 获取内存保护信息
+ * 
+ * 该函数负责获取内存保护属性
+ * 查询内存区域的访问权限和保护状态
+ */
+void GetMemoryProtection;
+undefined g_getProtectContext;
+undefined g_getProtectConfig;
+undefined g_getProtectStatus;
+undefined g_getProtectData;
+undefined g_getProtectBuffer;
+undefined g_getProtectInfo;
 
-// 函数: undefined FUN_180942420;
-undefined FUN_180942420;
-undefined DAT_180bfa170;
-undefined DAT_180bfa178;
-undefined DAT_180bfa180;
-undefined DAT_180bfa188;
-undefined UNK_180a23000;
+// 函数: void FlushMemoryCache;
+/**
+ * @brief 刷新内存缓存
+ * 
+ * 该函数负责刷新系统内存缓存
+ * 确保内存数据同步到持久存储
+ */
+void FlushMemoryCache;
+undefined g_flushCacheConfig;
+undefined g_flushCacheStatus;
+undefined g_flushCacheHandle;
+undefined g_flushCacheData;
+undefined g_flushCacheContext;
 
-// 函数: undefined FUN_180942440;
-undefined FUN_180942440;
-undefined DAT_180bfa1d0;
-undefined DAT_180bfa1d8;
-undefined DAT_180bfa1e0;
-undefined DAT_180bfa1e8;
-undefined DAT_180a22fd0;
+// 函数: void InvalidateMemoryCache;
+/**
+ * @brief 使内存缓存失效
+ * 
+ * 该函数负责使系统内存缓存失效
+ * 清除缓存中的数据，强制重新加载
+ */
+void InvalidateMemoryCache;
+undefined g_invalidateCacheConfig;
+undefined g_invalidateCacheStatus;
+undefined g_invalidateCacheHandle;
+undefined g_invalidateCacheData;
+undefined g_invalidateCacheTable;
 
 // 函数: undefined FUN_180942460;
 undefined FUN_180942460;
