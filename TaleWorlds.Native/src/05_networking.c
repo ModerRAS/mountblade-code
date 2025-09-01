@@ -11921,7 +11921,7 @@ NetworkHandle * InitializeNetworkConnectionContext(NetworkHandle *connectionCont
   NetworkHandle *networkPointer2;
   
   InitializeNetworkSystem();
-  *connectionContext = &UNK_180984a30;
+  *connectionContext = &NetworkConnectionContextTemplate;
   connectionContext[6] = 0;
   connectionContext[7] = 0;
   connectionContext[8] = 0;

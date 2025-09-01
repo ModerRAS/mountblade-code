@@ -11,9 +11,9 @@ void* SystemGlobalDataReferenceA;              // 全局系统数据引用A
 void* SystemPrimaryMemoryPool;                 // 主系统内存池
 void* SystemPrimaryDataTable;                // 系统数据表引用
 void* SystemSecondaryMemoryPool;               // 次级系统内存池
-void* SystemDataTableSecondary;                // 次级系统数据表
-void* SystemMemoryPoolTertiary;                // 第三级系统内存池
-void* SystemDataTableTertiary;                 // 第三级系统数据表
+void* SystemSecondaryDataTable;                // 次级系统数据表
+void* SystemTertiaryMemoryPool;                // 第三级系统内存池
+void* SystemTertiaryDataTable;                 // 第三级系统数据表
 void* SystemMemoryPoolQuaternary;              // 第四级系统内存池
 void* SystemDataTableQuaternary;               // 第四级系统数据表
 void* SystemMemoryPoolQuinary;                 // 第五级系统内存池
