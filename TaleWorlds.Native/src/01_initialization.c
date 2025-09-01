@@ -20611,8 +20611,12 @@ void ProcessSystemExceptionList(ulong long *param_1)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180048a50(long long param_1)
-void FUN_180048a50(long long param_1)
+// 函数: void CleanupSystemResource(long long param_1)
+/**
+ * @brief 清理系统资源
+ * 清理系统资源，关闭文件句柄并释放资源
+ */
+void CleanupSystemResource(long long param_1)
 
 {
   if (param_1 != 0) {
@@ -20866,8 +20870,12 @@ LAB_180048e74:
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180048ee0(long long param_1,void* param_2,long long param_3,void* param_4,
-void FUN_180048ee0(long long param_1,void* param_2,long long param_3,void* param_4,
+// 函数: void ProcessSystemDataTransfer(long long param_1,void* param_2,long long param_3,void* param_4,
+/**
+ * @brief 处理系统数据传输
+ * 处理系统数据传输，在内存区域之间传输数据
+ */
+void ProcessSystemDataTransfer(long long param_1,void* param_2,long long param_3,void* param_4,
                   long long param_5)
 
 {
