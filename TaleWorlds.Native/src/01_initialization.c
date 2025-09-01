@@ -30732,7 +30732,16 @@ void ProcessSystemQueue(long long *SystemResourcePointer)
 
 
 // 函数: void FUN_180057790(long long SystemResourcePointer)
-void FUN_180057790(long long SystemResourcePointer)
+/**
+ * @brief 系统缓冲区清理器
+ * 
+ * 该函数负责清理系统缓冲区中的资源，遍历缓冲区并调用清理函数。
+ * 主要用于释放缓冲区占用的资源，避免内存泄漏。
+ * 
+ * @param SystemResourcePointer 系统资源指针，包含缓冲区信息
+ * @note 这是系统缓冲区管理的重要组成部分
+ */
+void CleanupSystemBuffer(long long SystemResourcePointer)
 
 {
   int *pointerToInteger1;
@@ -30787,7 +30796,16 @@ void FUN_180057790(long long SystemResourcePointer)
 
 
 // 函数: void FUN_180057796(long long SystemResourcePointer)
-void FUN_180057796(long long SystemResourcePointer)
+/**
+ * @brief 系统资源深度清理器
+ * 
+ * 该函数负责深度清理系统资源，遍历资源数组并调用清理函数。
+ * 主要用于系统关闭时的资源清理工作。
+ * 
+ * @param SystemResourcePointer 系统资源指针，包含资源数组信息
+ * @note 这是系统资源深度清理的核心函数
+ */
+void DeepCleanupSystemResources(long long SystemResourcePointer)
 
 {
   int *pointerToInteger1;
@@ -65377,88 +65395,99 @@ uint32_t SystemStatusIndicator;
 void* SystemInitializationFlag;
 void* SystemConfigurationFlag;
 
-void* FUN_180779434(void)
+/**
+ * @brief 音频数据归一化处理函数
+ * 
+ * 该函数负责对音频数据进行归一化处理，包括：
+ * - 计算音频数据的幅度
+ * - 应用归一化系数
+ * - 处理多通道音频数据
+ * - 批量优化处理以提高性能
+ * 
+ * @return void* 返回处理结果指针
+ * 
+ * @note 这是音频处理系统的核心函数，用于音频数据的预处理
+ */
+void* NormalizeAudioData(void)
 
 {
-  float fVar1;
-  float fVar2;
-  float fVar3;
-  float fVar4;
-  float fVar5;
-  float fVar6;
-  float fVar7;
-  float fVar8;
-  uint unsignedSystemValue9;
-  uint unsignedSystemValue10;
-  int systemStatus1;
-  float *pfVar12;
-  int unaff_EBX;
-  float *unaff_RDI;
-  uint unsignedSystemValue13;
-  int systemStatus4;
-  uint in_R9D;
-  uint in_R10D;
-  int unaff_R13D;
-  long long unaff_R14;
-  uint unsignedSystemValue15;
-  uint unsignedSystemValue16;
-  float fVar17;
-  uint8_t aunsignedSystemValue18 [16];
-  float fVar19;
-  int in_XMM5_Da;
-  float fVar20;
-  int in_XMM5_Db;
-  float fVar22;
-  int in_XMM5_Dc;
-  float fVar23;
-  int in_XMM5_Dd;
-  uint8_t aunsignedSystemValue21 [16];
-  float fVar24;
-  float unaff_XMM6_Da;
-  float fVar25;
-  float fVar26;
-  float fVar27;
-  float fVar28;
-  float fVar29;
-  float fVar30;
-  float fVar31;
-  float fVar32;
-  float fVar33;
-  float fVar34;
-  float unaff_XMM9_Da;
-  float fVar35;
-  float fVar36;
-  float fVar37;
-  float fVar38;
-  int unaff_XMM12_Da;
-  int unaff_XMM12_Db;
-  int unaff_XMM12_Dc;
-  int unaff_XMM12_Dd;
-  float *in_stack_00000120;
+  float audioSample1;
+  float audioSample2;
+  float audioSample3;
+  float audioSample4;
+  float audioSample5;
+  float audioSample6;
+  float audioSample7;
+  float audioSample8;
+  uint bitMaskValue;
+  uint processedBitValue;
+  int loopCounter;
+  float *audioBufferPtr;
+  int normalizationFactor;
+  float *inputAudioData;
+  uint shiftRegister;
+  int processingIndex;
+  uint channelCount;
+  uint sampleIndex;
+  int bitLength;
+  long long audioContext;
+  uint thresholdFlag1;
+  uint thresholdFlag2;
+  float normalizedValue;
+  uint8_t coefficientArray [16];
+  float intermediateResult;
+  int windowOffset1;
+  float filterCoeff1;
+  int windowOffset2;
+  float filterCoeff2;
+  int windowOffset3;
+  float filterCoeff3;
+  int windowOffset4;
+  float filterCoeff4;
+  uint8_t inverseCoeffArray [16];
+  float filterResult;
+  float accumulatedSum1;
+  float accumulatedSum2;
+  float accumulatedSum3;
+  float accumulatedSum4;
+  float weightedSum1;
+  float weightedSum2;
+  float weightedSum3;
+  float weightedSum4;
+  float maxAmplitude;
+  float channelSum1;
+  float channelSum2;
+  float channelSum3;
+  float channelSum4;
+  int weightFactor1;
+  int weightFactor2;
+  int weightFactor3;
+  int weightFactor4;
+  float *outputBufferPtr;
   
-  pfVar12 = unaff_RDI;
+  audioBufferPtr = inputAudioData;
   do {
-    unsignedSystemValue10 = 0;
-    systemStatus1 = unaff_R13D;
-    unsignedSystemValue13 = in_R10D;
-    if (unaff_R13D != 0) {
+    processedBitValue = 0;
+    loopCounter = bitLength;
+    shiftRegister = sampleIndex;
+    if (bitLength != 0) {
       do {
-        unsignedSystemValue9 = unsignedSystemValue13 & 1;
-        unsignedSystemValue13 = unsignedSystemValue13 >> 1;
-        unsignedSystemValue10 = unsignedSystemValue10 * 2 | unsignedSystemValue9;
-        systemStatus1 = systemStatus1 + -1;
-      } while (systemStatus1 != 0);
+        bitMaskValue = shiftRegister & 1;
+        shiftRegister = shiftRegister >> 1;
+        processedBitValue = processedBitValue * 2 | bitMaskValue;
+        loopCounter = loopCounter + -1;
+      } while (loopCounter != 0);
     }
-    in_R10D = in_R10D + 1;
-    fVar17 = *(float *)(*(long long *)(unaff_R14 + 0x218) + 4 + (long long)(int)unsignedSystemValue10 * 8);
-    fVar29 = *(float *)(*(long long *)(unaff_R14 + 0x218) + (long long)(int)unsignedSystemValue10 * 8);
-    fVar17 = SQRT(fVar29 * fVar29 + fVar17 * fVar17) * 2.5;
-    if (unaff_XMM9_Da <= fVar17) {
-      fVar17 = unaff_XMM9_Da;
+    sampleIndex = sampleIndex + 1;
+    normalizedValue = *(float *)(*(long long *)(audioContext + 0x218) + 4 + (long long)(int)processedBitValue * 8);
+    weightedSum2 = *(float *)(*(long long *)(audioContext + 0x218) + (long long)(int)processedBitValue * 8);
+    normalizedValue = SQRT(weightedSum2 * weightedSum2 + normalizedValue * normalizedValue) * 2.5;
+    if (maxAmplitude <= normalizedValue) {
+      normalizedValue = maxAmplitude;
     }
-    *pfVar12 = fVar17;
-    pfVar12 = pfVar12 + 1;
-  } while ((int)in_R10D < (int)in_R9D);
+    *audioBufferPtr = normalizedValue;
+    audioBufferPtr = audioBufferPtr + 1;
+  } while ((int)sampleIndex < (int)channelCount);
   if (in_stack_00000120 != (float *)0x0) {
     systemStatus1 = 0;
     if (0 < (int)in_R9D) {
