@@ -6425,8 +6425,7 @@ void ValidateObjectContextAndUpdateStatus(longlong objectContext, longlong syste
 
 
 
- void FUN_180892011(void)
-/**
+ /**
  * @brief 验证并处理系统状态数据
  * 
  * 该函数验证系统状态数据的有效性，根据验证结果设置相应的状态标志
@@ -6465,8 +6464,7 @@ void ValidateAndProcessSystemStatusData(void)
 
 
 
- void FUN_18089207b(void)
-/**
+ /**
  * @brief 空操作函数
  * 
  * 该函数不执行任何操作，直接返回
@@ -8811,33 +8809,43 @@ undefined8 ProcessFloatDataValidationAndConversionNoParams(undefined8 param_1, u
 void ProcessObjectContextFloatRangeValidationAndClamping(void)
 
 {
-  float fVar1;
-  undefined4 in_EAX;
-  int iVar2;
-  undefined4 in_register_00000004;
-  longlong unaff_RBX;
-  longlong unaff_RSI;
-  float fVar3;
-  undefined4 in_stack_00000040;
+  float inputValue;
+  undefined4 eaxRegister;
+  int validationStatus;
+  undefined4 parameterRegister;
+  longlong contextPointer;
+  longlong systemPointer;
+  float rangeMinValue;
+  undefined4 stackParameter;
   
-  fVar3 = *(float *)(CONCAT44(in_register_00000004,in_EAX) + 0x38);
-  fVar1 = *(float *)(unaff_RBX + 0x18);
-  if ((fVar3 <= fVar1) &&
-     (fVar3 = *(float *)(CONCAT44(in_register_00000004,in_EAX) + 0x3c), fVar1 <= fVar3)) {
-    fVar3 = fVar1;
+  rangeMinValue = *(float *)(CONCAT44(parameterRegister,eaxRegister) + 0x38);
+  inputValue = *(float *)(contextPointer + 0x18);
+  if ((rangeMinValue <= inputValue) &&
+     (rangeMinValue = *(float *)(CONCAT44(parameterRegister,eaxRegister) + 0x3c), inputValue <= rangeMinValue)) {
+    rangeMinValue = inputValue;
   }
-  *(float *)(unaff_RBX + 0x18) = fVar3;
-  iVar2 = func_0x000180867960(unaff_RSI + 0x60,in_stack_00000040,fVar3);
-  if (iVar2 == 0) {
+  *(float *)(contextPointer + 0x18) = rangeMinValue;
+  validationStatus = func_0x000180867960(systemPointer + 0x60,stackParameter,rangeMinValue);
+  if (validationStatus == 0) {
                     // WARNING: Subroutine does not return
-    FUN_18088d720(*(undefined8 *)(unaff_RSI + 0x98));
+    FUN_18088d720(*(undefined8 *)(systemPointer + 0x98));
   }
   return;
 }
 
 
 
-undefined8 FUN_180893e30(longlong param_1,longlong param_2)
+/**
+ * @brief 处理浮点数数据验证和转换操作
+ * 
+ * 该函数验证浮点数数据的有效性，并在验证通过后进行数据转换
+ * 主要用于浮点数数据的验证和格式转换
+ * 
+ * @param param_1 数据上下文指针，包含数据的基本信息
+ * @param param_2 系统上下文指针，用于系统级操作
+ * @return 操作状态码，0表示成功，非0表示错误
+ */
+undefined8 ProcessFloatDataValidationAndConversion(longlong param_1,longlong param_2)
 
 {
   float fVar1;
@@ -8915,7 +8923,15 @@ undefined8 ValidateFloatDataAndExecute(void)
 
 
 
-undefined8 FUN_180893e94(void)
+/**
+ * @brief 验证浮点数数据并执行处理（简化版本）
+ * 
+ * 该函数是ValidateFloatDataAndExecute的简化版本
+ * 主要用于浮点数数据的验证和处理
+ * 
+ * @return 处理结果状态码，0表示成功，非0表示错误
+ */
+undefined8 ValidateFloatDataAndExecuteSimple(void)
 
 {
   float fVar1;
@@ -8960,7 +8976,17 @@ void EmptyOperationFunctionA(void)
 
 
 
-undefined8 FUN_180893f00(longlong param_1,longlong param_2)
+/**
+ * @brief 处理数据验证和系统操作
+ * 
+ * 该函数验证数据的有效性，并在验证通过后执行系统操作
+ * 主要用于数据验证和系统级操作
+ * 
+ * @param param_1 数据上下文指针，包含数据的基本信息
+ * @param param_2 系统上下文指针，用于系统级操作
+ * @return 操作状态码，0表示成功，非0表示错误
+ */
+undefined8 ProcessDataValidationAndSystemOperation(longlong param_1,longlong param_2)
 
 {
   float fVar1;
@@ -9209,7 +9235,13 @@ undefined8 FUN_18089406b(void)
 
 
  void FUN_1808940e8(void)
-void FUN_1808940e8(void)
+/**
+ * @brief 空操作函数B
+ * 
+ * 这是一个空操作函数，不执行任何操作
+ * 主要用于占位或作为默认的空实现
+ */
+void EmptyOperationFunctionB(void)
 
 {
   return;
@@ -9220,8 +9252,16 @@ void FUN_1808940e8(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void FUN_1808940f0(longlong param_1,longlong param_2)
-void FUN_1808940f0(longlong param_1,longlong param_2)
+ /**
+ * @brief 处理系统上下文和数据操作
+ * 
+ * 该函数处理系统上下文和数据操作，包括数据验证和处理
+ * 主要用于系统级的数据操作和处理
+ * 
+ * @param param_1 数据上下文指针，包含数据的基本信息
+ * @param param_2 系统上下文指针，用于系统级操作
+ */
+void ProcessSystemContextAndDataOperation(longlong param_1,longlong param_2)
 
 {
   undefined1 auStack_68 [8];
@@ -10003,49 +10043,57 @@ undefined8 FUN_180895070(longlong *param_1)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-undefined8 FUN_180895130(longlong *param_1)
+/**
+ * @brief 清理资源池并释放内存
+ * 
+ * 该函数负责清理和释放资源池中的内存资源。
+ * 它会检查资源池的状态，清理所有资源项，
+ * 并重置资源池的状态标志。
+ * 
+ * @param ResourcePoolHandle 资源池句柄，指向需要清理的资源池
+ * @return 返回操作状态码，0表示成功，非0表示失败
+ */
+undefined8 CleanupResourcePoolAndReleaseMemory(longlong *ResourcePoolHandle)
 
 {
-  int iVar1;
-  undefined4 *puVar2;
-  undefined8 uVar3;
-  longlong lVar4;
-  uint uVar5;
+  int ResourcePoolCount;
+  undefined4 *ResourceEntryPointer;
+  undefined8 OperationStatus;
+  longlong LoopCounter;
+  uint ResourcePoolFlags;
   
-  uVar5 = *(uint *)((longlong)param_1 + 0xc);
-  if ((int)((uVar5 ^ (int)uVar5 >> 0x1f) - ((int)uVar5 >> 0x1f)) < 0) {
-    if (0 < (int)param_1[1]) {
+  ResourcePoolFlags = *(uint *)((longlong)ResourcePoolHandle + 0xc);
+  if ((int)((ResourcePoolFlags ^ (int)ResourcePoolFlags >> 0x1f) - ((int)ResourcePoolFlags >> 0x1f)) < 0) {
+    if (0 < (int)ResourcePoolHandle[1]) {
       return 0x1c;
     }
-    if ((0 < (int)uVar5) && (*param_1 != 0)) {
+    if ((0 < (int)ResourcePoolFlags) && (*ResourcePoolHandle != 0)) {
                     // WARNING: Subroutine does not return
-      FUN_180742250(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),*param_1,&UNK_180957f70,0x100,1);
+      FUN_180742250(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),*ResourcePoolHandle,&UNK_180957f70,0x100,1);
     }
-    *param_1 = 0;
-    *(undefined4 *)((longlong)param_1 + 0xc) = 0;
-    uVar5 = 0;
+    *ResourcePoolHandle = 0;
+    *(undefined4 *)((longlong)ResourcePoolHandle + 0xc) = 0;
+    ResourcePoolFlags = 0;
   }
-  iVar1 = (int)param_1[1];
-  if (iVar1 < 0) {
-    lVar4 = (longlong)-iVar1;
-    if (iVar1 < 0) {
-      puVar2 = (undefined4 *)((longlong)iVar1 * 0x10 + *param_1 + 4);
+  ResourcePoolCount = (int)ResourcePoolHandle[1];
+  if (ResourcePoolCount < 0) {
+    LoopCounter = (longlong)-ResourcePoolCount;
+    if (ResourcePoolCount < 0) {
+      ResourceEntryPointer = (undefined4 *)((longlong)ResourcePoolCount * 0x10 + *ResourcePoolHandle + 4);
       do {
-        puVar2[-1] = 0;
-        *puVar2 = 0xffffffff;
-        *(undefined8 *)(puVar2 + 1) = 0;
-        puVar2 = puVar2 + 4;
-        lVar4 = lVar4 + -1;
-      } while (lVar4 != 0);
-      uVar5 = *(uint *)((longlong)param_1 + 0xc);
+        ResourceEntryPointer[-1] = 0;
+        *ResourceEntryPointer = 0xffffffff;
+        *(undefined8 *)(ResourceEntryPointer + 1) = 0;
+        ResourceEntryPointer = ResourceEntryPointer + 4;
+        LoopCounter = LoopCounter + -1;
+      } while (LoopCounter != 0);
+      ResourcePoolFlags = *(uint *)((longlong)ResourcePoolHandle + 0xc);
     }
   }
-  *(undefined4 *)(param_1 + 1) = 0;
-  if ((0 < (int)((uVar5 ^ (int)uVar5 >> 0x1f) - ((int)uVar5 >> 0x1f))) &&
-     (uVar3 = FUN_1807d3f50(param_1,0), (int)uVar3 != 0)) {
-    return uVar3;
+  *(undefined4 *)(ResourcePoolHandle + 1) = 0;
+  if ((0 < (int)((ResourcePoolFlags ^ (int)ResourcePoolFlags >> 0x1f) - ((int)ResourcePoolFlags >> 0x1f))) &&
+     (OperationStatus = FUN_1807d3f50(ResourcePoolHandle,0), (int)OperationStatus != 0)) {
+    return OperationStatus;
   }
   return 0;
 }
