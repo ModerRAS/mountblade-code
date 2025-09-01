@@ -2963,8 +2963,8 @@ void InitializeNativeCoreCLR(uint64_t initFlags)
               pMemoryAddress1 = (uint8_t *)AllocateSystemMemory(_DAT_180c8ed18,(longlong)LoopCounterValue,0x13);
               *pMemoryAddress1 = 0;
               puStack_2c0 = pMemoryAddress1;
-              uVar7 = GetMemoryAllocationSize(pMemoryAddress1);
-              uStack_2b0 = CONCAT44(uStack_2b0._4_4_,uVar7);
+              allocationSize = GetMemoryAllocationSize(pMemoryAddress1);
+              uStack_2b0 = CONCAT44(uStack_2b0._4_4_,allocationSize);
               memcpy(pMemoryAddress1,pMemoryAddress7,LoopCounter9);
             }
           }

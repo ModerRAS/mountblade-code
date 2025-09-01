@@ -37127,22 +37127,35 @@ void ProcessSystemResourceConfigurationWrapperC(long long SystemResourcePointer,
 
 
 
-// 函数: void FUN_18005d3a0(void* SystemResourcePointer,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
-void FUN_18005d3a0(void* SystemResourcePointer,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
+/**
+ * @brief 系统资源格式化输出函数
+ * 
+ * 该函数负责格式化输出系统资源信息，使用标准输出流打印资源相关的调试信息。
+ * 它会分配全局数据缓冲区，并通过格式化字符串输出系统状态。
+ * 
+ * @param SystemResourcePointer 系统资源指针，包含格式化字符串
+ * @param ConfigurationDataPointer 配置数据指针，用于格式化参数
+ * @param AdditionalParameter 额外参数，用于格式化参数
+ * @param ConfigurationFlag 配置标志，用于格式化参数
+ * @note 此函数使用标准输出流进行格式化输出
+ * 
+ * 原始函数名为FUN_18005d3a0，现已重命名为FormatSystemResourceOutput
+ */
+void FormatSystemResourceOutput(void* SystemResourcePointer,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
 {
-  void* unsignedSystemValue1;
-  void** SystemDataTable;
-  void* uStackX_10;
+  void* standardOutputHandle;
+  void** globalDataBuffer;
+  void* formatParameter1;
   uint64_t systemInitializationFlag;
-  void* uStackX_20;
+  void* formatParameter3;
   
-  uStackX_10 = ConfigurationDataPointer;
-  uStackX_18 = AdditionalParameter;
-  uStackX_20 = ConfigurationFlag;
-  unsignedSystemValue1 = __acrt_iob_func(1);
-  pointerToUnsigned2 = (void* *)SystemGlobalDataAllocate();
-  __stdio_common_vfprintf(*pointerToUnsigned2,unsignedSystemValue1,SystemResourcePointer,0,&uStackX_10);
+  formatParameter1 = ConfigurationDataPointer;
+  formatParameter2 = AdditionalParameter;
+  formatParameter3 = ConfigurationFlag;
+  standardOutputHandle = __acrt_iob_func(1);
+  globalDataBuffer = (void* *)SystemGlobalDataAllocate();
+  __stdio_common_vfprintf(*globalDataBuffer,standardOutputHandle,SystemResourcePointer,0,&formatParameter1);
   return;
 }
 
