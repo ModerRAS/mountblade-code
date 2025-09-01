@@ -1560,8 +1560,8 @@ undefined InvalidateCacheTable;
  */
 void InitializeMemorySegmentation;
 void* MemorySegmentDescriptor;
-undefined DAT_180bfa238;
-undefined DAT_180bfa240;
+void* MemorySegmentTable;
+void* MemorySegmentStatus;
 undefined DAT_180bfa248;
 undefined DAT_180a22fa8;
 
