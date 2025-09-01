@@ -15958,7 +15958,7 @@ LAB_1808996c5:
     if (aiStackX_8[0] < 0) {
       return 0xd;
     }
-    resourceHash = FUN_1808af2e0(param_2,aiStackX_8[0]);
+    resourceHash = CalculateResourceHash(param_2,aiStackX_8[0]);
     if ((int)resourceHash == 0) {
       if (0 < aiStackX_8[0]) {
         do {
@@ -25019,7 +25019,18 @@ LAB_18089e447:
 
 
 
-ulonglong FUN_18089e2e8(void)
+/**
+ * @brief 验证和处理资源数据（变体C）
+ * 
+ * 该函数是资源验证函数的第三个版本，负责：
+ * - 加载和验证资源数据
+ * - 处理资源信息提取
+ * - 计算资源哈希值
+ * - 执行资源完整性检查
+ * 
+ * @return 验证结果，0表示成功，非0表示错误代码
+ */
+ulonglong ValidateAndProcessResourceDataVariantC(void)
 
 {
   longlong *plVar1;
@@ -25116,8 +25127,13 @@ LAB_18089e447:
 
 
 
- e4d7(void)
-e4d7(void)
+ /**
+ * @brief 空操作函数
+ * 
+ * 该函数是一个空操作函数，不执行任何操作
+ * 用于占位或作为默认的函数指针
+ */
+void EmptyOperationFunction(void)
 
 {
   return;
@@ -25127,7 +25143,22 @@ e4d7(void)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-ulonglong FUN_18089e4f0(longlong param_1,undefined8 *param_2)
+/**
+ * @brief 处理复杂的资源操作和验证
+ * 
+ * 该函数负责处理复杂的资源操作，包括：
+ * - 计算数据校验和
+ * - 验证资源哈希
+ * - 读取和解析资源数据
+ * - 分配内存块
+ * - 处理资源表和资源条目
+ * - 执行资源清理
+ * 
+ * @param param_1 资源上下文指针
+ * @param param_2 资源数据指针
+ * @return 处理结果，0表示成功，非0表示错误代码
+ */
+ulonglong ProcessComplexResourceOperations(longlong param_1,undefined8 *param_2)
 
 {
   undefined4 resourceHash;
@@ -25231,7 +25262,18 @@ LAB_18089e70b:
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-ulonglong FUN_18089e558(void)
+/**
+ * @brief 处理资源哈希计算和验证
+ * 
+ * 该函数负责处理资源哈希的计算和验证操作，包括：
+ * - 分配内存块用于资源处理
+ * - 计算资源哈希值
+ * - 验证资源完整性
+ * - 处理资源数据
+ * 
+ * @return 处理结果，0表示成功，非0表示错误代码
+ */
+ulonglong ProcessResourceHashCalculationAndValidation(void)
 
 {
   undefined8 resourceHash;
@@ -25347,7 +25389,18 @@ LAB_18089e70b:
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-ulonglong FUN_18089e624(void)
+/**
+ * @brief 处理资源验证和内存分配
+ * 
+ * 该函数负责处理资源验证和内存分配操作，包括：
+ * - 分配内存块
+ * - 验证资源数据
+ * - 处理资源哈希
+ * - 执行资源清理
+ * 
+ * @return 处理结果，0表示成功，非0表示错误代码
+ */
+ulonglong ProcessResourceValidationAndMemoryAllocation(void)
 
 {
   undefined4 resourceHash;
@@ -25432,7 +25485,19 @@ e811(void)
 
 
 
-ulonglong FUN_18089e820(longlong param_1,longlong *param_2)
+/**
+ * @brief 处理资源表操作和数据验证
+ * 
+ * 该函数负责处理资源表的操作和数据验证，包括：
+ * - 验证资源表结构
+ * - 处理资源数据
+ * - 执行资源操作
+ * 
+ * @param param_1 资源上下文指针
+ * @param param_2 资源表指针
+ * @return 处理结果，0表示成功，非0表示错误代码
+ */
+ulonglong ProcessResourceTableOperationsAndDataValidation(longlong param_1,longlong *param_2)
 
 {
   longlong lVar1;
@@ -84640,8 +84705,13 @@ void InitializeSystemDataStructureAJ(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void FUN_180941f20(void)
-void FUN_180941f20(void)
+ /**
+ * 初始化系统数据结构AK
+ * 将全局变量 _DAT_180bf9210 设置为指向 UNK_18098bcb0
+ * 这是一个简单的初始化函数，用于设置系统数据结构的指针
+ */
+void InitializeSystemDataStructureAK(void)
+void InitializeSystemDataStructureAK(void)
 
 {
   _DAT_180bf9210 = &UNK_18098bcb0;
@@ -84653,8 +84723,13 @@ void FUN_180941f20(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void FUN_180941f40(void)
-void FUN_180941f40(void)
+ /**
+ * 初始化系统数据结构AL
+ * 将全局变量 _DAT_180bf9270 设置为指向 UNK_18098bcb0
+ * 这是一个简单的初始化函数，用于设置系统数据结构的指针
+ */
+void InitializeSystemDataStructureAL(void)
+void InitializeSystemDataStructureAL(void)
 
 {
   _DAT_180bf9270 = &UNK_18098bcb0;
@@ -84666,8 +84741,13 @@ void FUN_180941f40(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void FUN_180941f60(void)
-void FUN_180941f60(void)
+ /**
+ * 初始化系统数据结构AM
+ * 将全局变量 _DAT_180bf92d0 设置为指向 UNK_18098bcb0
+ * 这是一个简单的初始化函数，用于设置系统数据结构的指针
+ */
+void InitializeSystemDataStructureAM(void)
+void InitializeSystemDataStructureAM(void)
 
 {
   _DAT_180bf92d0 = &UNK_18098bcb0;
@@ -84679,8 +84759,13 @@ void FUN_180941f60(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void FUN_180941f80(void)
-void FUN_180941f80(void)
+ /**
+ * 初始化系统数据结构AN
+ * 将全局变量 _DAT_180bf9330 设置为指向 UNK_18098bcb0
+ * 这是一个简单的初始化函数，用于设置系统数据结构的指针
+ */
+void InitializeSystemDataStructureAN(void)
+void InitializeSystemDataStructureAN(void)
 
 {
   _DAT_180bf9330 = &UNK_18098bcb0;
