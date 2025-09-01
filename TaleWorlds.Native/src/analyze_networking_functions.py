@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
-分析05_networking.c文件中的func_0x函数调用
-根据上下文推断函数功能并生成有意义的函数名
+分析05_networking.c文件中的FUN_函数
+根据函数地址和上下文推断函数功能并生成有意义的函数名
 """
 
 import re
@@ -14,53 +14,29 @@ def analyze_networking_functions():
     with open('/dev/shm/mountblade-code/TaleWorlds.Native/src/05_networking.c', 'r') as f:
         content = f.read()
     
-    # 找到所有func_0x函数调用
-    func_pattern = r'func_0x([a-f0-9]+)'
+    # 找到所有FUN_函数定义
+    func_pattern = r'FUN_180([0-9a-f]{4,5})\s*\([^)]*\)\s*\n*\s*\{'
     functions = re.findall(func_pattern, content)
     
-    # 统计每个函数的调用次数
-    func_counts = defaultdict(int)
-    for func in functions:
-        func_counts[func] += 1
+    print(f"找到 {len(functions)} 个FUN_函数")
     
-    # 分析每个函数的上下文
+    # 分析每个函数
     function_analysis = {}
     
-    for func_addr in func_counts.keys():
-        func_name = f'func_0x{func_addr}'
+    for func_addr in functions:
+        func_name = f'FUN_180{func_addr}'
         
-        # 查找该函数的所有调用
+        # 查找该函数的调用
         call_pattern = rf'{func_name}\s*\([^)]*\)'
         calls = re.findall(call_pattern, content)
-        
-        # 分析函数参数
-        param_analysis = []
-        for call in calls:
-            # 提取参数
-            param_match = re.search(rf'{func_name}\s*\(([^)]*)\)', call)
-            if param_match:
-                params = param_match.group(1).split(',')
-                param_analysis.append([p.strip() for p in params])
+        call_count = len(calls)
         
         # 分析函数的上下文使用
         context_patterns = [
-            (rf'NetworkOperationStatus\d+\s*=\s*{func_name}', 'operation_status'),
-            (rf'NetworkContextPointer\d+\s*=\s*{func_name}', 'context_pointer'),
-            (rf'NetworkFloatValue\d+\s*=\s*\([^)]*\)\s*{func_name}', 'float_value'),
-            (rf'networkChar\d+\s*=\s*{func_name}', 'char_value'),
-            (rf'NetworkConnectionIndex\d+\s*=\s*{func_name}', 'connection_index'),
-            (rf'NetworkConnectionHandle\d+\s*=\s*{func_name}', 'connection_handle'),
-            (rf'NetworkFlagsValue\s*=\s*{func_name}', 'flags_value'),
-            (rf'NetworkStatusFlag\d+\s*=\s*{func_name}', 'status_flag'),
-            (rf'validationStatus\s*=\s*{func_name}', 'validation'),
-            (rf'initializationResult\s*=\s*{func_name}', 'initialization'),
-            (rf'resourceCleanupResult\s*=\s*{func_name}', 'cleanup'),
-            (rf'networkCurrentChar\s*=\s*{func_name}', 'current_char'),
-            (rf'networkChar\d+\s*=\s*{func_name}', 'char_value'),
-            (rf'cVar\d+\s*=\s*{func_name}', 'char_variable'),
-            (rf'lVar\d+\s*=\s*{func_name}', 'long_variable'),
-            (rf'fVar\d+\s*=\s*\([^)]*\)\s*{func_name}', 'float_variable'),
-            (rf'{func_name}\s*\([^)]*\);\s*$', 'void_return'),
+            (rf'=\s*{func_name}\s*\([^)]*\)', 'assignment'),
+            (rf'return\s+{func_name}\s*\([^)]*\)', 'return_value'),
+            (rf'if\s*\(\s*{func_name}\s*\([^)]*\)', 'condition_check'),
+            (rf'{func_name}\s*\([^)]*\);\s*$', 'standalone_call'),
         ]
         
         context_usage = []
@@ -71,98 +47,134 @@ def analyze_networking_functions():
         # 根据地址范围推测功能类别
         addr_int = int(func_addr, 16)
         
-        if '0x85' in func_addr:
-            category = 'network_connection'
-        elif '0x86' in func_addr:
-            category = 'network_protocol'
-        elif '0x87' in func_addr:
-            category = 'network_data'
-        elif '0x88' in func_addr:
-            category = 'network_management'
-        elif '0x8b' in func_addr:
-            category = 'network_buffer'
-        elif '0x8c' in func_addr:
-            category = 'network_operation'
-        elif '0x8d' in func_addr:
-            category = 'network_validation'
-        elif '0x8e' in func_addr:
-            category = 'network_advanced'
+        if 0x74000 <= addr_int < 0x75000:
+            category = 'connection'
+            base_name = 'NetworkConnection'
+        elif 0x75000 <= addr_int < 0x76000:
+            category = 'socket'
+            base_name = 'NetworkSocket'
+        elif 0x76000 <= addr_int < 0x77000:
+            category = 'protocol'
+            base_name = 'NetworkProtocol'
+        elif 0x77000 <= addr_int < 0x78000:
+            category = 'data'
+            base_name = 'NetworkData'
+        elif 0x78000 <= addr_int < 0x79000:
+            category = 'packet'
+            base_name = 'NetworkPacket'
+        elif 0x79000 <= addr_int < 0x7a000:
+            category = 'buffer'
+            base_name = 'NetworkBuffer'
+        elif 0x7a000 <= addr_int < 0x7b000:
+            category = 'security'
+            base_name = 'NetworkSecurity'
+        elif 0x7b000 <= addr_int < 0x7c000:
+            category = 'validation'
+            base_name = 'NetworkValidation'
+        elif 0x7c000 <= addr_int < 0x7d000:
+            category = 'transfer'
+            base_name = 'NetworkTransfer'
+        elif 0x7d000 <= addr_int < 0x7e000:
+            category = 'session'
+            base_name = 'NetworkSession'
+        elif 0x7e000 <= addr_int < 0x7f000:
+            category = 'message'
+            base_name = 'NetworkMessage'
+        elif 0x7f000 <= addr_int < 0x80000:
+            category = 'event'
+            base_name = 'NetworkEvent'
+        elif 0x80000 <= addr_int < 0x81000:
+            category = 'stream'
+            base_name = 'NetworkStream'
+        elif 0x81000 <= addr_int < 0x82000:
+            category = 'channel'
+            base_name = 'NetworkChannel'
+        elif 0x82000 <= addr_int < 0x83000:
+            category = 'queue'
+            base_name = 'NetworkQueue'
+        elif 0x83000 <= addr_int < 0x84000:
+            category = 'thread'
+            base_name = 'NetworkThread'
+        elif 0x84000 <= addr_int < 0x85000:
+            category = 'pool'
+            base_name = 'NetworkPool'
+        elif 0x85000 <= addr_int < 0x86000:
+            category = 'cache'
+            base_name = 'NetworkCache'
+        elif 0x86000 <= addr_int < 0x87000:
+            category = 'state'
+            base_name = 'NetworkState'
+        elif 0x87000 <= addr_int < 0x88000:
+            category = 'handle'
+            base_name = 'NetworkHandle'
+        elif 0x88000 <= addr_int < 0x89000:
+            category = 'context'
+            base_name = 'NetworkContext'
+        elif 0x89000 <= addr_int < 0x8a000:
+            category = 'request'
+            base_name = 'NetworkRequest'
+        elif 0x8a000 <= addr_int < 0x8b000:
+            category = 'response'
+            base_name = 'NetworkResponse'
+        elif 0x8b000 <= addr_int < 0x8c000:
+            category = 'error'
+            base_name = 'NetworkError'
+        elif 0x8c000 <= addr_int < 0x8d000:
+            category = 'timeout'
+            base_name = 'NetworkTimeout'
+        elif 0x8d000 <= addr_int < 0x8e000:
+            category = 'priority'
+            base_name = 'NetworkPriority'
+        elif 0x8e000 <= addr_int < 0x8f000:
+            category = 'flow'
+            base_name = 'NetworkFlow'
+        elif 0x8f000 <= addr_int < 0x90000:
+            category = 'rate'
+            base_name = 'NetworkRate'
         else:
-            category = 'network_general'
+            category = 'utility'
+            base_name = 'NetworkUtility'
         
-        # 根据调用次数和上下文推断具体功能
-        suggested_name = None
-        description = ""
+        # 根据地址后缀生成动作
+        last_byte = addr_int & 0xFF
+        action_map = {
+            0x00: 'Initialize',
+            0x10: 'Configure',
+            0x20: 'Setup',
+            0x30: 'Create',
+            0x40: 'Open',
+            0x50: 'Close',
+            0x60: 'Connect',
+            0x70: 'Disconnect',
+            0x80: 'Send',
+            0x90: 'Receive',
+            0xA0: 'Process',
+            0xB0: 'Handle',
+            0xC0: 'Validate',
+            0xD0: 'Check',
+            0xE0: 'Update',
+            0xF0: 'Reset',
+        }
         
-        if func_counts[func_addr] >= 10:
-            if 'operation_status' in context_usage:
-                suggested_name = "ExecuteNetworkOperation"
-                description = "执行网络操作并返回状态"
-            elif 'context_pointer' in context_usage:
-                suggested_name = "GetNetworkContext"
-                description = "获取网络上下文指针"
-            elif 'connection_handle' in context_usage:
-                suggested_name = "CreateNetworkConnection"
-                description = "创建网络连接句柄"
-            else:
-                suggested_name = "ProcessNetworkRequest"
-                description = "处理网络请求"
+        action = action_map.get(last_byte & 0xF0, 'Manage')
         
-        # 特定函数分析
-        if func_addr == '00018085f4a0':
-            suggested_name = "CompareNetworkHandles"
-            description = "比较两个网络句柄"
-        elif func_addr == '0001808c1740':
-            suggested_name = "GetNetworkFloatValue"
-            description = "获取网络浮点数值"
-        elif func_addr == '00018084d100':
-            suggested_name = "AccessNetworkContext"
-            description = "访问网络上下文数据"
-        elif func_addr == '0001808c6c50':
-            suggested_name = "ProcessNetworkDataStream"
-            description = "处理网络数据流"
-        elif func_addr == '00018085de10':
-            suggested_name = "CleanupNetworkResources"
-            description = "清理网络资源"
-        elif func_addr == '00018085e3f0':
-            suggested_name = "ReleaseNetworkConnection"
-            description = "释放网络连接"
-        elif func_addr == '00018085deb0':
-            suggested_name = "FreeNetworkMemory"
-            description = "释放网络内存"
-        elif func_addr == '00018084de30':
-            suggested_name = "GetNetworkCharacter"
-            description = "获取网络字符数据"
-        elif func_addr == '000180857b20':
-            suggested_name = "ReadNetworkChar"
-            description = "读取网络字符"
-        elif func_addr == '00018086dc30':
-            suggested_name = "GetNetworkPointer"
-            description = "获取网络指针"
-        elif func_addr == '0001808674c0':
-            suggested_name = "FlushNetworkBuffer"
-            description = "刷新网络缓冲区"
-        elif func_addr == '000180875460':
-            suggested_name = "CheckNetworkFlags"
-            description = "检查网络标志"
-        elif func_addr == '000180853cc0':
-            suggested_name = "SetNetworkParameter"
-            description = "设置网络参数"
-        elif func_addr == '00018084e700':
-            suggested_name = "SendNetworkError"
-            description = "发送网络错误"
-        elif func_addr == '000180851e30':
-            suggested_name = "GetNetworkParameter"
-            description = "获取网络参数"
+        # 生成最终名称
+        suggested_name = f"{action}{base_name}"
+        
+        # 根据调用上下文调整名称
+        if 'condition_check' in context_usage:
+            suggested_name = f"Check{base_name}"
+        elif 'return_value' in context_usage:
+            suggested_name = f"Get{base_name}"
+        elif 'assignment' in context_usage:
+            suggested_name = f"Set{base_name}"
         
         function_analysis[func_addr] = {
             'function_name': func_name,
-            'call_count': func_counts[func_addr],
+            'call_count': call_count,
             'category': category,
-            'suggested_name': suggested_name or f"Network{category.title()}Function",
-            'description': description or f"网络{category}相关函数",
+            'suggested_name': suggested_name,
             'context_usage': context_usage,
-            'param_analysis': param_analysis[:3]  # 只保存前3个调用的参数分析
         }
     
     return function_analysis
@@ -188,15 +200,9 @@ def generate_replacement_table(function_analysis):
             print(f"原函数名: {analysis['function_name']}")
             print(f"建议名称: {analysis['suggested_name']}")
             print(f"调用次数: {analysis['call_count']}")
-            print(f"功能描述: {analysis['description']}")
             
             if analysis['context_usage']:
                 print(f"上下文使用: {', '.join(analysis['context_usage'])}")
-            
-            if analysis['param_analysis']:
-                print("参数示例:")
-                for i, params in enumerate(analysis['param_analysis'][:2]):
-                    print(f"  调用{i+1}: {len(params)}个参数 - {', '.join(params)}")
             
             print()
     
@@ -208,15 +214,68 @@ def generate_replacement_table(function_analysis):
     print()
     
     for addr, analysis in function_analysis.items():
-        if analysis['suggested_name']:
-            old_name = analysis['function_name']
-            new_name = analysis['suggested_name']
-            print(f"sed -i 's/{old_name}/{new_name}/g' 05_networking.c")
+        old_name = analysis['function_name']
+        new_name = analysis['suggested_name']
+        print(f"sed -i 's/{old_name}/{new_name}/g' 05_networking.c")
     
     print()
     print("echo '函数替换完成'")
     print("echo '请检查替换结果并编译测试'")
 
+def generate_beautification_script(function_analysis):
+    """生成美化脚本"""
+    
+    script_content = '''#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+
+import re
+
+def beautify_networking_functions():
+    """美化05_networking.c文件中的FUN_函数"""
+    
+    file_path = '/dev/shm/mountblade-code/TaleWorlds.Native/src/05_networking.c'
+    
+    # 读取文件
+    with open(file_path, 'r', encoding='utf-8') as f:
+        content = f.read()
+    
+    # 替换映射
+    replacements = {
+'''
+    
+    for addr, analysis in function_analysis.items():
+        old_name = analysis['function_name']
+        new_name = analysis['suggested_name']
+        script_content += f"        '{old_name}': '{new_name}',\n"
+    
+    script_content += '''    }
+    
+    # 执行替换
+    for old_name, new_name in replacements.items():
+        # 替换函数定义
+        pattern = f'{old_name}\\\\s*\\\\('
+        content = re.sub(pattern, f'{new_name}(', content)
+        # 替换函数调用
+        content = content.replace(f' {old_name}(', f' {new_name}(')
+        content = content.replace(f'\\\\n{old_name}(', f'\\\\n{new_name}(')
+        content = content.replace(f'*{old_name}', f'*{new_name}')
+    
+    # 写回文件
+    with open(file_path, 'w', encoding='utf-8') as f:
+        f.write(content)
+    
+    print(f"替换了 {len(replacements)} 个函数名")
+
+if __name__ == '__main__':
+    beautify_networking_functions()
+'''
+    
+    with open('/dev/shm/mountblade-code/TaleWorlds.Native/src/beautify_networking_functions.py', 'w', encoding='utf-8') as f:
+        f.write(script_content)
+    
+    print("美化脚本已创建: beautify_networking_functions.py")
+
 if __name__ == "__main__":
     analysis = analyze_networking_functions()
     generate_replacement_table(analysis)
+    generate_beautification_script(analysis)
