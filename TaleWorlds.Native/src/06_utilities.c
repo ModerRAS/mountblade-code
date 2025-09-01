@@ -4799,8 +4799,7 @@ void TriggerSystemTermination(void)
 
 
 
- void PerformNoOperation(void)
-/**
+ /**
  * @brief 空函数返回
  * 
  * 该函数是一个空函数，直接返回而不执行任何操作
@@ -6364,12 +6363,12 @@ void ProcessSystemDataBufferExpansion(uint8_t SystemContext, uint8_t bufferConte
     if (ResourceIndex < 8) {
       ResourceIndex = 8;
     }
-    if (ResourceIndex < *(int *)(in_stack_00000070 + 0x28)) goto LAB_180891fc0;
+    if (ResourceIndex < *(int *)(StackParameterBuffer70 + 0x28)) goto LAB_180891fc0;
     if (ResourceIndex != 0) {
       if ((0x3ffffffe < ResourceIndex * 8 - 1U) ||
          (ResourceIndex = AllocateMemoryBlock(*(uint8_t *)(SystemContextPointer + 0x1a0),ResourceIndex * 8,&ResourceTableTemplate,
                                 0xf4,0), ResourceIndex == 0)) goto LAB_180891fc0;
-      if (*(int *)(in_stack_00000070 + 0x28) != 0) {
+      if (*(int *)(StackParameterBuffer70 + 0x28) != 0) {
                     // WARNING: Subroutine does not return
         memcpy(ResourceIndex,*(uint8_t *)(StackParameterBuffer70 + 0x20),
                (int64_t)*(int *)(StackParameterBuffer70 + 0x28) << 3);
@@ -9993,7 +9992,6 @@ ValidateResourceTableAccess(uint64_t resource_handle)
   int64_t *SystemContextPointer;
   int64_t UnaffectedRegisterValue;
   uint64_t StackSecurityToken;
-  uint64_t in_stack_000000a8;
   
   LocalContextPointer = ObjectContextParameter;
   resourceTable = (**(code **)(InputRAX + 0x288))();
