@@ -4,7 +4,17 @@
 #define ENGINE_SYSTEM_VERSION 3.2
 #define ENGINE_LAST_UPDATED "2025-09-01"
 
-// void engine_initialize_core_system(void);
+/**
+ * @brief 初始化核心引擎系统
+ * @return 无返回值
+ *
+ * 系统启动时调用的主要初始化函数，负责：
+ * - 初始化系统全局上下文
+ * - 设置配置数据结构
+ * - 分配内存池
+ * - 初始化渲染状态
+ * - 设置性能监控
+ */
 void engine_initialize_core_system(void);
 void* engine_global_context_ptr;
 void* engine_config_data;
@@ -14,7 +24,16 @@ uint32_t engine_frame_counter;
 float engine_time_delta;
 void* engine_performance_data;
 
-// void engine_setup_rendering_context(void);
+/**
+ * @brief 设置渲染上下文
+ * @return 无返回值
+ *
+ * 初始化和配置图形渲染环境，包括：
+ * - 创建显示上下文
+ * - 设置渲染参数
+ * - 初始化图形API
+ * - 配置渲染管线
+ */
 void engine_setup_rendering_context(void);
 void* engine_display_context;
 
