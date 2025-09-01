@@ -10929,7 +10929,7 @@ void NetworkConnectionErrorHandler(NetworkHandle connectionContext)
   ulonglong uStack_18;
   
   uStack_18 = NetworkSecurityGuardValue ^ (ulonglong)auStack_148;
-  networkStatus1 = FUN_1808401c0();
+  networkStatus1 = GetNetworkStatus();
   if ((networkStatus1 != 0) && ((*(byte *)(g_NetworkConnectionTable + 0x10) & 0x80) != 0)) {
     puStack_128 = auStack_118;
     auStack_118[0] = 0;
@@ -12013,7 +12013,7 @@ void ProcessNetworkContextValidation(NetworkHandle *connectionContext)
   *connectionContext = &UNK_180984a70;
   connectionContext[9] = &UNK_180984aa0;
   if (connectionContext[0xd] != 0) {
-    FUN_18088c8a0();
+    InitializeNetworkConfiguration();
   }
   FUN_18084c150(connectionContext + 0x16);
   FUN_18084c150(connectionContext + 0x14);
@@ -87367,7 +87367,7 @@ NetworkHandle FUN_18088c7c0(longlong connectionContext,longlong packetData,Netwo
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-NetworkStatus FUN_18088c8a0(int *connectionContext)
+NetworkStatus InitializeNetworkConfiguration(int *connectionContext)
 
 {
   int networkStatus1;
@@ -90731,7 +90731,7 @@ LAB_18088f951:
           return (longlong *)0x0;
         }
         plVar8 = (longlong *)0x1c;
-        FUN_18088c8a0(lStackX_18);
+        InitializeNetworkConfiguration(lStackX_18);
       }
     }
   }
@@ -90838,7 +90838,7 @@ LAB_18088f951:
         return (longlong *)0x0;
       }
       plVar9 = (longlong *)0x1c;
-      FUN_18088c8a0(in_stack_00000050);
+      InitializeNetworkConfiguration(in_stack_00000050);
     }
   }
   return plVar9;
