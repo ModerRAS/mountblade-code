@@ -2005,14 +2005,14 @@ void GenerateSecureRandom(void);
 uint8_t ThreadLocalStorageIndex;
 void* ThreadLocalStorageDataPointer;
 // 系统内存配置数据模板基础变量
-uint8_t SystemMemoryConfigDataTemplateVersion;        // 版本信息
-uint8_t SystemMemoryConfigDataTemplateType;           // 类型标识
-uint8_t SystemMemoryConfigDataTemplateWorking;        // 工作状态
-uint8_t SystemMemoryConfigDataTemplateUsage;           // 使用情况
-uint8_t SystemMemoryConfigDataTemplateExtended;       // 扩展配置
-uint8_t SystemMemoryConfigDataTemplateYield;          // 性能调优
-uint8_t SystemMemoryConfigDataTemplateZone;           // 内存区域
-uint8_t SystemMemoryConfigDataTemplateAlternate;      // 备用配置
+uint8_t SystemMemoryConfigTemplateVersion;        // 版本信息
+uint8_t SystemMemoryConfigTemplateType;           // 类型标识
+uint8_t SystemMemoryConfigTemplateWorkingStatus;  // 工作状态
+uint8_t SystemMemoryConfigTemplateUsage;          // 使用情况
+uint8_t SystemMemoryConfigTemplateExtended;        // 扩展配置
+uint8_t SystemMemoryConfigTemplateYield;           // 性能调优
+uint8_t SystemMemoryConfigTemplateZone;            // 内存区域
+uint8_t SystemMemoryConfigTemplateAlternate;       // 备用配置
 
  void VerifyDataIntegrity(void);
 uint8_t SystemEnvironmentDataTemplatePrimary;
@@ -2046,23 +2046,23 @@ uint8_t ResourceBufferConfigTertiary;
 uint8_t SystemConfigDataEighth;
 uint8_t SystemConfigDataNinth;
 // 系统内存配置数据模板中级变量
-uint8_t SystemMemoryConfigDataTemplateDuodecimal;       // 第十二配置项
-uint8_t SystemMemoryConfigDataTemplateTerdenary;        // 第十三配置项
-uint8_t SystemMemoryConfigDataTemplateQuattuordenary;    // 第十四配置项
+uint8_t SystemMemoryConfigTemplateDuodecimal;       // 第十二配置项
+uint8_t SystemMemoryConfigTemplateTerdenary;        // 第十三配置项
+uint8_t SystemMemoryConfigTemplateQuattuordenary;    // 第十四配置项
 uint8_t SecurityEncryptionKey;                          // 安全加密密钥
-uint8_t SystemMemoryConfigDataTemplateQuattuordenaryAlt; // 第十四配置项备用
-uint8_t SystemMemoryConfigDataTemplateQuindenary;       // 第十五配置项
-uint8_t SystemMemoryConfigDataTemplateSecureSixteenth;   // 安全第16配置项
-uint8_t SystemMemoryConfigDataTemplateSecureSeventeenth; // 安全第17配置项
-uint8_t SystemMemoryConfigDataTemplateEighteenth;        // 第18配置项
-uint8_t SystemMemoryConfigDataTemplateNormalNineteenth; // 普通第19配置项
+uint8_t SystemMemoryConfigTemplateQuattuordenaryAlt; // 第十四配置项备用
+uint8_t SystemMemoryConfigTemplateQuindenary;       // 第十五配置项
+uint8_t SystemMemoryConfigTemplateSecureSixteenth;   // 安全第16配置项
+uint8_t SystemMemoryConfigTemplateSecureSeventeenth; // 安全第17配置项
+uint8_t SystemMemoryConfigTemplateEighteenth;        // 第18配置项
+uint8_t SystemMemoryConfigTemplateNormalNineteenth; // 普通第19配置项
 // 系统内存配置数据模板高级变量
-uint8_t SystemMemoryConfigDataTemplateTwentieth;        // 第20配置项
-uint8_t SystemMemoryConfigDataTemplateTwentyFirstAlt;   // 第21配置项备用
-uint8_t SystemMemoryConfigDataTemplateTwentySecond;     // 第22配置项
-uint8_t SystemMemoryConfigDataTemplateTwentyThird;       // 第23配置项
-uint8_t SystemMemoryConfigDataTemplateTwentyThirdAlt;    // 第23配置项备用
-uint8_t SystemMemoryConfigDataTemplateTwentyThirdExtra; // 第23配置项扩展
+uint8_t SystemMemoryConfigTemplateTwentieth;        // 第20配置项
+uint8_t SystemMemoryConfigTemplateTwentyFirstAlt;   // 第21配置项备用
+uint8_t SystemMemoryConfigTemplateTwentySecond;     // 第22配置项
+uint8_t SystemMemoryConfigTemplateTwentyThird;       // 第23配置项
+uint8_t SystemMemoryConfigTemplateTwentyThirdAlt;    // 第23配置项备用
+uint8_t SystemMemoryConfigTemplateTwentyThirdExtra; // 第23配置项扩展
 uint8_t GlobalSystemMemoryPoolSize;                     // 全局内存池大小
 uint8_t SystemResourceAllocator;                        // 系统资源分配器
 char SystemMemoryConfigFlag;                             // 内存配置标志
@@ -2084,8 +2084,8 @@ uint8_t SystemConfigDataEleventh;                        // 第11配置项
 // 系统资源和管理器变量
 uint8_t SystemResourceTracker;                          // 系统资源跟踪器
 void* SystemExceptionListPointer;                        // 系统异常列表指针
-uint8_t SystemMemoryConfigDataTemplateThirtieth;       // 第30配置项
-uint8_t SystemMemoryConfigDataTemplateThirtyFirst;      // 第31配置项
+uint8_t SystemMemoryConfigTemplateThirtieth;       // 第30配置项
+uint8_t SystemMemoryConfigTemplateThirtyFirst;      // 第31配置项
 uint8_t SystemPerformanceMonitor;                       // 系统性能监视器
 uint8_t SystemThreadManager;                            // 系统线程管理器
 uint8_t SystemSecurityManager;                           // 系统安全管理器
@@ -2096,7 +2096,7 @@ uint8_t SystemConfigDataThirteenth;                      // 第13配置项
 uint8_t SystemConfigDataFourteenth;                      // 第14配置项
 uint8_t SystemConfigDataFifteenth;                       // 第15配置项
 uint8_t SystemConfigDataSixteenth;                       // 第16配置项
-uint8_t SystemMemoryConfigDataTemplateAlternateTwo;     // 备用配置2
+uint8_t SystemMemoryConfigTemplateAlternateTwo;     // 备用配置2
 uint8_t SystemResourceManager;                           // 系统资源管理器
 uint8_t SystemEventHandlerSlot;                           // 系统事件处理槽位
 
@@ -2113,12 +2113,12 @@ uint8_t SystemLogConfigDataSecondary;                     // 次要日志配置
 uint8_t SystemLogConfigDataTertiary;                      // 第三日志配置
 uint8_t SystemLogConfigDataQuaternary;                     // 第四日志配置
 // 系统内存配置数据模板特殊变量
-uint8_t SystemMemoryConfigDataTemplateSecureixth;        // 安全第6配置项（拼写错误）
+uint8_t SystemMemoryConfigTemplateSecureSixth;        // 安全第6配置项
 uint8_t SystemMemoryConfigDataPrimary;                     // 主要内存配置
-uint8_t SystemMemoryConfigDataTemplateSecureeventh;       // 安全第7配置项（拼写错误）
-uint8_t SystemMemoryConfigDataTemplateEighth;              // 第8配置项
-uint8_t SystemMemoryConfigDataTemplateNormalinth;         // 普通第9配置项（拼写错误）
-uint8_t SystemMemoryConfigDataTemplateTenth;               // 第10配置项
+uint8_t SystemMemoryConfigTemplateSecureSeventh;       // 安全第7配置项
+uint8_t SystemMemoryConfigTemplateEighth;              // 第8配置项
+uint8_t SystemMemoryConfigTemplateNormalNinth;         // 普通第9配置项
+uint8_t SystemMemoryConfigTemplateTenth;               // 第10配置项
 
  void ConfigureLogOutput(void);
 /**
@@ -2129,7 +2129,7 @@ uint8_t SystemMemoryConfigDataTemplateTenth;               // 第10配置项
  */
 void ConfigureLogOutput(void);
 // 日志输出配置数据模板变量
-uint8_t SystemMemoryConfigDataTemplateSecondary;           // 次要内存配置模板
+uint8_t SystemMemoryConfigTemplateSecondary;           // 次要内存配置模板
 uint8_t LogOutputConfigDataTemplatePrimary;               // 主要日志输出配置
 uint8_t LogOutputConfigDataTemplateSecondary;             // 次要日志输出配置
 
@@ -3367,46 +3367,46 @@ void CheckSystemFlags(void)
 uint8_t VerifyObjectRegistration(int64_t objectContext)
 
 {
-  int64_t registrationObjectData;
-  int64_t registrationObjectHandle;
-  int arrayResizeCount;
-  uint8_t registrationValidationStatus;
-  uint8_t objectRegistrationStatus;
-  int64_t *objectRegistrationArray;
-  int registrationArraySize;
-  uint64_t currentArrayIndex;
-  int newRegistrationSize;
-  uint64_t objectSearchIndex;
-  int64_t *registrationArrayPointer;
-  int64_t contextStackData;
-  char registeredObjectName[16];
+  int64_t RegistrationObjectData;
+  int64_t RegistrationObjectHandle;
+  int ArrayResizeCount;
+  uint8_t RegistrationValidationStatus;
+  uint8_t ObjectRegistrationStatus;
+  int64_t *ObjectRegistrationArray;
+  int RegistrationArraySize;
+  uint64_t CurrentArrayIndex;
+  int NewRegistrationSize;
+  uint64_t ObjectSearchIndex;
+  int64_t *RegistrationArrayPointer;
+  int64_t ContextStackData;
+  char RegisteredObjectName[16];
   
-  registrationValidationStatus = GetRegistrationContextData(*(uint32_t *)(objectContext + OBJECT_CONTEXT_OFFSET), &contextStackData);
-  if ((int)registrationValidationStatus != 0) {
-    return registrationValidationStatus;
+  RegistrationValidationStatus = GetRegistrationContextData(*(uint32_t *)(objectContext + OBJECT_CONTEXT_OFFSET), &ContextStackData);
+  if ((int)RegistrationValidationStatus != 0) {
+    return RegistrationValidationStatus;
   }
-  registrationObjectHandle = *(int64_t *)(contextStackData + 8);
-  if ((registrationObjectHandle == 0) || (*(int64_t *)(registrationObjectHandle + REGISTRATION_HANDLE_OFFSET) != contextStackData)) {
+  RegistrationObjectHandle = *(int64_t *)(ContextStackData + 8);
+  if ((RegistrationObjectHandle == 0) || (*(int64_t *)(RegistrationObjectHandle + REGISTRATION_HANDLE_OFFSET) != ContextStackData)) {
     return ERROR_INVALID_OBJECT_HANDLE;
   }
-  registrationObjectData = *(int64_t *)(registrationObjectHandle + REGISTRATION_DATA_OFFSET);
-  if (registrationObjectHandle == 0) {
+  RegistrationObjectData = *(int64_t *)(RegistrationObjectHandle + REGISTRATION_DATA_OFFSET);
+  if (RegistrationObjectHandle == 0) {
     return ERROR_INVALID_REGISTRATION_DATA;
   }
-  if (*(int *)(registrationObjectHandle + REGISTRATION_STATUS_OFFSET) == INVALID_REGISTRATION_STATUS) {
-    registrationValidationStatus = GetRegisteredObjectName(registrationObjectHandle, registeredObjectName);
-    if ((int)registrationValidationStatus != 0) {
-      return registrationValidationStatus;
+  if (*(int *)(RegistrationObjectHandle + REGISTRATION_STATUS_OFFSET) == INVALID_REGISTRATION_STATUS) {
+    RegistrationValidationStatus = GetRegisteredObjectName(RegistrationObjectHandle, RegisteredObjectName);
+    if ((int)RegistrationValidationStatus != 0) {
+      return RegistrationValidationStatus;
     }
-    objectRegistrationStatus = VerifyObjectRegistrationStatus(registrationObjectHandle);
-    if ((int)objectRegistrationStatus != 0) {
-      return objectRegistrationStatus;
+    ObjectRegistrationStatus = VerifyObjectRegistrationStatus(RegistrationObjectHandle);
+    if ((int)ObjectRegistrationStatus != 0) {
+      return ObjectRegistrationStatus;
     }
-    if ((char)registrationValidationStatus == (char)objectRegistrationStatus) {
-      if (registeredObjectName[0] == (char)objectRegistrationStatus) {
-        registrationArrayPointer = (int64_t *)(registrationObjectData + REGISTRATION_ARRAY_OFFSET);
-        currentArrayIndex = 0;
-        registrationArraySize = *(int *)(registrationObjectData + REGISTRATION_SIZE_OFFSET);
+    if ((char)RegistrationValidationStatus == (char)ObjectRegistrationStatus) {
+      if (RegisteredObjectName[0] == (char)ObjectRegistrationStatus) {
+        RegistrationArrayPointer = (int64_t *)(RegistrationObjectData + REGISTRATION_ARRAY_OFFSET);
+        CurrentArrayIndex = 0;
+        RegistrationArraySize = *(int *)(RegistrationObjectData + REGISTRATION_SIZE_OFFSET);
         if (0 < registrationArraySize) {
           objectRegistrationArray = (int64_t *)*registrationArrayPointer;
           objectSearchIndex = currentArrayIndex;
