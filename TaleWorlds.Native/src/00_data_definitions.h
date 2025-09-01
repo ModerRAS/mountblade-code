@@ -13311,26 +13311,16 @@ LAB_1808fc75b:
 }
 
 /**
- * @brief 处理系统字符串数据
+ * 处理系统字符串数据
+ * 将源字符串数据按照配置参数处理后写入目标缓冲区
  * 
  * 该函数负责处理系统中的字符串数据，包括字符串的复制、
  * 转换和验证等操作。主要用于系统初始化过程中的
  * 字符串处理任务。
  * 
- * @param targetBuffer 目标缓冲区指针
- * @param param1 参数1，通常为0
- * @param param2 参数2，通常为字符串长度
- * @param sourceBuffer 源缓冲区指针
- * @param configData 配置数据
- * @return 处理结果状态码
- */
-/**
- * 处理系统字符串数据
- * 将源字符串数据按照配置参数处理后写入目标缓冲区
- * 
  * @param targetBuffer 目标缓冲区指针，用于存储处理后的数据
- * @param param1 处理参数1，控制字符串处理方式
- * @param param2 处理参数2，控制字符串处理选项
+ * @param bufferSize 缓冲区大小，以字节为单位
+ * @param stringLength 字符串长度，用于控制处理范围
  * @param sourceBuffer 源字符串数据缓冲区指针
  * @param configData 配置数据指针，包含字符串处理规则
  * @return 处理成功返回0，失败返回-1
