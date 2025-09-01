@@ -14138,10 +14138,10 @@ LAB_180897ce8:
           }
           processingCounter = processingCounter + 1;
           int tableValidationResult = func_0x0001808c7ed0(*(uint8_t *)(localContextPointer + 0xd0));
-        } while (integerValue6 < iVar3);
+        } while (processingCounter < tableValidationResult);
       }
     }
-    iVar7 = iVar7 + 1;
+    loopIndex = loopIndex + 1;
   } while( true );
 }
 
