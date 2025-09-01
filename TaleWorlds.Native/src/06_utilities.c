@@ -34501,7 +34501,18 @@ void ProcessResourceOperationUnwindB(uint8_t ObjectContextParameter, int64_t Val
 
 
 
-void Unwind_180903290(uint8_t ObjectContextParameter,int64_t ValidationContextParameter,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 处理资源操作回滚C
+ * 
+ * 该函数负责在异常情况下回滚资源操作C
+ * 处理偏移量0xf0处的资源操作
+ * 
+ * @param ObjectContextParameter 对象上下文参数
+ * @param ValidationContextParameter 验证上下文参数
+ * @param CleanupOption 清理选项
+ * @param CleanupFlag 清理标志
+ */
+void ProcessResourceOperationUnwindC(uint8_t ObjectContextParameter, int64_t ValidationContextParameter, uint8_t CleanupOption, uint8_t CleanupFlag)
 
 {
   ProcessResourceOperation(*(int64_t *)(ValidationContextParameter + 0x40) + 0xf0,
@@ -34527,7 +34538,18 @@ void DestroyMutexDuplicate(void)
 
 
 
-void Unwind_1809032d0(uint8_t ObjectContextParameter,int64_t ValidationContextParameter,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 处理资源释放回滚A
+ * 
+ * 该函数负责在异常情况下回滚资源释放操作A
+ * 处理偏移量0x48处的资源释放
+ * 
+ * @param ObjectContextParameter 对象上下文参数
+ * @param ValidationContextParameter 验证上下文参数
+ * @param CleanupOption 清理选项
+ * @param CleanupFlag 清理标志
+ */
+void ProcessResourceReleaseUnwindA(uint8_t ObjectContextParameter, int64_t ValidationContextParameter, uint8_t CleanupOption, uint8_t CleanupFlag)
 
 {
   ProcessResourceRelease(*(int64_t *)(ValidationContextParameter + 0x48),*(uint8_t *)(*(int64_t *)(ValidationContextParameter + 0x48) + 0x10),
@@ -34537,7 +34559,18 @@ void Unwind_1809032d0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 
 
 
-void Unwind_1809032e0(uint8_t ObjectContextParameter,int64_t ValidationContextParameter,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 处理资源释放回滚B
+ * 
+ * 该函数负责在异常情况下回滚资源释放操作B
+ * 处理偏移量0x48处的资源释放
+ * 
+ * @param ObjectContextParameter 对象上下文参数
+ * @param ValidationContextParameter 验证上下文参数
+ * @param CleanupOption 清理选项
+ * @param CleanupFlag 清理标志
+ */
+void ProcessResourceReleaseUnwindB(uint8_t ObjectContextParameter, int64_t ValidationContextParameter, uint8_t CleanupOption, uint8_t CleanupFlag)
 
 {
   ProcessResourceRelease(*(int64_t *)(ValidationContextParameter + 0x48),*(uint8_t *)(*(int64_t *)(ValidationContextParameter + 0x48) + 0x10),
@@ -34547,7 +34580,18 @@ void Unwind_1809032e0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 
 
 
-void Unwind_1809032f0(uint8_t ObjectContextParameter,int64_t ValidationContextParameter,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 处理资源释放回滚C
+ * 
+ * 该函数负责在异常情况下回滚资源释放操作C
+ * 处理偏移量0x40处的资源释放
+ * 
+ * @param ObjectContextParameter 对象上下文参数
+ * @param ValidationContextParameter 验证上下文参数
+ * @param CleanupOption 清理选项
+ * @param CleanupFlag 清理标志
+ */
+void ProcessResourceReleaseUnwindC(uint8_t ObjectContextParameter, int64_t ValidationContextParameter, uint8_t CleanupOption, uint8_t CleanupFlag)
 
 {
   ProcessResourceRelease(*(int64_t *)(ValidationContextParameter + 0x40),*(uint8_t *)(*(int64_t *)(ValidationContextParameter + 0x40) + 0x10),
@@ -34557,7 +34601,18 @@ void Unwind_1809032f0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 
 
 
-void Unwind_180903300(uint8_t ObjectContextParameter,int64_t ValidationContextParameter,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 处理资源释放回滚D
+ * 
+ * 该函数负责在异常情况下回滚资源释放操作D
+ * 处理偏移量0x40处的资源释放
+ * 
+ * @param ObjectContextParameter 对象上下文参数
+ * @param ValidationContextParameter 验证上下文参数
+ * @param CleanupOption 清理选项
+ * @param CleanupFlag 清理标志
+ */
+void ProcessResourceReleaseUnwindD(uint8_t ObjectContextParameter, int64_t ValidationContextParameter, uint8_t CleanupOption, uint8_t CleanupFlag)
 
 {
   ProcessResourceRelease(*(int64_t *)(ValidationContextParameter + 0x40),*(uint8_t *)(*(int64_t *)(ValidationContextParameter + 0x40) + 0x10),
@@ -34567,11 +34622,20 @@ void Unwind_180903300(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 
 
 
-void Unwind_180903310(uint8_t ObjectContextParameter,int64_t ValidationContextParameter)
+/**
+ * @brief 处理资源验证回滚A
+ * 
+ * 该函数负责在异常情况下回滚资源验证操作A
+ * 处理偏移量0x40+0x20处的资源验证
+ * 
+ * @param ObjectContextParameter 对象上下文参数
+ * @param ValidationContextParameter 验证上下文参数
+ */
+void ProcessResourceValidationUnwindA(uint8_t ObjectContextParameter, int64_t ValidationContextParameter)
 
 {
-  int *pResourceIndex;
-  uint8_t *pResourceValidationResult;
+  int *ResourceIndexPointer;
+  uint8_t *ResourceValidationResultPointer;
   int64_t ResourceIndex;
   uint64_t LoopIncrement;
   

@@ -33679,8 +33679,17 @@ void InitializeSystemConfigurationDataRecursive(void* SystemResourcePointer,void
 
 
 
-// 函数: void FUN_1800594b0(void* *SystemResourcePointer)
-void FUN_1800594b0(void* *SystemResourcePointer)
+/**
+ * @brief 配置系统资源内存区域
+ * 
+ * 该函数负责配置系统资源的内存区域，设置内存区域参数和引用，
+ * 用于系统内存管理和资源分配。
+ * 
+ * @param SystemResourcePointer 系统资源指针数组
+ * 
+ * 原始函数名为FUN_1800594b0，现已重命名为ConfigureSystemResourceMemoryRegions
+ */
+void ConfigureSystemResourceMemoryRegions(void* *SystemResourcePointer)
 
 {
   ConfigureSystemMemoryRegion(SystemResourcePointer + 0x7d,0x58,4,InitializeDriverSystem,0xfffffffffffffffe);
@@ -33688,7 +33697,6 @@ void FUN_1800594b0(void* *SystemResourcePointer)
   ConfigureSystemMemoryRegion(SystemResourcePointer + 0x11,0x20,0x10,CleanupSystemResources);
   SystemResourcePointer[8] = &SystemGlobalDataReference;
   if (SystemResourcePointer[9] != 0) {
-                    // WARNING: Subroutine does not return
     SystemCleanupFunction();
   }
   SystemResourcePointer[9] = 0;
@@ -33696,7 +33704,6 @@ void FUN_1800594b0(void* *SystemResourcePointer)
   SystemResourcePointer[8] = &SystemMemoryAllocatorReference;
   SystemResourcePointer[4] = &SystemGlobalDataReference;
   if (SystemResourcePointer[5] != 0) {
-                    // WARNING: Subroutine does not return
     SystemCleanupFunction();
   }
   SystemResourcePointer[5] = 0;
@@ -33704,7 +33711,6 @@ void FUN_1800594b0(void* *SystemResourcePointer)
   SystemResourcePointer[4] = &SystemMemoryAllocatorReference;
   *SystemResourcePointer = &SystemGlobalDataReference;
   if (SystemResourcePointer[1] != 0) {
-                    // WARNING: Subroutine does not return
     SystemCleanupFunction();
   }
   SystemResourcePointer[1] = 0;
@@ -43271,8 +43277,15 @@ void FUN_1800670d0(void)
 
 
 
-// 函数: void FUN_1800670f0(void)
-void FUN_1800670f0(void)
+/**
+ * @brief 处理长度错误异常
+ * 
+ * 该函数负责处理系统中的长度错误异常，调用标准库的长度错误处理函数，
+ * 然后通过软件中断执行错误处理程序。
+ * 
+ * 原始函数名为FUN_1800670f0，现已重命名为HandleLengthError
+ */
+void HandleLengthError(void)
 
 {
   code *pcVar1;
