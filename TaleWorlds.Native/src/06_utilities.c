@@ -41,8 +41,7 @@ void* GlobalModuleAConfiguration;
 uint32_t GlobalModuleAStatus;
 void* GlobalModuleAHandle;
 
- void InitializeGlobalModuleB(void)
-/**
+ /**
  * @brief 初始化全局模块B
  * 
  * 该函数负责初始化游戏引擎的全局模块B
