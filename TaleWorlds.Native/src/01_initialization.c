@@ -16324,8 +16324,16 @@ void InitializeSystemEventManager(void)
 
 
 
-// 函数: void FUN_1800425d0(void)
-void FUN_1800425d0(void)
+/**
+ * @brief 初始化系统资源管理器
+ * 
+ * 该函数负责初始化系统的资源管理组件，设置资源节点的基础结构。
+ * 它会遍历系统资源节点树，进行内存比较，分配必要的内存，并设置资源节点属性。
+ * 该函数还负责配置系统资源的初始化回调函数和资源管理机制。
+ * 
+ * @note 这是系统初始化过程中的重要组成部分，确保资源管理系统的正常运行
+ */
+void InitializeSystemResourceManager(void)
 
 {
   char systemNodeFlag;
@@ -16346,7 +16354,7 @@ void FUN_1800425d0(void)
   systemPreviousNode = systemRootNode;
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
-    memoryCompareResult = memcmp(systemCurrentNode + 4,&SystemDataComparisonTemplateJ,0x10);
+    memoryCompareResult = memcmp(systemCurrentNode + 4,&SystemResourceComparisonTemplate,0x10);
     if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
@@ -16358,14 +16366,14 @@ void FUN_1800425d0(void)
     systemCurrentNode = systemNextNode;
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
-  if ((systemPreviousNode == systemRootNode) || (memoryCompareResult = memcmp(&SystemDataComparisonTemplateJ,systemPreviousNode + 4,0x10), memoryCompareResult < 0)) {
+  if ((systemPreviousNode == systemRootNode) || (memoryCompareResult = memcmp(&SystemResourceComparisonTemplate,systemPreviousNode + 4,0x10), memoryCompareResult < 0)) {
     memoryAllocationSize = GetSystemMemorySize(systemDataTable);
     AllocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   systemPreviousNode[6] = 0x4b2d79e470ee4e2c;
   puVar7[7] = 0x9c552acd3ed5548d;
-  puVar7[8] = &SystemDataNodeG;
+  puVar7[8] = &SystemResourceNodeG;
   systemPreviousNode[9] = 0;
   puVar7[10] = resourceInitializationCallback;
   return;
@@ -16374,8 +16382,16 @@ void FUN_1800425d0(void)
 
 
 
-// 函数: void FUN_1800426d0(void)
-void FUN_1800426d0(void)
+/**
+ * @brief 初始化系统设备管理器
+ * 
+ * 该函数负责初始化系统的设备管理组件，设置设备节点的基础结构。
+ * 它会遍历系统设备节点树，进行内存比较，分配必要的内存，并设置设备节点属性。
+ * 该函数还负责配置系统设备的回调函数和设备管理机制。
+ * 
+ * @note 这是系统初始化过程中的重要组成部分，确保设备管理系统的正常运行
+ */
+void InitializeSystemDeviceManager(void)
 
 {
   char systemNodeFlag;
@@ -16387,16 +16403,16 @@ void FUN_1800426d0(void)
   void** systemCurrentNode;
   void** systemNextNode;
   void** systemPreviousNode;
-  code *pcStackX_18;
+  code *deviceInitializationCallback;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
   systemRootNode = (undefined8 *)*systemDataTable;
   systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
-  pcStackX_18 = SystemInitializationCallbackB;
+  deviceInitializationCallback = SystemInitializationCallbackB;
   systemPreviousNode = systemRootNode;
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
-    memoryCompareResult = memcmp(systemCurrentNode + 4,&SystemDataComparisonTemplateK,0x10);
+    memoryCompareResult = memcmp(systemCurrentNode + 4,&SystemDeviceComparisonTemplate,0x10);
     if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
@@ -16408,24 +16424,32 @@ void FUN_1800426d0(void)
     systemCurrentNode = systemNextNode;
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
-  if ((systemPreviousNode == systemRootNode) || (memoryCompareResult = memcmp(&SystemDataComparisonTemplateK,systemPreviousNode + 4,0x10), memoryCompareResult < 0)) {
+  if ((systemPreviousNode == systemRootNode) || (memoryCompareResult = memcmp(&SystemDeviceComparisonTemplate,systemPreviousNode + 4,0x10), memoryCompareResult < 0)) {
     memoryAllocationSize = GetSystemMemorySize(systemDataTable);
     AllocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   systemPreviousNode[6] = 0x49086ba08ab981a7;
   puVar7[7] = 0xa9191d34ad910696;
-  puVar7[8] = &SystemDataNodeH;
+  puVar7[8] = &SystemDeviceNodeH;
   systemPreviousNode[9] = 0;
-  systemPreviousNode[10] = eventCallbackPointer;
+  systemPreviousNode[10] = deviceEventCallbackPointer;
   return;
 }
 
 
 
 
-// 函数: void FUN_1800427d0(void)
-void FUN_1800427d0(void)
+/**
+ * @brief 初始化系统内存管理器
+ * 
+ * 该函数负责初始化系统的内存管理组件，设置内存节点的基础结构。
+ * 它会遍历系统内存节点树，进行内存比较，分配必要的内存，并设置内存节点属性。
+ * 该函数还负责配置系统内存的初始化回调函数和内存管理机制。
+ * 
+ * @note 这是系统初始化过程中的重要组成部分，确保内存管理系统的正常运行
+ */
+void InitializeSystemMemoryManager(void)
 
 {
   char systemNodeFlag;
@@ -16446,7 +16470,7 @@ void FUN_1800427d0(void)
   systemPreviousNode = systemRootNode;
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
-    memoryCompareResult = memcmp(systemCurrentNode + 4,&SystemDataComparisonTemplateL,0x10);
+    memoryCompareResult = memcmp(systemCurrentNode + 4,&SystemMemoryComparisonTemplate,0x10);
     if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
@@ -16458,16 +16482,16 @@ void FUN_1800427d0(void)
     systemCurrentNode = systemNextNode;
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
-  if ((systemPreviousNode == systemRootNode) || (memoryCompareResult = memcmp(&SystemDataComparisonTemplateL,systemPreviousNode + 4,0x10), memoryCompareResult < 0)) {
+  if ((systemPreviousNode == systemRootNode) || (memoryCompareResult = memcmp(&SystemMemoryComparisonTemplate,systemPreviousNode + 4,0x10), memoryCompareResult < 0)) {
     memoryAllocationSize = GetSystemMemorySize(systemDataTable);
     AllocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   systemPreviousNode[6] = 0x402feffe4481676e;
   puVar7[7] = 0xd4c2151109de93a0;
-  puVar7[8] = &SystemDataNodeI;
+  puVar7[8] = &SystemMemoryNodeI;
   systemPreviousNode[9] = 0;
-  puVar7[10] = resourceInitializationCallback;
+  puVar7[10] = memoryInitializationCallback;
   return;
 }
 
