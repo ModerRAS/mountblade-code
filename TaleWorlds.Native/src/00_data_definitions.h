@@ -4960,89 +4960,100 @@ uint8_t normalize_color_luminance(uint64_t *color_data)
   uint64_t remaining_elements;
   int64_t element_count;
   double luminance_sum;
-  if (*(int *)((longlong)param_1 + 0x54) == 0x20) {
-    pfVar14 = (float *)*param_1;
-    iVar18 = 0;
-    dVar21 = 0.0;
-    lVar20 = 0;
-    iVar17 = 0;
-    iVar16 = (int)((ulonglong)param_1[1] / 0xc);
-    pfVar15 = pfVar14;
-    if (3 < iVar16) {
-      uVar13 = (iVar16 - 4U >> 2) + 1;
-      uVar19 = (ulonglong)uVar13;
-      lVar20 = (ulonglong)uVar13 * 4;
-      iVar17 = uVar13 * 4;
+  // 检查颜色格式是否为0x20 (12字节格式)
+  if (*(int *)((int64_t)color_data + 0x54) == 0x20) {
+    output_buffer = (float *)*color_data;
+    batch_processed = 0;
+    luminance_sum = 0.0;
+    element_count = 0;
+    processed_elements = 0;
+    total_elements = (int)((uint64_t)color_data[1] / 0xc);
+    input_buffer = output_buffer;
+    
+    // 批量处理4个元素以提高性能
+    if (3 < total_elements) {
+      loop_counter = (total_elements - 4U >> 2) + 1;
+      remaining_elements = (uint64_t)loop_counter;
+      element_count = (uint64_t)loop_counter * 4;
+      processed_elements = loop_counter * 4;
       do {
-        pfVar1 = pfVar15 + 3;
-        fVar12 = *pfVar15;
-        pfVar2 = pfVar15 + 6;
-        pfVar3 = pfVar15 + 7;
-        pfVar4 = pfVar15 + 5;
-        pfVar5 = pfVar15 + 9;
-        pfVar6 = pfVar15 + 10;
-        pfVar7 = pfVar15 + 4;
-        pfVar8 = pfVar15 + 1;
-        pfVar9 = pfVar15 + 2;
-        pfVar10 = pfVar15 + 8;
-        pfVar11 = pfVar15 + 0xb;
-        pfVar15 = pfVar15 + 0xc;
-        dVar21 = dVar21 + (double)*pfVar1 * 0.2126 + (double)fVar12 * 0.2126 +
-                          (double)*pfVar2 * 0.2126 + (double)*pfVar5 * 0.2126 +
-                          (double)*pfVar6 * 0.7152 +
-                          (double)*pfVar3 * 0.7152 + (double)*pfVar7 * 0.7152 +
-                          (double)*pfVar8 * 0.7152 +
-                          (double)*pfVar4 * 0.0722 + (double)*pfVar9 * 0.0722 +
-                          (double)*pfVar10 * 0.0722 + (double)*pfVar11 * 0.0722;
-        uVar19 = uVar19 - 1;
-      } while (uVar19 != 0);
+        red_component = input_buffer + 3;
+        temp_float = *input_buffer;
+        green_component = input_buffer + 6;
+        blue_component = input_buffer + 7;
+        alpha_component = input_buffer + 5;
+        component_5 = input_buffer + 9;
+        component_6 = input_buffer + 10;
+        component_7 = input_buffer + 4;
+        component_8 = input_buffer + 1;
+        component_9 = input_buffer + 2;
+        component_10 = input_buffer + 8;
+        component_11 = input_buffer + 0xb;
+        input_buffer = input_buffer + 0xc;
+        luminance_sum = luminance_sum + (double)*red_component * 0.2126 + (double)temp_float * 0.2126 +
+                          (double)*green_component * 0.2126 + (double)*component_5 * 0.2126 +
+                          (double)*component_6 * 0.7152 +
+                          (double)*blue_component * 0.7152 + (double)*component_7 * 0.7152 +
+                          (double)*component_8 * 0.7152 +
+                          (double)*alpha_component * 0.0722 + (double)*component_9 * 0.0722 +
+                          (double)*component_10 * 0.0722 + (double)*component_11 * 0.0722;
+        remaining_elements = remaining_elements - 1;
+      } while (remaining_elements != 0);
     }
-    if (iVar17 < iVar16) {
-      pfVar15 = pfVar15 + 2;
-      uVar19 = (ulonglong)(uint)(iVar16 - iVar17);
-      lVar20 = lVar20 + uVar19;
+    
+    // 处理剩余的元素
+    if (processed_elements < total_elements) {
+      input_buffer = input_buffer + 2;
+      remaining_elements = (uint64_t)(uint32_t)(total_elements - processed_elements);
+      element_count = element_count + remaining_elements;
       do {
-        pfVar1 = pfVar15 + -1;
-        pfVar2 = pfVar15 + -2;
-        fVar12 = *pfVar15;
-        pfVar15 = pfVar15 + 3;
-        dVar21 = dVar21 + (double)*pfVar1 * 0.7152 + (double)*pfVar2 * 0.2126 +
-                          (double)fVar12 * 0.0722;
-        uVar19 = uVar19 - 1;
-      } while (uVar19 != 0);
+        red_component = input_buffer + -1;
+        green_component = input_buffer + -2;
+        temp_float = *input_buffer;
+        input_buffer = input_buffer + 3;
+        luminance_sum = luminance_sum + (double)*red_component * 0.7152 + (double)*green_component * 0.2126 +
+                          (double)temp_float * 0.0722;
+        remaining_elements = remaining_elements - 1;
+      } while (remaining_elements != 0);
     }
-    dVar21 = 1.0 / (dVar21 / (double)lVar20);
-    if (3 < iVar16) {
-      uVar13 = (iVar16 - 4U >> 2) + 1;
-      uVar19 = (ulonglong)uVar13;
-      iVar18 = uVar13 * 4;
+    
+    // 计算标准化系数
+    luminance_sum = 1.0 / (luminance_sum / (double)element_count);
+    
+    // 应用标准化系数到输出缓冲区
+    if (3 < total_elements) {
+      loop_counter = (total_elements - 4U >> 2) + 1;
+      remaining_elements = (uint64_t)loop_counter;
+      batch_processed = loop_counter * 4;
       do {
-        *pfVar14 = (float)((double)*pfVar14 * dVar21);
-        pfVar14[1] = (float)((double)pfVar14[1] * dVar21);
-        pfVar14[2] = (float)((double)pfVar14[2] * dVar21);
-        pfVar14[3] = (float)((double)pfVar14[3] * dVar21);
-        pfVar14[4] = (float)((double)pfVar14[4] * dVar21);
-        pfVar14[5] = (float)((double)pfVar14[5] * dVar21);
-        pfVar14[6] = (float)((double)pfVar14[6] * dVar21);
-        pfVar14[7] = (float)((double)pfVar14[7] * dVar21);
-        pfVar14[8] = (float)((double)pfVar14[8] * dVar21);
-        pfVar14[9] = (float)((double)pfVar14[9] * dVar21);
-        pfVar14[10] = (float)((double)pfVar14[10] * dVar21);
-        pfVar14[0xb] = (float)((double)pfVar14[0xb] * dVar21);
-        pfVar14 = pfVar14 + 0xc;
-        uVar19 = uVar19 - 1;
-      } while (uVar19 != 0);
+        *output_buffer = (float)((double)*output_buffer * luminance_sum);
+        output_buffer[1] = (float)((double)output_buffer[1] * luminance_sum);
+        output_buffer[2] = (float)((double)output_buffer[2] * luminance_sum);
+        output_buffer[3] = (float)((double)output_buffer[3] * luminance_sum);
+        output_buffer[4] = (float)((double)output_buffer[4] * luminance_sum);
+        output_buffer[5] = (float)((double)output_buffer[5] * luminance_sum);
+        output_buffer[6] = (float)((double)output_buffer[6] * luminance_sum);
+        output_buffer[7] = (float)((double)output_buffer[7] * luminance_sum);
+        output_buffer[8] = (float)((double)output_buffer[8] * luminance_sum);
+        output_buffer[9] = (float)((double)output_buffer[9] * luminance_sum);
+        output_buffer[10] = (float)((double)output_buffer[10] * luminance_sum);
+        output_buffer[0xb] = (float)((double)output_buffer[0xb] * luminance_sum);
+        output_buffer = output_buffer + 0xc;
+        remaining_elements = remaining_elements - 1;
+      } while (remaining_elements != 0);
     }
-    if (iVar18 < iVar16) {
-      pfVar14 = pfVar14 + 2;
-      uVar19 = (ulonglong)(uint)(iVar16 - iVar18);
+    
+    // 处理剩余元素的标准化
+    if (batch_processed < total_elements) {
+      output_buffer = output_buffer + 2;
+      remaining_elements = (uint64_t)(uint32_t)(total_elements - batch_processed);
       do {
-        pfVar14[-2] = (float)((double)pfVar14[-2] * dVar21);
-        pfVar14[-1] = (float)((double)pfVar14[-1] * dVar21);
-        *pfVar14 = (float)((double)*pfVar14 * dVar21);
-        pfVar14 = pfVar14 + 3;
-        uVar19 = uVar19 - 1;
-      } while (uVar19 != 0);
+        output_buffer[-2] = (float)((double)output_buffer[-2] * luminance_sum);
+        output_buffer[-1] = (float)((double)output_buffer[-1] * luminance_sum);
+        *output_buffer = (float)((double)*output_buffer * luminance_sum);
+        output_buffer = output_buffer + 3;
+        remaining_elements = remaining_elements - 1;
+      } while (remaining_elements != 0);
     }
   }
   else {
