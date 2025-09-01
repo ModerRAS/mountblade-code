@@ -3888,7 +3888,7 @@ int ProcessNetworkPacketSimplified(longlong connectionContext, longlong packetDa
 void ProcessNetworkDataPacket(longlong connectionContext,NetworkHandle packetData,NetworkStatus dataSize)
 
 {
-  ProcessNetworkPacketStream(packetData,dataSize,&UNK_180983828,*(NetworkStatus *)(connectionContext + 0x10),
+  ProcessNetworkPacketStream(packetData,dataSize,&NetworkStreamDataTemplate,*(NetworkStatus *)(connectionContext + 0x10),
                 *(NetworkStatus *)(connectionContext + 0x18));
   return;
 }
@@ -16100,7 +16100,7 @@ NetworkHandle ProcessNetworkDataStream(longlong connectionContext,NetworkHandle 
       if (iVar7 < 2) {
         iVar7 = 2;
       }
-      quinaryNetworkFlag = FUN_1808532e0(connectionContext + 0x10,iVar7);
+      quinaryNetworkFlag = ReadNetworkStreamData(connectionContext + 0x10,iVar7);
       if ((int)quinaryNetworkFlag != 0) {
         return quinaryNetworkFlag;
       }

@@ -16266,8 +16266,16 @@ void InitializeSystemSearchManager(void)
 
 
 
-// 函数: void FUN_1800424d0(void)
-void FUN_1800424d0(void)
+/**
+ * @brief 初始化系统事件管理器
+ * 
+ * 该函数负责初始化系统的事件管理组件，设置事件处理节点的基础结构。
+ * 它会遍历系统事件节点树，进行内存比较，分配必要的内存，并设置事件节点属性。
+ * 该函数还负责配置系统事件的回调函数和事件管理机制。
+ * 
+ * @note 这是系统初始化过程中的重要组成部分，确保事件管理系统的正常运行
+ */
+void InitializeSystemEventManager(void)
 
 {
   char systemNodeFlag;
@@ -16279,16 +16287,16 @@ void FUN_1800424d0(void)
   void** systemCurrentNode;
   void** systemNextNode;
   void** systemPreviousNode;
-  code *pcStackX_18;
+  code *eventSearchFunctionPointer;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
   systemRootNode = (undefined8 *)*systemDataTable;
   systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
-  systemSearchFunctionPointer = GetSystemSearchFunctionD;
+  eventSearchFunctionPointer = GetSystemSearchFunctionD;
   systemPreviousNode = systemRootNode;
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
-    memoryCompareResult = memcmp(systemCurrentNode + 4,&SystemDataComparisonTemplateI,0x10);
+    memoryCompareResult = memcmp(systemCurrentNode + 4,&SystemEventComparisonTemplate,0x10);
     if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
@@ -16300,14 +16308,14 @@ void FUN_1800424d0(void)
     systemCurrentNode = systemNextNode;
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
-  if ((systemPreviousNode == systemRootNode) || (memoryCompareResult = memcmp(&SystemDataComparisonTemplateI,systemPreviousNode + 4,0x10), memoryCompareResult < 0)) {
+  if ((systemPreviousNode == systemRootNode) || (memoryCompareResult = memcmp(&SystemEventComparisonTemplate,systemPreviousNode + 4,0x10), memoryCompareResult < 0)) {
     memoryAllocationSize = GetSystemMemorySize(systemDataTable);
     AllocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   systemPreviousNode[6] = 0x431d7c8d7c475be2;
   puVar7[7] = 0xb97f048d2153e1b0;
-  puVar7[8] = &SystemDataNodeF;
+  puVar7[8] = &SystemEventNodeF;
   puVar7[9] = 4;
   systemPreviousNode[10] = eventCallbackPointer;
   return;
