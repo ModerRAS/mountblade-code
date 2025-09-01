@@ -10698,7 +10698,7 @@ longlong SystemBufferSetup(uint64_t bufferId, uint64_t setupData, longlong confi
   }
   return lVar4;
 }
-longlong SystemBufferInitialize(uint64_t param_1,uint64_t param_2,longlong param_3,uint64_t param_4)
+longlong SystemBufferInitialize(uint64_t bufferId, uint64_t initData, longlong configData, uint64_t flags)
 {
   int64_t ModuleInitializationResult;
   longlong lVar2;
@@ -10736,7 +10736,7 @@ longlong SystemBufferInitialize(uint64_t param_1,uint64_t param_2,longlong param
   }
   return lVar4;
 }
-longlong SystemBufferCreate(uint64_t param_1,uint64_t param_2,longlong param_3)
+longlong SystemBufferCreate(uint64_t bufferId, uint64_t createData, longlong configData)
 {
   int LoopCounter;
   longlong lVar2;
@@ -10781,7 +10781,7 @@ longlong SystemBufferCreate(uint64_t param_1,uint64_t param_2,longlong param_3)
   }
   return lVar5;
 }
-longlong SystemBufferManage(uint64_t param_1,uint64_t param_2,longlong param_3)
+longlong SystemBufferManage(uint64_t bufferId, uint64_t manageData, longlong configData)
 {
   int64_t ModuleInitializationResult;
   longlong lVar2;
@@ -10821,7 +10821,7 @@ longlong SystemBufferManage(uint64_t param_1,uint64_t param_2,longlong param_3)
   }
   return lVar4;
 }
-longlong SystemBufferControl(uint64_t param_1,uint64_t param_2,longlong param_3)
+longlong SystemBufferControl(uint64_t bufferId, uint64_t controlData, longlong configData)
 {
   longlong *pModuleInitializationResult;
   longlong lVar2;

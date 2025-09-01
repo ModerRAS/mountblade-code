@@ -19940,7 +19940,7 @@ ulong long CompareSystemDataBlocks(long long SystemResourcePointer,long long Com
   unsignedSystemValue10 = (ulong long)*(int *)(SystemResourcePointer + 0x68);
   localResourceOffset = *(long long *)(SystemResourcePointer + 8);
   if (unsignedSystemValue10 < (ulong long)(*(long long *)(SystemResourcePointer + 0x10) - localResourceOffset >> 8)) {
-    systemValue = *(int *)(param_2 + 0x10);
+    systemValue = *(int *)(ComparisonDataPointer + 0x10);
     systemResult = *(int *)(unsignedSystemValue10 * 0x100 + 0x10 + localResourceOffset);
     if (systemResult == systemValue) {
       if (systemResult != 0) {
@@ -19964,7 +19964,7 @@ LAB_180046c03:
   unsignedSystemValue10 = 0;
   unsignedSystemValue7 = *(long long *)(SystemResourcePointer + 0x10) - localResourceOffset >> 8;
   if (unsignedSystemValue7 != 0) {
-    systemValue = *(int *)(param_2 + 0x10);
+    systemValue = *(int *)(ComparisonDataPointer + 0x10);
     unsignedSystemValue11 = unsignedSystemValue10;
     do {
       systemResult = *(int *)(unsignedSystemValue11 + 0x10 + localResourceOffset);

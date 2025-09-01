@@ -33249,7 +33249,17 @@ void Unwind_180902e50(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 
 
 
-void Unwind_180902e60(uint8_t ObjectContextParameter,int64_t ValidationContextParameter)
+/**
+ * @brief 验证和处理系统资源索引
+ * 
+ * 该函数负责验证系统资源索引的有效性
+ * 处理资源索引的更新和清理操作
+ * 
+ * @param ObjectContextParameter 对象上下文参数
+ * @param ValidationContextParameter 验证上下文参数，包含资源索引信息
+ * @note 此函数用于系统资源索引的验证和处理
+ */
+void ValidateAndProcessResourceIndex(uint8_t ObjectContextParameter, int64_t ValidationContextParameter)
 
 {
   int *pResourceIndex;
@@ -33285,7 +33295,17 @@ void Unwind_180902e60(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 
 
 
-void Unwind_180902e70(uint8_t ObjectContextParameter,int64_t ValidationContextParameter)
+/**
+ * @brief 执行系统资源释放操作
+ * 
+ * 该函数负责执行系统资源的释放操作
+ * 确保系统资源被正确释放和清理
+ * 
+ * @param ObjectContextParameter 对象上下文参数
+ * @param ValidationContextParameter 验证上下文参数，包含资源释放信息
+ * @note 此函数用于系统资源的释放和清理
+ */
+void ExecuteSystemResourceRelease(uint8_t ObjectContextParameter, int64_t ValidationContextParameter)
 
 {
   int *pResourceIndex;
