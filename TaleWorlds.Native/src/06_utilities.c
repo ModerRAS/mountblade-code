@@ -3562,7 +3562,7 @@ uint64_t ProcessSystemRequest(int64_t requestParameters,int64_t SystemContext)
   int64_t *ProcessResultPointer;
   int64_t *ResourceTablePointer;
   int64_t *ResourceIndexPointer;
-  int ValidationStatus;
+  int ValidationStatusCode;
   uint ProcessResult;
   uint64_t OperationResult;
   int64_t *ResourceDataPointer;
