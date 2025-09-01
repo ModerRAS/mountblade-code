@@ -732,10 +732,10 @@ undefined SystemDataBuffer146;
 undefined SystemDataBuffer147;
 undefined SystemDataBuffer148;
 undefined SystemDataBuffer149;
-undefined DAT_180bf8520;
-undefined DAT_180bf8528;
-undefined DAT_180bf8530;
-undefined DAT_180bf8570;
+undefined SystemConfigDataTable;
+undefined SystemMemoryStatusTable;
+undefined SystemThreadControlTable;
+undefined SystemEventQueueTable;
 undefined DAT_180bf8578;
 undefined DAT_180bf8580;
 undefined DAT_180bf8588;
@@ -5104,8 +5104,7 @@ void ExecuteEmergencySystemExit(void)
 
 
 
- void FUN_1808911a2(void)
-/**
+ /**
  * @brief 空操作函数
  * 
  * 该函数不执行任何操作，直接返回
@@ -5120,8 +5119,7 @@ void NoOperationFunction(void)
 
 
 
- void FUN_1808911b0(longlong param_1,undefined8 param_2)
-/**
+ /**
  * @brief 处理对象配置和初始化
  * 
  * 该函数处理对象的配置参数，并根据条件执行初始化操作
@@ -6202,8 +6200,16 @@ LAB_180891fc0:
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void FUN_180891ea1(void)
-void FUN_180891ea1(void)
+/**
+ * @brief 处理动态缓冲区重新分配操作
+ * 
+ * 该函数负责处理动态缓冲区的重新分配操作，当缓冲区需要扩容时，
+ * 会分配新的内存空间，复制原有数据，并释放旧的内存空间。
+ * 采用1.5倍的增长策略来优化内存使用效率。
+ * 
+ * @param None 无参数
+ */
+void ProcessDynamicBufferReallocation(void)
 
 {
   int iVar1;
