@@ -30322,8 +30322,9 @@ void SystemMemoryZeroer(void)
 
 
 
-// 函数: void FUN_180057479(void* SystemResourcePointer,long long param_2,void* param_3,long long param_4)
-void FUN_180057479(void* SystemResourcePointer,long long param_2,void* param_3,long long param_4)
+// 函数: void UpdateSystemMemoryPointer(void* SystemResourcePointer,long long param_2,void* param_3,long long param_4)
+// 功能: 更新系统内存指针，计算新的内存地址
+void UpdateSystemMemoryPointer(void* SystemResourcePointer,long long param_2,void* param_3,long long param_4)
 
 {
   long long unaff_RBX;
@@ -30335,8 +30336,9 @@ void FUN_180057479(void* SystemResourcePointer,long long param_2,void* param_3,l
 
 
 
-// 函数: void FUN_180057490(long long SystemResourcePointer,void* param_2,void* param_3,void* param_4)
-void FUN_180057490(long long SystemResourcePointer,void* param_2,void* param_3,void* param_4)
+// 函数: void ProcessSystemResourceOperation(long long SystemResourcePointer,void* param_2,void* param_3,void* param_4)
+// 功能: 处理系统资源操作，调用相关的系统资源处理函数
+void ProcessSystemResourceOperation(long long SystemResourcePointer,void* param_2,void* param_3,void* param_4)
 
 {
   FUN_180058210(SystemResourcePointer,*(void* *)(SystemResourcePointer + 0x10),param_3,param_4,0xfffffffffffffffe);
