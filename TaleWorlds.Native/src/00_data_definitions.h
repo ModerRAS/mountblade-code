@@ -1078,67 +1078,67 @@ int InitializeMultiStringProcessorSystem(void)
   SystemMemoryPoolPointerQuaternary = &SystemStringConstantSecondary;
   SystemStringConstantSecondary = 0;
   SystemMemoryPoolSizeSecondary = 0x12;
-  strcpy_s(&SystemStringConstantSecondary,0x40,&UNK_180a0cca0);
+  strcpy_s(&SystemStringConstantSecondary,0x40,&SystemStringTemplateSecondary);
   SystemMemoryPoolPointerQuinary = &SystemMemoryPool;
   SystemMemoryPoolPointerSenary = &SystemStringConstantTertiary;
   SystemStringConstantTertiary = 0;
   SystemMemoryPoolSizeTertiary = 0x12;
-  strcpy_s(&SystemStringConstantTertiary,0x40,&UNK_180a0ccb8);
+  strcpy_s(&SystemStringConstantTertiary,0x40,&SystemStringTemplateTertiary);
   SystemMemoryPoolPointerSeptenary = &SystemMemoryPool;
   SystemMemoryPoolPointerOctonary = &SystemStringConstantQuaternary;
   SystemStringConstantQuaternary = 0;
   SystemMemoryPoolSizeQuaternary = 0x19;
-  strcpy_s(&SystemStringConstantQuaternary,0x40,&UNK_180a0cc68);
+  strcpy_s(&SystemStringConstantQuaternary,0x40,&SystemStringTemplateQuaternary);
   SystemMemoryPoolPointerNonary = &SystemMemoryPool;
   SystemMemoryPoolPointerDenary = &SystemStringConstantQuinary;
   SystemStringConstantQuinary = 0;
   SystemMemoryPoolSizeQuinary = 0x11;
-  strcpy_s(&SystemStringConstantQuinary,0x40,&UNK_180a0cc88);
+  strcpy_s(&SystemStringConstantQuinary,0x40,&SystemStringTemplateQuinary);
   SystemMemoryPoolPointerUndenary = &SystemMemoryPool;
   SystemMemoryPoolPointerDuodenary = &SystemStringConstantSenary;
   SystemStringConstantSenary = 0;
   SystemMemoryPoolSizeSenary = 0x18;
-  strcpy_s(&SystemStringConstantSenary,0x40,&UNK_180a0cd08);
+  strcpy_s(&SystemStringConstantSenary,0x40,&SystemStringTemplateSenary);
   SystemMemoryPoolPointerTredecenary = &SystemMemoryPool;
   SystemMemoryPoolPointerQuattuordecenary = &SystemStringConstantSeptenary;
   SystemStringConstantSeptenary = 0;
   SystemMemoryPoolSizeSeptenary = 0x13;
-  strcpy_s(&SystemStringConstantSeptenary,0x40,&UNK_180a0cd28);
+  strcpy_s(&SystemStringConstantSeptenary,0x40,&SystemStringTemplateSeptenary);
   SystemMemoryPoolPointerQuindecenary = &SystemMemoryPool;
   SystemMemoryPoolPointerSexdecenary = &SystemStringConstantOctonary;
   SystemStringConstantOctonary = 0;
   SystemMemoryPoolSizeOctonary = 0x19;
-  strcpy_s(&SystemStringConstantOctonary,0x40,&UNK_180a0ccd0);
+  strcpy_s(&SystemStringConstantOctonary,0x40,&SystemStringTemplateOctonary);
   SystemMemoryPoolPointerSeptendecenary = &SystemMemoryPool;
   SystemMemoryPoolPointerOctodecenary = &SystemStringConstantNonary;
   SystemStringConstantNonary = 0;
   SystemMemoryPoolSizeNonary = 0x10;
-  strcpy_s(&SystemStringConstantNonary,0x40,&UNK_180a0ccf0);
+  strcpy_s(&SystemStringConstantNonary,0x40,&SystemStringTemplateNonary);
   SystemMemoryPoolPointerNovemdecenary = &SystemMemoryPool;
   SystemMemoryPoolPointerVigesimal = &SystemStringConstantDenary;
   SystemStringConstantDenary = 0;
   SystemMemoryPoolSizeDenary = 0x14;
-  strcpy_s(&SystemStringConstantDenary,0x40,&UNK_180a0cd70);
+  strcpy_s(&SystemStringConstantDenary,0x40,&SystemStringTemplateDenary);
   _DAT_180bf86d0 = &SystemMemoryPool;
   _DAT_180bf86d8 = &DAT_180bf86e8;
   DAT_180bf86e8 = 0;
   _DAT_180bf86e0 = 0xf;
-  strcpy_s(&DAT_180bf86e8,0x40,&UNK_180a0cd88);
+  strcpy_s(&DAT_180bf86e8,0x40,&SystemDataTableTemplate1);
   _DAT_180bf8728 = &SystemMemoryPool;
   _DAT_180bf8730 = &DAT_180bf8740;
   DAT_180bf8740 = 0;
   _DAT_180bf8738 = 0x16;
-  strcpy_s(&DAT_180bf8740,0x40,&UNK_180a0cd40);
+  strcpy_s(&DAT_180bf8740,0x40,&SystemDataTableTemplate2);
   _DAT_180bf8780 = &SystemMemoryPool;
   _DAT_180bf8788 = &DAT_180bf8798;
   DAT_180bf8798 = 0;
   _DAT_180bf8790 = 0x12;
-  strcpy_s(&DAT_180bf8798,0x40,&UNK_180a0cd58);
+  strcpy_s(&DAT_180bf8798,0x40,&SystemDataTableTemplate3);
   _DAT_180bf87d8 = &SystemMemoryPool;
   _DAT_180bf87e0 = &DAT_180bf87f0;
   DAT_180bf87f0 = 0;
   _DAT_180bf87e8 = 0x14;
-  strcpy_s(&DAT_180bf87f0,0x40,&UNK_180a0cdc8);
+  strcpy_s(&DAT_180bf87f0,0x40,&SystemDataTableTemplate4);
   _DAT_180bf8830 = &SystemMemoryPool;
   _DAT_180bf8838 = &DAT_180bf8848;
   DAT_180bf8848 = 0;
@@ -1164,7 +1164,7 @@ int InitializeMultiStringProcessorSystem(void)
 }
   SystemConfigBufferPrimary = 0;
   SystemConfigDataSizePrimary = 0xd;
-  strcpy_s(&SystemConfigBufferPrimary,0x20,&UNK_180a01300,StringProcessorFlags,SystemMutexFlags);
+  strcpy_s(&SystemConfigBufferPrimary,0x20,&SystemConfigTemplatePrimary,StringProcessorFlags,SystemMutexFlags);
   ModuleInitializationResult = RegisterSystemModule(InitializePhysicsSubsystem);
   return (ModuleInitializationResult != 0) - 1;
 }
@@ -1178,17 +1178,17 @@ int InitializeStringProcessorAD(void)
 {
   int64_t CallbackResult;
   uint64_t stringProcessorADFlags;
-  g_stringProcessorAD_Base = &unknownData_18098bc80;
+  g_stringProcessorAD_Base = &StringProcessorADDataTemplate;
   g_stringProcessorAD_BufferPtr = &g_stringProcessorAD_Buffer;
   g_stringProcessorAD_Buffer = 0;
   g_stringProcessorAD_Length = 9;
-  strcpy_s(&g_stringProcessorAD_Buffer,0x20,&unknownData_180a01330,stringProcessorADFlags,SystemMutexFlags);
+  strcpy_s(&g_stringProcessorAD_Buffer,0x20,&StringProcessorADTemplate,stringProcessorADFlags,SystemMutexFlags);
   CallbackResult = RegisterSystemCallback(InitializeStringProcessorAD_Callback);
   return (CallbackResult != 0) - 1;
 }
   SystemConfigBufferSecondary = 0;
   SystemConfigDataSizeSecondary = 0x10;
-  strcpy_s(&SystemConfigBufferSecondary,0x40,&UNK_180a22b38,StringProcessorFlags,SystemMutexFlags);
+  strcpy_s(&SystemConfigBufferSecondary,0x40,&SystemConfigTemplateSecondary,StringProcessorFlags,SystemMutexFlags);
   ModuleInitializationResult = RegisterSystemModule(InitializeRenderingPipeline);
   return (ModuleInitializationResult != 0) - 1;
 }
@@ -1202,11 +1202,11 @@ int InitializeStringProcessorAE(void)
 {
   int64_t CallbackResult;
   uint64_t stringProcessorAEFlags;
-  g_stringProcessorAE_Base = &unknownData_1809fcc58;
+  g_stringProcessorAE_Base = &StringProcessorAEDataTemplate;
   g_stringProcessorAE_BufferPtr = &g_stringProcessorAE_Buffer;
   g_stringProcessorAE_Buffer = 0;
   g_stringProcessorAE_Length = 0x13;
-  strcpy_s(&g_stringProcessorAE_Buffer,0x40,&unknownData_180a22b90,stringProcessorAEFlags,SystemMutexFlags);
+  strcpy_s(&g_stringProcessorAE_Buffer,0x40,&StringProcessorAETemplate,stringProcessorAEFlags,SystemMutexFlags);
   CallbackResult = RegisterSystemCallback(InitializeStringProcessorAE_Callback);
   return (CallbackResult != 0) - 1;
 }
@@ -1220,11 +1220,11 @@ int InitializeStringProcessorAF(void)
 {
   int64_t CallbackResult;
   uint64_t stringProcessorAFFlags;
-  g_stringProcessorAF_Base = &unknownData_1809fcc58;
+  g_stringProcessorAF_Base = &StringProcessorAFDataTemplate;
   g_stringProcessorAF_BufferPtr = &g_stringProcessorAF_Buffer;
   g_stringProcessorAF_Buffer = 0;
   g_stringProcessorAF_Length = 0x12;
-  strcpy_s(&g_stringProcessorAF_Buffer,0x40,&unknownData_180a22b78,stringProcessorAFFlags,SystemMutexFlags);
+  strcpy_s(&g_stringProcessorAF_Buffer,0x40,&StringProcessorAFTemplate,stringProcessorAFFlags,SystemMutexFlags);
   CallbackResult = RegisterSystemCallback(InitializeStringProcessorAF_Callback);
   return (CallbackResult != 0) - 1;
 }
