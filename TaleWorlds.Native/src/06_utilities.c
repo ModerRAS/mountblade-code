@@ -50028,7 +50028,20 @@ void Unwind_180906ca0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 
 
 
-void Unwind_180906cb0(uint8_t ObjectContextParameter,int64_t ValidationContextParameter)
+/**
+ * @brief 验证资源上下文完整性
+ * 
+ * 该函数负责验证资源上下文的完整性
+ * 检查资源上下文中的指针是否有效
+ * 如果发现问题，执行系统紧急退出
+ * 
+ * @param ObjectContextParameter 对象上下文参数，包含对象相关的上下文信息
+ * @param ValidationContextParameter 验证上下文参数，包含验证所需的数据
+ * @return 无返回值
+ * @note 此函数用于系统完整性检查
+ * @warning 如果验证失败，系统将执行紧急退出
+ */
+void ValidateResourceContextIntegrity(uint8_t ObjectContextParameter,int64_t ValidationContextParameter)
 
 {
   int64_t *processPointer;
