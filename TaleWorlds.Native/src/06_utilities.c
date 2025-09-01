@@ -11467,22 +11467,22 @@ uint64_t ProcessExtendedResourcePoolDataValidation(uint8_t extendedResourcePool,
   if (iVar8 == -1) {
     uStack0000000000000028 = *RegisterR14;
     iVar8 = *(int *)(RegisterRDI + 0x18);
-    iVar4 = iVar8 + 1;
+    CapacityIndex = ResourceCount + 1;
     ContextValidationResult = (int)*(uint *)(RegisterRDI + 0x1c) >> 0x1f;
     ResourceIndex = (*(uint *)(RegisterRDI + 0x1c) ^ ContextValidationResult) - ContextValidationResult;
-    if (ResourceIndex < iVar4) {
-      iVar7 = (int)((float)ResourceIndex * 1.5);
-      ResourceIndex = iVar4;
-      if (iVar4 <= iVar7) {
-        ResourceIndex = iVar7;
+    if (ResourceIndex < CapacityIndex) {
+      ExpandedCapacity = (int)((float)ResourceIndex * 1.5);
+      ResourceIndex = CapacityIndex;
+      if (CapacityIndex <= ExpandedCapacity) {
+        ResourceIndex = ExpandedCapacity;
       }
       if (ResourceIndex < 4) {
-        iVar7 = 4;
+        ExpandedCapacity = 4;
       }
-      else if (iVar7 < iVar4) {
-        iVar7 = iVar4;
+      else if (ExpandedCapacity < CapacityIndex) {
+        ExpandedCapacity = CapacityIndex;
       }
-      ResourceValidationResult = ResourcePoolOperation(RegisterRDI + 0x10,iVar7);
+      ResourceValidationResult = ResourcePoolOperation(RegisterRDI + 0x10,ExpandedCapacity);
       if ((int)ResourceValidationResult != 0) {
         return ResourceValidationResult;
       }
