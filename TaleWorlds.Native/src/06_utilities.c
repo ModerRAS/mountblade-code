@@ -1901,7 +1901,7 @@ uint8_t SystemMemoryConfigDataTemplateReliable;
  * 设置系统运行所需的配置参数和环境变量
  */
 void InitializeSystemConfiguration(void);
-uint8_t SystemConfigurationDataTemplateA;
+uint8_t SystemConfigurationDataTemplatePrimary;
 
  void SetupSystemEnvironment(void)
 /**
