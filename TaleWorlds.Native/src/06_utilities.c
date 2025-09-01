@@ -14877,14 +14877,14 @@ LAB_1808989f7:
  * 该函数使用二分查找算法在有序数组中查找指定的元素
  * 主要用于快速查找和检索操作，提高查找效率
  * 
- * @param arrayData 数组数据指针，包含数组的基本信息
+ * @param ArrayData 数组数据指针，包含数组的基本信息
  * @param SearchKey 搜索键值，要查找的目标值
- * @param searchContext 搜索上下文，包含搜索的配置信息
+ * @param SearchContext 搜索上下文，包含搜索的配置信息
  * @param searchFlags 搜索标志，控制搜索的行为
  * @param additionalData 附加数据，用于扩展搜索功能
  * @return uint64_t 查找结果，成功返回找到的元素，失败返回错误码
  */
-uint64_t BinarySearchInArray(int64_t arrayData,uint *SearchKey,uint8_t searchContext,uint32_t searchFlags,
+uint64_t BinarySearchInArray(int64_t ArrayData,uint *SearchKey,uint8_t SearchContext,uint32_t searchFlags,
              uint8_t additionalData)
 
 {
@@ -14899,9 +14899,9 @@ uint64_t BinarySearchInArray(int64_t arrayData,uint *SearchKey,uint8_t searchCon
   int iVar9;
   
   iVar8 = 0;
-  iVar9 = *(int *)(arrayData + 0x18) + -1;
+  iVar9 = *(int *)(ArrayData + 0x18) + -1;
   if (-1 < iVar9) {
-    resourceTable = *(int64_t *)(arrayData + 0x10);
+    resourceTable = *(int64_t *)(ArrayData + 0x10);
     resourceHash = *SearchKey;
     do {
       iVar7 = iVar9 + iVar8 >> 1;
@@ -14924,7 +14924,7 @@ uint64_t BinarySearchInArray(int64_t arrayData,uint *SearchKey,uint8_t searchCon
         if (iVar7 < 0) {
           return 0x4a;
         }
-        ResourceContextOffset = ResourceDataSearcher(arrayData,iVar7,0,searchContext,searchFlags,additionalData);
+        ResourceContextOffset = ResourceDataSearcher(ArrayData,iVar7,0,SearchContext,searchFlags,additionalData);
         return ResourceContextOffset;
       }
       iVar3 = iVar7 + -1;
