@@ -15829,7 +15829,7 @@ LAB_18084e5ba:
        (((*(byte *)(*(longlong *)(connectionContext + 0x40) + 0xc4) & 1) != 0 ||
         (quinaryNetworkFlag = FUN_1808b8f60(*(NetworkHandle *)(*(longlong *)(connectionContext + 0x60) + 0x70),connectionContext),
         quinaryNetworkFlag == 0)))) {
-      tertiaryNetworkFlag = FUN_180853120(*(NetworkHandle *)(connectionContext + 0x60));
+      tertiaryNetworkFlag = ValidateNetworkConnectionContext(*(NetworkHandle *)(connectionContext + 0x60));
       FUN_180853fc0(connectionContext,tertiaryNetworkFlag);
     }
     else if (quinaryNetworkFlag != 0) {
@@ -16229,7 +16229,7 @@ NetworkHandle FUN_18084ec60(longlong connectionContext)
   NetworkHandle tertiaryNetworkFlag;
   
   if (*(char *)(*(longlong *)(connectionContext + 0x40) + 0x74) == '\0') {
-    if ((*(longlong *)(connectionContext + 0x60) == 0) || (cVar2 = FUN_180853120(), cVar2 == '\0')) {
+    if ((*(longlong *)(connectionContext + 0x60) == 0) || (cVar2 = ValidateNetworkConnectionContext(), cVar2 == '\0')) {
       cVar2 = '\0';
     }
     else {
@@ -20661,7 +20661,7 @@ NetworkHandle FUN_180851a40(longlong *connectionContext)
        (quaternaryNetworkFlag = FUN_1808532e0(connectionContext + 2,iVar9), (int)quaternaryNetworkFlag != 0)) {
       return quaternaryNetworkFlag;
     }
-    quaternaryNetworkFlag = FUN_1807703c0(connectionContext,iVar9);
+    quaternaryNetworkFlag = GetNetworkConnectionFlag(connectionContext,iVar9);
     if ((int)quaternaryNetworkFlag != 0) {
       return quaternaryNetworkFlag;
     }
@@ -20735,7 +20735,7 @@ NetworkHandle FUN_180851a66(void)
        (tertiaryNetworkFlag = FUN_1808532e0(unaff_RBX + 2,iVar8), (int)tertiaryNetworkFlag != 0)) {
       return tertiaryNetworkFlag;
     }
-    tertiaryNetworkFlag = FUN_1807703c0();
+    tertiaryNetworkFlag = GetNetworkConnectionFlag();
     if ((int)tertiaryNetworkFlag != 0) {
       return tertiaryNetworkFlag;
     }
@@ -22624,7 +22624,7 @@ NetworkHandle ValidateNetworkConnectionState(longlong connectionContext)
 
 
 
-NetworkHandle FUN_180853120(longlong connectionContext)
+NetworkHandle ValidateNetworkConnectionContext(longlong connectionContext)
 
 {
   char cVar1;
@@ -22632,7 +22632,7 @@ NetworkHandle FUN_180853120(longlong connectionContext)
   if (*(char *)(*(longlong *)(connectionContext + 0x40) + 0x74) != '\0') {
     return 1;
   }
-  if ((*(longlong *)(connectionContext + 0x60) != 0) && (cVar1 = FUN_180853120(), cVar1 != '\0')) {
+  if ((*(longlong *)(connectionContext + 0x60) != 0) && (cVar1 = ValidateNetworkConnectionContext(), cVar1 != '\0')) {
     return 1;
   }
   return 0;
@@ -26003,7 +26003,7 @@ NetworkHandle FUN_180855b80(longlong *connectionContext)
        (quinaryNetworkFlag = InitializeNetworkConnectionContext(connectionContext + 2,iVar9), (int)quinaryNetworkFlag != 0)) {
       return quinaryNetworkFlag;
     }
-    quinaryNetworkFlag = FUN_1807703c0(connectionContext,iVar9);
+    quinaryNetworkFlag = GetNetworkConnectionFlag(connectionContext,iVar9);
     if ((int)quinaryNetworkFlag != 0) {
       return quinaryNetworkFlag;
     }
@@ -26078,7 +26078,7 @@ NetworkHandle FUN_180855ba6(void)
        (quaternaryNetworkFlag = InitializeNetworkConnectionContext(unaff_RBX + 2,iVar8), (int)quaternaryNetworkFlag != 0)) {
       return quaternaryNetworkFlag;
     }
-    quaternaryNetworkFlag = FUN_1807703c0();
+    quaternaryNetworkFlag = GetNetworkConnectionFlag();
     if ((int)quaternaryNetworkFlag != 0) {
       return quaternaryNetworkFlag;
     }
@@ -26164,7 +26164,7 @@ NetworkHandle FUN_180855ce0(longlong *connectionContext)
        (quinaryNetworkFlag = FUN_1808595a0(connectionContext + 2,iVar9), (int)quinaryNetworkFlag != 0)) {
       return quinaryNetworkFlag;
     }
-    quinaryNetworkFlag = FUN_1807703c0(connectionContext,iVar9);
+    quinaryNetworkFlag = GetNetworkConnectionFlag(connectionContext,iVar9);
     if ((int)quinaryNetworkFlag != 0) {
       return quinaryNetworkFlag;
     }
@@ -26239,7 +26239,7 @@ NetworkHandle FUN_180855d06(void)
        (quaternaryNetworkFlag = FUN_1808595a0(unaff_RBX + 2,iVar8), (int)quaternaryNetworkFlag != 0)) {
       return quaternaryNetworkFlag;
     }
-    quaternaryNetworkFlag = FUN_1807703c0();
+    quaternaryNetworkFlag = GetNetworkConnectionFlag();
     if ((int)quaternaryNetworkFlag != 0) {
       return quaternaryNetworkFlag;
     }
@@ -63625,7 +63625,7 @@ NetworkHandle FUN_180876000(longlong *connectionContext)
        (quinaryNetworkFlag = FUN_180883420(connectionContext + 2,iVar9), (int)quinaryNetworkFlag != 0)) {
       return quinaryNetworkFlag;
     }
-    quinaryNetworkFlag = FUN_1807703c0(connectionContext,iVar9);
+    quinaryNetworkFlag = GetNetworkConnectionFlag(connectionContext,iVar9);
     if ((int)quinaryNetworkFlag != 0) {
       return quinaryNetworkFlag;
     }
@@ -63700,7 +63700,7 @@ NetworkHandle FUN_180876026(void)
        (quaternaryNetworkFlag = FUN_180883420(unaff_RBX + 2,iVar8), (int)quaternaryNetworkFlag != 0)) {
       return quaternaryNetworkFlag;
     }
-    quaternaryNetworkFlag = FUN_1807703c0();
+    quaternaryNetworkFlag = GetNetworkConnectionFlag();
     if ((int)quaternaryNetworkFlag != 0) {
       return quaternaryNetworkFlag;
     }
@@ -97578,7 +97578,7 @@ NetworkHandle FUN_180895210(longlong *connectionContext)
        (tertiaryNetworkFlag = FUN_1807d3f50(connectionContext + 2,iVar8), (int)tertiaryNetworkFlag != 0)) {
       return tertiaryNetworkFlag;
     }
-    tertiaryNetworkFlag = FUN_1807703c0(connectionContext,iVar8);
+    tertiaryNetworkFlag = GetNetworkConnectionFlag(connectionContext,iVar8);
     if ((int)tertiaryNetworkFlag != 0) {
       return tertiaryNetworkFlag;
     }
@@ -97647,7 +97647,7 @@ NetworkHandle FUN_180895236(void)
        (secondaryNetworkFlag = FUN_1807d3f50(unaff_RBX + 2,iVar7), (int)secondaryNetworkFlag != 0)) {
       return secondaryNetworkFlag;
     }
-    secondaryNetworkFlag = FUN_1807703c0();
+    secondaryNetworkFlag = GetNetworkConnectionFlag();
     if ((int)secondaryNetworkFlag != 0) {
       return secondaryNetworkFlag;
     }

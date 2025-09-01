@@ -2201,46 +2201,46 @@ undefined SystemStackManagerData;
 undefined SystemListManagerData;
 undefined SystemHashManagerData;
 undefined SystemTreeManagerData;
-undefined UNK_1801561e0;
-undefined UNK_180156200;
-undefined UNK_180156220;
-undefined UNK_180156240;
-undefined UNK_180156260;
-undefined UNK_180156280;
-undefined UNK_1801562a0;
-undefined UNK_1801562c0;
-undefined UNK_1801562e0;
-undefined UNK_180a073f0;
-undefined UNK_180a07400;
-undefined UNK_180a07420;
-undefined UNK_180a07438;
-undefined UNK_180a07450;
-undefined UNK_180a07470;
-undefined UNK_180a07490;
-undefined UNK_180a074b8;
-undefined UNK_180a074d8;
-undefined UNK_180a074f8;
-undefined UNK_180a07518;
-undefined UNK_180a07530;
-undefined UNK_180a07548;
-undefined UNK_180a07568;
-undefined UNK_180a07580;
-undefined UNK_180a075a0;
-undefined UNK_180a075b0;
-undefined UNK_180a075d0;
-undefined UNK_180a075f0;
-undefined UNK_180a07610;
-undefined UNK_180a07628;
-undefined UNK_180a07640;
-undefined UNK_180a07650;
-undefined UNK_180a07668;
-undefined UNK_180a07688;
-undefined UNK_180a076a0;
-undefined UNK_180a076c0;
-undefined UNK_180a076d8;
-undefined UNK_180a076f8;
-undefined UNK_180a07720;
-undefined UNK_180a07748;
+undefined SystemMemoryManagerData;
+undefined SystemConfigurationManagerData;
+undefined SystemEventManagerData;
+undefined SystemThreadManagerData;
+undefined SystemProcessManagerData;
+undefined SystemNetworkManagerData;
+undefined SystemSecurityManagerData;
+undefined SystemPerformanceManagerData;
+undefined SystemDebugManagerData;
+undefined ResourceValidationData;
+undefined ResourceCacheManagerData;
+undefined ResourceMemoryManagerData;
+undefined ResourceThreadPoolData;
+undefined ResourceQueueManagerData;
+undefined ResourceLockManagerData;
+undefined ResourceStateManagerData;
+undefined ResourceEventHandlerData;
+undefined ResourceNotificationManagerData;
+undefined ResourceSchedulerData;
+undefined ResourceAllocatorData;
+undefined ResourceGarbageCollectorData;
+undefined ResourceReferenceCounterData;
+undefined ResourceMetadataManagerData;
+undefined ResourceCompressionManagerData;
+undefined ResourceEncryptionManagerData;
+undefined ResourceDecryptionManagerData;
+undefined ResourceSerializationManagerData;
+undefined ResourceDeserializationManagerData;
+undefined ResourceIndexManagerData;
+undefined ResourceCatalogManagerData;
+undefined ResourceBackupManagerData;
+undefined ResourceRestoreManagerData;
+undefined ResourceVersionManagerData;
+undefined ResourceHistoryManagerData;
+undefined ResourceSnapshotManagerData;
+undefined ResourceCheckpointManagerData;
+undefined ResourceTransactionManagerData;
+undefined ResourceRollbackManagerData;
+undefined ResourceSynchronizationManagerData;
+undefined ResourceReplicationManagerData;
 undefined UNK_180a07760;
 undefined UNK_180a07cd0;
 undefined UNK_180a1afb8;
@@ -2284,12 +2284,12 @@ undefined UNK_180a0b690;
  * 返回分配的内存指针
  */
 void AllocateMemoryBlock;
-undefined UNK_180bd8a60;
-undefined UNK_180a185f0;
-undefined UNK_180a18618;
-undefined UNK_180a18630;
-undefined UNK_180a18860;
-undefined UNK_180a18888;
+undefined MemoryPoolManagerData;
+undefined MemoryAllocatorData;
+undefined MemoryDeallocatorData;
+undefined MemoryReallocatorData;
+undefined MemoryTrackerData;
+undefined MemoryProfilerData;
 undefined DAT_180a06b58;
 undefined UNK_180a18870;
 undefined UNK_180a18898;
@@ -21330,7 +21330,17 @@ c61e(void)
 
 
 
-ulonglong FUN_18089c630(longlong param_1,longlong *param_2)
+/**
+ * @brief 资源数据管理器
+ * 
+ * 该函数负责管理资源数据的加载、验证和处理
+ * 用于资源管理和数据完整性检查
+ * 
+ * @param param_1 资源句柄
+ * @param param_2 数据指针
+ * @return 返回处理结果，成功返回0，失败返回错误码
+ */
+ulonglong ResourceDataManager(longlong param_1,longlong *param_2)
 
 {
   longlong *plVar1;
@@ -21682,7 +21692,15 @@ LAB_18089cbf6:
 
 
 
-ulonglong FUN_18089c69d(void)
+/**
+ * @brief 资源处理处理器备选1
+ * 
+ * 该函数负责处理资源的哈希值和数据验证（备选版本）
+ * 用于资源管理和数据完整性检查
+ * 
+ * @return 返回处理结果，成功返回0，失败返回错误码
+ */
+ulonglong ResourceProcessingHandlerAlt1(void)
 
 {
   longlong *plVar1;
@@ -22045,7 +22063,15 @@ LAB_18089cad8:
 
 
 
-ulonglong FUN_18089c86d(void)
+/**
+ * @brief 资源处理处理器备选2
+ * 
+ * 该函数负责处理资源的哈希值和数据验证（备选版本2）
+ * 用于资源管理和数据完整性检查
+ * 
+ * @return 返回处理结果，成功返回0，失败返回错误码
+ */
+ulonglong ResourceProcessingHandlerAlt2(void)
 
 {
   longlong *plVar1;
@@ -22294,7 +22320,15 @@ LAB_18089cad8:
 
 
 
-ulonglong FUN_18089c872(void)
+/**
+ * @brief 资源处理处理器备选3
+ * 
+ * 该函数负责处理资源的哈希值和数据验证（备选版本3）
+ * 用于资源管理和数据完整性检查
+ * 
+ * @return 返回处理结果，成功返回0，失败返回错误码
+ */
+ulonglong ResourceProcessingHandlerAlt3(void)
 
 {
   longlong *plVar1;
