@@ -2534,7 +2534,7 @@ undefined SystemThreadMonitor;
 undefined DAT_180d49128;
 undefined SystemMemoryBufferA;
 undefined SystemMemoryBufferB;
-undefined UNK_180a30280;
+undefined SystemMemoryBufferC;
 undefined UNK_180a302c0;
 undefined UNK_180a301c8;
 undefined UNK_180a301f8;
