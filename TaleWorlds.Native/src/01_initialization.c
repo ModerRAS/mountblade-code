@@ -9048,7 +9048,16 @@ void InitializeSystemDatabaseNode(void)
 
 
 // 函数: void FUN_180037d80(void)
-void FUN_180037d80(void)
+/**
+ * @brief 初始化系统配置管理器
+ * 
+ * 该函数负责初始化系统的配置管理组件，设置系统配置节点的基础结构。
+ * 它会遍历系统配置节点树，进行内存比较，分配必要的内存，并设置配置节点属性。
+ * 该函数还负责配置系统资源的初始化回调函数和内存管理。
+ * 
+ * @note 这是系统初始化过程中的重要组成部分，确保配置管理系统的正常运行
+ */
+void InitializeSystemConfigurationManager(void)
 
 {
   char systemNodeFlag;
@@ -9098,7 +9107,16 @@ void FUN_180037d80(void)
 
 
 // 函数: void FUN_180037e80(void)
-void FUN_180037e80(void)
+/**
+ * @brief 初始化系统事件配置管理器
+ * 
+ * 该函数负责初始化系统的事件配置管理组件，设置事件配置节点的基础结构。
+ * 它会遍历系统事件配置节点树，进行内存比较，分配必要的内存，并设置事件配置节点属性。
+ * 该函数还负责配置系统事件的回调函数和内存管理。
+ * 
+ * @note 这是系统初始化过程中的重要组成部分，确保事件配置管理系统的正常运行
+ */
+void InitializeSystemEventConfigurationManager(void)
 
 {
   char systemNodeFlag;
@@ -9148,7 +9166,16 @@ void FUN_180037e80(void)
 
 
 // 函数: void FUN_180037f80(void)
-void FUN_180037f80(void)
+/**
+ * @brief 初始化系统网络配置管理器
+ * 
+ * 该函数负责初始化系统的网络配置管理组件，设置网络配置节点的基础结构。
+ * 它会遍历系统网络配置节点树，进行内存比较，分配必要的内存，并设置网络配置节点属性。
+ * 该函数还负责配置系统网络资源的初始化回调函数和内存管理。
+ * 
+ * @note 这是系统初始化过程中的重要组成部分，确保网络配置管理系统的正常运行
+ */
+void InitializeSystemNetworkConfigurationManager(void)
 
 {
   char systemNodeFlag;
@@ -9198,7 +9225,16 @@ void FUN_180037f80(void)
 
 
 // 函数: void FUN_180038080(void)
-void FUN_180038080(void)
+/**
+ * @brief 初始化系统搜索配置管理器
+ * 
+ * 该函数负责初始化系统的搜索配置管理组件，设置搜索配置节点的基础结构。
+ * 它会遍历系统搜索配置节点树，进行内存比较，分配必要的内存，并设置搜索配置节点属性。
+ * 该函数还负责配置系统搜索功能的回调函数和内存管理。
+ * 
+ * @note 这是系统初始化过程中的重要组成部分，确保搜索配置管理系统的正常运行
+ */
+void InitializeSystemSearchConfigurationManager(void)
 
 {
   char systemNodeFlag;
@@ -9250,7 +9286,15 @@ void FUN_180038080(void)
 
 
 // 函数: void FUN_180038180(void)
-void FUN_180038180(void)
+/**
+ * @brief 初始化系统调试信息管理器
+ * 
+ * 该函数负责初始化系统的调试信息管理组件，设置调试信息的基础结构。
+ * 它会配置调试信息的字符串缓冲区，设置调试信息的处理函数，并建立调试信息的管理机制。
+ * 
+ * @note 这是系统初始化过程中的重要组成部分，确保调试信息管理系统的正常运行
+ */
+void InitializeSystemDebugInfoManager(void)
 
 {
   undefined8 in_R9;
@@ -9274,7 +9318,15 @@ void FUN_180038180(void)
 
 
 // 函数: void FUN_180038210(void)
-void FUN_180038210(void)
+/**
+ * @brief 初始化系统日志管理器
+ * 
+ * 该函数负责初始化系统的日志管理组件，设置日志处理的基础结构。
+ * 它会配置日志信息的字符串缓冲区，设置日志信息的处理函数，并建立日志信息的管理机制。
+ * 
+ * @note 这是系统初始化过程中的重要组成部分，确保日志管理系统的正常运行
+ */
+void InitializeSystemLogManager(void)
 
 {
   undefined8 in_R9;

@@ -1576,12 +1576,12 @@ undefined DAT_180bfaa80;
 undefined DAT_180bfaa88;
 undefined DAT_180bfaa90;
 undefined SystemMemoryConfigDataTemplateF;
-undefined UNK_180a24bd0;
+undefined SystemMemoryConfigDataTemplateG;
 undefined SystemMemoryConfigDataTemplateA;
-undefined UNK_180a24c10;
-undefined UNK_180a24c30;
-undefined UNK_180a24d58;
-undefined UNK_180a24d80;
+undefined SystemMemoryConfigDataTemplateH;
+undefined SystemMemoryConfigDataTemplateI;
+undefined SystemMemoryConfigDataTemplateJ;
+undefined SystemMemoryConfigDataTemplateK;
 undefined DAT_180bfab10;
 undefined DAT_180bfab18;
 undefined DAT_180bfab20;
@@ -1606,9 +1606,9 @@ undefined DAT_180bfae08;
 undefined DAT_180bfae10;
 undefined DAT_180bfae18;
 undefined DAT_180bfae20;
-undefined UNK_180942640;
-undefined UNK_180a24da8;
-undefined UNK_180a24dc0;
+undefined SystemMemoryConfigDataTemplateL;
+undefined SystemMemoryConfigDataTemplateM;
+undefined SystemMemoryConfigDataTemplateN;
 
  void SetupMemoryQuality;
 /**
@@ -1622,7 +1622,7 @@ undefined DAT_180bfc150;
 undefined1 DAT_180bfc140;
 undefined DAT_180bfc160;
 undefined DAT_180bfc168;
-undefined8 UNK_180bfc158;
+undefined8 SystemPerformanceCounterA;
 undefined DAT_180bfaec0;
 undefined DAT_180bfaec8;
 undefined DAT_180bfaed0;
@@ -1664,12 +1664,12 @@ undefined DAT_180bfaf08;
  * 配置内存访问审计和安全检查
  */
 void SetupMemoryAuditing;
-undefined UNK_180a27a58;
+undefined SystemMemoryConfigDataTemplateO;
 undefined DAT_180bfb310;
 undefined DAT_180bfb318;
 undefined DAT_180bfb320;
 undefined DAT_180bfb328;
-undefined UNK_180a27a6c;
+undefined SystemMemoryConfigDataTemplateP;
 
  void InitializeMemoryCompliance;
 /**
@@ -1683,7 +1683,7 @@ undefined DAT_180bfb730;
 undefined DAT_180bfb738;
 undefined DAT_180bfb740;
 undefined DAT_180bfb748;
-undefined UNK_180a27a70;
+undefined SystemMemoryConfigDataTemplateQ;
 
  void ConfigureMemoryDiagnostics;
 /**
@@ -1694,7 +1694,7 @@ undefined UNK_180a27a70;
  */
 void ConfigureMemoryDiagnostics;
 undefined DAT_180c9246c;
-undefined UNK_180a2ac10;
+undefined SystemMemoryConfigDataTemplateR;
 
  void InitializeSystemConfiguration(void)
 /**
@@ -1743,7 +1743,7 @@ void InitializeSystemResources(void);
  */
 void InitializeSystemMemoryManager(void);
 undefined DAT_180c924ac;
-undefined UNK_180a2bf10;
+undefined SystemMemoryConfigDataTemplateS;
 undefined DAT_180c924b0;
 undefined DAT_180a2c1d0;
 undefined DAT_180c924b4;
@@ -1868,9 +1868,9 @@ void GenerateSecureRandom;
 undefined _tls_index;
 void *ThreadLocalStoragePointer;
 undefined DAT_180c967d4;
-undefined UNK_180a3e3d8;
+undefined SystemMemoryConfigDataTemplateT;
 undefined DAT_180c967d8;
-undefined UNK_180a3e3f0;
+undefined SystemMemoryConfigDataTemplateU;
 undefined DAT_180c967e0;
 undefined DAT_180c967e8;
 undefined DAT_180c967f0;
@@ -1889,8 +1889,8 @@ undefined DAT_180c96808;
 undefined DAT_180c0c6c0;
 undefined DAT_180be14a0;
 undefined DAT_180be1324;
-undefined UNK_180943250;
-undefined UNK_180943260;
+undefined SystemConfigDataA;
+undefined SystemConfigDataB;
 undefined DAT_180c0c6d0;
 undefined DAT_180c0c6d8;
 undefined DAT_180c0d100;
