@@ -974,9 +974,9 @@ void SendNetworkPacketEx(NetworkHandle packetId,NetworkHandle connectionId,Netwo
   networkParam6 = 0;
   networkParam5 = contextData;
   networkStatus2 = NetworkConnectionIdInitialize();
-  if (((networkStatus2 == 0) && (networkStatus2 = NetworkStackInitialize(&stack0x00000020,param_5), networkStatus2 == 0)) &&
-     (networkStatus2 = NetworkConnectionFlagsValidate(unaff_EBP,&param_7), networkStatus2 == 0)) {
-    param_6 = *(longlong *)(param_7 + 8);
+  if (((networkStatus2 == 0) && (networkStatus2 = NetworkStackInitialize(&NetworkStackBuffer,networkParam5), networkStatus2 == 0)) &&
+     (networkStatus2 = NetworkConnectionFlagsValidate(connectionFlags,&networkParam7), networkStatus2 == 0)) {
+    networkParam6 = *(longlong *)(networkParam7 + 8);
     if ((-1 < (int)unaff_RSI) && ((int)unaff_RSI < *(int *)(param_6 + 0x88))) {
       lVar4 = unaff_RSI * 0x10 + *(longlong *)(param_6 + 0x80);
       plVar1 = *(longlong **)(param_5 + 800);

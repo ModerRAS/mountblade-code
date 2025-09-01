@@ -1325,7 +1325,7 @@ int InitializeStringProcessingSystemN(void)
   DAT_180bf9a68 = 0;
   _DAT_180bf9a60 = 0x1d;
   strcpy_s(&DAT_180bf9a68,0x40,&UNK_180a22d68,in_R9,0xfffffffffffffffe);
-  ModuleInitializationResult = RegisterSystemModule(FUN_1809421e0);
+  ModuleInitializationResult = RegisterSystemModule(InitializeStringProcessingSystemN);
   return (ModuleInitializationResult != 0) - 1;
 }
 /**
@@ -1343,7 +1343,7 @@ int InitializeStringProcessingSystemO(void)
   DAT_180bf9ac8 = 0;
   _DAT_180bf9ac0 = 0x1c;
   strcpy_s(&DAT_180bf9ac8,0x40,&DAT_180a22d48,in_R9,0xfffffffffffffffe);
-  ModuleInitializationResult = RegisterSystemModule(FUN_180942200);
+  ModuleInitializationResult = RegisterSystemModule(InitializeStringProcessingSystemO);
   return (ModuleInitializationResult != 0) - 1;
 }
 /**
@@ -1361,7 +1361,7 @@ int InitializeStringProcessingSystemP(void)
   DAT_180bf9b28 = 0;
   _DAT_180bf9b20 = 0x17;
   strcpy_s(&DAT_180bf9b28,0x40,&UNK_180a22e40,in_R9,0xfffffffffffffffe);
-  ModuleInitializationResult = RegisterSystemModule(FUN_180942220);
+  ModuleInitializationResult = RegisterSystemModule(InitializeStringProcessingSystemP);
   return (ModuleInitializationResult != 0) - 1;
 }
 /**
@@ -1379,7 +1379,7 @@ int InitializeStringProcessingSystemQ(void)
   DAT_180bf9b88 = 0;
   _DAT_180bf9b80 = 0x1f;
   strcpy_s(&DAT_180bf9b88,0x40,&UNK_180a22e20,in_R9,0xfffffffffffffffe);
-  ModuleInitializationResult = RegisterSystemModule(FUN_180942240);
+  ModuleInitializationResult = RegisterSystemModule(InitializeStringProcessingSystemQ);
   return (ModuleInitializationResult != 0) - 1;
 }
 /**
@@ -1397,7 +1397,7 @@ int InitializeStringProcessingSystemR(void)
   DAT_180bf9be8 = 0;
   _DAT_180bf9be0 = 0x21;
   strcpy_s(&DAT_180bf9be8,0x40,&UNK_180a22df8,in_R9,0xfffffffffffffffe);
-  ModuleInitializationResult = RegisterSystemModule(FUN_180942260);
+  ModuleInitializationResult = RegisterSystemModule(InitializeStringProcessingSystemR);
   return (ModuleInitializationResult != 0) - 1;
 }
 /**
@@ -1415,7 +1415,7 @@ int InitializeStringProcessingSystemS(void)
   DAT_180bf9c48 = 0;
   _DAT_180bf9c40 = 0x25;
   strcpy_s(&DAT_180bf9c48,0x40,&UNK_180a22dd0,in_R9,0xfffffffffffffffe);
-  ModuleInitializationResult = RegisterSystemModule(FUN_180942280);
+  ModuleInitializationResult = RegisterSystemModule(InitializeStringProcessingSystemS);
   return (ModuleInitializationResult != 0) - 1;
 }
 /**
@@ -1433,7 +1433,7 @@ int InitializeStringProcessingSystemT(void)
   DAT_180bf9ca8 = 0;
   _DAT_180bf9ca0 = 0x23;
   strcpy_s(&DAT_180bf9ca8,0x40,&UNK_180a22eb0,in_R9,0xfffffffffffffffe);
-  ModuleInitializationResult = RegisterSystemModule(FUN_1809422a0);
+  ModuleInitializationResult = RegisterSystemModule(InitializeStringProcessingSystemT);
   return (ModuleInitializationResult != 0) - 1;
 }
 /**
@@ -1451,7 +1451,7 @@ int InitializeStringProcessingSystemU(void)
   DAT_180bf9d08 = 0;
   _DAT_180bf9d00 = 0x1e;
   strcpy_s(&DAT_180bf9d08,0x40,&UNK_180a22e90,in_R9,0xfffffffffffffffe);
-  ModuleInitializationResult = RegisterSystemModule(FUN_1809422c0);
+  ModuleInitializationResult = RegisterSystemModule(InitializeStringProcessingSystemU);
   return (ModuleInitializationResult != 0) - 1;
 }
 /**
@@ -1469,7 +1469,7 @@ int InitializeStringProcessingSystemV(void)
   DAT_180bf9d68 = 0;
   _DAT_180bf9d60 = 0x1e;
   strcpy_s(&DAT_180bf9d68,0x40,&UNK_180a22e70,in_R9,0xfffffffffffffffe);
-  ModuleInitializationResult = RegisterSystemModule(FUN_1809422e0);
+  ModuleInitializationResult = RegisterSystemModule(InitializeStringProcessingSystemV);
   return (ModuleInitializationResult != 0) - 1;
 }
 /**
@@ -1487,7 +1487,7 @@ int InitializeStringProcessingSystemW(void)
   DAT_180bf9dc8 = 0;
   _DAT_180bf9dc0 = 0x12;
   strcpy_s(&DAT_180bf9dc8,0x40,&UNK_180a22e58,in_R9,0xfffffffffffffffe);
-  ModuleInitializationResult = RegisterSystemModule(FUN_180942300);
+  ModuleInitializationResult = RegisterSystemModule(InitializeStringProcessingSystemW);
   return (ModuleInitializationResult != 0) - 1;
 }
 /**
@@ -1505,7 +1505,7 @@ int InitializeStringProcessingSystemX(void)
   DAT_180bf9e28 = 0;
   _DAT_180bf9e20 = 0x13;
   strcpy_s(&DAT_180bf9e28,0x40,&UNK_180a22f28,in_R9,0xfffffffffffffffe);
-  ModuleInitializationResult = RegisterSystemModule(FUN_180942320);
+  ModuleInitializationResult = RegisterSystemModule(InitializeStringProcessingSystemX);
   return (ModuleInitializationResult != 0) - 1;
 }
 /**
@@ -1523,7 +1523,7 @@ int InitializeStringProcessingSystemY(void)
   DAT_180bf9e88 = 0;
   _DAT_180bf9e80 = 0x13;
   strcpy_s(&DAT_180bf9e88,0x40,&UNK_180a22f10,in_R9,0xfffffffffffffffe);
-  ModuleInitializationResult = RegisterSystemModule(FUN_180942340);
+  ModuleInitializationResult = RegisterSystemModule(InitializeStringProcessingSystemY);
   return (ModuleInitializationResult != 0) - 1;
 }
 /**
@@ -1541,7 +1541,7 @@ int InitializeStringProcessingSystemZ(void)
   DAT_180bf9ee8 = 0;
   _DAT_180bf9ee0 = 0x16;
   strcpy_s(&DAT_180bf9ee8,0x40,&UNK_180a22ef8,in_R9,0xfffffffffffffffe);
-  ModuleInitializationResult = RegisterSystemModule(FUN_180942360);
+  ModuleInitializationResult = RegisterSystemModule(InitializeStringProcessingSystemZ);
   return (ModuleInitializationResult != 0) - 1;
 }
 /**
@@ -1559,7 +1559,7 @@ int InitializeStringProcessingSystemAA(void)
   DAT_180bf9f48 = 0;
   _DAT_180bf9f40 = 0x1a;
   strcpy_s(&DAT_180bf9f48,0x40,&UNK_180a22ed8,in_R9,0xfffffffffffffffe);
-  ModuleInitializationResult = RegisterSystemModule(FUN_180942380);
+  ModuleInitializationResult = RegisterSystemModule(InitializeStringProcessingSystemAA);
   return (ModuleInitializationResult != 0) - 1;
 }
 /**
@@ -1577,7 +1577,7 @@ int InitializeStringProcessingSystemAB(void)
   DAT_180bf9fa8 = 0;
   _DAT_180bf9fa0 = 0x15;
   strcpy_s(&DAT_180bf9fa8,0x40,&UNK_180a22f90,in_R9,0xfffffffffffffffe);
-  ModuleInitializationResult = RegisterSystemModule(FUN_1809423a0);
+  ModuleInitializationResult = RegisterSystemModule(InitializeStringProcessingSystemAB);
   return (ModuleInitializationResult != 0) - 1;
 }
 /**
@@ -1595,7 +1595,7 @@ int InitializeStringProcessingSystemAC(void)
   DAT_180bfa008 = 0;
   _DAT_180bfa000 = 0x13;
   strcpy_s(&DAT_180bfa008,0x40,&UNK_180a22f78,in_R9,0xfffffffffffffffe);
-  ModuleInitializationResult = RegisterSystemModule(FUN_1809423c0);
+  ModuleInitializationResult = RegisterSystemModule(InitializeStringProcessingSystemAC);
   return (ModuleInitializationResult != 0) - 1;
 }
 /**
@@ -1613,7 +1613,7 @@ int InitializeStringProcessingSystemAD(void)
   DAT_180bfa068 = 0;
   _DAT_180bfa060 = 0x13;
   strcpy_s(&DAT_180bfa068,0x40,&UNK_180a22f60,in_R9,0xfffffffffffffffe);
-  ModuleInitializationResult = RegisterSystemModule(FUN_1809423e0);
+  ModuleInitializationResult = RegisterSystemModule(InitializeStringProcessingSystemAD);
   return (ModuleInitializationResult != 0) - 1;
 }
 /**
@@ -1631,7 +1631,7 @@ int InitializeStringProcessingSystemAE(void)
   DAT_180bfa0c8 = 0;
   _DAT_180bfa0c0 = 0x1b;
   strcpy_s(&DAT_180bfa0c8,0x40,&UNK_180a22f40,in_R9,0xfffffffffffffffe);
-  ModuleInitializationResult = RegisterSystemModule(FUN_180942400);
+  ModuleInitializationResult = RegisterSystemModule(InitializeStringProcessingSystemAE);
   return (ModuleInitializationResult != 0) - 1;
 }
 /**
@@ -1649,7 +1649,7 @@ int InitializeStringProcessingSystemAF(void)
   DAT_180bfa128 = 0;
   _DAT_180bfa120 = 0x19;
   strcpy_s(&DAT_180bfa128,0x40,&UNK_180a23018,in_R9,0xfffffffffffffffe);
-  ModuleInitializationResult = RegisterSystemModule(FUN_180942420);
+  ModuleInitializationResult = RegisterSystemModule(InitializeStringProcessingSystemAF);
   return (ModuleInitializationResult != 0) - 1;
 }
 /**
@@ -1667,7 +1667,7 @@ int InitializeStringProcessingSystemAG(void)
   DAT_180bfa188 = 0;
   _DAT_180bfa180 = 0x15;
   strcpy_s(&DAT_180bfa188,0x40,&UNK_180a23000,in_R9,0xfffffffffffffffe);
-  ModuleInitializationResult = RegisterSystemModule(FUN_180942440);
+  ModuleInitializationResult = RegisterSystemModule(InitializeStringProcessingSystemAG);
   return (ModuleInitializationResult != 0) - 1;
 }
 /**
@@ -1685,7 +1685,7 @@ int InitializeStringProcessingSystemAH(void)
   DAT_180bfa1e8 = 0;
   _DAT_180bfa1e0 = 0x28;
   strcpy_s(&DAT_180bfa1e8,0x40,&DAT_180a22fd0,in_R9,0xfffffffffffffffe);
-  ModuleInitializationResult = RegisterSystemModule(FUN_180942460);
+  ModuleInitializationResult = RegisterSystemModule(InitializeStringProcessingSystemAH);
   return (ModuleInitializationResult != 0) - 1;
 }
 /**
@@ -1703,7 +1703,7 @@ int InitializeStringProcessingSystemAI(void)
   DAT_180bfa248 = 0;
   _DAT_180bfa240 = 0x23;
   strcpy_s(&DAT_180bfa248,0x40,&DAT_180a22fa8,in_R9,0xfffffffffffffffe);
-  ModuleInitializationResult = RegisterSystemModule(FUN_180942480);
+  ModuleInitializationResult = RegisterSystemModule(InitializeStringProcessingSystemAI);
   return (ModuleInitializationResult != 0) - 1;
 }
 /**
@@ -1721,7 +1721,7 @@ int InitializeStringProcessingSystemAJ(void)
   DAT_180bfa2a8 = 0;
   _DAT_180bfa2a0 = 0x17;
   strcpy_s(&DAT_180bfa2a8,0x40,&UNK_180a23068,in_R9,0xfffffffffffffffe);
-  ModuleInitializationResult = RegisterSystemModule(FUN_1809424a0);
+  ModuleInitializationResult = RegisterSystemModule(InitializeStringProcessingSystemAJ);
   return (ModuleInitializationResult != 0) - 1;
 }
 /**
@@ -1733,7 +1733,7 @@ int InitializeStringProcessingSystemAJ(void)
 int InitializeStringProcessingSystemAK(void)
 {
   int64_t ModuleInitializationResult;
-  ModuleInitializationResult = RegisterSystemModule(FUN_1809424c0);
+  ModuleInitializationResult = RegisterSystemModule(InitializeStringProcessingSystemAK);
   return (ModuleInitializationResult != 0) - 1;
 }
 /**
@@ -1745,7 +1745,7 @@ int InitializeStringProcessingSystemAK(void)
 int InitializeStringProcessingSystemAL(void)
 {
   int64_t ModuleInitializationResult;
-  ModuleInitializationResult = RegisterSystemModule(FUN_180942520);
+  ModuleInitializationResult = RegisterSystemModule(InitializeStringProcessingSystemAL);
   return (ModuleInitializationResult != 0) - 1;
 }
 /**
@@ -1757,14 +1757,14 @@ int InitializeStringProcessingSystemAL(void)
 int InitializeStringProcessingSystemAM(void)
 {
   int64_t ModuleInitializationResult;
-  ModuleInitializationResult = RegisterSystemModule(FUN_180942580);
+  ModuleInitializationResult = RegisterSystemModule(InitializeStringProcessingSystemAM);
   return (ModuleInitializationResult != 0) - 1;
 }
 int ProcessSystemEvent(uint64_t systemId,uint64_t eventType,uint64_t eventData,uint64_t eventFlags)
 {
   int64_t ModuleInitializationResult;
   _Mtx_init_in_situ(0x180c91f70,2,param_3,param_4,0xfffffffffffffffe);
-  ModuleInitializationResult = RegisterSystemModule(FUN_1809425e0);
+  ModuleInitializationResult = RegisterSystemModule(InitializeSystemEventHandler);
   return (ModuleInitializationResult != 0) - 1;
 }
   DAT_180bfa368 = 0;
@@ -1903,7 +1903,7 @@ int InitializeSystemConfigurationManager(void)
   DAT_180bfc140 = 0;
   _DAT_180bfc160 = 0;
   _DAT_180bfc168 = 0;
-  ModuleInitializationResult = RegisterSystemModule(FUN_180942660);
+  ModuleInitializationResult = RegisterSystemModule(InitializeSystemResourceManager);
   return (ModuleInitializationResult != 0) - 1;
 }
 /**
@@ -1921,7 +1921,7 @@ int InitializeSystemResourceManager(void)
   _DAT_180bfaed0 = 0;
   _DAT_180bfaed8 = 0;
   _DAT_180bfaee0 = 0;
-  ModuleInitializationResult = RegisterSystemModule(FUN_180942750);
+  ModuleInitializationResult = RegisterSystemModule(InitializeSystemRequestHandler);
   return (ModuleInitializationResult != 0) - 1;
 }
 int HandleSystemRequest(uint64_t requestId,uint64_t requestType,uint64_t requestData,uint64_t requestFlags)
@@ -1932,7 +1932,7 @@ int HandleSystemRequest(uint64_t requestId,uint64_t requestType,uint64_t request
   _DAT_180c92058 = &DAT_180c92068;
   _DAT_180c92060 = 0;
   DAT_180c92068 = 0;
-  ModuleInitializationResult = RegisterSystemModule(FUN_180942790);
+  ModuleInitializationResult = RegisterSystemModule(InitializeSystemDebugManager);
   return (ModuleInitializationResult != 0) - 1;
 }
 /**
