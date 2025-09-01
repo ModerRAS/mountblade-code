@@ -17657,14 +17657,22 @@ void FUN_180045bc1(void)
 
 
 
-// 函数: void FUN_180045be6(undefined1 *param_1)
-void FUN_180045be6(undefined1 *param_1)
+/**
+ * @brief 重置系统缓冲区
+ * 
+ * 该函数负责重置系统缓冲区，将缓冲区内容清零，
+ * 并重置相关的偏移量计数器。
+ * 
+ * @param bufferPointer 指向需要重置的缓冲区的指针
+ * @note 这是一个辅助函数，用于清理和重置系统缓冲区状态
+ */
+void ResetSystemBuffer(undefined1 *bufferPointer)
 
 {
-  longlong unaff_RDI;
+  longlong bufferOffset;
   
-  *param_1 = 0;
-  *(undefined4 *)(unaff_RDI + 0x10) = 0;
+  *bufferPointer = 0;
+  *(undefined4 *)(bufferOffset + 0x10) = 0;
   return;
 }
 
