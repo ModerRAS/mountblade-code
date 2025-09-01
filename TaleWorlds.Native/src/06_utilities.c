@@ -1,7 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
 
-// 06_utilities.c - 473 个函数
-
 // 函数: void InitializeModuleDependencies(longlong moduleHandle, longlong moduleContext)
 /**
  * @brief 初始化模块依赖关系
@@ -3836,23 +3834,31 @@ undefined8 ValidateResourceHandle(longlong resourceHandle)
 
 
 
-undefined4 FUN_180890aef(void)
+/**
+ * @brief 验证寄存器中的指针值
+ * 
+ * 该函数验证RAX寄存器中的指针值，并进行必要的调整
+ * 主要用于系统底层操作和内存管理
+ * 
+ * @return 验证结果，0x1c表示验证失败
+ */
+uint32_t ValidateRegisterPointer(void)
 
 {
-  longlong in_RAX;
-  longlong lVar1;
+  int64_t registerValue;
+  int64_t adjustedValue;
   
-  if (in_RAX == 0) {
-    lVar1 = 0;
+  if (registerValue == 0) {
+    adjustedValue = 0;
   }
   else {
-    lVar1 = in_RAX + -8;
+    adjustedValue = registerValue - 8;
   }
-  if (*(longlong *)(lVar1 + 0x10) == 0) {
+  if (*(int64_t *)(adjustedValue + 0x10) == 0) {
     return 0x1c;
   }
-                    // WARNING: Subroutine does not return
-  FUN_180862e00(*(longlong *)(lVar1 + 0x10),1);
+  // 调用处理函数，该函数不会返回
+  HandlePointerOperation(*(int64_t *)(adjustedValue + 0x10), 1);
 }
 
 
