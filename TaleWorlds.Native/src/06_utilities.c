@@ -22,7 +22,7 @@ void* g_moduleDependencyMutex;
 bool g_moduleDependencyInitialized;
 void* g_moduleDependencyContext;
 void* g_moduleDependencyConfig;
-undefined1 g_moduleDependencyEnabled;
+bool g_moduleDependencyEnabled;
 undefined ModuleDependencyData;
 undefined8 ModuleDependencyPointer1;
 undefined8 ModuleDependencyPointer2;
