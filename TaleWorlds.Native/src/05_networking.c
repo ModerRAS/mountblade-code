@@ -1933,43 +1933,58 @@ int ProcessNetworkPacketPhaseTwo(longlong connectionContext, longlong packetData
 
 
 
-int FUN_180841910(longlong connectionContext,longlong packetData,int dataSize)
+/**
+ * @brief 处理网络连接数据包的第三阶段处理
+ * 
+ * 该函数负责处理网络连接数据包的第三阶段，包括：
+ * - 从连接上下文中提取多个网络状态和句柄
+ * - 处理数据包的初始阶段
+ * - 多次处理网络缓冲区数据
+ * - 使用不同的网络状态进行最终处理
+ * - 返回总共处理的数据大小
+ * 
+ * @param connectionContext 网络连接上下文指针
+ * @param packetData 数据包数据指针
+ * @param dataSize 数据包大小
+ * @return int 处理的总数据大小
+ */
+int ProcessNetworkPacketPhaseThree(longlong connectionContext, longlong packetData, int dataSize)
 
 {
-  NetworkStatus uVar1;
-  NetworkStatus uVar2;
-  int networkStatus3;
-  int networkStatus4;
-  NetworkHandle uStack_48;
-  NetworkHandle uStack_40;
-  NetworkHandle networkBuffer;
-  NetworkHandle uStack_30;
-  NetworkStatus uStack_28;
-  NetworkStatus uStack_24;
-  NetworkStatus uStack_20;
-  NetworkStatus uStack_1c;
-  NetworkHandle uStack_18;
+  NetworkStatus primaryNetworkStatus;
+  NetworkStatus secondaryNetworkStatus;
+  int firstProcessingStatus;
+  int secondProcessingStatus;
+  NetworkHandle primaryNetworkHandle;
+  NetworkHandle secondaryNetworkHandle;
+  NetworkHandle networkBufferHandle;
+  NetworkHandle tertiaryNetworkHandle;
+  NetworkStatus bufferStatusOne;
+  NetworkStatus bufferStatusTwo;
+  NetworkStatus bufferStatusThree;
+  NetworkStatus bufferStatusFour;
+  NetworkHandle quaternaryNetworkHandle;
   
-  uStack_48 = *(NetworkHandle *)(connectionContext + 0x10);
-  uStack_40 = *(NetworkHandle *)(connectionContext + 0x18);
-  uVar1 = *(NetworkStatus *)(connectionContext + 0x4c);
-  networkBuffer = *(NetworkHandle *)(connectionContext + 0x20);
-  uStack_30 = *(NetworkHandle *)(connectionContext + 0x28);
-  uVar2 = *(NetworkStatus *)(connectionContext + 0x48);
-  uStack_28 = *(NetworkStatus *)(connectionContext + 0x30);
-  uStack_24 = *(NetworkStatus *)(connectionContext + 0x34);
-  uStack_20 = *(NetworkStatus *)(connectionContext + 0x38);
-  uStack_1c = *(NetworkStatus *)(connectionContext + 0x3c);
-  uStack_18 = *(NetworkHandle *)(connectionContext + 0x40);
-  networkStatus3 = func_0x00018088ecd0(packetData,dataSize,&uStack_48);
-  networkStatus4 = FUN_18074b880(networkStatus3 + packetData,dataSize - networkStatus3,&g_NetworkBufferDataTemplate);
-  networkStatus3 = networkStatus3 + networkStatus4;
-  networkStatus4 = func_0x00018074b800(networkStatus3 + packetData,dataSize - networkStatus3,uVar2);
-  networkStatus3 = networkStatus3 + networkStatus4;
-  networkStatus4 = FUN_18074b880(networkStatus3 + packetData,dataSize - networkStatus3,&g_NetworkBufferDataTemplate);
-  networkStatus3 = networkStatus3 + networkStatus4;
-  networkStatus4 = func_0x00018074b800(networkStatus3 + packetData,dataSize - networkStatus3,uVar1);
-  return networkStatus4 + networkStatus3;
+  primaryNetworkHandle = *(NetworkHandle *)(connectionContext + 0x10);
+  secondaryNetworkHandle = *(NetworkHandle *)(connectionContext + 0x18);
+  primaryNetworkStatus = *(NetworkStatus *)(connectionContext + 0x4c);
+  networkBufferHandle = *(NetworkHandle *)(connectionContext + 0x20);
+  tertiaryNetworkHandle = *(NetworkHandle *)(connectionContext + 0x28);
+  secondaryNetworkStatus = *(NetworkStatus *)(connectionContext + 0x48);
+  bufferStatusOne = *(NetworkStatus *)(connectionContext + 0x30);
+  bufferStatusTwo = *(NetworkStatus *)(connectionContext + 0x34);
+  bufferStatusThree = *(NetworkStatus *)(connectionContext + 0x38);
+  bufferStatusFour = *(NetworkStatus *)(connectionContext + 0x3c);
+  quaternaryNetworkHandle = *(NetworkHandle *)(connectionContext + 0x40);
+  firstProcessingStatus = func_0x00018088ecd0(packetData, dataSize, &primaryNetworkHandle);
+  secondProcessingStatus = FUN_18074b880(firstProcessingStatus + packetData, dataSize - firstProcessingStatus, &g_NetworkBufferDataTemplate);
+  firstProcessingStatus = firstProcessingStatus + secondProcessingStatus;
+  secondProcessingStatus = func_0x00018074b800(firstProcessingStatus + packetData, dataSize - firstProcessingStatus, secondaryNetworkStatus);
+  firstProcessingStatus = firstProcessingStatus + secondProcessingStatus;
+  secondProcessingStatus = FUN_18074b880(firstProcessingStatus + packetData, dataSize - firstProcessingStatus, &g_NetworkBufferDataTemplate);
+  firstProcessingStatus = firstProcessingStatus + secondProcessingStatus;
+  secondProcessingStatus = func_0x00018074b800(firstProcessingStatus + packetData, dataSize - firstProcessingStatus, primaryNetworkStatus);
+  return secondProcessingStatus + firstProcessingStatus;
 }
 
 
@@ -50041,8 +50056,15 @@ LAB_18086b9f8:
 
 
 
-// 函数: void FUN_18086b8f2(void)
-void FUN_18086b8f2(void)
+// 函数: void ProcessNetworkConnectionQueue(void)
+/**
+ * @brief 处理网络连接队列
+ * 
+ * 该函数负责处理网络连接队列中的连接请求，
+ * 管理连接状态，处理数据包的接收和发送。
+ * 实现连接队列的维护和优化。
+ */
+void ProcessNetworkConnectionQueue(void)
 
 {
   longlong lVar1;
