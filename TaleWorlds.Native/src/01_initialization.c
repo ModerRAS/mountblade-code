@@ -24947,85 +24947,91 @@ void CalculateRenderQualitySettings(long long SystemResourcePointer)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_18004cc20(long long *SystemResourcePointer)
-void FUN_18004cc20(long long *SystemResourcePointer)
-
+/**
+ * @brief 系统资源清理管理器
+ * 
+ * 负责管理系统资源的清理和释放，包括内存分配器、音频管理器、渲染管理器
+ * 以及其他系统组件的资源回收。确保系统在关闭时正确释放所有资源。
+ * 
+ * @param SystemResourcePointer 系统资源指针数组，包含所有需要清理的系统资源
+ */
+void SystemResourceCleanupManager(long long *SystemResourcePointer)
 {
-  void* *pointerToUnsigned1;
-  long long localSystemHandle;
+  void* *SystemResourceArray;
+  long long LocalSystemHandle;
   
-  pointerToUnsigned1 = (void* *)SystemResourcePointer[0x7c];
-  if (pointerToUnsigned1 != (void* *)0x0) {
-    pointerToUnsigned1[0x14] = &SystemGlobalDataReference;
-    if (pointerToUnsigned1[0x15] != 0) {
+  SystemResourceArray = (void* *)SystemResourcePointer[0x7c];
+  if (SystemResourceArray != (void* *)0x0) {
+    SystemResourceArray[0x14] = &SystemGlobalDataReference;
+    if (SystemResourceArray[0x15] != 0) {
                     // WARNING: Subroutine does not return
       SystemCleanupFunction();
     }
-    pointerToUnsigned1[0x15] = 0;
-    *(uint32_t *)(pointerToUnsigned1 + 0x17) = 0;
-    pointerToUnsigned1[0x14] = &SystemMemoryAllocatorReference;
-    pointerToUnsigned1[0x10] = &SystemGlobalDataReference;
-    if (pointerToUnsigned1[0x11] != 0) {
+    SystemResourceArray[0x15] = 0;
+    *(uint32_t *)(SystemResourceArray + 0x17) = 0;
+    SystemResourceArray[0x14] = &SystemMemoryAllocatorReference;
+    SystemResourceArray[0x10] = &SystemGlobalDataReference;
+    if (SystemResourceArray[0x11] != 0) {
                     // WARNING: Subroutine does not return
       SystemCleanupFunction();
     }
-    pointerToUnsigned1[0x11] = 0;
-    *(uint32_t *)(pointerToUnsigned1 + 0x13) = 0;
-    pointerToUnsigned1[0x10] = &SystemMemoryAllocatorReference;
-    if (pointerToUnsigned1[0xc] != 0) {
+    SystemResourceArray[0x11] = 0;
+    *(uint32_t *)(SystemResourceArray + 0x13) = 0;
+    SystemResourceArray[0x10] = &SystemMemoryAllocatorReference;
+    if (SystemResourceArray[0xc] != 0) {
                     // WARNING: Subroutine does not return
       SystemCleanupFunction();
     }
-    FUN_180057170();
-    FUN_180057170();
-    *pointerToUnsigned1 = &SystemGlobalDataReference;
-    if (pointerToUnsigned1[1] != 0) {
+    SystemMemoryDeallocationFunction();
+    SystemMemoryDeallocationFunction();
+    *SystemResourceArray = &SystemGlobalDataReference;
+    if (SystemResourceArray[1] != 0) {
                     // WARNING: Subroutine does not return
       SystemCleanupFunction();
     }
-    pointerToUnsigned1[1] = 0;
-    *(uint32_t *)(pointerToUnsigned1 + 3) = 0;
-    *pointerToUnsigned1 = &SystemMemoryAllocatorReference;
+    SystemResourceArray[1] = 0;
+    *(uint32_t *)(SystemResourceArray + 3) = 0;
+    *SystemResourceArray = &SystemMemoryAllocatorReference;
                     // WARNING: Subroutine does not return
-    SystemCleanupFunction(pointerToUnsigned1);
+    SystemCleanupFunction(SystemResourceArray);
   }
   SystemResourcePointer[0x7c] = 0;
-  pointerToUnsigned1 = (void* *)SystemResourcePointer[1];
-  if (pointerToUnsigned1 != (void* *)0x0) {
-    localSystemHandle = __RTCastToVoid(pointerToUnsigned1);
-    *pointerToUnsigned1 = &UNK_180a08db0;
-    FUN_18005e570(SystemAllocationFlagsTemplate,pointerToUnsigned1[0x28]);
-    pointerToUnsigned1[0x28] = 0;
-    pointerToUnsigned1[0x29] = &SystemGlobalDataReference;
-    if (pointerToUnsigned1[0x2a] != 0) {
+  SystemResourceArray = (void* *)SystemResourcePointer[1];
+  if (SystemResourceArray != (void* *)0x0) {
+    LocalSystemHandle = __RTCastToVoid(SystemResourceArray);
+    *SystemResourceArray = &SystemUnknownDataReference;
+    SystemResourceReleaseFunction(SystemAllocationFlagsTemplate,SystemResourceArray[0x28]);
+    SystemResourceArray[0x28] = 0;
+    SystemResourceArray[0x29] = &SystemGlobalDataReference;
+    if (SystemResourceArray[0x2a] != 0) {
                     // WARNING: Subroutine does not return
       SystemCleanupFunction();
     }
-    pointerToUnsigned1[0x2a] = 0;
-    *(uint32_t *)(pointerToUnsigned1 + 0x2c) = 0;
-    pointerToUnsigned1[0x29] = &SystemMemoryAllocatorReference;
-    FUN_180174950();
-    if (localSystemHandle != 0) {
+    SystemResourceArray[0x2a] = 0;
+    *(uint32_t *)(SystemResourceArray + 0x2c) = 0;
+    SystemResourceArray[0x29] = &SystemMemoryAllocatorReference;
+    SystemResourceFinalizationFunction();
+    if (LocalSystemHandle != 0) {
                     // WARNING: Subroutine does not return
-      SystemCleanupFunction(localSystemHandle);
+      SystemCleanupFunction(LocalSystemHandle);
     }
   }
   SystemResourcePointer[1] = 0;
-  localSystemHandle = *SystemResourcePointer;
-  if (localSystemHandle != 0) {
-    FUN_180057d70(localSystemHandle);
+  LocalSystemHandle = *SystemResourcePointer;
+  if (LocalSystemHandle != 0) {
+    SystemResourceHandleCleanupFunction(LocalSystemHandle);
                     // WARNING: Subroutine does not return
-    SystemCleanupFunction(localSystemHandle);
+    SystemCleanupFunction(LocalSystemHandle);
   }
   *SystemResourcePointer = 0;
-  localSystemHandle = SystemAudioManagerPointer;
+  LocalSystemHandle = SystemAudioManagerPointer;
   if (SystemAudioManagerPointer != 0) {
-    FUN_180057550();
+    SystemAudioManagerCleanupFunction();
                     // WARNING: Subroutine does not return
-    SystemCleanupFunction(localSystemHandle);
+    SystemCleanupFunction(LocalSystemHandle);
   }
   SystemAudioManagerPointer = 0;
-  FUN_1800578a0();
+  SystemRenderManagerCleanupFunction();
   SystemRenderManagerPointer = 0;
   if (SystemResourcePointer[6] != 0) {
                     // WARNING: Subroutine does not return
@@ -25048,8 +25054,8 @@ void FUN_18004cc20(long long *SystemResourcePointer)
   SystemResourcePointer[0x6a] = 0;
   *(uint32_t *)(SystemResourcePointer + 0x6c) = 0;
   SystemResourcePointer[0x69] = (long long)&SystemMemoryAllocatorReference;
-  FUN_180057830();
-  FUN_18005d260(SystemResourcePointer + 0x5c,SystemResourcePointer[0x5e]);
+  SystemConfigurationCleanupFunction();
+  SystemDataBufferCleanupFunction(SystemResourcePointer + 0x5c,SystemResourcePointer[0x5e]);
   SystemResourcePointer[0x58] = (long long)&SystemGlobalDataReference;
   if (SystemResourcePointer[0x59] != 0) {
                     // WARNING: Subroutine does not return
@@ -25103,7 +25109,7 @@ void FUN_18004cc20(long long *SystemResourcePointer)
                     // WARNING: Subroutine does not return
     SystemCleanupFunction();
   }
-  FUN_18005d580();
+  SystemFinalCleanupFunction();
   SystemResourcePointer[0x17] = (long long)&SystemGlobalDataReference;
   if (SystemResourcePointer[0x18] != 0) {
                     // WARNING: Subroutine does not return
@@ -25117,7 +25123,7 @@ void FUN_18004cc20(long long *SystemResourcePointer)
     SystemCleanupFunction();
   }
   if ((long long *)SystemResourcePointer[9] != (long long *)0x0) {
-    (**(code **)(*(long long *)SystemResourcePointer[9] + 0x38))();
+    SystemResourceFinalizerCallback();
   }
   return;
 }
