@@ -1959,16 +1959,16 @@ void InitializeSystemEventManager(void)
 void InitializeSystemConfigurationNode(void)
 
 {
-  char nodeFlag;
-  void* *systemRootPointer;
-  int comparisonResult;
-  long long *systemTablePointer;
-  long long allocationSize;
-  void* *currentNode;
-  void* *previousNode;
-  void* *nextNode;
-  void* *allocatedNode;
-  void* initializationFlag;
+  char NodeFlag;
+  void* *SystemRootPointer;
+  int ComparisonResult;
+  long long *SystemTablePointer;
+  long long AllocationSize;
+  void* *CurrentNode;
+  void* *PreviousNode;
+  void* *NextNode;
+  void* *AllocatedNode;
+  void* InitializationFlag;
   
   systemTablePointer = (long long*)GetSystemRootPointer();
   systemRootPointer = (void* *)*systemTablePointer;
@@ -16189,7 +16189,7 @@ void InitializeSystemSubcomponentM(void)
   stackParameterB = stackBuffer;
   stackBuffer[0] = 0;
   stackParameterC = 0xd;
-  strcpy_s(stackBuffer,0x80,&SystemStringConstantTemplateA,in_R9,0xfffffffffffffffe);
+  strcpy_s(stackBuffer,0x80,&SystemStringConstantErrorMessageA,in_R9,0xfffffffffffffffe);
   SystemMemoryRegionCacheB = SystemMemoryAllocationFunction(&stackParameterA);
   return;
 }
@@ -17427,7 +17427,7 @@ void SystemPerformanceMonitorInitializer(void)
   stackParameterB = stackBuffer;
   stackBuffer[0] = 0;
   stackParameterC = 0x1b;
-  strcpy_s(stackBuffer,0x80,&SystemStringConstantTemplateB,in_R9,0xfffffffffffffffe);
+  strcpy_s(stackBuffer,0x80,&SystemStringConstantErrorMessageB,in_R9,0xfffffffffffffffe);
   SystemMemoryRegionCacheA = SystemMemoryAllocationFunction(&stackParameterA);
   return;
 }
@@ -17571,7 +17571,7 @@ void SystemNetworkManagerInitializer(void)
   stackBufferPointer = stackBuffer;
   stackBuffer[0] = 0;
   stackBufferSize = 0x10;
-  strcpy_s(stackBuffer,0x80,&SystemStringConstantTemplateC,registerR9Value,0xfffffffffffffffe);
+  strcpy_s(stackBuffer,0x80,&SystemStringConstantConfigPathC,registerR9Value,0xfffffffffffffffe);
   SystemMemoryRegionCacheC = SystemMemoryAllocationFunction(&stackPointerParameter);
   return;
 }
@@ -17644,7 +17644,7 @@ void InitializeEngineModuleA(void)
   bufferPtr = stringBuffer;
   stringBuffer[0] = 0;
   bufferSize = 0x17;
-  strcpy_s(stringBuffer,0x80,&SystemStringConstantTemplateD,registerR9,0xfffffffffffffffe);
+  strcpy_s(stringBuffer,0x80,&SystemStringConstantBufferTemplateD,registerR9,0xfffffffffffffffe);
   SystemMemoryRegionCacheD = SystemMemoryAllocationFunction(&paramStackPtr);
   return;
 }
@@ -17671,7 +17671,7 @@ void InitializeEngineModuleB(void)
   bufferPtr = stringBuffer;
   stringBuffer[0] = 0;
   bufferSize = 0x11;
-  strcpy_s(stringBuffer,0x80,&SystemStringConstantTemplateE,registerR9,0xfffffffffffffffe);
+  strcpy_s(stringBuffer,0x80,&SystemStringConstantBufferSizeE,registerR9,0xfffffffffffffffe);
   SystemMemoryRegionCacheE = SystemMemoryAllocationFunction(&paramStackPtr);
   return;
 }
@@ -18271,7 +18271,7 @@ void InitializeSystemInfoAndUserEnvironment(void)
     plStack_208 = (long long *)CONCAT44(plStack_208._4_4_,0x10);
     OperationResult = GetComputerNameA(ComputerNameBufferPointer,&MemoryBufferSize);
     if (OperationResult == 0) {
-      LogSystemError(&SystemStringConstantTemplateF);
+      LogSystemError(&SystemStringConstantComputerNameErrorF);
     }
     else {
       if (0xf < ((ulong long)MemoryBufferSize & 0xffffffff)) goto LAB_180044db8;
@@ -18281,7 +18281,7 @@ void InitializeSystemInfoAndUserEnvironment(void)
     MemoryBufferSize = (long long *)CONCAT44(MemoryBufferSize._4_4_,0x101);
     OperationResult = GetUserNameA(UserNameBuffer,&MemoryBufferSize);
     if (OperationResult == 0) {
-      LogSystemError(&SystemStringConstantTemplateG);
+      LogSystemError(&SystemStringConstantUserNameErrorG);
     }
     else {
       if (0x100 < ((ulong long)MemoryBufferSize & 0xffffffff)) {
@@ -18428,7 +18428,7 @@ void InitializeSystemDebugSymbolManager(void* systemContext,long long initializa
   SymSetSearchPath(SystemCurrentProcessHandle,SearchPathTemplate);
   LibraryHandle = AllocatedMemoryPointer[0xb];
   if (LibraryHandle == 0) {
-    LibraryHandle = LoadLibraryA(&SystemStringConstantTemplateH);
+    LibraryHandle = LoadLibraryA(&SystemStringConstantLibraryNameH);
     AllocatedMemoryPointer[0xb] = LibraryHandle;
     if (LibraryHandle != 0) goto LAB_180044ee3;
     puStack_b8 = &SystemGlobalDataReference;
@@ -18440,7 +18440,7 @@ void InitializeSystemDebugSymbolManager(void* systemContext,long long initializa
   else {
 LAB_180044ee3:
     if (AllocatedMemoryPointer[0xc] == 0) {
-      FunctionAddress = GetProcAddress(LibraryHandle,&SystemStringConstantTemplateI);
+      FunctionAddress = GetProcAddress(LibraryHandle,&SystemStringConstantFunctionNameI);
       AllocatedMemoryPointer[0xc] = FunctionAddress;
       if (FunctionAddress == 0) {
         puStack_b8 = &SystemGlobalDataReference;
@@ -65733,60 +65733,60 @@ long long SystemModuleExecutionTime;
 long long *SystemModuleExecutionCounter;
 
 // 系统字符串常量模板
-void* SystemStringConstantTemplateA;
-void* SystemStringConstantTemplateB;
-void* SystemStringConstantTemplateC;
-void* SystemStringConstantTemplateD;
-void* SystemStringConstantTemplateE;
-void* SystemStringConstantTemplateF;
-void* SystemStringConstantTemplateG;
-void* SystemStringConstantTemplateH;
-void* SystemStringConstantTemplateI;
-void* SystemStringConstantTemplateJ;
+void* SystemStringConstantErrorMessageA;
+void* SystemStringConstantErrorMessageB;
+void* SystemStringConstantConfigPathC;
+void* SystemStringConstantBufferTemplateD;
+void* SystemStringConstantBufferSizeE;
+void* SystemStringConstantComputerNameErrorF;
+void* SystemStringConstantUserNameErrorG;
+void* SystemStringConstantLibraryNameH;
+void* SystemStringConstantFunctionNameI;
+void* SystemStringConstantWindowTitleJ;
 
 // 系统虚拟函数表模板
-void* SystemVirtualTableTemplateA;
-void* SystemVirtualTableTemplateB;
-void* SystemVirtualTableTemplateC;
-void* SystemVirtualTableTemplateD;
-void* SystemVirtualTableTemplateE;
+void* SystemVirtualTableBaseClassA;
+void* SystemVirtualTableDerivedClassB;
+void* SystemVirtualTableInterfaceC;
+void* SystemVirtualTableAbstractClassD;
+void* SystemVirtualTableSingletonClassE;
 
 // 系统内存管理模板
-void* SystemMemoryTemplateA;
-void* SystemMemoryTemplateB;
-void* SystemMemoryTemplateC;
-void* SystemMemoryTemplateD;
-void* SystemMemoryTemplateE;
-void* SystemMemoryTemplateF;
-void* SystemMemoryTemplateG;
+void* SystemMemoryPoolTemplateA;
+void* SystemMemoryPoolTemplateB;
+void* SystemMemoryPoolTemplateC;
+void* SystemMemoryPoolTemplateD;
+void* SystemMemoryPoolTemplateE;
+void* SystemMemoryPoolTemplateF;
+void* SystemMemoryPoolTemplateG;
 
 // 系统数据缓冲区模板
-void* SystemDataBufferTemplateA;
-void* SystemDataBufferTemplateB;
-void* SystemDataBufferTemplateC;
-void* SystemDataBufferTemplateD;
-void* SystemDataBufferTemplateE;
-void* SystemDataBufferTemplateF;
-void* SystemDataBufferTemplateG;
-void* SystemDataBufferTemplateH;
-void* SystemDataBufferTemplateI;
-void* SystemDataBufferTemplateJ;
-void* SystemDataBufferTemplateK;
-void* SystemDataBufferTemplateL;
-void* SystemDataBufferTemplateM;
-void* SystemDataBufferTemplateN;
-void* SystemDataBufferTemplateO;
-void* SystemDataBufferTemplateP;
-void* SystemDataBufferTemplateQ;
-void* SystemDataBufferTemplateR;
-void* SystemDataBufferTemplateS;
-void* SystemDataBufferTemplateT;
-void* SystemDataBufferTemplateU;
-void* SystemDataBufferTemplateV;
-void* SystemDataBufferTemplateW;
-void* SystemDataBufferTemplateX;
-void* SystemDataBufferTemplateY;
-void* SystemDataBufferTemplateZ;
+void* SystemDataBufferMainTemplateA;
+void* SystemDataBufferBackupTemplateB;
+void* SystemDataBufferCacheTemplateC;
+void* SystemDataBufferTemporaryTemplateD;
+void* SystemDataBufferInputTemplateE;
+void* SystemDataBufferOutputTemplateF;
+void* SystemDataBufferNetworkTemplateG;
+void* SystemDataBufferFileTemplateH;
+void* SystemDataBufferMemoryTemplateI;
+void* SystemDataBufferSystemTemplateJ;
+void* SystemDataBufferUserTemplateK;
+void* SystemDataBufferSharedTemplateL;
+void* SystemDataBufferProtectedTemplateM;
+void* SystemDataBufferSecureTemplateN;
+void* SystemDataBufferDebugTemplateO;
+void* SystemDataBufferTestTemplateP;
+void* SystemDataBufferProductionTemplateQ;
+void* SystemDataBufferDevelopmentTemplateR;
+void* SystemDataBufferStagingTemplateS;
+void* SystemDataBufferArchiveTemplateT;
+void* SystemDataBufferLegacyTemplateU;
+void* SystemDataBufferFutureTemplateV;
+void* SystemDataBufferExperimentalTemplateW;
+void* SystemDataBufferDeprecatedTemplateX;
+void* SystemDataBufferReservedTemplateY;
+void* SystemDataBufferEmergencyTemplateZ;
 void* SystemDataBufferTemplateAA;
 void* SystemDataBufferTemplateAB;
 void* SystemDataBufferTemplateAC;

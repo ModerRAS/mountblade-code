@@ -3318,14 +3318,14 @@ void ValidateSystemObjects(void)
   ulonglong SecurityValidationHash;
   
   if (*(longlong *)(SystemObjectContext + 8) != 0) {
-    ObjectCollectionArray = &ObjectStackBuffer40;
+    ObjectCollectionArray = &SystemObjectCollectionBuffer;
     ProcessedObjectCount = 0;
     RetrievedObjectCount = 0;
     MaximumCapacity = 0xffffffc0;
     ValidationStatus = RetrieveSystemObjectCollection(*(uint8_t8 *)(SystemContextPointer + 0x90), *(longlong *)(SystemObjectContext + 8),
-                          &ObjectStackBuffer30);
+                          &RetrievedObjectCollectionBuffer);
     if (ValidationStatus == 0) {
-      RetrievedObjectCount = *(int *)(ObjectStackBuffer30 + 4);
+      RetrievedObjectCount = *(int *)(RetrievedObjectCollectionBuffer + 4);
       if (0 < RetrievedObjectCount) {
         ObjectOffset = 8;
         do {
