@@ -2530,10 +2530,10 @@ int InitializeSystemEventHandler(void)
 {
   int64_t ModuleInitializationResult;
   uint64_t StringProcessorFlags;
-  _DAT_180bfa780 = &SystemMemoryConfigTemplate;
-  _DAT_180bfa788 = &DAT_180bfa798;
-  DAT_180bfa798 = 0;
-  _DAT_180bfa790 = 0x1b;
+  SystemMemoryConfigPointerOctonary = &SystemMemoryConfigTemplate;
+  SystemMemoryConfigPointerNonary = &SystemMemoryDataBufferQuaternary;
+  SystemMemoryDataBufferQuaternary = 0;
+  SystemMemoryBufferSizeQuaternary = 0x1b;
   strcpy_s(&DAT_180bfa798,0x80,&UnknownDataPointer180a24bd0,StringProcessorFlags,SystemMutexFlags);
   _DAT_180bfa818 = &SystemMemoryConfigTemplate;
   _DAT_180bfa820 = &DAT_180bfa830;
