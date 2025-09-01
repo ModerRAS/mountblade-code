@@ -22064,8 +22064,17 @@ void SystemDataProcessorC(long long param_1,void* param_2,void* param_3,void* pa
 
 
 
-// 函数: void FUN_18004a130(void* *param_1)
-void FUN_18004a130(void* *param_1)
+// 函数: void CleanupSystemMemoryAllocator(void* *param_1)
+/**
+ * @brief 系统内存分配器清理函数
+ * 
+ * 该函数清理系统内存分配器，重置内存分配器状态，确保内存分配器处于干净的状态。
+ * 
+ * @param param_1 指向内存分配器指针的指针
+ * 
+ * @note 这是系统内存管理的重要组成部分，确保内存分配器的正确清理
+ */
+void CleanupSystemMemoryAllocator(void* *param_1)
 
 {
   *param_1 = &SystemGlobalDataReference;
