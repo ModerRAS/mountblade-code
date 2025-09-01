@@ -13209,8 +13209,10 @@ void InitializeSystemEventManagerM(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_18003ed10(void)
-void FUN_18003ed10(void)
+// 函数: void InitializeSystemEventManagerN(void)
+// 功能: 初始化系统事件管理器N，用于管理特定类型的事件处理
+// 该函数会设置系统字符串配置并初始化相关系统组件
+void InitializeSystemEventManagerN(void)
 
 {
   undefined8 in_R9;
@@ -13294,8 +13296,10 @@ int FUN_18003ee40(void)
 
 
 
-// 函数: void FUN_18003ee90(void)
-void FUN_18003ee90(void)
+// 函数: void InitializeSystemResourceManagerA(void)
+// 功能: 初始化系统资源管理器A，用于管理游戏核心系统资源
+// 该函数会创建系统节点并设置游戏核心系统ID和初始化函数
+void InitializeSystemResourceManagerA(void)
 
 {
   char systemNodeFlag;
