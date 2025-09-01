@@ -19097,7 +19097,7 @@ undefined8 ValidateResourceHash(longlong ResourceContext,undefined8 *ResourceDat
             if ((int)resourceHash != 0) {
               return resourceHash;
             }
-            resourceHash = FUN_1808a7f40(param_2,param_1 + 0xe8,iVar2,param_1);
+            resourceHash = ValidateResourceHash(param_2,param_1 + 0xe8,iVar2,param_1);
             if ((int)resourceHash != 0) {
               return resourceHash;
             }
