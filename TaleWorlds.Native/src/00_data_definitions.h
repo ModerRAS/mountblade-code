@@ -3608,7 +3608,7 @@ LAB_18004d527:
   puStack_90 = auStack_80;
   auStack_80[0] = 0;
   uStack_88 = 0x10;
-  strcpy_s(auStack_80,0x40,&UNK_1809fd4b8);
+  strcpy_s(auStack_80,0x40,&SystemStackBufferA);
   cVar5 = ProcessSystemData(SystemDataPointer,&puStack_98);
   puStack_98 = &SystemBufferTemplate;
   if (cVar5 != '\0') {
@@ -3665,7 +3665,7 @@ LAB_18004df14:
   uStack_d8 = 0;
   uStack_d0 = 3;
   if (lStack_120 != 0) {
-    InitializeSystemBuffers(&puStack_128,&puStack_e8,&UNK_1809fd3c8);
+    InitializeSystemBuffers(&puStack_128,&puStack_e8,&SystemStackBufferB);
   }
   pStringProcessingResult = puStack_e8;
   SystemDataTransfer(&puStack_148,puStack_e8);
@@ -4047,18 +4047,18 @@ LAB_18005122d:
     pModuleInitializationResult4 = _DAT_180c8a9b0;
     plStack_2c0 = _DAT_180c8a9b0;
     _DAT_180c8a9b0 = (longlong *)*puVar7;
-    SystemInitializeSecondary(&UNK_1809fd8c0,0,0);
+    SystemInitializeSecondary(&SystemInitializationBufferA,0,0);
     ConfigureSystemComponent(&SystemConstantDD);
     uStack_2f0 = 0x40000000;
     auStack_2c8[0] = 0x3f800000;
     uStack_318 = 0x20000;
-    puStack_320 = &UNK_1809fdfc0;
+    puStack_320 = &SystemRegistrationBuffer;
     pplStack_328 = (longlong **)&uStack_2f0;
     RegisterSystemComponent(&SystemConstantEE,4,_DAT_180c86950 + 0x167c,auStack_2c8);
     plStack_2f8 = (longlong *)CONCAT44(plStack_2f8._4_4_,0x40000000);
     uStack_308 = (longlong *)CONCAT44(uStack_308._4_4_,0x3f800000);
     uStack_318 = 0x20000;
-    puStack_320 = &UNK_1809fdfc0;
+    puStack_320 = &SystemRegistrationBuffer;
     pplStack_328 = &plStack_2f8;
     RegisterSystemComponent(&SystemConstantFF,4,_DAT_180c86950 + 0x1680,&uStack_308);
     FinalizeSystemComponent();
@@ -4077,13 +4077,13 @@ LAB_18005122d:
     pModuleInitializationResult4 = _DAT_180c8a9b0;
     plStack_2c0 = _DAT_180c8a9b0;
     _DAT_180c8a9b0 = (longlong *)*puVar7;
-    SystemInitializeSecondary(&UNK_1809fd950,0,0);
+    SystemInitializeSecondary(&SystemInitializationBufferB,0,0);
     uStack_308 = (longlong *)CONCAT44(uStack_308._4_4_,0x40000000);
     plStack_2f8 = (longlong *)CONCAT44(plStack_2f8._4_4_,0x3f800000);
     uStack_318 = 0x20000;
-    puStack_320 = &UNK_1809fdfc0;
+    puStack_320 = &SystemRegistrationBuffer;
     pplStack_328 = (longlong **)&uStack_308;
-    RegisterSystemConfigurationParameter(&UNK_1809fd970,4,_DAT_180c86950 + 0x1688,&plStack_2f8);
+    RegisterSystemConfigurationParameter(&SystemConfigurationParameterBuffer,4,_DAT_180c86950 + 0x1688,&plStack_2f8);
     FinalizeSystemComponent();
     _DAT_180c8a9b0 = pModuleInitializationResult4;
     iVar4 = _Mtx_unlock(SystemMutexAddressA);
@@ -4100,13 +4100,13 @@ LAB_18005122d:
     pModuleInitializationResult4 = _DAT_180c8a9b0;
     plStack_2c0 = _DAT_180c8a9b0;
     _DAT_180c8a9b0 = (longlong *)*puVar7;
-    SystemInitializeSecondary(&UNK_1809fd980,0,0);
+    SystemInitializeSecondary(&SystemInitializationBufferC,0,0);
     uStack_308 = (longlong *)CONCAT44(uStack_308._4_4_,0x40000000);
     plStack_2f8 = (longlong *)CONCAT44(plStack_2f8._4_4_,0x3f800000);
     uStack_318 = 0x20000;
-    puStack_320 = &UNK_1809fdfc0;
+    puStack_320 = &SystemRegistrationBuffer;
     pplStack_328 = (longlong **)&uStack_308;
-    RegisterSystemConfigurationParameter(&UNK_1809fd970,4,_DAT_180c86950 + 0x168c,&plStack_2f8);
+    RegisterSystemConfigurationParameter(&SystemConfigurationParameterBuffer,4,_DAT_180c86950 + 0x168c,&plStack_2f8);
     if (*(float *)(_DAT_180c86950 + 0x168c) == 0.0) {
       *(uint32_t *)(_DAT_180c86950 + 0x168c) = 0x3f800000;
     }
@@ -4119,7 +4119,7 @@ LAB_18005122d:
   }
   puVar7 = (uint64_t *)*_DAT_180c8a9e0;
   if (puVar7 != (uint64_t *)0x0) {
-    if ((void *)*puVar7 == &UNK_180a0ad28) {
+    if ((void *)*puVar7 == &SystemModuleEntryPoint) {
       NVGSDK_Poll(puVar7[1]);
     }
     else {

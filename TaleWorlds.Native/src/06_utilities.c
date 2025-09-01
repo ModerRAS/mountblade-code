@@ -49909,7 +49909,19 @@ void Unwind_180906af0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 
 
 
-void Unwind_180906b00(uint8_t ObjectContextParameter,int64_t ValidationContextParameter,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 执行验证上下文清理操作
+ * 
+ * 该函数负责执行验证上下文的清理操作，调用相应的清理函数
+ * 主要用于系统资源管理中的清理流程
+ * 
+ * @param ObjectContextParameter 对象上下文参数
+ * @param ValidationContextParameter 验证上下文参数
+ * @param CleanupOption 清理选项
+ * @param CleanupFlag 清理标志
+ * @return 无返回值
+ */
+void ExecuteValidationContextCleanup(uint8_t ObjectContextParameter,int64_t ValidationContextParameter,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   if (*(code **)(ValidationContextParameter + 0x78) != (code *)0x0) {
@@ -49920,7 +49932,17 @@ void Unwind_180906b00(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 
 
 
-void Unwind_180906b10(uint8_t ObjectContextParameter,int64_t ValidationContextParameter)
+/**
+ * @brief 处理资源哈希清理操作
+ * 
+ * 该函数负责处理资源哈希的清理操作，遍历资源验证结果并重置
+ * 主要用于系统资源管理中的哈希表清理
+ * 
+ * @param ObjectContextParameter 对象上下文参数
+ * @param ValidationContextParameter 验证上下文参数
+ * @return 无返回值
+ */
+void ProcessResourceHashCleanup(uint8_t ObjectContextParameter,int64_t ValidationContextParameter)
 
 {
   uint8_t *presourceHash;

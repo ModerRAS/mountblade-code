@@ -36633,8 +36633,22 @@ LAB_18005ccff:
 
 
 
+/**
+ * @brief 系统资源内存分配器配置器
+ * 
+ * 该函数负责配置系统资源的内存分配器，设置内存模板引用和分配器引用。
+ * 它会根据配置标志决定是否释放资源内存，并设置标准的内存模板。
+ * 
+ * @param SystemResourcePointer 系统资源指针，需要配置的资源
+ * @param ConfigurationDataPointer 配置数据指针，包含配置信息
+ * @param AdditionalParameter 额外参数，用于扩展配置
+ * @param ConfigurationFlag 配置标志，控制配置行为
+ * @return 配置后的系统资源指针
+ * 
+ * 原始函数名为FUN_18005cdb0，现已重命名为ConfigureSystemResourceMemoryAllocator
+ */
 void* *
-FUN_18005cdb0(void* *SystemResourcePointer,ulong long ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
+ConfigureSystemResourceMemoryAllocator(void* *SystemResourcePointer,ulong long ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
 {
   SystemResourcePointer[4] = &SystemMemoryAllocatorReference;
@@ -36720,7 +36734,18 @@ void* * InitializeResourceContext(void* *SystemResourcePointer,void* *Configurat
 
 
 
-uint32_t FUN_18005cf50(long long SystemResourcePointer)
+/**
+ * @brief 系统资源状态获取器
+ * 
+ * 该函数负责获取系统资源的状态信息，使用互斥锁确保线程安全。
+ * 它会锁定系统资源，获取状态值，然后解锁资源，确保操作的原子性。
+ * 
+ * @param SystemResourcePointer 系统资源指针，包含互斥锁和状态信息
+ * @return 系统资源状态值
+ * 
+ * 原始函数名为FUN_18005cf50，现已重命名为GetSystemResourceStatus
+ */
+uint32_t GetSystemResourceStatus(long long SystemResourcePointer)
 
 {
   int systemStatus;
@@ -36741,7 +36766,17 @@ uint32_t FUN_18005cf50(long long SystemResourcePointer)
 
 
 
-int FUN_18005cfc0(void)
+/**
+ * @brief 系统输入管理器状态检查器
+ * 
+ * 该函数负责检查系统输入管理器的状态，通过多个互斥锁确保线程安全。
+ * 它会检查输入管理器的不同部分，获取各个状态值并返回综合结果。
+ * 
+ * @return 系统输入管理器的综合状态值
+ * 
+ * 原始函数名为FUN_18005cfc0，现已重命名为CheckSystemInputManagerStatus
+ */
+int CheckSystemInputManagerStatus(void)
 
 {
   long long localMemoryPointer;
@@ -36772,7 +36807,7 @@ int FUN_18005cfc0(void)
   if (systemValue != 0) {
     __Throw_C_error_std__YAXH_Z(systemValue);
   }
-  systemValue = FUN_18005cf50(localSystemHandle);
+  systemValue = GetSystemResourceStatus(localSystemHandle);
   systemFlag = _Mtx_lock(localSystemHandle + 0x950);
   if (systemFlag != 0) {
     __Throw_C_error_std__YAXH_Z(systemFlag);
