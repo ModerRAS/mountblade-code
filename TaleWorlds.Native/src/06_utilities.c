@@ -13547,7 +13547,11 @@ void DataProcessingErrorHandler(void)
  * @param stackData 栈数据，包含错误处理的上下文信息
  * @note 此函数不返回，直接跳转到错误处理程序
  */
-void FloatProcessingErrorHandler(void)
+/**
+ * @brief 浮点处理错误处理器
+ * 
+ * 该函数负责处理浮点数处理错误，执行必要的清理操作
+ */
 void FloatProcessingErrorHandler(void)
 {
                     // WARNING: Subroutine does not return
@@ -26658,10 +26662,10 @@ undefined8 FUN_18089ffe0(undefined8 param_1,longlong param_2)
 
 
  void FUN_180901ec0(undefined8 *param_1)
-void FUN_180901ec0(undefined8 *param_1)
+void InitializeUtilitySystemWithParameters(undefined8 *systemParameters)
 
 {
-  InitializeUtilitySystem(*(undefined4 *)*param_1,param_1);
+  InitializeUtilitySystem(*(undefined4 *)*systemParameters,systemParameters);
   return;
 }
 
