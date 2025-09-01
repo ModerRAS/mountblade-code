@@ -31768,22 +31768,35 @@ void UnwindResourceReleaseOperations(uint8_t objectContextParam, int64_t validat
 
 
 
-void Unwind_180902a80(uint8_t objectContextParam,int64_t validationContextParam)
+/**
+ * @brief 执行资源表清理展开操作
+ * 
+ * 该函数负责处理资源表的清理操作，遍历资源表中的每个资源项
+ * 并对每个非空资源执行释放操作。清理完成后重置资源表状态，
+ * 如果资源数量大于1且存在循环计数器，则执行系统紧急退出。
+ * 
+ * @param objectContextParam 对象上下文参数，包含对象相关的上下文信息
+ * @param validationContextParam 验证上下文参数，用于访问资源索引和验证操作
+ * @return 无返回值
+ * @note 此函数会在异常处理过程中自动调用
+ * @warning 调用此函数可能会触发系统紧急退出
+ */
+void UnwindResourceTableCleanup(uint8_t objectContextParam, int64_t validationContextParam)
 
 {
   int64_t loopCounter;
   int64_t resourceTable;
   int64_t resourceIndex;
-  uint64_t unsignedResult4;
-  uint64_t unsignedValue5;
+  uint64_t resourceCount;
+  uint64_t currentIndex;
   
   resourceIndex = *(int64_t *)(validationContextParam + 0x78);
-  unsignedResult4 = *(uint64_t *)(resourceIndex + 0x10);
+  resourceCount = *(uint64_t *)(resourceIndex + 0x10);
   loopCounter = *(int64_t *)(resourceIndex + 8);
-  unsignedValue5 = 0;
-  if (unsignedResult4 != 0) {
+  currentIndex = 0;
+  if (resourceCount != 0) {
     do {
-      resourceTable = *(int64_t *)(localContextPointer + unsignedValue5 * 8);
+      resourceTable = *(int64_t *)(localContextPointer + currentIndex * 8);
       if (resourceTable != 0) {
         if (*(int64_t **)(resourceTable + 0x10) != (int64_t *)0x0) {
           (**(code **)(**(int64_t **)(resourceTable + 0x10) + 0x38))();
@@ -31791,13 +31804,13 @@ void Unwind_180902a80(uint8_t objectContextParam,int64_t validationContextParam)
                     // WARNING: Subroutine does not return
         ReleaseResourceHandle(resourceTable);
       }
-      *(uint8_t *)(localContextPointer + unsignedValue5 * 8) = 0;
-      unsignedValue5 = unsignedValue5 + 1;
-    } while (unsignedValue5 < unsignedResult4);
-    unsignedResult4 = *(uint64_t *)(resourceIndex + 0x10);
+      *(uint8_t *)(localContextPointer + currentIndex * 8) = 0;
+      currentIndex = currentIndex + 1;
+    } while (currentIndex < resourceCount);
+    resourceCount = *(uint64_t *)(resourceIndex + 0x10);
   }
   *(uint8_t *)(resourceIndex + 0x18) = 0;
-  if ((1 < unsignedResult4) && (*(int64_t *)(resourceIndex + 8) != 0)) {
+  if ((1 < resourceCount) && (*(int64_t *)(resourceIndex + 8) != 0)) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }

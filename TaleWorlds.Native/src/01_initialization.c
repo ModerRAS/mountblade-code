@@ -1692,14 +1692,14 @@ void InitializeRenderingSystemConfig(void)
 {
   char SystemNodeFlag;
   void** SystemRootPointer;
-  int memoryCompareResult;
-  long long *systemTablePointer;
-  long long memoryAllocationSize;
-  void** systemCurrentNode;
-  void** systemPreviousNode;
-  void** systemNextNode;
-  void** systemAllocatedNode;
-  void* renderingInitializationFlag;
+  int MemoryCompareResult;
+  long long *SystemTablePointer;
+  long long MemoryAllocationSize;
+  void** SystemCurrentNode;
+  void** SystemPreviousNode;
+  void** SystemNextNode;
+  void** SystemAllocatedNode;
+  void* RenderingInitializationFlag;
   
   systemTablePointer = (long long*)GetSystemRootPointer();
   systemRootPointer = (void* *)*systemTablePointer;
@@ -29291,8 +29291,16 @@ void ManageSystemResourceData(long long SystemResourcePointer,void* param_2,void
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_1800565f0(long long *SystemResourcePointer)
-void FUN_1800565f0(long long *SystemResourcePointer)
+/**
+ * @brief 系统内存资源初始化函数
+ * 
+ * 该函数负责初始化系统内存资源，包括内存分配、内存区域设置和
+ * 内存管理结构的初始化。函数会配置内存参数并建立内存管理的基本结构。
+ * 
+ * @param SystemResourcePointer 系统资源指针，指向需要初始化的内存资源
+ * @note 该函数在系统启动时调用，确保内存资源正确初始化
+ */
+void InitializeSystemMemoryResource(long long *SystemResourcePointer)
 
 {
   void* *pointerToUnsigned1;
@@ -29373,8 +29381,16 @@ void* FUN_1800567c0(void* SystemResourcePointer,ulong long param_2,void* param_3
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180056810(long long SystemResourcePointer)
-void FUN_180056810(long long SystemResourcePointer)
+/**
+ * @brief 系统配置参数处理函数
+ * 
+ * 该函数负责处理系统配置参数，包括参数验证、配置设置和
+ * 系统状态的更新。函数会根据传入的系统资源指针进行相应的配置操作。
+ * 
+ * @param SystemResourcePointer 系统资源指针，包含配置信息
+ * @note 该函数用于维护系统配置的一致性和正确性
+ */
+void ProcessSystemConfigurationParameters(long long SystemResourcePointer)
 
 {
   uint unsignedSystemValue1;
