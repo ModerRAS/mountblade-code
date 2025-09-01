@@ -29228,7 +29228,20 @@ void ExecuteResourceCleanupLoop(uint8_t8 objectContextParam, longlong validation
 
 
 
-void Unwind_1809023e0(uint8_t8 objectContextParam,longlong validationContextParam,uint8_t8 param_3,uint8_t8 param_4)
+/**
+ * @brief 执行验证结果清理循环
+ * 
+ * 该函数负责遍历验证结果链表，对每个结果执行清理操作
+ * 处理异常情况，确保系统资源能够被正确释放
+ * 
+ * @param objectContextParam 对象上下文参数，用于标识当前处理的对象
+ * @param validationContextParam 验证上下文参数，包含验证相关的上下文信息
+ * @param param_3 清理参数3，用于传递额外的清理信息
+ * @param param_4 清理参数4，用于传递额外的清理信息
+ * @return 无返回值
+ * @note 此函数会遍历验证结果链表并执行相应的清理操作
+ */
+void ExecuteValidationCleanupLoop(uint8_t8 objectContextParam, longlong validationContextParam, uint8_t8 param_3, uint8_t8 param_4)
 
 {
   uint8_t8 *presourceHash;
@@ -29249,7 +29262,18 @@ void Unwind_1809023e0(uint8_t8 objectContextParam,longlong validationContextPara
 
 
 
-void Unwind_1809023f0(uint8_t8 objectContextParam,longlong validationContextParam)
+/**
+ * @brief 释放验证结果资源并更新引用计数
+ * 
+ * 该函数负责释放验证结果相关的系统资源
+ * 更新资源的引用计数，并在引用计数归零时触发系统清理
+ * 
+ * @param objectContextParam 对象上下文参数，用于标识当前处理的对象
+ * @param validationContextParam 验证上下文参数，包含验证相关的上下文信息
+ * @return 无返回值
+ * @note 此函数会处理验证结果的资源释放和引用计数更新
+ */
+void ReleaseValidationResourceAndUpdateReferenceCount(uint8_t8 objectContextParam, longlong validationContextParam)
 
 {
   int *pintegerValue1;
@@ -29285,7 +29309,18 @@ void Unwind_1809023f0(uint8_t8 objectContextParam,longlong validationContextPara
 
 
 
-void Unwind_180902400(uint8_t8 objectContextParam,longlong validationContextParam)
+/**
+ * @brief 重置辅助资源处理器指针
+ * 
+ * 该函数负责在异常处理时重置辅助资源处理器指针
+ * 将辅助资源处理器指针指向系统数据结构，确保资源管理的正确性
+ * 
+ * @param objectContextParam 对象上下文参数，用于标识当前处理的对象
+ * @param validationContextParam 验证上下文参数，包含验证相关的上下文信息
+ * @return 无返回值
+ * @note 此函数通常在异常处理的展开阶段调用
+ */
+void ResetAuxiliaryResourceHandlerPointer(uint8_t8 objectContextParam, longlong validationContextParam)
 
 {
   *(uint8_t8 *)(validationContextParam + 0x78) = &SystemResourceHandlerTemplate;
@@ -40071,7 +40106,16 @@ void ExecuteSystemCallbackFunction(uint8_t8 objectContextParam,longlong validati
 
 
 
-void Unwind_180904ae0(uint8_t8 objectContextParam,longlong validationContextParam)
+/**
+ * @brief 执行系统验证回调
+ * 
+ * 该函数负责执行系统验证相关的回调函数
+ * 检查验证回调函数指针的有效性，如果有效则执行相应的验证回调
+ * 
+ * @param objectContextParam 对象上下文参数
+ * @param validationContextParam 验证上下文参数，包含验证回调函数指针
+ */
+void ExecuteSystemValidationCallback(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
   if ((longlong *)**(longlong **)(validationContextParam + 0x60) != (longlong *)0x0) {
@@ -40082,34 +40126,45 @@ void Unwind_180904ae0(uint8_t8 objectContextParam,longlong validationContextPara
 
 
 
-void Unwind_180904af0(uint8_t8 objectContextParam,longlong validationContextParam,uint8_t8 param_3,uint8_t8 param_4)
+/**
+ * @brief 处理资源哈希操作和清理
+ * 
+ * 该函数负责处理资源哈希表的操作，包括哈希计算、资源清理和状态管理
+ * 执行哈希操作循环，处理互斥锁和条件变量的销毁，以及资源状态的更新
+ * 
+ * @param objectContextParam 对象上下文参数
+ * @param validationContextParam 验证上下文参数，包含资源哈希表指针
+ * @param param_3 操作参数3，用于哈希计算
+ * @param param_4 操作参数4，用于哈希计算
+ */
+void ProcessResourceHashOperations(uint8_t8 objectContextParam,longlong validationContextParam,uint8_t8 param_3,uint8_t8 param_4)
 
 {
-  uint8_t8 *presourceHash;
+  uint8_t8 *ResourceHashPointer;
   char CharacterFlag;
-  uint8_t8 unsignedResult3;
+  uint8_t8 OperationResult;
   
-  presourceHash = *(uint8_t8 **)(validationContextParam + 0x50);
-  unsignedResult3 = 0xfffffffffffffffe;
-  *presourceHash = &ResourceHashTable002;
-  cVar2 = ProcessResourceHashOperation(presourceHash,1,param_3,param_4,0xfffffffffffffffe);
+  ResourceHashPointer = *(uint8_t8 **)(validationContextParam + 0x50);
+  OperationResult = 0xfffffffffffffffe;
+  *ResourceHashPointer = &ResourceHashTable002;
+  cVar2 = ProcessResourceHashOperation(ResourceHashPointer,1,param_3,param_4,0xfffffffffffffffe);
   while (cVar2 != '\0') {
-    cVar2 = ProcessResourceHashOperation(presourceHash,1,param_3,param_4,unsignedResult3);
+    cVar2 = ProcessResourceHashOperation(ResourceHashPointer,1,param_3,param_4,OperationResult);
   }
-  if (presourceHash[1] == 0) {
-    presourceHash[1] = 0;
+  if (ResourceHashPointer[1] == 0) {
+    ResourceHashPointer[1] = 0;
     _Mtx_destroy_in_situ();
-    _Cnd_destroy_in_situ(presourceHash + 0x2a);
+    _Cnd_destroy_in_situ(ResourceHashPointer + 0x2a);
     _Mtx_destroy_in_situ();
     CleanupResourceHashOperation();
-    if (presourceHash[0xe] != 0) {
-      *(uint8_t8 *)(presourceHash[0xe] + 0x10) = 0;
-      *(uint8_t1 *)(presourceHash[0xe] + 8) = 1;
+    if (ResourceHashPointer[0xe] != 0) {
+      *(uint8_t8 *)(ResourceHashPointer[0xe] + 0x10) = 0;
+      *(uint8_t1 *)(ResourceHashPointer[0xe] + 8) = 1;
     }
-    presourceHash[2] = &SystemDataStructure;
+    ResourceHashPointer[2] = &SystemDataStructure;
     return;
   }
-  if (*(int *)(presourceHash[1] + 8) == 0) {
+  if (*(int *)(ResourceHashPointer[1] + 8) == 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
@@ -40119,7 +40174,16 @@ void Unwind_180904af0(uint8_t8 objectContextParam,longlong validationContextPara
 
 
 
-void Unwind_180904b00(uint8_t8 objectContextParam,longlong validationContextParam)
+/**
+ * @brief 设置资源哈希表指针
+ * 
+ * 该函数负责设置验证上下文中的资源哈希表指针
+ * 将资源哈希表004的地址存储到指定的偏移位置
+ * 
+ * @param objectContextParam 对象上下文参数
+ * @param validationContextParam 验证上下文参数，包含资源哈希表配置
+ */
+void SetResourceHashTablePointer(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
   **(uint8_t8 **)(validationContextParam + 0x40) = &ResourceHashTable004;
@@ -40128,19 +40192,28 @@ void Unwind_180904b00(uint8_t8 objectContextParam,longlong validationContextPara
 
 
 
-void Catch_180904b10(uint8_t8 objectContextParam,longlong validationContextParam)
+/**
+ * @brief 处理异常捕获和资源表设置
+ * 
+ * 该函数负责处理异常捕获情况，设置资源表和上下文数据
+ * 从验证上下文中提取资源表信息，并在本地上下文中进行设置
+ * 
+ * @param objectContextParam 对象上下文参数
+ * @param validationContextParam 验证上下文参数，包含资源表信息
+ */
+void HandleExceptionAndResourceTable(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
-  longlong loopCounter;
-  longlong resourceTable;
+  longlong LoopCounter;
+  longlong ResourceTable;
   
-  loopCounter = *(longlong *)(validationContextParam + 0x60);
-  *(uint8_t8 *)(localContextPointer + 0x60) = *(uint8_t8 *)(validationContextParam + 0x70);
-  resourceTable = *(longlong *)(validationContextParam + 0x78);
-  if (resourceTable == 0) {
-    resourceTable = *(longlong *)(localContextPointer + 0x40);
+  LoopCounter = *(longlong *)(validationContextParam + 0x60);
+  *(uint8_t8 *)(LocalContextData + 0x60) = *(uint8_t8 *)(validationContextParam + 0x70);
+  ResourceTable = *(longlong *)(validationContextParam + 0x78);
+  if (ResourceTable == 0) {
+    ResourceTable = *(longlong *)(LocalContextData + 0x40);
   }
-  *(longlong *)(localContextPointer + 0x40) = resourceTable;
+  *(longlong *)(LocalContextData + 0x40) = ResourceTable;
                     // WARNING: Subroutine does not return
   _CxxThrowException(0,0);
 }

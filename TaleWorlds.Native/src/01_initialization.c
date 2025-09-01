@@ -18954,7 +18954,7 @@ void* * SystemMemoryAllocatorReferenceManager(void* *SystemResourcePointer,ulong
 
 
 
-// 函数: void FUN_180045ee0(long long SystemResourcePointer,long long param_2)
+// 函数: void InitializeSystemResources(long long SystemResourcePointer,long long param_2)
 /**
  * @brief 系统字符串复制处理器
  * 
@@ -19003,7 +19003,7 @@ void ProcessSystemStringCopy(long long targetBuffer,long long sourceString)
 
 
 
-// 函数: void FUN_180045f60(long long SystemResourcePointer,void* param_2,int param_3)
+// 函数: void ProcessSystemConfiguration(long long SystemResourcePointer,void* param_2,int param_3)
 /**
  * @brief 系统内存复制处理器
  * 
@@ -19029,7 +19029,7 @@ void ProcessSystemMemoryCopy(long long targetBuffer,void* sourceData,int copyLen
 
 
 
-// 函数: void FUN_180045f81(void)
+// 函数: void ValidateSystemState(void)
 /**
  * @brief 执行系统内存复制操作
  * 
@@ -19045,7 +19045,7 @@ void ExecuteSystemMemoryCopyOperation(void)
 
 
 
-// 函数: void FUN_180045fa6(uint8_t *SystemResourcePointer)
+// 函数: void SetupSystemMemory(uint8_t *SystemResourcePointer)
 /**
  * @brief 重置系统缓冲区
  * 
@@ -19068,7 +19068,7 @@ void ResetSystemBuffer(uint8_t *bufferPointer)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180045fc0(long long SystemResourcePointer,long long param_2,long long param_3)
+// 函数: void ConfigureSystemParameters(long long SystemResourcePointer,long long param_2,long long param_3)
 /**
  * @brief 处理系统三参数缓冲区操作
  * 
@@ -19123,7 +19123,7 @@ void ProcessSystemThreeParameterBuffer(long long MainParameter,long long Auxilia
 
 
 
-// 函数: void FUN_180046130(void* *SystemResourcePointer,uint32_t param_2)
+// 函数: void InitializeSystemData(void* *SystemResourcePointer,uint32_t param_2)
 /**
  * @brief 释放系统信号量
  * 
@@ -23649,8 +23649,8 @@ void SystemMemoryRegionCleaner(void* systemContext,void* memoryRegion,void* clea
   int memoryBlockCount;
   long long blockIndex;
   
-  systemDataReference = _DAT_180c8a9f0;
-  memoryBlockCount = (int)(*(long long *)(_DAT_180c8a9f0 + 0x38) - *(long long *)(_DAT_180c8a9f0 + 0x30) >> 3);
+  systemDataReference = SystemMemoryPoolPointer;
+  memoryBlockCount = (int)(*(long long *)(SystemMemoryPoolPointer + 0x38) - *(long long *)(SystemMemoryPoolPointer + 0x30) >> 3);
   blockIndex = 0;
   if (0 < memoryBlockCount) {
     do {
@@ -24780,15 +24780,15 @@ void FUN_18004cc20(long long *SystemResourcePointer)
     SystemCleanupFunction(lVar2);
   }
   *SystemResourcePointer = 0;
-  lVar2 = _DAT_180c86918;
-  if (_DAT_180c86918 != 0) {
+  lVar2 = SystemAudioManagerPointer;
+  if (SystemAudioManagerPointer != 0) {
     FUN_180057550();
                     // WARNING: Subroutine does not return
     SystemCleanupFunction(lVar2);
   }
-  _DAT_180c86918 = 0;
+  SystemAudioManagerPointer = 0;
   FUN_1800578a0();
-  _DAT_180c86950 = 0;
+  SystemRenderManagerPointer = 0;
   if (SystemResourcePointer[6] != 0) {
                     // WARNING: Subroutine does not return
     SystemCleanupFunction();
@@ -25094,13 +25094,13 @@ void FUN_18004e5f0(long long SystemResourcePointer)
   bool bVar6;
   
   piVar1 = (int *)(SystemResourcePointer + 0x3d0);
-  if (((int)*(float *)(_DAT_180c86950 + 0x17ec) == *(int *)(SystemResourcePointer + 0x3cc)) &&
-     ((int)*(float *)(_DAT_180c86950 + 0x17f0) == *piVar1)) {
+  if (((int)*(float *)(SystemRenderManagerPointer + 0x17ec) == *(int *)(SystemResourcePointer + 0x3cc)) &&
+     ((int)*(float *)(SystemRenderManagerPointer + 0x17f0) == *piVar1)) {
     bVar4 = false;
   }
   else {
     bVar4 = true;
-    FUN_180092820(_DAT_180c86950,*(int *)(SystemResourcePointer + 0x3cc),*piVar1);
+    FUN_180092820(SystemRenderManagerPointer,*(int *)(SystemResourcePointer + 0x3cc),*piVar1);
   }
   if (*(int *)(*(long long *)(SystemResourcePointer + 8) + 0x38) == 2) {
     if ((*(char *)(SystemResourcePointer + 0x3d4) != '\0') || (*(char *)(SystemResourcePointer + 0x3d5) != '\0')) {
@@ -25108,7 +25108,7 @@ void FUN_18004e5f0(long long SystemResourcePointer)
       FUN_18005ca20(SystemNodeManagerPointer,0);
       FUN_1801725e0(*(void* *)(SystemResourcePointer + 8),*(uint32_t *)(SystemResourcePointer + 0x3cc),*piVar1,
                     *(uint8_t *)(SystemResourcePointer + 0x3d5));
-      FUN_1800a3880(_DAT_180c86938,*(uint32_t *)(SystemResourcePointer + 0x3cc),*piVar1,1);
+      FUN_1800a3880(SystemTextureManagerPointer,*(uint32_t *)(SystemResourcePointer + 0x3cc),*piVar1,1);
       FUN_18005ca20(SystemNodeManagerPointer,uVar2);
       FUN_1801725e0(*(void* *)(SystemResourcePointer + 8),*(uint32_t *)(SystemResourcePointer + 0x3cc),*piVar1,
                     *(uint8_t *)(SystemResourcePointer + 0x3d5));
@@ -25135,7 +25135,7 @@ void FUN_18004e5f0(long long SystemResourcePointer)
   }
   bVar6 = false;
 LAB_18004e721:
-  FUN_1800a3880(_DAT_180c86938,*(uint32_t *)(SystemResourcePointer + 0x3cc),*piVar1,bVar6);
+  FUN_1800a3880(SystemTextureManagerPointer,*(uint32_t *)(SystemResourcePointer + 0x3cc),*piVar1,bVar6);
   if (!bVar4) {
     return;
   }
@@ -25900,18 +25900,18 @@ void InitializeSystemDataStructures(void)
     ProcessSystemCallback(PrimaryResourcePointer[0x28]);
     (*(code *)(*pplVar9)[7])(pplVar9);
   }
-  lVar8 = *(long long *)(_DAT_180c86950 + 0x18) - *(long long *)(_DAT_180c86950 + 0x10);
+  lVar8 = *(long long *)(SystemRenderManagerPointer + 0x18) - *(long long *)(SystemRenderManagerPointer + 0x10);
   uVar13 = uVar12;
   if (lVar8 / 0x1c != 0) {
     do {
-      FUN_1801edeb0(lVar8,uVar13 * 0x1c + *(long long *)(_DAT_180c86950 + 0x10));
+      FUN_1801edeb0(lVar8,uVar13 * 0x1c + *(long long *)(SystemRenderManagerPointer + 0x10));
       uVar11 = (int)uVar12 + 1;
       uVar12 = (ulong long)uVar11;
-      lVar8 = *(long long *)(_DAT_180c86950 + 0x18) - *(long long *)(_DAT_180c86950 + 0x10);
+      lVar8 = *(long long *)(SystemRenderManagerPointer + 0x18) - *(long long *)(SystemRenderManagerPointer + 0x10);
       uVar13 = (long long)(int)uVar11;
     } while ((ulong long)(long long)(int)uVar11 < (ulong long)(lVar8 / 0x1c));
   }
-  *(void* *)(_DAT_180c86950 + 0x18) = *(void* *)(_DAT_180c86950 + 0x10);
+  *(void* *)(SystemRenderManagerPointer + 0x18) = *(void* *)(SystemRenderManagerPointer + 0x10);
   *(uint8_t *)(*(long long *)(*(long long *)(lVar6 + 8) + 0x140) + 0x208) = 1;
   if (*(char *)(lVar6 + 0x3c8) != '\0') {
     FUN_18004e5f0(lVar6);
@@ -26019,18 +26019,18 @@ void FUN_180050b30(long long SystemResourcePointer)
     ProcessSystemCallback(PrimaryResourcePointer[0x28]);
     (*(code *)(*pplVar8)[7])(pplVar8);
   }
-  lVar7 = *(long long *)(_DAT_180c86950 + 0x18) - *(long long *)(_DAT_180c86950 + 0x10);
+  lVar7 = *(long long *)(SystemRenderManagerPointer + 0x18) - *(long long *)(SystemRenderManagerPointer + 0x10);
   uVar12 = uVar11;
   if (lVar7 / 0x1c != 0) {
     do {
-      FUN_1801edeb0(lVar7,uVar12 * 0x1c + *(long long *)(_DAT_180c86950 + 0x10));
+      FUN_1801edeb0(lVar7,uVar12 * 0x1c + *(long long *)(SystemRenderManagerPointer + 0x10));
       uVar10 = (int)uVar11 + 1;
       uVar11 = (ulong long)uVar10;
-      lVar7 = *(long long *)(_DAT_180c86950 + 0x18) - *(long long *)(_DAT_180c86950 + 0x10);
+      lVar7 = *(long long *)(SystemRenderManagerPointer + 0x18) - *(long long *)(SystemRenderManagerPointer + 0x10);
       uVar12 = (long long)(int)uVar10;
     } while ((ulong long)(long long)(int)uVar10 < (ulong long)(lVar7 / 0x1c));
   }
-  *(void* *)(_DAT_180c86950 + 0x18) = *(void* *)(_DAT_180c86950 + 0x10);
+  *(void* *)(SystemRenderManagerPointer + 0x18) = *(void* *)(SystemRenderManagerPointer + 0x10);
   *(uint8_t *)(*(long long *)(*(long long *)(SystemResourcePointer + 8) + 0x140) + 0x208) = 1;
   if (*(char *)(SystemResourcePointer + 0x3c8) != '\0') {
     FUN_18004e5f0(SystemResourcePointer);
@@ -26771,19 +26771,19 @@ void FUN_180052940(long long SystemResourcePointer,float param_2,void* param_3,v
       uVar21 = log2f();
       *(uint32_t *)(SystemResourcePointer + 0x248) = uVar21;
       *(float *)(SystemResourcePointer + 0x250) = _DAT_180d49144;
-      lVar10 = _DAT_180c86950;
-      *(uint8_t *)(_DAT_180c86950 + 0x162b) = 1;
+      lVar10 = SystemRenderManagerPointer;
+      *(uint8_t *)(SystemRenderManagerPointer + 0x162b) = 1;
       lVar8 = SystemNodeManagerPointer;
     }
     else {
       *(float *)(SystemResourcePointer + 0x238) = fVar15;
       lVar8 = SystemNodeManagerPointer;
-      lVar10 = _DAT_180c86950;
+      lVar10 = SystemRenderManagerPointer;
     }
   }
   else {
     *(uint32_t *)(SystemResourcePointer + 0x238) = 0x3f800000;
-    lVar10 = _DAT_180c86950;
+    lVar10 = SystemRenderManagerPointer;
   }
   if ((*(long long *)(_DAT_180c86890 + 0x7ab8) == 0) || (*(int *)(lVar8 + 0x540) < 1)) {
     if (*(int *)(lVar8 + 0x2140) == 0) {
@@ -26905,12 +26905,12 @@ void FUN_180052ef0(long long *SystemResourcePointer,void* param_2,void* param_3,
   if (*(int *)(SystemNodeManagerPointer + 0xd94) != *(int *)(SystemNodeManagerPointer + 0xd90)) {
     FUN_18004caf0(SystemStatusFlagsPointer,param_2,param_3,param_4,0xfffffffffffffffe);
   }
-  lVar3 = _DAT_180c86950;
-  if (_DAT_180c86950 != 0) {
+  lVar3 = SystemRenderManagerPointer;
+  if (SystemRenderManagerPointer != 0) {
     uVar8 = 0;
-    lVar7 = *(long long *)(_DAT_180c86950 + 0x1868);
+    lVar7 = *(long long *)(SystemRenderManagerPointer + 0x1868);
     uVar10 = uVar8;
-    if (*(long long *)(_DAT_180c86950 + 0x1870) - lVar7 >> 3 != 0) {
+    if (*(long long *)(SystemRenderManagerPointer + 0x1870) - lVar7 >> 3 != 0) {
       do {
         if (*(long long **)(uVar8 + lVar7) != (long long *)0x0) {
           (**(code **)(**(long long **)(uVar8 + lVar7) + 0x108))();
@@ -27038,8 +27038,8 @@ void SystemStringFormatter(void* formatData,long long stringBuffer)
   uStack_1a0 = 0xfffffffffffffffe;
   uStack_18 = SystemEncryptionKeyTemplate ^ (ulong long)auStack_1c8;
   CopySystemDataStructure(auStack_e8,
-                (long long)*(int *)(_DAT_180c86938 + 0x1d40) * 0xd0 +
-                *(long long *)(_DAT_180c86938 + 0x1d20));
+                (long long)*(int *)(SystemTextureManagerPointer + 0x1d40) * 0xd0 +
+                *(long long *)(SystemTextureManagerPointer + 0x1d20));
   FUN_180623de0(&puStack_198);
   iVar2 = 0;
   *(uint32_t *)(param_2 + 0x10) = 0;
@@ -30207,8 +30207,8 @@ void FUN_1800578a0(void)
   long long lVar3;
   ulong long uVar4;
   
-  puVar2 = _DAT_180c86950;
-  if (_DAT_180c86950 == (void* *)0x0) {
+  puVar2 = SystemRenderManagerPointer;
+  if (SystemRenderManagerPointer == (void* *)0x0) {
     return;
   }
   FUN_180057830();
@@ -36202,7 +36202,7 @@ void FUN_18005e630(long long SystemResourcePointer)
   long long lVar2;
   
   ProcessSystemCallback(*(void* *)(*(long long *)(SystemResourcePointer + 8) + 8));
-  lVar2 = _DAT_180c86938 + 0x20;
+  lVar2 = SystemTextureManagerPointer + 0x20;
   iVar1 = _Mtx_lock(lVar2);
   if (iVar1 != 0) {
     __Throw_C_error_std__YAXH_Z(iVar1);
@@ -47343,10 +47343,10 @@ ulong long FUN_18006f620(void* SystemResourcePointer,void* param_2)
   }
   OutputDebugStringA(puVar8);
   FUN_18004c2b0(param_2);
-  lVar3 = _DAT_180c86950;
-  if (((bVar9) && (_DAT_180c86950 != 0)) && (*(char *)(_DAT_180c86950 + 0x1609) != '\x01')) {
+  lVar3 = SystemRenderManagerPointer;
+  if (((bVar9) && (SystemRenderManagerPointer != 0)) && (*(char *)(SystemRenderManagerPointer + 0x1609) != '\x01')) {
     FUN_1801723a0(*(void* *)(SystemStatusFlagsPointer + 8),*(char *)(_DAT_180c868d0 + 0x2028) != '\0',
-                  *(uint32_t *)(_DAT_180c86950 + 0x160c));
+                  *(uint32_t *)(SystemRenderManagerPointer + 0x160c));
     *(uint8_t *)(lVar3 + 0x1609) = 1;
   }
   if (DAT_180c82842 == '\0') {
@@ -47511,11 +47511,11 @@ ulong long FUN_18006f940(void* SystemResourcePointer,void* param_2,char param_3)
         if (*(long long *)(SystemStatusFlagsPointer + 8) != 0) {
           FUN_1801719d0(*(long long *)(SystemStatusFlagsPointer + 8));
         }
-        lVar4 = _DAT_180c86950;
-        if ((_DAT_180c86950 != 0) && (*(char *)(_DAT_180c86950 + 0x1609) != '\x01')) {
+        lVar4 = SystemRenderManagerPointer;
+        if ((SystemRenderManagerPointer != 0) && (*(char *)(SystemRenderManagerPointer + 0x1609) != '\x01')) {
           FUN_1801723a0(*(void* *)(SystemStatusFlagsPointer + 8),
                         *(char *)(_DAT_180c868d0 + 0x2028) != '\0',
-                        *(uint32_t *)(_DAT_180c86950 + 0x160c));
+                        *(uint32_t *)(SystemRenderManagerPointer + 0x160c));
           *(uint8_t *)(lVar4 + 0x1609) = 1;
         }
       }
@@ -47592,8 +47592,8 @@ ulong long FUN_18006f940(void* SystemResourcePointer,void* param_2,char param_3)
       if (*(long long *)(SystemStatusFlagsPointer + 8) != 0) {
         FUN_1801718f0();
       }
-      if (_DAT_180c86950 != 0) {
-        FUN_180092940(_DAT_180c86950,*(uint8_t *)(_DAT_180c86950 + 0x160a));
+      if (SystemRenderManagerPointer != 0) {
+        FUN_180092940(SystemRenderManagerPointer,*(uint8_t *)(SystemRenderManagerPointer + 0x160a));
       }
     }
     if (lVar4 != 0) {
@@ -47747,11 +47747,11 @@ LAB_180070230:
         if (*(long long *)(SystemStatusFlagsPointer + 8) != 0) {
           FUN_1801719d0(*(long long *)(SystemStatusFlagsPointer + 8));
         }
-        lVar7 = _DAT_180c86950;
-        if ((_DAT_180c86950 != 0) && (*(char *)(_DAT_180c86950 + 0x1609) != '\x01')) {
+        lVar7 = SystemRenderManagerPointer;
+        if ((SystemRenderManagerPointer != 0) && (*(char *)(SystemRenderManagerPointer + 0x1609) != '\x01')) {
           FUN_1801723a0(*(void* *)(SystemStatusFlagsPointer + 8),
                         *(char *)(_DAT_180c868d0 + 0x2028) != '\0',
-                        *(uint32_t *)(_DAT_180c86950 + 0x160c));
+                        *(uint32_t *)(SystemRenderManagerPointer + 0x160c));
           *(uint8_t *)(lVar7 + 0x1609) = 1;
         }
       }
@@ -47853,8 +47853,8 @@ LAB_180070230:
       if (*(long long *)(SystemStatusFlagsPointer + 8) != 0) {
         FUN_1801718f0();
       }
-      if (_DAT_180c86950 != 0) {
-        FUN_180092940(_DAT_180c86950,*(uint8_t *)(_DAT_180c86950 + 0x160a));
+      if (SystemRenderManagerPointer != 0) {
+        FUN_180092940(SystemRenderManagerPointer,*(uint8_t *)(SystemRenderManagerPointer + 0x160a));
       }
     }
     if (lVar2 != 0) {
@@ -47978,10 +47978,10 @@ void FUN_180070680(void* SystemResourcePointer,void* param_2)
     puVar8 = puStack_68;
   }
   OutputDebugStringA(puVar8);
-  lVar5 = _DAT_180c86950;
-  if (((bVar9) && (_DAT_180c86950 != 0)) && (*(char *)(_DAT_180c86950 + 0x1609) != '\x01')) {
+  lVar5 = SystemRenderManagerPointer;
+  if (((bVar9) && (SystemRenderManagerPointer != 0)) && (*(char *)(SystemRenderManagerPointer + 0x1609) != '\x01')) {
     FUN_1801723a0(*(void* *)(SystemStatusFlagsPointer + 8),*(char *)(_DAT_180c868d0 + 0x2028) != '\0',
-                  *(uint32_t *)(_DAT_180c86950 + 0x160c));
+                  *(uint32_t *)(SystemRenderManagerPointer + 0x160c));
     *(uint8_t *)(lVar5 + 0x1609) = 1;
   }
   if (DAT_180c82842 == '\0') {
@@ -47991,7 +47991,7 @@ void FUN_180070680(void* SystemResourcePointer,void* param_2)
     uVar7 = func_0x0001800464d0(&puStack_70);
     FUN_1806272a0(uVar7);
   }
-  FUN_180046130(&DAT_180c91900,1);
+  InitializeSystemData(&DAT_180c91900,1);
   _Exit(5);
   return;
 }
@@ -48403,11 +48403,11 @@ LAB_18007113f:
     cStack_11f = iVar8 == iVar4;
     bVar2 = (bool)cStack_11f;
   }
-  lVar9 = _DAT_180c86950;
+  lVar9 = SystemRenderManagerPointer;
   if ((DAT_180c82842 == '\0') && (bVar2)) {
-    if ((_DAT_180c86950 != 0) && (*(char *)(_DAT_180c86950 + 0x1609) != '\x01')) {
+    if ((SystemRenderManagerPointer != 0) && (*(char *)(SystemRenderManagerPointer + 0x1609) != '\x01')) {
       FUN_1801723a0(*(void* *)(SystemStatusFlagsPointer + 8),*(char *)(_DAT_180c868d0 + 0x2028) != '\0',
-                    *(uint32_t *)(_DAT_180c86950 + 0x160c));
+                    *(uint32_t *)(SystemRenderManagerPointer + 0x160c));
       *(uint8_t *)(lVar9 + 0x1609) = 1;
     }
     if (*(long long *)(SystemStatusFlagsPointer + 8) != 0) {
@@ -48561,8 +48561,8 @@ LAB_18007113f:
       if (*(long long *)(SystemStatusFlagsPointer + 8) != 0) {
         FUN_1801718f0();
       }
-      if (_DAT_180c86950 != 0) {
-        FUN_180092940(_DAT_180c86950,*(uint8_t *)(_DAT_180c86950 + 0x160a));
+      if (SystemRenderManagerPointer != 0) {
+        FUN_180092940(SystemRenderManagerPointer,*(uint8_t *)(SystemRenderManagerPointer + 0x160a));
       }
     }
     if (lStack_90 != 0) {
@@ -49080,11 +49080,11 @@ LAB_1800721e1:
       cStack_118 = cVar2;
       if (SystemAllocationFlagsTemplate == 0) {
 LAB_1800722f5:
-        lVar9 = _DAT_180c86950;
-        if ((_DAT_180c86950 != 0) && (*(char *)(_DAT_180c86950 + 0x1609) != '\x01')) {
+        lVar9 = SystemRenderManagerPointer;
+        if ((SystemRenderManagerPointer != 0) && (*(char *)(SystemRenderManagerPointer + 0x1609) != '\x01')) {
           FUN_1801723a0(*(void* *)(SystemStatusFlagsPointer + 8),
                         *(char *)(_DAT_180c868d0 + 0x2028) != '\0',
-                        *(uint32_t *)(_DAT_180c86950 + 0x160c));
+                        *(uint32_t *)(SystemRenderManagerPointer + 0x160c));
           *(uint8_t *)(lVar9 + 0x1609) = 1;
         }
         if (*(long long *)(SystemStatusFlagsPointer + 8) != 0) {
@@ -49469,8 +49469,8 @@ LAB_1800729bd:
         if (*(long long *)(SystemStatusFlagsPointer + 8) != 0) {
           FUN_1801718f0();
         }
-        if (_DAT_180c86950 != 0) {
-          FUN_180092940(_DAT_180c86950,*(uint8_t *)(_DAT_180c86950 + 0x160a));
+        if (SystemRenderManagerPointer != 0) {
+          FUN_180092940(SystemRenderManagerPointer,*(uint8_t *)(SystemRenderManagerPointer + 0x160a));
         }
       }
 
@@ -49568,7 +49568,7 @@ bool FUN_180072f00(void* SystemResourcePointer,void* *param_2)
   uStack_b8 = 0;
   puStack_c8 = (void* *)0x0;
   uStack_c0 = 0;
-  FUN_1800a32b0(_DAT_180c86938,&puStack_68);
+  FUN_1800a32b0(SystemTextureManagerPointer,&puStack_68);
   if (puStack_68 != puStack_60) {
     FUN_180628040(&puStack_f0,&UNK_1809fe62c,&UNK_1809ff7c0);
     puVar6 = puVar5;
@@ -61844,7 +61844,7 @@ void FUN_18007e080(long long SystemResourcePointer,ulong long param_2,long long 
   uint32_t uStack_50;
   void* uStack_48;
   
-  lVar5 = (param_2 & 0xff) * 0x1c0 + _DAT_180c86938;
+  lVar5 = (param_2 & 0xff) * 0x1c0 + SystemTextureManagerPointer;
   iVar4 = *(int *)(lVar5 + 0x70);
   lVar1 = (long long)iVar4;
   if (0 < iVar4) {
