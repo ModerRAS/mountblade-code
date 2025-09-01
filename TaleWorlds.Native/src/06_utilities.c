@@ -2104,13 +2104,13 @@ undefined LogMessageProcessorDataTemplateA;
 undefined LogMessageProcessorDataTemplateB;
 undefined LogMessageProcessorDataTemplateC;
 undefined LogMessageProcessorDataTemplateD;
-undefined DAT_180a01440;
-undefined DAT_180d48d38;
+undefined SystemMemoryPool;
+undefined SystemMemoryManager;
 undefined LogMessageProcessorDataTemplateE;
 undefined LogMessageProcessorContextDataA;
 undefined LogMessageProcessorContextDataB;
 undefined LogMessageProcessorContextDataC;
-undefined DAT_180d48d30;
+undefined SystemMemoryController;
 undefined *PTR_?id@?$codecvt@DDU_Mbstatet@@@std@@2V0locale@2@A_180944718;
 undefined SystemLocaleConversionDataA;
 undefined SystemModuleDataTemplateD;
@@ -2134,12 +2134,12 @@ undefined SystemModuleDataTemplateL;
  * 确保所有日志消息都被写入输出目标
  */
 void FlushLogBuffer;
-undefined DAT_180d49238;
-undefined DAT_180d49250;
-undefined DAT_180d49248;
-undefined DAT_180d49240;
-undefined DAT_180d49258;
-undefined DAT_180d4925c;
+undefined SystemResourceQueue;
+undefined SystemResourceStack;
+undefined SystemResourceHeap;
+undefined SystemResourceCacheManager;
+undefined SystemMemoryScheduler;
+undefined SystemMemoryOptimizer;
 undefined LogSystemConfigurationData;
 
  void SetLogLevel;
@@ -2245,8 +2245,8 @@ undefined SystemDatabaseManagerData;
  * 设置内存分配策略和回收机制
  */
 void InitializeMemoryManager;
-undefined DAT_180d49648;
-undefined DAT_180d49640;
+undefined SystemDataBuffer;
+undefined SystemDataStream;
 undefined DAT_180d49650;
 undefined MemoryPoolDescriptor;
 undefined DAT_180d49638;
@@ -50005,7 +50005,20 @@ void Unwind_180907b80(undefined8 param_1,longlong param_2)
 
 
 
-void Unwind_180907b90(undefined8 param_1,longlong param_2)
+/**
+ * @brief 系统数据结构设置解包函数
+ * 
+ * 该函数负责在系统解包过程中设置数据结构指针，将系统数据结构
+ * 指针存储到指定的内存位置中。
+ * 
+ * @param param_1 解包参数1（未使用）
+ * @param param_2 解包参数2，包含目标内存位置
+ * @return 无
+ * 
+ * @note 此函数在系统异常解包时调用
+ * @note 主要用于恢复系统数据结构的状态
+ */
+void SystemUnwindSetDataStructure(undefined8 param_1,longlong param_2)
 
 {
   *(undefined **)(*(longlong *)(param_2 + 0x20) + 0x20) = &SystemDataStructure;
@@ -50014,7 +50027,20 @@ void Unwind_180907b90(undefined8 param_1,longlong param_2)
 
 
 
-void Unwind_180907ba0(undefined8 param_1,longlong param_2)
+/**
+ * @brief 资源清理解包函数A
+ * 
+ * 该函数负责在系统解包过程中执行资源清理操作，检查资源状态标志
+ * 并在需要时执行清理函数。
+ * 
+ * @param param_1 解包参数1（未使用）
+ * @param param_2 解包参数2，包含资源数据位置
+ * @return 无
+ * 
+ * @note 此函数检查资源数据的第1位标志
+ * @note 当标志位被设置时，执行相应的清理操作
+ */
+void SystemUnwindResourceCleanupA(undefined8 param_1,longlong param_2)
 
 {
   if ((*(uint *)(resourceData + 0x34) & 1) != 0) {
@@ -50026,7 +50052,20 @@ void Unwind_180907ba0(undefined8 param_1,longlong param_2)
 
 
 
-void Unwind_180907bd0(undefined8 param_1,longlong param_2)
+/**
+ * @brief 资源清理解包函数B
+ * 
+ * 该函数负责在系统解包过程中执行资源清理操作，检查资源状态标志
+ * 并在需要时执行清理函数。
+ * 
+ * @param param_1 解包参数1（未使用）
+ * @param param_2 解包参数2，包含资源数据位置
+ * @return 无
+ * 
+ * @note 此函数检查资源数据的第2位标志
+ * @note 当标志位被设置时，执行相应的清理操作
+ */
+void SystemUnwindResourceCleanupB(undefined8 param_1,longlong param_2)
 
 {
   if ((*(uint *)(resourceData + 0x34) & 2) != 0) {
@@ -50038,7 +50077,20 @@ void Unwind_180907bd0(undefined8 param_1,longlong param_2)
 
 
 
-void Unwind_180907c00(undefined8 param_1,longlong param_2)
+/**
+ * @brief 系统数据结构设置解包函数C
+ * 
+ * 该函数负责在系统解包过程中设置数据结构指针，将系统数据结构
+ * 指针存储到指定的内存位置中。
+ * 
+ * @param param_1 解包参数1（未使用）
+ * @param param_2 解包参数2，包含目标内存位置
+ * @return 无
+ * 
+ * @note 此函数在系统异常解包时调用
+ * @note 主要用于恢复系统数据结构的状态
+ */
+void SystemUnwindSetDataStructureC(undefined8 param_1,longlong param_2)
 
 {
   *(undefined **)(param_2 + 0x2c0) = &SystemDataStructure;
