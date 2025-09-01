@@ -1182,8 +1182,7 @@ void* MemoryDebuggerMemoryTable;
 void* MemoryDebuggerControlTable;
 void* MemoryDebuggerConfigurationData;
 
- void SetupMemoryAlignment(void);
-/**
+ /**
  * @brief 设置内存对齐
  * 
  * 该函数负责设置内存对齐参数
@@ -1208,8 +1207,7 @@ uint32_t MemoryCompressionTertiaryConfig;
 uint32_t MemoryCompressionQuaternaryConfig;
 void* MemoryCompressionReservedMemory;
 
- void ConfigureMemoryEncryption(void);
-/**
+ /**
  * @brief 配置内存加密
  * 
  * 该函数负责配置内存加密系统
@@ -89262,8 +89260,7 @@ void ExecuteResourceCleanup(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void OptimizeResourceUsage(void)
-/**
+ /**
  * @brief 优化资源使用
  * 
  * 该函数负责优化系统资源的使用效率
@@ -89281,8 +89278,7 @@ void OptimizeResourceUsage(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void ClearSystemCacheAndResetState(void)
-/**
+ /**
  * @brief 清理系统缓存并重置状态
  * 
  * 该函数负责清理系统缓存并重置相关状态
@@ -89306,8 +89302,7 @@ void ClearSystemCacheAndResetState(void)
 
 
 
- void DestroyMutexInPlace(void)
-/**
+ /**
  * @brief 销毁互斥锁资源
  * 
  * 该函数负责销毁指定的互斥锁资源
@@ -89325,8 +89320,7 @@ void DestroyMutexInPlace(void)
 
 
 
- void CleanupMutexResources(void)
-/**
+ /**
  * @brief 清理互斥锁资源
  * 
  * 该函数负责清理系统中不再需要的互斥锁资源
