@@ -776,7 +776,7 @@ void ValidateNetworkConnection(NetworkHandle connectionId,ulonglong *connectionS
   int networkConnectionStatus;
   NetworkByte securityBuffer [32];
   NetworkByte *errorMessage;
-  longlong connectionInfo [2];
+  longlong connectionContext [2];
   NetworkHandle *connectionDetails [2];
   NetworkByte errorBuffer [256];
   ulonglong stackGuard;
@@ -793,8 +793,8 @@ void ValidateNetworkConnection(NetworkHandle connectionId,ulonglong *connectionS
     LogNetworkConnectionError(0x1f,0xc,connectionId,&NetworkReservedMemoryRegion3320);
   }
   *connectionStatus = 0;
-  connectionInfo[1] = 0;
-  validationStatus = NetworkConnectionIdInitialize(connectionId,connectionInfo);
+  connectionContext[1] = 0;
+  validationStatus = NetworkConnectionIdInitialize(connectionId,connectionContext);
   if (validationStatus == 0) {
     if ((*(uint *)(connectionInfo[0] + 0x24) >> 1 & 1) == 0) goto cleanup;
     connectionStatus = ValidateNetworkConnection(connectionInfo + 1);
@@ -89702,7 +89702,7 @@ void ProcessNetworkConnectionResources(longlong connectionHandle, longlong netwo
   longlong resourceIndex;
   int resourceCount;
   NetworkByte securityStackBuffer [32];
-  longlong connectionInfo [2];
+  longlong connectionContext [2];
   NetworkByte *resourceBuffer;
   int bufferLength;
   NetworkStatus bufferFlags;
