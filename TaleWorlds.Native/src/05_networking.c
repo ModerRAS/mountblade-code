@@ -49347,8 +49347,8 @@ LAB_180869c72:
         cleanupIndex = cleanupIndex + 1;
         arrayIndex = arrayIndex + 8;
       }
-      unaff_R14 = puStackX_20;
-    } while (networkStatus4 < iVar5);
+      connectionManager = stackPointer;
+    } while (cleanupIndex < connectionCount);
   }
                     // WARNING: Subroutine does not return
   NetworkSecurityGuardCleanup(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
@@ -49421,7 +49421,7 @@ LAB_180869c72:
       unaff_ESI = unaff_ESI + 1;
       lVar4 = lVar4 + 8;
     }
-    unaff_R14 = puStackX_20;
+    connectionManager = stackPointer;
     if (unaff_EDI <= unaff_ESI) {
                     // WARNING: Subroutine does not return
       NetworkSecurityGuardCleanup(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
@@ -49602,8 +49602,8 @@ LAB_180869e72:
         cleanupIndex = cleanupIndex + 1;
         arrayIndex = arrayIndex + 8;
       }
-      unaff_R14 = puStackX_20;
-    } while (networkStatus4 < iVar5);
+      connectionManager = stackPointer;
+    } while (cleanupIndex < connectionCount);
   }
                     // WARNING: Subroutine does not return
   NetworkSecurityGuardCleanup(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
@@ -49676,7 +49676,7 @@ LAB_180869e72:
       unaff_ESI = unaff_ESI + 1;
       lVar4 = lVar4 + 8;
     }
-    unaff_R14 = puStackX_20;
+    connectionManager = stackPointer;
     if (unaff_EDI <= unaff_ESI) {
                     // WARNING: Subroutine does not return
       NetworkSecurityGuardCleanup(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
@@ -49857,8 +49857,8 @@ LAB_18086a072:
         cleanupIndex = cleanupIndex + 1;
         arrayIndex = arrayIndex + 8;
       }
-      unaff_R14 = puStackX_20;
-    } while (networkStatus4 < iVar5);
+      connectionManager = stackPointer;
+    } while (cleanupIndex < connectionCount);
   }
                     // WARNING: Subroutine does not return
   NetworkSecurityGuardCleanup(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
@@ -49931,7 +49931,7 @@ LAB_18086a072:
       unaff_ESI = unaff_ESI + 1;
       lVar4 = lVar4 + 8;
     }
-    unaff_R14 = puStackX_20;
+    connectionManager = stackPointer;
     if (unaff_EDI <= unaff_ESI) {
                     // WARNING: Subroutine does not return
       NetworkSecurityGuardCleanup(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
@@ -50119,8 +50119,8 @@ LAB_18086a272:
         cleanupIndex = cleanupIndex + 1;
         arrayIndex = arrayIndex + 8;
       }
-      unaff_R14 = puStackX_20;
-    } while (networkStatus4 < iVar5);
+      connectionManager = stackPointer;
+    } while (cleanupIndex < connectionCount);
   }
                     // WARNING: Subroutine does not return
   NetworkSecurityGuardCleanup(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
@@ -50193,7 +50193,7 @@ LAB_18086a272:
       unaff_ESI = unaff_ESI + 1;
       lVar4 = lVar4 + 8;
     }
-    unaff_R14 = puStackX_20;
+    connectionManager = stackPointer;
     if (unaff_EDI <= unaff_ESI) {
                     // WARNING: Subroutine does not return
       NetworkSecurityGuardCleanup(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
@@ -50374,8 +50374,8 @@ LAB_18086a472:
         cleanupIndex = cleanupIndex + 1;
         arrayIndex = arrayIndex + 8;
       }
-      unaff_R14 = puStackX_20;
-    } while (networkStatus4 < iVar5);
+      connectionManager = stackPointer;
+    } while (cleanupIndex < connectionCount);
   }
                     // WARNING: Subroutine does not return
   NetworkSecurityGuardCleanup(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
@@ -50448,7 +50448,7 @@ LAB_18086a472:
       unaff_ESI = unaff_ESI + 1;
       lVar4 = lVar4 + 8;
     }
-    unaff_R14 = puStackX_20;
+    connectionManager = stackPointer;
     if (unaff_EDI <= unaff_ESI) {
                     // WARNING: Subroutine does not return
       NetworkSecurityGuardCleanup(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
@@ -50629,8 +50629,8 @@ LAB_18086a672:
         cleanupIndex = cleanupIndex + 1;
         arrayIndex = arrayIndex + 8;
       }
-      unaff_R14 = puStackX_20;
-    } while (networkStatus4 < iVar5);
+      connectionManager = stackPointer;
+    } while (cleanupIndex < connectionCount);
   }
                     // WARNING: Subroutine does not return
   NetworkSecurityGuardCleanup(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
@@ -50703,7 +50703,7 @@ LAB_18086a672:
       unaff_ESI = unaff_ESI + 1;
       lVar4 = lVar4 + 8;
     }
-    unaff_R14 = puStackX_20;
+    connectionManager = stackPointer;
     if (unaff_EDI <= unaff_ESI) {
                     // WARNING: Subroutine does not return
       NetworkSecurityGuardCleanup(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
@@ -50884,8 +50884,8 @@ LAB_18086a872:
         cleanupIndex = cleanupIndex + 1;
         arrayIndex = arrayIndex + 8;
       }
-      unaff_R14 = puStackX_20;
-    } while (networkStatus4 < iVar5);
+      connectionManager = stackPointer;
+    } while (cleanupIndex < connectionCount);
   }
                     // WARNING: Subroutine does not return
   NetworkSecurityGuardCleanup(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
@@ -50958,7 +50958,7 @@ LAB_18086a872:
       unaff_ESI = unaff_ESI + 1;
       lVar4 = lVar4 + 8;
     }
-    unaff_R14 = puStackX_20;
+    connectionManager = stackPointer;
     if (unaff_EDI <= unaff_ESI) {
                     // WARNING: Subroutine does not return
       NetworkSecurityGuardCleanup(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
@@ -51139,8 +51139,8 @@ LAB_18086aa72:
         cleanupIndex = cleanupIndex + 1;
         arrayIndex = arrayIndex + 8;
       }
-      unaff_R14 = puStackX_20;
-    } while (networkStatus4 < iVar5);
+      connectionManager = stackPointer;
+    } while (cleanupIndex < connectionCount);
   }
                     // WARNING: Subroutine does not return
   NetworkSecurityGuardCleanup(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
@@ -51213,7 +51213,7 @@ LAB_18086aa72:
       unaff_ESI = unaff_ESI + 1;
       lVar4 = lVar4 + 8;
     }
-    unaff_R14 = puStackX_20;
+    connectionManager = stackPointer;
     if (unaff_EDI <= unaff_ESI) {
                     // WARNING: Subroutine does not return
       NetworkSecurityGuardCleanup(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
@@ -51394,8 +51394,8 @@ LAB_18086ac58:
         cleanupIndex = cleanupIndex + 1;
         arrayIndex = arrayIndex + 8;
       }
-      unaff_R14 = puStackX_20;
-    } while (networkStatus4 < iVar5);
+      connectionManager = stackPointer;
+    } while (cleanupIndex < connectionCount);
   }
                     // WARNING: Subroutine does not return
   NetworkSecurityGuardCleanup(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
@@ -51468,7 +51468,7 @@ LAB_18086ac58:
       unaff_ESI = unaff_ESI + 1;
       lVar4 = lVar4 + 8;
     }
-    unaff_R14 = puStackX_20;
+    connectionManager = stackPointer;
     if (unaff_EDI <= unaff_ESI) {
                     // WARNING: Subroutine does not return
       NetworkSecurityGuardCleanup(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
@@ -51649,8 +51649,8 @@ LAB_18086ae38:
         cleanupIndex = cleanupIndex + 1;
         arrayIndex = arrayIndex + 8;
       }
-      unaff_R14 = puStackX_20;
-    } while (networkStatus4 < iVar5);
+      connectionManager = stackPointer;
+    } while (cleanupIndex < connectionCount);
   }
                     // WARNING: Subroutine does not return
   NetworkSecurityGuardCleanup(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
@@ -51723,7 +51723,7 @@ LAB_18086ae38:
       unaff_ESI = unaff_ESI + 1;
       lVar4 = lVar4 + 8;
     }
-    unaff_R14 = puStackX_20;
+    connectionManager = stackPointer;
     if (unaff_EDI <= unaff_ESI) {
                     // WARNING: Subroutine does not return
       NetworkSecurityGuardCleanup(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
@@ -51904,8 +51904,8 @@ LAB_18086b032:
         cleanupIndex = cleanupIndex + 1;
         arrayIndex = arrayIndex + 8;
       }
-      unaff_R14 = puStackX_20;
-    } while (networkStatus4 < iVar5);
+      connectionManager = stackPointer;
+    } while (cleanupIndex < connectionCount);
   }
                     // WARNING: Subroutine does not return
   NetworkSecurityGuardCleanup(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
@@ -51978,7 +51978,7 @@ LAB_18086b032:
       unaff_ESI = unaff_ESI + 1;
       lVar4 = lVar4 + 8;
     }
-    unaff_R14 = puStackX_20;
+    connectionManager = stackPointer;
     if (unaff_EDI <= unaff_ESI) {
                     // WARNING: Subroutine does not return
       NetworkSecurityGuardCleanup(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
@@ -52159,8 +52159,8 @@ LAB_18086b232:
         cleanupIndex = cleanupIndex + 1;
         arrayIndex = arrayIndex + 8;
       }
-      unaff_R14 = puStackX_20;
-    } while (networkStatus4 < iVar5);
+      connectionManager = stackPointer;
+    } while (cleanupIndex < connectionCount);
   }
                     // WARNING: Subroutine does not return
   NetworkSecurityGuardCleanup(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
@@ -52233,7 +52233,7 @@ LAB_18086b232:
       unaff_ESI = unaff_ESI + 1;
       lVar4 = lVar4 + 8;
     }
-    unaff_R14 = puStackX_20;
+    connectionManager = stackPointer;
     if (unaff_EDI <= unaff_ESI) {
                     // WARNING: Subroutine does not return
       NetworkSecurityGuardCleanup(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
@@ -52414,8 +52414,8 @@ LAB_18086b418:
         cleanupIndex = cleanupIndex + 1;
         arrayIndex = arrayIndex + 8;
       }
-      unaff_R14 = puStackX_20;
-    } while (networkStatus4 < iVar5);
+      connectionManager = stackPointer;
+    } while (cleanupIndex < connectionCount);
   }
                     // WARNING: Subroutine does not return
   NetworkSecurityGuardCleanup(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
@@ -52488,7 +52488,7 @@ LAB_18086b418:
       unaff_ESI = unaff_ESI + 1;
       lVar4 = lVar4 + 8;
     }
-    unaff_R14 = puStackX_20;
+    connectionManager = stackPointer;
     if (unaff_EDI <= unaff_ESI) {
                     // WARNING: Subroutine does not return
       NetworkSecurityGuardCleanup(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
@@ -52669,8 +52669,8 @@ LAB_18086b612:
         cleanupIndex = cleanupIndex + 1;
         arrayIndex = arrayIndex + 8;
       }
-      unaff_R14 = puStackX_20;
-    } while (networkStatus4 < iVar5);
+      connectionManager = stackPointer;
+    } while (cleanupIndex < connectionCount);
   }
                     // WARNING: Subroutine does not return
   NetworkSecurityGuardCleanup(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
@@ -52743,7 +52743,7 @@ LAB_18086b612:
       unaff_ESI = unaff_ESI + 1;
       lVar4 = lVar4 + 8;
     }
-    unaff_R14 = puStackX_20;
+    connectionManager = stackPointer;
     if (unaff_EDI <= unaff_ESI) {
                     // WARNING: Subroutine does not return
       NetworkSecurityGuardCleanup(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
@@ -52924,8 +52924,8 @@ LAB_18086b812:
         cleanupIndex = cleanupIndex + 1;
         arrayIndex = arrayIndex + 8;
       }
-      unaff_R14 = puStackX_20;
-    } while (networkStatus4 < iVar5);
+      connectionManager = stackPointer;
+    } while (cleanupIndex < connectionCount);
   }
                     // WARNING: Subroutine does not return
   NetworkSecurityGuardCleanup(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
@@ -52998,7 +52998,7 @@ LAB_18086b812:
       unaff_ESI = unaff_ESI + 1;
       lVar4 = lVar4 + 8;
     }
-    unaff_R14 = puStackX_20;
+    connectionManager = stackPointer;
     if (unaff_EDI <= unaff_ESI) {
                     // WARNING: Subroutine does not return
       NetworkSecurityGuardCleanup(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
@@ -53186,8 +53186,8 @@ LAB_18086b9f8:
         cleanupIndex = cleanupIndex + 1;
         arrayIndex = arrayIndex + 8;
       }
-      unaff_R14 = puStackX_20;
-    } while (networkStatus4 < iVar5);
+      connectionManager = stackPointer;
+    } while (cleanupIndex < connectionCount);
   }
                     // WARNING: Subroutine does not return
   NetworkSecurityGuardCleanup(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
@@ -53269,7 +53269,7 @@ LAB_18086b9f8:
       unaff_ESI = unaff_ESI + 1;
       lVar4 = lVar4 + 8;
     }
-    unaff_R14 = puStackX_20;
+    connectionManager = stackPointer;
     if (unaff_EDI <= unaff_ESI) {
                     // WARNING: Subroutine does not return
       NetworkSecurityGuardCleanup(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
@@ -53450,8 +53450,8 @@ LAB_18086bbf2:
         cleanupIndex = cleanupIndex + 1;
         arrayIndex = arrayIndex + 8;
       }
-      unaff_R14 = puStackX_20;
-    } while (networkStatus4 < iVar5);
+      connectionManager = stackPointer;
+    } while (cleanupIndex < connectionCount);
   }
                     // WARNING: Subroutine does not return
   NetworkSecurityGuardCleanup(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
@@ -53524,7 +53524,7 @@ LAB_18086bbf2:
       unaff_ESI = unaff_ESI + 1;
       lVar4 = lVar4 + 8;
     }
-    unaff_R14 = puStackX_20;
+    connectionManager = stackPointer;
     if (unaff_EDI <= unaff_ESI) {
                     // WARNING: Subroutine does not return
       NetworkSecurityGuardCleanup(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
@@ -53705,8 +53705,8 @@ LAB_18086bdf2:
         cleanupIndex = cleanupIndex + 1;
         arrayIndex = arrayIndex + 8;
       }
-      unaff_R14 = puStackX_20;
-    } while (networkStatus4 < iVar5);
+      connectionManager = stackPointer;
+    } while (cleanupIndex < connectionCount);
   }
                     // WARNING: Subroutine does not return
   NetworkSecurityGuardCleanup(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
@@ -53779,7 +53779,7 @@ LAB_18086bdf2:
       unaff_ESI = unaff_ESI + 1;
       lVar4 = lVar4 + 8;
     }
-    unaff_R14 = puStackX_20;
+    connectionManager = stackPointer;
     if (unaff_EDI <= unaff_ESI) {
                     // WARNING: Subroutine does not return
       NetworkSecurityGuardCleanup(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
@@ -53960,8 +53960,8 @@ LAB_18086bff2:
         cleanupIndex = cleanupIndex + 1;
         arrayIndex = arrayIndex + 8;
       }
-      unaff_R14 = puStackX_20;
-    } while (networkStatus4 < iVar5);
+      connectionManager = stackPointer;
+    } while (cleanupIndex < connectionCount);
   }
                     // WARNING: Subroutine does not return
   NetworkSecurityGuardCleanup(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
@@ -54034,7 +54034,7 @@ LAB_18086bff2:
       unaff_ESI = unaff_ESI + 1;
       lVar4 = lVar4 + 8;
     }
-    unaff_R14 = puStackX_20;
+    connectionManager = stackPointer;
     if (unaff_EDI <= unaff_ESI) {
                     // WARNING: Subroutine does not return
       NetworkSecurityGuardCleanup(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
@@ -54215,8 +54215,8 @@ LAB_18086c1f2:
         cleanupIndex = cleanupIndex + 1;
         arrayIndex = arrayIndex + 8;
       }
-      unaff_R14 = puStackX_20;
-    } while (networkStatus4 < iVar5);
+      connectionManager = stackPointer;
+    } while (cleanupIndex < connectionCount);
   }
                     // WARNING: Subroutine does not return
   NetworkSecurityGuardCleanup(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
@@ -54289,7 +54289,7 @@ LAB_18086c1f2:
       unaff_ESI = unaff_ESI + 1;
       lVar4 = lVar4 + 8;
     }
-    unaff_R14 = puStackX_20;
+    connectionManager = stackPointer;
     if (unaff_EDI <= unaff_ESI) {
                     // WARNING: Subroutine does not return
       NetworkSecurityGuardCleanup(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
@@ -54470,8 +54470,8 @@ LAB_18086c3d8:
         cleanupIndex = cleanupIndex + 1;
         arrayIndex = arrayIndex + 8;
       }
-      unaff_R14 = puStackX_20;
-    } while (networkStatus4 < iVar5);
+      connectionManager = stackPointer;
+    } while (cleanupIndex < connectionCount);
   }
                     // WARNING: Subroutine does not return
   NetworkSecurityGuardCleanup(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
@@ -54544,7 +54544,7 @@ LAB_18086c3d8:
       unaff_ESI = unaff_ESI + 1;
       lVar4 = lVar4 + 8;
     }
-    unaff_R14 = puStackX_20;
+    connectionManager = stackPointer;
     if (unaff_EDI <= unaff_ESI) {
                     // WARNING: Subroutine does not return
       NetworkSecurityGuardCleanup(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
@@ -54725,8 +54725,8 @@ LAB_18086c5d2:
         cleanupIndex = cleanupIndex + 1;
         arrayIndex = arrayIndex + 8;
       }
-      unaff_R14 = puStackX_20;
-    } while (networkStatus4 < iVar5);
+      connectionManager = stackPointer;
+    } while (cleanupIndex < connectionCount);
   }
                     // WARNING: Subroutine does not return
   NetworkSecurityGuardCleanup(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
@@ -54799,7 +54799,7 @@ LAB_18086c5d2:
       unaff_ESI = unaff_ESI + 1;
       lVar4 = lVar4 + 8;
     }
-    unaff_R14 = puStackX_20;
+    connectionManager = stackPointer;
     if (unaff_EDI <= unaff_ESI) {
                     // WARNING: Subroutine does not return
       NetworkSecurityGuardCleanup(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
@@ -54980,8 +54980,8 @@ LAB_18086c7d2:
         cleanupIndex = cleanupIndex + 1;
         arrayIndex = arrayIndex + 8;
       }
-      unaff_R14 = puStackX_20;
-    } while (networkStatus4 < iVar5);
+      connectionManager = stackPointer;
+    } while (cleanupIndex < connectionCount);
   }
                     // WARNING: Subroutine does not return
   NetworkSecurityGuardCleanup(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
@@ -55054,7 +55054,7 @@ LAB_18086c7d2:
       unaff_ESI = unaff_ESI + 1;
       lVar4 = lVar4 + 8;
     }
-    unaff_R14 = puStackX_20;
+    connectionManager = stackPointer;
     if (unaff_EDI <= unaff_ESI) {
                     // WARNING: Subroutine does not return
       NetworkSecurityGuardCleanup(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
@@ -55235,8 +55235,8 @@ LAB_18086c9d2:
         cleanupIndex = cleanupIndex + 1;
         arrayIndex = arrayIndex + 8;
       }
-      unaff_R14 = puStackX_20;
-    } while (networkStatus4 < iVar5);
+      connectionManager = stackPointer;
+    } while (cleanupIndex < connectionCount);
   }
                     // WARNING: Subroutine does not return
   NetworkSecurityGuardCleanup(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
@@ -55309,7 +55309,7 @@ LAB_18086c9d2:
       unaff_ESI = unaff_ESI + 1;
       lVar4 = lVar4 + 8;
     }
-    unaff_R14 = puStackX_20;
+    connectionManager = stackPointer;
     if (unaff_EDI <= unaff_ESI) {
                     // WARNING: Subroutine does not return
       NetworkSecurityGuardCleanup(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
@@ -55490,8 +55490,8 @@ LAB_18086cbd2:
         cleanupIndex = cleanupIndex + 1;
         arrayIndex = arrayIndex + 8;
       }
-      unaff_R14 = puStackX_20;
-    } while (networkStatus4 < iVar5);
+      connectionManager = stackPointer;
+    } while (cleanupIndex < connectionCount);
   }
                     // WARNING: Subroutine does not return
   NetworkSecurityGuardCleanup(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
@@ -55564,7 +55564,7 @@ LAB_18086cbd2:
       unaff_ESI = unaff_ESI + 1;
       lVar4 = lVar4 + 8;
     }
-    unaff_R14 = puStackX_20;
+    connectionManager = stackPointer;
     if (unaff_EDI <= unaff_ESI) {
                     // WARNING: Subroutine does not return
       NetworkSecurityGuardCleanup(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
@@ -55745,8 +55745,8 @@ LAB_18086cdd2:
         cleanupIndex = cleanupIndex + 1;
         arrayIndex = arrayIndex + 8;
       }
-      unaff_R14 = puStackX_20;
-    } while (networkStatus4 < iVar5);
+      connectionManager = stackPointer;
+    } while (cleanupIndex < connectionCount);
   }
                     // WARNING: Subroutine does not return
   NetworkSecurityGuardCleanup(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
@@ -55819,7 +55819,7 @@ LAB_18086cdd2:
       unaff_ESI = unaff_ESI + 1;
       lVar4 = lVar4 + 8;
     }
-    unaff_R14 = puStackX_20;
+    connectionManager = stackPointer;
     if (unaff_EDI <= unaff_ESI) {
                     // WARNING: Subroutine does not return
       NetworkSecurityGuardCleanup(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
@@ -56000,8 +56000,8 @@ LAB_18086cfd2:
         cleanupIndex = cleanupIndex + 1;
         arrayIndex = arrayIndex + 8;
       }
-      unaff_R14 = puStackX_20;
-    } while (networkStatus4 < iVar5);
+      connectionManager = stackPointer;
+    } while (cleanupIndex < connectionCount);
   }
                     // WARNING: Subroutine does not return
   NetworkSecurityGuardCleanup(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
@@ -56074,7 +56074,7 @@ LAB_18086cfd2:
       unaff_ESI = unaff_ESI + 1;
       lVar4 = lVar4 + 8;
     }
-    unaff_R14 = puStackX_20;
+    connectionManager = stackPointer;
     if (unaff_EDI <= unaff_ESI) {
                     // WARNING: Subroutine does not return
       NetworkSecurityGuardCleanup(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
@@ -56255,8 +56255,8 @@ LAB_18086d1d2:
         cleanupIndex = cleanupIndex + 1;
         arrayIndex = arrayIndex + 8;
       }
-      unaff_R14 = puStackX_20;
-    } while (networkStatus4 < iVar5);
+      connectionManager = stackPointer;
+    } while (cleanupIndex < connectionCount);
   }
                     // WARNING: Subroutine does not return
   NetworkSecurityGuardCleanup(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
@@ -56329,7 +56329,7 @@ LAB_18086d1d2:
       unaff_ESI = unaff_ESI + 1;
       lVar4 = lVar4 + 8;
     }
-    unaff_R14 = puStackX_20;
+    connectionManager = stackPointer;
     if (unaff_EDI <= unaff_ESI) {
                     // WARNING: Subroutine does not return
       NetworkSecurityGuardCleanup(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
@@ -56510,8 +56510,8 @@ LAB_18086d3d2:
         cleanupIndex = cleanupIndex + 1;
         arrayIndex = arrayIndex + 8;
       }
-      unaff_R14 = puStackX_20;
-    } while (networkStatus4 < iVar5);
+      connectionManager = stackPointer;
+    } while (cleanupIndex < connectionCount);
   }
                     // WARNING: Subroutine does not return
   NetworkSecurityGuardCleanup(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
@@ -56584,7 +56584,7 @@ LAB_18086d3d2:
       unaff_ESI = unaff_ESI + 1;
       lVar4 = lVar4 + 8;
     }
-    unaff_R14 = puStackX_20;
+    connectionManager = stackPointer;
     if (unaff_EDI <= unaff_ESI) {
                     // WARNING: Subroutine does not return
       NetworkSecurityGuardCleanup(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
