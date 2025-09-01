@@ -13715,8 +13715,16 @@ void DataProcessingErrorHandler(void)
 
 
 
- 76b0(void)
-76b0(void)
+ /**
+ * @brief 计算浮点数值和资源验证 (地址: 0x76b0)
+ * 
+ * 该函数负责计算浮点数值并进行资源验证操作
+ * 包括资源表处理、数据校验和计算以及安全哈希验证
+ * 
+ * @return 无返回值
+ * @note 这是一个简化的实现，原始函数包含复杂的浮点运算和资源验证逻辑
+ */
+void CalculateFloatValueAndValidateResources(void)
 
 {
   float CalculatedFloatValue;
@@ -24468,8 +24476,18 @@ void ProcessResourceValidationAndReadData(int64_t ObjectContextParameter, uint8_
 
 
 
- d557(uint32_t ObjectContextParameter)
-d557(uint32_t ObjectContextParameter)
+ /**
+ * @brief 处理资源验证和内存分配 (地址: 0xd557)
+ * 
+ * 该函数负责处理资源的验证、数据读取和内存分配操作
+ * 包括数据校验和计算、资源哈希验证、数据读取和内存分配
+ * 
+ * @param ObjectContextParameter 对象上下文参数，包含资源处理所需的上下文信息
+ * @return 无返回值
+ * @note 此函数在验证成功后会调用CleanupResourceData并终止执行
+ * @warning 调用此函数后程序流程将不会继续执行
+ */
+void ProcessResourceValidationAndMemoryAllocation(uint32_t ObjectContextParameter)
 
 {
   int operationResult;
@@ -24529,8 +24547,16 @@ d557(uint32_t ObjectContextParameter)
 
 
 
- dcd6(void)
-dcd6(void)
+ /**
+ * @brief 空操作函数 (地址: 0xdcd6)
+ * 
+ * 该函数是一个空操作函数，直接返回而不执行任何操作
+ * 通常用作占位符或默认处理函数
+ * 
+ * @return 无返回值
+ * @note 这是一个简化的空操作实现
+ */
+void EmptyOperationDCD6(void)
 
 {
   return;
@@ -37550,7 +37576,18 @@ void CleanupSystemResourceHandlerAB0(uint8_t ObjectContextParameter,int64_t Vali
 
 
 
-void Unwind_180903ac0(uint8_t ObjectContextParameter,int64_t ValidationContextParameter)
+/**
+ * @brief 验证资源上下文AC0
+ * 
+ * 该函数负责验证资源上下文的有效性
+ * 确保资源处于正确的状态并可以进行后续操作
+ * 
+ * @param ObjectContextParameter 对象上下文参数
+ * @param ValidationContextParameter 验证上下文参数
+ * @return 无返回值
+ * @note 此函数用于资源上下文验证
+ */
+void ValidateResourceContextAC0(uint8_t ObjectContextParameter,int64_t ValidationContextParameter)
 
 {
   int64_t loopCounter;
