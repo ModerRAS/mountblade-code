@@ -1284,8 +1284,8 @@ uint32_t SystemMemoryValidationFlag;
 uint32_t SystemSecurityContextFlag;
 uint32_t SystemMemoryProtectionFlag;
 void* MemorySecurityConfigData;
-void* SystemConfigTable1;
-void* SystemConfigTable2;
+void* SystemConfigTablePrimary;
+void* SystemConfigTableSecondary;
 
  void ConfigureMemoryIsolation(void);
 /**
@@ -1295,7 +1295,7 @@ void* SystemConfigTable2;
  * 设置进程间内存隔离和保护
  */
 void ConfigureMemoryIsolation(void);
-void* SystemConfigTable3;
+void* SystemConfigTableTertiary;
 void* MemoryValidationContextData;
 void* MemoryIsolationConfigData;
 void* MemoryValidationStatusData;
@@ -3612,31 +3612,31 @@ ulonglong ProcessSystemRequest(longlong requestParameters,longlong systemContext
 uint8_t8 ValidateSystemAccess(longlong accessRequestParameters,longlong systemContextParameters)
 
 {
-  longlong lVar1;
-  int iVar2;
-  uint8_t8 uVar3;
-  longlong alStackX_8 [2];
+  longlong objectHandle;
+  int validationStatus;
+  uint8_t8 accessValidationResult;
+  longlong validationContext [2];
   
-  uVar3 = ValidateObjectContext(*(uint8_t4 *)(param_1 + 0x10),alStackX_8);
-  lVar1 = alStackX_8[0];
-  if ((int)uVar3 != 0) {
-    return uVar3;
+  accessValidationResult = ValidateObjectContext(*(uint8_t4 *)(param_1 + 0x10),validationContext);
+  objectHandle = validationContext[0];
+  if ((int)accessValidationResult != 0) {
+    return accessValidationResult;
   }
-  *(int *)(alStackX_8[0] + 0x4c) = *(int *)(alStackX_8[0] + 0x4c) + 1;
-  if (*(int *)(alStackX_8[0] + 0x58) + *(int *)(alStackX_8[0] + 0x54) +
-      *(int *)(alStackX_8[0] + 0x4c) == 1) {
-    alStackX_8[0] = 0;
-    iVar2 = ValidateSystemObjectConfiguration(alStackX_8);
-    if (iVar2 == 0) {
-      iVar2 = ProcessSystemObjectValidation(lVar1,*(uint8_t8 *)(lVar1 + 8),*(uint8_t8 *)(param_2 + 0x90),
+  *(int *)(validationContext[0] + 0x4c) = *(int *)(validationContext[0] + 0x4c) + 1;
+  if (*(int *)(validationContext[0] + 0x58) + *(int *)(validationContext[0] + 0x54) +
+      *(int *)(validationContext[0] + 0x4c) == 1) {
+    validationContext[0] = 0;
+    validationStatus = ValidateSystemObjectConfiguration(validationContext);
+    if (validationStatus == 0) {
+      validationStatus = ProcessSystemObjectValidation(objectHandle,*(uint8_t8 *)(objectHandle + 8),*(uint8_t8 *)(param_2 + 0x90),
                             *(uint8_t8 *)(param_2 + 800));
-      if (iVar2 == 0) {
+      if (validationStatus == 0) {
                     // WARNING: Subroutine does not return
-        ReleaseValidationResources(alStackX_8);
+        ReleaseValidationResources(validationContext);
       }
     }
                     // WARNING: Subroutine does not return
-    ReleaseValidationResources(alStackX_8);
+    ReleaseValidationResources(validationContext);
   }
   return 0;
 }
@@ -3697,33 +3697,33 @@ uint64_t DecrementSystemResourceCounter(longlong SystemContext, uint64_t Resourc
   int ResourceCounter;
   longlong ContextHandles[2];
   
-  operationResult = ValidateObjectContext(*(uint8_t4 *)(systemContext + 0x10), contextHandles);
-  contextData = contextHandles[0];
-  if ((int)operationResult != 0) {
-    return operationResult;
+  OperationResult = ValidateObjectContext(*(uint8_t4 *)(SystemContext + 0x10), ContextHandles);
+  ContextData = ContextHandles[0];
+  if ((int)OperationResult != 0) {
+    return OperationResult;
   }
-  if (*(int *)(contextHandles[0] + 0x4c) < 1) {
+  if (*(int *)(ContextHandles[0] + 0x4c) < 1) {
     return 0x1c;
   }
-  resourceCounter = *(int *)(contextHandles[0] + 0x4c) + -1;
-  *(int *)(contextHandles[0] + 0x4c) = resourceCounter;
-  if (*(int *)(contextHandles[0] + 0x58) + *(int *)(contextHandles[0] + 0x54) + resourceCounter != 0) {
+  ResourceCounter = *(int *)(ContextHandles[0] + 0x4c) + -1;
+  *(int *)(ContextHandles[0] + 0x4c) = ResourceCounter;
+  if (*(int *)(ContextHandles[0] + 0x58) + *(int *)(ContextHandles[0] + 0x54) + ResourceCounter != 0) {
     return 0;
   }
-  alStackX_8[0] = 0;
-  iVar3 = ValidateSystemObjectConfiguration(alStackX_8);
-  if (iVar3 == 0) {
-    iVar3 = ProcessSystemObjectOperation(lVar1,0);
-    if (iVar3 == 0) {
-      iVar3 = ProcessSystemContextValidation(param_2);
-      if (iVar3 == 0) {
+  ContextHandles[0] = 0;
+  int ValidationStatus = ValidateSystemObjectConfiguration(ContextHandles);
+  if (ValidationStatus == 0) {
+    ValidationStatus = ProcessSystemObjectOperation(ContextData,0);
+    if (ValidationStatus == 0) {
+      ValidationStatus = ProcessSystemContextValidation(SystemContext);
+      if (ValidationStatus == 0) {
                     // WARNING: Subroutine does not return
-        ReleaseValidationResources(alStackX_8);
+        ReleaseValidationResources(ContextHandles);
       }
     }
   }
                     // WARNING: Subroutine does not return
-  ReleaseValidationResources(alStackX_8);
+  ReleaseValidationResources(ContextHandles);
 }
 
 
@@ -9844,8 +9844,15 @@ void ProcessResourceIndexAndSecurity(longlong param_1,uint8_t4 *param_2,longlong
 
 
 
- 4a07(ulonglong param_1)
-4a07(ulonglong param_1)
+ /**
+ * @brief 验证资源表访问权限
+ * 
+ * 该函数负责验证对资源表的访问权限
+ * 执行安全检查并确保资源可用性
+ * 
+ * @param resource_handle 资源句柄，用于标识要访问的资源
+ */
+ValidateResourceTableAccess(ulonglong resource_handle)
 
 {
   int iVar1;
