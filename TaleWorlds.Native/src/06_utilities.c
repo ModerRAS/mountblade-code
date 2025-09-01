@@ -50009,7 +50009,7 @@ void Unwind_1809079d0(uint8_t8 objectContextParam,longlong validationContextPara
 
 
 
-void Unwind_1809079e0(uint8_t8 objectContextParam,longlong validationContextParam)
+void ProcessResourceCleanup(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
   int *pintegerValue1;
@@ -50045,7 +50045,7 @@ void Unwind_1809079e0(uint8_t8 objectContextParam,longlong validationContextPara
 
 
 
-void Unwind_180907a00(uint8_t8 objectContextParam,longlong validationContextParam)
+void ResetResourceValidationTable(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
   uint8_t8 *presourceHash;
@@ -50063,7 +50063,7 @@ void Unwind_180907a00(uint8_t8 objectContextParam,longlong validationContextPara
 
 
 
-void Unwind_180907a10(uint8_t8 objectContextParam,longlong validationContextParam)
+void ProcessResourceValidationCleanup(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
   int *pintegerValue1;
@@ -84428,7 +84428,7 @@ void InitializeGlobalModuleB(void)
 void InitializeSystemDataStructureA(void)
 
 {
-  _DAT_180bf5208 = &SystemDataStructure;
+  SystemDataStructurePointerA = &SystemDataStructure;
   return;
 }
 
@@ -84446,7 +84446,7 @@ void InitializeSystemDataStructureA(void)
 void InitializeSystemDataStructureB(void)
 
 {
-  _DAT_180bf5bc0 = &SystemDataStructure;
+  SystemDataStructurePointerB = &SystemDataStructure;
   return;
 }
 
@@ -84464,7 +84464,7 @@ void InitializeSystemDataStructureB(void)
 void InitializeSystemDataStructureC(void)
 
 {
-  _DAT_180bf5c30 = &SystemDataStructure;
+  SystemDataStructurePointerC = &SystemDataStructure;
   return;
 }
 
@@ -87528,7 +87528,7 @@ void DestroyMutexResource(void)
 void ExecuteResourceCleanup(void)
 
 {
-  _DAT_180d49f80 = &SystemDataStructure;
+  ResourceCleanupDataPointer = &SystemDataStructure;
   return;
 }
 
@@ -87547,7 +87547,7 @@ void ExecuteResourceCleanup(void)
 void OptimizeResourceUsage(void)
 
 {
-  _DAT_180d49fe0 = &SystemDataStructure;
+  ResourceOptimizationDataPointer = &SystemDataStructure;
   return;
 }
 
