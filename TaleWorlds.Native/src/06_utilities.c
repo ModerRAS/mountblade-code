@@ -23473,7 +23473,12 @@ ulonglong GetResourceHashAndValidate(void)
 
 
 
-ulonglong FUN_18089d193(void)
+/**
+ * 验证资源哈希完整性
+ * 该函数负责验证资源哈希的完整性，包括哈希值获取和边界检查
+ * @return 验证状态码：0表示成功，其他值表示错误
+ */
+ulonglong ValidateResourceHashIntegrity(void)
 
 {
   uint resourceHash;
@@ -83735,10 +83740,16 @@ void InitializeSystemDataStructureC(void)
 
 
  void FUN_180941630(void)
-void FUN_180941630(void)
+/**
+ * @brief 系统数据引用初始化函数
+ * 
+ * 该函数负责初始化系统数据引用，将全局数据引用指针
+ * 指向预定义的系统数据结构地址
+ */
+void InitializeSystemDataReference(void)
 
 {
-  _DAT_180bf6080 = &UNK_18098bcb0;
+  SystemGlobalDataReference = &SystemConfigurationTable;
   return;
 }
 
