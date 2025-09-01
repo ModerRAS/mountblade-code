@@ -1635,26 +1635,26 @@ undefined MemoryAllocationTracker1;
 undefined MemoryAllocationTracker2;
 undefined MemoryAllocationTracker3;
 undefined MemoryAllocationTracker4;
-undefined DAT_180bfa480;
-undefined DAT_180bfa488;
-undefined DAT_180bfa490;
-undefined DAT_180bfa498;
-undefined DAT_180bfa518;
-undefined DAT_180bfa520;
-undefined DAT_180bfa528;
-undefined DAT_180bfa530;
-undefined DAT_180bfa5b0;
-undefined DAT_180bfa5b8;
-undefined DAT_180bfa5c0;
-undefined DAT_180bfa5c8;
-undefined DAT_180bfa648;
-undefined DAT_180bfa650;
-undefined DAT_180bfa658;
-undefined DAT_180bfa660;
-undefined DAT_180bfa6e0;
-undefined DAT_180bfa6e8;
-undefined DAT_180bfa6f0;
-undefined DAT_180bfa6f8;
+undefined SystemDataTableA;
+undefined SystemDataTableB;
+undefined SystemDataTableC;
+undefined SystemDataTableD;
+undefined SystemMemoryBufferA;
+undefined SystemMemoryBufferB;
+undefined SystemMemoryBufferC;
+undefined SystemMemoryBufferD;
+undefined SystemConfigBufferA;
+undefined SystemConfigBufferB;
+undefined SystemConfigBufferC;
+undefined SystemConfigBufferD;
+undefined SystemStatusBufferA;
+undefined SystemStatusBufferB;
+undefined SystemStatusBufferC;
+undefined SystemStatusBufferD;
+undefined SystemHandleBufferA;
+undefined SystemHandleBufferB;
+undefined SystemHandleBufferC;
+undefined SystemHandleBufferD;
 undefined SystemResourceTable;
 undefined SystemResourceEntry1;
 undefined SystemResourceEntry2;
@@ -2020,7 +2020,7 @@ undefined1 DAT_180c82841;
 undefined1 DAT_180c82840;
 undefined DAT_180c82864;
 undefined DAT_180c91048;
-undefined DAT_180c8ed18;
+undefined ResourceBufferPool;
 undefined DAT_180c86948;
 undefined DAT_180c86870;
 undefined DAT_180c82868;
@@ -2029,7 +2029,7 @@ undefined SystemConfigDataH;
 undefined SystemMemoryConfigDataTemplateL;
 undefined SystemMemoryConfigDataTemplateM;
 undefined SystemMemoryConfigDataTemplateN;
-undefined DAT_180bf00a8;
+undefined SecurityEncryptionKey;
 undefined DAT_180c86928;
 undefined SystemMemoryConfigDataTemplateO;
 undefined SystemMemoryConfigDataTemplateP;
@@ -2068,7 +2068,7 @@ undefined DAT_180c86960;
 undefined DAT_180bf52b8;
 undefined DAT_180bf52bc;
 undefined DAT_180bf5248;
-undefined DAT_180c8ed60;
+undefined ResourceReferenceCounter;
 undefined SystemConfigDataM;
 undefined SystemConfigDataN;
 undefined SystemConfigDataO;
@@ -2245,8 +2245,8 @@ undefined ResourceSystemPrimaryData;
 undefined ResourceSystemSecondaryData;
 undefined SystemProcessManagerData;
 undefined SystemSecurityManagerData;
-undefined UNK_180a07b48;
-undefined UNK_180a3c313;
+undefined SystemNetworkManagerData;
+undefined SystemAudioManagerData;
 undefined ResourceSystemState;
 undefined UNK_180a078fc;
 undefined UNK_180a07804;
@@ -3220,7 +3220,7 @@ void ProcessGameDataObjects(longlong gameContext, longlong systemContext)
   undefined1 processingBuffer[512];
   ulonglong accessSecurityToken;
   
-  accessSecurityToken = _DAT_180bf00a8 ^ (ulonglong)objectMetadataBuffer;
+  accessSecurityToken = SecurityEncryptionKey ^ (ulonglong)objectMetadataBuffer;
   operationStatus = GetContextHandles(*(undefined4 *)(gameContext + 0x10), contextHandles);
   if ((operationStatus == 0) && (*(longlong *)(contextHandles[0] + 8) != 0)) {
     objectDataList = processingBuffer;
@@ -6992,7 +6992,7 @@ void ValidateObjectContextAndProcessPointerValidation(longlong ObjectContext, lo
   undefined1 processingBuffer [40];
   ulonglong securityToken;
   
-  securityToken = _DAT_180bf00a8 ^ (ulonglong)securityBuffer;
+  securityToken = SecurityEncryptionKey ^ (ulonglong)securityBuffer;
   validationStatus = ValidateObjectContext(*(undefined4 *)(ObjectContext + 0x10), &contextBuffer);
   if (validationStatus == 0) {
     if (contextBuffer != 0) {
@@ -8007,7 +8007,7 @@ void ValidateObjectContextAndProcessOperation(longlong objectContext, undefined8
   undefined8 securityHandle;
   ulonglong securityToken;
   
-  securityToken = _DAT_180bf00a8 ^ (ulonglong)stackBuffer;
+  securityToken = SecurityEncryptionKey ^ (ulonglong)stackBuffer;
   securityHandle = operationHandle;
   validationStatus = ValidateObjectContext(*(undefined4 *)(objectContext + 0x10), stackBuffer);
   if (validationStatus == 0) {
@@ -9396,7 +9396,7 @@ void ProcessSystemContextAndDataOperation(longlong param_1,longlong param_2)
   longlong lStack_40;
   ulonglong uStack_38;
   
-  uStack_38 = _DAT_180bf00a8 ^ (ulonglong)auStack_68;
+  uStack_38 = SecurityEncryptionKey ^ (ulonglong)auStack_68;
   lStack_60 = param_2 + 0x60;
   lStack_50 = param_1 + 0x18 + (longlong)*(int *)(param_1 + 0x10) * 8;
   lStack_40 = param_2;
@@ -9667,7 +9667,7 @@ int ProcessDataWithStack(longlong *param_1,longlong param_2,int param_3)
   undefined1 auStack_40 [40];
   ulonglong uStack_18;
   
-  uStack_18 = _DAT_180bf00a8 ^ (ulonglong)auStack_c8;
+  uStack_18 = SecurityEncryptionKey ^ (ulonglong)auStack_c8;
   plVar1 = *(longlong **)(param_1 + 800);
   if (plVar1 != (longlong *)0x0) {
     uStack_58 = *param_2;
@@ -9750,7 +9750,7 @@ void ProcessResourceIndexAndSecurity(longlong param_1,undefined4 *param_2,longlo
   undefined1 auStack_38 [40];
   ulonglong uStack_10;
   
-  uStack_10 = _DAT_180bf00a8 ^ (ulonglong)auStack_b8;
+  uStack_10 = SecurityEncryptionKey ^ (ulonglong)auStack_b8;
   plVar1 = *(longlong **)(param_1 + 800);
   if (plVar1 != (longlong *)0x0) {
     uStack_48 = *param_2;
@@ -9857,7 +9857,7 @@ LAB_180894aca:
   undefined1 auStack_40 [40];
   ulonglong uStack_18;
   
-  uStack_18 = _DAT_180bf00a8 ^ (ulonglong)auStack_c8;
+  uStack_18 = SecurityEncryptionKey ^ (ulonglong)auStack_c8;
   plVar1 = *(longlong **)(param_1 + 800);
   if (plVar1 != (longlong *)0x0) {
     uStack_58 = *param_2;
@@ -10537,7 +10537,7 @@ void ProcessResourceCalculationAndValidation(longlong param_1,undefined1 *param_
   undefined1 auStack_648 [1536];
   ulonglong uStack_48;
   
-  uStack_48 = _DAT_180bf00a8 ^ (ulonglong)auStack_738;
+  uStack_48 = SecurityEncryptionKey ^ (ulonglong)auStack_738;
   iVar4 = *(int *)(param_1 + 0xac);
   lVar7 = (longlong)iVar4;
   piStack_6f0 = param_3;
@@ -12204,7 +12204,7 @@ void ProcessComplexResourceOperation(undefined8 param_1,longlong param_2,uint pa
   undefined1 auStack_260 [520];
   ulonglong uStack_58;
   
-  uStack_58 = _DAT_180bf00a8 ^ (ulonglong)auStack_328;
+  uStack_58 = SecurityEncryptionKey ^ (ulonglong)auStack_328;
   tableEntry = 0;
   if (param_3 != 0) {
     iVar3 = *(int *)(param_2 + 0x220);
@@ -12831,7 +12831,7 @@ LAB_1808974ec:
   undefined1 auStack_228 [512];
   ulonglong uStack_28;
   
-  uStack_28 = _DAT_180bf00a8 ^ (ulonglong)auStack_248;
+  uStack_28 = SecurityEncryptionKey ^ (ulonglong)auStack_248;
   lVar1 = param_1[4];
   if (((char)lVar1 != '\0') || (iVar2 = CheckSystemStatus(param_1,1), iVar2 == 0)) {
     iVar2 = (**(code **)(*param_2 + 0x10))(param_2,auStack_228,0x200);
@@ -12955,7 +12955,7 @@ LAB_1808974ec:
   undefined1 auStack_e0 [136];
   ulonglong uStack_58;
   
-  uStack_58 = _DAT_180bf00a8 ^ (ulonglong)auStack_1e8;
+  uStack_58 = SecurityEncryptionKey ^ (ulonglong)auStack_1e8;
   resourceTable = *(longlong *)(param_2 + 0x80);
   lVar14 = 0;
   uStack_1c8 = 0;
@@ -13892,7 +13892,7 @@ LAB_180897af6:
   undefined8 auStack_238 [64];
   ulonglong uStack_38;
   
-  uStack_38 = _DAT_180bf00a8 ^ (ulonglong)auStack_2a8;
+  uStack_38 = SecurityEncryptionKey ^ (ulonglong)auStack_2a8;
   iVar4 = 0;
   iVar7 = 0;
   do {
@@ -13962,7 +13962,7 @@ LAB_180897ce8:
   undefined1 auStack_418 [1024];
   ulonglong uStack_18;
   
-  uStack_18 = _DAT_180bf00a8 ^ (ulonglong)auStack_438;
+  uStack_18 = SecurityEncryptionKey ^ (ulonglong)auStack_438;
   uStackX_18 = param_3;
   uStackX_20 = param_4;
   ProcessDataBuffer(auStack_418,0x400,param_2,&uStackX_18);
@@ -14177,7 +14177,7 @@ undefined8 ValidateResourceRenderingState(void)
   undefined1 auStack_238 [512];
   ulonglong uStack_38;
   
-  uStack_38 = _DAT_180bf00a8 ^ (ulonglong)auStack_368;
+  uStack_38 = SecurityEncryptionKey ^ (ulonglong)auStack_368;
   plVar16 = (longlong *)0x0;
   alStack_300[1] = 0;
   iVar6 = InitializeProcessingQueue(alStack_300 + 1,param_1[1]);
@@ -28049,18 +28049,18 @@ void Unwind_1809020f0(void)
   EnterCriticalSection(0x180c82210);
   _DAT_180d49140 = 0;
   LeaveCriticalSection(0x180c82210);
-  if (_DAT_180c82240 != 0) {
+  if (SystemEventHandle != 0) {
     SetEvent();
                     // WARNING: Could not recover jumptable at 0x0001808fcc41. Too many branches
                     // WARNING: Treating indirect jump as call
-    ResetEvent(_DAT_180c82240);
+    ResetEvent(SystemEventHandle);
     return;
   }
-  bVar1 = (byte)_DAT_180bf00a8 & 0x3f;
+  bVar1 = (byte)SecurityEncryptionKey & 0x3f;
                     // WARNING: Could not recover jumptable at 0x0001808ffe70. Too many branches
                     // WARNING: Treating indirect jump as call
-  (*(code *)((_DAT_180bf00a8 ^ _DAT_180c82250) >> bVar1 |
-            (_DAT_180bf00a8 ^ _DAT_180c82250) << 0x40 - bVar1))(0x180c82238);
+  (*(code *)((SecurityEncryptionKey ^ SystemFunctionPointer) >> bVar1 |
+            (SecurityEncryptionKey ^ SystemFunctionPointer) << 0x40 - bVar1))(0x180c82238);
   return;
 }
 
@@ -28076,18 +28076,18 @@ void Unwind_180902100(void)
   EnterCriticalSection(0x180c82210);
   _DAT_180d49148 = 0;
   LeaveCriticalSection(0x180c82210);
-  if (_DAT_180c82240 != 0) {
+  if (SystemEventHandle != 0) {
     SetEvent();
                     // WARNING: Could not recover jumptable at 0x0001808fcc41. Too many branches
                     // WARNING: Treating indirect jump as call
-    ResetEvent(_DAT_180c82240);
+    ResetEvent(SystemEventHandle);
     return;
   }
-  bVar1 = (byte)_DAT_180bf00a8 & 0x3f;
+  bVar1 = (byte)SecurityEncryptionKey & 0x3f;
                     // WARNING: Could not recover jumptable at 0x0001808ffe70. Too many branches
                     // WARNING: Treating indirect jump as call
-  (*(code *)((_DAT_180bf00a8 ^ _DAT_180c82250) >> bVar1 |
-            (_DAT_180bf00a8 ^ _DAT_180c82250) << 0x40 - bVar1))(0x180c82238);
+  (*(code *)((SecurityEncryptionKey ^ SystemFunctionPointer) >> bVar1 |
+            (SecurityEncryptionKey ^ SystemFunctionPointer) << 0x40 - bVar1))(0x180c82238);
   return;
 }
 
@@ -39995,7 +39995,7 @@ void Unwind_180904fe0(undefined8 param_1,longlong param_2)
     fclose();
     *(undefined8 *)(param_2 + 0x68) = 0;
     LOCK();
-    _DAT_180c8ed60 = _DAT_180c8ed60 + -1;
+    ResourceReferenceCounter = ResourceReferenceCounter + -1;
     UNLOCK();
   }
   return;
@@ -40028,7 +40028,7 @@ void Unwind_180905000(undefined8 param_1,longlong param_2)
     fclose();
     *(undefined8 *)(param_2 + 0x80) = 0;
     LOCK();
-    _DAT_180c8ed60 = _DAT_180c8ed60 + -1;
+    ResourceReferenceCounter = ResourceReferenceCounter + -1;
     UNLOCK();
   }
   return;
@@ -40230,7 +40230,7 @@ void Unwind_1809050d0(undefined8 param_1,longlong param_2)
     fclose();
     *(undefined8 *)(param_2 + 0xf0) = 0;
     LOCK();
-    _DAT_180c8ed60 = _DAT_180c8ed60 + -1;
+    ResourceReferenceCounter = ResourceReferenceCounter + -1;
     UNLOCK();
   }
   return;
@@ -41614,7 +41614,7 @@ void Unwind_1809057b0(undefined8 param_1,longlong param_2)
       }
       FUN_18066c220(puVar5 + 10,&plStackX_10,(ulonglong)*(uint *)(puVar5 + 8),
                     *(undefined4 *)(puVar5 + 9),1);
-      piVar7 = (int *)FUN_18062b420(_DAT_180c8ed18,0x18,*(undefined1 *)((longlong)puVar5 + 0x5c));
+      piVar7 = (int *)FUN_18062b420(ResourceBufferPool,0x18,*(undefined1 *)((longlong)puVar5 + 0x5c));
       *piVar7 = iVar6;
       piVar7[2] = 0;
       piVar7[3] = 0;
@@ -42049,7 +42049,7 @@ void Unwind_1809058f0(undefined8 param_1,longlong param_2)
     fclose();
     *(undefined8 *)(param_2 + 0x148) = 0;
     LOCK();
-    _DAT_180c8ed60 = _DAT_180c8ed60 + -1;
+    ResourceReferenceCounter = ResourceReferenceCounter + -1;
     UNLOCK();
   }
   return;
@@ -42211,7 +42211,7 @@ void Unwind_180905950(undefined8 param_1,longlong param_2)
       }
       FUN_18066c220(puVar5 + 10,&plStackX_10,(ulonglong)*(uint *)(puVar5 + 8),
                     *(undefined4 *)(puVar5 + 9),1);
-      piVar7 = (int *)FUN_18062b420(_DAT_180c8ed18,0x18,*(undefined1 *)((longlong)puVar5 + 0x5c));
+      piVar7 = (int *)FUN_18062b420(ResourceBufferPool,0x18,*(undefined1 *)((longlong)puVar5 + 0x5c));
       *piVar7 = iVar6;
       piVar7[2] = 0;
       piVar7[3] = 0;
@@ -46218,18 +46218,18 @@ void Unwind_180906c00(void)
   EnterCriticalSection(0x180c82210);
   _DAT_180d49158 = 0;
   LeaveCriticalSection(0x180c82210);
-  if (_DAT_180c82240 != 0) {
+  if (SystemEventHandle != 0) {
     SetEvent();
                     // WARNING: Could not recover jumptable at 0x0001808fcc41. Too many branches
                     // WARNING: Treating indirect jump as call
-    ResetEvent(_DAT_180c82240);
+    ResetEvent(SystemEventHandle);
     return;
   }
-  bVar1 = (byte)_DAT_180bf00a8 & 0x3f;
+  bVar1 = (byte)SecurityEncryptionKey & 0x3f;
                     // WARNING: Could not recover jumptable at 0x0001808ffe70. Too many branches
                     // WARNING: Treating indirect jump as call
-  (*(code *)((_DAT_180bf00a8 ^ _DAT_180c82250) >> bVar1 |
-            (_DAT_180bf00a8 ^ _DAT_180c82250) << 0x40 - bVar1))(0x180c82238);
+  (*(code *)((SecurityEncryptionKey ^ SystemFunctionPointer) >> bVar1 |
+            (SecurityEncryptionKey ^ SystemFunctionPointer) << 0x40 - bVar1))(0x180c82238);
   return;
 }
 
@@ -47749,18 +47749,18 @@ void Unwind_180907130(void)
   EnterCriticalSection(0x180c82210);
   uRam0000000180d49150 = 0;
   LeaveCriticalSection(0x180c82210);
-  if (_DAT_180c82240 != 0) {
+  if (SystemEventHandle != 0) {
     SetEvent();
                     // WARNING: Could not recover jumptable at 0x0001808fcc41. Too many branches
                     // WARNING: Treating indirect jump as call
-    ResetEvent(_DAT_180c82240);
+    ResetEvent(SystemEventHandle);
     return;
   }
-  bVar1 = (byte)_DAT_180bf00a8 & 0x3f;
+  bVar1 = (byte)SecurityEncryptionKey & 0x3f;
                     // WARNING: Could not recover jumptable at 0x0001808ffe70. Too many branches
                     // WARNING: Treating indirect jump as call
-  (*(code *)((_DAT_180bf00a8 ^ _DAT_180c82250) >> bVar1 |
-            (_DAT_180bf00a8 ^ _DAT_180c82250) << 0x40 - bVar1))(0x180c82238);
+  (*(code *)((SecurityEncryptionKey ^ SystemFunctionPointer) >> bVar1 |
+            (SecurityEncryptionKey ^ SystemFunctionPointer) << 0x40 - bVar1))(0x180c82238);
   return;
 }
 
@@ -49346,7 +49346,7 @@ void Unwind_180907970(undefined8 param_1,longlong param_2)
   plVar1 = (longlong *)(param_2 + 0x50);
   if (*plVar1 != -1) {
     LOCK();
-    _DAT_180c8ed64 = _DAT_180c8ed64 + -1;
+    SystemOperationCounter = SystemOperationCounter + -1;
     UNLOCK();
     CloseHandle(*plVar1);
     *plVar1 = -1;
@@ -50694,7 +50694,7 @@ void Unwind_180907f70(undefined8 param_1,longlong param_2)
   plVar1 = (longlong *)(param_2 + 0x38);
   if (*plVar1 != -1) {
     LOCK();
-    _DAT_180c8ed64 = _DAT_180c8ed64 + -1;
+    SystemOperationCounter = SystemOperationCounter + -1;
     UNLOCK();
     CloseHandle(*plVar1);
     *plVar1 = -1;
@@ -50907,18 +50907,18 @@ void Unwind_180908040(void)
   EnterCriticalSection(0x180c82210);
   _DAT_180d491f8 = 0;
   LeaveCriticalSection(0x180c82210);
-  if (_DAT_180c82240 != 0) {
+  if (SystemEventHandle != 0) {
     SetEvent();
                     // WARNING: Could not recover jumptable at 0x0001808fcc41. Too many branches
                     // WARNING: Treating indirect jump as call
-    ResetEvent(_DAT_180c82240);
+    ResetEvent(SystemEventHandle);
     return;
   }
-  bVar1 = (byte)_DAT_180bf00a8 & 0x3f;
+  bVar1 = (byte)SecurityEncryptionKey & 0x3f;
                     // WARNING: Could not recover jumptable at 0x0001808ffe70. Too many branches
                     // WARNING: Treating indirect jump as call
-  (*(code *)((_DAT_180bf00a8 ^ _DAT_180c82250) >> bVar1 |
-            (_DAT_180bf00a8 ^ _DAT_180c82250) << 0x40 - bVar1))(0x180c82238);
+  (*(code *)((SecurityEncryptionKey ^ SystemFunctionPointer) >> bVar1 |
+            (SecurityEncryptionKey ^ SystemFunctionPointer) << 0x40 - bVar1))(0x180c82238);
   return;
 }
 
@@ -53255,18 +53255,18 @@ void Unwind_180908d30(void)
   EnterCriticalSection(0x180c82210);
   _DAT_180d49210 = 0;
   LeaveCriticalSection(0x180c82210);
-  if (_DAT_180c82240 != 0) {
+  if (SystemEventHandle != 0) {
     SetEvent();
                     // WARNING: Could not recover jumptable at 0x0001808fcc41. Too many branches
                     // WARNING: Treating indirect jump as call
-    ResetEvent(_DAT_180c82240);
+    ResetEvent(SystemEventHandle);
     return;
   }
-  bVar1 = (byte)_DAT_180bf00a8 & 0x3f;
+  bVar1 = (byte)SecurityEncryptionKey & 0x3f;
                     // WARNING: Could not recover jumptable at 0x0001808ffe70. Too many branches
                     // WARNING: Treating indirect jump as call
-  (*(code *)((_DAT_180bf00a8 ^ _DAT_180c82250) >> bVar1 |
-            (_DAT_180bf00a8 ^ _DAT_180c82250) << 0x40 - bVar1))(0x180c82238);
+  (*(code *)((SecurityEncryptionKey ^ SystemFunctionPointer) >> bVar1 |
+            (SecurityEncryptionKey ^ SystemFunctionPointer) << 0x40 - bVar1))(0x180c82238);
   return;
 }
 
@@ -55054,7 +55054,7 @@ void Unwind_180909540(undefined8 param_1,longlong param_2)
     fclose();
     *(undefined8 *)(param_2 + 0x268) = 0;
     LOCK();
-    _DAT_180c8ed60 = _DAT_180c8ed60 + -1;
+    ResourceReferenceCounter = ResourceReferenceCounter + -1;
     UNLOCK();
   }
   return;
@@ -55072,7 +55072,7 @@ void Unwind_180909550(undefined8 param_1,longlong param_2)
   plVar1 = (longlong *)(param_2 + 0x1e8);
   if (*plVar1 != -1) {
     LOCK();
-    _DAT_180c8ed64 = _DAT_180c8ed64 + -1;
+    SystemOperationCounter = SystemOperationCounter + -1;
     UNLOCK();
     CloseHandle(*plVar1);
     *plVar1 = -1;
@@ -55107,7 +55107,7 @@ void Unwind_180909570(undefined8 param_1,longlong param_2)
     fclose();
     *(undefined8 *)(param_2 + 0x2e0) = 0;
     LOCK();
-    _DAT_180c8ed60 = _DAT_180c8ed60 + -1;
+    ResourceReferenceCounter = ResourceReferenceCounter + -1;
     UNLOCK();
   }
   return;
@@ -55140,7 +55140,7 @@ void Unwind_180909590(undefined8 param_1,longlong param_2)
     fclose();
     *(undefined8 *)(param_2 + 0x2c8) = 0;
     LOCK();
-    _DAT_180c8ed60 = _DAT_180c8ed60 + -1;
+    ResourceReferenceCounter = ResourceReferenceCounter + -1;
     UNLOCK();
   }
   return;
@@ -57798,18 +57798,18 @@ void Unwind_18090a6e0(void)
   EnterCriticalSection(0x180c82210);
   _DAT_180d49238 = 0;
   LeaveCriticalSection(0x180c82210);
-  if (_DAT_180c82240 != 0) {
+  if (SystemEventHandle != 0) {
     SetEvent();
                     // WARNING: Could not recover jumptable at 0x0001808fcc41. Too many branches
                     // WARNING: Treating indirect jump as call
-    ResetEvent(_DAT_180c82240);
+    ResetEvent(SystemEventHandle);
     return;
   }
-  bVar1 = (byte)_DAT_180bf00a8 & 0x3f;
+  bVar1 = (byte)SecurityEncryptionKey & 0x3f;
                     // WARNING: Could not recover jumptable at 0x0001808ffe70. Too many branches
                     // WARNING: Treating indirect jump as call
-  (*(code *)((_DAT_180bf00a8 ^ _DAT_180c82250) >> bVar1 |
-            (_DAT_180bf00a8 ^ _DAT_180c82250) << 0x40 - bVar1))(0x180c82238);
+  (*(code *)((SecurityEncryptionKey ^ SystemFunctionPointer) >> bVar1 |
+            (SecurityEncryptionKey ^ SystemFunctionPointer) << 0x40 - bVar1))(0x180c82238);
   return;
 }
 
@@ -83195,18 +83195,18 @@ void Unwind_1809127d0(void)
   EnterCriticalSection(0x180c82210);
   _DAT_180d49270 = 0;
   LeaveCriticalSection(0x180c82210);
-  if (_DAT_180c82240 != 0) {
+  if (SystemEventHandle != 0) {
     SetEvent();
                     // WARNING: Could not recover jumptable at 0x0001808fcc41. Too many branches
                     // WARNING: Treating indirect jump as call
-    ResetEvent(_DAT_180c82240);
+    ResetEvent(SystemEventHandle);
     return;
   }
-  bVar1 = (byte)_DAT_180bf00a8 & 0x3f;
+  bVar1 = (byte)SecurityEncryptionKey & 0x3f;
                     // WARNING: Could not recover jumptable at 0x0001808ffe70. Too many branches
                     // WARNING: Treating indirect jump as call
-  (*(code *)((_DAT_180bf00a8 ^ _DAT_180c82250) >> bVar1 |
-            (_DAT_180bf00a8 ^ _DAT_180c82250) << 0x40 - bVar1))(0x180c82238);
+  (*(code *)((SecurityEncryptionKey ^ SystemFunctionPointer) >> bVar1 |
+            (SecurityEncryptionKey ^ SystemFunctionPointer) << 0x40 - bVar1))(0x180c82238);
   return;
 }
 
@@ -83739,14 +83739,13 @@ void InitializeSystemDataStructureC(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void FUN_180941630(void)
-/**
- * @brief 系统数据引用初始化函数
+ /**
+ * @brief 初始化系统数据结构D
  * 
  * 该函数负责初始化系统数据引用，将全局数据引用指针
  * 指向预定义的系统数据结构地址
  */
-void InitializeSystemDataReference(void)
+void InitializeSystemDataStructureD(void)
 
 {
   SystemGlobalDataReference = &SystemConfigurationTable;
@@ -83955,7 +83954,13 @@ void InitializeSystemDataStructureM(void)
 
 
  void FUN_180941880(void)
-void FUN_180941880(void)
+/**
+ * @brief 初始化系统数据结构N
+ * 
+ * 该函数负责初始化系统的数据结构N
+ * 设置基础数据结构的默认值和状态
+ */
+void InitializeSystemDataStructureN(void)
 
 {
   _DAT_180bf65f0 = &UNK_18098bcb0;
@@ -83968,7 +83973,13 @@ void FUN_180941880(void)
 
 
  void FUN_1809418a0(void)
-void FUN_1809418a0(void)
+/**
+ * @brief 初始化系统数据结构O
+ * 
+ * 该函数负责初始化系统的数据结构O
+ * 设置基础数据结构的默认值和状态
+ */
+void InitializeSystemDataStructureO(void)
 
 {
   _DAT_180bf6620 = &UNK_18098bcb0;
@@ -83981,7 +83992,13 @@ void FUN_1809418a0(void)
 
 
  void FUN_1809418c0(void)
-void FUN_1809418c0(void)
+/**
+ * @brief 初始化系统数据结构P
+ * 
+ * 该函数负责初始化系统的数据结构P
+ * 设置基础数据结构的默认值和状态
+ */
+void InitializeSystemDataStructureP(void)
 
 {
   _DAT_180bf6650 = &UNK_18098bcb0;
@@ -83994,7 +84011,13 @@ void FUN_1809418c0(void)
 
 
  void FUN_1809418e0(void)
-void FUN_1809418e0(void)
+/**
+ * @brief 初始化系统数据结构Q
+ * 
+ * 该函数负责初始化系统的数据结构Q
+ * 设置基础数据结构的默认值和状态
+ */
+void InitializeSystemDataStructureQ(void)
 
 {
   _DAT_180bf6680 = &UNK_18098bcb0;
@@ -84007,7 +84030,13 @@ void FUN_1809418e0(void)
 
 
  void FUN_180941900(void)
-void FUN_180941900(void)
+/**
+ * @brief 初始化系统数据结构R
+ * 
+ * 该函数负责初始化系统的数据结构R
+ * 设置基础数据结构的默认值和状态
+ */
+void InitializeSystemDataStructureR(void)
 
 {
   _DAT_180bf66b0 = &UNK_18098bcb0;
@@ -84020,20 +84049,31 @@ void FUN_180941900(void)
 
 
  void FUN_180941920(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
-void FUN_180941920(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+/**
+ * @brief 释放内存资源
+ * 
+ * 该函数负责释放指定的内存资源
+ * 处理内存指针的清理和释放操作
+ * 
+ * @param Param1 第一个参数，通常为内存指针或相关标识符
+ * @param Param2 第二个参数，用于内存管理操作
+ * @param Param3 第三个参数，用于内存管理操作
+ * @param Param4 第四个参数，用于内存管理操作
+ */
+void FreeMemoryResources(undefined8 Param1, undefined8 Param2, undefined8 Param3, undefined8 Param4)
 
 {
-  longlong *plVar1;
+  longlong *MemoryPointer;
   
-  plVar1 = _DAT_180d49200;
-  FUN_18008d1f0(param_1,_DAT_180d49200[1],param_3,param_4,0xfffffffffffffffe);
-  _DAT_180d49200[1] = (longlong)plVar1;
-  *_DAT_180d49200 = (longlong)plVar1;
-  _DAT_180d49200[2] = (longlong)plVar1;
+  MemoryPointer = _DAT_180d49200;
+  FUN_18008d1f0(Param1, _DAT_180d49200[1], Param3, Param4, 0xfffffffffffffffe);
+  _DAT_180d49200[1] = (longlong)MemoryPointer;
+  *_DAT_180d49200 = (longlong)MemoryPointer;
+  _DAT_180d49200[2] = (longlong)MemoryPointer;
   _DAT_180d49208 = 0;
                     // WARNING: Could not recover jumptable at 0x0001808ffc83. Too many branches
                     // WARNING: Treating indirect jump as call
-  free(_DAT_180d49200,0x58);
+  free(_DAT_180d49200, 0x58);
   return;
 }
 
