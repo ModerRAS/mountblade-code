@@ -86359,8 +86359,16 @@ void ExecuteReferenceCountDecrementAndCleanup(void)
 
 
 
- void FUN_180942942(void)
-void FUN_180942942(void)
+ /**
+ * 初始化系统数据结构CP
+ * 设置全局系统数据结构指针，用于系统初始化
+ */
+void InitializeSystemDataStructureCP(void)
+/**
+ * 初始化系统数据结构CP
+ * 设置全局系统数据结构指针，用于系统初始化
+ */
+void InitializeSystemDataStructureCP(void)
 
 {
   longlong *plVar1;
@@ -86391,8 +86399,16 @@ void FUN_180942942(void)
 
 
 
- void FUN_180942978(void)
-void FUN_180942978(void)
+ /**
+ * 初始化系统数据结构CQ
+ * 设置全局系统数据结构指针，用于系统初始化
+ */
+void InitializeSystemDataStructureCQ(void)
+/**
+ * 初始化系统数据结构CQ
+ * 设置全局系统数据结构指针，用于系统初始化
+ */
+void InitializeSystemDataStructureCQ(void)
 
 {
   return;
@@ -86403,8 +86419,16 @@ void FUN_180942978(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void FUN_180942980(void)
-void FUN_180942980(void)
+ /**
+ * 初始化系统数据结构CR
+ * 设置全局系统数据结构指针，用于系统初始化
+ */
+void InitializeSystemDataStructureCR(void)
+/**
+ * 初始化系统数据结构CR
+ * 设置全局系统数据结构指针，用于系统初始化
+ */
+void InitializeSystemDataStructureCR(void)
 
 {
   longlong lVar1;
