@@ -760,6 +760,15 @@ undefined GetSystemInitializationFunction;
  * 
  * @note 这是系统启动过程中的关键初始化步骤
  */
+/**
+ * @brief 初始化游戏核心系统
+ * 
+ * 该函数负责初始化游戏的核心系统组件，包括系统节点管理、内存分配、
+ * 数据表设置等。它会遍历系统节点树，查找并初始化游戏核心系统。
+ * 
+ * @note 这是系统初始化的关键函数，在游戏启动时被调用
+ * @note 函数会设置系统数据表指针并初始化核心系统节点
+ */
 void InitializeGameCoreSystem(void)
 {
   bool isSystemNodeActive;
@@ -16525,8 +16534,14 @@ void InitializeSystemMemoryManager(void)
 
 
 
-// 函数: void FUN_1800428d0(void)
-void FUN_1800428d0(void)
+// 函数: 系统数据节点初始化器M
+/**
+ * @brief 系统数据节点初始化器M
+ * 
+ * 该函数负责初始化系统数据节点M，在系统数据表中创建和配置
+ * 特定的数据节点结构，用于存储系统运行时数据
+ */
+void SystemDataNodeInitializerM(void)
 
 {
   char systemNodeFlag;
@@ -16799,8 +16814,14 @@ void InitializeSystemDataTableNode(void)
 
 
 
-// 函数: void FUN_180042dd0(void)
-void FUN_180042dd0(void)
+// 函数: 资源初始化回调设置器
+/**
+ * @brief 资源初始化回调设置器
+ * 
+ * 该函数负责设置资源初始化的回调函数，配置系统资源管理
+ * 的初始化流程，确保资源能够正确加载和初始化
+ */
+void ResourceInitializationCallbackSetter(void)
 
 {
   char systemNodeFlag;
@@ -16849,8 +16870,14 @@ void FUN_180042dd0(void)
 
 
 
-// 函数: void FUN_180042ed0(void)
-void FUN_180042ed0(void)
+// 函数: 系统分配器节点初始化器
+/**
+ * @brief 系统分配器节点初始化器
+ * 
+ * 该函数负责初始化系统分配器节点，配置内存分配器的
+ * 基础数据结构，为系统内存管理提供支持
+ */
+void SystemAllocatorNodeInitializer(void)
 
 {
   char systemNodeFlag;
@@ -16899,8 +16926,14 @@ void FUN_180042ed0(void)
 
 
 
-// 函数: void FUN_180042fd0(void)
-void FUN_180042fd0(void)
+// 函数: 系统配置节点初始化器
+/**
+ * @brief 系统配置节点初始化器
+ * 
+ * 该函数负责初始化系统配置节点，创建和配置系统的
+ * 配置数据结构，用于存储系统运行时的配置信息
+ */
+void SystemConfigurationNodeInitializer(void)
 
 {
   char systemNodeFlag;
@@ -18822,7 +18855,18 @@ void ReleaseSystemSemaphore(void* *param_1,uint32_t param_2)
 
 
 // 函数: void FUN_180046160(void* *param_1)
-void FUN_180046160(void* *param_1)
+/**
+ * @brief 解锁系统互斥锁
+ * 
+ * 该函数负责解锁系统互斥锁，它会检查互斥锁的状态，
+ * 然后调用_Mtx_unlock函数进行解锁操作。如果解锁失败，
+ * 会抛出相应的错误。
+ * 
+ * @param param_1 互斥锁指针
+ * 
+ * @note 这是系统线程同步的重要组成部分，确保互斥锁的正确解锁
+ */
+void UnlockSystemMutex(void* *param_1)
 
 {
   int iVar1;

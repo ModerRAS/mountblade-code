@@ -29050,7 +29050,7 @@ void ProcessNetworkPacketHandler(longlong connectionContext,longlong packetData)
                 plVar7 = plVar10;
               }
               iVar5 = ProcessNetworkDataTransmission(plVar7,0x3f800000,4);
-              if (iVar5 != 0) goto FUN_180857c7a;
+              if (iVar5 != 0) goto NetworkSystemNoOperation;
               primaryNetworkFlag1 = FUN_1808c6120(lVar8,*(NetworkStatus *)(lVar3 + 0xa0));
               iVar5 = func_0x0001808c6c50(plVar7,primaryNetworkFlag1);
               goto joined_r0x000180857d6c;
@@ -29068,7 +29068,7 @@ void ProcessNetworkPacketHandler(longlong connectionContext,longlong packetData)
         }
         iVar5 = ProcessNetworkDataTransmission(plVar7,0,0);
 joined_r0x000180857d6c:
-        if (iVar5 != 0) goto FUN_180857c7a;
+        if (iVar5 != 0) goto NetworkSystemNoOperation;
       }
       if (plVar4 == plVar2) break;
       plVar7 = (longlong *)(*plVar4 + -0x18);
@@ -29085,7 +29085,7 @@ joined_r0x000180857d6c:
       FUN_1808558e0(connectionContext,packetData,*(longlong *)(connectionContext + 0x160) + 0x3f8);
     }
   }
-FUN_180857c7a:
+NetworkSystemNoOperation:
                     // WARNING: Subroutine does not return
   NetworkSecurityGuardCleanup(uStack_40 ^ (ulonglong)auStack_88);
 }
@@ -29093,8 +29093,8 @@ FUN_180857c7a:
 
 
 
-// 函数: void FUN_180857bad(longlong connectionContext)
-void FUN_180857bad(longlong connectionContext)
+// 函数: void NetworkConnectionPacketProcessor(longlong connectionContext)
+void NetworkConnectionPacketProcessor(longlong connectionContext)
 
 {
   NetworkHandle *networkPointer1;
@@ -29203,8 +29203,8 @@ LAB_180857c4e:
 
 
 
-// 函数: void FUN_180857c7a(void)
-void FUN_180857c7a(void)
+// 函数: void NetworkSystemNoOperation(void)
+void NetworkSystemNoOperation(void)
 
 {
   ulonglong in_stack_00000048;
@@ -29216,8 +29216,8 @@ void FUN_180857c7a(void)
 
 
 
-// 函数: void FUN_180857c8f(NetworkStatus connectionContext)
-void FUN_180857c8f(NetworkStatus connectionContext)
+// 函数: void NetworkConnectionStateManager(NetworkStatus connectionContext)
+void NetworkConnectionStateManager(NetworkStatus connectionContext)
 
 {
   NetworkHandle *networkPointer1;
