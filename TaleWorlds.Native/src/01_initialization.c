@@ -5025,7 +5025,7 @@ void InitializeSystemResourceNodeManager(void)
 
 
 
-// 函数: void InitializeSystemProcessManager(void)
+// 函数: void InitializeSystemMemoryNodeManager(void)
 /**
  * @brief 初始化系统内存节点管理器
  * 
@@ -24663,8 +24663,20 @@ void FUN_18004caa0(void* *SystemResourcePointer)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_18004caf0(long long SystemResourcePointer)
-void FUN_18004caf0(long long SystemResourcePointer)
+/**
+ * @brief 计算渲染质量设置
+ * 
+ * 根据系统节点管理器的配置计算渲染质量相关的各种参数，
+ * 包括纹理缩放、阴影缩放、基础渲染比例等。
+ * 这些参数用于调整游戏的渲染质量和性能。
+ * 
+ * @param SystemResourcePointer 系统资源指针，用于存储计算结果
+ * 
+ * @return 无返回值
+ * 
+ * @note 计算结果会直接写入系统资源指针指定的内存位置
+ */
+void CalculateRenderQualitySettings(long long SystemResourcePointer)
 
 {
   long long lVar1;
