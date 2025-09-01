@@ -30603,7 +30603,7 @@ void InitializeSystemResourceManager(void)
 
 
 
-// 函数: void FUN_1800575d4(void)
+// 函数: void InitializeSystemResourceAllocator(void)
 /**
  * @brief 系统资源分配器初始化函数
  * 
