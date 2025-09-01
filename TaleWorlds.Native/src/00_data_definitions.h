@@ -944,29 +944,41 @@ int InitializeStringProcessorAF(void)
   callbackResult = RegisterSystemCallback(InitializeStringProcessorAF_Callback);
   return (callbackResult != 0) - 1;
 }
-int FUN_18003ae90(void)
+/**
+ * 初始化字符串处理器G
+ * 设置字符串处理G所需的数据结构和缓冲区
+ * 
+ * @return 初始化成功返回0，失败返回-1
+ */
+int InitializeStringProcessorG(void)
 {
-  longlong lVar1;
-  undefined8 in_R9;
-  _DAT_180bf92d0 = &UNK_1809fcc58;
-  _DAT_180bf92d8 = &DAT_180bf92e8;
-  DAT_180bf92e8 = 0;
-  _DAT_180bf92e0 = 0x12;
-  strcpy_s(&DAT_180bf92e8,0x40,&UNK_180a22b60,in_R9,0xfffffffffffffffe);
-  lVar1 = FUN_1808fc7d0(FUN_180941f60);
-  return (lVar1 != 0) - 1;
+  longlong callbackResult;
+  undefined8 processorFlags;
+  GlobalStringProcessorG_Base = &GlobalUnknownDataBase;
+  GlobalStringProcessorG_BufferPtr = &GlobalStringProcessorG_Buffer;
+  GlobalStringProcessorG_Buffer = 0;
+  GlobalStringProcessorG_Length = 0x12;
+  strcpy_s(&GlobalStringProcessorG_Buffer,0x40,&GlobalUnknownDataBase,processorFlags,0xfffffffffffffffe);
+  callbackResult = RegisterSystemCallback(StringProcessorG_Callback);
+  return (callbackResult != 0) - 1;
 }
-int FUN_18003af00(void)
+/**
+ * 初始化字符串处理器H
+ * 设置字符串处理H所需的数据结构和缓冲区
+ * 
+ * @return 初始化成功返回0，失败返回-1
+ */
+int InitializeStringProcessorH(void)
 {
-  longlong lVar1;
-  undefined8 in_R9;
-  _DAT_180bf9330 = &UNK_1809fcc58;
-  _DAT_180bf9338 = &DAT_180bf9348;
-  DAT_180bf9348 = 0;
-  _DAT_180bf9340 = 0xd;
-  strcpy_s(&DAT_180bf9348,0x40,&UNK_180a22b50,in_R9,0xfffffffffffffffe);
-  lVar1 = FUN_1808fc7d0(FUN_180941f80);
-  return (lVar1 != 0) - 1;
+  longlong callbackResult;
+  undefined8 processorFlags;
+  GlobalStringProcessorH_Base = &GlobalUnknownDataBase;
+  GlobalStringProcessorH_BufferPtr = &GlobalStringProcessorH_Buffer;
+  GlobalStringProcessorH_Buffer = 0;
+  GlobalStringProcessorH_Length = 0xd;
+  strcpy_s(&GlobalStringProcessorH_Buffer,0x40,&GlobalUnknownDataBase,processorFlags,0xfffffffffffffffe);
+  callbackResult = RegisterSystemCallback(StringProcessorH_Callback);
+  return (callbackResult != 0) - 1;
 }
 int FUN_18003af70(void)
 {
