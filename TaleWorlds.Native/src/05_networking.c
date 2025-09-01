@@ -147,17 +147,17 @@ int NetworkCleanupConnectionContext(longlong connectionContext);
 int ValidateNetworkBufferTimeout(longlong bufferData, int timeoutValue, longlong validationResult);
 
 /**
- * @brief 处理网络缓冲区句柄
+ * @brief 处理带加密的网络缓冲区
  * 
- * 该函数负责处理网络缓冲区的句柄操作。
- * 主要用于缓冲区管理和数据访问控制。
+ * 该函数负责处理需要加密的网络缓冲区数据
+ * 主要用于安全网络通信的数据处理
  * 
- * @param bufferHandle 缓冲区句柄
- * @param handleSize 句柄大小
- * @param networkBuffer 网络缓冲区指针
+ * @param encryptedBuffer 加密缓冲区指针
+ * @param bufferSize 缓冲区大小
+ * @param encryptionKey 加密密钥
  * @return 处理结果状态码
  */
-int NetworkProcessBufferHandle(longlong bufferHandle, int handleSize, longlong networkBuffer);
+int ProcessNetworkBufferWithEncryption(longlong encryptedBuffer, int bufferSize, longlong encryptionKey);
 
 /**
  * @brief 处理网络句柄
