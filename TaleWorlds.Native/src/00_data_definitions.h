@@ -12600,15 +12600,15 @@ LAB_1808fc75b:
   }
   return;
 }
-    DAT_180c961d8 = '\0';
+    SystemCameraTrackingEnabled = '\0';
   }
   return;
 }
-    DAT_180c95f28 = '\0';
+    SystemUIEnabled = '\0';
   }
   return;
 }
-    DAT_180c95fe8 = '\0';
+    SystemPhysicsEnabled = '\0';
   }
   return;
 }
