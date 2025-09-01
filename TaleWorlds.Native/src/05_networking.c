@@ -391,19 +391,19 @@ uint ValidateNetworkConnectionParameters(longlong *connectionParams)
     }
   }
   *(undefined4 *)(connectionParams + 1) = 0;
-  uVar3 = (uVar3 ^ (int)uVar3 >> 0x1f) - ((int)uVar3 >> 0x1f);
-  if ((int)uVar3 < 1) {
-    return uVar3;
+  parameterValue = (parameterValue ^ (int)parameterValue >> 0x1f) - ((int)parameterValue >> 0x1f);
+  if ((int)parameterValue < 1) {
+    return parameterValue;
   }
-  if (0 < (int)param_1[1]) {
+  if (0 < (int)connectionParams[1]) {
     return 0x1c;
   }
-  if ((0 < *(int *)((longlong)param_1 + 0xc)) && (*param_1 != 0)) {
+  if ((0 < *(int *)((longlong)connectionParams + 0xc)) && (*connectionParams != 0)) {
                     // WARNING: Subroutine does not return
-    ValidateNetworkConnectionSecurity(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),*param_1,&g_NetworkSecurityValidationData,0x100,1);
+    ValidateNetworkConnectionSecurity(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),*connectionParams,&g_NetworkSecurityValidationData,0x100,1);
   }
-  *param_1 = 0;
-  *(undefined4 *)((longlong)param_1 + 0xc) = 0;
+  *connectionParams = 0;
+  *(undefined4 *)((longlong)connectionParams + 0xc) = 0;
   return 0;
 }
 
@@ -469,19 +469,19 @@ undefined8 CleanupNetworkConnectionResources(longlong *connectionContext)
 {
   int resourceCount;
   undefined8 cleanupStatus;
-  uint parameterRange;
+  uint validationRange;
   
-  parameterRange = *(uint *)((longlong)connectionContext + 0xc);
-  if ((int)((parameterRange ^ (int)parameterRange >> 0x1f) - ((int)parameterRange >> 0x1f)) < 0) {
+  validationRange = *(uint *)((longlong)connectionContext + 0xc);
+  if ((int)((validationRange ^ (int)validationRange >> 0x1f) - ((int)validationRange >> 0x1f)) < 0) {
     if (0 < (int)connectionContext[1]) {
       return 0x1c;
     }
-    if ((0 < (int)parameterRange) && (*connectionContext != 0)) {
+    if ((0 < (int)validationRange) && (*connectionContext != 0)) {
                     // WARNING: Subroutine does not return
       FUN_180742250(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),*connectionContext,&g_NetworkSecurityValidationData,0x100,1);
     }
     *connectionContext = 0;
-    parameterRange = 0;
+    validationRange = 0;
     *(undefined4 *)((longlong)connectionContext + 0xc) = 0;
   }
   resourceCount = (int)connectionContext[1];
@@ -490,7 +490,7 @@ undefined8 CleanupNetworkConnectionResources(longlong *connectionContext)
     memset((longlong)resourceCount + *connectionContext,0,(longlong)-resourceCount);
   }
   *(undefined4 *)(connectionContext + 1) = 0;
-  if ((0 < (int)((parameterRange ^ (int)parameterRange >> 0x1f) - ((int)parameterRange >> 0x1f))) &&
+  if ((0 < (int)((validationRange ^ (int)validationRange >> 0x1f) - ((int)validationRange >> 0x1f))) &&
      (cleanupStatus = FUN_180849030(connectionContext,0), (int)cleanupStatus != 0)) {
     return cleanupStatus;
   }
@@ -958,8 +958,21 @@ LAB_1808408dd:
 
 
 
-// 函数: void FUN_1808407ce(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
-void FUN_1808407ce(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+/**
+ * 处理网络连接数据
+ * 
+ * 该函数负责处理网络连接中的数据传输和状态管理。
+ * 根据传入的参数执行相应的网络操作，包括连接验证、
+ * 数据处理和状态更新等功能。
+ * 
+ * @param connectionContext 网络连接上下文
+ * @param processData 待处理的数据指针
+ * @param operationType 操作类型标识
+ * @param timeoutValue 超时设置值
+ * 
+ * 注意：这是一个反编译的函数实现，原始函数名已丢失
+ */
+void FUN_1808407ce(undefined8 connectionContext,undefined8 processData,undefined8 operationType,undefined8 timeoutValue)
 
 {
   undefined8 *puVar1;
@@ -1037,18 +1050,28 @@ LAB_1808408dd:
 
 
 
+/**
+ * 重置网络连接状态
+ * 
+ * 该函数负责重置网络连接的状态信息，清空连接相关的数据。
+ * 主要用于网络连接断开或需要重新初始化时的状态清理工作。
+ * 
+ * @return 状态码，0表示成功，非0表示错误代码
+ * 
+ * 注意：这是一个反编译的函数实现，原始函数名已丢失
+ */
 undefined4 FUN_1808408ec(void)
 
 {
-  undefined8 *unaff_RBX;
-  undefined4 unaff_EDI;
+  undefined8 *connectionBuffer;
+  undefined4 status;
   
-  if (unaff_RBX != (undefined8 *)0x0) {
-    *unaff_RBX = 0;
-    unaff_RBX[1] = 0;
-    unaff_RBX[2] = 0;
+  if (connectionBuffer != (undefined8 *)0x0) {
+    *connectionBuffer = 0;
+    connectionBuffer[1] = 0;
+    connectionBuffer[2] = 0;
   }
-  return unaff_EDI;
+  return status;
 }
 
 
