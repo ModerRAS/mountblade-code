@@ -168,6 +168,43 @@ void* UnknownDataPointer180a27a70;
 void* UnknownDataPointer180a01300;
 void* UnknownDataPointer180a01330;
 
+// 字符串处理系统V-AA的变量声明 - 用于字符串处理系统的数据管理
+void* StringProcessingSystemV_BasePointer;
+void* StringProcessingSystemV_BufferPointer;
+void* StringProcessingSystemV_DataBuffer;
+uint32_t StringProcessingSystemV_BufferSize;
+void* StringProcessingSystemV_Template;
+
+void* StringProcessingSystemW_BasePointer;
+void* StringProcessingSystemW_BufferPointer;
+void* StringProcessingSystemW_DataBuffer;
+uint32_t StringProcessingSystemW_BufferSize;
+void* StringProcessingSystemW_Template;
+
+void* StringProcessingSystemX_BasePointer;
+void* StringProcessingSystemX_BufferPointer;
+void* StringProcessingSystemX_DataBuffer;
+uint32_t StringProcessingSystemX_BufferSize;
+void* StringProcessingSystemX_Template;
+
+void* StringProcessingSystemY_BasePointer;
+void* StringProcessingSystemY_BufferPointer;
+void* StringProcessingSystemY_DataBuffer;
+uint32_t StringProcessingSystemY_BufferSize;
+void* StringProcessingSystemY_Template;
+
+void* StringProcessingSystemZ_BasePointer;
+void* StringProcessingSystemZ_BufferPointer;
+void* StringProcessingSystemZ_DataBuffer;
+uint32_t StringProcessingSystemZ_BufferSize;
+void* StringProcessingSystemZ_Template;
+
+void* StringProcessingSystemAA_BasePointer;
+void* StringProcessingSystemAA_BufferPointer;
+void* StringProcessingSystemAA_DataBuffer;
+uint32_t StringProcessingSystemAA_BufferSize;
+void* StringProcessingSystemAA_Template;
+
 // 系统配置未知指针
 void* UnknownDataPointer1809fd1a0;
 void* UnknownDataPointer1809fd1b0;
@@ -2080,11 +2117,11 @@ int InitializeStringProcessingSystemV(void)
 {
   int64_t ModuleInitializationResult;
   uint64_t StringProcessorFlags;
-  _DAT_180bf9d50 = &SystemMemoryPool;
-  _DAT_180bf9d58 = &DAT_180bf9d68;
-  DAT_180bf9d68 = 0;
-  _DAT_180bf9d60 = 0x1e;
-  strcpy_s(&DAT_180bf9d68,0x40,&UNK_180a22e70,StringProcessorFlags,SystemMutexFlags);
+  StringProcessingSystemV_BasePointer = &SystemMemoryPool;
+  StringProcessingSystemV_BufferPointer = &StringProcessingSystemV_DataBuffer;
+  StringProcessingSystemV_DataBuffer = 0;
+  StringProcessingSystemV_BufferSize = 0x1e;
+  strcpy_s(&StringProcessingSystemV_DataBuffer,0x40,&StringProcessingSystemV_Template,StringProcessorFlags,SystemMutexFlags);
   ModuleInitializationResult = RegisterSystemModule(InitializeStringProcessingSystemV);
   return (ModuleInitializationResult != 0) - 1;
 }
@@ -2098,11 +2135,11 @@ int InitializeStringProcessingSystemW(void)
 {
   int64_t ModuleInitializationResult;
   uint64_t StringProcessorFlags;
-  _DAT_180bf9db0 = &SystemMemoryPool;
-  _DAT_180bf9db8 = &DAT_180bf9dc8;
-  DAT_180bf9dc8 = 0;
-  _DAT_180bf9dc0 = 0x12;
-  strcpy_s(&DAT_180bf9dc8,0x40,&UNK_180a22e58,StringProcessorFlags,SystemMutexFlags);
+  StringProcessingSystemW_BasePointer = &SystemMemoryPool;
+  StringProcessingSystemW_BufferPointer = &StringProcessingSystemW_DataBuffer;
+  StringProcessingSystemW_DataBuffer = 0;
+  StringProcessingSystemW_BufferSize = 0x12;
+  strcpy_s(&StringProcessingSystemW_DataBuffer,0x40,&StringProcessingSystemW_Template,StringProcessorFlags,SystemMutexFlags);
   ModuleInitializationResult = RegisterSystemModule(InitializeStringProcessingSystemW);
   return (ModuleInitializationResult != 0) - 1;
 }
@@ -2116,11 +2153,11 @@ int InitializeStringProcessingSystemX(void)
 {
   int64_t ModuleInitializationResult;
   uint64_t StringProcessorFlags;
-  _DAT_180bf9e10 = &SystemMemoryPool;
-  _DAT_180bf9e18 = &DAT_180bf9e28;
-  DAT_180bf9e28 = 0;
-  _DAT_180bf9e20 = 0x13;
-  strcpy_s(&DAT_180bf9e28,0x40,&UNK_180a22f28,StringProcessorFlags,SystemMutexFlags);
+  StringProcessingSystemX_BasePointer = &SystemMemoryPool;
+  StringProcessingSystemX_BufferPointer = &StringProcessingSystemX_DataBuffer;
+  StringProcessingSystemX_DataBuffer = 0;
+  StringProcessingSystemX_BufferSize = 0x13;
+  strcpy_s(&StringProcessingSystemX_DataBuffer,0x40,&StringProcessingSystemX_Template,StringProcessorFlags,SystemMutexFlags);
   ModuleInitializationResult = RegisterSystemModule(InitializeStringProcessingSystemX);
   return (ModuleInitializationResult != 0) - 1;
 }
@@ -2134,11 +2171,11 @@ int InitializeStringProcessingSystemY(void)
 {
   int64_t ModuleInitializationResult;
   uint64_t StringProcessorFlags;
-  _DAT_180bf9e70 = &SystemMemoryPool;
-  _DAT_180bf9e78 = &DAT_180bf9e88;
-  DAT_180bf9e88 = 0;
-  _DAT_180bf9e80 = 0x13;
-  strcpy_s(&DAT_180bf9e88,0x40,&UNK_180a22f10,StringProcessorFlags,SystemMutexFlags);
+  StringProcessingSystemY_BasePointer = &SystemMemoryPool;
+  StringProcessingSystemY_BufferPointer = &StringProcessingSystemY_DataBuffer;
+  StringProcessingSystemY_DataBuffer = 0;
+  StringProcessingSystemY_BufferSize = 0x13;
+  strcpy_s(&StringProcessingSystemY_DataBuffer,0x40,&StringProcessingSystemY_Template,StringProcessorFlags,SystemMutexFlags);
   ModuleInitializationResult = RegisterSystemModule(InitializeStringProcessingSystemY);
   return (ModuleInitializationResult != 0) - 1;
 }
@@ -2152,11 +2189,11 @@ int InitializeStringProcessingSystemZ(void)
 {
   int64_t ModuleInitializationResult;
   uint64_t StringProcessorFlags;
-  _DAT_180bf9ed0 = &SystemMemoryPool;
-  _DAT_180bf9ed8 = &DAT_180bf9ee8;
-  DAT_180bf9ee8 = 0;
-  _DAT_180bf9ee0 = 0x16;
-  strcpy_s(&DAT_180bf9ee8,0x40,&UNK_180a22ef8,StringProcessorFlags,SystemMutexFlags);
+  StringProcessingSystemZ_BasePointer = &SystemMemoryPool;
+  StringProcessingSystemZ_BufferPointer = &StringProcessingSystemZ_DataBuffer;
+  StringProcessingSystemZ_DataBuffer = 0;
+  StringProcessingSystemZ_BufferSize = 0x16;
+  strcpy_s(&StringProcessingSystemZ_DataBuffer,0x40,&StringProcessingSystemZ_Template,StringProcessorFlags,SystemMutexFlags);
   ModuleInitializationResult = RegisterSystemModule(InitializeStringProcessingSystemZ);
   return (ModuleInitializationResult != 0) - 1;
 }
@@ -2170,11 +2207,11 @@ int InitializeStringProcessingSystemAA(void)
 {
   int64_t ModuleInitializationResult;
   uint64_t StringProcessorFlags;
-  _DAT_180bf9f30 = &SystemMemoryPool;
-  _DAT_180bf9f38 = &DAT_180bf9f48;
-  DAT_180bf9f48 = 0;
-  _DAT_180bf9f40 = 0x1a;
-  strcpy_s(&DAT_180bf9f48,0x40,&UNK_180a22ed8,StringProcessorFlags,SystemMutexFlags);
+  StringProcessingSystemAA_BasePointer = &SystemMemoryPool;
+  StringProcessingSystemAA_BufferPointer = &StringProcessingSystemAA_DataBuffer;
+  StringProcessingSystemAA_DataBuffer = 0;
+  StringProcessingSystemAA_BufferSize = 0x1a;
+  strcpy_s(&StringProcessingSystemAA_DataBuffer,0x40,&StringProcessingSystemAA_Template,StringProcessorFlags,SystemMutexFlags);
   ModuleInitializationResult = RegisterSystemModule(InitializeStringProcessingSystemAA);
   return (ModuleInitializationResult != 0) - 1;
 }
