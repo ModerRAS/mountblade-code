@@ -3606,8 +3606,15 @@ void InitializeSystemPerformanceMonitor(void)
 
 
 
-// 函数: void FUN_180030070(void)
-void FUN_180030070(void)
+/**
+ * @brief 初始化系统调试管理器
+ * 
+ * 初始化游戏引擎的调试管理器，设置系统调试的基础设施。
+ * 该函数负责创建调试管理的基本结构，为系统调试和日志记录做准备。
+ * 
+ * @note 该函数在系统初始化阶段被调用，用于建立调试管理的基础
+ */
+void InitializeSystemDebugManager(void)
 
 {
   char systemNodeFlag;
@@ -3619,12 +3626,12 @@ void FUN_180030070(void)
   undefined8 *systemCurrentNode;
   undefined8 *systemNextNode;
   undefined8 *systemPreviousNode;
-  code *pcStackX_18;
+  code *debugInitializationCallback;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
   systemRootNode = (undefined8 *)*systemDataTable;
   systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
-  pcStackX_18 = FUN_18025e330;
+  debugInitializationCallback = FUN_18025e330;
   systemPreviousNode = systemRootNode;
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {

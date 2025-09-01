@@ -3207,25 +3207,36 @@ int ProcessNetworkPacketWithSpecialBuffer(longlong connectionContext,longlong pa
 
 
 
-int FUN_180842f50(longlong connectionContext,longlong packetData,int dataSize)
+/**
+ * @brief 处理带有网络句柄的数据包
+ * 
+ * 该函数处理网络数据包，使用网络句柄进行高级处理。它依次处理多个缓冲区，
+ * 并使用网络句柄进行最终的数据处理。
+ * 
+ * @param connectionContext 连接上下文指针
+ * @param packetData 数据包数据指针
+ * @param dataSize 数据包大小
+ * @return 处理的总字节数
+ */
+int ProcessNetworkPacketWithHandle(longlong connectionContext,longlong packetData,int dataSize)
 
 {
-  NetworkStatus uVar1;
-  NetworkHandle uVar2;
-  int networkStatus3;
-  int networkStatus4;
+  NetworkStatus bufferStatus;
+  NetworkHandle networkHandle;
+  int firstProcessingOffset;
+  int secondProcessingOffset;
   
-  uVar2 = *(NetworkHandle *)(connectionContext + 0x18);
-  uVar1 = *(NetworkStatus *)(connectionContext + 0x10);
-  networkStatus3 = FUN_18074b880(packetData,dataSize,&UNK_180983e68);
-  networkStatus4 = FUN_18074b880(networkStatus3 + packetData,dataSize - networkStatus3,&g_NetworkBufferDataTemplate);
-  networkStatus3 = networkStatus3 + networkStatus4;
-  networkStatus4 = func_0x00018074b800(networkStatus3 + packetData,dataSize - networkStatus3,uVar1);
-  networkStatus3 = networkStatus3 + networkStatus4;
-  networkStatus4 = FUN_18074b880(networkStatus3 + packetData,dataSize - networkStatus3,&g_NetworkBufferDataTemplate);
-  networkStatus3 = networkStatus3 + networkStatus4;
-  networkStatus4 = func_0x00018074bda0(networkStatus3 + packetData,dataSize - networkStatus3,uVar2);
-  return networkStatus4 + networkStatus3;
+  networkHandle = *(NetworkHandle *)(connectionContext + 0x18);
+  bufferStatus = *(NetworkStatus *)(connectionContext + 0x10);
+  firstProcessingOffset = FUN_18074b880(packetData,dataSize,&UNK_180983e68);
+  secondProcessingOffset = FUN_18074b880(firstProcessingOffset + packetData,dataSize - firstProcessingOffset,&g_NetworkBufferDataTemplate);
+  firstProcessingOffset = firstProcessingOffset + secondProcessingOffset;
+  secondProcessingOffset = func_0x00018074b800(firstProcessingOffset + packetData,dataSize - firstProcessingOffset,bufferStatus);
+  firstProcessingOffset = firstProcessingOffset + secondProcessingOffset;
+  secondProcessingOffset = FUN_18074b880(firstProcessingOffset + packetData,dataSize - firstProcessingOffset,&g_NetworkBufferDataTemplate);
+  firstProcessingOffset = firstProcessingOffset + secondProcessingOffset;
+  secondProcessingOffset = func_0x00018074bda0(firstProcessingOffset + packetData,dataSize - firstProcessingOffset,networkHandle);
+  return secondProcessingOffset + firstProcessingOffset;
 }
 
 
