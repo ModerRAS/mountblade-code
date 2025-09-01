@@ -37385,7 +37385,20 @@ void CleanupSystemResourceHandlerA50(uint8_t ObjectContextParameter,int64_t Vali
 
 
 
-void Unwind_180903a70(uint8_t ObjectContextParameter,int64_t ValidationContextParameter,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 清理系统资源处理器A70
+ * 
+ * 该函数负责清理系统资源处理器，释放相关资源
+ * 重置系统状态并执行必要的清理操作
+ * 
+ * @param ObjectContextParameter 对象上下文参数
+ * @param ValidationContextParameter 验证上下文参数
+ * @param CleanupOption 清理选项
+ * @param CleanupFlag 清理标志
+ * @return 无返回值
+ * @note 此函数用于系统资源清理和释放
+ */
+void CleanupSystemResourceHandlerA70(uint8_t ObjectContextParameter,int64_t ValidationContextParameter,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
