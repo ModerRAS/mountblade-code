@@ -363,6 +363,9 @@ void* SystemEventCallbackPointer;     // FUN_180262b00
 void* SystemInitializationCallbackA;  // FUN_18025c000
 void* SystemInitializationCallbackB;  // FUN_18025d270
 void* SystemDebugCallback;            // FUN_18025e330
+void* SystemEventCallback;            // FUN_1802281a0
+void* SystemNetworkCallback;          // FUN_1802285e0
+void* SystemGlobalDataProcessor;      // FUN_180623800
 
 // 系统全局数据指针
 void* SystemGlobalDataPointerA;        // UNK_180a3c3e0
@@ -4227,7 +4230,7 @@ void InitializeSystemEventManager(void)
   dataTable = (longlong *)GetSystemRootPointer();
   rootNode = (undefined8 *)*dataTable;
   nodeFlag = *(char *)((longlong)rootNode[1] + 0x19);
-  eventCallbackPointer = FUN_1802281a0;
+  eventCallbackPointer = SystemEventCallback;
   previousNode = rootNode;
   currentNode = (undefined8 *)rootNode[1];
   while (nodeFlag == '\0') {
@@ -4286,7 +4289,7 @@ void InitializeSystemNetworkManager(void)
   dataTable = (longlong *)GetSystemRootPointer();
   rootNode = (undefined8 *)*dataTable;
   nodeFlag = *(char *)((longlong)rootNode[1] + 0x19);
-  networkCallbackPointer = FUN_1802285e0;
+  networkCallbackPointer = SystemNetworkCallback;
   previousNode = rootNode;
   currentNode = (undefined8 *)rootNode[1];
   while (nodeFlag == '\0') {
@@ -4866,14 +4869,13 @@ void InitializeSystemStringConfigurationManager(void)
   auStack_88[0] = 0;
   uStack_90 = 0xb;
   strcpy_s(auStack_88,0x80,&UNK_180a13a98,in_R9,0xfffffffffffffffe);
-  _DAT_180c91d54 = FUN_180623800(&puStack_a0);
+  _DAT_180c91d54 = SystemGlobalDataProcessor(&puStack_a0);
   return;
 }
 
 
 
 
-// 函数: void FUN_1800325a0(void)
 /**
  * @brief 初始化系统配置节点管理器
  * 
@@ -4931,7 +4933,6 @@ void InitializeSystemConfigurationNodeManager(void)
 
 
 
-// 函数: void FUN_1800326a0(void)
 /**
  * @brief 初始化系统事件节点管理器
  * 
@@ -5070,7 +5071,7 @@ void InitializeSystemEventNode(void)
   systemDataTable = (void *)GetSystemRootPointer();
   systemRootNode = (void *)*(longlong *)systemDataTable;
   systemNodeFlag = *(char *)((longlong)systemRootNode[1] + 0x19);
-  systemValidationCallback = FUN_18025d270;
+  systemValidationCallback = SystemInitializationCallbackB;
   systemPreviousNode = systemRootNode;
   systemCurrentNode = (void *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
@@ -5216,7 +5217,6 @@ void InitializeRenderingSystem(void)
 
 
 
-// 函数: void FUN_180032ba0(void)
 /**
  * @brief 初始化系统配置管理器
  * 
@@ -5276,7 +5276,6 @@ void InitializeSystemConfigurationManager(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180032ca0(void)
 /**
  * @brief 初始化系统消息处理器
  * 
@@ -5325,7 +5324,6 @@ int InitializeSystemDebugManager(void)
   SystemConfigDataPointerF = &SystemGlobalDataPointerB;
   _DAT_180bf7e98 = &DAT_180bf7ea8;
 
-// 函数: void FUN_180033780(void)
 /**
  * @brief 初始化系统日志管理器
  * 
@@ -5357,7 +5355,6 @@ void InitializeSystemLogManager(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180033810(void)
 /**
  * @brief 初始化系统性能监控器
  * 
