@@ -76,7 +76,7 @@ void* StringProcessingGuardCheckHandler;
 // 内存管理系统初始化
 void* GameMemoryManagementMainInitializer;
 
-// 函数: 系统初始化函数C - 系统资源管理器初始化
+// 系统资源管理器初始化
 void* GameResourceManagementMainInitializer;
 void* ResourceMemoryRegionPrimary;
 void* ResourceMemoryRegionSecondary;
