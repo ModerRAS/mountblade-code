@@ -17879,18 +17879,18 @@ int InitializeVirtualFunctionTableArray(void)
 
 {
   void* *vtablePointer;
-  long long loopCounter;
+  long long VirtualFunctionCounter;
   
   vtablePointer = (void* *)0x180c35590;
-  loopCounter = 0x10;
+  VirtualFunctionCounter = 0x10;
   do {
     func_0x000180767970(vtablePointer);
     *vtablePointer = &UNK_18097e888;
     vtablePointer = vtablePointer + 0x2b;
-    loopCounter = loopCounter + -1;
-  } while (loopCounter != 0);
-  loopCounter = ProcessSystemEvent(&SystemEventDataA);
-  return (loopCounter != 0) - 1;
+    VirtualFunctionCounter = VirtualFunctionCounter + -1;
+  } while (VirtualFunctionCounter != 0);
+  VirtualFunctionCounter = ProcessSystemEvent(&SystemEventDataA);
+  return (VirtualFunctionCounter != 0) - 1;
 }
 
 
