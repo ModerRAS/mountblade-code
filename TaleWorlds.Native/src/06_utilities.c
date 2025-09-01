@@ -18797,7 +18797,15 @@ LAB_1808a2e6d:
 
 
 
-undefined8 FUN_18089b540(void)
+/**
+ * @brief 验证资源表完整性
+ * 
+ * 该函数负责验证资源表的完整性
+ * 确保资源表结构正确且数据完整
+ * 
+ * @return 验证结果状态码
+ */
+undefined8 ValidateResourceTableIntegrity(void)
 
 {
   longlong lVar1;
