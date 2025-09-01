@@ -2482,7 +2482,7 @@ int ProcessSystemEvent(uint64_t systemId,uint64_t eventType,uint64_t eventData,u
   SystemStringBufferAI = 0;
   SystemBufferSizeParameter = 9;
   strcpy_s(&SystemStringBufferAI,0x80,&UnknownDataPointer180a0f190);
-  _DAT_180bfa480 = &SystemMemoryConfigTemplate;
+  SystemMemoryConfigInstance = &SystemMemoryConfigTemplate;
   _DAT_180bfa488 = &DAT_180bfa498;
   DAT_180bfa498 = 0;
   _DAT_180bfa490 = 0xb;
