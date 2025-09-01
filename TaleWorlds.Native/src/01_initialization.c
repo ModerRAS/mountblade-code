@@ -381,25 +381,25 @@ void* SystemConfigurationDataTertiary;
 void* SystemConfigurationDataQuaternary;
 void* SystemConfigurationDataQuinary;
 void* SystemConfigurationDataSenary;
-undefined UNK_180a09248;
-undefined UNK_180a193d8;
-undefined UNK_180a19458;
-undefined UNK_180a09420;
-undefined UNK_180946958;
-undefined DAT_180a089b0;
-undefined UNK_1800830b0;
-undefined UNK_1800830c0;
-undefined UNK_180083130;
+undefined SystemDataBuffer001;
+undefined SystemDataBuffer002;
+undefined SystemDataBuffer003;
+undefined SystemDataBuffer004;
+undefined SystemDataBuffer005;
+undefined SystemDataBuffer006;
+undefined SystemDataBuffer007;
+undefined SystemDataBuffer008;
+undefined SystemDataBuffer009;
 
 // 函数: 系统配置加载器 - 负责加载系统配置参数
 undefined SystemConfigurationLoader;
-undefined UNK_180a0c9a0;
-undefined UNK_180a0cb40;
-undefined UNK_180a0c808;
-undefined UNK_180a0c9b0;
-undefined UNK_180a0c7d8;
-undefined UNK_180a0c7f0;
-undefined UNK_180a0c508;
+undefined SystemDataBuffer010;
+undefined SystemDataBuffer011;
+undefined SystemDataBuffer012;
+undefined SystemDataBuffer013;
+undefined SystemDataBuffer014;
+undefined SystemDataBuffer015;
+undefined SystemDataBuffer016;
 
 // 函数: 系统错误处理器 - 负责处理系统级错误和异常
 undefined SystemErrorHandler;
@@ -412,21 +412,21 @@ undefined SystemPerformanceMonitor;
 
 // 函数: 系统资源清理器 - 负责清理系统资源
 undefined SystemResourceCleaner;
-undefined UNK_180a13ad0;
-undefined DAT_180a0ba58;
-undefined DAT_180a0d580;
-undefined UNK_180a13aa8;
-undefined UNK_180a13ab8;
-undefined UNK_180a13ae8;
-undefined UNK_180a13bb8;
-undefined UNK_180a13b30;
-undefined UNK_180a13b70;
-undefined DAT_180a13c30;
-undefined UNK_180a03108;
-undefined UNK_180a13c08;
-undefined UNK_180a13c48;
-undefined UNK_180a12ea0;
-undefined DAT_180a1388c;
+undefined SystemDataBuffer017;
+undefined SystemDataBuffer018;
+undefined SystemDataBuffer019;
+undefined SystemDataBuffer020;
+undefined SystemDataBuffer021;
+undefined SystemDataBuffer022;
+undefined SystemDataBuffer023;
+undefined SystemDataBuffer024;
+undefined SystemDataBuffer025;
+undefined SystemDataBuffer026;
+undefined SystemDataBuffer027;
+undefined SystemDataBuffer028;
+undefined SystemDataBuffer029;
+undefined SystemDataBuffer030;
+undefined SystemDataBuffer031;
 undefined UNK_180a13c2c;
 undefined UNK_180a13c70;
 undefined UNK_180a13c88;
@@ -3834,8 +3834,15 @@ void InitializeSystemSecurityManager(void)
 
 
 
-// 函数: void FUN_180030470(void)
-void FUN_180030470(void)
+/**
+ * @brief 初始化系统数据表结构A
+ * 
+ * 该函数负责初始化系统数据表的基本结构，设置数据表的根节点和初始状态。
+ * 它会在系统中创建一个新的数据表结构，用于存储系统运行时的数据。
+ * 
+ * @note 该函数在系统启动时被调用，是系统初始化过程的重要组成部分。
+ */
+void InitializeSystemDataTableStructureA(void)
 
 {
   char systemNodeFlag;
