@@ -2160,8 +2160,14 @@ undefined UNK_1801bc6b0;
 undefined UNK_180a0b680;
 undefined UNK_180a0b690;
 
-// 函数: undefined FUN_180941d50;
-undefined FUN_180941d50;
+// 函数: void AllocateMemoryBlock;
+/**
+ * @brief 分配内存块
+ * 
+ * 该函数负责分配指定大小的内存块
+ * 返回分配的内存指针
+ */
+void AllocateMemoryBlock;
 undefined UNK_180bd8a60;
 undefined UNK_180a185f0;
 undefined UNK_180a18618;
@@ -2219,8 +2225,14 @@ undefined UNK_180a18de8;
 undefined UNK_180a18df8;
 undefined UNK_180a18e20;
 
-// 函数: undefined FUN_180941da0;
-undefined FUN_180941da0;
+// 函数: void FreeMemoryBlock;
+/**
+ * @brief 释放内存块
+ * 
+ * 该函数负责释放之前分配的内存块
+ * 回收内存资源供后续使用
+ */
+void FreeMemoryBlock;
 undefined UNK_180a19fd8;
 undefined UNK_180a19eb0;
 undefined UNK_180302310;
@@ -2229,8 +2241,14 @@ undefined UNK_180a19e38;
 undefined UNK_1803048b0;
 undefined UNK_180a19e88;
 
-// 函数: undefined FUN_180941dd0;
-undefined FUN_180941dd0;
+// 函数: void ReallocateMemoryBlock;
+/**
+ * @brief 重新分配内存块
+ * 
+ * 该函数负责重新调整已分配内存块的大小
+ * 保留原有数据并调整内存空间
+ */
+void ReallocateMemoryBlock;
 undefined DAT_180d497d0;
 
 // 函数: undefined FUN_180941e00;
