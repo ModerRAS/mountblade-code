@@ -285,17 +285,27 @@ void* SystemMemoryRegion406;
  */
 void* SystemInitializationEntryPointC;
 
-// 函数: undefined FUN_180051cc0;
-undefined FUN_180051cc0;
+// 函数: 系统初始化入口点D
+/**
+ * @brief 系统初始化入口点D
+ * 
+ * 该函数负责系统初始化过程中的设备检测和配置
+ */
+void* SystemInitializationEntryPointD;
 
-// 函数: undefined FUN_180051d00;
-undefined FUN_180051d00;
-undefined UNK_1800e7f50;
-undefined UNK_1800e7f80;
-undefined UNK_1800e7fb0;
-undefined UNK_1800e7fe0;
-undefined UNK_1800e8020;
-undefined UNK_1801b9b60;
+// 函数: 系统初始化入口点E
+/**
+ * @brief 系统初始化入口点E
+ * 
+ * 该函数负责系统初始化过程中的网络组件配置
+ */
+void* SystemInitializationEntryPointE;
+void* SystemMemoryRegion407;
+void* SystemMemoryRegion408;
+void* SystemMemoryRegion409;
+void* SystemMemoryRegion410;
+void* SystemMemoryRegion411;
+void* SystemMemoryRegion412;
 
 // 函数: undefined FUN_1800596a0;
 undefined FUN_1800596a0;
