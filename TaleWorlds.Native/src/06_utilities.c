@@ -12307,8 +12307,8 @@ uint8_t ExpandResourceTableCapacity(int64_t ObjectContextParameter)
     piVar3[4] = 0;
     piVar3[5] = 0;
     *piVar3 = tableEntry + 0x19;
-    *(uint8_t2 *)(piVar3 + 2) = 0x508;
-    *(uint8_t1 *)((int64_t)piVar3 + 10) = 3;
+    *(uint16_t *)(piVar3 + 2) = 0x508;
+    *(uint8_t *)((int64_t)piVar3 + 10) = 3;
     piVar3[3] = 1;
     resourceTable = *(int64_t *)(*(int64_t *)(ObjectContextParameter + 8) + 0x90);
     LoopIncrement = ProcessResourceValidation(*(uint8_t *)(resourceTable + 0x4d0),*(uint32_t *)(resourceTable + 0x774));
@@ -15587,29 +15587,29 @@ uint8_t ProcessResourceTableIndex(int64_t *ObjectContextParameter,int Validation
 {
   int operationResult;
   int64_t resourceTable;
-  uint8_t2 *pValidationResult;
+  uint16_t *pValidationResult;
   int64_t DataOffset;
-  uint8_t2 *resourcePointer5;
+  uint16_t *resourcePointer5;
   
   if (ValidationContextParameter < (int)ObjectContextParameter[1]) {
     return 0x1c;
   }
-  pValidationResult = (uint8_t2 *)0x0;
+  pValidationResult = (uint16_t *)0x0;
   if (ValidationContextParameter != 0) {
     if (ValidationContextParameter * 3 - 1U < 0x3fffffff) {
-      pValidationResult = (uint8_t2 *)
+      pValidationResult = (uint16_t *)
                AllocateMemoryBlock(*(uint8_t *)(SystemContextPointer + 0x1a0),ValidationContextParameter * 3,&ResourceTableTemplate,0xf4
                              ,0,0,1);
-      if (pValidationResult != (uint8_t2 *)0x0) {
+      if (pValidationResult != (uint16_t *)0x0) {
         ResourceIndex = (int)ObjectContextParameter[1];
         lVar4 = (int64_t)ResourceIndex;
         if ((ResourceIndex != 0) && (resourceTable = *ObjectContextParameter, 0 < ResourceIndex)) {
           resourcePointer5 = pValidationResult;
           do {
-            *resourcePointer5 = *(uint8_t2 *)((resourceTable - (int64_t)pValidationResult) + (int64_t)resourcePointer5);
+            *resourcePointer5 = *(uint16_t *)((resourceTable - (int64_t)pValidationResult) + (int64_t)resourcePointer5);
             *(uint8_t1 *)(resourcePointer5 + 1) =
                  *(uint8_t1 *)((resourceTable - (int64_t)pValidationResult) + 2 + (int64_t)resourcePointer5);
-            resourcePointer5 = (uint8_t2 *)((int64_t)resourcePointer5 + 3);
+            resourcePointer5 = (uint16_t *)((int64_t)resourcePointer5 + 3);
             lVar4 = lVar4 + -1;
           } while (lVar4 != 0);
         }
@@ -15647,13 +15647,13 @@ uint8_t ValidateResourceParameters(uint8_t ObjectContextParameter,int Validation
 {
   int operationResult;
   int64_t resourceTable;
-  uint8_t2 *pValidationResult;
+  uint16_t *pValidationResult;
   int64_t DataOffset;
-  uint8_t2 *resourcePointer5;
+  uint16_t *resourcePointer5;
   int64_t *ResourceContextPointer;
   int RegisterEDI;
   
-  pValidationResult = (uint8_t2 *)0x0;
+  pValidationResult = (uint16_t *)0x0;
   if (RegisterEDI == 0) {
 LAB_180898e0b:
     if ((0 < *(int *)((int64_t)ResourceContextPointer + 0xc)) && (*ResourceContextPointer != 0)) {
@@ -15665,19 +15665,19 @@ LAB_180898e0b:
     return 0;
   }
   if (ValidationContextParameter * 3 - 1U < 0x3fffffff) {
-    pValidationResult = (uint8_t2 *)
+    pValidationResult = (uint16_t *)
              AllocateMemoryBlock(*(uint8_t *)(SystemContextPointer + 0x1a0),ValidationContextParameter * 3,&ResourceTableTemplate,0xf4,0
                           );
-    if (pValidationResult != (uint8_t2 *)0x0) {
+    if (pValidationResult != (uint16_t *)0x0) {
       ResourceIndex = (int)ResourceContextPointer[1];
       lVar4 = (int64_t)ResourceIndex;
       if ((ResourceIndex != 0) && (resourceTable = *ResourceContextPointer, 0 < ResourceIndex)) {
         resourcePointer5 = pValidationResult;
         do {
-          *resourcePointer5 = *(uint8_t2 *)((resourceTable - (int64_t)pValidationResult) + (int64_t)resourcePointer5);
+          *resourcePointer5 = *(uint16_t *)((resourceTable - (int64_t)pValidationResult) + (int64_t)resourcePointer5);
           *(uint8_t1 *)(resourcePointer5 + 1) =
                *(uint8_t1 *)((resourceTable - (int64_t)pValidationResult) + 2 + (int64_t)resourcePointer5);
-          resourcePointer5 = (uint8_t2 *)((int64_t)resourcePointer5 + 3);
+          resourcePointer5 = (uint16_t *)((int64_t)resourcePointer5 + 3);
           lVar4 = lVar4 + -1;
         } while (lVar4 != 0);
       }
@@ -17239,10 +17239,10 @@ uint8_t ProcessResourceDataNormalizationSimple(void)
   ArrayUnionStackX8[0] = *ValidationContextParameter;
   ResourceIndex = (**(code **)**(uint8_t **)(ObjectContextParameter + 8))(*(uint8_t **)(ObjectContextParameter + 8),ArrayUnionStackX8,4);
   if (ResourceIndex == 0) {
-    ArrayUnionStackX8[0]._0_2_ = *(uint8_t2 *)(ValidationContextParameter + 1);
+    ArrayUnionStackX8[0]._0_2_ = *(uint16_t *)(ValidationContextParameter + 1);
     ResourceIndex = (**(code **)**(uint8_t **)(ObjectContextParameter + 8))(*(uint8_t **)(ObjectContextParameter + 8),ArrayUnionStackX8,2);
     if (ResourceIndex == 0) {
-      ArrayUnionStackX8[0] = CONCAT22(ArrayUnionStackX8[0]._2_2_,*(uint8_t2 *)((int64_t)ValidationContextParameter + 6));
+      ArrayUnionStackX8[0] = CONCAT22(ArrayUnionStackX8[0]._2_2_,*(uint16_t *)((int64_t)ValidationContextParameter + 6));
       ResourceIndex = (**(code **)**(uint8_t **)(ObjectContextParameter + 8))
                         (*(uint8_t **)(ObjectContextParameter + 8),ArrayUnionStackX8,2);
       if (ResourceIndex == 0) {
