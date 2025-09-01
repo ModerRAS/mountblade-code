@@ -10488,18 +10488,25 @@ LAB_18084af88:
 
 
 
-// WARNING: Type propagation algorithm not settling
-
-ulonglong FUN_18084afc0(NetworkHandle connectionContext)
+/**
+ * @brief 网络连接协议验证器
+ * 
+ * 该函数负责验证网络连接的协议信息，确保连接符合网络协议规范。
+ * 主要用于网络连接建立前的协议验证和连接状态检查。
+ * 
+ * @param connectionContext 网络连接上下文句柄
+ * @return 验证结果，成功返回0x4b，失败返回错误码
+ */
+ulonglong NetworkConnectionProtocolValidator(NetworkHandle connectionContext)
 
 {
-  uint primaryNetworkFlag;
-  int networkStatus2;
-  ulonglong tertiaryNetworkFlag;
-  longlong alStackX_10 [2];
-  NetworkHandle *puStackX_20;
+  uint primaryNetworkStatus;
+  int networkConnectionStatus;
+  ulonglong protocolValidationResult;
+  longlong networkConnectionParams [2];
+  NetworkHandle *networkHandlePointer;
   
-  primaryNetworkFlag = NetworkConnectionIdInitialize(connectionContext,alStackX_10);
+  primaryNetworkStatus = NetworkConnectionIdInitialize(connectionContext,networkConnectionParams);
   if ((primaryNetworkFlag == 0) && ((*(uint *)(alStackX_10[0] + 0x24) >> 1 & 1) == 0)) {
     return 0x4b;
   }
@@ -11948,7 +11955,20 @@ NetworkHandle ProcessNetworkConnectionPacket(NetworkHandle connectionContext,ulo
 
 
 
-longlong FUN_18084c390(longlong connectionContext,ulonglong packetData)
+// 函数: longlong FUN_18084c390(longlong connectionContext,ulonglong packetData)
+/**
+ * @brief 网络连接上下文释放器
+ * 
+ * 该函数负责释放网络连接上下文资源，清理连接数据
+ * 主要用于网络连接关闭后的资源管理工作
+ * 
+ * @param connectionContext 网络连接上下文指针
+ * @param packetData 数据包数据
+ * @return 处理后的连接上下文指针
+ * 
+ * 注意：这是一个反编译的函数实现
+ */
+longlong ReleaseNetworkConnectionContext(longlong connectionContext,ulonglong packetData)
 
 {
   FUN_18084c220(connectionContext + 0x38);
@@ -12056,7 +12076,18 @@ LAB_18084c510:
 
 
 
-NetworkHandle FUN_18084c55b(void)
+// 函数: NetworkHandle FUN_18084c55b(void)
+/**
+ * @brief 网络连接状态获取器
+ * 
+ * 该函数负责获取网络连接状态，返回状态码
+ * 主要用于查询网络连接的当前状态
+ * 
+ * @return 网络连接状态码
+ * 
+ * 注意：这是一个反编译的函数实现
+ */
+NetworkHandle GetNetworkConnectionStatus(void)
 
 {
   return 0x26;
@@ -14959,7 +14990,18 @@ NetworkHandle FUN_18084d93b(NetworkHandle connectionContext,int packetData)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-NetworkData * FUN_18084da10(void)
+// 函数: NetworkData * FUN_18084da10(void)
+/**
+ * @brief 网络数据管理器
+ * 
+ * 该函数负责管理网络数据，处理线程本地存储的数据访问
+ * 主要用于网络数据的统一管理和访问控制
+ * 
+ * @return 网络数据指针
+ * 
+ * 注意：这是一个反编译的函数实现
+ */
+NetworkData * NetworkDataManager(void)
 
 {
   if (*(int *)(*(longlong *)((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * 8) +
@@ -20716,7 +20758,21 @@ LAB_180851f6d:
 
 
 // 函数: void FUN_180852090(NetworkHandle *connectionContext,NetworkHandle *packetData)
-void FUN_180852090(NetworkHandle *connectionContext,NetworkHandle *packetData)
+/**
+ * @brief 网络连接上下文管理器
+ * 
+ * 该函数负责管理网络连接的上下文，包括：
+ * - 连接上下文初始化
+ * - 数据包上下文处理
+ * - 上下文状态管理
+ * - 上下文验证
+ * 
+ * @param connectionContext 网络连接上下文指针
+ * @param packetData 数据包数据指针
+ * 
+ * 注意：这是一个反编译的函数实现
+ */
+void NetworkConnectionContextManager(NetworkHandle *connectionContext,NetworkHandle *packetData)
 
 {
   NetworkHandle primaryNetworkFlag;
@@ -21172,7 +21228,18 @@ LAB_180852980:
 
 
 // 函数: void FUN_18085219c(void)
-void FUN_18085219c(void)
+/**
+ * @brief 网络缓冲区清理器
+ * 
+ * 该函数负责清理网络缓冲区，包括：
+ * - 缓冲区数据清除
+ * - 缓冲区状态重置
+ * - 缓冲区资源释放
+ * - 清理状态确认
+ * 
+ * 注意：这是一个反编译的函数实现
+ */
+void NetworkBufferCleanup(void)
 
 {
   char cVar1;
@@ -77330,7 +77397,17 @@ LAB_1808830a3:
 
 
 
-NetworkHandle FUN_1808830ee(void)
+/**
+ * @brief 获取网络连接拒绝状态
+ * 
+ * 该函数返回网络连接的拒绝状态码
+ * 主要用于连接拒绝检测和访问控制
+ * 
+ * @return 拒绝状态码 0x26
+ * 
+ * 注意：这是一个反编译的函数实现
+ */
+NetworkHandle GetNetworkConnectionRejectedStatus(void)
 
 {
   return 0x26;
