@@ -461,10 +461,10 @@ void* system_global_data_ptr_varar;
 void* system_global_data_ptr_varas;
 void* system_global_data_ptr_varat;
 void* system_graphics_system_ptr_vara;
-void* system_graphics_system_data_system_ptr_vara;
-void* system_graphics_system_data_system_ptr_varb;
-void* system_graphics_system_data_system_ptr_varc;
-void* system_graphics_system_data_system_ptr_vard;
+void* system_graphics_extended_primary;
+void* system_graphics_extended_secondary;
+void* system_graphics_extended_tertiary;
+void* system_graphics_extended_quaternary;
 void* system_graphics_system_ptr_varb;
 
 void* system_initialize_main_secondary;
@@ -528,18 +528,18 @@ void* system_graphics_data_quinary;
 void* system_graphics_data_senary;
 void* system_graphics_data_septenary;
 void* system_graphics_extended_data_primary;
-void* system_data_system_ptr_vargraphics_h;
-void* system_data_system_ptr_vargraphics_i;
-void* system_data_system_ptr_vargraphics_j;
-void* system_data_system_ptr_vargraphics_k;
+void* system_graphics_data_octonary;
+void* system_graphics_data_nonary;
+void* system_graphics_data_denary;
+void* system_graphics_data_undenary;
 void* system_graphics_extended_data_secondary;
-void* system_data_system_ptr_vargraphics_l;
-void* system_data_system_ptr_vargraphics_m;
-void* system_data_system_ptr_vargraphics_n;
-void* system_data_system_ptr_vargraphics_o;
-void* system_data_system_ptr_vargraphics_p;
-void* system_data_system_ptr_vargraphics_q;
-void* system_data_system_ptr_vargraphics_r;
+void* system_graphics_data_duodenary;
+void* system_graphics_data_terdenary;
+void* system_graphics_data_quattuordenary;
+void* system_graphics_data_quindenary;
+void* system_graphics_data_sexdenary;
+void* system_graphics_data_septendenary;
+void* system_graphics_data_octodenary;
 
 void* system_initialize_audio;
 void* system_audio_primary_device;
@@ -558,28 +558,28 @@ void* system_audio_quinary_channel;
 void* system_audio_senary_channel;
 void* system_audio_data_primary;
 void* system_audio_data_secondary;
-void* system_audio_system_ptr_varm;
-void* system_audio_system_ptr_varn;
-void* system_audio_system_ptr_varo;
+void* system_audio_heptenary_channel;
+void* system_audio_octonary_channel;
+void* system_audio_nonary_channel;
 uint32_t* system_audio_config_primary;
 uint32_t* system_audio_config_secondary;
 uint32_t* system_audio_config_tertiary;
 void* system_audio_data_tertiary;
 char system_audio_stream_data;
-void* system_audio_system_ptr_varp;
-void* system_audio_system_ptr_varq;
-void* system_audio_system_ptr_varr;
+void* system_audio_denary_channel;
+void* system_audio_undenary_channel;
+void* system_audio_duodenary_channel;
 void* system_audio_data_quaternary;
 void* system_audio_data_quinary;
-void* system_audio_system_ptr_vars;
-void* system_audio_system_ptr_vart;
-void* system_audio_system_ptr_varu;
-void* system_audio_system_ptr_varv;
-void* system_audio_system_ptr_varw;
+void* system_audio_terdenary_channel;
+void* system_audio_quattuordenary_channel;
+void* system_audio_quindenary_channel;
+void* system_audio_sexdenary_channel;
+void* system_audio_septendenary_channel;
 char system_audio_effect_data;
-void* system_audio_system_ptr_varx;
-void* system_audio_system_ptr_vary;
-void* system_audio_system_ptr_varz;
+void* system_audio_octodenary_channel;
+void* system_audio_novendenary_channel;
+void* system_audio_vigenary_channel;
 void* system_audio_primary_devicea;
 void* system_audio_primary_deviceb;
 void* system_audio_primary_devicec;
@@ -697,46 +697,46 @@ void* system_resource_quaternary_mutex;
 void* system_resource_quinary_mutex;
 void* system_resource_senary_mutex;
 void* system_resource_septenary_mutex;
-void* system_resource_ptr_dr;
-void* system_resource_ptr_ds;
-void* system_resource_ptr_dt;
-void* system_resource_ptr_du;
-void* system_resource_ptr_dv;
-void* system_resource_ptr_dw;
-void* system_resource_ptr_dx;
-void* system_resource_ptr_dy;
-void* system_resource_ptr_dz;
-void* system_resource_ptr_ea;
-void* system_resource_ptr_eb;
-void* system_resource_ptr_ec;
+void* system_resource_primary_semaphore;
+void* system_resource_secondary_semaphore;
+void* system_resource_tertiary_semaphore;
+void* system_resource_quaternary_semaphore;
+void* system_resource_quinary_semaphore;
+void* system_resource_senary_semaphore;
+void* system_resource_septenary_semaphore;
+void* system_resource_octonary_semaphore;
+void* system_resource_nonary_semaphore;
+void* system_resource_primary_event;
+void* system_resource_secondary_event;
+void* system_resource_tertiary_event;
 void* system_data_resource_k;
 void* system_data_resource_l;
 void* system_data_resource_m;
 void* system_data_resource_n;
-void* system_resource_ptr_ed;
+void* system_resource_quaternary_event;
 void* system_data_resource_o;
-void* system_resource_ptr_ee;
-void* system_resource_ptr_ef;
-void* system_resource_ptr_eg;
-void* system_resource_ptr_eh;
-void* system_resource_ptr_ei;
-void* system_resource_ptr_ej;
+void* system_resource_quinary_event;
+void* system_resource_senary_event;
+void* system_resource_septenary_event;
+void* system_resource_octonary_event;
+void* system_resource_nonary_event;
+void* system_resource_denary_event;
 void* system_data_resource_p;
 void* system_data_resource_q;
 void* system_data_resource_r;
-void* system_resource_ptr_ek;
-void* system_resource_ptr_el;
-void* system_resource_ptr_em;
-void* system_resource_ptr_en;
-void* system_resource_ptr_eo;
-void* system_resource_ptr_ep;
-void* system_resource_ptr_eq;
-void* system_resource_ptr_er;
-void* system_resource_ptr_es;
-void* system_resource_ptr_et;
-void* system_resource_ptr_eu;
-void* system_resource_ptr_ev;
-void* system_resource_ptr_ew;
+void* system_resource_primary_timer;
+void* system_resource_secondary_timer;
+void* system_resource_tertiary_timer;
+void* system_resource_quaternary_timer;
+void* system_resource_quinary_timer;
+void* system_resource_senary_timer;
+void* system_resource_septenary_timer;
+void* system_resource_octonary_timer;
+void* system_resource_nonary_timer;
+void* system_resource_denary_timer;
+void* system_resource_primary_counter;
+void* system_resource_secondary_counter;
+void* system_resource_tertiary_counter;
 
 void* system_get_system_init_function;
 
@@ -1430,7 +1430,7 @@ int system_initialize_subsystem_internal(void)
 {
   
   _system_c9_system_data_ = CreateSemaphoreW(0,1,0x7fffffff,0,0xfffffffffffffffe);
-  system_context_data_handle = system_process_context_data(system_internal_call);
+  system_context_data_handle = system_process_context_data(system_default_function_call);
   return (system_context_data_handle != 0) - 1;
 }
 
@@ -1451,7 +1451,7 @@ void system_initialize_plugin(void)
   system_global_context = (int64_t *)get_context_manager();
   system_context_base = (uint8_t *)*system_global_context;
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
-  system_stack_function_ptr = system_internal_call;
+  system_stack_function_ptr = system_default_function_call;
   context_current_ptr = system_context_base;
   system_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
@@ -1533,7 +1533,7 @@ int system_initialize_subsystem_internal(uint8_t system_context_ptr,uint8_t syst
 {
   
   _Mtx_system_init_in_situ(0x180c91910,2,system_thread_count,system_memory_size_array,0xfffffffffffffffe);
-  system_context_data_handle = system_process_context_data(system_internal_call);
+  system_context_data_handle = system_process_context_data(system_default_function_call);
   return (system_context_data_handle != 0) - 1;
 }
 
@@ -1577,7 +1577,7 @@ void system_initialize_monitor(void)
   system_global_context = (int64_t *)get_context_manager();
   system_context_base = (uint8_t *)*system_global_context;
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
-  system_stack_function_ptr = system_internal_call;
+  system_stack_function_ptr = system_default_function_call;
   context_current_ptr = system_context_base;
   system_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
@@ -1623,7 +1623,7 @@ void system_initialize_log(void)
   system_global_context = (int64_t *)get_context_manager();
   system_context_base = (uint8_t *)*system_global_context;
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
-  system_stack_function_ptr = system_internal_call;
+  system_stack_function_ptr = system_default_function_call;
   context_current_ptr = system_context_base;
   system_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
@@ -1714,7 +1714,7 @@ void system_initialize_sync(void)
   system_global_context = (int64_t *)get_context_manager();
   system_context_base = (uint8_t *)*system_global_context;
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
-  system_stack_function_ptr = system_internal_call;
+  system_stack_function_ptr = system_default_function_call;
   context_current_ptr = system_context_base;
   system_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
@@ -1926,7 +1926,7 @@ void system_initialize_audio_manager(void)
   system_global_context = (int64_t *)get_context_manager();
   system_context_base = (uint8_t *)*system_global_context;
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
-  system_stack_function_ptr = system_internal_call;
+  system_stack_function_ptr = system_default_function_call;
   context_current_ptr = system_context_base;
   system_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
@@ -1987,7 +1987,7 @@ void system_initialize_network_manager(void)
   system_global_context = (int64_t *)get_context_manager();
   system_context_base = (uint8_t *)*system_global_context;
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
-  system_stack_function_ptr = system_internal_call;
+  system_stack_function_ptr = system_default_function_call;
   context_current_ptr = system_context_base;
   system_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
@@ -2048,7 +2048,7 @@ void system_initialize_graphics_manager(void)
   system_global_context = (int64_t *)get_context_manager();
   system_context_base = (uint8_t *)*system_global_context;
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
-  system_stack_function_ptr = system_internal_call;
+  system_stack_function_ptr = system_default_function_call;
   context_current_ptr = system_context_base;
   system_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
@@ -2221,7 +2221,7 @@ void system_initialize_memory_pool(void)
   system_global_context = (int64_t *)get_context_manager();
   system_context_base = (uint8_t *)*system_global_context;
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
-  system_stack_function_ptr = system_internal_call;
+  system_stack_function_ptr = system_default_function_call;
   context_current_ptr = system_context_base;
   system_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
@@ -2277,7 +2277,7 @@ void system_initialize_thread_scheduler(void)
   system_global_context = (int64_t *)get_context_manager();
   system_context_base = (uint8_t *)*system_global_context;
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
-  system_stack_function_ptr = system_internal_call;
+  system_stack_function_ptr = system_default_function_call;
   context_current_ptr = system_context_base;
   system_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
@@ -2399,7 +2399,7 @@ void system_handle_resource_allocation(void)
   system_global_context = (int64_t *)get_context_manager();
   system_context_base = (uint8_t *)*system_global_context;
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
-  system_stack_function_ptr = system_internal_call;
+  system_stack_function_ptr = system_default_function_call;
   context_current_ptr = system_context_base;
   system_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
@@ -2443,7 +2443,7 @@ void system_manage_memory_pool(void)
   system_global_context = (int64_t *)get_context_manager();
   system_context_base = (uint8_t *)*system_global_context;
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
-  system_stack_function_ptr = system_internal_call;
+  system_stack_function_ptr = system_default_function_call;
   context_current_ptr = system_context_base;
   system_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
@@ -2530,7 +2530,7 @@ void system_initialize_subsystem_component(void)
   system_global_context = (int64_t *)get_context_manager();
   system_context_base = (uint8_t *)*system_global_context;
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
-  system_stack_function_ptr = system_internal_call;
+  system_stack_function_ptr = system_default_function_call;
   context_current_ptr = system_context_base;
   system_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
@@ -2714,7 +2714,7 @@ void system_manage_resource_cache(void)
   system_global_context = (int64_t *)get_context_manager();
   system_context_base = (uint8_t *)*system_global_context;
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
-  system_stack_function_ptr = system_internal_call;
+  system_stack_function_ptr = system_default_function_call;
   context_current_ptr = system_context_base;
   system_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
@@ -2758,7 +2758,7 @@ void system_process_event_queue(void)
   system_global_context = (int64_t *)get_context_manager();
   system_context_base = (uint8_t *)*system_global_context;
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
-  system_stack_function_ptr = system_internal_call;
+  system_stack_function_ptr = system_default_function_call;
   context_current_ptr = system_context_base;
   system_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
@@ -2802,7 +2802,7 @@ void system_initialize_audio_component(void)
   system_global_context = (int64_t *)get_context_manager();
   system_context_base = (uint8_t *)*system_global_context;
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
-  system_stack_function_ptr = system_internal_call;
+  system_stack_function_ptr = system_default_function_call;
   context_current_ptr = system_context_base;
   system_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
@@ -2889,7 +2889,7 @@ void system_setup_render_pipeline(void)
   system_global_context = (int64_t *)get_context_manager();
   system_context_base = (uint8_t *)*system_global_context;
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
-  system_stack_function_ptr = system_internal_call;
+  system_stack_function_ptr = system_default_function_call;
   context_current_ptr = system_context_base;
   system_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
@@ -3063,7 +3063,7 @@ void system_manage_security_context(void)
   system_global_context = (int64_t *)get_context_manager();
   system_context_base = (uint8_t *)*system_global_context;
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
-  system_stack_function_ptr = system_internal_call;
+  system_stack_function_ptr = system_default_function_call;
   context_current_ptr = system_context_base;
   system_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
@@ -3107,7 +3107,7 @@ void system_initialize_plugin_system(void)
   system_global_context = (int64_t *)get_context_manager();
   system_context_base = (uint8_t *)*system_global_context;
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
-  system_stack_function_ptr = system_internal_call;
+  system_stack_function_ptr = system_default_function_call;
   context_current_ptr = system_context_base;
   system_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
@@ -3194,7 +3194,7 @@ void system_handle_error_processing(void)
   system_global_context = (int64_t *)get_context_manager();
   system_context_base = (uint8_t *)*system_global_context;
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
-  system_stack_function_ptr = system_internal_call;
+  system_stack_function_ptr = system_default_function_call;
   context_current_ptr = system_context_base;
   system_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
@@ -3411,7 +3411,7 @@ void system_initialize_resource_manager(void)
   system_global_context = (int64_t *)get_context_manager();
   system_context_base = (uint8_t *)*system_global_context;
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
-  system_stack_function_ptr = system_internal_call;
+  system_stack_function_ptr = system_default_function_call;
   context_current_ptr = system_context_base;
   system_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
@@ -3455,7 +3455,7 @@ void system_handle_system_events(void)
   system_global_context = (int64_t *)get_context_manager();
   system_context_base = (uint8_t *)*system_global_context;
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
-  system_stack_function_ptr = system_internal_call;
+  system_stack_function_ptr = system_default_function_call;
   context_current_ptr = system_context_base;
   system_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
@@ -3499,7 +3499,7 @@ void system_process_configuration_updates(void)
   system_global_context = (int64_t *)get_context_manager();
   system_context_base = (uint8_t *)*system_global_context;
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
-  system_stack_function_ptr = system_internal_call;
+  system_stack_function_ptr = system_default_function_call;
   context_current_ptr = system_context_base;
   system_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
@@ -3586,7 +3586,7 @@ void system_initialize_script_engine(void)
   system_global_context = (int64_t *)get_context_manager();
   system_context_base = (uint8_t *)*system_global_context;
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
-  system_stack_function_ptr = system_internal_call;
+  system_stack_function_ptr = system_default_function_call;
   context_current_ptr = system_context_base;
   system_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
@@ -3785,7 +3785,7 @@ void system_configure_display_settings(void)
   system_global_context = (int64_t *)get_context_manager();
   system_context_base = (uint8_t *)*system_global_context;
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
-  system_stack_function_ptr = system_internal_call;
+  system_stack_function_ptr = system_default_function_call;
   context_current_ptr = system_context_base;
   system_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
@@ -3873,7 +3873,7 @@ void system_manage_data_streams(void)
   system_global_context = (int64_t *)get_context_manager();
   system_context_base = (uint8_t *)*system_global_context;
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
-  system_stack_function_ptr = system_internal_call;
+  system_stack_function_ptr = system_default_function_call;
   context_current_ptr = system_context_base;
   system_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
@@ -3961,7 +3961,7 @@ void system_initialize_particle_system(void)
   system_global_context = (int64_t *)get_context_manager();
   system_context_base = (uint8_t *)*system_global_context;
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
-  system_stack_function_ptr = system_internal_call;
+  system_stack_function_ptr = system_default_function_call;
   context_current_ptr = system_context_base;
   system_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
@@ -4005,7 +4005,7 @@ void system_configure_lighting_system(void)
   system_global_context = (int64_t *)get_context_manager();
   system_context_base = (uint8_t *)*system_global_context;
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
-  system_stack_function_ptr = system_internal_call;
+  system_stack_function_ptr = system_default_function_call;
   context_current_ptr = system_context_base;
   system_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
@@ -4092,7 +4092,7 @@ void system_manage_shader_programs(void)
   system_global_context = (int64_t *)get_context_manager();
   system_context_base = (uint8_t *)*system_global_context;
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
-  system_stack_function_ptr = system_internal_call;
+  system_stack_function_ptr = system_default_function_call;
   context_current_ptr = system_context_base;
   system_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
@@ -4285,7 +4285,7 @@ void system_manage_state_machine(void)
   system_global_context = (int64_t *)get_context_manager();
   system_context_base = (uint8_t *)*system_global_context;
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
-  system_stack_function_ptr = system_internal_call;
+  system_stack_function_ptr = system_default_function_call;
   context_current_ptr = system_context_base;
   system_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
@@ -4329,7 +4329,7 @@ void system_process_game_logic(void)
   system_global_context = (int64_t *)get_context_manager();
   system_context_base = (uint8_t *)*system_global_context;
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
-  system_stack_function_ptr = system_internal_call;
+  system_stack_function_ptr = system_default_function_call;
   context_current_ptr = system_context_base;
   system_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
@@ -4416,7 +4416,7 @@ void system_configure_pathfinding(void)
   system_global_context = (int64_t *)get_context_manager();
   system_context_base = (uint8_t *)*system_global_context;
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
-  system_stack_function_ptr = system_internal_call;
+  system_stack_function_ptr = system_default_function_call;
   context_current_ptr = system_context_base;
   system_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
@@ -4708,7 +4708,7 @@ void system_handle_buffer_operations(void)
   system_global_context = (int64_t *)get_context_manager();
   system_context_base = (uint8_t *)*system_global_context;
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
-  system_stack_function_ptr = system_internal_call;
+  system_stack_function_ptr = system_default_function_call;
   context_current_ptr = system_context_base;
   system_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
@@ -4752,7 +4752,7 @@ void system_manage_vertex_data(void)
   system_global_context = (int64_t *)get_context_manager();
   system_context_base = (uint8_t *)*system_global_context;
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
-  system_stack_function_ptr = system_internal_call;
+  system_stack_function_ptr = system_default_function_call;
   context_current_ptr = system_context_base;
   system_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
@@ -4796,7 +4796,7 @@ void system_process_index_buffers(void)
   system_global_context = (int64_t *)get_context_manager();
   system_context_base = (uint8_t *)*system_global_context;
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
-  system_stack_function_ptr = system_internal_call;
+  system_stack_function_ptr = system_default_function_call;
   context_current_ptr = system_context_base;
   system_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
@@ -4840,7 +4840,7 @@ void system_initialize_texture_manager(void)
   system_global_context = (int64_t *)get_context_manager();
   system_context_base = (uint8_t *)*system_global_context;
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
-  system_stack_function_ptr = system_internal_call;
+  system_stack_function_ptr = system_default_function_call;
   context_current_ptr = system_context_base;
   system_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
@@ -4927,7 +4927,7 @@ void system_handle_texture_compression(void)
   system_global_context = (int64_t *)get_context_manager();
   system_context_base = (uint8_t *)*system_global_context;
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
-  system_stack_function_ptr = system_internal_call;
+  system_stack_function_ptr = system_default_function_call;
   context_current_ptr = system_context_base;
   system_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
@@ -5101,7 +5101,7 @@ void system_configure_skeletal_animation(void)
   system_global_context = (int64_t *)get_context_manager();
   system_context_base = (uint8_t *)*system_global_context;
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
-  system_stack_function_ptr = system_internal_call;
+  system_stack_function_ptr = system_default_function_call;
   context_current_ptr = system_context_base;
   system_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
@@ -5145,7 +5145,7 @@ void system_handle_bone_transforms(void)
   system_global_context = (int64_t *)get_context_manager();
   system_context_base = (uint8_t *)*system_global_context;
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
-  system_stack_function_ptr = system_internal_call;
+  system_stack_function_ptr = system_default_function_call;
   context_current_ptr = system_context_base;
   system_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
@@ -5232,7 +5232,7 @@ void system_process_morph_targets(void)
   system_global_context = (int64_t *)get_context_manager();
   system_context_base = (uint8_t *)*system_global_context;
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
-  system_stack_function_ptr = system_internal_call;
+  system_stack_function_ptr = system_default_function_call;
   context_current_ptr = system_context_base;
   system_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
@@ -5471,7 +5471,7 @@ void system_process_force_calculations(void)
   system_global_context = (int64_t *)get_context_manager();
   system_context_base = (uint8_t *)*system_global_context;
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
-  system_stack_function_ptr = system_internal_call;
+  system_stack_function_ptr = system_default_function_call;
   context_current_ptr = system_context_base;
   system_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
@@ -5515,7 +5515,7 @@ void system_initialize_audio_engine(void)
   system_global_context = (int64_t *)get_context_manager();
   system_context_base = (uint8_t *)*system_global_context;
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
-  system_stack_function_ptr = system_internal_call;
+  system_stack_function_ptr = system_default_function_call;
   context_current_ptr = system_context_base;
   system_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
@@ -5559,7 +5559,7 @@ void system_configure_sound_spatialization(void)
   system_global_context = (int64_t *)get_context_manager();
   system_context_base = (uint8_t *)*system_global_context;
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
-  system_stack_function_ptr = system_internal_call;
+  system_stack_function_ptr = system_default_function_call;
   context_current_ptr = system_context_base;
   system_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
@@ -5647,7 +5647,7 @@ void system_manage_sound_resources(void)
   system_global_context = (int64_t *)get_context_manager();
   system_context_base = (uint8_t *)*system_global_context;
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
-  system_stack_function_ptr = system_internal_call;
+  system_stack_function_ptr = system_default_function_call;
   context_current_ptr = system_context_base;
   system_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
@@ -5691,7 +5691,7 @@ void system_process_audio_effects(void)
   system_global_context = (int64_t *)get_context_manager();
   system_context_base = (uint8_t *)*system_global_context;
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
-  system_stack_function_ptr = system_internal_call;
+  system_stack_function_ptr = system_default_function_call;
   context_current_ptr = system_context_base;
   system_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
@@ -5778,7 +5778,7 @@ void system_configure_protocol_handlers(void)
   system_global_context = (int64_t *)get_context_manager();
   system_context_base = (uint8_t *)*system_global_context;
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
-  system_stack_function_ptr = system_internal_call;
+  system_stack_function_ptr = system_default_function_call;
   context_current_ptr = system_context_base;
   system_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
@@ -5952,7 +5952,7 @@ void system_initialize_security_layer(void)
   system_global_context = (int64_t *)get_context_manager();
   system_context_base = (uint8_t *)*system_global_context;
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
-  system_stack_function_ptr = system_internal_call;
+  system_stack_function_ptr = system_default_function_call;
   context_current_ptr = system_context_base;
   system_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
@@ -5996,7 +5996,7 @@ void system_configure_encryption_system(void)
   system_global_context = (int64_t *)get_context_manager();
   system_context_base = (uint8_t *)*system_global_context;
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
-  system_stack_function_ptr = system_internal_call;
+  system_stack_function_ptr = system_default_function_call;
   context_current_ptr = system_context_base;
   system_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
@@ -6040,7 +6040,7 @@ void system_handle_authentication(void)
   system_global_context = (int64_t *)get_context_manager();
   system_context_base = (uint8_t *)*system_global_context;
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
-  system_stack_function_ptr = system_internal_call;
+  system_stack_function_ptr = system_default_function_call;
   context_current_ptr = system_context_base;
   system_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
@@ -6084,7 +6084,7 @@ void system_manage_permission_system(void)
   system_global_context = (int64_t *)get_context_manager();
   system_context_base = (uint8_t *)*system_global_context;
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
-  system_stack_function_ptr = system_internal_call;
+  system_stack_function_ptr = system_default_function_call;
   context_current_ptr = system_context_base;
   system_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
@@ -6171,7 +6171,7 @@ void system_initialize_script_runtime(void)
   system_global_context = (int64_t *)get_context_manager();
   system_context_base = (uint8_t *)*system_global_context;
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
-  system_stack_function_ptr = system_internal_call;
+  system_stack_function_ptr = system_default_function_call;
   context_current_ptr = system_context_base;
   system_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
@@ -6345,7 +6345,7 @@ void system_process_script_events(void)
   system_global_context = (int64_t *)get_context_manager();
   system_context_base = (uint8_t *)*system_global_context;
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
-  system_stack_function_ptr = system_internal_call;
+  system_stack_function_ptr = system_default_function_call;
   context_current_ptr = system_context_base;
   system_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
@@ -6389,7 +6389,7 @@ void system_initialize_resource_pipeline(void)
   system_global_context = (int64_t *)get_context_manager();
   system_context_base = (uint8_t *)*system_global_context;
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
-  system_stack_function_ptr = system_internal_call;
+  system_stack_function_ptr = system_default_function_call;
   context_current_ptr = system_context_base;
   system_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
@@ -6433,7 +6433,7 @@ void system_configure_asset_loading(void)
   system_global_context = (int64_t *)get_context_manager();
   system_context_base = (uint8_t *)*system_global_context;
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
-  system_stack_function_ptr = system_internal_call;
+  system_stack_function_ptr = system_default_function_call;
   context_current_ptr = system_context_base;
   system_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
@@ -6477,7 +6477,7 @@ void system_handle_resource_streaming(void)
   system_global_context = (int64_t *)get_context_manager();
   system_context_base = (uint8_t *)*system_global_context;
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
-  system_stack_function_ptr = system_internal_call;
+  system_stack_function_ptr = system_default_function_call;
   context_current_ptr = system_context_base;
   system_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
@@ -6564,7 +6564,7 @@ void system_process_resource_requests(void)
   system_global_context = (int64_t *)get_context_manager();
   system_context_base = (uint8_t *)*system_global_context;
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
-  system_stack_function_ptr = system_internal_call;
+  system_stack_function_ptr = system_default_function_call;
   context_current_ptr = system_context_base;
   system_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
@@ -6608,7 +6608,7 @@ void system_initialize_job_system(void)
   system_global_context = (int64_t *)get_context_manager();
   system_context_base = (uint8_t *)*system_global_context;
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
-  system_stack_function_ptr = system_internal_call;
+  system_stack_function_ptr = system_default_function_call;
   context_current_ptr = system_context_base;
   system_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
@@ -6695,7 +6695,7 @@ void system_handle_job_distribution(void)
   system_global_context = (int64_t *)get_context_manager();
   system_context_base = (uint8_t *)*system_global_context;
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
-  system_stack_function_ptr = system_internal_call;
+  system_stack_function_ptr = system_default_function_call;
   context_current_ptr = system_context_base;
   system_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
@@ -6930,7 +6930,7 @@ void system_initialize_debug_renderer(void)
   system_global_context = (int64_t *)get_context_manager();
   system_context_base = (uint8_t *)*system_global_context;
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
-  system_stack_function_ptr = system_internal_call;
+  system_stack_function_ptr = system_default_function_call;
   context_current_ptr = system_context_base;
   system_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
@@ -6974,7 +6974,7 @@ void system_configure_debug_overlay(void)
   system_global_context = (int64_t *)get_context_manager();
   system_context_base = (uint8_t *)*system_global_context;
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
-  system_stack_function_ptr = system_internal_call;
+  system_stack_function_ptr = system_default_function_call;
   context_current_ptr = system_context_base;
   system_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
@@ -7061,7 +7061,7 @@ void system_manage_debug_context(void)
   system_global_context = (int64_t *)get_context_manager();
   system_context_base = (uint8_t *)*system_global_context;
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
-  system_stack_function_ptr = system_internal_call;
+  system_stack_function_ptr = system_default_function_call;
   context_current_ptr = system_context_base;
   system_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
@@ -7729,7 +7729,7 @@ void system_process_mod_events(void)
   system_global_context = (int64_t *)get_context_manager();
   system_context_base = (uint8_t *)*system_global_context;
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
-  system_stack_function_ptr = system_internal_call;
+  system_stack_function_ptr = system_default_function_call;
   context_current_ptr = system_context_base;
   system_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
@@ -7944,7 +7944,7 @@ void system_process_event_queue_2(void)
   system_global_context = (int64_t *)get_context_manager();
   system_context_base = (uint8_t *)*system_global_context;
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
-  system_stack_function_ptr = system_internal_call;
+  system_stack_function_ptr = system_default_function_call;
   context_current_ptr = system_context_base;
   system_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
@@ -7988,7 +7988,7 @@ void system_initialize_audio_component_2(void)
   system_global_context = (int64_t *)get_context_manager();
   system_context_base = (uint8_t *)*system_global_context;
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
-  system_stack_function_ptr = system_internal_call;
+  system_stack_function_ptr = system_default_function_call;
   context_current_ptr = system_context_base;
   system_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
@@ -8075,7 +8075,7 @@ void system_setup_render_pipeline_2(void)
   system_global_context = (int64_t *)get_context_manager();
   system_context_base = (uint8_t *)*system_global_context;
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
-  system_stack_function_ptr = system_internal_call;
+  system_stack_function_ptr = system_default_function_call;
   context_current_ptr = system_context_base;
   system_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
@@ -8249,7 +8249,7 @@ void system_manage_security_context_2(void)
   system_global_context = (int64_t *)get_context_manager();
   system_context_base = (uint8_t *)*system_global_context;
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
-  system_stack_function_ptr = system_internal_call;
+  system_stack_function_ptr = system_default_function_call;
   context_current_ptr = system_context_base;
   system_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
@@ -8293,7 +8293,7 @@ void system_initialize_plugin_system_2(void)
   system_global_context = (int64_t *)get_context_manager();
   system_context_base = (uint8_t *)*system_global_context;
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
-  system_stack_function_ptr = system_internal_call;
+  system_stack_function_ptr = system_default_function_call;
   context_current_ptr = system_context_base;
   system_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
@@ -8380,7 +8380,7 @@ void system_handle_error_processing_2(void)
   system_global_context = (int64_t *)get_context_manager();
   system_context_base = (uint8_t *)*system_global_context;
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
-  system_stack_function_ptr = system_internal_call;
+  system_stack_function_ptr = system_default_function_call;
   context_current_ptr = system_context_base;
   system_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
@@ -8554,7 +8554,7 @@ void system_configure_memory_allocator_2(void)
   system_global_context = (int64_t *)get_context_manager();
   system_context_base = (uint8_t *)*system_global_context;
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
-  system_stack_function_ptr = system_internal_call;
+  system_stack_function_ptr = system_default_function_call;
   context_current_ptr = system_context_base;
   system_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
@@ -8598,7 +8598,7 @@ void system_initialize_resource_manager_2(void)
   system_global_context = (int64_t *)get_context_manager();
   system_context_base = (uint8_t *)*system_global_context;
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
-  system_stack_function_ptr = system_internal_call;
+  system_stack_function_ptr = system_default_function_call;
   context_current_ptr = system_context_base;
   system_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
@@ -8685,7 +8685,7 @@ void system_process_configuration_updates_2(void)
   system_global_context = (int64_t *)get_context_manager();
   system_context_base = (uint8_t *)*system_global_context;
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
-  system_stack_function_ptr = system_internal_call;
+  system_stack_function_ptr = system_default_function_call;
   context_current_ptr = system_context_base;
   system_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
@@ -8859,7 +8859,7 @@ void system_handle_audio_processing_2(void)
   system_global_context = (int64_t *)get_context_manager();
   system_context_base = (uint8_t *)*system_global_context;
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
-  system_stack_function_ptr = system_internal_call;
+  system_stack_function_ptr = system_default_function_call;
   context_current_ptr = system_context_base;
   system_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
@@ -8903,7 +8903,7 @@ void system_manage_network_connections_2(void)
   system_global_context = (int64_t *)get_context_manager();
   system_context_base = (uint8_t *)*system_global_context;
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
-  system_stack_function_ptr = system_internal_call;
+  system_stack_function_ptr = system_default_function_call;
   context_current_ptr = system_context_base;
   system_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
@@ -8990,7 +8990,7 @@ void system_initialize_input_system_2(void)
   system_global_context = (int64_t *)get_context_manager();
   system_context_base = (uint8_t *)*system_global_context;
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
-  system_stack_function_ptr = system_internal_call;
+  system_stack_function_ptr = system_default_function_call;
   context_current_ptr = system_context_base;
   system_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
@@ -10091,7 +10091,7 @@ void system_manage_vertex_data_2(void)
   system_global_context = (int64_t *)get_context_manager();
   system_context_base = (uint8_t *)*system_global_context;
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
-  system_stack_function_ptr = system_internal_call;
+  system_stack_function_ptr = system_default_function_call;
   context_current_ptr = system_context_base;
   system_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
@@ -10135,7 +10135,7 @@ void system_process_index_buffers_2(void)
   system_global_context = (int64_t *)get_context_manager();
   system_context_base = (uint8_t *)*system_global_context;
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
-  system_stack_function_ptr = system_internal_call;
+  system_stack_function_ptr = system_default_function_call;
   context_current_ptr = system_context_base;
   system_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
@@ -10222,7 +10222,7 @@ void system_configure_mipmap_generation_2(void)
   system_global_context = (int64_t *)get_context_manager();
   system_context_base = (uint8_t *)*system_global_context;
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
-  system_stack_function_ptr = system_internal_call;
+  system_stack_function_ptr = system_default_function_call;
   context_current_ptr = system_context_base;
   system_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
@@ -10402,7 +10402,7 @@ void system_configure_skeletal_animation_2(void)
   system_global_context = (int64_t *)get_context_manager();
   system_context_base = (uint8_t *)*system_global_context;
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
-  system_stack_function_ptr = system_internal_call;
+  system_stack_function_ptr = system_default_function_call;
   context_current_ptr = system_context_base;
   system_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
@@ -10446,7 +10446,7 @@ void system_handle_bone_transforms_2(void)
   system_global_context = (int64_t *)get_context_manager();
   system_context_base = (uint8_t *)*system_global_context;
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
-  system_stack_function_ptr = system_internal_call;
+  system_stack_function_ptr = system_default_function_call;
   context_current_ptr = system_context_base;
   system_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
@@ -10490,7 +10490,7 @@ void system_manage_animation_states_2(void)
   system_global_context = (int64_t *)get_context_manager();
   system_context_base = (uint8_t *)*system_global_context;
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
-  system_stack_function_ptr = system_internal_call;
+  system_stack_function_ptr = system_default_function_call;
   context_current_ptr = system_context_base;
   system_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
@@ -10577,7 +10577,7 @@ void system_initialize_physics_engine_2(void)
   system_global_context = (int64_t *)get_context_manager();
   system_context_base = (uint8_t *)*system_global_context;
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
-  system_stack_function_ptr = system_internal_call;
+  system_stack_function_ptr = system_default_function_call;
   context_current_ptr = system_context_base;
   system_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
@@ -10751,7 +10751,7 @@ void system_process_force_calculations_2(void)
   system_global_context = (int64_t *)get_context_manager();
   system_context_base = (uint8_t *)*system_global_context;
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
-  system_stack_function_ptr = system_internal_call;
+  system_stack_function_ptr = system_default_function_call;
   context_current_ptr = system_context_base;
   system_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
@@ -10795,7 +10795,7 @@ void system_initialize_audio_engine_2(void)
   system_global_context = (int64_t *)get_context_manager();
   system_context_base = (uint8_t *)*system_global_context;
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
-  system_stack_function_ptr = system_internal_call;
+  system_stack_function_ptr = system_default_function_call;
   context_current_ptr = system_context_base;
   system_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
@@ -10882,7 +10882,7 @@ void system_handle_audio_mixing_2(void)
   system_global_context = (int64_t *)get_context_manager();
   system_context_base = (uint8_t *)*system_global_context;
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
-  system_stack_function_ptr = system_internal_call;
+  system_stack_function_ptr = system_default_function_call;
   context_current_ptr = system_context_base;
   system_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
@@ -11065,7 +11065,7 @@ void system_configure_protocol_handlers_2(void)
 int system_handle_data_serialization_2(void)
   
   system_process_context_data();
-  system_context_data_handle = system_process_context_data(system_internal_call);
+  system_context_data_handle = system_process_context_data(system_default_function_call);
   return (system_context_data_handle != 0) - 1;
 }
 
@@ -11076,7 +11076,7 @@ int system_manage_connection_pool_2(void)
   
   system_stack_arrayx8[0] = 1;
   system_process_context_data(&system_data_c92490,system_stack_arrayx8);
-  system_context_data_handle = system_process_context_data(system_internal_call);
+  system_context_data_handle = system_process_context_data(system_default_function_call);
   return (system_context_data_handle != 0) - 1;
 }
 
@@ -11087,7 +11087,7 @@ int system_process_network_events_2(void)
   
   system_stack_arrayx8[0] = 0;
   system_process_context_data(&system_data_c92480,system_stack_arrayx8);
-  system_context_data_handle = system_process_context_data(system_internal_call);
+  system_context_data_handle = system_process_context_data(system_default_function_call);
   return (system_context_data_handle != 0) - 1;
 }
 
@@ -11095,7 +11095,7 @@ int system_process_network_events_2(void)
 
 int system_initialize_security_layer_2(void)
   
-  system_context_data_handle = system_process_context_data(system_internal_call);
+  system_context_data_handle = system_process_context_data(system_default_function_call);
   return (system_context_data_handle != 0) - 1;
 }
 
@@ -11104,7 +11104,7 @@ int system_initialize_security_layer_2(void)
 int system_configure_encryption_system_2(void)
   
   system_process_context_data(0x180d49d50);
-  system_context_data_handle = system_process_context_data(system_internal_call);
+  system_context_data_handle = system_process_context_data(system_default_function_call);
   return (system_context_data_handle != 0) - 1;
 }
 
@@ -12241,7 +12241,7 @@ void system_configure_serialization_format_2(void)
   system_global_context = (int64_t *)get_context_manager();
   system_context_base = (uint8_t *)*system_global_context;
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
-  system_stack_function_ptr = system_internal_call;
+  system_stack_function_ptr = system_default_function_call;
   context_current_ptr = system_context_base;
   system_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
@@ -12285,7 +12285,7 @@ void system_handle_data_persistence_2(void)
   system_global_context = (int64_t *)get_context_manager();
   system_context_base = (uint8_t *)*system_global_context;
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
-  system_stack_function_ptr = system_internal_call;
+  system_stack_function_ptr = system_default_function_call;
   context_current_ptr = system_context_base;
   system_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
@@ -12329,7 +12329,7 @@ void system_manage_save_slots_2(void)
   system_global_context = (int64_t *)get_context_manager();
   system_context_base = (uint8_t *)*system_global_context;
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
-  system_stack_function_ptr = system_internal_call;
+  system_stack_function_ptr = system_default_function_call;
   context_current_ptr = system_context_base;
   system_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
@@ -12417,7 +12417,7 @@ void system_initialize_localization_2(void)
   system_global_context = (int64_t *)get_context_manager();
   system_context_base = (uint8_t *)*system_global_context;
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
-  system_stack_function_ptr = system_internal_call;
+  system_stack_function_ptr = system_default_function_call;
   context_current_ptr = system_context_base;
   system_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
@@ -12461,7 +12461,7 @@ void system_configure_language_settings_2(void)
   system_global_context = (int64_t *)get_context_manager();
   system_context_base = (uint8_t *)*system_global_context;
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
-  system_stack_function_ptr = system_internal_call;
+  system_stack_function_ptr = system_default_function_call;
   context_current_ptr = system_context_base;
   system_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
@@ -12548,7 +12548,7 @@ void system_manage_locale_data_2(void)
   system_global_context = (int64_t *)get_context_manager();
   system_context_base = (uint8_t *)*system_global_context;
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
-  system_stack_function_ptr = system_internal_call;
+  system_stack_function_ptr = system_default_function_call;
   context_current_ptr = system_context_base;
   system_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
@@ -13067,7 +13067,7 @@ int system_initialize_system_input_system(uint8_t system_context_ptr,uint8_t sys
 {
   
   _Mtx_system_init_in_situ(0x180c96690,2,system_thread_count,system_memory_size_array,0xfffffffffffffffe);
-  system_context_data_handle = system_process_context_data(system_internal_call);
+  system_context_data_handle = system_process_context_data(system_default_function_call);
   return (system_context_data_handle != 0) - 1;
 }
 
@@ -13172,7 +13172,7 @@ void system_process_event_queue_3(void)
   system_global_context = (int64_t *)get_context_manager();
   system_context_base = (uint8_t *)*system_global_context;
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
-  system_stack_function_ptr = system_internal_call;
+  system_stack_function_ptr = system_default_function_call;
   context_current_ptr = system_context_base;
   system_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
@@ -13260,7 +13260,7 @@ void system_configure_network_settings_3(void)
   system_global_context = (int64_t *)get_context_manager();
   system_context_base = (uint8_t *)*system_global_context;
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
-  system_stack_function_ptr = system_internal_call;
+  system_stack_function_ptr = system_default_function_call;
   context_current_ptr = system_context_base;
   system_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
@@ -13304,7 +13304,7 @@ void system_setup_render_pipeline_3(void)
   system_global_context = (int64_t *)get_context_manager();
   system_context_base = (uint8_t *)*system_global_context;
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
-  system_stack_function_ptr = system_internal_call;
+  system_stack_function_ptr = system_default_function_call;
   context_current_ptr = system_context_base;
   system_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
@@ -13391,7 +13391,7 @@ void system_initialize_debug_interface_3(void)
   system_global_context = (int64_t *)get_context_manager();
   system_context_base = (uint8_t *)*system_global_context;
   system_initialization_status = *(char *)((int64_t)system_context_base[1] + 0x19);
-  system_stack_function_ptr = system_internal_call;
+  system_stack_function_ptr = system_default_function_call;
   context_current_ptr = system_context_base;
   system_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
@@ -14027,7 +14027,7 @@ int system_initialize_script_engine(uint8_t system_context_ptr,uint8_t system_co
 {
   
   _Mtx_system_init_in_situ(0x180c966f0,2,system_thread_count,system_memory_size_array,0xfffffffffffffffe);
-  system_context_data_handle = system_process_context_data(system_internal_call);
+  system_context_data_handle = system_process_context_data(system_default_function_call);
   return (system_context_data_handle != 0) - 1;
 }
 
@@ -14038,7 +14038,7 @@ int system_initialize_physics_engine(uint8_t system_context_ptr,uint8_t system_c
 {
   
   _Mtx_system_init_in_situ(0x180c96740,2,system_thread_count,system_memory_size_array,0xfffffffffffffffe);
-  system_context_data_handle = system_process_context_data(system_internal_call);
+  system_context_data_handle = system_process_context_data(system_default_function_call);
   return (system_context_data_handle != 0) - 1;
 }
 
@@ -14054,7 +14054,7 @@ int system_manage_network_connections_3(void)
   system_global_data_ptr = 0;
   system_global_data_ptr = 0;
   system_global_data_ptr = 0;
-  system_context_data_handle = system_process_context_data(system_internal_call);
+  system_context_data_handle = system_process_context_data(system_default_function_call);
   return (system_context_data_handle != 0) - 1;
 }
 
@@ -14111,7 +14111,7 @@ uint8_t system_process_context_data(void)
   *system_context_int_pointer = 0;
   *(int **)(system_context_data_handle + 0x50) = system_context_int_pointer;
 LABEL_SYSTEM_CONFIG_SIZE_CHECK:
-  *(code **)(system_context_int_pointer + (int64_t)*system_context_int_pointer * 2 + 4) = system_internal_call;
+  *(code **)(system_context_int_pointer + (int64_t)*system_context_int_pointer * 2 + 4) = system_default_function_call;
   *system_context_int_pointer = *system_context_int_pointer + 1;
   return 0;
 }
@@ -14166,7 +14166,7 @@ int system_handle_file_operations_3(void)
   system_global_data_ptr = 0;
   system_global_data_ptr = 0;
   system_global_data_ptr = 0;
-  system_context_data_handle = system_process_context_data(system_internal_call);
+  system_context_data_handle = system_process_context_data(system_default_function_call);
   return (system_context_data_handle != 0) - 1;
 }
 
@@ -15385,6 +15385,20 @@ void system_handle_bone_transforms_3(void)
 
 
 
+/**
+ * @brief 网络管理器初始化函数
+ * 
+ * 该函数负责初始化网络管理器的核心组件，包括：
+ * - 网络连接池初始化
+ * - 网络协议栈设置
+ * - 网络事件处理器配置
+ * 
+ * @param system_context_ptr 系统上下文指针，用于存储网络管理器的状态信息
+ * @return uint8_t* 返回初始化后的网络管理器上下文指针
+ * 
+ * @note 这是简化实现，主要处理网络管理器的基本初始化工作
+ * @warning 调用此函数前，系统上下文必须已经正确初始化
+ */
 uint8_t * system_initialize_network_manager(uint8_t *system_context_ptr)
 
 {
@@ -15957,7 +15971,7 @@ void system_manage_sound_resources_3(void)
     ppplStack_590 = (int64_t ***)(system_global_data_ptr + 0x30 + system_context_base_value);
     pppplStack_580 = appplStack_518;
     system_stack_byte_ptr = &system_null_ptr;
-    pcStack_500 = system_internal_call;
+    pcStack_500 = system_default_function_call;
     appplStack_518[0] = (int64_t ***)&ppplStack_590;
     system_process_context_data(appplStack_518);
     *(double *)(system_context_base_value + 0xa0 + system_global_data_ptr) = (double)(1.0 / system_float_value_lambda);
@@ -19945,17 +19959,17 @@ void system_initialize_input_system_4(void)
   *(uint8_t *)(system_stack_storage + 0x20) = 0;
   *(int64_t *)(system_context_data_handle + 0xa8) = system_stack_storage;
   system_stack_storage = system_stack_storage;
-  system_process_context_data(*(uint8_t *)(system_global_data_ptr + 0xa8),&system_data_a012e0,&system_null_ptr,system_internal_call);
-  system_process_context_data(*(uint8_t *)(system_global_data_ptr + 0xa8),&system_data_a002e0,&system_data_a00410,system_internal_call);
-  system_process_context_data(*(uint8_t *)(system_global_data_ptr + 0xa8),&system_data_a012f0,&system_null_ptr,system_internal_call);
-  system_process_context_data(*(uint8_t *)(system_global_data_ptr + 0xa8),&system_data_a00ef8,&system_null_ptr,system_internal_call);
-  system_process_context_data(*(uint8_t *)(system_global_data_ptr + 0xa8),&system_null_ptr,&system_null_ptr,system_internal_call);
-  system_process_context_data(*(uint8_t *)(system_global_data_ptr + 0xa8),&system_data_a01228,&system_data_a00360,system_internal_call);
-  system_process_context_data(*(uint8_t *)(system_global_data_ptr + 0xa8),&system_data_a00c90,&system_null_ptr,system_internal_call);
-  system_process_context_data(*(uint8_t *)(system_global_data_ptr + 0xa8),&system_null_ptr,&system_null_ptr,system_internal_call);
-  system_process_context_data(*(uint8_t *)(system_global_data_ptr + 0xa8),&system_null_ptr,&system_null_ptr,system_internal_call);
-  system_process_context_data(*(uint8_t *)(system_global_data_ptr + 0xa8),&system_data_a009f0,&system_null_ptr,system_internal_call);
-  system_process_context_data(*(uint8_t *)(system_global_data_ptr + 0xa8),&system_data_a00c80,&system_null_ptr,system_internal_call);
+  system_process_context_data(*(uint8_t *)(system_global_data_ptr + 0xa8),&system_data_a012e0,&system_null_ptr,system_default_function_call);
+  system_process_context_data(*(uint8_t *)(system_global_data_ptr + 0xa8),&system_data_a002e0,&system_data_a00410,system_default_function_call);
+  system_process_context_data(*(uint8_t *)(system_global_data_ptr + 0xa8),&system_data_a012f0,&system_null_ptr,system_default_function_call);
+  system_process_context_data(*(uint8_t *)(system_global_data_ptr + 0xa8),&system_data_a00ef8,&system_null_ptr,system_default_function_call);
+  system_process_context_data(*(uint8_t *)(system_global_data_ptr + 0xa8),&system_null_ptr,&system_null_ptr,system_default_function_call);
+  system_process_context_data(*(uint8_t *)(system_global_data_ptr + 0xa8),&system_data_a01228,&system_data_a00360,system_default_function_call);
+  system_process_context_data(*(uint8_t *)(system_global_data_ptr + 0xa8),&system_data_a00c90,&system_null_ptr,system_default_function_call);
+  system_process_context_data(*(uint8_t *)(system_global_data_ptr + 0xa8),&system_null_ptr,&system_null_ptr,system_default_function_call);
+  system_process_context_data(*(uint8_t *)(system_global_data_ptr + 0xa8),&system_null_ptr,&system_null_ptr,system_default_function_call);
+  system_process_context_data(*(uint8_t *)(system_global_data_ptr + 0xa8),&system_data_a009f0,&system_null_ptr,system_default_function_call);
+  system_process_context_data(*(uint8_t *)(system_global_data_ptr + 0xa8),&system_data_a00c80,&system_null_ptr,system_default_function_call);
   context_current_ptr = (uint32_t* *)system_process_context_data(system_context_data_handle + 0xe0,&system_data_a009f0);
   *context_current_ptr = 1;
   context_current_ptr = (uint32_t* *)system_process_context_data(system_context_data_handle + 0xe0,&system_data_a012f0);
@@ -32449,7 +32463,7 @@ int64_t system_memory_init(int64_t system_context_ptr)
 
 {
   *(uint8_t *)(system_context_ptr + 0x10) = 0;
-  *(code **)(system_context_ptr + 0x18) = system_internal_call;
+  *(code **)(system_context_ptr + 0x18) = system_default_function_call;
 }
 
 
@@ -45180,7 +45194,7 @@ uint64_t system_handle_text_translation_6(void)
     *(uint32_t* *)(system_context_ptr + 0x2c4) = system_temp_byte_primary;
   }
   system_temp_unsigned_value = (uint64_t)*(uint *)(system_context_ptr + 0x270);
-  if ((*system_config_array & *(uint *)(system_context_ptr + 0x270)) == 0) goto system_internal_call;
+  if ((*system_config_array & *(uint *)(system_context_ptr + 0x270)) == 0) goto system_default_function_call;
   bVar31 = *(byte *)(system_context_ptr + 0xfd) & 0x20;
   system_context_data_handle = system_context_ptr;
   if (bVar31 == 0) {
@@ -45196,7 +45210,7 @@ system_label:
       *(char *)(system_context_data_handle + 0x38c) = (char)system_temp_unsigned_value;
       if ((char)system_temp_unsigned_value == '\t') goto system_label;
     }
-system_internal_call:
+system_default_function_call:
     system_temp_unsigned_value = system_temp_unsigned_value & 0xffffffffffffff00;
   }
   else {
@@ -45215,7 +45229,7 @@ system_label:
         bVar22 = bVar31 | *(byte *)(system_context_ptr + 0xfe) & 0xfb;
         system_temp_unsigned_value = CONCAT71((int7)((uint64_t)system_temp_unsigned_value >> 8),bVar22);
         *(byte *)(system_context_ptr + 0xfe) = bVar22;
-        if ((bVar31 & 4) == 0) goto system_internal_call;
+        if ((bVar31 & 4) == 0) goto system_default_function_call;
       }
       system_iteration_counter_value = *(uint *)(*(int64_t *)(system_context_ptr + 0x1b8) + 0x388);
       if (((system_iteration_counter_value >> 0x19 & 1) != 0) ||
@@ -50357,7 +50371,7 @@ system_label:
       system_temp_unsigned_value = system_process_context_data(system_global_data_ptr,0xe0,8,3);
       (**(code **)(*psystem_long_var_10 + 0x28))(psystem_long_var_10);
       (**(code **)(*psystem_long_var_11 + 0x28))(psystem_long_var_11);
-      pcStack_68 = system_internal_call;
+      pcStack_68 = system_default_function_call;
       system_stack_byte_ptr = &system_null_ptr;
       system_stack_alt_ptr = (int64_t *)system_process_context_data(system_global_data_ptr,0x20,8,system_data_system_buffer_system_ptr_vara);
       *system_stack_alt_ptr = system_context_ptr;
@@ -51176,8 +51190,8 @@ void system_configure_physics_system_7(void)
     system_stack_alt_ptr = system_stack_alt_ptr;
     system_stack_alt_ptr = (int64_t *)0x0;
     system_stack_alt_ptr = &system_stack_storage;
-    pcStack_48 = system_internal_call;
-    pcStack_40 = system_internal_call;
+    pcStack_48 = system_default_function_call;
+    pcStack_40 = system_default_function_call;
     system_stack_alt_ptr = (int64_t *)system_process_context_data(system_global_data_ptr,0x20,8,system_data_system_buffer_system_ptr_vara);
     *system_stack_alt_ptr = system_stack_storage;
     *(byte *)(system_stack_alt_ptr + 1) = bStack_70;
@@ -52390,7 +52404,7 @@ code * system_process_context_data(int64_t system_context_ptr,char system_config
     else {
       system_global_context = *(int64_t **)(*(int64_t *)(system_context_ptr + 0xa8) + 0x88);
       pcStack_20 = (code *)&system_null_ptr;
-      pcStack_18 = system_internal_call;
+      pcStack_18 = system_default_function_call;
       system_stack_storage = system_context_ptr;
       (**(code **)(*system_global_context + 0x60))(system_global_context,&init_config_data,system_context_ptr + 0xb8,0,&system_stack_storage);
       in_RAX = pcStack_20;
@@ -54366,16 +54380,16 @@ void system_process_morph_targets_7(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void* system_internal_call;
+void* system_default_function_call;
 
-void* system_internal_call;
+void* system_default_function_call;
 
-void* system_internal_call;
+void* system_default_function_call;
 
-void* system_internal_call;
+void* system_default_function_call;
 uint32_t* system_null_ptr;
-void* system_resource_ptr_ex;
-void* system_resource_ptr_ey;
+void* system_resource_quaternary_counter;
+void* system_resource_quinary_counter;
 
 uint8_t system_process_context_data(void)
 
