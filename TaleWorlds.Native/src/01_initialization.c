@@ -19328,28 +19328,28 @@ FreeSystemMemoryResource(void* resourcePointer, uint64_t freeFlags, uint64_t fre
  * @param param_2 源字符串指针
  * @note 最大字符串长度限制为0x20字节
  */
-void ProcessSystemStringCopyWithLimit(long long param_1,long long param_2)
+void ProcessSystemStringCopyWithLimit(long long targetBuffer,long long sourceString)
 
 {
-  long long lVar1;
+  long long stringLength;
   
   if (sourceString == 0) {
     *(uint32_t *)(targetBuffer + 0x10) = 0;
     **(uint8_t **)(targetBuffer + 8) = 0;
     return;
   }
-  lVar1 = -1;
+  stringLength = -1;
   do {
-    lVar1 = lVar1 + 1;
-  } while (*(char *)(param_2 + lVar1) != '\0');
-  if ((int)lVar1 < 0x20) {
-    *(int *)(param_1 + 0x10) = (int)lVar1;
+    stringLength = stringLength + 1;
+  } while (*(char *)(sourceString + stringLength) != '\0');
+  if ((int)stringLength < 0x20) {
+    *(int *)(targetBuffer + 0x10) = (int)stringLength;
                     // WARNING: Could not recover jumptable at 0x0001800463b7. Too many branches
                     // WARNING: Treating indirect jump as call
-    strcpy_s(*(void* *)(param_1 + 8),0x20);
+    strcpy_s(*(void* *)(targetBuffer + 8),0x20);
     return;
   }
-  FUN_180626f80(&SystemMemoryTemplateG,0x20,param_2);
+  FUN_180626f80(&SystemMemoryTemplateG,0x20,sourceString);
   *(uint32_t *)(targetBuffer + 0x10) = 0;
   **(uint8_t **)(targetBuffer + 8) = 0;
   return;
