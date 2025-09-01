@@ -75,8 +75,8 @@ void* PhysicsSystemData;
 // 文件系统初始化函数
 void* FileSystemEntryPoint;
 
-// 函数: 系统初始化函数A
-void* SystemInitializationFunctionA;
+// 函数: 系统初始化函数A - 字符串处理系统初始化
+void* StringProcessingSystemInitializer;
 void* SystemDataBufferPrimary;
 void* SystemDataStructurePrimary;
 void* SystemDataStructureSecondary;
@@ -84,11 +84,11 @@ void* SystemDataStructureTertiary;
 void* SystemDataStructureQuaternary;
 void* SystemGuardCheckFunction;
 
-// 函数: 系统初始化函数B
-void* SystemInitializationFunctionB;
+// 函数: 系统初始化函数B - 内存管理系统初始化
+void* MemoryManagementSystemInitializer;
 
-// 函数: 系统初始化函数C
-void* SystemInitializationFunctionC;
+// 函数: 系统初始化函数C - 系统资源管理器初始化
+void* SystemResourceManagerInitializer;
 void* SystemMemoryRegionPrimary;
 void* SystemMemoryRegionSecondary;
 void* SystemMemoryRegionTertiary;

@@ -1373,7 +1373,18 @@ LAB_180840cf0:
 
 
 
-int FUN_180840d60(longlong param_1,longlong param_2,int param_3)
+/**
+ * @brief 处理网络数据缓冲区
+ * 
+ * 该函数负责处理网络数据缓冲区，对数据进行格式化和转换。
+ * 主要用于网络数据包的预处理和后处理。
+ * 
+ * @param bufferContext 缓冲区上下文指针
+ * @param dataBuffer 数据缓冲区指针
+ * @param bufferSize 缓冲区大小
+ * @return 处理后的数据大小
+ */
+int ProcessNetworkDataBuffer(longlong bufferContext, longlong dataBuffer, int bufferSize)
 
 {
   undefined4 uVar1;
@@ -1413,7 +1424,18 @@ void SendNetworkConnectionData(longlong connectionData, undefined8 targetAddress
 
 
 
-int FUN_180840e00(longlong param_1,longlong param_2,int param_3)
+/**
+ * @brief 验证网络连接数据包
+ * 
+ * 该函数负责验证网络连接数据包的完整性和有效性。
+ * 主要用于网络通信中的数据包校验。
+ * 
+ * @param packetContext 数据包上下文指针
+ * @param packetData 数据包数据指针
+ * @param packetSize 数据包大小
+ * @return 验证结果状态码
+ */
+int ValidateNetworkPacket(longlong packetContext, longlong packetData, int packetSize)
 
 {
   undefined4 uVar1;
@@ -1448,7 +1470,18 @@ int FUN_180840e00(longlong param_1,longlong param_2,int param_3)
 
 
 
-int FUN_180840f10(longlong param_1,longlong param_2,int param_3)
+/**
+ * @brief 格式化网络连接请求
+ * 
+ * 该函数负责格式化网络连接请求数据，使其符合网络协议要求。
+ * 主要用于客户端连接请求的预处理。
+ * 
+ * @param requestContext 请求上下文指针
+ * @param requestData 请求数据指针
+ * @param requestSize 请求数据大小
+ * @return 格式化结果状态码
+ */
+int FormatNetworkConnectionRequest(longlong requestContext, longlong requestData, int requestSize)
 
 {
   undefined8 uVar1;
