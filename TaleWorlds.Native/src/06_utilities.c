@@ -8486,7 +8486,7 @@ int ProcessObjectContextValidationAndStatusUpdate(longlong param_1,longlong para
   if ((((*(longlong *)(param_1 + 0x28) != 0) && (*(longlong *)(param_1 + 0x30) != 0)) &&
       (*(longlong *)(param_1 + 0x38) != 0)) && (*(longlong *)(param_1 + 0x40) != 0)) {
     if (*(int *)(param_1 + 0x20) < 1) {
-      iVar1 = FUN_1808de900(param_2,param_1 + 0x4c);
+      iVar1 = ProcessDataValidation(param_2,param_1 + 0x4c);
       if ((iVar1 == 0) &&
          (iVar1 = ValidateObjectContext(*(undefined4 *)(param_1 + 0x4c),&lStackX_8), iVar1 == 0)) {
         if (*(int *)(lStackX_8 + 0x30) == 1) {
@@ -8538,7 +8538,7 @@ int ProcessObjectContextValidationAndStatusUpdateSimple(longlong param_1,undefin
   longlong in_stack_00000060;
   
   if ((int)param_2 < 1) {
-    iVar1 = FUN_1808de900();
+    iVar1 = ProcessDataValidation();
     if ((iVar1 == 0) &&
        (iVar1 = ValidateObjectContext(*(undefined4 *)(unaff_RDI + 0x4c),&stack0x00000060), iVar1 == 0)
        ) {
@@ -8680,7 +8680,7 @@ int ProcessDataBlockOperationAndMemoryAllocation(undefined8 param_1, undefined8 
     iVar1 = 0x26;
   }
   else {
-    iVar1 = FUN_1808de900();
+    iVar1 = ProcessDataValidation();
     if ((iVar1 == 0) &&
        (iVar1 = ValidateObjectContext(*(undefined4 *)(unaff_RDI + 0x24),&stack0x00000060), iVar1 == 0)
        ) {
@@ -8727,7 +8727,7 @@ undefined8 ProcessFloatDataValidationAndConversion(longlong param_1, longlong pa
     return 0x1d;
   }
   auStackX_18[0] = 0;
-  uVar2 = FUN_180867600(param_2 + 0x60,param_1 + 0x10,auStackX_18);
+  uVar2 = ProcessDataHashing(param_2 + 0x60,param_1 + 0x10,auStackX_18);
   if ((int)uVar2 == 0) {
     resourceIndex = func_0x000180867680(param_2 + 0x60,auStackX_18[0]);
     if ((*(uint *)(resourceIndex + 0x34) >> 4 & 1) != 0) {
@@ -8769,7 +8769,7 @@ undefined8 ProcessFloatDataValidationAndConversionNoParams(undefined8 param_1, u
   undefined4 uStack0000000000000040;
   
   uStack0000000000000040 = 0;
-  uVar2 = FUN_180867600(unaff_RSI + 0x60,param_2,&stack0x00000040);
+  uVar2 = ProcessDataHashing(unaff_RSI + 0x60,param_2,&stack0x00000040);
   if ((int)uVar2 == 0) {
     resourceIndex = func_0x000180867680(unaff_RSI + 0x60,uStack0000000000000040);
     if ((*(uint *)(resourceIndex + 0x34) >> 4 & 1) != 0) {
@@ -8851,7 +8851,7 @@ undefined8 ProcessFloatDataValidationAndConversion(longlong param_1,longlong par
   undefined4 auStackX_10 [2];
   
   auStackX_10[0] = 0;
-  uVar2 = FUN_180867600(param_2 + 0x60,param_1 + 0x10,auStackX_10);
+  uVar2 = ProcessDataHashing(param_2 + 0x60,param_1 + 0x10,auStackX_10);
   if ((int)uVar2 == 0) {
     resourceIndex = func_0x000180867680(param_2 + 0x60,auStackX_10[0]);
     if ((*(uint *)(resourceIndex + 0x34) >> 4 & 1) != 0) {
