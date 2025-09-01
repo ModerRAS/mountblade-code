@@ -23795,7 +23795,7 @@ FUN_180854040(NetworkHandle *connectionContext,NetworkHandle packetData,NetworkH
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-NetworkHandle FUN_180854200(longlong connectionContext)
+NetworkHandle ValidateNetworkConnection(longlong connectionContext)
 
 {
   longlong *plVar1;
@@ -23887,7 +23887,7 @@ int FUN_1808542a0(longlong connectionContext,int *packetData,uint dataSize,uint 
   uStack_b0 = *puVar7;
   iStack_ac = 0;
   lStack_a8 = 0;
-  networkStatus4 = FUN_180856d20(connectionContext,&uStack_c0,&lStack_b8);
+  networkStatus4 = InitializeNetworkDataReceiving(connectionContext,&uStack_c0,&lStack_b8);
   if (networkStatus4 != 0) goto LAB_1808545a3;
   secondaryNetworkFlag = (uint)uStack_c0;
   if (dataSize < (uint)uStack_c0) {
@@ -24035,7 +24035,7 @@ int FUN_1808542fa(void)
   *(NetworkStatus *)(unaff_RBP + -0x59) = *puVar8;
   *(NetworkStatus *)(unaff_RBP + -0x55) = 0;
   *(NetworkHandle *)(unaff_RBP + -0x51) = 0;
-  iVar6 = FUN_180856d20(extraout_XMM0_Da,unaff_RBP + -0x69,unaff_RBP + -0x61);
+  iVar6 = InitializeNetworkDataReceiving(extraout_XMM0_Da,unaff_RBP + -0x69,unaff_RBP + -0x61);
   if (iVar6 != 0) goto LAB_1808545a3;
   tertiaryNetworkFlag = *(uint *)(unaff_RBP + -0x69);
   primaryNetworkFlag6 = (uint)unaff_RBX;
@@ -25202,7 +25202,7 @@ FUN_180855130(longlong connectionContext,longlong packetData,uint *dataSize,int 
   
   if (*(float *)(packetData + 0x58) != 0.0) {
     if (*(int *)(packetData + 0x50) == 0) {
-      if ((param_5 == '\0') && (cVar2 = FUN_180855f70(connectionContext,packetData,param_4), cVar2 != '\0')) {
+      if ((param_5 == '\0') && (cVar2 = ValidateNetworkPacketFormat(connectionContext,packetData,param_4), cVar2 != '\0')) {
         quaternaryNetworkFlag = *dataSize;
         if (*dataSize <= *(uint *)(packetData + 0x30)) {
           quaternaryNetworkFlag = *(uint *)(packetData + 0x30);
@@ -25260,7 +25260,7 @@ FUN_180855130(longlong connectionContext,longlong packetData,uint *dataSize,int 
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-int FUN_1808552c0(longlong connectionContext)
+int ValidateNetworkConnectionData(longlong connectionContext)
 
 {
   longlong *plVar1;
@@ -25290,7 +25290,7 @@ int FUN_1808552c0(longlong connectionContext)
     if (networkStatus4 == 0) {
       networkStatus4 = FUN_180744cc0(connectionContext + 0xe0);
       if (networkStatus4 == 0) {
-        networkStatus4 = FUN_1808553b0(connectionContext + 0xf0);
+        networkStatus4 = ValidateNetworkConnectionState(connectionContext + 0xf0);
         if (networkStatus4 == 0) {
           *(NetworkStatus *)(connectionContext + 0x100) = 0xffffffff;
           *(NetworkStatus *)(connectionContext + 0x104) = 0;
@@ -25346,7 +25346,7 @@ int FUN_1808552ca(longlong connectionContext)
     if (networkStatus3 == 0) {
       networkStatus3 = FUN_180744cc0(connectionContext + 0xe0);
       if (networkStatus3 == 0) {
-        networkStatus3 = FUN_1808553b0(connectionContext + 0xf0);
+        networkStatus3 = ValidateNetworkConnectionState(connectionContext + 0xf0);
         if (networkStatus3 == 0) {
           *(NetworkStatus *)(connectionContext + 0x100) = 0xffffffff;
           *(NetworkStatus *)(connectionContext + 0x104) = 0;
@@ -25393,7 +25393,7 @@ NetworkStatus FUN_180855370(void)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-NetworkHandle FUN_1808553b0(longlong *connectionContext)
+NetworkHandle ValidateNetworkConnectionState(longlong *connectionContext)
 
 {
   int networkStatus1;
@@ -25516,7 +25516,7 @@ NetworkHandle FUN_180855467(uint connectionContext)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-NetworkHandle FUN_1808554a0(longlong *connectionContext)
+NetworkHandle ValidateNetworkConnectionState(longlong *connectionContext)
 
 {
   int networkStatus1;
@@ -25698,7 +25698,7 @@ NetworkHandle FUN_18085555e(NetworkHandle connectionContext,NetworkHandle packet
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-NetworkHandle FUN_1808555a0(longlong *connectionContext)
+NetworkHandle ValidateNetworkConnectionState(longlong *connectionContext)
 
 {
   int networkStatus1;
@@ -26091,7 +26091,7 @@ NetworkHandle FUN_1808558e0(NetworkHandle connectionContext,longlong packetData,
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-NetworkHandle FUN_1808559c0(NetworkHandle *connectionContext)
+NetworkHandle CleanupNetworkConnection(NetworkHandle *connectionContext)
 
 {
   int *pnetworkStatus1;
@@ -26133,7 +26133,7 @@ NetworkHandle FUN_1808559c0(NetworkHandle *connectionContext)
       FUN_1808556a0(connectionContext + 0xe);
       FUN_180855780(connectionContext + 0x10);
       iVar5 = FUN_180744cc0(connectionContext + 0x12);
-      if ((iVar5 == 0) && (iVar5 = FUN_1808554a0(connectionContext + 0x14), iVar5 == 0)) {
+      if ((iVar5 == 0) && (iVar5 = ValidateNetworkConnectionState(connectionContext + 0x14), iVar5 == 0)) {
         *(NetworkStatus *)(connectionContext + 0x16) = 0xffffffff;
         *(NetworkStatus *)((longlong)connectionContext + 0xb4) = 0;
       }
@@ -26179,7 +26179,7 @@ NetworkHandle FUN_1808559c0(NetworkHandle *connectionContext)
 
 
 
-NetworkHandle FUN_180855b80(longlong *connectionContext)
+NetworkHandle ValidateNetworkDataStream(longlong *connectionContext)
 
 {
   int *pnetworkStatus1;
@@ -26340,7 +26340,7 @@ NetworkHandle FUN_180855cc9(void)
 
 
 
-NetworkHandle FUN_180855ce0(longlong *connectionContext)
+NetworkHandle ProcessNetworkConnectionValidation(longlong *connectionContext)
 
 {
   int *pnetworkStatus1;
@@ -26639,7 +26639,7 @@ NetworkHandle FUN_180855f53(void)
 
 
 
-bool FUN_180855f70(longlong connectionContext,longlong packetData,int dataSize)
+bool ValidateNetworkPacketFormat(longlong connectionContext,longlong packetData,int dataSize)
 
 {
   float fVar1;
@@ -26901,7 +26901,7 @@ NetworkHandle * FUN_180856099(NetworkHandle connectionContext,NetworkHandle *pac
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-NetworkHandle FUN_1808560c0(longlong connectionContext)
+NetworkHandle InitializeNetworkConnectionContext(longlong connectionContext)
 
 {
   longlong *plVar1;
@@ -26921,7 +26921,7 @@ NetworkHandle FUN_1808560c0(longlong connectionContext)
     if ((int)quaternaryNetworkFlag != 0) {
       return quaternaryNetworkFlag;
     }
-    quaternaryNetworkFlag = FUN_180854200(connectionContext);
+    quaternaryNetworkFlag = ValidateNetworkConnection(connectionContext);
     if ((int)quaternaryNetworkFlag == 0) {
       return 0;
     }
@@ -26976,7 +26976,7 @@ NetworkHandle FUN_1808560c0(longlong connectionContext)
     }
   }
 LAB_180856179:
-  quaternaryNetworkFlag = FUN_180854200(connectionContext);
+  quaternaryNetworkFlag = ValidateNetworkConnection(connectionContext);
   if ((int)quaternaryNetworkFlag == 0) {
     return 0;
   }
@@ -27018,7 +27018,7 @@ NetworkHandle FUN_1808561bc(void)
       *(int *)(lVar5 + 0xc) = *(int *)(lVar4 + 0x20);
       return 0;
     }
-    tertiaryNetworkFlag = FUN_180854200();
+    tertiaryNetworkFlag = ValidateNetworkConnection();
     if ((int)tertiaryNetworkFlag != 0) {
       return tertiaryNetworkFlag;
     }
@@ -27040,7 +27040,7 @@ NetworkHandle FUN_18085622e(void)
     *(NetworkStatus *)(unaff_RBX + 0xc) = in_EAX;
     return 0;
   }
-  primaryNetworkFlag = FUN_180854200();
+  primaryNetworkFlag = ValidateNetworkConnection();
   if ((int)primaryNetworkFlag != 0) {
     return primaryNetworkFlag;
   }
@@ -27696,7 +27696,7 @@ LAB_180856b58:
               plVar13 = plStack_58;
               if (param_7 != (longlong *)0x0) {
                 acStack_67[0] = '\x01';
-                FUN_180857940(param_7,plVar14 + 2,acStack_67);
+                ProcessNetworkByteTransmission(param_7,plVar14 + 2,acStack_67);
                 plVar11 = plStack_60;
                 plVar13 = plStack_58;
               }
@@ -27716,7 +27716,7 @@ LAB_180856a59:
 
 
 
-NetworkHandle FUN_180856c80(longlong connectionContext,uint *packetData,NetworkHandle *dataSize)
+NetworkHandle ProcessNetworkDataReceiving(longlong connectionContext,uint *packetData,NetworkHandle *dataSize)
 
 {
   longlong lVar1;
@@ -27749,7 +27749,7 @@ NetworkHandle FUN_180856c80(longlong connectionContext,uint *packetData,NetworkH
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-NetworkHandle FUN_180856d20(longlong connectionContext,NetworkHandle *packetData,NetworkHandle dataSize)
+NetworkHandle InitializeNetworkDataReceiving(longlong connectionContext,NetworkHandle *packetData,NetworkHandle dataSize)
 
 {
   longlong *plVar1;
@@ -27979,9 +27979,9 @@ LAB_180856fce:
           if (((plVar21 == plVar18) ||
               (((int)plVar21[4] != 0 &&
                (cVar5 = FUN_1808b0820(plVar21 + 3,*(NetworkHandle *)(connectionContext + 0x160)), cVar5 == '\0'))
-              )) && (iVar6 = FUN_1808552c0(connectionContext), iVar6 != 0)) goto LAB_180857786;
+              )) && (iVar6 = ValidateNetworkConnectionData(connectionContext), iVar6 != 0)) goto LAB_180857786;
         }
-        iVar6 = FUN_1808560c0(connectionContext);
+        iVar6 = InitializeNetworkConnectionContext(connectionContext);
         if (iVar6 != 0) goto LAB_180857786;
         lVar7 = *(longlong *)(connectionContext + 0x110);
         if (*(int *)(connectionContext + 0x34) - 4U < 2) {
@@ -28303,7 +28303,7 @@ LAB_180857774:
 
 
 
-NetworkHandle FUN_1808577c0(longlong *connectionContext,uint *packetData,NetworkStatus *dataSize)
+NetworkHandle ProcessNetworkConnectionClosing(longlong *connectionContext,uint *packetData,NetworkStatus *dataSize)
 
 {
   NetworkHandle *networkPointer1;
@@ -28320,7 +28320,7 @@ NetworkHandle FUN_1808577c0(longlong *connectionContext,uint *packetData,Network
   int *pnetworkStatus13;
   longlong lVar7;
   
-  uVar6 = FUN_180855b80();
+  uVar6 = ValidateNetworkDataStream();
   if ((int)uVar6 == 0) {
     if ((int)connectionContext[1] == 0) {
       return 0x1c;
@@ -28524,7 +28524,7 @@ NetworkHandle GetNetworkErrorCode(void)
 
 
 
-NetworkHandle FUN_180857940(longlong *connectionContext,uint *packetData,NetworkByte *dataSize)
+NetworkHandle ProcessNetworkByteTransmission(longlong *connectionContext,uint *packetData,NetworkByte *dataSize)
 
 {
   NetworkHandle *networkPointer1;
@@ -28541,7 +28541,7 @@ NetworkHandle FUN_180857940(longlong *connectionContext,uint *packetData,Network
   int *pnetworkStatus13;
   longlong lVar7;
   
-  uVar6 = FUN_180855ce0();
+  uVar6 = ProcessNetworkConnectionValidation();
   if ((int)uVar6 == 0) {
     if ((int)connectionContext[1] == 0) {
       return 0x1c;
@@ -28735,7 +28735,7 @@ NetworkHandle FUN_180857aaa(void)
 
 
 
-NetworkHandle FUN_180857ac0(longlong connectionContext)
+NetworkHandle ValidateNetworkConnectionPool(longlong connectionContext)
 
 {
   int *pnetworkStatus1;
@@ -28757,7 +28757,7 @@ NetworkHandle FUN_180857b40(longlong connectionContext)
   NetworkHandle primaryNetworkFlag;
   
   *(int *)(connectionContext + 300) = *(int *)(connectionContext + 300) + 1;
-  if ((*(char *)(connectionContext + 0x13c) != '\0') && (primaryNetworkFlag = FUN_1808552c0(), (int)primaryNetworkFlag != 0)) {
+  if ((*(char *)(connectionContext + 0x13c) != '\0') && (primaryNetworkFlag = ValidateNetworkConnectionData(), (int)primaryNetworkFlag != 0)) {
     return primaryNetworkFlag;
   }
   return 0;
@@ -29376,7 +29376,7 @@ LAB_1808580a0:
             if (*(char *)(connectionContext + 0x13f) != '\0') {
               uStack_158 = *(uint *)(connectionContext + 0x154);
             }
-            FUN_1808577c0(connectionContext + 0x90,lStack_f8,&uStack_158);
+            ProcessNetworkConnectionClosing(connectionContext + 0x90,lStack_f8,&uStack_158);
             networkPointer11 = (ulonglong *)
                       FUN_180855fc0(connectionContext + 0x90,auStack_50,*(longlong *)(connectionContext + 0x140) + 0x10)
             ;
@@ -30960,7 +30960,7 @@ int FUN_180859f30(longlong connectionContext,int *packetData,uint dataSize,uint 
   uStack_c0 = *puVar8;
   iStack_bc = 0;
   lStack_b8 = 0;
-  iVar5 = FUN_180856d20(connectionContext,&uStack_d0,&lStack_c8);
+  iVar5 = InitializeNetworkDataReceiving(connectionContext,&uStack_d0,&lStack_c8);
   primaryNetworkFlag1 = uStack_c0;
   lVar13 = lStack_c8;
   if ((iVar5 != 0) || (iVar5 = 0, iStack_bc == 1)) goto LAB_18085a4c4;
@@ -31221,7 +31221,7 @@ int FUN_18085a550(longlong connectionContext,int *packetData,uint dataSize,uint 
   uStack_c0 = *puVar9;
   uStack_bc = 0;
   lStack_b8 = 0;
-  iVar5 = FUN_180856d20(connectionContext,&uStack_d0,&lStack_c8);
+  iVar5 = InitializeNetworkDataReceiving(connectionContext,&uStack_d0,&lStack_c8);
   if (iVar5 != 0) goto LAB_18085a91b;
   secondaryNetworkFlag = (uint)uStack_d0;
   primaryNetworkFlag2 = 0xffffffff;
@@ -31406,7 +31406,7 @@ int FUN_18085a5e5(void)
   *(NetworkStatus *)(unaff_RBP + -0x71) = *puVar9;
   *(NetworkStatus *)(unaff_RBP + -0x6d) = 0;
   *(NetworkHandle *)(unaff_RBP + -0x69) = 0;
-  iVar6 = FUN_180856d20(extraout_XMM0_Da,&stack0x00000048,unaff_RBP + -0x79);
+  iVar6 = InitializeNetworkDataReceiving(extraout_XMM0_Da,&stack0x00000048,unaff_RBP + -0x79);
   if (iVar6 != 0) goto LAB_18085a91b;
   secondaryNetworkFlag = uStack0000000000000048;
   primaryNetworkFlag6 = 0xffffffff;
@@ -31646,7 +31646,7 @@ NetworkHandle FUN_18085a980(longlong connectionContext)
   FUN_1808556a0(connectionContext + 0x70);
   FUN_180855780(connectionContext + 0x80);
   networkStatus4 = FUN_180744cc0(connectionContext + 0x90);
-  if ((networkStatus4 == 0) && (networkStatus4 = FUN_1808554a0(connectionContext + 0xa0), networkStatus4 == 0)) {
+  if ((networkStatus4 == 0) && (networkStatus4 = ValidateNetworkConnectionState(connectionContext + 0xa0), networkStatus4 == 0)) {
     *(NetworkStatus *)(connectionContext + 0xb0) = 0xffffffff;
     *(NetworkStatus *)(connectionContext + 0xb4) = 0;
   }
@@ -31665,13 +31665,13 @@ NetworkHandle FUN_18085a980(longlong connectionContext)
     }
   }
   networkStatus4 = FUN_180744cc0(connectionContext + 0xb8);
-  if ((networkStatus4 == 0) && (networkStatus4 = FUN_1808555a0(connectionContext + 200), networkStatus4 == 0)) {
+  if ((networkStatus4 == 0) && (networkStatus4 = ValidateNetworkConnectionState(connectionContext + 200), networkStatus4 == 0)) {
     *(NetworkStatus *)(connectionContext + 0xd8) = 0xffffffff;
     *(NetworkStatus *)(connectionContext + 0xdc) = 0;
   }
   *(NetworkByte *)(connectionContext + 0x13f) = 0;
   networkStatus4 = FUN_180744cc0(connectionContext + 0xe0);
-  if ((networkStatus4 == 0) && (networkStatus4 = FUN_1808553b0(connectionContext + 0xf0), networkStatus4 == 0)) {
+  if ((networkStatus4 == 0) && (networkStatus4 = ValidateNetworkConnectionState(connectionContext + 0xf0), networkStatus4 == 0)) {
     *(NetworkStatus *)(connectionContext + 0x100) = 0xffffffff;
     *(NetworkStatus *)(connectionContext + 0x104) = 0;
   }
@@ -32018,7 +32018,7 @@ LAB_1808580a0:
             if (*(char *)(connectionContext + 0x13f) != '\0') {
               uStack_158 = *(uint *)(connectionContext + 0x154);
             }
-            FUN_1808577c0(connectionContext + 0x90,lStack_f8,&uStack_158);
+            ProcessNetworkConnectionClosing(connectionContext + 0x90,lStack_f8,&uStack_158);
             networkPointer11 = (ulonglong *)
                       FUN_180855fc0(connectionContext + 0x90,auStack_50,*(longlong *)(connectionContext + 0x140) + 0x10)
             ;
@@ -33860,7 +33860,7 @@ void FUN_18085c230(longlong connectionContext,ulonglong packetData)
   FUN_180855780(connectionContext + 0x80);
   iVar5 = FUN_180744cc0(connectionContext + 0x90);
   iVar6 = 0;
-  if ((iVar5 == 0) && (iVar5 = FUN_1808554a0(connectionContext + 0xa0), iVar5 == 0)) {
+  if ((iVar5 == 0) && (iVar5 = ValidateNetworkConnectionState(connectionContext + 0xa0), iVar5 == 0)) {
     *(NetworkStatus *)(connectionContext + 0xb0) = 0xffffffff;
     *(NetworkStatus *)(connectionContext + 0xb4) = 0;
   }
@@ -34269,7 +34269,7 @@ void FUN_18085ca30(longlong connectionContext,ulonglong packetData)
     }
     if ((ppppuVar6 == pppnetworkPointer18) ||
        (((*(int *)(ppppuVar6 + 4) != 0 && (cVar7 = FUN_1808b0820(ppppuVar6 + 3), cVar7 == '\0')) &&
-        (iVar8 = FUN_1808552c0(connectionContext), iVar8 != 0)))) goto LAB_18085d424;
+        (iVar8 = ValidateNetworkConnectionData(connectionContext), iVar8 != 0)))) goto LAB_18085d424;
   }
   iVar8 = -1;
   if (*(char *)(connectionContext + 0x13c) == '\0') {
@@ -35564,25 +35564,25 @@ void FUN_18085e4a0(longlong connectionContext)
   *(longlong **)(connectionContext + 0x120) = plVar7;
   *plVar7 = (longlong)plVar7;
   networkStatus2 = FUN_180744cc0(connectionContext + 0xe0);
-  if ((networkStatus2 == 0) && (networkStatus2 = FUN_1808553b0(connectionContext + 0xf0), networkStatus2 == 0)) {
+  if ((networkStatus2 == 0) && (networkStatus2 = ValidateNetworkConnectionState(connectionContext + 0xf0), networkStatus2 == 0)) {
     *(NetworkStatus *)(connectionContext + 0x100) = 0xffffffff;
     *(NetworkStatus *)(connectionContext + 0x104) = 0;
   }
-  FUN_1808553b0(connectionContext + 0xf0);
+  ValidateNetworkConnectionState(connectionContext + 0xf0);
   FUN_180744cc0(connectionContext + 0xe0);
   networkStatus2 = FUN_180744cc0(connectionContext + 0xb8);
-  if ((networkStatus2 == 0) && (networkStatus2 = FUN_1808555a0(connectionContext + 200), networkStatus2 == 0)) {
+  if ((networkStatus2 == 0) && (networkStatus2 = ValidateNetworkConnectionState(connectionContext + 200), networkStatus2 == 0)) {
     *(NetworkStatus *)(connectionContext + 0xd8) = 0xffffffff;
     *(NetworkStatus *)(connectionContext + 0xdc) = 0;
   }
-  FUN_1808555a0(connectionContext + 200);
+  ValidateNetworkConnectionState(connectionContext + 200);
   FUN_180744cc0(connectionContext + 0xb8);
   networkStatus2 = FUN_180744cc0(connectionContext + 0x90);
-  if ((networkStatus2 == 0) && (networkStatus2 = FUN_1808554a0(connectionContext + 0xa0), networkStatus2 == 0)) {
+  if ((networkStatus2 == 0) && (networkStatus2 = ValidateNetworkConnectionState(connectionContext + 0xa0), networkStatus2 == 0)) {
     *(NetworkStatus *)(connectionContext + 0xb0) = 0xffffffff;
     *(NetworkStatus *)(connectionContext + 0xb4) = 0;
   }
-  FUN_1808554a0(connectionContext + 0xa0);
+  ValidateNetworkConnectionState(connectionContext + 0xa0);
   FUN_180744cc0(connectionContext + 0x90);
   plVar7 = (longlong *)(connectionContext + 0x80);
   plVar4 = (longlong *)*plVar7;
@@ -41795,7 +41795,7 @@ ulonglong FUN_180862e00(longlong connectionContext,byte packetData)
             *(NetworkHandle *)(connectionContext + 0x2b0) = 0;
             tertiaryNetworkFlag = FUN_1808b9030(*(NetworkHandle *)(lVar1 + 0x3d0),connectionContext);
             if (((int)tertiaryNetworkFlag == 0x1f) || ((int)tertiaryNetworkFlag == 0)) {
-              FUN_1808559c0(connectionContext + 200);
+              CleanupNetworkConnection(connectionContext + 200);
               (**(code **)(*(longlong *)(connectionContext + 8) + 0x28))(connectionContext + 8,0);
                     // WARNING: Subroutine does not return
               ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),connectionContext,&UNK_1809874b0,0x4c4,1);
@@ -41838,7 +41838,7 @@ NetworkHandle FUN_180862e90(longlong connectionContext,byte packetData)
         return quaternaryNetworkFlag;
       }
     }
-    if ((*(int *)(connectionContext + 0x2e4) < 3) || (cVar1 = FUN_180857ac0(connectionContext + 200), cVar1 != '\0')) {
+    if ((*(int *)(connectionContext + 0x2e4) < 3) || (cVar1 = ValidateNetworkConnectionPool(connectionContext + 200), cVar1 != '\0')) {
       if (*(int *)(connectionContext + 0x2e4) - 1U < 2) {
         *(uint *)(connectionContext + 0x2d8) =
              ((uint)packetData << 0xc | *(uint *)(connectionContext + 0x2d8)) & ~((packetData ^ 1) << 0xc);
@@ -59683,200 +59683,200 @@ NetworkHandle FUN_180872630(longlong *connectionContext)
   uint quaternaryNetworkFlag;
   
   networkStatus2 = FUN_180744cc0(connectionContext + 0x87);
-  if ((networkStatus2 == 0) && (networkStatus2 = FUN_1808555a0(connectionContext + 0x89), networkStatus2 == 0)) {
+  if ((networkStatus2 == 0) && (networkStatus2 = ValidateNetworkConnectionState(connectionContext + 0x89), networkStatus2 == 0)) {
     *(NetworkStatus *)(connectionContext + 0x8b) = 0xffffffff;
     *(NetworkStatus *)((longlong)connectionContext + 0x45c) = 0;
   }
-  FUN_1808555a0(connectionContext + 0x89);
+  ValidateNetworkConnectionState(connectionContext + 0x89);
   FUN_180744cc0(connectionContext + 0x87);
   networkStatus2 = FUN_180744cc0(connectionContext + 0x82);
-  if ((networkStatus2 == 0) && (networkStatus2 = FUN_1808555a0(connectionContext + 0x84), networkStatus2 == 0)) {
+  if ((networkStatus2 == 0) && (networkStatus2 = ValidateNetworkConnectionState(connectionContext + 0x84), networkStatus2 == 0)) {
     *(NetworkStatus *)(connectionContext + 0x86) = 0xffffffff;
     *(NetworkStatus *)((longlong)connectionContext + 0x434) = 0;
   }
-  FUN_1808555a0(connectionContext + 0x84);
+  ValidateNetworkConnectionState(connectionContext + 0x84);
   FUN_180744cc0(connectionContext + 0x82);
   networkStatus2 = FUN_180744cc0(connectionContext + 0x7d);
-  if ((networkStatus2 == 0) && (networkStatus2 = FUN_1808555a0(connectionContext + 0x7f), networkStatus2 == 0)) {
+  if ((networkStatus2 == 0) && (networkStatus2 = ValidateNetworkConnectionState(connectionContext + 0x7f), networkStatus2 == 0)) {
     *(NetworkStatus *)(connectionContext + 0x81) = 0xffffffff;
     *(NetworkStatus *)((longlong)connectionContext + 0x40c) = 0;
   }
-  FUN_1808555a0(connectionContext + 0x7f);
+  ValidateNetworkConnectionState(connectionContext + 0x7f);
   FUN_180744cc0(connectionContext + 0x7d);
   networkStatus2 = FUN_180744cc0(connectionContext + 0x78);
-  if ((networkStatus2 == 0) && (networkStatus2 = FUN_1808555a0(connectionContext + 0x7a), networkStatus2 == 0)) {
+  if ((networkStatus2 == 0) && (networkStatus2 = ValidateNetworkConnectionState(connectionContext + 0x7a), networkStatus2 == 0)) {
     *(NetworkStatus *)(connectionContext + 0x7c) = 0xffffffff;
     *(NetworkStatus *)((longlong)connectionContext + 0x3e4) = 0;
   }
-  FUN_1808555a0(connectionContext + 0x7a);
+  ValidateNetworkConnectionState(connectionContext + 0x7a);
   FUN_180744cc0(connectionContext + 0x78);
   networkStatus2 = FUN_180744cc0(connectionContext + 0x73);
-  if ((networkStatus2 == 0) && (networkStatus2 = FUN_1808555a0(connectionContext + 0x75), networkStatus2 == 0)) {
+  if ((networkStatus2 == 0) && (networkStatus2 = ValidateNetworkConnectionState(connectionContext + 0x75), networkStatus2 == 0)) {
     *(NetworkStatus *)(connectionContext + 0x77) = 0xffffffff;
     *(NetworkStatus *)((longlong)connectionContext + 0x3bc) = 0;
   }
-  FUN_1808555a0(connectionContext + 0x75);
+  ValidateNetworkConnectionState(connectionContext + 0x75);
   FUN_180744cc0(connectionContext + 0x73);
   networkStatus2 = FUN_180744cc0(connectionContext + 0x6e);
-  if ((networkStatus2 == 0) && (networkStatus2 = FUN_1808555a0(connectionContext + 0x70), networkStatus2 == 0)) {
+  if ((networkStatus2 == 0) && (networkStatus2 = ValidateNetworkConnectionState(connectionContext + 0x70), networkStatus2 == 0)) {
     *(NetworkStatus *)(connectionContext + 0x72) = 0xffffffff;
     *(NetworkStatus *)((longlong)connectionContext + 0x394) = 0;
   }
-  FUN_1808555a0(connectionContext + 0x70);
+  ValidateNetworkConnectionState(connectionContext + 0x70);
   FUN_180744cc0(connectionContext + 0x6e);
   networkStatus2 = FUN_180744cc0(connectionContext + 0x69);
-  if ((networkStatus2 == 0) && (networkStatus2 = FUN_1808555a0(connectionContext + 0x6b), networkStatus2 == 0)) {
+  if ((networkStatus2 == 0) && (networkStatus2 = ValidateNetworkConnectionState(connectionContext + 0x6b), networkStatus2 == 0)) {
     *(NetworkStatus *)(connectionContext + 0x6d) = 0xffffffff;
     *(NetworkStatus *)((longlong)connectionContext + 0x36c) = 0;
   }
-  FUN_1808555a0(connectionContext + 0x6b);
+  ValidateNetworkConnectionState(connectionContext + 0x6b);
   FUN_180744cc0(connectionContext + 0x69);
   networkStatus2 = FUN_180744cc0(connectionContext + 100);
-  if ((networkStatus2 == 0) && (networkStatus2 = FUN_1808555a0(connectionContext + 0x66), networkStatus2 == 0)) {
+  if ((networkStatus2 == 0) && (networkStatus2 = ValidateNetworkConnectionState(connectionContext + 0x66), networkStatus2 == 0)) {
     *(NetworkStatus *)(connectionContext + 0x68) = 0xffffffff;
     *(NetworkStatus *)((longlong)connectionContext + 0x344) = 0;
   }
-  FUN_1808555a0(connectionContext + 0x66);
+  ValidateNetworkConnectionState(connectionContext + 0x66);
   FUN_180744cc0(connectionContext + 100);
   networkStatus2 = FUN_180744cc0(connectionContext + 0x5f);
-  if ((networkStatus2 == 0) && (networkStatus2 = FUN_1808555a0(connectionContext + 0x61), networkStatus2 == 0)) {
+  if ((networkStatus2 == 0) && (networkStatus2 = ValidateNetworkConnectionState(connectionContext + 0x61), networkStatus2 == 0)) {
     *(NetworkStatus *)(connectionContext + 99) = 0xffffffff;
     *(NetworkStatus *)((longlong)connectionContext + 0x31c) = 0;
   }
-  FUN_1808555a0(connectionContext + 0x61);
+  ValidateNetworkConnectionState(connectionContext + 0x61);
   FUN_180744cc0(connectionContext + 0x5f);
   networkStatus2 = FUN_180744cc0(connectionContext + 0x5a);
-  if ((networkStatus2 == 0) && (networkStatus2 = FUN_1808555a0(connectionContext + 0x5c), networkStatus2 == 0)) {
+  if ((networkStatus2 == 0) && (networkStatus2 = ValidateNetworkConnectionState(connectionContext + 0x5c), networkStatus2 == 0)) {
     *(NetworkStatus *)(connectionContext + 0x5e) = 0xffffffff;
     *(NetworkStatus *)((longlong)connectionContext + 0x2f4) = 0;
   }
-  FUN_1808555a0(connectionContext + 0x5c);
+  ValidateNetworkConnectionState(connectionContext + 0x5c);
   FUN_180744cc0(connectionContext + 0x5a);
   networkStatus2 = FUN_180744cc0(connectionContext + 0x55);
-  if ((networkStatus2 == 0) && (networkStatus2 = FUN_1808555a0(connectionContext + 0x57), networkStatus2 == 0)) {
+  if ((networkStatus2 == 0) && (networkStatus2 = ValidateNetworkConnectionState(connectionContext + 0x57), networkStatus2 == 0)) {
     *(NetworkStatus *)(connectionContext + 0x59) = 0xffffffff;
     *(NetworkStatus *)((longlong)connectionContext + 0x2cc) = 0;
   }
-  FUN_1808555a0(connectionContext + 0x57);
+  ValidateNetworkConnectionState(connectionContext + 0x57);
   FUN_180744cc0(connectionContext + 0x55);
   networkStatus2 = FUN_180744cc0(connectionContext + 0x50);
-  if ((networkStatus2 == 0) && (networkStatus2 = FUN_1808555a0(connectionContext + 0x52), networkStatus2 == 0)) {
+  if ((networkStatus2 == 0) && (networkStatus2 = ValidateNetworkConnectionState(connectionContext + 0x52), networkStatus2 == 0)) {
     *(NetworkStatus *)(connectionContext + 0x54) = 0xffffffff;
     *(NetworkStatus *)((longlong)connectionContext + 0x2a4) = 0;
   }
-  FUN_1808555a0(connectionContext + 0x52);
+  ValidateNetworkConnectionState(connectionContext + 0x52);
   FUN_180744cc0(connectionContext + 0x50);
   networkStatus2 = FUN_180744cc0(connectionContext + 0x4b);
-  if ((networkStatus2 == 0) && (networkStatus2 = FUN_1808555a0(connectionContext + 0x4d), networkStatus2 == 0)) {
+  if ((networkStatus2 == 0) && (networkStatus2 = ValidateNetworkConnectionState(connectionContext + 0x4d), networkStatus2 == 0)) {
     *(NetworkStatus *)(connectionContext + 0x4f) = 0xffffffff;
     *(NetworkStatus *)((longlong)connectionContext + 0x27c) = 0;
   }
-  FUN_1808555a0(connectionContext + 0x4d);
+  ValidateNetworkConnectionState(connectionContext + 0x4d);
   FUN_180744cc0(connectionContext + 0x4b);
   networkStatus2 = FUN_180744cc0(connectionContext + 0x46);
-  if ((networkStatus2 == 0) && (networkStatus2 = FUN_1808555a0(connectionContext + 0x48), networkStatus2 == 0)) {
+  if ((networkStatus2 == 0) && (networkStatus2 = ValidateNetworkConnectionState(connectionContext + 0x48), networkStatus2 == 0)) {
     *(NetworkStatus *)(connectionContext + 0x4a) = 0xffffffff;
     *(NetworkStatus *)((longlong)connectionContext + 0x254) = 0;
   }
-  FUN_1808555a0(connectionContext + 0x48);
+  ValidateNetworkConnectionState(connectionContext + 0x48);
   FUN_180744cc0(connectionContext + 0x46);
   networkStatus2 = FUN_180744cc0(connectionContext + 0x41);
-  if ((networkStatus2 == 0) && (networkStatus2 = FUN_1808555a0(connectionContext + 0x43), networkStatus2 == 0)) {
+  if ((networkStatus2 == 0) && (networkStatus2 = ValidateNetworkConnectionState(connectionContext + 0x43), networkStatus2 == 0)) {
     *(NetworkStatus *)(connectionContext + 0x45) = 0xffffffff;
     *(NetworkStatus *)((longlong)connectionContext + 0x22c) = 0;
   }
-  FUN_1808555a0(connectionContext + 0x43);
+  ValidateNetworkConnectionState(connectionContext + 0x43);
   FUN_180744cc0(connectionContext + 0x41);
   networkStatus2 = FUN_180744cc0(connectionContext + 0x3c);
-  if ((networkStatus2 == 0) && (networkStatus2 = FUN_1808555a0(connectionContext + 0x3e), networkStatus2 == 0)) {
+  if ((networkStatus2 == 0) && (networkStatus2 = ValidateNetworkConnectionState(connectionContext + 0x3e), networkStatus2 == 0)) {
     *(NetworkStatus *)(connectionContext + 0x40) = 0xffffffff;
     *(NetworkStatus *)((longlong)connectionContext + 0x204) = 0;
   }
-  FUN_1808555a0(connectionContext + 0x3e);
+  ValidateNetworkConnectionState(connectionContext + 0x3e);
   FUN_180744cc0(connectionContext + 0x3c);
   networkStatus2 = FUN_180744cc0(connectionContext + 0x37);
-  if ((networkStatus2 == 0) && (networkStatus2 = FUN_1808555a0(connectionContext + 0x39), networkStatus2 == 0)) {
+  if ((networkStatus2 == 0) && (networkStatus2 = ValidateNetworkConnectionState(connectionContext + 0x39), networkStatus2 == 0)) {
     *(NetworkStatus *)(connectionContext + 0x3b) = 0xffffffff;
     *(NetworkStatus *)((longlong)connectionContext + 0x1dc) = 0;
   }
-  FUN_1808555a0(connectionContext + 0x39);
+  ValidateNetworkConnectionState(connectionContext + 0x39);
   FUN_180744cc0(connectionContext + 0x37);
   networkStatus2 = FUN_180744cc0(connectionContext + 0x32);
-  if ((networkStatus2 == 0) && (networkStatus2 = FUN_1808555a0(connectionContext + 0x34), networkStatus2 == 0)) {
+  if ((networkStatus2 == 0) && (networkStatus2 = ValidateNetworkConnectionState(connectionContext + 0x34), networkStatus2 == 0)) {
     *(NetworkStatus *)(connectionContext + 0x36) = 0xffffffff;
     *(NetworkStatus *)((longlong)connectionContext + 0x1b4) = 0;
   }
-  FUN_1808555a0(connectionContext + 0x34);
+  ValidateNetworkConnectionState(connectionContext + 0x34);
   FUN_180744cc0(connectionContext + 0x32);
   networkStatus2 = FUN_180744cc0(connectionContext + 0x2d);
-  if ((networkStatus2 == 0) && (networkStatus2 = FUN_1808555a0(connectionContext + 0x2f), networkStatus2 == 0)) {
+  if ((networkStatus2 == 0) && (networkStatus2 = ValidateNetworkConnectionState(connectionContext + 0x2f), networkStatus2 == 0)) {
     *(NetworkStatus *)(connectionContext + 0x31) = 0xffffffff;
     *(NetworkStatus *)((longlong)connectionContext + 0x18c) = 0;
   }
-  FUN_1808555a0(connectionContext + 0x2f);
+  ValidateNetworkConnectionState(connectionContext + 0x2f);
   FUN_180744cc0(connectionContext + 0x2d);
   networkStatus2 = FUN_180744cc0(connectionContext + 0x28);
-  if ((networkStatus2 == 0) && (networkStatus2 = FUN_1808555a0(connectionContext + 0x2a), networkStatus2 == 0)) {
+  if ((networkStatus2 == 0) && (networkStatus2 = ValidateNetworkConnectionState(connectionContext + 0x2a), networkStatus2 == 0)) {
     *(NetworkStatus *)(connectionContext + 0x2c) = 0xffffffff;
     *(NetworkStatus *)((longlong)connectionContext + 0x164) = 0;
   }
-  FUN_1808555a0(connectionContext + 0x2a);
+  ValidateNetworkConnectionState(connectionContext + 0x2a);
   FUN_180744cc0(connectionContext + 0x28);
   networkStatus2 = FUN_180744cc0(connectionContext + 0x23);
-  if ((networkStatus2 == 0) && (networkStatus2 = FUN_1808555a0(connectionContext + 0x25), networkStatus2 == 0)) {
+  if ((networkStatus2 == 0) && (networkStatus2 = ValidateNetworkConnectionState(connectionContext + 0x25), networkStatus2 == 0)) {
     *(NetworkStatus *)(connectionContext + 0x27) = 0xffffffff;
     *(NetworkStatus *)((longlong)connectionContext + 0x13c) = 0;
   }
-  FUN_1808555a0(connectionContext + 0x25);
+  ValidateNetworkConnectionState(connectionContext + 0x25);
   FUN_180744cc0(connectionContext + 0x23);
   networkStatus2 = FUN_180744cc0(connectionContext + 0x1e);
-  if ((networkStatus2 == 0) && (networkStatus2 = FUN_1808555a0(connectionContext + 0x20), networkStatus2 == 0)) {
+  if ((networkStatus2 == 0) && (networkStatus2 = ValidateNetworkConnectionState(connectionContext + 0x20), networkStatus2 == 0)) {
     *(NetworkStatus *)(connectionContext + 0x22) = 0xffffffff;
     *(NetworkStatus *)((longlong)connectionContext + 0x114) = 0;
   }
-  FUN_1808555a0(connectionContext + 0x20);
+  ValidateNetworkConnectionState(connectionContext + 0x20);
   FUN_180744cc0(connectionContext + 0x1e);
   networkStatus2 = FUN_180744cc0(connectionContext + 0x19);
-  if ((networkStatus2 == 0) && (networkStatus2 = FUN_1808555a0(connectionContext + 0x1b), networkStatus2 == 0)) {
+  if ((networkStatus2 == 0) && (networkStatus2 = ValidateNetworkConnectionState(connectionContext + 0x1b), networkStatus2 == 0)) {
     *(NetworkStatus *)(connectionContext + 0x1d) = 0xffffffff;
     *(NetworkStatus *)((longlong)connectionContext + 0xec) = 0;
   }
-  FUN_1808555a0(connectionContext + 0x1b);
+  ValidateNetworkConnectionState(connectionContext + 0x1b);
   FUN_180744cc0(connectionContext + 0x19);
   networkStatus2 = FUN_180744cc0(connectionContext + 0x14);
-  if ((networkStatus2 == 0) && (networkStatus2 = FUN_1808555a0(connectionContext + 0x16), networkStatus2 == 0)) {
+  if ((networkStatus2 == 0) && (networkStatus2 = ValidateNetworkConnectionState(connectionContext + 0x16), networkStatus2 == 0)) {
     *(NetworkStatus *)(connectionContext + 0x18) = 0xffffffff;
     *(NetworkStatus *)((longlong)connectionContext + 0xc4) = 0;
   }
-  FUN_1808555a0(connectionContext + 0x16);
+  ValidateNetworkConnectionState(connectionContext + 0x16);
   FUN_180744cc0(connectionContext + 0x14);
   networkStatus2 = FUN_180744cc0(connectionContext + 0xf);
-  if ((networkStatus2 == 0) && (networkStatus2 = FUN_1808555a0(connectionContext + 0x11), networkStatus2 == 0)) {
+  if ((networkStatus2 == 0) && (networkStatus2 = ValidateNetworkConnectionState(connectionContext + 0x11), networkStatus2 == 0)) {
     *(NetworkStatus *)(connectionContext + 0x13) = 0xffffffff;
     *(NetworkStatus *)((longlong)connectionContext + 0x9c) = 0;
   }
-  FUN_1808555a0(connectionContext + 0x11);
+  ValidateNetworkConnectionState(connectionContext + 0x11);
   FUN_180744cc0(connectionContext + 0xf);
   networkStatus2 = FUN_180744cc0(connectionContext + 10);
-  if ((networkStatus2 == 0) && (networkStatus2 = FUN_1808555a0(connectionContext + 0xc), networkStatus2 == 0)) {
+  if ((networkStatus2 == 0) && (networkStatus2 = ValidateNetworkConnectionState(connectionContext + 0xc), networkStatus2 == 0)) {
     *(NetworkStatus *)(connectionContext + 0xe) = 0xffffffff;
     *(NetworkStatus *)((longlong)connectionContext + 0x74) = 0;
   }
-  FUN_1808555a0(connectionContext + 0xc);
+  ValidateNetworkConnectionState(connectionContext + 0xc);
   FUN_180744cc0(connectionContext + 10);
   networkStatus2 = FUN_180744cc0(connectionContext + 5);
-  if ((networkStatus2 == 0) && (networkStatus2 = FUN_1808555a0(connectionContext + 7), networkStatus2 == 0)) {
+  if ((networkStatus2 == 0) && (networkStatus2 = ValidateNetworkConnectionState(connectionContext + 7), networkStatus2 == 0)) {
     *(NetworkStatus *)(connectionContext + 9) = 0xffffffff;
     *(NetworkStatus *)((longlong)connectionContext + 0x4c) = 0;
   }
-  FUN_1808555a0(connectionContext + 7);
+  ValidateNetworkConnectionState(connectionContext + 7);
   FUN_180744cc0(connectionContext + 5);
   networkStatus2 = FUN_180744cc0(connectionContext);
-  if ((networkStatus2 == 0) && (networkStatus2 = FUN_1808555a0(connectionContext + 2), networkStatus2 == 0)) {
+  if ((networkStatus2 == 0) && (networkStatus2 = ValidateNetworkConnectionState(connectionContext + 2), networkStatus2 == 0)) {
     *(NetworkStatus *)(connectionContext + 4) = 0xffffffff;
     *(NetworkStatus *)((longlong)connectionContext + 0x24) = 0;
   }
-  FUN_1808555a0(connectionContext + 2);
+  ValidateNetworkConnectionState(connectionContext + 2);
   quaternaryNetworkFlag = *(uint *)((longlong)connectionContext + 0xc);
   if ((int)((quaternaryNetworkFlag ^ (int)quaternaryNetworkFlag >> 0x1f) - ((int)quaternaryNetworkFlag >> 0x1f)) < 0) {
     if (0 < (int)connectionContext[1]) {
@@ -59914,67 +59914,67 @@ NetworkHandle FUN_180872cc0(longlong *connectionContext)
   uint quaternaryNetworkFlag;
   
   networkStatus2 = FUN_180744cc0(connectionContext + 0x28);
-  if ((networkStatus2 == 0) && (networkStatus2 = FUN_1808555a0(connectionContext + 0x2a), networkStatus2 == 0)) {
+  if ((networkStatus2 == 0) && (networkStatus2 = ValidateNetworkConnectionState(connectionContext + 0x2a), networkStatus2 == 0)) {
     *(NetworkStatus *)(connectionContext + 0x2c) = 0xffffffff;
     *(NetworkStatus *)((longlong)connectionContext + 0x164) = 0;
   }
-  FUN_1808555a0(connectionContext + 0x2a);
+  ValidateNetworkConnectionState(connectionContext + 0x2a);
   FUN_180744cc0(connectionContext + 0x28);
   networkStatus2 = FUN_180744cc0(connectionContext + 0x23);
-  if ((networkStatus2 == 0) && (networkStatus2 = FUN_1808555a0(connectionContext + 0x25), networkStatus2 == 0)) {
+  if ((networkStatus2 == 0) && (networkStatus2 = ValidateNetworkConnectionState(connectionContext + 0x25), networkStatus2 == 0)) {
     *(NetworkStatus *)(connectionContext + 0x27) = 0xffffffff;
     *(NetworkStatus *)((longlong)connectionContext + 0x13c) = 0;
   }
-  FUN_1808555a0(connectionContext + 0x25);
+  ValidateNetworkConnectionState(connectionContext + 0x25);
   FUN_180744cc0(connectionContext + 0x23);
   networkStatus2 = FUN_180744cc0(connectionContext + 0x1e);
-  if ((networkStatus2 == 0) && (networkStatus2 = FUN_1808555a0(connectionContext + 0x20), networkStatus2 == 0)) {
+  if ((networkStatus2 == 0) && (networkStatus2 = ValidateNetworkConnectionState(connectionContext + 0x20), networkStatus2 == 0)) {
     *(NetworkStatus *)(connectionContext + 0x22) = 0xffffffff;
     *(NetworkStatus *)((longlong)connectionContext + 0x114) = 0;
   }
-  FUN_1808555a0(connectionContext + 0x20);
+  ValidateNetworkConnectionState(connectionContext + 0x20);
   FUN_180744cc0(connectionContext + 0x1e);
   networkStatus2 = FUN_180744cc0(connectionContext + 0x19);
-  if ((networkStatus2 == 0) && (networkStatus2 = FUN_1808555a0(connectionContext + 0x1b), networkStatus2 == 0)) {
+  if ((networkStatus2 == 0) && (networkStatus2 = ValidateNetworkConnectionState(connectionContext + 0x1b), networkStatus2 == 0)) {
     *(NetworkStatus *)(connectionContext + 0x1d) = 0xffffffff;
     *(NetworkStatus *)((longlong)connectionContext + 0xec) = 0;
   }
-  FUN_1808555a0(connectionContext + 0x1b);
+  ValidateNetworkConnectionState(connectionContext + 0x1b);
   FUN_180744cc0(connectionContext + 0x19);
   networkStatus2 = FUN_180744cc0(connectionContext + 0x14);
-  if ((networkStatus2 == 0) && (networkStatus2 = FUN_1808555a0(connectionContext + 0x16), networkStatus2 == 0)) {
+  if ((networkStatus2 == 0) && (networkStatus2 = ValidateNetworkConnectionState(connectionContext + 0x16), networkStatus2 == 0)) {
     *(NetworkStatus *)(connectionContext + 0x18) = 0xffffffff;
     *(NetworkStatus *)((longlong)connectionContext + 0xc4) = 0;
   }
-  FUN_1808555a0(connectionContext + 0x16);
+  ValidateNetworkConnectionState(connectionContext + 0x16);
   FUN_180744cc0(connectionContext + 0x14);
   networkStatus2 = FUN_180744cc0(connectionContext + 0xf);
-  if ((networkStatus2 == 0) && (networkStatus2 = FUN_1808555a0(connectionContext + 0x11), networkStatus2 == 0)) {
+  if ((networkStatus2 == 0) && (networkStatus2 = ValidateNetworkConnectionState(connectionContext + 0x11), networkStatus2 == 0)) {
     *(NetworkStatus *)(connectionContext + 0x13) = 0xffffffff;
     *(NetworkStatus *)((longlong)connectionContext + 0x9c) = 0;
   }
-  FUN_1808555a0(connectionContext + 0x11);
+  ValidateNetworkConnectionState(connectionContext + 0x11);
   FUN_180744cc0(connectionContext + 0xf);
   networkStatus2 = FUN_180744cc0(connectionContext + 10);
-  if ((networkStatus2 == 0) && (networkStatus2 = FUN_1808555a0(connectionContext + 0xc), networkStatus2 == 0)) {
+  if ((networkStatus2 == 0) && (networkStatus2 = ValidateNetworkConnectionState(connectionContext + 0xc), networkStatus2 == 0)) {
     *(NetworkStatus *)(connectionContext + 0xe) = 0xffffffff;
     *(NetworkStatus *)((longlong)connectionContext + 0x74) = 0;
   }
-  FUN_1808555a0(connectionContext + 0xc);
+  ValidateNetworkConnectionState(connectionContext + 0xc);
   FUN_180744cc0(connectionContext + 10);
   networkStatus2 = FUN_180744cc0(connectionContext + 5);
-  if ((networkStatus2 == 0) && (networkStatus2 = FUN_1808555a0(connectionContext + 7), networkStatus2 == 0)) {
+  if ((networkStatus2 == 0) && (networkStatus2 = ValidateNetworkConnectionState(connectionContext + 7), networkStatus2 == 0)) {
     *(NetworkStatus *)(connectionContext + 9) = 0xffffffff;
     *(NetworkStatus *)((longlong)connectionContext + 0x4c) = 0;
   }
-  FUN_1808555a0(connectionContext + 7);
+  ValidateNetworkConnectionState(connectionContext + 7);
   FUN_180744cc0(connectionContext + 5);
   networkStatus2 = FUN_180744cc0(connectionContext);
-  if ((networkStatus2 == 0) && (networkStatus2 = FUN_1808555a0(connectionContext + 2), networkStatus2 == 0)) {
+  if ((networkStatus2 == 0) && (networkStatus2 = ValidateNetworkConnectionState(connectionContext + 2), networkStatus2 == 0)) {
     *(NetworkStatus *)(connectionContext + 4) = 0xffffffff;
     *(NetworkStatus *)((longlong)connectionContext + 0x24) = 0;
   }
-  FUN_1808555a0(connectionContext + 2);
+  ValidateNetworkConnectionState(connectionContext + 2);
   quaternaryNetworkFlag = *(uint *)((longlong)connectionContext + 0xc);
   if ((int)((quaternaryNetworkFlag ^ (int)quaternaryNetworkFlag >> 0x1f) - ((int)quaternaryNetworkFlag >> 0x1f)) < 0) {
     if (0 < (int)connectionContext[1]) {
@@ -61638,46 +61638,46 @@ NetworkHandle FUN_180873cd0(longlong *connectionContext)
   uint quaternaryNetworkFlag;
   
   networkStatus2 = FUN_180744cc0(connectionContext + 0x19);
-  if ((networkStatus2 == 0) && (networkStatus2 = FUN_1808555a0(connectionContext + 0x1b), networkStatus2 == 0)) {
+  if ((networkStatus2 == 0) && (networkStatus2 = ValidateNetworkConnectionState(connectionContext + 0x1b), networkStatus2 == 0)) {
     *(NetworkStatus *)(connectionContext + 0x1d) = 0xffffffff;
     *(NetworkStatus *)((longlong)connectionContext + 0xec) = 0;
   }
-  FUN_1808555a0(connectionContext + 0x1b);
+  ValidateNetworkConnectionState(connectionContext + 0x1b);
   FUN_180744cc0(connectionContext + 0x19);
   networkStatus2 = FUN_180744cc0(connectionContext + 0x14);
-  if ((networkStatus2 == 0) && (networkStatus2 = FUN_1808555a0(connectionContext + 0x16), networkStatus2 == 0)) {
+  if ((networkStatus2 == 0) && (networkStatus2 = ValidateNetworkConnectionState(connectionContext + 0x16), networkStatus2 == 0)) {
     *(NetworkStatus *)(connectionContext + 0x18) = 0xffffffff;
     *(NetworkStatus *)((longlong)connectionContext + 0xc4) = 0;
   }
-  FUN_1808555a0(connectionContext + 0x16);
+  ValidateNetworkConnectionState(connectionContext + 0x16);
   FUN_180744cc0(connectionContext + 0x14);
   networkStatus2 = FUN_180744cc0(connectionContext + 0xf);
-  if ((networkStatus2 == 0) && (networkStatus2 = FUN_1808555a0(connectionContext + 0x11), networkStatus2 == 0)) {
+  if ((networkStatus2 == 0) && (networkStatus2 = ValidateNetworkConnectionState(connectionContext + 0x11), networkStatus2 == 0)) {
     *(NetworkStatus *)(connectionContext + 0x13) = 0xffffffff;
     *(NetworkStatus *)((longlong)connectionContext + 0x9c) = 0;
   }
-  FUN_1808555a0(connectionContext + 0x11);
+  ValidateNetworkConnectionState(connectionContext + 0x11);
   FUN_180744cc0(connectionContext + 0xf);
   networkStatus2 = FUN_180744cc0(connectionContext + 10);
-  if ((networkStatus2 == 0) && (networkStatus2 = FUN_1808555a0(connectionContext + 0xc), networkStatus2 == 0)) {
+  if ((networkStatus2 == 0) && (networkStatus2 = ValidateNetworkConnectionState(connectionContext + 0xc), networkStatus2 == 0)) {
     *(NetworkStatus *)(connectionContext + 0xe) = 0xffffffff;
     *(NetworkStatus *)((longlong)connectionContext + 0x74) = 0;
   }
-  FUN_1808555a0(connectionContext + 0xc);
+  ValidateNetworkConnectionState(connectionContext + 0xc);
   FUN_180744cc0(connectionContext + 10);
   networkStatus2 = FUN_180744cc0(connectionContext + 5);
-  if ((networkStatus2 == 0) && (networkStatus2 = FUN_1808555a0(connectionContext + 7), networkStatus2 == 0)) {
+  if ((networkStatus2 == 0) && (networkStatus2 = ValidateNetworkConnectionState(connectionContext + 7), networkStatus2 == 0)) {
     *(NetworkStatus *)(connectionContext + 9) = 0xffffffff;
     *(NetworkStatus *)((longlong)connectionContext + 0x4c) = 0;
   }
-  FUN_1808555a0(connectionContext + 7);
+  ValidateNetworkConnectionState(connectionContext + 7);
   FUN_180744cc0(connectionContext + 5);
   networkStatus2 = FUN_180744cc0(connectionContext);
-  if ((networkStatus2 == 0) && (networkStatus2 = FUN_1808555a0(connectionContext + 2), networkStatus2 == 0)) {
+  if ((networkStatus2 == 0) && (networkStatus2 = ValidateNetworkConnectionState(connectionContext + 2), networkStatus2 == 0)) {
     *(NetworkStatus *)(connectionContext + 4) = 0xffffffff;
     *(NetworkStatus *)((longlong)connectionContext + 0x24) = 0;
   }
-  FUN_1808555a0(connectionContext + 2);
+  ValidateNetworkConnectionState(connectionContext + 2);
   quaternaryNetworkFlag = *(uint *)((longlong)connectionContext + 0xc);
   if ((int)((quaternaryNetworkFlag ^ (int)quaternaryNetworkFlag >> 0x1f) - ((int)quaternaryNetworkFlag >> 0x1f)) < 0) {
     if (0 < (int)connectionContext[1]) {
@@ -67613,7 +67613,7 @@ NetworkHandle FUN_180879610(longlong *connectionContext,uint *packetData,Network
   int *pnetworkStatus13;
   longlong lVar7;
   
-  uVar6 = FUN_180855ce0();
+  uVar6 = ProcessNetworkConnectionValidation();
   if ((int)uVar6 == 0) {
     if ((int)connectionContext[1] == 0) {
       return 0x1c;
@@ -92541,7 +92541,7 @@ NetworkHandle FUN_180890540(longlong connectionContext)
   lVar1 = *(longlong *)(alStackX_8[0] + 0x10);
   if (lVar1 != 0) {
     *(int *)(lVar1 + 500) = *(int *)(lVar1 + 500) + 1;
-    if ((*(char *)(lVar1 + 0x204) != '\0') && (secondaryNetworkFlag = FUN_1808552c0(), (int)secondaryNetworkFlag != 0)) {
+    if ((*(char *)(lVar1 + 0x204) != '\0') && (secondaryNetworkFlag = ValidateNetworkConnectionData(), (int)secondaryNetworkFlag != 0)) {
       return secondaryNetworkFlag;
     }
     return 0;
