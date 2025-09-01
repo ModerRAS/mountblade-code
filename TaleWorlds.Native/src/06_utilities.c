@@ -13216,7 +13216,7 @@ int SystemResourceProcessorB(int64_t ObjectContext,int64_t ValidationContext)
               uStack_12c = *(uint32_t *)(resourceTable + 0x4c);
               uStack_128 = *(uint32_t *)(resourceTable + 0x50);
               uStack_124 = *(uint32_t *)(resourceTable + 0x54);
-              puStack_158 = &SystemResourceTemplateE;
+              puStack_158 = &SystemResourceTemplateEvent;
               uStack_150 = 0;
               uStack_120 = *(uint32_t *)(resourceTable + 0x58);
               uStack_11c = *(uint32_t *)(resourceTable + 0x5c);
@@ -13231,7 +13231,7 @@ int SystemResourceProcessorB(int64_t ObjectContext,int64_t ValidationContext)
           if (integerValue6 == 0) {
             if (fStack_19c != 1.0) {
               FloatStackValue = fStack_19c;
-              puStack_1c0 = &SystemResourceTemplateF;
+              puStack_1c0 = &SystemResourceTemplateFile;
               uStack_1b0 = uStack_1c8;
               uStack_1b8 = 0;
               integerValue6 = GetAndValidateResourceData(ObjectContextParameter,&puStack_1c0);
@@ -13482,7 +13482,7 @@ void SystemInitializerA(void)
             ResourceContextOffset = *(uint32_t *)(RegisterR15 + 0x4c);
             ContextValidationResult = *(uint32_t *)(RegisterR15 + 0x50);
             SecurityHashValue = *(uint32_t *)(RegisterR15 + 0x54);
-            ExecutionContextPointer[-0xe] = &SystemResourceTemplateE;
+            ExecutionContextPointer[-0xe] = &SystemResourceTemplateEvent;
             ExecutionContextPointer[-0xb] = resourceHash7;
             ExecutionContextPointer[-10] = resourceHash6;
             *(float *)(ExecutionContextPointer + -0xd) = unaff_R13D;
@@ -13510,7 +13510,7 @@ void SystemInitializerA(void)
           in_stack_000001a8 = unaff_XMM6_Dc;
           if (fStack000000000000004c != 1.0) {
             fStack0000000000000040 = fStack000000000000004c;
-            in_stack_00000028 = &SystemResourceTemplateF;
+            in_stack_00000028 = &SystemResourceTemplateFile;
             in_stack_00000038 = uStackX_20;
             in_stack_00000030 = unaff_R13D;
             ResourceIndex3 = GetAndValidateResourceData(fStack000000000000004c,&ObjectStackBuffer28);
@@ -13743,7 +13743,7 @@ void DataProcessingErrorHandler(void)
         ResourceContextOffset = *(uint32_t *)(RegisterR15 + 0x4c);
         ContextValidationResult = *(uint32_t *)(RegisterR15 + 0x50);
         SecurityHashValue = *(uint32_t *)(RegisterR15 + 0x54);
-        ExecutionContextPointer[-0xe] = &SystemResourceTemplateE;
+        ExecutionContextPointer[-0xe] = &SystemResourceTemplateEvent;
         ExecutionContextPointer[-0xb] = resourceHash7;
         ExecutionContextPointer[-10] = resourceHash6;
         *(float *)(ExecutionContextPointer + -0xd) = unaff_R13D;
@@ -13771,7 +13771,7 @@ void DataProcessingErrorHandler(void)
       in_stack_000001a8 = unaff_XMM6_Dc;
       if (in_stack_00000048._4_4_ != 1.0) {
         fStack0000000000000040 = in_stack_00000048._4_4_;
-        in_stack_00000028 = &SystemResourceTemplateF;
+        in_stack_00000028 = &SystemResourceTemplateFile;
         in_stack_00000038 = uStackX_20;
         in_stack_00000030 = unaff_R13D;
         ResourceIndex3 = GetAndValidateResourceData(in_stack_00000048._4_4_,&ObjectStackBuffer28);
@@ -13919,7 +13919,7 @@ void FloatProcessingErrorHandler(void)
   float in_stack_00000050;
   
   if (ObjectContextParameter != 1.0) {
-    in_stack_00000028 = &SystemResourceTemplateF;
+    in_stack_00000028 = &SystemResourceTemplateFile;
     in_stack_00000038 = uStackX_20;
     in_stack_00000030 = unaff_R13D;
     fStack0000000000000040 = ObjectContextParameter;
