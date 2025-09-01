@@ -17485,7 +17485,7 @@ void InitializeSystemDebugSymbolManager(undefined8 systemContext,longlong initia
     __Throw_C_error_std__YAXH_Z(iVar2);
   }
   SymSetOptions(0x2017);
-  FUN_180629090(&puStack_b8);
+  InitializeSystemLogging(&puStack_b8);
   puVar13 = &DAT_18098bc73;
   if (puStack_b0 != (undefined *)0x0) {
     puVar13 = puStack_b0;
@@ -17560,7 +17560,7 @@ LAB_180044faf:
   puVar10[1] = puVar8;
   puVar10[3] = uVar5;
   uVar5 = FUN_18062b1e0(_DAT_180c8ed18,0x198,8,3);
-  _DAT_180c8ed68 = FUN_18024e5c0(uVar5);
+  _DAT_180c8ed68 = CreateSystemTimer(uVar5);
   uVar5 = FUN_18062b1e0(_DAT_180c8ed18,0xa8,8,3);
   _DAT_180c8ed00 = FUN_180637560(uVar5);
   FUN_18062b1e0(_DAT_180c8ed18,1,1,3);

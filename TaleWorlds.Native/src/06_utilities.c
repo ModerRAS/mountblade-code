@@ -1992,7 +1992,7 @@ undefined UNK_180a00168;
  * 设置日志文件路径和控制台输出
  */
 void ConfigureLogOutput;
-undefined UNK_180a009a8;
+undefined SystemMemoryConfigDataTemplateB;
 undefined UNK_180a00a18;
 undefined UNK_180a00ae8;
 
@@ -17408,31 +17408,41 @@ a750(longlong param_1,uint *param_2)
 
 
 
-undefined8 FUN_18089a7e0(longlong param_1,undefined8 *param_2)
+/**
+ * @brief 计算资源数据哈希值
+ * 
+ * 该函数根据资源数据计算哈希值，用于资源验证和索引
+ * 处理不同大小的数据块，生成相应的哈希标识符
+ * 
+ * @param resourceContext 资源上下文，包含资源处理的环境信息
+ * @param resourceData 资源数据指针，指向需要计算哈希的资源数据
+ * @return undefined8 返回计算得到的资源哈希值
+ */
+undefined8 CalculateResourceDataHash(longlong resourceContext, undefined8 *resourceData)
 
 {
   undefined8 resourceHash;
-  uint uVar2;
-  uint auStackX_10 [2];
+  uint dataLength;
+  uint lengthBuffer [2];
   
-  uVar2 = *(int *)(param_2 + 1) - 1;
-  if (*(int *)(param_2 + 1) < 1) {
-    uVar2 = 0;
+  dataLength = *(int *)(resourceData + 1) - 1;
+  if (*(int *)(resourceData + 1) < 1) {
+    dataLength = 0;
   }
-  if (uVar2 < 0x8000) {
-    auStackX_10[0] = CONCAT22(auStackX_10[0]._2_2_,(short)uVar2);
+  if (dataLength < 0x8000) {
+    lengthBuffer[0] = CONCAT22(lengthBuffer[0]._2_2_,(short)dataLength);
     resourceHash = 2;
   }
   else {
     resourceHash = 4;
-    auStackX_10[0] = (uVar2 & 0xffffc000 | 0x4000) * 2 | uVar2 & 0x7fff;
+    lengthBuffer[0] = (dataLength & 0xffffc000 | 0x4000) * 2 | dataLength & 0x7fff;
   }
-  resourceHash = (**(code **)**(undefined8 **)(param_1 + 8))
-                    (*(undefined8 **)(param_1 + 8),auStackX_10,resourceHash);
+  resourceHash = (**(code **)**(undefined8 **)(resourceContext + 8))
+                    (*(undefined8 **)(resourceContext + 8),lengthBuffer,resourceHash);
   if ((int)resourceHash == 0) {
-    if ((uVar2 != 0) &&
-       (resourceHash = (**(code **)**(undefined8 **)(param_1 + 8))
-                          (*(undefined8 **)(param_1 + 8),*param_2,(longlong)(int)uVar2),
+    if ((dataLength != 0) &&
+       (resourceHash = (**(code **)**(undefined8 **)(resourceContext + 8))
+                          (*(undefined8 **)(resourceContext + 8),*resourceData,(longlong)(int)dataLength),
        (int)resourceHash != 0)) {
       return resourceHash;
     }
