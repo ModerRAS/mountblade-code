@@ -30039,8 +30039,15 @@ void FUN_180059bc0(void)
 
 
 
-// 函数: void FUN_180059ee0(longlong *param_1)
-void FUN_180059ee0(longlong *param_1)
+/**
+ * @brief 系统资源清理函数
+ * 
+ * 该函数负责清理系统资源，释放内存和关闭文件句柄
+ * 用于游戏退出时的资源回收和系统清理
+ * 
+ * @param ResourceHandle 资源句柄指针
+ */
+void CleanupSystemResources(longlong *ResourceHandle)
 
 {
   int *piVar1;

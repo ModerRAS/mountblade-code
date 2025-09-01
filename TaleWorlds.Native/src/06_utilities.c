@@ -82541,28 +82541,28 @@ void FUN_180942850(void)
 void ReleaseResourceReference(void)
 
 {
-  longlong *plVar1;
-  int *piVar2;
-  int iVar3;
-  longlong lVar4;
-  longlong *plVar5;
+  longlong *referenceCountPointer;
+  int *secondaryCountPointer;
+  int secondaryCountValue;
+  longlong referenceCountValue;
+  longlong *resourceManagerPointer;
   
-  plVar5 = _DAT_180c92478;
+  resourceManagerPointer = _DAT_180c92478;
   if (_DAT_180c92478 != (longlong *)0x0) {
     LOCK();
-    plVar1 = _DAT_180c92478 + 1;
-    lVar4 = *plVar1;
-    *(int *)plVar1 = (int)*plVar1 + -1;
+    referenceCountPointer = _DAT_180c92478 + 1;
+    referenceCountValue = *referenceCountPointer;
+    *(int *)referenceCountPointer = (int)*referenceCountPointer + -1;
     UNLOCK();
-    if ((int)lVar4 == 1) {
-      (**(code **)*plVar5)(plVar5);
+    if ((int)referenceCountValue == 1) {
+      (**(code **)*resourceManagerPointer)(resourceManagerPointer);
       LOCK();
-      piVar2 = (int *)((longlong)plVar5 + 0xc);
-      iVar3 = *piVar2;
-      *piVar2 = *piVar2 + -1;
+      secondaryCountPointer = (int *)((longlong)resourceManagerPointer + 0xc);
+      secondaryCountValue = *secondaryCountPointer;
+      *secondaryCountPointer = *secondaryCountPointer + -1;
       UNLOCK();
-      if (iVar3 == 1) {
-        (**(code **)(*plVar5 + 8))(plVar5);
+      if (secondaryCountValue == 1) {
+        (**(code **)(*resourceManagerPointer + 8))(resourceManagerPointer);
       }
     }
   }
