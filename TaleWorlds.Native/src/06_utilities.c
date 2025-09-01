@@ -87973,17 +87973,6 @@ void ResetThreadLocalStorage(void)
  * 该函数负责清理系统运行过程中分配的各种资源
  * 包括内存、句柄、数据结构等
  * 
- * @param resourceType 资源类型，用于标识要清理的资源种类
- * @param resourceInstance 资源实例，用于标识具体的资源实例
- * @param cleanupOptions 清理选项，控制清理行为的具体参数
- * @param cleanupFlags 清理标志，指定清理操作的标志位
- */
-/**
- * @brief 清理系统资源
- * 
- * 该函数负责清理系统运行过程中分配的各种资源
- * 包括内存、句柄、数据结构等
- * 
  * @param ResourceType 资源类型，用于标识要清理的资源种类
  * @param ResourceInstance 资源实例，用于标识具体的资源实例
  * @param CleanupOptions 清理选项，控制清理行为的具体参数
