@@ -33648,7 +33648,7 @@ void FUN_1800594b0(void* *SystemResourcePointer)
 {
   ConfigureSystemMemoryRegion(SystemResourcePointer + 0x7d,0x58,4,FUN_180044a30,0xfffffffffffffffe);
   ConfigureSystemMemoryRegion(SystemResourcePointer + 0x51,0x58,4,FUN_180044a30);
-  ConfigureSystemMemoryRegion(SystemResourcePointer + 0x11,0x20,0x10,FUN_180059620);
+  ConfigureSystemMemoryRegion(SystemResourcePointer + 0x11,0x20,0x10,CleanupSystemResources);
   SystemResourcePointer[8] = &SystemGlobalDataReference;
   if (SystemResourcePointer[9] != 0) {
                     // WARNING: Subroutine does not return
