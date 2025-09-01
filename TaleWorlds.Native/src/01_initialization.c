@@ -30348,8 +30348,9 @@ void ProcessSystemResourceOperation(long long SystemResourcePointer,void* param_
 
 
 
-// 函数: void FUN_1800574b0(long long *SystemResourcePointer)
-void FUN_1800574b0(long long *SystemResourcePointer)
+// 函数: void CleanupSystemResources(long long *SystemResourcePointer)
+// 功能: 清理系统资源，释放分配的内存和资源
+void CleanupSystemResources(long long *SystemResourcePointer)
 
 {
   long long localMemoryPointer;
@@ -30391,8 +30392,9 @@ void FUN_180057530(long long SystemResourcePointer,void* param_2,void* param_3,v
 
 
 
-// 函数: void FUN_180057550(long long SystemResourcePointer)
-void FUN_180057550(long long SystemResourcePointer)
+// 函数: void ReleaseSystemMemoryHandles(long long SystemResourcePointer)
+// 功能: 释放系统内存句柄，清理相关的内存资源
+void ReleaseSystemMemoryHandles(long long SystemResourcePointer)
 
 {
   int *pointerToInteger1;
