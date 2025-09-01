@@ -68,13 +68,13 @@ undefined1 systemStatusFlag1;
 undefined GetSystemStatusFlag2;
 undefined1 systemStatusFlag2;
 
-// 函数: undefined FUN_180941690;
-undefined FUN_180941690;
-undefined1 DAT_180c91238;
+// 函数: undefined GetSystemStatusFlag3;
+undefined GetSystemStatusFlag3;
+undefined1 systemStatusFlag3;
 
-// 函数: undefined FUN_1809416d0;
-undefined FUN_1809416d0;
-undefined1 DAT_180c912d8;
+// 函数: undefined GetSystemStatusFlag4;
+undefined GetSystemStatusFlag4;
+undefined1 systemStatusFlag4;
 
 // 函数: void DestroyThreadSyncObjects(void)
 void DestroyThreadSyncObjects(void);

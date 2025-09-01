@@ -1,8 +1,8 @@
 #ifndef DATA_DEFINITIONS_H
 #define DATA_DEFINITIONS_H
 
-undefined systemGlobalData;
-undefined unknownGlobalData;
+undefined g_systemGlobalData;
+undefined g_unknownGlobalData;
 
 /**
  * 初始化渲染系统模块
@@ -10,14 +10,14 @@ undefined unknownGlobalData;
  * 
  * @return 初始化成功返回0，失败返回-1
  */
-int initializeRenderingSystem(void)
+int InitializeRenderingSystem(void)
 {
   longlong callbackResult;
   g_renderingSystemEnabled = 1;
   g_renderingSystemFlags = 0;
   g_renderingSystemMaxValue = 0x7fffffffffffffff;
   g_renderingSystemStatus = 0;
-  callbackResult = registerSystemCallback(renderingSystemCallback);
+  callbackResult = RegisterSystemCallback(renderingSystemCallback);
   return (callbackResult != 0) - 1;
 }
 /**
@@ -26,14 +26,14 @@ int initializeRenderingSystem(void)
  * 
  * @return 初始化成功返回0，失败返回-1
  */
-int initializePhysicsEngine(void)
+int InitializePhysicsEngine(void)
 {
   longlong callbackResult;
   g_physicsEngineData = &unknownGlobalData;
   g_physicsEngineConfig = &g_physicsEngineState;
   g_physicsEngineFlags = 0;
   g_physicsEngineState = 0;
-  callbackResult = registerSystemCallback(physicsEngineCallback);
+  callbackResult = RegisterSystemCallback(PhysicsEngineCallback);
   return (callbackResult != 0) - 1;
 }
 /**
@@ -188,12 +188,7 @@ int initializeConditionMutexD(undefined8 param_1,undefined8 param_2,undefined8 p
   result = registerSystemCallback(initializeConditionMutexD_Callback);
   return (result != 0) - 1;
 }
-  DAT_180bf64e8 = 0;
-  _DAT_180bf64e0 = 6;
-  strcpy_s(&DAT_180bf64e8,0x10,&UNK_180a004dc,in_R9,0xfffffffffffffffe);
-  lVar1 = FUN_1808fc7d0(FUN_180941800);
-  return (lVar1 != 0) - 1;
-}
+
 /**
  * 初始化字符串处理器A
  * 设置字符串处理所需的数据结构和回调

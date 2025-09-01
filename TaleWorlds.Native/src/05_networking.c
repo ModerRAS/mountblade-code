@@ -2,8 +2,20 @@
 
 // 05_networking.c - 908 个函数
 
-// 函数: undefined FUN_1808632b0;
-undefined FUN_1808632b0;
+/**
+ * 比较网络连接时间戳
+ * 
+ * 该函数比较两个网络连接的时间戳或优先级，返回比较结果。
+ * 主要用于网络连接排序和优先级管理。
+ * 
+ * @param connection1 第一个网络连接指针
+ * @param connection2 第二个网络连接指针
+ * @return 比较结果，表示连接的相对优先级
+ * 
+ * 注意：这是一个反编译的函数实现
+ */
+uint CompareNetworkConnectionTimestamps(longlong *connection1,longlong *connection2);
+
 undefined UNK_1808633a0;
 undefined UNK_180863400;
 undefined UNK_180984d50;
@@ -538,58 +550,71 @@ cleanup:
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180840600(undefined4 param_1,int param_2,longlong param_3)
-void FUN_180840600(undefined4 param_1,int param_2,longlong param_3)
+// 函数: void ProcessNetworkPacket(undefined4 packetId,int packetIndex,longlong packetData)
+/**
+ * 处理网络数据包
+ * 
+ * 根据数据包ID和索引处理网络数据包。验证数据包的有效性，
+ * 检查索引范围，并执行相应的处理逻辑。
+ * 
+ * @param packetId 数据包ID
+ * @param packetIndex 数据包索引，必须在有效范围内
+ * @param packetData 数据包数据指针
+ * @return 无返回值
+ * 
+ * 注意：这是一个反编译的函数实现
+ */
+void ProcessNetworkPacket(undefined4 packetId,int packetIndex,longlong packetData)
 
 {
-  longlong *plVar1;
-  int iVar2;
-  longlong lVar3;
-  longlong lVar4;
-  undefined1 auStack_88 [32];
-  undefined8 uStack_68;
-  longlong lStack_60;
-  longlong lStack_58;
-  longlong lStack_50;
-  undefined1 auStack_48 [40];
-  ulonglong uStack_20;
+  longlong *packetProcessor;
+  int processingStatus;
+  longlong packetEntry;
+  longlong packetArray;
+  undefined1 securityBuffer [32];
+  undefined8 connectionHandle;
+  longlong networkContext;
+  longlong packetTable;
+  longlong packetInfo;
+  undefined1 processingBuffer [40];
+  ulonglong stackGuard;
   
-  uStack_20 = _DAT_180bf00a8 ^ (ulonglong)auStack_88;
-  if (param_3 == 0) {
+  stackGuard = _DAT_180bf00a8 ^ (ulonglong)securityBuffer;
+  if (packetData == 0) {
                     // WARNING: Subroutine does not return
-    FUN_1808fc050(uStack_20 ^ (ulonglong)auStack_88);
+    FUN_1808fc050(stackGuard ^ (ulonglong)securityBuffer);
   }
-  lStack_58 = 0;
-  uStack_68 = 0;
-  lStack_60 = 0;
-  iVar2 = func_0x00018088c590(0,&lStack_60);
-  if ((((iVar2 == 0) && (iVar2 = FUN_18088c740(&uStack_68,lStack_60), iVar2 == 0)) &&
-      (iVar2 = func_0x00018088c530(param_1,&lStack_50), iVar2 == 0)) &&
-     ((lStack_58 = *(longlong *)(lStack_50 + 8), -1 < param_2 &&
-      (param_2 < *(int *)(lStack_58 + 0x88))))) {
-    lVar4 = (longlong)param_2 * 0x10 + *(longlong *)(lStack_58 + 0x80);
-    plVar1 = *(longlong **)(lStack_60 + 800);
-    lVar3 = (**(code **)(*plVar1 + 0x270))(plVar1,lVar4,1);
-    if (lVar3 == 0) {
+  packetTable = 0;
+  connectionHandle = 0;
+  networkContext = 0;
+  processingStatus = func_0x00018088c590(0,&networkContext);
+  if ((((processingStatus == 0) && (processingStatus = FUN_18088c740(&connectionHandle,networkContext), processingStatus == 0)) &&
+      (processingStatus = func_0x00018088c530(packetId,&packetInfo), processingStatus == 0)) &&
+     ((packetTable = *(longlong *)(packetInfo + 8), -1 < packetIndex &&
+      (packetIndex < *(int *)(packetTable + 0x88))))) {
+    packetArray = (longlong)packetIndex * 0x10 + *(longlong *)(packetTable + 0x80);
+    packetProcessor = *(longlong **)(networkContext + 800);
+    packetEntry = (**(code **)(*packetProcessor + 0x270))(packetProcessor,packetArray,1);
+    if (packetEntry == 0) {
                     // WARNING: Subroutine does not return
-      FUN_18084b240(lVar4,auStack_48);
+      FUN_18084b240(packetArray,processingBuffer);
     }
-    if ((((*(int *)(lVar3 + 0x38) != 0) || (*(int *)(lVar3 + 0x3c) != 0)) ||
-        ((*(int *)(lVar3 + 0x40) != 0 || (*(int *)(lVar3 + 0x44) != 0)))) &&
-       (lVar3 = FUN_18083fb90(plVar1), lVar3 != 0)) {
-      FUN_180847550(lVar3,param_3,1);
+    if ((((*(int *)(packetEntry + 0x38) != 0) || (*(int *)(packetEntry + 0x3c) != 0)) ||
+        ((*(int *)(packetEntry + 0x40) != 0 || (*(int *)(packetEntry + 0x44) != 0)))) &&
+       (packetEntry = FUN_18083fb90(packetProcessor), packetEntry != 0)) {
+      FUN_180847550(packetEntry,packetData,1);
     }
   }
                     // WARNING: Subroutine does not return
-  FUN_18088c790(&uStack_68);
+  FUN_18088c790(&connectionHandle);
 }
 
 
 
 
-// 函数: void FUN_18084062e(undefined8 param_1,undefined8 param_2,undefined1 param_3,undefined8 param_4,
-void FUN_18084062e(undefined8 param_1,undefined8 param_2,undefined1 param_3,undefined8 param_4,
-                  undefined8 param_5,undefined8 param_6,longlong param_7)
+// 函数: void SendNetworkPacket(undefined8 packetId,undefined8 connectionId,undefined1 packetType,undefined8 targetAddress,
+void SendNetworkPacket(undefined8 packetId,undefined8 connectionId,undefined1 packetType,undefined8 targetAddress,
+                  undefined8 sourceAddress,undefined8 networkContext,longlong packetData)
 
 {
   longlong *plVar1;

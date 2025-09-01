@@ -596,6 +596,10 @@ undefined FUN_18006b8f0;
  * 初始化游戏核心系统组件
  * 负责设置和配置游戏引擎的基础组件，包括内存管理、系统初始化等
  */
+/**
+ * 初始化游戏核心系统
+ * 设置游戏运行所需的核心系统组件和数据结构
+ */
 void initializeGameCoreSystem(void)
 
 {
@@ -15839,15 +15843,18 @@ void SetRenderSystemPointer(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180043ac0(void)
-void FUN_180043ac0(void)
+/**
+ * 设置音频系统指针
+ * 根据系统配置设置音频相关的系统指针地址
+ */
+void SetAudioSystemPointer(void)
 
 {
-  int iVar1;
+  int systemStatus;
   
-  iVar1 = FUN_1807681a0(0);
+  systemStatus = FUN_1807681a0(0);
   _DAT_180c0e170 = 0x180be23a0;
-  if (iVar1 != 0) {
+  if (systemStatus != 0) {
     _DAT_180c0e170 = 0x180be23c0;
   }
   return;
@@ -15858,15 +15865,18 @@ void FUN_180043ac0(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180043af0(void)
-void FUN_180043af0(void)
+/**
+ * 设置输入系统指针
+ * 根据系统配置设置输入相关的系统指针地址
+ */
+void SetInputSystemPointer(void)
 
 {
-  int iVar1;
+  int systemStatus;
   
-  iVar1 = FUN_1807681a0(0);
+  systemStatus = FUN_1807681a0(0);
   _DAT_180c108d0 = 0x180be2ad8;
-  if (iVar1 != 0) {
+  if (systemStatus != 0) {
     _DAT_180c108d0 = 0x180be2af8;
   }
   return;
@@ -15877,15 +15887,18 @@ void FUN_180043af0(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180043b20(void)
-void FUN_180043b20(void)
+/**
+ * 设置物理系统指针
+ * 根据系统配置设置物理相关的系统指针地址
+ */
+void SetPhysicsSystemPointer(void)
 
 {
-  int iVar1;
+  int systemStatus;
   
-  iVar1 = FUN_1807681a0(0);
+  systemStatus = FUN_1807681a0(0);
   _DAT_180c2bca0 = 0x180be4710;
-  if (iVar1 != 0) {
+  if (systemStatus != 0) {
     _DAT_180c2bca0 = 0x180be4728;
   }
   return;
@@ -15896,20 +15909,24 @@ void FUN_180043b20(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180043b50(void)
-void FUN_180043b50(void)
+/**
+ * 设置网络系统指针
+ * 根据系统配置设置网络相关的系统指针地址
+ * 首先检查高级配置，然后回退到基础配置
+ */
+void SetNetworkSystemPointer(void)
 
 {
-  int iVar1;
+  int systemStatus;
   
-  iVar1 = FUN_1807681a0(1);
-  if (iVar1 != 0) {
+  systemStatus = FUN_1807681a0(1);
+  if (systemStatus != 0) {
     _DAT_180c31148 = 0x180be6078;
     return;
   }
-  iVar1 = FUN_1807681a0(0);
+  systemStatus = FUN_1807681a0(0);
   _DAT_180c31148 = 0x180be6068;
-  if (iVar1 != 0) {
+  if (systemStatus != 0) {
     _DAT_180c31148 = 0x180be6070;
   }
   return;
@@ -15917,22 +15934,28 @@ void FUN_180043b50(void)
 
 
 
-int FUN_180043ba0(void)
+/**
+ * 初始化虚拟函数表数组
+ * 初始化一个包含16个元素的虚拟函数表数组，并注册系统回调
+ * 
+ * @return 成功返回0，失败返回-1
+ */
+int InitializeVirtualFunctionTableArray(void)
 
 {
-  undefined8 *puVar1;
-  longlong lVar2;
+  undefined8 *vtablePointer;
+  longlong loopCounter;
   
-  puVar1 = (undefined8 *)0x180c35590;
-  lVar2 = 0x10;
+  vtablePointer = (undefined8 *)0x180c35590;
+  loopCounter = 0x10;
   do {
-    func_0x000180767970(puVar1);
-    *puVar1 = &UNK_18097e888;
-    puVar1 = puVar1 + 0x2b;
-    lVar2 = lVar2 + -1;
-  } while (lVar2 != 0);
-  lVar2 = FUN_1808fc7d0(&UNK_180943270);
-  return (lVar2 != 0) - 1;
+    func_0x000180767970(vtablePointer);
+    *vtablePointer = &UNK_18097e888;
+    vtablePointer = vtablePointer + 0x2b;
+    loopCounter = loopCounter + -1;
+  } while (loopCounter != 0);
+  loopCounter = FUN_1808fc7d0(&UNK_180943270);
+  return (loopCounter != 0) - 1;
 }
 
 
@@ -15940,15 +15963,18 @@ int FUN_180043ba0(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180043c00(void)
-void FUN_180043c00(void)
+/**
+ * 设置游戏逻辑系统指针
+ * 根据系统配置设置游戏逻辑相关的系统指针地址
+ */
+void SetGameLogicSystemPointer(void)
 
 {
-  int iVar1;
+  int systemStatus;
   
-  iVar1 = FUN_1807681a0(0);
+  systemStatus = FUN_1807681a0(0);
   _DAT_180c4ea58 = 0x180bebac8;
-  if (iVar1 != 0) {
+  if (systemStatus != 0) {
     _DAT_180c4ea58 = 0x180bebad8;
   }
   return;
@@ -15959,25 +15985,29 @@ void FUN_180043c00(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180043c30(void)
-void FUN_180043c30(void)
+/**
+ * 设置UI系统指针
+ * 根据系统配置设置UI相关的系统指针地址
+ * 按优先级检查不同的系统配置级别
+ */
+void SetUISystemPointer(void)
 
 {
-  int iVar1;
+  int systemStatus;
   
-  iVar1 = FUN_1807681a0(3);
-  if (iVar1 != 0) {
+  systemStatus = FUN_1807681a0(3);
+  if (systemStatus != 0) {
     _DAT_180c4ea60 = 0x180bebc10;
     return;
   }
-  iVar1 = FUN_1807681a0(2);
-  if (iVar1 != 0) {
+  systemStatus = FUN_1807681a0(2);
+  if (systemStatus != 0) {
     _DAT_180c4ea60 = 0x180bebbb0;
     return;
   }
-  iVar1 = FUN_1807681a0(0);
+  systemStatus = FUN_1807681a0(0);
   _DAT_180c4ea60 = 0x180bebaf0;
-  if (iVar1 != 0) {
+  if (systemStatus != 0) {
     _DAT_180c4ea60 = 0x180bebb50;
   }
   return;
@@ -15985,26 +16015,38 @@ void FUN_180043c30(void)
 
 
 
-int FUN_180043cc0(void)
+/**
+ * 初始化调试系统
+ * 初始化调试相关的系统组件并注册系统回调
+ * 
+ * @return 成功返回0，失败返回-1
+ */
+int InitializeDebugSystem(void)
 
 {
-  longlong lVar1;
+  longlong callbackResult;
   
   FUN_1808dbcd0(0x180c4f510);
-  lVar1 = FUN_1808fc7d0(&UNK_180943310);
-  return (lVar1 != 0) - 1;
+  callbackResult = FUN_1808fc7d0(&UNK_180943310);
+  return (callbackResult != 0) - 1;
 }
 
 
 
-int FUN_180043ce0(void)
+/**
+ * 初始化线程安全互斥锁
+ * 初始化线程安全的互斥锁机制并注册系统回调
+ * 
+ * @return 成功返回0，失败返回-1
+ */
+int InitializeThreadSafetyMutex(void)
 
 {
-  longlong lVar1;
+  longlong callbackResult;
   
   _Mtx_init_in_situ(0x180c82170,2);
-  lVar1 = FUN_1808fc7d0(&UNK_180943320);
-  return (lVar1 != 0) - 1;
+  callbackResult = FUN_1808fc7d0(&UNK_180943320);
+  return (callbackResult != 0) - 1;
 }
 
 
