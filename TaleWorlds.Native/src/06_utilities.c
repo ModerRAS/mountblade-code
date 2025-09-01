@@ -13044,7 +13044,7 @@ void ProcessComplexResourceWithRegisters(void)
         *(uint32_t *)(executionContext + -0x60) = validationStatus2;
         *(uint32_t *)(executionContext + -0x5c) = resourceData1;
         *(uint32_t *)(executionContext + -0x58) = resourceData2;
-        tempIndex = GetAndValidateResourceData(validationStatus1,executionContext + -0x80);
+        temporaryIndex = GetAndValidateResourceData(validationStatus1,executionContext + -0x80);
         if ((tempIndex != 0) || (tempIndex = SearchResourceTable(resourceTablePointer,&stackFloat1,0), tempIndex != 0)) break;
         if (stackFloat1 != 1.0) {
           stackResourceValue = stackFloat1;
