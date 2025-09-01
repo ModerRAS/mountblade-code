@@ -1590,8 +1590,14 @@ undefined UNK_180942640;
 undefined UNK_180a24da8;
 undefined UNK_180a24dc0;
 
-// 函数: undefined FUN_180942660;
-undefined FUN_180942660;
+// 函数: void SetupMemoryQuality;
+/**
+ * @brief 设置内存质量管理
+ * 
+ * 该函数负责设置内存质量管理系统
+ * 配置内存质量评估和改进策略
+ */
+void SetupMemoryQuality;
 undefined DAT_180bfc150;
 undefined1 DAT_180bfc140;
 undefined DAT_180bfc160;
@@ -1602,8 +1608,14 @@ undefined DAT_180bfaec8;
 undefined DAT_180bfaed0;
 undefined DAT_180bfaed8;
 
-// 函数: undefined FUN_180942750;
-undefined FUN_180942750;
+// 函数: void InitializeMemoryValidation;
+/**
+ * @brief 初始化内存验证
+ * 
+ * 该函数负责初始化内存验证系统
+ * 设置内存数据验证和完整性检查
+ */
+void InitializeMemoryValidation;
 undefined DAT_180bfaee0;
 undefined DAT_180bfaee8;
 undefined DAT_180c92050;
