@@ -826,7 +826,7 @@ undefined SystemDataBuffer146;
 undefined SystemDataBuffer147;
 undefined SystemDataBuffer148;
 undefined SystemDataBuffer149;
-undefined SystemConfigDataTable;
+void* SystemConfigurationDataTable;
 undefined SystemMemoryStatusTable;
 undefined SystemThreadControlTable;
 undefined SystemEventQueueTable;
@@ -51138,7 +51138,7 @@ void Unwind_180908050(undefined8 param_1,undefined8 param_2,undefined8 param_3,u
   _MemoryManagementArray[1] = (longlong)plVar1;
   *_MemoryManagementArray = (longlong)plVar1;
   _MemoryManagementArray[2] = (longlong)plVar1;
-  _DAT_180d49208 = 0;
+  MemoryAllocationStatus = 0;
                     // WARNING: Could not recover jumptable at 0x0001808ffc83. Too many branches
                     // WARNING: Treating indirect jump as call
   free(_MemoryManagementArray,0x58);
@@ -62446,8 +62446,8 @@ void Unwind_18090c470(undefined8 param_1,longlong param_2)
 void Unwind_18090c480(void)
 
 {
-  _DAT_180c8695c = _DAT_180c8695c + -1;
-  (**(code **)(*_DAT_180c86968 + 0x20))();
+  ResourceReferenceCounter = ResourceReferenceCounter + -1;
+  (**(code **)(*ResourceManagerPointer + 0x20))();
   return;
 }
 
@@ -62782,8 +62782,8 @@ void Unwind_18090c560(undefined8 param_1,longlong param_2)
 void Unwind_18090c570(void)
 
 {
-  _DAT_180c8695c = _DAT_180c8695c + -1;
-  (**(code **)(*_DAT_180c86968 + 0x20))();
+  ResourceReferenceCounter = ResourceReferenceCounter + -1;
+  (**(code **)(*ResourceManagerPointer + 0x20))();
   return;
 }
 
@@ -62858,8 +62858,8 @@ void Unwind_18090c5a0(undefined8 param_1,longlong param_2)
 void Unwind_18090c5b0(void)
 
 {
-  _DAT_180c8695c = _DAT_180c8695c + -1;
-  (**(code **)(*_DAT_180c86968 + 0x20))();
+  ResourceReferenceCounter = ResourceReferenceCounter + -1;
+  (**(code **)(*ResourceManagerPointer + 0x20))();
   return;
 }
 
@@ -62962,8 +62962,8 @@ void Unwind_18090c5d0(undefined8 param_1,longlong param_2)
 void Unwind_18090c5e0(void)
 
 {
-  _DAT_180c8695c = _DAT_180c8695c + -1;
-  (**(code **)(*_DAT_180c86968 + 0x20))();
+  ResourceReferenceCounter = ResourceReferenceCounter + -1;
+  (**(code **)(*ResourceManagerPointer + 0x20))();
   return;
 }
 
@@ -63685,8 +63685,8 @@ void Unwind_18090c9d0(undefined8 param_1,longlong param_2)
 void Unwind_18090ca00(void)
 
 {
-  _DAT_180c8695c = _DAT_180c8695c + -1;
-  (**(code **)(*_DAT_180c86968 + 0x20))();
+  ResourceReferenceCounter = ResourceReferenceCounter + -1;
+  (**(code **)(*ResourceManagerPointer + 0x20))();
   return;
 }
 
@@ -63697,8 +63697,8 @@ void Unwind_18090ca00(void)
 void Unwind_18090ca10(void)
 
 {
-  _DAT_180c8695c = _DAT_180c8695c + -1;
-  (**(code **)(*_DAT_180c86968 + 0x20))();
+  ResourceReferenceCounter = ResourceReferenceCounter + -1;
+  (**(code **)(*ResourceManagerPointer + 0x20))();
   return;
 }
 
@@ -63755,8 +63755,8 @@ void Unwind_18090ca20(undefined8 param_1,longlong param_2)
 void Unwind_18090ca30(void)
 
 {
-  _DAT_180c8695c = _DAT_180c8695c + -1;
-  (**(code **)(*_DAT_180c86968 + 0x20))();
+  ResourceReferenceCounter = ResourceReferenceCounter + -1;
+  (**(code **)(*ResourceManagerPointer + 0x20))();
   return;
 }
 
@@ -63813,8 +63813,8 @@ void Unwind_18090ca40(undefined8 param_1,longlong param_2)
 void Unwind_18090ca50(void)
 
 {
-  _DAT_180c8695c = _DAT_180c8695c + -1;
-  (**(code **)(*_DAT_180c86968 + 0x20))();
+  ResourceReferenceCounter = ResourceReferenceCounter + -1;
+  (**(code **)(*ResourceManagerPointer + 0x20))();
   return;
 }
 
@@ -63825,8 +63825,8 @@ void Unwind_18090ca50(void)
 void Unwind_18090ca60(void)
 
 {
-  _DAT_180c8695c = _DAT_180c8695c + -1;
-  (**(code **)(*_DAT_180c86968 + 0x20))();
+  ResourceReferenceCounter = ResourceReferenceCounter + -1;
+  (**(code **)(*ResourceManagerPointer + 0x20))();
   return;
 }
 
@@ -63892,8 +63892,8 @@ void Unwind_18090ca80(undefined8 param_1,longlong param_2)
 void Unwind_18090ca90(void)
 
 {
-  _DAT_180c8695c = _DAT_180c8695c + -1;
-  (**(code **)(*_DAT_180c86968 + 0x20))();
+  ResourceReferenceCounter = ResourceReferenceCounter + -1;
+  (**(code **)(*ResourceManagerPointer + 0x20))();
   return;
 }
 
@@ -63959,8 +63959,8 @@ void Unwind_18090cab0(undefined8 param_1,longlong param_2)
 void Unwind_18090cac0(void)
 
 {
-  _DAT_180c8695c = _DAT_180c8695c + -1;
-  (**(code **)(*_DAT_180c86968 + 0x20))();
+  ResourceReferenceCounter = ResourceReferenceCounter + -1;
+  (**(code **)(*ResourceManagerPointer + 0x20))();
   return;
 }
 
@@ -64026,8 +64026,8 @@ void Unwind_18090cae0(undefined8 param_1,longlong param_2)
 void Unwind_18090caf0(void)
 
 {
-  _DAT_180c8695c = _DAT_180c8695c + -1;
-  (**(code **)(*_DAT_180c86968 + 0x20))();
+  ResourceReferenceCounter = ResourceReferenceCounter + -1;
+  (**(code **)(*ResourceManagerPointer + 0x20))();
   return;
 }
 
@@ -64194,8 +64194,8 @@ void Unwind_18090cb40(undefined8 param_1,longlong param_2)
 void Unwind_18090cb50(void)
 
 {
-  _DAT_180c8695c = _DAT_180c8695c + -1;
-  (**(code **)(*_DAT_180c86968 + 0x20))();
+  ResourceReferenceCounter = ResourceReferenceCounter + -1;
+  (**(code **)(*ResourceManagerPointer + 0x20))();
   return;
 }
 
@@ -64307,8 +64307,8 @@ void Unwind_18090cb80(undefined8 param_1,longlong param_2)
 void Unwind_18090cb90(void)
 
 {
-  _DAT_180c8695c = _DAT_180c8695c + -1;
-  (**(code **)(*_DAT_180c86968 + 0x20))();
+  ResourceReferenceCounter = ResourceReferenceCounter + -1;
+  (**(code **)(*ResourceManagerPointer + 0x20))();
   return;
 }
 
@@ -64328,8 +64328,8 @@ void Unwind_18090cba0(undefined8 param_1,longlong param_2)
 void Unwind_18090cbb0(void)
 
 {
-  _DAT_180c8695c = _DAT_180c8695c + -1;
-  (**(code **)(*_DAT_180c86968 + 0x20))();
+  ResourceReferenceCounter = ResourceReferenceCounter + -1;
+  (**(code **)(*ResourceManagerPointer + 0x20))();
   return;
 }
 
@@ -64340,8 +64340,8 @@ void Unwind_18090cbb0(void)
 void Unwind_18090cbc0(void)
 
 {
-  _DAT_180c8695c = _DAT_180c8695c + -1;
-  (**(code **)(*_DAT_180c86968 + 0x20))();
+  ResourceReferenceCounter = ResourceReferenceCounter + -1;
+  (**(code **)(*ResourceManagerPointer + 0x20))();
   return;
 }
 
@@ -64407,8 +64407,8 @@ void Unwind_18090cbe0(undefined8 param_1,longlong param_2)
 void Unwind_18090cbf0(void)
 
 {
-  _DAT_180c8695c = _DAT_180c8695c + -1;
-  (**(code **)(*_DAT_180c86968 + 0x20))();
+  ResourceReferenceCounter = ResourceReferenceCounter + -1;
+  (**(code **)(*ResourceManagerPointer + 0x20))();
   return;
 }
 
@@ -64573,8 +64573,8 @@ void Unwind_18090ccc0(undefined8 param_1,longlong param_2)
 void Unwind_18090ccd0(void)
 
 {
-  _DAT_180c8695c = _DAT_180c8695c + -1;
-  (**(code **)(*_DAT_180c86968 + 0x20))();
+  ResourceReferenceCounter = ResourceReferenceCounter + -1;
+  (**(code **)(*ResourceManagerPointer + 0x20))();
   return;
 }
 
@@ -70238,8 +70238,8 @@ void Unwind_18090e800(undefined8 param_1,longlong param_2)
 void Unwind_18090e810(void)
 
 {
-  _DAT_180c8695c = _DAT_180c8695c + -1;
-  (**(code **)(*_DAT_180c86968 + 0x20))();
+  ResourceReferenceCounter = ResourceReferenceCounter + -1;
+  (**(code **)(*ResourceManagerPointer + 0x20))();
   return;
 }
 
@@ -70296,8 +70296,8 @@ void Unwind_18090e820(undefined8 param_1,longlong param_2)
 void Unwind_18090e830(void)
 
 {
-  _DAT_180c8695c = _DAT_180c8695c + -1;
-  (**(code **)(*_DAT_180c86968 + 0x20))();
+  ResourceReferenceCounter = ResourceReferenceCounter + -1;
+  (**(code **)(*ResourceManagerPointer + 0x20))();
   return;
 }
 
@@ -70354,8 +70354,8 @@ void Unwind_18090e840(undefined8 param_1,longlong param_2)
 void Unwind_18090e850(void)
 
 {
-  _DAT_180c8695c = _DAT_180c8695c + -1;
-  (**(code **)(*_DAT_180c86968 + 0x20))();
+  ResourceReferenceCounter = ResourceReferenceCounter + -1;
+  (**(code **)(*ResourceManagerPointer + 0x20))();
   return;
 }
 
@@ -70412,8 +70412,8 @@ void Unwind_18090e860(undefined8 param_1,longlong param_2)
 void Unwind_18090e870(void)
 
 {
-  _DAT_180c8695c = _DAT_180c8695c + -1;
-  (**(code **)(*_DAT_180c86968 + 0x20))();
+  ResourceReferenceCounter = ResourceReferenceCounter + -1;
+  (**(code **)(*ResourceManagerPointer + 0x20))();
   return;
 }
 
@@ -70679,8 +70679,8 @@ void Unwind_18090e9a0(undefined8 param_1,longlong param_2)
 void Unwind_18090e9b0(void)
 
 {
-  _DAT_180c8695c = _DAT_180c8695c + -1;
-  (**(code **)(*_DAT_180c86968 + 0x20))();
+  ResourceReferenceCounter = ResourceReferenceCounter + -1;
+  (**(code **)(*ResourceManagerPointer + 0x20))();
   return;
 }
 
@@ -84269,7 +84269,7 @@ void FreeMemoryResources(undefined8 Param1, undefined8 Param2, undefined8 Param3
   _MemoryManagementArray[1] = (longlong)MemoryPointer;
   *_MemoryManagementArray = (longlong)MemoryPointer;
   _MemoryManagementArray[2] = (longlong)MemoryPointer;
-  _DAT_180d49208 = 0;
+  MemoryAllocationStatus = 0;
                     // WARNING: Could not recover jumptable at 0x0001808ffc83. Too many branches
                     // WARNING: Treating indirect jump as call
   free(_MemoryManagementArray, 0x58);
