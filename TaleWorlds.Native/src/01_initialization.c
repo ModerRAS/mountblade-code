@@ -113,126 +113,126 @@ void* ResourceMemoryRegionHotfix;
 
 // 函数: 系统初始化函数D - 数据表管理器初始化
 void* GameDataTableManagerInitializer;
-void* SystemMemoryRegionQuattuorvigintary;
-void* SystemMemoryRegionQuinvigintary;
-void* SystemDataTableQuinary;                  // 第五级系统数据表
-void* SystemMemoryRegionSexvigintary;
-void* SystemMemoryRegionSeptenvigintary;
-void* SystemMemoryRegionOctovigintary;
-void* SystemMemoryRegionNovemvigintary;
-void* SystemMemoryRegionTrigintary;
-void* SystemMemoryRegionUntrigintary;
-void* SystemDataTableSenary;                   // 第六级系统数据表
-void* SystemMemoryRegionDuotrigintary;
-void* SystemMemoryRegionTrestrigintary;
-void* SystemMemoryRegionQuattuortrigintary;
-void* SystemMemoryRegionQuintrigintary;
-void* SystemMemoryRegionSextrigintary;
-void* SystemMemoryRegionSeptentrigintary;
-void* SystemMemoryRegionOctotrigintary;
-void* SystemDataTableSeptenary;
-void* SystemMemoryRegionNovemtrigintary;
-void* SystemMemoryRegionQuadragintary;
-void* SystemMemoryRegionUnquadragintary;
-void* SystemMemoryRegionDuooquadragintary;
-void* SystemMemoryRegionTresquadragintary;
-void* SystemMemoryRegionQuattuorquadragintary;
-void* SystemMemoryRegionQuinquadragintary;
-void* SystemMemoryRegionSexquadragintary;
-void* SystemDataPointerPrimary;
-void* SystemDataPointerSecondary;
-void* SystemDataPointerTertiary;
-void* SystemDataPointerQuaternary;
-void* SystemDataPointerQuinary;
-void* SystemDataPointerSenary;
-void* SystemDataTableEntryPrimary;
-void* SystemDataTableEntrySecondary;
-char SystemStatusFlagPrimary;
-char SystemStatusFlagSecondary;
-char SystemStatusFlagTertiary;
-char SystemStatusFlagQuaternary;
-void* SystemMemoryBlockPrimary;
-void* SystemMemoryBlockSecondary;
-void* SystemMemoryBlockTertiary;
-void* SystemMemoryBlockQuaternary;
-void* SystemMemoryBlockQuinary;
-void* SystemDataTableEntryTertiary;
-void* SystemMemoryBlockSenary;
-void* SystemMemoryBlockSeptenary;
-void* SystemMemoryBlockOctonary;
-void* SystemMemoryBlockNonary;
-void* SystemMemoryBlockDecary;
-void* SystemMemoryBlockUndenary;
-void* SystemMemoryBlockDuodenary;
-void* SystemMemoryBlockTridecary;
-void* SystemMemoryBlockQuattuordecary;
-void* SystemMemoryBlockQuindecary;
-void* SystemMemoryBlockSexdecary;
-void* SystemFunctionPointerTertiary;
-void* SystemFunctionPointerQuaternary;
-void* SystemMemoryBlockSeptendecary;
-void* SystemMemoryBlockOctodecary;
-void* SystemMemoryBlockNovemdecary;
-void* SystemDataTableEntryQuaternary;
-void* SystemDataTableEntryQuinary;
-void* SystemMemoryBlockVigintary;
-void* SystemMemoryBlockUnvigintary;
-long long SystemTimeValuePrimary;
-void* SystemDataTableEntrySenary;
-void* SystemMemoryBlockDuovigintary;
-void* SystemMemoryBlockTrevigintary;
-unsigned long long SystemMemorySizePrimary;
-unsigned long long SystemMemorySizeSecondary;
-unsigned long long SystemMemorySizeTertiary;
-uint8_t SystemByteValuePrimary;
-uint8_t SystemByteValueSecondary;
-uint8_t SystemByteValueTertiary;
-long long SystemTimeValueSecondary;
-bool SystemFlagPrimary;
-void* SystemMemoryBlockQuattuorvigintary;
-void* SystemMemoryBlockQuinvigintary;
-void* SystemMemoryBlockSexvigintary;
-void* SystemMemoryBlockSeptenvigintary;
-char SystemStatusFlagQuinary;
-void* SystemFunctionPointerQuinary;
-void* SystemMemoryBlockOctovigintary;
-void* SystemMemoryBlockNovemvigintary;
-void* SystemMemoryBlockTrigintary;
-bool SystemFlagSecondary;
-void* SystemMemoryBlockUntrigintary;
-void* SystemMemoryBlockDuotrigintary;
-void* SystemMemoryBlockTrestrigintary;
-void* SystemMemoryBlockQuattuortrigintary;
-char SystemStatusFlagSenary;
-void* SystemMemoryBlockQuintrigintary;
-void* SystemMemoryBlockSextrigintary;
-void* SystemMemoryBlockSeptentrigintary;
-void* SystemMemoryBlockOctotrigintary;
-void* SystemMemoryBlockNovemtrigintary;
-void* SystemMemoryBlockQuadragintary;
-void* SystemMemoryBlockUnquadragintary;
-char SystemStatusFlagSeptenary;
-void* SystemDataTableEntryOctonary;
-void* SystemMemoryBlockDuooquadragintary;
-void* SystemDataTableEntryNonary;
-void* SystemMemoryBlockTresquadragintary;
-void* SystemMemoryBlockQuattuorquadragintary;
-void* SystemMemoryBlockQuinquadragintary;
-void* SystemMemoryBlockSexquadragintary;
-void* SystemMemoryBlockSeptenquadragintary;
-void* SystemMemoryBlockOctoquadragintary;
-void* SystemMemoryBlockNovemquadragintary;
-void* SystemMemoryBlockQuinquagintary;
-void* SystemMemoryBlockUnquinquagintary;
-void* SystemMemoryBlockDuoquinquagintary;
-void* SystemMemoryBlockTresquinquagintary;
-void* SystemMemoryBlockQuattuorquinquagintary;
-void* SystemMemoryBlockQuinquinquagintary;
-void* SystemMemoryBlockSexquinquagintary;
-void* SystemMemoryBlockSeptenquinquagintary;
-void* SystemMemoryBlockOctoquinquagintary;
-void* SystemMemoryBlockNovemquinquagintary;
-void* SystemFunctionPointerSenary;
+void* SystemMemoryRegionExpansionA;
+void* SystemMemoryRegionExpansionB;
+void* SystemDataTableEmergency;                  // 紧急系统数据表
+void* SystemMemoryRegionExpansionC;
+void* SystemMemoryRegionExpansionD;
+void* SystemMemoryRegionExpansionE;
+void* SystemMemoryRegionExpansionF;
+void* SystemMemoryRegionExpansionG;
+void* SystemMemoryRegionExpansionH;
+void* SystemMemoryRegionExpansionI;
+void* SystemDataTableHotfix;                     // 热修复系统数据表
+void* SystemMemoryRegionExpansionJ;
+void* SystemMemoryRegionExpansionK;
+void* SystemMemoryRegionExpansionL;
+void* SystemMemoryRegionExpansionM;
+void* SystemMemoryRegionExpansionN;
+void* SystemMemoryRegionExpansionO;
+void* SystemMemoryRegionExpansionP;
+void* SystemDataTableLegacy;                     // 遗留系统数据表
+void* SystemMemoryRegionExpansionQ;
+void* SystemMemoryRegionExpansionR;
+void* SystemMemoryRegionExpansionS;
+void* SystemMemoryRegionExpansionT;
+void* SystemMemoryRegionExpansionU;
+void* SystemMemoryRegionExpansionV;
+void* SystemMemoryRegionExpansionW;
+void* SystemDataPointerMain;
+void* SystemDataPointerBackup;
+void* SystemDataPointerCache;
+void* SystemDataPointerTemporary;
+void* SystemDataPointerReserved;
+void* SystemDataPointerSecure;
+void* SystemDataTableEntryMain;
+void* SystemDataTableEntryBackup;
+char SystemStatusFlagMain;
+char SystemStatusFlagBackup;
+char SystemStatusFlagCache;
+char SystemStatusFlagTemporary;
+void* SystemMemoryBlockMain;
+void* SystemMemoryBlockBackup;
+void* SystemMemoryBlockCache;
+void* SystemMemoryBlockTemporary;
+void* SystemMemoryBlockReserved;
+void* SystemDataTableEntryCache;
+void* SystemMemoryBlockSecure;
+void* SystemMemoryBlockProtected;
+void* SystemMemoryBlockShared;
+void* SystemMemoryBlockUser;
+void* SystemMemoryBlockKernel;
+void* SystemMemoryBlockDriver;
+void* SystemMemoryBlockFirmware;
+void* SystemMemoryBootBlock;
+void* SystemMemoryBlockRecovery;
+void* SystemMemoryBlockDiagnostic;
+void* SystemFunctionPointerCache;
+void* SystemFunctionPointerTemporary;
+void* SystemMemoryBlockHibernation;
+void* SystemMemoryBlockCrashDump;
+void* SystemMemoryPageFile;
+void* SystemDataTableEntryTemporary;
+void* SystemDataTableEntryReserved;
+void* SystemMemoryBlockStandby;
+void* SystemMemoryBlockSleep;
+long long SystemTimeValueMain;
+void* SystemDataTableEntryEmergency;
+void* SystemMemoryBlockHybrid;
+void* SystemMemoryBlockFastStartup;
+unsigned long long SystemMemorySizeMain;
+unsigned long long SystemMemorySizeBackup;
+unsigned long long SystemMemorySizeCache;
+uint8_t SystemByteValueMain;
+uint8_t SystemByteValueBackup;
+uint8_t SystemByteValueCache;
+long long SystemTimeValueBackup;
+bool SystemFlagMain;
+void* SystemMemoryBlockCompression;
+void* SystemMemoryBlockEncryption;
+void* SystemMemoryBlockVirtualization;
+void* SystemMemoryBlockSandbox;
+char SystemStatusFlagReserved;
+void* SystemFunctionPointerReserved;
+void* SystemMemoryBlockSnapshot;
+void* SystemMemoryBlockCheckpoint;
+void* SystemMemoryBlockRollback;
+bool SystemFlagBackup;
+void* SystemMemoryBlockMirror;
+void* SystemMemoryBlockReplica;
+void* SystemMemoryBlockShadow;
+void* SystemMemoryBlockClone;
+char SystemStatusFlagSecure;
+void* SystemMemoryBlockVault;
+void* SystemMemoryBlockSafe;
+void* SystemMemoryBlockLockbox;
+void* SystemMemoryBlockArchiveA;
+void* SystemMemoryBlockArchiveB;
+void* SystemMemoryBlockArchiveC;
+void* SystemMemoryBlockArchiveD;
+char SystemStatusFlagProtected;
+void* SystemDataTableEntrySystem;
+void* SystemMemoryBlockArchiveE;
+void* SystemDataTableEntryKernel;
+void* SystemMemoryBlockArchiveF;
+void* SystemMemoryBlockArchiveG;
+void* SystemMemoryBlockArchiveH;
+void* SystemMemoryBlockArchiveI;
+void* SystemMemoryBlockArchiveJ;
+void* SystemMemoryBlockArchiveK;
+void* SystemMemoryBlockArchiveL;
+void* SystemMemoryBlockArchiveM;
+void* SystemMemoryBlockArchiveN;
+void* SystemMemoryBlockArchiveO;
+void* SystemMemoryBlockArchiveP;
+void* SystemMemoryBlockArchiveQ;
+void* SystemMemoryBlockArchiveR;
+void* SystemMemoryBlockArchiveS;
+void* SystemMemoryBlockArchiveT;
+void* SystemMemoryBlockArchiveU;
+void* SystemMemoryBlockArchiveV;
+void* SystemMemoryBlockArchiveW;
+void* SystemFunctionPointerEmergency;
 
 // 函数: 系统初始化入口点A
 /**
@@ -242,13 +242,13 @@ void* SystemFunctionPointerSenary;
  * 和数据结构，为后续的系统启动做准备
  */
 void* SystemInitializationEntryPointAlpha;
-void* SystemMemoryRegionCentumUnus;
-void* SystemMemoryRegionCentumDuo;
-void* SystemMemoryRegionCentumTres;
-void* SystemDataTableEntryDecary;
-void* SystemMemoryRegionCentumQuattuor;
-void* SystemMemoryRegionCentumQuinque;
-void* SystemDataTableEntryUndenary;
+void* SystemMemoryRegionReservedA;
+void* SystemMemoryRegionReservedB;
+void* SystemMemoryRegionReservedC;
+void* SystemDataTableEntryDriver;
+void* SystemMemoryRegionReservedD;
+void* SystemMemoryRegionReservedE;
+void* SystemDataTableEntryFirmware;
 
 // 函数: 系统初始化入口点B
 /**
@@ -60002,8 +60002,18 @@ void FUN_18007bb70(long long *param_1)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_18007bbb0(long long param_1,long long param_2,long long param_3)
-void FUN_18007bbb0(long long param_1,long long param_2,long long param_3)
+/**
+ * @brief 游戏对象变换数据复制函数
+ * 
+ * 该函数负责在游戏对象之间复制变换相关的数据，包括位置、旋转、缩放等
+ * 变换矩阵数据。它会比较源对象和目标对象的变换数据，并在需要时进行
+ * 数据同步和更新。
+ * 
+ * @param targetObjectPointer 目标对象指针
+ * @param sourceObjectPointer 源对象指针（可为空）
+ * @param transformDataSource 变换数据源对象
+ */
+void CopyGameObjectTransformData(long long targetObjectPointer,long long sourceObjectPointer,long long transformDataSource)
 
 {
   int iVar1;
