@@ -6657,10 +6657,10 @@ undefined8 ValidateObjectContextAndProcessBuffers(longlong objectContext, longlo
   ulonglong bufferEntryOffset;
   longlong stackBuffer;
   
-  if (param_1 + 0x1c == 0) {
+  if (objectContext + 0x1c == 0) {
     return 0x1f;
   }
-  uVar3 = ValidateObjectContext(*(undefined4 *)(param_1 + 0x10),&lStackX_8);
+  validationStatus = ValidateObjectContext(*(undefined4 *)(objectContext + 0x10),&stackBuffer);
   if ((int)uVar3 == 0) {
     uVar6 = 0;
     uVar8 = uVar6;
