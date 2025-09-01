@@ -3339,14 +3339,14 @@ void ValidateSystemObjects(void)
           ObjectOffset = ObjectOffset + 8;
         } while (ProcessedObjectCount < RetrievedObjectCount);
       }
-      ReleaseSystemObjectCollection(&ObjectStackBuffer30);
+      ReleaseSystemObjectCollection(&RetrievedObjectCollectionBuffer);
     }
     else {
-      ReleaseSystemObjectCollection(&ObjectStackBuffer30);
+      ReleaseSystemObjectCollection(&RetrievedObjectCollectionBuffer);
     }
   }
                     // WARNING: Subroutine does not return
-  ExecuteSecurityValidation(SecurityValidationHash ^ (ulonglong)&ObjectStackBuffer00);
+  ExecuteSecurityValidation(SecurityValidationHash ^ (ulonglong)&SystemSecurityValidationBuffer);
 }
 
 
@@ -3364,7 +3364,7 @@ void TerminateSystemProcess(void)
   ulonglong SystemTerminationToken;
   
                     // WARNING: Subroutine does not return
-  ExecuteSystemTermination(SystemTerminationToken ^ (ulonglong)&ObjectStackBuffer00);
+  ExecuteSystemTermination(SystemTerminationToken ^ (ulonglong)&SystemSecurityValidationBuffer);
 }
 
 
@@ -3389,7 +3389,7 @@ void CheckSystemFlags(void)
   }
   ReleaseFlagCheckResources(&ObjectStackBuffer30);
                     // WARNING: Subroutine does not return
-  ExecuteFlagCheckCleanup(FlagValidationToken ^ (ulonglong)&ObjectStackBuffer00);
+  ExecuteFlagCheckCleanup(FlagValidationToken ^ (ulonglong)&SystemSecurityValidationBuffer);
 }
 
 
@@ -4154,8 +4154,8 @@ uint8_t8 InitializeObjectHandleB(longlong objectContext)
   uint unsignedValue3;
   uint8_t8 byteValue4;
   uint8_t8 *bytePointer5;
-  int integerValue6;
-  float floatValue7;
+  int FloatToIntConversionResult;
+  float ProcessedFloatValue;
   uint8_t1 byteArray8 [16];
   longlong lStackX_8;
   
@@ -4165,11 +4165,11 @@ uint8_t8 InitializeObjectHandleB(longlong objectContext)
   }
   loopCounter = *(longlong *)(lStackX_8 + 8);
   if (loopCounter != 0) {
-    floatValue7 = *(float *)(objectContextParam + 0x20);
+    ProcessedFloatValue = *(float *)(objectContextParam + 0x20);
     for (bytePointer5 = *(uint8_t8 **)(localContextPointer + 0x48);
         (*(uint8_t8 **)(localContextPointer + 0x48) <= resourcePointer5 &&
         (resourcePointer5 < *(uint8_t8 **)(localContextPointer + 0x48) + *(int *)(localContextPointer + 0x50))); resourcePointer5 = resourcePointer5 + 1) {
-      unsignedResult4 = ProcessResourceOperation(*resourcePointer5,floatValue7,0);
+      unsignedResult4 = ProcessResourceOperation(*resourcePointer5,ProcessedFloatValue,0);
       if ((int)byteValue4 != 0) {
         return byteValue4;
       }
@@ -4179,19 +4179,19 @@ uint8_t8 InitializeObjectHandleB(longlong objectContext)
       unsignedResult3 = *(uint *)(*(longlong *)(localContextPointer + 0x18) + 0x34);
       validationResult = unsignedResult3 >> 4;
       if ((validationResult & 1) == 0) {
-        if ((((unsignedResult3 >> 3 & 1) != 0) && (integerValue6 = (int)floatValue7, integerValue6 != -0x80000000)) &&
-           ((float)integerValue6 != floatValue7)) {
-          auVar8._4_4_ = floatValue7;
-          auVar8._0_4_ = floatValue7;
+        if ((((unsignedResult3 >> 3 & 1) != 0) && (FloatToIntConversionResult = (int)ProcessedFloatValue, FloatToIntConversionResult != -0x80000000)) &&
+           ((float)FloatToIntConversionResult != ProcessedFloatValue)) {
+          auVar8._4_4_ = ProcessedFloatValue;
+          auVar8._0_4_ = ProcessedFloatValue;
           auVar8._8_8_ = 0;
           unsignedResult3 = movmskps(validationResult,auVar8);
-          floatValue7 = (float)(int)(integerValue6 - (unsignedResult3 & 1));
+          ProcessedFloatValue = (float)(int)(FloatToIntConversionResult - (unsignedResult3 & 1));
         }
-        floatValue7 = (float)CalculateFloatValue(*(longlong *)(localContextPointer + 0x18),floatValue7);
+        ProcessedFloatValue = (float)CalculateFloatValue(*(longlong *)(localContextPointer + 0x18),ProcessedFloatValue);
         if (((*(char *)(localContextPointer + 0x34) == '\0') ||
             ((*(uint *)(*(longlong *)(localContextPointer + 0x18) + 0x34) >> 1 & 1) == 0)) &&
-           (floatValue7 != *(float *)(localContextPointer + 0x20))) {
-          *(float *)(localContextPointer + 0x20) = floatValue7;
+           (ProcessedFloatValue != *(float *)(localContextPointer + 0x20))) {
+          *(float *)(localContextPointer + 0x20) = ProcessedFloatValue;
           ReleaseResourceHandle(localContextPointer);
           *(uint8_t1 *)(localContextPointer + 0x35) = 0;
         }
@@ -7096,7 +7096,7 @@ void ProcessPointerValidationAndSystemObjectHandling(longlong *ObjectPointer, lo
   pointerReference = (longlong *)(allocatedMemory + 0x58);
   if (((longlong *)*pointerReference == pointerReference) && (*(longlong **)(allocatedMemory + 0x60) == pointerReference)) {
                     // WARNING: Subroutine does not return
-    CleanupSecurityToken(securityToken ^ (ulonglong)&ObjectStackBuffer00);
+    CleanupSecurityToken(securityToken ^ (ulonglong)&SystemSecurityValidationBuffer);
   }
                     // WARNING: Subroutine does not return
   ProcessSystemObject(*(uint8_t8 *)(systemContext + 0x98));
@@ -7117,7 +7117,7 @@ void CleanupSecurityTokenFunction(void)
   ulonglong securityToken;
   
                     // WARNING: Subroutine does not return
-  CleanupSecurityToken(securityToken ^ (ulonglong)&ObjectStackBuffer00);
+  CleanupSecurityToken(securityToken ^ (ulonglong)&SystemSecurityValidationBuffer);
 }
 
 
@@ -9772,7 +9772,7 @@ int ProcessDataWithStack(longlong *objectContextParam,longlong validationContext
   ulonglong in_stack_000000b0;
   
                     // WARNING: Subroutine does not return
-  FinalizeSecurityOperation(in_stack_000000b0 ^ (ulonglong)&ObjectStackBuffer00);
+  FinalizeSecurityOperation(in_stack_000000b0 ^ (ulonglong)&SystemSecurityValidationBuffer);
 }
 
 
@@ -9872,7 +9872,7 @@ ValidateResourceTableAccess(ulonglong resource_handle)
   *unaff_RSI = resourceTable;
 LAB_180894aca:
                     // WARNING: Subroutine does not return
-  FinalizeSecurityOperation(in_stack_000000a8 ^ (ulonglong)&ObjectStackBuffer00);
+  FinalizeSecurityOperation(in_stack_000000a8 ^ (ulonglong)&SystemSecurityValidationBuffer);
 }
 
 
@@ -9890,7 +9890,7 @@ ExecuteSecurityFinalization(void)
   ulonglong in_stack_000000a8;
   
                     // WARNING: Subroutine does not return
-  FinalizeSecurityOperation(in_stack_000000a8 ^ (ulonglong)&ObjectStackBuffer00);
+  FinalizeSecurityOperation(in_stack_000000a8 ^ (ulonglong)&SystemSecurityValidationBuffer);
 }
 
 
@@ -9999,7 +9999,7 @@ void FinalizeSecurityOperationFunction(void)
     *resourcePointer = resourceValue;
   }
                     // WARNING: Subroutine does not return
-  FinalizeSecurityOperation(stackParameter ^ (ulonglong)&ObjectStackBuffer00);
+  FinalizeSecurityOperation(stackParameter ^ (ulonglong)&SystemSecurityValidationBuffer);
 }
 
 
@@ -10840,7 +10840,7 @@ LAB_18089555d:
   *unaff_R13 = 0;
 LAB_180895b69:
                     // WARNING: Subroutine does not return
-  FinalizeSecurityOperation(*(ulonglong *)(unaff_RBP + 0x5f0) ^ (ulonglong)&ObjectStackBuffer00);
+  FinalizeSecurityOperation(*(ulonglong *)(unaff_RBP + 0x5f0) ^ (ulonglong)&SystemSecurityValidationBuffer);
 }
 
 
@@ -10853,7 +10853,7 @@ void FinalizeSecurityOperationWithStack(void)
   longlong unaff_RBP;
   
                     // WARNING: Subroutine does not return
-  FinalizeSecurityOperation(*(ulonglong *)(unaff_RBP + 0x5f0) ^ (ulonglong)&ObjectStackBuffer00);
+  FinalizeSecurityOperation(*(ulonglong *)(unaff_RBP + 0x5f0) ^ (ulonglong)&SystemSecurityValidationBuffer);
 }
 
 
@@ -12893,7 +12893,7 @@ void ProcessComplexResourceWithRegisters(void)
   }
 LAB_1808974ec:
                     // WARNING: Subroutine does not return
-  FinalizeSecurityOperation(*(ulonglong *)(unaff_RBP + 0x1d0) ^ (ulonglong)&ObjectStackBuffer00);
+  FinalizeSecurityOperation(*(ulonglong *)(unaff_RBP + 0x1d0) ^ (ulonglong)&SystemSecurityValidationBuffer);
 }
 
 
@@ -12912,7 +12912,7 @@ void ExecuteQuickSecurityOperationFinalization(void)
   longlong stackContext;
   
                     // WARNING: Subroutine does not return
-  FinalizeSecurityOperation(*(ulonglong *)(stackContext + 0x1d0) ^ (ulonglong)&ObjectStackBuffer00);
+  FinalizeSecurityOperation(*(ulonglong *)(stackContext + 0x1d0) ^ (ulonglong)&SystemSecurityValidationBuffer);
 }
 
 
@@ -12982,7 +12982,7 @@ void ExecuteSimplifiedContextValidation(void)
     *(uint8_t1 *)(resourcePointer + 4) = 0;
   }
                     // WARNING: Subroutine does not return
-  FinalizeSecurityOperation(stackParameter ^ (ulonglong)&ObjectStackBuffer00);
+  FinalizeSecurityOperation(stackParameter ^ (ulonglong)&SystemSecurityValidationBuffer);
 }
 
 
@@ -13001,7 +13001,7 @@ void ExecuteSimplifiedContextValidation(void)
     *(uint8_t1 *)(unaff_RDI + 4) = 0;
   }
                     // WARNING: Subroutine does not return
-  FinalizeSecurityOperation(in_stack_00000220 ^ (ulonglong)&ObjectStackBuffer00);
+  FinalizeSecurityOperation(in_stack_00000220 ^ (ulonglong)&SystemSecurityValidationBuffer);
 }
 
 
@@ -13540,7 +13540,7 @@ void BufferValidationErrorHandler(void)
 void DataProcessingErrorHandler(void)
 {
                     // WARNING: Subroutine does not return
-  FinalizeSecurityOperation(unaff_RBP[0x12] ^ (ulonglong)&ObjectStackBuffer00);
+  FinalizeSecurityOperation(unaff_RBP[0x12] ^ (ulonglong)&SystemSecurityValidationBuffer);
 }
 
 
@@ -13799,7 +13799,7 @@ void DataProcessingErrorHandler(void)
 void FloatProcessingErrorHandler(void)
 {
                     // WARNING: Subroutine does not return
-  FinalizeSecurityOperation(unaff_RBP[0x12] ^ (ulonglong)&ObjectStackBuffer00);
+  FinalizeSecurityOperation(unaff_RBP[0x12] ^ (ulonglong)&SystemSecurityValidationBuffer);
 }
 
 
@@ -13931,7 +13931,7 @@ void FloatProcessingErrorHandler(void)
   }
 LAB_180897af6:
                     // WARNING: Subroutine does not return
-  FinalizeSecurityOperation(*(ulonglong *)(unaff_RBP + 0x90) ^ (ulonglong)&ObjectStackBuffer00);
+  FinalizeSecurityOperation(*(ulonglong *)(unaff_RBP + 0x90) ^ (ulonglong)&SystemSecurityValidationBuffer);
 }
 
 
@@ -13944,7 +13944,7 @@ LAB_180897af6:
   longlong unaff_RBP;
   
                     // WARNING: Subroutine does not return
-  FinalizeSecurityOperation(*(ulonglong *)(unaff_RBP + 0x90) ^ (ulonglong)&ObjectStackBuffer00);
+  FinalizeSecurityOperation(*(ulonglong *)(unaff_RBP + 0x90) ^ (ulonglong)&SystemSecurityValidationBuffer);
 }
 
 
@@ -13957,7 +13957,7 @@ LAB_180897af6:
   longlong unaff_RBP;
   
                     // WARNING: Subroutine does not return
-  FinalizeSecurityOperation(*(ulonglong *)(unaff_RBP + 0x90) ^ (ulonglong)&ObjectStackBuffer00);
+  FinalizeSecurityOperation(*(ulonglong *)(unaff_RBP + 0x90) ^ (ulonglong)&SystemSecurityValidationBuffer);
 }
 
 
@@ -13970,7 +13970,7 @@ LAB_180897af6:
   longlong unaff_RBP;
   
                     // WARNING: Subroutine does not return
-  FinalizeSecurityOperation(*(ulonglong *)(unaff_RBP + 0x90) ^ (ulonglong)&ObjectStackBuffer00);
+  FinalizeSecurityOperation(*(ulonglong *)(unaff_RBP + 0x90) ^ (ulonglong)&SystemSecurityValidationBuffer);
 }
 
 
@@ -86601,11 +86601,11 @@ void InitializeSystemDataStructureCB(void)
   longlong loopCounter;
   longlong resourceTable;
   
-  CleanupSystemState(&DAT_180bfc140);
-  if (0xf < uRam0000000180bfc138) {
-    localContextPointer = CONCAT71(uRam0000000180bfc121,uRam0000000180bfc120);
+  SystemResourceCleanupHandler(&SystemResourceCleanupData);
+  if (0xf < SystemResourceCounter) {
+    localContextPointer = CONCAT71(SystemResourceHighPointer,SystemResourceLowPointer);
     resourceTable = localContextPointer;
-    if (0xfff < uRam0000000180bfc138 + 1) {
+    if (0xfff < SystemResourceCounter + 1) {
       resourceTable = *(longlong *)(localContextPointer + -8);
       if (0x1f < (localContextPointer - resourceTable) - 8U) {
                     // WARNING: Subroutine does not return

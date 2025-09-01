@@ -1970,8 +1970,8 @@ void InitializeSystemConfigurationNode(void)
   void* *AllocatedNode;
   void* InitializationFlag;
   
-  systemTablePointer = (long long*)GetSystemRootPointer();
-  systemRootPointer = (void* *)*systemTablePointer;
+  SystemTablePointer = (long long*)GetSystemRootPointer();
+  SystemRootPointer = (void* *)*SystemTablePointer;
   nodeFlag = *(char*)((long long)systemRootPointer[1] + 0x19);
   initializationFlag = 0;
   previousNode = systemRootPointer;
@@ -17640,7 +17640,7 @@ void InitializeEngineModuleA(void)
   uint32_t bufferSize;
   uint8_t stringBuffer [136];
   
-  paramStackPtr = &SystemDataBufferTemplateA;
+  paramStackPtr = &SystemDataBufferMainTemplateA;
   bufferPtr = stringBuffer;
   stringBuffer[0] = 0;
   bufferSize = 0x17;
@@ -17667,7 +17667,7 @@ void InitializeEngineModuleB(void)
   uint32_t bufferSize;
   uint8_t stringBuffer [136];
   
-  paramStackPtr = &SystemDataBufferTemplateA;
+  paramStackPtr = &SystemDataBufferMainTemplateA;
   bufferPtr = stringBuffer;
   stringBuffer[0] = 0;
   bufferSize = 0x11;
@@ -21901,14 +21901,14 @@ void* * SystemMemoryAllocatorInitializer(void* *param_1,long long param_2,void* 
 
 
 void* *
-FUN_180049bb0(void* *param_1,ulong long param_2,void* param_3,void* param_4)
+InitializeMemoryAllocatorReference(void* *memoryAllocatorRef,ulong long initializationFlags,void* reservedParam3,void* reservedParam4)
 
 {
-  *param_1 = &SystemMemoryAllocatorReference;
-  if ((param_2 & 1) != 0) {
-    free(param_1,0x58,param_3,param_4,0xfffffffffffffffe);
+  *memoryAllocatorRef = &SystemMemoryAllocatorReference;
+  if ((initializationFlags & 1) != 0) {
+    free(memoryAllocatorRef,0x58,reservedParam3,reservedParam4,0xfffffffffffffffe);
   }
-  return param_1;
+  return memoryAllocatorRef;
 }
 
 
@@ -22662,7 +22662,7 @@ void InitializeSystemThreadPoolManager(void)
   puStack_30 = auStack_20;
   auStack_20[0] = 0;
   uStack_28 = 6;
-  strcpy_s(auStack_20,0x10,&SystemStringConstantTemplateJ);
+  strcpy_s(auStack_20,0x10,&SystemStringConstantWindowTitleJ);
   uStack_68 = 1;
   FUN_1806279c0(auStack_60,&puStack_38);
   uStack_68 = 0;
