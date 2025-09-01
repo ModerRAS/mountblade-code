@@ -984,7 +984,7 @@ undefined MemoryDebuggerTable0;
 undefined MemoryDebuggerTable1;
 undefined MemoryDebuggerTable2;
 undefined MemoryDebuggerTable3;
-undefined UNK_180a22c30;
+undefined MemoryDebuggerConfigData;
 
  void SetupMemoryAlignment;
 /**
