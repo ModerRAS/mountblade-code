@@ -24757,7 +24757,7 @@ NetworkHandle ValidateNetworkPacketHeaders(longlong *connectionContext,int *pack
 
 
 NetworkHandle
-FUN_180854af0(NetworkHandle connectionContext,longlong *packetData,longlong dataSize,longlong param_4,
+NetworkDataReceiver(NetworkHandle connectionContext,longlong *packetData,longlong dataSize,longlong param_4,
              longlong param_5,ulonglong param_6,ulonglong param_7)
 
 {
@@ -26150,7 +26150,7 @@ void NetworkConnectionDataProcessor(longlong *connectionContext)
  * @param packetData 网络数据包句柄
  * @return 无返回值
  * 
- * 注意：这是一个反编译的函数实现，原始函数名为FUN_180855810
+ * 注意：这是一个反编译的函数实现，原始函数名为NetworkConnectionInitializer
  */
 void ProcessNetworkPacketValidation(longlong connectionContext, NetworkHandle packetData)
 
@@ -27069,7 +27069,7 @@ NetworkHandle InitializeNetworkConnectionContext(longlong connectionContext)
   lVar3 = func_0x00018084d100(*(NetworkHandle *)(connectionContext + 0x110),*(longlong *)(connectionContext + 0x140) + 0x10
                              );
   if (processedEntry == 0) {
-    quaternaryNetworkFlag = FUN_180855810(connectionContext,0);
+    quaternaryNetworkFlag = NetworkConnectionInitializer(connectionContext,0);
     if ((int)quaternaryNetworkFlag != 0) {
       return quaternaryNetworkFlag;
     }
@@ -29094,6 +29094,14 @@ NetworkSystemNoOperation:
 
 
 // 函数: void NetworkConnectionPacketProcessor(longlong connectionContext)
+/**
+ * 网络连接数据包处理函数
+ * 
+ * 此函数处理网络连接中的数据包，遍历连接列表并处理每个连接的数据包。
+ * 它会检查连接状态，处理数据包传输，并执行相应的网络操作。
+ * 
+ * @param connectionContext 网络连接上下文，包含连接状态和数据包信息
+ */
 void NetworkConnectionPacketProcessor(longlong connectionContext)
 
 {
@@ -29813,7 +29821,7 @@ LAB_180859163:
           SetNetworkTimeoutThreshold(&NetworkConnectionTimeoutThreshold);
         }
         *(uint *)(connectionContext + 0x148) = NetworkConnectionTimeoutValue;
-        uVar7 = FUN_180855810(connectionContext,secondaryNetworkFlag6);
+        uVar7 = NetworkConnectionInitializer(connectionContext,secondaryNetworkFlag6);
         primaryNetworkFlag8 = (ulonglong)uVar7;
         if (uVar7 != 0) goto LAB_180859163;
       }
@@ -32527,7 +32535,7 @@ LAB_180859163:
           SetNetworkTimeoutThreshold(&NetworkConnectionTimeoutThreshold);
         }
         *(uint *)(connectionContext + 0x148) = NetworkConnectionTimeoutValue;
-        uVar7 = FUN_180855810(connectionContext,secondaryNetworkFlag6);
+        uVar7 = NetworkConnectionInitializer(connectionContext,secondaryNetworkFlag6);
         primaryNetworkFlag9 = (ulonglong)uVar7;
         if (uVar7 != 0) goto LAB_180859163;
       }
@@ -33990,7 +33998,7 @@ FUN_18085bc30(longlong connectionContext,uint packetData,char dataSize,char para
       }
       if (plVar16 == plVar2) break;
     }
-    uVar8 = FUN_180855810(connectionContext,primaryNetworkFlag8);
+    uVar8 = NetworkConnectionInitializer(connectionContext,primaryNetworkFlag8);
     if ((int)uVar8 != 0) {
       return uVar8;
     }
@@ -34200,7 +34208,7 @@ void FUN_18085c230(longlong connectionContext,ulonglong packetData)
     *(NetworkStatus *)(connectionContext + 0xb0) = 0xffffffff;
     *(NetworkStatus *)(connectionContext + 0xb4) = 0;
   }
-  iVar5 = FUN_180855810(connectionContext,packetData);
+  iVar5 = NetworkConnectionInitializer(connectionContext,packetData);
   if (iVar5 == 0) {
     if (*(longlong *)(*(longlong *)(connectionContext + 0x160) + 0x350) == 0) {
       iVar6 = FUN_18085ab70(connectionContext);

@@ -17094,8 +17094,14 @@ void SystemMemoryManagementNodeInitializer(void)
 
 
 
-// 函数: void FUN_1800432d0(void)
-void FUN_1800432d0(void)
+// 函数: 系统线程管理器初始化器
+/**
+ * @brief 系统线程管理器初始化器
+ * 
+ * 该函数负责初始化系统线程管理器，创建和配置系统的
+ * 线程管理数据结构，用于管理多线程环境下的任务调度
+ */
+void SystemThreadManagerInitializer(void)
 
 {
   char systemNodeFlag;
@@ -17144,8 +17150,14 @@ void FUN_1800432d0(void)
 
 
 
-// 函数: void FUN_1800433d0(void)
-void FUN_1800433d0(void)
+// 函数: 系统资源跟踪器初始化器
+/**
+ * @brief 系统资源跟踪器初始化器
+ * 
+ * 该函数负责初始化系统资源跟踪器，创建和配置系统的
+ * 资源跟踪数据结构，用于监控和管理系统资源的使用情况
+ */
+void SystemResourceTrackerInitializer(void)
 
 {
   char systemNodeFlag;
