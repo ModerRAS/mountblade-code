@@ -104,10 +104,15 @@ void* AudioSystemModuleHandle;
 
 
 /**
- * @brief 初始化全局模块E
+ * @brief 初始化网络系统模块
  * 
- * 该函数负责初始化游戏引擎的全局模块E
- * 设置模块E所需的数据结构和运行环境
+ * 该函数负责初始化游戏引擎的网络系统模块
+ * 设置网络系统模块所需的数据结构和运行环境
+ * 包括网络连接管理、数据传输和协议处理
+ * 
+ * @return 无返回值
+ * @note 此函数必须在系统启动时调用
+ * @warning 调用此函数前必须确保网络设备可用
  */
 void InitializeNetworkSystemModule(void);
 void* NetworkSystemModuleInstance;
@@ -117,13 +122,17 @@ void* NetworkSystemModuleHandle;
 
 
 /**
- * @brief 获取系统状态标志1
+ * @brief 获取核心引擎系统状态标志
  * 
- * 该函数负责获取系统的第一个状态标志
- * 用于判断系统是否处于特定的运行状态
+ * 该函数负责获取核心引擎系统的状态标志
+ * 用于判断核心引擎是否已初始化并处于正常运行状态
+ * 
+ * @return uint32_t 返回核心引擎系统的状态标志值
+ * @note 此函数返回的状态标志可用于诊断系统状态
+ * @warning 状态标志值的含义取决于具体的系统实现
  */
 uint32_t GetCoreEngineSystemStatusFlag(void);
-bool SystemStatusFlagCoreInitialized;
+bool SystemStatusCoreInitialized;
 
 
 /**
@@ -17931,21 +17940,30 @@ uint8_t8 GetDefaultErrorCode(void)
 
 
 
- a9f0(longlong objectContextParam,int *validationContextParam)
-a9f0(longlong objectContextParam,int *validationContextParam)
+ /**
+ * @brief 处理对象上下文验证
+ * 
+ * 该函数负责处理对象上下文的验证操作
+ * 执行低级别的系统调用和寄存器操作
+ * 
+ * @param objectContextParam 对象上下文参数
+ * @param validationContextParam 验证上下文参数指针
+ * @return 无返回值
+ */
+void ProcessObjectContextValidation(longlong objectContextParam,int *validationContextParam)
 
 {
-  char *pcVar1;
-  code *pcVar2;
+  char *PointerVar1;
+  code *CodePointer;
   char StatusFlag;
-  uint8_t4 in_EAX;
-  uint8_t3 unsignedValue6;
-  int tableEntry;
-  uint8_t4 in_register_00000004;
-  uint unaff_EBP;
-  char in_CF;
-  int *piStack_8;
-  uint8_t4 unsignedResult4;
+  uint8_t4 RegisterEAX;
+  uint8_t3 UnsignedValue6;
+  int TableEntry;
+  uint8_t4 RegisterParam4;
+  uint UnregisterEBP;
+  char CarryFlag;
+  int *StackPointer8;
+  uint8_t4 UnsignedResult4;
   
   unsignedValue6 = (uint8_t3)((uint)in_EAX >> 8);
   cVar3 = (char)in_EAX + -0x57 + in_CF;
@@ -87235,7 +87253,7 @@ void InitializeSystemDataStructureCR(void)
   longlong resourceTable;
   
   if (0xf < SystemResourceCounter002) {
-    localContextPointer = CONCAT71(uRam0000000180bfc171,DAT_180bfc170);
+    LocalContextPointer = CONCAT71(uRam0000000180bfc171,DAT_180bfc170);
     resourceTable = localContextPointer;
     if (0xfff < SystemResourceCounter002 + 1) {
       resourceTable = *(longlong *)(localContextPointer + -8);
