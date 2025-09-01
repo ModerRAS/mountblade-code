@@ -50010,19 +50010,37 @@ void Unwind_180907c30(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 
 
-void Unwind_180907c40(undefined8 param_1,longlong param_2)
+/**
+ * @brief 异常解卷函数：设置清理回调A
+ * 
+ * 该函数在异常解卷过程中设置清理回调函数A
+ * 用于异常处理时的资源清理和状态恢复
+ * 
+ * @param exceptionContext 异常上下文参数
+ * @param systemContext 系统上下文指针
+ */
+void UnwindCleanupCallbackA(undefined8 exceptionContext, longlong systemContext)
 
 {
-  *(undefined **)(param_2 + 0x298) = &UNK_18098bcb0;
+  *(undefined **)(systemContext + 0x298) = &UNK_18098bcb0;
   return;
 }
 
 
 
-void Unwind_180907c50(undefined8 param_1,longlong param_2)
+/**
+ * @brief 异常解卷函数：设置清理回调B
+ * 
+ * 该函数在异常解卷过程中设置清理回调函数B
+ * 用于异常处理时的资源清理和状态恢复
+ * 
+ * @param exceptionContext 异常上下文参数
+ * @param systemContext 系统上下文指针
+ */
+void UnwindCleanupCallbackB(undefined8 exceptionContext, longlong systemContext)
 
 {
-  **(undefined8 **)(param_2 + 600) = &UNK_18098bcb0;
+  **(undefined8 **)(systemContext + 600) = &UNK_18098bcb0;
   return;
 }
 
