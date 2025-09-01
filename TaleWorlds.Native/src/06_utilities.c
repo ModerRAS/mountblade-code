@@ -48515,7 +48515,7 @@ void Unwind_180907130(void)
   byte encryptionShiftValue;
   
   EnterCriticalSection(0x180c82210);
-  uRam0000000180d49150 = 0;
+  SystemInitializationFlag = 0;
   LeaveCriticalSection(0x180c82210);
   if (SystemEventHandle != 0) {
     SetEvent();
@@ -85484,7 +85484,7 @@ void InitializeSystemDataStructureAI(void)
     free(localContextPointer,validationResult);
     MemoryPoolEndAddress = 0;
     MemoryPoolStartAddress = 0;
-    uRam0000000180c91f20 = 0;
+    MemoryPoolCounter = 0;
   }
   return;
 }
@@ -86609,14 +86609,14 @@ void InitializeSystemDataStructureCB(void)
       resourceTable = *(longlong *)(localContextPointer + -8);
       if (0x1f < (localContextPointer - resourceTable) - 8U) {
                     // WARNING: Subroutine does not return
-        _invalid_parameter_noinfo_noreturn(localContextPointer - resourceTable,uRam0000000180bfc138 + 0x28);
+        _invalid_parameter_noinfo_noreturn(localContextPointer - resourceTable,SystemResourceCounter + 0x28);
       }
     }
     free(resourceTable);
   }
-  uRam0000000180bfc130 = 0;
-  uRam0000000180bfc138 = 0xf;
-  uRam0000000180bfc120 = 0;
+  SystemResourceCleanupFlag = 0;
+  SystemResourceCounter = 0xf;
+  SystemResourceLowPointer = 0;
   return;
 }
 
@@ -86651,7 +86651,7 @@ void InitializeSystemDataStructureCC(void)
   longlong resourceTable;
   
   if (0xf < SystemResourceCounter001) {
-    localContextPointer = CONCAT71(uRam0000000180bfc101,DAT_180bfc100);
+    localContextPointer = CONCAT71(SystemDataStructureHighPointer,SystemDataStructureLowPointer);
     resourceTable = localContextPointer;
     if (0xfff < SystemResourceCounter001 + 1) {
       resourceTable = *(longlong *)(localContextPointer + -8);
@@ -86680,21 +86680,21 @@ void InitializeSystemDataStructureCD(void)
   longlong loopCounter;
   longlong resourceTable;
   
-  if (0xf < uRam0000000180bfc0f0) {
-    localContextPointer = CONCAT71(uRam0000000180bfc0d9,uRam0000000180bfc0d8);
+  if (0xf < SystemResourcePoolCounter) {
+    localContextPointer = CONCAT71(SystemResourcePoolHighPointer,SystemResourcePoolLowPointer);
     resourceTable = localContextPointer;
-    if (0xfff < uRam0000000180bfc0f0 + 1) {
+    if (0xfff < SystemResourcePoolCounter + 1) {
       resourceTable = *(longlong *)(localContextPointer + -8);
       if (0x1f < (localContextPointer - resourceTable) - 8U) {
                     // WARNING: Subroutine does not return
-        _invalid_parameter_noinfo_noreturn(localContextPointer - resourceTable,uRam0000000180bfc0f0 + 0x28);
+        _invalid_parameter_noinfo_noreturn(localContextPointer - resourceTable,SystemResourcePoolCounter + 0x28);
       }
     }
     free(resourceTable);
   }
-  uRam0000000180bfc0e8 = 0;
-  uRam0000000180bfc0f0 = 0xf;
-  uRam0000000180bfc0d8 = 0;
+  SystemResourcePoolCleanupFlag = 0;
+  SystemResourcePoolCounter = 0xf;
+  SystemResourcePoolLowPointer = 0;
   return;
 }
 
@@ -86716,21 +86716,21 @@ void InitializeSystemDataStructureCE(void)
   longlong loopCounter;
   longlong resourceTable;
   
-  if (0xf < uRam0000000180d499c0) {
-    localContextPointer = CONCAT71(uRam0000000180d499a9,uRam0000000180d499a8);
+  if (0xf < SystemMemoryPoolCounter) {
+    localContextPointer = CONCAT71(SystemMemoryPoolHighPointer,SystemMemoryPoolLowPointer);
     resourceTable = localContextPointer;
-    if (0xfff < uRam0000000180d499c0 + 1) {
+    if (0xfff < SystemMemoryPoolCounter + 1) {
       resourceTable = *(longlong *)(localContextPointer + -8);
       if (0x1f < (localContextPointer - resourceTable) - 8U) {
                     // WARNING: Subroutine does not return
-        _invalid_parameter_noinfo_noreturn(localContextPointer - resourceTable,uRam0000000180d499c0 + 0x28);
+        _invalid_parameter_noinfo_noreturn(localContextPointer - resourceTable,SystemMemoryPoolCounter + 0x28);
       }
     }
     free(resourceTable);
   }
-  uRam0000000180d499b8 = 0;
-  uRam0000000180d499c0 = 0xf;
-  uRam0000000180d499a8 = 0;
+  SystemMemoryPoolCleanupFlag = 0;
+  SystemMemoryPoolCounter = 0xf;
+  SystemMemoryPoolLowPointer = 0;
   return;
 }
 
@@ -87272,13 +87272,13 @@ void ReleaseResourceHashTable(void)
     }
     free(resourceTable);
     lRam0000000180d49d68 = 0;
-    uRam0000000180d49d70 = 0;
+    SystemConfigurationFlag = 0;
     lRam0000000180d49d78 = 0;
   }
-  SystemConfigurationHandler(&uRam0000000180d49d58);
+  SystemConfigurationHandler(&SystemConfigurationData);
                     // WARNING: Could not recover jumptable at 0x0001808ffc83. Too many branches
                     // WARNING: Treating indirect jump as call
-  free(uRam0000000180d49d58,0x40);
+  free(SystemConfigurationData,0x40);
   return;
 }
 
@@ -87304,8 +87304,8 @@ void ReleaseValidationResultTable(void)
   longlong loopCounter;
   ulonglong validationResult;
   
-  if (lRam0000000180d49d90 != 0) {
-    SystemMemoryAllocator(lRam0000000180d49d90,uRam0000000180d49d98);
+  if (SystemMemoryBufferPointer != 0) {
+    SystemMemoryAllocator(SystemMemoryBufferPointer,SystemMemoryAllocationSize);
     validationResult = lRam0000000180d49da0 - lRam0000000180d49d90 & 0xfffffffffffffff0;
     localContextPointer = lRam0000000180d49d90;
     if (0xfff < validationResult) {
