@@ -2278,23 +2278,37 @@ int ProcessValidatedNetworkPacket(longlong connectionContext, longlong packetDat
 
 
 
-int FUN_180841f50(longlong connectionContext,longlong packetData,int dataSize)
+/**
+ * 处理网络数据包第一阶段
+ * 
+ * 该函数负责处理网络数据包的第一阶段处理，包括数据验证、
+ * 缓冲区处理和加密操作。这是网络数据处理流程的第一步。
+ * 
+ * @param connectionContext 连接上下文指针，包含连接状态信息
+ * @param packetData 数据包数据指针
+ * @param dataSize 数据包大小
+ * @return 处理后的数据大小，包含所有处理阶段的累积结果
+ * 
+ * 注意：这是一个反编译的函数实现，原始函数名已丢失
+ */
+int ProcessNetworkPacketPhaseOne(longlong connectionContext, longlong packetData, int dataSize)
 
 {
-  NetworkByte uVar1;
-  int networkStatus2;
-  int networkStatus3;
+  NetworkByte encryptionKey;
+  int firstPhaseStatus;
+  int secondPhaseStatus;
+  int cumulativeProcessedSize;
   
-  uVar1 = *(NetworkByte *)(connectionContext + 0x14);
-  networkStatus2 = FUN_18074b880(packetData,dataSize,connectionContext + 0x20);
-  networkStatus3 = FUN_18074b880(networkStatus2 + packetData,dataSize - networkStatus2,&g_NetworkBufferDataTemplate);
-  networkStatus2 = networkStatus2 + networkStatus3;
-  networkStatus3 = FUN_18074b880(networkStatus2 + packetData,dataSize - networkStatus2,connectionContext + 0xa0);
-  networkStatus2 = networkStatus2 + networkStatus3;
-  networkStatus3 = FUN_18074b880(networkStatus2 + packetData,dataSize - networkStatus2,&g_NetworkBufferDataTemplate);
-  networkStatus2 = networkStatus2 + networkStatus3;
-  networkStatus3 = NetworkBufferEncryptData(networkStatus2 + packetData,dataSize - networkStatus2,uVar1);
-  return networkStatus3 + networkStatus2;
+  encryptionKey = *(NetworkByte *)(connectionContext + 0x14);
+  firstPhaseStatus = FUN_18074b880(packetData, dataSize, connectionContext + 0x20);
+  secondPhaseStatus = FUN_18074b880(firstPhaseStatus + packetData, dataSize - firstPhaseStatus, &g_NetworkBufferDataTemplate);
+  cumulativeProcessedSize = firstPhaseStatus + secondPhaseStatus;
+  secondPhaseStatus = FUN_18074b880(cumulativeProcessedSize + packetData, dataSize - cumulativeProcessedSize, connectionContext + 0xa0);
+  cumulativeProcessedSize = cumulativeProcessedSize + secondPhaseStatus;
+  secondPhaseStatus = FUN_18074b880(cumulativeProcessedSize + packetData, dataSize - cumulativeProcessedSize, &g_NetworkBufferDataTemplate);
+  cumulativeProcessedSize = cumulativeProcessedSize + secondPhaseStatus;
+  secondPhaseStatus = NetworkBufferEncryptData(cumulativeProcessedSize + packetData, dataSize - cumulativeProcessedSize, encryptionKey);
+  return secondPhaseStatus + cumulativeProcessedSize;
 }
 
 
@@ -2813,140 +2827,223 @@ void InitializeNetworkHandshakeProtocol(longlong handshakeContext, NetworkHandle
 
 
 
-int FUN_180842820(longlong connectionContext,longlong packetData,int dataSize)
+/**
+ * 处理网络数据包第二阶段
+ * 
+ * 该函数负责处理网络数据包的第二阶段处理，包括数据验证、
+ * 缓冲区处理和协议相关的操作。这是网络数据处理流程的第二步。
+ * 
+ * @param connectionContext 连接上下文指针，包含连接状态信息
+ * @param packetData 数据包数据指针
+ * @param dataSize 数据包大小
+ * @return 处理后的数据大小，包含所有处理阶段的累积结果
+ * 
+ * 注意：这是一个反编译的函数实现，原始函数名已丢失
+ */
+int ProcessNetworkPacketPhaseTwo(longlong connectionContext, longlong packetData, int dataSize)
 
 {
-  NetworkStatus uVar1;
-  NetworkStatus uVar2;
-  int networkStatus3;
-  int networkStatus4;
+  NetworkStatus firstNetworkFlag;
+  NetworkStatus secondNetworkFlag;
+  int firstProcessingStatus;
+  int secondProcessingStatus;
+  int cumulativeProcessedSize;
   
-  uVar2 = *(NetworkStatus *)(connectionContext + 0x10);
-  uVar1 = *(NetworkStatus *)(connectionContext + 0x18);
-  networkStatus3 = FUN_18074b880(packetData,dataSize,&UNK_180984348);
-  networkStatus4 = FUN_18074b880(packetData + networkStatus3,dataSize - networkStatus3,&g_NetworkBufferDataTemplate);
-  networkStatus3 = networkStatus3 + networkStatus4;
-  networkStatus4 = func_0x00018074b800(networkStatus3 + packetData,dataSize - networkStatus3,uVar2);
-  networkStatus3 = networkStatus3 + networkStatus4;
-  networkStatus4 = FUN_18074b880(networkStatus3 + packetData,dataSize - networkStatus3,&g_NetworkBufferDataTemplate);
-  networkStatus3 = networkStatus3 + networkStatus4;
-  networkStatus4 = func_0x00018074b830(networkStatus3 + packetData,dataSize - networkStatus3,uVar1);
-  return networkStatus4 + networkStatus3;
+  firstNetworkFlag = *(NetworkStatus *)(connectionContext + 0x10);
+  secondNetworkFlag = *(NetworkStatus *)(connectionContext + 0x18);
+  firstProcessingStatus = FUN_18074b880(packetData, dataSize, &UNK_180984348);
+  secondProcessingStatus = FUN_18074b880(packetData + firstProcessingStatus, dataSize - firstProcessingStatus, &g_NetworkBufferDataTemplate);
+  cumulativeProcessedSize = firstProcessingStatus + secondProcessingStatus;
+  secondProcessingStatus = func_0x00018074b800(cumulativeProcessedSize + packetData, dataSize - cumulativeProcessedSize, firstNetworkFlag);
+  cumulativeProcessedSize = cumulativeProcessedSize + secondProcessingStatus;
+  secondProcessingStatus = FUN_18074b880(cumulativeProcessedSize + packetData, dataSize - cumulativeProcessedSize, &g_NetworkBufferDataTemplate);
+  cumulativeProcessedSize = cumulativeProcessedSize + secondProcessingStatus;
+  secondProcessingStatus = func_0x00018074b830(cumulativeProcessedSize + packetData, dataSize - cumulativeProcessedSize, secondNetworkFlag);
+  return secondProcessingStatus + cumulativeProcessedSize;
 }
 
 
 
-int FUN_1808428d0(longlong connectionContext,longlong packetData,int dataSize)
+/**
+ * 处理网络数据包第三阶段
+ * 
+ * 该函数负责处理网络数据包的第三阶段处理，包括数据验证、
+ * 缓冲区处理和协议相关的操作。这是网络数据处理流程的第三步。
+ * 
+ * @param connectionContext 连接上下文指针，包含连接状态信息
+ * @param packetData 数据包数据指针
+ * @param dataSize 数据包大小
+ * @return 处理后的数据大小，包含所有处理阶段的累积结果
+ * 
+ * 注意：这是一个反编译的函数实现，原始函数名已丢失
+ */
+int ProcessNetworkPacketPhaseThree(longlong connectionContext, longlong packetData, int dataSize)
 
 {
-  NetworkStatus uVar1;
-  NetworkStatus uVar2;
-  int networkStatus3;
-  int networkStatus4;
+  NetworkStatus firstNetworkFlag;
+  NetworkStatus secondNetworkFlag;
+  int firstProcessingStatus;
+  int secondProcessingStatus;
+  int cumulativeProcessedSize;
   
-  uVar1 = *(NetworkStatus *)(connectionContext + 0x18);
-  uVar2 = *(NetworkStatus *)(connectionContext + 0x10);
-  networkStatus3 = FUN_18074b880(packetData,dataSize,&UNK_1809844b0);
-  networkStatus4 = FUN_18074b880(networkStatus3 + packetData,dataSize - networkStatus3,&g_NetworkBufferDataTemplate);
-  networkStatus3 = networkStatus3 + networkStatus4;
-  networkStatus4 = func_0x00018074b800(networkStatus3 + packetData,dataSize - networkStatus3,uVar2);
-  networkStatus3 = networkStatus3 + networkStatus4;
-  networkStatus4 = FUN_18074b880(networkStatus3 + packetData,dataSize - networkStatus3,&g_NetworkBufferDataTemplate);
-  networkStatus3 = networkStatus3 + networkStatus4;
-  networkStatus4 = func_0x00018074b7d0(networkStatus3 + packetData,dataSize - networkStatus3,uVar1);
-  return networkStatus4 + networkStatus3;
+  firstNetworkFlag = *(NetworkStatus *)(connectionContext + 0x18);
+  secondNetworkFlag = *(NetworkStatus *)(connectionContext + 0x10);
+  firstProcessingStatus = FUN_18074b880(packetData, dataSize, &UNK_1809844b0);
+  secondProcessingStatus = FUN_18074b880(firstProcessingStatus + packetData, dataSize - firstProcessingStatus, &g_NetworkBufferDataTemplate);
+  cumulativeProcessedSize = firstProcessingStatus + secondProcessingStatus;
+  secondProcessingStatus = func_0x00018074b800(cumulativeProcessedSize + packetData, dataSize - cumulativeProcessedSize, secondNetworkFlag);
+  cumulativeProcessedSize = cumulativeProcessedSize + secondProcessingStatus;
+  secondProcessingStatus = FUN_18074b880(cumulativeProcessedSize + packetData, dataSize - cumulativeProcessedSize, &g_NetworkBufferDataTemplate);
+  cumulativeProcessedSize = cumulativeProcessedSize + secondProcessingStatus;
+  secondProcessingStatus = func_0x00018074b7d0(cumulativeProcessedSize + packetData, dataSize - cumulativeProcessedSize, firstNetworkFlag);
+  return secondProcessingStatus + cumulativeProcessedSize;
 }
 
 
 
-int FUN_180842990(longlong connectionContext,longlong packetData,int dataSize)
+/**
+ * 处理网络数据包第四阶段
+ * 
+ * 该函数负责处理网络数据包的第四阶段处理，包括数据验证、
+ * 缓冲区复制和协议相关的操作。这是网络数据处理流程的第四步。
+ * 
+ * @param connectionContext 连接上下文指针，包含连接状态信息
+ * @param packetData 数据包数据指针
+ * @param dataSize 数据包大小
+ * @return 处理后的数据大小，包含所有处理阶段的累积结果
+ * 
+ * 注意：这是一个反编译的函数实现，原始函数名已丢失
+ */
+int ProcessNetworkPacketPhaseFour(longlong connectionContext, longlong packetData, int dataSize)
 
 {
-  NetworkStatus uVar1;
-  int networkStatus2;
-  int networkStatus3;
+  NetworkStatus networkFlag;
+  int firstProcessingStatus;
+  int secondProcessingStatus;
   
-  uVar1 = *(NetworkStatus *)(connectionContext + 0x10);
-  networkStatus2 = FUN_18074b880(packetData,dataSize,&UNK_180984248);
-  networkStatus3 = NetworkBufferCopyData(packetData + networkStatus2,dataSize - networkStatus2,&NetworkBufferDataTemplate);
-  networkStatus2 = networkStatus2 + networkStatus3;
-  networkStatus3 = func_0x00018074b800(networkStatus2 + packetData,dataSize - networkStatus2,uVar1);
-  return networkStatus3 + networkStatus2;
+  networkFlag = *(NetworkStatus *)(connectionContext + 0x10);
+  firstProcessingStatus = FUN_18074b880(packetData, dataSize, &UNK_180984248);
+  secondProcessingStatus = NetworkBufferCopyData(packetData + firstProcessingStatus, dataSize - firstProcessingStatus, &NetworkBufferDataTemplate);
+  firstProcessingStatus = firstProcessingStatus + secondProcessingStatus;
+  secondProcessingStatus = func_0x00018074b800(firstProcessingStatus + packetData, dataSize - firstProcessingStatus, networkFlag);
+  return secondProcessingStatus + firstProcessingStatus;
 }
 
 
 
-int FUN_180842a00(longlong connectionContext,longlong packetData,int dataSize)
+/**
+ * 验证网络连接数据包
+ * 
+ * 该函数负责验证网络连接数据包的有效性，包括数据完整性检查、
+ * 缓冲区验证和协议相关的验证操作。
+ * 
+ * @param connectionContext 连接上下文指针，包含连接状态信息
+ * @param packetData 数据包数据指针
+ * @param dataSize 数据包大小
+ * @return 验证结果，0表示成功，非0表示错误代码
+ * 
+ * 注意：这是一个反编译的函数实现，原始函数名已丢失
+ */
+int ValidateNetworkConnectionPacket(longlong connectionContext, longlong packetData, int dataSize)
 
 {
-  NetworkStatus uVar1;
-  NetworkStatus uVar2;
-  int networkStatus3;
-  int networkStatus4;
+  NetworkStatus firstNetworkFlag;
+  NetworkStatus secondNetworkFlag;
+  int firstValidationStatus;
+  int secondValidationStatus;
+  int cumulativeValidationResult;
   
-  uVar1 = *(NetworkStatus *)(connectionContext + 0x18);
-  uVar2 = *(NetworkStatus *)(connectionContext + 0x10);
-  networkStatus3 = FUN_18074b880(packetData,dataSize,&UNK_180983320);
-  networkStatus4 = FUN_18074b880(networkStatus3 + packetData,dataSize - networkStatus3,&g_NetworkBufferDataTemplate);
-  networkStatus3 = networkStatus3 + networkStatus4;
-  networkStatus4 = func_0x00018074b800(networkStatus3 + packetData,dataSize - networkStatus3,uVar2);
-  networkStatus3 = networkStatus3 + networkStatus4;
-  networkStatus4 = FUN_18074b880(networkStatus3 + packetData,dataSize - networkStatus3,&g_NetworkBufferDataTemplate);
-  networkStatus3 = networkStatus3 + networkStatus4;
-  networkStatus4 = func_0x00018074b800(networkStatus3 + packetData,dataSize - networkStatus3,uVar1);
-  return networkStatus4 + networkStatus3;
+  firstNetworkFlag = *(NetworkStatus *)(connectionContext + 0x18);
+  secondNetworkFlag = *(NetworkStatus *)(connectionContext + 0x10);
+  firstValidationStatus = FUN_18074b880(packetData, dataSize, &UNK_180983320);
+  secondValidationStatus = FUN_18074b880(firstValidationStatus + packetData, dataSize - firstValidationStatus, &g_NetworkBufferDataTemplate);
+  cumulativeValidationResult = firstValidationStatus + secondValidationStatus;
+  secondValidationStatus = func_0x00018074b800(cumulativeValidationResult + packetData, dataSize - cumulativeValidationResult, secondNetworkFlag);
+  cumulativeValidationResult = cumulativeValidationResult + secondValidationStatus;
+  secondValidationStatus = FUN_18074b880(cumulativeValidationResult + packetData, dataSize - cumulativeValidationResult, &g_NetworkBufferDataTemplate);
+  cumulativeValidationResult = cumulativeValidationResult + secondValidationStatus;
+  secondValidationStatus = func_0x00018074b800(cumulativeValidationResult + packetData, dataSize - cumulativeValidationResult, firstNetworkFlag);
+  return secondValidationStatus + cumulativeValidationResult;
 }
 
 
 
-int FUN_180842ac0(longlong connectionContext,longlong packetData,int dataSize)
+/**
+ * 处理网络数据包第五阶段
+ * 
+ * 该函数负责处理网络数据包的第五阶段处理，包括数据验证、
+ * 缓冲区处理和协议相关的操作。这是网络数据处理流程的第五步。
+ * 
+ * @param connectionContext 连接上下文指针，包含连接状态信息
+ * @param packetData 数据包数据指针
+ * @param dataSize 数据包大小
+ * @return 处理后的数据大小，包含所有处理阶段的累积结果
+ * 
+ * 注意：这是一个反编译的函数实现，原始函数名已丢失
+ */
+int ProcessNetworkPacketPhaseFive(longlong connectionContext, longlong packetData, int dataSize)
 
 {
-  NetworkStatus uVar1;
-  NetworkStatus uVar2;
-  int networkStatus3;
-  int networkStatus4;
+  NetworkStatus firstNetworkFlag;
+  NetworkStatus secondNetworkFlag;
+  int firstProcessingStatus;
+  int secondProcessingStatus;
+  int cumulativeProcessedSize;
   
-  uVar1 = *(NetworkStatus *)(connectionContext + 0x18);
-  uVar2 = *(NetworkStatus *)(connectionContext + 0x10);
-  networkStatus3 = FUN_18074b880(packetData,dataSize,&UNK_1809833b0);
-  networkStatus4 = FUN_18074b880(networkStatus3 + packetData,dataSize - networkStatus3,&g_NetworkBufferDataTemplate);
-  networkStatus3 = networkStatus3 + networkStatus4;
-  networkStatus4 = func_0x00018074b800(networkStatus3 + packetData,dataSize - networkStatus3,uVar2);
-  networkStatus3 = networkStatus3 + networkStatus4;
-  networkStatus4 = FUN_18074b880(networkStatus3 + packetData,dataSize - networkStatus3,&g_NetworkBufferDataTemplate);
-  networkStatus3 = networkStatus3 + networkStatus4;
-  networkStatus4 = func_0x00018074b7d0(networkStatus3 + packetData,dataSize - networkStatus3,uVar1);
-  return networkStatus4 + networkStatus3;
+  firstNetworkFlag = *(NetworkStatus *)(connectionContext + 0x18);
+  secondNetworkFlag = *(NetworkStatus *)(connectionContext + 0x10);
+  firstProcessingStatus = FUN_18074b880(packetData, dataSize, &UNK_1809833b0);
+  secondProcessingStatus = FUN_18074b880(firstProcessingStatus + packetData, dataSize - firstProcessingStatus, &g_NetworkBufferDataTemplate);
+  cumulativeProcessedSize = firstProcessingStatus + secondProcessingStatus;
+  secondProcessingStatus = func_0x00018074b800(cumulativeProcessedSize + packetData, dataSize - cumulativeProcessedSize, secondNetworkFlag);
+  cumulativeProcessedSize = cumulativeProcessedSize + secondProcessingStatus;
+  secondProcessingStatus = FUN_18074b880(cumulativeProcessedSize + packetData, dataSize - cumulativeProcessedSize, &g_NetworkBufferDataTemplate);
+  cumulativeProcessedSize = cumulativeProcessedSize + secondProcessingStatus;
+  secondProcessingStatus = func_0x00018074b7d0(cumulativeProcessedSize + packetData, dataSize - cumulativeProcessedSize, firstNetworkFlag);
+  return secondProcessingStatus + cumulativeProcessedSize;
 }
 
 
 
-int FUN_180842b80(longlong connectionContext,longlong packetData,int dataSize)
+/**
+ * 处理网络数据包第六阶段
+ * 
+ * 该函数负责处理网络数据包的第六阶段处理，包括多层数据验证、
+ * 缓冲区处理和协议相关的操作。这是网络数据处理流程的第六步。
+ * 
+ * @param connectionContext 连接上下文指针，包含连接状态信息
+ * @param packetData 数据包数据指针
+ * @param dataSize 数据包大小
+ * @return 处理后的数据大小，包含所有处理阶段的累积结果
+ * 
+ * 注意：这是一个反编译的函数实现，原始函数名已丢失
+ */
+int ProcessNetworkPacketPhaseSix(longlong connectionContext, longlong packetData, int dataSize)
 
 {
-  NetworkStatus uVar1;
-  NetworkStatus uVar2;
-  NetworkStatus uVar3;
-  int networkStatus4;
-  int iVar5;
+  NetworkStatus firstNetworkFlag;
+  NetworkStatus secondNetworkFlag;
+  NetworkStatus thirdNetworkFlag;
+  int firstProcessingStatus;
+  int secondProcessingStatus;
+  int cumulativeProcessedSize;
   
-  uVar1 = *(NetworkStatus *)(connectionContext + 0x1c);
-  uVar2 = *(NetworkStatus *)(connectionContext + 0x18);
-  uVar3 = *(NetworkStatus *)(connectionContext + 0x10);
-  networkStatus4 = FUN_18074b880(packetData,dataSize,&UNK_180983440);
-  iVar5 = FUN_18074b880(packetData + networkStatus4,dataSize - networkStatus4,&g_NetworkBufferDataTemplate);
-  networkStatus4 = networkStatus4 + iVar5;
-  iVar5 = func_0x00018074b800(networkStatus4 + packetData,dataSize - networkStatus4,uVar3);
-  networkStatus4 = networkStatus4 + iVar5;
-  iVar5 = FUN_18074b880(networkStatus4 + packetData,dataSize - networkStatus4,&g_NetworkBufferDataTemplate);
-  networkStatus4 = networkStatus4 + iVar5;
-  iVar5 = func_0x00018074b7d0(networkStatus4 + packetData,dataSize - networkStatus4,uVar2);
-  networkStatus4 = networkStatus4 + iVar5;
-  iVar5 = FUN_18074b880(networkStatus4 + packetData,dataSize - networkStatus4,&g_NetworkBufferDataTemplate);
-  networkStatus4 = networkStatus4 + iVar5;
-  iVar5 = func_0x00018074b7d0(networkStatus4 + packetData,dataSize - networkStatus4,uVar1);
-  return iVar5 + networkStatus4;
+  firstNetworkFlag = *(NetworkStatus *)(connectionContext + 0x1c);
+  secondNetworkFlag = *(NetworkStatus *)(connectionContext + 0x18);
+  thirdNetworkFlag = *(NetworkStatus *)(connectionContext + 0x10);
+  firstProcessingStatus = FUN_18074b880(packetData, dataSize, &UNK_180983440);
+  secondProcessingStatus = FUN_18074b880(packetData + firstProcessingStatus, dataSize - firstProcessingStatus, &g_NetworkBufferDataTemplate);
+  cumulativeProcessedSize = firstProcessingStatus + secondProcessingStatus;
+  secondProcessingStatus = func_0x00018074b800(cumulativeProcessedSize + packetData, dataSize - cumulativeProcessedSize, thirdNetworkFlag);
+  cumulativeProcessedSize = cumulativeProcessedSize + secondProcessingStatus;
+  secondProcessingStatus = FUN_18074b880(cumulativeProcessedSize + packetData, dataSize - cumulativeProcessedSize, &g_NetworkBufferDataTemplate);
+  cumulativeProcessedSize = cumulativeProcessedSize + secondProcessingStatus;
+  secondProcessingStatus = func_0x00018074b7d0(cumulativeProcessedSize + packetData, dataSize - cumulativeProcessedSize, secondNetworkFlag);
+  cumulativeProcessedSize = cumulativeProcessedSize + secondProcessingStatus;
+  secondProcessingStatus = FUN_18074b880(cumulativeProcessedSize + packetData, dataSize - cumulativeProcessedSize, &g_NetworkBufferDataTemplate);
+  cumulativeProcessedSize = cumulativeProcessedSize + secondProcessingStatus;
+  secondProcessingStatus = func_0x00018074b7d0(cumulativeProcessedSize + packetData, dataSize - cumulativeProcessedSize, firstNetworkFlag);
+  return secondProcessingStatus + cumulativeProcessedSize;
 }
 
 
