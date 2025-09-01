@@ -15092,8 +15092,8 @@ bool engine_validate_system_configuration(longlong engine_data_structure_ptr)
   void* engine_data_ptr0;
   void* engine_data_ptr1;
   void* pengine_stack_uint_30;
-  byte *pbStack_28;
-  int iStack_20;
+  byte *engine_stack_byte_pointer_28;
+  int engine_stack_int_20;
   
   engine_data_pointer = (void*)(engine_data_structure_ptr + 0x2e0);
   engine_initialize_stack_context(&pengine_stack_uint_30);
@@ -15101,7 +15101,7 @@ bool engine_validate_system_configuration(longlong engine_data_structure_ptr)
   engine_data_ptr1 = engine_data_pointer;
   if (next_data_pointer != (void*)0x0) {
     do {
-      if (iStack_20 == 0) {
+      if (engine_stack_int_20 == 0) {
         engine_temp_byte3 = false;
         engine_temp_uint_ptr_9 = (void*)next_data_pointer[1];
       }
@@ -15110,9 +15110,9 @@ bool engine_validate_system_configuration(longlong engine_data_structure_ptr)
           engine_temp_byte3 = true;
         }
         else {
-          engine_byte_ptr_4 = pbStack_28;
+          engine_byte_ptr_4 = engine_stack_byte_pointer_28;
           do {
-            engine_temp_index = (uint)engine_byte_ptr_4[next_data_pointer[5] - (longlong)pbStack_28];
+            engine_temp_index = (uint)engine_byte_ptr_4[next_data_pointer[5] - (longlong)engine_stack_byte_pointer_28];
             engine_temp_int_6 = *engine_byte_ptr_4 - engine_temp_index;
             if (*engine_byte_ptr_4 != engine_temp_index) break;
             engine_byte_ptr_4 = engine_byte_ptr_4 + 1;
@@ -15135,9 +15135,9 @@ LAB_180051f8b:
     } while (engine_temp_uint_ptr_9 != (void*)0x0);
     if (engine_data_ptr0 != engine_data_pointer) {
       if (*(int *)(engine_data_ptr0 + 6) == 0) goto LAB_180051fc9;
-      if (iStack_20 != 0) {
+      if (engine_stack_int_20 != 0) {
         engine_byte_ptr_4 = (byte *)engine_data_ptr0[5];
-        engine_temp_long_7 = (longlong)pbStack_28 - (longlong)engine_byte_ptr_4;
+        engine_temp_long_7 = (longlong)engine_stack_byte_pointer_28 - (longlong)engine_byte_ptr_4;
         do {
           engine_comparison_result = *engine_byte_ptr_4;
           engine_temp_index = (uint)engine_byte_ptr_4[engine_temp_long_7];
@@ -15151,7 +15151,7 @@ LAB_180051f8b:
   engine_data_ptr0 = engine_data_pointer;
 LAB_180051fc9:
   pengine_stack_uint_30 = &engine_system_context_data;
-  if (pbStack_28 == (byte *)0x0) {
+  if (engine_stack_byte_pointer_28 == (byte *)0x0) {
     return engine_data_ptr0 != engine_data_pointer;
   }
                     // WARNING: Subroutine does not return
@@ -15689,7 +15689,7 @@ void engine_handle_system_resource(uint64 engine_data_structure_ptr,longlong eng
   uint64 engine_stack_uint_1a0;
   void* engine_stack_pointer_198;
   uint64 engine_stack_uint_190;
-  int iStack_188;
+  int engine_stack_int_188;
   uint8 aengine_stack_uint_e8 [16];
   void* pengine_stack_uint_d8;
   uint64 engine_stack_uint_d0;
@@ -15729,11 +15729,11 @@ void engine_handle_system_resource(uint64 engine_data_structure_ptr,longlong eng
   *engine_data_pointer = 0x3a757063;
   *(uint16*)(engine_data_pointer + 1) = 0x20;
   *(int *)(engine_result_flag_ptr + 0x10) = comparison_result_index;
-  if (0 < iStack_188) {
-    engine_call_array_builder(engine_result_flag_ptr,comparison_result_index + iStack_188);
+  if (0 < engine_stack_int_188) {
+    engine_call_array_builder(engine_result_flag_ptr,comparison_result_index + engine_stack_int_188);
                     // WARNING: Subroutine does not return
     memcpy((ulonglong)*(uint *)(engine_result_flag_ptr + 0x10) + *(longlong *)(engine_result_flag_ptr + 8),engine_stack_uint_190,
-           (longlong)(iStack_188 + 1));
+           (longlong)(engine_stack_int_188 + 1));
   }
   engine_call_array_builder(engine_result_flag_ptr,engine_temp_int_2 + 0xc);
   *(uint16*)((ulonglong)*(uint *)(engine_result_flag_ptr + 0x10) + *(longlong *)(engine_result_flag_ptr + 8)) = 10;
@@ -16194,7 +16194,7 @@ void engine_manage_system_memory(longlong *engine_data_structure_ptr,longlong en
   uint32 engine_stack_uint_194;
   void* engine_stack_pointer_190;
   longlong engine_stack_long_188;
-  int iStack_180;
+  int engine_stack_int_180;
   uint32 engine_stack_uint_178;
   undefined **ppengine_stack_uint_170;
   void* engine_stack_pointer_168;
@@ -16322,11 +16322,11 @@ void engine_manage_system_memory(longlong *engine_data_structure_ptr,longlong en
     *(uint8*)(engine_temp_uint64_value + engine_stack_long_200) = 0;
   }
   engine_stack_uint_1f0 = CONCAT44(*(uint *)(engine_temp_long_6 + 0x1c),(uint32_t)engine_stack_uint_1f0);
-  if (0 < iStack_180) {
+  if (0 < engine_stack_int_180) {
     engine_stack_uint_1f8 = engine_temporary_uint;
-    engine_call_array_builder(&pengine_stack_uint_208,iStack_180);
+    engine_call_array_builder(&pengine_stack_uint_208,engine_stack_int_180);
                     // WARNING: Subroutine does not return
-    memcpy((ulonglong)engine_stack_uint_1f8 + engine_stack_long_200,engine_stack_long_188,(longlong)(iStack_180 + 1));
+    memcpy((ulonglong)engine_stack_uint_1f8 + engine_stack_long_200,engine_stack_long_188,(longlong)(engine_stack_int_180 + 1));
   }
   engine_stack_long_1d8 = engine_stack_long_200;
   engine_stack_uint_1c8._0_4_ = (uint32_t)engine_stack_uint_1f0;
@@ -38612,7 +38612,7 @@ void engine_unnamed_function_1640(longlong engine_data_structure_ptr)
   ulonglong engine_stack_uint_20;
   int *piStack_218;
   int *piStack_210;
-  int *piStack_208;
+  int *pengine_stack_int_208;
   uint32 engine_stack_uint_200;
   int *piStack_1f8;
   int *piStack_1f0;
@@ -38951,7 +38951,7 @@ LAB_18007a5ac:
     do {
       piStack_218 = (int *)0x0;
       piStack_210 = (int *)0x0;
-      piStack_208 = (int *)0x0;
+      pengine_stack_int_208 = (int *)0x0;
       engine_stack_uint_200 = 3;
       if (engine_temp_long_21 == 0) {
         engine_unnamed_function_2250(0);
@@ -39407,7 +39407,7 @@ LAB_180079e40:
       piStack_218 = (int *)0x0;
       piStack_210 = (int *)0x0;
       pengine_temp_int3 = (int *)0x0;
-      piStack_208 = (int *)0x0;
+      pengine_stack_int_208 = (int *)0x0;
       engine_stack_uint_200 = 3;
       iStackX_10 = 1;
       piStack_1f8 = *(int **)(*paengine_temp_uint_42 + engine_stack_long_170);
@@ -39449,7 +39449,7 @@ LAB_180079fb3:
             pengine_temp_int3 = pengine_temp_int6 + (longlong)piStack_1f0;
             paengine_temp_uint_42 = paengine_stack_uint_1e0;
             piStack_218 = pengine_temp_int6;
-            piStack_208 = pengine_temp_int3;
+            pengine_stack_int_208 = pengine_temp_int3;
             piStack_210 = pengine_temp_int6;
           }
           piStack_210 = piStack_210 + 1;
@@ -39574,11 +39574,11 @@ LAB_18007a142:
         engine_stack_uint_1bc = (uint32_t)((ulonglong)piStack_218 >> 0x20);
         engine_stack_uint_1b8._0_4_ = SUB84(piStack_1f8,0);
         engine_stack_uint_1b8._4_4_ = (uint32_t)((ulonglong)piStack_1f8 >> 0x20);
-        piStack_1b0 = piStack_208;
+        piStack_1b0 = pengine_stack_int_208;
         engine_stack_uint_200 = 3;
         engine_stack_uint_1a8 = 3;
         piStack_210 = pengine_temp_int_26;
-        piStack_208 = pengine_temp_int3;
+        pengine_stack_int_208 = pengine_temp_int3;
         piStack_1f8 = pengine_temp_int_26;
         if ((((longlong)pengine_temp_int_26 - (longlong)pengine_temp_int6 & 0xfffffffffffffffcU) == 0) || (!engine_temp_byte44))
         goto LAB_18007a312;
@@ -46590,8 +46590,8 @@ bool engine_unnamed_function_3150(longlong *engine_data_structure_ptr)
   int engine_temp_int_9;
   void* engine_data_ptr0;
   void* engine_data_ptr1;
-  byte *pbStack_28;
-  int iStack_20;
+  byte *engine_stack_byte_pointer_28;
+  int engine_stack_int_20;
   
   engine_temp_long_7 = *engine_data_structure_ptr;
   next_data_pointer = (void*)(engine_temp_long_7 + 0x48);
@@ -46600,7 +46600,7 @@ bool engine_unnamed_function_3150(longlong *engine_data_structure_ptr)
   engine_current_node_ptr = next_data_pointer;
   if (engine_data_ptr0 != (void*)0x0) {
     do {
-      if (iStack_20 == 0) {
+      if (engine_stack_int_20 == 0) {
         engine_comparison_result = false;
         engine_data_ptr1 = (void*)engine_data_ptr0[1];
       }
@@ -46609,9 +46609,9 @@ bool engine_unnamed_function_3150(longlong *engine_data_structure_ptr)
           engine_comparison_result = true;
         }
         else {
-          engine_byte_ptr_5 = pbStack_28;
+          engine_byte_ptr_5 = engine_stack_byte_pointer_28;
           do {
-            engine_temp_uint_6 = (uint)engine_byte_ptr_5[engine_data_ptr0[5] - (longlong)pbStack_28];
+            engine_temp_uint_6 = (uint)engine_byte_ptr_5[engine_data_ptr0[5] - (longlong)engine_stack_byte_pointer_28];
             engine_temp_int_9 = *engine_byte_ptr_5 - engine_temp_uint_6;
             if (*engine_byte_ptr_5 != engine_temp_uint_6) break;
             engine_byte_ptr_5 = engine_byte_ptr_5 + 1;
@@ -46634,9 +46634,9 @@ LAB_18008913b:
     } while (engine_data_ptr1 != (void*)0x0);
     if (engine_next_node_ptr != next_data_pointer) {
       if (*(int *)(engine_next_node_ptr + 6) == 0) goto LAB_18008917c;
-      if (iStack_20 != 0) {
+      if (engine_stack_int_20 != 0) {
         engine_byte_ptr_5 = (byte *)engine_next_node_ptr[5];
-        engine_temp_long_7 = (longlong)pbStack_28 - (longlong)engine_byte_ptr_5;
+        engine_temp_long_7 = (longlong)engine_stack_byte_pointer_28 - (longlong)engine_byte_ptr_5;
         do {
           engine_temp_byte = *engine_byte_ptr_5;
           engine_temp_uint_6 = (uint)engine_byte_ptr_5[engine_temp_long_7];
@@ -46649,7 +46649,7 @@ LAB_18008913b:
   }
   engine_next_node_ptr = next_data_pointer;
 LAB_18008917c:
-  if (pbStack_28 == (byte *)0x0) {
+  if (engine_stack_byte_pointer_28 == (byte *)0x0) {
     return engine_next_node_ptr == next_data_pointer;
   }
                     // WARNING: Subroutine does not return
@@ -57046,8 +57046,8 @@ void engine_unnamed_function_4430(void)
   void* engine_data_ptr0;
   longlong engine_temp_long1;
   void* pengine_stack_uint_30;
-  byte *pbStack_28;
-  int iStack_20;
+  byte *engine_stack_byte_pointer_28;
+  int engine_stack_int_20;
   uint32 engine_stack_uint_18;
   
   engine_temp_long1 = _engine_data_60;
@@ -57057,7 +57057,7 @@ void engine_unnamed_function_4430(void)
   temp_data_pointer = next_data_pointer;
   if (engine_temp_uint_ptr_9 != (void*)0x0) {
     do {
-      if (iStack_20 == 0) {
+      if (engine_stack_int_20 == 0) {
         engine_comparison_result = false;
         engine_data_ptr0 = (void*)engine_temp_uint_ptr_9[1];
       }
@@ -57066,9 +57066,9 @@ void engine_unnamed_function_4430(void)
           engine_comparison_result = true;
         }
         else {
-          engine_byte_ptr_4 = pbStack_28;
+          engine_byte_ptr_4 = engine_stack_byte_pointer_28;
           do {
-            engine_temp_index = (uint)engine_byte_ptr_4[engine_temp_uint_ptr_9[5] - (longlong)pbStack_28];
+            engine_temp_index = (uint)engine_byte_ptr_4[engine_temp_uint_ptr_9[5] - (longlong)engine_stack_byte_pointer_28];
             comparison_result_index = *engine_byte_ptr_4 - engine_temp_index;
             if (*engine_byte_ptr_4 != engine_temp_index) break;
             engine_byte_ptr_4 = engine_byte_ptr_4 + 1;
@@ -57091,9 +57091,9 @@ LAB_1800960d8:
     } while (engine_data_ptr0 != (void*)0x0);
     if (current_data_pointer != next_data_pointer) {
       if (*(int *)(current_data_pointer + 6) == 0) goto LAB_18009611a;
-      if (iStack_20 != 0) {
+      if (engine_stack_int_20 != 0) {
         engine_byte_ptr_4 = (byte *)current_data_pointer[5];
-        engine_temp_long1 = (longlong)pbStack_28 - (longlong)engine_byte_ptr_4;
+        engine_temp_long1 = (longlong)engine_stack_byte_pointer_28 - (longlong)engine_byte_ptr_4;
         do {
           engine_temp_byte = *engine_byte_ptr_4;
           engine_temp_index = (uint)engine_byte_ptr_4[engine_temp_long1];
@@ -57107,8 +57107,8 @@ LAB_1800960d8:
   current_data_pointer = next_data_pointer;
 LAB_18009611a:
   pengine_stack_uint_30 = &engine_system_context_data;
-  if (pbStack_28 == (byte *)0x0) {
-    pbStack_28 = (byte *)0x0;
+  if (engine_stack_byte_pointer_28 == (byte *)0x0) {
+    engine_stack_byte_pointer_28 = (byte *)0x0;
     engine_stack_uint_18 = 0;
     pengine_stack_uint_30 = &engine_data_18098bcb0;
     if (current_data_pointer != next_data_pointer) {
