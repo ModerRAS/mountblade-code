@@ -8412,7 +8412,16 @@ void ValidateAndProcessBufferContext(longlong param_1,longlong param_2)
 
 
  void FUN_1808936a0(longlong param_1,longlong param_2)
-void FUN_1808936a0(longlong param_1,longlong param_2)
+/**
+ * @brief 处理缓冲区上下文验证和清理操作
+ * 
+ * 该函数验证缓冲区上下文的有效性，并在验证通过后执行清理操作
+ * 主要用于缓冲区状态验证和资源清理
+ * 
+ * @param param_1 缓冲区上下文参数，包含缓冲区的基本信息
+ * @param param_2 系统上下文参数，用于系统级操作
+ */
+void ProcessBufferContextValidationAndCleanup(longlong param_1,longlong param_2)
 
 {
   int iVar1;

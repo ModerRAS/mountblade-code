@@ -4893,21 +4893,21 @@ void InitializeNetworkConnectionSession(ulonglong connectionContext,NetworkHandl
   NetworkStatus secondaryNetworkFlag;
   NetworkStatus tertiaryNetworkFlag;
   NetworkHandle quaternaryNetworkFlag;
-  int iVar5;
-  NetworkByte auStack_178 [32];
-  NetworkByte *puStack_158;
-  NetworkHandle uStack_148;
-  NetworkHandle uStack_140;
-  longlong lStack_138;
-  longlong lStack_130;
-  NetworkByte auStack_128 [256];
-  ulonglong uStack_28;
+  int connectionStatus;
+  NetworkByte securityBuffer [32];
+  NetworkByte *connectionDataPointer;
+  NetworkHandle connectionHandle;
+  NetworkHandle connectionHandle2;
+  longlong connectionContext1;
+  longlong connectionContext2;
+  NetworkByte connectionBuffer [256];
+  ulonglong securityGuardValue;
   
-  uStack_28 = NetworkSecurityGuardValue ^ (ulonglong)auStack_178;
+  securityGuardValue = NetworkSecurityGuardValue ^ (ulonglong)securityBuffer;
   if (packetData == (NetworkHandle *)0x0) {
     if ((*(byte *)(g_NetworkConnectionTable + 0x10) & 0x80) == 0) {
                     // WARNING: Subroutine does not return
-      NetworkSecurityGuardCleanup(uStack_28 ^ (ulonglong)auStack_178);
+      NetworkSecurityGuardCleanup(securityGuardValue ^ (ulonglong)securityBuffer);
     }
     ProcessNetworkAddressValidation(auStack_128,0x100,0);
     puStack_158 = auStack_128;
@@ -7662,14 +7662,14 @@ void ProcessNetworkConnectionPacketWriteOperation(longlong connectionContext,Net
 void ProcessNetworkConnectionPacketWriteExtended(longlong connectionContext,NetworkHandle packetData)
 
 {
-  int networkStatus1;
+  int networkExtendedStatus;
   
-  networkStatus1 = FUN_18088ee60(packetData,connectionContext + 0x10);
-  if (networkStatus1 == 0) {
-    networkStatus1 = FUN_18088ee20(packetData,connectionContext + 0x18);
-    if (networkStatus1 == 0) {
-      networkStatus1 = FUN_18088f1a0(packetData,connectionContext + 0x1c);
-      if (networkStatus1 == 0) {
+  networkExtendedStatus = FUN_18088ee60(packetData,connectionContext + 0x10);
+  if (networkExtendedStatus == 0) {
+    networkExtendedStatus = FUN_18088ee20(packetData,connectionContext + 0x18);
+    if (networkExtendedStatus == 0) {
+      networkExtendedStatus = FUN_18088f1a0(packetData,connectionContext + 0x1c);
+      if (networkExtendedStatus == 0) {
         FUN_18088ee60(packetData,connectionContext + 0x2c);
       }
     }
