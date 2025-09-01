@@ -243,6 +243,10 @@ void ExecuteResourceCleanup(void);
  * 
  * 该函数负责优化系统资源的使用效率
  * 通过重新组织和压缩资源来提高性能
+ * 
+ * @return 无返回值
+ * @note 此函数会分析当前资源使用情况并进行优化
+ * @warning 优化过程可能会暂时影响系统性能
  */
 void OptimizeResourceUsage(void);
 
