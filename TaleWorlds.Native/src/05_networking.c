@@ -3468,7 +3468,20 @@ int ProcessNetworkPacketWithEncryptionFlag(longlong connectionContext,longlong p
 
 
 
-int FUN_180843450(longlong connectionContext,longlong packetData,int dataSize)
+/**
+ * @brief 处理网络数据包的多阶段处理
+ * 
+ * 该函数负责处理网络数据包的多阶段处理，包括数据包解析、
+ * 状态检查、缓冲区处理和加密处理等多个步骤。
+ * 
+ * @param connectionContext 网络连接上下文指针
+ * @param packetData 数据包数据指针
+ * @param dataSize 数据包大小
+ * @return 处理后的数据包大小，处理失败时返回错误代码
+ * 
+ * 注意：这是一个反编译的函数实现
+ */
+int ProcessNetworkPacketMultiPhase(longlong connectionContext,longlong packetData,int dataSize)
 
 {
   NetworkByte uVar1;
@@ -3501,35 +3514,46 @@ int FUN_180843450(longlong connectionContext,longlong packetData,int dataSize)
 
 
 
-int FUN_180843570(longlong connectionContext,longlong packetData,int dataSize)
+/**
+ * @brief 处理带有连接上下文和缓冲区的网络数据包
+ * 
+ * 该函数处理网络数据包，使用连接上下文中的缓冲区参数进行数据处理。
+ * 它包括主缓冲区、连接状态和加密标志的处理。
+ * 
+ * @param connectionContext 连接上下文指针
+ * @param packetData 数据包数据指针
+ * @param dataSize 数据包大小
+ * @return 处理的总字节数
+ */
+int ProcessNetworkPacketWithBuffer(longlong connectionContext, longlong packetData, int dataSize)
 
 {
-  NetworkStatus uVar1;
-  NetworkByte uVar2;
-  NetworkStatus uVar3;
-  int networkStatus4;
-  int iVar5;
+  NetworkStatus primaryBuffer;
+  NetworkByte encryptionFlag;
+  NetworkStatus connectionState;
+  int firstProcessingOffset;
+  int secondProcessingOffset;
   
-  uVar2 = *(NetworkByte *)(connectionContext + 0x1c);
-  uVar3 = *(NetworkStatus *)(connectionContext + 0x10);
-  uVar1 = *(NetworkStatus *)(connectionContext + 0x18);
-  networkStatus4 = FUN_18074b880(packetData,dataSize,&UNK_1809840a0);
-  iVar5 = FUN_18074b880(packetData + networkStatus4,dataSize - networkStatus4,&g_NetworkBufferDataTemplate);
-  networkStatus4 = networkStatus4 + iVar5;
-  iVar5 = func_0x00018074b800(networkStatus4 + packetData,dataSize - networkStatus4,uVar3);
-  networkStatus4 = networkStatus4 + iVar5;
-  iVar5 = FUN_18074b880(networkStatus4 + packetData,dataSize - networkStatus4,&g_NetworkBufferDataTemplate);
-  networkStatus4 = networkStatus4 + iVar5;
-  iVar5 = FUN_18074b880(networkStatus4 + packetData,dataSize - networkStatus4,connectionContext + 0x28);
-  networkStatus4 = networkStatus4 + iVar5;
-  iVar5 = FUN_18074b880(networkStatus4 + packetData,dataSize - networkStatus4,&g_NetworkBufferDataTemplate);
-  networkStatus4 = networkStatus4 + iVar5;
-  iVar5 = func_0x00018074b830(networkStatus4 + packetData,dataSize - networkStatus4,uVar1);
-  networkStatus4 = networkStatus4 + iVar5;
-  iVar5 = FUN_18074b880(networkStatus4 + packetData,dataSize - networkStatus4,&g_NetworkBufferDataTemplate);
-  networkStatus4 = networkStatus4 + iVar5;
-  iVar5 = FUN_18074be90(networkStatus4 + packetData,dataSize - networkStatus4,uVar2);
-  return iVar5 + networkStatus4;
+  encryptionFlag = *(NetworkByte *)(connectionContext + 0x1c);
+  connectionState = *(NetworkStatus *)(connectionContext + 0x10);
+  primaryBuffer = *(NetworkStatus *)(connectionContext + 0x18);
+  firstProcessingOffset = FUN_18074b880(packetData, dataSize, &UNK_1809840a0);
+  secondProcessingOffset = FUN_18074b880(packetData + firstProcessingOffset, dataSize - firstProcessingOffset, &g_NetworkBufferDataTemplate);
+  firstProcessingOffset = firstProcessingOffset + secondProcessingOffset;
+  secondProcessingOffset = func_0x00018074b800(firstProcessingOffset + packetData, dataSize - firstProcessingOffset, connectionState);
+  firstProcessingOffset = firstProcessingOffset + secondProcessingOffset;
+  secondProcessingOffset = FUN_18074b880(firstProcessingOffset + packetData, dataSize - firstProcessingOffset, &g_NetworkBufferDataTemplate);
+  firstProcessingOffset = firstProcessingOffset + secondProcessingOffset;
+  secondProcessingOffset = FUN_18074b880(firstProcessingOffset + packetData, dataSize - firstProcessingOffset, connectionContext + 0x28);
+  firstProcessingOffset = firstProcessingOffset + secondProcessingOffset;
+  secondProcessingOffset = FUN_18074b880(firstProcessingOffset + packetData, dataSize - firstProcessingOffset, &g_NetworkBufferDataTemplate);
+  firstProcessingOffset = firstProcessingOffset + secondProcessingOffset;
+  secondProcessingOffset = func_0x00018074b830(firstProcessingOffset + packetData, dataSize - firstProcessingOffset, primaryBuffer);
+  firstProcessingOffset = firstProcessingOffset + secondProcessingOffset;
+  secondProcessingOffset = FUN_18074b880(firstProcessingOffset + packetData, dataSize - firstProcessingOffset, &g_NetworkBufferDataTemplate);
+  firstProcessingOffset = firstProcessingOffset + secondProcessingOffset;
+  secondProcessingOffset = FUN_18074be90(firstProcessingOffset + packetData, dataSize - firstProcessingOffset, encryptionFlag);
+  return secondProcessingOffset + firstProcessingOffset;
 }
 
 

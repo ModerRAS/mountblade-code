@@ -429,9 +429,9 @@ undefined SystemDataBuffer006;
 undefined SystemDataBuffer007;
 undefined SystemDataBuffer008;
 undefined SystemDataBuffer009;
-undefined DAT_180bf7148;
-undefined DAT_180bf7150;
-undefined DAT_180bf7158;
+undefined SystemDataBuffer010;
+undefined SystemDataBuffer011;
+undefined SystemDataBuffer012;
 undefined DAT_180bf7160;
 undefined DAT_180bf71a0;
 undefined DAT_180bf71a8;
@@ -5467,7 +5467,16 @@ undefined8 ValidateSystemDataIntegrity(longlong dataBuffer, longlong validationC
 
 
 
- void ProcessSystemObjectQueue(longlong objectHandle, longlong queueContext)
+ /**
+ * @brief 处理系统对象队列
+ * 
+ * 该函数负责处理系统中的对象队列，遍历队列中的每个对象
+ * 并执行相应的处理逻辑。使用链表结构来管理队列中的对象。
+ * 
+ * @param objectHandle 对象句柄，用于标识要处理的对象
+ * @param queueContext 队列上下文，包含队列的状态和管理信息
+ */
+void ProcessSystemObjectQueue(longlong objectHandle, longlong queueContext)
 void ProcessSystemObjectQueue(longlong objectHandle, longlong queueContext)
 
 {
@@ -5505,37 +5514,46 @@ void ProcessSystemObjectQueue(longlong objectHandle, longlong queueContext)
         }
         QueueHead = QueueTail;
         if (QueueNode != (longlong *)0x0) {
-          plVar4 = plVar3 + 1;
+          QueueHead = QueueNode + 1;
         }
       }
-      plVar3 = plVar1 + 2;
-      if (plVar1 == (longlong *)0x0) {
-        plVar3 = (longlong *)&DAT_00000018;
+      QueueNode = QueueIterator + 2;
+      if (QueueIterator == (longlong *)0x0) {
+        QueueNode = (longlong *)&DAT_00000018;
       }
-      plVar1 = plVar4;
-    } while ((*plVar3 == 0) || (iVar2 = FUN_18088aca0(param_2), iVar2 == 0));
+      QueueIterator = QueueHead;
+    } while ((*QueueNode == 0) || (ProcessingStatus = FUN_18088aca0(queueContext), ProcessingStatus == 0));
   }
                     // WARNING: Subroutine does not return
-  FUN_18088c790(auStackX_18);
+  FUN_18088c790(StackBuffer);
 }
 
 
 
-undefined8 FUN_180891820(longlong param_1)
+/**
+ * @brief 验证系统配置
+ * 
+ * 该函数负责验证系统配置的有效性，检查配置参数
+ * 是否符合系统要求，并返回验证结果。
+ * 
+ * @param configHandle 配置句柄，指向要验证的配置数据
+ * @return 验证结果，0表示成功，非0表示失败
+ */
+undefined8 ValidateSystemConfiguration(longlong configHandle)
 
 {
-  undefined8 uVar1;
-  longlong alStackX_8 [4];
+  undefined8 ValidationResult;
+  longlong ConfigBuffer [4];
   
-  uVar1 = func_0x00018088c530(*(undefined4 *)(param_1 + 0x10),alStackX_8);
-  if ((int)uVar1 == 0) {
-    *(undefined4 *)(*(longlong *)(alStackX_8[0] + 0x10) + 0x50) = *(undefined4 *)(param_1 + 0x18);
-    if ((*(longlong *)(alStackX_8[0] + 8) != 0) && (uVar1 = FUN_1808c44f0(), (int)uVar1 != 0)) {
-      return uVar1;
+  ValidationResult = func_0x00018088c530(*(undefined4 *)(configHandle + 0x10),ConfigBuffer);
+  if ((int)ValidationResult == 0) {
+    *(undefined4 *)(*(longlong *)(ConfigBuffer[0] + 0x10) + 0x50) = *(undefined4 *)(configHandle + 0x18);
+    if ((*(longlong *)(ConfigBuffer[0] + 8) != 0) && (ValidationResult = FUN_1808c44f0(), (int)ValidationResult != 0)) {
+      return ValidationResult;
     }
-    uVar1 = 0;
+    ValidationResult = 0;
   }
-  return uVar1;
+  return ValidationResult;
 }
 
 
