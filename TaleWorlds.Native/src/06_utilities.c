@@ -1273,7 +1273,7 @@ void* MemoryValidationContext;
 void* MemoryValidationTable;
 uint32_t MemoryValidationStatus;
 void* MemoryValidationConfig;
-void* g_memoryValidationHandle;
+void* MemoryValidationHandle;
 
  void ProcessMemoryAllocation;
 /**
