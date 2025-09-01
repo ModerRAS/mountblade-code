@@ -8181,15 +8181,16 @@ uint8_t8 ValidateObjectContextAndProcessFloatRange(longlong objectContextParam, 
   uint8_t8 validationResult;
   longlong resourceIndex;
   longlong lStackX_8;
+  float FloatValueToValidate;
   
-  fVar1 = *(float *)(objectContextParam + 0x1c);
-  lStackX_8 = CONCAT44(lStackX_8._4_4_,fVar1);
-  if (((uint)fVar1 & 0x7f800000) == 0x7f800000) {
+  FloatValueToValidate = *(float *)(objectContextParam + 0x1c);
+  lStackX_8 = CONCAT44(lStackX_8._4_4_,FloatValueToValidate);
+  if (((uint)FloatValueToValidate & 0x7f800000) == 0x7f800000) {
     return 0x1d;
   }
   switch(*(uint8_t4 *)(objectContextParam + 0x18)) {
   case 0:
-    if ((0.0 <= fVar1) && (fVar1 <= 256.0)) goto code_r0x00018089322c;
+    if ((0.0 <= FloatValueToValidate) && (FloatValueToValidate <= 256.0)) goto code_r0x00018089322c;
     goto joined_r0x00018089322a;
   case 1:
   case 2:
@@ -8201,9 +8202,9 @@ uint8_t8 ValidateObjectContextAndProcessFloatRange(longlong objectContextParam, 
   default:
     goto code_r0x000180893206;
   }
-  if (fVar1 < 0.0) {
+  if (FloatValueToValidate < 0.0) {
 joined_r0x00018089322a:
-    if (fVar1 != -1.0) {
+    if (FloatValueToValidate != -1.0) {
 code_r0x000180893206:
       return 0x1f;
     }
