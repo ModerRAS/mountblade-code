@@ -7432,7 +7432,15 @@ undefined8 ProcessSimplifiedParameterizedFloatComparison(undefined4 parameter)
 
 
 
-undefined8 FUN_180892974(void)
+/**
+ * @brief 获取系统状态常量
+ * 
+ * 该函数返回一个系统状态常量值
+ * 用于标识特定的系统状态或操作结果
+ * 
+ * @return 返回状态常量值 0x1c
+ */
+undefined8 GetSystemStatusConstant(void)
 
 {
   return 0x1c;
@@ -7455,55 +7463,65 @@ void NullOperationFunction(void)
 
 
 
-undefined8 FUN_180892990(longlong param_1,longlong param_2)
+/**
+ * @brief 验证对象上下文并处理浮点数范围
+ * 
+ * 该函数验证对象上下文的有效性，并处理浮点数的范围检查
+ * 如果浮点数超出指定范围，则将其限制在范围内
+ * 
+ * @param objectContext 对象上下文，包含浮点数和范围信息
+ * @param systemContext 系统上下文，用于执行系统操作
+ * @return 返回操作状态码，0x1d表示浮点数异常，0x1e表示对象无效，0x1f表示成功
+ */
+undefined8 ValidateObjectContextAndProcessFloatRange(longlong objectContext, longlong systemContext)
 
 {
-  float fVar1;
-  longlong lVar2;
-  longlong lVar3;
-  undefined8 uVar4;
-  longlong lVar5;
-  float fVar6;
-  uint auStackX_8 [2];
-  longlong lStackX_18;
+  float inputValue;
+  longlong objectData;
+  longlong rangeData;
+  undefined8 validationStatus;
+  longlong contextPointer;
+  float clampedValue;
+  uint rangeIndex [2];
+  longlong stackContext;
   
-  auStackX_8[0] = *(uint *)(param_1 + 0x18);
-  if ((auStackX_8[0] & 0x7f800000) == 0x7f800000) {
+  rangeIndex[0] = *(uint *)(objectContext + 0x18);
+  if ((rangeIndex[0] & 0x7f800000) == 0x7f800000) {
     return 0x1d;
   }
-  if (param_1 + 0x28 != 0) {
-    uVar4 = ValidateObjectContext(*(undefined4 *)(param_1 + 0x10),&lStackX_18);
-    if ((int)uVar4 != 0) {
-      return uVar4;
+  if (objectContext + 0x28 != 0) {
+    validationStatus = ValidateObjectContext(*(undefined4 *)(objectContext + 0x10), &stackContext);
+    if ((int)validationStatus != 0) {
+      return validationStatus;
     }
-    lVar5 = lStackX_18;
-    if (lStackX_18 != 0) {
-      lVar5 = lStackX_18 + -8;
+    contextPointer = stackContext;
+    if (stackContext != 0) {
+      contextPointer = stackContext + -8;
     }
-    lVar2 = *(longlong *)(lVar5 + 0x18);
-    if (lVar2 == 0) {
+    objectData = *(longlong *)(contextPointer + 0x18);
+    if (objectData == 0) {
       return 0x1e;
     }
-    auStackX_8[0] = 0;
-    uVar4 = FUN_180840950(param_2,lVar5,param_1 + 0x28,auStackX_8);
-    if ((int)uVar4 != 0) {
-      return uVar4;
+    rangeIndex[0] = 0;
+    validationStatus = FUN_180840950(systemContext, contextPointer, objectContext + 0x28, rangeIndex);
+    if ((int)validationStatus != 0) {
+      return validationStatus;
     }
-    lVar5 = *(longlong *)(lVar5 + 0x20);
-    lVar3 = *(longlong *)(lVar5 + 0x10 + (longlong)(int)auStackX_8[0] * 0x18);
-    if ((*(byte *)(lVar3 + 0x34) & 0x11) == 0) {
-      fVar1 = *(float *)(param_1 + 0x18);
-      fVar6 = *(float *)(lVar3 + 0x38);
-      if ((*(float *)(lVar3 + 0x38) <= fVar1) &&
-         (fVar6 = *(float *)(lVar3 + 0x3c), fVar1 <= *(float *)(lVar3 + 0x3c))) {
-        fVar6 = fVar1;
+    contextPointer = *(longlong *)(contextPointer + 0x20);
+    rangeData = *(longlong *)(contextPointer + 0x10 + (longlong)(int)rangeIndex[0] * 0x18);
+    if ((*(byte *)(rangeData + 0x34) & 0x11) == 0) {
+      inputValue = *(float *)(objectContext + 0x18);
+      clampedValue = *(float *)(rangeData + 0x38);
+      if ((*(float *)(rangeData + 0x38) <= inputValue) &&
+         (clampedValue = *(float *)(rangeData + 0x3c), inputValue <= *(float *)(rangeData + 0x3c))) {
+        clampedValue = inputValue;
       }
-      *(float *)(param_1 + 0x18) = fVar6;
-      lVar2 = *(longlong *)(lVar2 + 0x90);
-      *(float *)(lVar5 + 4 + (longlong)(int)auStackX_8[0] * 0x18) = fVar6;
-      *(undefined8 *)(param_1 + 0x20) = *(undefined8 *)(lVar2 + (longlong)(int)auStackX_8[0] * 8);
+      *(float *)(objectContext + 0x18) = clampedValue;
+      objectData = *(longlong *)(objectData + 0x90);
+      *(float *)(contextPointer + 4 + (longlong)(int)rangeIndex[0] * 0x18) = clampedValue;
+      *(undefined8 *)(objectContext + 0x20) = *(undefined8 *)(objectData + (longlong)(int)rangeIndex[0] * 8);
                     // WARNING: Subroutine does not return
-      FUN_18088d720(*(undefined8 *)(param_2 + 0x98),param_1);
+      FUN_18088d720(*(undefined8 *)(systemContext + 0x98), objectContext);
     }
   }
   return 0x1f;
@@ -7808,7 +7826,15 @@ void EmptyOperationFunctionV2(void)
 
 
 
-undefined8 FUN_180892e35(void)
+/**
+ * @brief 获取对象无效状态常量
+ * 
+ * 该函数返回一个表示对象无效状态的常量值
+ * 用于标识对象操作失败或对象不可用的状态
+ * 
+ * @return 返回对象无效状态常量值 0x1e
+ */
+undefined8 GetObjectInvalidStatusConstant(void)
 
 {
   return 0x1e;
@@ -7819,39 +7845,47 @@ undefined8 FUN_180892e35(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void FUN_180892e50(longlong param_1,undefined8 param_2)
-void FUN_180892e50(longlong param_1,undefined8 param_2)
+ /**
+ * @brief 验证对象上下文并处理对象操作
+ * 
+ * 该函数验证对象上下文的有效性，如果验证通过则处理对象相关的操作
+ * 包括内存分配、对象初始化和安全性检查
+ * 
+ * @param objectContext 对象上下文，包含对象的状态信息和配置数据
+ * @param operationHandle 操作句柄，用于标识要执行的操作类型
+ */
+void ValidateObjectContextAndProcessOperation(longlong objectContext, undefined8 operationHandle)
 
 {
-  int iVar1;
-  longlong lVar2;
-  ulonglong uVar3;
-  bool bVar4;
-  longlong alStack_58 [3];
-  longlong lStack_40;
-  undefined8 uStack_38;
-  ulonglong uStack_30;
+  int validationStatus;
+  longlong objectSize;
+  ulonglong allocationSize;
+  bool isZeroSize;
+  longlong stackBuffer [3];
+  longlong objectPointer;
+  undefined8 securityHandle;
+  ulonglong securityToken;
   
-  uStack_30 = _DAT_180bf00a8 ^ (ulonglong)alStack_58;
-  uStack_38 = param_2;
-  iVar1 = ValidateObjectContext(*(undefined4 *)(param_1 + 0x10),alStack_58);
-  if (iVar1 == 0) {
-    bVar4 = alStack_58[0] == 0;
-    alStack_58[0] = alStack_58[0] + -8;
-    if (bVar4) {
-      alStack_58[0] = 0;
+  securityToken = _DAT_180bf00a8 ^ (ulonglong)stackBuffer;
+  securityHandle = operationHandle;
+  validationStatus = ValidateObjectContext(*(undefined4 *)(objectContext + 0x10), stackBuffer);
+  if (validationStatus == 0) {
+    isZeroSize = stackBuffer[0] == 0;
+    stackBuffer[0] = stackBuffer[0] + -8;
+    if (isZeroSize) {
+      stackBuffer[0] = 0;
     }
-    lVar2 = (longlong)*(int *)(param_1 + 0x18);
-    uVar3 = lVar2 * 4 + 0xf;
-    lStack_40 = param_1 + 0x20 + lVar2 * 8;
-    if (uVar3 <= (ulonglong)(lVar2 * 4)) {
-      uVar3 = 0xffffffffffffff0;
+    objectSize = (longlong)*(int *)(objectContext + 0x18);
+    allocationSize = objectSize * 4 + 0xf;
+    objectPointer = objectContext + 0x20 + objectSize * 8;
+    if (allocationSize <= (ulonglong)(objectSize * 4)) {
+      allocationSize = 0xffffffffffffff0;
     }
                     // WARNING: Subroutine does not return
-    FUN_1808fd200(lVar2,uVar3 & 0xfffffffffffffff0);
+    FUN_1808fd200(objectSize, allocationSize & 0xfffffffffffffff0);
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_30 ^ (ulonglong)alStack_58);
+  FUN_1808fc050(securityToken ^ (ulonglong)stackBuffer);
 }
 
 
