@@ -27075,7 +27075,17 @@ void SystemMemoryAllocator(long long SystemResourcePointer,long long parameter2,
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void* FUN_1800524c0(void* SystemResourcePointer,void* param_2)
+/**
+ * @brief 系统资源分配器
+ * 
+ * 该函数负责分配系统资源，包括内存分配、线程创建和资源初始化。
+ * 它会创建必要的系统资源对象，并设置相应的属性和状态。
+ * 
+ * @param SystemResourcePointer 系统资源指针
+ * @param param_2 参数2，用于传递分配参数
+ * @return 返回分配后的资源指针
+ */
+void* SystemResourceAllocator(void* SystemResourcePointer,void* param_2)
 
 {
   long long localMemoryPointer;
