@@ -52720,7 +52720,7 @@ void Unwind_1809089e0(uint8_t8 param_1,longlong param_2)
 {
   int iVar1;
   
-  _DAT_180c8a9b0 = *(uint8_t8 *)(param_2 + 0x70);
+  GlobalUnwindContext = *(uint8_t8 *)(param_2 + 0x70);
   iVar1 = _Mtx_unlock(0x180c91970);
   if (iVar1 != 0) {
     __Throw_C_error_std__YAXH_Z(iVar1);
@@ -56843,7 +56843,7 @@ void Unwind_180909c30(uint8_t8 param_1,longlong param_2)
   int iVar1;
   int iVar2;
   
-  iVar1 = *(int *)(**(longlong **)(_DAT_180c82868 + 8) + 0x48);
+  iVar1 = *(int *)(**(longlong **)(GlobalThreadManager + 8) + 0x48);
   iVar2 = _Thrd_id();
   if (iVar2 != iVar1) {
     _DAT_180c9105c = *(uint8_t4 *)(param_2 + 0x90);
@@ -65394,7 +65394,7 @@ void Unwind_18090cfd0(uint8_t8 param_1,longlong param_2)
 {
   int iVar1;
   
-  _DAT_180c8a9b0 = *(uint8_t8 *)(param_2 + 0x28);
+  GlobalUnwindContext = *(uint8_t8 *)(param_2 + 0x28);
   iVar1 = _Mtx_unlock(0x180c91970);
   if (iVar1 != 0) {
     __Throw_C_error_std__YAXH_Z(iVar1);
@@ -65411,7 +65411,7 @@ void Unwind_18090cfe0(uint8_t8 param_1,longlong param_2)
 {
   int iVar1;
   
-  _DAT_180c8a9b0 = *(uint8_t8 *)(param_2 + 0x90);
+  GlobalUnwindContext = *(uint8_t8 *)(param_2 + 0x90);
   iVar1 = _Mtx_unlock(0x180c91970);
   if (iVar1 != 0) {
     __Throw_C_error_std__YAXH_Z(iVar1);
@@ -81072,8 +81072,8 @@ void Unwind_180911b00(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
   
   lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x40) + 8);
   if (lVar1 != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (GlobalUnwindContext != 0) {
+      *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     ProcessResourceOperation(lVar1,SystemResourcePointer002,param_3,param_4,0xfffffffffffffffe);
@@ -81092,8 +81092,8 @@ void Unwind_180911b10(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
   
   lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x40) + 0x18);
   if (lVar1 != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (GlobalUnwindContext != 0) {
+      *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     ProcessResourceOperation(lVar1,SystemResourcePointer002,param_3,param_4,0xfffffffffffffffe);
@@ -81112,8 +81112,8 @@ void Unwind_180911b20(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
   
   lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x40) + 0x28);
   if (lVar1 != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (GlobalUnwindContext != 0) {
+      *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     ProcessResourceOperation(lVar1,SystemResourcePointer002,param_3,param_4,0xfffffffffffffffe);
@@ -81132,8 +81132,8 @@ void Unwind_180911b30(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
   
   lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x40) + 0x68);
   if (lVar1 != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (GlobalUnwindContext != 0) {
+      *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     ProcessResourceOperation(lVar1,SystemResourcePointer002,param_3,param_4,0xfffffffffffffffe);
@@ -81152,8 +81152,8 @@ void Unwind_180911b40(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
   
   lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x40) + 0x78);
   if (lVar1 != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (GlobalUnwindContext != 0) {
+      *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     ProcessResourceOperation(lVar1,SystemResourcePointer002,param_3,param_4,0xfffffffffffffffe);
@@ -81172,8 +81172,8 @@ void Unwind_180911b50(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
   
   lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x40) + 0x88);
   if (lVar1 != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (GlobalUnwindContext != 0) {
+      *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     ProcessResourceOperation(lVar1,SystemResourcePointer002,param_3,param_4,0xfffffffffffffffe);
@@ -81192,8 +81192,8 @@ void Unwind_180911b70(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
   
   lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x40) + 0xa0);
   if (lVar1 != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (GlobalUnwindContext != 0) {
+      *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     ProcessResourceOperation(lVar1,SystemResourcePointer002,param_3,param_4,0xfffffffffffffffe);
@@ -81256,8 +81256,8 @@ void Unwind_180911c30(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
   
   lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x70) + 0x1538);
   if (lVar1 != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (GlobalUnwindContext != 0) {
+      *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     ProcessResourceOperation(lVar1,SystemResourcePointer002,param_3,param_4,0xfffffffffffffffe);
@@ -81276,16 +81276,16 @@ void Unwind_180911c40(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
   
   lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x70) + 0x1620);
   if (lVar1 != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (GlobalUnwindContext != 0) {
+      *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     ProcessResourceOperation(lVar1,SystemResourcePointer002,param_3,param_4,0xfffffffffffffffe);
   }
   lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x70) + 0x1608);
   if (lVar1 != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (GlobalUnwindContext != 0) {
+      *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     ProcessResourceOperation(lVar1,SystemResourcePointer002,param_3,param_4,0xfffffffffffffffe);
@@ -81304,8 +81304,8 @@ void Unwind_180911c60(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
   
   lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x70) + 0x1aa8);
   if (lVar1 != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (GlobalUnwindContext != 0) {
+      *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     ProcessResourceOperation(lVar1,SystemResourcePointer002,param_3,param_4,0xfffffffffffffffe);
@@ -81324,8 +81324,8 @@ void Unwind_180911c80(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
   
   lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x70) + 0x1ab8);
   if (lVar1 != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (GlobalUnwindContext != 0) {
+      *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     ProcessResourceOperation(lVar1,SystemResourcePointer002,param_3,param_4,0xfffffffffffffffe);
@@ -81344,8 +81344,8 @@ void Unwind_180911ca0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
   
   lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x70) + 0x1ac8);
   if (lVar1 != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (GlobalUnwindContext != 0) {
+      *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     ProcessResourceOperation(lVar1,SystemResourcePointer002,param_3,param_4,0xfffffffffffffffe);
@@ -81364,8 +81364,8 @@ void Unwind_180911cc0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
   
   lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x70) + 0x1ad8);
   if (lVar1 != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (GlobalUnwindContext != 0) {
+      *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     ProcessResourceOperation(lVar1,SystemResourcePointer002,param_3,param_4,0xfffffffffffffffe);
@@ -81384,8 +81384,8 @@ void Unwind_180911ce0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
   
   lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x70) + 0x1ae8);
   if (lVar1 != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (GlobalUnwindContext != 0) {
+      *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     ProcessResourceOperation(lVar1,SystemResourcePointer002,param_3,param_4,0xfffffffffffffffe);
@@ -81404,8 +81404,8 @@ void Unwind_180911d00(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
   
   lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x70) + 0x1b88);
   if (lVar1 != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (GlobalUnwindContext != 0) {
+      *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     ProcessResourceOperation(lVar1,SystemResourcePointer002,param_3,param_4,0xfffffffffffffffe);
@@ -81424,8 +81424,8 @@ void Unwind_180911d20(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
   
   lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x70) + 0x1b98);
   if (lVar1 != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (GlobalUnwindContext != 0) {
+      *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     ProcessResourceOperation(lVar1,SystemResourcePointer002,param_3,param_4,0xfffffffffffffffe);
@@ -81444,8 +81444,8 @@ void Unwind_180911d40(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
   
   lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x70) + 0x1ba8);
   if (lVar1 != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (GlobalUnwindContext != 0) {
+      *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     ProcessResourceOperation(lVar1,SystemResourcePointer002,param_3,param_4,0xfffffffffffffffe);
@@ -81464,8 +81464,8 @@ void Unwind_180911d60(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
   
   lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x70) + 0x1bb8);
   if (lVar1 != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (GlobalUnwindContext != 0) {
+      *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     ProcessResourceOperation(lVar1,SystemResourcePointer002,param_3,param_4,0xfffffffffffffffe);
@@ -81484,8 +81484,8 @@ void Unwind_180911d80(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
   
   lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x70) + 0x1bc8);
   if (lVar1 != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (GlobalUnwindContext != 0) {
+      *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     ProcessResourceOperation(lVar1,SystemResourcePointer002,param_3,param_4,0xfffffffffffffffe);
@@ -81504,8 +81504,8 @@ void Unwind_180911da0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
   
   lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x70) + 0x1c70);
   if (lVar1 != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (GlobalUnwindContext != 0) {
+      *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     ProcessResourceOperation(lVar1,SystemResourcePointer002,param_3,param_4,0xfffffffffffffffe);
@@ -81524,8 +81524,8 @@ void Unwind_180911dc0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
   
   lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x70) + 0x1e50);
   if (lVar1 != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (GlobalUnwindContext != 0) {
+      *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     ProcessResourceOperation(lVar1,SystemResourcePointer002,param_3,param_4,0xfffffffffffffffe);
@@ -81558,8 +81558,8 @@ void Unwind_180911de0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
       if ((iVar2 != -1) &&
          (resourceIndex = *(longlong *)((longlong)iVar2 * 0x60 + *(longlong *)(lVar4 + 0x1e68) + 8),
          resourceIndex != 0)) {
-        if (_DAT_180c8a9b0 != 0) {
-          *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+        if (GlobalUnwindContext != 0) {
+          *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
         }
                     // WARNING: Subroutine does not return
         ProcessResourceOperation(resourceIndex,SystemResourcePointer002,param_3,param_4,0xfffffffffffffffe);
@@ -81573,8 +81573,8 @@ void Unwind_180911de0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
   if (resourceIndex != 0) {
     piVar1[0] = 0;
     piVar1[1] = 0;
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (GlobalUnwindContext != 0) {
+      *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     ProcessResourceOperation(resourceIndex,SystemResourcePointer002,param_3,param_4,0xfffffffffffffffe);
@@ -81584,8 +81584,8 @@ void Unwind_180911de0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
     *(uint8_t4 *)(lVar4 + 0x1e80) = 0;
     resourceIndex = *(longlong *)(lVar4 + 0x1e78);
     if (resourceIndex != 0) {
-      if (_DAT_180c8a9b0 != 0) {
-        *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+      if (GlobalUnwindContext != 0) {
+        *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
       }
                     // WARNING: Subroutine does not return
       ProcessResourceOperation(resourceIndex,SystemResourcePointer002,param_3,param_4,0xfffffffffffffffe);
@@ -81594,15 +81594,15 @@ void Unwind_180911de0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
     if (lVar4 == 0) {
       return;
     }
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (GlobalUnwindContext != 0) {
+      *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     ProcessResourceOperation(lVar4,SystemResourcePointer002,param_3,param_4,0xfffffffffffffffe);
   }
   *(uint8_t8 *)(lVar4 + 0x1e60) = 0;
-  if (_DAT_180c8a9b0 != 0) {
-    *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+  if (GlobalUnwindContext != 0) {
+    *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
   }
                     // WARNING: Subroutine does not return
   ProcessResourceOperation(resourceIndex,SystemResourcePointer002,param_3,param_4,0xfffffffffffffffe);
@@ -81619,8 +81619,8 @@ void Unwind_180911e00(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
   
   lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x70) + 0x1e90);
   if (lVar1 != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (GlobalUnwindContext != 0) {
+      *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     ProcessResourceOperation(lVar1,SystemResourcePointer002,param_3,param_4,0xfffffffffffffffe);
@@ -81639,8 +81639,8 @@ void Unwind_180911e20(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
   
   lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x70) + 0x1ea0);
   if (lVar1 != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (GlobalUnwindContext != 0) {
+      *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     ProcessResourceOperation(lVar1,SystemResourcePointer002,param_3,param_4,0xfffffffffffffffe);
@@ -81661,24 +81661,24 @@ void Unwind_180911e40(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
   resourceTable = *(longlong *)(param_2 + 0x70);
   lVar1 = *(longlong *)(resourceTable + 0x1ed8);
   if (lVar1 != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (GlobalUnwindContext != 0) {
+      *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     ProcessResourceOperation(lVar1,SystemResourcePointer002,param_3,param_4,0xfffffffffffffffe);
   }
   lVar1 = *(longlong *)(resourceTable + 0x1ec8);
   if (lVar1 != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (GlobalUnwindContext != 0) {
+      *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     ProcessResourceOperation(lVar1,SystemResourcePointer002,param_3,param_4,0xfffffffffffffffe);
   }
   lVar1 = *(longlong *)(resourceTable + 0x1eb8);
   if (lVar1 != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (GlobalUnwindContext != 0) {
+      *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     ProcessResourceOperation(lVar1,SystemResourcePointer002,param_3,param_4,0xfffffffffffffffe);
@@ -81702,24 +81702,24 @@ void Unwind_180911e60(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
   ExecuteSystemFinalization();
   lVar1 = *(longlong *)(resourceTable + 0x2d68);
   if (lVar1 != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (GlobalUnwindContext != 0) {
+      *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     ProcessResourceOperation(lVar1,SystemResourcePointer002,param_3,param_4,uVar3);
   }
   lVar1 = *(longlong *)(resourceTable + 0x2d58);
   if (lVar1 != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (GlobalUnwindContext != 0) {
+      *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     ProcessResourceOperation(lVar1,SystemResourcePointer002,param_3,param_4,uVar3);
   }
   lVar1 = *(longlong *)(resourceTable + 0x2d48);
   if (lVar1 != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (GlobalUnwindContext != 0) {
+      *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     ProcessResourceOperation(lVar1,SystemResourcePointer002,param_3,param_4,uVar3);
@@ -81738,8 +81738,8 @@ void Unwind_180911e80(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
   
   lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x70) + 0x2dd8);
   if (lVar1 != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (GlobalUnwindContext != 0) {
+      *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     ProcessResourceOperation(lVar1,SystemResourcePointer002,param_3,param_4,0xfffffffffffffffe);
@@ -81758,8 +81758,8 @@ void Unwind_180911ea0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
   
   lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x70) + 0x2e10);
   if (lVar1 != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (GlobalUnwindContext != 0) {
+      *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     ProcessResourceOperation(lVar1,SystemResourcePointer002,param_3,param_4,0xfffffffffffffffe);
@@ -81778,8 +81778,8 @@ void Unwind_180911ec0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
   
   lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x70) + 0x2e20);
   if (lVar1 != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (GlobalUnwindContext != 0) {
+      *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     ProcessResourceOperation(lVar1,SystemResourcePointer002,param_3,param_4,0xfffffffffffffffe);
@@ -81798,8 +81798,8 @@ void Unwind_180911ee0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
   
   lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x70) + 0x2e30);
   if (lVar1 != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (GlobalUnwindContext != 0) {
+      *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     ProcessResourceOperation(lVar1,SystemResourcePointer002,param_3,param_4,0xfffffffffffffffe);
@@ -81818,8 +81818,8 @@ void Unwind_180911f00(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
   
   lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x70) + 0x2e50);
   if (lVar1 != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (GlobalUnwindContext != 0) {
+      *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     ProcessResourceOperation(lVar1,SystemResourcePointer002,param_3,param_4,0xfffffffffffffffe);
@@ -81848,8 +81848,8 @@ void Unwind_180911f50(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
   
   lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x78) + 200);
   if (lVar1 != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (GlobalUnwindContext != 0) {
+      *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     ProcessResourceOperation(lVar1,SystemResourcePointer002,param_3,param_4,0xfffffffffffffffe);
@@ -81868,8 +81868,8 @@ void Unwind_180911f70(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
   
   lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x78) + 0xe0);
   if (lVar1 != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (GlobalUnwindContext != 0) {
+      *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     ProcessResourceOperation(lVar1,SystemResourcePointer002,param_3,param_4,0xfffffffffffffffe);
@@ -81888,8 +81888,8 @@ void Unwind_180911f90(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
   
   lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x78) + 8);
   if (lVar1 != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (GlobalUnwindContext != 0) {
+      *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     ProcessResourceOperation(lVar1,SystemResourcePointer002,param_3,param_4,0xfffffffffffffffe);
@@ -81908,8 +81908,8 @@ void Unwind_180911fa0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
   
   lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x78) + 0x18);
   if (lVar1 != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (GlobalUnwindContext != 0) {
+      *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     ProcessResourceOperation(lVar1,SystemResourcePointer002,param_3,param_4,0xfffffffffffffffe);
@@ -81928,8 +81928,8 @@ void Unwind_180911fb0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
   
   lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x80) + 8);
   if (lVar1 != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (GlobalUnwindContext != 0) {
+      *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     ProcessResourceOperation(lVar1,SystemResourcePointer002,param_3,param_4,0xfffffffffffffffe);
@@ -81948,8 +81948,8 @@ void Unwind_180911fc0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
   
   lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x78) + 0x10);
   if (lVar1 != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (GlobalUnwindContext != 0) {
+      *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     ProcessResourceOperation(lVar1,SystemResourcePointer002,param_3,param_4,0xfffffffffffffffe);
@@ -81968,8 +81968,8 @@ void Unwind_180911fd0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
   
   lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x78) + 0x20);
   if (lVar1 != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (GlobalUnwindContext != 0) {
+      *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     ProcessResourceOperation(lVar1,SystemResourcePointer002,param_3,param_4,0xfffffffffffffffe);
@@ -81988,8 +81988,8 @@ void Unwind_180911fe0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
   
   lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x78) + 0x30);
   if (lVar1 != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (GlobalUnwindContext != 0) {
+      *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     ProcessResourceOperation(lVar1,SystemResourcePointer002,param_3,param_4,0xfffffffffffffffe);
@@ -82008,8 +82008,8 @@ void Unwind_180911ff0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
   
   lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x28) + 0x48);
   if (lVar1 != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (GlobalUnwindContext != 0) {
+      *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     ProcessResourceOperation(lVar1,SystemResourcePointer002,param_3,param_4,0xfffffffffffffffe);
@@ -82028,8 +82028,8 @@ void Unwind_180912000(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
   
   lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x28) + 0x58);
   if (lVar1 != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (GlobalUnwindContext != 0) {
+      *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     ProcessResourceOperation(lVar1,SystemResourcePointer002,param_3,param_4,0xfffffffffffffffe);
@@ -82048,8 +82048,8 @@ void Unwind_180912010(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
   
   lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x28) + 0x68);
   if (lVar1 != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (GlobalUnwindContext != 0) {
+      *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     ProcessResourceOperation(lVar1,SystemResourcePointer002,param_3,param_4,0xfffffffffffffffe);
@@ -82068,8 +82068,8 @@ void Unwind_180912020(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
   
   lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x40) + 0x1530);
   if (lVar1 != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (GlobalUnwindContext != 0) {
+      *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     ProcessResourceOperation(lVar1,SystemResourcePointer002,param_3,param_4,0xfffffffffffffffe);
@@ -82088,8 +82088,8 @@ void Unwind_180912040(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
   
   lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x40) + 200);
   if (lVar1 != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (GlobalUnwindContext != 0) {
+      *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     ProcessResourceOperation(lVar1,SystemResourcePointer002,param_3,param_4,0xfffffffffffffffe);
@@ -82108,8 +82108,8 @@ void Unwind_180912060(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
   
   lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x40) + 0xe0);
   if (lVar1 != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (GlobalUnwindContext != 0) {
+      *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     ProcessResourceOperation(lVar1,SystemResourcePointer002,param_3,param_4,0xfffffffffffffffe);
@@ -82128,8 +82128,8 @@ void Unwind_180912080(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
   
   lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x40) + 0x10);
   if (lVar1 != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (GlobalUnwindContext != 0) {
+      *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     ProcessResourceOperation(lVar1,SystemResourcePointer002,param_3,param_4,0xfffffffffffffffe);
@@ -82148,8 +82148,8 @@ void Unwind_180912090(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
   
   lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x40) + 0x20);
   if (lVar1 != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (GlobalUnwindContext != 0) {
+      *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     ProcessResourceOperation(lVar1,SystemResourcePointer002,param_3,param_4,0xfffffffffffffffe);
@@ -82168,8 +82168,8 @@ void Unwind_1809120a0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
   
   lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x40) + 0x30);
   if (lVar1 != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (GlobalUnwindContext != 0) {
+      *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     ProcessResourceOperation(lVar1,SystemResourcePointer002,param_3,param_4,0xfffffffffffffffe);
@@ -82188,8 +82188,8 @@ void Unwind_1809120b0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
   
   lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x20) + 0x90);
   if (lVar1 != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (GlobalUnwindContext != 0) {
+      *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     ProcessResourceOperation(lVar1,SystemResourcePointer002,param_3,param_4,0xfffffffffffffffe);
@@ -82208,8 +82208,8 @@ void Unwind_1809120d0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
   
   lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x20) + 0xc0);
   if (lVar1 != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (GlobalUnwindContext != 0) {
+      *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     ProcessResourceOperation(lVar1,SystemResourcePointer002,param_3,param_4,0xfffffffffffffffe);
@@ -82228,8 +82228,8 @@ void Unwind_1809120f0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
   
   lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x20) + 0xd0);
   if (lVar1 != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (GlobalUnwindContext != 0) {
+      *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     ProcessResourceOperation(lVar1,SystemResourcePointer002,param_3,param_4,0xfffffffffffffffe);
@@ -82248,8 +82248,8 @@ void Unwind_180912110(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
   
   lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x20) + 0xe0);
   if (lVar1 != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (GlobalUnwindContext != 0) {
+      *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     ProcessResourceOperation(lVar1,SystemResourcePointer002,param_3,param_4,0xfffffffffffffffe);
@@ -82268,8 +82268,8 @@ void Unwind_180912130(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
   
   lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x20) + 0xf0);
   if (lVar1 != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (GlobalUnwindContext != 0) {
+      *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     ProcessResourceOperation(lVar1,SystemResourcePointer002,param_3,param_4,0xfffffffffffffffe);
@@ -82288,8 +82288,8 @@ void Unwind_180912150(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
   
   lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x50) + 0x1530);
   if (lVar1 != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (GlobalUnwindContext != 0) {
+      *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     ProcessResourceOperation(lVar1,SystemResourcePointer002,param_3,param_4,0xfffffffffffffffe);
@@ -82308,8 +82308,8 @@ void Unwind_180912170(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
   
   lVar1 = *(longlong *)(param_2 + 0x40);
   if (lVar1 != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (GlobalUnwindContext != 0) {
+      *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     ProcessResourceOperation(lVar1,SystemResourcePointer002,param_3,param_4,0xfffffffffffffffe);
@@ -82330,40 +82330,40 @@ void Unwind_180912180(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
   resourceTable = *(longlong *)(param_2 + 0x70);
   lVar1 = *(longlong *)(resourceTable + 0x1f0);
   if (lVar1 != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (GlobalUnwindContext != 0) {
+      *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     ProcessResourceOperation(lVar1,SystemResourcePointer002,param_3,param_4,0xfffffffffffffffe);
   }
   lVar1 = *(longlong *)(resourceTable + 0x1e0);
   if (lVar1 != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (GlobalUnwindContext != 0) {
+      *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     ProcessResourceOperation(lVar1,SystemResourcePointer002,param_3,param_4,0xfffffffffffffffe);
   }
   lVar1 = *(longlong *)(resourceTable + 0x1d0);
   if (lVar1 != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (GlobalUnwindContext != 0) {
+      *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     ProcessResourceOperation(lVar1,SystemResourcePointer002,param_3,param_4,0xfffffffffffffffe);
   }
   lVar1 = *(longlong *)(resourceTable + 0x1c0);
   if (lVar1 != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (GlobalUnwindContext != 0) {
+      *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     ProcessResourceOperation(lVar1,SystemResourcePointer002,param_3,param_4,0xfffffffffffffffe);
   }
   lVar1 = *(longlong *)(resourceTable + 400);
   if (lVar1 != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (GlobalUnwindContext != 0) {
+      *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     ProcessResourceOperation(lVar1,SystemResourcePointer002,param_3,param_4,0xfffffffffffffffe);
@@ -82382,8 +82382,8 @@ void Unwind_1809121a0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
   
   lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x70) + 0x220);
   if (lVar1 != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (GlobalUnwindContext != 0) {
+      *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     ProcessResourceOperation(lVar1,SystemResourcePointer002,param_3,param_4,0xfffffffffffffffe);
@@ -82402,8 +82402,8 @@ void Unwind_1809121c0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
   
   lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x70) + 0x2c0);
   if (lVar1 != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (GlobalUnwindContext != 0) {
+      *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     ProcessResourceOperation(lVar1,SystemResourcePointer002,param_3,param_4,0xfffffffffffffffe);
@@ -82422,8 +82422,8 @@ void Unwind_1809121e0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
   
   lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x70) + 0x2d0);
   if (lVar1 != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (GlobalUnwindContext != 0) {
+      *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     ProcessResourceOperation(lVar1,SystemResourcePointer002,param_3,param_4,0xfffffffffffffffe);
@@ -82447,56 +82447,56 @@ void Unwind_180912200(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
   SystemResourceInitializationComplete();
   lVar1 = *(longlong *)(resourceTable + 0x390);
   if (lVar1 != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (GlobalUnwindContext != 0) {
+      *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     ProcessResourceOperation(lVar1,SystemResourcePointer002,param_3,param_4,uVar3);
   }
   lVar1 = *(longlong *)(resourceTable + 0x378);
   if (lVar1 != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (GlobalUnwindContext != 0) {
+      *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     ProcessResourceOperation(lVar1,SystemResourcePointer002,param_3,param_4,uVar3);
   }
   lVar1 = *(longlong *)(resourceTable + 0x368);
   if (lVar1 != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (GlobalUnwindContext != 0) {
+      *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     ProcessResourceOperation(lVar1,SystemResourcePointer002,param_3,param_4,uVar3);
   }
   lVar1 = *(longlong *)(resourceTable + 0x358);
   if (lVar1 != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (GlobalUnwindContext != 0) {
+      *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     ProcessResourceOperation(lVar1,SystemResourcePointer002,param_3,param_4,uVar3);
   }
   lVar1 = *(longlong *)(resourceTable + 0x318);
   if (lVar1 != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (GlobalUnwindContext != 0) {
+      *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     ProcessResourceOperation(lVar1,SystemResourcePointer002,param_3,param_4,uVar3);
   }
   lVar1 = *(longlong *)(resourceTable + 0x308);
   if (lVar1 != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (GlobalUnwindContext != 0) {
+      *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     ProcessResourceOperation(lVar1,SystemResourcePointer002,param_3,param_4,uVar3);
   }
   lVar1 = *(longlong *)(resourceTable + 0x2f8);
   if (lVar1 != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (GlobalUnwindContext != 0) {
+      *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     ProcessResourceOperation(lVar1,SystemResourcePointer002,param_3,param_4,uVar3);
@@ -82515,8 +82515,8 @@ void Unwind_180912220(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
   
   lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x40) + 0x90);
   if (lVar1 != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (GlobalUnwindContext != 0) {
+      *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     ProcessResourceOperation(lVar1,SystemResourcePointer002,param_3,param_4,0xfffffffffffffffe);
@@ -82535,8 +82535,8 @@ void Unwind_180912240(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
   
   lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x40) + 0xc0);
   if (lVar1 != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (GlobalUnwindContext != 0) {
+      *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     ProcessResourceOperation(lVar1,SystemResourcePointer002,param_3,param_4,0xfffffffffffffffe);
@@ -82555,8 +82555,8 @@ void Unwind_180912260(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
   
   lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x40) + 0xd0);
   if (lVar1 != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (GlobalUnwindContext != 0) {
+      *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     ProcessResourceOperation(lVar1,SystemResourcePointer002,param_3,param_4,0xfffffffffffffffe);
@@ -82575,8 +82575,8 @@ void Unwind_180912280(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
   
   lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x40) + 0xf0);
   if (lVar1 != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (GlobalUnwindContext != 0) {
+      *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     ProcessResourceOperation(lVar1,SystemResourcePointer002,param_3,param_4,0xfffffffffffffffe);
@@ -82597,40 +82597,40 @@ void Unwind_1809122a0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
   resourceTable = *(longlong *)(param_2 + 0x40);
   lVar1 = *(longlong *)(resourceTable + 0x1f0);
   if (lVar1 != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (GlobalUnwindContext != 0) {
+      *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     ProcessResourceOperation(lVar1,SystemResourcePointer002,param_3,param_4,0xfffffffffffffffe);
   }
   lVar1 = *(longlong *)(resourceTable + 0x1e0);
   if (lVar1 != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (GlobalUnwindContext != 0) {
+      *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     ProcessResourceOperation(lVar1,SystemResourcePointer002,param_3,param_4,0xfffffffffffffffe);
   }
   lVar1 = *(longlong *)(resourceTable + 0x1d0);
   if (lVar1 != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (GlobalUnwindContext != 0) {
+      *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     ProcessResourceOperation(lVar1,SystemResourcePointer002,param_3,param_4,0xfffffffffffffffe);
   }
   lVar1 = *(longlong *)(resourceTable + 0x1c0);
   if (lVar1 != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (GlobalUnwindContext != 0) {
+      *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     ProcessResourceOperation(lVar1,SystemResourcePointer002,param_3,param_4,0xfffffffffffffffe);
   }
   lVar1 = *(longlong *)(resourceTable + 400);
   if (lVar1 != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (GlobalUnwindContext != 0) {
+      *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     ProcessResourceOperation(lVar1,SystemResourcePointer002,param_3,param_4,0xfffffffffffffffe);
@@ -82649,8 +82649,8 @@ void Unwind_1809122c0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
   
   lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x40) + 0x220);
   if (lVar1 != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (GlobalUnwindContext != 0) {
+      *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     ProcessResourceOperation(lVar1,SystemResourcePointer002,param_3,param_4,0xfffffffffffffffe);
@@ -82669,8 +82669,8 @@ void Unwind_1809122e0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
   
   lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x40) + 0x2c0);
   if (lVar1 != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (GlobalUnwindContext != 0) {
+      *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     ProcessResourceOperation(lVar1,SystemResourcePointer002,param_3,param_4,0xfffffffffffffffe);
@@ -82689,8 +82689,8 @@ void Unwind_180912300(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
   
   lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x40) + 0x2d0);
   if (lVar1 != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (GlobalUnwindContext != 0) {
+      *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     ProcessResourceOperation(lVar1,SystemResourcePointer002,param_3,param_4,0xfffffffffffffffe);
@@ -82714,56 +82714,56 @@ void Unwind_180912320(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
   SystemResourceInitializationComplete();
   lVar1 = *(longlong *)(resourceTable + 0x390);
   if (lVar1 != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (GlobalUnwindContext != 0) {
+      *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     ProcessResourceOperation(lVar1,SystemResourcePointer002,param_3,param_4,uVar3);
   }
   lVar1 = *(longlong *)(resourceTable + 0x378);
   if (lVar1 != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (GlobalUnwindContext != 0) {
+      *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     ProcessResourceOperation(lVar1,SystemResourcePointer002,param_3,param_4,uVar3);
   }
   lVar1 = *(longlong *)(resourceTable + 0x368);
   if (lVar1 != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (GlobalUnwindContext != 0) {
+      *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     ProcessResourceOperation(lVar1,SystemResourcePointer002,param_3,param_4,uVar3);
   }
   lVar1 = *(longlong *)(resourceTable + 0x358);
   if (lVar1 != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (GlobalUnwindContext != 0) {
+      *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     ProcessResourceOperation(lVar1,SystemResourcePointer002,param_3,param_4,uVar3);
   }
   lVar1 = *(longlong *)(resourceTable + 0x318);
   if (lVar1 != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (GlobalUnwindContext != 0) {
+      *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     ProcessResourceOperation(lVar1,SystemResourcePointer002,param_3,param_4,uVar3);
   }
   lVar1 = *(longlong *)(resourceTable + 0x308);
   if (lVar1 != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (GlobalUnwindContext != 0) {
+      *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     ProcessResourceOperation(lVar1,SystemResourcePointer002,param_3,param_4,uVar3);
   }
   lVar1 = *(longlong *)(resourceTable + 0x2f8);
   if (lVar1 != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (GlobalUnwindContext != 0) {
+      *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     ProcessResourceOperation(lVar1,SystemResourcePointer002,param_3,param_4,uVar3);
@@ -82782,8 +82782,8 @@ void Unwind_180912340(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
   
   lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x48) + 0x38);
   if (lVar1 != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (GlobalUnwindContext != 0) {
+      *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     ProcessResourceOperation(lVar1,SystemResourcePointer002,param_3,param_4,0xfffffffffffffffe);
@@ -82802,8 +82802,8 @@ void Unwind_180912350(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
   
   lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x48) + 8);
   if (lVar1 != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (GlobalUnwindContext != 0) {
+      *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     ProcessResourceOperation(lVar1,SystemResourcePointer002,param_3,param_4,0xfffffffffffffffe);
@@ -82822,8 +82822,8 @@ void Unwind_180912360(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
   
   lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x40) + 0x38);
   if (lVar1 != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (GlobalUnwindContext != 0) {
+      *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     ProcessResourceOperation(lVar1,SystemResourcePointer002,param_3,param_4,0xfffffffffffffffe);
@@ -82872,8 +82872,8 @@ void Unwind_180912400(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
   
   lVar1 = *(longlong *)(*(longlong *)(param_2 + 200) + 8);
   if (lVar1 != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (GlobalUnwindContext != 0) {
+      *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     ProcessResourceOperation(lVar1,SystemResourcePointer002,param_3,param_4,0xfffffffffffffffe);
@@ -82892,8 +82892,8 @@ void Unwind_180912410(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
   
   lVar1 = *(longlong *)(*(longlong *)(param_2 + 200) + 0x18);
   if (lVar1 != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (GlobalUnwindContext != 0) {
+      *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     ProcessResourceOperation(lVar1,SystemResourcePointer002,param_3,param_4,0xfffffffffffffffe);
@@ -82912,8 +82912,8 @@ void Unwind_180912420(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
   
   lVar1 = *(longlong *)(*(longlong *)(param_2 + 200) + 0x28);
   if (lVar1 != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (GlobalUnwindContext != 0) {
+      *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     ProcessResourceOperation(lVar1,SystemResourcePointer002,param_3,param_4,0xfffffffffffffffe);
@@ -82932,8 +82932,8 @@ void Unwind_180912430(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
   
   lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x28) + 8);
   if (lVar1 != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (GlobalUnwindContext != 0) {
+      *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     ProcessResourceOperation(lVar1,SystemResourcePointer002,param_3,param_4,0xfffffffffffffffe);
@@ -82952,8 +82952,8 @@ void Unwind_180912440(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
   
   lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x60) + 0x48);
   if (lVar1 != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (GlobalUnwindContext != 0) {
+      *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     ProcessResourceOperation(lVar1,SystemResourcePointer002,param_3,param_4,0xfffffffffffffffe);
@@ -82972,8 +82972,8 @@ void Unwind_180912450(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
   
   lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x60) + 0x58);
   if (lVar1 != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (GlobalUnwindContext != 0) {
+      *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     ProcessResourceOperation(lVar1,SystemResourcePointer002,param_3,param_4,0xfffffffffffffffe);
@@ -82992,8 +82992,8 @@ void Unwind_180912460(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
   
   lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x60) + 0x68);
   if (lVar1 != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (GlobalUnwindContext != 0) {
+      *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     ProcessResourceOperation(lVar1,SystemResourcePointer002,param_3,param_4,0xfffffffffffffffe);
@@ -83032,8 +83032,8 @@ void Unwind_1809124d0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
   
   lVar1 = *(longlong *)(param_2 + 0x60);
   if (lVar1 != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (GlobalUnwindContext != 0) {
+      *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     ProcessResourceOperation(lVar1,SystemResourcePointer002,param_3,param_4,0xfffffffffffffffe);
@@ -83052,8 +83052,8 @@ void Unwind_1809124e0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
   
   lVar1 = *(longlong *)(param_2 + 0x60);
   if (lVar1 != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (GlobalUnwindContext != 0) {
+      *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     ProcessResourceOperation(lVar1,SystemResourcePointer002,param_3,param_4,0xfffffffffffffffe);
@@ -83079,8 +83079,8 @@ void Unwind_1809124f0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
   *(uint8_t8 *)(lVar1 + 0x10) = 0;
   lVar1 = *(longlong *)(lVar1 + 0x28);
   if (lVar1 != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (GlobalUnwindContext != 0) {
+      *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     ProcessResourceOperation(lVar1,SystemResourcePointer002,param_3,param_4,validationResult);
@@ -83099,8 +83099,8 @@ void Unwind_180912500(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
   
   lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x58) + 0x28);
   if (lVar1 != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (GlobalUnwindContext != 0) {
+      *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     ProcessResourceOperation(lVar1,SystemResourcePointer002,param_3,param_4,0xfffffffffffffffe);
@@ -83119,8 +83119,8 @@ void Unwind_180912510(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
   
   lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x50) + 0x28);
   if (lVar1 != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (GlobalUnwindContext != 0) {
+      *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     ProcessResourceOperation(lVar1,SystemResourcePointer002,param_3,param_4,0xfffffffffffffffe);
@@ -83139,8 +83139,8 @@ void Unwind_180912520(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
   
   lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x50) + 8);
   if (lVar1 != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (GlobalUnwindContext != 0) {
+      *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     ProcessResourceOperation(lVar1,SystemResourcePointer002,param_3,param_4,0xfffffffffffffffe);
@@ -83159,8 +83159,8 @@ void Unwind_180912530(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
   
   lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x50) + 0x18);
   if (lVar1 != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (GlobalUnwindContext != 0) {
+      *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     ProcessResourceOperation(lVar1,SystemResourcePointer002,param_3,param_4,0xfffffffffffffffe);
@@ -83179,8 +83179,8 @@ void Unwind_180912540(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
   
   lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x50) + 8);
   if (lVar1 != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (GlobalUnwindContext != 0) {
+      *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     ProcessResourceOperation(lVar1,SystemResourcePointer002,param_3,param_4,0xfffffffffffffffe);
@@ -83209,8 +83209,8 @@ void Unwind_180912580(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
   
   lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x48) + 0x28);
   if (lVar1 != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (GlobalUnwindContext != 0) {
+      *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     ProcessResourceOperation(lVar1,SystemResourcePointer002,param_3,param_4,0xfffffffffffffffe);
@@ -83230,8 +83230,8 @@ void Unwind_180912590(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
   lVar1 = *(longlong *)(param_2 + 0x58);
   if (lVar1 != 0) {
     *(uint8_t8 *)(param_2 + 0x50) = 0;
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (GlobalUnwindContext != 0) {
+      *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     ProcessResourceOperation(lVar1,SystemResourcePointer002,param_3,param_4,0xfffffffffffffffe);
@@ -83239,8 +83239,8 @@ void Unwind_180912590(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
   lVar1 = *(longlong *)(param_2 + 0x48);
   if (lVar1 != 0) {
     *(uint8_t8 *)(param_2 + 0x40) = 0;
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (GlobalUnwindContext != 0) {
+      *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     ProcessResourceOperation(lVar1,SystemResourcePointer002,param_3,param_4,0xfffffffffffffffe);
@@ -83248,16 +83248,16 @@ void Unwind_180912590(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
   *(uint8_t4 *)(param_2 + 0x60) = 0;
   lVar1 = *(longlong *)(param_2 + 0x58);
   if (lVar1 != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (GlobalUnwindContext != 0) {
+      *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     ProcessResourceOperation(lVar1,SystemResourcePointer002,param_3,param_4,0xfffffffffffffffe);
   }
   lVar1 = *(longlong *)(param_2 + 0x48);
   if (lVar1 != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (GlobalUnwindContext != 0) {
+      *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     ProcessResourceOperation(lVar1,SystemResourcePointer002,param_3,param_4,0xfffffffffffffffe);
@@ -83276,8 +83276,8 @@ void Unwind_1809125a0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
   
   lVar1 = *(longlong *)(param_2 + 0x48);
   if (lVar1 != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (GlobalUnwindContext != 0) {
+      *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     ProcessResourceOperation(lVar1,SystemResourcePointer002,param_3,param_4,0xfffffffffffffffe);
@@ -83296,8 +83296,8 @@ void Unwind_1809125b0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
   
   lVar1 = *(longlong *)(param_2 + 0x58);
   if (lVar1 != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (GlobalUnwindContext != 0) {
+      *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     ProcessResourceOperation(lVar1,SystemResourcePointer002,param_3,param_4,0xfffffffffffffffe);
@@ -83316,8 +83316,8 @@ void Unwind_1809125c0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
   
   lVar1 = *(longlong *)(*(longlong *)(param_2 + 0xc0) + 8);
   if (lVar1 != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (GlobalUnwindContext != 0) {
+      *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     ProcessResourceOperation(lVar1,SystemResourcePointer002,param_3,param_4,0xfffffffffffffffe);
@@ -83366,8 +83366,8 @@ void Unwind_180912660(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
   
   lVar1 = *(longlong *)(*(longlong *)(param_2 + 0xa8) + 8);
   if (lVar1 != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (GlobalUnwindContext != 0) {
+      *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     ProcessResourceOperation(lVar1,SystemResourcePointer002,param_3,param_4,0xfffffffffffffffe);
@@ -83396,8 +83396,8 @@ void Unwind_1809126a0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
   
   lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x20) + 0x28);
   if (lVar1 != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (GlobalUnwindContext != 0) {
+      *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     ProcessResourceOperation(lVar1,SystemResourcePointer002,param_3,param_4,0xfffffffffffffffe);
@@ -83455,8 +83455,8 @@ void Unwind_180912770(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
   
   lVar1 = *(longlong *)(param_2 + 0x30);
   if (lVar1 != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (GlobalUnwindContext != 0) {
+      *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     ProcessResourceOperation(lVar1,SystemResourcePointer002,param_3,param_4,0xfffffffffffffffe);
@@ -83481,8 +83481,8 @@ void Unwind_180912780(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
   *(uint8_t8 *)(param_2 + 0x1b0) = 0;
   lVar1 = *(longlong *)(param_2 + 0x1c8);
   if (lVar1 != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (GlobalUnwindContext != 0) {
+      *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     ProcessResourceOperation(lVar1,SystemResourcePointer002,param_3,param_4,validationResult);
@@ -83507,8 +83507,8 @@ void Unwind_180912790(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
   *(uint8_t8 *)(param_2 + 0xa0) = 0;
   lVar1 = *(longlong *)(param_2 + 0xb8);
   if (lVar1 != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (GlobalUnwindContext != 0) {
+      *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     ProcessResourceOperation(lVar1,SystemResourcePointer002,param_3,param_4,validationResult);
@@ -83533,8 +83533,8 @@ void Unwind_1809127a0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
   *(uint8_t8 *)(param_2 + 0xa0) = 0;
   lVar1 = *(longlong *)(param_2 + 0xb8);
   if (lVar1 != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (GlobalUnwindContext != 0) {
+      *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     ProcessResourceOperation(lVar1,SystemResourcePointer002,param_3,param_4,validationResult);
@@ -83559,8 +83559,8 @@ void Unwind_1809127b0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
   *(uint8_t8 *)(param_2 + 0x1b0) = 0;
   lVar1 = *(longlong *)(param_2 + 0x1c8);
   if (lVar1 != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (GlobalUnwindContext != 0) {
+      *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     ProcessResourceOperation(lVar1,SystemResourcePointer002,param_3,param_4,validationResult);
@@ -83586,8 +83586,8 @@ void Unwind_1809127c0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
   *(uint8_t8 *)(lVar1 + 0x10) = 0;
   lVar1 = *(longlong *)(lVar1 + 0x28);
   if (lVar1 != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (GlobalUnwindContext != 0) {
+      *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     ProcessResourceOperation(lVar1,SystemResourcePointer002,param_3,param_4,validationResult);
@@ -83633,8 +83633,8 @@ void Unwind_1809127e0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
   
   lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x40) + 0x18);
   if (lVar1 != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (GlobalUnwindContext != 0) {
+      *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     ProcessResourceOperation(lVar1,SystemResourcePointer002,param_3,param_4,0xfffffffffffffffe);
@@ -83653,8 +83653,8 @@ void Unwind_1809127f0(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
   
   lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x50) + 0x18);
   if (lVar1 != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (GlobalUnwindContext != 0) {
+      *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     ProcessResourceOperation(lVar1,SystemResourcePointer002,param_3,param_4,0xfffffffffffffffe);
@@ -83673,8 +83673,8 @@ void Unwind_180912800(uint8_t8 param_1,longlong param_2,uint8_t8 param_3,uint8_t
   
   lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x58) + 8);
   if (lVar1 != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (GlobalUnwindContext != 0) {
+      *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     ProcessResourceOperation(lVar1,SystemResourcePointer002,param_3,param_4,0xfffffffffffffffe);
