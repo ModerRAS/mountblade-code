@@ -45005,10 +45005,22 @@ void Unwind_1809059f0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 
 
 
-void ExecuteResourceContextCallback(uint8_t ObjectContextParameter,int64_t ValidationContextParameter)
+/**
+ * @brief 执行资源上下文回调函数
+ * 
+ * 该函数负责执行与资源上下文相关的回调操作
+ * 从验证上下文中获取资源上下文指针并执行相应的回调
+ * 
+ * @param ObjectContextParameter 对象上下文参数，用于标识操作的对象
+ * @param ValidationContextParameter 验证上下文参数，包含验证所需的信息
+ * @return 无返回值
+ * @note 此函数会检查资源上下文指针的有效性
+ * @warning 如果资源上下文指针无效，函数将直接返回
+ */
+void ExecuteResourceContextCallback(uint8_t ObjectContextParameter, int64_t ValidationContextParameter)
 
 {
-  int64_t *processPointer;
+  int64_t *resourceContextPtr;
   
   ResourceContextPointer = *(int64_t **)(*(int64_t *)(ValidationContextParameter + 0x40) + 0xd8);
   if (ResourceContextPointer != (int64_t *)0x0) {
@@ -45019,10 +45031,22 @@ void ExecuteResourceContextCallback(uint8_t ObjectContextParameter,int64_t Valid
 
 
 
-void ExecuteResourceContextCallbackAlt(uint8_t ObjectContextParameter,int64_t ValidationContextParameter)
+/**
+ * @brief 执行备用资源上下文回调函数
+ * 
+ * 该函数负责执行备用路径的资源上下文回调操作
+ * 从验证上下文中获取备用资源上下文指针并执行相应的回调
+ * 
+ * @param ObjectContextParameter 对象上下文参数，用于标识操作的对象
+ * @param ValidationContextParameter 验证上下文参数，包含验证所需的信息
+ * @return 无返回值
+ * @note 此函数会检查资源上下文指针的有效性
+ * @warning 如果资源上下文指针无效，函数将直接返回
+ */
+void ExecuteResourceContextCallbackAlt(uint8_t ObjectContextParameter, int64_t ValidationContextParameter)
 
 {
-  int64_t *processPointer;
+  int64_t *resourceContextPtr;
   
   ResourceContextPointer = *(int64_t **)(*(int64_t *)(ValidationContextParameter + 0x40) + 0xe0);
   if (ResourceContextPointer != (int64_t *)0x0) {
