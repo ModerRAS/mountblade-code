@@ -321,22 +321,23 @@ void* SystemDataTableEntryDuodecary;
 void* SystemMemoryRegionDucentiNovem;
 void* SystemMemoryRegionTrecenti;
 void* SystemMemoryRegionTrecentiUnus;
-undefined DAT_180d49288;
-undefined DAT_180d49290;
-undefined DAT_180d49298;
-undefined DAT_180d492a0;
-undefined DAT_180d492a8;
-undefined DAT_180d492e8;
-undefined DAT_180d492f0;
-undefined DAT_180d492f8;
-undefined DAT_180d49300;
-undefined DAT_180d49340;
-undefined DAT_180d49348;
-undefined DAT_180d49350;
-undefined DAT_180d49358;
-undefined DAT_180d49398;
-undefined DAT_180d493a0;
-undefined DAT_180d493a8;
+// 系统全局数据常量块
+undefined SystemGlobalDataBlock1;
+undefined SystemGlobalDataBlock2;
+undefined SystemGlobalDataBlock3;
+undefined SystemGlobalDataBlock4;
+undefined SystemGlobalDataBlock5;
+undefined SystemMemoryConfigBlock1;
+undefined SystemMemoryConfigBlock2;
+undefined SystemMemoryConfigBlock3;
+undefined SystemMemoryConfigBlock4;
+undefined SystemInitStatusBlock1;
+undefined SystemInitStatusBlock2;
+undefined SystemInitStatusBlock3;
+undefined SystemInitStatusBlock4;
+undefined SystemPerformanceBlock1;
+undefined SystemPerformanceBlock2;
+undefined SystemPerformanceBlock3;
 undefined SystemGlobalDataFlag;
 undefined SystemMemoryAllocatorState;
 undefined SystemMemoryPoolSize;
@@ -345,8 +346,8 @@ undefined SystemMemoryPoolAttributes;
 undefined SystemMemoryPoolConfiguration;
 undefined SystemInitializationStatus;
 
-// 函数: 系统内存分配器 - 负责动态内存分配和管理
-undefined SystemMemoryAllocator;
+// 系统内存分配器 - 负责动态内存分配和管理
+undefined SystemMemoryAllocatorFunction;
 
 // 函数: 系统数据初始化器 - 负责初始化系统核心数据结构
 undefined SystemDataInitializer;
