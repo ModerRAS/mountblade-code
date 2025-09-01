@@ -5094,7 +5094,7 @@ void ProcessObjectConfiguration(longlong objectPointer, undefined8 configData)
   objectConfig = *(undefined8 *)(objectPointer + 0x10);
   objectFlags = *(undefined4 *)(objectPointer + 0x18);
   configParams[0] = 2;
-  processResult = func_0x0001808757f0(configData, configParams, *(undefined4 *)(objectPointer + 0x1c), tempBuffer);
+  processResult = ProcessConfigurationData(configData, configParams, *(undefined4 *)(objectPointer + 0x1c), tempBuffer);
   if (processResult == 0) {
     InitializeObjectWithConfig(configData, tempBuffer[0]);
   }
@@ -5916,18 +5916,26 @@ void SetObjectContextByte29(longlong objectContext, longlong processContext)
 
 
 
- void FUN_180891cf0(longlong param_1,longlong param_2)
-void FUN_180891cf0(longlong param_1,longlong param_2)
+ /**
+ * @brief 设置对象上下文字节28
+ * 
+ * 该函数验证对象上下文，并在验证通过后设置上下文字节28的值
+ * 然后调用处理函数继续执行相关操作
+ * 
+ * @param objectContext 对象上下文指针
+ * @param processContext 处理上下文指针，包含处理所需的数据
+ */
+void SetObjectContextByte28(longlong objectContext, longlong processContext)
 
 {
-  int iVar1;
-  longlong lStackX_8;
+  int validationStatus;
+  longlong contextBuffer;
   
-  iVar1 = ValidateObjectContext(*(undefined4 *)(param_1 + 0x10),&lStackX_8);
-  if (iVar1 == 0) {
-    *(undefined1 *)(lStackX_8 + 0x28) = *(undefined1 *)(param_1 + 0x18);
+  validationStatus = ValidateObjectContext(*(undefined4 *)(objectContext + 0x10),&contextBuffer);
+  if (validationStatus == 0) {
+    *(undefined1 *)(contextBuffer + 0x28) = *(undefined1 *)(objectContext + 0x18);
                     // WARNING: Subroutine does not return
-    FUN_18088d720(*(undefined8 *)(param_2 + 0x98),param_1);
+    ProcessContextData(*(undefined8 *)(processContext + 0x98),objectContext);
   }
   return;
 }
