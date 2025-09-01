@@ -18741,7 +18741,20 @@ void FUN_180045fa6(uint8_t *param_1)
 
 
 // 函数: void FUN_180045fc0(long long param_1,long long param_2,long long param_3)
-void FUN_180045fc0(long long param_1,long long param_2,long long param_3)
+/**
+ * @brief 处理系统三参数缓冲区操作
+ * 
+ * 该函数负责处理需要三个参数的系统缓冲区操作，包括内存分配、
+ * 数据复制和缓冲区管理。它使用栈缓冲区来处理临时数据，
+ * 并执行相应的系统操作。
+ * 
+ * @param param_1 主操作参数
+ * @param param_2 辅助操作参数
+ * @param param_3 配置参数
+ * 
+ * @note 这是一个通用的系统缓冲区处理函数
+ */
+void ProcessSystemThreeParameterBuffer(long long param_1,long long param_2,long long param_3)
 
 {
   long long lVar1;
@@ -18783,7 +18796,18 @@ void FUN_180045fc0(long long param_1,long long param_2,long long param_3)
 
 
 // 函数: void FUN_180046130(void* *param_1,uint32_t param_2)
-void FUN_180046130(void* *param_1,uint32_t param_2)
+/**
+ * @brief 释放系统信号量
+ * 
+ * 该函数负责释放系统信号量，它会重复调用ReleaseSemaphore函数
+ * 直到成功释放为止。这确保了信号量的正确释放和系统同步。
+ * 
+ * @param param_1 信号量句柄指针
+ * @param param_2 释放计数
+ * 
+ * @note 这是系统同步机制的重要组成部分，确保信号量的正确释放
+ */
+void ReleaseSystemSemaphore(void* *param_1,uint32_t param_2)
 
 {
   int iVar1;
@@ -18966,8 +18990,18 @@ FreeSystemMemoryResource(void* resourcePointer, uint64_t freeFlags, uint64_t fre
 
 
 
-// 函数: void FUN_180046380(long long param_1,long long param_2)
-void FUN_180046380(long long param_1,long long param_2)
+/**
+ * @brief 系统字符串复制函数（带长度限制）
+ * 
+ * 该函数用于将字符串从源地址复制到目标地址，有长度限制。
+ * 如果源字符串为空，则清空目标字符串；如果字符串长度超过限制，
+ * 则调用系统错误处理函数。
+ * 
+ * @param param_1 目标字符串结构体指针
+ * @param param_2 源字符串指针
+ * @note 最大字符串长度限制为0x20字节
+ */
+void ProcessSystemStringCopyWithLimit(long long param_1,long long param_2)
 
 {
   long long lVar1;

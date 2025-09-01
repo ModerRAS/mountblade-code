@@ -6372,7 +6372,7 @@ void ProcessNetworkConnectionData(ulonglong connectionContext,NetworkStatus *pac
     ProcessNetworkAddressValidation(auStack_128,0x100,0);
     puStack_158 = auStack_128;
                     // WARNING: Subroutine does not return
-    LogNetworkConnectionError(0x1f,0xd,connectionContext,&UNK_180984990);
+    LogNetworkConnectionError(0x1f,0xd,connectionContext,&NetworkErrorMessageEncryptionFailed);
   }
   *packetData = 2;
   uStack_148 = 0;
@@ -6461,7 +6461,7 @@ void GetNetworkConnectionStatusData(ulonglong connectionContext,uint packetData,
   ProcessNetworkBufferDataWithSize(auStack_138 + (networkStatus1 + networkStatus2),0x100 - (networkStatus1 + networkStatus2),dataSize);
   puStack_168 = auStack_138;
                     // WARNING: Subroutine does not return
-  LogNetworkConnectionError(0x1f,0xd,connectionContext,&UNK_180984928);
+  LogNetworkConnectionError(0x1f,0xd,connectionContext,&NetworkErrorMessageCompressionFailed);
 }
 
 
