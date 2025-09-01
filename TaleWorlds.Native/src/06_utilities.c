@@ -87598,9 +87598,9 @@ void InitializeSystemDataStructureCW(void)
 void InitializeSystemDataStructureCW(void)
 
 {
-  if (DAT_180c961d8 != '\0') {
-    SystemValidationHandler(&DAT_180c961b0);
-    SystemVerificationHandler(&DAT_180c961b0);
+  if (DataStructureCWFlag != '\0') {
+    SystemValidationHandler(&ValidationHandlerPointer);
+    SystemVerificationHandler(&ValidationHandlerPointer);
 
  /**
  * 初始化系统数据结构CX
