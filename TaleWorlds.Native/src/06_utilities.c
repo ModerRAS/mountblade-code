@@ -34384,7 +34384,20 @@ void CleanupResourceTable(uint8_t ObjectContextParameter,int64_t ValidationConte
 
 
 
-void Unwind_180903220(uint8_t ObjectContextParameter,int64_t ValidationContextParameter,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 带标志的资源清理展开处理函数
+ * 
+ * 该函数负责处理带标志的资源清理展开操作
+ * 处理资源释放和清理操作
+ * 
+ * @param ObjectContextParameter 对象上下文参数
+ * @param ValidationContextParameter 验证上下文参数
+ * @param CleanupOption 清理选项
+ * @param CleanupFlag 清理标志
+ * @return 无返回值
+ * @note 此函数在资源清理过程中被调用
+ */
+void UnwindResourceCleanupWithFlags(uint8_t ObjectContextParameter,int64_t ValidationContextParameter,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   ProcessResourceRelease(*(int64_t *)(ValidationContextParameter + 0x40),*(uint8_t *)(*(int64_t *)(ValidationContextParameter + 0x40) + 0x10),
@@ -34394,7 +34407,20 @@ void Unwind_180903220(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 
 
 
-void Unwind_180903230(uint8_t ObjectContextParameter,int64_t ValidationContextParameter,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 带标志的资源请求展开处理函数
+ * 
+ * 该函数负责处理带标志的资源请求展开操作
+ * 处理资源请求和清理操作
+ * 
+ * @param ObjectContextParameter 对象上下文参数
+ * @param ValidationContextParameter 验证上下文参数
+ * @param CleanupOption 清理选项
+ * @param CleanupFlag 清理标志
+ * @return 无返回值
+ * @note 此函数在资源请求过程中被调用
+ */
+void UnwindResourceRequestWithFlags(uint8_t ObjectContextParameter,int64_t ValidationContextParameter,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   HandleResourceRequest(*(int64_t *)(ValidationContextParameter + 0x40) + 0x30,
