@@ -17629,13 +17629,13 @@ void SetSystemPointerB(void)
   
   systemStatus = GetSystemStatus(1);
   if (systemStatus != 0) {
-    _DAT_180c0c6d8 = 0x180be15c0;
+    SystemDisplayContextB = 0x180be15c0;
     return;
   }
   systemStatus = GetSystemStatus(0);
-  _DAT_180c0c6d8 = 0x180be14e0;
+  SystemDisplayContextB = 0x180be14e0;
   if (systemStatus != 0) {
-    _DAT_180c0c6d8 = 0x180be1550;
+    SystemDisplayContextB = 0x180be1550;
   }
   return;
 }

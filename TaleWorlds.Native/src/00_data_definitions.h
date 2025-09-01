@@ -12612,7 +12612,7 @@ LAB_1808fc75b:
   }
   return;
 }
-    DAT_180c96210 = '\0';
+    SystemCameraEnabled = '\0';
   }
   return;
 }

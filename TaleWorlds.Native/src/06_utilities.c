@@ -293,6 +293,10 @@ void* TextureDescriptorTable;
  * 
  * 该函数负责初始化游戏音频系统
  * 设置音效、音乐和语音播放的相关参数
+ * 
+ * @return 无返回值
+ * @note 此函数必须在系统启动时调用，以确保音频系统的正常运行
+ * @warning 调用此函数前必须确保音频硬件设备可用
  */
 void InitializeAudioSystem(void);
 void* AudioSystemInstance;
@@ -27991,15 +27995,28 @@ void UnlockMutexAndHandleException(uint8_t8 exceptionHandlerType, longlong excep
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_180901f50(uint8_t8 param_1,longlong param_2)
+/**
+ * @brief 解锁资源句柄并处理异常
+ * 
+ * 该函数在异常处理过程中解锁资源句柄，确保资源在异常情况下
+ * 能够正确释放，避免资源泄漏。
+ * 
+ * @param exceptionHandlerType 异常处理器类型
+ * @param exceptionContext 异常上下文，包含资源句柄信息
+ * @return 无
+ * 
+ * @note 此函数是异常处理链的一部分
+ * @note 如果解锁失败，会抛出C标准错误
+ */
+void UnlockResourceHandleAndHandleException(uint8_t8 exceptionHandlerType, longlong exceptionContext)
 
 {
-  int iVar1;
+  int unlockResult;
   
-  ResourceHandlePointer = *(uint8_t8 *)(param_2 + 0x40);
-  iVar1 = _Mtx_unlock(0x180c91970);
-  if (iVar1 != 0) {
-    __Throw_C_error_std__YAXH_Z(iVar1);
+  ResourceHandlePointer = *(uint8_t8 *)(exceptionContext + 0x40);
+  unlockResult = _Mtx_unlock(0x180c91970);
+  if (unlockResult != 0) {
+    __Throw_C_error_std__YAXH_Z(unlockResult);
   }
   return;
 }
