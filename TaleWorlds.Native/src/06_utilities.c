@@ -1706,17 +1706,17 @@ undefined SystemMemoryConfigDataTemplateV;
 undefined SystemMemoryConfigDataTemplateW;
 undefined SystemMemoryConfigDataTemplateX;
 undefined SystemMemoryConfigDataTemplateA;
-undefined DAT_180bface0;
-undefined DAT_180bface8;
-undefined DAT_180bfacf0;
-undefined DAT_180bfad70;
-undefined DAT_180bfad78;
-undefined DAT_180bfad80;
-undefined DAT_180bfad88;
-undefined DAT_180bfae08;
-undefined DAT_180bfae10;
-undefined DAT_180bfae18;
-undefined DAT_180bfae20;
+undefined SystemMemoryBufferPool;
+undefined SystemMemoryCachePool;
+undefined SystemMemoryDescriptorPool;
+undefined SystemMemoryControlFlags;
+undefined SystemMemoryStatusFlags;
+undefined SystemMemoryConfigurationFlags;
+undefined SystemMemoryOperationFlags;
+undefined SystemMemoryDataPoolA;
+undefined SystemMemoryDataPoolB;
+undefined SystemMemoryDataPoolC;
+undefined SystemMemoryDataPoolD;
 undefined SystemMemoryConfigDataTemplateL;
 undefined SystemMemoryConfigDataTemplateM;
 undefined SystemMemoryConfigDataTemplateN;
@@ -3205,6 +3205,15 @@ undefined DAT_180bfbd80;
  * 
  * 该函数负责处理和验证游戏中的数据对象，确保数据完整性
  * 并对不符合要求的数据对象进行相应处理
+ */
+/**
+ * @brief 处理游戏数据对象
+ * 
+ * 该函数负责处理游戏中的数据对象，包括对象的验证、状态检查和安全处理
+ * 它会从游戏上下文中获取对象列表，逐个验证对象状态，并处理无效对象
+ * 
+ * @param gameContext 游戏上下文指针，包含游戏相关的状态信息
+ * @param systemContext 系统上下文指针，包含系统相关的配置信息
  */
 void ProcessGameDataObjects(longlong gameContext, longlong systemContext)
 
@@ -27034,7 +27043,7 @@ f47c(void)
 
 
 
-ulonglong FUN_18089f530(longlong param_1,undefined8 *param_2,undefined4 param_3,undefined4 param_4,
+ulonglong ValidateResourceDataIntegrity(longlong param_1,undefined8 *param_2,undefined4 param_3,undefined4 param_4,
                        char param_5)
 
 {
@@ -84881,8 +84890,16 @@ void InitializeMemoryStatisticsTable(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void FUN_180942040(void)
-void FUN_180942040(void)
+ /**
+ * 初始化系统数据结构AQ
+ * 设置全局系统数据结构指针，用于系统初始化
+ */
+void InitializeSystemDataStructureAQ(void)
+/**
+ * 初始化系统数据结构AQ
+ * 设置全局系统数据结构指针，用于系统初始化
+ */
+void InitializeSystemDataStructureAQ(void)
 
 {
   _DAT_180bf9570 = &SystemDataStructure;
@@ -84894,8 +84911,16 @@ void FUN_180942040(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void FUN_180942060(void)
-void FUN_180942060(void)
+ /**
+ * 初始化系统数据结构AR
+ * 设置全局系统数据结构指针，用于系统初始化
+ */
+void InitializeSystemDataStructureAR(void)
+/**
+ * 初始化系统数据结构AR
+ * 设置全局系统数据结构指针，用于系统初始化
+ */
+void InitializeSystemDataStructureAR(void)
 
 {
   _DAT_180bf95d0 = &SystemDataStructure;
@@ -84907,8 +84932,16 @@ void FUN_180942060(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void FUN_180942080(void)
-void FUN_180942080(void)
+ /**
+ * 初始化系统数据结构AS
+ * 设置全局系统数据结构指针，用于系统初始化
+ */
+void InitializeSystemDataStructureAS(void)
+/**
+ * 初始化系统数据结构AS
+ * 设置全局系统数据结构指针，用于系统初始化
+ */
+void InitializeSystemDataStructureAS(void)
 
 {
   _DAT_180bf9630 = &SystemDataStructure;
