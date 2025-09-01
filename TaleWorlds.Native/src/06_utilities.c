@@ -1575,7 +1575,7 @@ undefined DAT_180bfaa78;
 undefined DAT_180bfaa80;
 undefined DAT_180bfaa88;
 undefined DAT_180bfaa90;
-undefined UNK_180942620;
+undefined SystemMemoryConfigDataTemplateF;
 undefined UNK_180a24bd0;
 undefined SystemMemoryConfigDataTemplateA;
 undefined UNK_180a24c10;
@@ -9818,10 +9818,10 @@ LAB_180894aca:
 {
   int iVar1;
   
-  iVar1 = FUN_18088ee60(param_2,param_1 + 0x10);
-  if (((iVar1 == 0) && (iVar1 = FUN_18088ee20(param_2,param_1 + 0x18), iVar1 == 0)) &&
-     (iVar1 = FUN_18088f530(param_2,param_1 + 0x20,*(undefined4 *)(param_1 + 0x18)), iVar1 == 0)) {
-    FUN_18088f5c0(param_2,param_1 + 0x20 + (longlong)*(int *)(param_1 + 0x18) * 4);
+  iVar1 = CalculateResourceHash(param_2,param_1 + 0x10);
+  if (((iVar1 == 0) && (iVar1 = ValidateResourceHash(param_2,param_1 + 0x18), iVar1 == 0)) &&
+     (iVar1 = ProcessResourceTableEntries(param_2,param_1 + 0x20,*(undefined4 *)(param_1 + 0x18)), iVar1 == 0)) {
+    InitializeResourceBuffer(param_2,param_1 + 0x20 + (longlong)*(int *)(param_1 + 0x18) * 4);
   }
   return;
 }
@@ -9835,11 +9835,11 @@ LAB_180894aca:
 {
   int iVar1;
   
-  iVar1 = FUN_18088ee20();
+  iVar1 = ValidateResourceHash();
   if (iVar1 == 0) {
-    iVar1 = FUN_18088f530();
+    iVar1 = ProcessResourceTableEntries();
     if (iVar1 == 0) {
-      FUN_18088f5c0();
+      InitializeResourceBuffer();
     }
   }
   return;
@@ -9864,12 +9864,12 @@ LAB_180894aca:
 {
   int iVar1;
   
-  iVar1 = FUN_18088ee60(param_2,param_1 + 0x10);
-  if ((((iVar1 == 0) && (iVar1 = FUN_18088ee20(param_2,param_1 + 0x18), iVar1 == 0)) &&
-      (iVar1 = FUN_18088f620(param_2,param_1 + 0x20,*(undefined4 *)(param_1 + 0x18)), iVar1 == 0))
-     && (iVar1 = FUN_18088f5c0(param_2,param_1 + 0x20 + (longlong)*(int *)(param_1 + 0x18) * 8),
+  iVar1 = CalculateResourceHash(param_2,param_1 + 0x10);
+  if ((((iVar1 == 0) && (iVar1 = ValidateResourceHash(param_2,param_1 + 0x18), iVar1 == 0)) &&
+      (iVar1 = ValidateResourceTable(param_2,param_1 + 0x20,*(undefined4 *)(param_1 + 0x18)), iVar1 == 0))
+     && (iVar1 = InitializeResourceBuffer(param_2,param_1 + 0x20 + (longlong)*(int *)(param_1 + 0x18) * 8),
         iVar1 == 0)) {
-    FUN_18088f470(param_2,param_1 + 0x1c);
+    FinalizeResourceProcessing(param_2,param_1 + 0x1c);
   }
   return;
 }
@@ -9883,13 +9883,13 @@ LAB_180894aca:
 {
   int iVar1;
   
-  iVar1 = FUN_18088ee20();
+  iVar1 = ValidateResourceHash();
   if (iVar1 == 0) {
-    iVar1 = FUN_18088f620();
+    iVar1 = ValidateResourceTable();
     if (iVar1 == 0) {
-      iVar1 = FUN_18088f5c0();
+      iVar1 = InitializeResourceBuffer();
       if (iVar1 == 0) {
-        FUN_18088f470();
+        FinalizeResourceProcessing();
       }
     }
   }
@@ -9915,9 +9915,9 @@ LAB_180894aca:
 {
   int iVar1;
   
-  iVar1 = FUN_18088ee20(param_2,param_1 + 0x10);
+  iVar1 = ValidateResourceHash(param_2,param_1 + 0x10);
   if (iVar1 == 0) {
-    iVar1 = FUN_18088f620(param_2,param_1 + 0x18,*(undefined4 *)(param_1 + 0x10));
+    iVar1 = ValidateResourceTable(param_2,param_1 + 0x18,*(undefined4 *)(param_1 + 0x10));
     if (iVar1 == 0) {
       iVar1 = FUN_18088f5c0(param_2,param_1 + 0x18 + (longlong)*(int *)(param_1 + 0x10) * 8);
       if (iVar1 == 0) {
@@ -12035,10 +12035,10 @@ undefined8 ValidateAndGetBufferContext(longlong param_1,undefined8 param_2,undef
 {
   undefined8 resourceHash;
   
-  resourceHash = FUN_18088ee20(param_3,param_1 + 0x10);
+  resourceHash = ValidateResourceHash(param_3,param_1 + 0x10);
   if ((int)resourceHash == 0) {
     *(undefined4 *)(param_1 + 0x14) = 0;
-    if ((1 < *(int *)(param_1 + 0x10)) && (resourceHash = FUN_18088ee60(param_3), (int)resourceHash != 0)) {
+    if ((1 < *(int *)(param_1 + 0x10)) && (resourceHash = CalculateResourceHash(param_3), (int)resourceHash != 0)) {
       return resourceHash;
     }
     resourceHash = 0;
@@ -16615,7 +16615,18 @@ undefined8 ProcessResourceTableEntries(longlong param_1, longlong *param_2)
 
 
 
-undefined8 FUN_180899d90(longlong param_1,longlong param_2)
+/**
+ * @brief 处理资源数据标准化
+ * 
+ * 该函数负责处理资源数据的标准化操作
+ * 对浮点数数据进行范围限制和标准化处理，将值限制在0.0到1.0之间
+ * 然后转换为16位整数格式
+ * 
+ * @param resourceContext 资源上下文，包含资源和处理环境
+ * @param dataPointer 数据指针，指向要处理的数据
+ * @return 处理结果，0表示成功，非0表示错误代码
+ */
+undefined8 ProcessResourceDataNormalization(longlong resourceContext, longlong dataPointer)
 
 {
   undefined8 resourceHash;
@@ -16672,7 +16683,16 @@ undefined8 FUN_180899d90(longlong param_1,longlong param_2)
 
 
 
-undefined8 FUN_180899dc7(void)
+/**
+ * @brief 处理资源数据标准化（简化版）
+ * 
+ * 该函数负责处理资源数据的标准化操作
+ * 对浮点数数据进行范围限制和标准化处理，将值限制在0.0到1.0之间
+ * 然后转换为16位整数格式
+ * 
+ * @return 处理结果，0表示成功，非0表示错误代码
+ */
+undefined8 ProcessResourceDataNormalizationSimple(void)
 
 {
   undefined8 resourceHash;
@@ -17058,7 +17078,17 @@ a365(void)
 
 
 
-undefined8 FUN_18089a370(longlong param_1,longlong param_2)
+/**
+ * @brief 验证资源状态标志
+ * 
+ * 该函数负责验证资源的状态标志
+ * 检查各种条件标志位，确保资源处于正确的状态
+ * 
+ * @param resourceContext 资源上下文，包含资源和状态信息
+ * @param statusPointer 状态指针，指向要验证的状态数据
+ * @return 验证结果，0表示成功，非0表示验证失败
+ */
+undefined8 ValidateResourceStatusFlags(longlong resourceContext, longlong statusPointer)
 
 {
   short sVar1;
@@ -17178,7 +17208,15 @@ undefined8 FUN_18089a370(longlong param_1,longlong param_2)
 
 
 
-undefined8 FUN_18089a51d(void)
+/**
+ * @brief 初始化资源处理上下文
+ * 
+ * 该函数负责初始化资源处理的上下文
+ * 设置必要的参数和状态，为后续的资源处理操作做准备
+ * 
+ * @return 初始化结果，0表示成功，非0表示失败
+ */
+undefined8 InitializeResourceProcessingContext(void)
 
 {
   short sVar1;
@@ -17243,7 +17281,17 @@ a685(void)
 
 
 
-undefined8 FUN_18089a690(longlong param_1,undefined4 *param_2)
+/**
+ * @brief 处理资源配置数据
+ * 
+ * 该函数负责处理资源配置数据
+ * 根据提供的配置参数进行相应的配置操作和验证
+ * 
+ * @param configContext 配置上下文，包含配置信息和处理环境
+ * @param configData 配置数据指针，包含具体的配置参数
+ * @return 处理结果，0表示成功，非0表示失败
+ */
+undefined8 ProcessResourceConfigurationData(longlong configContext, undefined4 *configData)
 
 {
   int iVar1;
@@ -17281,7 +17329,17 @@ undefined8 FUN_18089a690(longlong param_1,undefined4 *param_2)
 
 
 
-undefined8 FUN_18089a6e8(undefined8 *param_1,undefined8 param_2)
+/**
+ * @brief 处理资源操作
+ * 
+ * 该函数负责处理资源操作
+ * 根据提供的资源句柄和参数执行相应的资源操作
+ * 
+ * @param resourceHandle 资源句柄指针，指向要操作的资源
+ * @param operationParam 操作参数，指定要执行的操作类型和参数
+ * @return 操作结果，0表示成功，非0表示失败
+ */
+undefined8 ProcessResourceOperation(undefined8 *resourceHandle, undefined8 operationParam)
 
 {
   int iVar1;
@@ -17553,7 +17611,15 @@ a9d5(void)
 
 
 
-undefined8 FUN_18089a9dd(void)
+/**
+ * @brief 获取默认错误代码
+ * 
+ * 该函数返回默认的错误代码
+ * 用于表示某种标准错误状态
+ * 
+ * @return 返回错误代码0x1c
+ */
+undefined8 GetDefaultErrorCode(void)
 
 {
   return 0x1c;
@@ -19957,7 +20023,7 @@ LAB_18089c131:
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-ulonglong FUN_18089c190(longlong param_1,undefined8 *param_2)
+ulonglong ProcessResourceAllocation(longlong ResourceHandle,undefined8 *ResourceData)
 
 {
   undefined8 resourceHash;
