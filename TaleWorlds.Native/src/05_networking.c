@@ -7553,7 +7553,7 @@ LAB_180848132:
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_1808482f0(NetworkHandle connectionContext)
+// 函数: void NetworkConnectionCleanup(NetworkHandle connectionContext)
 /**
  * @brief 处理网络连接状态验证和清理
  * 
@@ -7605,7 +7605,7 @@ LAB_1808483a6:
 
 
 
-// 函数: void FUN_180848440(longlong connectionContext,NetworkHandle packetData)
+// 函数: void NetworkBufferProcessor(longlong connectionContext,NetworkHandle packetData)
 /**
  * @brief 处理长整型网络连接数据包传输
  * 
@@ -7635,7 +7635,7 @@ void ProcessLongNetworkConnectionPacketTransfer(longlong connectionContext,Netwo
 
 
 
-// 函数: void FUN_180848480(longlong connectionContext,NetworkHandle packetData)
+// 函数: void NetworkDataValidator(longlong connectionContext,NetworkHandle packetData)
 /**
  * @brief 处理网络连接数据包写入操作
  * 
@@ -9862,8 +9862,18 @@ LAB_180849fd1:
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_18084a140(NetworkHandle connectionContext,NetworkByte packetData)
-void FUN_18084a140(NetworkHandle connectionContext,NetworkByte packetData)
+/**
+ * @brief 网络连接字节传输器
+ * 
+ * 该函数负责在网络连接中传输字节数据。
+ * 它建立连接，设置传输参数，并处理连接清理。
+ * 
+ * @param connectionContext 网络连接句柄
+ * @param packetData 要传输的字节数据
+ * @return void
+ * @note 该函数包含连接状态检查和错误处理
+ */
+void NetworkConnectionByteTransmitter(NetworkHandle connectionContext,NetworkByte packetData)
 
 {
   int networkStatus1;
@@ -10936,7 +10946,17 @@ void FUN_18084b830(longlong connectionContext,longlong packetData)
 
 
 // 函数: void FUN_18084b92d(void)
-void FUN_18084b92d(void)
+/**
+ * @brief 处理网络缓冲区模板操作
+ * 
+ * 该函数负责处理网络缓冲区的模板操作，包括：
+ * - 缓冲区模板初始化
+ * - 模板数据处理
+ * - 缓冲区配置设置
+ * 
+ * 注意：这是一个反编译的函数实现
+ */
+void ProcessNetworkBufferTemplateOperation(void)
 
 {
                     // WARNING: Subroutine does not return
@@ -10947,13 +10967,21 @@ void FUN_18084b92d(void)
 
 
 // 函数: void FUN_18084b955(void)
-void FUN_18084b955(void)
+/**
+ * @brief 执行网络安全守卫清理操作
+ * 
+ * 该函数负责执行网络安全守卫的清理操作，确保网络资源的正确释放。
+ * 主要用于网络连接结束后的资源清理工作。
+ * 
+ * 注意：这是一个反编译的函数实现
+ */
+void ExecuteNetworkSecurityGuardCleanup(void)
 
 {
-  ulonglong in_stack_00000098;
+  ulonglong securityGuardValue;
   
                     // WARNING: Subroutine does not return
-  NetworkSecurityGuardCleanup(in_stack_00000098 ^ (ulonglong)&stack0x00000000);
+  NetworkSecurityGuardCleanup(securityGuardValue ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -10962,7 +10990,23 @@ void FUN_18084b955(void)
 
 
 // 函数: void FUN_18084b990(longlong *connectionContext,longlong packetData,longlong *dataSize)
-void FUN_18084b990(longlong *connectionContext,longlong packetData,longlong *dataSize)
+/**
+ * @brief 处理网络连接数据包验证和传输
+ * 
+ * 该函数负责处理网络连接中的数据包验证和传输，包括：
+ * - 连接上下文初始化
+ * - 数据包遍历和验证
+ * - 数据包字段提取
+ * - 数据包传输处理
+ * - 错误处理和状态管理
+ * 
+ * @param connectionContext 网络连接上下文指针
+ * @param packetData 数据包数据指针
+ * @param dataSize 数据大小指针
+ * 
+ * 注意：这是一个反编译的函数实现
+ */
+void ProcessNetworkPacketValidationAndTransfer(longlong *connectionContext,longlong packetData,longlong *dataSize)
 
 {
   byte bVar1;

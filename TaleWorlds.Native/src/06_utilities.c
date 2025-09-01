@@ -11812,28 +11812,46 @@ LAB_1808963ec:
 
 
 
-undefined8 * FUN_180896800(undefined8 *param_1,ulonglong param_2)
-
+/**
+ * @brief 初始化数据结构指针
+ * 
+ * 该函数用于初始化数据结构指针，设置默认值
+ * 并根据标志位决定是否释放内存
+ * 
+ * @param dataPointer 数据结构指针
+ * @param flags 操作标志位
+ * @return undefined8* 初始化后的数据结构指针
+ */
+undefined8 * InitializeDataStructure(undefined8 *dataPointer, ulonglong flags)
 {
-  *param_1 = &UNK_180986350;
-  if ((param_2 & 1) != 0) {
-    free(param_1,0x28);
+  *dataPointer = &UNK_180986350;
+  if ((flags & 1) != 0) {
+    free(dataPointer,0x28);
   }
-  return param_1;
+  return dataPointer;
 }
 
 
 
-undefined8 * FUN_180896830(undefined8 *param_1,ulonglong param_2)
-
+/**
+ * @brief 初始化备用数据结构指针
+ * 
+ * 该函数用于初始化备用数据结构指针，设置默认值
+ * 并执行额外的初始化操作和内存管理
+ * 
+ * @param dataPointer 数据结构指针
+ * @param flags 操作标志位
+ * @return undefined8* 初始化后的数据结构指针
+ */
+undefined8 * InitializeAlternativeDataStructure(undefined8 *dataPointer, ulonglong flags)
 {
-  *param_1 = &UNK_180986370;
-  FUN_180840270(param_1 + 5);
-  *param_1 = &UNK_180986350;
-  if ((param_2 & 1) != 0) {
-    free(param_1,0x38);
+  *dataPointer = &UNK_180986370;
+  FUN_180840270(dataPointer + 5);
+  *dataPointer = &UNK_180986350;
+  if ((flags & 1) != 0) {
+    free(dataPointer,0x38);
   }
-  return param_1;
+  return dataPointer;
 }
 
 
@@ -11896,7 +11914,17 @@ undefined8 FUN_1808968a0(longlong param_1)
 
 
 
-int FUN_180896a30(longlong param_1,longlong param_2,int param_3)
+/**
+ * @brief 处理数据块操作与基础验证器
+ * 
+ * 该函数负责处理数据块操作，使用基础验证器来确保数据的完整性和有效性
+ * 
+ * @param param_1 数据上下文指针
+ * @param param_2 操作上下文指针  
+ * @param param_3 验证标志
+ * @return 处理结果状态码
+ */
+int ProcessDataBlockOperationWithBasicValidator(longlong param_1,longlong param_2,int param_3)
 
 {
   undefined4 resourceHash;
@@ -11913,7 +11941,17 @@ int FUN_180896a30(longlong param_1,longlong param_2,int param_3)
 
 
 
-int FUN_180896aa0(longlong param_1,longlong param_2,int param_3)
+/**
+ * @brief 处理数据块操作与扩展验证器
+ * 
+ * 该函数负责处理数据块操作，使用扩展验证器来进行更全面的数据验证
+ * 
+ * @param param_1 数据上下文指针
+ * @param param_2 操作上下文指针
+ * @param param_3 验证标志
+ * @return 处理结果状态码
+ */
+int ProcessDataBlockOperationWithExtendedValidator(longlong param_1,longlong param_2,int param_3)
 
 {
   undefined8 resourceHash;
@@ -11930,7 +11968,17 @@ int FUN_180896aa0(longlong param_1,longlong param_2,int param_3)
 
 
 
-int FUN_180896b20(longlong param_1,longlong param_2,int param_3)
+/**
+ * @brief 处理数据块操作与简化验证器
+ * 
+ * 该函数负责处理数据块操作，使用简化验证器来进行快速数据验证
+ * 
+ * @param param_1 数据上下文指针
+ * @param param_2 操作上下文指针
+ * @param param_3 验证标志
+ * @return 处理结果状态码
+ */
+int ProcessDataBlockOperationWithSimplifiedValidator(longlong param_1,longlong param_2,int param_3)
 
 {
   undefined4 resourceHash;
@@ -11953,7 +12001,17 @@ int FUN_180896b20(longlong param_1,longlong param_2,int param_3)
 
 
 
-undefined8 FUN_180896c10(longlong param_1,undefined8 param_2,undefined8 param_3)
+/**
+ * @brief 验证并获取缓冲区上下文
+ * 
+ * 该函数负责验证缓冲区上下文的有效性，并返回相应的上下文信息
+ * 
+ * @param param_1 缓冲区上下文指针
+ * @param param_2 保留参数
+ * @param param_3 验证数据指针
+ * @return 验证结果或上下文信息
+ */
+undefined8 ValidateAndGetBufferContext(longlong param_1,undefined8 param_2,undefined8 param_3)
 
 {
   undefined8 resourceHash;
