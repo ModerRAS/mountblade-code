@@ -241,7 +241,8 @@ uint64 utility_process_resource_data(longlong resource_handle)
  * 简化实现：使用语义化变量名，提高代码可读性。
  * 原本实现：使用未语义化的变量名，如local_var1、temp_var等。
  * 
- * 注意：这是简化实现，实际功能可能更复杂。
+ * @note 这是简化实现，实际功能可能更复杂。
+ * @warning 该函数使用硬编码的系统资源上下文
  */
 uint64 utility_resource_data_processor(void)
 {
@@ -283,7 +284,8 @@ uint64 utility_resource_data_processor(void)
  * 简化实现：返回固定状态值，提供基本功能框架。
  * 原本实现：可能包含复杂的内存计算逻辑。
  * 
- * 注意：这是简化实现，实际功能可能更复杂。
+ * @note 这是简化实现，实际功能可能更复杂。
+ * @see utility_process_resource_data
  */
 uint32 utility_get_memory_usage(void)
 {
@@ -300,7 +302,8 @@ uint32 utility_get_memory_usage(void)
  * 简化实现：返回固定状态值，提供基本功能框架。
  * 原本实现：可能包含复杂的上下文管理逻辑。
  * 
- * 注意：这是简化实现，实际功能可能更复杂。
+ * @note 这是简化实现，实际功能可能更复杂。
+ * @see utility_resource_data_processor
  */
 uint64 utility_manage_context(void)
 {
