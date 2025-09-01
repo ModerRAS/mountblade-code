@@ -9552,7 +9552,23 @@ void ExecuteNetworkSecurityGuardCleanupAlternative(void)
 
 
 // 函数: void FUN_180849990(NetworkHandle connectionContext,NetworkStatus packetData,NetworkHandle *dataSize,NetworkHandle *param_4)
-void FUN_180849990(NetworkHandle connectionContext,NetworkStatus packetData,NetworkHandle *dataSize,NetworkHandle *param_4)
+/**
+ * @brief 处理网络连接数据验证和处理
+ * 
+ * 该函数负责处理网络连接的数据验证和处理操作，包括：
+ * - 数据验证和缓冲区处理
+ * - 地址验证
+ * - 模板数据处理
+ * - 参数处理和错误检查
+ * 
+ * @param connectionContext 网络连接上下文句柄
+ * @param packetData 数据包数据
+ * @param dataSize 数据大小指针
+ * @param param_4 额外参数
+ * 
+ * 注意：这是一个反编译的函数实现
+ */
+void ProcessNetworkConnectionDataValidationAndProcessing(NetworkHandle connectionContext,NetworkStatus packetData,NetworkHandle *dataSize,NetworkHandle *param_4)
 
 {
   NetworkStatus primaryNetworkFlag;
@@ -9643,7 +9659,23 @@ LAB_1808499fb:
 
 
 // 函数: void FUN_180849bb0(NetworkHandle connectionContext,NetworkHandle packetData,NetworkStatus dataSize,NetworkByte param_4)
-void FUN_180849bb0(NetworkHandle connectionContext,NetworkHandle packetData,NetworkStatus dataSize,NetworkByte param_4)
+/**
+ * @brief 处理网络连接数据包传输
+ * 
+ * 该函数负责处理网络连接的数据包传输操作，包括：
+ * - 网络连接ID初始化
+ * - 连接句柄初始化
+ * - 数据包传输处理
+ * - 状态标志设置
+ * 
+ * @param connectionContext 网络连接上下文句柄
+ * @param packetData 数据包数据
+ * @param dataSize 数据大小
+ * @param param_4 传输参数
+ * 
+ * 注意：这是一个反编译的函数实现
+ */
+void ProcessNetworkConnectionPacketTransfer(NetworkHandle connectionContext,NetworkHandle packetData,NetworkStatus dataSize,NetworkByte param_4)
 
 {
   int networkStatus1;

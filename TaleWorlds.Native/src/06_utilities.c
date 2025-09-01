@@ -10963,78 +10963,87 @@ uint8_t InsertOrUpdateResourceInHashTable(longlong *hashTablePointer, uint *reso
 
 
 
-undefined8 FUN_180895d62(undefined8 param_1,int param_2)
-
+/**
+ * @brief 在资源池中查找或插入条目
+ * 
+ * 该函数在资源池中查找指定的键值，如果找到则更新对应的值，
+ * 如果未找到则在适当的位置插入新的键值对
+ * 
+ * @param resourcePool 资源池指针
+ * @param searchKey 要查找或插入的键值
+ * @return uint64_t 操作结果，成功返回0，失败返回错误码
+ */
+uint64_t FindOrInsertInResourcePool(undefined8 resourcePool, int searchKey)
 {
-  longlong lVar1;
-  int in_EAX;
-  int iVar2;
-  int iVar3;
-  undefined8 uVar4;
-  undefined8 *puVar5;
-  int iVar6;
-  longlong lVar7;
-  undefined4 *puVar8;
-  uint uVar9;
-  int iVar10;
-  int *piVar11;
-  longlong *unaff_RDI;
-  undefined8 *unaff_R14;
-  undefined4 *unaff_R15;
-  undefined8 uStack0000000000000028;
+  longlong poolData;
+  int index;
+  int currentEntry;
+  int newCapacity;
+  undefined8 operationResult;
+  undefined8 *entryPointer;
+  int entryCount;
+  longlong entryOffset;
+  undefined4 *entryData;
+  uint capacity;
+  int expandedCapacity;
+  int *indexPointer;
+  longlong *poolHeader;
+  undefined8 *valuePointer;
+  undefined4 *keyPointer;
+  undefined8 newValue;
   
-  piVar11 = (int *)(*unaff_RDI + (longlong)in_EAX * 4);
-  iVar2 = *(int *)(*unaff_RDI + (longlong)in_EAX * 4);
-  if (iVar2 != -1) {
-    lVar1 = unaff_RDI[2];
+  indexPointer = (int *)(*poolHeader + (longlong)index * 4);
+  currentEntry = *(int *)(*poolHeader + (longlong)index * 4);
+  if (currentEntry != -1) {
+    poolData = poolHeader[2];
     do {
-      lVar7 = (longlong)iVar2;
-      if (*(int *)(lVar1 + lVar7 * 0x10) == param_2) {
-        *(undefined8 *)(lVar1 + 8 + lVar7 * 0x10) = *unaff_R14;
+      entryOffset = (longlong)currentEntry;
+      if (*(int *)(poolData + entryOffset * 0x10) == searchKey) {
+        *(undefined8 *)(poolData + 8 + entryOffset * 0x10) = *valuePointer;
         return 0;
       }
-      iVar2 = *(int *)(lVar1 + 4 + lVar7 * 0x10);
-      piVar11 = (int *)(lVar1 + 4 + lVar7 * 0x10);
-    } while (iVar2 != -1);
+      currentEntry = *(int *)(poolData + 4 + entryOffset * 0x10);
+      indexPointer = (int *)(poolData + 4 + entryOffset * 0x10);
+    } while (currentEntry != -1);
   }
-  iVar2 = (int)unaff_RDI[4];
-  if (iVar2 == -1) {
-    uStack0000000000000028 = *unaff_R14;
-    iVar2 = (int)unaff_RDI[3];
-    iVar6 = iVar2 + 1;
-    uVar9 = (int)*(uint *)((longlong)unaff_RDI + 0x1c) >> 0x1f;
-    iVar3 = (*(uint *)((longlong)unaff_RDI + 0x1c) ^ uVar9) - uVar9;
-    if (iVar3 < iVar6) {
-      iVar10 = (int)((float)iVar3 * 1.5);
-      iVar3 = iVar6;
-      if (iVar6 <= iVar10) {
-        iVar3 = iVar10;
+  currentEntry = (int)poolHeader[4];
+  if (currentEntry == -1) {
+    newValue = *valuePointer;
+    currentEntry = (int)poolHeader[3];
+    entryCount = currentEntry + 1;
+    capacity = (int)*(uint *)((longlong)poolHeader + 0x1c) >> 0x1f;
+    newCapacity = (*(uint *)((longlong)poolHeader + 0x1c) ^ capacity) - capacity;
+    if (newCapacity < entryCount) {
+      expandedCapacity = (int)((float)newCapacity * 1.5);
+      newCapacity = entryCount;
+      if (entryCount <= expandedCapacity) {
+        newCapacity = expandedCapacity;
       }
-      if (iVar3 < 4) {
-        iVar10 = 4;
+      if (newCapacity < 4) {
+        expandedCapacity = 4;
       }
-      else if (iVar10 < iVar6) {
-        iVar10 = iVar6;
+      else if (expandedCapacity < entryCount) {
+        expandedCapacity = entryCount;
       }
-      uVar4 = FUN_1807d3f50(unaff_RDI + 2,iVar10);
-      if ((int)uVar4 != 0) {
-        return uVar4;
+      operationResult = FUN_1807d3f50(poolHeader + 2, expandedCapacity);
+      if ((int)operationResult != 0) {
+        return operationResult;
       }
     }
-    puVar5 = (undefined8 *)((longlong)(int)unaff_RDI[3] * 0x10 + unaff_RDI[2]);
-    *puVar5 = CONCAT44(0xffffffff,param_2);
-    puVar5[1] = uStack0000000000000028;
-    *(int *)(unaff_RDI + 3) = (int)unaff_RDI[3] + 1;
+    entryPointer = (undefined8 *)((longlong)(int)poolHeader[3] * 0x10 + poolHeader[2]);
+    *entryPointer = CONCAT44(0xffffffff, searchKey);
+    entryPointer[1] = newValue;
+    *(int *)(poolHeader + 3) = (int)poolHeader[3] + 1;
   }
   else {
-    puVar8 = (undefined4 *)((longlong)iVar2 * 0x10 + unaff_RDI[2]);
-    *(undefined4 *)(unaff_RDI + 4) = puVar8[1];
-    puVar8[1] = 0xffffffff;
-    *puVar8 = *unaff_R15;
-    *(undefined8 *)(puVar8 + 2) = *unaff_R14;
+    entryData = (undefined4 *)((longlong)currentEntry * 0x10 + poolHeader[2]);
+    *(undefined4 *)(poolHeader + 4) = entryData[1];
+    entryData[1] = 0xffffffff;
+    *entryData = *keyPointer;
+    *(undefined8 *)(entryData + 2) = *valuePointer;
   }
-  *piVar11 = iVar2;
-  *(int *)((longlong)unaff_RDI + 0x24) = *(int *)((longlong)unaff_RDI + 0x24) + 1;
+  *indexPointer = currentEntry;
+  *(int *)((longlong)poolHeader + 0x24) = *(int *)((longlong)poolHeader + 0x24) + 1;
   return 0;
 }
 
@@ -11352,36 +11361,45 @@ uint8_t GetMemoryAllocationFailureCode(void)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 FUN_180896040(longlong *param_1,int param_2)
-
+/**
+ * @brief 调整数组大小
+ * 
+ * 该函数用于调整动态数组的大小，分配新的内存空间并复制现有数据
+ * 如果新大小小于当前大小，返回错误码
+ * 
+ * @param arrayPointer 数组指针的指针
+ * @param newSize 新的数组大小
+ * @return uint64_t 操作结果，成功返回0，失败返回错误码
+ */
+uint64_t ResizeArray(longlong *arrayPointer, int newSize)
 {
-  longlong lVar1;
+  longlong newMemoryBlock;
   
-  if (param_2 < (int)param_1[1]) {
+  if (newSize < (int)arrayPointer[1]) {
     return 0x1c;
   }
-  lVar1 = 0;
-  if (param_2 != 0) {
-    if (param_2 * 0xc - 1U < 0x3fffffff) {
-      lVar1 = FUN_180741e10(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),param_2 * 0xc,&UNK_180957f70,
+  newMemoryBlock = 0;
+  if (newSize != 0) {
+    if (newSize * 0xc - 1U < 0x3fffffff) {
+      newMemoryBlock = FUN_180741e10(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),newSize * 0xc,&UNK_180957f70,
                             0xf4,0,0,1);
-      if (lVar1 != 0) {
-        if ((int)param_1[1] != 0) {
+      if (newMemoryBlock != 0) {
+        if ((int)arrayPointer[1] != 0) {
                     // WARNING: Subroutine does not return
-          memcpy(lVar1,*param_1,(longlong)(int)param_1[1] * 0xc);
+          memcpy(newMemoryBlock,*arrayPointer,(longlong)(int)arrayPointer[1] * 0xc);
         }
-        goto LAB_1808960d4;
+        goto cleanup_old_memory;
       }
     }
     return 0x26;
   }
-LAB_1808960d4:
-  if ((0 < *(int *)((longlong)param_1 + 0xc)) && (*param_1 != 0)) {
+cleanup_old_memory:
+  if ((0 < *(int *)((longlong)arrayPointer + 0xc)) && (*arrayPointer != 0)) {
                     // WARNING: Subroutine does not return
-    FUN_180742250(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),*param_1,&UNK_180957f70,0x100,1);
+    FUN_180742250(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),*arrayPointer,&UNK_180957f70,0x100,1);
   }
-  *param_1 = lVar1;
-  *(int *)((longlong)param_1 + 0xc) = param_2;
+  *arrayPointer = newMemoryBlock;
+  *(int *)((longlong)arrayPointer + 0xc) = newSize;
   return 0;
 }
 
@@ -11389,33 +11407,42 @@ LAB_1808960d4:
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 FUN_180896064(undefined8 param_1,int param_2)
-
+/**
+ * @brief 扩展数组大小
+ * 
+ * 该函数用于扩展动态数组的大小，分配新的内存空间并复制现有数据
+ * 与ResizeArray类似，但使用不同的参数传递方式
+ * 
+ * @param arrayHeader 数组头部指针
+ * @param newSize 新的数组大小
+ * @return uint64_t 操作结果，成功返回0，失败返回错误码
+ */
+uint64_t ExpandArray(undefined8 arrayHeader, int newSize)
 {
-  longlong lVar1;
-  longlong *unaff_RBX;
-  int unaff_EDI;
+  longlong newMemoryBlock;
+  longlong *arrayPointer;
+  int currentSize;
   
-  lVar1 = 0;
-  if (unaff_EDI == 0) {
-LAB_1808960d4:
-    if ((0 < *(int *)((longlong)unaff_RBX + 0xc)) && (*unaff_RBX != 0)) {
+  newMemoryBlock = 0;
+  if (currentSize == 0) {
+cleanup_old_memory:
+    if ((0 < *(int *)((longlong)arrayPointer + 0xc)) && (*arrayPointer != 0)) {
                     // WARNING: Subroutine does not return
-      FUN_180742250(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),*unaff_RBX,&UNK_180957f70,0x100,1);
+      FUN_180742250(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),*arrayPointer,&UNK_180957f70,0x100,1);
     }
-    *unaff_RBX = lVar1;
-    *(int *)((longlong)unaff_RBX + 0xc) = unaff_EDI;
+    *arrayPointer = newMemoryBlock;
+    *(int *)((longlong)arrayPointer + 0xc) = currentSize;
     return 0;
   }
-  if (param_2 * 0xc - 1U < 0x3fffffff) {
-    lVar1 = FUN_180741e10(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),param_2 * 0xc,&UNK_180957f70,0xf4,
+  if (newSize * 0xc - 1U < 0x3fffffff) {
+    newMemoryBlock = FUN_180741e10(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),newSize * 0xc,&UNK_180957f70,0xf4,
                           0);
-    if (lVar1 != 0) {
-      if ((int)unaff_RBX[1] != 0) {
+    if (newMemoryBlock != 0) {
+      if ((int)arrayPointer[1] != 0) {
                     // WARNING: Subroutine does not return
-        memcpy(lVar1,*unaff_RBX,(longlong)(int)unaff_RBX[1] * 0xc);
+        memcpy(newMemoryBlock,*arrayPointer,(longlong)(int)arrayPointer[1] * 0xc);
       }
-      goto LAB_1808960d4;
+      goto cleanup_old_memory;
     }
   }
   return 0x26;
@@ -11423,8 +11450,14 @@ LAB_1808960d4:
 
 
 
-undefined8 FUN_18089611f(void)
-
+/**
+ * @brief 返回数组操作错误码
+ * 
+ * 该函数返回数组操作中的错误码，用于指示操作失败
+ * 
+ * @return uint64_t 错误码 0x26
+ */
+uint64_t ReturnArrayOperationError(void)
 {
   return 0x26;
 }
