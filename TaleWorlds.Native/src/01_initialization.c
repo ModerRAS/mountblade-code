@@ -41104,7 +41104,14 @@ AllocateSystemMemory(void* *SystemResourcePointer,uint32_t ConfigurationDataPoin
 
 
 
-long long FUN_1800637c0(long long SystemResourcePointer)
+/**
+ * InitializeSecurityCallbackStructure - 初始化安全回调结构
+ * @param SystemResourcePointer 系统资源指针
+ * @return 返回初始化后的系统资源指针
+ * 
+ * 原始函数名为FUN_1800637c0，现已重命名为InitializeSecurityCallbackStructure
+ */
+long long InitializeSecurityCallbackStructure(long long SystemResourcePointer)
 
 {
   *(void* *)(SystemResourcePointer + 0x10) = 0;
@@ -41114,7 +41121,14 @@ long long FUN_1800637c0(long long SystemResourcePointer)
 
 
 
-long long FUN_1800637f0(long long SystemResourcePointer)
+/**
+ * InitializeGuardCallbackStructure - 初始化保护回调结构
+ * @param SystemResourcePointer 系统资源指针
+ * @return 返回初始化后的系统资源指针
+ * 
+ * 原始函数名为FUN_1800637f0，现已重命名为InitializeGuardCallbackStructure
+ */
+long long InitializeGuardCallbackStructure(long long SystemResourcePointer)
 
 {
   *(void* *)(SystemResourcePointer + 0x10) = 0;
@@ -41126,73 +41140,84 @@ long long FUN_1800637f0(long long SystemResourcePointer)
 
 
 
-// 函数: void FUN_180063820(void* SystemResourcePointer)
-void FUN_180063820(void* SystemResourcePointer)
+/**
+ * InitializeSecurityContext - 初始化安全上下文
+ * @param SystemResourcePointer 系统资源指针
+ * 
+ * 原始函数名为FUN_180063820，现已重命名为InitializeSecurityContext
+ */
+void InitializeSecurityContext(void* SystemResourcePointer)
 
 {
-  uint8_t auStack_2e8 [96];
-  uint8_t auStack_288 [64];
-  void* uStack_248;
-  void* uStack_240;
-  uint8_t auStack_238 [512];
-  ulong long uStack_38;
+  uint8_t securityBuffer [96];
+  uint8_t configurationBuffer [64];
+  void* stackValue1;
+  void* contextValue;
+  uint8_t memoryBuffer [512];
+  ulong long securityKey;
   
-  uStack_248 = 0xfffffffffffffffe;
-  uStack_38 = SystemEncryptionKeyTemplate ^ (ulong long)auStack_2e8;
-  uStack_240 = SystemResourcePointer;
-  CreateSystemObject(auStack_288,SystemContextManagerPointer + 0x28);
+  stackValue1 = 0xfffffffffffffffe;
+  securityKey = SystemEncryptionKeyTemplate ^ (ulong long)securityBuffer;
+  contextValue = SystemResourcePointer;
+  CreateSystemObject(configurationBuffer,SystemContextManagerPointer + 0x28);
                     // WARNING: Subroutine does not return
-  memset(auStack_238,0,0x200);
+  memset(memoryBuffer,0,0x200);
 }
 
 
 
 
 
-// 函数: void FUN_180063b30(void* SystemResourcePointer,long long ConfigurationDataPointer)
-void FUN_180063b30(void* SystemResourcePointer,long long ConfigurationDataPointer)
+/**
+ * ConfigureSecurityParameters - 配置安全参数
+ * @param SystemResourcePointer 系统资源指针
+ * @param ConfigurationDataPointer 配置数据指针
+ * 
+ * 原始函数名为FUN_180063b30，现已重命名为ConfigureSecurityParameters
+ */
+void ConfigureSecurityParameters(void* SystemResourcePointer,long long ConfigurationDataPointer)
 
 {
-  char *pcVar1;
-  void* *pointerToUnsigned2;
-  long long localResourceOffset;
-  long long localBufferAddress;
+  char *stringPointer;
+  void* *dataPointer;
+  long long stringLength;
+  long long loopCounter1;
   long long systemTimeValue;
-  long long localSystemFlags;
-  void* uStack_48;
-  long long lStack_40;
-  void* *puStack_30;
-  void* *puStack_28;
-  uint32_t uStack_18;
+  long long fileHandle;
+  void* stackValue1;
+  long long outputStream;
+  void* *stackPointer1;
+  void* *stackPointer2;
+  uint32_t stackValue2;
   
-  uStack_48 = 0;
-  lStack_40 = 0;
-  FUN_180627e10(SystemResourcePointer,&puStack_30,&UNK_1809fe800);
-  pointerToUnsigned2 = &SystemStringTemplate;
-  if (puStack_28 != (void* *)0x0) {
-    pointerToUnsigned2 = puStack_28;
+  stackValue1 = 0;
+  outputStream = 0;
+  FUN_180627e10(SystemResourcePointer,&stackPointer1,&UNK_1809fe800);
+  dataPointer = &SystemStringTemplate;
+  if (stackPointer2 != (void* *)0x0) {
+    dataPointer = stackPointer2;
   }
-  ProcessSystemResourceData(&uStack_48,pointerToUnsigned2,&SystemEventTemplate);
-  localSystemFlags = lStack_40;
-  localSystemPointer = -1;
-  localResourceOffset = localSystemPointer;
-  localBufferAddress = localSystemPointer;
+  ProcessSystemResourceData(&stackValue1,dataPointer,&SystemEventTemplate);
+  fileHandle = outputStream;
+  systemTimeValue = -1;
+  stringLength = systemTimeValue;
+  loopCounter1 = systemTimeValue;
   if (ConfigurationDataPointer != 0) {
     do {
-      localResourceOffset = localResourceOffset + 1;
-    } while (*(char *)(ConfigurationDataPointer + localResourceOffset) != '\0');
-    if (localResourceOffset != 0) {
-      fwrite(ConfigurationDataPointer,localResourceOffset,1,lStack_40);
+      stringLength = stringLength + 1;
+    } while (*(char *)(ConfigurationDataPointer + stringLength) != '\0');
+    if (stringLength != 0) {
+      fwrite(ConfigurationDataPointer,stringLength,1,outputStream);
     }
   }
   do {
-    localResourceOffset = localBufferAddress + 1;
-    pcVar1 = (char *)(localBufferAddress + 0x180c84871);
-    localBufferAddress = localResourceOffset;
-  } while (*pcVar1 != '\0');
-  if (localResourceOffset != 0) {
-    fwrite(&DAT_1809fe810,0x30,1,localSystemFlags);
-    fwrite(&SystemStringBuffer,localResourceOffset,1,localSystemFlags);
+    stringLength = loopCounter1 + 1;
+    stringPointer = (char *)(loopCounter1 + 0x180c84871);
+    loopCounter1 = stringLength;
+  } while (*stringPointer != '\0');
+  if (stringLength != 0) {
+    fwrite(&DAT_1809fe810,0x30,1,fileHandle);
+    fwrite(&SystemStringBuffer,stringLength,1,fileHandle);
 
 // 函数: void FUN_180063cf0(void)
 void FUN_180063cf0(void)
@@ -42832,8 +42857,8 @@ LAB_18006650a:
     }
     ppuStack_a8 = &puStack_138;
     unsignedSystemValue5 = CreateSystemObject(&puStack_138,&puStack_198);
-    FUN_180063820(unsignedSystemValue5);
-    FUN_180063b30(&puStack_198,param_5);
+    InitializeSecurityContext(unsignedSystemValue5);
+    ConfigureSecurityParameters(&puStack_198,param_5);
     FUN_180063cf0(&puStack_198);
     SetupSystemConfiguration(&puStack_138);
     FUN_180627e10(&puStack_138,&puStack_f0,&UNK_1809fe848);
