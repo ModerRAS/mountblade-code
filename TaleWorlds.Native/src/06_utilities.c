@@ -2452,7 +2452,7 @@ undefined SystemResourceManager;
 undefined SystemResourcePool;
 undefined ScriptVariableTable;
 undefined ScriptClassTable;
-undefined DAT_180bfbb70;
+undefined ScriptMethodTable;
 undefined DAT_180bfbb80;
 
  undefined InitializeResourceManager;
