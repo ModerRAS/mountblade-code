@@ -25863,8 +25863,8 @@ void SystemCleanupHandler(void)
   RegisterSystemCallback(*(void* *)(_DAT_180c868a8 + 0xa8),&UNK_180a00e18,&UNK_180a00450,SystemCallbackHandler5);
   RegisterSystemCallback(*(void* *)(_DAT_180c868a8 + 0xa8),&DAT_180a01228,&DAT_180a00360,SystemCallbackHandler6);
   RegisterSystemCallback(*(void* *)(_DAT_180c868a8 + 0xa8),&DAT_180a00c90,&UNK_180a00480,SystemCallbackHandler7);
-  RegisterSystemCallback(*(void* *)(_DAT_180c868a8 + 0xa8),&UNK_180a00ab8,&UNK_180a00ac8,FUN_1800900c0);
-  RegisterSystemCallback(*(void* *)(_DAT_180c868a8 + 0xa8),&UNK_180a01170,&UNK_180a00368,FUN_180086830);
+  RegisterSystemCallback(*(void* *)(_DAT_180c868a8 + 0xa8),&UNK_180a00ab8,&UNK_180a00ac8,SystemCallbackHandler8);
+  RegisterSystemCallback(*(void* *)(_DAT_180c868a8 + 0xa8),&UNK_180a01170,&UNK_180a00368,SystemCallbackHandler9);
   RegisterSystemCallback(*(void* *)(_DAT_180c868a8 + 0xa8),&DAT_180a009f0,&UNK_180a00a00,FUN_180090020);
   RegisterSystemCallback(*(void* *)(_DAT_180c868a8 + 0xa8),&DAT_180a00c80,&UNK_180a00490,FUN_180086b40);
   SystemPreviousNode = (uint32_t *)FUN_18008d660(localResourceOffset + 0xe0,&DAT_180a009f0);
