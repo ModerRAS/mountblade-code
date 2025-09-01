@@ -153,12 +153,12 @@ undefined physicsConstraintSolver;
  * 设置键盘、鼠标和手柄输入的处理机制
  */
 void InitializeInputManager(void);
-undefined UNK_180a00518;
-undefined DAT_180bf6620;
-undefined DAT_180bf6628;
-undefined DAT_180bf6630;
-undefined DAT_180bf6638;
-undefined UNK_180a00528;
+undefined inputSystemInstance;
+undefined inputDeviceManager;
+undefined keyboardHandler;
+undefined mouseHandler;
+undefined controllerManager;
+undefined inputEventQueue;
 
 // 函数: void InitializeNetworkManager(void)
 /**
@@ -168,11 +168,11 @@ undefined UNK_180a00528;
  * 设置网络连接、数据传输和通信协议
  */
 void InitializeNetworkManager(void);
-undefined DAT_180bf6650;
-undefined DAT_180bf6658;
-undefined DAT_180bf6660;
-undefined DAT_180bf6668;
-undefined UNK_180a00538;
+undefined networkSystemInstance;
+undefined networkConnectionManager;
+undefined packetHandler;
+undefined networkProtocolManager;
+undefined networkEventDispatcher;
 
 // 函数: undefined FUN_1809418c0;
 undefined FUN_1809418c0;
