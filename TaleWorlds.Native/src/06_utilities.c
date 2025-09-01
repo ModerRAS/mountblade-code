@@ -32217,7 +32217,19 @@ void UnwindSystemResourceProcessorSetup20(uint8_t objectContextParam,int64_t val
 
 
 
-void Unwind_180902b90(uint8_t objectContextParam,int64_t validationContextParam)
+/**
+ * @brief 清理系统资源处理器A
+ * 
+ * 该函数负责清理系统资源处理器A的相关资源
+ * 释放内存并重置相关指针
+ * 
+ * @param objectContextParam 对象上下文参数，包含对象相关的上下文信息
+ * @param validationContextParam 验证上下文参数，包含验证所需的信息
+ * @return 无返回值
+ * @note 此函数会清理系统资源处理器A的资源
+ * @warning 调用此函数后，相关资源将被释放
+ */
+void CleanupSystemResourceHandlerA(uint8_t objectContextParam,int64_t validationContextParam)
 
 {
   int64_t loopCounter;
@@ -32236,7 +32248,19 @@ void Unwind_180902b90(uint8_t objectContextParam,int64_t validationContextParam)
 
 
 
-void Unwind_180902ba0(uint8_t objectContextParam,int64_t validationContextParam)
+/**
+ * @brief 清理系统资源处理器B
+ * 
+ * 该函数负责清理系统资源处理器B的相关资源
+ * 释放内存并重置相关指针
+ * 
+ * @param objectContextParam 对象上下文参数，包含对象相关的上下文信息
+ * @param validationContextParam 验证上下文参数，包含验证所需的信息
+ * @return 无返回值
+ * @note 此函数会清理系统资源处理器B的资源
+ * @warning 调用此函数后，相关资源将被释放
+ */
+void CleanupSystemResourceHandlerB(uint8_t objectContextParam,int64_t validationContextParam)
 
 {
   int64_t loopCounter;

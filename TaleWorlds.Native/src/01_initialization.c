@@ -599,20 +599,20 @@ void* SystemDataNodeLinkageManager;               // 系统数据节点链接管
 void* SystemDataNodeLinkageHandler;               // 系统数据节点链接处理器
 void* SystemConfigurationDataTemplate;  // SystemConfigurationTemplate
 void* SystemStringTemplate;  // SystemStringTemplate
-void* SystemDataTemplate;  // DAT_180a01000
+void* SystemDataTemplate;  // SystemDataTemplate
 void* SystemDataNodeLinkageCache;                // 系统数据节点链接缓存
 void* SystemDataNodeLinkageBackup;                // 系统数据节点链接备份
 void* SystemDataNodeLinkagePrimary;               // 系统数据节点链接主表
 void* SystemDataNodeLinkageSecondary;             // 系统数据节点链接次表
-void* SystemComparisonTemplateA;  // DAT_180a00fd8
-void* SystemComparisonTemplateB;  // DAT_180a00fb0
+void* SystemComparisonTemplateA;  // SystemComparisonTemplateA
+void* SystemComparisonTemplateB;  // SystemComparisonTemplateB
 void* SystemDataNodeLinkageTertiary;              // 系统数据节点链接第三表
 void* SystemDataNodeLinkageQuaternary;            // 系统数据节点链接第四表
 void* SystemDataNodeLinkageQuinary;               // 系统数据节点链接第五表
-void* SystemComparisonTemplateC;  // DAT_180a00bb0
+void* SystemComparisonTemplateC;  // SystemComparisonTemplateC
 void* SystemConfigDataPointerSeptenary;        // SystemConfigDataPointerG
-void* SystemConfigDataPointerH;  // DAT_180bf6768
-void* SystemResourceTemplate;  // DAT_180bf5240
+void* SystemConfigDataPointerH;  // SystemConfigDataPointerH
+void* SystemResourceTemplate;  // SystemResourceTemplate
 void* SystemDebugFlag;  // DAT_180bf0101
 void* SystemStringBuffer;  // DAT_180c84870
 void* SystemNodeLinkPointerPrimary;        // 系统节点链接指针主表
@@ -1938,18 +1938,18 @@ int InitializeSystemThreadSynchronization(void* threadPool, void* syncConfig, si
 void InitializeSystemStringHandler(void)
 
 {
-  uint64_t systemStringParameter;
-  void* stringProcessCallbackPointer;
+  uint64_t SystemStringParameter;
+  void* StringProcessCallbackPointer;
   uint8_t* stringDataBufferPointer;
   uint32_t stringBufferSize;
   uint8_t stringDataBuffer [136];
   
-  stringProcessCallbackPointer = &SystemStringProcessorNode;
+  StringProcessCallbackPointer = &SystemStringProcessorNode;
   stringDataBufferPointer = stringDataBuffer;
   stringDataBuffer[0] = 0;
   stringBufferSize = 7;
-  strcpy_s(stringDataBuffer,0x80,&SystemStringProcessorTemplate,systemStringParameter,0xfffffffffffffffe);
-  SystemStringProcessorHandle = InitializeStringProcessorCallback(&stringProcessCallbackPointer);
+  strcpy_s(stringDataBuffer,0x80,&SystemStringProcessorTemplate,SystemStringParameter,0xfffffffffffffffe);
+  SystemStringProcessorHandle = InitializeStringProcessorCallback(&StringProcessCallbackPointer);
   return;
 }
 
@@ -2770,18 +2770,18 @@ int InitializeSystemStringProcessingGlobals(void)
 void InitializeSystemStringProcessor(void)
 
 {
-  uint64_t systemStringParameter;
-  void* stringProcessCallbackPointer;
+  uint64_t SystemStringParameter;
+  void* StringProcessCallbackPointer;
   uint8_t* stringDataBufferPointer;
   uint32_t stringBufferSize;
   uint8_t stringDataBuffer [136];
   
-  stringProcessCallbackPointer = &SystemStringProcessorNode;
+  StringProcessCallbackPointer = &SystemStringProcessorNode;
   stringDataBufferPointer = stringDataBuffer;
   stringDataBuffer[0] = 0;
   stringBufferSize = 0xb;
-  strcpy_s(stringDataBuffer,0x80,&SystemStringProcessorTemplate,systemStringParameter,0xfffffffffffffffe);
-  SystemStringProcessorHandle = InitializeStringProcessorCallback(&stringProcessCallbackPointer);
+  strcpy_s(stringDataBuffer,0x80,&SystemStringProcessorTemplate,SystemStringParameter,0xfffffffffffffffe);
+  SystemStringProcessorHandle = InitializeStringProcessorCallback(&StringProcessCallbackPointer);
   return;
 }
 
