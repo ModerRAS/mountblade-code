@@ -1006,11 +1006,11 @@ undefined UNK_180a22c30;
  * 配置内存地址对齐和边界检查
  */
 void SetupMemoryAlignment;
-undefined DAT_180bf95d0;
-undefined DAT_180bf95d8;
-undefined DAT_180bf95e0;
-undefined DAT_180bf95e8;
-undefined UNK_180a22c18;
+uint32_t MemoryAlignmentConfigData1;
+uint32_t MemoryAlignmentConfigData2;
+uint32_t MemoryAlignmentConfigData3;
+uint32_t MemoryAlignmentConfigData4;
+void* MemoryAlignmentReservedMemory;
 
  void InitializeMemoryCompression;
 /**
@@ -1020,11 +1020,11 @@ undefined UNK_180a22c18;
  * 设置内存压缩算法和参数
  */
 void InitializeMemoryCompression;
-undefined DAT_180bf9630;
-undefined DAT_180bf9638;
-undefined DAT_180bf9640;
-undefined DAT_180bf9648;
-undefined UNK_180a22c00;
+uint32_t MemoryCompressionConfigData1;
+uint32_t MemoryCompressionConfigData2;
+uint32_t MemoryCompressionConfigData3;
+uint32_t MemoryCompressionConfigData4;
+void* MemoryCompressionReservedMemory;
 
  void ConfigureMemoryEncryption;
 /**
@@ -1034,11 +1034,11 @@ undefined UNK_180a22c00;
  * 设置加密算法和密钥管理
  */
 void ConfigureMemoryEncryption;
-undefined DAT_180bf9690;
-undefined DAT_180bf9698;
-undefined DAT_180bf96a0;
-undefined DAT_180bf96a8;
-undefined DAT_180a22cb0;
+uint32_t MemoryEncryptionConfigData1;
+uint32_t MemoryEncryptionConfigData2;
+uint32_t MemoryEncryptionConfigData3;
+uint32_t MemoryEncryptionConfigData4;
+void* MemoryEncryptionReservedMemory;
 
  void InitializeMemoryVirtualization;
 /**
