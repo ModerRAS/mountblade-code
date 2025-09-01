@@ -6866,42 +6866,50 @@ LAB_18088d83c:
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void FUN_180892410(longlong param_1,longlong param_2)
-void FUN_180892410(longlong param_1,longlong param_2)
+ /**
+ * @brief 验证对象上下文并处理指针验证
+ * 
+ * 该函数验证对象上下文的有效性，并执行复杂的指针验证操作
+ * 如果验证失败则调用相应的错误处理函数
+ * 
+ * @param ObjectContext 对象上下文指针，包含要处理的对象信息
+ * @param SystemContext 系统上下文指针，包含系统运行环境信息
+ */
+void ValidateObjectContextAndProcessPointerValidation(longlong ObjectContext, longlong SystemContext)
 
 {
-  longlong lVar1;
-  int iVar2;
-  longlong lVar3;
-  longlong *plVar4;
-  undefined1 auStack_68 [32];
-  longlong lStack_48;
-  undefined1 auStack_40 [40];
-  ulonglong uStack_18;
+  longlong objectDataPointer;
+  int validationStatus;
+  longlong allocatedMemory;
+  longlong *pointerReference;
+  undefined1 securityBuffer [32];
+  longlong contextBuffer;
+  undefined1 processingBuffer [40];
+  ulonglong securityToken;
   
-  uStack_18 = _DAT_180bf00a8 ^ (ulonglong)auStack_68;
-  iVar2 = ValidateObjectContext(*(undefined4 *)(param_1 + 0x10),&lStack_48);
-  if (iVar2 == 0) {
-    if (lStack_48 != 0) {
-      lStack_48 = lStack_48 + -8;
+  securityToken = _DAT_180bf00a8 ^ (ulonglong)securityBuffer;
+  validationStatus = ValidateObjectContext(*(undefined4 *)(ObjectContext + 0x10), &contextBuffer);
+  if (validationStatus == 0) {
+    if (contextBuffer != 0) {
+      contextBuffer = contextBuffer + -8;
     }
-    if (*(longlong *)(lStack_48 + 0x18) != 0) {
-      lVar1 = *(longlong *)(lStack_48 + 0x18) + 0x30;
-      lVar3 = (**(code **)(**(longlong **)(param_2 + 800) + 0x2f0))
-                        (*(longlong **)(param_2 + 800),lVar1,1);
-      if (lVar3 == 0) {
+    if (*(longlong *)(contextBuffer + 0x18) != 0) {
+      objectDataPointer = *(longlong *)(contextBuffer + 0x18) + 0x30;
+      allocatedMemory = (**(code **)(**(longlong **)(SystemContext + 800) + 0x2f0))
+                        (*(longlong **)(SystemContext + 800), objectDataPointer, 1);
+      if (allocatedMemory == 0) {
                     // WARNING: Subroutine does not return
-        FUN_18084b240(lVar1,auStack_40);
+        ProcessMemoryAllocationFailure(objectDataPointer, processingBuffer);
       }
-      plVar4 = (longlong *)(lVar3 + 0x58);
-      if (((longlong *)*plVar4 != plVar4) || (*(longlong **)(lVar3 + 0x60) != plVar4)) {
+      pointerReference = (longlong *)(allocatedMemory + 0x58);
+      if (((longlong *)*pointerReference != pointerReference) || (*(longlong **)(allocatedMemory + 0x60) != pointerReference)) {
                     // WARNING: Subroutine does not return
-        FUN_18088d720(*(undefined8 *)(param_2 + 0x98),param_1);
+        ProcessSystemObject(*(undefined8 *)(SystemContext + 0x98), ObjectContext);
       }
     }
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_18 ^ (ulonglong)auStack_68);
+  CleanupSecurityToken(securityToken ^ (ulonglong)securityBuffer);
 }
 
 
