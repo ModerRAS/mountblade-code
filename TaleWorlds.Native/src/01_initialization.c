@@ -25860,9 +25860,9 @@ void SystemCleanupHandler(void)
   RegisterSystemCallback(*(void* *)(_DAT_180c868a8 + 0xa8),&DAT_180a002e0,&DAT_180a00410,SystemCallbackHandler2);
   RegisterSystemCallback(*(void* *)(_DAT_180c868a8 + 0xa8),&DAT_180a012f0,&UNK_180a00340,SystemCallbackHandler3);
   RegisterSystemCallback(*(void* *)(_DAT_180c868a8 + 0xa8),&DAT_180a00ef8,&UNK_180a00420,SystemCallbackHandler4);
-  RegisterSystemCallback(*(void* *)(_DAT_180c868a8 + 0xa8),&UNK_180a00e18,&UNK_180a00450,FUN_180086a00);
-  RegisterSystemCallback(*(void* *)(_DAT_180c868a8 + 0xa8),&DAT_180a01228,&DAT_180a00360,FUN_180086740);
-  RegisterSystemCallback(*(void* *)(_DAT_180c868a8 + 0xa8),&DAT_180a00c90,&UNK_180a00480,FUN_180086aa0);
+  RegisterSystemCallback(*(void* *)(_DAT_180c868a8 + 0xa8),&UNK_180a00e18,&UNK_180a00450,SystemCallbackHandler5);
+  RegisterSystemCallback(*(void* *)(_DAT_180c868a8 + 0xa8),&DAT_180a01228,&DAT_180a00360,SystemCallbackHandler6);
+  RegisterSystemCallback(*(void* *)(_DAT_180c868a8 + 0xa8),&DAT_180a00c90,&UNK_180a00480,SystemCallbackHandler7);
   RegisterSystemCallback(*(void* *)(_DAT_180c868a8 + 0xa8),&UNK_180a00ab8,&UNK_180a00ac8,FUN_1800900c0);
   RegisterSystemCallback(*(void* *)(_DAT_180c868a8 + 0xa8),&UNK_180a01170,&UNK_180a00368,FUN_180086830);
   RegisterSystemCallback(*(void* *)(_DAT_180c868a8 + 0xa8),&DAT_180a009f0,&UNK_180a00a00,FUN_180090020);
