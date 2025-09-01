@@ -16982,8 +16982,14 @@ void SystemConfigurationNodeInitializer(void)
 
 
 
-// 函数: void FUN_1800430d0(void)
-void FUN_1800430d0(void)
+// 函数: 系统事件节点初始化器
+/**
+ * @brief 系统事件节点初始化器
+ * 
+ * 该函数负责初始化系统事件节点，创建和配置系统的
+ * 事件处理数据结构，用于管理系统事件的分发和处理
+ */
+void SystemEventNodeInitializer(void)
 
 {
   char systemNodeFlag;
@@ -17032,8 +17038,14 @@ void FUN_1800430d0(void)
 
 
 
-// 函数: void FUN_1800431d0(void)
-void FUN_1800431d0(void)
+// 函数: 系统内存管理节点初始化器
+/**
+ * @brief 系统内存管理节点初始化器
+ * 
+ * 该函数负责初始化系统内存管理节点，创建和配置系统的
+ * 内存管理数据结构，用于优化内存分配和回收
+ */
+void SystemMemoryManagementNodeInitializer(void)
 
 {
   char systemNodeFlag;
