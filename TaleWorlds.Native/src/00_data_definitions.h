@@ -534,8 +534,8 @@ int InitializeConfigurationMutex(undefined8 threadId,undefined8 syncPtr,undefine
   DAT_180bf7210 = 0;
   _DAT_180bf7208 = 0xf;
   strcpy_s(&DAT_180bf7210,0x40,&UNK_180a0ce40);
-  lVar1 = FUN_1808fc7d0(&UNK_180941b70);
-  return (lVar1 != 0) - 1;
+  longlong callbackResult = FUN_1808fc7d0(&UNK_180941b70);
+  return (callbackResult != 0) - 1;
 }
 /**
  * 初始化字符串处理器J
@@ -555,29 +555,41 @@ int InitializeStringProcessorJ(void)
   callbackResult = RegisterSystemCallback(InitializeStringProcessorJ_Callback);
   return (callbackResult != 0) - 1;
 }
-int FUN_1800313c0(void)
+/**
+ * 初始化字符串处理器K
+ * 设置字符串处理所需的数据结构和回调
+ * 
+ * @return 初始化成功返回0，失败返回-1
+ */
+int InitializeStringProcessorK(void)
 {
-  longlong lVar1;
-  undefined8 in_R9;
-  _DAT_180bf72b0 = &UNK_1809fcc58;
-  _DAT_180bf72b8 = &DAT_180bf72c8;
-  DAT_180bf72c8 = 0;
-  _DAT_180bf72c0 = 9;
-  strcpy_s(&DAT_180bf72c8,0x40,&UNK_180a03060,in_R9,0xfffffffffffffffe);
-  lVar1 = FUN_1808fc7d0(FUN_180941bb0);
-  return (lVar1 != 0) - 1;
+  longlong callbackResult;
+  undefined8 stringProcessorKFlags;
+  g_stringProcessorK_Base = &unknownData_1809fcc58;
+  g_stringProcessorK_BufferPtr = &g_stringProcessorK_Buffer;
+  g_stringProcessorK_Buffer = 0;
+  g_stringProcessorK_Length = 9;
+  strcpy_s(&g_stringProcessorK_Buffer,0x40,&unknownData_180a03060,stringProcessorKFlags,0xfffffffffffffffe);
+  callbackResult = RegisterSystemCallback(InitializeStringProcessorK_Callback);
+  return (callbackResult != 0) - 1;
 }
-int FUN_180031430(void)
+/**
+ * 初始化字符串处理器L
+ * 设置字符串处理所需的数据结构和回调
+ * 
+ * @return 初始化成功返回0，失败返回-1
+ */
+int InitializeStringProcessorL(void)
 {
-  longlong lVar1;
-  undefined8 in_R9;
-  _DAT_180bf7310 = &UNK_1809fcc58;
-  _DAT_180bf7318 = &DAT_180bf7328;
-  DAT_180bf7328 = 0;
-  _DAT_180bf7320 = 9;
-  strcpy_s(&DAT_180bf7328,0x40,&UNK_180a030a8,in_R9,0xfffffffffffffffe);
-  lVar1 = FUN_1808fc7d0(FUN_180941bd0);
-  return (lVar1 != 0) - 1;
+  longlong callbackResult;
+  undefined8 stringProcessorLFlags;
+  g_stringProcessorL_Base = &unknownData_1809fcc58;
+  g_stringProcessorL_BufferPtr = &g_stringProcessorL_Buffer;
+  g_stringProcessorL_Buffer = 0;
+  g_stringProcessorL_Length = 9;
+  strcpy_s(&g_stringProcessorL_Buffer,0x40,&unknownData_180a030a8,stringProcessorLFlags,0xfffffffffffffffe);
+  callbackResult = RegisterSystemCallback(InitializeStringProcessorL_Callback);
+  return (callbackResult != 0) - 1;
 }
 int FUN_1800314b0(void)
 {
