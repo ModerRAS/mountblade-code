@@ -40033,7 +40033,16 @@ void Unwind_180904ab0(uint8_t8 objectContextParam,longlong validationContextPara
 
 
 
-void Unwind_180904ac0(uint8_t8 objectContextParam,longlong validationContextParam)
+/**
+ * @brief 设置系统数据结构指针
+ * 
+ * 该函数负责设置验证上下文中的系统数据结构指针
+ * 将系统数据结构的地址存储到指定的偏移位置
+ * 
+ * @param objectContextParam 对象上下文参数
+ * @param validationContextParam 验证上下文参数，包含系统配置信息
+ */
+void SetSystemDataStructurePointer(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
   *(uint8_t **)(validationContextParam + 0xb0) = &SystemDataStructure;
@@ -40042,7 +40051,16 @@ void Unwind_180904ac0(uint8_t8 objectContextParam,longlong validationContextPara
 
 
 
-void Unwind_180904ad0(uint8_t8 objectContextParam,longlong validationContextParam)
+/**
+ * @brief 执行系统回调函数
+ * 
+ * 该函数负责执行系统中的回调函数
+ * 检查回调函数指针的有效性，如果有效则执行相应的回调
+ * 
+ * @param objectContextParam 对象上下文参数
+ * @param validationContextParam 验证上下文参数，包含回调函数指针
+ */
+void ExecuteSystemCallbackFunction(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
   if ((longlong *)**(longlong **)(validationContextParam + 0x58) != (longlong *)0x0) {
