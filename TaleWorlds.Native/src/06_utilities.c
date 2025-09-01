@@ -3801,27 +3801,37 @@ uint64_t GetSystemConstantValue(void)
 
 
 
-undefined8 FUN_180890ad0(longlong param_1)
+// 函数: undefined8 ValidateResourceHandle(longlong resourceHandle)
+/**
+ * @brief 验证资源句柄
+ * 
+ * 该函数负责验证传入的资源句柄是否有效
+ * 检查句柄的完整性和可用性
+ * 
+ * @param resourceHandle 要验证的资源句柄
+ * @return 验证结果，0表示成功，非0表示错误代码
+ */
+undefined8 ValidateResourceHandle(longlong resourceHandle)
 
 {
-  undefined8 uVar1;
-  longlong lStackX_8;
+  undefined8 validationResult;
+  longlong adjustedHandle;
   
-  uVar1 = func_0x00018088c530(*(undefined4 *)(param_1 + 0x10),&lStackX_8);
-  if ((int)uVar1 != 0) {
-    return uVar1;
+  validationResult = func_0x00018088c530(*(undefined4 *)(resourceHandle + 0x10),&adjustedHandle);
+  if ((int)validationResult != 0) {
+    return validationResult;
   }
-  if (lStackX_8 == 0) {
-    lStackX_8 = 0;
+  if (adjustedHandle == 0) {
+    adjustedHandle = 0;
   }
   else {
-    lStackX_8 = lStackX_8 + -8;
+    adjustedHandle = adjustedHandle + -8;
   }
-  if (*(longlong *)(lStackX_8 + 0x10) == 0) {
+  if (*(longlong *)(adjustedHandle + 0x10) == 0) {
     return 0x1c;
   }
                     // WARNING: Subroutine does not return
-  FUN_180862e00(*(longlong *)(lStackX_8 + 0x10),1);
+  CleanupResourceHandle(*(longlong *)(adjustedHandle + 0x10),1);
 }
 
 
