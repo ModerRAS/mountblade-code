@@ -13011,7 +13011,11 @@ LAB_1808974ec:
  * @param stackData 栈数据，包含错误处理的上下文信息
  * @note 此函数不返回，直接跳转到错误处理程序
  */
-void BufferValidationErrorHandler(void)
+/**
+ * @brief 缓冲区验证错误处理器
+ * 
+ * 该函数负责处理缓冲区验证错误，执行必要的清理操作
+ */
 void BufferValidationErrorHandler(void)
 {
                     // WARNING: Subroutine does not return
@@ -13284,7 +13288,11 @@ void BufferValidationErrorHandler(void)
  * @param stackData 栈数据，包含错误处理的上下文信息
  * @note 此函数不返回，直接跳转到错误处理程序
  */
-void DataProcessingErrorHandler(void)
+/**
+ * @brief 数据处理错误处理器
+ * 
+ * 该函数负责处理数据处理错误，执行必要的清理操作
+ */
 void DataProcessingErrorHandler(void)
 {
                     // WARNING: Subroutine does not return
