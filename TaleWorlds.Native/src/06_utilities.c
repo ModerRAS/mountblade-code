@@ -12241,7 +12241,7 @@ LAB_180896ce3:
       uStack_2e0 = (ulonglong)CONCAT14(iVar3 != 1,*(undefined4 *)(param_2 + 0x230));
       iVar3 = GetAndValidateResourceData(param_1,&puStack_2f8);
     }
-    if (iVar3 != 0) goto FUN_1808974f4;
+    if (iVar3 != 0) goto ResourceErrorHandler;
     uStack_298 = *(uint *)(resourceData + 0x10);
     uStack_294 = *(undefined4 *)(param_2 + 0x14);
     iStack_290 = *(int *)(param_2 + 0x18);
@@ -12251,7 +12251,7 @@ LAB_180896ce3:
     uStack_284 = 0;
     uStack_288 = param_3;
     iVar3 = GetAndValidateResourceData(param_1,&puStack_2a8);
-    if (iVar3 != 0) goto FUN_1808974f4;
+    if (iVar3 != 0) goto ResourceErrorHandler;
     iVar7 = 0;
     iVar3 = *(int *)(*(longlong *)(param_2 + 0x2e8) + 0x2c);
     if (0 < iVar3) {
@@ -12260,7 +12260,7 @@ LAB_180896ce3:
         puStack_2f8 = &UNK_180982cc0;
         uStack_2e8 = CONCAT44(uStack_2e8._4_4_,param_3);
         iVar4 = GetAndValidateResourceData(param_1,&puStack_2f8);
-        if (iVar4 != 0) goto FUN_1808974f4;
+        if (iVar4 != 0) goto ResourceErrorHandler;
         iVar7 = iVar7 + 1;
       } while (iVar7 < iVar3);
     }
@@ -12273,7 +12273,7 @@ LAB_180896ce3:
       if (((*(byte *)(lVar1 + 0xc4) & 1) != 0) && (resourceTable != 0)) {
         uStack_308 = 0;
         iVar7 = ValidateBufferContext(resourceTable,&uStack_308);
-        if (iVar7 != 0) goto FUN_1808974f4;
+        if (iVar7 != 0) goto ResourceErrorHandler;
         uStack_28c = *(undefined4 *)(lVar1 + 0x10);
         uStack_288 = *(uint *)(lVar1 + 0x14);
         uStack_284 = *(undefined4 *)(lVar1 + 0x18);
@@ -12286,14 +12286,14 @@ LAB_180896ce3:
         iStack_290 = tableEntry;
         tableEntry = GetAndValidateResourceData(param_1,&puStack_2a8);
         if ((tableEntry != 0) || (tableEntry = FindResourceEntry(resourceTable,afStack_304), tableEntry != 0))
-        goto FUN_1808974f4;
+        goto ResourceErrorHandler;
         if (afStack_304[0] != 1.0) {
           uStack_2e0 = CONCAT44(uStack_2e0._4_4_,afStack_304[0]);
           puStack_2f8 = &UNK_1809842e0;
           uStack_2e8 = CONCAT44(uStack_2e8._4_4_,uStack_308);
           iStack_2f0 = tableEntry;
           tableEntry = GetAndValidateResourceData(param_1,&puStack_2f8);
-          if (tableEntry != 0) goto FUN_1808974f4;
+          if (tableEntry != 0) goto ResourceErrorHandler;
         }
         if (*(char *)(resourceTable + 0x28) != '\0') {
           iStack_2f0 = 0;
@@ -12301,7 +12301,7 @@ LAB_180896ce3:
           uStack_2e8 = CONCAT44(uStack_2e8._4_4_,uStack_308);
           uStack_2e0 = CONCAT71(uStack_2e0._1_7_,1);
           tableEntry = GetAndValidateResourceData(param_1,&puStack_2f8);
-          if (tableEntry != 0) goto FUN_1808974f4;
+          if (tableEntry != 0) goto ResourceErrorHandler;
         }
         tableEntry = iVar4;
         if (*(char *)(resourceTable + 0x29) != '\0') {
@@ -12310,7 +12310,7 @@ LAB_180896ce3:
           uStack_2e8 = CONCAT44(uStack_2e8._4_4_,uStack_308);
           uStack_2e0 = CONCAT71(uStack_2e0._1_7_,1);
           iVar7 = GetAndValidateResourceData(param_1,&puStack_2f8);
-          if (iVar7 != 0) goto FUN_1808974f4;
+          if (iVar7 != 0) goto ResourceErrorHandler;
         }
       }
     }
@@ -12320,7 +12320,7 @@ LAB_180896ce3:
       if (((*(byte *)(lVar1 + 0xc4) & 1) != 0) && (resourceTable != 0)) {
         uStack_308 = 0;
         iVar7 = ValidateBufferContext(resourceTable,&uStack_308);
-        if (iVar7 != 0) goto FUN_1808974f4;
+        if (iVar7 != 0) goto ResourceErrorHandler;
         uStack_28c = *(undefined4 *)(lVar1 + 0x10);
         uStack_288 = *(uint *)(lVar1 + 0x14);
         uStack_284 = *(undefined4 *)(lVar1 + 0x18);
@@ -12333,14 +12333,14 @@ LAB_180896ce3:
         iStack_290 = tableEntry;
         tableEntry = GetAndValidateResourceData(param_1,&puStack_2a8);
         if ((tableEntry != 0) || (tableEntry = FindResourceEntry(resourceTable,afStack_304), tableEntry != 0))
-        goto FUN_1808974f4;
+        goto ResourceErrorHandler;
         if (afStack_304[0] != 1.0) {
           uStack_2e0 = CONCAT44(uStack_2e0._4_4_,afStack_304[0]);
           puStack_2f8 = &UNK_1809842e0;
           uStack_2e8 = CONCAT44(uStack_2e8._4_4_,uStack_308);
           iStack_2f0 = tableEntry;
           tableEntry = GetAndValidateResourceData(param_1,&puStack_2f8);
-          if (tableEntry != 0) goto FUN_1808974f4;
+          if (tableEntry != 0) goto ResourceErrorHandler;
         }
         if (*(char *)(resourceTable + 0x28) != '\0') {
           iStack_2f0 = 0;
@@ -12348,7 +12348,7 @@ LAB_180896ce3:
           uStack_2e8 = CONCAT44(uStack_2e8._4_4_,uStack_308);
           uStack_2e0 = CONCAT71(uStack_2e0._1_7_,1);
           tableEntry = GetAndValidateResourceData(param_1,&puStack_2f8);
-          if (tableEntry != 0) goto FUN_1808974f4;
+          if (tableEntry != 0) goto ResourceErrorHandler;
         }
         tableEntry = iVar4;
         if (*(char *)(resourceTable + 0x29) != '\0') {
@@ -12357,7 +12357,7 @@ LAB_180896ce3:
           uStack_2e8 = CONCAT44(uStack_2e8._4_4_,uStack_308);
           uStack_2e0 = CONCAT71(uStack_2e0._1_7_,1);
           iVar7 = GetAndValidateResourceData(param_1,&puStack_2f8);
-          if (iVar7 != 0) goto FUN_1808974f4;
+          if (iVar7 != 0) goto ResourceErrorHandler;
         }
       }
     }
@@ -12367,7 +12367,7 @@ LAB_180896ce3:
       if (((*(byte *)(lVar1 + 0xc4) & 1) != 0) && (resourceTable != 0)) {
         uStack_308 = 0;
         iVar7 = ValidateBufferContext(resourceTable,&uStack_308);
-        if (iVar7 != 0) goto FUN_1808974f4;
+        if (iVar7 != 0) goto ResourceErrorHandler;
         uStack_28c = *(undefined4 *)(lVar1 + 0x10);
         uStack_288 = *(uint *)(lVar1 + 0x14);
         uStack_284 = *(undefined4 *)(lVar1 + 0x18);
@@ -12380,14 +12380,14 @@ LAB_180896ce3:
         iStack_290 = tableEntry;
         tableEntry = GetAndValidateResourceData(param_1,&puStack_2a8);
         if ((tableEntry != 0) || (tableEntry = FindResourceEntry(resourceTable,afStack_304), tableEntry != 0))
-        goto FUN_1808974f4;
+        goto ResourceErrorHandler;
         if (afStack_304[0] != 1.0) {
           uStack_2e0 = CONCAT44(uStack_2e0._4_4_,afStack_304[0]);
           puStack_2f8 = &UNK_1809842e0;
           uStack_2e8 = CONCAT44(uStack_2e8._4_4_,uStack_308);
           iStack_2f0 = tableEntry;
           tableEntry = GetAndValidateResourceData(param_1,&puStack_2f8);
-          if (tableEntry != 0) goto FUN_1808974f4;
+          if (tableEntry != 0) goto ResourceErrorHandler;
         }
         if (*(char *)(resourceTable + 0x28) != '\0') {
           iStack_2f0 = 0;
@@ -12395,7 +12395,7 @@ LAB_180896ce3:
           uStack_2e8 = CONCAT44(uStack_2e8._4_4_,uStack_308);
           uStack_2e0 = CONCAT71(uStack_2e0._1_7_,1);
           tableEntry = GetAndValidateResourceData(param_1,&puStack_2f8);
-          if (tableEntry != 0) goto FUN_1808974f4;
+          if (tableEntry != 0) goto ResourceErrorHandler;
         }
         tableEntry = iVar4;
         if (*(char *)(resourceTable + 0x29) != '\0') {
@@ -12404,7 +12404,7 @@ LAB_180896ce3:
           uStack_2e8 = CONCAT44(uStack_2e8._4_4_,uStack_308);
           uStack_2e0 = CONCAT71(uStack_2e0._1_7_,1);
           iVar7 = GetAndValidateResourceData(param_1,&puStack_2f8);
-          if (iVar7 != 0) goto FUN_1808974f4;
+          if (iVar7 != 0) goto ResourceErrorHandler;
         }
       }
     }
@@ -12414,7 +12414,7 @@ LAB_180896ce3:
       if (((*(byte *)(lVar1 + 0xc4) & 1) != 0) && (resourceTable != 0)) {
         uStack_308 = 0;
         iVar7 = ValidateBufferContext(resourceTable,&uStack_308);
-        if (iVar7 != 0) goto FUN_1808974f4;
+        if (iVar7 != 0) goto ResourceErrorHandler;
         uStack_28c = *(undefined4 *)(lVar1 + 0x10);
         uStack_288 = *(uint *)(lVar1 + 0x14);
         uStack_284 = *(undefined4 *)(lVar1 + 0x18);
@@ -12427,14 +12427,14 @@ LAB_180896ce3:
         iStack_290 = tableEntry;
         tableEntry = GetAndValidateResourceData(param_1,&puStack_2a8);
         if ((tableEntry != 0) || (tableEntry = FindResourceEntry(resourceTable,afStack_304), tableEntry != 0))
-        goto FUN_1808974f4;
+        goto ResourceErrorHandler;
         if (afStack_304[0] != 1.0) {
           uStack_2e0 = CONCAT44(uStack_2e0._4_4_,afStack_304[0]);
           puStack_2f8 = &UNK_1809842e0;
           uStack_2e8 = CONCAT44(uStack_2e8._4_4_,uStack_308);
           iStack_2f0 = tableEntry;
           tableEntry = GetAndValidateResourceData(param_1,&puStack_2f8);
-          if (tableEntry != 0) goto FUN_1808974f4;
+          if (tableEntry != 0) goto ResourceErrorHandler;
         }
         if (*(char *)(resourceTable + 0x28) != '\0') {
           iStack_2f0 = 0;
@@ -12442,7 +12442,7 @@ LAB_180896ce3:
           uStack_2e8 = CONCAT44(uStack_2e8._4_4_,uStack_308);
           uStack_2e0 = CONCAT71(uStack_2e0._1_7_,1);
           tableEntry = GetAndValidateResourceData(param_1,&puStack_2f8);
-          if (tableEntry != 0) goto FUN_1808974f4;
+          if (tableEntry != 0) goto ResourceErrorHandler;
         }
         tableEntry = iVar4;
         if (*(char *)(resourceTable + 0x29) != '\0') {
@@ -12451,7 +12451,7 @@ LAB_180896ce3:
           uStack_2e8 = CONCAT44(uStack_2e8._4_4_,uStack_308);
           uStack_2e0 = CONCAT71(uStack_2e0._1_7_,1);
           iVar7 = GetAndValidateResourceData(param_1,&puStack_2f8);
-          if (iVar7 != 0) goto FUN_1808974f4;
+          if (iVar7 != 0) goto ResourceErrorHandler;
         }
       }
     }
