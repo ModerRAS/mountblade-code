@@ -1431,56 +1431,56 @@ uint8_t MemoryLeakHandle;
 uint8_t MemoryLeakDataBuffer;
 uint8_t MemoryLeakContext;
 
- void TrackMemoryUsage;
+ void TrackMemoryUsage(void);
 /**
  * @brief 跟踪内存使用
  * 
  * 该函数负责跟踪系统内存使用情况
  * 记录内存分配和释放的历史
  */
-void TrackMemoryUsage;
+void TrackMemoryUsage(void);
 uint8_t MemoryTrackingConfig;
 uint8_t MemoryTrackingStatus;
 uint8_t MemoryTrackingHandle;
 uint8_t MemoryTrackingData;
 uint8_t MemoryTrackingContext;
 
- void LogMemoryStatistics;
+ void LogMemoryStatistics(void);
 /**
  * @brief 记录内存统计信息
  * 
  * 该函数负责记录系统内存使用统计信息
  * 生成内存使用报告和性能指标
  */
-void LogMemoryStatistics;
+void LogMemoryStatistics(void);
 uint8_t MemoryStatsConfig;
 uint8_t MemoryStatsStatus;
 uint8_t MemoryStatsHandle;
 uint8_t MemoryStatsDataBuffer;
 uint8_t MemoryStatsContext;
 
- void GarbageCollectMemory;
+ void GarbageCollectMemory(void);
 /**
  * @brief 内存垃圾回收
  * 
  * 该函数负责执行内存垃圾回收
  * 清理无用的内存对象和资源
  */
-void GarbageCollectMemory;
+void GarbageCollectMemory(void);
 uint8_t GarbageCollectionConfig;
 uint8_t GarbageCollectionStatus;
 uint8_t GarbageCollectionHandle;
 uint8_t GarbageCollectionDataBuffer;
 uint8_t GarbageCollectionContext;
 
- void CompactMemory;
+ void CompactMemory(void);
 /**
  * @brief 压缩内存
  * 
  * 该函数负责压缩系统内存
  * 减少内存碎片，提高内存利用率
  */
-void CompactMemory;
+void CompactMemory(void);
 
  void AllocateMemoryBlock;
 /**
