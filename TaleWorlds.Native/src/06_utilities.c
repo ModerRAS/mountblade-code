@@ -26552,7 +26552,15 @@ undefined8 ResourceIdentifierProcessor(longlong param_1,longlong *param_2)
 
 
 
-undefined8 FUN_18089f112(void)
+/**
+ * @brief 资源验证服务
+ * 
+ * 该函数提供资源验证服务，包括资源完整性检查、格式验证和错误处理。
+ * 它是一个无参数的函数，使用全局寄存器变量来访问和验证资源数据。
+ * 
+ * @return undefined8 返回验证服务结果状态码，0表示成功，非0表示错误
+ */
+undefined8 ResourceValidationService(void)
 
 {
   longlong in_RAX;
@@ -26857,7 +26865,17 @@ f7fd(void)
 
 
 
-undefined8 FUN_18089f830(longlong param_1,longlong *param_2)
+/**
+ * @brief 模型资源处理器
+ * 
+ * 该函数用于处理3D模型资源，包括模型数据的加载、验证和处理操作。
+ * 它接收模型上下文参数和模型数据句柄作为输入，专门用于处理3D模型资源。
+ * 
+ * @param param_1 模型上下文参数的指针
+ * @param param_2 模型数据句柄的指针
+ * @return undefined8 返回处理结果状态码，0表示成功，非0表示错误
+ */
+undefined8 ModelResourceProcessor(longlong param_1,longlong *param_2)
 
 {
   undefined8 resourceHash;

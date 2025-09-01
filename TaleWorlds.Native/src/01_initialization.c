@@ -13450,65 +13450,65 @@ void InitializeSystemEventManagerN(void)
 
 
 
-int FUN_18003eda0(void)
+int InitializeSystemModuleA(void)
 
 {
-  longlong lVar1;
+  longlong systemStatus;
   
   FUN_1804777d0();
-  lVar1 = FUN_1808fc7d0(FUN_180942890);
-  return (lVar1 != 0) - 1;
+  systemStatus = FUN_1808fc7d0(FUN_180942890);
+  return (systemStatus != 0) - 1;
 }
 
 
 
-int FUN_18003edc0(void)
+int InitializeSystemModuleB(void)
 
 {
-  longlong lVar1;
-  undefined1 auStackX_8 [32];
+  longlong systemStatus;
+  undefined1 systemConfigBuffer [32];
   
-  auStackX_8[0] = 1;
-  FUN_180477890(&DAT_180c92490,auStackX_8);
-  lVar1 = FUN_1808fc7d0(FUN_1809428e0);
-  return (lVar1 != 0) - 1;
+  systemConfigBuffer[0] = 1;
+  FUN_180477890(&DAT_180c92490,systemConfigBuffer);
+  systemStatus = FUN_1808fc7d0(FUN_1809428e0);
+  return (systemStatus != 0) - 1;
 }
 
 
 
-int FUN_18003edf0(void)
+int InitializeSystemModuleC(void)
 
 {
-  longlong lVar1;
-  undefined1 auStackX_8 [32];
+  longlong systemStatus;
+  undefined1 systemConfigBuffer [32];
   
-  auStackX_8[0] = 0;
-  FUN_180477890(&DAT_180c92480,auStackX_8);
-  lVar1 = FUN_1808fc7d0(FUN_180942930);
-  return (lVar1 != 0) - 1;
+  systemConfigBuffer[0] = 0;
+  FUN_180477890(&DAT_180c92480,systemConfigBuffer);
+  systemStatus = FUN_1808fc7d0(FUN_180942930);
+  return (systemStatus != 0) - 1;
 }
 
 
 
-int FUN_18003ee20(void)
+int InitializeSystemModuleD(void)
 
 {
-  longlong lVar1;
+  longlong systemStatus;
   
-  lVar1 = FUN_1808fc7d0(FUN_180942a20);
-  return (lVar1 != 0) - 1;
+  systemStatus = FUN_1808fc7d0(FUN_180942a20);
+  return (systemStatus != 0) - 1;
 }
 
 
 
-int FUN_18003ee40(void)
+int InitializeSystemModuleE(void)
 
 {
-  longlong lVar1;
+  longlong systemStatus;
   
   FUN_1803f2eb0(0x180d49d50);
-  lVar1 = FUN_1808fc7d0(FUN_1809429f0);
-  return (lVar1 != 0) - 1;
+  systemStatus = FUN_1808fc7d0(FUN_1809429f0);
+  return (systemStatus != 0) - 1;
 }
 
 
@@ -14148,11 +14148,11 @@ void InitializeSystemResourceManagerN(void)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-int FUN_18003fad0(void)
+int InitializeSystemModuleF(void)
 
 {
-  longlong lVar1;
-  undefined8 in_R9;
+  longlong systemStatus;
+  undefined8 systemRegister;
   
   _DAT_180bf6048 = &UNK_18098bc80;
   _DAT_180bf6050 = &DAT_180bf6060;
@@ -14316,8 +14316,16 @@ void InitializeSystemDebugManagerC(void)
 
 
 
-// 函数: void FUN_18003feb0(void)
-void FUN_18003feb0(void)
+/**
+ * @brief 初始化系统资源分配器
+ * 
+ * 该函数负责初始化系统的资源分配器组件，设置资源分配的基础结构。
+ * 它会遍历系统节点树，查找合适的位置插入资源分配器节点，
+ * 并设置节点的标识符和回调函数。
+ * 
+ * @note 这是系统初始化过程中的重要组成部分，确保资源分配系统的正常运行
+ */
+void InitializeSystemResourceAllocator(void)
 
 {
   char systemNodeFlag;
@@ -14356,18 +14364,26 @@ void FUN_18003feb0(void)
     systemPreviousNode = systemAllocatedNode;
   }
   systemPreviousNode[6] = 0x4770584fbb1df897;
-  puVar7[7] = 0x47f249e43f66f2ab;
-  puVar7[8] = &UNK_18098c7a0;
-  puVar7[9] = 1;
-  puVar7[10] = resourceInitializationCallback;
+  systemPreviousNode[7] = 0x47f249e43f66f2ab;
+  systemPreviousNode[8] = &UNK_18098c7a0;
+  systemPreviousNode[9] = 1;
+  systemPreviousNode[10] = resourceInitializationCallback;
   return;
 }
 
 
 
 
-// 函数: void FUN_18003ffb0(void)
-void FUN_18003ffb0(void)
+/**
+ * @brief 初始化系统数据表分配器
+ * 
+ * 该函数负责初始化系统的数据表分配器组件，设置数据表分配的基础结构。
+ * 它会遍历系统节点树，查找合适的位置插入数据表分配器节点，
+ * 并设置节点的标识符和回调函数。
+ * 
+ * @note 这是系统初始化过程中的重要组成部分，确保数据表分配系统的正常运行
+ */
+void InitializeSystemDataTableAllocator(void)
 
 {
   char systemNodeFlag;
@@ -14406,10 +14422,10 @@ void FUN_18003ffb0(void)
     systemPreviousNode = systemAllocatedNode;
   }
   systemPreviousNode[6] = 0x4666df49b97e0f10;
-  puVar7[7] = 0x4e4b0d63a6ad1d8f;
-  puVar7[8] = &UNK_18098c7b8;
+  systemPreviousNode[7] = 0x4e4b0d63a6ad1d8f;
+  systemPreviousNode[8] = &UNK_18098c7b8;
   systemPreviousNode[9] = 0;
-  puVar7[10] = resourceInitializationCallback;
+  systemPreviousNode[10] = resourceInitializationCallback;
   return;
 }
 
@@ -15598,44 +15614,61 @@ void InitializeSystemSubcomponentH(void)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-int FUN_1800418e0(void)
+// 函数: int InitializeSystemSynchronizationMechanism(void)
+/**
+ * @brief 初始化系统同步机制
+ * 
+ * 该函数负责初始化系统的同步机制，包括互斥锁初始化、
+ * 同步数据结构设置和系统同步状态管理。
+ * 
+ * @return 初始化成功返回0，失败返回-1
+ */
+int InitializeSystemSynchronizationMechanism(void)
 
 {
-  longlong lVar1;
+  longlong systemInitializationResult;
   
-  FUN_1808fc838(&DAT_180c96220,8,5,&SUB_18005d5f0,FUN_180045af0);
-  FUN_1808fc838(0x180c96248,8,5,&SUB_18005d5f0,FUN_180045af0);
-  FUN_1808fc838(0x180c96298,8,5,&SUB_18005d5f0,FUN_180045af0);
-  _Mtx_init_in_situ(0x180c962c0,2);
-  _DAT_180c96310 = 0;
-  _DAT_180c96318 = 0;
-  _DAT_180c96320 = 0;
-  _DAT_180c96328 = 3;
-  _DAT_180c96330 = 0;
-  _DAT_180c96338 = 0;
-  _DAT_180c96340 = 0;
-  _DAT_180c96348 = 3;
-  _DAT_180c96350 = 0;
-  uRam0000000180c96358 = 0;
-  _DAT_180c96360 = 0;
-  _DAT_180c96368 = 3;
-  FUN_1804ac640();
-  lVar1 = FUN_1808fc7d0(&UNK_180942f90);
-  return (lVar1 != 0) - 1;
+  InitializeSystemSynchronizationData(&SystemSynchronizationDataPrimary,8,5,&SystemSynchronizationCallback,InitializeSystemSynchronizationHandler);
+  InitializeSystemSynchronizationData(&SystemSynchronizationDataSecondary,8,5,&SystemSynchronizationCallback,InitializeSystemSynchronizationHandler);
+  InitializeSystemSynchronizationData(&SystemSynchronizationDataTertiary,8,5,&SystemSynchronizationCallback,InitializeSystemSynchronizationHandler);
+  InitializeSystemMutex(&SystemSynchronizationMutex,2);
+  SystemSynchronizationStatusPrimary = 0;
+  SystemSynchronizationStatusSecondary = 0;
+  SystemSynchronizationStatusTertiary = 0;
+  SystemSynchronizationFlagPrimary = 3;
+  SystemSynchronizationStatusQuaternary = 0;
+  SystemSynchronizationStatusQuinary = 0;
+  SystemSynchronizationStatusSenary = 0;
+  SystemSynchronizationFlagSecondary = 3;
+  SystemSynchronizationStatusSeptenary = 0;
+  SystemSynchronizationStatusOctonary = 0;
+  SystemSynchronizationFlagTertiary = 3;
+  InitializeSystemSynchronizationCore();
+  systemInitializationResult = CheckSystemSynchronizationStatus(&SystemSynchronizationControlData);
+  return (systemInitializationResult != 0) - 1;
 }
 
 
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-int FUN_180041a10(void)
+// 函数: int InitializeSystemPerformanceMonitor(void)
+/**
+ * @brief 初始化系统性能监控器
+ * 
+ * 该函数负责初始化系统的性能监控组件，设置性能监控数据结构
+ * 和性能计数器，为系统性能分析提供基础支持。
+ * 
+ * @return 初始化成功返回0，失败返回-1
+ */
+int InitializeSystemPerformanceMonitor(void)
 
 {
-  longlong lVar1;
-  undefined8 in_R9;
+  longlong systemInitializationResult;
+  undefined8 systemParameter;
   
-  _DAT_180bf64f8 = &UNK_18098bc80;
-  _DAT_180bf6500 = &DAT_180bf6510;
+  SystemPerformanceMonitorData = &SystemPerformanceMonitorConfiguration;
+  SystemPerformanceMonitorStatus = &SystemPerformanceMonitorStatusData;
 
 // 函数: void InitializeSystemSubcomponentI(void)
 // 功能: 初始化系统子组件I - 负责系统性能监控组件的初始化
