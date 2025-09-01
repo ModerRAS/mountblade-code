@@ -13826,8 +13826,13 @@ uint64 FUN_1800494f0(uint64 engine_engine_param_1,ulonglong engine_engine_param_
 
 
 
-// 函数: void FUN_180049550(longlong engine_engine_param_1,undefined1 engine_engine_param_2)
-void FUN_180049550(longlong engine_engine_param_1,undefined1 engine_engine_param_2)
+// 函数: void engine_handle_mutex_lock
+// 功能: 处理互斥锁操作，确保线程安全
+// 参数: 
+//   - engine_engine_param_1: 互斥锁对象指针
+//   - engine_engine_param_2: 锁定标志位
+// 简化实现: 保留核心互斥锁功能，简化错误处理流程
+void engine_handle_mutex_lock(longlong engine_engine_param_1,uint8_t engine_engine_param_2)
 
 {
   int engine_temp_int;
@@ -13849,8 +13854,14 @@ void FUN_180049550(longlong engine_engine_param_1,undefined1 engine_engine_param
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_1800495d0(uint64 engine_engine_param_1,undefined8 *engine_engine_param_2,longlong *engine_param_3)
-void FUN_1800495d0(uint64 engine_engine_param_1,undefined8 *engine_engine_param_2,longlong *engine_param_3)
+// 函数: void engine_process_resource_allocation
+// 功能: 处理资源分配操作，管理内存和系统资源
+// 参数: 
+//   - engine_engine_param_1: 资源管理器句柄
+//   - engine_engine_param_2: 资源配置数据指针
+//   - engine_param_3: 分配结果输出指针
+// 简化实现: 保留核心资源分配功能，简化配置处理流程
+void engine_process_resource_allocation(uint64 engine_engine_param_1,void* engine_engine_param_2,longlong *engine_param_3)
 
 {
   int engine_temp_int;
@@ -13909,7 +13920,7 @@ undefined1 FUN_1800496b0(longlong engine_engine_param_1,uint64 engine_engine_par
   }
   else {
     uStackX_8 = 1;
-    FUN_1800495d0(engine_engine_param_1,&lStack_20,&uStackX_8,engine_param_4,engine_temp_uint_3);
+    engine_process_resource_allocation(engine_engine_param_1,&lStack_20,&uStackX_8,engine_param_4,engine_temp_uint_3);
     engine_temp_uint = *(uint8*)(engine_engine_param_1 + 0x98);
   }
   *(uint8*)(engine_engine_param_1 + 0x98) = 0;
@@ -22113,7 +22124,7 @@ void FUN_1800606e0(longlong *engine_engine_param_1)
         }
         else {
           uStackX_8 = 0x32;
-          FUN_1800495d0(engine_engine_param_1 + 0x2a,&plStack_20,&uStackX_8);
+          engine_process_resource_allocation(engine_engine_param_1 + 0x2a,&plStack_20,&uStackX_8);
           *(uint8*)(engine_engine_param_1 + 0x3d) = 0;
           if (cStack_18 == '\0') goto LAB_1800607cc;
         }
