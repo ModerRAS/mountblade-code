@@ -12886,7 +12886,7 @@ void system_process_mod_events_secondary(void)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-int system_process_context_data_3(void)
+int system_process_context_data_ternary(void)
   
   system_process_context_data(&system_c9_system_data_,8,5,&system_subsystem_init,system_initialize_resource);
   system_process_context_data(0x180c96248,8,5,&system_subsystem_init,system_initialize_resource);
@@ -12913,12 +12913,12 @@ int system_process_context_data_3(void)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-int system_handle_resource_allocation_3(void)
+int system_handle_resource_allocation_ternary(void)
   
   system_global_debug_flag_f8 = &system_null_ptr;
   system_global_debug_flag_ = &system_bf_system_data_;
 
-void system_manage_memory_pool_3(void)
+void system_manage_memory_pool_ternary(void)
   uint8_t *init_ctx_base;
   int64_t *global_ctx_ptr;
   uint8_t *buffer_ptr;
@@ -12961,7 +12961,7 @@ void system_manage_memory_pool_3(void)
 
 
 
-void system_configure_thread_scheduler_3(void)
+void system_configure_thread_scheduler_ternary(void)
   uint8_t *init_ctx_base;
   int64_t *global_ctx_ptr;
   uint8_t *buffer_ptr;
@@ -13004,7 +13004,7 @@ void system_configure_thread_scheduler_3(void)
 
 
 
-void system_initialize_subsystem_component_3(void)
+void system_initialize_subsystem_component_ternary(void)
   uint8_t *init_ctx_base;
   int64_t *global_ctx_ptr;
   uint8_t *buffer_ptr;
@@ -13047,7 +13047,7 @@ void system_initialize_subsystem_component_3(void)
 
 
 
-void system_validate_system_state_3(void)
+void system_validate_system_state_ternary(void)
   uint8_t *init_ctx_base;
   int64_t *global_ctx_ptr;
   uint8_t *buffer_ptr;
@@ -13092,7 +13092,7 @@ void system_validate_system_state_3(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void system_process_configuration_data_3(void)
+void system_process_configuration_data_ternary(void)
   void* *system_system_stack_context_ptr_a;
   uint8_t* *system_system_stack_context_ptr_b;
   uint8_t* system_system_stack_data_array [136];
@@ -13120,7 +13120,7 @@ int system_initialize_system_input_system(uint8_t system_context_ptr,uint8_t sys
 
 
 
-void system_handle_module_loading_3(void)
+void system_handle_module_loading_ternary(void)
   uint8_t *init_ctx_base;
   int64_t *global_ctx_ptr;
   uint8_t *buffer_ptr;
@@ -13163,7 +13163,7 @@ void system_handle_module_loading_3(void)
 
 
 
-void system_manage_resource_cache_3(void)
+void system_manage_resource_cache_ternary(void)
   uint8_t *init_ctx_base;
   int64_t *global_ctx_ptr;
   uint8_t *buffer_ptr;
@@ -13206,7 +13206,7 @@ void system_manage_resource_cache_3(void)
 
 
 
-void system_process_event_queue_3(void)
+void system_process_event_queue_ternary(void)
   uint8_t *init_ctx_base;
   int64_t *global_ctx_ptr;
   uint8_t *buffer_ptr;
@@ -13250,7 +13250,7 @@ void system_process_event_queue_3(void)
 
 
 
-void system_initialize_audio_component_3(void)
+void system_initialize_audio_component_ternary(void)
   uint8_t *init_ctx_base;
   int64_t *global_ctx_ptr;
   uint8_t *buffer_ptr;
@@ -13294,7 +13294,7 @@ void system_initialize_audio_component_3(void)
 
 
 
-void system_configure_network_settings_3(void)
+void system_configure_network_settings_ternary(void)
   uint8_t *init_ctx_base;
   int64_t *global_ctx_ptr;
   uint8_t *buffer_ptr;
@@ -13338,7 +13338,7 @@ void system_configure_network_settings_3(void)
 
 
 
-void system_setup_render_pipeline_3(void)
+void system_setup_render_pipeline_ternary(void)
   uint8_t *init_ctx_base;
   int64_t *global_ctx_ptr;
   uint8_t *buffer_ptr;
@@ -13382,7 +13382,7 @@ void system_setup_render_pipeline_3(void)
 
 
 
-void system_handle_input_processing_3(void)
+void system_handle_input_processing_ternary(void)
   uint8_t *init_ctx_base;
   int64_t *global_ctx_ptr;
   uint8_t *buffer_ptr;
@@ -13425,7 +13425,7 @@ void system_handle_input_processing_3(void)
 
 
 
-void system_initialize_debug_interface_3(void)
+void system_initialize_debug_interface_ternary(void)
   uint8_t *init_ctx_base;
   int64_t *global_ctx_ptr;
   uint8_t *buffer_ptr;
@@ -13469,7 +13469,7 @@ void system_initialize_debug_interface_3(void)
 
 
 
-void system_process_performance_metrics_3(void)
+void system_process_performance_metrics_ternary(void)
   uint8_t *init_ctx_base;
   int64_t *global_ctx_ptr;
   uint8_t *buffer_ptr;
@@ -13512,7 +13512,7 @@ void system_process_performance_metrics_3(void)
 
 
 
-void system_manage_security_context_3(void)
+void system_manage_security_context_ternary(void)
   uint8_t *init_ctx_base;
   int64_t *global_ctx_ptr;
   uint8_t *buffer_ptr;
@@ -13556,7 +13556,7 @@ void system_manage_security_context_3(void)
 
 
 
-void system_initialize_plugin_system_3(void)
+void system_initialize_plugin_system_ternary(void)
   uint8_t *init_ctx_base;
   int64_t *global_ctx_ptr;
   uint8_t *buffer_ptr;
@@ -13599,7 +13599,7 @@ void system_initialize_plugin_system_3(void)
 
 
 
-void system_configure_logging_system_3(void)
+void system_configure_logging_system_ternary(void)
   uint8_t *init_ctx_base;
   int64_t *global_ctx_ptr;
   uint8_t *buffer_ptr;
@@ -13643,7 +13643,7 @@ void system_configure_logging_system_3(void)
 
 
 
-void system_handle_error_processing_3(void)
+void system_handle_error_processing_ternary(void)
   uint8_t *init_ctx_base;
   int64_t *global_ctx_ptr;
   uint8_t *buffer_ptr;
@@ -13686,7 +13686,7 @@ void system_handle_error_processing_3(void)
 
 
 
-void system_initialize_monitoring_system_3(void)
+void system_initialize_monitoring_system_ternary(void)
   uint8_t *init_ctx_base;
   int64_t *global_ctx_ptr;
   uint8_t *buffer_ptr;
@@ -13729,7 +13729,7 @@ void system_initialize_monitoring_system_3(void)
 
 
 
-void system_process_data_synchronization_3(void)
+void system_process_data_synchronization_ternary(void)
   uint8_t *init_ctx_base;
   int64_t *global_ctx_ptr;
   uint8_t *buffer_ptr;
@@ -13772,7 +13772,7 @@ void system_process_data_synchronization_3(void)
 
 
 
-void system_manage_thread_pool_3(void)
+void system_manage_thread_pool_ternary(void)
   uint8_t *init_ctx_base;
   int64_t *global_ctx_ptr;
   uint8_t *buffer_ptr;
@@ -13815,7 +13815,7 @@ void system_manage_thread_pool_3(void)
 
 
 
-void system_configure_memory_allocator_3(void)
+void system_configure_memory_allocator_ternary(void)
   uint8_t *init_ctx_base;
   int64_t *global_ctx_ptr;
   uint8_t *buffer_ptr;
@@ -13858,7 +13858,7 @@ void system_configure_memory_allocator_3(void)
 
 
 
-void system_initialize_resource_manager_3(void)
+void system_initialize_resource_manager_ternary(void)
   uint8_t *init_ctx_base;
   int64_t *global_ctx_ptr;
   uint8_t *buffer_ptr;
@@ -13901,7 +13901,7 @@ void system_initialize_resource_manager_3(void)
 
 
 
-void system_handle_system_events_3(void)
+void system_handle_system_events_ternary(void)
   uint8_t *init_ctx_base;
   int64_t *global_ctx_ptr;
   uint8_t *buffer_ptr;
@@ -13944,7 +13944,7 @@ void system_handle_system_events_3(void)
 
 
 
-void system_process_configuration_updates_3(void)
+void system_process_configuration_updates_ternary(void)
   uint8_t *init_ctx_base;
   int64_t *global_ctx_ptr;
   uint8_t *buffer_ptr;
@@ -13988,7 +13988,7 @@ void system_process_configuration_updates_3(void)
 
 
 
-void system_manage_component_lifecycle_3(void)
+void system_manage_component_lifecycle_ternary(void)
   uint8_t *init_ctx_base;
   int64_t *global_ctx_ptr;
   uint8_t *buffer_ptr;
@@ -14033,7 +14033,7 @@ void system_manage_component_lifecycle_3(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void system_initialize_script_engine_3(void)
+void system_initialize_script_engine_ternary(void)
   void* *system_system_stack_context_ptr_a;
   uint8_t* *system_system_stack_context_ptr_b;
   uint8_t* system_system_stack_data_array [136];
@@ -14052,14 +14052,14 @@ void system_initialize_script_engine_3(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void system_configure_physics_system_3(void)
+void system_configure_physics_system_ternary(void)
   system_global_data_pointer = GetCurrentProcess();
   return;
 }
 
 
 
-int system_handle_audio_processing_3(void)
+int system_handle_audio_processing_ternary(void)
   
   system_process_context_data();
   system_data_handle = system_process_context_data(&system_null_ptr);
@@ -14092,7 +14092,7 @@ int system_initialize_physics_engine(uint8_t system_context_ptr,uint8_t system_c
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-int system_manage_network_connections_3(void)
+int system_manage_network_connections_ternary(void)
   
   system_global_data_pointer = 3;
   system_global_data_pointer = &system_data_sound_manager_ptr;
@@ -14109,7 +14109,7 @@ int system_manage_network_connections_3(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void system_process_render_commands_3(void)
+void system_process_render_commands_ternary(void)
   void* *system_system_stack_context_ptr_a;
   uint8_t* *system_system_stack_context_ptr_b;
   uint8_t* system_system_stack_data_array [136];
@@ -14167,7 +14167,7 @@ LABEL_SYSTEM_CONFIG_SIZE_CHECK:
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void system_initialize_input_system_3(void)
+void system_initialize_input_system_ternary(void)
   void* *system_system_stack_context_ptr_a;
   uint8_t* *system_system_stack_context_ptr_b;
   uint8_t* system_system_stack_data_array [136];
@@ -14186,7 +14186,7 @@ void system_initialize_input_system_3(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void system_configure_display_settings_3(void)
+void system_configure_display_settings_ternary(void)
   void* *system_system_stack_context_ptr_a;
   uint8_t* *system_system_stack_context_ptr_b;
   uint8_t* system_system_stack_data_array [136];
@@ -14204,7 +14204,7 @@ void system_configure_display_settings_3(void)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-int system_handle_file_operations_3(void)
+int system_handle_file_operations_ternary(void)
   
   system_global_data_pointer = 3;
   system_global_data_pointer = &system_data_music_manager_ptr;
@@ -14220,7 +14220,7 @@ int system_handle_file_operations_3(void)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-int system_manage_data_streams_3(void)
+int system_manage_data_streams_ternary(void)
   
   system_global_data_pointer = 0x100;
   system_result_code = 0;
@@ -14236,7 +14236,7 @@ int system_manage_data_streams_3(void)
 
 
 
-int system_process_animation_data_3(void)
+int system_process_animation_data_ternary(void)
   
   system_generic_function(0x180c0c340);
   system_data_handle = system_process_context_data(&system_null_ptr);
@@ -14248,7 +14248,7 @@ int system_process_animation_data_3(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void system_initialize_particle_system_3(void)
+void system_initialize_particle_system_ternary(void)
   
   system_result_code = system_process_context_data(0);
   system_global_data_pointer = 0x180be14a8;
@@ -14263,7 +14263,7 @@ void system_initialize_particle_system_3(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void system_configure_lighting_system_3(void)
+void system_configure_lighting_system_ternary(void)
   
   system_result_code = system_process_context_data(1);
   if (system_result_code != 0) {
@@ -14283,7 +14283,7 @@ void system_configure_lighting_system_3(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void system_handle_collision_detection_3(void)
+void system_handle_collision_detection_ternary(void)
   
   system_result_code = system_process_context_data(0);
   system_global_data_pointer = 0x180be1c00;
@@ -14298,7 +14298,7 @@ void system_handle_collision_detection_3(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void system_manage_shader_programs_3(void)
+void system_manage_shader_programs_ternary(void)
   
   system_result_code = system_process_context_data(0);
   system_global_data_pointer = 0x180be23a0;
@@ -14313,7 +14313,7 @@ void system_manage_shader_programs_3(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void system_process_texture_data_3(void)
+void system_process_texture_data_ternary(void)
   
   system_result_code = system_process_context_data(0);
   system_global_data_pointer = 0x180be2ad8;
@@ -14328,7 +14328,7 @@ void system_process_texture_data_3(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void system_initialize_ui_system_3(void)
+void system_initialize_ui_system_ternary(void)
   
   system_result_code = system_process_context_data(0);
   system_global_data_pointer = 0x180be4710;
@@ -14343,7 +14343,7 @@ void system_initialize_ui_system_3(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void system_configure_window_manager_3(void)
+void system_configure_window_manager_ternary(void)
   
   system_result_code = system_process_context_data(1);
   if (system_result_code != 0) {
@@ -14360,7 +14360,7 @@ void system_configure_window_manager_3(void)
 
 
 
-int system_handle_user_input_3(void)
+int system_handle_user_input_ternary(void)
   uint8_t *system_context_ptr_1;
   
   system_context_ptr_1 = (uint8_t *)0x180c35590;
@@ -14380,7 +14380,7 @@ int system_handle_user_input_3(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void system_manage_state_machine_3(void)
+void system_manage_state_machine_ternary(void)
   
   system_result_code = system_process_context_data(0);
   system_global_data_pointer = 0x180bebac8;
@@ -14395,7 +14395,7 @@ void system_manage_state_machine_3(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void system_process_game_logic_3(void)
+void system_process_game_logic_ternary(void)
   
   system_result_code = system_process_context_data(3);
   if (system_result_code != 0) {
@@ -14417,7 +14417,7 @@ void system_process_game_logic_3(void)
 
 
 
-int system_initialize_ai_system_3(void)
+int system_initialize_ai_system_ternary(void)
   
   system_process_context_data(0x180c4f510);
   system_data_handle = system_process_context_data(&system_null_ptr);
@@ -14426,7 +14426,7 @@ int system_initialize_ai_system_3(void)
 
 
 
-int system_configure_pathfinding_3(void)
+int system_configure_pathfinding_ternary(void)
   
   _Mtx_system_init_in_situ(0x180c82170,2);
   system_data_handle = system_process_context_data(&system_null_ptr);
@@ -14539,7 +14539,7 @@ system_initialize_system_memory_pool_data(uint8_t *system_context_ptr,uint64_t s
 
 
 
-void system_handle_entity_management_3(void)
+void system_handle_entity_management_ternary(void)
                     // WARNING: Subroutine does not return
   system_process_context_data();
 }
@@ -14559,7 +14559,7 @@ void system_initialize_audio(uint8_t *system_context_ptr)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void system_manage_scene_graph_3(void)
+void system_manage_scene_graph_ternary(void)
   uint8_t *system_context_ptr_1;
   code *system_code_ptr_b;
   int64_t *system_context_long_ptr_6;
@@ -14699,7 +14699,7 @@ system_label:
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void system_process_transform_data_3(void)
+void system_process_transform_data_ternary(void)
   int64_t **ppsystem_long_ptr_1;
   uint system_parameter_value_secondary;
   int64_t *system_context_long_ptr_6;
@@ -14835,7 +14835,7 @@ system_label:
   system_global_data_pointer = 0;
   system_global_data_pointer = system_system_stack_varlong_var_x;
 
-void system_initialize_camera_system_3(void)
+void system_initialize_camera_system_ternary(void)
   uint32_t* system_param_primary;
   uint8_t *camera_node_current;
   void* *system_stack_byte_pointer;
@@ -15040,7 +15040,7 @@ void system_initialize_resource(int64_t *system_context_ptr)
 
 
 
-void system_configure_projection_matrix_3(void)
+void system_configure_projection_matrix_ternary(void)
   
   if (system_config_data_array == 0) {
     *(uint32_t* *)(system_context_ptr + 0x10) = 0;
@@ -15067,7 +15067,7 @@ void system_configure_projection_matrix_3(void)
 
 
 
-void system_handle_view_frustum_3(void)
+void system_handle_view_frustum_ternary(void)
   if (system_thread_count + 1 < 0x1000) {
                     // WARNING: Subroutine does not return
     memcpy(*(uint8_t* **)(system_context_ptr + 8),system_config_data_array,(int64_t)system_thread_count);
@@ -15080,7 +15080,7 @@ void system_handle_view_frustum_3(void)
 
 
 
-void system_manage_render_targets_3(void)
+void system_manage_render_targets_ternary(void)
                     // WARNING: Subroutine does not return
   memcpy();
 }
@@ -15088,7 +15088,7 @@ void system_manage_render_targets_3(void)
 
 
 
-void system_process_shadow_mapping_3(void)
+void system_process_shadow_mapping_ternary(void)
   int64_t system_register_rdi;
   
   *system_context_ptr = 0;
@@ -15099,7 +15099,7 @@ void system_process_shadow_mapping_3(void)
 
 
 
-void system_initialize_post_processing_3(void)
+void system_initialize_post_processing_ternary(void)
                     // WARNING: Subroutine does not return
   system_process_context_data();
 }
@@ -15159,7 +15159,7 @@ system_process_context_data(uint8_t *system_context_ptr,uint64_t system_config_d
 
 
 
-void system_configure_shader_parameters_3(void)
+void system_configure_shader_parameters_ternary(void)
   
   if (system_config_data_array == 0) {
     *(uint32_t* *)(system_context_ptr + 0x10) = 0;
@@ -15186,7 +15186,7 @@ void system_configure_shader_parameters_3(void)
 
 
 
-void system_handle_buffer_operations_3(void)
+void system_handle_buffer_operations_ternary(void)
   if (system_thread_count + 1 < 0x400) {
                     // WARNING: Subroutine does not return
     memcpy(*(uint8_t* **)(system_context_ptr + 8),system_config_data_array,(int64_t)system_thread_count);
@@ -15199,7 +15199,7 @@ void system_handle_buffer_operations_3(void)
 
 
 
-void system_manage_vertex_data_3(void)
+void system_manage_vertex_data_ternary(void)
                     // WARNING: Subroutine does not return
   memcpy();
 }
@@ -15207,7 +15207,7 @@ void system_manage_vertex_data_3(void)
 
 
 
-void system_process_index_buffers_3(void)
+void system_process_index_buffers_ternary(void)
   
   *system_context_ptr = 0;
   *(uint32_t* *)(system_register_rdi + 0x10) = 0;
@@ -15219,7 +15219,7 @@ void system_process_index_buffers_3(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void system_initialize_texture_manager_3(void)
+void system_initialize_texture_manager_ternary(void)
   uint8_t* system_stack_buffer_context [32];
   void* *system_stack_byte_pointer;
   uint8_t* *system_stack_byte_pointer;
@@ -15252,7 +15252,7 @@ void system_initialize_texture_manager_3(void)
 
 
 
-void system_configure_mipmap_generation_3(void)
+void system_configure_mipmap_generation_ternary(void)
   
   do {
     system_result_code = ReleaseSemaphore(*system_context_ptr,system_config_data_array,0);
@@ -15263,7 +15263,7 @@ void system_configure_mipmap_generation_3(void)
 
 
 
-void system_handle_texture_compression_3(void)
+void system_handle_texture_compression_ternary(void)
   
   if (*(char *)(system_context_ptr + 1) != '\0') {
     system_result_code = _Mtx_unlock(*system_context_ptr);
@@ -15337,7 +15337,7 @@ int64_t system_process_context_data(uint32_t* *system_context_ptr,uint32_t* *sys
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void system_manage_material_system_3(void)
+void system_manage_material_system_ternary(void)
   void* *camera_node_current;
   uint32_t* projection_matrix_stack [6];
   
@@ -15374,7 +15374,7 @@ system_process_context_data(uint8_t *system_context_ptr,uint64_t system_config_d
 
 
 
-void system_process_lighting_calculations_3(void)
+void system_process_lighting_calculations_ternary(void)
   
   if (system_config_data_array == 0) {
     *(uint32_t* *)(system_context_ptr + 0x10) = 0;
@@ -15401,7 +15401,7 @@ void system_process_lighting_calculations_3(void)
 
 
 
-void system_initialize_animation_system_3(void)
+void system_initialize_animation_system_ternary(void)
   if (system_thread_count + 1 < 0x20) {
                     // WARNING: Subroutine does not return
     memcpy(*(uint8_t* **)(system_context_ptr + 8),system_config_data_array,(int64_t)system_thread_count);
@@ -15414,7 +15414,7 @@ void system_initialize_animation_system_3(void)
 
 
 
-void system_configure_skeletal_animation_3(void)
+void system_configure_skeletal_animation_ternary(void)
                     // WARNING: Subroutine does not return
   memcpy();
 }
@@ -15422,7 +15422,7 @@ void system_configure_skeletal_animation_3(void)
 
 
 
-void system_handle_bone_transforms_3(void)
+void system_handle_bone_transforms_ternary(void)
   
   *system_context_ptr = 0;
   *(uint32_t* *)(system_register_rdi + 0x10) = 0;
@@ -15462,7 +15462,7 @@ uint8_t * system_initialize_network_manager(uint8_t *system_context_ptr)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void system_manage_animation_states_3(void)
+void system_manage_animation_states_ternary(void)
   uint8_t* system_system_stack_a8_alt [32];
   void* *system_stack_byte_pointer;
   uint8_t* *system_stack_byte_pointer;
@@ -15506,7 +15506,7 @@ uint8_t * system_process_context_data(uint8_t *system_context_ptr,uint64_t syste
 
 
 
-void system_process_morph_targets_3(void)
+void system_process_morph_targets_ternary(void)
   
   system_result_code = _Mtx_unlock(*system_context_ptr);
   if (system_result_code != 0) {
@@ -15518,7 +15518,7 @@ void system_process_morph_targets_3(void)
 
 
 
-void system_initialize_physics_engine_3(void)
+void system_initialize_physics_engine_ternary(void)
   
   system_result_code = _Mtx_lock(system_context_ptr + 0x48);
   if (system_result_code != 0) {
@@ -15539,7 +15539,7 @@ void system_initialize_physics_engine_3(void)
 
 
 
-void system_configure_rigid_body_dynamics_3(void)
+void system_configure_rigid_body_dynamics_ternary(void)
   *system_context_ptr = &system_null_ptr;
   *system_context_ptr = &system_null_ptr;
   *system_context_ptr = &system_null_ptr;
@@ -15563,7 +15563,7 @@ system_process_context_data(uint8_t *system_context_ptr,uint64_t system_config_d
 
 
 
-void system_handle_collision_response_3(void)
+void system_handle_collision_response_ternary(void)
   
   system_data_handle = system_context_ptr[1];
   for (system_data_handle = *system_context_ptr; system_data_handle != system_data_handle; system_data_handle = system_data_handle + 0x100) {
@@ -15579,7 +15579,7 @@ void system_handle_collision_response_3(void)
 
 
 
-void system_manage_constraint_system_3(void)
+void system_manage_constraint_system_ternary(void)
   uint8_t *system_context_ptr_1;
   uint8_t *init_ctx_base;
   
@@ -15640,7 +15640,7 @@ void system_initialize_network(uint64_t *system_context_ptr)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-int system_process_force_calculations_3(void)
+int system_process_force_calculations_ternary(void)
   uint8_t ***system_psystem_ptr_var;
   void* *camera_node_current;
   int64_t system_calculated_offset;
@@ -15747,7 +15747,7 @@ system_label:
 
 
 
-void system_initialize_audio_engine_3(void)
+void system_initialize_audio_engine_ternary(void)
   system_process_context_data(system_context_ptr + 0x1a,system_context_ptr[0x1c],system_thread_count,system_memory_size_array,0xfffffffffffffffe);
   *system_context_ptr = &system_null_ptr;
   if (system_context_ptr[1] != 0) {
@@ -15762,7 +15762,7 @@ void system_initialize_audio_engine_3(void)
 
 
 
-uint64_t system_configure_sound_spatialization_3(void)
+uint64_t system_configure_sound_spatialization_ternary(void)
   byte *system_byte_system_pointer_a;
   byte *system_byte_pointer_d;
   int system_iteration_counter;
@@ -15830,7 +15830,7 @@ system_label:
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void system_handle_audio_mixing_3(void)
+void system_handle_audio_mixing_ternary(void)
   int64_t *system_primary_data_ptr;
   int64_t *system_stack_temp_pointer;
   uint8_t *stack_ctx_result;
@@ -15874,7 +15874,7 @@ void system_handle_audio_mixing_3(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void system_manage_sound_resources_3(void)
+void system_manage_sound_resources_ternary(void)
   int64_t ***system_temp_pointer_array_primary;
   uint8_t *current_ctx_ptr;
   uint32_t* *next_ctx_ptr;
@@ -16123,7 +16123,7 @@ system_process_context_data(uint8_t *system_context_ptr,uint8_t *system_config_d
 
 
 
-void system_process_audio_effects_3(void)
+void system_process_audio_effects_ternary(void)
   *(void* **)(system_context_ptr + 0x10) = &system_null_ptr;
   return;
 }
@@ -16131,7 +16131,7 @@ void system_process_audio_effects_3(void)
 
 
 
-void system_initialize_network_layer_3(void)
+void system_initialize_network_layer_ternary(void)
   *system_context_ptr = &system_null_ptr;
   return;
 }
@@ -16141,7 +16141,7 @@ void system_initialize_network_layer_3(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void system_configure_protocol_handlers_3(void)
+void system_configure_protocol_handlers_ternary(void)
   byte system_temp_bool_primary;
   bool system_temp_bool_secondary;
   uint8_t *system_byte_pointer_d;
@@ -16220,7 +16220,7 @@ system_label:
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void system_handle_data_serialization_3(void)
+void system_handle_data_serialization_ternary(void)
   double system_temp_double_primary;
   double system_temp_double_secondary;
   uint8_t *camera_traverse_node_next;
@@ -16519,7 +16519,7 @@ void system_handle_data_serialization_3(void)
 
 
 
-void system_manage_connection_pool_3(void)
+void system_manage_connection_pool_ternary(void)
   
   system_data_handle = system_context_ptr[1];
   for (system_data_handle = *system_context_ptr; system_data_handle != system_data_handle; system_data_handle = system_data_handle + 0x100) {
@@ -16535,7 +16535,7 @@ void system_manage_connection_pool_3(void)
 
 
 
-void system_process_network_events_3(void)
+void system_process_network_events_ternary(void)
   uint8_t *system_context_ptr_1;
   uint8_t *init_ctx_base;
   
@@ -16560,7 +16560,7 @@ void system_process_network_events_3(void)
 
 
 
-void system_initialize_security_layer_3(void)
+void system_initialize_security_layer_ternary(void)
   int *system_context_int_system_pointer_var_1;
   uint8_t *init_ctx_base;
   
@@ -16595,7 +16595,7 @@ void system_initialize_security_layer_3(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void system_configure_encryption_system_3(void)
+void system_configure_encryption_system_ternary(void)
   if (system_context_ptr != 0) {
     if (*(int64_t *)(system_context_ptr + 8) != 0) {
       fclose();
@@ -16831,7 +16831,7 @@ system_label:
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void system_handle_authentication_3(void)
+void system_handle_authentication_ternary(void)
   byte *system_byte_system_pointer_b;
   uint8_t *system_byte_pointer_d;
   
@@ -17052,7 +17052,7 @@ system_process_context_data(uint8_t *system_context_ptr,int64_t *system_config_d
 
 
 
-void system_manage_permission_system_3(void)
+void system_manage_permission_system_ternary(void)
   *system_context_ptr = &system_null_ptr;
   _Mtx_system_destroy_in_situ();
   _Cnd_system_destroy_in_situ(system_context_ptr + 4);
@@ -17076,7 +17076,7 @@ uint8_t system_process_context_data(uint8_t system_context_ptr,uint64_t system_c
 
 
 
-void system_process_security_events_3(void)
+void system_process_security_events_ternary(void)
   
   system_result_code = _Mtx_lock(system_context_ptr + 0x48);
   if (system_result_code != 0) {
@@ -17095,7 +17095,7 @@ void system_process_security_events_3(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void system_initialize_script_runtime_3(void)
+void system_initialize_script_runtime_ternary(void)
   uint8_t* system_system_stack_buffer_58 [32];
   
   system_stack_context_hash_value = system_global_data_pointer ^ (uint64_t)system_system_stack_buffer_58;
@@ -17156,7 +17156,7 @@ uint8_t* system_process_context_data(int64_t system_context_ptr,uint8_t system_c
 
 
 
-void system_configure_virtual_machine_3(void)
+void system_configure_virtual_machine_ternary(void)
   _Cnd_system_destroy_in_situ();
   return;
 }
@@ -17164,7 +17164,7 @@ void system_configure_virtual_machine_3(void)
 
 
 
-void system_handle_script_execution_3(void)
+void system_handle_script_execution_ternary(void)
   _Cnd_system_destroy_in_situ();
   return;
 }
@@ -17172,7 +17172,7 @@ void system_handle_script_execution_3(void)
 
 
 
-void system_manage_script_objects_3(void)
+void system_manage_script_objects_ternary(void)
   _Mtx_system_destroy_in_situ();
   return;
 }
@@ -17180,7 +17180,7 @@ void system_manage_script_objects_3(void)
 
 
 
-void system_process_script_events_3(void)
+void system_process_script_events_ternary(void)
   _Mtx_system_destroy_in_situ();
   return;
 }
@@ -17188,7 +17188,7 @@ void system_process_script_events_3(void)
 
 
 
-void system_initialize_resource_pipeline_3(void)
+void system_initialize_resource_pipeline_ternary(void)
   _Mtx_system_destroy_in_situ();
   _Cnd_system_destroy_in_situ(system_context_ptr);
   return;
@@ -17231,7 +17231,7 @@ system_process_context_data(uint8_t *system_context_ptr,uint64_t system_config_d
 
 
 
-void system_configure_asset_loading_3(void)
+void system_configure_asset_loading_ternary(void)
   if (system_thread_count + 1 < 0x80) {
                     // WARNING: Subroutine does not return
     memcpy(*(uint8_t* **)(system_context_ptr + 8),system_config_data_array,(int64_t)system_thread_count);
