@@ -7836,9 +7836,9 @@ uint8_t8 ValidateObjectContextAndProcessParameterizedComplexFloatOperation(longl
     }
     lVar5 = *(longlong *)(validationContextParam + 0x98);
     if ((*(int *)(lVar5 + 0x180) != 0) || (*(int *)(lVar5 + 0x184) != 0)) {
-      lStackX_8 = 0;
-      InitializeSecurityContext(&lStackX_8,objectContextParam,param_3,param_4,unaff_RDI);
-      if (lStackX_8 == *(longlong *)((longlong)*(int *)(lVar5 + 0x17c) * 8 + 0x180c4f450)) {
+      securityContextBuffer = 0;
+      InitializeSecurityContext(&securityContextBuffer,objectContextParam,param_3,param_4,unaff_RDI);
+      if (securityContextBuffer == *(longlong *)((longlong)*(int *)(lVar5 + 0x17c) * 8 + 0x180c4f450)) {
         unsignedResult4 = ProcessResourceValidation(lVar5,objectContextParam);
         if ((int)byteValue4 == 0) {
           return 0;
@@ -12285,8 +12285,8 @@ uint8_t8 ValidateAndGetBufferContext(longlong objectContextParam,uint8_t8 valida
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void ProcessComplexResourceOperation(uint8_t8 objectContextParam,longlong validationContextParam,uint param_3,char param_4)
-void ProcessComplexResourceOperation(uint8_t8 objectContextParam,longlong validationContextParam,uint param_3,char param_4)
+ void ProcessComplexResourceOperation(uint8_t8 objectContextParam,longlong validationContextParam,uint operationFlags,char operationType)
+void ProcessComplexResourceOperation(uint8_t8 objectContextParam,longlong validationContextParam,uint operationFlags,char operationType)
 
 {
   longlong loopCounter;
