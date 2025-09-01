@@ -101,48 +101,62 @@ int initializeFileSystem(void)
   return (callbackResult != 0) - 1;
 }
 /**
- * 初始化模块G
- * 设置模块G所需的全局数据结构和回调
+ * 初始化内存管理模块
+ * 设置内存管理所需的全局数据结构和内存池
+ * 
+ * @return 初始化成功返回0，失败返回-1
  */
-int initializeModuleG(void)
+int initializeMemoryManager(void)
 {
-  longlong result;
-  globalData_180bf6080 = &unknownData_18098bb30;
-  globalData_180bf6088 = &globalData_180bf6098;
-  globalData_180bf6090 = 0;
-  globalData_180bf6098 = 0;
-  result = registerSystemCallback(initializeModuleG_Callback);
-  return (result != 0) - 1;
+  longlong callbackResult;
+  g_memoryManagerData = &unknownGlobalData;
+  g_memoryManagerConfig = &g_memoryManagerState;
+  g_memoryManagerFlags = 0;
+  g_memoryManagerState = 0;
+  callbackResult = registerSystemCallback(memoryManagerCallback);
+  return (callbackResult != 0) - 1;
 }
 /**
- * 初始化条件变量和互斥锁A
- * 设置线程同步所需的条件变量和互斥锁
+ * 初始化渲染线程同步机制
+ * 设置渲染系统所需的条件变量和互斥锁
+ * 
+ * @param param_1 线程ID参数
+ * @param param_2 同步对象指针
+ * @param param_3 互斥锁类型
+ * @param param_4 互斥锁属性
+ * @return 初始化成功返回0，失败返回-1
  */
-int initializeConditionMutexA(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+int initializeRenderingThreadSync(undefined8 threadId,undefined8 syncPtr,undefined8 mutexType,undefined8 mutexAttr)
 {
-  longlong result;
+  longlong callbackResult;
   undefined8 mutexFlags;
   mutexFlags = 0xfffffffffffffffe;
   _Cnd_init_in_situ();
-  _Mtx_init_in_situ(0x180c910a8,2,param_3,param_4,mutexFlags);
-  globalData_180c910f8 = 0;
-  result = registerSystemCallback(initializeConditionMutexA_Callback);
-  return (result != 0) - 1;
+  _Mtx_init_in_situ(RENDER_MUTEX_ADDRESS,2,mutexType,mutexAttr,mutexFlags);
+  g_renderingSyncState = 0;
+  callbackResult = registerSystemCallback(renderingThreadSyncCallback);
+  return (callbackResult != 0) - 1;
 }
 /**
- * 初始化条件变量和互斥锁B
- * 设置线程同步所需的条件变量和互斥锁
+ * 初始化物理引擎同步机制
+ * 设置物理引擎所需的条件变量和互斥锁
+ * 
+ * @param param_1 线程ID参数
+ * @param param_2 同步对象指针
+ * @param param_3 互斥锁类型
+ * @param param_4 互斥锁属性
+ * @return 初始化成功返回0，失败返回-1
  */
-int initializeConditionMutexB(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+int initializePhysicsEngineSync(undefined8 threadId,undefined8 syncPtr,undefined8 mutexType,undefined8 mutexAttr)
 {
-  longlong result;
+  longlong callbackResult;
   undefined8 mutexFlags;
   mutexFlags = 0xfffffffffffffffe;
   _Cnd_init_in_situ();
-  _Mtx_init_in_situ(0x180c91148,2,param_3,param_4,mutexFlags);
-  globalData_180c91198 = 0;
-  result = registerSystemCallback(initializeConditionMutexB_Callback);
-  return (result != 0) - 1;
+  _Mtx_init_in_situ(PHYSICS_MUTEX_ADDRESS,2,mutexType,mutexAttr,mutexFlags);
+  g_physicsSyncState = 0;
+  callbackResult = registerSystemCallback(physicsEngineSyncCallback);
+  return (callbackResult != 0) - 1;
 }
 /**
  * 初始化条件变量和互斥锁C
