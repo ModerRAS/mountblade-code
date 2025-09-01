@@ -48,6 +48,10 @@ uint32_t NetworkHeaderBufferTemplate;
 uint32_t NetworkDataBufferTemplate;
 uint32_t NetworkRequestBufferTemplate;
 uint32_t NetworkFirstProcessingBufferTemplate;
+uint32_t NetworkSecondaryProcessingBufferTemplate;
+uint32_t NetworkTertiaryProcessingBufferTemplate;
+uint32_t NetworkQuaternaryProcessingBufferTemplate;
+uint32_t NetworkQuinaryProcessingBufferTemplate;
 
 // 函数: void InitializeNetworkConnectionPool(void)
 /**
@@ -11407,8 +11411,11 @@ void FUN_18084bc0e(NetworkHandle connectionContext,longlong packetData)
 
 
 
-// 函数: void FUN_18084bcd6(void)
-void FUN_18084bcd6(void)
+// 函数: void NetworkConnectionCleanup(void)
+// 功能: 网络连接清理器
+// 参数: 无
+// 返回值: 无
+void NetworkConnectionCleanup(void)
 
 {
   longlong unaff_R14;
