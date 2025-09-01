@@ -87631,7 +87631,7 @@ void CleanupMutexResources(void)
  * 该函数负责初始化系统上下文，设置必要的参数和回调函数
  * 配置系统处理程序并初始化相关的数据结构
  */
-void InitializeSystemContext(uint8_t8 context_ptr, uint8_t8 param2, uint8_t8 param3, uint8_t8 param_4)
+void InitializeSystemContext(uint8_t8 contextPtr, uint8_t8 setupParam, uint8_t8 configParam, uint8_t8 flagsParam)
 
 {
   uint8_t8 *system_handler;
@@ -87692,10 +87692,10 @@ void ResetThreadLocalStorage(void)
  * @param param_3 参数3，清理选项
  * @param param_4 参数4，清理标志
  */
-void CleanupSystemResources(uint8_t8 resource_type, uint8_t8 resource_instance, uint8_t8 cleanup_options, uint8_t8 cleanup_flags)
+void CleanupSystemResources(uint8_t8 resourceType, uint8_t8 resourceInstance, uint8_t8 cleanupOptions, uint8_t8 cleanupFlags)
 
 {
-  uint8_t8 *resource_manager;
+  uint8_t8 *resourceManager;
   
   resource_manager = SystemResourceManagerPointer;
   if (SystemResourceManagerPointer == (uint8_t8 *)0x0) {
