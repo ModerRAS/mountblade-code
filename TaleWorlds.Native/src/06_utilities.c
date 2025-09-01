@@ -877,12 +877,12 @@ void* CreateMemoryManager;
  * 配置内存分配策略和参数
  */
 void SetupMemoryAllocator;
-undefined DAT_180bf9270;
-undefined DAT_180bf9278;
-undefined DAT_180bf9280;
-undefined DAT_180bf9288;
+void* SystemResourceConfigTable2;
+void* SystemFileSystemConfigTable2;
+void* SystemThreadingConfigTable3;
+void* SystemProcessConfigTable4;
 void* MemoryPoolFunction;
-undefined DAT_180bf92d0;
+void* SystemEventConfigTable6;
 
  void InitializeMemoryTracking;
 /**
@@ -892,12 +892,12 @@ undefined DAT_180bf92d0;
  * 设置内存使用监控和日志记录
  */
 void InitializeMemoryTracking;
-undefined DAT_180bf92d8;
-undefined DAT_180bf92e0;
-undefined DAT_180bf92e8;
-undefined UNK_180a22b60;
-undefined DAT_180bf9330;
-undefined DAT_180bf9338;
+void* SystemLoggingConfigTable5;
+void* SystemAuditConfigTable3;
+void* SystemDiagnosticsConfigTable3;
+void* SystemMemoryTracker;
+void* SystemPerformanceMonitor;
+void* SystemDebugLogger;
 
  void ConfigureMemoryProtection;
 /**
@@ -907,12 +907,12 @@ undefined DAT_180bf9338;
  * 设置内存访问权限和保护级别
  */
 void ConfigureMemoryProtection;
-undefined DAT_180bf9340;
-undefined DAT_180bf9348;
-undefined UNK_180a22b50;
-undefined DAT_180bf9390;
-undefined DAT_180bf9398;
-undefined DAT_180bf93a0;
+void* SystemThreadingConfigTable4;
+void* SystemProcessConfigTable5;
+void* SystemMemoryAllocator;
+void* SystemSecurityConfigTable4;
+void* SystemNetworkConfigTable3;
+void* SystemEventConfigTable7;
 
  void InitializeMemoryCache;
 /**
@@ -922,12 +922,12 @@ undefined DAT_180bf93a0;
  * 设置缓存大小和替换策略
  */
 void InitializeMemoryCache;
-undefined DAT_180bf93a8;
-undefined UNK_180a22be8;
-undefined DAT_180bf93f0;
-undefined DAT_180bf93f8;
-undefined DAT_180bf9400;
-undefined DAT_180bf9408;
+void* SystemLoggingConfigTable6;
+void* SystemMemoryCache;
+void* SystemFileSystemConfigTable3;
+void* SystemThreadingConfigTable5;
+void* SystemProcessConfigTable6;
+void* SystemSecurityConfigTable5;
 
  void SetupMemoryPool;
 /**
@@ -937,11 +937,11 @@ undefined DAT_180bf9408;
  * 配置内存块大小和池管理策略
  */
 void SetupMemoryPool;
-undefined UNK_180a22bd0;
-undefined DAT_180bf9450;
-undefined DAT_180bf9458;
-undefined DAT_180bf9460;
-undefined DAT_180bf9468;
+void* SystemMemoryPool;
+void* SystemNetworkConfigTable4;
+void* SystemEventConfigTable8;
+void* SystemLoggingConfigTable7;
+void* SystemAuditConfigTable4;
 
  void InitializeGarbageCollector;
 /**
@@ -6633,19 +6633,29 @@ undefined8 ValidateObjectAndProcessBufferContext(longlong ObjectContext, longlon
 
 
 
-undefined8 FUN_180892270(longlong param_1,longlong param_2)
+/**
+ * @brief 验证对象上下文并处理缓冲区
+ * 
+ * 该函数验证对象上下文的有效性，并处理相关的缓冲区操作
+ * 遍历缓冲区数组，验证每个缓冲区的上下文和状态
+ * 
+ * @param objectContext 对象上下文指针，包含对象的状态信息
+ * @param systemContext 系统上下文指针，包含系统配置信息
+ * @return undefined8 操作结果，成功返回0，失败返回错误码
+ */
+undefined8 ValidateObjectContextAndProcessBuffers(longlong objectContext, longlong systemContext)
 
 {
-  longlong lVar1;
-  int iVar2;
-  undefined8 uVar3;
-  undefined *puVar4;
-  uint uVar5;
-  ulonglong uVar6;
-  longlong lVar7;
-  ulonglong uVar8;
-  ulonglong uVar9;
-  longlong lStackX_8;
+  longlong bufferEntryPointer;
+  int comparisonResult;
+  undefined8 validationStatus;
+  undefined *stringPointer;
+  uint iterationCounter;
+  ulonglong bufferIndex;
+  longlong bufferContext;
+  ulonglong bufferArrayOffset;
+  ulonglong bufferEntryOffset;
+  longlong stackBuffer;
   
   if (param_1 + 0x1c == 0) {
     return 0x1f;
@@ -7105,25 +7115,33 @@ undefined8 FUN_1808924f0(longlong param_1,longlong param_2)
 
 
 
- void FUN_180892720(longlong param_1,longlong param_2)
-void FUN_180892720(longlong param_1,longlong param_2)
+ /**
+ * @brief 验证对象上下文并处理对象操作
+ * 
+ * 该函数验证对象上下文的有效性，如果验证通过则设置对象属性
+ * 并调用对象处理函数来执行相应的操作
+ * 
+ * @param ObjectContext 对象上下文指针，包含对象的基本信息
+ * @param SystemContext 系统上下文指针，包含系统运行环境信息
+ */
+void ValidateObjectContextAndProcessOperation(longlong ObjectContext, longlong SystemContext)
 
 {
-  int iVar1;
-  longlong lVar2;
-  undefined8 uStackX_8;
+  int validationStatus;
+  longlong objectPropertyPointer;
+  undefined8 stackBuffer;
   
-  iVar1 = ValidateObjectContext(*(undefined4 *)(param_1 + 0x10));
-  if (iVar1 == 0) {
-    if (uStackX_8 == 0) {
-      lVar2 = 0;
+  validationStatus = ValidateObjectContext(*(undefined4 *)(ObjectContext + 0x10));
+  if (validationStatus == 0) {
+    if (stackBuffer == 0) {
+      objectPropertyPointer = 0;
     }
     else {
-      lVar2 = uStackX_8 + -8;
+      objectPropertyPointer = stackBuffer + -8;
     }
-    *(undefined4 *)(lVar2 + 0x88) = *(undefined4 *)(param_1 + 0x18);
+    *(undefined4 *)(objectPropertyPointer + 0x88) = *(undefined4 *)(ObjectContext + 0x18);
                     // WARNING: Subroutine does not return
-    FUN_18088d720(*(undefined8 *)(param_2 + 0x98),param_1);
+    ProcessObjectOperation(*(undefined8 *)(SystemContext + 0x98), ObjectContext);
   }
   return;
 }

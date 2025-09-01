@@ -27770,49 +27770,57 @@ void FUN_180057796(longlong param_1)
 
 
 
-// 函数: void FUN_1800577c0(void)
-void FUN_1800577c0(void)
+// 函数: 系统内存清理器 - 负责清理系统内存
+/**
+ * @brief 系统内存清理器
+ * 
+ * 该函数负责清理系统内存中的无效指针和资源。它会遍历内存块，
+ * 检查每个内存块的状态，并清理不再需要的内存资源。
+ * 
+ * @note 这是系统内存管理的重要组成部分，确保系统内存的有效利用
+ */
+void SystemMemoryCleanup(void)
 
 {
-  int *piVar1;
+  int *memoryReferenceCount;
   undefined8 *systemDataTable;
-  longlong lVar3;
-  longlong unaff_RBP;
-  ulonglong unaff_RSI;
-  ulonglong unaff_RDI;
-  ulonglong uVar4;
-  longlong unaff_R14;
-  undefined8 unaff_R15;
+  longlong memoryBlockAddress;
+  longlong memoryBlockBase;
+  ulonglong memoryBlockCount;
+  ulonglong memoryBlockIndex;
+  ulonglong memoryBlockFlags;
+  longlong memoryBlockPointer;
+  undefined8 memoryBlockValue;
   
   do {
-    lVar3 = *(longlong *)(unaff_R14 + unaff_RDI * 8);
-    if (lVar3 != 0) {
+    memoryBlockAddress = *(longlong *)(memoryBlockPointer + memoryBlockIndex * 8);
+    if (memoryBlockAddress != 0) {
                     // WARNING: Subroutine does not return
-      FUN_18064e900(lVar3);
+      ReleaseMemoryBlock(memoryBlockAddress);
     }
-    *(undefined8 *)(unaff_R14 + unaff_RDI * 8) = unaff_R15;
-    unaff_RDI = unaff_RDI + 1;
-  } while (unaff_RDI < unaff_RSI);
-  *(undefined8 *)(unaff_RBP + 0x18) = unaff_R15;
-  if ((1 < *(ulonglong *)(unaff_RBP + 0x10)) &&
-     (puVar2 = *(undefined8 **)(unaff_RBP + 8), puVar2 != (undefined8 *)0x0)) {
-    uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-    if (uVar4 != 0) {
-      lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
-      lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-      if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-        *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-        *(undefined8 **)(lVar3 + 0x20) = puVar2;
-        piVar1 = (int *)(lVar3 + 0x18);
-        *piVar1 = *piVar1 + -1;
-        if (*piVar1 == 0) {
-          FUN_18064d630();
+    *(undefined8 *)(memoryBlockPointer + memoryBlockIndex * 8) = memoryBlockValue;
+    memoryBlockIndex = memoryBlockIndex + 1;
+  } while (memoryBlockIndex < memoryBlockCount);
+  *(undefined8 *)(memoryBlockBase + 0x18) = memoryBlockValue;
+  if ((1 < *(ulonglong *)(memoryBlockBase + 0x10)) &&
+     (systemMemoryBlock = *(undefined8 **)(memoryBlockBase + 8), systemMemoryBlock != (undefined8 *)0x0)) {
+    memoryBlockFlags = (ulonglong)systemMemoryBlock & 0xffffffffffc00000;
+    if (memoryBlockFlags != 0) {
+      memoryBlockAddress = memoryBlockFlags + 0x80 + ((longlong)systemMemoryBlock - memoryBlockFlags >> 0x10) * 0x50;
+      memoryBlockAddress = memoryBlockAddress - (ulonglong)*(uint *)(memoryBlockAddress + 4);
+      if ((*(void ***)(memoryBlockFlags + 0x70) == &ExceptionList) && (*(char *)(memoryBlockAddress + 0xe) == '\0')) {
+        *systemMemoryBlock = *(undefined8 *)(memoryBlockAddress + 0x20);
+        *(undefined8 **)(memoryBlockAddress + 0x20) = systemMemoryBlock;
+        memoryReferenceCount = (int *)(memoryBlockAddress + 0x18);
+        *memoryReferenceCount = *memoryReferenceCount + -1;
+        if (*memoryReferenceCount == 0) {
+          CleanupMemoryManager();
           return;
         }
       }
       else {
-        func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                            puVar2,uVar4,0xfffffffffffffffe);
+        ProcessMemoryBlockException(memoryBlockFlags,CONCAT71(0xff000000,*(void ***)(memoryBlockFlags + 0x70) == &ExceptionList),
+                            systemMemoryBlock,memoryBlockFlags,0xfffffffffffffffe);
       }
     }
     return;
