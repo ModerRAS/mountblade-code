@@ -66,11 +66,11 @@ void* globalModuleBContext;
  * 设置模块C所需的数据结构和运行环境
  */
 void InitializeGlobalModuleC(void);
-void* GlobalModuleCInstance;
-void* GlobalModuleCConfiguration;
-uint32_t GlobalModuleCStatus;
-void* GlobalModuleCHandle;
-void* GlobalModuleCContext;
+void* globalModuleCInstance;
+void* globalModuleCConfiguration;
+uint32_t globalModuleCStatus;
+void* globalModuleCHandle;
+void* globalModuleCContext;
 
 
 /**
@@ -80,10 +80,10 @@ void* GlobalModuleCContext;
  * 设置模块D所需的数据结构和运行环境
  */
 void InitializeGlobalModuleD(void);
-void* GlobalModuleDInstance;
-void* GlobalModuleDConfiguration;
-uint32_t GlobalModuleDStatus;
-void* GlobalModuleDHandle;
+void* globalModuleDInstance;
+void* globalModuleDConfiguration;
+uint32_t globalModuleDStatus;
+void* globalModuleDHandle;
 
 
 /**
@@ -93,10 +93,10 @@ void* GlobalModuleDHandle;
  * 设置模块E所需的数据结构和运行环境
  */
 void InitializeGlobalModuleE(void);
-void* GlobalModuleEInstance;
-void* GlobalModuleEConfiguration;
-uint32_t GlobalModuleEStatus;
-void* GlobalModuleEHandle;
+void* globalModuleEInstance;
+void* globalModuleEConfiguration;
+uint32_t globalModuleEStatus;
+void* globalModuleEHandle;
 
 
 /**
@@ -106,7 +106,7 @@ void* GlobalModuleEHandle;
  * 用于判断系统是否处于特定的运行状态
  */
 uint32_t GetSystemStatusFlag1(void);
-bool SystemStatusFlag1Initialized;
+bool systemStatusFlag1Initialized;
 
 
 /**
