@@ -1,7 +1,7 @@
 #include "TaleWorlds.Native.Split.h"
 
 // 核心引擎系统版本信息
-#define ENGINE_SYSTEM_VERSION 3.3
+#define ENGINE_SYSTEM_VERSION 3.4
 #define ENGINE_LAST_UPDATED "2025-09-01"
 
 /**
@@ -28874,7 +28874,7 @@ void engine_unnamed_function_810(uint64 engine_data_structure_ptr,longlong engin
   uint engine_stack_uint_128;
   ulonglong engine_stack_uint_120;
   char engine_stack_char_118;
-  char cStack_117;
+  char engine_stack_char_117;
   uint8 engine_stack_uint_116;
   uint engine_stack_uint_114;
   void* pengine_stack_uint_110;
@@ -29004,7 +29004,7 @@ LAB_1800721e1:
   if (engine_temp_char_flag == '\0') {
     comparison_result_index = WaitForSingleObject(_engine_screen_resolution,0);
     if (comparison_result_index == 0) {
-      cStack_117 = '\x01';
+      engine_stack_char_117 = '\x01';
       engine_temp_char_flag = (**(code **)**(void**)(_engine_data_08 + 0x18))();
       if ((engine_temp_char_flag == '\0') && (comparison_result_index = IsDebuggerPresent(), comparison_result_index != 0)) {
         engine_temp_char_flag = '\x01';
@@ -29029,8 +29029,8 @@ LAB_1800722f5:
       else {
         comparison_result_index = *(int *)(**(longlong **)(_engine_data_68 + 8) + 0x48);
         engine_temp_int_5 = _Thrd_id();
-        cStack_117 = engine_temp_int_5 == comparison_result_index;
-        if ((bool)cStack_117) goto LAB_1800722f5;
+        engine_stack_char_117 = engine_temp_int_5 == comparison_result_index;
+        if ((bool)engine_stack_char_117) goto LAB_1800722f5;
       }
       if (engine_temp_char_flag != '\0') {
         if ((engine_param_6 == '\0') || (*(int *)(_engine_data_70 + 0x340) == 2)) {
@@ -29400,7 +29400,7 @@ LAB_1800729bd:
         engine_data_ptr5 = engine_stack_param_a0;
       }
       engine_unnamed_function_5320(engine_data_ptr5,1);
-      if (cStack_117 != '\0') {
+      if (engine_stack_char_117 != '\0') {
         if (*(longlong *)(_engine_data_70 + 8) != 0) {
           engine_unnamed_function_5570();
         }
