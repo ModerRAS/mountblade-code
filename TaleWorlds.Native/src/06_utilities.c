@@ -83328,8 +83328,14 @@ void FUN_180942a20(void)
 
 
 
- void FUN_180942a40(void)
-void FUN_180942a40(void)
+ /**
+ * @brief 销毁互斥锁资源
+ * 
+ * 该函数负责销毁系统中的互斥锁资源，释放相关内存
+ * 确保资源正确清理，避免内存泄漏
+ */
+void DestroyMutexResource(void)
+void DestroyMutexResource(void)
 
 {
                     // WARNING: Could not recover jumptable at 0x000180942a58. Too many branches
