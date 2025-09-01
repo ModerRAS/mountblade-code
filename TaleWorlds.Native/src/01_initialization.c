@@ -24754,7 +24754,7 @@ InitializeSystemResourceBuffer(uint8_t *systemResourcePointer, void* reservedPar
   *(void* *)(SystemResourcePointer + 0xa8) = 0;
   *(uint32_t *)(SystemResourcePointer + 0xb0) = 0;
   *SystemResourcePointer = 0;
-  (**(code **)(*plocalResourceOffset + 0x10))(plocalResourceOffset,&UNK_1809fd118,&SystemMemoryAllocatorReference,ConfigurationFlag,0xfffffffffffffffe);
+  (**(code **)(*plocalResourceOffset + 0x10))(plocalResourceOffset,&SystemResourceInitializationData,&SystemMemoryAllocatorReference,ConfigurationFlag,0xfffffffffffffffe);
   *(void* *)(SystemResourcePointer + 0x28) = 0;
   *(uint32_t *)(SystemResourcePointer + 0x30) = 0;
   SystemResourcePointer[0x7c] = 0;
@@ -24919,7 +24919,7 @@ void* * SystemResourceComplexInitializer(void* *SystemResourcePointer)
   LOCK();
   *(uint8_t *)(SystemResourcePointer + 0x79) = 0;
   UNLOCK();
-  (**(code **)(*plocalResourceOffset + 0x10))(plocalResourceOffset,&UNK_1809fd140);
+  (**(code **)(*plocalResourceOffset + 0x10))(plocalResourceOffset,&SystemResourceConfigurationData);
   (**(code **)(*SecondaryResourcePointer + 0x10))(SecondaryResourcePointer,&SystemStringTemplate);
   *(uint8_t *)(SystemResourcePointer + 0x2d) = 0;
   SystemResourcePointer[0x13] = 0;
@@ -25968,12 +25968,12 @@ void SystemCleanupHandler(void)
   puStack_160 = auStack_150;
   auStack_150[0] = 0;
   uStack_158 = 0xd;
-  strcpy_s(auStack_150,0x10,&UNK_180a04130);
+  strcpy_s(auStack_150,0x10,&SystemVersionString);
   punsignedSystemValue6 = (void* *)SystemMemoryAllocationFunction(SystemMemoryAllocationTemplate,0x208,8,3);
   lStack_1e8 = localSystemHandle + 0x70;
   apuStack_1c8[0] = punsignedSystemValue6;
   InitializeSystemMemoryContext(punsignedSystemValue6,&puStack_168,3,localSystemHandle + 0x2e0);
-  *punsignedSystemValue6 = &UNK_1809fe220;
+  *punsignedSystemValue6 = &SystemValueReference;
   apuStack_1c8[0] = punsignedSystemValue6;
   SetupSystemMemoryAllocator(punsignedSystemValue6);
   InitializeSystemHandle(localSystemHandle + 0x48,apuStack_1c8);
@@ -25998,17 +25998,17 @@ void SystemCleanupHandler(void)
   *(void* *)(lStack_1d8 + 0x20) = 0;
   *(long long *)(localResourceOffset + 0xa8) = lStack_1d8;
   lStack_1d0 = lStack_1d8;
-  RegisterSystemCallback(*(void* *)(SystemResourceContext + 0xa8),&SystemCallbackDataTable1,&UNK_180a00350,SystemCallbackHandler1);
+  RegisterSystemCallback(*(void* *)(SystemResourceContext + 0xa8),&SystemCallbackDataTable1,&SystemCallbackTable1,SystemCallbackHandler1);
   RegisterSystemCallback(*(void* *)(SystemResourceContext + 0xa8),&SystemCallbackDataTable2,&SystemCallbackDataTable2Param,SystemCallbackHandler2);
-  RegisterSystemCallback(*(void* *)(SystemResourceContext + 0xa8),&SystemCallbackDataTable3,&UNK_180a00340,SystemCallbackHandler3);
-  RegisterSystemCallback(*(void* *)(SystemResourceContext + 0xa8),&SystemCallbackDataTable4,&UNK_180a00420,SystemCallbackHandler4);
-  RegisterSystemCallback(*(void* *)(SystemResourceContext + 0xa8),&UNK_180a00e18,&UNK_180a00450,SystemCallbackHandler5);
+  RegisterSystemCallback(*(void* *)(SystemResourceContext + 0xa8),&SystemCallbackDataTable3,&SystemCallbackTable3,SystemCallbackHandler3);
+  RegisterSystemCallback(*(void* *)(SystemResourceContext + 0xa8),&SystemCallbackDataTable4,&SystemCallbackTable4,SystemCallbackHandler4);
+  RegisterSystemCallback(*(void* *)(SystemResourceContext + 0xa8),&SystemCallbackTable5,&SystemCallbackTable5Data,SystemCallbackHandler5);
   RegisterSystemCallback(*(void* *)(SystemResourceContext + 0xa8),&SystemCallbackDataTable6,&SystemCallbackDataTable6Param,SystemCallbackHandler6);
-  RegisterSystemCallback(*(void* *)(SystemResourceContext + 0xa8),&SystemCallbackDataTable7,&UNK_180a00480,SystemCallbackHandler7);
-  RegisterSystemCallback(*(void* *)(SystemResourceContext + 0xa8),&UNK_180a00ab8,&UNK_180a00ac8,SystemCallbackHandler8);
-  RegisterSystemCallback(*(void* *)(SystemResourceContext + 0xa8),&UNK_180a01170,&UNK_180a00368,SystemCallbackHandler9);
-  RegisterSystemCallback(*(void* *)(SystemResourceContext + 0xa8),&SystemEventCallbackDataTable,&UNK_180a00a00,SystemEventCallbackHandler);
-  RegisterSystemCallback(*(void* *)(SystemResourceContext + 0xa8),&SystemNetworkCallbackDataTable,&UNK_180a00490,SystemNetworkCallbackHandler);
+  RegisterSystemCallback(*(void* *)(SystemResourceContext + 0xa8),&SystemCallbackDataTable7,&SystemCallbackTable7Data,SystemCallbackHandler7);
+  RegisterSystemCallback(*(void* *)(SystemResourceContext + 0xa8),&SystemCallbackTable8,&SystemCallbackTable8Data,SystemCallbackHandler8);
+  RegisterSystemCallback(*(void* *)(SystemResourceContext + 0xa8),&SystemCallbackTable9,&SystemCallbackTable9Data,SystemCallbackHandler9);
+  RegisterSystemCallback(*(void* *)(SystemResourceContext + 0xa8),&SystemEventCallbackDataTable,&SystemEventCallbackTableData,SystemEventCallbackHandler);
+  RegisterSystemCallback(*(void* *)(SystemResourceContext + 0xa8),&SystemNetworkCallbackDataTable,&SystemNetworkCallbackTableData,SystemNetworkCallbackHandler);
   SystemPreviousNode = (uint32_t *)CreateSystemNodePointer(localResourceOffset + 0xe0,&SystemEventCallbackDataTable);
   *SystemPreviousNode = 1;
   SystemPreviousNode = (uint32_t *)CreateSystemNodePointer(localResourceOffset + 0xe0,&SystemCallbackDataTable3);
@@ -26274,7 +26274,7 @@ void SystemDataInitializer(void)
   puStack_48 = auStack_38;
   auStack_38[0] = 0;
   uStack_40 = 3;
-  strcpy_s(auStack_38,0x10,&UNK_1809fd534);
+  strcpy_s(auStack_38,0x10,&SystemVersionString2);
   puStack_78 = &SystemGlobalDataReference;
   uStack_60 = 0;
   puStack_70 = (uint32_t *)0x0;
@@ -26301,7 +26301,7 @@ void SystemDataInitializer(void)
   puStack_78 = &SystemMemoryAllocatorReference;
   memoryAllocationEnd = &SystemMemoryAllocatorReference;
                     // WARNING: Subroutine does not return
-  UpdateContextManagerSystem(SystemContextManagerPointer,&UNK_1809fd550);
+  UpdateContextManagerSystem(SystemContextManagerPointer,&ContextManagerConfigurationData);
 }
 
 
@@ -26379,7 +26379,7 @@ void InitializeSystemDataStructures(void)
     *(uint8_t *)(pplocalResourcePointer + 2) = 0;
     UNLOCK();
     pplocalResourcePointer[3] = (long long *)0xffffffffffffffff;
-    *pplocalResourcePointer = (long long *)&UNK_180a08c60;
+    *pplocalResourcePointer = (long long *)&MemoryAllocationPool;
     *(uint32_t *)(pplocalResourcePointer + 5) = 4;
     pplocalResourcePointer[4] = PrimaryResourcePointer;
     ppplStack_70 = (long long ***)pplocalResourcePointer;
@@ -26507,7 +26507,7 @@ void InitializeSystemResourceAllocator(long long systemResourcePointer)
     *(uint8_t *)(memoryAllocationPointer + 2) = 0;
     UNLOCK();
     memoryAllocationPointer[3] = (long long *)0xffffffffffffffff;
-    *memoryAllocationPointer = (long long *)&UNK_180a08c60;
+    *memoryAllocationPointer = (long long *)&MemoryAllocationPool;
     *(uint32_t *)(memoryAllocationPointer + 5) = 4;
     memoryAllocationPointer[4] = primaryResourcePointer;
     stackPointer70 = (long long ***)memoryAllocationPointer;
@@ -27548,8 +27548,8 @@ void ProcessSystemResourceAndRenderManagement(long long *SystemResourcePointer,v
       (*(int *)(SystemNodeManagerPointer + 0x314) != *(int *)(SystemNodeManagerPointer + 0x310))) ||
      (*(int *)(SystemNodeManagerPointer + 0x544) != *(int *)(SystemNodeManagerPointer + 0x540))) {
     stackParameter1 = localBuffer1;
-    localBuffer2 = &UNK_180058f90;
-    localBuffer3 = &UNK_180058f80;
+    localBuffer2 = &SystemBuffer1;
+    localBuffer3 = &SystemBuffer2;
     ProcessSystemResourceData(localBuffer1);
   }
   if ((SystemAllocationFlags != 0) &&
@@ -27557,8 +27557,8 @@ void ProcessSystemResourceAndRenderManagement(long long *SystemResourcePointer,v
       (*(int *)(SystemNodeManagerPointer + 0x3f4) != *(int *)(SystemNodeManagerPointer + 0x3f0))))) {
     memoryAllocationHandle = SystemMemoryAllocationFunction(SystemMemoryAllocationTemplate,0x40,8,3);
     stackParameter1 = localBuffer4;
-    localBuffer5 = &UNK_180058f60;
-    localBuffer6 = &UNK_180058f50;
+    localBuffer5 = &SystemBuffer3;
+    localBuffer6 = &SystemBuffer4;
     systemResourcePointer = (long long *)CreateMemoryAllocationHandle(memoryAllocationHandle,localBuffer4);
     stackParameter2 = systemResourcePointer;
     if (systemResourcePointer != (long long *)0x0) {
@@ -29480,7 +29480,7 @@ void InitializeSystemMemoryResource(long long *SystemResourcePointer)
   lStack_78 = localResourceOffset + 0x70;
   pplStack_60 = (long long **)plocalBufferAddress;
   InitializeSystemMemoryContext(plocalBufferAddress,&memoryAllocationEnd,3,localResourceOffset + 0x2e0);
-  *plocalBufferAddress = (long long)&UNK_1809fe220;
+  *plocalBufferAddress = (long long)&SystemValueReference;
   plStack_68 = plocalBufferAddress;
   InitializeSystemMemoryContext(plocalBufferAddress);
   InitializeSystemHandle(localResourceOffset + 0x48,&plStack_68);
@@ -36104,62 +36104,118 @@ long long ReleaseSystemResourceConfiguration(long long SystemResourcePointer,uin
 
 
 // 函数: void FUN_18005c560(long long SystemResourcePointer)
-void FUN_18005c560(long long SystemResourcePointer)
+/**
+ * @brief 系统资源锁定管理器函数
+ * 
+ * 该函数负责管理系统资源的锁定和解锁操作，包括线程同步和条件变量广播。
+ * 它会确保资源在多线程环境下的安全访问，并正确处理同步状态。
+ * 
+ * @param SystemResourcePointer 系统资源指针，包含资源的基本信息和同步对象
+ * @note 这是系统资源管理的重要组成部分，用于处理线程同步和资源锁定
+ */
+void ManageSystemResourceLock(long long SystemResourcePointer)
 
 {
-  long long localMemoryPointer;
-  int systemResult;
+  long long synchronizationObject;
+  int lockResult;
   
+  // 调用系统资源清理回调函数
   (**(code **)(SystemResourcePointer + 0xd8))(SystemResourcePointer + 0xc0);
-  localMemoryPointer = *(long long *)(SystemResourcePointer + 0xe0);
-  systemResult = _Mtx_lock(localMemoryPointer + 0x48);
-  if (systemResult != 0) {
-    __Throw_C_error_std__YAXH_Z(systemResult);
+  
+  // 获取同步对象指针
+  synchronizationObject = *(long long *)(SystemResourcePointer + 0xe0);
+  
+  // 锁定互斥量
+  lockResult = _Mtx_lock(synchronizationObject + 0x48);
+  if (lockResult != 0) {
+    __Throw_C_error_std__YAXH_Z(lockResult);
   }
-  *(uint8_t *)(localMemoryPointer + 0x98) = 1;
-  systemResult = _Cnd_broadcast(localMemoryPointer);
-  if (systemResult != 0) {
-    __Throw_C_error_std__YAXH_Z(systemResult);
+  
+  // 设置同步状态标志
+  *(uint8_t *)(synchronizationObject + 0x98) = 1;
+  
+  // 广播条件变量通知等待的线程
+  lockResult = _Cnd_broadcast(synchronizationObject);
+  if (lockResult != 0) {
+    __Throw_C_error_std__YAXH_Z(lockResult);
   }
-  systemResult = _Mtx_unlock(localMemoryPointer + 0x48);
-  if (systemResult != 0) {
-    __Throw_C_error_std__YAXH_Z(systemResult);
+  
+  // 解锁互斥量
+  lockResult = _Mtx_unlock(synchronizationObject + 0x48);
+  if (lockResult != 0) {
+    __Throw_C_error_std__YAXH_Z(lockResult);
   }
+  
   return;
 }
 
 
 
+// 函数: void* *FUN_18005c590(void* *SystemResourcePointer,void* *ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
+/**
+ * @brief 初始化系统数据表管理器函数
+ * 
+ * 该函数负责初始化系统数据表管理器，设置系统资源指针和配置数据。
+ * 它会处理数据表的初始化、配置和回调函数的设置。
+ * 
+ * @param SystemResourcePointer 系统资源指针数组，包含资源的基本信息
+ * @param ConfigurationDataPointer 配置数据指针数组，包含系统的配置信息
+ * @param AdditionalParameter 额外参数，用于扩展功能
+ * @param ConfigurationFlag 配置标志，用于控制配置行为
+ * @return 系统资源指针数组
+ * @note 这是系统数据管理的重要组成部分，用于初始化数据表管理器
+ */
 void* *
-FUN_18005c590(void* *SystemResourcePointer,void* *ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
+InitializeSystemDataTableManager(void* *SystemResourcePointer,void* *ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
 {
-  void* *pointerToUnsigned1;
-  code *pcVar2;
-  void* unsignedSystemValue3;
+  void* *dataTablePointer;
+  code *configurationCallback;
+  void* recursiveFlag;
   
-  unsignedSystemValue3 = 0xfffffffffffffffe;
+  // 设置递归调用标志
+  recursiveFlag = 0xfffffffffffffffe;
+  
+  // 初始化系统数据表管理器（递归调用保护）
   InitializeSystemDataTableManager();
-  *SystemResourcePointer = &UNK_1809fdf38;
-  pointerToUnsigned1 = SystemResourcePointer + 0x18;
+  
+  // 设置系统资源指针到默认数据表
+  *SystemResourcePointer = &SystemGlobalDataTableReference;
+  
+  // 获取数据表指针
+  dataTablePointer = SystemResourcePointer + 0x18;
+  
+  // 初始化回调函数指针和完整性检查
   SystemResourcePointer[0x1a] = 0;
   SystemResourcePointer[0x1b] = _guard_check_icall;
-  if (pointerToUnsigned1 != ConfigurationDataPointer) {
+  
+  // 如果数据表指针与配置数据指针不同，则进行配置
+  if (dataTablePointer != ConfigurationDataPointer) {
+    // 调用现有的回调函数（如果存在）
     if ((code *)SystemResourcePointer[0x1a] != (code *)0x0) {
-      (*(code *)SystemResourcePointer[0x1a])(pointerToUnsigned1,0,0,ConfigurationFlag,unsignedSystemValue3);
+      (*(code *)SystemResourcePointer[0x1a])(dataTablePointer,0,0,ConfigurationFlag,recursiveFlag);
     }
-    pcVar2 = (code *)ConfigurationDataPointer[2];
-    if (pcVar2 != (code *)0x0) {
-      (*pcVar2)(pointerToUnsigned1,ConfigurationDataPointer,1);
-      pcVar2 = (code *)ConfigurationDataPointer[2];
+    
+    // 获取配置回调函数
+    configurationCallback = (code *)ConfigurationDataPointer[2];
+    if (configurationCallback != (code *)0x0) {
+      (*configurationCallback)(dataTablePointer,ConfigurationDataPointer,1);
+      configurationCallback = (code *)ConfigurationDataPointer[2];
     }
-    SystemResourcePointer[0x1a] = pcVar2;
+    
+    // 设置回调函数和完整性检查函数
+    SystemResourcePointer[0x1a] = configurationCallback;
     SystemResourcePointer[0x1b] = ConfigurationDataPointer[3];
   }
+  
+  // 设置额外参数
   SystemResourcePointer[0x1c] = AdditionalParameter;
+  
+  // 调用配置完成回调函数（如果存在）
   if ((code *)ConfigurationDataPointer[2] != (code *)0x0) {
     (*(code *)ConfigurationDataPointer[2])(ConfigurationDataPointer,0,0);
   }
+  
   return SystemResourcePointer;
 }
 
@@ -38022,7 +38078,7 @@ void* * FUN_18005e4d0(long long SystemResourcePointer,void* ConfigurationDataPoi
   pointerToUnsigned1 = (void* *)SystemMemoryAllocationFunction(SystemMemoryAllocationTemplate,0x208,8,3);
   puStackX_8 = pointerToUnsigned1;
   InitializeSystemMemoryContext(pointerToUnsigned1,ConfigurationDataPointer,3,SystemResourcePointer + 0x2e0,SystemResourcePointer + 0x70);
-  *pointerToUnsigned1 = &UNK_1809fe220;
+  *pointerToUnsigned1 = &SystemValueReference;
   puStackX_8 = pointerToUnsigned1;
   FUN_18020e840(pointerToUnsigned1);
   InitializeSystemHandle(SystemResourcePointer + 0x48,&puStackX_8);
@@ -41105,7 +41161,7 @@ void StartInputSystem(void* SystemResourcePointer,long long ConfigurationDataPoi
   lStack_248 = localMemoryPointer + 0x70;
   puStack_238 = pointerToUnsigned3;
   InitializeSystemMemoryContext(pointerToUnsigned3,&puStack_1a8,3,localMemoryPointer + 0x2e0);
-  *pointerToUnsigned3 = &UNK_1809fe220;
+  *pointerToUnsigned3 = &SystemValueReference;
   puStack_238 = pointerToUnsigned3;
   FUN_18020e840(pointerToUnsigned3);
   InitializeSystemHandle(localMemoryPointer + 0x48,&puStack_238);
