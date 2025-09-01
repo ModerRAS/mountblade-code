@@ -8350,16 +8350,29 @@ void ManageNetworkConnectionState(longlong connectionContext,NetworkHandle packe
 
 
 // 函数: void FUN_180848c20(longlong connectionContext,NetworkHandle packetData)
-void FUN_180848c20(longlong connectionContext,NetworkHandle packetData)
+/**
+ * @brief 处理网络连接数据包安全验证
+ * 
+ * 该函数负责处理网络连接数据包的安全验证操作，包括：
+ * - 数据包安全检查
+ * - 数据包完整性验证
+ * - 安全配置更新
+ * 
+ * @param connectionContext 网络连接上下文指针
+ * @param packetData 网络数据包句柄
+ * 
+ * 注意：这是一个反编译的函数实现
+ */
+void ValidateNetworkConnectionPacketSecurity(longlong connectionContext,NetworkHandle packetData)
 
 {
-  int networkStatus1;
+  int securityValidationStatus;
   
-  networkStatus1 = FUN_18088f310(packetData,connectionContext + 0x10);
-  if (networkStatus1 == 0) {
-    networkStatus1 = FUN_18088f4d0(packetData,connectionContext + 0x1d,0x80);
-    if (networkStatus1 == 0) {
-      FUN_18088f470(packetData,connectionContext + 0x1c);
+  securityValidationStatus = PerformNetworkPacketSecurityCheck(packetData,connectionContext + 0x10);
+  if (securityValidationStatus == 0) {
+    securityValidationStatus = ValidateNetworkPacketIntegrity(packetData,connectionContext + 0x1d,0x80);
+    if (securityValidationStatus == 0) {
+      UpdateNetworkSecurityConfiguration(packetData,connectionContext + 0x1c);
     }
   }
   return;
@@ -8369,16 +8382,29 @@ void FUN_180848c20(longlong connectionContext,NetworkHandle packetData)
 
 
 // 函数: void FUN_180848c70(longlong connectionContext,NetworkHandle packetData)
-void FUN_180848c70(longlong connectionContext,NetworkHandle packetData)
+/**
+ * @brief 处理网络连接数据包完整性验证
+ * 
+ * 该函数负责处理网络连接数据包的完整性验证操作，包括：
+ * - 数据包完整性检查
+ * - 数据包内容验证
+ * - 数据包状态更新
+ * 
+ * @param connectionContext 网络连接上下文指针
+ * @param packetData 网络数据包句柄
+ * 
+ * 注意：这是一个反编译的函数实现
+ */
+void ValidateNetworkConnectionPacketIntegrity(longlong connectionContext,NetworkHandle packetData)
 
 {
-  int networkStatus1;
+  int integrityValidationStatus;
   
-  networkStatus1 = FUN_18088f4d0(packetData,connectionContext + 0x20,0x80);
-  if (networkStatus1 == 0) {
-    networkStatus1 = FUN_18088eea0(packetData,connectionContext + 0x10);
-    if (networkStatus1 == 0) {
-      FUN_18088f470(packetData,connectionContext + 0x14);
+  integrityValidationStatus = PerformNetworkPacketIntegrityCheck(packetData,connectionContext + 0x20,0x80);
+  if (integrityValidationStatus == 0) {
+    integrityValidationStatus = ValidateNetworkPacketContent(packetData,connectionContext + 0x10);
+    if (integrityValidationStatus == 0) {
+      UpdateNetworkPacketState(packetData,connectionContext + 0x14);
     }
   }
   return;
@@ -8388,16 +8414,29 @@ void FUN_180848c70(longlong connectionContext,NetworkHandle packetData)
 
 
 // 函数: void FUN_180848cc0(longlong connectionContext,NetworkHandle packetData)
-void FUN_180848cc0(longlong connectionContext,NetworkHandle packetData)
+/**
+ * @brief 处理网络连接数据包双重验证
+ * 
+ * 该函数负责处理网络连接数据包的双重验证操作，包括：
+ * - 数据包双重验证
+ * - 验证状态确认
+ * - 验证结果处理
+ * 
+ * @param connectionContext 网络连接上下文
+ * @param packetData 网络数据包数据
+ * 
+ * 注意：这是一个反编译的函数实现
+ */
+void PerformNetworkConnectionPacketDualValidation(longlong connectionContext,NetworkHandle packetData)
 
 {
-  int networkStatus1;
+  int dualValidationStatus;
   
-  networkStatus1 = FUN_18088f4d0(packetData,connectionContext + 0x20,0x80);
-  if (networkStatus1 == 0) {
-    networkStatus1 = FUN_18088f4d0(packetData,connectionContext + 0xa0,0x80);
-    if (networkStatus1 == 0) {
-      FUN_18088f470(packetData,connectionContext + 0x14);
+  dualValidationStatus = PerformPrimaryNetworkPacketValidation(packetData,connectionContext + 0x20,0x80);
+  if (dualValidationStatus == 0) {
+    dualValidationStatus = PerformSecondaryNetworkPacketValidation(packetData,connectionContext + 0xa0,0x80);
+    if (dualValidationStatus == 0) {
+      UpdateNetworkValidationResult(packetData,connectionContext + 0x14);
     }
   }
   return;
@@ -8407,18 +8446,32 @@ void FUN_180848cc0(longlong connectionContext,NetworkHandle packetData)
 
 
 // 函数: void FUN_180848d50(longlong *connectionContext,uint packetData,NetworkHandle dataSize)
-void FUN_180848d50(longlong *connectionContext,uint packetData,NetworkHandle dataSize)
+/**
+ * @brief 处理网络连接数据大小管理
+ * 
+ * 该函数负责处理网络连接的数据大小管理，包括：
+ * - 数据大小验证
+ * - 数据大小配置
+ * - 数据大小状态设置
+ * 
+ * @param connectionContext 网络连接上下文指针
+ * @param packetData 网络数据包数据
+ * @param dataSize 网络数据大小
+ * 
+ * 注意：这是一个反编译的函数实现
+ */
+void ManageNetworkConnectionDataSize(longlong *connectionContext,uint packetData,NetworkHandle dataSize)
 
 {
-  int networkStatus1;
+  int dataManagementStatus;
   
   if (packetData < 0x11100) {
-    networkStatus1 = FUN_18088ee60(dataSize,connectionContext + 2);
-    if (networkStatus1 == 0) {
-      networkStatus1 = FUN_18088f4d0(dataSize,connectionContext + 5,0x80);
-      if (networkStatus1 == 0) {
-        networkStatus1 = FUN_18088eea0(dataSize,connectionContext + 3);
-        if (networkStatus1 == 0) {
+    dataManagementStatus = UpdateNetworkDataStatus(dataSize,connectionContext + 2);
+    if (dataManagementStatus == 0) {
+      dataManagementStatus = ValidateNetworkDataIntegrity(dataSize,connectionContext + 5,0x80);
+      if (dataManagementStatus == 0) {
+        dataManagementStatus = ProcessNetworkDataContent(dataSize,connectionContext + 3);
+        if (dataManagementStatus == 0) {
           *(NetworkByte *)((longlong)connectionContext + 0x1c) = 0;
           return;
         }
