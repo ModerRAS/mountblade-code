@@ -38,8 +38,8 @@ void* ModuleDependencyHandle;
  * 设置模块A所需的数据结构和运行环境
  */
 void InitializeGlobalModuleA(void);
-void* GlobalModuleA_Instance;
-void* GlobalModuleA_Config;
+void* GlobalModuleAInstance;
+void* GlobalModuleAConfiguration;
 uint32_t GlobalModuleA_Status;
 void* GlobalModuleA_Handle;
 
@@ -3440,25 +3440,34 @@ undefined8 DecrementSystemResourceCounter(longlong systemContext, undefined8 res
 
 
 
-undefined8 FUN_180890540(longlong param_1)
+/**
+ * @brief 增加对象引用计数
+ * 
+ * 该函数用于增加系统对象的引用计数，管理对象的生命周期
+ * 主要用于内存管理和对象跟踪
+ * 
+ * @param objectContext 对象上下文指针，包含对象管理所需的信息
+ * @return undefined8 操作状态码，0表示成功，0x1c表示错误
+ */
+undefined8 IncrementObjectReferenceCount(longlong objectContext)
 
 {
-  longlong lVar1;
-  undefined8 uVar2;
-  longlong alStackX_8 [4];
+  longlong objectPointer;
+  undefined8 operationResult;
+  longlong contextHandles [4];
   
-  uVar2 = func_0x00018088c530(*(undefined4 *)(param_1 + 0x10),alStackX_8);
-  if ((int)uVar2 != 0) {
-    return uVar2;
+  operationResult = func_0x00018088c530(*(undefined4 *)(objectContext + 0x10), contextHandles);
+  if ((int)operationResult != 0) {
+    return operationResult;
   }
-  if (alStackX_8[0] != 0) {
-    alStackX_8[0] = alStackX_8[0] + -8;
+  if (contextHandles[0] != 0) {
+    contextHandles[0] = contextHandles[0] + -8;
   }
-  lVar1 = *(longlong *)(alStackX_8[0] + 0x10);
-  if (lVar1 != 0) {
-    *(int *)(lVar1 + 500) = *(int *)(lVar1 + 500) + 1;
-    if ((*(char *)(lVar1 + 0x204) != '\0') && (uVar2 = FUN_1808552c0(), (int)uVar2 != 0)) {
-      return uVar2;
+  objectPointer = *(longlong *)(contextHandles[0] + 0x10);
+  if (objectPointer != 0) {
+    *(int *)(objectPointer + 500) = *(int *)(objectPointer + 500) + 1;
+    if ((*(char *)(objectPointer + 0x204) != '\0') && (operationResult = FUN_1808552c0(), (int)operationResult != 0)) {
+      return operationResult;
     }
     return 0;
   }
@@ -3515,7 +3524,7 @@ undefined8 FUN_1808905ae(void)
 
 /**
  * @brief 验证字符参数并执行相应操作
- * @param charInput 输入的字符参数
+ * @param CharInput 输入的字符参数
  * @return 返回0表示成功
  * 
  * 该函数验证输入的字符参数，如果字符不为空则执行相应的系统操作

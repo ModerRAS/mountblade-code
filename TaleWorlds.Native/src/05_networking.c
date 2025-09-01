@@ -1417,7 +1417,7 @@ int ProcessNetworkDataBuffer(longlong bufferContext, longlong dataBuffer, int bu
 void SendNetworkConnectionData(longlong connectionData, undefined8 targetAddress, undefined4 dataFlags)
 
 {
-  FUN_18083faf0(param_2,param_3,*(undefined4 *)(param_1 + 0x10),*(undefined4 *)(param_1 + 0x18),
+  NetworkSendPacket(param_2,param_3,*(undefined4 *)(param_1 + 0x10),*(undefined4 *)(param_1 + 0x18),
                 *(undefined4 *)(param_1 + 0x1c));
   return;
 }
@@ -1460,7 +1460,7 @@ int ValidateNetworkPacket(longlong packetContext, longlong packetData, int packe
   iVar3 = iVar3 + iVar4;
   iVar4 = FUN_18074b880(iVar3 + param_2,param_3 - iVar3,&DAT_180a06434);
   iVar3 = iVar3 + iVar4;
-  iVar4 = FUN_18074b650(iVar3 + param_2,param_3 - iVar3,&uStack_18);
+  iVar4 = NetworkBufferCompressData(iVar3 + param_2,param_3 - iVar3,&uStack_18);
   iVar3 = iVar3 + iVar4;
   iVar4 = FUN_18074b880(iVar3 + param_2,param_3 - iVar3,&DAT_180a06434);
   iVar3 = iVar3 + iVar4;
@@ -1520,13 +1520,13 @@ int ProcessNetworkConnectionResponse(longlong responseContext, longlong response
   iVar2 = func_0x00018074b800(param_2,param_3,*(undefined4 *)(param_1 + 0x10));
   iVar3 = NetworkBufferCopyData(param_2 + iVar2,param_3 - iVar2,&NetworkBufferDataTemplate);
   iVar2 = iVar2 + iVar3;
-  iVar3 = FUN_18074be90(iVar2 + param_2,param_3 - iVar2,uVar1);
+  iVar3 = NetworkBufferEncryptData(iVar2 + param_2,param_3 - iVar2,uVar1);
   return iVar3 + iVar2;
 }
 
 
 
-int FUN_180840ff0(longlong param_1,longlong param_2,int param_3)
+int NetworkProcessConnectionData(longlong param_1,longlong param_2,int param_3)
 
 {
   undefined4 uVar1;
@@ -1543,7 +1543,7 @@ int FUN_180840ff0(longlong param_1,longlong param_2,int param_3)
 
 
 
-int FUN_180841060(longlong param_1,longlong param_2,int param_3)
+int NetworkValidateConnectionData(longlong param_1,longlong param_2,int param_3)
 
 {
   undefined4 uVar1;
@@ -1560,7 +1560,7 @@ int FUN_180841060(longlong param_1,longlong param_2,int param_3)
 
 
 
-int FUN_1808410d0(longlong param_1,longlong param_2,int param_3)
+int NetworkEncryptConnectionData(longlong param_1,longlong param_2,int param_3)
 
 {
   undefined4 uVar1;
@@ -1583,7 +1583,7 @@ int FUN_1808410d0(longlong param_1,longlong param_2,int param_3)
 
 
 
-int FUN_180841180(longlong param_1,longlong param_2,int param_3)
+int NetworkDecryptConnectionData(longlong param_1,longlong param_2,int param_3)
 
 {
   undefined4 uVar1;
@@ -1606,7 +1606,7 @@ int FUN_180841180(longlong param_1,longlong param_2,int param_3)
 
 
 
-int FUN_180841230(longlong param_1,longlong param_2,int param_3)
+int NetworkCompressConnectionData(longlong param_1,longlong param_2,int param_3)
 
 {
   int iVar1;
@@ -1641,7 +1641,7 @@ int FUN_180841230(longlong param_1,longlong param_2,int param_3)
 
 
 
-int FUN_1808412b0(longlong param_1,longlong param_2,int param_3)
+int NetworkDecompressConnectionData(longlong param_1,longlong param_2,int param_3)
 
 {
   undefined4 uVar1;
@@ -1658,7 +1658,7 @@ int FUN_1808412b0(longlong param_1,longlong param_2,int param_3)
 
 
 
-int FUN_180841320(longlong param_1,longlong param_2,int param_3)
+int NetworkHashConnectionData(longlong param_1,longlong param_2,int param_3)
 
 {
   undefined4 uVar1;
@@ -1708,7 +1708,7 @@ int FUN_180841410(longlong param_1,longlong param_2,int param_3)
   iVar2 = iVar2 + iVar3;
   iVar3 = FUN_18074b880(iVar2 + param_2,param_3 - iVar2,&DAT_180a06434);
   iVar2 = iVar2 + iVar3;
-  iVar3 = FUN_18074be90(iVar2 + param_2,param_3 - iVar2,uVar1);
+  iVar3 = NetworkBufferEncryptData(iVar2 + param_2,param_3 - iVar2,uVar1);
   return iVar3 + iVar2;
 }
 
@@ -1760,7 +1760,7 @@ int FUN_1808415e0(longlong param_1,longlong param_2,int param_3)
   iVar2 = iVar2 + iVar3;
   iVar3 = FUN_18074b880(iVar2 + param_2,param_3 - iVar2,&DAT_180a06434);
   iVar2 = iVar2 + iVar3;
-  iVar3 = FUN_18074be90(iVar2 + param_2,param_3 - iVar2,uVar1);
+  iVar3 = NetworkBufferEncryptData(iVar2 + param_2,param_3 - iVar2,uVar1);
   return iVar3 + iVar2;
 }
 
@@ -1990,7 +1990,7 @@ int FUN_180841bc0(longlong param_1,longlong param_2,int param_3)
   iVar2 = iVar2 + iVar3;
   iVar3 = FUN_18074b880(iVar2 + param_2,param_3 - iVar2,&DAT_180a06434);
   iVar2 = iVar2 + iVar3;
-  iVar3 = FUN_18074be90(iVar2 + param_2,param_3 - iVar2,uVar1);
+  iVar3 = NetworkBufferEncryptData(iVar2 + param_2,param_3 - iVar2,uVar1);
   return iVar3 + iVar2;
 }
 
@@ -2055,7 +2055,7 @@ int FUN_180841df0(longlong param_1,longlong param_2,int param_3)
   iVar2 = iVar2 + iVar3;
   iVar3 = FUN_18074b880(iVar2 + param_2,param_3 - iVar2,&DAT_180a06434);
   iVar2 = iVar2 + iVar3;
-  iVar3 = FUN_18074be90(iVar2 + param_2,param_3 - iVar2,uVar1);
+  iVar3 = NetworkBufferEncryptData(iVar2 + param_2,param_3 - iVar2,uVar1);
   return iVar3 + iVar2;
 }
 
@@ -2099,7 +2099,7 @@ int FUN_180841f50(longlong param_1,longlong param_2,int param_3)
   iVar2 = iVar2 + iVar3;
   iVar3 = FUN_18074b880(iVar2 + param_2,param_3 - iVar2,&DAT_180a06434);
   iVar2 = iVar2 + iVar3;
-  iVar3 = FUN_18074be90(iVar2 + param_2,param_3 - iVar2,uVar1);
+  iVar3 = NetworkBufferEncryptData(iVar2 + param_2,param_3 - iVar2,uVar1);
   return iVar3 + iVar2;
 }
 
@@ -3875,7 +3875,7 @@ int FUN_180844b20(longlong param_1,longlong param_2,int param_3)
   iVar2 = iVar2 + iVar3;
   iVar3 = FUN_18074b880(iVar2 + param_2,param_3 - iVar2,&DAT_180a06434);
   iVar2 = iVar2 + iVar3;
-  iVar3 = FUN_18074be90(iVar2 + param_2,param_3 - iVar2,uVar1);
+  iVar3 = NetworkBufferEncryptData(iVar2 + param_2,param_3 - iVar2,uVar1);
   return iVar3 + iVar2;
 }
 
@@ -3927,7 +3927,7 @@ int FUN_180844d00(longlong param_1,longlong param_2,int param_3)
   iVar2 = iVar2 + iVar3;
   iVar3 = FUN_18074b880(iVar2 + param_2,param_3 - iVar2,&DAT_180a06434);
   iVar2 = iVar2 + iVar3;
-  iVar3 = FUN_18074be90(iVar2 + param_2,param_3 - iVar2,uVar1);
+  iVar3 = NetworkBufferEncryptData(iVar2 + param_2,param_3 - iVar2,uVar1);
   return iVar3 + iVar2;
 }
 
@@ -64788,7 +64788,7 @@ int FUN_180879880(longlong param_1,longlong param_2,int param_3)
   iVar3 = FUN_18074b880(param_2,param_3,&UNK_180985ae8);
   iVar4 = FUN_18074b880(iVar3 + param_2,param_3 - iVar3,&DAT_180a06434);
   iVar3 = iVar3 + iVar4;
-  iVar4 = FUN_18074b650(iVar3 + param_2,param_3 - iVar3,&uStack_18);
+  iVar4 = NetworkBufferCompressData(iVar3 + param_2,param_3 - iVar3,&uStack_18);
   iVar3 = iVar3 + iVar4;
   iVar4 = FUN_18074b880(iVar3 + param_2,param_3 - iVar3,&DAT_180a06434);
   iVar3 = iVar3 + iVar4;

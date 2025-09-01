@@ -1758,108 +1758,126 @@ void InitializeSystemMemoryNode(void)
 
 
 
-// 函数: void FUN_18002dae0(void)
-void FUN_18002dae0(void)
+/**
+ * @brief 初始化系统数据表结构A
+ * 
+ * 该函数负责初始化系统数据表结构A，配置数据表的内存布局
+ * 和访问模式，为系统提供高效的数据表访问支持。
+ * 函数通过遍历和比较数据表项来设置特定的标识符和指针。
+ */
+void InitializeSystemDataTableStructureA(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
-  undefined *puStackX_18;
+  char dataTypeFlag;
+  undefined8 *dataTablePointer;
+  int memoryCompareResult;
+  longlong *systemRootPointer;
+  longlong allocationSize;
+  undefined8 *currentNode;
+  undefined8 *previousNode;
+  undefined8 *nextNode;
+  undefined8 *newNodePointer;
+  undefined *systemDataReference;
   
-  plVar4 = (longlong *)FUN_18008d070();
-  puVar2 = (undefined8 *)*plVar4;
-  cVar1 = *(char *)((longlong)puVar2[1] + 0x19);
-  puStackX_18 = &UNK_1800868c0;
-  puVar7 = puVar2;
-  puVar6 = (undefined8 *)puVar2[1];
-  while (cVar1 == '\0') {
-    iVar3 = memcmp(puVar6 + 4,&DAT_180a00fd8,0x10);
-    if (iVar3 < 0) {
-      puVar8 = (undefined8 *)puVar6[2];
-      puVar6 = puVar7;
+  systemRootPointer = (longlong *)FUN_18008d070();
+  dataTablePointer = (undefined8 *)*systemRootPointer;
+  dataTypeFlag = *(char *)((longlong)dataTablePointer[1] + 0x19);
+  systemDataReference = &UNK_1800868c0;
+  previousNode = dataTablePointer;
+  currentNode = (undefined8 *)dataTablePointer[1];
+  while (dataTypeFlag == '\0') {
+    memoryCompareResult = memcmp(currentNode + 4,&DAT_180a00fd8,0x10);
+    if (memoryCompareResult < 0) {
+      nextNode = (undefined8 *)currentNode[2];
+      currentNode = previousNode;
     }
     else {
-      puVar8 = (undefined8 *)*puVar6;
+      nextNode = (undefined8 *)*currentNode;
     }
-    puVar7 = puVar6;
-    puVar6 = puVar8;
-    cVar1 = *(char *)((longlong)puVar8 + 0x19);
+    previousNode = currentNode;
+    currentNode = nextNode;
+    dataTypeFlag = *(char *)((longlong)nextNode + 0x19);
   }
-  if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a00fd8,puVar7 + 4,0x10), iVar3 < 0)) {
-    lVar5 = FUN_18008f0d0(plVar4);
-    FUN_18008f140(plVar4,&puStackX_10,puVar7,lVar5 + 0x20,lVar5);
-    puVar7 = puStackX_10;
+  if ((previousNode == dataTablePointer) || (memoryCompareResult = memcmp(&DAT_180a00fd8,previousNode + 4,0x10), memoryCompareResult < 0)) {
+    allocationSize = FUN_18008f0d0(systemRootPointer);
+    FUN_18008f140(systemRootPointer,&newNodePointer,previousNode,allocationSize + 0x20,allocationSize);
+    previousNode = newNodePointer;
   }
-  puVar7[6] = 0x4384dcc4b6d3f417;
-  puVar7[7] = 0x92a15d52fe2679bd;
-  puVar7[8] = &UNK_180a003e8;
-  puVar7[9] = 0;
-  puVar7[10] = puStackX_18;
+  previousNode[6] = 0x4384dcc4b6d3f417;
+  previousNode[7] = 0x92a15d52fe2679bd;
+  previousNode[8] = &UNK_180a003e8;
+  previousNode[9] = 0;
+  previousNode[10] = systemDataReference;
   return;
 }
 
 
 
 
-// 函数: void FUN_18002dbe0(void)
-void FUN_18002dbe0(void)
+/**
+ * @brief 初始化系统数据表结构B
+ * 
+ * 该函数负责初始化系统数据表结构B，配置数据表的内存布局
+ * 和访问模式，为系统提供高效的数据表访问支持。
+ * 函数通过遍历和比较数据表项来设置特定的标识符和指针。
+ */
+void InitializeSystemDataTableStructureB(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
-  undefined8 uStackX_18;
+  char dataTypeFlag;
+  undefined8 *dataTablePointer;
+  int memoryCompareResult;
+  longlong *systemRootPointer;
+  longlong allocationSize;
+  undefined8 *currentNode;
+  undefined8 *previousNode;
+  undefined8 *nextNode;
+  undefined8 *newNodePointer;
+  undefined8 initializationFlag;
   
-  plVar4 = (longlong *)FUN_18008d070();
-  puVar2 = (undefined8 *)*plVar4;
-  cVar1 = *(char *)((longlong)puVar2[1] + 0x19);
-  uStackX_18 = 0;
-  puVar7 = puVar2;
-  puVar6 = (undefined8 *)puVar2[1];
-  while (cVar1 == '\0') {
-    iVar3 = memcmp(puVar6 + 4,&DAT_180a00fb0,0x10);
-    if (iVar3 < 0) {
-      puVar8 = (undefined8 *)puVar6[2];
-      puVar6 = puVar7;
+  systemRootPointer = (longlong *)FUN_18008d070();
+  dataTablePointer = (undefined8 *)*systemRootPointer;
+  dataTypeFlag = *(char *)((longlong)dataTablePointer[1] + 0x19);
+  initializationFlag = 0;
+  previousNode = dataTablePointer;
+  currentNode = (undefined8 *)dataTablePointer[1];
+  while (dataTypeFlag == '\0') {
+    memoryCompareResult = memcmp(currentNode + 4,&DAT_180a00fb0,0x10);
+    if (memoryCompareResult < 0) {
+      nextNode = (undefined8 *)currentNode[2];
+      currentNode = previousNode;
     }
     else {
-      puVar8 = (undefined8 *)*puVar6;
+      nextNode = (undefined8 *)*currentNode;
     }
-    puVar7 = puVar6;
-    puVar6 = puVar8;
-    cVar1 = *(char *)((longlong)puVar8 + 0x19);
+    previousNode = currentNode;
+    currentNode = nextNode;
+    dataTypeFlag = *(char *)((longlong)nextNode + 0x19);
   }
-  if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a00fb0,puVar7 + 4,0x10), iVar3 < 0)) {
-    lVar5 = FUN_18008f0d0(plVar4);
-    FUN_18008f140(plVar4,&puStackX_10,puVar7,lVar5 + 0x20,lVar5);
-    puVar7 = puStackX_10;
+  if ((previousNode == dataTablePointer) || (memoryCompareResult = memcmp(&DAT_180a00fb0,previousNode + 4,0x10), memoryCompareResult < 0)) {
+    allocationSize = FUN_18008f0d0(systemRootPointer);
+    FUN_18008f140(systemRootPointer,&newNodePointer,previousNode,allocationSize + 0x20,allocationSize);
+    previousNode = newNodePointer;
   }
-  puVar7[6] = 0x4140994454d56503;
-  puVar7[7] = 0x399eced9bb5517ad;
-  puVar7[8] = &UNK_180a00400;
-  puVar7[9] = 0;
-  puVar7[10] = uStackX_18;
+  previousNode[6] = 0x4140994454d56503;
+  previousNode[7] = 0x399eced9bb5517ad;
+  previousNode[8] = &UNK_180a00400;
+  previousNode[9] = 0;
+  previousNode[10] = initializationFlag;
   return;
 }
 
 
 
 
-// 函数: void FUN_18002dce0(void)
-void FUN_18002dce0(void)
+/**
+ * @brief 初始化系统数据表结构C
+ * 
+ * 该函数负责初始化系统数据表结构C，配置数据表的内存布局
+ * 和访问模式，为系统提供高效的数据表访问支持。
+ * 函数通过遍历和比较数据表项来设置特定的标识符和指针。
+ */
+void InitializeSystemDataTableStructureC(void)
 
 {
   char cVar1;
@@ -1908,8 +1926,14 @@ void FUN_18002dce0(void)
 
 
 
-// 函数: void FUN_18002dde0(void)
-void FUN_18002dde0(void)
+/**
+ * @brief 初始化系统数据表结构D
+ * 
+ * 该函数负责初始化系统数据表结构D，配置数据表的内存布局
+ * 和访问模式，为系统提供高效的数据表访问支持。
+ * 函数通过遍历和比较数据表项来设置特定的标识符和指针。
+ */
+void InitializeSystemDataTableStructureD(void)
 
 {
   char cVar1;
@@ -1958,8 +1982,14 @@ void FUN_18002dde0(void)
 
 
 
-// 函数: void FUN_18002dee0(void)
-void FUN_18002dee0(void)
+/**
+ * @brief 初始化系统数据表结构E
+ * 
+ * 该函数负责初始化系统数据表结构E，配置数据表的内存布局
+ * 和访问模式，为系统提供高效的数据表访问支持。
+ * 函数通过遍历和比较数据表项来设置特定的标识符和指针。
+ */
+void InitializeSystemDataTableStructureE(void)
 
 {
   char cVar1;
@@ -2008,8 +2038,14 @@ void FUN_18002dee0(void)
 
 
 
-// 函数: void FUN_18002dfe0(void)
-void FUN_18002dfe0(void)
+/**
+ * @brief 初始化系统数据表结构F
+ * 
+ * 该函数负责初始化系统数据表结构F，配置数据表的内存布局
+ * 和访问模式，为系统提供高效的数据表访问支持。
+ * 函数通过遍历和比较数据表项来设置特定的标识符和指针。
+ */
+void InitializeSystemDataTableStructureF(void)
 
 {
   char cVar1;
@@ -2058,8 +2094,14 @@ void FUN_18002dfe0(void)
 
 
 
-// 函数: void FUN_18002e0e0(void)
-void FUN_18002e0e0(void)
+/**
+ * @brief 初始化系统数据表结构G
+ * 
+ * 该函数负责初始化系统数据表结构G，配置数据表的内存布局
+ * 和访问模式，为系统提供高效的数据表访问支持。
+ * 函数通过遍历和比较数据表项来设置特定的标识符和指针。
+ */
+void InitializeSystemDataTableStructureG(void)
 
 {
   char cVar1;
@@ -2108,8 +2150,14 @@ void FUN_18002e0e0(void)
 
 
 
-// 函数: void FUN_18002e1e0(void)
-void FUN_18002e1e0(void)
+/**
+ * @brief 初始化系统数据表结构H
+ * 
+ * 该函数负责初始化系统数据表结构H，配置数据表的内存布局
+ * 和访问模式，为系统提供高效的数据表访问支持。
+ * 函数通过遍历和比较数据表项来设置特定的标识符和指针。
+ */
+void InitializeSystemDataTableStructureH(void)
 
 {
   char cVar1;
@@ -2158,8 +2206,14 @@ void FUN_18002e1e0(void)
 
 
 
-// 函数: void FUN_18002e2e0(void)
-void FUN_18002e2e0(void)
+/**
+ * @brief 初始化系统数据表结构I
+ * 
+ * 该函数负责初始化系统数据表结构I，配置数据表的内存布局
+ * 和访问模式，为系统提供高效的数据表访问支持。
+ * 函数通过遍历和比较数据表项来设置特定的标识符和指针。
+ */
+void InitializeSystemDataTableStructureI(void)
 
 {
   char cVar1;
