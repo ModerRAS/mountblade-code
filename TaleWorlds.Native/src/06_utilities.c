@@ -951,7 +951,7 @@ void* SystemAuditConfigTable4;
  * 设置垃圾回收策略和参数
  */
 void InitializeGarbageCollector;
-undefined UNK_180a22bb8;
+undefined GarbageCollectorConfigData;
 undefined GarbageCollectorTable0;
 undefined GarbageCollectorTable1;
 undefined GarbageCollectorTable2;
@@ -965,12 +965,12 @@ undefined GarbageCollectorTable3;
  * 设置内存使用监控和报告参数
  */
 void ConfigureMemoryStatistics;
-undefined UNK_180a22ba8;
+undefined MemoryStatisticsConfigData;
 undefined MemoryStatisticsTable0;
 undefined MemoryStatisticsTable1;
 undefined MemoryStatisticsTable2;
 undefined MemoryStatisticsTable3;
-undefined UNK_180a22c48;
+undefined MemoryStatisticsExtendedData;
 
  void InitializeMemoryDebugger;
 /**
@@ -5431,7 +5431,7 @@ void ProcessSystemDataPacketTransmission(longlong packetHandle, longlong transmi
 {
   int iVar1;
   
-  iVar1 = FUN_18073b5f0(*(undefined8 *)(param_2 + 0x78),*(undefined4 *)(param_1 + 0x10),
+  iVar1 = ProcessResourceRequest(*(undefined8 *)(param_2 + 0x78),*(undefined4 *)(param_1 + 0x10),
                         param_1 + 0x14,param_1 + 0x20,param_1 + 0x2c,param_1 + 0x38);
   if ((iVar1 == 0) &&
      (iVar1 = InitializeDataStructure((longlong)*(int *)(param_1 + 0x10) * 0x44 +
@@ -5466,7 +5466,7 @@ void ProcessSystemObjectLifecycle(longlong objectHandle, longlong lifecycleConfi
 {
   int validationStatus;
   
-  validationStatus = FUN_18073b810(*(undefined8 *)(lifecycleConfig + 0x78),*(undefined4 *)(objectHandle + 0x10));
+  validationStatus = ProcessResourceValidationCheck(*(undefined8 *)(lifecycleConfig + 0x78),*(undefined4 *)(objectHandle + 0x10));
   if (validationStatus == 0) {
     ProcessObjectLifecycle(*(undefined8 *)(lifecycleConfig + 0x90),*(undefined4 *)(objectHandle + 0x10));
   }
