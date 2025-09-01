@@ -2002,8 +2002,8 @@ uint8_t SecurityTokenFlags;
  * 确保令牌的有效性和完整性
  */
 void ValidateSecurityToken(void);
-uint8_t AuthenticationContext;
-uint8_t AuthenticationConfig;
+uint8_t AuthenticationContextInstance;
+uint8_t AuthenticationConfigInstance;
 
  void ProcessAuthenticationRequest(void);
 /**
@@ -2013,10 +2013,10 @@ uint8_t AuthenticationConfig;
  * 验证用户身份和权限
  */
 void ProcessAuthenticationRequest(void);
-uint8_t AuthRequestData;
-uint8_t AuthRequestConfig;
-uint8_t AuthResponseData;
-uint8_t AuthResponseConfig;
+uint8_t AuthenticationRequestData;
+uint8_t AuthenticationRequestConfig;
+uint8_t AuthenticationResponseData;
+uint8_t AuthenticationResponseConfig;
 
  void EncryptDataBuffer(void);
 /**
@@ -2034,8 +2034,8 @@ void EncryptDataBuffer(void);
  * 恢复加密的敏感数据
  */
 void DecryptDataBuffer(void);
-uint8_t EncryptionKey;
-uint8_t EncryptionInitializationVector;
+uint8_t DataEncryptionKey;
+uint8_t DataEncryptionInitializationVector;
 
  /**
  * @brief 哈希数据缓冲区

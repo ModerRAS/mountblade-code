@@ -30403,8 +30403,19 @@ void CleanupSystemResources(long long *SystemResourcePointer)
 
 
 
-// 函数: void FUN_180057510(long long SystemResourcePointer,void* param_2,void* param_3,void* param_4)
-void FUN_180057510(long long SystemResourcePointer,void* param_2,void* param_3,void* param_4)
+/**
+ * @brief 系统资源处理器
+ * 
+ * 该函数负责处理系统资源，调用系统资源处理函数来执行具体的资源操作。
+ * 它会传递系统资源指针和相关参数给处理函数。
+ * 
+ * @param SystemResourcePointer 系统资源指针
+ * @param param_2 处理参数
+ * @param param_3 处理参数
+ * @param param_4 处理参数
+ * @note 这是系统资源管理的核心处理函数
+ */
+void ProcessSystemResource(long long SystemResourcePointer,void* param_2,void* param_3,void* param_4)
 
 {
   FUN_1800582b0(SystemResourcePointer,*(void* *)(SystemResourcePointer + 0x10),param_3,param_4,0xfffffffffffffffe);
@@ -30414,8 +30425,19 @@ void FUN_180057510(long long SystemResourcePointer,void* param_2,void* param_3,v
 
 
 
-// 函数: void FUN_180057530(long long SystemResourcePointer,void* param_2,void* param_3,void* param_4)
-void FUN_180057530(long long SystemResourcePointer,void* param_2,void* param_3,void* param_4)
+/**
+ * @brief 系统内存块处理器
+ * 
+ * 该函数负责处理系统内存块，调用内存块处理函数来执行具体的内存操作。
+ * 它会传递系统资源指针和相关参数给内存块处理函数。
+ * 
+ * @param SystemResourcePointer 系统资源指针
+ * @param param_2 处理参数
+ * @param param_3 处理参数
+ * @param param_4 处理参数
+ * @note 这是系统内存管理的核心处理函数
+ */
+void ProcessSystemMemoryBlock(long long SystemResourcePointer,void* param_2,void* param_3,void* param_4)
 
 {
   ProcessMemoryBlock(SystemResourcePointer,*(void* *)(SystemResourcePointer + 0x10),param_3,param_4,0xfffffffffffffffe);
