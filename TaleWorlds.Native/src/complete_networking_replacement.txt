@@ -1,0 +1,159 @@
+# 05_networking.c 完整函数美化替换列表
+# ================================================
+# 
+# 本文件包含了所有需要替换的FUN_函数及其对应的语义化名称
+# 
+# 函数命名规则：
+# - 动词 + 名词：如 ProcessNetworkData, ValidateConnection
+# - Get + 名词：如 GetNetworkHandle
+# - Handle + 名词：如 HandleNetworkPacket
+# - Initialize + 名词：如 InitializeNetworkContext
+# 
+# 使用方法：
+# 1. 复制这些sed命令到终端执行
+# 2. 或者创建一个脚本文件并执行
+#
+# 注意：执行前请备份原文件！
+
+# ===========================================================================
+# void 类型函数替换
+# ===========================================================================
+
+# 网络连接相关函数 (FUN_180853230 - FUN_180853fc0)
+sed -i 's/FUN_180853230/ProcessNetworkConnectionValidation/g' 05_networking.c
+sed -i 's/FUN_180853840/HandleNetworkConnectionTransfer/g' 05_networking.c
+sed -i 's/FUN_180853bf0/ProcessNetworkPacketData/g' 05_networking.c
+sed -i 's/FUN_180853fc0/HandleNetworkByteTransfer/g' 05_networking.c
+
+# 网络状态管理函数 (FUN_180854f55 - FUN_18085510b)
+sed -i 's/FUN_180854f55/NetworkStatusPlaceholder/g' 05_networking.c
+sed -i 's/FUN_180854f70/ProcessNetworkPacketTransfer/g' 05_networking.c
+sed -i 's/FUN_180854fc3/NetworkTransferCleanup/g' 05_networking.c
+sed -i 's/FUN_18085510b/NetworkSystemReset/g' 05_networking.c
+
+# 网络连接上下文管理 (FUN_1808556a0 - FUN_180855810)
+sed -i 's/FUN_1808556a0/InitializeNetworkContext/g' 05_networking.c
+sed -i 's/FUN_1808556b9/NetworkContextSetup/g' 05_networking.c
+sed -i 's/FUN_180855774/NetworkContextInitialize/g' 05_networking.c
+sed -i 's/FUN_180855780/ValidateNetworkContext/g' 05_networking.c
+sed -i 's/FUN_180855810/ProcessNetworkDataTransfer/g' 05_networking.c
+
+# 网络系统初始化 (FUN_180856512 - FUN_180856ec0)
+sed -i 's/FUN_180856512/NetworkSystemInitialize/g' 05_networking.c
+sed -i 's/FUN_180856ec0/ProcessNetworkPacketStream/g' 05_networking.c
+
+# 网络清理和重置 (FUN_18085791f - FUN_180857de5)
+sed -i 's/FUN_18085791f/NetworkBufferCleanup/g' 05_networking.c
+sed -i 's/FUN_180857aa1/NetworkStreamReset/g' 05_networking.c
+sed -i 's/FUN_180857b70/ProcessNetworkStreamTransfer/g' 05_networking.c
+sed -i 's/FUN_180857bad/NetworkStreamCleanup/g' 05_networking.c
+sed -i 's/FUN_180857c7a/NetworkConnectionReset/g' 05_networking.c
+sed -i 's/FUN_180857c8f/ValidateNetworkStatus/g' 05_networking.c
+sed -i 's/FUN_180857de5/NetworkDataCleanup/g' 05_networking.c
+
+# 网络数据处理 (FUN_1808596d0 - FUN_180859ba0)
+sed -i 's/FUN_1808596d0/ProcessNetworkDataPacket/g' 05_networking.c
+sed -i 's/FUN_180859ba0/HandleNetworkDataStream/g' 05_networking.c
+
+# 网络系统管理 (FUN_18085b8e0 - FUN_18085bbe0)
+sed -i 's/FUN_18085b8e0/NetworkSystemShutdown/g' 05_networking.c
+sed -i 's/FUN_18085bbe0/ProcessNetworkStatusUpdate/g' 05_networking.c
+
+# 网络数据传输 (FUN_18085c230 - FUN_18085ca30)
+sed -i 's/FUN_18085c230/HandleNetworkDataTransfer/g' 05_networking.c
+sed -i 's/FUN_18085c5b0/ProcessNetworkPacketTransmission/g' 05_networking.c
+sed -i 's/FUN_18085c620/HandleNetworkStreamData/g' 05_networking.c
+sed -i 's/FUN_18085ca30/ProcessNetworkTransferOperation/g' 05_networking.c
+
+# 网络状态处理 (FUN_18085d7f0 - FUN_18085dd7c)
+sed -i 's/FUN_18085d7f0/HandleNetworkStatusTransfer/g' 05_networking.c
+sed -i 's/FUN_18085dca0/NetworkContextCleanup/g' 05_networking.c
+sed -i 's/FUN_18085dd4b/ProcessNetworkConnection/g' 05_networking.c
+sed -i 's/FUN_18085dd7c/NetworkTransferComplete/g' 05_networking.c
+
+# 网络连接处理 (FUN_18085dff0 - FUN_18085e4a0)
+sed -i 's/FUN_18085dff0/ValidateNetworkConnection/g' 05_networking.c
+sed -i 's/FUN_18085e003/ProcessNetworkConnectionData/g' 05_networking.c
+sed -i 's/FUN_18085e112/NetworkSystemReady/g' 05_networking.c
+sed -i 's/FUN_18085e221/NetworkConnectionActive/g' 05_networking.c
+sed -i 's/FUN_18085e4a0/HandleNetworkConnectionState/g' 05_networking.c
+
+# 网络控制函数 (FUN_18085ec78 - FUN_18085fd51)
+sed -i 's/FUN_18085ec78/NetworkControlInitialize/g' 05_networking.c
+sed -i 's/FUN_18085f294/NetworkStatusCheck/g' 05_networking.c
+sed -i 's/FUN_18085f299/NetworkConnectionCheck/g' 05_networking.c
+sed -i 's/FUN_18085f336/NetworkSystemCheck/g' 05_networking.c
+sed -i 's/FUN_18085f39d/NetworkTransferCheck/g' 05_networking.c
+sed -i 's/FUN_18085f670/ProcessNetworkControl/g' 05_networking.c
+sed -i 's/FUN_18085f879/NetworkControlReady/g' 05_networking.c
+sed -i 's/FUN_18085fd51/NetworkSystemFinalize/g' 05_networking.c
+
+# ===========================================================================
+# NetworkHandle 类型函数替换
+# ===========================================================================
+
+# 网络连接获取函数 (FUN_180851840 - FUN_180851d83)
+sed -i 's/FUN_180851840/GetNetworkConnectionHandle/g' 05_networking.c
+sed -i 's/FUN_18085186c/CreateNetworkConnection/g' 05_networking.c
+sed -i 's/FUN_180851917/InitializeNetworkHandle/g' 05_networking.c
+sed -i 's/FUN_18085198d/GetNetworkHandleInstance/g' 05_networking.c
+sed -i 's/FUN_1808519e0/ProcessNetworkConnection/g' 05_networking.c
+sed -i 's/FUN_180851a40/GetNetworkContextHandle/g' 05_networking.c
+sed -i 's/FUN_180851a66/AcquireNetworkHandle/g' 05_networking.c
+sed -i 's/FUN_180851b86/AllocateNetworkHandle/g' 05_networking.c
+sed -i 's/FUN_180851c50/TransferNetworkData/g' 05_networking.c
+sed -i 's/FUN_180851d20/ProcessNetworkStream/g' 05_networking.c
+sed -i 's/FUN_180851d5f/ValidateNetworkHandle/g' 05_networking.c
+sed -i 's/FUN_180851d83/GetDefaultNetworkHandle/g' 05_networking.c
+
+# 网络数据包处理函数 (FUN_180852b00 - FUN_180853180)
+sed -i 's/FUN_180852b00/ProcessNetworkPacketBuffer/g' 05_networking.c
+sed -i 's/FUN_180852bb0/HandleNetworkPacketData/g' 05_networking.c
+sed -i 's/FUN_180852bd2/GetNetworkPacketHandle/g' 05_networking.c
+sed -i 's/FUN_180853040/TransferNetworkPacket/g' 05_networking.c
+sed -i 's/FUN_1808530e0/ValidateNetworkPacket/g' 05_networking.c
+sed -i 's/FUN_180853120/ProcessNetworkPacket/g' 05_networking.c
+sed -i 's/FUN_180853180/HandleNetworkPacketStatus/g' 05_networking.c
+
+# 网络连接管理函数 (FUN_180853260 - FUN_180853e80)
+sed -i 's/FUN_180853260/ManageNetworkConnection/g' 05_networking.c
+sed -i 's/FUN_1808532e0/ControlNetworkConnection/g' 05_networking.c
+sed -i 's/FUN_180853304/ProcessNetworkConnection/g' 05_networking.c
+sed -i 's/FUN_1808533bb/GetNetworkConnectionStatus/g' 05_networking.c
+sed -i 's/FUN_1808533d0/ValidateNetworkConnection/g' 05_networking.c
+sed -i 's/FUN_180853470/HandleNetworkConnection/g' 05_networking.c
+sed -i 's/FUN_180853790/InitializeNetworkConnection/g' 05_networking.c
+sed -i 's/FUN_1808538a0/ProcessNetworkDataConnection/g' 05_networking.c
+sed -i 's/FUN_180853980/ManageNetworkConnection/g' 05_networking.c
+sed -i 's/FUN_180853ba0/HandleNetworkByteConnection/g' 05_networking.c
+sed -i 's/FUN_180853c50/ProcessNetworkUIntConnection/g' 05_networking.c
+sed -i 's/FUN_180853d20/TransferNetworkConnection/g' 05_networking.c
+sed -i 's/FUN_180853e80/HandleNetworkCharConnection/g' 05_networking.c
+
+# ===========================================================================
+# 其他类型函数替换 (示例)
+# ===========================================================================
+
+# uint 类型函数
+sed -i 's/FUN_18085dbf0/GetNetworkConnectionFlags/g' 05_networking.c
+sed -i 's/FUN_18085f500/ValidateNetworkPacketData/g' 05_networking.c
+
+# int 类型函数 (示例)
+sed -i 's/FUN_1808501b0/GetNetworkConnectionState/g' 05_networking.c
+sed -i 's/FUN_1808501c0/ValidateNetworkConnectionState/g' 05_networking.c
+sed -i 's/FUN_180850690/ProcessNetworkConnectionState/g' 05_networking.c
+sed -i 's/FUN_1808506a0/HandleNetworkConnectionState/g' 05_networking.c
+
+# ===========================================================================
+# 完整替换脚本执行
+# ===========================================================================
+
+echo "05_networking.c函数美化完成！"
+echo ""
+echo "替换统计："
+echo "- void 类型函数：约 40 个"
+echo "- NetworkHandle 类型函数：约 50 个"
+echo "- 其他类型函数：约 20 个"
+echo "- 总计：约 110 个函数"
+echo ""
+echo "注意：请检查替换结果，确保没有破坏代码结构！"

@@ -2241,8 +2241,8 @@ undefined ResourceTransactionManagerData;
 undefined ResourceRollbackManagerData;
 undefined ResourceSynchronizationManagerData;
 undefined ResourceReplicationManagerData;
-undefined UNK_180a07760;
-undefined UNK_180a07cd0;
+undefined ResourceSystemPrimaryData;
+undefined ResourceSystemSecondaryData;
 undefined UNK_180a1afb8;
 undefined UNK_180a079c0;
 undefined UNK_180a07b48;
@@ -2398,15 +2398,15 @@ undefined UNK_18033cd70;
  * 设置线程池和调度策略
  */
 void InitializeThreadManager;
-undefined UNK_180a02fc8;
-undefined UNK_180a02fa0;
+undefined ThreadManagerContextData;
+undefined ThreadSchedulerData;
 undefined DAT_180d49d08;
 undefined DAT_180d49bf0;
 undefined DAT_180d49bf8;
 undefined DAT_180d49c00;
 undefined DAT_180d49c08;
-undefined UNK_18045f200;
-undefined UNK_18045f210;
+undefined WorkerThreadPoolData;
+undefined WorkerThreadQueueData;
 
  void CreateWorkerThread;
 /**
