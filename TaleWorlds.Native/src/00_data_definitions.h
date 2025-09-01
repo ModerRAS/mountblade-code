@@ -3002,7 +3002,7 @@ void InitializeNativeCoreCLR(uint64_t initFlags)
           uStack_2b0 = uStack_2b0 & 0xffffffff00000000;
           puStack_2c8 = &SystemBufferTemplate;
         }
-        else if (uVar8 == 0xb) {
+        else if (systemMode == 0xb) {
           LoopCounterValue = strcmp(pMemoryAddress1,&SystemConfigModeString);
           if (LoopCounterValue != 0) goto LAB_18004d668;
           SystemOperationStatus = 1;
@@ -3015,7 +3015,7 @@ void InitializeNativeCoreCLR(uint64_t initFlags)
           }
         }
         else {
-          if (uVar8 == 0xc) {
+          if (systemMode == 0xc) {
             LoopCounterValue = strcmp(pMemoryAddress1,&SystemTestModeString);
             bVar31 = LoopCounterValue == 0;
           }
@@ -3025,7 +3025,7 @@ LAB_18004d668:
           }
           if (bVar31) {
             InitializeSystemBuffer(&puStack_238,pMemoryAddress7);
-            uVar8 = InitializeDataBuffer(&puStack_238,&SystemTestModeString);
+            systemMode = InitializeDataBuffer(&puStack_238,&SystemTestModeString);
             BufferSize1 = (ulonglong)(int)uVar8;
             if (uVar8 < uStack_228) {
               pcVar12 = (char *)(lStack_230 + BufferSize1);
@@ -3401,7 +3401,7 @@ LAB_18004e25f:
                       bVar31 = false;
                     }
                     else {
-                      if (uVar8 == 0xc) {
+                      if (systemMode == 0xc) {
                         LoopCounterValue = strcmp(pMemoryAddress1);
                         if (LoopCounterValue == 0) {
                           pMemoryAddress7 = &SystemNetworkDataBuffer;
