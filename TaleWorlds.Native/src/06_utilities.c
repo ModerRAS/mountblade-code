@@ -34999,7 +34999,19 @@ void FinalizeResourceProcessing(void)
 
 
 
-void Unwind_1809034b0(uint8_t ObjectContextParameter,int64_t ValidationContextParameter)
+/**
+ * @brief 验证资源清理状态
+ * 
+ * 该函数负责验证资源清理的状态，确保资源已正确释放
+ * 检查资源索引和验证结果，执行必要的清理操作
+ * 
+ * @param ObjectContextParameter 对象上下文参数
+ * @param ValidationContextParameter 验证上下文参数，包含验证所需的信息
+ * @return 无返回值
+ * @note 此函数在资源清理过程中被调用
+ * @warning 如果资源索引为0，将调用系统清理处理程序
+ */
+void ValidateResourceCleanup(uint8_t ObjectContextParameter, int64_t ValidationContextParameter)
 
 {
   int *pResourceIndex;
@@ -35035,7 +35047,19 @@ void Unwind_1809034b0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 
 
 
-void Unwind_1809034c0(uint8_t ObjectContextParameter,int64_t ValidationContextParameter)
+/**
+ * @brief 验证资源清理状态（次要版本）
+ * 
+ * 该函数负责验证资源清理的状态，与ValidateResourceCleanup类似
+ * 但处理不同的资源偏移量，确保资源已正确释放
+ * 
+ * @param ObjectContextParameter 对象上下文参数
+ * @param ValidationContextParameter 验证上下文参数，包含验证所需的信息
+ * @return 无返回值
+ * @note 此函数在资源清理过程中被调用
+ * @warning 处理不同的资源偏移量以确保全面的资源清理
+ */
+void ValidateResourceCleanupSecondary(uint8_t ObjectContextParameter, int64_t ValidationContextParameter)
 
 {
   int *pResourceIndex;
