@@ -33538,7 +33538,7 @@ void ResourceHandleCleanup(uint8_t ObjectContextParameter,int64_t ValidationCont
 
 
 
-void Unwind_180903060(uint8_t ObjectContextParameter,int64_t ValidationContextParameter,uint8_t CleanupOption,uint8_t CleanupFlag)
+void SystemHandleFinalizer(uint8_t ObjectContextParameter,int64_t ValidationContextParameter,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   HandleResourceRequest(*(int64_t *)(ValidationContextParameter + 0x40),*(uint8_t *)(*(int64_t *)(ValidationContextParameter + 0x40) + 0x10),
@@ -33548,7 +33548,7 @@ void Unwind_180903060(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 
 
 
-void Unwind_180903070(uint8_t ObjectContextParameter,int64_t ValidationContextParameter,uint8_t CleanupOption,uint8_t CleanupFlag)
+void MemoryContextCleanup(uint8_t ObjectContextParameter,int64_t ValidationContextParameter,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   HandleResourceRequest(*(int64_t *)(ValidationContextParameter + 0x40),*(uint8_t *)(*(int64_t *)(ValidationContextParameter + 0x40) + 0x10),
