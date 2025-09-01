@@ -13019,8 +13019,15 @@ void ExecuteSimplifiedContextValidation(void)
 
 
 
- 75a6(void)
-75a6(void)
+ /**
+ * @brief 系统状态处理器函数A
+ * 
+ * 该函数负责处理系统状态相关的操作
+ * 包括状态检查、更新和重置等功能
+ * 
+ * @return 无返回值
+ */
+void SystemStatusProcessorA(void)
 
 {
   int operationResult;
@@ -13040,8 +13047,17 @@ void ExecuteSimplifiedContextValidation(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- 75e0(longlong objectContextParam,longlong validationContextParam)
-75e0(longlong objectContextParam,longlong validationContextParam)
+ /**
+ * @brief 系统资源处理器函数B
+ * 
+ * 该函数负责处理系统资源相关的操作
+ * 包括资源分配、释放和管理等功能
+ * 
+ * @param ObjectContext 对象上下文，指向需要处理的对象
+ * @param ValidationContext 验证上下文，包含验证所需的环境信息
+ * @return 处理结果，0表示成功，非0表示失败
+ */
+int SystemResourceProcessorB(longlong ObjectContext,longlong ValidationContext)
 
 {
   float CalculatedFloatValue;
@@ -87945,10 +87961,11 @@ void InitializeSystemContext(uint8_t8 ContextPtr, uint8_t8 SetupParam, uint8_t8 
  * @brief 重置线程本地存储
  * 
  * 该函数负责重置线程本地存储状态，清理不再需要的资源
- * 并将线程恢复到初始状态
- * 重置线程数据结构和资源指针
+ * 并将线程恢复到初始状态，重置线程数据结构和资源指针
  * 
  * @return 无返回值
+ * @note 此函数会清理线程本地存储中的所有资源
+ * @warning 调用此函数后，线程本地存储将被完全重置
  */
 void ResetThreadLocalStorage(void)
 
@@ -87956,13 +87973,13 @@ void ResetThreadLocalStorage(void)
   longlong ThreadContextData;
   
   ThreadContextData = *(longlong *)((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * 8);
-  *(uint8_t8 *)(ThreadContextData + 0x18) = &threadResourcePointer;
+  *(uint8_t8 *)(ThreadContextData + 0x18) = &ThreadResourcePointer;
   if (*(longlong *)(ThreadContextData + 0x20) != 0) {
     CleanupThreadResources();
   }
   *(uint8_t8 *)(ThreadContextData + 0x20) = 0;
   *(uint8_t4 *)(ThreadContextData + 0x30) = 0;
-  *(uint8_t8 *)(ThreadContextData + 0x18) = &defaultThreadResource;
+  *(uint8_t8 *)(ThreadContextData + 0x18) = &DefaultThreadResource;
   return;
 }
 
@@ -87975,13 +87992,15 @@ void ResetThreadLocalStorage(void)
  * @brief 清理系统资源
  * 
  * 该函数负责清理系统运行过程中分配的各种资源
- * 包括内存、句柄、数据结构等
+ * 包括内存、句柄、数据结构等系统资源
  * 
  * @param ResourceType 资源类型，用于标识要清理的资源种类
  * @param ResourceInstance 资源实例，用于标识具体的资源实例
  * @param CleanupOptions 清理选项，控制清理行为的具体参数
  * @param CleanupFlags 清理标志，指定清理操作的标志位
  * @return 无返回值
+ * @note 此函数会释放指定类型的系统资源
+ * @warning 调用此函数后，被清理的资源将不再可用
  */
 void CleanupSystemResources(UInt8Type8 ResourceType, UInt8Type8 ResourceInstance, UInt8Type8 CleanupOptions, UInt8Type8 CleanupFlags)
 
