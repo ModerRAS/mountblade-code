@@ -4815,7 +4815,17 @@ undefined8 FUN_180891210(longlong param_1)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-int FUN_180891280(longlong param_1)
+// 函数: int InitializeSystemManager(longlong managerHandle)
+/**
+ * @brief 初始化系统管理器
+ * 
+ * 该函数负责初始化系统管理器，设置管理器所需的数据结构
+ * 和配置参数，确保管理器能够正常运行
+ * 
+ * @param managerHandle 管理器句柄，用于标识特定的系统管理器
+ * @return 初始化成功返回0，失败返回非零值
+ */
+int InitializeSystemManager(longlong managerHandle)
 
 {
   int iVar1;

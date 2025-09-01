@@ -748,7 +748,7 @@ void SendNetworkPacket(undefined8 packetId,undefined8 connectionId,undefined1 pa
     }
   }
                     // WARNING: Subroutine does not return
-  FUN_18088c790(&stack0x00000020);
+  NetworkStackCleanup(&stack0x00000020);
 }
 
 
@@ -787,7 +787,7 @@ void SendNetworkPacketEx(undefined8 packetId,undefined8 connectionId,undefined8 
   param_6 = 0;
   param_5 = in_XMM0_Qb;
   iVar2 = func_0x00018088c590();
-  if (((iVar2 == 0) && (iVar2 = FUN_18088c740(&stack0x00000020,param_5), iVar2 == 0)) &&
+  if (((iVar2 == 0) && (iVar2 = NetworkStackInitialize(&stack0x00000020,param_5), iVar2 == 0)) &&
      (iVar2 = func_0x00018088c530(unaff_EBP,&param_7), iVar2 == 0)) {
     param_6 = *(longlong *)(param_7 + 8);
     if ((-1 < (int)unaff_RSI) && ((int)unaff_RSI < *(int *)(param_6 + 0x88))) {
@@ -806,7 +806,7 @@ void SendNetworkPacketEx(undefined8 packetId,undefined8 connectionId,undefined8 
     }
   }
                     // WARNING: Subroutine does not return
-  FUN_18088c790(&stack0x00000020);
+  NetworkStackCleanup(&stack0x00000020);
 }
 
 
@@ -834,7 +834,7 @@ void ClearNetworkConnectionBuffer(void)
   connectionBuffer[5] = 0;
   connectionBuffer[6] = 0;
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(stackParameter ^ (ulonglong)&stack0x00000000);
+  NetworkStackGuardActivate(stackParameter ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -854,7 +854,7 @@ void ResetNetworkConnectionState(void)
   ulonglong stackParameter;
   
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(stackParameter ^ (ulonglong)&stack0x00000000);
+  NetworkStackGuardActivate(stackParameter ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -898,7 +898,7 @@ uint32_t InitializeNetworkConnectionContext(uint32_t connectionFlags, int64_t co
   networkContext = 0;
   connectionId = 0;
   status = func_0x00018088c590(0,&connectionId);
-  if (((status == 0) && (status = FUN_18088c740(&networkContext,connectionId), status == 0)) &&
+  if (((status == 0) && (status = NetworkContextInitialize(&networkContext,connectionId), status == 0)) &&
      (status = func_0x00018088c530(connectionFlags,connectionParams), status == 0)) {
     connectionOffset = *(int64_t *)(connectionParams[0] + 8);
   }
@@ -952,7 +952,7 @@ uint32_t InitializeNetworkConnectionContext(uint32_t connectionFlags, int64_t co
   }
 LAB_1808408dd:
                     // WARNING: Subroutine does not return
-  FUN_18088c790(&uStack_38);
+  NetworkBufferCleanup(&uStack_38);
 }
 
 
@@ -991,7 +991,7 @@ void ProcessNetworkConnectionContext(undefined8 connectionContext, undefined8 pr
   stackParameter2 = 0;
   stackParameter1 = timeoutRegister;
   operationStatus = func_0x00018088c590(contextRegister,&stack0x00000028,param_3,param_4,param_1);
-  if (((operationStatus == 0) && (operationStatus = FUN_18088c740(&stack0x00000020,stackParameter1), operationStatus == 0))
+  if (((operationStatus == 0) && (operationStatus = NetworkStackInitialize(&stack0x00000020,stackParameter1), operationStatus == 0))
      && (operationStatus = func_0x00018088c530(connectionFlags,&stack0x00000070), operationStatus == 0)) {
     stackParameter2 = *(longlong *)(stackParameter3 + 8);
   }
@@ -1045,7 +1045,7 @@ void ProcessNetworkConnectionContext(undefined8 connectionContext, undefined8 pr
   }
 LAB_1808408dd:
                     // WARNING: Subroutine does not return
-  FUN_18088c790(&stack0x00000020);
+  NetworkStackCleanup(&stack0x00000020);
 }
 
 
@@ -1089,7 +1089,7 @@ void CleanupNetworkConnectionResources(void)
   uint8_t resourceBuffer[8];
   
                     // WARNING: Subroutine does not return
-  FUN_18088c790(resourceBuffer);
+  NetworkResourceCleanup(resourceBuffer);
 }
 
 
@@ -43925,7 +43925,7 @@ void FUN_1808674e0(longlong *param_1,longlong param_2)
   }
 LAB_1808675ba:
                     // WARNING: Subroutine does not return
-  FUN_18088c790(&uStack_38);
+  NetworkBufferCleanup(&uStack_38);
 }
 
 
