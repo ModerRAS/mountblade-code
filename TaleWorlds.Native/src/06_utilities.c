@@ -158,8 +158,8 @@ void CloseSystemHandle(void);
  */
 void CleanupThreadResources(void);
 uint32_t ThreadResourceFlag;
-void* CleanupContextData1;
-void* CleanupContextData2;
+void* CleanupContextPrimaryData;
+void* CleanupContextSecondaryData;
 void* CleanupResourceHandle;
 void* CleanupContextData3;
 
@@ -258,56 +258,52 @@ void* ShaderManager;
 void* RenderQueueManager;
 void* GraphicsMemoryPool;
 
- void* InitializeAnimationSystem;
-/**
+ /**
  * @brief 初始化动画系统
  * 
  * 该函数负责初始化游戏动画系统
  * 设置骨骼管理、动画剪辑和状态控制等相关组件
  */
-void* InitializeAnimationSystem;
+void* InitializeAnimationSystem(void);
 void* AnimationEngineInstance;
 void* SkeletonManager;
 void* AnimationClipManager;
 void* BoneTransformManager;
 void* AnimationStateController;
 
- void* InitializeMemoryManager;
-/**
+ /**
  * @brief 初始化内存管理器
  * 
  * 该函数负责初始化游戏内存管理系统
  * 设置堆分配器、内存池和垃圾回收等相关组件
  */
-void* InitializeMemoryManager;
+void* InitializeMemoryManager(void);
 void* MemoryManagerInstance;
 void* HeapAllocator;
 void* MemoryPoolManager;
 void* GarbageCollector;
 void* MemoryDebugger;
 
- void* InitializeScriptingSystem;
-/**
+ /**
  * @brief 初始化脚本系统
  * 
  * 该函数负责初始化游戏脚本系统
  * 设置脚本引擎、编译器和虚拟机等相关组件
  */
-void* InitializeScriptingSystem;
+void* InitializeScriptingSystem(void);
 void* ScriptingContext;
 void* ScriptingEngineInstance;
 void* ScriptCompiler;
 void* ScriptVirtualMachine;
 void* ScriptDebugger;
 
- void* InitializeFileSystem;
-/**
+ /**
  * @brief 初始化文件系统
  * 
  * 该函数负责初始化游戏文件系统
  * 设置文件访问、路径管理和文件操作等相关组件
  */
-void* InitializeFileSystem;
+void* InitializeFileSystem(void);
 
 /**
  * @brief 初始化数据库系统
@@ -315,7 +311,7 @@ void* InitializeFileSystem;
  * 该函数负责初始化游戏数据库系统
  * 设置数据库连接、查询和事务管理的相关机制
  */
-void* InitializeDatabaseSystem;
+void* InitializeDatabaseSystem(void);
 void* DatabaseConnectionPool;
 void* DatabaseQueryCache;
 void* DatabaseTransactionManager;
@@ -421,7 +417,7 @@ undefined SystemBarrierConfig;
 undefined SystemPoolConfig;
 undefined SystemQueueConfig;
 undefined SystemStackConfig;
-undefined DAT_180bf7040;
+undefined* SystemConfigurationTable;
 undefined DAT_180bf7048;
 undefined DAT_180bf7050;
 undefined DAT_180bf7058;
