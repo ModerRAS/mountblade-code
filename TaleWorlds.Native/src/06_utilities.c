@@ -1078,8 +1078,7 @@ void* SystemSecurityConfigTableQuaternary;
 void* SystemNetworkConfigTableTertiary;
 void* SystemEventConfigTableSeptenary;
 
- void InitializeMemoryCache(void);
-/**
+ /**
  * @brief 初始化内存缓存
  * 
  * 该函数负责初始化系统内存缓存
@@ -28718,7 +28717,13 @@ void Unwind_180902180(uint8_t8 objectContextParam,longlong validationContextPara
 
 
 
-void Unwind_180902190(uint8_t8 objectContextParam,longlong validationContextParam)
+/**
+ * 在异常处理时释放系统资源并重置资源状态
+ * 检查资源数据的状态标志，如果需要则释放系统资源并重置状态
+ * @param objectContextParam 对象上下文参数
+ * @param validationContextParam 验证上下文参数
+ */
+void ReleaseSystemResourceAndResetState(uint8_t8 objectContextParam, longlong validationContextParam)
 
 {
   if ((*(uint *)(resourceData + 0x30) & 1) != 0) {
@@ -28730,7 +28735,13 @@ void Unwind_180902190(uint8_t8 objectContextParam,longlong validationContextPara
 
 
 
-void Unwind_1809021c0(uint8_t8 objectContextParam,longlong validationContextParam)
+/**
+ * 在异常处理时恢复系统资源处理器模板到0x180偏移位置
+ * 设置验证上下文的系统资源处理器模板，检查并重置相关状态
+ * @param objectContextParam 对象上下文参数
+ * @param validationContextParam 验证上下文参数
+ */
+void RestoreSystemResourceHandlerTemplateToContext180(uint8_t8 objectContextParam, longlong validationContextParam)
 
 {
   *(uint8_t8 *)(validationContextParam + 0x180) = &SystemResourceHandlerTemplate;
@@ -43834,6 +43845,15 @@ void Unwind_180905ca0(uint8_t8 objectContextParam,longlong validationContextPara
 
 
 
+/**
+ * @brief 销毁条件变量
+ * 
+ * 该函数负责销毁条件变量资源，释放相关内存
+ * 通常在系统清理或线程终止时调用
+ * 
+ * @return 无返回值
+ * @note 调用此函数后，条件变量将不再可用
+ */
 void DestroyConditionVariableInPlace(void)
 
 {
@@ -43843,6 +43863,15 @@ void DestroyConditionVariableInPlace(void)
 
 
 
+/**
+ * @brief 销毁互斥锁
+ * 
+ * 该函数负责销毁互斥锁资源，释放相关内存
+ * 通常在系统清理或线程终止时调用
+ * 
+ * @return 无返回值
+ * @note 调用此函数后，互斥锁将不再可用
+ */
 void DestroyMutexInPlace(void)
 
 {
@@ -50009,7 +50038,7 @@ void Unwind_1809079b0(uint8_t8 objectContextParam,longlong validationContextPara
 
 
 
-void Unwind_1809079c0(uint8_t8 objectContextParam,longlong validationContextParam)
+void UnwindSystemResourceHandler001(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
   longlong loopCounter;
@@ -50028,7 +50057,7 @@ void Unwind_1809079c0(uint8_t8 objectContextParam,longlong validationContextPara
 
 
 
-void Unwind_1809079d0(uint8_t8 objectContextParam,longlong validationContextParam)
+void UnwindSystemResourceHandler002(uint8_t8 objectContextParam,longlong validationContextParam)
 
 {
   int *pintegerValue1;

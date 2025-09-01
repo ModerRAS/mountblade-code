@@ -522,30 +522,30 @@ uint32_t SystemInitializationThreadStatus;    // 系统初始化线程状态
 uint32_t SystemInitializationResourceStatus; // 系统初始化资源状态
 
 // 系统内存状态标志变量
-uint32_t SystemMemoryStatusFlagA;      // 系统内存状态标志A
-uint32_t SystemMemoryStatusFlagB;      // 系统内存状态标志B
+uint32_t SystemMemoryStatusFlagPrimary;      // 系统内存状态标志主标志
+uint32_t SystemMemoryStatusFlagSecondary;      // 系统内存状态标志次标志
 
 // 系统回调函数指针
-void* SystemEventCallbackPointer;     // SystemEventNotificationHandler
-void* SystemInitializationCallbackA;  // SystemInitializationHandlerA
-void* SystemInitializationCallbackB;  // SystemInitializationHandlerB
-void* SystemDebugCallback;            // SystemDebugMessageHandler
-void* SystemEventCallback;            // SystemEventProcessor
-void* SystemNetworkCallback;          // SystemNetworkEventHandler
-void* SystemGlobalDataProcessor;      // SystemGlobalDataManager
+void* SystemEventNotificationHandler;     // SystemEventNotificationHandler
+void* SystemInitializationHandlerPrimary;  // SystemInitializationHandlerA
+void* SystemInitializationHandlerSecondary;  // SystemInitializationHandlerB
+void* SystemDebugMessageHandler;            // SystemDebugMessageHandler
+void* SystemEventProcessor;            // SystemEventProcessor
+void* SystemNetworkEventHandler;          // SystemNetworkEventHandler
+void* SystemGlobalDataManager;      // SystemGlobalDataManager
 
 // 系统全局数据指针
-void* SystemGlobalDataPointerA;        // SystemGlobalDataReference
-void* SystemGlobalDataPointerB;        // SystemGlobalDataSecondary
-void* SystemGlobalDataPointerC;        // SystemGlobalDataTertiary
+void* SystemGlobalDataReference;        // SystemGlobalDataReference
+void* SystemGlobalDataSecondary;        // SystemGlobalDataSecondary
+void* SystemGlobalDataTertiary;        // SystemGlobalDataTertiary
 
 // 系统配置数据指针
-void* SystemConfigDataPointerA;        // SystemConfigDataPointerA
-void* SystemConfigDataPointerB;        // SystemConfigDataPointerB
-void* SystemConfigDataPointerC;        // SystemConfigDataPointerC
-void* SystemConfigDataPointerD;        // SystemConfigDataPointerD
-void* SystemConfigDataPointerE;        // SystemConfigDataSecondary
-void* SystemConfigDataPointerF;        // SystemConfigDataTertiary
+void* SystemConfigDataPrimary;        // SystemConfigDataPointerA
+void* SystemConfigDataSecondary;        // SystemConfigDataPointerB
+void* SystemConfigDataTertiary;        // SystemConfigDataPointerC
+void* SystemConfigDataQuaternary;        // SystemConfigDataPointerD
+void* SystemConfigDataQuinary;        // SystemConfigDataSecondary
+void* SystemConfigDataSenary;        // SystemConfigDataTertiary
 void* SystemSemaphoreHandle;            // SystemSemaphoreInstance
 /**
  * @brief 系统内存分配器函数
