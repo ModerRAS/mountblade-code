@@ -2173,14 +2173,14 @@ undefined LogMessageBufferData;
 undefined LogMessageFilterData;
 undefined LogMessageFormatterData;
 undefined LogMessageHandlerData;
-undefined UNK_1801527b4;
-undefined UNK_180a07340;
-undefined UNK_180a07378;
-longlong UNK_180c961a8;
-uint UNK_180d48d44;
-double UNK_180d48d48;
-double UNK_180d48d50;
-int UNK_180d49260;
+undefined LogSystemTimestampData;
+undefined LogSystemMemoryPoolData;
+undefined LogSystemThreadData;
+longlong SystemPerformanceCounterData;
+uint SystemConfigurationVersion;
+double SystemTimingData;
+double SystemFrequencyData;
+int SystemStatusFlags;
 double UNK_180d49268;
 undefined UNK_180a073d8;
 undefined UNK_180a073b8;
@@ -53599,7 +53599,7 @@ void Unwind_180909010(undefined8 param_1,longlong param_2)
   
   lVar1 = param_2 + 0x128;
   *(undefined **)((longlong)*(int *)(*(longlong *)(param_2 + 0x80) + 4) + -0xa8 + lVar1) =
-       &UNK_180a01630;
+       &SystemModuleDataTemplateD;
   iVar2 = *(int *)(*(longlong *)(param_2 + 0x80) + 4);
   *(int *)((longlong)iVar2 + -0xac + lVar1) = iVar2 + -0xa8;
   FUN_18009fb60(param_2 + 0x88);

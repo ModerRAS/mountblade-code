@@ -11719,8 +11719,15 @@ void InitializeSystemConfigurationDataNodeManager(void)
 
 
 
-// 函数: void FUN_18003c4f0(void)
-void FUN_18003c4f0(void)
+/**
+ * @brief 初始化系统事件数据节点管理器
+ * 
+ * 该函数负责初始化系统的事件数据节点管理器，设置事件节点的相关配置和状态。
+ * 它会初始化事件管理所需的数据结构和节点信息。
+ * 
+ * @note 这是系统事件管理的重要组成部分，确保事件节点的正确管理
+ */
+void InitializeSystemEventDataNodeManager(void)
 
 {
   char systemNodeFlag;
@@ -14862,8 +14869,9 @@ void InitializeSystemPerformanceComponent(void)
 
 
 
-// 函数: void FUN_180040de0(void)
-void FUN_180040de0(void)
+// 函数: InitializeSystemDiagnosticComponent
+// 初始化系统诊断组件，负责系统诊断
+void InitializeSystemDiagnosticComponent(void)
 
 {
   char systemNodeFlag;
@@ -14912,8 +14920,9 @@ void FUN_180040de0(void)
 
 
 
-// 函数: void FUN_180040ee0(void)
-void FUN_180040ee0(void)
+// 函数: InitializeSystemDebugComponent
+// 初始化系统调试组件，负责调试功能
+void InitializeSystemDebugComponent(void)
 
 {
   char systemNodeFlag;
@@ -14962,8 +14971,9 @@ void FUN_180040ee0(void)
 
 
 
-// 函数: void FUN_180040fe0(void)
-void FUN_180040fe0(void)
+// 函数: InitializeSystemPluginComponent
+// 初始化系统插件组件，负责插件管理
+void InitializeSystemPluginComponent(void)
 
 {
   char systemNodeFlag;
