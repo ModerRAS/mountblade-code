@@ -37702,7 +37702,21 @@ void CleanupValidationContextResources(uint8_t ObjectContextParameter,int64_t Va
 
 
 
-void Unwind_180903b00(uint8_t ObjectContextParameter,int64_t ValidationContextParameter,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 执行双重资源处理器清理和验证
+ * 
+ * 该函数负责清理和验证两个资源处理器
+ * 确保系统资源处于正确的状态，防止资源冲突
+ * 
+ * @param ObjectContextParameter 对象上下文参数，用于标识特定的资源对象
+ * @param ValidationContextParameter 验证上下文参数，包含系统验证所需的信息
+ * @param CleanupOption 清理选项，指定清理的方式和范围
+ * @param CleanupFlag 清理标志，用于控制清理过程的行为
+ * @return 无返回值
+ * @note 此函数通常在系统资源清理过程中调用
+ * @warning 如果检测到系统错误，将调用紧急退出函数
+ */
+void CleanupDualResourceHandlers(uint8_t ObjectContextParameter,int64_t ValidationContextParameter,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
