@@ -449,27 +449,27 @@ undefined8 CleanupNetworkConnectionResources(longlong *connectionContext)
   uint parameterRange;
   
   parameterRange = *(uint *)((longlong)connectionContext + 0xc);
-  if ((int)((uVar3 ^ (int)uVar3 >> 0x1f) - ((int)uVar3 >> 0x1f)) < 0) {
-    if (0 < (int)param_1[1]) {
+  if ((int)((parameterRange ^ (int)parameterRange >> 0x1f) - ((int)parameterRange >> 0x1f)) < 0) {
+    if (0 < (int)connectionContext[1]) {
       return 0x1c;
     }
-    if ((0 < (int)uVar3) && (*param_1 != 0)) {
+    if ((0 < (int)parameterRange) && (*connectionContext != 0)) {
                     // WARNING: Subroutine does not return
-      FUN_180742250(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),*param_1,&UNK_180957f70,0x100,1);
+      FUN_180742250(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),*connectionContext,&UNK_180957f70,0x100,1);
     }
-    *param_1 = 0;
-    uVar3 = 0;
-    *(undefined4 *)((longlong)param_1 + 0xc) = 0;
+    *connectionContext = 0;
+    parameterRange = 0;
+    *(undefined4 *)((longlong)connectionContext + 0xc) = 0;
   }
-  iVar1 = (int)param_1[1];
-  if (iVar1 < 0) {
+  resourceCount = (int)connectionContext[1];
+  if (resourceCount < 0) {
                     // WARNING: Subroutine does not return
-    memset((longlong)iVar1 + *param_1,0,(longlong)-iVar1);
+    memset((longlong)resourceCount + *connectionContext,0,(longlong)-resourceCount);
   }
-  *(undefined4 *)(param_1 + 1) = 0;
-  if ((0 < (int)((uVar3 ^ (int)uVar3 >> 0x1f) - ((int)uVar3 >> 0x1f))) &&
-     (uVar2 = FUN_180849030(param_1,0), (int)uVar2 != 0)) {
-    return uVar2;
+  *(undefined4 *)(connectionContext + 1) = 0;
+  if ((0 < (int)((parameterRange ^ (int)parameterRange >> 0x1f) - ((int)parameterRange >> 0x1f))) &&
+     (cleanupStatus = FUN_180849030(connectionContext,0), (int)cleanupStatus != 0)) {
+    return cleanupStatus;
   }
   return 0;
 }
