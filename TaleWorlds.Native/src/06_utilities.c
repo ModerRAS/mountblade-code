@@ -18214,8 +18214,15 @@ void InitializeMemoryManager(void)
 
 
 
- ae35(void)
-ae35(void)
+ /**
+ * @brief 初始化文件系统
+ * 
+ * 该函数负责初始化系统的文件系统
+ * 设置文件读写和目录管理的基础设施
+ * 
+ * @return 无返回值
+ */
+void InitializeFileSystem(void)
 
 {
   return;
@@ -18224,8 +18231,15 @@ ae35(void)
 
 
 
- ae3d(void)
-ae3d(void)
+ /**
+ * @brief 初始化网络系统
+ * 
+ * 该函数负责初始化系统的网络组件
+ * 设置网络通信和连接管理的基础设施
+ * 
+ * @return 无返回值
+ */
+void InitializeNetworkSystem(void)
 
 {
   return;
@@ -18234,23 +18248,35 @@ ae3d(void)
 
 
 
- ae50(longlong param_1,uint8_t8 param_2,uint8_t4 param_3,uint8_t4 param_4,
-ae50(longlong param_1,uint8_t8 param_2,uint8_t4 param_3,uint8_t4 param_4,
-                  char param_5)
+ /**
+ * @brief 验证和处理资源数据
+ * 
+ * 该函数负责验证资源数据的完整性和正确性
+ * 通过计算校验和、验证哈希值和认证数据来确保资源安全
+ * 
+ * @param resourceContext 资源上下文，包含资源处理的环境信息
+ * @param resourceData 资源数据，包含要验证的数据内容
+ * @param checksumParam1 校验参数1，用于第一次校验计算
+ * @param checksumParam2 校验参数2，用于第二次校验计算
+ * @param authenticationFlag 认证标志，指示是否需要进行数据认证
+ * @return 无返回值
+ */
+void ValidateAndProcessResourceData(longlong resourceContext, uint8_t8 resourceData, uint8_t4 checksumParam1, uint8_t4 checksumParam2,
+                  char authenticationFlag)
 
 {
-  int iVar1;
-  uint8_t1 auStack_78 [64];
-  uint8_t1 auStack_38 [32];
+  int validationResult;
+  uint8_t1 checksumBuffer1 [64];
+  uint8_t1 checksumBuffer2 [32];
   
-  iVar1 = ComputeDataChecksum(param_2,auStack_38,1,param_3);
-  if (((iVar1 == 0) && (iVar1 = ComputeDataChecksum(param_2,auStack_78,0,param_4), iVar1 == 0)) &&
-     (iVar1 = ValidateResourceHash(param_2,param_1 + 0x10), iVar1 == 0)) {
-    if ((param_5 != '\0') && (iVar1 = ResourceDataAuthenticator(param_1 + 0x48,param_2), iVar1 != 0)) {
+  validationResult = ComputeDataChecksum(resourceData,checksumBuffer2,1,checksumParam1);
+  if (((validationResult == 0) && (validationResult = ComputeDataChecksum(resourceData,checksumBuffer1,0,checksumParam2), validationResult == 0)) &&
+     (validationResult = ValidateResourceHash(resourceData,resourceContext + 0x10), validationResult == 0)) {
+    if ((authenticationFlag != '\0') && (validationResult = ResourceDataAuthenticator(resourceContext + 0x48,resourceData), validationResult != 0)) {
       return;
     }
                     // WARNING: Subroutine does not return
-    CleanupResourceData(param_2,auStack_78);
+    CleanupResourceData(resourceData,checksumBuffer1);
   }
   return;
 }
