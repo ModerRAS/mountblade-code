@@ -114,47 +114,83 @@ uint32_t NetworkCompressionLevel;
 uint32_t NetworkConnectionStateFlags;
 
 // 网络缓冲区数据模板
+// 网络备用缓冲区模板
 uint32_t NetworkAlternateBufferTemplate;
+// 网络头缓冲区模板
 uint32_t NetworkHeaderBufferTemplate;
+// 网络数据缓冲区模板
 uint32_t NetworkDataBufferTemplate;
+// 网络请求缓冲区模板
 uint32_t NetworkRequestBufferTemplate;
+// 网络一级处理缓冲区模板
 uint32_t NetworkFirstProcessingBufferTemplate;
+// 网络二级处理缓冲区模板
 uint32_t NetworkSecondaryProcessingBufferTemplate;
+// 网络三级处理缓冲区模板
 uint32_t NetworkTertiaryProcessingBufferTemplate;
+// 网络四级处理缓冲区模板
 uint32_t NetworkQuaternaryProcessingBufferTemplate;
+// 网络五级处理缓冲区模板
 uint32_t NetworkQuinaryProcessingBufferTemplate;
 
 // 网络连接上下文数据结构
+// 网络连接上下文数据
 uint32_t NetworkConnectionContextData;
+// 网络连接安全上下文
 uint32_t NetworkConnectionSecurityContext;
+// 网络连接缓冲池
 uint32_t NetworkConnectionBufferPool;
+// 网络连接请求数据
 uint32_t NetworkConnectionRequestData;
+// 网络连接响应数据
 uint32_t NetworkConnectionResponseData;
+// 网络连接错误数据
 uint32_t NetworkConnectionErrorData;
+// 网络连接状态数据
 uint32_t NetworkConnectionStatusData;
+// 网络连接超时数据
 uint32_t NetworkConnectionTimeoutData;
+// 网络连接验证数据
 uint32_t NetworkConnectionValidationData;
+// 网络连接加密数据
 uint32_t NetworkConnectionEncryptionData;
+// 网络连接压缩数据
 uint32_t NetworkConnectionCompressionData;
 
 // 网络数据包处理缓冲区
+// 网络数据包处理缓冲区
 uint32_t NetworkPacketProcessingBuffer;
+// 网络数据包验证缓冲区
 uint32_t NetworkPacketValidationBuffer;
+// 网络数据包加密缓冲区
 uint32_t NetworkPacketEncryptionBuffer;
+// 网络数据包压缩缓冲区
 uint32_t NetworkPacketCompressionBuffer;
+// 网络数据包路由缓冲区
 uint32_t NetworkPacketRoutingBuffer;
+// 网络数据包队列缓冲区
 uint32_t NetworkPacketQueueBuffer;
+// 网络数据包缓存缓冲区
 uint32_t NetworkPacketCacheBuffer;
+// 网络数据包过滤缓冲区
 uint32_t NetworkPacketFilterBuffer;
 
 // 网络安全上下文数据
+// 网络安全上下文数据
 uint32_t NetworkSecurityContextData;
+// 网络安全验证数据
 uint32_t NetworkSecurityValidationData;
+// 网络安全加密数据
 uint32_t NetworkSecurityEncryptionData;
+// 网络安全认证数据
 uint32_t NetworkSecurityAuthenticationData;
+// 网络安全授权数据
 uint32_t NetworkSecurityAuthorizationData;
+// 网络安全审计数据
 uint32_t NetworkSecurityAuditData;
+// 网络安全策略数据
 uint32_t NetworkSecurityPolicyData;
+// 网络安全证书数据
 uint32_t NetworkSecurityCertificateData;
 
 // 网络连接池数据
@@ -18727,7 +18763,7 @@ LAB_180850330:
     }
   }
 LAB_180850347:
-  FUN_1808bb9e0(plVar6);
+  NetworkProcessConnectionFlag(plVar6);
                     // WARNING: Subroutine does not return
   ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),plVar6,&UNK_180984cd0,0x193,1);
 }
@@ -18983,7 +19019,7 @@ LAB_180850330:
     }
   }
 LAB_180850347:
-  FUN_1808bb9e0(plVar5);
+  NetworkProcessConnectionFlag(plVar5);
                     // WARNING: Subroutine does not return
   ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),plVar5,&UNK_180984cd0,0x193,1);
 }
@@ -19237,7 +19273,7 @@ LAB_180850810:
     }
   }
 LAB_180850827:
-  FUN_1808bbe80(plVar6);
+  NetworkValidateConnectionFlag(plVar6);
                     // WARNING: Subroutine does not return
   ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),plVar6,&UNK_180984cd0,0x193,1);
 }
@@ -19493,7 +19529,7 @@ LAB_180850810:
     }
   }
 LAB_180850827:
-  FUN_1808bbe80(plVar5);
+  NetworkValidateConnectionFlag(plVar5);
                     // WARNING: Subroutine does not return
   ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),plVar5,&UNK_180984cd0,0x193,1);
 }
@@ -19613,7 +19649,7 @@ void NetworkConnectionDataProcessor(NetworkHandle *connectionContext,NetworkHand
   if (lVar9 != 0) goto LAB_180851437;
   plStack_118 = (longlong *)0x0;
   lStack_128 = dataSize;
-  iVar5 = FUN_1808bc2e0(connectionContext[2],&plStack_118,lVar8,primaryNetworkFlag4);
+  iVar5 = NetworkInitializeConnectionContext(connectionContext[2],&plStack_118,lVar8,primaryNetworkFlag4);
   if (iVar5 != 0) goto LAB_180851437;
   lStack_e0 = connectionContext[2];
   plStack_88 = plStack_118;
@@ -19686,7 +19722,7 @@ LAB_180850d9b:
     }
     plStack_118[0xd] = lStack_d0;
     plStack_118[0xf] = lStack_108;
-    iVar5 = FUN_18073dc80(lStack_108,0);
+    iVar5 = InitializeNetworkSession(lStack_108,0);
     lVar13 = lStack_b0;
     lVar15 = lStack_d8;
     lVar17 = lStack_b8;
@@ -19696,7 +19732,7 @@ LAB_180850d9b:
     lVar8 = *(longlong *)(lVar8 + 0x68);
     if (timeoutData != 0) {
       if (*(longlong *)(lVar8 + 8) != 0) goto LAB_1808513ac;
-      FUN_18088c9b0(lVar8,plStack_118);
+      NetworkSetupConnectionParameters(lVar8,plStack_118);
       plStack_118[9] = lVar8;
     }
     if (dataSize == 0) {
@@ -20098,7 +20134,7 @@ LAB_180850d9b:
     lVar10 = *(longlong *)(unaff_RSI + 0x68);
     if (lVar10 != 0) {
       if (*(longlong *)(lVar10 + 8) != 0) goto LAB_180851223;
-      FUN_18088c9b0(lVar10,in_stack_00000030);
+      NetworkSetupConnectionParameters(lVar10,in_stack_00000030);
       in_stack_00000030[9] = lVar10;
     }
     if (unaff_R14 == 0) {
@@ -20520,7 +20556,7 @@ NetworkHandle ProcessNetworkConnectionData(longlong connectionContext, longlong 
             if (*(longlong *)(connectionStatus + 8) != packetData) {
               return 0x1c;
             }
-            FUN_18088c9b0(connectionStatus,0);
+            NetworkSetupConnectionParameters(connectionStatus,0);
           }
           if (((*(short *)(*(longlong *)(packetData + 0x40) + 0xc) != 2) ||
               (networkResult = FUN_180740d90(*(NetworkHandle *)(packetData + 0x68)), (int)networkResult == 0)) &&
@@ -88008,8 +88044,8 @@ NetworkHandle FUN_18088c970(longlong connectionContext,NetworkStatus *packetData
 
 
 
-// 函数: void FUN_18088c9b0(int *connectionContext,longlong packetData)
-void FUN_18088c9b0(int *connectionContext,longlong packetData)
+// 函数: void NetworkSetupConnectionParameters(int *connectionContext,longlong packetData)
+void NetworkSetupConnectionParameters(int *connectionContext,longlong packetData)
 
 {
   NetworkHandle uStackX_8;
@@ -91307,7 +91343,7 @@ LAB_18088f951:
       if (plVar10 != (longlong *)0x0) {
         if (*(longlong **)(lStackX_18 + 8) == (longlong *)0x0) {
           if (plVar10[9] == 0) {
-            FUN_18088c9b0(lStackX_18,plVar10);
+            NetworkSetupConnectionParameters(lStackX_18,plVar10);
             plVar10[9] = lStackX_18;
             return (longlong *)0x0;
           }
@@ -91413,7 +91449,7 @@ LAB_18088f951:
     if (plVar6 != (longlong *)0x0) {
       if (*(longlong **)(in_stack_00000050 + 8) == (longlong *)0x0) {
         if (plVar6[9] == 0) {
-          FUN_18088c9b0(in_stack_00000050,plVar6);
+          NetworkSetupConnectionParameters(in_stack_00000050,plVar6);
           plVar6[9] = in_stack_00000050;
           return (longlong *)0x0;
         }
