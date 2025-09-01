@@ -2403,30 +2403,48 @@ uint8_t SystemMemoryStack;
 
  void* SystemMemoryConfigurationDataTemplateSpecialA;
 
+/**
+ * @brief 获取内存块大小
+ * 
+ * 该函数负责获取系统中内存块的大小信息
+ * 用于内存管理和资源分配的参考
+ * 
+ * @return 无返回值
+ * @note 此函数会更新内存块大小相关的系统状态
+ */
 void GetMemoryBlockSize(void);
 uint8_t SystemMemoryConfigDataPrimary;
 uint8_t SystemMemoryConfigDataSecondary;
 uint8_t SystemMemoryConfigDataTertiary;
 uint8_t SystemMemoryConfigDataTemplateMemoryPool;
-uint8_t AudioEffectProcessorTable;
+uint8_t AudioEffectProcessorDataTable;
 uint8_t SystemMemoryConfigDataTemplateFileSystem;
-uint8_t AudioMixerSettingsTable;
-uint8_t InputDeviceStateTable;
-uint8_t InputEventQueueTable;
-uint8_t InputMappingTable;
-uint8_t InputControllerTable;
+uint8_t AudioMixerConfigurationTable;
+uint8_t InputDeviceStateDataTable;
+uint8_t InputEventQueueDataTable;
+uint8_t InputMappingDataTable;
+uint8_t InputControllerDataTable;
 uint8_t SystemThreadScheduler;
 uint8_t ThreadContextManager;
 uint8_t ThreadLocalStorage;
 
+/**
+ * @brief 初始化线程管理器
+ * 
+ * 该函数负责初始化系统线程管理器
+ * 设置线程池、调度器和同步机制
+ * 
+ * @return 无返回值
+ * @note 此函数必须在系统启动时调用
+ */
 void InitializeThreadManager(void);
 uint8_t ThreadManagerContextData;
 uint8_t ThreadSchedulerData;
-uint8_t PhysicsWorldTable;
-uint8_t CollisionShapeTable;
-uint8_t RigidbodyTable;
-uint8_t PhysicsMaterialTable;
-uint8_t PhysicsConstraintTable;
+uint8_t PhysicsWorldDataTable;
+uint8_t CollisionShapeDataTable;
+uint8_t RigidBodyDataTable;
+uint8_t PhysicsMaterialDataTable;
+uint8_t PhysicsConstraintDataTable;
 uint8_t WorkerThreadPoolData;
 uint8_t WorkerThreadQueueData;
 
@@ -2466,11 +2484,11 @@ uint8_t SystemMemoryManagerUndenary;
 uint8_t SystemMemoryManagerDuodenary;
 uint8_t SystemMemoryManagerTerdenary;
 uint8_t SystemMemoryManagerQuattuordenary;
-uint8_t AnimationClipTable;
-uint8_t SkeletonTable;
-uint8_t AnimationStateTable;
-uint8_t AnimationBlendTreeTable;
-uint8_t AnimationControllerTable;
+uint8_t AnimationClipDataTable;
+uint8_t SkeletonDataTable;
+uint8_t AnimationStateDataTable;
+uint8_t AnimationBlendTreeDataTable;
+uint8_t AnimationControllerDataTable;
 uint8_t AnimationParameterTable;
 uint8_t AnimationEventTable;
 uint8_t AnimationLayerTable;
@@ -37195,7 +37213,20 @@ void CleanupSystemResourceHandler(uint8_t ObjectContextParameter,int64_t Validat
 
 
 
-void Unwind_1809039f0(uint8_t ObjectContextParameter,int64_t ValidationContextParameter,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 清理系统资源处理器9f0
+ * 
+ * 该函数负责清理系统资源处理器，释放相关资源
+ * 重置系统状态并执行必要的清理操作
+ * 
+ * @param ObjectContextParameter 对象上下文参数
+ * @param ValidationContextParameter 验证上下文参数
+ * @param CleanupOption 清理选项
+ * @param CleanupFlag 清理标志
+ * @return 无返回值
+ * @note 此函数用于系统资源清理和释放
+ */
+void CleanupSystemResourceHandler9f0(uint8_t ObjectContextParameter,int64_t ValidationContextParameter,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
@@ -37225,7 +37256,20 @@ void Unwind_1809039f0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 
 
 
-void Unwind_180903a10(uint8_t ObjectContextParameter,int64_t ValidationContextParameter,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 清理系统资源处理器A10
+ * 
+ * 该函数负责清理系统资源处理器，释放相关资源
+ * 重置系统状态并执行必要的清理操作
+ * 
+ * @param ObjectContextParameter 对象上下文参数
+ * @param ValidationContextParameter 验证上下文参数
+ * @param CleanupOption 清理选项
+ * @param CleanupFlag 清理标志
+ * @return 无返回值
+ * @note 此函数用于系统资源清理和释放
+ */
+void CleanupSystemResourceHandlerA10(uint8_t ObjectContextParameter,int64_t ValidationContextParameter,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
@@ -37255,7 +37299,20 @@ void Unwind_180903a10(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 
 
 
-void Unwind_180903a30(uint8_t ObjectContextParameter,int64_t ValidationContextParameter,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 清理系统资源处理器A30
+ * 
+ * 该函数负责清理系统资源处理器，释放相关资源
+ * 重置系统状态并执行必要的清理操作
+ * 
+ * @param ObjectContextParameter 对象上下文参数
+ * @param ValidationContextParameter 验证上下文参数
+ * @param CleanupOption 清理选项
+ * @param CleanupFlag 清理标志
+ * @return 无返回值
+ * @note 此函数用于系统资源清理和释放
+ */
+void CleanupSystemResourceHandlerA30(uint8_t ObjectContextParameter,int64_t ValidationContextParameter,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
@@ -37285,7 +37342,20 @@ void Unwind_180903a30(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 
 
 
-void Unwind_180903a50(uint8_t ObjectContextParameter,int64_t ValidationContextParameter,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 清理系统资源处理器A50
+ * 
+ * 该函数负责清理系统资源处理器，释放相关资源
+ * 重置系统状态并执行必要的清理操作
+ * 
+ * @param ObjectContextParameter 对象上下文参数
+ * @param ValidationContextParameter 验证上下文参数
+ * @param CleanupOption 清理选项
+ * @param CleanupFlag 清理标志
+ * @return 无返回值
+ * @note 此函数用于系统资源清理和释放
+ */
+void CleanupSystemResourceHandlerA50(uint8_t ObjectContextParameter,int64_t ValidationContextParameter,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
