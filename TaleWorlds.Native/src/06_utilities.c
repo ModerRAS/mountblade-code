@@ -2417,12 +2417,12 @@ undefined WorkerThreadQueueData;
  */
 void CreateWorkerThread;
 undefined DAT_180c91038;
-undefined UNK_180a3e440;
+undefined WorkerThreadContextData;
 undefined SystemMemoryConfigDataTemplateA8A0;
-undefined UNK_18045f1a0;
-undefined UNK_18045f1c0;
-undefined UNK_18045f140;
-undefined UNK_18045f160;
+undefined ThreadLocalStorageData;
+undefined ThreadStackData;
+undefined ThreadRegistryData;
+undefined ThreadHandleData;
 undefined SystemMemoryConfigDataTemplateC548;
 undefined SystemMemoryConfigDataTemplateA8C0;
 undefined SystemMemoryConfigDataTemplateA8E0;
