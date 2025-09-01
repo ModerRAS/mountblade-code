@@ -54446,7 +54446,16 @@ void FUN_180076a20(long long SystemResourcePointer)
 
 
 // 函数: void FUN_180076a80(long long SystemResourcePointer)
-void FUN_180076a80(long long SystemResourcePointer)
+/**
+ * @brief 系统资源引用计数管理器
+ * 
+ * 该函数负责管理系统资源的引用计数，当引用计数降为0时，
+ * 会执行资源清理和释放操作。它使用互斥锁确保线程安全。
+ * 
+ * @param SystemResourcePointer 系统资源指针，包含引用计数和资源信息
+ * @note 这是系统资源生命周期管理的核心函数
+ */
+void ManageSystemResourceReferenceCount(long long SystemResourcePointer)
 
 {
   char *pcVar1;
