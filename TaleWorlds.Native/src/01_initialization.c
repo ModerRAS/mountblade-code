@@ -21420,9 +21420,9 @@ LAB_180048e00:
   }
   else {
 LAB_180048e20:
-    if (*(int *)(param_5 + 0x10) == 0) goto LAB_180048e74;
+    if (*(int *)(SystemDataStructurePointer + 0x10) == 0) goto LAB_180048e74;
     if ((int)plocalBufferAddress[6] != 0) {
-      pbVar5 = *(byte **)(param_5 + 8);
+      pbVar5 = *(byte **)(SystemDataStructurePointer + 8);
       localDataPointer = plocalBufferAddress[5] - (long long)pbVar5;
       do {
         bVar1 = *pbVar5;
@@ -21433,7 +21433,7 @@ LAB_180048e20:
       if ((int)(bVar1 - unsignedSystemValue6) < 1) goto LAB_180048e74;
     }
   }
-  ExecuteSystemNodeProcessing(SystemResourcePointer,&plStackX_8,plocalResourceOffset,0,param_5);
+  ExecuteSystemNodeProcessing(SystemResourcePointer,&plStackX_8,plocalResourceOffset,0,SystemDataStructurePointer);
   plocalBufferAddress = plStackX_8;
 LAB_180048e74:
   *ConfigurationDataPointer = plocalBufferAddress;
@@ -21450,7 +21450,7 @@ LAB_180048e74:
  * 处理系统数据传输，在内存区域之间传输数据
  */
 void ProcessSystemDataTransfer(long long SystemResourcePointer,void* ConfigurationDataPointer,long long AdditionalParameter,void* ConfigurationFlag,
-                  long long param_5)
+                  long long SystemDataStructurePointer)
 
 {
   byte bVar1;
@@ -21465,9 +21465,9 @@ void ProcessSystemDataTransfer(long long SystemResourcePointer,void* Configurati
   unsignedSystemValue6 = 0;
   if (((char)ConfigurationFlag != '\0') || (AdditionalParameter == SystemResourcePointer)) goto LAB_180048f62;
   if (*(int *)(AdditionalParameter + 0x30) != 0) {
-    if (*(int *)(param_5 + 0x10) == 0) goto LAB_180048f62;
+    if (*(int *)(SystemDataStructurePointer + 0x10) == 0) goto LAB_180048f62;
     pbVar2 = *(byte **)(AdditionalParameter + 0x28);
-    localSystemPointer = *(long long *)(param_5 + 8) - (long long)pbVar2;
+    localSystemPointer = *(long long *)(SystemDataStructurePointer + 8) - (long long)pbVar2;
     do {
       bVar1 = *pbVar2;
       unsignedSystemValue3 = (uint)pbVar2[localSystemPointer];
@@ -21480,7 +21480,7 @@ void ProcessSystemDataTransfer(long long SystemResourcePointer,void* Configurati
 LAB_180048f62:
   localSystemPointer = CreateSystemThreadObject(SystemMemoryAllocationTemplate,0x68,*(uint8_t *)(SystemResourcePointer + 0x28),ConfigurationFlag,
                         0xfffffffffffffffe);
-  InitializeSystemMemoryAllocator(localSystemPointer + 0x20,param_5);
+  InitializeSystemMemoryAllocator(localSystemPointer + 0x20,SystemDataStructurePointer);
   punsignedSystemValue4 = (void* *)(localSystemPointer + 0x40);
   *(void* *)(localSystemPointer + 0x50) = 0;
   *(void* *)(localSystemPointer + 0x58) = 0;
@@ -43651,9 +43651,9 @@ void FUN_180066140(long long *SystemResourcePointer,void* ConfigurationDataPoint
 // WARNING: Removing unreachable block (ram,0x0001800665f5)
 
 
-// 函数: void FUN_180066320(void* SystemResourcePointer,void* ConfigurationDataPointer,char AdditionalParameter,char ConfigurationFlag,
-void FUN_180066320(void* SystemResourcePointer,void* ConfigurationDataPointer,char AdditionalParameter,char ConfigurationFlag,
-                  void* param_5)
+// 函数: void ProcessSystemResourceConfiguration(void* SystemResourcePointer,void* ConfigurationDataPointer,char AdditionalParameter,char ConfigurationFlag,
+void ProcessSystemResourceConfiguration(void* SystemResourcePointer,void* ConfigurationDataPointer,char AdditionalParameter,char ConfigurationFlag,
+                  void* SystemContextPointer)
 
 {
   char SystemNodeFlag;
@@ -43825,7 +43825,7 @@ LAB_18006650a:
     ppuStack_a8 = &systemMemoryContext;
     unsignedSystemValue5 = CreateSystemObject(&systemMemoryContext,&puStack_198);
     InitializeSecurityContext(unsignedSystemValue5);
-    ConfigureSecurityParameters(&puStack_198,param_5);
+    ConfigureSecurityParameters(&puStack_198,SystemContextPointer);
     FUN_180063cf0(&puStack_198);
     SetupSystemConfiguration(&systemMemoryContext);
     FUN_180627e10(&systemMemoryContext,&puStack_f0,&UNK_1809fe848);
@@ -43904,9 +43904,9 @@ LAB_180066971:
 
 
 
-// 函数: void FUN_1800669c0(void* SystemResourcePointer,void* ConfigurationDataPointer,char AdditionalParameter,void* ConfigurationFlag,
-void FUN_1800669c0(void* SystemResourcePointer,void* ConfigurationDataPointer,char AdditionalParameter,void* ConfigurationFlag,
-                  void* param_5)
+// 函数: void ConfigureSystemDataProcessing(void* SystemResourcePointer,void* ConfigurationDataPointer,char AdditionalParameter,void* ConfigurationFlag,
+void ConfigureSystemDataProcessing(void* SystemResourcePointer,void* ConfigurationDataPointer,char AdditionalParameter,void* ConfigurationFlag,
+                  void* SystemProcessingContext)
 
 {
   long long localMemoryPointer;
