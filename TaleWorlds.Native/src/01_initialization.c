@@ -346,6 +346,19 @@ void* SystemInitializationProgressStatus;
 // 系统数据比较模板和节点指针
 void* SystemDataComparisonTemplateA;  // DAT_18098c8f0
 void* SystemDataComparisonTemplateB;  // DAT_18098c8c8
+void* SystemDataComparisonTemplateC;  // DAT_1809fe0d0
+void* SystemDataComparisonTemplateD;  // DAT_1809ff9e8
+void* SystemDataComparisonTemplateG;  // DAT_1809ff9c0
+void* SystemDataComparisonTemplateH;  // DAT_180a010a0
+void* SystemDataComparisonTemplateI;  // DAT_180a01078
+void* SystemDataComparisonTemplateE;  // DAT_180a00e28
+void* SystemDataComparisonTemplateF;  // DAT_180a00d48
+void* SystemDataNodeA;                // UNK_180a00430
+void* SystemDataNodeB;                // UNK_1809fd0d8
+void* SystemDataNodeC;                // UNK_1809ff978
+void* SystemDataNodeD;                // UNK_1809ff990
+void* SystemDataNodeE;                // UNK_180a00370
+void* SystemDataNodeF;                // UNK_180a00388
 void* SystemNodeLinkPointerA;        // UNK_18098c880
 void* SystemNodeLinkPointerB;        // UNK_18098c898
 void* SystemRootNodePointer;         // UNK_18098c870
@@ -379,6 +392,7 @@ void* SystemConfigDataPointerC;        // SystemConfigDataPointerC
 void* SystemConfigDataPointerD;        // SystemConfigDataPointerD
 void* SystemConfigDataPointerE;        // _DAT_180bf6750
 void* SystemConfigDataPointerF;        // _DAT_180bf7e90
+void* SystemSemaphoreHandle;            // _DAT_180c91900
 /**
  * @brief 系统内存分配器函数
  * 
@@ -1352,7 +1366,7 @@ void InitializeRenderingSystemConfig(void)
   systemPreviousNode = systemRootPointer;
   systemCurrentNode = (undefined8 *)systemRootPointer[1];
   while (systemNodeFlag == '\0') {
-    memoryCompareResult = memcmp(systemCurrentNode + 4,&DAT_1809fe0d0,0x10);
+    memoryCompareResult = memcmp(systemCurrentNode + 4,&SystemDataComparisonTemplateC,0x10);
     if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
@@ -1364,14 +1378,14 @@ void InitializeRenderingSystemConfig(void)
     systemCurrentNode = systemNextNode;
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
-  if ((systemPreviousNode == systemRootPointer) || (memoryCompareResult = memcmp(&DAT_1809fe0d0,systemPreviousNode + 4,0x10), memoryCompareResult < 0)) {
+  if ((systemPreviousNode == systemRootPointer) || (memoryCompareResult = memcmp(&SystemDataComparisonTemplateC,systemPreviousNode + 4,0x10), memoryCompareResult < 0)) {
     memoryAllocationSize = GetSystemMemorySize(systemTablePointer);
     AllocateSystemMemory(systemTablePointer,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   systemPreviousNode[6] = 0x42bea5b911d9c4bf;
   systemPreviousNode[7] = 0x1aa83fc0020dc1b6;
-  systemPreviousNode[8] = &UNK_1809fd0d8;
+  systemPreviousNode[8] = &SystemDataNodeB;
   systemPreviousNode[9] = 0;
   systemPreviousNode[10] = renderingInitializationFlag;
   return;
@@ -1428,7 +1442,7 @@ int InitializeSystemSemaphore(void)
 {
   longlong semaphoreInitializationResult;
   
-  _DAT_180c91900 = CreateSemaphoreW(0,1,0x7fffffff,0,0xfffffffffffffffe);
+  SystemSemaphoreHandle = CreateSemaphoreW(0,1,0x7fffffff,0,0xfffffffffffffffe);
   semaphoreInitializationResult = InitializeSemaphoreSystem(GetSemaphoreSystemConfiguration);
   return (semaphoreInitializationResult != 0) - 1;
 }
@@ -1463,7 +1477,7 @@ void InitializeSystemMemoryManager(void)
   systemPreviousNode = systemRootNode;
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
-    memoryCompareResult = memcmp(systemCurrentNode + 4,&DAT_1809ff9e8,0x10);
+    memoryCompareResult = memcmp(systemCurrentNode + 4,&SystemDataComparisonTemplateD,0x10);
     if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
@@ -1475,14 +1489,14 @@ void InitializeSystemMemoryManager(void)
     systemCurrentNode = systemNextNode;
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
-  if ((systemPreviousNode == systemRootNode) || (memoryCompareResult = memcmp(&DAT_1809ff9e8,systemPreviousNode + 4,0x10), memoryCompareResult < 0)) {
+  if ((systemPreviousNode == systemRootNode) || (memoryCompareResult = memcmp(&SystemDataComparisonTemplateD,systemPreviousNode + 4,0x10), memoryCompareResult < 0)) {
     memoryAllocationSize = GetSystemMemorySize(systemDataTable);
     AllocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   systemPreviousNode[6] = 0x406be72011d07d37;
   systemPreviousNode[7] = 0x71876af946c867ab;
-  systemPreviousNode[8] = &UNK_1809ff978;
+  systemPreviousNode[8] = &SystemDataNodeC;
   systemPreviousNode[9] = 0;
   systemPreviousNode[10] = eventCallbackPointer;
   return;
@@ -1518,7 +1532,7 @@ void InitializeSystemMemoryAllocator(void)
   systemPreviousNode = systemRootNode;
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
-    memoryCompareResult = memcmp(systemCurrentNode + 4,&DAT_1809ff9c0,0x10);
+    memoryCompareResult = memcmp(systemCurrentNode + 4,&SystemDataComparisonTemplateG,0x10);
     if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
@@ -1530,14 +1544,14 @@ void InitializeSystemMemoryAllocator(void)
     systemCurrentNode = systemNextNode;
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
-  if ((systemPreviousNode == systemRootNode) || (memoryCompareResult = memcmp(&DAT_1809ff9c0,systemPreviousNode + 4,0x10), memoryCompareResult < 0)) {
+  if ((systemPreviousNode == systemRootNode) || (memoryCompareResult = memcmp(&SystemDataComparisonTemplateG,systemPreviousNode + 4,0x10), memoryCompareResult < 0)) {
     memoryAllocationSize = GetSystemMemorySize(systemDataTable);
     AllocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   systemPreviousNode[6] = 0x40afa5469b6ac06d;
   puVar7[7] = 0x2f4bab01d34055a5;
-  puVar7[8] = &UNK_1809ff990;
+  puVar7[8] = &SystemDataNodeD;
   puVar7[9] = 3;
   systemPreviousNode[10] = eventCallbackPointer;
   return;
@@ -1627,7 +1641,7 @@ void InitializeSystemThreadManager(void)
   systemPreviousNode = systemRootNode;
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
-    memoryCompareResult = memcmp(systemCurrentNode + 4,&DAT_180a010a0,0x10);
+    memoryCompareResult = memcmp(systemCurrentNode + 4,&SystemDataComparisonTemplateH,0x10);
     if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
@@ -1639,14 +1653,14 @@ void InitializeSystemThreadManager(void)
     systemCurrentNode = systemNextNode;
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
-  if ((systemPreviousNode == systemRootNode) || (memoryCompareResult = memcmp(&DAT_180a010a0,systemPreviousNode + 4,0x10), memoryCompareResult < 0)) {
+  if ((systemPreviousNode == systemRootNode) || (memoryCompareResult = memcmp(&SystemDataComparisonTemplateH,systemPreviousNode + 4,0x10), memoryCompareResult < 0)) {
     memoryAllocationSize = GetSystemMemorySize(systemDataTable);
     AllocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   systemPreviousNode[6] = 0x43330a43fcdb3653;
   puVar7[7] = 0xdcfdc333a769ec93;
-  puVar7[8] = &UNK_180a00370;
+  puVar7[8] = &SystemDataNodeE;
   puVar7[9] = 1;
   systemPreviousNode[10] = eventCallbackPointer;
   return;
@@ -1682,7 +1696,7 @@ void InitializeSystemEventManager(void)
   systemPreviousNode = systemRootNode;
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
-    memoryCompareResult = memcmp(systemCurrentNode + 4,&DAT_180a01078,0x10);
+    memoryCompareResult = memcmp(systemCurrentNode + 4,&SystemDataComparisonTemplateI,0x10);
     if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
@@ -1694,14 +1708,14 @@ void InitializeSystemEventManager(void)
     systemCurrentNode = systemNextNode;
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
-  if ((systemPreviousNode == systemRootNode) || (memoryCompareResult = memcmp(&DAT_180a01078,systemPreviousNode + 4,0x10), memoryCompareResult < 0)) {
+  if ((systemPreviousNode == systemRootNode) || (memoryCompareResult = memcmp(&SystemDataComparisonTemplateI,systemPreviousNode + 4,0x10), memoryCompareResult < 0)) {
     memoryAllocationSize = GetSystemMemorySize(systemDataTable);
     AllocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   systemPreviousNode[6] = 0x431d7c8d7c475be2;
   puVar7[7] = 0xb97f048d2153e1b0;
-  puVar7[8] = &UNK_180a00388;
+  puVar7[8] = &SystemDataNodeF;
   puVar7[9] = 4;
   systemPreviousNode[10] = eventCallbackPointer;
   return;
@@ -2018,7 +2032,7 @@ void InitializeSystemDataTableStructureC(void)
   systemPreviousNode = systemRootNode;
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
-    memoryCompareResult = memcmp(systemCurrentNode + 4,&DAT_180a00e28,0x10);
+    memoryCompareResult = memcmp(systemCurrentNode + 4,&SystemDataComparisonTemplateE,0x10);
     if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
@@ -2030,14 +2044,14 @@ void InitializeSystemDataTableStructureC(void)
     systemCurrentNode = systemNextNode;
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
-  if ((systemPreviousNode == systemRootNode) || (memoryCompareResult = memcmp(&DAT_180a00e28,systemPreviousNode + 4,0x10), memoryCompareResult < 0)) {
+  if ((systemPreviousNode == systemRootNode) || (memoryCompareResult = memcmp(&SystemDataComparisonTemplateE,systemPreviousNode + 4,0x10), memoryCompareResult < 0)) {
     memoryAllocationSize = GetSystemMemorySize(systemDataTable);
     AllocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   systemPreviousNode[6] = 0x449bafe9b77ddd3c;
   puVar7[7] = 0xc160408bde99e59f;
-  puVar7[8] = &UNK_180a00430;
+  puVar7[8] = &SystemDataNodeA;
   systemPreviousNode[9] = 0;
   systemPreviousNode[10] = eventCallbackPointer;
   return;
@@ -2074,7 +2088,7 @@ void InitializeSystemDataTableStructureD(void)
   systemPreviousNode = systemRootNode;
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
-    memoryCompareResult = memcmp(systemCurrentNode + 4,&DAT_180a00d48,0x10);
+    memoryCompareResult = memcmp(systemCurrentNode + 4,&SystemDataComparisonTemplateF,0x10);
     if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
@@ -2086,7 +2100,7 @@ void InitializeSystemDataTableStructureD(void)
     systemCurrentNode = systemNextNode;
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
-  if ((systemPreviousNode == systemRootNode) || (memoryCompareResult = memcmp(&DAT_180a00d48,systemPreviousNode + 4,0x10), memoryCompareResult < 0)) {
+  if ((systemPreviousNode == systemRootNode) || (memoryCompareResult = memcmp(&SystemDataComparisonTemplateF,systemPreviousNode + 4,0x10), memoryCompareResult < 0)) {
     memoryAllocationSize = GetSystemMemorySize(systemDataTable);
     AllocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
@@ -2130,7 +2144,7 @@ void InitializeSystemDataTableStructureE(void)
   systemPreviousNode = systemRootNode;
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
-    memoryCompareResult = memcmp(systemCurrentNode + 4,&DAT_1809ff9e8,0x10);
+    memoryCompareResult = memcmp(systemCurrentNode + 4,&SystemDataComparisonTemplateD,0x10);
     if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
@@ -2142,14 +2156,14 @@ void InitializeSystemDataTableStructureE(void)
     systemCurrentNode = systemNextNode;
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
-  if ((systemPreviousNode == systemRootNode) || (memoryCompareResult = memcmp(&DAT_1809ff9e8,systemPreviousNode + 4,0x10), memoryCompareResult < 0)) {
+  if ((systemPreviousNode == systemRootNode) || (memoryCompareResult = memcmp(&SystemDataComparisonTemplateD,systemPreviousNode + 4,0x10), memoryCompareResult < 0)) {
     memoryAllocationSize = GetSystemMemorySize(systemDataTable);
     AllocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   systemPreviousNode[6] = 0x406be72011d07d37;
   systemPreviousNode[7] = 0x71876af946c867ab;
-  systemPreviousNode[8] = &UNK_1809ff978;
+  systemPreviousNode[8] = &SystemDataNodeC;
   systemPreviousNode[9] = 0;
   systemPreviousNode[10] = eventCallbackPointer;
   return;
@@ -2186,7 +2200,7 @@ void InitializeSystemDataTableStructureF(void)
   systemPreviousNode = systemRootNode;
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
-    memoryCompareResult = memcmp(systemCurrentNode + 4,&DAT_1809ff9c0,0x10);
+    memoryCompareResult = memcmp(systemCurrentNode + 4,&SystemDataComparisonTemplateG,0x10);
     if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
@@ -2198,14 +2212,14 @@ void InitializeSystemDataTableStructureF(void)
     systemCurrentNode = systemNextNode;
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
-  if ((systemPreviousNode == systemRootNode) || (memoryCompareResult = memcmp(&DAT_1809ff9c0,systemPreviousNode + 4,0x10), memoryCompareResult < 0)) {
+  if ((systemPreviousNode == systemRootNode) || (memoryCompareResult = memcmp(&SystemDataComparisonTemplateG,systemPreviousNode + 4,0x10), memoryCompareResult < 0)) {
     memoryAllocationSize = GetSystemMemorySize(systemDataTable);
     AllocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   systemPreviousNode[6] = 0x40afa5469b6ac06d;
   puVar7[7] = 0x2f4bab01d34055a5;
-  puVar7[8] = &UNK_1809ff990;
+  puVar7[8] = &SystemDataNodeD;
   puVar7[9] = 3;
   systemPreviousNode[10] = eventCallbackPointer;
   return;
@@ -2242,7 +2256,7 @@ void InitializeSystemDataTableStructureG(void)
   systemPreviousNode = systemRootNode;
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
-    memoryCompareResult = memcmp(systemCurrentNode + 4,&DAT_1809fe0d0,0x10);
+    memoryCompareResult = memcmp(systemCurrentNode + 4,&SystemDataComparisonTemplateC,0x10);
     if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
@@ -2254,14 +2268,14 @@ void InitializeSystemDataTableStructureG(void)
     systemCurrentNode = systemNextNode;
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
-  if ((systemPreviousNode == systemRootNode) || (memoryCompareResult = memcmp(&DAT_1809fe0d0,systemPreviousNode + 4,0x10), memoryCompareResult < 0)) {
+  if ((systemPreviousNode == systemRootNode) || (memoryCompareResult = memcmp(&SystemDataComparisonTemplateC,systemPreviousNode + 4,0x10), memoryCompareResult < 0)) {
     memoryAllocationSize = GetSystemMemorySize(systemDataTable);
     AllocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   systemPreviousNode[6] = 0x42bea5b911d9c4bf;
   puVar7[7] = 0x1aa83fc0020dc1b6;
-  puVar7[8] = &UNK_1809fd0d8;
+  puVar7[8] = &SystemDataNodeB;
   systemPreviousNode[9] = 0;
   puVar7[10] = resourceInitializationCallback;
   return;
@@ -2461,7 +2475,7 @@ void InitializeSystemMemoryManager(void)
   systemPreviousNode = systemRootNode;
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
-    memoryCompareResult = memcmp(systemCurrentNode + 4,&DAT_180a010a0,0x10);
+    memoryCompareResult = memcmp(systemCurrentNode + 4,&SystemDataComparisonTemplateH,0x10);
     if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
@@ -2473,14 +2487,14 @@ void InitializeSystemMemoryManager(void)
     systemCurrentNode = systemNextNode;
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
-  if ((systemPreviousNode == systemRootNode) || (memoryCompareResult = memcmp(&DAT_180a010a0,systemPreviousNode + 4,0x10), memoryCompareResult < 0)) {
+  if ((systemPreviousNode == systemRootNode) || (memoryCompareResult = memcmp(&SystemDataComparisonTemplateH,systemPreviousNode + 4,0x10), memoryCompareResult < 0)) {
     memoryAllocationSize = GetSystemMemorySize(systemDataTable);
     AllocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   systemPreviousNode[6] = 0x43330a43fcdb3653;
   puVar7[7] = 0xdcfdc333a769ec93;
-  puVar7[8] = &UNK_180a00370;
+  puVar7[8] = &SystemDataNodeE;
   puVar7[9] = 1;
   systemPreviousNode[10] = eventCallbackPointer;
   return;
@@ -2518,7 +2532,7 @@ void InitializeSystemDataStructure(void)
   previousNode = systemRootPointer;
   currentNode = (undefined8 *)systemRootPointer[1];
   while (nodeFlag == '\0') {
-    comparisonResult = memcmp(currentNode + 4,&DAT_180a01078,0x10);
+    comparisonResult = memcmp(currentNode + 4,&SystemDataComparisonTemplateI,0x10);
     if (comparisonResult < 0) {
       nextNode = (undefined8 *)currentNode[2];
       currentNode = previousNode;
@@ -2530,14 +2544,14 @@ void InitializeSystemDataStructure(void)
     currentNode = nextNode;
     nodeFlag = *(char *)((longlong)nextNode + 0x19);
   }
-  if ((previousNode == systemRootPointer) || (comparisonResult = memcmp(&DAT_180a01078,previousNode + 4,0x10), comparisonResult < 0)) {
+  if ((previousNode == systemRootPointer) || (comparisonResult = memcmp(&SystemDataComparisonTemplateI,previousNode + 4,0x10), comparisonResult < 0)) {
     allocationSize = GetSystemMemorySize(systemTablePointer);
     AllocateSystemMemory(systemTablePointer,&allocatedNode,previousNode,allocationSize + 0x20,allocationSize);
     previousNode = allocatedNode;
   }
   previousNode[6] = 0x431d7c8d7c475be2;
   previousNode[7] = 0xb97f048d2153e1b0;
-  previousNode[8] = &UNK_180a00388;
+  previousNode[8] = &SystemDataNodeF;
   previousNode[9] = 4;
   previousNode[10] = initializationFunction;
   return;
@@ -2824,7 +2838,7 @@ void InitializeEventSystem(void)
   systemPreviousNode = systemRootNode;
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
-    memoryCompareResult = memcmp(systemCurrentNode + 4,&DAT_180a00d48,0x10);
+    memoryCompareResult = memcmp(systemCurrentNode + 4,&SystemDataComparisonTemplateF,0x10);
     if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
@@ -2836,7 +2850,7 @@ void InitializeEventSystem(void)
     systemCurrentNode = systemNextNode;
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
-  if ((systemPreviousNode == systemRootNode) || (memoryCompareResult = memcmp(&DAT_180a00d48,systemPreviousNode + 4,0x10), memoryCompareResult < 0)) {
+  if ((systemPreviousNode == systemRootNode) || (memoryCompareResult = memcmp(&SystemDataComparisonTemplateF,systemPreviousNode + 4,0x10), memoryCompareResult < 0)) {
     memoryAllocationSize = GetSystemMemorySize(systemDataTable);
     AllocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
@@ -2879,7 +2893,7 @@ void InitializeSystemMemoryManager(void)
   systemPreviousNode = systemRootNode;
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
-    memoryCompareResult = memcmp(systemCurrentNode + 4,&DAT_180a010a0,0x10);
+    memoryCompareResult = memcmp(systemCurrentNode + 4,&SystemDataComparisonTemplateH,0x10);
     if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
@@ -2891,14 +2905,14 @@ void InitializeSystemMemoryManager(void)
     systemCurrentNode = systemNextNode;
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
-  if ((systemPreviousNode == systemRootNode) || (memoryCompareResult = memcmp(&DAT_180a010a0,systemPreviousNode + 4,0x10), memoryCompareResult < 0)) {
+  if ((systemPreviousNode == systemRootNode) || (memoryCompareResult = memcmp(&SystemDataComparisonTemplateH,systemPreviousNode + 4,0x10), memoryCompareResult < 0)) {
     memoryAllocationSize = GetSystemMemorySize(systemDataTable);
     AllocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   systemPreviousNode[6] = 0x43330a43fcdb3653;
   puVar7[7] = 0xdcfdc333a769ec93;
-  puVar7[8] = &UNK_180a00370;
+  puVar7[8] = &SystemDataNodeE;
   puVar7[9] = 1;
   systemPreviousNode[10] = eventCallbackPointer;
   return;
@@ -2934,7 +2948,7 @@ void InitializeSystemThreadPoolManager(void)
   systemPreviousNode = systemRootNode;
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
-    memoryCompareResult = memcmp(systemCurrentNode + 4,&DAT_180a01078,0x10);
+    memoryCompareResult = memcmp(systemCurrentNode + 4,&SystemDataComparisonTemplateI,0x10);
     if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
@@ -2946,14 +2960,14 @@ void InitializeSystemThreadPoolManager(void)
     systemCurrentNode = systemNextNode;
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
-  if ((systemPreviousNode == systemRootNode) || (memoryCompareResult = memcmp(&DAT_180a01078,systemPreviousNode + 4,0x10), memoryCompareResult < 0)) {
+  if ((systemPreviousNode == systemRootNode) || (memoryCompareResult = memcmp(&SystemDataComparisonTemplateI,systemPreviousNode + 4,0x10), memoryCompareResult < 0)) {
     memoryAllocationSize = GetSystemMemorySize(systemDataTable);
     AllocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   systemPreviousNode[6] = 0x431d7c8d7c475be2;
   puVar7[7] = 0xb97f048d2153e1b0;
-  puVar7[8] = &UNK_180a00388;
+  puVar7[8] = &SystemDataNodeF;
   puVar7[9] = 4;
   systemPreviousNode[10] = eventCallbackPointer;
   return;
@@ -3268,7 +3282,7 @@ void InitializeSystemSecurityManager(void)
   systemPreviousNode = systemRootNode;
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
-    memoryCompareResult = memcmp(systemCurrentNode + 4,&DAT_180a010a0,0x10);
+    memoryCompareResult = memcmp(systemCurrentNode + 4,&SystemDataComparisonTemplateH,0x10);
     if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
@@ -3280,14 +3294,14 @@ void InitializeSystemSecurityManager(void)
     systemCurrentNode = systemNextNode;
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
-  if ((systemPreviousNode == systemRootNode) || (memoryCompareResult = memcmp(&DAT_180a010a0,systemPreviousNode + 4,0x10), memoryCompareResult < 0)) {
+  if ((systemPreviousNode == systemRootNode) || (memoryCompareResult = memcmp(&SystemDataComparisonTemplateH,systemPreviousNode + 4,0x10), memoryCompareResult < 0)) {
     memoryAllocationSize = GetSystemMemorySize(systemDataTable);
     AllocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   systemPreviousNode[6] = 0x43330a43fcdb3653;
   puVar7[7] = 0xdcfdc333a769ec93;
-  puVar7[8] = &UNK_180a00370;
+  puVar7[8] = &SystemDataNodeE;
   puVar7[9] = 1;
   systemPreviousNode[10] = eventCallbackPointer;
   return;
@@ -3323,7 +3337,7 @@ void InitializeSystemPerformanceMonitor(void)
   systemPreviousNode = systemRootNode;
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
-    memoryCompareResult = memcmp(systemCurrentNode + 4,&DAT_180a01078,0x10);
+    memoryCompareResult = memcmp(systemCurrentNode + 4,&SystemDataComparisonTemplateI,0x10);
     if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
@@ -3335,14 +3349,14 @@ void InitializeSystemPerformanceMonitor(void)
     systemCurrentNode = systemNextNode;
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
-  if ((systemPreviousNode == systemRootNode) || (memoryCompareResult = memcmp(&DAT_180a01078,systemPreviousNode + 4,0x10), memoryCompareResult < 0)) {
+  if ((systemPreviousNode == systemRootNode) || (memoryCompareResult = memcmp(&SystemDataComparisonTemplateI,systemPreviousNode + 4,0x10), memoryCompareResult < 0)) {
     memoryAllocationSize = GetSystemMemorySize(systemDataTable);
     AllocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   systemPreviousNode[6] = 0x431d7c8d7c475be2;
   puVar7[7] = 0xb97f048d2153e1b0;
-  puVar7[8] = &UNK_180a00388;
+  puVar7[8] = &SystemDataNodeF;
   puVar7[9] = 4;
   systemPreviousNode[10] = eventCallbackPointer;
   return;
@@ -3663,7 +3677,7 @@ void InitializeSystemPerformanceMonitor(void)
   systemPreviousNode = systemRootNode;
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
-    memoryCompareResult = memcmp(systemCurrentNode + 4,&DAT_1809fe0d0,0x10);
+    memoryCompareResult = memcmp(systemCurrentNode + 4,&SystemDataComparisonTemplateC,0x10);
     if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
@@ -3675,14 +3689,14 @@ void InitializeSystemPerformanceMonitor(void)
     systemCurrentNode = systemNextNode;
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
-  if ((systemPreviousNode == systemRootNode) || (memoryCompareResult = memcmp(&DAT_1809fe0d0,systemPreviousNode + 4,0x10), memoryCompareResult < 0)) {
+  if ((systemPreviousNode == systemRootNode) || (memoryCompareResult = memcmp(&SystemDataComparisonTemplateC,systemPreviousNode + 4,0x10), memoryCompareResult < 0)) {
     memoryAllocationSize = GetSystemMemorySize(systemDataTable);
     AllocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   systemPreviousNode[6] = 0x42bea5b911d9c4bf;
   puVar7[7] = 0x1aa83fc0020dc1b6;
-  puVar7[8] = &UNK_1809fd0d8;
+  puVar7[8] = &SystemDataNodeB;
   systemPreviousNode[9] = 0;
   puVar7[10] = resourceInitializationCallback;
   return;
@@ -3720,7 +3734,7 @@ void InitializeSystemDebugManager(void)
   systemPreviousNode = systemRootNode;
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
-    memoryCompareResult = memcmp(systemCurrentNode + 4,&DAT_180a00d48,0x10);
+    memoryCompareResult = memcmp(systemCurrentNode + 4,&SystemDataComparisonTemplateF,0x10);
     if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
@@ -3732,7 +3746,7 @@ void InitializeSystemDebugManager(void)
     systemCurrentNode = systemNextNode;
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
-  if ((systemPreviousNode == systemRootNode) || (memoryCompareResult = memcmp(&DAT_180a00d48,systemPreviousNode + 4,0x10), memoryCompareResult < 0)) {
+  if ((systemPreviousNode == systemRootNode) || (memoryCompareResult = memcmp(&SystemDataComparisonTemplateF,systemPreviousNode + 4,0x10), memoryCompareResult < 0)) {
     memoryAllocationSize = GetSystemMemorySize(systemDataTable);
     AllocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
@@ -3777,7 +3791,7 @@ void InitializeSystemEventHandler(void)
   systemPreviousNode = systemRootNode;
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
-    memoryCompareResult = memcmp(systemCurrentNode + 4,&DAT_180a010a0,0x10);
+    memoryCompareResult = memcmp(systemCurrentNode + 4,&SystemDataComparisonTemplateH,0x10);
     if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
@@ -3789,14 +3803,14 @@ void InitializeSystemEventHandler(void)
     systemCurrentNode = systemNextNode;
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
-  if ((systemPreviousNode == systemRootNode) || (memoryCompareResult = memcmp(&DAT_180a010a0,systemPreviousNode + 4,0x10), memoryCompareResult < 0)) {
+  if ((systemPreviousNode == systemRootNode) || (memoryCompareResult = memcmp(&SystemDataComparisonTemplateH,systemPreviousNode + 4,0x10), memoryCompareResult < 0)) {
     memoryAllocationSize = GetSystemMemorySize(systemDataTable);
     AllocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   systemPreviousNode[6] = 0x43330a43fcdb3653;
   puVar7[7] = 0xdcfdc333a769ec93;
-  puVar7[8] = &UNK_180a00370;
+  puVar7[8] = &SystemDataNodeE;
   puVar7[9] = 1;
   systemPreviousNode[10] = eventCallbackPointer;
   return;
@@ -3834,7 +3848,7 @@ void InitializeSystemNetworkManager(void)
   systemPreviousNode = systemRootNode;
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
-    memoryCompareResult = memcmp(systemCurrentNode + 4,&DAT_180a01078,0x10);
+    memoryCompareResult = memcmp(systemCurrentNode + 4,&SystemDataComparisonTemplateI,0x10);
     if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
@@ -3846,14 +3860,14 @@ void InitializeSystemNetworkManager(void)
     systemCurrentNode = systemNextNode;
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
-  if ((systemPreviousNode == systemRootNode) || (memoryCompareResult = memcmp(&DAT_180a01078,systemPreviousNode + 4,0x10), memoryCompareResult < 0)) {
+  if ((systemPreviousNode == systemRootNode) || (memoryCompareResult = memcmp(&SystemDataComparisonTemplateI,systemPreviousNode + 4,0x10), memoryCompareResult < 0)) {
     memoryAllocationSize = GetSystemMemorySize(systemDataTable);
     AllocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   systemPreviousNode[6] = 0x431d7c8d7c475be2;
   puVar7[7] = 0xb97f048d2153e1b0;
-  puVar7[8] = &UNK_180a00388;
+  puVar7[8] = &SystemDataNodeF;
   puVar7[9] = 4;
   systemPreviousNode[10] = eventCallbackPointer;
   return;
@@ -4234,7 +4248,7 @@ void InitializeSystemEventManager(void)
   previousNode = rootNode;
   currentNode = (undefined8 *)rootNode[1];
   while (nodeFlag == '\0') {
-    memoryCompareResult = memcmp(currentNode + 4,&DAT_1809ff9e8,0x10);
+    memoryCompareResult = memcmp(currentNode + 4,&SystemDataComparisonTemplateD,0x10);
     if (memoryCompareResult < 0) {
       nextNode = (undefined8 *)currentNode[2];
       currentNode = previousNode;
@@ -4246,7 +4260,7 @@ void InitializeSystemEventManager(void)
     currentNode = nextNode;
     nodeFlag = *(char *)((longlong)nextNode + 0x19);
   }
-  if ((systemPreviousNode == systemRootNode) || (memoryCompareResult = memcmp(&DAT_1809ff9e8,systemPreviousNode + 4,0x10), memoryCompareResult < 0)) {
+  if ((systemPreviousNode == systemRootNode) || (memoryCompareResult = memcmp(&SystemDataComparisonTemplateD,systemPreviousNode + 4,0x10), memoryCompareResult < 0)) {
     longlong memoryAllocationSize;
     undefined8 *systemAllocatedNode;
     memoryAllocationSize = GetSystemMemorySize(dataTable);
@@ -4255,7 +4269,7 @@ void InitializeSystemEventManager(void)
   }
   previousNode[6] = 0x406be72011d07d37;
   previousNode[7] = 0x71876af946c867ab;
-  previousNode[8] = &UNK_1809ff978;
+  previousNode[8] = &SystemDataNodeC;
   previousNode[9] = 0;
   previousNode[10] = eventCallbackPointer;
   return;
@@ -4293,7 +4307,7 @@ void InitializeSystemNetworkManager(void)
   previousNode = rootNode;
   currentNode = (undefined8 *)rootNode[1];
   while (nodeFlag == '\0') {
-    memoryCompareResult = memcmp(currentNode + 4,&DAT_1809ff9c0,0x10);
+    memoryCompareResult = memcmp(currentNode + 4,&SystemDataComparisonTemplateG,0x10);
     if (memoryCompareResult < 0) {
       nextNode = (undefined8 *)currentNode[2];
       currentNode = previousNode;
@@ -4305,7 +4319,7 @@ void InitializeSystemNetworkManager(void)
     currentNode = nextNode;
     nodeFlag = *(char *)((longlong)nextNode + 0x19);
   }
-  if ((previousNode == rootNode) || (memoryCompareResult = memcmp(&DAT_1809ff9c0,previousNode + 4,0x10), memoryCompareResult < 0)) {
+  if ((previousNode == rootNode) || (memoryCompareResult = memcmp(&SystemDataComparisonTemplateG,previousNode + 4,0x10), memoryCompareResult < 0)) {
     longlong memoryAllocationSize;
     undefined8 *allocatedNode;
     memoryAllocationSize = GetSystemMemorySize(dataTable);
@@ -4314,7 +4328,7 @@ void InitializeSystemNetworkManager(void)
   }
   previousNode[6] = 0x40afa5469b6ac06d;
   previousNode[7] = 0x2f4bab01d34055a5;
-  previousNode[8] = &UNK_1809ff990;
+  previousNode[8] = &SystemDataNodeD;
   previousNode[9] = 3;
   previousNode[10] = networkCallbackPointer;
   return;
@@ -4905,7 +4919,7 @@ void InitializeSystemConfigurationNodeManager(void)
   systemPreviousNode = systemRootNode;
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
-    memoryCompareResult = memcmp(systemCurrentNode + 4,&DAT_180a010a0,0x10);
+    memoryCompareResult = memcmp(systemCurrentNode + 4,&SystemDataComparisonTemplateH,0x10);
     if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
@@ -4917,14 +4931,14 @@ void InitializeSystemConfigurationNodeManager(void)
     systemCurrentNode = systemNextNode;
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
-  if ((systemPreviousNode == systemRootNode) || (memoryCompareResult = memcmp(&DAT_180a010a0,systemPreviousNode + 4,0x10), memoryCompareResult < 0)) {
+  if ((systemPreviousNode == systemRootNode) || (memoryCompareResult = memcmp(&SystemDataComparisonTemplateH,systemPreviousNode + 4,0x10), memoryCompareResult < 0)) {
     memoryAllocationSize = GetSystemMemorySize(systemDataTable);
     AllocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   systemPreviousNode[6] = 0x43330a43fcdb3653;
   puVar7[7] = 0xdcfdc333a769ec93;
-  puVar7[8] = &UNK_180a00370;
+  puVar7[8] = &SystemDataNodeE;
   puVar7[9] = 1;
   systemPreviousNode[10] = eventCallbackPointer;
   return;
@@ -4962,7 +4976,7 @@ void InitializeSystemEventNodeManager(void)
   systemPreviousNode = systemRootNode;
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
-    memoryCompareResult = memcmp(systemCurrentNode + 4,&DAT_180a01078,0x10);
+    memoryCompareResult = memcmp(systemCurrentNode + 4,&SystemDataComparisonTemplateI,0x10);
     if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
@@ -4974,14 +4988,14 @@ void InitializeSystemEventNodeManager(void)
     systemCurrentNode = systemNextNode;
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
-  if ((systemPreviousNode == systemRootNode) || (memoryCompareResult = memcmp(&DAT_180a01078,systemPreviousNode + 4,0x10), memoryCompareResult < 0)) {
+  if ((systemPreviousNode == systemRootNode) || (memoryCompareResult = memcmp(&SystemDataComparisonTemplateI,systemPreviousNode + 4,0x10), memoryCompareResult < 0)) {
     memoryAllocationSize = GetSystemMemorySize(systemDataTable);
     AllocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   systemPreviousNode[6] = 0x431d7c8d7c475be2;
   puVar7[7] = 0xb97f048d2153e1b0;
-  puVar7[8] = &UNK_180a00388;
+  puVar7[8] = &SystemDataNodeF;
   puVar7[9] = 4;
   systemPreviousNode[10] = eventCallbackPointer;
   return;
@@ -5624,7 +5638,7 @@ void InitializeSystemDataTableNode(void)
   systemPreviousNode = systemRootNode;
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
-    memoryCompareResult = memcmp(systemCurrentNode + 4,&DAT_180a010a0,0x10);
+    memoryCompareResult = memcmp(systemCurrentNode + 4,&SystemDataComparisonTemplateH,0x10);
     if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
@@ -5636,14 +5650,14 @@ void InitializeSystemDataTableNode(void)
     systemCurrentNode = systemNextNode;
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
-  if ((systemPreviousNode == systemRootNode) || (memoryCompareResult = memcmp(&DAT_180a010a0,systemPreviousNode + 4,0x10), memoryCompareResult < 0)) {
+  if ((systemPreviousNode == systemRootNode) || (memoryCompareResult = memcmp(&SystemDataComparisonTemplateH,systemPreviousNode + 4,0x10), memoryCompareResult < 0)) {
     memoryAllocationSize = GetSystemMemorySize(systemDataTable);
     AllocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   systemPreviousNode[6] = 0x43330a43fcdb3653;
   puVar7[7] = 0xdcfdc333a769ec93;
-  puVar7[8] = &UNK_180a00370;
+  puVar7[8] = &SystemDataNodeE;
   puVar7[9] = 1;
   systemPreviousNode[10] = eventCallbackPointer;
   return;
@@ -5682,7 +5696,7 @@ void InitializeSystemConfigurationNode(void)
   systemPreviousNode = systemRootNode;
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
-    memoryCompareResult = memcmp(systemCurrentNode + 4,&DAT_180a01078,0x10);
+    memoryCompareResult = memcmp(systemCurrentNode + 4,&SystemDataComparisonTemplateI,0x10);
     if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
@@ -5694,14 +5708,14 @@ void InitializeSystemConfigurationNode(void)
     systemCurrentNode = systemNextNode;
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
-  if ((systemPreviousNode == systemRootNode) || (memoryCompareResult = memcmp(&DAT_180a01078,systemPreviousNode + 4,0x10), memoryCompareResult < 0)) {
+  if ((systemPreviousNode == systemRootNode) || (memoryCompareResult = memcmp(&SystemDataComparisonTemplateI,systemPreviousNode + 4,0x10), memoryCompareResult < 0)) {
     memoryAllocationSize = GetSystemMemorySize(systemDataTable);
     AllocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   systemPreviousNode[6] = 0x431d7c8d7c475be2;
   puVar7[7] = 0xb97f048d2153e1b0;
-  puVar7[8] = &UNK_180a00388;
+  puVar7[8] = &SystemDataNodeF;
   puVar7[9] = 4;
   systemPreviousNode[10] = eventCallbackPointer;
   return;
@@ -6030,7 +6044,7 @@ void InitializeSystemEventHandler(void)
   systemPreviousNode = systemRootNode;
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
-    memoryCompareResult = memcmp(systemCurrentNode + 4,&DAT_180a010a0,0x10);
+    memoryCompareResult = memcmp(systemCurrentNode + 4,&SystemDataComparisonTemplateH,0x10);
     if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
@@ -6042,14 +6056,14 @@ void InitializeSystemEventHandler(void)
     systemCurrentNode = systemNextNode;
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
-  if ((systemPreviousNode == systemRootNode) || (memoryCompareResult = memcmp(&DAT_180a010a0,systemPreviousNode + 4,0x10), memoryCompareResult < 0)) {
+  if ((systemPreviousNode == systemRootNode) || (memoryCompareResult = memcmp(&SystemDataComparisonTemplateH,systemPreviousNode + 4,0x10), memoryCompareResult < 0)) {
     memoryAllocationSize = GetSystemMemorySize(systemDataTable);
     AllocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   systemPreviousNode[6] = 0x43330a43fcdb3653;
   puVar7[7] = 0xdcfdc333a769ec93;
-  puVar7[8] = &UNK_180a00370;
+  puVar7[8] = &SystemDataNodeE;
   puVar7[9] = 1;
   systemPreviousNode[10] = eventCallbackPointer;
   return;
@@ -6088,7 +6102,7 @@ void InitializeSystemTaskManager(void)
   systemPreviousNode = systemRootNode;
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
-    memoryCompareResult = memcmp(systemCurrentNode + 4,&DAT_180a01078,0x10);
+    memoryCompareResult = memcmp(systemCurrentNode + 4,&SystemDataComparisonTemplateI,0x10);
     if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
@@ -6100,14 +6114,14 @@ void InitializeSystemTaskManager(void)
     systemCurrentNode = systemNextNode;
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
-  if ((systemPreviousNode == systemRootNode) || (memoryCompareResult = memcmp(&DAT_180a01078,systemPreviousNode + 4,0x10), memoryCompareResult < 0)) {
+  if ((systemPreviousNode == systemRootNode) || (memoryCompareResult = memcmp(&SystemDataComparisonTemplateI,systemPreviousNode + 4,0x10), memoryCompareResult < 0)) {
     memoryAllocationSize = GetSystemMemorySize(systemDataTable);
     AllocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   systemPreviousNode[6] = 0x431d7c8d7c475be2;
   puVar7[7] = 0xb97f048d2153e1b0;
-  puVar7[8] = &UNK_180a00388;
+  puVar7[8] = &SystemDataNodeF;
   puVar7[9] = 4;
   systemPreviousNode[10] = eventCallbackPointer;
   return;
@@ -6499,7 +6513,7 @@ void InitializeSystemEventManager(void)
   systemPreviousNode = systemRootNode;
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
-    memoryCompareResult = memcmp(systemCurrentNode + 4,&DAT_180a00d48,0x10);
+    memoryCompareResult = memcmp(systemCurrentNode + 4,&SystemDataComparisonTemplateF,0x10);
     if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
@@ -6511,7 +6525,7 @@ void InitializeSystemEventManager(void)
     systemCurrentNode = systemNextNode;
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
-  if ((systemPreviousNode == systemRootNode) || (memoryCompareResult = memcmp(&DAT_180a00d48,systemPreviousNode + 4,0x10), memoryCompareResult < 0)) {
+  if ((systemPreviousNode == systemRootNode) || (memoryCompareResult = memcmp(&SystemDataComparisonTemplateF,systemPreviousNode + 4,0x10), memoryCompareResult < 0)) {
     longlong memoryAllocationSize = GetSystemMemorySize(systemDataTable);
     undefined8 *systemAllocatedNode;
     AllocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
@@ -6558,7 +6572,7 @@ void InitializeSystemSearchManager(void)
   systemPreviousNode = systemRootNode;
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
-    memoryCompareResult = memcmp(systemCurrentNode + 4,&DAT_180a00e28,0x10);
+    memoryCompareResult = memcmp(systemCurrentNode + 4,&SystemDataComparisonTemplateE,0x10);
     if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
@@ -6570,14 +6584,14 @@ void InitializeSystemSearchManager(void)
     systemCurrentNode = systemNextNode;
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
-  if ((systemPreviousNode == systemRootNode) || (memoryCompareResult = memcmp(&DAT_180a00e28,systemPreviousNode + 4,0x10), memoryCompareResult < 0)) {
+  if ((systemPreviousNode == systemRootNode) || (memoryCompareResult = memcmp(&SystemDataComparisonTemplateE,systemPreviousNode + 4,0x10), memoryCompareResult < 0)) {
     memoryAllocationSize = GetSystemMemorySize(systemDataTable);
     AllocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   systemPreviousNode[6] = 0x449bafe9b77ddd3c;
   puVar7[7] = 0xc160408bde99e59f;
-  puVar7[8] = &UNK_180a00430;
+  puVar7[8] = &SystemDataNodeA;
   systemPreviousNode[9] = 0;
   systemPreviousNode[10] = eventCallbackPointer;
   return;
@@ -6616,7 +6630,7 @@ void InitializeSystemIndexManager(void)
   systemPreviousNode = systemRootNode;
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
-    memoryCompareResult = memcmp(systemCurrentNode + 4,&DAT_1809ff9e8,0x10);
+    memoryCompareResult = memcmp(systemCurrentNode + 4,&SystemDataComparisonTemplateD,0x10);
     if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
@@ -6628,14 +6642,14 @@ void InitializeSystemIndexManager(void)
     systemCurrentNode = systemNextNode;
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
-  if ((systemPreviousNode == systemRootNode) || (memoryCompareResult = memcmp(&DAT_1809ff9e8,systemPreviousNode + 4,0x10), memoryCompareResult < 0)) {
+  if ((systemPreviousNode == systemRootNode) || (memoryCompareResult = memcmp(&SystemDataComparisonTemplateD,systemPreviousNode + 4,0x10), memoryCompareResult < 0)) {
     memoryAllocationSize = GetSystemMemorySize(systemDataTable);
     AllocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   systemPreviousNode[6] = 0x406be72011d07d37;
   systemPreviousNode[7] = 0x71876af946c867ab;
-  systemPreviousNode[8] = &UNK_1809ff978;
+  systemPreviousNode[8] = &SystemDataNodeC;
   systemPreviousNode[9] = 0;
   systemPreviousNode[10] = eventCallbackPointer;
   return;
@@ -6674,7 +6688,7 @@ void InitializeSystemCacheManager(void)
   systemPreviousNode = systemRootNode;
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
-    memoryCompareResult = memcmp(systemCurrentNode + 4,&DAT_1809ff9c0,0x10);
+    memoryCompareResult = memcmp(systemCurrentNode + 4,&SystemDataComparisonTemplateG,0x10);
     if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
@@ -6686,14 +6700,14 @@ void InitializeSystemCacheManager(void)
     systemCurrentNode = systemNextNode;
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
-  if ((systemPreviousNode == systemRootNode) || (memoryCompareResult = memcmp(&DAT_1809ff9c0,systemPreviousNode + 4,0x10), memoryCompareResult < 0)) {
+  if ((systemPreviousNode == systemRootNode) || (memoryCompareResult = memcmp(&SystemDataComparisonTemplateG,systemPreviousNode + 4,0x10), memoryCompareResult < 0)) {
     memoryAllocationSize = GetSystemMemorySize(systemDataTable);
     AllocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   systemPreviousNode[6] = 0x40afa5469b6ac06d;
   puVar7[7] = 0x2f4bab01d34055a5;
-  puVar7[8] = &UNK_1809ff990;
+  puVar7[8] = &SystemDataNodeD;
   puVar7[9] = 3;
   systemPreviousNode[10] = eventCallbackPointer;
   return;
@@ -6732,7 +6746,7 @@ void InitializeSystemLogManager(void)
   systemPreviousNode = systemRootNode;
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
-    memoryCompareResult = memcmp(systemCurrentNode + 4,&DAT_180a010a0,0x10);
+    memoryCompareResult = memcmp(systemCurrentNode + 4,&SystemDataComparisonTemplateH,0x10);
     if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
@@ -6744,14 +6758,14 @@ void InitializeSystemLogManager(void)
     systemCurrentNode = systemNextNode;
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
-  if ((systemPreviousNode == systemRootNode) || (memoryCompareResult = memcmp(&DAT_180a010a0,systemPreviousNode + 4,0x10), memoryCompareResult < 0)) {
+  if ((systemPreviousNode == systemRootNode) || (memoryCompareResult = memcmp(&SystemDataComparisonTemplateH,systemPreviousNode + 4,0x10), memoryCompareResult < 0)) {
     memoryAllocationSize = GetSystemMemorySize(systemDataTable);
     AllocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   systemPreviousNode[6] = 0x43330a43fcdb3653;
   puVar7[7] = 0xdcfdc333a769ec93;
-  puVar7[8] = &UNK_180a00370;
+  puVar7[8] = &SystemDataNodeE;
   puVar7[9] = 1;
   systemPreviousNode[10] = eventCallbackPointer;
   return;
@@ -6790,7 +6804,7 @@ void InitializeSystemPerformanceMonitor(void)
   systemPreviousNode = systemRootNode;
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
-    memoryCompareResult = memcmp(systemCurrentNode + 4,&DAT_180a01078,0x10);
+    memoryCompareResult = memcmp(systemCurrentNode + 4,&SystemDataComparisonTemplateI,0x10);
     if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
@@ -6802,14 +6816,14 @@ void InitializeSystemPerformanceMonitor(void)
     systemCurrentNode = systemNextNode;
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
-  if ((systemPreviousNode == systemRootNode) || (memoryCompareResult = memcmp(&DAT_180a01078,systemPreviousNode + 4,0x10), memoryCompareResult < 0)) {
+  if ((systemPreviousNode == systemRootNode) || (memoryCompareResult = memcmp(&SystemDataComparisonTemplateI,systemPreviousNode + 4,0x10), memoryCompareResult < 0)) {
     memoryAllocationSize = GetSystemMemorySize(systemDataTable);
     AllocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   systemPreviousNode[6] = 0x431d7c8d7c475be2;
   puVar7[7] = 0xb97f048d2153e1b0;
-  puVar7[8] = &UNK_180a00388;
+  puVar7[8] = &SystemDataNodeF;
   puVar7[9] = 4;
   systemPreviousNode[10] = eventCallbackPointer;
   return;
@@ -7254,7 +7268,7 @@ void InitializeSystemThreadManager(void)
   systemPreviousNode = systemRootNode;
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
-    memoryCompareResult = memcmp(systemCurrentNode + 4,&DAT_180a010a0,0x10);
+    memoryCompareResult = memcmp(systemCurrentNode + 4,&SystemDataComparisonTemplateH,0x10);
     if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
@@ -7266,14 +7280,14 @@ void InitializeSystemThreadManager(void)
     systemCurrentNode = systemNextNode;
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
-  if ((systemPreviousNode == systemRootNode) || (memoryCompareResult = memcmp(&DAT_180a010a0,systemPreviousNode + 4,0x10), memoryCompareResult < 0)) {
+  if ((systemPreviousNode == systemRootNode) || (memoryCompareResult = memcmp(&SystemDataComparisonTemplateH,systemPreviousNode + 4,0x10), memoryCompareResult < 0)) {
     memoryAllocationSize = GetSystemMemorySize(systemDataTable);
     AllocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   systemPreviousNode[6] = 0x43330a43fcdb3653;
   puVar7[7] = 0xdcfdc333a769ec93;
-  puVar7[8] = &UNK_180a00370;
+  puVar7[8] = &SystemDataNodeE;
   puVar7[9] = 1;
   systemPreviousNode[10] = eventCallbackPointer;
   return;
@@ -7306,7 +7320,7 @@ void InitializeSystemEventProcessor(void)
   eventPreviousNode = eventRootNode;
   eventCurrentNode = (undefined8 *)eventRootNode[1];
   while (eventNodeFlag == '\0') {
-    memoryCompareResult = memcmp(systemCurrentNode + 4,&DAT_180a01078,0x10);
+    memoryCompareResult = memcmp(systemCurrentNode + 4,&SystemDataComparisonTemplateI,0x10);
     if (memoryCompareResult < 0) {
       eventNextNode = (undefined8 *)eventCurrentNode[2];
       eventCurrentNode = eventPreviousNode;
@@ -7318,14 +7332,14 @@ void InitializeSystemEventProcessor(void)
     eventCurrentNode = eventNextNode;
     eventNodeFlag = *(char *)((longlong)eventNextNode + 0x19);
   }
-  if ((systemPreviousNode == systemRootNode) || (memoryCompareResult = memcmp(&DAT_180a01078,systemPreviousNode + 4,0x10), memoryCompareResult < 0)) {
+  if ((systemPreviousNode == systemRootNode) || (memoryCompareResult = memcmp(&SystemDataComparisonTemplateI,systemPreviousNode + 4,0x10), memoryCompareResult < 0)) {
     memoryAllocationSize = GetSystemMemorySize(eventSystemDataTable);
     AllocateSystemMemory(eventSystemDataTable,&eventAllocatedNode,eventPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     eventPreviousNode = eventAllocatedNode;
   }
   systemPreviousNode[6] = 0x431d7c8d7c475be2;
   puVar7[7] = 0xb97f048d2153e1b0;
-  puVar7[8] = &UNK_180a00388;
+  puVar7[8] = &SystemDataNodeF;
   puVar7[9] = 4;
   eventPreviousNode[10] = eventCallbackPointer;
   return;
@@ -7612,7 +7626,7 @@ void InitializeSystemNetworkManager(void)
   systemPreviousNode = systemRootNode;
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
-    memoryCompareResult = memcmp(systemCurrentNode + 4,&DAT_180a00e28,0x10);
+    memoryCompareResult = memcmp(systemCurrentNode + 4,&SystemDataComparisonTemplateE,0x10);
     if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
@@ -7624,14 +7638,14 @@ void InitializeSystemNetworkManager(void)
     systemCurrentNode = systemNextNode;
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
-  if ((systemPreviousNode == systemRootNode) || (memoryCompareResult = memcmp(&DAT_180a00e28,systemPreviousNode + 4,0x10), memoryCompareResult < 0)) {
+  if ((systemPreviousNode == systemRootNode) || (memoryCompareResult = memcmp(&SystemDataComparisonTemplateE,systemPreviousNode + 4,0x10), memoryCompareResult < 0)) {
     memoryAllocationSize = GetSystemMemorySize(systemDataTable);
     AllocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   systemPreviousNode[6] = 0x449bafe9b77ddd3c;
   puVar7[7] = 0xc160408bde99e59f;
-  puVar7[8] = &UNK_180a00430;
+  puVar7[8] = &SystemDataNodeA;
   systemPreviousNode[9] = 0;
   systemPreviousNode[10] = eventCallbackPointer;
   return;
@@ -7663,7 +7677,7 @@ void InitializeSystemStorageManager(void)
   systemPreviousNode = systemRootNode;
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
-    memoryCompareResult = memcmp(systemCurrentNode + 4,&DAT_180a00d48,0x10);
+    memoryCompareResult = memcmp(systemCurrentNode + 4,&SystemDataComparisonTemplateF,0x10);
     if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
@@ -7675,7 +7689,7 @@ void InitializeSystemStorageManager(void)
     systemCurrentNode = systemNextNode;
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
-  if ((systemPreviousNode == systemRootNode) || (memoryCompareResult = memcmp(&DAT_180a00d48,systemPreviousNode + 4,0x10), memoryCompareResult < 0)) {
+  if ((systemPreviousNode == systemRootNode) || (memoryCompareResult = memcmp(&SystemDataComparisonTemplateF,systemPreviousNode + 4,0x10), memoryCompareResult < 0)) {
     memoryAllocationSize = GetSystemMemorySize(systemDataTable);
     AllocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
@@ -7816,7 +7830,7 @@ void InitializeSystemThreadManager(void)
   systemPreviousNode = systemRootNode;
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
-    memoryCompareResult = memcmp(systemCurrentNode + 4,&DAT_1809fe0d0,0x10);
+    memoryCompareResult = memcmp(systemCurrentNode + 4,&SystemDataComparisonTemplateC,0x10);
     if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
@@ -7828,14 +7842,14 @@ void InitializeSystemThreadManager(void)
     systemCurrentNode = systemNextNode;
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
-  if ((systemPreviousNode == systemRootNode) || (memoryCompareResult = memcmp(&DAT_1809fe0d0,systemPreviousNode + 4,0x10), memoryCompareResult < 0)) {
+  if ((systemPreviousNode == systemRootNode) || (memoryCompareResult = memcmp(&SystemDataComparisonTemplateC,systemPreviousNode + 4,0x10), memoryCompareResult < 0)) {
     memoryAllocationSize = GetSystemMemorySize(systemDataTable);
     AllocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   systemPreviousNode[6] = 0x42bea5b911d9c4bf;
   puVar7[7] = 0x1aa83fc0020dc1b6;
-  puVar7[8] = &UNK_1809fd0d8;
+  puVar7[8] = &SystemDataNodeB;
   systemPreviousNode[9] = 0;
   puVar7[10] = resourceInitializationCallback;
   return;
@@ -7867,7 +7881,7 @@ void InitializeSystemProcessManager(void)
   systemPreviousNode = systemRootNode;
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
-    memoryCompareResult = memcmp(systemCurrentNode + 4,&DAT_180a010a0,0x10);
+    memoryCompareResult = memcmp(systemCurrentNode + 4,&SystemDataComparisonTemplateH,0x10);
     if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
@@ -7879,14 +7893,14 @@ void InitializeSystemProcessManager(void)
     systemCurrentNode = systemNextNode;
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
-  if ((systemPreviousNode == systemRootNode) || (memoryCompareResult = memcmp(&DAT_180a010a0,systemPreviousNode + 4,0x10), memoryCompareResult < 0)) {
+  if ((systemPreviousNode == systemRootNode) || (memoryCompareResult = memcmp(&SystemDataComparisonTemplateH,systemPreviousNode + 4,0x10), memoryCompareResult < 0)) {
     memoryAllocationSize = GetSystemMemorySize(systemDataTable);
     AllocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   systemPreviousNode[6] = 0x43330a43fcdb3653;
   puVar7[7] = 0xdcfdc333a769ec93;
-  puVar7[8] = &UNK_180a00370;
+  puVar7[8] = &SystemDataNodeE;
   puVar7[9] = 1;
   systemPreviousNode[10] = eventCallbackPointer;
   return;
@@ -7918,7 +7932,7 @@ void InitializeSystemDeviceManager(void)
   systemPreviousNode = systemRootNode;
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
-    memoryCompareResult = memcmp(systemCurrentNode + 4,&DAT_180a01078,0x10);
+    memoryCompareResult = memcmp(systemCurrentNode + 4,&SystemDataComparisonTemplateI,0x10);
     if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
@@ -7930,14 +7944,14 @@ void InitializeSystemDeviceManager(void)
     systemCurrentNode = systemNextNode;
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
-  if ((systemPreviousNode == systemRootNode) || (memoryCompareResult = memcmp(&DAT_180a01078,systemPreviousNode + 4,0x10), memoryCompareResult < 0)) {
+  if ((systemPreviousNode == systemRootNode) || (memoryCompareResult = memcmp(&SystemDataComparisonTemplateI,systemPreviousNode + 4,0x10), memoryCompareResult < 0)) {
     memoryAllocationSize = GetSystemMemorySize(systemDataTable);
     AllocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   systemPreviousNode[6] = 0x431d7c8d7c475be2;
   puVar7[7] = 0xb97f048d2153e1b0;
-  puVar7[8] = &UNK_180a00388;
+  puVar7[8] = &SystemDataNodeF;
   puVar7[9] = 4;
   systemPreviousNode[10] = eventCallbackPointer;
   return;
@@ -8322,7 +8336,7 @@ void InitializeSystemFrameworkManager(void)
   systemPreviousNode = systemRootNode;
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
-    memoryCompareResult = memcmp(systemCurrentNode + 4,&DAT_180a010a0,0x10);
+    memoryCompareResult = memcmp(systemCurrentNode + 4,&SystemDataComparisonTemplateH,0x10);
     if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
@@ -8334,14 +8348,14 @@ void InitializeSystemFrameworkManager(void)
     systemCurrentNode = systemNextNode;
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
-  if ((systemPreviousNode == systemRootNode) || (memoryCompareResult = memcmp(&DAT_180a010a0,systemPreviousNode + 4,0x10), memoryCompareResult < 0)) {
+  if ((systemPreviousNode == systemRootNode) || (memoryCompareResult = memcmp(&SystemDataComparisonTemplateH,systemPreviousNode + 4,0x10), memoryCompareResult < 0)) {
     memoryAllocationSize = GetSystemMemorySize(systemDataTable);
     AllocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   systemPreviousNode[6] = 0x43330a43fcdb3653;
   puVar7[7] = 0xdcfdc333a769ec93;
-  puVar7[8] = &UNK_180a00370;
+  puVar7[8] = &SystemDataNodeE;
   puVar7[9] = 1;
   systemPreviousNode[10] = eventCallbackPointer;
   return;
@@ -8379,7 +8393,7 @@ void InitializeSystemSearchManagerD(void)
   currentSystemNode = (void**)systemRootNodePointer[1];
   
   while (isSystemNodeActive == '\0') {
-    memoryCompareResult = memcmp(currentSystemNode + 4, &DAT_180a01078, 0x10);
+    memoryCompareResult = memcmp(currentSystemNode + 4, &SystemDataComparisonTemplateI, 0x10);
     if (memoryCompareResult < 0) {
       nextSystemNode = (void**)currentSystemNode[2];
       currentSystemNode = previousSystemNode;
@@ -8393,7 +8407,7 @@ void InitializeSystemSearchManagerD(void)
   }
   
   if ((previousSystemNode == systemRootNodePointer) || 
-      (memoryCompareResult = memcmp(&DAT_180a01078, previousSystemNode + 4, 0x10), memoryCompareResult < 0)) {
+      (memoryCompareResult = memcmp(&SystemDataComparisonTemplateI, previousSystemNode + 4, 0x10), memoryCompareResult < 0)) {
     memoryAllocationSize = GetSystemMemorySize(systemDataTablePointer);
     AllocateSystemMemory(systemDataTablePointer, &allocatedSystemNode, previousSystemNode, memoryAllocationSize + 0x20, memoryAllocationSize);
     previousSystemNode = allocatedSystemNode;
@@ -8401,7 +8415,7 @@ void InitializeSystemSearchManagerD(void)
   
   previousSystemNode[6] = 0x431d7c8d7c475be2;
   previousSystemNode[7] = 0xb97f048d2153e1b0;
-  previousSystemNode[8] = &UNK_180a00388;
+  previousSystemNode[8] = &SystemDataNodeF;
   previousSystemNode[9] = 4;
   previousSystemNode[10] = eventCallbackPointer;
   return;
@@ -8681,7 +8695,7 @@ void InitializeSystemThreadNode(void)
   systemPreviousNode = systemRootNode;
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
-    memoryCompareResult = memcmp(systemCurrentNode + 4,&DAT_1809fe0d0,0x10);
+    memoryCompareResult = memcmp(systemCurrentNode + 4,&SystemDataComparisonTemplateC,0x10);
     if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
@@ -8693,14 +8707,14 @@ void InitializeSystemThreadNode(void)
     systemCurrentNode = systemNextNode;
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
-  if ((systemPreviousNode == systemRootNode) || (memoryCompareResult = memcmp(&DAT_1809fe0d0,systemPreviousNode + 4,0x10), memoryCompareResult < 0)) {
+  if ((systemPreviousNode == systemRootNode) || (memoryCompareResult = memcmp(&SystemDataComparisonTemplateC,systemPreviousNode + 4,0x10), memoryCompareResult < 0)) {
     memoryAllocationSize = GetSystemMemorySize(systemDataTable);
     AllocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   systemPreviousNode[6] = 0x42bea5b911d9c4bf;
   puVar7[7] = 0x1aa83fc0020dc1b6;
-  puVar7[8] = &UNK_1809fd0d8;
+  puVar7[8] = &SystemDataNodeB;
   systemPreviousNode[9] = 0;
   puVar7[10] = resourceInitializationCallback;
   return;
@@ -9291,7 +9305,7 @@ void InitializeSystemSearchConfigurationManager(void)
   systemPreviousNode = systemRootNode;
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
-    memoryCompareResult = memcmp(systemCurrentNode + 4,&DAT_180a00d48,0x10);
+    memoryCompareResult = memcmp(systemCurrentNode + 4,&SystemDataComparisonTemplateF,0x10);
     if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
@@ -9303,7 +9317,7 @@ void InitializeSystemSearchConfigurationManager(void)
     systemCurrentNode = systemNextNode;
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
-  if ((systemPreviousNode == systemRootNode) || (memoryCompareResult = memcmp(&DAT_180a00d48,systemPreviousNode + 4,0x10), memoryCompareResult < 0)) {
+  if ((systemPreviousNode == systemRootNode) || (memoryCompareResult = memcmp(&SystemDataComparisonTemplateF,systemPreviousNode + 4,0x10), memoryCompareResult < 0)) {
     memoryAllocationSize = GetSystemMemorySize(systemDataTable);
     AllocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
@@ -9597,7 +9611,7 @@ void InitializeSystemStringProcessorE(void)
   systemPreviousNode = systemRootNode;
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
-    memoryCompareResult = memcmp(systemCurrentNode + 4,&DAT_180a010a0,0x10);
+    memoryCompareResult = memcmp(systemCurrentNode + 4,&SystemDataComparisonTemplateH,0x10);
     if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
@@ -9609,14 +9623,14 @@ void InitializeSystemStringProcessorE(void)
     systemCurrentNode = systemNextNode;
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
-  if ((systemPreviousNode == systemRootNode) || (memoryCompareResult = memcmp(&DAT_180a010a0,systemPreviousNode + 4,0x10), memoryCompareResult < 0)) {
+  if ((systemPreviousNode == systemRootNode) || (memoryCompareResult = memcmp(&SystemDataComparisonTemplateH,systemPreviousNode + 4,0x10), memoryCompareResult < 0)) {
     memoryAllocationSize = GetSystemMemorySize(systemDataTable);
     AllocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   systemPreviousNode[6] = 0x43330a43fcdb3653;
   puVar7[7] = 0xdcfdc333a769ec93;
-  puVar7[8] = &UNK_180a00370;
+  puVar7[8] = &SystemDataNodeE;
   puVar7[9] = 1;
   systemPreviousNode[10] = eventCallbackPointer;
   return;
@@ -9647,7 +9661,7 @@ void InitializeSystemStringProcessorF(void)
   systemPreviousNode = systemRootNode;
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
-    memoryCompareResult = memcmp(systemCurrentNode + 4,&DAT_180a01078,0x10);
+    memoryCompareResult = memcmp(systemCurrentNode + 4,&SystemDataComparisonTemplateI,0x10);
     if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
@@ -9659,14 +9673,14 @@ void InitializeSystemStringProcessorF(void)
     systemCurrentNode = systemNextNode;
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
-  if ((systemPreviousNode == systemRootNode) || (memoryCompareResult = memcmp(&DAT_180a01078,systemPreviousNode + 4,0x10), memoryCompareResult < 0)) {
+  if ((systemPreviousNode == systemRootNode) || (memoryCompareResult = memcmp(&SystemDataComparisonTemplateI,systemPreviousNode + 4,0x10), memoryCompareResult < 0)) {
     memoryAllocationSize = GetSystemMemorySize(systemDataTable);
     AllocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   systemPreviousNode[6] = 0x431d7c8d7c475be2;
   puVar7[7] = 0xb97f048d2153e1b0;
-  puVar7[8] = &UNK_180a00388;
+  puVar7[8] = &SystemDataNodeF;
   puVar7[9] = 4;
   systemPreviousNode[10] = eventCallbackPointer;
   return;
@@ -9947,7 +9961,7 @@ void InitializeSystemStringProcessorL(void)
   systemPreviousNode = systemRootNode;
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
-    memoryCompareResult = memcmp(systemCurrentNode + 4,&DAT_180a010a0,0x10);
+    memoryCompareResult = memcmp(systemCurrentNode + 4,&SystemDataComparisonTemplateH,0x10);
     if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
@@ -9959,14 +9973,14 @@ void InitializeSystemStringProcessorL(void)
     systemCurrentNode = systemNextNode;
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
-  if ((systemPreviousNode == systemRootNode) || (memoryCompareResult = memcmp(&DAT_180a010a0,systemPreviousNode + 4,0x10), memoryCompareResult < 0)) {
+  if ((systemPreviousNode == systemRootNode) || (memoryCompareResult = memcmp(&SystemDataComparisonTemplateH,systemPreviousNode + 4,0x10), memoryCompareResult < 0)) {
     memoryAllocationSize = GetSystemMemorySize(systemDataTable);
     AllocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   systemPreviousNode[6] = 0x43330a43fcdb3653;
   puVar7[7] = 0xdcfdc333a769ec93;
-  puVar7[8] = &UNK_180a00370;
+  puVar7[8] = &SystemDataNodeE;
   puVar7[9] = 1;
   systemPreviousNode[10] = eventCallbackPointer;
   return;
@@ -9997,7 +10011,7 @@ void InitializeSystemStringProcessorM(void)
   systemPreviousNode = systemRootNode;
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
-    memoryCompareResult = memcmp(systemCurrentNode + 4,&DAT_180a01078,0x10);
+    memoryCompareResult = memcmp(systemCurrentNode + 4,&SystemDataComparisonTemplateI,0x10);
     if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
@@ -10009,14 +10023,14 @@ void InitializeSystemStringProcessorM(void)
     systemCurrentNode = systemNextNode;
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
-  if ((systemPreviousNode == systemRootNode) || (memoryCompareResult = memcmp(&DAT_180a01078,systemPreviousNode + 4,0x10), memoryCompareResult < 0)) {
+  if ((systemPreviousNode == systemRootNode) || (memoryCompareResult = memcmp(&SystemDataComparisonTemplateI,systemPreviousNode + 4,0x10), memoryCompareResult < 0)) {
     memoryAllocationSize = GetSystemMemorySize(systemDataTable);
     AllocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   systemPreviousNode[6] = 0x431d7c8d7c475be2;
   puVar7[7] = 0xb97f048d2153e1b0;
-  puVar7[8] = &UNK_180a00388;
+  puVar7[8] = &SystemDataNodeF;
   puVar7[9] = 4;
   systemPreviousNode[10] = eventCallbackPointer;
   return;
@@ -10297,7 +10311,7 @@ void InitializeSystemStringProcessorS(void)
   systemPreviousNode = systemRootNode;
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
-    memoryCompareResult = memcmp(systemCurrentNode + 4,&DAT_180a010a0,0x10);
+    memoryCompareResult = memcmp(systemCurrentNode + 4,&SystemDataComparisonTemplateH,0x10);
     if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
@@ -10309,14 +10323,14 @@ void InitializeSystemStringProcessorS(void)
     systemCurrentNode = systemNextNode;
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
-  if ((systemPreviousNode == systemRootNode) || (memoryCompareResult = memcmp(&DAT_180a010a0,systemPreviousNode + 4,0x10), memoryCompareResult < 0)) {
+  if ((systemPreviousNode == systemRootNode) || (memoryCompareResult = memcmp(&SystemDataComparisonTemplateH,systemPreviousNode + 4,0x10), memoryCompareResult < 0)) {
     memoryAllocationSize = GetSystemMemorySize(systemDataTable);
     AllocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   systemPreviousNode[6] = 0x43330a43fcdb3653;
   puVar7[7] = 0xdcfdc333a769ec93;
-  puVar7[8] = &UNK_180a00370;
+  puVar7[8] = &SystemDataNodeE;
   puVar7[9] = 1;
   systemPreviousNode[10] = eventCallbackPointer;
   return;
@@ -10347,7 +10361,7 @@ void InitializeSystemStringProcessorT(void)
   systemPreviousNode = systemRootNode;
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
-    memoryCompareResult = memcmp(systemCurrentNode + 4,&DAT_180a01078,0x10);
+    memoryCompareResult = memcmp(systemCurrentNode + 4,&SystemDataComparisonTemplateI,0x10);
     if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
@@ -10359,14 +10373,14 @@ void InitializeSystemStringProcessorT(void)
     systemCurrentNode = systemNextNode;
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
-  if ((systemPreviousNode == systemRootNode) || (memoryCompareResult = memcmp(&DAT_180a01078,systemPreviousNode + 4,0x10), memoryCompareResult < 0)) {
+  if ((systemPreviousNode == systemRootNode) || (memoryCompareResult = memcmp(&SystemDataComparisonTemplateI,systemPreviousNode + 4,0x10), memoryCompareResult < 0)) {
     memoryAllocationSize = GetSystemMemorySize(systemDataTable);
     AllocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   systemPreviousNode[6] = 0x431d7c8d7c475be2;
   puVar7[7] = 0xb97f048d2153e1b0;
-  puVar7[8] = &UNK_180a00388;
+  puVar7[8] = &SystemDataNodeF;
   puVar7[9] = 4;
   systemPreviousNode[10] = eventCallbackPointer;
   return;
@@ -10647,7 +10661,7 @@ void InitializeSystemStringProcessorZ(void)
   systemPreviousNode = systemRootNode;
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
-    memoryCompareResult = memcmp(systemCurrentNode + 4,&DAT_180a010a0,0x10);
+    memoryCompareResult = memcmp(systemCurrentNode + 4,&SystemDataComparisonTemplateH,0x10);
     if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
@@ -10659,14 +10673,14 @@ void InitializeSystemStringProcessorZ(void)
     systemCurrentNode = systemNextNode;
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
-  if ((systemPreviousNode == systemRootNode) || (memoryCompareResult = memcmp(&DAT_180a010a0,systemPreviousNode + 4,0x10), memoryCompareResult < 0)) {
+  if ((systemPreviousNode == systemRootNode) || (memoryCompareResult = memcmp(&SystemDataComparisonTemplateH,systemPreviousNode + 4,0x10), memoryCompareResult < 0)) {
     memoryAllocationSize = GetSystemMemorySize(systemDataTable);
     AllocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   systemPreviousNode[6] = 0x43330a43fcdb3653;
   puVar7[7] = 0xdcfdc333a769ec93;
-  puVar7[8] = &UNK_180a00370;
+  puVar7[8] = &SystemDataNodeE;
   puVar7[9] = 1;
   systemPreviousNode[10] = eventCallbackPointer;
   return;
@@ -10697,7 +10711,7 @@ void InitializeSystemMemoryManagerA(void)
   systemPreviousNode = systemRootNode;
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
-    memoryCompareResult = memcmp(systemCurrentNode + 4,&DAT_180a01078,0x10);
+    memoryCompareResult = memcmp(systemCurrentNode + 4,&SystemDataComparisonTemplateI,0x10);
     if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
@@ -10709,14 +10723,14 @@ void InitializeSystemMemoryManagerA(void)
     systemCurrentNode = systemNextNode;
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
-  if ((systemPreviousNode == systemRootNode) || (memoryCompareResult = memcmp(&DAT_180a01078,systemPreviousNode + 4,0x10), memoryCompareResult < 0)) {
+  if ((systemPreviousNode == systemRootNode) || (memoryCompareResult = memcmp(&SystemDataComparisonTemplateI,systemPreviousNode + 4,0x10), memoryCompareResult < 0)) {
     memoryAllocationSize = GetSystemMemorySize(systemDataTable);
     AllocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   systemPreviousNode[6] = 0x431d7c8d7c475be2;
   puVar7[7] = 0xb97f048d2153e1b0;
-  puVar7[8] = &UNK_180a00388;
+  puVar7[8] = &SystemDataNodeF;
   puVar7[9] = 4;
   systemPreviousNode[10] = eventCallbackPointer;
   return;
@@ -12234,7 +12248,7 @@ void InitializeSystemConfigurationDataNodeManager(void)
   systemPreviousNode = systemRootNode;
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
-    memoryCompareResult = memcmp(systemCurrentNode + 4,&DAT_180a010a0,0x10);
+    memoryCompareResult = memcmp(systemCurrentNode + 4,&SystemDataComparisonTemplateH,0x10);
     if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
@@ -12246,14 +12260,14 @@ void InitializeSystemConfigurationDataNodeManager(void)
     systemCurrentNode = systemNextNode;
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
-  if ((systemPreviousNode == systemRootNode) || (memoryCompareResult = memcmp(&DAT_180a010a0,systemPreviousNode + 4,0x10), memoryCompareResult < 0)) {
+  if ((systemPreviousNode == systemRootNode) || (memoryCompareResult = memcmp(&SystemDataComparisonTemplateH,systemPreviousNode + 4,0x10), memoryCompareResult < 0)) {
     memoryAllocationSize = GetSystemMemorySize(systemDataTable);
     AllocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   systemPreviousNode[6] = 0x43330a43fcdb3653;
   puVar7[7] = 0xdcfdc333a769ec93;
-  puVar7[8] = &UNK_180a00370;
+  puVar7[8] = &SystemDataNodeE;
   puVar7[9] = 1;
   systemPreviousNode[10] = eventCallbackPointer;
   return;
@@ -12291,7 +12305,7 @@ void InitializeSystemEventDataNodeManager(void)
   systemPreviousNode = systemRootNode;
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
-    memoryCompareResult = memcmp(systemCurrentNode + 4,&DAT_180a01078,0x10);
+    memoryCompareResult = memcmp(systemCurrentNode + 4,&SystemDataComparisonTemplateI,0x10);
     if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
@@ -12303,14 +12317,14 @@ void InitializeSystemEventDataNodeManager(void)
     systemCurrentNode = systemNextNode;
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
-  if ((systemPreviousNode == systemRootNode) || (memoryCompareResult = memcmp(&DAT_180a01078,systemPreviousNode + 4,0x10), memoryCompareResult < 0)) {
+  if ((systemPreviousNode == systemRootNode) || (memoryCompareResult = memcmp(&SystemDataComparisonTemplateI,systemPreviousNode + 4,0x10), memoryCompareResult < 0)) {
     memoryAllocationSize = GetSystemMemorySize(systemDataTable);
     AllocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   systemPreviousNode[6] = 0x431d7c8d7c475be2;
   puVar7[7] = 0xb97f048d2153e1b0;
-  puVar7[8] = &UNK_180a00388;
+  puVar7[8] = &SystemDataNodeF;
   puVar7[9] = 4;
   systemPreviousNode[10] = eventCallbackPointer;
   return;
@@ -12643,7 +12657,7 @@ void InitializeSystemSearchNodeManager(void)
   systemPreviousNode = systemRootNode;
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
-    memoryCompareResult = memcmp(systemCurrentNode + 4,&DAT_180a00d48,0x10);
+    memoryCompareResult = memcmp(systemCurrentNode + 4,&SystemDataComparisonTemplateF,0x10);
     if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
@@ -12655,7 +12669,7 @@ void InitializeSystemSearchNodeManager(void)
     systemCurrentNode = systemNextNode;
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
-  if ((systemPreviousNode == systemRootNode) || (memoryCompareResult = memcmp(&DAT_180a00d48,systemPreviousNode + 4,0x10), memoryCompareResult < 0)) {
+  if ((systemPreviousNode == systemRootNode) || (memoryCompareResult = memcmp(&SystemDataComparisonTemplateF,systemPreviousNode + 4,0x10), memoryCompareResult < 0)) {
     memoryAllocationSize = GetSystemMemorySize(systemDataTable);
     AllocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
@@ -12700,7 +12714,7 @@ void InitializeSystemDebugNodeManager(void)
   systemPreviousNode = systemRootNode;
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
-    memoryCompareResult = memcmp(systemCurrentNode + 4,&DAT_180a010a0,0x10);
+    memoryCompareResult = memcmp(systemCurrentNode + 4,&SystemDataComparisonTemplateH,0x10);
     if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
@@ -12712,14 +12726,14 @@ void InitializeSystemDebugNodeManager(void)
     systemCurrentNode = systemNextNode;
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
-  if ((systemPreviousNode == systemRootNode) || (memoryCompareResult = memcmp(&DAT_180a010a0,systemPreviousNode + 4,0x10), memoryCompareResult < 0)) {
+  if ((systemPreviousNode == systemRootNode) || (memoryCompareResult = memcmp(&SystemDataComparisonTemplateH,systemPreviousNode + 4,0x10), memoryCompareResult < 0)) {
     memoryAllocationSize = GetSystemMemorySize(systemDataTable);
     AllocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   systemPreviousNode[6] = 0x43330a43fcdb3653;
   puVar7[7] = 0xdcfdc333a769ec93;
-  puVar7[8] = &UNK_180a00370;
+  puVar7[8] = &SystemDataNodeE;
   puVar7[9] = 1;
   systemPreviousNode[10] = eventCallbackPointer;
   return;
@@ -12757,7 +12771,7 @@ void InitializeSystemLoggingNodeManager(void)
   systemPreviousNode = systemRootNode;
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
-    memoryCompareResult = memcmp(systemCurrentNode + 4,&DAT_180a01078,0x10);
+    memoryCompareResult = memcmp(systemCurrentNode + 4,&SystemDataComparisonTemplateI,0x10);
     if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
@@ -12769,14 +12783,14 @@ void InitializeSystemLoggingNodeManager(void)
     systemCurrentNode = systemNextNode;
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
-  if ((systemPreviousNode == systemRootNode) || (memoryCompareResult = memcmp(&DAT_180a01078,systemPreviousNode + 4,0x10), memoryCompareResult < 0)) {
+  if ((systemPreviousNode == systemRootNode) || (memoryCompareResult = memcmp(&SystemDataComparisonTemplateI,systemPreviousNode + 4,0x10), memoryCompareResult < 0)) {
     memoryAllocationSize = GetSystemMemorySize(systemDataTable);
     AllocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   systemPreviousNode[6] = 0x431d7c8d7c475be2;
   puVar7[7] = 0xb97f048d2153e1b0;
-  puVar7[8] = &UNK_180a00388;
+  puVar7[8] = &SystemDataNodeF;
   puVar7[9] = 4;
   systemPreviousNode[10] = eventCallbackPointer;
   return;
@@ -13100,7 +13114,7 @@ void InitializeSystemEventManagerG(void)
   systemPreviousNode = systemRootNode;
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
-    memoryCompareResult = memcmp(systemCurrentNode + 4,&DAT_180a010a0,0x10);
+    memoryCompareResult = memcmp(systemCurrentNode + 4,&SystemDataComparisonTemplateH,0x10);
     if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
@@ -13112,14 +13126,14 @@ void InitializeSystemEventManagerG(void)
     systemCurrentNode = systemNextNode;
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
-  if ((systemPreviousNode == systemRootNode) || (memoryCompareResult = memcmp(&DAT_180a010a0,systemPreviousNode + 4,0x10), memoryCompareResult < 0)) {
+  if ((systemPreviousNode == systemRootNode) || (memoryCompareResult = memcmp(&SystemDataComparisonTemplateH,systemPreviousNode + 4,0x10), memoryCompareResult < 0)) {
     memoryAllocationSize = GetSystemMemorySize(systemDataTable);
     AllocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   systemPreviousNode[6] = 0x43330a43fcdb3653;
   puVar7[7] = 0xdcfdc333a769ec93;
-  puVar7[8] = &UNK_180a00370;
+  puVar7[8] = &SystemDataNodeE;
   puVar7[9] = 1;
   systemPreviousNode[10] = eventCallbackPointer;
   return;
@@ -13158,7 +13172,7 @@ void InitializeSystemEventManagerH(void)
   systemPreviousNode = systemRootNode;
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
-    memoryCompareResult = memcmp(systemCurrentNode + 4,&DAT_180a01078,0x10);
+    memoryCompareResult = memcmp(systemCurrentNode + 4,&SystemDataComparisonTemplateI,0x10);
     if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
@@ -13170,14 +13184,14 @@ void InitializeSystemEventManagerH(void)
     systemCurrentNode = systemNextNode;
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
-  if ((systemPreviousNode == systemRootNode) || (memoryCompareResult = memcmp(&DAT_180a01078,systemPreviousNode + 4,0x10), memoryCompareResult < 0)) {
+  if ((systemPreviousNode == systemRootNode) || (memoryCompareResult = memcmp(&SystemDataComparisonTemplateI,systemPreviousNode + 4,0x10), memoryCompareResult < 0)) {
     memoryAllocationSize = GetSystemMemorySize(systemDataTable);
     AllocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   systemPreviousNode[6] = 0x431d7c8d7c475be2;
   puVar7[7] = 0xb97f048d2153e1b0;
-  puVar7[8] = &UNK_180a00388;
+  puVar7[8] = &SystemDataNodeF;
   puVar7[9] = 4;
   systemPreviousNode[10] = eventCallbackPointer;
   return;
@@ -14941,7 +14955,7 @@ void InitializeSystemDatabaseComponent(void)
   systemPreviousNode = systemRootNode;
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
-    memoryCompareResult = memcmp(systemCurrentNode + 4,&DAT_180a00d48,0x10);
+    memoryCompareResult = memcmp(systemCurrentNode + 4,&SystemDataComparisonTemplateF,0x10);
     if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
@@ -14953,7 +14967,7 @@ void InitializeSystemDatabaseComponent(void)
     systemCurrentNode = systemNextNode;
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
-  if ((systemPreviousNode == systemRootNode) || (memoryCompareResult = memcmp(&DAT_180a00d48,systemPreviousNode + 4,0x10), memoryCompareResult < 0)) {
+  if ((systemPreviousNode == systemRootNode) || (memoryCompareResult = memcmp(&SystemDataComparisonTemplateF,systemPreviousNode + 4,0x10), memoryCompareResult < 0)) {
     memoryAllocationSize = GetSystemMemorySize(systemDataTable);
     AllocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
@@ -14992,7 +15006,7 @@ void InitializeSystemLoggingComponent(void)
   systemPreviousNode = systemRootNode;
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
-    memoryCompareResult = memcmp(systemCurrentNode + 4,&DAT_180a00e28,0x10);
+    memoryCompareResult = memcmp(systemCurrentNode + 4,&SystemDataComparisonTemplateE,0x10);
     if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
@@ -15004,14 +15018,14 @@ void InitializeSystemLoggingComponent(void)
     systemCurrentNode = systemNextNode;
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
-  if ((systemPreviousNode == systemRootNode) || (memoryCompareResult = memcmp(&DAT_180a00e28,systemPreviousNode + 4,0x10), memoryCompareResult < 0)) {
+  if ((systemPreviousNode == systemRootNode) || (memoryCompareResult = memcmp(&SystemDataComparisonTemplateE,systemPreviousNode + 4,0x10), memoryCompareResult < 0)) {
     memoryAllocationSize = GetSystemMemorySize(systemDataTable);
     AllocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   systemPreviousNode[6] = 0x449bafe9b77ddd3c;
   puVar7[7] = 0xc160408bde99e59f;
-  puVar7[8] = &UNK_180a00430;
+  puVar7[8] = &SystemDataNodeA;
   systemPreviousNode[9] = 0;
   systemPreviousNode[10] = eventCallbackPointer;
   return;
@@ -15043,7 +15057,7 @@ void InitializeSystemPerformanceComponent(void)
   systemPreviousNode = systemRootNode;
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
-    memoryCompareResult = memcmp(systemCurrentNode + 4,&DAT_1809ff9e8,0x10);
+    memoryCompareResult = memcmp(systemCurrentNode + 4,&SystemDataComparisonTemplateD,0x10);
     if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
@@ -15055,14 +15069,14 @@ void InitializeSystemPerformanceComponent(void)
     systemCurrentNode = systemNextNode;
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
-  if ((systemPreviousNode == systemRootNode) || (memoryCompareResult = memcmp(&DAT_1809ff9e8,systemPreviousNode + 4,0x10), memoryCompareResult < 0)) {
+  if ((systemPreviousNode == systemRootNode) || (memoryCompareResult = memcmp(&SystemDataComparisonTemplateD,systemPreviousNode + 4,0x10), memoryCompareResult < 0)) {
     memoryAllocationSize = GetSystemMemorySize(systemDataTable);
     AllocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   systemPreviousNode[6] = 0x406be72011d07d37;
   systemPreviousNode[7] = 0x71876af946c867ab;
-  systemPreviousNode[8] = &UNK_1809ff978;
+  systemPreviousNode[8] = &SystemDataNodeC;
   systemPreviousNode[9] = 0;
   systemPreviousNode[10] = eventCallbackPointer;
   return;
@@ -15094,7 +15108,7 @@ void InitializeSystemDiagnosticComponent(void)
   systemPreviousNode = systemRootNode;
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
-    memoryCompareResult = memcmp(systemCurrentNode + 4,&DAT_1809ff9c0,0x10);
+    memoryCompareResult = memcmp(systemCurrentNode + 4,&SystemDataComparisonTemplateG,0x10);
     if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
@@ -15106,14 +15120,14 @@ void InitializeSystemDiagnosticComponent(void)
     systemCurrentNode = systemNextNode;
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
-  if ((systemPreviousNode == systemRootNode) || (memoryCompareResult = memcmp(&DAT_1809ff9c0,systemPreviousNode + 4,0x10), memoryCompareResult < 0)) {
+  if ((systemPreviousNode == systemRootNode) || (memoryCompareResult = memcmp(&SystemDataComparisonTemplateG,systemPreviousNode + 4,0x10), memoryCompareResult < 0)) {
     memoryAllocationSize = GetSystemMemorySize(systemDataTable);
     AllocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   systemPreviousNode[6] = 0x40afa5469b6ac06d;
   puVar7[7] = 0x2f4bab01d34055a5;
-  puVar7[8] = &UNK_1809ff990;
+  puVar7[8] = &SystemDataNodeD;
   puVar7[9] = 3;
   systemPreviousNode[10] = eventCallbackPointer;
   return;
@@ -15145,7 +15159,7 @@ void InitializeSystemDebugComponent(void)
   systemPreviousNode = systemRootNode;
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
-    memoryCompareResult = memcmp(systemCurrentNode + 4,&DAT_180a010a0,0x10);
+    memoryCompareResult = memcmp(systemCurrentNode + 4,&SystemDataComparisonTemplateH,0x10);
     if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
@@ -15157,14 +15171,14 @@ void InitializeSystemDebugComponent(void)
     systemCurrentNode = systemNextNode;
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
-  if ((systemPreviousNode == systemRootNode) || (memoryCompareResult = memcmp(&DAT_180a010a0,systemPreviousNode + 4,0x10), memoryCompareResult < 0)) {
+  if ((systemPreviousNode == systemRootNode) || (memoryCompareResult = memcmp(&SystemDataComparisonTemplateH,systemPreviousNode + 4,0x10), memoryCompareResult < 0)) {
     memoryAllocationSize = GetSystemMemorySize(systemDataTable);
     AllocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   systemPreviousNode[6] = 0x43330a43fcdb3653;
   puVar7[7] = 0xdcfdc333a769ec93;
-  puVar7[8] = &UNK_180a00370;
+  puVar7[8] = &SystemDataNodeE;
   puVar7[9] = 1;
   systemPreviousNode[10] = eventCallbackPointer;
   return;
@@ -15196,7 +15210,7 @@ void InitializeSystemPluginComponent(void)
   systemPreviousNode = systemRootNode;
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
-    memoryCompareResult = memcmp(systemCurrentNode + 4,&DAT_180a01078,0x10);
+    memoryCompareResult = memcmp(systemCurrentNode + 4,&SystemDataComparisonTemplateI,0x10);
     if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
@@ -15208,14 +15222,14 @@ void InitializeSystemPluginComponent(void)
     systemCurrentNode = systemNextNode;
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
-  if ((systemPreviousNode == systemRootNode) || (memoryCompareResult = memcmp(&DAT_180a01078,systemPreviousNode + 4,0x10), memoryCompareResult < 0)) {
+  if ((systemPreviousNode == systemRootNode) || (memoryCompareResult = memcmp(&SystemDataComparisonTemplateI,systemPreviousNode + 4,0x10), memoryCompareResult < 0)) {
     memoryAllocationSize = GetSystemMemorySize(systemDataTable);
     AllocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   systemPreviousNode[6] = 0x431d7c8d7c475be2;
   puVar7[7] = 0xb97f048d2153e1b0;
-  puVar7[8] = &UNK_180a00388;
+  puVar7[8] = &SystemDataNodeF;
   puVar7[9] = 4;
   systemPreviousNode[10] = eventCallbackPointer;
   return;
@@ -15508,7 +15522,7 @@ void InitializeSystemSubcomponentF(void)
   systemPreviousNode = systemRootNode;
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
-    memoryCompareResult = memcmp(systemCurrentNode + 4,&DAT_1809fe0d0,0x10);
+    memoryCompareResult = memcmp(systemCurrentNode + 4,&SystemDataComparisonTemplateC,0x10);
     if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
@@ -15520,14 +15534,14 @@ void InitializeSystemSubcomponentF(void)
     systemCurrentNode = systemNextNode;
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
-  if ((systemPreviousNode == systemRootNode) || (memoryCompareResult = memcmp(&DAT_1809fe0d0,systemPreviousNode + 4,0x10), memoryCompareResult < 0)) {
+  if ((systemPreviousNode == systemRootNode) || (memoryCompareResult = memcmp(&SystemDataComparisonTemplateC,systemPreviousNode + 4,0x10), memoryCompareResult < 0)) {
     memoryAllocationSize = GetSystemMemorySize(systemDataTable);
     AllocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   systemPreviousNode[6] = 0x42bea5b911d9c4bf;
   puVar7[7] = 0x1aa83fc0020dc1b6;
-  puVar7[8] = &UNK_1809fd0d8;
+  puVar7[8] = &SystemDataNodeB;
   systemPreviousNode[9] = 0;
   puVar7[10] = resourceInitializationCallback;
   return;
@@ -16079,7 +16093,7 @@ void InitializeSystemSearchManager(void)
   systemPreviousNode = systemRootNode;
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
-    memoryCompareResult = memcmp(systemCurrentNode + 4,&DAT_1809ff9e8,0x10);
+    memoryCompareResult = memcmp(systemCurrentNode + 4,&SystemDataComparisonTemplateD,0x10);
     if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
@@ -16091,14 +16105,14 @@ void InitializeSystemSearchManager(void)
     systemCurrentNode = systemNextNode;
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
-  if ((systemPreviousNode == systemRootNode) || (memoryCompareResult = memcmp(&DAT_1809ff9e8,systemPreviousNode + 4,0x10), memoryCompareResult < 0)) {
+  if ((systemPreviousNode == systemRootNode) || (memoryCompareResult = memcmp(&SystemDataComparisonTemplateD,systemPreviousNode + 4,0x10), memoryCompareResult < 0)) {
     memoryAllocationSize = GetSystemMemorySize(systemDataTable);
     AllocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   systemPreviousNode[6] = 0x406be72011d07d37;
   systemPreviousNode[7] = 0x71876af946c867ab;
-  systemPreviousNode[8] = &UNK_1809ff978;
+  systemPreviousNode[8] = &SystemDataNodeC;
   systemPreviousNode[9] = 0;
   systemPreviousNode[10] = eventCallbackPointer;
   return;
@@ -16136,7 +16150,7 @@ void InitializeSystemNodeManager(void)
   systemPreviousNode = systemRootNode;
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
-    memoryCompareResult = memcmp(systemCurrentNode + 4,&DAT_1809ff9c0,0x10);
+    memoryCompareResult = memcmp(systemCurrentNode + 4,&SystemDataComparisonTemplateG,0x10);
     if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
@@ -16148,14 +16162,14 @@ void InitializeSystemNodeManager(void)
     systemCurrentNode = systemNextNode;
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
-  if ((systemPreviousNode == systemRootNode) || (memoryCompareResult = memcmp(&DAT_1809ff9c0,systemPreviousNode + 4,0x10), memoryCompareResult < 0)) {
+  if ((systemPreviousNode == systemRootNode) || (memoryCompareResult = memcmp(&SystemDataComparisonTemplateG,systemPreviousNode + 4,0x10), memoryCompareResult < 0)) {
     memoryAllocationSize = GetSystemMemorySize(systemDataTable);
     AllocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   systemPreviousNode[6] = 0x40afa5469b6ac06d;
   puVar7[7] = 0x2f4bab01d34055a5;
-  puVar7[8] = &UNK_1809ff990;
+  puVar7[8] = &SystemDataNodeD;
   puVar7[9] = 3;
   systemPreviousNode[10] = eventCallbackPointer;
   return;
@@ -16186,7 +16200,7 @@ void FUN_1800423d0(void)
   systemPreviousNode = systemRootNode;
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
-    memoryCompareResult = memcmp(systemCurrentNode + 4,&DAT_180a010a0,0x10);
+    memoryCompareResult = memcmp(systemCurrentNode + 4,&SystemDataComparisonTemplateH,0x10);
     if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
@@ -16198,14 +16212,14 @@ void FUN_1800423d0(void)
     systemCurrentNode = systemNextNode;
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
-  if ((systemPreviousNode == systemRootNode) || (memoryCompareResult = memcmp(&DAT_180a010a0,systemPreviousNode + 4,0x10), memoryCompareResult < 0)) {
+  if ((systemPreviousNode == systemRootNode) || (memoryCompareResult = memcmp(&SystemDataComparisonTemplateH,systemPreviousNode + 4,0x10), memoryCompareResult < 0)) {
     memoryAllocationSize = GetSystemMemorySize(systemDataTable);
     AllocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   systemPreviousNode[6] = 0x43330a43fcdb3653;
   puVar7[7] = 0xdcfdc333a769ec93;
-  puVar7[8] = &UNK_180a00370;
+  puVar7[8] = &SystemDataNodeE;
   puVar7[9] = 1;
   systemPreviousNode[10] = eventCallbackPointer;
   return;
@@ -16236,7 +16250,7 @@ void FUN_1800424d0(void)
   systemPreviousNode = systemRootNode;
   systemCurrentNode = (undefined8 *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
-    memoryCompareResult = memcmp(systemCurrentNode + 4,&DAT_180a01078,0x10);
+    memoryCompareResult = memcmp(systemCurrentNode + 4,&SystemDataComparisonTemplateI,0x10);
     if (memoryCompareResult < 0) {
       systemNextNode = (undefined8 *)systemCurrentNode[2];
       systemCurrentNode = systemPreviousNode;
@@ -16248,14 +16262,14 @@ void FUN_1800424d0(void)
     systemCurrentNode = systemNextNode;
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
-  if ((systemPreviousNode == systemRootNode) || (memoryCompareResult = memcmp(&DAT_180a01078,systemPreviousNode + 4,0x10), memoryCompareResult < 0)) {
+  if ((systemPreviousNode == systemRootNode) || (memoryCompareResult = memcmp(&SystemDataComparisonTemplateI,systemPreviousNode + 4,0x10), memoryCompareResult < 0)) {
     memoryAllocationSize = GetSystemMemorySize(systemDataTable);
     AllocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   systemPreviousNode[6] = 0x431d7c8d7c475be2;
   puVar7[7] = 0xb97f048d2153e1b0;
-  puVar7[8] = &UNK_180a00388;
+  puVar7[8] = &SystemDataNodeF;
   puVar7[9] = 4;
   systemPreviousNode[10] = eventCallbackPointer;
   return;
@@ -18280,9 +18294,9 @@ undefined4 FinalSystemInitialization(void)
   pppplStackX_8 = pppplVar14;
   if (pppplVar14 == (longlong ****)0x0) {
     _DAT_180c86948 = (longlong ****)0x0;
-    WaitForSingleObject(_DAT_180c91900,0xffffffff);
+    WaitForSingleObject(SystemSemaphoreHandle,0xffffffff);
     do {
-      iVar5 = ReleaseSemaphore(_DAT_180c91900,1);
+      iVar5 = ReleaseSemaphore(SystemSemaphoreHandle,1);
     } while (iVar5 == 0);
     uVar12 = __acrt_iob_func(1);
     fflush(uVar12);
@@ -45975,7 +45989,7 @@ ulonglong FUN_18006f620(undefined8 param_1,undefined8 param_2)
   
   lVar3 = _DAT_180c82868;
   uVar7 = FUN_1800f9600(param_2);
-  if (((char)uVar7 != '\0') || (uVar7 = WaitForSingleObject(_DAT_180c91900,0), (int)uVar7 != 0)) {
+  if (((char)uVar7 != '\0') || (uVar7 = WaitForSingleObject(SystemSemaphoreHandle,0), (int)uVar7 != 0)) {
     return uVar7 & 0xffffffffffffff00;
   }
   if (lVar3 != 0) {
@@ -46106,7 +46120,7 @@ ulonglong FUN_18006f940(undefined8 param_1,undefined8 param_2,char param_3)
   uStack_40 = 0xfffffffffffffffe;
   bStackX_20 = 0;
   if (((DAT_180c82860 == '\0') || (in_RAX = FUN_1800f9600(param_2), (char)in_RAX != '\0')) ||
-     (in_RAX = WaitForSingleObject(_DAT_180c91900,0), (int)in_RAX != 0)) {
+     (in_RAX = WaitForSingleObject(SystemSemaphoreHandle,0), (int)in_RAX != 0)) {
     uVar12 = in_RAX & 0xffffffffffffff00;
   }
   else {
@@ -46275,7 +46289,7 @@ ulonglong FUN_18006f940(undefined8 param_1,undefined8 param_2,char param_3)
       FUN_18005db30(lVar4);
     }
     do {
-      iVar7 = ReleaseSemaphore(_DAT_180c91900,1);
+      iVar7 = ReleaseSemaphore(SystemSemaphoreHandle,1);
     } while (iVar7 == 0);
     puStack_a0 = &SystemGlobalDataReference;
     if (puStack_98 != (undefined *)0x0) {
@@ -46341,7 +46355,7 @@ ulonglong FUN_18006ff80(undefined8 param_1,undefined8 param_2,char param_3)
   puVar6 = (undefined1 *)register0x00000020;
   if (((DAT_180c82860 == '\0') ||
       (puVar6 = (undefined1 *)FUN_1800f9600(param_2), (char)puVar6 != '\0')) ||
-     (puVar6 = (undefined1 *)WaitForSingleObject(_DAT_180c91900,0), (int)puVar6 != 0)) {
+     (puVar6 = (undefined1 *)WaitForSingleObject(SystemSemaphoreHandle,0), (int)puVar6 != 0)) {
     return (ulonglong)puVar6 & 0xffffffffffffff00;
   }
   if (lVar2 != 0) {
@@ -46536,7 +46550,7 @@ LAB_180070230:
       FUN_18005db30(lVar2);
     }
     do {
-      iVar4 = ReleaseSemaphore(_DAT_180c91900,1);
+      iVar4 = ReleaseSemaphore(SystemSemaphoreHandle,1);
     } while (iVar4 == 0);
     puStack_b0 = &SystemGlobalDataReference;
     if (puStack_a8 != (undefined *)0x0) {
@@ -46598,7 +46612,7 @@ void FUN_180070680(undefined8 param_1,undefined8 param_2)
   longlong lStack_48;
   undefined4 uStack_38;
   
-  iVar3 = WaitForSingleObject(_DAT_180c91900,0);
+  iVar3 = WaitForSingleObject(SystemSemaphoreHandle,0);
   if (iVar3 != 0) {
     return;
   }
@@ -46843,7 +46857,7 @@ LAB_180070b00:
     }
     goto LAB_1800718e9;
   }
-  iVar4 = WaitForSingleObject(_DAT_180c91900,1);
+  iVar4 = WaitForSingleObject(SystemSemaphoreHandle,1);
   lVar9 = _DAT_180c82868;
   if (iVar4 != 0) {
     puStack_f8 = &SystemGlobalDataReference;
@@ -47244,7 +47258,7 @@ LAB_18007113f:
       FUN_18005db30();
     }
     do {
-      iVar4 = ReleaseSemaphore(_DAT_180c91900,1);
+      iVar4 = ReleaseSemaphore(SystemSemaphoreHandle,1);
     } while (iVar4 == 0);
     puStack_118 = &SystemGlobalDataReference;
     if (puVar10 != (undefined1 *)0x0) {
@@ -47321,7 +47335,7 @@ void FUN_180071940(undefined8 param_1,longlong param_2,undefined4 param_3,longlo
   longlong lStack_48;
   undefined4 uStack_38;
   
-  iVar1 = WaitForSingleObject(_DAT_180c91900,0);
+  iVar1 = WaitForSingleObject(SystemSemaphoreHandle,0);
   if (iVar1 != 0) {
     return;
   }
@@ -47556,7 +47570,7 @@ LAB_180071eb0:
   }
   OutputDebugStringA(puVar8);
   do {
-    iVar1 = ReleaseSemaphore(_DAT_180c91900,1);
+    iVar1 = ReleaseSemaphore(SystemSemaphoreHandle,1);
   } while (iVar1 == 0);
   puStack_90 = &SystemGlobalDataReference;
   if (puStack_88 == (undefined1 *)0x0) {
@@ -47742,7 +47756,7 @@ LAB_1800721e1:
   }
   cVar2 = FUN_1800f9600(puVar15);
   if (cVar2 == '\0') {
-    iVar3 = WaitForSingleObject(_DAT_180c91900,0);
+    iVar3 = WaitForSingleObject(SystemSemaphoreHandle,0);
     if (iVar3 == 0) {
       cStack_117 = '\x01';
       cVar2 = (**(code **)**(undefined8 **)(_DAT_180c8ed08 + 0x18))();
@@ -48223,7 +48237,7 @@ bool FUN_180072f00(undefined8 param_1,undefined8 *param_2)
   uStack_40 = 0xfffffffffffffffe;
   puVar5 = (undefined8 *)0x0;
   iVar3 = 0;
-  WaitForSingleObject(_DAT_180c91900,300000);
+  WaitForSingleObject(SystemSemaphoreHandle,300000);
   lStack_48 = _DAT_180c82868;
   if (_DAT_180c82868 != 0) {
     FUN_18005dab0(_DAT_180c82868);
@@ -48425,7 +48439,7 @@ bool FUN_180072f00(undefined8 param_1,undefined8 *param_2)
     FUN_18005db30();
   }
   do {
-    iVar3 = ReleaseSemaphore(_DAT_180c91900,1);
+    iVar3 = ReleaseSemaphore(SystemSemaphoreHandle,1);
   } while (iVar3 == 0);
   uVar9 = __acrt_iob_func(1);
   fflush(uVar9);

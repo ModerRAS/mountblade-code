@@ -15840,7 +15840,7 @@ longlong ProcessNetworkConnectionLinkedList(longlong connectionContext,ulonglong
 {
   longlong *plVar1;
   
-  FUN_180744d60(connectionContext + 0xf8);
+  FreeNetworkMemoryBlock(connectionContext + 0xf8);
   CleanupNetworkConnectionResources(connectionContext + 0xb0);
   func_0x00018084e310(connectionContext + 0xa0);
   FUN_180744d60(connectionContext + 0x90);
@@ -19667,7 +19667,7 @@ LAB_180850d9b:
       lStack_110 = 0;
       iVar5 = FUN_1808bc240(connectionContext[2],primaryNetworkFlag9,0xffffffff,&lStack_110);
       if ((iVar5 != 0) ||
-         ((lStack_110 != 0 && (iVar5 = FUN_1808c2ec0(lStack_110,plVar2,1), iVar5 != 0)))) break;
+         ((lStack_110 != 0 && (iVar5 = ValidateNetworkPacketChannel(lStack_110,plVar2,1), iVar5 != 0)))) break;
       primaryNetworkFlag9 = primaryNetworkFlag9 + 0x10;
     }
     lVar13 = lStack_b0;
@@ -19681,18 +19681,18 @@ LAB_180850eb0:
     uStack_98 = *(NetworkHandle *)(lVar8 + 0x10);
     uStack_90 = *(NetworkStatus *)(lVar8 + 0x18);
     uStack_8c = *(NetworkStatus *)(lVar8 + 0x1c);
-    iVar5 = FUN_180852d40(connectionContext[1],&uStack_98,plStack_118);
+    iVar5 = PrepareNetworkPacketTransmission(connectionContext[1],&uStack_98,plStack_118);
     lVar13 = lStack_b0;
     lVar15 = lStack_d8;
     lVar17 = lStack_b8;
     lVar18 = lStack_e0;
     plVar20 = plStack_88;
     if ((((iVar5 != 0) ||
-         (iVar5 = FUN_1808c18c0(connectionContext[2],plStack_118), lVar13 = lStack_b0, lVar15 = lStack_d8,
+         (iVar5 = SetupNetworkTransmissionProtocol(connectionContext[2],plStack_118), lVar13 = lStack_b0, lVar15 = lStack_d8,
          lVar17 = lStack_b8, lVar18 = lStack_e0, plVar20 = plStack_88, iVar5 != 0)) ||
         (iVar5 = ValidateNetworkConnectionState(plStack_118), lVar13 = lStack_b0, lVar15 = lStack_d8,
         lVar17 = lStack_b8, lVar18 = lStack_e0, plVar20 = plStack_88, iVar5 != 0)) ||
-       (iVar5 = FUN_18084ead0(plStack_118,0), lVar8 = lStack_e8, lVar13 = lStack_b0,
+       (iVar5 = InitializeNetworkTransmissionContext(plStack_118,0), lVar8 = lStack_e8, lVar13 = lStack_b0,
        lVar15 = lStack_d8, lVar17 = lStack_b8, lVar18 = lStack_e0, plVar20 = plStack_88, iVar5 != 0)
        ) goto LAB_1808513ac;
     iVar5 = *(int *)(lStack_e8 + 0x88);
@@ -19726,7 +19726,7 @@ LAB_180850eb0:
             tertiaryNetworkFlag = (**(code **)(*plStack_118 + 0x20))(plStack_118);
             plStack_120 = &lStack_110;
             lStack_128 = CONCAT44(lStack_128._4_4_,*(NetworkStatus *)(lVar8 + primaryNetworkFlag9 * 4));
-            iVar7 = FUN_1808b4570(lVar16 + 0x388,(longlong)(int)primaryNetworkFlag0 * 0x10 + lVar9,lStack_c0,
+            iVar7 = GetNetworkTransmissionBuffer(lVar16 + 0x388,(longlong)(int)primaryNetworkFlag0 * 0x10 + lVar9,lStack_c0,
                                   tertiaryNetworkFlag);
             lVar13 = lStack_b0;
             lVar15 = lStack_d8;
@@ -19734,7 +19734,7 @@ LAB_180850eb0:
             lVar18 = lStack_e0;
             plVar20 = plStack_88;
             if (iVar7 != 0) goto LAB_1808513ac;
-            FUN_180853260(plStack_118 + 0x10,&lStack_110);
+            ConfigureNetworkTransmissionBuffer(plStack_118 + 0x10,&lStack_110);
             iVar7 = FUN_18073c020(plStack_118[0xf],iStack_100 + 1,*(NetworkHandle *)(lStack_110 + 0x30)
                                  );
             lVar13 = lStack_b0;
