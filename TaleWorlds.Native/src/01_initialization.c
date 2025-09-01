@@ -30556,7 +30556,7 @@ void SystemCleanupFunction(void)
 
 
 
-// 函数: void FUN_1800575b6(void)
+// 函数: void InitializeSystemResourceManager(void)
 /**
  * @brief 系统资源管理器初始化函数
  * 
@@ -30604,7 +30604,13 @@ void InitializeSystemResourceManager(void)
 
 
 // 函数: void FUN_1800575d4(void)
-void FUN_1800575d4(void)
+/**
+ * @brief 系统资源分配器初始化函数
+ * 
+ * 该函数负责初始化系统资源分配器，设置资源分配相关的数据结构和参数。
+ * 用于系统资源分配的前期准备工作。
+ */
+void InitializeSystemResourceAllocator(void)
 
 {
   int *pointerToInteger1;

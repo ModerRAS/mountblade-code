@@ -3248,8 +3248,8 @@ uint8_t MonitorResourcePerformance;
 uint8_t SystemMemoryConfigDataTemplateSpecialC;
 uint8_t SystemControlByteC;
 uint8_t SystemDataBufferD;
-uint8_t SystemMemoryFlagE;
-uint8_t SystemSyncFlagF;
+uint8_t SystemMemoryFlagEnabled;
+uint8_t SystemSyncFlagFast;
 uint8_t SystemThreadFlagG;
 uint8_t SystemResourceFlagH;
 uint8_t SystemProcessFlagI;
@@ -3259,7 +3259,7 @@ uint8_t SystemDataBuffer004;
 uint8_t SystemDataBuffer005;
 uint8_t SystemDataBuffer006;
 uint8_t SystemDataBuffer007;
-uint8_t SystemMemoryFlagK;
+uint8_t SystemMemoryFlagKernel;
 
  /**
  * @brief 处理游戏数据对象
