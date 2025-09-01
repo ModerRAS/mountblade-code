@@ -4689,23 +4689,23 @@ int ProcessNetworkPacketWithEncryption(longlong connectionContext,longlong packe
   encryptionKey = *(NetworkByte *)(connectionContext + 0x1c);
   networkStatus = *(NetworkStatus *)(connectionContext + 0x18);
   processedSize = ProcessNetworkBufferData(packetData,dataSize,&UNK_180982128);
-  networkStatus4 = ProcessNetworkBufferData(packetData + networkStatus3,dataSize - networkStatus3,&g_NetworkBufferDataTemplate);
-  networkStatus3 = networkStatus3 + networkStatus4;
-  networkStatus4 = NetworkProcessNetworkHandle(networkStatus3 + packetData,dataSize - networkStatus3,&uStackX_8);
-  networkStatus3 = networkStatus3 + networkStatus4;
-  networkStatus4 = NetworkProcessBufferData(networkStatus3 + packetData,dataSize - networkStatus3,&g_NetworkBufferDataTemplate);
-  networkStatus3 = networkStatus3 + networkStatus4;
-  networkStatus4 = func_0x00018074b830(networkStatus3 + packetData,dataSize - networkStatus3,uVar1);
-  networkStatus3 = networkStatus3 + networkStatus4;
-  networkStatus4 = NetworkProcessBufferData(networkStatus3 + packetData,dataSize - networkStatus3,&g_NetworkBufferDataTemplate);
-  networkStatus3 = networkStatus3 + networkStatus4;
-  networkStatus4 = NetworkEncryptPacketData(networkStatus3 + packetData,dataSize - networkStatus3,uVar2);
-  return networkStatus4 + networkStatus3;
+  additionalSize = ProcessNetworkBufferData(packetData + processedSize,dataSize - processedSize,&g_NetworkBufferDataTemplate);
+  processedSize = processedSize + additionalSize;
+  additionalSize = NetworkProcessNetworkHandle(processedSize + packetData,dataSize - processedSize,&networkHandle);
+  processedSize = processedSize + additionalSize;
+  additionalSize = NetworkProcessBufferData(processedSize + packetData,dataSize - processedSize,&g_NetworkBufferDataTemplate);
+  processedSize = processedSize + additionalSize;
+  additionalSize = func_0x00018074b830(processedSize + packetData,dataSize - processedSize,networkStatus);
+  processedSize = processedSize + additionalSize;
+  additionalSize = NetworkProcessBufferData(processedSize + packetData,dataSize - processedSize,&g_NetworkBufferDataTemplate);
+  processedSize = processedSize + additionalSize;
+  additionalSize = NetworkEncryptPacketData(processedSize + packetData,dataSize - processedSize,encryptionKey);
+  return additionalSize + processedSize;
 }
 
 
 
-int FUN_180844b20(longlong connectionContext,longlong packetData,int dataSize)
+int ProcessNetworkPacketWithHandleBuffer(longlong connectionContext,longlong packetData,int dataSize)
 
 {
   NetworkByte uVar1;
