@@ -3564,7 +3564,7 @@ undefined8 DecrementSystemResourceCounter(longlong systemContext, undefined8 res
   if (iVar3 == 0) {
     iVar3 = ProcessSystemObjectOperation(lVar1,0);
     if (iVar3 == 0) {
-      iVar3 = FUN_18088ac50(param_2);
+      iVar3 = ProcessSystemContextValidation(param_2);
       if (iVar3 == 0) {
                     // WARNING: Subroutine does not return
         ReleaseValidationResources(alStackX_8);

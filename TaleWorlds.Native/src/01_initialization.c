@@ -7253,26 +7253,26 @@ void InitializeSystemEventProcessor(void)
   while (eventNodeFlag == '\0') {
     iVar3 = memcmp(puVar6 + 4,&DAT_180a01078,0x10);
     if (memoryCompareResult < 0) {
-      systemNextNode = (undefined8 *)systemCurrentNode[2];
-      systemCurrentNode = systemPreviousNode;
+      eventNextNode = (undefined8 *)eventCurrentNode[2];
+      eventCurrentNode = eventPreviousNode;
     }
     else {
-      systemNextNode = (undefined8 *)*systemCurrentNode;
+      eventNextNode = (undefined8 *)*eventCurrentNode;
     }
-    systemPreviousNode = systemCurrentNode;
-    systemCurrentNode = systemNextNode;
-    systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
+    eventPreviousNode = eventCurrentNode;
+    eventCurrentNode = eventNextNode;
+    eventNodeFlag = *(char *)((longlong)eventNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a01078,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = GetSystemMemorySize(systemDataTable);
-    AllocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
-    systemPreviousNode = systemAllocatedNode;
+    memoryAllocationSize = GetSystemMemorySize(eventSystemDataTable);
+    AllocateSystemMemory(eventSystemDataTable,&eventAllocatedNode,eventPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
+    eventPreviousNode = eventAllocatedNode;
   }
   puVar7[6] = 0x431d7c8d7c475be2;
   puVar7[7] = 0xb97f048d2153e1b0;
   puVar7[8] = &UNK_180a00388;
   puVar7[9] = 4;
-  systemPreviousNode[10] = eventCallbackPointer;
+  eventPreviousNode[10] = eventCallbackPointer;
   return;
 }
 
