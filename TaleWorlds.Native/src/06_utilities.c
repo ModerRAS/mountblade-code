@@ -8923,7 +8923,7 @@ uint8_t8 ProcessFloatDataValidationAndConversionNoParams(uint8_t8 objectContextP
   longlong unaff_RBX;
   longlong unaff_RSI;
   float SecondaryFloatValue;
-  uint8_t4 uStack0000000000000040;
+  uint8_t4 StackProcessingBuffer;
   
   uStack0000000000000040 = 0;
   validationResult = ProcessDataHashing(unaff_RSI + 0x60,validationContextParam,&ObjectStackBuffer40);
@@ -9854,7 +9854,7 @@ ValidateResourceTableAccess(ulonglong resource_handle)
   longlong resourceTable;
   longlong *unaff_RSI;
   longlong unaff_RDI;
-  ulonglong uStack0000000000000070;
+  ulonglong StackSecurityToken;
   ulonglong in_stack_000000a8;
   
   uStack0000000000000070 = objectContextParam;
