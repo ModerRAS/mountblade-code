@@ -18569,19 +18569,19 @@ void ExecuteSystemCallback(long long *param_1)
 void ProcessSystemStringCopy(long long param_1,long long param_2)
 
 {
-  long long lVar1;
+  long long stringLength;
   
   if (param_2 == 0) {
     *(uint32_t *)(param_1 + 0x10) = 0;
     **(uint8_t **)(param_1 + 8) = 0;
     return;
   }
-  lVar1 = -1;
+  stringLength = -1;
   do {
-    lVar1 = lVar1 + 1;
-  } while (*(char *)(param_2 + lVar1) != '\0');
-  if ((int)lVar1 < 0x1000) {
-    *(int *)(param_1 + 0x10) = (int)lVar1;
+    stringLength = stringLength + 1;
+  } while (*(char *)(param_2 + stringLength) != '\0');
+  if ((int)stringLength < 0x1000) {
+    *(int *)(param_1 + 0x10) = (int)stringLength;
                     // WARNING: Could not recover jumptable at 0x000180045b59. Too many branches
                     // WARNING: Treating indirect jump as call
     strcpy_s(*(void* *)(param_1 + 8),0x1000);
@@ -23514,65 +23514,88 @@ void SystemMemoryRegionOperator(long long memoryContext,void* memoryTarget,void*
 
 
 
-void* * FUN_18004bd10(void* *param_1)
+// 函数: void* * FUN_18004bd10(void* *param_1)
+/**
+ * @brief 系统内存分配器初始化器
+ * 
+ * 该函数负责初始化系统内存分配器的数据结构，设置内存分配器的引用、
+ * 配置参数和初始化内存块。它会设置多个内存区域的配置参数。
+ * 
+ * @param memoryAllocator 内存分配器指针
+ * @return 返回初始化后的内存分配器指针
+ * @note 这是系统内存管理的关键初始化函数，确保内存分配器的正确配置
+ */
+void* * SystemMemoryAllocatorInitializer(void* *memoryAllocator)
 
 {
-  *param_1 = &SystemMemoryAllocatorReference;
-  param_1[1] = 0;
-  *(uint32_t *)(param_1 + 2) = 0;
-  *param_1 = &UNK_1809fcc58;
-  param_1[1] = param_1 + 3;
-  *(uint32_t *)(param_1 + 2) = 0;
-  *(uint8_t *)(param_1 + 3) = 0;
-  FUN_180142b20(param_1 + 0xb);
-  param_1[0x74] = 0;
-  param_1[0x75] = 0;
-  param_1[0x76] = 0;
-  *(uint32_t *)(param_1 + 0x77) = 3;
-  param_1[0x78] = 0;
-  param_1[0x79] = 0;
-  param_1[0x7a] = 0;
-  *(uint32_t *)(param_1 + 0x7b) = 3;
-  param_1[0x7c] = 0;
-  param_1[0x7d] = 0;
-  param_1[0x7e] = 0;
-  *(uint32_t *)(param_1 + 0x7f) = 3;
-  param_1[0x80] = 0;
-  param_1[0x81] = 0;
-  param_1[0x82] = 0;
-  *(uint32_t *)(param_1 + 0x83) = 3;
-  param_1[0x84] = 0;
-  param_1[0x85] = 0;
-  param_1[0x86] = 0;
-  *(uint32_t *)(param_1 + 0x87) = 3;
-  param_1[0x88] = 0;
-  param_1[0x89] = 0;
-  param_1[0x8a] = 0;
-  *(uint32_t *)(param_1 + 0x8b) = 3;
-  param_1[0x8c] = 0;
-  param_1[0x8d] = 0;
-  param_1[0x8e] = 0;
-  *(uint32_t *)(param_1 + 0x8f) = 3;
-  return param_1;
+  *memoryAllocator = &SystemMemoryAllocatorReference;
+  memoryAllocator[1] = 0;
+  *(uint32_t *)(memoryAllocator + 2) = 0;
+  *memoryAllocator = &UNK_1809fcc58;
+  memoryAllocator[1] = memoryAllocator + 3;
+  *(uint32_t *)(memoryAllocator + 2) = 0;
+  *(uint8_t *)(memoryAllocator + 3) = 0;
+  FUN_180142b20(memoryAllocator + 0xb);
+  memoryAllocator[0x74] = 0;
+  memoryAllocator[0x75] = 0;
+  memoryAllocator[0x76] = 0;
+  *(uint32_t *)(memoryAllocator + 0x77) = 3;
+  memoryAllocator[0x78] = 0;
+  memoryAllocator[0x79] = 0;
+  memoryAllocator[0x7a] = 0;
+  *(uint32_t *)(memoryAllocator + 0x7b) = 3;
+  memoryAllocator[0x7c] = 0;
+  memoryAllocator[0x7d] = 0;
+  memoryAllocator[0x7e] = 0;
+  *(uint32_t *)(memoryAllocator + 0x7f) = 3;
+  memoryAllocator[0x80] = 0;
+  memoryAllocator[0x81] = 0;
+  memoryAllocator[0x82] = 0;
+  *(uint32_t *)(memoryAllocator + 0x83) = 3;
+  memoryAllocator[0x84] = 0;
+  memoryAllocator[0x85] = 0;
+  memoryAllocator[0x86] = 0;
+  *(uint32_t *)(memoryAllocator + 0x87) = 3;
+  memoryAllocator[0x88] = 0;
+  memoryAllocator[0x89] = 0;
+  memoryAllocator[0x8a] = 0;
+  *(uint32_t *)(memoryAllocator + 0x8b) = 3;
+  memoryAllocator[0x8c] = 0;
+  memoryAllocator[0x8d] = 0;
+  memoryAllocator[0x8e] = 0;
+  *(uint32_t *)(memoryAllocator + 0x8f) = 3;
+  return memoryAllocator;
 }
 
 
 
 
 // 函数: void FUN_18004be50(long long *param_1,void* param_2,void* param_3,void* param_4)
-void FUN_18004be50(long long *param_1,void* param_2,void* param_3,void* param_4)
+/**
+ * @brief 系统数据表处理器A
+ * 
+ * 该函数处理系统数据表的操作，遍历数据表中的所有条目，并调用相应的处理函数。
+ * 使用0x69作为步长来遍历数据表条目。
+ * 
+ * @param dataTablePointer 数据表指针
+ * @param systemContext 系统上下文
+ * @param operationFlag 操作标志
+ * @param operationParameter 操作参数
+ * @note 这是系统数据表处理的核心函数，确保数据表条目的正确处理
+ */
+void SystemDataTableProcessorA(long long *dataTablePointer,void* systemContext,void* operationFlag,void* operationParameter)
 
 {
-  void* *puVar1;
+  void* *tableEntryPointer;
   void** systemDataTable;
-  void* uVar3;
+  void* cleanupFlag;
   
-  uVar3 = 0xfffffffffffffffe;
-  puVar1 = (void* *)param_1[1];
-  for (puVar2 = (void* *)*param_1; puVar2 != puVar1; puVar2 = puVar2 + 0x69) {
-    (**(code **)*puVar2)(puVar2,0,param_3,param_4,uVar3);
+  cleanupFlag = 0xfffffffffffffffe;
+  tableEntryPointer = (void* *)dataTablePointer[1];
+  for (puVar2 = (void* *)*dataTablePointer; puVar2 != tableEntryPointer; puVar2 = puVar2 + 0x69) {
+    (**(code **)*puVar2)(puVar2,0,operationFlag,operationParameter,cleanupFlag);
   }
-  if (*param_1 == 0) {
+  if (*dataTablePointer == 0) {
     return;
   }
                     // WARNING: Subroutine does not return
@@ -23583,19 +23606,31 @@ void FUN_18004be50(long long *param_1,void* param_2,void* param_3,void* param_4)
 
 
 // 函数: void FUN_18004be70(long long *param_1,void* param_2,void* param_3,void* param_4)
-void FUN_18004be70(long long *param_1,void* param_2,void* param_3,void* param_4)
+/**
+ * @brief 系统数据表处理器B
+ * 
+ * 该函数处理系统数据表的操作，遍历数据表中的所有条目，并调用相应的处理函数。
+ * 使用0xb作为步长来遍历数据表条目。
+ * 
+ * @param dataTablePointer 数据表指针
+ * @param systemContext 系统上下文
+ * @param operationFlag 操作标志
+ * @param operationParameter 操作参数
+ * @note 这是系统数据表处理的辅助函数，用于处理不同结构的数据表
+ */
+void SystemDataTableProcessorB(long long *dataTablePointer,void* systemContext,void* operationFlag,void* operationParameter)
 
 {
-  void* *puVar1;
+  void* *tableEntryPointer;
   void** systemDataTable;
-  void* uVar3;
+  void* cleanupFlag;
   
-  uVar3 = 0xfffffffffffffffe;
-  puVar1 = (void* *)param_1[1];
-  for (puVar2 = (void* *)*param_1; puVar2 != puVar1; puVar2 = puVar2 + 0xb) {
-    (**(code **)*puVar2)(puVar2,0,param_3,param_4,uVar3);
+  cleanupFlag = 0xfffffffffffffffe;
+  tableEntryPointer = (void* *)dataTablePointer[1];
+  for (puVar2 = (void* *)*dataTablePointer; puVar2 != tableEntryPointer; puVar2 = puVar2 + 0xb) {
+    (**(code **)*puVar2)(puVar2,0,operationFlag,operationParameter,cleanupFlag);
   }
-  if (*param_1 == 0) {
+  if (*dataTablePointer == 0) {
     return;
   }
                     // WARNING: Subroutine does not return

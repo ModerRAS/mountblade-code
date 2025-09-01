@@ -1363,11 +1363,11 @@ uint8_t OptimizeMemoryContext;
  * 识别未释放的内存块和资源
  */
 void CheckMemoryLeaks;
-uint8_t g_memoryLeakConfig;
-uint8_t g_memoryLeakStatus;
-uint8_t g_memoryLeakHandle;
-uint8_t g_memoryLeakData;
-uint8_t g_memoryLeakContext;
+uint8_t MemoryLeakConfig;
+uint8_t MemoryLeakStatus;
+uint8_t MemoryLeakHandle;
+uint8_t MemoryLeakData;
+uint8_t MemoryLeakContext;
 
  void TrackMemoryUsage;
 /**
@@ -1377,11 +1377,11 @@ uint8_t g_memoryLeakContext;
  * 记录内存分配和释放的历史
  */
 void TrackMemoryUsage;
-uint8_t g_memoryTrackingConfig;
-uint8_t g_memoryTrackingStatus;
-uint8_t g_memoryTrackingHandle;
-uint8_t g_memoryTrackingData;
-uint8_t g_memoryTrackingContext;
+uint8_t MemoryTrackingConfig;
+uint8_t MemoryTrackingStatus;
+uint8_t MemoryTrackingHandle;
+uint8_t MemoryTrackingData;
+uint8_t MemoryTrackingContext;
 
  void LogMemoryStatistics;
 /**
@@ -1391,11 +1391,11 @@ uint8_t g_memoryTrackingContext;
  * 生成内存使用报告和性能指标
  */
 void LogMemoryStatistics;
-uint8_t g_memoryStatsConfig;
-uint8_t g_memoryStatsStatus;
-uint8_t g_memoryStatsHandle;
-uint8_t g_memoryStatsData;
-uint8_t g_memoryStatsContext;
+uint8_t MemoryStatsConfig;
+uint8_t MemoryStatsStatus;
+uint8_t MemoryStatsHandle;
+uint8_t MemoryStatsData;
+uint8_t MemoryStatsContext;
 
  void GarbageCollectMemory;
 /**
@@ -1405,11 +1405,11 @@ uint8_t g_memoryStatsContext;
  * 清理无用的内存对象和资源
  */
 void GarbageCollectMemory;
-uint8_t g_garbageConfig;
-uint8_t g_garbageStatus;
-uint8_t g_garbageHandle;
-uint8_t g_garbageData;
-uint8_t g_garbageContext;
+uint8_t GarbageConfig;
+uint8_t GarbageStatus;
+uint8_t GarbageHandle;
+uint8_t GarbageData;
+uint8_t GarbageContext;
 
  void CompactMemory;
 /**
@@ -1428,12 +1428,12 @@ void CompactMemory;
  * 管理内存分配和地址映射
  */
 void AllocateMemoryBlock;
-uint8_t g_memoryBlockConfig;
-uint8_t g_memoryBlockStatus;
-uint8_t g_memoryBlockHandle;
-uint8_t g_memoryBlockData;
-uint8_t g_memoryBlockContext;
-uint8_t g_memoryBlockTable;
+uint8_t MemoryBlockConfig;
+uint8_t MemoryBlockStatus;
+uint8_t MemoryBlockHandle;
+uint8_t MemoryBlockData;
+uint8_t MemoryBlockContext;
+uint8_t MemoryBlockTable;
 
  void FreeMemoryBlock;
 /**
@@ -1443,12 +1443,12 @@ uint8_t g_memoryBlockTable;
  * 回收内存资源到内存池
  */
 void FreeMemoryBlock;
-uint8_t g_freeMemoryConfig;
-uint8_t g_freeMemoryStatus;
-uint8_t g_freeMemoryHandle;
-uint8_t g_freeMemoryContext;
-uint8_t g_freeMemoryTable;
-uint8_t g_freeMemoryData;
+uint8_t FreeMemoryConfig;
+uint8_t FreeMemoryStatus;
+uint8_t FreeMemoryHandle;
+uint8_t FreeMemoryContext;
+uint8_t FreeMemoryTable;
+uint8_t FreeMemoryData;
 
  void ReallocateMemoryBlock;
 /**
@@ -1458,12 +1458,12 @@ uint8_t g_freeMemoryData;
  * 调整已分配内存块的大小
  */
 void ReallocateMemoryBlock;
-uint8_t g_reallocConfig;
-uint8_t g_reallocStatus;
-uint8_t g_reallocContext;
-uint8_t g_reallocHandle;
-uint8_t g_reallocData;
-uint8_t g_reallocBuffer;
+uint8_t ReallocConfig;
+uint8_t ReallocStatus;
+uint8_t ReallocContext;
+uint8_t ReallocHandle;
+uint8_t ReallocData;
+uint8_t ReallocBuffer;
 
  void CopyMemoryBlock;
 /**
@@ -1473,12 +1473,12 @@ uint8_t g_reallocBuffer;
  * 在不同内存区域间传输数据
  */
 void CopyMemoryBlock;
-uint8_t g_copyMemoryHandle;
-uint8_t g_copyMemoryContext;
-uint8_t g_copyMemoryConfig;
-uint8_t g_copyMemoryStatus;
-uint8_t g_copyMemoryData;
-uint8_t g_copyMemoryBuffer;
+uint8_t CopyMemoryHandle;
+uint8_t CopyMemoryContext;
+uint8_t CopyMemoryConfig;
+uint8_t CopyMemoryStatus;
+uint8_t CopyMemoryData;
+uint8_t CopyMemoryBuffer;
 
  void CompareMemoryBlocks;
 /**
@@ -1488,11 +1488,11 @@ uint8_t g_copyMemoryBuffer;
  * 检查内存数据是否相同
  */
 void CompareMemoryBlocks;
-uint8_t g_compareMemoryContext;
-uint8_t g_compareMemoryConfig;
-uint8_t g_compareMemoryStatus;
-uint8_t g_compareMemoryData;
-uint8_t g_compareMemoryBuffer;
+uint8_t CompareMemoryContext;
+uint8_t CompareMemoryConfig;
+uint8_t CompareMemoryStatus;
+uint8_t CompareMemoryData;
+uint8_t CompareMemoryBuffer;
 
  void SetMemoryProtection;
 /**
@@ -1502,11 +1502,11 @@ uint8_t g_compareMemoryBuffer;
  * 控制内存访问权限和保护级别
  */
 void SetMemoryProtection;
-uint8_t g_memoryProtectContext;
-uint8_t g_memoryProtectConfig;
-uint8_t g_memoryProtectStatus;
-uint8_t g_memoryProtectData;
-uint8_t g_memoryProtectBuffer;
+uint8_t MemoryProtectContext;
+uint8_t MemoryProtectConfig;
+uint8_t MemoryProtectStatus;
+uint8_t MemoryProtectData;
+uint8_t MemoryProtectBuffer;
 
  void GetMemoryProtection;
 /**
@@ -1516,12 +1516,12 @@ uint8_t g_memoryProtectBuffer;
  * 查询内存区域的访问权限和保护状态
  */
 void GetMemoryProtection;
-uint8_t g_getProtectContext;
-uint8_t g_getProtectConfig;
-uint8_t g_getProtectStatus;
-uint8_t g_getProtectData;
-uint8_t g_getProtectBuffer;
-uint8_t g_getProtectInfo;
+uint8_t GetProtectContext;
+uint8_t GetProtectConfig;
+uint8_t GetProtectStatus;
+uint8_t GetProtectData;
+uint8_t GetProtectBuffer;
+uint8_t GetProtectInfo;
 
  void FlushMemoryCache;
 /**
