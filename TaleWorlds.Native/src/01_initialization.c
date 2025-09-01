@@ -25492,7 +25492,7 @@ void SystemCleanupHandler(void)
   long long localSystemHandle;
   long long localResourceOffset;
   long long localBufferAddress;
-  int *piVar5;
+  int *pointerToInteger5;
   void** systemRootNode;
   uint32_t *systemPreviousNode;
   void* *punsignedSystemValue8;
@@ -25547,8 +25547,8 @@ void SystemCleanupHandler(void)
   fVar12 = 1.0;
   if (*(int *)(localSystemHandle + 0x1ea0) == 1) {
     iVar1 = *(int *)(localSystemHandle + 0x1d50);
-    piVar5 = (int *)FUN_180171f10(*(void* *)(SystemStatusFlagsPointer + 8),auStack_170);
-    fVar12 = (float)iVar1 / (float)*piVar5;
+    pointerToInteger5 = (int *)FUN_180171f10(*(void* *)(SystemStatusFlagsPointer + 8),auStack_170);
+    fVar12 = (float)iVar1 / (float)*pointerToInteger5;
     fVar10 = fVar12 * *(float *)(localResourceOffset + 0x234);
     fVar12 = fVar12 * *(float *)(localResourceOffset + 0x238);
   }
@@ -26983,7 +26983,7 @@ void FUN_180052ef0(long long *SystemResourcePointer,void* param_2,void* param_3,
   long long localResourceOffset;
   void* unsignedSystemValue4;
   long long *plocalSystemPointer;
-  int *piVar6;
+  int *pointerToInteger6;
   long long localDataPointer;
   ulong long unsignedSystemValue8;
   uint unsignedSystemValue9;
@@ -27074,8 +27074,8 @@ void FUN_180052ef0(long long *SystemResourcePointer,void* param_2,void* param_3,
   fVar12 = 1.0;
   if (*(int *)(localResourceOffset + 0x1ea0) == 1) {
     iVar1 = *(int *)(localResourceOffset + 0x1d50);
-    piVar6 = (int *)FUN_180171f10(*(void* *)(SystemStatusFlagsPointer + 8),&plStackX_10);
-    fVar12 = (float)iVar1 / (float)*piVar6;
+    pointerToInteger6 = (int *)FUN_180171f10(*(void* *)(SystemStatusFlagsPointer + 8),&plStackX_10);
+    fVar12 = (float)iVar1 / (float)*pointerToInteger6;
     fVar11 = fVar12 * *(float *)(localSystemHandle + 0x234);
     fVar12 = fVar12 * *(float *)(localSystemHandle + 0x238);
   }
@@ -36729,7 +36729,7 @@ long long FUN_18005ec11(void)
 {
   long long *PrimaryResourcePointer;
   uint *pointerToUnsigned2;
-  int *piVar3;
+  int *pointerToInteger3;
   uint unsignedSystemValue4;
   ulong long *punsignedSystemValue5;
   ulong long unsignedSystemValue6;
@@ -36805,11 +36805,11 @@ long long FUN_18005ec11(void)
   do {
     unsignedSystemValue9 = unaff_RSI & *unaff_RDI - 1;
     if (*(int *)(unaff_RDI[1] + unsignedSystemValue9 * 0x10) == 0) {
-      piVar3 = (int *)(unaff_RDI[1] + unsignedSystemValue9 * 0x10);
+      pointerToInteger3 = (int *)(unaff_RDI[1] + unsignedSystemValue9 * 0x10);
       LOCK();
-      bVar10 = *piVar3 == 0;
+      bVar10 = *pointerToInteger3 == 0;
       if (bVar10) {
-        *piVar3 = unaff_R15D;
+        *pointerToInteger3 = unaff_R15D;
       }
       UNLOCK();
       if (bVar10) {
@@ -50342,7 +50342,7 @@ void FUN_180073adc(long long SystemResourcePointer)
 {
   ushort unsignedSystemValue1;
   void* unsignedSystemValue2;
-  int *piVar3;
+  int *pointerToInteger3;
   uint32_t *punsignedSystemValue4;
   uint *punsignedSystemValue5;
   long long localSystemFlags;
@@ -50354,14 +50354,14 @@ void FUN_180073adc(long long SystemResourcePointer)
   
   FUN_180639ec0();
   localSystemFlags = *(long long *)(SystemResourcePointer + 0x28) - *(long long *)(SystemResourcePointer + 0x20);
-  piVar3 = (int *)unaff_RBX[1];
+  pointerToInteger3 = (int *)unaff_RBX[1];
   localSystemFlags = localSystemFlags / 0x12 + (localSystemFlags >> 0x3f);
   iVar8 = (int)(localSystemFlags >> 1) - (int)(localSystemFlags >> 0x3f);
-  if ((ulong long)((*unaff_RBX - (long long)piVar3) + unaff_RBX[2]) < 5) {
+  if ((ulong long)((*unaff_RBX - (long long)pointerToInteger3) + unaff_RBX[2]) < 5) {
     FUN_180639bf0();
-    piVar3 = (int *)unaff_RBX[1];
+    pointerToInteger3 = (int *)unaff_RBX[1];
   }
-  *piVar3 = iVar8;
+  *pointerToInteger3 = iVar8;
   punsignedSystemValue4 = (uint32_t *)(unaff_RBX[1] + 4);
   unaff_RBX[1] = (long long)punsignedSystemValue4;
   localSystemFlags = (long long)iVar8;
@@ -51525,7 +51525,7 @@ void FUN_1800744b0(long long SystemResourcePointer,long long param_2)
   uint *pointerToUnsigned1;
   int iVar2;
   uint unsignedSystemValue3;
-  int *piVar4;
+  int *pointerToInteger4;
   long long systemTimeValue;
   int iVar6;
   int iVar7;
@@ -51545,13 +51545,13 @@ void FUN_1800744b0(long long SystemResourcePointer,long long param_2)
   
   uStack_d8 = 0xfffffffffffffffe;
   uStack_28 = SystemEncryptionKeyTemplate ^ (ulong long)auStack_f8;
-  piVar4 = *(int **)(param_2 + 8);
-  iVar2 = *piVar4;
-  *(int **)(param_2 + 8) = piVar4 + 1;
-  iVar6 = piVar4[2];
-  iVar7 = piVar4[3];
-  iVar8 = piVar4[4];
-  *(int *)(SystemResourcePointer + 0x18) = piVar4[1];
+  pointerToInteger4 = *(int **)(param_2 + 8);
+  iVar2 = *pointerToInteger4;
+  *(int **)(param_2 + 8) = pointerToInteger4 + 1;
+  iVar6 = pointerToInteger4[2];
+  iVar7 = pointerToInteger4[3];
+  iVar8 = pointerToInteger4[4];
+  *(int *)(SystemResourcePointer + 0x18) = pointerToInteger4[1];
   *(int *)(SystemResourcePointer + 0x1c) = iVar6;
   *(int *)(SystemResourcePointer + 0x20) = iVar7;
   *(int *)(SystemResourcePointer + 0x24) = iVar8;
@@ -58784,7 +58784,7 @@ void FUN_1800796b0(long long SystemResourcePointer)
   long long localResourceOffset1;
   uint *pointerToUnsigned32;
   uint unsignedSystemValue33;
-  int *piVar34;
+  int *pointerToInteger34;
   uint8_t (*paunsignedSystemValue35) [16];
   ulong long unsignedSystemValue36;
   uint8_t (*paunsignedSystemValue37) [16];
@@ -59672,7 +59672,7 @@ LAB_180079fb3:
         pointerToInteger26 = (int *)0x0;
         pointerToInteger25 = (int *)0x0;
         pointerToInteger16 = pointerToInteger25;
-        piVar34 = pointerToInteger13;
+        pointerToInteger34 = pointerToInteger13;
         pointerToInteger10 = piStack_218;
         piStack_1f8 = piStack_210;
         if (uStack_180 != 0) {
@@ -59684,7 +59684,7 @@ LAB_180079fb3:
               if (pointerToInteger26 < pointerToInteger13) {
                 *pointerToInteger26 = iVar27;
                 pointerToInteger16 = pointerToInteger25;
-                unsignedSystemValue33 = (uint)piVar34;
+                unsignedSystemValue33 = (uint)pointerToInteger34;
               }
               else {
                 uStack_1d8 = (long long)pointerToInteger26 - (long long)pointerToInteger25;
@@ -59723,7 +59723,7 @@ LAB_18007a203:
                 *pointerToInteger20 = iVar27;
                 pointerToInteger20 = uStack_198;
                 pointerToInteger16 = pointerToInteger25;
-                unsignedSystemValue33 = (uint)piVar34;
+                unsignedSystemValue33 = (uint)pointerToInteger34;
                 bVar44 = true;
               }
               else {
@@ -59760,7 +59760,7 @@ LAB_18007a142:
             unsignedSystemValue33 = unsignedSystemValue33 + 1;
             piStack_1f0 = piStack_1f0 + 1;
             pointerToInteger25 = pointerToInteger16;
-            piVar34 = (int *)(ulong long)unsignedSystemValue33;
+            pointerToInteger34 = (int *)(ulong long)unsignedSystemValue33;
             pointerToInteger10 = piStack_1f0;
             pointerToInteger15 = piStack_190;
             bVar9 = bVar44;
@@ -62759,7 +62759,7 @@ void FUN_18007f0e0(long long SystemResourcePointer,long long param_2,int param_3
   void* *pointerToUnsigned3;
   void* *punsignedSystemValue4;
   uint unsignedSystemValue5;
-  int *piVar7;
+  int *pointerToInteger7;
   long long localMemoryAddress;
   ulong long unsignedSystemValue9;
   long long localAllocationFlags;
@@ -62790,23 +62790,23 @@ void FUN_18007f0e0(long long SystemResourcePointer,long long param_2,int param_3
       localAllocationFlags = -8 - param_2;
       localMemoryAddress = (unsignedSystemValue9 - 4 >> 2) + 1;
       punsignedSystemValue4 = (void* *)(localMemoryAddress * 4);
-      piVar7 = (int *)(param_2 + 8);
+      pointerToInteger7 = (int *)(param_2 + 8);
       do {
-        pointerToInteger1 = piVar7 + 8;
-        *(float *)((long long)piVar7 + **(long long **)(SystemResourcePointer + 0x2d0) + localAllocationFlags) = (float)piVar7[-2]
+        pointerToInteger1 = pointerToInteger7 + 8;
+        *(float *)((long long)pointerToInteger7 + **(long long **)(SystemResourcePointer + 0x2d0) + localAllocationFlags) = (float)pointerToInteger7[-2]
         ;
-        *(int *)((long long)piVar7 + **(long long **)(SystemResourcePointer + 0x2d0) + 4 + localAllocationFlags) = piVar7[-1];
-        *(float *)((long long)piVar7 + **(long long **)(SystemResourcePointer + 0x2d0) + 8 + localAllocationFlags) =
-             (float)*piVar7;
-        *(int *)((long long)piVar7 + **(long long **)(SystemResourcePointer + 0x2d0) + 0xc + localAllocationFlags) = piVar7[1];
+        *(int *)((long long)pointerToInteger7 + **(long long **)(SystemResourcePointer + 0x2d0) + 4 + localAllocationFlags) = pointerToInteger7[-1];
+        *(float *)((long long)pointerToInteger7 + **(long long **)(SystemResourcePointer + 0x2d0) + 8 + localAllocationFlags) =
+             (float)*pointerToInteger7;
+        *(int *)((long long)pointerToInteger7 + **(long long **)(SystemResourcePointer + 0x2d0) + 0xc + localAllocationFlags) = pointerToInteger7[1];
         *(float *)((**(long long **)(SystemResourcePointer + 0x2d0) - param_2) + -0x18 + (long long)pointerToInteger1) =
-             (float)piVar7[2];
-        *(int *)((long long)piVar7 + **(long long **)(SystemResourcePointer + 0x2d0) + 0x14 + localAllocationFlags) = piVar7[3];
+             (float)pointerToInteger7[2];
+        *(int *)((long long)pointerToInteger7 + **(long long **)(SystemResourcePointer + 0x2d0) + 0x14 + localAllocationFlags) = pointerToInteger7[3];
         *(float *)((**(long long **)(SystemResourcePointer + 0x2d0) - param_2) + -0x10 + (long long)pointerToInteger1) =
-             (float)piVar7[4];
-        *(int *)((long long)piVar7 + **(long long **)(SystemResourcePointer + 0x2d0) + 0x1c + localAllocationFlags) = piVar7[5];
+             (float)pointerToInteger7[4];
+        *(int *)((long long)pointerToInteger7 + **(long long **)(SystemResourcePointer + 0x2d0) + 0x1c + localAllocationFlags) = pointerToInteger7[5];
         localMemoryAddress = localMemoryAddress + -1;
-        piVar7 = pointerToInteger1;
+        pointerToInteger7 = pointerToInteger1;
       } while (localMemoryAddress != 0);
     }
     for (; (long long)punsignedSystemValue4 < (long long)unsignedSystemValue9; punsignedSystemValue4 = (void* *)((long long)punsignedSystemValue4 + 1)) {
@@ -62839,7 +62839,7 @@ void FUN_18007f11f(void)
   long long unaff_RDI;
   uint unsignedSystemValue4;
   ulong long unsignedSystemValue5;
-  int *piVar6;
+  int *pointerToInteger6;
   long long localDataPointer;
   ulong long unaff_R14;
   long long localMemoryAddress;
@@ -62864,22 +62864,22 @@ void FUN_18007f11f(void)
     localMemoryAddress = -8 - unaff_RBP;
     localDataPointer = (unaff_R14 - 4 >> 2) + 1;
     unaff_RBX = localDataPointer * 4;
-    piVar6 = (int *)(unaff_RBP + 8);
+    pointerToInteger6 = (int *)(unaff_RBP + 8);
     do {
-      pointerToInteger1 = piVar6 + 8;
-      *(float *)((long long)piVar6 + **(long long **)(unaff_RDI + 0x2d0) + localMemoryAddress) = (float)piVar6[-2];
-      *(int *)((long long)piVar6 + **(long long **)(unaff_RDI + 0x2d0) + 4 + localMemoryAddress) = piVar6[-1];
-      *(float *)((long long)piVar6 + **(long long **)(unaff_RDI + 0x2d0) + 8 + localMemoryAddress) = (float)*piVar6
+      pointerToInteger1 = pointerToInteger6 + 8;
+      *(float *)((long long)pointerToInteger6 + **(long long **)(unaff_RDI + 0x2d0) + localMemoryAddress) = (float)pointerToInteger6[-2];
+      *(int *)((long long)pointerToInteger6 + **(long long **)(unaff_RDI + 0x2d0) + 4 + localMemoryAddress) = pointerToInteger6[-1];
+      *(float *)((long long)pointerToInteger6 + **(long long **)(unaff_RDI + 0x2d0) + 8 + localMemoryAddress) = (float)*pointerToInteger6
       ;
-      *(int *)((long long)piVar6 + **(long long **)(unaff_RDI + 0x2d0) + 0xc + localMemoryAddress) = piVar6[1];
+      *(int *)((long long)pointerToInteger6 + **(long long **)(unaff_RDI + 0x2d0) + 0xc + localMemoryAddress) = pointerToInteger6[1];
       *(float *)((**(long long **)(unaff_RDI + 0x2d0) - unaff_RBP) + -0x18 + (long long)pointerToInteger1) =
-           (float)piVar6[2];
-      *(int *)((long long)piVar6 + **(long long **)(unaff_RDI + 0x2d0) + 0x14 + localMemoryAddress) = piVar6[3];
+           (float)pointerToInteger6[2];
+      *(int *)((long long)pointerToInteger6 + **(long long **)(unaff_RDI + 0x2d0) + 0x14 + localMemoryAddress) = pointerToInteger6[3];
       *(float *)((**(long long **)(unaff_RDI + 0x2d0) - unaff_RBP) + -0x10 + (long long)pointerToInteger1) =
-           (float)piVar6[4];
-      *(int *)((long long)piVar6 + **(long long **)(unaff_RDI + 0x2d0) + 0x1c + localMemoryAddress) = piVar6[5];
+           (float)pointerToInteger6[4];
+      *(int *)((long long)pointerToInteger6 + **(long long **)(unaff_RDI + 0x2d0) + 0x1c + localMemoryAddress) = pointerToInteger6[5];
       localDataPointer = localDataPointer + -1;
-      piVar6 = pointerToInteger1;
+      pointerToInteger6 = pointerToInteger1;
     } while (localDataPointer != 0);
   }
   for (; (long long)unaff_RBX < (long long)unaff_R14; unaff_RBX = unaff_RBX + 1) {
@@ -62903,7 +62903,7 @@ void FUN_18007f176(void)
   long long localSystemHandle;
   long long unaff_RBP;
   long long unaff_RDI;
-  int *piVar3;
+  int *pointerToInteger3;
   long long localBufferAddress;
   long long unaff_R14;
   long long systemTimeValue;
@@ -62911,21 +62911,21 @@ void FUN_18007f176(void)
   localSystemPointer = -8 - unaff_RBP;
   localBufferAddress = (unaff_R14 - 4U >> 2) + 1;
   localSystemHandle = localBufferAddress * 4;
-  piVar3 = (int *)(unaff_RBP + 8);
+  pointerToInteger3 = (int *)(unaff_RBP + 8);
   do {
-    pointerToInteger1 = piVar3 + 8;
-    *(float *)((long long)piVar3 + **(long long **)(unaff_RDI + 0x2d0) + localSystemPointer) = (float)piVar3[-2];
-    *(int *)((long long)piVar3 + **(long long **)(unaff_RDI + 0x2d0) + 4 + localSystemPointer) = piVar3[-1];
-    *(float *)((long long)piVar3 + **(long long **)(unaff_RDI + 0x2d0) + 8 + localSystemPointer) = (float)*piVar3;
-    *(int *)((long long)piVar3 + **(long long **)(unaff_RDI + 0x2d0) + 0xc + localSystemPointer) = piVar3[1];
+    pointerToInteger1 = pointerToInteger3 + 8;
+    *(float *)((long long)pointerToInteger3 + **(long long **)(unaff_RDI + 0x2d0) + localSystemPointer) = (float)pointerToInteger3[-2];
+    *(int *)((long long)pointerToInteger3 + **(long long **)(unaff_RDI + 0x2d0) + 4 + localSystemPointer) = pointerToInteger3[-1];
+    *(float *)((long long)pointerToInteger3 + **(long long **)(unaff_RDI + 0x2d0) + 8 + localSystemPointer) = (float)*pointerToInteger3;
+    *(int *)((long long)pointerToInteger3 + **(long long **)(unaff_RDI + 0x2d0) + 0xc + localSystemPointer) = pointerToInteger3[1];
     *(float *)((**(long long **)(unaff_RDI + 0x2d0) - unaff_RBP) + -0x18 + (long long)pointerToInteger1) =
-         (float)piVar3[2];
-    *(int *)((long long)piVar3 + **(long long **)(unaff_RDI + 0x2d0) + 0x14 + localSystemPointer) = piVar3[3];
+         (float)pointerToInteger3[2];
+    *(int *)((long long)pointerToInteger3 + **(long long **)(unaff_RDI + 0x2d0) + 0x14 + localSystemPointer) = pointerToInteger3[3];
     *(float *)((**(long long **)(unaff_RDI + 0x2d0) - unaff_RBP) + -0x10 + (long long)pointerToInteger1) =
-         (float)piVar3[4];
-    *(int *)((long long)piVar3 + **(long long **)(unaff_RDI + 0x2d0) + 0x1c + localSystemPointer) = piVar3[5];
+         (float)pointerToInteger3[4];
+    *(int *)((long long)pointerToInteger3 + **(long long **)(unaff_RDI + 0x2d0) + 0x1c + localSystemPointer) = pointerToInteger3[5];
     localBufferAddress = localBufferAddress + -1;
-    piVar3 = pointerToInteger1;
+    pointerToInteger3 = pointerToInteger1;
   } while (localBufferAddress != 0);
   for (; localSystemHandle < unaff_R14; localSystemHandle = localSystemHandle + 1) {
     *(float *)(**(long long **)(unaff_RDI + 0x2d0) + localSystemHandle * 8) =
