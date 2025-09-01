@@ -21395,7 +21395,7 @@ void* * SystemMemoryBatchInitializer(void* *SystemResourcePointer,long long *Mem
   long long localBufferAddress;
   long long *plocalSystemPointer;
   
-  *SystemResourcePointer = param_4;
+  *SystemResourcePointer = MemoryBlockPointer;
   if (MemoryRegionStart != MemoryRegionEnd) {
     plocalSystemPointer = MemoryRegionStart + 0x1b;
     do {
