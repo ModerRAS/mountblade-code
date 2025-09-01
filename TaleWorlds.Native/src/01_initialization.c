@@ -34790,8 +34790,17 @@ void ManageSystemResourcePointerWithExceptionHandling(void* *SystemResourcePoint
 
 
 
-// 函数: void FUN_180059fc0(long long *SystemResourcePointer)
-void FUN_180059fc0(long long *SystemResourcePointer)
+/**
+ * @brief 系统资源清理和销毁函数
+ * 
+ * 该函数负责清理和销毁系统资源，包括互斥锁、条件变量和内存缓冲区。
+ * 它会递归地清理所有关联的资源，确保系统资源的正确释放。
+ * 
+ * @param SystemResourcePointer 系统资源指针数组，包含需要清理的资源信息
+ * 
+ * 原始函数名为FUN_180059fc0，现已重命名为CleanupAndDestroySystemResources
+ */
+void CleanupAndDestroySystemResources(long long *SystemResourcePointer)
 
 {
   int *pointerToInteger1;
