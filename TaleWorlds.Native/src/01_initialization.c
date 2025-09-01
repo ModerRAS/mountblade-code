@@ -17902,7 +17902,7 @@ void InitializeMainSystemController(long long param_1)
     (**(code **)(*controllerPtr + 0x38))();
   }
 LAB_180043e47:
-  FUN_1800466d0(*(void* *)(param_1 + 0x20));
+  SystemThreadSyncBroadcast(*(void* *)(param_1 + 0x20));
   if (*(char *)(_DAT_180c86870 + 0x1ed) != '\0') {
     controllerPtr = (long long *)FUN_18062b1e0(_DAT_180c8ed18,0x28,8,3);
     *controllerPtr = (long long)&UNK_180a21690;
@@ -37931,7 +37931,7 @@ void FUN_1800611a0(long long param_1,long long *param_2,void* param_3,void* para
   do {
     iVar4 = ReleaseSemaphore(*puVar1,lVar2 - lVar3 >> 3 & 0xffffffff,0,param_4,uVar6,lVar5,uVar7);
   } while (iVar4 == 0);
-  FUN_1800466d0(param_1 + 0x150);
+  SystemThreadSyncBroadcast(param_1 + 0x150);
   iVar4 = _Mtx_unlock(lVar5);
   if (iVar4 != 0) {
     __Throw_C_error_std__YAXH_Z(iVar4);
