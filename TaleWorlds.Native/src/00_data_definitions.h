@@ -4154,7 +4154,7 @@ LAB_1800d37d8:
     *(uint64_t *)(GameEngineDataAddress + 0x1a08 + (longlong)(int)_DAT_180c86958 * 8) = 0;
     param_2 = uStack_1c8;
   }
-  FUN_180127860();
+  FinalizeSystemInitialization();
   _DAT_180c8a9b0 = MemoryAddress4;
   LoopCounter3 = _Mtx_unlock(SystemMutexAddressA);
   if (LoopCounter3 != 0) {
@@ -4173,7 +4173,7 @@ LAB_1800d37d8:
       if (cVar23 != '\0') break;
       pMemoryAllocationResult = (void *)**(uint64_t **)(ModuleInitializationResult6 + 0x10);
       if (pMemoryAllocationResult == &UNK_180a04910) {
-        FUN_1800496b0(*(uint64_t **)(ModuleInitializationResult6 + 0x10) + 4);
+        CleanupSystemResources(*(uint64_t **)(ModuleInitializationResult6 + 0x10) + 4);
       }
       else {
         (**(code **)(pMemoryAllocationResult + 0x80))();
