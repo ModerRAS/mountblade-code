@@ -12694,7 +12694,7 @@ int InitializeSystemGlobalDataTable(void)
   long long DataTableStatus;
   void* in_R9;
   
-  _DAT_180bfa350 = &UNK_1809fcc28;
+  SystemGlobalDataPointerD = &SystemMemoryNodeTemplateA;
   SystemGlobalDataReferenceB = &SystemGlobalDataBufferB;
 
 // 函数: void InitializeSystemSearchNodeManager(void)
@@ -13553,7 +13553,7 @@ void InitializeSystemEventManagerN(void)
   stackParameterB = stackBuffer;
   stackBuffer[0] = 0;
   stackParameterC = 0x1b;
-  strcpy_s(stackBuffer,0x80,&UNK_180a2ac10,in_R9,0xfffffffffffffffe);
+  strcpy_s(stackBuffer,0x80,&SystemStringTemplateC,in_R9,0xfffffffffffffffe);
   _DAT_180c9246c = SystemMemoryAllocationFunction(&stackParameterA);
   return;
 }
