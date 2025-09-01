@@ -50026,86 +50026,96 @@ void FUN_180073ab0(long long *param_1)
 
 
 
-// 函数: void FUN_180073ad0(long long param_1,long long *param_2)
-void FUN_180073ad0(long long param_1,long long *param_2)
+/**
+ * @brief 处理系统数据块
+ * 
+ * 该函数处理系统数据块，包括数据块的读取、解析和存储操作。
+ * 主要用于系统初始化过程中的数据处理。
+ * 
+ * @param DataBlockHandle 数据块句柄，用于标识要处理的数据块
+ * @param DataBufferPointer 数据缓冲区指针，用于存储处理后的数据
+ * 
+ * @note 该函数是系统初始化过程中的重要组成部分，负责数据块的格式化处理
+ */
+void ProcessSystemDataBlock(long long DataBlockHandle, long long *DataBufferPointer)
 
 {
-  ushort uVar1;
-  void* uVar2;
-  int *piVar3;
-  uint32_t *puVar4;
-  uint *puVar5;
-  long long lVar6;
-  long long lVar7;
-  int iVar8;
-  ulong long uVar9;
-  long long lVar10;
+  ushort DataElementSize;
+  void* DataPointer;
+  int *IntegerBufferPointer;
+  uint32_t *UInt32BufferPointer;
+  uint *UIntBufferPointer;
+  long long DataBlockSize;
+  long long DataElementOffset;
+  int ElementCount;
+  ulong long DataSize;
+  long long ElementIndex;
   
-  FUN_180639ec0(param_2,param_1);
-  lVar6 = *(long long *)(param_1 + 0x28) - *(long long *)(param_1 + 0x20);
-  piVar3 = (int *)param_2[1];
-  lVar6 = lVar6 / 0x12 + (lVar6 >> 0x3f);
-  iVar8 = (int)(lVar6 >> 1) - (int)(lVar6 >> 0x3f);
-  if ((ulong long)((*param_2 - (long long)piVar3) + param_2[2]) < 5) {
-    FUN_180639bf0(param_2,(long long)piVar3 + (4 - *param_2));
-    piVar3 = (int *)param_2[1];
+  InitializeDataBuffer(DataBufferPointer, DataBlockHandle);
+  DataBlockSize = *(long long *)(DataBlockHandle + 0x28) - *(long long *)(DataBlockHandle + 0x20);
+  IntegerBufferPointer = (int *)DataBufferPointer[1];
+  DataBlockSize = DataBlockSize / 0x12 + (DataBlockSize >> 0x3f);
+  ElementCount = (int)(DataBlockSize >> 1) - (int)(DataBlockSize >> 0x3f);
+  if ((ulong long)((*DataBufferPointer - (long long)IntegerBufferPointer) + DataBufferPointer[2]) < 5) {
+    ExpandDataBuffer(DataBufferPointer,(long long)IntegerBufferPointer + (4 - *DataBufferPointer));
+    IntegerBufferPointer = (int *)DataBufferPointer[1];
   }
-  *piVar3 = iVar8;
-  puVar4 = (uint32_t *)(param_2[1] + 4);
-  param_2[1] = (long long)puVar4;
-  lVar6 = (long long)iVar8;
-  if (0 < iVar8) {
-    lVar10 = 0;
+  *IntegerBufferPointer = ElementCount;
+  UInt32BufferPointer = (uint32_t *)(DataBufferPointer[1] + 4);
+  DataBufferPointer[1] = (long long)UInt32BufferPointer;
+  DataBlockSize = (long long)ElementCount;
+  if (0 < ElementCount) {
+    ElementIndex = 0;
     do {
-      lVar7 = *(long long *)(param_1 + 0x20) + lVar10;
-      if ((ulong long)((*param_2 - (long long)puVar4) + param_2[2]) < 5) {
-        FUN_180639bf0(param_2,(long long)puVar4 + (4 - *param_2));
-        puVar4 = (uint32_t *)param_2[1];
+      DataElementOffset = *(long long *)(DataBlockHandle + 0x20) + ElementIndex;
+      if ((ulong long)((*DataBufferPointer - (long long)UInt32BufferPointer) + DataBufferPointer[2]) < 5) {
+        ExpandDataBuffer(DataBufferPointer,(long long)UInt32BufferPointer + (4 - *DataBufferPointer));
+        UInt32BufferPointer = (uint32_t *)DataBufferPointer[1];
       }
-      *puVar4 = 0;
-      param_2[1] = param_2[1] + 4;
-      puVar4 = (uint32_t *)param_2[1];
-      if ((ulong long)((*param_2 - (long long)puVar4) + param_2[2]) < 5) {
-        FUN_180639bf0(param_2,(long long)puVar4 + (4 - *param_2));
-        puVar4 = (uint32_t *)param_2[1];
+      *UInt32BufferPointer = 0;
+      DataBufferPointer[1] = DataBufferPointer[1] + 4;
+      UInt32BufferPointer = (uint32_t *)DataBufferPointer[1];
+      if ((ulong long)((*DataBufferPointer - (long long)UInt32BufferPointer) + DataBufferPointer[2]) < 5) {
+        ExpandDataBuffer(DataBufferPointer,(long long)UInt32BufferPointer + (4 - *DataBufferPointer));
+        UInt32BufferPointer = (uint32_t *)DataBufferPointer[1];
       }
-      *puVar4 = 0x10;
-      param_2[1] = param_2[1] + 4;
-      puVar5 = (uint *)param_2[1];
-      uVar1 = *(ushort *)(lVar7 + 0x10);
-      if ((ulong long)((*param_2 - (long long)puVar5) + param_2[2]) < 5) {
-        FUN_180639bf0(param_2,(long long)puVar5 + (4 - *param_2));
-        puVar5 = (uint *)param_2[1];
+      *UInt32BufferPointer = 0x10;
+      DataBufferPointer[1] = DataBufferPointer[1] + 4;
+      UIntBufferPointer = (uint *)DataBufferPointer[1];
+      DataElementSize = *(ushort *)(DataElementOffset + 0x10);
+      if ((ulong long)((*DataBufferPointer - (long long)UIntBufferPointer) + DataBufferPointer[2]) < 5) {
+        ExpandDataBuffer(DataBufferPointer,(long long)UIntBufferPointer + (4 - *DataBufferPointer));
+        UIntBufferPointer = (uint *)DataBufferPointer[1];
       }
-      *puVar5 = (uint)uVar1;
-      puVar4 = (uint32_t *)(param_2[1] + 4);
-      param_2[1] = (long long)puVar4;
-      if (*(ushort *)(lVar7 + 0x10) != 0) {
-        uVar2 = *(void* *)(lVar7 + 8);
-        uVar9 = (ulong long)*(ushort *)(lVar7 + 0x10) * 4;
-        if ((ulong long)((*param_2 - (long long)puVar4) + param_2[2]) <= uVar9) {
-          FUN_180639bf0(param_2,(long long)puVar4 + (uVar9 - *param_2));
-          puVar4 = (uint32_t *)param_2[1];
+      *UIntBufferPointer = (uint)DataElementSize;
+      UInt32BufferPointer = (uint32_t *)(DataBufferPointer[1] + 4);
+      DataBufferPointer[1] = (long long)UInt32BufferPointer;
+      if (*(ushort *)(DataElementOffset + 0x10) != 0) {
+        DataPointer = *(void* *)(DataElementOffset + 8);
+        DataSize = (ulong long)*(ushort *)(DataElementOffset + 0x10) * 4;
+        if ((ulong long)((*DataBufferPointer - (long long)UInt32BufferPointer) + DataBufferPointer[2]) <= DataSize) {
+          ExpandDataBuffer(DataBufferPointer,(long long)UInt32BufferPointer + (DataSize - *DataBufferPointer));
+          UInt32BufferPointer = (uint32_t *)DataBufferPointer[1];
         }
-                    // WARNING: Subroutine does not return
-        memcpy(puVar4,uVar2,uVar9);
+        // WARNING: Subroutine does not return
+        memcpy(UInt32BufferPointer, DataPointer, DataSize);
       }
-      lVar7 = *(long long *)(param_1 + 0x20) + lVar10;
-      if ((ulong long)((*param_2 - (long long)puVar4) + param_2[2]) < 5) {
-        FUN_180639bf0(param_2,(long long)puVar4 + (4 - *param_2));
-        puVar4 = (uint32_t *)param_2[1];
+      DataElementOffset = *(long long *)(DataBlockHandle + 0x20) + ElementIndex;
+      if ((ulong long)((*DataBufferPointer - (long long)UInt32BufferPointer) + DataBufferPointer[2]) < 5) {
+        ExpandDataBuffer(DataBufferPointer,(long long)UInt32BufferPointer + (4 - *DataBufferPointer));
+        UInt32BufferPointer = (uint32_t *)DataBufferPointer[1];
       }
-      *puVar4 = 0;
-      param_2[1] = param_2[1] + 4;
-      puVar4 = (uint32_t *)param_2[1];
-      if ((ulong long)((*param_2 - (long long)puVar4) + param_2[2]) < 5) {
-        FUN_180639bf0(param_2,(long long)puVar4 + (4 - *param_2));
-        puVar4 = (uint32_t *)param_2[1];
+      *UInt32BufferPointer = 0;
+      DataBufferPointer[1] = DataBufferPointer[1] + 4;
+      UInt32BufferPointer = (uint32_t *)DataBufferPointer[1];
+      if ((ulong long)((*DataBufferPointer - (long long)UInt32BufferPointer) + DataBufferPointer[2]) < 5) {
+        ExpandDataBuffer(DataBufferPointer,(long long)UInt32BufferPointer + (4 - *DataBufferPointer));
+        UInt32BufferPointer = (uint32_t *)DataBufferPointer[1];
       }
-      *puVar4 = 0x10;
-      param_2[1] = param_2[1] + 4;
-      puVar5 = (uint *)param_2[1];
-      uVar1 = *(ushort *)(lVar7 + 0x22);
+      *UInt32BufferPointer = 0x10;
+      DataBufferPointer[1] = DataBufferPointer[1] + 4;
+      UIntBufferPointer = (uint *)DataBufferPointer[1];
+      DataElementSize = *(ushort *)(DataElementOffset + 0x22);
       if ((ulong long)((*param_2 - (long long)puVar5) + param_2[2]) < 5) {
         FUN_180639bf0(param_2,(long long)puVar5 + (4 - *param_2));
         puVar5 = (uint *)param_2[1];

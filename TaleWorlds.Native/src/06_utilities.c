@@ -56,8 +56,8 @@ void* CoreEngineModuleHandle;
 void InitializeRenderingEngineModule(void);
 void* RenderingEngineModuleInstance;
 void* RenderingEngineModuleConfiguration;
-uint32_t GlobalModuleEngineInitializationStatus;
-void* GlobalModuleBHandle;
+uint32_t RenderingEngineInitializationStatus;
+void* RenderingEngineModuleHandle;
 void* GlobalModuleBExecutionContext;
 /**
  * @brief 初始化全局模块C
