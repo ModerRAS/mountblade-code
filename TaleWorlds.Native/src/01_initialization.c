@@ -250,14 +250,21 @@ void* SystemMemoryBlockBJ;
 void* SystemMemoryBlockBK;
 void* SystemFunctionPointerF;
 
-// 函数: undefined FUN_18007bb70;
-undefined FUN_18007bb70;
-undefined UNK_1809ffa98;
-undefined UNK_1802426a0;
-undefined UNK_180a001e8;
-undefined DAT_180c8aa00;
-undefined UNK_1809ffae0;
-undefined DAT_180d49158;
+// 函数: 系统初始化入口点A
+/**
+ * @brief 系统初始化入口点A
+ * 
+ * 该函数是系统初始化的主要入口点之一，负责初始化系统的核心组件
+ * 和数据结构，为后续的系统启动做准备
+ */
+void* SystemInitializationEntryPointA;
+void* SystemMemoryRegion401;
+void* SystemMemoryRegion402;
+void* SystemMemoryRegion403;
+void* SystemDataTableEntryG;
+void* SystemMemoryRegion404;
+void* SystemMemoryRegion405;
+void* SystemDataTableEntryH;
 
 // 函数: undefined FUN_18004c030;
 undefined FUN_18004c030;
