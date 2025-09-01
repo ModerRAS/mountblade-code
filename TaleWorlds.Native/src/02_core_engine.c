@@ -33978,7 +33978,7 @@ ulonglong engine_unnamed_function_1320(longlong engine_data_structure_ptr,uint *
   uint64 engine_stack_uint_e0;
   uint64 engine_stack_uint_d8;
   uint64 engine_stack_uint_d0;
-  float fStack_c8;
+  float engine_stack_float_c8;
   float fStack_c4;
   float fStack_c0;
   float fStack_bc;
@@ -34250,7 +34250,7 @@ LAB_180077879:
       engine_temp_float_3 = *(float *)(engine_data_structure_ptr + 0x128);
       engine_temp_float_4 = *(float *)(engine_data_structure_ptr + 0x134);
       engine_temp_float_5 = *(float *)(engine_data_structure_ptr + 0x130);
-      fStack_c8 = engine_temp_float * engine_temp_float_13 + engine_temp_float_2 * engine_temp_float_9 + engine_temp_float_3 * engine_temp_float_17;
+      engine_stack_float_c8 = engine_temp_float * engine_temp_float_13 + engine_temp_float_2 * engine_temp_float_9 + engine_temp_float_3 * engine_temp_float_17;
       fStack_c4 = engine_temp_float * engine_temp_float_14 + engine_temp_float_2 * engine_temp_float_10 + engine_temp_float_3 * engine_temp_float_18;
       fStack_c0 = engine_temp_float * engine_temp_float_15 + engine_temp_float_2 * engine_temp_float_11 + engine_temp_float_3 * engine_temp_float_19;
       fStack_bc = engine_temp_float * engine_temp_float_16 + engine_temp_float_2 * engine_temp_float_12 + engine_temp_float_3 * engine_temp_float_20;
@@ -34273,7 +34273,7 @@ LAB_180077879:
       fStack_94 = engine_temp_float_4 * engine_temp_float_14 + engine_temp_float_5 * engine_temp_float_10 + engine_temp_float * engine_temp_float_18 + engine_comparison_params[0xd];
       fStack_90 = engine_temp_float_4 * engine_temp_float_15 + engine_temp_float_5 * engine_temp_float_11 + engine_temp_float * engine_temp_float_19 + engine_comparison_params[0xe];
       fStack_8c = engine_temp_float_4 * engine_temp_float_16 + engine_temp_float_5 * engine_temp_float_12 + engine_temp_float * engine_temp_float_20 + engine_comparison_params[0xf];
-      engine_comparison_params = &fStack_c8;
+      engine_comparison_params = &engine_stack_float_c8;
     }
     engine_unnamed_function_2650(&engine_stack_uint_108,engine_result_flag_ptr + 0xc,*(uint8*)(engine_data_structure_ptr + 0xf7),engine_comparison_params);
     engine_temp_uint_6 = engine_result_flag_ptr[0x6f6];
