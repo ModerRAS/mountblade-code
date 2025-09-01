@@ -94,13 +94,13 @@ unknown cleanupSystemData3;
 
 // 函数: void InitializeResourceManager(void)
 void InitializeResourceManager(void);
-undefined DAT_180bf64e0;
-undefined DAT_180bf64e8;
-undefined UNK_1809fdc18;
-undefined UNK_180a004dc;
-undefined DAT_180bf6530;
-undefined DAT_180bf6538;
-undefined DAT_180bf6540;
+undefined resourceManagerHandle;
+undefined resourceManagerStatus;
+unknown resourceSystemData1;
+unknown resourceSystemData2;
+undefined resourceBuffer1;
+undefined resourceBuffer2;
+undefined resourceBuffer3;
 
 // 函数: void InitializeTextureManager(void)
 /**
@@ -110,12 +110,12 @@ undefined DAT_180bf6540;
  * 设置纹理加载、缓存和释放的相关数据结构
  */
 void InitializeTextureManager(void);
-undefined DAT_180bf6548;
-undefined UNK_180a004e8;
-undefined DAT_180bf6590;
-undefined DAT_180bf6598;
-undefined DAT_180bf65a0;
-undefined DAT_180bf65a8;
+undefined textureManagerInstance;
+undefined textureSystemData;
+undefined textureCacheHandle;
+undefined textureLoaderHandle;
+undefined textureMemoryPool;
+undefined textureDescriptorTable;
 
 // 函数: void InitializeAudioSystem(void)
 /**
@@ -125,11 +125,11 @@ undefined DAT_180bf65a8;
  * 设置音效、音乐和语音播放的相关参数
  */
 void InitializeAudioSystem(void);
-undefined UNK_180a004f8;
-undefined DAT_180bf65c0;
-undefined DAT_180bf65c8;
-undefined DAT_180bf65d0;
-undefined DAT_180bf65d8;
+undefined audioSystemInstance;
+undefined audioDeviceHandle;
+undefined audioMixerHandle;
+undefined audioBufferPool;
+undefined audioStreamManager;
 
 // 函数: void InitializePhysicsEngine(void)
 /**
@@ -139,11 +139,11 @@ undefined DAT_180bf65d8;
  * 设置碰撞检测、重力模拟和物理计算的相关系统
  */
 void InitializePhysicsEngine(void);
-undefined UNK_180a00508;
-undefined DAT_180bf65f0;
-undefined DAT_180bf65f8;
-undefined DAT_180bf6600;
-undefined DAT_180bf6608;
+undefined physicsEngineInstance;
+undefined physicsWorldHandle;
+undefined collisionSystemHandle;
+undefined rigidBodyManager;
+undefined physicsConstraintSolver;
 
 // 函数: void InitializeInputManager(void)
 /**
