@@ -765,73 +765,82 @@ void* SystemDataBufferInputQueue;
 void* SystemDataBufferPhysicsQueue;
 void* SystemDataBufferAnimationQueue;
 void* SystemDataBufferScriptQueue;
-uint8_t SystemDataBuffer083;
-uint8_t SystemDataBuffer084;
-uint8_t SystemDataBuffer085;
-uint8_t SystemDataBuffer086;
-uint8_t SystemDataBuffer087;
-uint8_t SystemDataBuffer088;
-uint8_t SystemDataBuffer089;
-uint8_t SystemDataBuffer090;
-uint8_t SystemDataBuffer091;
-uint8_t SystemDataBuffer092;
-uint8_t SystemDataBuffer093;
-uint8_t SystemDataBuffer094;
-uint8_t SystemDataBuffer095;
-uint8_t SystemDataBuffer096;
-uint8_t SystemDataBuffer097;
-uint8_t SystemDataBuffer098;
-uint8_t SystemDataBuffer099;
-uint8_t SystemDataBuffer100;
-uint8_t SystemDataBuffer101;
-uint8_t SystemDataBuffer102;
-uint8_t SystemDataBuffer103;
-uint8_t SystemDataBuffer104;
-uint8_t SystemDataBuffer105;
-uint8_t SystemDataBuffer106;
-uint8_t SystemDataBuffer107;
-uint8_t SystemDataBuffer108;
-uint8_t SystemDataBuffer109;
-uint8_t SystemDataBuffer110;
-uint8_t SystemDataBuffer111;
-uint8_t SystemDataBuffer112;
-uint8_t SystemDataBuffer113;
-uint8_t SystemDataBuffer114;
-uint8_t SystemDataBuffer115;
-uint8_t SystemDataBuffer116;
-uint8_t SystemDataBuffer117;
-uint8_t SystemDataBuffer118;
-uint8_t SystemDataBuffer119;
-uint8_t SystemDataBuffer120;
-uint8_t SystemDataBuffer121;
-uint8_t SystemDataBuffer122;
-uint8_t SystemDataBuffer123;
-uint8_t SystemDataBuffer124;
-uint8_t SystemDataBuffer125;
-uint8_t SystemDataBuffer126;
-uint8_t SystemDataBuffer127;
-uint8_t SystemDataBuffer128;
-uint8_t SystemDataBuffer129;
-uint8_t SystemDataBuffer130;
-uint8_t SystemDataBuffer131;
-uint8_t SystemDataBuffer132;
-uint8_t SystemDataBuffer133;
-uint8_t SystemDataBuffer134;
-uint8_t SystemDataBuffer135;
-uint8_t SystemDataBuffer136;
-uint8_t SystemDataBuffer137;
-uint8_t SystemDataBuffer138;
-uint8_t SystemDataBuffer139;
-uint8_t SystemDataBuffer140;
-uint8_t SystemDataBuffer141;
-uint8_t SystemDataBuffer142;
-uint8_t SystemDataBuffer143;
-uint8_t SystemDataBuffer144;
-uint8_t SystemDataBuffer145;
-uint8_t SystemDataBuffer146;
-uint8_t SystemDataBuffer147;
-uint8_t SystemDataBuffer148;
-uint8_t SystemDataBuffer149;
+uint8_t SystemDataBufferFileSystemQueue;
+uint8_t SystemDataBufferDatabaseQueue;
+uint8_t SystemDataBufferSecurityQueue;
+uint8_t SystemDataBufferLoggingQueue;
+uint8_t SystemDataBufferPerformanceQueue;
+uint8_t SystemDataBufferNetworkQueue;
+uint8_t SystemDataBufferGraphicsQueue;
+uint8_t SystemDataBufferAudioQueue;
+uint8_t SystemDataBufferInputQueue;
+uint8_t SystemDataBufferPhysicsQueue;
+uint8_t SystemDataBufferAnimationQueue;
+uint8_t SystemDataBufferScriptQueue;
+uint8_t SystemDataBufferMemoryQueue;
+uint8_t SystemDataBufferThreadQueue;
+uint8_t SystemDataProcessEventQueue;
+uint8_t SystemDataBufferTimerQueue;
+uint8_t SystemDataBufferSyncQueue;
+uint8_t SystemDataBufferLockQueue;
+uint8_t SystemDataBufferSemaphoreQueue;
+uint8_t SystemDataBufferMutexQueue;
+uint8_t SystemDataBufferConditionQueue;
+uint8_t SystemDataBufferBarrierQueue;
+uint8_t SystemDataBufferPoolQueue;
+uint8_t SystemDataBufferCacheQueue;
+uint8_t SystemDataBufferBufferQueue;
+uint8_t SystemDataBufferConfigQueue;
+uint8_t SystemDataBufferStatusQueue;
+uint8_t SystemDataBufferDataQueue;
+uint8_t SystemDataBufferCommandQueue;
+uint8_t SystemDataBufferMessageQueue;
+uint8_t SystemDataBufferNotificationQueue;
+uint8_t SystemDataBufferEventQueue;
+uint8_t SystemDataBufferSignalQueue;
+uint8_t SystemDataBufferCallbackQueue;
+uint8_t SystemDataBufferTaskQueue;
+uint8_t SystemDataBufferJobQueue;
+uint8_t SystemDataBufferWorkQueue;
+uint8_t SystemDataBufferRequestQueue;
+uint8_t SystemDataBufferResponseQueue;
+uint8_t SystemDataBufferErrorQueue;
+uint8_t SystemDataBufferWarningQueue;
+uint8_t SystemDataBufferInfoQueue;
+uint8_t SystemDataBufferDebugQueue;
+uint8_t SystemDataBufferTraceQueue;
+uint8_t SystemDataBufferMetricsQueue;
+uint8_t SystemDataBufferStatsQueue;
+uint8_t SystemDataBufferMonitorQueue;
+uint8_t SystemDataBufferProfileQueue;
+uint8_t SystemDataBufferBenchmarkQueue;
+uint8_t SystemDataBufferTestQueue;
+uint8_t SystemDataBufferValidationQueue;
+uint8_t SystemDataBufferVerificationQueue;
+uint8_t SystemDataBufferCheckQueue;
+uint8_t SystemDataBufferInspectQueue;
+uint8_t SystemDataBufferAnalyzeQueue;
+uint8_t SystemDataBufferReportQueue;
+uint8_t SystemDataBufferLogQueue;
+uint8_t SystemDataBufferAuditQueue;
+uint8_t SystemDataBufferReviewQueue;
+uint8_t SystemDataBufferAssessQueue;
+uint8_t SystemDataBufferEvaluateQueue;
+uint8_t SystemDataBufferMeasureQueue;
+uint8_t SystemDataBufferCalculateQueue;
+uint8_t SystemDataBufferComputeQueue;
+uint8_t SystemDataBufferProcessQueue;
+uint8_t SystemDataBufferExecuteQueue;
+uint8_t SystemDataBufferRunQueue;
+uint8_t SystemDataBufferPerformQueue;
+uint8_t SystemDataBufferHandleQueue;
+uint8_t SystemDataBufferManageQueue;
+uint8_t SystemDataBufferControlQueue;
+uint8_t SystemDataBufferDirectQueue;
+uint8_t SystemDataBufferGuideQueue;
+uint8_t SystemDataBufferLeadQueue;
+uint8_t SystemDataBufferSuperviseQueue;
+uint8_t SystemDataBufferOverseeQueue;
 void* SystemConfigurationDataTable;
 void* SystemMemoryStatusTable;
 void* SystemThreadControlTable;
@@ -3948,7 +3957,13 @@ uint8_t4 validateObjectHandleFromRegisterV2(void)
  * 该函数用于触发系统异常处理流程，通常在遇到严重错误时调用
  * 这是triggerSystemException函数的另一个版本
  */
-void triggerSystemExceptionV2(void)
+/**
+ * @brief 触发系统异常V2
+ * 
+ * 该函数负责触发系统级别的异常处理流程
+ * 用于处理严重的系统错误或异常情况
+ */
+void TriggerSystemExceptionV2(void)
 
 {
                     // WARNING: Subroutine does not return
@@ -3963,7 +3978,13 @@ void triggerSystemExceptionV2(void)
  * 
  * 该函数负责重置系统状态，将系统恢复到初始状态
  */
-void resetSystemState(void)
+/**
+ * @brief 重置系统状态
+ * 
+ * 该函数负责重置系统状态，将系统恢复到初始状态
+ * 清理所有临时状态和资源，确保系统处于可控状态
+ */
+void ResetSystemState(void)
 
 {
   return;
@@ -4136,7 +4157,7 @@ uint8_t8 InitializeObjectHandleB(longlong objectContext)
  * 该函数负责处理对象句柄的初始化操作，包括句柄分配、
  * 状态检查和初始化设置等步骤
  * 
- * @param param_1 对象上下文参数
+ * @param objectContext 对象上下文参数
  * @return 操作结果状态码
  */
 uint8_t8 InitializeObjectHandleC(longlong objectContext)
