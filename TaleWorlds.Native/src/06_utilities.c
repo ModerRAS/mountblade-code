@@ -2757,7 +2757,7 @@ undefined SystemConfigEntry15;
 
  undefined ExecuteResourceCleanup;
 undefined ExecuteResourceCleanup;
-undefined DAT_180d49ff8;
+undefined MemoryPoolStatus;
 
  undefined OptimizeResourceUsage;
 undefined OptimizeResourceUsage;
@@ -3016,7 +3016,7 @@ undefined SystemConfigurationBlock37;
 undefined SystemConfigurationBlock38;
 undefined SystemConfigurationBlock39;
 undefined SystemConfigurationBlock40;
-undefined UNK_180a3a310;
+undefined MemoryBuffer001;
 undefined UNK_180a3a320;
 undefined UNK_180a3a348;
 undefined UNK_180a3a370;
@@ -48958,7 +48958,7 @@ void Unwind_180907710(undefined8 param_1,longlong param_2)
   pvalidationResult[0xe] = 0;
   *(undefined4 *)(pvalidationResult + 0x10) = 0;
   pvalidationResult[0xd] = &SystemDataStructure;
-  FUN_180179f00(pvalidationResult + 7,pvalidationResult[9]);
+  ValidateResourceIntegrity(pvalidationResult + 7,pvalidationResult[9]);
   *pvalidationResult = &UNK_180a14c60;
   return;
 }
@@ -49010,7 +49010,7 @@ void Unwind_180907740(undefined8 param_1,longlong param_2)
   pvalidationResult[0xe] = 0;
   *(undefined4 *)(pvalidationResult + 0x10) = 0;
   pvalidationResult[0xd] = &SystemDataStructure;
-  FUN_180179f00(pvalidationResult + 7,pvalidationResult[9]);
+  ValidateResourceIntegrity(pvalidationResult + 7,pvalidationResult[9]);
   *pvalidationResult = &UNK_180a14c60;
   return;
 }
@@ -49140,7 +49140,7 @@ void Unwind_180907800(undefined8 param_1,longlong param_2)
   presourceTable = (longlong *)(*(longlong *)(param_2 + 0x20) + 8);
   lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x20) + 0x10);
   for (resourceIndex = *presourceTable; resourceIndex != lVar1; resourceIndex = resourceIndex + 0x60) {
-    FUN_180089640(resourceIndex);
+    CheckResourceVersion(resourceIndex);
   }
   if (*presourceTable == 0) {
     return;
@@ -49188,7 +49188,7 @@ void Unwind_180907820(undefined8 param_1,longlong param_2,undefined8 param_3,und
 void Unwind_180907830(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
 
 {
-  FUN_18008d810(*(longlong *)(param_2 + 0x20) + 0x78,
+  ProcessResourceValidation(*(longlong *)(param_2 + 0x20) + 0x78,
                 *(undefined8 *)(*(longlong *)(param_2 + 0x20) + 0x88),param_3,param_4,
                 0xfffffffffffffffe);
   return;
@@ -49274,7 +49274,7 @@ void Unwind_1809078a0(undefined8 param_1,longlong param_2)
   presourceTable = *(longlong **)(param_2 + 0x28);
   lVar1 = presourceTable[1];
   for (resourceIndex = *presourceTable; resourceIndex != lVar1; resourceIndex = resourceIndex + 0x60) {
-    FUN_180089640(resourceIndex);
+    CheckResourceVersion(resourceIndex);
   }
   if (*presourceTable == 0) {
     return;
@@ -49331,7 +49331,7 @@ void Unwind_1809078d0(undefined8 param_1,longlong param_2,undefined8 param_3,und
 void Unwind_1809078e0(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
 
 {
-  FUN_18008d810(*(longlong *)(param_2 + 0x28),*(undefined8 *)(*(longlong *)(param_2 + 0x28) + 0x10),
+  ProcessResourceValidation(*(longlong *)(param_2 + 0x28),*(undefined8 *)(*(longlong *)(param_2 + 0x28) + 0x10),
                 param_3,param_4,0xfffffffffffffffe);
   return;
 }
@@ -49341,7 +49341,7 @@ void Unwind_1809078e0(undefined8 param_1,longlong param_2,undefined8 param_3,und
 void Unwind_1809078f0(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
 
 {
-  FUN_18008d810(*(longlong *)(param_2 + 0x28),*(undefined8 *)(*(longlong *)(param_2 + 0x28) + 0x10),
+  ProcessResourceValidation(*(longlong *)(param_2 + 0x28),*(undefined8 *)(*(longlong *)(param_2 + 0x28) + 0x10),
                 param_3,param_4,0xfffffffffffffffe);
   return;
 }
@@ -49390,7 +49390,7 @@ void Unwind_180907920(undefined8 param_1,longlong param_2)
   presourceTable = *(longlong **)(param_2 + 0x40);
   lVar1 = presourceTable[1];
   for (resourceIndex = *presourceTable; resourceIndex != lVar1; resourceIndex = resourceIndex + 0x60) {
-    FUN_180089640(resourceIndex);
+    CheckResourceVersion(resourceIndex);
   }
   if (*presourceTable == 0) {
     return;
@@ -49404,7 +49404,7 @@ void Unwind_180907920(undefined8 param_1,longlong param_2)
 void Unwind_180907930(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
 
 {
-  FUN_18008d810(*(longlong *)(param_2 + 0x40),*(undefined8 *)(*(longlong *)(param_2 + 0x40) + 0x10),
+  ProcessResourceValidation(*(longlong *)(param_2 + 0x40),*(undefined8 *)(*(longlong *)(param_2 + 0x40) + 0x10),
                 param_3,param_4,0xfffffffffffffffe);
   return;
 }
@@ -49414,7 +49414,7 @@ void Unwind_180907930(undefined8 param_1,longlong param_2,undefined8 param_3,und
 void Unwind_180907940(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
 
 {
-  FUN_18008d810(*(longlong *)(param_2 + 0x40),*(undefined8 *)(*(longlong *)(param_2 + 0x40) + 0x10),
+  ProcessResourceValidation(*(longlong *)(param_2 + 0x40),*(undefined8 *)(*(longlong *)(param_2 + 0x40) + 0x10),
                 param_3,param_4,0xfffffffffffffffe);
   return;
 }

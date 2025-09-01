@@ -18063,7 +18063,7 @@ void InitializeSystemInfoAndUserEnvironment(void)
     (**(code **)(*plVar6 + 0x28))(plVar6);
     (*pcVar2)(puVar1,&plStack_208);
     (**(code **)(*plVar6 + 0x38))(plVar6);
-    FUN_1800624c0();
+    ConfigureInputSystem();
     puStack_1d8 = &SystemGlobalDataReference;
     uStack_1c0 = 0;
     puStack_1d0 = (undefined *)0x0;
@@ -18075,7 +18075,7 @@ void InitializeSystemInfoAndUserEnvironment(void)
     plStack_208 = (long long *)CONCAT44(plStack_208._4_4_,0x10);
     iVar4 = GetComputerNameA(applStack_150,&plStack_208);
     if (iVar4 == 0) {
-      FUN_180627160(&UNK_180a3c110);
+      LogSystemError(&UNK_180a3c110);
     }
     else {
       if (0xf < ((ulong long)plStack_208 & 0xffffffff)) goto LAB_180044db8;
@@ -18085,13 +18085,13 @@ void InitializeSystemInfoAndUserEnvironment(void)
     plStack_208 = (long long *)CONCAT44(plStack_208._4_4_,0x101);
     iVar4 = GetUserNameA(auStack_138,&plStack_208);
     if (iVar4 == 0) {
-      FUN_180627160(&UNK_180a3c138);
+      LogSystemError(&UNK_180a3c138);
     }
     else {
       if (0x100 < ((ulong long)plStack_208 & 0xffffffff)) {
-        FUN_1808fcdc8();
+        ProcessSystemEvent();
 LAB_180044db8:
-        FUN_1808fcdc8();
+        ProcessSystemEvent();
         pcVar2 = (code *)swi(3);
         (*pcVar2)();
         return;
@@ -18114,7 +18114,7 @@ LAB_180044db8:
     uStack_178 = 0;
     auStack_170[0] = 0;
     uStack_200 = 2;
-    FUN_18004b860(&puStack_188,&UNK_1809fd0a0,0x130a7);
+    InitializeGameSettings(&puStack_188,&UNK_1809fd0a0,0x130a7);
     puStack_220 = &SystemStringTemplate;
     if (puStack_180 != (undefined *)0x0) {
       puStack_220 = puStack_180;
@@ -18150,7 +18150,7 @@ LAB_180044db8:
   }
   uStack_200 = 0;
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_28 ^ (ulong long)auStack_248);
+  ValidateSystemChecksum(uStack_28 ^ (ulong long)auStack_248);
 }
 
 
@@ -18918,7 +18918,7 @@ void ProcessSystemThreeParameterBuffer(long long param_1,long long param_2,long 
   }
   puStack_468 = &SystemMemoryAllocatorReference;
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_48 ^ (ulong long)auStack_498);
+  ValidateSystemChecksum(uStack_48 ^ (ulong long)auStack_498);
 }
 
 
@@ -19306,7 +19306,7 @@ void ProcessSystemThreeParameterData(long long param1,long long param2,long long
   }
   puStack_80 = &SystemMemoryAllocatorReference;
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_48 ^ (ulong long)auStack_a8);
+  ValidateSystemChecksum(uStack_48 ^ (ulong long)auStack_a8);
 }
 
 
@@ -19876,7 +19876,7 @@ void InitializeSystemCoreEngine(void)
   uStack_5b8 = 0;
   if (*(int *)(_DAT_180c86870 + 0x224) - _DAT_180bf52b0 < 0xfb) {
                     // WARNING: Subroutine does not return
-    FUN_1808fc050(uStack_68 ^ (ulong long)auStack_698);
+    ValidateSystemChecksum(uStack_68 ^ (ulong long)auStack_698);
   }
   *(uint8_t *)(_DAT_180c86960 + 0x39) = 1;
   ppplVar4 = (long long ***)SystemMemoryAllocationFunction(_DAT_180c8ed18,200,8,3);
@@ -21286,7 +21286,7 @@ void FUN_1800495d0(void* param_1,void* *param_2,long long *param_3)
     __Throw_C_error_std__YAXH_Z(uVar2);
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_28 ^ (ulong long)auStack_58);
+  ValidateSystemChecksum(uStack_28 ^ (ulong long)auStack_58);
 }
 
 
@@ -21640,7 +21640,7 @@ void SystemStringProcessor(long long param_1,long long param_2,long long param_3
   }
   puStack_e8 = &SystemMemoryAllocatorReference;
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_48 ^ (ulong long)auStack_118);
+  ValidateSystemChecksum(uStack_48 ^ (ulong long)auStack_118);
 }
 
 
@@ -21819,7 +21819,7 @@ void FUN_180049d20(long long param_1,long long param_2,long long param_3)
   }
   puStack_a8 = &SystemMemoryAllocatorReference;
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_48 ^ (ulong long)auStack_d8);
+  ValidateSystemChecksum(uStack_48 ^ (ulong long)auStack_d8);
 }
 
 
@@ -22660,7 +22660,7 @@ void FUN_18004b3f0(void* *param_1)
   auStack_38[0] = 0;
   uStack_68 = 3;
   puStack_58 = param_1;
-  FUN_18004b860(&puStack_50,&UNK_1809fd0a0,0x130a7);
+  InitializeGameSettings(&puStack_50,&UNK_1809fd0a0,0x130a7);
   puVar5 = &SystemStringTemplate;
   if (puStack_48 != (undefined *)0x0) {
     puVar5 = puStack_48;
@@ -22677,7 +22677,7 @@ void FUN_18004b3f0(void* *param_1)
   uStack_68 = 1;
   puStack_50 = &SystemMemoryAllocatorReference;
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_18 ^ (ulong long)stackBuffer);
+  ValidateSystemChecksum(uStack_18 ^ (ulong long)stackBuffer);
 }
 
 
@@ -22915,8 +22915,8 @@ void* * FUN_18004b820(void* *param_1,ulong long param_2)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_18004b860(long long param_1,void* param_2,void* param_3,void* param_4)
-void FUN_18004b860(long long param_1,void* param_2,void* param_3,void* param_4)
+// 函数: void InitializeGameSettings(long long param_1,void* param_2,void* param_3,void* param_4)
+void InitializeGameSettings(long long param_1,void* param_2,void* param_3,void* param_4)
 
 {
   long long lVar1;
@@ -22950,7 +22950,7 @@ void FUN_18004b860(long long param_1,void* param_2,void* param_3,void* param_4)
            (long long)((int)lVar4 + 2));
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_28 ^ (ulong long)auStack_78);
+  ValidateSystemChecksum(uStack_28 ^ (ulong long)auStack_78);
 }
 
 
@@ -23636,7 +23636,7 @@ void FUN_18004c31f(void)
 {
   code *pcVar1;
   
-  FUN_1808fcdc8();
+  ProcessSystemEvent();
   pcVar1 = (code *)swi(3);
   (*pcVar1)();
   return;
@@ -26394,7 +26394,7 @@ void FUN_180053200(void* param_1,long long param_2)
   ppuStack_1a8 = &puStack_d8;
   puStack_d8 = &SystemMemoryAllocatorReference;
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_18 ^ (ulong long)auStack_1c8);
+  ValidateSystemChecksum(uStack_18 ^ (ulong long)auStack_1c8);
 }
 
 
@@ -27026,7 +27026,7 @@ void FUN_180054360(long long *param_1,long long param_2)
   uStack_1a8 = uStack_1a8 & 0xffffffff00000000;
   puStack_1c0 = &SystemMemoryAllocatorReference;
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_48 ^ (ulong long)auStack_238);
+  ValidateSystemChecksum(uStack_48 ^ (ulong long)auStack_238);
 }
 
 
@@ -27424,7 +27424,7 @@ LAB_180054ec9:
     } while (iStack_f8 < (int)lVar14);
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_30 ^ (ulong long)auStack_178);
+  ValidateSystemChecksum(uStack_30 ^ (ulong long)auStack_178);
 }
 
 
@@ -28027,7 +28027,7 @@ void FUN_1800565f0(long long *param_1)
   }
   (*pcVar2)(puVar1,&plStack_68);
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_28 ^ (ulong long)auStack_98);
+  ValidateSystemChecksum(uStack_28 ^ (ulong long)auStack_98);
 }
 
 
@@ -28093,7 +28093,7 @@ void FUN_180056810(long long param_1)
     do {
       if (*(int *)(param_1 + 0xcc) == 0) {
                     // WARNING: Subroutine does not return
-        FUN_1808fc050(uStack_50 ^ (ulong long)auStack_c8);
+        ValidateSystemChecksum(uStack_50 ^ (ulong long)auStack_c8);
       }
       Sleep(10);
       lVar4 = _DAT_180c8ed58;
@@ -28294,7 +28294,7 @@ void FUN_180056c50(void* param_1,void* *param_2,uint32_t param_3)
   *(uint32_t *)(param_2 + 3) = 0;
   *param_2 = &SystemMemoryAllocatorReference;
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_28 ^ (ulong long)auStack_158);
+  ValidateSystemChecksum(uStack_28 ^ (ulong long)auStack_158);
 }
 
 
@@ -31479,7 +31479,7 @@ void FUN_180059000(long long *param_1)
   }
   FUN_180058020(&ppppppuStack_360);
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_38 ^ (ulong long)auStack_3b8);
+  ValidateSystemChecksum(uStack_38 ^ (ulong long)auStack_3b8);
 }
 
 
@@ -32095,7 +32095,7 @@ void FUN_180059a20(long long param_1,long long param_2,long long param_3)
   }
   puStack_70 = &SystemMemoryAllocatorReference;
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_48 ^ (ulong long)auStack_98);
+  ValidateSystemChecksum(uStack_48 ^ (ulong long)auStack_98);
 }
 
 
@@ -33656,7 +33656,7 @@ void FUN_18005c650(long long *param_1)
     (*(code *)param_1[2])(param_1,0,0);
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_18 ^ (ulong long)auStack_128);
+  ValidateSystemChecksum(uStack_18 ^ (ulong long)auStack_128);
 }
 
 
@@ -34181,7 +34181,7 @@ void FUN_18005d0e0(ulong long param_1,long long param_2)
     }
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_38 ^ (ulong long)auStack_478);
+  ValidateSystemChecksum(uStack_38 ^ (ulong long)auStack_478);
 }
 
 
@@ -35135,7 +35135,7 @@ void FUN_18005dbb0(void)
   ppuStack_170 = apuStack_108;
   apuStack_108[0] = &SystemMemoryAllocatorReference;
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_38 ^ (ulong long)auStack_1b8);
+  ValidateSystemChecksum(uStack_38 ^ (ulong long)auStack_1b8);
 }
 
 
@@ -38628,8 +38628,8 @@ void FUN_1800623e0(long long *param_1)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_1800624c0(void)
-void FUN_1800624c0(void)
+// 函数: void ConfigureInputSystem(void)
+void ConfigureInputSystem(void)
 
 {
   uint8_t auStack_208 [48];
@@ -38693,7 +38693,7 @@ void FUN_180062920(int *param_1)
   *param_1 = *param_1 + 1;
   if ((*(long long *)(param_1 + 4) != 0) && (*(long long *)(param_1 + 2) != 0)) {
                     // WARNING: Subroutine does not return
-    FUN_1808fc050(uStack_38 ^ (ulong long)auStack_1f8);
+    ValidateSystemChecksum(uStack_38 ^ (ulong long)auStack_1f8);
   }
   lStack_168 = 0;
   lStack_160 = 0;
@@ -39352,7 +39352,7 @@ LAB_180063de9:
     uStack_278 = 0;
     puStack_290 = &SystemMemoryAllocatorReference;
                     // WARNING: Subroutine does not return
-    FUN_1808fc050(uStack_38 ^ (ulong long)auStack_2f8);
+    ValidateSystemChecksum(uStack_38 ^ (ulong long)auStack_2f8);
   }
   puStack_2a8 = puVar4;
                     // WARNING: Subroutine does not return
@@ -39504,7 +39504,7 @@ void FUN_180064010(void* param_1)
     UNLOCK();
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_38 ^ (ulong long)auStack_358);
+  ValidateSystemChecksum(uStack_38 ^ (ulong long)auStack_358);
 }
 
 
@@ -39786,7 +39786,7 @@ void FUN_180064c00(long long *param_1,long long param_2,long long param_3)
     uStack_b0 = 0xf;
     uStack_c8 = 0;
                     // WARNING: Subroutine does not return
-    FUN_1808fc050(uStack_48 ^ (ulong long)auStack_138);
+    ValidateSystemChecksum(uStack_48 ^ (ulong long)auStack_138);
   }
   uStack_58 = 0;
   uStack_50 = 0xf;
@@ -40082,7 +40082,7 @@ void FUN_180065160(void* param_1)
   uStack_b8 = 0;
   auStack_b0[0] = 0;
   uStack_310 = 4;
-  FUN_18004b860(&puStack_c8,&UNK_1809fd0a0,0x130a7);
+  InitializeGameSettings(&puStack_c8,&UNK_1809fd0a0,0x130a7);
   puStack_348 = &SystemStringTemplate;
   if (puStack_c0 != (undefined *)0x0) {
     puStack_348 = puStack_c0;
@@ -40457,7 +40457,7 @@ LAB_180065a3e:
       uStack_168 = 0;
       puStack_180 = &SystemMemoryAllocatorReference;
                     // WARNING: Subroutine does not return
-      FUN_1808fc050(uStack_38 ^ (ulong long)auStack_368);
+      ValidateSystemChecksum(uStack_38 ^ (ulong long)auStack_368);
     }
                     // WARNING: Subroutine does not return
     SystemCleanupFunction();
@@ -40938,7 +40938,7 @@ LAB_18006650a:
   }
 LAB_180066971:
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_48 ^ (ulong long)auStack_1f8);
+  ValidateSystemChecksum(uStack_48 ^ (ulong long)auStack_1f8);
 }
 
 
@@ -41819,7 +41819,7 @@ void FUN_180067f60(long long param_1,long long param_2)
       *(void* *)(alStack_288[0] + 0x118) = 0;
       puStack_268 = &SystemMemoryAllocatorReference;
                     // WARNING: Subroutine does not return
-      FUN_1808fc050(uStack_48 ^ (ulong long)auStack_2e8);
+      ValidateSystemChecksum(uStack_48 ^ (ulong long)auStack_2e8);
     }
     puVar5 = (void* *)(uVar8 * 0x130 + param_1 + 0x2003d0);
     *(ulong long *)(param_1 + 0x2133d0) = uVar8 + 1;
@@ -42577,7 +42577,7 @@ void FUN_180069280(long long param_1,long long param_2,long long param_3)
   }
   puStack_168 = &SystemMemoryAllocatorReference;
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_48 ^ (ulong long)auStack_198);
+  ValidateSystemChecksum(uStack_48 ^ (ulong long)auStack_198);
 }
 
 
@@ -43945,7 +43945,7 @@ void FUN_18006c070(long long param_1)
   do {
     if ((cVar9 == '\0') || (uVar19 = 0, *(char *)(param_1 + 0x400) != '\0')) {
                     // WARNING: Subroutine does not return
-      FUN_1808fc050(uStack_38 ^ (ulong long)auStack_278);
+      ValidateSystemChecksum(uStack_38 ^ (ulong long)auStack_278);
     }
     puStack_1f8 = &UNK_1809feda8;
     pbStack_1f0 = abStack_1e0;
@@ -47899,7 +47899,7 @@ LAB_1800718e9:
     puStack_f0 = (undefined *)0x0;
     puStack_f8 = &SystemMemoryAllocatorReference;
                     // WARNING: Subroutine does not return
-    FUN_1808fc050(uStack_48 ^ (ulong long)auStack_188);
+    ValidateSystemChecksum(uStack_48 ^ (ulong long)auStack_188);
   }
 LAB_1800715eb:
   puVar18 = &SystemStringTemplate;
@@ -50776,7 +50776,7 @@ void FUN_1800744b0(long long param_1,long long param_2)
   *(uint32_t *)(param_1 + 0x34) = *puVar13;
   *(long long *)(param_2 + 8) = *(long long *)(param_2 + 8) + 4;
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_28 ^ (ulong long)auStack_f8);
+  ValidateSystemChecksum(uStack_28 ^ (ulong long)auStack_f8);
 }
 
 
@@ -53099,7 +53099,7 @@ void FUN_180077150(long long *param_1)
   }
 LAB_18007738d:
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_20 ^ (ulong long)stackBuffer);
+  ValidateSystemChecksum(uStack_20 ^ (ulong long)stackBuffer);
 }
 
 
@@ -59938,7 +59938,7 @@ void FUN_18007bbb0(long long param_1,long long param_2,long long param_3)
   }
   *(uint32_t *)(lVar7 + 0x3c) = *(uint32_t *)(param_3 + 0x114);
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_20 ^ (ulong long)auStack_68);
+  ValidateSystemChecksum(uStack_20 ^ (ulong long)auStack_68);
 }
 
 
