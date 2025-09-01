@@ -25733,9 +25733,9 @@ void SystemCleanupHandler(void)
   RegisterSystemCallback(*(void* *)(SystemResourceContext + 0xa8),&UNK_180a01170,&UNK_180a00368,SystemCallbackHandler9);
   RegisterSystemCallback(*(void* *)(SystemResourceContext + 0xa8),&DAT_180a009f0,&UNK_180a00a00,SystemEventCallbackHandler);
   RegisterSystemCallback(*(void* *)(SystemResourceContext + 0xa8),&DAT_180a00c80,&UNK_180a00490,SystemNetworkCallbackHandler);
-  SystemPreviousNode = (uint32_t *)FUN_18008d660(localResourceOffset + 0xe0,&DAT_180a009f0);
+  SystemPreviousNode = (uint32_t *)CreateSystemNodePointer(localResourceOffset + 0xe0,&DAT_180a009f0);
   *SystemPreviousNode = 1;
-  SystemPreviousNode = (uint32_t *)FUN_18008d660(localResourceOffset + 0xe0,&DAT_180a012f0);
+  SystemPreviousNode = (uint32_t *)CreateSystemNodePointer(localResourceOffset + 0xe0,&DAT_180a012f0);
   *SystemPreviousNode = 1;
   lStack_1d0 = SystemMemoryAllocationFunction(SystemMemoryAllocationTemplate,0x3878,8,3);
                     // WARNING: Subroutine does not return
