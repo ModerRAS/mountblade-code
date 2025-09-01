@@ -3499,16 +3499,20 @@ uint8_t8 ValidateObjectRegistration(longlong objectContext)
 
 
 
- ulonglong ProcessSystemRequest(longlong requestParameters,longlong systemContext)
-/**
+ /**
  * @brief 处理系统请求
  * 
- * 该函数负责处理来自系统模块的各种请求
- * 包括参数验证、权限检查和请求分发等功能
+ * 该函数负责处理来自系统模块的各种请求，包括：
+ * - 对象上下文验证和权限检查
+ * - 系统对象验证和内存上下文初始化
+ * - 资源表管理和数据处理
+ * - 请求分发和结果返回
  * 
  * @param requestParameters 请求参数，包含请求类型和相关信息
  * @param systemContext 系统上下文，包含系统状态和上下文信息
  * @return 处理结果，成功返回0，失败返回错误码
+ * 
+ * @note 该函数是系统请求处理的核心入口点，确保所有请求都经过适当的验证和处理
  */
 ulonglong ProcessSystemRequest(longlong requestParameters,longlong systemContext)
 

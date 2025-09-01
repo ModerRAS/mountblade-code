@@ -386,11 +386,11 @@ int InitializeStringProcessorD(void)
 {
   int64_t result;
   uint64_t stringProcessorDFlags;
-  g_stringProcessorD_Base = &unknownData_1809fdc18;
+  g_stringProcessorD_Base = &StringProcessorDataBaseD;
   g_stringProcessorD_BufferPtr = &g_stringProcessorD_Buffer;
   g_stringProcessorD_Buffer = 0;
   g_stringProcessorD_Length = 0xd;
-  strcpy_s(&g_stringProcessorD_Buffer,0x10,&unknownData_180a00518,stringProcessorDFlags,SystemMutexFlags);
+  strcpy_s(&g_stringProcessorD_Buffer,0x10,&StringProcessorDataTemplateD,stringProcessorDFlags,SystemMutexFlags);
   result = RegisterSystemCallback(InitializeStringProcessorD_Callback);
   return (result != 0) - 1;
 }
@@ -402,11 +402,11 @@ int InitializeStringProcessorE(void)
 {
   int64_t result;
   uint64_t stringProcessorEFlags;
-  g_stringProcessorE_Base = &unknownData_1809fdc18;
+  g_stringProcessorE_Base = &StringProcessorDataBaseE;
   g_stringProcessorE_BufferPtr = &g_stringProcessorE_Buffer;
   g_stringProcessorE_Buffer = 0;
   g_stringProcessorE_Length = 0xc;
-  strcpy_s(&g_stringProcessorE_Buffer,0x10,&unknownData_180a00528,stringProcessorEFlags,SystemMutexFlags);
+  strcpy_s(&g_stringProcessorE_Buffer,0x10,&StringProcessorDataTemplateE,stringProcessorEFlags,SystemMutexFlags);
   result = RegisterSystemCallback(InitializeStringProcessorE_Callback);
   return (result != 0) - 1;
 }
