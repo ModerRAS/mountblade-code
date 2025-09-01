@@ -1626,37 +1626,37 @@ void* MemorySegmentStatus;
 void* MemorySegmentConfig;
 void* MemorySegmentBuffer;
 
- void ConfigureMemoryFragmentation;
+ void ConfigureMemoryFragmentation(void);
 /**
  * @brief 配置内存碎片化
  * 
  * 该函数负责配置内存碎片化管理
  * 设置内存碎片检测和整理策略
  */
-void ConfigureMemoryFragmentation;
+void ConfigureMemoryFragmentation(void);
 void* MemoryFragmentationDescriptor;
 void* MemoryFragmentationTable;
 void* MemoryFragmentationStatus;
 void* MemoryBalancingConfigTable;
 void* MemoryBalancingReservedMemory;
 
- void InitializeMemoryBalancing;
+ void InitializeMemoryBalancing(void);
 /**
  * @brief 初始化内存平衡
  * 
  * 该函数负责初始化内存平衡系统
  * 设置内存使用平衡和负载分配
  */
-void InitializeMemoryBalancing;
+void InitializeMemoryBalancing(void);
 
- void SetupMemoryOptimization;
+ void SetupMemoryOptimization(void);
 /**
  * @brief 设置内存优化
  * 
  * 该函数负责设置内存优化系统
  * 配置内存使用优化策略
  */
-void SetupMemoryOptimization;
+void SetupMemoryOptimization(void);
 
  void InitializeMemoryMonitoring;
 /**
