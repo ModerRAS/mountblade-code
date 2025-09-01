@@ -7523,38 +7523,54 @@ uint8_t ValidateObjectContextAndProcessFloatComparison(int64_t ObjectContext, in
  * @return uint8_t 操作结果，成功返回0，失败返回错误码
  */
 uint8_t ProcessFloatComparisonOperation(void)
-
 {
-  float floatValue;
-  int64_t dataPointer;
-  uint8_t operationResult;
+  float FloatValueToCompare;
+  int64_t ResourceDataPointer;
+  uint8_t OperationResult;
   int64_t SystemContext;
-  int64_t objectContext;
-  int64_t stackBuffer;
+  int64_t ObjectContext;
+  int64_t StackBuffer;
+  float MinRangeValue;
+  float MaxRangeValue;
   
-  if (stackBuffer == 0) {
-    return 0x4a;
+  // 检查堆栈缓冲区是否有效
+  if (StackBuffer == 0) {
+    return 0x4a; // ErrorInvalidStackBuffer
   }
-  dataPointer = *(int64_t *)(stackBuffer + 0x10);
-  if (dataPointer == 0) {
-    return 0x1e;
+  
+  // 获取资源数据指针
+  ResourceDataPointer = *(int64_t *)(StackBuffer + 0x10);
+  if (ResourceDataPointer == 0) {
+    return 0x1e; // ErrorInvalidResourceData
   }
-  if ((*(byte *)(dataPointer + 0x34) & 0x11) != 0) {
-    return 0x1f;
+  
+  // 检查资源状态标志
+  if ((*(byte *)(ResourceDataPointer + 0x34) & 0x11) != 0) {
+    return 0x1f; // ErrorResourceValidationFailed
   }
-  operationResult = ValidateObjectContextAndProcessData(dataPointer,objectContext + 0x25,objectContext + 0x20);
-  if ((int)operationResult == 0) {
-    floatValue = *(float *)(objectContext + 0x20);
-    if ((*(float *)(dataPointer + 0x38) <= floatValue) &&
-       (floatValue < *(float *)(dataPointer + 0x3c) || floatValue == *(float *)(dataPointer + 0x3c))) {
-      operationResult = *(uint8_t *)(SystemContext + 0x98);
-      *(float *)(stackBuffer + 4) = floatValue;
-                    // WARNING: Subroutine does not return
-      ReleaseSystemContextResources(operationResult);
+  
+  // 处理对象上下文数据
+  OperationResult = ValidateObjectContextAndProcessData(ResourceDataPointer, ObjectContext + 0x25, ObjectContext + 0x20);
+  if (OperationResult == 0) {
+    // 获取要比较的浮点数值
+    FloatValueToCompare = *(float *)(ObjectContext + 0x20);
+    
+    // 获取范围值
+    MinRangeValue = *(float *)(ResourceDataPointer + 0x38);
+    MaxRangeValue = *(float *)(ResourceDataPointer + 0x3c);
+    
+    // 检查是否在范围内（包含边界值）
+    if ((MinRangeValue <= FloatValueToCompare) && (FloatValueToCompare <= MaxRangeValue)) {
+      // 在范围内，更新状态并释放资源
+      OperationResult = *(uint8_t *)(SystemContext + 0x98);
+      *(float *)(StackBuffer + 4) = FloatValueToCompare;
+      
+      // 释放系统上下文资源
+      ReleaseSystemContextResources(OperationResult);
     }
-    operationResult = 0x1c;
+    OperationResult = 0x1c; // ErrorValueOutOfRange
   }
-  return operationResult;
+  return OperationResult;
 }
 
 
