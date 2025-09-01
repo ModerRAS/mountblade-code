@@ -3233,7 +3233,7 @@ void ProcessGameObjects(int64_t GameContext, int64_t SystemContext)
   uint64_t SecurityAccessKey;
   
   SecurityAccessKey = SecurityContextKey ^ (uint64_t)ObjectMetadataBuffer;
-  OperationProcessingStatus = RetrieveContextHandles(*(uint32_t *)(GameObjectContext + 0x10), SystemHandleArray);
+  OperationProcessingStatus = RetrieveContextHandles(*(uint32_t *)(GameContext + 0x10), SystemHandleArray);
   if ((OperationProcessingStatus == 0) && (*(int64_t *)(SystemHandleArray[0] + 8) != 0)) {
     GameObjectDataList = ObjectProcessingWorkspace;
     TotalProcessedObjects = 0;
@@ -5378,9 +5378,6 @@ uint64_t ProcessFloatParameterAndUpdateSystem(int64_t parameterObject)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
- int InitializeSystemManager(int64_t managerHandle)
 /**
  * @brief 初始化系统管理器
  * 
@@ -38336,7 +38333,19 @@ void CleanupSystemResourceHandler(uint8_t ObjectContextParameter,int64_t Validat
 
 
 
-void Unwind_180903ca0(uint8_t ObjectContextParameter,int64_t ValidationContextParameter,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 清理高级系统资源处理器
+ * 
+ * 该函数负责清理和释放高级系统资源处理器
+ * 处理更复杂的资源清理逻辑和内存管理
+ * 
+ * @param ObjectContextParameter 对象上下文参数
+ * @param ValidationContextParameter 验证上下文参数
+ * @param CleanupOption 清理选项
+ * @param CleanupFlag 清理标志
+ * @return 无返回值
+ */
+void CleanupAdvancedSystemResourceHandler(uint8_t ObjectContextParameter,int64_t ValidationContextParameter,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
@@ -38592,7 +38601,19 @@ void CleanupFileSystemResources(uint8_t ObjectContextParameter, int64_t Validati
 
 
 
-void Unwind_180903d30(uint8_t ObjectContextParameter,int64_t ValidationContextParameter,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 清理扩展系统资源处理器
+ * 
+ * 该函数负责清理和释放扩展系统资源处理器
+ * 处理更大范围的资源清理和内存管理
+ * 
+ * @param ObjectContextParameter 对象上下文参数
+ * @param ValidationContextParameter 验证上下文参数
+ * @param CleanupOption 清理选项
+ * @param CleanupFlag 清理标志
+ * @return 无返回值
+ */
+void CleanupExtendedSystemResourceHandler(uint8_t ObjectContextParameter,int64_t ValidationContextParameter,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
@@ -49986,7 +50007,17 @@ void Unwind_1809069c0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 
 
 
-void Unwind_1809069d0(uint8_t ObjectContextParameter,int64_t ValidationContextParameter)
+/**
+ * @brief 管理资源事务
+ * 
+ * 该函数负责管理资源事务的处理
+ * 包括回滚旧事务和开始新事务
+ * 
+ * @param ObjectContextParameter 对象上下文参数
+ * @param ValidationContextParameter 验证上下文参数
+ * @return 无返回值
+ */
+void ManageResourceTransaction(uint8_t ObjectContextParameter,int64_t ValidationContextParameter)
 
 {
   int64_t *processPointer;
@@ -50010,7 +50041,17 @@ void Unwind_1809069d0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 
 
 
-void Unwind_1809069e0(uint8_t ObjectContextParameter,int64_t ValidationContextParameter)
+/**
+ * @brief 提交资源事务
+ * 
+ * 该函数负责提交资源事务
+ * 确保所有资源变更被正确保存
+ * 
+ * @param ObjectContextParameter 对象上下文参数
+ * @param ValidationContextParameter 验证上下文参数
+ * @return 无返回值
+ */
+void CommitResourceTransactionHandler(uint8_t ObjectContextParameter,int64_t ValidationContextParameter)
 
 {
   CommitResourceTransaction(ValidationContextParameter + 0x50);
@@ -50019,7 +50060,17 @@ void Unwind_1809069e0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 
 
 
-void Unwind_1809069f0(uint8_t ObjectContextParameter,int64_t ValidationContextParameter)
+/**
+ * @brief 处理资源验证
+ * 
+ * 该函数负责处理资源验证操作
+ * 确保资源的完整性和正确性
+ * 
+ * @param ObjectContextParameter 对象上下文参数
+ * @param ValidationContextParameter 验证上下文参数
+ * @return 无返回值
+ */
+void HandleResourceValidation(uint8_t ObjectContextParameter,int64_t ValidationContextParameter)
 
 {
   if (*(int64_t **)(ValidationContextParameter + 0x188) != (int64_t *)0x0) {
@@ -59947,7 +59998,17 @@ void Unwind_1809095b0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 
 
 
-void Unwind_1809095c0(uint8_t ObjectContextParameter,int64_t ValidationContextParameter)
+/**
+ * @brief 设置系统数据结构指针
+ * 
+ * 该函数负责设置系统数据结构指针
+ * 确保系统数据结构的正确引用
+ * 
+ * @param ObjectContextParameter 对象上下文参数
+ * @param ValidationContextParameter 验证上下文参数
+ * @return 无返回值
+ */
+void SetSystemDataStructurePointer(uint8_t ObjectContextParameter,int64_t ValidationContextParameter)
 
 {
   *(uint8_t **)(ValidationContextParameter + 0x4b0) = &SystemDataStructure;
@@ -59956,7 +60017,17 @@ void Unwind_1809095c0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 
 
 
-void Unwind_1809095d0(uint8_t ObjectContextParameter,int64_t ValidationContextParameter)
+/**
+ * @brief 处理资源数据清理
+ * 
+ * 该函数负责处理资源数据的清理操作
+ * 包括标志位清理和内存清理
+ * 
+ * @param ObjectContextParameter 对象上下文参数
+ * @param ValidationContextParameter 验证上下文参数
+ * @return 无返回值
+ */
+void HandleResourceDataCleanup(uint8_t ObjectContextParameter,int64_t ValidationContextParameter)
 
 {
   if ((*(uint *)(resourceData + 400) & 1) != 0) {
