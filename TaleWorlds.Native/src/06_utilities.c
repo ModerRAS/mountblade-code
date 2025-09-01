@@ -32871,7 +32871,7 @@ void SystemGarbageCollector(uint8_t ObjectContextParameter,int64_t ValidationCon
 
 
 
-void Unwind_180902d50(uint8_t ObjectContextParameter,int64_t ValidationContextParameter)
+void MemoryPageManager(uint8_t ObjectContextParameter,int64_t ValidationContextParameter)
 
 {
   int64_t *processPointer;
@@ -32903,7 +32903,7 @@ void Unwind_180902d50(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 
 
 
-void Unwind_180902d70(uint8_t ObjectContextParameter,int64_t ValidationContextParameter)
+void ExceptionContextHandler(uint8_t ObjectContextParameter,int64_t ValidationContextParameter)
 
 {
   int64_t *processPointer;
