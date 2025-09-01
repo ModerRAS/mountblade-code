@@ -46690,7 +46690,13 @@ void Unwind_180905ff0(void)
 
 
 
-void Unwind_180906010(void)
+/**
+ * @brief 销毁互斥锁
+ * 
+ * 该函数负责销毁原地的互斥锁对象
+ * 释放相关的系统资源
+ */
+void DestroyMutexInPlace(void)
 
 {
   _Mtx_destroy_in_situ();
@@ -46699,7 +46705,16 @@ void Unwind_180906010(void)
 
 
 
-void Unwind_180906030(uint8_t ObjectContextParameter,int64_t ValidationContextParameter)
+/**
+ * @brief 销毁条件变量
+ * 
+ * 该函数负责销毁指定上下文中的条件变量
+ * 释放相关的系统资源
+ * 
+ * @param ObjectContextParameter 对象上下文参数
+ * @param ValidationContextParameter 验证上下文参数
+ */
+void DestroyConditionVariableInPlace(uint8_t ObjectContextParameter,int64_t ValidationContextParameter)
 
 {
   _Cnd_destroy_in_situ(*(uint8_t *)(ValidationContextParameter + 0x80));
@@ -46708,7 +46723,13 @@ void Unwind_180906030(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 
 
 
-void Unwind_180906040(void)
+/**
+ * @brief 销毁互斥锁（备用）
+ * 
+ * 该函数负责销毁原地的互斥锁对象
+ * 释放相关的系统资源
+ */
+void DestroyMutexInPlaceSecondary(void)
 
 {
   _Mtx_destroy_in_situ();
