@@ -87603,17 +87603,17 @@ void InitializeSystemDataStructureCX(void)
 {
   longlong *processPointer;
   
-  plocalContextPointer = _DAT_180c95f18;
-  if (DAT_180c95f28 != '\0') {
-    _DAT_180c95f20 = 0xffffffff;
-    _DAT_180c95f18 = (longlong *)0x0;
+  plocalContextPointer = SystemContextPointer;
+  if (SystemContextFlag != '\0') {
+    SystemContextStatus = 0xffffffff;
+    SystemContextPointer = (longlong *)0x0;
     if (plocalContextPointer != (longlong *)0x0) {
       (**(code **)(*plocalContextPointer + 0x38))();
     }
-    if (_DAT_180c95f18 != (longlong *)0x0) {
-      (**(code **)(*_DAT_180c95f18 + 0x38))();
+    if (SystemContextPointer != (longlong *)0x0) {
+      (**(code **)(*SystemContextPointer + 0x38))();
     }
-    if (_DAT_180c95ef8 != 0) {
+    if (SystemCleanupPointer != 0) {
                     // WARNING: Subroutine does not return
       ExecuteSystemEmergencyExit();
     }
@@ -87630,8 +87630,8 @@ void InitializeSystemDataStructureCY(void)
 void InitializeSystemDataStructureCY(void)
 
 {
-  if (DAT_180c95fe8 != '\0') {
-    if (_DAT_180c95fc8 != 0) {
+  if (SystemCleanupFlag != '\0') {
+    if (CleanupProcessPointer != 0) {
                     // WARNING: Subroutine does not return
       ExecuteSystemEmergencyExit();
     }
