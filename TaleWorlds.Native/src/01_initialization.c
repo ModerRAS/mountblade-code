@@ -1546,12 +1546,12 @@ void InitializeSystemCoreData(void)
 
 {
   char StatusFlag;
-  void* *systemRootPointer;
+  void** SystemRootPointer;
   int comparisonResult;
   long long *systemHandle;
   long long memorySize;
-  void* *currentNode;
-  void* *previousNode;
+  void** CurrentNode;
+  void** PreviousNode;
   void* *nextNode;
   void* *newNode;
   code *initializationCallback;
@@ -1599,12 +1599,12 @@ void InitializeSystemDataTable(void)
 
 {
   char StatusFlag;
-  void* *systemRootPointer;
+  void** SystemRootPointer;
   int comparisonResult;
   long long *systemHandle;
   long long memorySize;
-  void* *currentNode;
-  void* *previousNode;
+  void** CurrentNode;
+  void** PreviousNode;
   void* *nextNode;
   void* *newNode;
   void* systemFlag;
@@ -1691,7 +1691,7 @@ void InitializeRenderingSystemConfig(void)
 
 {
   char SystemNodeFlag;
-  void* *systemRootPointer;
+  void** SystemRootPointer;
   int memoryCompareResult;
   long long *systemTablePointer;
   long long memoryAllocationSize;
@@ -2133,12 +2133,12 @@ void InitializeSystemResourceNode(void)
 
 {
   char NodeFlag;
-  void* *systemRootPointer;
+  void** SystemRootPointer;
   int comparisonResult;
   long long *systemTablePointer;
   long long allocationSize;
-  void* *currentNode;
-  void* *previousNode;
+  void** CurrentNode;
+  void** PreviousNode;
   void* *nextNode;
   void* *allocatedNode;
   void* *initializationCallback;
@@ -2189,12 +2189,12 @@ void InitializeSystemMemoryNode(void)
 
 {
   char NodeFlag;
-  void* *systemRootPointer;
+  void** SystemRootPointer;
   int comparisonResult;
   long long *systemTablePointer;
   long long allocationSize;
-  void* *currentNode;
-  void* *previousNode;
+  void** CurrentNode;
+  void** PreviousNode;
   void* *nextNode;
   void* *allocatedNode;
   void* initializationFlag;
@@ -2249,11 +2249,11 @@ void InitializeSystemDataTableStructureA(void)
   int memoryCompareResult;
   long long *systemRootPointer;
   long long allocationSize;
-  void* *currentNode;
-  void* *previousNode;
+  void** CurrentNode;
+  void** PreviousNode;
   void* *nextNode;
   void* *newNodePointer;
-  void* *systemDataReference;
+  void** SystemDataReference;
   
   systemRootPointer = (long long*)GetSystemRootPointer();
   dataTablePointer = (void* *)*systemRootPointer;
@@ -2857,12 +2857,12 @@ void InitializeSystemDataStructure(void)
 
 {
   char NodeFlag;
-  void* *systemRootPointer;
+  void** SystemRootPointer;
   int comparisonResult;
   long long *systemTablePointer;
   long long allocationSize;
-  void* *currentNode;
-  void* *previousNode;
+  void** CurrentNode;
+  void** PreviousNode;
   void* *nextNode;
   void* *allocatedNode;
   void* *initializationFunction;
@@ -3505,7 +3505,7 @@ void InitializeSystemEventHandler(void)
   void** systemCurrentNode;
   void** systemNextNode;
   void** systemPreviousNode;
-  void* *systemStackPointer;
+  void** SystemStackPointer;
   
   systemDataTable = (long long*)GetSystemRootPointer();
   systemRootNode = (void**)*systemDataTable;
@@ -3896,7 +3896,7 @@ void InitializeSystemConfigurationManager(void)
   void** systemCurrentNode;
   void** systemNextNode;
   void** systemPreviousNode;
-  void* *systemStackPointer;
+  void** SystemStackPointer;
   
   systemDataTable = (long long*)GetSystemRootPointer();
   systemRootNode = (void**)*systemDataTable;
@@ -4411,7 +4411,7 @@ void InitializeSystemPerformanceMonitor(void)
   void** systemCurrentNode;
   void** systemNextNode;
   void** systemPreviousNode;
-  void* *systemPerformanceCallback;
+  void** SystemPerformanceCallback;
   
   systemDataTable = (long long*)GetSystemRootPointer();
   systemRootNode = (void**)*systemDataTable;
@@ -4578,9 +4578,9 @@ void InitializeSystemEventManager(void)
   long long *memoryPointer;
   long long timeValue;
   void* *rootNode;
-  void* *currentNode;
+  void** CurrentNode;
   void* *nextNode;
-  void* *previousNode;
+  void** PreviousNode;
   code *eventCallbackPointer;
   
   dataTable = (long long*)GetSystemRootPointer();
@@ -4637,9 +4637,9 @@ void InitializeSystemNetworkManager(void)
   long long *memoryPointer;
   long long timeValue;
   void* *rootNode;
-  void* *currentNode;
+  void** CurrentNode;
   void* *nextNode;
-  void* *previousNode;
+  void** PreviousNode;
   code *networkCallbackPointer;
   
   dataTable = (long long*)GetSystemRootPointer();
@@ -4696,9 +4696,9 @@ void InitializeSystemConfigurationManager(void)
   long long *memoryPointer;
   long long timeValue;
   void* *rootNode;
-  void* *currentNode;
+  void** CurrentNode;
   void* *nextNode;
-  void* *previousNode;
+  void** PreviousNode;
   code *initializationFunction;
   
   dataTable = (long long*)GetSystemRootPointer();
@@ -4755,9 +4755,9 @@ void InitializeSystemResourceManager(void)
   long long *memoryPointer;
   long long timeValue;
   void* *rootNode;
-  void* *currentNode;
+  void** CurrentNode;
   void* *nextNode;
-  void* *previousNode;
+  void** PreviousNode;
   code *initializationFunction;
   
   dataTable = (long long*)GetSystemRootPointer();
@@ -5105,7 +5105,7 @@ void InitializeSystemResourceNodeManager(void)
   void** systemCurrentNode;
   void** systemNextNode;
   void** systemPreviousNode;
-  void* *systemStackPointer;
+  void** SystemStackPointer;
   
   systemDataTable = (long long*)GetSystemRootPointer();
   systemRootNode = (void**)*systemDataTable;
@@ -5845,14 +5845,14 @@ void InitializeSystemStorageManager(void)
 
 {
   char SystemNodeTraversalFlag;
-  void* *systemDataTableReference;
+  void** SystemDataTableReference;
   int memoryComparisonResult;
   long long *systemMemoryAllocationPointer;
   long long systemTimestamp;
-  void* *systemRootStorageNode;
-  void* *systemCurrentStorageNode;
-  void* *systemNextStorageNode;
-  void* *systemPreviousStorageNode;
+  void** SystemRootStorageNode;
+  void** SystemCurrentStorageNode;
+  void** SystemNextStorageNode;
+  void** SystemPreviousStorageNode;
   void* storageManagerCallbackFunction;
   
   systemDataTableReference = (long long*)GetSystemRootPointer();
@@ -5876,7 +5876,7 @@ void InitializeSystemStorageManager(void)
   }
   if ((systemCurrentStorageNode == systemRootStorageNode) || (memoryComparisonResult = memcmp(&SystemDataComparisonTemplateO,systemCurrentStorageNode + 4,0x10), memoryComparisonResult < 0)) {
     long long memoryAllocationSize = GetSystemMemorySize(systemDataTableReference);
-    void* *systemAllocatedStorageNode;
+    void** SystemAllocatedStorageNode;
     AllocateSystemMemory(systemDataTableReference,&systemAllocatedStorageNode,systemPreviousStorageNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousStorageNode = systemAllocatedStorageNode;
   }
@@ -5904,12 +5904,12 @@ void InitializeSystemMemoryManagerNode(void)
 
 {
   char SystemNodeTraversalFlag;
-  void* *systemDataTableReference;
+  void** SystemDataTableReference;
   int memoryComparisonResult;
   long long *systemMemoryAllocationPointer;
   long long systemTimestamp;
-  void* *systemRootMemoryNode;
-  void* *systemCurrentMemoryNode;
+  void** SystemRootMemoryNode;
+  void** SystemCurrentMemoryNode;
   void* *systemNextMemoryNode;
   void* *systemPreviousMemoryNode;
   void* memoryManagerCallbackFunction;
@@ -6261,7 +6261,7 @@ void InitializeSystemServiceManager(void)
   void** systemCurrentNode;
   void** systemNextNode;
   void** systemPreviousNode;
-  void* *systemStackPointer;
+  void** SystemStackPointer;
   
   systemDataTable = (long long*)GetSystemRootPointer();
   systemRootNode = (void**)*systemDataTable;
@@ -6667,7 +6667,7 @@ void InitializeSystemThreadManager(void)
   void** systemCurrentNode;
   void** systemNextNode;
   void** systemPreviousNode;
-  void* *systemStackPointer;
+  void** SystemStackPointer;
   
   systemDataTable = (long long*)GetSystemRootPointer();
   systemRootNode = (void**)*systemDataTable;
@@ -7369,7 +7369,7 @@ void InitializeSystemConfigurationManager(void)
   void** systemCurrentNode;
   void** systemNextNode;
   void** systemPreviousNode;
-  void* *systemStackPointer;
+  void** SystemStackPointer;
   
   systemDataTable = (long long*)GetSystemRootPointer();
   systemRootNode = (void**)*systemDataTable;
@@ -7857,7 +7857,7 @@ void InitializeSystemPerformanceMonitor(void)
   void** systemCurrentNode;
   void** systemNextNode;
   void** systemPreviousNode;
-  void* *systemStackPointer;
+  void** SystemStackPointer;
   
   systemDataTable = (long long*)GetSystemRootPointer();
   systemRootNode = (void**)*systemDataTable;
@@ -8469,7 +8469,7 @@ void InitializeSystemComponentManager(void)
   void** systemCurrentNode;
   void** systemNextNode;
   void** systemPreviousNode;
-  void* *systemStackPointer;
+  void** SystemStackPointer;
   
   systemDataTable = (long long*)GetSystemRootPointer();
   systemRootNode = (void**)*systemDataTable;
@@ -10212,7 +10212,7 @@ void InitializeSystemStringProcessorJ(void)
   void** systemCurrentNode;
   void** systemNextNode;
   void** systemPreviousNode;
-  void* *systemStackPointer;
+  void** SystemStackPointer;
   
   systemDataTable = (long long*)GetSystemRootPointer();
   systemRootNode = (void**)*systemDataTable;
@@ -10562,7 +10562,7 @@ void InitializeSystemStringProcessorQ(void)
   void** systemCurrentNode;
   void** systemNextNode;
   void** systemPreviousNode;
-  void* *systemStackPointer;
+  void** SystemStackPointer;
   
   systemDataTable = (long long*)GetSystemRootPointer();
   systemRootNode = (void**)*systemDataTable;
@@ -10912,7 +10912,7 @@ void InitializeSystemStringProcessorX(void)
   void** systemCurrentNode;
   void** systemNextNode;
   void** systemPreviousNode;
-  void* *systemStackPointer;
+  void** SystemStackPointer;
   
   systemDataTable = (long long*)GetSystemRootPointer();
   systemRootNode = (void**)*systemDataTable;
@@ -11262,7 +11262,7 @@ void InitializeSystemMemoryManagerE(void)
   void** systemCurrentNode;
   void** systemNextNode;
   void** systemPreviousNode;
-  void* *systemStackPointer;
+  void** SystemStackPointer;
   
   systemDataTable = (long long*)GetSystemRootPointer();
   systemRootNode = (void**)*systemDataTable;
@@ -12884,7 +12884,7 @@ void InitializeSystemMemoryDataNodeManager(void)
   void** systemCurrentNode;
   void** systemNextNode;
   void** systemPreviousNode;
-  void* *systemStackPointer;
+  void** SystemStackPointer;
   
   systemDataTable = (long long*)GetSystemRootPointer();
   systemRootNode = (void**)*systemDataTable;
@@ -13359,7 +13359,7 @@ void InitializeSystemThreadNodeManager(void)
   void** systemCurrentNode;
   void** systemNextNode;
   void** systemPreviousNode;
-  void* *systemStackPointer;
+  void** SystemStackPointer;
   
   systemDataTable = (long long*)GetSystemRootPointer();
   systemRootNode = (void**)*systemDataTable;
@@ -13746,7 +13746,7 @@ void InitializeSystemEventManagerL(void)
   void** systemCurrentNode;
   void** systemNextNode;
   void** systemPreviousNode;
-  void* *systemStackPointer;
+  void** SystemStackPointer;
   
   systemDataTable = (long long*)GetSystemRootPointer();
   systemRootNode = (void**)*systemDataTable;
@@ -15778,7 +15778,7 @@ void InitializeSystemSubcomponentD(void)
   void** systemCurrentNode;
   void** systemNextNode;
   void** systemPreviousNode;
-  void* *systemStackPointer;
+  void** SystemStackPointer;
   
   systemDataTable = (long long*)GetSystemRootPointer();
   systemRootNode = (void**)*systemDataTable;
@@ -16869,7 +16869,7 @@ void SystemDataNodeInitializerM(void)
   void** systemCurrentNode;
   void** systemNextNode;
   void** systemPreviousNode;
-  void* *systemStackPointer;
+  void** SystemStackPointer;
   
   systemDataTable = (long long*)GetSystemRootPointer();
   systemRootNode = (void**)*systemDataTable;
@@ -28001,7 +28001,17 @@ LAB_18005419d:
 
 
 // 函数: void FUN_180054360(long long *SystemResourcePointer,long long param_2)
-void FUN_180054360(long long *SystemResourcePointer,long long param_2)
+/**
+ * @brief 系统资源数据处理函数
+ * 
+ * 该函数负责处理系统资源数据的初始化、配置和管理。它分配内存缓冲区，
+ * 设置系统参数，处理数据复制和验证操作，确保系统资源的正确初始化。
+ * 
+ * @param SystemResourcePointer 系统资源指针，包含系统配置和状态信息
+ * @param param_2 处理参数，包含系统资源和处理标志
+ * @note 这是系统初始化过程中的核心函数，用于建立系统资源的数据结构
+ */
+void SystemResourceDataProcessor(long long *SystemResourcePointer,long long param_2)
 
 {
   uint unsignedSystemValue1;
@@ -54081,7 +54091,7 @@ int FUN_180076c50(long long SystemResourcePointer,long long *param_2)
   uint32_t unsignedSystemValue15;
   void* uStackX_8;
   void** systemPreviousNode;
-  void* *systemStackPointer;
+  void** SystemStackPointer;
   uint in_stack_ffffffffffffff38;
   void* unsignedSystemValue16;
   ulong long *puStack_80;
