@@ -1105,7 +1105,7 @@ undefined DAT_180bf9870;
 undefined DAT_180bf9878;
 undefined DAT_180bf9880;
 undefined DAT_180bf9888;
-undefined UNK_180a22d08;
+undefined MemoryReliabilityConfigData;
 undefined DAT_180bf98d0;
 
  void InitializeMemorySecurity;

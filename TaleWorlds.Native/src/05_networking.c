@@ -4614,7 +4614,7 @@ int ProcessNetworkPacketTypeN(longlong connectionContext,longlong packetData,int
   networkStatus3 = networkStatus3 + networkStatus4;
   networkStatus4 = NetworkProcessBufferData(networkStatus3 + packetData,dataSize - networkStatus3,&g_NetworkBufferDataTemplate);
   networkStatus3 = networkStatus3 + networkStatus4;
-  networkStatus4 = FUN_18074b6f0(networkStatus3 + packetData,dataSize - networkStatus3,&uStack_48);
+  networkStatus4 = ProcessNetworkSecondaryBuffer(networkStatus3 + packetData,dataSize - networkStatus3,&uStack_48);
   networkStatus3 = networkStatus3 + networkStatus4;
   networkStatus4 = NetworkProcessBufferData(networkStatus3 + packetData,dataSize - networkStatus3,&g_NetworkBufferDataTemplate);
   networkStatus3 = networkStatus3 + networkStatus4;
@@ -5638,7 +5638,7 @@ void GetNetworkPacketSize(ulonglong connectionContext,uint *packetData)
                     // WARNING: Subroutine does not return
       NetworkSecurityGuardCheck(securityGuardValue ^ (ulonglong)networkSecurityBuffer);
     }
-    FUN_18074b930(networkTempBuffer,0x100,0);
+    ProcessNetworkBufferDataWithZeroInit(networkTempBuffer,0x100,0);
     networkErrorBuffer = networkTempBuffer;
                     // WARNING: Subroutine does not return
     LogNetworkConnectionError(0x1f,0xc,connectionContext,&UNK_180984790);
@@ -5757,10 +5757,10 @@ void ProcessNetworkDataTransfer(NetworkHandle connectionContext,longlong packetD
       networkStatus1 = ProcessNetworkBufferData(errorLogBuffer,0x100,0);
       networkStatus2 = ProcessNetworkBufferData(errorLogBuffer + networkStatus1,0x100 - networkStatus1,&g_NetworkBufferDataTemplate);
       networkStatus1 = networkStatus1 + networkStatus2;
-      networkStatus2 = FUN_18074bac0(errorLogBuffer + networkStatus1,0x100 - networkStatus1,dataSize);
+      networkStatus2 = ProcessNetworkBufferDataWithSize(errorLogBuffer + networkStatus1,0x100 - networkStatus1,dataSize);
       networkStatus1 = networkStatus1 + networkStatus2;
       networkStatus2 = ProcessNetworkBufferData(errorLogBuffer + networkStatus1,0x100 - networkStatus1,&g_NetworkBufferDataTemplate);
-      FUN_18074bac0(errorLogBuffer + (networkStatus1 + networkStatus2),0x100 - (networkStatus1 + networkStatus2),param_4);
+      ProcessNetworkBufferDataWithSize(errorLogBuffer + (networkStatus1 + networkStatus2),0x100 - (networkStatus1 + networkStatus2),param_4);
       errorMessageBuffer = errorLogBuffer;
                     // WARNING: Subroutine does not return
       LogNetworkConnectionError(0x1f,0xb,connectionContext,&UNK_180984690);
@@ -5785,7 +5785,7 @@ LAB_1808462b2:
     NetworkConnectionHandleRelease(&networkConnectionHandle);
   }
   networkDataBuffer[0] = 0;
-  networkStatus1 = FUN_180840af0(connectionInfoArray[0],packetData,networkDataBuffer);
+  networkStatus1 = ProcessNetworkConnectionDataStream(connectionInfoArray[0],packetData,networkDataBuffer);
   if (networkStatus1 != 0) {
                     // WARNING: Subroutine does not return
     NetworkConnectionHandleRelease(&networkConnectionHandle);
@@ -5911,7 +5911,7 @@ void ValidateNetworkConnectionContext(ulonglong connectionContext,NetworkStatus 
                     // WARNING: Subroutine does not return
       NetworkSecurityGuardCheck(uStack_18 ^ (ulonglong)networkStackBuffer);
     }
-    FUN_18074b930(auStack_118,0x100,0);
+    ProcessNetworkBufferDataWithZeroInit(auStack_118,0x100,0);
     puStack_148 = auStack_118;
                     // WARNING: Subroutine does not return
     LogNetworkConnectionError(0x1f,0xc,connectionContext,&UNK_180984700);
@@ -6008,7 +6008,7 @@ void ProcessNetworkDataBufferOperations(ulonglong connectionContext,NetworkByte 
   networkStatus2 = ProcessNetworkDataValidation(auStack_148 + networkStatus1,0x100 - networkStatus1,dataSize);
   networkStatus1 = networkStatus1 + networkStatus2;
   networkStatus2 = ProcessNetworkBufferData(auStack_148 + networkStatus1,0x100 - networkStatus1,&g_NetworkBufferDataTemplate);
-  FUN_18074b930(auStack_148 + (networkStatus1 + networkStatus2),0x100 - (networkStatus1 + networkStatus2),param_4);
+  ProcessNetworkBufferDataWithZeroInit(auStack_148 + (networkStatus1 + networkStatus2),0x100 - (networkStatus1 + networkStatus2),param_4);
   puStack_188 = (NetworkStatus *)auStack_148;
                     // WARNING: Subroutine does not return
   LogNetworkConnectionError(0x1f,0xc,connectionContext,&UNK_1809846e0);
@@ -6039,7 +6039,7 @@ void HandleNetworkBufferValidation(void)
   networkStatus2 = ProcessNetworkDataValidation(&stack0x00000060 + networkStatus1,0x100 - networkStatus1,unaff_EBP);
   networkStatus1 = networkStatus1 + networkStatus2;
   networkStatus2 = ProcessNetworkBufferData(&stack0x00000060 + networkStatus1,0x100 - networkStatus1,&g_NetworkBufferDataTemplate);
-  FUN_18074b930(&stack0x00000060 + (networkStatus1 + networkStatus2),0x100 - (networkStatus1 + networkStatus2));
+  ProcessNetworkBufferDataWithZeroInit(&stack0x00000060 + (networkStatus1 + networkStatus2),0x100 - (networkStatus1 + networkStatus2));
                     // WARNING: Subroutine does not return
   LogNetworkConnectionError(unaff_ESI,0xc);
 }
@@ -6418,7 +6418,7 @@ void ValidateNetworkConnectionPacket(ulonglong connectionContext,uint *packetDat
                     // WARNING: Subroutine does not return
       NetworkSecurityGuardCleanup(uStack_28 ^ (ulonglong)auStack_178);
     }
-    FUN_18074b930(auStack_128,0x100,0);
+    ProcessNetworkBufferDataWithZeroInit(auStack_128,0x100,0);
     puStack_158 = auStack_128;
                     // WARNING: Subroutine does not return
     LogNetworkConnectionError(0x1f,0xd,connectionContext,&UNK_180984968);
@@ -10584,8 +10584,17 @@ void NetworkConnectionHandleReleaser(void)
 
 
 
-// 函数: void FUN_18084b0c0(NetworkStatus connectionContext)
-void FUN_18084b0c0(NetworkStatus connectionContext)
+/**
+ * @brief 网络连接状态检查器
+ * 
+ * 该函数负责检查网络连接状态。
+ * 它验证连接的有效性，处理连接状态，并确保连接的正常运行。
+ * 
+ * @param connectionContext 连接状态标识符
+ * @return void
+ * @note 该函数用于网络连接状态的检查和验证
+ */
+void NetworkConnectionStatusChecker(NetworkStatus connectionContext)
 
 {
   int networkStatus1;
@@ -10623,8 +10632,16 @@ LAB_18084b131:
 
 
 
-// 函数: void FUN_18084b0db(void)
-void FUN_18084b0db(void)
+/**
+ * @brief 网络连接管理器
+ * 
+ * 该函数负责管理网络连接。
+ * 它处理连接的初始化、状态检查和资源管理。
+ * 
+ * @return void
+ * @note 该函数用于网络连接的综合管理
+ */
+void NetworkConnectionManager(void)
 
 {
   int networkStatus1;
@@ -10659,8 +10676,16 @@ LAB_18084b131:
 
 
 
-// 函数: void FUN_18084b11f(void)
-void FUN_18084b11f(void)
+/**
+ * @brief 网络连接处理器
+ * 
+ * 该函数负责处理网络连接。
+ * 它管理连接状态，处理连接相关的操作。
+ * 
+ * @return void
+ * @note 该函数用于网络连接的处理和操作
+ */
+void NetworkConnectionProcessor(void)
 
 {
   int networkStatus1;
@@ -10685,8 +10710,16 @@ void FUN_18084b11f(void)
 
 
 
-// 函数: void FUN_18084b163(void)
-void FUN_18084b163(void)
+/**
+ * @brief 网络连接清理器
+ * 
+ * 该函数负责清理网络连接资源。
+ * 它释放连接句柄，确保系统资源的正确回收。
+ * 
+ * @return void
+ * @note 该函数用于网络连接资源的清理和回收
+ */
+void NetworkConnectionCleaner(void)
 
 {
                     // WARNING: Subroutine does not return
@@ -10696,8 +10729,16 @@ void FUN_18084b163(void)
 
 
 
-// 函数: void FUN_18084b174(void)
-void FUN_18084b174(void)
+/**
+ * @brief 空网络操作函数
+ * 
+ * 该函数是一个空操作函数，主要用于占位或未来的扩展。
+ * 当前实现为空，直接返回。
+ * 
+ * @return void
+ * @note 该函数为空操作，可能用于接口兼容性
+ */
+void EmptyNetworkOperation(void)
 
 {
   return;
@@ -10708,8 +10749,18 @@ void FUN_18084b174(void)
 // WARNING: Type propagation algorithm not settling
 
 
-// 函数: void FUN_18084b180(NetworkHandle connectionContext,NetworkByte packetData)
-void FUN_18084b180(NetworkHandle connectionContext,NetworkByte packetData)
+/**
+ * @brief 网络连接字节处理器
+ * 
+ * 该函数负责处理网络连接中的字节数据。
+ * 它初始化连接，处理字节数据，并管理连接状态。
+ * 
+ * @param connectionContext 网络连接句柄
+ * @param packetData 字节数据
+ * @return void
+ * @note 该函数用于网络连接中字节数据的处理
+ */
+void NetworkConnectionByteProcessor(NetworkHandle connectionContext,NetworkByte packetData)
 
 {
   int networkStatus1;
@@ -75771,7 +75822,7 @@ LAB_1808820fa:
 
 
 
-int FUN_180882160(longlong connectionContext,NetworkHandle packetData,NetworkHandle dataSize,NetworkStatus param_4,
+int ProcessNetworkConnectionDataStreamTransfer(longlong connectionContext,NetworkHandle packetData,NetworkHandle dataSize,NetworkStatus param_4,
                  NetworkHandle param_5)
 
 {
@@ -88797,19 +88848,19 @@ int ProcessNetworkPrimaryBuffer(longlong connectionContext,int packetData,longlo
   networkStatus1 = memcmp(dataSize,tertiaryNetworkFlag,0x30);
   if (networkStatus1 != 0) {
     networkStatus1 = func_0x00018074b7b0(connectionContext,packetData,0x7b);
-    networkStatus2 = FUN_18074b6f0(connectionContext + networkStatus1,packetData - networkStatus1,dataSize);
+    networkStatus2 = ProcessNetworkSecondaryBuffer(connectionContext + networkStatus1,packetData - networkStatus1,dataSize);
     networkStatus1 = networkStatus1 + networkStatus2;
     networkStatus2 = func_0x00018074b7b0(networkStatus1 + connectionContext,packetData - networkStatus1,0x2c);
     networkStatus1 = networkStatus1 + networkStatus2;
-    networkStatus2 = FUN_18074b6f0(networkStatus1 + connectionContext,packetData - networkStatus1,dataSize + 0xc);
+    networkStatus2 = ProcessNetworkSecondaryBuffer(networkStatus1 + connectionContext,packetData - networkStatus1,dataSize + 0xc);
     networkStatus1 = networkStatus1 + networkStatus2;
     networkStatus2 = func_0x00018074b7b0(networkStatus1 + connectionContext,packetData - networkStatus1,0x2c);
     networkStatus1 = networkStatus1 + networkStatus2;
-    networkStatus2 = FUN_18074b6f0(networkStatus1 + connectionContext,packetData - networkStatus1,dataSize + 0x18);
+    networkStatus2 = ProcessNetworkSecondaryBuffer(networkStatus1 + connectionContext,packetData - networkStatus1,dataSize + 0x18);
     networkStatus1 = networkStatus1 + networkStatus2;
     networkStatus2 = func_0x00018074b7b0(networkStatus1 + connectionContext,packetData - networkStatus1,0x2c);
     networkStatus1 = networkStatus1 + networkStatus2;
-    networkStatus2 = FUN_18074b6f0(networkStatus1 + connectionContext,packetData - networkStatus1,dataSize + 0x24);
+    networkStatus2 = ProcessNetworkSecondaryBuffer(networkStatus1 + connectionContext,packetData - networkStatus1,dataSize + 0x24);
     networkStatus1 = networkStatus1 + networkStatus2;
     networkStatus2 = func_0x00018074b7b0(networkStatus1 + connectionContext,packetData - networkStatus1,0x7d);
     return networkStatus2 + networkStatus1;
