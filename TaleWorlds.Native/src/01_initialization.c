@@ -20030,7 +20030,20 @@ void InitializeSystemCoreEngine(void)
 
 
 void* *
-FUN_180047d40(void* *param_1,void* *param_2,void* param_3,void* param_4)
+/**
+ * @brief 复制系统数据结构
+ * 
+ * 该函数负责复制系统数据结构，包括基本数据、标志位和配置信息。
+ * 它会递归地复制复杂的数据结构，确保数据的完整性和一致性。
+ * 
+ * @param param_1 目标数据结构指针
+ * @param param_2 源数据结构指针
+ * @param param_3 复制标志参数
+ * @param param_4 附加参数
+ * @return 返回复制后的目标数据结构指针
+ * @note 这是系统数据管理的重要组成部分，确保数据复制的正确性
+ */
+void* CopySystemDataStructure(void* *param_1,void* *param_2,void* param_3,void* param_4)
 
 {
   *param_1 = *param_2;
@@ -21477,17 +21490,29 @@ void ResetDataStructure(uint8_t *dataFlagPointer)
 
 
 
-void* * FUN_180049970(void* *param_1)
+// 函数: 初始化内存分配器结构
+/**
+ * @brief 初始化内存分配器结构
+ * 
+ * 该函数负责初始化内存分配器的数据结构，设置分配器的引用指针，
+ * 并配置相关的内存管理参数。
+ * 
+ * @param memoryAllocator 内存分配器指针，需要被初始化的内存分配器结构
+ * @return void** 返回初始化后的内存分配器指针
+ * 
+ * @note 这是内存管理初始化的重要函数，确保内存分配器正确配置
+ */
+void* * InitializeMemoryAllocatorStructure(void* *memoryAllocator)
 
 {
-  *param_1 = &SystemMemoryAllocatorReference;
-  param_1[1] = 0;
-  *(uint32_t *)(param_1 + 2) = 0;
-  *param_1 = &UNK_1809fcc28;
-  param_1[1] = param_1 + 3;
-  *(uint32_t *)(param_1 + 2) = 0;
-  *(uint8_t *)(param_1 + 3) = 0;
-  return param_1;
+  *memoryAllocator = &SystemMemoryAllocatorReference;
+  memoryAllocator[1] = 0;
+  *(uint32_t *)(memoryAllocator + 2) = 0;
+  *memoryAllocator = &SystemMemoryRegionTemplateC;
+  memoryAllocator[1] = memoryAllocator + 3;
+  *(uint32_t *)(memoryAllocator + 2) = 0;
+  *(uint8_t *)(memoryAllocator + 3) = 0;
+  return memoryAllocator;
 }
 
 

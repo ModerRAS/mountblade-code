@@ -26611,7 +26611,15 @@ NetworkHandle InitializeNetworkConnectionContextManager(void)
 
 
 
-NetworkHandle FUN_180855cc9(void)
+/**
+ * @brief 返回网络连接错误代码
+ * 
+ * 该函数返回一个固定的网络连接错误代码(0x1c)，用于表示网络连接状态异常。
+ * 这是一个简单的错误代码返回函数。
+ * 
+ * @return NetworkHandle 错误代码 0x1c
+ */
+NetworkHandle ReturnNetworkConnectionErrorCode(void)
 
 {
   return 0x1c;
@@ -26697,7 +26705,15 @@ NetworkHandle ProcessNetworkConnectionValidation(longlong *connectionContext)
 
 
 
-NetworkHandle FUN_180855d06(void)
+/**
+ * @brief 验证网络连接上下文缓冲区状态
+ * 
+ * 该函数验证网络连接上下文的缓冲区状态，检查连接池的有效性。
+ * 它会验证缓冲区状态并返回验证结果。
+ * 
+ * @return NetworkHandle 验证结果，成功返回非零值，失败返回错误代码
+ */
+NetworkHandle ValidateNetworkConnectionContextBufferState(void)
 
 {
   int *pnetworkStatus1;
@@ -26772,7 +26788,15 @@ NetworkHandle FUN_180855d06(void)
 
 
 
-NetworkHandle FUN_180855e29(void)
+/**
+ * @brief 返回网络连接超时错误代码
+ * 
+ * 该函数返回一个固定的网络连接超时错误代码(0x1c)，用于表示网络连接超时。
+ * 这是一个简单的错误代码返回函数。
+ * 
+ * @return NetworkHandle 超时错误代码 0x1c
+ */
+NetworkHandle ReturnNetworkConnectionTimeoutErrorCode(void)
 
 {
   return 0x1c;
@@ -26780,7 +26804,17 @@ NetworkHandle FUN_180855e29(void)
 
 
 
-NetworkHandle FUN_180855e40(longlong connectionContext,longlong packetData)
+/**
+ * @brief 处理网络连接数据传输
+ * 
+ * 该函数处理网络连接的数据传输操作，管理连接上下文和数据包的传输。
+ * 它负责网络数据的发送和接收处理。
+ * 
+ * @param connectionContext 网络连接上下文
+ * @param packetData 数据包数据
+ * @return NetworkHandle 传输结果状态
+ */
+NetworkHandle ProcessNetworkConnectionDataTransfer(longlong connectionContext,longlong packetData)
 
 {
   longlong *plVar1;
@@ -31304,13 +31338,23 @@ NetworkHandle ClearNetworkBuffer(longlong connectionContext)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180859ba0(longlong connectionContext,longlong *packetData)
-void FUN_180859ba0(longlong connectionContext,longlong *packetData)
+/**
+ * @brief 处理网络连接数据包
+ * 
+ * 该函数负责处理网络连接中的数据包，包括状态检查、数据包验证和传输处理。
+ * 主要用于网络数据包的接收和处理流程。
+ * 
+ * @param connectionContext 网络连接上下文指针
+ * @param packetData 数据包数据指针
+ * 
+ * 注意：这是一个反编译的函数实现
+ */
+void ProcessNetworkConnectionPacket(longlong connectionContext, longlong *packetData)
 
 {
-  int *pnetworkStatus1;
-  NetworkHandle *networkPointer2;
-  longlong lVar3;
+  int *networkStatusPointer;
+  NetworkHandle *networkBufferPointer;
+  longlong packetDataValue;
   NetworkHandle *networkPointer4;
   int iVar5;
   ulonglong uVar6;
