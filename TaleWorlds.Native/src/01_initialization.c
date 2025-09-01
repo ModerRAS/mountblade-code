@@ -103,31 +103,115 @@ void* ResourceMemoryRegionDevelopment;            // 资源内存区域开发分
 void* ResourceMemoryRegionProduction;             // 资源内存区域生产分区
 void* ResourceSystemGlobalConstant;                // 资源系统全局常量
 void* ResourceDataBufferBackup;                   // 资源数据缓冲区备份区域
+/**
+ * @brief 资源数据表备份
+ */
 void* ResourceDataTableBackup;
+
+/**
+ * @brief 资源内存区域暂存区
+ */
 void* ResourceMemoryRegionStaging;
+
+/**
+ * @brief 资源数据表缓存
+ */
 void* ResourceDataTableCache;
+
+/**
+ * @brief 资源内存区域存档区
+ */
 void* ResourceMemoryRegionArchive;
+
+/**
+ * @brief 资源数据表临时区
+ */
 void* ResourceDataTableTemporary;
+
+/**
+ * @brief 资源入口点主函数
+ */
 void* ResourceEntryPointMain;
+
+/**
+ * @brief 资源内存区域遗留区
+ */
 void* ResourceMemoryRegionLegacy;
+
+/**
+ * @brief 资源内存区域未来扩展区
+ */
 void* ResourceMemoryRegionFuture;
+
+/**
+ * @brief 资源内存区域实验区
+ */
 void* ResourceMemoryRegionExperimental;
+
+/**
+ * @brief 资源内存区域已废弃区
+ */
 void* ResourceMemoryRegionDeprecated;
+
+/**
+ * @brief 资源系统状态标志
+ */
 int ResourceSystemStatusFlag;
+
+/**
+ * @brief 资源系统时间戳
+ */
 long long ResourceSystemTimestamp;
+
+/**
+ * @brief 资源内存区域热修复区
+ */
 void* ResourceMemoryRegionHotfix;
 
 // 函数: 系统初始化函数D - 数据表管理器初始化
 void* GameDataTableManagerInitializer;
+/**
+ * @brief 系统内存区域扩展A
+ */
 void* SystemMemoryRegionExpansionA;
+/**
+ * @brief 系统内存区域扩展B
+ */
 void* SystemMemoryRegionExpansionB;
 void* SystemDataTableEmergency;                  // 紧急系统数据表
+/**
+ * @brief 系统内存区域扩展C
+ */
 void* SystemMemoryRegionExpansionC;
+
+/**
+ * @brief 系统内存区域扩展D
+ */
 void* SystemMemoryRegionExpansionD;
+
+/**
+ * @brief 系统内存区域扩展E
+ */
 void* SystemMemoryRegionExpansionE;
+
+/**
+ * @brief 系统内存区域扩展F
+ */
 void* SystemMemoryRegionExpansionF;
+
+/**
+ * @brief 系统内存区域扩展G
+ */
 void* SystemMemoryRegionExpansionG;
+
+/**
+ * @brief 系统内存区域扩展H
+ */
 void* SystemMemoryRegionExpansionH;
+
+/**
+ * @brief 系统内存区域扩展I
+ */
 void* SystemMemoryRegionExpansionI;
 void* SystemDataTableHotfix;                     // 热修复系统数据表
 void* SystemMemoryRegionExpansionJ;
@@ -145,18 +229,67 @@ void* SystemMemoryRegionExpansionT;
 void* SystemMemoryRegionExpansionU;
 void* SystemMemoryRegionExpansionV;
 void* SystemMemoryRegionExpansionW;
+/**
+ * @brief 系统数据指针主指针
+ */
 void* SystemDataPointerMain;
+
+/**
+ * @brief 系统数据指针备份指针
+ */
 void* SystemDataPointerBackup;
+
+/**
+ * @brief 系统数据指针缓存指针
+ */
 void* SystemDataPointerCache;
+
+/**
+ * @brief 系统数据指针临时指针
+ */
 void* SystemDataPointerTemporary;
+
+/**
+ * @brief 系统数据指针保留指针
+ */
 void* SystemDataPointerReserved;
+
+/**
+ * @brief 系统数据指针安全指针
+ */
 void* SystemDataPointerSecure;
+/**
+ * @brief 系统数据表条目主条目
+ */
 void* SystemDataTableEntryMain;
+
+/**
+ * @brief 系统数据表条目备份条目
+ */
 void* SystemDataTableEntryBackup;
+
+/**
+ * @brief 系统状态标志主标志
+ */
 char SystemStatusFlagMain;
+
+/**
+ * @brief 系统状态标志备份标志
+ */
 char SystemStatusFlagBackup;
+
+/**
+ * @brief 系统状态标志缓存标志
+ */
 char SystemStatusFlagCache;
+
+/**
+ * @brief 系统状态标志临时标志
+ */
 char SystemStatusFlagTemporary;
+/**
+ * @brief 系统内存块主块
+ */
 void* SystemMemoryBlockMain;
 void* SystemMemoryBlockBackup;
 void* SystemMemoryBlockCache;
