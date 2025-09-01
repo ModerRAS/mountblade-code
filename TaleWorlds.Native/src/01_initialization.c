@@ -20971,7 +20971,7 @@ void system_process_game_logic_4(void)
   float system_temp_float_primary;
   float system_temp_float_secondary;
   uint8_t in_RDX;
-  bool bVar14;
+  bool system_boolean_flag_14;
   float system_float_;
   float system_float_;
   float system_float_;
@@ -20982,12 +20982,12 @@ void system_process_game_logic_4(void)
   
   system_context_data_handle = system_global_data_ptr;
   if ((*(int64_t *)(system_global_data_ptr + 0x7ab8) == 0) || (*(int *)(system_global_data_ptr + 0x540) < 1)) {
-    bVar14 = *(int *)(system_global_data_ptr + 0x2140) != 0;
+    system_boolean_flag_14 = *(int *)(system_global_data_ptr + 0x2140) != 0;
   }
   else {
-    bVar14 = false;
+    system_boolean_flag_14 = false;
   }
-  if (bVar14) {
+  if (system_boolean_flag_14) {
     system_float_ = (float)exp2f(system_global_data_ptr,in_RDX,system_thread_count,system_memory_size_array,0xfffffffffffffffe);
     if (*(char *)(system_context_ptr + 0x22d) == '\0') {
       system_context_data_handle = *(int64_t *)((int64_t)ThreadLocalStoragePointer + (uint64_t)__tls_index * 8);
@@ -22480,7 +22480,7 @@ void system_process_index_buffers_4(void)
   uint8_t *system_byte_pointer_d;
   char *psystem_char_var;
   int64_t *system_data_pointer;
-  bool bVar20;
+  bool system_boolean_flag_20;
   
   system_temp_unsigned_value = 0;
   system_context_data_handle = *(int64_t *)(system_context_ptr + 0x50);
@@ -22504,7 +22504,7 @@ void system_process_index_buffers_4(void)
             if (system_iteration_counter == 0) {
 system_label:
               if (system_memory_comparison_result != 0) goto system_label;
-              bVar20 = true;
+              system_boolean_flag_20 = true;
             }
             else {
               psystem_char_var = *(char **)(*(int64_t *)(system_context_data_handle + system_context_data_handle) + 8);
@@ -22515,16 +22515,16 @@ system_label:
                 if (system_initialization_status != system_temp_char_primary) break;
                 psystem_char_var = psystem_char_var + 1;
               } while (system_temp_char_primary != '\0');
-              bVar20 = system_initialization_status == system_temp_char_primary;
+              system_boolean_flag_20 = system_initialization_status == system_temp_char_primary;
             }
           }
           else {
             if (system_iteration_counter == 0) goto system_label;
 system_label:
-            bVar20 = false;
+            system_boolean_flag_20 = false;
           }
           system_iteration_counter = system_operation_result;
-          if (!bVar20) {
+          if (!system_boolean_flag_20) {
             system_iteration_counter = system_operation_result;
           }
           system_operation_result = system_operation_result + 1;
@@ -25290,7 +25290,7 @@ void system_process_event_queue_5(void)
   void* *system_context_ptr_17;
   uint8_t ******pppppsystem_context_ptr_19;
   uint *system_ptr_var_21;
-  bool bVar26;
+  bool system_boolean_flag_26;
   uint8_t* auStack_3b8 [32];
   void* *system_stack_byte_ptr;
   uint8_t* *system_stack_byte_ptr;
@@ -25485,13 +25485,13 @@ void system_process_event_queue_5(void)
                (ppppppsystem_context_ptr_14 != &ppppppuStack_360)) {
               system_generic_function(ppppppsystem_context_ptr_14);
             }
-            bVar26 = true;
+            system_boolean_flag_26 = true;
             ppppppsystem_context_ptr_14 = &ppppppuStack_360;
             ppppppsystem_context_ptr_1 = (uint8_t *******)ppppppuStack_350;
             while (ppppppsystem_context_ptr_1 != (uint8_t *******)0x0) {
-              bVar26 = *(int *)(ppppppsystem_context_ptr_1 + 6) != 0;
+              system_boolean_flag_26 = *(int *)(ppppppsystem_context_ptr_1 + 6) != 0;
               ppppppsystem_context_ptr_14 = ppppppsystem_context_ptr_1;
-              if (bVar26) {
+              if (system_boolean_flag_26) {
                 ppppppsystem_context_ptr_1 = (uint8_t *******)ppppppsystem_context_ptr_1[1];
               }
               else {
@@ -25500,7 +25500,7 @@ void system_process_event_queue_5(void)
             }
             system_context_data_handle = system_stack_storage;
             system_temp_int_primary = system_stack_varint_var;
-            if (bVar26) {
+            if (system_boolean_flag_26) {
               if (ppppppsystem_context_ptr_14 == (uint8_t *******)ppppppuStack_358) {
                 if ((ppppppsystem_context_ptr_14 != &ppppppuStack_360) && (*(int *)(ppppppsystem_context_ptr_14 + 6) == 0)) {
                   system_byte_operation_result = 1;
@@ -25604,7 +25604,7 @@ void system_process_event_queue_5(void)
     do {
       system_extended_data_ptr = (int64_t *)system_process_context_data(system_context_data_handle,&system_stack_byte_ptr,ppppppsystem_context_ptr_14 + 4);
       if (*system_extended_data_ptr != system_context_data_handle) {
-        bVar26 = false;
+        system_boolean_flag_26 = false;
         system_temp_unsigned_value = 0;
         system_context_data_handle = *(int64_t *)(system_context_data_handle + 0xc0);
         system_temp_unsigned_value = system_temp_unsigned_value;
@@ -25676,7 +25676,7 @@ void system_process_event_queue_5(void)
             system_context_data_handle = system_stack_storage;
             system_context_data_handle = system_stack_storage;
             if (*(int *)(ppppppsystem_context_ptr_14 + 6) == 0) {
-              bVar26 = true;
+              system_boolean_flag_26 = true;
               break;
             }
             system_temp_unsigned_value = (int)system_temp_unsigned_value + 1;
@@ -25686,7 +25686,7 @@ void system_process_event_queue_5(void)
           } while ((uint64_t)(int64_t)(int)system_temp_unsigned_value <
                    (uint64_t)(*(int64_t *)(system_stack_storage + 200) - system_context_data_handle >> 3));
         }
-        if (!bVar26) {
+        if (!system_boolean_flag_26) {
           system_temp_unsigned_value = system_process_context_data(&system_stack_uint_value,ppppppsystem_context_ptr_14 + 8);
           system_process_context_data(&system_stack_byte_ptr,system_temp_unsigned_value);
           system_stack_uint_value = &system_null_ptr;
@@ -29521,7 +29521,7 @@ int64_t system_process_context_data(int64_t system_context_ptr)
   uint *system_context_base;
   uint64_t *system_byte_system_pointer_c;
   uint64_t *context_current_ptr;
-  bool bVar12;
+  bool system_boolean_flag_12;
   char acStackX_8 [16];
   
   system_unsigned_result_value = GetCurrentThreadId();
@@ -29543,12 +29543,12 @@ int64_t system_process_context_data(int64_t system_context_ptr)
           if (*(int *)(context_current_ptr[1] + system_temp_unsigned_value * 0x10) == 0) {
             system_context_base = (uint *)(context_current_ptr[1] + system_temp_unsigned_value * 0x10);
             LOCK();
-            bVar12 = *system_context_base == 0;
-            if (bVar12) {
+            system_boolean_flag_12 = *system_context_base == 0;
+            if (system_boolean_flag_12) {
               *system_context_base = system_unsigned_result_value;
             }
             UNLOCK();
-            if (bVar12) {
+            if (system_boolean_flag_12) {
               *(int64_t *)(context_current_ptr[1] + 8 + system_temp_unsigned_value * 0x10) = system_context_data_handle;
             }
           }
@@ -29621,12 +29621,12 @@ int64_t system_process_context_data(int64_t system_context_ptr)
         if (*(int *)(context_current_ptr[1] + system_temp_unsigned_value * 0x10) == 0) {
           system_context_base = (uint *)(context_current_ptr[1] + system_temp_unsigned_value * 0x10);
           LOCK();
-          bVar12 = *system_context_base == 0;
-          if (bVar12) {
+          system_boolean_flag_12 = *system_context_base == 0;
+          if (system_boolean_flag_12) {
             *system_context_base = system_unsigned_result_value;
           }
           UNLOCK();
-          if (bVar12) {
+          if (system_boolean_flag_12) {
             *(int64_t *)(context_current_ptr[1] + 8 + system_temp_unsigned_value * 0x10) = system_context_data_handle;
           }
         }
@@ -29650,7 +29650,7 @@ int64_t system_process_context_data(void)
   uint64_t *system_byte_pointer_e;
   uint64_t *system_register_rdi;
   int system_register_r15d;
-  bool bVar10;
+  bool system_boolean_flag_10;
   char in_system_stack_var;
   
   LOCK();
@@ -29717,12 +29717,12 @@ int64_t system_process_context_data(void)
     if (*(int *)(system_register_rdi[1] + system_temp_unsigned_value * 0x10) == 0) {
       psystem_operation_result_3 = (int *)(system_register_rdi[1] + system_temp_unsigned_value * 0x10);
       LOCK();
-      bVar10 = *psystem_operation_result_3 == 0;
-      if (bVar10) {
+      system_boolean_flag_10 = *psystem_operation_result_3 == 0;
+      if (system_boolean_flag_10) {
         *psystem_operation_result_3 = system_register_r15d;
       }
       UNLOCK();
-      if (bVar10) {
+      if (system_boolean_flag_10) {
         *(int64_t *)(system_register_rdi[1] + 8 + system_temp_unsigned_value * 0x10) = system_temp_storage_value;
       }
     }
@@ -30421,13 +30421,13 @@ system_label:
         if (system_unsigned_counter_value != system_parameter_value_secondary) goto system_label;
         LOCK();
         system_temp_unsigned_value = *(uint64_t *)(system_context_data_handle + 0x28);
-        bVar26 = system_operation_result_15 == system_temp_unsigned_value;
-        if (bVar26) {
+        system_boolean_flag_26 = system_operation_result_15 == system_temp_unsigned_value;
+        if (system_boolean_flag_26) {
           *(uint64_t *)(system_context_data_handle + 0x28) = *(uint64_t *)(system_operation_result_15 + 0x138);
           system_temp_unsigned_value = system_operation_result_15;
         }
         UNLOCK();
-        if (bVar26) {
+        if (system_boolean_flag_26) {
           LOCK();
           *system_context_ptr_1 = *system_context_ptr_1 - 2;
           UNLOCK();
@@ -30444,13 +30444,13 @@ system_label:
             *system_context_ptr_1 = 1;
             LOCK();
             system_operation_result = *(uint64_t *)(system_context_data_handle + 0x28);
-            bVar26 = system_temp_unsigned_value == system_operation_result;
-            if (bVar26) {
+            system_boolean_flag_26 = system_temp_unsigned_value == system_operation_result;
+            if (system_boolean_flag_26) {
               *(uint64_t *)(system_context_data_handle + 0x28) = system_operation_result_15;
               system_operation_result = system_temp_unsigned_value;
             }
             UNLOCK();
-            if (bVar26) break;
+            if (system_boolean_flag_26) break;
             LOCK();
             system_unsigned_counter_value = *system_context_ptr_1;
             *system_context_ptr_1 = *system_context_ptr_1 + 0x7fffffff;
@@ -30523,7 +30523,7 @@ uint64_t system_manage_permission_system_5(void)
   uint *system_context_base;
   int64_t *system_config_data_ptr;
   uint64_t *system_ptr_var_20;
-  bool bVar21;
+  bool system_boolean_flag_21;
   
   system_temp_unsigned_value = *(uint64_t *)(system_context_ptr + 0x20);
   system_temp_unsigned_value = *(uint64_t *)(system_context_ptr + 0x40);
@@ -30628,13 +30628,13 @@ system_label:
       if (system_unsigned_counter_value != system_parameter_value_secondary) goto system_label;
       LOCK();
       system_temp_unsigned_value = *(uint64_t *)(system_context_base_value + 0x28);
-      bVar21 = system_operation_result == system_temp_unsigned_value;
-      if (bVar21) {
+      system_boolean_flag_21 = system_operation_result == system_temp_unsigned_value;
+      if (system_boolean_flag_21) {
         *(uint64_t *)(system_context_base_value + 0x28) = *(uint64_t *)(system_operation_result + 0x138);
         system_temp_unsigned_value = system_operation_result;
       }
       UNLOCK();
-      if (bVar21) {
+      if (system_boolean_flag_21) {
         LOCK();
         *system_context_base = *system_context_base - 2;
         UNLOCK();
@@ -30651,13 +30651,13 @@ system_label:
           *system_context_base = 1;
           LOCK();
           system_byte_operation_result_12 = *(uint64_t *)(system_context_base_value + 0x28);
-          bVar21 = system_operation_result_15 == system_byte_operation_result_12;
-          if (bVar21) {
+          system_boolean_flag_21 = system_operation_result_15 == system_byte_operation_result_12;
+          if (system_boolean_flag_21) {
             *(uint64_t *)(system_context_base_value + 0x28) = system_operation_result;
             system_byte_operation_result_12 = system_operation_result_15;
           }
           UNLOCK();
-          if (bVar21) break;
+          if (system_boolean_flag_21) break;
           LOCK();
           system_unsigned_counter_value = *system_context_base;
           *system_context_base = *system_context_base + 0x7fffffff;
@@ -30748,13 +30748,13 @@ system_label:
     if (system_unsigned_result_value != system_parameter_value_secondary) goto system_label;
     LOCK();
     system_context_base_value = *(int64_t *)(system_context_ptr + 0x28);
-    bVar10 = system_context_data_handle == system_context_base_value;
-    if (bVar10) {
+    system_boolean_flag_10 = system_context_data_handle == system_context_base_value;
+    if (system_boolean_flag_10) {
       *(int64_t *)(system_context_ptr + 0x28) = *(int64_t *)(system_context_data_handle + 0x138);
       system_context_base_value = system_context_data_handle;
     }
     UNLOCK();
-    if (bVar10) {
+    if (system_boolean_flag_10) {
       LOCK();
       *system_context_base = *system_context_base - 2;
       UNLOCK();
@@ -30772,13 +30772,13 @@ system_label:
         *system_context_base = 1;
         LOCK();
         system_temp_storage_value = *(int64_t *)(system_context_ptr + 0x28);
-        bVar10 = system_context_data_handle == system_temp_storage_value;
-        if (bVar10) {
+        system_boolean_flag_10 = system_context_data_handle == system_temp_storage_value;
+        if (system_boolean_flag_10) {
           *(int64_t *)(system_context_ptr + 0x28) = system_context_data_handle;
           system_temp_storage_value = system_context_data_handle;
         }
         UNLOCK();
-        if (bVar10) break;
+        if (system_boolean_flag_10) break;
         LOCK();
         system_unsigned_result_value = *system_context_base;
         *system_context_base = *system_context_base + 0x7fffffff;
@@ -30918,13 +30918,13 @@ code_r0x000180060327:
           system_primary_data_ptr = (int64_t *)(system_context_data_handle + 0x28);
           LOCK();
           system_context_base_value = *system_primary_data_ptr;
-          bVar12 = system_context_data_handle == system_context_base_value;
-          if (bVar12) {
+          system_boolean_flag_12 = system_context_data_handle == system_context_base_value;
+          if (system_boolean_flag_12) {
             *system_primary_data_ptr = system_temp_storage_value;
             system_context_base_value = system_context_data_handle;
           }
           UNLOCK();
-          if (bVar12) break;
+          if (system_boolean_flag_12) break;
           LOCK();
           system_context_int_pointer = (int *)(system_temp_storage_value + 0x130);
           system_memory_comparison_result = *system_context_int_pointer;
@@ -30955,7 +30955,7 @@ uint8_t system_process_context_data(uint8_t system_context_ptr,uint64_t system_c
 void system_configure_virtual_machine_5(void)
   int *system_context_int_system_pointer_var_1;
   int64_t *system_config_data_ptr;
-  bool bVar11;
+  bool system_boolean_flag_11;
   
   *system_context_ptr = &system_internal_status_flag_ptr_2fe200;
   system_parameter_value_secondary = system_context_ptr[4];
@@ -30978,13 +30978,13 @@ void system_configure_virtual_machine_5(void)
             system_config_data_ptr = (int64_t *)(system_context_base_value + 0x28);
             LOCK();
             system_temp_storage_value = *system_config_data_ptr;
-            bVar11 = system_context_data_handle == system_temp_storage_value;
-            if (bVar11) {
+            system_boolean_flag_11 = system_context_data_handle == system_temp_storage_value;
+            if (system_boolean_flag_11) {
               *system_config_data_ptr = system_context_data_handle;
               system_temp_storage_value = system_context_data_handle;
             }
             UNLOCK();
-            if (bVar11) break;
+            if (system_boolean_flag_11) break;
             LOCK();
             system_context_int_system_pointer_var_1 = (int *)(system_context_data_handle + 0x130);
             system_operation_result = *system_context_int_system_pointer_var_1;
@@ -31024,13 +31024,13 @@ system_label:
         system_config_data_ptr = (int64_t *)(system_context_base_value + 0x28);
         LOCK();
         system_temp_storage_value = *system_config_data_ptr;
-        bVar11 = system_context_data_handle == system_temp_storage_value;
-        if (bVar11) {
+        system_boolean_flag_11 = system_context_data_handle == system_temp_storage_value;
+        if (system_boolean_flag_11) {
           *system_config_data_ptr = system_context_data_handle;
           system_temp_storage_value = system_context_data_handle;
         }
         UNLOCK();
-        if (bVar11) break;
+        if (system_boolean_flag_11) break;
         LOCK();
         system_context_int_system_pointer_var_1 = (int *)(system_context_data_handle + 0x130);
         system_operation_result = *system_context_int_system_pointer_var_1;
@@ -35610,13 +35610,13 @@ void system_initialize_input_system_6(void)
             system_config_data_ptr = (int64_t *)(system_context_base_value + 0x28);
             LOCK();
             system_temp_storage_value = *system_config_data_ptr;
-            bVar11 = system_context_data_handle == system_temp_storage_value;
-            if (bVar11) {
+            system_boolean_flag_11 = system_context_data_handle == system_temp_storage_value;
+            if (system_boolean_flag_11) {
               *system_config_data_ptr = system_context_data_handle;
               system_temp_storage_value = system_context_data_handle;
             }
             UNLOCK();
-            if (bVar11) break;
+            if (system_boolean_flag_11) break;
             LOCK();
             system_context_int_system_pointer_var_1 = (int *)(system_context_data_handle + 0x130);
             system_operation_result = *system_context_int_system_pointer_var_1;
@@ -35653,13 +35653,13 @@ system_label:
         system_config_data_ptr = (int64_t *)(system_context_base_value + 0x28);
         LOCK();
         system_temp_storage_value = *system_config_data_ptr;
-        bVar11 = system_context_data_handle == system_temp_storage_value;
-        if (bVar11) {
+        system_boolean_flag_11 = system_context_data_handle == system_temp_storage_value;
+        if (system_boolean_flag_11) {
           *system_config_data_ptr = system_context_data_handle;
           system_temp_storage_value = system_context_data_handle;
         }
         UNLOCK();
-        if (bVar11) break;
+        if (system_boolean_flag_11) break;
         LOCK();
         system_context_int_system_pointer_var_1 = (int *)(system_context_data_handle + 0x130);
         system_operation_result = *system_context_int_system_pointer_var_1;
@@ -35691,8 +35691,8 @@ uint8_t * system_process_context_data(int64_t *system_context_ptr)
   uint8_t *system_next_context_ptr;
   uint8_t *system_context_ptr_11;
   uint8_t *system_context_ptr_15;
-  bool bVar16;
-  bool bVar17;
+  bool system_boolean_flag_16;
+  bool system_boolean_flag_17;
   
   system_unsigned_result_value = GetCurrentThreadId();
   system_operation_result = (system_unsigned_result_value >> 0x10 ^ system_unsigned_result_value) * -0x7a143595;
@@ -35714,12 +35714,12 @@ uint8_t * system_process_context_data(int64_t *system_context_ptr)
           if (*(int *)(context_current_ptr[1] + system_temp_unsigned_value * 0x10) == 0) {
             system_context_base = (uint *)(context_current_ptr[1] + system_temp_unsigned_value * 0x10);
             LOCK();
-            bVar17 = *system_context_base == 0;
-            if (bVar17) {
+            system_boolean_flag_17 = *system_context_base == 0;
+            if (system_boolean_flag_17) {
               *system_context_base = system_unsigned_result_value;
             }
             UNLOCK();
-            if (bVar17) {
+            if (system_boolean_flag_17) {
               *(uint8_t **)(context_current_ptr[1] + 8 + system_temp_unsigned_value * 0x10) = system_context_ptr_15;
             }
           }
@@ -35781,14 +35781,14 @@ uint8_t * system_process_context_data(int64_t *system_context_ptr)
   system_context_ptr_11 = (uint8_t *)*system_context_ptr;
   while (system_context_ptr_11 != (uint8_t *)0x0) {
     if ((*(char *)(system_context_ptr_11 + 2) != '\0') && (*(char *)(system_context_ptr_11 + 9) == '\0')) {
-      bVar17 = true;
+      system_boolean_flag_17 = true;
       LOCK();
-      bVar16 = *(char *)(system_context_ptr_11 + 2) == '\x01';
-      if (bVar16) {
+      system_boolean_flag_16 = *(char *)(system_context_ptr_11 + 2) == '\x01';
+      if (system_boolean_flag_16) {
         *(char *)(system_context_ptr_11 + 2) = '\0';
       }
       UNLOCK();
-      if (bVar16) goto system_label;
+      if (system_boolean_flag_16) goto system_label;
     }
     system_primary_data_ptr = system_context_ptr_11 + 1;
     system_context_ptr_11 = (uint8_t *)(*system_primary_data_ptr + -8);
@@ -35796,7 +35796,7 @@ uint8_t * system_process_context_data(int64_t *system_context_ptr)
       system_context_ptr_11 = system_context_ptr_15;
     }
   }
-  bVar17 = false;
+  system_boolean_flag_17 = false;
   system_next_context_ptr = (uint8_t *)system_process_context_data(system_global_data_ptr,0x68,10);
   system_context_ptr_11 = system_context_ptr_15;
   if (system_next_context_ptr != (uint8_t *)0x0) {
@@ -35827,15 +35827,15 @@ uint8_t * system_process_context_data(int64_t *system_context_ptr)
       system_next_context_ptr[1] = system_context_ptr_11;
       LOCK();
       system_context_data_handle = *system_context_ptr;
-      bVar16 = system_context_data_handle == system_context_data_handle;
-      if (bVar16) {
+      system_boolean_flag_16 = system_context_data_handle == system_context_data_handle;
+      if (system_boolean_flag_16) {
         *system_context_ptr = (int64_t)system_next_context_ptr;
         system_context_data_handle = system_context_data_handle;
       }
       UNLOCK();
       system_context_data_handle = system_context_data_handle;
       system_context_ptr_11 = system_next_context_ptr;
-    } while (!bVar16);
+    } while (!system_boolean_flag_16);
   }
 system_label:
   if (system_context_ptr_11 == (uint8_t *)0x0) {
@@ -35844,7 +35844,7 @@ system_label:
     UNLOCK();
     return (uint8_t *)0x0;
   }
-  if (bVar17) {
+  if (system_boolean_flag_17) {
     LOCK();
     system_context_ptr[7] = system_context_ptr[7] + -1;
     UNLOCK();
@@ -35854,12 +35854,12 @@ system_label:
     if (*(int *)(context_current_ptr[1] + system_temp_unsigned_value * 0x10) == 0) {
       system_context_base = (uint *)(context_current_ptr[1] + system_temp_unsigned_value * 0x10);
       LOCK();
-      bVar17 = *system_context_base == 0;
-      if (bVar17) {
+      system_boolean_flag_17 = *system_context_base == 0;
+      if (system_boolean_flag_17) {
         *system_context_base = system_unsigned_result_value;
       }
       UNLOCK();
-      if (bVar17) {
+      if (system_boolean_flag_17) {
         *(uint8_t **)(context_current_ptr[1] + 8 + system_temp_unsigned_value * 0x10) = system_context_ptr_11;
         return system_context_ptr_11;
       }
@@ -37307,13 +37307,13 @@ void system_process_transform_data_6(void)
             system_config_data_ptr = (int64_t *)(system_context_base_value + 0x28);
             LOCK();
             system_temp_storage_value = *system_config_data_ptr;
-            bVar11 = system_context_data_handle == system_temp_storage_value;
-            if (bVar11) {
+            system_boolean_flag_11 = system_context_data_handle == system_temp_storage_value;
+            if (system_boolean_flag_11) {
               *system_config_data_ptr = system_context_data_handle;
               system_temp_storage_value = system_context_data_handle;
             }
             UNLOCK();
-            if (bVar11) break;
+            if (system_boolean_flag_11) break;
             LOCK();
             system_context_int_system_pointer_var_1 = (int *)(system_context_data_handle + 0x3530);
             system_operation_result = *system_context_int_system_pointer_var_1;
@@ -37350,13 +37350,13 @@ system_label:
         system_config_data_ptr = (int64_t *)(system_context_base_value + 0x28);
         LOCK();
         system_temp_storage_value = *system_config_data_ptr;
-        bVar11 = system_context_data_handle == system_temp_storage_value;
-        if (bVar11) {
+        system_boolean_flag_11 = system_context_data_handle == system_temp_storage_value;
+        if (system_boolean_flag_11) {
           *system_config_data_ptr = system_context_data_handle;
           system_temp_storage_value = system_context_data_handle;
         }
         UNLOCK();
-        if (bVar11) break;
+        if (system_boolean_flag_11) break;
         LOCK();
         system_context_int_system_pointer_var_1 = (int *)(system_context_data_handle + 0x3530);
         system_operation_result = *system_context_int_system_pointer_var_1;
@@ -37408,12 +37408,12 @@ uint8_t * system_process_context_data(int64_t *system_context_ptr)
           if (*(int *)(context_current_ptr[1] + system_temp_unsigned_value * 0x10) == 0) {
             system_context_base = (uint *)(context_current_ptr[1] + system_temp_unsigned_value * 0x10);
             LOCK();
-            bVar17 = *system_context_base == 0;
-            if (bVar17) {
+            system_boolean_flag_17 = *system_context_base == 0;
+            if (system_boolean_flag_17) {
               *system_context_base = system_unsigned_result_value;
             }
             UNLOCK();
-            if (bVar17) {
+            if (system_boolean_flag_17) {
               *(uint8_t **)(context_current_ptr[1] + 8 + system_temp_unsigned_value * 0x10) = system_context_ptr_15;
             }
           }
@@ -37475,14 +37475,14 @@ uint8_t * system_process_context_data(int64_t *system_context_ptr)
   system_context_ptr_11 = (uint8_t *)*system_context_ptr;
   while (system_context_ptr_11 != (uint8_t *)0x0) {
     if ((*(char *)(system_context_ptr_11 + 2) != '\0') && (*(char *)(system_context_ptr_11 + 9) == '\0')) {
-      bVar17 = true;
+      system_boolean_flag_17 = true;
       LOCK();
-      bVar16 = *(char *)(system_context_ptr_11 + 2) == '\x01';
-      if (bVar16) {
+      system_boolean_flag_16 = *(char *)(system_context_ptr_11 + 2) == '\x01';
+      if (system_boolean_flag_16) {
         *(char *)(system_context_ptr_11 + 2) = '\0';
       }
       UNLOCK();
-      if (bVar16) goto system_label;
+      if (system_boolean_flag_16) goto system_label;
     }
     system_primary_data_ptr = system_context_ptr_11 + 1;
     system_context_ptr_11 = (uint8_t *)(*system_primary_data_ptr + -8);
@@ -37490,7 +37490,7 @@ uint8_t * system_process_context_data(int64_t *system_context_ptr)
       system_context_ptr_11 = system_context_ptr_15;
     }
   }
-  bVar17 = false;
+  system_boolean_flag_17 = false;
   system_next_context_ptr = (uint8_t *)system_process_context_data(system_global_data_ptr,0x68,10);
   system_context_ptr_11 = system_context_ptr_15;
   if (system_next_context_ptr != (uint8_t *)0x0) {
@@ -37521,15 +37521,15 @@ uint8_t * system_process_context_data(int64_t *system_context_ptr)
       system_next_context_ptr[1] = system_context_ptr_11;
       LOCK();
       system_context_data_handle = *system_context_ptr;
-      bVar16 = system_context_data_handle == system_context_data_handle;
-      if (bVar16) {
+      system_boolean_flag_16 = system_context_data_handle == system_context_data_handle;
+      if (system_boolean_flag_16) {
         *system_context_ptr = (int64_t)system_next_context_ptr;
         system_context_data_handle = system_context_data_handle;
       }
       UNLOCK();
       system_context_data_handle = system_context_data_handle;
       system_context_ptr_11 = system_next_context_ptr;
-    } while (!bVar16);
+    } while (!system_boolean_flag_16);
   }
 system_label:
   if (system_context_ptr_11 == (uint8_t *)0x0) {
@@ -37538,7 +37538,7 @@ system_label:
     UNLOCK();
     return (uint8_t *)0x0;
   }
-  if (bVar17) {
+  if (system_boolean_flag_17) {
     LOCK();
     system_context_ptr[7] = system_context_ptr[7] + -1;
     UNLOCK();
@@ -37548,12 +37548,12 @@ system_label:
     if (*(int *)(context_current_ptr[1] + system_temp_unsigned_value * 0x10) == 0) {
       system_context_base = (uint *)(context_current_ptr[1] + system_temp_unsigned_value * 0x10);
       LOCK();
-      bVar17 = *system_context_base == 0;
-      if (bVar17) {
+      system_boolean_flag_17 = *system_context_base == 0;
+      if (system_boolean_flag_17) {
         *system_context_base = system_unsigned_result_value;
       }
       UNLOCK();
-      if (bVar17) {
+      if (system_boolean_flag_17) {
         *(uint8_t **)(context_current_ptr[1] + 8 + system_temp_unsigned_value * 0x10) = system_context_ptr_11;
       }
     }
@@ -37816,13 +37816,13 @@ system_label:
     if (system_unsigned_result_value != system_parameter_value_secondary) goto system_label;
     LOCK();
     system_context_base_value = *(int64_t *)(system_context_ptr + 0x28);
-    bVar10 = system_context_data_handle == system_context_base_value;
-    if (bVar10) {
+    system_boolean_flag_10 = system_context_data_handle == system_context_base_value;
+    if (system_boolean_flag_10) {
       *(int64_t *)(system_context_ptr + 0x28) = *(int64_t *)(system_context_data_handle + 0x3538);
       system_context_base_value = system_context_data_handle;
     }
     UNLOCK();
-    if (bVar10) {
+    if (system_boolean_flag_10) {
       LOCK();
       *system_context_base = *system_context_base - 2;
       UNLOCK();
@@ -37840,13 +37840,13 @@ system_label:
         *system_context_base = 1;
         LOCK();
         system_temp_storage_value = *(int64_t *)(system_context_ptr + 0x28);
-        bVar10 = system_context_data_handle == system_temp_storage_value;
-        if (bVar10) {
+        system_boolean_flag_10 = system_context_data_handle == system_temp_storage_value;
+        if (system_boolean_flag_10) {
           *(int64_t *)(system_context_ptr + 0x28) = system_context_data_handle;
           system_temp_storage_value = system_context_data_handle;
         }
         UNLOCK();
-        if (bVar10) break;
+        if (system_boolean_flag_10) break;
         LOCK();
         system_unsigned_result_value = *system_context_base;
         *system_context_base = *system_context_base + 0x7fffffff;
@@ -37917,14 +37917,14 @@ uint64_t system_configure_projection_matrix_6(void)
             system_context_base = (uint64_t *)(system_temp_storage_value + 0x28);
             LOCK();
             system_temp_unsigned_value = *system_context_base;
-            bVar12 = system_temp_unsigned_value == system_temp_unsigned_value;
-            if (bVar12) {
+            system_boolean_flag_12 = system_temp_unsigned_value == system_temp_unsigned_value;
+            if (system_boolean_flag_12) {
               *system_context_base = system_iteration_counter_value;
               system_temp_unsigned_value = system_temp_unsigned_value;
             }
             UNLOCK();
             system_temp_byte_primary = system_temp_unsigned_value;
-            if (bVar12) break;
+            if (system_boolean_flag_12) break;
             LOCK();
             system_byte_system_pointer_c = (uint *)(system_iteration_counter_value + 0x3530);
             system_unsigned_counter_value = *system_byte_system_pointer_c;
@@ -39171,7 +39171,7 @@ uint64_t system_handle_audio_mixing_6(void)
   void* *system_byte_pointer_e;
   void* *system_context_ptr_11;
   uint8_t *system_context_ptr_14;
-  bool bVar15;
+  bool system_boolean_flag_15;
   byte bStackX_20;
   void* *system_stack_byte_ptr;
   uint8_t *system_stack_byte_ptr;
@@ -39192,7 +39192,7 @@ uint64_t system_handle_audio_mixing_6(void)
     if (system_offset_value != 0) {
       system_process_context_data(system_offset_value);
     }
-    bVar15 = true;
+    system_boolean_flag_15 = true;
     system_status_char = (**(code **)**(uint8_t **)(system_global_data_ptr + 0x18))();
     if ((system_status_char == '\0') && (system_operation_result = IsDebuggerPresent(), system_operation_result != 0)) {
       bVar3 = true;
@@ -39203,7 +39203,7 @@ uint64_t system_handle_audio_mixing_6(void)
     if (system_offset_value != 0) {
       system_operation_result = *(int *)(**(int64_t **)(system_offset_value + 8) + 0x48);
       system_temp_int_primary = _Thrd_id();
-      bVar15 = system_temp_int_primary == system_operation_result;
+      system_boolean_flag_15 = system_temp_int_primary == system_operation_result;
     }
     system_stack_byte_ptr = &system_null_ptr;
     system_stack_uint_value = 0;
@@ -39260,7 +39260,7 @@ uint64_t system_handle_audio_mixing_6(void)
       bStackX_20 = 1;
     }
     if (system_data_c82842 == '\0') {
-      if (bVar15) {
+      if (system_boolean_flag_15) {
         if (*(int64_t *)(system_global_data_ptr + 8) != 0) {
           system_process_context_data(*(int64_t *)(system_global_data_ptr + 8));
         }
@@ -39340,7 +39340,7 @@ uint64_t system_handle_audio_mixing_6(void)
     if (system_status_char != '\0') {
       system_global_data_ptr = 5;
     }
-    if ((system_data_c82842 == '\0') && (bVar15)) {
+    if ((system_data_c82842 == '\0') && (system_boolean_flag_15)) {
       if (*(int64_t *)(system_global_data_ptr + 8) != 0) {
         system_process_context_data();
       }
@@ -39402,21 +39402,21 @@ uint64_t system_manage_sound_resources_6(void)
   if (system_context_data_handle != 0) {
     system_process_context_data(system_context_data_handle);
   }
-  bVar14 = true;
+  system_boolean_flag_14 = true;
   system_char_result_3 = (**(code **)**(uint8_t **)(system_global_data_ptr + 0x18))();
   if ((system_char_result_3 == '\0') && (system_operation_result = IsDebuggerPresent(), system_operation_result != 0)) {
-    bVar15 = true;
+    system_boolean_flag_15 = true;
   }
   else {
-    bVar15 = false;
+    system_boolean_flag_15 = false;
   }
   if (system_context_data_handle != 0) {
     system_operation_result = *(int *)(**(int64_t **)(system_context_data_handle + 8) + 0x48);
     system_context_index = _Thrd_id();
-    bVar14 = system_context_index == system_operation_result;
+    system_boolean_flag_14 = system_context_index == system_operation_result;
   }
   system_context_ptr_12 = (void* *)0x0;
-  if (!bVar15) {
+  if (!system_boolean_flag_15) {
     system_temp_storage_value = system_process_context_data(&system_stack_byte_ptr,0);
     system_context_ptr_12 = *(void* **)(system_temp_storage_value + 8);
     *(uint32_t* *)(system_temp_storage_value + 0x10) = 0;
@@ -39456,7 +39456,7 @@ uint64_t system_manage_sound_resources_6(void)
   }
   OutputDebugStringA(system_context_ptr_10);
   system_process_context_data(system_config_array);
-  if ((system_data_c82860 != '\0') && (bVar15)) {
+  if ((system_data_c82860 != '\0') && (system_boolean_flag_15)) {
     if ((*(char *)(system_global_data_ptr + 0x25) == '\0') &&
        ((system_thread_count != '\0' && (*(int *)(system_global_data_ptr + 0x340) != 2)))) {
       system_temp_unsigned_value = 1;
@@ -39471,7 +39471,7 @@ uint64_t system_manage_sound_resources_6(void)
 system_label:
   if (*(int *)(system_global_data_ptr + 0x460) == 0) {
     if (system_data_c82842 == '\0') {
-      if (bVar14) {
+      if (system_boolean_flag_14) {
         if (*(int64_t *)(system_global_data_ptr + 8) != 0) {
           system_process_context_data(*(int64_t *)(system_global_data_ptr + 8));
         }
@@ -39496,9 +39496,9 @@ system_label:
       system_process_context_data(&system_memory_system_ptr_varh,system_config_array);
     }
     system_operation_result = system_process_context_data(system_config_array);
-    if ((!bVar15) && (system_operation_result == 0)) {
-      bVar15 = system_global_data_ptr == 0;
-      if (bVar15) {
+    if ((!system_boolean_flag_15) && (system_operation_result == 0)) {
+      system_boolean_flag_15 = system_global_data_ptr == 0;
+      if (system_boolean_flag_15) {
         system_temp_unsigned_value = 0;
         system_stack_byte_ptr = &system_null_ptr;
         system_stack_uint_value = 0;
@@ -39527,7 +39527,7 @@ system_label:
         system_byte_ptr_i = system_stack_byte_ptr;
       }
       system_temp_unsigned_value = system_process_context_data(&system_stack_byte_ptr,psystem_ptr_var_8);
-      if (bVar15) {
+      if (system_boolean_flag_15) {
         system_stack_byte_ptr = &system_null_ptr;
         if (system_byte_ptr_i != (uint8_t *)0x0) {
                     // WARNING: Subroutine does not return
@@ -39537,7 +39537,7 @@ system_label:
         system_stack_uint_value = system_stack_uint_value & 0xffffffff00000000;
         system_stack_byte_ptr = &system_null_ptr;
       }
-      if (!bVar15) {
+      if (!system_boolean_flag_15) {
         system_stack_byte_ptr = &system_null_ptr;
         if (system_stack_storage != 0) {
                     // WARNING: Subroutine does not return
@@ -39576,7 +39576,7 @@ system_label:
     if (system_char_result_3 != '\0') {
       system_global_data_ptr = 5;
     }
-    if ((system_data_c82842 == '\0') && (bVar14)) {
+    if ((system_data_c82842 == '\0') && (system_boolean_flag_14)) {
       if (*(int64_t *)(system_global_data_ptr + 8) != 0) {
         system_process_context_data();
       }
@@ -39720,7 +39720,7 @@ void system_initialize_network_layer_6(void)
   uint8_t* *system_context_ptr_10;
   uint8_t *system_context_ptr_11;
   uint8_t* *system_context_ptr_12;
-  byte bVar13;
+  byte system_boolean_flag_13;
   void* *system_context_ptr_18;
   uint8_t* auStack_188 [32];
   uint8_t* *system_stack_byte_ptr;
@@ -40057,11 +40057,11 @@ system_label:
   if (system_context_data_handle != 0) {
     system_process_context_data(system_context_data_handle);
   }
-  bVar13 = 1;
+  system_boolean_flag_13 = 1;
   cStack_11f = '\x01';
   system_char_result_3 = (**(code **)**(uint8_t **)(system_global_data_ptr + 0x18))();
   if ((system_char_result_3 != '\0') || (system_operation_result = IsDebuggerPresent(), system_operation_result == 0)) {
-    bVar13 = 0;
+    system_boolean_flag_13 = 0;
   }
   if (system_global_data_ptr == 0) {
     cStack_147 = '\0';
@@ -40091,7 +40091,7 @@ system_label:
   system_stack_uint_value = 0;
   system_stack_byte_ptr = (uint8_t* *)0x0;
   system_stack_uint_value = 0;
-  if (bVar13 == 0) {
+  if (system_boolean_flag_13 == 0) {
     system_context_data_handle = system_process_context_data(&system_stack_byte_ptr,0);
     system_stack_uint_value = *(uint *)(system_context_data_handle + 0x10);
     system_stack_byte_ptr = *(uint8_t* **)(system_context_data_handle + 8);
@@ -40128,7 +40128,7 @@ system_label:
   OutputDebugStringA(system_context_ptr_12);
   system_process_context_data(system_context_data_handle);
   if (system_data_c82860 != '\0') {
-    if (bVar13 != 0) {
+    if (system_boolean_flag_13 != 0) {
       if (((cStack_147 == '\0') && (system_param != '\0')) && (*(int *)(system_global_data_ptr + 0x340) != 2)) {
         system_stack_uint_value = 1;
       }
@@ -40191,7 +40191,7 @@ system_label:
       }
     } while (system_operation_result == 1);
     if (system_operation_result == 2) {
-      if (bVar13 == 0) {
+      if (system_boolean_flag_13 == 0) {
         system_context_ptr_12 = &system_data_value_bc73;
         if (system_context_ptr_10 != (uint8_t* *)0x0) {
           system_context_ptr_12 = system_context_ptr_10;
@@ -40279,7 +40279,7 @@ system_label:
   }
   system_byte_operation_result = system_process_context_data(system_context_ptr_18);
                     // WARNING: Subroutine does not return
-  system_process_context_data(system_global_data_ptr,&system_memory_system_ptr_varo,bVar13 ^ 1,system_byte_operation_result);
+  system_process_context_data(system_global_data_ptr,&system_memory_system_ptr_varo,system_boolean_flag_13 ^ 1,system_byte_operation_result);
 }
 
 
@@ -45090,12 +45090,12 @@ uint8_t system_process_context_data(int64_t system_context_ptr,int64_t system_co
               system_context_data_handle = system_process_context_data(system_global_data_ptr,0x2000,0x25);
               system_alternate_data_ptr = (int64_t *)(system_context_data_handle + 0x3f70 + system_operation_result * 8);
               LOCK();
-              bVar16 = *system_alternate_data_ptr == 0;
-              if (bVar16) {
+              system_boolean_flag_16 = *system_alternate_data_ptr == 0;
+              if (system_boolean_flag_16) {
                 *system_alternate_data_ptr = system_context_data_handle;
               }
               UNLOCK();
-              if (bVar16) {
+              if (system_boolean_flag_16) {
                 LOCK();
                 *(uint8_t* *)(system_operation_result + 0x48 + (int64_t)system_context_ptr_1) = 0;
                 UNLOCK();
@@ -45174,7 +45174,7 @@ void system_configure_language_settings_6(void)
 
 uint64_t system_handle_text_translation_6(void)
   float system_float_var_a;
-  byte bVar22;
+  byte system_boolean_flag_22;
   uint8_t *system_ptr_var_26;
   uint32_t* *system_ptr_var_29;
   uint *psystem_temp_unsigned_value;
@@ -45254,9 +45254,9 @@ system_label:
       if ((*(byte *)(system_context_ptr + 0xfe) & 4) == 0) {
         system_temp_unsigned_value = system_process_context_data(system_context_ptr,system_config_array);
         bVar31 = (char)system_temp_unsigned_value << 2;
-        bVar22 = bVar31 | *(byte *)(system_context_ptr + 0xfe) & 0xfb;
-        system_temp_unsigned_value = CONCAT71((int7)((uint64_t)system_temp_unsigned_value >> 8),bVar22);
-        *(byte *)(system_context_ptr + 0xfe) = bVar22;
+        system_boolean_flag_22 = bVar31 | *(byte *)(system_context_ptr + 0xfe) & 0xfb;
+        system_temp_unsigned_value = CONCAT71((int7)((uint64_t)system_temp_unsigned_value >> 8),system_boolean_flag_22);
+        *(byte *)(system_context_ptr + 0xfe) = system_boolean_flag_22;
         if ((bVar31 & 4) == 0) goto system_default_function_call;
       }
       system_iteration_counter_value = *(uint *)(*(int64_t *)(system_context_ptr + 0x1b8) + 0x388);
@@ -45488,8 +45488,8 @@ system_label:
       bVar31 = 1;
     }
     *(byte *)(system_context_ptr + 0xfd) = *(byte *)(system_context_ptr + 0xfd) & 0xfe | bVar31;
-    bVar22 = (byte)system_iteration_counter_value & 0x20;
-    if ((bVar22 != 0) && (bVar31 != 0)) {
+    system_boolean_flag_22 = (byte)system_iteration_counter_value & 0x20;
+    if ((system_boolean_flag_22 != 0) && (bVar31 != 0)) {
       *(uint8_t *)(system_context_ptr + 0x160) = system_stack_uint_value;
       *(uint8_t *)(system_context_ptr + 0x168) = system_stack_uint_value;
       *(uint8_t *)(system_context_ptr + 0x170) = system_stack_uint_value;
@@ -45502,7 +45502,7 @@ system_label:
     system_temp_unsigned_value = system_process_context_data(system_config_array,system_context_ptr,&system_stack_uint_value,system_memory_size_array,system_context_parameter);
     *(byte *)(system_context_ptr + 0xfd) = *(byte *)(system_context_ptr + 0xfd) & 0xfe;
     *(int *)(system_context_ptr + 0x1d0) = system_operation_result;
-    if (bVar22 != 0) {
+    if (system_boolean_flag_22 != 0) {
       *(uint8_t *)(system_context_ptr + 0x160) = system_stack_uint_value;
       *(uint8_t *)(system_context_ptr + 0x168) = system_stack_uint_value;
       *(uint8_t *)(system_context_ptr + 0x170) = system_stack_uint_value;
@@ -45521,7 +45521,7 @@ system_label:
 
 
 void system_manage_locale_data_6(void)
-  byte bVar29;
+  byte system_boolean_flag_29;
   byte bVar30;
   uint32_t* *psystem_temp_unsigned_value;
   uint *psystem_temp_unsigned_value;
@@ -45614,15 +45614,15 @@ void system_manage_locale_data_6(void)
     system_context_data_handle = system_generic_function(*(uint8_t *)(unaff_RBX + 0x1b0));
   }
   system_context_data_handle = *(int64_t *)(unaff_RBX + 0x1b8);
-  bVar29 = *(byte *)(system_context_data_handle + 0x38c);
-  if (bVar29 == 9) {
-    bVar29 = system_generic_function();
-    *(byte *)(system_context_data_handle + 0x38c) = bVar29;
+  system_boolean_flag_29 = *(byte *)(system_context_data_handle + 0x38c);
+  if (system_boolean_flag_29 == 9) {
+    system_boolean_flag_29 = system_generic_function();
+    *(byte *)(system_context_data_handle + 0x38c) = system_boolean_flag_29;
   }
   system_context_data_handle = in_system_stack_var;
   system_context_data_handle = *(int64_t *)(system_context_data_handle + 0x1e0);
-  *psystem_temp_unsigned_value = *(uint8_t *)(system_context_data_handle + (uint64_t)bVar29 * 0x18);
-  psystem_temp_unsigned_value[1] = *(uint8_t *)(system_context_data_handle + 8 + (uint64_t)bVar29 * 0x18);
+  *psystem_temp_unsigned_value = *(uint8_t *)(system_context_data_handle + (uint64_t)system_boolean_flag_29 * 0x18);
+  psystem_temp_unsigned_value[1] = *(uint8_t *)(system_context_data_handle + 8 + (uint64_t)system_boolean_flag_29 * 0x18);
   *(uint32_t* *)(in_system_stack_var + 2) = *(uint32_t* *)(*(int64_t *)(unaff_RBX + 600) + 0x2c);
   *(uint32_t* *)((int64_t)in_system_stack_var + 0x14) =
        *(uint32_t* *)(*(int64_t *)(unaff_RBX + 600) + 0x4c);
@@ -45752,7 +45752,7 @@ void system_manage_locale_data_6(void)
   system_temp_unsigned_value = in_system_stack_var;
   system_temp_unsigned_value = in_system_stack_var;
   system_temp_unsigned_value = in_system_stack_var;
-  bVar29 = *(byte *)(system_context_data_handle + 0x1bd8);
+  system_boolean_flag_29 = *(byte *)(system_context_data_handle + 0x1bd8);
   system_operation_result = *(int *)(system_global_data_ptr + 0x224);
   if (((*(byte *)(unaff_RBX + 0xfd) & 1) == 0) &&
      ((*(int *)(unaff_RBX + 0x1d0) == system_operation_result || (*(int *)(unaff_RBX + 0x1d0) == system_operation_result + -1)))) {
@@ -45762,8 +45762,8 @@ void system_manage_locale_data_6(void)
     bVar30 = 1;
   }
   *(byte *)(unaff_RBX + 0xfd) = *(byte *)(unaff_RBX + 0xfd) & 0xfe | bVar30;
-  bVar29 = bVar29 & 0x20;
-  if ((bVar29 != 0) && (bVar30 != 0)) {
+  system_boolean_flag_29 = system_boolean_flag_29 & 0x20;
+  if ((system_boolean_flag_29 != 0) && (bVar30 != 0)) {
     *(uint8_t *)(unaff_RBX + 0x160) = in_system_stack_var;
     *(uint8_t *)(unaff_RBX + 0x168) = in_system_stack_var;
     *(uint8_t *)(unaff_RBX + 0x170) = in_system_stack_var;
@@ -45776,7 +45776,7 @@ void system_manage_locale_data_6(void)
   system_process_context_data(system_context_data_handle);
   *(byte *)(unaff_RBX + 0xfd) = *(byte *)(unaff_RBX + 0xfd) & 0xfe;
   *(int *)(unaff_RBX + 0x1d0) = system_operation_result;
-  if (bVar29 != 0) {
+  if (system_boolean_flag_29 != 0) {
     *(uint8_t *)(unaff_RBX + 0x160) = system_temp_unsigned_value;
     *(uint8_t *)(unaff_RBX + 0x168) = system_temp_unsigned_value;
     *(uint8_t *)(unaff_RBX + 0x170) = system_temp_unsigned_value;
@@ -45984,8 +45984,8 @@ void system_process_string_resources_6(void)
 
 
 void system_initialize_mod_support_6(void)
-  byte bVar27;
-  byte bVar28;
+  byte system_boolean_flag_27;
+  byte system_boolean_flag_28;
   float *unaff_RSI;
   
   if (!in_ZF) {
@@ -46039,18 +46039,18 @@ void system_initialize_mod_support_6(void)
   system_temp_unsigned_value = in_system_stack_var;
   system_temp_unsigned_value = in_system_stack_var;
   system_temp_unsigned_value = in_system_stack_var;
-  bVar28 = *(byte *)(unaff_R13 + 0x1bd8);
+  system_boolean_flag_28 = *(byte *)(unaff_R13 + 0x1bd8);
   system_iteration_counter = *(int *)(system_global_data_ptr + 0x224);
   if (((*(byte *)(unaff_RBX + 0xfd) & 1) == 0) &&
      ((*(int *)(unaff_RBX + 0x1d0) == system_iteration_counter || (*(int *)(unaff_RBX + 0x1d0) == system_iteration_counter + -1)))) {
-    bVar27 = 0;
+    system_boolean_flag_27 = 0;
   }
   else {
-    bVar27 = 1;
+    system_boolean_flag_27 = 1;
   }
-  *(byte *)(unaff_RBX + 0xfd) = *(byte *)(unaff_RBX + 0xfd) & 0xfe | bVar27;
-  bVar28 = bVar28 & 0x20;
-  if ((bVar28 != 0) && (bVar27 != 0)) {
+  *(byte *)(unaff_RBX + 0xfd) = *(byte *)(unaff_RBX + 0xfd) & 0xfe | system_boolean_flag_27;
+  system_boolean_flag_28 = system_boolean_flag_28 & 0x20;
+  if ((system_boolean_flag_28 != 0) && (system_boolean_flag_27 != 0)) {
     *(uint8_t *)(unaff_RBX + 0x160) = in_system_stack_var;
     *(uint8_t *)(unaff_RBX + 0x168) = in_system_stack_var;
     *(uint8_t *)(unaff_RBX + 0x170) = in_system_stack_var;
@@ -46063,7 +46063,7 @@ void system_initialize_mod_support_6(void)
   system_process_context_data();
   *(byte *)(unaff_RBX + 0xfd) = *(byte *)(unaff_RBX + 0xfd) & 0xfe;
   *(int *)(unaff_RBX + 0x1d0) = system_iteration_counter;
-  if (bVar28 != 0) {
+  if (system_boolean_flag_28 != 0) {
     *(uint8_t *)(unaff_RBX + 0x160) = system_temp_unsigned_value;
     *(uint8_t *)(unaff_RBX + 0x168) = system_temp_unsigned_value;
     *(uint8_t *)(unaff_RBX + 0x170) = system_temp_unsigned_value;
@@ -46145,18 +46145,18 @@ void system_configure_plugin_interface_6(void)
   system_temp_unsigned_value = in_system_stack_var;
   system_temp_unsigned_value = in_system_stack_var;
   system_temp_unsigned_value = in_system_stack_var;
-  bVar28 = *(byte *)(unaff_R13 + 0x1bd8);
+  system_boolean_flag_28 = *(byte *)(unaff_R13 + 0x1bd8);
   system_iteration_counter = *(int *)(system_global_data_ptr + 0x224);
   if (((*(byte *)(unaff_RBX + 0xfd) & 1) == 0) &&
      ((*(int *)(unaff_RBX + 0x1d0) == system_iteration_counter || (*(int *)(unaff_RBX + 0x1d0) == system_iteration_counter + -1)))) {
-    bVar27 = 0;
+    system_boolean_flag_27 = 0;
   }
   else {
-    bVar27 = 1;
+    system_boolean_flag_27 = 1;
   }
-  *(byte *)(unaff_RBX + 0xfd) = *(byte *)(unaff_RBX + 0xfd) & 0xfe | bVar27;
-  bVar28 = bVar28 & 0x20;
-  if ((bVar28 != 0) && (bVar27 != 0)) {
+  *(byte *)(unaff_RBX + 0xfd) = *(byte *)(unaff_RBX + 0xfd) & 0xfe | system_boolean_flag_27;
+  system_boolean_flag_28 = system_boolean_flag_28 & 0x20;
+  if ((system_boolean_flag_28 != 0) && (system_boolean_flag_27 != 0)) {
     *(uint8_t *)(unaff_RBX + 0x160) = in_system_stack_var;
     *(uint8_t *)(unaff_RBX + 0x168) = in_system_stack_var;
     *(uint8_t *)(unaff_RBX + 0x170) = in_system_stack_var;
@@ -46169,7 +46169,7 @@ void system_configure_plugin_interface_6(void)
   system_process_context_data();
   *(byte *)(unaff_RBX + 0xfd) = *(byte *)(unaff_RBX + 0xfd) & 0xfe;
   *(int *)(unaff_RBX + 0x1d0) = system_iteration_counter;
-  if (bVar28 != 0) {
+  if (system_boolean_flag_28 != 0) {
     *(uint8_t *)(unaff_RBX + 0x160) = system_temp_unsigned_value;
     *(uint8_t *)(unaff_RBX + 0x168) = system_temp_unsigned_value;
     *(uint8_t *)(unaff_RBX + 0x170) = system_temp_unsigned_value;
@@ -46198,18 +46198,18 @@ void system_handle_mod_loading_6(void)
   system_unsigned_counter_value = in_system_stack_var;
   system_parameter_value_secondary = in_system_stack_var;
   system_parameter_value_primary = in_system_stack_var;
-  bVar11 = *(byte *)(unaff_R13 + 0x1bd8);
+  system_boolean_flag_11 = *(byte *)(unaff_R13 + 0x1bd8);
   system_operation_result = *(int *)(system_global_data_ptr + 0x224);
   if (((*(byte *)(unaff_RBX + 0xfd) & 1) == 0) &&
      ((*(int *)(unaff_RBX + 0x1d0) == system_operation_result || (*(int *)(unaff_RBX + 0x1d0) == system_operation_result + -1)))) {
-    bVar10 = 0;
+    system_boolean_flag_10 = 0;
   }
   else {
-    bVar10 = 1;
+    system_boolean_flag_10 = 1;
   }
-  *(byte *)(unaff_RBX + 0xfd) = *(byte *)(unaff_RBX + 0xfd) & 0xfe | bVar10;
-  bVar11 = bVar11 & 0x20;
-  if ((bVar11 != 0) && (bVar10 != 0)) {
+  *(byte *)(unaff_RBX + 0xfd) = *(byte *)(unaff_RBX + 0xfd) & 0xfe | system_boolean_flag_10;
+  system_boolean_flag_11 = system_boolean_flag_11 & 0x20;
+  if ((system_boolean_flag_11 != 0) && (system_boolean_flag_10 != 0)) {
     *(uint8_t *)(unaff_RBX + 0x160) = in_system_stack_var;
     *(uint8_t *)(unaff_RBX + 0x168) = in_system_stack_var;
     *(uint8_t *)(unaff_RBX + 0x170) = in_system_stack_var;
@@ -46222,7 +46222,7 @@ void system_handle_mod_loading_6(void)
   system_process_context_data();
   *(byte *)(unaff_RBX + 0xfd) = *(byte *)(unaff_RBX + 0xfd) & 0xfe;
   *(int *)(unaff_RBX + 0x1d0) = system_operation_result;
-  if (bVar11 != 0) {
+  if (system_boolean_flag_11 != 0) {
     *(uint8_t *)(unaff_RBX + 0x160) = system_parameter_value_primary;
     *(uint8_t *)(unaff_RBX + 0x168) = system_parameter_value_secondary;
     *(uint8_t *)(unaff_RBX + 0x170) = system_unsigned_counter_value;
@@ -46247,18 +46247,18 @@ uint8_t* system_process_context_data(void)
 
 uint64_t system_manage_mod_dependencies_6(void)
   char system_status_flag9;
-  byte bVar23;
+  byte system_boolean_flag_23;
   
   system_context_data_handle = *(int64_t *)(system_context_ptr + 0x1b8);
   if (system_context_data_handle != 0) {
-    bVar23 = *(byte *)(system_context_ptr + 0xfd) & 0x20;
+    system_boolean_flag_23 = *(byte *)(system_context_ptr + 0xfd) & 0x20;
     system_context_data_handle = system_context_ptr;
-    if (bVar23 == 0) {
+    if (system_boolean_flag_23 == 0) {
       system_context_data_handle = system_generic_function(*(uint8_t *)(system_context_ptr + 0x1b0));
     }
     if (*(int *)(system_context_data_handle + 0x200) != 0) {
       system_context_data_handle = system_context_ptr;
-      if (bVar23 == 0) {
+      if (system_boolean_flag_23 == 0) {
         system_context_data_handle = system_generic_function(*(uint8_t *)(system_context_ptr + 0x1b0));
       }
       if (*(int *)(system_context_data_handle + 0x1fc) * 3 != 0) goto system_label;
@@ -46454,7 +46454,7 @@ void system_handle_resource_allocation_7(void)
   }
   if (*(int64_t *)(system_context_data_handle + 0x1b8) == 0) {
 system_label:
-    bVar10 = (*(byte *)(system_context_ptr + 0xfd) & 2) != 0;
+    system_boolean_flag_10 = (*(byte *)(system_context_ptr + 0xfd) & 2) != 0;
   }
   else {
     system_temp_unsigned_value = *(uint *)(*(int64_t *)(system_context_data_handle + 0x1b8) + 0x138);
@@ -46462,9 +46462,9 @@ system_label:
       system_temp_char_secondary = '\0';
     }
     if ((system_temp_unsigned_value & 0x10) == 0) goto system_label;
-    bVar10 = (*(byte *)(system_context_ptr + 0xfd) & 2) == 0;
+    system_boolean_flag_10 = (*(byte *)(system_context_ptr + 0xfd) & 2) == 0;
   }
-  system_temp_char_secondary = bVar10 + '\x01';
+  system_temp_char_secondary = system_boolean_flag_10 + '\x01';
 system_label:
   *(char *)(system_context_ptr + 0xff) = system_temp_char_secondary;
   system_context_data_handle = *(int64_t *)(system_context_ptr + 0x1b8);
@@ -48538,7 +48538,7 @@ void system_process_performance_metrics_7(void)
   uint *system_context_ptr_15;
   uint32_t* *system_ptr_var_20;
   uint *system_ptr_var_21;
-  bool bVar24;
+  bool system_boolean_flag_24;
   
   system_context_offset = *(int64_t *)(unaff_RBX + 600);
   if (*(int *)(system_context_offset + 0x28) != *(int *)(system_global_data_ptr + 0x224)) {
@@ -48658,12 +48658,12 @@ void system_process_performance_metrics_7(void)
               if (*(int64_t *)system_ptr_var_21 == 0) {
                 system_context_data_handle = system_process_context_data(system_global_data_ptr,0x2000,0x25);
                 LOCK();
-                bVar24 = *(int64_t *)(system_context_ptr_15 + (int64_t)system_operation_result * 2 + 2) == 0;
-                if (bVar24) {
+                system_boolean_flag_24 = *(int64_t *)(system_context_ptr_15 + (int64_t)system_operation_result * 2 + 2) == 0;
+                if (system_boolean_flag_24) {
                   *(int64_t *)(system_context_ptr_15 + (int64_t)system_operation_result * 2 + 2) = system_context_data_handle;
                 }
                 UNLOCK();
-                if (bVar24) {
+                if (system_boolean_flag_24) {
                   LOCK();
                   *(uint8_t* *)((int64_t)system_operation_result + 0x108 + (int64_t)system_context_ptr_15) = 0;
                   UNLOCK();
@@ -48997,13 +48997,13 @@ float * system_process_context_data(float *system_context_ptr)
       while( true ) {
         LOCK();
         system_temp_char_secondary = *(char *)(system_float_ptr_quaternary + 0x3b);
-        bVar10 = system_temp_char_secondary == '\0';
-        if (bVar10) {
+        system_boolean_flag_10 = system_temp_char_secondary == '\0';
+        if (system_boolean_flag_10) {
           *(char *)(system_float_ptr_quaternary + 0x3b) = '\x01';
           system_temp_char_secondary = '\0';
         }
         UNLOCK();
-        if (bVar10) break;
+        if (system_boolean_flag_10) break;
         system_temp_float_factor = (float)_Thrd_id();
         if ((system_float_ptr_quaternary[0x3c] == system_temp_float_factor) || (system_float_ptr_quaternary[0x3c] != 0.0)) goto system_label;
         Sleep();
@@ -50281,12 +50281,12 @@ uint64_t system_process_data_synchronization_7(void)
     }
   }
   LOCK();
-  bVar15 = *(char *)((int64_t)psystem_temp_long_primary + 0x15) == '\0';
-  if (bVar15) {
+  system_boolean_flag_15 = *(char *)((int64_t)psystem_temp_long_primary + 0x15) == '\0';
+  if (system_boolean_flag_15) {
     *(char *)((int64_t)psystem_temp_long_primary + 0x15) = '\x01';
   }
   UNLOCK();
-  if (!bVar15) goto system_label;
+  if (!system_boolean_flag_15) goto system_label;
   system_context_base_value = system_context_ptr;
   if ((*(byte *)(system_context_ptr + 0xfd) & 0x20) == 0) {
     system_context_base_value = system_generic_function(*(uint8_t *)(system_context_ptr + 0x1b0));
@@ -53418,12 +53418,12 @@ void system_configure_shader_parameters_7(void)
               if (*(int64_t *)system_ptr_var_20 == 0) {
                 system_context_data_handle = system_process_context_data(system_global_data_ptr,0x2000,0x25);
                 LOCK();
-                bVar23 = *(int64_t *)(system_context_ptr_14 + (int64_t)system_operation_result * 2 + 2) == 0;
-                if (bVar23) {
+                system_boolean_flag_23 = *(int64_t *)(system_context_ptr_14 + (int64_t)system_operation_result * 2 + 2) == 0;
+                if (system_boolean_flag_23) {
                   *(int64_t *)(system_context_ptr_14 + (int64_t)system_operation_result * 2 + 2) = system_context_data_handle;
                 }
                 UNLOCK();
-                if (bVar23) {
+                if (system_boolean_flag_23) {
                   LOCK();
                   *(uint8_t* *)((int64_t)system_operation_result + 0x108 + (int64_t)system_context_ptr_14) = 0;
                   UNLOCK();
@@ -53605,12 +53605,12 @@ void system_handle_buffer_operations_7(void)
             if (*(int64_t *)system_ptr_var_20 == 0) {
               system_context_data_handle = system_process_context_data(system_global_data_ptr,0x2000,0x25);
               LOCK();
-              bVar23 = *(int64_t *)(system_context_ptr_14 + (int64_t)system_operation_result * 2 + 2) == 0;
-              if (bVar23) {
+              system_boolean_flag_23 = *(int64_t *)(system_context_ptr_14 + (int64_t)system_operation_result * 2 + 2) == 0;
+              if (system_boolean_flag_23) {
                 *(int64_t *)(system_context_ptr_14 + (int64_t)system_operation_result * 2 + 2) = system_context_data_handle;
               }
               UNLOCK();
-              if (bVar23) {
+              if (system_boolean_flag_23) {
                 LOCK();
                 *(uint8_t* *)((int64_t)system_operation_result + 0x108 + (int64_t)system_context_ptr_14) = 0;
                 UNLOCK();
@@ -53786,12 +53786,12 @@ void system_manage_vertex_data_7(void)
           if (*(int64_t *)system_ptr_var_20 == 0) {
             system_context_data_handle = system_process_context_data(system_global_data_ptr,0x2000,0x25);
             LOCK();
-            bVar23 = *(int64_t *)(system_context_ptr_14 + (int64_t)system_operation_result * 2 + 2) == 0;
-            if (bVar23) {
+            system_boolean_flag_23 = *(int64_t *)(system_context_ptr_14 + (int64_t)system_operation_result * 2 + 2) == 0;
+            if (system_boolean_flag_23) {
               *(int64_t *)(system_context_ptr_14 + (int64_t)system_operation_result * 2 + 2) = system_context_data_handle;
             }
             UNLOCK();
-            if (bVar23) {
+            if (system_boolean_flag_23) {
               LOCK();
               *(uint8_t* *)((int64_t)system_operation_result + 0x108 + (int64_t)system_context_ptr_14) = 0;
               UNLOCK();
@@ -53952,12 +53952,12 @@ void system_process_index_buffers_7(void)
         if (*(int64_t *)system_context_ptr_19 == 0) {
           system_context_data_handle = system_process_context_data(system_global_data_ptr,0x2000,0x25);
           LOCK();
-          bVar21 = *(int64_t *)(system_context_ptr_14 + (int64_t)system_operation_result * 2 + 2) == 0;
-          if (bVar21) {
+          system_boolean_flag_21 = *(int64_t *)(system_context_ptr_14 + (int64_t)system_operation_result * 2 + 2) == 0;
+          if (system_boolean_flag_21) {
             *(int64_t *)(system_context_ptr_14 + (int64_t)system_operation_result * 2 + 2) = system_context_data_handle;
           }
           UNLOCK();
-          if (bVar21) {
+          if (system_boolean_flag_21) {
             LOCK();
             *(uint8_t* *)((int64_t)system_operation_result + 0x108 + (int64_t)system_context_ptr_14) = 0;
             UNLOCK();
@@ -54118,12 +54118,12 @@ void system_initialize_texture_manager_7(void)
         if (*(int64_t *)system_context_ptr_19 == 0) {
           system_context_data_handle = system_process_context_data(system_global_data_ptr,0x2000,0x25);
           LOCK();
-          bVar21 = *(int64_t *)(system_context_ptr_13 + (int64_t)system_operation_result * 2 + 2) == 0;
-          if (bVar21) {
+          system_boolean_flag_21 = *(int64_t *)(system_context_ptr_13 + (int64_t)system_operation_result * 2 + 2) == 0;
+          if (system_boolean_flag_21) {
             *(int64_t *)(system_context_ptr_13 + (int64_t)system_operation_result * 2 + 2) = system_context_data_handle;
           }
           UNLOCK();
-          if (bVar21) {
+          if (system_boolean_flag_21) {
             LOCK();
             *(uint8_t* *)((int64_t)system_operation_result + 0x108 + (int64_t)system_context_ptr_13) = 0;
             UNLOCK();
@@ -54198,12 +54198,12 @@ void system_configure_mipmap_generation_7(void)
       if (*(int64_t *)system_next_context_ptr == 0) {
         system_context_data_handle = system_process_context_data(system_global_data_ptr,0x2000,0x25);
         LOCK();
-        bVar12 = *(int64_t *)(unaff_RBP + (int64_t)system_int_var_9 * 2 + 2) == 0;
-        if (bVar12) {
+        system_boolean_flag_12 = *(int64_t *)(unaff_RBP + (int64_t)system_int_var_9 * 2 + 2) == 0;
+        if (system_boolean_flag_12) {
           *(int64_t *)(unaff_RBP + (int64_t)system_int_var_9 * 2 + 2) = system_context_data_handle;
         }
         UNLOCK();
-        if (bVar12) {
+        if (system_boolean_flag_12) {
           LOCK();
           *(uint8_t* *)((int64_t)system_int_var_9 + 0x108 + (int64_t)unaff_RBP) = 0;
           UNLOCK();
