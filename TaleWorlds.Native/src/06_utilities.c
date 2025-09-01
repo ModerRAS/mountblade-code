@@ -37066,7 +37066,21 @@ void ReleaseSystemDataStructures(uint8_t ObjectContextParameter, int64_t Validat
 
 
 
-void Unwind_180903970(uint8_t ObjectContextParameter,int64_t ValidationContextParameter,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 使用指定参数清理资源
+ * 
+ * 该函数负责使用提供的参数清理系统资源
+ * 执行资源释放操作并重置相关数据结构
+ * 
+ * @param ObjectContextParameter 对象上下文参数，指定要清理的资源对象
+ * @param ValidationContextParameter 验证上下文参数，包含验证信息的数据结构
+ * @param CleanupOption 清理选项，控制清理行为的具体参数
+ * @param CleanupFlag 清理标志，指定清理操作的标志位
+ * @return 无返回值
+ * @note 此函数会清理指定的系统资源并重置相关数据结构
+ * @warning 调用此函数后，被清理的资源将不再可用
+ */
+void CleanupResourceWithParameters(uint8_t ObjectContextParameter,int64_t ValidationContextParameter,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
@@ -37096,7 +37110,21 @@ void Unwind_180903970(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 
 
 
-void Unwind_180903990(uint8_t ObjectContextParameter,int64_t ValidationContextParameter,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 带验证的资源清理函数
+ * 
+ * 该函数负责在清理资源之前进行验证操作
+ * 确保资源的状态符合清理条件，然后执行清理
+ * 
+ * @param ObjectContextParameter 对象上下文参数，指定要清理的资源对象
+ * @param ValidationContextParameter 验证上下文参数，包含验证信息的数据结构
+ * @param CleanupOption 清理选项，控制清理行为的具体参数
+ * @param CleanupFlag 清理标志，指定清理操作的标志位
+ * @return 无返回值
+ * @note 此函数会在清理前验证资源状态
+ * @warning 只有验证通过的资源才会被清理
+ */
+void CleanupResourceWithValidation(uint8_t ObjectContextParameter,int64_t ValidationContextParameter,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
@@ -37126,7 +37154,7 @@ void Unwind_180903990(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 
 
 
-void Unwind_1809039b0(uint8_t ObjectContextParameter,int64_t ValidationContextParameter,uint8_t CleanupOption,uint8_t CleanupFlag)
+void CleanupResourceWithStatusCheck(uint8_t ObjectContextParameter,int64_t ValidationContextParameter,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
@@ -50052,7 +50080,7 @@ void Unwind_180906cd0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 
 
 
-void Unwind_180906ce0(uint8_t ObjectContextParameter,int64_t ValidationContextParameter)
+void ValidateResourceContextAndExecuteEmergencyExit(uint8_t ObjectContextParameter,int64_t ValidationContextParameter)
 
 {
   int64_t *processPointer;
@@ -50073,7 +50101,7 @@ void Unwind_180906ce0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 
 
 
-void Unwind_180906cf0(uint8_t ObjectContextParameter,int64_t ValidationContextParameter)
+void ProcessResourceValidationWithEmergencyExit(uint8_t ObjectContextParameter,int64_t ValidationContextParameter)
 
 {
   int *pResourceIndex;
@@ -50109,7 +50137,7 @@ void Unwind_180906cf0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 
 
 
-void Unwind_180906d00(uint8_t ObjectContextParameter,int64_t ValidationContextParameter)
+void HandleResourceValidationWithEmergencyExit(uint8_t ObjectContextParameter,int64_t ValidationContextParameter)
 
 {
   int *pResourceIndex;
