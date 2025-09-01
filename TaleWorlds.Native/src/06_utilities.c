@@ -28313,35 +28313,44 @@ void CleanupNestedValidationResultResources(uint8_t8 exceptionHandlerType, longl
 
 
 
-void Unwind_180901fc0(uint8_t8 param_1,longlong param_2)
+/**
+ * @brief 处理异常资源清理
+ * 
+ * 该函数负责在异常情况下清理资源
+ * 检查资源状态并在必要时调用系统清理处理器
+ * 
+ * @param exceptionCode 异常代码
+ * @param exceptionContext 异常上下文
+ */
+void HandleExceptionResourceCleanup(uint8_t8 exceptionCode, longlong exceptionContext)
 
 {
-  int *piVar1;
-  uint8_t8 *pvalidationResult;
-  longlong resourceIndex;
-  ulonglong uVar4;
+  int *resourceReferenceCount;
+  uint8_t8 *resourcePointer;
+  longlong calculatedResourceIndex;
+  ulonglong memoryMask;
   
-  pvalidationResult = *(uint8_t8 **)(*(longlong *)(param_2 + 0x40) + 0x218);
-  if (pvalidationResult == (uint8_t8 *)0x0) {
+  resourcePointer = *(uint8_t8 **)(*(longlong *)(exceptionContext + 0x40) + 0x218);
+  if (resourcePointer == (uint8_t8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)pvalidationResult & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)pvalidationResult - uVar4 >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pvalidationResult = *(uint8_t8 *)(resourceIndex + 0x20);
-      *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
-      piVar1 = (int *)(resourceIndex + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+  memoryMask = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (memoryMask != 0) {
+    calculatedResourceIndex = memoryMask + 0x80 + ((longlong)resourcePointer - memoryMask >> 0x10) * 0x50;
+    calculatedResourceIndex = calculatedResourceIndex - (ulonglong)*(uint *)(calculatedResourceIndex + 4);
+    if ((*(void ***)(memoryMask + 0x70) == &ExceptionList) && (*(char *)(calculatedResourceIndex + 0xe) == '\0')) {
+      *resourcePointer = *(uint8_t8 *)(calculatedResourceIndex + 0x20);
+      *(uint8_t8 **)(calculatedResourceIndex + 0x20) = resourcePointer;
+      resourceReferenceCount = (int *)(calculatedResourceIndex + 0x18);
+      *resourceReferenceCount = *resourceReferenceCount + -1;
+      if (*resourceReferenceCount == 0) {
         SystemCleanupHandler();
         return;
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          pvalidationResult,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryMask,CONCAT71(0xff000000,*(void ***)(memoryMask + 0x70) == &ExceptionList),
+                          resourcePointer,memoryMask,0xfffffffffffffffe);
     }
   }
   return;
