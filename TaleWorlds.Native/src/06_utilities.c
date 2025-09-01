@@ -3399,12 +3399,12 @@ void ValidateSystemObjects(void)
 
 
 
- void TerminateSystemProcess(void)
-/**
+ /**
  * @brief 终止系统进程
  * 
  * 该函数用于安全终止系统进程，确保系统资源正确释放
  */
+void TerminateSystemProcess(void)
 void TerminateSystemProcess(void)
 
 {
