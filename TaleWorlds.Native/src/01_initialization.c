@@ -4118,7 +4118,7 @@ void InitializeSystemDebugManager(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180030870(void)
+// 函数: void InitializeSystemConfigurationManager(void)
 /**
  * @brief 初始化系统字符串处理器
  * 
@@ -4167,7 +4167,7 @@ int InitializeSystemDataManager(void)
   _DAT_180bf6750 = &UNK_1809fcc58;
   _DAT_180bf6758 = &DAT_180bf6768;
 
-// 函数: void FUN_180031a10(void)
+// 函数: void InitializeSystemEventManager(void)
 /**
  * @brief 初始化系统事件管理器
  * 
@@ -4575,7 +4575,7 @@ void InitializeSystemResourceNode(void)
 
 
 
-// 函数: void FUN_180032110(void)
+// 函数: void InitializeSystemResourceManager(void)
 /**
  * @brief 初始化系统节点管理器
  * 
@@ -4633,7 +4633,7 @@ void InitializeSystemNodeManager(void)
 
 
 
-// 函数: void FUN_180032210(void)
+// 函数: void InitializeSystemMemoryManager(void)
 /**
  * @brief 初始化系统数据节点管理器
  * 
@@ -16577,7 +16577,7 @@ int FUN_180043580(void)
 {
   longlong lVar1;
   
-  FUN_180629770();
+  InitializeSystemPerformanceCounters();
   lVar1 = FUN_1808fc7d0(&UNK_180943130);
   return (lVar1 != 0) - 1;
 }
@@ -17562,11 +17562,11 @@ LAB_180044faf:
   uVar5 = FUN_18062b1e0(_DAT_180c8ed18,0x198,8,3);
   _DAT_180c8ed68 = CreateSystemTimer(uVar5);
   uVar5 = FUN_18062b1e0(_DAT_180c8ed18,0xa8,8,3);
-  _DAT_180c8ed00 = FUN_180637560(uVar5);
+  _DAT_180c8ed00 = CreateSystemCounter(uVar5);
   FUN_18062b1e0(_DAT_180c8ed18,1,1,3);
   iVar2 = QueryPerformanceFrequency(&pplStackX_18);
   if (iVar2 == 0) {
-    FUN_180626ee0(&UNK_180a3c090);
+    InitializeSystemSemaphores(&UNK_180a3c090);
   }
   _DAT_180c8ed50 = 1.0 / (double)(longlong)pplStackX_18;
   timeBeginPeriod(1);
@@ -17598,15 +17598,15 @@ void InitializeThreadManager(void)
   stack50 = 0;
   tempStack60 = (undefined8 *)0x0;
   stack58 = 0;
-  threadManager = (undefined8 *)FUN_18062b420(_DAT_180c8ed18,0x10,0x13,registerR9,0xfffffffffffffffe);
+  threadManager = (undefined8 *)CreateSystemThreadObject(_DAT_180c8ed18,0x10,0x13,registerR9,0xfffffffffffffffe);
   *(undefined1 *)threadManager = 0;
   tempStack60 = threadManager;
-  threadResult = FUN_18064e990(threadManager);
+  threadResult = StartSystemThread(threadManager);
   stack50 = CONCAT44(stack50._4_4_,threadResult);
   *threadManager = 0x72657472617453;
   stack58 = 7;
   currentThread = GetCurrentThread();
-  FUN_180623fd0(currentThread,&errorPtr);
+  InitializeSystemThreadContext(currentThread,&errorPtr);
   errorPtr = &UNK_180a3c3e0;
                     // WARNING: Subroutine does not return
   FUN_18064e900(threadManager);
@@ -18712,7 +18712,7 @@ int FUN_180046890(longlong param_1,longlong param_2)
   if (lVar7 == 0) {
     lVar7 = 1;
 LAB_1800469fd:
-    lVar2 = FUN_18062b420(_DAT_180c8ed18,lVar7 << 8,*(undefined1 *)(param_1 + 0x20));
+    lVar2 = CreateSystemThreadObject(_DAT_180c8ed18,lVar7 << 8,*(undefined1 *)(param_1 + 0x20));
     uVar8 = *(ulonglong *)(param_1 + 0x10);
     lVar4 = *(longlong *)(param_1 + 8);
   }
@@ -19996,7 +19996,7 @@ void FUN_180048ee0(longlong param_1,undefined8 param_2,longlong param_3,undefine
   }
   uVar6 = 1;
 LAB_180048f62:
-  lVar5 = FUN_18062b420(_DAT_180c8ed18,0x68,*(undefined1 *)(param_1 + 0x28),param_4,
+  lVar5 = CreateSystemThreadObject(_DAT_180c8ed18,0x68,*(undefined1 *)(param_1 + 0x28),param_4,
                         0xfffffffffffffffe);
   FUN_180627ae0(lVar5 + 0x20,param_5);
   puVar4 = (undefined8 *)(lVar5 + 0x40);
@@ -20035,7 +20035,7 @@ undefined8 * FUN_180049010(longlong param_1,longlong *param_2,undefined8 param_3
   }
   puVar2 = puVar3;
   for (plVar1 = (longlong *)param_2[1]; plVar1 != (longlong *)0x0; plVar1 = (longlong *)plVar1[1]) {
-    puVar4 = (undefined8 *)FUN_18062b420(_DAT_180c8ed18,0x68,*(undefined1 *)(param_1 + 0x28));
+    puVar4 = (undefined8 *)CreateSystemThreadObject(_DAT_180c8ed18,0x68,*(undefined1 *)(param_1 + 0x28));
     FUN_180627ae0(puVar4 + 4,plVar1 + 4);
     FUN_180627ae0(puVar4 + 8,plVar1 + 8);
     puVar4[0xc] = plVar1[0xc];
@@ -20063,7 +20063,7 @@ undefined8 * FUN_180049110(longlong param_1,longlong param_2,undefined8 param_3,
   undefined8 *puVar1;
   
   puVar1 = (undefined8 *)
-           FUN_18062b420(_DAT_180c8ed18,0x68,*(undefined1 *)(param_1 + 0x28),param_4,
+           CreateSystemThreadObject(_DAT_180c8ed18,0x68,*(undefined1 *)(param_1 + 0x28),param_4,
                          0xfffffffffffffffe);
   FUN_180627ae0(puVar1 + 4,param_2 + 0x20);
   FUN_180627ae0(puVar1 + 8,param_2 + 0x40);
@@ -20884,7 +20884,7 @@ undefined8 FUN_18004a220(longlong param_1,undefined4 param_2,undefined8 param_3,
   undefined8 uVar7;
   
   uVar7 = 0xfffffffffffffffe;
-  uVar2 = FUN_18062b420(_DAT_180c8ed18,param_2,3,param_4,0xfffffffffffffffe);
+  uVar2 = CreateSystemThreadObject(_DAT_180c8ed18,param_2,3,param_4,0xfffffffffffffffe);
   iVar1 = _Mtx_lock(param_1 + 0x28);
   if (iVar1 != 0) {
     __Throw_C_error_std__YAXH_Z(iVar1);
@@ -20901,7 +20901,7 @@ undefined8 FUN_18004a220(longlong param_1,undefined4 param_2,undefined8 param_3,
     lVar3 = 1;
 LAB_18004a2b9:
     puVar4 = (undefined8 *)
-             FUN_18062b420(_DAT_180c8ed18,lVar3 * 8,*(undefined1 *)(param_1 + 0x20),param_4,uVar7);
+             CreateSystemThreadObject(_DAT_180c8ed18,lVar3 * 8,*(undefined1 *)(param_1 + 0x20),param_4,uVar7);
     puVar6 = *(undefined8 **)(param_1 + 0x10);
     puVar5 = *(undefined8 **)(param_1 + 8);
   }
@@ -20982,7 +20982,7 @@ undefined8 FUN_18004a430(longlong param_1,undefined8 param_2)
   longlong lVar2;
   
   uVar1 = FUN_18062b1e0(_DAT_180c8ed18,param_2,0x10,6);
-  lVar2 = FUN_18064e990(uVar1);
+  lVar2 = StartSystemThread(uVar1);
   *(longlong *)(param_1 + 8) = *(longlong *)(param_1 + 8) + lVar2;
   return uVar1;
 }
@@ -20996,7 +20996,7 @@ void FUN_18004a470(longlong param_1,longlong param_2)
 {
   longlong lVar1;
   
-  lVar1 = FUN_18064e990(param_2);
+  lVar1 = StartSystemThread(param_2);
   *(longlong *)(param_1 + 8) = *(longlong *)(param_1 + 8) - lVar1;
   if (param_2 != 0) {
                     // WARNING: Subroutine does not return
@@ -22723,7 +22723,7 @@ undefined8 * FUN_18004c480(undefined8 *param_1)
         lVar4 = 1;
 LAB_18004c7ef:
         puVar5 = (undefined4 *)
-                 FUN_18062b420(_DAT_180c8ed18,lVar4 * 4,*(undefined1 *)(param_1 + 0x24));
+                 CreateSystemThreadObject(_DAT_180c8ed18,lVar4 * 4,*(undefined1 *)(param_1 + 0x24));
         puVar9 = (undefined4 *)param_1[0x22];
         puVar8 = (undefined4 *)*plVar1;
       }
@@ -23255,7 +23255,7 @@ void FUN_18004d020(undefined8 param_1,longlong param_2)
       uVar8 = (uint)puVar14;
       if ((bVar1 & 0xdf) == 0) {
         lVar20 = lVar24 + 0x2e0;
-        lVar9 = FUN_18062b420(_DAT_180c8ed18,0x40,*(undefined1 *)(lVar24 + 0x308));
+        lVar9 = CreateSystemThreadObject(_DAT_180c8ed18,0x40,*(undefined1 *)(lVar24 + 0x308));
         FUN_180627ae0(lVar9 + 0x20,&puStack_310);
         lVar10 = FUN_1800590b0(lVar20,&cStack_337,lVar9 + 0x20);
         if (cStack_337 != '\0') {
@@ -23973,10 +23973,10 @@ void FUN_18004f920(void)
   uStack_60 = 0;
   puStack_70 = (undefined4 *)0x0;
   uStack_68 = 0;
-  puVar10 = (undefined4 *)FUN_18062b420(_DAT_180c8ed18,0x14,0x13);
+  puVar10 = (undefined4 *)CreateSystemThreadObject(_DAT_180c8ed18,0x14,0x13);
   *(undefined1 *)puVar10 = 0;
   puStack_70 = puVar10;
-  uVar7 = FUN_18064e990(puVar10);
+  uVar7 = StartSystemThread(puVar10);
   *puVar10 = 0x706d6554;
   puVar10[1] = 0x7261726f;
   puVar10[2] = 0x73655279;
@@ -24385,7 +24385,7 @@ undefined8 * FUN_180051d40(undefined8 *param_1,undefined8 *param_2)
         lVar6 = 0;
       }
       else {
-        lVar6 = FUN_18062b420(_DAT_180c8ed18,uVar9 * 4,*(undefined1 *)(param_1 + 0x46));
+        lVar6 = CreateSystemThreadObject(_DAT_180c8ed18,uVar9 * 4,*(undefined1 *)(param_1 + 0x46));
       }
       if (lVar3 != lVar2) {
                     // WARNING: Subroutine does not return
@@ -24455,7 +24455,7 @@ void FUN_180051de4(longlong param_1)
       lVar3 = 0;
     }
     else {
-      lVar3 = FUN_18062b420(_DAT_180c8ed18,uVar6 * 4,(char)unaff_RDI[3]);
+      lVar3 = CreateSystemThreadObject(_DAT_180c8ed18,uVar6 * 4,(char)unaff_RDI[3]);
     }
     if (lVar2 != lVar1) {
                     // WARNING: Subroutine does not return
@@ -24516,7 +24516,7 @@ void FUN_180051e13(void)
     lVar2 = 0;
   }
   else {
-    lVar2 = FUN_18062b420(_DAT_180c8ed18,unaff_R14 * 4,(char)unaff_RDI[3]);
+    lVar2 = CreateSystemThreadObject(_DAT_180c8ed18,unaff_R14 * 4,(char)unaff_RDI[3]);
   }
   if (unaff_RSI != unaff_RBP) {
                     // WARNING: Subroutine does not return
@@ -24762,10 +24762,10 @@ void FUN_180052200(longlong param_1,longlong param_2,undefined8 param_3,undefine
   uStack_58 = 0;
   puStack_68 = (undefined8 *)0x0;
   uStack_60 = 0;
-  puVar4 = (undefined8 *)FUN_18062b420(_DAT_180c8ed18,0x10,0x13,param_4,0xfffffffffffffffe);
+  puVar4 = (undefined8 *)CreateSystemThreadObject(_DAT_180c8ed18,0x10,0x13,param_4,0xfffffffffffffffe);
   *(undefined1 *)puVar4 = 0;
   puStack_68 = puVar4;
-  uVar2 = FUN_18064e990(puVar4);
+  uVar2 = StartSystemThread(puVar4);
   uStack_58 = CONCAT44(uStack_58._4_4_,uVar2);
   *puVar4 = 0x53454c55444f4d5f;
   *(undefined2 *)(puVar4 + 1) = 0x2a5f;
@@ -24777,10 +24777,10 @@ void FUN_180052200(longlong param_1,longlong param_2,undefined8 param_3,undefine
     uStack_78 = 0;
     puStack_88 = (undefined8 *)0x0;
     uStack_80 = 0;
-    puVar4 = (undefined8 *)FUN_18062b420(_DAT_180c8ed18,0x10,0x13,param_4,uVar7);
+    puVar4 = (undefined8 *)CreateSystemThreadObject(_DAT_180c8ed18,0x10,0x13,param_4,uVar7);
     *(undefined1 *)puVar4 = 0;
     puStack_88 = puVar4;
-    uVar2 = FUN_18064e990(puVar4);
+    uVar2 = StartSystemThread(puVar4);
     uStack_78 = CONCAT44(uStack_78._4_4_,uVar2);
     *puVar4 = 0x454c55444f4d5f2a;
     *(undefined2 *)(puVar4 + 1) = 0x5f53;
@@ -24825,10 +24825,10 @@ undefined8 FUN_1800524c0(undefined8 param_1,undefined8 param_2)
   uStack_50 = 0;
   puStack_60 = (undefined8 *)0x0;
   uStack_58 = 0;
-  puVar4 = (undefined8 *)FUN_18062b420(_DAT_180c8ed18,0x10,0x13);
+  puVar4 = (undefined8 *)CreateSystemThreadObject(_DAT_180c8ed18,0x10,0x13);
   *(undefined1 *)puVar4 = 0;
   puStack_60 = puVar4;
-  uVar2 = FUN_18064e990(puVar4);
+  uVar2 = StartSystemThread(puVar4);
   uStack_50 = CONCAT44(uStack_50._4_4_,uVar2);
   *puVar4 = 0x53454c55444f4d5f;
   *(undefined2 *)(puVar4 + 1) = 0x2a5f;
@@ -24840,10 +24840,10 @@ undefined8 FUN_1800524c0(undefined8 param_1,undefined8 param_2)
     uStack_70 = 0;
     puStack_80 = (undefined8 *)0x0;
     uStack_78 = 0;
-    puVar4 = (undefined8 *)FUN_18062b420(_DAT_180c8ed18,0x10,0x13);
+    puVar4 = (undefined8 *)CreateSystemThreadObject(_DAT_180c8ed18,0x10,0x13);
     *(undefined1 *)puVar4 = 0;
     puStack_80 = puVar4;
-    uVar2 = FUN_18064e990(puVar4);
+    uVar2 = StartSystemThread(puVar4);
     uStack_70 = CONCAT44(uStack_70._4_4_,uVar2);
     *puVar4 = 0x454c55444f4d5f2a;
     *(undefined2 *)(puVar4 + 1) = 0x5f53;
@@ -25499,10 +25499,10 @@ LAB_1800535b0:
     if (iVar4 < 0x10) {
       iVar4 = 0x10;
     }
-    puVar7 = (undefined1 *)FUN_18062b420(_DAT_180c8ed18,(longlong)iVar4,0x13);
+    puVar7 = (undefined1 *)CreateSystemThreadObject(_DAT_180c8ed18,(longlong)iVar4,0x13);
     *puVar7 = 0;
     puStack_1a8 = puVar7;
-    uVar5 = FUN_18064e990(puVar7);
+    uVar5 = StartSystemThread(puVar7);
     uStack_198 = CONCAT44(uStack_198._4_4_,uVar5);
     goto LAB_1800535b0;
   }
@@ -25518,7 +25518,7 @@ LAB_1800535b0:
       if ((int)uVar6 < 0x10) {
         uVar6 = 0x10;
       }
-      puVar7 = (undefined1 *)FUN_18062b420(_DAT_180c8ed18,(longlong)(int)uVar6,0x13);
+      puVar7 = (undefined1 *)CreateSystemThreadObject(_DAT_180c8ed18,(longlong)(int)uVar6,0x13);
       *puVar7 = 0;
     }
     else {
@@ -25527,7 +25527,7 @@ LAB_1800535b0:
       puVar7 = (undefined1 *)FUN_18062b8b0(_DAT_180c8ed18,puVar7,uVar6,0x10);
     }
     puStack_1a8 = puVar7;
-    uVar3 = FUN_18064e990(puVar7);
+    uVar3 = StartSystemThread(puVar7);
     uStack_198 = CONCAT44(uStack_198._4_4_,uVar3);
   }
 LAB_18005364c:
@@ -26298,14 +26298,14 @@ void FUN_180055050(void)
   
   puVar2 = (undefined8 *)FUN_18062b1e0(_DAT_180c8ed18,0x198,8,3);
   puVar1 = puVar2 + 4;
-  FUN_180637560(puVar1);
+  CreateSystemCounter(puVar1);
   *puVar1 = &UNK_180a3cf50;
   *(undefined2 *)(puVar2 + 0x1a) = 1;
   *(undefined4 *)(puVar2 + 9) = 0;
   *(undefined1 *)((longlong)puVar2 + 0x54) = 0;
   *puVar1 = &UNK_1809fe6d8;
   puVar1 = puVar2 + 0x1b;
-  FUN_180637560(puVar1);
+  CreateSystemCounter(puVar1);
   *puVar1 = &UNK_180a3cf50;
   *(undefined2 *)(puVar2 + 0x31) = 1;
   *(undefined4 *)(puVar2 + 0x20) = 0;
@@ -26799,7 +26799,7 @@ void FUN_180056410(longlong param_1,undefined8 param_2,undefined8 param_3,undefi
   lVar9 = uVar4 - uVar5;
   lVar6 = lVar9 >> 3;
   if (lVar6 != 0) {
-    uVar3 = FUN_18062b420(_DAT_180c8ed18,lVar6 * 8,uVar7 & 0xff,param_4,uVar10,0,0,0,uVar7);
+    uVar3 = CreateSystemThreadObject(_DAT_180c8ed18,lVar6 * 8,uVar7 & 0xff,param_4,uVar10,0,0,0,uVar7);
   }
   lVar6 = uVar3 + lVar6 * 8;
   if (uVar5 == uVar4) {
@@ -27452,7 +27452,7 @@ void FUN_1800571e0(longlong *param_1,undefined4 *param_2)
       goto LAB_18005726e;
     }
   }
-  puVar2 = (undefined4 *)FUN_18062b420(_DAT_180c8ed18,lVar1 * 4,(char)param_1[3]);
+  puVar2 = (undefined4 *)CreateSystemThreadObject(_DAT_180c8ed18,lVar1 * 4,(char)param_1[3]);
   puVar3 = (undefined4 *)*param_1;
   puVar4 = (undefined4 *)param_1[1];
 LAB_18005726e:
@@ -27566,7 +27566,7 @@ void FUN_180057340(longlong *param_1,ulonglong param_2)
     lVar1 = 0;
   }
   else {
-    lVar1 = FUN_18062b420(_DAT_180c8ed18,uVar3 * 8,(char)param_1[3]);
+    lVar1 = CreateSystemThreadObject(_DAT_180c8ed18,uVar3 * 8,(char)param_1[3]);
     lVar6 = *param_1;
     lVar5 = param_1[1];
   }
@@ -27624,7 +27624,7 @@ void FUN_18005736b(longlong param_1,ulonglong param_2,undefined8 param_3,longlon
     lVar1 = 0;
   }
   else {
-    lVar1 = FUN_18062b420(_DAT_180c8ed18,uVar2 * 8,(char)unaff_RBX[3]);
+    lVar1 = CreateSystemThreadObject(_DAT_180c8ed18,uVar2 * 8,(char)unaff_RBX[3]);
     param_4 = *unaff_RBX;
     unaff_RDI = unaff_RBX[1];
   }
@@ -28499,7 +28499,7 @@ longlong * FUN_180057b00(longlong param_1,longlong *param_2,undefined8 param_3)
   undefined8 uVar7;
   char acStackX_8 [8];
   
-  lVar3 = FUN_18062b420(_DAT_180c8ed18,0x40,*(undefined1 *)(param_1 + 0x28));
+  lVar3 = CreateSystemThreadObject(_DAT_180c8ed18,0x40,*(undefined1 *)(param_1 + 0x28));
   FUN_180627ae0(lVar3 + 0x20,param_3);
   lVar4 = FUN_1800590b0(param_1,acStackX_8,lVar3 + 0x20);
   if (acStackX_8[0] == '\0') {
@@ -29017,7 +29017,7 @@ void FUN_1800584e0(undefined8 *param_1,longlong param_2)
     if (lVar5 == 0) goto LAB_18005856a;
   }
   puVar2 = (undefined8 *)
-           FUN_18062b420(_DAT_180c8ed18,lVar5 * 0x28,*(undefined1 *)(param_1 + 3),puVar4,
+           CreateSystemThreadObject(_DAT_180c8ed18,lVar5 * 0x28,*(undefined1 *)(param_1 + 3),puVar4,
                          0xfffffffffffffffe);
   puVar7 = (undefined8 *)param_1[1];
   puVar4 = (undefined8 *)*param_1;
@@ -29218,7 +29218,7 @@ void FUN_1800588c0(longlong *param_1,longlong param_2,longlong param_3)
       lVar2 = 0;
     }
     else {
-      lVar2 = FUN_18062b420(_DAT_180c8ed18,uVar6 << 5,(char)param_1[3]);
+      lVar2 = CreateSystemThreadObject(_DAT_180c8ed18,uVar6 << 5,(char)param_1[3]);
     }
     if (param_2 != param_3) {
       lVar7 = lVar2 - param_2;
@@ -29287,7 +29287,7 @@ void FUN_1800588fc(longlong param_1)
     lVar2 = 0;
   }
   else {
-    lVar2 = FUN_18062b420(_DAT_180c8ed18,unaff_RSI << 5,*(undefined1 *)(param_1 + 0x18));
+    lVar2 = CreateSystemThreadObject(_DAT_180c8ed18,unaff_RSI << 5,*(undefined1 *)(param_1 + 0x18));
   }
   if (unaff_RBX != unaff_R15) {
     lVar4 = lVar2 - unaff_RBX;
@@ -29458,7 +29458,7 @@ void FUN_180058a20(longlong *param_1,longlong param_2,longlong param_3,longlong 
       uVar1 = 0;
     }
     else {
-      uVar1 = FUN_18062b420(_DAT_180c8ed18,uVar4 * 8,(char)param_1[3]);
+      uVar1 = CreateSystemThreadObject(_DAT_180c8ed18,uVar4 * 8,(char)param_1[3]);
       lVar3 = *param_1;
     }
     if (lVar3 != param_2) {
@@ -29522,7 +29522,7 @@ void FUN_180058a31(longlong *param_1,longlong param_2,longlong param_3,longlong 
       uVar1 = 0;
     }
     else {
-      uVar1 = FUN_18062b420(_DAT_180c8ed18,uVar4 * 8,(char)param_1[3]);
+      uVar1 = CreateSystemThreadObject(_DAT_180c8ed18,uVar4 * 8,(char)param_1[3]);
       lVar3 = *param_1;
     }
     if (lVar3 != param_2) {
@@ -29582,7 +29582,7 @@ void FUN_180058b3e(longlong param_1,longlong param_2)
     uVar1 = 0;
   }
   else {
-    uVar1 = FUN_18062b420(_DAT_180c8ed18,uVar2 * 8,(char)unaff_RDI[3]);
+    uVar1 = CreateSystemThreadObject(_DAT_180c8ed18,uVar2 * 8,(char)unaff_RDI[3]);
     param_2 = *unaff_RDI;
   }
   if (param_2 != unaff_RSI) {
@@ -29961,10 +29961,10 @@ void FUN_180059000(longlong *param_1)
           if (iVar20 < 0x10) {
             iVar8 = 0x10;
           }
-          puVar11 = (undefined1 *)FUN_18062b420(_DAT_180c8ed18,(longlong)iVar8,0x13);
+          puVar11 = (undefined1 *)CreateSystemThreadObject(_DAT_180c8ed18,(longlong)iVar8,0x13);
           *puVar11 = 0;
           puStack_390 = puVar11;
-          uVar7 = FUN_18064e990(puVar11);
+          uVar7 = StartSystemThread(puVar11);
           uStack_380 = CONCAT44(uStack_380._4_4_,uVar7);
                     // WARNING: Subroutine does not return
           memcpy(puVar11,puVar13,iVar20);
@@ -30042,7 +30042,7 @@ void FUN_180059000(longlong *param_1)
             if (iVar20 < 0x10) {
               iVar8 = 0x10;
             }
-            puStack_328 = (undefined *)FUN_18062b420(_DAT_180c8ed18,(longlong)iVar8,0x13);
+            puStack_328 = (undefined *)CreateSystemThreadObject(_DAT_180c8ed18,(longlong)iVar8,0x13);
             *puStack_328 = 0;
             uVar22 = (ulonglong)puStack_328 & 0xffffffffffc00000;
             if (uVar22 != 0) {
@@ -30107,7 +30107,7 @@ void FUN_180059000(longlong *param_1)
                 if ((pppppppuVar14 != &ppppppuStack_360) && (*(int *)(pppppppuVar14 + 6) == 0)) {
                   uVar7 = 1;
                 }
-                lVar10 = FUN_18062b420(_DAT_180c8ed18,0x60,(undefined1)uStack_338);
+                lVar10 = CreateSystemThreadObject(_DAT_180c8ed18,0x60,(undefined1)uStack_338);
                 puStack_2b0 = (undefined8 *)(lVar10 + 0x20);
                 *puStack_2b0 = &UNK_18098bcb0;
                 *(undefined8 *)(lVar10 + 0x28) = 0;
@@ -30222,7 +30222,7 @@ void FUN_180059000(longlong *param_1)
               if (iVar8 < 0x10) {
                 iVar8 = 0x10;
               }
-              puStack_390 = (undefined1 *)FUN_18062b420(_DAT_180c8ed18,(longlong)iVar8,0x13);
+              puStack_390 = (undefined1 *)CreateSystemThreadObject(_DAT_180c8ed18,(longlong)iVar8,0x13);
               *puStack_390 = 0;
               uVar24 = (ulonglong)puStack_390 & 0xffffffffffc00000;
               if (uVar24 == 0) {
@@ -30799,7 +30799,7 @@ void FUN_180059820(longlong *param_1,undefined8 param_2)
       goto LAB_180059885;
     }
   }
-  lVar2 = FUN_18062b420(_DAT_180c8ed18,lVar6 << 5,(char)param_1[3]);
+  lVar2 = CreateSystemThreadObject(_DAT_180c8ed18,lVar6 << 5,(char)param_1[3]);
   lVar3 = param_1[1];
   lVar4 = *param_1;
 LAB_180059885:
@@ -31000,7 +31000,7 @@ void FUN_180059bc0(void)
 {
   longlong lVar1;
   
-  lVar1 = FUN_18062b420(_DAT_180c8ed18,0x1ae8,10);
+  lVar1 = CreateSystemThreadObject(_DAT_180c8ed18,0x1ae8,10);
   if (lVar1 == 0) {
     return;
   }
@@ -31739,10 +31739,10 @@ void FUN_18005a500(undefined8 param_1,undefined8 param_2,undefined8 param_3,unde
   uStack_38 = 0;
   puStack_48 = (undefined8 *)0x0;
   uStack_40 = 0;
-  puVar2 = (undefined8 *)FUN_18062b420(_DAT_180c8ed18,0x10,0x13,param_4,0xfffffffffffffffe);
+  puVar2 = (undefined8 *)CreateSystemThreadObject(_DAT_180c8ed18,0x10,0x13,param_4,0xfffffffffffffffe);
   *(undefined1 *)puVar2 = 0;
   puStack_48 = puVar2;
-  uVar1 = FUN_18064e990(puVar2);
+  uVar1 = StartSystemThread(puVar2);
   uStack_38 = CONCAT44(uStack_38._4_4_,uVar1);
   *puVar2 = 0x6320726f74696445;
   *(undefined4 *)(puVar2 + 1) = 0x69666e6f;
@@ -31900,10 +31900,10 @@ void FUN_18005ac00(undefined8 param_1,undefined8 param_2,undefined8 param_3,unde
   uStack_38 = 0;
   puStack_48 = (undefined4 *)0x0;
   uStack_40 = 0;
-  puVar2 = (undefined4 *)FUN_18062b420(_DAT_180c8ed18,0x13,0x13,param_4,0xfffffffffffffffe);
+  puVar2 = (undefined4 *)CreateSystemThreadObject(_DAT_180c8ed18,0x13,0x13,param_4,0xfffffffffffffffe);
   *(undefined1 *)puVar2 = 0;
   puStack_48 = puVar2;
-  uVar1 = FUN_18064e990(puVar2);
+  uVar1 = StartSystemThread(puVar2);
   uStack_38 = CONCAT44(uStack_38._4_4_,uVar1);
   *puVar2 = 0x65766544;
   puVar2[1] = 0x6d706f6c;
@@ -32169,10 +32169,10 @@ void FUN_18005ba80(undefined8 param_1,undefined8 param_2,undefined8 param_3,unde
   uStack_38 = 0;
   puStack_48 = (undefined8 *)0x0;
   uStack_40 = 0;
-  puVar2 = (undefined8 *)FUN_18062b420(_DAT_180c8ed18,0x10,0x13,param_4,0xfffffffffffffffe);
+  puVar2 = (undefined8 *)CreateSystemThreadObject(_DAT_180c8ed18,0x10,0x13,param_4,0xfffffffffffffffe);
   *(undefined1 *)puVar2 = 0;
   puStack_48 = puVar2;
-  uVar1 = FUN_18064e990(puVar2);
+  uVar1 = StartSystemThread(puVar2);
   uStack_38 = CONCAT44(uStack_38._4_4_,uVar1);
   *puVar2 = 0x6e6f632072657355;
   *(undefined4 *)(puVar2 + 1) = 0x676966;
@@ -32583,7 +32583,7 @@ void FUN_18005c930(undefined8 *param_1,undefined8 param_2,int *param_3)
   undefined8 *puVar5;
   undefined8 uVar6;
   
-  lVar4 = FUN_18062b420(_DAT_180c8ed18,0x28,*(undefined1 *)(param_1 + 5));
+  lVar4 = CreateSystemThreadObject(_DAT_180c8ed18,0x28,*(undefined1 *)(param_1 + 5));
   iVar1 = *param_3;
   bVar2 = true;
   *(int *)(lVar4 + 0x20) = iVar1;
@@ -32746,7 +32746,7 @@ void FUN_18005cc00(undefined **param_1,undefined8 param_2,undefined8 param_3,und
   FUN_180627ae0(&puStack_68,param_2);
   FUN_180627ae0(&puStack_48,param_3);
   uVar9 = 1;
-  lVar3 = FUN_18062b420(_DAT_180c8ed18,0x60,*(undefined1 *)(lVar3 + 0x98));
+  lVar3 = CreateSystemThreadObject(_DAT_180c8ed18,0x60,*(undefined1 *)(lVar3 + 0x98));
   FUN_18005caa0(lVar3 + 0x20,&puStack_68);
   ppuVar4 = (undefined **)FUN_1800590b0(ppuVar6,acStackX_20,lVar3 + 0x20);
   if (acStackX_20[0] == '\0') {
@@ -33026,7 +33026,7 @@ void FUN_18005d0e0(ulonglong param_1,longlong param_2)
   else {
     iVar8 = iVar8 + 1;
     if (iVar8 != 0) {
-      lVar5 = FUN_18062b420(_DAT_180c8ed18,(longlong)iVar8,3);
+      lVar5 = CreateSystemThreadObject(_DAT_180c8ed18,(longlong)iVar8,3);
     }
     FUN_18004b9b0(lVar5,(longlong)iVar8,&UNK_1809fe058,&dStackX_18);
     FUN_1806281a0(param_2,lVar5);
@@ -34555,7 +34555,7 @@ undefined8 * FUN_18005e950(undefined8 *param_1)
   param_1[10] = 0;
   param_1[6] = param_1 + 8;
   param_1[4] = 6;
-  uVar2 = FUN_18062b420(uVar1,0x7b0,10);
+  uVar2 = CreateSystemThreadObject(uVar1,0x7b0,10);
   uVar4 = uVar5;
   if (uVar2 != 0) {
     puVar3 = (undefined8 *)(uVar2 + 0x108);
@@ -34621,7 +34621,7 @@ void FUN_18005ea90(ulonglong *param_1,undefined8 *param_2)
       goto LAB_18005eb20;
     }
   }
-  puVar2 = (undefined8 *)FUN_18062b420(_DAT_180c8ed18,lVar1 * 8,(char)param_1[3]);
+  puVar2 = (undefined8 *)CreateSystemThreadObject(_DAT_180c8ed18,lVar1 * 8,(char)param_1[3]);
   puVar3 = (undefined8 *)*param_1;
   puVar4 = (undefined8 *)param_1[1];
 LAB_18005eb20:
@@ -34720,7 +34720,7 @@ longlong FUN_18005eb80(longlong param_1)
             uVar4 = uVar9;
             uVar9 = uVar4 * 2;
           } while ((uVar4 & 0x7fffffffffffffff) <= uVar6);
-          puVar7 = (ulonglong *)FUN_18062b420(_DAT_180c8ed18,uVar4 * 0x20 + 0x1f,10);
+          puVar7 = (ulonglong *)CreateSystemThreadObject(_DAT_180c8ed18,uVar4 * 0x20 + 0x1f,10);
           if (puVar7 == (ulonglong *)0x0) {
             LOCK();
             *(longlong *)(param_1 + 0x38) = *(longlong *)(param_1 + 0x38) + -1;
@@ -34822,7 +34822,7 @@ longlong FUN_18005ec11(void)
             uVar6 = uVar8;
             uVar8 = uVar6 * 2;
           } while ((uVar6 & 0x7fffffffffffffff) <= uVar9);
-          unaff_RDI = (ulonglong *)FUN_18062b420(_DAT_180c8ed18,uVar6 * 0x20 + 0x1f,10);
+          unaff_RDI = (ulonglong *)CreateSystemThreadObject(_DAT_180c8ed18,uVar6 * 0x20 + 0x1f,10);
           if (unaff_RDI == (ulonglong *)0x0) {
             LOCK();
             *(longlong *)(unaff_R14 + 0x38) = *(longlong *)(unaff_R14 + 0x38) + -1;
@@ -34992,7 +34992,7 @@ longlong FUN_18005ed54(void)
       uVar5 = uVar7;
       uVar7 = uVar5 * 2;
     } while ((uVar5 & 0x7fffffffffffffff) <= unaff_RBP);
-    unaff_RDI = (ulonglong *)FUN_18062b420(_DAT_180c8ed18,uVar5 * 0x20 + 0x1f,10);
+    unaff_RDI = (ulonglong *)CreateSystemThreadObject(_DAT_180c8ed18,uVar5 * 0x20 + 0x1f,10);
     if (unaff_RDI == (ulonglong *)0x0) break;
     *unaff_RDI = uVar7;
     unaff_RDI[1] = (ulonglong)(-(int)(unaff_RDI + 3) & 7) + (longlong)(unaff_RDI + 3);
@@ -35035,7 +35035,7 @@ undefined8 * FUN_18005ee30(longlong *param_1,char param_2,undefined1 *param_3)
     if (puVar2 == (undefined8 *)0x0) {
       *param_3 = 0;
       if (param_2 == '\0') {
-        puVar2 = (undefined8 *)FUN_18062b420(_DAT_180c8ed18,0x68,10,0,0xfffffffffffffffe);
+        puVar2 = (undefined8 *)CreateSystemThreadObject(_DAT_180c8ed18,0x68,10,0,0xfffffffffffffffe);
         if (puVar2 == (undefined8 *)0x0) {
           return (undefined8 *)0x0;
         }
@@ -35056,7 +35056,7 @@ undefined8 * FUN_18005ee30(longlong *param_1,char param_2,undefined1 *param_3)
         FUN_18005f430(puVar2);
       }
       else {
-        puVar2 = (undefined8 *)FUN_18062b420(_DAT_180c8ed18,0x88,10,0,0xfffffffffffffffe);
+        puVar2 = (undefined8 *)CreateSystemThreadObject(_DAT_180c8ed18,0x88,10,0,0xfffffffffffffffe);
         if (puVar2 == (undefined8 *)0x0) {
           return (undefined8 *)0x0;
         }
@@ -35285,7 +35285,7 @@ undefined8 FUN_18005f340(longlong param_1,longlong param_2)
   
   lVar2 = *(longlong *)(param_1 + 0x68);
   *(longlong *)(param_1 + 0x68) = lVar2 * 2;
-  puVar4 = (undefined8 *)FUN_18062b420(_DAT_180c8ed18,lVar2 * 0x20 + 0x27,10);
+  puVar4 = (undefined8 *)CreateSystemThreadObject(_DAT_180c8ed18,lVar2 * 0x20 + 0x27,10);
   if (puVar4 == (undefined8 *)0x0) {
     *(ulonglong *)(param_1 + 0x68) = *(ulonglong *)(param_1 + 0x68) >> 1;
     return 0;
@@ -35348,7 +35348,7 @@ undefined8 * FUN_18005f430(longlong param_1)
     lVar3 = *(longlong *)(param_1 + 0x58);
     lVar9 = lVar8;
   }
-  puVar4 = (undefined8 *)FUN_18062b420(_DAT_180c8ed18,(lVar3 + lVar8 * 2) * 8 + 0x36,10);
+  puVar4 = (undefined8 *)CreateSystemThreadObject(_DAT_180c8ed18,(lVar3 + lVar8 * 2) * 8 + 0x36,10);
   puVar10 = puVar4;
   if (puVar4 != (undefined8 *)0x0) {
     puVar11 = (undefined8 *)((ulonglong)(-(int)(puVar4 + 5) & 7) + (longlong)(puVar4 + 5));
@@ -35578,7 +35578,7 @@ joined_r0x00018005f6ef:
     if (0x8000000000000000 < uVar15) {
       lVar11 = *plVar5;
       *plVar5 = lVar11 * 2;
-      plVar9 = (longlong *)FUN_18062b420(_DAT_180c8ed18,lVar11 * 0x20 + 0x27,10);
+      plVar9 = (longlong *)CreateSystemThreadObject(_DAT_180c8ed18,lVar11 * 0x20 + 0x27,10);
       if (plVar9 != (longlong *)0x0) {
         puVar22 = (undefined4 *)((ulonglong)(-(int)(plVar9 + 4) & 7) + (longlong)(plVar9 + 4));
         lVar23 = 0;
@@ -35691,7 +35691,7 @@ LAB_18005f8c7:
       goto LAB_18005f84c;
     }
 LAB_18005f8e3:
-    uVar15 = FUN_18062b420(_DAT_180c8ed18,0x148,CONCAT71((int7)(uVar15 >> 8),10));
+    uVar15 = CreateSystemThreadObject(_DAT_180c8ed18,0x148,CONCAT71((int7)(uVar15 >> 8),10));
     if (uVar15 != 0) {
       *(undefined8 *)(uVar15 + 0x100) = 0;
       *(undefined8 *)(uVar15 + 0x108) = 0;
@@ -35920,7 +35920,7 @@ LAB_18005fcf9:
     goto LAB_18005fc81;
   }
 LAB_18005fd0d:
-  uVar14 = FUN_18062b420(_DAT_180c8ed18,0x148,CONCAT71((int7)((ulonglong)lVar6 >> 8),10));
+  uVar14 = CreateSystemThreadObject(_DAT_180c8ed18,0x148,CONCAT71((int7)((ulonglong)lVar6 >> 8),10));
   if (uVar14 != 0) {
     *(undefined8 *)(uVar14 + 0x100) = 0;
     *(undefined8 *)(uVar14 + 0x108) = 0;
@@ -35985,7 +35985,7 @@ LAB_18005ff87:
     lVar9 = lVar6;
     if (lVar9 == 0) {
 LAB_180060026:
-      lVar6 = FUN_18062b420(_DAT_180c8ed18,0x148,10);
+      lVar6 = CreateSystemThreadObject(_DAT_180c8ed18,0x148,10);
       if (lVar6 == 0) {
         return 0;
       }
@@ -36993,7 +36993,7 @@ void FUN_180060fc0(longlong *param_1,longlong *param_2)
         lVar6 = 1;
       }
       lVar6 = lVar4 + 2 + lVar6;
-      lVar7 = FUN_18062b420(_DAT_180c8ed18,lVar6 * 8,(char)param_1[10],lVar7,uVar10);
+      lVar7 = CreateSystemThreadObject(_DAT_180c8ed18,lVar6 * 8,(char)param_1[10],lVar7,uVar10);
       plVar1 = (longlong *)(lVar7 + (param_1[5] - *param_1 >> 3) * 8);
       if (*param_1 != 0) {
                     // WARNING: Subroutine does not return
@@ -37010,7 +37010,7 @@ void FUN_180060fc0(longlong *param_1,longlong *param_2)
       param_1[7] = lVar7;
       param_1[8] = lVar7 + 0x100;
     }
-    uVar10 = FUN_18062b420(_DAT_180c8ed18,0x100,(char)param_1[10]);
+    uVar10 = CreateSystemThreadObject(_DAT_180c8ed18,0x100,(char)param_1[10]);
     *(undefined8 *)(param_1[9] + 8) = uVar10;
     *(longlong **)param_1[6] = param_2;
     lVar7 = param_1[9];
@@ -37573,10 +37573,10 @@ void FUN_180062920(int *param_1)
   uStack_198 = 0;
   puStack_1a8 = (undefined4 *)0x0;
   uStack_1a0 = 0;
-  puVar5 = (undefined4 *)FUN_18062b420(_DAT_180c8ed18,0x13,0x13);
+  puVar5 = (undefined4 *)CreateSystemThreadObject(_DAT_180c8ed18,0x13,0x13);
   *(undefined1 *)puVar5 = 0;
   puStack_1a8 = puVar5;
-  uVar3 = FUN_18064e990(puVar5);
+  uVar3 = StartSystemThread(puVar5);
   uStack_198 = CONCAT44(uStack_198._4_4_,uVar3);
   *puVar5 = 0x5f657375;
   puVar5[1] = 0x65726170;
@@ -37715,10 +37715,10 @@ void FUN_180062fd0(longlong param_1)
       uStack_58 = 0;
       puStack_68 = (undefined8 *)0x0;
       uStack_60 = 0;
-      puVar5 = (undefined8 *)FUN_18062b420(_DAT_180c8ed18,0x10,0x13);
+      puVar5 = (undefined8 *)CreateSystemThreadObject(_DAT_180c8ed18,0x10,0x13);
       *(undefined1 *)puVar5 = 0;
       puStack_68 = puVar5;
-      uVar3 = FUN_18064e990(puVar5);
+      uVar3 = StartSystemThread(puVar5);
       uStack_58 = CONCAT44(uStack_58._4_4_,uVar3);
       *puVar5 = 0x73726f7272655f;
       uStack_60 = 7;
@@ -38716,7 +38716,7 @@ void FUN_180064c00(longlong *param_1,longlong param_2,longlong param_3)
     if (lVar11 == 0) {
       lVar11 = 1;
 LAB_180064eed:
-      lVar10 = FUN_18062b420(_DAT_180c8ed18,lVar11 << 5,(char)param_1[3]);
+      lVar10 = CreateSystemThreadObject(_DAT_180c8ed18,lVar11 << 5,(char)param_1[3]);
       puVar4 = (undefined8 *)param_1[1];
       lVar12 = *param_1;
     }
@@ -39830,10 +39830,10 @@ LAB_180066bf4:
         uStack_88 = 0;
         puStack_98 = (undefined8 *)0x0;
         uStack_90 = 0;
-        puVar5 = (undefined8 *)FUN_18062b420(_DAT_180c8ed18,0x10,0x13);
+        puVar5 = (undefined8 *)CreateSystemThreadObject(_DAT_180c8ed18,0x10,0x13);
         *(undefined1 *)puVar5 = 0;
         puStack_98 = puVar5;
-        uVar4 = FUN_18064e990(puVar5);
+        uVar4 = StartSystemThread(puVar5);
         uStack_88 = CONCAT44(uStack_88._4_4_,uVar4);
         *puVar5 = 0x73656873617263;
         uStack_90 = 7;
@@ -39892,9 +39892,9 @@ LAB_180066bf4:
       if (iVar6 < 0x10) {
         iVar3 = 0x10;
       }
-      puStack_98 = (undefined8 *)FUN_18062b420(_DAT_180c8ed18,(longlong)iVar3,0x13);
+      puStack_98 = (undefined8 *)CreateSystemThreadObject(_DAT_180c8ed18,(longlong)iVar3,0x13);
       *(undefined1 *)puStack_98 = 0;
-      uVar4 = FUN_18064e990(puStack_98);
+      uVar4 = StartSystemThread(puStack_98);
       uStack_88 = CONCAT44(uStack_88._4_4_,uVar4);
                     // WARNING: Subroutine does not return
       memcpy(puStack_98,&DAT_180c84870,iVar6);
@@ -39965,7 +39965,7 @@ void FUN_180066df0(longlong *param_1,longlong param_2,undefined8 param_3,undefin
     lVar6 = lVar6 * 2;
     if (lVar6 == 0) goto LAB_180066ec4;
   }
-  lVar1 = FUN_18062b420(_DAT_180c8ed18,lVar6 << 5,(char)param_1[3],param_4,0xfffffffffffffffe);
+  lVar1 = CreateSystemThreadObject(_DAT_180c8ed18,lVar6 << 5,(char)param_1[3],param_4,0xfffffffffffffffe);
   puVar4 = (undefined8 *)param_1[1];
   lVar3 = *param_1;
 LAB_180066ec4:
@@ -40951,7 +40951,7 @@ FUN_180068860(longlong param_1,longlong *param_2,undefined8 param_3,undefined8 p
   if (lVar3 == 0) {
     FUN_18066c220(param_1 + 0x20,&param_5,*(undefined4 *)(param_1 + 0x10),
                   *(undefined4 *)(param_1 + 0x18),1);
-    lVar3 = FUN_18062b420(_DAT_180c8ed18,0x128,*(undefined1 *)(param_1 + 0x2c));
+    lVar3 = CreateSystemThreadObject(_DAT_180c8ed18,0x128,*(undefined1 *)(param_1 + 0x2c));
     FUN_180068ff0(lVar3,param_4);
     *(undefined8 *)(lVar3 + 0x118) = 0;
     *(undefined8 *)(lVar3 + 0x120) = 0;
@@ -41737,7 +41737,7 @@ undefined8 * FUN_180069920(longlong *param_1)
             uVar4 = uVar12;
             uVar12 = uVar4 * 2;
           } while ((uVar4 & 0x7fffffffffffffff) <= uVar6);
-          puVar7 = (ulonglong *)FUN_18062b420(_DAT_180c8ed18,uVar4 * 0x20 + 0x1f,10);
+          puVar7 = (ulonglong *)CreateSystemThreadObject(_DAT_180c8ed18,uVar4 * 0x20 + 0x1f,10);
           if (puVar7 == (ulonglong *)0x0) {
             LOCK();
             param_1[7] = param_1[7] + -1;
@@ -41781,7 +41781,7 @@ undefined8 * FUN_180069920(longlong *param_1)
     }
   }
   bVar17 = false;
-  puVar8 = (undefined8 *)FUN_18062b420(_DAT_180c8ed18,0x68,10);
+  puVar8 = (undefined8 *)CreateSystemThreadObject(_DAT_180c8ed18,0x68,10);
   puVar11 = puVar15;
   if (puVar8 != (undefined8 *)0x0) {
     puVar8[1] = 0;
@@ -42655,19 +42655,19 @@ FUN_18006bda0(longlong param_1,longlong param_2,longlong *param_3,longlong *para
     uVar7 = (undefined7)(uVar6 >> 8);
     if (lVar1 == 0) {
       if (*param_3 == 0) {
-        lVar3 = FUN_18062b420(_DAT_180c8ed18,lVar3,CONCAT71(uVar7,3));
+        lVar3 = CreateSystemThreadObject(_DAT_180c8ed18,lVar3,CONCAT71(uVar7,3));
         *param_3 = lVar3;
         *(longlong *)(param_2 + 0x198) = lVar3;
         *param_5 = *param_3;
       }
     }
     else {
-      lVar3 = FUN_18062b420(_DAT_180c8ed18,lVar3,CONCAT71(uVar7,3));
+      lVar3 = CreateSystemThreadObject(_DAT_180c8ed18,lVar3,CONCAT71(uVar7,3));
       *param_4 = lVar3;
       *(longlong *)(param_2 + 0x198) = lVar3;
       *param_5 = *param_4;
       if (*param_3 == 0) {
-        lVar3 = FUN_18062b420(_DAT_180c8ed18,*(undefined8 *)(param_2 + 0x138),3);
+        lVar3 = CreateSystemThreadObject(_DAT_180c8ed18,*(undefined8 *)(param_2 + 0x138),3);
         *param_3 = lVar3;
         *(longlong *)(param_2 + 0x1a0) = lVar3;
       }
@@ -43124,7 +43124,7 @@ LAB_18006ca44:
         if (lVar14 == 0) {
           lVar14 = 1;
 LAB_18006c9ac:
-          lVar13 = FUN_18062b420(_DAT_180c8ed18,lVar14 * 0x1a8,*(undefined1 *)(param_1 + 0x3e0));
+          lVar13 = CreateSystemThreadObject(_DAT_180c8ed18,lVar14 * 0x1a8,*(undefined1 *)(param_1 + 0x3e0));
           uVar19 = *(ulonglong *)(param_1 + 0x3d0);
           lVar10 = *plVar18;
         }
@@ -43289,7 +43289,7 @@ ulonglong FUN_18006cc50(longlong *param_1,longlong param_2)
       goto LAB_18006ccef;
     }
   }
-  lVar1 = FUN_18062b420(_DAT_180c8ed18,lVar4 * 0x1a8,(char)param_1[3]);
+  lVar1 = CreateSystemThreadObject(_DAT_180c8ed18,lVar4 * 0x1a8,(char)param_1[3]);
   uVar2 = param_1[1];
   lVar6 = *param_1;
 LAB_18006ccef:
@@ -43346,7 +43346,7 @@ void FUN_18006cc8d(undefined8 param_1,undefined8 param_2,longlong param_3)
       goto LAB_18006ccef;
     }
   }
-  lVar3 = FUN_18062b420(_DAT_180c8ed18,lVar4 * 0x1a8,(char)unaff_RDI[3]);
+  lVar3 = CreateSystemThreadObject(_DAT_180c8ed18,lVar4 * 0x1a8,(char)unaff_RDI[3]);
   param_3 = unaff_RDI[1];
   in_R10 = *unaff_RDI;
 LAB_18006ccef:
@@ -43620,7 +43620,7 @@ undefined8 * FUN_18006d0b0(longlong *param_1)
             uVar4 = uVar12;
             uVar12 = uVar4 * 2;
           } while ((uVar4 & 0x7fffffffffffffff) <= uVar6);
-          puVar7 = (ulonglong *)FUN_18062b420(_DAT_180c8ed18,uVar4 * 0x20 + 0x1f,10);
+          puVar7 = (ulonglong *)CreateSystemThreadObject(_DAT_180c8ed18,uVar4 * 0x20 + 0x1f,10);
           if (puVar7 == (ulonglong *)0x0) {
             LOCK();
             param_1[7] = param_1[7] + -1;
@@ -43664,7 +43664,7 @@ undefined8 * FUN_18006d0b0(longlong *param_1)
     }
   }
   bVar17 = false;
-  puVar8 = (undefined8 *)FUN_18062b420(_DAT_180c8ed18,0x68,10);
+  puVar8 = (undefined8 *)CreateSystemThreadObject(_DAT_180c8ed18,0x68,10);
   puVar11 = puVar15;
   if (puVar8 != (undefined8 *)0x0) {
     puVar8[1] = 0;
@@ -43999,7 +43999,7 @@ LAB_18006d957:
     lVar9 = lVar6;
     if (lVar9 == 0) {
 LAB_18006d9f6:
-      lVar6 = FUN_18062b420(_DAT_180c8ed18,0x3548,10);
+      lVar6 = CreateSystemThreadObject(_DAT_180c8ed18,0x3548,10);
       if (lVar6 == 0) {
         return 0;
       }
@@ -44418,7 +44418,7 @@ void FUN_18006e140(void)
 {
   longlong lVar1;
   
-  lVar1 = FUN_18062b420(_DAT_180c8ed18,0x45ee8,10);
+  lVar1 = CreateSystemThreadObject(_DAT_180c8ed18,0x45ee8,10);
   if (lVar1 == 0) {
     return;
   }
@@ -45136,7 +45136,7 @@ void FUN_18006edf0(undefined8 param_1,undefined8 param_2,undefined8 param_3,unde
     iVar4 = *(int *)(lVar3 + 0x164);
     iVar2 = *(int *)(lVar3 + 0x160);
     plVar5 = (longlong *)
-             FUN_18062b420(_DAT_180c8ed18,0x28,*(undefined1 *)(lVar3 + 0x100),param_4,uVar7);
+             CreateSystemThreadObject(_DAT_180c8ed18,0x28,*(undefined1 *)(lVar3 + 0x100),param_4,uVar7);
     uStack_18 = (undefined4)param_1;
     uStack_14 = (undefined4)((ulonglong)param_1 >> 0x20);
     *(int *)(plVar5 + 2) = iVar4 + iVar2;
@@ -45680,10 +45680,10 @@ ulonglong FUN_18006f940(undefined8 param_1,undefined8 param_2,char param_3)
       uStack_c8 = 0;
       puStack_d8 = (undefined8 *)0x0;
       uStack_d0 = 0;
-      puVar14 = (undefined8 *)FUN_18062b420(_DAT_180c8ed18,0x10,0x13);
+      puVar14 = (undefined8 *)CreateSystemThreadObject(_DAT_180c8ed18,0x10,0x13);
       *(undefined1 *)puVar14 = 0;
       puStack_d8 = puVar14;
-      uVar9 = FUN_18064e990(puVar14);
+      uVar9 = StartSystemThread(puVar14);
       uStack_c8 = CONCAT44(uStack_c8._4_4_,uVar9);
       *puVar14 = 0x4e524157204c4752;
       *(undefined4 *)(puVar14 + 1) = 0x474e49;
@@ -45933,10 +45933,10 @@ LAB_180070230:
         uStack_78 = 0;
         puStack_88 = (undefined8 *)0x0;
         uStack_80 = 0;
-        puVar9 = (undefined8 *)FUN_18062b420(_DAT_180c8ed18,0x34,0x13);
+        puVar9 = (undefined8 *)CreateSystemThreadObject(_DAT_180c8ed18,0x34,0x13);
         *(undefined1 *)puVar9 = 0;
         puStack_88 = puVar9;
-        uVar16 = FUN_18064e990(puVar9);
+        uVar16 = StartSystemThread(puVar9);
         uStack_78 = CONCAT44(uStack_78._4_4_,uVar16);
         *puVar9 = 0x7270706d75645c5c;
         puVar9[1] = 0x2e726f737365636f;
@@ -46250,10 +46250,10 @@ LAB_180070a3f:
     if (iVar4 < 0x10) {
       iVar4 = 0x10;
     }
-    puVar10 = (undefined1 *)FUN_18062b420(_DAT_180c8ed18,(longlong)iVar4,0x13);
+    puVar10 = (undefined1 *)CreateSystemThreadObject(_DAT_180c8ed18,(longlong)iVar4,0x13);
     *puVar10 = 0;
     puStack_110 = puVar10;
-    uVar5 = FUN_18064e990(puVar10);
+    uVar5 = StartSystemThread(puVar10);
     uStack_100 = CONCAT44(uStack_100._4_4_,uVar5);
     goto LAB_180070a3f;
   }
@@ -46277,7 +46277,7 @@ LAB_180070a3f:
           if ((int)uVar6 < 0x10) {
             uVar6 = 0x10;
           }
-          puVar10 = (undefined1 *)FUN_18062b420(_DAT_180c8ed18,(longlong)(int)uVar6,0x13);
+          puVar10 = (undefined1 *)CreateSystemThreadObject(_DAT_180c8ed18,(longlong)(int)uVar6,0x13);
           *puVar10 = 0;
         }
         else {
@@ -46286,7 +46286,7 @@ LAB_180070a3f:
           puVar10 = (undefined1 *)FUN_18062b8b0(_DAT_180c8ed18,puVar10,uVar6,0x10);
         }
         puStack_110 = puVar10;
-        uStack_100._0_4_ = FUN_18064e990(puVar10);
+        uStack_100._0_4_ = StartSystemThread(puVar10);
       }
 LAB_180070b00:
                     // WARNING: Subroutine does not return
@@ -46356,27 +46356,27 @@ LAB_180070b00:
       if (iVar4 < 0x10) {
         iVar4 = 0x10;
       }
-      puStack_138 = (undefined1 *)FUN_18062b420(_DAT_180c8ed18,(longlong)iVar4,0x13);
+      puStack_138 = (undefined1 *)CreateSystemThreadObject(_DAT_180c8ed18,(longlong)iVar4,0x13);
       *puStack_138 = 0;
-      uVar7 = FUN_18064e990(puStack_138);
+      uVar7 = StartSystemThread(puStack_138);
       uStack_128 = CONCAT44(uStack_128._4_4_,uVar7);
     }
                     // WARNING: Subroutine does not return
     memcpy(puStack_138 + uStack_130,puVar18,(longlong)((int)lVar16 + 2));
   }
-  puStack_138 = (undefined1 *)FUN_18062b420(_DAT_180c8ed18,0x10,0x13);
+  puStack_138 = (undefined1 *)CreateSystemThreadObject(_DAT_180c8ed18,0x10,0x13);
   *puStack_138 = 0;
-  uVar5 = FUN_18064e990(puStack_138);
+  uVar5 = StartSystemThread(puStack_138);
   uStack_128 = CONCAT44(uStack_128._4_4_,uVar5);
   *(undefined2 *)(puStack_138 + uStack_130) = 10;
   uStack_130 = 1;
   uVar6 = 2;
   if (puStack_138 == (undefined1 *)0x0) {
     uStack_130 = 1;
-    puStack_138 = (undefined1 *)FUN_18062b420(_DAT_180c8ed18,0x10,0x13);
+    puStack_138 = (undefined1 *)CreateSystemThreadObject(_DAT_180c8ed18,0x10,0x13);
     *puStack_138 = 0;
 LAB_180070db8:
-    uVar7 = FUN_18064e990(puStack_138);
+    uVar7 = StartSystemThread(puStack_138);
     uStack_128 = CONCAT44(uStack_128._4_4_,uVar7);
   }
   else if (uVar5 < 3) {
@@ -46403,7 +46403,7 @@ LAB_180070db8:
             uVar14 = 0x10;
           }
           uStack_130 = uVar6;
-          puStack_138 = (undefined1 *)FUN_18062b420(_DAT_180c8ed18,(longlong)(int)uVar14,0x13);
+          puStack_138 = (undefined1 *)CreateSystemThreadObject(_DAT_180c8ed18,(longlong)(int)uVar14,0x13);
           *puStack_138 = 0;
         }
         else {
@@ -46413,7 +46413,7 @@ LAB_180070db8:
           uStack_130 = uVar6;
           puStack_138 = (undefined1 *)FUN_18062b8b0(_DAT_180c8ed18,puStack_138,uVar14,0x10);
         }
-        uVar7 = FUN_18064e990(puStack_138);
+        uVar7 = StartSystemThread(puStack_138);
         uStack_128 = CONCAT44(uStack_128._4_4_,uVar7);
         uVar5 = uStack_130;
       }
@@ -46425,10 +46425,10 @@ LAB_180070e64:
   }
   if (puStack_138 == (undefined1 *)0x0) {
     uStack_130 = uVar6;
-    puStack_138 = (undefined1 *)FUN_18062b420(_DAT_180c8ed18,0x10,0x13);
+    puStack_138 = (undefined1 *)CreateSystemThreadObject(_DAT_180c8ed18,0x10,0x13);
     *puStack_138 = 0;
 LAB_180070ee8:
-    uVar7 = FUN_18064e990(puStack_138);
+    uVar7 = StartSystemThread(puStack_138);
     uStack_128 = CONCAT44(uStack_128._4_4_,uVar7);
   }
   else if ((uint)uStack_128 < 4) {
@@ -46448,7 +46448,7 @@ LAB_180070ee8:
       if ((int)uVar14 < 0x10) {
         uVar14 = 0x10;
       }
-      puStack_138 = (undefined1 *)FUN_18062b420(_DAT_180c8ed18,(longlong)(int)uVar14,0x13);
+      puStack_138 = (undefined1 *)CreateSystemThreadObject(_DAT_180c8ed18,(longlong)(int)uVar14,0x13);
       *puStack_138 = 0;
     }
     else {
@@ -46456,7 +46456,7 @@ LAB_180070ee8:
       puStack_168 = (undefined1 *)CONCAT71(puStack_168._1_7_,0x13);
       puStack_138 = (undefined1 *)FUN_18062b8b0(_DAT_180c8ed18,puStack_138,uVar14,0x10);
     }
-    uVar7 = FUN_18064e990(puStack_138);
+    uVar7 = StartSystemThread(puStack_138);
     uStack_128 = CONCAT44(uStack_128._4_4_,uVar7);
   }
 LAB_180070f81:
@@ -46469,7 +46469,7 @@ LAB_180070f81:
       if ((int)uVar5 < 0x10) {
         uVar5 = 0x10;
       }
-      puStack_138 = (undefined1 *)FUN_18062b420(_DAT_180c8ed18,(longlong)(int)uVar5,0x13);
+      puStack_138 = (undefined1 *)CreateSystemThreadObject(_DAT_180c8ed18,(longlong)(int)uVar5,0x13);
       *puStack_138 = 0;
     }
     else {
@@ -46477,7 +46477,7 @@ LAB_180070f81:
       puStack_168 = (undefined1 *)CONCAT71(puStack_168._1_7_,0x13);
       puStack_138 = (undefined1 *)FUN_18062b8b0(_DAT_180c8ed18,puStack_138,uVar5,0x10);
     }
-    uVar7 = FUN_18064e990(puStack_138);
+    uVar7 = StartSystemThread(puStack_138);
     uStack_128 = CONCAT44(uStack_128._4_4_,uVar7);
   }
 LAB_180071000:
@@ -46501,7 +46501,7 @@ LAB_180071000:
           if ((int)uVar6 < 0x10) {
             uVar6 = 0x10;
           }
-          puStack_138 = (undefined1 *)FUN_18062b420(_DAT_180c8ed18,(longlong)(int)uVar6,0x13);
+          puStack_138 = (undefined1 *)CreateSystemThreadObject(_DAT_180c8ed18,(longlong)(int)uVar6,0x13);
           *puStack_138 = 0;
         }
         else {
@@ -46509,7 +46509,7 @@ LAB_180071000:
           puStack_168 = (undefined1 *)CONCAT71(puStack_168._1_7_,0x13);
           puStack_138 = (undefined1 *)FUN_18062b8b0(_DAT_180c8ed18,puStack_138,uVar6,0x10);
         }
-        uVar7 = FUN_18064e990(puStack_138);
+        uVar7 = StartSystemThread(puStack_138);
         uStack_128 = CONCAT44(uStack_128._4_4_,uVar7);
       }
 LAB_1800710b8:
@@ -46524,7 +46524,7 @@ LAB_1800710b8:
       if ((int)uVar6 < 0x10) {
         uVar6 = 0x10;
       }
-      puStack_138 = (undefined1 *)FUN_18062b420(_DAT_180c8ed18,(longlong)(int)uVar6,0x13);
+      puStack_138 = (undefined1 *)CreateSystemThreadObject(_DAT_180c8ed18,(longlong)(int)uVar6,0x13);
       *puStack_138 = 0;
     }
     else {
@@ -46532,7 +46532,7 @@ LAB_1800710b8:
       puStack_168 = (undefined1 *)CONCAT71(puStack_168._1_7_,0x13);
       puStack_138 = (undefined1 *)FUN_18062b8b0(_DAT_180c8ed18,puStack_138,uVar6,0x10);
     }
-    uVar7 = FUN_18064e990(puStack_138);
+    uVar7 = StartSystemThread(puStack_138);
     uStack_128 = CONCAT44(uStack_128._4_4_,uVar7);
   }
 LAB_18007113f:
@@ -46835,9 +46835,9 @@ void FUN_180071940(undefined8 param_1,longlong param_2,undefined4 param_3,longlo
   uStack_78 = 0;
   puStack_88 = (undefined1 *)0x0;
   uStack_80 = 0;
-  puStack_88 = (undefined1 *)FUN_18062b420(_DAT_180c8ed18,0x12,0x13);
+  puStack_88 = (undefined1 *)CreateSystemThreadObject(_DAT_180c8ed18,0x12,0x13);
   *puStack_88 = 0;
-  uVar2 = FUN_18064e990(puStack_88);
+  uVar2 = StartSystemThread(puStack_88);
   uStack_78 = CONCAT44(uStack_78._4_4_,uVar2);
   puVar6 = (undefined4 *)(puStack_88 + uStack_80);
   *puVar6 = 0x65737341;
@@ -46848,10 +46848,10 @@ void FUN_180071940(undefined8 param_1,longlong param_2,undefined4 param_3,longlo
   uStack_80 = 0x11;
   if (puStack_88 == (undefined1 *)0x0) {
     uStack_80 = 0x11;
-    puStack_88 = (undefined1 *)FUN_18062b420(_DAT_180c8ed18,0x13,0x13);
+    puStack_88 = (undefined1 *)CreateSystemThreadObject(_DAT_180c8ed18,0x13,0x13);
     *puStack_88 = 0;
 LAB_180071af3:
-    uVar3 = FUN_18064e990(puStack_88);
+    uVar3 = StartSystemThread(puStack_88);
     uStack_78 = CONCAT44(uStack_78._4_4_,uVar3);
   }
   else if (uVar2 < 0x13) {
@@ -46864,10 +46864,10 @@ LAB_180071af3:
   uVar2 = 0x13;
   if (puStack_88 == (undefined1 *)0x0) {
     uStack_80 = 0x12;
-    puStack_88 = (undefined1 *)FUN_18062b420(_DAT_180c8ed18,0x14,0x13);
+    puStack_88 = (undefined1 *)CreateSystemThreadObject(_DAT_180c8ed18,0x14,0x13);
     *puStack_88 = 0;
 LAB_180071b69:
-    uVar3 = FUN_18064e990(puStack_88);
+    uVar3 = StartSystemThread(puStack_88);
     uStack_78 = CONCAT44(uStack_78._4_4_,uVar3);
   }
   else if ((uint)uStack_78 < 0x14) {
@@ -46893,7 +46893,7 @@ LAB_180071b69:
             uVar12 = 0x10;
           }
           uStack_80 = uVar2;
-          puStack_88 = (undefined1 *)FUN_18062b420(_DAT_180c8ed18,(longlong)(int)uVar12,0x13);
+          puStack_88 = (undefined1 *)CreateSystemThreadObject(_DAT_180c8ed18,(longlong)(int)uVar12,0x13);
           *puStack_88 = 0;
         }
         else {
@@ -46902,7 +46902,7 @@ LAB_180071b69:
           uStack_80 = uVar2;
           puStack_88 = (undefined1 *)FUN_18062b8b0(_DAT_180c8ed18,puStack_88,uVar12,0x10,0x13);
         }
-        uVar3 = FUN_18064e990(puStack_88);
+        uVar3 = StartSystemThread(puStack_88);
         uStack_78 = CONCAT44(uStack_78._4_4_,uVar3);
         uVar11 = uStack_80;
       }
@@ -46914,10 +46914,10 @@ LAB_180071c1a:
   }
   if (puStack_88 == (undefined1 *)0x0) {
     uStack_80 = uVar2;
-    puStack_88 = (undefined1 *)FUN_18062b420(_DAT_180c8ed18,0x15,0x13);
+    puStack_88 = (undefined1 *)CreateSystemThreadObject(_DAT_180c8ed18,0x15,0x13);
     *puStack_88 = 0;
 LAB_180071c93:
-    uVar3 = FUN_18064e990(puStack_88);
+    uVar3 = StartSystemThread(puStack_88);
     uStack_78 = CONCAT44(uStack_78._4_4_,uVar3);
   }
   else if ((uint)uStack_78 < 0x15) {
@@ -46936,14 +46936,14 @@ LAB_180071c93:
       if ((int)uVar12 < 0x10) {
         uVar12 = 0x10;
       }
-      puStack_88 = (undefined1 *)FUN_18062b420(_DAT_180c8ed18,(longlong)(int)uVar12,0x13);
+      puStack_88 = (undefined1 *)CreateSystemThreadObject(_DAT_180c8ed18,(longlong)(int)uVar12,0x13);
       *puStack_88 = 0;
     }
     else {
       if (uVar12 <= (uint)uStack_78) goto LAB_180071d1f;
       puStack_88 = (undefined1 *)FUN_18062b8b0(_DAT_180c8ed18,puStack_88,uVar12,0x10,0x13);
     }
-    uVar3 = FUN_18064e990(puStack_88);
+    uVar3 = StartSystemThread(puStack_88);
     uStack_78 = CONCAT44(uStack_78._4_4_,uVar3);
   }
 LAB_180071d1f:
@@ -46956,14 +46956,14 @@ LAB_180071d1f:
       if ((int)uVar11 < 0x10) {
         uVar11 = 0x10;
       }
-      puStack_88 = (undefined1 *)FUN_18062b420(_DAT_180c8ed18,(longlong)(int)uVar11,0x13);
+      puStack_88 = (undefined1 *)CreateSystemThreadObject(_DAT_180c8ed18,(longlong)(int)uVar11,0x13);
       *puStack_88 = 0;
     }
     else {
       if (uVar11 <= (uint)uStack_78) goto LAB_180071d94;
       puStack_88 = (undefined1 *)FUN_18062b8b0(_DAT_180c8ed18,puStack_88,uVar11,0x10,0x13);
     }
-    uVar3 = FUN_18064e990(puStack_88);
+    uVar3 = StartSystemThread(puStack_88);
     uStack_78 = CONCAT44(uStack_78._4_4_,uVar3);
   }
 LAB_180071d94:
@@ -46986,14 +46986,14 @@ LAB_180071d94:
           if ((int)uVar2 < 0x10) {
             uVar2 = 0x10;
           }
-          puStack_88 = (undefined1 *)FUN_18062b420(_DAT_180c8ed18,(longlong)(int)uVar2,0x13);
+          puStack_88 = (undefined1 *)CreateSystemThreadObject(_DAT_180c8ed18,(longlong)(int)uVar2,0x13);
           *puStack_88 = 0;
         }
         else {
           if (uVar2 <= (uint)uStack_78) goto LAB_180071e34;
           puStack_88 = (undefined1 *)FUN_18062b8b0(_DAT_180c8ed18,puStack_88,uVar2,0x10,0x13);
         }
-        uVar3 = FUN_18064e990(puStack_88);
+        uVar3 = StartSystemThread(puStack_88);
         uStack_78 = CONCAT44(uStack_78._4_4_,uVar3);
       }
 LAB_180071e34:
@@ -47007,14 +47007,14 @@ LAB_180071e34:
       if ((int)uVar11 < 0x10) {
         uVar11 = 0x10;
       }
-      puStack_88 = (undefined1 *)FUN_18062b420(_DAT_180c8ed18,(longlong)(int)uVar11,0x13);
+      puStack_88 = (undefined1 *)CreateSystemThreadObject(_DAT_180c8ed18,(longlong)(int)uVar11,0x13);
       *puStack_88 = 0;
     }
     else {
       if (uVar11 <= (uint)uStack_78) goto LAB_180071eb0;
       puStack_88 = (undefined1 *)FUN_18062b8b0(_DAT_180c8ed18,puStack_88,uVar11,0x10,0x13);
     }
-    uVar3 = FUN_18064e990(puStack_88);
+    uVar3 = StartSystemThread(puStack_88);
     uStack_78 = CONCAT44(uStack_78._4_4_,uVar3);
   }
 LAB_180071eb0:
@@ -47157,10 +47157,10 @@ LAB_180072120:
     if (iVar3 < 0x10) {
       iVar3 = 0x10;
     }
-    puVar10 = (undefined1 *)FUN_18062b420(_DAT_180c8ed18,(longlong)iVar3,0x13);
+    puVar10 = (undefined1 *)CreateSystemThreadObject(_DAT_180c8ed18,(longlong)iVar3,0x13);
     *puVar10 = 0;
     puStack_108 = puVar10;
-    uVar4 = FUN_18064e990(puVar10);
+    uVar4 = StartSystemThread(puVar10);
     uStack_f8 = CONCAT44(uStack_f8._4_4_,uVar4);
     goto LAB_180072120;
   }
@@ -47184,7 +47184,7 @@ LAB_180072120:
           if ((int)uVar6 < 0x10) {
             uVar6 = 0x10;
           }
-          puVar10 = (undefined1 *)FUN_18062b420(_DAT_180c8ed18,(longlong)(int)uVar6,0x13);
+          puVar10 = (undefined1 *)CreateSystemThreadObject(_DAT_180c8ed18,(longlong)(int)uVar6,0x13);
           *puVar10 = 0;
         }
         else {
@@ -47193,7 +47193,7 @@ LAB_180072120:
           puVar10 = (undefined1 *)FUN_18062b8b0(_DAT_180c8ed18,puVar10,uVar6,0x10);
         }
         puStack_108 = puVar10;
-        uStack_f8._0_4_ = FUN_18064e990(puVar10);
+        uStack_f8._0_4_ = StartSystemThread(puVar10);
       }
 LAB_1800721e1:
                     // WARNING: Subroutine does not return
@@ -47288,9 +47288,9 @@ LAB_1800722f5:
       uStack_120 = 0;
       puStack_130 = (undefined1 *)0x0;
       uStack_128 = 0;
-      puStack_130 = (undefined1 *)FUN_18062b420(_DAT_180c8ed18,0x15,0x13);
+      puStack_130 = (undefined1 *)CreateSystemThreadObject(_DAT_180c8ed18,0x15,0x13);
       *puStack_130 = 0;
-      uVar6 = FUN_18064e990(puStack_130);
+      uVar6 = StartSystemThread(puStack_130);
       uStack_120 = CONCAT44(uStack_120._4_4_,uVar6);
       puVar12 = (undefined4 *)(puStack_130 + uStack_128);
       *puVar12 = 0x69746f4e;
@@ -47302,10 +47302,10 @@ LAB_1800722f5:
       uStack_128 = 0x14;
       if (puStack_130 == (undefined1 *)0x0) {
         uStack_128 = 0x14;
-        puStack_130 = (undefined1 *)FUN_18062b420(_DAT_180c8ed18,0x16,0x13);
+        puStack_130 = (undefined1 *)CreateSystemThreadObject(_DAT_180c8ed18,0x16,0x13);
         *puStack_130 = 0;
 LAB_180072521:
-        uVar7 = FUN_18064e990(puStack_130);
+        uVar7 = StartSystemThread(puStack_130);
         uStack_120 = CONCAT44(uStack_120._4_4_,uVar7);
       }
       else if (uVar6 < 0x16) {
@@ -47319,10 +47319,10 @@ LAB_180072521:
       uVar6 = 0x16;
       if (puStack_130 == (undefined1 *)0x0) {
         uStack_128 = 0x15;
-        puStack_130 = (undefined1 *)FUN_18062b420(_DAT_180c8ed18,0x17,0x13);
+        puStack_130 = (undefined1 *)CreateSystemThreadObject(_DAT_180c8ed18,0x17,0x13);
         *puStack_130 = 0;
 LAB_1800725ac:
-        uVar7 = FUN_18064e990(puStack_130);
+        uVar7 = StartSystemThread(puStack_130);
         uStack_120 = CONCAT44(uStack_120._4_4_,uVar7);
       }
       else if ((uint)uStack_120 < 0x17) {
@@ -47349,7 +47349,7 @@ LAB_1800725ac:
                 uVar16 = 0x10;
               }
               uStack_128 = uVar6;
-              puStack_130 = (undefined1 *)FUN_18062b420(_DAT_180c8ed18,(longlong)(int)uVar16,0x13);
+              puStack_130 = (undefined1 *)CreateSystemThreadObject(_DAT_180c8ed18,(longlong)(int)uVar16,0x13);
               *puStack_130 = 0;
             }
             else {
@@ -47359,7 +47359,7 @@ LAB_1800725ac:
               uStack_128 = uVar6;
               puStack_130 = (undefined1 *)FUN_18062b8b0(_DAT_180c8ed18,puStack_130,uVar16,0x10);
             }
-            uVar7 = FUN_18064e990(puStack_130);
+            uVar7 = StartSystemThread(puStack_130);
             uStack_120 = CONCAT44(uStack_120._4_4_,uVar7);
             uVar4 = uStack_128;
           }
@@ -47371,10 +47371,10 @@ LAB_180072662:
       }
       if (puStack_130 == (undefined1 *)0x0) {
         uStack_128 = uVar6;
-        puStack_130 = (undefined1 *)FUN_18062b420(_DAT_180c8ed18,0x18,0x13);
+        puStack_130 = (undefined1 *)CreateSystemThreadObject(_DAT_180c8ed18,0x18,0x13);
         *puStack_130 = 0;
 LAB_1800726e7:
-        uVar7 = FUN_18064e990(puStack_130);
+        uVar7 = StartSystemThread(puStack_130);
         uStack_120 = CONCAT44(uStack_120._4_4_,uVar7);
       }
       else if ((uint)uStack_120 < 0x18) {
@@ -47394,7 +47394,7 @@ LAB_1800726e7:
           if ((int)uVar16 < 0x10) {
             uVar16 = 0x10;
           }
-          puStack_130 = (undefined1 *)FUN_18062b420(_DAT_180c8ed18,(longlong)(int)uVar16,0x13);
+          puStack_130 = (undefined1 *)CreateSystemThreadObject(_DAT_180c8ed18,(longlong)(int)uVar16,0x13);
           *puStack_130 = 0;
         }
         else {
@@ -47402,7 +47402,7 @@ LAB_1800726e7:
           puStack_148 = (undefined1 *)CONCAT71(puStack_148._1_7_,0x13);
           puStack_130 = (undefined1 *)FUN_18062b8b0(_DAT_180c8ed18,puStack_130,uVar16,0x10);
         }
-        uVar7 = FUN_18064e990(puStack_130);
+        uVar7 = StartSystemThread(puStack_130);
         uStack_120 = CONCAT44(uStack_120._4_4_,uVar7);
       }
 LAB_180072780:
@@ -47415,7 +47415,7 @@ LAB_180072780:
           if ((int)uVar4 < 0x10) {
             uVar4 = 0x10;
           }
-          puStack_130 = (undefined1 *)FUN_18062b420(_DAT_180c8ed18,(longlong)(int)uVar4,0x13);
+          puStack_130 = (undefined1 *)CreateSystemThreadObject(_DAT_180c8ed18,(longlong)(int)uVar4,0x13);
           *puStack_130 = 0;
         }
         else {
@@ -47423,7 +47423,7 @@ LAB_180072780:
           puStack_148 = (undefined1 *)CONCAT71(puStack_148._1_7_,0x13);
           puStack_130 = (undefined1 *)FUN_18062b8b0(_DAT_180c8ed18,puStack_130,uVar4,0x10);
         }
-        uVar7 = FUN_18064e990(puStack_130);
+        uVar7 = StartSystemThread(puStack_130);
         uStack_120 = CONCAT44(uStack_120._4_4_,uVar7);
       }
 LAB_1800727ff:
@@ -47446,7 +47446,7 @@ LAB_1800727ff:
               if ((int)uVar6 < 0x10) {
                 uVar6 = 0x10;
               }
-              puStack_130 = (undefined1 *)FUN_18062b420(_DAT_180c8ed18,(longlong)(int)uVar6,0x13);
+              puStack_130 = (undefined1 *)CreateSystemThreadObject(_DAT_180c8ed18,(longlong)(int)uVar6,0x13);
               *puStack_130 = 0;
             }
             else {
@@ -47454,7 +47454,7 @@ LAB_1800727ff:
               puStack_148 = (undefined1 *)CONCAT71(puStack_148._1_7_,0x13);
               puStack_130 = (undefined1 *)FUN_18062b8b0(_DAT_180c8ed18,puStack_130,uVar6,0x10);
             }
-            uVar7 = FUN_18064e990(puStack_130);
+            uVar7 = StartSystemThread(puStack_130);
             uStack_120 = CONCAT44(uStack_120._4_4_,uVar7);
           }
 LAB_1800728ad:
@@ -47469,7 +47469,7 @@ LAB_1800728ad:
           if ((int)uVar8 < 0x10) {
             uVar8 = 0x10;
           }
-          puStack_130 = (undefined1 *)FUN_18062b420(_DAT_180c8ed18,(longlong)(int)uVar8,0x13);
+          puStack_130 = (undefined1 *)CreateSystemThreadObject(_DAT_180c8ed18,(longlong)(int)uVar8,0x13);
           *puStack_130 = 0;
         }
         else {
@@ -47477,7 +47477,7 @@ LAB_1800728ad:
           puStack_148 = (undefined1 *)CONCAT71(puStack_148._1_7_,0x13);
           puStack_130 = (undefined1 *)FUN_18062b8b0(_DAT_180c8ed18,puStack_130,uVar8,0x10);
         }
-        uVar7 = FUN_18064e990(puStack_130);
+        uVar7 = StartSystemThread(puStack_130);
         uStack_120 = CONCAT44(uStack_120._4_4_,uVar7);
       }
 LAB_180072934:
@@ -47490,7 +47490,7 @@ LAB_180072934:
           if ((int)uVar4 < 0x10) {
             uVar4 = 0x10;
           }
-          puStack_130 = (undefined1 *)FUN_18062b420(_DAT_180c8ed18,(longlong)(int)uVar4,0x13);
+          puStack_130 = (undefined1 *)CreateSystemThreadObject(_DAT_180c8ed18,(longlong)(int)uVar4,0x13);
           *puStack_130 = 0;
         }
         else {
@@ -47498,7 +47498,7 @@ LAB_180072934:
           puStack_148 = (undefined1 *)CONCAT71(puStack_148._1_7_,0x13);
           puStack_130 = (undefined1 *)FUN_18062b8b0(_DAT_180c8ed18,puStack_130,uVar4,0x10);
         }
-        uVar7 = FUN_18064e990(puStack_130);
+        uVar7 = StartSystemThread(puStack_130);
         uStack_120 = CONCAT44(uStack_120._4_4_,uVar7);
       }
 LAB_1800729bd:
@@ -47554,10 +47554,10 @@ LAB_1800729bd:
           uStack_b8 = 0;
           puStack_c8 = (undefined8 *)0x0;
           uStack_c0 = 0;
-          puVar13 = (undefined8 *)FUN_18062b420(_DAT_180c8ed18,0x34,0x13);
+          puVar13 = (undefined8 *)CreateSystemThreadObject(_DAT_180c8ed18,0x34,0x13);
           *(undefined1 *)puVar13 = 0;
           puStack_c8 = puVar13;
-          uVar7 = FUN_18064e990(puVar13);
+          uVar7 = StartSystemThread(puVar13);
           uStack_b8 = CONCAT44(uStack_b8._4_4_,uVar7);
           *puVar13 = 0x7270706d75645c5c;
           puVar13[1] = 0x2e726f737365636f;
@@ -47714,9 +47714,9 @@ bool FUN_180072f00(undefined8 param_1,undefined8 *param_2)
   uStack_d8 = 0;
   puStack_e8 = (undefined2 *)0x0;
   uStack_e0 = 0;
-  puStack_e8 = (undefined2 *)FUN_18062b420(_DAT_180c8ed18,0x10,0x13);
+  puStack_e8 = (undefined2 *)CreateSystemThreadObject(_DAT_180c8ed18,0x10,0x13);
   *(undefined1 *)puStack_e8 = 0;
-  uVar1 = FUN_18064e990(puStack_e8);
+  uVar1 = StartSystemThread(puStack_e8);
   uStack_d8 = CONCAT44(uStack_d8._4_4_,uVar1);
   *puStack_e8 = 0xa0a;
   *(undefined1 *)(puStack_e8 + 1) = 0;
@@ -47801,10 +47801,10 @@ bool FUN_180072f00(undefined8 param_1,undefined8 *param_2)
     uStack_f8 = 0;
     puStack_108 = (undefined8 *)0x0;
     iStack_100 = 0;
-    puVar6 = (undefined8 *)FUN_18062b420(_DAT_180c8ed18,0x34,0x13);
+    puVar6 = (undefined8 *)CreateSystemThreadObject(_DAT_180c8ed18,0x34,0x13);
     *(undefined1 *)puVar6 = 0;
     puStack_108 = puVar6;
-    uVar1 = FUN_18064e990(puVar6);
+    uVar1 = StartSystemThread(puVar6);
     uStack_f8 = CONCAT44(uStack_f8._4_4_,uVar1);
     *puVar6 = 0x7270706d75645c5c;
     puVar6[1] = 0x2e726f737365636f;
@@ -47833,10 +47833,10 @@ bool FUN_180072f00(undefined8 param_1,undefined8 *param_2)
       if (iVar2 < 0x10) {
         iVar2 = 0x10;
       }
-      puVar5 = (undefined8 *)FUN_18062b420(_DAT_180c8ed18,(longlong)iVar2,0x13);
+      puVar5 = (undefined8 *)CreateSystemThreadObject(_DAT_180c8ed18,(longlong)iVar2,0x13);
       *(undefined1 *)puVar5 = 0;
       puStack_a8 = puVar5;
-      uVar1 = FUN_18064e990(puVar5);
+      uVar1 = StartSystemThread(puVar5);
       uStack_98 = CONCAT44(uStack_98._4_4_,uVar1);
       if (*(int *)(lVar4 + 0x158) != 0) {
                     // WARNING: Subroutine does not return
@@ -47865,10 +47865,10 @@ bool FUN_180072f00(undefined8 param_1,undefined8 *param_2)
     if (uVar15 < 0x10) {
       uVar11 = 0x10;
     }
-    puVar8 = (undefined1 *)FUN_18062b420(_DAT_180c8ed18,uVar11,0x13);
+    puVar8 = (undefined1 *)CreateSystemThreadObject(_DAT_180c8ed18,uVar11,0x13);
     *puVar8 = 0;
     puStack_88 = puVar8;
-    uVar1 = FUN_18064e990(puVar8);
+    uVar1 = StartSystemThread(puVar8);
     uStack_78 = CONCAT44(uStack_78._4_4_,uVar1);
                     // WARNING: Subroutine does not return
     memcpy(puVar8,*ppuVar7,uVar15);
@@ -48949,12 +48949,12 @@ void FUN_180074090(longlong *param_1,longlong param_2)
             lVar5 = lVar7;
           }
           else {
-            lVar5 = FUN_18062b420(_DAT_180c8ed18,(ulonglong)*(ushort *)(plVar12 + 2) * 4,4);
+            lVar5 = CreateSystemThreadObject(_DAT_180c8ed18,(ulonglong)*(ushort *)(plVar12 + 2) * 4,4);
             uVar6 = (ulonglong)*(ushort *)(plVar12 + 2);
           }
           plVar12[1] = lVar5;
           if (uVar6 != 0) {
-            lVar7 = FUN_18062b420(_DAT_180c8ed18,uVar6 << 4,4);
+            lVar7 = CreateSystemThreadObject(_DAT_180c8ed18,uVar6 << 4,4);
           }
           *plVar12 = lVar7;
                     // WARNING: Subroutine does not return
@@ -48984,12 +48984,12 @@ void FUN_180074090(longlong *param_1,longlong param_2)
             lVar5 = lVar7;
           }
           else {
-            lVar5 = FUN_18062b420(_DAT_180c8ed18,(ulonglong)*(ushort *)(lVar10 + 0x22) * 4,4);
+            lVar5 = CreateSystemThreadObject(_DAT_180c8ed18,(ulonglong)*(ushort *)(lVar10 + 0x22) * 4,4);
             uVar6 = (ulonglong)*(ushort *)(lVar10 + 0x22);
           }
           *(longlong *)(lVar10 + 0x1a) = lVar5;
           if (uVar6 != 0) {
-            lVar7 = FUN_18062b420(_DAT_180c8ed18,uVar6 << 4,4);
+            lVar7 = CreateSystemThreadObject(_DAT_180c8ed18,uVar6 << 4,4);
           }
           *(longlong *)(lVar10 + 0x12) = lVar7;
                     // WARNING: Subroutine does not return
@@ -49022,13 +49022,13 @@ void FUN_180074090(longlong *param_1,longlong param_2)
           lVar5 = lVar7;
         }
         else {
-          lVar5 = FUN_18062b420(_DAT_180c8ed18,(ulonglong)*(ushort *)((longlong)param_1 + 0x62) * 4,
+          lVar5 = CreateSystemThreadObject(_DAT_180c8ed18,(ulonglong)*(ushort *)((longlong)param_1 + 0x62) * 4,
                                 4);
           uVar6 = (ulonglong)*(ushort *)((longlong)param_1 + 0x62);
         }
         *(longlong *)((longlong)param_1 + 0x5a) = lVar5;
         if (uVar6 != 0) {
-          lVar7 = FUN_18062b420(_DAT_180c8ed18,uVar6 << 4,4);
+          lVar7 = CreateSystemThreadObject(_DAT_180c8ed18,uVar6 << 4,4);
         }
         *(longlong *)((longlong)param_1 + 0x52) = lVar7;
                     // WARNING: Subroutine does not return
@@ -49054,12 +49054,12 @@ void FUN_180074090(longlong *param_1,longlong param_2)
       lVar5 = lVar7;
     }
     else {
-      lVar5 = FUN_18062b420(_DAT_180c8ed18,(ulonglong)*(ushort *)(param_1 + 10) * 4,4);
+      lVar5 = CreateSystemThreadObject(_DAT_180c8ed18,(ulonglong)*(ushort *)(param_1 + 10) * 4,4);
       uVar6 = (ulonglong)*(ushort *)(param_1 + 10);
     }
     param_1[9] = lVar5;
     if (uVar6 != 0) {
-      lVar7 = FUN_18062b420(_DAT_180c8ed18,uVar6 << 4,4);
+      lVar7 = CreateSystemThreadObject(_DAT_180c8ed18,uVar6 << 4,4);
     }
     param_1[8] = lVar7;
                     // WARNING: Subroutine does not return
@@ -49129,12 +49129,12 @@ void FUN_1800740a2(longlong *param_1)
             lVar5 = lVar7;
           }
           else {
-            lVar5 = FUN_18062b420(_DAT_180c8ed18,(ulonglong)*(ushort *)(plVar12 + 2) * 4,4);
+            lVar5 = CreateSystemThreadObject(_DAT_180c8ed18,(ulonglong)*(ushort *)(plVar12 + 2) * 4,4);
             uVar6 = (ulonglong)*(ushort *)(plVar12 + 2);
           }
           plVar12[1] = lVar5;
           if (uVar6 != 0) {
-            lVar7 = FUN_18062b420(_DAT_180c8ed18,uVar6 << 4,4);
+            lVar7 = CreateSystemThreadObject(_DAT_180c8ed18,uVar6 << 4,4);
           }
           *plVar12 = lVar7;
                     // WARNING: Subroutine does not return
@@ -49164,12 +49164,12 @@ void FUN_1800740a2(longlong *param_1)
             lVar5 = lVar7;
           }
           else {
-            lVar5 = FUN_18062b420(_DAT_180c8ed18,(ulonglong)*(ushort *)(lVar10 + 0x22) * 4,4);
+            lVar5 = CreateSystemThreadObject(_DAT_180c8ed18,(ulonglong)*(ushort *)(lVar10 + 0x22) * 4,4);
             uVar6 = (ulonglong)*(ushort *)(lVar10 + 0x22);
           }
           *(longlong *)(lVar10 + 0x1a) = lVar5;
           if (uVar6 != 0) {
-            lVar7 = FUN_18062b420(_DAT_180c8ed18,uVar6 << 4,4);
+            lVar7 = CreateSystemThreadObject(_DAT_180c8ed18,uVar6 << 4,4);
           }
           *(longlong *)(lVar10 + 0x12) = lVar7;
                     // WARNING: Subroutine does not return
@@ -49203,13 +49203,13 @@ void FUN_1800740a2(longlong *param_1)
           lVar5 = lVar7;
         }
         else {
-          lVar5 = FUN_18062b420(_DAT_180c8ed18,(ulonglong)*(ushort *)((longlong)param_1 + 0x62) * 4,
+          lVar5 = CreateSystemThreadObject(_DAT_180c8ed18,(ulonglong)*(ushort *)((longlong)param_1 + 0x62) * 4,
                                 4);
           uVar6 = (ulonglong)*(ushort *)((longlong)param_1 + 0x62);
         }
         *(longlong *)((longlong)param_1 + 0x5a) = lVar5;
         if (uVar6 != 0) {
-          lVar7 = FUN_18062b420(_DAT_180c8ed18,uVar6 << 4,4);
+          lVar7 = CreateSystemThreadObject(_DAT_180c8ed18,uVar6 << 4,4);
         }
         *(longlong *)((longlong)param_1 + 0x52) = lVar7;
                     // WARNING: Subroutine does not return
@@ -49235,12 +49235,12 @@ void FUN_1800740a2(longlong *param_1)
       lVar5 = lVar7;
     }
     else {
-      lVar5 = FUN_18062b420(_DAT_180c8ed18,(ulonglong)*(ushort *)(param_1 + 10) * 4,4);
+      lVar5 = CreateSystemThreadObject(_DAT_180c8ed18,(ulonglong)*(ushort *)(param_1 + 10) * 4,4);
       uVar6 = (ulonglong)*(ushort *)(param_1 + 10);
     }
     param_1[9] = lVar5;
     if (uVar6 != 0) {
-      lVar7 = FUN_18062b420(_DAT_180c8ed18,uVar6 << 4,4);
+      lVar7 = CreateSystemThreadObject(_DAT_180c8ed18,uVar6 << 4,4);
     }
     param_1[8] = lVar7;
                     // WARNING: Subroutine does not return
@@ -49293,12 +49293,12 @@ void FUN_1800740f5(longlong param_1)
           uVar2 = unaff_RSI;
         }
         else {
-          uVar2 = FUN_18062b420(_DAT_180c8ed18,(ulonglong)(ushort)puVar6[2] * 4,4);
+          uVar2 = CreateSystemThreadObject(_DAT_180c8ed18,(ulonglong)(ushort)puVar6[2] * 4,4);
           uVar5 = (ulonglong)(ushort)puVar6[2];
         }
         puVar6[1] = uVar2;
         if (uVar5 != 0) {
-          unaff_RSI = FUN_18062b420(_DAT_180c8ed18,uVar5 << 4,4);
+          unaff_RSI = CreateSystemThreadObject(_DAT_180c8ed18,uVar5 << 4,4);
         }
         *puVar6 = unaff_RSI;
                     // WARNING: Subroutine does not return
@@ -49326,12 +49326,12 @@ void FUN_1800740f5(longlong param_1)
           uVar2 = unaff_RSI;
         }
         else {
-          uVar2 = FUN_18062b420(_DAT_180c8ed18,(ulonglong)*(ushort *)(lVar4 + 0x22) * 4,4);
+          uVar2 = CreateSystemThreadObject(_DAT_180c8ed18,(ulonglong)*(ushort *)(lVar4 + 0x22) * 4,4);
           uVar5 = (ulonglong)*(ushort *)(lVar4 + 0x22);
         }
         *(ulonglong *)(lVar4 + 0x1a) = uVar2;
         if (uVar5 != 0) {
-          unaff_RSI = FUN_18062b420(_DAT_180c8ed18,uVar5 << 4,4);
+          unaff_RSI = CreateSystemThreadObject(_DAT_180c8ed18,uVar5 << 4,4);
         }
         *(ulonglong *)(lVar4 + 0x12) = unaff_RSI;
                     // WARNING: Subroutine does not return
@@ -49364,12 +49364,12 @@ void FUN_1800740f5(longlong param_1)
           uVar2 = unaff_RSI;
         }
         else {
-          uVar2 = FUN_18062b420(_DAT_180c8ed18,(ulonglong)*(ushort *)(unaff_R15 + 0x62) * 4,4);
+          uVar2 = CreateSystemThreadObject(_DAT_180c8ed18,(ulonglong)*(ushort *)(unaff_R15 + 0x62) * 4,4);
           uVar5 = (ulonglong)*(ushort *)(unaff_R15 + 0x62);
         }
         *(ulonglong *)(unaff_R15 + 0x5a) = uVar2;
         if (uVar5 != 0) {
-          unaff_RSI = FUN_18062b420(_DAT_180c8ed18,uVar5 << 4,4);
+          unaff_RSI = CreateSystemThreadObject(_DAT_180c8ed18,uVar5 << 4,4);
         }
         *(ulonglong *)(unaff_R15 + 0x52) = unaff_RSI;
                     // WARNING: Subroutine does not return
@@ -49395,12 +49395,12 @@ void FUN_1800740f5(longlong param_1)
       uVar2 = unaff_RSI;
     }
     else {
-      uVar2 = FUN_18062b420(_DAT_180c8ed18,(ulonglong)*(ushort *)(unaff_R15 + 0x50) * 4,4);
+      uVar2 = CreateSystemThreadObject(_DAT_180c8ed18,(ulonglong)*(ushort *)(unaff_R15 + 0x50) * 4,4);
       uVar5 = (ulonglong)*(ushort *)(unaff_R15 + 0x50);
     }
     *(ulonglong *)(unaff_R15 + 0x48) = uVar2;
     if (uVar5 != 0) {
-      unaff_RSI = FUN_18062b420(_DAT_180c8ed18,uVar5 << 4,4);
+      unaff_RSI = CreateSystemThreadObject(_DAT_180c8ed18,uVar5 << 4,4);
     }
     *(ulonglong *)(unaff_R15 + 0x40) = unaff_RSI;
                     // WARNING: Subroutine does not return
@@ -49446,12 +49446,12 @@ void FUN_1800742ea(longlong param_1)
           uVar2 = unaff_RSI;
         }
         else {
-          uVar2 = FUN_18062b420(_DAT_180c8ed18,(ulonglong)*(ushort *)(unaff_R15 + 0x62) * 4,4);
+          uVar2 = CreateSystemThreadObject(_DAT_180c8ed18,(ulonglong)*(ushort *)(unaff_R15 + 0x62) * 4,4);
           uVar3 = (ulonglong)*(ushort *)(unaff_R15 + 0x62);
         }
         *(undefined8 *)(unaff_R15 + 0x5a) = uVar2;
         if (uVar3 != 0) {
-          unaff_RSI = FUN_18062b420(_DAT_180c8ed18,uVar3 << 4,4);
+          unaff_RSI = CreateSystemThreadObject(_DAT_180c8ed18,uVar3 << 4,4);
         }
         *(undefined8 *)(unaff_R15 + 0x52) = unaff_RSI;
                     // WARNING: Subroutine does not return
@@ -49477,12 +49477,12 @@ void FUN_1800742ea(longlong param_1)
       uVar2 = unaff_RSI;
     }
     else {
-      uVar2 = FUN_18062b420(_DAT_180c8ed18,(ulonglong)*(ushort *)(unaff_R15 + 0x50) * 4,4);
+      uVar2 = CreateSystemThreadObject(_DAT_180c8ed18,(ulonglong)*(ushort *)(unaff_R15 + 0x50) * 4,4);
       uVar3 = (ulonglong)*(ushort *)(unaff_R15 + 0x50);
     }
     *(undefined8 *)(unaff_R15 + 0x48) = uVar2;
     if (uVar3 != 0) {
-      unaff_RSI = FUN_18062b420(_DAT_180c8ed18,uVar3 << 4,4);
+      unaff_RSI = CreateSystemThreadObject(_DAT_180c8ed18,uVar3 << 4,4);
     }
     *(undefined8 *)(unaff_R15 + 0x40) = unaff_RSI;
                     // WARNING: Subroutine does not return
@@ -49522,12 +49522,12 @@ void FUN_180074309(void)
       uVar1 = unaff_RSI;
     }
     else {
-      uVar1 = FUN_18062b420(_DAT_180c8ed18,(ulonglong)*(ushort *)(unaff_R15 + 0x50) * 4,4);
+      uVar1 = CreateSystemThreadObject(_DAT_180c8ed18,(ulonglong)*(ushort *)(unaff_R15 + 0x50) * 4,4);
       uVar2 = (ulonglong)*(ushort *)(unaff_R15 + 0x50);
     }
     *(undefined8 *)(unaff_R15 + 0x48) = uVar1;
     if (uVar2 != 0) {
-      unaff_RSI = FUN_18062b420(_DAT_180c8ed18,uVar2 << 4,4);
+      unaff_RSI = CreateSystemThreadObject(_DAT_180c8ed18,uVar2 << 4,4);
     }
     *(undefined8 *)(unaff_R15 + 0x40) = unaff_RSI;
                     // WARNING: Subroutine does not return
@@ -49959,7 +49959,7 @@ void FUN_180074c20(undefined8 *param_1,ulonglong param_2)
     plVar1 = (longlong *)0x0;
     if (uVar9 != 0) {
       plVar1 = (longlong *)
-               FUN_18062b420(_DAT_180c8ed18,uVar9 * 0x24,*(undefined1 *)(param_1 + 3),puVar7,
+               CreateSystemThreadObject(_DAT_180c8ed18,uVar9 * 0x24,*(undefined1 *)(param_1 + 3),puVar7,
                              0xfffffffffffffffe);
       puVar7 = (undefined8 *)param_1[1];
       puVar3 = (undefined8 *)*param_1;
@@ -51702,7 +51702,7 @@ int FUN_180076c50(longlong param_1,longlong *param_2)
   plVar1 = param_2 + 5;
   lVar9 = param_2[7] - *plVar1;
   if ((ulonglong)(lVar9 / 0x18) < 0x100) {
-    lVar7 = FUN_18062b420(_DAT_180c8ed18,0x1800,(char)param_2[8]);
+    lVar7 = CreateSystemThreadObject(_DAT_180c8ed18,0x1800,(char)param_2[8]);
     lVar9 = *plVar1;
     if (lVar9 != param_2[6]) {
                     // WARNING: Subroutine does not return
@@ -52045,7 +52045,7 @@ undefined8 FUN_180077420(longlong param_1,longlong param_2)
             uVar9 = uVar3 >> 10;
             uVar14 = (ulonglong)uVar9;
             if (*(longlong *)(lVar11 + 0x3f70 + (ulonglong)uVar9 * 8) == 0) {
-              lVar10 = FUN_18062b420(_DAT_180c8ed18,0x2000,0x25);
+              lVar10 = CreateSystemThreadObject(_DAT_180c8ed18,0x2000,0x25);
               plVar2 = (longlong *)(lVar11 + 0x3f70 + uVar14 * 8);
               LOCK();
               bVar16 = *plVar2 == 0;
@@ -52315,7 +52315,7 @@ LAB_180077879:
             do {
               iVar33 = (int)uVar34;
               if (*(longlong *)puVar35 == 0) {
-                lVar27 = FUN_18062b420(_DAT_180c8ed18,0xc000,0x25);
+                lVar27 = CreateSystemThreadObject(_DAT_180c8ed18,0xc000,0x25);
                 LOCK();
                 bVar36 = *(longlong *)(puVar30 + (longlong)iVar33 * 2 + 2) == 0;
                 if (bVar36) {
@@ -52641,7 +52641,7 @@ void FUN_18007799c(void)
   do {
     iVar40 = (int)uVar41;
     if (*(longlong *)puVar42 == 0) {
-      lVar33 = FUN_18062b420(_DAT_180c8ed18,0xc000,0x25);
+      lVar33 = CreateSystemThreadObject(_DAT_180c8ed18,0xc000,0x25);
       LOCK();
       bVar43 = *(longlong *)(puVar36 + (longlong)iVar40 * 2 + 2) == 0;
       if (bVar43) {
@@ -55226,7 +55226,7 @@ void FUN_180079270(longlong param_1,longlong param_2)
             do {
               iVar45 = (int)uVar48;
               if (*(longlong *)puVar47 == 0) {
-                lVar35 = FUN_18062b420(_DAT_180c8ed18,0x2000,0x25);
+                lVar35 = CreateSystemThreadObject(_DAT_180c8ed18,0x2000,0x25);
                 LOCK();
                 bVar50 = *(longlong *)(puVar42 + (longlong)iVar45 * 2 + 2) == 0;
                 if (bVar50) {
@@ -55538,7 +55538,7 @@ void FUN_180079284(longlong param_1)
             do {
               iVar45 = (int)uVar48;
               if (*(longlong *)puVar47 == 0) {
-                lVar35 = FUN_18062b420(_DAT_180c8ed18,0x2000,0x25);
+                lVar35 = CreateSystemThreadObject(_DAT_180c8ed18,0x2000,0x25);
                 LOCK();
                 bVar50 = *(longlong *)(puVar42 + (longlong)iVar45 * 2 + 2) == 0;
                 if (bVar50) {
@@ -55831,7 +55831,7 @@ void FUN_1800792ea(void)
             do {
               iVar42 = (int)uVar46;
               if (*(longlong *)puVar45 == 0) {
-                lVar43 = FUN_18062b420(_DAT_180c8ed18,0x2000,0x25);
+                lVar43 = CreateSystemThreadObject(_DAT_180c8ed18,0x2000,0x25);
                 LOCK();
                 bVar48 = *(longlong *)(puVar39 + (longlong)iVar42 * 2 + 2) == 0;
                 if (bVar48) {
@@ -56120,7 +56120,7 @@ void FUN_180079309(longlong param_1,uint param_2,undefined8 param_3,float *param
             do {
               iVar42 = (int)uVar45;
               if (*(longlong *)puVar44 == 0) {
-                lVar33 = FUN_18062b420(_DAT_180c8ed18,0x2000,0x25);
+                lVar33 = CreateSystemThreadObject(_DAT_180c8ed18,0x2000,0x25);
                 LOCK();
                 bVar47 = *(longlong *)(puVar38 + (longlong)iVar42 * 2 + 2) == 0;
                 if (bVar47) {
@@ -56331,7 +56331,7 @@ void FUN_18007940e(void)
             do {
               iVar19 = (int)uVar22;
               if (*(longlong *)puVar21 == 0) {
-                lVar9 = FUN_18062b420(_DAT_180c8ed18,0x2000,0x25);
+                lVar9 = CreateSystemThreadObject(_DAT_180c8ed18,0x2000,0x25);
                 LOCK();
                 bVar24 = *(longlong *)(puVar15 + (longlong)iVar19 * 2 + 2) == 0;
                 if (bVar24) {
@@ -56935,7 +56935,7 @@ void FUN_1800796b0(longlong param_1)
           lVar12 = 0;
         }
         else {
-          lVar12 = FUN_18062b420(_DAT_180c8ed18,uVar41 << 4,*(undefined1 *)(lVar21 + 0x18 + lVar22))
+          lVar12 = CreateSystemThreadObject(_DAT_180c8ed18,uVar41 << 4,*(undefined1 *)(lVar21 + 0x18 + lVar22))
           ;
           lVar17 = *(longlong *)(lVar21 + 8 + lVar22);
           lVar24 = *(longlong *)(lVar21 + lVar22);
@@ -57063,7 +57063,7 @@ void FUN_1800796b0(longlong param_1)
         if (lVar17 == 0) {
           lVar17 = 1;
 LAB_180079c12:
-          piVar13 = (int *)FUN_18062b420(_DAT_180c8ed18,lVar17 * 4,
+          piVar13 = (int *)CreateSystemThreadObject(_DAT_180c8ed18,lVar17 * 4,
                                          *(undefined1 *)(lVar31 + 0x18 + lStack_170));
           piVar20 = *(int **)(lVar31 + 8 + lVar23);
           piVar15 = *(int **)(lVar31 + lVar23);
@@ -57099,7 +57099,7 @@ LAB_180079c12:
         if (lVar17 == 0) {
           lVar17 = 1;
 LAB_180079cd7:
-          piVar13 = (int *)FUN_18062b420(_DAT_180c8ed18,lVar17 * 4,
+          piVar13 = (int *)CreateSystemThreadObject(_DAT_180c8ed18,lVar17 * 4,
                                          *(undefined1 *)(lVar31 + 0x18 + lStack_170));
           piVar20 = *(int **)(lVar31 + 8 + lVar23);
           piVar15 = *(int **)(lVar31 + lVar23);
@@ -57134,7 +57134,7 @@ LAB_180079cd7:
         if (lVar31 == 0) {
           lVar31 = 1;
 LAB_180079d9b:
-          piVar15 = (int *)FUN_18062b420(_DAT_180c8ed18,lVar31 * 4,
+          piVar15 = (int *)CreateSystemThreadObject(_DAT_180c8ed18,lVar31 * 4,
                                          *(undefined1 *)(lVar21 + 0x18 + lStack_170));
           piVar20 = *(int **)(lVar21 + 8 + lVar23);
           piVar13 = *(int **)(lVar21 + lVar23);
@@ -57385,7 +57385,7 @@ LAB_18007a5ac:
                     uStackX_20 = 1;
 LAB_18007ac04:
                     pauVar42 = (undefined1 (*) [16])
-                               FUN_18062b420(_DAT_180c8ed18,uStackX_20 * 0x14,
+                               CreateSystemThreadObject(_DAT_180c8ed18,uStackX_20 * 0x14,
                                              (char)piStack_218[uVar41 * 8 + 6]);
                     pauVar37 = *(undefined1 (**) [16])(piVar1 + uVar41 * 8 + 2);
                     pauVar35 = *(undefined1 (**) [16])(piVar1 + uVar41 * 8);
@@ -57623,7 +57623,7 @@ LAB_180079e40:
       uStack_198 = (int *)0x0;
       piStack_190 = (int *)0x0;
       uStack_188 = 3;
-      piVar14 = (int *)FUN_18062b420(_DAT_180c8ed18,4,CONCAT71((uint7)(uint3)(uStackX_18 >> 8),3));
+      piVar14 = (int *)CreateSystemThreadObject(_DAT_180c8ed18,4,CONCAT71((uint7)(uint3)(uStackX_18 >> 8),3));
       *piVar14 = *piVar20;
       piVar20 = piVar14 + 1;
       piStack_218 = (int *)0x0;
@@ -57652,7 +57652,7 @@ LAB_180079e40:
             if ((longlong)uStack_1d8 >> 2 == 0) {
               piStack_1f0 = (int *)0x1;
 LAB_180079fb3:
-              piVar16 = (int *)FUN_18062b420(_DAT_180c8ed18,(longlong)piStack_1f0 * 4,
+              piVar16 = (int *)CreateSystemThreadObject(_DAT_180c8ed18,(longlong)piStack_1f0 * 4,
                                              CONCAT71((int7)(uStackX_20 >> 8),3));
             }
             else {
@@ -57716,7 +57716,7 @@ LAB_180079fb3:
                 if ((longlong)uStack_1d8 >> 2 == 0) {
                   lVar21 = 1;
 LAB_18007a203:
-                  piVar16 = (int *)FUN_18062b420(_DAT_180c8ed18,lVar21 * 4,3);
+                  piVar16 = (int *)CreateSystemThreadObject(_DAT_180c8ed18,lVar21 * 4,3);
                 }
                 else {
                   lVar21 = ((longlong)uStack_1d8 >> 2) * 2;
@@ -57756,7 +57756,7 @@ LAB_18007a203:
                 if ((longlong)uStack_1d8 >> 2 == 0) {
                   lVar21 = 1;
 LAB_18007a142:
-                  piVar15 = (int *)FUN_18062b420(_DAT_180c8ed18,lVar21 * 4,3);
+                  piVar15 = (int *)CreateSystemThreadObject(_DAT_180c8ed18,lVar21 * 4,3);
                 }
                 else {
                   lVar21 = ((longlong)uStack_1d8 >> 2) * 2;
@@ -57841,7 +57841,7 @@ LAB_18007a312:
       }
       else {
         plStack_168 = plStack_168 + 4;
-        lVar21 = FUN_18062b420(_DAT_180c8ed18,((longlong)uVar41 >> 2) * 4,3);
+        lVar21 = CreateSystemThreadObject(_DAT_180c8ed18,((longlong)uVar41 >> 2) * 4,3);
       }
       *plVar39 = lVar21;
       plVar39[1] = lVar21;
@@ -60779,7 +60779,7 @@ void FUN_18007f0e0(longlong param_1,longlong param_2,int param_3)
   if (0 < param_3) {
     puVar2 = puVar4;
     if (param_3 != 0) {
-      puVar2 = (undefined8 *)FUN_18062b420(_DAT_180c8ed18,uVar9 * 8,3);
+      puVar2 = (undefined8 *)CreateSystemThreadObject(_DAT_180c8ed18,uVar9 * 8,3);
       puVar3 = puVar2;
       puVar6 = puVar4;
       do {
@@ -60853,7 +60853,7 @@ void FUN_18007f11f(void)
     puVar2 = (ulonglong *)(unaff_RBX & 0xffffffff);
   }
   else {
-    puVar2 = (ulonglong *)FUN_18062b420(_DAT_180c8ed18,unaff_R14 * 8,3);
+    puVar2 = (ulonglong *)CreateSystemThreadObject(_DAT_180c8ed18,unaff_R14 * 8,3);
     uVar5 = unaff_RBX & 0xffffffff;
     puVar3 = puVar2;
     do {
@@ -61550,7 +61550,7 @@ void FUN_18007f8f0(longlong param_1)
             do {
               iVar18 = (int)uVar21;
               if (*(longlong *)puVar20 == 0) {
-                lVar8 = FUN_18062b420(_DAT_180c8ed18,0x2000,0x25);
+                lVar8 = CreateSystemThreadObject(_DAT_180c8ed18,0x2000,0x25);
                 LOCK();
                 bVar23 = *(longlong *)(puVar14 + (longlong)iVar18 * 2 + 2) == 0;
                 if (bVar23) {
@@ -61756,7 +61756,7 @@ void FUN_18007f90f(undefined4 param_1)
           do {
             iVar18 = (int)uVar21;
             if (*(longlong *)puVar20 == 0) {
-              lVar8 = FUN_18062b420(_DAT_180c8ed18,0x2000,0x25);
+              lVar8 = CreateSystemThreadObject(_DAT_180c8ed18,0x2000,0x25);
               LOCK();
               bVar23 = *(longlong *)(puVar14 + (longlong)iVar18 * 2 + 2) == 0;
               if (bVar23) {
@@ -61957,7 +61957,7 @@ void FUN_18007f933(undefined8 param_1,longlong param_2)
         do {
           iVar17 = (int)uVar21;
           if (*(longlong *)puVar20 == 0) {
-            lVar8 = FUN_18062b420(_DAT_180c8ed18,0x2000,0x25);
+            lVar8 = CreateSystemThreadObject(_DAT_180c8ed18,0x2000,0x25);
             LOCK();
             bVar23 = *(longlong *)(puVar14 + (longlong)iVar17 * 2 + 2) == 0;
             if (bVar23) {
@@ -62141,7 +62141,7 @@ void FUN_18007f976(void)
       do {
         iVar16 = (int)uVar18;
         if (*(longlong *)puVar19 == 0) {
-          lVar8 = FUN_18062b420(_DAT_180c8ed18,0x2000,0x25);
+          lVar8 = CreateSystemThreadObject(_DAT_180c8ed18,0x2000,0x25);
           LOCK();
           bVar21 = *(longlong *)(puVar14 + (longlong)iVar16 * 2 + 2) == 0;
           if (bVar21) {
@@ -62325,7 +62325,7 @@ void FUN_18007f983(void)
       do {
         iVar15 = (int)uVar17;
         if (*(longlong *)puVar19 == 0) {
-          lVar8 = FUN_18062b420(_DAT_180c8ed18,0x2000,0x25);
+          lVar8 = CreateSystemThreadObject(_DAT_180c8ed18,0x2000,0x25);
           LOCK();
           bVar21 = *(longlong *)(puVar13 + (longlong)iVar15 * 2 + 2) == 0;
           if (bVar21) {
@@ -62419,7 +62419,7 @@ void FUN_18007fb5f(void)
     do {
       iVar9 = (int)uVar7;
       if (*(longlong *)puVar8 == 0) {
-        lVar2 = FUN_18062b420(_DAT_180c8ed18,0x2000,0x25);
+        lVar2 = CreateSystemThreadObject(_DAT_180c8ed18,0x2000,0x25);
         LOCK();
         bVar12 = *(longlong *)(unaff_RBP + (longlong)iVar9 * 2 + 2) == 0;
         if (bVar12) {

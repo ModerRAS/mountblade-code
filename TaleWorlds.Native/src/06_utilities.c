@@ -1961,7 +1961,7 @@ undefined SystemConfigDataM;
 undefined SystemConfigDataN;
 undefined SystemConfigDataO;
 undefined SystemConfigDataP;
-undefined UNK_1809fc7b8;
+undefined SystemMemoryConfigDataTemplateA;
 undefined DAT_1809fc7ec;
 undefined DAT_180bf5240;
 
@@ -1977,9 +1977,9 @@ undefined DAT_180d49160;
 undefined DAT_180d49168;
 undefined DAT_180d49170;
 undefined DAT_180d49178;
-undefined UNK_1809ffb30;
+undefined SystemMemoryConfigDataTemplateB;
 undefined DAT_180a001d0;
-undefined UNK_180083380;
+undefined SystemMemoryConfigDataTemplateC;
 undefined UNK_180a00030;
 undefined UNK_180a00100;
 undefined UNK_180a00168;
@@ -2306,12 +2306,12 @@ undefined UNK_18045f210;
 void CreateWorkerThread;
 undefined DAT_180c91038;
 undefined UNK_180a3e440;
-undefined UNK_180a2a8a0;
+undefined SystemMemoryConfigDataTemplateA8A0;
 undefined UNK_18045f1a0;
 undefined UNK_18045f1c0;
 undefined UNK_18045f140;
 undefined UNK_18045f160;
-undefined UNK_180a2c548;
+undefined SystemMemoryConfigDataTemplateC548;
 undefined UNK_180a2a8c0;
 undefined UNK_180a2a8e0;
 undefined UNK_180a2a900;
@@ -17677,37 +17677,47 @@ a9f0(longlong param_1,int *param_2)
 
 
 
-undefined8 FUN_18089aa40(longlong param_1,undefined8 *param_2)
+/**
+ * @brief 处理资源表条目
+ * 
+ * 该函数负责处理资源表中的条目，验证和处理资源数据
+ * 检查资源状态并执行相应的处理操作
+ * 
+ * @param resourceContext 资源上下文，包含资源处理的环境信息
+ * @param resourceData 资源数据指针，指向需要处理的资源数据
+ * @return undefined8 返回处理结果状态码
+ */
+undefined8 ProcessResourceTableEntry(longlong resourceContext, undefined8 *resourceData)
 
 {
   undefined8 resourceHash;
   
-  if (*(int *)(param_2[1] + 0x18) != 0) {
+  if (*(int *)(resourceData[1] + 0x18) != 0) {
     return 0x1c;
   }
-  resourceHash = FUN_1808995c0(*param_2,param_1 + 0x50);
+  resourceHash = FUN_1808995c0(*resourceData,resourceContext + 0x50);
   if ((int)resourceHash == 0) {
-    if (*(int *)(param_2[1] + 0x18) != 0) {
+    if (*(int *)(resourceData[1] + 0x18) != 0) {
       return 0x1c;
     }
-    resourceHash = FUN_1808995c0(*param_2,param_1 + 0x54);
+    resourceHash = FUN_1808995c0(*resourceData,resourceContext + 0x54);
     if ((int)resourceHash == 0) {
-      if (*(int *)(param_2[1] + 0x18) != 0) {
+      if (*(int *)(resourceData[1] + 0x18) != 0) {
         return 0x1c;
       }
-      resourceHash = FUN_1808995c0(*param_2,param_1 + 0x58);
+      resourceHash = FUN_1808995c0(*resourceData,resourceContext + 0x58);
       if ((int)resourceHash == 0) {
-        if (*(int *)(param_2[1] + 0x18) != 0) {
+        if (*(int *)(resourceData[1] + 0x18) != 0) {
           return 0x1c;
         }
-        resourceHash = FUN_1808995c0(*param_2,param_1 + 0x60);
+        resourceHash = FUN_1808995c0(*resourceData,resourceContext + 0x60);
         if ((int)resourceHash == 0) {
-          if (*(int *)(param_2[1] + 0x18) != 0) {
+          if (*(int *)(resourceData[1] + 0x18) != 0) {
             return 0x1c;
           }
-          resourceHash = FUN_1808995c0(*param_2,param_1 + 100);
+          resourceHash = FUN_1808995c0(*resourceData,resourceContext + 100);
           if ((int)resourceHash == 0) {
-            if (*(int *)(param_2[1] + 0x18) != 0) {
+            if (*(int *)(resourceData[1] + 0x18) != 0) {
               return 0x1c;
             }
             resourceHash = FUN_1808995c0(*param_2,param_1 + 0x68);

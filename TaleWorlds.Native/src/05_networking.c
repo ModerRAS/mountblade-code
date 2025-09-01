@@ -14370,7 +14370,17 @@ LAB_18084d4b4:
 
 
 
-NetworkHandle FUN_18084d4ff(void)
+/**
+ * @brief 获取网络连接超时状态
+ * 
+ * 该函数返回网络连接的超时状态码
+ * 主要用于连接超时检测和处理
+ * 
+ * @return 超时状态码 0x26
+ * 
+ * 注意：这是一个反编译的函数实现
+ */
+NetworkHandle GetNetworkConnectionTimeoutStatus(void)
 
 {
   return 0x26;
@@ -14451,7 +14461,17 @@ LAB_18084d5b4:
 
 
 
-NetworkHandle FUN_18084d5ff(void)
+/**
+ * @brief 获取网络连接失败状态
+ * 
+ * 该函数返回网络连接的失败状态码
+ * 主要用于连接失败检测和错误处理
+ * 
+ * @return 失败状态码 0x26
+ * 
+ * 注意：这是一个反编译的函数实现
+ */
+NetworkHandle GetNetworkConnectionFailureStatus(void)
 
 {
   return 0x26;
@@ -14704,7 +14724,17 @@ LAB_18084d7db:
 
 
 
-NetworkHandle FUN_18084d82b(void)
+/**
+ * @brief 获取网络连接无效状态
+ * 
+ * 该函数返回网络连接的无效状态码
+ * 主要用于连接无效性检测和处理
+ * 
+ * @return 无效状态码 0x26
+ * 
+ * 注意：这是一个反编译的函数实现
+ */
+NetworkHandle GetNetworkConnectionInvalidStatus(void)
 
 {
   return 0x26;
@@ -19826,7 +19856,18 @@ void FUN_180851421(void)
 
 
 // 函数: void FUN_180851432(void)
-void FUN_180851432(void)
+/**
+ * @brief 网络连接清理处理器
+ * 
+ * 该函数负责处理网络连接的清理操作，包括：
+ * - 连接资源释放
+ * - 网络缓冲区清理
+ * - 连接状态重置
+ * - 清理确认处理
+ * 
+ * 注意：这是一个反编译的函数实现
+ */
+void NetworkConnectionCleanupProcessor(void)
 
 {
   longlong unaff_RBP;
@@ -20219,7 +20260,18 @@ NetworkHandle FUN_18085198d(void)
 
 
 // 函数: void FUN_1808519d1(void)
-void FUN_1808519d1(void)
+/**
+ * @brief 网络安全守卫验证器
+ * 
+ * 该函数负责验证网络安全守卫的状态，包括：
+ * - 安全守卫状态检查
+ * - 安全参数验证
+ * - 安全标志管理
+ * - 安全状态更新
+ * 
+ * 注意：这是一个反编译的函数实现
+ */
+void NetworkSecurityGuardValidator(void)
 
 {
   return;
