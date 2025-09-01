@@ -2243,7 +2243,7 @@ undefined ResourceSynchronizationManagerData;
 undefined ResourceReplicationManagerData;
 undefined ResourceSystemPrimaryData;
 undefined ResourceSystemSecondaryData;
-undefined UNK_180a1afb8;
+undefined SystemProcessManagerData;
 undefined UNK_180a079c0;
 undefined UNK_180a07b48;
 undefined UNK_180a3c313;
