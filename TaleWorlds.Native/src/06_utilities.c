@@ -4426,7 +4426,7 @@ uint8_t8 InitializeObjectHandleF(void)
   uint8_t4 *punsignedResult3;
   uint unsignedResult4;
   ulonglong unsignedValue6;
-  longlong lStack0000000000000050;
+  longlong StackBufferPointer;
   ulonglong unsignedValue5;
   
   unsignedValue5 = 0;
@@ -5512,8 +5512,8 @@ int ValidateSystemConfigurationParameter(uint8_t4 configParameter)
   longlong resourceTable;
   longlong unaff_RDI;
   uint8_t4 unsignedResult3;
-  longlong lStack0000000000000028;
-  uint8_t4 uStack0000000000000030;
+  longlong StackMemoryOffset;
+  uint8_t4 StackValidationBuffer;
   
   resourceTable = 0;
   if (in_EAX == 0) {
