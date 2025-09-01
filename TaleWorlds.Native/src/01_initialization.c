@@ -561,31 +561,39 @@ void* SystemDataComparisonTemplatePrimary;
 void* SystemDataComparisonTemplateSecondary;
 void* SystemDataComparisonTemplateTertiary;
 void* SystemDataComparisonTemplateQuaternary;
+void* SystemDataComparisonTemplateQuinary;
+void* SystemDataComparisonTemplateSenary;
 void* SystemDataComparisonTemplateSeptenary;
 void* SystemDataComparisonTemplateOctonary;
 void* SystemDataComparisonTemplateNonary;
-void* SystemDataComparisonTemplateQuinary;
-void* SystemDataComparisonTemplateSenary;
+void* SystemDataComparisonTemplateDenary;
+void* SystemDataComparisonTemplateUndenary;
+void* SystemDataComparisonTemplateDuodenary;
+void* SystemDataComparisonTemplateTridenary;
+void* SystemDataComparisonTemplateQuattuordenary;
+void* SystemDataComparisonTemplateQuindenary;
+void* SystemDataComparisonTemplateSexdenary;
 void* SystemDataNodePrimaryRoot;       // 系统数据节点主根节点
 void* SystemDataNodeSecondaryRoot;     // 系统数据节点次根节点
 void* SystemDataNodeTertiaryRoot;      // 系统数据节点第三根节点
 void* SystemDataNodeQuaternaryRoot;    // 系统数据节点第四根节点
 void* SystemDataNodeQuinaryRoot;       // 系统数据节点第五根节点
-void* SystemDataNodeA;                  // 系统数据节点A
-void* SystemDataNodeB;                  // 系统数据节点B
-void* SystemDataNodeC;                  // 系统数据节点C
-void* SystemDataNodeD;                  // 系统数据节点D
-void* SystemDataNodeE;                  // 系统数据节点E
-void* SystemDataNodeF;                  // 系统数据节点F
-void* SystemDataNodeG;                  // 系统数据节点G
-void* SystemDataNodeH;                  // 系统数据节点H
-void* SystemDataNodeI;                  // 系统数据节点I
-void* SystemDataNodeJ;                  // 系统数据节点J
-void* SystemDataNodeK;                  // 系统数据节点K
-void* SystemDataNodeL;                  // 系统数据节点L
-void* SystemDataNodeM;                  // 系统数据节点M
-void* SystemDataNodeN;                  // 系统数据节点N
-void* SystemDataNodeO;                  // 系统数据节点O
+void* SystemDataNodePrimary;           // 系统数据节点主节点
+void* SystemDataNodeSecondary;         // 系统数据节点次节点
+void* SystemDataNodeTertiary;          // 系统数据节点第三节点
+void* SystemDataNodeQuaternary;        // 系统数据节点第四节点
+void* SystemDataNodeQuinary;           // 系统数据节点第五节点
+void* SystemDataNodeSenary;            // 系统数据节点第六节点
+void* SystemDataNodeSeptenary;         // 系统数据节点第七节点
+void* SystemDataNodeOctonary;          // 系统数据节点第八节点
+void* SystemDataNodeNonary;            // 系统数据节点第九节点
+void* SystemDataNodeDenary;            // 系统数据节点第十节点
+void* SystemDataNodeUndenary;          // 系统数据节点第十一节点
+void* SystemDataNodeDuodenary;         // 系统数据节点第十二节点
+void* SystemDataNodeTridenary;         // 系统数据节点第十三节点
+void* SystemDataNodeQuattuordenary;    // 系统数据节点第十四节点
+void* SystemDataNodeQuindenary;        // 系统数据节点第十五节点
+void* SystemDataNodeSexdenary;         // 系统数据节点第十六节点
 void* SystemDataNodeLinkageTable;                // 系统数据节点链接表
 void* SystemDataNodeLinkageManager;               // 系统数据节点链接管理器
 void* SystemDataNodeLinkageHandler;               // 系统数据节点链接处理器
@@ -1117,18 +1125,18 @@ void InitializeSystemDataTableBaseAllocator(void)
     IsSystemNodeActive = *(bool*)((long long)NextSystemNode + 0x19);
   }
   
-  if ((PreviousNode == RootNodePointer) || 
-      (MemoryComparisonResult = memcmp(&BASE_ALLOCATOR_ID, PreviousNode + 4, 0x10), MemoryComparisonResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(DataTablePointer);
-    AllocateSystemMemory(DataTablePointer, &AllocatedNode, PreviousNode, MemoryAllocationSize + 0x20, MemoryAllocationSize);
-    PreviousNode = AllocatedNode;
+  if ((PreviousSystemNode == SystemRootNodePointer) || 
+      (MemoryComparisonResult = memcmp(&BASE_ALLOCATOR_ID, PreviousSystemNode + 4, 0x10), MemoryComparisonResult < 0)) {
+    RequiredMemorySize = GetSystemMemorySize(SystemDataTablePointer);
+    AllocateSystemMemory(SystemDataTablePointer, &AllocatedSystemNode, PreviousSystemNode, RequiredMemorySize + 0x20, RequiredMemorySize);
+    PreviousSystemNode = AllocatedSystemNode;
   }
   
-  PreviousNode[6] = 0x4770584fbb1df897;
-  PreviousNode[7] = 0x47f249e43f66f2ab;
-  PreviousNode[8] = &BaseAllocatorNodeData;
-  PreviousNode[9] = 1;
-  PreviousNode[10] = BaseAllocatorFunctionPointer;
+  PreviousSystemNode[6] = 0x4770584fbb1df897;
+  PreviousSystemNode[7] = 0x47f249e43f66f2ab;
+  PreviousSystemNode[8] = &BaseAllocatorNodeData;
+  PreviousSystemNode[9] = 1;
+  PreviousSystemNode[10] = BaseAllocatorInitializationHandler;
   return;
 }
 
@@ -66177,61 +66185,61 @@ long long SystemModuleExecutionTime;
 long long *SystemModuleExecutionCounter;
 
 // 系统字符串常量模板
-void* SystemStringConstantErrorMessageA;
-void* SystemStringConstantErrorMessageB;
-void* SystemStringConstantConfigPathC;
-void* SystemStringConstantBufferTemplateD;
-void* SystemStringConstantBufferSizeE;
-void* SystemStringConstantComputerNameErrorF;
-void* SystemStringConstantUserNameErrorG;
-void* SystemStringConstantLibraryNameH;
-void* SystemStringConstantFunctionNameI;
-void* SystemStringConstantWindowTitleJ;
+void* SystemStringConstantErrorMessageCritical;
+void* SystemStringConstantErrorMessageWarning;
+void* SystemStringConstantConfigPathDefault;
+void* SystemStringConstantBufferTemplateStandard;
+void* SystemStringConstantBufferSizeDefault;
+void* SystemStringConstantComputerNameError;
+void* SystemStringConstantUserNameError;
+void* SystemStringConstantLibraryNameDefault;
+void* SystemStringConstantFunctionNameDefault;
+void* SystemStringConstantWindowTitleDefault;
 
 // 系统虚拟函数表模板
-void* SystemVirtualTableBaseClassA;
-void* SystemVirtualTableDerivedClassB;
-void* SystemVirtualTableInterfaceC;
-void* SystemVirtualTableAbstractClassD;
-void* SystemVirtualTableSingletonClassE;
+void* SystemVirtualTableBaseClassPrimary;
+void* SystemVirtualTableDerivedClassSecondary;
+void* SystemVirtualTableInterfaceStandard;
+void* SystemVirtualTableAbstractClassBase;
+void* SystemVirtualTableSingletonClassInstance;
 
 // 系统内存管理模板
-void* SystemMemoryPoolTemplateA;
-void* SystemMemoryPoolTemplateB;
-void* SystemMemoryPoolTemplateC;
-void* SystemMemoryPoolTemplateD;
-void* SystemMemoryPoolTemplateE;
-void* SystemMemoryPoolTemplateF;
-void* SystemMemoryPoolTemplateG;
+void* SystemMemoryPoolTemplatePrimary;
+void* SystemMemoryPoolTemplateSecondary;
+void* SystemMemoryPoolTemplateTertiary;
+void* SystemMemoryPoolTemplateQuaternary;
+void* SystemMemoryPoolTemplateQuinary;
+void* SystemMemoryPoolTemplateSenary;
+void* SystemMemoryPoolTemplateSeptenary;
 
 // 系统数据缓冲区模板
-void* SystemDataBufferMainTemplateA;
-void* SystemDataBufferBackupTemplateB;
-void* SystemDataBufferCacheTemplateC;
-void* SystemDataBufferTemporaryTemplateD;
-void* SystemDataBufferInputTemplateE;
-void* SystemDataBufferOutputTemplateF;
-void* SystemDataBufferNetworkTemplateG;
-void* SystemDataBufferFileTemplateH;
-void* SystemDataBufferMemoryTemplateI;
-void* SystemDataBufferSystemTemplateJ;
-void* SystemDataBufferUserTemplateK;
-void* SystemDataBufferSharedTemplateL;
-void* SystemDataBufferProtectedTemplateM;
-void* SystemDataBufferSecureTemplateN;
-void* SystemDataBufferDebugTemplateO;
-void* SystemDataBufferTestTemplateP;
-void* SystemDataBufferProductionTemplateQ;
-void* SystemDataBufferDevelopmentTemplateR;
-void* SystemDataBufferStagingTemplateS;
-void* SystemDataBufferArchiveTemplateT;
-void* SystemDataBufferLegacyTemplateU;
-void* SystemDataBufferFutureTemplateV;
-void* SystemDataBufferExperimentalTemplateW;
-void* SystemDataBufferDeprecatedTemplateX;
-void* SystemDataBufferReservedTemplateY;
-void* SystemDataBufferEmergencyTemplateZ;
-void* SystemDataBufferTemplateAA;
-void* SystemDataBufferTemplateAB;
-void* SystemDataBufferTemplateAC;
+void* SystemDataBufferMainTemplatePrimary;
+void* SystemDataBufferBackupTemplateSecondary;
+void* SystemDataBufferCacheTemplateTertiary;
+void* SystemDataBufferTemporaryTemplateQuaternary;
+void* SystemDataBufferInputTemplateQuinary;
+void* SystemDataBufferOutputTemplateSenary;
+void* SystemDataBufferNetworkTemplateSeptenary;
+void* SystemDataBufferFileTemplateOctonary;
+void* SystemDataBufferMemoryTemplateNonary;
+void* SystemDataBufferSystemTemplateDenary;
+void* SystemDataBufferUserTemplateUndenary;
+void* SystemDataBufferSharedTemplateDuodenary;
+void* SystemDataBufferProtectedTemplateTridenary;
+void* SystemDataBufferSecureTemplateQuattuordenary;
+void* SystemDataBufferDebugTemplateQuindenary;
+void* SystemDataBufferTestTemplateSexdenary;
+void* SystemDataBufferProductionTemplateSeptendenary;
+void* SystemDataBufferDevelopmentTemplateOctodenary;
+void* SystemDataBufferStagingTemplateNovendenary;
+void* SystemDataBufferArchiveTemplateVigintenary;
+void* SystemDataBufferLegacyTemplateUnvigintenary;
+void* SystemDataBufferFutureTemplateDuovigintenary;
+void* SystemDataBufferExperimentalTemplateTrevigintenary;
+void* SystemDataBufferDeprecatedTemplateQuattuorvigintenary;
+void* SystemDataBufferReservedTemplateQuinvigintenary;
+void* SystemDataBufferEmergencyTemplateSexvigintenary;
+void* SystemDataBufferTemplateSeptenvigintenary;
+void* SystemDataBufferTemplateOctovigintenary;
+void* SystemDataBufferTemplateNovemvigintenary;
 
