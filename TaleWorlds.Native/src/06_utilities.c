@@ -1353,8 +1353,7 @@ void* MemoryAllocationConfig;
 void* MemoryAllocationHandle;
 void* MemoryAllocationData;
 
- void InitializeMemoryPool(void);
-/**
+ /**
  * @brief 初始化内存池
  * 
  * 该函数负责初始化系统内存池
@@ -1474,8 +1473,7 @@ uint8_t GarbageCollectionContext;
  */
 void CompactMemory(void);
 
- void AllocateMemoryBlock(void);
-/**
+ /**
  * @brief 分配内存块
  * 
  * 该函数负责分配指定大小的内存块
@@ -1489,8 +1487,7 @@ uint8_t MemoryBlockDataBuffer;
 uint8_t MemoryBlockContext;
 uint8_t MemoryBlockTable;
 
- void FreeMemoryBlock(void);
-/**
+ /**
  * @brief 释放内存块
  * 
  * 该函数负责释放指定的内存块
@@ -1504,8 +1501,7 @@ uint8_t FreeMemoryContext;
 uint8_t FreeMemoryTableBuffer;
 uint8_t FreeMemoryDataBuffer;
 
- void ReallocateMemoryBlock(void);
-/**
+ /**
  * @brief 重新分配内存块
  * 
  * 该函数负责重新分配内存块大小
@@ -2315,8 +2311,7 @@ uint8_t SystemSecurityContextTemplate;
 uint8_t SystemEventTableTemplate;
 uint8_t SystemNetworkTableTemplate;
 
- void AllocateMemoryBlock(void);
-/**
+ /**
  * @brief 分配内存块
  * 
  * 该函数负责分配指定大小的内存块
@@ -2379,8 +2374,7 @@ uint8_t MemoryAllocationTree;
 uint8_t MemoryAllocationGraph;
 uint8_t MemoryAllocationNetwork;
 
- void FreeMemoryBlock(void);
-/**
+ /**
  * @brief 释放内存块
  * 
  * 该函数负责释放之前分配的内存块
@@ -2395,8 +2389,7 @@ uint8_t SystemMemoryCache;
 uint8_t SystemMemoryHeap;
 uint8_t SystemMemoryStack;
 
- void ReallocateMemoryBlock(void);
-/**
+ /**
  * @brief 重新分配内存块
  * 
  * 该函数负责重新调整已分配内存块的大小
