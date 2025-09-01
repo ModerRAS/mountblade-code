@@ -242,7 +242,8 @@ char engine_network_flag;
 char engine_render_flag;
 char engine_physics_flag;
 char engine_animation_flag;
-uint32 UNK_1809fe848;
+// 引擎系统状态标志位
+uint32 engine_system_status_flag;
 engine_base_data_offset_68;
 engine_base_data_offset_a0;
 engine_unknown_24;
@@ -329,7 +330,8 @@ engine_base_data_offset_68;
 engine_base_data_offset_28;
 engine_base_data_offset_8;
 engine_base_data_offset_70;
-uint32 UNK_180277350;
+// 引擎音频系统配置参数
+uint32 engine_audio_config_param;
 
 // 函数: engine_initialize_audio_system;
 engine_initialize_audio_system;
