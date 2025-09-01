@@ -5230,10 +5230,10 @@ code_r0x0001802a1528:
   case 0x1e:
     iStack_2c8 = param_4;
     puVar8 = (uint16_t *)FUN_1802a4590(ModuleInitializationResult0,&uStack_2b0,param_1,&uStackX_18);
-    fVar16 = (float)func_0x0001800adf40(puVar8[2]);
-    fVar17 = (float)func_0x0001800adf40(puVar8[1]);
-    fVar14 = (float)func_0x0001800adf40(*puVar8);
-    fVar15 = (float)func_0x0001800adf40(puVar8[3]);
+    fVar16 = (float)ConvertToFloatValue(puVar8[2]);
+    fVar17 = (float)ConvertToFloatValue(puVar8[1]);
+    fVar14 = (float)ConvertToFloatValue(*puVar8);
+    fVar15 = (float)ConvertToFloatValue(puVar8[3]);
     param_2[3] = fVar15;
     *param_2 = fVar14;
     param_2[1] = fVar17;
@@ -5466,7 +5466,7 @@ LAB_1802a83bc:
     *(uint64_t *)(param_3 + 0x3c) = 0;
     *(uint64_t *)(param_3 + 0x44) = 0;
     *(uint64_t *)(param_3 + 0x4c) = 0;
-    uVar4 = func_0x000180220c90(*(uint32_t *)(param_3 + 0x54));
+    uVar4 = ProcessNetworkRequest(*(uint32_t *)(param_3 + 0x54));
     strcpy_s(param_3 + 0x14,0x40,uVar4);
   }
 LAB_1802a912b:
@@ -5522,7 +5522,7 @@ bool ValidateSystemParameters(uint64_t *ParameterArray)
       }
       memcpy(BufferSize,*param_1,uVar3);
     }
-    LoopCounter = func_0x0001800ab000(*(uint32_t *)((longlong)param_1 + 0x54));
+    LoopCounter = GetSystemLoopCounter(*(uint32_t *)((longlong)param_1 + 0x54));
     return LoopCounter != 0;
   }
   if (param_1[1] == 0) {
@@ -6679,7 +6679,7 @@ FUN_18045d980(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_
   ModuleInitializationResult = 0x180c95bf8;
   lVar2 = 0x17;
   do {
-    func_0x00018013d940(ModuleInitializationResult);
+    InitializeModuleComponents(ModuleInitializationResult);
     ModuleInitializationResult = ModuleInitializationResult + 0x10;
     lVar2 = lVar2 + -1;
   } while (lVar2 != 0);
@@ -6881,7 +6881,7 @@ uint64_t * BufferAllocateSystem(uint64_t *param_1,int param_2)
   lVar8 = 8;
   FUN_1808fc838(puVar6,0x28,8,&UNK_1804ce1a0,FUN_1804ce100);
   _Mtx_init_in_situ(param_1 + 0x5d,0x102);
-  StringIndex = func_0x0001804ca2d0(&DAT_180c95fc8);
+  StringIndex = GetStringIndexFromData(&DAT_180c95fc8);
   if (param_2 < StringIndex) {
     StringIndex = param_2;
   }
@@ -7816,151 +7816,151 @@ FUN_1806090b0(uint64_t param_1,uint64_t param_2,uint8_t param_3,uint64_t param_4
               if (cVar1 == '\0') {
                 cVar1 = FUN_180629850(auStack_30,&UNK_180a38ac0,1);
                 if (cVar1 == '\0') {
-                  cVar1 = func_0x0001800a1eb0(auStack_30,&UNK_180a38a48);
+                  cVar1 = ValidateSystemConfiguration(auStack_30,&UNK_180a38a48);
                   if (cVar1 == '\0') {
-                    cVar1 = func_0x0001800a1eb0(auStack_30,&UNK_180a38a3c);
+                    cVar1 = ValidateSystemConfiguration(auStack_30,&UNK_180a38a3c);
                     if (cVar1 == '\0') {
-                      cVar1 = func_0x0001800a1eb0(auStack_30,&UNK_180a38a60);
+                      cVar1 = ValidateSystemConfiguration(auStack_30,&UNK_180a38a60);
                       if (cVar1 == '\0') {
-                        cVar1 = func_0x0001800a1eb0(auStack_30,&UNK_180a38b70);
+                        cVar1 = ValidateSystemConfiguration(auStack_30,&UNK_180a38b70);
                         if (cVar1 == '\0') {
-                          cVar1 = func_0x0001800a1eb0(auStack_30,&UNK_180a38b20);
+                          cVar1 = ValidateSystemConfiguration(auStack_30,&UNK_180a38b20);
                           if (cVar1 == '\0') {
-                            cVar1 = func_0x0001800a1eb0(auStack_30,&UNK_180a38ae8);
+                            cVar1 = ValidateSystemConfiguration(auStack_30,&UNK_180a38ae8);
                             if (cVar1 == '\0') {
-                              cVar1 = func_0x0001800a1eb0(auStack_30,&UNK_180a38b60);
+                              cVar1 = ValidateSystemConfiguration(auStack_30,&UNK_180a38b60);
                               if (cVar1 == '\0') {
-                                cVar1 = func_0x0001800a1eb0(auStack_30,&UNK_180a38b48);
+                                cVar1 = ValidateSystemConfiguration(auStack_30,&UNK_180a38b48);
                                 if (cVar1 == '\0') {
-                                  cVar1 = func_0x0001800a1eb0(auStack_30,&UNK_180a38c40);
+                                  cVar1 = ValidateSystemConfiguration(auStack_30,&UNK_180a38c40);
                                   if (cVar1 == '\0') {
-                                    cVar1 = func_0x0001800a1eb0(auStack_30,&UNK_180a38c78);
+                                    cVar1 = ValidateSystemConfiguration(auStack_30,&UNK_180a38c78);
                                     if (cVar1 == '\0') {
-                                      cVar1 = func_0x0001800a1eb0(auStack_30,&UNK_180a38c58);
+                                      cVar1 = ValidateSystemConfiguration(auStack_30,&UNK_180a38c58);
                                       if (cVar1 == '\0') {
-                                        cVar1 = func_0x0001800a1eb0(auStack_30,&UNK_180a38bd0);
+                                        cVar1 = ValidateSystemConfiguration(auStack_30,&UNK_180a38bd0);
                                         if (cVar1 == '\0') {
-                                          cVar1 = func_0x0001800a1eb0(auStack_30,&UNK_180a38c08);
+                                          cVar1 = ValidateSystemConfiguration(auStack_30,&UNK_180a38c08);
                                           if (cVar1 == '\0') {
-                                            cVar1 = func_0x0001800a1eb0(auStack_30,&UNK_180a29944);
+                                            cVar1 = ValidateSystemConfiguration(auStack_30,&UNK_180a29944);
                                             if (cVar1 == '\0') {
-                                              cVar1 = func_0x0001800a1eb0(auStack_30,&UNK_180a38d10)
+                                              cVar1 = ValidateSystemConfiguration(auStack_30,&UNK_180a38d10)
                                               ;
                                               if (cVar1 == '\0') {
-                                                cVar1 = func_0x0001800a1eb0(auStack_30,
+                                                cVar1 = ValidateSystemConfiguration(auStack_30,
                                                                             &UNK_180a38d58);
                                                 if (cVar1 == '\0') {
-                                                  cVar1 = func_0x0001800a1eb0(auStack_30,
+                                                  cVar1 = ValidateSystemConfiguration(auStack_30,
                                                                               &UNK_180a38ca8);
                                                   if (cVar1 == '\0') {
-                                                    cVar1 = func_0x0001800a1eb0(auStack_30,
+                                                    cVar1 = ValidateSystemConfiguration(auStack_30,
                                                                                 &UNK_180a38ce8);
                                                     if (cVar1 == '\0') {
-                                                      cVar1 = func_0x0001800a1eb0(auStack_30,
+                                                      cVar1 = ValidateSystemConfiguration(auStack_30,
                                                                                   &UNK_180a38cc0);
                                                       if (cVar1 != '\0') goto LAB_18060af51;
-                                                      cVar1 = func_0x0001800a1eb0(auStack_30,
+                                                      cVar1 = ValidateSystemConfiguration(auStack_30,
                                                                                   &UNK_180a38dd8);
                                                       if (cVar1 == '\0') {
-                                                        cVar1 = func_0x0001800a1eb0(auStack_30,
+                                                        cVar1 = ValidateSystemConfiguration(auStack_30,
                                                                                     &UNK_180a38df8);
                                                         if (cVar1 == '\0') {
-                                                          cVar1 = func_0x0001800a1eb0(auStack_30,
+                                                          cVar1 = ValidateSystemConfiguration(auStack_30,
                                                                                       &UNK_180a38db8
                                                                                      );
                                                           if (cVar1 == '\0') {
-                                                            cVar1 = func_0x0001800a1eb0(auStack_30,
+                                                            cVar1 = ValidateSystemConfiguration(auStack_30,
                                                                                         &
                                                   UNK_180a38e78);
                                                   if (cVar1 == '\0') {
-                                                    cVar1 = func_0x0001800a1eb0(auStack_30,
+                                                    cVar1 = ValidateSystemConfiguration(auStack_30,
                                                                                 &UNK_180a38ea0);
                                                     if (cVar1 != '\0') {
-                                                      cVar1 = func_0x0001800a1eb0(auStack_50,
+                                                      cVar1 = ValidateSystemConfiguration(auStack_50,
                                                                                   &UNK_180a3ac00);
                                                       if (cVar1 == '\0') {
-                                                        cVar1 = func_0x0001800a1eb0(auStack_50,
+                                                        cVar1 = ValidateSystemConfiguration(auStack_50,
                                                                                     &UNK_180a3acf8);
                                                         if (cVar1 != '\0') goto LAB_18060b9cb;
-                                                        cVar1 = func_0x0001800a1eb0(auStack_50,
+                                                        cVar1 = ValidateSystemConfiguration(auStack_50,
                                                                                     &UNK_180a3acd8);
                                                         if (cVar1 != '\0') goto LAB_18060ad3e;
-                                                        cVar1 = func_0x0001800a1eb0(auStack_50,
+                                                        cVar1 = ValidateSystemConfiguration(auStack_50,
                                                                                     &UNK_180a3ad30);
                                                         if (cVar1 != '\0') goto LAB_18060acd8;
-                                                        cVar1 = func_0x0001800a1eb0(auStack_50,
+                                                        cVar1 = ValidateSystemConfiguration(auStack_50,
                                                                                     &DAT_180a06a48);
                                                         if (cVar1 != '\0') goto LAB_18060a114;
-                                                        cVar1 = func_0x0001800a1eb0(auStack_50,
+                                                        cVar1 = ValidateSystemConfiguration(auStack_50,
                                                                                     &UNK_180a3ad18);
                                                         if (cVar1 != '\0') goto LAB_18060a91e;
-                                                        cVar1 = func_0x0001800a1eb0(auStack_50,
+                                                        cVar1 = ValidateSystemConfiguration(auStack_50,
                                                                                     &UNK_180a3ac90);
                                                         if (cVar1 != '\0') goto LAB_18060ba49;
-                                                        cVar1 = func_0x0001800a1eb0(auStack_50,
+                                                        cVar1 = ValidateSystemConfiguration(auStack_50,
                                                                                     &UNK_180a3ac80);
                                                         if (cVar1 != '\0') goto LAB_18060ba67;
-                                                        cVar1 = func_0x0001800a1eb0(auStack_50,
+                                                        cVar1 = ValidateSystemConfiguration(auStack_50,
                                                                                     &UNK_180a3acc8);
                                                         if (cVar1 != '\0') {
                                                           uVar3 = 0x21c;
                                                           goto LAB_18060bbae;
                                                         }
-                                                        cVar1 = func_0x0001800a1eb0(auStack_50,
+                                                        cVar1 = ValidateSystemConfiguration(auStack_50,
                                                                                     &UNK_180a3aca8);
                                                         if (cVar1 != '\0') {
                                                           uVar3 = 0x41c;
                                                           goto LAB_18060bbae;
                                                         }
-                                                        cVar1 = func_0x0001800a1eb0(auStack_50,
+                                                        cVar1 = ValidateSystemConfiguration(auStack_50,
                                                                                     &UNK_180a3ade8);
                                                         if (cVar1 != '\0') {
                                                           uVar3 = 0x41d;
                                                           goto LAB_18060bbae;
                                                         }
-                                                        cVar1 = func_0x0001800a1eb0(auStack_50,
+                                                        cVar1 = ValidateSystemConfiguration(auStack_50,
                                                                                     &UNK_180a3add0);
                                                         if (cVar1 != '\0') {
                                                           uVar3 = 0x420;
                                                           goto LAB_18060bbae;
                                                         }
-                                                        cVar1 = func_0x0001800a1eb0(auStack_50,
+                                                        cVar1 = ValidateSystemConfiguration(auStack_50,
                                                                                     &UNK_180a3ae18);
                                                         if (cVar1 != '\0') {
                                                           uVar3 = 0x424;
                                                           goto LAB_18060bbae;
                                                         }
-                                                        cVar1 = func_0x0001800a1eb0(auStack_50,
+                                                        cVar1 = ValidateSystemConfiguration(auStack_50,
                                                                                     &UNK_180a3ae00);
                                                         if (cVar1 != '\0') {
                                                           uVar3 = 0x428;
                                                           goto LAB_18060bbae;
                                                         }
-                                                        cVar1 = func_0x0001800a1eb0(auStack_50,
+                                                        cVar1 = ValidateSystemConfiguration(auStack_50,
                                                                                     &UNK_180a3ad88);
                                                         if (cVar1 != '\0') {
                                                           uVar3 = 0x430;
                                                           goto LAB_18060bbae;
                                                         }
-                                                        cVar1 = func_0x0001800a1eb0(auStack_50,
+                                                        cVar1 = ValidateSystemConfiguration(auStack_50,
                                                                                     &UNK_180a29da8);
                                                         if (cVar1 != '\0') {
                                                           uVar3 = 0x438;
                                                           goto LAB_18060bbae;
                                                         }
-                                                        cVar1 = func_0x0001800a1eb0(auStack_50,
+                                                        cVar1 = ValidateSystemConfiguration(auStack_50,
                                                                                     &UNK_180a3ad60);
                                                         if (cVar1 != '\0') {
                                                           uVar3 = 0x439;
                                                           goto LAB_18060bbae;
                                                         }
-                                                        cVar1 = func_0x0001800a1eb0(auStack_50,
+                                                        cVar1 = ValidateSystemConfiguration(auStack_50,
                                                                                     &UNK_180a3adb8);
                                                         if (cVar1 != '\0') {
                                                           uVar3 = 0x43c;
                                                           goto LAB_18060bbae;
                                                         }
-                                                        cVar1 = func_0x0001800a1eb0(auStack_50,
+                                                        cVar1 = ValidateSystemConfiguration(auStack_50,
                                                                                     &UNK_180a3ada0);
                                                         if (cVar1 != '\0') {
                                                           uVar3 = 0x440;
@@ -7970,10 +7970,10 @@ FUN_1806090b0(uint64_t param_1,uint64_t param_2,uint8_t param_3,uint64_t param_4
                                                     }
                                                   }
                                                   else {
-                                                    cVar1 = func_0x0001800a1eb0(auStack_50,
+                                                    cVar1 = ValidateSystemConfiguration(auStack_50,
                                                                                 &UNK_180a3abe0);
                                                     if (cVar1 == '\0') {
-                                                      cVar1 = func_0x0001800a1eb0(auStack_50,
+                                                      cVar1 = ValidateSystemConfiguration(auStack_50,
                                                                                   &UNK_180a1029c);
                                                       if (cVar1 == '\0') {
                                                         pBufferSize = &UNK_180a3ac10;
@@ -7984,7 +7984,7 @@ FUN_1806090b0(uint64_t param_1,uint64_t param_2,uint8_t param_3,uint64_t param_4
                                                   }
                                                   }
                                                   else {
-                                                    cVar1 = func_0x0001800a1eb0(auStack_50,
+                                                    cVar1 = ValidateSystemConfiguration(auStack_50,
                                                                                 &UNK_180a3ac48);
                                                     if (cVar1 == '\0') {
                                                       pBufferSize = &UNK_180a3abe8;
@@ -7993,252 +7993,252 @@ FUN_1806090b0(uint64_t param_1,uint64_t param_2,uint8_t param_3,uint64_t param_4
                                                   }
                                                   }
                                                   else {
-                                                    cVar1 = func_0x0001800a1eb0(auStack_50,
+                                                    cVar1 = ValidateSystemConfiguration(auStack_50,
                                                                                 &UNK_180a3a960);
                                                     if (cVar1 == '\0') {
-                                                      cVar1 = func_0x0001800a1eb0(auStack_50,
+                                                      cVar1 = ValidateSystemConfiguration(auStack_50,
                                                                                   &UNK_180a3ab28);
                                                       if (cVar1 != '\0') goto LAB_18060b6a9;
-                                                      cVar1 = func_0x0001800a1eb0(auStack_50,
+                                                      cVar1 = ValidateSystemConfiguration(auStack_50,
                                                                                   &UNK_180a39f78);
                                                       if (cVar1 != '\0') goto LAB_18060b6c7;
-                                                      cVar1 = func_0x0001800a1eb0(auStack_50,
+                                                      cVar1 = ValidateSystemConfiguration(auStack_50,
                                                                                   &UNK_180a3ab18);
                                                       if (cVar1 != '\0') goto LAB_18060b6e5;
-                                                      cVar1 = func_0x0001800a1eb0(auStack_50,
+                                                      cVar1 = ValidateSystemConfiguration(auStack_50,
                                                                                   &UNK_180a39fb0);
                                                       if (cVar1 != '\0') goto LAB_18060b703;
-                                                      cVar1 = func_0x0001800a1eb0(auStack_50,
+                                                      cVar1 = ValidateSystemConfiguration(auStack_50,
                                                                                   &UNK_180a3ab50);
                                                       if (cVar1 != '\0') goto LAB_1806093cc;
-                                                      cVar1 = func_0x0001800a1eb0(auStack_50,
+                                                      cVar1 = ValidateSystemConfiguration(auStack_50,
                                                                                   &UNK_180a3ab38);
                                                       if (cVar1 != '\0') {
                                                         uVar3 = 100;
                                                         goto LAB_18060bbae;
                                                       }
-                                                      cVar1 = func_0x0001800a1eb0(auStack_50,
+                                                      cVar1 = ValidateSystemConfiguration(auStack_50,
                                                                                   &UNK_180a3aae8);
                                                       if (cVar1 != '\0') goto LAB_180609b20;
-                                                      cVar1 = func_0x0001800a1eb0(auStack_50,
+                                                      cVar1 = ValidateSystemConfiguration(auStack_50,
                                                                                   &UNK_180a3aad8);
                                                       if (cVar1 != '\0') {
 LAB_18060b76f:
                                                         uVar3 = 0x6c;
                                                         goto LAB_18060bbae;
                                                       }
-                                                      cVar1 = func_0x0001800a1eb0(auStack_50,
+                                                      cVar1 = ValidateSystemConfiguration(auStack_50,
                                                                                   &UNK_180a3ab08);
                                                       if (cVar1 != '\0') goto LAB_18060b78d;
-                                                      cVar1 = func_0x0001800a1eb0(auStack_50,
+                                                      cVar1 = ValidateSystemConfiguration(auStack_50,
                                                                                   &UNK_180a3aaf8);
                                                       if (cVar1 != '\0') {
                                                         uVar3 = 0x74;
                                                         goto LAB_18060bbae;
                                                       }
-                                                      cVar1 = func_0x0001800a1eb0(auStack_50,
+                                                      cVar1 = ValidateSystemConfiguration(auStack_50,
                                                                                   &UNK_180a3abb0);
                                                       if (cVar1 != '\0') goto LAB_18060b7c9;
-                                                      cVar1 = func_0x0001800a1eb0(auStack_50,
+                                                      cVar1 = ValidateSystemConfiguration(auStack_50,
                                                                                   &UNK_180a3aba0);
                                                       if (cVar1 != '\0') goto LAB_18060b7e7;
-                                                      cVar1 = func_0x0001800a1eb0(auStack_50,
+                                                      cVar1 = ValidateSystemConfiguration(auStack_50,
                                                                                   &UNK_180a3abd0);
                                                       if (cVar1 != '\0') goto LAB_18060b805;
-                                                      cVar1 = func_0x0001800a1eb0(auStack_50,
+                                                      cVar1 = ValidateSystemConfiguration(auStack_50,
                                                                                   &UNK_180a3abc0);
                                                       if (cVar1 != '\0') {
                                                         uVar3 = 0x84;
                                                         goto LAB_18060bbae;
                                                       }
-                                                      cVar1 = func_0x0001800a1eb0(auStack_50,
+                                                      cVar1 = ValidateSystemConfiguration(auStack_50,
                                                                                   &UNK_180a3ab70);
                                                       if (cVar1 != '\0') goto LAB_18060b841;
-                                                      cVar1 = func_0x0001800a1eb0(auStack_50,
+                                                      cVar1 = ValidateSystemConfiguration(auStack_50,
                                                                                   &UNK_180a3ab60);
                                                       if (cVar1 != '\0') goto LAB_18060b85f;
-                                                      cVar1 = func_0x0001800a1eb0(auStack_50,
+                                                      cVar1 = ValidateSystemConfiguration(auStack_50,
                                                                                   &UNK_180a3ab90);
                                                       if (cVar1 != '\0') goto LAB_18060b87d;
-                                                      cVar1 = func_0x0001800a1eb0(auStack_50,
+                                                      cVar1 = ValidateSystemConfiguration(auStack_50,
                                                                                   &UNK_180a3ab80);
                                                       if (cVar1 != '\0') goto LAB_18060b89b;
-                                                      cVar1 = func_0x0001800a1eb0(auStack_50,
+                                                      cVar1 = ValidateSystemConfiguration(auStack_50,
                                                                                   &UNK_180a3ac30);
                                                       if (cVar1 != '\0') {
                                                         uVar3 = 0x96;
                                                         goto LAB_18060bbae;
                                                       }
-                                                      cVar1 = func_0x0001800a1eb0(auStack_50,
+                                                      cVar1 = ValidateSystemConfiguration(auStack_50,
                                                                                   &UNK_180a3ac18);
                                                       if (cVar1 != '\0') goto LAB_18060b8d7;
-                                                      cVar1 = func_0x0001800a1eb0(auStack_50,
+                                                      cVar1 = ValidateSystemConfiguration(auStack_50,
                                                                                   &UNK_180a3ac68);
                                                       if (cVar1 != '\0') goto LAB_18060b8f9;
                                                     }
                                                   }
                                                   }
                                                   else {
-                                                    cVar1 = func_0x0001800a1eb0(auStack_50,
+                                                    cVar1 = ValidateSystemConfiguration(auStack_50,
                                                                                 &UNK_180a3a8b0);
                                                     if (cVar1 == '\0') {
-                                                      cVar1 = func_0x0001800a1eb0(auStack_50,
+                                                      cVar1 = ValidateSystemConfiguration(auStack_50,
                                                                                   &UNK_180a3a850);
                                                       if (cVar1 != '\0') goto LAB_18060ad3e;
-                                                      cVar1 = func_0x0001800a1eb0(auStack_50,
+                                                      cVar1 = ValidateSystemConfiguration(auStack_50,
                                                                                   &UNK_180a3a830);
                                                       if (cVar1 != '\0') goto LAB_18060a114;
-                                                      cVar1 = func_0x0001800a1eb0(auStack_50,
+                                                      cVar1 = ValidateSystemConfiguration(auStack_50,
                                                                                   &UNK_180a3a870);
                                                       if (cVar1 != '\0') goto LAB_18060ba49;
-                                                      cVar1 = func_0x0001800a1eb0(auStack_50,
+                                                      cVar1 = ValidateSystemConfiguration(auStack_50,
                                                                                   &UNK_180a3a860);
                                                       if (cVar1 != '\0') goto LAB_18060b32d;
-                                                      cVar1 = func_0x0001800a1eb0(auStack_50,
+                                                      cVar1 = ValidateSystemConfiguration(auStack_50,
                                                                                   &UNK_180a04be8);
                                                       if (cVar1 != '\0') goto LAB_18060b34b;
-                                                      cVar1 = func_0x0001800a1eb0(auStack_50,
+                                                      cVar1 = ValidateSystemConfiguration(auStack_50,
                                                                                   &UNK_180a3a938);
                                                       if (cVar1 != '\0') goto LAB_18060b369;
-                                                      cVar1 = func_0x0001800a1eb0(auStack_50,
+                                                      cVar1 = ValidateSystemConfiguration(auStack_50,
                                                                                   &UNK_180a3a920);
                                                       if (cVar1 != '\0') goto LAB_18060b387;
-                                                      cVar1 = func_0x0001800a1eb0(auStack_50,
+                                                      cVar1 = ValidateSystemConfiguration(auStack_50,
                                                                                   &UNK_180a3a960);
                                                       if (cVar1 != '\0') goto LAB_18060b3a5;
-                                                      cVar1 = func_0x0001800a1eb0(auStack_50,
+                                                      cVar1 = ValidateSystemConfiguration(auStack_50,
                                                                                   &UNK_180a3a948);
                                                       if (cVar1 != '\0') {
                                                         uVar3 = 0xf8;
                                                         goto LAB_18060bbae;
                                                       }
-                                                      cVar1 = func_0x0001800a1eb0(auStack_50,
+                                                      cVar1 = ValidateSystemConfiguration(auStack_50,
                                                                                   &UNK_180a3a8f0);
                                                       if (cVar1 != '\0') {
                                                         uVar3 = 0xfc;
                                                         goto LAB_18060bbae;
                                                       }
-                                                      cVar1 = func_0x0001800a1eb0(auStack_50,
+                                                      cVar1 = ValidateSystemConfiguration(auStack_50,
                                                                                   &UNK_180a3a8d8);
                                                       if (cVar1 != '\0') {
                                                         uVar3 = 0x100;
                                                         goto LAB_18060bbae;
                                                       }
-                                                      cVar1 = func_0x0001800a1eb0(auStack_50,
+                                                      cVar1 = ValidateSystemConfiguration(auStack_50,
                                                                                   &UNK_180a3a910);
                                                       if (cVar1 != '\0') {
                                                         uVar3 = 0x110;
                                                         goto LAB_18060bbae;
                                                       }
-                                                      cVar1 = func_0x0001800a1eb0(auStack_50,
+                                                      cVar1 = ValidateSystemConfiguration(auStack_50,
                                                                                   &UNK_180a3a900);
                                                       if (cVar1 != '\0') {
                                                         uVar3 = 0x114;
                                                         goto LAB_18060bbae;
                                                       }
-                                                      cVar1 = func_0x0001800a1eb0(auStack_50,
+                                                      cVar1 = ValidateSystemConfiguration(auStack_50,
                                                                                   &UNK_180a3a9d8);
                                                       if (cVar1 != '\0') {
                                                         uVar3 = 0x118;
                                                         goto LAB_18060bbae;
                                                       }
-                                                      cVar1 = func_0x0001800a1eb0(auStack_50,
+                                                      cVar1 = ValidateSystemConfiguration(auStack_50,
                                                                                   &UNK_180a3a9c8);
                                                       if (cVar1 != '\0') {
                                                         uVar3 = 0x11c;
                                                         goto LAB_18060bbae;
                                                       }
-                                                      cVar1 = func_0x0001800a1eb0(auStack_50,
+                                                      cVar1 = ValidateSystemConfiguration(auStack_50,
                                                                                   &UNK_180a3a9f0);
                                                       if (cVar1 != '\0') {
                                                         uVar3 = 0x11e;
                                                         goto LAB_18060bbae;
                                                       }
-                                                      cVar1 = func_0x0001800a1eb0(auStack_50,
+                                                      cVar1 = ValidateSystemConfiguration(auStack_50,
                                                                                   &UNK_180a3a9e0);
                                                       if (cVar1 != '\0') {
                                                         uVar3 = 0x120;
                                                         goto LAB_18060bbae;
                                                       }
-                                                      cVar1 = func_0x0001800a1eb0(auStack_50,
+                                                      cVar1 = ValidateSystemConfiguration(auStack_50,
                                                                                   &UNK_180a3a988);
                                                       if (cVar1 != '\0') {
                                                         uVar3 = 0x130;
                                                         goto LAB_18060bbae;
                                                       }
-                                                      cVar1 = func_0x0001800a1eb0(auStack_50,
+                                                      cVar1 = ValidateSystemConfiguration(auStack_50,
                                                                                   &UNK_180a2a000);
                                                       if (cVar1 != '\0') {
                                                         uVar3 = 0x170;
                                                         goto LAB_18060bbae;
                                                       }
-                                                      cVar1 = func_0x0001800a1eb0(auStack_50,
+                                                      cVar1 = ValidateSystemConfiguration(auStack_50,
                                                                                   &UNK_180a21a30);
                                                       if (cVar1 != '\0') {
                                                         uVar3 = 0x174;
                                                         goto LAB_18060bbae;
                                                       }
-                                                      cVar1 = func_0x0001800a1eb0(auStack_50,
+                                                      cVar1 = ValidateSystemConfiguration(auStack_50,
                                                                                   &UNK_180a3a970);
                                                       if (cVar1 != '\0') {
                                                         uVar3 = 0x178;
                                                         goto LAB_18060bbae;
                                                       }
-                                                      cVar1 = func_0x0001800a1eb0(auStack_50,
+                                                      cVar1 = ValidateSystemConfiguration(auStack_50,
                                                                                   &UNK_180a3a9b0);
                                                       if (cVar1 != '\0') {
                                                         uVar3 = 0x188;
                                                         goto LAB_18060bbae;
                                                       }
-                                                      cVar1 = func_0x0001800a1eb0(auStack_50,
+                                                      cVar1 = ValidateSystemConfiguration(auStack_50,
                                                                                   &UNK_180a3a998);
                                                       if (cVar1 != '\0') {
                                                         uVar3 = 0x198;
                                                         goto LAB_18060bbae;
                                                       }
-                                                      cVar1 = func_0x0001800a1eb0(auStack_50,
+                                                      cVar1 = ValidateSystemConfiguration(auStack_50,
                                                                                   &UNK_180a3aa98);
                                                       if (cVar1 != '\0') {
                                                         uVar3 = 0x19c;
                                                         goto LAB_18060bbae;
                                                       }
-                                                      cVar1 = func_0x0001800a1eb0(auStack_50,
+                                                      cVar1 = ValidateSystemConfiguration(auStack_50,
                                                                                   &UNK_180a3aa70);
                                                       if (cVar1 != '\0') {
                                                         uVar3 = 0x1a0;
                                                         goto LAB_18060bbae;
                                                       }
-                                                      cVar1 = func_0x0001800a1eb0(auStack_50,
+                                                      cVar1 = ValidateSystemConfiguration(auStack_50,
                                                                                   &UNK_180a3aac0);
                                                       if (cVar1 != '\0') {
                                                         uVar3 = 0x220;
                                                         goto LAB_18060bbae;
                                                       }
-                                                      cVar1 = func_0x0001800a1eb0(auStack_50,
+                                                      cVar1 = ValidateSystemConfiguration(auStack_50,
                                                                                   &UNK_180a3aab0);
                                                       if (cVar1 != '\0') {
                                                         uVar3 = 0x230;
                                                         goto LAB_18060bbae;
                                                       }
-                                                      cVar1 = func_0x0001800a1eb0(auStack_50,
+                                                      cVar1 = ValidateSystemConfiguration(auStack_50,
                                                                                   &UNK_180a3aa20);
                                                       if (cVar1 != '\0') {
                                                         uVar3 = 0x234;
                                                         goto LAB_18060bbae;
                                                       }
-                                                      cVar1 = func_0x0001800a1eb0(auStack_50,
+                                                      cVar1 = ValidateSystemConfiguration(auStack_50,
                                                                                   &UNK_180a3aa08);
                                                       if (cVar1 != '\0') {
                                                         uVar3 = 0x238;
                                                         goto LAB_18060bbae;
                                                       }
-                                                      cVar1 = func_0x0001800a1eb0(auStack_50,
+                                                      cVar1 = ValidateSystemConfiguration(auStack_50,
                                                                                   &UNK_180a3aa50);
                                                       if (cVar1 != '\0') {
                                                         uVar3 = 0x23c;
                                                         goto LAB_18060bbae;
                                                       }
-                                                      cVar1 = func_0x0001800a1eb0(auStack_50,
+                                                      cVar1 = ValidateSystemConfiguration(auStack_50,
                                                                                   &UNK_180a3aa38);
                                                       if (cVar1 != '\0') {
                                                         uVar3 = 0x240;
@@ -8248,10 +8248,10 @@ LAB_18060b76f:
                                                   }
                                                   }
                                                   else {
-                                                    cVar1 = func_0x0001800a1eb0(auStack_50,
+                                                    cVar1 = ValidateSystemConfiguration(auStack_50,
                                                                                 &UNK_180a3a650);
                                                     if (cVar1 == '\0') {
-                                                      cVar1 = func_0x0001800a1eb0(auStack_50,
+                                                      cVar1 = ValidateSystemConfiguration(auStack_50,
                                                                                   &UNK_180a3a640);
                                                       if (cVar1 != '\0') {
                                                         uVar3 = 4;
@@ -8262,40 +8262,40 @@ LAB_18060b76f:
                                                   }
                                                   }
                                                   else {
-                                                    cVar1 = func_0x0001800a1eb0(auStack_50,
+                                                    cVar1 = ValidateSystemConfiguration(auStack_50,
                                                                                 &UNK_180a3a800);
                                                     if (cVar1 == '\0') {
-                                                      cVar1 = func_0x0001800a1eb0(auStack_50,
+                                                      cVar1 = ValidateSystemConfiguration(auStack_50,
                                                                                   &UNK_180a3a7a8);
                                                       if (cVar1 == '\0') {
-                                                        cVar1 = func_0x0001800a1eb0(auStack_50,
+                                                        cVar1 = ValidateSystemConfiguration(auStack_50,
                                                                                     &UNK_180a3a798);
                                                         if (cVar1 != '\0') goto LAB_18060ad3e;
-                                                        cVar1 = func_0x0001800a1eb0(auStack_50,
+                                                        cVar1 = ValidateSystemConfiguration(auStack_50,
                                                                                     &UNK_180a3a7d0);
                                                         if (cVar1 == '\0') {
-                                                          cVar1 = func_0x0001800a1eb0(auStack_50,
+                                                          cVar1 = ValidateSystemConfiguration(auStack_50,
                                                                                       &UNK_180a3a7b8
                                                                                      );
                                                           if (cVar1 != '\0') goto LAB_18060a114;
-                                                          cVar1 = func_0x0001800a1eb0(auStack_50,
+                                                          cVar1 = ValidateSystemConfiguration(auStack_50,
                                                                                       &UNK_180a3a898
                                                                                      );
                                                           if (cVar1 == '\0') {
-                                                            cVar1 = func_0x0001800a1eb0(auStack_50,
+                                                            cVar1 = ValidateSystemConfiguration(auStack_50,
                                                                                         &
                                                   UNK_180a3a880);
                                                   if (cVar1 != '\0') goto LAB_18060ba49;
-                                                  cVar1 = func_0x0001800a1eb0(auStack_50,
+                                                  cVar1 = ValidateSystemConfiguration(auStack_50,
                                                                               &UNK_180a3a8c0);
                                                   if (cVar1 != '\0') goto LAB_18060b1d7;
-                                                  cVar1 = func_0x0001800a1eb0(auStack_50,
+                                                  cVar1 = ValidateSystemConfiguration(auStack_50,
                                                                               &DAT_180a0ba58);
                                                   if (cVar1 != '\0') goto LAB_18060b1f5;
-                                                  cVar1 = func_0x0001800a1eb0(auStack_50,
+                                                  cVar1 = ValidateSystemConfiguration(auStack_50,
                                                                               &UNK_180a3a5a8);
                                                   if (cVar1 == '\0') {
-                                                    cVar1 = func_0x0001800a1eb0(auStack_50,
+                                                    cVar1 = ValidateSystemConfiguration(auStack_50,
                                                                                 &UNK_180a2e2bc);
                                                     if (cVar1 != '\0') goto LAB_18060b32d;
                                                     pBufferSize = &UNK_180a2e9e0;
@@ -8312,27 +8312,27 @@ LAB_18060b76f:
                                                   }
                                                 }
                                                 else {
-                                                  cVar1 = func_0x0001800a1eb0(auStack_50,
+                                                  cVar1 = ValidateSystemConfiguration(auStack_50,
                                                                               &UNK_180a3a720);
                                                   if (cVar1 == '\0') {
-                                                    cVar1 = func_0x0001800a1eb0(auStack_50,
+                                                    cVar1 = ValidateSystemConfiguration(auStack_50,
                                                                                 &UNK_180a3a754);
                                                     if (cVar1 != '\0') goto LAB_18060b9cb;
-                                                    cVar1 = func_0x0001800a1eb0(auStack_50,
+                                                    cVar1 = ValidateSystemConfiguration(auStack_50,
                                                                                 &UNK_180a3a748);
                                                     if (cVar1 != '\0') {
 LAB_18060acd8:
                                                       uVar3 = 0xc;
                                                       goto LAB_18060bbae;
                                                     }
-                                                    cVar1 = func_0x0001800a1eb0(auStack_50,
+                                                    cVar1 = ValidateSystemConfiguration(auStack_50,
                                                                                 &UNK_180a3a7f0);
                                                     if (cVar1 != '\0') {
 LAB_18060a91e:
                                                       uVar3 = 0x14;
                                                       goto LAB_18060bbae;
                                                     }
-                                                    cVar1 = func_0x0001800a1eb0(auStack_50,
+                                                    cVar1 = ValidateSystemConfiguration(auStack_50,
                                                                                 &UNK_180a3a7e0);
                                                     if (cVar1 != '\0') {
 LAB_18060ba67:
@@ -8341,34 +8341,34 @@ LAB_18060ba67:
                                                     }
                                                     pBufferSize = &UNK_180a3a820;
 LAB_18060b0e8:
-                                                    cVar1 = func_0x0001800a1eb0(auStack_50,pBufferSize);
+                                                    cVar1 = ValidateSystemConfiguration(auStack_50,pBufferSize);
                                                     if (cVar1 != '\0') goto LAB_18060b0f9;
                                                   }
                                                 }
                                               }
                                               else {
-                                                cVar1 = func_0x0001800a1eb0(auStack_50,
+                                                cVar1 = ValidateSystemConfiguration(auStack_50,
                                                                             &UNK_180a1a470);
                                                 if (cVar1 == '\0') {
-                                                  cVar1 = func_0x0001800a1eb0(auStack_50,
+                                                  cVar1 = ValidateSystemConfiguration(auStack_50,
                                                                               &UNK_180a3a758);
                                                   if (cVar1 != '\0') {
                                                     uVar3 = 0x2000;
                                                     goto LAB_18060bbae;
                                                   }
-                                                  cVar1 = func_0x0001800a1eb0(auStack_50,
+                                                  cVar1 = ValidateSystemConfiguration(auStack_50,
                                                                               &UNK_180a3a788);
                                                   if (cVar1 != '\0') {
                                                     uVar3 = 0x2010;
                                                     goto LAB_18060bbae;
                                                   }
-                                                  cVar1 = func_0x0001800a1eb0(auStack_50,
+                                                  cVar1 = ValidateSystemConfiguration(auStack_50,
                                                                               &UNK_180a3a778);
                                                   if (cVar1 != '\0') {
                                                     uVar3 = 0x2020;
                                                     goto LAB_18060bbae;
                                                   }
-                                                  cVar1 = func_0x0001800a1eb0(auStack_50,
+                                                  cVar1 = ValidateSystemConfiguration(auStack_50,
                                                                               &UNK_180a3a738);
                                                   if (cVar1 != '\0') {
                                                     uVar3 = 0x2024;
@@ -8380,9 +8380,9 @@ LAB_18060b0e8:
                                           }
                                           else {
 LAB_18060af51:
-                                            cVar1 = func_0x0001800a1eb0(auStack_50,&UNK_180a3a650);
+                                            cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a3a650);
                                             if (cVar1 == '\0') {
-                                              cVar1 = func_0x0001800a1eb0(auStack_50,&UNK_180a3a640)
+                                              cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a3a640)
                                               ;
                                               if (cVar1 == '\0') {
                                                 pBufferSize = &UNK_180a3a5c0;
@@ -8393,63 +8393,63 @@ LAB_18060af51:
                                           }
                                         }
                                         else {
-                                          cVar1 = func_0x0001800a1eb0(auStack_50,&UNK_180a3a6c0);
+                                          cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a3a6c0);
                                           if (cVar1 == '\0') {
-                                            cVar1 = func_0x0001800a1eb0(auStack_50,&UNK_180a3a708);
+                                            cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a3a708);
                                             if (cVar1 != '\0') goto LAB_18060a114;
-                                            cVar1 = func_0x0001800a1eb0(auStack_50,&UNK_180a3a6f8);
+                                            cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a3a6f8);
                                             if (cVar1 != '\0') goto LAB_18060b32d;
-                                            cVar1 = func_0x0001800a1eb0(auStack_50,&UNK_180a39ee0);
+                                            cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a39ee0);
                                             if (cVar1 != '\0') {
 LAB_18060b0f9:
                                               uVar3 = 0x24;
                                               goto LAB_18060bbae;
                                             }
-                                            cVar1 = func_0x0001800a1eb0(auStack_50,&UNK_180a39e48);
+                                            cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a39e48);
                                             if (cVar1 != '\0') goto LAB_1806091a3;
-                                            cVar1 = func_0x0001800a1eb0(auStack_50,&UNK_180a39dd0);
+                                            cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a39dd0);
                                             if (cVar1 != '\0') {
 LAB_18060ae39:
                                               uVar3 = 0x2c;
                                               goto LAB_18060bbae;
                                             }
-                                            cVar1 = func_0x0001800a1eb0(auStack_50,&UNK_180a39df0);
+                                            cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a39df0);
                                             if (cVar1 != '\0') goto LAB_18060ae57;
-                                            cVar1 = func_0x0001800a1eb0(auStack_50,&UNK_180a39fb0);
+                                            cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a39fb0);
                                             if (cVar1 != '\0') {
 LAB_18060ae75:
                                               uVar3 = 0x34;
                                               goto LAB_18060bbae;
                                             }
-                                            cVar1 = func_0x0001800a1eb0(auStack_50,&UNK_180a3a670);
+                                            cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a3a670);
                                             if (cVar1 != '\0') goto LAB_18060ae93;
-                                            cVar1 = func_0x0001800a1eb0(auStack_50,&UNK_180a3a660);
+                                            cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a3a660);
                                             if (cVar1 != '\0') {
 LAB_18060aeb1:
                                               uVar3 = 0x3c;
                                               goto LAB_18060bbae;
                                             }
-                                            cVar1 = func_0x0001800a1eb0(auStack_50,&UNK_180a3a6a0);
+                                            cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a3a6a0);
                                             if (cVar1 != '\0') {
 LAB_18060b6c7:
                                               uVar3 = 0x50;
                                               goto LAB_18060bbae;
                                             }
-                                            cVar1 = func_0x0001800a1eb0(auStack_50,&UNK_180a3a688);
+                                            cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a3a688);
                                             if (cVar1 != '\0') goto LAB_18060b6e5;
-                                            cVar1 = func_0x0001800a1eb0(auStack_50,&UNK_180a39d58);
+                                            cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a39d58);
                                             if (cVar1 != '\0') {
 LAB_18060b703:
                                               uVar3 = 0x5c;
                                               goto LAB_18060bbae;
                                             }
-                                            cVar1 = func_0x0001800a1eb0(auStack_50,&UNK_180a39f18);
+                                            cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a39f18);
                                             if (cVar1 != '\0') {
 LAB_1806093cc:
                                               uVar3 = 0x60;
                                               goto LAB_18060bbae;
                                             }
-                                            cVar1 = func_0x0001800a1eb0(auStack_50,&UNK_180a3a768);
+                                            cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a3a768);
                                             if (cVar1 != '\0') {
                                               uVar3 = 0x61;
                                               goto LAB_18060bbae;
@@ -8458,9 +8458,9 @@ LAB_1806093cc:
                                         }
                                       }
                                       else {
-                                        cVar1 = func_0x0001800a1eb0(auStack_50,&UNK_180a3a650);
+                                        cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a3a650);
                                         if (cVar1 == '\0') {
-                                          cVar1 = func_0x0001800a1eb0(auStack_50,&UNK_180a3a640);
+                                          cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a3a640);
                                           if (cVar1 == '\0') {
 LAB_18060ad8c:
                                             pBufferSize = &UNK_180a3a5c0;
@@ -8471,128 +8471,128 @@ LAB_18060ad8c:
                                       }
                                     }
                                     else {
-                                      cVar1 = func_0x0001800a1eb0(auStack_50,&UNK_180a3a600);
+                                      cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a3a600);
                                       if (cVar1 == '\0') {
-                                        cVar1 = func_0x0001800a1eb0(auStack_50,&UNK_180a3a5e0);
+                                        cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a3a5e0);
                                         if (cVar1 != '\0') goto LAB_18060b9cb;
                                         pBufferSize = &UNK_180a3a6e0;
 LAB_18060ad2d:
-                                        cVar1 = func_0x0001800a1eb0(auStack_50,pBufferSize);
+                                        cVar1 = ValidateSystemConfiguration(auStack_50,pBufferSize);
                                         if (cVar1 != '\0') goto LAB_18060ad3e;
                                       }
                                     }
                                   }
                                   else {
-                                    cVar1 = func_0x0001800a1eb0(auStack_50,&UNK_180a3a650);
+                                    cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a3a650);
                                     if (cVar1 == '\0') {
-                                      cVar1 = func_0x0001800a1eb0(auStack_50,&UNK_180a3a640);
+                                      cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a3a640);
                                       if (cVar1 != '\0') goto LAB_18060b9cb;
-                                      cVar1 = func_0x0001800a1eb0(auStack_50,&UNK_180a3a5d0);
+                                      cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a3a5d0);
                                       if (cVar1 != '\0') goto LAB_18060ad3e;
-                                      cVar1 = func_0x0001800a1eb0(auStack_50,&UNK_180a3a5c0);
+                                      cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a3a5c0);
                                       if (cVar1 != '\0') goto LAB_18060acd8;
                                     }
                                   }
                                 }
                                 else {
-                                  cVar1 = func_0x0001800a1eb0(auStack_50,&UNK_180a3a2f8);
+                                  cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a3a2f8);
                                   if (cVar1 == '\0') {
-                                    cVar1 = func_0x0001800a1eb0(auStack_50,&UNK_180a3a2e8);
+                                    cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a3a2e8);
                                     if (cVar1 != '\0') goto LAB_18060b9cb;
-                                    cVar1 = func_0x0001800a1eb0(auStack_50,&UNK_180a3a310);
+                                    cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a3a310);
                                     if (cVar1 != '\0') goto LAB_18060ad3e;
-                                    cVar1 = func_0x0001800a1eb0(auStack_50,&UNK_180a3a300);
+                                    cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a3a300);
                                     if (cVar1 != '\0') goto LAB_18060acd8;
-                                    cVar1 = func_0x0001800a1eb0(auStack_50,&UNK_180a3a418);
+                                    cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a3a418);
                                     if (cVar1 != '\0') goto LAB_18060a114;
-                                    cVar1 = func_0x0001800a1eb0(auStack_50,&UNK_180a3a408);
+                                    cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a3a408);
                                     if (cVar1 != '\0') goto LAB_18060a91e;
-                                    cVar1 = func_0x0001800a1eb0(auStack_50,&UNK_180a3a440);
+                                    cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a3a440);
                                     if (cVar1 != '\0') goto LAB_18060ba49;
-                                    cVar1 = func_0x0001800a1eb0(auStack_50,&UNK_180a3a428);
+                                    cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a3a428);
                                     if (cVar1 != '\0') goto LAB_18060ba67;
-                                    cVar1 = func_0x0001800a1eb0(auStack_50,&UNK_180a3a3d0);
+                                    cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a3a3d0);
                                     if (cVar1 != '\0') goto LAB_18060b32d;
-                                    cVar1 = func_0x0001800a1eb0(auStack_50,&UNK_180a3a3c0);
+                                    cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a3a3c0);
                                     if (cVar1 != '\0') goto LAB_18060b0f9;
-                                    cVar1 = func_0x0001800a1eb0(auStack_50,&UNK_180a3a3f8);
+                                    cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a3a3f8);
                                     if (cVar1 != '\0') goto LAB_1806091a3;
-                                    cVar1 = func_0x0001800a1eb0(auStack_50,&UNK_180a3a3e8);
+                                    cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a3a3e8);
                                     if (cVar1 != '\0') goto LAB_18060ae39;
-                                    cVar1 = func_0x0001800a1eb0(auStack_50,&UNK_180a3a4c0);
+                                    cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a3a4c0);
                                     if (cVar1 != '\0') goto LAB_18060ae57;
-                                    cVar1 = func_0x0001800a1eb0(auStack_50,&UNK_180a3a4a8);
+                                    cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a3a4a8);
                                     if (cVar1 != '\0') goto LAB_18060ae75;
-                                    cVar1 = func_0x0001800a1eb0(auStack_50,&UNK_180a3a4e0);
+                                    cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a3a4e0);
                                     if (cVar1 != '\0') goto LAB_18060ae93;
-                                    cVar1 = func_0x0001800a1eb0(auStack_50,&UNK_180a3a4d0);
+                                    cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a3a4d0);
                                     if (cVar1 != '\0') goto LAB_18060aeb1;
-                                    cVar1 = func_0x0001800a1eb0(auStack_50,&UNK_180a3a468);
+                                    cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a3a468);
                                     if (cVar1 != '\0') {
                                       uVar3 = 0x53c;
                                       goto LAB_18060bbae;
                                     }
-                                    cVar1 = func_0x0001800a1eb0(auStack_50,&UNK_180a3a458);
+                                    cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a3a458);
                                     if (cVar1 != '\0') {
                                       uVar3 = 0x540;
                                       goto LAB_18060bbae;
                                     }
-                                    cVar1 = func_0x0001800a1eb0(auStack_50,&UNK_180a3a498);
+                                    cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a3a498);
                                     if (cVar1 != '\0') {
                                       uVar3 = 0x544;
                                       goto LAB_18060bbae;
                                     }
-                                    cVar1 = func_0x0001800a1eb0(auStack_50,&UNK_180a3a478);
+                                    cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a3a478);
                                     if (cVar1 != '\0') {
                                       uVar3 = 0x548;
                                       goto LAB_18060bbae;
                                     }
-                                    cVar1 = func_0x0001800a1eb0(auStack_50,&UNK_180a3a560);
+                                    cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a3a560);
                                     if (cVar1 != '\0') {
                                       uVar3 = 0x54c;
                                       goto LAB_18060bbae;
                                     }
-                                    cVar1 = func_0x0001800a1eb0(auStack_50,&UNK_180a3a540);
+                                    cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a3a540);
                                     if (cVar1 != '\0') {
                                       uVar3 = 0x550;
                                       goto LAB_18060bbae;
                                     }
-                                    cVar1 = func_0x0001800a1eb0(auStack_50,&UNK_180a3a5a8);
+                                    cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a3a5a8);
                                     if (cVar1 != '\0') {
                                       uVar3 = 0x554;
                                       goto LAB_18060bbae;
                                     }
-                                    cVar1 = func_0x0001800a1eb0(auStack_50,&UNK_180a3a580);
+                                    cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a3a580);
                                     if (cVar1 != '\0') {
                                       uVar3 = 0x558;
                                       goto LAB_18060bbae;
                                     }
-                                    cVar1 = func_0x0001800a1eb0(auStack_50,&UNK_180a3a508);
+                                    cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a3a508);
                                     if (cVar1 != '\0') {
                                       uVar3 = 0x55c;
                                       goto LAB_18060bbae;
                                     }
-                                    cVar1 = func_0x0001800a1eb0(auStack_50,&UNK_180a3a4f8);
+                                    cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a3a4f8);
                                     if (cVar1 != '\0') {
                                       uVar3 = 0x560;
                                       goto LAB_18060bbae;
                                     }
-                                    cVar1 = func_0x0001800a1eb0(auStack_50,&UNK_180a3a530);
+                                    cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a3a530);
                                     if (cVar1 != '\0') {
                                       uVar3 = 0x564;
                                       goto LAB_18060bbae;
                                     }
-                                    cVar1 = func_0x0001800a1eb0(auStack_50,&UNK_180a3a520);
+                                    cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a3a520);
                                     if (cVar1 != '\0') {
                                       uVar3 = 0x565;
                                       goto LAB_18060bbae;
                                     }
-                                    cVar1 = func_0x0001800a1eb0(auStack_50,&UNK_180a3a630);
+                                    cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a3a630);
                                     if (cVar1 != '\0') {
                                       uVar3 = 0x566;
                                       goto LAB_18060bbae;
                                     }
-                                    cVar1 = func_0x0001800a1eb0(auStack_50,&UNK_180a3a620);
+                                    cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a3a620);
                                     if (cVar1 != '\0') {
                                       uVar3 = 0x567;
                                       goto LAB_18060bbae;
@@ -8601,29 +8601,29 @@ LAB_18060ad2d:
                                 }
                               }
                               else {
-                                cVar1 = func_0x0001800a1eb0(auStack_50,&UNK_180a2e1d8);
+                                cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a2e1d8);
                                 if (cVar1 == '\0') {
-                                  cVar1 = func_0x0001800a1eb0(auStack_50,&UNK_180a2e1e8);
+                                  cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a2e1e8);
                                   if (cVar1 != '\0') goto LAB_18060b9cb;
-                                  cVar1 = func_0x0001800a1eb0(auStack_50,&UNK_180a2e158);
+                                  cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a2e158);
                                   if (cVar1 != '\0') goto LAB_18060ad3e;
-                                  cVar1 = func_0x0001800a1eb0(auStack_50,&UNK_180a2e150);
+                                  cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a2e150);
                                   if (cVar1 != '\0') goto LAB_18060acd8;
-                                  cVar1 = func_0x0001800a1eb0(auStack_50,&UNK_180a0696c);
+                                  cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a0696c);
                                   if (cVar1 != '\0') goto LAB_18060a114;
-                                  cVar1 = func_0x0001800a1eb0(auStack_50,&UNK_180a0ae28);
+                                  cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a0ae28);
                                   if (cVar1 != '\0') goto LAB_18060a91e;
                                 }
                               }
                             }
                             else {
-                              cVar1 = func_0x0001800a1eb0(auStack_50,&UNK_180a3a260);
+                              cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a3a260);
                               if (cVar1 == '\0') {
-                                cVar1 = func_0x0001800a1eb0(auStack_50,&UNK_180a3a348);
+                                cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a3a348);
                                 if (cVar1 == '\0') {
-                                  cVar1 = func_0x0001800a1eb0(auStack_50,&UNK_180a3a320);
+                                  cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a3a320);
                                   if (cVar1 == '\0') {
-                                    cVar1 = func_0x0001800a1eb0(auStack_50,&UNK_180a3a398);
+                                    cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a3a398);
                                     if (cVar1 == '\0') {
                                       pBufferSize = &UNK_180a3a370;
                                       goto LAB_18060a103;
@@ -8637,131 +8637,131 @@ LAB_18060ad2d:
                             }
                           }
                           else {
-                            cVar1 = func_0x0001800a1eb0(auStack_50,&UNK_180a3a068);
+                            cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a3a068);
                             if (cVar1 == '\0') {
-                              cVar1 = func_0x0001800a1eb0(auStack_50,&UNK_180a3a058);
+                              cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a3a058);
                               if (cVar1 != '\0') {
 LAB_18060b9cb:
                                 uVar3 = 4;
                                 goto LAB_18060bbae;
                               }
-                              cVar1 = func_0x0001800a1eb0(auStack_50,&UNK_180a39fe0);
+                              cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a39fe0);
                               if (cVar1 != '\0') goto LAB_18060ad3e;
-                              cVar1 = func_0x0001800a1eb0(auStack_50,&UNK_180a39fc0);
+                              cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a39fc0);
                               if (cVar1 != '\0') goto LAB_18060acd8;
-                              cVar1 = func_0x0001800a1eb0(auStack_50,&UNK_180a3a018);
+                              cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a3a018);
                               if (cVar1 != '\0') goto LAB_18060a114;
-                              cVar1 = func_0x0001800a1eb0(auStack_50,&UNK_180a39ff8);
+                              cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a39ff8);
                               if (cVar1 != '\0') goto LAB_18060a91e;
-                              cVar1 = func_0x0001800a1eb0(auStack_50,&UNK_180a3a118);
+                              cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a3a118);
                               if (cVar1 != '\0') goto LAB_18060ba49;
-                              cVar1 = func_0x0001800a1eb0(auStack_50,&UNK_180a3a0f0);
+                              cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a3a0f0);
                               if (cVar1 != '\0') goto LAB_18060ba67;
-                              cVar1 = func_0x0001800a1eb0(auStack_50,&UNK_180a3a158);
+                              cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a3a158);
                               if (cVar1 != '\0') goto LAB_18060b32d;
-                              cVar1 = func_0x0001800a1eb0(auStack_50,&UNK_180a3a140);
+                              cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a3a140);
                               if (cVar1 != '\0') goto LAB_1806091a3;
-                              cVar1 = func_0x0001800a1eb0(auStack_50,&UNK_180a3a098);
+                              cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a3a098);
                               if (cVar1 != '\0') goto LAB_18060ae57;
-                              cVar1 = func_0x0001800a1eb0(auStack_50,&UNK_180a3a078);
+                              cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a3a078);
                               if (cVar1 != '\0') goto LAB_18060ae93;
-                              cVar1 = func_0x0001800a1eb0(auStack_50,&UNK_180a3a0d0);
+                              cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a3a0d0);
                               if (cVar1 != '\0') goto LAB_18060b6a9;
-                              cVar1 = func_0x0001800a1eb0(auStack_50,&UNK_180a3a0b8);
+                              cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a3a0b8);
                               if (cVar1 != '\0') goto LAB_18060a66e;
-                              cVar1 = func_0x0001800a1eb0(auStack_50,&UNK_180a3a1e8);
+                              cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a3a1e8);
                               if (cVar1 != '\0') goto LAB_18060a68c;
-                              cVar1 = func_0x0001800a1eb0(auStack_50,&UNK_180a3a1c8);
+                              cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a3a1c8);
                               if (cVar1 != '\0') goto LAB_18060a6aa;
-                              cVar1 = func_0x0001800a1eb0(auStack_50,&UNK_180a3a220);
+                              cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a3a220);
                               if (cVar1 != '\0') goto LAB_18060b6c7;
-                              cVar1 = func_0x0001800a1eb0(auStack_50,&UNK_180a3a208);
+                              cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a3a208);
                               if (cVar1 != '\0') goto LAB_18060b6e5;
-                              cVar1 = func_0x0001800a1eb0(auStack_50,&UNK_180a3a188);
+                              cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a3a188);
                               if (cVar1 != '\0') goto LAB_1806093cc;
-                              cVar1 = func_0x0001800a1eb0(auStack_50,&UNK_180a3a178);
+                              cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a3a178);
                               if (cVar1 != '\0') goto LAB_180609b20;
-                              cVar1 = func_0x0001800a1eb0(auStack_50,&UNK_180a3a1b8);
+                              cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a3a1b8);
                               if (cVar1 != '\0') {
 LAB_18060b78d:
                                 uVar3 = 0x70;
                                 goto LAB_18060bbae;
                               }
-                              cVar1 = func_0x0001800a1eb0(auStack_50,&UNK_180a3a1a8);
+                              cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a3a1a8);
                               if (cVar1 != '\0') goto LAB_18060b7c9;
-                              cVar1 = func_0x0001800a1eb0(auStack_50,&UNK_180a3a2b0);
+                              cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a3a2b0);
                               if (cVar1 != '\0') {
 LAB_18060b805:
                                 uVar3 = 0x80;
                                 goto LAB_18060bbae;
                               }
-                              cVar1 = func_0x0001800a1eb0(auStack_50,&UNK_180a3a298);
+                              cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a3a298);
                               if (cVar1 != '\0') goto LAB_18060b841;
-                              cVar1 = func_0x0001800a1eb0(auStack_50,&UNK_180a3a2d8);
+                              cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a3a2d8);
                               if (cVar1 != '\0') goto LAB_18060b85f;
-                              cVar1 = func_0x0001800a1eb0(auStack_50,&UNK_180a3a2c0);
+                              cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a3a2c0);
                               if (cVar1 != '\0') goto LAB_18060b87d;
-                              cVar1 = func_0x0001800a1eb0(auStack_50,&UNK_180a3a250);
+                              cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a3a250);
                               if (cVar1 != '\0') goto LAB_18060b8d7;
-                              cVar1 = func_0x0001800a1eb0(auStack_50,&UNK_180a3a240);
+                              cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a3a240);
                               if (cVar1 != '\0') goto LAB_18060b34b;
-                              cVar1 = func_0x0001800a1eb0(auStack_50,&UNK_180a3a278);
+                              cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a3a278);
                               if (cVar1 != '\0') goto LAB_18060a7ec;
                             }
                           }
                         }
                         else {
-                          cVar1 = func_0x0001800a1eb0(auStack_50,&UNK_180a39f50);
+                          cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a39f50);
                           if (cVar1 == '\0') {
-                            cVar1 = func_0x0001800a1eb0(auStack_50,&UNK_180a3a048);
+                            cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a3a048);
                             if (cVar1 != '\0') goto LAB_18060a4de;
-                            cVar1 = func_0x0001800a1eb0(auStack_50,&UNK_180a3a038);
+                            cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a3a038);
                             if (cVar1 != '\0') goto LAB_18060a500;
                           }
                         }
                       }
                       else {
-                        cVar1 = func_0x0001800a1eb0(auStack_50,&UNK_180a39e78);
+                        cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a39e78);
                         if (cVar1 == '\0') {
-                          cVar1 = func_0x0001800a1eb0(auStack_50,&UNK_180a39eb8);
+                          cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a39eb8);
                           if (cVar1 != '\0') goto LAB_18060a114;
-                          cVar1 = func_0x0001800a1eb0(auStack_50,&UNK_180a39ea8);
+                          cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a39ea8);
                           if (cVar1 != '\0') goto LAB_18060b32d;
-                          cVar1 = func_0x0001800a1eb0(auStack_50,&UNK_180a39f88);
+                          cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a39f88);
                           if (cVar1 != '\0') goto LAB_18060ae57;
-                          cVar1 = func_0x0001800a1eb0(auStack_50,&UNK_180a39f78);
+                          cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a39f78);
                           if (cVar1 != '\0') {
 LAB_18060ae93:
                             uVar3 = 0x38;
                             goto LAB_18060bbae;
                           }
-                          cVar1 = func_0x0001800a1eb0(auStack_50,&UNK_180a39fb0);
+                          cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a39fb0);
                           if (cVar1 != '\0') {
 LAB_18060b6a9:
                             uVar3 = 0x40;
                             goto LAB_18060bbae;
                           }
-                          cVar1 = func_0x0001800a1eb0(auStack_50,&UNK_180a39f98);
+                          cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a39f98);
                           if (cVar1 != '\0') {
 LAB_18060a66e:
                             uVar3 = 0x44;
                             goto LAB_18060bbae;
                           }
-                          cVar1 = func_0x0001800a1eb0(auStack_50,&UNK_180a39f28);
+                          cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a39f28);
                           if (cVar1 != '\0') {
 LAB_18060a68c:
                             uVar3 = 0x48;
                             goto LAB_18060bbae;
                           }
-                          cVar1 = func_0x0001800a1eb0(auStack_50,&UNK_180a1029c);
+                          cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a1029c);
                           if (cVar1 != '\0') {
 LAB_18060a6aa:
                             uVar3 = 0x4c;
                             goto LAB_18060bbae;
                           }
-                          cVar1 = func_0x0001800a1eb0(auStack_50,&UNK_180a39f18);
+                          cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a39f18);
                           if (cVar1 != '\0') goto LAB_18060b6c7;
-                          cVar1 = func_0x0001800a1eb0(auStack_50,&UNK_180a39f60);
+                          cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a39f60);
                           if (cVar1 != '\0') {
                             uVar3 = 0x51;
                             goto LAB_18060bbae;
@@ -8770,125 +8770,125 @@ LAB_18060a6aa:
                       }
                     }
                     else {
-                      cVar1 = func_0x0001800a1eb0(auStack_50,&UNK_180a39d98);
+                      cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a39d98);
                       if (cVar1 == '\0') {
-                        cVar1 = func_0x0001800a1eb0(auStack_50,&UNK_180a39dc0);
+                        cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a39dc0);
                         if (cVar1 != '\0') {
 LAB_18060b6e5:
                           uVar3 = 0x58;
                           goto LAB_18060bbae;
                         }
-                        cVar1 = func_0x0001800a1eb0(auStack_50,&UNK_180a35198);
+                        cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a35198);
                         if (cVar1 != '\0') {
 LAB_180609b20:
                           uVar3 = 0x68;
                           goto LAB_18060bbae;
                         }
-                        cVar1 = func_0x0001800a1eb0(auStack_50,&UNK_180a39db0);
+                        cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a39db0);
                         if (cVar1 != '\0') {
 LAB_18060b7c9:
                           uVar3 = 0x78;
                           goto LAB_18060bbae;
                         }
-                        cVar1 = func_0x0001800a1eb0(auStack_50,&UNK_180a39d58);
+                        cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a39d58);
                         if (cVar1 != '\0') {
 LAB_18060b841:
                           uVar3 = 0x88;
                           goto LAB_18060bbae;
                         }
-                        cVar1 = func_0x0001800a1eb0(auStack_50,&UNK_180a39d40);
+                        cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a39d40);
                         if (cVar1 != '\0') {
 LAB_18060b85f:
                           uVar3 = 0x8c;
                           goto LAB_18060bbae;
                         }
-                        cVar1 = func_0x0001800a1eb0(auStack_50,&UNK_180a39d88);
+                        cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a39d88);
                         if (cVar1 != '\0') {
 LAB_18060b87d:
                           uVar3 = 0x90;
                           goto LAB_18060bbae;
                         }
-                        cVar1 = func_0x0001800a1eb0(auStack_50,&UNK_180a39d70);
+                        cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a39d70);
                         if (cVar1 != '\0') {
 LAB_18060b89b:
                           uVar3 = 0x94;
                           goto LAB_18060bbae;
                         }
-                        cVar1 = func_0x0001800a1eb0(auStack_50,&UNK_180a39e30);
+                        cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a39e30);
                         if (cVar1 != '\0') {
 LAB_18060b8d7:
                           uVar3 = 0x98;
                           goto LAB_18060bbae;
                         }
-                        cVar1 = func_0x0001800a1eb0(auStack_50,&UNK_180a39e18);
+                        cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a39e18);
                         if (cVar1 != '\0') {
 LAB_18060b8f9:
                           uVar3 = 0x9c;
                           goto LAB_18060bbae;
                         }
-                        cVar1 = func_0x0001800a1eb0(auStack_50,&UNK_180a39e58);
+                        cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a39e58);
                         if (cVar1 != '\0') {
 LAB_18060b34b:
                           uVar3 = 0xa0;
                           goto LAB_18060bbae;
                         }
-                        cVar1 = func_0x0001800a1eb0(auStack_50,&UNK_180a34948);
+                        cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a34948);
                         if (cVar1 != '\0') {
 LAB_18060a7ec:
                           uVar3 = 0xa4;
                           goto LAB_18060bbae;
                         }
-                        cVar1 = func_0x0001800a1eb0(auStack_50,&UNK_180a39e48);
+                        cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a39e48);
                         if (cVar1 != '\0') {
 LAB_18060b369:
                           uVar3 = 0xa8;
                           goto LAB_18060bbae;
                         }
-                        cVar1 = func_0x0001800a1eb0(auStack_50,&UNK_180a39de0);
+                        cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a39de0);
                         if (cVar1 != '\0') {
 LAB_18060a282:
                           uVar3 = 0xac;
                           goto LAB_18060bbae;
                         }
-                        cVar1 = func_0x0001800a1eb0(auStack_50,&UNK_180a39dd0);
+                        cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a39dd0);
                         if (cVar1 != '\0') {
 LAB_18060b387:
                           uVar3 = 0xb0;
                           goto LAB_18060bbae;
                         }
-                        cVar1 = func_0x0001800a1eb0(auStack_50,&UNK_180a39e08);
+                        cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a39e08);
                         if (cVar1 != '\0') {
                           uVar3 = 0xb4;
                           goto LAB_18060bbae;
                         }
-                        cVar1 = func_0x0001800a1eb0(auStack_50,&UNK_180a39df0);
+                        cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a39df0);
                         if (cVar1 != '\0') {
                           uVar3 = 0xb5;
                           goto LAB_18060bbae;
                         }
-                        cVar1 = func_0x0001800a1eb0(auStack_50,&UNK_180a39ee0);
+                        cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a39ee0);
                         if (cVar1 != '\0') {
 LAB_18060b3a5:
                           uVar3 = 0xb8;
                           goto LAB_18060bbae;
                         }
-                        cVar1 = func_0x0001800a1eb0(auStack_50,&UNK_180a39ed0);
+                        cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a39ed0);
                         if (cVar1 != '\0') {
 LAB_18060a30c:
                           uVar3 = 0xbc;
                           goto LAB_18060bbae;
                         }
-                        cVar1 = func_0x0001800a1eb0(auStack_50,&UNK_180a39f00);
+                        cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a39f00);
                         if (cVar1 != '\0') {
                           uVar3 = 0xbd;
                           goto LAB_18060bbae;
                         }
-                        cVar1 = func_0x0001800a1eb0(auStack_50,&UNK_180a39ef0);
+                        cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a39ef0);
                         if (cVar1 != '\0') {
                           uVar3 = 0xbe;
                           goto LAB_18060bbae;
                         }
-                        cVar1 = func_0x0001800a1eb0(auStack_50,&UNK_180a39e90);
+                        cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a39e90);
                         if (cVar1 != '\0') {
 LAB_18060a36a:
                           uVar3 = 0xc0;
@@ -8898,17 +8898,17 @@ LAB_18060a36a:
                     }
                   }
                   else {
-                    cVar1 = func_0x0001800a1eb0(auStack_50,&UNK_180a39cd0);
+                    cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a39cd0);
                     if (cVar1 == '\0') {
-                      cVar1 = func_0x0001800a1eb0(auStack_50,&UNK_180a39ccc);
+                      cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a39ccc);
                       if (cVar1 != '\0') goto LAB_18060b9cb;
-                      cVar1 = func_0x0001800a1eb0(auStack_50,&UNK_180a39cd8);
+                      cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a39cd8);
                       if (cVar1 != '\0') goto LAB_18060ad3e;
-                      cVar1 = func_0x0001800a1eb0(auStack_50,&UNK_180a39cd4);
+                      cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a39cd4);
                       if (cVar1 != '\0') goto LAB_18060acd8;
                       pBufferSize = &UNK_180a39da8;
 LAB_18060a103:
-                      cVar1 = func_0x0001800a1eb0(auStack_50,pBufferSize);
+                      cVar1 = ValidateSystemConfiguration(auStack_50,pBufferSize);
                       if (cVar1 != '\0') goto LAB_18060a114;
                     }
                   }
@@ -8916,125 +8916,125 @@ LAB_18060a103:
                 else {
                   cVar1 = FUN_180629850(auStack_50,&UNK_180a39920,1);
                   if (cVar1 == '\0') {
-                    cVar1 = func_0x0001800a1eb0(auStack_50,&UNK_180a39988);
+                    cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a39988);
                     if (cVar1 != '\0') {
 LAB_18060a4de:
                       uVar3 = 1;
                       goto LAB_18060bbae;
                     }
-                    cVar1 = func_0x0001800a1eb0(auStack_50,&UNK_180a39970);
+                    cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a39970);
                     if (cVar1 != '\0') {
 LAB_18060a500:
                       uVar3 = 2;
                       goto LAB_18060bbae;
                     }
-                    cVar1 = func_0x0001800a1eb0(auStack_50,&UNK_180a398d8);
+                    cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a398d8);
                     if (cVar1 != '\0') {
                       uVar3 = 3;
                       goto LAB_18060bbae;
                     }
-                    cVar1 = func_0x0001800a1eb0(auStack_50,&UNK_180a398b8);
+                    cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a398b8);
                     if (cVar1 != '\0') goto LAB_18060b9cb;
-                    cVar1 = func_0x0001800a1eb0(auStack_50,&UNK_180a39910);
+                    cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a39910);
                     if (cVar1 != '\0') {
                       uVar3 = 5;
                       goto LAB_18060bbae;
                     }
-                    cVar1 = func_0x0001800a1eb0(auStack_50,&UNK_180a398f0);
+                    cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a398f0);
                     if (cVar1 != '\0') {
                       uVar3 = 6;
                       goto LAB_18060bbae;
                     }
-                    cVar1 = func_0x0001800a1eb0(auStack_50,&UNK_180a39a28);
+                    cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a39a28);
                     if (cVar1 != '\0') goto LAB_180609cf8;
-                    cVar1 = func_0x0001800a1eb0(auStack_50,&UNK_180a39a18);
+                    cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a39a18);
                     if (cVar1 != '\0') goto LAB_18060ad3e;
-                    cVar1 = func_0x0001800a1eb0(auStack_50,&UNK_180a39a60);
+                    cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a39a60);
                     if (cVar1 != '\0') goto LAB_180609d2e;
-                    cVar1 = func_0x0001800a1eb0(auStack_50,&UNK_180a39a40);
+                    cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a39a40);
                     if (cVar1 != '\0') goto LAB_180609d4c;
-                    cVar1 = func_0x0001800a1eb0(auStack_50,&UNK_180a399c0);
+                    cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a399c0);
                     if (cVar1 != '\0') goto LAB_180609d6a;
-                    cVar1 = func_0x0001800a1eb0(auStack_50,&UNK_180a399a8);
+                    cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a399a8);
                     if (cVar1 != '\0') goto LAB_18060acd8;
-                    cVar1 = func_0x0001800a1eb0(auStack_50,&UNK_180a399f0);
+                    cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a399f0);
                     if (cVar1 != '\0') goto LAB_18060a114;
-                    cVar1 = func_0x0001800a1eb0(auStack_50,&UNK_180a399e0);
+                    cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a399e0);
                     if (cVar1 != '\0') goto LAB_18060a91e;
-                    cVar1 = func_0x0001800a1eb0(auStack_50,&UNK_180a39af0);
+                    cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a39af0);
                     if (cVar1 != '\0') goto LAB_18060ba49;
-                    cVar1 = func_0x0001800a1eb0(auStack_50,&UNK_180a39ad8);
+                    cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a39ad8);
                     if (cVar1 != '\0') goto LAB_18060ba67;
-                    cVar1 = func_0x0001800a1eb0(auStack_50,&UNK_180a39b18);
+                    cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a39b18);
                     if (cVar1 != '\0') {
                       uVar3 = 0x1d;
                       goto LAB_18060bbae;
                     }
-                    cVar1 = func_0x0001800a1eb0(auStack_50,&UNK_180a39b00);
+                    cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a39b00);
                     if (cVar1 != '\0') {
                       uVar3 = 0x1e;
                       goto LAB_18060bbae;
                     }
-                    cVar1 = func_0x0001800a1eb0(auStack_50,&UNK_180a39a88);
+                    cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a39a88);
                     if (cVar1 != '\0') goto LAB_18060b32d;
-                    cVar1 = func_0x0001800a1eb0(auStack_50,&UNK_180a39a70);
+                    cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a39a70);
                     if (cVar1 != '\0') goto LAB_18060b0f9;
-                    cVar1 = func_0x0001800a1eb0(auStack_50,&UNK_180a39ab8);
+                    cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a39ab8);
                     if (cVar1 != '\0') goto LAB_1806091a3;
-                    cVar1 = func_0x0001800a1eb0(auStack_50,&UNK_180a39aa0);
+                    cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a39aa0);
                     if (cVar1 != '\0') goto LAB_18060ae39;
-                    cVar1 = func_0x0001800a1eb0(auStack_50,&UNK_180a39ba0);
+                    cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a39ba0);
                     if (cVar1 != '\0') goto LAB_18060ae57;
-                    cVar1 = func_0x0001800a1eb0(auStack_50,&UNK_180a39b88);
+                    cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a39b88);
                     if (cVar1 != '\0') goto LAB_18060ae75;
-                    cVar1 = func_0x0001800a1eb0(auStack_50,&UNK_180a39bd8);
+                    cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a39bd8);
                     if (cVar1 != '\0') goto LAB_18060ae93;
-                    cVar1 = func_0x0001800a1eb0(auStack_50,&UNK_180a39bc0);
+                    cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a39bc0);
                     if (cVar1 != '\0') goto LAB_18060aeb1;
-                    cVar1 = func_0x0001800a1eb0(auStack_50,&UNK_180a39b48);
+                    cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a39b48);
                     if (cVar1 != '\0') goto LAB_18060b6a9;
-                    cVar1 = func_0x0001800a1eb0(auStack_50,&UNK_180a39b30);
+                    cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a39b30);
                     if (cVar1 != '\0') goto LAB_18060a66e;
-                    cVar1 = func_0x0001800a1eb0(auStack_50,&UNK_180a39b78);
+                    cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a39b78);
                     if (cVar1 != '\0') goto LAB_18060a68c;
-                    cVar1 = func_0x0001800a1eb0(auStack_50,&UNK_180a39b68);
+                    cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a39b68);
                     if (cVar1 != '\0') goto LAB_18060a6aa;
-                    cVar1 = func_0x0001800a1eb0(auStack_50,&UNK_180a39c80);
+                    cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a39c80);
                     if (cVar1 != '\0') goto LAB_18060b703;
-                    cVar1 = func_0x0001800a1eb0(auStack_50,&UNK_180a39c60);
+                    cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a39c60);
                     if (cVar1 != '\0') goto LAB_18060b76f;
-                    cVar1 = func_0x0001800a1eb0(auStack_50,&UNK_180a39cb8);
+                    cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a39cb8);
                     if (cVar1 != '\0') {
 LAB_18060b7e7:
                       uVar3 = 0x7c;
                       goto LAB_18060bbae;
                     }
-                    cVar1 = func_0x0001800a1eb0(auStack_50,&UNK_180a39c98);
+                    cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a39c98);
                     if (cVar1 != '\0') goto LAB_18060b85f;
-                    cVar1 = func_0x0001800a1eb0(auStack_50,&UNK_180a39c10);
+                    cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a39c10);
                     if (cVar1 != '\0') goto LAB_18060b8f9;
-                    cVar1 = func_0x0001800a1eb0(auStack_50,&UNK_180a39bf0);
+                    cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a39bf0);
                     if (cVar1 != '\0') goto LAB_18060a282;
-                    cVar1 = func_0x0001800a1eb0(auStack_50,&UNK_180a39c50);
+                    cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a39c50);
                     if (cVar1 != '\0') goto LAB_18060a30c;
-                    cVar1 = func_0x0001800a1eb0(auStack_50,&UNK_180a39c30);
+                    cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a39c30);
                     if (cVar1 != '\0') goto LAB_18060a36a;
-                    cVar1 = func_0x0001800a1eb0(auStack_50,&UNK_180a39cf8);
+                    cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a39cf8);
                     if (cVar1 != '\0') {
                       uVar3 = 0xc4;
                       goto LAB_18060bbae;
                     }
-                    cVar1 = func_0x0001800a1eb0(auStack_50,&UNK_180a39ce0);
+                    cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a39ce0);
                     if (cVar1 != '\0') {
                       uVar3 = 200;
                       goto LAB_18060bbae;
                     }
-                    cVar1 = func_0x0001800a1eb0(auStack_50,&UNK_180a39d28);
+                    cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a39d28);
                     if (cVar1 != '\0') {
                       uVar3 = 0xcc;
                       goto LAB_18060bbae;
                     }
-                    cVar1 = func_0x0001800a1eb0(auStack_50,&UNK_180a39d10);
+                    cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a39d10);
                     if (cVar1 != '\0') {
                       uVar3 = 0xd0;
                       goto LAB_18060bbae;

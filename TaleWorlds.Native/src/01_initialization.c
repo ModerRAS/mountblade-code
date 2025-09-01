@@ -29378,7 +29378,20 @@ void InitializeSystemMemoryResource(long long *SystemResourcePointer)
 
 
 
-void* FUN_1800567c0(void* SystemResourcePointer,ulong long param_2,void* param_3,void* param_4)
+/**
+ * @brief 系统资源释放处理器
+ * 
+ * 该函数负责处理系统资源的释放操作，根据参数决定是否释放资源。
+ * 它会调用系统资源初始化处理器，并根据参数标志决定是否释放内存。
+ * 
+ * @param SystemResourcePointer 系统资源指针
+ * @param param_2 参数标志，用于控制释放行为
+ * @param param_3 释放参数
+ * @param param_4 释放参数
+ * @return 返回系统资源指针
+ * @note 该函数用于管理系统资源的生命周期
+ */
+void* ReleaseSystemResourceHandler(void* SystemResourcePointer,ulong long param_2,void* param_3,void* param_4)
 
 {
   void* unsignedSystemValue1;
@@ -29736,7 +29749,17 @@ void SystemResourceCleanupTrigger(void)
 
 
 
-void* * FUN_180056e60(void* *SystemResourcePointer)
+/**
+ * @brief 系统资源指针初始化器
+ * 
+ * 该函数负责初始化系统资源指针，将指针数组的前三个元素设置为0，
+ * 并将第四个元素设置为10。这用于资源指针的标准化初始化。
+ * 
+ * @param SystemResourcePointer 系统资源指针数组
+ * @return 返回初始化后的系统资源指针数组
+ * @note 这是系统资源管理的基础初始化函数
+ */
+void* * InitializeSystemResourcePointer(void* *SystemResourcePointer)
 
 {
   *SystemResourcePointer = 0;
@@ -29748,7 +29771,17 @@ void* * FUN_180056e60(void* *SystemResourcePointer)
 
 
 
-void* * FUN_180056e90(void* *SystemResourcePointer)
+/**
+ * @brief 系统资源指针扩展初始化器
+ * 
+ * 该函数负责对系统资源指针进行扩展初始化，设置多个字段为0，
+ * 并进行内存对齐操作。这用于更复杂的资源指针初始化场景。
+ * 
+ * @param SystemResourcePointer 系统资源指针数组
+ * @return 返回初始化后的系统资源指针数组
+ * @note 这是系统资源管理的高级初始化函数，包含内存对齐处理
+ */
+void* * InitializeSystemResourcePointerExtended(void* *SystemResourcePointer)
 
 {
   void* *pointerToUnsigned1;
