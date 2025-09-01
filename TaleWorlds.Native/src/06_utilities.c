@@ -31117,7 +31117,19 @@ void ClearShaderProgramState(uint8_t objectContextParam,int64_t validationContex
 
 
 
-void Unwind_1809028e0(uint8_t objectContextParam,int64_t validationContextParam)
+/**
+ * @brief 异常处理器初始化
+ * 
+ * 该函数负责初始化异常处理系统
+ * 设置异常列表和处理机制
+ * 
+ * @param objectContextParam 对象上下文参数
+ * @param validationContextParam 验证上下文参数
+ * @return 无返回值
+ * @note 此函数用于异常处理器初始化
+ * @warning 初始化失败可能导致异常处理不可用
+ */
+void UnwindExceptionHandler001(uint8_t objectContextParam,int64_t validationContextParam)
 
 {
   int64_t loopCounter;
