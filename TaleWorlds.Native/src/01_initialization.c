@@ -18698,7 +18698,6 @@ void ExecuteSystemCallback(long long *callbackParameter)
 
 
 
-// 函数: void FUN_180045b20(long long param_1,long long param_2)
 /**
  * @brief 处理系统字符串复制
  * 
@@ -18739,7 +18738,6 @@ void ProcessSystemStringCopy(long long targetBuffer,long long sourceString)
 
 
 
-// 函数: void FUN_180045ba0(long long param_1,void* param_2,int param_3)
 /**
  * @brief 处理系统内存复制
  * 
@@ -18885,7 +18883,6 @@ void _guard_check_icall(void)
 
 
 
-// 函数: void FUN_180045ea0(void* *param_1,ulong long param_2,void* param_3,void* param_4)
 /**
  * @brief 系统内存分配器引用管理器
  * 
