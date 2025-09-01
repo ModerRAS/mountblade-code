@@ -962,10 +962,10 @@ void* SystemLoggingConfigTable;
 void* SystemNetworkConfigTable;
 void* SystemSecurityConfigTableTertiary;
 void* SystemSecurityConfigTable;
-void* SystemEventConfigTable4;
-void* SystemLoggingConfigTable4;
-void* SystemAuditConfigTable2;
-void* SystemDiagnosticsConfigTable2;
+void* SystemEventConfigTableQuaternary;
+void* SystemLoggingConfigTableQuaternary;
+void* SystemAuditConfigTableSecondary;
+void* SystemDiagnosticsConfigTableSecondary;
 
  void InitializeLocalizationSystem(void)
 /**
@@ -1104,10 +1104,10 @@ void* SystemSecurityConfigTableQuinary;
  */
 void SetupMemoryPool(void);
 void* SystemMemoryPool;
-void* SystemNetworkConfigTable4;
-void* SystemEventConfigTable8;
-void* SystemLoggingConfigTable7;
-void* SystemAuditConfigTable4;
+void* SystemNetworkConfigTableQuaternary;
+void* SystemEventConfigTableOctonary;
+void* SystemLoggingConfigTableSeptenary;
+void* SystemAuditConfigTableQuaternary;
 
  void InitializeGarbageCollector(void);
 /**
