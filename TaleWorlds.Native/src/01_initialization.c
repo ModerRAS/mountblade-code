@@ -32323,12 +32323,12 @@ void SystemResourceArrayManager(long long *SystemResourcePointer,long long Confi
     resourceCapacity = SystemResourcePointer[1] - *SystemResourcePointer >> 5;
     if (resourceCapacity < requiredCapacity) {
       localSystemHandle = resourceCapacity * 0x20 + ConfigurationDataPointer;
-      FUN_180059250(ConfigurationDataPointer,localSystemHandle);
-      localSystemHandle = FUN_180059300(localSystemHandle,AdditionalParameter,SystemResourcePointer[1]);
+      SetupSystemDataHandler(ConfigurationDataPointer,localSystemHandle);
+      localSystemHandle = AllocateSystemMemoryBlock(localSystemHandle,AdditionalParameter,SystemResourcePointer[1]);
       SystemResourcePointer[1] = localSystemHandle;
     }
     else {
-      resourcePointer3 = (void* *)FUN_180059250(ConfigurationDataPointer,AdditionalParameter);
+      resourcePointer3 = (void* *)SetupSystemDataHandler(ConfigurationDataPointer,AdditionalParameter);
       resourcePointer1 = (void* *)SystemResourcePointer[1];
       for (resourcePointer4 = resourcePointer3; resourcePointer4 != resourcePointer1; resourcePointer4 = resourcePointer4 + 4) {
         (**(code **)*resourcePointer4)(resourcePointer4,0);
@@ -32500,12 +32500,12 @@ void SystemResourceProcessor(long long SystemResourcePointer,void* Configuration
   
   resourceCapacity = *(long long *)(SystemResourcePointer + 8) - AdditionalParameter >> 5;
   if (resourceCapacity < requiredSize) {
-    FUN_180059250();
-    resourceHandle = FUN_180059300(resourceCapacity * 0x20 + resourceOffset);
+    SetupSystemDataHandler();
+    resourceHandle = AllocateSystemMemoryBlock(resourceCapacity * 0x20 + resourceOffset);
     *(void* *)(resourceArrayPointer + 8) = resourceHandle;
   }
   else {
-    pointerToUnsigned2 = (void* *)FUN_180059250();
+    pointerToUnsigned2 = (void* *)SetupSystemDataHandler();
     resourcePointer1 = *(void* **)(resourceArrayPointer + 8);
     for (resourcePointer4 = pointerToUnsigned2; resourcePointer4 != resourcePointer1; resourcePointer4 = resourcePointer4 + 4) {
       (**(code **)*resourcePointer4)(resourcePointer4,0);
@@ -32851,7 +32851,7 @@ void CleanupSystemResourceMemoryRegion(long long *SystemResourcePointer)
   
   localMemoryPointer = SystemResourcePointer[1];
   for (localSystemHandle = *SystemResourcePointer; localSystemHandle != localMemoryPointer; localSystemHandle = localSystemHandle + 0x548) {
-    FUN_1800594b0(localSystemHandle);
+    FinalizeSystemMemoryAllocation(localSystemHandle);
   }
   if (*SystemResourcePointer == 0) {
     return;
@@ -33631,7 +33631,7 @@ void FreeSystemMemoryPool(long long *SystemResourcePointer)
   
   localMemoryPointer = SystemResourcePointer[1];
   for (localSystemHandle = *SystemResourcePointer; localSystemHandle != localMemoryPointer; localSystemHandle = localSystemHandle + 0x548) {
-    FUN_1800594b0(localSystemHandle);
+    FinalizeSystemMemoryAllocation(localSystemHandle);
   }
   if (*SystemResourcePointer == 0) {
     return;
@@ -33665,7 +33665,7 @@ void ConfigureSystemResource(long long SystemResourcePointer,void* Configuration
  * @param AdditionalParameter 额外参数，用于控制复制行为
  * @return 返回处理后的额外参数指针
  * 
- * 原始函数名为FUN_180059250，现已重命名为CopySystemResourceData
+ * 原始函数名为SetupSystemDataHandler，现已重命名为CopySystemResourceData
  */
 long long CopySystemResourceData(long long SystemResourcePointer,long long ConfigurationDataPointer,long long AdditionalParameter)
 
@@ -33881,7 +33881,7 @@ void InitializeSystemConfigurationDataRecursive(void* SystemResourcePointer,void
  * 
  * @param SystemResourcePointer 系统资源指针数组
  * 
- * 原始函数名为FUN_1800594b0，现已重命名为ConfigureSystemResourceMemoryRegions
+ * 原始函数名为FinalizeSystemMemoryAllocation，现已重命名为ConfigureSystemResourceMemoryRegions
  */
 void ConfigureSystemResourceMemoryRegions(void* *SystemResourcePointer)
 
@@ -34163,8 +34163,21 @@ LAB_180059885:
 
 
 
-void* *
-FUN_180059900(void* *SystemResourcePointer,ulong long ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
+/**
+ * @brief 系统内存分配器引用设置函数
+ * 
+ * 该函数负责设置系统内存分配器的引用，并根据配置数据指针
+ * 决定是否释放内存资源。这是内存管理系统的核心函数之一。
+ * 
+ * @param SystemResourcePointer 系统资源指针，用于设置内存分配器引用
+ * @param ConfigurationDataPointer 配置数据指针，包含配置标志位
+ * @param AdditionalParameter 额外参数，用于内存释放操作
+ * @param ConfigurationFlag 配置标志，用于控制释放行为
+ * @return 返回更新后的系统资源指针
+ * 
+ * 原始函数名为FUN_180059900，现已重命名为InitializeSystemMemoryAllocatorReference
+ */
+void* *InitializeSystemMemoryAllocatorReference(void* *SystemResourcePointer,ulong long ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
 {
   *SystemResourcePointer = &SystemMemoryAllocatorReference;
@@ -34178,7 +34191,18 @@ FUN_180059900(void* *SystemResourcePointer,ulong long ConfigurationDataPointer,v
 
 
 // 函数: void FUN_180059940(long long SystemResourcePointer,long long ConfigurationDataPointer)
-void FUN_180059940(long long SystemResourcePointer,long long ConfigurationDataPointer)
+/**
+ * @brief 系统字符串处理和缓冲区初始化函数
+ * 
+ * 该函数负责处理系统字符串操作，包括字符串长度计算、
+ * 内存缓冲区初始化和字符串复制操作。
+ * 
+ * @param SystemResourcePointer 系统资源指针
+ * @param ConfigurationDataPointer 配置数据指针
+ * 
+ * 原始函数名为FUN_180059940，现已重命名为ProcessSystemStringAndInitializeBuffer
+ */
+void ProcessSystemStringAndInitializeBuffer(long long SystemResourcePointer,long long ConfigurationDataPointer)
 
 {
   long long localMemoryPointer;
@@ -34268,7 +34292,19 @@ void ClearSystemResourceFlags(uint8_t *SystemResourcePointer)
 
 
 // 函数: void FUN_180059a20(long long SystemResourcePointer,long long ConfigurationDataPointer,long long AdditionalParameter)
-void FUN_180059a20(long long SystemResourcePointer,long long ConfigurationDataPointer,long long AdditionalParameter)
+/**
+ * @brief 系统资源处理和加密操作函数
+ * 
+ * 该函数负责处理系统资源，执行加密操作和数据处理。
+ * 涉及内存分配、加密模板处理和资源管理。
+ * 
+ * @param SystemResourcePointer 系统资源指针
+ * @param ConfigurationDataPointer 配置数据指针
+ * @param AdditionalParameter 额外参数
+ * 
+ * 原始函数名为FUN_180059a20，现已重命名为ProcessSystemResourceWithEncryption
+ */
+void ProcessSystemResourceWithEncryption(long long SystemResourcePointer,long long ConfigurationDataPointer,long long AdditionalParameter)
 
 {
   long long localMemoryPointer;
@@ -34639,7 +34675,15 @@ void ReleaseSystemResourceReference(void)
 
 
 // 函数: void FUN_180059f4f(void)
-void FUN_180059f4f(void)
+/**
+ * @brief 系统清理和缓冲区处理函数
+ * 
+ * 该函数负责系统清理操作，处理缓冲区和内存管理。
+ * 涉及系统资源的释放和内存区域的清理。
+ * 
+ * 原始函数名为FUN_180059f4f，现已重命名为CleanupSystemAndProcessBuffers
+ */
+void CleanupSystemAndProcessBuffers(void)
 
 {
   int *pointerToInteger1;

@@ -3262,7 +3262,7 @@ void ProcessGameObjects(int64_t GameContext, int64_t SystemContext)
   int64_t CurrentObjectDataPointer;
   int TotalProcessedObjects;
   uint8_t ObjectMetadataBuffer[32];
-  int64_t SystemContextHandles[2];
+  int64_t SystemHandleArray[2];
   uint8_t *GameObjectDataList;
   int ListIterationIndex;
   uint32_t MaximumAllowedItems;
@@ -3270,13 +3270,13 @@ void ProcessGameObjects(int64_t GameContext, int64_t SystemContext)
   uint64_t SecurityAccessKey;
   
   SecurityAccessKey = SecurityContextKey ^ (uint64_t)ObjectMetadataBuffer;
-  OperationProcessingStatus = GetContextHandles(*(uint32_t *)(GameObjectContext + 0x10), SystemContextHandles);
-  if ((OperationProcessingStatus == 0) && (*(int64_t *)(SystemContextHandles[0] + 8) != 0)) {
+  OperationProcessingStatus = RetrieveContextHandles(*(uint32_t *)(GameObjectContext + 0x10), SystemHandleArray);
+  if ((OperationProcessingStatus == 0) && (*(int64_t *)(SystemHandleArray[0] + 8) != 0)) {
     GameObjectDataList = ObjectProcessingWorkspace;
     TotalProcessedObjects = 0;
     ListIterationIndex = 0;
     MaximumAllowedItems = 0xffffffc0;
-    OperationProcessingStatus = RetrieveObjectList(*(uint8_t *)(SystemExecutionContext + 0x90), *(int64_t *)(SystemContextHandles[0] + 8),
+    OperationProcessingStatus = FetchObjectList(*(uint8_t *)(SystemExecutionContext + 0x90), *(int64_t *)(SystemHandleArray[0] + 8),
                           &GameObjectDataList);
     if (OperationProcessingStatus == 0) {
       if (0 < ListIterationIndex) {
@@ -3292,14 +3292,14 @@ void ProcessGameObjects(int64_t GameContext, int64_t SystemContext)
           CurrentObjectDataPointer = CurrentObjectDataPointer + 8;
         } while (TotalProcessedObjects < ListIterationIndex);
       }
-      ReleaseObjectListMemory(&GameObjectDataList);
+      FreeObjectListMemory(&GameObjectDataList);
     }
     else {
-      ReleaseObjectListMemory(&GameObjectDataList);
+      FreeObjectListMemory(&GameObjectDataList);
     }
   }
                     // WARNING: Subroutine does not return
-  ExecuteSecurityValidation(SecurityAccessKey ^ (uint64_t)ObjectMetadataBuffer);
+  PerformSecurityValidation(SecurityAccessKey ^ (uint64_t)ObjectMetadataBuffer);
 }
 
 
@@ -3330,7 +3330,7 @@ void ValidateSystemObjectCollection(void)
     ProcessedObjectCount = 0;
     RetrievedObjectCount = 0;
     MaximumCapacity = 0xffffffc0;
-    ValidationStatusCode = RetrieveSystemObjectCollection(*(uint8_t *)(SystemContextPointer + 0x90), *(int64_t *)(SystemObjectContext + 8),
+    ValidationStatusCode = FetchSystemObjectCollection(*(uint8_t *)(SystemContextPointer + 0x90), *(int64_t *)(SystemObjectContext + 8),
                           &RetrievedObjectDataBuffer);
     if (ValidationStatusCode == 0) {
       RetrievedObjectCount = *(int *)(RetrievedObjectDataBuffer + 4);
@@ -3354,7 +3354,7 @@ void ValidateSystemObjectCollection(void)
     }
   }
                     // WARNING: Subroutine does not return
-  ExecuteSecurityValidation(SecurityValidationHash ^ (uint64_t)&SystemSecurityValidationBuffer);
+  PerformSecurityValidation(SecurityValidationHash ^ (uint64_t)&SystemSecurityValidationBuffer);
 }
 
 
@@ -4116,7 +4116,7 @@ uint8_t ValidateAndProcessObjectStatus(int64_t objectContext)
 
 {
   uint8_t resourceHash;
-  int64_t ValidationStackBuffer8 [2];
+  int64_t ValidationContextBuffer [2];
   int64_t ValidationStackBuffer18 [2];
   
   resourceHash = ValidateObjectContext(*(uint32_t *)(ObjectContextParameter + 0x10),ValidationStackBuffer18);
@@ -4127,14 +4127,14 @@ uint8_t ValidateAndProcessObjectStatus(int64_t objectContext)
     else {
       ValidationStackBuffer18[0] = ValidationStackBuffer18[0] + -8;
     }
-    ValidationStackBuffer8[0] = 0;
-    resourceHash = ValidateResourceContext(ValidationStackBuffer18[0],ObjectContextParameter + 0x20,ValidationStackBuffer8);
+    ValidationContextBuffer[0] = 0;
+    resourceHash = ValidateResourceContext(ValidationStackBuffer18[0],ObjectContextParameter + 0x20,ValidationContextBuffer);
     if ((int)resourceHash == 0) {
-      if (ValidationStackBuffer8[0] != 0) {
-        if (*(int64_t *)(ValidationStackBuffer8[0] + 8) == 0) {
+      if (ValidationContextBuffer[0] != 0) {
+        if (*(int64_t *)(ValidationContextBuffer[0] + 8) == 0) {
           return 0x1c;
         }
-        resourceHash = ProcessResourceOperation(*(int64_t *)(ValidationStackBuffer8[0] + 8),*(uint32_t *)(ObjectContextParameter + 0x18),
+        resourceHash = ProcessResourceOperation(*(int64_t *)(ValidationContextBuffer[0] + 8),*(uint32_t *)(ObjectContextParameter + 0x18),
                               *(uint8_t *)(ObjectContextParameter + 0x1c));
         if ((int)resourceHash != 0) {
           return resourceHash;
@@ -7240,7 +7240,7 @@ uint8_t ValidateMatrixTransformationData(int64_t matrixDataPointer,int64_t conte
   firstRowInfinityCheck = 0;
   uint32_t securityValidationContext = *(uint *)(ObjectContextParameter + 0x40);
   float matrixElementWComponent = *(float *)(ObjectContextParameter + 0x3c);
-  ValidationStackBuffer8[0] = CONCAT44(ValidationStackBuffer8[0]._4_4_,matrixElementXCoordinate);
+  ValidationContextBuffer[0] = CONCAT44(ValidationContextBuffer[0]._4_4_,matrixElementXCoordinate);
   secondRowInfinityCheck = firstRowInfinityCheck;
   if (((uint)matrixElementXCoordinate & 0x7f800000) == 0x7f800000) {
     secondRowInfinityCheck = 0x1d;
@@ -7260,12 +7260,12 @@ uint8_t ValidateMatrixTransformationData(int64_t matrixDataPointer,int64_t conte
     if (((matrixElementWComponent == 0.0) && (*(float *)(ObjectContextParameter + 0x40) == 0.0)) && (matrixElementXCoordinate == 0.0)) {
       return 0x1f;
     }
-    uint32_t validationContextResult = ValidateObjectContext(*(uint32_t *)(ObjectContextParameter + 0x10),ValidationStackBuffer8);
+    uint32_t validationContextResult = ValidateObjectContext(*(uint32_t *)(ObjectContextParameter + 0x10),ValidationContextBuffer);
     if ((int)validationContextResult != 0) {
       return validationContextResult;
     }
-    if (ValidationStackBuffer8[0] != 0) {
-      LocalContextData0 = ValidationStackBuffer8[0] + -8;
+    if (ValidationContextBuffer[0] != 0) {
+      LocalContextData0 = ValidationContextBuffer[0] + -8;
     }
     uint8_t matrixTypeValue = *(uint8_t *)(ObjectContextParameter + 0x20);
     *(uint8_t *)(LocalContextData0 + 0x38) = *(uint8_t *)(ObjectContextParameter + 0x18);
@@ -7286,9 +7286,9 @@ uint8_t ValidateMatrixTransformationData(int64_t matrixDataPointer,int64_t conte
     *(uint32_t *)(LocalContextData0 + 100) = matrixFlagsValue6;
     LocalContextData0 = *(int64_t *)(ValidationContextParameter + 0x98);
     if ((*(int *)(LocalContextData0 + 0x180) != 0) || (*(int *)(LocalContextData0 + 0x184) != 0)) {
-      ValidationStackBuffer8[0] = 0;
-      InitializeSecurityContext(ValidationStackBuffer8);
-      if (ValidationStackBuffer8[0] == *(int64_t *)((int64_t)*(int *)(LocalContextData0 + 0x17c) * 8 + 0x180c4f450)) {
+      ValidationContextBuffer[0] = 0;
+      InitializeSecurityContext(ValidationContextBuffer);
+      if (ValidationContextBuffer[0] == *(int64_t *)((int64_t)*(int *)(LocalContextData0 + 0x17c) * 8 + 0x180c4f450)) {
         uint32_t resourceValidationResult = ProcessResourceValidation(LocalContextData0,ObjectContextParameter);
         if ((int)resourceValidationResult == 0) {
           return 0;
