@@ -2037,14 +2037,15 @@ uint8_t SecureRandomGeneratorState;
 void GenerateSecureRandom(void);
 uint8_t ThreadLocalStorageIndex;
 void* ThreadLocalStorageDataPointer;
-uint8_t SystemMemoryConfigDataTemplateVersion;
-uint8_t SystemMemoryConfigDataTemplateType;
-uint8_t SystemMemoryConfigDataTemplateWorking;
-uint8_t SystemMemoryConfigDataTemplateUsage;
-uint8_t SystemMemoryConfigDataTemplateExtended;
-uint8_t SystemMemoryConfigDataTemplateYield;
-uint8_t SystemMemoryConfigDataTemplateZone;
-uint8_t SystemMemoryConfigDataTemplateAlternate;
+// 系统内存配置数据模板基础变量
+uint8_t SystemMemoryConfigDataTemplateVersion;        // 版本信息
+uint8_t SystemMemoryConfigDataTemplateType;           // 类型标识
+uint8_t SystemMemoryConfigDataTemplateWorking;        // 工作状态
+uint8_t SystemMemoryConfigDataTemplateUsage;           // 使用情况
+uint8_t SystemMemoryConfigDataTemplateExtended;       // 扩展配置
+uint8_t SystemMemoryConfigDataTemplateYield;          // 性能调优
+uint8_t SystemMemoryConfigDataTemplateZone;           // 内存区域
+uint8_t SystemMemoryConfigDataTemplateAlternate;      // 备用配置
 
  void VerifyDataIntegrity(void);
 uint8_t SystemEnvironmentDataTemplatePrimary;
@@ -2077,55 +2078,60 @@ uint8_t ResourceBufferConfigSecondary;
 uint8_t ResourceBufferConfigTertiary;
 uint8_t SystemConfigDataEighth;
 uint8_t SystemConfigDataNinth;
-uint8_t SystemMemoryConfigDataTemplateTwelfth;
-uint8_t SystemMemoryConfigDataTemplateThirteenth;
-uint8_t SystemMemoryConfigDataTemplateFourteenth;
-uint8_t SecurityEncryptionKey;
-uint8_t SystemMemoryConfigDataTemplateFourteenthAlt;
-uint8_t SystemMemoryConfigDataTemplateFifteenth;
-uint8_t SystemMemoryConfigDataTemplateSecureSixteenth;
-uint8_t SystemMemoryConfigDataTemplateSecureSeventeenth;
-uint8_t SystemMemoryConfigDataTemplateEighteenth;
-uint8_t SystemMemoryConfigDataTemplateNormalNineteenth;
-uint8_t SystemMemoryConfigDataTemplateTwentieth;
-uint8_t SystemMemoryConfigDataTemplateTwentyFirstAlt;
-uint8_t SystemMemoryConfigDataTemplateTwentySecond;
-uint8_t SystemMemoryConfigDataTemplateTwentyThird;
-uint8_t SystemMemoryConfigDataTemplateTwentyThirdAlt;
-uint8_t SystemMemoryConfigDataTemplateTwentyThirdExtra;
-uint8_t GlobalSystemMemoryPoolSize;
-uint8_t SystemResourceAllocator;
-char SystemMemoryConfigFlag;
-uint8_t SystemMemoryConfigData;
+// 系统内存配置数据模板中级变量
+uint8_t SystemMemoryConfigDataTemplateTwelfth;         // 第12配置项
+uint8_t SystemMemoryConfigDataTemplateThirteenth;       // 第13配置项
+uint8_t SystemMemoryConfigDataTemplateFourteenth;       // 第14配置项
+uint8_t SecurityEncryptionKey;                          // 安全加密密钥
+uint8_t SystemMemoryConfigDataTemplateFourteenthAlt;    // 第14配置项备用
+uint8_t SystemMemoryConfigDataTemplateFifteenth;        // 第15配置项
+uint8_t SystemMemoryConfigDataTemplateSecureSixteenth;   // 安全第16配置项
+uint8_t SystemMemoryConfigDataTemplateSecureSeventeenth; // 安全第17配置项
+uint8_t SystemMemoryConfigDataTemplateEighteenth;        // 第18配置项
+uint8_t SystemMemoryConfigDataTemplateNormalNineteenth; // 普通第19配置项
+// 系统内存配置数据模板高级变量
+uint8_t SystemMemoryConfigDataTemplateTwentieth;        // 第20配置项
+uint8_t SystemMemoryConfigDataTemplateTwentyFirstAlt;   // 第21配置项备用
+uint8_t SystemMemoryConfigDataTemplateTwentySecond;     // 第22配置项
+uint8_t SystemMemoryConfigDataTemplateTwentyThird;       // 第23配置项
+uint8_t SystemMemoryConfigDataTemplateTwentyThirdAlt;    // 第23配置项备用
+uint8_t SystemMemoryConfigDataTemplateTwentyThirdExtra; // 第23配置项扩展
+uint8_t GlobalSystemMemoryPoolSize;                     // 全局内存池大小
+uint8_t SystemResourceAllocator;                        // 系统资源分配器
+char SystemMemoryConfigFlag;                             // 内存配置标志
+uint8_t SystemMemoryConfigData;                          // 内存配置数据
 uint8_t SystemResourceCacheSize;
 uint8_t SystemMemoryPoolBuffer;
 uint8_t SystemMemoryAllocator;
-uint8_t SystemMemoryConfigDataTemplateTwentyFourth;
-uint8_t SystemMemoryConfigDataTemplateTwentyFifth;
-uint8_t SystemMemoryConfigDataTemplateTwentySixth;
-uint8_t SystemMemoryConfigDataTemplateTwentySeventh;
-uint8_t SystemMemoryConfigDataTemplateTwentyEighth;
-uint8_t SystemMemoryConfigDataTemplateTwentyNinth;
-uint8_t SystemConfigDataTemplate;
-uint8_t SystemConfigDataTenth;
-char SystemConfigStatusFlag;
-uint8_t SystemConfigDataEleventh;
-uint8_t SystemResourceTracker;
-void* SystemExceptionListPointer;
-uint8_t SystemMemoryConfigDataTemplateThirtieth;
-uint8_t SystemMemoryConfigDataTemplateThirtyFirst;
-uint8_t SystemPerformanceMonitor;
-uint8_t SystemThreadManager;
-uint8_t SystemSecurityManager;
-uint8_t SystemNetworkManager;
-uint8_t ResourceReferenceCounter;
-uint8_t SystemConfigDataThirteenth;
-uint8_t SystemConfigDataFourteenth;
-uint8_t SystemConfigDataFifteenth;
-uint8_t SystemConfigDataSixteenth;
-uint8_t SystemMemoryConfigDataTemplateAlternateTwo;
-uint8_t SystemResourceManager;
-uint8_t SystemEventHandlerSlot;
+// 系统内存配置数据模板扩展变量
+uint8_t SystemMemoryConfigDataTemplateTwentyFourth;     // 第24配置项
+uint8_t SystemMemoryConfigDataTemplateTwentyFifth;      // 第25配置项
+uint8_t SystemMemoryConfigDataTemplateTwentySixth;      // 第26配置项
+uint8_t SystemMemoryConfigDataTemplateTwentySeventh;    // 第27配置项
+uint8_t SystemMemoryConfigDataTemplateTwentyEighth;     // 第28配置项
+uint8_t SystemMemoryConfigDataTemplateTwentyNinth;      // 第29配置项
+uint8_t SystemConfigDataTemplate;                        // 系统配置模板
+uint8_t SystemConfigDataTenth;                          // 第10配置项
+char SystemConfigStatusFlag;                             // 配置状态标志
+uint8_t SystemConfigDataEleventh;                        // 第11配置项
+// 系统资源和管理器变量
+uint8_t SystemResourceTracker;                          // 系统资源跟踪器
+void* SystemExceptionListPointer;                        // 系统异常列表指针
+uint8_t SystemMemoryConfigDataTemplateThirtieth;       // 第30配置项
+uint8_t SystemMemoryConfigDataTemplateThirtyFirst;      // 第31配置项
+uint8_t SystemPerformanceMonitor;                       // 系统性能监视器
+uint8_t SystemThreadManager;                            // 系统线程管理器
+uint8_t SystemSecurityManager;                           // 系统安全管理器
+uint8_t SystemNetworkManager;                            // 系统网络管理器
+uint8_t ResourceReferenceCounter;                        // 资源引用计数器
+uint8_t SystemConfigDataThirteenth;                      // 第13配置项
+// 系统配置和资源管理变量
+uint8_t SystemConfigDataFourteenth;                      // 第14配置项
+uint8_t SystemConfigDataFifteenth;                       // 第15配置项
+uint8_t SystemConfigDataSixteenth;                       // 第16配置项
+uint8_t SystemMemoryConfigDataTemplateAlternateTwo;     // 备用配置2
+uint8_t SystemResourceManager;                           // 系统资源管理器
+uint8_t SystemEventHandlerSlot;                           // 系统事件处理槽位
 
  /**
  * @brief 初始化系统日志
@@ -11321,21 +11327,21 @@ uint64_t FindOrInsertInResourcePool(uint8_t resourcePool, int SearchKey)
     newValue = *valuePointer;
     currentEntry = (int)poolHeader[3];
     entryCount = currentEntry + 1;
-    capacity = (int)*(uint *)((int64_t)poolHeader + 0x1c) >> 0x1f;
-    newCapacity = (*(uint *)((int64_t)poolHeader + 0x1c) ^ capacity) - capacity;
-    if (newCapacity < entryCount) {
-      expandedCapacity = (int)((float)newCapacity * 1.5);
-      newCapacity = entryCount;
-      if (entryCount <= expandedCapacity) {
-        newCapacity = expandedCapacity;
+    PoolCapacity = (int)*(uint *)((int64_t)poolHeader + 0x1c) >> 0x1f;
+    NewPoolCapacity = (*(uint *)((int64_t)poolHeader + 0x1c) ^ PoolCapacity) - PoolCapacity;
+    if (NewPoolCapacity < entryCount) {
+      ExpandedPoolCapacity = (int)((float)NewPoolCapacity * 1.5);
+      NewPoolCapacity = entryCount;
+      if (entryCount <= ExpandedPoolCapacity) {
+        NewPoolCapacity = ExpandedPoolCapacity;
       }
-      if (newCapacity < 4) {
-        expandedCapacity = 4;
+      if (NewPoolCapacity < 4) {
+        ExpandedPoolCapacity = 4;
       }
-      else if (expandedCapacity < entryCount) {
-        expandedCapacity = entryCount;
+      else if (ExpandedPoolCapacity < entryCount) {
+        ExpandedPoolCapacity = entryCount;
       }
-      operationResult = ResourcePoolOperation(poolHeader + 2, expandedCapacity);
+      operationResult = ResourcePoolOperation(poolHeader + 2, ExpandedPoolCapacity);
       if ((int)operationResult != 0) {
         return operationResult;
       }
