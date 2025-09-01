@@ -668,10 +668,10 @@ int InitializeConfigurationMutex(uint64_t threadId,uint64_t syncPtr,uint64_t mut
   SystemConfigBufferA = 0;
   g_configDataBufferSizeE = 0xc;
   strcpy_s(&SystemConfigBufferA,0x40,&SystemConfigDataTemplateCB70);
-  _DAT_180bf6908 = &SystemMemoryPool;
-  _DAT_180bf6910 = &SystemConfigBufferB;
+  SystemConfigDataPointerPrimary = &SystemMemoryPool;
+  SystemConfigDataPointerSecondary = &SystemConfigBufferB;
   SystemConfigBufferB = 0;
-  _DAT_180bf6918 = 0xc;
+  SystemConfigDataSizePrimary = 0xc;
   strcpy_s(&SystemConfigBufferB,0x40,&SystemConfigDataTemplateCBE0);
   _DAT_180bf6960 = &SystemMemoryPool;
   _DAT_180bf6968 = &SystemConfigBufferC;
