@@ -13241,7 +13241,7 @@ int SystemResourceProcessorB(int64_t ObjectContext,int64_t ValidationContext)
             if (integerValue6 == 0) {
               if (afStack_198[0] != 1.0) {
                 FloatStackValue = afStack_198[0];
-                puStack_1c0 = &SystemResourceTemplateG;
+                puStack_1c0 = &SystemResourceTemplateGraphics;
                 uStack_1b0 = uStack_1c8;
                 uStack_1b8 = 0;
                 integerValue6 = GetAndValidateResourceData(ObjectContextParameter,&puStack_1c0);
@@ -13253,7 +13253,7 @@ int SystemResourceProcessorB(int64_t ObjectContext,int64_t ValidationContext)
                 if (*pfloatValue15 != 0.0) {
                   uStack_1b0 = uStack_1c8;
                   uStack_1b8 = 0;
-                  puStack_1c0 = &SystemResourceTemplateH;
+                  puStack_1c0 = &SystemResourceTemplateHardware;
                   FloatStackValue = floatValue13;
                   fStack_1a4 = *pfloatValue15;
                   integerValue6 = GetAndValidateResourceData(ObjectContextParameter,&puStack_1c0);
@@ -13269,7 +13269,7 @@ int SystemResourceProcessorB(int64_t ObjectContext,int64_t ValidationContext)
                 if (floatValue1 != *pfloatValue15) {
                   uStack_1b0 = uStack_1c8;
                   uStack_1b8 = 0;
-                  puStack_1c0 = &SystemResourceTemplateI;
+                  puStack_1c0 = &SystemResourceTemplateInput;
                   FloatStackValue = floatValue13;
                   fStack_1a4 = floatValue1;
                   integerValue6 = GetAndValidateResourceData(ObjectContextParameter,&puStack_1c0);
@@ -13521,7 +13521,7 @@ void SystemInitializerA(void)
           if (ResourceIndex3 == 0) {
             if (in_stack_00000050 != 1.0) {
               fStack0000000000000040 = in_stack_00000050;
-              in_stack_00000028 = &SystemResourceTemplateG;
+              in_stack_00000028 = &SystemResourceTemplateGraphics;
               in_stack_00000038 = uStackX_20;
               in_stack_00000030 = unaff_R13D;
               ResourceIndex3 = GetAndValidateResourceData(in_stack_00000050,&ObjectStackBuffer28);
@@ -13533,7 +13533,7 @@ void SystemInitializerA(void)
               floatValue1 = *pfVar21;
               if (floatValue1 != 0.0) {
                 in_stack_00000038 = uStackX_20;
-                in_stack_00000028 = &SystemResourceTemplateH;
+                in_stack_00000028 = &SystemResourceTemplateHardware;
                 in_stack_00000030 = unaff_R13D;
                 fStack0000000000000040 = floatValue19;
                 fStack0000000000000044 = floatValue1;
@@ -13549,7 +13549,7 @@ void SystemInitializerA(void)
               floatValue1 = *(float *)(RegisterR15 + -0x180985054 + (int64_t)pfVar21);
               if (floatValue1 != *pfVar21) {
                 in_stack_00000038 = uStackX_20;
-                in_stack_00000028 = &SystemResourceTemplateI;
+                in_stack_00000028 = &SystemResourceTemplateInput;
                 in_stack_00000030 = unaff_R13D;
                 fStack0000000000000040 = floatValue19;
                 fStack0000000000000044 = floatValue1;
@@ -13782,7 +13782,7 @@ void DataProcessingErrorHandler(void)
       if (ResourceIndex3 == 0) {
         if (in_stack_00000050 != 1.0) {
           fStack0000000000000040 = in_stack_00000050;
-          in_stack_00000028 = &SystemResourceTemplateG;
+          in_stack_00000028 = &SystemResourceTemplateGraphics;
           in_stack_00000038 = uStackX_20;
           in_stack_00000030 = unaff_R13D;
           ResourceIndex3 = GetAndValidateResourceData(in_stack_00000050,&ObjectStackBuffer28);
@@ -13794,7 +13794,7 @@ void DataProcessingErrorHandler(void)
           floatValue1 = *pfVar21;
           if (floatValue1 != 0.0) {
             in_stack_00000038 = uStackX_20;
-            in_stack_00000028 = &SystemResourceTemplateH;
+            in_stack_00000028 = &SystemResourceTemplateHardware;
             in_stack_00000030 = unaff_R13D;
             fStack0000000000000040 = floatValue19;
             fStack0000000000000044 = floatValue1;
@@ -13810,7 +13810,7 @@ void DataProcessingErrorHandler(void)
           floatValue1 = *(float *)(RegisterR15 + -0x180985054 + (int64_t)pfVar21);
           if (floatValue1 != *pfVar21) {
             in_stack_00000038 = uStackX_20;
-            in_stack_00000028 = &SystemResourceTemplateI;
+            in_stack_00000028 = &SystemResourceTemplateInput;
             in_stack_00000030 = unaff_R13D;
             fStack0000000000000040 = floatValue19;
             fStack0000000000000044 = floatValue1;
@@ -13931,7 +13931,7 @@ void FloatProcessingErrorHandler(void)
   if (OperationResult == 0) {
     if (in_stack_00000050 != 1.0) {
       fStack0000000000000040 = in_stack_00000050;
-      in_stack_00000028 = &SystemResourceTemplateG;
+      in_stack_00000028 = &SystemResourceTemplateGraphics;
       in_stack_00000038 = uStackX_20;
       in_stack_00000030 = unaff_R13D;
       OperationResult = GetAndValidateResourceData(in_stack_00000050,&ObjectStackBuffer28);
@@ -13943,7 +13943,7 @@ void FloatProcessingErrorHandler(void)
       floatValue1 = *pfloatValue5;
       if (floatValue1 != 0.0) {
         in_stack_00000038 = uStackX_20;
-        in_stack_00000028 = &SystemResourceTemplateH;
+        in_stack_00000028 = &SystemResourceTemplateHardware;
         in_stack_00000030 = unaff_R13D;
         fStack0000000000000040 = floatValue4;
         fStack0000000000000044 = floatValue1;
@@ -13959,7 +13959,7 @@ void FloatProcessingErrorHandler(void)
       floatValue1 = *(float *)(RegisterR15 + -0x180985054 + (int64_t)pfloatValue5);
       if (floatValue1 != *pfloatValue5) {
         in_stack_00000038 = uStackX_20;
-        in_stack_00000028 = &SystemResourceTemplateI;
+        in_stack_00000028 = &SystemResourceTemplateInput;
         in_stack_00000030 = unaff_R13D;
         fStack0000000000000040 = floatValue4;
         fStack0000000000000044 = floatValue1;
