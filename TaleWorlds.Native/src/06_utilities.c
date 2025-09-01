@@ -1776,8 +1776,8 @@ undefined SystemMemoryConfigDataCache;
  */
 void SetupMemoryAuditing;
 undefined SystemMemoryConfigDataTemplateO;
-undefined DAT_180bfb310;
-undefined DAT_180bfb318;
+undefined SystemDataStructureInstance;
+undefined SystemDataStructureHandle;
 undefined DAT_180bfb320;
 undefined DAT_180bfb328;
 undefined SystemMemoryConfigDataTemplateP;

@@ -15916,7 +15916,7 @@ ulonglong ValidateNetworkConnectionState(longlong connectionContext)
            (*(int *)(lVar2 + 0x60) != 0)) || (*(int *)(lVar2 + 100) != 0)) {
     uVar8 = 0;
     lStackX_8 = 0;
-    uVar6 = FUN_1808bc010(*(NetworkHandle *)(connectionContext + 0x38),(int *)(lVar2 + 0x58),
+    uVar6 = ProcessNetworkDataTransfer(*(NetworkHandle *)(connectionContext + 0x38),(int *)(lVar2 + 0x58),
                           *(NetworkHandle *)(connectionContext + 0x70),&lStackX_8);
     lVar2 = lStackX_8;
     if ((int)uVar6 != 0) {
