@@ -9410,7 +9410,7 @@ uint64_t ProcessFloatDataValidation(void)
 
 
 
- 40e8(void)
+ void EmptyOperationFunctionB(void)
 /**
  * @brief 空操作函数B
  * 
@@ -9954,8 +9954,8 @@ ProcessResourceIndexOperation(longlong resource_handle, uint8_t4 *resource_data,
 
 
 
- 4bcc(void)
-4bcc(void)
+ void ExecuteSecurityOperationFunction(void)
+void ExecuteSecurityOperationFunction(void)
 
 {
                     // WARNING: Subroutine does not return
@@ -9965,22 +9965,28 @@ ProcessResourceIndexOperation(longlong resource_handle, uint8_t4 *resource_data,
 
 
 
- 4bf5(void)
-4bf5(void)
+ /**
+ * @brief 执行安全操作终结函数
+ * 
+ * 该函数负责执行系统安全操作的终结处理
+ * 包括资源锁定检查和安全操作的最终执行
+ * 这是一个不会返回的函数
+ */
+void FinalizeSecurityOperationFunction(void)
 
 {
   int operationResult;
-  longlong in_RAX;
-  longlong *unaff_RDI;
-  longlong lStack0000000000000080;
-  ulonglong in_stack_000000b0;
+  longlong securityContext;
+  longlong *resourcePointer;
+  longlong resourceValue;
+  ulonglong stackParameter;
   
-  lStack0000000000000080 = *(longlong *)(in_RAX + 0x48);
-  if ((lStack0000000000000080 != 0) || (integerValue1 = AcquireResourceLock(), integerValue1 == 0)) {
-    *unaff_RDI = lStack0000000000000080;
+  resourceValue = *(longlong *)(securityContext + 0x48);
+  if ((resourceValue != 0) || (operationResult = AcquireResourceLock(), operationResult == 0)) {
+    *resourcePointer = resourceValue;
   }
                     // WARNING: Subroutine does not return
-  FinalizeSecurityOperation(in_stack_000000b0 ^ (ulonglong)&ObjectStackBuffer00);
+  FinalizeSecurityOperation(stackParameter ^ (ulonglong)&ObjectStackBuffer00);
 }
 
 
@@ -12880,14 +12886,20 @@ LAB_1808974ec:
 
 
 
- 74f4(void)
-74f4(void)
+ /**
+ * @brief 执行快速安全操作终结函数
+ * 
+ * 该函数是一个简化的安全操作终结函数
+ * 直接从指定位置获取参数并执行安全操作终结
+ * 这是一个不会返回的函数
+ */
+void ExecuteQuickSecurityOperationFinalization(void)
 
 {
-  longlong unaff_RBP;
+  longlong stackContext;
   
                     // WARNING: Subroutine does not return
-  FinalizeSecurityOperation(*(ulonglong *)(unaff_RBP + 0x1d0) ^ (ulonglong)&ObjectStackBuffer00);
+  FinalizeSecurityOperation(*(ulonglong *)(stackContext + 0x1d0) ^ (ulonglong)&ObjectStackBuffer00);
 }
 
 
@@ -12895,8 +12907,8 @@ LAB_1808974ec:
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- 7520(longlong *objectContextParam,longlong *validationContextParam)
-7520(longlong *objectContextParam,longlong *validationContextParam)
+ void ProcessContextDataValidation(longlong *objectContext,longlong *validationContext)
+void ProcessContextDataValidation(longlong *objectContext,longlong *validationContext)
 
 {
   longlong loopCounter;
