@@ -6304,7 +6304,7 @@ void ProcessSystemConfigurationUpdate(int configIndex, int configSize)
   undefined8 stackParameter;
   
   iVar2 = param_1 + 1;
-  if (in_EAX - param_2 < iVar2) {
+  if (currentConfigValue - configSize < newSize) {
     iVar1 = (int)((float)(in_EAX - param_2) * 1.5);
     if (iVar2 <= iVar1) {
       iVar2 = iVar1;
