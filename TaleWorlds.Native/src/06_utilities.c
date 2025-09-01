@@ -38458,7 +38458,7 @@ void Unwind_180904840(undefined8 param_1,longlong param_2)
 {
   if ((*(uint *)(resourceData + 0x20) & 1) != 0) {
     *(uint *)(resourceData + 0x20) = *(uint *)(resourceData + 0x20) & 0xfffffffe;
-    FUN_1800596a0(param_2 + 0x30);
+    FreeResourceIndex(param_2 + 0x30);
   }
   return;
 }
@@ -43721,7 +43721,7 @@ void Unwind_180905ec0(undefined8 param_1,longlong param_2)
   presourceTable = (longlong *)(*(longlong *)(param_2 + 0x50) + 0x3c8);
   lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x50) + 0x3d0);
   for (resourceIndex = *presourceTable; resourceIndex != lVar1; resourceIndex = resourceIndex + 0x1a8) {
-    FUN_180069530(resourceIndex);
+    ProcessResourceIndex(resourceIndex);
   }
   if (*presourceTable == 0) {
     return;
@@ -43742,7 +43742,7 @@ void Unwind_180905ee0(undefined8 param_1,longlong param_2)
   presourceTable = *(longlong **)(param_2 + 0x60);
   lVar1 = presourceTable[1];
   for (resourceIndex = *presourceTable; resourceIndex != lVar1; resourceIndex = resourceIndex + 0x1a8) {
-    FUN_180069530(resourceIndex);
+    ProcessResourceIndex(resourceIndex);
   }
   if (*presourceTable == 0) {
     return;
@@ -43930,7 +43930,7 @@ void Unwind_180905f80(undefined8 param_1,longlong param_2)
   presourceTable = *(longlong **)(param_2 + 0x40);
   lVar1 = presourceTable[1];
   for (resourceIndex = *presourceTable; resourceIndex != lVar1; resourceIndex = resourceIndex + 0x1a8) {
-    FUN_180069530(resourceIndex);
+    ProcessResourceIndex(resourceIndex);
   }
   if (*presourceTable == 0) {
     return;
@@ -44032,7 +44032,7 @@ void Unwind_180905fc0(undefined8 param_1,longlong param_2)
   presourceTable = (longlong *)(*(longlong *)(param_2 + 0x70) + 0x3c8);
   lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x70) + 0x3d0);
   for (resourceIndex = *presourceTable; resourceIndex != lVar1; resourceIndex = resourceIndex + 0x1a8) {
-    FUN_180069530(resourceIndex);
+    ProcessResourceIndex(resourceIndex);
   }
   if (*presourceTable == 0) {
     return;
@@ -44159,7 +44159,7 @@ void Unwind_180906060(undefined8 param_1,longlong param_2)
   presourceTable = *(longlong **)(param_2 + 0x78);
   lVar1 = presourceTable[1];
   for (resourceIndex = *presourceTable; resourceIndex != lVar1; resourceIndex = resourceIndex + 0x1a8) {
-    FUN_180069530(resourceIndex);
+    ProcessResourceIndex(resourceIndex);
   }
   if (*presourceTable == 0) {
     return;
@@ -44817,7 +44817,7 @@ void Unwind_180906480(undefined8 param_1,longlong param_2)
     ExecuteSystemEmergencyExit();
   }
   *(undefined8 *)(param_2 + 0x78) = 0;
-  FUN_180074a80();
+  ValidateResourceIndex();
   *(undefined8 *)(param_2 + 0x30) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(param_2 + 0x38) != 0) {
                     // WARNING: Subroutine does not return
@@ -45413,7 +45413,7 @@ void Unwind_1809066c0(undefined8 param_1,longlong param_2)
 
 {
   if (*(longlong *)(*(longlong *)(param_2 + 0xa0) + 0x1e8) != 0) {
-    FUN_180080060();
+    InitializeResourceOperation();
   }
   return;
 }
@@ -45474,7 +45474,7 @@ void Unwind_180906720(undefined8 param_1,longlong param_2)
 void Unwind_180906740(undefined8 param_1,longlong param_2)
 
 {
-  FUN_1800809a0(*(longlong *)(param_2 + 0xa0) + 0x2e0);
+  ExecuteResourceOperation(*(longlong *)(param_2 + 0xa0) + 0x2e0);
   return;
 }
 
@@ -45614,7 +45614,7 @@ void Unwind_180906850(undefined8 param_1,longlong param_2)
 
 {
   if (*(longlong *)(*(longlong *)(param_2 + 0x50) + 0x1e8) != 0) {
-    FUN_180080060();
+    InitializeResourceOperation();
   }
   return;
 }

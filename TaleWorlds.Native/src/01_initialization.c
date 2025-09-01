@@ -17901,7 +17901,7 @@ void InitializeMainSystemController(long long param_1)
   _DAT_180c91048 = controllerPtr;
   if ((undefined *)*_DAT_180c91048 == &UNK_1809fe100) {
     if (_DAT_180c86948 != 0) {
-      FUN_18006e990();
+      InitializeSystemEventDispatcher();
     }
   }
   else {
@@ -18739,8 +18739,19 @@ void _guard_check_icall(void)
 
 
 
-void* *
-FUN_180045ea0(void* *param_1,ulong long param_2,void* param_3,void* param_4)
+// 函数: void FUN_180045ea0(void* *param_1,ulong long param_2,void* param_3,void* param_4)
+/**
+ * @brief 系统内存分配器引用管理器
+ * 
+ * 该函数管理系统内存分配器的引用，根据标志位决定是否释放内存。
+ * 
+ * @param param_1 指向内存分配器引用的指针
+ * @param param_2 标志位，控制是否释放内存
+ * @param param_3 内存释放参数
+ * @param param_4 内存释放参数
+ * @return 返回内存分配器引用指针
+ */
+void* * SystemMemoryAllocatorReferenceManager(void* *param_1,ulong long param_2,void* param_3,void* param_4)
 
 {
   *param_1 = &SystemMemoryAllocatorReference;
@@ -20760,8 +20771,21 @@ void* FUN_180048c70(void* param_1,ulong long param_2,void* param_3,void* param_4
 
 
 
-void* *
-FUN_180048cc0(long long *param_1,void* *param_2,void* param_3,long long *param_4,
+// 函数: void FUN_180048cc0(long long *param_1,void* *param_2,void* param_3,long long *param_4,long long param_5)
+/**
+ * @brief 系统内存节点查找函数
+ * 
+ * 该函数在系统内存数据结构中查找指定的节点，进行字符串比较和内存匹配。
+ * 它遍历内存链表，比较内存块的内容，并返回找到的节点。
+ * 
+ * @param param_1 内存链表头指针
+ * @param param_2 输出参数，用于返回找到的节点
+ * @param param_3 保留参数
+ * @param param_4 要查找的节点指针
+ * @param param_5 查找参数，包含字符串比较信息
+ * @return 返回找到的节点指针
+ */
+void* * SystemMemoryNodeFinder(long long *param_1,void* *param_2,void* param_3,long long *param_4,
              long long param_5)
 
 {
