@@ -70,7 +70,12 @@ void* GameAudioMainEntryPoint;
 void* AudioSystemContext;                       // 音频系统上下文
 
 // 输入系统初始化函数和相关数据
-void* GameInputMainEntryPoint;                      // 游戏输入系统入口点
+/**
+ * @brief 游戏输入系统主入口点
+ * 
+ * 负责初始化和管理游戏的输入系统，包括键盘、鼠标、手柄等输入设备
+ */
+void* GameInputMainEntryPoint;
 void* InputSystemDataBuffer;                    // 输入系统数据缓冲区
 void* InputSystemEventQueueManager;              // 输入系统事件队列管理器
 void* InputSystemCurrentStateData;               // 输入系统当前状态数据
@@ -89,7 +94,12 @@ void* InputSystemMappingConfigurationTable;     // 输入系统映射配置表
 void* InputSystemProfileConfigurationTable;      // 输入系统配置文件表
 
 // 物理系统初始化函数
-void* GamePhysicsMainEntryPoint;                 // 游戏物理系统主入口点
+/**
+ * @brief 游戏物理系统主入口点
+ * 
+ * 负责初始化和管理游戏的物理系统，包括碰撞检测、物理模拟等
+ */
+void* GamePhysicsMainEntryPoint;
 void* PhysicsSystemContext;                      // 物理系统上下文
 
 // 文件系统初始化函数
