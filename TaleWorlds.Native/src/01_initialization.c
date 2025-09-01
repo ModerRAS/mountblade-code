@@ -35983,7 +35983,7 @@ CreateMemoryAllocationHandle(void* *SystemResourcePointer,void* *ConfigurationDa
   *(uint8_t *)(SystemResourcePointer + 2) = 0;
   UNLOCK();
   SystemResourcePointer[3] = 0xffffffffffffffff;
-  *SystemResourcePointer = &UNK_1809fdea8;
+  *SystemResourcePointer = &SystemDataStructureTemplateA;
   pointerToUnsigned1 = SystemResourcePointer + 4;
   SystemResourcePointer[6] = 0;
   SystemResourcePointer[7] = _guard_check_icall;
@@ -36353,7 +36353,7 @@ void* ProcessMemoryManagerOperation(long long SystemResourcePointer,void* Config
         if (*(void* **)(SystemResourcePointer + 0x48) != (void* *)0x0) {
           pointerToUnsigned2 = *(void* **)(SystemResourcePointer + 0x48);
         }
-        InitializeSystemMemoryBuffer(&UNK_18098bc00,pointerToUnsigned2);
+        InitializeSystemMemoryBuffer(&SystemMemoryAllocationTemplate,pointerToUnsigned2);
       }
       ProcessDataManager(SystemResourcePointer,SystemResourcePointer + 0x80);
       return 0;
@@ -36433,7 +36433,7 @@ void ProcessNodeManagerOperation(long long SystemResourcePointer,uint32_t Config
       if (*(void* **)(SystemResourcePointer + 0x1eb0) != (void* *)0x0) {
         pointerToUnsigned2 = *(void* **)(SystemResourcePointer + 0x1eb0);
       }
-      InitializeSystemMemoryBuffer(&UNK_18098bc00,pointerToUnsigned2);
+      InitializeSystemMemoryBuffer(&SystemMemoryAllocationTemplate,pointerToUnsigned2);
     }
     *(uint32_t *)(SystemResourcePointer + 0x1ea0) = *(uint32_t *)(SystemResourcePointer + 0x1ee8);
     return;
@@ -36626,7 +36626,7 @@ void* * InitializeResourceContext(void* *SystemResourcePointer,void* *Configurat
   *(uint8_t *)(SystemResourcePointer + 2) = 0;
   UNLOCK();
   SystemResourcePointer[3] = 0xffffffffffffffff;
-  *SystemResourcePointer = &UNK_1809fdfd0;
+  *SystemResourcePointer = &SystemFunctionPointerTableA;
   pointerToUnsigned1 = SystemResourcePointer + 4;
   *pointerToUnsigned1 = &SystemMemoryAllocatorReference;
   SystemResourcePointer[5] = 0;
@@ -37744,7 +37744,7 @@ void FUN_18005dbb0(void)
   lStack_190 = localAllocationFlags + 0x548;
   lStack_188 = localAllocationFlags + 0x68;
   FUN_18020e410(punsignedSystemValue4,&systemMemoryContext,1);
-  *punsignedSystemValue4 = &UNK_1809fe290;
+  *punsignedSystemValue4 = &SystemStringFormatTemplateA;
   *(void* **)((long long)*ppointerToUnsigned15 + 8) = punsignedSystemValue4;
   systemMemoryContext = &SystemMemoryAllocatorReference;
   systemStatus2 = 2;
@@ -37756,7 +37756,7 @@ void FUN_18005dbb0(void)
       puStack_158 = auStack_148;
       auStack_148[0] = 0;
       uStack_150 = 7;
-      strcpy_s(auStack_148,0x10,&UNK_1809fe198);
+      strcpy_s(auStack_148,0x10,&SystemVersionStringA);
       InitializeProcessSystem(&uStack_58,&SystemDataBufferTemplateI,systemStatus2 + -1);
       localSystemFlags = -1;
       do {
@@ -37797,7 +37797,7 @@ void FUN_18005dbb0(void)
       puStack_158 = auStack_148;
       auStack_148[0] = 0;
       uStack_150 = 10;
-      strcpy_s(auStack_148,0x10,&UNK_1809fe1a0);
+      strcpy_s(auStack_148,0x10,&SystemVersionStringB);
       InitializeProcessSystem(acStack_48,&SystemDataBufferTemplateI,unsignedSystemValue8);
       localSystemFlags = -1;
       do {
@@ -37813,7 +37813,7 @@ void FUN_18005dbb0(void)
       lStack_198 = localAllocationFlags + 0x70;
       uStack_58 = punsignedSystemValue4;
       InitializeSystemMemoryContext(punsignedSystemValue4,&puStack_160,4,lStack_178 + 0x2e0);
-      *punsignedSystemValue4 = &UNK_1809fe258;
+      *punsignedSystemValue4 = &SystemFunctionPointerA;
       *(void* **)(*PrimaryResourcePointer + unsignedSystemValue14 * 8) = punsignedSystemValue4;
       puStack_160 = &SystemMemoryAllocatorReference;
       unsignedSystemValue8 = (ulong long)((int)unsignedSystemValue8 + 1);
@@ -38912,7 +38912,7 @@ void* * FUN_18005ee30(long long *SystemResourcePointer,char ConfigurationDataPoi
         pointerToUnsigned2[1] = 0;
         *(uint8_t *)(pointerToUnsigned2 + 2) = 0;
         pointerToUnsigned2[3] = 0;
-        *pointerToUnsigned2 = &UNK_1809fe210;
+        *pointerToUnsigned2 = &SystemFunctionPointerB;
         pointerToUnsigned2[4] = 0;
         pointerToUnsigned2[5] = 0;
         pointerToUnsigned2[6] = 0;
@@ -38920,7 +38920,7 @@ void* * FUN_18005ee30(long long *SystemResourcePointer,char ConfigurationDataPoi
         pointerToUnsigned2[8] = 0;
         *(uint8_t *)(pointerToUnsigned2 + 9) = 0;
         pointerToUnsigned2[10] = SystemResourcePointer;
-        *pointerToUnsigned2 = &UNK_1809fe200;
+        *pointerToUnsigned2 = &SystemFunctionPointerC;
         pointerToUnsigned2[0xb] = 0x20;
         pointerToUnsigned2[0xc] = 0;
         ExpandSystemResourceAllocator(pointerToUnsigned2);
@@ -38933,7 +38933,7 @@ void* * FUN_18005ee30(long long *SystemResourcePointer,char ConfigurationDataPoi
         pointerToUnsigned2[1] = 0;
         *(uint8_t *)(pointerToUnsigned2 + 2) = 0;
         pointerToUnsigned2[3] = 0;
-        *pointerToUnsigned2 = &UNK_1809fe210;
+        *pointerToUnsigned2 = &SystemFunctionPointerB;
         pointerToUnsigned2[4] = 0;
         pointerToUnsigned2[5] = 0;
         pointerToUnsigned2[6] = 0;
@@ -38941,7 +38941,7 @@ void* * FUN_18005ee30(long long *SystemResourcePointer,char ConfigurationDataPoi
         pointerToUnsigned2[8] = 0;
         *(uint8_t *)(pointerToUnsigned2 + 9) = 1;
         pointerToUnsigned2[10] = SystemResourcePointer;
-        *pointerToUnsigned2 = &UNK_1809fe1f0;
+        *pointerToUnsigned2 = &SystemFunctionPointerD;
         pointerToUnsigned2[0xb] = 0;
         pointerToUnsigned2[0xc] = 0;
         pointerToUnsigned2[0xd] = 0x10;
@@ -40038,7 +40038,7 @@ void CleanupSystemResources(void* *SystemResourcePointer)
   long long NextResourcePointer;
   bool IsResourceMatch;
   
-  *SystemResourcePointer = &UNK_1809fe1f0;
+  *SystemResourcePointer = &SystemResourceTableA;
   if (SystemResourcePointer[8] != 0) {
     localMemoryPointer1 = 0;
     if ((SystemResourcePointer[5] & 0x1f) != 0) {
@@ -40077,7 +40077,7 @@ LAB_1800602a0:
   }
 LAB_18006039b:
   if (SystemResourcePointer[0x10] == 0) {
-    *SystemResourcePointer = &UNK_1809fe210;
+    *SystemResourcePointer = &SystemResourceTableB;
     return;
   }
                     // WARNING: Subroutine does not return
@@ -40180,7 +40180,7 @@ void AllocateSystemResources(void* *SystemResourcePointer)
   ulong long unsignedSystemValue10;
   bool bVar11;
   
-  *SystemResourcePointer = &UNK_1809fe200;
+  *SystemResourcePointer = &SystemResourceTableC;
   unsignedSystemValue3 = SystemResourcePointer[4];
   localResourcePointer = 0;
   unsignedSystemValue4 = SystemResourcePointer[5];
@@ -40267,7 +40267,7 @@ LAB_1800604d1:
                     // WARNING: Subroutine does not return
     SystemCleanupFunction();
   }
-  *SystemResourcePointer = &UNK_1809fe210;
+  *SystemResourcePointer = &SystemResourceTableB;
   return;
 }
 
@@ -40276,7 +40276,7 @@ LAB_1800604d1:
 void* * FUN_1800605d0(void* *SystemResourcePointer,ulong long ConfigurationDataPointer)
 
 {
-  *SystemResourcePointer = &UNK_1809fe210;
+  *SystemResourcePointer = &SystemResourceTableB;
   if ((ConfigurationDataPointer & 1) != 0) {
     free(SystemResourcePointer,0x58);
   }
@@ -46267,7 +46267,7 @@ void FUN_18006b440(long long SystemResourcePointer,uint32_t ConfigurationDataPoi
       if (*(void* **)(SystemResourcePointer + 0x1dd0) != (void* *)0x0) {
         pointerToUnsigned2 = *(void* **)(SystemResourcePointer + 0x1dd0);
       }
-      InitializeSystemMemoryBuffer(&UNK_18098bc00,pointerToUnsigned2);
+      InitializeSystemMemoryBuffer(&SystemMemoryAllocationTemplate,pointerToUnsigned2);
     }
     *(uint32_t *)(SystemResourcePointer + 0x1dc0) = *(uint32_t *)(SystemResourcePointer + 0x1e08);
     return;
@@ -46295,7 +46295,7 @@ void FUN_18006b4c0(long long SystemResourcePointer,uint32_t ConfigurationDataPoi
       if (*(void* **)(SystemResourcePointer + 0x1d60) != (void* *)0x0) {
         pointerToUnsigned2 = *(void* **)(SystemResourcePointer + 0x1d60);
       }
-      InitializeSystemMemoryBuffer(&UNK_18098bc00,pointerToUnsigned2);
+      InitializeSystemMemoryBuffer(&SystemMemoryAllocationTemplate,pointerToUnsigned2);
     }
     *(uint32_t *)(SystemResourcePointer + 0x1d50) = *(uint32_t *)(SystemResourcePointer + 0x1d98);
     return;
