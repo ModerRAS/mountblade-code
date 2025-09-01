@@ -30702,7 +30702,16 @@ void CleanupSystemResourceHandles(long long SystemResourcePointer)
 
 
 // 函数: void FUN_180057730(long long *SystemResourcePointer)
-void FUN_180057730(long long *SystemResourcePointer)
+/**
+ * @brief 系统队列处理器
+ * 
+ * 该函数遍历系统资源队列，对每个队列项调用处理函数。
+ * 主要用于批量处理系统队列中的项目。
+ * 
+ * @param SystemResourcePointer 系统资源指针，包含队列信息
+ * @note 这是系统队列管理的核心函数
+ */
+void ProcessSystemQueue(long long *SystemResourcePointer)
 
 {
   long long localMemoryPointer;
