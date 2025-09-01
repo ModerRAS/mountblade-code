@@ -17508,9 +17508,9 @@ int InitializeEngineCoreSystem(void)
 {
   uint64_t result;
   
-  _DAT_180c96808 = 3;
-  _DAT_180c967e0 = &DAT_180c967e0;
-  _DAT_180c967e8 = &DAT_180c967e0;
+  SystemPerformanceTimestamp = 3;
+  SystemPerformanceCounterE = &DAT_180c967e0;
+  SystemNetworkBufferPointer = &DAT_180c967e0;
   _DAT_180c967f0 = 0;
   _DAT_180c967f8 = 0;
   _DAT_180c96800 = 0;
