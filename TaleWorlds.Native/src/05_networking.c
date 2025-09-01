@@ -8,13 +8,13 @@
  * 该函数比较两个网络连接的时间戳或优先级，返回比较结果。
  * 主要用于网络连接排序和优先级管理。
  * 
- * @param connection1 第一个网络连接指针
- * @param connection2 第二个网络连接指针
+ * @param firstConnection 第一个网络连接指针
+ * @param secondConnection 第二个网络连接指针
  * @return 比较结果，表示连接的相对优先级
  * 
  * 注意：这是一个反编译的函数实现
  */
-uint CompareNetworkConnectionTimestamps(int64_t *connection1,int64_t *connection2);
+uint CompareNetworkConnectionTimestamps(int64_t *firstConnection, int64_t *secondConnection);
 
 uint32_t NetworkConnectionTable;
 uint32_t NetworkConnectionStatus;
@@ -1143,50 +1143,61 @@ LAB_180840a03:
           else {
             packetBuffer = *(uint8_t **)(tempOffset + 0x50);
           }
-          iVar3 = func_0x00018076b630(puVar6,param_3);
-          if (iVar3 == 0) {
-            *param_4 = iVar2;
+          processingStatus = func_0x00018076b630(packetBuffer,packetSize);
+          if (processingStatus == 0) {
+            *validationResult = validationStatus;
             break;
           }
-          iVar2 = iVar2 + 1;
-          lVar9 = lVar9 + 0x18;
-        } while (iVar2 < *(int *)(param_2 + 0x28));
+          validationStatus = validationStatus + 1;
+          connectionInfo = connectionInfo + 0x18;
+        } while (validationStatus < *(int32_t *)(packetData + 0x28));
       }
     }
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_30 ^ (ulonglong)auStack_68);
+  FUN_1808fc050(stackGuard ^ (uint64_t)securityBuffer);
 }
 
 
 
-undefined8 FUN_180840a90(undefined8 *param_1,int *param_2,int *param_3)
+/**
+ * @brief 查找网络连接条目
+ * 
+ * 该函数在连接表中查找指定的网络连接条目，
+ * 返回查找结果和状态码
+ * 
+ * @param connectionTable 连接表指针
+ * @param searchKey 搜索键值
+ * @param foundIndex 找到的索引位置
+ * @return 操作状态码
+ */
+uint64_t FindNetworkConnectionEntry(uint64_t *connectionTable, int *searchKey, int *foundIndex)
 
 {
-  undefined8 uVar1;
-  int *piVar2;
-  int iVar3;
-  longlong lVar4;
+  uint64_t statusCode;
+  int *tableEntry;
+  int32_t entryIndex;
+  int64_t tableSize;
   
-  iVar3 = 0;
-  if (0 < *(int *)(param_1 + 1)) {
-    piVar2 = (int *)*param_1;
-    lVar4 = 0;
+  entryIndex = 0;
+  if (0 < *(int32_t *)(connectionTable + 1)) {
+    tableEntry = (int *)*connectionTable;
+    tableSize = 0;
     do {
-      if ((*piVar2 == *param_2) && (piVar2[1] == param_2[1])) goto LAB_180840ad5;
-      iVar3 = iVar3 + 1;
-      lVar4 = lVar4 + 1;
-      piVar2 = piVar2 + 2;
-    } while (lVar4 < *(int *)(param_1 + 1));
+      if ((*tableEntry == *searchKey) && (tableEntry[1] == searchKey[1])) goto LAB_180840ad5;
+      entryIndex = entryIndex + 1;
+      tableSize = tableSize + 1;
+      tableEntry = tableEntry + 2;
+    } while (tableSize < *(int32_t *)(connectionTable + 1));
   }
-  iVar3 = -1;
+  entryIndex = -1;
 LAB_180840ad5:
-  *param_3 = iVar3;
-  uVar1 = 0x4a;
-  if (-1 < iVar3) {
-    uVar1 = 0;
+  *foundIndex = entryIndex;
+  statusCode = 0x4a;
+  if (-1 < entryIndex) {
+    statusCode = 0;
   }
-  return uVar1;
+  return statusCode;
 }
 
 
