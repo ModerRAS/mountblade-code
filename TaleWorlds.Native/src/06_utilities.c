@@ -4772,26 +4772,37 @@ undefined8 ValidateObjectPointer(longlong ObjectPointer)
 
 
 
-undefined4 FUN_1808910b3(void)
+/**
+ * @brief 验证栈对象
+ * 
+ * 验证栈上的对象是否有效，如果有效则触发处理
+ * 
+ * @return 验证结果状态码
+ */
+undefined4 ValidateStackObject(void)
 
 {
-  longlong in_stack_00000040;
+  longlong StackPointer;
   
-  if (in_stack_00000040 != 0) {
-    in_stack_00000040 = in_stack_00000040 + -8;
+  if (StackPointer != 0) {
+    StackPointer = StackPointer + -8;
   }
-  if (*(longlong *)(in_stack_00000040 + 0x10) == 0) {
+  if (*(longlong *)(StackPointer + 0x10) == 0) {
     return 0x1c;
   }
                     // WARNING: Subroutine does not return
-  FUN_180862e00(*(longlong *)(in_stack_00000040 + 0x10),1);
+  FUN_180862e00(*(longlong *)(StackPointer + 0x10),1);
 }
 
 
 
 
-// 函数: void FUN_1808910e9(void)
-void FUN_1808910e9(void)
+/**
+ * @brief 初始化系统资源
+ * 
+ * 初始化系统所需的资源，为后续操作做准备
+ */
+void InitializeSystemResources(void)
 
 {
                     // WARNING: Subroutine does not return
