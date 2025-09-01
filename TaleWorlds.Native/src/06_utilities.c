@@ -259,7 +259,7 @@ void* PacketHandler;
 void* NetworkProtocolManager;
 void* NetworkEventDispatcher;
 
-// 函数: undefined InitializeRenderingSystem;
+// 函数: void* InitializeRenderingSystem;
 /**
  * @brief 初始化渲染系统
  * 
@@ -273,7 +273,7 @@ void* g_shaderManager;
 void* g_renderQueueManager;
 void* g_graphicsMemoryPool;
 
-// 函数: undefined InitializeAnimationSystem;
+// 函数: void* InitializeAnimationSystem;
 /**
  * @brief 初始化动画系统
  * 
@@ -345,10 +345,10 @@ void* g_databaseTransactionTable;
 void* g_databaseIndexTable;
 void* g_databaseSchemaTable;
 void* g_databaseRecordTable;
-undefined g_databaseLockTable;
-undefined g_databaseBackupTable;
-undefined g_databaseStatistics;
-undefined g_databaseMetrics;
+void* g_databaseLockTable;
+void* g_databaseBackupTable;
+void* g_databaseStatistics;
+void* g_databaseMetrics;
 undefined g_databasePerformance;
 undefined g_databaseLogger;
 undefined g_databaseCache;
