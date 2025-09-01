@@ -459,17 +459,17 @@ void InitializeNetworkConnectionState(void)
   uint32_t connectionFlags;
   int sessionId;
   uint64_t *connectionPointer;
-  longlong stackParameter;
+  longlong networkContext;
   
   connectionBuffer = (uint8_t *)(CONCAT44(connectionFlags,connectionHandle) + 0x28);
   if (*(int *)(*(longlong *)(systemContext + 0x98) + 0x200) == sessionId) {
     *connectionBuffer = 0;
     *(uint *)(CONCAT44(connectionFlags,connectionHandle) + 8) = ((int)connectionBuffer - connectionHandle) + 4U & 0xfffffffc;
-    networkStatus = InitializeNetworkConnectionContext(*(NetworkHandle *)(stackParameter + 0x98));
+    networkStatus = InitializeNetworkConnectionContext(*(NetworkHandle *)(networkContext + 0x98));
     if (networkStatus == 0) {
       *connectionPointer = (uint64_t)*(uint *)(CONCAT44(connectionFlags,connectionHandle) + 0x20);
     }
-    CleanupNetworkConnectionStack(&stack0x00000078);
+    CleanupNetworkConnectionStack(&NetworkConnectionStackBuffer);
   }
   CopyNetworkConnectionBuffer(connectionBuffer);
 }
@@ -963,16 +963,16 @@ void SendNetworkPacketEx(NetworkHandle packetId,NetworkHandle connectionId,Netwo
                   NetworkHandle sourceAddress,NetworkHandle networkContext,longlong packetData)
 
 {
-  longlong *plVar1;
+  longlong *networkProcessor;
   int networkStatus2;
-  longlong lVar3;
-  NetworkStatus unaff_EBP;
-  longlong unaff_RSI;
-  longlong lVar4;
-  longlong in_XMM0_Qb;
+  longlong packetEntry;
+  NetworkStatus connectionFlags;
+  longlong connectionIndex;
+  longlong packetArrayOffset;
+  longlong contextData;
   
-  param_6 = 0;
-  param_5 = in_XMM0_Qb;
+  networkParam6 = 0;
+  networkParam5 = contextData;
   networkStatus2 = NetworkConnectionIdInitialize();
   if (((networkStatus2 == 0) && (networkStatus2 = NetworkStackInitialize(&stack0x00000020,param_5), networkStatus2 == 0)) &&
      (networkStatus2 = NetworkConnectionFlagsValidate(unaff_EBP,&param_7), networkStatus2 == 0)) {
@@ -1011,7 +1011,7 @@ void ClearNetworkConnectionBuffer(void)
 
 {
   uint64_t *connectionBuffer;
-  ulonglong stackParameter;
+  ulonglong securityContext;
   
   *connectionBuffer = 0;
   connectionBuffer[1] = 0;
@@ -1021,7 +1021,7 @@ void ClearNetworkConnectionBuffer(void)
   connectionBuffer[5] = 0;
   connectionBuffer[6] = 0;
                     // WARNING: Subroutine does not return
-  NetworkStackGuardActivate(stackParameter ^ (ulonglong)&stack0x00000000);
+  NetworkStackGuardActivate(securityContext ^ (ulonglong)&NetworkSecurityBuffer);
 }
 
 
@@ -1038,10 +1038,10 @@ void ClearNetworkConnectionBuffer(void)
 void ResetNetworkConnectionState(void)
 
 {
-  ulonglong stackParameter;
+  ulonglong securityContext;
   
                     // WARNING: Subroutine does not return
-  NetworkStackGuardActivate(stackParameter ^ (ulonglong)&stack0x00000000);
+  NetworkStackGuardActivate(securityContext ^ (ulonglong)&NetworkSecurityBuffer);
 }
 
 
@@ -10506,7 +10506,7 @@ ulonglong FUN_18084afc0(NetworkHandle connectionContext)
   if (primaryNetworkFlag != 0) {
     return (ulonglong)primaryNetworkFlag;
   }
-  tertiaryNetworkFlag = FUN_18088e0f0(*(NetworkHandle *)(alStackX_10[0] + 0x98),0);
+  tertiaryNetworkFlag = ProcessNetworkPacketTransmission(*(NetworkHandle *)(alStackX_10[0] + 0x98),0);
   if ((int)tertiaryNetworkFlag == 0) {
     if (*(int *)(*(longlong *)(alStackX_10[0] + 0x98) + 0x200) != 0) {
       alStackX_10[1] = 0;
@@ -18906,8 +18906,16 @@ LAB_180850827:
 
 
 
-// 函数: void FUN_180850b5a(void)
-void FUN_180850b5a(void)
+/**
+ * @brief 网络连接资源清理器
+ * 
+ * 该函数负责清理网络连接相关的资源。
+ * 主要功能包括：
+ * - 释放网络连接占用的内存
+ * - 清理连接句柄和缓冲区
+ * - 重置连接状态
+ */
+void NetworkConnectionResourceCleanup(void)
 
 {
                     // WARNING: Subroutine does not return
@@ -18919,23 +18927,36 @@ void FUN_180850b5a(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180850b70(NetworkHandle *connectionContext,NetworkHandle packetData,longlong dataSize,NetworkHandle *param_4)
-void FUN_180850b70(NetworkHandle *connectionContext,NetworkHandle packetData,longlong dataSize,NetworkHandle *param_4)
+/**
+ * @brief 网络连接数据处理器
+ * 
+ * 该函数负责处理网络连接的数据传输和处理。
+ * 主要功能包括：
+ * - 验证连接上下文的有效性
+ * - 处理数据包的传输
+ * - 管理连接状态和错误处理
+ * 
+ * @param connectionContext 网络连接上下文指针
+ * @param packetData 数据包数据
+ * @param dataSize 数据大小
+ * @param param_4 处理参数
+ */
+void NetworkConnectionDataProcessor(NetworkHandle *connectionContext,NetworkHandle packetData,longlong dataSize,NetworkHandle *param_4)
 
 {
-  NetworkHandle primaryNetworkFlag;
-  longlong *plVar2;
-  NetworkByte tertiaryNetworkFlag;
-  short sVar4;
-  int iVar5;
-  int iVar6;
-  int iVar7;
-  longlong lVar8;
-  longlong lVar9;
-  ulonglong primaryNetworkFlag0;
-  uint primaryNetworkFlag1;
-  NetworkData *networkPointer12;
-  longlong lVar13;
+  NetworkHandle processingStatus;
+  longlong *dataPointer;
+  NetworkByte connectionFlag;
+  short statusFlag;
+  int processingIndex;
+  int connectionIndex;
+  int dataIndex;
+  longlong contextData;
+  longlong packetBuffer;
+  ulonglong validationStatus;
+  uint transmissionStatus;
+  NetworkData *networkData;
+  longlong resultData;
   NetworkStatus primaryNetworkFlag4;
   longlong lVar15;
   longlong lVar16;
@@ -88211,38 +88232,51 @@ NetworkHandle ValidateAndProcessNetworkConnectionData(longlong connectionContext
 
 
 
-ulonglong FUN_18088e0f0(longlong connectionContext,char packetData)
+/**
+ * @brief 处理网络连接数据包传输
+ * 
+ * 该函数负责处理网络连接中的数据包传输操作。
+ * 主要功能包括：
+ * - 验证网络连接状态
+ * - 处理数据包的传输逻辑
+ * - 管理连接标志和状态
+ * 
+ * @param connectionContext 网络连接上下文指针
+ * @param packetData 数据包数据
+ * @return 传输结果状态码
+ */
+ulonglong ProcessNetworkPacketTransmission(longlong connectionContext,char packetData)
 
 {
-  int networkStatus1;
-  char cVar2;
-  ulonglong tertiaryNetworkFlag;
-  int aiStackX_18 [4];
+  int connectionStatus;
+  char packetFlag;
+  ulonglong transmissionResult;
+  int timingData [4];
   
-  tertiaryNetworkFlag = FUN_18088e220();
-  if ((int)tertiaryNetworkFlag == 0) {
-    if (*(char *)(connectionContext + 0x188) != (char)tertiaryNetworkFlag) {
-      networkStatus1 = *(int *)(connectionContext + 0x19c);
+  transmissionResult = FUN_18088e220();
+  if ((int)transmissionResult == 0) {
+    if (*(char *)(connectionContext + 0x188) != (char)transmissionResult) {
+      connectionStatus = *(int *)(connectionContext + 0x19c);
       do {
         if ((*(char *)(connectionContext + 0x188) != '\0') &&
-           (FUN_180768b70(aiStackX_18), 0x32 < aiStackX_18[0] - *(int *)(connectionContext + 0x178))) {
-          *(int *)(connectionContext + 0x178) = aiStackX_18[0];
-          tertiaryNetworkFlag = FUN_180768910(*(NetworkHandle *)(connectionContext + 0x170));
-          if ((int)tertiaryNetworkFlag != 0) {
-            return tertiaryNetworkFlag;
+           (FUN_180768b70(timingData), 0x32 < timingData[0] - *(int *)(connectionContext + 0x178))) {
+          *(int *)(connectionContext + 0x178) = timingData[0];
+          transmissionResult = FUN_180768910(*(NetworkHandle *)(connectionContext + 0x170));
+          if ((int)transmissionResult != 0) {
+            return transmissionResult;
           }
         }
         FUN_180768bf0(1);
-      } while ((*(int *)(connectionContext + 0x19c) == networkStatus1) || (*(int *)(connectionContext + 0x19c) == networkStatus1 + 1));
+      } while ((*(int *)(connectionContext + 0x19c) == connectionStatus) || (*(int *)(connectionContext + 0x19c) == connectionStatus + 1));
     }
-    cVar2 = func_0x000180881f80(*(NetworkHandle *)(connectionContext + 0x158));
-    while (cVar2 != '\0') {
+    packetFlag = func_0x000180881f80(*(NetworkHandle *)(connectionContext + 0x158));
+    while (packetFlag != '\0') {
       FUN_180768bf0(1);
-      tertiaryNetworkFlag = FUN_18088e220(connectionContext);
-      if ((int)tertiaryNetworkFlag != 0) {
-        return tertiaryNetworkFlag;
+      transmissionResult = FUN_18088e220(connectionContext);
+      if ((int)transmissionResult != 0) {
+        return transmissionResult;
       }
-      cVar2 = func_0x000180881f80(*(NetworkHandle *)(connectionContext + 0x158));
+      packetFlag = func_0x000180881f80(*(NetworkHandle *)(connectionContext + 0x158));
     }
     if (packetData != '\0') {
       while (*(int *)(*(longlong *)(*(longlong *)(*(longlong *)(connectionContext + 0x158) + 0x90) + 0x790) +
