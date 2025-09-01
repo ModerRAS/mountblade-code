@@ -86140,7 +86140,7 @@ void InitializeSystemDataStructureBO(void)
 void InitializeSystemDataStructureBO(void)
 
 {
-  _DAT_180bf9e70 = &SystemDataStructure;
+  SystemDataPointer007 = &SystemDataStructure;
   return;
 }
 
@@ -86161,7 +86161,7 @@ void InitializeSystemDataStructureBP(void)
 void InitializeSystemDataStructureBP(void)
 
 {
-  _DAT_180bf9ed0 = &SystemDataStructure;
+  SystemDataPointer008 = &SystemDataStructure;
   return;
 }
 
@@ -86182,7 +86182,7 @@ void InitializeSystemDataStructureBQ(void)
 void InitializeSystemDataStructureBQ(void)
 
 {
-  _DAT_180bf9f30 = &SystemDataStructure;
+  SystemDataPointer009 = &SystemDataStructure;
   return;
 }
 
@@ -86203,7 +86203,7 @@ void InitializeSystemDataStructureBR(void)
 void InitializeSystemDataStructureBR(void)
 
 {
-  _DAT_180bf9f90 = &SystemDataStructure;
+  SystemDataPointer010 = &SystemDataStructure;
   return;
 }
 
@@ -86224,7 +86224,7 @@ void InitializeSystemDataStructureBS(void)
 void InitializeSystemDataStructureBS(void)
 
 {
-  _DAT_180bf9ff0 = &SystemDataStructure;
+  SystemDataPointer011 = &SystemDataStructure;
   return;
 }
 
@@ -86245,7 +86245,7 @@ void InitializeSystemDataStructureBT(void)
 void InitializeSystemDataStructureBT(void)
 
 {
-  _DAT_180bfa050 = &SystemDataStructure;
+  SystemDataPointer012 = &SystemDataStructure;
   return;
 }
 
@@ -86266,7 +86266,7 @@ void InitializeSystemDataStructureBU(void)
 void InitializeSystemDataStructureBU(void)
 
 {
-  _DAT_180bfa0b0 = &SystemDataStructure;
+  SystemDataPointer013 = &SystemDataStructure;
   return;
 }
 
@@ -86287,7 +86287,7 @@ void InitializeSystemDataStructureBV(void)
 void InitializeSystemDataStructureBV(void)
 
 {
-  _DAT_180bfa110 = &SystemDataStructure;
+  SystemDataPointer014 = &SystemDataStructure;
   return;
 }
 
@@ -86308,7 +86308,7 @@ void InitializeSystemDataStructureBW(void)
 void InitializeSystemDataStructureBW(void)
 
 {
-  _DAT_180bfa170 = &SystemDataStructure;
+  SystemDataPointer015 = &SystemDataStructure;
   return;
 }
 
@@ -86329,7 +86329,7 @@ void InitializeSystemDataStructureBX(void)
 void InitializeSystemDataStructureBX(void)
 
 {
-  _DAT_180bfa1d0 = &SystemDataStructure;
+  SystemDataPointer016 = &SystemDataStructure;
   return;
 }
 
@@ -86350,7 +86350,7 @@ void InitializeSystemDataStructureBY(void)
 void InitializeSystemDataStructureBY(void)
 
 {
-  _DAT_180bfa230 = &SystemDataStructure;
+  SystemDataPointer017 = &SystemDataStructure;
   return;
 }
 
@@ -86371,7 +86371,7 @@ void InitializeSystemDataStructureBZ(void)
 void InitializeSystemDataStructureBZ(void)
 
 {
-  _DAT_180bfa290 = &SystemDataStructure;
+  SystemDataPointer018 = &SystemDataStructure;
   return;
 }
 
