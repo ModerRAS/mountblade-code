@@ -17694,9 +17694,9 @@ int InitializeEngineCoreSystem(void)
   SystemPerformanceTimestamp = 3;
   SystemPerformanceCounterE = &SystemPerformanceDataBufferE;  // 系统性能计数器数据缓冲区E
   SystemNetworkBufferPointer = &SystemNetworkDataBuffer;  // 系统网络数据缓冲区
-  _DAT_180c967f0 = 0;
-  _DAT_180c967f8 = 0;
-  _DAT_180c96800 = 0;
+  SystemInitializationStatusFlagA = 0;  // 系统初始化状态标志A
+  SystemInitializationStatusFlagB = 0;  // 系统初始化状态标志B
+  SystemInitializationStatusFlagC = 0;  // 系统初始化状态标志C
   InitializationResult = ValidateSystemConfiguration(SystemConfigValidatorNonary);
   return (InitializationResult != 0) - 1;
 }

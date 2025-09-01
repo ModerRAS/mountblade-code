@@ -8177,7 +8177,7 @@ uint8_t8 ValidateAndProcessObjectContextWithParameters(longlong objectContext,lo
 uint8_t8 ValidateObjectContextAndProcessFloatRange(longlong objectContextParam, longlong validationContextParam)
 
 {
-  float fVar1;
+  float CalculatedFloatValue;
   uint8_t8 validationResult;
   longlong resourceIndex;
   longlong lStackX_8;
@@ -8398,10 +8398,10 @@ void ProcessObjectContextValidationAndReset(longlong objectContextParam,longlong
 uint8_t8 ProcessObjectContextFloatRangeValidationAndClamping(longlong objectContext,longlong systemContext)
 
 {
-  float fVar1;
+  float CalculatedFloatValue;
   longlong resourceTable;
   uint8_t8 unsignedResult3;
-  float fVar4;
+  float SecondaryFloatValue;
   uint uStackX_8;
   uint8_t4 uStackX_c;
   
@@ -8874,10 +8874,10 @@ uint8_t8 GetDefaultErrorStatus(void)
 uint8_t8 ProcessFloatDataValidationAndConversion(longlong objectContextParam, longlong validationContextParam)
 
 {
-  float fVar1;
+  float CalculatedFloatValue;
   uint8_t8 validationResult;
   longlong resourceIndex;
-  float fVar4;
+  float SecondaryFloatValue;
   uint8_t4 auStackX_18 [2];
   
   if ((*(uint *)(objectContextParam + 0x18) & 0x7f800000) == 0x7f800000) {
@@ -8917,12 +8917,12 @@ uint8_t8 ProcessFloatDataValidationAndConversion(longlong objectContextParam, lo
 uint8_t8 ProcessFloatDataValidationAndConversionNoParams(uint8_t8 objectContextParam, uint8_t8 validationContextParam)
 
 {
-  float fVar1;
+  float CalculatedFloatValue;
   uint8_t8 validationResult;
   longlong resourceIndex;
   longlong unaff_RBX;
   longlong unaff_RSI;
-  float fVar4;
+  float SecondaryFloatValue;
   uint8_t4 uStack0000000000000040;
   
   uStack0000000000000040 = 0;
@@ -9002,7 +9002,7 @@ void ProcessObjectContextFloatRangeValidationAndClamping(void)
 uint8_t8 ProcessFloatDataValidationAndConversion(longlong objectContextParam,longlong validationContextParam)
 
 {
-  float fVar1;
+  float CalculatedFloatValue;
   uint8_t8 validationResult;
   longlong resourceIndex;
   uint8_t4 auStackX_10 [2];
@@ -9046,7 +9046,7 @@ uint8_t8 ProcessFloatDataValidationAndConversion(longlong objectContextParam,lon
 uint8_t8 ValidateFloatDataAndExecute(void)
 
 {
-  float fVar1;
+  float CalculatedFloatValue;
   longlong resourceTable;
   uint8_t8 unsignedResult3;
   longlong unaff_RDI;
@@ -9088,7 +9088,7 @@ uint8_t8 ValidateFloatDataAndExecute(void)
 uint8_t8 ValidateFloatDataAndExecuteSimple(void)
 
 {
-  float fVar1;
+  float CalculatedFloatValue;
   uint8_t8 validationResult;
   longlong unaff_RBX;
   longlong unaff_RDI;
@@ -9143,7 +9143,7 @@ void EmptyOperationFunctionA(void)
 uint8_t8 ProcessDataValidationAndSystemOperation(longlong objectContextParam,longlong validationContextParam)
 
 {
-  float fVar1;
+  float CalculatedFloatValue;
   uint8_t8 validationResult;
   longlong resourceIndex;
   uint8_t8 *punsignedResult4;
@@ -9193,7 +9193,7 @@ uint8_t8 ProcessDataValidationAndSystemOperation(longlong objectContextParam,lon
 uint64_t GetSystemRuntimeStatus(void)
 
 {
-  float fVar1;
+  float CalculatedFloatValue;
   longlong resourceTable;
   uint8_t8 unsignedResult3;
   uint8_t8 *punsignedResult4;
@@ -9239,14 +9239,14 @@ uint64_t GetSystemRuntimeStatus(void)
  */
 void ProcessFloatRangeClamping(void)
 {
-  float fVar1;
+  float CalculatedFloatValue;
   uint8_t8 *pvalidationResult;
   uint8_t4 in_EAX;
   int validationStatus;
   uint8_t4 in_register_00000004;
   longlong unaff_RBX;
   longlong unaff_RDI;
-  float fVar4;
+  float SecondaryFloatValue;
   uint8_t4 in_stack_00000040;
   
   fVar4 = *(float *)(CONCAT44(in_register_00000004,in_EAX) + 0x38);
@@ -9296,7 +9296,7 @@ void EmptyOperationFunctionB(void)
 uint8_t8 ProcessFloatRangeValidationAndDataHandling(longlong objectContextParam,longlong validationContextParam)
 
 {
-  float fVar1;
+  float CalculatedFloatValue;
   uint8_t8 validationResult;
   longlong resourceIndex;
   uint8_t8 *punsignedResult4;
@@ -9344,7 +9344,7 @@ uint8_t8 ProcessFloatRangeValidationAndDataHandling(longlong objectContextParam,
 uint8_t8 ProcessFloatRangeValidationAndDataHandlingNoParams(void)
 
 {
-  float fVar1;
+  float CalculatedFloatValue;
   longlong resourceTable;
   uint8_t8 unsignedResult3;
   uint8_t8 *punsignedResult4;
@@ -9390,7 +9390,7 @@ uint8_t8 ProcessFloatRangeValidationAndDataHandlingNoParams(void)
 uint64_t ProcessFloatDataValidation(void)
 
 {
-  float fVar1;
+  float CalculatedFloatValue;
   uint8_t8 validationResult;
   uint8_t8 *punsignedResult3;
   longlong unaff_RBX;
@@ -13012,7 +13012,7 @@ void ExecuteSimplifiedContextValidation(void)
 75e0(longlong objectContextParam,longlong validationContextParam)
 
 {
-  float fVar1;
+  float CalculatedFloatValue;
   longlong resourceTable;
   longlong resourceIndex;
   longlong lVar4;
@@ -13272,7 +13272,7 @@ void BufferValidationErrorHandler(void)
 7644(void)
 
 {
-  float fVar1;
+  float CalculatedFloatValue;
   longlong resourceTable;
   longlong resourceIndex;
   uint8_t8 *punsignedResult4;
@@ -13549,7 +13549,7 @@ void DataProcessingErrorHandler(void)
 76b0(void)
 
 {
-  float fVar1;
+  float CalculatedFloatValue;
   longlong resourceTable;
   longlong resourceIndex;
   uint8_t8 *punsignedResult4;
@@ -13808,10 +13808,10 @@ void FloatProcessingErrorHandler(void)
 7859(float objectContextParam)
 
 {
-  float fVar1;
+  float CalculatedFloatValue;
   int integerValue2;
   uint unsignedValue3;
-  float fVar4;
+  float SecondaryFloatValue;
   float *pfVar5;
   longlong unaff_RBP;
   float unaff_R13D;
@@ -14239,7 +14239,7 @@ uint8_t8 ValidateResourceRenderingState(void)
 8040(longlong *objectContextParam)
 
 {
-  float fVar1;
+  float CalculatedFloatValue;
   uint8_t8 *pvalidationResult;
   uint8_t4 *punsignedResult3;
   longlong lVar4;
@@ -16870,7 +16870,7 @@ uint8_t8 ProcessResourceDataNormalization(longlong resourceContext, longlong dat
   uint8_t8 resourceHash;
   float *pfVar2;
   int validationStatus;
-  float fVar4;
+  float SecondaryFloatValue;
   uint8_t2 ArrayUnionStackX8 [4];
   
   ArrayUnionStackX8[0] = CONCAT11(ArrayUnionStackX8[0]._1_1_,*(uint8_t1 *)(validationContextParam + 0x104));
@@ -16938,7 +16938,7 @@ uint8_t8 ProcessResourceDataNormalizationSimple(void)
   longlong unaff_RBP;
   longlong unaff_RSI;
   int validationStatus;
-  float fVar4;
+  float SecondaryFloatValue;
   uint8_t2 uStack0000000000000070;
   
   iVar3 = 0;
@@ -18191,7 +18191,7 @@ void ValidateResourceIntegrity(void)
 uint8_t8 InitializeResourceTableCache(void)
 
 {
-  float fVar1;
+  float CalculatedFloatValue;
   int in_EAX;
   uint8_t8 validationResult;
   uint8_t8 *punsignedResult3;
@@ -21367,7 +21367,7 @@ ulonglong ResourceProcessingHandler(uint8_t8 objectContextParam)
   uint8_t4 resourceHash;
   uint8_t4 validationResult;
   uint8_t4 unsignedResult3;
-  float fVar4;
+  float SecondaryFloatValue;
   float fVar5;
   float fVar6;
   uint8_t8 unsignedValue7;
