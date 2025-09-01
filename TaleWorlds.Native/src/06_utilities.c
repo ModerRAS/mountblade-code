@@ -41,7 +41,7 @@ void* GlobalModuleAConfiguration;
 uint32_t GlobalModuleAStatus;
 void* GlobalModuleAHandle;
 
-// 函数: void InitializeGlobalModuleB(void)
+ void InitializeGlobalModuleB(void)
 /**
  * @brief 初始化全局模块B
  * 
@@ -51,11 +51,11 @@ void* GlobalModuleAHandle;
 void InitializeGlobalModuleB(void);
 void* GlobalModuleBInstance;
 void* GlobalModuleBConfiguration;
-uint32_t GlobalModuleB_Status;
+uint32_t GlobalModuleBStatus;
 void* GlobalModuleBHandle;
 void* GlobalModuleBContext;
 
-// 函数: void InitializeGlobalModuleC(void)
+ void InitializeGlobalModuleC(void)
 /**
  * @brief 初始化全局模块C
  * 
@@ -65,11 +65,11 @@ void* GlobalModuleBContext;
 void InitializeGlobalModuleC(void);
 void* GlobalModuleCInstance;
 void* GlobalModuleCConfiguration;
-uint32_t GlobalModuleC_Status;
+uint32_t GlobalModuleCStatus;
 void* GlobalModuleCHandle;
 void* GlobalModuleCContext;
 
-// 函数: void InitializeGlobalModuleD(void)
+ void InitializeGlobalModuleD(void)
 /**
  * @brief 初始化全局模块D
  * 
@@ -79,10 +79,10 @@ void* GlobalModuleCContext;
 void InitializeGlobalModuleD(void);
 void* GlobalModuleDInstance;
 void* GlobalModuleDConfiguration;
-uint32_t GlobalModuleD_Status;
+uint32_t GlobalModuleDStatus;
 void* GlobalModuleDHandle;
 
-// 函数: void InitializeGlobalModuleE(void)
+ void InitializeGlobalModuleE(void)
 /**
  * @brief 初始化全局模块E
  * 
@@ -92,10 +92,10 @@ void* GlobalModuleDHandle;
 void InitializeGlobalModuleE(void);
 void* GlobalModuleEInstance;
 void* GlobalModuleEConfiguration;
-uint32_t GlobalModuleE_Status;
+uint32_t GlobalModuleEStatus;
 void* GlobalModuleEHandle;
 
-// 函数: uint32_t GetSystemStatusFlag1;
+ uint32_t GetSystemStatusFlag1;
 /**
  * @brief 获取系统状态标志1
  * 
@@ -105,7 +105,7 @@ void* GlobalModuleEHandle;
 uint32_t SystemStatusFlag1;
 bool SystemStatusFlag1Initialized;
 
-// 函数: uint32_t GetSystemStatusFlag2;
+ uint32_t GetSystemStatusFlag2;
 /**
  * @brief 获取系统状态标志2
  * 
@@ -115,7 +115,7 @@ bool SystemStatusFlag1Initialized;
 uint32_t SystemStatusFlag2;
 bool SystemStatusFlag2Initialized;
 
-// 函数: uint32_t GetSystemStatusFlag3;
+ uint32_t GetSystemStatusFlag3;
 /**
  * @brief 获取系统状态标志3
  * 
@@ -125,7 +125,7 @@ bool SystemStatusFlag2Initialized;
 uint32_t SystemStatusFlag3;
 bool SystemStatusFlag3Initialized;
 
-// 函数: uint32_t GetSystemStatusFlag4;
+ uint32_t GetSystemStatusFlag4;
 /**
  * @brief 获取系统状态标志4
  * 
@@ -135,7 +135,7 @@ bool SystemStatusFlag3Initialized;
 uint32_t SystemStatusFlag4;
 bool SystemStatusFlag4Initialized;
 
-// 函数: void DestroyThreadSyncObjects(void)
+ void DestroyThreadSyncObjects(void)
 /**
  * @brief 销毁线程同步对象
  * 
@@ -146,7 +146,7 @@ void DestroyThreadSyncObjects(void);
 void* ThreadSyncObjectHandle;
 void* ThreadSyncContext;
 
-// 函数: void CloseSystemHandle(void)
+ void CloseSystemHandle(void)
 /**
  * @brief 关闭系统句柄
  * 
@@ -155,7 +155,7 @@ void* ThreadSyncContext;
  */
 void CloseSystemHandle(void);
 
-// 函数: void CleanupThreadResources(void)
+ void CleanupThreadResources(void)
 /**
  * @brief 清理线程资源
  * 
@@ -169,7 +169,7 @@ void* CleanupContextData2;
 void* CleanupResourceHandle;
 void* CleanupContextData3;
 
-// 函数: void InitializeResourceManager(void)
+ void InitializeResourceManager(void)
 /**
  * @brief 初始化资源管理器
  * 
@@ -190,7 +190,7 @@ void* ResourceMediumBufferPool;
 // 资源缓冲池3：大型资源
 void* ResourceLargeBufferPool;
 
-// 函数: void InitializeTextureManager(void)
+ void InitializeTextureManager(void)
 /**
  * @brief 初始化纹理管理器
  * 
@@ -206,7 +206,7 @@ void* TextureLoaderHandle;
 void* TextureMemoryPool;
 void* TextureDescriptorTable;
 
-// 函数: void InitializeAudioSystem(void)
+ void InitializeAudioSystem(void)
 /**
  * @brief 初始化音频系统
  * 
@@ -220,7 +220,7 @@ void* AudioMixerHandle;
 void* AudioBufferPool;
 void* AudioStreamManager;
 
-// 函数: void InitializePhysicsEngine(void)
+ void InitializePhysicsEngine(void)
 /**
  * @brief 初始化物理引擎
  * 
@@ -234,7 +234,7 @@ void* CollisionSystemHandle;
 void* RigidBodyManager;
 void* PhysicsConstraintSolver;
 
-// 函数: void InitializeInputManager(void)
+ void InitializeInputManager(void)
 /**
  * @brief 初始化输入管理器
  * 
@@ -249,7 +249,7 @@ void* MouseHandler;
 void* ControllerManager;
 void* InputEventQueue;
 
-// 函数: void InitializeNetworkManager(void)
+ void InitializeNetworkManager(void)
 /**
  * @brief 初始化网络管理器
  * 
@@ -263,7 +263,7 @@ void* PacketHandler;
 void* NetworkProtocolManager;
 void* NetworkEventDispatcher;
 
-// 函数: void* InitializeRenderingSystem;
+ void* InitializeRenderingSystem;
 /**
  * @brief 初始化渲染系统
  * 
@@ -277,7 +277,7 @@ void* ShaderManager;
 void* RenderQueueManager;
 void* GraphicsMemoryPool;
 
-// 函数: void* InitializeAnimationSystem;
+ void* InitializeAnimationSystem;
 /**
  * @brief 初始化动画系统
  * 
@@ -291,7 +291,7 @@ void* AnimationClipManager;
 void* BoneTransformManager;
 void* AnimationStateController;
 
-// 函数: void* InitializeMemoryManager;
+ void* InitializeMemoryManager;
 /**
  * @brief 初始化内存管理器
  * 
@@ -305,7 +305,7 @@ void* MemoryPoolManager;
 void* GarbageCollector;
 void* MemoryDebugger;
 
-// 函数: void* InitializeScriptingSystem;
+ void* InitializeScriptingSystem;
 /**
  * @brief 初始化脚本系统
  * 
@@ -319,7 +319,7 @@ void* ScriptCompiler;
 void* ScriptVirtualMachine;
 void* ScriptDebugger;
 
-// 函数: void* InitializeFileSystem;
+ void* InitializeFileSystem;
 /**
  * @brief 初始化文件系统
  * 
@@ -525,7 +525,7 @@ undefined DAT_180bf7250;
 undefined DAT_180bf7258;
 undefined DAT_180bf7260;
 
-// 函数: void InitializeSecurityManager(void)
+ void InitializeSecurityManager(void)
 /**
  * @brief 初始化安全管理器
  * 
@@ -541,7 +541,7 @@ undefined SecurityValidationFlags;
 undefined SecurityAuditLog;
 undefined SecurityAccessControl;
 
-// 函数: void InitializeLoggingSystem(void)
+ void InitializeLoggingSystem(void)
 /**
  * @brief 初始化日志系统
  * 
@@ -555,7 +555,7 @@ undefined LogLevelConfig;
 undefined LogOutputBuffer;
 undefined LogRotationManager;
 
-// 函数: void InitializePerformanceMonitor(void)
+ void InitializePerformanceMonitor(void)
 /**
  * @brief 初始化性能监控器
  * 
@@ -790,7 +790,7 @@ undefined DAT_180bf90b8;
 undefined DAT_180bf90c0;
 undefined DAT_180bf90c8;
 
-// 函数: void InitializeLocalizationSystem(void)
+ void InitializeLocalizationSystem(void)
 /**
  * @brief 初始化本地化系统
  * 
@@ -803,7 +803,7 @@ void* LanguagePackManager;
 void* TextTranslationEngine;
 void* CulturalAdaptationManager;
 
-// 函数: void InitializeModdingSystem(void)
+ void InitializeModdingSystem(void)
 /**
  * @brief 初始化模组系统
  * 
@@ -839,7 +839,7 @@ undefined DAT_180bf91c0;
 undefined DAT_180bf91c8;
 undefined UNK_180a22b38;
 
-// 函数: void InitializeSystemResources;
+ void InitializeSystemResources;
 /**
  * @brief 初始化系统资源
  * 
@@ -853,7 +853,7 @@ undefined DAT_180bf9220;
 undefined DAT_180bf9228;
 undefined UNK_180a22b90;
 
-// 函数: void* CreateMemoryManager;
+ void* CreateMemoryManager;
 /**
  * @brief 创建内存管理器
  * 
@@ -864,7 +864,7 @@ undefined UNK_180a22b90;
  */
 void* CreateMemoryManager;
 
-// 函数: void SetupMemoryAllocator;
+ void SetupMemoryAllocator;
 /**
  * @brief 设置内存分配器
  * 
@@ -879,7 +879,7 @@ undefined DAT_180bf9288;
 undefined UNK_180a22b78;
 undefined DAT_180bf92d0;
 
-// 函数: void InitializeMemoryTracking;
+ void InitializeMemoryTracking;
 /**
  * @brief 初始化内存跟踪
  * 
@@ -894,7 +894,7 @@ undefined UNK_180a22b60;
 undefined DAT_180bf9330;
 undefined DAT_180bf9338;
 
-// 函数: void ConfigureMemoryProtection;
+ void ConfigureMemoryProtection;
 /**
  * @brief 配置内存保护
  * 
@@ -909,7 +909,7 @@ undefined DAT_180bf9390;
 undefined DAT_180bf9398;
 undefined DAT_180bf93a0;
 
-// 函数: void InitializeMemoryCache;
+ void InitializeMemoryCache;
 /**
  * @brief 初始化内存缓存
  * 
@@ -924,7 +924,7 @@ undefined DAT_180bf93f8;
 undefined DAT_180bf9400;
 undefined DAT_180bf9408;
 
-// 函数: void SetupMemoryPool;
+ void SetupMemoryPool;
 /**
  * @brief 设置内存池
  * 
@@ -938,7 +938,7 @@ undefined DAT_180bf9458;
 undefined DAT_180bf9460;
 undefined DAT_180bf9468;
 
-// 函数: void InitializeGarbageCollector;
+ void InitializeGarbageCollector;
 /**
  * @brief 初始化垃圾收集器
  * 
@@ -952,7 +952,7 @@ undefined DAT_180bf94b8;
 undefined DAT_180bf94c0;
 undefined DAT_180bf94c8;
 
-// 函数: void ConfigureMemoryStatistics;
+ void ConfigureMemoryStatistics;
 /**
  * @brief 配置内存统计
  * 
@@ -967,7 +967,7 @@ undefined DAT_180bf9520;
 undefined DAT_180bf9528;
 undefined UNK_180a22c48;
 
-// 函数: void InitializeMemoryDebugger;
+ void InitializeMemoryDebugger;
 /**
  * @brief 初始化内存调试器
  * 
@@ -981,7 +981,7 @@ undefined DAT_180bf9580;
 undefined DAT_180bf9588;
 undefined UNK_180a22c30;
 
-// 函数: void SetupMemoryAlignment;
+ void SetupMemoryAlignment;
 /**
  * @brief 设置内存对齐
  * 
@@ -995,7 +995,7 @@ undefined DAT_180bf95e0;
 undefined DAT_180bf95e8;
 undefined UNK_180a22c18;
 
-// 函数: void InitializeMemoryCompression;
+ void InitializeMemoryCompression;
 /**
  * @brief 初始化内存压缩
  * 
@@ -1009,7 +1009,7 @@ undefined DAT_180bf9640;
 undefined DAT_180bf9648;
 undefined UNK_180a22c00;
 
-// 函数: void ConfigureMemoryEncryption;
+ void ConfigureMemoryEncryption;
 /**
  * @brief 配置内存加密
  * 
@@ -1023,7 +1023,7 @@ undefined DAT_180bf96a0;
 undefined DAT_180bf96a8;
 undefined DAT_180a22cb0;
 
-// 函数: void InitializeMemoryVirtualization;
+ void InitializeMemoryVirtualization;
 /**
  * @brief 初始化内存虚拟化
  * 
@@ -1037,7 +1037,7 @@ undefined DAT_180bf9700;
 undefined DAT_180bf9708;
 undefined UNK_180a22c98;
 
-// 函数: void SetupMemoryPrefetch;
+ void SetupMemoryPrefetch;
 /**
  * @brief 设置内存预取
  * 
@@ -1051,7 +1051,7 @@ undefined DAT_180bf9760;
 undefined DAT_180bf9768;
 undefined UNK_180a22c70;
 
-// 函数: void InitializeMemoryBandwidth;
+ void InitializeMemoryBandwidth;
 /**
  * @brief 初始化内存带宽管理
  * 
@@ -1065,7 +1065,7 @@ undefined DAT_180bf97c0;
 undefined DAT_180bf97c8;
 undefined UNK_180a22c58;
 
-// 函数: void ConfigureMemoryLatency;
+ void ConfigureMemoryLatency;
 /**
  * @brief 配置内存延迟
  * 
@@ -1079,7 +1079,7 @@ undefined DAT_180bf9820;
 undefined DAT_180bf9828;
 undefined UNK_180a22d28;
 
-// 函数: void InitializeMemoryThroughput;
+ void InitializeMemoryThroughput;
 /**
  * @brief 初始化内存吞吐量
  * 
@@ -1088,7 +1088,7 @@ undefined UNK_180a22d28;
  */
 void InitializeMemoryThroughput;
 
-// 函数: void SetupMemoryReliability;
+ void SetupMemoryReliability;
 /**
  * @brief 设置内存可靠性
  * 
@@ -1103,7 +1103,7 @@ undefined DAT_180bf9888;
 undefined UNK_180a22d08;
 undefined DAT_180bf98d0;
 
-// 函数: void InitializeMemorySecurity;
+ void InitializeMemorySecurity;
 /**
  * @brief 初始化内存安全
  * 
@@ -1118,7 +1118,7 @@ undefined UNK_180a22ce8;
 undefined DAT_180bf9930;
 undefined DAT_180bf9938;
 
-// 函数: void ConfigureMemoryIsolation;
+ void ConfigureMemoryIsolation;
 /**
  * @brief 配置内存隔离
  * 
@@ -1133,7 +1133,7 @@ undefined DAT_180bf9990;
 undefined DAT_180bf9998;
 undefined DAT_180bf99a0;
 
-// 函数: void InitializeMemoryMapping;
+ void InitializeMemoryMapping;
 /**
  * @brief 初始化内存映射
  * 
@@ -1148,7 +1148,7 @@ undefined DAT_180bf99f8;
 undefined DAT_180bf9a00;
 undefined DAT_180bf9a08;
 
-// 函数: void SetupMemoryPaging;
+ void SetupMemoryPaging;
 /**
  * @brief 设置内存分页
  * 
@@ -1162,7 +1162,7 @@ undefined DAT_180bf9a58;
 undefined DAT_180bf9a60;
 undefined DAT_180bf9a68;
 
-// 函数: void ValidateMemoryIntegrity;
+ void ValidateMemoryIntegrity;
 /**
  * @brief 验证内存完整性
  * 
@@ -1176,7 +1176,7 @@ undefined g_memoryValidationStatus;
 undefined g_memoryValidationConfig;
 undefined g_memoryValidationHandle;
 
-// 函数: void ProcessMemoryAllocation;
+ void ProcessMemoryAllocation;
 /**
  * @brief 处理内存分配
  * 
@@ -1191,7 +1191,7 @@ undefined g_memoryAllocationConfig;
 undefined g_memoryAllocationHandle;
 undefined g_memoryAllocationData;
 
-// 函数: void InitializeMemoryPool;
+ void InitializeMemoryPool;
 /**
  * @brief 初始化内存池
  * 
@@ -1205,7 +1205,7 @@ undefined g_memoryPoolHandle;
 undefined g_memoryPoolData;
 undefined g_memoryPoolContext;
 
-// 函数: void CleanupMemoryPool;
+ void CleanupMemoryPool;
 /**
  * @brief 清理内存池
  * 
@@ -1219,7 +1219,7 @@ undefined g_cleanupMemoryHandle;
 undefined g_cleanupMemoryData;
 undefined g_cleanupMemoryContext;
 
-// 函数: void ResizeMemoryPool;
+ void ResizeMemoryPool;
 /**
  * @brief 调整内存池大小
  * 
@@ -1233,7 +1233,7 @@ undefined g_resizeMemoryHandle;
 undefined g_resizeMemoryData;
 undefined g_resizeMemoryContext;
 
-// 函数: void OptimizeMemoryUsage;
+ void OptimizeMemoryUsage;
 /**
  * @brief 优化内存使用
  * 
@@ -1247,7 +1247,7 @@ undefined g_optimizeMemoryHandle;
 undefined g_optimizeMemoryData;
 undefined g_optimizeMemoryContext;
 
-// 函数: void CheckMemoryLeaks;
+ void CheckMemoryLeaks;
 /**
  * @brief 检查内存泄漏
  * 
@@ -1261,7 +1261,7 @@ undefined g_memoryLeakHandle;
 undefined g_memoryLeakData;
 undefined g_memoryLeakContext;
 
-// 函数: void TrackMemoryUsage;
+ void TrackMemoryUsage;
 /**
  * @brief 跟踪内存使用
  * 
@@ -1275,7 +1275,7 @@ undefined g_memoryTrackingHandle;
 undefined g_memoryTrackingData;
 undefined g_memoryTrackingContext;
 
-// 函数: void LogMemoryStatistics;
+ void LogMemoryStatistics;
 /**
  * @brief 记录内存统计信息
  * 
@@ -1289,7 +1289,7 @@ undefined g_memoryStatsHandle;
 undefined g_memoryStatsData;
 undefined g_memoryStatsContext;
 
-// 函数: void GarbageCollectMemory;
+ void GarbageCollectMemory;
 /**
  * @brief 内存垃圾回收
  * 
@@ -1303,7 +1303,7 @@ undefined g_garbageHandle;
 undefined g_garbageData;
 undefined g_garbageContext;
 
-// 函数: void CompactMemory;
+ void CompactMemory;
 /**
  * @brief 压缩内存
  * 
@@ -1312,7 +1312,7 @@ undefined g_garbageContext;
  */
 void CompactMemory;
 
-// 函数: void AllocateMemoryBlock;
+ void AllocateMemoryBlock;
 /**
  * @brief 分配内存块
  * 
@@ -1327,7 +1327,7 @@ undefined g_memoryBlockData;
 undefined g_memoryBlockContext;
 undefined g_memoryBlockTable;
 
-// 函数: void FreeMemoryBlock;
+ void FreeMemoryBlock;
 /**
  * @brief 释放内存块
  * 
@@ -1342,7 +1342,7 @@ undefined g_freeMemoryContext;
 undefined g_freeMemoryTable;
 undefined g_freeMemoryData;
 
-// 函数: void ReallocateMemoryBlock;
+ void ReallocateMemoryBlock;
 /**
  * @brief 重新分配内存块
  * 
@@ -1357,7 +1357,7 @@ undefined g_reallocHandle;
 undefined g_reallocData;
 undefined g_reallocBuffer;
 
-// 函数: void CopyMemoryBlock;
+ void CopyMemoryBlock;
 /**
  * @brief 复制内存块
  * 
@@ -1372,7 +1372,7 @@ undefined g_copyMemoryStatus;
 undefined g_copyMemoryData;
 undefined g_copyMemoryBuffer;
 
-// 函数: void CompareMemoryBlocks;
+ void CompareMemoryBlocks;
 /**
  * @brief 比较内存块
  * 
@@ -1386,7 +1386,7 @@ undefined g_compareMemoryStatus;
 undefined g_compareMemoryData;
 undefined g_compareMemoryBuffer;
 
-// 函数: void SetMemoryProtection;
+ void SetMemoryProtection;
 /**
  * @brief 设置内存保护
  * 
@@ -1400,7 +1400,7 @@ undefined g_memoryProtectStatus;
 undefined g_memoryProtectData;
 undefined g_memoryProtectBuffer;
 
-// 函数: void GetMemoryProtection;
+ void GetMemoryProtection;
 /**
  * @brief 获取内存保护信息
  * 
@@ -1415,7 +1415,7 @@ undefined g_getProtectData;
 undefined g_getProtectBuffer;
 undefined g_getProtectInfo;
 
-// 函数: void FlushMemoryCache;
+ void FlushMemoryCache;
 /**
  * @brief 刷新内存缓存
  * 
@@ -1429,7 +1429,7 @@ undefined g_flushCacheHandle;
 undefined g_flushCacheData;
 undefined g_flushCacheContext;
 
-// 函数: void InvalidateMemoryCache;
+ void InvalidateMemoryCache;
 /**
  * @brief 使内存缓存失效
  * 
@@ -1443,7 +1443,7 @@ undefined g_invalidateCacheHandle;
 undefined g_invalidateCacheData;
 undefined InvalidateCacheTable;
 
-// 函数: void InitializeMemorySegmentation;
+ void InitializeMemorySegmentation;
 /**
  * @brief 初始化内存分段
  * 
@@ -1457,7 +1457,7 @@ undefined DAT_180bfa240;
 undefined DAT_180bfa248;
 undefined DAT_180a22fa8;
 
-// 函数: void ConfigureMemoryFragmentation;
+ void ConfigureMemoryFragmentation;
 /**
  * @brief 配置内存碎片化
  * 
@@ -1471,7 +1471,7 @@ undefined DAT_180bfa2a0;
 undefined DAT_180bfa2a8;
 undefined UNK_180a23068;
 
-// 函数: void InitializeMemoryBalancing;
+ void InitializeMemoryBalancing;
 /**
  * @brief 初始化内存平衡
  * 
@@ -1480,7 +1480,7 @@ undefined UNK_180a23068;
  */
 void InitializeMemoryBalancing;
 
-// 函数: void SetupMemoryOptimization;
+ void SetupMemoryOptimization;
 /**
  * @brief 设置内存优化
  * 
@@ -1489,7 +1489,7 @@ void InitializeMemoryBalancing;
  */
 void SetupMemoryOptimization;
 
-// 函数: void InitializeMemoryMonitoring;
+ void InitializeMemoryMonitoring;
 /**
  * @brief 初始化内存监控
  * 
@@ -1498,7 +1498,7 @@ void SetupMemoryOptimization;
  */
 void InitializeMemoryMonitoring;
 
-// 函数: void ConfigureMemoryLogging;
+ void ConfigureMemoryLogging;
 /**
  * @brief 配置内存日志
  * 
@@ -1507,7 +1507,7 @@ void InitializeMemoryMonitoring;
  */
 void ConfigureMemoryLogging;
 
-// 函数: void InitializeMemoryProfiling;
+ void InitializeMemoryProfiling;
 /**
  * @brief 初始化内存性能分析
  * 
@@ -1614,7 +1614,7 @@ undefined UNK_180942640;
 undefined UNK_180a24da8;
 undefined UNK_180a24dc0;
 
-// 函数: void SetupMemoryQuality;
+ void SetupMemoryQuality;
 /**
  * @brief 设置内存质量管理
  * 
@@ -1632,7 +1632,7 @@ undefined DAT_180bfaec8;
 undefined DAT_180bfaed0;
 undefined DAT_180bfaed8;
 
-// 函数: void InitializeMemoryValidation;
+ void InitializeMemoryValidation;
 /**
  * @brief 初始化内存验证
  * 
@@ -1647,7 +1647,7 @@ undefined DAT_180c92058;
 undefined DAT_180c92060;
 undefined DAT_180c92068;
 
-// 函数: void ConfigureMemoryRecovery;
+ void ConfigureMemoryRecovery;
 /**
  * @brief 配置内存恢复
  * 
@@ -1660,7 +1660,7 @@ undefined DAT_180bfaef8;
 undefined DAT_180bfaf00;
 undefined DAT_180bfaf08;
 
-// 函数: void SetupMemoryAuditing;
+ void SetupMemoryAuditing;
 /**
  * @brief 设置内存审计
  * 
@@ -1675,7 +1675,7 @@ undefined DAT_180bfb320;
 undefined DAT_180bfb328;
 undefined UNK_180a27a6c;
 
-// 函数: void InitializeMemoryCompliance;
+ void InitializeMemoryCompliance;
 /**
  * @brief 初始化内存合规性
  * 
@@ -1689,7 +1689,7 @@ undefined DAT_180bfb740;
 undefined DAT_180bfb748;
 undefined UNK_180a27a70;
 
-// 函数: void ConfigureMemoryDiagnostics;
+ void ConfigureMemoryDiagnostics;
 /**
  * @brief 配置内存诊断
  * 
@@ -1700,7 +1700,7 @@ void ConfigureMemoryDiagnostics;
 undefined DAT_180c9246c;
 undefined UNK_180a2ac10;
 
-// 函数: void InitializeSystemConfiguration(void)
+ void InitializeSystemConfiguration(void)
 /**
  * @brief 初始化系统配置
  * 
@@ -1710,7 +1710,7 @@ undefined UNK_180a2ac10;
 void InitializeSystemConfiguration(void);
 undefined DAT_180c92490;
 
-// 函数: void SetupSystemEnvironment(void)
+ void SetupSystemEnvironment(void)
 /**
  * @brief 设置系统环境
  * 
@@ -1720,7 +1720,7 @@ undefined DAT_180c92490;
 void SetupSystemEnvironment(void);
 undefined DAT_180c92480;
 
-// 函数: void ConfigureSystemParameters(void)
+ void ConfigureSystemParameters(void)
 /**
  * @brief 配置系统参数
  * 
@@ -1729,7 +1729,7 @@ undefined DAT_180c92480;
  */
 void ConfigureSystemParameters(void);
 
-// 函数: void InitializeSystemResources(void)
+ void InitializeSystemResources(void)
 /**
  * @brief 初始化系统资源
  * 
@@ -1738,7 +1738,7 @@ void ConfigureSystemParameters(void);
  */
 void InitializeSystemResources(void);
 
-// 函数: void InitializeSystemMemoryManager(void)
+ void InitializeSystemMemoryManager(void)
 /**
  * @brief 初始化系统内存管理器
  * 
@@ -1759,7 +1759,7 @@ undefined DAT_180bf6050;
 undefined DAT_180bf6058;
 undefined DAT_180bf6060;
 
-// 函数: void InitializeSystemThreadManager(void)
+ void InitializeSystemThreadManager(void)
 /**
  * @brief 初始化系统线程管理器
  * 
@@ -1772,7 +1772,7 @@ undefined DAT_180bf64a0;
 undefined DAT_180bf64a8;
 undefined DAT_180bf64b0;
 
-// 函数: undefined CleanupMemoryBlock;
+ undefined CleanupMemoryBlock;
 /**
  * @brief 清理内存块
  * 
@@ -1788,7 +1788,7 @@ undefined DAT_180c96310;
 undefined DAT_180c96320;
 undefined DAT_180c96328;
 
-// 函数: undefined InitializeSecurityContext;
+ undefined InitializeSecurityContext;
 /**
  * @brief 初始化安全上下文
  * 
@@ -1801,7 +1801,7 @@ undefined DAT_180bf6560;
 undefined DAT_180bf6568;
 undefined DAT_180bf6570;
 
-// 函数: void ValidateSecurityToken;
+ void ValidateSecurityToken;
 /**
  * @brief 验证安全令牌
  * 
@@ -1812,7 +1812,7 @@ void ValidateSecurityToken;
 undefined DAT_180c95ecc;
 undefined UNK_180a33fb0;
 
-// 函数: void ProcessAuthenticationRequest;
+ void ProcessAuthenticationRequest;
 /**
  * @brief 处理认证请求
  * 
@@ -1825,7 +1825,7 @@ undefined UNK_180a3c028;
 undefined DAT_180c96218;
 undefined UNK_180943130;
 
-// 函数: void EncryptDataBuffer;
+ void EncryptDataBuffer;
 /**
  * @brief 加密数据缓冲区
  * 
@@ -1834,7 +1834,7 @@ undefined UNK_180943130;
  */
 void EncryptDataBuffer;
 
-// 函数: void DecryptDataBuffer;
+ void DecryptDataBuffer;
 /**
  * @brief 解密数据缓冲区
  * 
@@ -1845,7 +1845,7 @@ void DecryptDataBuffer;
 undefined DAT_180c96790;
 undefined DAT_180c96798;
 
-// 函数: void HashDataBuffer;
+ void HashDataBuffer;
 /**
  * @brief 哈希数据缓冲区
  * 
@@ -1861,7 +1861,7 @@ undefined DAT_180c967d0;
 undefined UNK_180a3def0;
 undefined UNK_18098bcb0;
 
-// 函数: void GenerateSecureRandom;
+ void GenerateSecureRandom;
 /**
  * @brief 生成安全随机数
  * 
@@ -1880,7 +1880,7 @@ undefined DAT_180c967e8;
 undefined DAT_180c967f0;
 undefined DAT_180c967f8;
 
-// 函数: void VerifyDataIntegrity;
+ void VerifyDataIntegrity;
 /**
  * @brief 验证数据完整性
  * 
@@ -1969,7 +1969,7 @@ undefined UNK_1809fc7b8;
 undefined DAT_1809fc7ec;
 undefined DAT_180bf5240;
 
-// 函数: void InitializeSystemLogging;
+ void InitializeSystemLogging;
 /**
  * @brief 初始化系统日志
  * 
@@ -1988,7 +1988,7 @@ undefined UNK_180a00030;
 undefined UNK_180a00100;
 undefined UNK_180a00168;
 
-// 函数: void ConfigureLogOutput;
+ void ConfigureLogOutput;
 /**
  * @brief 配置日志输出
  * 
@@ -2000,7 +2000,7 @@ undefined UNK_180a009a8;
 undefined UNK_180a00a18;
 undefined UNK_180a00ae8;
 
-// 函数: void ProcessLogMessage;
+ void ProcessLogMessage;
 /**
  * @brief 处理日志消息
  * 
@@ -2034,7 +2034,7 @@ undefined UNK_180a02718;
 undefined UNK_180a02728;
 undefined UNK_180a028c8;
 
-// 函数: void FlushLogBuffer;
+ void FlushLogBuffer;
 /**
  * @brief 刷新日志缓冲区
  * 
@@ -2050,7 +2050,7 @@ undefined DAT_180d49258;
 undefined DAT_180d4925c;
 undefined UNK_180a02c10;
 
-// 函数: void SetLogLevel;
+ void SetLogLevel;
 /**
  * @brief 设置日志级别
  * 
@@ -2145,7 +2145,7 @@ undefined UNK_180a07804;
 undefined UNK_18098d6b0;
 undefined UNK_18015c090;
 
-// 函数: void InitializeMemoryManager;
+ void InitializeMemoryManager;
 /**
  * @brief 初始化内存管理器
  * 
@@ -2168,7 +2168,7 @@ undefined UNK_1801bc6b0;
 undefined UNK_180a0b680;
 undefined UNK_180a0b690;
 
-// 函数: void AllocateMemoryBlock;
+ void AllocateMemoryBlock;
 /**
  * @brief 分配内存块
  * 
@@ -2233,7 +2233,7 @@ undefined UNK_180a18de8;
 undefined UNK_180a18df8;
 undefined UNK_180a18e20;
 
-// 函数: void FreeMemoryBlock;
+ void FreeMemoryBlock;
 /**
  * @brief 释放内存块
  * 
@@ -2249,7 +2249,7 @@ undefined UNK_180a19e38;
 undefined UNK_1803048b0;
 undefined UNK_180a19e88;
 
-// 函数: void ReallocateMemoryBlock;
+ void ReallocateMemoryBlock;
 /**
  * @brief 重新分配内存块
  * 
@@ -2259,7 +2259,7 @@ undefined UNK_180a19e88;
 void ReallocateMemoryBlock;
 undefined DAT_180d497d0;
 
-// 函数: void GetMemoryBlockSize;
+ void GetMemoryBlockSize;
 /**
  * @brief 获取内存块大小
  * 
@@ -2282,7 +2282,7 @@ undefined UNK_180a1b150;
 undefined UNK_180a1b118;
 undefined UNK_18033cd70;
 
-// 函数: void InitializeThreadManager;
+ void InitializeThreadManager;
 /**
  * @brief 初始化线程管理器
  * 
@@ -2300,7 +2300,7 @@ undefined DAT_180d49c08;
 undefined UNK_18045f200;
 undefined UNK_18045f210;
 
-// 函数: void CreateWorkerThread;
+ void CreateWorkerThread;
 /**
  * @brief 创建工作线程
  * 
@@ -2362,10 +2362,10 @@ undefined DAT_180bfbb60;
 undefined DAT_180bfbb70;
 undefined DAT_180bfbb80;
 
-// 函数: undefined FUN_180942a40;
+ undefined FUN_180942a40;
 undefined FUN_180942a40;
 
-// 函数: undefined FUN_180942aa0;
+ undefined FUN_180942aa0;
 undefined FUN_180942aa0;
 undefined DAT_180a2de40;
 undefined1 DAT_180d49e30;
@@ -2375,7 +2375,7 @@ undefined UNK_180a2e040;
 undefined UNK_180a2e070;
 undefined UNK_180a2e088;
 
-// 函数: undefined FUN_180943020;
+ undefined FUN_180943020;
 undefined FUN_180943020;
 undefined UNK_180a30ce8;
 undefined UNK_180a30d28;
@@ -2390,7 +2390,7 @@ undefined DAT_180d49ec4;
 undefined DAT_180c9642c;
 undefined DAT_180c96430;
 
-// 函数: undefined FUN_180943040;
+ undefined FUN_180943040;
 undefined FUN_180943040;
 undefined DAT_180c963e8;
 undefined DAT_180d49f60;
@@ -2665,11 +2665,11 @@ undefined UNK_180a33ca8;
 undefined UNK_18053eee0;
 undefined UNK_18053efd0;
 
-// 函数: undefined FUN_180943090;
+ undefined FUN_180943090;
 undefined FUN_180943090;
 undefined DAT_180d49ff8;
 
-// 函数: undefined FUN_1809430b0;
+ undefined FUN_1809430b0;
 undefined FUN_1809430b0;
 undefined UNK_180a38958;
 undefined UNK_180a38978;
@@ -3070,7 +3070,7 @@ undefined DAT_180c92510;
 char DAT_180c8aa68;
 undefined UNK_180a3e5e8;
 
-// 函数: undefined FUN_1809430e0;
+ undefined FUN_1809430e0;
 undefined FUN_1809430e0;
 undefined1 DAT_180bf66d8;
 undefined DAT_180c96858;
@@ -3088,7 +3088,7 @@ undefined UNK_180a3d970;
 undefined UNK_180a3db60;
 undefined DAT_180bfbd80;
 
-// 函数: void ProcessGameDataObjects(longlong gameContext, longlong systemContext)
+ void ProcessGameDataObjects(longlong gameContext, longlong systemContext)
 /**
  * @brief 处理游戏数据对象
  * @param gameContext 游戏上下文指针
@@ -3148,7 +3148,7 @@ void ProcessGameDataObjects(longlong gameContext, longlong systemContext)
 
 
 
-// 函数: void ValidateSystemObjects(void)
+ void ValidateSystemObjects(void)
 /**
  * @brief 验证系统对象
  * 
@@ -3203,7 +3203,7 @@ void ValidateSystemObjects(void)
 
 
 
-// 函数: void TerminateSystemProcess(void)
+ void TerminateSystemProcess(void)
 /**
  * @brief 终止系统进程
  * 
@@ -3221,7 +3221,7 @@ void TerminateSystemProcess(void)
 
 
 
-// 函数: void CheckSystemFlags(void)
+ void CheckSystemFlags(void)
 /**
  * @brief 检查系统标志
  * 
@@ -3338,7 +3338,7 @@ undefined8 ValidateObjectRegistration(longlong objectContext)
 
 
 
-// 函数: ulonglong ProcessSystemRequest(longlong param_1,longlong param_2)
+ ulonglong ProcessSystemRequest(longlong param_1,longlong param_2)
 /**
  * @brief 处理系统请求
  * 
@@ -3440,7 +3440,7 @@ ulonglong ProcessSystemRequest(longlong param_1,longlong param_2)
 
 
 
-// 函数: undefined8 ValidateSystemAccess(longlong param_1,longlong param_2)
+ undefined8 ValidateSystemAccess(longlong param_1,longlong param_2)
 /**
  * @brief 验证系统访问权限
  * 
@@ -4151,7 +4151,7 @@ undefined8 InitializeObjectHandleD(void)
 
 
 
-// 函数: void CleanupSystemResources(void)
+ void CleanupSystemResources(void)
 /**
  * @brief 清理系统资源
  * 
@@ -4332,7 +4332,7 @@ uint64_t GetSystemConstantValue(void)
 
 
 
-// 函数: undefined8 ValidateResourceHandle(longlong resourceHandle)
+ undefined8 ValidateResourceHandle(longlong resourceHandle)
 /**
  * @brief 验证资源句柄
  * 
@@ -4397,7 +4397,7 @@ uint32_t ValidateRegisterPointer(void)
 
 
 
-// 函数: void TriggerSystemShutdown(void)
+ void TriggerSystemShutdown(void)
 /**
  * @brief 触发系统关闭
  * 
@@ -4414,7 +4414,7 @@ void TriggerSystemShutdown(void)
 
 
 
-// 函数: void ReturnEmptyFunction(void)
+ void ReturnEmptyFunction(void)
 /**
  * @brief 空返回函数
  * 
@@ -4429,7 +4429,7 @@ void ReturnEmptyFunction(void)
 
 
 
-// 函数: uint64_t ProcessResourceHandle(longlong resourceHandle)
+ uint64_t ProcessResourceHandle(longlong resourceHandle)
 /**
  * @brief 处理资源句柄
  * 
@@ -4464,7 +4464,7 @@ uint64_t ProcessResourceHandle(longlong resourceHandle)
 
 
 
-// 函数: uint32_t ProcessSystemResource(void)
+ uint32_t ProcessSystemResource(void)
 /**
  * @brief 处理系统资源
  * 
@@ -4495,7 +4495,7 @@ uint32_t ProcessSystemResource(void)
 
 
 
-// 函数: void ExecuteSystemTermination(void)
+ void ExecuteSystemTermination(void)
 /**
  * @brief 执行系统终止
  * 
@@ -4512,7 +4512,7 @@ void ExecuteSystemTermination(void)
 
 
 
-// 函数: void ReturnNoOperation(void)
+ void ReturnNoOperation(void)
 /**
  * @brief 空操作返回函数
  * 
@@ -4527,7 +4527,7 @@ void ReturnNoOperation(void)
 
 
 
-// 函数: uint64_t HandleResourceOperation(longlong resourceHandle)
+ uint64_t HandleResourceOperation(longlong resourceHandle)
 /**
  * @brief 处理资源操作
  * 
@@ -4561,7 +4561,7 @@ uint64_t HandleResourceOperation(longlong resourceHandle)
 
 
 
-// 函数: uint32_t ProcessResourceTask(void)
+ uint32_t ProcessResourceTask(void)
 /**
  * @brief 处理资源任务
  * 
@@ -4590,7 +4590,7 @@ uint32_t ProcessResourceTask(void)
 
 
 
-// 函数: void TriggerSystemTermination(void)
+ void TriggerSystemTermination(void)
 /**
  * @brief 触发系统终止
  * 
@@ -4607,7 +4607,7 @@ void TriggerSystemTermination(void)
 
 
 
-// 函数: void ReturnEmptyFunction(void)
+ void ReturnEmptyFunction(void)
 /**
  * @brief 空函数返回
  * 
@@ -4669,7 +4669,7 @@ undefined4 FUN_180890d83(void)
 
 
 
-// 函数: void ExecuteSystemTermination(void)
+ void ExecuteSystemTermination(void)
 /**
  * @brief 执行系统终止
  * 
@@ -4686,7 +4686,7 @@ void ExecuteSystemTermination(void)
 
 
 
-// 函数: void ReturnNoOperation(void)
+ void ReturnNoOperation(void)
 /**
  * @brief 无操作返回
  * 
@@ -4748,7 +4748,7 @@ undefined4 FUN_180890e33(void)
 
 
 
-// 函数: void FatalErrorHandler(void)
+ void FatalErrorHandler(void)
 /**
  * @brief 致命错误处理器
  * 
@@ -4765,7 +4765,7 @@ void FatalErrorHandler(void)
 
 
 
-// 函数: void SystemCleanupHandler(void)
+ void SystemCleanupHandler(void)
 /**
  * @brief 系统清理处理器
  * 
@@ -4827,7 +4827,7 @@ undefined4 FUN_180890f03(void)
 
 
 
-// 函数: void ExecuteNonReturningFunction180862e00(void)
+ void ExecuteNonReturningFunction180862e00(void)
 /**
  * @brief 执行不返回的函数
  * 
@@ -4844,7 +4844,7 @@ void ExecuteNonReturningFunction180862e00(void)
 
 
 
-// 函数: void EmptyFunction(void)
+ void EmptyFunction(void)
 /**
  * @brief 空函数
  * 
@@ -4899,7 +4899,7 @@ undefined4 FUN_180890fae(void)
 
 
 
-// 函数: void ExecuteNonReturningFunctionAtLocation180d49f90(void)
+ void ExecuteNonReturningFunctionAtLocation180d49f90(void)
 /**
  * @brief 执行位于0x180d49f90的不返回函数
  * 
@@ -4916,7 +4916,7 @@ void ExecuteNonReturningFunctionAtLocation180d49f90(void)
 
 
 
-// 函数: void ExecuteNonReturningFunctionAtLocation180d49fe0(void)
+ void ExecuteNonReturningFunctionAtLocation180d49fe0(void)
 /**
  * @brief 执行位于0x180d49fe0的不返回函数
  * 
@@ -4933,7 +4933,7 @@ void ExecuteNonReturningFunctionAtLocation180d49fe0(void)
 
 
 
-// 函数: void FUN_18089107f(void)
+ void FUN_18089107f(void)
 void FUN_18089107f(void)
 
 {
@@ -5004,7 +5004,7 @@ void InitializeSystemResources(void)
 
 
 
-// 函数: void FUN_180891185(void)
+ void FUN_180891185(void)
 void FUN_180891185(void)
 
 {
@@ -5015,7 +5015,7 @@ void FUN_180891185(void)
 
 
 
-// 函数: void FUN_1808911a2(void)
+ void FUN_1808911a2(void)
 void FUN_1808911a2(void)
 
 {
@@ -5025,7 +5025,7 @@ void FUN_1808911a2(void)
 
 
 
-// 函数: void FUN_1808911b0(longlong param_1,undefined8 param_2)
+ void FUN_1808911b0(longlong param_1,undefined8 param_2)
 void FUN_1808911b0(longlong param_1,undefined8 param_2)
 
 {
@@ -5111,7 +5111,7 @@ undefined8 FUN_180891210(longlong param_1)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-// 函数: int InitializeSystemManager(longlong managerHandle)
+ int InitializeSystemManager(longlong managerHandle)
 /**
  * @brief 初始化系统管理器
  * 
@@ -5152,7 +5152,7 @@ int InitializeSystemManager(longlong managerHandle)
 
 
 
-// 函数: void FUN_180891360(longlong param_1,undefined8 param_2)
+ void FUN_180891360(longlong param_1,undefined8 param_2)
 void FUN_180891360(longlong param_1,undefined8 param_2)
 
 {
@@ -5269,7 +5269,7 @@ undefined8 FUN_1808914ac(void)
 
 
 
-// 函数: void FUN_1808914e0(longlong param_1,longlong param_2)
+ void FUN_1808914e0(longlong param_1,longlong param_2)
 void FUN_1808914e0(longlong param_1,longlong param_2)
 
 {
@@ -5296,7 +5296,7 @@ void FUN_1808914e0(longlong param_1,longlong param_2)
 
 
 
-// 函数: void FUN_1808915d0(longlong param_1,longlong param_2)
+ void FUN_1808915d0(longlong param_1,longlong param_2)
 void FUN_1808915d0(longlong param_1,longlong param_2)
 
 {
@@ -5342,7 +5342,7 @@ undefined8 FUN_180891650(longlong param_1,longlong param_2)
 
 
 
-// 函数: void FUN_1808916f0(longlong param_1,longlong param_2)
+ void FUN_1808916f0(longlong param_1,longlong param_2)
 void FUN_1808916f0(longlong param_1,longlong param_2)
 
 {
@@ -5416,7 +5416,7 @@ undefined8 FUN_180891820(longlong param_1)
 
 
 
-// 函数: void FUN_180891890(longlong param_1,longlong param_2)
+ void FUN_180891890(longlong param_1,longlong param_2)
 void FUN_180891890(longlong param_1,longlong param_2)
 
 {
@@ -5439,7 +5439,7 @@ LAB_1808918d2:
 
 
 
-// 函数: void FUN_180891900(longlong param_1,longlong param_2)
+ void FUN_180891900(longlong param_1,longlong param_2)
 void FUN_180891900(longlong param_1,longlong param_2)
 
 {
@@ -5463,7 +5463,7 @@ void FUN_180891900(longlong param_1,longlong param_2)
 
 
 
-// 函数: void FUN_180891970(longlong param_1,longlong param_2)
+ void FUN_180891970(longlong param_1,longlong param_2)
 void FUN_180891970(longlong param_1,longlong param_2)
 
 {
@@ -5482,7 +5482,7 @@ void FUN_180891970(longlong param_1,longlong param_2)
 
 
 
-// 函数: void FUN_1808919c0(longlong param_1,longlong param_2)
+ void FUN_1808919c0(longlong param_1,longlong param_2)
 void FUN_1808919c0(longlong param_1,longlong param_2)
 
 {
@@ -5502,7 +5502,7 @@ void FUN_1808919c0(longlong param_1,longlong param_2)
 
 
 
-// 函数: void FUN_180891a10(longlong param_1,longlong param_2)
+ void FUN_180891a10(longlong param_1,longlong param_2)
 void FUN_180891a10(longlong param_1,longlong param_2)
 
 {
@@ -5550,7 +5550,7 @@ undefined8 FUN_180891a80(longlong param_1,longlong param_2)
 
 
 
-// 函数: void FUN_180891af0(longlong param_1,longlong param_2)
+ void FUN_180891af0(longlong param_1,longlong param_2)
 void FUN_180891af0(longlong param_1,longlong param_2)
 
 {
@@ -5639,7 +5639,7 @@ undefined8 FUN_180891c40(longlong param_1,longlong param_2)
 
 
 
-// 函数: void FUN_180891ca0(longlong param_1,longlong param_2)
+ void FUN_180891ca0(longlong param_1,longlong param_2)
 void FUN_180891ca0(longlong param_1,longlong param_2)
 
 {
@@ -5658,7 +5658,7 @@ void FUN_180891ca0(longlong param_1,longlong param_2)
 
 
 
-// 函数: void FUN_180891cf0(longlong param_1,longlong param_2)
+ void FUN_180891cf0(longlong param_1,longlong param_2)
 void FUN_180891cf0(longlong param_1,longlong param_2)
 
 {
@@ -5721,7 +5721,7 @@ undefined8 FUN_180891de0(longlong param_1,longlong param_2)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180891e40(longlong param_1,longlong param_2)
+ void FUN_180891e40(longlong param_1,longlong param_2)
 void FUN_180891e40(longlong param_1,longlong param_2)
 
 {
@@ -5789,7 +5789,7 @@ LAB_180891fc0:
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180891e7d(undefined8 param_1,undefined8 param_2)
+ void FUN_180891e7d(undefined8 param_1,undefined8 param_2)
 void FUN_180891e7d(undefined8 param_1,undefined8 param_2)
 
 {
@@ -5861,7 +5861,7 @@ LAB_180891fc0:
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180891ea1(void)
+ void FUN_180891ea1(void)
 void FUN_180891ea1(void)
 
 {
@@ -5927,7 +5927,7 @@ LAB_180891fc0:
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180891ec9(int param_1,int param_2)
+ void FUN_180891ec9(int param_1,int param_2)
 void FUN_180891ec9(int param_1,int param_2)
 
 {
@@ -5979,7 +5979,7 @@ LAB_180891fc0:
 
 
 
-// 函数: void FUN_180891fd4(void)
+ void FUN_180891fd4(void)
 void FUN_180891fd4(void)
 
 {
@@ -5989,7 +5989,7 @@ void FUN_180891fd4(void)
 
 
 
-// 函数: void FUN_180891fd9(void)
+ void FUN_180891fd9(void)
 void FUN_180891fd9(void)
 
 {
@@ -5999,7 +5999,7 @@ void FUN_180891fd9(void)
 
 
 
-// 函数: void FUN_180891fde(void)
+ void FUN_180891fde(void)
 void FUN_180891fde(void)
 
 {
@@ -6009,7 +6009,7 @@ void FUN_180891fde(void)
 
 
 
-// 函数: void FUN_180891ff0(longlong param_1,longlong param_2)
+ void FUN_180891ff0(longlong param_1,longlong param_2)
 void FUN_180891ff0(longlong param_1,longlong param_2)
 
 {
@@ -6043,7 +6043,7 @@ void FUN_180891ff0(longlong param_1,longlong param_2)
 
 
 
-// 函数: void FUN_180892011(void)
+ void FUN_180892011(void)
 void FUN_180892011(void)
 
 {
@@ -6076,7 +6076,7 @@ void FUN_180892011(void)
 
 
 
-// 函数: void FUN_18089207b(void)
+ void FUN_18089207b(void)
 void FUN_18089207b(void)
 
 {
@@ -6086,7 +6086,7 @@ void FUN_18089207b(void)
 
 
 
-// 函数: void FUN_180892090(longlong param_1,longlong param_2)
+ void FUN_180892090(longlong param_1,longlong param_2)
 void FUN_180892090(longlong param_1,longlong param_2)
 
 {
@@ -6107,7 +6107,7 @@ void FUN_180892090(longlong param_1,longlong param_2)
 
 
 
-// 函数: void FUN_1808920e0(longlong param_1,longlong param_2)
+ void FUN_1808920e0(longlong param_1,longlong param_2)
 void FUN_1808920e0(longlong param_1,longlong param_2)
 
 {
@@ -6125,7 +6125,7 @@ void FUN_1808920e0(longlong param_1,longlong param_2)
 
 
 
-// 函数: void FUN_180892120(longlong param_1,longlong param_2)
+ void FUN_180892120(longlong param_1,longlong param_2)
 void FUN_180892120(longlong param_1,longlong param_2)
 
 {
@@ -6307,7 +6307,7 @@ undefined8 FUN_1808922ad(void)
 
 
 
-// 函数: void FUN_180892333(void)
+ void FUN_180892333(void)
 void FUN_180892333(void)
 
 {
@@ -6317,7 +6317,7 @@ void FUN_180892333(void)
 
 
 
-// 函数: void FUN_18089233e(void)
+ void FUN_18089233e(void)
 void FUN_18089233e(void)
 
 {
@@ -6386,7 +6386,7 @@ LAB_18088d83c:
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180892410(longlong param_1,longlong param_2)
+ void FUN_180892410(longlong param_1,longlong param_2)
 void FUN_180892410(longlong param_1,longlong param_2)
 
 {
@@ -6427,7 +6427,7 @@ void FUN_180892410(longlong param_1,longlong param_2)
 
 
 
-// 函数: void FUN_18089246a(longlong *param_1,longlong param_2)
+ void FUN_18089246a(longlong *param_1,longlong param_2)
 void FUN_18089246a(longlong *param_1,longlong param_2)
 
 {
@@ -6453,7 +6453,7 @@ void FUN_18089246a(longlong *param_1,longlong param_2)
 
 
 
-// 函数: void FUN_1808924c8(void)
+ void FUN_1808924c8(void)
 void FUN_1808924c8(void)
 
 {
@@ -6601,7 +6601,7 @@ undefined8 FUN_1808924f0(longlong param_1,longlong param_2)
 
 
 
-// 函数: void FUN_180892720(longlong param_1,longlong param_2)
+ void FUN_180892720(longlong param_1,longlong param_2)
 void FUN_180892720(longlong param_1,longlong param_2)
 
 {
@@ -6865,7 +6865,7 @@ undefined8 FUN_180892974(void)
 
 
 
-// 函数: void FUN_180892983(void)
+ void FUN_180892983(void)
 void FUN_180892983(void)
 
 {
@@ -7213,7 +7213,7 @@ undefined8 FUN_180892ceb(void)
 
 
 
-// 函数: void FUN_180892e2d(void)
+ void FUN_180892e2d(void)
 void FUN_180892e2d(void)
 
 {
@@ -7233,7 +7233,7 @@ undefined8 FUN_180892e35(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180892e50(longlong param_1,undefined8 param_2)
+ void FUN_180892e50(longlong param_1,undefined8 param_2)
 void FUN_180892e50(longlong param_1,undefined8 param_2)
 
 {
@@ -7271,7 +7271,7 @@ void FUN_180892e50(longlong param_1,undefined8 param_2)
 
 
 
-// 函数: void FUN_180893080(longlong param_1,longlong param_2)
+ void FUN_180893080(longlong param_1,longlong param_2)
 void FUN_180893080(longlong param_1,longlong param_2)
 
 {
@@ -7493,7 +7493,7 @@ undefined8 FUN_180893330(longlong param_1,longlong param_2)
 
 
 
-// 函数: void FUN_1808933c0(longlong param_1,longlong param_2)
+ void FUN_1808933c0(longlong param_1,longlong param_2)
 void FUN_1808933c0(longlong param_1,longlong param_2)
 
 {
@@ -7516,7 +7516,7 @@ void FUN_1808933c0(longlong param_1,longlong param_2)
 
 
 
-// 函数: void FUN_180893420(longlong param_1,longlong param_2)
+ void FUN_180893420(longlong param_1,longlong param_2)
 void FUN_180893420(longlong param_1,longlong param_2)
 
 {
@@ -7652,7 +7652,7 @@ undefined8 FUN_1808935c0(longlong param_1,longlong param_2)
 
 
 
-// 函数: void FUN_180893640(longlong param_1,longlong param_2)
+ void FUN_180893640(longlong param_1,longlong param_2)
 void FUN_180893640(longlong param_1,longlong param_2)
 
 {
@@ -7673,7 +7673,7 @@ void FUN_180893640(longlong param_1,longlong param_2)
 
 
 
-// 函数: void FUN_1808936a0(longlong param_1,longlong param_2)
+ void FUN_1808936a0(longlong param_1,longlong param_2)
 void FUN_1808936a0(longlong param_1,longlong param_2)
 
 {
@@ -7693,7 +7693,7 @@ void FUN_1808936a0(longlong param_1,longlong param_2)
 
 
 
-// 函数: void FUN_180893700(longlong param_1,longlong param_2)
+ void FUN_180893700(longlong param_1,longlong param_2)
 void FUN_180893700(longlong param_1,longlong param_2)
 
 {
@@ -8006,7 +8006,7 @@ undefined8 FUN_180893d8f(undefined8 param_1,undefined8 param_2)
 
 
 
-// 函数: void FUN_180893ddb(void)
+ void FUN_180893ddb(void)
 void FUN_180893ddb(void)
 
 {
@@ -8137,7 +8137,7 @@ undefined8 FUN_180893e94(void)
 
 
 
-// 函数: void FUN_180893eef(void)
+ void FUN_180893eef(void)
 void FUN_180893eef(void)
 
 {
@@ -8224,7 +8224,7 @@ undefined8 FUN_180893f64(void)
 
 
 
-// 函数: void FUN_180893f8e(void)
+ void FUN_180893f8e(void)
 void FUN_180893f8e(void)
 
 {
@@ -8258,7 +8258,7 @@ void FUN_180893f8e(void)
 
 
 
-// 函数: void FUN_180893fed(void)
+ void FUN_180893fed(void)
 void FUN_180893fed(void)
 
 {
@@ -8380,7 +8380,7 @@ undefined8 FUN_18089406b(void)
 
 
 
-// 函数: void FUN_1808940e8(void)
+ void FUN_1808940e8(void)
 void FUN_1808940e8(void)
 
 {
@@ -8392,7 +8392,7 @@ void FUN_1808940e8(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_1808940f0(longlong param_1,longlong param_2)
+ void FUN_1808940f0(longlong param_1,longlong param_2)
 void FUN_1808940f0(longlong param_1,longlong param_2)
 
 {
@@ -8573,7 +8573,7 @@ int FUN_1808947b0(longlong *param_1,longlong param_2,int param_3)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180894860(longlong param_1,undefined4 *param_2,longlong *param_3)
+ void FUN_180894860(longlong param_1,undefined4 *param_2,longlong *param_3)
 void FUN_180894860(longlong param_1,undefined4 *param_2,longlong *param_3)
 
 {
@@ -8634,7 +8634,7 @@ void FUN_180894860(longlong param_1,undefined4 *param_2,longlong *param_3)
 
 
 
-// 函数: void FUN_18089492c(void)
+ void FUN_18089492c(void)
 void FUN_18089492c(void)
 
 {
@@ -8645,7 +8645,7 @@ void FUN_18089492c(void)
 
 
 
-// 函数: void FUN_18089494e(void)
+ void FUN_18089494e(void)
 void FUN_18089494e(void)
 
 {
@@ -8660,7 +8660,7 @@ void FUN_18089494e(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_1808949c0(longlong param_1,undefined4 *param_2,longlong *param_3)
+ void FUN_1808949c0(longlong param_1,undefined4 *param_2,longlong *param_3)
 void FUN_1808949c0(longlong param_1,undefined4 *param_2,longlong *param_3)
 
 {
@@ -8719,7 +8719,7 @@ void FUN_1808949c0(longlong param_1,undefined4 *param_2,longlong *param_3)
 
 
 
-// 函数: void FUN_180894a07(ulonglong param_1)
+ void FUN_180894a07(ulonglong param_1)
 void FUN_180894a07(ulonglong param_1)
 
 {
@@ -8751,7 +8751,7 @@ LAB_180894aca:
 
 
 
-// 函数: void FUN_180894ad2(void)
+ void FUN_180894ad2(void)
 void FUN_180894ad2(void)
 
 {
@@ -8766,7 +8766,7 @@ void FUN_180894ad2(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180894b00(longlong param_1,undefined4 *param_2,longlong *param_3)
+ void FUN_180894b00(longlong param_1,undefined4 *param_2,longlong *param_3)
 void FUN_180894b00(longlong param_1,undefined4 *param_2,longlong *param_3)
 
 {
@@ -8826,7 +8826,7 @@ void FUN_180894b00(longlong param_1,undefined4 *param_2,longlong *param_3)
 
 
 
-// 函数: void FUN_180894bcc(void)
+ void FUN_180894bcc(void)
 void FUN_180894bcc(void)
 
 {
@@ -8837,7 +8837,7 @@ void FUN_180894bcc(void)
 
 
 
-// 函数: void FUN_180894bf5(void)
+ void FUN_180894bf5(void)
 void FUN_180894bf5(void)
 
 {
@@ -8858,7 +8858,7 @@ void FUN_180894bf5(void)
 
 
 
-// 函数: void FUN_180894c70(longlong param_1,undefined8 param_2)
+ void FUN_180894c70(longlong param_1,undefined8 param_2)
 void FUN_180894c70(longlong param_1,undefined8 param_2)
 
 {
@@ -8875,7 +8875,7 @@ void FUN_180894c70(longlong param_1,undefined8 param_2)
 
 
 
-// 函数: void FUN_180894c94(void)
+ void FUN_180894c94(void)
 void FUN_180894c94(void)
 
 {
@@ -8894,7 +8894,7 @@ void FUN_180894c94(void)
 
 
 
-// 函数: void FUN_180894cd2(void)
+ void FUN_180894cd2(void)
 void FUN_180894cd2(void)
 
 {
@@ -8904,7 +8904,7 @@ void FUN_180894cd2(void)
 
 
 
-// 函数: void FUN_180894ce0(longlong param_1,undefined8 param_2)
+ void FUN_180894ce0(longlong param_1,undefined8 param_2)
 void FUN_180894ce0(longlong param_1,undefined8 param_2)
 
 {
@@ -8923,7 +8923,7 @@ void FUN_180894ce0(longlong param_1,undefined8 param_2)
 
 
 
-// 函数: void FUN_180894d04(void)
+ void FUN_180894d04(void)
 void FUN_180894d04(void)
 
 {
@@ -8945,7 +8945,7 @@ void FUN_180894d04(void)
 
 
 
-// 函数: void FUN_180894d52(void)
+ void FUN_180894d52(void)
 void FUN_180894d52(void)
 
 {
@@ -8955,7 +8955,7 @@ void FUN_180894d52(void)
 
 
 
-// 函数: void FUN_180894d60(longlong param_1,undefined8 param_2)
+ void FUN_180894d60(longlong param_1,undefined8 param_2)
 void FUN_180894d60(longlong param_1,undefined8 param_2)
 
 {
@@ -9376,7 +9376,7 @@ undefined8 FUN_180895345(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180895360(longlong param_1,undefined1 *param_2,int *param_3)
+ void FUN_180895360(longlong param_1,undefined1 *param_2,int *param_3)
 void FUN_180895360(longlong param_1,undefined1 *param_2,int *param_3)
 
 {
@@ -9499,7 +9499,7 @@ FUN_180895b89:
 
 
 
-// 函数: void ProcessModuleInitialization(longlong param_1,void* param_2,int *param_3)
+ void ProcessModuleInitialization(longlong param_1,void* param_2,int *param_3)
 void ProcessModuleInitialization(longlong param_1,void* param_2,int *param_3)
 
 {
@@ -9616,7 +9616,7 @@ LAB_180895b69:
 
 
 
-// 函数: void FUN_180895b89(void)
+ void FUN_180895b89(void)
 void FUN_180895b89(void)
 
 {
@@ -9629,7 +9629,7 @@ void FUN_180895b89(void)
 
 
 
-// 函数: void FUN_180895bb0(longlong param_1,int param_2,undefined8 *param_3)
+ void FUN_180895bb0(longlong param_1,int param_2,undefined8 *param_3)
 void FUN_180895bb0(longlong param_1,int param_2,undefined8 *param_3)
 
 {
@@ -10064,7 +10064,7 @@ FUN_180895e19(int param_1,int param_2,undefined8 param_3,undefined8 param_4,unde
 
 
 
-// 函数: void FUN_180895e7e(void)
+ void FUN_180895e7e(void)
 void FUN_180895e7e(void)
 
 {
@@ -10652,7 +10652,7 @@ undefined8 * FUN_180896830(undefined8 *param_1,ulonglong param_2)
 
 
 
-// 函数: void FUN_180896880(longlong *param_1)
+ void FUN_180896880(longlong *param_1)
 void FUN_180896880(longlong *param_1)
 
 {
@@ -10787,7 +10787,7 @@ undefined8 FUN_180896c10(longlong param_1,undefined8 param_2,undefined8 param_3)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180896c60(undefined8 param_1,longlong param_2,uint param_3,char param_4)
+ void FUN_180896c60(undefined8 param_1,longlong param_2,uint param_3,char param_4)
 void FUN_180896c60(undefined8 param_1,longlong param_2,uint param_3,char param_4)
 
 {
@@ -11122,7 +11122,7 @@ FUN_1808974f4:
 
 
 
-// 函数: void FUN_180896e11(void)
+ void FUN_180896e11(void)
 void FUN_180896e11(void)
 
 {
@@ -11416,7 +11416,7 @@ LAB_1808974ec:
 
 
 
-// 函数: void FUN_1808974f4(void)
+ void FUN_1808974f4(void)
 void FUN_1808974f4(void)
 
 {
@@ -11431,7 +11431,7 @@ void FUN_1808974f4(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180897520(longlong *param_1,longlong *param_2)
+ void FUN_180897520(longlong *param_1,longlong *param_2)
 void FUN_180897520(longlong *param_1,longlong *param_2)
 
 {
@@ -11459,7 +11459,7 @@ void FUN_180897520(longlong *param_1,longlong *param_2)
 
 
 
-// 函数: void FUN_180897560(void)
+ void FUN_180897560(void)
 void FUN_180897560(void)
 
 {
@@ -11484,7 +11484,7 @@ void FUN_180897560(void)
 
 
 
-// 函数: void FUN_1808975a6(void)
+ void FUN_1808975a6(void)
 void FUN_1808975a6(void)
 
 {
@@ -11505,7 +11505,7 @@ void FUN_1808975a6(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_1808975e0(longlong param_1,longlong param_2)
+ void FUN_1808975e0(longlong param_1,longlong param_2)
 void FUN_1808975e0(longlong param_1,longlong param_2)
 
 {
@@ -11750,7 +11750,7 @@ FUN_180897b16:
 
 
 
-// 函数: void FUN_180897644(void)
+ void FUN_180897644(void)
 void FUN_180897644(void)
 
 {
@@ -12012,7 +12012,7 @@ FUN_180897b0e:
 
 
 
-// 函数: void FUN_1808976b0(void)
+ void FUN_1808976b0(void)
 void FUN_1808976b0(void)
 
 {
@@ -12256,7 +12256,7 @@ FUN_180897afe:
 
 
 
-// 函数: void FUN_180897859(float param_1)
+ void FUN_180897859(float param_1)
 void FUN_180897859(float param_1)
 
 {
@@ -12388,7 +12388,7 @@ LAB_180897af6:
 
 
 
-// 函数: void FUN_180897afe(void)
+ void FUN_180897afe(void)
 void FUN_180897afe(void)
 
 {
@@ -12401,7 +12401,7 @@ void FUN_180897afe(void)
 
 
 
-// 函数: void FUN_180897b0e(void)
+ void FUN_180897b0e(void)
 void FUN_180897b0e(void)
 
 {
@@ -12414,7 +12414,7 @@ void FUN_180897b0e(void)
 
 
 
-// 函数: void FUN_180897b16(void)
+ void FUN_180897b16(void)
 void FUN_180897b16(void)
 
 {
@@ -12429,7 +12429,7 @@ void FUN_180897b16(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180897b40(longlong *param_1,longlong param_2,undefined4 param_3)
+ void FUN_180897b40(longlong *param_1,longlong param_2,undefined4 param_3)
 void FUN_180897b40(longlong *param_1,longlong param_2,undefined4 param_3)
 
 {
@@ -12517,7 +12517,7 @@ LAB_180897ce8:
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180897d20(longlong *param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+ void FUN_180897d20(longlong *param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
 void FUN_180897d20(longlong *param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
 
 {
@@ -12656,7 +12656,7 @@ undefined8 FUN_180897dd3(void)
 
 
 
-// 函数: void FUN_18089802e(void)
+ void FUN_18089802e(void)
 void FUN_18089802e(void)
 
 {
@@ -12669,7 +12669,7 @@ void FUN_18089802e(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180898040(longlong *param_1)
+ void FUN_180898040(longlong *param_1)
 void FUN_180898040(longlong *param_1)
 
 {
@@ -12976,7 +12976,7 @@ LAB_18089866f:
 
 
 
-// 函数: void FUN_1808986b0(longlong param_1,undefined8 param_2)
+ void FUN_1808986b0(longlong param_1,undefined8 param_2)
 void FUN_1808986b0(longlong param_1,undefined8 param_2)
 
 {
@@ -13851,7 +13851,7 @@ undefined8 FUN_180898f40(longlong *param_1,undefined4 *param_2)
 
 
 
-// 函数: void FUN_180898fc0(undefined8 param_1,longlong param_2)
+ void FUN_180898fc0(undefined8 param_1,longlong param_2)
 void FUN_180898fc0(undefined8 param_1,longlong param_2)
 
 {
@@ -13876,7 +13876,7 @@ void FUN_180898fc0(undefined8 param_1,longlong param_2)
 
 
 
-// 函数: void FUN_180899040(undefined8 param_1,longlong param_2)
+ void FUN_180899040(undefined8 param_1,longlong param_2)
 void FUN_180899040(undefined8 param_1,longlong param_2)
 
 {
@@ -13898,7 +13898,7 @@ void FUN_180899040(undefined8 param_1,longlong param_2)
 
 
 
-// 函数: void FUN_180899090(undefined8 param_1,longlong param_2)
+ void FUN_180899090(undefined8 param_1,longlong param_2)
 void FUN_180899090(undefined8 param_1,longlong param_2)
 
 {
@@ -13920,7 +13920,7 @@ void FUN_180899090(undefined8 param_1,longlong param_2)
 
 
 
-// 函数: void FUN_180899100(longlong param_1,undefined4 *param_2)
+ void FUN_180899100(longlong param_1,undefined4 *param_2)
 void FUN_180899100(longlong param_1,undefined4 *param_2)
 
 {
@@ -14057,7 +14057,7 @@ LAB_1808992a5:
 
 
 
-// 函数: void FUN_1808992c4(void)
+ void FUN_1808992c4(void)
 void FUN_1808992c4(void)
 
 {
@@ -14208,7 +14208,7 @@ LAB_180899546:
 
 
 
-// 函数: void FUN_1808995c0(longlong *param_1,undefined4 *param_2)
+ void FUN_1808995c0(longlong *param_1,undefined4 *param_2)
 void FUN_1808995c0(longlong *param_1,undefined4 *param_2)
 
 {
@@ -14325,7 +14325,7 @@ undefined8 FUN_180899763(void)
 
 
 
-// 函数: void FUN_180899790(void)
+ void FUN_180899790(void)
 void FUN_180899790(void)
 
 {
@@ -14335,7 +14335,7 @@ void FUN_180899790(void)
 
 
 
-// 函数: void FUN_180899799(void)
+ void FUN_180899799(void)
 void FUN_180899799(void)
 
 {
@@ -14345,7 +14345,7 @@ void FUN_180899799(void)
 
 
 
-// 函数: void FUN_1808997b0(undefined8 param_1,longlong param_2)
+ void FUN_1808997b0(undefined8 param_1,longlong param_2)
 void FUN_1808997b0(undefined8 param_1,longlong param_2)
 
 {
@@ -14441,7 +14441,7 @@ undefined8 FUN_180899816(void)
 
 
 
-// 函数: void FUN_180899891(void)
+ void FUN_180899891(void)
 void FUN_180899891(void)
 
 {
@@ -14491,7 +14491,7 @@ undefined8 FUN_1808998a0(longlong param_1,longlong *param_2)
 
 
 
-// 函数: void FUN_180899950(longlong param_1,undefined4 *param_2)
+ void FUN_180899950(longlong param_1,undefined4 *param_2)
 void FUN_180899950(longlong param_1,undefined4 *param_2)
 
 {
@@ -14642,7 +14642,7 @@ void FUN_180899950(longlong param_1,undefined4 *param_2)
 
 
 
-// 函数: void FUN_1808999c1(undefined8 *param_1,undefined8 param_2)
+ void FUN_1808999c1(undefined8 *param_1,undefined8 param_2)
 void FUN_1808999c1(undefined8 *param_1,undefined8 param_2)
 
 {
@@ -14799,7 +14799,7 @@ void FUN_1808999c1(undefined8 *param_1,undefined8 param_2)
 
 
 
-// 函数: void FUN_180899ae6(undefined8 *param_1)
+ void FUN_180899ae6(undefined8 *param_1)
 void FUN_180899ae6(undefined8 *param_1)
 
 {
@@ -14892,7 +14892,7 @@ void FUN_180899ae6(undefined8 *param_1)
 
 
 
-// 函数: void FUN_180899c45(void)
+ void FUN_180899c45(void)
 void FUN_180899c45(void)
 
 {
@@ -14902,7 +14902,7 @@ void FUN_180899c45(void)
 
 
 
-// 函数: void FUN_180899c54(void)
+ void FUN_180899c54(void)
 void FUN_180899c54(void)
 
 {
@@ -14912,7 +14912,7 @@ void FUN_180899c54(void)
 
 
 
-// 函数: void FUN_180899c60(longlong param_1,undefined4 *param_2)
+ void FUN_180899c60(longlong param_1,undefined4 *param_2)
 void FUN_180899c60(longlong param_1,undefined4 *param_2)
 
 {
@@ -14952,7 +14952,7 @@ void FUN_180899c60(longlong param_1,undefined4 *param_2)
 
 
 
-// 函数: void FUN_180899c96(void)
+ void FUN_180899c96(void)
 void FUN_180899c96(void)
 
 {
@@ -15000,7 +15000,7 @@ void FUN_180899c96(void)
 
 
 
-// 函数: void FUN_180899d7f(void)
+ void FUN_180899d7f(void)
 void FUN_180899d7f(void)
 
 {
@@ -15121,7 +15121,7 @@ undefined8 FUN_180899dc7(void)
 
 
 
-// 函数: void FUN_180899ed5(void)
+ void FUN_180899ed5(void)
 void FUN_180899ed5(void)
 
 {
@@ -15131,7 +15131,7 @@ void FUN_180899ed5(void)
 
 
 
-// 函数: void FUN_180899ef0(longlong param_1,undefined4 *param_2)
+ void FUN_180899ef0(longlong param_1,undefined4 *param_2)
 void FUN_180899ef0(longlong param_1,undefined4 *param_2)
 
 {
@@ -15158,7 +15158,7 @@ void FUN_180899ef0(longlong param_1,undefined4 *param_2)
 
 
 
-// 函数: void FUN_180899f80(longlong param_1,undefined4 *param_2)
+ void FUN_180899f80(longlong param_1,undefined4 *param_2)
 void FUN_180899f80(longlong param_1,undefined4 *param_2)
 
 {
@@ -15177,7 +15177,7 @@ void FUN_180899f80(longlong param_1,undefined4 *param_2)
 
 
 
-// 函数: void FUN_180899fe0(longlong param_1,undefined4 *param_2)
+ void FUN_180899fe0(longlong param_1,undefined4 *param_2)
 void FUN_180899fe0(longlong param_1,undefined4 *param_2)
 
 {
@@ -15310,7 +15310,7 @@ void FUN_180899fe0(longlong param_1,undefined4 *param_2)
 
 
 
-// 函数: void FUN_18089a059(undefined4 param_1)
+ void FUN_18089a059(undefined4 param_1)
 void FUN_18089a059(undefined4 param_1)
 
 {
@@ -15443,7 +15443,7 @@ void FUN_18089a059(undefined4 param_1)
 
 
 
-// 函数: void FUN_18089a365(void)
+ void FUN_18089a365(void)
 void FUN_18089a365(void)
 
 {
@@ -15628,7 +15628,7 @@ undefined8 FUN_18089a51d(void)
 
 
 
-// 函数: void FUN_18089a685(void)
+ void FUN_18089a685(void)
 void FUN_18089a685(void)
 
 {
@@ -15706,7 +15706,7 @@ undefined8 FUN_18089a6e8(undefined8 *param_1,undefined8 param_2)
 
 
 
-// 函数: void FUN_18089a73c(void)
+ void FUN_18089a73c(void)
 void FUN_18089a73c(void)
 
 {
@@ -15716,7 +15716,7 @@ void FUN_18089a73c(void)
 
 
 
-// 函数: void FUN_18089a750(longlong param_1,uint *param_2)
+ void FUN_18089a750(longlong param_1,uint *param_2)
 void FUN_18089a750(longlong param_1,uint *param_2)
 
 {
@@ -15938,7 +15938,7 @@ ulonglong FUN_18089a8b4(void)
 
 
 
-// 函数: void FUN_18089a9d5(void)
+ void FUN_18089a9d5(void)
 void FUN_18089a9d5(void)
 
 {
@@ -15956,7 +15956,7 @@ undefined8 FUN_18089a9dd(void)
 
 
 
-// 函数: void FUN_18089a9f0(longlong param_1,int *param_2)
+ void FUN_18089a9f0(longlong param_1,int *param_2)
 void FUN_18089a9f0(longlong param_1,int *param_2)
 
 {
@@ -16153,7 +16153,7 @@ undefined8 FUN_18089ac64(void)
 
 
 
-// 函数: void FUN_18089ac96(void)
+ void FUN_18089ac96(void)
 void FUN_18089ac96(void)
 
 {
@@ -16243,7 +16243,7 @@ LAB_18089ae18:
 
 
 
-// 函数: void FUN_18089ae2d(void)
+ void FUN_18089ae2d(void)
 void FUN_18089ae2d(void)
 
 {
@@ -16253,7 +16253,7 @@ void FUN_18089ae2d(void)
 
 
 
-// 函数: void FUN_18089ae35(void)
+ void FUN_18089ae35(void)
 void FUN_18089ae35(void)
 
 {
@@ -16263,7 +16263,7 @@ void FUN_18089ae35(void)
 
 
 
-// 函数: void FUN_18089ae3d(void)
+ void FUN_18089ae3d(void)
 void FUN_18089ae3d(void)
 
 {
@@ -16273,7 +16273,7 @@ void FUN_18089ae3d(void)
 
 
 
-// 函数: void FUN_18089ae50(longlong param_1,undefined8 param_2,undefined4 param_3,undefined4 param_4,
+ void FUN_18089ae50(longlong param_1,undefined8 param_2,undefined4 param_3,undefined4 param_4,
 void FUN_18089ae50(longlong param_1,undefined8 param_2,undefined4 param_3,undefined4 param_4,
                   char param_5)
 
@@ -16516,7 +16516,7 @@ int FUN_18089b21d(void)
 
 
 
-// 函数: void FUN_18089b26e(void)
+ void FUN_18089b26e(void)
 void FUN_18089b26e(void)
 
 {
@@ -16703,7 +16703,7 @@ ulonglong FUN_18089b380(void)
 
 
 
-// 函数: void FUN_18089b3d4(void)
+ void FUN_18089b3d4(void)
 void FUN_18089b3d4(void)
 
 {
@@ -16714,7 +16714,7 @@ void FUN_18089b3d4(void)
 
 
 
-// 函数: void FUN_18089b3e6(void)
+ void FUN_18089b3e6(void)
 void FUN_18089b3e6(void)
 
 {
@@ -16724,7 +16724,7 @@ void FUN_18089b3e6(void)
 
 
 
-// 函数: void FUN_18089b400(longlong param_1,undefined8 param_2)
+ void FUN_18089b400(longlong param_1,undefined8 param_2)
 void FUN_18089b400(longlong param_1,undefined8 param_2)
 
 {
@@ -16986,7 +16986,7 @@ LAB_1808a2e6d:
 
 
 
-// 函数: void FUN_18089b599(void)
+ void FUN_18089b599(void)
 void FUN_18089b599(void)
 
 {
@@ -17056,7 +17056,7 @@ LAB_1808a2e6d:
 
 
 
-// 函数: void FUN_18089b5fc(void)
+ void FUN_18089b5fc(void)
 void FUN_18089b5fc(void)
 
 {
@@ -17105,7 +17105,7 @@ undefined8 FUN_18089b617(void)
 
 
 
-// 函数: void FUN_18089b61e(void)
+ void FUN_18089b61e(void)
 void FUN_18089b61e(void)
 
 {
@@ -17172,7 +17172,7 @@ undefined8 FUN_18089b630(longlong param_1,undefined8 *param_2)
 
 
 
-// 函数: void FUN_18089b6df(void)
+ void FUN_18089b6df(void)
 void FUN_18089b6df(void)
 
 {
@@ -17212,7 +17212,7 @@ void FUN_18089b6df(void)
 
 
 
-// 函数: void FUN_18089b7c7(void)
+ void FUN_18089b7c7(void)
 void FUN_18089b7c7(void)
 
 {
@@ -17844,7 +17844,7 @@ LAB_18089bbcc:
 
 
 
-// 函数: void FUN_18089bbff(void)
+ void FUN_18089bbff(void)
 void FUN_18089bbff(void)
 
 {
@@ -17854,7 +17854,7 @@ void FUN_18089bbff(void)
 
 
 
-// 函数: void FUN_18089bc10(longlong param_1,undefined8 *param_2)
+ void FUN_18089bc10(longlong param_1,undefined8 *param_2)
 void FUN_18089bc10(longlong param_1,undefined8 *param_2)
 
 {
@@ -17921,7 +17921,7 @@ void FUN_18089bc10(longlong param_1,undefined8 *param_2)
 
 
 
-// 函数: void FUN_18089bc5a(void)
+ void FUN_18089bc5a(void)
 void FUN_18089bc5a(void)
 
 {
@@ -17981,7 +17981,7 @@ void FUN_18089bc5a(void)
 
 
 
-// 函数: void FUN_18089bd61(void)
+ void FUN_18089bd61(void)
 void FUN_18089bd61(void)
 
 {
@@ -18021,7 +18021,7 @@ undefined8 FUN_18089bd70(longlong param_1,undefined8 *param_2)
 
 
 
-// 函数: void FUN_18089be10(longlong param_1,undefined8 *param_2,int param_3)
+ void FUN_18089be10(longlong param_1,undefined8 *param_2,int param_3)
 void FUN_18089be10(longlong param_1,undefined8 *param_2,int param_3)
 
 {
@@ -18133,7 +18133,7 @@ LAB_18089bfc7:
 
 
 
-// 函数: void FUN_18089be41(void)
+ void FUN_18089be41(void)
 void FUN_18089be41(void)
 
 {
@@ -18242,7 +18242,7 @@ LAB_18089bfc7:
 
 
 
-// 函数: void FUN_18089c019(void)
+ void FUN_18089c019(void)
 void FUN_18089c019(void)
 
 {
@@ -19283,7 +19283,7 @@ LAB_18089c300:
 
 
 
-// 函数: void FUN_18089c606(void)
+ void FUN_18089c606(void)
 void FUN_18089c606(void)
 
 {
@@ -19293,7 +19293,7 @@ void FUN_18089c606(void)
 
 
 
-// 函数: void FUN_18089c616(void)
+ void FUN_18089c616(void)
 void FUN_18089c616(void)
 
 {
@@ -19303,7 +19303,7 @@ void FUN_18089c616(void)
 
 
 
-// 函数: void FUN_18089c61e(void)
+ void FUN_18089c61e(void)
 void FUN_18089c61e(void)
 
 {
@@ -20735,7 +20735,7 @@ LAB_18089cbf6:
 
 
 
-// 函数: void FUN_18089cc29(void)
+ void FUN_18089cc29(void)
 void FUN_18089cc29(void)
 
 {
@@ -20745,7 +20745,7 @@ void FUN_18089cc29(void)
 
 
 
-// 函数: void FUN_18089cc31(void)
+ void FUN_18089cc31(void)
 void FUN_18089cc31(void)
 
 {
@@ -20755,7 +20755,7 @@ void FUN_18089cc31(void)
 
 
 
-// 函数: void FUN_18089cc41(void)
+ void FUN_18089cc41(void)
 void FUN_18089cc41(void)
 
 {
@@ -20934,7 +20934,7 @@ undefined8 FUN_18089ce16(void)
 
 
 
-// 函数: void FUN_18089ce25(void)
+ void FUN_18089ce25(void)
 void FUN_18089ce25(void)
 
 {
@@ -21235,7 +21235,7 @@ LAB_18089d07f:
 
 
 
-// 函数: void FUN_18089d091(void)
+ void FUN_18089d091(void)
 void FUN_18089d091(void)
 
 {
@@ -21245,7 +21245,7 @@ void FUN_18089d091(void)
 
 
 
-// 函数: void FUN_18089d0a3(void)
+ void FUN_18089d0a3(void)
 void FUN_18089d0a3(void)
 
 {
@@ -21255,7 +21255,7 @@ void FUN_18089d0a3(void)
 
 
 
-// 函数: void FUN_18089d0b0(longlong param_1,undefined8 param_2)
+ void FUN_18089d0b0(longlong param_1,undefined8 param_2)
 void FUN_18089d0b0(longlong param_1,undefined8 param_2)
 
 {
@@ -21412,7 +21412,7 @@ ulonglong FUN_18089d193(void)
 
 
 
-// 函数: void FUN_18089d208(void)
+ void FUN_18089d208(void)
 void FUN_18089d208(void)
 
 {
@@ -21423,7 +21423,7 @@ void FUN_18089d208(void)
 
 
 
-// 函数: void FUN_18089d23a(void)
+ void FUN_18089d23a(void)
 void FUN_18089d23a(void)
 
 {
@@ -21636,7 +21636,7 @@ LAB_18089d435:
 
 
 
-// 函数: void FUN_18089d47a(void)
+ void FUN_18089d47a(void)
 void FUN_18089d47a(void)
 
 {
@@ -21680,7 +21680,7 @@ undefined8 FUN_18089d490(longlong param_1,undefined8 *param_2)
 
 
 
-// 函数: void FUN_18089d520(longlong param_1,undefined8 *param_2)
+ void FUN_18089d520(longlong param_1,undefined8 *param_2)
 void FUN_18089d520(longlong param_1,undefined8 *param_2)
 
 {
@@ -21738,7 +21738,7 @@ void FUN_18089d520(longlong param_1,undefined8 *param_2)
 
 
 
-// 函数: void FUN_18089d557(undefined4 param_1)
+ void FUN_18089d557(undefined4 param_1)
 void FUN_18089d557(undefined4 param_1)
 
 {
@@ -21799,7 +21799,7 @@ void FUN_18089d557(undefined4 param_1)
 
 
 
-// 函数: void FUN_18089dcd6(void)
+ void FUN_18089dcd6(void)
 void FUN_18089dcd6(void)
 
 {
@@ -22214,7 +22214,7 @@ ulonglong FUN_18089de72(void)
 
 
 
-// 函数: void FUN_18089df30(void)
+ void FUN_18089df30(void)
 void FUN_18089df30(void)
 
 {
@@ -22394,7 +22394,7 @@ undefined8 FUN_18089e043(void)
 
 
 
-// 函数: void FUN_18089e0be(void)
+ void FUN_18089e0be(void)
 void FUN_18089e0be(void)
 
 {
@@ -22867,7 +22867,7 @@ LAB_18089e447:
 
 
 
-// 函数: void FUN_18089e4d7(void)
+ void FUN_18089e4d7(void)
 void FUN_18089e4d7(void)
 
 {
@@ -23164,7 +23164,7 @@ LAB_18089e70b:
 
 
 
-// 函数: void FUN_18089e801(void)
+ void FUN_18089e801(void)
 void FUN_18089e801(void)
 
 {
@@ -23174,7 +23174,7 @@ void FUN_18089e801(void)
 
 
 
-// 函数: void FUN_18089e811(void)
+ void FUN_18089e811(void)
 void FUN_18089e811(void)
 
 {
@@ -24092,7 +24092,7 @@ LAB_18089ed1b:
 
 
 
-// 函数: void FUN_18089edaf(void)
+ void FUN_18089edaf(void)
 void FUN_18089edaf(void)
 
 {
@@ -24102,7 +24102,7 @@ void FUN_18089edaf(void)
 
 
 
-// 函数: void FUN_18089edc7(void)
+ void FUN_18089edc7(void)
 void FUN_18089edc7(void)
 
 {
@@ -24177,7 +24177,7 @@ undefined8 FUN_18089ee64(void)
 
 
 
-// 函数: void FUN_18089ee87(void)
+ void FUN_18089ee87(void)
 void FUN_18089ee87(void)
 
 {
@@ -24207,7 +24207,7 @@ void FUN_18089ee87(void)
 
 
 
-// 函数: void FUN_18089eef2(void)
+ void FUN_18089eef2(void)
 void FUN_18089eef2(void)
 
 {
@@ -24218,7 +24218,7 @@ void FUN_18089eef2(void)
 
 
 
-// 函数: void FUN_18089ef24(void)
+ void FUN_18089ef24(void)
 void FUN_18089ef24(void)
 
 {
@@ -24574,7 +24574,7 @@ undefined8 FUN_18089f112(void)
 
 
 
-// 函数: void FUN_18089f31e(void)
+ void FUN_18089f31e(void)
 void FUN_18089f31e(void)
 
 {
@@ -24643,7 +24643,7 @@ LAB_18089f45f:
 
 
 
-// 函数: void FUN_18089f474(void)
+ void FUN_18089f474(void)
 void FUN_18089f474(void)
 
 {
@@ -24653,7 +24653,7 @@ void FUN_18089f474(void)
 
 
 
-// 函数: void FUN_18089f47c(void)
+ void FUN_18089f47c(void)
 void FUN_18089f47c(void)
 
 {
@@ -24723,7 +24723,7 @@ ulonglong FUN_18089f571(void)
 
 
 
-// 函数: void FUN_18089f7fd(void)
+ void FUN_18089f7fd(void)
 void FUN_18089f7fd(void)
 
 {
@@ -25096,7 +25096,7 @@ ulonglong FUN_18089fad8(void)
 
 
 
-// 函数: void FUN_18089fb06(void)
+ void FUN_18089fb06(void)
 void FUN_18089fb06(void)
 
 {
@@ -25113,7 +25113,7 @@ void FUN_18089fb06(void)
 
 
 
-// 函数: void FUN_18089fb2b(void)
+ void FUN_18089fb2b(void)
 void FUN_18089fb2b(void)
 
 {
@@ -25123,7 +25123,7 @@ void FUN_18089fb2b(void)
 
 
 
-// 函数: void FUN_18089fb40(longlong param_1,undefined8 param_2)
+ void FUN_18089fb40(longlong param_1,undefined8 param_2)
 void FUN_18089fb40(longlong param_1,undefined8 param_2)
 
 {
@@ -25344,7 +25344,7 @@ undefined8 FUN_18089ffe0(undefined8 param_1,longlong param_2)
 
 
 
-// 函数: void FUN_180901ec0(undefined8 *param_1)
+ void FUN_180901ec0(undefined8 *param_1)
 void FUN_180901ec0(undefined8 *param_1)
 
 {
@@ -81109,7 +81109,7 @@ void Unwind_180912970(undefined8 param_1,longlong param_2)
 
 undefined4 UNK_180d49260;
 
-// 函数: void FUN_18094136c(undefined8 param_1,longlong param_2)
+ void FUN_18094136c(undefined8 param_1,longlong param_2)
 void FUN_18094136c(undefined8 param_1,longlong param_2)
 
 {
@@ -81131,7 +81131,7 @@ void FUN_18094136c(undefined8 param_1,longlong param_2)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180941383(undefined8 param_1,longlong param_2)
+ void FUN_180941383(undefined8 param_1,longlong param_2)
 void FUN_180941383(undefined8 param_1,longlong param_2)
 
 {
@@ -81152,7 +81152,7 @@ void FUN_180941383(undefined8 param_1,longlong param_2)
 
 
 
-// 函数: void FUN_18094139f(undefined8 *param_1,longlong param_2)
+ void FUN_18094139f(undefined8 *param_1,longlong param_2)
 void FUN_18094139f(undefined8 *param_1,longlong param_2)
 
 {
@@ -81172,7 +81172,7 @@ bool FUN_1809413d5(undefined8 *param_1)
 
 
 
-// 函数: void FUN_1809413ed(undefined8 param_1,longlong param_2)
+ void FUN_1809413ed(undefined8 param_1,longlong param_2)
 void FUN_1809413ed(undefined8 param_1,longlong param_2)
 
 {
@@ -81186,7 +81186,7 @@ void FUN_1809413ed(undefined8 param_1,longlong param_2)
 
 
 
-// 函数: void FUN_180941419(undefined8 param_1,longlong param_2)
+ void FUN_180941419(undefined8 param_1,longlong param_2)
 void FUN_180941419(undefined8 param_1,longlong param_2)
 
 {
@@ -81216,7 +81216,7 @@ undefined4 FUN_180941445(undefined8 param_1,longlong param_2)
 
 
 
-// 函数: void FUN_180941486(undefined8 param_1,longlong param_2)
+ void FUN_180941486(undefined8 param_1,longlong param_2)
 void FUN_180941486(undefined8 param_1,longlong param_2)
 
 {
@@ -81230,7 +81230,7 @@ void FUN_180941486(undefined8 param_1,longlong param_2)
 
 
 
-// 函数: void FUN_1809414b5(undefined8 *param_1)
+ void FUN_1809414b5(undefined8 *param_1)
 void FUN_1809414b5(undefined8 *param_1)
 
 {
@@ -81243,7 +81243,7 @@ void FUN_1809414b5(undefined8 *param_1)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_1809414f0(void)
+ void FUN_1809414f0(void)
 void FUN_1809414f0(void)
 
 {
@@ -81292,7 +81292,7 @@ void InitializeGlobalModuleA(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void InitializeGlobalModuleB(void)
+ void InitializeGlobalModuleB(void)
 // 初始化全局模块B，设置相关数据结构指针
 void InitializeGlobalModuleB(void)
 
@@ -81306,7 +81306,7 @@ void InitializeGlobalModuleB(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_1809415d0(void)
+ void FUN_1809415d0(void)
 void FUN_1809415d0(void)
 
 {
@@ -81319,7 +81319,7 @@ void FUN_1809415d0(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_1809415f0(void)
+ void FUN_1809415f0(void)
 void FUN_1809415f0(void)
 
 {
@@ -81332,7 +81332,7 @@ void FUN_1809415f0(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180941610(void)
+ void FUN_180941610(void)
 void FUN_180941610(void)
 
 {
@@ -81345,7 +81345,7 @@ void FUN_180941610(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180941630(void)
+ void FUN_180941630(void)
 void FUN_180941630(void)
 
 {
@@ -81356,7 +81356,7 @@ void FUN_180941630(void)
 
 
 
-// 函数: void FUN_180941650(void)
+ void FUN_180941650(void)
 void FUN_180941650(void)
 
 {
@@ -81370,7 +81370,7 @@ void FUN_180941650(void)
 
 
 
-// 函数: void FUN_180941690(void)
+ void FUN_180941690(void)
 void FUN_180941690(void)
 
 {
@@ -81384,7 +81384,7 @@ void FUN_180941690(void)
 
 
 
-// 函数: void FUN_1809416d0(void)
+ void FUN_1809416d0(void)
 void FUN_1809416d0(void)
 
 {
@@ -81398,7 +81398,7 @@ void FUN_1809416d0(void)
 
 
 
-// 函数: void DestroyThreadSyncObjects(void)
+ void DestroyThreadSyncObjects(void)
 // 销毁线程同步对象，清理互斥锁和条件变量
 void DestroyThreadSyncObjects(void)
 
@@ -81415,7 +81415,7 @@ void DestroyThreadSyncObjects(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void CloseSystemHandle(void)
+ void CloseSystemHandle(void)
 // 关闭系统句柄，释放相关资源
 void CloseSystemHandle(void)
 
@@ -81429,7 +81429,7 @@ void CloseSystemHandle(void)
 
 
 
-// 函数: void FUN_1809417c0(void)
+ void FUN_1809417c0(void)
 void FUN_1809417c0(void)
 
 {
@@ -81444,7 +81444,7 @@ void FUN_1809417c0(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_1809417e0(void)
+ void FUN_1809417e0(void)
 void FUN_1809417e0(void)
 
 {
@@ -81457,7 +81457,7 @@ void FUN_1809417e0(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180941800(void)
+ void FUN_180941800(void)
 void FUN_180941800(void)
 
 {
@@ -81470,7 +81470,7 @@ void FUN_180941800(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180941820(void)
+ void FUN_180941820(void)
 void FUN_180941820(void)
 
 {
@@ -81483,7 +81483,7 @@ void FUN_180941820(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180941840(void)
+ void FUN_180941840(void)
 void FUN_180941840(void)
 
 {
@@ -81496,7 +81496,7 @@ void FUN_180941840(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180941860(void)
+ void FUN_180941860(void)
 void FUN_180941860(void)
 
 {
@@ -81509,7 +81509,7 @@ void FUN_180941860(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180941880(void)
+ void FUN_180941880(void)
 void FUN_180941880(void)
 
 {
@@ -81522,7 +81522,7 @@ void FUN_180941880(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_1809418a0(void)
+ void FUN_1809418a0(void)
 void FUN_1809418a0(void)
 
 {
@@ -81535,7 +81535,7 @@ void FUN_1809418a0(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_1809418c0(void)
+ void FUN_1809418c0(void)
 void FUN_1809418c0(void)
 
 {
@@ -81548,7 +81548,7 @@ void FUN_1809418c0(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_1809418e0(void)
+ void FUN_1809418e0(void)
 void FUN_1809418e0(void)
 
 {
@@ -81561,7 +81561,7 @@ void FUN_1809418e0(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180941900(void)
+ void FUN_180941900(void)
 void FUN_180941900(void)
 
 {
@@ -81574,7 +81574,7 @@ void FUN_180941900(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180941920(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+ void FUN_180941920(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
 void FUN_180941920(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
 
 {
@@ -81597,7 +81597,7 @@ void FUN_180941920(undefined8 param_1,undefined8 param_2,undefined8 param_3,unde
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180941980(void)
+ void FUN_180941980(void)
 void FUN_180941980(void)
 
 {
@@ -81610,7 +81610,7 @@ void FUN_180941980(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_1809419a0(void)
+ void FUN_1809419a0(void)
 void FUN_1809419a0(void)
 
 {
@@ -81621,7 +81621,7 @@ void FUN_1809419a0(void)
 
 
 
-// 函数: void DestroySpecificMutex(void)
+ void DestroySpecificMutex(void)
 // 销毁特定的互斥锁对象，清理线程同步资源
 void DestroySpecificMutex(void)
 
@@ -81637,7 +81637,7 @@ void DestroySpecificMutex(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_1809419e0(void)
+ void FUN_1809419e0(void)
 void FUN_1809419e0(void)
 
 {
@@ -81657,7 +81657,7 @@ void FUN_1809419e0(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180941a30(void)
+ void FUN_180941a30(void)
 void FUN_180941a30(void)
 
 {
@@ -81677,7 +81677,7 @@ void FUN_180941a30(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180941ad0(void)
+ void FUN_180941ad0(void)
 void FUN_180941ad0(void)
 
 {
@@ -81717,7 +81717,7 @@ void FUN_180941ad0(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180941b20(void)
+ void FUN_180941b20(void)
 void FUN_180941b20(void)
 
 {
@@ -81737,7 +81737,7 @@ void FUN_180941b20(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180941b90(void)
+ void FUN_180941b90(void)
 void FUN_180941b90(void)
 
 {
@@ -81750,7 +81750,7 @@ void FUN_180941b90(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180941bb0(void)
+ void FUN_180941bb0(void)
 void FUN_180941bb0(void)
 
 {
@@ -81763,7 +81763,7 @@ void FUN_180941bb0(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180941bd0(void)
+ void FUN_180941bd0(void)
 void FUN_180941bd0(void)
 
 {
@@ -81776,7 +81776,7 @@ void FUN_180941bd0(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180941bf0(void)
+ void FUN_180941bf0(void)
 void FUN_180941bf0(void)
 
 {
@@ -81797,7 +81797,7 @@ void FUN_180941bf0(void)
     _Cnd_destroy_in_situ();
     FUN_180059ee0(0x180c919f0);
 
-// 函数: void FUN_180941d00(void)
+ void FUN_180941d00(void)
 void FUN_180941d00(void)
 
 {
@@ -81810,7 +81810,7 @@ void FUN_180941d00(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180941d20(void)
+ void FUN_180941d20(void)
 void FUN_180941d20(void)
 
 {
@@ -81823,7 +81823,7 @@ void FUN_180941d20(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180941d50(void)
+ void FUN_180941d50(void)
 void FUN_180941d50(void)
 
 {
@@ -81841,7 +81841,7 @@ void FUN_180941d50(void)
 
 
 
-// 函数: void FUN_180941da0(void)
+ void FUN_180941da0(void)
 void FUN_180941da0(void)
 
 {
@@ -81856,7 +81856,7 @@ void FUN_180941da0(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180941dd0(void)
+ void FUN_180941dd0(void)
 void FUN_180941dd0(void)
 
 {
@@ -81869,7 +81869,7 @@ void FUN_180941dd0(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180941e00(void)
+ void FUN_180941e00(void)
 void FUN_180941e00(void)
 
 {
@@ -81892,7 +81892,7 @@ void FUN_180941e00(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180941e90(void)
+ void FUN_180941e90(void)
 void FUN_180941e90(void)
 
 {
@@ -81923,7 +81923,7 @@ void FUN_180941e90(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180941f00(void)
+ void FUN_180941f00(void)
 void FUN_180941f00(void)
 
 {
@@ -81936,7 +81936,7 @@ void FUN_180941f00(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180941f20(void)
+ void FUN_180941f20(void)
 void FUN_180941f20(void)
 
 {
@@ -81949,7 +81949,7 @@ void FUN_180941f20(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180941f40(void)
+ void FUN_180941f40(void)
 void FUN_180941f40(void)
 
 {
@@ -81962,7 +81962,7 @@ void FUN_180941f40(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180941f60(void)
+ void FUN_180941f60(void)
 void FUN_180941f60(void)
 
 {
@@ -81975,7 +81975,7 @@ void FUN_180941f60(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180941f80(void)
+ void FUN_180941f80(void)
 void FUN_180941f80(void)
 
 {
@@ -81988,7 +81988,7 @@ void FUN_180941f80(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180941fa0(void)
+ void FUN_180941fa0(void)
 void FUN_180941fa0(void)
 
 {
@@ -82001,7 +82001,7 @@ void FUN_180941fa0(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180941fc0(void)
+ void FUN_180941fc0(void)
 void FUN_180941fc0(void)
 
 {
@@ -82014,7 +82014,7 @@ void FUN_180941fc0(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180941fe0(void)
+ void FUN_180941fe0(void)
 void FUN_180941fe0(void)
 
 {
@@ -82027,7 +82027,7 @@ void FUN_180941fe0(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180942000(void)
+ void FUN_180942000(void)
 void FUN_180942000(void)
 
 {
@@ -82040,7 +82040,7 @@ void FUN_180942000(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180942020(void)
+ void FUN_180942020(void)
 void FUN_180942020(void)
 
 {
@@ -82053,7 +82053,7 @@ void FUN_180942020(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180942040(void)
+ void FUN_180942040(void)
 void FUN_180942040(void)
 
 {
@@ -82066,7 +82066,7 @@ void FUN_180942040(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180942060(void)
+ void FUN_180942060(void)
 void FUN_180942060(void)
 
 {
@@ -82079,7 +82079,7 @@ void FUN_180942060(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180942080(void)
+ void FUN_180942080(void)
 void FUN_180942080(void)
 
 {
@@ -82092,7 +82092,7 @@ void FUN_180942080(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_1809420a0(void)
+ void FUN_1809420a0(void)
 void FUN_1809420a0(void)
 
 {
@@ -82105,7 +82105,7 @@ void FUN_1809420a0(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_1809420c0(void)
+ void FUN_1809420c0(void)
 void FUN_1809420c0(void)
 
 {
@@ -82118,7 +82118,7 @@ void FUN_1809420c0(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_1809420e0(void)
+ void FUN_1809420e0(void)
 void FUN_1809420e0(void)
 
 {
@@ -82131,7 +82131,7 @@ void FUN_1809420e0(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180942100(void)
+ void FUN_180942100(void)
 void FUN_180942100(void)
 
 {
@@ -82144,7 +82144,7 @@ void FUN_180942100(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180942120(void)
+ void FUN_180942120(void)
 void FUN_180942120(void)
 
 {
@@ -82157,7 +82157,7 @@ void FUN_180942120(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180942140(void)
+ void FUN_180942140(void)
 void FUN_180942140(void)
 
 {
@@ -82170,7 +82170,7 @@ void FUN_180942140(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180942160(void)
+ void FUN_180942160(void)
 void FUN_180942160(void)
 
 {
@@ -82183,7 +82183,7 @@ void FUN_180942160(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180942180(void)
+ void FUN_180942180(void)
 void FUN_180942180(void)
 
 {
@@ -82196,7 +82196,7 @@ void FUN_180942180(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_1809421a0(void)
+ void FUN_1809421a0(void)
 void FUN_1809421a0(void)
 
 {
@@ -82209,7 +82209,7 @@ void FUN_1809421a0(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_1809421c0(void)
+ void FUN_1809421c0(void)
 void FUN_1809421c0(void)
 
 {
@@ -82222,7 +82222,7 @@ void FUN_1809421c0(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_1809421e0(void)
+ void FUN_1809421e0(void)
 void FUN_1809421e0(void)
 
 {
@@ -82235,7 +82235,7 @@ void FUN_1809421e0(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180942200(void)
+ void FUN_180942200(void)
 void FUN_180942200(void)
 
 {
@@ -82248,7 +82248,7 @@ void FUN_180942200(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180942220(void)
+ void FUN_180942220(void)
 void FUN_180942220(void)
 
 {
@@ -82261,7 +82261,7 @@ void FUN_180942220(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180942240(void)
+ void FUN_180942240(void)
 void FUN_180942240(void)
 
 {
@@ -82274,7 +82274,7 @@ void FUN_180942240(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180942260(void)
+ void FUN_180942260(void)
 void FUN_180942260(void)
 
 {
@@ -82287,7 +82287,7 @@ void FUN_180942260(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180942280(void)
+ void FUN_180942280(void)
 void FUN_180942280(void)
 
 {
@@ -82300,7 +82300,7 @@ void FUN_180942280(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_1809422a0(void)
+ void FUN_1809422a0(void)
 void FUN_1809422a0(void)
 
 {
@@ -82313,7 +82313,7 @@ void FUN_1809422a0(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_1809422c0(void)
+ void FUN_1809422c0(void)
 void FUN_1809422c0(void)
 
 {
@@ -82326,7 +82326,7 @@ void FUN_1809422c0(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_1809422e0(void)
+ void FUN_1809422e0(void)
 void FUN_1809422e0(void)
 
 {
@@ -82339,7 +82339,7 @@ void FUN_1809422e0(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180942300(void)
+ void FUN_180942300(void)
 void FUN_180942300(void)
 
 {
@@ -82352,7 +82352,7 @@ void FUN_180942300(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180942320(void)
+ void FUN_180942320(void)
 void FUN_180942320(void)
 
 {
@@ -82365,7 +82365,7 @@ void FUN_180942320(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180942340(void)
+ void FUN_180942340(void)
 void FUN_180942340(void)
 
 {
@@ -82378,7 +82378,7 @@ void FUN_180942340(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180942360(void)
+ void FUN_180942360(void)
 void FUN_180942360(void)
 
 {
@@ -82391,7 +82391,7 @@ void FUN_180942360(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180942380(void)
+ void FUN_180942380(void)
 void FUN_180942380(void)
 
 {
@@ -82404,7 +82404,7 @@ void FUN_180942380(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_1809423a0(void)
+ void FUN_1809423a0(void)
 void FUN_1809423a0(void)
 
 {
@@ -82417,7 +82417,7 @@ void FUN_1809423a0(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_1809423c0(void)
+ void FUN_1809423c0(void)
 void FUN_1809423c0(void)
 
 {
@@ -82430,7 +82430,7 @@ void FUN_1809423c0(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_1809423e0(void)
+ void FUN_1809423e0(void)
 void FUN_1809423e0(void)
 
 {
@@ -82443,7 +82443,7 @@ void FUN_1809423e0(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180942400(void)
+ void FUN_180942400(void)
 void FUN_180942400(void)
 
 {
@@ -82456,7 +82456,7 @@ void FUN_180942400(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180942420(void)
+ void FUN_180942420(void)
 void FUN_180942420(void)
 
 {
@@ -82469,7 +82469,7 @@ void FUN_180942420(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180942440(void)
+ void FUN_180942440(void)
 void FUN_180942440(void)
 
 {
@@ -82482,7 +82482,7 @@ void FUN_180942440(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180942460(void)
+ void FUN_180942460(void)
 void FUN_180942460(void)
 
 {
@@ -82495,7 +82495,7 @@ void FUN_180942460(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180942480(void)
+ void FUN_180942480(void)
 void FUN_180942480(void)
 
 {
@@ -82508,7 +82508,7 @@ void FUN_180942480(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_1809424a0(void)
+ void FUN_1809424a0(void)
 void FUN_1809424a0(void)
 
 {
@@ -82521,7 +82521,7 @@ void FUN_1809424a0(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_1809424c0(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+ void FUN_1809424c0(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
 void FUN_1809424c0(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
 
 {
@@ -82550,7 +82550,7 @@ void FUN_1809424c0(undefined8 param_1,undefined8 param_2,undefined8 param_3,unde
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180942520(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+ void FUN_180942520(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
 void FUN_180942520(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
 
 {
@@ -82579,7 +82579,7 @@ void FUN_180942520(undefined8 param_1,undefined8 param_2,undefined8 param_3,unde
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180942580(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+ void FUN_180942580(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
 void FUN_180942580(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
 
 {
@@ -82606,7 +82606,7 @@ void FUN_180942580(undefined8 param_1,undefined8 param_2,undefined8 param_3,unde
 
 
 
-// 函数: void FUN_1809425e0(void)
+ void FUN_1809425e0(void)
 void FUN_1809425e0(void)
 
 {
@@ -82619,7 +82619,7 @@ void FUN_1809425e0(void)
 
 
 
-// 函数: void FUN_180942660(void)
+ void FUN_180942660(void)
 void FUN_180942660(void)
 
 {
@@ -82650,7 +82650,7 @@ void FUN_180942660(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180942690(void)
+ void FUN_180942690(void)
 void FUN_180942690(void)
 
 {
@@ -82672,7 +82672,7 @@ void FUN_180942690(void)
   _DAT_180bfc110 = 0;
   _DAT_180bfc118 = 0xf;
 
-// 函数: void FUN_180942700(void)
+ void FUN_180942700(void)
 void FUN_180942700(void)
 
 {
@@ -82700,7 +82700,7 @@ void FUN_180942700(void)
 
 
 
-// 函数: void FUN_180942720(void)
+ void FUN_180942720(void)
 void FUN_180942720(void)
 
 {
@@ -82730,7 +82730,7 @@ void FUN_180942720(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180942750(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+ void FUN_180942750(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
 void FUN_180942750(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
 
 {
@@ -82761,7 +82761,7 @@ void FUN_180942750(undefined8 param_1,undefined8 param_2,undefined8 param_3,unde
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180942790(void)
+ void FUN_180942790(void)
 void FUN_180942790(void)
 
 {
@@ -82777,7 +82777,7 @@ void FUN_180942790(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_1809427d0(void)
+ void FUN_1809427d0(void)
 void FUN_1809427d0(void)
 
 {
@@ -82790,7 +82790,7 @@ void FUN_1809427d0(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_1809427f0(void)
+ void FUN_1809427f0(void)
 void FUN_1809427f0(void)
 
 {
@@ -82803,7 +82803,7 @@ void FUN_1809427f0(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180942810(void)
+ void FUN_180942810(void)
 void FUN_180942810(void)
 
 {
@@ -82816,7 +82816,7 @@ void FUN_180942810(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180942830(void)
+ void FUN_180942830(void)
 void FUN_180942830(void)
 
 {
@@ -82829,7 +82829,7 @@ void FUN_180942830(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180942850(void)
+ void FUN_180942850(void)
 void FUN_180942850(void)
 
 {
@@ -82842,7 +82842,7 @@ void FUN_180942850(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void ReleaseResourceReference(void)
+ void ReleaseResourceReference(void)
 /**
  * @brief 释放资源引用
  * 
@@ -82883,7 +82883,7 @@ void ReleaseResourceReference(void)
 
 
 
-// 函数: void ReleaseResourceReferenceWithParameter(void)
+ void ReleaseResourceReferenceWithParameter(void)
 /**
  * @brief 释放资源引用（带参数版本）
  * 
@@ -82921,7 +82921,7 @@ void ReleaseResourceReferenceWithParameter(void)
 
 
 
-// 函数: void FUN_1809428d8(void)
+ void FUN_1809428d8(void)
 void FUN_1809428d8(void)
 
 {
@@ -82933,7 +82933,7 @@ void FUN_1809428d8(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_1809428e0(void)
+ void FUN_1809428e0(void)
 void FUN_1809428e0(void)
 
 {
@@ -82968,7 +82968,7 @@ void FUN_1809428e0(void)
 
 
 
-// 函数: void FUN_1809428f2(void)
+ void FUN_1809428f2(void)
 void FUN_1809428f2(void)
 
 {
@@ -83000,7 +83000,7 @@ void FUN_1809428f2(void)
 
 
 
-// 函数: void FUN_180942928(void)
+ void FUN_180942928(void)
 void FUN_180942928(void)
 
 {
@@ -83012,7 +83012,7 @@ void FUN_180942928(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180942930(void)
+ void FUN_180942930(void)
 void FUN_180942930(void)
 
 {
@@ -83047,7 +83047,7 @@ void FUN_180942930(void)
 
 
 
-// 函数: void FUN_180942942(void)
+ void FUN_180942942(void)
 void FUN_180942942(void)
 
 {
@@ -83079,7 +83079,7 @@ void FUN_180942942(void)
 
 
 
-// 函数: void FUN_180942978(void)
+ void FUN_180942978(void)
 void FUN_180942978(void)
 
 {
@@ -83091,7 +83091,7 @@ void FUN_180942978(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180942980(void)
+ void FUN_180942980(void)
 void FUN_180942980(void)
 
 {
@@ -83113,7 +83113,7 @@ void FUN_180942980(void)
   _DAT_180bfc180 = 0;
   _DAT_180bfc188 = 0xf;
 
-// 函数: void FUN_1809429f0(void)
+ void FUN_1809429f0(void)
 void FUN_1809429f0(void)
 
 {
@@ -83147,7 +83147,7 @@ void FUN_1809429f0(void)
 
 
 
-// 函数: void FUN_180942a20(void)
+ void FUN_180942a20(void)
 void FUN_180942a20(void)
 
 {
@@ -83176,7 +83176,7 @@ void FUN_180942a20(void)
 
 
 
-// 函数: void FUN_180942a40(void)
+ void FUN_180942a40(void)
 void FUN_180942a40(void)
 
 {
@@ -83191,7 +83191,7 @@ void FUN_180942a40(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180942a60(void)
+ void FUN_180942a60(void)
 void FUN_180942a60(void)
 
 {
@@ -83204,7 +83204,7 @@ void FUN_180942a60(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180942a80(void)
+ void FUN_180942a80(void)
 void FUN_180942a80(void)
 
 {
@@ -83217,7 +83217,7 @@ void FUN_180942a80(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180942aa0(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+ void FUN_180942aa0(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
 void FUN_180942aa0(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
 
 {
@@ -83235,14 +83235,14 @@ void FUN_180942aa0(undefined8 param_1,undefined8 param_2,undefined8 param_3,unde
 
 
 
-// 函数: void FUN_180942b30(void)
+ void FUN_180942b30(void)
 void FUN_180942b30(void)
 
 {
   if (DAT_180c95ef0 != '\0') {
     FUN_1804a6ec0();
 
-// 函数: void FUN_180942b80(void)
+ void FUN_180942b80(void)
 void FUN_180942b80(void)
 
 {
@@ -83250,7 +83250,7 @@ void FUN_180942b80(void)
     FUN_180552e70(_DAT_180c95ff0);
     _DAT_180c95ff0 = 0;
 
-// 函数: void FUN_180942bb0(void)
+ void FUN_180942bb0(void)
 void FUN_180942bb0(void)
 
 {
@@ -83261,7 +83261,7 @@ void FUN_180942bb0(void)
     }
     _DAT_180c96010 = 0;
 
-// 函数: void FUN_180942bf0(void)
+ void FUN_180942bf0(void)
 void FUN_180942bf0(void)
 
 {
@@ -83269,7 +83269,7 @@ void FUN_180942bf0(void)
     FUN_180555430(_DAT_180c96030);
     _DAT_180c96030 = 0;
 
-// 函数: void FUN_180942c20(void)
+ void FUN_180942c20(void)
 void FUN_180942c20(void)
 
 {
@@ -83277,7 +83277,7 @@ void FUN_180942c20(void)
     FUN_180555430(_DAT_180c96050);
     _DAT_180c96050 = 0;
 
-// 函数: void FUN_180942c50(void)
+ void FUN_180942c50(void)
 void FUN_180942c50(void)
 
 {
@@ -83287,7 +83287,7 @@ void FUN_180942c50(void)
       (**(code **)(*_DAT_180c96070 + 0x38))();
     }
 
-// 函数: void FUN_180942cb0(void)
+ void FUN_180942cb0(void)
 void FUN_180942cb0(void)
 
 {
@@ -83295,7 +83295,7 @@ void FUN_180942cb0(void)
     FUN_18055a350(_DAT_180c960a0);
     _DAT_180c960a0 = 0;
 
-// 函数: void FUN_180942ce0(void)
+ void FUN_180942ce0(void)
 void FUN_180942ce0(void)
 
 {
@@ -83303,7 +83303,7 @@ void FUN_180942ce0(void)
     FUN_1804a5b60();
     FUN_1804a5b00(&DAT_180c960c0);
 
-// 函数: void FUN_180942d30(void)
+ void FUN_180942d30(void)
 void FUN_180942d30(void)
 
 {
@@ -83327,7 +83327,7 @@ void FUN_180942d30(void)
     }
     _DAT_180c96138 = 0;
 
-// 函数: void FUN_180942e20(void)
+ void FUN_180942e20(void)
 void FUN_180942e20(void)
 
 {
@@ -83335,7 +83335,7 @@ void FUN_180942e20(void)
     FUN_1804c3730(&DAT_180c961b0);
     FUN_1804c42a0(&DAT_180c961b0);
 
-// 函数: void FUN_180942e70(void)
+ void FUN_180942e70(void)
 void FUN_180942e70(void)
 
 {
@@ -83356,7 +83356,7 @@ void FUN_180942e70(void)
       FUN_18064e900();
     }
 
-// 函数: void FUN_180942f00(void)
+ void FUN_180942f00(void)
 void FUN_180942f00(void)
 
 {
@@ -83366,14 +83366,14 @@ void FUN_180942f00(void)
       FUN_18064e900();
     }
 
-// 函数: void FUN_180942f50(void)
+ void FUN_180942f50(void)
 void FUN_180942f50(void)
 
 {
   if (DAT_180c96210 != '\0') {
     FUN_1804a5bc0();
 
-// 函数: void FUN_180942fa0(void)
+ void FUN_180942fa0(void)
 void FUN_180942fa0(void)
 
 {
@@ -83386,7 +83386,7 @@ void FUN_180942fa0(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180942fc0(void)
+ void FUN_180942fc0(void)
 void FUN_180942fc0(void)
 
 {
@@ -83397,7 +83397,7 @@ void FUN_180942fc0(void)
 
 
 
-// 函数: void FUN_180943020(void)
+ void FUN_180943020(void)
 void FUN_180943020(void)
 
 {
@@ -83410,7 +83410,7 @@ void FUN_180943020(void)
 
 
 
-// 函数: void FUN_180943040(void)
+ void FUN_180943040(void)
 void FUN_180943040(void)
 
 {
@@ -83423,7 +83423,7 @@ void FUN_180943040(void)
 
 
 
-// 函数: void FUN_180943070(void)
+ void FUN_180943070(void)
 /**
  * @brief 销毁互斥锁资源
  * 
@@ -83444,7 +83444,7 @@ void FUN_180943070(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180943090(void)
+ void FUN_180943090(void)
 /**
  * @brief 重置全局数据指针
  * 
@@ -83463,7 +83463,7 @@ void FUN_180943090(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_1809430b0(void)
+ void FUN_1809430b0(void)
 /**
  * @brief 重置系统数据表指针
  * 
@@ -83482,7 +83482,7 @@ void FUN_1809430b0(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void ClearSystemCacheAndResetState(void)
+ void ClearSystemCacheAndResetState(void)
 /**
  * @brief 清理系统缓存并重置状态
  * 
@@ -83507,7 +83507,7 @@ void ClearSystemCacheAndResetState(void)
 
 
 
-// 函数: void DestroyMutexInPlace(void)
+ void DestroyMutexInPlace(void)
 /**
  * @brief 销毁互斥锁资源
  * 
@@ -83526,7 +83526,7 @@ void DestroyMutexInPlace(void)
 
 
 
-// 函数: void CleanupMutexResources(void)
+ void CleanupMutexResources(void)
 /**
  * @brief 清理互斥锁资源
  * 
@@ -83606,7 +83606,7 @@ void ResetThreadLocalStorage(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void CleanupSystemResources(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+ void CleanupSystemResources(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
 /**
  * @brief 清理系统资源
  * 
