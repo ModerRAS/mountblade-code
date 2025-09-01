@@ -11776,8 +11776,15 @@ void InitializeSystemEventDataNodeManager(void)
 
 
 
-// 函数: void FUN_18003c5f0(void)
-void FUN_18003c5f0(void)
+// 函数: void InitializeSystemMemoryAllocatorNode(void)
+/**
+ * @brief 初始化系统内存分配器节点
+ * 
+ * 该函数负责初始化系统的内存分配器节点，设置内存分配的基础结构。
+ * 它会遍历系统节点树，查找合适的位置插入内存分配器节点，
+ * 并设置节点的标识符和回调函数。
+ */
+void InitializeSystemMemoryAllocatorNode(void)
 
 {
   char systemNodeFlag;
@@ -11826,8 +11833,15 @@ void FUN_18003c5f0(void)
 
 
 
-// 函数: void FUN_18003c6f0(void)
-void FUN_18003c6f0(void)
+// 函数: void InitializeSystemConfigurationNode(void)
+/**
+ * @brief 初始化系统配置节点
+ * 
+ * 该函数负责初始化系统的配置节点，设置系统配置的基础结构。
+ * 它会遍历系统节点树，查找合适的位置插入配置节点，
+ * 并设置节点的标识符和配置数据。
+ */
+void InitializeSystemConfigurationNode(void)
 
 {
   char systemNodeFlag;
@@ -11876,8 +11890,15 @@ void FUN_18003c6f0(void)
 
 
 
-// 函数: void FUN_18003c7f0(void)
-void FUN_18003c7f0(void)
+// 函数: void InitializeSystemEventNode(void)
+/**
+ * @brief 初始化系统事件节点
+ * 
+ * 该函数负责初始化系统的事件节点，设置系统事件处理的基础结构。
+ * 它会遍历系统节点树，查找合适的位置插入事件节点，
+ * 并设置节点的标识符和事件数据。
+ */
+void InitializeSystemEventNode(void)
 
 {
   char systemNodeFlag;
@@ -11926,8 +11947,15 @@ void FUN_18003c7f0(void)
 
 
 
-// 函数: void FUN_18003c8f0(void)
-void FUN_18003c8f0(void)
+// 函数: void InitializeSystemResourceNode(void)
+/**
+ * @brief 初始化系统资源节点
+ * 
+ * 该函数负责初始化系统的资源节点，设置系统资源管理的基础结构。
+ * 它会遍历系统节点树，查找合适的位置插入资源节点，
+ * 并设置节点的标识符和资源数据。
+ */
+void InitializeSystemResourceNode(void)
 
 {
   char systemNodeFlag;
@@ -11976,8 +12004,15 @@ void FUN_18003c8f0(void)
 
 
 
-// 函数: void FUN_18003c9f0(void)
-void FUN_18003c9f0(void)
+// 函数: void InitializeSystemDataNode(void)
+/**
+ * @brief 初始化系统数据节点
+ * 
+ * 该函数负责初始化系统的数据节点，设置系统数据管理的基础结构。
+ * 它会遍历系统节点树，查找合适的位置插入数据节点，
+ * 并设置节点的标识符和数据指针。
+ */
+void InitializeSystemDataNode(void)
 
 {
   char systemNodeFlag;
@@ -12026,8 +12061,15 @@ void FUN_18003c9f0(void)
 
 
 
-// 函数: void FUN_18003caf0(void)
-void FUN_18003caf0(void)
+// 函数: void InitializeSystemStringProcessor(void)
+/**
+ * @brief 初始化系统字符串处理器
+ * 
+ * 该函数负责初始化系统的字符串处理器，设置字符串处理的基础结构。
+ * 它会遍历系统节点树，查找合适的位置插入字符串处理器节点，
+ * 并设置节点的标识符和字符串处理回调函数。
+ */
+void InitializeSystemStringProcessor(void)
 
 {
   char systemNodeFlag;
@@ -12078,8 +12120,14 @@ void FUN_18003caf0(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_18003cbf0(void)
-void FUN_18003cbf0(void)
+// 函数: void InitializeSystemMemoryNodeManager(void)
+/**
+ * @brief 初始化系统内存节点管理器
+ * 
+ * 该函数负责初始化系统的内存节点管理器，设置内存节点管理的基础结构。
+ * 它会创建内存节点的标识符，并设置相关的内存管理回调函数。
+ */
+void InitializeSystemMemoryNodeManager(void)
 
 {
   undefined8 in_R9;
@@ -12102,8 +12150,14 @@ void FUN_18003cbf0(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_18003cc80(void)
-void FUN_18003cc80(void)
+// 函数: void InitializeSystemDeviceNodeManager(void)
+/**
+ * @brief 初始化系统设备节点管理器
+ * 
+ * 该函数负责初始化系统的设备节点管理器，设置设备节点管理的基础结构。
+ * 它会创建设备节点的标识符，并设置相关的设备管理回调函数。
+ */
+void InitializeSystemDeviceNodeManager(void)
 
 {
   undefined8 in_R9;
@@ -12124,8 +12178,15 @@ void FUN_18003cc80(void)
 
 
 
-// 函数: void FUN_18003cd10(void)
-void FUN_18003cd10(void)
+// 函数: void InitializeSystemConfigurationDataNodeManager(void)
+/**
+ * @brief 初始化系统配置数据节点管理器
+ * 
+ * 该函数负责初始化系统的配置数据节点管理器，设置配置数据管理的基础结构。
+ * 它会遍历系统节点树，查找合适的位置插入配置数据节点，
+ * 并设置节点的标识符和事件回调函数。
+ */
+void InitializeSystemConfigurationDataNodeManager(void)
 
 {
   char systemNodeFlag;
@@ -12174,8 +12235,15 @@ void FUN_18003cd10(void)
 
 
 
-// 函数: void FUN_18003ce10(void)
-void FUN_18003ce10(void)
+// 函数: void InitializeSystemEventDataNodeManager(void)
+/**
+ * @brief 初始化系统事件数据节点管理器
+ * 
+ * 该函数负责初始化系统的事件数据节点管理器，设置事件数据管理的基础结构。
+ * 它会遍历系统节点树，查找合适的位置插入事件数据节点，
+ * 并设置节点的标识符和事件回调函数。
+ */
+void InitializeSystemEventDataNodeManager(void)
 
 {
   char systemNodeFlag;
@@ -12224,8 +12292,15 @@ void FUN_18003ce10(void)
 
 
 
-// 函数: void FUN_18003cf10(void)
-void FUN_18003cf10(void)
+// 函数: void InitializeSystemResourceDataNodeManager(void)
+/**
+ * @brief 初始化系统资源数据节点管理器
+ * 
+ * 该函数负责初始化系统的资源数据节点管理器，设置资源数据管理的基础结构。
+ * 它会遍历系统节点树，查找合适的位置插入资源数据节点，
+ * 并设置节点的标识符和资源初始化回调函数。
+ */
+void InitializeSystemResourceDataNodeManager(void)
 
 {
   char systemNodeFlag;
@@ -12274,8 +12349,15 @@ void FUN_18003cf10(void)
 
 
 
-// 函数: void FUN_18003d010(void)
-void FUN_18003d010(void)
+// 函数: void InitializeSystemDataNodeManager(void)
+/**
+ * @brief 初始化系统数据节点管理器
+ * 
+ * 该函数负责初始化系统的数据节点管理器，设置数据节点管理的基础结构。
+ * 它会遍历系统节点树，查找合适的位置插入数据节点，
+ * 并设置节点的标识符和事件回调函数。
+ */
+void InitializeSystemDataNodeManager(void)
 
 {
   char systemNodeFlag;
@@ -12324,8 +12406,15 @@ void FUN_18003d010(void)
 
 
 
-// 函数: void FUN_18003d110(void)
-void FUN_18003d110(void)
+// 函数: void InitializeSystemStringDataNodeManager(void)
+/**
+ * @brief 初始化系统字符串数据节点管理器
+ * 
+ * 该函数负责初始化系统的字符串数据节点管理器，设置字符串数据管理的基础结构。
+ * 它会遍历系统节点树，查找合适的位置插入字符串数据节点，
+ * 并设置节点的标识符和资源初始化回调函数。
+ */
+void InitializeSystemStringDataNodeManager(void)
 
 {
   char systemNodeFlag;
@@ -12374,8 +12463,15 @@ void FUN_18003d110(void)
 
 
 
-// 函数: void FUN_18003d210(void)
-void FUN_18003d210(void)
+// 函数: void InitializeSystemMemoryDataNodeManager(void)
+/**
+ * @brief 初始化系统内存数据节点管理器
+ * 
+ * 该函数负责初始化系统的内存数据节点管理器，设置内存数据管理的基础结构。
+ * 它会遍历系统节点树，查找合适的位置插入内存数据节点，
+ * 并设置节点的标识符和内存管理回调函数。
+ */
+void InitializeSystemMemoryDataNodeManager(void)
 
 {
   char systemNodeFlag;
@@ -12424,8 +12520,15 @@ void FUN_18003d210(void)
 
 
 
-// 函数: void FUN_18003d310(void)
-void FUN_18003d310(void)
+// 函数: void InitializeSystemDeviceDataNodeManager(void)
+/**
+ * @brief 初始化系统设备数据节点管理器
+ * 
+ * 该函数负责初始化系统的设备数据节点管理器，设置设备数据管理的基础结构。
+ * 它会遍历系统节点树，查找合适的位置插入设备数据节点，
+ * 并设置节点的标识符和资源初始化回调函数。
+ */
+void InitializeSystemDeviceDataNodeManager(void)
 
 {
   char systemNodeFlag;
@@ -12484,8 +12587,15 @@ int FUN_18003d410(void)
   _DAT_180bfa350 = &UNK_1809fcc28;
   _DAT_180bfa358 = &DAT_180bfa368;
 
-// 函数: void FUN_18003de10(void)
-void FUN_18003de10(void)
+// 函数: void InitializeSystemSearchNodeManager(void)
+/**
+ * @brief 初始化系统搜索节点管理器
+ * 
+ * 该函数负责初始化系统的搜索节点管理器，设置搜索节点管理的基础结构。
+ * 它会遍历系统节点树，查找合适的位置插入搜索节点，
+ * 并设置节点的标识符和事件回调函数。
+ */
+void InitializeSystemSearchNodeManager(void)
 
 {
   char systemNodeFlag;
@@ -12534,8 +12644,15 @@ void FUN_18003de10(void)
 
 
 
-// 函数: void FUN_18003df10(void)
-void FUN_18003df10(void)
+// 函数: void InitializeSystemDebugNodeManager(void)
+/**
+ * @brief 初始化系统调试节点管理器
+ * 
+ * 该函数负责初始化系统的调试节点管理器，设置调试节点管理的基础结构。
+ * 它会遍历系统节点树，查找合适的位置插入调试节点，
+ * 并设置节点的标识符和调试回调函数。
+ */
+void InitializeSystemDebugNodeManager(void)
 
 {
   char systemNodeFlag;
@@ -12584,8 +12701,15 @@ void FUN_18003df10(void)
 
 
 
-// 函数: void FUN_18003e010(void)
-void FUN_18003e010(void)
+// 函数: void InitializeSystemLoggingNodeManager(void)
+/**
+ * @brief 初始化系统日志节点管理器
+ * 
+ * 该函数负责初始化系统的日志节点管理器，设置日志节点管理的基础结构。
+ * 它会遍历系统节点树，查找合适的位置插入日志节点，
+ * 并设置节点的标识符和日志回调函数。
+ */
+void InitializeSystemLoggingNodeManager(void)
 
 {
   char systemNodeFlag;
@@ -12634,8 +12758,15 @@ void FUN_18003e010(void)
 
 
 
-// 函数: void FUN_18003e110(void)
-void FUN_18003e110(void)
+// 函数: void InitializeSystemPerformanceNodeManager(void)
+/**
+ * @brief 初始化系统性能节点管理器
+ * 
+ * 该函数负责初始化系统的性能节点管理器，设置性能节点管理的基础结构。
+ * 它会遍历系统节点树，查找合适的位置插入性能节点，
+ * 并设置节点的标识符和性能监控回调函数。
+ */
+void InitializeSystemPerformanceNodeManager(void)
 
 {
   char systemNodeFlag;
@@ -12684,8 +12815,15 @@ void FUN_18003e110(void)
 
 
 
-// 函数: void FUN_18003e210(void)
-void FUN_18003e210(void)
+// 函数: void InitializeSystemSecurityNodeManager(void)
+/**
+ * @brief 初始化系统安全节点管理器
+ * 
+ * 该函数负责初始化系统的安全节点管理器，设置安全节点管理的基础结构。
+ * 它会遍历系统节点树，查找合适的位置插入安全节点，
+ * 并设置节点的标识符和安全检查回调函数。
+ */
+void InitializeSystemSecurityNodeManager(void)
 
 {
   char systemNodeFlag;
@@ -12734,8 +12872,15 @@ void FUN_18003e210(void)
 
 
 
-// 函数: void FUN_18003e310(void)
-void FUN_18003e310(void)
+// 函数: void InitializeSystemNetworkNodeManager(void)
+/**
+ * @brief 初始化系统网络节点管理器
+ * 
+ * 该函数负责初始化系统的网络节点管理器，设置网络节点管理的基础结构。
+ * 它会遍历系统节点树，查找合适的位置插入网络节点，
+ * 并设置节点的标识符和网络回调函数。
+ */
+void InitializeSystemNetworkNodeManager(void)
 
 {
   char systemNodeFlag;
@@ -12784,8 +12929,15 @@ void FUN_18003e310(void)
 
 
 
-// 函数: void FUN_18003e410(void)
-void FUN_18003e410(void)
+// 函数: void InitializeSystemThreadNodeManager(void)
+/**
+ * @brief 初始化系统线程节点管理器
+ * 
+ * 该函数负责初始化系统的线程节点管理器，设置线程节点管理的基础结构。
+ * 它会遍历系统节点树，查找合适的位置插入线程节点，
+ * 并设置节点的标识符和线程管理回调函数。
+ */
+void InitializeSystemThreadNodeManager(void)
 
 {
   char systemNodeFlag;
@@ -12834,8 +12986,15 @@ void FUN_18003e410(void)
 
 
 
-// 函数: void FUN_18003e510(void)
-void FUN_18003e510(void)
+// 函数: void InitializeSystemProcessNodeManager(void)
+/**
+ * @brief 初始化系统进程节点管理器
+ * 
+ * 该函数负责初始化系统的进程节点管理器，设置进程节点管理的基础结构。
+ * 它会遍历系统节点树，查找合适的位置插入进程节点，
+ * 并设置节点的标识符和进程管理回调函数。
+ */
+void InitializeSystemProcessNodeManager(void)
 
 {
   char systemNodeFlag;
