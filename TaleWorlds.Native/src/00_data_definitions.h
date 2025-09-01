@@ -11029,12 +11029,12 @@ LAB_18064ff6c:
   DAT_180bf66d8 = 1;
   return;
 }
-uint32_t SystemGetDeviceParameter(int param_1)
+uint32_t SystemGetDeviceParameter(int deviceId)
 {
-  if (*(int *)(&DAT_180bfbd84 + (longlong)param_1 * 0x18) == 0) {
-    FUN_180650490(&DAT_180bfbd80 + (longlong)param_1 * 0x18);
+  if (*(int *)(&DAT_180bfbd84 + (longlong)deviceId * 0x18) == 0) {
+    FUN_180650490(&DAT_180bfbd80 + (longlong)deviceId * 0x18);
   }
-  return *(uint32_t *)(&DAT_180bfbd80 + (longlong)param_1 * 0x18);
+  return *(uint32_t *)(&DAT_180bfbd80 + (longlong)deviceId * 0x18);
 }
     DAT_180c8f020 = 0;
     return;

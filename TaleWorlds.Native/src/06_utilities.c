@@ -3292,7 +3292,7 @@ uint8_t SystemMemoryFlagKernel;
  * @param SystemContext 系统上下文，包含系统相关的状态信息
  * @return 无返回值
  */
-void HandleGameDataObjects(int64_t GameContext, int64_t SystemContext)
+void ProcessGameDataObjects(int64_t GameContext, int64_t SystemContext)
 
 {
   uint8_t ObjectValidationResult;
@@ -3309,20 +3309,20 @@ void HandleGameDataObjects(int64_t GameContext, int64_t SystemContext)
   
   SecurityAccessToken = SecurityEncryptionKey ^ (uint64_t)ObjectMetadataBuffer;
   ProcessingStatus = GetContextHandles(*(uint32_t *)(GameContext + 0x10), ContextHandles);
-  if ((OperationStatus == 0) && (*(int64_t *)(ContextHandles[0] + 8) != 0)) {
-    ObjectDataList = ObjectProcessingBuffer;
+  if ((ProcessingStatus == 0) && (*(int64_t *)(ContextHandles[0] + 8) != 0)) {
+    GameDataList = ObjectProcessingBuffer;
     ProcessedObjectCount = 0;
     ListIterator = 0;
     MaximumItems = 0xffffffc0;
-    OperationStatus = RetrieveObjectList(*(uint8_t *)(SystemContext + 0x90), *(int64_t *)(ContextHandles[0] + 8),
-                          &ObjectDataList);
-    if (OperationStatus == 0) {
+    ProcessingStatus = RetrieveObjectList(*(uint8_t *)(SystemContext + 0x90), *(int64_t *)(ContextHandles[0] + 8),
+                          &GameDataList);
+    if (ProcessingStatus == 0) {
       if (0 < ListIterator) {
         CurrentObjectPointer = 0;
         do {
-          ObjectValidationResult = *(uint8_t *)(ObjectDataList + CurrentObjectPointer);
-          OperationStatus = ValidateObjectStatus(ObjectValidationResult);
-          if (OperationStatus != 2) {
+          ObjectValidationResult = *(uint8_t *)(GameDataList + CurrentObjectPointer);
+          ProcessingStatus = ValidateObjectStatus(ObjectValidationResult);
+          if (ProcessingStatus != 2) {
                     // WARNING: Subroutine does not return
             HandleInvalidObject(ObjectValidationResult, 1);
           }
@@ -3330,14 +3330,14 @@ void HandleGameDataObjects(int64_t GameContext, int64_t SystemContext)
           CurrentObjectPointer = CurrentObjectPointer + 8;
         } while (ProcessedObjectCount < ListIterator);
       }
-      ReleaseObjectListMemory(&ObjectDataList);
+      ReleaseObjectListMemory(&GameDataList);
     }
     else {
-      ReleaseObjectListMemory(&ObjectDataList);
+      ReleaseObjectListMemory(&GameDataList);
     }
   }
                     // WARNING: Subroutine does not return
-  ExecuteSecurityValidation(AccessSecurityToken ^ (uint64_t)ObjectMetadataBuffer);
+  ExecuteSecurityValidation(SecurityAccessToken ^ (uint64_t)ObjectMetadataBuffer);
 }
 
 

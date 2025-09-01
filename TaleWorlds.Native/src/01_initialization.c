@@ -19937,48 +19937,48 @@ ulong long CompareSystemDataBlocks(long long SystemResourcePointer,long long Com
   ulong long comparisonIndex;
   ulong long loopCounter;
   
-  unsignedSystemValue10 = (ulong long)*(int *)(SystemResourcePointer + 0x68);
+  comparisonIndex = (ulong long)*(int *)(SystemResourcePointer + 0x68);
   localResourceOffset = *(long long *)(SystemResourcePointer + 8);
-  if (unsignedSystemValue10 < (ulong long)(*(long long *)(SystemResourcePointer + 0x10) - localResourceOffset >> 8)) {
+  if (comparisonIndex < (ulong long)(*(long long *)(SystemResourcePointer + 0x10) - localResourceOffset >> 8)) {
     systemValue = *(int *)(ComparisonDataPointer + 0x10);
-    systemResult = *(int *)(unsignedSystemValue10 * 0x100 + 0x10 + localResourceOffset);
+    systemResult = *(int *)(comparisonIndex * 0x100 + 0x10 + localResourceOffset);
     if (systemResult == systemValue) {
       if (systemResult != 0) {
-        pbVar4 = *(byte **)(unsignedSystemValue10 * 0x100 + 8 + localResourceOffset);
-        localMemoryAddress = *(long long *)(ComparisonDataPointer + 8) - (long long)pbVar4;
+        sourceBytePointer = *(byte **)(comparisonIndex * 0x100 + 8 + localResourceOffset);
+        localMemoryAddress = *(long long *)(ComparisonDataPointer + 8) - (long long)sourceBytePointer;
         do {
-          pbVar1 = pbVar4 + localMemoryAddress;
-          systemValue = (uint)*pbVar4 - (uint)*pbVar1;
+          comparisonBytePointer = sourceBytePointer + localMemoryAddress;
+          systemValue = (uint)*sourceBytePointer - (uint)*comparisonBytePointer;
           if (systemValue != 0) break;
-          pbVar4 = pbVar4 + 1;
-        } while (*pbVar1 != 0);
+          sourceBytePointer = sourceBytePointer + 1;
+        } while (*comparisonBytePointer != 0);
       }
     }
     else if (systemResult != 0) goto LAB_180046c03;
     if (systemValue == 0) {
 LAB_180046c90:
-      return unsignedSystemValue10 & 0xffffffff;
+      return comparisonIndex & 0xffffffff;
     }
   }
 LAB_180046c03:
-  unsignedSystemValue10 = 0;
-  unsignedSystemValue7 = *(long long *)(SystemResourcePointer + 0x10) - localResourceOffset >> 8;
-  if (unsignedSystemValue7 != 0) {
+  comparisonIndex = 0;
+  dataSizeLimit = *(long long *)(SystemResourcePointer + 0x10) - localResourceOffset >> 8;
+  if (dataSizeLimit != 0) {
     systemValue = *(int *)(ComparisonDataPointer + 0x10);
-    unsignedSystemValue11 = unsignedSystemValue10;
+    loopCounter = comparisonIndex;
     do {
-      systemResult = *(int *)(unsignedSystemValue11 + 0x10 + localResourceOffset);
+      systemResult = *(int *)(loopCounter + 0x10 + localResourceOffset);
       systemFlag = systemValue;
       if (systemResult == systemValue) {
         if (systemResult != 0) {
-          pbVar4 = *(byte **)(unsignedSystemValue11 + 8 + localResourceOffset);
-          localMemoryAddress = *(long long *)(ComparisonDataPointer + 8) - (long long)pbVar4;
+          sourceBytePointer = *(byte **)(loopCounter + 8 + localResourceOffset);
+          localMemoryAddress = *(long long *)(ComparisonDataPointer + 8) - (long long)sourceBytePointer;
           do {
-            pbVar1 = pbVar4 + localMemoryAddress;
-            systemFlag = (uint)*pbVar4 - (uint)*pbVar1;
+            comparisonBytePointer = sourceBytePointer + localMemoryAddress;
+            systemFlag = (uint)*sourceBytePointer - (uint)*comparisonBytePointer;
             if (systemFlag != 0) break;
-            pbVar4 = pbVar4 + 1;
-          } while (*pbVar1 != 0);
+            sourceBytePointer = sourceBytePointer + 1;
+          } while (*comparisonBytePointer != 0);
         }
 LAB_180046c5e:
         if (systemFlag == 0) {
