@@ -110,6 +110,60 @@ char* SystemModuleGraphicsBuffer;
 uint32_t StringProcessorFlags;
 uint32_t SystemMutexFlags;
 
+// 字符串处理系统AB的配置变量
+void* StringProcessingSystemABMemoryPoolPointer;
+void* StringProcessingSystemABConfigBufferPointer;
+char StringProcessingSystemABConfigBuffer[64];
+uint32_t StringProcessingSystemABConfigSize;
+
+// 字符串处理系统AC的配置变量
+void* StringProcessingSystemACMemoryPoolPointer;
+void* StringProcessingSystemACConfigBufferPointer;
+char StringProcessingSystemACConfigBuffer[64];
+uint32_t StringProcessingSystemACConfigSize;
+
+// 字符串处理系统AD的配置变量
+void* StringProcessingSystemADMemoryPoolPointer;
+void* StringProcessingSystemADConfigBufferPointer;
+char StringProcessingSystemADConfigBuffer[64];
+uint32_t StringProcessingSystemADConfigSize;
+
+// 字符串处理系统AE的配置变量
+void* StringProcessingSystemAEMemoryPoolPointer;
+void* StringProcessingSystemAEConfigBufferPointer;
+char StringProcessingSystemAEConfigBuffer[64];
+uint32_t StringProcessingSystemAEConfigSize;
+
+// 字符串处理系统AF的配置变量
+void* StringProcessingSystemAFMemoryPoolPointer;
+void* StringProcessingSystemAFConfigBufferPointer;
+char StringProcessingSystemAFConfigBuffer[64];
+uint32_t StringProcessingSystemAFConfigSize;
+
+// 字符串处理系统AG的配置变量
+void* StringProcessingSystemAGMemoryPoolPointer;
+void* StringProcessingSystemAGConfigBufferPointer;
+char StringProcessingSystemAGConfigBuffer[64];
+uint32_t StringProcessingSystemAGConfigSize;
+
+// 字符串处理系统AH的配置变量
+void* StringProcessingSystemAHMemoryPoolPointer;
+void* StringProcessingSystemAHConfigBufferPointer;
+char StringProcessingSystemAHConfigBuffer[64];
+uint32_t StringProcessingSystemAHConfigSize;
+
+// 字符串处理系统AI的配置变量
+void* StringProcessingSystemAIMemoryPoolPointer;
+void* StringProcessingSystemAIConfigBufferPointer;
+char StringProcessingSystemAIConfigBuffer[64];
+uint32_t StringProcessingSystemAIConfigSize;
+
+// 字符串处理系统AJ的配置变量
+void* StringProcessingSystemAJMemoryPoolPointer;
+void* StringProcessingSystemAJConfigBufferPointer;
+char StringProcessingSystemAJConfigBuffer[64];
+uint32_t StringProcessingSystemAJConfigSize;
+
 // 系统内存配置模板 - 用于内存配置操作
 void* SystemMemoryConfigTemplate;
 
@@ -2225,11 +2279,11 @@ int InitializeStringProcessingSystemAB(void)
 {
   int64_t ModuleInitializationResult;
   uint64_t StringProcessorFlags;
-  _DAT_180bf9f90 = &SystemMemoryPool;
-  _DAT_180bf9f98 = &DAT_180bf9fa8;
-  DAT_180bf9fa8 = 0;
-  _DAT_180bf9fa0 = 0x15;
-  strcpy_s(&DAT_180bf9fa8,0x40,&SystemModuleConfigTemplate22F90,StringProcessorFlags,SystemMutexFlags);
+  StringProcessingSystemABMemoryPoolPointer = &SystemMemoryPool;
+  StringProcessingSystemABConfigBufferPointer = &StringProcessingSystemABConfigBuffer;
+  StringProcessingSystemABConfigBuffer = 0;
+  StringProcessingSystemABConfigSize = 0x15;
+  strcpy_s(&StringProcessingSystemABConfigBuffer,0x40,&SystemModuleConfigTemplate22F90,StringProcessorFlags,SystemMutexFlags);
   ModuleInitializationResult = RegisterSystemModule(InitializeStringProcessingSystemAB);
   return (ModuleInitializationResult != 0) - 1;
 }
@@ -2243,11 +2297,11 @@ int InitializeStringProcessingSystemAC(void)
 {
   int64_t ModuleInitializationResult;
   uint64_t StringProcessorFlags;
-  _DAT_180bf9ff0 = &SystemMemoryPool;
-  _DAT_180bf9ff8 = &DAT_180bfa008;
-  DAT_180bfa008 = 0;
-  _DAT_180bfa000 = 0x13;
-  strcpy_s(&DAT_180bfa008,0x40,&SystemModuleConfigTemplate22F78,StringProcessorFlags,SystemMutexFlags);
+  StringProcessingSystemACMemoryPoolPointer = &SystemMemoryPool;
+  StringProcessingSystemACConfigBufferPointer = &StringProcessingSystemACConfigBuffer;
+  StringProcessingSystemACConfigBuffer = 0;
+  StringProcessingSystemACConfigSize = 0x13;
+  strcpy_s(&StringProcessingSystemACConfigBuffer,0x40,&SystemModuleConfigTemplate22F78,StringProcessorFlags,SystemMutexFlags);
   ModuleInitializationResult = RegisterSystemModule(InitializeStringProcessingSystemAC);
   return (ModuleInitializationResult != 0) - 1;
 }
@@ -2261,11 +2315,11 @@ int InitializeStringProcessingSystemAD(void)
 {
   int64_t ModuleInitializationResult;
   uint64_t StringProcessorFlags;
-  _DAT_180bfa050 = &SystemMemoryPool;
-  _DAT_180bfa058 = &DAT_180bfa068;
-  DAT_180bfa068 = 0;
-  _DAT_180bfa060 = 0x13;
-  strcpy_s(&DAT_180bfa068,0x40,&SystemModuleConfigTemplate22F60,StringProcessorFlags,SystemMutexFlags);
+  StringProcessingSystemADMemoryPoolPointer = &SystemMemoryPool;
+  StringProcessingSystemADConfigBufferPointer = &StringProcessingSystemADConfigBuffer;
+  StringProcessingSystemADConfigBuffer = 0;
+  StringProcessingSystemADConfigSize = 0x13;
+  strcpy_s(&StringProcessingSystemADConfigBuffer,0x40,&SystemModuleConfigTemplate22F60,StringProcessorFlags,SystemMutexFlags);
   ModuleInitializationResult = RegisterSystemModule(InitializeStringProcessingSystemAD);
   return (ModuleInitializationResult != 0) - 1;
 }
@@ -2279,11 +2333,11 @@ int InitializeStringProcessingSystemAE(void)
 {
   int64_t ModuleInitializationResult;
   uint64_t StringProcessorFlags;
-  _DAT_180bfa0b0 = &SystemMemoryPool;
-  _DAT_180bfa0b8 = &DAT_180bfa0c8;
-  DAT_180bfa0c8 = 0;
-  _DAT_180bfa0c0 = 0x1b;
-  strcpy_s(&DAT_180bfa0c8,0x40,&SystemModuleConfigTemplate22F40,StringProcessorFlags,SystemMutexFlags);
+  StringProcessingSystemAEMemoryPoolPointer = &SystemMemoryPool;
+  StringProcessingSystemAEConfigBufferPointer = &StringProcessingSystemAEConfigBuffer;
+  StringProcessingSystemAEConfigBuffer = 0;
+  StringProcessingSystemAEConfigSize = 0x1b;
+  strcpy_s(&StringProcessingSystemAEConfigBuffer,0x40,&SystemModuleConfigTemplate22F40,StringProcessorFlags,SystemMutexFlags);
   ModuleInitializationResult = RegisterSystemModule(InitializeStringProcessingSystemAE);
   return (ModuleInitializationResult != 0) - 1;
 }
@@ -2297,11 +2351,11 @@ int InitializeStringProcessingSystemAF(void)
 {
   int64_t ModuleInitializationResult;
   uint64_t StringProcessorFlags;
-  _DAT_180bfa110 = &SystemMemoryPool;
-  _DAT_180bfa118 = &DAT_180bfa128;
-  DAT_180bfa128 = 0;
-  _DAT_180bfa120 = 0x19;
-  strcpy_s(&DAT_180bfa128,0x40,&SystemModuleConfigTemplate23018,StringProcessorFlags,SystemMutexFlags);
+  StringProcessingSystemAFMemoryPoolPointer = &SystemMemoryPool;
+  StringProcessingSystemAFConfigBufferPointer = &StringProcessingSystemAFConfigBuffer;
+  StringProcessingSystemAFConfigBuffer = 0;
+  StringProcessingSystemAFConfigSize = 0x19;
+  strcpy_s(&StringProcessingSystemAFConfigBuffer,0x40,&SystemModuleConfigTemplate23018,StringProcessorFlags,SystemMutexFlags);
   ModuleInitializationResult = RegisterSystemModule(InitializeStringProcessingSystemAF);
   return (ModuleInitializationResult != 0) - 1;
 }
@@ -2315,11 +2369,11 @@ int InitializeStringProcessingSystemAG(void)
 {
   int64_t ModuleInitializationResult;
   uint64_t StringProcessorFlags;
-  _DAT_180bfa170 = &SystemMemoryPool;
-  _DAT_180bfa178 = &DAT_180bfa188;
-  DAT_180bfa188 = 0;
-  _DAT_180bfa180 = 0x15;
-  strcpy_s(&DAT_180bfa188,0x40,&SystemModuleConfigTemplate23000,StringProcessorFlags,SystemMutexFlags);
+  StringProcessingSystemAGMemoryPoolPointer = &SystemMemoryPool;
+  StringProcessingSystemAGConfigBufferPointer = &StringProcessingSystemAGConfigBuffer;
+  StringProcessingSystemAGConfigBuffer = 0;
+  StringProcessingSystemAGConfigSize = 0x15;
+  strcpy_s(&StringProcessingSystemAGConfigBuffer,0x40,&SystemModuleConfigTemplate23000,StringProcessorFlags,SystemMutexFlags);
   ModuleInitializationResult = RegisterSystemModule(InitializeStringProcessingSystemAG);
   return (ModuleInitializationResult != 0) - 1;
 }
@@ -2333,11 +2387,11 @@ int InitializeStringProcessingSystemAH(void)
 {
   int64_t ModuleInitializationResult;
   uint64_t StringProcessorFlags;
-  _DAT_180bfa1d0 = &SystemMemoryPool;
-  _DAT_180bfa1d8 = &DAT_180bfa1e8;
-  DAT_180bfa1e8 = 0;
-  _DAT_180bfa1e0 = 0x28;
-  strcpy_s(&DAT_180bfa1e8,0x40,&DAT_180a22fd0,StringProcessorFlags,SystemMutexFlags);
+  StringProcessingSystemAHMemoryPoolPointer = &SystemMemoryPool;
+  StringProcessingSystemAHConfigBufferPointer = &StringProcessingSystemAHConfigBuffer;
+  StringProcessingSystemAHConfigBuffer = 0;
+  StringProcessingSystemAHConfigSize = 0x28;
+  strcpy_s(&StringProcessingSystemAHConfigBuffer,0x40,&DAT_180a22fd0,StringProcessorFlags,SystemMutexFlags);
   ModuleInitializationResult = RegisterSystemModule(InitializeStringProcessingSystemAH);
   return (ModuleInitializationResult != 0) - 1;
 }
@@ -2351,11 +2405,11 @@ int InitializeStringProcessingSystemAI(void)
 {
   int64_t ModuleInitializationResult;
   uint64_t StringProcessorFlags;
-  _DAT_180bfa230 = &SystemMemoryPool;
-  _DAT_180bfa238 = &DAT_180bfa248;
-  DAT_180bfa248 = 0;
-  _DAT_180bfa240 = 0x23;
-  strcpy_s(&DAT_180bfa248,0x40,&DAT_180a22fa8,StringProcessorFlags,SystemMutexFlags);
+  StringProcessingSystemAIMemoryPoolPointer = &SystemMemoryPool;
+  StringProcessingSystemAIConfigBufferPointer = &StringProcessingSystemAIConfigBuffer;
+  StringProcessingSystemAIConfigBuffer = 0;
+  StringProcessingSystemAIConfigSize = 0x23;
+  strcpy_s(&StringProcessingSystemAIConfigBuffer,0x40,&DAT_180a22fa8,StringProcessorFlags,SystemMutexFlags);
   ModuleInitializationResult = RegisterSystemModule(InitializeStringProcessingSystemAI);
   return (ModuleInitializationResult != 0) - 1;
 }
@@ -2369,11 +2423,11 @@ int InitializeStringProcessingSystemAJ(void)
 {
   int64_t ModuleInitializationResult;
   uint64_t StringProcessorFlags;
-  _DAT_180bfa290 = &SystemMemoryPool;
-  _DAT_180bfa298 = &DAT_180bfa2a8;
-  DAT_180bfa2a8 = 0;
-  _DAT_180bfa2a0 = 0x17;
-  strcpy_s(&DAT_180bfa2a8,0x40,&SystemModuleConfigTemplate23068,StringProcessorFlags,SystemMutexFlags);
+  StringProcessingSystemAJMemoryPoolPointer = &SystemMemoryPool;
+  StringProcessingSystemAJConfigBufferPointer = &StringProcessingSystemAJConfigBuffer;
+  StringProcessingSystemAJConfigBuffer = 0;
+  StringProcessingSystemAJConfigSize = 0x17;
+  strcpy_s(&StringProcessingSystemAJConfigBuffer,0x40,&SystemModuleConfigTemplate23068,StringProcessorFlags,SystemMutexFlags);
   ModuleInitializationResult = RegisterSystemModule(InitializeStringProcessingSystemAJ);
   return (ModuleInitializationResult != 0) - 1;
 }
