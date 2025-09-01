@@ -2503,8 +2503,8 @@ undefined ValidateResourceIntegrity;
 undefined DAT_180c963e8;
 undefined DAT_180d49f60;
 undefined DAT_180d49f64;
-undefined UNK_180a30dc0;
-undefined UNK_180a30e10;
+undefined SystemResourceAnalyzer;
+undefined SystemResourceProfiler;
 undefined UNK_180a30e38;
 undefined UNK_180a30e60;
 undefined UNK_180a2fca0;
@@ -86838,8 +86838,16 @@ void InitializeSystemDataStructureCX(void)
       ExecuteSystemEmergencyExit();
     }
 
- void FUN_180942f00(void)
-void FUN_180942f00(void)
+ /**
+ * 初始化系统数据结构CY
+ * 设置全局系统数据结构指针，用于系统初始化
+ */
+void InitializeSystemDataStructureCY(void)
+/**
+ * 初始化系统数据结构CY
+ * 设置全局系统数据结构指针，用于系统初始化
+ */
+void InitializeSystemDataStructureCY(void)
 
 {
   if (DAT_180c95fe8 != '\0') {
@@ -86848,15 +86856,31 @@ void FUN_180942f00(void)
       ExecuteSystemEmergencyExit();
     }
 
- void FUN_180942f50(void)
-void FUN_180942f50(void)
+ /**
+ * 初始化系统数据结构CZ
+ * 设置全局系统数据结构指针，用于系统初始化
+ */
+void InitializeSystemDataStructureCZ(void)
+/**
+ * 初始化系统数据结构CZ
+ * 设置全局系统数据结构指针，用于系统初始化
+ */
+void InitializeSystemDataStructureCZ(void)
 
 {
   if (DAT_180c96210 != '\0') {
     FUN_1804a5bc0();
 
- void FUN_180942fa0(void)
-void FUN_180942fa0(void)
+ /**
+ * 初始化系统数据结构DA
+ * 设置全局系统数据结构指针，用于系统初始化
+ */
+void InitializeSystemDataStructureDA(void)
+/**
+ * 初始化系统数据结构DA
+ * 设置全局系统数据结构指针，用于系统初始化
+ */
+void InitializeSystemDataStructureDA(void)
 
 {
   _DAT_180bf64f8 = &SystemDataStructure;
@@ -86868,8 +86892,16 @@ void FUN_180942fa0(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void FUN_180942fc0(void)
-void FUN_180942fc0(void)
+ /**
+ * 初始化系统数据结构DB
+ * 设置全局系统数据结构指针，用于系统初始化
+ */
+void InitializeSystemDataStructureDB(void)
+/**
+ * 初始化系统数据结构DB
+ * 设置全局系统数据结构指针，用于系统初始化
+ */
+void InitializeSystemDataStructureDB(void)
 
 {
   _DAT_180bf6558 = &SystemDataStructure;
