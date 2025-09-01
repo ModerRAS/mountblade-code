@@ -3918,7 +3918,7 @@ int ProcessNetworkPacketWithMultipleStatus(longlong connectionContext, longlong 
   primaryBuffer = *(NetworkStatus *)(connectionContext + 0x18);
   connectionState = *(NetworkStatus *)(connectionContext + 0x10);
   secondaryBuffer = *(NetworkStatus *)(connectionContext + 0x1c);
-  firstProcessingOffset = ProcessNetworkBufferData(packetData, dataSize, &UNK_1809839b8);
+  firstProcessingOffset = ProcessNetworkBufferData(packetData, dataSize, &NetworkPacketValidationTemplate);
   secondProcessingOffset = ProcessNetworkBufferData(firstProcessingOffset + packetData, dataSize - firstProcessingOffset, &g_NetworkBufferDataTemplate);
   firstProcessingOffset = firstProcessingOffset + secondProcessingOffset;
   secondProcessingOffset = ProcessNetworkBufferCopy(firstProcessingOffset + packetData, dataSize - firstProcessingOffset, connectionState);

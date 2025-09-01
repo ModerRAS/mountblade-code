@@ -86793,16 +86793,32 @@ void InitializeSystemDataStructureCV(void)
     }
     _DAT_180c96138 = 0;
 
- void FUN_180942e20(void)
-void FUN_180942e20(void)
+ /**
+ * 初始化系统数据结构CW
+ * 设置全局系统数据结构指针，用于系统初始化
+ */
+void InitializeSystemDataStructureCW(void)
+/**
+ * 初始化系统数据结构CW
+ * 设置全局系统数据结构指针，用于系统初始化
+ */
+void InitializeSystemDataStructureCW(void)
 
 {
   if (DAT_180c961d8 != '\0') {
     FUN_1804c3730(&DAT_180c961b0);
     FUN_1804c42a0(&DAT_180c961b0);
 
- void FUN_180942e70(void)
-void FUN_180942e70(void)
+ /**
+ * 初始化系统数据结构CX
+ * 设置全局系统数据结构指针，用于系统初始化
+ */
+void InitializeSystemDataStructureCX(void)
+/**
+ * 初始化系统数据结构CX
+ * 设置全局系统数据结构指针，用于系统初始化
+ */
+void InitializeSystemDataStructureCX(void)
 
 {
   longlong *plVar1;
