@@ -774,10 +774,10 @@ undefined DAT_180bf90c8;
  * 设置多语言支持、文本翻译和文化适配
  */
 void InitializeLocalizationSystem(void);
-undefined g_localizationDatabase;
-undefined g_languagePackManager;
-undefined g_textTranslationEngine;
-undefined g_culturalAdaptationManager;
+void* g_localizationDatabase;
+void* g_languagePackManager;
+void* g_textTranslationEngine;
+void* g_culturalAdaptationManager;
 
 // 函数: void InitializeModdingSystem(void)
 /**
@@ -2754,46 +2754,46 @@ void ProcessGameDataObjects(longlong gameContext, longlong systemContext)
 void ValidateSystemObjects(void)
 
 {
-  undefined8 objectHandle;
-  int validationResult;
-  longlong objectData;
-  longlong systemContext;
-  longlong objectOffset;
-  int objectCounter;
-  undefined1 *objectArray;
-  int arraySize;
-  undefined4 maxCapacity;
-  ulonglong securityHash;
+  undefined8 currentObjectHandle;
+  int validationStatusCode;
+  longlong systemObjectData;
+  longlong systemContextPointer;
+  longlong objectIndexOffset;
+  int processedObjectCount;
+  undefined1 *objectCollectionArray;
+  int collectionSize;
+  undefined4 maximumCapacity;
+  ulonglong securityValidationHash;
   
-  if (*(longlong *)(objectData + 8) != 0) {
-    objectArray = &stack0x00000040;
-    objectCounter = 0;
-    arraySize = 0;
-    maxCapacity = 0xffffffc0;
-    validationResult = FUN_1808bf350(*(undefined8 *)(systemContext + 0x90), *(longlong *)(objectData + 8),
+  if (*(longlong *)(systemObjectData + 8) != 0) {
+    objectCollectionArray = &stack0x00000040;
+    processedObjectCount = 0;
+    collectionSize = 0;
+    maximumCapacity = 0xffffffc0;
+    validationStatusCode = RetrieveSystemObjectCollection(*(undefined8 *)(systemContextPointer + 0x90), *(longlong *)(systemObjectData + 8),
                           &stack0x00000030);
-    if (validationResult == 0) {
-      if (0 < arraySize) {
-        objectOffset = 0;
+    if (validationStatusCode == 0) {
+      if (0 < collectionSize) {
+        objectIndexOffset = 0;
         do {
-          objectHandle = *(undefined8 *)(objectArray + objectOffset);
-          validationResult = FUN_1808605e0(objectHandle);
-          if (validationResult != 2) {
+          currentObjectHandle = *(undefined8 *)(objectCollectionArray + objectIndexOffset);
+          validationStatusCode = ValidateSystemObject(currentObjectHandle);
+          if (validationStatusCode != 2) {
                     // WARNING: Subroutine does not return
-            FUN_180862e00(objectHandle, 1);
+            HandleInvalidSystemObject(currentObjectHandle, 1);
           }
-          objectCounter = objectCounter + 1;
-          objectOffset = objectOffset + 8;
-        } while (objectCounter < arraySize);
+          processedObjectCount = processedObjectCount + 1;
+          objectIndexOffset = objectIndexOffset + 8;
+        } while (processedObjectCount < collectionSize);
       }
-      FUN_18085dbf0(&stack0x00000030);
+      ReleaseSystemObjectCollection(&stack0x00000030);
     }
     else {
-      FUN_18085dbf0(&stack0x00000030);
+      ReleaseSystemObjectCollection(&stack0x00000030);
     }
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(securityHash ^ (ulonglong)&stack0x00000000);
+  FUN_1808fc050(securityValidationHash ^ (ulonglong)&stack0x00000000);
 }
 
 

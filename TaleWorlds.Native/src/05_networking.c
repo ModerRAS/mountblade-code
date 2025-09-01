@@ -972,21 +972,21 @@ LAB_1808408dd:
  * 
  * 注意：这是一个反编译的函数实现，原始函数名已丢失
  */
-void FUN_1808407ce(undefined8 connectionContext,undefined8 processData,undefined8 operationType,undefined8 timeoutValue)
+void ProcessNetworkConnectionContext(undefined8 connectionContext, undefined8 processData, undefined8 operationType, undefined8 timeoutValue)
 
 {
-  undefined8 *puVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  undefined *puVar4;
-  undefined8 in_RCX;
-  undefined8 *unaff_RBX;
-  undefined *puVar5;
-  undefined4 unaff_ESI;
-  undefined8 in_XMM0_Qb;
-  undefined8 uStack0000000000000028;
-  longlong lStack0000000000000030;
-  longlong in_stack_00000070;
+  undefined8 *connectionTable;
+  undefined8 *connectionEntry;
+  int operationStatus;
+  undefined *connectionData;
+  undefined8 contextRegister;
+  undefined8 *resultPointer;
+  undefined *connectionResult;
+  undefined4 connectionFlags;
+  undefined8 timeoutRegister;
+  undefined8 stackParameter1;
+  longlong stackParameter2;
+  longlong stackParameter3;
   
   lStack0000000000000030 = 0;
   uStack0000000000000028 = in_XMM0_Qb;
