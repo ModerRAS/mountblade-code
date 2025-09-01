@@ -104,8 +104,8 @@ void* g_globalModuleE_Handle;
  * 该函数负责获取系统的第一个状态标志
  * 用于判断系统是否处于特定的运行状态
  */
-uint32_t GetSystemStatusFlag1;
-bool g_systemStatusFlag1;
+uint32_t SystemStatusFlag1;
+bool SystemStatusFlag1Initialized;
 
 // 函数: uint32_t GetSystemStatusFlag2;
 /**
@@ -114,8 +114,8 @@ bool g_systemStatusFlag1;
  * 该函数负责获取系统的第二个状态标志
  * 用于判断系统是否处于特定的运行状态
  */
-uint32_t GetSystemStatusFlag2;
-bool g_systemStatusFlag2;
+uint32_t SystemStatusFlag2;
+bool SystemStatusFlag2Initialized;
 
 // 函数: uint32_t GetSystemStatusFlag3;
 /**
@@ -124,8 +124,8 @@ bool g_systemStatusFlag2;
  * 该函数负责获取系统的第三个状态标志
  * 用于判断系统是否处于特定的运行状态
  */
-uint32_t GetSystemStatusFlag3;
-bool g_systemStatusFlag3;
+uint32_t SystemStatusFlag3;
+bool SystemStatusFlag3Initialized;
 
 // 函数: uint32_t GetSystemStatusFlag4;
 /**
@@ -134,8 +134,8 @@ bool g_systemStatusFlag3;
  * 该函数负责获取系统的第四个状态标志
  * 用于判断系统是否处于特定的运行状态
  */
-uint32_t GetSystemStatusFlag4;
-bool g_systemStatusFlag4;
+uint32_t SystemStatusFlag4;
+bool SystemStatusFlag4Initialized;
 
 // 函数: void DestroyThreadSyncObjects(void)
 /**
@@ -145,8 +145,8 @@ bool g_systemStatusFlag4;
  * 释放相关资源，清理同步状态
  */
 void DestroyThreadSyncObjects(void);
-void* g_threadSyncObjectHandle;
-void* g_threadSyncContext;
+void* ThreadSyncObjectHandle;
+void* ThreadSyncContext;
 
 // 函数: void CloseSystemHandle(void)
 /**
@@ -165,11 +165,11 @@ void CloseSystemHandle(void);
  * 释放内存，关闭句柄，重置状态
  */
 void CleanupThreadResources(void);
-uint32_t g_threadResourceFlag;
-void* g_cleanupContextData1;
-void* g_cleanupContextData2;
-void* g_cleanupResourceHandle;
-void* g_cleanupContextData3;
+uint32_t ThreadResourceFlag;
+void* CleanupContextData1;
+void* CleanupContextData2;
+void* CleanupResourceHandle;
+void* CleanupContextData3;
 
 // 函数: void InitializeResourceManager(void)
 /**
@@ -315,14 +315,14 @@ void* g_scriptCompiler;
 void* g_scriptVirtualMachine;
 void* g_scriptDebugger;
 
-// 函数: undefined InitializeFileSystem;
+// 函数: void* InitializeFileSystem;
 /**
  * @brief 初始化文件系统
  * 
  * 该函数负责初始化游戏文件系统
  * 设置文件访问、路径管理和文件操作等相关组件
  */
-undefined InitializeFileSystem;
+void* InitializeFileSystem;
 
 /**
  * @brief 初始化数据库系统
@@ -330,9 +330,9 @@ undefined InitializeFileSystem;
  * 该函数负责初始化游戏数据库系统
  * 设置数据库连接、查询和事务管理的相关机制
  */
-undefined InitializeDatabaseSystem;
-undefined g_databaseConnectionPool;
-undefined g_databaseQueryCache;
+void* InitializeDatabaseSystem;
+void* g_databaseConnectionPool;
+void* g_databaseQueryCache;
 undefined g_databaseTransactionManager;
 undefined g_databaseIndexManager;
 undefined g_databaseSchemaManager;
@@ -364,8 +364,10 @@ undefined g_databaseMemory;
 undefined g_databaseHeap;
 undefined g_databaseStack;
 undefined g_databasePool;
-undefined DAT_180bf69c8;
-undefined DAT_180bf69d0;
+// 数据库连接池实例
+void* DatabaseConnectionPoolInstance;
+// 数据库连接池配置
+void* DatabaseConnectionPoolConfig;
 undefined DAT_180bf6a10;
 undefined DAT_180bf6a18;
 undefined DAT_180bf6a20;
