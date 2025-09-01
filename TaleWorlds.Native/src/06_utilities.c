@@ -7443,55 +7443,73 @@ uint8_t ValidateObjectContextAndProcessFloatRange(int64_t ObjectContext, int64_t
  * 该函数验证对象上下文的有效性，并进行浮点数的比较操作
  * 检查浮点数是否在指定范围内，并根据结果执行相应操作
  * 
- * @param objectContext 对象上下文指针，包含对象的状态和浮点数值
+ * @param ObjectContext 对象上下文指针，包含对象的状态和浮点数值
  * @param SystemContext 系统上下文指针，包含系统配置信息
  * @return uint8_t 操作结果，成功返回0，失败返回错误码
  */
-uint8_t ValidateObjectContextAndProcessFloatComparison(int64_t objectContext, int64_t SystemContext)
-
+uint8_t ValidateObjectContextAndProcessFloatComparison(int64_t ObjectContext, int64_t SystemContext)
 {
-  float floatValue;
-  int64_t dataPointer;
-  uint8_t validationStatus;
-  int64_t stackBuffer;
-  int64_t contextBuffer [2];
+  float FloatValueToCompare;
+  int64_t ResourceDataPointer;
+  uint8_t ValidationResult;
+  int64_t ResourceContextBuffer;
+  int64_t ContextBuffer[2];
+  float MinRangeValue;
+  float MaxRangeValue;
   
-  validationStatus = ValidateObjectContext(*(uint32_t *)(objectContext + 0x10),contextBuffer);
-  if ((int)validationStatus == 0) {
-    if (contextBuffer[0] == 0) {
-      contextBuffer[0] = 0;
+  // 验证对象上下文
+  ValidationResult = ValidateObjectContext(*(uint32_t *)(ObjectContext + 0x10), ContextBuffer);
+  if (ValidationResult == 0) {
+    // 调整上下文指针
+    if (ContextBuffer[0] == 0) {
+      ContextBuffer[0] = 0;
+    } else {
+      ContextBuffer[0] = ContextBuffer[0] - 8;
     }
-    else {
-      contextBuffer[0] = contextBuffer[0] + -8;
-    }
-    stackBuffer = 0;
-    validationStatus = ValidateResourceContext(contextBuffer[0],objectContext + 0x18,&stackBuffer);
-    if ((int)validationStatus == 0) {
-      if (stackBuffer == 0) {
-        return 0x4a;
+    
+    // 验证资源上下文
+    ResourceContextBuffer = 0;
+    ValidationResult = ValidateResourceContext(ContextBuffer[0], ObjectContext + 0x18, &ResourceContextBuffer);
+    if (ValidationResult == 0) {
+      if (ResourceContextBuffer == 0) {
+        return 0x4a; // ErrorInvalidResourceContext
       }
-      dataPointer = *(int64_t *)(stackBuffer + 0x10);
-      if (dataPointer == 0) {
-        return 0x1e;
+      
+      // 获取资源数据指针
+      ResourceDataPointer = *(int64_t *)(ResourceContextBuffer + 0x10);
+      if (ResourceDataPointer == 0) {
+        return 0x1e; // ErrorInvalidResourceData
       }
-      if ((*(byte *)(dataPointer + 0x34) & 0x11) != 0) {
-        return 0x1f;
+      
+      // 检查资源状态标志
+      if ((*(byte *)(ResourceDataPointer + 0x34) & 0x11) != 0) {
+        return 0x1f; // ErrorResourceValidationFailed
       }
-      validationStatus = ValidateObjectContextAndProcessData(dataPointer,objectContext + 0x25,objectContext + 0x20);
-      if ((int)validationStatus == 0) {
-        floatValue = *(float *)(objectContext + 0x20);
-        if ((*(float *)(dataPointer + 0x38) <= floatValue) &&
-           (floatValue < *(float *)(dataPointer + 0x3c) || floatValue == *(float *)(dataPointer + 0x3c))) {
-          validationStatus = *(uint8_t *)(SystemContext + 0x98);
-          *(float *)(stackBuffer + 4) = floatValue;
-                    // WARNING: Subroutine does not return
-          ReleaseSystemContextResources(validationStatus,objectContext);
+      
+      // 处理对象上下文数据
+      ValidationResult = ValidateObjectContextAndProcessData(ResourceDataPointer, ObjectContext + 0x25, ObjectContext + 0x20);
+      if (ValidationResult == 0) {
+        // 获取要比较的浮点数值
+        FloatValueToCompare = *(float *)(ObjectContext + 0x20);
+        
+        // 获取范围值
+        MinRangeValue = *(float *)(ResourceDataPointer + 0x38);
+        MaxRangeValue = *(float *)(ResourceDataPointer + 0x3c);
+        
+        // 检查是否在范围内（包含边界值）
+        if ((MinRangeValue <= FloatValueToCompare) && (FloatValueToCompare <= MaxRangeValue)) {
+          // 在范围内，更新状态并释放资源
+          ValidationResult = *(uint8_t *)(SystemContext + 0x98);
+          *(float *)(ResourceContextBuffer + 4) = FloatValueToCompare;
+          
+          // 释放系统上下文资源
+          ReleaseSystemContextResources(ValidationResult, ObjectContext);
         }
-        validationStatus = 0x1c;
+        ValidationResult = 0x1c; // ErrorValueOutOfRange
       }
     }
   }
-  return validationStatus;
+  return ValidationResult;
 }
 
 

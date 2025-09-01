@@ -25785,7 +25785,7 @@ void SystemCleanupHandler(void)
   fVar12 = 1.0;
   if (*(int *)(localSystemHandle + 0x1ea0) == 1) {
     systemStatus = *(int *)(localSystemHandle + 0x1d50);
-    pointerToInteger5 = (int *)FUN_180171f10(*(void* *)(SystemStatusFlagsPointer + 8),auStack_170);
+    pointerToInteger5 = (int *)GetSystemResourcePointer(*(void* *)(SystemStatusFlagsPointer + 8),auStack_170);
     fVar12 = (float)systemStatus / (float)*pointerToInteger5;
     fVar10 = fVar12 * *(float *)(localResourceOffset + 0x234);
     fVar12 = fVar12 * *(float *)(localResourceOffset + 0x238);
@@ -26059,8 +26059,8 @@ void SystemDataInitializer(void)
     if (systemFlag != 0) {
       __Throw_C_error_std__YAXH_Z(systemFlag);
     }
-    FUN_180126380(*(void* *)*pointerToUnsigned1);
-    FUN_180126380(*(void* *)pointerToUnsigned1[1]);
+    ReleaseSystemResource(*(void* *)*pointerToUnsigned1);
+    ReleaseSystemResource(*(void* *)pointerToUnsigned1[1]);
     FUN_180095420(*pointerToUnsigned1);
     FUN_180095420(pointerToUnsigned1[1]);
     *(uint8_t *)(pointerToUnsigned1 + 7) = 0;
@@ -26078,7 +26078,7 @@ void SystemDataInitializer(void)
   unsignedSystemValue3 = SystemAllocationFlagsTemplate;
   plStack_88 = _DAT_180c868f8;
   if (_DAT_180c868f8 != (long long *)0x0) {
-    FUN_18016cef0(*_DAT_180c868f8);
+    InitializeSystemModule(*_DAT_180c868f8);
     *plocalResourcePointer = 0;
     plStack_88 = plocalResourcePointer + 1;
     FUN_18005d580();
@@ -26258,7 +26258,7 @@ void InitializeSystemDataStructures(void)
   unsignedSystemValue13 = unsignedSystemValue12;
   if (localMemoryAddress / 0x1c != 0) {
     do {
-      FUN_1801edeb0(localMemoryAddress,unsignedSystemValue13 * 0x1c + *(long long *)(SystemRenderManagerPointer + 0x10));
+      ProcessSystemMemory(localMemoryAddress,unsignedSystemValue13 * 0x1c + *(long long *)(SystemRenderManagerPointer + 0x10));
       unsignedSystemValue11 = (int)unsignedSystemValue12 + 1;
       unsignedSystemValue12 = (ulong long)unsignedSystemValue11;
       localMemoryAddress = *(long long *)(SystemRenderManagerPointer + 0x18) - *(long long *)(SystemRenderManagerPointer + 0x10);
@@ -26386,7 +26386,7 @@ void InitializeSystemResourceAllocator(long long systemResourcePointer)
   systemValue12 = loopCounter;
   if (localDataPointer / 0x1c != 0) {
     do {
-      FUN_1801edeb0(localDataPointer,systemValue12 * 0x1c + *(long long *)(SystemRenderManagerPointer + 0x10));
+      ProcessSystemMemory(localDataPointer,systemValue12 * 0x1c + *(long long *)(SystemRenderManagerPointer + 0x10));
       systemValue10 = (int)loopCounter + 1;
       loopCounter = (ulong long)systemValue10;
       localDataPointer = *(long long *)(SystemRenderManagerPointer + 0x18) - *(long long *)(SystemRenderManagerPointer + 0x10);
@@ -27461,7 +27461,7 @@ void ProcessSystemResourceAndRenderManagement(long long *SystemResourcePointer,v
   scaleFactor2 = 1.0;
   if (*(int *)(renderManagerOffset + 0x1ea0) == 1) {
     systemStatusValue = *(int *)(renderManagerOffset + 0x1d50);
-    resourceCountPointer = (int *)FUN_180171f10(*(void* *)(SystemStatusFlagsPointer + 8),&stackParameter2);
+    resourceCountPointer = (int *)GetSystemResourcePointer(*(void* *)(SystemStatusFlagsPointer + 8),&stackParameter2);
     scaleFactor2 = (float)systemStatusValue / (float)*resourceCountPointer;
     scaleFactor1 = scaleFactor2 * *(float *)(systemHandle + 0x234);
     scaleFactor2 = scaleFactor2 * *(float *)(systemHandle + 0x238);
