@@ -5481,7 +5481,7 @@ void ProcessSystemObjectQueue(longlong objectHandle, longlong queueContext)
   QueueTail = (longlong *)0x0;
   StackBuffer[0] = 0;
   ProcessingStatus = FUN_18088c740(StackBuffer);
-  if ((iVar2 == 0) && (iVar2 = FUN_1808bdd90(*(undefined8 *)(param_2 + 0x90)), iVar2 == 0)) {
+  if ((ProcessingStatus == 0) && (ProcessingStatus = FUN_1808bdd90(*(undefined8 *)(queueContext + 0x90)), ProcessingStatus == 0)) {
     plVar4 = (longlong *)(*(longlong *)(param_2 + 0x50) + -8);
     if (*(longlong *)(param_2 + 0x50) == 0) {
       plVar4 = plVar5;
