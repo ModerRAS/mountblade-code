@@ -26,29 +26,29 @@ void* SystemMemoryPoolSenary;                  // 第六级系统内存池
 void* SystemDataTableSenary;                   // 第六级系统数据表
 
 // 核心系统函数指针和相关数据
-void* GameCoreSystemEntryPoint;
-void* CoreSystemMemoryAllocator;
-void* CoreSystemDataTable;
-void* CoreSystemMemoryBuffer;
-void* CoreSystemConfigMain;
-void* CoreSystemConfigSecondary;
-void* CoreSystemConfigTertiary;
-void* CoreSystemConfigQuaternary;
+void* GameCoreSystemEntryPoint;                 // 游戏核心系统入口点
+void* CoreSystemMemoryAllocator;                // 核心系统内存分配器
+void* CoreSystemDataTable;                     // 核心系统数据表
+void* CoreSystemMemoryBuffer;                  // 核心系统内存缓冲区
+void* CoreSystemConfigMain;                    // 核心系统主配置
+void* CoreSystemConfigSecondary;                // 核心系统次级配置
+void* CoreSystemConfigTertiary;                 // 核心系统第三级配置
+void* CoreSystemConfigQuaternary;               // 核心系统第四级配置
 
 // 渲染系统初始化函数
-void* GameRenderingEntryPoint;
-void* RenderingSystemContext;
+void* GameRenderingEntryPoint;                  // 游戏渲染系统入口点
+void* RenderingSystemContext;                   // 渲染系统上下文
 
 // 网络系统初始化函数
-void* GameNetworkEntryPoint;
-void* NetworkSystemContext;
+void* GameNetworkEntryPoint;                    // 游戏网络系统入口点
+void* NetworkSystemContext;                     // 网络系统上下文
 
 // 音频系统初始化函数
-void* GameAudioEntryPoint;
-void* AudioSystemContext;
+void* GameAudioEntryPoint;                      // 游戏音频系统入口点
+void* AudioSystemContext;                       // 音频系统上下文
 
 // 输入系统初始化函数和相关数据
-void* GameInputEntryPoint;
+void* GameInputEntryPoint;                      // 游戏输入系统入口点
 void* InputSystemDataBuffer;
 void* InputSystemEventQueue;
 void* InputSystemStateData;
