@@ -6053,8 +6053,7 @@ undefined8 ValidateAndClearObjectState(longlong objectContext, longlong systemCo
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void FUN_180891e40(longlong param_1,longlong param_2)
-/**
+ /**
  * @brief 扩展动态缓冲区容量
  * 
  * 该函数负责扩展动态缓冲区的容量，当缓冲区空间不足时自动扩容
@@ -6284,17 +6283,25 @@ LAB_180891fc0:
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void FUN_180891ec9(int param_1,int param_2)
-void FUN_180891ec9(int param_1,int param_2)
+ /**
+ * @brief 处理系统配置更新
+ * 
+ * 该函数负责处理系统配置的更新操作，包括配置参数的验证、
+ * 调整和应用。采用1.5倍的增长策略来优化配置空间的使用。
+ * 
+ * @param configIndex 配置索引，标识要更新的配置项
+ * @param configSize 配置大小，指定配置数据的尺寸
+ */
+void ProcessSystemConfigurationUpdate(int configIndex, int configSize)
 
 {
-  int in_EAX;
-  int iVar1;
-  longlong unaff_RBX;
-  longlong unaff_RSI;
-  int iVar2;
-  longlong unaff_R14;
-  undefined8 in_stack_00000060;
+  int currentConfigValue;
+  int calculatedSize;
+  longlong systemContext;
+  longlong memoryContext;
+  int newSize;
+  longlong threadContext;
+  undefined8 stackParameter;
   
   iVar2 = param_1 + 1;
   if (in_EAX - param_2 < iVar2) {
