@@ -10733,11 +10733,11 @@ void ProcessModuleInitialization(longlong ModuleHandle, void* ModuleContext, int
 
 {
   longlong loopCounter;
-  char cVar2;
+  char CharacterFlag;
   int validationStatus;
   int ResultIndex;
   longlong InputRegisterValue;
-  longlong lVar5;
+  longlong MemoryRegion;
   uint8_t8 unsignedValue6;
   longlong BufferPointer;
   int unaff_EBX;
@@ -10747,7 +10747,7 @@ void ProcessModuleInitialization(longlong ModuleHandle, void* ModuleContext, int
   char in_R11B;
   uint8_t1 *unaff_R13;
   longlong longValue8;
-  float fVar9;
+  float RangeValue;
   float ResultFloatValue;
   uint8_t8 in_stack_00000040;
   int *in_stack_00000048;
@@ -11685,7 +11685,7 @@ ulonglong InitializeResourceTableStructure(longlong objectContextParam)
   uint8_t4 validationResult;
   uint8_t8 unsignedResult3;
   int ResultIndex;
-  longlong lVar5;
+  longlong MemoryRegion;
   ulonglong unsignedValue6;
   int ValidationStatus;
   uint uVar8;
@@ -16301,7 +16301,7 @@ uint8_t8 ProcessResourceTableEntries(longlong objectContextParam, longlong *vali
   longlong resourceTable;
   uint8_t8 unsignedResult3;
   longlong DataOffset;
-  longlong lVar5;
+  longlong MemoryRegion;
   int aiStackX_8 [2];
   
   integerValue1 = (int)validationContextParam[1];
@@ -16343,7 +16343,7 @@ uint8_t8 ProcessResourceTableEntries(longlong objectContextParam, longlong *vali
   int integerValue2;
   uint unsignedValue3;
   ulonglong unsignedResult4;
-  longlong lVar5;
+  longlong MemoryRegion;
   ulonglong unsignedValue6;
   uint8_t4 unsignedValue7;
   ulonglong MemorySize;
@@ -16654,7 +16654,7 @@ uint8_t8 ProcessResourceTableEntries(longlong objectContextParam, longlong *vali
   longlong unaff_RBX;
   longlong unaff_RBP;
   longlong unaff_RSI;
-  longlong lVar5;
+  longlong MemoryRegion;
   longlong UnaffectedRegisterValue;
   longlong MemoryAddress;
   longlong unaff_R14;
@@ -20395,7 +20395,7 @@ ValidateResourceIntegrity(void)
   uint unsignedValue3;
   uint8_t8 *unaff_RBX;
   uint unsignedResult4;
-  longlong lVar5;
+  longlong MemoryRegion;
   int unaff_R12D;
   longlong unaff_R15;
   uint in_stack_00000050;
@@ -21994,7 +21994,7 @@ ulonglong ResourceProcessingHandlerAlt1(void)
   float extraout_XMM0_Da_03;
   float extraout_XMM0_Da_04;
   float extraout_XMM0_Da_05;
-  float fVar9;
+  float RangeValue;
   float extraout_XMM0_Da_06;
   uint8_t4 extraout_XMM0_Da_07;
   uint8_t4 extraout_XMM0_Da_08;
@@ -25681,7 +25681,7 @@ ulonglong ProcessResourceValidationAndMemoryAllocation(void)
   uint validationResult;
   int validationStatus;
   ulonglong unsignedResult4;
-  longlong lVar5;
+  longlong MemoryRegion;
   uint8_t4 *punsignedValue6;
   uint8_t8 unaff_RBX;
   longlong unaff_RBP;
@@ -30422,7 +30422,7 @@ void Unwind_180902950(uint8_t8 objectContextParam,longlong validationContextPara
   longlong resourceTable;
   uint8_t8 *punsignedResult3;
   longlong DataOffset;
-  longlong lVar5;
+  longlong MemoryRegion;
   ulonglong unsignedValue6;
   ulonglong unsignedValue7;
   
@@ -30477,7 +30477,7 @@ void Unwind_180902960(uint8_t8 objectContextParam,longlong validationContextPara
   longlong resourceTable;
   uint8_t8 *punsignedResult3;
   longlong DataOffset;
-  longlong lVar5;
+  longlong MemoryRegion;
   ulonglong unsignedValue6;
   ulonglong unsignedValue7;
   
@@ -30580,7 +30580,7 @@ void Unwind_180902a40(uint8_t8 objectContextParam,longlong validationContextPara
   longlong resourceTable;
   uint8_t8 *punsignedResult3;
   longlong DataOffset;
-  longlong lVar5;
+  longlong MemoryRegion;
   ulonglong unsignedValue6;
   ulonglong unsignedValue7;
   
@@ -30635,7 +30635,7 @@ void Unwind_180902a50(uint8_t8 objectContextParam,longlong validationContextPara
   longlong resourceTable;
   uint8_t8 *punsignedResult3;
   longlong DataOffset;
-  longlong lVar5;
+  longlong MemoryRegion;
   ulonglong unsignedValue6;
   ulonglong unsignedValue7;
   
@@ -31385,7 +31385,7 @@ void Unwind_180902c60(uint8_t8 objectContextParam,longlong validationContextPara
 
 {
   uint8_t8 *presourceHash;
-  char cVar2;
+  char CharacterFlag;
   uint8_t8 unsignedResult3;
   
   presourceHash = *(uint8_t8 **)(validationContextParam + 0x38);
@@ -33212,7 +33212,7 @@ void Unwind_180903460(uint8_t8 objectContextParam,longlong validationContextPara
   char *pcVar2;
   uint8_t8 *punsignedResult3;
   longlong *contextPointer;
-  longlong lVar5;
+  longlong MemoryRegion;
   ulonglong unsignedValue6;
   
   plVar4 = *(longlong **)(validationContextParam + 0x40);
@@ -33511,7 +33511,7 @@ void Unwind_180903510(uint8_t8 objectContextParam,longlong validationContextPara
   char *pcVar2;
   uint8_t8 *punsignedResult3;
   longlong *contextPointer;
-  longlong lVar5;
+  longlong MemoryRegion;
   ulonglong unsignedValue6;
   
   plVar4 = *(longlong **)(validationContextParam + 0x70);
@@ -33662,7 +33662,7 @@ void Unwind_180903580(uint8_t8 objectContextParam,longlong validationContextPara
   char *pcVar2;
   uint8_t8 *punsignedResult3;
   longlong *contextPointer;
-  longlong lVar5;
+  longlong MemoryRegion;
   ulonglong unsignedValue6;
   
   plVar4 = *(longlong **)(validationContextParam + 0x80);
@@ -39256,7 +39256,7 @@ void Unwind_180904960(uint8_t8 objectContextParam,longlong validationContextPara
   char *pcVar2;
   uint8_t8 *punsignedResult3;
   longlong DataOffset;
-  longlong lVar5;
+  longlong MemoryRegion;
   ulonglong unsignedValue6;
   
   lVar5 = *(longlong *)(validationContextParam + 0x40);
@@ -39318,7 +39318,7 @@ void Unwind_180904970(uint8_t8 objectContextParam,longlong validationContextPara
   char *pcVar2;
   uint8_t8 *punsignedResult3;
   longlong DataOffset;
-  longlong lVar5;
+  longlong MemoryRegion;
   ulonglong unsignedValue6;
   
   lVar5 = *(longlong *)(validationContextParam + 0x40);
@@ -39380,7 +39380,7 @@ void Unwind_180904990(uint8_t8 objectContextParam,longlong validationContextPara
   char *pcVar2;
   uint8_t8 *punsignedResult3;
   longlong DataOffset;
-  longlong lVar5;
+  longlong MemoryRegion;
   ulonglong unsignedValue6;
   
   lVar5 = *(longlong *)(validationContextParam + 0x40);
@@ -39586,7 +39586,7 @@ void Unwind_180904a20(uint8_t8 objectContextParam,longlong validationContextPara
   char *pcVar2;
   uint8_t8 *punsignedResult3;
   longlong DataOffset;
-  longlong lVar5;
+  longlong MemoryRegion;
   ulonglong unsignedValue6;
   
   lVar5 = *(longlong *)(validationContextParam + 0x70);
@@ -39648,7 +39648,7 @@ void Unwind_180904a30(uint8_t8 objectContextParam,longlong validationContextPara
   char *pcVar2;
   uint8_t8 *punsignedResult3;
   longlong DataOffset;
-  longlong lVar5;
+  longlong MemoryRegion;
   ulonglong unsignedValue6;
   
   lVar5 = *(longlong *)(validationContextParam + 0x70);
@@ -39710,7 +39710,7 @@ void Unwind_180904a50(uint8_t8 objectContextParam,longlong validationContextPara
   char *pcVar2;
   uint8_t8 *punsignedResult3;
   longlong DataOffset;
-  longlong lVar5;
+  longlong MemoryRegion;
   ulonglong unsignedValue6;
   
   lVar5 = *(longlong *)(validationContextParam + 0x70);
@@ -39859,7 +39859,7 @@ void Unwind_180904ab0(uint8_t8 objectContextParam,longlong validationContextPara
 
 {
   uint8_t8 *presourceHash;
-  char cVar2;
+  char CharacterFlag;
   uint8_t8 unsignedResult3;
   
   presourceHash = *(uint8_t8 **)(validationContextParam + 0x160);
@@ -39927,7 +39927,7 @@ void Unwind_180904af0(uint8_t8 objectContextParam,longlong validationContextPara
 
 {
   uint8_t8 *presourceHash;
-  char cVar2;
+  char CharacterFlag;
   uint8_t8 unsignedResult3;
   
   presourceHash = *(uint8_t8 **)(validationContextParam + 0x50);
@@ -43510,7 +43510,7 @@ void Unwind_180905b90(uint8_t8 objectContextParam,longlong validationContextPara
   char *pcVar2;
   uint8_t8 *punsignedResult3;
   longlong *contextPointer;
-  longlong lVar5;
+  longlong MemoryRegion;
   ulonglong unsignedValue6;
   
   plVar4 = *(longlong **)(validationContextParam + 0x38);
@@ -43760,7 +43760,7 @@ void Unwind_180905c50(uint8_t8 objectContextParam,longlong validationContextPara
   char *pcVar2;
   uint8_t8 *punsignedResult3;
   longlong DataOffset;
-  longlong lVar5;
+  longlong MemoryRegion;
   ulonglong unsignedValue6;
   
   lVar5 = *(longlong *)(validationContextParam + 0x40);
@@ -43932,7 +43932,7 @@ void Unwind_180905ca0(uint8_t8 objectContextParam,longlong validationContextPara
   char *pcVar2;
   uint8_t8 *punsignedResult3;
   longlong *contextPointer;
-  longlong lVar5;
+  longlong MemoryRegion;
   ulonglong unsignedValue6;
   
   plVar4 = *(longlong **)(validationContextParam + 0x48);
@@ -44196,7 +44196,7 @@ void Unwind_180905e40(uint8_t8 objectContextParam,longlong validationContextPara
   int *pintegerValue2;
   longlong *presourceIndex;
   int ResultIndex;
-  longlong lVar5;
+  longlong MemoryRegion;
   longlong MemoryAddress;
   longlong BufferPointer;
   longlong longValue8;
@@ -44298,7 +44298,7 @@ void Unwind_180905ea0(uint8_t8 objectContextParam,longlong validationContextPara
   char *pcVar2;
   uint8_t8 *punsignedResult3;
   longlong DataOffset;
-  longlong lVar5;
+  longlong MemoryRegion;
   ulonglong unsignedValue6;
   
   lVar5 = *(longlong *)(validationContextParam + 0x50);
@@ -44404,7 +44404,7 @@ void Unwind_180905ef0(uint8_t8 objectContextParam,longlong validationContextPara
   char *pcVar2;
   uint8_t8 *punsignedResult3;
   longlong *contextPointer;
-  longlong lVar5;
+  longlong MemoryRegion;
   ulonglong unsignedValue6;
   
   plVar4 = *(longlong **)(validationContextParam + 0x60);
@@ -44510,7 +44510,7 @@ void Unwind_180905f70(uint8_t8 objectContextParam,longlong validationContextPara
   char *pcVar2;
   uint8_t8 *punsignedResult3;
   longlong *contextPointer;
-  longlong lVar5;
+  longlong MemoryRegion;
   ulonglong unsignedValue6;
   
   plVar4 = *(longlong **)(validationContextParam + 0x40);
@@ -44609,7 +44609,7 @@ void Unwind_180905fa0(uint8_t8 objectContextParam,longlong validationContextPara
   char *pcVar2;
   uint8_t8 *punsignedResult3;
   longlong DataOffset;
-  longlong lVar5;
+  longlong MemoryRegion;
   ulonglong unsignedValue6;
   
   lVar5 = *(longlong *)(validationContextParam + 0x70);
@@ -44694,7 +44694,7 @@ void Unwind_180905fe0(uint8_t8 objectContextParam,longlong validationContextPara
   char *pcVar2;
   uint8_t8 *punsignedResult3;
   longlong *contextPointer;
-  longlong lVar5;
+  longlong MemoryRegion;
   ulonglong unsignedValue6;
   
   plVar4 = *(longlong **)(validationContextParam + 0x78);
@@ -54719,7 +54719,7 @@ void Unwind_180908f90(uint8_t8 objectContextParam,longlong validationContextPara
 
 {
   longlong *processPointer;
-  char cVar2;
+  char CharacterFlag;
   
   cVar2 = _uncaught_exception_std__YA_NXZ();
   if (cVar2 == '\0') {
@@ -55380,7 +55380,7 @@ void Unwind_180909320(uint8_t8 objectContextParam,longlong validationContextPara
   uint8_t8 *pvalidationResult;
   uint8_t8 *punsignedResult3;
   longlong DataOffset;
-  longlong lVar5;
+  longlong MemoryRegion;
   ulonglong unsignedValue6;
   
   punsignedResult3 = *(uint8_t8 **)(validationContextParam + 0x80);
@@ -55528,7 +55528,7 @@ void Unwind_1809093b0(uint8_t8 objectContextParam,longlong validationContextPara
   uint8_t8 *pvalidationResult;
   uint8_t8 *punsignedResult3;
   longlong DataOffset;
-  longlong lVar5;
+  longlong MemoryRegion;
   ulonglong unsignedValue6;
   
   punsignedResult3 = *(uint8_t8 **)(validationContextParam + 0x90);
@@ -55609,7 +55609,7 @@ void Unwind_1809093c0(uint8_t8 objectContextParam,longlong validationContextPara
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   longlong DataOffset;
-  longlong lVar5;
+  longlong MemoryRegion;
   ulonglong unsignedValue6;
   
   resourceIndex = *(longlong *)(validationContextParam + 0x90);
@@ -56371,7 +56371,7 @@ void Unwind_1809096b0(uint8_t8 objectContextParam,longlong validationContextPara
   uint8_t8 *pvalidationResult;
   uint8_t8 *punsignedResult3;
   longlong DataOffset;
-  longlong lVar5;
+  longlong MemoryRegion;
   ulonglong unsignedValue6;
   
   punsignedResult3 = *(uint8_t8 **)(validationContextParam + 0x40);
@@ -56452,7 +56452,7 @@ void Unwind_1809096c0(uint8_t8 objectContextParam,longlong validationContextPara
   uint8_t8 *pvalidationResult;
   longlong resourceIndex;
   longlong DataOffset;
-  longlong lVar5;
+  longlong MemoryRegion;
   ulonglong unsignedValue6;
   
   resourceIndex = *(longlong *)(validationContextParam + 0x40);
@@ -63457,7 +63457,7 @@ void Unwind_18090c540(uint8_t8 objectContextParam,longlong validationContextPara
   int integerValue2;
   longlong resourceIndex;
   longlong *contextPointer;
-  longlong lVar5;
+  longlong MemoryRegion;
   
   if (0 < *(int *)(validationContextParam + 0x180)) {
     lVar5 = *(longlong *)(SystemGlobalDataBufferC86938 + 0x1cd8);
@@ -63503,7 +63503,7 @@ void Unwind_18090c550(uint8_t8 objectContextParam,longlong validationContextPara
   int integerValue2;
   longlong resourceIndex;
   longlong *contextPointer;
-  longlong lVar5;
+  longlong MemoryRegion;
   
   if (0 < *(int *)(validationContextParam + 0x240)) {
     lVar5 = *(longlong *)(SystemGlobalDataBufferC86938 + 0x1cd8);
@@ -63579,7 +63579,7 @@ void Unwind_18090c590(uint8_t8 objectContextParam,longlong validationContextPara
   int integerValue2;
   longlong resourceIndex;
   longlong *contextPointer;
-  longlong lVar5;
+  longlong MemoryRegion;
   
   if (0 < *(int *)(validationContextParam + 0x1e0)) {
     lVar5 = *(longlong *)(SystemGlobalDataBufferC86938 + 0x1cd8);
@@ -63646,7 +63646,7 @@ void Unwind_18090c5c0(uint8_t8 objectContextParam,longlong validationContextPara
   int integerValue2;
   longlong resourceIndex;
   longlong *contextPointer;
-  longlong lVar5;
+  longlong MemoryRegion;
   
   if (0 < *(int *)(validationContextParam + 0x120)) {
     lVar5 = *(longlong *)(SystemGlobalDataBufferC86938 + 0x1cd8);
@@ -63692,7 +63692,7 @@ void Unwind_18090c5d0(uint8_t8 objectContextParam,longlong validationContextPara
   int integerValue2;
   longlong resourceIndex;
   longlong *contextPointer;
-  longlong lVar5;
+  longlong MemoryRegion;
   
   if (0 < *(int *)(validationContextParam + 0x2a0)) {
     lVar5 = *(longlong *)(SystemGlobalDataBufferC86938 + 0x1cd8);
@@ -63750,7 +63750,7 @@ void Unwind_18090c5f0(uint8_t8 objectContextParam,longlong validationContextPara
   int integerValue2;
   longlong resourceIndex;
   longlong *contextPointer;
-  longlong lVar5;
+  longlong MemoryRegion;
   
   if (0 < *(int *)(validationContextParam + 0x300)) {
     lVar5 = *(longlong *)(SystemGlobalDataBufferC86938 + 0x1cd8);
@@ -63796,7 +63796,7 @@ void Unwind_18090c600(uint8_t8 objectContextParam,longlong validationContextPara
   int integerValue2;
   longlong resourceIndex;
   longlong *contextPointer;
-  longlong lVar5;
+  longlong MemoryRegion;
   
   if (0 < *(int *)(validationContextParam + 0x360)) {
     lVar5 = *(longlong *)(SystemGlobalDataBufferC86938 + 0x1cd8);
@@ -64485,7 +64485,7 @@ void Unwind_18090ca20(uint8_t8 objectContextParam,longlong validationContextPara
   int integerValue2;
   longlong resourceIndex;
   longlong *contextPointer;
-  longlong lVar5;
+  longlong MemoryRegion;
   
   if (0 < *(int *)(validationContextParam + 0xd0)) {
     lVar5 = *(longlong *)(SystemGlobalDataBufferC86938 + 0x1cd8);
@@ -64543,7 +64543,7 @@ void Unwind_18090ca40(uint8_t8 objectContextParam,longlong validationContextPara
   int integerValue2;
   longlong resourceIndex;
   longlong *contextPointer;
-  longlong lVar5;
+  longlong MemoryRegion;
   
   if (0 < *(int *)(validationContextParam + 0x130)) {
     lVar5 = *(longlong *)(SystemGlobalDataBufferC86938 + 0x1cd8);
@@ -64613,7 +64613,7 @@ void Unwind_18090ca70(uint8_t8 objectContextParam,longlong validationContextPara
   int integerValue2;
   longlong resourceIndex;
   longlong *contextPointer;
-  longlong lVar5;
+  longlong MemoryRegion;
   
   if (0 < *(int *)(validationContextParam + 400)) {
     lVar5 = *(longlong *)(SystemGlobalDataBufferC86938 + 0x1cd8);
@@ -64680,7 +64680,7 @@ void Unwind_18090caa0(uint8_t8 objectContextParam,longlong validationContextPara
   int integerValue2;
   longlong resourceIndex;
   longlong *contextPointer;
-  longlong lVar5;
+  longlong MemoryRegion;
   
   if (0 < *(int *)(validationContextParam + 0x1f0)) {
     lVar5 = *(longlong *)(SystemGlobalDataBufferC86938 + 0x1cd8);
@@ -64747,7 +64747,7 @@ void Unwind_18090cad0(uint8_t8 objectContextParam,longlong validationContextPara
   int integerValue2;
   longlong resourceIndex;
   longlong *contextPointer;
-  longlong lVar5;
+  longlong MemoryRegion;
   
   if (0 < *(int *)(validationContextParam + 0x250)) {
     lVar5 = *(longlong *)(SystemGlobalDataBufferC86938 + 0x1cd8);
@@ -64814,7 +64814,7 @@ void Unwind_18090cb00(uint8_t8 objectContextParam,longlong validationContextPara
   int integerValue2;
   longlong resourceIndex;
   longlong *contextPointer;
-  longlong lVar5;
+  longlong MemoryRegion;
   
   if (0 < *(int *)(validationContextParam + 0x2b0)) {
     lVar5 = *(longlong *)(SystemGlobalDataBufferC86938 + 0x1cd8);
@@ -64869,7 +64869,7 @@ void Unwind_18090cb20(uint8_t8 objectContextParam,longlong validationContextPara
   int integerValue2;
   longlong resourceIndex;
   longlong *contextPointer;
-  longlong lVar5;
+  longlong MemoryRegion;
   
   if (0 < *(int *)(validationContextParam + 0x310)) {
     lVar5 = *(longlong *)(SystemGlobalDataBufferC86938 + 0x1cd8);
@@ -64924,7 +64924,7 @@ void Unwind_18090cb40(uint8_t8 objectContextParam,longlong validationContextPara
   int integerValue2;
   longlong resourceIndex;
   longlong *contextPointer;
-  longlong lVar5;
+  longlong MemoryRegion;
   
   if (0 < *(int *)(validationContextParam + 0x4f0)) {
     lVar5 = *(longlong *)(SystemGlobalDataBufferC86938 + 0x1cd8);
@@ -64982,7 +64982,7 @@ void Unwind_18090cb60(uint8_t8 objectContextParam,longlong validationContextPara
   int integerValue2;
   longlong resourceIndex;
   longlong *contextPointer;
-  longlong lVar5;
+  longlong MemoryRegion;
   
   if (0 < *(int *)(validationContextParam + 0x370)) {
     lVar5 = *(longlong *)(SystemGlobalDataBufferC86938 + 0x1cd8);
@@ -65037,7 +65037,7 @@ void Unwind_18090cb80(uint8_t8 objectContextParam,longlong validationContextPara
   int integerValue2;
   longlong resourceIndex;
   longlong *contextPointer;
-  longlong lVar5;
+  longlong MemoryRegion;
   
   if (0 < *(int *)(validationContextParam + 0x3d0)) {
     lVar5 = *(longlong *)(SystemGlobalDataBufferC86938 + 0x1cd8);
@@ -65128,7 +65128,7 @@ void Unwind_18090cbd0(uint8_t8 objectContextParam,longlong validationContextPara
   int integerValue2;
   longlong resourceIndex;
   longlong *contextPointer;
-  longlong lVar5;
+  longlong MemoryRegion;
   
   if (0 < *(int *)(validationContextParam + 0x430)) {
     lVar5 = *(longlong *)(SystemGlobalDataBufferC86938 + 0x1cd8);
@@ -65195,7 +65195,7 @@ void Unwind_18090cc00(uint8_t8 objectContextParam,longlong validationContextPara
   int integerValue2;
   longlong resourceIndex;
   longlong *contextPointer;
-  longlong lVar5;
+  longlong MemoryRegion;
   
   if (0 < *(int *)(validationContextParam + 0x490)) {
     lVar5 = *(longlong *)(SystemGlobalDataBufferC86938 + 0x1cd8);
@@ -65361,7 +65361,7 @@ void Unwind_18090cce0(uint8_t8 objectContextParam,longlong validationContextPara
   int integerValue2;
   longlong resourceIndex;
   longlong *contextPointer;
-  longlong lVar5;
+  longlong MemoryRegion;
   
   if (0 < *(int *)(validationContextParam + 0x50)) {
     lVar5 = *(longlong *)(SystemGlobalDataBufferC86938 + 0x1cd8);
@@ -70634,7 +70634,7 @@ void Unwind_18090e760(uint8_t8 objectContextParam,longlong validationContextPara
   int integerValue2;
   longlong resourceIndex;
   longlong *contextPointer;
-  longlong lVar5;
+  longlong MemoryRegion;
   
   if (0 < *(int *)(validationContextParam + 0x70)) {
     lVar5 = *(longlong *)(SystemGlobalDataBufferC86938 + 0x1cd8);
@@ -70692,7 +70692,7 @@ void Unwind_18090e7a0(uint8_t8 objectContextParam,longlong validationContextPara
   int integerValue2;
   longlong resourceIndex;
   longlong *contextPointer;
-  longlong lVar5;
+  longlong MemoryRegion;
   
   if (0 < *(int *)(validationContextParam + 0x1a0)) {
     lVar5 = *(longlong *)(SystemGlobalDataBufferC86938 + 0x1cd8);
@@ -70738,7 +70738,7 @@ void Unwind_18090e7b0(uint8_t8 objectContextParam,longlong validationContextPara
   int integerValue2;
   longlong resourceIndex;
   longlong *contextPointer;
-  longlong lVar5;
+  longlong MemoryRegion;
   
   if (0 < *(int *)(validationContextParam + 0xa0)) {
     lVar5 = *(longlong *)(SystemGlobalDataBufferC86938 + 0x1cd8);
@@ -70784,7 +70784,7 @@ void Unwind_18090e7c0(uint8_t8 objectContextParam,longlong validationContextPara
   int integerValue2;
   longlong resourceIndex;
   longlong *contextPointer;
-  longlong lVar5;
+  longlong MemoryRegion;
   
   if (0 < *(int *)(validationContextParam + 0x100)) {
     lVar5 = *(longlong *)(SystemGlobalDataBufferC86938 + 0x1cd8);
@@ -70830,7 +70830,7 @@ void Unwind_18090e7d0(uint8_t8 objectContextParam,longlong validationContextPara
   int integerValue2;
   longlong resourceIndex;
   longlong *contextPointer;
-  longlong lVar5;
+  longlong MemoryRegion;
   
   if (0 < *(int *)(validationContextParam + 0x60)) {
     lVar5 = *(longlong *)(SystemGlobalDataBufferC86938 + 0x1cd8);
@@ -70876,7 +70876,7 @@ void Unwind_18090e7e0(uint8_t8 objectContextParam,longlong validationContextPara
   int integerValue2;
   longlong resourceIndex;
   longlong *contextPointer;
-  longlong lVar5;
+  longlong MemoryRegion;
   
   if (0 < *(int *)(validationContextParam + 0x90)) {
     lVar5 = *(longlong *)(SystemGlobalDataBufferC86938 + 0x1cd8);
@@ -70922,7 +70922,7 @@ void Unwind_18090e7f0(uint8_t8 objectContextParam,longlong validationContextPara
   int integerValue2;
   longlong resourceIndex;
   longlong *contextPointer;
-  longlong lVar5;
+  longlong MemoryRegion;
   
   if (0 < *(int *)(validationContextParam + 0xf0)) {
     lVar5 = *(longlong *)(SystemGlobalDataBufferC86938 + 0x1cd8);
@@ -70968,7 +70968,7 @@ void Unwind_18090e800(uint8_t8 objectContextParam,longlong validationContextPara
   int integerValue2;
   longlong resourceIndex;
   longlong *contextPointer;
-  longlong lVar5;
+  longlong MemoryRegion;
   
   if (0 < *(int *)(validationContextParam + 0x1b0)) {
     lVar5 = *(longlong *)(SystemGlobalDataBufferC86938 + 0x1cd8);
@@ -71026,7 +71026,7 @@ void Unwind_18090e820(uint8_t8 objectContextParam,longlong validationContextPara
   int integerValue2;
   longlong resourceIndex;
   longlong *contextPointer;
-  longlong lVar5;
+  longlong MemoryRegion;
   
   if (0 < *(int *)(validationContextParam + 0x210)) {
     lVar5 = *(longlong *)(SystemGlobalDataBufferC86938 + 0x1cd8);
@@ -71084,7 +71084,7 @@ void Unwind_18090e840(uint8_t8 objectContextParam,longlong validationContextPara
   int integerValue2;
   longlong resourceIndex;
   longlong *contextPointer;
-  longlong lVar5;
+  longlong MemoryRegion;
   
   if (0 < *(int *)(validationContextParam + 0x270)) {
     lVar5 = *(longlong *)(SystemGlobalDataBufferC86938 + 0x1cd8);
@@ -71142,7 +71142,7 @@ void Unwind_18090e860(uint8_t8 objectContextParam,longlong validationContextPara
   int integerValue2;
   longlong resourceIndex;
   longlong *contextPointer;
-  longlong lVar5;
+  longlong MemoryRegion;
   
   if (0 < *(int *)(validationContextParam + 0x2d0)) {
     lVar5 = *(longlong *)(SystemGlobalDataBufferC86938 + 0x1cd8);
@@ -71581,7 +71581,7 @@ void Unwind_18090eb00(uint8_t8 objectContextParam,longlong validationContextPara
   int integerValue2;
   longlong resourceIndex;
   longlong *contextPointer;
-  longlong lVar5;
+  longlong MemoryRegion;
   
   if (0 < *(int *)(validationContextParam + 0x140)) {
     lVar5 = *(longlong *)(SystemGlobalDataBufferC86938 + 0x1cd8);
