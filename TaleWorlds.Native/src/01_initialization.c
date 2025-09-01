@@ -27931,7 +27931,7 @@ void CreateAndManageSystemThreadObject(void* SystemResourcePointer,void* ThreadC
   }
   dataTemplatePointer = &SystemResourceTemplate;
   if (SystemGraphicsFlag != '\0') {
-    dataTemplatePointer = &UNK_1809fd730;
+    dataTemplatePointer = &DataTemplateReference;
   }
   ProcessSystemQueue(stackBuffer,dataTemplatePointer);
   systemGlobalPointer = &SystemGlobalDataReference;
@@ -28097,7 +28097,7 @@ LAB_18005419d:
     } while (StringIndex < BufferSize);
   }
   SystemStatusFlags = func_0x0001800464d0(&StackBufferPtr);
-  ComparisonPointer = (void* *)&UNK_1809fde40;
+  ComparisonPointer = (void* *)&ComparisonDataReference;
   do {
     CommandString = (char *)*ComparisonPointer;
     MemoryOffset = SystemStatusFlags - (long long)CommandString;
@@ -28534,7 +28534,7 @@ LAB_180054912:
         if (puStack_110 != (uint8_t *)0x0) {
           punsignedSystemValue6 = puStack_110;
         }
-        ConfigureSystemDataBuffer(&dataBufferContext,&UNK_1809fd7c4,punsignedSystemValue6);
+        ConfigureSystemDataBuffer(&dataBufferContext,&SystemDataBufferConfig,punsignedSystemValue6);
         cVar4 = ValidateSystemMemoryAllocation(&dataBufferContext);
         if (cVar4 == '\0') {
           ReleaseSystemMemoryAllocation(&dataBufferContext);
@@ -28575,31 +28575,31 @@ LAB_180054912:
               punsignedSystemValue6 = puStack_150;
             }
             uStack_148 = systemId;
-            localMemoryPointer4 = strstr(punsignedSystemValue6,&UNK_1809fd7d8);
+            localMemoryPointer4 = strstr(punsignedSystemValue6,&SystemSearchString1);
             if (localMemoryPointer4 == 0) {
               punsignedSystemValue6 = &SystemStringTemplate;
               if (puStack_150 != (uint8_t *)0x0) {
                 punsignedSystemValue6 = puStack_150;
               }
-              localMemoryPointer4 = strstr(punsignedSystemValue6,&UNK_1809fd7f8);
+              localMemoryPointer4 = strstr(punsignedSystemValue6,&SystemSearchString2);
               if (localMemoryPointer4 != 0) goto LAB_180054ec9;
               punsignedSystemValue6 = &SystemStringTemplate;
               if (puStack_150 != (uint8_t *)0x0) {
                 punsignedSystemValue6 = puStack_150;
               }
-              localMemoryPointer4 = strstr(punsignedSystemValue6,&UNK_1809fd810);
+              localMemoryPointer4 = strstr(punsignedSystemValue6,&SystemSearchString3);
               if (localMemoryPointer4 != 0) goto LAB_180054ec9;
               punsignedSystemValue6 = &SystemStringTemplate;
               if (puStack_150 != (uint8_t *)0x0) {
                 punsignedSystemValue6 = puStack_150;
               }
-              localMemoryPointer4 = strstr(punsignedSystemValue6,&UNK_1809fd828);
+              localMemoryPointer4 = strstr(punsignedSystemValue6,&SystemSearchString4);
               if (localMemoryPointer4 != 0) goto LAB_180054ec9;
               punsignedSystemValue6 = &SystemStringTemplate;
               if (puStack_150 != (uint8_t *)0x0) {
                 punsignedSystemValue6 = puStack_150;
               }
-              localMemoryPointer4 = strstr(punsignedSystemValue6,&UNK_1809fd848);
+              localMemoryPointer4 = strstr(punsignedSystemValue6,&SystemSearchString5);
               if (localMemoryPointer4 != 0) goto LAB_180054ec9;
               cVar4 = CheckSystemMemoryStatus(&puStack_158);
               if (cVar4 == '\0') {
@@ -28676,7 +28676,7 @@ LAB_180054d57:
                   if (pstackParameterC != (void* *)0x0) {
                     pointerToUnsigned16 = pstackParameterC;
                   }
-                  ConfigureSystemDataBuffer(&puStack_f0,&UNK_1809fd870,pointerToUnsigned16);
+                  ConfigureSystemDataBuffer(&puStack_f0,&SystemDataBufferConfig2,pointerToUnsigned16);
                   ProcessSystemDataTransfer(&puStack_f0,&puStack_78);
                   SystemGlobalStateStorage = 0;
                   puStack_f0 = &SystemGlobalDataReference;
