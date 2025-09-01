@@ -86328,8 +86328,13 @@ void NoOperationFunction(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void FUN_180942930(void)
-void FUN_180942930(void)
+ /**
+ * @brief 执行引用计数递减和清理
+ * 
+ * 该函数负责对引用计数进行递减操作，并在计数达到1时
+ * 执行相应的清理函数，用于管理资源的生命周期
+ */
+void ExecuteReferenceCountDecrementAndCleanup(void)
 
 {
   longlong *plVar1;
