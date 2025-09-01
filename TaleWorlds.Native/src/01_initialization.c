@@ -32670,7 +32670,6 @@ void CopySystemResourceData(long long *SystemResourcePointer,long long Configura
 
 
 
-// 函数: void FUN_180058b3e(long long SystemResourcePointer,long long ConfigurationDataPointer)
 /**
  * @brief 系统资源大小计算器函数
  * 
