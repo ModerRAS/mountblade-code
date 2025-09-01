@@ -8253,7 +8253,7 @@ void ProcessObjectContextValidationAndReset(longlong param_1,longlong param_2)
 
 
 
-undefined8 FUN_180893480(longlong param_1,longlong param_2)
+undefined8 ProcessObjectContextFloatRangeValidationAndClamping(longlong objectContext,longlong systemContext)
 
 {
   float fVar1;
@@ -9441,9 +9441,7 @@ int FUN_1808947b0(longlong *param_1,longlong param_2,int param_3)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void FUN_180894860(longlong param_1,undefined4 *param_2,longlong *param_3)
-void FUN_180894860(longlong param_1,undefined4 *param_2,longlong *param_3)
-
+ 
 {
   longlong *plVar1;
   int iVar2;
@@ -9502,9 +9500,7 @@ void FUN_180894860(longlong param_1,undefined4 *param_2,longlong *param_3)
 
 
 
- void FUN_18089492c(void)
-void FUN_18089492c(void)
-
+ 
 {
                     // WARNING: Subroutine does not return
   FUN_18076b390();
@@ -10123,57 +10119,57 @@ undefined8 ExpandResourcePoolCapacity(longlong *ResourcePoolHandle)
   ulonglong InitializationCounter;
   ulonglong CopyCounter;
   
-  iVar8 = *(int *)((longlong)param_1 + 0x24);
-  if (iVar8 == -1) {
+  ResourceCapacity = *(int *)((longlong)ResourcePoolHandle + 0x24);
+  if (ResourceCapacity == -1) {
     return 0x1c;
   }
-  iVar1 = (int)param_1[1];
-  if (iVar8 == iVar1) {
-    iVar8 = iVar8 * 2;
-    if (iVar8 < 4) {
-      iVar8 = 4;
+  CurrentPoolSize = (int)ResourcePoolHandle[1];
+  if (ResourceCapacity == CurrentPoolSize) {
+    ResourceCapacity = ResourceCapacity * 2;
+    if (ResourceCapacity < 4) {
+      ResourceCapacity = 4;
     }
-    if (((iVar8 <= iVar1) || ((int)param_1[3] != iVar1)) || ((int)param_1[4] != -1)) {
+    if (((ResourceCapacity <= CurrentPoolSize) || ((int)ResourcePoolHandle[3] != CurrentPoolSize)) || ((int)ResourcePoolHandle[4] != -1)) {
       return 0x1c;
     }
-    uVar6 = (int)*(uint *)((longlong)param_1 + 0x1c) >> 0x1f;
-    if (((int)((*(uint *)((longlong)param_1 + 0x1c) ^ uVar6) - uVar6) < iVar8) &&
-       (uVar3 = FUN_1807d3f50(param_1 + 2,iVar8), (int)uVar3 != 0)) {
-      return uVar3;
+    SignExtendValue = (int)*(uint *)((longlong)ResourcePoolHandle + 0x1c) >> 0x1f;
+    if (((int)((*(uint *)((longlong)ResourcePoolHandle + 0x1c) ^ SignExtendValue) - SignExtendValue) < ResourceCapacity) &&
+       (OperationStatus = FUN_1807d3f50(ResourcePoolHandle + 2,ResourceCapacity), (int)OperationStatus != 0)) {
+      return OperationStatus;
     }
-    uVar3 = FUN_1807703c0(param_1,iVar8);
-    if ((int)uVar3 != 0) {
-      return uVar3;
+    OperationStatus = FUN_1807703c0(ResourcePoolHandle,ResourceCapacity);
+    if ((int)OperationStatus != 0) {
+      return OperationStatus;
     }
-    uVar9 = 0;
-    uVar4 = uVar9;
-    if (0 < iVar8) {
+    InitializationCounter = 0;
+    LoopCounter = InitializationCounter;
+    if (0 < ResourceCapacity) {
       do {
-        *(undefined4 *)(*param_1 + uVar4 * 4) = 0xffffffff;
-        uVar4 = uVar4 + 1;
-      } while ((longlong)uVar4 < (longlong)iVar8);
+        *(undefined4 *)(*ResourcePoolHandle + LoopCounter * 4) = 0xffffffff;
+        LoopCounter = LoopCounter + 1;
+      } while ((longlong)LoopCounter < (longlong)ResourceCapacity);
     }
-    lVar2 = param_1[3];
-    uVar4 = uVar9;
-    uVar10 = uVar9;
-    if (0 < (int)lVar2) {
+    ResourceCount = ResourcePoolHandle[3];
+    LoopCounter = InitializationCounter;
+    CopyCounter = InitializationCounter;
+    if (0 < (int)ResourceCount) {
       do {
-        if ((int)param_1[1] == 0) {
+        if ((int)ResourcePoolHandle[1] == 0) {
           return 0x1c;
         }
-        lVar5 = (longlong)(int)(*(uint *)(uVar4 + param_1[2]) & (int)param_1[1] - 1U);
-        piVar7 = (int *)(*param_1 + lVar5 * 4);
-        iVar8 = *(int *)(*param_1 + lVar5 * 4);
-        while (iVar8 != -1) {
-          piVar7 = (int *)(param_1[2] + 4 + (longlong)iVar8 * 0x10);
-          iVar8 = *piVar7;
+        NewPoolSize = (longlong)(int)(*(uint *)(LoopCounter + ResourcePoolHandle[2]) & (int)ResourcePoolHandle[1] - 1U);
+        ResourceIndexPointer = (int *)(*ResourcePoolHandle + NewPoolSize * 4);
+        ResourceCapacity = *(int *)(*ResourcePoolHandle + NewPoolSize * 4);
+        while (ResourceCapacity != -1) {
+          ResourceIndexPointer = (int *)(ResourcePoolHandle[2] + 4 + (longlong)ResourceCapacity * 0x10);
+          ResourceCapacity = *ResourceIndexPointer;
         }
-        *piVar7 = (int)uVar9;
-        uVar10 = uVar10 + 1;
-        uVar9 = (ulonglong)((int)uVar9 + 1);
-        *(undefined4 *)(param_1[2] + 4 + uVar4) = 0xffffffff;
-        uVar4 = uVar4 + 0x10;
-      } while ((longlong)uVar10 < (longlong)(int)lVar2);
+        *ResourceIndexPointer = (int)InitializationCounter;
+        CopyCounter = CopyCounter + 1;
+        InitializationCounter = (ulonglong)((int)InitializationCounter + 1);
+        *(undefined4 *)(ResourcePoolHandle[2] + 4 + LoopCounter) = 0xffffffff;
+        LoopCounter = LoopCounter + 0x10;
+      } while ((longlong)CopyCounter < (longlong)(int)ResourceCount);
     }
   }
   return 0;

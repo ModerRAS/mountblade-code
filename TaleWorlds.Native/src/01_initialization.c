@@ -7225,20 +7225,22 @@ void InitializeSystemThreadManager(void)
 
 
 
-// 函数: void FUN_180035940(void)
-void FUN_180035940(void)
+// 函数: void InitializeSystemEventProcessor(void)
+// 系统事件处理器初始化函数
+// 初始化系统事件处理相关的数据结构和回调函数
+void InitializeSystemEventProcessor(void)
 
 {
-  char systemNodeFlag;
-  undefined8 *systemDataTable;
+  char eventNodeFlag;
+  undefined8 *eventSystemDataTable;
   int memoryCompareResult;
-  longlong *systemMemoryPointer;
-  longlong systemTimeValue;
-  undefined8 *systemRootNode;
-  undefined8 *systemCurrentNode;
-  undefined8 *systemNextNode;
-  undefined8 *systemPreviousNode;
-  code *pcStackX_18;
+  longlong *eventMemoryPointer;
+  longlong eventSystemTimeValue;
+  undefined8 *eventRootNode;
+  undefined8 *eventCurrentNode;
+  undefined8 *eventNextNode;
+  undefined8 *eventPreviousNode;
+  code *eventStackPointer;
   
   systemDataTable = (longlong *)GetSystemRootPointer();
   systemRootNode = (undefined8 *)*systemDataTable;
