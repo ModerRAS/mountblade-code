@@ -17538,7 +17538,7 @@ int InitializeSystemThreadPool(void)
   
   SystemPerformanceStatusFlag = 3;
   SystemGlobalDataReferenceD = &SystemGlobalDataBufferD;
-  SystemPerformanceCounterA = &DAT_180c96790;
+  SystemPerformanceCounterA = &SystemPerformanceDataBufferA;  // 系统性能计数器数据缓冲区A
   SystemPerformanceCounterB = 0;
   SystemPerformanceCounterC = 0;
   SystemPerformanceCounterD = 0;
@@ -17561,18 +17561,18 @@ int InitializeSystemThreadPool(void)
 void SystemNetworkManagerInitializer(void)
 
 {
-  void* in_R9;
-  void* *stackParameterA;
-  uint8_t *stackParameterB;
-  uint32_t stackParameterC;
+  void* registerR9Value;
+  void* *stackPointerParameter;
+  uint8_t *stackBufferPointer;
+  uint32_t stackBufferSize;
   uint8_t stackBuffer [136];
   
-  stackParameterA = &SystemGlobalDataPointerC;
-  stackParameterB = stackBuffer;
+  stackPointerParameter = &SystemGlobalDataPointerC;
+  stackBufferPointer = stackBuffer;
   stackBuffer[0] = 0;
-  stackParameterC = 0x10;
-  strcpy_s(stackBuffer,0x80,&SystemStringConstantTemplateC,in_R9,0xfffffffffffffffe);
-  SystemMemoryRegionCacheC = SystemMemoryAllocationFunction(&stackParameterA);
+  stackBufferSize = 0x10;
+  strcpy_s(stackBuffer,0x80,&SystemStringConstantTemplateC,registerR9Value,0xfffffffffffffffe);
+  SystemMemoryRegionCacheC = SystemMemoryAllocationFunction(&stackPointerParameter);
   return;
 }
 
@@ -17692,8 +17692,8 @@ int InitializeEngineCoreSystem(void)
   uint64_t InitializationResult;
   
   SystemPerformanceTimestamp = 3;
-  SystemPerformanceCounterE = &DAT_180c967e0;
-  SystemNetworkBufferPointer = &DAT_180c967e0;
+  SystemPerformanceCounterE = &SystemPerformanceDataBufferE;  // 系统性能计数器数据缓冲区E
+  SystemNetworkBufferPointer = &SystemNetworkDataBuffer;  // 系统网络数据缓冲区
   _DAT_180c967f0 = 0;
   _DAT_180c967f8 = 0;
   _DAT_180c96800 = 0;
