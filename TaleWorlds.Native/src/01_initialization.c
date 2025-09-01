@@ -123,134 +123,132 @@ int SystemStatusFlag;
 long long SystemTimestamp;
 void* SystemMemoryRegionW;
 
-// 函数: undefined FUN_180066dd0;
-undefined SystemInitializationFunctionD;
-undefined SystemMemoryRegionX;
-undefined SystemMemoryRegionY;
-undefined SystemDataTableE;
-undefined SystemMemoryRegionZ;
-undefined SystemMemoryRegionAA;
-undefined SystemMemoryRegionAB;
-undefined SystemMemoryRegionAC;
-undefined SystemMemoryRegionAD;
-undefined SystemMemoryRegionAE;
-undefined SystemDataTableF;
-undefined SystemMemoryRegionAF;
-undefined SystemMemoryRegionAG;
-undefined SystemMemoryRegionAH;
-undefined SystemMemoryRegionAI;
-undefined SystemMemoryRegionAJ;
-undefined SystemMemoryRegionAK;
-undefined SystemMemoryRegionAL;
-undefined SystemDataTableG;
-undefined SystemMemoryRegionAM;
-undefined SystemMemoryRegionAN;
-undefined SystemMemoryRegionAO;
-undefined SystemMemoryRegionAP;
-undefined SystemMemoryRegionAQ;
-undefined SystemMemoryRegionAR;
-undefined SystemMemoryRegionAS;
-undefined SystemMemoryRegionAT;
-undefined UNK_1809fe978;
-undefined UNK_1809fe988;
-undefined UNK_1809fe998;
-undefined UNK_1809fe9a8;
-undefined UNK_1809fe9b8;
-undefined UNK_1809fe9c8;
-undefined DAT_1809fc7d8;
-undefined DAT_1809fcfc0;
-char DAT_180c82843;
-char DAT_180c82850;
-char DAT_180c82842;
-char DAT_180c82844;
-undefined UNK_1809fe848;
-undefined UNK_1809fea68;
-undefined UNK_1809feaa0;
-undefined UNK_1809feb24;
-undefined UNK_1809feb28;
-undefined DAT_1809feb50;
-undefined UNK_1809feb58;
-undefined UNK_1809feb70;
-undefined UNK_1809feb88;
-undefined UNK_1809feba8;
-undefined UNK_1809febc0;
-undefined UNK_1809febc8;
-undefined UNK_1809febd8;
-undefined UNK_1809febf0;
-undefined UNK_180a04f08;
-undefined UNK_1809fec28;
-undefined UNK_1809fec40;
-undefined UNK_180068e60;
-undefined UNK_180068e70;
-undefined UNK_1809fec50;
-undefined UNK_1809fec70;
-undefined UNK_1809ff4e0;
-undefined DAT_00000018;
-undefined DAT_00000010;
-undefined UNK_1809fecd8;
-undefined UNK_1809fed10;
-longlong UNK_00000128;
-undefined DAT_00000000;
-undefined UNK_1809fed40;
-undefined UNK_1809fed78;
-ulonglong UNK_000001c8;
-ulonglong UNK_000001d0;
-ulonglong UNK_000001d8;
-undefined8 UNK_000001e0;
-undefined8 UNK_000001e8;
-undefined8 UNK_000001f0;
-longlong UNK_000001f8;
-undefined1 DAT_180bf65bc;
-undefined UNK_1809feda8;
-undefined UNK_1809feeb8;
-undefined UNK_1809feec8;
-undefined UNK_1809feed8;
-char DAT_180c82840;
-undefined UNK_18006a030;
-undefined UNK_180a0e170;
-undefined UNK_180a0e368;
-undefined UNK_1809fefb0;
-undefined1 DAT_180c8ecee;
-undefined UNK_1809ff498;
-undefined UNK_1809ff390;
-undefined UNK_1809ff3e8;
-undefined UNK_1809ff488;
-char DAT_180c8aa69;
-undefined UNK_1809ff538;
-undefined UNK_1809ff550;
-undefined UNK_1809ff5b0;
-undefined UNK_1809ff5b8;
-undefined UNK_1809ff5c0;
-undefined UNK_1809ff5d0;
-undefined UNK_1809ff5f8;
-undefined UNK_1809ff610;
-undefined UNK_1809ff630;
-char DAT_180bf0100;
-undefined DAT_180c86908;
-undefined UNK_1809ff648;
-undefined DAT_1809ff660;
-undefined UNK_1809ff688;
-undefined UNK_1809ff6b0;
-undefined UNK_1809ff6bc;
-undefined UNK_1809ff6c8;
-undefined UNK_1809ff6e0;
-undefined UNK_1809ff7c0;
-undefined UNK_1809ff800;
-undefined UNK_1809ff840;
-undefined UNK_1809ff848;
-undefined UNK_1809ff888;
-undefined UNK_1809ff8a8;
-undefined UNK_1809ff8d8;
-undefined UNK_1809ff918;
-undefined UNK_1809ff938;
-undefined UNK_1809ff958;
-undefined UNK_1809ff9a8;
-undefined UNK_1809ffa18;
-undefined UNK_180a02e68;
-undefined UNK_180a13a28;
-undefined UNK_180a00208;
-undefined UNK_180a00270;
-undefined UNK_180277350;
+// 函数: 系统初始化函数D
+void* SystemInitializationFunctionD;
+void* SystemMemoryRegionX;
+void* SystemMemoryRegionY;
+void* SystemDataTableE;
+void* SystemMemoryRegionZ;
+void* SystemMemoryRegionAA;
+void* SystemMemoryRegionAB;
+void* SystemMemoryRegionAC;
+void* SystemMemoryRegionAD;
+void* SystemMemoryRegionAE;
+void* SystemDataTableF;
+void* SystemMemoryRegionAF;
+void* SystemMemoryRegionAG;
+void* SystemMemoryRegionAH;
+void* SystemMemoryRegionAI;
+void* SystemMemoryRegionAJ;
+void* SystemMemoryRegionAK;
+void* SystemMemoryRegionAL;
+void* SystemDataTableG;
+void* SystemMemoryRegionAM;
+void* SystemMemoryRegionAN;
+void* SystemMemoryRegionAO;
+void* SystemMemoryRegionAP;
+void* SystemMemoryRegionAQ;
+void* SystemMemoryRegionAR;
+void* SystemMemoryRegionAS;
+void* SystemMemoryRegionAT;
+void* SystemDataPointerA;
+void* SystemDataPointerB;
+void* SystemDataPointerC;
+void* SystemDataPointerD;
+void* SystemDataPointerE;
+void* SystemDataPointerF;
+void* SystemDataTableEntryA;
+void* SystemDataTableEntryB;
+char SystemStatusFlagA;
+char SystemStatusFlagB;
+char SystemStatusFlagC;
+char SystemStatusFlagD;
+void* SystemMemoryBlockA;
+void* SystemMemoryBlockB;
+void* SystemMemoryBlockC;
+void* SystemMemoryBlockD;
+void* SystemMemoryBlockE;
+void* SystemDataTableEntryC;
+void* SystemMemoryBlockF;
+void* SystemMemoryBlockG;
+void* SystemMemoryBlockH;
+void* SystemMemoryBlockI;
+void* SystemMemoryBlockJ;
+void* SystemMemoryBlockK;
+void* SystemMemoryBlockL;
+void* SystemMemoryBlockM;
+void* SystemMemoryBlockN;
+void* SystemMemoryBlockO;
+void* SystemMemoryBlockP;
+void* SystemFunctionPointerC;
+void* SystemFunctionPointerD;
+void* SystemMemoryBlockQ;
+void* SystemMemoryBlockR;
+void* SystemMemoryBlockS;
+void* SystemDataTableEntryD;
+void* SystemDataTableEntryE;
+void* SystemMemoryBlockT;
+void* SystemMemoryBlockU;
+long long SystemTimeValueA;
+void* SystemDataTableEntryF;
+void* SystemMemoryBlockV;
+void* SystemMemoryBlockW;
+unsigned long long SystemMemorySizeA;
+unsigned long long SystemMemorySizeB;
+unsigned long long SystemMemorySizeC;
+uint8_t SystemByteValueA;
+uint8_t SystemByteValueB;
+uint8_t SystemByteValueC;
+long long SystemTimeValueB;
+bool SystemFlagA;
+void* SystemMemoryBlockX;
+void* SystemMemoryBlockY;
+void* SystemMemoryBlockZ;
+void* SystemMemoryBlockAA;
+char SystemStatusFlagE;
+void* SystemFunctionPointerE;
+void* SystemMemoryBlockAB;
+void* SystemMemoryBlockAC;
+void* SystemMemoryBlockAD;
+bool SystemFlagB;
+void* SystemMemoryBlockAE;
+void* SystemMemoryBlockAF;
+void* SystemMemoryBlockAG;
+void* SystemMemoryBlockAH;
+char SystemStatusFlagF;
+void* SystemMemoryBlockAI;
+void* SystemMemoryBlockAJ;
+void* SystemMemoryBlockAK;
+void* SystemMemoryBlockAL;
+void* SystemMemoryBlockAM;
+void* SystemMemoryBlockAN;
+void* SystemMemoryBlockAO;
+void* SystemMemoryBlockAP;
+char SystemStatusFlagG;
+void* SystemDataTableEntryG;
+void* SystemMemoryBlockAQ;
+void* SystemDataTableEntryH;
+void* SystemMemoryBlockAR;
+void* SystemMemoryBlockAS;
+void* SystemMemoryBlockAT;
+void* SystemMemoryBlockAU;
+void* SystemMemoryBlockAV;
+void* SystemMemoryBlockAW;
+void* SystemMemoryBlockAX;
+void* SystemMemoryBlockAY;
+void* SystemMemoryBlockAZ;
+void* SystemMemoryBlockBA;
+void* SystemMemoryBlockBB;
+void* SystemMemoryBlockBC;
+void* SystemMemoryBlockBD;
+void* SystemMemoryBlockBE;
+void* SystemMemoryBlockBF;
+void* SystemMemoryBlockBG;
+void* SystemMemoryBlockBH;
+void* SystemMemoryBlockBI;
+void* SystemMemoryBlockBJ;
+void* SystemMemoryBlockBK;
+void* SystemFunctionPointerF;
 
 // 函数: undefined FUN_18007bb70;
 undefined FUN_18007bb70;
@@ -1168,88 +1166,107 @@ int FUN_18002cd40(void)
   _DAT_180bf52d0 = 0;
 
 // 函数: void FUN_18002d150(void)
-void FUN_18002d150(void)
+/**
+ * 初始化渲染系统配置
+ * 设置渲染系统的基本配置参数和数据结构
+ */
+void InitializeRenderingSystemConfig(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
-  undefined8 uStackX_18;
+  char nodeFlag;
+  undefined8 *systemRootPointer;
+  int comparisonResult;
+  longlong *systemTablePointer;
+  longlong allocationSize;
+  undefined8 *currentNode;
+  undefined8 *previousNode;
+  undefined8 *nextNode;
+  undefined8 *allocatedNode;
+  undefined8 initializationFlag;
   
-  plVar4 = (longlong *)FUN_18008d070();
-  puVar2 = (undefined8 *)*plVar4;
-  cVar1 = *(char *)((longlong)puVar2[1] + 0x19);
-  uStackX_18 = 0;
-  puVar7 = puVar2;
-  puVar6 = (undefined8 *)puVar2[1];
-  while (cVar1 == '\0') {
-    iVar3 = memcmp(puVar6 + 4,&DAT_1809fe0d0,0x10);
-    if (iVar3 < 0) {
-      puVar8 = (undefined8 *)puVar6[2];
-      puVar6 = puVar7;
+  systemTablePointer = (longlong *)FUN_18008d070();
+  systemRootPointer = (undefined8 *)*systemTablePointer;
+  nodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  initializationFlag = 0;
+  previousNode = systemRootPointer;
+  currentNode = (undefined8 *)systemRootPointer[1];
+  while (nodeFlag == '\0') {
+    comparisonResult = memcmp(currentNode + 4,&DAT_1809fe0d0,0x10);
+    if (comparisonResult < 0) {
+      nextNode = (undefined8 *)currentNode[2];
+      currentNode = previousNode;
     }
     else {
-      puVar8 = (undefined8 *)*puVar6;
+      nextNode = (undefined8 *)*currentNode;
     }
-    puVar7 = puVar6;
-    puVar6 = puVar8;
-    cVar1 = *(char *)((longlong)puVar8 + 0x19);
+    previousNode = currentNode;
+    currentNode = nextNode;
+    nodeFlag = *(char *)((longlong)nextNode + 0x19);
   }
-  if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_1809fe0d0,puVar7 + 4,0x10), iVar3 < 0)) {
-    lVar5 = FUN_18008f0d0(plVar4);
-    FUN_18008f140(plVar4,&puStackX_10,puVar7,lVar5 + 0x20,lVar5);
-    puVar7 = puStackX_10;
+  if ((previousNode == systemRootPointer) || (comparisonResult = memcmp(&DAT_1809fe0d0,previousNode + 4,0x10), comparisonResult < 0)) {
+    allocationSize = FUN_18008f0d0(systemTablePointer);
+    FUN_18008f140(systemTablePointer,&allocatedNode,previousNode,allocationSize + 0x20,allocationSize);
+    previousNode = allocatedNode;
   }
-  puVar7[6] = 0x42bea5b911d9c4bf;
-  puVar7[7] = 0x1aa83fc0020dc1b6;
-  puVar7[8] = &UNK_1809fd0d8;
-  puVar7[9] = 0;
-  puVar7[10] = uStackX_18;
+  previousNode[6] = 0x42bea5b911d9c4bf;
+  previousNode[7] = 0x1aa83fc0020dc1b6;
+  previousNode[8] = &UNK_1809fd0d8;
+  previousNode[9] = 0;
+  previousNode[10] = initializationFlag;
   return;
 }
 
 
 
-int FUN_18002d260(void)
+/**
+ * 初始化音频系统资源池
+ * 创建并配置音频系统的资源池，返回初始化状态
+ * @return 初始化成功返回0，失败返回-1
+ */
+int InitializeAudioSystemResourcePool(void)
 
 {
-  longlong lVar1;
+  longlong initializationResult;
   
   FUN_1808fc838(0x180c91700,0x20,8,FUN_1800637c0,FUN_18005ab20);
-  lVar1 = FUN_1808fc7d0(&UNK_180941760);
-  return (lVar1 != 0) - 1;
+  initializationResult = FUN_1808fc7d0(&UNK_180941760);
+  return (initializationResult != 0) - 1;
 }
 
 
 
-int FUN_18002d2a0(void)
+/**
+ * 初始化输入系统资源池
+ * 创建并配置输入系统的资源池，返回初始化状态
+ * @return 初始化成功返回0，失败返回-1
+ */
+int InitializeInputSystemResourcePool(void)
 
 {
-  longlong lVar1;
+  longlong initializationResult;
   
   FUN_1808fc838(0x180c91800,0x20,8,FUN_1800637f0,FUN_18005ab20);
-  lVar1 = FUN_1808fc7d0(&UNK_180941780);
-  return (lVar1 != 0) - 1;
+  initializationResult = FUN_1808fc7d0(&UNK_180941780);
+  return (initializationResult != 0) - 1;
 }
 
 
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-int FUN_18002d2e0(void)
+/**
+ * 初始化系统信号量
+ * 创建系统级的信号量用于线程同步，返回初始化状态
+ * @return 初始化成功返回0，失败返回-1
+ */
+int InitializeSystemSemaphore(void)
 
 {
-  longlong lVar1;
+  longlong initializationResult;
   
   _DAT_180c91900 = CreateSemaphoreW(0,1,0x7fffffff,0,0xfffffffffffffffe);
-  lVar1 = FUN_1808fc7d0(FUN_1809417a0);
-  return (lVar1 != 0) - 1;
+  initializationResult = FUN_1808fc7d0(FUN_1809417a0);
+  return (initializationResult != 0) - 1;
 }
 
 
@@ -17433,7 +17450,12 @@ void FUN_180046840(longlong *param_1)
 
 
 
-// 函数: void FUN_180046860(ulonglong *param_1)
+/**
+ * 内存管理器 - 释放内存块引用
+ * 管理内存块的引用计数，当引用计数为0时释放内存
+ * 
+ * @param param_1 内存块指针的指针
+ */
 void FUN_180046860(ulonglong *param_1)
 
 {
@@ -17472,6 +17494,14 @@ void FUN_180046860(ulonglong *param_1)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
+/**
+ * 系统初始化管理器 - 核心初始化函数
+ * 负责初始化游戏引擎的核心系统和组件
+ * 
+ * @param param_1 系统配置参数
+ * @param param_2 初始化选项标志
+ * @return 初始化结果状态码
+ */
 int FUN_180046890(longlong param_1,longlong param_2)
 
 {
