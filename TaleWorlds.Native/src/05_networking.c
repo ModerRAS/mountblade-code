@@ -8703,7 +8703,7 @@ NetworkContextValidationFailed:
         cVar2 = *pcVar6;
         while (cVar2 != '\0') {
           if (((9 < (byte)(cVar2 - 0x30U)) && (5 < (byte)(cVar2 + 0xbfU))) &&
-             (5 < (byte)(cVar2 + 0x9fU))) goto FUN_180848ff1;
+             (5 < (byte)(cVar2 + 0x9fU))) goto NetworkErrorHandlerLabel;
           pcVar1 = pcVar6 + 1;
           pcVar6 = pcVar6 + 1;
           cVar2 = *pcVar1;
@@ -8776,7 +8776,7 @@ void ProcessNetworkPacketParsingAndValidation(void)
   
   if ((((unaff_RBX == (char *)0x0) || (iVar7 = ValidateNetworkBufferSize(), iVar7 != 0x26)) ||
       (*unaff_RBX != '{')) || (unaff_RBX[0x25] != '}')) {
-FUN_180848ff1:
+NetworkErrorHandlerLabel:
     *unaff_R15 = 0;
     unaff_R15[1] = 0;
   }
@@ -8798,7 +8798,7 @@ FUN_180848ff1:
       cVar2 = *pcVar9;
       while (cVar2 != '\0') {
         if (((9 < (byte)(cVar2 - 0x30U)) && (5 < (byte)(cVar2 + 0xbfU))) &&
-           (5 < (byte)(cVar2 + 0x9fU))) goto FUN_180848ff1;
+           (5 < (byte)(cVar2 + 0x9fU))) goto NetworkErrorHandlerLabel;
         pcVar1 = pcVar9 + 1;
         pcVar9 = pcVar9 + 1;
         cVar2 = *pcVar1;
@@ -11740,7 +11740,7 @@ void NetworkConnectionParameterValidator(char *connectionContext,NetworkHandle *
   if (packetData != (NetworkHandle *)0x0) {
     if ((((connectionContext == (char *)0x0) || (iVar5 = ValidateNetworkBufferSize(), iVar5 != 0x26)) ||
         (*connectionContext != '{')) || (connectionContext[0x25] != '}')) {
-FUN_180848ff1:
+NetworkErrorHandlerLabel:
       *packetData = 0;
       packetData[1] = 0;
     }
@@ -11762,7 +11762,7 @@ FUN_180848ff1:
         cVar2 = *pcVar6;
         while (cVar2 != '\0') {
           if (((9 < (byte)(cVar2 - 0x30U)) && (5 < (byte)(cVar2 + 0xbfU))) &&
-             (5 < (byte)(cVar2 + 0x9fU))) goto FUN_180848ff1;
+             (5 < (byte)(cVar2 + 0x9fU))) goto NetworkErrorHandlerLabel;
           pcVar1 = pcVar6 + 1;
           pcVar6 = pcVar6 + 1;
           cVar2 = *pcVar1;
