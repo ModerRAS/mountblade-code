@@ -28096,7 +28096,7 @@ LAB_18005419d:
       StringLength = StringLength + 1;
     } while (StringIndex < BufferSize);
   }
-  SystemStatusFlags = func_0x0001800464d0(&StackBufferPtr);
+  SystemStatusFlags = GetSystemStatusFlagsInternal(&StackBufferPtr);
   ComparisonPointer = (void* *)&ComparisonDataReference;
   do {
     CommandString = (char *)*ComparisonPointer;
@@ -37018,14 +37018,28 @@ void ProcessExtraOutputResource(void* SystemResourcePointer,long long Configurat
 
 
 
-// 函数: void FUN_18005d260(void* SystemResourcePointer,void* *ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
-void FUN_18005d260(void* SystemResourcePointer,void* *ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
+/**
+ * @brief 处理系统资源配置
+ * 
+ * 该函数负责处理系统资源的配置操作，包括递归处理配置数据、
+ * 设置全局数据引用和内存分配器引用。这是系统资源管理的核心函数。
+ * 
+ * @param SystemResourcePointer 系统资源指针
+ * @param ConfigurationDataPointer 配置数据指针
+ * @param AdditionalParameter 额外参数
+ * @param ConfigurationFlag 配置标志
+ * @note 此函数会递归调用自身处理配置数据
+ * @warning 此函数包含不返回的子程序调用，可能导致程序终止
+ * 
+ * 原始函数名为FUN_18005d260，现已重命名为ProcessSystemResourceConfiguration
+ */
+void ProcessSystemResourceConfiguration(void* SystemResourcePointer,void* *ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
 {
   if (ConfigurationDataPointer == (void* *)0x0) {
     return;
   }
-  FUN_18005d260(SystemResourcePointer,*ConfigurationDataPointer,AdditionalParameter,ConfigurationFlag,0xfffffffffffffffe);
+  ProcessSystemResourceConfiguration(SystemResourcePointer,*ConfigurationDataPointer,AdditionalParameter,ConfigurationFlag,0xfffffffffffffffe);
   ConfigurationDataPointer[4] = &SystemGlobalDataReference;
   if (ConfigurationDataPointer[5] != 0) {
                     // WARNING: Subroutine does not return
@@ -37041,11 +37055,24 @@ void FUN_18005d260(void* SystemResourcePointer,void* *ConfigurationDataPointer,v
 
 
 
-// 函数: void FUN_18005d310(long long SystemResourcePointer,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
-void FUN_18005d310(long long SystemResourcePointer,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
+/**
+ * @brief 处理系统资源配置包装函数
+ * 
+ * 该函数是ProcessSystemResourceConfiguration的包装函数，用于处理系统资源指针
+ * 偏移位置的配置数据。简化了配置数据的访问和传递。
+ * 
+ * @param SystemResourcePointer 系统资源指针
+ * @param ConfigurationDataPointer 配置数据指针
+ * @param AdditionalParameter 额外参数
+ * @param ConfigurationFlag 配置标志
+ * @note 此函数内部调用ProcessSystemResourceConfiguration处理配置数据
+ * 
+ * 原始函数名为FUN_18005d310，现已重命名为ProcessSystemResourceConfigurationWrapper
+ */
+void ProcessSystemResourceConfigurationWrapper(long long SystemResourcePointer,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
 {
-  FUN_18005d260(SystemResourcePointer,*(void* *)(SystemResourcePointer + 0x10),AdditionalParameter,ConfigurationFlag,0xfffffffffffffffe);
+  ProcessSystemResourceConfiguration(SystemResourcePointer,*(void* *)(SystemResourcePointer + 0x10),AdditionalParameter,ConfigurationFlag,0xfffffffffffffffe);
   return;
 }
 
@@ -45372,7 +45399,7 @@ long long FUN_180068ec0(long long *SystemResourcePointer,long long *Configuratio
     }
     else {
       if (AdditionalParameter == 1) {
-        localMemoryPointer = SystemMemoryAllocationFunction(SystemMemoryAllocationTemplate,0x20,8,DAT_180bf65bc);
+        localMemoryPointer = SystemMemoryAllocationFunction(SystemMemoryAllocationTemplate,0x20,8,SystemMemoryAllocationTag);
         localSystemHandle = *ConfigurationDataPointer;
         *(void* *)(localMemoryPointer + 0x10) = 0;
         *(code **)(localMemoryPointer + 0x18) = _guard_check_icall;
@@ -46342,7 +46369,7 @@ long long FUN_18006b350(long long *SystemResourcePointer,long long *Configuratio
   }
   else {
     if (AdditionalParameter == 1) {
-      pointerToUnsigned2 = (void* *)SystemMemoryAllocationFunction(SystemMemoryAllocationTemplate,0x20,8,DAT_180bf65bc,0xfffffffffffffffe);
+      pointerToUnsigned2 = (void* *)SystemMemoryAllocationFunction(SystemMemoryAllocationTemplate,0x20,8,SystemMemoryAllocationTag,0xfffffffffffffffe);
       pointerToUnsigned1 = (void* *)*ConfigurationDataPointer;
       *pointerToUnsigned2 = *pointerToUnsigned1;
       *(uint32_t *)(pointerToUnsigned2 + 1) = *(uint32_t *)(pointerToUnsigned1 + 1);
@@ -50304,7 +50331,7 @@ void FUN_180070680(void* SystemResourcePointer,void* ConfigurationDataPointer)
     FUN_1800f93e0();
   }
   else {
-    unsignedSystemValue7 = func_0x0001800464d0(&puStack_70);
+    unsignedSystemValue7 = GetSystemStatusFlagsInternal(&puStack_70);
     FUN_1806272a0(unsignedSystemValue7);
   }
   InitializeSystemData(&SystemInitializationDataPtr,1);
@@ -62473,7 +62500,7 @@ LAB_18007b454:
       (**(code **)(*PrimaryResourcePointer1 + 0x28))(PrimaryResourcePointer1);
       pcStack_68 = FUN_180083390;
       puStack_60 = &UNK_180083380;
-      plStack_b8 = (long long *)SystemMemoryAllocationFunction(SystemMemoryAllocationTemplate,0x20,8,DAT_180bf65bc);
+      plStack_b8 = (long long *)SystemMemoryAllocationFunction(SystemMemoryAllocationTemplate,0x20,8,SystemMemoryAllocationTag);
       *plStack_b8 = SystemResourcePointer;
       *(byte *)(plStack_b8 + 1) = AdditionalParameter;
       plStack_b8[2] = (long long)PrimaryResourcePointer0;
@@ -63374,7 +63401,7 @@ void SystemThreadStatusManager(long long systemContext,byte threadStatus,long lo
     plStack_b8 = &lStack_78;
     pcStack_48 = FUN_180082e70;
     pcStack_40 = FUN_180082da0;
-    plStack_a8 = (long long *)SystemMemoryAllocationFunction(SystemMemoryAllocationTemplate,0x20,8,DAT_180bf65bc);
+    plStack_a8 = (long long *)SystemMemoryAllocationFunction(SystemMemoryAllocationTemplate,0x20,8,SystemMemoryAllocationTag);
     *plStack_a8 = lStack_78;
     *(byte *)(plStack_a8 + 1) = bStack_70;
     plStack_a8[2] = (long long)plStack_68;
