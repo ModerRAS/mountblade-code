@@ -12931,7 +12931,7 @@ void ProcessComplexResourceWithRegisters(void)
         resourceData2 = *(uint32_t *)(localContextPointer + 0x1c);
         *(uint32_t *)(executionContext + -0x78) = 0;
         *(int *)(executionContext + -0x68) = validationErrorCode;
-        *(uint8_t **)(executionContext + -0x80) = &SystemResourceTemplateB;
+        *(uint8_t **)(executionContext + -0x80) = &SystemResourceTemplateBackground;
         validationErrorCode = validationErrorCode + 1;
         *(uint32_t *)(executionContext + -0x54) = contextFlags;
         *(uint32_t *)(executionContext + -0x70) = systemRegister1;
@@ -13165,7 +13165,7 @@ int SystemResourceProcessorB(int64_t ObjectContext,int64_t ValidationContext)
     integerValue6 = ValidateBufferContext(*(uint8_t *)(longValue8 + 0xd0),&uStack_1a0);
     if (integerValue6 == 0) {
       uStack_170 = 0;
-      puStack_178 = &SystemResourceTemplateC;
+      puStack_178 = &SystemResourceTemplateCache;
       uStack_160 = uStack_1c8;
       uStack_168 = uStack_1a0;
       integerValue6 = GetAndValidateResourceData(ObjectContextParameter,&puStack_178);
@@ -13181,7 +13181,7 @@ int SystemResourceProcessorB(int64_t ObjectContext,int64_t ValidationContext)
             presourceHash6 = puStack_190;
             if ((cVar5 == '\0') && (*(float *)(resourceIndex + 0x4c) != *(float *)(lVar4 + 0x28))) {
               uStack_f0 = *(uint32_t *)(localContextPointer4 + 4 + SystemDataPointer);
-              pOperationParam38 = &SystemResourceTemplateD;
+              pOperationParam38 = &SystemResourceTemplateDatabase;
               uStack_f8 = uStack_1c8;
               ResourceHandlerParam = 0;
               SystemDataPointer = (**(code **)*puStack_190)(puStack_190);
@@ -13424,7 +13424,7 @@ void SystemInitializerA(void)
   localContextPointer5 = (*(code *)*InputRAX)(pvalidationResult2);
   ResourceIndex3 = ValidateBufferContext(*(uint8_t *)(localContextPointer5 + 0xd0),&stack0x00000048);
   if (ResourceIndex3 == 0) {
-    in_stack_00000070 = &SystemResourceTemplateC;
+    in_stack_00000070 = &SystemResourceTemplateCache;
     *(uint32_t *)(ExecutionContextPointer + -0xf) = uStackX_20;
     *(float *)(ExecutionContextPointer + -0x10) = fStack0000000000000048;
     in_stack_00000078 = unaff_R13D;
@@ -13442,7 +13442,7 @@ void SystemInitializerA(void)
           pvalidationResult2 = puStack0000000000000058;
           if ((cVar12 == '\0') && (*(float *)(resourceTable + 0x4c) != *(float *)(resourceIndex + 0x28))) {
             validationResult4 = *(uint32_t *)(validationResult0 + 4 + localContextPointer5);
-            ExecutionContextPointer[-4] = &SystemResourceTemplateD;
+            ExecutionContextPointer[-4] = &SystemResourceTemplateDatabase;
             *(uint32_t *)(ExecutionContextPointer + -2) = uStackX_20;
             pLoopIncrement = (uint8_t *)*puStack0000000000000058;
             *(uint32_t *)(ExecutionContextPointer + -1) = validationResult4;
@@ -13703,7 +13703,7 @@ void DataProcessingErrorHandler(void)
       unaff_R12 = in_stack_00000058;
       if ((cVar12 == '\0') && (*(float *)(resourceTable + 0x4c) != *(float *)(resourceIndex + 0x28))) {
         validationResult3 = *(uint32_t *)(validationResult0 + 4 + localContextPointer5);
-        ExecutionContextPointer[-4] = &SystemResourceTemplateD;
+        ExecutionContextPointer[-4] = &SystemResourceTemplateDatabase;
         *(uint32_t *)(ExecutionContextPointer + -2) = uStackX_20;
         pLoopIncrement = (uint8_t *)*in_stack_00000058;
         *(uint32_t *)(ExecutionContextPointer + -1) = validationResult3;
