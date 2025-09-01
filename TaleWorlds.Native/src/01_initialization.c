@@ -20651,7 +20651,7 @@ void SystemDataSearchAndMatch(void* searchContext,void* searchData,long long mat
   long long StringLengthDifference;
   void* SystemContextBackup;
   
-  uStackX_8 = SystemResourcePointer;
+  searchContextBackup = SystemResourcePointer;
   systemCounter = FindSystemDataIndex(&SystemResourceTemplate);
   if (systemCounter == -1) {
     systemCounter = FindSystemDataIndexAlternative(&SystemResourceTemplate,ConfigurationDataPointer);
@@ -20708,7 +20708,7 @@ LAB_180047f2c:
       if ((int)(currentCharValue - comparisonCharValue) < 1) goto LAB_180047f93;
     }
   }
-  punsignedSystemValue4 = (void* *)GetSystemNodeDataPointer(SystemPreviousNode,&uStackX_8);
+  punsignedSystemValue4 = (void* *)GetSystemNodeDataPointer(SystemPreviousNode,&searchContextBackup);
   punsignedSystemValue4 = (void* *)*punsignedSystemValue4;
 LAB_180047f93:
   SetSystemNodeRuntimeData(punsignedSystemValue4 + 8,AdditionalParameter);
