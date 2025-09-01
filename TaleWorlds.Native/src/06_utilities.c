@@ -149,8 +149,8 @@ bool SystemStatusFlag4Initialized;
  * @warning 调用此函数后，所有相关的同步对象将不再可用
  */
 void DestroyThreadSyncObjects(void);
-void* threadSyncObjectHandle;
-void* threadSyncContext;
+void* ThreadSyncObjectHandle;
+void* ThreadSyncContext;
 
  /**
  * @brief 关闭系统句柄
@@ -175,11 +175,11 @@ void CloseSystemHandle(void);
  * @warning 调用此函数后，线程资源将被完全释放
  */
 void CleanupThreadResources(void);
-uint32_t threadResourceFlag;
-void* cleanupContextPrimaryData;
-void* cleanupContextSecondaryData;
-void* cleanupResourceHandle;
-void* cleanupContextTertiaryData;
+uint32_t ThreadResourceFlag;
+void* CleanupContextPrimaryData;
+void* CleanupContextSecondaryData;
+void* CleanupResourceHandle;
+void* CleanupContextTertiaryData;
 
  /**
  * @brief 初始化资源管理器
@@ -262,13 +262,13 @@ void OptimizeResourceUsage(void);
  */
 void MonitorResourcePerformance(void);
 
-void* resourceManagerHandle;
-uint32_t resourceManagerStatus;
-void* resourceContextConfig;
-void* resourceContextStatus;
-void* resourceSmallBufferPool;
-void* resourceMediumBufferPool;
-void* resourceLargeBufferPool;
+void* ResourceManagerHandle;
+uint32_t ResourceManagerStatus;
+void* ResourceContextConfig;
+void* ResourceContextStatus;
+void* ResourceSmallBufferPool;
+void* ResourceMediumBufferPool;
+void* ResourceLargeBufferPool;
 
  /**
  * @brief 初始化纹理管理器

@@ -31,12 +31,41 @@ char SystemConfigBufferI[0x40];
 char SystemConfigBufferJ[0x40];
 
 // 系统地址常量定义
-#define ConditionMutexAddressA ConditionMutexAddressA
-#define ConditionMutexAddressB ConditionMutexAddressB
-#define SystemMutexAddressA SystemMutexAddressA
-#define EventMutexAddress EventMutexAddress
-#define RequestMutexAddress RequestMutexAddress
-#define SystemMutexFlags SystemMutexFlags
+#define ConditionMutexAddressA 0x180c911e8
+#define ConditionMutexAddressB 0x180c91288
+#define SystemMutexAddressA 0x180c91970
+#define EventMutexAddress 0x180c91f70
+#define RequestMutexAddress 0x180c91ff0
+#define SystemMutexFlags 0xfffffffffffffffe
+
+// 未知数据模板常量定义
+#define UnknownConfigTemplateA UNK_180a0cb70
+#define UnknownConfigTemplateB UNK_180a0cbe0
+#define UnknownConfigTemplateC UNK_180a0cbf0
+#define UnknownConfigTemplateD UNK_180a0cba8
+#define UnknownConfigTemplateE UNK_180a05740
+#define UnknownConfigTemplateF UNK_180a0cbc8
+#define UnknownConfigTemplateG UNK_180a0cc30
+#define UnknownConfigTemplateH UNK_180a0cc48
+#define UnknownConfigTemplateI UNK_180a0cc08
+#define UnknownConfigTemplateJ UNK_180a0cc10
+#define UnknownConfigTemplateK UNK_180a0cca0
+#define UnknownConfigTemplateL UNK_180a0ccb8
+#define UnknownConfigTemplateM UNK_180a0cc68
+#define UnknownConfigTemplateN UNK_180a0cc88
+#define UnknownConfigTemplateO UNK_180a0cd08
+#define UnknownConfigTemplateP UNK_180a0cd28
+#define UnknownConfigTemplateQ UNK_180a0ccd0
+#define UnknownConfigTemplateR UNK_180a0ccf0
+#define UnknownConfigTemplateS UNK_180a0cd70
+#define UnknownConfigTemplateT UNK_180a0cd88
+#define UnknownConfigTemplateU UNK_180a0cd40
+#define UnknownConfigTemplateV UNK_180a0cd58
+#define UnknownConfigTemplateW UNK_180a0cdc8
+#define UnknownConfigTemplateX UNK_180a0cde0
+#define UnknownConfigTemplateY UNK_180a0cd98
+#define UnknownConfigTemplateZ UNK_180a0cdb0
+#define UnknownConfigTemplateAA UNK_180a0ce40
 
 // 系统配置字符串模板 - 用于系统初始化和配置
 char SystemConfigDataTemplate5740[] = "SystemConfigTemplateE";
