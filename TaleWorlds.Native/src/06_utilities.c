@@ -750,7 +750,7 @@ void* SystemDataBufferPool070;
 void* SystemDataBufferPool071;
 void* SystemDataBuffer072;
 void* SystemDataBuffer073;
-undefined SystemDataBuffer074;
+void* SystemDataBuffer074;
 undefined SystemDataBuffer075;
 undefined SystemDataBuffer076;
 undefined SystemDataBuffer077;
