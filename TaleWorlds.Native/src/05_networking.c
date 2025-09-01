@@ -7021,7 +7021,19 @@ void PerformNetworkSecurityGuardCleanup(void)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-NetworkData * FUN_180847820(void)
+/**
+ * @brief 获取网络数据指针
+ * 
+ * 该函数负责获取网络数据的指针，包括：
+ * - 线程本地存储检查
+ * - 数据初始化和验证
+ * - 返回网络数据指针
+ * 
+ * @return NetworkData* 返回网络数据指针
+ * 
+ * 注意：这是一个反编译的函数实现
+ */
+NetworkData * GetNetworkDataPointer(void)
 
 {
   if (*(int *)(*(longlong *)((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * 8) +
@@ -7375,7 +7387,20 @@ bool FUN_180847f30(NetworkHandle connectionContext)
 
 
 // 函数: void FUN_180847f60(NetworkHandle connectionContext)
-void FUN_180847f60(NetworkHandle connectionContext)
+/**
+ * @brief 处理网络连接句柄验证
+ * 
+ * 该函数负责处理网络连接句柄的验证，包括：
+ * - 连接句柄初始化
+ * - 连接状态验证
+ * - 安全守卫检查
+ * - 错误处理
+ * 
+ * @param connectionContext 网络连接上下文句柄
+ * 
+ * 注意：这是一个反编译的函数实现
+ */
+void ProcessNetworkConnectionHandleValidation(NetworkHandle connectionContext)
 
 {
   int networkStatus1;
@@ -8297,7 +8322,18 @@ FUN_180848ff1:
 
 
 // 函数: void FUN_180848e82(void)
-void FUN_180848e82(void)
+/**
+ * @brief 处理网络数据包解析和验证
+ * 
+ * 该函数负责处理网络数据包的解析和验证，包括：
+ * - 数据包解析
+ * - 网络标志验证
+ * - 数据处理和转换
+ * - 错误检查
+ * 
+ * 注意：这是一个反编译的函数实现
+ */
+void ProcessNetworkPacketParsingAndValidation(void)
 
 {
   char *pcVar1;
@@ -8385,7 +8421,18 @@ FUN_180848ff1:
 
 
 // 函数: void FUN_180848f4e(void)
-void FUN_180848f4e(void)
+/**
+ * @brief 处理网络连接状态同步
+ * 
+ * 该函数负责处理网络连接状态的同步，包括：
+ * - 连接状态更新
+ * - 网络标志同步
+ * - 状态数据管理
+ * - 安全守卫清理
+ * 
+ * 注意：这是一个反编译的函数实现
+ */
+void ProcessNetworkConnectionStateSynchronization(void)
 
 {
   NetworkStatus primaryNetworkFlag;

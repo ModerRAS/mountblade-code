@@ -6935,8 +6935,16 @@ void InitializeSystemSecurityManager(void)
 
 
 
-// 函数: void FUN_180035440(void)
-void FUN_180035440(void)
+// 函数: void InitializeSystemConfigurationManager(void)
+/**
+ * @brief 初始化系统配置管理器
+ * 
+ * 该函数负责初始化系统的配置管理组件，设置配置管理的基础结构。
+ * 它会遍历系统配置节点树，进行内存比较，分配必要的内存，并设置配置管理节点属性。
+ * 
+ * @note 这是系统初始化过程中的重要组成部分，确保配置管理系统的正常运行
+ */
+void InitializeSystemConfigurationManager(void)
 
 {
   char systemNodeFlag;
@@ -6985,8 +6993,16 @@ void FUN_180035440(void)
 
 
 
-// 函数: void FUN_180035540(void)
-void FUN_180035540(void)
+// 函数: void InitializeSystemNetworkManager(void)
+/**
+ * @brief 初始化系统网络管理器
+ * 
+ * 该函数负责初始化系统的网络管理组件，设置网络管理的基础结构。
+ * 它会遍历系统网络节点树，进行内存比较，分配必要的内存，并设置网络管理节点属性。
+ * 
+ * @note 这是系统初始化过程中的重要组成部分，确保网络管理系统的正常运行
+ */
+void InitializeSystemNetworkManager(void)
 
 {
   char systemNodeFlag;
@@ -7035,8 +7051,16 @@ void FUN_180035540(void)
 
 
 
-// 函数: void FUN_180035640(void)
-void FUN_180035640(void)
+// 函数: void InitializeSystemStorageManager(void)
+/**
+ * @brief 初始化系统存储管理器
+ * 
+ * 该函数负责初始化系统的存储管理组件，设置存储管理的基础结构。
+ * 它会遍历系统存储节点树，进行内存比较，分配必要的内存，并设置存储管理节点属性。
+ * 
+ * @note 这是系统初始化过程中的重要组成部分，确保存储管理系统的正常运行
+ */
+void InitializeSystemStorageManager(void)
 
 {
   char systemNodeFlag;
@@ -7085,8 +7109,16 @@ void FUN_180035640(void)
 
 
 
-// 函数: void FUN_180035740(void)
-void FUN_180035740(void)
+// 函数: void InitializeSystemProcessManager(void)
+/**
+ * @brief 初始化系统进程管理器
+ * 
+ * 该函数负责初始化系统的进程管理组件，设置进程管理的基础结构。
+ * 它会遍历系统进程节点树，进行内存比较，分配必要的内存，并设置进程管理节点属性。
+ * 
+ * @note 这是系统初始化过程中的重要组成部分，确保进程管理系统的正常运行
+ */
+void InitializeSystemProcessManager(void)
 
 {
   char systemNodeFlag;
@@ -7135,8 +7167,16 @@ void FUN_180035740(void)
 
 
 
-// 函数: void FUN_180035840(void)
-void FUN_180035840(void)
+// 函数: void InitializeSystemThreadManager(void)
+/**
+ * @brief 初始化系统线程管理器
+ * 
+ * 该函数负责初始化系统的线程管理组件，设置线程管理的基础结构。
+ * 它会遍历系统线程节点树，进行内存比较，分配必要的内存，并设置线程管理节点属性。
+ * 
+ * @note 这是系统初始化过程中的重要组成部分，确保线程管理系统的正常运行
+ */
+void InitializeSystemThreadManager(void)
 
 {
   char systemNodeFlag;
