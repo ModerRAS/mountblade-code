@@ -55,7 +55,7 @@ void* GlobalModuleBInstance;
 void* GlobalModuleBConfiguration;
 uint32_t GlobalModuleB_Status;
 void* GlobalModuleBHandle;
-void* GlobalModuleB_Context;
+void* GlobalModuleBContext;
 
 // 函数: void InitializeGlobalModuleC(void)
 /**
@@ -65,11 +65,11 @@ void* GlobalModuleB_Context;
  * 设置模块C所需的数据结构和运行环境
  */
 void InitializeGlobalModuleC(void);
-void* GlobalModuleC_Instance;
-void* GlobalModuleC_Config;
+void* GlobalModuleCInstance;
+void* GlobalModuleCConfiguration;
 uint32_t GlobalModuleC_Status;
-void* GlobalModuleC_Handle;
-void* GlobalModuleC_Context;
+void* GlobalModuleCHandle;
+void* GlobalModuleCContext;
 
 // 函数: void InitializeGlobalModuleD(void)
 /**
@@ -79,10 +79,10 @@ void* GlobalModuleC_Context;
  * 设置模块D所需的数据结构和运行环境
  */
 void InitializeGlobalModuleD(void);
-void* GlobalModuleD_Instance;
-void* GlobalModuleD_Config;
+void* GlobalModuleDInstance;
+void* GlobalModuleDConfiguration;
 uint32_t GlobalModuleD_Status;
-void* GlobalModuleD_Handle;
+void* GlobalModuleDHandle;
 
 // 函数: void InitializeGlobalModuleE(void)
 /**
@@ -92,10 +92,10 @@ void* GlobalModuleD_Handle;
  * 设置模块E所需的数据结构和运行环境
  */
 void InitializeGlobalModuleE(void);
-void* GlobalModuleE_Instance;
-void* GlobalModuleE_Config;
+void* GlobalModuleEInstance;
+void* GlobalModuleEConfiguration;
 uint32_t GlobalModuleE_Status;
-void* GlobalModuleE_Handle;
+void* GlobalModuleEHandle;
 
 // 函数: uint32_t GetSystemStatusFlag1;
 /**
@@ -3501,21 +3501,29 @@ undefined8 FUN_180890590(longlong param_1)
 
 
 
-undefined8 FUN_1808905ae(void)
+/**
+ * @brief 清理对象句柄
+ * 
+ * 该函数用于清理系统对象的句柄，释放相关资源
+ * 主要用于内存管理和资源清理
+ * 
+ * @return undefined8 操作状态码，0表示成功
+ */
+undefined8 CleanupObjectHandle(void)
 
 {
-  longlong in_RAX;
-  longlong lVar1;
+  longlong objectHandle;
+  longlong adjustedPointer;
   
-  if (in_RAX == 0) {
-    lVar1 = 0;
+  if (objectHandle == 0) {
+    adjustedPointer = 0;
   }
   else {
-    lVar1 = in_RAX + -8;
+    adjustedPointer = objectHandle + -8;
   }
-  if (*(longlong *)(lVar1 + 0x10) != 0) {
+  if (*(longlong *)(adjustedPointer + 0x10) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_180862e00(*(longlong *)(lVar1 + 0x10),1);
+    FUN_180862e00(*(longlong *)(adjustedPointer + 0x10), 1);
   }
   return 0;
 }
@@ -3757,7 +3765,7 @@ undefined8 ProcessComplexObjectHandle(longlong ObjectContext)
       handleBuffer[0] = handleBuffer[0] + -8;
     }
     resultBuffer[0] = 0;
-    operationResult = FUN_1808681d0(handleBuffer[0], objectContext + 0x18, resultBuffer);
+    operationResult = FUN_1808681d0(handleBuffer[0], ObjectContext + 0x18, resultBuffer);
     if ((int)operationResult == 0) {
       if (resultBuffer[0] != 0) {
         if (*(longlong *)(resultBuffer[0] + 8) == 0) {
@@ -3777,7 +3785,16 @@ undefined8 ProcessComplexObjectHandle(longlong ObjectContext)
 
 
 
-undefined8 FUN_180890830(longlong param_1)
+/**
+ * @brief 验证对象状态并处理
+ * 
+ * 该函数用于验证系统对象的状态，并根据状态进行相应的处理
+ * 主要用于对象状态管理和错误处理
+ * 
+ * @param objectContext 对象上下文指针，包含对象管理所需的信息
+ * @return undefined8 操作状态码，0表示成功，非0表示失败
+ */
+undefined8 ValidateAndProcessObjectStatus(longlong objectContext)
 
 {
   undefined8 uVar1;
@@ -7579,7 +7596,7 @@ int FUN_18089379d(longlong param_1,undefined8 param_2)
  * @brief 返回错误状态码
  * @return 固定错误状态码 0x1f
  */
-undefined8 get_error_status_code(void)
+undefined8 GetErrorStatusCode(void)
 
 {
   return 0x1f;

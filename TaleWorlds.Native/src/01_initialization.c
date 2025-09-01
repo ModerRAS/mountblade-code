@@ -48,7 +48,7 @@ void* GameAudioSystemEntryPoint;
 void* AudioSystemContext;
 
 // 输入系统初始化函数和相关数据
-void* InputSystemEntryPoint;
+void* GameInputSystemEntryPoint;
 void* InputSystemDataBuffer;
 void* InputSystemEventQueue;
 void* InputSystemStateData;
@@ -57,8 +57,8 @@ void* InputSystemKeyMapping;
 void* InputSystemAxisMapping;
 void* InputSystemActionBindings;
 void* InputSystemConfiguration;
-void* SubsystemEntryPoint;
-void* SubsystemData;
+void* GameSubsystemEntryPoint;
+void* SubsystemContext;
 void* InputSystemDataTable;
 uint8_t InputSystemFlags;
 void* InputSystemConfigMain;
@@ -67,23 +67,23 @@ void* InputSystemMappingConfig;
 void* InputSystemProfileConfig;
 
 // 物理系统初始化函数
-void* PhysicsSystemEntryPoint;
-void* PhysicsSystemData;
+void* GamePhysicsSystemEntryPoint;
+void* PhysicsSystemContext;
 
 // 文件系统初始化函数
-void* FileSystemEntryPoint;
+void* GameFileSystemEntryPoint;
 
 // 函数: 系统初始化函数A - 字符串处理系统初始化
-void* StringProcessingSystemInitializer;
-void* SystemDataBufferPrimary;
-void* SystemDataStructurePrimary;
-void* SystemDataStructureSecondary;
-void* SystemDataStructureTertiary;
-void* SystemDataStructureQuaternary;
-void* SystemGuardCheckFunction;
+void* GameStringProcessingSystemInitializer;
+void* StringProcessingDataBuffer;
+void* StringProcessingStructurePrimary;
+void* StringProcessingStructureSecondary;
+void* StringProcessingStructureTertiary;
+void* StringProcessingStructureQuaternary;
+void* StringProcessingGuardCheckFunction;
 
 // 函数: 系统初始化函数B - 内存管理系统初始化
-void* MemoryManagementSystemInitializer;
+void* GameMemoryManagementSystemInitializer;
 
 // 函数: 系统初始化函数C - 系统资源管理器初始化
 void* SystemResourceManagerInitializer;
