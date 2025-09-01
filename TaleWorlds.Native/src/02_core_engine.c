@@ -19061,7 +19061,7 @@ uint64_t * engine_handle_memory_management(uint64_t *engine_data_structure_ptr,u
   engine_data_structure_ptr[0x2a] = 0;
   *(uint32*)(engine_data_structure_ptr + 0x2c) = 0;
   engine_data_structure_ptr[0x29] = &engine_data_18098bcb0;
-  FUN_180174950();
+  engine_unnamed_function_5610();
   if ((engine_result_flag_ptr & 1) != 0) {
     free(engine_data_structure_ptr,0x170);
   }
@@ -19092,8 +19092,8 @@ void engine_configure_system_io_component(longlong *engine_data_structure_ptr,ui
   engine_data_structure_ptr[0x123] = (longlong)&engine_data_18098bcb0;
   engine_handle_system_io_data_queue(engine_data_structure_ptr + 0x11d,engine_data_structure_ptr[0x11f],engine_comparison_params,engine_system_parameter_4,engine_temp_uint_3);
   if (engine_data_structure_ptr[0x119] == 0) {
-    FUN_18005d580();
-    FUN_18005d580();
+    engine_unnamed_function_100();
+    engine_unnamed_function_100();
     engine_process_system_io_request_queue(engine_data_structure_ptr + 0x10b,engine_data_structure_ptr[0x10d]);
     engine_data_structure_ptr[0x87] = (longlong)&engine_data_18098bcb0;
     engine_data_structure_ptr[4] = (longlong)&engine_data_18098bcb0;
@@ -19135,7 +19135,7 @@ void engine_handle_system_io_event_queue(longlong engine_data_structure_ptr,uint
   engine_data_pointer = *(void**)(engine_data_structure_ptr + 0x10);
   if (engine_data_pointer != (void*)0x0) {
     engine_handle_system_io_response_queue(engine_data_structure_ptr,*engine_data_pointer,engine_comparison_params,engine_system_parameter_4,0xfffffffffffffffe);
-    FUN_18005cb60(engine_data_pointer);
+    engine_unnamed_function_70(engine_data_pointer);
                     // WARNING: Subroutine does not return
     engine_call_cleanup_routine(engine_data_pointer);
   }
@@ -19165,7 +19165,7 @@ void engine_process_system_io_command_queue(longlong engine_data_structure_ptr,u
   engine_data_pointer = *(void**)(engine_data_structure_ptr + 0x10);
   if (engine_data_pointer != (void*)0x0) {
     engine_handle_system_io_response_queue(engine_data_structure_ptr,*engine_data_pointer,engine_comparison_params,engine_system_parameter_4,0xfffffffffffffffe);
-    FUN_18005cb60(engine_data_pointer);
+    engine_unnamed_function_70(engine_data_pointer);
                     // WARNING: Subroutine does not return
     engine_call_cleanup_routine(engine_data_pointer);
   }
@@ -19235,7 +19235,7 @@ void engine_execute_system_io_process_queue(longlong engine_data_structure_ptr,u
   engine_data_pointer = *(void**)(engine_data_structure_ptr + 0x10);
   if (engine_data_pointer != (void*)0x0) {
     engine_handle_system_io_response_queue(engine_data_structure_ptr,*engine_data_pointer,engine_comparison_params,engine_system_parameter_4,0xfffffffffffffffe);
-    FUN_18005cb60(engine_data_pointer);
+    engine_unnamed_function_70(engine_data_pointer);
                     // WARNING: Subroutine does not return
     engine_call_cleanup_routine(engine_data_pointer);
   }
@@ -19614,7 +19614,7 @@ void engine_handle_system_io_response_queue(uint64 engine_data_structure_ptr,uin
 {
   if (engine_result_flag_ptr != (void*)0x0) {
     engine_handle_system_io_response_queue(engine_data_structure_ptr,*engine_result_flag_ptr);
-    FUN_18005cb60(engine_result_flag_ptr);
+    engine_unnamed_function_70(engine_result_flag_ptr);
                     // WARNING: Subroutine does not return
     engine_call_cleanup_routine(engine_result_flag_ptr);
   }
@@ -19631,7 +19631,7 @@ void engine_check_system_io_response_status(uint64 engine_data_structure_ptr)
   void* engine_register_rbx;
   
   engine_handle_system_io_response_queue(engine_data_structure_ptr,*engine_register_rbx);
-  FUN_18005cb60();
+  engine_unnamed_function_70();
                     // WARNING: Subroutine does not return
   engine_call_cleanup_routine();
 }
@@ -19727,7 +19727,7 @@ void engine_process_system_io_response_operation(longlong *engine_data_structure
     if (engine_temp_index < engine_temp_uint_6) {
       engine_temp_long_2 = engine_temp_index * 0x20 + engine_result_flag_ptr;
       engine_get_system_data_pointer(engine_result_flag_ptr,engine_temp_long_2);
-      engine_temp_long_2 = FUN_180059300(engine_temp_long_2,engine_comparison_params,engine_data_structure_ptr[1]);
+      engine_temp_long_2 = engine_unnamed_function_40(engine_temp_long_2,engine_comparison_params,engine_data_structure_ptr[1]);
       engine_data_structure_ptr[1] = engine_temp_long_2;
     }
     else {
@@ -19887,7 +19887,7 @@ void engine_process_system_io_response_validation(longlong engine_data_structure
   engine_temp_index = *(longlong *)(engine_data_structure_ptr + 8) - engine_comparison_params >> 5;
   if (engine_temp_index < unaff_RSI) {
     engine_get_system_data_pointer();
-    engine_temp_uint_3 = FUN_180059300(engine_temp_index * 0x20 + engine_register_rbx);
+    engine_temp_uint_3 = engine_unnamed_function_40(engine_temp_index * 0x20 + engine_register_rbx);
     *(void*)(unaff_RDI + 8) = engine_temp_uint_3;
   }
   else {
@@ -20176,7 +20176,7 @@ void engine_handle_system_io_response_data_operation(longlong *engine_data_struc
   
   engine_temporary_long = engine_data_structure_ptr[1];
   for (engine_temp_long_2 = *engine_data_structure_ptr; engine_temp_long_2 != engine_temporary_long; engine_temp_long_2 = engine_temp_long_2 + 0x548) {
-    FUN_1800594b0(engine_temp_long_2);
+    engine_unnamed_function_60(engine_temp_long_2);
   }
   if (*engine_data_structure_ptr == 0) {
     return;
@@ -20199,9 +20199,9 @@ void engine_execute_system_io_response_process(longlong engine_data_structure_pt
   engine_handle_system_io_data_queue(engine_data_structure_ptr + 0xf0,*(void*)(engine_data_structure_ptr + 0x100),engine_comparison_params,engine_system_parameter_4,engine_temporary_uint);
   engine_handle_system_io_data_queue(engine_data_structure_ptr + 0xc0,*(void*)(engine_data_structure_ptr + 0xd0));
   engine_handle_system_io_data_queue(engine_data_structure_ptr + 0x90,*(void*)(engine_data_structure_ptr + 0xa0));
-  FUN_1800593f0(engine_data_structure_ptr + 0x60,*(void*)(engine_data_structure_ptr + 0x70));
+  engine_unnamed_function_50(engine_data_structure_ptr + 0x60,*(void*)(engine_data_structure_ptr + 0x70));
   engine_process_system_io_request_queue(engine_data_structure_ptr + 0x30,*(void*)(engine_data_structure_ptr + 0x40));
-  FUN_1800593f0(engine_data_structure_ptr,*(void*)(engine_data_structure_ptr + 0x10));
+  engine_unnamed_function_50(engine_data_structure_ptr,*(void*)(engine_data_structure_ptr + 0x10));
   return;
 }
 
@@ -20212,7 +20212,7 @@ void engine_execute_system_io_response_process(longlong engine_data_structure_pt
 void engine_process_system_io_response_event_queue(longlong engine_data_structure_ptr,uint64 engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
 
 {
-  FUN_1800593f0(engine_data_structure_ptr,*(void*)(engine_data_structure_ptr + 0x10),engine_comparison_params,engine_system_parameter_4,0xfffffffffffffffe);
+  engine_unnamed_function_50(engine_data_structure_ptr,*(void*)(engine_data_structure_ptr + 0x10),engine_comparison_params,engine_system_parameter_4,0xfffffffffffffffe);
   return;
 }
 
@@ -20223,7 +20223,7 @@ void engine_process_system_io_response_event_queue(longlong engine_data_structur
 void engine_handle_system_io_response_command_queue(longlong engine_data_structure_ptr,uint64 engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
 
 {
-  FUN_1800593f0(engine_data_structure_ptr,*(void*)(engine_data_structure_ptr + 0x10),engine_comparison_params,engine_system_parameter_4,0xfffffffffffffffe);
+  engine_unnamed_function_50(engine_data_structure_ptr,*(void*)(engine_data_structure_ptr + 0x10),engine_comparison_params,engine_system_parameter_4,0xfffffffffffffffe);
   return;
 }
 
@@ -20391,7 +20391,7 @@ void engine_process_resource_data(longlong *engine_data_structure_ptr)
   uStack_30 = 0x180059023;
   engine_temp_uint_9 = engine_call_memory_allocator(_engine_data_18,0x270,8,3);
   uStack_30 = 0x18005902b;
-  engine_temp_long0 = FUN_180175aa0(engine_temp_uint_9);
+  engine_temp_long0 = engine_unnamed_function_5620(engine_temp_uint_9);
   engine_temp_uint64_value = *(uint32*)(_engine_data_20 + 0x1dc0);
   _engine_scene_data_ptr = engine_temp_long0;
   *(uint32*)(engine_temp_long0 + 0x1e0) = *(uint32*)(_engine_data_20 + 0x1d50);
@@ -20448,7 +20448,7 @@ void engine_process_resource_data(longlong *engine_data_structure_ptr)
         }
       }
       uStack_388 = 0;
-      FUN_180175f80(&engine_system_context_data,&puStack_2e8,&puStack_398);
+      engine_unnamed_function_5630(&engine_system_context_data,&puStack_2e8,&puStack_398);
       puStack_390 = (uint8*)0x0;
       uStack_380 = uStack_380 & 0xffffffff00000000;
       puStack_398 = &engine_data_18098bcb0;
@@ -20461,7 +20461,7 @@ void engine_process_resource_data(longlong *engine_data_structure_ptr)
       auStack_278[0] = 0;
       uStack_280 = 4;
       strcpy_s(auStack_278,0x10,&engine_main_system_ptr);
-      FUN_18062cb00(&puStack_2e8,&puStack_308,&puStack_290);
+      engine_unnamed_function_6370(&puStack_2e8,&puStack_308,&puStack_290);
       puStack_290 = &engine_data_18098bcb0;
       iStack_374 = 0;
       lStack_2c8 = 0;
@@ -20766,7 +20766,7 @@ void engine_process_resource_data(longlong *engine_data_structure_ptr)
                    (ulonglong)(*(longlong *)(lStack_310 + 200) - engine_temp_long8 >> 3));
         }
         if (!engine_comparison_result6) {
-          engine_temp_uint_9 = FUN_180624440(&uStack_268,ppppppengine_data_ptr4 + 8);
+          engine_temp_uint_9 = engine_unnamed_function_6240(&uStack_268,ppppppengine_data_ptr4 + 8);
           engine_setup_processing_environment(&puStack_330,engine_temp_uint_9);
           uStack_268 = &engine_data_18098bcb0;
           pppppengine_data_ptr9 = (uint64_t ******)&engine_data_73;
@@ -20779,7 +20779,7 @@ void engine_process_resource_data(longlong *engine_data_structure_ptr)
             engine_data_ptr7 = puStack_328;
           }
           engine_process_system_configuration(&puStack_2e8,engine_data_ptr7);
-          FUN_1801762b0(engine_temp_long2,&puStack_2e8,&puStack_308,&uStack_48);
+          engine_unnamed_function_5640(engine_temp_long2,&puStack_2e8,&puStack_308,&uStack_48);
           puStack_2e8 = &engine_system_context_data;
           if (lStack_2e0 != 0) {
                     // WARNING: Subroutine does not return
@@ -20896,7 +20896,7 @@ void engine_cleanup_resource_handler(longlong *engine_data_structure_ptr)
   
   engine_temporary_long = engine_data_structure_ptr[1];
   for (engine_temp_long_2 = *engine_data_structure_ptr; engine_temp_long_2 != engine_temporary_long; engine_temp_long_2 = engine_temp_long_2 + 0x548) {
-    FUN_1800594b0(engine_temp_long_2);
+    engine_unnamed_function_60(engine_temp_long_2);
   }
   if (*engine_data_structure_ptr == 0) {
     return;
@@ -20912,7 +20912,7 @@ void engine_cleanup_resource_handler(longlong *engine_data_structure_ptr)
 void engine_handle_resource_allocation(longlong engine_data_structure_ptr,uint64 engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
 
 {
-  FUN_1800593f0(engine_data_structure_ptr,*(void*)(engine_data_structure_ptr + 0x10),engine_comparison_params,engine_system_parameter_4,0xfffffffffffffffe);
+  engine_unnamed_function_50(engine_data_structure_ptr,*(void*)(engine_data_structure_ptr + 0x10),engine_comparison_params,engine_system_parameter_4,0xfffffffffffffffe);
   return;
 }
 
@@ -21141,7 +21141,7 @@ void engine_initialize_display_and_core_config(uint64_t *config_ptr)
 void engine_initialize_system_handler(uint64_t *engine_data_structure_ptr)
 
 {
-  FUN_18004b730();
+  engine_unnamed_function_20();
   *engine_data_structure_ptr = &engine_system_context_data;
   if (engine_data_structure_ptr[1] != 0) {
                     // WARNING: Subroutine does not return
@@ -22170,16 +22170,16 @@ void engine_setup_performance_monitor(uint64_t *engine_data_structure_ptr,uint64
   
   engine_temp_uint_2 = 0xfffffffffffffffe;
   *engine_data_structure_ptr = &engine_base_data_offset_98;
-  resource_status_flag = FUN_18020eba0(engine_data_structure_ptr,1,engine_comparison_params,engine_system_parameter_4,0xfffffffffffffffe);
+  resource_status_flag = engine_unnamed_function_5820(engine_data_structure_ptr,1,engine_comparison_params,engine_system_parameter_4,0xfffffffffffffffe);
   while (resource_status_flag != '\0') {
-    resource_status_flag = FUN_18020eba0(engine_data_structure_ptr,1,engine_comparison_params,engine_system_parameter_4,engine_temp_uint_2);
+    resource_status_flag = engine_unnamed_function_5820(engine_data_structure_ptr,1,engine_comparison_params,engine_system_parameter_4,engine_temp_uint_2);
   }
   if (engine_data_structure_ptr[1] == 0) {
     engine_data_structure_ptr[1] = 0;
     _Mtx_destroy_in_situ();
     _Cnd_destroy_in_situ(engine_data_structure_ptr + 0x2a);
     _Mtx_destroy_in_situ();
-    FUN_18020f530();
+    engine_unnamed_function_5830();
     if (engine_data_structure_ptr[0xe] != 0) {
       *(void*)(engine_data_structure_ptr[0xe] + 0x10) = 0;
       *(uint8*)(engine_data_structure_ptr[0xe] + 8) = 1;
@@ -22251,7 +22251,7 @@ void engine_cleanup_performance_handler(longlong *engine_data_structure_ptr)
     do {
       engine_temp_char_flag = (**(code **)(*engine_data_structure_ptr + 0x20))(engine_data_structure_ptr,1);
       if (engine_temp_char_flag == '\0') {
-        FUN_18064e0d0(*(void*)(*pengine_temp_long + 0x10),0);
+        engine_unnamed_function_6490(*(void*)(*pengine_temp_long + 0x10),0);
         plStack_20 = engine_data_structure_ptr + 0x33;
         cStack_18 = 0;
         comparison_result_index = _Mtx_lock();
@@ -22893,7 +22893,7 @@ void engine_setup_memory_handler(uint64_t *engine_data_structure_ptr)
 {
   *engine_data_structure_ptr = &engine_network_protocol_ptr;
   if (*(char *)((longlong)engine_data_structure_ptr + 0xb1) != '\0') {
-    FUN_180639250();
+    engine_unnamed_function_6430();
   }
   _Mtx_destroy_in_situ();
   *engine_data_structure_ptr = &engine_data_180a30778;
@@ -22927,10 +22927,10 @@ engine_validate_memory_handler(uint64_t *engine_data_structure_ptr,ulonglong eng
   engine_temporary_uint = 0xfffffffffffffffe;
   *engine_data_structure_ptr = &engine_network_protocol_ptr;
   if (*(char *)((longlong)engine_data_structure_ptr + 0xb1) != '\0') {
-    FUN_180639250();
+    engine_unnamed_function_6430();
   }
   _Mtx_destroy_in_situ();
-  FUN_1805065c0(engine_data_structure_ptr);
+  engine_unnamed_function_6210(engine_data_structure_ptr);
   if ((engine_result_flag_ptr & 1) != 0) {
     free(engine_data_structure_ptr,0xb8,engine_comparison_params,engine_system_parameter_4,engine_temporary_uint);
   }
@@ -22985,14 +22985,14 @@ void engine_call_input_processor(uint64 engine_data_structure_ptr,longlong engin
   engine_prepare_render_buffer(engine_temporary_long + 0x48,&puStack_238);
   *(void**)(engine_temp_long_2 + 400) = engine_current_node_ptr;
   puStack_1a8 = &engine_data_18098bcb0;
-  FUN_180627e10(_engine_data_70 + 0x170,auStack_230,&engine_configuration_data);
+  engine_unnamed_function_6300(_engine_data_70 + 0x170,auStack_230,&engine_configuration_data);
   if (0 < *(int *)(engine_result_flag_ptr + 0x10)) {
     engine_call_array_builder(auStack_230,uStack_220 + *(int *)(engine_result_flag_ptr + 0x10));
                     // WARNING: Subroutine does not return
     memcpy((ulonglong)uStack_220 + lStack_228,*(void*)(engine_result_flag_ptr + 8),
            (longlong)(*(int *)(engine_result_flag_ptr + 0x10) + 1));
   }
-  FUN_18062c100(auStack_208,auStack_230);
+  engine_unnamed_function_6340(auStack_208,auStack_230);
   engine_call_data_validator(auStack_208,1);
                     // WARNING: Subroutine does not return
   memset(engine_stack_buffer_138,0,0x100);
@@ -23461,7 +23461,7 @@ uint64 engine_execute_system_operation(uint64 engine_data_structure_ptr,uint32_t
   }
   engine_temp_int_2 = SetConsoleTextAttribute(_engine_data_f0,engine_temporary_uint);
   if (engine_temp_int_2 == 0) {
-    FUN_18005d3a0(&engine_base_data_offset_a0);
+    engine_unnamed_function_90(&engine_base_data_offset_a0);
     return 0;
   }
   return 1;
@@ -23503,7 +23503,7 @@ void engine_handle_system_data(longlong engine_data_structure_ptr)
       if (*(undefined **)(engine_data_structure_ptr + 0x38) != (void*)0x0) {
         engine_temp_uint_ptr_9 = *(undefined **)(engine_data_structure_ptr + 0x38);
       }
-      FUN_1806391a0(*(longlong *)(engine_data_structure_ptr + 0x20) + 0x20,engine_temp_uint_ptr_9,auStackX_8);
+      engine_unnamed_function_6420(*(longlong *)(engine_data_structure_ptr + 0x20) + 0x20,engine_temp_uint_ptr_9,auStackX_8);
       pengine_temp_long_7 = (longlong *)(*(longlong *)(engine_data_structure_ptr + 0x20) + 0x20);
       (**(code **)(*pengine_temp_long_7 + 0x108))(pengine_temp_long_7,1);
       pengine_temp_long_7 = (longlong *)(*(longlong *)(engine_data_structure_ptr + 0x20) + 0x20);
@@ -23530,17 +23530,17 @@ void engine_handle_system_data(longlong engine_data_structure_ptr)
       }
       engine_temp_int_8 = -1;
 code_r0x0001800630e9:
-      FUN_1806288c0(engine_data_structure_ptr + 0x30,engine_temp_int_8,&engine_stack_pointer_70);
+      engine_unnamed_function_6320(engine_data_structure_ptr + 0x30,engine_temp_int_8,&engine_stack_pointer_70);
       engine_stack_pointer_70 = &engine_system_context_data;
                     // WARNING: Subroutine does not return
       engine_call_cleanup_routine(engine_temporary_pointer);
     case 2:
       pengine_temp_long_7 = (longlong *)(*(longlong *)(engine_data_structure_ptr + 0x20) + 0xd8);
       (**(code **)(*pengine_temp_long_7 + 0x70))(pengine_temp_long_7,&engine_base_data_offset_f0);
-      FUN_180639250(*(longlong *)(engine_data_structure_ptr + 0x20) + 0xd8);
+      engine_unnamed_function_6430(*(longlong *)(engine_data_structure_ptr + 0x20) + 0xd8);
       pengine_temp_long_7 = (longlong *)(*(longlong *)(engine_data_structure_ptr + 0x20) + 0x20);
       (**(code **)(*pengine_temp_long_7 + 0x70))(pengine_temp_long_7,&engine_base_data_offset_f0);
-      FUN_180639250(*(longlong *)(engine_data_structure_ptr + 0x20) + 0x20);
+      engine_unnamed_function_6430(*(longlong *)(engine_data_structure_ptr + 0x20) + 0x20);
       if (((*(byte *)(*(longlong *)(engine_data_structure_ptr + 0x20) + 8) & 2) != 0) &&
          (iRam0000000180c912e0 = iRam0000000180c912e0 + -1, iRam0000000180c912e0 == 0)) {
         _engine_data_f0 = 0;
@@ -23558,8 +23558,8 @@ code_r0x0001800630e9:
     case 3:
       pengine_temp_long_7 = (longlong *)(*(longlong *)(engine_data_structure_ptr + 0x20) + 0xd8);
       (**(code **)(*pengine_temp_long_7 + 0x70))(pengine_temp_long_7,&engine_base_data_offset_f0);
-      FUN_180639250(*(longlong *)(engine_data_structure_ptr + 0x20) + 0xd8);
-      FUN_18062da70(*(longlong *)(engine_data_structure_ptr + 0x20) + 0xe0);
+      engine_unnamed_function_6430(*(longlong *)(engine_data_structure_ptr + 0x20) + 0xd8);
+      engine_unnamed_function_6380(*(longlong *)(engine_data_structure_ptr + 0x20) + 0xe0);
       break;
     case 4:
       engine_stack_array_18[0] = 0;
@@ -23568,7 +23568,7 @@ code_r0x0001800630e9:
       if (engine_temp_uint_ptr_9 != (void*)0x0) {
         engine_data_ptr0 = engine_temp_uint_ptr_9;
       }
-      FUN_1806391a0(*(longlong *)(engine_data_structure_ptr + 0x20) + 0xd8,engine_data_ptr0,engine_stack_array_18);
+      engine_unnamed_function_6420(*(longlong *)(engine_data_structure_ptr + 0x20) + 0xd8,engine_data_ptr0,engine_stack_array_18);
       pengine_temp_long_7 = (longlong *)(*(longlong *)(engine_data_structure_ptr + 0x20) + 0xd8);
       (**(code **)(*pengine_temp_long_7 + 0x108))(pengine_temp_long_7,1);
       pengine_temp_long_7 = (longlong *)(*(longlong *)(engine_data_structure_ptr + 0x20) + 0xd8);
@@ -23589,11 +23589,11 @@ code_r0x0001800630e9:
                         0x180000000,*(uint32*)(engine_data_structure_ptr + 0x50));
           engine_temp_int_4 = WriteConsoleA(_engine_data_f0,engine_temp_uint_ptr_9,engine_temp_uint_2,auStackX_20,0);
           if ((engine_temp_int_4 == 0) || (auStackX_20[0] < engine_temp_uint_2)) {
-            FUN_18005d3a0(&engine_data_1809fe62c,engine_temp_uint_ptr_9);
+            engine_unnamed_function_90(&engine_data_1809fe62c,engine_temp_uint_ptr_9);
           }
           engine_temp_int_4 = SetConsoleTextAttribute(_engine_data_f0,0xf);
           if (engine_temp_int_4 == 0) {
-            FUN_18005d3a0(&engine_base_data_offset_a0);
+            engine_unnamed_function_90(&engine_base_data_offset_a0);
           }
         }
         if ((*(byte *)(engine_temporary_pointer + 1) & 8) != 0) {
@@ -23649,7 +23649,7 @@ int engine_initialize_component(uint64 engine_data_structure_ptr,uint64 engine_r
 
 
 
-ulonglong FUN_180063510(longlong *engine_data_structure_ptr,longlong engine_result_flag_ptr)
+ulonglong engine_unnamed_function_210(longlong *engine_data_structure_ptr,longlong engine_result_flag_ptr)
 
 {
   byte *engine_byte_ptr_1;
@@ -23851,7 +23851,7 @@ void engine_handle_system_operation(uint64 engine_data_structure_ptr,longlong en
   
   uStack_48 = 0;
   lStack_40 = 0;
-  FUN_180627e10(engine_data_structure_ptr,&puStack_30,&engine_input_context_ptr);
+  engine_unnamed_function_6300(engine_data_structure_ptr,&puStack_30,&engine_input_context_ptr);
   structure_data_pointer = &engine_data_73;
   if (puStack_28 != (void*)0x0) {
     structure_data_pointer = puStack_28;
@@ -24052,7 +24052,7 @@ void engine_configure_system_parameters(uint64 engine_data_structure_ptr)
   
   uStack_240 = 0xfffffffffffffffe;
   uStack_38 = _engine_data_a8 ^ (ulonglong)auStack_358;
-  FUN_1800ba940(&puStack_2a0);
+  engine_unnamed_function_5180(&puStack_2a0);
   puStack_318 = (void*)0x0;
   puStack_310 = (void*)0x0;
   uStack_308 = 0;
@@ -24095,7 +24095,7 @@ void engine_configure_system_parameters(uint64 engine_data_structure_ptr)
   puStack_2a0 = &engine_data_18098bcb0;
   uStack_2f8 = 0;
   lStack_2f0 = 0;
-  FUN_180627e10(engine_data_structure_ptr,&puStack_280,&engine_touch_input_ptr);
+  engine_unnamed_function_6300(engine_data_structure_ptr,&puStack_280,&engine_touch_input_ptr);
   engine_current_node_ptr = &engine_data_73;
   if (puStack_278 != (void*)0x0) {
     engine_current_node_ptr = puStack_278;
@@ -24126,7 +24126,7 @@ void engine_configure_system_parameters(uint64 engine_data_structure_ptr)
   }
   uStack_2e0 = 0;
   lStack_2d8 = 0;
-  FUN_180627e10(engine_data_structure_ptr,&puStack_260,&engine_gesture_data_ptr);
+  engine_unnamed_function_6300(engine_data_structure_ptr,&puStack_260,&engine_gesture_data_ptr);
   engine_current_node_ptr = &engine_data_73;
   if (puStack_258 != (void*)0x0) {
     engine_current_node_ptr = puStack_258;
@@ -24174,7 +24174,7 @@ void engine_initialize_system_components(void)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-ulonglong FUN_1800649d0(uint64 engine_data_structure_ptr)
+ulonglong engine_unnamed_function_220(uint64 engine_data_structure_ptr)
 
 {
   char resource_status_flag;
@@ -24215,7 +24215,7 @@ ulonglong FUN_1800649d0(uint64 engine_data_structure_ptr)
   else {
     engine_stack_value_78 = 0;
     lStack_70 = 0;
-    FUN_180627e10(engine_data_structure_ptr,&engine_stack_pointer_58,&engine_input_buffer_ptr);
+    engine_unnamed_function_6300(engine_data_structure_ptr,&engine_stack_pointer_58,&engine_input_buffer_ptr);
     engine_current_node_ptr = &engine_data_73;
     if (puStack_50 != (void*)0x0) {
       engine_current_node_ptr = puStack_50;
@@ -24361,7 +24361,7 @@ void engine_process_data_structure_operations(longlong *engine_data_structure_pt
   do {
     engine_temp_long2 = engine_temp_long2 + 1;
   } while (temp_data_pointer[engine_temp_long2] != '\0');
-  FUN_1800671b0(&uStack_c8);
+  engine_unnamed_function_290(&uStack_c8);
   temp_data_pointer = &engine_data_73;
   if (*(undefined **)(engine_comparison_params + 8) != (void*)0x0) {
     temp_data_pointer = *(undefined **)(engine_comparison_params + 8);
@@ -24372,7 +24372,7 @@ void engine_process_data_structure_operations(longlong *engine_data_structure_pt
   do {
     engine_temp_long0 = engine_temp_long0 + 1;
   } while (temp_data_pointer[engine_temp_long0] != '\0');
-  FUN_1800671b0(&engine_stack_value_88,temp_data_pointer,engine_temp_long0);
+  engine_unnamed_function_290(&engine_stack_value_88,temp_data_pointer,engine_temp_long0);
   engine_temp_long2 = lStack_78;
   engine_temporary_uint = uStack_a8;
   uStack_98 = 0;
@@ -24385,7 +24385,7 @@ void engine_process_data_structure_operations(longlong *engine_data_structure_pt
     engine_temporary_pointer = (uint8*)CONCAT71(uStack_c7,uStack_c8);
   }
   lStack_118 = lStack_78;
-  engine_current_node_ptr = (void*)FUN_180066f90(engine_temporary_pointer,engine_stack_pointer_b8);
+  engine_current_node_ptr = (void*)engine_unnamed_function_240(engine_temporary_pointer,engine_stack_pointer_b8);
   puStack_e0 = engine_current_node_ptr;
   if (engine_current_node_ptr == (void*)0xffffffffffffffff) {
     if (0xf < uStack_90) {
@@ -24451,9 +24451,9 @@ void engine_process_data_structure_operations(longlong *engine_data_structure_pt
   if (0xf < uStack_b0) {
     engine_temporary_pointer = (uint8*)CONCAT71(uStack_c7,uStack_c8);
   }
-  FUN_1800671b0(&uStack_68,engine_temporary_pointer,engine_next_node_ptr);
+  engine_unnamed_function_290(&uStack_68,engine_temporary_pointer,engine_next_node_ptr);
   uStack_e8 = 1;
-  FUN_180067070(&uStack_a8);
+  engine_unnamed_function_250(&uStack_a8);
   engine_temp_uint_9 = engine_stack_value_58;
   engine_temporary_uint = uStack_68;
   uStack_a8 = uStack_68;
@@ -24692,7 +24692,7 @@ void engine_validate_system_configuration(uint64 engine_data_structure_ptr)
   uStack_120 = 0xfffffffffffffffe;
   uStack_38 = _engine_data_a8 ^ (ulonglong)auStack_368;
   uStack_310 = 0;
-  FUN_180627e10(engine_data_structure_ptr,&puStack_180,&engine_data_1809fe900);
+  engine_unnamed_function_6300(engine_data_structure_ptr,&puStack_180,&engine_data_1809fe900);
   uStack_280 = 0;
   lStack_278 = 0;
   engine_data_pointer_6 = &engine_data_73;
@@ -25225,7 +25225,7 @@ void engine_execute_system_validation(uint64 engine_data_structure_ptr,longlong 
   engine_stack_value_70 = 0;
   engine_stack_pointer_88 = &engine_data_18098bcb0;
   if (engine_result_flag_ptr == 0) {
-    engine_temp_long_4 = FUN_18005e890(_engine_data_68);
+    engine_temp_long_4 = engine_unnamed_function_160(_engine_data_68);
     (**(code **)(*plStack_b0 + 8))(plStack_b0,engine_data_structure_ptr,*(uint32*)(engine_temp_long_4 + 0x38));
   }
   else {
@@ -25241,7 +25241,7 @@ void engine_execute_system_validation(uint64 engine_data_structure_ptr,longlong 
     engine_stack_value_70 = 0;
     engine_stack_pointer_88 = &engine_data_18098bcb0;
   }
-  FUN_18062c470(&puStack_a8);
+  engine_unnamed_function_6350(&puStack_a8);
   puStack_a8 = &engine_system_context_data;
   if (lStack_a0 != 0) {
                     // WARNING: Subroutine does not return
@@ -25297,7 +25297,7 @@ void engine_handle_system_data_processing(longlong *engine_data_structure_ptr,ui
   engine_call_array_builder(&engine_stack_pointer_70,1);
   *(uint16*)((ulonglong)engine_stack_value_60 + lStack_68) = 0x5c;
   engine_stack_value_60 = 1;
-  FUN_180627e10(&engine_stack_pointer_70,&puStack_50,engine_comparison_params);
+  engine_unnamed_function_6300(&engine_stack_pointer_70,&puStack_50,engine_comparison_params);
   engine_stack_pointer_70 = &engine_system_context_data;
   if (lStack_68 != 0) {
                     // WARNING: Subroutine does not return
@@ -25513,16 +25513,16 @@ LAB_18006650a:
       engine_call_memory_compactor();
     }
     else {
-      FUN_180625690(&engine_stack_pointer_198);
+      engine_unnamed_function_6250(&engine_stack_pointer_198);
     }
     ppuStack_a8 = &engine_stack_pointer_138;
     engine_temp_index = engine_call_data_writer(&engine_stack_pointer_138,&engine_stack_pointer_198);
     engine_process_system_request(engine_temp_index);
     engine_handle_system_operation(&engine_stack_pointer_198,param_5);
     engine_process_system_state_comparison(&engine_stack_pointer_198);
-    FUN_1800ba940(&engine_stack_pointer_138);
-    FUN_180627e10(&engine_stack_pointer_138,&engine_stack_pointer_f0,&engine_data_1809fe848);
-    FUN_180627e10(&engine_stack_pointer_198,&puStack_110,&engine_data_1809fe848);
+    engine_unnamed_function_5180(&engine_stack_pointer_138);
+    engine_unnamed_function_6300(&engine_stack_pointer_138,&engine_stack_pointer_f0,&engine_data_1809fe848);
+    engine_unnamed_function_6300(&engine_stack_pointer_198,&puStack_110,&engine_data_1809fe848);
     engine_process_audio_data(&puStack_110,&engine_stack_pointer_f0);
     puStack_110 = &engine_system_context_data;
     if (lStack_108 != 0) {
@@ -25549,7 +25549,7 @@ LAB_18006650a:
     uStack_120 = 0;
     engine_stack_pointer_138 = &engine_data_18098bcb0;
     engine_configure_system_parameters(&engine_stack_pointer_198);
-    FUN_1800649d0(&engine_stack_pointer_198);
+    engine_unnamed_function_220(&engine_stack_pointer_198);
     engine_validate_system_configuration(&engine_stack_pointer_198);
     engine_cleanup_system_resources(&engine_stack_pointer_198,engine_result_flag_ptr,engine_comparison_params,0);
     puStack_178 = &engine_system_context_data;
@@ -25722,8 +25722,8 @@ void engine_setup_input_handlers(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// void FUN_180066df0(longlong *engine_data_structure_ptr,longlong engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
-void FUN_180066df0(longlong *engine_data_structure_ptr,longlong engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
+// void engine_unnamed_function_230(longlong *engine_data_structure_ptr,longlong engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
+void engine_unnamed_function_230(longlong *engine_data_structure_ptr,longlong engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
 
 {
   longlong engine_temporary_long;
@@ -25802,7 +25802,7 @@ LAB_180066ec4:
 
 
 
-longlong FUN_180066f90(longlong engine_data_structure_ptr,ulonglong engine_result_flag_ptr,uint64 engine_comparison_params,char *engine_system_parameter_4,
+longlong engine_unnamed_function_240(longlong engine_data_structure_ptr,ulonglong engine_result_flag_ptr,uint64 engine_comparison_params,char *engine_system_parameter_4,
                       ulonglong param_5)
 
 {
@@ -25846,8 +25846,8 @@ void engine_perform_system_calculation(void)
 
 
 
-// void FUN_180067070(longlong *engine_data_structure_ptr)
-void FUN_180067070(longlong *engine_data_structure_ptr)
+// void engine_unnamed_function_250(longlong *engine_data_structure_ptr)
+void engine_unnamed_function_250(longlong *engine_data_structure_ptr)
 
 {
   ulonglong engine_temporary_uint;
@@ -25880,15 +25880,15 @@ void FUN_180067070(longlong *engine_data_structure_ptr)
 void engine_initialize_network_system(void)
 
 {
-  FUN_180067070();
+  engine_unnamed_function_250();
   return;
 }
 
 
 
 
-// void FUN_1800670f0(void)
-void FUN_1800670f0(void)
+// void engine_unnamed_function_260(void)
+void engine_unnamed_function_260(void)
 
 {
   code *presource_status_flag;
@@ -25902,8 +25902,8 @@ void FUN_1800670f0(void)
 
 
 
-// void FUN_180067110(ulonglong engine_data_structure_ptr)
-void FUN_180067110(ulonglong engine_data_structure_ptr)
+// void engine_unnamed_function_270(ulonglong engine_data_structure_ptr)
+void engine_unnamed_function_270(ulonglong engine_data_structure_ptr)
 
 {
   code *presource_status_flag;
@@ -25916,7 +25916,7 @@ void FUN_180067110(ulonglong engine_data_structure_ptr)
     if (engine_temp_uint_4 <= engine_data_structure_ptr) {
       engine_temp_uint_4 = 0xffffffffffffffff;
     }
-    engine_temp_long_3 = FUN_1808fc418(engine_temp_uint_4);
+    engine_temp_long_3 = engine_unnamed_function_6528(engine_temp_uint_4);
     if (engine_temp_long_3 == 0) {
                     // WARNING: Subroutine does not return
       _invalid_parameter_noinfo_noreturn();
@@ -25935,12 +25935,12 @@ void FUN_180067110(ulonglong engine_data_structure_ptr)
     engine_temp_int_2 = _callnewh(engine_data_structure_ptr);
   } while (engine_temp_int_2 != 0);
   if (engine_data_structure_ptr == 0xffffffffffffffff) {
-    FUN_1808fd8b4();
+    engine_unnamed_function_6574();
     presource_status_flag = (code *)swi(3);
     (*presource_status_flag)();
     return;
   }
-  FUN_1808fd894();
+  engine_unnamed_function_6564();
   presource_status_flag = (code *)swi(3);
   (*presource_status_flag)();
   return;
@@ -25949,8 +25949,8 @@ void FUN_180067110(ulonglong engine_data_structure_ptr)
 
 
 
-// void FUN_180067170(longlong engine_data_structure_ptr,ulonglong engine_result_flag_ptr)
-void FUN_180067170(longlong engine_data_structure_ptr,ulonglong engine_result_flag_ptr)
+// void engine_unnamed_function_280(longlong engine_data_structure_ptr,ulonglong engine_result_flag_ptr)
+void engine_unnamed_function_280(longlong engine_data_structure_ptr,ulonglong engine_result_flag_ptr)
 
 {
   longlong engine_temporary_long;
@@ -25972,8 +25972,8 @@ void FUN_180067170(longlong engine_data_structure_ptr,ulonglong engine_result_fl
 
 
 
-// void FUN_1800671b0(uint64_t *engine_data_structure_ptr,uint64 engine_result_flag_ptr,ulonglong engine_comparison_params)
-void FUN_1800671b0(uint64_t *engine_data_structure_ptr,uint64 engine_result_flag_ptr,ulonglong engine_comparison_params)
+// void engine_unnamed_function_290(uint64_t *engine_data_structure_ptr,uint64 engine_result_flag_ptr,ulonglong engine_comparison_params)
+void engine_unnamed_function_290(uint64_t *engine_data_structure_ptr,uint64 engine_result_flag_ptr,ulonglong engine_comparison_params)
 
 {
   ulonglong engine_temporary_uint;
@@ -26000,13 +26000,13 @@ void FUN_1800671b0(uint64_t *engine_data_structure_ptr,uint64 engine_result_flag
        (engine_temporary_uint = (engine_temporary_uint >> 1) + engine_temporary_uint, engine_temp_uint_6 = engine_temp_uint_4, engine_temp_uint_4 < engine_temporary_uint)) {
       engine_temp_uint_6 = engine_temporary_uint;
     }
-    engine_temp_uint_3 = FUN_180067110(engine_temp_uint_6 + 1);
+    engine_temp_uint_3 = engine_unnamed_function_270(engine_temp_uint_6 + 1);
     engine_data_structure_ptr[2] = engine_comparison_params;
     engine_data_structure_ptr[3] = engine_temp_uint_6;
                     // WARNING: Subroutine does not return
     memcpy(engine_temp_uint_3,engine_result_flag_ptr,engine_comparison_params);
   }
-  FUN_1800670f0();
+  engine_unnamed_function_260();
   pengine_temp_char_flag = (code *)swi(3);
   (*pengine_temp_char_flag)();
   return;
@@ -26015,8 +26015,8 @@ void FUN_1800671b0(uint64_t *engine_data_structure_ptr,uint64 engine_result_flag
 
 
 
-// void FUN_18006720b(ulonglong engine_data_structure_ptr)
-void FUN_18006720b(ulonglong engine_data_structure_ptr)
+// void engine_unnamed_function_30b(ulonglong engine_data_structure_ptr)
+void engine_unnamed_function_30b(ulonglong engine_data_structure_ptr)
 
 {
   ulonglong engine_temporary_uint;
@@ -26031,7 +26031,7 @@ void FUN_18006720b(ulonglong engine_data_structure_ptr)
      (engine_temporary_uint = (unaff_RBP >> 1) + unaff_RBP, unaff_RDI = engine_data_structure_ptr, engine_data_structure_ptr < engine_temporary_uint)) {
     unaff_RDI = engine_temporary_uint;
   }
-  engine_temp_uint_2 = FUN_180067110(unaff_RDI + 1);
+  engine_temp_uint_2 = engine_unnamed_function_270(unaff_RDI + 1);
   *(void*)(engine_register_rbx + 0x10) = unaff_RSI;
   *(ulonglong *)(engine_register_rbx + 0x18) = unaff_RDI;
                     // WARNING: Subroutine does not return
@@ -26041,8 +26041,8 @@ void FUN_18006720b(ulonglong engine_data_structure_ptr)
 
 
 
-// void FUN_18006729a(void)
-void FUN_18006729a(void)
+// void engine_unnamed_function_31a(void)
+void engine_unnamed_function_31a(void)
 
 {
   return;
@@ -26051,8 +26051,8 @@ void FUN_18006729a(void)
 
 
 
-// void FUN_1800672b0(void)
-void FUN_1800672b0(void)
+// void engine_unnamed_function_320(void)
+void engine_unnamed_function_320(void)
 
 {
                     // WARNING: Subroutine does not return
@@ -26062,13 +26062,13 @@ void FUN_1800672b0(void)
 
 
 
-// void FUN_1800672b7(void)
-void FUN_1800672b7(void)
+// void engine_unnamed_function_327(void)
+void engine_unnamed_function_327(void)
 
 {
   code *presource_status_flag;
   
-  FUN_1800670f0();
+  engine_unnamed_function_260();
   presource_status_flag = (code *)swi(3);
   (*presource_status_flag)();
   return;
@@ -26079,8 +26079,8 @@ void FUN_1800672b7(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// void FUN_1800672c0(longlong engine_data_structure_ptr)
-void FUN_1800672c0(longlong engine_data_structure_ptr)
+// void engine_unnamed_function_330(longlong engine_data_structure_ptr)
+void engine_unnamed_function_330(longlong engine_data_structure_ptr)
 
 {
   longlong engine_temporary_long;
@@ -26145,13 +26145,13 @@ void FUN_1800672c0(longlong engine_data_structure_ptr)
         if (*(char *)(engine_temporary_long + 0x368) == '\0') {
           engine_temp_ptr_array_6[3] = -4;
           (**(code **)(*engine_temp_ptr_array_6 + 0x28))(engine_temp_ptr_array_6);
-          FUN_18005e110(engine_temp_uint_4,&plStackX_20);
+          engine_unnamed_function_130(engine_temp_uint_4,&plStackX_20);
         }
         else {
           if (engine_temp_ptr_array_6 != (longlong *)0x0) {
             (**(code **)(*engine_temp_ptr_array_6 + 0x28))(engine_temp_ptr_array_6);
           }
-          FUN_18005e450(engine_temp_uint_4,&plStackX_20);
+          engine_unnamed_function_140(engine_temp_uint_4,&plStackX_20);
         }
         if (engine_temp_ptr_array_6 != (longlong *)0x0) {
           (**(code **)(*engine_temp_ptr_array_6 + 0x38))(engine_temp_ptr_array_6);
@@ -26163,7 +26163,7 @@ void FUN_1800672c0(longlong engine_data_structure_ptr)
       return;
     }
     if (lStackX_10 == 0) break;
-    FUN_180067480(*(void*)(engine_data_structure_ptr + 0x20));
+    engine_unnamed_function_340(*(void*)(engine_data_structure_ptr + 0x20));
   }
                     // WARNING: Subroutine does not return
   engine_validate_system_compatibility(_engine_data_28,&engine_base_data_offset_50,comparison_result_index);
@@ -26174,8 +26174,8 @@ void FUN_1800672c0(longlong engine_data_structure_ptr)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// void FUN_180067480(uint64 engine_data_structure_ptr,longlong engine_result_flag_ptr)
-void FUN_180067480(uint64 engine_data_structure_ptr,longlong engine_result_flag_ptr)
+// void engine_unnamed_function_340(uint64 engine_data_structure_ptr,longlong engine_result_flag_ptr)
+void engine_unnamed_function_340(uint64 engine_data_structure_ptr,longlong engine_result_flag_ptr)
 
 {
   void* engine_data_pointer;
@@ -26193,8 +26193,8 @@ void FUN_180067480(uint64 engine_data_structure_ptr,longlong engine_result_flag_
 
 
 
-// void FUN_180067810(longlong engine_data_structure_ptr,uint64 engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
-void FUN_180067810(longlong engine_data_structure_ptr,uint64 engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
+// void engine_unnamed_function_350(longlong engine_data_structure_ptr,uint64 engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
+void engine_unnamed_function_350(longlong engine_data_structure_ptr,uint64 engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
 
 {
   if (*(code **)(engine_data_structure_ptr + 0x10) != (code *)0x0) {
@@ -26208,8 +26208,8 @@ void FUN_180067810(longlong engine_data_structure_ptr,uint64 engine_result_flag_
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// void FUN_180067840(longlong *engine_data_structure_ptr)
-void FUN_180067840(longlong *engine_data_structure_ptr)
+// void engine_unnamed_function_360(longlong *engine_data_structure_ptr)
+void engine_unnamed_function_360(longlong *engine_data_structure_ptr)
 
 {
   int *pengine_temp_int;
@@ -26268,14 +26268,14 @@ void FUN_180067840(longlong *engine_data_structure_ptr)
   UNLOCK();
   lStackX_8 = *(longlong *)(engine_data_structure_ptr[1] + 0x1a8);
   engine_temp_long_3 = *engine_data_structure_ptr;
-  FUN_180069cc0(engine_temp_long_3 + 0x10,&lStackX_8);
+  engine_unnamed_function_650(engine_temp_long_3 + 0x10,&lStackX_8);
   engine_temp_int_9 = _Cnd_signal(engine_temp_long_3 + 0x278);
   if (engine_temp_int_9 != 0) {
     __Throw_C_error_std__YAXH_Z(engine_temp_int_9);
   }
   local_resource_node = *(void**)(engine_data_structure_ptr[1] + 0x1b0);
   engine_temp_long_3 = *engine_data_structure_ptr;
-  FUN_180069cc0(engine_temp_long_3 + 0x10,&local_resource_node);
+  engine_unnamed_function_650(engine_temp_long_3 + 0x10,&local_resource_node);
   engine_temp_int_9 = _Cnd_signal(engine_temp_long_3 + 0x278);
   if (engine_temp_int_9 != 0) {
     __Throw_C_error_std__YAXH_Z(engine_temp_int_9);
@@ -26321,7 +26321,7 @@ void FUN_180067840(longlong *engine_data_structure_ptr)
     __Throw_C_error_std__YAXH_Z(engine_temp_int_9);
   }
   uStack_40 = 0x18006881f;
-  FUN_180069530(current_data_pointer + 4);
+  engine_unnamed_function_590(current_data_pointer + 4);
   *current_data_pointer = *(void*)(engine_temp_long_4 + 0x200378);
   *(void**)(engine_temp_long_4 + 0x200378) = current_data_pointer;
   uStack_40 = 0x18006883a;
@@ -26338,8 +26338,8 @@ void FUN_180067840(longlong *engine_data_structure_ptr)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// void FUN_180067bc0(uint64_t *engine_data_structure_ptr)
-void FUN_180067bc0(uint64_t *engine_data_structure_ptr)
+// void engine_unnamed_function_370(uint64_t *engine_data_structure_ptr)
+void engine_unnamed_function_370(uint64_t *engine_data_structure_ptr)
 
 {
   uint8 auStack_b8 [48];
@@ -26351,7 +26351,7 @@ void FUN_180067bc0(uint64_t *engine_data_structure_ptr)
   engine_stack_value_70 = 0xfffffffffffffffe;
   uStack_30 = _engine_data_a8 ^ (ulonglong)auStack_b8;
   engine_stack_pointer_68 = engine_data_structure_ptr;
-  FUN_18006b940();
+  engine_unnamed_function_730();
   *engine_data_structure_ptr = &engine_base_data_offset_70;
   engine_stack_pointer_88 = engine_data_structure_ptr + 0x6e;
                     // WARNING: Subroutine does not return
@@ -26361,8 +26361,8 @@ void FUN_180067bc0(uint64_t *engine_data_structure_ptr)
 
 
 
-// void FUN_180067f00(void)
-void FUN_180067f00(void)
+// void engine_unnamed_function_380(void)
+void engine_unnamed_function_380(void)
 
 {
   _Mtx_destroy_in_situ();
@@ -26372,8 +26372,8 @@ void FUN_180067f00(void)
 
 
 
-// void FUN_180067f30(void)
-void FUN_180067f30(void)
+// void engine_unnamed_function_390(void)
+void engine_unnamed_function_390(void)
 
 {
   _Mtx_destroy_in_situ();
@@ -26385,8 +26385,8 @@ void FUN_180067f30(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// void FUN_180067f60(longlong engine_data_structure_ptr,longlong engine_result_flag_ptr)
-void FUN_180067f60(longlong engine_data_structure_ptr,longlong engine_result_flag_ptr)
+// void engine_unnamed_function_400(longlong engine_data_structure_ptr,longlong engine_result_flag_ptr)
+void engine_unnamed_function_400(longlong engine_data_structure_ptr,longlong engine_result_flag_ptr)
 
 {
   int engine_temporary_int;
@@ -26410,7 +26410,7 @@ void FUN_180067f60(longlong engine_data_structure_ptr,longlong engine_result_fla
   
   uStack_2a0 = 0xfffffffffffffffe;
   uStack_48 = _engine_data_a8 ^ (ulonglong)auStack_2e8;
-  FUN_180624440(&puStack_268);
+  engine_unnamed_function_6240(&puStack_268);
   engine_next_node_ptr = &engine_data_73;
   if (puStack_260 != (void*)0x0) {
     engine_next_node_ptr = puStack_260;
@@ -26467,7 +26467,7 @@ void FUN_180067f60(longlong engine_data_structure_ptr,longlong engine_result_fla
       }
       lRam0000000000000128 = engine_temp_long_2;
       uStack_2c8 = engine_temp_uint_6;
-      FUN_180068860(engine_data_structure_ptr + 0x330,alStack_288,engine_temp_uint_8,engine_result_flag_ptr);
+      engine_unnamed_function_460(engine_data_structure_ptr + 0x330,alStack_288,engine_temp_uint_8,engine_result_flag_ptr);
       *(void*)(alStack_288[0] + 0x118) = 0;
       puStack_268 = &engine_data_18098bcb0;
                     // WARNING: Subroutine does not return
@@ -26487,7 +26487,7 @@ void FUN_180067f60(longlong engine_data_structure_ptr,longlong engine_result_fla
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-uint64 FUN_180068250(longlong engine_data_structure_ptr,longlong engine_result_flag_ptr,longlong engine_comparison_params)
+uint64 engine_unnamed_function_410(longlong engine_data_structure_ptr,longlong engine_result_flag_ptr,longlong engine_comparison_params)
 
 {
   ulonglong engine_temporary_uint;
@@ -26514,13 +26514,13 @@ uint64 FUN_180068250(longlong engine_data_structure_ptr,longlong engine_result_f
       if (comparison_result_index != 0) {
         __Throw_C_error_std__YAXH_Z(comparison_result_index);
       }
-      FUN_180068490(0x20,engine_comparison_params);
+      engine_unnamed_function_420(0x20,engine_comparison_params);
       uRam00000000000001f0 = 0;
       uRam00000000000001e8 = 0;
       uRam00000000000001e0 = 0;
-      engine_temp_char_flag = FUN_18006bda0(engine_data_structure_ptr,0x20,0x1e0,0x1e8,0x1f0);
+      engine_temp_char_flag = engine_unnamed_function_740(engine_data_structure_ptr,0x20,0x1e0,0x1e8,0x1f0);
       if (engine_temp_char_flag == '\0') {
-        FUN_1800687d0(engine_data_structure_ptr + 0x370,0);
+        engine_unnamed_function_450(engine_data_structure_ptr + 0x370,0);
         engine_temp_uint_4 = 0;
       }
       else {
@@ -26563,7 +26563,7 @@ uint64 FUN_180068250(longlong engine_data_structure_ptr,longlong engine_result_f
 
 
 
-longlong FUN_180068490(longlong engine_data_structure_ptr,longlong engine_result_flag_ptr)
+longlong engine_unnamed_function_420(longlong engine_data_structure_ptr,longlong engine_result_flag_ptr)
 
 {
   longlong engine_temporary_long;
@@ -26618,8 +26618,8 @@ longlong FUN_180068490(longlong engine_data_structure_ptr,longlong engine_result
 
 
 
-// void FUN_180068620(longlong engine_data_structure_ptr,uint64_t *engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
-void FUN_180068620(longlong engine_data_structure_ptr,uint64_t *engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
+// void engine_unnamed_function_430(longlong engine_data_structure_ptr,uint64_t *engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
+void engine_unnamed_function_430(longlong engine_data_structure_ptr,uint64_t *engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
 
 {
   int engine_temporary_int;
@@ -26644,8 +26644,8 @@ void FUN_180068620(longlong engine_data_structure_ptr,uint64_t *engine_result_fl
 
 
 
-// void FUN_1800686b0(longlong engine_data_structure_ptr)
-void FUN_1800686b0(longlong engine_data_structure_ptr)
+// void engine_unnamed_function_440(longlong engine_data_structure_ptr)
+void engine_unnamed_function_440(longlong engine_data_structure_ptr)
 
 {
   longlong *pengine_temp_long;
@@ -26657,7 +26657,7 @@ void FUN_1800686b0(longlong engine_data_structure_ptr)
   longlong *pengine_temp_long_7;
   longlong *engine_stack_long_pointer_8;
   
-  engine_temp_char_4 = FUN_180068a90(engine_data_structure_ptr + 0x10,&engine_stack_long_pointer_8);
+  engine_temp_char_4 = engine_unnamed_function_470(engine_data_structure_ptr + 0x10,&engine_stack_long_pointer_8);
   do {
     if (engine_temp_char_4 == '\0') {
       return;
@@ -26701,15 +26701,15 @@ void FUN_1800686b0(longlong engine_data_structure_ptr)
         pengine_temp_long_7 = (longlong *)engine_temp_ptr_5[2];
       }
     }
-    engine_temp_char_4 = FUN_180068a90(engine_data_structure_ptr + 0x10,&engine_stack_long_pointer_8);
+    engine_temp_char_4 = engine_unnamed_function_470(engine_data_structure_ptr + 0x10,&engine_stack_long_pointer_8);
   } while( true );
 }
 
 
 
 
-// void FUN_1800687d0(longlong engine_data_structure_ptr,uint64_t *engine_result_flag_ptr)
-void FUN_1800687d0(longlong engine_data_structure_ptr,uint64_t *engine_result_flag_ptr)
+// void engine_unnamed_function_450(longlong engine_data_structure_ptr,uint64_t *engine_result_flag_ptr)
+void engine_unnamed_function_450(longlong engine_data_structure_ptr,uint64_t *engine_result_flag_ptr)
 
 {
   int engine_temporary_int;
@@ -26718,7 +26718,7 @@ void FUN_1800687d0(longlong engine_data_structure_ptr,uint64_t *engine_result_fl
   if (engine_temporary_int != 0) {
     __Throw_C_error_std__YAXH_Z(engine_temporary_int);
   }
-  FUN_180069530(engine_result_flag_ptr + 4);
+  engine_unnamed_function_590(engine_result_flag_ptr + 4);
   *engine_result_flag_ptr = *(void*)(engine_data_structure_ptr + 0x200008);
   *(void**)(engine_data_structure_ptr + 0x200008) = engine_result_flag_ptr;
   engine_temporary_int = _Mtx_unlock(engine_data_structure_ptr + 0x200010);
@@ -26733,7 +26733,7 @@ void FUN_1800687d0(longlong engine_data_structure_ptr,uint64_t *engine_result_fl
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 longlong *
-FUN_180068860(longlong engine_data_structure_ptr,longlong *engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4,
+engine_unnamed_function_460(longlong engine_data_structure_ptr,longlong *engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4,
              ulonglong param_5)
 
 {
@@ -26746,7 +26746,7 @@ FUN_180068860(longlong engine_data_structure_ptr,longlong *engine_result_flag_pt
   engine_temp_long_3 = func_0x0001800694c0(engine_data_structure_ptr,*(void*)(*(longlong *)(engine_data_structure_ptr + 8) + engine_temp_uint_2 * 8),
                               engine_system_parameter_4);
   if (engine_temp_long_3 == 0) {
-    FUN_18066c220(engine_data_structure_ptr + 0x20,&param_5,*(uint32*)(engine_data_structure_ptr + 0x10),
+    engine_unnamed_function_6510(engine_data_structure_ptr + 0x20,&param_5,*(uint32*)(engine_data_structure_ptr + 0x10),
                   *(uint32*)(engine_data_structure_ptr + 0x18),1);
     engine_temp_long_3 = engine_call_memory_extender(_engine_data_18,0x128,*(uint8*)(engine_data_structure_ptr + 0x2c));
     engine_compress_data_buffer(engine_temp_long_3,engine_system_parameter_4);
@@ -26777,7 +26777,7 @@ FUN_180068860(longlong engine_data_structure_ptr,longlong *engine_result_flag_pt
 
 
 
-uint64 FUN_180068a90(ulonglong *engine_data_structure_ptr,uint64_t *engine_result_flag_ptr)
+uint64 engine_unnamed_function_470(ulonglong *engine_data_structure_ptr,uint64_t *engine_result_flag_ptr)
 
 {
   longlong *pengine_temp_long;
@@ -26822,7 +26822,7 @@ uint64 FUN_180068a90(ulonglong *engine_data_structure_ptr,uint64_t *engine_resul
     engine_temp_uint2 = engine_temp_uint3;
   } while (engine_temp_uint4 < 3);
   if (engine_temp_uint4 != 0) {
-    engine_temp_char_5 = FUN_180068ce0(engine_temp_uint_9,engine_result_flag_ptr);
+    engine_temp_char_5 = engine_unnamed_function_480(engine_temp_uint_9,engine_result_flag_ptr);
     if (engine_temp_char_5 != '\0') {
       return 1;
     }
@@ -26913,7 +26913,7 @@ LAB_180068c94:
 
 
 
-uint64 FUN_180068ce0(longlong engine_data_structure_ptr,uint64_t *engine_result_flag_ptr)
+uint64 engine_unnamed_function_480(longlong engine_data_structure_ptr,uint64_t *engine_result_flag_ptr)
 
 {
   longlong *pengine_temp_long;
@@ -26999,7 +26999,7 @@ uint64 FUN_180068ce0(longlong engine_data_structure_ptr,uint64_t *engine_result_
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-longlong FUN_180068ec0(longlong *engine_data_structure_ptr,longlong *engine_result_flag_ptr,int engine_comparison_params,uint64 engine_system_parameter_4)
+longlong engine_unnamed_function_490(longlong *engine_data_structure_ptr,longlong *engine_result_flag_ptr,int engine_comparison_params,uint64 engine_system_parameter_4)
 
 {
   longlong engine_temporary_long;
@@ -27078,7 +27078,7 @@ engine_compress_data_buffer(uint64_t *engine_data_structure_ptr,longlong engine_
 
 
 
-uint64_t * FUN_180069070(uint64_t *engine_data_structure_ptr)
+uint64_t * engine_unnamed_function_500(uint64_t *engine_data_structure_ptr)
 
 {
   *engine_data_structure_ptr = &engine_data_18098bcb0;
@@ -27104,8 +27104,8 @@ uint64_t * FUN_180069070(uint64_t *engine_data_structure_ptr)
 
 
 
-// void FUN_180069130(longlong engine_data_structure_ptr,longlong engine_result_flag_ptr)
-void FUN_180069130(longlong engine_data_structure_ptr,longlong engine_result_flag_ptr)
+// void engine_unnamed_function_510(longlong engine_data_structure_ptr,longlong engine_result_flag_ptr)
+void engine_unnamed_function_510(longlong engine_data_structure_ptr,longlong engine_result_flag_ptr)
 
 {
   code *presource_status_flag;
@@ -27124,7 +27124,7 @@ void FUN_180069130(longlong engine_data_structure_ptr,longlong engine_result_fla
 
 
 
-longlong FUN_180069190(longlong engine_data_structure_ptr,ulonglong engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
+longlong engine_unnamed_function_520(longlong engine_data_structure_ptr,ulonglong engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
 
 {
   *(undefined **)(engine_data_structure_ptr + 8) = &engine_data_18098bcb0;
@@ -27150,8 +27150,8 @@ engine_decompress_data_buffer(uint64_t *engine_data_structure_ptr,ulonglong engi
 
 
 
-// void FUN_180069220(longlong engine_data_structure_ptr,uint64 engine_result_flag_ptr,int engine_comparison_params)
-void FUN_180069220(longlong engine_data_structure_ptr,uint64 engine_result_flag_ptr,int engine_comparison_params)
+// void engine_unnamed_function_530(longlong engine_data_structure_ptr,uint64 engine_result_flag_ptr,int engine_comparison_params)
+void engine_unnamed_function_530(longlong engine_data_structure_ptr,uint64 engine_result_flag_ptr,int engine_comparison_params)
 
 {
   if (engine_comparison_params + 1 < 0x100) {
@@ -27166,8 +27166,8 @@ void FUN_180069220(longlong engine_data_structure_ptr,uint64 engine_result_flag_
 
 
 
-// void FUN_180069241(void)
-void FUN_180069241(void)
+// void engine_unnamed_function_541(void)
+void engine_unnamed_function_541(void)
 
 {
                     // WARNING: Subroutine does not return
@@ -27177,8 +27177,8 @@ void FUN_180069241(void)
 
 
 
-// void FUN_180069266(uint8_t *engine_data_structure_ptr)
-void FUN_180069266(uint8_t *engine_data_structure_ptr)
+// void engine_unnamed_function_556(uint8_t *engine_data_structure_ptr)
+void engine_unnamed_function_556(uint8_t *engine_data_structure_ptr)
 
 {
   longlong unaff_RDI;
@@ -27193,8 +27193,8 @@ void FUN_180069266(uint8_t *engine_data_structure_ptr)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// void FUN_180069280(longlong engine_data_structure_ptr,longlong engine_result_flag_ptr,longlong engine_comparison_params)
-void FUN_180069280(longlong engine_data_structure_ptr,longlong engine_result_flag_ptr,longlong engine_comparison_params)
+// void engine_unnamed_function_560(longlong engine_data_structure_ptr,longlong engine_result_flag_ptr,longlong engine_comparison_params)
+void engine_unnamed_function_560(longlong engine_data_structure_ptr,longlong engine_result_flag_ptr,longlong engine_comparison_params)
 
 {
   longlong engine_temporary_long;
@@ -27235,8 +27235,8 @@ void FUN_180069280(longlong engine_data_structure_ptr,longlong engine_result_fla
 
 
 
-// void FUN_1800693f0(longlong engine_data_structure_ptr,longlong engine_result_flag_ptr)
-void FUN_1800693f0(longlong engine_data_structure_ptr,longlong engine_result_flag_ptr)
+// void engine_unnamed_function_570(longlong engine_data_structure_ptr,longlong engine_result_flag_ptr)
+void engine_unnamed_function_570(longlong engine_data_structure_ptr,longlong engine_result_flag_ptr)
 
 {
   longlong engine_temporary_long;
@@ -27265,7 +27265,7 @@ void FUN_1800693f0(longlong engine_data_structure_ptr,longlong engine_result_fla
 
 
 
-longlong FUN_180069470(longlong engine_data_structure_ptr,ulonglong engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
+longlong engine_unnamed_function_580(longlong engine_data_structure_ptr,ulonglong engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
 
 {
   *(undefined **)(engine_data_structure_ptr + 8) = &engine_data_18098bcb0;
@@ -27278,8 +27278,8 @@ longlong FUN_180069470(longlong engine_data_structure_ptr,ulonglong engine_resul
 
 
 
-// void FUN_180069530(uint64_t *engine_data_structure_ptr,uint64 engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
-void FUN_180069530(uint64_t *engine_data_structure_ptr,uint64 engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
+// void engine_unnamed_function_590(uint64_t *engine_data_structure_ptr,uint64 engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
+void engine_unnamed_function_590(uint64_t *engine_data_structure_ptr,uint64 engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
 
 {
   if ((code *)engine_data_structure_ptr[0x2f] != (code *)0x0) {
@@ -27295,8 +27295,8 @@ void FUN_180069530(uint64_t *engine_data_structure_ptr,uint64 engine_result_flag
 
 
 
-// void FUN_1800695a0(longlong engine_data_structure_ptr)
-void FUN_1800695a0(longlong engine_data_structure_ptr)
+// void engine_unnamed_function_600(longlong engine_data_structure_ptr)
+void engine_unnamed_function_600(longlong engine_data_structure_ptr)
 
 {
   *(undefined **)(engine_data_structure_ptr + 8) = &engine_data_18098bcb0;
@@ -27320,7 +27320,7 @@ engine_encrypt_data_stream(uint64_t *engine_data_structure_ptr,ulonglong engine_
 
 
 
-uint64_t * FUN_180069720(uint64_t *engine_data_structure_ptr,ulonglong engine_result_flag_ptr)
+uint64_t * engine_unnamed_function_610(uint64_t *engine_data_structure_ptr,ulonglong engine_result_flag_ptr)
 
 {
   *engine_data_structure_ptr = &engine_base_data_offset_b8;
@@ -27332,10 +27332,10 @@ uint64_t * FUN_180069720(uint64_t *engine_data_structure_ptr,ulonglong engine_re
 
 
 
-uint64 FUN_180069760(uint64 engine_data_structure_ptr,ulonglong engine_result_flag_ptr)
+uint64 engine_unnamed_function_620(uint64 engine_data_structure_ptr,ulonglong engine_result_flag_ptr)
 
 {
-  FUN_1800697a0();
+  engine_unnamed_function_630();
   if ((engine_result_flag_ptr & 1) != 0) {
     free(engine_data_structure_ptr,0x68);
   }
@@ -27345,8 +27345,8 @@ uint64 FUN_180069760(uint64 engine_data_structure_ptr,ulonglong engine_result_fl
 
 
 
-// void FUN_1800697a0(uint64_t *engine_data_structure_ptr)
-void FUN_1800697a0(uint64_t *engine_data_structure_ptr)
+// void engine_unnamed_function_630(uint64_t *engine_data_structure_ptr)
+void engine_unnamed_function_630(uint64_t *engine_data_structure_ptr)
 
 {
   int *pengine_temp_int;
@@ -27453,7 +27453,7 @@ LAB_180069842:
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-uint64_t * FUN_180069920(longlong *engine_data_structure_ptr)
+uint64_t * engine_unnamed_function_640(longlong *engine_data_structure_ptr)
 
 {
   longlong *pengine_temp_long;
@@ -27595,7 +27595,7 @@ uint64_t * FUN_180069920(longlong *engine_data_structure_ptr)
     *next_data_pointer = &engine_base_data_offset_c8;
     next_data_pointer[0xb] = 0x20;
     next_data_pointer[0xc] = 0;
-    FUN_18005f430(next_data_pointer);
+    engine_unnamed_function_190(next_data_pointer);
     LOCK();
     *(int *)(engine_data_structure_ptr + 1) = (int)engine_data_structure_ptr[1] + 1;
     UNLOCK();
@@ -27651,7 +27651,7 @@ LAB_180069c2b:
 
 
 
-ulonglong FUN_180069cc0(uint64 engine_data_structure_ptr,uint64_t *engine_result_flag_ptr)
+ulonglong engine_unnamed_function_650(uint64 engine_data_structure_ptr,uint64_t *engine_result_flag_ptr)
 
 {
   ulonglong engine_temporary_uint;
@@ -27661,7 +27661,7 @@ ulonglong FUN_180069cc0(uint64 engine_data_structure_ptr,uint64_t *engine_result
   ulonglong engine_temp_index;
   ulonglong *temp_data_pointer;
   
-  engine_temp_long_4 = FUN_180069920();
+  engine_temp_long_4 = engine_unnamed_function_640();
   if (engine_temp_long_4 == 0) {
     return 0;
   }
@@ -27677,7 +27677,7 @@ ulonglong FUN_180069cc0(uint64 engine_data_structure_ptr,uint64_t *engine_result
         pengine_temp_long_2[1] = engine_temp_index;
       }
       else {
-        engine_temp_index = FUN_18005f430(engine_temp_long_4);
+        engine_temp_index = engine_unnamed_function_190(engine_temp_long_4);
         if ((char)engine_temp_index == '\0') goto LAB_180069dc3;
         pengine_temp_long_2 = *(longlong **)(engine_temp_long_4 + 0x60);
         engine_temp_index = *pengine_temp_long_2 - 1U & pengine_temp_long_2[1] + 1U;
@@ -27685,7 +27685,7 @@ ulonglong FUN_180069cc0(uint64 engine_data_structure_ptr,uint64_t *engine_result
         *temp_data_pointer = engine_temporary_uint;
         pengine_temp_long_2[1] = engine_temp_index;
       }
-      engine_temp_index = FUN_18005ff50(*(void*)(engine_temp_long_4 + 0x50));
+      engine_temp_index = engine_unnamed_function_200(*(void*)(engine_temp_long_4 + 0x50));
       if (engine_temp_index != 0) {
         *(void*)(engine_temp_index + 0x108) = 0;
         temp_data_pointer[1] = engine_temp_index;
@@ -27747,7 +27747,7 @@ engine_decrypt_data_stream(uint64_t *engine_data_structure_ptr,uint64_t *engine_
 
 
 uint64_t
-FUN_180069f00(uint64 engine_data_structure_ptr,uint64 engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
+engine_unnamed_function_660(uint64 engine_data_structure_ptr,uint64 engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
 
 {
   uint64 engine_temporary_uint;
@@ -27763,7 +27763,7 @@ FUN_180069f00(uint64 engine_data_structure_ptr,uint64 engine_result_flag_ptr,uin
 
 
 
-uint64_t * FUN_180069f60(uint64 engine_data_structure_ptr,uint64_t *engine_result_flag_ptr)
+uint64_t * engine_unnamed_function_670(uint64 engine_data_structure_ptr,uint64_t *engine_result_flag_ptr)
 
 {
   *engine_result_flag_ptr = 0;
@@ -27775,7 +27775,7 @@ uint64_t * FUN_180069f60(uint64 engine_data_structure_ptr,uint64_t *engine_resul
 
 
 
-uint64_t * FUN_180069fb0(uint64 engine_data_structure_ptr,uint64_t *engine_result_flag_ptr)
+uint64_t * engine_unnamed_function_680(uint64 engine_data_structure_ptr,uint64_t *engine_result_flag_ptr)
 
 {
   *engine_result_flag_ptr = 0;
@@ -27784,13 +27784,13 @@ uint64_t * FUN_180069fb0(uint64 engine_data_structure_ptr,uint64_t *engine_resul
 
 
 
-uint64 FUN_180069fe0(uint64 engine_data_structure_ptr,ulonglong engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
+uint64 engine_unnamed_function_690(uint64 engine_data_structure_ptr,ulonglong engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
 
 {
   uint64 engine_temporary_uint;
   
   engine_temporary_uint = 0xfffffffffffffffe;
-  FUN_1801570c0();
+  engine_unnamed_function_5540();
   if ((engine_result_flag_ptr & 1) != 0) {
     free(engine_data_structure_ptr,0x260,engine_comparison_params,engine_system_parameter_4,engine_temporary_uint);
   }
@@ -27801,7 +27801,7 @@ uint64 FUN_180069fe0(uint64 engine_data_structure_ptr,ulonglong engine_result_fl
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-uint64 FUN_18006a050(int engine_data_structure_ptr)
+uint64 engine_unnamed_function_700(int engine_data_structure_ptr)
 
 {
   if ((engine_data_structure_ptr != -0x3fffff03) && (engine_data_structure_ptr != -0x3ffffffb)) {
@@ -27813,7 +27813,7 @@ uint64 FUN_18006a050(int engine_data_structure_ptr)
 
 
 
-uint64_t * FUN_18006a090(uint64_t *engine_data_structure_ptr,ulonglong engine_result_flag_ptr)
+uint64_t * engine_unnamed_function_710(uint64_t *engine_data_structure_ptr,ulonglong engine_result_flag_ptr)
 
 {
   *engine_data_structure_ptr = &engine_base_data_offset_40;
@@ -27837,8 +27837,8 @@ uint64_t * FUN_18006a090(uint64_t *engine_data_structure_ptr,ulonglong engine_re
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// void FUN_180070680(uint64 engine_data_structure_ptr,uint64 engine_result_flag_ptr)
-void FUN_180070680(uint64 engine_data_structure_ptr,uint64 engine_result_flag_ptr)
+// void engine_unnamed_function_780(uint64 engine_data_structure_ptr,uint64 engine_result_flag_ptr)
+void engine_unnamed_function_780(uint64 engine_data_structure_ptr,uint64 engine_result_flag_ptr)
 
 {
   bool engine_temp_byte;
@@ -27877,7 +27877,7 @@ void FUN_180070680(uint64 engine_data_structure_ptr,uint64 engine_result_flag_pt
   }
   next_data_pointer = (void*)0x0;
   if (!engine_temp_byte) {
-    memory_allocation_result = FUN_1800f9ce0(&puStack_50,0);
+    memory_allocation_result = engine_unnamed_function_5340(&puStack_50,0);
     next_data_pointer = *(undefined **)(memory_allocation_result + 8);
     *(uint32*)(memory_allocation_result + 0x10) = 0;
     *(void*)(memory_allocation_result + 8) = 0;
@@ -27915,16 +27915,16 @@ void FUN_180070680(uint64 engine_data_structure_ptr,uint64 engine_result_flag_pt
   OutputDebugStringA(next_data_pointer);
   memory_allocation_result = engine_data_pointer_50;
   if (((bVar9) && (engine_data_pointer_50 != 0)) && (*(char *)(engine_data_pointer_50 + 0x1609) != '\x01')) {
-    FUN_1801723a0(*(void*)(_engine_data_70 + 8),*(char *)(_engine_input_config_data + 0x2028) != '\0',
+    engine_unnamed_function_5600(*(void*)(_engine_data_70 + 8),*(char *)(_engine_input_config_data + 0x2028) != '\0',
                   *(uint32*)(engine_data_pointer_50 + 0x160c));
     *(uint8*)(memory_allocation_result + 0x1609) = 1;
   }
   if (engine_physics_flag == '\0') {
-    FUN_1800f93e0();
+    engine_unnamed_function_5300();
   }
   else {
     engine_temp_uint64_value = func_0x0001800464d0(&engine_stack_pointer_70);
-    FUN_1806272a0(engine_temp_uint64_value);
+    engine_unnamed_function_6260(engine_temp_uint64_value);
   }
   engine_core_semaphore_operations(&engine_screen_resolution,1);
   _Exit(5);
@@ -27938,8 +27938,8 @@ void FUN_180070680(uint64 engine_data_structure_ptr,uint64 engine_result_flag_pt
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// void FUN_180070930(uint64 engine_data_structure_ptr,longlong engine_result_flag_ptr,uint32_t engine_comparison_params,longlong engine_system_parameter_4,
-void FUN_180070930(uint64 engine_data_structure_ptr,longlong engine_result_flag_ptr,uint32_t engine_comparison_params,longlong engine_system_parameter_4,
+// void engine_unnamed_function_790(uint64 engine_data_structure_ptr,longlong engine_result_flag_ptr,uint32_t engine_comparison_params,longlong engine_system_parameter_4,
+void engine_unnamed_function_790(uint64 engine_data_structure_ptr,longlong engine_result_flag_ptr,uint32_t engine_comparison_params,longlong engine_system_parameter_4,
                   char param_5,char param_6)
 
 {
@@ -28071,7 +28071,7 @@ LAB_180070b00:
       memcpy(engine_data_ptr0 + engine_temp_uint9,engine_result_flag_ptr,(longlong)((int)engine_temp_long5 + 2));
     }
   }
-  FUN_180627e10(&puStack_118,&puStack_f8,&engine_stack_value_58);
+  engine_unnamed_function_6300(&puStack_118,&puStack_f8,&engine_stack_value_58);
   uStack_94 = 0;
   uStack_11c = 0;
   puStack_118 = &engine_system_context_data;
@@ -28094,7 +28094,7 @@ LAB_180070b00:
   if (engine_stack_pointer_f0 != (void*)0x0) {
     engine_data_ptr8 = engine_stack_pointer_f0;
   }
-  engine_temp_char_flag_2 = FUN_1800f9600(engine_data_ptr8);
+  engine_temp_char_flag_2 = engine_unnamed_function_5310(engine_data_ptr8);
   if (engine_temp_char_flag_2 != '\0') {
     puStack_f8 = &engine_system_context_data;
     if (engine_stack_pointer_f0 != (void*)0x0) {
@@ -28217,7 +28217,7 @@ LAB_180070ee8:
   }
   *(uint16*)(engine_stack_pointer_138 + uStack_130) = 0x3a;
   uStack_130 = 3;
-  FUN_180628380(&puStack_140,uStack_98);
+  engine_unnamed_function_6310(&puStack_140,uStack_98);
   engine_temp_uint_6 = uStack_130;
   engine_temp_index = uStack_130 + 1;
   if (engine_temp_index != 0) {
@@ -28317,7 +28317,7 @@ LAB_18007113f:
   *(uint16*)(engine_stack_pointer_138 + uStack_130) = 10;
   uStack_130 = engine_temp_int_4;
   if (engine_temp_long_9 != 0) {
-    FUN_18005dab0(engine_temp_long_9);
+    engine_unnamed_function_110(engine_temp_long_9);
   }
   bVar13 = 1;
   cStack_11f = '\x01';
@@ -28341,12 +28341,12 @@ LAB_18007113f:
   engine_temp_long_9 = engine_data_pointer_50;
   if ((engine_physics_flag == '\0') && (engine_comparison_result)) {
     if ((engine_data_pointer_50 != 0) && (*(char *)(engine_data_pointer_50 + 0x1609) != '\x01')) {
-      FUN_1801723a0(*(void*)(_engine_data_70 + 8),*(char *)(_engine_input_config_data + 0x2028) != '\0',
+      engine_unnamed_function_5600(*(void*)(_engine_data_70 + 8),*(char *)(_engine_input_config_data + 0x2028) != '\0',
                     *(uint32*)(engine_data_pointer_50 + 0x160c));
       *(uint8*)(engine_temp_long_9 + 0x1609) = 1;
     }
     if (*(longlong *)(_engine_data_70 + 8) != 0) {
-      FUN_1801719d0();
+      engine_unnamed_function_5580();
     }
   }
   puStack_118 = &engine_system_context_data;
@@ -28354,7 +28354,7 @@ LAB_18007113f:
   puStack_110 = (uint8*)0x0;
   uStack_108 = 0;
   if (bVar13 == 0) {
-    engine_temp_long_9 = FUN_1800f9ce0(&puStack_d8,0);
+    engine_temp_long_9 = engine_unnamed_function_5340(&puStack_d8,0);
     uStack_108 = *(uint *)(engine_temp_long_9 + 0x10);
     puStack_110 = *(uint8**)(engine_temp_long_9 + 8);
     uStack_100 = *(ulonglong *)(engine_temp_long_9 + 0x18);
@@ -28388,7 +28388,7 @@ LAB_18007113f:
     engine_data_ptr2 = engine_stack_pointer_138;
   }
   OutputDebugStringA(engine_data_ptr2);
-  FUN_18004c2b0(engine_temp_long5);
+  engine_unnamed_function_30(engine_temp_long5);
   if (engine_data_60 != '\0') {
     if (bVar13 != 0) {
       if (((cStack_147 == '\0') && (param_6 != '\0')) && (*(int *)(_engine_data_70 + 0x340) != 2)) {
@@ -28494,14 +28494,14 @@ LAB_18007113f:
     }
     if ((engine_physics_flag == '\0') && (cStack_11f != '\0')) {
       if (*(longlong *)(_engine_data_70 + 8) != 0) {
-        FUN_1801718f0();
+        engine_unnamed_function_5570();
       }
       if (engine_data_pointer_50 != 0) {
-        FUN_180092940(engine_data_pointer_50,*(uint8*)(engine_data_pointer_50 + 0x160a));
+        engine_unnamed_function_4140(engine_data_pointer_50,*(uint8*)(engine_data_pointer_50 + 0x160a));
       }
     }
     if (engine_stack_long_90 != 0) {
-      FUN_18005db30();
+      engine_unnamed_function_120();
     }
     do {
       engine_temp_int_4 = ReleaseSemaphore(_engine_screen_resolution,1);
@@ -28539,7 +28539,7 @@ LAB_1800715eb:
   if (engine_stack_pointer_f0 != (void*)0x0) {
     engine_data_ptr8 = engine_stack_pointer_f0;
   }
-  engine_temp_uint64_value = FUN_1800f98e0(engine_data_ptr8);
+  engine_temp_uint64_value = engine_unnamed_function_5330(engine_data_ptr8);
                     // WARNING: Subroutine does not return
   engine_validate_system_compatibility(_engine_data_28,&engine_base_data_offset_e0,bVar13 ^ 1,engine_temp_uint64_value);
 }
@@ -28553,8 +28553,8 @@ LAB_1800715eb:
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// void FUN_180071940(uint64 engine_data_structure_ptr,longlong engine_result_flag_ptr,uint32_t engine_comparison_params,longlong engine_system_parameter_4)
-void FUN_180071940(uint64 engine_data_structure_ptr,longlong engine_result_flag_ptr,uint32_t engine_comparison_params,longlong engine_system_parameter_4)
+// void engine_unnamed_function_800(uint64 engine_data_structure_ptr,longlong engine_result_flag_ptr,uint32_t engine_comparison_params,longlong engine_system_parameter_4)
+void engine_unnamed_function_800(uint64 engine_data_structure_ptr,longlong engine_result_flag_ptr,uint32_t engine_comparison_params,longlong engine_system_parameter_4)
 
 {
   int engine_temporary_int;
@@ -28592,7 +28592,7 @@ void FUN_180071940(uint64 engine_data_structure_ptr,longlong engine_result_flag_
   engine_stack_value_60 = 0;
   engine_temporary_int = IsDebuggerPresent();
   if (engine_temporary_int == 0) {
-    engine_temp_long_4 = FUN_1800f9ce0(&puStack_50,0);
+    engine_temp_long_4 = engine_unnamed_function_5340(&puStack_50,0);
     engine_stack_value_60 = *(uint32*)(engine_temp_long_4 + 0x10);
     engine_temp_uint_ptr_9 = *(undefined **)(engine_temp_long_4 + 8);
     engine_stack_value_58 = *(void*)(engine_temp_long_4 + 0x18);
@@ -28705,7 +28705,7 @@ LAB_180071c93:
   }
   *(uint16*)(engine_stack_pointer_88 + engine_stack_value_80) = 0x3a;
   engine_stack_value_80 = 0x14;
-  FUN_180628380(&engine_stack_pointer_90,engine_comparison_params);
+  engine_unnamed_function_6310(&engine_stack_pointer_90,engine_comparison_params);
   engine_temp_uint_2 = engine_stack_value_80;
   engine_temp_uint1 = engine_stack_value_80 + 1;
   if (engine_temp_uint1 != 0) {
@@ -28843,8 +28843,8 @@ LAB_180071eb0:
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// void FUN_180072000(uint64 engine_data_structure_ptr,longlong engine_result_flag_ptr,uint32_t engine_comparison_params,longlong engine_system_parameter_4,
-void FUN_180072000(uint64 engine_data_structure_ptr,longlong engine_result_flag_ptr,uint32_t engine_comparison_params,longlong engine_system_parameter_4,
+// void engine_unnamed_function_810(uint64 engine_data_structure_ptr,longlong engine_result_flag_ptr,uint32_t engine_comparison_params,longlong engine_system_parameter_4,
+void engine_unnamed_function_810(uint64 engine_data_structure_ptr,longlong engine_result_flag_ptr,uint32_t engine_comparison_params,longlong engine_system_parameter_4,
                   uint8_t param_5,char param_6)
 
 {
@@ -28978,7 +28978,7 @@ LAB_1800721e1:
       memcpy(engine_data_ptr0 + engine_temp_uint9,engine_result_flag_ptr,(longlong)((int)engine_temp_long7 + 2));
     }
   }
-  FUN_180627e10(&puStack_110,&puStack_a8,&engine_stack_value_58);
+  engine_unnamed_function_6300(&puStack_110,&puStack_a8,&engine_stack_value_58);
   uStack_114 = 0;
   puStack_110 = &engine_system_context_data;
   if (engine_data_ptr0 != (uint8*)0x0) {
@@ -29000,7 +29000,7 @@ LAB_1800721e1:
   if (engine_stack_param_a0 != (void*)0x0) {
     engine_data_ptr5 = engine_stack_param_a0;
   }
-  engine_temp_char_flag = FUN_1800f9600(engine_data_ptr5);
+  engine_temp_char_flag = engine_unnamed_function_5310(engine_data_ptr5);
   if (engine_temp_char_flag == '\0') {
     comparison_result_index = WaitForSingleObject(_engine_screen_resolution,0);
     if (comparison_result_index == 0) {
@@ -29017,13 +29017,13 @@ LAB_1800721e1:
 LAB_1800722f5:
         engine_temp_long_9 = engine_data_pointer_50;
         if ((engine_data_pointer_50 != 0) && (*(char *)(engine_data_pointer_50 + 0x1609) != '\x01')) {
-          FUN_1801723a0(*(void*)(_engine_data_70 + 8),
+          engine_unnamed_function_5600(*(void*)(_engine_data_70 + 8),
                         *(char *)(_engine_input_config_data + 0x2028) != '\0',
                         *(uint32*)(engine_data_pointer_50 + 0x160c));
           *(uint8*)(engine_temp_long_9 + 0x1609) = 1;
         }
         if (*(longlong *)(_engine_data_70 + 8) != 0) {
-          FUN_1801719d0();
+          engine_unnamed_function_5580();
         }
       }
       else {
@@ -29045,7 +29045,7 @@ LAB_1800722f5:
       puStack_108 = (void*)0x0;
       uStack_100 = 0;
       if (engine_temp_char_flag == '\0') {
-        engine_temp_long_9 = FUN_1800f9ce0(&engine_stack_pointer_f0,0);
+        engine_temp_long_9 = engine_unnamed_function_5340(&engine_stack_pointer_f0,0);
         uStack_100 = *(uint *)(engine_temp_long_9 + 0x10);
         puStack_108 = *(uint8**)(engine_temp_long_9 + 8);
         uStack_f8 = *(ulonglong *)(engine_temp_long_9 + 0x18);
@@ -29163,7 +29163,7 @@ LAB_1800726e7:
       }
       *(uint16*)(puStack_130 + uStack_128) = 0x3a;
       uStack_128 = 0x17;
-      FUN_180628380(&engine_stack_pointer_138,uStack_b0);
+      engine_unnamed_function_6310(&engine_stack_pointer_138,uStack_b0);
       engine_temp_uint_6 = uStack_128;
       engine_temp_uint_4 = uStack_128 + 1;
       if (engine_temp_uint_4 != 0) {
@@ -29314,12 +29314,12 @@ LAB_1800729bd:
         engine_data_ptr4 = puStack_130;
       }
       OutputDebugStringA(engine_data_ptr4);
-      FUN_18004c2b0(engine_system_parameter_4);
+      engine_unnamed_function_30(engine_system_parameter_4);
       engine_data_ptr5 = &engine_data_73;
       if (engine_stack_param_a0 != (void*)0x0) {
         engine_data_ptr5 = engine_stack_param_a0;
       }
-      comparison_result_index = FUN_1800f98e0(engine_data_ptr5);
+      comparison_result_index = engine_unnamed_function_5330(engine_data_ptr5);
       if ((cStack_118 == '\0') && (comparison_result_index == 0)) {
         if ((_engine_data_70 == 0) || (*(char *)(_engine_data_70 + 0x141) == '\0')) {
           engine_temp_uint8 = 0;
@@ -29399,18 +29399,18 @@ LAB_1800729bd:
       if (engine_stack_param_a0 != (void*)0x0) {
         engine_data_ptr5 = engine_stack_param_a0;
       }
-      FUN_1800f96b0(engine_data_ptr5,1);
+      engine_unnamed_function_5320(engine_data_ptr5,1);
       if (cStack_117 != '\0') {
         if (*(longlong *)(_engine_data_70 + 8) != 0) {
-          FUN_1801718f0();
+          engine_unnamed_function_5570();
         }
         if (engine_data_pointer_50 != 0) {
-          FUN_180092940(engine_data_pointer_50,*(uint8*)(engine_data_pointer_50 + 0x160a));
+          engine_unnamed_function_4140(engine_data_pointer_50,*(uint8*)(engine_data_pointer_50 + 0x160a));
         }
       }
 
-// void FUN_180072e80(uint64 engine_data_structure_ptr,uint64 engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
-void FUN_180072e80(uint64 engine_data_structure_ptr,uint64 engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
+// void engine_unnamed_function_820(uint64 engine_data_structure_ptr,uint64 engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
+void engine_unnamed_function_820(uint64 engine_data_structure_ptr,uint64 engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
 
 {
   longlong *pengine_temp_long;
@@ -29421,7 +29421,7 @@ void FUN_180072e80(uint64 engine_data_structure_ptr,uint64 engine_result_flag_pt
   pengine_temp_long = *(longlong **)(_engine_data_70 + 0x2b0);
   if (pengine_temp_long != (longlong *)0x0) {
     engine_temp_uint_2 = (**(code **)(*pengine_temp_long + 0x110))(pengine_temp_long,&puStack_30,engine_comparison_params,engine_system_parameter_4,0xfffffffffffffffe);
-    FUN_18005d190(engine_result_flag_ptr,engine_temp_uint_2);
+    engine_unnamed_function_80(engine_result_flag_ptr,engine_temp_uint_2);
     puStack_30 = &engine_system_context_data;
     if (lStack_28 != 0) {
                     // WARNING: Subroutine does not return
@@ -29435,7 +29435,7 @@ void FUN_180072e80(uint64 engine_data_structure_ptr,uint64 engine_result_flag_pt
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-bool FUN_180072f00(uint64 engine_data_structure_ptr,uint64_t *engine_result_flag_ptr)
+bool engine_unnamed_function_830(uint64 engine_data_structure_ptr,uint64_t *engine_result_flag_ptr)
 
 {
   uint32 engine_temporary_uint;
@@ -29486,7 +29486,7 @@ bool FUN_180072f00(uint64 engine_data_structure_ptr,uint64_t *engine_result_flag
   WaitForSingleObject(_engine_screen_resolution,300000);
   lStack_48 = _engine_data_68;
   if (_engine_data_68 != 0) {
-    FUN_18005dab0(_engine_data_68);
+    engine_unnamed_function_110(_engine_data_68);
   }
   engine_stack_pointer_f0 = &engine_system_context_data;
   uStack_d8 = 0;
@@ -29503,7 +29503,7 @@ bool FUN_180072f00(uint64 engine_data_structure_ptr,uint64_t *engine_result_flag
   uStack_b8 = 0;
   puStack_c8 = (void*)0x0;
   uStack_c0 = 0;
-  FUN_1800a32b0(_engine_data_38,&engine_stack_pointer_68);
+  engine_unnamed_function_5100(_engine_data_38,&engine_stack_pointer_68);
   if (engine_stack_pointer_68 != puStack_60) {
     engine_handle_input_device(&engine_stack_pointer_f0,&engine_data_1809fe62c,&engine_base_data_offset_c0);
     temp_data_pointer = engine_temporary_pointer;
@@ -29522,7 +29522,7 @@ bool FUN_180072f00(uint64 engine_data_structure_ptr,uint64_t *engine_result_flag
                (ulonglong)((longlong)puStack_60 - (longlong)engine_stack_pointer_68 >> 5));
     }
     engine_handle_input_device(&engine_stack_pointer_f0,&engine_base_data_offset_40,&engine_base_data_zero);
-    FUN_18006f590(&puStack_110);
+    engine_unnamed_function_770(&puStack_110);
     if (iStack_100 != 0) {
       engine_handle_input_device(&engine_stack_pointer_f0,&engine_data_1809fe62c,&engine_base_data_offset_48);
       temp_data_pointer = (void*)&engine_data_73;
@@ -29541,7 +29541,7 @@ bool FUN_180072f00(uint64 engine_data_structure_ptr,uint64_t *engine_result_flag
     uStack_f8 = (ulonglong)uStack_f8._4_4_ << 0x20;
     puStack_110 = &engine_data_18098bcb0;
   }
-  engine_temp_long_4 = FUN_1800f9ce0(&puStack_110,engine_result_flag_ptr[1]);
+  engine_temp_long_4 = engine_unnamed_function_5340(&puStack_110,engine_result_flag_ptr[1]);
   uStack_c0 = *(uint32*)(engine_temp_long_4 + 0x10);
   engine_data_ptr3 = *(undefined **)(engine_temp_long_4 + 8);
   uStack_b8 = *(ulonglong *)(engine_temp_long_4 + 0x18);
@@ -29682,7 +29682,7 @@ bool FUN_180072f00(uint64 engine_data_structure_ptr,uint64_t *engine_result_flag
   }
   engine_process_system_operations(0,&engine_stack_pointer_90,cStackX_10,1,engine_data_ptr4,engine_data_ptr0,engine_temp_uint5);
   if (lStack_48 != 0) {
-    FUN_18005db30();
+    engine_unnamed_function_120();
   }
   do {
     comparison_result_index = ReleaseSemaphore(_engine_screen_resolution,1);
@@ -29727,8 +29727,8 @@ bool FUN_180072f00(uint64 engine_data_structure_ptr,uint64_t *engine_result_flag
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// void FUN_180073630(uint64 engine_data_structure_ptr,uint64 engine_result_flag_ptr)
-void FUN_180073630(uint64 engine_data_structure_ptr,uint64 engine_result_flag_ptr)
+// void engine_unnamed_function_840(uint64 engine_data_structure_ptr,uint64 engine_result_flag_ptr)
+void engine_unnamed_function_840(uint64 engine_data_structure_ptr,uint64 engine_result_flag_ptr)
 
 {
   void* engine_data_pointer;
@@ -29766,8 +29766,8 @@ void FUN_180073630(uint64 engine_data_structure_ptr,uint64 engine_result_flag_pt
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// void FUN_180073730(uint64 engine_data_structure_ptr,uint64 engine_result_flag_ptr)
-void FUN_180073730(uint64 engine_data_structure_ptr,uint64 engine_result_flag_ptr)
+// void engine_unnamed_function_850(uint64 engine_data_structure_ptr,uint64 engine_result_flag_ptr)
+void engine_unnamed_function_850(uint64 engine_data_structure_ptr,uint64 engine_result_flag_ptr)
 
 {
   void* engine_data_pointer;
@@ -29805,8 +29805,8 @@ void FUN_180073730(uint64 engine_data_structure_ptr,uint64 engine_result_flag_pt
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// void FUN_180073830(uint64 engine_data_structure_ptr,uint32_t engine_result_flag_ptr,uint64 engine_comparison_params)
-void FUN_180073830(uint64 engine_data_structure_ptr,uint32_t engine_result_flag_ptr,uint64 engine_comparison_params)
+// void engine_unnamed_function_860(uint64 engine_data_structure_ptr,uint32_t engine_result_flag_ptr,uint64 engine_comparison_params)
+void engine_unnamed_function_860(uint64 engine_data_structure_ptr,uint32_t engine_result_flag_ptr,uint64 engine_comparison_params)
 
 {
   void* engine_data_pointer;
@@ -29877,17 +29877,17 @@ void engine_initialize_core_system(uint64 engine_data_structure_ptr,uint64 engin
   uStack_26 = 0;
   uStack_36 = 0;
   uStack_2e = 0;
-  FUN_180074090(&engine_stack_pointer_88,engine_data_structure_ptr,engine_comparison_params,engine_system_parameter_4,&uStack_68);
-  FUN_180073ad0(&engine_stack_pointer_88,engine_comparison_params);
-  FUN_1800739f0(&engine_stack_pointer_88);
+  engine_unnamed_function_940(&engine_stack_pointer_88,engine_data_structure_ptr,engine_comparison_params,engine_system_parameter_4,&uStack_68);
+  engine_unnamed_function_890(&engine_stack_pointer_88,engine_comparison_params);
+  engine_unnamed_function_870(&engine_stack_pointer_88);
   return;
 }
 
 
 
 
-// void FUN_1800739f0(uint64_t *engine_data_structure_ptr)
-void FUN_1800739f0(uint64_t *engine_data_structure_ptr)
+// void engine_unnamed_function_870(uint64_t *engine_data_structure_ptr)
+void engine_unnamed_function_870(uint64_t *engine_data_structure_ptr)
 
 {
   if (*(longlong *)((longlong)engine_data_structure_ptr + 0x52) != 0) {
@@ -29910,7 +29910,7 @@ void FUN_1800739f0(uint64_t *engine_data_structure_ptr)
     engine_call_cleanup_routine();
   }
   engine_data_structure_ptr[9] = 0;
-  FUN_180074a80();
+  engine_unnamed_function_1040();
   *engine_data_structure_ptr = &engine_system_context_data;
   if (engine_data_structure_ptr[1] != 0) {
                     // WARNING: Subroutine does not return
@@ -29925,8 +29925,8 @@ void FUN_1800739f0(uint64_t *engine_data_structure_ptr)
 
 
 
-// void FUN_180073ab0(longlong *engine_data_structure_ptr)
-void FUN_180073ab0(longlong *engine_data_structure_ptr)
+// void engine_unnamed_function_880(longlong *engine_data_structure_ptr)
+void engine_unnamed_function_880(longlong *engine_data_structure_ptr)
 
 {
   longlong *pengine_temp_long;
@@ -29968,8 +29968,8 @@ void FUN_180073ab0(longlong *engine_data_structure_ptr)
 
 
 
-// void FUN_180073ad0(longlong engine_data_structure_ptr,longlong *engine_result_flag_ptr)
-void FUN_180073ad0(longlong engine_data_structure_ptr,longlong *engine_result_flag_ptr)
+// void engine_unnamed_function_890(longlong engine_data_structure_ptr,longlong *engine_result_flag_ptr)
+void engine_unnamed_function_890(longlong engine_data_structure_ptr,longlong *engine_result_flag_ptr)
 
 {
   ushort engine_temporary_uint;
@@ -29983,13 +29983,13 @@ void FUN_180073ad0(longlong engine_data_structure_ptr,longlong *engine_result_fl
   ulonglong engine_temp_uint_9;
   longlong engine_temp_long0;
   
-  FUN_180639ec0(engine_result_flag_ptr,engine_data_structure_ptr);
+  engine_unnamed_function_6460(engine_result_flag_ptr,engine_data_structure_ptr);
   engine_temp_long_6 = *(longlong *)(engine_data_structure_ptr + 0x28) - *(longlong *)(engine_data_structure_ptr + 0x20);
   pengine_temp_int_3 = (int *)engine_result_flag_ptr[1];
   engine_temp_long_6 = engine_temp_long_6 / 0x12 + (engine_temp_long_6 >> 0x3f);
   engine_temp_int_8 = (int)(engine_temp_long_6 >> 1) - (int)(engine_temp_long_6 >> 0x3f);
   if ((ulonglong)((*engine_result_flag_ptr - (longlong)pengine_temp_int_3) + engine_result_flag_ptr[2]) < 5) {
-    FUN_180639bf0(engine_result_flag_ptr,(longlong)pengine_temp_int_3 + (4 - *engine_result_flag_ptr));
+    engine_unnamed_function_6440(engine_result_flag_ptr,(longlong)pengine_temp_int_3 + (4 - *engine_result_flag_ptr));
     pengine_temp_int_3 = (int *)engine_result_flag_ptr[1];
   }
   *pengine_temp_int_3 = engine_temp_int_8;
@@ -30001,14 +30001,14 @@ void FUN_180073ad0(longlong engine_data_structure_ptr,longlong *engine_result_fl
     do {
       engine_temp_long_7 = *(longlong *)(engine_data_structure_ptr + 0x20) + engine_temp_long0;
       if ((ulonglong)((*engine_result_flag_ptr - (longlong)engine_next_node_ptr) + engine_result_flag_ptr[2]) < 5) {
-        FUN_180639bf0(engine_result_flag_ptr,(longlong)engine_next_node_ptr + (4 - *engine_result_flag_ptr));
+        engine_unnamed_function_6440(engine_result_flag_ptr,(longlong)engine_next_node_ptr + (4 - *engine_result_flag_ptr));
         engine_next_node_ptr = (uint32*)engine_result_flag_ptr[1];
       }
       *engine_next_node_ptr = 0;
       engine_result_flag_ptr[1] = engine_result_flag_ptr[1] + 4;
       engine_next_node_ptr = (uint32*)engine_result_flag_ptr[1];
       if ((ulonglong)((*engine_result_flag_ptr - (longlong)engine_next_node_ptr) + engine_result_flag_ptr[2]) < 5) {
-        FUN_180639bf0(engine_result_flag_ptr,(longlong)engine_next_node_ptr + (4 - *engine_result_flag_ptr));
+        engine_unnamed_function_6440(engine_result_flag_ptr,(longlong)engine_next_node_ptr + (4 - *engine_result_flag_ptr));
         engine_next_node_ptr = (uint32*)engine_result_flag_ptr[1];
       }
       *engine_next_node_ptr = 0x10;
@@ -30016,7 +30016,7 @@ void FUN_180073ad0(longlong engine_data_structure_ptr,longlong *engine_result_fl
       engine_temporary_pointer = (uint *)engine_result_flag_ptr[1];
       engine_temporary_uint = *(ushort *)(engine_temp_long_7 + 0x10);
       if ((ulonglong)((*engine_result_flag_ptr - (longlong)engine_temporary_pointer) + engine_result_flag_ptr[2]) < 5) {
-        FUN_180639bf0(engine_result_flag_ptr,(longlong)engine_temporary_pointer + (4 - *engine_result_flag_ptr));
+        engine_unnamed_function_6440(engine_result_flag_ptr,(longlong)engine_temporary_pointer + (4 - *engine_result_flag_ptr));
         engine_temporary_pointer = (uint *)engine_result_flag_ptr[1];
       }
       *engine_temporary_pointer = (uint)engine_temporary_uint;
@@ -30026,7 +30026,7 @@ void FUN_180073ad0(longlong engine_data_structure_ptr,longlong *engine_result_fl
         engine_temp_uint_2 = *(void*)(engine_temp_long_7 + 8);
         engine_temp_uint_9 = (ulonglong)*(ushort *)(engine_temp_long_7 + 0x10) * 4;
         if ((ulonglong)((*engine_result_flag_ptr - (longlong)engine_next_node_ptr) + engine_result_flag_ptr[2]) <= engine_temp_uint_9) {
-          FUN_180639bf0(engine_result_flag_ptr,(longlong)engine_next_node_ptr + (engine_temp_uint_9 - *engine_result_flag_ptr));
+          engine_unnamed_function_6440(engine_result_flag_ptr,(longlong)engine_next_node_ptr + (engine_temp_uint_9 - *engine_result_flag_ptr));
           engine_next_node_ptr = (uint32*)engine_result_flag_ptr[1];
         }
                     // WARNING: Subroutine does not return
@@ -30034,14 +30034,14 @@ void FUN_180073ad0(longlong engine_data_structure_ptr,longlong *engine_result_fl
       }
       engine_temp_long_7 = *(longlong *)(engine_data_structure_ptr + 0x20) + engine_temp_long0;
       if ((ulonglong)((*engine_result_flag_ptr - (longlong)engine_next_node_ptr) + engine_result_flag_ptr[2]) < 5) {
-        FUN_180639bf0(engine_result_flag_ptr,(longlong)engine_next_node_ptr + (4 - *engine_result_flag_ptr));
+        engine_unnamed_function_6440(engine_result_flag_ptr,(longlong)engine_next_node_ptr + (4 - *engine_result_flag_ptr));
         engine_next_node_ptr = (uint32*)engine_result_flag_ptr[1];
       }
       *engine_next_node_ptr = 0;
       engine_result_flag_ptr[1] = engine_result_flag_ptr[1] + 4;
       engine_next_node_ptr = (uint32*)engine_result_flag_ptr[1];
       if ((ulonglong)((*engine_result_flag_ptr - (longlong)engine_next_node_ptr) + engine_result_flag_ptr[2]) < 5) {
-        FUN_180639bf0(engine_result_flag_ptr,(longlong)engine_next_node_ptr + (4 - *engine_result_flag_ptr));
+        engine_unnamed_function_6440(engine_result_flag_ptr,(longlong)engine_next_node_ptr + (4 - *engine_result_flag_ptr));
         engine_next_node_ptr = (uint32*)engine_result_flag_ptr[1];
       }
       *engine_next_node_ptr = 0x10;
@@ -30049,7 +30049,7 @@ void FUN_180073ad0(longlong engine_data_structure_ptr,longlong *engine_result_fl
       engine_temporary_pointer = (uint *)engine_result_flag_ptr[1];
       engine_temporary_uint = *(ushort *)(engine_temp_long_7 + 0x22);
       if ((ulonglong)((*engine_result_flag_ptr - (longlong)engine_temporary_pointer) + engine_result_flag_ptr[2]) < 5) {
-        FUN_180639bf0(engine_result_flag_ptr,(longlong)engine_temporary_pointer + (4 - *engine_result_flag_ptr));
+        engine_unnamed_function_6440(engine_result_flag_ptr,(longlong)engine_temporary_pointer + (4 - *engine_result_flag_ptr));
         engine_temporary_pointer = (uint *)engine_result_flag_ptr[1];
       }
       *engine_temporary_pointer = (uint)engine_temporary_uint;
@@ -30059,7 +30059,7 @@ void FUN_180073ad0(longlong engine_data_structure_ptr,longlong *engine_result_fl
         engine_temp_uint_2 = *(void*)(engine_temp_long_7 + 0x1a);
         engine_temp_uint_9 = (ulonglong)*(ushort *)(engine_temp_long_7 + 0x22) * 4;
         if ((ulonglong)((*engine_result_flag_ptr - (longlong)engine_next_node_ptr) + engine_result_flag_ptr[2]) <= engine_temp_uint_9) {
-          FUN_180639bf0(engine_result_flag_ptr,(longlong)engine_next_node_ptr + (engine_temp_uint_9 - *engine_result_flag_ptr));
+          engine_unnamed_function_6440(engine_result_flag_ptr,(longlong)engine_next_node_ptr + (engine_temp_uint_9 - *engine_result_flag_ptr));
           engine_next_node_ptr = (uint32*)engine_result_flag_ptr[1];
         }
                     // WARNING: Subroutine does not return
@@ -30070,14 +30070,14 @@ void FUN_180073ad0(longlong engine_data_structure_ptr,longlong *engine_result_fl
     } while (engine_temp_long_6 != 0);
   }
   if ((ulonglong)((*engine_result_flag_ptr - (longlong)engine_next_node_ptr) + engine_result_flag_ptr[2]) < 5) {
-    FUN_180639bf0(engine_result_flag_ptr,(longlong)engine_next_node_ptr + (4 - *engine_result_flag_ptr));
+    engine_unnamed_function_6440(engine_result_flag_ptr,(longlong)engine_next_node_ptr + (4 - *engine_result_flag_ptr));
     engine_next_node_ptr = (uint32*)engine_result_flag_ptr[1];
   }
   *engine_next_node_ptr = 0;
   engine_result_flag_ptr[1] = engine_result_flag_ptr[1] + 4;
   engine_next_node_ptr = (uint32*)engine_result_flag_ptr[1];
   if ((ulonglong)((*engine_result_flag_ptr - (longlong)engine_next_node_ptr) + engine_result_flag_ptr[2]) < 5) {
-    FUN_180639bf0(engine_result_flag_ptr,(longlong)engine_next_node_ptr + (4 - *engine_result_flag_ptr));
+    engine_unnamed_function_6440(engine_result_flag_ptr,(longlong)engine_next_node_ptr + (4 - *engine_result_flag_ptr));
     engine_next_node_ptr = (uint32*)engine_result_flag_ptr[1];
   }
   *engine_next_node_ptr = 0x10;
@@ -30085,7 +30085,7 @@ void FUN_180073ad0(longlong engine_data_structure_ptr,longlong *engine_result_fl
   engine_temporary_pointer = (uint *)engine_result_flag_ptr[1];
   engine_temporary_uint = *(ushort *)(engine_data_structure_ptr + 0x50);
   if ((ulonglong)((*engine_result_flag_ptr - (longlong)engine_temporary_pointer) + engine_result_flag_ptr[2]) < 5) {
-    FUN_180639bf0(engine_result_flag_ptr,(longlong)engine_temporary_pointer + (4 - *engine_result_flag_ptr));
+    engine_unnamed_function_6440(engine_result_flag_ptr,(longlong)engine_temporary_pointer + (4 - *engine_result_flag_ptr));
     engine_temporary_pointer = (uint *)engine_result_flag_ptr[1];
   }
   *engine_temporary_pointer = (uint)engine_temporary_uint;
@@ -30095,21 +30095,21 @@ void FUN_180073ad0(longlong engine_data_structure_ptr,longlong *engine_result_fl
     engine_temp_uint_2 = *(void*)(engine_data_structure_ptr + 0x48);
     engine_temp_uint_9 = (ulonglong)*(ushort *)(engine_data_structure_ptr + 0x50) * 4;
     if ((ulonglong)((*engine_result_flag_ptr - (longlong)engine_next_node_ptr) + engine_result_flag_ptr[2]) <= engine_temp_uint_9) {
-      FUN_180639bf0(engine_result_flag_ptr,(longlong)engine_next_node_ptr + (engine_temp_uint_9 - *engine_result_flag_ptr));
+      engine_unnamed_function_6440(engine_result_flag_ptr,(longlong)engine_next_node_ptr + (engine_temp_uint_9 - *engine_result_flag_ptr));
       engine_next_node_ptr = (uint32*)engine_result_flag_ptr[1];
     }
                     // WARNING: Subroutine does not return
     memcpy(engine_next_node_ptr,engine_temp_uint_2,engine_temp_uint_9);
   }
   if ((ulonglong)((*engine_result_flag_ptr - (longlong)engine_next_node_ptr) + engine_result_flag_ptr[2]) < 5) {
-    FUN_180639bf0(engine_result_flag_ptr,(longlong)engine_next_node_ptr + (4 - *engine_result_flag_ptr));
+    engine_unnamed_function_6440(engine_result_flag_ptr,(longlong)engine_next_node_ptr + (4 - *engine_result_flag_ptr));
     engine_next_node_ptr = (uint32*)engine_result_flag_ptr[1];
   }
   *engine_next_node_ptr = 0;
   engine_result_flag_ptr[1] = engine_result_flag_ptr[1] + 4;
   engine_next_node_ptr = (uint32*)engine_result_flag_ptr[1];
   if ((ulonglong)((*engine_result_flag_ptr - (longlong)engine_next_node_ptr) + engine_result_flag_ptr[2]) < 5) {
-    FUN_180639bf0(engine_result_flag_ptr,(longlong)engine_next_node_ptr + (4 - *engine_result_flag_ptr));
+    engine_unnamed_function_6440(engine_result_flag_ptr,(longlong)engine_next_node_ptr + (4 - *engine_result_flag_ptr));
     engine_next_node_ptr = (uint32*)engine_result_flag_ptr[1];
   }
   *engine_next_node_ptr = 0x10;
@@ -30117,7 +30117,7 @@ void FUN_180073ad0(longlong engine_data_structure_ptr,longlong *engine_result_fl
   engine_temporary_pointer = (uint *)engine_result_flag_ptr[1];
   engine_temporary_uint = *(ushort *)(engine_data_structure_ptr + 0x62);
   if ((ulonglong)((*engine_result_flag_ptr - (longlong)engine_temporary_pointer) + engine_result_flag_ptr[2]) < 5) {
-    FUN_180639bf0(engine_result_flag_ptr,(longlong)engine_temporary_pointer + (4 - *engine_result_flag_ptr));
+    engine_unnamed_function_6440(engine_result_flag_ptr,(longlong)engine_temporary_pointer + (4 - *engine_result_flag_ptr));
     engine_temporary_pointer = (uint *)engine_result_flag_ptr[1];
   }
   *engine_temporary_pointer = (uint)engine_temporary_uint;
@@ -30129,7 +30129,7 @@ void FUN_180073ad0(longlong engine_data_structure_ptr,longlong *engine_result_fl
   engine_temp_uint_2 = *(void*)(engine_data_structure_ptr + 0x5a);
   engine_temp_uint_9 = (ulonglong)*(ushort *)(engine_data_structure_ptr + 0x62) * 4;
   if ((ulonglong)((*engine_result_flag_ptr - engine_temp_long_6) + engine_result_flag_ptr[2]) <= engine_temp_uint_9) {
-    FUN_180639bf0(engine_result_flag_ptr,engine_temp_uint_9 + (engine_temp_long_6 - *engine_result_flag_ptr));
+    engine_unnamed_function_6440(engine_result_flag_ptr,engine_temp_uint_9 + (engine_temp_long_6 - *engine_result_flag_ptr));
     engine_temp_long_6 = engine_result_flag_ptr[1];
   }
                     // WARNING: Subroutine does not return
@@ -30139,8 +30139,8 @@ void FUN_180073ad0(longlong engine_data_structure_ptr,longlong *engine_result_fl
 
 
 
-// void FUN_180073adc(longlong engine_data_structure_ptr)
-void FUN_180073adc(longlong engine_data_structure_ptr)
+// void engine_unnamed_function_89c(longlong engine_data_structure_ptr)
+void engine_unnamed_function_89c(longlong engine_data_structure_ptr)
 
 {
   ushort engine_temporary_uint;
@@ -30155,13 +30155,13 @@ void FUN_180073adc(longlong engine_data_structure_ptr)
   ulonglong engine_temp_uint_9;
   longlong engine_temp_long0;
   
-  FUN_180639ec0();
+  engine_unnamed_function_6460();
   engine_temp_long_6 = *(longlong *)(engine_data_structure_ptr + 0x28) - *(longlong *)(engine_data_structure_ptr + 0x20);
   pengine_temp_int_3 = (int *)engine_register_rbx[1];
   engine_temp_long_6 = engine_temp_long_6 / 0x12 + (engine_temp_long_6 >> 0x3f);
   engine_temp_int_8 = (int)(engine_temp_long_6 >> 1) - (int)(engine_temp_long_6 >> 0x3f);
   if ((ulonglong)((*engine_register_rbx - (longlong)pengine_temp_int_3) + engine_register_rbx[2]) < 5) {
-    FUN_180639bf0();
+    engine_unnamed_function_6440();
     pengine_temp_int_3 = (int *)engine_register_rbx[1];
   }
   *pengine_temp_int_3 = engine_temp_int_8;
@@ -30173,14 +30173,14 @@ void FUN_180073adc(longlong engine_data_structure_ptr)
     do {
       engine_temp_long_7 = *(longlong *)(engine_data_structure_ptr + 0x20) + engine_temp_long0;
       if ((ulonglong)((*engine_register_rbx - (longlong)engine_next_node_ptr) + engine_register_rbx[2]) < 5) {
-        FUN_180639bf0();
+        engine_unnamed_function_6440();
         engine_next_node_ptr = (uint32*)engine_register_rbx[1];
       }
       *engine_next_node_ptr = 0;
       engine_register_rbx[1] = engine_register_rbx[1] + 4;
       engine_next_node_ptr = (uint32*)engine_register_rbx[1];
       if ((ulonglong)((*engine_register_rbx - (longlong)engine_next_node_ptr) + engine_register_rbx[2]) < 5) {
-        FUN_180639bf0();
+        engine_unnamed_function_6440();
         engine_next_node_ptr = (uint32*)engine_register_rbx[1];
       }
       *engine_next_node_ptr = 0x10;
@@ -30188,7 +30188,7 @@ void FUN_180073adc(longlong engine_data_structure_ptr)
       engine_temporary_pointer = (uint *)engine_register_rbx[1];
       engine_temporary_uint = *(ushort *)(engine_temp_long_7 + 0x10);
       if ((ulonglong)((*engine_register_rbx - (longlong)engine_temporary_pointer) + engine_register_rbx[2]) < 5) {
-        FUN_180639bf0();
+        engine_unnamed_function_6440();
         engine_temporary_pointer = (uint *)engine_register_rbx[1];
       }
       *engine_temporary_pointer = (uint)engine_temporary_uint;
@@ -30198,7 +30198,7 @@ void FUN_180073adc(longlong engine_data_structure_ptr)
         engine_temp_uint_2 = *(void*)(engine_temp_long_7 + 8);
         engine_temp_uint_9 = (ulonglong)*(ushort *)(engine_temp_long_7 + 0x10) * 4;
         if ((ulonglong)((*engine_register_rbx - (longlong)engine_next_node_ptr) + engine_register_rbx[2]) <= engine_temp_uint_9) {
-          FUN_180639bf0();
+          engine_unnamed_function_6440();
           engine_next_node_ptr = (uint32*)engine_register_rbx[1];
         }
                     // WARNING: Subroutine does not return
@@ -30206,14 +30206,14 @@ void FUN_180073adc(longlong engine_data_structure_ptr)
       }
       engine_temp_long_7 = *(longlong *)(engine_data_structure_ptr + 0x20) + engine_temp_long0;
       if ((ulonglong)((*engine_register_rbx - (longlong)engine_next_node_ptr) + engine_register_rbx[2]) < 5) {
-        FUN_180639bf0();
+        engine_unnamed_function_6440();
         engine_next_node_ptr = (uint32*)engine_register_rbx[1];
       }
       *engine_next_node_ptr = 0;
       engine_register_rbx[1] = engine_register_rbx[1] + 4;
       engine_next_node_ptr = (uint32*)engine_register_rbx[1];
       if ((ulonglong)((*engine_register_rbx - (longlong)engine_next_node_ptr) + engine_register_rbx[2]) < 5) {
-        FUN_180639bf0();
+        engine_unnamed_function_6440();
         engine_next_node_ptr = (uint32*)engine_register_rbx[1];
       }
       *engine_next_node_ptr = 0x10;
@@ -30221,7 +30221,7 @@ void FUN_180073adc(longlong engine_data_structure_ptr)
       engine_temporary_pointer = (uint *)engine_register_rbx[1];
       engine_temporary_uint = *(ushort *)(engine_temp_long_7 + 0x22);
       if ((ulonglong)((*engine_register_rbx - (longlong)engine_temporary_pointer) + engine_register_rbx[2]) < 5) {
-        FUN_180639bf0();
+        engine_unnamed_function_6440();
         engine_temporary_pointer = (uint *)engine_register_rbx[1];
       }
       *engine_temporary_pointer = (uint)engine_temporary_uint;
@@ -30231,7 +30231,7 @@ void FUN_180073adc(longlong engine_data_structure_ptr)
         engine_temp_uint_2 = *(void*)(engine_temp_long_7 + 0x1a);
         engine_temp_uint_9 = (ulonglong)*(ushort *)(engine_temp_long_7 + 0x22) * 4;
         if ((ulonglong)((*engine_register_rbx - (longlong)engine_next_node_ptr) + engine_register_rbx[2]) <= engine_temp_uint_9) {
-          FUN_180639bf0();
+          engine_unnamed_function_6440();
           engine_next_node_ptr = (uint32*)engine_register_rbx[1];
         }
                     // WARNING: Subroutine does not return
@@ -30242,14 +30242,14 @@ void FUN_180073adc(longlong engine_data_structure_ptr)
     } while (engine_temp_long_6 != 0);
   }
   if ((ulonglong)((*engine_register_rbx - (longlong)engine_next_node_ptr) + engine_register_rbx[2]) < 5) {
-    FUN_180639bf0();
+    engine_unnamed_function_6440();
     engine_next_node_ptr = (uint32*)engine_register_rbx[1];
   }
   *engine_next_node_ptr = 0;
   engine_register_rbx[1] = engine_register_rbx[1] + 4;
   engine_next_node_ptr = (uint32*)engine_register_rbx[1];
   if ((ulonglong)((*engine_register_rbx - (longlong)engine_next_node_ptr) + engine_register_rbx[2]) < 5) {
-    FUN_180639bf0();
+    engine_unnamed_function_6440();
     engine_next_node_ptr = (uint32*)engine_register_rbx[1];
   }
   *engine_next_node_ptr = 0x10;
@@ -30257,7 +30257,7 @@ void FUN_180073adc(longlong engine_data_structure_ptr)
   engine_temporary_pointer = (uint *)engine_register_rbx[1];
   engine_temporary_uint = *(ushort *)(engine_data_structure_ptr + 0x50);
   if ((ulonglong)((*engine_register_rbx - (longlong)engine_temporary_pointer) + engine_register_rbx[2]) < 5) {
-    FUN_180639bf0();
+    engine_unnamed_function_6440();
     engine_temporary_pointer = (uint *)engine_register_rbx[1];
   }
   *engine_temporary_pointer = (uint)engine_temporary_uint;
@@ -30267,21 +30267,21 @@ void FUN_180073adc(longlong engine_data_structure_ptr)
     engine_temp_uint_2 = *(void*)(engine_data_structure_ptr + 0x48);
     engine_temp_uint_9 = (ulonglong)*(ushort *)(engine_data_structure_ptr + 0x50) * 4;
     if ((ulonglong)((*engine_register_rbx - (longlong)engine_next_node_ptr) + engine_register_rbx[2]) <= engine_temp_uint_9) {
-      FUN_180639bf0();
+      engine_unnamed_function_6440();
       engine_next_node_ptr = (uint32*)engine_register_rbx[1];
     }
                     // WARNING: Subroutine does not return
     memcpy(engine_next_node_ptr,engine_temp_uint_2,engine_temp_uint_9);
   }
   if ((ulonglong)((*engine_register_rbx - (longlong)engine_next_node_ptr) + engine_register_rbx[2]) < 5) {
-    FUN_180639bf0();
+    engine_unnamed_function_6440();
     engine_next_node_ptr = (uint32*)engine_register_rbx[1];
   }
   *engine_next_node_ptr = 0;
   engine_register_rbx[1] = engine_register_rbx[1] + 4;
   engine_next_node_ptr = (uint32*)engine_register_rbx[1];
   if ((ulonglong)((*engine_register_rbx - (longlong)engine_next_node_ptr) + engine_register_rbx[2]) < 5) {
-    FUN_180639bf0();
+    engine_unnamed_function_6440();
     engine_next_node_ptr = (uint32*)engine_register_rbx[1];
   }
   *engine_next_node_ptr = 0x10;
@@ -30289,7 +30289,7 @@ void FUN_180073adc(longlong engine_data_structure_ptr)
   engine_temporary_pointer = (uint *)engine_register_rbx[1];
   engine_temporary_uint = *(ushort *)(engine_data_structure_ptr + 0x62);
   if ((ulonglong)((*engine_register_rbx - (longlong)engine_temporary_pointer) + engine_register_rbx[2]) < 5) {
-    FUN_180639bf0();
+    engine_unnamed_function_6440();
     engine_temporary_pointer = (uint *)engine_register_rbx[1];
   }
   *engine_temporary_pointer = (uint)engine_temporary_uint;
@@ -30301,7 +30301,7 @@ void FUN_180073adc(longlong engine_data_structure_ptr)
   engine_temp_uint_2 = *(void*)(engine_data_structure_ptr + 0x5a);
   engine_temp_uint_9 = (ulonglong)*(ushort *)(engine_data_structure_ptr + 0x62) * 4;
   if ((ulonglong)((*engine_register_rbx - engine_temp_long_6) + engine_register_rbx[2]) <= engine_temp_uint_9) {
-    FUN_180639bf0();
+    engine_unnamed_function_6440();
     engine_temp_long_6 = engine_register_rbx[1];
   }
                     // WARNING: Subroutine does not return
@@ -30311,8 +30311,8 @@ void FUN_180073adc(longlong engine_data_structure_ptr)
 
 
 
-// void FUN_180073b64(uint *engine_data_structure_ptr)
-void FUN_180073b64(uint *engine_data_structure_ptr)
+// void engine_unnamed_function_904(uint *engine_data_structure_ptr)
+void engine_unnamed_function_904(uint *engine_data_structure_ptr)
 
 {
   ushort engine_temporary_uint;
@@ -30330,14 +30330,14 @@ void FUN_180073b64(uint *engine_data_structure_ptr)
   do {
     memory_allocation_result = *(longlong *)(unaff_R15 + 0x20) + engine_temp_uint_6;
     if ((ulonglong)((*engine_register_rbx - (longlong)engine_data_structure_ptr) + engine_register_rbx[2]) < 5) {
-      FUN_180639bf0();
+      engine_unnamed_function_6440();
       engine_data_structure_ptr = (uint *)engine_register_rbx[1];
     }
     *engine_data_structure_ptr = unaff_R13D;
     engine_register_rbx[1] = engine_register_rbx[1] + 4;
     engine_current_node_ptr = (uint32*)engine_register_rbx[1];
     if ((ulonglong)((*engine_register_rbx - (longlong)engine_current_node_ptr) + engine_register_rbx[2]) < 5) {
-      FUN_180639bf0();
+      engine_unnamed_function_6440();
       engine_current_node_ptr = (uint32*)engine_register_rbx[1];
     }
     *engine_current_node_ptr = 0x10;
@@ -30345,7 +30345,7 @@ void FUN_180073b64(uint *engine_data_structure_ptr)
     engine_next_node_ptr = (uint *)engine_register_rbx[1];
     engine_temporary_uint = *(ushort *)(memory_allocation_result + 0x10);
     if ((ulonglong)((*engine_register_rbx - (longlong)engine_next_node_ptr) + engine_register_rbx[2]) < 5) {
-      FUN_180639bf0();
+      engine_unnamed_function_6440();
       engine_next_node_ptr = (uint *)engine_register_rbx[1];
     }
     *engine_next_node_ptr = (uint)engine_temporary_uint;
@@ -30355,7 +30355,7 @@ void FUN_180073b64(uint *engine_data_structure_ptr)
       engine_temp_uint_2 = *(void*)(memory_allocation_result + 8);
       engine_temp_uint_6 = (ulonglong)*(ushort *)(memory_allocation_result + 0x10) * 4;
       if ((ulonglong)((*engine_register_rbx - (longlong)engine_next_node_ptr) + engine_register_rbx[2]) <= engine_temp_uint_6) {
-        FUN_180639bf0();
+        engine_unnamed_function_6440();
         engine_next_node_ptr = (uint *)engine_register_rbx[1];
       }
                     // WARNING: Subroutine does not return
@@ -30363,14 +30363,14 @@ void FUN_180073b64(uint *engine_data_structure_ptr)
     }
     memory_allocation_result = *(longlong *)(unaff_R15 + 0x20) + engine_temp_uint_6;
     if ((ulonglong)((*engine_register_rbx - (longlong)engine_next_node_ptr) + engine_register_rbx[2]) < 5) {
-      FUN_180639bf0();
+      engine_unnamed_function_6440();
       engine_next_node_ptr = (uint *)engine_register_rbx[1];
     }
     *engine_next_node_ptr = unaff_R13D;
     engine_register_rbx[1] = engine_register_rbx[1] + 4;
     engine_current_node_ptr = (uint32*)engine_register_rbx[1];
     if ((ulonglong)((*engine_register_rbx - (longlong)engine_current_node_ptr) + engine_register_rbx[2]) < 5) {
-      FUN_180639bf0();
+      engine_unnamed_function_6440();
       engine_current_node_ptr = (uint32*)engine_register_rbx[1];
     }
     *engine_current_node_ptr = 0x10;
@@ -30378,7 +30378,7 @@ void FUN_180073b64(uint *engine_data_structure_ptr)
     engine_next_node_ptr = (uint *)engine_register_rbx[1];
     engine_temporary_uint = *(ushort *)(memory_allocation_result + 0x22);
     if ((ulonglong)((*engine_register_rbx - (longlong)engine_next_node_ptr) + engine_register_rbx[2]) < 5) {
-      FUN_180639bf0();
+      engine_unnamed_function_6440();
       engine_next_node_ptr = (uint *)engine_register_rbx[1];
     }
     *engine_next_node_ptr = (uint)engine_temporary_uint;
@@ -30388,7 +30388,7 @@ void FUN_180073b64(uint *engine_data_structure_ptr)
       engine_temp_uint_2 = *(void*)(memory_allocation_result + 0x1a);
       engine_temp_uint_6 = (ulonglong)*(ushort *)(memory_allocation_result + 0x22) * 4;
       if ((ulonglong)((*engine_register_rbx - (longlong)engine_data_structure_ptr) + engine_register_rbx[2]) <= engine_temp_uint_6) {
-        FUN_180639bf0();
+        engine_unnamed_function_6440();
         engine_data_structure_ptr = (uint *)engine_register_rbx[1];
       }
                     // WARNING: Subroutine does not return
@@ -30398,14 +30398,14 @@ void FUN_180073b64(uint *engine_data_structure_ptr)
     unaff_R12 = unaff_R12 + -1;
   } while (unaff_R12 != 0);
   if ((ulonglong)((*engine_register_rbx - (longlong)engine_data_structure_ptr) + engine_register_rbx[2]) < 5) {
-    FUN_180639bf0();
+    engine_unnamed_function_6440();
     engine_data_structure_ptr = (uint *)engine_register_rbx[1];
   }
   *engine_data_structure_ptr = unaff_R13D;
   engine_register_rbx[1] = engine_register_rbx[1] + 4;
   engine_current_node_ptr = (uint32*)engine_register_rbx[1];
   if ((ulonglong)((*engine_register_rbx - (longlong)engine_current_node_ptr) + engine_register_rbx[2]) < 5) {
-    FUN_180639bf0();
+    engine_unnamed_function_6440();
     engine_current_node_ptr = (uint32*)engine_register_rbx[1];
   }
   *engine_current_node_ptr = 0x10;
@@ -30413,7 +30413,7 @@ void FUN_180073b64(uint *engine_data_structure_ptr)
   engine_next_node_ptr = (uint *)engine_register_rbx[1];
   engine_temporary_uint = *(ushort *)(unaff_R15 + 0x50);
   if ((ulonglong)((*engine_register_rbx - (longlong)engine_next_node_ptr) + engine_register_rbx[2]) < 5) {
-    FUN_180639bf0();
+    engine_unnamed_function_6440();
     engine_next_node_ptr = (uint *)engine_register_rbx[1];
   }
   *engine_next_node_ptr = (uint)engine_temporary_uint;
@@ -30423,21 +30423,21 @@ void FUN_180073b64(uint *engine_data_structure_ptr)
     engine_temp_uint_2 = *(void*)(unaff_R15 + 0x48);
     engine_temp_uint_6 = (ulonglong)*(ushort *)(unaff_R15 + 0x50) * 4;
     if ((ulonglong)((*engine_register_rbx - (longlong)engine_next_node_ptr) + engine_register_rbx[2]) <= engine_temp_uint_6) {
-      FUN_180639bf0();
+      engine_unnamed_function_6440();
       engine_next_node_ptr = (uint *)engine_register_rbx[1];
     }
                     // WARNING: Subroutine does not return
     memcpy(engine_next_node_ptr,engine_temp_uint_2,engine_temp_uint_6);
   }
   if ((ulonglong)((*engine_register_rbx - (longlong)engine_next_node_ptr) + engine_register_rbx[2]) < 5) {
-    FUN_180639bf0();
+    engine_unnamed_function_6440();
     engine_next_node_ptr = (uint *)engine_register_rbx[1];
   }
   *engine_next_node_ptr = unaff_R13D;
   engine_register_rbx[1] = engine_register_rbx[1] + 4;
   engine_current_node_ptr = (uint32*)engine_register_rbx[1];
   if ((ulonglong)((*engine_register_rbx - (longlong)engine_current_node_ptr) + engine_register_rbx[2]) < 5) {
-    FUN_180639bf0();
+    engine_unnamed_function_6440();
     engine_current_node_ptr = (uint32*)engine_register_rbx[1];
   }
   *engine_current_node_ptr = 0x10;
@@ -30445,7 +30445,7 @@ void FUN_180073b64(uint *engine_data_structure_ptr)
   engine_next_node_ptr = (uint *)engine_register_rbx[1];
   engine_temporary_uint = *(ushort *)(unaff_R15 + 0x62);
   if ((ulonglong)((*engine_register_rbx - (longlong)engine_next_node_ptr) + engine_register_rbx[2]) < 5) {
-    FUN_180639bf0();
+    engine_unnamed_function_6440();
     engine_next_node_ptr = (uint *)engine_register_rbx[1];
   }
   *engine_next_node_ptr = (uint)engine_temporary_uint;
@@ -30455,7 +30455,7 @@ void FUN_180073b64(uint *engine_data_structure_ptr)
     engine_temp_uint_2 = *(void*)(unaff_R15 + 0x5a);
     engine_temp_uint_6 = (ulonglong)*(ushort *)(unaff_R15 + 0x62) * 4;
     if ((ulonglong)((*engine_register_rbx - memory_allocation_result) + engine_register_rbx[2]) <= engine_temp_uint_6) {
-      FUN_180639bf0();
+      engine_unnamed_function_6440();
       memory_allocation_result = engine_register_rbx[1];
     }
                     // WARNING: Subroutine does not return
@@ -30467,8 +30467,8 @@ void FUN_180073b64(uint *engine_data_structure_ptr)
 
 
 
-// void FUN_180073e0b(uint32_t *engine_data_structure_ptr)
-void FUN_180073e0b(uint32_t *engine_data_structure_ptr)
+// void engine_unnamed_function_91b(uint32_t *engine_data_structure_ptr)
+void engine_unnamed_function_91b(uint32_t *engine_data_structure_ptr)
 
 {
   ushort engine_temporary_uint;
@@ -30482,14 +30482,14 @@ void FUN_180073e0b(uint32_t *engine_data_structure_ptr)
   longlong unaff_R15;
   
   if ((ulonglong)((*engine_register_rbx - (longlong)engine_data_structure_ptr) + engine_register_rbx[2]) < 5) {
-    FUN_180639bf0();
+    engine_unnamed_function_6440();
     engine_data_structure_ptr = (uint32*)engine_register_rbx[1];
   }
   *engine_data_structure_ptr = unaff_R13D;
   engine_register_rbx[1] = engine_register_rbx[1] + 4;
   engine_current_node_ptr = (uint32*)engine_register_rbx[1];
   if ((ulonglong)((*engine_register_rbx - (longlong)engine_current_node_ptr) + engine_register_rbx[2]) < 5) {
-    FUN_180639bf0();
+    engine_unnamed_function_6440();
     engine_current_node_ptr = (uint32*)engine_register_rbx[1];
   }
   *engine_current_node_ptr = 0x10;
@@ -30497,7 +30497,7 @@ void FUN_180073e0b(uint32_t *engine_data_structure_ptr)
   engine_next_node_ptr = (uint *)engine_register_rbx[1];
   engine_temporary_uint = *(ushort *)(unaff_R15 + 0x50);
   if ((ulonglong)((*engine_register_rbx - (longlong)engine_next_node_ptr) + engine_register_rbx[2]) < 5) {
-    FUN_180639bf0();
+    engine_unnamed_function_6440();
     engine_next_node_ptr = (uint *)engine_register_rbx[1];
   }
   *engine_next_node_ptr = (uint)engine_temporary_uint;
@@ -30507,21 +30507,21 @@ void FUN_180073e0b(uint32_t *engine_data_structure_ptr)
     engine_temp_uint_2 = *(void*)(unaff_R15 + 0x48);
     engine_temp_uint_6 = (ulonglong)*(ushort *)(unaff_R15 + 0x50) * 4;
     if ((ulonglong)((*engine_register_rbx - (longlong)engine_current_node_ptr) + engine_register_rbx[2]) <= engine_temp_uint_6) {
-      FUN_180639bf0();
+      engine_unnamed_function_6440();
       engine_current_node_ptr = (uint32*)engine_register_rbx[1];
     }
                     // WARNING: Subroutine does not return
     memcpy(engine_current_node_ptr,engine_temp_uint_2,engine_temp_uint_6);
   }
   if ((ulonglong)((*engine_register_rbx - (longlong)engine_current_node_ptr) + engine_register_rbx[2]) < 5) {
-    FUN_180639bf0();
+    engine_unnamed_function_6440();
     engine_current_node_ptr = (uint32*)engine_register_rbx[1];
   }
   *engine_current_node_ptr = unaff_R13D;
   engine_register_rbx[1] = engine_register_rbx[1] + 4;
   engine_current_node_ptr = (uint32*)engine_register_rbx[1];
   if ((ulonglong)((*engine_register_rbx - (longlong)engine_current_node_ptr) + engine_register_rbx[2]) < 5) {
-    FUN_180639bf0();
+    engine_unnamed_function_6440();
     engine_current_node_ptr = (uint32*)engine_register_rbx[1];
   }
   *engine_current_node_ptr = 0x10;
@@ -30529,7 +30529,7 @@ void FUN_180073e0b(uint32_t *engine_data_structure_ptr)
   engine_next_node_ptr = (uint *)engine_register_rbx[1];
   engine_temporary_uint = *(ushort *)(unaff_R15 + 0x62);
   if ((ulonglong)((*engine_register_rbx - (longlong)engine_next_node_ptr) + engine_register_rbx[2]) < 5) {
-    FUN_180639bf0();
+    engine_unnamed_function_6440();
     engine_next_node_ptr = (uint *)engine_register_rbx[1];
   }
   *engine_next_node_ptr = (uint)engine_temporary_uint;
@@ -30539,7 +30539,7 @@ void FUN_180073e0b(uint32_t *engine_data_structure_ptr)
     engine_temp_uint_2 = *(void*)(unaff_R15 + 0x5a);
     engine_temp_uint_6 = (ulonglong)*(ushort *)(unaff_R15 + 0x62) * 4;
     if ((ulonglong)((*engine_register_rbx - memory_allocation_result) + engine_register_rbx[2]) <= engine_temp_uint_6) {
-      FUN_180639bf0();
+      engine_unnamed_function_6440();
       memory_allocation_result = engine_register_rbx[1];
     }
                     // WARNING: Subroutine does not return
@@ -30551,8 +30551,8 @@ void FUN_180073e0b(uint32_t *engine_data_structure_ptr)
 
 
 
-// void FUN_180073e23(void)
-void FUN_180073e23(void)
+// void engine_unnamed_function_923(void)
+void engine_unnamed_function_923(void)
 
 {
   ushort engine_temporary_uint;
@@ -30565,12 +30565,12 @@ void FUN_180073e23(void)
   uint32 unaff_R13D;
   longlong unaff_R15;
   
-  FUN_180639bf0();
+  engine_unnamed_function_6440();
   *(uint32*)engine_register_rbx[1] = unaff_R13D;
   engine_register_rbx[1] = engine_register_rbx[1] + 4;
   engine_current_node_ptr = (uint32*)engine_register_rbx[1];
   if ((ulonglong)((*engine_register_rbx - (longlong)engine_current_node_ptr) + engine_register_rbx[2]) < 5) {
-    FUN_180639bf0();
+    engine_unnamed_function_6440();
     engine_current_node_ptr = (uint32*)engine_register_rbx[1];
   }
   *engine_current_node_ptr = 0x10;
@@ -30578,7 +30578,7 @@ void FUN_180073e23(void)
   engine_next_node_ptr = (uint *)engine_register_rbx[1];
   engine_temporary_uint = *(ushort *)(unaff_R15 + 0x50);
   if ((ulonglong)((*engine_register_rbx - (longlong)engine_next_node_ptr) + engine_register_rbx[2]) < 5) {
-    FUN_180639bf0();
+    engine_unnamed_function_6440();
     engine_next_node_ptr = (uint *)engine_register_rbx[1];
   }
   *engine_next_node_ptr = (uint)engine_temporary_uint;
@@ -30588,21 +30588,21 @@ void FUN_180073e23(void)
     engine_temp_uint_2 = *(void*)(unaff_R15 + 0x48);
     engine_temp_uint_6 = (ulonglong)*(ushort *)(unaff_R15 + 0x50) * 4;
     if ((ulonglong)((*engine_register_rbx - (longlong)engine_current_node_ptr) + engine_register_rbx[2]) <= engine_temp_uint_6) {
-      FUN_180639bf0();
+      engine_unnamed_function_6440();
       engine_current_node_ptr = (uint32*)engine_register_rbx[1];
     }
                     // WARNING: Subroutine does not return
     memcpy(engine_current_node_ptr,engine_temp_uint_2,engine_temp_uint_6);
   }
   if ((ulonglong)((*engine_register_rbx - (longlong)engine_current_node_ptr) + engine_register_rbx[2]) < 5) {
-    FUN_180639bf0();
+    engine_unnamed_function_6440();
     engine_current_node_ptr = (uint32*)engine_register_rbx[1];
   }
   *engine_current_node_ptr = unaff_R13D;
   engine_register_rbx[1] = engine_register_rbx[1] + 4;
   engine_current_node_ptr = (uint32*)engine_register_rbx[1];
   if ((ulonglong)((*engine_register_rbx - (longlong)engine_current_node_ptr) + engine_register_rbx[2]) < 5) {
-    FUN_180639bf0();
+    engine_unnamed_function_6440();
     engine_current_node_ptr = (uint32*)engine_register_rbx[1];
   }
   *engine_current_node_ptr = 0x10;
@@ -30610,7 +30610,7 @@ void FUN_180073e23(void)
   engine_next_node_ptr = (uint *)engine_register_rbx[1];
   engine_temporary_uint = *(ushort *)(unaff_R15 + 0x62);
   if ((ulonglong)((*engine_register_rbx - (longlong)engine_next_node_ptr) + engine_register_rbx[2]) < 5) {
-    FUN_180639bf0();
+    engine_unnamed_function_6440();
     engine_next_node_ptr = (uint *)engine_register_rbx[1];
   }
   *engine_next_node_ptr = (uint)engine_temporary_uint;
@@ -30620,7 +30620,7 @@ void FUN_180073e23(void)
     engine_temp_uint_2 = *(void*)(unaff_R15 + 0x5a);
     engine_temp_uint_6 = (ulonglong)*(ushort *)(unaff_R15 + 0x62) * 4;
     if ((ulonglong)((*engine_register_rbx - memory_allocation_result) + engine_register_rbx[2]) <= engine_temp_uint_6) {
-      FUN_180639bf0();
+      engine_unnamed_function_6440();
       memory_allocation_result = engine_register_rbx[1];
     }
                     // WARNING: Subroutine does not return
@@ -30632,8 +30632,8 @@ void FUN_180073e23(void)
 
 
 
-// void FUN_180073f90(void)
-void FUN_180073f90(void)
+// void engine_unnamed_function_930(void)
+void engine_unnamed_function_930(void)
 
 {
   ushort engine_temporary_uint;
@@ -30644,13 +30644,13 @@ void FUN_180073f90(void)
   ulonglong engine_temp_index;
   longlong unaff_R15;
   
-  FUN_180639bf0();
+  engine_unnamed_function_6440();
   *(uint32*)engine_register_rbx[1] = 0x10;
   engine_register_rbx[1] = engine_register_rbx[1] + 4;
   engine_current_node_ptr = (uint *)engine_register_rbx[1];
   engine_temporary_uint = *(ushort *)(unaff_R15 + 0x62);
   if ((ulonglong)((*engine_register_rbx - (longlong)engine_current_node_ptr) + engine_register_rbx[2]) < 5) {
-    FUN_180639bf0();
+    engine_unnamed_function_6440();
     engine_current_node_ptr = (uint *)engine_register_rbx[1];
   }
   *engine_current_node_ptr = (uint)engine_temporary_uint;
@@ -30660,7 +30660,7 @@ void FUN_180073f90(void)
     engine_temp_uint_2 = *(void*)(unaff_R15 + 0x5a);
     engine_temp_index = (ulonglong)*(ushort *)(unaff_R15 + 0x62) * 4;
     if ((ulonglong)((*engine_register_rbx - engine_temp_long_4) + engine_register_rbx[2]) <= engine_temp_index) {
-      FUN_180639bf0();
+      engine_unnamed_function_6440();
       engine_temp_long_4 = engine_register_rbx[1];
     }
                     // WARNING: Subroutine does not return
@@ -30674,8 +30674,8 @@ void FUN_180073f90(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// void FUN_180074090(longlong *engine_data_structure_ptr,longlong engine_result_flag_ptr)
-void FUN_180074090(longlong *engine_data_structure_ptr,longlong engine_result_flag_ptr)
+// void engine_unnamed_function_940(longlong *engine_data_structure_ptr,longlong engine_result_flag_ptr)
+void engine_unnamed_function_940(longlong *engine_data_structure_ptr,longlong engine_result_flag_ptr)
 
 {
   longlong *pengine_temp_long;
@@ -30702,7 +30702,7 @@ void FUN_180074090(longlong *engine_data_structure_ptr,longlong engine_result_fl
   engine_temp_long_8 = (longlong)(int)*engine_temp_uint_ptr_9;
   *(uint **)(engine_result_flag_ptr + 8) = engine_temp_uint_ptr_9 + 1;
   pengine_temp_long = engine_data_structure_ptr + 4;
-  FUN_180074b30(pengine_temp_long,engine_temp_long_8);
+  engine_unnamed_function_1050(pengine_temp_long,engine_temp_long_8);
   memory_allocation_result = *(longlong *)(engine_result_flag_ptr + 8);
   engine_temp_long_7 = 0;
   engine_temp_long1 = engine_temp_long_7;
@@ -30852,8 +30852,8 @@ void FUN_180074090(longlong *engine_data_structure_ptr,longlong engine_result_fl
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// void FUN_1800740a2(longlong *engine_data_structure_ptr)
-void FUN_1800740a2(longlong *engine_data_structure_ptr)
+// void engine_unnamed_function_952(longlong *engine_data_structure_ptr)
+void engine_unnamed_function_952(longlong *engine_data_structure_ptr)
 
 {
   longlong *pengine_temp_long;
@@ -30882,7 +30882,7 @@ void FUN_1800740a2(longlong *engine_data_structure_ptr)
   engine_temp_long_8 = (longlong)(int)*engine_temp_uint_ptr_9;
   *(uint **)(unaff_RDI + 8) = engine_temp_uint_ptr_9 + 1;
   pengine_temp_long = engine_data_structure_ptr + 4;
-  FUN_180074b30(pengine_temp_long,engine_temp_long_8);
+  engine_unnamed_function_1050(pengine_temp_long,engine_temp_long_8);
   memory_allocation_result = *(longlong *)(unaff_RDI + 8);
   engine_temp_long_7 = 0;
   engine_temp_long1 = engine_temp_long_7;
@@ -31033,8 +31033,8 @@ void FUN_1800740a2(longlong *engine_data_structure_ptr)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// void FUN_1800740f5(longlong engine_data_structure_ptr)
-void FUN_1800740f5(longlong engine_data_structure_ptr)
+// void engine_unnamed_function_965(longlong engine_data_structure_ptr)
+void engine_unnamed_function_965(longlong engine_data_structure_ptr)
 
 {
   int engine_temporary_int;
@@ -31193,8 +31193,8 @@ void FUN_1800740f5(longlong engine_data_structure_ptr)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// void FUN_1800742ea(longlong engine_data_structure_ptr)
-void FUN_1800742ea(longlong engine_data_structure_ptr)
+// void engine_unnamed_function_97a(longlong engine_data_structure_ptr)
+void engine_unnamed_function_97a(longlong engine_data_structure_ptr)
 
 {
   int engine_temporary_int;
@@ -31275,8 +31275,8 @@ void FUN_1800742ea(longlong engine_data_structure_ptr)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// void FUN_180074309(void)
-void FUN_180074309(void)
+// void engine_unnamed_function_989(void)
+void engine_unnamed_function_989(void)
 
 {
   uint64 engine_temporary_uint;
@@ -31321,8 +31321,8 @@ void FUN_180074309(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// void FUN_1800744b0(longlong engine_data_structure_ptr,longlong engine_result_flag_ptr)
-void FUN_1800744b0(longlong engine_data_structure_ptr,longlong engine_result_flag_ptr)
+// void engine_unnamed_function_990(longlong engine_data_structure_ptr,longlong engine_result_flag_ptr)
+void engine_unnamed_function_990(longlong engine_data_structure_ptr,longlong engine_result_flag_ptr)
 
 {
   uint *engine_data_pointer;
@@ -31405,7 +31405,7 @@ void FUN_1800744b0(longlong engine_data_structure_ptr,longlong engine_result_fla
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-uint64_t * FUN_1800745f0(uint64 engine_data_structure_ptr,longlong engine_result_flag_ptr)
+uint64_t * engine_unnamed_function_1000(uint64 engine_data_structure_ptr,longlong engine_result_flag_ptr)
 
 {
   uint64 engine_temporary_uint;
@@ -31441,8 +31441,8 @@ uint64_t * FUN_1800745f0(uint64 engine_data_structure_ptr,longlong engine_result
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// void FUN_1800746c0(longlong engine_data_structure_ptr)
-void FUN_1800746c0(longlong engine_data_structure_ptr)
+// void engine_unnamed_function_1010(longlong engine_data_structure_ptr)
+void engine_unnamed_function_1010(longlong engine_data_structure_ptr)
 
 {
   longlong engine_temporary_long;
@@ -31489,7 +31489,7 @@ void FUN_1800746c0(longlong engine_data_structure_ptr)
     main_context_pointer = *(longlong **)(engine_data_structure_ptr + 0xb0);
     engine_temp_int_2 = (**(code **)(*main_context_pointer + 0x60))(main_context_pointer);
     *(uint8*)((longlong)main_context_pointer + 0xb2) = 1;
-    FUN_1802abe00((longlong)engine_temp_int_2 * 0x98 + engine_temporary_long + 8,main_context_pointer);
+    engine_unnamed_function_6190((longlong)engine_temp_int_2 * 0x98 + engine_temporary_long + 8,main_context_pointer);
   }
   return;
 }
@@ -31497,8 +31497,8 @@ void FUN_1800746c0(longlong engine_data_structure_ptr)
 
 
 
-// void FUN_180074840(longlong engine_data_structure_ptr)
-void FUN_180074840(longlong engine_data_structure_ptr)
+// void engine_unnamed_function_1020(longlong engine_data_structure_ptr)
+void engine_unnamed_function_1020(longlong engine_data_structure_ptr)
 
 {
   longlong *engine_stack_long_pointer_8;
@@ -31511,7 +31511,7 @@ void FUN_180074840(longlong engine_data_structure_ptr)
     if (engine_stack_long_pointer_8 != (longlong *)0x0) {
       (**(code **)(*engine_stack_long_pointer_8 + 0x28))();
     }
-    FUN_1800b55b0();
+    engine_unnamed_function_5150();
     pengine_stack_long_ptr_10 = *(longlong ***)(engine_data_structure_ptr + 0xb0);
     *(void*)(engine_data_structure_ptr + 0xb0) = 0;
     if (pengine_stack_long_ptr_10 != (longlong **)0x0) {
@@ -31527,8 +31527,8 @@ void FUN_180074840(longlong engine_data_structure_ptr)
 
 
 
-// void FUN_1800748d0(longlong engine_data_structure_ptr,longlong *engine_result_flag_ptr)
-void FUN_1800748d0(longlong engine_data_structure_ptr,longlong *engine_result_flag_ptr)
+// void engine_unnamed_function_1030(longlong engine_data_structure_ptr,longlong *engine_result_flag_ptr)
+void engine_unnamed_function_1030(longlong engine_data_structure_ptr,longlong *engine_result_flag_ptr)
 
 {
   uint8 engine_temporary_uint;
@@ -31540,14 +31540,14 @@ void FUN_1800748d0(longlong engine_data_structure_ptr,longlong *engine_result_fl
   
   engine_temporary_pointer = (uint32*)engine_result_flag_ptr[1];
   if ((ulonglong)((*engine_result_flag_ptr - (longlong)engine_temporary_pointer) + engine_result_flag_ptr[2]) < 5) {
-    FUN_180639bf0(engine_result_flag_ptr,(longlong)engine_temporary_pointer + (4 - *engine_result_flag_ptr));
+    engine_unnamed_function_6440(engine_result_flag_ptr,(longlong)engine_temporary_pointer + (4 - *engine_result_flag_ptr));
     engine_temporary_pointer = (uint32*)engine_result_flag_ptr[1];
   }
   *engine_temporary_pointer = 1;
   engine_temporary_pointer = (uint32*)(engine_result_flag_ptr[1] + 4);
   engine_result_flag_ptr[1] = (longlong)engine_temporary_pointer;
   if ((ulonglong)((*engine_result_flag_ptr - (longlong)engine_temporary_pointer) + engine_result_flag_ptr[2]) < 0x11) {
-    FUN_180639bf0(engine_result_flag_ptr,(longlong)engine_temporary_pointer + (0x10 - *engine_result_flag_ptr));
+    engine_unnamed_function_6440(engine_result_flag_ptr,(longlong)engine_temporary_pointer + (0x10 - *engine_result_flag_ptr));
     engine_temporary_pointer = (uint32*)engine_result_flag_ptr[1];
   }
   engine_temp_uint_2 = *(uint32*)(engine_data_structure_ptr + 0x1c);
@@ -31561,14 +31561,14 @@ void FUN_1800748d0(longlong engine_data_structure_ptr,longlong *engine_result_fl
   engine_result_flag_ptr[1] = (longlong)temp_data_pointer;
   engine_temporary_uint = *(uint8*)(engine_data_structure_ptr + 0x28);
   if ((ulonglong)((*engine_result_flag_ptr - (longlong)temp_data_pointer) + engine_result_flag_ptr[2]) < 2) {
-    FUN_180639bf0(engine_result_flag_ptr,temp_data_pointer + (1 - *engine_result_flag_ptr));
+    engine_unnamed_function_6440(engine_result_flag_ptr,temp_data_pointer + (1 - *engine_result_flag_ptr));
     temp_data_pointer = (uint8*)engine_result_flag_ptr[1];
   }
   *temp_data_pointer = engine_temporary_uint;
   engine_temporary_pointer = (uint32*)(engine_result_flag_ptr[1] + 1);
   engine_result_flag_ptr[1] = (longlong)engine_temporary_pointer;
   if ((ulonglong)((*engine_result_flag_ptr - (longlong)engine_temporary_pointer) + engine_result_flag_ptr[2]) < 0x11) {
-    FUN_180639bf0(engine_result_flag_ptr,(longlong)engine_temporary_pointer + (0x10 - *engine_result_flag_ptr));
+    engine_unnamed_function_6440(engine_result_flag_ptr,(longlong)engine_temporary_pointer + (0x10 - *engine_result_flag_ptr));
     engine_temporary_pointer = (uint32*)engine_result_flag_ptr[1];
   }
   engine_temp_uint_2 = *(uint32*)(engine_data_structure_ptr + 0xc);
@@ -31582,7 +31582,7 @@ void FUN_1800748d0(longlong engine_data_structure_ptr,longlong *engine_result_fl
   engine_result_flag_ptr[1] = (longlong)engine_temporary_pointer;
   engine_temp_uint_2 = *(uint32*)(engine_data_structure_ptr + 0x2c);
   if ((ulonglong)((*engine_result_flag_ptr - (longlong)engine_temporary_pointer) + engine_result_flag_ptr[2]) < 5) {
-    FUN_180639bf0(engine_result_flag_ptr,(longlong)engine_temporary_pointer + (4 - *engine_result_flag_ptr));
+    engine_unnamed_function_6440(engine_result_flag_ptr,(longlong)engine_temporary_pointer + (4 - *engine_result_flag_ptr));
     engine_temporary_pointer = (uint32*)engine_result_flag_ptr[1];
   }
   *engine_temporary_pointer = engine_temp_uint_2;
@@ -31590,7 +31590,7 @@ void FUN_1800748d0(longlong engine_data_structure_ptr,longlong *engine_result_fl
   engine_result_flag_ptr[1] = (longlong)engine_temporary_pointer;
   engine_temp_uint_2 = *(uint32*)(engine_data_structure_ptr + 0x30);
   if ((ulonglong)((*engine_result_flag_ptr - (longlong)engine_temporary_pointer) + engine_result_flag_ptr[2]) < 5) {
-    FUN_180639bf0(engine_result_flag_ptr,(longlong)engine_temporary_pointer + (4 - *engine_result_flag_ptr));
+    engine_unnamed_function_6440(engine_result_flag_ptr,(longlong)engine_temporary_pointer + (4 - *engine_result_flag_ptr));
     engine_temporary_pointer = (uint32*)engine_result_flag_ptr[1];
   }
   *engine_temporary_pointer = engine_temp_uint_2;
@@ -31598,7 +31598,7 @@ void FUN_1800748d0(longlong engine_data_structure_ptr,longlong *engine_result_fl
   engine_result_flag_ptr[1] = (longlong)engine_temporary_pointer;
   engine_temp_uint_2 = *(uint32*)(engine_data_structure_ptr + 0x34);
   if ((ulonglong)((*engine_result_flag_ptr - (longlong)engine_temporary_pointer) + engine_result_flag_ptr[2]) < 5) {
-    FUN_180639bf0(engine_result_flag_ptr,(longlong)engine_temporary_pointer + (4 - *engine_result_flag_ptr));
+    engine_unnamed_function_6440(engine_result_flag_ptr,(longlong)engine_temporary_pointer + (4 - *engine_result_flag_ptr));
     *(uint32*)engine_result_flag_ptr[1] = engine_temp_uint_2;
   }
   else {
@@ -31611,8 +31611,8 @@ void FUN_1800748d0(longlong engine_data_structure_ptr,longlong *engine_result_fl
 
 
 
-// void FUN_180074a80(longlong *engine_data_structure_ptr)
-void FUN_180074a80(longlong *engine_data_structure_ptr)
+// void engine_unnamed_function_1040(longlong *engine_data_structure_ptr)
+void engine_unnamed_function_1040(longlong *engine_data_structure_ptr)
 
 {
   longlong *pengine_temp_long;
@@ -31654,8 +31654,8 @@ void FUN_180074a80(longlong *engine_data_structure_ptr)
 
 
 
-// void FUN_180074b30(longlong *engine_data_structure_ptr,ulonglong engine_result_flag_ptr)
-void FUN_180074b30(longlong *engine_data_structure_ptr,ulonglong engine_result_flag_ptr)
+// void engine_unnamed_function_1050(longlong *engine_data_structure_ptr,ulonglong engine_result_flag_ptr)
+void engine_unnamed_function_1050(longlong *engine_data_structure_ptr,ulonglong engine_result_flag_ptr)
 
 {
   longlong *pengine_temp_long;
@@ -31669,7 +31669,7 @@ void FUN_180074b30(longlong *engine_data_structure_ptr,ulonglong engine_result_f
   engine_temp_uint_2 = ((longlong)pengine_temp_long - memory_allocation_result) / 0x24;
   if (engine_temp_uint_2 < engine_result_flag_ptr) {
     engine_temp_long_4 = engine_result_flag_ptr - engine_temp_uint_2;
-    FUN_180074c20(engine_data_structure_ptr,engine_temp_long_4,(longlong)pengine_temp_long - memory_allocation_result,engine_temp_long_4,0xfffffffffffffffe);
+    engine_unnamed_function_1060(engine_data_structure_ptr,engine_temp_long_4,(longlong)pengine_temp_long - memory_allocation_result,engine_temp_long_4,0xfffffffffffffffe);
   }
   else {
     pengine_temp_long_3 = (longlong *)(engine_result_flag_ptr * 0x24 + memory_allocation_result);
@@ -31709,8 +31709,8 @@ void FUN_180074b30(longlong *engine_data_structure_ptr,ulonglong engine_result_f
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// void FUN_180074c20(uint64_t *engine_data_structure_ptr,ulonglong engine_result_flag_ptr)
-void FUN_180074c20(uint64_t *engine_data_structure_ptr,ulonglong engine_result_flag_ptr)
+// void engine_unnamed_function_1060(uint64_t *engine_data_structure_ptr,ulonglong engine_result_flag_ptr)
+void engine_unnamed_function_1060(uint64_t *engine_data_structure_ptr,ulonglong engine_result_flag_ptr)
 
 {
   longlong *pengine_temp_long;
@@ -31866,8 +31866,8 @@ void FUN_180074c20(uint64_t *engine_data_structure_ptr,ulonglong engine_result_f
 
 
 
-// void FUN_180074ed0(longlong *engine_data_structure_ptr)
-void FUN_180074ed0(longlong *engine_data_structure_ptr)
+// void engine_unnamed_function_1070(longlong *engine_data_structure_ptr)
+void engine_unnamed_function_1070(longlong *engine_data_structure_ptr)
 
 {
   if (*engine_data_structure_ptr != 0) {
@@ -31886,7 +31886,7 @@ void FUN_180074ed0(longlong *engine_data_structure_ptr)
 
 
 uint64_t *
-FUN_180074f20(uint64_t *engine_data_structure_ptr,ulonglong engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
+engine_unnamed_function_1080(uint64_t *engine_data_structure_ptr,ulonglong engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
 
 {
   *engine_data_structure_ptr = &engine_base_data_offset_18;
@@ -31898,7 +31898,7 @@ FUN_180074f20(uint64_t *engine_data_structure_ptr,ulonglong engine_result_flag_p
 
 
 
-uint64_t * FUN_180074f70(uint64_t *engine_data_structure_ptr,ulonglong engine_result_flag_ptr)
+uint64_t * engine_unnamed_function_1090(uint64_t *engine_data_structure_ptr,ulonglong engine_result_flag_ptr)
 
 {
   *engine_data_structure_ptr = &engine_base_data_offset_18;
@@ -31911,7 +31911,7 @@ uint64_t * FUN_180074f70(uint64_t *engine_data_structure_ptr,ulonglong engine_re
 
 
 uint64_t *
-FUN_180074fb0(uint64 engine_data_structure_ptr,uint64_t *engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
+engine_unnamed_function_1100(uint64 engine_data_structure_ptr,uint64_t *engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
 
 {
   *engine_result_flag_ptr = &engine_data_18098bcb0;
@@ -31929,7 +31929,7 @@ FUN_180074fb0(uint64 engine_data_structure_ptr,uint64_t *engine_result_flag_ptr,
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-uint64_t * FUN_180075030(uint64_t *engine_data_structure_ptr,char engine_result_flag_ptr,char engine_comparison_params)
+uint64_t * engine_unnamed_function_1110(uint64_t *engine_data_structure_ptr,char engine_result_flag_ptr,char engine_comparison_params)
 
 {
   longlong *pengine_temp_long;
@@ -32133,10 +32133,10 @@ uint64_t * FUN_180075030(uint64_t *engine_data_structure_ptr,char engine_result_
 
 
 
-uint64 FUN_180075580(uint64 engine_data_structure_ptr,ulonglong engine_result_flag_ptr)
+uint64 engine_unnamed_function_1120(uint64 engine_data_structure_ptr,ulonglong engine_result_flag_ptr)
 
 {
-  FUN_1800756e0();
+  engine_unnamed_function_1150();
   if ((engine_result_flag_ptr & 1) != 0) {
     free(engine_data_structure_ptr,0x300);
   }
@@ -32145,7 +32145,7 @@ uint64 FUN_180075580(uint64 engine_data_structure_ptr,ulonglong engine_result_fl
 
 
 
-uint8_t FUN_1800755c0(longlong engine_data_structure_ptr,uint64 engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
+uint8_t engine_unnamed_function_1130(longlong engine_data_structure_ptr,uint64 engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
 
 {
   uint8 engine_temporary_uint;
@@ -32155,7 +32155,7 @@ uint8_t FUN_1800755c0(longlong engine_data_structure_ptr,uint64 engine_result_fl
   
   engine_temp_uint_2 = 0xfffffffffffffffe;
   engine_initialize_stack_context(&puStack_30);
-  engine_temporary_uint = FUN_180063510(engine_data_structure_ptr + 0x218,&puStack_30,engine_comparison_params,engine_system_parameter_4,engine_temp_uint_2);
+  engine_temporary_uint = engine_unnamed_function_210(engine_data_structure_ptr + 0x218,&puStack_30,engine_comparison_params,engine_system_parameter_4,engine_temp_uint_2);
   puStack_30 = &engine_system_context_data;
   if (lStack_28 != 0) {
                     // WARNING: Subroutine does not return
@@ -32169,8 +32169,8 @@ uint8_t FUN_1800755c0(longlong engine_data_structure_ptr,uint64 engine_result_fl
 // WARNING: Removing unreachable block (ram,0x000180276fbd)
 
 
-// void FUN_180075630(longlong engine_data_structure_ptr,uint64_t *engine_result_flag_ptr)
-void FUN_180075630(longlong engine_data_structure_ptr,uint64_t *engine_result_flag_ptr)
+// void engine_unnamed_function_1140(longlong engine_data_structure_ptr,uint64_t *engine_result_flag_ptr)
+void engine_unnamed_function_1140(longlong engine_data_structure_ptr,uint64_t *engine_result_flag_ptr)
 
 {
   void* engine_data_pointer;
@@ -32197,7 +32197,7 @@ void FUN_180075630(longlong engine_data_structure_ptr,uint64_t *engine_result_fl
   engine_temp_uint1 = *(uint *)(engine_data_structure_ptr + 0x100) & 0xfbffffff;
   *(uint *)(engine_data_structure_ptr + 0x100) = engine_temp_uint1;
   uStack_30 = 0x180075655;
-  engine_temp_char_8 = FUN_1800861a0(engine_result_flag_ptr);
+  engine_temp_char_8 = engine_unnamed_function_2910(engine_result_flag_ptr);
   if (engine_temp_char_8 == '\0') {
     *(uint *)(engine_data_structure_ptr + 0x100) = engine_temp_uint1 | 0x4000000;
   }
@@ -32251,9 +32251,9 @@ void FUN_180075630(longlong engine_data_structure_ptr,uint64_t *engine_result_fl
               engine_temp_long_9 = engine_temp_long_3 + 0x120;
             }
             else {
-              engine_temp_long_9 = FUN_180194940(engine_temp_long_3 + 0x120,auStack_e8,pengine_temp_long_2[5] + 0x70);
+              engine_temp_long_9 = engine_unnamed_function_5660(engine_temp_long_3 + 0x120,auStack_e8,pengine_temp_long_2[5] + 0x70);
             }
-            FUN_18063a240(engine_data_pointer,engine_temp_long_3 + 0x274,engine_temp_long_9);
+            engine_unnamed_function_6470(engine_data_pointer,engine_temp_long_3 + 0x274,engine_temp_long_9);
             pengine_temp_long0 = pengine_temp_long0 + 2;
           } while (pengine_temp_long0 < (longlong *)pengine_temp_long_2[8]);
         }
@@ -32266,7 +32266,7 @@ void FUN_180075630(longlong engine_data_structure_ptr,uint64_t *engine_result_fl
                *(uint32*)(*(longlong *)pengine_temp_long_2[7] + 0x2a4);
         }
         else {
-          FUN_1800b9f60(engine_data_pointer);
+          engine_unnamed_function_5170(engine_data_pointer);
           pengine_temp_long0 = (longlong *)pengine_temp_long_2[7];
           engine_temp_float_14 = 0.0;
           if (pengine_temp_long0 < (longlong *)pengine_temp_long_2[8]) {
@@ -32344,8 +32344,8 @@ void FUN_180075630(longlong engine_data_structure_ptr,uint64_t *engine_result_fl
 
 
 
-// void FUN_1800756e0(uint64_t *engine_data_structure_ptr)
-void FUN_1800756e0(uint64_t *engine_data_structure_ptr)
+// void engine_unnamed_function_1150(uint64_t *engine_data_structure_ptr)
+void engine_unnamed_function_1150(uint64_t *engine_data_structure_ptr)
 
 {
   byte *engine_byte_ptr_1;
@@ -32409,7 +32409,7 @@ void FUN_1800756e0(uint64_t *engine_data_structure_ptr)
     UNLOCK();
   }
   if (engine_data_structure_ptr[0x3d] != 0) {
-    FUN_180080060();
+    engine_unnamed_function_1780();
     engine_data_structure_ptr[0x3d] = 0;
     if (engine_data_structure_ptr[0x3e] != 0) {
       engine_byte_ptr_1 = (byte *)(engine_data_structure_ptr[0x3e] + 0xfe);
@@ -32423,22 +32423,22 @@ void FUN_1800756e0(uint64_t *engine_data_structure_ptr)
   }
   engine_temp_long_3 = engine_data_structure_ptr[0x3c];
   if (engine_temp_long_3 != 0) {
-    FUN_1808fc8a8(engine_temp_long_3,0x18,0x10,FUN_18007bb70,engine_temp_uint_4,engine_temp_long_3);
+    engine_unnamed_function_6548(engine_temp_long_3,0x18,0x10,engine_unnamed_function_1670,engine_temp_uint_4,engine_temp_long_3);
                     // WARNING: Subroutine does not return
     engine_call_cleanup_routine(engine_temp_long_3);
   }
   engine_data_structure_ptr[0x3c] = 0;
-  FUN_180080870(engine_data_structure_ptr + 0x5e);
-  FUN_1800809a0(engine_data_structure_ptr + 0x5c);
+  engine_unnamed_function_1940(engine_data_structure_ptr + 0x5e);
+  engine_unnamed_function_1950(engine_data_structure_ptr + 0x5c);
   if ((longlong *)engine_data_structure_ptr[0x4d] != (longlong *)0x0) {
     (**(code **)(*(longlong *)engine_data_structure_ptr[0x4d] + 0x38))();
   }
-  FUN_18005d580();
+  engine_unnamed_function_100();
   if ((longlong *)engine_data_structure_ptr[0x42] != (longlong *)0x0) {
     (**(code **)(*(longlong *)engine_data_structure_ptr[0x42] + 0x38))();
   }
   if (engine_data_structure_ptr[0x3d] != 0) {
-    FUN_180080060();
+    engine_unnamed_function_1780();
   }
   if ((longlong *)engine_data_structure_ptr[0x38] != (longlong *)0x0) {
     (**(code **)(*(longlong *)engine_data_structure_ptr[0x38] + 0x38))();
@@ -32462,8 +32462,8 @@ void FUN_1800756e0(uint64_t *engine_data_structure_ptr)
 
 
 
-// void FUN_180075990(longlong engine_data_structure_ptr,longlong *engine_result_flag_ptr)
-void FUN_180075990(longlong engine_data_structure_ptr,longlong *engine_result_flag_ptr)
+// void engine_unnamed_function_1160(longlong engine_data_structure_ptr,longlong *engine_result_flag_ptr)
+void engine_unnamed_function_1160(longlong engine_data_structure_ptr,longlong *engine_result_flag_ptr)
 
 {
   longlong *pengine_temp_long;
@@ -32481,20 +32481,20 @@ void FUN_180075990(longlong engine_data_structure_ptr,longlong *engine_result_fl
       auStack_28[0] = 0;
       uStack_18 = 0;
       lStack_20 = engine_data_structure_ptr;
-      FUN_18007f4c0(auStack_28);
+      engine_unnamed_function_1730(auStack_28);
       if ((*(int *)(engine_data_structure_ptr + 0x208) != 0) || (*(int *)(engine_data_structure_ptr + 0x204) != 0)) {
         uStack_40 = *(void*)(engine_data_structure_ptr + 0x1b0);
         uStack_38 = 0;
-        FUN_18007f770(&uStack_40);
+        engine_unnamed_function_1750(&uStack_40);
         pengine_temp_long = plStack_10;
-        FUN_1800860f0(plStack_10 + 2,lStack_30 + 0x10);
-        FUN_1800860f0(pengine_temp_long + 7,lStack_30 + 0x38);
-        FUN_180086090(pengine_temp_long + 0xc,lStack_30 + 0x60);
-        FUN_180085fb0(pengine_temp_long + 0x11,lStack_30 + 0x88);
-        FUN_180085ec0(pengine_temp_long + 0x19,lStack_30 + 200);
-        FUN_18007f840(&uStack_40);
+        engine_unnamed_function_2900(plStack_10 + 2,lStack_30 + 0x10);
+        engine_unnamed_function_2900(pengine_temp_long + 7,lStack_30 + 0x38);
+        engine_unnamed_function_2890(pengine_temp_long + 0xc,lStack_30 + 0x60);
+        engine_unnamed_function_2850(pengine_temp_long + 0x11,lStack_30 + 0x88);
+        engine_unnamed_function_2810(pengine_temp_long + 0x19,lStack_30 + 200);
+        engine_unnamed_function_1760(&uStack_40);
       }
-      FUN_18007f6a0(auStack_28);
+      engine_unnamed_function_1740(auStack_28);
       if (plStack_10 != (longlong *)0x0) {
         (**(code **)(*plStack_10 + 0x38))();
       }
@@ -32514,7 +32514,7 @@ void FUN_180075990(longlong engine_data_structure_ptr,longlong *engine_result_fl
 
 
 
-longlong FUN_180075af0(longlong engine_data_structure_ptr)
+longlong engine_unnamed_function_1170(longlong engine_data_structure_ptr)
 
 {
   longlong engine_temporary_long;
@@ -32538,7 +32538,7 @@ longlong FUN_180075af0(longlong engine_data_structure_ptr)
 
 
 
-float * FUN_180075b70(float *engine_data_structure_ptr)
+float * engine_unnamed_function_1180(float *engine_data_structure_ptr)
 
 {
   float *pengine_temp_float_1;
@@ -32598,7 +32598,7 @@ float * FUN_180075b70(float *engine_data_structure_ptr)
     engine_data_structure_ptr[0xa8] = 3.4028235e+38;
     uStack_90 = 0;
     pfStack_98 = pengine_temp_float_6;
-    FUN_18007f770(&pfStack_98);
+    engine_unnamed_function_1750(&pfStack_98);
     if (*(int *)(lStack_88 + 0x10) != 0) {
       do {
         pengine_temp_float_6 = (float *)((longlong)(int)engine_temp_uint64_value * 0x10 + *(longlong *)(lStack_88 + 0x18));
@@ -32645,8 +32645,8 @@ float * FUN_180075b70(float *engine_data_structure_ptr)
       fStack_4c = engine_data_structure_ptr[0x53];
       uStack_48 = *(void*)(engine_data_structure_ptr + 0x54);
       uStack_40 = *(void*)(engine_data_structure_ptr + 0x56);
-      FUN_180085c10(&engine_stack_value_78);
-      FUN_18063a240(pengine_temp_float_1,pengine_temp_float_1,&engine_stack_value_78);
+      engine_unnamed_function_2770(&engine_stack_value_78);
+      engine_unnamed_function_6470(pengine_temp_float_1,pengine_temp_float_1,&engine_stack_value_78);
       pengine_temp_float_6 = *(float **)(engine_data_structure_ptr + 0x6e);
       if (((uint)pengine_temp_float_6[0x4e] & 0x3000) == 0x2000) {
         engine_stack_value_78 = *(void*)(engine_data_structure_ptr + 0x48);
@@ -32659,8 +32659,8 @@ float * FUN_180075b70(float *engine_data_structure_ptr)
         fStack_4c = engine_data_structure_ptr[0x53];
         uStack_48 = *(void*)(engine_data_structure_ptr + 0x54);
         uStack_40 = *(void*)(engine_data_structure_ptr + 0x56);
-        FUN_180085ac0(&engine_stack_value_78,0x3fc90fdb);
-        FUN_18063a240(pengine_temp_float_1,pengine_temp_float_1,&engine_stack_value_78);
+        engine_unnamed_function_2760(&engine_stack_value_78,0x3fc90fdb);
+        engine_unnamed_function_6470(pengine_temp_float_1,pengine_temp_float_1,&engine_stack_value_78);
         engine_stack_value_78 = *(void*)(engine_data_structure_ptr + 0x48);
         engine_stack_value_70 = *(void*)(engine_data_structure_ptr + 0x4a);
         uStack_68 = *(void*)(engine_data_structure_ptr + 0x4c);
@@ -32671,8 +32671,8 @@ float * FUN_180075b70(float *engine_data_structure_ptr)
         fStack_4c = engine_data_structure_ptr[0x53];
         uStack_48 = *(void*)(engine_data_structure_ptr + 0x54);
         uStack_40 = *(void*)(engine_data_structure_ptr + 0x56);
-        FUN_180085970(&engine_stack_value_78);
-        pengine_temp_float_6 = (float *)FUN_18063a240(pengine_temp_float_1,pengine_temp_float_1,&engine_stack_value_78);
+        engine_unnamed_function_2750(&engine_stack_value_78);
+        pengine_temp_float_6 = (float *)engine_unnamed_function_6470(pengine_temp_float_1,pengine_temp_float_1,&engine_stack_value_78);
       }
     }
     pengine_temp_float_4 = pfStack_98;
@@ -32740,7 +32740,7 @@ LAB_180075f4f:
       UNLOCK();
       if (engine_temp_char_5 == '\0') {
         if ((((engine_temp_float_10 == 1.4013e-45) && (*(longlong *)(pfStack_98 + 0x84) != 0)) &&
-            (pengine_temp_float_6 = pfStack_98, FUN_1800791a0(pfStack_98), *(char *)(pengine_temp_float_6 + 0x3f) == '\0')) &&
+            (pengine_temp_float_6 = pfStack_98, engine_unnamed_function_1520(pfStack_98), *(char *)(pengine_temp_float_6 + 0x3f) == '\0')) &&
            ((*(char *)(pengine_temp_float_6 + 0x3d) == '\0' &&
             (((*(byte *)((longlong)pengine_temp_float_6 + 0xfd) & 0x20) == 0 ||
              ((*(byte *)((longlong)pengine_temp_float_6 + 0xfe) & 1) == 0)))))) {
@@ -32765,8 +32765,8 @@ LAB_180075f4f:
 
 
 
-// void FUN_180075ff0(longlong *engine_data_structure_ptr)
-void FUN_180075ff0(longlong *engine_data_structure_ptr)
+// void engine_unnamed_function_1190(longlong *engine_data_structure_ptr)
+void engine_unnamed_function_1190(longlong *engine_data_structure_ptr)
 
 {
   ushort engine_temporary_uint;
@@ -32813,7 +32813,7 @@ void FUN_180075ff0(longlong *engine_data_structure_ptr)
         engine_stack_buffer_138[0] = 0;
         uStack_128 = 0;
         plStack_130 = pengine_temp_long_2;
-        FUN_18007f4c0(engine_stack_buffer_138);
+        engine_unnamed_function_1730(engine_stack_buffer_138);
         pengine_temp_long_2 = plStack_120 + 0x16;
         engine_temporary_uint = *(ushort *)(plStack_120 + 0x18);
         engine_temp_float_8 = *(float *)(plStack_120[0x17] + -4 + (ulonglong)engine_temporary_uint * 4);
@@ -32859,12 +32859,12 @@ void FUN_180075ff0(longlong *engine_data_structure_ptr)
           uStack_d8 = 0;
           uStack_e8 = 0;
           uStack_f0 = 0;
-          FUN_18022f2e0(&uStack_100,engine_data_structure_ptr,0);
+          engine_unnamed_function_5860(&uStack_100,engine_data_structure_ptr,0);
           (**(code **)(*engine_data_structure_ptr + 0x38))(engine_data_structure_ptr);
-          FUN_18022f9b0(&uStack_100,pengine_temp_long_2,engine_temp_int_5,engine_temp_int_6,engine_temp_float_8);
-          FUN_18022f410(&uStack_100);
+          engine_unnamed_function_5890(&uStack_100,pengine_temp_long_2,engine_temp_int_5,engine_temp_int_6,engine_temp_float_8);
+          engine_unnamed_function_5880(&uStack_100);
         }
-        FUN_18007f6a0(engine_stack_buffer_138);
+        engine_unnamed_function_1740(engine_stack_buffer_138);
         if (plStack_120 != (longlong *)0x0) {
           (**(code **)(*plStack_120 + 0x38))();
         }
@@ -32872,7 +32872,7 @@ void FUN_180075ff0(longlong *engine_data_structure_ptr)
       else {
         uStack_110 = 0;
         plStack_118 = pengine_temp_long_2;
-        FUN_18007f770(&plStack_118);
+        engine_unnamed_function_1750(&plStack_118);
         engine_temp_long_7 = lStack_108 + 0xb0;
         engine_temporary_uint = *(ushort *)(lStack_108 + 0xc0);
         engine_temp_float_8 = *(float *)(*(longlong *)(lStack_108 + 0xb8) + -4 + (ulonglong)engine_temporary_uint * 4);
@@ -32919,12 +32919,12 @@ void FUN_180075ff0(longlong *engine_data_structure_ptr)
           engine_stack_value_a0 = 0;
           uStack_b0 = 0;
           uStack_b8 = 0;
-          FUN_18022f2e0(&uStack_c8,engine_data_structure_ptr,0);
+          engine_unnamed_function_5860(&uStack_c8,engine_data_structure_ptr,0);
           (**(code **)(*engine_data_structure_ptr + 0x38))(engine_data_structure_ptr);
-          FUN_18022f9b0(&uStack_c8,engine_temp_long_7,engine_temp_int_5,engine_temp_int_6,engine_temp_float_8);
-          FUN_18022f410(&uStack_c8);
+          engine_unnamed_function_5890(&uStack_c8,engine_temp_long_7,engine_temp_int_5,engine_temp_int_6,engine_temp_float_8);
+          engine_unnamed_function_5880(&uStack_c8);
         }
-        FUN_18007f840(&plStack_118);
+        engine_unnamed_function_1760(&plStack_118);
       }
       *(uint32*)(engine_data_structure_ptr + 0x5b) = *(uint32*)((longlong)engine_data_structure_ptr + 0x2dc);
     }
@@ -32938,7 +32938,7 @@ void FUN_180075ff0(longlong *engine_data_structure_ptr)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-longlong * FUN_1800763c0(longlong *engine_data_structure_ptr,longlong *engine_result_flag_ptr)
+longlong * engine_unnamed_function_1200(longlong *engine_data_structure_ptr,longlong *engine_result_flag_ptr)
 
 {
   byte *engine_byte_ptr_1;
@@ -32967,7 +32967,7 @@ longlong * FUN_1800763c0(longlong *engine_data_structure_ptr,longlong *engine_re
   
   engine_stack_long_ptr_10 = engine_result_flag_ptr;
   engine_temp_uint8 = engine_call_memory_allocator(_engine_data_18,0x300,0x10,9,0,0xfffffffffffffffe);
-  pengine_temp_long9 = (longlong *)FUN_180075030(engine_temp_uint8,0,0);
+  pengine_temp_long9 = (longlong *)engine_unnamed_function_1110(engine_temp_uint8,0,0);
   *engine_result_flag_ptr = (longlong)pengine_temp_long9;
   if (pengine_temp_long9 != (longlong *)0x0) {
     (**(code **)(*pengine_temp_long9 + 0x28))(pengine_temp_long9);
@@ -32996,13 +32996,13 @@ longlong * FUN_1800763c0(longlong *engine_data_structure_ptr,longlong *engine_re
   *(int *)(engine_temp_long_3 + 0xe0) = (int)engine_temp_long3;
   *(uint32*)(engine_temp_long_3 + 0xe4) = engine_temp_uint_6;
   if ((*(byte *)((longlong)engine_data_structure_ptr + 0xfd) & 0x20) == 0) {
-    FUN_180075990(*engine_result_flag_ptr,engine_data_structure_ptr + 0x36);
+    engine_unnamed_function_1160(*engine_result_flag_ptr,engine_data_structure_ptr + 0x36);
   }
   else {
     engine_temp_long_3 = *engine_result_flag_ptr;
     engine_stack_long_pointer_8 = engine_data_structure_ptr;
     (**(code **)(*engine_data_structure_ptr + 0x28))(engine_data_structure_ptr);
-    FUN_180075990(engine_temp_long_3,&engine_stack_long_pointer_8);
+    engine_unnamed_function_1160(engine_temp_long_3,&engine_stack_long_pointer_8);
     (**(code **)(*engine_data_structure_ptr + 0x38))(engine_data_structure_ptr);
   }
   *(longlong *)(*engine_result_flag_ptr + 0xa8) = engine_data_structure_ptr[0x15];
@@ -33121,15 +33121,15 @@ longlong * FUN_1800763c0(longlong *engine_data_structure_ptr,longlong *engine_re
   if (engine_stack_long_pointer_8 != (longlong *)0x0) {
     (**(code **)(*engine_stack_long_pointer_8 + 0x38))();
   }
-  FUN_180076910(*engine_result_flag_ptr,engine_data_structure_ptr + 0x37);
+  engine_unnamed_function_1220(*engine_result_flag_ptr,engine_data_structure_ptr + 0x37);
   return engine_result_flag_ptr;
 }
 
 
 
 
-// void FUN_180076760(longlong *engine_data_structure_ptr,uint64 engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
-void FUN_180076760(longlong *engine_data_structure_ptr,uint64 engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
+// void engine_unnamed_function_1210(longlong *engine_data_structure_ptr,uint64 engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
+void engine_unnamed_function_1210(longlong *engine_data_structure_ptr,uint64 engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
 
 {
   longlong *pengine_temp_long;
@@ -33147,7 +33147,7 @@ void FUN_180076760(longlong *engine_data_structure_ptr,uint64 engine_result_flag
     engine_data_structure_ptr[0x3f] = 0;
     engine_data_structure_ptr[0x40] = 0;
     *(uint32*)(engine_data_structure_ptr + 0x41) = 0;
-    FUN_180079520();
+    engine_unnamed_function_1590();
   }
   else {
     (**(code **)(*engine_data_structure_ptr + 0x28))();
@@ -33156,7 +33156,7 @@ void FUN_180076760(longlong *engine_data_structure_ptr,uint64 engine_result_flag
     plStack_18 = (longlong *)0x0;
     uStack_28 = 0;
     auStack_30[0] = 0;
-    FUN_18022f2e0(&plStack_40,engine_data_structure_ptr,0,engine_system_parameter_4,engine_temp_uint_2);
+    engine_unnamed_function_5860(&plStack_40,engine_data_structure_ptr,0,engine_system_parameter_4,engine_temp_uint_2);
     (**(code **)(*engine_data_structure_ptr + 0x38))(engine_data_structure_ptr);
     pengine_temp_long = plStack_38;
     *(uint32*)(plStack_38 + 2) = 0;
@@ -33169,20 +33169,20 @@ void FUN_180076760(longlong *engine_data_structure_ptr,uint64 engine_result_flag
       engine_call_cleanup_routine();
     }
     plStack_38[0x17] = 0;
-    FUN_180085530(plStack_38[0x16]);
+    engine_unnamed_function_2680(plStack_38[0x16]);
     pengine_temp_long[0x16] = 0;
     *(uint32*)(pengine_temp_long + 0x19) = 0;
     uStack_10 = 0x101;
     if ((plStack_40 != (longlong *)0x0) && (plStack_38 != (longlong *)0x0)) {
       if (cStack_e != '\0') {
-        FUN_180075b70();
+        engine_unnamed_function_1180();
       }
-      FUN_18007f6a0(auStack_30);
+      engine_unnamed_function_1740(auStack_30);
       if ((char)uStack_10 != '\0') {
-        FUN_180079520(plStack_40);
+        engine_unnamed_function_1590(plStack_40);
       }
       if (uStack_10._1_1_ != '\0') {
-        FUN_180079520(plStack_40);
+        engine_unnamed_function_1590(plStack_40);
       }
       pengine_temp_long = plStack_38;
       plStack_38 = (longlong *)0x0;
@@ -33190,7 +33190,7 @@ void FUN_180076760(longlong *engine_data_structure_ptr,uint64 engine_result_flag
         (**(code **)(*pengine_temp_long + 0x38))();
       }
     }
-    FUN_18007f6a0(auStack_30);
+    engine_unnamed_function_1740(auStack_30);
     if (plStack_18 != (longlong *)0x0) {
       (**(code **)(*plStack_18 + 0x38))();
     }
@@ -33208,8 +33208,8 @@ void FUN_180076760(longlong *engine_data_structure_ptr,uint64 engine_result_flag
 
 
 
-// void FUN_180076910(longlong engine_data_structure_ptr,longlong *engine_result_flag_ptr)
-void FUN_180076910(longlong engine_data_structure_ptr,longlong *engine_result_flag_ptr)
+// void engine_unnamed_function_1220(longlong engine_data_structure_ptr,longlong *engine_result_flag_ptr)
+void engine_unnamed_function_1220(longlong engine_data_structure_ptr,longlong *engine_result_flag_ptr)
 
 {
   byte engine_temp_byte;
@@ -33225,7 +33225,7 @@ void FUN_180076910(longlong engine_data_structure_ptr,longlong *engine_result_fl
                     // WARNING: Subroutine does not return
       engine_call_system_synchronizer();
     }
-    FUN_180080810(engine_data_structure_ptr + 0x1b8);
+    engine_unnamed_function_1930(engine_data_structure_ptr + 0x1b8);
     engine_temp_long_2 = *(longlong *)(engine_data_structure_ptr + 0x1b8);
     if (engine_temp_long_2 != 0) {
       engine_temp_long_6 = 0;
@@ -33255,7 +33255,7 @@ void FUN_180076910(longlong engine_data_structure_ptr,longlong *engine_result_fl
         engine_temp_long_6 = engine_temp_long_6 + 1;
         pengine_temp_long_7 = pengine_temp_long_7 + 1;
       } while ((bVar4 & 8) == 0);
-      FUN_1800781e0(engine_data_structure_ptr);
+      engine_unnamed_function_1420(engine_data_structure_ptr);
     }
   }
   return;
@@ -33264,8 +33264,8 @@ void FUN_180076910(longlong engine_data_structure_ptr,longlong *engine_result_fl
 
 
 
-// void FUN_180076a20(longlong engine_data_structure_ptr)
-void FUN_180076a20(longlong engine_data_structure_ptr)
+// void engine_unnamed_function_1230(longlong engine_data_structure_ptr)
+void engine_unnamed_function_1230(longlong engine_data_structure_ptr)
 
 {
   int engine_temporary_int;
@@ -33285,8 +33285,8 @@ void FUN_180076a20(longlong engine_data_structure_ptr)
 
 
 
-// void FUN_180076a80(longlong engine_data_structure_ptr)
-void FUN_180076a80(longlong engine_data_structure_ptr)
+// void engine_unnamed_function_1240(longlong engine_data_structure_ptr)
+void engine_unnamed_function_1240(longlong engine_data_structure_ptr)
 
 {
   char *presource_status_flag;
@@ -33315,7 +33315,7 @@ void FUN_180076a80(longlong engine_data_structure_ptr)
       Sleep(0);
     }
     if ((((*(longlong *)(engine_data_structure_ptr + 0x210) != 0) &&
-         (FUN_1800791a0(engine_data_structure_ptr), *(char *)(engine_data_structure_ptr + 0xfc) == '\0')) &&
+         (engine_unnamed_function_1520(engine_data_structure_ptr), *(char *)(engine_data_structure_ptr + 0xfc) == '\0')) &&
         (*(char *)(engine_data_structure_ptr + 0xf4) == '\0')) &&
        (((*(byte *)(engine_data_structure_ptr + 0xfd) & 0x20) == 0 || ((*(byte *)(engine_data_structure_ptr + 0xfe) & 1) == 0)))) {
       pengine_temp_long_2 = *(longlong **)(engine_data_structure_ptr + 0x210);
@@ -33339,7 +33339,7 @@ void FUN_180076a80(longlong engine_data_structure_ptr)
 
 
 
-uint64 FUN_180076b90(longlong engine_data_structure_ptr)
+uint64 engine_unnamed_function_1250(longlong engine_data_structure_ptr)
 
 {
   byte engine_temp_byte;
@@ -33374,7 +33374,7 @@ uint64 FUN_180076b90(longlong engine_data_structure_ptr)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-int FUN_180076c50(longlong engine_data_structure_ptr,longlong *engine_result_flag_ptr)
+int engine_unnamed_function_1260(longlong engine_data_structure_ptr,longlong *engine_result_flag_ptr)
 
 {
   longlong *pengine_temp_long;
@@ -33411,22 +33411,22 @@ int FUN_180076c50(longlong engine_data_structure_ptr,longlong *engine_result_fla
   engine_temp_int_5 = 0;
   if (((*(longlong *)(engine_data_structure_ptr + 0x1b8) != 0) && (engine_temp_int_5 = 0, (*(byte *)(engine_result_flag_ptr + 1) & 4) == 0)) &&
      (*(char *)((longlong)engine_result_flag_ptr + 0x12) == '\0')) {
-    engine_temp_int_5 = FUN_18022d470();
+    engine_temp_int_5 = engine_unnamed_function_5850();
   }
   if ((*(byte *)(engine_result_flag_ptr + 1) & 0x20) == 0) {
-    engine_temp_char_4 = FUN_180076b90(engine_data_structure_ptr);
+    engine_temp_char_4 = engine_unnamed_function_1250(engine_data_structure_ptr);
     if (engine_temp_char_4 == '\0') {
       if ((char)engine_result_flag_ptr[2] != '\0') {
         pengine_stack_value_80 = (ulonglong *)0x0;
         plStack_78 = (longlong *)0x0;
         pcStack_70 = (code *)0x0;
         pcStack_68 = _guard_check_icall;
-        FUN_1800b6f90(extraout_XMM0_Da,engine_data_structure_ptr,&pengine_stack_value_80);
+        engine_unnamed_function_5160(extraout_XMM0_Da,engine_data_structure_ptr,&pengine_stack_value_80);
         if (pcStack_70 != (code *)0x0) {
           (*pcStack_70)(&pengine_stack_value_80,0,0);
         }
       }
-      engine_temp_char_4 = FUN_180076b90(engine_data_structure_ptr);
+      engine_temp_char_4 = engine_unnamed_function_1250(engine_data_structure_ptr);
       if (engine_temp_char_4 == '\0') {
         engine_temp_int_5 = engine_temp_int_5 + 1;
         if (*engine_result_flag_ptr != 0) {
@@ -33436,7 +33436,7 @@ int FUN_180076c50(longlong engine_data_structure_ptr,longlong *engine_result_fla
       }
     }
     else if ((char)engine_result_flag_ptr[2] != '\0') {
-      FUN_18007b1e0(engine_data_structure_ptr,0);
+      engine_unnamed_function_1650(engine_data_structure_ptr,0);
     }
   }
   if ((*(byte *)(engine_result_flag_ptr + 1) & 0x10) == 0) {
@@ -33497,11 +33497,11 @@ int FUN_180076c50(longlong engine_data_structure_ptr,longlong *engine_result_fla
   }
   engine_stack_pointer_18 = &uStackX_8;
   uStackX_8 = 0;
-  engine_temp_uint5 = FUN_1801cdb50(engine_temp_long_9,local_resource_node,&engine_stack_value_60,0,in_stack_ffffffffffffff38 & 0xffffff00,0,
+  engine_temp_uint5 = engine_unnamed_function_5680(engine_temp_long_9,local_resource_node,&engine_stack_value_60,0,in_stack_ffffffffffffff38 & 0xffffff00,0,
                          (byte)engine_temp_uint3 & 1,pengine_temp_long,1,0,0,&uStackX_8,engine_temp_uint6);
   local_resource_node = &uStackX_8;
   uStackX_8 = 0;
-  engine_temp_char_4 = FUN_1801de280(engine_temp_uint5,pengine_temp_long,&uStackX_8);
+  engine_temp_char_4 = engine_unnamed_function_5690(engine_temp_uint5,pengine_temp_long,&uStackX_8);
   if (engine_temp_char_4 == '\0') {
     engine_temp_int_5 = engine_temp_int_5 + 1;
   }
@@ -33518,25 +33518,25 @@ int FUN_180076c50(longlong engine_data_structure_ptr,longlong *engine_result_fla
   engine_data_ptr2 = (ulonglong *)(*pengine_temp_long + engine_temp_uint0);
   *engine_data_ptr2 = engine_temp_uint1;
   engine_data_ptr2[1] = 0;
-  FUN_18066c220(engine_temp_long_9 + 0x20,&uStackX_8,*(uint32*)(engine_temp_long_9 + 0x10),*(uint32*)(engine_temp_long_9 + 0x18),
+  engine_unnamed_function_6510(engine_temp_long_9 + 0x20,&uStackX_8,*(uint32*)(engine_temp_long_9 + 0x10),*(uint32*)(engine_temp_long_9 + 0x18),
                 1);
   if ((char)uStackX_8 != '\0') {
     engine_temp_uint4 = engine_temp_uint1 % (ulonglong)uStackX_8._4_4_;
-    FUN_180083b20(engine_temp_long_9,uStackX_8._4_4_);
+    engine_unnamed_function_2350(engine_temp_long_9,uStackX_8._4_4_);
   }
   engine_data_ptr2[1] = *(ulonglong *)(*(longlong *)(engine_temp_long_9 + 8) + engine_temp_uint4 * 8);
   *(ulonglong **)(*(longlong *)(engine_temp_long_9 + 8) + engine_temp_uint4 * 8) = engine_data_ptr2;
   *(longlong *)(engine_temp_long_9 + 0x18) = *(longlong *)(engine_temp_long_9 + 0x18) + 1;
 LAB_180076feb:
-  FUN_180080df0(&engine_stack_value_60);
+  engine_unnamed_function_2050(&engine_stack_value_60);
   return engine_temp_int_5;
 }
 
 
 
 
-// void FUN_180077020(longlong *engine_data_structure_ptr)
-void FUN_180077020(longlong *engine_data_structure_ptr)
+// void engine_unnamed_function_1270(longlong *engine_data_structure_ptr)
+void engine_unnamed_function_1270(longlong *engine_data_structure_ptr)
 
 {
   void* engine_data_pointer;
@@ -33564,7 +33564,7 @@ void FUN_180077020(longlong *engine_data_structure_ptr)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-ulonglong FUN_180077040(longlong engine_data_structure_ptr)
+ulonglong engine_unnamed_function_1280(longlong engine_data_structure_ptr)
 
 {
   int *pengine_temp_int;
@@ -33582,7 +33582,7 @@ ulonglong FUN_180077040(longlong engine_data_structure_ptr)
       if ((((engine_temp_long_3 != 0) && (*(longlong *)(*(longlong *)(engine_data_structure_ptr + 0x1b8) + 0x328 + engine_temp_long_6) == 0)) &&
           ((*(uint *)(engine_temp_long_3 + 0x328) & 0x20000000) == 0)) && (*(longlong *)(engine_temp_long_3 + 0x370) == 0)) {
         if (*(longlong *)(engine_temp_long_3 + 0x1d8) == 0) {
-          FUN_18023b050(engine_temp_long_3,0);
+          engine_unnamed_function_5970(engine_temp_long_3,0);
           memory_allocation_result = _engine_data_70;
           pengine_temp_int = (int *)(*(longlong *)(engine_temp_long_6 + *(longlong *)(engine_data_structure_ptr + 0x1b8)) + 0x3a8);
           *pengine_temp_int = *pengine_temp_int + 1;
@@ -33608,7 +33608,7 @@ ulonglong FUN_180077040(longlong engine_data_structure_ptr)
   }
   engine_temp_uint_4 = (ulonglong)engine_comparison_result;
   if (*(longlong *)(engine_data_structure_ptr + 0x1e8) != 0) {
-    FUN_180080060();
+    engine_unnamed_function_1780();
     engine_temp_uint_4 = *(ulonglong *)(engine_data_structure_ptr + 0x1f0);
     *(void*)(engine_data_structure_ptr + 0x1e8) = 0;
     if (engine_temp_uint_4 != 0) {
@@ -33623,8 +33623,8 @@ ulonglong FUN_180077040(longlong engine_data_structure_ptr)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// void FUN_180077150(longlong *engine_data_structure_ptr)
-void FUN_180077150(longlong *engine_data_structure_ptr)
+// void engine_unnamed_function_1290(longlong *engine_data_structure_ptr)
+void engine_unnamed_function_1290(longlong *engine_data_structure_ptr)
 
 {
   uint64 engine_temporary_uint;
@@ -33654,7 +33654,7 @@ void FUN_180077150(longlong *engine_data_structure_ptr)
   auStack_40[0] = auStack_40[0] & 0xffffffffffffff00;
   uStack_48._0_4_ = 0x12;
   strcpy_s(auStack_40,0x20,&engine_base_data_offset_98);
-  engine_temp_uint_3 = FUN_180240430(engine_temporary_uint,&engine_stack_pointer_58,0);
+  engine_temp_uint_3 = engine_unnamed_function_5980(engine_temporary_uint,&engine_stack_pointer_58,0);
   engine_stack_pointer_58 = &engine_data_18098bcb0;
   if (engine_temp_uint_3 != 0) {
     memory_allocation_result = engine_data_structure_ptr[0x37];
@@ -33673,11 +33673,11 @@ void FUN_180077150(longlong *engine_data_structure_ptr)
         uStack_30 = 0;
         auStack_40[0] = 0;
         uStack_48._0_4_ = (uint)uStack_48 & 0xffffff00;
-        FUN_18022f2e0(&engine_stack_pointer_58,engine_data_structure_ptr,0);
+        engine_unnamed_function_5860(&engine_stack_pointer_58,engine_data_structure_ptr,0);
         (**(code **)(*engine_data_structure_ptr + 0x38))(engine_data_structure_ptr);
-        FUN_180237d00(&engine_stack_pointer_58);
-        FUN_18022f390(&engine_stack_pointer_58);
-        FUN_18022f410(&engine_stack_pointer_58);
+        engine_unnamed_function_5930(&engine_stack_pointer_58);
+        engine_unnamed_function_5870(&engine_stack_pointer_58);
+        engine_unnamed_function_5880(&engine_stack_pointer_58);
         memory_allocation_result = engine_data_structure_ptr[0x37];
       }
       if ((*(ulonglong *)(memory_allocation_result + 0x140) & engine_temp_uint_3) != 0) goto LAB_18007738d;
@@ -33695,19 +33695,19 @@ void FUN_180077150(longlong *engine_data_structure_ptr)
       uStack_30 = 0;
       auStack_40[0] = 0;
       uStack_48._0_4_ = (uint)uStack_48 & 0xffffff00;
-      FUN_18022f2e0(&engine_stack_pointer_58,engine_data_structure_ptr,0);
+      engine_unnamed_function_5860(&engine_stack_pointer_58,engine_data_structure_ptr,0);
       (**(code **)(*engine_data_structure_ptr + 0x38))(engine_data_structure_ptr);
-      FUN_180238950(&engine_stack_pointer_58);
+      engine_unnamed_function_5940(&engine_stack_pointer_58);
       if (puStack_50 != (ulonglong *)0x0) {
         if (cStack_26 != '\0') {
-          FUN_180075b70(engine_stack_pointer_58);
+          engine_unnamed_function_1180(engine_stack_pointer_58);
         }
-        FUN_18007f6a0(&uStack_48);
+        engine_unnamed_function_1740(&uStack_48);
         if (cStack_28 != '\0') {
-          FUN_180079520(engine_stack_pointer_58);
+          engine_unnamed_function_1590(engine_stack_pointer_58);
         }
         if (cStack_27 != '\0') {
-          FUN_180079520(engine_stack_pointer_58);
+          engine_unnamed_function_1590(engine_stack_pointer_58);
         }
         structure_data_pointer = puStack_50;
         engine_stack_pointer_68 = puStack_50;
@@ -33716,7 +33716,7 @@ void FUN_180077150(longlong *engine_data_structure_ptr)
           (**(code **)(*structure_data_pointer + 0x38))();
         }
       }
-      FUN_18022f410(&engine_stack_pointer_58);
+      engine_unnamed_function_5880(&engine_stack_pointer_58);
     }
   }
 LAB_18007738d:
@@ -33728,7 +33728,7 @@ LAB_18007738d:
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-uint64 FUN_180077420(longlong engine_data_structure_ptr,longlong engine_result_flag_ptr)
+uint64 engine_unnamed_function_1300(longlong engine_data_structure_ptr,longlong engine_result_flag_ptr)
 
 {
   uint *engine_data_pointer;
@@ -33792,7 +33792,7 @@ uint64 FUN_180077420(longlong engine_data_structure_ptr,longlong engine_result_f
     uStack_40 = 0;
     uStack_38 = 3;
     uStack_30 = 0;
-    engine_temp_int_8 = FUN_18022d470(*(void*)(engine_data_structure_ptr + 0x1b8),&engine_stack_value_78);
+    engine_temp_int_8 = engine_unnamed_function_5850(*(void*)(engine_data_structure_ptr + 0x1b8),&engine_stack_value_78);
     if (engine_temp_int_8 < 1) {
       if (lStack_50 != 0) {
                     // WARNING: Subroutine does not return
@@ -33874,8 +33874,8 @@ uint64 FUN_180077420(longlong engine_data_structure_ptr,longlong engine_result_f
 
 
 
-// void FUN_180077710(longlong engine_data_structure_ptr)
-void FUN_180077710(longlong engine_data_structure_ptr)
+// void engine_unnamed_function_1310(longlong engine_data_structure_ptr)
+void engine_unnamed_function_1310(longlong engine_data_structure_ptr)
 
 {
   int *pengine_temp_int;
@@ -33913,7 +33913,7 @@ void FUN_180077710(longlong engine_data_structure_ptr)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-ulonglong FUN_180077750(longlong engine_data_structure_ptr,uint *engine_result_flag_ptr,float *engine_comparison_params,longlong engine_system_parameter_4,
+ulonglong engine_unnamed_function_1320(longlong engine_data_structure_ptr,uint *engine_result_flag_ptr,float *engine_comparison_params,longlong engine_system_parameter_4,
                        longlong param_5)
 
 {
@@ -33991,7 +33991,7 @@ ulonglong FUN_180077750(longlong engine_data_structure_ptr,uint *engine_result_f
   engine_stack_long_x20 = engine_system_parameter_4;
   if (*(char *)(engine_data_structure_ptr + 0xf9) == '\0') {
     engine_temp_uint_24 = engine_call_memory_allocator(_engine_data_18,0xc0,8,9);
-    engine_temp_uint_24 = FUN_180084ea0(engine_temp_uint_24);
+    engine_temp_uint_24 = engine_unnamed_function_2620(engine_temp_uint_24);
     *(void*)(engine_data_structure_ptr + 0x1d8) = engine_temp_uint_24;
     LOCK();
     *(uint8*)(engine_data_structure_ptr + 0xf9) = 1;
@@ -34011,7 +34011,7 @@ ulonglong FUN_180077750(longlong engine_data_structure_ptr,uint *engine_result_f
     *(uint32*)(engine_data_structure_ptr + 0x2c4) = engine_temp_uint_8;
   }
   engine_temp_uint_25 = (ulonglong)*(uint *)(engine_data_structure_ptr + 0x270);
-  if ((*engine_result_flag_ptr & *(uint *)(engine_data_structure_ptr + 0x270)) == 0) goto FUN_180077ef9;
+  if ((*engine_result_flag_ptr & *(uint *)(engine_data_structure_ptr + 0x270)) == 0) goto engine_unnamed_function_1389;
   bVar31 = *(byte *)(engine_data_structure_ptr + 0xfd) & 0x20;
   engine_temp_long_27 = engine_data_structure_ptr;
   if (bVar31 == 0) {
@@ -34027,7 +34027,7 @@ LAB_180077847:
       *(char *)(engine_temp_long_27 + 0x38c) = (char)engine_temp_uint_25;
       if ((char)engine_temp_uint_25 == '\t') goto LAB_180077879;
     }
-FUN_180077ef9:
+engine_unnamed_function_1389:
     engine_temp_uint_25 = engine_temp_uint_25 & 0xffffffffffffff00;
   }
   else {
@@ -34039,14 +34039,14 @@ FUN_180077ef9:
 LAB_180077879:
     engine_temp_char_flag1 = func_0x0001800854e0(engine_data_structure_ptr);
     if ((engine_temp_char_flag1 == '\0') || (engine_system_parameter_4 == 0)) {
-      FUN_18007b1e0(engine_data_structure_ptr,0);
+      engine_unnamed_function_1650(engine_data_structure_ptr,0);
       if ((*(byte *)(engine_data_structure_ptr + 0xfe) & 4) == 0) {
-        engine_temp_uint_24 = FUN_180077420(engine_data_structure_ptr,engine_result_flag_ptr);
+        engine_temp_uint_24 = engine_unnamed_function_1300(engine_data_structure_ptr,engine_result_flag_ptr);
         bVar31 = (char)engine_temp_uint_24 << 2;
         engine_comparison_result2 = bVar31 | *(byte *)(engine_data_structure_ptr + 0xfe) & 0xfb;
         engine_temp_uint_25 = CONCAT71((int7)((ulonglong)engine_temp_uint_24 >> 8),engine_comparison_result2);
         *(byte *)(engine_data_structure_ptr + 0xfe) = engine_comparison_result2;
-        if ((bVar31 & 4) == 0) goto FUN_180077ef9;
+        if ((bVar31 & 4) == 0) goto engine_unnamed_function_1389;
       }
       engine_temp_uint_6 = *(uint *)(*(longlong *)(engine_data_structure_ptr + 0x1b8) + 0x388);
       if (((engine_temp_uint_6 >> 0x19 & 1) != 0) ||
@@ -34073,11 +34073,11 @@ LAB_180077879:
         engine_comparison_params = pfStackX_18;
         if (*(int *)(engine_data_ptr_26 + 4) != engine_temp_int_33) {
           *(int *)(engine_data_ptr_26 + 4) = engine_temp_int_33;
-          FUN_180079270(engine_data_structure_ptr,param_5);
+          engine_unnamed_function_1530(engine_data_structure_ptr,param_5);
           engine_comparison_params = pfStackX_18;
           if (((byte)(engine_temp_uint_6 >> 0x19) & 1) != 0) {
             if ((*(uint *)(engine_data_structure_ptr + 0x100) & 0x800) != 0) {
-              FUN_18007ee70(engine_data_structure_ptr);
+              engine_unnamed_function_1710(engine_data_structure_ptr);
             }
             lStack_118 = _engine_data_90 + 0x5868;
             engine_current_node_ptr0 = (uint *)((longlong)*(int *)(_engine_data_90 + 0x6a78) * 0x908 + lStack_118);
@@ -34101,7 +34101,7 @@ LAB_180077879:
                 }
                 UNLOCK();
                 if (bVar36) {
-                  FUN_1800e94a0(engine_current_node_ptr0,engine_temp_int_33 << 9);
+                  engine_unnamed_function_5220(engine_current_node_ptr0,engine_temp_int_33 << 9);
                   LOCK();
                   *(uint8*)((longlong)engine_current_node_ptr0 + (longlong)engine_temp_int_33 + 0x808) = 0;
                   UNLOCK();
@@ -34216,7 +34216,7 @@ LAB_180077879:
               engine_data_ptr_29 = auStackX_8;
               engine_current_node_ptr5 = *(uint **)(local_resource_node + 10);
             }
-            FUN_180080e90(engine_current_node_ptr5 + 0xce2,engine_data_ptr_29,apuStack_128);
+            engine_unnamed_function_2060(engine_current_node_ptr5 + 0xce2,engine_data_ptr_29,apuStack_128);
             engine_comparison_params = pfStackX_18;
             engine_system_parameter_4 = engine_stack_long_x20;
           }
@@ -34266,7 +34266,7 @@ LAB_180077879:
       fStack_8c = engine_temp_float_4 * engine_temp_float_16 + engine_temp_float_5 * engine_temp_float_12 + engine_temp_float * engine_temp_float_20 + engine_comparison_params[0xf];
       engine_comparison_params = &fStack_c8;
     }
-    FUN_180085190(&uStack_108,engine_result_flag_ptr + 0xc,*(uint8*)(engine_data_structure_ptr + 0xf7),engine_comparison_params);
+    engine_unnamed_function_2650(&uStack_108,engine_result_flag_ptr + 0xc,*(uint8*)(engine_data_structure_ptr + 0xf7),engine_comparison_params);
     engine_temp_uint_6 = engine_result_flag_ptr[0x6f6];
     engine_temp_int_33 = *(int *)(_engine_data_70 + 0x224);
     if (((*(byte *)(engine_data_structure_ptr + 0xfd) & 1) == 0) &&
@@ -34288,7 +34288,7 @@ LAB_180077879:
       *(void*)(engine_data_structure_ptr + 400) = uStack_d8;
       *(void*)(engine_data_structure_ptr + 0x198) = uStack_d0;
     }
-    engine_temp_uint_25 = FUN_18024a290(engine_result_flag_ptr,engine_data_structure_ptr,&uStack_108,engine_system_parameter_4,param_5);
+    engine_temp_uint_25 = engine_unnamed_function_6000(engine_result_flag_ptr,engine_data_structure_ptr,&uStack_108,engine_system_parameter_4,param_5);
     *(byte *)(engine_data_structure_ptr + 0xfd) = *(byte *)(engine_data_structure_ptr + 0xfd) & 0xfe;
     *(int *)(engine_data_structure_ptr + 0x1d0) = engine_temp_int_33;
     if (engine_comparison_result2 != 0) {
@@ -34310,8 +34310,8 @@ LAB_180077879:
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// void FUN_18007799c(void)
-void FUN_18007799c(void)
+// void engine_unnamed_function_133c(void)
+void engine_unnamed_function_133c(void)
 
 {
   uint engine_temporary_uint;
@@ -34403,7 +34403,7 @@ void FUN_18007799c(void)
   longlong in_stack_00000190;
   
   if (!in_ZF) {
-    FUN_18007ee70();
+    engine_unnamed_function_1710();
   }
   in_stack_00000050 = _engine_data_90 + 0x5868;
   engine_current_node_ptr6 = (uint *)((longlong)*(int *)(_engine_data_90 + 0x6a78) * 0x908 + in_stack_00000050);
@@ -34427,7 +34427,7 @@ void FUN_18007799c(void)
       }
       UNLOCK();
       if (bVar43) {
-        FUN_1800e94a0(engine_current_node_ptr6,engine_temp_int_40 << 9);
+        engine_unnamed_function_5220(engine_current_node_ptr6,engine_temp_int_40 << 9);
         LOCK();
         *(uint8*)((longlong)engine_current_node_ptr6 + (longlong)engine_temp_int_40 + 0x808) = 0;
         UNLOCK();
@@ -34541,7 +34541,7 @@ void FUN_18007799c(void)
     engine_current_node_ptr5 = &stack0x00000170;
     engine_temp_long_33 = *(longlong *)(in_stack_00000178 + 0x28);
   }
-  FUN_180080e90(engine_temp_long_33 + 0x3388,engine_current_node_ptr5,&stack0x00000040);
+  engine_unnamed_function_2060(engine_temp_long_33 + 0x3388,engine_current_node_ptr5,&stack0x00000040);
   pengine_temp_float_39 = in_stack_00000180;
   if ((*(uint *)(engine_register_rbx + 0x100) & 0x4000000) != 0) {
     engine_temp_float_9 = *in_stack_00000180;
@@ -34590,7 +34590,7 @@ void FUN_18007799c(void)
          engine_temp_float_5 * engine_temp_float_16 + engine_temp_float_6 * engine_temp_float_12 + engine_temp_float_2 * engine_temp_float_20 + in_stack_00000180[0xf];
     pengine_temp_float_39 = &stack0x000000a0;
   }
-  FUN_180085190(&stack0x00000060,engine_temp_long_34 + 0x30,*(uint8*)(engine_register_rbx + 0xf7),pengine_temp_float_39);
+  engine_unnamed_function_2650(&stack0x00000060,engine_temp_long_34 + 0x30,*(uint8*)(engine_register_rbx + 0xf7),pengine_temp_float_39);
   engine_temp_uint_28 = in_stack_00000098;
   engine_temp_uint_27 = in_stack_00000090;
   engine_temp_uint_26 = in_stack_00000088;
@@ -34620,7 +34620,7 @@ void FUN_18007799c(void)
     *(void*)(engine_register_rbx + 400) = in_stack_00000090;
     *(void*)(engine_register_rbx + 0x198) = in_stack_00000098;
   }
-  FUN_18024a290(engine_temp_long_34);
+  engine_unnamed_function_6000(engine_temp_long_34);
   *(byte *)(engine_register_rbx + 0xfd) = *(byte *)(engine_register_rbx + 0xfd) & 0xfe;
   *(int *)(engine_register_rbx + 0x1d0) = engine_temp_int_40;
   if (engine_comparison_result9 != 0) {
@@ -34641,8 +34641,8 @@ void FUN_18007799c(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// void FUN_180077ad8(void)
-void FUN_180077ad8(void)
+// void engine_unnamed_function_1348(void)
+void engine_unnamed_function_1348(void)
 
 {
   float engine_temp_float;
@@ -34806,7 +34806,7 @@ void FUN_180077ad8(void)
     engine_current_node_ptr4 = &stack0x00000170;
     engine_temp_long_33 = *(longlong *)(in_stack_00000178 + 0x28);
   }
-  FUN_180080e90(engine_temp_long_33 + 0x3388,engine_current_node_ptr4,&stack0x00000040);
+  engine_unnamed_function_2060(engine_temp_long_33 + 0x3388,engine_current_node_ptr4,&stack0x00000040);
   pengine_temp_float_36 = in_stack_00000180;
   if ((*(uint *)(engine_register_rbx + 0x100) & 0x4000000) != 0) {
     engine_temp_float_9 = *in_stack_00000180;
@@ -34855,7 +34855,7 @@ void FUN_180077ad8(void)
          engine_temp_float_4 * engine_temp_float_16 + engine_temp_float_5 * engine_temp_float_12 + engine_temp_float * engine_temp_float_20 + in_stack_00000180[0xf];
     pengine_temp_float_36 = &stack0x000000a0;
   }
-  FUN_180085190(&stack0x00000060,engine_temp_long_29 + 0x30,*(uint8*)(engine_register_rbx + 0xf7),pengine_temp_float_36);
+  engine_unnamed_function_2650(&stack0x00000060,engine_temp_long_29 + 0x30,*(uint8*)(engine_register_rbx + 0xf7),pengine_temp_float_36);
   engine_temp_uint_28 = in_stack_00000098;
   engine_temp_uint_27 = in_stack_00000090;
   engine_temp_uint_26 = in_stack_00000088;
@@ -34885,7 +34885,7 @@ void FUN_180077ad8(void)
     *(void*)(engine_register_rbx + 400) = in_stack_00000090;
     *(void*)(engine_register_rbx + 0x198) = in_stack_00000098;
   }
-  FUN_18024a290(engine_temp_long_29);
+  engine_unnamed_function_6000(engine_temp_long_29);
   *(byte *)(engine_register_rbx + 0xfd) = *(byte *)(engine_register_rbx + 0xfd) & 0xfe;
   *(int *)(engine_register_rbx + 0x1d0) = engine_temp_int_6;
   if (bVar30 != 0) {
@@ -34906,8 +34906,8 @@ void FUN_180077ad8(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// void FUN_180077c96(void)
-void FUN_180077c96(void)
+// void engine_unnamed_function_1356(void)
+void engine_unnamed_function_1356(void)
 
 {
   float engine_temp_float;
@@ -35009,7 +35009,7 @@ void FUN_180077c96(void)
     fStack00000000000000d8 = engine_temp_float_4 * engine_temp_float_13 + engine_temp_float_5 * engine_temp_float_9 + engine_temp_float * engine_temp_float_17 + unaff_RSI[0xe];
     fStack00000000000000dc = engine_temp_float_4 * engine_temp_float_14 + engine_temp_float_5 * engine_temp_float_10 + engine_temp_float * engine_temp_float_18 + unaff_RSI[0xf];
   }
-  FUN_180085190(&stack0x00000060,unaff_R13 + 0x30,*(uint8*)(engine_register_rbx + 0xf7));
+  engine_unnamed_function_2650(&stack0x00000060,unaff_R13 + 0x30,*(uint8*)(engine_register_rbx + 0xf7));
   engine_temp_uint_26 = in_stack_00000098;
   engine_temp_uint_25 = in_stack_00000090;
   engine_temp_uint_24 = in_stack_00000088;
@@ -35039,7 +35039,7 @@ void FUN_180077c96(void)
     *(void*)(engine_register_rbx + 400) = in_stack_00000090;
     *(void*)(engine_register_rbx + 0x198) = in_stack_00000098;
   }
-  FUN_18024a290();
+  engine_unnamed_function_6000();
   *(byte *)(engine_register_rbx + 0xfd) = *(byte *)(engine_register_rbx + 0xfd) & 0xfe;
   *(int *)(engine_register_rbx + 0x1d0) = engine_temp_int_6;
   if (engine_comparison_result8 != 0) {
@@ -35060,8 +35060,8 @@ void FUN_180077c96(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// void FUN_180077dc6(void)
-void FUN_180077dc6(void)
+// void engine_unnamed_function_1366(void)
+void engine_unnamed_function_1366(void)
 
 {
   float engine_temp_float;
@@ -35132,7 +35132,7 @@ void FUN_180077dc6(void)
   uint64 in_stack_00000188;
   
   uStack0000000000000030 = 0xffffffff;
-  FUN_180080e90(unaff_R13 + 0x3388,&stack0x00000030);
+  engine_unnamed_function_2060(unaff_R13 + 0x3388,&stack0x00000030);
   pengine_temp_float_29 = in_stack_00000180;
   if ((*(uint *)(engine_register_rbx + 0x100) & 0x4000000) != 0) {
     engine_temp_float_7 = *in_stack_00000180;
@@ -35181,7 +35181,7 @@ void FUN_180077dc6(void)
          engine_temp_float_4 * engine_temp_float_14 + engine_temp_float_5 * engine_temp_float_10 + engine_temp_float * engine_temp_float_18 + in_stack_00000180[0xf];
     pengine_temp_float_29 = &stack0x000000a0;
   }
-  FUN_180085190(&stack0x00000060,unaff_R13 + 0x30,*(uint8*)(engine_register_rbx + 0xf7),pengine_temp_float_29);
+  engine_unnamed_function_2650(&stack0x00000060,unaff_R13 + 0x30,*(uint8*)(engine_register_rbx + 0xf7),pengine_temp_float_29);
   engine_temp_uint_26 = in_stack_00000098;
   engine_temp_uint_25 = in_stack_00000090;
   engine_temp_uint_24 = in_stack_00000088;
@@ -35211,7 +35211,7 @@ void FUN_180077dc6(void)
     *(void*)(engine_register_rbx + 400) = in_stack_00000090;
     *(void*)(engine_register_rbx + 0x198) = in_stack_00000098;
   }
-  FUN_18024a290();
+  engine_unnamed_function_6000();
   *(byte *)(engine_register_rbx + 0xfd) = *(byte *)(engine_register_rbx + 0xfd) & 0xfe;
   *(int *)(engine_register_rbx + 0x1d0) = engine_temp_int_6;
   if (engine_comparison_result8 != 0) {
@@ -35232,8 +35232,8 @@ void FUN_180077dc6(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// void FUN_180077dec(void)
-void FUN_180077dec(void)
+// void engine_unnamed_function_137c(void)
+void engine_unnamed_function_137c(void)
 
 {
   int engine_temporary_int;
@@ -35258,7 +35258,7 @@ void FUN_180077dec(void)
   uint64 in_stack_00000090;
   uint64 in_stack_00000098;
   
-  FUN_180085190(&stack0x00000060,unaff_R13 + 0x30,*(uint8*)(engine_register_rbx + 0xf7));
+  engine_unnamed_function_2650(&stack0x00000060,unaff_R13 + 0x30,*(uint8*)(engine_register_rbx + 0xf7));
   engine_temp_uint_9 = in_stack_00000098;
   engine_temp_uint_8 = in_stack_00000090;
   engine_temp_uint64_value = in_stack_00000088;
@@ -35288,7 +35288,7 @@ void FUN_180077dec(void)
     *(void*)(engine_register_rbx + 400) = in_stack_00000090;
     *(void*)(engine_register_rbx + 0x198) = in_stack_00000098;
   }
-  FUN_18024a290();
+  engine_unnamed_function_6000();
   *(byte *)(engine_register_rbx + 0xfd) = *(byte *)(engine_register_rbx + 0xfd) & 0xfe;
   *(int *)(engine_register_rbx + 0x1d0) = engine_temporary_int;
   if (bVar11 != 0) {
@@ -35306,7 +35306,7 @@ void FUN_180077dec(void)
 
 
 
-uint8_t FUN_180077ef9(void)
+uint8_t engine_unnamed_function_1389(void)
 
 {
   return 0;
@@ -35314,7 +35314,7 @@ uint8_t FUN_180077ef9(void)
 
 
 
-ulonglong FUN_180077f20(longlong engine_data_structure_ptr,uint64 engine_result_flag_ptr,uint32_t engine_comparison_params,float *engine_system_parameter_4,
+ulonglong engine_unnamed_function_1390(longlong engine_data_structure_ptr,uint64 engine_result_flag_ptr,uint32_t engine_comparison_params,float *engine_system_parameter_4,
                        uint32_t param_5,uint32_t param_6)
 
 {
@@ -35375,7 +35375,7 @@ LAB_180077fcf:
         resource_status_flag9 = func_0x00018022d300();
         *(char *)(engine_temp_long_22 + 0x38c) = resource_status_flag9;
       }
-      resource_status_flag9 = FUN_18007b240(engine_data_structure_ptr,engine_data_structure_ptr + 0x1e8,resource_status_flag9,1);
+      resource_status_flag9 = engine_unnamed_function_1660(engine_data_structure_ptr,engine_data_structure_ptr + 0x1e8,resource_status_flag9,1);
       if (resource_status_flag9 == '\0') {
         *(byte *)(engine_data_structure_ptr + 0xfe) = *(byte *)(engine_data_structure_ptr + 0xfe) & 0xfb;
       }
@@ -35429,7 +35429,7 @@ LAB_180077fcf:
       engine_stack_value_60 = (ulonglong)(uint)(float)engine_stack_value_60;
       engine_stack_value_70 = (ulonglong)(uint)(float)engine_stack_value_70;
       engine_stack_value_80 = (ulonglong)(uint)(float)engine_stack_value_80;
-      engine_temp_uint_21 = FUN_180252ca0(engine_result_flag_ptr,engine_data_structure_ptr,engine_comparison_params,&engine_stack_value_88,param_5,param_6);
+      engine_temp_uint_21 = engine_unnamed_function_6020(engine_result_flag_ptr,engine_data_structure_ptr,engine_comparison_params,&engine_stack_value_88,param_5,param_6);
       return engine_temp_uint_21;
     }
     in_RAX = 0;
@@ -35445,8 +35445,8 @@ LAB_180077fcf:
 
 
 
-// void FUN_180078051(uint64 engine_data_structure_ptr,uint64 engine_result_flag_ptr,float engine_comparison_params,float engine_system_parameter_4)
-void FUN_180078051(uint64 engine_data_structure_ptr,uint64 engine_result_flag_ptr,float engine_comparison_params,float engine_system_parameter_4)
+// void engine_unnamed_function_1401(uint64 engine_data_structure_ptr,uint64 engine_result_flag_ptr,float engine_comparison_params,float engine_system_parameter_4)
+void engine_unnamed_function_1401(uint64 engine_data_structure_ptr,uint64 engine_result_flag_ptr,float engine_comparison_params,float engine_system_parameter_4)
 
 {
   float engine_temp_float;
@@ -35519,15 +35519,15 @@ void FUN_180078051(uint64 engine_data_structure_ptr,uint64 engine_result_flag_pt
   uStack000000000000005c = 0;
   uStack000000000000004c = 0;
   uStack000000000000003c = 0;
-  FUN_180252ca0(0x3f800000,engine_temp_float * engine_temp_float_7,unaff_R14D,&stack0x00000030,in_stack_000000e0);
+  engine_unnamed_function_6020(0x3f800000,engine_temp_float * engine_temp_float_7,unaff_R14D,&stack0x00000030,in_stack_000000e0);
   return;
 }
 
 
 
 
-// void FUN_180078143(void)
-void FUN_180078143(void)
+// void engine_unnamed_function_1413(void)
+void engine_unnamed_function_1413(void)
 
 {
   void* unaff_RDI;
@@ -35557,7 +35557,7 @@ void FUN_180078143(void)
   uStack0000000000000058 = unaff_RDI[5] & 0xffffffff;
   uStack0000000000000048 = unaff_RDI[3] & 0xffffffff;
   uStack0000000000000038 = unaff_RDI[1] & 0xffffffff;
-  FUN_180252ca0(0x3f800000,uStack0000000000000060,unaff_R14D,&stack0x00000030,in_stack_000000e0);
+  engine_unnamed_function_6020(0x3f800000,uStack0000000000000060,unaff_R14D,&stack0x00000030,in_stack_000000e0);
   return;
 }
 
@@ -35566,8 +35566,8 @@ void FUN_180078143(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// void FUN_1800781e0(longlong engine_data_structure_ptr)
-void FUN_1800781e0(longlong engine_data_structure_ptr)
+// void engine_unnamed_function_1420(longlong engine_data_structure_ptr)
+void engine_unnamed_function_1420(longlong engine_data_structure_ptr)
 
 {
   longlong engine_temporary_long;
@@ -35643,7 +35643,7 @@ LAB_1800782e0:
     *(uint32*)(engine_data_structure_ptr + 0x2c4) = engine_temp_uint_4;
   }
   *(uint16*)(engine_temp_long_8 + 0x3c0) = 0xffff;
-  FUN_180077150(engine_data_structure_ptr);
+  engine_unnamed_function_1290(engine_data_structure_ptr);
   if ((*(longlong *)(engine_data_structure_ptr + 600) == 0) &&
      ((*(uint *)(*(longlong *)(engine_data_structure_ptr + 0x1b8) + 0x388) >> 0x19 & 1) != 0)) {
     current_data_pointer = (void*)engine_call_memory_allocator(_engine_data_18,0x58,8,9);
@@ -35669,8 +35669,8 @@ LAB_1800782e0:
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// void FUN_1800781f4(longlong engine_data_structure_ptr)
-void FUN_1800781f4(longlong engine_data_structure_ptr)
+// void engine_unnamed_function_1434(longlong engine_data_structure_ptr)
+void engine_unnamed_function_1434(longlong engine_data_structure_ptr)
 
 {
   longlong engine_temporary_long;
@@ -35745,7 +35745,7 @@ LAB_1800782e0:
     *(uint32*)(engine_register_rbx + 0x2c4) = engine_temp_uint_4;
   }
   *(uint16*)(engine_temporary_long + 0x3c0) = 0xffff;
-  FUN_180077150();
+  engine_unnamed_function_1290();
   if ((*(longlong *)(engine_register_rbx + 600) == 0) &&
      ((*(uint *)(*(longlong *)(engine_register_rbx + 0x1b8) + 0x388) >> 0x19 & 1) != 0)) {
     current_data_pointer = (void*)engine_call_memory_allocator(_engine_data_18,0x58,8,9);
@@ -35771,8 +35771,8 @@ LAB_1800782e0:
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// void FUN_180078239(float engine_data_structure_ptr,float engine_result_flag_ptr,float engine_comparison_params,float engine_system_parameter_4)
-void FUN_180078239(float engine_data_structure_ptr,float engine_result_flag_ptr,float engine_comparison_params,float engine_system_parameter_4)
+// void engine_unnamed_function_1449(float engine_data_structure_ptr,float engine_result_flag_ptr,float engine_comparison_params,float engine_system_parameter_4)
+void engine_unnamed_function_1449(float engine_data_structure_ptr,float engine_result_flag_ptr,float engine_comparison_params,float engine_system_parameter_4)
 
 {
   longlong engine_temporary_long;
@@ -35848,7 +35848,7 @@ LAB_1800782e0:
     *(uint32*)(engine_register_rbx + 0x2c4) = engine_temp_uint_4;
   }
   *(uint16*)(engine_temporary_long + 0x3c0) = 0xffff;
-  FUN_180077150();
+  engine_unnamed_function_1290();
   if ((*(longlong *)(engine_register_rbx + 600) == 0) &&
      ((*(uint *)(*(longlong *)(engine_register_rbx + 0x1b8) + 0x388) >> 0x19 & 1) != 0)) {
     current_data_pointer = (void*)engine_call_memory_allocator(_engine_data_18,0x58,8,9);
@@ -35874,8 +35874,8 @@ LAB_1800782e0:
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// void FUN_1800782a8(longlong engine_data_structure_ptr)
-void FUN_1800782a8(longlong engine_data_structure_ptr)
+// void engine_unnamed_function_1458(longlong engine_data_structure_ptr)
+void engine_unnamed_function_1458(longlong engine_data_structure_ptr)
 
 {
   longlong engine_temporary_long;
@@ -35941,7 +35941,7 @@ LAB_1800782e0:
     *(uint32*)(engine_register_rbx + 0x2c4) = engine_temp_uint_4;
   }
   *(uint16*)(engine_temporary_long + 0x3c0) = 0xffff;
-  FUN_180077150();
+  engine_unnamed_function_1290();
   if ((*(longlong *)(engine_register_rbx + 600) == 0) &&
      ((*(uint *)(*(longlong *)(engine_register_rbx + 0x1b8) + 0x388) >> 0x19 & 1) != 0)) {
     current_data_pointer = (void*)engine_call_memory_allocator(_engine_data_18,0x58,8,9);
@@ -35967,8 +35967,8 @@ LAB_1800782e0:
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// void FUN_1800783b0(void)
-void FUN_1800783b0(void)
+// void engine_unnamed_function_1460(void)
+void engine_unnamed_function_1460(void)
 
 {
   void* engine_data_pointer;
@@ -35996,15 +35996,15 @@ void FUN_1800783b0(void)
 
 
 
-uint64_t * FUN_1800784e0(uint64_t *engine_data_structure_ptr,ulonglong engine_result_flag_ptr)
+uint64_t * engine_unnamed_function_1470(uint64_t *engine_data_structure_ptr,ulonglong engine_result_flag_ptr)
 
 {
   uint64 engine_temporary_uint;
   
   engine_temporary_uint = 0xfffffffffffffffe;
   *engine_data_structure_ptr = &engine_base_data_offset_e8;
-  FUN_180078550();
-  FUN_1808fc8a8(engine_data_structure_ptr + 1,8,7,engine_update_game_state,engine_temporary_uint);
+  engine_unnamed_function_1480();
+  engine_unnamed_function_6548(engine_data_structure_ptr + 1,8,7,engine_update_game_state,engine_temporary_uint);
   if ((engine_result_flag_ptr & 1) != 0) {
     free(engine_data_structure_ptr,0x158);
   }
@@ -36016,8 +36016,8 @@ uint64_t * FUN_1800784e0(uint64_t *engine_data_structure_ptr,ulonglong engine_re
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// void FUN_180078550(uint64_t *engine_data_structure_ptr,uint64 engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
-void FUN_180078550(uint64_t *engine_data_structure_ptr,uint64 engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
+// void engine_unnamed_function_1480(uint64_t *engine_data_structure_ptr,uint64 engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
+void engine_unnamed_function_1480(uint64_t *engine_data_structure_ptr,uint64 engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
 
 {
   longlong *pengine_temp_long;
@@ -36080,12 +36080,12 @@ void FUN_180078550(uint64_t *engine_data_structure_ptr,uint64 engine_result_flag
     *(uint32*)((longlong)engine_data_structure_ptr + 0xb4) = *(uint32*)((longlong)engine_data_structure_ptr + 0x74);
     *(uint32*)(engine_data_structure_ptr + 0x17) = *(uint32*)(engine_data_structure_ptr + 0xf);
     *(uint32*)((longlong)engine_data_structure_ptr + 0xbc) = *(uint32*)((longlong)engine_data_structure_ptr + 0x7c);
-    engine_temp_uint_4 = FUN_180084ae0();
+    engine_temp_uint_4 = engine_unnamed_function_2600();
     *(uint32*)((longlong)engine_data_structure_ptr + 0x8c) = 0;
     *(uint32*)((longlong)engine_data_structure_ptr + 0x9c) = 0;
     *(uint32*)((longlong)engine_data_structure_ptr + 0xac) = 0;
     *(uint32*)((longlong)engine_data_structure_ptr + 0xbc) = 0x3f800000;
-    FUN_180084760(engine_temp_uint_4,engine_data_structure_ptr + 0x18);
+    engine_unnamed_function_2590(engine_temp_uint_4,engine_data_structure_ptr + 0x18);
   }
   else {
     (**(code **)((void*)*engine_data_structure_ptr + 0x10))(engine_data_structure_ptr,0,engine_comparison_params,engine_system_parameter_4,engine_temp_index);
@@ -36098,8 +36098,8 @@ void FUN_180078550(uint64_t *engine_data_structure_ptr,uint64 engine_result_flag
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// void FUN_1800786e0(uint64_t *engine_data_structure_ptr,longlong engine_result_flag_ptr)
-void FUN_1800786e0(uint64_t *engine_data_structure_ptr,longlong engine_result_flag_ptr)
+// void engine_unnamed_function_1490(uint64_t *engine_data_structure_ptr,longlong engine_result_flag_ptr)
+void engine_unnamed_function_1490(uint64_t *engine_data_structure_ptr,longlong engine_result_flag_ptr)
 
 {
   longlong engine_temporary_long;
@@ -36143,7 +36143,7 @@ void FUN_1800786e0(uint64_t *engine_data_structure_ptr,longlong engine_result_fl
   engine_temp_int_9 = 0;
   pengine_temp_long_8 = engine_data_structure_ptr + 1;
   do {
-    pengine_temp_long_3 = (longlong *)FUN_1801fd480(engine_result_flag_ptr,engine_temp_int_9);
+    pengine_temp_long_3 = (longlong *)engine_unnamed_function_5760(engine_result_flag_ptr,engine_temp_int_9);
     if (pengine_temp_long_3 != (longlong *)0x0) {
       engine_stack_long_pointer_8 = pengine_temp_long_3;
       (**(code **)(*pengine_temp_long_3 + 0x28))(pengine_temp_long_3);
@@ -36164,9 +36164,9 @@ void FUN_1800786e0(uint64_t *engine_data_structure_ptr,longlong engine_result_fl
     engine_temp_int_9 = engine_temp_int_9 + 1;
     pengine_temp_long_8 = pengine_temp_long_8 + 1;
   } while (engine_temp_int_9 < 7);
-  engine_temp_uint_4 = FUN_1801fc6c0(engine_result_flag_ptr,&engine_stack_value_58);
+  engine_temp_uint_4 = engine_unnamed_function_5700(engine_result_flag_ptr,&engine_stack_value_58);
   engine_temporary_long = _engine_data_00;
-  engine_temp_int_9 = FUN_180191c00(_engine_data_00,engine_temp_uint_4);
+  engine_temp_int_9 = engine_unnamed_function_5650(_engine_data_00,engine_temp_uint_4);
   if ((engine_temp_int_9 == -1) || (engine_temp_long_7 = (longlong)engine_temp_int_9 * 0x68 + *(longlong *)(engine_temporary_long + 0x38), engine_temp_long_7 == 0)) {
     engine_temp_long_7 = *(longlong *)(engine_temporary_long + 0x28);
   }
@@ -36197,7 +36197,7 @@ void FUN_1800786e0(uint64_t *engine_data_structure_ptr,longlong engine_result_fl
   }
   *(uint32*)(engine_data_structure_ptr + 0x23) = engine_temp_uint_2;
   if ((*(char *)(engine_result_flag_ptr + 0x2f0) == '\0') && (*(longlong *)(engine_result_flag_ptr + 0x3c8) != 0)) {
-    FUN_1801fca40(*(longlong *)(engine_result_flag_ptr + 0x3c8),&engine_stack_value_58);
+    engine_unnamed_function_5750(*(longlong *)(engine_result_flag_ptr + 0x3c8),&engine_stack_value_58);
     engine_temp_uint_2 = (uint32_t)engine_stack_value_58;
     engine_temp_uint1 = engine_stack_value_58._4_4_;
     engine_temp_uint2 = (uint32_t)uStack_50;
@@ -36300,31 +36300,31 @@ void FUN_1800786e0(uint64_t *engine_data_structure_ptr,longlong engine_result_fl
   *(uint8*)((longlong)engine_data_structure_ptr + 0x152) = *(uint8*)(engine_result_flag_ptr + 0x380);
   *(uint8*)(engine_data_structure_ptr + 0x2a) = *(uint8*)(engine_result_flag_ptr + 0x381);
   if ((*(char *)(engine_result_flag_ptr + 0x35c) == '\0') && (*(longlong *)(engine_result_flag_ptr + 0x3c8) != 0)) {
-    FUN_1801fc9f0(*(longlong *)(engine_result_flag_ptr + 0x3c8),&engine_stack_long_pointer_8);
+    engine_unnamed_function_5740(*(longlong *)(engine_result_flag_ptr + 0x3c8),&engine_stack_long_pointer_8);
   }
   else {
     engine_stack_long_pointer_8 = *(longlong **)(engine_result_flag_ptr + 0x34c);
   }
   if ((*(char *)(engine_result_flag_ptr + 0x348) == '\0') && (*(longlong *)(engine_result_flag_ptr + 0x3c8) != 0)) {
-    FUN_1801fc9a0(*(longlong *)(engine_result_flag_ptr + 0x3c8),engine_stack_array_10);
+    engine_unnamed_function_5730(*(longlong *)(engine_result_flag_ptr + 0x3c8),engine_stack_array_10);
   }
   else {
     engine_stack_array_10[0] = *(void*)(engine_result_flag_ptr + 0x338);
   }
   if ((*(char *)(engine_result_flag_ptr + 0x334) == '\0') && (*(longlong *)(engine_result_flag_ptr + 0x3c8) != 0)) {
-    FUN_1801fc950(*(longlong *)(engine_result_flag_ptr + 0x3c8),&uStackX_20);
+    engine_unnamed_function_5720(*(longlong *)(engine_result_flag_ptr + 0x3c8),&uStackX_20);
   }
   else {
     uStackX_20 = *(void*)(engine_result_flag_ptr + 0x324);
   }
   if ((*(char *)(engine_result_flag_ptr + 800) == '\0') && (*(longlong *)(engine_result_flag_ptr + 0x3c8) != 0)) {
-    FUN_1801fc900(*(longlong *)(engine_result_flag_ptr + 0x3c8),&engine_stack_value_58);
+    engine_unnamed_function_5710(*(longlong *)(engine_result_flag_ptr + 0x3c8),&engine_stack_value_58);
   }
   else {
     engine_stack_value_58 = *(undefined **)(engine_result_flag_ptr + 0x300);
     uStack_50 = *(void*)(engine_result_flag_ptr + 0x308);
   }
-  FUN_180084c70(engine_data_structure_ptr + 8,&engine_stack_value_58,&uStackX_20,engine_stack_array_10,&engine_stack_long_pointer_8);
+  engine_unnamed_function_2610(engine_data_structure_ptr + 8,&engine_stack_value_58,&uStackX_20,engine_stack_array_10,&engine_stack_long_pointer_8);
   if ((void*)*engine_data_structure_ptr == &engine_base_data_offset_e8) {
     pengine_temp_float_5 = (float *)(engine_data_structure_ptr + 0x10);
     *(void*)pengine_temp_float_5 = engine_data_structure_ptr[8];
@@ -36339,7 +36339,7 @@ void FUN_1800786e0(uint64_t *engine_data_structure_ptr,longlong engine_result_fl
     *(uint32*)((longlong)engine_data_structure_ptr + 0xb4) = *(uint32*)((longlong)engine_data_structure_ptr + 0x74);
     *(uint32*)(engine_data_structure_ptr + 0x17) = *(uint32*)(engine_data_structure_ptr + 0xf);
     *(uint32*)((longlong)engine_data_structure_ptr + 0xbc) = *(uint32*)((longlong)engine_data_structure_ptr + 0x7c);
-    FUN_180084ae0();
+    engine_unnamed_function_2600();
     *(uint32*)((longlong)engine_data_structure_ptr + 0x8c) = 0;
     *(uint32*)((longlong)engine_data_structure_ptr + 0x9c) = 0;
     *(uint32*)((longlong)engine_data_structure_ptr + 0xac) = 0;
@@ -36418,8 +36418,8 @@ void FUN_1800786e0(uint64_t *engine_data_structure_ptr,longlong engine_result_fl
 
 
 
-// void FUN_180078c10(longlong engine_data_structure_ptr)
-void FUN_180078c10(longlong engine_data_structure_ptr)
+// void engine_unnamed_function_1500(longlong engine_data_structure_ptr)
+void engine_unnamed_function_1500(longlong engine_data_structure_ptr)
 
 {
   float *pengine_temp_float_1;
@@ -36456,7 +36456,7 @@ void FUN_180078c10(longlong engine_data_structure_ptr)
   *(uint32*)(engine_data_structure_ptr + 0xb4) = *(uint32*)(engine_data_structure_ptr + 0x74);
   *(uint32*)(engine_data_structure_ptr + 0xb8) = *(uint32*)(engine_data_structure_ptr + 0x78);
   *(uint32*)(engine_data_structure_ptr + 0xbc) = *(uint32*)(engine_data_structure_ptr + 0x7c);
-  FUN_180084ae0();
+  engine_unnamed_function_2600();
   *(uint32*)(engine_data_structure_ptr + 0xbc) = 0x3f800000;
   *(uint32*)(engine_data_structure_ptr + 0x8c) = 0;
   *(uint32*)(engine_data_structure_ptr + 0x9c) = 0;
@@ -36532,8 +36532,8 @@ void FUN_180078c10(longlong engine_data_structure_ptr)
 
 
 
-// void FUN_180078c70(uint32_t *engine_data_structure_ptr,longlong *engine_result_flag_ptr)
-void FUN_180078c70(uint32_t *engine_data_structure_ptr,longlong *engine_result_flag_ptr)
+// void engine_unnamed_function_1510(uint32_t *engine_data_structure_ptr,longlong *engine_result_flag_ptr)
+void engine_unnamed_function_1510(uint32_t *engine_data_structure_ptr,longlong *engine_result_flag_ptr)
 
 {
   uint32 engine_temporary_uint;
@@ -36542,7 +36542,7 @@ void FUN_180078c70(uint32_t *engine_data_structure_ptr,longlong *engine_result_f
   engine_temporary_uint = *engine_data_structure_ptr;
   structure_data_pointer = (uint32*)engine_result_flag_ptr[1];
   if ((ulonglong)((*engine_result_flag_ptr - (longlong)structure_data_pointer) + engine_result_flag_ptr[2]) < 5) {
-    FUN_180639bf0(engine_result_flag_ptr,(longlong)structure_data_pointer + (4 - *engine_result_flag_ptr));
+    engine_unnamed_function_6440(engine_result_flag_ptr,(longlong)structure_data_pointer + (4 - *engine_result_flag_ptr));
     structure_data_pointer = (uint32*)engine_result_flag_ptr[1];
   }
   *structure_data_pointer = engine_temporary_uint;
@@ -36550,7 +36550,7 @@ void FUN_180078c70(uint32_t *engine_data_structure_ptr,longlong *engine_result_f
   structure_data_pointer = (uint32*)engine_result_flag_ptr[1];
   engine_temporary_uint = engine_data_structure_ptr[1];
   if ((ulonglong)((*engine_result_flag_ptr - (longlong)structure_data_pointer) + engine_result_flag_ptr[2]) < 5) {
-    FUN_180639bf0(engine_result_flag_ptr,(longlong)structure_data_pointer + (4 - *engine_result_flag_ptr));
+    engine_unnamed_function_6440(engine_result_flag_ptr,(longlong)structure_data_pointer + (4 - *engine_result_flag_ptr));
     structure_data_pointer = (uint32*)engine_result_flag_ptr[1];
   }
   *structure_data_pointer = engine_temporary_uint;
@@ -36558,7 +36558,7 @@ void FUN_180078c70(uint32_t *engine_data_structure_ptr,longlong *engine_result_f
   structure_data_pointer = (uint32*)engine_result_flag_ptr[1];
   engine_temporary_uint = engine_data_structure_ptr[2];
   if ((ulonglong)((*engine_result_flag_ptr - (longlong)structure_data_pointer) + engine_result_flag_ptr[2]) < 5) {
-    FUN_180639bf0(engine_result_flag_ptr,(longlong)structure_data_pointer + (4 - *engine_result_flag_ptr));
+    engine_unnamed_function_6440(engine_result_flag_ptr,(longlong)structure_data_pointer + (4 - *engine_result_flag_ptr));
     structure_data_pointer = (uint32*)engine_result_flag_ptr[1];
   }
   *structure_data_pointer = engine_temporary_uint;
@@ -36566,14 +36566,14 @@ void FUN_180078c70(uint32_t *engine_data_structure_ptr,longlong *engine_result_f
   structure_data_pointer = (uint32*)engine_result_flag_ptr[1];
   engine_temporary_uint = engine_data_structure_ptr[3];
   if ((ulonglong)((*engine_result_flag_ptr - (longlong)structure_data_pointer) + engine_result_flag_ptr[2]) < 5) {
-    FUN_180639bf0(engine_result_flag_ptr,(longlong)structure_data_pointer + (4 - *engine_result_flag_ptr));
+    engine_unnamed_function_6440(engine_result_flag_ptr,(longlong)structure_data_pointer + (4 - *engine_result_flag_ptr));
     structure_data_pointer = (uint32*)engine_result_flag_ptr[1];
   }
   *structure_data_pointer = engine_temporary_uint;
   engine_result_flag_ptr[1] = engine_result_flag_ptr[1] + 4;
   structure_data_pointer = (uint32*)engine_result_flag_ptr[1];
   if ((ulonglong)((*engine_result_flag_ptr - (longlong)structure_data_pointer) + engine_result_flag_ptr[2]) < 5) {
-    FUN_180639bf0(engine_result_flag_ptr,(longlong)structure_data_pointer + (4 - *engine_result_flag_ptr));
+    engine_unnamed_function_6440(engine_result_flag_ptr,(longlong)structure_data_pointer + (4 - *engine_result_flag_ptr));
     structure_data_pointer = (uint32*)engine_result_flag_ptr[1];
   }
   *structure_data_pointer = 0x3f800000;
@@ -36581,7 +36581,7 @@ void FUN_180078c70(uint32_t *engine_data_structure_ptr,longlong *engine_result_f
   structure_data_pointer = (uint32*)engine_result_flag_ptr[1];
   engine_temporary_uint = engine_data_structure_ptr[5];
   if ((ulonglong)((*engine_result_flag_ptr - (longlong)structure_data_pointer) + engine_result_flag_ptr[2]) < 5) {
-    FUN_180639bf0(engine_result_flag_ptr,(longlong)structure_data_pointer + (4 - *engine_result_flag_ptr));
+    engine_unnamed_function_6440(engine_result_flag_ptr,(longlong)structure_data_pointer + (4 - *engine_result_flag_ptr));
     structure_data_pointer = (uint32*)engine_result_flag_ptr[1];
   }
   *structure_data_pointer = engine_temporary_uint;
@@ -36589,7 +36589,7 @@ void FUN_180078c70(uint32_t *engine_data_structure_ptr,longlong *engine_result_f
   structure_data_pointer = (uint32*)engine_result_flag_ptr[1];
   engine_temporary_uint = engine_data_structure_ptr[6];
   if ((ulonglong)((*engine_result_flag_ptr - (longlong)structure_data_pointer) + engine_result_flag_ptr[2]) < 5) {
-    FUN_180639bf0(engine_result_flag_ptr,(longlong)structure_data_pointer + (4 - *engine_result_flag_ptr));
+    engine_unnamed_function_6440(engine_result_flag_ptr,(longlong)structure_data_pointer + (4 - *engine_result_flag_ptr));
     structure_data_pointer = (uint32*)engine_result_flag_ptr[1];
   }
   *structure_data_pointer = engine_temporary_uint;
@@ -36597,14 +36597,14 @@ void FUN_180078c70(uint32_t *engine_data_structure_ptr,longlong *engine_result_f
   structure_data_pointer = (uint32*)engine_result_flag_ptr[1];
   engine_temporary_uint = engine_data_structure_ptr[7];
   if ((ulonglong)((*engine_result_flag_ptr - (longlong)structure_data_pointer) + engine_result_flag_ptr[2]) < 5) {
-    FUN_180639bf0(engine_result_flag_ptr,(longlong)structure_data_pointer + (4 - *engine_result_flag_ptr));
+    engine_unnamed_function_6440(engine_result_flag_ptr,(longlong)structure_data_pointer + (4 - *engine_result_flag_ptr));
     structure_data_pointer = (uint32*)engine_result_flag_ptr[1];
   }
   *structure_data_pointer = engine_temporary_uint;
   engine_result_flag_ptr[1] = engine_result_flag_ptr[1] + 4;
   structure_data_pointer = (uint32*)engine_result_flag_ptr[1];
   if ((ulonglong)((*engine_result_flag_ptr - (longlong)structure_data_pointer) + engine_result_flag_ptr[2]) < 5) {
-    FUN_180639bf0(engine_result_flag_ptr,(longlong)structure_data_pointer + (4 - *engine_result_flag_ptr));
+    engine_unnamed_function_6440(engine_result_flag_ptr,(longlong)structure_data_pointer + (4 - *engine_result_flag_ptr));
     structure_data_pointer = (uint32*)engine_result_flag_ptr[1];
   }
   *structure_data_pointer = 0x3f800000;
@@ -36612,7 +36612,7 @@ void FUN_180078c70(uint32_t *engine_data_structure_ptr,longlong *engine_result_f
   structure_data_pointer = (uint32*)engine_result_flag_ptr[1];
   engine_temporary_uint = engine_data_structure_ptr[9];
   if ((ulonglong)((*engine_result_flag_ptr - (longlong)structure_data_pointer) + engine_result_flag_ptr[2]) < 5) {
-    FUN_180639bf0(engine_result_flag_ptr,(longlong)structure_data_pointer + (4 - *engine_result_flag_ptr));
+    engine_unnamed_function_6440(engine_result_flag_ptr,(longlong)structure_data_pointer + (4 - *engine_result_flag_ptr));
     structure_data_pointer = (uint32*)engine_result_flag_ptr[1];
   }
   *structure_data_pointer = engine_temporary_uint;
@@ -36620,7 +36620,7 @@ void FUN_180078c70(uint32_t *engine_data_structure_ptr,longlong *engine_result_f
   structure_data_pointer = (uint32*)engine_result_flag_ptr[1];
   engine_temporary_uint = engine_data_structure_ptr[10];
   if ((ulonglong)((*engine_result_flag_ptr - (longlong)structure_data_pointer) + engine_result_flag_ptr[2]) < 5) {
-    FUN_180639bf0(engine_result_flag_ptr,(longlong)structure_data_pointer + (4 - *engine_result_flag_ptr));
+    engine_unnamed_function_6440(engine_result_flag_ptr,(longlong)structure_data_pointer + (4 - *engine_result_flag_ptr));
     structure_data_pointer = (uint32*)engine_result_flag_ptr[1];
   }
   *structure_data_pointer = engine_temporary_uint;
@@ -36628,14 +36628,14 @@ void FUN_180078c70(uint32_t *engine_data_structure_ptr,longlong *engine_result_f
   structure_data_pointer = (uint32*)engine_result_flag_ptr[1];
   engine_temporary_uint = engine_data_structure_ptr[0xb];
   if ((ulonglong)((*engine_result_flag_ptr - (longlong)structure_data_pointer) + engine_result_flag_ptr[2]) < 5) {
-    FUN_180639bf0(engine_result_flag_ptr,(longlong)structure_data_pointer + (4 - *engine_result_flag_ptr));
+    engine_unnamed_function_6440(engine_result_flag_ptr,(longlong)structure_data_pointer + (4 - *engine_result_flag_ptr));
     structure_data_pointer = (uint32*)engine_result_flag_ptr[1];
   }
   *structure_data_pointer = engine_temporary_uint;
   engine_result_flag_ptr[1] = engine_result_flag_ptr[1] + 4;
   structure_data_pointer = (uint32*)engine_result_flag_ptr[1];
   if ((ulonglong)((*engine_result_flag_ptr - (longlong)structure_data_pointer) + engine_result_flag_ptr[2]) < 5) {
-    FUN_180639bf0(engine_result_flag_ptr,(longlong)structure_data_pointer + (4 - *engine_result_flag_ptr));
+    engine_unnamed_function_6440(engine_result_flag_ptr,(longlong)structure_data_pointer + (4 - *engine_result_flag_ptr));
     structure_data_pointer = (uint32*)engine_result_flag_ptr[1];
   }
   *structure_data_pointer = 0x3f800000;
@@ -36643,7 +36643,7 @@ void FUN_180078c70(uint32_t *engine_data_structure_ptr,longlong *engine_result_f
   structure_data_pointer = (uint32*)engine_result_flag_ptr[1];
   engine_temporary_uint = engine_data_structure_ptr[0xd];
   if ((ulonglong)((*engine_result_flag_ptr - (longlong)structure_data_pointer) + engine_result_flag_ptr[2]) < 5) {
-    FUN_180639bf0(engine_result_flag_ptr,(longlong)structure_data_pointer + (4 - *engine_result_flag_ptr));
+    engine_unnamed_function_6440(engine_result_flag_ptr,(longlong)structure_data_pointer + (4 - *engine_result_flag_ptr));
     structure_data_pointer = (uint32*)engine_result_flag_ptr[1];
   }
   *structure_data_pointer = engine_temporary_uint;
@@ -36651,7 +36651,7 @@ void FUN_180078c70(uint32_t *engine_data_structure_ptr,longlong *engine_result_f
   structure_data_pointer = (uint32*)engine_result_flag_ptr[1];
   engine_temporary_uint = engine_data_structure_ptr[0xe];
   if ((ulonglong)((*engine_result_flag_ptr - (longlong)structure_data_pointer) + engine_result_flag_ptr[2]) < 5) {
-    FUN_180639bf0(engine_result_flag_ptr,(longlong)structure_data_pointer + (4 - *engine_result_flag_ptr));
+    engine_unnamed_function_6440(engine_result_flag_ptr,(longlong)structure_data_pointer + (4 - *engine_result_flag_ptr));
     structure_data_pointer = (uint32*)engine_result_flag_ptr[1];
   }
   *structure_data_pointer = engine_temporary_uint;
@@ -36659,14 +36659,14 @@ void FUN_180078c70(uint32_t *engine_data_structure_ptr,longlong *engine_result_f
   structure_data_pointer = (uint32*)engine_result_flag_ptr[1];
   engine_temporary_uint = engine_data_structure_ptr[0xf];
   if ((ulonglong)((*engine_result_flag_ptr - (longlong)structure_data_pointer) + engine_result_flag_ptr[2]) < 5) {
-    FUN_180639bf0(engine_result_flag_ptr,(longlong)structure_data_pointer + (4 - *engine_result_flag_ptr));
+    engine_unnamed_function_6440(engine_result_flag_ptr,(longlong)structure_data_pointer + (4 - *engine_result_flag_ptr));
     structure_data_pointer = (uint32*)engine_result_flag_ptr[1];
   }
   *structure_data_pointer = engine_temporary_uint;
   engine_result_flag_ptr[1] = engine_result_flag_ptr[1] + 4;
   structure_data_pointer = (uint32*)engine_result_flag_ptr[1];
   if ((ulonglong)((*engine_result_flag_ptr - (longlong)structure_data_pointer) + engine_result_flag_ptr[2]) < 5) {
-    FUN_180639bf0(engine_result_flag_ptr,(longlong)structure_data_pointer + (4 - *engine_result_flag_ptr));
+    engine_unnamed_function_6440(engine_result_flag_ptr,(longlong)structure_data_pointer + (4 - *engine_result_flag_ptr));
     structure_data_pointer = (uint32*)engine_result_flag_ptr[1];
   }
   *structure_data_pointer = 0x3f800000;
@@ -36674,7 +36674,7 @@ void FUN_180078c70(uint32_t *engine_data_structure_ptr,longlong *engine_result_f
   structure_data_pointer = (uint32*)engine_result_flag_ptr[1];
   engine_temporary_uint = engine_data_structure_ptr[0x11];
   if ((ulonglong)((*engine_result_flag_ptr - (longlong)structure_data_pointer) + engine_result_flag_ptr[2]) < 5) {
-    FUN_180639bf0(engine_result_flag_ptr,(longlong)structure_data_pointer + (4 - *engine_result_flag_ptr));
+    engine_unnamed_function_6440(engine_result_flag_ptr,(longlong)structure_data_pointer + (4 - *engine_result_flag_ptr));
     structure_data_pointer = (uint32*)engine_result_flag_ptr[1];
   }
   *structure_data_pointer = engine_temporary_uint;
@@ -36682,7 +36682,7 @@ void FUN_180078c70(uint32_t *engine_data_structure_ptr,longlong *engine_result_f
   structure_data_pointer = (uint32*)engine_result_flag_ptr[1];
   engine_temporary_uint = engine_data_structure_ptr[0x12];
   if ((ulonglong)((*engine_result_flag_ptr - (longlong)structure_data_pointer) + engine_result_flag_ptr[2]) < 5) {
-    FUN_180639bf0(engine_result_flag_ptr,(longlong)structure_data_pointer + (4 - *engine_result_flag_ptr));
+    engine_unnamed_function_6440(engine_result_flag_ptr,(longlong)structure_data_pointer + (4 - *engine_result_flag_ptr));
     structure_data_pointer = (uint32*)engine_result_flag_ptr[1];
   }
   *structure_data_pointer = engine_temporary_uint;
@@ -36690,7 +36690,7 @@ void FUN_180078c70(uint32_t *engine_data_structure_ptr,longlong *engine_result_f
   structure_data_pointer = (uint32*)engine_result_flag_ptr[1];
   engine_temporary_uint = engine_data_structure_ptr[0x13];
   if ((ulonglong)((*engine_result_flag_ptr - (longlong)structure_data_pointer) + engine_result_flag_ptr[2]) < 5) {
-    FUN_180639bf0(engine_result_flag_ptr,(longlong)structure_data_pointer + (4 - *engine_result_flag_ptr));
+    engine_unnamed_function_6440(engine_result_flag_ptr,(longlong)structure_data_pointer + (4 - *engine_result_flag_ptr));
     structure_data_pointer = (uint32*)engine_result_flag_ptr[1];
   }
   *structure_data_pointer = engine_temporary_uint;
@@ -36698,7 +36698,7 @@ void FUN_180078c70(uint32_t *engine_data_structure_ptr,longlong *engine_result_f
   structure_data_pointer = (uint32*)engine_result_flag_ptr[1];
   engine_temporary_uint = engine_data_structure_ptr[0x14];
   if ((ulonglong)((*engine_result_flag_ptr - (longlong)structure_data_pointer) + engine_result_flag_ptr[2]) < 5) {
-    FUN_180639bf0(engine_result_flag_ptr,(longlong)structure_data_pointer + (4 - *engine_result_flag_ptr));
+    engine_unnamed_function_6440(engine_result_flag_ptr,(longlong)structure_data_pointer + (4 - *engine_result_flag_ptr));
     structure_data_pointer = (uint32*)engine_result_flag_ptr[1];
   }
   *structure_data_pointer = engine_temporary_uint;
@@ -36706,7 +36706,7 @@ void FUN_180078c70(uint32_t *engine_data_structure_ptr,longlong *engine_result_f
   structure_data_pointer = (uint32*)engine_result_flag_ptr[1];
   engine_temporary_uint = engine_data_structure_ptr[0x15];
   if ((ulonglong)((*engine_result_flag_ptr - (longlong)structure_data_pointer) + engine_result_flag_ptr[2]) < 5) {
-    FUN_180639bf0(engine_result_flag_ptr,(longlong)structure_data_pointer + (4 - *engine_result_flag_ptr));
+    engine_unnamed_function_6440(engine_result_flag_ptr,(longlong)structure_data_pointer + (4 - *engine_result_flag_ptr));
     structure_data_pointer = (uint32*)engine_result_flag_ptr[1];
   }
   *structure_data_pointer = engine_temporary_uint;
@@ -36714,7 +36714,7 @@ void FUN_180078c70(uint32_t *engine_data_structure_ptr,longlong *engine_result_f
   structure_data_pointer = (uint32*)engine_result_flag_ptr[1];
   engine_temporary_uint = engine_data_structure_ptr[0x16];
   if ((ulonglong)((*engine_result_flag_ptr - (longlong)structure_data_pointer) + engine_result_flag_ptr[2]) < 5) {
-    FUN_180639bf0(engine_result_flag_ptr,(longlong)structure_data_pointer + (4 - *engine_result_flag_ptr));
+    engine_unnamed_function_6440(engine_result_flag_ptr,(longlong)structure_data_pointer + (4 - *engine_result_flag_ptr));
     *(uint32*)engine_result_flag_ptr[1] = engine_temporary_uint;
   }
   else {
@@ -36727,8 +36727,8 @@ void FUN_180078c70(uint32_t *engine_data_structure_ptr,longlong *engine_result_f
 
 
 
-// void FUN_1800791a0(longlong engine_data_structure_ptr)
-void FUN_1800791a0(longlong engine_data_structure_ptr)
+// void engine_unnamed_function_1520(longlong engine_data_structure_ptr)
+void engine_unnamed_function_1520(longlong engine_data_structure_ptr)
 
 {
   longlong engine_temporary_long;
@@ -36757,8 +36757,8 @@ void FUN_1800791a0(longlong engine_data_structure_ptr)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// void FUN_180079270(longlong engine_data_structure_ptr,longlong engine_result_flag_ptr)
-void FUN_180079270(longlong engine_data_structure_ptr,longlong engine_result_flag_ptr)
+// void engine_unnamed_function_1530(longlong engine_data_structure_ptr,longlong engine_result_flag_ptr)
+void engine_unnamed_function_1530(longlong engine_data_structure_ptr,longlong engine_result_flag_ptr)
 
 {
   longlong *pengine_temp_long;
@@ -36895,9 +36895,9 @@ void FUN_180079270(longlong engine_data_structure_ptr,longlong engine_result_fla
     *(int *)(engine_temp_long7 + 0x28) = *(int *)(_engine_data_70 + 0x224);
     if (0 < engine_temp_int_43) {
       engine_temp_long_33 = (longlong)*(int *)(_engine_data_90 + 0xe78) * 0x128 + _engine_data_90 + 0xc28;
-      engine_temp_uint_32 = FUN_180080380(engine_temp_long_33,engine_temp_int_43);
+      engine_temp_uint_32 = engine_unnamed_function_1800(engine_temp_long_33,engine_temp_int_43);
       *(uint32*)(engine_temp_long7 + 0x30) = engine_temp_uint_32;
-      FUN_1800802e0(engine_temp_long_33,engine_temp_uint_32);
+      engine_unnamed_function_1790(engine_temp_long_33,engine_temp_uint_32);
       if (*(longlong *)(engine_temp_long7 + 0x10) == 0) {
         if (*(int *)(engine_temp_long7 + 0x18) != 0) {
           *(uint32*)(engine_temp_long7 + 0x2c) = *(uint32*)(engine_temp_long7 + 0x30);
@@ -37067,8 +37067,8 @@ void FUN_180079270(longlong engine_data_structure_ptr,longlong engine_result_fla
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// void FUN_180079284(longlong engine_data_structure_ptr)
-void FUN_180079284(longlong engine_data_structure_ptr)
+// void engine_unnamed_function_1544(longlong engine_data_structure_ptr)
+void engine_unnamed_function_1544(longlong engine_data_structure_ptr)
 
 {
   longlong *pengine_temp_long;
@@ -37207,9 +37207,9 @@ void FUN_180079284(longlong engine_data_structure_ptr)
     *(int *)(engine_temp_long7 + 0x28) = *(int *)(_engine_data_70 + 0x224);
     if (0 < engine_temp_int_43) {
       engine_temp_long_33 = (longlong)*(int *)(_engine_data_90 + 0xe78) * 0x128 + _engine_data_90 + 0xc28;
-      engine_temp_uint_32 = FUN_180080380(engine_temp_long_33,engine_temp_int_43);
+      engine_temp_uint_32 = engine_unnamed_function_1800(engine_temp_long_33,engine_temp_int_43);
       *(uint32*)(engine_temp_long7 + 0x30) = engine_temp_uint_32;
-      FUN_1800802e0(engine_temp_long_33,engine_temp_uint_32);
+      engine_unnamed_function_1790(engine_temp_long_33,engine_temp_uint_32);
       if (*(longlong *)(engine_temp_long7 + 0x10) == 0) {
         if (*(int *)(engine_temp_long7 + 0x18) != 0) {
           *(uint32*)(engine_temp_long7 + 0x2c) = *(uint32*)(engine_temp_long7 + 0x30);
@@ -37379,8 +37379,8 @@ void FUN_180079284(longlong engine_data_structure_ptr)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// void FUN_1800792ea(void)
-void FUN_1800792ea(void)
+// void engine_unnamed_function_155a(void)
+void engine_unnamed_function_155a(void)
 
 {
   longlong *pengine_temp_long;
@@ -37500,9 +37500,9 @@ void FUN_1800792ea(void)
     if (0 < engine_temp_int_40) {
       uStack0000000000000050 = in_stack_00000058;
       engine_temp_long_31 = (longlong)*(int *)(_engine_data_90 + 0xe78) * 0x128 + _engine_data_90 + 0xc28;
-      engine_temp_uint_30 = FUN_180080380(engine_temp_long_31,engine_temp_int_40,engine_temp_long_43,pengine_temp_float_15,CONCAT44(unaff_XMM7_Db,unaff_XMM7_Da));
+      engine_temp_uint_30 = engine_unnamed_function_1800(engine_temp_long_31,engine_temp_int_40,engine_temp_long_43,pengine_temp_float_15,CONCAT44(unaff_XMM7_Db,unaff_XMM7_Da));
       *(uint32*)(engine_temp_long6 + 0x30) = engine_temp_uint_30;
-      FUN_1800802e0(engine_temp_long_31,engine_temp_uint_30);
+      engine_unnamed_function_1790(engine_temp_long_31,engine_temp_uint_30);
       if (*(longlong *)(engine_temp_long6 + 0x10) == 0) {
         if (*(int *)(engine_temp_long6 + 0x18) != 0) {
           *(uint32*)(engine_temp_long6 + 0x2c) = *(uint32*)(engine_temp_long6 + 0x30);
@@ -37672,8 +37672,8 @@ void FUN_1800792ea(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// void FUN_180079309(longlong engine_data_structure_ptr,uint engine_result_flag_ptr,uint64 engine_comparison_params,float *engine_system_parameter_4)
-void FUN_180079309(longlong engine_data_structure_ptr,uint engine_result_flag_ptr,uint64 engine_comparison_params,float *engine_system_parameter_4)
+// void engine_unnamed_function_1569(longlong engine_data_structure_ptr,uint engine_result_flag_ptr,uint64 engine_comparison_params,float *engine_system_parameter_4)
+void engine_unnamed_function_1569(longlong engine_data_structure_ptr,uint engine_result_flag_ptr,uint64 engine_comparison_params,float *engine_system_parameter_4)
 
 {
   longlong *pengine_temp_long;
@@ -37789,9 +37789,9 @@ void FUN_180079309(longlong engine_data_structure_ptr,uint engine_result_flag_pt
     if (0 < engine_temp_int_39) {
       uStack0000000000000050 = in_stack_00000058;
       engine_temp_long_31 = (longlong)*(int *)(_engine_data_90 + 0xe78) * 0x128 + _engine_data_90 + 0xc28;
-      engine_temp_uint_29 = FUN_180080380(engine_temp_long_31,engine_temp_int_39,engine_data_structure_ptr,engine_system_parameter_4,CONCAT44(unaff_XMM7_Db,unaff_XMM7_Da));
+      engine_temp_uint_29 = engine_unnamed_function_1800(engine_temp_long_31,engine_temp_int_39,engine_data_structure_ptr,engine_system_parameter_4,CONCAT44(unaff_XMM7_Db,unaff_XMM7_Da));
       *(uint32*)(engine_temp_long5 + 0x30) = engine_temp_uint_29;
-      FUN_1800802e0(engine_temp_long_31,engine_temp_uint_29);
+      engine_unnamed_function_1790(engine_temp_long_31,engine_temp_uint_29);
       if (*(longlong *)(engine_temp_long5 + 0x10) == 0) {
         if (*(int *)(engine_temp_long5 + 0x18) != 0) {
           *(uint32*)(engine_temp_long5 + 0x2c) = *(uint32*)(engine_temp_long5 + 0x30);
@@ -37961,8 +37961,8 @@ void FUN_180079309(longlong engine_data_structure_ptr,uint engine_result_flag_pt
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// void FUN_18007940e(void)
-void FUN_18007940e(void)
+// void engine_unnamed_function_157e(void)
+void engine_unnamed_function_157e(void)
 
 {
   longlong *pengine_temp_long;
@@ -38000,9 +38000,9 @@ void FUN_18007940e(void)
     if (0 < engine_temp_int6) {
       uStack0000000000000050 = in_stack_00000058;
       engine_temp_long2 = (longlong)*(int *)(_engine_data_90 + 0xe78) * 0x128 + _engine_data_90 + 0xc28;
-      engine_temp_uint_6 = FUN_180080380(engine_temp_long2,engine_temp_int6);
+      engine_temp_uint_6 = engine_unnamed_function_1800(engine_temp_long2,engine_temp_int6);
       *(uint32*)(memory_allocation_result + 0x30) = engine_temp_uint_6;
-      FUN_1800802e0(engine_temp_long2,engine_temp_uint_6);
+      engine_unnamed_function_1790(engine_temp_long2,engine_temp_uint_6);
       if (*(longlong *)(memory_allocation_result + 0x10) == 0) {
         if (*(int *)(memory_allocation_result + 0x18) != 0) {
           *(uint32*)(memory_allocation_result + 0x2c) = *(uint32*)(memory_allocation_result + 0x30);
@@ -38171,7 +38171,7 @@ void FUN_18007940e(void)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined * FUN_180079430(longlong engine_data_structure_ptr,uint64 engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
+undefined * engine_unnamed_function_1580(longlong engine_data_structure_ptr,uint64 engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
 
 {
   uint64 engine_temporary_uint;
@@ -38187,8 +38187,8 @@ undefined * FUN_180079430(longlong engine_data_structure_ptr,uint64 engine_resul
       _engine_data_60 = &engine_data_1809fcc28;
       _engine_data_68 = &engine_data_78;
 
-// void FUN_180079520(longlong engine_data_structure_ptr)
-void FUN_180079520(longlong engine_data_structure_ptr)
+// void engine_unnamed_function_1590(longlong engine_data_structure_ptr)
+void engine_unnamed_function_1590(longlong engine_data_structure_ptr)
 
 {
   longlong engine_temporary_long;
@@ -38216,7 +38216,7 @@ void FUN_180079520(longlong engine_data_structure_ptr)
 
 
 
-uint8_t FUN_18007953e(void)
+uint8_t engine_unnamed_function_160e(void)
 
 {
   uint8* engine_data_pointer;
@@ -38248,8 +38248,8 @@ uint8_t FUN_18007953e(void)
 
 
 
-// void FUN_18007959e(void)
-void FUN_18007959e(void)
+// void engine_unnamed_function_161e(void)
+void engine_unnamed_function_161e(void)
 
 {
   return;
@@ -38257,7 +38257,7 @@ void FUN_18007959e(void)
 
 
 
-uint8_t FUN_1800795a4(void)
+uint8_t engine_unnamed_function_1624(void)
 
 {
   uint8* engine_data_pointer;
@@ -38291,7 +38291,7 @@ uint8_t FUN_1800795a4(void)
 // WARNING: Removing unreachable block (ram,0x000180079699)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-float * FUN_1800795b0(float *engine_data_structure_ptr)
+float * engine_unnamed_function_1630(float *engine_data_structure_ptr)
 
 {
   float *pengine_temp_float_1;
@@ -38337,9 +38337,9 @@ float * FUN_1800795b0(float *engine_data_structure_ptr)
     uStack_20 = 0;
     engine_stack_value_80 = 0x1800795fa;
     pfStack_28 = engine_data_structure_ptr;
-    FUN_18007f4c0(auStack_30);
+    engine_unnamed_function_1730(auStack_30);
     engine_stack_value_80 = 0x180079605;
-    engine_temp_float_6 = (float)FUN_1802349a0(0);
+    engine_temp_float_6 = (float)engine_unnamed_function_5900(0);
     if ((10 < (int)engine_temp_float_6) ||
        ((int)(*(int *)(*(longlong *)(engine_data_structure_ptr + 0x84) + 0x88) +
              (*(int *)(*(longlong *)(engine_data_structure_ptr + 0x84) + 0x88) >> 0x1f & 3U)) >> 2 < (int)engine_temp_float_6)) {
@@ -38355,7 +38355,7 @@ float * FUN_1800795b0(float *engine_data_structure_ptr)
     }
     engine_data_structure_ptr[0x40] = (float)((uint)engine_data_structure_ptr[0x40] | 0x10000);
     engine_stack_value_80 = 0x18007968e;
-    FUN_18007f6a0(auStack_30);
+    engine_unnamed_function_1740(auStack_30);
   }
   uStack_38 = 0xfffffffffffffffe;
   pengine_temp_float_7 = engine_data_structure_ptr;
@@ -38380,7 +38380,7 @@ float * FUN_1800795b0(float *engine_data_structure_ptr)
     engine_data_structure_ptr[0xa8] = 3.4028235e+38;
     uStack_90 = 0;
     pfStack_98 = pengine_temp_float_7;
-    FUN_18007f770(&pfStack_98);
+    engine_unnamed_function_1750(&pfStack_98);
     if (*(int *)(lStack_88 + 0x10) != 0) {
       do {
         pengine_temp_float_7 = (float *)((longlong)(int)engine_temp_uint_8 * 0x10 + *(longlong *)(lStack_88 + 0x18));
@@ -38426,8 +38426,8 @@ float * FUN_1800795b0(float *engine_data_structure_ptr)
       fStack_4c = engine_data_structure_ptr[0x53];
       puStack_48 = *(undefined **)(engine_data_structure_ptr + 0x54);
       uStack_40 = *(void*)(engine_data_structure_ptr + 0x56);
-      FUN_180085c10(&engine_stack_value_78);
-      FUN_18063a240(pengine_temp_float_1,pengine_temp_float_1,&engine_stack_value_78);
+      engine_unnamed_function_2770(&engine_stack_value_78);
+      engine_unnamed_function_6470(pengine_temp_float_1,pengine_temp_float_1,&engine_stack_value_78);
       pengine_temp_float_7 = *(float **)(engine_data_structure_ptr + 0x6e);
       if (((uint)pengine_temp_float_7[0x4e] & 0x3000) == 0x2000) {
         engine_stack_value_78 = *(void*)(engine_data_structure_ptr + 0x48);
@@ -38439,8 +38439,8 @@ float * FUN_1800795b0(float *engine_data_structure_ptr)
         fStack_4c = engine_data_structure_ptr[0x53];
         puStack_48 = *(undefined **)(engine_data_structure_ptr + 0x54);
         uStack_40 = *(void*)(engine_data_structure_ptr + 0x56);
-        FUN_180085ac0(&engine_stack_value_78,0x3fc90fdb);
-        FUN_18063a240(pengine_temp_float_1,pengine_temp_float_1,&engine_stack_value_78);
+        engine_unnamed_function_2760(&engine_stack_value_78,0x3fc90fdb);
+        engine_unnamed_function_6470(pengine_temp_float_1,pengine_temp_float_1,&engine_stack_value_78);
         engine_stack_value_78 = *(void*)(engine_data_structure_ptr + 0x48);
         engine_stack_value_70 = *(void*)(engine_data_structure_ptr + 0x4a);
         uStack_68 = *(void*)(engine_data_structure_ptr + 0x4c);
@@ -38450,8 +38450,8 @@ float * FUN_1800795b0(float *engine_data_structure_ptr)
         fStack_4c = engine_data_structure_ptr[0x53];
         puStack_48 = *(undefined **)(engine_data_structure_ptr + 0x54);
         uStack_40 = *(void*)(engine_data_structure_ptr + 0x56);
-        FUN_180085970(&engine_stack_value_78);
-        pengine_temp_float_7 = (float *)FUN_18063a240(pengine_temp_float_1,pengine_temp_float_1,&engine_stack_value_78);
+        engine_unnamed_function_2750(&engine_stack_value_78);
+        pengine_temp_float_7 = (float *)engine_unnamed_function_6470(pengine_temp_float_1,pengine_temp_float_1,&engine_stack_value_78);
       }
     }
     pengine_temp_float_4 = pfStack_98;
@@ -38519,7 +38519,7 @@ LAB_180075f4f:
       UNLOCK();
       if (engine_temp_char_5 == '\0') {
         if ((((engine_temp_float_6 == 1.4013e-45) && (*(longlong *)(pfStack_98 + 0x84) != 0)) &&
-            (pengine_temp_float_7 = pfStack_98, FUN_1800791a0(pfStack_98), *(char *)(pengine_temp_float_7 + 0x3f) == '\0')) &&
+            (pengine_temp_float_7 = pfStack_98, engine_unnamed_function_1520(pfStack_98), *(char *)(pengine_temp_float_7 + 0x3f) == '\0')) &&
            ((*(char *)(pengine_temp_float_7 + 0x3d) == '\0' &&
             (((*(byte *)((longlong)pengine_temp_float_7 + 0xfd) & 0x20) == 0 ||
              ((*(byte *)((longlong)pengine_temp_float_7 + 0xfe) & 1) == 0)))))) {
@@ -38550,8 +38550,8 @@ LAB_180075f4f:
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// void FUN_1800796b0(longlong engine_data_structure_ptr)
-void FUN_1800796b0(longlong engine_data_structure_ptr)
+// void engine_unnamed_function_1640(longlong engine_data_structure_ptr)
+void engine_unnamed_function_1640(longlong engine_data_structure_ptr)
 
 {
   int *pengine_temp_int;
@@ -38668,7 +38668,7 @@ void FUN_1800796b0(longlong engine_data_structure_ptr)
   uStack_128 = 0;
   uStack_120 = 0;
   uStack_118 = 3;
-  FUN_180080ca0(&puStack_130,engine_temp_uint_28);
+  engine_unnamed_function_2010(&puStack_130,engine_temp_uint_28);
   engine_temp_uint_41 = engine_temp_uint_28;
   engine_data_ptr_29 = puStack_130;
   if (0 < engine_temp_int1) {
@@ -38686,7 +38686,7 @@ void FUN_1800796b0(longlong engine_data_structure_ptr)
     auStack_150 = ZEXT816(0) << 0x40;
   }
   else {
-    FUN_180082290(auStack_150,engine_temp_long_21);
+    engine_unnamed_function_2220(auStack_150,engine_temp_long_21);
     engine_temp_long_21 = auStack_150._0_8_;
   }
   pauStack_1e0 = (uint8_t (*) [16])(ulonglong)*(ushort *)(engine_data_structure_ptr + 0xc0);
@@ -38820,7 +38820,7 @@ void FUN_1800796b0(longlong engine_data_structure_ptr)
   plStack_168 = (longlong *)0x0;
   plStack_160 = (longlong *)0x0;
   uStack_158 = 3;
-  FUN_180081010(&lStack_170,(longlong)engine_temp_int_27);
+  engine_unnamed_function_2080(&lStack_170,(longlong)engine_temp_int_27);
   engine_temp_uint_41 = engine_temp_uint_36;
   uStackX_20 = engine_temp_uint_28;
   if (0 < (longlong)engine_temp_uint_28) {
@@ -38944,7 +38944,7 @@ LAB_180079d9b:
   uStackX_18 = 0;
   if (*pengine_temp_int < 1) {
 LAB_18007a5ac:
-    FUN_180080fa0(&lStack_170);
+    engine_unnamed_function_2070(&lStack_170);
     engine_temp_long_21 = (longlong)iStack_1e8;
     uStack_1d8 = (ulonglong)*(ushort *)(engine_data_structure_ptr + 0xc0);
     uStackX_18 = -1;
@@ -38954,11 +38954,11 @@ LAB_18007a5ac:
       piStack_208 = (int *)0x0;
       uStack_200 = 3;
       if (engine_temp_long_21 == 0) {
-        FUN_180082880(0);
+        engine_unnamed_function_2250(0);
         piStack_210 = piStack_218;
       }
       else {
-        FUN_1800824a0(&piStack_218,engine_temp_long_21);
+        engine_unnamed_function_2230(&piStack_218,engine_temp_long_21);
       }
       pengine_temp_long_39 = (longlong *)((uStackX_18 + 1) * 0x20 + auStack_150._0_8_);
       engine_temp_long_23 = 0;
@@ -39362,10 +39362,10 @@ LAB_18007ac04:
         } while (engine_temp_long_23 < (longlong)engine_temp_uint_28);
         engine_temp_long_21 = (longlong)iStack_1e8;
       }
-      FUN_1800810b0(&piStack_218);
+      engine_unnamed_function_2090(&piStack_218);
       uStackX_18 = uStackX_18 + 1;
       if ((longlong)uStack_1d8 <= (longlong)uStackX_18) {
-        FUN_180080fa0(auStack_150);
+        engine_unnamed_function_2070(auStack_150);
         if (puStack_130 != (uint32*)0x0) {
                     // WARNING: Subroutine does not return
           engine_call_cleanup_routine(puStack_130);
@@ -39631,7 +39631,7 @@ LAB_18007a312:
       pengine_temp_long_39[1] = *pengine_temp_long_39;
     }
     else {
-      FUN_1800826b0(&lStack_170,&piStack_218);
+      engine_unnamed_function_2240(&lStack_170,&piStack_218);
       pengine_temp_int_26 = piStack_210;
       pengine_temp_int6 = piStack_218;
     }
@@ -39655,7 +39655,7 @@ LAB_18007a312:
     uStack_c0 = engine_current_node_ptr[1];
     uStack_b8 = *(void*)(engine_temp_long_31 + 0x50 + engine_temp_long_21);
     uStack_b0 = *(uint32*)(engine_temp_long_31 + 0x58 + engine_temp_long_21);
-    FUN_180080c10(pengine_temp_int,&uStack_108);
+    engine_unnamed_function_2000(pengine_temp_int,&uStack_108);
     engine_temp_uint_38 = (longlong)pengine_temp_int_26 - (longlong)pengine_temp_int6 >> 2;
     engine_temp_uint_30 = 0;
     pengine_temp_int_20 = pengine_temp_int6;
@@ -39696,7 +39696,7 @@ LAB_18007a312:
           else {
             *(int *)(engine_temp_long_21 + 0x2c) = (engine_temp_int_27 >> 1) + engine_temp_int_27;
           }
-          FUN_1800846d0(engine_temp_long_21 + 0x28);
+          engine_unnamed_function_2560(engine_temp_long_21 + 0x28);
           engine_temp_int1 = *(int *)(engine_temp_long_21 + 0x28);
           engine_temp_long_31 = *(longlong *)(engine_temp_long_21 + 0x30);
         }
@@ -39729,8 +39729,8 @@ LAB_18007a58b:
 
 
 
-// void FUN_180080060(longlong *engine_data_structure_ptr)
-void FUN_180080060(longlong *engine_data_structure_ptr)
+// void engine_unnamed_function_1780(longlong *engine_data_structure_ptr)
+void engine_unnamed_function_1780(longlong *engine_data_structure_ptr)
 
 {
   longlong engine_temporary_long;
@@ -39841,8 +39841,8 @@ LAB_1800802aa:
 
 
 
-// void FUN_1800802e0(longlong engine_data_structure_ptr,uint engine_result_flag_ptr,uint64_t *engine_comparison_params,uint engine_system_parameter_4)
-void FUN_1800802e0(longlong engine_data_structure_ptr,uint engine_result_flag_ptr,uint64_t *engine_comparison_params,uint engine_system_parameter_4)
+// void engine_unnamed_function_1790(longlong engine_data_structure_ptr,uint engine_result_flag_ptr,uint64_t *engine_comparison_params,uint engine_system_parameter_4)
+void engine_unnamed_function_1790(longlong engine_data_structure_ptr,uint engine_result_flag_ptr,uint64_t *engine_comparison_params,uint engine_system_parameter_4)
 
 {
   void* engine_data_pointer;
@@ -39910,7 +39910,7 @@ void FUN_1800802e0(longlong engine_data_structure_ptr,uint engine_result_flag_pt
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-uint FUN_180080380(uint *engine_data_structure_ptr,int engine_result_flag_ptr)
+uint engine_unnamed_function_1800(uint *engine_data_structure_ptr,int engine_result_flag_ptr)
 
 {
   uint engine_temporary_uint;
@@ -39977,7 +39977,7 @@ uint FUN_180080380(uint *engine_data_structure_ptr,int engine_result_flag_ptr)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-uint32 FUN_1800803c8(longlong engine_data_structure_ptr)
+uint32 engine_unnamed_function_1818(longlong engine_data_structure_ptr)
 
 {
   longlong *pengine_temp_long;
@@ -40035,7 +40035,7 @@ uint32 FUN_1800803c8(longlong engine_data_structure_ptr)
 
 
 
-uint32 FUN_180080460(void)
+uint32 engine_unnamed_function_1820(void)
 
 {
   uint32 unaff_R15D;
@@ -40047,7 +40047,7 @@ uint32 FUN_180080460(void)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-uint FUN_180080480(uint *engine_data_structure_ptr,int engine_result_flag_ptr)
+uint engine_unnamed_function_1830(uint *engine_data_structure_ptr,int engine_result_flag_ptr)
 
 {
   uint engine_temporary_uint;
@@ -40123,7 +40123,7 @@ uint FUN_180080480(uint *engine_data_structure_ptr,int engine_result_flag_ptr)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-uint32 FUN_1800804c8(longlong engine_data_structure_ptr)
+uint32 engine_unnamed_function_1848(longlong engine_data_structure_ptr)
 
 {
   longlong *pengine_temp_long;
@@ -40190,7 +40190,7 @@ uint32 FUN_1800804c8(longlong engine_data_structure_ptr)
 
 
 
-uint32 FUN_1800805aa(void)
+uint32 engine_unnamed_function_185a(void)
 
 {
   uint32 unaff_R15D;
@@ -40201,33 +40201,33 @@ uint32 FUN_1800805aa(void)
 
 
 
-// void FUN_1800805d0(void)
-void FUN_1800805d0(void)
+// void engine_unnamed_function_1860(void)
+void engine_unnamed_function_1860(void)
 
 {
-  FUN_180080870();
+  engine_unnamed_function_1940();
   return;
 }
 
 
 
 
-// void FUN_1800805f0(void)
-void FUN_1800805f0(void)
+// void engine_unnamed_function_1870(void)
+void engine_unnamed_function_1870(void)
 
 {
-  FUN_1800809a0();
+  engine_unnamed_function_1950();
   return;
 }
 
 
 
 
-// void FUN_180080610(uint64_t *engine_data_structure_ptr)
-void FUN_180080610(uint64_t *engine_data_structure_ptr)
+// void engine_unnamed_function_1880(uint64_t *engine_data_structure_ptr)
+void engine_unnamed_function_1880(uint64_t *engine_data_structure_ptr)
 
 {
-  FUN_180085530(*engine_data_structure_ptr);
+  engine_unnamed_function_2680(*engine_data_structure_ptr);
   *engine_data_structure_ptr = 0;
   if (engine_data_structure_ptr[1] != 0) {
                     // WARNING: Subroutine does not return
@@ -40240,8 +40240,8 @@ void FUN_180080610(uint64_t *engine_data_structure_ptr)
 
 
 
-// void FUN_180080650(int *engine_data_structure_ptr,longlong engine_result_flag_ptr)
-void FUN_180080650(int *engine_data_structure_ptr,longlong engine_result_flag_ptr)
+// void engine_unnamed_function_1890(int *engine_data_structure_ptr,longlong engine_result_flag_ptr)
+void engine_unnamed_function_1890(int *engine_data_structure_ptr,longlong engine_result_flag_ptr)
 
 {
   int engine_temporary_int;
@@ -40264,7 +40264,7 @@ void FUN_180080650(int *engine_data_structure_ptr,longlong engine_result_flag_pt
     else {
       engine_data_structure_ptr[1] = engine_temporary_int;
     }
-    FUN_1800846d0(engine_data_structure_ptr);
+    engine_unnamed_function_2560(engine_data_structure_ptr);
   }
   *engine_data_structure_ptr = engine_temporary_int;
                     // WARNING: Subroutine does not return
@@ -40274,8 +40274,8 @@ void FUN_180080650(int *engine_data_structure_ptr,longlong engine_result_flag_pt
 
 
 
-// void FUN_1800806e0(int *engine_data_structure_ptr,longlong *engine_result_flag_ptr)
-void FUN_1800806e0(int *engine_data_structure_ptr,longlong *engine_result_flag_ptr)
+// void engine_unnamed_function_1900(int *engine_data_structure_ptr,longlong *engine_result_flag_ptr)
+void engine_unnamed_function_1900(int *engine_data_structure_ptr,longlong *engine_result_flag_ptr)
 
 {
   longlong engine_temporary_long;
@@ -40292,14 +40292,14 @@ void FUN_1800806e0(int *engine_data_structure_ptr,longlong *engine_result_flag_p
   engine_temp_long_2 = *engine_result_flag_ptr;
   engine_temp_uint64_value = (longlong)engine_temp_int_5 * 0x10 + 4;
   if ((ulonglong)((engine_temp_long_2 - (longlong)pengine_temp_int_4) + engine_temp_long_6) <= engine_temp_uint64_value) {
-    FUN_180639bf0(engine_result_flag_ptr,(longlong)pengine_temp_int_4 + (engine_temp_uint64_value - engine_temp_long_2));
+    engine_unnamed_function_6440(engine_result_flag_ptr,(longlong)pengine_temp_int_4 + (engine_temp_uint64_value - engine_temp_long_2));
     engine_temp_long_6 = engine_result_flag_ptr[2];
     pengine_temp_int_4 = (int *)engine_result_flag_ptr[1];
     engine_temp_long_2 = *engine_result_flag_ptr;
     engine_temp_int_5 = *engine_data_structure_ptr;
   }
   if ((ulonglong)((engine_temp_long_2 - (longlong)pengine_temp_int_4) + engine_temp_long_6) < 5) {
-    FUN_180639bf0(engine_result_flag_ptr,(longlong)pengine_temp_int_4 + (4 - engine_temp_long_2));
+    engine_unnamed_function_6440(engine_result_flag_ptr,(longlong)pengine_temp_int_4 + (4 - engine_temp_long_2));
     pengine_temp_int_4 = (int *)engine_result_flag_ptr[1];
   }
   *pengine_temp_int_4 = engine_temp_int_5;
@@ -40311,7 +40311,7 @@ void FUN_1800806e0(int *engine_data_structure_ptr,longlong *engine_result_flag_p
     do {
       engine_temp_long_2 = *(longlong *)(engine_data_structure_ptr + 2);
       if ((ulonglong)((engine_result_flag_ptr[2] - (longlong)engine_current_node_ptr) + *engine_result_flag_ptr) < 0x11) {
-        FUN_180639bf0(engine_result_flag_ptr,(longlong)engine_current_node_ptr + (0x10 - *engine_result_flag_ptr));
+        engine_unnamed_function_6440(engine_result_flag_ptr,(longlong)engine_current_node_ptr + (0x10 - *engine_result_flag_ptr));
         engine_current_node_ptr = (uint32*)engine_result_flag_ptr[1];
       }
       engine_temp_int_5 = engine_temp_int_5 + 1;
@@ -40334,8 +40334,8 @@ void FUN_1800806e0(int *engine_data_structure_ptr,longlong *engine_result_flag_p
 
 
 
-// void FUN_180080779(uint32_t *engine_data_structure_ptr)
-void FUN_180080779(uint32_t *engine_data_structure_ptr)
+// void engine_unnamed_function_1919(uint32_t *engine_data_structure_ptr)
+void engine_unnamed_function_1919(uint32_t *engine_data_structure_ptr)
 
 {
   longlong engine_temporary_long;
@@ -40349,7 +40349,7 @@ void FUN_180080779(uint32_t *engine_data_structure_ptr)
   do {
     engine_temp_long_2 = *(longlong *)(unaff_R14 + 2);
     if ((ulonglong)((engine_register_rbx[2] - (longlong)engine_data_structure_ptr) + *engine_register_rbx) < 0x11) {
-      FUN_180639bf0();
+      engine_unnamed_function_6440();
       engine_data_structure_ptr = (uint32*)engine_register_rbx[1];
     }
     unaff_EBP = unaff_EBP + 1;
@@ -40371,8 +40371,8 @@ void FUN_180080779(uint32_t *engine_data_structure_ptr)
 
 
 
-// void FUN_1800807f5(void)
-void FUN_1800807f5(void)
+// void engine_unnamed_function_1925(void)
+void engine_unnamed_function_1925(void)
 
 {
   return;
@@ -40380,7 +40380,7 @@ void FUN_1800807f5(void)
 
 
 
-longlong * FUN_180080810(longlong *engine_data_structure_ptr,longlong *engine_result_flag_ptr)
+longlong * engine_unnamed_function_1930(longlong *engine_data_structure_ptr,longlong *engine_result_flag_ptr)
 
 {
   longlong *pengine_temp_long;
@@ -40402,8 +40402,8 @@ longlong * FUN_180080810(longlong *engine_data_structure_ptr,longlong *engine_re
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// void FUN_180080870(longlong *engine_data_structure_ptr)
-void FUN_180080870(longlong *engine_data_structure_ptr)
+// void engine_unnamed_function_1940(longlong *engine_data_structure_ptr)
+void engine_unnamed_function_1940(longlong *engine_data_structure_ptr)
 
 {
   longlong engine_temporary_long;
@@ -40461,8 +40461,8 @@ void FUN_180080870(longlong *engine_data_structure_ptr)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// void FUN_1800809a0(longlong *engine_data_structure_ptr)
-void FUN_1800809a0(longlong *engine_data_structure_ptr)
+// void engine_unnamed_function_1950(longlong *engine_data_structure_ptr)
+void engine_unnamed_function_1950(longlong *engine_data_structure_ptr)
 
 {
   uint8* engine_data_pointer;
@@ -40473,7 +40473,7 @@ void FUN_1800809a0(longlong *engine_data_structure_ptr)
   *(uint16*)(engine_data_structure_ptr + 1) = 0;
   engine_temp_long_3 = *engine_data_structure_ptr;
   if (engine_temp_long_3 != 0) {
-    FUN_180083f10(engine_temp_long_3);
+    engine_unnamed_function_2460(engine_temp_long_3);
                     // WARNING: Subroutine does not return
     engine_call_cleanup_routine(engine_temp_long_3);
   }
@@ -40487,7 +40487,7 @@ void FUN_1800809a0(longlong *engine_data_structure_ptr)
     *structure_data_pointer = 1;
     **(uint8**)(*(longlong *)(structure_data_pointer + 0x140) + engine_temp_long_3 * 8) = 0;
     *(void*)(*(longlong *)(*(longlong *)(structure_data_pointer + 0x140) + engine_temp_long_3 * 8) + 0x1a8) = 0;
-    FUN_1800f8a50(*(longlong *)(*(longlong *)(structure_data_pointer + 0x140) + engine_temp_long_3 * 8) + 8);
+    engine_unnamed_function_5270(*(longlong *)(*(longlong *)(structure_data_pointer + 0x140) + engine_temp_long_3 * 8) + 8);
     engine_manage_system_buffer(structure_data_pointer + 0xc0,aiStackX_8);
     *(uint32*)((longlong)engine_data_structure_ptr + 0xc) = 0xffffffff;
     ReleaseSRWLockExclusive(engine_data_pointer);
@@ -40501,8 +40501,8 @@ void FUN_1800809a0(longlong *engine_data_structure_ptr)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// void FUN_180080aa0(longlong *engine_data_structure_ptr,ulonglong engine_result_flag_ptr)
-void FUN_180080aa0(longlong *engine_data_structure_ptr,ulonglong engine_result_flag_ptr)
+// void engine_unnamed_function_1960(longlong *engine_data_structure_ptr,ulonglong engine_result_flag_ptr)
+void engine_unnamed_function_1960(longlong *engine_data_structure_ptr,ulonglong engine_result_flag_ptr)
 
 {
   longlong engine_temporary_long;
@@ -40565,8 +40565,8 @@ void FUN_180080aa0(longlong *engine_data_structure_ptr,ulonglong engine_result_f
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// void FUN_180080ae6(longlong engine_data_structure_ptr,longlong engine_result_flag_ptr)
-void FUN_180080ae6(longlong engine_data_structure_ptr,longlong engine_result_flag_ptr)
+// void engine_unnamed_function_1976(longlong engine_data_structure_ptr,longlong engine_result_flag_ptr)
+void engine_unnamed_function_1976(longlong engine_data_structure_ptr,longlong engine_result_flag_ptr)
 
 {
   longlong engine_temporary_long;
@@ -40611,8 +40611,8 @@ void FUN_180080ae6(longlong engine_data_structure_ptr,longlong engine_result_fla
 
 
 
-// void FUN_180080b98(void)
-void FUN_180080b98(void)
+// void engine_unnamed_function_1988(void)
+void engine_unnamed_function_1988(void)
 
 {
   longlong engine_register_rbx;
@@ -40630,8 +40630,8 @@ void FUN_180080b98(void)
 
 
 
-// void FUN_180080be0(longlong engine_data_structure_ptr)
-void FUN_180080be0(longlong engine_data_structure_ptr)
+// void engine_unnamed_function_1990(longlong engine_data_structure_ptr)
+void engine_unnamed_function_1990(longlong engine_data_structure_ptr)
 
 {
   if (*(longlong *)(engine_data_structure_ptr + 8) != 0) {
@@ -40644,8 +40644,8 @@ void FUN_180080be0(longlong engine_data_structure_ptr)
 
 
 
-// void FUN_180080c10(int *engine_data_structure_ptr,uint64_t *engine_result_flag_ptr)
-void FUN_180080c10(int *engine_data_structure_ptr,uint64_t *engine_result_flag_ptr)
+// void engine_unnamed_function_2000(int *engine_data_structure_ptr,uint64_t *engine_result_flag_ptr)
+void engine_unnamed_function_2000(int *engine_data_structure_ptr,uint64_t *engine_result_flag_ptr)
 
 {
   uint64 engine_temporary_uint;
@@ -40663,7 +40663,7 @@ void FUN_180080c10(int *engine_data_structure_ptr,uint64_t *engine_result_flag_p
       engine_temp_int_2 = (engine_temp_int_2 >> 1) + engine_temp_int_2;
     }
     engine_data_structure_ptr[1] = engine_temp_int_2;
-    FUN_180086010(engine_data_structure_ptr);
+    engine_unnamed_function_2860(engine_data_structure_ptr);
     comparison_result_index = *engine_data_structure_ptr;
   }
   engine_temporary_uint = engine_result_flag_ptr[1];
@@ -40693,8 +40693,8 @@ void FUN_180080c10(int *engine_data_structure_ptr,uint64_t *engine_result_flag_p
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// void FUN_180080ca0(longlong *engine_data_structure_ptr,ulonglong engine_result_flag_ptr)
-void FUN_180080ca0(longlong *engine_data_structure_ptr,ulonglong engine_result_flag_ptr)
+// void engine_unnamed_function_2010(longlong *engine_data_structure_ptr,ulonglong engine_result_flag_ptr)
+void engine_unnamed_function_2010(longlong *engine_data_structure_ptr,ulonglong engine_result_flag_ptr)
 
 {
   longlong engine_temporary_long;
@@ -40758,8 +40758,8 @@ void FUN_180080ca0(longlong *engine_data_structure_ptr,ulonglong engine_result_f
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// void FUN_180080ccb(longlong engine_data_structure_ptr,ulonglong engine_result_flag_ptr,uint64 engine_comparison_params,longlong engine_system_parameter_4)
-void FUN_180080ccb(longlong engine_data_structure_ptr,ulonglong engine_result_flag_ptr,uint64 engine_comparison_params,longlong engine_system_parameter_4)
+// void engine_unnamed_function_202b(longlong engine_data_structure_ptr,ulonglong engine_result_flag_ptr,uint64 engine_comparison_params,longlong engine_system_parameter_4)
+void engine_unnamed_function_202b(longlong engine_data_structure_ptr,ulonglong engine_result_flag_ptr,uint64 engine_comparison_params,longlong engine_system_parameter_4)
 
 {
   longlong in_RAX;
@@ -40814,8 +40814,8 @@ void FUN_180080ccb(longlong engine_data_structure_ptr,ulonglong engine_result_fl
 
 
 
-// void FUN_180080da6(void)
-void FUN_180080da6(void)
+// void engine_unnamed_function_2036(void)
+void engine_unnamed_function_2036(void)
 
 {
   longlong engine_register_rbx;
@@ -40833,8 +40833,8 @@ void FUN_180080da6(void)
 
 
 
-// void FUN_180080dd9(uint64 engine_data_structure_ptr,longlong engine_result_flag_ptr,uint64 engine_comparison_params,longlong engine_system_parameter_4)
-void FUN_180080dd9(uint64 engine_data_structure_ptr,longlong engine_result_flag_ptr,uint64 engine_comparison_params,longlong engine_system_parameter_4)
+// void engine_unnamed_function_2049(uint64 engine_data_structure_ptr,longlong engine_result_flag_ptr,uint64 engine_comparison_params,longlong engine_system_parameter_4)
+void engine_unnamed_function_2049(uint64 engine_data_structure_ptr,longlong engine_result_flag_ptr,uint64 engine_comparison_params,longlong engine_system_parameter_4)
 
 {
   longlong engine_register_rbx;
@@ -40846,8 +40846,8 @@ void FUN_180080dd9(uint64 engine_data_structure_ptr,longlong engine_result_flag_
 
 
 
-// void FUN_180080df0(longlong *engine_data_structure_ptr)
-void FUN_180080df0(longlong *engine_data_structure_ptr)
+// void engine_unnamed_function_2050(longlong *engine_data_structure_ptr)
+void engine_unnamed_function_2050(longlong *engine_data_structure_ptr)
 
 {
   void* engine_data_pointer;
@@ -40876,8 +40876,8 @@ void FUN_180080df0(longlong *engine_data_structure_ptr)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// void FUN_180080e90(uint *engine_data_structure_ptr,int *engine_result_flag_ptr,longlong *engine_comparison_params)
-void FUN_180080e90(uint *engine_data_structure_ptr,int *engine_result_flag_ptr,longlong *engine_comparison_params)
+// void engine_unnamed_function_2060(uint *engine_data_structure_ptr,int *engine_result_flag_ptr,longlong *engine_comparison_params)
+void engine_unnamed_function_2060(uint *engine_data_structure_ptr,int *engine_result_flag_ptr,longlong *engine_comparison_params)
 
 {
   int engine_temporary_int;
@@ -40936,8 +40936,8 @@ void FUN_180080e90(uint *engine_data_structure_ptr,int *engine_result_flag_ptr,l
 
 
 
-// void FUN_180080fa0(longlong *engine_data_structure_ptr)
-void FUN_180080fa0(longlong *engine_data_structure_ptr)
+// void engine_unnamed_function_2070(longlong *engine_data_structure_ptr)
+void engine_unnamed_function_2070(longlong *engine_data_structure_ptr)
 
 {
   longlong *pengine_temp_long;
@@ -40958,8 +40958,8 @@ void FUN_180080fa0(longlong *engine_data_structure_ptr)
 
 
 
-// void FUN_180081010(longlong *engine_data_structure_ptr,ulonglong engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
-void FUN_180081010(longlong *engine_data_structure_ptr,ulonglong engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
+// void engine_unnamed_function_2080(longlong *engine_data_structure_ptr,ulonglong engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
+void engine_unnamed_function_2080(longlong *engine_data_structure_ptr,ulonglong engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
 
 {
   longlong *pengine_temp_long;
@@ -40971,7 +40971,7 @@ void FUN_180081010(longlong *engine_data_structure_ptr,ulonglong engine_result_f
   engine_temp_long_3 = *engine_data_structure_ptr;
   engine_temp_uint_2 = (longlong)pengine_temp_long - engine_temp_long_3 >> 5;
   if (engine_temp_uint_2 < engine_result_flag_ptr) {
-    FUN_180082290(engine_data_structure_ptr,engine_result_flag_ptr - engine_temp_uint_2,engine_comparison_params,engine_system_parameter_4,0xfffffffffffffffe);
+    engine_unnamed_function_2220(engine_data_structure_ptr,engine_result_flag_ptr - engine_temp_uint_2,engine_comparison_params,engine_system_parameter_4,0xfffffffffffffffe);
   }
   else {
     main_context_pointer = (longlong *)(engine_result_flag_ptr * 0x20 + engine_temp_long_3);
@@ -40993,8 +40993,8 @@ void FUN_180081010(longlong *engine_data_structure_ptr,ulonglong engine_result_f
 
 
 
-// void FUN_1800810b0(longlong *engine_data_structure_ptr)
-void FUN_1800810b0(longlong *engine_data_structure_ptr)
+// void engine_unnamed_function_2090(longlong *engine_data_structure_ptr)
+void engine_unnamed_function_2090(longlong *engine_data_structure_ptr)
 
 {
   longlong *pengine_temp_long;
@@ -41017,7 +41017,7 @@ void FUN_1800810b0(longlong *engine_data_structure_ptr)
 // WARNING: Removing unreachable block (ram,0x0001800811eb)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-uint64_t * FUN_180081120(uint64_t *engine_data_structure_ptr,uint64_t *engine_result_flag_ptr)
+uint64_t * engine_unnamed_function_2100(uint64_t *engine_data_structure_ptr,uint64_t *engine_result_flag_ptr)
 
 {
   uint8 engine_temporary_uint;
@@ -41054,8 +41054,8 @@ uint64_t * FUN_180081120(uint64_t *engine_data_structure_ptr,uint64_t *engine_re
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// void FUN_180081220(uint64 engine_data_structure_ptr,longlong *engine_result_flag_ptr,int engine_comparison_params)
-void FUN_180081220(uint64 engine_data_structure_ptr,longlong *engine_result_flag_ptr,int engine_comparison_params)
+// void engine_unnamed_function_2110(uint64 engine_data_structure_ptr,longlong *engine_result_flag_ptr,int engine_comparison_params)
+void engine_unnamed_function_2110(uint64 engine_data_structure_ptr,longlong *engine_result_flag_ptr,int engine_comparison_params)
 
 {
   uint64 engine_temporary_uint;
@@ -41081,10 +41081,10 @@ void FUN_180081220(uint64 engine_data_structure_ptr,longlong *engine_result_flag
   engine_stack_value_78 = 0x1c;
   plStack_98 = engine_result_flag_ptr;
   strcpy_s(aengine_stack_value_70,0x40,&engine_data_60);
-  FUN_1802037e0();
+  engine_unnamed_function_5770();
   engine_stack_pointer_88 = &engine_data_18098bcb0;
   engine_temp_uint_2 = engine_call_memory_allocator(_engine_data_18,engine_comparison_params,0x10,3);
-  FUN_180082aa0(engine_temporary_uint,engine_result_flag_ptr);
+  engine_unnamed_function_2280(engine_temporary_uint,engine_result_flag_ptr);
   *(void*)(*engine_result_flag_ptr + 0x10) = engine_temp_uint_2;
   *(int *)(*engine_result_flag_ptr + 0x18) = engine_comparison_params;
   *(int *)(*engine_result_flag_ptr + 0x1c) = engine_comparison_params;
@@ -41099,8 +41099,8 @@ void FUN_180081220(uint64 engine_data_structure_ptr,longlong *engine_result_flag
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// void FUN_180081350(uint64 engine_data_structure_ptr,longlong *engine_result_flag_ptr,int engine_comparison_params)
-void FUN_180081350(uint64 engine_data_structure_ptr,longlong *engine_result_flag_ptr,int engine_comparison_params)
+// void engine_unnamed_function_2120(uint64 engine_data_structure_ptr,longlong *engine_result_flag_ptr,int engine_comparison_params)
+void engine_unnamed_function_2120(uint64 engine_data_structure_ptr,longlong *engine_result_flag_ptr,int engine_comparison_params)
 
 {
   uint64 engine_temporary_uint;
@@ -41126,10 +41126,10 @@ void FUN_180081350(uint64 engine_data_structure_ptr,longlong *engine_result_flag
   engine_stack_value_78 = 0x1c;
   plStack_98 = engine_result_flag_ptr;
   strcpy_s(aengine_stack_value_70,0x40,&engine_data_60);
-  FUN_1802037e0();
+  engine_unnamed_function_5770();
   engine_stack_pointer_88 = &engine_data_18098bcb0;
   engine_temp_uint_2 = engine_call_memory_allocator(_engine_data_18,engine_comparison_params,0x10,3);
-  FUN_180082c20(engine_temporary_uint,engine_result_flag_ptr);
+  engine_unnamed_function_2290(engine_temporary_uint,engine_result_flag_ptr);
   *(void*)(*engine_result_flag_ptr + 0x10) = engine_temp_uint_2;
   *(int *)(*engine_result_flag_ptr + 0x18) = engine_comparison_params;
   *(int *)(*engine_result_flag_ptr + 0x1c) = engine_comparison_params;
@@ -41144,8 +41144,8 @@ void FUN_180081350(uint64 engine_data_structure_ptr,longlong *engine_result_flag
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// void FUN_180081480(uint64 engine_data_structure_ptr,longlong *engine_result_flag_ptr,uint32_t engine_comparison_params)
-void FUN_180081480(uint64 engine_data_structure_ptr,longlong *engine_result_flag_ptr,uint32_t engine_comparison_params)
+// void engine_unnamed_function_2130(uint64 engine_data_structure_ptr,longlong *engine_result_flag_ptr,uint32_t engine_comparison_params)
+void engine_unnamed_function_2130(uint64 engine_data_structure_ptr,longlong *engine_result_flag_ptr,uint32_t engine_comparison_params)
 
 {
   uint64 engine_temporary_uint;
@@ -41168,10 +41168,10 @@ void FUN_180081480(uint64 engine_data_structure_ptr,longlong *engine_result_flag
   engine_stack_value_78 = 0x1c;
   plStack_98 = engine_result_flag_ptr;
   strcpy_s(aengine_stack_value_70,0x40,&engine_data_60);
-  FUN_1802037e0();
+  engine_unnamed_function_5770();
   engine_stack_pointer_88 = &engine_data_18098bcb0;
   engine_temporary_uint = engine_call_memory_allocator(_engine_data_18,engine_comparison_params,0x10,3);
-  FUN_1800828d0(engine_data_structure_ptr,engine_result_flag_ptr);
+  engine_unnamed_function_2260(engine_data_structure_ptr,engine_result_flag_ptr);
   uStack_a8 = 1;
   *(void*)(*engine_result_flag_ptr + 0x10) = engine_temporary_uint;
   *(uint32*)(*engine_result_flag_ptr + 0x18) = engine_comparison_params;
@@ -41186,8 +41186,8 @@ void FUN_180081480(uint64 engine_data_structure_ptr,longlong *engine_result_flag
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// void FUN_180081590(uint64 engine_data_structure_ptr,longlong *engine_result_flag_ptr,uint32_t engine_comparison_params)
-void FUN_180081590(uint64 engine_data_structure_ptr,longlong *engine_result_flag_ptr,uint32_t engine_comparison_params)
+// void engine_unnamed_function_2140(uint64 engine_data_structure_ptr,longlong *engine_result_flag_ptr,uint32_t engine_comparison_params)
+void engine_unnamed_function_2140(uint64 engine_data_structure_ptr,longlong *engine_result_flag_ptr,uint32_t engine_comparison_params)
 
 {
   uint64 engine_temporary_uint;
@@ -41212,10 +41212,10 @@ void FUN_180081590(uint64 engine_data_structure_ptr,longlong *engine_result_flag
   engine_stack_value_78 = 0x1c;
   plStack_98 = engine_result_flag_ptr;
   strcpy_s(aengine_stack_value_70,0x40,&engine_data_60);
-  FUN_1802037e0();
+  engine_unnamed_function_5770();
   engine_stack_pointer_88 = &engine_data_18098bcb0;
   engine_temp_uint_2 = engine_call_memory_allocator(_engine_data_18,engine_comparison_params,0x10,0x20);
-  FUN_1800828d0(engine_temporary_uint,engine_result_flag_ptr);
+  engine_unnamed_function_2260(engine_temporary_uint,engine_result_flag_ptr);
   *(void*)(*engine_result_flag_ptr + 0x10) = engine_temp_uint_2;
   *(uint32*)(*engine_result_flag_ptr + 0x18) = engine_comparison_params;
   *(uint32*)(*engine_result_flag_ptr + 0x1c) = engine_comparison_params;
@@ -41230,8 +41230,8 @@ void FUN_180081590(uint64 engine_data_structure_ptr,longlong *engine_result_flag
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// void FUN_1800816c0(longlong engine_data_structure_ptr,longlong *engine_result_flag_ptr)
-void FUN_1800816c0(longlong engine_data_structure_ptr,longlong *engine_result_flag_ptr)
+// void engine_unnamed_function_2150(longlong engine_data_structure_ptr,longlong *engine_result_flag_ptr)
+void engine_unnamed_function_2150(longlong engine_data_structure_ptr,longlong *engine_result_flag_ptr)
 
 {
   int engine_temporary_int;
@@ -41262,10 +41262,10 @@ void FUN_1800816c0(longlong engine_data_structure_ptr,longlong *engine_result_fl
     engine_stack_array_80[0] = 0;
     engine_stack_value_88 = 0x1c;
     strcpy_s(engine_stack_array_80,0x40,&engine_data_60);
-    FUN_1802037e0();
+    engine_unnamed_function_5770();
     engine_stack_pointer_98 = &engine_data_18098bcb0;
     engine_temp_long_4 = engine_call_memory_allocator(_engine_data_18,engine_temporary_int,0x10,0x1e);
-    FUN_180083520(engine_temp_uint_2,&plStack_b0);
+    engine_unnamed_function_2310(engine_temp_uint_2,&plStack_b0);
     pengine_temp_long_3 = plStack_b0;
     plStack_b0[2] = engine_temp_long_4;
     *(int *)(plStack_b0 + 3) = engine_temporary_int;
@@ -41300,8 +41300,8 @@ void FUN_1800816c0(longlong engine_data_structure_ptr,longlong *engine_result_fl
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// void FUN_180081870(longlong engine_data_structure_ptr,longlong *engine_result_flag_ptr)
-void FUN_180081870(longlong engine_data_structure_ptr,longlong *engine_result_flag_ptr)
+// void engine_unnamed_function_2160(longlong engine_data_structure_ptr,longlong *engine_result_flag_ptr)
+void engine_unnamed_function_2160(longlong engine_data_structure_ptr,longlong *engine_result_flag_ptr)
 
 {
   int engine_temporary_int;
@@ -41332,10 +41332,10 @@ void FUN_180081870(longlong engine_data_structure_ptr,longlong *engine_result_fl
     engine_stack_array_80[0] = 0;
     engine_stack_value_88 = 0x1c;
     strcpy_s(engine_stack_array_80,0x40,&engine_data_60);
-    FUN_1802037e0();
+    engine_unnamed_function_5770();
     engine_stack_pointer_98 = &engine_data_18098bcb0;
     engine_temp_long_4 = engine_call_memory_allocator(_engine_data_18,engine_temporary_int,0x10,0x1e);
-    FUN_1800836a0(engine_temp_uint_2,&plStack_b0);
+    engine_unnamed_function_2320(engine_temp_uint_2,&plStack_b0);
     pengine_temp_long_3 = plStack_b0;
     plStack_b0[2] = engine_temp_long_4;
     *(int *)(plStack_b0 + 3) = engine_temporary_int;
@@ -41370,8 +41370,8 @@ void FUN_180081870(longlong engine_data_structure_ptr,longlong *engine_result_fl
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// void FUN_180081a20(longlong engine_data_structure_ptr,longlong *engine_result_flag_ptr)
-void FUN_180081a20(longlong engine_data_structure_ptr,longlong *engine_result_flag_ptr)
+// void engine_unnamed_function_2170(longlong engine_data_structure_ptr,longlong *engine_result_flag_ptr)
+void engine_unnamed_function_2170(longlong engine_data_structure_ptr,longlong *engine_result_flag_ptr)
 
 {
   uint64 engine_temporary_uint;
@@ -41402,10 +41402,10 @@ void FUN_180081a20(longlong engine_data_structure_ptr,longlong *engine_result_fl
     engine_stack_array_80[0] = 0;
     engine_stack_value_88 = 0x1c;
     strcpy_s(engine_stack_array_80,0x40,&engine_data_60);
-    FUN_1802037e0();
+    engine_unnamed_function_5770();
     engine_stack_pointer_98 = &engine_data_18098bcb0;
     engine_temp_long_3 = engine_call_memory_allocator(_engine_data_18,engine_temp_int_4,0x10,0x1e);
-    FUN_180083820(engine_temporary_uint,&plStack_b0);
+    engine_unnamed_function_2330(engine_temporary_uint,&plStack_b0);
     pengine_temp_long_2 = plStack_b0;
     plStack_b0[2] = engine_temp_long_3;
     *(int *)(plStack_b0 + 3) = engine_temp_int_4;
@@ -41440,8 +41440,8 @@ void FUN_180081a20(longlong engine_data_structure_ptr,longlong *engine_result_fl
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// void FUN_180081bd0(longlong engine_data_structure_ptr,longlong *engine_result_flag_ptr)
-void FUN_180081bd0(longlong engine_data_structure_ptr,longlong *engine_result_flag_ptr)
+// void engine_unnamed_function_2180(longlong engine_data_structure_ptr,longlong *engine_result_flag_ptr)
+void engine_unnamed_function_2180(longlong engine_data_structure_ptr,longlong *engine_result_flag_ptr)
 
 {
   int engine_temporary_int;
@@ -41472,10 +41472,10 @@ void FUN_180081bd0(longlong engine_data_structure_ptr,longlong *engine_result_fl
     engine_stack_array_80[0] = 0;
     engine_stack_value_88 = 0x1c;
     strcpy_s(engine_stack_array_80,0x40,&engine_data_60);
-    FUN_1802037e0();
+    engine_unnamed_function_5770();
     engine_stack_pointer_98 = &engine_data_18098bcb0;
     engine_temp_long_4 = engine_call_memory_allocator(_engine_data_18,engine_temporary_int,0x10,0x1e);
-    FUN_1800839a0(engine_temp_uint_2,&plStack_b0);
+    engine_unnamed_function_2340(engine_temp_uint_2,&plStack_b0);
     pengine_temp_long_3 = plStack_b0;
     plStack_b0[2] = engine_temp_long_4;
     *(int *)(plStack_b0 + 3) = engine_temporary_int;
@@ -41510,8 +41510,8 @@ void FUN_180081bd0(longlong engine_data_structure_ptr,longlong *engine_result_fl
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// void FUN_180081d80(longlong engine_data_structure_ptr,longlong *engine_result_flag_ptr)
-void FUN_180081d80(longlong engine_data_structure_ptr,longlong *engine_result_flag_ptr)
+// void engine_unnamed_function_2190(longlong engine_data_structure_ptr,longlong *engine_result_flag_ptr)
+void engine_unnamed_function_2190(longlong engine_data_structure_ptr,longlong *engine_result_flag_ptr)
 
 {
   int engine_temporary_int;
@@ -41542,10 +41542,10 @@ void FUN_180081d80(longlong engine_data_structure_ptr,longlong *engine_result_fl
     engine_stack_array_80[0] = 0;
     engine_stack_value_88 = 0x1c;
     strcpy_s(engine_stack_array_80,0x40,&engine_data_60);
-    FUN_1802037e0();
+    engine_unnamed_function_5770();
     engine_stack_pointer_98 = &engine_data_18098bcb0;
     engine_temp_long_4 = engine_call_memory_allocator(_engine_data_18,engine_temporary_int,0x10,0x1e);
-    FUN_180082aa0(engine_temp_uint_2,&plStack_b0);
+    engine_unnamed_function_2280(engine_temp_uint_2,&plStack_b0);
     pengine_temp_long_3 = plStack_b0;
     plStack_b0[2] = engine_temp_long_4;
     *(int *)(plStack_b0 + 3) = engine_temporary_int;
@@ -41580,8 +41580,8 @@ void FUN_180081d80(longlong engine_data_structure_ptr,longlong *engine_result_fl
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// void FUN_180081f30(longlong engine_data_structure_ptr,longlong *engine_result_flag_ptr)
-void FUN_180081f30(longlong engine_data_structure_ptr,longlong *engine_result_flag_ptr)
+// void engine_unnamed_function_2200(longlong engine_data_structure_ptr,longlong *engine_result_flag_ptr)
+void engine_unnamed_function_2200(longlong engine_data_structure_ptr,longlong *engine_result_flag_ptr)
 
 {
   int engine_temporary_int;
@@ -41611,10 +41611,10 @@ void FUN_180081f30(longlong engine_data_structure_ptr,longlong *engine_result_fl
     engine_stack_array_80[0] = 0;
     engine_stack_value_88 = 0x1c;
     strcpy_s(engine_stack_array_80,0x40,&engine_data_60);
-    FUN_1802037e0();
+    engine_unnamed_function_5770();
     engine_stack_pointer_98 = &engine_data_18098bcb0;
     engine_temp_long_4 = engine_call_memory_allocator(_engine_data_18,engine_temporary_int,0x10,0x1e);
-    FUN_1800828d0(engine_temp_uint_2,&plStack_b0);
+    engine_unnamed_function_2260(engine_temp_uint_2,&plStack_b0);
     pengine_temp_long_3 = plStack_b0;
     plStack_b0[2] = engine_temp_long_4;
     *(int *)(plStack_b0 + 3) = engine_temporary_int;
@@ -41649,8 +41649,8 @@ void FUN_180081f30(longlong engine_data_structure_ptr,longlong *engine_result_fl
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// void FUN_1800820e0(longlong engine_data_structure_ptr,longlong *engine_result_flag_ptr)
-void FUN_1800820e0(longlong engine_data_structure_ptr,longlong *engine_result_flag_ptr)
+// void engine_unnamed_function_2210(longlong engine_data_structure_ptr,longlong *engine_result_flag_ptr)
+void engine_unnamed_function_2210(longlong engine_data_structure_ptr,longlong *engine_result_flag_ptr)
 
 {
   int engine_temporary_int;
@@ -41681,10 +41681,10 @@ void FUN_1800820e0(longlong engine_data_structure_ptr,longlong *engine_result_fl
     engine_stack_array_80[0] = 0;
     engine_stack_value_88 = 0x1c;
     strcpy_s(engine_stack_array_80,0x40,&engine_data_60);
-    FUN_1802037e0();
+    engine_unnamed_function_5770();
     engine_stack_pointer_98 = &engine_data_18098bcb0;
     engine_temp_long_4 = engine_call_memory_allocator(_engine_data_18,engine_temporary_int,0x10,0x1e);
-    FUN_180082c20(engine_temp_uint_2,&plStack_b0);
+    engine_unnamed_function_2290(engine_temp_uint_2,&plStack_b0);
     pengine_temp_long_3 = plStack_b0;
     plStack_b0[2] = engine_temp_long_4;
     *(int *)(plStack_b0 + 3) = engine_temporary_int;
@@ -41719,8 +41719,8 @@ void FUN_1800820e0(longlong engine_data_structure_ptr,longlong *engine_result_fl
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// void FUN_180082290(longlong *engine_data_structure_ptr,ulonglong engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
-void FUN_180082290(longlong *engine_data_structure_ptr,ulonglong engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
+// void engine_unnamed_function_2220(longlong *engine_data_structure_ptr,ulonglong engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
+void engine_unnamed_function_2220(longlong *engine_data_structure_ptr,ulonglong engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
 
 {
   void* engine_data_pointer;
@@ -41833,8 +41833,8 @@ void FUN_180082290(longlong *engine_data_structure_ptr,ulonglong engine_result_f
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// void FUN_1800824a0(longlong *engine_data_structure_ptr,ulonglong engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
-void FUN_1800824a0(longlong *engine_data_structure_ptr,ulonglong engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
+// void engine_unnamed_function_2230(longlong *engine_data_structure_ptr,ulonglong engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
+void engine_unnamed_function_2230(longlong *engine_data_structure_ptr,ulonglong engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
 
 {
   void* engine_data_pointer;
@@ -41947,8 +41947,8 @@ void FUN_1800824a0(longlong *engine_data_structure_ptr,ulonglong engine_result_f
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// void FUN_1800826b0(longlong *engine_data_structure_ptr,longlong *engine_result_flag_ptr)
-void FUN_1800826b0(longlong *engine_data_structure_ptr,longlong *engine_result_flag_ptr)
+// void engine_unnamed_function_2240(longlong *engine_data_structure_ptr,longlong *engine_result_flag_ptr)
+void engine_unnamed_function_2240(longlong *engine_data_structure_ptr,longlong *engine_result_flag_ptr)
 
 {
   uint32_t *engine_data_pointer;
@@ -42048,8 +42048,8 @@ LAB_180082720:
 
 
 
-// void FUN_180082880(longlong *engine_data_structure_ptr,longlong *engine_result_flag_ptr)
-void FUN_180082880(longlong *engine_data_structure_ptr,longlong *engine_result_flag_ptr)
+// void engine_unnamed_function_2250(longlong *engine_data_structure_ptr,longlong *engine_result_flag_ptr)
+void engine_unnamed_function_2250(longlong *engine_data_structure_ptr,longlong *engine_result_flag_ptr)
 
 {
   if (engine_data_structure_ptr != engine_result_flag_ptr) {
@@ -42068,7 +42068,7 @@ void FUN_180082880(longlong *engine_data_structure_ptr,longlong *engine_result_f
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-uint64_t * FUN_1800828d0(longlong engine_data_structure_ptr,uint64_t *engine_result_flag_ptr)
+uint64_t * engine_unnamed_function_2260(longlong engine_data_structure_ptr,uint64_t *engine_result_flag_ptr)
 
 {
   longlong engine_temporary_long;
@@ -42125,8 +42125,8 @@ uint64_t * FUN_1800828d0(longlong engine_data_structure_ptr,uint64_t *engine_res
 
 
 
-// void FUN_180082a50(longlong engine_data_structure_ptr,longlong engine_result_flag_ptr,uint64 engine_comparison_params)
-void FUN_180082a50(longlong engine_data_structure_ptr,longlong engine_result_flag_ptr,uint64 engine_comparison_params)
+// void engine_unnamed_function_2270(longlong engine_data_structure_ptr,longlong engine_result_flag_ptr,uint64 engine_comparison_params)
+void engine_unnamed_function_2270(longlong engine_data_structure_ptr,longlong engine_result_flag_ptr,uint64 engine_comparison_params)
 
 {
   if (engine_data_structure_ptr != engine_result_flag_ptr) {
@@ -42140,7 +42140,7 @@ void FUN_180082a50(longlong engine_data_structure_ptr,longlong engine_result_fla
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-uint64_t * FUN_180082aa0(longlong engine_data_structure_ptr,uint64_t *engine_result_flag_ptr)
+uint64_t * engine_unnamed_function_2280(longlong engine_data_structure_ptr,uint64_t *engine_result_flag_ptr)
 
 {
   longlong engine_temporary_long;
@@ -42198,7 +42198,7 @@ uint64_t * FUN_180082aa0(longlong engine_data_structure_ptr,uint64_t *engine_res
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-uint64_t * FUN_180082c20(longlong engine_data_structure_ptr,uint64_t *engine_result_flag_ptr)
+uint64_t * engine_unnamed_function_2290(longlong engine_data_structure_ptr,uint64_t *engine_result_flag_ptr)
 
 {
   longlong engine_temporary_long;
@@ -42274,7 +42274,7 @@ uint8_t engine_setup_network_components(longlong *engine_data_structure_ptr,uint
   if (engine_stack_long_pointer_8 != (longlong *)0x0) {
     (**(code **)(*engine_stack_long_pointer_8 + 0x28))();
   }
-  FUN_180255880(engine_temp_uint_3,&engine_stack_long_pointer_8,engine_comparison_params,engine_system_parameter_4,engine_temp_uint_4);
+  engine_unnamed_function_6030(engine_temp_uint_3,&engine_stack_long_pointer_8,engine_comparison_params,engine_system_parameter_4,engine_temp_uint_4);
   engine_temp_uint_3 = *(void*)
            (*(longlong *)(*engine_data_structure_ptr + 0x1e0) + 8 + (ulonglong)*(byte *)(engine_data_structure_ptr + 1) * 0x18);
   engine_stack_long_ptr_ptr_x18 = &engine_stack_long_ptr_10;
@@ -42282,7 +42282,7 @@ uint8_t engine_setup_network_components(longlong *engine_data_structure_ptr,uint
   if (engine_stack_long_ptr_10 != (longlong *)0x0) {
     (**(code **)(*engine_stack_long_ptr_10 + 0x28))();
   }
-  FUN_180255b70(engine_temp_uint_3,&engine_stack_long_ptr_10);
+  engine_unnamed_function_6040(engine_temp_uint_3,&engine_stack_long_ptr_10);
   LOCK();
   engine_data_pointer = (uint8*)
            (*(longlong *)(*engine_data_structure_ptr + 0x1e0) + 0x15 + (ulonglong)*(byte *)(engine_data_structure_ptr + 1) * 0x18);
@@ -42369,7 +42369,7 @@ void engine_setup_ui_system(longlong engine_data_structure_ptr,uint64 engine_res
   
   engine_temp_long_3 = *engine_system_parameter_4;
   engine_temp_index = engine_call_memory_allocator(_engine_data_18,0xf0,8,3,0xfffffffffffffffe);
-  engine_temp_ptr_array_6 = (longlong *)FUN_18007f2f0(engine_temp_index);
+  engine_temp_ptr_array_6 = (longlong *)engine_unnamed_function_1720(engine_temp_index);
   if (engine_temp_ptr_array_6 != (longlong *)0x0) {
     (**(code **)(*engine_temp_ptr_array_6 + 0x28))(engine_temp_ptr_array_6);
   }
@@ -42380,8 +42380,8 @@ void engine_setup_ui_system(longlong engine_data_structure_ptr,uint64 engine_res
   }
   *(uint8*)(engine_data_structure_ptr + 0x1a) = 0x12;
   engine_temp_long_3 = *(longlong *)(engine_temp_long_3 + 0x210);
-  FUN_180080650(engine_temp_long_3 + 0x10);
-  FUN_180080650(engine_temp_long_3 + 0x38,engine_data_structure_ptr);
+  engine_unnamed_function_1890(engine_temp_long_3 + 0x10);
+  engine_unnamed_function_1890(engine_temp_long_3 + 0x38,engine_data_structure_ptr);
   *(uint8*)(engine_temp_long_3 + 0x80) = *(uint8*)(engine_data_structure_ptr + 0x1a);
   *(uint32*)(engine_temp_long_3 + 0x60) = **(uint32_t **)(engine_data_structure_ptr + 8);
   *(longlong *)(engine_data_structure_ptr + 8) = *(longlong *)(engine_data_structure_ptr + 8) + 4;
@@ -42399,7 +42399,7 @@ void engine_setup_ui_system(longlong engine_data_structure_ptr,uint64 engine_res
     else {
       *(int *)(engine_temp_long_3 + 100) = engine_temporary_int;
     }
-    FUN_180086010(engine_temp_long_3 + 0x60);
+    engine_unnamed_function_2860(engine_temp_long_3 + 0x60);
   }
   *(int *)(engine_temp_long_3 + 0x60) = engine_temporary_int;
                     // WARNING: Subroutine does not return
@@ -42414,7 +42414,7 @@ int engine_setup_keyframe_system(uint64 engine_data_structure_ptr,uint64 engine_
   int engine_temporary_int;
   int *pengine_temp_int_2;
   
-  FUN_18007e2b0(engine_system_parameter_4[1],engine_data_structure_ptr);
+  engine_unnamed_function_1700(engine_system_parameter_4[1],engine_data_structure_ptr);
   pengine_temp_int_2 = (int *)*engine_system_parameter_4;
   LOCK();
   engine_temporary_int = *pengine_temp_int_2;
@@ -42440,7 +42440,7 @@ void engine_initialize_debug_tools(uint64 engine_data_structure_ptr,uint64 engin
   
   uStack_20 = 0xfffffffffffffffe;
   engine_data_pointer = (void*)*engine_system_parameter_4;
-  FUN_18007fd60(engine_data_pointer[2],engine_data_pointer[3],*(uint8*)(engine_data_pointer + 1),engine_data_structure_ptr);
+  engine_unnamed_function_1770(engine_data_pointer[2],engine_data_pointer[3],*(uint8*)(engine_data_pointer + 1),engine_data_structure_ptr);
   engine_temp_uint_2 = *engine_data_pointer;
   pplStack_18 = &plStackX_20;
   plStackX_20 = (longlong *)engine_data_pointer[3];
@@ -42452,7 +42452,7 @@ void engine_initialize_debug_tools(uint64 engine_data_structure_ptr,uint64 engin
   if (plStack_28 != (longlong *)0x0) {
     (**(code **)(*plStack_28 + 0x28))();
   }
-  FUN_18007c8e0(engine_temp_uint_2,*(uint8*)(engine_data_pointer + 1),&plStack_28,&plStackX_20);
+  engine_unnamed_function_1690(engine_temp_uint_2,*(uint8*)(engine_data_pointer + 1),&plStack_28,&plStackX_20);
                     // WARNING: Could not recover jumptable at 0x000180083253. Too many branches
                     // WARNING: Treating indirect jump as call
   (**(code **)(*(longlong *)*engine_data_pointer + 0x38))();
@@ -42490,7 +42490,7 @@ longlong engine_configure_resource_manager(longlong *engine_data_structure_ptr,l
   else {
     if (engine_comparison_params == 1) {
       engine_temporary_long = engine_call_memory_allocator(_engine_data_18,0x20,8,engine_data_bc,0xfffffffffffffffe);
-      FUN_18007c7f0(engine_temporary_long,*engine_result_flag_ptr);
+      engine_unnamed_function_1680(engine_temporary_long,*engine_result_flag_ptr);
       *engine_data_structure_ptr = engine_temporary_long;
       return 0;
     }
@@ -42565,8 +42565,8 @@ longlong engine_initialize_audio_system(longlong *engine_data_structure_ptr,long
 
 
 
-// void FUN_1800834f0(ulonglong *engine_data_structure_ptr)
-void FUN_1800834f0(ulonglong *engine_data_structure_ptr)
+// void engine_unnamed_function_2300(ulonglong *engine_data_structure_ptr)
+void engine_unnamed_function_2300(ulonglong *engine_data_structure_ptr)
 
 {
   int *pengine_temp_int;
@@ -42604,7 +42604,7 @@ void FUN_1800834f0(ulonglong *engine_data_structure_ptr)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-uint64_t * FUN_180083520(longlong engine_data_structure_ptr,uint64_t *engine_result_flag_ptr)
+uint64_t * engine_unnamed_function_2310(longlong engine_data_structure_ptr,uint64_t *engine_result_flag_ptr)
 
 {
   longlong engine_temporary_long;
@@ -42662,7 +42662,7 @@ uint64_t * FUN_180083520(longlong engine_data_structure_ptr,uint64_t *engine_res
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-uint64_t * FUN_1800836a0(longlong engine_data_structure_ptr,uint64_t *engine_result_flag_ptr)
+uint64_t * engine_unnamed_function_2320(longlong engine_data_structure_ptr,uint64_t *engine_result_flag_ptr)
 
 {
   longlong engine_temporary_long;
@@ -42720,7 +42720,7 @@ uint64_t * FUN_1800836a0(longlong engine_data_structure_ptr,uint64_t *engine_res
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-uint64_t * FUN_180083820(longlong engine_data_structure_ptr,uint64_t *engine_result_flag_ptr)
+uint64_t * engine_unnamed_function_2330(longlong engine_data_structure_ptr,uint64_t *engine_result_flag_ptr)
 
 {
   longlong engine_temporary_long;
@@ -42778,7 +42778,7 @@ uint64_t * FUN_180083820(longlong engine_data_structure_ptr,uint64_t *engine_res
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-uint64_t * FUN_1800839a0(longlong engine_data_structure_ptr,uint64_t *engine_result_flag_ptr)
+uint64_t * engine_unnamed_function_2340(longlong engine_data_structure_ptr,uint64_t *engine_result_flag_ptr)
 
 {
   longlong engine_temporary_long;
@@ -42835,8 +42835,8 @@ uint64_t * FUN_1800839a0(longlong engine_data_structure_ptr,uint64_t *engine_res
 
 
 
-// void FUN_180083b20(longlong engine_data_structure_ptr,longlong engine_result_flag_ptr)
-void FUN_180083b20(longlong engine_data_structure_ptr,longlong engine_result_flag_ptr)
+// void engine_unnamed_function_2350(longlong engine_data_structure_ptr,longlong engine_result_flag_ptr)
+void engine_unnamed_function_2350(longlong engine_data_structure_ptr,longlong engine_result_flag_ptr)
 
 {
   longlong *pengine_temp_long;
@@ -42851,7 +42851,7 @@ void FUN_180083b20(longlong engine_data_structure_ptr,longlong engine_result_fla
 
 
 
-uint64 FUN_180083bf0(longlong engine_data_structure_ptr)
+uint64 engine_unnamed_function_2360(longlong engine_data_structure_ptr)
 
 {
   longlong engine_temporary_long;
@@ -42874,7 +42874,7 @@ uint64 FUN_180083bf0(longlong engine_data_structure_ptr)
 
 
 uint64_t *
-FUN_180083c60(uint64_t *engine_data_structure_ptr,ulonglong engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
+engine_unnamed_function_2370(uint64_t *engine_data_structure_ptr,ulonglong engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
 
 {
   *engine_data_structure_ptr = &engine_base_data_offset_88;
@@ -42889,7 +42889,7 @@ FUN_180083c60(uint64_t *engine_data_structure_ptr,ulonglong engine_result_flag_p
 
 
 uint64_t *
-FUN_180083cb0(uint64_t *engine_data_structure_ptr,ulonglong engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
+engine_unnamed_function_2380(uint64_t *engine_data_structure_ptr,ulonglong engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
 
 {
   *engine_data_structure_ptr = &engine_base_data_offset_f0;
@@ -42904,7 +42904,7 @@ FUN_180083cb0(uint64_t *engine_data_structure_ptr,ulonglong engine_result_flag_p
 
 
 uint64_t *
-FUN_180083d00(uint64_t *engine_data_structure_ptr,ulonglong engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
+engine_unnamed_function_2390(uint64_t *engine_data_structure_ptr,ulonglong engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
 
 {
   *engine_data_structure_ptr = &engine_base_data_offset_58;
@@ -42919,7 +42919,7 @@ FUN_180083d00(uint64_t *engine_data_structure_ptr,ulonglong engine_result_flag_p
 
 
 uint64_t *
-FUN_180083d50(uint64_t *engine_data_structure_ptr,ulonglong engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
+engine_unnamed_function_2400(uint64_t *engine_data_structure_ptr,ulonglong engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
 
 {
   *engine_data_structure_ptr = &engine_base_data_offset_c0;
@@ -42934,7 +42934,7 @@ FUN_180083d50(uint64_t *engine_data_structure_ptr,ulonglong engine_result_flag_p
 
 
 uint64_t *
-FUN_180083da0(uint64_t *engine_data_structure_ptr,ulonglong engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
+engine_unnamed_function_2410(uint64_t *engine_data_structure_ptr,ulonglong engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
 
 {
   *engine_data_structure_ptr = &engine_base_data_offset_28;
@@ -42949,7 +42949,7 @@ FUN_180083da0(uint64_t *engine_data_structure_ptr,ulonglong engine_result_flag_p
 
 
 uint64_t *
-FUN_180083df0(uint64_t *engine_data_structure_ptr,ulonglong engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
+engine_unnamed_function_2420(uint64_t *engine_data_structure_ptr,ulonglong engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
 
 {
   *engine_data_structure_ptr = &engine_base_data_offset_90;
@@ -42964,7 +42964,7 @@ FUN_180083df0(uint64_t *engine_data_structure_ptr,ulonglong engine_result_flag_p
 
 
 uint64_t *
-FUN_180083e40(uint64_t *engine_data_structure_ptr,ulonglong engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
+engine_unnamed_function_2430(uint64_t *engine_data_structure_ptr,ulonglong engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
 
 {
   *engine_data_structure_ptr = &engine_base_data_offset_f8;
@@ -42979,8 +42979,8 @@ FUN_180083e40(uint64_t *engine_data_structure_ptr,ulonglong engine_result_flag_p
 
 
 
-// void FUN_180083e90(uint64_t *engine_data_structure_ptr)
-void FUN_180083e90(uint64_t *engine_data_structure_ptr)
+// void engine_unnamed_function_2440(uint64_t *engine_data_structure_ptr)
+void engine_unnamed_function_2440(uint64_t *engine_data_structure_ptr)
 
 {
   *engine_data_structure_ptr = &engine_data_180a21720;
@@ -42991,7 +42991,7 @@ void FUN_180083e90(uint64_t *engine_data_structure_ptr)
 
 
 uint64_t *
-FUN_180083ec0(uint64_t *engine_data_structure_ptr,ulonglong engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
+engine_unnamed_function_2450(uint64_t *engine_data_structure_ptr,ulonglong engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
 
 {
   *engine_data_structure_ptr = &engine_data_180a21720;
@@ -43005,8 +43005,8 @@ FUN_180083ec0(uint64_t *engine_data_structure_ptr,ulonglong engine_result_flag_p
 
 
 
-// void FUN_180083f10(longlong *engine_data_structure_ptr)
-void FUN_180083f10(longlong *engine_data_structure_ptr)
+// void engine_unnamed_function_2460(longlong *engine_data_structure_ptr)
+void engine_unnamed_function_2460(longlong *engine_data_structure_ptr)
 
 {
   if ((longlong *)engine_data_structure_ptr[0xc] != (longlong *)0x0) {
@@ -43054,8 +43054,8 @@ void FUN_180083f10(longlong *engine_data_structure_ptr)
 
 
 
-// void FUN_180084000(float *engine_data_structure_ptr)
-void FUN_180084000(float *engine_data_structure_ptr)
+// void engine_unnamed_function_2470(float *engine_data_structure_ptr)
+void engine_unnamed_function_2470(float *engine_data_structure_ptr)
 
 {
   uint8 aengine_temp_uint [16];
@@ -43102,7 +43102,7 @@ void FUN_180084000(float *engine_data_structure_ptr)
 
 
 
-uint64_t * FUN_180084180(uint64_t *engine_data_structure_ptr)
+uint64_t * engine_unnamed_function_2480(uint64_t *engine_data_structure_ptr)
 
 {
   *engine_data_structure_ptr = 0;
@@ -43123,7 +43123,7 @@ uint64_t * FUN_180084180(uint64_t *engine_data_structure_ptr)
 
 
 uint64_t *
-FUN_1800841c0(uint64_t *engine_data_structure_ptr,ulonglong engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
+engine_unnamed_function_2490(uint64_t *engine_data_structure_ptr,ulonglong engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
 
 {
   uint64 engine_temporary_uint;
@@ -43142,10 +43142,10 @@ FUN_1800841c0(uint64_t *engine_data_structure_ptr,ulonglong engine_result_flag_p
 
 
 
-uint64_t * FUN_180084230(uint64_t *engine_data_structure_ptr,uint engine_result_flag_ptr)
+uint64_t * engine_unnamed_function_2500(uint64_t *engine_data_structure_ptr,uint engine_result_flag_ptr)
 
 {
-  FUN_1808fc8a8(engine_data_structure_ptr + 3,8,0x10,engine_update_game_state,0xfffffffffffffffe);
+  engine_unnamed_function_6548(engine_data_structure_ptr + 3,8,0x10,engine_update_game_state,0xfffffffffffffffe);
   *engine_data_structure_ptr = &engine_data_180a21720;
   *engine_data_structure_ptr = &engine_data_180a21690;
   if ((engine_result_flag_ptr & 1) != 0) {
@@ -43156,7 +43156,7 @@ uint64_t * FUN_180084230(uint64_t *engine_data_structure_ptr,uint engine_result_
 
 
 
-uint64_t * FUN_1800842a0(uint64_t *engine_data_structure_ptr)
+uint64_t * engine_unnamed_function_2510(uint64_t *engine_data_structure_ptr)
 
 {
   *engine_data_structure_ptr = &engine_data_180a21690;
@@ -43175,8 +43175,8 @@ uint64_t * FUN_1800842a0(uint64_t *engine_data_structure_ptr)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// void FUN_180084320(uint64_t *engine_data_structure_ptr,uint engine_result_flag_ptr)
-void FUN_180084320(uint64_t *engine_data_structure_ptr,uint engine_result_flag_ptr)
+// void engine_unnamed_function_2520(uint64_t *engine_data_structure_ptr,uint engine_result_flag_ptr)
+void engine_unnamed_function_2520(uint64_t *engine_data_structure_ptr,uint engine_result_flag_ptr)
 
 {
   uint64 engine_temporary_uint;
@@ -43240,8 +43240,8 @@ void FUN_180084320(uint64_t *engine_data_structure_ptr,uint engine_result_flag_p
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// void FUN_1800844c0(uint64_t *engine_data_structure_ptr,uint engine_result_flag_ptr)
-void FUN_1800844c0(uint64_t *engine_data_structure_ptr,uint engine_result_flag_ptr)
+// void engine_unnamed_function_2530(uint64_t *engine_data_structure_ptr,uint engine_result_flag_ptr)
+void engine_unnamed_function_2530(uint64_t *engine_data_structure_ptr,uint engine_result_flag_ptr)
 
 {
   uint64 engine_temporary_uint;
@@ -43303,8 +43303,8 @@ void FUN_1800844c0(uint64_t *engine_data_structure_ptr,uint engine_result_flag_p
 
 
 
-// void FUN_180084670(longlong *engine_data_structure_ptr)
-void FUN_180084670(longlong *engine_data_structure_ptr)
+// void engine_unnamed_function_2540(longlong *engine_data_structure_ptr)
+void engine_unnamed_function_2540(longlong *engine_data_structure_ptr)
 
 {
   int engine_temporary_int;
@@ -43321,13 +43321,13 @@ void FUN_180084670(longlong *engine_data_structure_ptr)
 
 
 
-// void FUN_1800846a0(longlong engine_data_structure_ptr)
-void FUN_1800846a0(longlong engine_data_structure_ptr)
+// void engine_unnamed_function_2550(longlong engine_data_structure_ptr)
+void engine_unnamed_function_2550(longlong engine_data_structure_ptr)
 
 {
   int engine_temporary_int;
   
-  engine_temporary_int = FUN_1806237a0();
+  engine_temporary_int = engine_unnamed_function_6220();
   if (engine_temporary_int == 0) {
     LOCK();
     *(uint8*)(engine_data_structure_ptr + 0x10) = 1;
@@ -43341,8 +43341,8 @@ void FUN_1800846a0(longlong engine_data_structure_ptr)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// void FUN_1800846d0(int *engine_data_structure_ptr)
-void FUN_1800846d0(int *engine_data_structure_ptr)
+// void engine_unnamed_function_2560(int *engine_data_structure_ptr)
+void engine_unnamed_function_2560(int *engine_data_structure_ptr)
 
 {
   uint64 engine_temporary_uint;
@@ -43368,8 +43368,8 @@ void FUN_1800846d0(int *engine_data_structure_ptr)
 
 
 
-// void FUN_1800846f4(void)
-void FUN_1800846f4(void)
+// void engine_unnamed_function_2574(void)
+void engine_unnamed_function_2574(void)
 
 {
   uint64 engine_temporary_uint;
@@ -43387,8 +43387,8 @@ void FUN_1800846f4(void)
 
 
 
-// void FUN_180084736(longlong engine_data_structure_ptr)
-void FUN_180084736(longlong engine_data_structure_ptr)
+// void engine_unnamed_function_2586(longlong engine_data_structure_ptr)
+void engine_unnamed_function_2586(longlong engine_data_structure_ptr)
 
 {
   longlong engine_register_rbx;
@@ -43404,8 +43404,8 @@ void FUN_180084736(longlong engine_data_structure_ptr)
 
 
 
-// void FUN_180084760(float *engine_data_structure_ptr,float *engine_result_flag_ptr)
-void FUN_180084760(float *engine_data_structure_ptr,float *engine_result_flag_ptr)
+// void engine_unnamed_function_2590(float *engine_data_structure_ptr,float *engine_result_flag_ptr)
+void engine_unnamed_function_2590(float *engine_data_structure_ptr,float *engine_result_flag_ptr)
 
 {
   float engine_temp_float;
@@ -43499,8 +43499,8 @@ void FUN_180084760(float *engine_data_structure_ptr,float *engine_result_flag_pt
 
 
 
-// void FUN_180084ae0(float *engine_data_structure_ptr)
-void FUN_180084ae0(float *engine_data_structure_ptr)
+// void engine_unnamed_function_2600(float *engine_data_structure_ptr)
+void engine_unnamed_function_2600(float *engine_data_structure_ptr)
 
 {
   float engine_temp_float;
@@ -43541,8 +43541,8 @@ void FUN_180084ae0(float *engine_data_structure_ptr)
 
 
 
-// void FUN_180084c70(float *engine_data_structure_ptr,float *engine_result_flag_ptr,float *engine_comparison_params,float *engine_system_parameter_4,float *param_5)
-void FUN_180084c70(float *engine_data_structure_ptr,float *engine_result_flag_ptr,float *engine_comparison_params,float *engine_system_parameter_4,float *param_5)
+// void engine_unnamed_function_2610(float *engine_data_structure_ptr,float *engine_result_flag_ptr,float *engine_comparison_params,float *engine_system_parameter_4,float *param_5)
+void engine_unnamed_function_2610(float *engine_data_structure_ptr,float *engine_result_flag_ptr,float *engine_comparison_params,float *engine_system_parameter_4,float *param_5)
 
 {
   float engine_temp_float;
@@ -43586,10 +43586,10 @@ void FUN_180084c70(float *engine_data_structure_ptr,float *engine_result_flag_pt
   engine_data_structure_ptr[0xc] = engine_temp_float_3 * *engine_data_structure_ptr + engine_temp_float_4;
   engine_data_structure_ptr[0xd] = engine_data_structure_ptr[1] * engine_temp_float_3 + engine_data_structure_ptr[0xd];
   engine_data_structure_ptr[0xe] = engine_data_structure_ptr[2] * engine_temp_float_3 + engine_data_structure_ptr[0xe];
-  FUN_180085970(SUB84((double)*engine_result_flag_ptr * 0.0174532925199433,0),
+  engine_unnamed_function_2750(SUB84((double)*engine_result_flag_ptr * 0.0174532925199433,0),
                 (float)((double)*engine_result_flag_ptr * 0.0174532925199433));
-  FUN_180085ac0(engine_data_structure_ptr,engine_result_flag_ptr[1] * 0.017453292);
-  FUN_180085c10(engine_data_structure_ptr,engine_result_flag_ptr[2] * 0.017453292);
+  engine_unnamed_function_2760(engine_data_structure_ptr,engine_result_flag_ptr[1] * 0.017453292);
+  engine_unnamed_function_2770(engine_data_structure_ptr,engine_result_flag_ptr[2] * 0.017453292);
   engine_temp_float_3 = 1.0 / *engine_comparison_params;
   engine_data_structure_ptr[4] = engine_temp_float_3 * engine_data_structure_ptr[4];
   engine_data_structure_ptr[5] = engine_temp_float_3 * engine_data_structure_ptr[5];
@@ -43607,7 +43607,7 @@ void FUN_180084c70(float *engine_data_structure_ptr,float *engine_result_flag_pt
 
 
 
-uint64_t * FUN_180084ea0(uint64_t *engine_data_structure_ptr)
+uint64_t * engine_unnamed_function_2620(uint64_t *engine_data_structure_ptr)
 
 {
   uint64 engine_temporary_uint;
@@ -43652,7 +43652,7 @@ uint64_t * FUN_180084ea0(uint64_t *engine_data_structure_ptr)
 
 
 
-bool FUN_180084fa0(float *engine_data_structure_ptr)
+bool engine_unnamed_function_2630(float *engine_data_structure_ptr)
 
 {
   return (engine_data_structure_ptr[2] * engine_data_structure_ptr[4] - *engine_data_structure_ptr * engine_data_structure_ptr[6]) * engine_data_structure_ptr[9] +
@@ -43662,7 +43662,7 @@ bool FUN_180084fa0(float *engine_data_structure_ptr)
 
 
 
-float * FUN_180085020(float *engine_data_structure_ptr,float *engine_result_flag_ptr)
+float * engine_unnamed_function_2640(float *engine_data_structure_ptr,float *engine_result_flag_ptr)
 
 {
   float engine_temp_float;
@@ -43699,8 +43699,8 @@ float * FUN_180085020(float *engine_data_structure_ptr,float *engine_result_flag
 
 
 
-// void FUN_180085190(float *engine_data_structure_ptr,longlong engine_result_flag_ptr,char engine_comparison_params,uint64_t *engine_system_parameter_4)
-void FUN_180085190(float *engine_data_structure_ptr,longlong engine_result_flag_ptr,char engine_comparison_params,uint64_t *engine_system_parameter_4)
+// void engine_unnamed_function_2650(float *engine_data_structure_ptr,longlong engine_result_flag_ptr,char engine_comparison_params,uint64_t *engine_system_parameter_4)
+void engine_unnamed_function_2650(float *engine_data_structure_ptr,longlong engine_result_flag_ptr,char engine_comparison_params,uint64_t *engine_system_parameter_4)
 
 {
   uint64 engine_temporary_uint;
@@ -43791,7 +43791,7 @@ void FUN_180085190(float *engine_data_structure_ptr,longlong engine_result_flag_
     engine_data_structure_ptr[0xf] = 1.0;
     return;
   }
-  FUN_180085020(engine_system_parameter_4,&fStack_68);
+  engine_unnamed_function_2640(engine_system_parameter_4,&fStack_68);
   engine_temporary_uint = *(void*)(engine_result_flag_ptr + 200);
   engine_temp_uint_2 = *(void*)(engine_result_flag_ptr + 0xd0);
   engine_temp_uint_3 = *(void*)(engine_result_flag_ptr + 0xd8);
@@ -43822,8 +43822,8 @@ void FUN_180085190(float *engine_data_structure_ptr,longlong engine_result_flag_
 
 
 
-// void FUN_18008520c(float *engine_data_structure_ptr,longlong engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4,
-void FUN_18008520c(float *engine_data_structure_ptr,longlong engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4,
+// void engine_unnamed_function_266c(float *engine_data_structure_ptr,longlong engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4,
+void engine_unnamed_function_266c(float *engine_data_structure_ptr,longlong engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4,
                   uint64 param_5)
 
 {
@@ -43897,8 +43897,8 @@ void FUN_18008520c(float *engine_data_structure_ptr,longlong engine_result_flag_
 
 
 
-// void FUN_1800853fd(void)
-void FUN_1800853fd(void)
+// void engine_unnamed_function_267d(void)
+void engine_unnamed_function_267d(void)
 
 {
   uint64 engine_temporary_uint;
@@ -43912,7 +43912,7 @@ void FUN_1800853fd(void)
   float fStackX_24;
   float in_stack_00000028;
   
-  FUN_180085020(engine_register_r9,&fStackX_20);
+  engine_unnamed_function_2640(engine_register_r9,&fStackX_20);
   engine_temporary_uint = *(void*)(in_R11 + 200);
   engine_temp_uint_2 = *(void*)(in_R11 + 0xd0);
   engine_temp_uint_3 = *(void*)(in_R11 + 0xd8);
@@ -43943,8 +43943,8 @@ void FUN_1800853fd(void)
 
 
 
-// void FUN_180085530(longlong engine_data_structure_ptr)
-void FUN_180085530(longlong engine_data_structure_ptr)
+// void engine_unnamed_function_2680(longlong engine_data_structure_ptr)
+void engine_unnamed_function_2680(longlong engine_data_structure_ptr)
 
 {
   ulonglong engine_temporary_uint;
@@ -43980,7 +43980,7 @@ void FUN_180085530(longlong engine_data_structure_ptr)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 ulonglong *
-FUN_1800855e0(ulonglong engine_data_structure_ptr,uint64 engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
+engine_unnamed_function_2690(ulonglong engine_data_structure_ptr,uint64 engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
 
 {
   ulonglong *engine_data_pointer;
@@ -44014,8 +44014,8 @@ FUN_1800855e0(ulonglong engine_data_structure_ptr,uint64 engine_result_flag_ptr,
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// void FUN_180085680(longlong *engine_data_structure_ptr,longlong *engine_result_flag_ptr)
-void FUN_180085680(longlong *engine_data_structure_ptr,longlong *engine_result_flag_ptr)
+// void engine_unnamed_function_2700(longlong *engine_data_structure_ptr,longlong *engine_result_flag_ptr)
+void engine_unnamed_function_2700(longlong *engine_data_structure_ptr,longlong *engine_result_flag_ptr)
 
 {
   uint32_t *engine_data_pointer;
@@ -44040,7 +44040,7 @@ void FUN_180085680(longlong *engine_data_structure_ptr,longlong *engine_result_f
   }
   engine_temp_uint3 = 0;
   engine_data_structure_ptr[1] = 0;
-  FUN_180085530(*engine_data_structure_ptr);
+  engine_unnamed_function_2680(*engine_data_structure_ptr);
   *engine_data_structure_ptr = 0;
   if ((short)engine_result_flag_ptr[2] == 0) {
     return;
@@ -44052,7 +44052,7 @@ void FUN_180085680(longlong *engine_data_structure_ptr,longlong *engine_result_f
     engine_temp_uint64_value = *(ushort *)(engine_data_structure_ptr + 2);
   }
   engine_data_structure_ptr[1] = engine_temp_uint_8;
-  engine_temp_long_9 = FUN_1800855e0(engine_temp_uint64_value);
+  engine_temp_long_9 = engine_unnamed_function_2690(engine_temp_uint64_value);
   *engine_data_structure_ptr = engine_temp_long_9;
   engine_temp_uint64_value = *(ushort *)(engine_data_structure_ptr + 2);
   engine_temp_uint_8 = engine_temp_uint3;
@@ -44075,7 +44075,7 @@ void FUN_180085680(longlong *engine_data_structure_ptr,longlong *engine_result_f
         else {
           engine_data_ptr2[1] = engine_temp_uint1;
         }
-        FUN_1800846d0(engine_data_ptr2);
+        engine_unnamed_function_2560(engine_data_ptr2);
       }
       *engine_data_ptr2 = engine_temp_uint1;
       if (*engine_data_ptr4 != 0) {
@@ -44107,7 +44107,7 @@ void FUN_180085680(longlong *engine_data_structure_ptr,longlong *engine_result_f
         else {
           engine_data_ptr2[0xb] = engine_temp_uint1;
         }
-        FUN_1800846d0(engine_data_ptr2 + 10);
+        engine_unnamed_function_2560(engine_data_ptr2 + 10);
       }
       engine_data_ptr2[10] = engine_temp_uint1;
       engine_temp_uint1 = 0;
@@ -44141,8 +44141,8 @@ void FUN_180085680(longlong *engine_data_structure_ptr,longlong *engine_result_f
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// void FUN_1800856c7(void)
-void FUN_1800856c7(void)
+// void engine_unnamed_function_2717(void)
+void engine_unnamed_function_2717(void)
 
 {
   uint32_t *engine_data_pointer;
@@ -44175,7 +44175,7 @@ void FUN_1800856c7(void)
     engine_temp_uint_8 = (engine_undefined_value)unaff_R14[2];
   }
   unaff_R14[1] = engine_temp_uint_9;
-  engine_temp_long0 = FUN_1800855e0(engine_temp_uint_8);
+  engine_temp_long0 = engine_unnamed_function_2690(engine_temp_uint_8);
   *unaff_R14 = engine_temp_long0;
   engine_temp_uint6 = unaff_RBP & 0xffffffff;
   engine_temp_uint_3 = *(ushort *)(unaff_R14 + 2);
@@ -44198,7 +44198,7 @@ void FUN_1800856c7(void)
         else {
           engine_data_ptr3[1] = engine_temp_uint5;
         }
-        FUN_1800846d0(engine_data_ptr3);
+        engine_unnamed_function_2560(engine_data_ptr3);
       }
       *engine_data_ptr3 = engine_temp_uint5;
       engine_temp_uint2 = unaff_RBP & 0xffffffff;
@@ -44231,7 +44231,7 @@ void FUN_1800856c7(void)
         else {
           engine_data_ptr3[0xb] = engine_temp_uint5;
         }
-        FUN_1800846d0(engine_data_ptr3 + 10);
+        engine_unnamed_function_2560(engine_data_ptr3 + 10);
       }
       engine_data_ptr3[10] = engine_temp_uint5;
       unaff_RBP = 0;
@@ -44264,8 +44264,8 @@ void FUN_1800856c7(void)
 
 
 
-// void FUN_180085714(void)
-void FUN_180085714(void)
+// void engine_unnamed_function_2724(void)
+void engine_unnamed_function_2724(void)
 
 {
   uint32_t *engine_data_pointer;
@@ -44303,7 +44303,7 @@ void FUN_180085714(void)
       else {
         engine_data_ptr0[1] = engine_temp_uint_3;
       }
-      FUN_1800846d0(engine_data_ptr0);
+      engine_unnamed_function_2560(engine_data_ptr0);
     }
     *engine_data_ptr0 = engine_temp_uint_3;
     engine_temp_uint_9 = unaff_RBP & 0xffffffff;
@@ -44336,7 +44336,7 @@ void FUN_180085714(void)
       else {
         engine_data_ptr0[0xb] = engine_temp_uint_3;
       }
-      FUN_1800846d0(engine_data_ptr0 + 10);
+      engine_unnamed_function_2560(engine_data_ptr0 + 10);
     }
     engine_data_ptr0[10] = engine_temp_uint_3;
     unaff_RBP = 0;
@@ -44366,8 +44366,8 @@ void FUN_180085714(void)
 
 
 
-// void FUN_180085826(void)
-void FUN_180085826(void)
+// void engine_unnamed_function_2736(void)
+void engine_unnamed_function_2736(void)
 
 {
   ushort in_AX;
@@ -44381,8 +44381,8 @@ void FUN_180085826(void)
 
 
 
-// void FUN_180085840(void)
-void FUN_180085840(void)
+// void engine_unnamed_function_2740(void)
+void engine_unnamed_function_2740(void)
 
 {
   return;
@@ -44403,34 +44403,34 @@ longlong engine_get_render_context(longlong engine_data_structure_ptr)
 
 
 
-// void FUN_180085970(uint64 engine_data_structure_ptr,uint32_t engine_result_flag_ptr)
-void FUN_180085970(uint64 engine_data_structure_ptr,uint32_t engine_result_flag_ptr)
+// void engine_unnamed_function_2750(uint64 engine_data_structure_ptr,uint32_t engine_result_flag_ptr)
+void engine_unnamed_function_2750(uint64 engine_data_structure_ptr,uint32_t engine_result_flag_ptr)
 
 {
                     // WARNING: Subroutine does not return
-  FUN_1808fd400(engine_result_flag_ptr);
+  engine_unnamed_function_6550(engine_result_flag_ptr);
 }
 
 
 
 
-// void FUN_180085ac0(uint64 engine_data_structure_ptr,uint32_t engine_result_flag_ptr)
-void FUN_180085ac0(uint64 engine_data_structure_ptr,uint32_t engine_result_flag_ptr)
+// void engine_unnamed_function_2760(uint64 engine_data_structure_ptr,uint32_t engine_result_flag_ptr)
+void engine_unnamed_function_2760(uint64 engine_data_structure_ptr,uint32_t engine_result_flag_ptr)
 
 {
                     // WARNING: Subroutine does not return
-  FUN_1808fd400(engine_result_flag_ptr);
+  engine_unnamed_function_6550(engine_result_flag_ptr);
 }
 
 
 
 
-// void FUN_180085c10(uint64 engine_data_structure_ptr,uint32_t engine_result_flag_ptr)
-void FUN_180085c10(uint64 engine_data_structure_ptr,uint32_t engine_result_flag_ptr)
+// void engine_unnamed_function_2770(uint64 engine_data_structure_ptr,uint32_t engine_result_flag_ptr)
+void engine_unnamed_function_2770(uint64 engine_data_structure_ptr,uint32_t engine_result_flag_ptr)
 
 {
                     // WARNING: Subroutine does not return
-  FUN_1808fd400(engine_result_flag_ptr);
+  engine_unnamed_function_6550(engine_result_flag_ptr);
 }
 
 
@@ -44438,8 +44438,8 @@ void FUN_180085c10(uint64 engine_data_structure_ptr,uint32_t engine_result_flag_
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// void FUN_180085e30(int *engine_data_structure_ptr)
-void FUN_180085e30(int *engine_data_structure_ptr)
+// void engine_unnamed_function_2780(int *engine_data_structure_ptr)
+void engine_unnamed_function_2780(int *engine_data_structure_ptr)
 
 {
   uint64 engine_temporary_uint;
@@ -44465,8 +44465,8 @@ void FUN_180085e30(int *engine_data_structure_ptr)
 
 
 
-// void FUN_180085e55(void)
-void FUN_180085e55(void)
+// void engine_unnamed_function_2795(void)
+void engine_unnamed_function_2795(void)
 
 {
   uint64 engine_temporary_uint;
@@ -44484,8 +44484,8 @@ void FUN_180085e55(void)
 
 
 
-// void FUN_180085e9b(longlong engine_data_structure_ptr)
-void FUN_180085e9b(longlong engine_data_structure_ptr)
+// void engine_unnamed_function_280b(longlong engine_data_structure_ptr)
+void engine_unnamed_function_280b(longlong engine_data_structure_ptr)
 
 {
   longlong engine_register_rbx;
@@ -44501,8 +44501,8 @@ void FUN_180085e9b(longlong engine_data_structure_ptr)
 
 
 
-// void FUN_180085ec0(int *engine_data_structure_ptr,int *engine_result_flag_ptr)
-void FUN_180085ec0(int *engine_data_structure_ptr,int *engine_result_flag_ptr)
+// void engine_unnamed_function_2810(int *engine_data_structure_ptr,int *engine_result_flag_ptr)
+void engine_unnamed_function_2810(int *engine_data_structure_ptr,int *engine_result_flag_ptr)
 
 {
   int engine_temporary_int;
@@ -44513,7 +44513,7 @@ void FUN_180085ec0(int *engine_data_structure_ptr,int *engine_result_flag_ptr)
   *(char *)(engine_data_structure_ptr + 8) = (char)engine_result_flag_ptr[8];
   if (engine_data_structure_ptr[1] < engine_result_flag_ptr[1]) {
     engine_data_structure_ptr[1] = engine_result_flag_ptr[1];
-    FUN_180085e30(engine_data_structure_ptr);
+    engine_unnamed_function_2780(engine_data_structure_ptr);
     engine_temporary_int = *engine_data_structure_ptr;
     engine_temp_uint_2 = *(void*)(engine_result_flag_ptr + 2);
   }
@@ -44532,8 +44532,8 @@ void FUN_180085ec0(int *engine_data_structure_ptr,int *engine_result_flag_ptr)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// void FUN_180085f20(int *engine_data_structure_ptr)
-void FUN_180085f20(int *engine_data_structure_ptr)
+// void engine_unnamed_function_2820(int *engine_data_structure_ptr)
+void engine_unnamed_function_2820(int *engine_data_structure_ptr)
 
 {
   uint64 engine_temporary_uint;
@@ -44559,8 +44559,8 @@ void FUN_180085f20(int *engine_data_structure_ptr)
 
 
 
-// void FUN_180085f45(void)
-void FUN_180085f45(void)
+// void engine_unnamed_function_2835(void)
+void engine_unnamed_function_2835(void)
 
 {
   uint64 engine_temporary_uint;
@@ -44578,8 +44578,8 @@ void FUN_180085f45(void)
 
 
 
-// void FUN_180085f8b(longlong engine_data_structure_ptr)
-void FUN_180085f8b(longlong engine_data_structure_ptr)
+// void engine_unnamed_function_284b(longlong engine_data_structure_ptr)
+void engine_unnamed_function_284b(longlong engine_data_structure_ptr)
 
 {
   longlong engine_register_rbx;
@@ -44595,8 +44595,8 @@ void FUN_180085f8b(longlong engine_data_structure_ptr)
 
 
 
-// void FUN_180085fb0(int *engine_data_structure_ptr,int *engine_result_flag_ptr)
-void FUN_180085fb0(int *engine_data_structure_ptr,int *engine_result_flag_ptr)
+// void engine_unnamed_function_2850(int *engine_data_structure_ptr,int *engine_result_flag_ptr)
+void engine_unnamed_function_2850(int *engine_data_structure_ptr,int *engine_result_flag_ptr)
 
 {
   int engine_temporary_int;
@@ -44607,7 +44607,7 @@ void FUN_180085fb0(int *engine_data_structure_ptr,int *engine_result_flag_ptr)
   *(char *)(engine_data_structure_ptr + 8) = (char)engine_result_flag_ptr[8];
   if (engine_data_structure_ptr[1] < engine_result_flag_ptr[1]) {
     engine_data_structure_ptr[1] = engine_result_flag_ptr[1];
-    FUN_180085f20(engine_data_structure_ptr);
+    engine_unnamed_function_2820(engine_data_structure_ptr);
     engine_temporary_int = *engine_data_structure_ptr;
     engine_temp_uint_2 = *(void*)(engine_result_flag_ptr + 2);
   }
@@ -44626,8 +44626,8 @@ void FUN_180085fb0(int *engine_data_structure_ptr,int *engine_result_flag_ptr)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// void FUN_180086010(int *engine_data_structure_ptr)
-void FUN_180086010(int *engine_data_structure_ptr)
+// void engine_unnamed_function_2860(int *engine_data_structure_ptr)
+void engine_unnamed_function_2860(int *engine_data_structure_ptr)
 
 {
   uint64 engine_temporary_uint;
@@ -44653,8 +44653,8 @@ void FUN_180086010(int *engine_data_structure_ptr)
 
 
 
-// void FUN_180086031(void)
-void FUN_180086031(void)
+// void engine_unnamed_function_2871(void)
+void engine_unnamed_function_2871(void)
 
 {
   uint64 engine_temporary_uint;
@@ -44672,8 +44672,8 @@ void FUN_180086031(void)
 
 
 
-// void FUN_180086073(longlong engine_data_structure_ptr)
-void FUN_180086073(longlong engine_data_structure_ptr)
+// void engine_unnamed_function_2883(longlong engine_data_structure_ptr)
+void engine_unnamed_function_2883(longlong engine_data_structure_ptr)
 
 {
   longlong engine_register_rbx;
@@ -44689,8 +44689,8 @@ void FUN_180086073(longlong engine_data_structure_ptr)
 
 
 
-// void FUN_180086090(int *engine_data_structure_ptr,int *engine_result_flag_ptr)
-void FUN_180086090(int *engine_data_structure_ptr,int *engine_result_flag_ptr)
+// void engine_unnamed_function_2890(int *engine_data_structure_ptr,int *engine_result_flag_ptr)
+void engine_unnamed_function_2890(int *engine_data_structure_ptr,int *engine_result_flag_ptr)
 
 {
   int engine_temporary_int;
@@ -44701,7 +44701,7 @@ void FUN_180086090(int *engine_data_structure_ptr,int *engine_result_flag_ptr)
   *(char *)(engine_data_structure_ptr + 8) = (char)engine_result_flag_ptr[8];
   if (engine_data_structure_ptr[1] < engine_result_flag_ptr[1]) {
     engine_data_structure_ptr[1] = engine_result_flag_ptr[1];
-    FUN_180086010(engine_data_structure_ptr);
+    engine_unnamed_function_2860(engine_data_structure_ptr);
     engine_temporary_int = *engine_data_structure_ptr;
     engine_temp_uint_2 = *(void*)(engine_result_flag_ptr + 2);
   }
@@ -44718,8 +44718,8 @@ void FUN_180086090(int *engine_data_structure_ptr,int *engine_result_flag_ptr)
 
 
 
-// void FUN_1800860f0(int *engine_data_structure_ptr,int *engine_result_flag_ptr)
-void FUN_1800860f0(int *engine_data_structure_ptr,int *engine_result_flag_ptr)
+// void engine_unnamed_function_2900(int *engine_data_structure_ptr,int *engine_result_flag_ptr)
+void engine_unnamed_function_2900(int *engine_data_structure_ptr,int *engine_result_flag_ptr)
 
 {
   int engine_temporary_int;
@@ -44730,7 +44730,7 @@ void FUN_1800860f0(int *engine_data_structure_ptr,int *engine_result_flag_ptr)
   *(char *)(engine_data_structure_ptr + 8) = (char)engine_result_flag_ptr[8];
   if (engine_data_structure_ptr[1] < engine_result_flag_ptr[1]) {
     engine_data_structure_ptr[1] = engine_result_flag_ptr[1];
-    FUN_1800846d0(engine_data_structure_ptr);
+    engine_unnamed_function_2560(engine_data_structure_ptr);
     engine_temporary_int = *engine_data_structure_ptr;
     engine_temp_uint_2 = *(void*)(engine_result_flag_ptr + 2);
   }
@@ -44746,7 +44746,7 @@ void FUN_1800860f0(int *engine_data_structure_ptr,int *engine_result_flag_ptr)
 
 
 
-uint8_t FUN_1800861a0(float *engine_data_structure_ptr)
+uint8_t engine_unnamed_function_2910(float *engine_data_structure_ptr)
 
 {
   char resource_status_flag;
@@ -44769,8 +44769,8 @@ uint8_t FUN_1800861a0(float *engine_data_structure_ptr)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// void FUN_180086270(ulonglong *engine_data_structure_ptr,uint64_t *engine_result_flag_ptr)
-void FUN_180086270(ulonglong *engine_data_structure_ptr,uint64_t *engine_result_flag_ptr)
+// void engine_unnamed_function_2920(ulonglong *engine_data_structure_ptr,uint64_t *engine_result_flag_ptr)
+void engine_unnamed_function_2920(ulonglong *engine_data_structure_ptr,uint64_t *engine_result_flag_ptr)
 
 {
   uint32 engine_temporary_uint;
@@ -44834,8 +44834,8 @@ LAB_180086316:
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// void FUN_1800862bb(longlong engine_data_structure_ptr,uint64 engine_result_flag_ptr,uint64 engine_comparison_params,longlong engine_system_parameter_4)
-void FUN_1800862bb(longlong engine_data_structure_ptr,uint64 engine_result_flag_ptr,uint64 engine_comparison_params,longlong engine_system_parameter_4)
+// void engine_unnamed_function_293b(longlong engine_data_structure_ptr,uint64 engine_result_flag_ptr,uint64 engine_comparison_params,longlong engine_system_parameter_4)
+void engine_unnamed_function_293b(longlong engine_data_structure_ptr,uint64 engine_result_flag_ptr,uint64 engine_comparison_params,longlong engine_system_parameter_4)
 
 {
   uint32 engine_temporary_uint;
@@ -44897,8 +44897,8 @@ void thunk_engine_call_cleanup_routine(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// void FUN_1800863a0(ulonglong *engine_data_structure_ptr,uint64_t *engine_result_flag_ptr)
-void FUN_1800863a0(ulonglong *engine_data_structure_ptr,uint64_t *engine_result_flag_ptr)
+// void engine_unnamed_function_2940(ulonglong *engine_data_structure_ptr,uint64_t *engine_result_flag_ptr)
+void engine_unnamed_function_2940(ulonglong *engine_data_structure_ptr,uint64_t *engine_result_flag_ptr)
 
 {
   uint32 engine_temporary_uint;
@@ -44958,7 +44958,7 @@ LAB_18008642b:
 
 
 uint64_t *
-FUN_180086490(uint64_t *engine_data_structure_ptr,ulonglong engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
+engine_unnamed_function_2950(uint64_t *engine_data_structure_ptr,ulonglong engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
 
 {
   engine_data_structure_ptr[4] = &engine_system_context_data;
@@ -44980,12 +44980,12 @@ FUN_180086490(uint64_t *engine_data_structure_ptr,ulonglong engine_result_flag_p
 
 
 
-// void FUN_180086530(longlong *engine_data_structure_ptr)
-void FUN_180086530(longlong *engine_data_structure_ptr)
+// void engine_unnamed_function_2960(longlong *engine_data_structure_ptr)
+void engine_unnamed_function_2960(longlong *engine_data_structure_ptr)
 
 {
   if (*engine_data_structure_ptr != 0) {
-    FUN_180080060();
+    engine_unnamed_function_1780();
   }
   return;
 }
@@ -44993,7 +44993,7 @@ void FUN_180086530(longlong *engine_data_structure_ptr)
 
 
 uint64_t *
-FUN_180086570(uint64_t *engine_data_structure_ptr,longlong engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
+engine_unnamed_function_2970(uint64_t *engine_data_structure_ptr,longlong engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
 
 {
   longlong engine_temporary_long;
@@ -45026,7 +45026,7 @@ uint64_t * engine_process_input_events(uint64 engine_data_structure_ptr,uint32_t
   void* engine_data_pointer;
   
   engine_data_pointer = (void*)engine_call_memory_allocator(_engine_data_18,0xb8,8,0x1a,0xfffffffffffffffe);
-  FUN_1802565b0(engine_data_pointer,engine_data_structure_ptr,engine_result_flag_ptr);
+  engine_unnamed_function_6060(engine_data_pointer,engine_data_structure_ptr,engine_result_flag_ptr);
   *engine_data_pointer = &engine_base_data_offset_f8;
   engine_data_pointer[0x16] = 0;
   return engine_data_pointer;
@@ -45042,20 +45042,20 @@ uint64_t * engine_handle_keyboard_input(uint64 engine_data_structure_ptr,uint32_
   void* engine_data_pointer;
   
   engine_data_pointer = (void*)engine_call_memory_allocator(_engine_data_18,0xb0,8,0x1a,0xfffffffffffffffe);
-  FUN_1802565b0(engine_data_pointer,engine_data_structure_ptr,engine_result_flag_ptr);
+  engine_unnamed_function_6060(engine_data_pointer,engine_data_structure_ptr,engine_result_flag_ptr);
   *engine_data_pointer = &engine_base_data_offset_40;
   return engine_data_pointer;
 }
 
 
 
-uint64 FUN_1800866f0(uint64 engine_data_structure_ptr,ulonglong engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
+uint64 engine_unnamed_function_2980(uint64 engine_data_structure_ptr,ulonglong engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
 
 {
   uint64 engine_temporary_uint;
   
   engine_temporary_uint = 0xfffffffffffffffe;
-  FUN_1802566c0();
+  engine_unnamed_function_6070();
   if ((engine_result_flag_ptr & 1) != 0) {
     free(engine_data_structure_ptr,0xb0,engine_comparison_params,engine_system_parameter_4,engine_temporary_uint);
   }
@@ -45072,7 +45072,7 @@ uint64_t * engine_handle_mouse_input(uint64 engine_data_structure_ptr,uint32_t e
   void* engine_data_pointer;
   
   engine_data_pointer = (void*)engine_call_memory_allocator(_engine_data_18,0xb8,8,0x1a,0xfffffffffffffffe);
-  FUN_1802565b0(engine_data_pointer,engine_data_structure_ptr,engine_result_flag_ptr);
+  engine_unnamed_function_6060(engine_data_pointer,engine_data_structure_ptr,engine_result_flag_ptr);
   *engine_data_pointer = &engine_base_data_offset_88;
   engine_data_pointer[0x16] = 0;
   return engine_data_pointer;
@@ -45080,7 +45080,7 @@ uint64_t * engine_handle_mouse_input(uint64 engine_data_structure_ptr,uint32_t e
 
 
 
-longlong FUN_1800867d0(longlong engine_data_structure_ptr,ulonglong engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
+longlong engine_unnamed_function_2990(longlong engine_data_structure_ptr,ulonglong engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
 
 {
   uint64 engine_temporary_uint;
@@ -45089,7 +45089,7 @@ longlong FUN_1800867d0(longlong engine_data_structure_ptr,ulonglong engine_resul
   if (*(longlong **)(engine_data_structure_ptr + 0xb0) != (longlong *)0x0) {
     (**(code **)(**(longlong **)(engine_data_structure_ptr + 0xb0) + 0x38))();
   }
-  FUN_1802566c0(engine_data_structure_ptr);
+  engine_unnamed_function_6070(engine_data_structure_ptr);
   if ((engine_result_flag_ptr & 1) != 0) {
     free(engine_data_structure_ptr,0xb8,engine_comparison_params,engine_system_parameter_4,engine_temporary_uint);
   }
@@ -45106,7 +45106,7 @@ uint64_t * engine_update_game_state(uint64 engine_data_structure_ptr,uint32_t en
   void* engine_data_pointer;
   
   engine_data_pointer = (void*)engine_call_memory_allocator(_engine_data_18,0xb8,8,0x1a,0xfffffffffffffffe);
-  FUN_1802565b0(engine_data_pointer,engine_data_structure_ptr,engine_result_flag_ptr);
+  engine_unnamed_function_6060(engine_data_pointer,engine_data_structure_ptr,engine_result_flag_ptr);
   *engine_data_pointer = &engine_base_data_offset_d0;
   engine_data_pointer[0x16] = 0;
   return engine_data_pointer;
@@ -45122,7 +45122,7 @@ uint64_t * engine_process_physics_simulation(uint64 engine_data_structure_ptr,ui
   void* engine_data_pointer;
   
   engine_data_pointer = (void*)engine_call_memory_allocator(_engine_data_18,0xb8,8,0x1a,0xfffffffffffffffe);
-  FUN_1802565b0(engine_data_pointer,engine_data_structure_ptr,engine_result_flag_ptr);
+  engine_unnamed_function_6060(engine_data_pointer,engine_data_structure_ptr,engine_result_flag_ptr);
   *engine_data_pointer = &engine_base_data_offset_10;
   engine_data_pointer[0x16] = 0;
   return engine_data_pointer;
@@ -45138,7 +45138,7 @@ uint64_t * engine_render_frame(uint64 engine_data_structure_ptr,uint32_t engine_
   void* engine_data_pointer;
   
   engine_data_pointer = (void*)engine_call_memory_allocator(_engine_data_18,0xb8,8,0x1a,0xfffffffffffffffe);
-  FUN_1802565b0(engine_data_pointer,engine_data_structure_ptr,engine_result_flag_ptr);
+  engine_unnamed_function_6060(engine_data_pointer,engine_data_structure_ptr,engine_result_flag_ptr);
   *engine_data_pointer = &engine_base_data_offset_58;
   engine_data_pointer[0x16] = 0;
   return engine_data_pointer;
@@ -45154,7 +45154,7 @@ uint64_t * engine_update_audio_system(uint64 engine_data_structure_ptr,uint32_t 
   void* engine_data_pointer;
   
   engine_data_pointer = (void*)engine_call_memory_allocator(_engine_data_18,0xb8,8,0x1a,0xfffffffffffffffe);
-  FUN_1802565b0(engine_data_pointer,engine_data_structure_ptr,engine_result_flag_ptr);
+  engine_unnamed_function_6060(engine_data_pointer,engine_data_structure_ptr,engine_result_flag_ptr);
   *engine_data_pointer = &engine_base_data_offset_78;
   engine_data_pointer[0x16] = 0;
   return engine_data_pointer;
@@ -45170,7 +45170,7 @@ uint64_t * engine_process_network_events(uint64 engine_data_structure_ptr,uint32
   void* engine_data_pointer;
   
   engine_data_pointer = (void*)engine_call_memory_allocator(_engine_data_18,0xb8,8,0x1a,0xfffffffffffffffe);
-  FUN_1802565b0(engine_data_pointer,engine_data_structure_ptr,engine_result_flag_ptr);
+  engine_unnamed_function_6060(engine_data_pointer,engine_data_structure_ptr,engine_result_flag_ptr);
   *engine_data_pointer = &engine_base_data_offset_a8;
   engine_data_pointer[0x16] = 0;
   return engine_data_pointer;
@@ -45186,7 +45186,7 @@ uint64_t * engine_process_graphics_buffer(uint64 engine_data_structure_ptr,uint3
   void* engine_data_pointer;
   
   engine_data_pointer = (void*)engine_call_memory_allocator(_engine_data_18,0xb8,8,0x1a,0xfffffffffffffffe);
-  FUN_1802565b0(engine_data_pointer,engine_data_structure_ptr,engine_result_flag_ptr);
+  engine_unnamed_function_6060(engine_data_pointer,engine_data_structure_ptr,engine_result_flag_ptr);
   *engine_data_pointer = &engine_base_data_offset_e0;
   engine_data_pointer[0x16] = 0;
   return engine_data_pointer;
@@ -45197,8 +45197,8 @@ uint64_t * engine_process_graphics_buffer(uint64 engine_data_structure_ptr,uint3
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// void FUN_180086bd0(longlong engine_data_structure_ptr,uint64 engine_result_flag_ptr,longlong engine_comparison_params)
-void FUN_180086bd0(longlong engine_data_structure_ptr,uint64 engine_result_flag_ptr,longlong engine_comparison_params)
+// void engine_unnamed_function_3000(longlong engine_data_structure_ptr,uint64 engine_result_flag_ptr,longlong engine_comparison_params)
+void engine_unnamed_function_3000(longlong engine_data_structure_ptr,uint64 engine_result_flag_ptr,longlong engine_comparison_params)
 
 {
   void* engine_data_pointer;
@@ -45211,7 +45211,7 @@ void FUN_180086bd0(longlong engine_data_structure_ptr,uint64 engine_result_flag_
   if (*(uint8**)(engine_data_structure_ptr + 8) != (uint8*)0x0) {
     **(uint8**)(engine_data_structure_ptr + 8) = 0;
   }
-  FUN_180142300(*_engine_data_70,&puStack_30,engine_result_flag_ptr);
+  engine_unnamed_function_5530(*_engine_data_70,&puStack_30,engine_result_flag_ptr);
   engine_data_pointer = &engine_data_73;
   if (engine_data_pointer_58 != (void*)0x0) {
     engine_data_pointer = engine_data_pointer_58;
@@ -45235,7 +45235,7 @@ void FUN_180086bd0(longlong engine_data_structure_ptr,uint64 engine_result_flag_
 
 
 
-uint64_t * FUN_180086ca0(uint64_t *engine_data_structure_ptr)
+uint64_t * engine_unnamed_function_3010(uint64_t *engine_data_structure_ptr)
 
 {
   void* engine_data_pointer;
@@ -45293,8 +45293,8 @@ uint64_t * FUN_180086ca0(uint64_t *engine_data_structure_ptr)
 
 
 
-// void FUN_180086dc0(longlong *engine_data_structure_ptr)
-void FUN_180086dc0(longlong *engine_data_structure_ptr)
+// void engine_unnamed_function_3020(longlong *engine_data_structure_ptr)
+void engine_unnamed_function_3020(longlong *engine_data_structure_ptr)
 
 {
   longlong engine_temporary_long;
@@ -45302,7 +45302,7 @@ void FUN_180086dc0(longlong *engine_data_structure_ptr)
   
   engine_temporary_long = engine_data_structure_ptr[1];
   for (engine_temp_long_2 = *engine_data_structure_ptr; engine_temp_long_2 != engine_temporary_long; engine_temp_long_2 = engine_temp_long_2 + 0x60) {
-    FUN_180089640(engine_temp_long_2);
+    engine_unnamed_function_3190(engine_temp_long_2);
   }
   if (*engine_data_structure_ptr == 0) {
     return;
@@ -45314,22 +45314,22 @@ void FUN_180086dc0(longlong *engine_data_structure_ptr)
 
 
 
-// void FUN_180086de0(longlong engine_data_structure_ptr,uint64 engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
-void FUN_180086de0(longlong engine_data_structure_ptr,uint64 engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
+// void engine_unnamed_function_3030(longlong engine_data_structure_ptr,uint64 engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
+void engine_unnamed_function_3030(longlong engine_data_structure_ptr,uint64 engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
 
 {
-  FUN_18008d810(engine_data_structure_ptr,*(void*)(engine_data_structure_ptr + 0x10),engine_comparison_params,engine_system_parameter_4,0xfffffffffffffffe);
+  engine_unnamed_function_3500(engine_data_structure_ptr,*(void*)(engine_data_structure_ptr + 0x10),engine_comparison_params,engine_system_parameter_4,0xfffffffffffffffe);
   return;
 }
 
 
 
 
-// void FUN_180086e10(longlong engine_data_structure_ptr,uint64 engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
-void FUN_180086e10(longlong engine_data_structure_ptr,uint64 engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
+// void engine_unnamed_function_3040(longlong engine_data_structure_ptr,uint64 engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
+void engine_unnamed_function_3040(longlong engine_data_structure_ptr,uint64 engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
 
 {
-  FUN_18008d810(engine_data_structure_ptr,*(void*)(engine_data_structure_ptr + 0x10),engine_comparison_params,engine_system_parameter_4,0xfffffffffffffffe);
+  engine_unnamed_function_3500(engine_data_structure_ptr,*(void*)(engine_data_structure_ptr + 0x10),engine_comparison_params,engine_system_parameter_4,0xfffffffffffffffe);
   return;
 }
 
@@ -45338,8 +45338,8 @@ void FUN_180086e10(longlong engine_data_structure_ptr,uint64 engine_result_flag_
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// void FUN_180086e40(longlong engine_data_structure_ptr,longlong *engine_result_flag_ptr,longlong engine_comparison_params)
-void FUN_180086e40(longlong engine_data_structure_ptr,longlong *engine_result_flag_ptr,longlong engine_comparison_params)
+// void engine_unnamed_function_3050(longlong engine_data_structure_ptr,longlong *engine_result_flag_ptr,longlong engine_comparison_params)
+void engine_unnamed_function_3050(longlong engine_data_structure_ptr,longlong *engine_result_flag_ptr,longlong engine_comparison_params)
 
 {
   void* engine_data_pointer;
@@ -45382,10 +45382,10 @@ void FUN_180086e40(longlong engine_data_structure_ptr,longlong *engine_result_fl
     } while (engine_temp_uint_3 < uStack_248);
   }
   if ((*engine_result_flag_ptr == 0) && (engine_result_flag_ptr[1] == 0)) {
-    FUN_1800871c0(engine_data_structure_ptr,engine_comparison_params);
+    engine_unnamed_function_3100(engine_data_structure_ptr,engine_comparison_params);
   }
   else {
-    FUN_18008d5c0(engine_data_structure_ptr + 0x78,alStack_268,engine_result_flag_ptr);
+    engine_unnamed_function_3470(engine_data_structure_ptr + 0x78,alStack_268,engine_result_flag_ptr);
     if (alStack_268[0] != engine_data_structure_ptr + 0x78) {
       puStack_288 = &engine_system_context_data;
       uStack_270 = 0;
@@ -45403,7 +45403,7 @@ void FUN_180086e40(longlong engine_data_structure_ptr,longlong *engine_result_fl
       if ((puStack_250 != (void*)0x0) && (uStack_278 = 0, puStack_280 != (uint8*)0x0)) {
         *puStack_280 = 0;
       }
-      FUN_18008d4a0(alStack_268[0] + 0x60,alStack_268,&puStack_288);
+      engine_unnamed_function_3430(alStack_268[0] + 0x60,alStack_268,&puStack_288);
       puStack_288 = &engine_system_context_data;
       if (puStack_280 != (uint8*)0x0) {
                     // WARNING: Subroutine does not return
@@ -45421,7 +45421,7 @@ void FUN_180086e40(longlong engine_data_structure_ptr,longlong *engine_result_fl
 
 
 
-uint64 FUN_180087070(longlong engine_data_structure_ptr,longlong *engine_result_flag_ptr,uint64 engine_comparison_params)
+uint64 engine_unnamed_function_3060(longlong engine_data_structure_ptr,longlong *engine_result_flag_ptr,uint64 engine_comparison_params)
 
 {
   int engine_temporary_int;
@@ -45432,7 +45432,7 @@ uint64 FUN_180087070(longlong engine_data_structure_ptr,longlong *engine_result_
   longlong engine_stack_long_x20;
   
   if ((*engine_result_flag_ptr != 0) || (engine_result_flag_ptr[1] != 0)) {
-    FUN_18008d5c0(engine_data_structure_ptr + 0x78,&engine_stack_long_x20,engine_result_flag_ptr);
+    engine_unnamed_function_3470(engine_data_structure_ptr + 0x78,&engine_stack_long_x20,engine_result_flag_ptr);
     if ((engine_stack_long_x20 != engine_data_structure_ptr + 0x78) &&
        (engine_temp_long_2 = engine_stack_long_x20 + 0x30, engine_update_render_state(engine_temp_long_2,&engine_stack_long_x20,engine_comparison_params), engine_stack_long_x20 != engine_temp_long_2)) {
       return *(void*)(engine_stack_long_x20 + 0x30);
@@ -45469,13 +45469,13 @@ uint64 FUN_180087070(longlong engine_data_structure_ptr,longlong *engine_result_
 
 
 
-uint64 FUN_1800870a2(longlong engine_data_structure_ptr)
+uint64 engine_unnamed_function_3072(longlong engine_data_structure_ptr)
 
 {
   longlong engine_temporary_long;
   longlong in_stack_00000048;
   
-  FUN_18008d5c0(engine_data_structure_ptr + 0x78,&stack0x00000048);
+  engine_unnamed_function_3470(engine_data_structure_ptr + 0x78,&stack0x00000048);
   if (in_stack_00000048 != engine_data_structure_ptr + 0x78) {
     engine_temporary_long = in_stack_00000048 + 0x30;
     engine_update_render_state(engine_temporary_long,&stack0x00000048);
@@ -45488,7 +45488,7 @@ uint64 FUN_1800870a2(longlong engine_data_structure_ptr)
 
 
 
-uint64 FUN_1800870ef(void)
+uint64 engine_unnamed_function_308f(void)
 
 {
   return 0;
@@ -45496,7 +45496,7 @@ uint64 FUN_1800870ef(void)
 
 
 
-uint64 FUN_180087100(longlong engine_data_structure_ptr,uint64 engine_result_flag_ptr)
+uint64 engine_unnamed_function_3090(longlong engine_data_structure_ptr,uint64 engine_result_flag_ptr)
 
 {
   int engine_temporary_int;
@@ -45535,7 +45535,7 @@ uint64 FUN_180087100(longlong engine_data_structure_ptr,uint64 engine_result_fla
 
 
 
-uint64 FUN_1800871c0(longlong engine_data_structure_ptr,longlong engine_result_flag_ptr)
+uint64 engine_unnamed_function_3100(longlong engine_data_structure_ptr,longlong engine_result_flag_ptr)
 
 {
   void* engine_data_pointer;
@@ -45654,7 +45654,7 @@ LAB_18008733a:
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-uint64 FUN_1800873b0(int engine_data_structure_ptr,longlong *engine_result_flag_ptr,uint8_t *engine_comparison_params)
+uint64 engine_unnamed_function_3110(int engine_data_structure_ptr,longlong *engine_result_flag_ptr,uint8_t *engine_comparison_params)
 
 {
   char resource_status_flag;
@@ -45790,8 +45790,8 @@ LAB_18008758f:
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// void FUN_180087630(uint64 engine_data_structure_ptr,longlong engine_result_flag_ptr,longlong engine_comparison_params)
-void FUN_180087630(uint64 engine_data_structure_ptr,longlong engine_result_flag_ptr,longlong engine_comparison_params)
+// void engine_unnamed_function_3120(uint64 engine_data_structure_ptr,longlong engine_result_flag_ptr,longlong engine_comparison_params)
+void engine_unnamed_function_3120(uint64 engine_data_structure_ptr,longlong engine_result_flag_ptr,longlong engine_comparison_params)
 
 {
   void* engine_data_pointer;
@@ -45800,7 +45800,7 @@ void FUN_180087630(uint64 engine_data_structure_ptr,longlong engine_result_flag_
   void* puStack_30;
   void* puStack_28;
   
-  FUN_180142300(*_engine_data_70,&puStack_30,engine_data_structure_ptr);
+  engine_unnamed_function_5530(*_engine_data_70,&puStack_30,engine_data_structure_ptr);
   *(uint32*)(engine_comparison_params + 0x10) = 0;
   if (*(uint8**)(engine_comparison_params + 8) != (uint8*)0x0) {
     **(uint8**)(engine_comparison_params + 8) = 0;
@@ -45831,8 +45831,8 @@ void FUN_180087630(uint64 engine_data_structure_ptr,longlong engine_result_flag_
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// void FUN_180087700(uint64_t *engine_data_structure_ptr,uint64_t *engine_result_flag_ptr,uint64_t *engine_comparison_params,uint64 engine_system_parameter_4,
-void FUN_180087700(uint64_t *engine_data_structure_ptr,uint64_t *engine_result_flag_ptr,uint64_t *engine_comparison_params,uint64 engine_system_parameter_4,
+// void engine_unnamed_function_3130(uint64_t *engine_data_structure_ptr,uint64_t *engine_result_flag_ptr,uint64_t *engine_comparison_params,uint64 engine_system_parameter_4,
+void engine_unnamed_function_3130(uint64_t *engine_data_structure_ptr,uint64_t *engine_result_flag_ptr,uint64_t *engine_comparison_params,uint64 engine_system_parameter_4,
                   uint8_t param_5)
 
 {
@@ -45913,13 +45913,13 @@ void FUN_180087700(uint64_t *engine_data_structure_ptr,uint64_t *engine_result_f
   engine_stack_pointer_b8 = engine_data_structure_ptr;
   puStack_a8 = engine_result_flag_ptr;
   engine_stack_param_a0 = engine_comparison_params;
-  FUN_180087630(engine_result_flag_ptr,engine_comparison_params,&puStack_128);
+  engine_unnamed_function_3120(engine_result_flag_ptr,engine_comparison_params,&puStack_128);
   alStack_108[0] = -1;
   engine_data_ptr1 = &engine_data_73;
   if (puStack_120 != (uint8*)0x0) {
     engine_data_ptr1 = puStack_120;
   }
-  engine_temp_char_9 = FUN_18063ba00(alStack_108,engine_data_ptr1,5,0x105);
+  engine_temp_char_9 = engine_unnamed_function_6480(alStack_108,engine_data_ptr1,5,0x105);
   pengine_temp_long_20 = pengine_temp_long8;
   engine_temp_long5 = alStack_108[0];
   if (engine_temp_char_9 == '\0') {
@@ -45944,7 +45944,7 @@ void FUN_180087700(uint64_t *engine_data_structure_ptr,uint64_t *engine_result_f
     if (puStack_120 != (uint8*)0x0) {
       engine_data_ptr1 = puStack_120;
     }
-    engine_temp_char_9 = FUN_18063ba00(alStack_108,engine_data_ptr1,5,0x105);
+    engine_temp_char_9 = engine_unnamed_function_6480(alStack_108,engine_data_ptr1,5,0x105);
     engine_temp_long5 = alStack_108[0];
     if (engine_temp_char_9 != '\0') goto LAB_1800878e0;
     engine_data_ptr1 = &engine_data_73;
@@ -46032,7 +46032,7 @@ LAB_18008807f:
         *(uint8*)((longlong)pengine_temp_long_20 + 0x1a) = 3;
         if ((int)uStack_7c != 0) {
           pengine_temp_long2 = (longlong *)(uStack_7c & 0xffffffff);
-          FUN_180639bf0(pengine_temp_long_20,uStack_7c & 0xffffffff);
+          engine_unnamed_function_6440(pengine_temp_long_20,uStack_7c & 0xffffffff);
           engine_temp_long3 = pengine_temp_long_20[1];
           pengine_temp_long_21 = pengine_temp_long8;
           engine_result_flag_ptr = puStack_e0;
@@ -46077,7 +46077,7 @@ LAB_18008807f:
         *(void*)(engine_data_ptr1 + 0x60) = 0;
         *(uint32*)(engine_data_ptr1 + 0x68) = 0;
         plStack_e8 = engine_data_ptr_24;
-        FUN_180257b80(engine_data_ptr1 + 0x78);
+        engine_unnamed_function_6090(engine_data_ptr1 + 0x78);
         engine_data_ptr1[0x178] = param_5;
         pengine_temp_long_21 = (longlong *)(engine_data_ptr1 + 0x180);
         *pengine_temp_long_21 = 0;
@@ -46085,7 +46085,7 @@ LAB_18008807f:
         *(void*)(engine_data_ptr1 + 400) = 0;
         *(uint32*)(engine_data_ptr1 + 0x198) = 0x1a;
         plStack_e8 = pengine_temp_long_21;
-        FUN_180086bd0(engine_data_ptr_24,engine_data_ptr1 + 0x18,engine_data_ptr1 + 0x38);
+        engine_unnamed_function_3000(engine_data_ptr_24,engine_data_ptr1 + 0x18,engine_data_ptr1 + 0x38);
         uStack_f0 = 0;
         if (engine_stack_value_80 != 0) {
           do {
@@ -46145,10 +46145,10 @@ LAB_180087f81:
                 (**(code **)(*pengine_temp_long4 + 0x10))(pengine_temp_long4,pengine_temp_long_20);
               }
               pengine_temp_long_20[1] = *pengine_temp_long_20;
-              FUN_180639d80(pengine_temp_long_20,(uint8*)((longlong)plStack_e8 + engine_temp_long5));
+              engine_unnamed_function_6450(pengine_temp_long_20,(uint8*)((longlong)plStack_e8 + engine_temp_long5));
               engine_temp_uint_4 = *(void*)pengine_temp_long_20[1];
               pengine_temp_long_20[1] = (longlong)((void*)pengine_temp_long_20[1] + 1);
-              FUN_180256530(pengine_temp_long2,pengine_temp_long4,engine_temp_uint_4,engine_temp_long3);
+              engine_unnamed_function_6050(pengine_temp_long2,pengine_temp_long4,engine_temp_uint_4,engine_temp_long3);
               engine_temp_int0 = *(int *)pengine_temp_long_20[1];
               pengine_temp_int = (int *)pengine_temp_long_20[1] + 1;
               pengine_temp_long_20[1] = (longlong)pengine_temp_int;
@@ -46175,7 +46175,7 @@ LAB_180087f81:
                 pengine_temp_long2[0x11] = (longlong)pengine_temp_long4;
               }
               (**(code **)(*pengine_temp_long4 + 8))(pengine_temp_long4,puStack_d8,pengine_temp_int,engine_temp_int0);
-              FUN_180639d80(pengine_temp_long_20,(longlong)engine_temp_int0 * 0x45);
+              engine_unnamed_function_6450(pengine_temp_long_20,(longlong)engine_temp_int0 * 0x45);
               engine_temp_uint_23 = (ulonglong)*(int *)pengine_temp_long_20[1];
               pengine_temp_long_20[1] = (longlong)((int *)pengine_temp_long_20[1] + 1);
               pengine_temp_long4 = pengine_temp_long2 + 0x12;
@@ -46183,7 +46183,7 @@ LAB_180087f81:
               engine_temp_long5 = engine_temp_long5 / 6 + (engine_temp_long5 >> 0x3f);
               engine_temp_uint_26 = (engine_temp_long5 >> 3) - (engine_temp_long5 >> 0x3f);
               if (engine_temp_uint_26 < engine_temp_uint_23) {
-                FUN_18008dbb0(pengine_temp_long4,engine_temp_uint_23 - engine_temp_uint_26);
+                engine_unnamed_function_3550(pengine_temp_long4,engine_temp_uint_23 - engine_temp_uint_26);
               }
               else {
                 pengine_temp_long2[0x13] = engine_temp_uint_23 * 0x30 + *pengine_temp_long4;
@@ -46301,8 +46301,8 @@ LAB_180087f16:
   }
   puStack_120 = (uint8*)0x0;
   puStack_128 = &engine_data_18098bcb0;
-  FUN_180627b90(engine_result_flag_ptr);
-  FUN_180627b90(engine_comparison_params);
+  engine_unnamed_function_6290(engine_result_flag_ptr);
+  engine_unnamed_function_6290(engine_comparison_params);
 LAB_180088131:
                     // WARNING: Subroutine does not return
   engine_call_data_hasher(uStack_50 ^ (ulonglong)auStack_158);
@@ -46313,8 +46313,8 @@ LAB_180088131:
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// void FUN_180088160(uint64 engine_data_structure_ptr,uint8_t engine_result_flag_ptr)
-void FUN_180088160(uint64 engine_data_structure_ptr,uint8_t engine_result_flag_ptr)
+// void engine_unnamed_function_3140(uint64 engine_data_structure_ptr,uint8_t engine_result_flag_ptr)
+void engine_unnamed_function_3140(uint64 engine_data_structure_ptr,uint8_t engine_result_flag_ptr)
 
 {
   void* engine_data_pointer;
@@ -46417,7 +46417,7 @@ void FUN_180088160(uint64 engine_data_structure_ptr,uint8_t engine_result_flag_p
       engine_handle_input_device(&puStack_250,&engine_special_flag_5c,engine_data_ptr1,engine_data_ptr3);
       engine_temp_char_flag_2 = engine_call_condition_evaluator(&puStack_250);
       if (engine_temp_char_flag_2 != '\0') {
-        FUN_18008b250(&puStack_250);
+        engine_unnamed_function_3230(&puStack_250);
       }
       puStack_250 = &engine_system_context_data;
       if (lStack_248 != 0) {
@@ -46576,7 +46576,7 @@ LAB_180088ac9:
 
 
 
-bool FUN_1800890a0(longlong *engine_data_structure_ptr)
+bool engine_unnamed_function_3150(longlong *engine_data_structure_ptr)
 
 {
   byte engine_temp_byte;
@@ -46658,7 +46658,7 @@ LAB_18008917c:
 
 
 
-ulonglong FUN_1800891d0(longlong *engine_data_structure_ptr,uint64 engine_result_flag_ptr)
+ulonglong engine_unnamed_function_3160(longlong *engine_data_structure_ptr,uint64 engine_result_flag_ptr)
 
 {
   byte engine_temp_byte;
@@ -46786,8 +46786,8 @@ LAB_1800892fd:
 
 
 
-// void FUN_1800893b0(longlong engine_data_structure_ptr,uint64 engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
-void FUN_1800893b0(longlong engine_data_structure_ptr,uint64 engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
+// void engine_unnamed_function_3170(longlong engine_data_structure_ptr,uint64 engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
+void engine_unnamed_function_3170(longlong engine_data_structure_ptr,uint64 engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
 
 {
   if (*(code **)(engine_data_structure_ptr + 0x70) != (code *)0x0) {
@@ -46807,8 +46807,8 @@ void FUN_1800893b0(longlong engine_data_structure_ptr,uint64 engine_result_flag_
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// void FUN_180089420(void)
-void FUN_180089420(void)
+// void engine_unnamed_function_3180(void)
+void engine_unnamed_function_3180(void)
 
 {
   uint engine_temporary_uint;
@@ -46873,14 +46873,14 @@ void FUN_180089420(void)
       engine_stack_value_80 = CONCAT44(*(uint32*)(engine_temp_long_8 + 0x1c),(uint32_t)engine_stack_value_80);
       engine_stack_value_88 = engine_temporary_uint;
       iStack_3c = (int)engine_temp_uint_6;
-      engine_temp_char_4 = FUN_1800873b0(engine_temp_uint_6,&engine_stack_pointer_78,auStack_40);
+      engine_temp_char_4 = engine_unnamed_function_3110(engine_temp_uint_6,&engine_stack_pointer_78,auStack_40);
       if (engine_temp_char_4 != '\0') {
         engine_temp_uint64_value = *(ulonglong *)(engine_temp_long_3 + 0x10);
         if (engine_temp_uint64_value < *(ulonglong *)(engine_temp_long_3 + 0x18)) {
           *(ulonglong *)(engine_temp_long_3 + 0x10) = engine_temp_uint64_value + 0x60;
           ppuStack_a8 = (undefined **)engine_temp_uint64_value;
           engine_call_data_writer(engine_temp_uint64_value);
-          FUN_18004b640(engine_temp_uint64_value + 0x20,&engine_stack_pointer_78);
+          engine_unnamed_function_10(engine_temp_uint64_value + 0x20,&engine_stack_pointer_78);
           *(uint8*)(engine_temp_uint64_value + 0x58) = auStack_40[0];
           *(int *)(engine_temp_uint64_value + 0x5c) = iStack_3c;
         }
@@ -46910,8 +46910,8 @@ void FUN_180089420(void)
 
 
 
-// void FUN_180089640(uint64_t *engine_data_structure_ptr)
-void FUN_180089640(uint64_t *engine_data_structure_ptr)
+// void engine_unnamed_function_3190(uint64_t *engine_data_structure_ptr)
+void engine_unnamed_function_3190(uint64_t *engine_data_structure_ptr)
 
 {
   engine_data_structure_ptr[4] = &engine_data_18098bcb0;
@@ -46933,8 +46933,8 @@ void FUN_180089640(uint64_t *engine_data_structure_ptr)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// void FUN_1800896b0(void)
-void FUN_1800896b0(void)
+// void engine_unnamed_function_3200(void)
+void engine_unnamed_function_3200(void)
 
 {
   uint8 engine_temporary_uint;
@@ -47127,7 +47127,7 @@ LAB_180089891:
       engine_temp_uint_26 = (uint)engine_temp_uint_27 | 2;
     }
     else {
-      pengine_data_ptr0 = (undefined **)FUN_180624030(apuStack_180);
+      pengine_data_ptr0 = (undefined **)engine_unnamed_function_6230(apuStack_180);
       engine_temp_uint_26 = (uint)engine_temp_uint_27 | 1;
     }
     puStack_350 = &engine_system_context_data;
@@ -47249,7 +47249,7 @@ LAB_180089891:
         uStack_290 = uStack_290 & 0xffffffff00000000;
         puStack_2a8 = &engine_data_18098bcb0;
       }
-      FUN_180627560(&engine_stack_pointer_158,engine_temp_long_28);
+      engine_unnamed_function_6270(&engine_stack_pointer_158,engine_temp_long_28);
       engine_temp_long1 = lStack_310;
       puStack_2c8 = &engine_system_context_data;
       uStack_2b0 = 0;
@@ -47291,7 +47291,7 @@ LAB_180089891:
         uStack_358 = uStack_358 & 0xffffffff;
       }
       puStack_3f8 = (void*)CONCAT71(puStack_3f8._1_7_,engine_temporary_uint);
-      engine_temp_char_value = FUN_180087700(&lStack_1f8,&puStack_370,&puStack_2e8,&puStack_2c8);
+      engine_temp_char_value = engine_unnamed_function_3130(&lStack_1f8,&puStack_370,&puStack_2e8,&puStack_2c8);
       engine_temp_long6 = lStack_1f8;
       if (engine_temp_char_value == '\0') {
         engine_data_ptr4 = &engine_data_73;
@@ -47307,7 +47307,7 @@ LAB_180089891:
       else {
         *(uint32*)(lStack_1f8 + 4) =
              *(uint32*)(lStack_3b8 + 0x5c + *(longlong *)(engine_temp_long1 + 8));
-        FUN_18008b440(engine_temp_long1,lStack_1f8);
+        engine_unnamed_function_3250(engine_temp_long1,lStack_1f8);
         engine_process_buffer_operation(engine_temp_long1 + 0x48,auStack_1b8,engine_temp_long6 + 0x58);
       }
       puStack_2c8 = &engine_system_context_data;
@@ -47452,7 +47452,7 @@ LAB_180089891:
       uStack_268 = 0;
       uStack_260 = *(uint32*)(*(longlong *)(engine_temp_long6 + 8) + 0x5c + engine_temp_long1);
       uStack_25c = *(uint8*)(*(longlong *)(engine_temp_long6 + 8) + 0x58 + engine_temp_long1);
-      FUN_18008a620(&ppuStack_278);
+      engine_unnamed_function_3220(&ppuStack_278);
       if (lStack_1e0 - lStack_1e8 >> 3 != 0) {
         engine_temp_long1 = engine_temp_long6 + 0x48;
         engine_temp_long_28 = engine_call_memory_extender(_engine_data_18,0x40,*(uint8*)(engine_temp_long6 + 0x70));
@@ -47467,7 +47467,7 @@ LAB_180089891:
           goto LAB_18008a310;
         }
         engine_setup_data_manager(extraout_XMM0_Da,engine_temp_long_28);
-        FUN_18008b690(engine_temp_long6,&lStack_1e8);
+        engine_unnamed_function_3260(engine_temp_long6,&lStack_1e8);
       }
       ppuStack_3e0 = (undefined **)auStack_218;
       if (pcStack_208 != (code *)0x0) {
@@ -47533,8 +47533,8 @@ LAB_18008a32f:
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// void FUN_18008a480(uint64 engine_data_structure_ptr,longlong engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
-void FUN_18008a480(uint64 engine_data_structure_ptr,longlong engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
+// void engine_unnamed_function_3210(uint64 engine_data_structure_ptr,longlong engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
+void engine_unnamed_function_3210(uint64 engine_data_structure_ptr,longlong engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
 
 {
   longlong engine_temporary_long;
@@ -47568,7 +47568,7 @@ void FUN_18008a480(uint64 engine_data_structure_ptr,longlong engine_result_flag_
     if ((*(longlong *)(engine_result_flag_ptr + 8) != 0) && (uStack_30 = 0, engine_stack_pointer_38 != (uint8*)0x0)) {
       *engine_stack_pointer_38 = 0;
     }
-    FUN_180066df0(engine_temporary_long + 0x28,&engine_stack_pointer_40);
+    engine_unnamed_function_230(engine_temporary_long + 0x28,&engine_stack_pointer_40);
     engine_stack_pointer_40 = &engine_system_context_data;
     if (engine_stack_pointer_38 != (uint8*)0x0) {
                     // WARNING: Subroutine does not return
@@ -47589,8 +47589,8 @@ void FUN_18008a480(uint64 engine_data_structure_ptr,longlong engine_result_flag_
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// void FUN_18008a620(uint64_t *engine_data_structure_ptr)
-void FUN_18008a620(uint64_t *engine_data_structure_ptr)
+// void engine_unnamed_function_3220(uint64_t *engine_data_structure_ptr)
+void engine_unnamed_function_3220(uint64_t *engine_data_structure_ptr)
 
 {
   void* engine_data_pointer;
@@ -47708,7 +47708,7 @@ void FUN_18008a620(uint64_t *engine_data_structure_ptr)
     puStack_468 = (void*)0x0;
     uStack_460 = 0;
     uStack_458 = 3;
-    FUN_18062cb00(*engine_data_structure_ptr,&puStack_470,&engine_data_80);
+    engine_unnamed_function_6370(*engine_data_structure_ptr,&puStack_470,&engine_data_80);
     puStack_538 = &engine_system_context_data;
     uStack_520 = 0;
     puStack_530 = (uint8*)0x0;
@@ -47899,7 +47899,7 @@ LAB_18008acc1:
             *(uint8*)puStack_570 = 0;
           }
           puStack_5b8 = (void*)CONCAT71(puStack_5b8._1_7_,engine_temp_uint_4);
-          resource_status_flag2 = FUN_180087700(&lStack_450,&puStack_578,&puStack_518,&puStack_538);
+          resource_status_flag2 = engine_unnamed_function_3130(&lStack_450,&puStack_578,&puStack_518,&puStack_538);
           engine_temp_long4 = lStack_450;
           if (resource_status_flag2 == '\0') {
             engine_data_ptr9 = &engine_data_73;
@@ -47954,7 +47954,7 @@ LAB_18008ae5a:
           uStack_540 = 0;
           puStack_550 = (uint8*)0x0;
           uStack_548 = 0;
-          FUN_180142300(*_engine_data_70,&puStack_438,&puStack_278);
+          engine_unnamed_function_5530(*_engine_data_70,&puStack_438,&puStack_278);
           uStack_548 = 0;
           if (puStack_550 != (uint8*)0x0) {
             *puStack_550 = 0;
@@ -48009,7 +48009,7 @@ LAB_18008ae5a:
     puStack_570 = (void*)0x0;
     uStack_568 = 0;
     uStack_560 = CONCAT44(uStack_560._4_4_,3);
-    FUN_18062c8f0(*engine_data_structure_ptr,&puStack_578);
+    engine_unnamed_function_6360(*engine_data_structure_ptr,&puStack_578);
     engine_data_ptr1 = puStack_440;
     engine_temp_uint_7 = (longlong)puStack_570 - (longlong)puStack_578 >> 5;
     engine_data_ptr_27 = puStack_578;
@@ -48076,7 +48076,7 @@ LAB_18008ae5a:
           pcStack_4c0 = (code *)engine_data_ptr1[7];
           pcStack_4c8 = pengine_temp_char_flag4;
         }
-        FUN_18008a620(&puStack_4f8);
+        engine_unnamed_function_3220(&puStack_4f8);
         ppuStack_5a0 = (void**)auStack_498;
         if (pcStack_488 != (code *)0x0) {
           (*pcStack_488)(auStack_498,0);
@@ -48142,7 +48142,7 @@ LAB_18008ae5a:
 
 
 
-ulonglong FUN_18008b250(uint64 engine_data_structure_ptr,uint64 engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
+ulonglong engine_unnamed_function_3230(uint64 engine_data_structure_ptr,uint64 engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
 
 {
   void* engine_data_pointer;
@@ -48167,7 +48167,7 @@ ulonglong FUN_18008b250(uint64 engine_data_structure_ptr,uint64 engine_result_fl
   engine_stack_pointer_58 = (void*)0x0;
   uStack_50 = 0;
   uStack_48 = 3;
-  FUN_18062cb00(0,&puStack_60,&engine_data_80,engine_system_parameter_4,0xfffffffffffffffe);
+  engine_unnamed_function_6370(0,&puStack_60,&engine_data_80,engine_system_parameter_4,0xfffffffffffffffe);
   engine_current_node_ptr = engine_stack_pointer_58;
   structure_data_pointer = puStack_60;
   engine_temp_uint_9 = (longlong)engine_stack_pointer_58 - (longlong)puStack_60 >> 5;
@@ -48175,7 +48175,7 @@ ulonglong FUN_18008b250(uint64 engine_data_structure_ptr,uint64 engine_result_fl
   engine_stack_pointer_38 = (void*)0x0;
   uStack_30 = 0;
   uStack_28 = 3;
-  FUN_18062c8f0(engine_data_structure_ptr,&engine_stack_pointer_40);
+  engine_unnamed_function_6360(engine_data_structure_ptr,&engine_stack_pointer_40);
   engine_temporary_pointer = engine_stack_pointer_38;
   engine_next_node_ptr = engine_stack_pointer_40;
   engine_temp_uint64_value = (longlong)engine_stack_pointer_38 - (longlong)engine_stack_pointer_40 >> 5;
@@ -48184,7 +48184,7 @@ ulonglong FUN_18008b250(uint64 engine_data_structure_ptr,uint64 engine_result_fl
     engine_temp_uint64_value = engine_temp_uint64_value & 0xffffffff;
     next_data_pointer = engine_stack_pointer_40;
     do {
-      engine_temp_int_6 = FUN_18008b250(next_data_pointer);
+      engine_temp_int_6 = engine_unnamed_function_3230(next_data_pointer);
       engine_temp_uint_9 = (ulonglong)(uint)((int)engine_temp_uint_9 + engine_temp_int_6);
       next_data_pointer = next_data_pointer + 4;
       engine_temp_uint64_value = engine_temp_uint64_value - 1;
@@ -48211,8 +48211,8 @@ ulonglong FUN_18008b250(uint64 engine_data_structure_ptr,uint64 engine_result_fl
 
 
 
-// void FUN_18008b390(ulonglong engine_data_structure_ptr,int engine_result_flag_ptr,uint64_t *engine_comparison_params)
-void FUN_18008b390(ulonglong engine_data_structure_ptr,int engine_result_flag_ptr,uint64_t *engine_comparison_params)
+// void engine_unnamed_function_3240(ulonglong engine_data_structure_ptr,int engine_result_flag_ptr,uint64_t *engine_comparison_params)
+void engine_unnamed_function_3240(ulonglong engine_data_structure_ptr,int engine_result_flag_ptr,uint64_t *engine_comparison_params)
 
 {
   void* engine_data_pointer;
@@ -48245,7 +48245,7 @@ LAB_18008b3e2:
   }
   for (engine_temp_long_2 = *(longlong *)(engine_data_structure_ptr + 0x40); engine_temp_long_2 != engine_data_structure_ptr + 0x38;
       engine_temp_long_2 = func_0x00018066bd70(engine_temp_long_2)) {
-    FUN_18008b390(*(void*)(engine_temp_long_2 + 0x20),engine_temp_index,engine_comparison_params);
+    engine_unnamed_function_3240(*(void*)(engine_temp_long_2 + 0x20),engine_temp_index,engine_comparison_params);
   }
   return;
 }
@@ -48264,7 +48264,7 @@ LAB_18008b3e2:
 // WARNING: Removing unreachable block (ram,0x00018008b5f0)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-ulonglong FUN_18008b440(longlong engine_data_structure_ptr,longlong engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
+ulonglong engine_unnamed_function_3250(longlong engine_data_structure_ptr,longlong engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
 
 {
   longlong *pengine_temp_long;
@@ -48281,7 +48281,7 @@ ulonglong FUN_18008b440(longlong engine_data_structure_ptr,longlong engine_resul
   uint uStack_38;
   
   lStackX_10 = engine_result_flag_ptr;
-  FUN_18008d710(engine_data_structure_ptr + 0xb0,&lStack_50,&lStackX_10,engine_system_parameter_4,0xfffffffffffffffe);
+  engine_unnamed_function_3490(engine_data_structure_ptr + 0xb0,&lStack_50,&lStackX_10,engine_system_parameter_4,0xfffffffffffffffe);
   engine_temp_long_2 = lStackX_10;
   if ((char)lStack_48 == '\0') {
     engine_temporary_pointer = &engine_data_73;
@@ -48292,7 +48292,7 @@ ulonglong FUN_18008b440(longlong engine_data_structure_ptr,longlong engine_resul
     engine_temp_uint_4 = engine_temp_uint_4 & 0xffffffffffffff00;
   }
   else {
-    FUN_180256940(lStackX_10);
+    engine_unnamed_function_6080(lStackX_10);
     engine_temp_long_7 = *(longlong *)(engine_temp_long_2 + 0x188) - *(longlong *)(engine_temp_long_2 + 0x180) >> 3;
     uStack_38 = *(uint *)(engine_temp_long_2 + 0x198);
     engine_temp_long_6 = 0;
@@ -48307,8 +48307,8 @@ ulonglong FUN_18008b440(longlong engine_data_structure_ptr,longlong engine_resul
                     // WARNING: Subroutine does not return
       memmove(lStack_50,engine_temp_long_7,*(longlong *)(engine_temp_long_2 + 0x188) - engine_temp_long_7);
     }
-    FUN_18008cf60();
-    FUN_18008c9f0(engine_data_structure_ptr,&lStack_50);
+    engine_unnamed_function_3320();
+    engine_unnamed_function_3310(engine_data_structure_ptr,&lStack_50);
     engine_temp_long_2 = lStack_50;
     comparison_result_index = (int)(*(longlong *)(engine_data_structure_ptr + 0x118) - *(longlong *)(engine_data_structure_ptr + 0x110) >> 4);
     engine_temp_long_7 = (longlong)comparison_result_index;
@@ -48340,8 +48340,8 @@ ulonglong FUN_18008b440(longlong engine_data_structure_ptr,longlong engine_resul
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// void FUN_18008b690(longlong engine_data_structure_ptr,longlong *engine_result_flag_ptr)
-void FUN_18008b690(longlong engine_data_structure_ptr,longlong *engine_result_flag_ptr)
+// void engine_unnamed_function_3260(longlong engine_data_structure_ptr,longlong *engine_result_flag_ptr)
+void engine_unnamed_function_3260(longlong engine_data_structure_ptr,longlong *engine_result_flag_ptr)
 
 {
   void* engine_data_pointer;
@@ -48385,11 +48385,11 @@ void FUN_18008b690(longlong engine_data_structure_ptr,longlong *engine_result_fl
     engine_stack_value_a0 = 0;
     lStack_a8 = 0;
     uStack_b0 = 0;
-    FUN_18008cf60(0,&uStack_b0);
+    engine_unnamed_function_3320(0,&uStack_b0);
     engine_temp_int_4 = (int)(lStack_a8 >> 3);
     if (0 < engine_temp_int_4) {
       do {
-        FUN_18008c320(engine_data_structure_ptr,*(void*)(engine_temp_long_6 * 8));
+        engine_unnamed_function_3300(engine_data_structure_ptr,*(void*)(engine_temp_long_6 * 8));
         engine_temp_long_6 = engine_temp_long_6 + 1;
       } while (engine_temp_long_6 < engine_temp_int_4);
     }
@@ -48438,8 +48438,8 @@ LAB_18008b7ea:
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// void FUN_18008bb30(uint64 engine_data_structure_ptr,longlong engine_result_flag_ptr,longlong *engine_comparison_params,longlong *engine_system_parameter_4,
-void FUN_18008bb30(uint64 engine_data_structure_ptr,longlong engine_result_flag_ptr,longlong *engine_comparison_params,longlong *engine_system_parameter_4,
+// void engine_unnamed_function_3270(uint64 engine_data_structure_ptr,longlong engine_result_flag_ptr,longlong *engine_comparison_params,longlong *engine_system_parameter_4,
+void engine_unnamed_function_3270(uint64 engine_data_structure_ptr,longlong engine_result_flag_ptr,longlong *engine_comparison_params,longlong *engine_system_parameter_4,
                   uint8_t *param_5,uint8_t *param_6)
 
 {
@@ -48539,7 +48539,7 @@ void FUN_18008bb30(uint64 engine_data_structure_ptr,longlong engine_result_flag_
   }
   uStack_218 = uStack_250;
   lStack_210 = engine_temp_long_7;
-  FUN_1800693f0(&engine_stack_ptr_1f8,engine_temporary_pointer);
+  engine_unnamed_function_570(&engine_stack_ptr_1f8,engine_temporary_pointer);
   uStack_c8 = (ulonglong)(-(uint)(*(char *)((longlong)engine_comparison_params + 0x44) != '\0') & 3);
   lStack_c0 = engine_comparison_params[1];
   lStack_e0 = engine_temp_long_8;
@@ -48550,7 +48550,7 @@ void FUN_18008bb30(uint64 engine_data_structure_ptr,longlong engine_result_flag_
   pcStack_a0 = engine_process_frame_update;
   pcStack_98 = engine_start_main_loop;
   engine_temp_uint_3 = engine_call_memory_allocator(_engine_data_18,0x38,8,engine_data_bc);
-  FUN_18008e9e0(engine_temp_uint_3,&lStack_240);
+  engine_unnamed_function_3730(engine_temp_uint_3,&lStack_240);
   auStack_b0[0] = engine_temp_uint_3;
   if (auStack_90 != param_6) {
     if (pcStack_80 != (code *)0x0) {
@@ -48565,9 +48565,9 @@ void FUN_18008bb30(uint64 engine_data_structure_ptr,longlong engine_result_flag_
     pcStack_80 = engine_temp_char_ptr_6;
   }
   engine_temp_long_8 = *(longlong *)(_engine_data_40 + 8);
-  engine_temp_long_4 = FUN_18006d0b0(engine_temp_long_8 + 200);
+  engine_temp_long_4 = engine_unnamed_function_750(engine_temp_long_8 + 200);
   if (engine_temp_long_4 != 0) {
-    FUN_18006d6c0(engine_temp_long_4,&engine_stack_ptr_1f8);
+    engine_unnamed_function_760(engine_temp_long_4,&engine_stack_ptr_1f8);
   }
   engine_temp_int_2 = _Cnd_signal(engine_temp_long_8 + 0x330);
   if (engine_temp_int_2 != 0) {
@@ -48593,8 +48593,8 @@ void FUN_18008bb30(uint64 engine_data_structure_ptr,longlong engine_result_flag_
 
 
 
-// void FUN_18008bf00(longlong engine_data_structure_ptr,uint64 engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
-void FUN_18008bf00(longlong engine_data_structure_ptr,uint64 engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
+// void engine_unnamed_function_3280(longlong engine_data_structure_ptr,uint64 engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
+void engine_unnamed_function_3280(longlong engine_data_structure_ptr,uint64 engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
 
 {
   if (*(code **)(engine_data_structure_ptr + 0x18) != (code *)0x0) {
@@ -48608,8 +48608,8 @@ void FUN_18008bf00(longlong engine_data_structure_ptr,uint64 engine_result_flag_
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// void FUN_18008bf40(uint64 engine_data_structure_ptr,longlong engine_result_flag_ptr,longlong *engine_comparison_params,longlong *engine_system_parameter_4,
-void FUN_18008bf40(uint64 engine_data_structure_ptr,longlong engine_result_flag_ptr,longlong *engine_comparison_params,longlong *engine_system_parameter_4,
+// void engine_unnamed_function_3290(uint64 engine_data_structure_ptr,longlong engine_result_flag_ptr,longlong *engine_comparison_params,longlong *engine_system_parameter_4,
+void engine_unnamed_function_3290(uint64 engine_data_structure_ptr,longlong engine_result_flag_ptr,longlong *engine_comparison_params,longlong *engine_system_parameter_4,
                   longlong param_5)
 
 {
@@ -48646,7 +48646,7 @@ void FUN_18008bf40(uint64 engine_data_structure_ptr,longlong engine_result_flag_
     engine_temporary_pointer = *(undefined **)(engine_result_flag_ptr + 0x60);
   }
   lStack_2e0 = engine_result_flag_ptr;
-  resource_status_flag = FUN_18063ba00(alStack_2f0,engine_temporary_pointer,5,0x105);
+  resource_status_flag = engine_unnamed_function_6480(alStack_2f0,engine_temporary_pointer,5,0x105);
   engine_temp_long_6 = alStack_2f0[0];
   if (resource_status_flag == '\0') {
     if (alStack_2f0[0] != -1) {
@@ -48680,7 +48680,7 @@ LAB_18008c01e:
   *(uint8*)((longlong)pengine_temp_long_3 + 0x1a) = 3;
   if (engine_temp_uint_8 != 0) {
     engine_temp_uint1 = (ulonglong)engine_temp_uint_8;
-    FUN_180639bf0(pengine_temp_long_3,engine_temp_uint_8);
+    engine_unnamed_function_6440(pengine_temp_long_3,engine_temp_uint_8);
     engine_temp_long_6 = pengine_temp_long_3[1];
     engine_temp_uint_9 = 0;
     if (engine_temp_uint1 != 0) {
@@ -48720,14 +48720,14 @@ LAB_18008c01e:
   lStack_300 = engine_comparison_params[1];
   plStack_2d0 = main_context_pointer;
   if ((ulonglong)((main_context_pointer[2] - main_context_pointer[1]) + *main_context_pointer) <= lStack_300 + 1U) {
-    FUN_180639bf0(main_context_pointer,(main_context_pointer[1] - *main_context_pointer) + lStack_300 + 1U);
+    engine_unnamed_function_6440(main_context_pointer,(main_context_pointer[1] - *main_context_pointer) + lStack_300 + 1U);
     lStack_300 = engine_comparison_params[1];
   }
   puStack_2c8 = &engine_base_data_offset_e0;
   uStack_2c0 = 1;
   lStack_300 = lStack_300 + 1;
   puStack_308 = (void*)*main_context_pointer;
-  FUN_18021f710(&puStack_2c8,auStack_2a8,*pengine_temp_long_3,engine_comparison_params[2]);
+  engine_unnamed_function_5840(&puStack_2c8,auStack_2a8,*pengine_temp_long_3,engine_comparison_params[2]);
   if (((char)pengine_temp_long_3[3] == '\0') && (*pengine_temp_long_3 != 0)) {
                     // WARNING: Subroutine does not return
     engine_call_cleanup_routine();
@@ -48741,8 +48741,8 @@ LAB_18008c01e:
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// void FUN_18008c320(longlong engine_data_structure_ptr,longlong *engine_result_flag_ptr)
-void FUN_18008c320(longlong engine_data_structure_ptr,longlong *engine_result_flag_ptr)
+// void engine_unnamed_function_3300(longlong engine_data_structure_ptr,longlong *engine_result_flag_ptr)
+void engine_unnamed_function_3300(longlong engine_data_structure_ptr,longlong *engine_result_flag_ptr)
 
 {
   void* engine_data_pointer;
@@ -48814,7 +48814,7 @@ void FUN_18008c320(longlong engine_data_structure_ptr,longlong *engine_result_fl
   }
   if ((engine_temporary_pointer == engine_data_pointer) || (comparison_result_index = memcmp(engine_temp_uint_4,engine_temporary_pointer + 4,0x10), comparison_result_index < 0)) {
     uStack_8c8 = engine_temp_uint_4;
-    engine_temporary_pointer = (void*)FUN_18008d8c0(engine_data_pointer,auStack_890);
+    engine_temporary_pointer = (void*)engine_unnamed_function_3510(engine_data_pointer,auStack_890);
     engine_temporary_pointer = (void*)*engine_temporary_pointer;
   }
   engine_data_pointer = engine_temporary_pointer + 6;
@@ -48868,8 +48868,8 @@ LAB_18008c531:
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// void FUN_18008c9f0(longlong engine_data_structure_ptr,longlong *engine_result_flag_ptr)
-void FUN_18008c9f0(longlong engine_data_structure_ptr,longlong *engine_result_flag_ptr)
+// void engine_unnamed_function_3310(longlong engine_data_structure_ptr,longlong *engine_result_flag_ptr)
+void engine_unnamed_function_3310(longlong engine_data_structure_ptr,longlong *engine_result_flag_ptr)
 
 {
   void* engine_data_pointer;
@@ -48947,7 +48947,7 @@ LAB_18008cc42:
         engine_temp_uint_3 = *(uint32*)(ppppengine_data_ptr0 + 5);
         for (pppengine_data_ptr1 = (uint64_t ****)pppengine_next_node_ptr[8]; pppengine_data_ptr1 != pppengine_next_node_ptr + 7;
             pppengine_data_ptr1 = (uint64_t ****)func_0x00018066bd70(pppengine_data_ptr1)) {
-          FUN_18008b390(pppengine_data_ptr1[4],engine_temp_uint_3,&ppppengine_stack_value_70);
+          engine_unnamed_function_3240(pppengine_data_ptr1[4],engine_temp_uint_3,&ppppengine_stack_value_70);
         }
         engine_temp_long_22 = engine_temp_long_22 + 1;
       } while (engine_temp_long_22 < engine_temp_long_8);
@@ -48964,7 +48964,7 @@ LAB_18008cc42:
     ppppuStackX_10 = &ppppengine_stack_value_70;
     pppengine_stack_pointer_18 = ppppuStack_68;
     plStack_90 = plStack_88;
-    FUN_18008e1a0(&plStack_90,plStack_88,&pppengine_stack_pointer_18,&ppppuStackX_10);
+    engine_unnamed_function_3590(&plStack_90,plStack_88,&pppengine_stack_pointer_18,&ppppuStackX_10);
     pengine_temp_long_23 = plStack_88;
     engine_temp_ptr_5 = plStack_90;
     if (plStack_90 != plStack_88) {
@@ -48973,13 +48973,13 @@ LAB_18008cc42:
       for (engine_temp_long_8 = engine_temp_long_22; engine_temp_long_8 != 0; engine_temp_long_8 = engine_temp_long_8 >> 1) {
         engine_temp_int4 = engine_temp_int4 + 1;
       }
-      FUN_18008eb40(plStack_90,plStack_88,(longlong)(engine_temp_int4 + -1) * 2,0);
+      engine_unnamed_function_3760(plStack_90,plStack_88,(longlong)(engine_temp_int4 + -1) * 2,0);
       if (engine_temp_long_22 < 0x1d) {
-        FUN_18008e460(engine_temp_ptr_5,pengine_temp_long_23);
+        engine_unnamed_function_3620(engine_temp_ptr_5,pengine_temp_long_23);
       }
       else {
         pengine_temp_long8 = engine_temp_ptr_5 + 0x38;
-        FUN_18008e460(engine_temp_ptr_5,pengine_temp_long8);
+        engine_unnamed_function_3620(engine_temp_ptr_5,pengine_temp_long8);
         if (pengine_temp_long8 != pengine_temp_long_23) {
           pengine_temp_long6 = engine_temp_ptr_5 + 0x36;
 LAB_18008cd70:
@@ -49149,8 +49149,8 @@ LAB_18008cdfe:
 
 
 
-// void FUN_18008cf60(uint64 engine_data_structure_ptr,longlong *engine_result_flag_ptr)
-void FUN_18008cf60(uint64 engine_data_structure_ptr,longlong *engine_result_flag_ptr)
+// void engine_unnamed_function_3320(uint64 engine_data_structure_ptr,longlong *engine_result_flag_ptr)
+void engine_unnamed_function_3320(uint64 engine_data_structure_ptr,longlong *engine_result_flag_ptr)
 
 {
   byte engine_temp_byte;
@@ -49172,13 +49172,13 @@ void FUN_18008cf60(uint64 engine_data_structure_ptr,longlong *engine_result_flag
     for (engine_temp_long_3 = engine_temp_long_7; engine_temp_long_3 != 0; engine_temp_long_3 = engine_temp_long_3 >> 1) {
       engine_temp_int_6 = engine_temp_int_6 + 1;
     }
-    FUN_18008edc0(engine_result_flag_ptr,pengine_temp_long_2,(longlong)(engine_temp_int_6 + -1) * 2,0);
+    engine_unnamed_function_3790(engine_result_flag_ptr,pengine_temp_long_2,(longlong)(engine_temp_int_6 + -1) * 2,0);
     if (engine_temp_long_7 < 0x1d) {
-      FUN_18008e550(engine_result_flag_ptr,pengine_temp_long_2);
+      engine_unnamed_function_3670(engine_result_flag_ptr,pengine_temp_long_2);
     }
     else {
       pengine_temp_long_8 = engine_result_flag_ptr + 0x1c;
-      FUN_18008e550(engine_result_flag_ptr,pengine_temp_long_8);
+      engine_unnamed_function_3670(engine_result_flag_ptr,pengine_temp_long_8);
       if (pengine_temp_long_8 != pengine_temp_long_2) {
         do {
           engine_temp_long_3 = *pengine_temp_long_8;
@@ -49213,8 +49213,8 @@ void FUN_18008cf60(uint64 engine_data_structure_ptr,longlong *engine_result_flag
 
 
 
-// void FUN_18008cf7a(void)
-void FUN_18008cf7a(void)
+// void engine_unnamed_function_333a(void)
+void engine_unnamed_function_333a(void)
 
 {
   byte engine_temp_byte;
@@ -49231,13 +49231,13 @@ void FUN_18008cf7a(void)
   memory_allocation_result = (longlong)unaff_RSI - engine_register_rbx >> 3;
   for (engine_temp_long_2 = memory_allocation_result; engine_temp_long_2 != 0; engine_temp_long_2 = engine_temp_long_2 >> 1) {
   }
-  FUN_18008edc0();
+  engine_unnamed_function_3790();
   if (memory_allocation_result < 0x1d) {
-    FUN_18008e550();
+    engine_unnamed_function_3670();
   }
   else {
     engine_temp_ptr_array_6 = (longlong *)(engine_register_rbx + 0xe0);
-    FUN_18008e550();
+    engine_unnamed_function_3670();
     if (engine_temp_ptr_array_6 != unaff_RSI) {
       do {
         engine_temp_long_2 = *engine_temp_ptr_array_6;
@@ -49271,19 +49271,19 @@ void FUN_18008cf7a(void)
 
 
 
-// void FUN_18008d04c(void)
-void FUN_18008d04c(void)
+// void engine_unnamed_function_334c(void)
+void engine_unnamed_function_334c(void)
 
 {
-  FUN_18008e550();
+  engine_unnamed_function_3670();
   return;
 }
 
 
 
 
-// void FUN_18008d059(void)
-void FUN_18008d059(void)
+// void engine_unnamed_function_3359(void)
+void engine_unnamed_function_3359(void)
 
 {
   return;
@@ -49293,7 +49293,7 @@ void FUN_18008d059(void)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined * FUN_18008d070(void)
+undefined * engine_unnamed_function_3360(void)
 
 {
   if (*(int *)(*(longlong *)((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * 8) +
@@ -49302,8 +49302,8 @@ undefined * FUN_18008d070(void)
     if (_engine_data_f8 == -1) {
       _engine_data_00 = 0;
       _engine_data_08 = 0;
-      _engine_data_00 = FUN_18008d1b0();
-      FUN_1808fc820(FUN_180941920);
+      _engine_data_00 = engine_unnamed_function_3390();
+      engine_unnamed_function_6530(engine_unnamed_function_6580);
       engine_set_game_state_data(&engine_data_f8);
       return &engine_data_00;
     }
@@ -49316,14 +49316,14 @@ undefined * FUN_18008d070(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// void FUN_18008d100(uint64 engine_data_structure_ptr,uint64 engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
-void FUN_18008d100(uint64 engine_data_structure_ptr,uint64 engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
+// void engine_unnamed_function_3370(uint64 engine_data_structure_ptr,uint64 engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
+void engine_unnamed_function_3370(uint64 engine_data_structure_ptr,uint64 engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
 
 {
   longlong *pengine_temp_long;
   
   pengine_temp_long = _engine_data_00;
-  FUN_18008d1f0(engine_data_structure_ptr,_engine_data_00[1],engine_comparison_params,engine_system_parameter_4,0xfffffffffffffffe);
+  engine_unnamed_function_3400(engine_data_structure_ptr,_engine_data_00[1],engine_comparison_params,engine_system_parameter_4,0xfffffffffffffffe);
   _engine_data_00[1] = (longlong)pengine_temp_long;
   *_engine_data_00 = (longlong)pengine_temp_long;
   _engine_data_00[2] = (longlong)pengine_temp_long;
@@ -49339,8 +49339,8 @@ void FUN_18008d100(uint64 engine_data_structure_ptr,uint64 engine_result_flag_pt
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// void FUN_18008d180(void)
-void FUN_18008d180(void)
+// void engine_unnamed_function_3380(void)
+void engine_unnamed_function_3380(void)
 
 {
                     // WARNING: Could not recover jumptable at 0x0001808ffc83. Too many branches
@@ -49352,13 +49352,13 @@ void FUN_18008d180(void)
 
 
 
-// void FUN_18008d1b0(void)
-void FUN_18008d1b0(void)
+// void engine_unnamed_function_3390(void)
+void engine_unnamed_function_3390(void)
 
 {
   longlong engine_temporary_long;
   
-  engine_temporary_long = FUN_180067110(0x58);
+  engine_temporary_long = engine_unnamed_function_270(0x58);
   *(longlong *)engine_temporary_long = engine_temporary_long;
   *(longlong *)(engine_temporary_long + 8) = engine_temporary_long;
   *(longlong *)(engine_temporary_long + 0x10) = engine_temporary_long;
@@ -49369,8 +49369,8 @@ void FUN_18008d1b0(void)
 
 
 
-// void FUN_18008d1f0(uint64 engine_data_structure_ptr,longlong *engine_result_flag_ptr)
-void FUN_18008d1f0(uint64 engine_data_structure_ptr,longlong *engine_result_flag_ptr)
+// void engine_unnamed_function_3400(uint64 engine_data_structure_ptr,longlong *engine_result_flag_ptr)
+void engine_unnamed_function_3400(uint64 engine_data_structure_ptr,longlong *engine_result_flag_ptr)
 
 {
   char resource_status_flag;
@@ -49378,7 +49378,7 @@ void FUN_18008d1f0(uint64 engine_data_structure_ptr,longlong *engine_result_flag
   
   resource_status_flag = *(char *)((longlong)engine_result_flag_ptr + 0x19);
   while (resource_status_flag == '\0') {
-    FUN_18008d1f0(&engine_data_00,engine_result_flag_ptr[2]);
+    engine_unnamed_function_3400(&engine_data_00,engine_result_flag_ptr[2]);
     pengine_temp_long_2 = (longlong *)*engine_result_flag_ptr;
     free(engine_result_flag_ptr,0x58);
     engine_result_flag_ptr = pengine_temp_long_2;
@@ -49390,7 +49390,7 @@ void FUN_18008d1f0(uint64 engine_data_structure_ptr,longlong *engine_result_flag
 
 
 uint64_t *
-FUN_18008d320(uint64_t *engine_data_structure_ptr,longlong engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
+engine_unnamed_function_3410(uint64_t *engine_data_structure_ptr,longlong engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
 
 {
   void* engine_data_pointer;
@@ -49414,8 +49414,8 @@ FUN_18008d320(uint64_t *engine_data_structure_ptr,longlong engine_result_flag_pt
 
 
 
-// void FUN_18008d3a0(longlong *engine_data_structure_ptr)
-void FUN_18008d3a0(longlong *engine_data_structure_ptr)
+// void engine_unnamed_function_3420(longlong *engine_data_structure_ptr)
+void engine_unnamed_function_3420(longlong *engine_data_structure_ptr)
 
 {
   longlong engine_temporary_long;
@@ -49423,7 +49423,7 @@ void FUN_18008d3a0(longlong *engine_data_structure_ptr)
   
   engine_temporary_long = engine_data_structure_ptr[1];
   for (engine_temp_long_2 = *engine_data_structure_ptr; engine_temp_long_2 != engine_temporary_long; engine_temp_long_2 = engine_temp_long_2 + 0x60) {
-    FUN_180089640(engine_temp_long_2);
+    engine_unnamed_function_3190(engine_temp_long_2);
   }
   if (*engine_data_structure_ptr == 0) {
     return;
@@ -49467,7 +49467,7 @@ uint64_t * engine_update_render_state(uint64_t *engine_data_structure_ptr,uint64
 
 
 
-uint64_t * FUN_18008d4a0(uint64_t *engine_data_structure_ptr,uint64_t *engine_result_flag_ptr,longlong engine_comparison_params)
+uint64_t * engine_unnamed_function_3430(uint64_t *engine_data_structure_ptr,uint64_t *engine_result_flag_ptr,longlong engine_comparison_params)
 
 {
   byte engine_temp_byte;
@@ -49542,8 +49542,8 @@ LAB_18008d56b:
 
 
 
-// void FUN_18008d4c6(uint64_t *engine_data_structure_ptr)
-void FUN_18008d4c6(uint64_t *engine_data_structure_ptr)
+// void engine_unnamed_function_3446(uint64_t *engine_data_structure_ptr)
+void engine_unnamed_function_3446(uint64_t *engine_data_structure_ptr)
 
 {
   byte engine_temp_byte;
@@ -49617,8 +49617,8 @@ LAB_18008d56b:
 
 
 
-// void FUN_18008d535(longlong engine_data_structure_ptr)
-void FUN_18008d535(longlong engine_data_structure_ptr)
+// void engine_unnamed_function_3455(longlong engine_data_structure_ptr)
+void engine_unnamed_function_3455(longlong engine_data_structure_ptr)
 
 {
   byte engine_temp_byte;
@@ -49654,17 +49654,17 @@ LAB_18008d56b:
 
 
 
-// void FUN_18008d5a0(longlong engine_data_structure_ptr,uint64 engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
-void FUN_18008d5a0(longlong engine_data_structure_ptr,uint64 engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
+// void engine_unnamed_function_3460(longlong engine_data_structure_ptr,uint64 engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
+void engine_unnamed_function_3460(longlong engine_data_structure_ptr,uint64 engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
 
 {
-  FUN_18008d810(engine_data_structure_ptr,*(void*)(engine_data_structure_ptr + 0x10),engine_comparison_params,engine_system_parameter_4,0xfffffffffffffffe);
+  engine_unnamed_function_3500(engine_data_structure_ptr,*(void*)(engine_data_structure_ptr + 0x10),engine_comparison_params,engine_system_parameter_4,0xfffffffffffffffe);
   return;
 }
 
 
 
-uint64_t * FUN_18008d5c0(uint64_t *engine_data_structure_ptr,uint64_t *engine_result_flag_ptr,uint64 engine_comparison_params)
+uint64_t * engine_unnamed_function_3470(uint64_t *engine_data_structure_ptr,uint64_t *engine_result_flag_ptr,uint64 engine_comparison_params)
 
 {
   int engine_temporary_int;
@@ -49697,7 +49697,7 @@ uint64_t * FUN_18008d5c0(uint64_t *engine_data_structure_ptr,uint64_t *engine_re
 
 
 
-uint64_t * FUN_18008d660(uint64_t *engine_data_structure_ptr,uint64 engine_result_flag_ptr)
+uint64_t * engine_unnamed_function_3480(uint64_t *engine_data_structure_ptr,uint64 engine_result_flag_ptr)
 
 {
   void* engine_data_pointer;
@@ -49719,7 +49719,7 @@ uint64_t * FUN_18008d660(uint64_t *engine_data_structure_ptr,uint64 engine_resul
     }
   }
   if ((engine_next_node_ptr == engine_data_structure_ptr) || (comparison_result_index = memcmp(engine_result_flag_ptr,engine_next_node_ptr + 4,0x10), comparison_result_index < 0)) {
-    engine_next_node_ptr = (void*)FUN_18008da10(engine_data_structure_ptr,auStackX_8);
+    engine_next_node_ptr = (void*)engine_unnamed_function_3520(engine_data_structure_ptr,auStackX_8);
     engine_next_node_ptr = (void*)*engine_next_node_ptr;
   }
   return engine_next_node_ptr + 6;
@@ -49730,8 +49730,8 @@ uint64_t * FUN_18008d660(uint64_t *engine_data_structure_ptr,uint64 engine_resul
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// void FUN_18008d710(uint64_t *engine_data_structure_ptr,uint64 engine_result_flag_ptr,ulonglong *engine_comparison_params)
-void FUN_18008d710(uint64_t *engine_data_structure_ptr,uint64 engine_result_flag_ptr,ulonglong *engine_comparison_params)
+// void engine_unnamed_function_3490(uint64_t *engine_data_structure_ptr,uint64 engine_result_flag_ptr,ulonglong *engine_comparison_params)
+void engine_unnamed_function_3490(uint64_t *engine_data_structure_ptr,uint64 engine_result_flag_ptr,ulonglong *engine_comparison_params)
 
 {
   ulonglong engine_temporary_uint;
@@ -49780,15 +49780,15 @@ LAB_18008d7a0:
 
 
 
-// void FUN_18008d810(uint64 engine_data_structure_ptr,uint64_t *engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
-void FUN_18008d810(uint64 engine_data_structure_ptr,uint64_t *engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
+// void engine_unnamed_function_3500(uint64 engine_data_structure_ptr,uint64_t *engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
+void engine_unnamed_function_3500(uint64 engine_data_structure_ptr,uint64_t *engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
 
 {
   if (engine_result_flag_ptr != (void*)0x0) {
-    FUN_18008d810(engine_data_structure_ptr,*engine_result_flag_ptr,engine_comparison_params,engine_system_parameter_4,0xfffffffffffffffe);
-    FUN_18004b730();
+    engine_unnamed_function_3500(engine_data_structure_ptr,*engine_result_flag_ptr,engine_comparison_params,engine_system_parameter_4,0xfffffffffffffffe);
+    engine_unnamed_function_20();
     engine_handle_system_io_data_queue(engine_result_flag_ptr + 0xc,engine_result_flag_ptr[0xe]);
-    FUN_18004b730(engine_result_flag_ptr + 6);
+    engine_unnamed_function_20(engine_result_flag_ptr + 6);
                     // WARNING: Subroutine does not return
     engine_call_cleanup_routine(engine_result_flag_ptr);
   }
@@ -49798,7 +49798,7 @@ void FUN_18008d810(uint64 engine_data_structure_ptr,uint64_t *engine_result_flag
 
 
 uint64_t *
-FUN_18008d8c0(longlong *engine_data_structure_ptr,uint64_t *engine_result_flag_ptr,uint64 engine_comparison_params,longlong *engine_system_parameter_4,
+engine_unnamed_function_3510(longlong *engine_data_structure_ptr,uint64_t *engine_result_flag_ptr,uint64 engine_comparison_params,longlong *engine_system_parameter_4,
              uint64 param_5)
 
 {
@@ -49827,7 +49827,7 @@ LAB_18008d951:
       engine_system_parameter_4 = pengine_temp_long_3;
 LAB_18008d954:
       if (engine_system_parameter_4 != (longlong *)0x0) {
-        FUN_18008dfa0(engine_data_structure_ptr,engine_result_flag_ptr,engine_system_parameter_4,engine_temp_uint_4,param_5);
+        engine_unnamed_function_3570(engine_data_structure_ptr,engine_result_flag_ptr,engine_system_parameter_4,engine_temp_uint_4,param_5);
         return engine_result_flag_ptr;
       }
     }
@@ -49858,7 +49858,7 @@ LAB_18008d9c4:
     engine_temp_int_2 = memcmp(pengine_temp_long_3 + 4,param_5,0x10);
     if (-1 < engine_temp_int_2) goto LAB_18008d9f7;
   }
-  FUN_18008dfa0(engine_data_structure_ptr,&engine_stack_long_pointer_8,pengine_temp_long,0,param_5);
+  engine_unnamed_function_3570(engine_data_structure_ptr,&engine_stack_long_pointer_8,pengine_temp_long,0,param_5);
   pengine_temp_long_3 = engine_stack_long_pointer_8;
 LAB_18008d9f7:
   *engine_result_flag_ptr = pengine_temp_long_3;
@@ -49870,7 +49870,7 @@ LAB_18008d9f7:
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 uint64_t *
-FUN_18008da10(longlong *engine_data_structure_ptr,uint64_t *engine_result_flag_ptr,uint64 engine_comparison_params,longlong *engine_system_parameter_4,
+engine_unnamed_function_3520(longlong *engine_data_structure_ptr,uint64_t *engine_result_flag_ptr,uint64 engine_comparison_params,longlong *engine_system_parameter_4,
              uint32_t *param_5)
 
 {
@@ -49902,7 +49902,7 @@ LAB_18008daa1:
       engine_system_parameter_4 = engine_temp_ptr_array_6;
 LAB_18008daa4:
       if (engine_system_parameter_4 != (longlong *)0x0) {
-        FUN_18008e0f0(engine_data_structure_ptr,engine_result_flag_ptr,engine_system_parameter_4,engine_temp_uint_8,param_5);
+        engine_unnamed_function_3580(engine_data_structure_ptr,engine_result_flag_ptr,engine_system_parameter_4,engine_temp_uint_8,param_5);
         return engine_result_flag_ptr;
       }
     }
@@ -49923,7 +49923,7 @@ LAB_18008daa4:
   }
   engine_temp_ptr_array_6 = main_context_pointer;
   if (bVar9) {
-    if (main_context_pointer == (longlong *)engine_data_structure_ptr[1]) goto FUN_18008db2a;
+    if (main_context_pointer == (longlong *)engine_data_structure_ptr[1]) goto engine_unnamed_function_353a;
     engine_temp_ptr_array_6 = (longlong *)func_0x00018066b9a0(main_context_pointer);
   }
   engine_temp_int_5 = memcmp(engine_temp_ptr_array_6 + 4,param_5,0x10);
@@ -49931,7 +49931,7 @@ LAB_18008daa4:
     *engine_result_flag_ptr = engine_temp_ptr_array_6;
     return engine_result_flag_ptr;
   }
-FUN_18008db2a:
+engine_unnamed_function_353a:
   if ((main_context_pointer == engine_data_structure_ptr) || (engine_temp_int_5 = memcmp(param_5,main_context_pointer + 4,0x10), engine_temp_int_5 < 0)) {
     engine_temp_uint_8 = 0;
   }
@@ -49956,8 +49956,8 @@ FUN_18008db2a:
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// void FUN_18008db2a(uint32_t engine_data_structure_ptr)
-void FUN_18008db2a(uint32_t engine_data_structure_ptr)
+// void engine_unnamed_function_353a(uint32_t engine_data_structure_ptr)
+void engine_unnamed_function_353a(uint32_t engine_data_structure_ptr)
 
 {
   uint32 engine_temporary_uint;
@@ -49987,8 +49987,8 @@ void FUN_18008db2a(uint32_t engine_data_structure_ptr)
 
 
 
-// void FUN_18008db97(void)
-void FUN_18008db97(void)
+// void engine_unnamed_function_3547(void)
+void engine_unnamed_function_3547(void)
 
 {
   uint64 unaff_RDI;
@@ -50003,8 +50003,8 @@ void FUN_18008db97(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// void FUN_18008dbb0(longlong *engine_data_structure_ptr,ulonglong engine_result_flag_ptr)
-void FUN_18008dbb0(longlong *engine_data_structure_ptr,ulonglong engine_result_flag_ptr)
+// void engine_unnamed_function_3550(longlong *engine_data_structure_ptr,ulonglong engine_result_flag_ptr)
+void engine_unnamed_function_3550(longlong *engine_data_structure_ptr,ulonglong engine_result_flag_ptr)
 
 {
   longlong engine_temporary_long;
@@ -50061,8 +50061,8 @@ void FUN_18008dbb0(longlong *engine_data_structure_ptr,ulonglong engine_result_f
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// void FUN_18008dbfb(void)
-void FUN_18008dbfb(void)
+// void engine_unnamed_function_356b(void)
+void engine_unnamed_function_356b(void)
 
 {
   longlong in_RAX;
@@ -50208,14 +50208,14 @@ LAB_18008dde0:
     } while (structure_data_pointer != next_data_pointer);
   }
   engine_call_data_writer(engine_temporary_pointer,engine_result_flag_ptr);
-  FUN_18004b640(engine_temporary_pointer + 4,engine_result_flag_ptr + 0x20);
+  engine_unnamed_function_10(engine_temporary_pointer + 4,engine_result_flag_ptr + 0x20);
   *(uint8*)(engine_temporary_pointer + 0xb) = *(uint8*)(engine_result_flag_ptr + 0x58);
   *(uint32*)((longlong)engine_temporary_pointer + 0x5c) = *(uint32*)(engine_result_flag_ptr + 0x5c);
   engine_temp_long_9 = engine_data_structure_ptr[1];
   engine_temp_long_6 = *engine_data_structure_ptr;
   if (engine_temp_long_6 != engine_temp_long_9) {
     do {
-      FUN_180089640(engine_temp_long_6);
+      engine_unnamed_function_3190(engine_temp_long_6);
       engine_temp_long_6 = engine_temp_long_6 + 0x60;
     } while (engine_temp_long_6 != engine_temp_long_9);
     engine_temp_long_6 = *engine_data_structure_ptr;
@@ -50235,8 +50235,8 @@ LAB_18008dde0:
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// void FUN_18008dfa0(longlong engine_data_structure_ptr,uint64 engine_result_flag_ptr,longlong engine_comparison_params,char engine_system_parameter_4,
-void FUN_18008dfa0(longlong engine_data_structure_ptr,uint64 engine_result_flag_ptr,longlong engine_comparison_params,char engine_system_parameter_4,
+// void engine_unnamed_function_3570(longlong engine_data_structure_ptr,uint64 engine_result_flag_ptr,longlong engine_comparison_params,char engine_system_parameter_4,
+void engine_unnamed_function_3570(longlong engine_data_structure_ptr,uint64 engine_result_flag_ptr,longlong engine_comparison_params,char engine_system_parameter_4,
                   uint32_t *param_5)
 
 {
@@ -50265,8 +50265,8 @@ void FUN_18008dfa0(longlong engine_data_structure_ptr,uint64 engine_result_flag_
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// void FUN_18008e0f0(longlong engine_data_structure_ptr,uint64 engine_result_flag_ptr,longlong engine_comparison_params,char engine_system_parameter_4,
-void FUN_18008e0f0(longlong engine_data_structure_ptr,uint64 engine_result_flag_ptr,longlong engine_comparison_params,char engine_system_parameter_4,
+// void engine_unnamed_function_3580(longlong engine_data_structure_ptr,uint64 engine_result_flag_ptr,longlong engine_comparison_params,char engine_system_parameter_4,
+void engine_unnamed_function_3580(longlong engine_data_structure_ptr,uint64 engine_result_flag_ptr,longlong engine_comparison_params,char engine_system_parameter_4,
                   uint32_t *param_5)
 
 {
@@ -50304,8 +50304,8 @@ LAB_18008e13f:
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// void FUN_18008e1a0(longlong *engine_data_structure_ptr,uint64_t *engine_result_flag_ptr,longlong *engine_comparison_params,longlong *engine_system_parameter_4)
-void FUN_18008e1a0(longlong *engine_data_structure_ptr,uint64_t *engine_result_flag_ptr,longlong *engine_comparison_params,longlong *engine_system_parameter_4)
+// void engine_unnamed_function_3590(longlong *engine_data_structure_ptr,uint64_t *engine_result_flag_ptr,longlong *engine_comparison_params,longlong *engine_system_parameter_4)
+void engine_unnamed_function_3590(longlong *engine_data_structure_ptr,uint64_t *engine_result_flag_ptr,longlong *engine_comparison_params,longlong *engine_system_parameter_4)
 
 {
   uint32 engine_temporary_uint;
@@ -50364,7 +50364,7 @@ void FUN_18008e1a0(longlong *engine_data_structure_ptr,uint64_t *engine_result_f
       }
       lStackX_10 = *engine_system_parameter_4;
       alStackX_18[0] = *engine_comparison_params;
-      engine_data_ptr4 = (uint32*)FUN_18008eaf0(alStackX_18,&lStackX_10);
+      engine_data_ptr4 = (uint32*)engine_unnamed_function_3750(alStackX_18,&lStackX_10);
       engine_temp_uint_ptr_9 = (void*)engine_data_structure_ptr[1];
       if (engine_result_flag_ptr != engine_temp_uint_ptr_9) {
         do {
@@ -50441,7 +50441,7 @@ void FUN_18008e1a0(longlong *engine_data_structure_ptr,uint64_t *engine_result_f
         }
         lStackX_10 = *engine_system_parameter_4;
         alStackX_18[0] = memory_allocation_result;
-        FUN_18008eaf0(alStackX_18,&lStackX_10,engine_data_ptr1);
+        engine_unnamed_function_3750(alStackX_18,&lStackX_10,engine_data_ptr1);
         engine_temp_uint_ptr_9 = (void*)engine_data_structure_ptr[1];
         engine_data_ptr0 = engine_temp_uint_ptr_9 + ((longlong)engine_data_ptr5 - (longlong)engine_data_ptr4) * 2;
         current_data_pointer = engine_result_flag_ptr;
@@ -50479,8 +50479,8 @@ void FUN_18008e1a0(longlong *engine_data_structure_ptr,uint64_t *engine_result_f
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// void FUN_18008e1c7(void)
-void FUN_18008e1c7(void)
+// void engine_unnamed_function_3607(void)
+void engine_unnamed_function_3607(void)
 
 {
   uint32 engine_temporary_uint;
@@ -50544,7 +50544,7 @@ void FUN_18008e1c7(void)
     }
     in_stack_00000068 = *unaff_R13;
     in_stack_00000070 = *unaff_R12;
-    engine_data_ptr4 = (uint32*)FUN_18008eaf0(&stack0x00000070,&stack0x00000068);
+    engine_data_ptr4 = (uint32*)engine_unnamed_function_3750(&stack0x00000070,&stack0x00000068);
     next_data_pointer = (void*)unaff_RBP[1];
     if (engine_register_rbx != next_data_pointer) {
       do {
@@ -50621,7 +50621,7 @@ void FUN_18008e1c7(void)
       }
       in_stack_00000068 = *unaff_R13;
       in_stack_00000070 = engine_temp_long_9;
-      FUN_18008eaf0(&stack0x00000070,&stack0x00000068,engine_data_ptr1);
+      engine_unnamed_function_3750(&stack0x00000070,&stack0x00000068,engine_data_ptr1);
       next_data_pointer = (void*)unaff_RBP[1];
       engine_data_ptr0 = next_data_pointer + ((longlong)engine_data_ptr5 - (longlong)engine_data_ptr4) * 2;
       temp_data_pointer = engine_register_rbx;
@@ -50656,8 +50656,8 @@ void FUN_18008e1c7(void)
 
 
 
-// void FUN_18008e454(void)
-void FUN_18008e454(void)
+// void engine_unnamed_function_3614(void)
+void engine_unnamed_function_3614(void)
 
 {
   return;
@@ -50666,8 +50666,8 @@ void FUN_18008e454(void)
 
 
 
-// void FUN_18008e460(longlong *engine_data_structure_ptr,longlong *engine_result_flag_ptr)
-void FUN_18008e460(longlong *engine_data_structure_ptr,longlong *engine_result_flag_ptr)
+// void engine_unnamed_function_3620(longlong *engine_data_structure_ptr,longlong *engine_result_flag_ptr)
+void engine_unnamed_function_3620(longlong *engine_data_structure_ptr,longlong *engine_result_flag_ptr)
 
 {
   byte engine_temp_byte;
@@ -50728,8 +50728,8 @@ void FUN_18008e460(longlong *engine_data_structure_ptr,longlong *engine_result_f
 
 
 
-// void FUN_18008e473(longlong *engine_data_structure_ptr,longlong *engine_result_flag_ptr)
-void FUN_18008e473(longlong *engine_data_structure_ptr,longlong *engine_result_flag_ptr)
+// void engine_unnamed_function_3633(longlong *engine_data_structure_ptr,longlong *engine_result_flag_ptr)
+void engine_unnamed_function_3633(longlong *engine_data_structure_ptr,longlong *engine_result_flag_ptr)
 
 {
   byte engine_temp_byte;
@@ -50792,8 +50792,8 @@ void FUN_18008e473(longlong *engine_data_structure_ptr,longlong *engine_result_f
 
 
 
-// void FUN_18008e48b(void)
-void FUN_18008e48b(void)
+// void engine_unnamed_function_364b(void)
+void engine_unnamed_function_364b(void)
 
 {
   byte engine_temp_byte;
@@ -50857,8 +50857,8 @@ void FUN_18008e48b(void)
 
 
 
-// void FUN_18008e535(void)
-void FUN_18008e535(void)
+// void engine_unnamed_function_3655(void)
+void engine_unnamed_function_3655(void)
 
 {
   return;
@@ -50867,8 +50867,8 @@ void FUN_18008e535(void)
 
 
 
-// void FUN_18008e544(void)
-void FUN_18008e544(void)
+// void engine_unnamed_function_3664(void)
+void engine_unnamed_function_3664(void)
 
 {
   return;
@@ -50877,8 +50877,8 @@ void FUN_18008e544(void)
 
 
 
-// void FUN_18008e550(longlong *engine_data_structure_ptr,longlong *engine_result_flag_ptr)
-void FUN_18008e550(longlong *engine_data_structure_ptr,longlong *engine_result_flag_ptr)
+// void engine_unnamed_function_3670(longlong *engine_data_structure_ptr,longlong *engine_result_flag_ptr)
+void engine_unnamed_function_3670(longlong *engine_data_structure_ptr,longlong *engine_result_flag_ptr)
 
 {
   byte engine_temp_byte;
@@ -50923,8 +50923,8 @@ void FUN_18008e550(longlong *engine_data_structure_ptr,longlong *engine_result_f
 
 
 
-// void FUN_18008e55f(longlong *engine_data_structure_ptr,longlong *engine_result_flag_ptr)
-void FUN_18008e55f(longlong *engine_data_structure_ptr,longlong *engine_result_flag_ptr)
+// void engine_unnamed_function_367f(longlong *engine_data_structure_ptr,longlong *engine_result_flag_ptr)
+void engine_unnamed_function_367f(longlong *engine_data_structure_ptr,longlong *engine_result_flag_ptr)
 
 {
   byte engine_temp_byte;
@@ -50971,8 +50971,8 @@ void FUN_18008e55f(longlong *engine_data_structure_ptr,longlong *engine_result_f
 
 
 
-// void FUN_18008e573(void)
-void FUN_18008e573(void)
+// void engine_unnamed_function_3683(void)
+void engine_unnamed_function_3683(void)
 
 {
   byte engine_temp_byte;
@@ -51020,8 +51020,8 @@ void FUN_18008e573(void)
 
 
 
-// void FUN_18008e5e4(void)
-void FUN_18008e5e4(void)
+// void engine_unnamed_function_3694(void)
+void engine_unnamed_function_3694(void)
 
 {
   return;
@@ -51030,8 +51030,8 @@ void FUN_18008e5e4(void)
 
 
 
-// void FUN_18008e5ef(void)
-void FUN_18008e5ef(void)
+// void engine_unnamed_function_369f(void)
+void engine_unnamed_function_369f(void)
 
 {
   return;
@@ -51040,15 +51040,15 @@ void FUN_18008e5ef(void)
 
 
 
-// void FUN_18008e5f0(longlong engine_data_structure_ptr,uint64 engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
-void FUN_18008e5f0(longlong engine_data_structure_ptr,uint64 engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
+// void engine_unnamed_function_3700(longlong engine_data_structure_ptr,uint64 engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
+void engine_unnamed_function_3700(longlong engine_data_structure_ptr,uint64 engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
 
 {
   void* engine_data_pointer;
   uint64 engine_temp_uint_2;
   
   engine_temp_uint_2 = 0xfffffffffffffffe;
-  FUN_18004b730();
+  engine_unnamed_function_20();
   engine_handle_system_io_data_queue(engine_data_structure_ptr + 0x40,*(void*)(engine_data_structure_ptr + 0x50),engine_comparison_params,engine_system_parameter_4,engine_temp_uint_2);
   engine_data_pointer = *(void**)(engine_data_structure_ptr + 0x20);
   if (engine_data_pointer != (void*)0x0) {
@@ -51062,15 +51062,15 @@ void FUN_18008e5f0(longlong engine_data_structure_ptr,uint64 engine_result_flag_
 
 
 
-// void FUN_18008e640(longlong engine_data_structure_ptr,uint64 engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
-void FUN_18008e640(longlong engine_data_structure_ptr,uint64 engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
+// void engine_unnamed_function_3710(longlong engine_data_structure_ptr,uint64 engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
+void engine_unnamed_function_3710(longlong engine_data_structure_ptr,uint64 engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
 
 {
   void* engine_data_pointer;
   uint64 engine_temp_uint_2;
   
   engine_temp_uint_2 = 0xfffffffffffffffe;
-  FUN_18004b730();
+  engine_unnamed_function_20();
   engine_handle_system_io_data_queue(engine_data_structure_ptr + 0x30,*(void*)(engine_data_structure_ptr + 0x40),engine_comparison_params,engine_system_parameter_4,engine_temp_uint_2);
   engine_data_pointer = *(void**)(engine_data_structure_ptr + 0x10);
   if (engine_data_pointer != (void*)0x0) {
@@ -51096,7 +51096,7 @@ void engine_start_main_loop(longlong *engine_data_structure_ptr,uint64 engine_re
   engine_data_pointer = (void*)*engine_comparison_params;
   engine_temp_uint_2 = engine_data_pointer[6];
   if ((ulonglong)((engine_data_structure_ptr[2] - engine_temp_long_3) + *engine_data_structure_ptr) <= engine_temp_uint_2) {
-    FUN_180639bf0(engine_data_structure_ptr,(engine_temp_long_3 - *engine_data_structure_ptr) + engine_temp_uint_2);
+    engine_unnamed_function_6440(engine_data_structure_ptr,(engine_temp_long_3 - *engine_data_structure_ptr) + engine_temp_uint_2);
     engine_temp_long_3 = engine_data_structure_ptr[1];
   }
   engine_data_structure_ptr[1] = engine_temp_long_3 + engine_temp_uint_2;
@@ -51134,7 +51134,7 @@ longlong engine_process_frame_update(longlong *engine_data_structure_ptr,longlon
   else {
     if (engine_comparison_params == 1) {
       engine_temporary_long = engine_call_memory_allocator(_engine_data_18,0x38,8,engine_data_bc);
-      FUN_18008e9e0(engine_temporary_long,*engine_result_flag_ptr);
+      engine_unnamed_function_3730(engine_temporary_long,*engine_result_flag_ptr);
       *engine_data_structure_ptr = engine_temporary_long;
       return 0;
     }
@@ -51149,13 +51149,13 @@ longlong engine_process_frame_update(longlong *engine_data_structure_ptr,longlon
 
 
 
-ulonglong FUN_18008e820(uint64 engine_data_structure_ptr,uint64_t *engine_result_flag_ptr)
+ulonglong engine_unnamed_function_3720(uint64 engine_data_structure_ptr,uint64_t *engine_result_flag_ptr)
 
 {
   longlong *pengine_temp_long;
   ulonglong engine_temp_uint_2;
   
-  engine_temp_uint_2 = FUN_1800890a0(*engine_result_flag_ptr,engine_data_structure_ptr);
+  engine_temp_uint_2 = engine_unnamed_function_3150(*engine_result_flag_ptr,engine_data_structure_ptr);
   if ((char)engine_temp_uint_2 == '\0') {
     return engine_temp_uint_2 & 0xffffffffffffff00;
   }
@@ -51172,7 +51172,7 @@ ulonglong FUN_18008e820(uint64 engine_data_structure_ptr,uint64_t *engine_result
 
 
 uint64_t *
-FUN_18008e9e0(uint64_t *engine_data_structure_ptr,uint64_t *engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
+engine_unnamed_function_3730(uint64_t *engine_data_structure_ptr,uint64_t *engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
 
 {
   code *presource_status_flag;
@@ -51197,8 +51197,8 @@ FUN_18008e9e0(uint64_t *engine_data_structure_ptr,uint64_t *engine_result_flag_p
 
 
 
-// void FUN_18008ea80(uint64 engine_data_structure_ptr,longlong engine_result_flag_ptr)
-void FUN_18008ea80(uint64 engine_data_structure_ptr,longlong engine_result_flag_ptr)
+// void engine_unnamed_function_3740(uint64 engine_data_structure_ptr,longlong engine_result_flag_ptr)
+void engine_unnamed_function_3740(uint64 engine_data_structure_ptr,longlong engine_result_flag_ptr)
 
 {
   *(void*)(engine_result_flag_ptr + 0x20) = &engine_system_context_data;
@@ -51218,7 +51218,7 @@ void FUN_18008ea80(uint64 engine_data_structure_ptr,longlong engine_result_flag_
 
 
 
-uint64_t * FUN_18008eaf0(longlong *engine_data_structure_ptr,longlong *engine_result_flag_ptr,uint64_t *engine_comparison_params)
+uint64_t * engine_unnamed_function_3750(longlong *engine_data_structure_ptr,longlong *engine_result_flag_ptr,uint64_t *engine_comparison_params)
 
 {
   longlong engine_temporary_long;
@@ -51238,8 +51238,8 @@ uint64_t * FUN_18008eaf0(longlong *engine_data_structure_ptr,longlong *engine_re
 
 
 
-// void FUN_18008eb40(longlong *engine_data_structure_ptr,longlong *engine_result_flag_ptr,longlong engine_comparison_params,uint8_t engine_system_parameter_4)
-void FUN_18008eb40(longlong *engine_data_structure_ptr,longlong *engine_result_flag_ptr,longlong engine_comparison_params,uint8_t engine_system_parameter_4)
+// void engine_unnamed_function_3760(longlong *engine_data_structure_ptr,longlong *engine_result_flag_ptr,longlong engine_comparison_params,uint8_t engine_system_parameter_4)
+void engine_unnamed_function_3760(longlong *engine_data_structure_ptr,longlong *engine_result_flag_ptr,longlong engine_comparison_params,uint8_t engine_system_parameter_4)
 
 {
   byte engine_temp_byte;
@@ -51270,7 +51270,7 @@ void FUN_18008eb40(longlong *engine_data_structure_ptr,longlong *engine_result_f
             lStack_20 = engine_temp_ptr_array_6[-1];
             engine_temp_long0 = engine_temp_long0 + -1;
             engine_temp_ptr_array_6 = engine_temp_ptr_array_6 + -2;
-            FUN_18008fbc0(engine_data_structure_ptr,engine_temp_long0,engine_temp_long_9,engine_temp_long0,&lStack_28,engine_system_parameter_4);
+            engine_unnamed_function_3910(engine_data_structure_ptr,engine_temp_long0,engine_temp_long_9,engine_temp_long0,&lStack_28,engine_system_parameter_4);
           } while (engine_temp_long0 != 0);
         }
         if (1 < engine_temp_long_9) {
@@ -51280,7 +51280,7 @@ void FUN_18008eb40(longlong *engine_data_structure_ptr,longlong *engine_result_f
             lStack_20 = engine_result_flag_ptr[1];
             *engine_result_flag_ptr = *engine_data_structure_ptr;
             *(int *)(engine_result_flag_ptr + 1) = (int)engine_data_structure_ptr[1];
-            FUN_18008fbc0(engine_data_structure_ptr,0,engine_temp_long_9 + -1,0,&lStack_28,engine_system_parameter_4);
+            engine_unnamed_function_3910(engine_data_structure_ptr,0,engine_temp_long_9 + -1,0,&lStack_28,engine_system_parameter_4);
             engine_result_flag_ptr = engine_result_flag_ptr + -2;
             engine_temp_long_9 = (0x10 - (longlong)engine_data_structure_ptr) + (longlong)engine_result_flag_ptr >> 4;
           } while (1 < engine_temp_long_9);
@@ -51289,7 +51289,7 @@ void FUN_18008eb40(longlong *engine_data_structure_ptr,longlong *engine_result_f
       return;
     }
     engine_temp_ptr_array_6 = (longlong *)
-             FUN_18008f870(engine_data_structure_ptr,engine_data_structure_ptr + (((longlong)engine_result_flag_ptr - (longlong)engine_data_structure_ptr >> 4) -
+             engine_unnamed_function_3860(engine_data_structure_ptr,engine_data_structure_ptr + (((longlong)engine_result_flag_ptr - (longlong)engine_data_structure_ptr >> 4) -
                                               ((longlong)engine_result_flag_ptr - (longlong)engine_data_structure_ptr >> 0x3f) >> 1)
                                              * 2,engine_result_flag_ptr + -2);
     lStack_28 = *engine_temp_ptr_array_6;
@@ -51363,7 +51363,7 @@ LAB_18008ebc0:
       goto LAB_18008ebc0;
     }
     engine_comparison_params = engine_comparison_params + -1;
-    FUN_18008eb40(engine_temp_ptr_array_6,engine_result_flag_ptr,engine_comparison_params,engine_system_parameter_4);
+    engine_unnamed_function_3760(engine_temp_ptr_array_6,engine_result_flag_ptr,engine_comparison_params,engine_system_parameter_4);
     engine_temp_index = (longlong)engine_temp_ptr_array_6 - (longlong)engine_data_structure_ptr;
     engine_result_flag_ptr = engine_temp_ptr_array_6;
   } while( true );
@@ -51372,8 +51372,8 @@ LAB_18008ebc0:
 
 
 
-// void FUN_18008ece8(void)
-void FUN_18008ece8(void)
+// void engine_unnamed_function_3778(void)
+void engine_unnamed_function_3778(void)
 
 {
   void* engine_data_pointer;
@@ -51395,7 +51395,7 @@ void FUN_18008ece8(void)
     uStack000000000000003c = *(uint32*)((longlong)engine_data_pointer + -4);
     engine_temp_long_2 = engine_temp_long_2 + -1;
     engine_data_pointer = engine_data_pointer + -2;
-    FUN_18008fbc0(uStack0000000000000030,engine_temp_long_2);
+    engine_unnamed_function_3910(uStack0000000000000030,engine_temp_long_2);
   } while (engine_temp_long_2 != 0);
   if (1 < unaff_RSI) {
     engine_data_pointer = (void*)(unaff_R14 + -0x10);
@@ -51406,7 +51406,7 @@ void FUN_18008ece8(void)
       uStack000000000000003c = *(uint32*)((longlong)engine_data_pointer + 0xc);
       *engine_data_pointer = *unaff_R15;
       *(uint32*)(engine_data_pointer + 1) = *(uint32*)(unaff_R15 + 1);
-      FUN_18008fbc0(uStack0000000000000030,0,unaff_RSI + -1,0,&stack0x00000030);
+      engine_unnamed_function_3910(uStack0000000000000030,0,unaff_RSI + -1,0,&stack0x00000030);
       engine_data_pointer = engine_data_pointer + -2;
       unaff_RSI = (0x10 - (longlong)unaff_R15) + (longlong)engine_data_pointer >> 4;
     } while (1 < unaff_RSI);
@@ -51417,8 +51417,8 @@ void FUN_18008ece8(void)
 
 
 
-// void FUN_18008ed49(void)
-void FUN_18008ed49(void)
+// void engine_unnamed_function_3789(void)
+void engine_unnamed_function_3789(void)
 
 {
   longlong unaff_RSI;
@@ -51439,7 +51439,7 @@ void FUN_18008ed49(void)
       uStack000000000000003c = *(uint32*)((longlong)engine_data_pointer + 0xc);
       *engine_data_pointer = *unaff_R15;
       *(uint32*)(engine_data_pointer + 1) = *(uint32*)(unaff_R15 + 1);
-      FUN_18008fbc0(uStack0000000000000030,0,unaff_RSI + -1,0,&stack0x00000030);
+      engine_unnamed_function_3910(uStack0000000000000030,0,unaff_RSI + -1,0,&stack0x00000030);
       engine_data_pointer = engine_data_pointer + -2;
       unaff_RSI = (0x10 - (longlong)unaff_R15) + (longlong)engine_data_pointer >> 4;
     } while (1 < unaff_RSI);
@@ -51450,8 +51450,8 @@ void FUN_18008ed49(void)
 
 
 
-// void FUN_18008edc0(longlong *engine_data_structure_ptr,longlong *engine_result_flag_ptr,longlong engine_comparison_params,uint8_t engine_system_parameter_4)
-void FUN_18008edc0(longlong *engine_data_structure_ptr,longlong *engine_result_flag_ptr,longlong engine_comparison_params,uint8_t engine_system_parameter_4)
+// void engine_unnamed_function_3790(longlong *engine_data_structure_ptr,longlong *engine_result_flag_ptr,longlong engine_comparison_params,uint8_t engine_system_parameter_4)
+void engine_unnamed_function_3790(longlong *engine_data_structure_ptr,longlong *engine_result_flag_ptr,longlong engine_comparison_params,uint8_t engine_system_parameter_4)
 
 {
   byte engine_temp_byte;
@@ -51477,7 +51477,7 @@ joined_r0x00018008edee:
         do {
           lStackX_8 = engine_data_structure_ptr[engine_temp_long_3 + -1];
           engine_temp_long_3 = engine_temp_long_3 + -1;
-          FUN_18008fa70(engine_data_structure_ptr,engine_temp_long_3,engine_temp_long_7,engine_temp_long_3,&lStackX_8,engine_system_parameter_4);
+          engine_unnamed_function_3870(engine_data_structure_ptr,engine_temp_long_3,engine_temp_long_7,engine_temp_long_3,&lStackX_8,engine_system_parameter_4);
         } while (engine_temp_long_3 != 0);
       }
       if (1 < engine_temp_long_7) {
@@ -51485,7 +51485,7 @@ joined_r0x00018008edee:
         do {
           lStackX_8 = *engine_result_flag_ptr;
           *engine_result_flag_ptr = *engine_data_structure_ptr;
-          FUN_18008fa70(engine_data_structure_ptr,0,engine_temp_long_7 + -1,0,&lStackX_8,engine_system_parameter_4);
+          engine_unnamed_function_3870(engine_data_structure_ptr,0,engine_temp_long_7 + -1,0,&lStackX_8,engine_system_parameter_4);
           engine_result_flag_ptr = engine_result_flag_ptr + -1;
           engine_temp_long_7 = (8 - (longlong)engine_data_structure_ptr) + (longlong)engine_result_flag_ptr >> 3;
         } while (1 < engine_temp_long_7);
@@ -51612,7 +51612,7 @@ LAB_18008efb7:
     pengine_temp_long_8 = pengine_temp_long_8 + 1;
   } while( true );
   engine_comparison_params = engine_comparison_params + -1;
-  FUN_18008edc0(pengine_temp_long_8,engine_result_flag_ptr,engine_comparison_params,engine_system_parameter_4);
+  engine_unnamed_function_3790(pengine_temp_long_8,engine_result_flag_ptr,engine_comparison_params,engine_system_parameter_4);
   engine_temp_uint_2 = (longlong)pengine_temp_long_8 - (longlong)engine_data_structure_ptr;
   engine_result_flag_ptr = pengine_temp_long_8;
   goto joined_r0x00018008edee;
@@ -51621,8 +51621,8 @@ LAB_18008efb7:
 
 
 
-// void FUN_18008edcf(longlong *engine_data_structure_ptr,longlong *engine_result_flag_ptr,longlong engine_comparison_params,uint8_t engine_system_parameter_4)
-void FUN_18008edcf(longlong *engine_data_structure_ptr,longlong *engine_result_flag_ptr,longlong engine_comparison_params,uint8_t engine_system_parameter_4)
+// void engine_unnamed_function_379f(longlong *engine_data_structure_ptr,longlong *engine_result_flag_ptr,longlong engine_comparison_params,uint8_t engine_system_parameter_4)
+void engine_unnamed_function_379f(longlong *engine_data_structure_ptr,longlong *engine_result_flag_ptr,longlong engine_comparison_params,uint8_t engine_system_parameter_4)
 
 {
   byte engine_temp_byte;
@@ -51649,7 +51649,7 @@ joined_r0x00018008edee:
         do {
           in_stack_00000060 = engine_data_structure_ptr[engine_temp_long_3 + -1];
           engine_temp_long_3 = engine_temp_long_3 + -1;
-          FUN_18008fa70(engine_data_structure_ptr,engine_temp_long_3,engine_temp_long_7,engine_temp_long_3,&stack0x00000060);
+          engine_unnamed_function_3870(engine_data_structure_ptr,engine_temp_long_3,engine_temp_long_7,engine_temp_long_3,&stack0x00000060);
         } while (engine_temp_long_3 != 0);
       }
       if (1 < engine_temp_long_7) {
@@ -51657,7 +51657,7 @@ joined_r0x00018008edee:
         do {
           in_stack_00000060 = *engine_result_flag_ptr;
           *engine_result_flag_ptr = *engine_data_structure_ptr;
-          FUN_18008fa70(engine_data_structure_ptr,0,engine_temp_long_7 + -1,0,&stack0x00000060);
+          engine_unnamed_function_3870(engine_data_structure_ptr,0,engine_temp_long_7 + -1,0,&stack0x00000060);
           engine_result_flag_ptr = engine_result_flag_ptr + -1;
           engine_temp_long_7 = (8 - (longlong)engine_data_structure_ptr) + (longlong)engine_result_flag_ptr >> 3;
         } while (1 < engine_temp_long_7);
@@ -51784,7 +51784,7 @@ LAB_18008efb7:
     pengine_temp_long_8 = pengine_temp_long_8 + 1;
   } while( true );
   engine_comparison_params = engine_comparison_params + -1;
-  FUN_18008edc0(pengine_temp_long_8,engine_result_flag_ptr,engine_comparison_params,engine_system_parameter_4);
+  engine_unnamed_function_3790(pengine_temp_long_8,engine_result_flag_ptr,engine_comparison_params,engine_system_parameter_4);
   engine_temp_uint_2 = (longlong)pengine_temp_long_8 - (longlong)engine_data_structure_ptr;
   engine_result_flag_ptr = pengine_temp_long_8;
   goto joined_r0x00018008edee;
@@ -51793,8 +51793,8 @@ LAB_18008efb7:
 
 
 
-// void FUN_18008edf4(void)
-void FUN_18008edf4(void)
+// void engine_unnamed_function_3804(void)
+void engine_unnamed_function_3804(void)
 
 {
   byte engine_temp_byte;
@@ -51937,7 +51937,7 @@ LAB_18008efb7:
   goto LAB_18008eff7;
 LAB_18008efcb:
   unaff_R12 = unaff_R12 + -1;
-  FUN_18008edc0(pengine_temp_long_7,unaff_R14,unaff_R12,unaff_BL);
+  engine_unnamed_function_3790(pengine_temp_long_7,unaff_R14,unaff_R12,unaff_BL);
   unaff_R14 = pengine_temp_long_7;
   if ((longlong)((longlong)pengine_temp_long_7 - (longlong)unaff_R15 & 0xfffffffffffffff8U) < 0xe1) {
 LAB_18008eff7:
@@ -51947,14 +51947,14 @@ LAB_18008eff7:
         engine_temp_long_2 = (engine_temp_long_6 + -2 >> 1) + 1;
         do {
           engine_temp_long_2 = engine_temp_long_2 + -1;
-          FUN_18008fa70();
+          engine_unnamed_function_3870();
         } while (engine_temp_long_2 != 0);
       }
       if (1 < engine_temp_long_6) {
         pengine_temp_long_7 = pengine_temp_long_7 + -1;
         do {
           *pengine_temp_long_7 = *unaff_R15;
-          FUN_18008fa70();
+          engine_unnamed_function_3870();
           pengine_temp_long_7 = pengine_temp_long_7 + -1;
         } while (1 < (8 - (longlong)unaff_R15) + (longlong)pengine_temp_long_7 >> 3);
       }
@@ -51967,8 +51967,8 @@ LAB_18008eff7:
 
 
 
-// void FUN_18008effc(void)
-void FUN_18008effc(void)
+// void engine_unnamed_function_381c(void)
+void engine_unnamed_function_381c(void)
 
 {
   longlong engine_temporary_long;
@@ -51986,7 +51986,7 @@ void FUN_18008effc(void)
       do {
         uStack0000000000000060 = unaff_R15[engine_temp_long_2 + -1];
         engine_temp_long_2 = engine_temp_long_2 + -1;
-        FUN_18008fa70();
+        engine_unnamed_function_3870();
       } while (engine_temp_long_2 != 0);
     }
     if (1 < engine_temporary_long) {
@@ -51994,7 +51994,7 @@ void FUN_18008effc(void)
       do {
         uStack0000000000000060 = *engine_current_node_ptr;
         *engine_current_node_ptr = *unaff_R15;
-        FUN_18008fa70();
+        engine_unnamed_function_3870();
         engine_current_node_ptr = engine_current_node_ptr + -1;
       } while (1 < (8 - (longlong)unaff_R15) + (longlong)engine_current_node_ptr >> 3);
     }
@@ -52005,8 +52005,8 @@ void FUN_18008effc(void)
 
 
 
-// void FUN_18008f00a(void)
-void FUN_18008f00a(void)
+// void engine_unnamed_function_382a(void)
+void engine_unnamed_function_382a(void)
 
 {
   longlong engine_temporary_long;
@@ -52022,7 +52022,7 @@ void FUN_18008f00a(void)
     do {
       uStack0000000000000060 = unaff_R15[engine_temp_long_2 + -1];
       engine_temp_long_2 = engine_temp_long_2 + -1;
-      FUN_18008fa70();
+      engine_unnamed_function_3870();
     } while (engine_temp_long_2 != 0);
   }
   if (1 < engine_temporary_long) {
@@ -52030,7 +52030,7 @@ void FUN_18008f00a(void)
     do {
       uStack0000000000000060 = *engine_current_node_ptr;
       *engine_current_node_ptr = *unaff_R15;
-      FUN_18008fa70();
+      engine_unnamed_function_3870();
       engine_current_node_ptr = engine_current_node_ptr + -1;
     } while (1 < (8 - (longlong)unaff_R15) + (longlong)engine_current_node_ptr >> 3);
   }
@@ -52047,7 +52047,7 @@ void engine_allocate_memory_block(uint64 engine_data_structure_ptr,uint64 engine
   uint64 engine_temporary_uint;
   longlong engine_temp_long_2;
   
-  engine_temp_long_2 = FUN_18008f430();
+  engine_temp_long_2 = engine_unnamed_function_3830();
   *(uint16*)(engine_temp_long_2 + 0x18) = 0;
   engine_temporary_uint = ((void*)*engine_comparison_params)[1];
   *(void*)(engine_temp_long_2 + 0x20) = *(void*)*engine_comparison_params;
@@ -52078,14 +52078,14 @@ engine_initialize_memory_block(longlong *engine_data_structure_ptr,uint64_t *eng
   uint8 auStack_30 [24];
   
   if (engine_data_structure_ptr[1] == 0) {
-    FUN_18008f470(engine_data_structure_ptr,engine_result_flag_ptr,1,*engine_data_structure_ptr);
+    engine_unnamed_function_3840(engine_data_structure_ptr,engine_result_flag_ptr,1,*engine_data_structure_ptr);
     return engine_result_flag_ptr;
   }
   pengine_temp_long = (longlong *)*engine_data_structure_ptr;
   if (engine_comparison_params == (longlong *)*pengine_temp_long) {
     comparison_result_index = memcmp(engine_system_parameter_4,engine_comparison_params + 4,0x10);
     if (comparison_result_index < 0) {
-      FUN_18008f470(engine_data_structure_ptr,engine_result_flag_ptr,1,engine_comparison_params);
+      engine_unnamed_function_3840(engine_data_structure_ptr,engine_result_flag_ptr,1,engine_comparison_params);
       return engine_result_flag_ptr;
     }
   }
@@ -52093,7 +52093,7 @@ engine_initialize_memory_block(longlong *engine_data_structure_ptr,uint64_t *eng
     engine_temp_long_2 = pengine_temp_long[2];
     comparison_result_index = memcmp(engine_temp_long_2 + 0x20,engine_system_parameter_4,0x10);
     if (comparison_result_index < 0) {
-      FUN_18008f470(engine_data_structure_ptr,engine_result_flag_ptr,0,engine_temp_long_2);
+      engine_unnamed_function_3840(engine_data_structure_ptr,engine_result_flag_ptr,0,engine_temp_long_2);
       return engine_result_flag_ptr;
     }
   }
@@ -52126,10 +52126,10 @@ engine_initialize_memory_block(longlong *engine_data_structure_ptr,uint64_t *eng
       comparison_result_index = memcmp(engine_temp_ptr_5 + 4,engine_system_parameter_4,0x10);
       if (comparison_result_index < 0) {
         if (*(char *)(engine_temp_ptr_5[2] + 0x19) != '\0') {
-          FUN_18008f470(engine_data_structure_ptr,engine_result_flag_ptr,0,engine_temp_ptr_5);
+          engine_unnamed_function_3840(engine_data_structure_ptr,engine_result_flag_ptr,0,engine_temp_ptr_5);
           return engine_result_flag_ptr;
         }
-        FUN_18008f470(engine_data_structure_ptr,engine_result_flag_ptr,1,engine_comparison_params);
+        engine_unnamed_function_3840(engine_data_structure_ptr,engine_result_flag_ptr,1,engine_comparison_params);
         return engine_result_flag_ptr;
       }
     }
@@ -52154,15 +52154,15 @@ engine_initialize_memory_block(longlong *engine_data_structure_ptr,uint64_t *eng
       if ((engine_temp_ptr_5 == (longlong *)*engine_data_structure_ptr) || (comparison_result_index = memcmp(engine_system_parameter_4,engine_temp_ptr_5 + 4,0x10), comparison_result_index < 0))
       {
         if (*(char *)(engine_comparison_params[2] + 0x19) != '\0') {
-          FUN_18008f470(engine_data_structure_ptr,engine_result_flag_ptr,0,engine_comparison_params);
+          engine_unnamed_function_3840(engine_data_structure_ptr,engine_result_flag_ptr,0,engine_comparison_params);
           return engine_result_flag_ptr;
         }
-        FUN_18008f470(engine_data_structure_ptr,engine_result_flag_ptr,1,engine_temp_ptr_5);
+        engine_unnamed_function_3840(engine_data_structure_ptr,engine_result_flag_ptr,1,engine_temp_ptr_5);
         return engine_result_flag_ptr;
       }
     }
   }
-  engine_next_node_ptr = (void*)FUN_18008f6a0(engine_data_structure_ptr,auStack_30,0,engine_system_parameter_4,param_5);
+  engine_next_node_ptr = (void*)engine_unnamed_function_3850(engine_data_structure_ptr,auStack_30,0,engine_system_parameter_4,param_5);
   *engine_result_flag_ptr = *engine_next_node_ptr;
   return engine_result_flag_ptr;
 }
@@ -52170,13 +52170,13 @@ engine_initialize_memory_block(longlong *engine_data_structure_ptr,uint64_t *eng
 
 
 
-// void FUN_18008f430(uint64_t *engine_data_structure_ptr)
-void FUN_18008f430(uint64_t *engine_data_structure_ptr)
+// void engine_unnamed_function_3830(uint64_t *engine_data_structure_ptr)
+void engine_unnamed_function_3830(uint64_t *engine_data_structure_ptr)
 
 {
   void* engine_data_pointer;
   
-  engine_data_pointer = (void*)FUN_180067110(0x58);
+  engine_data_pointer = (void*)engine_unnamed_function_270(0x58);
   *engine_data_pointer = *engine_data_structure_ptr;
   engine_data_pointer[1] = *engine_data_structure_ptr;
   engine_data_pointer[2] = *engine_data_structure_ptr;
@@ -52186,7 +52186,7 @@ void FUN_18008f430(uint64_t *engine_data_structure_ptr)
 
 
 uint64_t *
-FUN_18008f470(longlong *engine_data_structure_ptr,uint64_t *engine_result_flag_ptr,char engine_comparison_params,uint64_t *engine_system_parameter_4,
+engine_unnamed_function_3840(longlong *engine_data_structure_ptr,uint64_t *engine_result_flag_ptr,char engine_comparison_params,uint64_t *engine_system_parameter_4,
              uint64 param_5,longlong *param_6)
 
 {
@@ -52321,7 +52321,7 @@ LAB_18008f669:
 
 
 uint64_t *
-FUN_18008f6a0(longlong *engine_data_structure_ptr,uint64_t *engine_result_flag_ptr,char engine_comparison_params,uint64 engine_system_parameter_4,
+engine_unnamed_function_3850(longlong *engine_data_structure_ptr,uint64_t *engine_result_flag_ptr,char engine_comparison_params,uint64 engine_system_parameter_4,
              uint64 param_5)
 
 {
@@ -52356,7 +52356,7 @@ FUN_18008f6a0(longlong *engine_data_structure_ptr,uint64_t *engine_result_flag_p
   engine_next_node_ptr = engine_temporary_pointer;
   if (bVar6 != false) {
     if (engine_temporary_pointer == *(void**)*engine_data_structure_ptr) {
-      engine_next_node_ptr = (void*)FUN_18008f470(engine_data_structure_ptr,auStackX_8,1,engine_temporary_pointer);
+      engine_next_node_ptr = (void*)engine_unnamed_function_3840(engine_data_structure_ptr,auStackX_8,1,engine_temporary_pointer);
       *engine_result_flag_ptr = *engine_next_node_ptr;
       *(uint8*)(engine_result_flag_ptr + 1) = 1;
       return engine_result_flag_ptr;
@@ -52387,7 +52387,7 @@ FUN_18008f6a0(longlong *engine_data_structure_ptr,uint64_t *engine_result_flag_p
   }
   comparison_result_index = memcmp(engine_next_node_ptr + 4,engine_system_parameter_4,0x10);
   if (comparison_result_index < 0) {
-    engine_next_node_ptr = (void*)FUN_18008f470(engine_data_structure_ptr,auStackX_8,bVar6,engine_temporary_pointer);
+    engine_next_node_ptr = (void*)engine_unnamed_function_3840(engine_data_structure_ptr,auStackX_8,bVar6,engine_temporary_pointer);
     *engine_result_flag_ptr = *engine_next_node_ptr;
     *(uint8*)(engine_result_flag_ptr + 1) = 1;
   }
@@ -52401,7 +52401,7 @@ FUN_18008f6a0(longlong *engine_data_structure_ptr,uint64_t *engine_result_flag_p
 
 
 
-longlong * FUN_18008f870(longlong *engine_data_structure_ptr,longlong *engine_result_flag_ptr,longlong *engine_comparison_params)
+longlong * engine_unnamed_function_3860(longlong *engine_data_structure_ptr,longlong *engine_result_flag_ptr,longlong *engine_comparison_params)
 
 {
   byte engine_temp_byte;
@@ -52548,8 +52548,8 @@ longlong * FUN_18008f870(longlong *engine_data_structure_ptr,longlong *engine_re
 
 
 
-// void FUN_18008fa70(longlong engine_data_structure_ptr,longlong engine_result_flag_ptr,longlong engine_comparison_params,longlong engine_system_parameter_4,
-void FUN_18008fa70(longlong engine_data_structure_ptr,longlong engine_result_flag_ptr,longlong engine_comparison_params,longlong engine_system_parameter_4,
+// void engine_unnamed_function_3870(longlong engine_data_structure_ptr,longlong engine_result_flag_ptr,longlong engine_comparison_params,longlong engine_system_parameter_4,
+void engine_unnamed_function_3870(longlong engine_data_structure_ptr,longlong engine_result_flag_ptr,longlong engine_comparison_params,longlong engine_system_parameter_4,
                   longlong *param_5)
 
 {
@@ -52634,8 +52634,8 @@ LAB_18008fb99:
 
 
 
-// void FUN_18008fb19(void)
-void FUN_18008fb19(void)
+// void engine_unnamed_function_3889(void)
+void engine_unnamed_function_3889(void)
 
 {
   byte engine_temp_byte;
@@ -52684,8 +52684,8 @@ LAB_18008fb99:
 
 
 
-// void FUN_18008fb96(void)
-void FUN_18008fb96(void)
+// void engine_unnamed_function_3896(void)
+void engine_unnamed_function_3896(void)
 
 {
   void* unaff_RDI;
@@ -52699,8 +52699,8 @@ void FUN_18008fb96(void)
 
 
 
-// void FUN_18008fba9(void)
-void FUN_18008fba9(void)
+// void engine_unnamed_function_3909(void)
+void engine_unnamed_function_3909(void)
 
 {
   longlong in_R10;
@@ -52714,8 +52714,8 @@ void FUN_18008fba9(void)
 
 
 
-// void FUN_18008fbc0(longlong engine_data_structure_ptr,longlong engine_result_flag_ptr,longlong engine_comparison_params,longlong engine_system_parameter_4,
-void FUN_18008fbc0(longlong engine_data_structure_ptr,longlong engine_result_flag_ptr,longlong engine_comparison_params,longlong engine_system_parameter_4,
+// void engine_unnamed_function_3910(longlong engine_data_structure_ptr,longlong engine_result_flag_ptr,longlong engine_comparison_params,longlong engine_system_parameter_4,
+void engine_unnamed_function_3910(longlong engine_data_structure_ptr,longlong engine_result_flag_ptr,longlong engine_comparison_params,longlong engine_system_parameter_4,
                   longlong *param_5)
 
 {
@@ -52811,7 +52811,7 @@ void FUN_18008fbc0(longlong engine_data_structure_ptr,longlong engine_result_fla
 
 
 uint64_t *
-FUN_18008fd70(uint64_t *engine_data_structure_ptr,ulonglong engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
+engine_unnamed_function_3920(uint64_t *engine_data_structure_ptr,ulonglong engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
 
 {
   *engine_data_structure_ptr = &engine_data_18098bcb0;
@@ -52824,8 +52824,8 @@ FUN_18008fd70(uint64_t *engine_data_structure_ptr,ulonglong engine_result_flag_p
 
 
 
-// void FUN_18008fdb0(longlong engine_data_structure_ptr,longlong engine_result_flag_ptr)
-void FUN_18008fdb0(longlong engine_data_structure_ptr,longlong engine_result_flag_ptr)
+// void engine_unnamed_function_3930(longlong engine_data_structure_ptr,longlong engine_result_flag_ptr)
+void engine_unnamed_function_3930(longlong engine_data_structure_ptr,longlong engine_result_flag_ptr)
 
 {
   longlong engine_temporary_long;
@@ -52855,8 +52855,8 @@ void FUN_18008fdb0(longlong engine_data_structure_ptr,longlong engine_result_fla
 
 
 
-// void FUN_18008fe30(longlong engine_data_structure_ptr,uint64 engine_result_flag_ptr,int engine_comparison_params)
-void FUN_18008fe30(longlong engine_data_structure_ptr,uint64 engine_result_flag_ptr,int engine_comparison_params)
+// void engine_unnamed_function_3940(longlong engine_data_structure_ptr,uint64 engine_result_flag_ptr,int engine_comparison_params)
+void engine_unnamed_function_3940(longlong engine_data_structure_ptr,uint64 engine_result_flag_ptr,int engine_comparison_params)
 
 {
   if (engine_comparison_params + 1 < 0x200) {
@@ -52871,8 +52871,8 @@ void FUN_18008fe30(longlong engine_data_structure_ptr,uint64 engine_result_flag_
 
 
 
-// void FUN_18008fe51(void)
-void FUN_18008fe51(void)
+// void engine_unnamed_function_3951(void)
+void engine_unnamed_function_3951(void)
 
 {
                     // WARNING: Subroutine does not return
@@ -52882,8 +52882,8 @@ void FUN_18008fe51(void)
 
 
 
-// void FUN_18008fe76(uint8_t *engine_data_structure_ptr)
-void FUN_18008fe76(uint8_t *engine_data_structure_ptr)
+// void engine_unnamed_function_3966(uint8_t *engine_data_structure_ptr)
+void engine_unnamed_function_3966(uint8_t *engine_data_structure_ptr)
 
 {
   longlong unaff_RDI;
@@ -52898,8 +52898,8 @@ void FUN_18008fe76(uint8_t *engine_data_structure_ptr)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// void FUN_18008fe90(longlong engine_data_structure_ptr,longlong engine_result_flag_ptr,longlong engine_comparison_params)
-void FUN_18008fe90(longlong engine_data_structure_ptr,longlong engine_result_flag_ptr,longlong engine_comparison_params)
+// void engine_unnamed_function_3970(longlong engine_data_structure_ptr,longlong engine_result_flag_ptr,longlong engine_comparison_params)
+void engine_unnamed_function_3970(longlong engine_data_structure_ptr,longlong engine_result_flag_ptr,longlong engine_comparison_params)
 
 {
   longlong engine_temporary_long;
@@ -52947,7 +52947,7 @@ uint64_t * engine_initialize_rendering_context(uint64 engine_data_structure_ptr,
   void* engine_data_pointer;
   
   engine_data_pointer = (void*)engine_call_memory_allocator(_engine_data_18,0xb8,8,0x1a,0xfffffffffffffffe);
-  FUN_1802565b0(engine_data_pointer,engine_data_structure_ptr,engine_result_flag_ptr);
+  engine_unnamed_function_6060(engine_data_pointer,engine_data_structure_ptr,engine_result_flag_ptr);
   *engine_data_pointer = &engine_base_data_offset_18;
   engine_data_pointer[0x16] = 0;
   return engine_data_pointer;
@@ -52963,7 +52963,7 @@ uint64_t * engine_setup_display_manager(uint64 engine_data_structure_ptr,uint32_
   void* engine_data_pointer;
   
   engine_data_pointer = (void*)engine_call_memory_allocator(_engine_data_18,0xb8,8,0x1a,0xfffffffffffffffe);
-  FUN_1802565b0(engine_data_pointer,engine_data_structure_ptr,engine_result_flag_ptr);
+  engine_unnamed_function_6060(engine_data_pointer,engine_data_structure_ptr,engine_result_flag_ptr);
   *engine_data_pointer = &engine_base_data_offset_e8;
   engine_data_pointer[0x16] = 0;
   return engine_data_pointer;
@@ -52973,7 +52973,7 @@ uint64_t * engine_setup_display_manager(uint64 engine_data_structure_ptr,uint32_
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-uint64_t * FUN_180090130(uint64_t *engine_data_structure_ptr)
+uint64_t * engine_unnamed_function_3980(uint64_t *engine_data_structure_ptr)
 
 {
   longlong *pengine_temp_long;
@@ -52992,12 +52992,12 @@ uint64_t * FUN_180090130(uint64_t *engine_data_structure_ptr)
   engine_data_structure_ptr[0x72] = 0;
   engine_data_structure_ptr[0x73] = 0;
   *(uint32*)(engine_data_structure_ptr + 0x74) = 3;
-  engine_call_framework_initializer(engine_data_structure_ptr + 0x76,0x20,0x20,FUN_180627850,FUN_180627b90);
+  engine_call_framework_initializer(engine_data_structure_ptr + 0x76,0x20,0x20,engine_unnamed_function_6280,engine_unnamed_function_6290);
   engine_data_structure_ptr[0x75] = 0;
   _Mtx_init_in_situ(engine_data_structure_ptr + 0x106,0x102);
   do {
     engine_temp_uint_3 = engine_call_memory_allocator(_engine_data_18,0x3d0,8,3);
-    main_context_pointer = (longlong *)FUN_180275090(engine_temp_uint_3);
+    main_context_pointer = (longlong *)engine_unnamed_function_6100(engine_temp_uint_3);
     if (main_context_pointer != (longlong *)0x0) {
       (**(code **)(*main_context_pointer + 0x28))(main_context_pointer);
     }
@@ -53007,7 +53007,7 @@ uint64_t * FUN_180090130(uint64_t *engine_data_structure_ptr)
       (**(code **)(*pengine_temp_long + 0x38))();
     }
     engine_temp_uint_3 = engine_call_memory_allocator(_engine_data_18,0x300,0x10,3);
-    main_context_pointer = (longlong *)FUN_180075030(engine_temp_uint_3,1);
+    main_context_pointer = (longlong *)engine_unnamed_function_1110(engine_temp_uint_3,1);
     if (main_context_pointer != (longlong *)0x0) {
       (**(code **)(*main_context_pointer + 0x28))(main_context_pointer);
     }
@@ -53021,12 +53021,12 @@ uint64_t * FUN_180090130(uint64_t *engine_data_structure_ptr)
     memory_allocation_result = *pengine_temp_long_7;
     if (*(char *)(memory_allocation_result + 0xfa) != '\x01') {
       *(uint8*)(memory_allocation_result + 0xfa) = 1;
-      FUN_180079520(memory_allocation_result);
+      engine_unnamed_function_1590(memory_allocation_result);
       memory_allocation_result = *pengine_temp_long_7;
     }
     if (*(char *)(memory_allocation_result + 0xfb) != '\x01') {
       *(uint8*)(memory_allocation_result + 0xfb) = 1;
-      FUN_180079520(memory_allocation_result);
+      engine_unnamed_function_1590(memory_allocation_result);
       memory_allocation_result = *pengine_temp_long_7;
     }
     engine_temp_int_2 = _Mtx_lock(0x180c91910);
@@ -53056,10 +53056,10 @@ void engine_validate_structure_data(longlong engine_data_structure_ptr)
   
   engine_temporary_uint = 0xfffffffffffffffe;
   _Mtx_destroy_in_situ();
-  FUN_1808fc8a8(engine_data_structure_ptr + 0x3b0,0x20,0x20,FUN_180627b90,engine_temporary_uint);
-  FUN_18005d580();
-  FUN_1808fc8a8(engine_data_structure_ptr + 0x108,8,0x20,engine_update_game_state);
-  FUN_1808fc8a8(engine_data_structure_ptr + 8,8,0x20,engine_update_game_state);
+  engine_unnamed_function_6548(engine_data_structure_ptr + 0x3b0,0x20,0x20,engine_unnamed_function_6290,engine_temporary_uint);
+  engine_unnamed_function_100();
+  engine_unnamed_function_6548(engine_data_structure_ptr + 0x108,8,0x20,engine_update_game_state);
+  engine_unnamed_function_6548(engine_data_structure_ptr + 8,8,0x20,engine_update_game_state);
   return;
 }
 
@@ -53075,7 +53075,7 @@ void engine_process_structure_data(longlong *engine_data_structure_ptr)
   
   engine_temp_uint_2 = 0xfffffffffffffffe;
   engine_data_structure_ptr[0x1a5] = *(longlong *)(&engine_shader_buffer_ptr + (longlong)(int)engine_data_structure_ptr[0x1a6] * 8) + -100000;
-  FUN_180090b80(engine_data_structure_ptr);
+  engine_unnamed_function_4030(engine_data_structure_ptr);
   *(uint32*)(engine_data_structure_ptr + 0x1a7) = 0;
   pengine_temp_long = (longlong *)engine_data_structure_ptr[0x1a4];
   engine_data_structure_ptr[0x1a4] = 0;
@@ -53085,8 +53085,8 @@ void engine_process_structure_data(longlong *engine_data_structure_ptr)
   if ((longlong *)engine_data_structure_ptr[0x1a4] != (longlong *)0x0) {
     (**(code **)(*(longlong *)engine_data_structure_ptr[0x1a4] + 0x38))();
   }
-  FUN_1808fc8a8(engine_data_structure_ptr + 6,0x20,0x50,FUN_180627b90,engine_temp_uint_2);
-  FUN_1808fc8a8(engine_data_structure_ptr + 1,8,4,engine_update_game_state);
+  engine_unnamed_function_6548(engine_data_structure_ptr + 6,0x20,0x50,engine_unnamed_function_6290,engine_temp_uint_2);
+  engine_unnamed_function_6548(engine_data_structure_ptr + 1,8,4,engine_update_game_state);
   if ((longlong *)*engine_data_structure_ptr != (longlong *)0x0) {
     (**(code **)(*(longlong *)*engine_data_structure_ptr + 0x38))();
   }
@@ -53096,19 +53096,19 @@ void engine_process_structure_data(longlong *engine_data_structure_ptr)
 
 
 
-// void FUN_1800904f0(longlong engine_data_structure_ptr)
-void FUN_1800904f0(longlong engine_data_structure_ptr)
+// void engine_unnamed_function_3990(longlong engine_data_structure_ptr)
+void engine_unnamed_function_3990(longlong engine_data_structure_ptr)
 
 {
-  FUN_1808fc8a8(engine_data_structure_ptr + 8,0x20,0x20,FUN_180627b90,0xfffffffffffffffe);
+  engine_unnamed_function_6548(engine_data_structure_ptr + 8,0x20,0x20,engine_unnamed_function_6290,0xfffffffffffffffe);
   return;
 }
 
 
 
 
-// void FUN_180090520(uint64_t *engine_data_structure_ptr)
-void FUN_180090520(uint64_t *engine_data_structure_ptr)
+// void engine_unnamed_function_4000(uint64_t *engine_data_structure_ptr)
+void engine_unnamed_function_4000(uint64_t *engine_data_structure_ptr)
 
 {
   int engine_temporary_int;
@@ -53128,7 +53128,7 @@ void FUN_180090520(uint64_t *engine_data_structure_ptr)
     *(uint32*)(engine_current_node_ptr + -0x10) = 0x49742400;
     *(uint32*)engine_current_node_ptr = 0x3dcccccd;
     (**(code **)(*(longlong *)engine_next_node_ptr[-0x20] + 0xd8))();
-    FUN_180076760(*engine_next_node_ptr);
+    engine_unnamed_function_1210(*engine_next_node_ptr);
     engine_current_node_ptr = (void*)((longlong)engine_current_node_ptr + 4);
     engine_next_node_ptr = engine_next_node_ptr + 1;
     engine_temp_long_2 = engine_temp_long_2 + -1;
@@ -53144,8 +53144,8 @@ void FUN_180090520(uint64_t *engine_data_structure_ptr)
 
 
 
-// void FUN_1800905f0(float *engine_data_structure_ptr,float engine_result_flag_ptr)
-void FUN_1800905f0(float *engine_data_structure_ptr,float engine_result_flag_ptr)
+// void engine_unnamed_function_4010(float *engine_data_structure_ptr,float engine_result_flag_ptr)
+void engine_unnamed_function_4010(float *engine_data_structure_ptr,float engine_result_flag_ptr)
 
 {
   int engine_temporary_int;
@@ -53204,8 +53204,8 @@ void FUN_1800905f0(float *engine_data_structure_ptr,float engine_result_flag_ptr
 // WARNING: Removing unreachable block (ram,0x0001800909ad)
 
 
-// void FUN_180090710(float *engine_data_structure_ptr,uint64 engine_result_flag_ptr,uint32_t *engine_comparison_params)
-void FUN_180090710(float *engine_data_structure_ptr,uint64 engine_result_flag_ptr,uint32_t *engine_comparison_params)
+// void engine_unnamed_function_4020(float *engine_data_structure_ptr,uint64 engine_result_flag_ptr,uint32_t *engine_comparison_params)
+void engine_unnamed_function_4020(float *engine_data_structure_ptr,uint64 engine_result_flag_ptr,uint32_t *engine_comparison_params)
 
 {
   float engine_temp_float;
@@ -53333,7 +53333,7 @@ void FUN_180090710(float *engine_data_structure_ptr,uint64 engine_result_flag_pt
       uStack_128 = 0;
       uStack_124 = 0;
       uStack_110 = 0;
-      FUN_180077750(*(void*)(engine_data_structure_ptr + engine_temp_long_6 * 2 + 0x42),engine_result_flag_ptr,&uStack_108,0,&uStack_178);
+      engine_unnamed_function_1320(*(void*)(engine_data_structure_ptr + engine_temp_long_6 * 2 + 0x42),engine_result_flag_ptr,&uStack_108,0,&uStack_178);
       (**(code **)(**(longlong **)(engine_data_structure_ptr + engine_temp_long_6 * 2 + 2) + 0x1c8))
                 (*(longlong **)(engine_data_structure_ptr + engine_temp_long_6 * 2 + 2),engine_result_flag_ptr,0,&uStack_108,&uStack_178);
     }
@@ -53349,8 +53349,8 @@ void FUN_180090710(float *engine_data_structure_ptr,uint64 engine_result_flag_pt
 
 
 
-// void FUN_180090b80(longlong engine_data_structure_ptr,uint64 engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
-void FUN_180090b80(longlong engine_data_structure_ptr,uint64 engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
+// void engine_unnamed_function_4030(longlong engine_data_structure_ptr,uint64 engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
+void engine_unnamed_function_4030(longlong engine_data_structure_ptr,uint64 engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
 
 {
   longlong engine_temporary_long;
@@ -53393,7 +53393,7 @@ void FUN_180090b80(longlong engine_data_structure_ptr,uint64 engine_result_flag_
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-longlong * FUN_180090c80(longlong *engine_data_structure_ptr)
+longlong * engine_unnamed_function_4040(longlong *engine_data_structure_ptr)
 
 {
   longlong *pengine_temp_long;
@@ -53402,7 +53402,7 @@ longlong * FUN_180090c80(longlong *engine_data_structure_ptr)
   
   *engine_data_structure_ptr = 0;
   engine_call_framework_initializer(engine_data_structure_ptr + 1,8,4,&engine_calculate_frame_time,engine_update_game_state);
-  engine_call_framework_initializer(engine_data_structure_ptr + 6,0x20,0x50,FUN_180627850,FUN_180627b90);
+  engine_call_framework_initializer(engine_data_structure_ptr + 6,0x20,0x50,engine_unnamed_function_6280,engine_unnamed_function_6290);
   engine_data_structure_ptr[0x1a4] = 0;
   *(uint32*)(engine_data_structure_ptr + 0x1a6) = 0;
   engine_data_structure_ptr[0x1a5] = _engine_shader_buffer_ptr;
@@ -53436,7 +53436,7 @@ longlong * FUN_180090c80(longlong *engine_data_structure_ptr)
   *(uint32*)(engine_data_structure_ptr + 0x1a7) = 0;
   *(uint32*)(engine_data_structure_ptr + 5) = 0xff101010;
   engine_temp_uint_2 = engine_call_memory_allocator(_engine_data_18,0x300,0x10,3);
-  pengine_temp_long_3 = (longlong *)FUN_180075030(engine_temp_uint_2,1);
+  pengine_temp_long_3 = (longlong *)engine_unnamed_function_1110(engine_temp_uint_2,1);
   if (pengine_temp_long_3 != (longlong *)0x0) {
     (**(code **)(*pengine_temp_long_3 + 0x28))(pengine_temp_long_3);
   }
@@ -53453,7 +53453,7 @@ longlong * FUN_180090c80(longlong *engine_data_structure_ptr)
 
 
 uint64_t *
-FUN_180090e40(uint64_t *engine_data_structure_ptr,uint64 engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
+engine_unnamed_function_4050(uint64_t *engine_data_structure_ptr,uint64 engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
 
 {
   longlong *pengine_temp_long;
@@ -53464,12 +53464,12 @@ FUN_180090e40(uint64_t *engine_data_structure_ptr,uint64 engine_result_flag_ptr,
   engine_data_structure_ptr[3] = 0;
   engine_data_structure_ptr[4] = 0;
   *(uint32*)(engine_data_structure_ptr + 5) = 3;
-  FUN_180090130(engine_data_structure_ptr + 6);
-  FUN_180090c80(engine_data_structure_ptr + 0x116);
+  engine_unnamed_function_3980(engine_data_structure_ptr + 6);
+  engine_unnamed_function_4040(engine_data_structure_ptr + 0x116);
   engine_data_structure_ptr[0x2c0] = 0;
   func_0x0001800e7950((longlong)engine_data_structure_ptr + 0x1614);
   engine_data_structure_ptr[0x2d3] = 0;
-  FUN_180094c20(engine_data_structure_ptr + 0x2d4);
+  engine_unnamed_function_4290(engine_data_structure_ptr + 0x2d4);
   engine_data_structure_ptr[0x2fc] = 0;
   *(void*)((longlong)engine_data_structure_ptr + 0x17ec) = 0;
   engine_data_structure_ptr[0x300] = 0;
@@ -53487,7 +53487,7 @@ FUN_180090e40(uint64_t *engine_data_structure_ptr,uint64 engine_result_flag_ptr,
     (**(code **)(*pengine_temp_long + 0x38))();
   }
   *(uint8*)(engine_data_structure_ptr + 0x2fd) = 1;
-  FUN_180090520(engine_data_structure_ptr + 6);
+  engine_unnamed_function_4000(engine_data_structure_ptr + 6);
   *engine_data_structure_ptr = 0;
   pengine_temp_long = (longlong *)engine_data_structure_ptr[0x300];
   engine_data_structure_ptr[0x300] = 0;
@@ -53563,7 +53563,7 @@ void engine_process_render_queue(void)
     engine_stack_value_78 = 0x17;
     engine_temp_uint1 = strcpy_s(aengine_stack_value_70,0x40,&engine_base_data_offset_60);
     uStack_b8 = 1;
-    engine_temp_uint1 = FUN_180157390(engine_temp_uint1,&plStack_98,&engine_stack_pointer_88,0);
+    engine_temp_uint1 = engine_unnamed_function_5550(engine_temp_uint1,&plStack_98,&engine_stack_pointer_88,0);
     engine_handle_memory_allocation(engine_temp_long_6 + 0x1698,engine_temp_uint1);
     if (plStack_98 != (longlong *)0x0) {
       (**(code **)(*plStack_98 + 0x38))();
@@ -53587,14 +53587,14 @@ LAB_180091164:
     (**(code **)(_engine_input_buffer_ptr + 0x80))(*(uint8*)(engine_temp_long_6 + 0x1888));
   }
 LAB_1800911c4:
-  FUN_180093af0(engine_temp_long_6);
-  FUN_1800905f0(engine_temp_long_6 + 0x30);
+  engine_unnamed_function_4210(engine_temp_long_6);
+  engine_unnamed_function_4010(engine_temp_long_6 + 0x30);
   if ((engine_data_60 == '\0') && (*(int *)(_engine_data_08 + 0x7e0) == 0)) {
     if ((**(char **)(_engine_input_config_data + 0x2010) == '\0') ||
        (*(char *)(*(longlong *)(_engine_data_70 + 8) + 0xbc +
                  (ulonglong)(*(uint *)(*(longlong *)(_engine_data_70 + 8) + 0x13c) & 1) * 0x48) ==
         '\0')) {
-      FUN_180171fb0(*(void*)(_engine_data_70 + 8),0);
+      engine_unnamed_function_5590(*(void*)(_engine_data_70 + 8),0);
     }
     else {
       engine_temp_long_3 = *(longlong *)(_engine_data_70 + 8);
@@ -53607,9 +53607,9 @@ LAB_1800911c4:
       iStack_a8 = *(int *)(engine_temp_long_4 + 0xec + engine_temp_uint_9 * 0x48) + *(int *)(engine_temp_long_3 + 0xac + engine_temp_uint_8 * 0x48);
       iStack_9c = *(int *)(memory_allocation_result + 0xf0 + engine_temp_uint0 * 0x48) + *(int *)(engine_temp_long_3 + 0xb8 + engine_temp_uint_8 * 0x48);
       iStack_a0 = *(int *)(memory_allocation_result + 0xec + engine_temp_uint0 * 0x48) + *(int *)(engine_temp_long_3 + 0xb4 + engine_temp_uint_8 * 0x48);
-      FUN_180171fb0(*(void*)(_engine_data_70 + 8),&iStack_a8);
+      engine_unnamed_function_5590(*(void*)(_engine_data_70 + 8),&iStack_a8);
       engine_temp_long_3 = *(longlong *)(_engine_input_config_data + 0x2010);
-      FUN_180093780(engine_temp_long_3,*(uint32*)(engine_temp_long_3 + 4),*(uint32*)(engine_temp_long_3 + 8));
+      engine_unnamed_function_4180(engine_temp_long_3,*(uint32*)(engine_temp_long_3 + 4),*(uint32*)(engine_temp_long_3 + 8));
       engine_temp_long_3 = _engine_input_config_data;
       *(float *)(engine_temp_long_6 + 0x17e0) =
            (float)*(int *)(*(longlong *)(_engine_input_config_data + 0x2010) + 4) / *(float *)(engine_temp_long_6 + 0x17ec);
@@ -53626,8 +53626,8 @@ LAB_1800911c4:
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// void FUN_1800913a0(void)
-void FUN_1800913a0(void)
+// void engine_unnamed_function_4060(void)
+void engine_unnamed_function_4060(void)
 
 {
   char *presource_status_flag;
@@ -53656,8 +53656,8 @@ void FUN_1800913a0(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// void FUN_180091430(void)
-void FUN_180091430(void)
+// void engine_unnamed_function_4070(void)
+void engine_unnamed_function_4070(void)
 
 {
   int engine_temporary_int;
@@ -53701,7 +53701,7 @@ void FUN_180091430(void)
   uStack_28 = _engine_data_a8 ^ (ulonglong)auStack_158;
   if ((char)engine_data_pointer_50[1] != '\x01') {
     *(uint8*)(engine_data_pointer_50 + 1) = 1;
-    engine_temp_long_9 = FUN_1800daa50();
+    engine_temp_long_9 = engine_unnamed_function_5210();
     *pengine_temp_long_7 = engine_temp_long_9;
     engine_temp_uint6 = 0;
     puStack_c8 = &engine_data_1809fcc28;
@@ -53715,7 +53715,7 @@ void FUN_180091430(void)
     }
     (**(code **)(*(longlong *)(engine_temp_long_9 + 0x3520) + 0x10))((longlong *)(engine_temp_long_9 + 0x3520),engine_data_ptr3);
     puStack_c8 = &engine_data_18098bcb0;
-    FUN_180094b30(*pengine_temp_long_7,&engine_base_data_offset_a8);
+    engine_unnamed_function_4280(*pengine_temp_long_7,&engine_base_data_offset_a8);
     *(uint *)(*pengine_temp_long_7 + 4) = *(uint *)(*pengine_temp_long_7 + 4) | 0x8000000;
     *(uint *)(*pengine_temp_long_7 + 4) = *(uint *)(*pengine_temp_long_7 + 4) | 4;
     pengine_temp_long1 = pengine_temp_long_7 + 0x2d4;
@@ -53726,7 +53726,7 @@ void FUN_180091430(void)
     *(uint32*)(pengine_temp_long_7 + 0x2f5) = 0x3f000000;
     *(uint32*)(pengine_temp_long_7 + 0x2f6) = 0xbf000000;
     *(uint32*)((longlong)pengine_temp_long_7 + 0x17ac) = 0x3f000000;
-    FUN_1802864f0();
+    engine_unnamed_function_6110();
     uStack_e8 = 0;
     uStack_e4 = 0;
     uStack_e0 = 0;
@@ -53745,7 +53745,7 @@ void FUN_180091430(void)
     *(uint32*)((longlong)pengine_temp_long1 + 0xf4) = 0x3f000000;
     *(uint32*)(pengine_temp_long1 + 0x1f) = 0x43c80000;
     *(uint32*)((longlong)pengine_temp_long1 + 0xfc) = 0x7f7fffff;
-    FUN_1802864f0();
+    engine_unnamed_function_6110();
     engine_temp_long_9 = *pengine_temp_long_7;
     engine_temp_long4 = 2;
     pengine_temp_long_2 = (longlong *)(engine_temp_long_9 + 0x30);
@@ -53800,7 +53800,7 @@ void FUN_180091430(void)
     *(uint32*)((longlong)pengine_temp_long0 + 0xb4) = engine_temp_uint_8;
     *(int *)(pengine_temp_long0 + 0x17) = (int)engine_temp_long4;
     *(uint32*)((longlong)pengine_temp_long0 + 0xbc) = engine_temp_uint_4;
-    FUN_18024b8d0(engine_temp_long_9);
+    engine_unnamed_function_6010(engine_temp_long_9);
     engine_temp_long_9 = *pengine_temp_long_7;
     pengine_temp_long1 = *(longlong **)(_engine_data_38 + 0x121e0);
     if (pengine_temp_long1 != (longlong *)0x0) {
@@ -53862,7 +53862,7 @@ void FUN_180091430(void)
       pplStack_128 = &plStack_130;
       plStack_130 = pengine_temp_long1;
       (**(code **)(*pengine_temp_long1 + 0x28))();
-      FUN_18005e6a0(engine_temp_uint_6,&plStack_130,0);
+      engine_unnamed_function_150(engine_temp_uint_6,&plStack_130,0);
     }
     if (((char)pengine_temp_long_7[0x2fd] != '\0') &&
        (engine_temp_long_9 = pengine_temp_long_7[0x30d], engine_temp_uint_7 = engine_temp_uint6, pengine_temp_long_7[0x30e] - engine_temp_long_9 >> 3 != 0)) {
@@ -53912,8 +53912,8 @@ void FUN_180091430(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// void FUN_180091970(ulonglong engine_data_structure_ptr)
-void FUN_180091970(ulonglong engine_data_structure_ptr)
+// void engine_unnamed_function_4080(ulonglong engine_data_structure_ptr)
+void engine_unnamed_function_4080(ulonglong engine_data_structure_ptr)
 
 {
   int *pengine_temp_int;
@@ -54127,9 +54127,9 @@ void FUN_180091970(ulonglong engine_data_structure_ptr)
       pplStack_298 = &plStack_268;
       plStack_268 = pengine_temp_long3;
       (**(code **)(*pengine_temp_long3 + 0x28))();
-      FUN_18005e110(engine_temp_long_20,&plStack_268);
+      engine_unnamed_function_130(engine_temp_long_20,&plStack_268);
     }
-    FUN_1800f9350();
+    engine_unnamed_function_5290();
     engine_temp_long_20 = engine_temp_ptr_array_6[0x30d];
     engine_temp_uint4 = engine_temp_uint_26;
     if (engine_temp_ptr_array_6[0x30e] - engine_temp_long_20 >> 3 != 0) {
@@ -54147,7 +54147,7 @@ void FUN_180091970(ulonglong engine_data_structure_ptr)
     }
   }
   else {
-    FUN_1800f9090(engine_data_structure_ptr,*engine_temp_ptr_array_6);
+    engine_unnamed_function_5280(engine_data_structure_ptr,*engine_temp_ptr_array_6);
     engine_temp_long_20 = engine_temp_ptr_array_6[0x30d];
     engine_temp_uint4 = engine_temp_uint_26;
     engine_temp_uint9 = engine_temp_uint_26;
@@ -54170,10 +54170,10 @@ void FUN_180091970(ulonglong engine_data_structure_ptr)
       pplStack_298 = &plStack_280;
       plStack_280 = pengine_temp_long3;
       (**(code **)(*pengine_temp_long3 + 0x28))();
-      FUN_18005e110(engine_temp_long_20,&plStack_280);
+      engine_unnamed_function_130(engine_temp_long_20,&plStack_280);
     }
     if (*(int *)(_engine_data_c8 + 0x380) != 0) {
-      FUN_1800f9350();
+      engine_unnamed_function_5290();
     }
     engine_temp_long_20 = engine_temp_ptr_array_6[0x30d];
     engine_temp_uint4 = engine_temp_uint_26;
@@ -54182,7 +54182,7 @@ void FUN_180091970(ulonglong engine_data_structure_ptr)
       do {
         engine_temp_long_20 = *(longlong *)(engine_temp_uint9 + engine_temp_long_20);
         if ((*(char *)(engine_temp_long_20 + 0xde) == '\0') && (*(char *)(engine_temp_long_20 + 0xdd) != '\0')) {
-          FUN_180244e10(engine_temp_long_20,*engine_temp_ptr_array_6);
+          engine_unnamed_function_5990(engine_temp_long_20,*engine_temp_ptr_array_6);
         }
         engine_temp_uint6 = (int)engine_temp_uint4 + 1;
         engine_temp_long_20 = engine_temp_ptr_array_6[0x30d];
@@ -54191,7 +54191,7 @@ void FUN_180091970(ulonglong engine_data_structure_ptr)
       } while ((ulonglong)(longlong)(int)engine_temp_uint6 < (ulonglong)(engine_temp_ptr_array_6[0x30e] - engine_temp_long_20 >> 3));
     }
     if (*(int *)(_engine_data_c8 + 0x380) == 0) {
-      FUN_1800f9350();
+      engine_unnamed_function_5290();
     }
     engine_temp_long_20 = _engine_data_68;
     if ((_engine_input_buffer_ptr != 0) &&
@@ -54199,7 +54199,7 @@ void FUN_180091970(ulonglong engine_data_structure_ptr)
       pplStack_298 = &plStack_278;
       plStack_278 = pengine_temp_long3;
       (**(code **)(*pengine_temp_long3 + 0x28))();
-      FUN_18005e6a0(engine_temp_long_20,&plStack_278,0);
+      engine_unnamed_function_150(engine_temp_long_20,&plStack_278,0);
       plStack_1f0 = *(longlong **)(_engine_input_buffer_ptr + 0x228);
       *(void*)(_engine_input_buffer_ptr + 0x228) = 0;
       if (plStack_1f0 != (longlong *)0x0) {
@@ -54234,7 +54234,7 @@ void FUN_180091970(ulonglong engine_data_structure_ptr)
           pplStack_298 = &plStack_270;
           plStack_270 = pengine_temp_long3;
           (**(code **)(*pengine_temp_long3 + 0x28))();
-          FUN_18005e6a0(engine_temp_long5,&plStack_270,0);
+          engine_unnamed_function_150(engine_temp_long5,&plStack_270,0);
           plStack_1e8 = *(longlong **)(engine_temp_long_20 + 0x1b0);
           *(void*)(engine_temp_long_20 + 0x1b0) = 0;
           if (plStack_1e8 != (longlong *)0x0) {
@@ -54254,7 +54254,7 @@ void FUN_180091970(ulonglong engine_data_structure_ptr)
   engine_temp_long_20 = 0;
   engine_comparison_result5 = 0;
   if ((char)engine_temp_ptr_array_6[0x2bf] == '\0') {
-    engine_temp_long_20 = FUN_1800daa50();
+    engine_temp_long_20 = engine_unnamed_function_5210();
     *(uint8*)(engine_temp_long_20 + 0x11c35) = 1;
     *(void*)(engine_temp_long_20 + 0x11c18) = 0;
     *(uint32*)(engine_temp_long_20 + 0x11c20) = *(uint32*)((longlong)engine_temp_ptr_array_6 + 0x17ec);
@@ -54315,8 +54315,8 @@ void FUN_180091970(ulonglong engine_data_structure_ptr)
     *(uint32*)((longlong)pengine_temp_long0 + 0xb4) = engine_temp_uint_9;
     *(int *)(pengine_temp_long0 + 0x17) = (int)engine_temp_long1;
     *(uint32*)((longlong)pengine_temp_long0 + 0xbc) = engine_temp_uint_3;
-    FUN_18024b8d0(engine_temp_long_20);
-    FUN_180094b30(engine_temp_long_20,&engine_base_data_offset_b0);
+    engine_unnamed_function_6010(engine_temp_long_20);
+    engine_unnamed_function_4280(engine_temp_long_20,&engine_base_data_offset_b0);
     if ((int)(engine_data_pointer_50[0x30e] - engine_data_pointer_50[0x30d] >> 3) == 0) {
       *(uint8*)(engine_temp_long_20 + 0x12c0a) = 1;
     }
@@ -54360,7 +54360,7 @@ void FUN_180091970(ulonglong engine_data_structure_ptr)
     *(byte *)(engine_temp_long_20 + 0x1c62) = engine_comparison_result5 & 1;
     engine_temp_uint_9 = func_0x00018024c420(engine_temp_long_20);
     *(uint32*)(engine_temp_long_20 + 0x1c64) = engine_temp_uint_9;
-    FUN_180090710(engine_temp_ptr_array_6 + 6,engine_temp_long_20,auStack_288);
+    engine_unnamed_function_4020(engine_temp_ptr_array_6 + 6,engine_temp_long_20,auStack_288);
   }
   else {
     engine_temp_long5 = engine_temp_ptr_array_6[0x2c0];
@@ -54395,7 +54395,7 @@ void FUN_180091970(ulonglong engine_data_structure_ptr)
         engine_data_ptr_21 = puStack_130;
       }
       strcpy_s(auStack_c0,0x80,engine_data_ptr_21);
-      pengine_temp_long3 = (longlong *)FUN_1800b1230(_engine_data_30,&plStack_1c8,&puStack_d8,&uStack_250);
+      pengine_temp_long3 = (longlong *)engine_unnamed_function_5120(_engine_data_30,&plStack_1c8,&puStack_d8,&uStack_250);
       pengine_temp_long3 = (longlong *)*pengine_temp_long3;
       if (pengine_temp_long3 != (longlong *)0x0) {
         plStack_1d0 = pengine_temp_long3;
@@ -54416,7 +54416,7 @@ void FUN_180091970(ulonglong engine_data_structure_ptr)
     lStack_210 = 0;
     uStack_208 = 0;
     uStack_200 = 3;
-    FUN_1800da760(_engine_data_90,*engine_temp_ptr_array_6,&lStack_218);
+    engine_unnamed_function_5200(_engine_data_90,*engine_temp_ptr_array_6,&lStack_218);
     engine_temp_int_24 = 0;
     engine_temp_long5 = lStack_218;
     if (lStack_210 - lStack_218 >> 3 != 0) {
@@ -54468,23 +54468,23 @@ void FUN_180091970(ulonglong engine_data_structure_ptr)
     *(uint32*)(engine_temp_long_20 + 0x9a38) = engine_temp_uint_9;
     *(uint32*)(engine_temp_long_20 + 0x9a3c) = engine_temp_uint_3;
     *(uint32*)(engine_temp_long_20 + 0x9a40) = engine_temp_uint_4;
-    FUN_180092b20(engine_temp_ptr_array_6,*engine_temp_ptr_array_6);
+    engine_unnamed_function_4160(engine_temp_ptr_array_6,*engine_temp_ptr_array_6);
   }
   engine_temp_char_ptr_7 = _engine_network_flag_4;
   if (*_engine_network_flag_4 != '\0') {
-    FUN_1800f1850(_engine_network_flag_4);
+    engine_unnamed_function_5230(_engine_network_flag_4);
     *engine_temp_char_ptr_7 = '\0';
   }
   if (engine_temp_char_ptr_7[1] != '\0') {
-    FUN_1800f1ff0(engine_temp_char_ptr_7);
+    engine_unnamed_function_5240(engine_temp_char_ptr_7);
     engine_temp_char_ptr_7[1] = '\0';
   }
   if (engine_temp_char_ptr_7[2] != '\0') {
-    FUN_1800f25a0(engine_temp_char_ptr_7);
+    engine_unnamed_function_5250(engine_temp_char_ptr_7);
     engine_temp_char_ptr_7[2] = '\0';
   }
   if (engine_temp_char_ptr_7[3] != '\0') {
-    FUN_1800f2940(engine_temp_char_ptr_7);
+    engine_unnamed_function_5260(engine_temp_char_ptr_7);
     engine_temp_char_ptr_7[3] = '\0';
   }
   engine_temp_long_20 = engine_data_pointer_58;
@@ -54519,7 +54519,7 @@ void FUN_180091970(ulonglong engine_data_structure_ptr)
   uStack_1b0 = engine_temp_long_20;
   uStack_1a8 = engine_temp_uint_9;
   engine_stack_value_198 = engine_temp_uint_9;
-  pengine_temp_long3 = (longlong *)FUN_18006b640(engine_temp_uint2,&uStack_1a0);
+  pengine_temp_long3 = (longlong *)engine_unnamed_function_720(engine_temp_uint2,&uStack_1a0);
   engine_temp_long_20 = _engine_data_90;
   if (pengine_temp_long3 != (longlong *)0x0) {
     pplStack_260 = (longlong **)pengine_temp_long3;
@@ -54544,9 +54544,9 @@ void FUN_180091970(ulonglong engine_data_structure_ptr)
     }
     pplStack_260 = &plStack_290;
     (**(code **)(*plStack_290 + 0x78))();
-    engine_temp_long1 = FUN_18005eb80(engine_temp_long_20 + 0x548);
+    engine_temp_long1 = engine_unnamed_function_170(engine_temp_long_20 + 0x548);
     if (engine_temp_long1 != 0) {
-      FUN_18005f220(engine_temp_long1,&plStack_290);
+      engine_unnamed_function_180(engine_temp_long1,&plStack_290);
     }
     do {
       engine_temp_int_24 = ReleaseSemaphore(*(void*)(engine_temp_long_20 + 0x68),1,0);
@@ -54570,14 +54570,14 @@ void FUN_180091970(ulonglong engine_data_structure_ptr)
   }
   engine_confirm_system_readiness();
   (**(code **)(**(longlong **)(_engine_data_70 + 0x2b0) + 0xa8))();
-  engine_temp_uint_9 = FUN_1801b5480(_engine_data_90 + 0xb8);
+  engine_temp_uint_9 = engine_unnamed_function_5670(_engine_data_90 + 0xb8);
   if (*(char *)(_engine_data_90 + 0x12dc) != '\0') {
     pplStack_258 = aplStack_178;
     engine_stack_pointer_168 = &engine_base_data_offset_a0;
     pcStack_160 = _guard_check_icall;
     engine_temp_uint_9 = engine_call_event_dispatcher(aplStack_178);
   }
-  FUN_1800d36c0(engine_temp_uint_9,*engine_temp_ptr_array_6);
+  engine_unnamed_function_5190(engine_temp_uint_9,*engine_temp_ptr_array_6);
   *engine_temp_ptr_array_6 = 0;
   *(uint8*)(engine_temp_ptr_array_6 + 1) = 0;
                     // WARNING: Subroutine does not return
@@ -54589,8 +54589,8 @@ void FUN_180091970(ulonglong engine_data_structure_ptr)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// void FUN_180092820(uint64 engine_data_structure_ptr,int engine_result_flag_ptr,int engine_comparison_params)
-void FUN_180092820(uint64 engine_data_structure_ptr,int engine_result_flag_ptr,int engine_comparison_params)
+// void engine_unnamed_function_4090(uint64 engine_data_structure_ptr,int engine_result_flag_ptr,int engine_comparison_params)
+void engine_unnamed_function_4090(uint64 engine_data_structure_ptr,int engine_result_flag_ptr,int engine_comparison_params)
 
 {
   longlong *pengine_temp_long;
@@ -54642,8 +54642,8 @@ void FUN_180092820(uint64 engine_data_structure_ptr,int engine_result_flag_ptr,i
 
 
 
-// void FUN_180092881(float engine_data_structure_ptr,longlong engine_result_flag_ptr,float engine_comparison_params)
-void FUN_180092881(float engine_data_structure_ptr,longlong engine_result_flag_ptr,float engine_comparison_params)
+// void engine_unnamed_function_4101(float engine_data_structure_ptr,longlong engine_result_flag_ptr,float engine_comparison_params)
+void engine_unnamed_function_4101(float engine_data_structure_ptr,longlong engine_result_flag_ptr,float engine_comparison_params)
 
 {
   longlong *pengine_temp_long;
@@ -54680,8 +54680,8 @@ void FUN_180092881(float engine_data_structure_ptr,longlong engine_result_flag_p
 
 
 
-// void FUN_180092891(uint64 engine_data_structure_ptr,longlong engine_result_flag_ptr)
-void FUN_180092891(uint64 engine_data_structure_ptr,longlong engine_result_flag_ptr)
+// void engine_unnamed_function_4111(uint64 engine_data_structure_ptr,longlong engine_result_flag_ptr)
+void engine_unnamed_function_4111(uint64 engine_data_structure_ptr,longlong engine_result_flag_ptr)
 
 {
   longlong *pengine_temp_long;
@@ -54714,8 +54714,8 @@ void FUN_180092891(uint64 engine_data_structure_ptr,longlong engine_result_flag_
 
 
 
-// void FUN_1800928fb(float engine_data_structure_ptr,uint64 engine_result_flag_ptr,float engine_comparison_params)
-void FUN_1800928fb(float engine_data_structure_ptr,uint64 engine_result_flag_ptr,float engine_comparison_params)
+// void engine_unnamed_function_412b(float engine_data_structure_ptr,uint64 engine_result_flag_ptr,float engine_comparison_params)
+void engine_unnamed_function_412b(float engine_data_structure_ptr,uint64 engine_result_flag_ptr,float engine_comparison_params)
 
 {
   longlong engine_register_rbx;
@@ -54731,8 +54731,8 @@ void FUN_1800928fb(float engine_data_structure_ptr,uint64 engine_result_flag_ptr
 
 
 
-// void FUN_180092900(float engine_data_structure_ptr,uint64 engine_result_flag_ptr,float engine_comparison_params)
-void FUN_180092900(float engine_data_structure_ptr,uint64 engine_result_flag_ptr,float engine_comparison_params)
+// void engine_unnamed_function_4130(float engine_data_structure_ptr,uint64 engine_result_flag_ptr,float engine_comparison_params)
+void engine_unnamed_function_4130(float engine_data_structure_ptr,uint64 engine_result_flag_ptr,float engine_comparison_params)
 
 {
   longlong engine_register_rbx;
@@ -54750,8 +54750,8 @@ void FUN_180092900(float engine_data_structure_ptr,uint64 engine_result_flag_ptr
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// void FUN_180092940(longlong engine_data_structure_ptr,char engine_result_flag_ptr)
-void FUN_180092940(longlong engine_data_structure_ptr,char engine_result_flag_ptr)
+// void engine_unnamed_function_4140(longlong engine_data_structure_ptr,char engine_result_flag_ptr)
+void engine_unnamed_function_4140(longlong engine_data_structure_ptr,char engine_result_flag_ptr)
 
 {
   uint64 engine_temporary_uint;
@@ -54763,7 +54763,7 @@ void FUN_180092940(longlong engine_data_structure_ptr,char engine_result_flag_pt
     else {
       engine_temporary_uint = 1;
     }
-    FUN_1801723a0(*(void*)(_engine_data_70 + 8),engine_temporary_uint,*(uint32*)(engine_data_structure_ptr + 0x160c));
+    engine_unnamed_function_5600(*(void*)(_engine_data_70 + 8),engine_temporary_uint,*(uint32*)(engine_data_structure_ptr + 0x160c));
     *(char *)(engine_data_structure_ptr + 0x1609) = engine_result_flag_ptr;
   }
   return;
@@ -54771,7 +54771,7 @@ void FUN_180092940(longlong engine_data_structure_ptr,char engine_result_flag_pt
 
 
 
-float FUN_1800929a0(float *engine_data_structure_ptr,float *engine_result_flag_ptr,float *engine_comparison_params,float *engine_system_parameter_4,int param_5,
+float engine_unnamed_function_4150(float *engine_data_structure_ptr,float *engine_result_flag_ptr,float *engine_comparison_params,float *engine_system_parameter_4,int param_5,
                    int param_6,float *param_7)
 
 {
@@ -54813,8 +54813,8 @@ float FUN_1800929a0(float *engine_data_structure_ptr,float *engine_result_flag_p
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// void FUN_180092b20(longlong engine_data_structure_ptr,longlong engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
-void FUN_180092b20(longlong engine_data_structure_ptr,longlong engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
+// void engine_unnamed_function_4160(longlong engine_data_structure_ptr,longlong engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
+void engine_unnamed_function_4160(longlong engine_data_structure_ptr,longlong engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
 
 {
   uint32_t *engine_data_pointer;
@@ -54852,7 +54852,7 @@ void FUN_180092b20(longlong engine_data_structure_ptr,longlong engine_result_fla
   engine_data_ptr7 = (void*)0x0;
   engine_stack_value_70 = 0;
   uStack_68 = 3;
-  FUN_1800da760(_engine_data_90,engine_result_flag_ptr,&plStack_80,engine_system_parameter_4,0xfffffffffffffffe);
+  engine_unnamed_function_5200(_engine_data_90,engine_result_flag_ptr,&plStack_80,engine_system_parameter_4,0xfffffffffffffffe);
   engine_temp_uint_20 = lStack_78 - (longlong)plStack_80 >> 3;
   engine_data_ptr1 = engine_data_ptr7;
   pengine_temp_long4 = plStack_80;
@@ -54870,7 +54870,7 @@ void FUN_180092b20(longlong engine_data_structure_ptr,longlong engine_result_fla
   }
   engine_temp_long_22 = engine_result_flag_ptr;
 LAB_180092bbb:
-  FUN_180634b20(engine_temp_long_22 + 0x11a50);
+  engine_unnamed_function_6410(engine_temp_long_22 + 0x11a50);
   engine_temp_long9 = _engine_data_68;
   engine_temp_int0 = (int)(lStack_78 - (longlong)plStack_80 >> 3) + -1;
   engine_temp_long5 = (longlong)engine_temp_int0;
@@ -54902,10 +54902,10 @@ LAB_180092c16:
     do {
       if (*(ulonglong *)(lStackX_8 + 0x11bd0) < *(ulonglong *)(lStackX_8 + 0x11bd8)) {
         *(ulonglong *)(lStackX_8 + 0x11bd0) = *(ulonglong *)(lStackX_8 + 0x11bd0) + 0x50;
-        FUN_1800940b0();
+        engine_unnamed_function_4250();
       }
       else {
-        FUN_180093d90(lStackX_8 + 0x11bc8,(longlong)engine_data_ptr1 * 0x50 + engine_temp_long5);
+        engine_unnamed_function_4230(lStackX_8 + 0x11bc8,(longlong)engine_data_ptr1 * 0x50 + engine_temp_long5);
       }
       engine_temp_uint_9 = (int)engine_data_ptr8 + 1;
       engine_temp_long5 = *(longlong *)(engine_temp_long9 + 0x178);
@@ -55365,10 +55365,10 @@ LAB_1800934cd:
           engine_temp_uint_20 = *(ulonglong *)(_engine_data_68 + 0x180);
           if (engine_temp_uint_20 < *(ulonglong *)(_engine_data_68 + 0x188)) {
             *(ulonglong *)(_engine_data_68 + 0x180) = engine_temp_uint_20 + 0x50;
-            FUN_1800940b0(engine_temp_uint_20);
+            engine_unnamed_function_4250(engine_temp_uint_20);
           }
           else {
-            FUN_180093d90(_engine_data_68 + 0x178,(longlong)engine_data_ptr1 * 0x50 + engine_temp_long_22);
+            engine_unnamed_function_4230(_engine_data_68 + 0x178,(longlong)engine_data_ptr1 * 0x50 + engine_temp_long_22);
           }
         }
         engine_temp_uint_9 = (int)engine_data_ptr8 + 1;
@@ -55394,7 +55394,7 @@ LAB_1800934cd:
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-longlong * FUN_180093710(uint64 engine_data_structure_ptr,longlong *engine_result_flag_ptr,ulonglong engine_comparison_params)
+longlong * engine_unnamed_function_4170(uint64 engine_data_structure_ptr,longlong *engine_result_flag_ptr,ulonglong engine_comparison_params)
 
 {
   longlong *pengine_temp_long;
@@ -55419,8 +55419,8 @@ longlong * FUN_180093710(uint64 engine_data_structure_ptr,longlong *engine_resul
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// void FUN_180093780(uint64 engine_data_structure_ptr,int engine_result_flag_ptr,int engine_comparison_params)
-void FUN_180093780(uint64 engine_data_structure_ptr,int engine_result_flag_ptr,int engine_comparison_params)
+// void engine_unnamed_function_4180(uint64 engine_data_structure_ptr,int engine_result_flag_ptr,int engine_comparison_params)
+void engine_unnamed_function_4180(uint64 engine_data_structure_ptr,int engine_result_flag_ptr,int engine_comparison_params)
 
 {
   longlong engine_temporary_long;
@@ -55479,8 +55479,8 @@ void FUN_180093780(uint64 engine_data_structure_ptr,int engine_result_flag_ptr,i
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// void FUN_180093950(void)
-void FUN_180093950(void)
+// void engine_unnamed_function_4190(void)
+void engine_unnamed_function_4190(void)
 
 {
   longlong engine_temporary_long;
@@ -55502,7 +55502,7 @@ void FUN_180093950(void)
   memory_allocation_result = *(longlong *)(engine_temp_long_2 + 0x1800);
   if (memory_allocation_result == 0) {
     engine_temp_uint_6 = engine_call_memory_allocator(_engine_data_18,0x160,8,3,engine_temp_uint_6);
-    engine_temp_uint_6 = FUN_180288040(engine_temp_uint_6);
+    engine_temp_uint_6 = engine_unnamed_function_6120(engine_temp_uint_6);
     engine_configure_data_structure(engine_temp_long_2 + 0x1800,engine_temp_uint_6);
     memory_allocation_result = *(longlong *)(engine_temp_long_2 + 0x1800);
     engine_temp_long_4 = _engine_data_70;
@@ -55521,8 +55521,8 @@ void FUN_180093950(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// void FUN_180093a20(uint64 engine_data_structure_ptr,uint64 engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
-void FUN_180093a20(uint64 engine_data_structure_ptr,uint64 engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
+// void engine_unnamed_function_4200(uint64 engine_data_structure_ptr,uint64 engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
+void engine_unnamed_function_4200(uint64 engine_data_structure_ptr,uint64 engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
 
 {
   longlong engine_temporary_long;
@@ -55559,8 +55559,8 @@ void FUN_180093a20(uint64 engine_data_structure_ptr,uint64 engine_result_flag_pt
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// void FUN_180093af0(longlong engine_data_structure_ptr)
-void FUN_180093af0(longlong engine_data_structure_ptr)
+// void engine_unnamed_function_4210(longlong engine_data_structure_ptr)
+void engine_unnamed_function_4210(longlong engine_data_structure_ptr)
 
 {
   int engine_temporary_int;
@@ -55605,8 +55605,8 @@ void FUN_180093af0(longlong engine_data_structure_ptr)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// void FUN_180093bf0(longlong *engine_data_structure_ptr,uint64_t *engine_result_flag_ptr)
-void FUN_180093bf0(longlong *engine_data_structure_ptr,uint64_t *engine_result_flag_ptr)
+// void engine_unnamed_function_4220(longlong *engine_data_structure_ptr,uint64_t *engine_result_flag_ptr)
+void engine_unnamed_function_4220(longlong *engine_data_structure_ptr,uint64_t *engine_result_flag_ptr)
 
 {
   void* engine_data_pointer;
@@ -55707,8 +55707,8 @@ LAB_180093cb6:
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// void FUN_180093d90(longlong *engine_data_structure_ptr,uint64 engine_result_flag_ptr)
-void FUN_180093d90(longlong *engine_data_structure_ptr,uint64 engine_result_flag_ptr)
+// void engine_unnamed_function_4230(longlong *engine_data_structure_ptr,uint64 engine_result_flag_ptr)
+void engine_unnamed_function_4230(longlong *engine_data_structure_ptr,uint64 engine_result_flag_ptr)
 
 {
   uint32_t *engine_data_pointer;
@@ -55774,7 +55774,7 @@ LAB_180093e1b:
       temp_data_pointer = temp_data_pointer + 10;
     } while (engine_temp_long_8 + -0x20 + (longlong)temp_data_pointer != engine_temp_long_9);
   }
-  FUN_1800940b0(current_data_pointer,engine_result_flag_ptr);
+  engine_unnamed_function_4250(current_data_pointer,engine_result_flag_ptr);
   engine_temp_long_9 = engine_data_structure_ptr[1];
   engine_temp_long_8 = *engine_data_structure_ptr;
   if (engine_temp_long_8 != engine_temp_long_9) {
@@ -55803,7 +55803,7 @@ LAB_180093e1b:
 
 
 
-uint8_t * FUN_180094010(uint8_t *engine_data_structure_ptr,uint8_t *engine_result_flag_ptr)
+uint8_t * engine_unnamed_function_4240(uint8_t *engine_data_structure_ptr,uint8_t *engine_result_flag_ptr)
 
 {
   uint64 engine_temporary_uint;
@@ -55836,7 +55836,7 @@ uint8_t * FUN_180094010(uint8_t *engine_data_structure_ptr,uint8_t *engine_resul
 
 
 uint8_t *
-FUN_1800940b0(uint8_t *engine_data_structure_ptr,uint8_t *engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
+engine_unnamed_function_4250(uint8_t *engine_data_structure_ptr,uint8_t *engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
 
 {
   uint32 engine_temporary_uint;
@@ -55862,8 +55862,8 @@ FUN_1800940b0(uint8_t *engine_data_structure_ptr,uint8_t *engine_result_flag_ptr
 
 
 
-// void FUN_180094120(float *engine_data_structure_ptr,float *engine_result_flag_ptr)
-void FUN_180094120(float *engine_data_structure_ptr,float *engine_result_flag_ptr)
+// void engine_unnamed_function_4260(float *engine_data_structure_ptr,float *engine_result_flag_ptr)
+void engine_unnamed_function_4260(float *engine_data_structure_ptr,float *engine_result_flag_ptr)
 
 {
   float engine_temp_float;
@@ -55967,7 +55967,7 @@ void FUN_180094120(float *engine_data_structure_ptr,float *engine_result_flag_pt
 
 
 
-float * FUN_1800946d0(float *engine_data_structure_ptr,float *engine_result_flag_ptr,float *engine_comparison_params)
+float * engine_unnamed_function_4270(float *engine_data_structure_ptr,float *engine_result_flag_ptr,float *engine_comparison_params)
 
 {
   float engine_temp_float;
@@ -56051,8 +56051,8 @@ float * FUN_1800946d0(float *engine_data_structure_ptr,float *engine_result_flag
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// void FUN_180094b30(longlong engine_data_structure_ptr,longlong engine_result_flag_ptr)
-void FUN_180094b30(longlong engine_data_structure_ptr,longlong engine_result_flag_ptr)
+// void engine_unnamed_function_4280(longlong engine_data_structure_ptr,longlong engine_result_flag_ptr)
+void engine_unnamed_function_4280(longlong engine_data_structure_ptr,longlong engine_result_flag_ptr)
 
 {
   longlong engine_temporary_long;
@@ -56092,7 +56092,7 @@ void FUN_180094b30(longlong engine_data_structure_ptr,longlong engine_result_fla
 
 
 
-longlong FUN_180094c20(longlong engine_data_structure_ptr)
+longlong engine_unnamed_function_4290(longlong engine_data_structure_ptr)
 
 {
   longlong engine_temporary_long;
@@ -56125,7 +56125,7 @@ longlong FUN_180094c20(longlong engine_data_structure_ptr)
   *(uint32*)(engine_data_structure_ptr + 0x114) = 0x3f800000;
   *(void*)(engine_data_structure_ptr + 0x118) = 0x447a0000;
   *(uint32*)(engine_data_structure_ptr + 0x120) = 0x3f800000;
-  FUN_1802864f0(engine_data_structure_ptr);
+  engine_unnamed_function_6110(engine_data_structure_ptr);
   *(void*)(engine_data_structure_ptr + 0x128) = 0;
   *(void*)(engine_data_structure_ptr + 0x130) = 0x7f7fffff00000000;
   *(uint8*)(engine_data_structure_ptr + 0x124) = 0;
@@ -56135,8 +56135,8 @@ longlong FUN_180094c20(longlong engine_data_structure_ptr)
 
 
 
-// void FUN_180094d40(longlong *engine_data_structure_ptr,uint64 engine_result_flag_ptr)
-void FUN_180094d40(longlong *engine_data_structure_ptr,uint64 engine_result_flag_ptr)
+// void engine_unnamed_function_4300(longlong *engine_data_structure_ptr,uint64 engine_result_flag_ptr)
+void engine_unnamed_function_4300(longlong *engine_data_structure_ptr,uint64 engine_result_flag_ptr)
 
 {
   longlong *pengine_temp_long;
@@ -56159,21 +56159,21 @@ void FUN_180094d40(longlong *engine_data_structure_ptr,uint64 engine_result_flag
   plStack_18 = (longlong *)0x0;
   uStack_28 = 0;
   auStack_30[0] = 0;
-  FUN_18022f2e0(&plStack_40,engine_data_structure_ptr,0);
+  engine_unnamed_function_5860(&plStack_40,engine_data_structure_ptr,0);
   if (engine_data_structure_ptr != (longlong *)0x0) {
     (**(code **)(*engine_data_structure_ptr + 0x38))(engine_data_structure_ptr);
   }
-  FUN_180237030(&plStack_40,engine_result_flag_ptr,0,0x3f800000,engine_temp_uint_2);
+  engine_unnamed_function_5920(&plStack_40,engine_result_flag_ptr,0,0x3f800000,engine_temp_uint_2);
   if ((plStack_40 != (longlong *)0x0) && (plStack_38 != (longlong *)0x0)) {
     if (cStack_e != '\0') {
-      FUN_180075b70();
+      engine_unnamed_function_1180();
     }
-    FUN_18007f6a0(auStack_30);
+    engine_unnamed_function_1740(auStack_30);
     if (cStack_10 != '\0') {
-      FUN_180079520(plStack_40);
+      engine_unnamed_function_1590(plStack_40);
     }
     if (cStack_f != '\0') {
-      FUN_180079520(plStack_40);
+      engine_unnamed_function_1590(plStack_40);
     }
     pengine_temp_long = plStack_38;
     plStack_38 = (longlong *)0x0;
@@ -56181,7 +56181,7 @@ void FUN_180094d40(longlong *engine_data_structure_ptr,uint64 engine_result_flag
       (**(code **)(*pengine_temp_long + 0x38))();
     }
   }
-  FUN_18007f6a0(auStack_30);
+  engine_unnamed_function_1740(auStack_30);
   if (plStack_18 != (longlong *)0x0) {
     (**(code **)(*plStack_18 + 0x38))();
   }
@@ -56199,8 +56199,8 @@ void FUN_180094d40(longlong *engine_data_structure_ptr,uint64 engine_result_flag
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// void FUN_180094e80(uint64 engine_data_structure_ptr,uint64 engine_result_flag_ptr,longlong engine_comparison_params)
-void FUN_180094e80(uint64 engine_data_structure_ptr,uint64 engine_result_flag_ptr,longlong engine_comparison_params)
+// void engine_unnamed_function_4310(uint64 engine_data_structure_ptr,uint64 engine_result_flag_ptr,longlong engine_comparison_params)
+void engine_unnamed_function_4310(uint64 engine_data_structure_ptr,uint64 engine_result_flag_ptr,longlong engine_comparison_params)
 
 {
   uint64 engine_temporary_uint;
@@ -56234,7 +56234,7 @@ void FUN_180094e80(uint64 engine_data_structure_ptr,uint64 engine_result_flag_pt
     strcpy_s(aengine_stack_value_70,0x40);
   }
   uStack_b8 = 0;
-  FUN_1800b32c0(engine_temporary_uint,engine_result_flag_ptr,&engine_stack_pointer_88,0);
+  engine_unnamed_function_5140(engine_temporary_uint,engine_result_flag_ptr,&engine_stack_pointer_88,0);
   uStack_a8 = 1;
   engine_stack_pointer_88 = &engine_data_18098bcb0;
                     // WARNING: Subroutine does not return
@@ -56260,8 +56260,8 @@ void engine_create_controller_system(longlong engine_data_structure_ptr,uint eng
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// void FUN_180095000(uint64 engine_data_structure_ptr,uint64 engine_result_flag_ptr,longlong engine_comparison_params,uint8_t engine_system_parameter_4)
-void FUN_180095000(uint64 engine_data_structure_ptr,uint64 engine_result_flag_ptr,longlong engine_comparison_params,uint8_t engine_system_parameter_4)
+// void engine_unnamed_function_4320(uint64 engine_data_structure_ptr,uint64 engine_result_flag_ptr,longlong engine_comparison_params,uint8_t engine_system_parameter_4)
+void engine_unnamed_function_4320(uint64 engine_data_structure_ptr,uint64 engine_result_flag_ptr,longlong engine_comparison_params,uint8_t engine_system_parameter_4)
 
 {
   uint64 engine_temporary_uint;
@@ -56293,7 +56293,7 @@ void FUN_180095000(uint64 engine_data_structure_ptr,uint64 engine_result_flag_pt
     engine_stack_value_78 = (uint32_t)engine_temp_long_2;
     strcpy_s(aengine_stack_value_70,0x40);
   }
-  FUN_1800b30d0(engine_temporary_uint,engine_result_flag_ptr,&engine_stack_pointer_88,engine_system_parameter_4);
+  engine_unnamed_function_5130(engine_temporary_uint,engine_result_flag_ptr,&engine_stack_pointer_88,engine_system_parameter_4);
   uStack_a8 = 1;
   engine_stack_pointer_88 = &engine_data_18098bcb0;
                     // WARNING: Subroutine does not return
@@ -56303,8 +56303,8 @@ void FUN_180095000(uint64 engine_data_structure_ptr,uint64 engine_result_flag_pt
 
 
 
-// void FUN_180095100(longlong *engine_data_structure_ptr,uint64 engine_result_flag_ptr,uint64 engine_comparison_params)
-void FUN_180095100(longlong *engine_data_structure_ptr,uint64 engine_result_flag_ptr,uint64 engine_comparison_params)
+// void engine_unnamed_function_4330(longlong *engine_data_structure_ptr,uint64 engine_result_flag_ptr,uint64 engine_comparison_params)
+void engine_unnamed_function_4330(longlong *engine_data_structure_ptr,uint64 engine_result_flag_ptr,uint64 engine_comparison_params)
 
 {
   longlong *pengine_temp_long;
@@ -56329,7 +56329,7 @@ void FUN_180095100(longlong *engine_data_structure_ptr,uint64 engine_result_flag
   plStack_30 = (longlong *)0x0;
   uStack_40 = 0;
   auStack_48[0] = 0;
-  FUN_18022f2e0(&plStack_58,engine_data_structure_ptr,0);
+  engine_unnamed_function_5860(&plStack_58,engine_data_structure_ptr,0);
   if (engine_data_structure_ptr != (longlong *)0x0) {
     (**(code **)(*engine_data_structure_ptr + 0x38))(engine_data_structure_ptr);
   }
@@ -56337,17 +56337,17 @@ void FUN_180095100(longlong *engine_data_structure_ptr,uint64 engine_result_flag
   uStack_64 = 0x3f800000;
   engine_stack_value_60 = 0x3f800000;
   uStack_5c = 0x3f800000;
-  FUN_180235ca0(&plStack_58,engine_result_flag_ptr,engine_comparison_params,0xff,&uStack_68,1,0,0,1);
+  engine_unnamed_function_5910(&plStack_58,engine_result_flag_ptr,engine_comparison_params,0xff,&uStack_68,1,0,0,1);
   if ((plStack_58 != (longlong *)0x0) && (plStack_50 != (longlong *)0x0)) {
     if (cStack_26 != '\0') {
-      FUN_180075b70();
+      engine_unnamed_function_1180();
     }
-    FUN_18007f6a0(auStack_48);
+    engine_unnamed_function_1740(auStack_48);
     if (cStack_28 != '\0') {
-      FUN_180079520(plStack_58);
+      engine_unnamed_function_1590(plStack_58);
     }
     if (cStack_27 != '\0') {
-      FUN_180079520(plStack_58);
+      engine_unnamed_function_1590(plStack_58);
     }
     pengine_temp_long = plStack_50;
     plStack_50 = (longlong *)0x0;
@@ -56355,7 +56355,7 @@ void FUN_180095100(longlong *engine_data_structure_ptr,uint64 engine_result_flag
       (**(code **)(*pengine_temp_long + 0x38))();
     }
   }
-  FUN_18007f6a0(auStack_48);
+  engine_unnamed_function_1740(auStack_48);
   if (plStack_30 != (longlong *)0x0) {
     (**(code **)(*plStack_30 + 0x38))();
   }
@@ -56370,7 +56370,7 @@ void FUN_180095100(longlong *engine_data_structure_ptr,uint64 engine_result_flag
 
 
 
-longlong FUN_180095280(longlong engine_data_structure_ptr,longlong engine_result_flag_ptr)
+longlong engine_unnamed_function_4340(longlong engine_data_structure_ptr,longlong engine_result_flag_ptr)
 
 {
   void* engine_data_pointer;
@@ -56410,8 +56410,8 @@ longlong FUN_180095280(longlong engine_data_structure_ptr,longlong engine_result
 
 
 
-// void FUN_1800952a1(longlong engine_data_structure_ptr,longlong engine_result_flag_ptr)
-void FUN_1800952a1(longlong engine_data_structure_ptr,longlong engine_result_flag_ptr)
+// void engine_unnamed_function_4351(longlong engine_data_structure_ptr,longlong engine_result_flag_ptr)
+void engine_unnamed_function_4351(longlong engine_data_structure_ptr,longlong engine_result_flag_ptr)
 
 {
   longlong in_RAX;
@@ -56451,8 +56451,8 @@ void FUN_1800952a1(longlong engine_data_structure_ptr,longlong engine_result_fla
 
 
 
-// void FUN_1800952b5(uint64 engine_data_structure_ptr,longlong engine_result_flag_ptr)
-void FUN_1800952b5(uint64 engine_data_structure_ptr,longlong engine_result_flag_ptr)
+// void engine_unnamed_function_4365(uint64 engine_data_structure_ptr,longlong engine_result_flag_ptr)
+void engine_unnamed_function_4365(uint64 engine_data_structure_ptr,longlong engine_result_flag_ptr)
 
 {
   void* engine_data_pointer;
@@ -56487,8 +56487,8 @@ void FUN_1800952b5(uint64 engine_data_structure_ptr,longlong engine_result_flag_
 
 
 
-// void FUN_18009531e(longlong engine_data_structure_ptr)
-void FUN_18009531e(longlong engine_data_structure_ptr)
+// void engine_unnamed_function_437e(longlong engine_data_structure_ptr)
+void engine_unnamed_function_437e(longlong engine_data_structure_ptr)
 
 {
   void* engine_data_pointer;
@@ -56503,8 +56503,8 @@ void FUN_18009531e(longlong engine_data_structure_ptr)
 
 
 
-// void FUN_180095323(longlong engine_data_structure_ptr)
-void FUN_180095323(longlong engine_data_structure_ptr)
+// void engine_unnamed_function_4383(longlong engine_data_structure_ptr)
+void engine_unnamed_function_4383(longlong engine_data_structure_ptr)
 
 {
   void* engine_data_pointer;
@@ -56518,7 +56518,7 @@ void FUN_180095323(longlong engine_data_structure_ptr)
 
 
 
-uint64_t * FUN_180095350(uint64_t *engine_data_structure_ptr,uint64 engine_result_flag_ptr)
+uint64_t * engine_unnamed_function_4390(uint64_t *engine_data_structure_ptr,uint64 engine_result_flag_ptr)
 
 {
   engine_data_structure_ptr[2] = 0;
@@ -56552,8 +56552,8 @@ uint64_t * FUN_180095350(uint64_t *engine_data_structure_ptr,uint64 engine_resul
 
 
 
-// void FUN_180095420(longlong engine_data_structure_ptr)
-void FUN_180095420(longlong engine_data_structure_ptr)
+// void engine_unnamed_function_4400(longlong engine_data_structure_ptr)
+void engine_unnamed_function_4400(longlong engine_data_structure_ptr)
 
 {
   longlong *pengine_temp_long;
@@ -56862,8 +56862,8 @@ LAB_1800958e8:
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// void FUN_180095bf0(uint64 engine_data_structure_ptr,uint32_t engine_result_flag_ptr,uint32_t engine_comparison_params)
-void FUN_180095bf0(uint64 engine_data_structure_ptr,uint32_t engine_result_flag_ptr,uint32_t engine_comparison_params)
+// void engine_unnamed_function_4410(uint64 engine_data_structure_ptr,uint32_t engine_result_flag_ptr,uint32_t engine_comparison_params)
+void engine_unnamed_function_4410(uint64 engine_data_structure_ptr,uint32_t engine_result_flag_ptr,uint32_t engine_comparison_params)
 
 {
   void* engine_data_pointer;
@@ -56879,22 +56879,22 @@ void FUN_180095bf0(uint64 engine_data_structure_ptr,uint32_t engine_result_flag_
   if (engine_temp_int_2 != 0) {
     __Throw_C_error_std__YAXH_Z(engine_temp_int_2);
   }
-  engine_temp_uint_3 = FUN_180124730();
+  engine_temp_uint_3 = engine_unnamed_function_5420();
   _engine_data_b0 = engine_temp_uint_3;
-  FUN_180290fd0(0);
+  engine_unnamed_function_6130(0);
   engine_temp_uint_6 = engine_call_memory_allocator(_engine_data_18,0xe8,8,3,engine_temp_uint_6);
-  engine_temp_uint_6 = FUN_180095350(engine_temp_uint_6,engine_temp_uint_3);
+  engine_temp_uint_6 = engine_unnamed_function_4390(engine_temp_uint_6,engine_temp_uint_3);
   *engine_data_pointer = engine_temp_uint_6;
-  engine_temp_uint_6 = FUN_180124730();
+  engine_temp_uint_6 = engine_unnamed_function_5420();
   _engine_data_b0 = engine_temp_uint_6;
-  FUN_180290fd0(0);
+  engine_unnamed_function_6130(0);
   engine_temp_uint_3 = engine_call_memory_allocator(_engine_data_18,0xe8,8,3);
-  engine_temp_uint_6 = FUN_180095350(engine_temp_uint_3,engine_temp_uint_6);
+  engine_temp_uint_6 = engine_unnamed_function_4390(engine_temp_uint_3,engine_temp_uint_6);
   engine_data_pointer[1] = engine_temp_uint_6;
-  FUN_180098ae0(*engine_data_pointer,engine_result_flag_ptr,engine_comparison_params,engine_handle_render_frame);
-  FUN_180098ae0(engine_data_pointer[1],engine_result_flag_ptr,engine_comparison_params,0);
+  engine_unnamed_function_4500(*engine_data_pointer,engine_result_flag_ptr,engine_comparison_params,engine_handle_render_frame);
+  engine_unnamed_function_4500(engine_data_pointer[1],engine_result_flag_ptr,engine_comparison_params,0);
   _engine_data_b0 = *(void*)*engine_data_pointer;
-  FUN_180080ca0(engine_data_pointer + 0xf,0x96);
+  engine_unnamed_function_2010(engine_data_pointer + 0xf,0x96);
   engine_temporary_pointer = (uint32*)engine_data_pointer[0xf];
   engine_temp_uint_4 = (ulonglong)((longlong)engine_data_pointer[0x10] + (3 - (longlong)engine_temporary_pointer)) >> 2;
   if ((uint32*)engine_data_pointer[0x10] < engine_temporary_pointer) {
@@ -56906,7 +56906,7 @@ void FUN_180095bf0(uint64 engine_data_structure_ptr,uint32_t engine_result_flag_
       engine_temporary_pointer = engine_temporary_pointer + 1;
     }
   }
-  FUN_180080ca0(engine_data_pointer + 0x13,0x96);
+  engine_unnamed_function_2010(engine_data_pointer + 0x13,0x96);
   engine_temporary_pointer = (uint32*)engine_data_pointer[0x13];
   engine_temp_uint_4 = (ulonglong)((longlong)engine_data_pointer[0x14] + (3 - (longlong)engine_temporary_pointer)) >> 2;
   if ((uint32*)engine_data_pointer[0x14] < engine_temporary_pointer) {
@@ -56931,8 +56931,8 @@ void FUN_180095bf0(uint64 engine_data_structure_ptr,uint32_t engine_result_flag_
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// void FUN_180095da0(uint64 engine_data_structure_ptr,longlong engine_result_flag_ptr,longlong engine_comparison_params,char engine_system_parameter_4)
-void FUN_180095da0(uint64 engine_data_structure_ptr,longlong engine_result_flag_ptr,longlong engine_comparison_params,char engine_system_parameter_4)
+// void engine_unnamed_function_4420(uint64 engine_data_structure_ptr,longlong engine_result_flag_ptr,longlong engine_comparison_params,char engine_system_parameter_4)
+void engine_unnamed_function_4420(uint64 engine_data_structure_ptr,longlong engine_result_flag_ptr,longlong engine_comparison_params,char engine_system_parameter_4)
 
 {
   char resource_status_flag;
@@ -56955,7 +56955,7 @@ void FUN_180095da0(uint64 engine_data_structure_ptr,longlong engine_result_flag_
   char acStackX_20 [8];
   
   acStackX_20[0] = engine_system_parameter_4;
-  pengine_temp_float_6 = (float *)FUN_18009b3a0(engine_comparison_params + 0xc0,engine_result_flag_ptr + 0x20);
+  pengine_temp_float_6 = (float *)engine_unnamed_function_4700(engine_comparison_params + 0xc0,engine_result_flag_ptr + 0x20);
   engine_temp_float_15 = *pengine_temp_float_6;
   func_0x000180112210();
   engine_temp_int3 = 0;
@@ -56967,10 +56967,10 @@ void FUN_180095da0(uint64 engine_data_structure_ptr,longlong engine_result_flag_
   if (*(undefined **)(engine_result_flag_ptr + 8) != (void*)0x0) {
     engine_data_ptr0 = *(undefined **)(engine_result_flag_ptr + 8);
   }
-  engine_temp_char_flag = FUN_180118a80((double)(engine_temp_float_15 * 1000.0),engine_temp_uint1,&engine_base_data_offset_30,engine_data_ptr0,
+  engine_temp_char_flag = engine_unnamed_function_5390((double)(engine_temp_float_15 * 1000.0),engine_temp_uint1,&engine_base_data_offset_30,engine_data_ptr0,
                         (double)(engine_temp_float_15 * 1000.0));
-  FUN_180134130();
-  engine_temp_char_ptr_7 = (char *)FUN_18009b960(engine_comparison_params + 0xf0,engine_result_flag_ptr + 0x20);
+  engine_unnamed_function_5470();
+  engine_temp_char_ptr_7 = (char *)engine_unnamed_function_4780(engine_comparison_params + 0xf0,engine_result_flag_ptr + 0x20);
   acStackX_20[0] = *engine_temp_char_ptr_7;
   next_data_pointer = (uint16*)engine_call_memory_extender(_engine_data_18,0x10,0x13);
   *(uint8*)next_data_pointer = 0;
@@ -56991,10 +56991,10 @@ void FUN_180095da0(uint64 engine_data_structure_ptr,longlong engine_result_flag_
   if (next_data_pointer != (uint16*)0x0) {
     engine_data_ptr4 = next_data_pointer;
   }
-  engine_temp_char_flag_2 = FUN_180111070(engine_data_ptr4,acStackX_20);
+  engine_temp_char_flag_2 = engine_unnamed_function_5370(engine_data_ptr4,acStackX_20);
   resource_status_flag = acStackX_20[0];
   if (engine_temp_char_flag_2 != '\0') {
-    engine_temp_char_ptr_7 = (char *)FUN_18009b960(engine_comparison_params + 0xf0,engine_result_flag_ptr + 0x20);
+    engine_temp_char_ptr_7 = (char *)engine_unnamed_function_4780(engine_comparison_params + 0xf0,engine_result_flag_ptr + 0x20);
     *engine_temp_char_ptr_7 = resource_status_flag;
   }
   if (resource_status_flag != '\0') {
@@ -57004,17 +57004,17 @@ void FUN_180095da0(uint64 engine_data_structure_ptr,longlong engine_result_flag_
                     // WARNING: Subroutine does not return
     engine_call_cleanup_routine(next_data_pointer);
   }
-  FUN_180134130();
-  engine_temp_uint_ptr_9 = (uint32*)FUN_18009b3a0(engine_comparison_params + 0x90,engine_result_flag_ptr + 0x20);
+  engine_unnamed_function_5470();
+  engine_temp_uint_ptr_9 = (uint32*)engine_unnamed_function_4700(engine_comparison_params + 0x90,engine_result_flag_ptr + 0x20);
   uStackX_18 = 0xbf800000;
   uStackX_1c = 0;
-  FUN_180111c30(*engine_temp_uint_ptr_9,&uStackX_18);
-  FUN_180134130();
+  engine_unnamed_function_5380(*engine_temp_uint_ptr_9,&uStackX_18);
+  engine_unnamed_function_5470();
   if (engine_temp_char_flag != '\0') {
     if (*(longlong *)(engine_result_flag_ptr + 0x50) - *(longlong *)(engine_result_flag_ptr + 0x48) >> 3 != 0) {
       engine_temp_long2 = 0;
       do {
-        FUN_180095da0(engine_data_structure_ptr,*(void*)(engine_temp_long2 + *(longlong *)(engine_result_flag_ptr + 0x48)),engine_comparison_params,1);
+        engine_unnamed_function_4420(engine_data_structure_ptr,*(void*)(engine_temp_long2 + *(longlong *)(engine_result_flag_ptr + 0x48)),engine_comparison_params,1);
         engine_temp_int3 = engine_temp_int3 + 1;
         engine_temp_long2 = engine_temp_long2 + 8;
       } while ((ulonglong)(longlong)engine_temp_int3 <
@@ -57030,8 +57030,8 @@ void FUN_180095da0(uint64 engine_data_structure_ptr,longlong engine_result_flag_
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// void FUN_180096040(void)
-void FUN_180096040(void)
+// void engine_unnamed_function_4430(void)
+void engine_unnamed_function_4430(void)
 
 {
   byte engine_temp_byte;
@@ -57124,14 +57124,14 @@ LAB_18009611a:
       *(uint8*)(current_data_pointer + 0x1d) = 0;
       current_data_pointer[0x1e] = 0;
       next_data_pointer = current_data_pointer + 8;
-      FUN_1800593f0(next_data_pointer,current_data_pointer[10]);
+      engine_unnamed_function_50(next_data_pointer,current_data_pointer[10]);
       *next_data_pointer = next_data_pointer;
       current_data_pointer[9] = next_data_pointer;
       current_data_pointer[10] = 0;
       *(uint8*)(current_data_pointer + 0xb) = 0;
       current_data_pointer[0xc] = 0;
       next_data_pointer = current_data_pointer + 0x14;
-      FUN_1800593f0(next_data_pointer,current_data_pointer[0x16]);
+      engine_unnamed_function_50(next_data_pointer,current_data_pointer[0x16]);
       *next_data_pointer = next_data_pointer;
       current_data_pointer[0x15] = next_data_pointer;
       current_data_pointer[0x16] = 0;
@@ -57160,8 +57160,8 @@ LAB_18009611a:
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// void FUN_180096240(uint64 engine_data_structure_ptr,longlong engine_result_flag_ptr,uint64_t *engine_comparison_params)
-void FUN_180096240(uint64 engine_data_structure_ptr,longlong engine_result_flag_ptr,uint64_t *engine_comparison_params)
+// void engine_unnamed_function_4440(uint64 engine_data_structure_ptr,longlong engine_result_flag_ptr,uint64_t *engine_comparison_params)
+void engine_unnamed_function_4440(uint64 engine_data_structure_ptr,longlong engine_result_flag_ptr,uint64_t *engine_comparison_params)
 
 {
   byte engine_temp_byte;
@@ -57271,7 +57271,7 @@ void FUN_180096240(uint64 engine_data_structure_ptr,longlong engine_result_flag_
     engine_temp_uint_24 = engine_temp_uint_7;
     if (*(longlong *)(engine_result_flag_ptr + 0x50) - (longlong)engine_temp_ptr_5 >> 3 != 0) {
       do {
-        FUN_180096240(engine_data_structure_ptr,*(void*)(engine_temp_uint_22 + *(longlong *)(engine_result_flag_ptr + 0x48)),engine_data_ptr2);
+        engine_unnamed_function_4440(engine_data_structure_ptr,*(void*)(engine_temp_uint_22 + *(longlong *)(engine_result_flag_ptr + 0x48)),engine_data_ptr2);
         engine_temp_uint_23 = (int)engine_temp_uint_24 + 1;
         engine_temp_ptr_5 = *(longlong **)(engine_result_flag_ptr + 0x48);
         engine_temp_uint_22 = engine_temp_uint_22 + 8;
@@ -57286,13 +57286,13 @@ void FUN_180096240(uint64 engine_data_structure_ptr,longlong engine_result_flag_
         engine_temp_uint6 = (int)engine_temp_uint_7 + 1;
         engine_temp_uint_7 = (ulonglong)engine_temp_uint6;
       }
-      FUN_18009d3a0(engine_temp_ptr_5,pengine_temp_long_2,(longlong)(int)(engine_temp_uint6 - 1) * 2,engine_data_ptr2);
+      engine_unnamed_function_5060(engine_temp_ptr_5,pengine_temp_long_2,(longlong)(int)(engine_temp_uint6 - 1) * 2,engine_data_ptr2);
       if (engine_temp_long_21 < 0x1d) {
-        FUN_18009d140(engine_temp_ptr_5,pengine_temp_long_2,engine_data_ptr2);
+        engine_unnamed_function_5040(engine_temp_ptr_5,pengine_temp_long_2,engine_data_ptr2);
       }
       else {
         pengine_temp_long_25 = engine_temp_ptr_5 + 0x1c;
-        FUN_18009d140(engine_temp_ptr_5,pengine_temp_long_25,engine_data_ptr2);
+        engine_unnamed_function_5040(engine_temp_ptr_5,pengine_temp_long_25,engine_data_ptr2);
         if (pengine_temp_long_25 != pengine_temp_long_2) {
 LAB_180096990:
           engine_temp_long1 = *pengine_temp_long_25;
@@ -57336,7 +57336,7 @@ LAB_180096990:
   engine_temp_long1 = engine_result_flag_ptr + 0x20;
   engine_temp_ptr_5 = (longlong *)engine_initialize_resource_manager(next_data_pointer,&engine_stack_pointer_18,engine_temp_long1);
   if ((void*)*engine_temp_ptr_5 == next_data_pointer) {
-    temp_data_pointer = (uint8*)FUN_18009b960(next_data_pointer,engine_temp_long1);
+    temp_data_pointer = (uint8*)engine_unnamed_function_4780(next_data_pointer,engine_temp_long1);
     *temp_data_pointer = 0;
   }
   next_data_pointer = engine_data_ptr2 + 0x18;
@@ -57344,7 +57344,7 @@ LAB_180096990:
   dVar27 = 0.0;
   if (engine_stack_pointer_18 == next_data_pointer) {
     engine_temp_float_29 = (float)*(double *)(engine_result_flag_ptr + 0x40);
-    pengine_temp_float_7 = (float *)FUN_18009b3a0(next_data_pointer,engine_temp_long1);
+    pengine_temp_float_7 = (float *)engine_unnamed_function_4700(next_data_pointer,engine_temp_long1);
   }
   else {
     engine_temp_float_29 = *(float *)(engine_stack_pointer_18 + 8);
@@ -57371,7 +57371,7 @@ LAB_180096990:
     if (sVar4 == 2) {
       engine_temp_float_28 = engine_temp_float_29;
     }
-    pengine_temp_float_7 = (float *)FUN_18009b3a0(next_data_pointer,engine_temp_long1);
+    pengine_temp_float_7 = (float *)engine_unnamed_function_4700(next_data_pointer,engine_temp_long1);
     engine_temp_float_29 = (engine_temp_float_28 - engine_temp_float_29) * 0.02 + engine_temp_float_29;
   }
   *pengine_temp_float_7 = engine_temp_float_29;
@@ -57383,7 +57383,7 @@ LAB_180096990:
     engine_temp_float_29 = (float)dVar27;
   }
   else {
-    pengine_temp_float_7 = (float *)FUN_18009b3a0(next_data_pointer,engine_temp_long1);
+    pengine_temp_float_7 = (float *)engine_unnamed_function_4700(next_data_pointer,engine_temp_long1);
     engine_temp_float_29 = *pengine_temp_float_7;
     if ((*(char *)((longlong)engine_data_ptr2 + 0x124) == '\0') || (*(float *)(engine_data_ptr2 + 0x24) == 0.0)) {
       dVar27 = (double)engine_temp_float_29;
@@ -57393,7 +57393,7 @@ LAB_180096990:
     }
     engine_temp_float_29 = ((float)dVar27 - engine_temp_float_29) * 0.02 + engine_temp_float_29;
   }
-  pengine_temp_float_7 = (float *)FUN_18009b3a0(next_data_pointer,engine_temp_long1);
+  pengine_temp_float_7 = (float *)engine_unnamed_function_4700(next_data_pointer,engine_temp_long1);
   *pengine_temp_float_7 = engine_temp_float_29;
   next_data_pointer = engine_data_ptr2;
   if ((void*)engine_data_ptr2[2] != (void*)0x0) {
@@ -57434,7 +57434,7 @@ LAB_18009662b:
   }
   if (next_data_pointer == engine_data_ptr2) {
 LAB_18009667a:
-    next_data_pointer = (void*)FUN_18009bf40(engine_data_ptr2,&engine_stack_pointer_18);
+    next_data_pointer = (void*)engine_unnamed_function_4860(engine_data_ptr2,&engine_stack_pointer_18);
     next_data_pointer = (void*)*next_data_pointer;
   }
   else if (*(int *)(next_data_pointer + 6) != 0) {
@@ -57453,8 +57453,8 @@ LAB_18009667a:
   }
 LAB_180096691:
   engine_data_ptr_20 = next_data_pointer + 8;
-  FUN_18009b5a0(engine_data_ptr2 + 6,engine_temp_long1);
-  engine_temp_uint_ptr_9 = (void*)FUN_18009b780(engine_data_ptr2 + 0xc,engine_temp_long1);
+  engine_unnamed_function_4760(engine_data_ptr2 + 6,engine_temp_long1);
+  engine_temp_uint_ptr_9 = (void*)engine_unnamed_function_4770(engine_data_ptr2 + 0xc,engine_temp_long1);
   dVar27 = *(double *)(engine_result_flag_ptr + 0x40);
   engine_data_ptr5 = (void*)next_data_pointer[10];
   engine_data_ptr0 = engine_data_ptr_20;
@@ -57470,7 +57470,7 @@ LAB_180096691:
     } while (engine_data_ptr5 != (void*)0x0);
   }
   if ((engine_data_ptr0 == engine_data_ptr_20) || (*(int *)(engine_data_ptr2 + 0x2f) < *(int *)(engine_data_ptr0 + 4))) {
-    engine_data_ptr0 = (void*)FUN_18009c5b0(engine_data_ptr_20,engine_stack_array_10);
+    engine_data_ptr0 = (void*)engine_unnamed_function_4890(engine_data_ptr_20,engine_stack_array_10);
     engine_data_ptr0 = (void*)*engine_data_ptr0;
   }
   *(float *)((longlong)engine_data_ptr0 + 0x24) = (float)dVar27;
@@ -57478,7 +57478,7 @@ LAB_180096691:
     engine_temp_long1 = next_data_pointer[9];
     next_data_pointer[0xc] = next_data_pointer[0xc] - 1;
     func_0x00018066bd70(engine_temp_long1);
-    FUN_18066ba00(engine_temp_long1,engine_data_ptr_20);
+    engine_unnamed_function_6500(engine_temp_long1,engine_data_ptr_20);
     if (engine_temp_long1 != 0) {
                     // WARNING: Subroutine does not return
       engine_call_cleanup_routine(engine_temp_long1);
@@ -57530,7 +57530,7 @@ LAB_180096a34:
 
 
 
-bool FUN_180096a80(longlong *engine_data_structure_ptr,longlong engine_result_flag_ptr,longlong engine_comparison_params)
+bool engine_unnamed_function_4450(longlong *engine_data_structure_ptr,longlong engine_result_flag_ptr,longlong engine_comparison_params)
 
 {
   byte engine_temp_byte;
@@ -57569,8 +57569,8 @@ bool FUN_180096a80(longlong *engine_data_structure_ptr,longlong engine_result_fl
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// void FUN_180096b60(uint64 engine_data_structure_ptr,longlong engine_result_flag_ptr,longlong engine_comparison_params,char engine_system_parameter_4)
-void FUN_180096b60(uint64 engine_data_structure_ptr,longlong engine_result_flag_ptr,longlong engine_comparison_params,char engine_system_parameter_4)
+// void engine_unnamed_function_4460(uint64 engine_data_structure_ptr,longlong engine_result_flag_ptr,longlong engine_comparison_params,char engine_system_parameter_4)
+void engine_unnamed_function_4460(uint64 engine_data_structure_ptr,longlong engine_result_flag_ptr,longlong engine_comparison_params,char engine_system_parameter_4)
 
 {
   ulonglong engine_temporary_uint;
@@ -57638,7 +57638,7 @@ void FUN_180096b60(uint64 engine_data_structure_ptr,longlong engine_result_flag_
   lStack_800 = engine_comparison_params;
   (**(code **)(*(longlong *)(engine_comparison_params + 0x20) + 0x10))((longlong *)(engine_comparison_params + 0x20),&engine_data_180a0143c);
   engine_setup_processing_environment(&puStack_7d8,engine_result_flag_ptr);
-  engine_temp_long_9 = FUN_18009ba60(engine_next_node_ptr + 8,&puStack_7d8);
+  engine_temp_long_9 = engine_unnamed_function_4810(engine_next_node_ptr + 8,&puStack_7d8);
   puStack_7d8 = &engine_system_context_data;
   lStack_808 = engine_temp_long_9;
   if (lStack_7d0 != 0) {
@@ -57671,7 +57671,7 @@ void FUN_180096b60(uint64 engine_data_structure_ptr,longlong engine_result_flag_
   }
   _engine_data_b0 = *pengine_temp_long0;
   if (0.0 < *(double *)(engine_comparison_params + 0x40)) {
-    FUN_180096240(engine_next_node_ptr,engine_comparison_params,engine_temp_long_9);
+    engine_unnamed_function_4440(engine_next_node_ptr,engine_comparison_params,engine_temp_long_9);
   }
   if (*(char *)((longlong)engine_next_node_ptr + 0x39) == '\0') goto LAB_180097ca1;
   engine_data_ptr2 = &engine_data_73;
@@ -57680,12 +57680,12 @@ void FUN_180096b60(uint64 engine_data_structure_ptr,longlong engine_result_flag_
   }
   engine_initialize_network_client(engine_data_ptr2,0,0);
   auStack_8f4[0] = 0;
-  bVar5 = FUN_18010f6f0(&engine_special_flag_14,auStack_8f4,0);
+  bVar5 = engine_unnamed_function_5350(&engine_special_flag_14,auStack_8f4,0);
   engine_temp_uint5 = (uint)bVar5;
   uStack_8c8 = (uint)bVar5;
   func_0x00018012e760();
   alStack_8c0[0] = 0;
-  engine_temp_char_value = FUN_18010f6f0(&engine_base_data_offset_60,alStack_8c0,0);
+  engine_temp_char_value = engine_unnamed_function_5350(&engine_base_data_offset_60,alStack_8c0,0);
   if (engine_temp_char_value != '\0') {
     puStack_728 = &engine_data_18098bc80;
     puStack_720 = auStack_710;
@@ -57696,28 +57696,28 @@ void FUN_180096b60(uint64 engine_data_structure_ptr,longlong engine_result_flag_
     puStack_728 = &engine_data_18098bcb0;
   }
   func_0x00018012e760();
-  engine_temp_char_value = FUN_180111070(&engine_base_data_offset_78,engine_temp_long_9 + 0x124);
+  engine_temp_char_value = engine_unnamed_function_5370(&engine_base_data_offset_78,engine_temp_long_9 + 0x124);
   if ((engine_temp_char_value != '\0') &&
      (engine_temp_uint5 = (uint)bVar5, uStack_8c8 = engine_temp_uint5, *(char *)(engine_temp_long_9 + 0x124) != '\0')) {
     engine_temp_uint5 = 1;
     uStack_8c8 = engine_temp_uint5;
   }
   func_0x00018012e760();
-  FUN_180111070(&engine_base_data_offset_70,engine_temp_long_9 + 0x125);
+  engine_unnamed_function_5370(&engine_base_data_offset_70,engine_temp_long_9 + 0x125);
   func_0x00018012e760();
-  FUN_180111070(&engine_base_data_offset_88,engine_temp_long_9 + 0x126);
+  engine_unnamed_function_5370(&engine_base_data_offset_88,engine_temp_long_9 + 0x126);
   engine_temp_long_2 = _engine_data_b0;
   *(uint8*)(*(longlong *)(_engine_data_b0 + 0x1af8) + 0xb1) = 1;
   engine_temp_long_2 = *(longlong *)(*(longlong *)(engine_temp_long_2 + 0x1af8) + 0x210);
   if (engine_temp_long_2 == 0) {
 LAB_180096e94:
-    FUN_180134640(0,3);
+    engine_unnamed_function_5480(0,3);
   }
   else if ((*(int *)(engine_temp_long_2 + 0x10) != 3) || (*(int *)(engine_temp_long_2 + 4) != 0)) {
-    FUN_180134b80();
+    engine_unnamed_function_5490();
     goto LAB_180096e94;
   }
-  FUN_180095da0(engine_next_node_ptr,engine_comparison_params,engine_temp_long_9);
+  engine_unnamed_function_4420(engine_next_node_ptr,engine_comparison_params,engine_temp_long_9);
   engine_initialize_graphics_context();
   if (*(char *)(engine_temp_long_9 + 0x126) != '\0') {
     engine_setup_processing_environment(auStack_858,engine_result_flag_ptr);
@@ -57790,13 +57790,13 @@ LAB_180096e94:
     *(void*)(engine_temp_long_9 + 0xa0) = 0;
     *(uint8*)(engine_temp_long_9 + 0xa8) = 0;
     *(void*)(engine_temp_long_9 + 0xb0) = 0;
-    FUN_1800593f0(engine_temp_long_9,*(void*)(engine_temp_long_9 + 0x10));
+    engine_unnamed_function_50(engine_temp_long_9,*(void*)(engine_temp_long_9 + 0x10));
     *(longlong *)engine_temp_long_9 = engine_temp_long_9;
     *(longlong *)(engine_temp_long_9 + 8) = engine_temp_long_9;
     *(void*)(engine_temp_long_9 + 0x10) = 0;
     *(uint8*)(engine_temp_long_9 + 0x18) = 0;
     *(void*)(engine_temp_long_9 + 0x20) = 0;
-    FUN_1800593f0(engine_temp_long_9,0);
+    engine_unnamed_function_50(engine_temp_long_9,0);
     *(longlong *)engine_temp_long_9 = engine_temp_long_9;
     *(longlong *)(engine_temp_long_9 + 8) = engine_temp_long_9;
     *(void*)(engine_temp_long_9 + 0x10) = 0;
@@ -57832,7 +57832,7 @@ void engine_call_data_transformer(void)
 
 
 
-uint64 FUN_1800988e0(longlong *engine_data_structure_ptr,int engine_result_flag_ptr,int engine_comparison_params)
+uint64 engine_unnamed_function_4470(longlong *engine_data_structure_ptr,int engine_result_flag_ptr,int engine_comparison_params)
 
 {
   void* engine_data_pointer;
@@ -57920,10 +57920,10 @@ void engine_handle_render_frame(uint8_t *engine_data_structure_ptr)
     do {
       engine_temporary_long = *(longlong *)(engine_temp_uint_3 + *(longlong *)(engine_data_structure_ptr + 8));
       engine_temp_uint_4 = engine_call_memory_allocator(_engine_data_18,0xa8,8,3);
-      memory_allocation_result = FUN_18011fa30(engine_temp_uint_4,0);
-      FUN_18013e410(memory_allocation_result,engine_temporary_long);
-      FUN_18013e570(memory_allocation_result + 0x10,engine_temporary_long + 0x10);
-      FUN_18013e390(memory_allocation_result + 0x20,engine_temporary_long + 0x20);
+      memory_allocation_result = engine_unnamed_function_5410(engine_temp_uint_4,0);
+      engine_unnamed_function_5510(memory_allocation_result,engine_temporary_long);
+      engine_unnamed_function_5520(memory_allocation_result + 0x10,engine_temporary_long + 0x10);
+      engine_unnamed_function_5500(memory_allocation_result + 0x20,engine_temporary_long + 0x20);
       *(uint32*)(memory_allocation_result + 0x30) = *(uint32*)(engine_temporary_long + 0x30);
       engine_temp_uint_6 = (int)engine_temp_uint64_value + 1;
       engine_temp_uint64_value = (ulonglong)engine_temp_uint_6;
@@ -57940,8 +57940,8 @@ void engine_handle_render_frame(uint8_t *engine_data_structure_ptr)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// void FUN_180098a22(void)
-void FUN_180098a22(void)
+// void engine_unnamed_function_4482(void)
+void engine_unnamed_function_4482(void)
 
 {
   longlong engine_temporary_long;
@@ -57957,10 +57957,10 @@ void FUN_180098a22(void)
   do {
     engine_temporary_long = *(longlong *)(engine_temp_index + *(longlong *)(unaff_R14 + 8));
     engine_temp_uint_2 = engine_call_memory_allocator(_engine_data_18,0xa8,8,3);
-    engine_temp_long_3 = FUN_18011fa30(engine_temp_uint_2,0);
-    FUN_18013e410(engine_temp_long_3,engine_temporary_long);
-    FUN_18013e570(engine_temp_long_3 + 0x10,engine_temporary_long + 0x10);
-    FUN_18013e390(engine_temp_long_3 + 0x20,engine_temporary_long + 0x20);
+    engine_temp_long_3 = engine_unnamed_function_5410(engine_temp_uint_2,0);
+    engine_unnamed_function_5510(engine_temp_long_3,engine_temporary_long);
+    engine_unnamed_function_5520(engine_temp_long_3 + 0x10,engine_temporary_long + 0x10);
+    engine_unnamed_function_5500(engine_temp_long_3 + 0x20,engine_temporary_long + 0x20);
     *(uint32*)(engine_temp_long_3 + 0x30) = *(uint32*)(engine_temporary_long + 0x30);
     engine_temp_uint_4 = (int)unaff_RBP + 1;
     unaff_RBP = (ulonglong)engine_temp_uint_4;
@@ -57976,8 +57976,8 @@ void FUN_180098a22(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// void FUN_180098abe(void)
-void FUN_180098abe(void)
+// void engine_unnamed_function_449e(void)
+void engine_unnamed_function_449e(void)
 
 {
   uint64 unaff_RSI;
@@ -57991,8 +57991,8 @@ void FUN_180098abe(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// void FUN_180098ae0(longlong *engine_data_structure_ptr,int engine_result_flag_ptr,int engine_comparison_params,uint64 engine_system_parameter_4)
-void FUN_180098ae0(longlong *engine_data_structure_ptr,int engine_result_flag_ptr,int engine_comparison_params,uint64 engine_system_parameter_4)
+// void engine_unnamed_function_4500(longlong *engine_data_structure_ptr,int engine_result_flag_ptr,int engine_comparison_params,uint64 engine_system_parameter_4)
+void engine_unnamed_function_4500(longlong *engine_data_structure_ptr,int engine_result_flag_ptr,int engine_comparison_params,uint64 engine_system_parameter_4)
 
 {
   float engine_temp_float;
@@ -58075,7 +58075,7 @@ void FUN_180098ae0(longlong *engine_data_structure_ptr,int engine_result_flag_pt
   *(undefined **)(engine_temp_long_3 + 0x100) = &engine_base_data_offset_70;
   *(code **)(engine_temp_long_3 + 0xf8) = engine_process_input_events;
   engine_temp_index = engine_call_memory_allocator(_engine_data_18,0xa0,8,3);
-  engine_temp_ptr_array_6 = (longlong *)FUN_1800842a0(engine_temp_index);
+  engine_temp_ptr_array_6 = (longlong *)engine_unnamed_function_2510(engine_temp_index);
   plStack_70 = engine_temp_ptr_array_6;
   if (engine_temp_ptr_array_6 != (longlong *)0x0) {
     (**(code **)(*engine_temp_ptr_array_6 + 0x28))(engine_temp_ptr_array_6);
@@ -58113,7 +58113,7 @@ void FUN_180098ae0(longlong *engine_data_structure_ptr,int engine_result_flag_pt
   pplStack_148 = &plStack_130;
   plStack_130 = engine_temp_ptr_array_6;
   (**(code **)(*engine_temp_ptr_array_6 + 0x28))(engine_temp_ptr_array_6);
-  FUN_180255880(engine_temp_long_4,&plStack_130);
+  engine_unnamed_function_6030(engine_temp_long_4,&plStack_130);
   pengine_temp_long_7 = (longlong *)engine_call_memory_allocator(_engine_data_18,0x30,8,3);
   *pengine_temp_long_7 = (longlong)&engine_data_180a21690;
   *pengine_temp_long_7 = (longlong)&engine_data_180a21720;
@@ -58149,9 +58149,9 @@ void FUN_180098ae0(longlong *engine_data_structure_ptr,int engine_result_flag_pt
   pplStack_148 = &plStack_128;
   plStack_128 = pengine_temp_long_7;
   (**(code **)(*pengine_temp_long_7 + 0x28))(pengine_temp_long_7);
-  FUN_180255b70(engine_temp_long_4,&plStack_128);
+  engine_unnamed_function_6040(engine_temp_long_4,&plStack_128);
   engine_temp_index = engine_call_memory_allocator(_engine_data_18,0x3b0,0x10,3);
-  pengine_temp_long_8 = (longlong *)FUN_18023a2e0(engine_temp_index,1);
+  pengine_temp_long_8 = (longlong *)engine_unnamed_function_5950(engine_temp_index,1);
   if (pengine_temp_long_8 != (longlong *)0x0) {
     plStack_90 = pengine_temp_long_8;
     (**(code **)(*pengine_temp_long_8 + 0x28))(pengine_temp_long_8);
@@ -58161,8 +58161,8 @@ void FUN_180098ae0(longlong *engine_data_structure_ptr,int engine_result_flag_pt
   if (plStack_90 != (longlong *)0x0) {
     (**(code **)(*plStack_90 + 0x38))();
   }
-  engine_temp_index = FUN_180294610(*(void*)(engine_temp_long_3 + 0xa0),&engine_stack_value_88,&iStack_140,&iStack_13c);
-  FUN_18009bb60(engine_temp_index,aplStack_120,engine_stack_value_88,iStack_140 * iStack_13c);
+  engine_temp_index = engine_unnamed_function_6140(*(void*)(engine_temp_long_3 + 0xa0),&engine_stack_value_88,&iStack_140,&iStack_13c);
+  engine_unnamed_function_4840(engine_temp_index,aplStack_120,engine_stack_value_88,iStack_140 * iStack_13c);
   pengine_temp_long_8 = aplStack_120[0];
   uStack_110 = 1;
   uStack_104 = 0;
@@ -58193,7 +58193,7 @@ void FUN_180098ae0(longlong *engine_data_structure_ptr,int engine_result_flag_pt
   }
   uStack_b0 = 0xffffffff;
   uStack_ac = 0;
-  FUN_1800a5110(_engine_data_38,&iStack_e0,plStack_138);
+  engine_unnamed_function_5110(_engine_data_38,&iStack_e0,plStack_138);
   *(longlong *)(*(longlong *)(engine_temp_long_3 + 0xa0) + 8) = engine_data_structure_ptr[0xc];
   engine_temp_float = *(float *)(_engine_data_b0 + 0x14);
   engine_temp_float_2 = *(float *)(_engine_data_b0 + 0x10);
@@ -58222,9 +58222,9 @@ void FUN_180098ae0(longlong *engine_data_structure_ptr,int engine_result_flag_pt
   engine_data_structure_ptr[0x1a] = engine_data_structure_ptr[0x12];
   engine_data_structure_ptr[0x1b] = engine_data_structure_ptr[0x13];
   engine_data_structure_ptr[0x1c] = engine_data_structure_ptr[0x14];
-  FUN_180099100(engine_data_structure_ptr);
-  FUN_180125780();
-  FUN_180127440();
+  engine_unnamed_function_4510(engine_data_structure_ptr);
+  engine_unnamed_function_5430();
+  engine_unnamed_function_5440();
   *(uint8*)(engine_data_structure_ptr + 1) = 1;
   if (pengine_temp_long_8 != (longlong *)0x0) {
     (**(code **)(*pengine_temp_long_8 + 0x38))(pengine_temp_long_8);
@@ -58244,8 +58244,8 @@ void FUN_180098ae0(longlong *engine_data_structure_ptr,int engine_result_flag_pt
 // WARNING: Removing unreachable block (ram,0x0001800993a9)
 
 
-// void FUN_180099100(longlong engine_data_structure_ptr)
-void FUN_180099100(longlong engine_data_structure_ptr)
+// void engine_unnamed_function_4510(longlong engine_data_structure_ptr)
+void engine_unnamed_function_4510(longlong engine_data_structure_ptr)
 
 {
   longlong engine_temporary_long;
@@ -58305,7 +58305,7 @@ void FUN_180099100(longlong engine_data_structure_ptr)
   uStack_b8 = 0;
   uStack_b0 = 0;
   uStack_ac = 0;
-  FUN_18009e9e0(engine_data_structure_ptr,&engine_stack_long_ptr_10,&engine_base_data_offset_d8);
+  engine_unnamed_function_5090(engine_data_structure_ptr,&engine_stack_long_ptr_10,&engine_base_data_offset_d8);
   plStack_f8 = (longlong *)0x0;
   pplStackX_20 = (longlong **)&engine_stack_pointer_f0;
   engine_stack_pointer_f0 = &engine_system_context_data;
@@ -58321,7 +58321,7 @@ void FUN_180099100(longlong engine_data_structure_ptr)
   uStack_cc = 0;
   uStack_c8 = 0;
   uStack_c4 = 0;
-  FUN_18009e9e0(pplStackX_20,&plStackX_18,&engine_base_data_offset_c8);
+  engine_unnamed_function_5090(pplStackX_20,&plStackX_18,&engine_base_data_offset_c8);
   engine_temp_uint_3 = uStack_b0;
   engine_temp_index = uStack_b8;
   puStack_150 = &engine_system_context_data;
@@ -58353,7 +58353,7 @@ void FUN_180099100(longlong engine_data_structure_ptr)
   if (plStack_c0 != (longlong *)0x0) {
     (**(code **)(*plStack_c0 + 0x28))();
   }
-  engine_temp_uint_4 = FUN_180299eb0(engine_temporary_long,0,&plStack_a8,&ppuStackX_8);
+  engine_temp_uint_4 = engine_unnamed_function_6150(engine_temporary_long,0,&plStack_a8,&ppuStackX_8);
   *(void*)(engine_data_structure_ptr + 0x68) = engine_temp_uint_4;
   engine_temporary_long = plStackX_18[0x2b7];
   pplStackX_20 = &plStack_a8;
@@ -58375,7 +58375,7 @@ void FUN_180099100(longlong engine_data_structure_ptr)
   if (plStack_120 != (longlong *)0x0) {
     (**(code **)(*plStack_120 + 0x28))();
   }
-  engine_temp_index = FUN_180299eb0(engine_temporary_long,0,&plStack_a8,&ppuStackX_8);
+  engine_temp_index = engine_unnamed_function_6150(engine_temporary_long,0,&plStack_a8,&ppuStackX_8);
   *(void*)(engine_data_structure_ptr + 0xa8) = engine_temp_index;
   if (plStack_120 != (longlong *)0x0) {
     (**(code **)(*plStack_120 + 0x38))();
@@ -58420,8 +58420,8 @@ void FUN_180099100(longlong engine_data_structure_ptr)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// void FUN_180099430(longlong engine_data_structure_ptr,longlong engine_result_flag_ptr)
-void FUN_180099430(longlong engine_data_structure_ptr,longlong engine_result_flag_ptr)
+// void engine_unnamed_function_4520(longlong engine_data_structure_ptr,longlong engine_result_flag_ptr)
+void engine_unnamed_function_4520(longlong engine_data_structure_ptr,longlong engine_result_flag_ptr)
 
 {
   uint32 engine_temporary_uint;
@@ -58520,7 +58520,7 @@ void FUN_180099430(longlong engine_data_structure_ptr,longlong engine_result_fla
       engine_temp_long_32 = (longlong)*(int *)(*(longlong *)(*(longlong *)(engine_result_flag_ptr + 8) + engine_temp_long_24 * 8) + 0x20);
     }
     if (engine_temp_long_32 + engine_temp_long_29 + engine_temp_long_27 != 0) {
-      FUN_180099100(engine_data_structure_ptr);
+      engine_unnamed_function_4510(engine_data_structure_ptr);
       engine_temp_long7 = _engine_data_38;
       engine_temporary_uint = *(uint32*)(engine_data_pointer_50 + 0x17ec);
       engine_temp_uint_2 = *(uint32*)(engine_data_pointer_50 + 0x17f0);
@@ -58540,7 +58540,7 @@ void FUN_180099430(longlong engine_data_structure_ptr,longlong engine_result_fla
         }
       }
       pengine_temp_long9[0x1077] = (longlong)pengine_temp_long_22;
-      FUN_18029de40(*(void*)(engine_temp_long7 + 0x1cd8),1);
+      engine_unnamed_function_6170(*(void*)(engine_temp_long7 + 0x1cd8),1);
       *(uint32*)(engine_data_structure_ptr + 0x84) =
            *(uint32*)(*(longlong *)(_engine_data_38 + 0x121e0) + 0x324);
       *(uint32*)(engine_data_structure_ptr + 0xa4) = 1;
@@ -58551,10 +58551,10 @@ void FUN_180099430(longlong engine_data_structure_ptr,longlong engine_result_fla
       engine_call_framework_initializer(auStack_238,8,0x10,&engine_calculate_frame_time);
       plStack_2b0 = (longlong *)0x0;
       puStack_2d0 = auStack_1b8;
-      FUN_180206da0(puStack_2d0,*(void*)(*(longlong *)(engine_data_structure_ptr + 0x10) + 0x18),&plStack_278,
+      engine_unnamed_function_5780(puStack_2d0,*(void*)(*(longlong *)(engine_data_structure_ptr + 0x10) + 0x18),&plStack_278,
                     auStack_238);
       pcStack_2d8 = (code *)&uStack_268;
-      FUN_1802072b0(pcStack_2d8,*(void*)(*(longlong *)(engine_data_structure_ptr + 0x18) + 0x18));
+      engine_unnamed_function_5800(pcStack_2d8,*(void*)(*(longlong *)(engine_data_structure_ptr + 0x18) + 0x18));
       pengine_temp_long9 = plStack_2b0;
       engine_data_ptr_28 = *(uint32_t **)(auStack_238[*(int *)(_engine_data_38 + 0x8c)] + 0x10);
       engine_current_node_ptr0 = *(uint32_t **)(auStack_238[*(int *)(_engine_data_38 + 0x80)] + 0x10);
@@ -58638,9 +58638,9 @@ void FUN_180099430(longlong engine_data_structure_ptr,longlong engine_result_fla
           uStack_2b8 = engine_temp_uint_20;
         } while (iStack_2c8 < *(int *)(lStack_2a8 + 0x10));
       }
-      engine_temp_uint_38 = FUN_180207110(engine_temp_uint_20,*(void*)(*(longlong *)(engine_data_structure_ptr + 0x10) + 0x18),
+      engine_temp_uint_38 = engine_unnamed_function_5790(engine_temp_uint_20,*(void*)(*(longlong *)(engine_data_structure_ptr + 0x10) + 0x18),
                              auStack_238);
-      FUN_180207400(engine_temp_uint_38,*(void*)(*(longlong *)(engine_data_structure_ptr + 0x18) + 0x18),&plStack_2b0);
+      engine_unnamed_function_5810(engine_temp_uint_38,*(void*)(*(longlong *)(engine_data_structure_ptr + 0x18) + 0x18),&plStack_2b0);
       engine_temp_long7 = *(longlong *)(_engine_data_38 + 0x1cd8);
       engine_temp_long_24 = *(longlong *)(_engine_data_38 + 0x1ca8);
       pengine_temp_long_22 = *(longlong **)(engine_temp_long7 + 0x8400);
@@ -58693,7 +58693,7 @@ void FUN_180099430(longlong engine_data_structure_ptr,longlong engine_result_fla
       *(uint32*)(engine_temp_long7 + 0xb8) = engine_temp_uint5;
       *(uint32*)(engine_temp_long7 + 0xbc) = engine_temp_uint6;
       engine_temp_long7 = *(longlong *)(engine_temp_long_24 + 0x1cd8);
-      FUN_18029fc10(engine_temp_long7,*(void*)(engine_temp_long_24 + 0x1ca8),engine_temp_long7 + 0x80,0x80);
+      engine_unnamed_function_6180(engine_temp_long7,*(void*)(engine_temp_long_24 + 0x1ca8),engine_temp_long7 + 0x80,0x80);
       engine_temp_int_33 = 0;
       iStack_2c8 = 0;
       iStack_2c4 = 0;
@@ -58710,9 +58710,9 @@ void FUN_180099430(longlong engine_data_structure_ptr,longlong engine_result_fla
               pengine_temp_long9 = (longlong *)0x0;
               engine_current_node_ptr6 = (uint *)(*(longlong *)(pengine_temp_int_5 + 2) + lStack_290);
               if ((*(uint *)(*(longlong *)(engine_current_node_ptr6 + 6) + 0x328) >> 0xd & 1) == 0) {
-                FUN_18029cdd0(*(void*)(_engine_data_38 + 0x1cd8));
+                engine_unnamed_function_6160(*(void*)(_engine_data_38 + 0x1cd8));
                 engine_temp_long7 = *(longlong *)(_engine_data_38 + 0x1cd8);
-                pengine_temp_long8 = (longlong *)FUN_18023a940();
+                pengine_temp_long8 = (longlong *)engine_unnamed_function_5960();
                 pengine_temp_long_22 = pengine_temp_long9;
                 if (((pengine_temp_long8 != (longlong *)0x0) && (pengine_temp_long_22 = pengine_temp_long8, pengine_temp_long8[1] == 0)) &&
                    (pengine_temp_long8[2] == 0)) {
@@ -58734,9 +58734,9 @@ void FUN_180099430(longlong engine_data_structure_ptr,longlong engine_result_fla
                 }
               }
               else {
-                FUN_18029cdd0(*(void*)(_engine_data_38 + 0x1cd8),engine_data_structure_ptr + 0xa8);
+                engine_unnamed_function_6160(*(void*)(_engine_data_38 + 0x1cd8),engine_data_structure_ptr + 0xa8);
                 engine_temp_long7 = *(longlong *)(_engine_data_38 + 0x1cd8);
-                pengine_temp_long8 = (longlong *)FUN_18023a940();
+                pengine_temp_long8 = (longlong *)engine_unnamed_function_5960();
                 pengine_temp_long_22 = pengine_temp_long9;
                 if (((pengine_temp_long8 != (longlong *)0x0) && (pengine_temp_long_22 = pengine_temp_long8, pengine_temp_long8[1] == 0)) &&
                    (pengine_temp_long8[2] == 0)) {
@@ -58764,7 +58764,7 @@ void FUN_180099430(longlong engine_data_structure_ptr,longlong engine_result_fla
                 *(float *)(*(longlong *)(_engine_data_38 + 0x1cd8) + 0xc0) = (float)engine_temp_int_33;
                 engine_temp_long7 = *(longlong *)(engine_temp_long_24 + 0x1cd8);
                 iStack_2c4 = engine_temp_int_25;
-                FUN_18029fc10(engine_temp_long7,*(void*)(engine_temp_long_24 + 0x1ca8),engine_temp_long7 + 0x80,0x80);
+                engine_unnamed_function_6180(engine_temp_long7,*(void*)(engine_temp_long_24 + 0x1ca8),engine_temp_long7 + 0x80,0x80);
               }
               if (*(code **)(engine_current_node_ptr6 + 8) == (code *)0x0) {
                 engine_temp_long7 = *(longlong *)(_engine_data_38 + 0x1cd8);
@@ -58869,7 +58869,7 @@ void FUN_180099430(longlong engine_data_structure_ptr,longlong engine_result_fla
         (**(code **)(*plStack_278 + 0x38))();
       }
       (**(code **)(*pengine_temp_long9 + 0x38))(pengine_temp_long9);
-      FUN_1808fc8a8(auStack_238,8,0x10,engine_update_game_state);
+      engine_unnamed_function_6548(auStack_238,8,0x10,engine_update_game_state);
     }
   }
                     // WARNING: Subroutine does not return
@@ -58879,11 +58879,11 @@ void FUN_180099430(longlong engine_data_structure_ptr,longlong engine_result_fla
 
 
 
-// void FUN_180099f60(uint64 engine_data_structure_ptr)
-void FUN_180099f60(uint64 engine_data_structure_ptr)
+// void engine_unnamed_function_4530(uint64 engine_data_structure_ptr)
+void engine_unnamed_function_4530(uint64 engine_data_structure_ptr)
 
 {
-  FUN_1808fc8a8(engine_data_structure_ptr,8,0x10,engine_update_game_state,0xfffffffffffffffe);
+  engine_unnamed_function_6548(engine_data_structure_ptr,8,0x10,engine_update_game_state,0xfffffffffffffffe);
   return;
 }
 
@@ -58907,11 +58907,11 @@ engine_process_input_events(uint64 engine_data_structure_ptr,uint64 engine_resul
       _engine_data_30 = 0;
       _engine_data_20 = (void*)0x0;
       _engine_data_28 = 0;
-      FUN_1808fc820(FUN_1809419e0);
+      engine_unnamed_function_6530(engine_unnamed_function_6590);
       engine_set_game_state_data(&engine_data_10);
     }
   }
-  FUN_1801717e0(*(void*)(_engine_data_70 + 8),&engine_data_18,engine_comparison_params,engine_system_parameter_4,engine_temp_uint_2);
+  engine_unnamed_function_5560(*(void*)(_engine_data_70 + 8),&engine_data_18,engine_comparison_params,engine_system_parameter_4,engine_temp_uint_2);
   engine_data_pointer = &engine_data_73;
   if (_engine_data_20 != (void*)0x0) {
     engine_data_pointer = _engine_data_20;
@@ -58921,7 +58921,7 @@ engine_process_input_events(uint64 engine_data_structure_ptr,uint64 engine_resul
 
 
 
-uint8_t FUN_18009a080(uint64 engine_data_structure_ptr,longlong engine_result_flag_ptr,uint64 engine_comparison_params,uint64_t *engine_system_parameter_4)
+uint8_t engine_unnamed_function_4540(uint64 engine_data_structure_ptr,longlong engine_result_flag_ptr,uint64 engine_comparison_params,uint64_t *engine_system_parameter_4)
 
 {
   uint8 engine_temporary_uint;
@@ -58942,7 +58942,7 @@ uint8_t FUN_18009a080(uint64 engine_data_structure_ptr,longlong engine_result_fl
   uStackX_18 = engine_comparison_params;
   puStackX_20 = engine_system_parameter_4;
   engine_temp_uint_2 = func_0x000180220c90(*(uint32*)(engine_result_flag_ptr + 0x324));
-  FUN_18012e3b0();
+  engine_unnamed_function_5450();
   engine_current_node_ptr = &engine_data_73;
   if ((void*)engine_system_parameter_4[1] != (void*)0x0) {
     engine_current_node_ptr = (void*)engine_system_parameter_4[1];
@@ -58957,8 +58957,8 @@ uint8_t FUN_18009a080(uint64 engine_data_structure_ptr,longlong engine_result_fl
   uStackX_8 = 0;
   fStackX_14 = ((float)*(ushort *)(engine_result_flag_ptr + 0x32e) * 256.0) / (float)*(ushort *)(engine_result_flag_ptr + 0x32c);
   uStackX_10 = 0x43800000;
-  engine_temporary_uint = FUN_180110ca0(engine_result_flag_ptr,&uStackX_10,&uStackX_8,&uStackX_18,engine_temp_uint_4,&uStack_30,&uStack_40);
-  FUN_18012e4e0();
+  engine_temporary_uint = engine_unnamed_function_5360(engine_result_flag_ptr,&uStackX_10,&uStackX_8,&uStackX_18,engine_temp_uint_4,&uStack_30,&uStack_40);
+  engine_unnamed_function_5460();
   *engine_system_parameter_4 = &engine_system_context_data;
   if (engine_system_parameter_4[1] != 0) {
                     // WARNING: Subroutine does not return
@@ -58973,8 +58973,8 @@ uint8_t FUN_18009a080(uint64 engine_data_structure_ptr,longlong engine_result_fl
 
 
 
-// void FUN_18009a1e0(void)
-void FUN_18009a1e0(void)
+// void engine_unnamed_function_4550(void)
+void engine_unnamed_function_4550(void)
 
 {
                     // WARNING: Subroutine does not return
@@ -58984,8 +58984,8 @@ void FUN_18009a1e0(void)
 
 
 
-// void FUN_18009a4b0(uint64 engine_data_structure_ptr,uint64 engine_result_flag_ptr,longlong engine_comparison_params,longlong engine_system_parameter_4,
-void FUN_18009a4b0(uint64 engine_data_structure_ptr,uint64 engine_result_flag_ptr,longlong engine_comparison_params,longlong engine_system_parameter_4,
+// void engine_unnamed_function_4560(uint64 engine_data_structure_ptr,uint64 engine_result_flag_ptr,longlong engine_comparison_params,longlong engine_system_parameter_4,
+void engine_unnamed_function_4560(uint64 engine_data_structure_ptr,uint64 engine_result_flag_ptr,longlong engine_comparison_params,longlong engine_system_parameter_4,
                   longlong param_5)
 
 {
@@ -59015,7 +59015,7 @@ void FUN_18009a4b0(uint64 engine_data_structure_ptr,uint64 engine_result_flag_pt
   if (*(longlong *)(param_5 + 0x50) - (longlong)pengine_temp_long2 >> 3 != 0) {
     memory_allocation_result = 0;
     do {
-      engine_temp_float_20 = (float)FUN_18009ae50(engine_result_flag_ptr,*(void*)(memory_allocation_result + *(longlong *)(param_5 + 0x48)));
+      engine_temp_float_20 = (float)engine_unnamed_function_4590(engine_result_flag_ptr,*(void*)(memory_allocation_result + *(longlong *)(param_5 + 0x48)));
       engine_temp_int3 = engine_temp_int3 + 1;
       *(double *)(*(longlong *)(memory_allocation_result + *(longlong *)(param_5 + 0x48)) + 0x40) = (double)engine_temp_float_20;
       pengine_temp_long2 = *(longlong **)(param_5 + 0x48);
@@ -59030,7 +59030,7 @@ void FUN_18009a4b0(uint64 engine_data_structure_ptr,uint64 engine_result_flag_pt
     for (memory_allocation_result = engine_temp_long6; memory_allocation_result != 0; memory_allocation_result = memory_allocation_result >> 1) {
       engine_temp_int3 = engine_temp_int3 + 1;
     }
-    FUN_18009d630(pengine_temp_long2,main_context_pointer,(longlong)(engine_temp_int3 + -1) * 2,0);
+    engine_unnamed_function_5080(pengine_temp_long2,main_context_pointer,(longlong)(engine_temp_int3 + -1) * 2,0);
     pengine_temp_long8 = pengine_temp_long2;
     if (engine_temp_long6 < 0x1d) {
       while (pengine_temp_long8 = pengine_temp_long8 + 1, pengine_temp_long8 != main_context_pointer) {
@@ -59093,7 +59093,7 @@ void FUN_18009a4b0(uint64 engine_data_structure_ptr,uint64 engine_result_flag_pt
       }
     }
   }
-  next_data_pointer = (void*)FUN_1804c1300(engine_comparison_params + 0x60,0x60);
+  next_data_pointer = (void*)engine_unnamed_function_6200(engine_comparison_params + 0x60,0x60);
   engine_temp_uint5 = 0;
   *next_data_pointer = 0;
   next_data_pointer[1] = 0;
@@ -59112,12 +59112,12 @@ void FUN_18009a4b0(uint64 engine_data_structure_ptr,uint64 engine_result_flag_pt
   if (*(undefined **)(param_5 + 8) != (void*)0x0) {
     engine_data_ptr9 = *(undefined **)(param_5 + 8);
   }
-  FUN_180630b20(engine_comparison_params,next_data_pointer,&engine_special_flag_fc,engine_data_ptr9);
-  FUN_180630e10(engine_comparison_params,next_data_pointer,&engine_base_data_offset_10,*(double *)(param_5 + 0x40) * 1000.0);
+  engine_unnamed_function_6390(engine_comparison_params,next_data_pointer,&engine_special_flag_fc,engine_data_ptr9);
+  engine_unnamed_function_6400(engine_comparison_params,next_data_pointer,&engine_base_data_offset_10,*(double *)(param_5 + 0x40) * 1000.0);
   engine_temp_uint_7 = engine_temp_uint5;
   if (*(longlong *)(param_5 + 0x50) - *(longlong *)(param_5 + 0x48) >> 3 != 0) {
     do {
-      FUN_18009a4b0(engine_data_structure_ptr,engine_result_flag_ptr,engine_comparison_params,next_data_pointer,
+      engine_unnamed_function_4560(engine_data_structure_ptr,engine_result_flag_ptr,engine_comparison_params,next_data_pointer,
                     *(void*)(engine_temp_uint_7 + *(longlong *)(param_5 + 0x48)));
       engine_temp_uint4 = (int)engine_temp_uint5 + 1;
       engine_temp_uint5 = (ulonglong)engine_temp_uint4;
@@ -59144,8 +59144,8 @@ void FUN_18009a4b0(uint64 engine_data_structure_ptr,uint64 engine_result_flag_pt
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// void FUN_18009a7c0(uint64 engine_data_structure_ptr,uint64_t *engine_result_flag_ptr,longlong engine_comparison_params,longlong *engine_system_parameter_4,
-void FUN_18009a7c0(uint64 engine_data_structure_ptr,uint64_t *engine_result_flag_ptr,longlong engine_comparison_params,longlong *engine_system_parameter_4,
+// void engine_unnamed_function_4570(uint64 engine_data_structure_ptr,uint64_t *engine_result_flag_ptr,longlong engine_comparison_params,longlong *engine_system_parameter_4,
+void engine_unnamed_function_4570(uint64 engine_data_structure_ptr,uint64_t *engine_result_flag_ptr,longlong engine_comparison_params,longlong *engine_system_parameter_4,
                   int param_5)
 
 {
@@ -59255,7 +59255,7 @@ LAB_18009a8d1:
     if (engine_stack_pointer_78 != (void*)0x0) {
       engine_temp_uint_ptr_9 = engine_stack_pointer_78;
     }
-    engine_temp_int3 = FUN_1806298d0(&puStack_c0,engine_temp_uint_ptr_9);
+    engine_temp_int3 = engine_unnamed_function_6330(&puStack_c0,engine_temp_uint_ptr_9);
     engine_temp_uint1 = uStack_b0;
     if (engine_temp_int3 == 0) {
       engine_temp_uint4 = (ulonglong)(int)engine_stack_value_70;
@@ -59385,7 +59385,7 @@ LAB_18009abec:
         if (param_5 == -1) {
 LAB_18009ac35:
           engine_temporary_pointer[0xd] = plStackX_20;
-          FUN_18009a7c0(engine_data_structure_ptr,engine_result_flag_ptr,&engine_stack_param_a0,engine_temporary_pointer,param_5);
+          engine_unnamed_function_4570(engine_data_structure_ptr,engine_result_flag_ptr,&engine_stack_param_a0,engine_temporary_pointer,param_5);
           engine_prepare_render_buffer(pengine_temp_long_3 + 9,&local_resource_node);
         }
         else {
@@ -59429,7 +59429,7 @@ LAB_18009ac35:
 
 
 
-longlong FUN_18009ad10(longlong engine_data_structure_ptr,uint64 engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
+longlong engine_unnamed_function_4580(longlong engine_data_structure_ptr,uint64 engine_result_flag_ptr,uint64 engine_comparison_params,uint64 engine_system_parameter_4)
 
 {
   longlong engine_temporary_long;
@@ -59490,7 +59490,7 @@ longlong FUN_18009ad10(longlong engine_data_structure_ptr,uint64 engine_result_f
 
 
 
-float FUN_18009ae50(longlong engine_data_structure_ptr,longlong engine_result_flag_ptr)
+float engine_unnamed_function_4590(longlong engine_data_structure_ptr,longlong engine_result_flag_ptr)
 
 {
   longlong engine_temporary_long;
@@ -59527,7 +59527,7 @@ float FUN_18009ae50(longlong engine_data_structure_ptr,longlong engine_result_fl
 
 
 
-float FUN_18009ae87(longlong engine_data_structure_ptr)
+float engine_unnamed_function_4607(longlong engine_data_structure_ptr)
 
 {
   longlong in_RAX;
@@ -59552,7 +59552,7 @@ float FUN_18009ae87(longlong engine_data_structure_ptr)
 
 
 
-float FUN_18009aee2(void)
+float engine_unnamed_function_4612(void)
 
 {
   longlong unaff_RDI;
@@ -59565,8 +59565,8 @@ float FUN_18009aee2(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// void FUN_18009af00(uint64_t *engine_data_structure_ptr)
-void FUN_18009af00(uint64_t *engine_data_structure_ptr)
+// void engine_unnamed_function_4620(uint64_t *engine_data_structure_ptr)
+void engine_unnamed_function_4620(uint64_t *engine_data_structure_ptr)
 
 {
   longlong *pengine_temp_long;
@@ -59744,8 +59744,8 @@ void FUN_18009af00(uint64_t *engine_data_structure_ptr)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// void FUN_18009b10b(longlong engine_data_structure_ptr)
-void FUN_18009b10b(longlong engine_data_structure_ptr)
+// void engine_unnamed_function_463b(longlong engine_data_structure_ptr)
+void engine_unnamed_function_463b(longlong engine_data_structure_ptr)
 
 {
   longlong engine_temporary_long;
@@ -59813,8 +59813,8 @@ void FUN_18009b10b(longlong engine_data_structure_ptr)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// void FUN_18009b13a(void)
-void FUN_18009b13a(void)
+// void engine_unnamed_function_464a(void)
+void engine_unnamed_function_464a(void)
 
 {
   longlong engine_temporary_long;
@@ -59848,8 +59848,8 @@ void FUN_18009b13a(void)
 
 
 
-// void FUN_18009b19b(longlong engine_data_structure_ptr)
-void FUN_18009b19b(longlong engine_data_structure_ptr)
+// void engine_unnamed_function_465b(longlong engine_data_structure_ptr)
+void engine_unnamed_function_465b(longlong engine_data_structure_ptr)
 
 {
   longlong engine_temporary_long;
@@ -59887,8 +59887,8 @@ void FUN_18009b19b(longlong engine_data_structure_ptr)
 
 
 
-// void FUN_18009b216(void)
-void FUN_18009b216(void)
+// void engine_unnamed_function_4666(void)
+void engine_unnamed_function_4666(void)
 
 {
   return;
@@ -59899,8 +59899,8 @@ void FUN_18009b216(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// void FUN_18009b220(uint32_t *engine_data_structure_ptr)
-void FUN_18009b220(uint32_t *engine_data_structure_ptr)
+// void engine_unnamed_function_4670(uint32_t *engine_data_structure_ptr)
+void engine_unnamed_function_4670(uint32_t *engine_data_structure_ptr)
 
 {
   uint32 engine_temporary_uint;
@@ -59966,7 +59966,7 @@ void FUN_18009b220(uint32_t *engine_data_structure_ptr)
         if (engine_temp_int_5 + 1 < engine_temp_int_6) {
           comparison_result_index = engine_temp_int_6;
         }
-        FUN_18011dd10(pengine_temp_int_9,comparison_result_index);
+        engine_unnamed_function_5400(pengine_temp_int_9,comparison_result_index);
         engine_temp_int_5 = *pengine_temp_int_9;
       }
       engine_data_ptr1 = engine_data_ptr1 + 2;
@@ -59982,8 +59982,8 @@ void FUN_18009b220(uint32_t *engine_data_structure_ptr)
 
 
 
-// void FUN_18009b327(void)
-void FUN_18009b327(void)
+// void engine_unnamed_function_4687(void)
+void engine_unnamed_function_4687(void)
 
 {
   engine_undefined_value engine_temporary_uint;
@@ -59997,7 +59997,7 @@ void FUN_18009b327(void)
   do {
     engine_temporary_uint = *unaff_RDI;
     if (engine_temp_int_2 == engine_register_rbx[1]) {
-      FUN_18011dd10();
+      engine_unnamed_function_5400();
       engine_temp_int_2 = *engine_register_rbx;
     }
     unaff_RDI = unaff_RDI + 2;
@@ -60012,8 +60012,8 @@ void FUN_18009b327(void)
 
 
 
-// void FUN_18009b386(void)
-void FUN_18009b386(void)
+// void engine_unnamed_function_4696(void)
+void engine_unnamed_function_4696(void)
 
 {
   return;
@@ -60021,7 +60021,7 @@ void FUN_18009b386(void)
 
 
 
-uint64_t * FUN_18009b3a0(uint64_t *engine_data_structure_ptr,longlong engine_result_flag_ptr)
+uint64_t * engine_unnamed_function_4700(uint64_t *engine_data_structure_ptr,longlong engine_result_flag_ptr)
 
 {
   byte engine_temp_byte;
@@ -60091,14 +60091,14 @@ LAB_18009b467:
       if ((int)(engine_temp_byte - engine_temp_index) < 1) goto LAB_18009b467;
     }
   }
-  main_context_pointer = (longlong *)FUN_18009bcb0(engine_data_structure_ptr,auStackX_8,next_data_pointer,engine_temp_uint_ptr_9,engine_result_flag_ptr);
+  main_context_pointer = (longlong *)engine_unnamed_function_4850(engine_data_structure_ptr,auStackX_8,next_data_pointer,engine_temp_uint_ptr_9,engine_result_flag_ptr);
   return (void*)(*main_context_pointer + 0x40);
 }
 
 
 
 uint64_t *
-FUN_18009b3bc(uint64 engine_data_structure_ptr,longlong engine_result_flag_ptr,uint64_t *engine_comparison_params,uint64_t *engine_system_parameter_4)
+engine_unnamed_function_471c(uint64 engine_data_structure_ptr,longlong engine_result_flag_ptr,uint64_t *engine_comparison_params,uint64_t *engine_system_parameter_4)
 
 {
   byte engine_temp_byte;
@@ -60162,13 +60162,13 @@ LAB_18009b467:
       if ((int)(engine_temp_byte - engine_temp_index) < 1) goto LAB_18009b467;
     }
   }
-  main_context_pointer = (longlong *)FUN_18009bcb0();
+  main_context_pointer = (longlong *)engine_unnamed_function_4850();
   return (void*)(*main_context_pointer + 0x40);
 }
 
 
 
-longlong FUN_18009b42a(void)
+longlong engine_unnamed_function_472a(void)
 
 {
   byte engine_temp_byte;
@@ -60197,13 +60197,13 @@ LAB_18009b467:
       if ((int)(engine_temp_byte - engine_temp_uint_4) < 1) goto LAB_18009b467;
     }
   }
-  pengine_temp_long_3 = (longlong *)FUN_18009bcb0();
+  pengine_temp_long_3 = (longlong *)engine_unnamed_function_4850();
   return *pengine_temp_long_3 + 0x40;
 }
 
 
 
-uint64_t * FUN_18009b4a0(uint64_t *engine_data_structure_ptr,longlong engine_result_flag_ptr)
+uint64_t * engine_unnamed_function_4730(uint64_t *engine_data_structure_ptr,longlong engine_result_flag_ptr)
 
 {
   byte engine_temp_byte;
@@ -60273,14 +60273,14 @@ LAB_18009b567:
       if ((int)(engine_temp_byte - engine_temp_index) < 1) goto LAB_18009b567;
     }
   }
-  main_context_pointer = (longlong *)FUN_18009bf40(engine_data_structure_ptr,auStackX_8,next_data_pointer,engine_temp_uint_ptr_9,engine_result_flag_ptr);
+  main_context_pointer = (longlong *)engine_unnamed_function_4860(engine_data_structure_ptr,auStackX_8,next_data_pointer,engine_temp_uint_ptr_9,engine_result_flag_ptr);
   return (void*)(*main_context_pointer + 0x40);
 }
 
 
 
 uint64_t *
-FUN_18009b4bc(uint64 engine_data_structure_ptr,longlong engine_result_flag_ptr,uint64_t *engine_comparison_params,uint64_t *engine_system_parameter_4)
+engine_unnamed_function_474c(uint64 engine_data_structure_ptr,longlong engine_result_flag_ptr,uint64_t *engine_comparison_params,uint64_t *engine_system_parameter_4)
 
 {
   byte engine_temp_byte;
@@ -60344,13 +60344,13 @@ LAB_18009b567:
       if ((int)(engine_temp_byte - engine_temp_index) < 1) goto LAB_18009b567;
     }
   }
-  main_context_pointer = (longlong *)FUN_18009bf40();
+  main_context_pointer = (longlong *)engine_unnamed_function_4860();
   return (void*)(*main_context_pointer + 0x40);
 }
 
 
 
-longlong FUN_18009b52a(void)
+longlong engine_unnamed_function_475a(void)
 
 {
   byte engine_temp_byte;
@@ -60379,13 +60379,13 @@ LAB_18009b567:
       if ((int)(engine_temp_byte - engine_temp_uint_4) < 1) goto LAB_18009b567;
     }
   }
-  pengine_temp_long_3 = (longlong *)FUN_18009bf40();
+  pengine_temp_long_3 = (longlong *)engine_unnamed_function_4860();
   return *pengine_temp_long_3 + 0x40;
 }
 
 
 
-longlong * FUN_18009b5a0(longlong *engine_data_structure_ptr,longlong engine_result_flag_ptr,uint64 engine_comparison_params,ulonglong engine_system_parameter_4)
+longlong * engine_unnamed_function_4760(longlong *engine_data_structure_ptr,longlong engine_result_flag_ptr,uint64 engine_comparison_params,ulonglong engine_system_parameter_4)
 
 {
   byte engine_temp_byte;
@@ -60474,7 +60474,7 @@ LAB_18009b737:
       main_context_pointer = engine_temp_ptr_5;
 LAB_18009b73a:
       if (main_context_pointer != (longlong *)0x0) {
-        FUN_18009cde0(engine_data_structure_ptr,&lStackX_8,main_context_pointer,engine_system_parameter_4,engine_result_flag_ptr);
+        engine_unnamed_function_5000(engine_data_structure_ptr,&lStackX_8,main_context_pointer,engine_system_parameter_4,engine_result_flag_ptr);
         goto LAB_18009b76b;
       }
     }
@@ -60511,7 +60511,7 @@ LAB_18009b73a:
     }
   }
 LAB_18009b758:
-  engine_temp_ptr_5 = (longlong *)FUN_18009cc10(engine_data_structure_ptr,auStack_18,main_context_pointer,engine_result_flag_ptr);
+  engine_temp_ptr_5 = (longlong *)engine_unnamed_function_4990(engine_data_structure_ptr,auStack_18,main_context_pointer,engine_result_flag_ptr);
   lStackX_8 = *engine_temp_ptr_5;
 LAB_18009b76b:
   return (longlong *)(lStackX_8 + 0x40);
@@ -60519,7 +60519,7 @@ LAB_18009b76b:
 
 
 
-longlong * FUN_18009b780(longlong *engine_data_structure_ptr,longlong engine_result_flag_ptr,uint64 engine_comparison_params,ulonglong engine_system_parameter_4)
+longlong * engine_unnamed_function_4770(longlong *engine_data_structure_ptr,longlong engine_result_flag_ptr,uint64 engine_comparison_params,ulonglong engine_system_parameter_4)
 
 {
   byte engine_temp_byte;
@@ -60608,7 +60608,7 @@ LAB_18009b917:
       main_context_pointer = engine_temp_ptr_5;
 LAB_18009b91a:
       if (main_context_pointer != (longlong *)0x0) {
-        FUN_18009cb10(engine_data_structure_ptr,&lStackX_8,main_context_pointer,engine_system_parameter_4,engine_result_flag_ptr);
+        engine_unnamed_function_4980(engine_data_structure_ptr,&lStackX_8,main_context_pointer,engine_system_parameter_4,engine_result_flag_ptr);
         goto LAB_18009b94b;
       }
     }
@@ -60645,7 +60645,7 @@ LAB_18009b91a:
     }
   }
 LAB_18009b938:
-  engine_temp_ptr_5 = (longlong *)FUN_18009c940(engine_data_structure_ptr,auStack_18,main_context_pointer,engine_result_flag_ptr);
+  engine_temp_ptr_5 = (longlong *)engine_unnamed_function_4970(engine_data_structure_ptr,auStack_18,main_context_pointer,engine_result_flag_ptr);
   lStackX_8 = *engine_temp_ptr_5;
 LAB_18009b94b:
   return (longlong *)(lStackX_8 + 0x40);
@@ -60653,7 +60653,7 @@ LAB_18009b94b:
 
 
 
-uint64_t * FUN_18009b960(uint64_t *engine_data_structure_ptr,longlong engine_result_flag_ptr)
+uint64_t * engine_unnamed_function_4780(uint64_t *engine_data_structure_ptr,longlong engine_result_flag_ptr)
 
 {
   byte engine_temp_byte;
@@ -60723,14 +60723,14 @@ LAB_18009ba27:
       if ((int)(engine_temp_byte - engine_temp_index) < 1) goto LAB_18009ba27;
     }
   }
-  main_context_pointer = (longlong *)FUN_18009c090(engine_data_structure_ptr,auStackX_8,next_data_pointer,engine_temp_uint_ptr_9,engine_result_flag_ptr);
+  main_context_pointer = (longlong *)engine_unnamed_function_4870(engine_data_structure_ptr,auStackX_8,next_data_pointer,engine_temp_uint_ptr_9,engine_result_flag_ptr);
   return (void*)(*main_context_pointer + 0x40);
 }
 
 
 
 uint64_t *
-FUN_18009b97c(uint64 engine_data_structure_ptr,longlong engine_result_flag_ptr,uint64_t *engine_comparison_params,uint64_t *engine_system_parameter_4)
+engine_unnamed_function_479c(uint64 engine_data_structure_ptr,longlong engine_result_flag_ptr,uint64_t *engine_comparison_params,uint64_t *engine_system_parameter_4)
 
 {
   byte engine_temp_byte;
@@ -60794,13 +60794,13 @@ LAB_18009ba27:
       if ((int)(engine_temp_byte - engine_temp_index) < 1) goto LAB_18009ba27;
     }
   }
-  main_context_pointer = (longlong *)FUN_18009c090();
+  main_context_pointer = (longlong *)engine_unnamed_function_4870();
   return (void*)(*main_context_pointer + 0x40);
 }
 
 
 
-longlong FUN_18009b9ea(void)
+longlong engine_unnamed_function_480a(void)
 
 {
   byte engine_temp_byte;
@@ -60829,13 +60829,13 @@ LAB_18009ba27:
       if ((int)(engine_temp_byte - engine_temp_uint_4) < 1) goto LAB_18009ba27;
     }
   }
-  pengine_temp_long_3 = (longlong *)FUN_18009c090();
+  pengine_temp_long_3 = (longlong *)engine_unnamed_function_4870();
   return *pengine_temp_long_3 + 0x40;
 }
 
 
 
-uint64_t * FUN_18009ba60(uint64_t *engine_data_structure_ptr,longlong engine_result_flag_ptr)
+uint64_t * engine_unnamed_function_4810(uint64_t *engine_data_structure_ptr,longlong engine_result_flag_ptr)
 
 {
   byte engine_temp_byte;
@@ -60905,14 +60905,14 @@ LAB_18009bb27:
       if ((int)(engine_temp_byte - engine_temp_index) < 1) goto LAB_18009bb27;
     }
   }
-  main_context_pointer = (longlong *)FUN_18009c320(engine_data_structure_ptr,auStackX_8,next_data_pointer,engine_temp_uint_ptr_9,engine_result_flag_ptr);
+  main_context_pointer = (longlong *)engine_unnamed_function_4880(engine_data_structure_ptr,auStackX_8,next_data_pointer,engine_temp_uint_ptr_9,engine_result_flag_ptr);
   return (void*)(*main_context_pointer + 0x40);
 }
 
 
 
 uint64_t *
-FUN_18009ba7c(uint64 engine_data_structure_ptr,longlong engine_result_flag_ptr,uint64_t *engine_comparison_params,uint64_t *engine_system_parameter_4)
+engine_unnamed_function_482c(uint64 engine_data_structure_ptr,longlong engine_result_flag_ptr,uint64_t *engine_comparison_params,uint64_t *engine_system_parameter_4)
 
 {
   byte engine_temp_byte;
@@ -60976,13 +60976,13 @@ LAB_18009bb27:
       if ((int)(engine_temp_byte - engine_temp_index) < 1) goto LAB_18009bb27;
     }
   }
-  main_context_pointer = (longlong *)FUN_18009c320();
+  main_context_pointer = (longlong *)engine_unnamed_function_4880();
   return (void*)(*main_context_pointer + 0x40);
 }
 
 
 
-longlong FUN_18009baea(void)
+longlong engine_unnamed_function_483a(void)
 
 {
   byte engine_temp_byte;
@@ -61011,7 +61011,7 @@ LAB_18009bb27:
       if ((int)(engine_temp_byte - engine_temp_uint_4) < 1) goto LAB_18009bb27;
     }
   }
-  pengine_temp_long_3 = (longlong *)FUN_18009c320();
+  pengine_temp_long_3 = (longlong *)engine_unnamed_function_4880();
   return *pengine_temp_long_3 + 0x40;
 }
 
@@ -61019,7 +61019,7 @@ LAB_18009bb27:
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-longlong * FUN_18009bb60(uint64 engine_data_structure_ptr,longlong *engine_result_flag_ptr,uint64 engine_comparison_params,uint32_t engine_system_parameter_4)
+longlong * engine_unnamed_function_4840(uint64 engine_data_structure_ptr,longlong *engine_result_flag_ptr,uint64 engine_comparison_params,uint32_t engine_system_parameter_4)
 
 {
   uint64 engine_temporary_uint;
@@ -61048,7 +61048,7 @@ longlong * FUN_18009bb60(uint64 engine_data_structure_ptr,longlong *engine_resul
   *(uint8*)(engine_current_node_ptr + 7) = 0;
   uStack_38 = 0x1c;
   uStack_30._0_4_ = engine_temp_uint_2;
-  FUN_1802037e0(0,engine_system_parameter_4,&puStack_48);
+  engine_unnamed_function_5770(0,engine_system_parameter_4,&puStack_48);
   puStack_48 = &engine_system_context_data;
   if (engine_stack_pointer_40 != (uint32*)0x0) {
                     // WARNING: Subroutine does not return
@@ -61057,7 +61057,7 @@ longlong * FUN_18009bb60(uint64 engine_data_structure_ptr,longlong *engine_resul
   engine_stack_pointer_40 = (uint32*)0x0;
   uStack_30 = (ulonglong)uStack_30._4_4_ << 0x20;
   puStack_48 = &engine_data_18098bcb0;
-  FUN_180082aa0(engine_temporary_uint,engine_result_flag_ptr);
+  engine_unnamed_function_2280(engine_temporary_uint,engine_result_flag_ptr);
   *(void*)(*engine_result_flag_ptr + 0x10) = engine_comparison_params;
   *(uint32*)(*engine_result_flag_ptr + 0x18) = engine_system_parameter_4;
   *(uint32*)(*engine_result_flag_ptr + 0x1c) = engine_system_parameter_4;
@@ -61070,7 +61070,7 @@ longlong * FUN_18009bb60(uint64 engine_data_structure_ptr,longlong *engine_resul
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 uint64_t *
-FUN_18009bcb0(longlong *engine_data_structure_ptr,uint64_t *engine_result_flag_ptr,uint64 engine_comparison_params,longlong *engine_system_parameter_4,
+engine_unnamed_function_4850(longlong *engine_data_structure_ptr,uint64_t *engine_result_flag_ptr,uint64 engine_comparison_params,longlong *engine_system_parameter_4,
              longlong param_5)
 
 {
@@ -61104,7 +61104,7 @@ LAB_18009bdb7:
       engine_temp_uint_9 = (ulonglong)pengine_temp_long_8 & 0xffffffffffffff00;
 LAB_18009bdba:
       if (engine_temp_ptr_5 != (longlong *)0x0) {
-        FUN_18009c860(engine_data_structure_ptr,engine_result_flag_ptr,engine_temp_ptr_5,engine_temp_uint_9,param_5);
+        engine_unnamed_function_4960(engine_data_structure_ptr,engine_result_flag_ptr,engine_temp_ptr_5,engine_temp_uint_9,param_5);
         return engine_result_flag_ptr;
       }
     }
@@ -61228,7 +61228,7 @@ LAB_18009bed0:
 
 
 uint64_t *
-FUN_18009bf40(longlong *engine_data_structure_ptr,uint64_t *engine_result_flag_ptr,uint64 engine_comparison_params,longlong *engine_system_parameter_4,
+engine_unnamed_function_4860(longlong *engine_data_structure_ptr,uint64_t *engine_result_flag_ptr,uint64 engine_comparison_params,longlong *engine_system_parameter_4,
              longlong param_5)
 
 {
@@ -61288,11 +61288,11 @@ LAB_18009c037:
     engine_system_parameter_4 = pengine_temp_long_2;
   }
   if (engine_system_parameter_4 != (longlong *)0x0) {
-    FUN_18009cb10(engine_data_structure_ptr,engine_result_flag_ptr,engine_system_parameter_4,engine_temp_uint64_value,param_5);
+    engine_unnamed_function_4980(engine_data_structure_ptr,engine_result_flag_ptr,engine_system_parameter_4,engine_temp_uint64_value,param_5);
     return engine_result_flag_ptr;
   }
 LAB_18009c054:
-  engine_next_node_ptr = (void*)FUN_18009c940(engine_data_structure_ptr,auStack_18);
+  engine_next_node_ptr = (void*)engine_unnamed_function_4970(engine_data_structure_ptr,auStack_18);
   *engine_result_flag_ptr = *engine_next_node_ptr;
   return engine_result_flag_ptr;
 }
@@ -61302,7 +61302,7 @@ LAB_18009c054:
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 uint64_t *
-FUN_18009c090(longlong *engine_data_structure_ptr,uint64_t *engine_result_flag_ptr,uint64 engine_comparison_params,longlong *engine_system_parameter_4,
+engine_unnamed_function_4870(longlong *engine_data_structure_ptr,uint64_t *engine_result_flag_ptr,uint64 engine_comparison_params,longlong *engine_system_parameter_4,
              longlong param_5)
 
 {
@@ -61336,7 +61336,7 @@ LAB_18009c197:
       engine_temp_uint_9 = (ulonglong)pengine_temp_long_8 & 0xffffffffffffff00;
 LAB_18009c19a:
       if (engine_temp_ptr_5 != (longlong *)0x0) {
-        FUN_18009cee0(engine_data_structure_ptr,engine_result_flag_ptr,engine_temp_ptr_5,engine_temp_uint_9,param_5);
+        engine_unnamed_function_5010(engine_data_structure_ptr,engine_result_flag_ptr,engine_temp_ptr_5,engine_temp_uint_9,param_5);
         return engine_result_flag_ptr;
       }
     }
@@ -61462,7 +61462,7 @@ LAB_18009c2b0:
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 uint64_t *
-FUN_18009c320(longlong *engine_data_structure_ptr,uint64_t *engine_result_flag_ptr,uint64 engine_comparison_params,longlong *engine_system_parameter_4,
+engine_unnamed_function_4880(longlong *engine_data_structure_ptr,uint64_t *engine_result_flag_ptr,uint64 engine_comparison_params,longlong *engine_system_parameter_4,
              longlong param_5)
 
 {
@@ -61496,7 +61496,7 @@ LAB_18009c427:
       engine_temp_uint_9 = (ulonglong)pengine_temp_long_8 & 0xffffffffffffff00;
 LAB_18009c42a:
       if (engine_temp_ptr_5 != (longlong *)0x0) {
-        FUN_18009cfc0(engine_data_structure_ptr,engine_result_flag_ptr,engine_temp_ptr_5,engine_temp_uint_9,param_5);
+        engine_unnamed_function_5020(engine_data_structure_ptr,engine_result_flag_ptr,engine_temp_ptr_5,engine_temp_uint_9,param_5);
         return engine_result_flag_ptr;
       }
     }
@@ -61612,7 +61612,7 @@ LAB_18009c4f7:
 LAB_18009c540:
   engine_temp_long_7 = engine_call_memory_extender(_engine_data_18,0x1c0,(char)engine_data_structure_ptr[5]);
   engine_call_data_writer(engine_temp_long_7 + 0x20,param_5);
-  FUN_18009ad10(engine_temp_long_7 + 0x40);
+  engine_unnamed_function_4580(engine_temp_long_7 + 0x40);
                     // WARNING: Subroutine does not return
   engine_call_system_controller(engine_temp_long_7,pengine_temp_long_8,engine_data_structure_ptr,engine_temp_uint0);
 }
@@ -61622,7 +61622,7 @@ LAB_18009c540:
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 uint64_t *
-FUN_18009c5b0(longlong *engine_data_structure_ptr,uint64_t *engine_result_flag_ptr,uint64 engine_comparison_params,longlong *engine_system_parameter_4,
+engine_unnamed_function_4890(longlong *engine_data_structure_ptr,uint64_t *engine_result_flag_ptr,uint64 engine_comparison_params,longlong *engine_system_parameter_4,
              int *param_5)
 
 {
@@ -61649,7 +61649,7 @@ LAB_18009c60f:
       engine_system_parameter_4 = pengine_temp_long_3;
 LAB_18009c612:
       if (engine_system_parameter_4 != (longlong *)0x0) {
-        FUN_18009d0a0(engine_data_structure_ptr,engine_result_flag_ptr,engine_system_parameter_4,engine_temp_uint_6,param_5);
+        engine_unnamed_function_5030(engine_data_structure_ptr,engine_result_flag_ptr,engine_system_parameter_4,engine_temp_uint_6,param_5);
         return engine_result_flag_ptr;
       }
     }
@@ -61673,7 +61673,7 @@ LAB_18009c612:
   if (engine_temp_byte) {
     if (pengine_temp_long_3 == (longlong *)engine_data_structure_ptr[1]) {
       engine_temp_int_2 = *param_5;
-      goto FUN_18009c68a;
+      goto engine_unnamed_function_490a;
     }
     main_context_pointer = (longlong *)func_0x00018066b9a0(pengine_temp_long_3);
   }
@@ -61682,7 +61682,7 @@ LAB_18009c612:
     *engine_result_flag_ptr = main_context_pointer;
     return engine_result_flag_ptr;
   }
-FUN_18009c68a:
+engine_unnamed_function_490a:
   if ((pengine_temp_long_3 == engine_data_structure_ptr) || (engine_temp_int_2 < (int)pengine_temp_long_3[4])) {
     engine_temp_uint_6 = 0;
   }
@@ -61701,8 +61701,8 @@ FUN_18009c68a:
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// void FUN_18009c68a(void)
-void FUN_18009c68a(void)
+// void engine_unnamed_function_490a(void)
+void engine_unnamed_function_490a(void)
 
 {
   longlong engine_temporary_long;
@@ -61721,8 +61721,8 @@ void FUN_18009c68a(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// void FUN_18009c6a1(void)
-void FUN_18009c6a1(void)
+// void engine_unnamed_function_4911(void)
+void engine_unnamed_function_4911(void)
 
 {
   longlong engine_temporary_long;
@@ -61741,8 +61741,8 @@ void FUN_18009c6a1(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// void FUN_18009c6a5(void)
-void FUN_18009c6a5(void)
+// void engine_unnamed_function_4915(void)
+void engine_unnamed_function_4915(void)
 
 {
   longlong engine_temporary_long;
@@ -61759,8 +61759,8 @@ void FUN_18009c6a5(void)
 
 
 
-// void FUN_18009c6e7(void)
-void FUN_18009c6e7(void)
+// void engine_unnamed_function_4927(void)
+void engine_unnamed_function_4927(void)
 
 {
   uint64 engine_register_rbx;
@@ -61773,8 +61773,8 @@ void FUN_18009c6e7(void)
 
 
 
-// void FUN_18009c700(int *engine_data_structure_ptr,int *engine_result_flag_ptr,uint64_t *engine_comparison_params)
-void FUN_18009c700(int *engine_data_structure_ptr,int *engine_result_flag_ptr,uint64_t *engine_comparison_params)
+// void engine_unnamed_function_4930(int *engine_data_structure_ptr,int *engine_result_flag_ptr,uint64_t *engine_comparison_params)
+void engine_unnamed_function_4930(int *engine_data_structure_ptr,int *engine_result_flag_ptr,uint64_t *engine_comparison_params)
 
 {
   int engine_temporary_int;
@@ -61793,13 +61793,13 @@ void FUN_18009c700(int *engine_data_structure_ptr,int *engine_result_flag_ptr,ui
     for (engine_temp_long_2 = engine_temp_long_6; engine_temp_long_2 != 0; engine_temp_long_2 = engine_temp_long_2 >> 1) {
       engine_temp_int_8 = engine_temp_int_8 + 1;
     }
-    FUN_18009d4f0(engine_data_structure_ptr,engine_result_flag_ptr,(longlong)(engine_temp_int_8 + -1) * 2,engine_comparison_params);
+    engine_unnamed_function_5070(engine_data_structure_ptr,engine_result_flag_ptr,(longlong)(engine_temp_int_8 + -1) * 2,engine_comparison_params);
     if (engine_temp_long_6 < 0x1d) {
-      FUN_18009d290(engine_data_structure_ptr,engine_result_flag_ptr,engine_comparison_params);
+      engine_unnamed_function_5050(engine_data_structure_ptr,engine_result_flag_ptr,engine_comparison_params);
     }
     else {
       pengine_temp_int_9 = engine_data_structure_ptr + 0x1c;
-      FUN_18009d290(engine_data_structure_ptr,pengine_temp_int_9,engine_comparison_params);
+      engine_unnamed_function_5050(engine_data_structure_ptr,pengine_temp_int_9,engine_comparison_params);
       if (pengine_temp_int_9 != engine_result_flag_ptr) {
 LAB_18009c790:
         engine_temp_int_8 = *pengine_temp_int_9;
@@ -61863,8 +61863,8 @@ LAB_18009c82a:
 
 
 
-// void FUN_18009c718(longlong engine_data_structure_ptr,int *engine_result_flag_ptr,uint64_t *engine_comparison_params)
-void FUN_18009c718(longlong engine_data_structure_ptr,int *engine_result_flag_ptr,uint64_t *engine_comparison_params)
+// void engine_unnamed_function_4948(longlong engine_data_structure_ptr,int *engine_result_flag_ptr,uint64_t *engine_comparison_params)
+void engine_unnamed_function_4948(longlong engine_data_structure_ptr,int *engine_result_flag_ptr,uint64_t *engine_comparison_params)
 
 {
   int engine_temporary_int;
@@ -61882,13 +61882,13 @@ void FUN_18009c718(longlong engine_data_structure_ptr,int *engine_result_flag_pt
   for (engine_temp_long_2 = engine_temp_long_6; engine_temp_long_2 != 0; engine_temp_long_2 = engine_temp_long_2 >> 1) {
     engine_temp_int_8 = engine_temp_int_8 + 1;
   }
-  FUN_18009d4f0(engine_data_structure_ptr,engine_result_flag_ptr,(longlong)(engine_temp_int_8 + -1) * 2,engine_comparison_params);
+  engine_unnamed_function_5070(engine_data_structure_ptr,engine_result_flag_ptr,(longlong)(engine_temp_int_8 + -1) * 2,engine_comparison_params);
   if (engine_temp_long_6 < 0x1d) {
-    FUN_18009d290(engine_data_structure_ptr,engine_result_flag_ptr,engine_comparison_params);
+    engine_unnamed_function_5050(engine_data_structure_ptr,engine_result_flag_ptr,engine_comparison_params);
   }
   else {
     pengine_temp_int_9 = (int *)(engine_data_structure_ptr + 0x70);
-    FUN_18009d290(engine_data_structure_ptr,pengine_temp_int_9,engine_comparison_params);
+    engine_unnamed_function_5050(engine_data_structure_ptr,pengine_temp_int_9,engine_comparison_params);
     if (pengine_temp_int_9 != engine_result_flag_ptr) {
 LAB_18009c790:
       engine_temp_int_8 = *pengine_temp_int_9;
@@ -61951,8 +61951,8 @@ LAB_18009c82a:
 
 
 
-// void FUN_18009c76a(uint64 engine_data_structure_ptr)
-void FUN_18009c76a(uint64 engine_data_structure_ptr)
+// void engine_unnamed_function_495a(uint64 engine_data_structure_ptr)
+void engine_unnamed_function_495a(uint64 engine_data_structure_ptr)
 
 {
   int engine_temporary_int;
@@ -61967,7 +61967,7 @@ void FUN_18009c76a(uint64 engine_data_structure_ptr)
   int *pengine_temp_int_7;
   
   pengine_temp_int_7 = (int *)(unaff_RDI + 0x70);
-  FUN_18009d290(engine_data_structure_ptr,pengine_temp_int_7);
+  engine_unnamed_function_5050(engine_data_structure_ptr,pengine_temp_int_7);
 joined_r0x00018009c77e:
   if (pengine_temp_int_7 == unaff_RBP) {
     return;
@@ -62060,7 +62060,7 @@ void engine_null_operation_handler(void)
 void engine_trigger_system_cleanup(void)
 
 {
-  FUN_18009d290();
+  engine_unnamed_function_5050();
   return;
 }
 
