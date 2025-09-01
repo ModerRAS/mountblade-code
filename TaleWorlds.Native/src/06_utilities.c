@@ -1220,8 +1220,7 @@ uint32_t MemoryEncryptionTertiaryConfig;
 uint32_t MemoryEncryptionQuaternaryConfig;
 void* MemoryEncryptionReservedMemory;
 
- void InitializeMemoryVirtualization(void);
-/**
+ /**
  * @brief 初始化内存虚拟化
  * 
  * 该函数负责初始化内存虚拟化系统
@@ -1234,8 +1233,7 @@ uint32_t MemoryVirtualizationTertiaryConfig;
 uint32_t MemoryVirtualizationQuaternaryConfig;
 void* MemoryVirtualizationReservedMemory;
 
- void SetupMemoryPrefetch(void);
-/**
+ /**
  * @brief 设置内存预取
  * 
  * 该函数负责设置内存预取机制
@@ -1248,8 +1246,7 @@ uint32_t MemoryPrefetchTertiaryConfig;
 uint32_t MemoryPrefetchQuaternaryConfig;
 void* MemoryPrefetchReservedMemory;
 
- void InitializeMemoryBandwidth(void);
-/**
+ /**
  * @brief 初始化内存带宽管理
  * 
  * 该函数负责初始化内存带宽管理系统
@@ -1262,8 +1259,7 @@ uint32_t MemoryBandwidthTertiaryConfig;
 uint32_t MemoryBandwidthQuaternaryConfig;
 void* MemoryBandwidthReservedMemory;
 
- void ConfigureMemoryLatency(void);
-/**
+ /**
  * @brief 配置内存延迟
  * 
  * 该函数负责配置内存延迟参数
@@ -1293,9 +1289,8 @@ void InitializeMemoryThroughput(void);
  * 配置内存错误检测和纠正功能
  */
 void SetupMemoryReliability(void);
-void* SystemMemoryPool;
 void* SystemMemoryCache;
-void* SystemMemoryPoolBuffer;
+void* SystemMemoryReliabilityBuffer;
 void* SystemMemoryDescriptor;
 void* MemoryReliabilityConfigData;
 void* SecurityContextData;
@@ -1547,12 +1542,12 @@ uint8_t FreeMemoryDataBuffer;
  * 调整已分配内存块的大小
  */
 void ReallocateMemoryBlock(void);
-uint8_t ReallocConfig;
-uint8_t ReallocStatus;
-uint8_t ReallocContext;
-uint8_t ReallocHandle;
-uint8_t ReallocData;
-uint8_t ReallocBuffer;
+uint8_t ReallocateMemoryConfig;
+uint8_t ReallocateMemoryStatus;
+uint8_t ReallocateMemoryContext;
+uint8_t ReallocateMemoryHandle;
+uint8_t ReallocateMemoryData;
+uint8_t ReallocateMemoryBuffer;
 
  void CopyMemoryBlock(void);
 /**
