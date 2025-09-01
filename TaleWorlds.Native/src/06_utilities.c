@@ -3445,9 +3445,9 @@ uint8_t VerifyObjectRegistration(int64_t objectContext)
         *(int *)(RegistrationObjectData + REGISTRATION_COUNT_OFFSET) = *(int *)(RegistrationObjectData + REGISTRATION_COUNT_OFFSET) + 1;
       }
       else {
-        registrationStatus = ValidateObjectRegistrationData(registrationObjectData + REGISTRATION_VALIDATION_DATA_OFFSET,registrationObjectHandle);
-        if ((int)registrationStatus != 0) {
-          return registrationStatus;
+        RegistrationStatus = ValidateObjectRegistrationData(RegistrationObjectData + REGISTRATION_VALIDATION_DATA_OFFSET,registrationObjectHandle);
+        if ((int)RegistrationStatus != 0) {
+          return RegistrationStatus;
         }
       }
     }
