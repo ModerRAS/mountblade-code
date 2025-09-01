@@ -10951,7 +10951,7 @@ LAB_180043e47:
 
 
 undefined8 *
-FUN_180043f30(undefined8 *engine_param_1,ulonglong engine_param_2,uint64 param_3,uint64 param_4)
+FUN_180043f30(uint64 engine_param_1,ulonglong engine_param_2,uint64 param_3,uint64 param_4)
 
 {
   *engine_param_1 = &UNK_18098bd40;
@@ -10978,8 +10978,8 @@ void FUN_180043f90(void)
 
 
 
-// 函数: void engine_configure_display_settings(undefined8 *engine_param_1)
-void engine_configure_display_settings(undefined8 *engine_param_1)
+// 函数: void engine_configure_display_settings(uint64 engine_param_1)
+void engine_configure_display_settings(uint64 engine_param_1)
 
 {
   *engine_param_1 = &UNK_18098bcb0;
@@ -11567,8 +11567,8 @@ void FUN_180045bc1(void)
 
 
 
-// 函数: void FUN_180045be6(undefined1 *engine_param_1)
-void FUN_180045be6(undefined1 *engine_param_1)
+// 函数: void FUN_180045be6(uint8* engine_param_1)
+void FUN_180045be6(uint8* engine_param_1)
 
 {
   longlong unaff_RDI;
@@ -11592,7 +11592,7 @@ void FUN_180045c00(void)
 
 
 undefined8 *
-FUN_180045d80(undefined8 *engine_param_1,ulonglong engine_param_2,uint64 param_3,uint64 param_4)
+FUN_180045d80(uint64 engine_param_1,ulonglong engine_param_2,uint64 param_3,uint64 param_4)
 
 {
   *engine_param_1 = &UNK_18098bcb0;
@@ -11604,7 +11604,7 @@ FUN_180045d80(undefined8 *engine_param_1,ulonglong engine_param_2,uint64 param_3
 
 
 
-undefined8 * FUN_180045dc0(undefined8 *engine_param_1,uint engine_param_2)
+undefined8 * FUN_180045dc0(uint64 engine_param_1,uint engine_param_2)
 
 {
   *engine_param_1 = &engine_unknown_70;
