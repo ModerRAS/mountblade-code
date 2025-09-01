@@ -235,31 +235,31 @@ void* system_module_sync_manager;
 // 系统模块全局配置数据
 void* system_module_global_config_data;
 // 系统模块本地配置数据
-void* system_module_system_local_system_config_data;
+void* system_module_local_config_data;
 // 系统模块状态标志1
 char system_module_init_status;
 // 系统模块状态标志2
-char system_module_system_status_flag2;
+char system_module_runtime_status_flag;
 // 系统模块状态标志3
-char system_module_system_status_flag3;
+char system_module_error_status_flag;
 // 系统模块状态标志4
-char system_module_system_status_flag4;
+char system_module_warning_status_flag;
 // 系统模块同步管理器
 // 系统模块错误管理器
-void* system_module_system_error_varmanager;
+void* system_module_error_manager;
 // 系统模块警告管理器
-void* system_module_system_warning_manager;
+void* system_module_warning_manager;
 // 系统模块信息管理器
-void* system_module_system_info_manager;
+void* system_module_info_manager;
 // 系统模块调试信息管理器
-void* system_module_system_debug_system_info_manager;
+void* system_module_debug_info_manager;
 // 系统模块配置管理器
-void* system_module_system_config_manager;
+void* system_module_config_manager;
 // 系统模块数据管理器
-void* system_module_system_data_manager;
+void* system_module_data_manager;
 // 系统模块缓存管理器
 // 系统模块网络管理器
-void* system_module_system_network_manager;
+void* system_module_network_manager;
 // 系统模块安全管理器
 // 系统模块性能管理器
 // 系统模块统计管理器
@@ -268,13 +268,13 @@ void* system_module_system_network_manager;
 // 系统模块恢复管理器
 // 系统模块清理管理器
 // 系统模块初始化管理器
-void* system_module_system_init_manager;
+void* system_module_init_manager;
 // 系统模块关闭管理器
 void* system_module_shutdown_manager;
 // 系统模块重启管理器
-void* system_module_resystem_start_manager;
+void* system_module_restart_manager;
 // 系统模块更新管理器
-void* system_module_upsystem_date_manager;
+void* system_module_update_manager;
 // 系统模块验证管理器
 void* system_module_validation_manager;
 // 系统模块测试管理器
@@ -1837,7 +1837,22 @@ void system_initialize_error(void)
 
 
 
-void system_initialize_func_be0(void)
+/**
+ * @brief 系统资源管理器初始化函数
+ * 
+ * 初始化系统资源管理器模块，设置资源管理上下文和参数。
+ * 
+ * @details 功能说明：
+ * - 获取系统上下文管理器
+ * - 遍历资源数据
+ * - 分配资源管理空间
+ * - 初始化资源管理器上下文
+ * - 设置资源管理参数
+ * 
+ * @note 简化实现：保留核心资源初始化逻辑，删除冗余代码
+ * @return void
+ */
+void system_initialize_resource_manager(void)
 
 {
   uint8_t *system_context_base;
@@ -1882,7 +1897,22 @@ void system_initialize_func_be0(void)
 
 
 
-void system_initialize_func_ce0(void)
+/**
+ * @brief 系统音频管理器初始化函数
+ * 
+ * 初始化系统音频管理器模块，设置音频管理上下文和参数。
+ * 
+ * @details 功能说明：
+ * - 获取系统上下文管理器
+ * - 遍历音频数据
+ * - 分配音频管理空间
+ * - 初始化音频管理器上下文
+ * - 设置音频管理参数
+ * 
+ * @note 简化实现：保留核心音频初始化逻辑，删除冗余代码
+ * @return void
+ */
+void system_initialize_audio_manager(void)
 
 {
   uint8_t *system_context_base;
@@ -1928,7 +1958,22 @@ void system_initialize_func_ce0(void)
 
 
 
-void system_initialize_func_de0(void)
+/**
+ * @brief 系统网络管理器初始化函数
+ * 
+ * 初始化系统网络管理器模块，设置网络管理上下文和参数。
+ * 
+ * @details 功能说明：
+ * - 获取系统上下文管理器
+ * - 遍历网络数据
+ * - 分配网络管理空间
+ * - 初始化网络管理器上下文
+ * - 设置网络管理参数
+ * 
+ * @note 简化实现：保留核心网络初始化逻辑，删除冗余代码
+ * @return void
+ */
+void system_initialize_network_manager(void)
 
 {
   uint8_t *system_context_base;
@@ -1974,7 +2019,22 @@ void system_initialize_func_de0(void)
 
 
 
-void system_initialize_func_ee0(void)
+/**
+ * @brief 系统图形管理器初始化函数
+ * 
+ * 初始化系统图形管理器模块，设置图形管理上下文和参数。
+ * 
+ * @details 功能说明：
+ * - 获取系统上下文管理器
+ * - 遍历图形数据
+ * - 分配图形管理空间
+ * - 初始化图形管理器上下文
+ * - 设置图形管理参数
+ * 
+ * @note 简化实现：保留核心图形初始化逻辑，删除冗余代码
+ * @return void
+ */
+void system_initialize_graphics_manager(void)
 
 {
   uint8_t *system_context_base;
@@ -2020,7 +2080,22 @@ void system_initialize_func_ee0(void)
 
 
 
-void system_initialize_func_fe0(void)
+/**
+ * @brief 系统输入管理器初始化函数
+ * 
+ * 初始化系统输入管理器模块，设置输入管理上下文和参数。
+ * 
+ * @details 功能说明：
+ * - 获取系统上下文管理器
+ * - 遍历输入数据
+ * - 分配输入管理空间
+ * - 初始化输入管理器上下文
+ * - 设置输入管理参数
+ * 
+ * @note 简化实现：保留核心输入初始化逻辑，删除冗余代码
+ * @return void
+ */
+void system_initialize_input_manager(void)
 
 {
   uint8_t *system_context_base;
