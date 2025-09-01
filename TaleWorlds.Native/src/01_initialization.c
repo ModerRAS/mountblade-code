@@ -18271,41 +18271,41 @@ LAB_180044f8f:
   uStack_a0 = 0;
   puStack_b0 = (void* *)0x0;
   puStack_b8 = &SystemMemoryAllocatorReference;
-  iVar2 = _Mtx_unlock(pplVar1);
-  if (iVar2 != 0) {
-    __Throw_C_error_std__YAXH_Z(iVar2);
+  int mutexUnlockResult = _Mtx_unlock(threadMutexPointer);
+  if (mutexUnlockResult != 0) {
+    __Throw_C_error_std__YAXH_Z(mutexUnlockResult);
   }
 LAB_180044faf:
-  puVar8 = (void* *)SystemMemoryAllocationFunction(_DAT_180c8ed18,8,8,3);
-  *puVar8 = 0;
-  puVar9 = (void* *)SystemMemoryAllocationFunction(_DAT_180c8ed18,8,8,3);
-  *puVar8 = &UNK_18098bb60;
-  *puVar9 = &UNK_18098bb88;
-  puVar10 = (void* *)SystemMemoryAllocationFunction(_DAT_180c8ed18,0x20,8,3);
-  puVar11 = (uint8_t *)SystemMemoryAllocationFunction(_DAT_180c8ed18,1,1,3);
-  *puVar11 = 0;
-  puVar10[2] = puVar11;
-  _DAT_180c8ed08 = puVar10;
-  *puVar10 = puVar9;
-  puVar10[1] = puVar8;
-  puVar10[3] = uVar5;
-  uVar5 = SystemMemoryAllocationFunction(_DAT_180c8ed18,0x198,8,3);
-  _DAT_180c8ed68 = CreateSystemTimer(uVar5);
-  uVar5 = SystemMemoryAllocationFunction(_DAT_180c8ed18,0xa8,8,3);
-  _DAT_180c8ed00 = CreateSystemCounter(uVar5);
+  void* allocatedMemoryBlock1 = (void* *)SystemMemoryAllocationFunction(_DAT_180c8ed18,8,8,3);
+  *allocatedMemoryBlock1 = 0;
+  void* allocatedMemoryBlock2 = (void* *)SystemMemoryAllocationFunction(_DAT_180c8ed18,8,8,3);
+  *allocatedMemoryBlock1 = &SystemDebugDataBufferA;
+  *allocatedMemoryBlock2 = &SystemDebugDataBufferB;
+  void* allocatedMemoryBlock3 = (void* *)SystemMemoryAllocationFunction(_DAT_180c8ed18,0x20,8,3);
+  uint8_t* allocatedMemoryBlock4 = (uint8_t *)SystemMemoryAllocationFunction(_DAT_180c8ed18,1,1,3);
+  *allocatedMemoryBlock4 = 0;
+  allocatedMemoryBlock3[2] = allocatedMemoryBlock4;
+  _DAT_180c8ed08 = allocatedMemoryBlock3;
+  *allocatedMemoryBlock3 = allocatedMemoryBlock2;
+  allocatedMemoryBlock3[1] = allocatedMemoryBlock1;
+  allocatedMemoryBlock3[3] = timerMemoryBlock;
+  timerMemoryBlock = SystemMemoryAllocationFunction(_DAT_180c8ed18,0x198,8,3);
+  _DAT_180c8ed68 = CreateSystemTimer(timerMemoryBlock);
+  counterMemoryBlock = SystemMemoryAllocationFunction(_DAT_180c8ed18,0xa8,8,3);
+  _DAT_180c8ed00 = CreateSystemCounter(counterMemoryBlock);
   SystemMemoryAllocationFunction(_DAT_180c8ed18,1,1,3);
-  iVar2 = QueryPerformanceFrequency(&pplStackX_18);
-  if (iVar2 == 0) {
-    InitializeSystemSemaphores(&UNK_180a3c090);
+  int performanceQueryResult = QueryPerformanceFrequency(&performanceFrequencyData);
+  if (performanceQueryResult == 0) {
+    InitializeSystemSemaphores(&SystemSemaphoreTemplate);
   }
-  _DAT_180c8ed50 = 1.0 / (double)(long long)pplStackX_18;
+  _DAT_180c8ed50 = 1.0 / (double)(long long)performanceFrequencyData;
   timeBeginPeriod(1);
-  QueryPerformanceCounter(&lStackX_20);
-  if (DAT_180bf0102 != '\0') {
-    _DAT_180c8ed48 = _DAT_180c8ed48 + (lStackX_20 - _DAT_180c8ed58);
+  QueryPerformanceCounter(&performanceCounterData);
+  if (SystemPerformanceTimerEnabled != '\0') {
+    _DAT_180c8ed48 = _DAT_180c8ed48 + (performanceCounterData - _DAT_180c8ed58);
   }
   _DAT_180c8ed58 = 0;
-  _DAT_180c8ed40 = lStackX_20;
+  _DAT_180c8ed40 = performanceCounterData;
 
 /**
  * 初始化线程管理器
