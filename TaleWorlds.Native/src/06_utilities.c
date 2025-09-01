@@ -45393,10 +45393,21 @@ void Unwind_180905810(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 
 
 
-void Unwind_180905820(uint8_t ObjectContextParameter,int64_t ValidationContextParameter)
+/**
+ * @brief 初始化系统资源缓冲区A
+ * 
+ * 该函数负责初始化系统资源缓冲区A
+ * 设置验证上下文中的资源缓冲区指针
+ * 
+ * @param ObjectContextParameter 对象上下文参数，用于标识特定的资源对象
+ * @param ValidationContextParameter 验证上下文参数，包含系统验证所需的信息
+ * @return 无返回值
+ * @note 此函数通常在系统初始化过程中调用
+ */
+void InitializeSystemResourceBufferA(uint8_t ObjectContextParameter,int64_t ValidationContextParameter)
 
 {
-  **(uint8_t **)(ValidationContextParameter + 0x2e0) = &SystemUnknownBufferA0e170;
+  **(uint8_t **)(ValidationContextParameter + 0x2e0) = &SystemResourceBufferA0e170;
   return;
 }
 
@@ -45651,10 +45662,21 @@ void Unwind_1809058f0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 
 
 
-void Unwind_180905900(uint8_t ObjectContextParameter,int64_t ValidationContextParameter)
+/**
+ * @brief 初始化系统资源缓冲区B
+ * 
+ * 该函数负责初始化系统资源缓冲区B
+ * 设置验证上下文中的资源缓冲区指针
+ * 
+ * @param ObjectContextParameter 对象上下文参数，用于标识特定的资源对象
+ * @param ValidationContextParameter 验证上下文参数，包含系统验证所需的信息
+ * @return 无返回值
+ * @note 此函数通常在系统初始化过程中调用
+ */
+void InitializeSystemResourceBufferB(uint8_t ObjectContextParameter,int64_t ValidationContextParameter)
 
 {
-  **(uint8_t **)(ValidationContextParameter + 0x48) = &SystemUnknownBufferA3e470;
+  **(uint8_t **)(ValidationContextParameter + 0x48) = &SystemResourceBufferA3e470;
   return;
 }
 
