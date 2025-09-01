@@ -3313,16 +3313,16 @@ void ProcessGameDataObjects(longlong gameContext, longlong systemContext)
 void ValidateSystemObjects(void)
 
 {
-  uint8_t8 currentObjectHandle;
-  int validationStatusCode;
-  longlong systemObjectData;
-  longlong systemContextPointer;
-  longlong objectIndexOffset;
-  int processedObjectCount;
-  uint8_t1 *objectCollectionArray;
-  int collectionSize;
-  uint8_t4 maximumCapacity;
-  ulonglong securityValidationHash;
+  uint8_t8 SystemObjectHandle;
+  int ValidationStatus;
+  longlong SystemObjectContext;
+  longlong SystemContextPointer;
+  longlong ObjectOffset;
+  int ProcessedObjectCount;
+  uint8_t1 *ObjectCollectionArray;
+  int RetrievedObjectCount;
+  uint8_t4 MaximumCapacity;
+  ulonglong SecurityValidationHash;
   
   if (*(longlong *)(systemObjectData + 8) != 0) {
     objectCollectionArray = &ObjectStackBuffer40;
