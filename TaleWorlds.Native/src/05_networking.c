@@ -2415,36 +2415,58 @@ int SerializeNetworkStateData(longlong stateData, longlong outputBuffer, int buf
 
 
 
-int FUN_1808425b0(longlong param_1,longlong param_2,int param_3)
+/**
+ * @brief 序列化网络事件数据
+ * 
+ * 该函数负责将网络事件相关的数据进行序列化处理，
+ * 将事件信息转换为可传输的字节流格式。
+ * 
+ * @param eventData 事件数据指针
+ * @param outputBuffer 输出缓冲区指针
+ * @param bufferSize 缓冲区大小
+ * @return 序列化后的数据大小
+ */
+int SerializeNetworkEventData(longlong eventData, longlong outputBuffer, int bufferSize)
 
 {
-  undefined4 uVar1;
-  int iVar2;
-  int iVar3;
+  undefined4 eventField;
+  int bytesProcessed;
+  int currentOffset;
   
-  uVar1 = *(undefined4 *)(param_1 + 0x10);
-  iVar2 = FUN_18074b880(param_2,param_3,&UNK_180982e28);
-  iVar3 = FUN_18074b880(param_2 + iVar2,param_3 - iVar2,&DAT_180a06434);
-  iVar2 = iVar2 + iVar3;
-  iVar3 = func_0x00018074b800(iVar2 + param_2,param_3 - iVar2,uVar1);
-  return iVar3 + iVar2;
+  eventField = *(undefined4 *)(eventData + 0x10);
+  bytesProcessed = FUN_18074b880(outputBuffer,bufferSize,&UNK_180982e28);
+  currentOffset = FUN_18074b880(outputBuffer + bytesProcessed,bufferSize - bytesProcessed,&DAT_180a06434);
+  bytesProcessed = bytesProcessed + currentOffset;
+  currentOffset = func_0x00018074b800(bytesProcessed + outputBuffer,bufferSize - bytesProcessed,eventField);
+  return currentOffset + bytesProcessed;
 }
 
 
 
-int FUN_180842620(longlong param_1,longlong param_2,int param_3)
+/**
+ * @brief 序列化网络错误数据
+ * 
+ * 该函数负责将网络错误相关的数据进行序列化处理，
+ * 将错误信息转换为可传输的字节流格式。
+ * 
+ * @param errorData 错误数据指针
+ * @param outputBuffer 输出缓冲区指针
+ * @param bufferSize 缓冲区大小
+ * @return 序列化后的数据大小
+ */
+int SerializeNetworkErrorData(longlong errorData, longlong outputBuffer, int bufferSize)
 
 {
-  undefined4 uVar1;
-  int iVar2;
-  int iVar3;
+  undefined4 errorField;
+  int bytesProcessed;
+  int currentOffset;
   
-  uVar1 = *(undefined4 *)(param_1 + 0x10);
-  iVar2 = FUN_18074b880(param_2,param_3,&UNK_180982da8);
-  iVar3 = FUN_18074b880(param_2 + iVar2,param_3 - iVar2,&DAT_180a06434);
-  iVar2 = iVar2 + iVar3;
-  iVar3 = func_0x00018074b800(iVar2 + param_2,param_3 - iVar2,uVar1);
-  return iVar3 + iVar2;
+  errorField = *(undefined4 *)(errorData + 0x10);
+  bytesProcessed = FUN_18074b880(outputBuffer,bufferSize,&UNK_180982da8);
+  currentOffset = FUN_18074b880(outputBuffer + bytesProcessed,bufferSize - bytesProcessed,&DAT_180a06434);
+  bytesProcessed = bytesProcessed + currentOffset;
+  currentOffset = func_0x00018074b800(bytesProcessed + outputBuffer,bufferSize - bytesProcessed,errorField);
+  return currentOffset + bytesProcessed;
 }
 
 

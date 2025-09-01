@@ -345,8 +345,8 @@ int InitializeStringProcessorH(void)
 {
   int64_t CallbackResult;
   uint64_t stringProcessorHFlags;
-  _DAT_180bf52e8 = &UNK_18098bc80;
-  _DAT_180bf52f0 = &STRING_PROCESSOR_CONFIG_C;
+  g_stringProcessorDataPointerC = &UNK_18098bc80;
+  g_stringProcessorConfigPointerC = &STRING_PROCESSOR_CONFIG_C;
   STRING_PROCESSOR_CONFIG_C = 0;
   _DAT_180bf52f8 = 0xd;
   strcpy_s(&STRING_PROCESSOR_CONFIG_C,0x20,&UNK_180a01300,stringProcessorHFlags,0xfffffffffffffffe);
