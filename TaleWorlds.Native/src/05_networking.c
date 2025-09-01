@@ -12479,7 +12479,7 @@ void ProcessNetworkConfigurationManager(NetworkHandle *connectionContext)
     if (plVar3 != plVar2) {
       plVar11 = plVar3;
     }
-    FUN_1808b0fb0(plVar11 + 3,0);
+    ClearNetworkMemoryRegion(plVar11 + 3,0);
     *(longlong *)plVar11[1] = *plVar11;
     *(longlong *)(*plVar11 + 8) = plVar11[1];
     plVar11[1] = (longlong)plVar11;
@@ -12686,7 +12686,7 @@ void ProcessNetworkConfigurationValidator(NetworkHandle *connectionContext)
     if (plVar3 != plVar2) {
       plVar11 = plVar3;
     }
-    FUN_1808b0fb0(plVar11 + 3,0);
+    ClearNetworkMemoryRegion(plVar11 + 3,0);
     *(longlong *)plVar11[1] = *plVar11;
     *(longlong *)(*plVar11 + 8) = plVar11[1];
     plVar11[1] = (longlong)plVar11;
@@ -12894,7 +12894,7 @@ void ProcessNetworkConfigurationChecker(NetworkHandle *connectionContext)
     if (plVar3 != plVar2) {
       plVar11 = plVar3;
     }
-    FUN_1808b0fb0(plVar11 + 3,0);
+    ClearNetworkMemoryRegion(plVar11 + 3,0);
     *(longlong *)plVar11[1] = *plVar11;
     *(longlong *)(*plVar11 + 8) = plVar11[1];
     plVar11[1] = (longlong)plVar11;
@@ -13678,9 +13678,9 @@ uint * GetNetworkPacketSize(longlong connectionContext,uint *packetData)
       }
       *packetData = quinaryNetworkFlag;
       if ((*(int *)(lVar3 + 0x48) < _NetworkConnectionTimeoutThreshold) &&
-         (FUN_1808fcb90(&NetworkConnectionTimeoutThreshold), _NetworkConnectionTimeoutThreshold == -1)) {
+         (GetNetworkTimeoutThreshold(&NetworkConnectionTimeoutThreshold), _NetworkConnectionTimeoutThreshold == -1)) {
         NetworkConnectionTimeoutValue = 0;
-        FUN_1808fcb30(&NetworkConnectionTimeoutThreshold);
+        SetNetworkTimeoutThreshold(&NetworkConnectionTimeoutThreshold);
       }
       if (*(int *)(puVar8 + 0x14) != NetworkConnectionTimeoutValue) {
         plVar4 = *(longlong **)(connectionContext + 0x78);
@@ -13834,9 +13834,9 @@ uint * ValidateNetworkDataPacket(longlong connectionContext,uint *packetData)
       }
       *packetData = quinaryNetworkFlag;
       if ((*(int *)(lVar3 + 0x48) < _NetworkConnectionTimeoutThreshold) &&
-         (FUN_1808fcb90(&NetworkConnectionTimeoutThreshold), _NetworkConnectionTimeoutThreshold == -1)) {
+         (GetNetworkTimeoutThreshold(&NetworkConnectionTimeoutThreshold), _NetworkConnectionTimeoutThreshold == -1)) {
         NetworkConnectionTimeoutValue = 0;
-        FUN_1808fcb30(&NetworkConnectionTimeoutThreshold);
+        SetNetworkTimeoutThreshold(&NetworkConnectionTimeoutThreshold);
       }
       if (*(int *)(puVar8 + 0x14) != NetworkConnectionTimeoutValue) {
         plVar4 = *(longlong **)(connectionContext + 0x78);
@@ -13928,9 +13928,9 @@ void ProcessNetworkPacketHandler(longlong connectionContext,NetworkHandle *packe
     }
     *unaff_RDI = quaternaryNetworkFlag;
     if ((*(int *)(lVar2 + 0x48) < _NetworkConnectionTimeoutThreshold) &&
-       (FUN_1808fcb90(&NetworkConnectionTimeoutThreshold), _NetworkConnectionTimeoutThreshold == -1)) {
+       (GetNetworkTimeoutThreshold(&NetworkConnectionTimeoutThreshold), _NetworkConnectionTimeoutThreshold == -1)) {
       NetworkConnectionTimeoutValue = unaff_R12D;
-      FUN_1808fcb30(&NetworkConnectionTimeoutThreshold);
+      SetNetworkTimeoutThreshold(&NetworkConnectionTimeoutThreshold);
     }
     quaternaryNetworkFlag = (uint)unaff_RBP;
     if (*(int *)(unaff_RBX + 0x14) != NetworkConnectionTimeoutValue) {
@@ -14080,10 +14080,10 @@ void ProcessNetworkStatusReset(void)
   uint in_stack_00000050;
   
   do {
-    FUN_1808fcb90(&NetworkConnectionTimeoutThreshold);
+    GetNetworkTimeoutThreshold(&NetworkConnectionTimeoutThreshold);
     if (_NetworkConnectionTimeoutThreshold == -1) {
       NetworkConnectionTimeoutValue = unaff_R12D;
-      FUN_1808fcb30(&NetworkConnectionTimeoutThreshold);
+      SetNetworkTimeoutThreshold(&NetworkConnectionTimeoutThreshold);
     }
     do {
       tertiaryNetworkFlag = (uint)unaff_RBP;
@@ -15268,10 +15268,10 @@ NetworkData * NetworkDataManager(void)
 {
   if (*(int *)(*(longlong *)((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * 8) +
               0x48) < _NetworkConnectionTimeoutThreshold) {
-    FUN_1808fcb90(&NetworkConnectionTimeoutThreshold);
+    GetNetworkTimeoutThreshold(&NetworkConnectionTimeoutThreshold);
     if (_NetworkConnectionTimeoutThreshold == -1) {
       NetworkConnectionTimeoutValue = 0;
-      FUN_1808fcb30(&NetworkConnectionTimeoutThreshold);
+      SetNetworkTimeoutThreshold(&NetworkConnectionTimeoutThreshold);
     }
   }
   return &DAT_180c4ea94;
@@ -15282,7 +15282,7 @@ NetworkData * NetworkDataManager(void)
 NetworkHandle * InitializeNetworkConnectionContext(NetworkHandle *connectionContext)
 
 {
-  FUN_1808b0200(connectionContext,0x16);
+  InitializeNetworkConnectionContext(connectionContext,0x16);
   *(NetworkStatus *)((longlong)connectionContext + 0x4c) = 0x7f7fffff;
   connectionContext[6] = 0;
   connectionContext[7] = 0;
@@ -15348,7 +15348,7 @@ void ProcessNetworkResourceCleanup(longlong *connectionContext)
   tertiaryNetworkFlag = (int)*(uint *)((longlong)connectionContext + 0xc) >> 0x1f;
   *(NetworkStatus *)(connectionContext + 1) = 0;
   if (0 < (int)((*(uint *)((longlong)connectionContext + 0xc) ^ tertiaryNetworkFlag) - tertiaryNetworkFlag)) {
-    FUN_18084def0(connectionContext,0);
+    ResetNetworkConnectionState(connectionContext,0);
   }
   return;
 }
@@ -15375,7 +15375,7 @@ void ProcessNetworkMemoryReset(void)
   primaryNetworkFlag = (int)*(uint *)((longlong)unaff_RDI + 0xc) >> 0x1f;
   *(NetworkStatus *)(unaff_RDI + 1) = unaff_EBP;
   if (0 < (int)((*(uint *)((longlong)unaff_RDI + 0xc) ^ primaryNetworkFlag) - primaryNetworkFlag)) {
-    FUN_18084def0();
+    ResetNetworkConnectionState();
   }
   return;
 }
@@ -15394,7 +15394,7 @@ void ProcessNetworkDataReset(void)
   primaryNetworkFlag = (int)*(uint *)(unaff_RDI + 0xc) >> 0x1f;
   *(NetworkStatus *)(unaff_RDI + 8) = unaff_EBP;
   if (0 < (int)((*(uint *)(unaff_RDI + 0xc) ^ primaryNetworkFlag) - primaryNetworkFlag)) {
-    FUN_18084def0();
+    ResetNetworkConnectionState();
   }
   return;
 }
@@ -15414,9 +15414,9 @@ void ProcessNetworkDataReset(void)
 longlong CleanupNetworkConnectionResources(longlong connectionContext,ulonglong packetData)
 
 {
-  FUN_18084dae0(connectionContext + 0x60);
+  ReleaseNetworkConnectionResources(connectionContext + 0x60);
   FreeNetworkMemory(connectionContext + 0x50);
-  FUN_1808b02a0(connectionContext);
+  CleanupNetworkConnectionData(connectionContext);
   if ((packetData & 1) != 0) {
     free(connectionContext,0x70);
   }
@@ -15446,10 +15446,10 @@ void ProcessNetworkBufferProcessor(NetworkStatus *connectionContext)
   uStack_18 = connectionContext[2];
   uStack_14 = connectionContext[3];
   uStack_28 = 0;
-  FUN_1808b11b0(&uStack_20,4,&uStack_28,(longlong)&uStack_28 + 4);
-  FUN_1808b11b0(&uStack_1c,2,&uStack_28,(longlong)&uStack_28 + 4);
-  FUN_1808b11b0((longlong)&uStack_1c + 2,2,&uStack_28,(longlong)&uStack_28 + 4);
-  FUN_1808b11b0(&uStack_18,8,&uStack_28,(longlong)&uStack_28 + 4);
+  PackNetworkDataBuffer(&uStack_20,4,&uStack_28,(longlong)&uStack_28 + 4);
+  PackNetworkDataBuffer(&uStack_1c,2,&uStack_28,(longlong)&uStack_28 + 4);
+  PackNetworkDataBuffer((longlong)&uStack_1c + 2,2,&uStack_28,(longlong)&uStack_28 + 4);
+  PackNetworkDataBuffer(&uStack_18,8,&uStack_28,(longlong)&uStack_28 + 4);
                     // WARNING: Subroutine does not return
   NetworkSecurityGuardCleanup(uStack_10 ^ (ulonglong)auStack_48);
 }
@@ -15808,7 +15808,7 @@ NetworkHandle ValidateNetworkConnectionContext(longlong *connectionContext,char 
   }
   tertiaryNetworkFlag = (int)*(uint *)((longlong)connectionContext + 0xc) >> 0x1f;
   if ((int)((*(uint *)((longlong)connectionContext + 0xc) ^ tertiaryNetworkFlag) - tertiaryNetworkFlag) < networkStatus4) {
-    secondaryNetworkFlag = FUN_180849030(connectionContext,networkStatus4);
+    secondaryNetworkFlag = GetNetworkConnectionStatus(connectionContext,networkStatus4);
     if ((int)secondaryNetworkFlag != 0) {
       return secondaryNetworkFlag;
     }
@@ -15855,7 +15855,7 @@ longlong ProcessNetworkConnectionLinkedList(longlong connectionContext,ulonglong
   *(NetworkHandle *)(*plVar1 + 8) = *(NetworkHandle *)(connectionContext + 0x28);
   *(longlong **)(connectionContext + 0x28) = plVar1;
   *plVar1 = (longlong)plVar1;
-  FUN_1808b1a30(connectionContext);
+  ValidateNetworkConnectionHandle(connectionContext);
   if ((packetData & 1) != 0) {
     free(connectionContext,0x108);
   }
@@ -15877,7 +15877,7 @@ longlong ProcessNetworkConnectionLinkedList(longlong connectionContext,ulonglong
 NetworkHandle ReleaseNetworkConnectionHandle(NetworkHandle connectionContext,ulonglong packetData)
 
 {
-  FUN_1808b1a30();
+  ValidateNetworkConnectionHandle();
   if ((packetData & 1) != 0) {
     free(connectionContext,0x20);
   }
@@ -29322,10 +29322,10 @@ LAB_180857f82:
 LAB_1808580a0:
   do {
     while( true ) {
-      if ((*piStack_100 < _NetworkConnectionTimeoutThreshold) && (FUN_1808fcb90(&NetworkConnectionTimeoutThreshold), _NetworkConnectionTimeoutThreshold == -1))
+      if ((*piStack_100 < _NetworkConnectionTimeoutThreshold) && (GetNetworkTimeoutThreshold(&NetworkConnectionTimeoutThreshold), _NetworkConnectionTimeoutThreshold == -1))
       {
         NetworkConnectionTimeoutValue = 0;
-        FUN_1808fcb30(&NetworkConnectionTimeoutThreshold);
+        SetNetworkTimeoutThreshold(&NetworkConnectionTimeoutThreshold);
       }
       uVar7 = (uint)primaryNetworkFlag2;
       if (uVar7 <= NetworkConnectionTimeoutValue) {
@@ -29479,9 +29479,9 @@ LAB_1808580a0:
         uStack_158 = uVar6;
       }
       if ((*(int *)(*plStack_c8 + 0x48) < _NetworkConnectionTimeoutThreshold) &&
-         (FUN_1808fcb90(&NetworkConnectionTimeoutThreshold), _NetworkConnectionTimeoutThreshold == -1)) {
+         (GetNetworkTimeoutThreshold(&NetworkConnectionTimeoutThreshold), _NetworkConnectionTimeoutThreshold == -1)) {
         NetworkConnectionTimeoutValue = 0;
-        FUN_1808fcb30(&NetworkConnectionTimeoutThreshold);
+        SetNetworkTimeoutThreshold(&NetworkConnectionTimeoutThreshold);
       }
       if (NetworkConnectionTimeoutValue < uStack_158) {
         uVar9 = 0;
@@ -29542,9 +29542,9 @@ LAB_180859163:
           return primaryNetworkFlag8;
         }
         if ((*(int *)(*plStack_c8 + 0x48) < _NetworkConnectionTimeoutThreshold) &&
-           (FUN_1808fcb90(&NetworkConnectionTimeoutThreshold), _NetworkConnectionTimeoutThreshold == -1)) {
+           (GetNetworkTimeoutThreshold(&NetworkConnectionTimeoutThreshold), _NetworkConnectionTimeoutThreshold == -1)) {
           NetworkConnectionTimeoutValue = uVar7;
-          FUN_1808fcb30(&NetworkConnectionTimeoutThreshold);
+          SetNetworkTimeoutThreshold(&NetworkConnectionTimeoutThreshold);
         }
         *(uint *)(connectionContext + 0x148) = NetworkConnectionTimeoutValue;
         uVar7 = FUN_180855810(connectionContext,secondaryNetworkFlag6);
@@ -29680,9 +29680,9 @@ LAB_180858c20:
         }
       }
       if ((*(int *)(*plStack_c8 + 0x48) < _NetworkConnectionTimeoutThreshold) &&
-         (FUN_1808fcb90(&NetworkConnectionTimeoutThreshold), _NetworkConnectionTimeoutThreshold == -1)) {
+         (GetNetworkTimeoutThreshold(&NetworkConnectionTimeoutThreshold), _NetworkConnectionTimeoutThreshold == -1)) {
         NetworkConnectionTimeoutValue = 0;
-        FUN_1808fcb30(&NetworkConnectionTimeoutThreshold);
+        SetNetworkTimeoutThreshold(&NetworkConnectionTimeoutThreshold);
       }
       if (*(uint *)(lVar15 + 0xa0) != NetworkConnectionTimeoutValue) {
         networkPointer14 = (NetworkStatus *)CreateNetworkStatus();
@@ -29919,9 +29919,9 @@ LAB_180858e04:
     *(uint *)(connectionContext + 8) = uVar7;
     *(NetworkStatus *)(connectionContext + 0xc) = 2;
     if ((*(int *)(lStack_c0 + 0x48) < _NetworkConnectionTimeoutThreshold) &&
-       (FUN_1808fcb90(&NetworkConnectionTimeoutThreshold), _NetworkConnectionTimeoutThreshold == -1)) {
+       (GetNetworkTimeoutThreshold(&NetworkConnectionTimeoutThreshold), _NetworkConnectionTimeoutThreshold == -1)) {
       NetworkConnectionTimeoutValue = 0;
-      FUN_1808fcb30(&NetworkConnectionTimeoutThreshold);
+      SetNetworkTimeoutThreshold(&NetworkConnectionTimeoutThreshold);
     }
     uStack_15c = NetworkConnectionTimeoutValue;
     plVar24 = (longlong *)(connectionContext + 0x70);
@@ -31965,10 +31965,10 @@ LAB_180857f18:
 LAB_1808580a0:
   do {
     while( true ) {
-      if ((*piStack_100 < _NetworkConnectionTimeoutThreshold) && (FUN_1808fcb90(&NetworkConnectionTimeoutThreshold), _NetworkConnectionTimeoutThreshold == -1))
+      if ((*piStack_100 < _NetworkConnectionTimeoutThreshold) && (GetNetworkTimeoutThreshold(&NetworkConnectionTimeoutThreshold), _NetworkConnectionTimeoutThreshold == -1))
       {
         NetworkConnectionTimeoutValue = 0;
-        FUN_1808fcb30(&NetworkConnectionTimeoutThreshold);
+        SetNetworkTimeoutThreshold(&NetworkConnectionTimeoutThreshold);
       }
       if (secondaryNetworkFlag7 <= NetworkConnectionTimeoutValue) {
         return 0;
@@ -32123,9 +32123,9 @@ LAB_1808580a0:
         uStack_158 = uVar7;
       }
       if ((*(int *)(*plStack_c8 + 0x48) < _NetworkConnectionTimeoutThreshold) &&
-         (FUN_1808fcb90(&NetworkConnectionTimeoutThreshold), _NetworkConnectionTimeoutThreshold == -1)) {
+         (GetNetworkTimeoutThreshold(&NetworkConnectionTimeoutThreshold), _NetworkConnectionTimeoutThreshold == -1)) {
         NetworkConnectionTimeoutValue = 0;
-        FUN_1808fcb30(&NetworkConnectionTimeoutThreshold);
+        SetNetworkTimeoutThreshold(&NetworkConnectionTimeoutThreshold);
       }
       if (NetworkConnectionTimeoutValue < uStack_158) {
         primaryNetworkFlag0 = 0;
@@ -32186,9 +32186,9 @@ LAB_180859163:
           return primaryNetworkFlag9;
         }
         if ((*(int *)(*plStack_c8 + 0x48) < _NetworkConnectionTimeoutThreshold) &&
-           (FUN_1808fcb90(&NetworkConnectionTimeoutThreshold), _NetworkConnectionTimeoutThreshold == -1)) {
+           (GetNetworkTimeoutThreshold(&NetworkConnectionTimeoutThreshold), _NetworkConnectionTimeoutThreshold == -1)) {
           NetworkConnectionTimeoutValue = uVar7;
-          FUN_1808fcb30(&NetworkConnectionTimeoutThreshold);
+          SetNetworkTimeoutThreshold(&NetworkConnectionTimeoutThreshold);
         }
         *(uint *)(connectionContext + 0x148) = NetworkConnectionTimeoutValue;
         uVar7 = FUN_180855810(connectionContext,secondaryNetworkFlag6);
@@ -32327,9 +32327,9 @@ LAB_180858c20:
         }
       }
       if ((*(int *)(*plStack_c8 + 0x48) < _NetworkConnectionTimeoutThreshold) &&
-         (FUN_1808fcb90(&NetworkConnectionTimeoutThreshold), _NetworkConnectionTimeoutThreshold == -1)) {
+         (GetNetworkTimeoutThreshold(&NetworkConnectionTimeoutThreshold), _NetworkConnectionTimeoutThreshold == -1)) {
         NetworkConnectionTimeoutValue = 0;
-        FUN_1808fcb30(&NetworkConnectionTimeoutThreshold);
+        SetNetworkTimeoutThreshold(&NetworkConnectionTimeoutThreshold);
       }
       secondaryNetworkFlag7 = uStack_15c;
       if (*(uint *)(lVar14 + 0xa0) != NetworkConnectionTimeoutValue) {
@@ -32567,9 +32567,9 @@ LAB_180858e04:
     *(uint *)(connectionContext + 8) = uVar7;
     *(NetworkStatus *)(connectionContext + 0xc) = 2;
     if ((*(int *)(lStack_c0 + 0x48) < _NetworkConnectionTimeoutThreshold) &&
-       (FUN_1808fcb90(&NetworkConnectionTimeoutThreshold), _NetworkConnectionTimeoutThreshold == -1)) {
+       (GetNetworkTimeoutThreshold(&NetworkConnectionTimeoutThreshold), _NetworkConnectionTimeoutThreshold == -1)) {
       NetworkConnectionTimeoutValue = 0;
-      FUN_1808fcb30(&NetworkConnectionTimeoutThreshold);
+      SetNetworkTimeoutThreshold(&NetworkConnectionTimeoutThreshold);
     }
     secondaryNetworkFlag7 = NetworkConnectionTimeoutValue;
     plVar17 = (longlong *)(connectionContext + 0x70);
@@ -32706,9 +32706,9 @@ FUN_18085acd0(longlong connectionContext,longlong *packetData,uint *dataSize,ulo
     }
     bVar3 = false;
     if ((*(int *)(*plVar1 + 0x48) < _NetworkConnectionTimeoutThreshold) &&
-       (FUN_1808fcb90(&NetworkConnectionTimeoutThreshold), _NetworkConnectionTimeoutThreshold == -1)) {
+       (GetNetworkTimeoutThreshold(&NetworkConnectionTimeoutThreshold), _NetworkConnectionTimeoutThreshold == -1)) {
       NetworkConnectionTimeoutValue = 0;
-      FUN_1808fcb30(&NetworkConnectionTimeoutThreshold);
+      SetNetworkTimeoutThreshold(&NetworkConnectionTimeoutThreshold);
     }
     uVar8 = *(uint *)(primaryNetworkFlag3 + 0x10);
     quaternaryNetworkFlag = *dataSize;
@@ -66688,9 +66688,9 @@ LAB_1808788de:
           lVar3 = *(longlong *)((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * 8);
           do {
             if ((*(int *)(lVar3 + 0x48) < _NetworkConnectionTimeoutThreshold) &&
-               (FUN_1808fcb90(&NetworkConnectionTimeoutThreshold), _NetworkConnectionTimeoutThreshold == -1)) {
+               (GetNetworkTimeoutThreshold(&NetworkConnectionTimeoutThreshold), _NetworkConnectionTimeoutThreshold == -1)) {
               NetworkConnectionTimeoutValue = 0;
-              FUN_1808fcb30(&NetworkConnectionTimeoutThreshold);
+              SetNetworkTimeoutThreshold(&NetworkConnectionTimeoutThreshold);
             }
             if ((int)plVar16[0x14] != NetworkConnectionTimeoutValue) {
               for (primaryNetworkFlag0 = plVar16[0x10];
@@ -66980,9 +66980,9 @@ void FUN_1808789b7(float connectionContext)
           lVar3 = *(longlong *)((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * 8);
           do {
             if ((*(int *)(lVar3 + 0x48) < _NetworkConnectionTimeoutThreshold) &&
-               (connectionContext = (float)FUN_1808fcb90(&NetworkConnectionTimeoutThreshold), _NetworkConnectionTimeoutThreshold == -1)) {
+               (connectionContext = (float)GetNetworkTimeoutThreshold(&NetworkConnectionTimeoutThreshold), _NetworkConnectionTimeoutThreshold == -1)) {
               NetworkConnectionTimeoutValue = 0;
-              connectionContext = (float)FUN_1808fcb30(&NetworkConnectionTimeoutThreshold);
+              connectionContext = (float)SetNetworkTimeoutThreshold(&NetworkConnectionTimeoutThreshold);
             }
             if ((int)plVar17[0x14] != NetworkConnectionTimeoutValue) {
               for (primaryNetworkFlag3 = plVar17[0x10];
@@ -67224,10 +67224,10 @@ void FUN_180879232(void)
   int in_stack_00000070;
   
   do {
-    secondaryNetworkFlag0 = FUN_1808fcb90(&NetworkConnectionTimeoutThreshold);
+    secondaryNetworkFlag0 = GetNetworkTimeoutThreshold(&NetworkConnectionTimeoutThreshold);
     if (_NetworkConnectionTimeoutThreshold == -1) {
       NetworkConnectionTimeoutValue = unaff_R12D;
-      secondaryNetworkFlag0 = FUN_1808fcb30(&NetworkConnectionTimeoutThreshold);
+      secondaryNetworkFlag0 = SetNetworkTimeoutThreshold(&NetworkConnectionTimeoutThreshold);
     }
     do {
       if ((int)unaff_RDI[0x14] != NetworkConnectionTimeoutValue) {

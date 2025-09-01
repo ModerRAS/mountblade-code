@@ -1762,9 +1762,9 @@ undefined SystemMemoryRecoveryPoolD;
  * 设置内存错误恢复和数据修复机制
  */
 void ConfigureMemoryRecovery;
-undefined DAT_180bfaef0;
-undefined DAT_180bfaef8;
-undefined DAT_180bfaf00;
+undefined SystemDataPointer;
+undefined SystemMemoryConfigDataTemplate;
+undefined SystemMemoryConfigDataTable;
 undefined DAT_180bfaf08;
 
  void SetupMemoryAuditing;
