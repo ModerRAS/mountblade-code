@@ -5403,15 +5403,23 @@ void ProcessSystemDataPacketTransmission(longlong packetHandle, longlong transmi
 
 
 
- void FUN_1808915d0(longlong param_1,longlong param_2)
-void FUN_1808915d0(longlong param_1,longlong param_2)
+ /**
+ * @brief 处理系统对象生命周期
+ * 
+ * 该函数处理系统对象的创建、初始化和销毁等生命周期操作
+ * 根据传入的参数执行相应的对象管理任务
+ * 
+ * @param objectHandle 对象句柄，用于标识要处理的对象
+ * @param lifecycleConfig 生命周期配置，包含对象生命周期参数
+ */
+void ProcessSystemObjectLifecycle(longlong objectHandle, longlong lifecycleConfig)
 
 {
-  int iVar1;
+  int validationStatus;
   
-  iVar1 = FUN_18073b810(*(undefined8 *)(param_2 + 0x78),*(undefined4 *)(param_1 + 0x10));
-  if (iVar1 == 0) {
-    func_0x0001808c2130(*(undefined8 *)(param_2 + 0x90),*(undefined4 *)(param_1 + 0x10));
+  validationStatus = FUN_18073b810(*(undefined8 *)(lifecycleConfig + 0x78),*(undefined4 *)(objectHandle + 0x10));
+  if (validationStatus == 0) {
+    func_0x0001808c2130(*(undefined8 *)(lifecycleConfig + 0x90),*(undefined4 *)(objectHandle + 0x10));
   }
   return;
 }
@@ -5420,7 +5428,17 @@ void FUN_1808915d0(longlong param_1,longlong param_2)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 FUN_180891650(longlong param_1,longlong param_2)
+/**
+ * @brief 验证系统数据完整性
+ * 
+ * 该函数验证系统数据的完整性和一致性，检查数据是否符合预期格式
+ * 遍历数据结构并执行相应的验证逻辑
+ * 
+ * @param dataBuffer 数据缓冲区，包含要验证的数据
+ * @param validationConfig 验证配置，包含验证规则和参数
+ * @return 验证结果，0表示验证成功，非0表示验证失败
+ */
+undefined8 ValidateSystemDataIntegrity(longlong dataBuffer, longlong validationConfig)
 
 {
   undefined8 uVar1;
@@ -6086,8 +6104,14 @@ LAB_180891fc0:
 
 
 
- void FUN_180891fd4(void)
-void FUN_180891fd4(void)
+ /**
+ * @brief 系统初始化完成标志
+ * 
+ * 该函数表示系统初始化完成的标志函数
+ * 不执行任何操作，仅作为初始化流程的结束标记
+ */
+void SystemInitializationCompleteFlag(void)
+void SystemInitializationCompleteFlag(void)
 
 {
   return;
