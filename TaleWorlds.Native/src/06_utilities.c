@@ -4208,53 +4208,53 @@ uint8_t InitializeObjectHandleB(int64_t objectContext)
  * 该函数负责处理对象句柄的初始化操作，包括上下文验证、
  * 资源遍历和批量处理等步骤
  * 
- * @param objectContext 对象上下文参数，包含对象初始化所需的信息
+ * @param ObjectContextParameter 对象上下文参数，包含对象初始化所需的信息
  * @return uint8_t 操作结果状态码，0表示成功，非0表示失败
  */
-uint8_t InitializeObjectHandleC(int64_t objectContext)
+uint8_t InitializeObjectHandleOperationC(int64_t ObjectContextParameter)
 
 {
-  int64_t resourceOffset;
+  int64_t ResourceDataOffset;
   int ResourceIdentifier;
-  uint8_t operationResult;
-  uint32_t *resourceIdPointer;
-  uint64_t contextHandle;
-  uint configurationFlags;
-  uint64_t iterationCounter;
-  int64_t baseAddressOffset;
-  int64_t validatedContext;
+  uint8_t OperationResultCode;
+  uint32_t *ResourceIdentifierPointer;
+  uint64_t SystemContextHandle;
+  uint ConfigurationFlags;
+  uint64_t IterationCount;
+  int64_t BaseAddressOffset;
+  int64_t ValidatedContextHandle;
   
-  operationResult = ValidateObjectContext(*(uint32_t *)(objectContext + 0x10), &validatedContext);
-  if ((int)operationResult == 0) {
-    iterationCounter = 0;
-    contextHandle = validatedContext - 8;
-    if (validatedContext == 0) {
-      contextHandle = iterationCounter;
+  OperationResultCode = ValidateObjectContext(*(uint32_t *)(ObjectContextParameter + 0x10), &ValidatedContextHandle);
+  if ((int)OperationResultCode == 0) {
+    IterationCount = 0;
+    SystemContextHandle = ValidatedContextHandle - 8;
+    if (ValidatedContextHandle == 0) {
+      SystemContextHandle = IterationCount;
     }
-    resourceIdPointer = (uint32_t *)(objectContext + 0x20 + (int64_t)*(int *)(objectContext + 0x18) * 4);
-    if (0 < *(int *)(objectContext + 0x18)) {
-      baseAddressOffset = (objectContext + 0x20) - (int64_t)resourceIdPointer;
+    ResourceIdentifierPointer = (uint32_t *)(ObjectContextParameter + 0x20 + (int64_t)*(int *)(ObjectContextParameter + 0x18) * 4);
+    if (0 < *(int *)(ObjectContextParameter + 0x18)) {
+      BaseAddressOffset = (ObjectContextParameter + 0x20) - (int64_t)ResourceIdentifierPointer;
       do {
-        ResourceIdentifier = *(int *)(baseAddressOffset + (int64_t)resourceIdPointer);
+        ResourceIdentifier = *(int *)(BaseAddressOffset + (int64_t)ResourceIdentifierPointer);
         if (ResourceIdentifier != -1) {
-          resourceOffset = *(int64_t *)(contextHandle + 0x20) + (int64_t)ResourceIdentifier * 0x18;
-          int64_t resourceContext = *(int64_t *)(resourceOffset + 8);
-          if ((resourceContext == 0)) {
+          ResourceDataOffset = *(int64_t *)(SystemContextHandle + 0x20) + (int64_t)ResourceIdentifier * 0x18;
+          int64_t ResourceContextHandle = *(int64_t *)(ResourceDataOffset + 8);
+          if ((ResourceContextHandle == 0)) {
             return 0x1c;
           }
-          operationResult = ProcessResourceOperation(resourceContext, *resourceIdPointer, 0);
-          if ((int)operationResult != 0) {
-            return operationResult;
+          OperationResultCode = ProcessResourceOperation(ResourceContextHandle, *ResourceIdentifierPointer, 0);
+          if ((int)OperationResultCode != 0) {
+            return OperationResultCode;
           }
         }
-        uint32_t nextIteration = (uint32_t)iterationCounter + 1;
-        iterationCounter = (uint64_t)nextIteration;
-        resourceIdPointer = resourceIdPointer + 1;
-      } while ((int)nextIteration < *(int *)(objectContext + 0x18));
+        uint32_t NextIterationCount = (uint32_t)IterationCount + 1;
+        IterationCount = (uint64_t)NextIterationCount;
+        ResourceIdentifierPointer = ResourceIdentifierPointer + 1;
+      } while ((int)NextIterationCount < *(int *)(ObjectContextParameter + 0x18));
     }
-    operationResult = 0;
+    OperationResultCode = 0;
   }
-  return operationResult;
+  return OperationResultCode;
 }
 
 
@@ -4267,45 +4267,45 @@ uint8_t InitializeObjectHandleC(int64_t objectContext)
  * 
  * @return uint8_t 操作结果状态码，0表示成功，非0表示失败
  */
-uint8_t InitializeObjectHandleD(void)
+uint8_t InitializeObjectHandleOperationD(void)
 
 {
-  int64_t resourceOffset;
+  int64_t ResourceDataOffset;
   int ResourceIdentifier;
-  int64_t registerValue;
-  uint8_t operationResult;
-  uint32_t *resourceIdPointer;
-  uint64_t contextHandle;
+  int64_t RegisterValue;
+  uint8_t OperationResultCode;
+  uint32_t *ResourceIdentifierPointer;
+  uint64_t SystemContextHandle;
   int64_t SystemContext;
-  uint configurationFlags;
-  uint64_t iterationCounter;
-  int64_t baseAddressOffset;
+  uint ConfigurationFlags;
+  uint64_t IterationCount;
+  int64_t BaseAddressOffset;
   
-  iterationCounter = 0;
-  contextHandle = InputRAX - 8;
+  IterationCount = 0;
+  SystemContextHandle = InputRAX - 8;
   if (InputRAX == 0) {
-    contextHandle = iterationCounter;
+    SystemContextHandle = IterationCount;
   }
-  resourceIdPointer = (uint32_t *)(SystemContext + 0x20 + (int64_t)*(int *)(SystemContext + 0x18) * 4);
+  ResourceIdentifierPointer = (uint32_t *)(SystemContext + 0x20 + (int64_t)*(int *)(SystemContext + 0x18) * 4);
   if (0 < *(int *)(SystemContext + 0x18)) {
-    baseAddressOffset = (SystemContext + 0x20) - (int64_t)resourceIdPointer;
+    BaseAddressOffset = (SystemContext + 0x20) - (int64_t)ResourceIdentifierPointer;
     do {
-      ResourceIdentifier = *(int *)(baseAddressOffset + (int64_t)resourceIdPointer);
+      ResourceIdentifier = *(int *)(BaseAddressOffset + (int64_t)ResourceIdentifierPointer);
       if (ResourceIdentifier != -1) {
-        resourceOffset = *(int64_t *)(contextHandle + 0x20) + (int64_t)ResourceIdentifier * 0x18;
-        int64_t resourceContext = *(int64_t *)(resourceOffset + 8);
-        if ((resourceContext == 0)) {
+        ResourceDataOffset = *(int64_t *)(SystemContextHandle + 0x20) + (int64_t)ResourceIdentifier * 0x18;
+        int64_t ResourceContextHandle = *(int64_t *)(ResourceDataOffset + 8);
+        if ((ResourceContextHandle == 0)) {
           return 0x1c;
         }
-        operationResult = ProcessResourceOperation(resourceContext, *resourceIdPointer, 0);
-        if ((int)operationResult != 0) {
-          return operationResult;
+        OperationResultCode = ProcessResourceOperation(ResourceContextHandle, *ResourceIdentifierPointer, 0);
+        if ((int)OperationResultCode != 0) {
+          return OperationResultCode;
         }
       }
-      uint32_t nextIteration = (uint32_t)iterationCounter + 1;
-      iterationCounter = (uint64_t)nextIteration;
-      resourceIdPointer = resourceIdPointer + 1;
-    } while ((int)nextIteration < *(int *)(SystemContext + 0x18));
+      uint32_t NextIterationCount = (uint32_t)IterationCount + 1;
+      IterationCount = (uint64_t)NextIterationCount;
+      ResourceIdentifierPointer = ResourceIdentifierPointer + 1;
+    } while ((int)NextIterationCount < *(int *)(SystemContext + 0x18));
   }
   return 0;
 }
