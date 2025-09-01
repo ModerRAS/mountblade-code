@@ -24987,7 +24987,17 @@ LAB_180854d65:
 
 
 
-NetworkHandle FUN_180854d7d(void)
+/**
+ * 初始化网络连接处理器
+ * 
+ * 该函数负责初始化网络连接处理器的核心组件，包括内存分配、
+ * 状态创建和连接表初始化。这是网络系统启动的第一步。
+ * 
+ * @return 初始化结果状态码，0表示成功
+ * 
+ * 注意：这是一个反编译的函数实现，原始函数名为FUN_180854d7d
+ */
+NetworkHandle InitializeNetworkConnectionHandler(void)
 
 {
   NetworkByte aprimaryNetworkFlag [16];
@@ -25088,7 +25098,20 @@ NetworkHandle FUN_180854d7d(void)
 
 
 
-NetworkHandle FUN_180854df5(NetworkHandle connectionContext,NetworkHandle packetData,int dataSize)
+/**
+ * 处理网络连接数据包
+ * 
+ * 该函数负责处理网络连接的数据包，包括数据包的解析、验证和转发。
+ * 主要用于网络连接数据的处理和传输操作。
+ * 
+ * @param connectionContext 网络连接上下文
+ * @param packet 数据包数据
+ * @param dataSize 数据大小
+ * @return 处理结果状态码
+ * 
+ * 注意：这是一个反编译的函数实现，原始函数名为FUN_180854df5
+ */
+NetworkHandle ProcessNetworkConnectionPacket(NetworkHandle connectionContext,NetworkHandle packet,int dataSize)
 
 {
   int networkStatus1;
@@ -25158,7 +25181,17 @@ NetworkHandle FUN_180854df5(NetworkHandle connectionContext,NetworkHandle packet
 
 
 
-NetworkHandle FUN_180854f3f(void)
+/**
+ * 创建网络连接实例
+ * 
+ * 该函数负责创建新的网络连接实例，包括分配必要的资源
+ * 和初始化连接状态。
+ * 
+ * @return 创建的网络连接句柄，失败时返回0
+ * 
+ * 注意：这是一个反编译的函数实现，原始函数名为FUN_180854f3f
+ */
+NetworkHandle CreateNetworkConnectionInstance(void)
 
 {
   int networkStatus1;

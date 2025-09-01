@@ -18742,7 +18742,16 @@ FUN_180045ea0(void* *param_1,ulong long param_2,void* param_3,void* param_4)
 
 
 // 函数: void FUN_180045ee0(long long param_1,long long param_2)
-void FUN_180045ee0(long long param_1,long long param_2)
+/**
+ * @brief 系统字符串复制处理器
+ * 
+ * 该函数处理系统字符串复制操作，包括长度验证和安全复制。
+ * 当源字符串长度小于0x400时，直接复制；否则调用安全处理函数。
+ * 
+ * @param targetBuffer 目标缓冲区指针
+ * @param sourceString 源字符串指针
+ */
+void ProcessSystemStringCopy(long long targetBuffer,long long sourceString)
 
 {
   long long lVar1;
@@ -18773,7 +18782,17 @@ void FUN_180045ee0(long long param_1,long long param_2)
 
 
 // 函数: void FUN_180045f60(long long param_1,void* param_2,int param_3)
-void FUN_180045f60(long long param_1,void* param_2,int param_3)
+/**
+ * @brief 系统内存复制处理器
+ * 
+ * 该函数处理系统内存复制操作，包括边界检查和安全复制。
+ * 当复制长度小于0x400时，执行内存复制操作。
+ * 
+ * @param targetBuffer 目标缓冲区指针
+ * @param sourceData 源数据指针
+ * @param copyLength 复制长度
+ */
+void ProcessSystemMemoryCopy(long long targetBuffer,void* sourceData,int copyLength)
 
 {
   if (param_3 + 1 < 0x400) {
@@ -18789,7 +18808,12 @@ void FUN_180045f60(long long param_1,void* param_2,int param_3)
 
 
 // 函数: void FUN_180045f81(void)
-void FUN_180045f81(void)
+/**
+ * @brief 执行系统内存复制操作
+ * 
+ * 该函数执行系统内存复制操作，是一个内存复制的辅助函数。
+ */
+void ExecuteSystemMemoryCopyOperation(void)
 
 {
                     // WARNING: Subroutine does not return
@@ -18800,7 +18824,14 @@ void FUN_180045f81(void)
 
 
 // 函数: void FUN_180045fa6(uint8_t *param_1)
-void FUN_180045fa6(uint8_t *param_1)
+/**
+ * @brief 重置系统缓冲区
+ * 
+ * 该函数重置系统缓冲区，将缓冲区内容清零并重置相关计数器。
+ * 
+ * @param bufferPointer 缓冲区指针
+ */
+void ResetSystemBuffer(uint8_t *bufferPointer)
 
 {
   long long unaff_RDI;
@@ -19118,7 +19149,16 @@ void ProcessSystemStringCopyWithLimit(long long param_1,long long param_2)
 
 
 // 函数: void FUN_180046400(long long param_1,void* param_2,int param_3)
-void FUN_180046400(long long param_1,void* param_2,int param_3)
+/**
+ * @brief 系统内存复制操作（带长度限制）
+ * 
+ * 该函数执行系统内存复制操作，限制最大复制长度为0x20字节。
+ * 
+ * @param targetBuffer 目标缓冲区指针
+ * @param sourceData 源数据指针
+ * @param copyLength 复制长度
+ */
+void ExecuteSystemMemoryCopyWithLimit(long long targetBuffer,void* sourceData,int copyLength)
 
 {
   if (param_3 + 1 < 0x20) {
@@ -19198,7 +19238,17 @@ void* * InitializeSystemMemoryAllocatorReference(void* *memoryAllocatorPointer)
 
 
 // 函数: void FUN_1800464f0(long long param_1,long long param_2,long long param_3)
-void FUN_1800464f0(long long param_1,long long param_2,long long param_3)
+/**
+ * @brief 系统三参数数据处理函数
+ * 
+ * 该函数处理需要三个参数的系统数据操作，包括内存分配、
+ * 数据处理和缓冲区管理。
+ * 
+ * @param param1 第一个参数
+ * @param param2 第二个参数
+ * @param param3 第三个参数
+ */
+void ProcessSystemThreeParameterData(long long param1,long long param2,long long param3)
 
 {
   long long lVar1;
@@ -19238,7 +19288,7 @@ void FUN_1800464f0(long long param_1,long long param_2,long long param_3)
 
 
 
-void* * FUN_180046650(void* *param_1,ulong long param_2)
+void* * GetSystemMemoryAllocatorReference(void* *param_1,ulong long param_2)
 
 {
   *param_1 = &SystemMemoryAllocatorReference;
@@ -19251,8 +19301,8 @@ void* * FUN_180046650(void* *param_1,ulong long param_2)
 
 
 
-// 函数: void FUN_1800466a0(void* *param_1)
-void FUN_1800466a0(void* *param_1)
+// 函数: void UnlockSystemMutex(void* *param_1)
+void UnlockSystemMutex(void* *param_1)
 
 {
   int iVar1;
@@ -19292,8 +19342,8 @@ void FUN_1800466d0(long long param_1)
 
 
 
-// 函数: void FUN_180046750(void* *param_1)
-void FUN_180046750(void* *param_1)
+// 函数: void InitializeSystemReferencePointers(void* *param_1)
+void InitializeSystemReferencePointers(void* *param_1)
 
 {
   *param_1 = &UNK_18098bdc8;
@@ -19305,7 +19355,7 @@ void FUN_180046750(void* *param_1)
 
 
 void* *
-FUN_180046790(void* *param_1,ulong long param_2,void* param_3,void* param_4)
+InitializeSystemReferencePointersWithCleanup(void* *param_1,ulong long param_2,void* param_3,void* param_4)
 
 {
   *param_1 = &UNK_18098bdc8;
