@@ -15745,14 +15745,20 @@ int InitializeSystemConfiguration(void)
 
 
 
-int FUN_1800439c0(void)
+/**
+ * 初始化引擎模块B
+ * 调用引擎初始化函数并注册系统回调
+ * 
+ * @return 成功返回0，失败返回-1
+ */
+int InitializeEngineModuleB(void)
 
 {
-  longlong lVar1;
+  longlong callbackResult;
   
   func_0x000180741c80(0x180c0c340);
-  lVar1 = FUN_1808fc7d0(&UNK_180943260);
-  return (lVar1 != 0) - 1;
+  callbackResult = FUN_1808fc7d0(&UNK_180943260);
+  return (callbackResult != 0) - 1;
 }
 
 
