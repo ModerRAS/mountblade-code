@@ -50,7 +50,7 @@ uint32_t NetworkConnectionStateFlags;
  * 和数据结构，为后续的网络连接管理做准备
  */
 void InitializeNetworkConnectionPool(void);
-uint32_t NetworkConnectionPoolData;
+uint32_t NetworkConnectionPoolManager;
 
 // 函数: void CreateNetworkSocket(void)
 /**
@@ -69,7 +69,7 @@ void InitializeNetworkSocketHandle(void);
  * 设置套接字的本地绑定信息，准备接收网络连接
  */
 void BindNetworkSocket(void);
-uint32_t NetworkSocketBindingData;
+uint32_t NetworkSocketBindingInfo;
 
 // 函数: void ListenNetworkConnections(void)
 /**
@@ -134,17 +134,17 @@ void NetworkSecurityGuardCheck(ulonglong securityValue);
 int NetworkCleanupConnectionContext(longlong connectionContext);
 
 /**
- * @brief 处理网络缓冲区数据
+ * @brief 验证网络缓冲区超时
  * 
- * 该函数负责处理网络数据缓冲区中的数据。
- * 主要用于网络数据包的解析和处理。
+ * 该函数负责验证网络缓冲区的超时情况，确保数据传输的及时性
+ * 主要用于网络连接的超时管理和数据包的有效性检查
  * 
  * @param bufferData 缓冲区数据指针
- * @param bufferSize 缓冲区大小
- * @param bufferTemplate 缓冲区模板指针
- * @return 处理的数据大小
+ * @param timeoutValue 超时值
+ * @param validationResult 验证结果输出指针
+ * @return 验证结果状态码
  */
-int NetworkProcessBufferData(longlong bufferData, int bufferSize, longlong bufferTemplate);
+int ValidateNetworkBufferTimeout(longlong bufferData, int timeoutValue, longlong validationResult);
 
 /**
  * @brief 处理网络缓冲区句柄
