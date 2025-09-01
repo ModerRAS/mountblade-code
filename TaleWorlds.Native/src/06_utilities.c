@@ -5554,7 +5554,7 @@ int ValidateSystemConfigurationParameter(uint32_t configParameter)
     resourceTable = StackMemoryOffset;
   }
   else {
-    lStack0000000000000028 = *(int64_t *)(RegisterRDI + 0x10);
+    int64_t *LocalStackPointer28 = *(int64_t *)(RegisterRDI + 0x10);
     ValidationResult = 2;
   }
   uStack0000000000000030 = ObjectContextParameter;
@@ -36088,7 +36088,21 @@ void ProcessResourceTransactionNonary(uint8_t ObjectContextParameter, int64_t Va
 
 
 
-void Unwind_180903720(uint8_t ObjectContextParameter,int64_t ValidationContextParameter,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 处理资源事务（第十版本）
+ * 
+ * 该函数负责处理资源事务，处理第十种资源事务场景
+ * 确保资源操作的原子性，维护系统资源管理的完整性
+ * 
+ * @param ObjectContextParameter 对象上下文参数
+ * @param ValidationContextParameter 验证上下文参数，包含验证所需的信息
+ * @param CleanupOption 清理选项，指定清理的类型
+ * @param CleanupFlag 清理标志，控制清理行为
+ * @return 无返回值
+ * @note 此函数在资源事务处理过程中被调用
+ * @warning 调用此函数后，资源事务状态将被更新
+ */
+void ProcessResourceTransactionDenary(uint8_t ObjectContextParameter, int64_t ValidationContextParameter, uint8_t CleanupOption, uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
@@ -36142,7 +36156,21 @@ void Unwind_180903720(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 
 
 
-void Unwind_180903740(uint8_t ObjectContextParameter,int64_t ValidationContextParameter,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 验证内存访问
+ * 
+ * 该函数负责验证内存访问的有效性，确保内存操作的安全性
+ * 检查内存地址和权限，执行必要的验证操作
+ * 
+ * @param ObjectContextParameter 对象上下文参数
+ * @param ValidationContextParameter 验证上下文参数，包含验证所需的信息
+ * @param CleanupOption 清理选项，指定清理的类型
+ * @param CleanupFlag 清理标志，控制清理行为
+ * @return 无返回值
+ * @note 此函数在内存访问验证过程中被调用
+ * @warning 如果内存访问无效，将执行相应的错误处理
+ */
+void ValidateMemoryAccess(uint8_t ObjectContextParameter, int64_t ValidationContextParameter, uint8_t CleanupOption, uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
@@ -36172,7 +36200,21 @@ void Unwind_180903740(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 
 
 
-void Unwind_180903760(uint8_t ObjectContextParameter,int64_t ValidationContextParameter,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 验证内存访问（次要版本）
+ * 
+ * 该函数负责验证内存访问的有效性，与ValidateMemoryAccess类似
+ * 但处理不同的内存偏移量，确保内存操作的安全性
+ * 
+ * @param ObjectContextParameter 对象上下文参数
+ * @param ValidationContextParameter 验证上下文参数，包含验证所需的信息
+ * @param CleanupOption 清理选项，指定清理的类型
+ * @param CleanupFlag 清理标志，控制清理行为
+ * @return 无返回值
+ * @note 此函数在内存访问验证过程中被调用
+ * @warning 处理不同的内存偏移量以确保全面的内存验证
+ */
+void ValidateMemoryAccessSecondary(uint8_t ObjectContextParameter, int64_t ValidationContextParameter, uint8_t CleanupOption, uint8_t CleanupFlag)
 
 {
   uint8_t *presourceHash;
@@ -36209,7 +36251,21 @@ void Unwind_180903760(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 
 
 
-void Unwind_180903770(uint8_t ObjectContextParameter,int64_t ValidationContextParameter,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 验证内存访问（第三版本）
+ * 
+ * 该函数负责验证内存访问的有效性，处理第三种内存验证场景
+ * 确保内存操作的安全性，维护系统内存管理的完整性
+ * 
+ * @param ObjectContextParameter 对象上下文参数
+ * @param ValidationContextParameter 验证上下文参数，包含验证所需的信息
+ * @param CleanupOption 清理选项，指定清理的类型
+ * @param CleanupFlag 清理标志，控制清理行为
+ * @return 无返回值
+ * @note 此函数在内存访问验证过程中被调用
+ * @warning 处理第三种内存验证场景以确保全面的内存验证
+ */
+void ValidateMemoryAccessTertiary(uint8_t ObjectContextParameter, int64_t ValidationContextParameter, uint8_t CleanupOption, uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
@@ -36239,7 +36295,21 @@ void Unwind_180903770(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 
 
 
-void Unwind_180903790(uint8_t ObjectContextParameter,int64_t ValidationContextParameter,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 验证内存访问（第四版本）
+ * 
+ * 该函数负责验证内存访问的有效性，处理第四种内存验证场景
+ * 确保内存操作的安全性，维护系统内存管理的完整性
+ * 
+ * @param ObjectContextParameter 对象上下文参数
+ * @param ValidationContextParameter 验证上下文参数，包含验证所需的信息
+ * @param CleanupOption 清理选项，指定清理的类型
+ * @param CleanupFlag 清理标志，控制清理行为
+ * @return 无返回值
+ * @note 此函数在内存访问验证过程中被调用
+ * @warning 处理第四种内存验证场景以确保全面的内存验证
+ */
+void ValidateMemoryAccessQuaternary(uint8_t ObjectContextParameter, int64_t ValidationContextParameter, uint8_t CleanupOption, uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
