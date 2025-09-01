@@ -4194,7 +4194,7 @@ uint8_t InitializeObjectHandleC(int64_t objectContext)
 
 {
   int64_t resourceOffset;
-  int ResourceIndex;
+  int ResourceIdentifier;
   uint8_t operationResult;
   uint32_t *resourceIdPointer;
   uint64_t contextHandle;
@@ -4214,9 +4214,9 @@ uint8_t InitializeObjectHandleC(int64_t objectContext)
     if (0 < *(int *)(objectContext + 0x18)) {
       baseAddressOffset = (objectContext + 0x20) - (int64_t)resourceIdPointer;
       do {
-        ResourceIndex = *(int *)(baseAddressOffset + (int64_t)resourceIdPointer);
-        if (ResourceIndex != -1) {
-          resourceOffset = *(int64_t *)(contextHandle + 0x20) + (int64_t)ResourceIndex * 0x18;
+        ResourceIdentifier = *(int *)(baseAddressOffset + (int64_t)resourceIdPointer);
+        if (ResourceIdentifier != -1) {
+          resourceOffset = *(int64_t *)(contextHandle + 0x20) + (int64_t)ResourceIdentifier * 0x18;
           int64_t resourceContext = *(int64_t *)(resourceOffset + 8);
           if ((resourceContext == 0)) {
             return 0x1c;
@@ -4250,7 +4250,7 @@ uint8_t InitializeObjectHandleD(void)
 
 {
   int64_t resourceOffset;
-  int ResourceIndex;
+  int ResourceIdentifier;
   int64_t registerValue;
   uint8_t operationResult;
   uint32_t *resourceIdPointer;
@@ -4269,9 +4269,9 @@ uint8_t InitializeObjectHandleD(void)
   if (0 < *(int *)(SystemContext + 0x18)) {
     baseAddressOffset = (SystemContext + 0x20) - (int64_t)resourceIdPointer;
     do {
-      ResourceIndex = *(int *)(baseAddressOffset + (int64_t)resourceIdPointer);
-      if (ResourceIndex != -1) {
-        resourceOffset = *(int64_t *)(contextHandle + 0x20) + (int64_t)ResourceIndex * 0x18;
+      ResourceIdentifier = *(int *)(baseAddressOffset + (int64_t)resourceIdPointer);
+      if (ResourceIdentifier != -1) {
+        resourceOffset = *(int64_t *)(contextHandle + 0x20) + (int64_t)ResourceIdentifier * 0x18;
         int64_t resourceContext = *(int64_t *)(resourceOffset + 8);
         if ((resourceContext == 0)) {
           return 0x1c;
