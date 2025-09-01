@@ -1302,7 +1302,7 @@ void* MemoryPoolConfig;
 void* MemoryPoolStatus;
 void* MemoryPoolHandle;
 void* MemoryPoolData;
-void* g_memoryPoolContext;
+void* MemoryPoolContext;
 
  void CleanupMemoryPool;
 /**
@@ -1312,7 +1312,7 @@ void* g_memoryPoolContext;
  * 释放所有分配的内存块
  */
 void CleanupMemoryPool;
-uint8_t g_cleanupMemoryConfig;
+uint8_t CleanupMemoryConfig;
 uint8_t g_cleanupMemoryStatus;
 uint8_t g_cleanupMemoryHandle;
 uint8_t g_cleanupMemoryData;
