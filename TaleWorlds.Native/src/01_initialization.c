@@ -17208,8 +17208,14 @@ void SystemResourceTrackerInitializer(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_1800434d0(void)
-void FUN_1800434d0(void)
+// 函数: 系统性能监控器初始化器
+/**
+ * @brief 系统性能监控器初始化器
+ * 
+ * 该函数负责初始化系统性能监控器，创建和配置系统的
+ * 性能监控数据结构，用于收集和分析系统性能数据
+ */
+void SystemPerformanceMonitorInitializer(void)
 
 {
   void* in_R9;
