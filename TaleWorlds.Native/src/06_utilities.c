@@ -4487,16 +4487,16 @@ uint8_t InitializeObjectHandleF(void)
   if (0 < *(int *)(ExecutionContextPointer + 0x18)) {
     do {
       if ((*pintegerValue2 != SystemValidationCodeA) || (pintegerValue2[1] != SystemValidationCodeB)) {
-        lStack0000000000000050 = 0;
+        StackBuffer50 = 0;
         resourceHash = ValidateResourceContext(ContextValidationResult,(int *)(ExecutionContextPointer + 0x20) + (int64_t)(int)LoopCounter * 2,
                               &ObjectStackBuffer50);
         if ((int)resourceHash != 0) {
           return resourceHash;
         }
-        if (*(int64_t *)(lStack0000000000000050 + 8) == 0) {
+        if (*(int64_t *)(StackBuffer50 + 8) == 0) {
           return 0x1c;
         }
-        resourceHash = ProcessResourceOperation(*(int64_t *)(lStack0000000000000050 + 8),*punsignedResult3,
+        resourceHash = ProcessResourceOperation(*(int64_t *)(StackBuffer50 + 8),*punsignedResult3,
                               *(uint8_t *)(ExecutionContextPointer + 0x1c));
         if ((int)resourceHash != 0) {
           return resourceHash;
