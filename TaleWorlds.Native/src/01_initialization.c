@@ -36853,55 +36853,65 @@ int CheckSystemInputManagerStatus(void)
 
 
 
-// 函数: void FUN_18005d0e0(ulong long SystemResourcePointer,long long ConfigurationDataPointer)
-void FUN_18005d0e0(ulong long SystemResourcePointer,long long ConfigurationDataPointer)
+/**
+ * @brief 系统资源初始化函数
+ * 
+ * 该函数负责初始化系统资源，设置资源参数和配置选项
+ * 用于系统资源管理的前期准备工作
+ * 
+ * @param SystemResourcePointer 系统资源指针
+ * @param ConfigurationDataPointer 配置数据指针
+ * 
+ * 原始函数名为FUN_18005d0e0，现已重命名为InitializeSystemResources
+ */
+void InitializeSystemResources(ulong long SystemResourcePointer,long long ConfigurationDataPointer)
 
 {
-  char SystemNodeFlag;
-  uint unsignedSystemValue2;
-  ulong long unsignedSystemValue3;
-  ulong long *punsignedSystemValue4;
-  long long SystemTimeValue;
-  long long localSystemFlags;
-  int systemOffset;
-  int systemCode;
-  float fVar9;
-  float fVar10;
-  double dStackX_18;
-  ulong long uStackX_20;
-  uint8_t auStack_478 [32];
-  void* uStack_458;
-  double *pdStack_450;
-  char acStack_438 [1024];
+  char SystemNodeStatusFlag;
+  uint SystemConfigurationValue;
+  ulong long SystemResourceHandle;
+  ulong long *SystemResourceHandlePointer;
+  long long SystemTimestamp;
+  long long LocalSystemFlags;
+  int SystemMemoryOffset;
+  int SystemErrorCode;
+  float SystemFloatValue1;
+  float SystemFloatValue2;
+  double SystemDoubleValue;
+  ulong long SystemUlongValue;
+  uint8_t SystemBuffer1 [32];
+  void* SystemPointer1;
+  double *SystemDoublePointer;
+  char SystemMainBuffer [1024];
   ulong long uStack_38;
   void* uStack_30;
   
-  systemOffset = -1;
-  systemCode = -1;
-  unsignedSystemValue2 = (uint)SystemResourcePointer;
-  unsignedSystemValue3 = SystemResourcePointer & 0xffffffff;
-  while (unsignedSystemValue2 != 0) {
-    systemCode = systemCode + 1;
-    unsignedSystemValue2 = (uint)unsignedSystemValue3 >> 1;
-    unsignedSystemValue3 = (ulong long)unsignedSystemValue2;
+  SystemMemoryOffset = -1;
+  SystemErrorCode = -1;
+  SystemConfigurationValue = (uint)SystemResourcePointer;
+  SystemResourceHandle = SystemResourcePointer & 0xffffffff;
+  while (SystemConfigurationValue != 0) {
+    SystemErrorCode = SystemErrorCode + 1;
+    SystemConfigurationValue = (uint)SystemResourceHandle >> 1;
+    SystemResourceHandle = (ulong long)SystemConfigurationValue;
   }
-  unsignedSystemValue2 = 0x400;
+  SystemConfigurationValue = 0x400;
   do {
-    systemOffset = systemOffset + 1;
-    unsignedSystemValue2 = unsignedSystemValue2 >> 1;
-  } while (unsignedSystemValue2 != 0);
-  cVar1 = (&SystemFormatDataArray)[systemCode / systemOffset];
-  uStack_30 = 0x18005d147;
-  fVar9 = (float)powf(0x44800000);
-  fVar10 = (float)(long long)SystemResourcePointer;
+    SystemMemoryOffset = SystemMemoryOffset + 1;
+    SystemConfigurationValue = SystemConfigurationValue >> 1;
+  } while (SystemConfigurationValue != 0);
+  SystemNodeStatusFlag = (&SystemFormatDataArray)[SystemErrorCode / SystemMemoryOffset];
+  SystemPointer1 = 0x18005d147;
+  SystemFloatValue1 = (float)powf(0x44800000);
+  SystemFloatValue2 = (float)(long long)SystemResourcePointer;
   if ((long long)SystemResourcePointer < 0) {
-    fVar10 = fVar10 + 1.8446744e+19;
+    SystemFloatValue2 = SystemFloatValue2 + 1.8446744e+19;
   }
-  uStackX_20 = (ulong long)(uint)(int)cVar1;
-  dStackX_18 = (double)(fVar9 * fVar10);
-  uStack_38 = SystemEncryptionKeyTemplate ^ (ulong long)auStack_478;
-  punsignedSystemValue4 = (ulong long *)SystemGlobalDataAllocate();
-  localSystemPointer = 0;
+  SystemUlongValue = (ulong long)(uint)(int)SystemNodeStatusFlag;
+  SystemDoubleValue = (double)(SystemFloatValue1 * SystemFloatValue2);
+  uStack_38 = SystemEncryptionKeyTemplate ^ (ulong long)SystemBuffer1;
+  SystemResourceHandlePointer = (ulong long *)SystemGlobalDataAllocate();
+  LocalSystemPointer = 0;
   uStack_458 = 0;
   pdStack_450 = &dStackX_18;
   systemCode = __stdio_common_vsprintf(*punsignedSystemValue4 | 1,0,0,&SystemFormatString);
