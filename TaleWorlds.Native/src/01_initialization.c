@@ -647,7 +647,7 @@ void* SystemDataBufferPrimaryFifth;
 void* SystemDataBufferPrimarySixth;
 void* SystemDataBufferPrimarySeventh;
 void* SystemDataBufferPrimaryEighth;
-void* SystemDataBufferPrimary009;
+void* SystemDataBufferPrimaryNinth;
 
 // 函数: 系统配置加载器 - 负责加载系统配置参数
 // 系统配置管理器
