@@ -10843,7 +10843,14 @@ undefined8 FUN_180895cf1(longlong param_1,undefined8 param_2,longlong param_3)
 
 
 
-undefined8 FUN_180895d16(void)
+/**
+ * @brief 获取系统状态码
+ * 
+ * 该函数返回一个固定的系统状态码，用于表示特定的系统状态
+ * 
+ * @return uint8_t 系统状态码0x1e，表示系统初始化状态
+ */
+uint8_t GetSystemStatusCode(void)
 
 {
   return 0x1e;
@@ -11249,7 +11256,17 @@ MemoryAllocationComplete:
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 FUN_180895f44(undefined8 param_1,int param_2)
+/**
+ * @brief 清理资源池并释放内存
+ * 
+ * 该函数用于清理资源池并释放相关内存
+ * 主要用于资源池的销毁和内存回收
+ * 
+ * @param resourcePool 资源池句柄，指向要清理的资源池
+ * @param cleanupFlags 清理标志，控制清理过程
+ * @return uint64_t 清理结果状态码
+ */
+uint64_t CleanupResourcePoolAndReleaseMemory(undefined8 resourcePool, int cleanupFlags)
 
 {
   int iVar1;
