@@ -87648,7 +87648,7 @@ void InitializeSystemDataStructureCZ(void)
 void InitializeSystemDataStructureCZ(void)
 
 {
-  if (DAT_180c96210 != '\0') {
+  if (SystemInitializationFlag != '\0') {
     SystemTerminator();
 
  /**
