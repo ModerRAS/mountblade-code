@@ -318,7 +318,7 @@ void InitializeNetworkConnectionState(void)
   longlong stackParameter;
   
   connectionBuffer = (uint8_t *)(CONCAT44(connectionFlags,connectionHandle) + 0x28);
-  if (*(int *)(*(longlong *)(systemContext + 0x98) + 0x200) == sessionID) {
+  if (*(int *)(*(longlong *)(systemContext + 0x98) + 0x200) == sessionId) {
     *connectionBuffer = 0;
     *(uint *)(CONCAT44(connectionFlags,connectionHandle) + 8) = ((int)connectionBuffer - connectionHandle) + 4U & 0xfffffffc;
     networkStatus = InitializeNetworkConnectionContext(*(undefined8 *)(stackParameter + 0x98));

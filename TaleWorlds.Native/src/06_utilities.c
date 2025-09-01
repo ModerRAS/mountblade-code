@@ -39949,63 +39949,72 @@ void Unwind_180905b50(undefined8 param_1,longlong param_2)
 
 
 
-void Unwind_180905b60(undefined8 param_1,longlong param_2)
+/**
+ * @brief 清理异常处理展开资源
+ * 
+ * 该函数负责清理异常处理展开过程中的资源
+ * 释放互斥体、条件变量和相关数据结构
+ * 
+ * @param param_1 参数1，用于标识展开上下文
+ * @param param_2 参数2，包含展开相关的数据结构
+ */
+void CleanupExceptionUnwindResources(undefined8 param_1, longlong param_2)
 
 {
-  int *piVar1;
-  char *pcVar2;
-  undefined8 *puVar3;
-  longlong lVar4;
-  longlong lVar5;
-  ulonglong uVar6;
+  int *resourceCount;
+  char *resourceFlag;
+  undefined8 *resourcePointer;
+  longlong resourceList;
+  longlong resourceItem;
+  ulonglong resourceAddress;
   
-  lVar5 = *(longlong *)(param_2 + 0x58);
+  resourceItem = *(longlong *)(param_2 + 0x58);
   _Mtx_destroy_in_situ();
   _Cnd_destroy_in_situ();
-  puVar3 = *(undefined8 **)(lVar5 + 0x10);
-  if (puVar3 != (undefined8 *)0x0) {
-    if ((undefined8 *)puVar3[3] != (undefined8 *)0x0) {
-      *(undefined8 *)puVar3[3] = 0;
+  resourcePointer = *(undefined8 **)(resourceItem + 0x10);
+  if (resourcePointer != (undefined8 *)0x0) {
+    if ((undefined8 *)resourcePointer[3] != (undefined8 *)0x0) {
+      *(undefined8 *)resourcePointer[3] = 0;
     }
-    (**(code **)*puVar3)(puVar3,0);
+    (**(code **)*resourcePointer)(resourcePointer,0);
                     // WARNING: Subroutine does not return
-    FUN_18064e900(puVar3);
+    FUN_18064e900(resourcePointer);
   }
-  if ((*(longlong *)(lVar5 + 0x40) != 0) && (*(longlong *)(*(longlong *)(lVar5 + 0x40) + 0x10) != 0)
+  if ((*(longlong *)(resourceItem + 0x40) != 0) && (*(longlong *)(*(longlong *)(resourceItem + 0x40) + 0x10) != 0)
      ) {
                     // WARNING: Subroutine does not return
     FUN_18064e900();
   }
-  lVar4 = *(longlong *)(lVar5 + 0x38);
-  while (lVar4 != 0) {
-    pcVar2 = (char *)(lVar4 + 0x141);
-    lVar4 = *(longlong *)(lVar4 + 0x138);
-    if (*pcVar2 != '\0') {
+  resourceList = *(longlong *)(resourceItem + 0x38);
+  while (resourceList != 0) {
+    resourceFlag = (char *)(resourceList + 0x141);
+    resourceList = *(longlong *)(resourceList + 0x138);
+    if (*resourceFlag != '\0') {
                     // WARNING: Subroutine does not return
       FUN_18064e900();
     }
   }
-  puVar3 = *(undefined8 **)(lVar5 + 0x28);
-  if (puVar3 == (undefined8 *)0x0) {
+  resourcePointer = *(undefined8 **)(resourceItem + 0x28);
+  if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar6 = (ulonglong)puVar3 & 0xffffffffffc00000;
-  if (uVar6 != 0) {
-    lVar5 = uVar6 + 0x80 + ((longlong)puVar3 - uVar6 >> 0x10) * 0x50;
-    lVar5 = lVar5 - (ulonglong)*(uint *)(lVar5 + 4);
-    if ((*(void ***)(uVar6 + 0x70) == &ExceptionList) && (*(char *)(lVar5 + 0xe) == '\0')) {
-      *puVar3 = *(undefined8 *)(lVar5 + 0x20);
-      *(undefined8 **)(lVar5 + 0x20) = puVar3;
-      piVar1 = (int *)(lVar5 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+  resourceAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  if (resourceAddress != 0) {
+    resourceItem = resourceAddress + 0x80 + ((longlong)resourcePointer - resourceAddress >> 0x10) * 0x50;
+    resourceItem = resourceItem - (ulonglong)*(uint *)(resourceItem + 4);
+    if ((*(void ***)(resourceAddress + 0x70) == &ExceptionList) && (*(char *)(resourceItem + 0xe) == '\0')) {
+      *resourcePointer = *(undefined8 *)(resourceItem + 0x20);
+      *(undefined8 **)(resourceItem + 0x20) = resourcePointer;
+      resourceCount = (int *)(resourceItem + 0x18);
+      *resourceCount = *resourceCount + -1;
+      if (*resourceCount == 0) {
         FUN_18064d630();
         return;
       }
     }
     else {
-      func_0x00018064e870(uVar6,CONCAT71(0xff000000,*(void ***)(uVar6 + 0x70) == &ExceptionList),
-                          puVar3,uVar6,0xfffffffffffffffe);
+      func_0x00018064e870(resourceAddress,CONCAT71(0xff000000,*(void ***)(resourceAddress + 0x70) == &ExceptionList),
+                          resourcePointer,resourceAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -40013,34 +40022,43 @@ void Unwind_180905b60(undefined8 param_1,longlong param_2)
 
 
 
-void Unwind_180905b70(undefined8 param_1,longlong param_2)
+/**
+ * @brief 重置异常处理展开指针表
+ * 
+ * 该函数负责重置异常处理展开过程中的指针表
+ * 清理所有指针引用并重置相关状态
+ * 
+ * @param param_1 参数1，用于标识展开上下文
+ * @param param_2 参数2，包含展开相关的数据结构
+ */
+void ResetExceptionUnwindPointerTable(undefined8 param_1, longlong param_2)
 
 {
-  longlong lVar1;
-  undefined8 *puVar2;
-  longlong lVar3;
-  ulonglong uVar4;
-  ulonglong uVar5;
+  longlong pointerArray;
+  undefined8 *pointerEntry;
+  longlong unwindContext;
+  ulonglong pointerCount;
+  ulonglong pointerIndex;
   
-  lVar3 = *(longlong *)(param_2 + 0x58);
-  uVar4 = *(ulonglong *)(lVar3 + 0x340);
-  lVar1 = *(longlong *)(lVar3 + 0x338);
-  uVar5 = 0;
-  if (uVar4 != 0) {
+  unwindContext = *(longlong *)(param_2 + 0x58);
+  pointerCount = *(ulonglong *)(unwindContext + 0x340);
+  pointerArray = *(longlong *)(unwindContext + 0x338);
+  pointerIndex = 0;
+  if (pointerCount != 0) {
     do {
-      puVar2 = *(undefined8 **)(lVar1 + uVar5 * 8);
-      if (puVar2 != (undefined8 *)0x0) {
-        *puVar2 = &UNK_18098bcb0;
+      pointerEntry = *(undefined8 **)(pointerArray + pointerIndex * 8);
+      if (pointerEntry != (undefined8 *)0x0) {
+        *pointerEntry = &UNK_18098bcb0;
                     // WARNING: Subroutine does not return
         FUN_18064e900();
       }
-      *(undefined8 *)(lVar1 + uVar5 * 8) = 0;
-      uVar5 = uVar5 + 1;
-    } while (uVar5 < uVar4);
-    uVar4 = *(ulonglong *)(lVar3 + 0x340);
+      *(undefined8 *)(pointerArray + pointerIndex * 8) = 0;
+      pointerIndex = pointerIndex + 1;
+    } while (pointerIndex < pointerCount);
+    pointerCount = *(ulonglong *)(unwindContext + 0x340);
   }
-  *(undefined8 *)(lVar3 + 0x348) = 0;
-  if ((1 < uVar4) && (*(longlong *)(lVar3 + 0x338) != 0)) {
+  *(undefined8 *)(unwindContext + 0x348) = 0;
+  if ((1 < pointerCount) && (*(longlong *)(unwindContext + 0x338) != 0)) {
                     // WARNING: Subroutine does not return
     FUN_18064e900();
   }

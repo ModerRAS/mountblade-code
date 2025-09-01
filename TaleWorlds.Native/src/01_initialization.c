@@ -1656,35 +1656,35 @@ void InitializeSystemResourceNode(void)
   undefined8 *allocatedNode;
   undefined8 *initializationCallback;
   
-  plVar4 = (longlong *)FUN_18008d070();
-  puVar2 = (undefined8 *)*plVar4;
-  cVar1 = *(char *)((longlong)puVar2[1] + 0x19);
-  pcStackX_18 = FUN_18025d270;
-  puVar7 = puVar2;
-  puVar6 = (undefined8 *)puVar2[1];
-  while (cVar1 == '\0') {
-    iVar3 = memcmp(puVar6 + 4,&DAT_180a01028,0x10);
-    if (iVar3 < 0) {
-      puVar8 = (undefined8 *)puVar6[2];
-      puVar6 = puVar7;
+  systemTablePointer = (longlong *)FUN_18008d070();
+  systemRootPointer = (undefined8 *)*systemTablePointer;
+  nodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
+  initializationCallback = FUN_18025d270;
+  previousNode = systemRootPointer;
+  currentNode = (undefined8 *)systemRootPointer[1];
+  while (nodeFlag == '\0') {
+    comparisonResult = memcmp(currentNode + 4,&DAT_180a01028,0x10);
+    if (comparisonResult < 0) {
+      nextNode = (undefined8 *)currentNode[2];
+      currentNode = previousNode;
     }
     else {
-      puVar8 = (undefined8 *)*puVar6;
+      nextNode = (undefined8 *)*currentNode;
     }
-    puVar7 = puVar6;
-    puVar6 = puVar8;
-    cVar1 = *(char *)((longlong)puVar8 + 0x19);
+    previousNode = currentNode;
+    currentNode = nextNode;
+    nodeFlag = *(char *)((longlong)nextNode + 0x19);
   }
-  if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a01028,puVar7 + 4,0x10), iVar3 < 0)) {
-    lVar5 = FUN_18008f0d0(plVar4);
-    FUN_18008f140(plVar4,&puStackX_10,puVar7,lVar5 + 0x20,lVar5);
-    puVar7 = puStackX_10;
+  if ((previousNode == systemRootPointer) || (comparisonResult = memcmp(&DAT_180a01028,previousNode + 4,0x10), comparisonResult < 0)) {
+    allocationSize = FUN_18008f0d0(systemTablePointer);
+    FUN_18008f140(systemTablePointer,&allocatedNode,previousNode,allocationSize + 0x20,allocationSize);
+    previousNode = allocatedNode;
   }
-  puVar7[6] = 0x49086ba08ab981a7;
-  puVar7[7] = 0xa9191d34ad910696;
-  puVar7[8] = &UNK_180a003b8;
-  puVar7[9] = 0;
-  puVar7[10] = pcStackX_18;
+  previousNode[6] = 0x49086ba08ab981a7;
+  previousNode[7] = 0xa9191d34ad910696;
+  previousNode[8] = &UNK_180a003b8;
+  previousNode[9] = 0;
+  previousNode[10] = initializationCallback;
   return;
 }
 
