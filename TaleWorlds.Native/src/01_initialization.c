@@ -26168,7 +26168,7 @@ void SystemDataInitializer(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180050b00(void)
+// 函数: void InitializeSystemCore(void)
 /**
  * @brief 初始化系统数据结构
  * 
@@ -27492,7 +27492,7 @@ void ProcessSystemResourceAndRenderManagement(long long *SystemResourcePointer,v
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180053200(void* SystemResourcePointer,long long param_2)
+// 函数: void InitializeSystemResource(void* SystemResourcePointer,long long param_2)
 /**
  * @brief 系统字符串格式化处理器
  * 
@@ -28013,7 +28013,7 @@ LAB_18005419d:
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180054360(long long *SystemResourcePointer,long long param_2)
+// 函数: void ConfigureSystemResource(long long *SystemResourcePointer,long long param_2)
 /**
  * @brief 系统资源数据处理函数
  * 
@@ -28243,7 +28243,7 @@ void SystemResourceDataProcessor(long long *SystemResourcePointer,long long para
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_1800547b0(void)
+// 函数: void SetupSystemMemory(void)
 /**
  * @brief 系统资源枚举和配置函数
  * 
@@ -28526,7 +28526,7 @@ LAB_180054d28:
                 systemId = -1;
 LAB_180054d57:
                 FUN_180629a40(pointerToUnsigned3 + (long long)systemStatus3 * 4,&stackParameterB,systemId + 1,0xffffffff);
-                unsignedSystemValue17 = FUN_180054360(SecondaryResourcePointer,&stackParameterB);
+                unsignedSystemValue17 = ConfigureSystemResource(SecondaryResourcePointer,&stackParameterB);
                 if (SystemGlobalStateStorage != 0) {
                   FUN_18005c1c0(unsignedSystemValue17,&puStack_78);
                   puStack_f0 = &SystemGlobalDataReference;
