@@ -1178,7 +1178,7 @@ LAB_180840a03:
     }
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(stackGuard ^ (uint64_t)securityBuffer);
+  NetworkStackGuardActivate(stackGuard ^ (uint64_t)securityBuffer);
 }
 
 
@@ -1339,13 +1339,13 @@ LAB_180840d1b:
     if (iVar1 == 0) goto LAB_180840cf0;
   }
   else if (iVar1 == 0) {
-    iVar1 = FUN_18088e0f0(*(undefined8 *)(alStack_138[0] + 0x98),1);
+    iVar1 = NetworkConnectionGetStatus(*(undefined8 *)(alStack_138[0] + 0x98),1);
     if (iVar1 == 0) {
       if (*(int *)(*(longlong *)(alStack_138[0] + 0x98) + 0x200) != 0) {
         alStack_138[1] = 0;
-        iVar1 = FUN_18088c740(alStack_138 + 1);
+        iVar1 = NetworkContextInitialize(alStack_138 + 1);
         if ((iVar1 == 0) &&
-           (iVar1 = FUN_18088dec0(*(undefined8 *)(alStack_138[0] + 0x98),apuStack_128,0x10),
+           (iVar1 = NetworkConnectionReadData(*(undefined8 *)(alStack_138[0] + 0x98),apuStack_128,0x10),
            iVar1 == 0)) {
           *apuStack_128[0] = &UNK_180982b30;
           *(undefined4 *)(apuStack_128[0] + 1) = 0x10;
@@ -5967,7 +5967,7 @@ void FUN_180847f60(undefined8 param_1)
   iVar1 = func_0x00018088c590(param_1,alStack_138);
   if (iVar1 == 0) {
     if ((*(uint *)(alStack_138[0] + 0x24) >> 1 & 1) == 0) goto LAB_180848016;
-    iVar2 = FUN_18088c740(alStack_138 + 1);
+    iVar2 = NetworkContextInitialize(alStack_138 + 1);
     if (iVar2 == 0) goto LAB_180847fc4;
   }
   else {
@@ -6076,7 +6076,7 @@ void FUN_1808482f0(undefined8 param_1)
   iVar1 = func_0x00018088c590(param_1,alStack_138);
   if (iVar1 == 0) {
     if ((*(uint *)(alStack_138[0] + 0x24) >> 1 & 1) == 0) goto LAB_1808483a6;
-    iVar2 = FUN_18088c740(alStack_138 + 1);
+    iVar2 = NetworkContextInitialize(alStack_138 + 1);
     if (iVar2 == 0) goto LAB_180848354;
   }
   else {
@@ -7271,7 +7271,7 @@ void FUN_180849230(undefined8 param_1)
   iVar1 = func_0x00018088c590(param_1,alStack_138);
   if (iVar1 == 0) {
     if ((*(uint *)(alStack_138[0] + 0x24) >> 1 & 1) == 0) goto LAB_1808492e6;
-    iVar2 = FUN_18088c740(alStack_138 + 1);
+    iVar2 = NetworkContextInitialize(alStack_138 + 1);
     if (iVar2 == 0) goto LAB_180849294;
   }
   else {
@@ -8235,7 +8235,7 @@ void FUN_18084acb0(undefined8 param_1)
   iVar1 = func_0x00018088c590(param_1,alStack_138);
   if (iVar1 == 0) {
     if ((*(uint *)(alStack_138[0] + 0x24) >> 1 & 1) == 0) goto LAB_18084ad66;
-    iVar2 = FUN_18088c740(alStack_138 + 1);
+    iVar2 = NetworkContextInitialize(alStack_138 + 1);
     if (iVar2 == 0) goto LAB_18084ad14;
   }
   else {
