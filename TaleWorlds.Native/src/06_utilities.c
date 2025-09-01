@@ -45031,7 +45031,7 @@ void DestroyMutexInSitu(void)
 
 
 
-void Unwind_180905a60(uint8_t ObjectContextParameter,int64_t ValidationContextParameter)
+void DestroyMutexFromContext(uint8_t ObjectContextParameter,int64_t ValidationContextParameter)
 
 {
   _Mtx_destroy_in_situ(*(uint8_t *)(ValidationContextParameter + 0x2e0));
