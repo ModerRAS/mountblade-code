@@ -208,6 +208,9 @@ void ConfigureResourceSettings(void);
  * 
  * 该函数负责处理资源相关的操作任务
  * 包括资源的分配、释放和管理等操作
+ * 
+ * @return 无返回值
+ * @note 此函数会批量处理所有待处理的资源操作
  */
 void ProcessResourceOperations(void);
 
@@ -216,6 +219,10 @@ void ProcessResourceOperations(void);
  * 
  * 该函数负责验证系统中的资源完整性
  * 确保资源数据没有被损坏或篡改
+ * 
+ * @return 无返回值
+ * @note 此函数会检查所有系统资源的完整性
+ * @warning 如果发现资源损坏，系统可能会采取恢复措施
  */
 void ValidateResourceIntegrity(void);
 

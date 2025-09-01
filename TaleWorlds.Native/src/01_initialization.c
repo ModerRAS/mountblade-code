@@ -17566,7 +17566,7 @@ int InitializeSystemConfiguration(void)
     configIndex = configIndex + 1;
   } while (configIndex < 0xd);
   *(uint *)(SystemDeviceContextPointer + 0x330) = *(uint *)(SystemDeviceContextPointer + 0x330) | 4;
-  _DAT_180be1324 = 0xffffffff;
+  SystemDeviceStatusFlag = 0xffffffff;
   callbackResult = SystemEventCallback(&SystemEventParameterA);
   return (callbackResult != 0) - 1;
 }
