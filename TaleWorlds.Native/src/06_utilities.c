@@ -12231,7 +12231,7 @@ int ProcessDataBlockOperationWithExtendedValidator(longlong objectContextParam,l
  * @param param_3 验证标志
  * @return 处理结果状态码
  */
-int ProcessDataBlockOperationWithSimplifiedValidator(longlong objectContextParam,longlong validationContextParam,int param_3)
+int ProcessDataBlockOperationWithSimplifiedValidator(longlong objectContextParam,longlong validationContextParam,int validationFlag)
 
 {
   uint8_t4 resourceHash;
@@ -12264,7 +12264,7 @@ int ProcessDataBlockOperationWithSimplifiedValidator(longlong objectContextParam
  * @param param_3 验证数据指针
  * @return 验证结果或上下文信息
  */
-uint8_t8 ValidateAndGetBufferContext(longlong objectContextParam,uint8_t8 validationContextParam,uint8_t8 param_3)
+uint8_t8 ValidateAndGetBufferContext(longlong objectContextParam,uint8_t8 validationContextParam,uint8_t8 bufferPointer)
 
 {
   uint8_t8 resourceHash;
