@@ -12730,79 +12730,79 @@ void ProcessComplexResourceWithRegisters(void)
         }
       }
     }
-    for (iVar7 = 0; (-1 < iVar7 && (iVar7 < *(int *)(unaff_R13 + 0x58))); iVar7 = iVar7 + 1) {
-      loopCounter = *(longlong *)(*(longlong *)(unaff_R13 + 0x50) + (longlong)iVar7 * 8);
-      resourceTable = *(longlong *)(localContextPointer + 0x68);
-      if (((*(byte *)(localContextPointer + 0xc4) & 1) != 0) && (resourceTable != 0)) {
-        uStackX_20 = 0;
-        iVar8 = ValidateBufferContext(resourceTable,&uStackX_20);
-        if (iVar8 != 0) goto LAB_1808974ec;
-        unsignedResult3 = *(uint8_t4 *)(localContextPointer + 0x10);
-        unsignedResult4 = *(uint8_t4 *)(localContextPointer + 0x14);
-        unsignedValue5 = *(uint8_t4 *)(localContextPointer + 0x18);
-        unsignedValue6 = *(uint8_t4 *)(localContextPointer + 0x1c);
-        *(uint8_t4 *)(ExecutionContextPointer + -0x78) = 0;
-        *(int *)(ExecutionContextPointer + -0x68) = unaff_R12D;
-        *(uint8_t **)(ExecutionContextPointer + -0x80) = &SystemResourceTemplateA;
-        unaff_R12D = unaff_R12D + 1;
-        *(uint8_t4 *)(ExecutionContextPointer + -0x54) = uStackX_20;
-        *(uint8_t4 *)(ExecutionContextPointer + -0x70) = unaff_EBX;
-        *(uint8_t4 *)(ExecutionContextPointer + -100) = unsignedResult3;
-        *(uint8_t4 *)(ExecutionContextPointer + -0x60) = unsignedResult4;
-        *(uint8_t4 *)(ExecutionContextPointer + -0x5c) = unsignedValue5;
-        *(uint8_t4 *)(ExecutionContextPointer + -0x58) = unsignedValue6;
-        iVar8 = GetAndValidateResourceData(unsignedResult3,ExecutionContextPointer + -0x80);
-        if ((iVar8 != 0) || (iVar8 = FindResourceEntry(resourceTable,&fStackX_24), iVar8 != 0))
+    for (operationResult = 0; (-1 < operationResult && (operationResult < *(int *)(systemRegister3 + 0x58))); operationResult = operationResult + 1) {
+      resourceIndex = *(longlong *)(*(longlong *)(systemRegister3 + 0x50) + (longlong)operationResult * 8);
+      resourceTablePointer = *(longlong *)(localContextPointer + 0x68);
+      if (((*(byte *)(localContextPointer + 0xc4) & 1) != 0) && (resourceTablePointer != 0)) {
+        contextFlags = 0;
+        validationErrorCode = ValidateBufferContext(resourceTablePointer,&contextFlags);
+        if (validationErrorCode != 0) goto LAB_1808974ec;
+        validationStatus1 = *(uint8_t4 *)(localContextPointer + 0x10);
+        validationStatus2 = *(uint8_t4 *)(localContextPointer + 0x14);
+        resourceData1 = *(uint8_t4 *)(localContextPointer + 0x18);
+        resourceData2 = *(uint8_t4 *)(localContextPointer + 0x1c);
+        *(uint8_t4 *)(executionContext + -0x78) = 0;
+        *(int *)(executionContext + -0x68) = systemRegister2;
+        *(uint8_t **)(executionContext + -0x80) = &SystemResourceTemplateA;
+        systemRegister2 = systemRegister2 + 1;
+        *(uint8_t4 *)(executionContext + -0x54) = contextFlags;
+        *(uint8_t4 *)(executionContext + -0x70) = systemRegister1;
+        *(uint8_t4 *)(executionContext + -100) = validationStatus1;
+        *(uint8_t4 *)(executionContext + -0x60) = validationStatus2;
+        *(uint8_t4 *)(executionContext + -0x5c) = resourceData1;
+        *(uint8_t4 *)(executionContext + -0x58) = resourceData2;
+        validationErrorCode = GetAndValidateResourceData(validationStatus1,executionContext + -0x80);
+        if ((validationErrorCode != 0) || (validationErrorCode = FindResourceEntry(resourceTablePointer,&stackFloat1), validationErrorCode != 0))
         goto LAB_1808974ec;
-        fVar10 = fStackX_24;
-        if (fStackX_24 != 1.0) {
-          in_stack_00000048 = fStackX_24;
-          in_stack_00000030 = &SystemDataTypeTemplateA;
-          in_stack_00000040 = uStackX_20;
-          in_stack_00000038 = iVar8;
-          iVar8 = GetAndValidateResourceData(fStackX_24,&ObjectStackBuffer30);
-          fVar10 = extraout_XMM0_Da_01;
-          if (iVar8 != 0) goto LAB_1808974ec;
+        resultFloat = stackFloat1;
+        if (stackFloat1 != 1.0) {
+          stackResourceValue = stackFloat1;
+          dataTypeTemplate = &SystemDataTypeTemplateA;
+          stackValidationFlags = contextFlags;
+          validationErrorCode = validationErrorCode;
+          validationErrorCode = GetAndValidateResourceData(stackFloat1,&ObjectStackBuffer30);
+          resultFloat = calculatedFloat3;
+          if (validationErrorCode != 0) goto LAB_1808974ec;
         }
-        if (*(char *)(resourceTable + 0x28) != '\0') {
-          in_stack_00000038 = 0;
-          in_stack_00000030 = &SystemDataTypeTemplateB;
-          in_stack_00000040 = uStackX_20;
-          in_stack_00000048 = (float)CONCAT31(in_stack_00000048._1_3_,1);
-          iVar8 = GetAndValidateResourceData(fVar10,&ObjectStackBuffer30);
-          fVar10 = extraout_XMM0_Da_02;
-          if (iVar8 != 0) goto LAB_1808974ec;
+        if (*(char *)(resourceTablePointer + 0x28) != '\0') {
+          validationErrorCode = 0;
+          dataTypeTemplate = &SystemDataTypeTemplateB;
+          stackValidationFlags = contextFlags;
+          stackResourceValue = (float)CONCAT31(stackResourceValue._1_3_,1);
+          validationErrorCode = GetAndValidateResourceData(resultFloat,&ObjectStackBuffer30);
+          resultFloat = calculatedFloat4;
+          if (validationErrorCode != 0) goto LAB_1808974ec;
         }
-        if (*(char *)(resourceTable + 0x29) != '\0') {
-          in_stack_00000038 = 0;
-          in_stack_00000030 = &SystemDataTypeTemplateC;
-          in_stack_00000040 = uStackX_20;
-          in_stack_00000048 = (float)CONCAT31(in_stack_00000048._1_3_,1);
-          iVar8 = GetAndValidateResourceData(fVar10,&ObjectStackBuffer30);
-          if (iVar8 != 0) goto LAB_1808974ec;
+        if (*(char *)(resourceTablePointer + 0x29) != '\0') {
+          validationErrorCode = 0;
+          dataTypeTemplate = &SystemDataTypeTemplateC;
+          stackValidationFlags = contextFlags;
+          stackResourceValue = (float)CONCAT31(stackResourceValue._1_3_,1);
+          validationErrorCode = GetAndValidateResourceData(resultFloat,&ObjectStackBuffer30);
+          if (validationErrorCode != 0) goto LAB_1808974ec;
         }
       }
     }
-    for (iVar7 = 0; (-1 < iVar7 && (iVar7 < *(int *)(unaff_R13 + 0x68))); iVar7 = iVar7 + 1) {
-      loopCounter = *(longlong *)(*(longlong *)(unaff_R13 + 0x60) + (longlong)iVar7 * 8);
-      resourceTable = *(longlong *)(localContextPointer + 0x68);
-      if (((*(byte *)(localContextPointer + 0xc4) & 1) != 0) && (resourceTable != 0)) {
-        uStackX_20 = 0;
-        iVar8 = ValidateBufferContext(resourceTable,&uStackX_20);
-        if (iVar8 != 0) goto LAB_1808974ec;
-        unsignedResult3 = *(uint8_t4 *)(localContextPointer + 0x10);
-        unsignedResult4 = *(uint8_t4 *)(localContextPointer + 0x14);
-        unsignedValue5 = *(uint8_t4 *)(localContextPointer + 0x18);
-        unsignedValue6 = *(uint8_t4 *)(localContextPointer + 0x1c);
-        *(uint8_t4 *)(ExecutionContextPointer + -0x78) = 0;
-        *(int *)(ExecutionContextPointer + -0x68) = unaff_R12D;
-        *(uint8_t **)(ExecutionContextPointer + -0x80) = &SystemResourceTemplateA;
-        unaff_R12D = unaff_R12D + 1;
-        *(uint8_t4 *)(ExecutionContextPointer + -0x54) = uStackX_20;
-        *(uint8_t4 *)(ExecutionContextPointer + -0x70) = unaff_EBX;
-        *(uint8_t4 *)(ExecutionContextPointer + -100) = unsignedResult3;
-        *(uint8_t4 *)(ExecutionContextPointer + -0x60) = unsignedResult4;
-        *(uint8_t4 *)(ExecutionContextPointer + -0x5c) = unsignedValue5;
+    for (operationResult = 0; (-1 < operationResult && (operationResult < *(int *)(systemRegister3 + 0x68))); operationResult = operationResult + 1) {
+      resourceIndex = *(longlong *)(*(longlong *)(systemRegister3 + 0x60) + (longlong)operationResult * 8);
+      resourceTablePointer = *(longlong *)(localContextPointer + 0x68);
+      if (((*(byte *)(localContextPointer + 0xc4) & 1) != 0) && (resourceTablePointer != 0)) {
+        contextFlags = 0;
+        validationErrorCode = ValidateBufferContext(resourceTablePointer,&contextFlags);
+        if (validationErrorCode != 0) goto LAB_1808974ec;
+        validationStatus1 = *(uint8_t4 *)(localContextPointer + 0x10);
+        validationStatus2 = *(uint8_t4 *)(localContextPointer + 0x14);
+        resourceData1 = *(uint8_t4 *)(localContextPointer + 0x18);
+        resourceData2 = *(uint8_t4 *)(localContextPointer + 0x1c);
+        *(uint8_t4 *)(executionContext + -0x78) = 0;
+        *(int *)(executionContext + -0x68) = systemRegister2;
+        *(uint8_t **)(executionContext + -0x80) = &SystemResourceTemplateA;
+        systemRegister2 = systemRegister2 + 1;
+        *(uint8_t4 *)(executionContext + -0x54) = contextFlags;
+        *(uint8_t4 *)(executionContext + -0x70) = systemRegister1;
+        *(uint8_t4 *)(executionContext + -100) = validationStatus1;
+        *(uint8_t4 *)(executionContext + -0x60) = validationStatus2;
+        *(uint8_t4 *)(executionContext + -0x5c) = resourceData1;
         *(uint8_t4 *)(ExecutionContextPointer + -0x58) = unsignedValue6;
         iVar8 = GetAndValidateResourceData(unsignedResult3,ExecutionContextPointer + -0x80);
         if ((iVar8 != 0) || (iVar8 = FindResourceEntry(resourceTable,&fStackX_24), iVar8 != 0))
