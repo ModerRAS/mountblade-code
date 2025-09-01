@@ -10507,35 +10507,35 @@ ulonglong NetworkConnectionProtocolValidator(NetworkHandle connectionContext)
   NetworkHandle *networkHandlePointer;
   
   primaryNetworkStatus = NetworkConnectionIdInitialize(connectionContext,networkConnectionParams);
-  if ((primaryNetworkFlag == 0) && ((*(uint *)(alStackX_10[0] + 0x24) >> 1 & 1) == 0)) {
+  if ((primaryNetworkStatus == 0) && ((*(uint *)(networkConnectionParams[0] + 0x24) >> 1 & 1) == 0)) {
     return 0x4b;
   }
-  if (primaryNetworkFlag != 0) {
-    return (ulonglong)primaryNetworkFlag;
+  if (primaryNetworkStatus != 0) {
+    return (ulonglong)primaryNetworkStatus;
   }
-  tertiaryNetworkFlag = ProcessNetworkPacketTransmission(*(NetworkHandle *)(alStackX_10[0] + 0x98),0);
-  if ((int)tertiaryNetworkFlag == 0) {
-    if (*(int *)(*(longlong *)(alStackX_10[0] + 0x98) + 0x200) != 0) {
-      alStackX_10[1] = 0;
-      networkStatus2 = NetworkConnectionHandleInitialize(alStackX_10 + 1);
-      if (networkStatus2 == 0) {
-        networkStatus2 = ValidateAndProcessNetworkConnectionData(*(NetworkHandle *)(alStackX_10[0] + 0x98),&puStackX_20,0x10);
-        if (networkStatus2 == 0) {
-          *puStackX_20 = &UNK_180982ab0;
-          *(NetworkStatus *)(puStackX_20 + 1) = 0x10;
-          networkStatus2 = ProcessNetworkConnectionCleanup(*(NetworkHandle *)(alStackX_10[0] + 0x98));
-          if (networkStatus2 == 0) {
+  protocolValidationResult = ProcessNetworkPacketTransmission(*(NetworkHandle *)(networkConnectionParams[0] + 0x98),0);
+  if ((int)protocolValidationResult == 0) {
+    if (*(int *)(*(longlong *)(networkConnectionParams[0] + 0x98) + 0x200) != 0) {
+      networkConnectionParams[1] = 0;
+      networkConnectionStatus = NetworkConnectionHandleInitialize(networkConnectionParams + 1);
+      if (networkConnectionStatus == 0) {
+        networkConnectionStatus = ValidateAndProcessNetworkConnectionData(*(NetworkHandle *)(networkConnectionParams[0] + 0x98),&networkHandlePointer,0x10);
+        if (networkConnectionStatus == 0) {
+          *networkHandlePointer = &NetworkConnectionDataTemplate;
+          *(NetworkStatus *)(networkHandlePointer + 1) = 0x10;
+          networkConnectionStatus = ProcessNetworkConnectionCleanup(*(NetworkHandle *)(networkConnectionParams[0] + 0x98));
+          if (networkConnectionStatus == 0) {
                     // WARNING: Subroutine does not return
-            NetworkConnectionHandleRelease(alStackX_10 + 1);
+            NetworkConnectionHandleRelease(networkConnectionParams + 1);
           }
         }
       }
                     // WARNING: Subroutine does not return
-      NetworkConnectionHandleRelease(alStackX_10 + 1);
+      NetworkConnectionHandleRelease(networkConnectionParams + 1);
     }
-    tertiaryNetworkFlag = 0;
+    protocolValidationResult = 0;
   }
-  return tertiaryNetworkFlag;
+  return protocolValidationResult;
 }
 
 
@@ -13191,10 +13191,20 @@ NetworkHandle * FUN_18084cb70(NetworkHandle *connectionContext,ulonglong packetD
 
 
 
-NetworkHandle FUN_18084cbb0(NetworkHandle connectionContext,ulonglong packetData)
+/**
+ * @brief 处理网络连接清理
+ * 
+ * 该函数负责处理网络连接的清理操作，包括内存释放和资源回收。
+ * 主要用于网络连接关闭后的资源清理工作。
+ * 
+ * @param connectionContext 网络连接上下文句柄
+ * @param packetData 数据包数据，包含清理标志位
+ * @return 处理结果，返回连接上下文句柄
+ */
+NetworkHandle ProcessNetworkConnectionCleanup(NetworkHandle connectionContext,ulonglong packetData)
 
 {
-  FUN_18084c730();
+  NetworkCleanupHandler();
   if ((packetData & 1) != 0) {
     free(connectionContext,0x98);
   }
