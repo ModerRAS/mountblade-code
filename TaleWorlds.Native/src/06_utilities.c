@@ -84826,7 +84826,7 @@ void InitializeSystemDataStructureV(void)
  * 初始化系统数据结构W
  * 
  * 此函数负责初始化系统中的某个关键数据结构W，处理资源验证
- * 和链接操作。函数会检查全局变量_DAT_180d493f8，如果有效则
+ * 和链接操作。函数会检查全局变量SystemResourceValidator，如果有效则
  * 执行资源链接和引用计数管理。如果资源引用计数降为0，则
  * 调用清理函数。
  */
@@ -84839,16 +84839,16 @@ void InitializeSystemDataStructureW(void)
   longlong resourceIndex;
   ulonglong uVar4;
   
-  pvalidationResult = _DAT_180d493f8;
-  if (_DAT_180d493f8 == (uint8_t8 *)0x0) {
+  pvalidationResult = SystemResourceValidator;
+  if (SystemResourceValidator == (uint8_t8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)_DAT_180d493f8 & 0xffffffffffc00000;
+  uVar4 = (ulonglong)SystemResourceValidator & 0xffffffffffc00000;
   if (uVar4 != 0) {
-    resourceIndex = uVar4 + 0x80 + ((longlong)_DAT_180d493f8 - uVar4 >> 0x10) * 0x50;
+    resourceIndex = uVar4 + 0x80 + ((longlong)SystemResourceValidator - uVar4 >> 0x10) * 0x50;
     resourceIndex = resourceIndex - (ulonglong)*(uint *)(resourceIndex + 4);
     if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *_DAT_180d493f8 = *(uint8_t8 *)(resourceIndex + 0x20);
+      *SystemResourceValidator = *(uint8_t8 *)(resourceIndex + 0x20);
       *(uint8_t8 **)(resourceIndex + 0x20) = pvalidationResult;
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
@@ -84859,7 +84859,7 @@ void InitializeSystemDataStructureW(void)
     }
     else {
       func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          _DAT_180d493f8,uVar4,0xfffffffffffffffe);
+                          SystemResourceValidator,uVar4,0xfffffffffffffffe);
     }
   }
   return;
