@@ -1911,7 +1911,7 @@ uint8_t SystemConfigurationDataTemplatePrimary;
  * 配置系统环境变量和运行时参数
  */
 void SetupSystemEnvironment(void);
-uint8_t SystemEnvironmentDataTemplateA;
+uint8_t SystemEnvironmentDataTemplatePrimary;
 
  void ConfigureSystemParameters(void)
 /**
@@ -1939,12 +1939,12 @@ void InitializeSystemResources(void);
  * 设置内存分配和回收的机制
  */
 void InitializeSystemMemoryManager(void);
-uint8_t SystemMemoryManagerConfigTemplateA;
+uint8_t SystemMemoryManagerConfigTemplateAggressive;
 uint8_t SystemMemoryConfigDataTemplateSecure;
-uint8_t SystemMemoryManagerConfigTemplateB;
-uint8_t SystemMemoryManagerConfigTemplateC;
-uint8_t SystemMemoryManagerConfigTemplateD;
-uint8_t SystemMemoryManagerConfigTemplateE;
+uint8_t SystemMemoryManagerConfigTemplateBalanced;
+uint8_t SystemMemoryManagerConfigTemplateConservative;
+uint8_t SystemMemoryManagerConfigTemplateDynamic;
+uint8_t SystemMemoryManagerConfigTemplateEfficient;
 uint8_t SystemMemoryManagerConfigTemplateF;
 uint8_t SystemMemoryManagerConfigTemplateG;
 uint8_t SystemMemoryManagerConfigTemplateH;
@@ -2061,21 +2061,21 @@ uint8_t RandomGeneratorState;
 void GenerateSecureRandom(void);
 uint8_t ThreadLocalStorageIndex;
 void* ThreadLocalStorageDataPointer;
-uint8_t SystemMemoryConfigDataTemplateV;
-uint8_t SystemMemoryConfigDataTemplateT;
-uint8_t SystemMemoryConfigDataTemplateW;
-uint8_t SystemMemoryConfigDataTemplateU;
-uint8_t SystemMemoryConfigDataTemplateX;
-uint8_t SystemMemoryConfigDataTemplateY;
-uint8_t SystemMemoryConfigDataTemplateZ;
-uint8_t SystemMemoryConfigDataTemplateAA;
+uint8_t SystemMemoryConfigDataTemplateVersion;
+uint8_t SystemMemoryConfigDataTemplateType;
+uint8_t SystemMemoryConfigDataTemplateWorking;
+uint8_t SystemMemoryConfigDataTemplateUsage;
+uint8_t SystemMemoryConfigDataTemplateExtended;
+uint8_t SystemMemoryConfigDataTemplateYield;
+uint8_t SystemMemoryConfigDataTemplateZone;
+uint8_t SystemMemoryConfigDataTemplateAlternate;
 
  void VerifyDataIntegrity(void);
-uint8_t SystemEnvironmentDataTemplateA;
-uint8_t SystemEnvironmentDataTemplateB;
-uint8_t SystemConfigurationDataTemplateC;
-uint8_t SystemConfigurationDataTemplateD;
-uint8_t SystemConfigurationDataTemplateE;
+uint8_t SystemEnvironmentDataTemplatePrimary;
+uint8_t SystemEnvironmentDataTemplateBackup;
+uint8_t SystemConfigurationDataTemplateCache;
+uint8_t SystemConfigurationDataTemplateData;
+uint8_t SystemConfigurationDataTemplateExtra;
 uint8_t SystemConfigDataCore;
 uint8_t SystemConfigDataEngine;
 uint8_t NetworkConfigDataStreamPrimary;
@@ -2107,8 +2107,8 @@ uint8_t SystemMemoryConfigDataTemplateFourteenth;
 uint8_t SecurityEncryptionKey;
 uint8_t SystemMemoryConfigDataTemplateFourteenthAlt;
 uint8_t SystemMemoryConfigDataTemplateFifteenth;
-uint8_t SystemMemoryConfigDataTemplateSecureixteenth;
-uint8_t SystemMemoryConfigDataTemplateSecureeventeenth;
+uint8_t SystemMemoryConfigDataTemplateSecureSixteenth;
+uint8_t SystemMemoryConfigDataTemplateSecureSeventeenth;
 uint8_t SystemMemoryConfigDataTemplateEighteenth;
 uint8_t SystemMemoryConfigDataTemplateNormalineteenth;
 uint8_t SystemMemoryConfigDataTemplateTwentieth;
