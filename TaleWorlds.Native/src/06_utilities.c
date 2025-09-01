@@ -9,6 +9,7 @@
 #define REGISTRATION_SIZE_OFFSET 0x4e4
 #define REGISTRATION_CAPACITY_OFFSET 0x4e8
 #define REGISTRATION_COUNT_OFFSET 0x4e0
+#define REGISTRATION_VALIDATION_DATA_OFFSET 0x368
 #define INVALID_REGISTRATION_STATUS -1
 #define REGISTRATION_ARRAY_INITIAL_SIZE 8
 #define REGISTRATION_ARRAY_GROWTH_FACTOR 1.5
@@ -3467,14 +3468,14 @@ uint8_t VerifyObjectRegistration(int64_t objectContext)
           } while ((int64_t)currentArrayIndex < (int64_t)registrationArraySize);
         }
         registrationCounter = registrationCounter + 1;
-        if (*(int *)(registrationObjectData + 0x4e8) < registrationCounter) {
-          newSizeCalculation = (int)((float)*(int *)(registrationObjectData + 0x4e8) * 1.5);
+        if (*(int *)(registrationObjectData + REGISTRATION_CAPACITY_OFFSET) < registrationCounter) {
+          newSizeCalculation = (int)((float)*(int *)(registrationObjectData + REGISTRATION_CAPACITY_OFFSET) * REGISTRATION_ARRAY_GROWTH_FACTOR);
           targetSize = registrationCounter;
           if (registrationCounter <= newSizeCalculation) {
             targetSize = newSizeCalculation;
           }
-          if (targetSize < 8) {
-            newSizeCalculation = 8;
+          if (targetSize < REGISTRATION_ARRAY_INITIAL_SIZE) {
+            newSizeCalculation = REGISTRATION_ARRAY_INITIAL_SIZE;
           }
           else if (newSizeCalculation < registrationCounter) {
             newSizeCalculation = registrationCounter;
@@ -3484,12 +3485,12 @@ uint8_t VerifyObjectRegistration(int64_t objectContext)
             return 0;
           }
         }
-        *(int64_t *)(*registrationArrayPointer + (int64_t)*(int *)(registrationObjectData + 0x4e4) * 8) = registrationObjectHandle;
-        *(int *)(registrationObjectData + 0x4e4) = *(int *)(registrationObjectData + 0x4e4) + 1;
-        *(int *)(registrationObjectData + 0x4e0) = *(int *)(registrationObjectData + 0x4e0) + 1;
+        *(int64_t *)(*registrationArrayPointer + (int64_t)*(int *)(registrationObjectData + REGISTRATION_SIZE_OFFSET) * 8) = registrationObjectHandle;
+        *(int *)(registrationObjectData + REGISTRATION_SIZE_OFFSET) = *(int *)(registrationObjectData + REGISTRATION_SIZE_OFFSET) + 1;
+        *(int *)(registrationObjectData + REGISTRATION_COUNT_OFFSET) = *(int *)(registrationObjectData + REGISTRATION_COUNT_OFFSET) + 1;
       }
       else {
-        registrationStatus = ValidateObjectRegistrationData(registrationObjectData + 0x368,registrationObjectHandle);
+        registrationStatus = ValidateObjectRegistrationData(registrationObjectData + REGISTRATION_VALIDATION_DATA_OFFSET,registrationObjectHandle);
         if ((int)registrationStatus != 0) {
           return registrationStatus;
         }
