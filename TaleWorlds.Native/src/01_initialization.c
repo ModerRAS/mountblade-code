@@ -54458,33 +54458,33 @@ void FUN_180076a20(long long SystemResourcePointer)
 void ManageSystemResourceReferenceCount(long long SystemResourcePointer)
 
 {
-  char *pcVar1;
+  char *ReferenceCountPointer;
   long long *SecondaryResourcePointer;
-  int MemoryCompareResult;
-  bool bVar4;
+  int LockStatus;
+  bool IsResourceLocked;
   
-  systemCounter = _Mtx_lock(0x180c91910);
-  if (systemCounter != 0) {
-    __Throw_C_error_std__YAXH_Z(systemCounter);
+  LockStatus = _Mtx_lock(0x180c91910);
+  if (LockStatus != 0) {
+    __Throw_C_error_std__YAXH_Z(LockStatus);
   }
-  pcVar1 = (char *)(SystemResourcePointer + 0xfc);
-  *pcVar1 = *pcVar1 + -1;
-  if (*pcVar1 == '\0') {
+  ReferenceCountPointer = (char *)(SystemResourcePointer + 0xfc);
+  *ReferenceCountPointer = *ReferenceCountPointer + -1;
+  if (*ReferenceCountPointer == '\0') {
     while( true ) {
       LOCK();
-      bVar4 = *(char *)(SystemResourcePointer + 0xec) == '\0';
-      if (bVar4) {
+      IsResourceLocked = *(char *)(SystemResourcePointer + 0xec) == '\0';
+      if (IsResourceLocked) {
         *(char *)(SystemResourcePointer + 0xec) = '\x01';
       }
       UNLOCK();
-      if (bVar4) break;
+      if (IsResourceLocked) break;
       Sleep();
     }
     while (*(int *)(SystemResourcePointer + 0xe8) != 0) {
       Sleep(0);
     }
     if ((((*(long long *)(SystemResourcePointer + 0x210) != 0) &&
-         (FUN_1800791a0(SystemResourcePointer), *(char *)(SystemResourcePointer + 0xfc) == '\0')) &&
+         (FUN_1800791a0(SystemResourcePointer), *ReferenceCountPointer == '\0')) &&
         (*(char *)(SystemResourcePointer + 0xf4) == '\0')) &&
        (((*(byte *)(SystemResourcePointer + 0xfd) & 0x20) == 0 || ((*(byte *)(SystemResourcePointer + 0xfe) & 1) == 0)))) {
       SecondaryResourcePointer = *(long long **)(SystemResourcePointer + 0x210);
@@ -54499,9 +54499,9 @@ void ManageSystemResourceReferenceCount(long long SystemResourcePointer)
     }
     UNLOCK();
   }
-  systemCounter = _Mtx_unlock(0x180c91910);
-  if (systemCounter != 0) {
-    __Throw_C_error_std__YAXH_Z(systemCounter);
+  LockStatus = _Mtx_unlock(0x180c91910);
+  if (LockStatus != 0) {
+    __Throw_C_error_std__YAXH_Z(LockStatus);
   }
   return;
 }
