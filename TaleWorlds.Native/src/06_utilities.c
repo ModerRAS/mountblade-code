@@ -41636,7 +41636,7 @@ void Unwind_180905710(undefined8 param_1,longlong param_2)
 void Unwind_180905720(undefined8 param_1,longlong param_2)
 
 {
-  **(undefined8 **)(param_2 + 0x40) = &UNK_1809feeb8;
+  **(undefined8 **)(param_2 + 0x40) = &ResourceHashTable002;
   return;
 }
 
@@ -41645,7 +41645,7 @@ void Unwind_180905720(undefined8 param_1,longlong param_2)
 void Unwind_180905730(undefined8 param_1,longlong param_2)
 
 {
-  **(undefined8 **)(param_2 + 0x60) = &UNK_1809feeb8;
+  **(undefined8 **)(param_2 + 0x60) = &ResourceHashTable002;
   return;
 }
 
@@ -41720,7 +41720,7 @@ void Unwind_1809057b0(undefined8 param_1,longlong param_2)
   ulonglong resourceHash0;
   
   puVar5 = *(undefined8 **)(param_2 + 0x40);
-  *puVar5 = &UNK_180a07cd0;
+  *puVar5 = &ResourceHashTable003;
   *(undefined1 *)((longlong)puVar5 + 0x162) = 1;
   presourceTable = puVar5 + 0x1a;
   plStackX_20 = presourceTable;
@@ -42317,7 +42317,7 @@ void Unwind_180905950(undefined8 param_1,longlong param_2)
   ulonglong resourceHash0;
   
   puVar5 = *(undefined8 **)(param_2 + 0x2e8);
-  *puVar5 = &UNK_180a07cd0;
+  *puVar5 = &ResourceHashTable003;
   *(undefined1 *)((longlong)puVar5 + 0x162) = 1;
   presourceTable = puVar5 + 0x1a;
   plStackX_20 = presourceTable;
@@ -43509,7 +43509,7 @@ void Unwind_180905db0(undefined8 param_1,longlong param_2,undefined8 param_3,und
 void Unwind_180905dd0(undefined8 param_1,longlong param_2)
 
 {
-  **(undefined8 **)(param_2 + 0x50) = &UNK_1809ff488;
+  **(undefined8 **)(param_2 + 0x50) = &ResourceHashTable004;
   return;
 }
 
@@ -43518,7 +43518,7 @@ void Unwind_180905dd0(undefined8 param_1,longlong param_2)
 void Unwind_180905de0(undefined8 param_1,longlong param_2)
 
 {
-  **(undefined8 **)(param_2 + 0x60) = &UNK_1809ff488;
+  **(undefined8 **)(param_2 + 0x60) = &ResourceHashTable004;
   return;
 }
 
@@ -45131,7 +45131,7 @@ void Unwind_180906510(undefined8 param_1,longlong param_2)
 void Unwind_180906520(undefined8 param_1,longlong param_2)
 
 {
-  **(undefined8 **)(param_2 + 0x48) = &UNK_1809ffa18;
+  **(undefined8 **)(param_2 + 0x48) = &ResourceHashTable005;
   return;
 }
 
@@ -45143,7 +45143,7 @@ void Unwind_180906530(undefined8 param_1,longlong param_2)
   undefined8 *presourceHash;
   
   presourceHash = *(undefined8 **)(param_2 + 0x48);
-  *presourceHash = &UNK_180a02e68;
+  *presourceHash = &ResourceHashTable006;
   presourceHash[2] = &SystemDataStructure;
   *presourceHash = &ResourceTableTemplate;
   *presourceHash = &ResourceCacheTemplate;
@@ -45290,7 +45290,7 @@ void Unwind_1809065a0(undefined8 param_1,longlong param_2)
 void Unwind_1809065b0(undefined8 param_1,longlong param_2)
 
 {
-  **(undefined8 **)(param_2 + 0x40) = &UNK_1809ffa18;
+  **(undefined8 **)(param_2 + 0x40) = &ResourceHashTable005;
   return;
 }
 
@@ -45350,7 +45350,7 @@ void Unwind_180906630(undefined8 param_1,longlong param_2)
   undefined8 *presourceHash;
   
   presourceHash = *(undefined8 **)(param_2 + 0xa0);
-  *presourceHash = &UNK_180a02e68;
+  *presourceHash = &ResourceHashTable006;
   presourceHash[2] = &SystemDataStructure;
   *presourceHash = &ResourceTableTemplate;
   *presourceHash = &ResourceCacheTemplate;
@@ -45551,7 +45551,7 @@ void Unwind_1809067c0(undefined8 param_1,longlong param_2)
   undefined8 *presourceHash;
   
   presourceHash = *(undefined8 **)(param_2 + 0x50);
-  *presourceHash = &UNK_180a02e68;
+  *presourceHash = &ResourceHashTable006;
   presourceHash[2] = &SystemDataStructure;
   *presourceHash = &ResourceTableTemplate;
   *presourceHash = &ResourceCacheTemplate;
@@ -48941,7 +48941,7 @@ void Unwind_180907710(undefined8 param_1,longlong param_2)
   longlong resourceIndex;
   
   pvalidationResult = *(undefined8 **)(param_2 + 0x50);
-  *pvalidationResult = &UNK_180a14bb8;
+  *pvalidationResult = &ResourceValidationTable001;
   presourceHash = (undefined8 *)pvalidationResult[0x11];
   if (presourceHash != (undefined8 *)0x0) {
     resourceIndex = __RTCastToVoid(presourceHash);
@@ -48993,7 +48993,7 @@ void Unwind_180907740(undefined8 param_1,longlong param_2)
   longlong resourceIndex;
   
   pvalidationResult = *(undefined8 **)(param_2 + 0x40);
-  *pvalidationResult = &UNK_180a14bb8;
+  *pvalidationResult = &ResourceValidationTable001;
   presourceHash = (undefined8 *)pvalidationResult[0x11];
   if (presourceHash != (undefined8 *)0x0) {
     resourceIndex = __RTCastToVoid(presourceHash);
