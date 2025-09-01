@@ -329,8 +329,8 @@ void* InputSystemInstance;
 void* InputDeviceManager;
 void* KeyboardHandler;
 void* MouseHandler;
-void* controllerManager;
-void* inputEventQueue;
+void* ControllerManager;
+void* InputEventQueue;
 
  /**
  * @brief 初始化网络管理器
@@ -339,7 +339,7 @@ void* inputEventQueue;
  * 设置网络连接、数据传输和通信协议
  */
 void InitializeNetworkManager(void);
-void* networkSystemInstance;
+void* NetworkSystemInstance;
 void* networkConnectionManager;
 void* packetHandler;
 void* networkProtocolManager;
