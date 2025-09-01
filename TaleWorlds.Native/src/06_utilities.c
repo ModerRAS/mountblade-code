@@ -1778,8 +1778,8 @@ void SetupMemoryAuditing;
 undefined SystemMemoryConfigDataTemplateO;
 undefined SystemDataStructureInstance;
 undefined SystemDataStructureHandle;
-undefined DAT_180bfb320;
-undefined DAT_180bfb328;
+undefined SystemDataStructureContext;
+undefined SystemDataConfiguration;
 undefined SystemMemoryConfigDataTemplateP;
 
  void InitializeMemoryCompliance;
