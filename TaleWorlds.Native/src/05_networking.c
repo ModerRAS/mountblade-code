@@ -572,7 +572,7 @@ void ProcessNetworkPacket(uint64_t packetHandle)
         (validationStatus = ValidateNetworkConnection(networkContext + 1), validationStatus == 0)))) && (processStatus == 0)) &&
      (processStatus = ProcessNetworkPacketData(*(NetworkHandle *)(networkContext[0] + 0x98),&packetData,0x18), processStatus == 0))
   {
-    *packetData = &UNK_180982dc0;
+    *packetData = &NetworkReservedMemoryRegionDc0;
     *(uint32_t *)(packetData + 1) = 0x18;
     *(int *)(packetData + 2) = (int)packetHandle;
     SendNetworkPacket(*(NetworkHandle *)(networkContext[0] + 0x98));
@@ -700,7 +700,7 @@ error_handling:
     func_0x00018074b800(errorBuffer + (result + errorStatus),0x100 - (result + errorStatus),connectionType);
     errorMessage = errorBuffer;
                     // WARNING: Subroutine does not return
-    LogNetworkError(status,0,0,&UNK_180984660);
+    LogNetworkError(status,0,0,&NetworkReservedMemoryRegion4660);
   }
 cleanup:
                     // WARNING: Subroutine does not return
@@ -747,7 +747,7 @@ void ValidateNetworkConnection(NetworkHandle connectionId,ulonglong *connectionS
     func_0x00018074bda0(errorBuffer,0x100,0);
     errorMessage = errorBuffer;
                     // WARNING: Subroutine does not return
-    LogNetworkConnectionError(0x1f,0xc,connectionId,&UNK_180983320);
+    LogNetworkConnectionError(0x1f,0xc,connectionId,&NetworkReservedMemoryRegion3320);
   }
   *connectionStatus = 0;
   connectionInfo[1] = 0;
@@ -764,7 +764,7 @@ validation_failed:
   if ((connectionStatus == 0) &&
      (validationStatus = ProcessNetworkPacketData(*(NetworkHandle *)(connectionInfo[0] + 0x98),connectionDetails,0x20), validationStatus == 0))
   {
-    *connectionDetails[0] = &UNK_1809832b8;
+    *connectionDetails[0] = &NetworkReservedMemoryRegion32b8;
     *(NetworkStatus *)(connectionDetails[0] + 3) = 0;
     *(NetworkStatus *)(connectionDetails[0] + 1) = 0x20;
     *(int *)(connectionDetails[0] + 2) = (int)connectionId;
@@ -1480,7 +1480,7 @@ LAB_180840d1b:
         if ((networkStatus1 == 0) &&
            (networkStatus1 = NetworkConnectionReadData(*(NetworkHandle *)(alStack_138[0] + 0x98),apuStack_128,0x10),
            networkStatus1 == 0)) {
-          *apuStack_128[0] = &UNK_180982b30;
+          *apuStack_128[0] = &NetworkReservedMemoryRegion2b30;
           *(NetworkStatus *)(apuStack_128[0] + 1) = 0x10;
           func_0x00018088e0d0(*(NetworkHandle *)(alStack_138[0] + 0x98));
                     // WARNING: Subroutine does not return
@@ -3829,36 +3829,60 @@ int ProcessNetworkPacketWithMultipleStatus(longlong connectionContext, longlong 
 
 
 
-int FUN_180843990(longlong connectionContext,longlong packetData,int dataSize)
+// 函数: int ProcessNetworkPacketWithFullContext(longlong connectionContext,longlong packetData,int dataSize)
+/**
+ * @brief 处理带有完整上下文的网络数据包
+ * 
+ * 该函数处理网络数据包，使用连接上下文中的完整状态信息进行数据处理。
+ * 它包括连接状态、缓冲区处理和多个网络状态参数的处理。
+ * 
+ * @param connectionContext 连接上下文指针，包含连接状态信息
+ * @param packetData 数据包数据指针
+ * @param dataSize 数据大小
+ * @return int 处理后的数据大小，错误时返回负数
+ */
+int ProcessNetworkPacketWithFullContext(longlong connectionContext,longlong packetData,int dataSize)
 
 {
-  NetworkStatus uVar1;
-  NetworkStatus uVar2;
-  NetworkStatus uVar3;
-  int networkStatus4;
-  int iVar5;
+  NetworkStatus encryptionFlag;
+  NetworkStatus connectionState;
+  NetworkStatus bufferStatus;
+  int firstProcessingOffset;
+  int secondProcessingOffset;
   
-  uVar2 = *(NetworkStatus *)(connectionContext + 0x18);
-  uVar3 = *(NetworkStatus *)(connectionContext + 0x10);
-  uVar1 = *(NetworkStatus *)(connectionContext + 0x1c);
-  networkStatus4 = FUN_18074b880(packetData,dataSize,&UNK_180983a40);
-  iVar5 = FUN_18074b880(networkStatus4 + packetData,dataSize - networkStatus4,&g_NetworkBufferDataTemplate);
-  networkStatus4 = networkStatus4 + iVar5;
-  iVar5 = func_0x00018074b800(networkStatus4 + packetData,dataSize - networkStatus4,uVar3);
-  networkStatus4 = networkStatus4 + iVar5;
-  iVar5 = FUN_18074b880(networkStatus4 + packetData,dataSize - networkStatus4,&g_NetworkBufferDataTemplate);
-  networkStatus4 = networkStatus4 + iVar5;
-  iVar5 = func_0x00018074b7d0(networkStatus4 + packetData,dataSize - networkStatus4,uVar2);
-  networkStatus4 = networkStatus4 + iVar5;
-  iVar5 = FUN_18074b880(networkStatus4 + packetData,dataSize - networkStatus4,&g_NetworkBufferDataTemplate);
-  networkStatus4 = networkStatus4 + iVar5;
-  iVar5 = func_0x00018074b830(networkStatus4 + packetData,dataSize - networkStatus4,uVar1);
-  return iVar5 + networkStatus4;
+  encryptionFlag = *(NetworkStatus *)(connectionContext + 0x18);
+  connectionState = *(NetworkStatus *)(connectionContext + 0x10);
+  bufferStatus = *(NetworkStatus *)(connectionContext + 0x1c);
+  firstProcessingOffset = FUN_18074b880(packetData,dataSize,&UNK_180983a40);
+  secondProcessingOffset = FUN_18074b880(firstProcessingOffset + packetData,dataSize - firstProcessingOffset,&g_NetworkBufferDataTemplate);
+  firstProcessingOffset = firstProcessingOffset + secondProcessingOffset;
+  secondProcessingOffset = func_0x00018074b800(firstProcessingOffset + packetData,dataSize - firstProcessingOffset,connectionState);
+  firstProcessingOffset = firstProcessingOffset + secondProcessingOffset;
+  secondProcessingOffset = FUN_18074b880(firstProcessingOffset + packetData,dataSize - firstProcessingOffset,&g_NetworkBufferDataTemplate);
+  firstProcessingOffset = firstProcessingOffset + secondProcessingOffset;
+  secondProcessingOffset = func_0x00018074b7d0(firstProcessingOffset + packetData,dataSize - firstProcessingOffset,encryptionFlag);
+  firstProcessingOffset = firstProcessingOffset + secondProcessingOffset;
+  secondProcessingOffset = FUN_18074b880(firstProcessingOffset + packetData,dataSize - firstProcessingOffset,&g_NetworkBufferDataTemplate);
+  firstProcessingOffset = firstProcessingOffset + secondProcessingOffset;
+  secondProcessingOffset = func_0x00018074b830(firstProcessingOffset + packetData,dataSize - firstProcessingOffset,bufferStatus);
+  return secondProcessingOffset + firstProcessingOffset;
 }
 
 
 
-int FUN_180843a80(longlong connectionContext,longlong packetData,int dataSize)
+// 函数: int ProcessNetworkPacketWithBufferTemplate(longlong connectionContext,longlong packetData,int dataSize)
+/**
+ * @brief 处理带有缓冲区模板的网络数据包
+ * 
+ * 该函数处理网络数据包，使用连接上下文中的状态信息和网络缓冲区模板。
+ * 它包括连接状态、缓冲区处理和网络状态参数的处理。
+ * 
+ * @param connectionContext 连接上下文指针，包含连接状态信息
+ * @param packetData 数据包数据指针
+ * @param dataSize 数据大小
+ * @return int 处理后的数据大小，错误时返回负数
+ */
+int ProcessNetworkPacketWithBufferTemplate(longlong connectionContext,longlong packetData,int dataSize)
 
 {
   NetworkStatus uVar1;

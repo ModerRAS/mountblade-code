@@ -374,20 +374,20 @@ void* SystemMemoryConfigTable;
 void* SystemThreadConfigTable;
 void* SystemProcessConfigTable;
 void* SystemEventConfigTable;
-undefined SystemTimerConfig;
-undefined SystemSyncConfig;
-undefined SystemLockConfig;
-undefined SystemSemaphoreConfig;
-undefined SystemMutexConfig;
-undefined SystemConditionConfig;
-undefined SystemBarrierConfig;
-undefined SystemPoolConfig;
-undefined SystemQueueConfig;
-undefined SystemStackConfig;
-undefined SystemListConfig;
-undefined SystemHashConfig;
-undefined SystemTreeConfig;
-undefined SystemGraphConfig;
+void* SystemTimerConfigTable;
+void* SystemSyncConfigTable;
+void* SystemLockConfigTable;
+void* SystemSemaphoreConfigTable;
+void* SystemMutexConfigTable;
+void* SystemConditionConfigTable;
+void* SystemBarrierConfigTable;
+void* SystemPoolConfigTable;
+void* SystemQueueConfigTable;
+void* SystemStackConfigTable;
+void* SystemListConfigTable;
+void* SystemHashConfigTable;
+void* SystemTreeConfigTable;
+void* SystemGraphConfigTable;
 undefined SystemCacheConfig;
 undefined SystemNetworkConfig;
 undefined SystemGraphicsConfig;
@@ -407,16 +407,16 @@ undefined SystemDebugConfig;
 void* SystemThreadConfigTable;
 void* SystemProcessConfigTable;
 void* SystemEventConfigTable;
-undefined SystemTimerConfig;
-undefined SystemSyncConfig;
-undefined SystemLockConfig;
-undefined SystemSemaphoreConfig;
-undefined SystemMutexConfig;
-undefined SystemConditionConfig;
-undefined SystemBarrierConfig;
-undefined SystemPoolConfig;
-undefined SystemQueueConfig;
-undefined SystemStackConfig;
+void* SystemTimerConfigTable;
+void* SystemSyncConfigTable;
+void* SystemLockConfigTable;
+void* SystemSemaphoreConfigTable;
+void* SystemMutexConfigTable;
+void* SystemConditionConfigTable;
+void* SystemBarrierConfigTable;
+void* SystemPoolConfigTable;
+void* SystemQueueConfigTable;
+void* SystemStackConfigTable;
 undefined* SystemConfigurationTable;
 undefined* SystemStatusTable;
 undefined* SystemResourceTable;
@@ -3327,7 +3327,7 @@ ulonglong ProcessSystemRequest(longlong param_1,longlong param_2)
   longlong lStackX_8;
   longlong lStackX_18;
   
-  uVar6 = func_0x00018088c530(*(undefined4 *)(param_1 + 0x18),&lStackX_18);
+  uVar6 = ValidateObjectContext(*(undefined4 *)(param_1 + 0x18),&lStackX_18);
   iVar4 = (int)uVar6;
   if (iVar4 == 0) {
     plVar10 = (longlong *)0x0;
@@ -3335,7 +3335,7 @@ ulonglong ProcessSystemRequest(longlong param_1,longlong param_2)
     if (lStackX_18 != 0) {
       plVar9 = (longlong *)(lStackX_18 + -8);
     }
-    uVar6 = func_0x00018088c530(*(undefined4 *)(param_1 + 0x10),&lStackX_18);
+    uVar6 = ValidateObjectContext(*(undefined4 *)(param_1 + 0x10),&lStackX_18);
     iVar4 = (int)uVar6;
     if (iVar4 == 0) {
       lStackX_8 = 0;
@@ -3346,7 +3346,7 @@ ulonglong ProcessSystemRequest(longlong param_1,longlong param_2)
         return (ulonglong)uVar5;
       }
       if (((*(uint *)(*(longlong *)(lStackX_18 + 8) + 0xf8) >> 2 & 1) == 0) &&
-         (uVar6 = func_0x000180861a30(lStackX_8), (int)uVar6 != 0)) {
+         (uVar6 = InitializeMemoryContext(lStackX_8), (int)uVar6 != 0)) {
         return uVar6;
       }
       plVar1 = (longlong *)(lStackX_8 + 0x240);
@@ -3363,7 +3363,7 @@ ulonglong ProcessSystemRequest(longlong param_1,longlong param_2)
       while( true ) {
         if (plVar8 == plVar1) {
           *(longlong **)(lStackX_8 + 0x80) = plVar9;
-          func_0x00018085eef0(lStackX_8,plVar9);
+          ProcessMemoryData(lStackX_8,plVar9);
           plVar9[2] = lStackX_8;
           uVar6 = FUN_18085ff30(lStackX_8);
           if ((int)uVar6 == 0) {
@@ -3421,7 +3421,7 @@ undefined8 ValidateSystemAccess(longlong param_1,longlong param_2)
   undefined8 uVar3;
   longlong alStackX_8 [2];
   
-  uVar3 = func_0x00018088c530(*(undefined4 *)(param_1 + 0x10),alStackX_8);
+  uVar3 = ValidateObjectContext(*(undefined4 *)(param_1 + 0x10),alStackX_8);
   lVar1 = alStackX_8[0];
   if ((int)uVar3 != 0) {
     return uVar3;
@@ -3465,7 +3465,7 @@ undefined8 UpdateObjectStatusFlags(longlong objectContext)
   longlong *objectIterator;
   longlong contextHandles [4];
   
-  operationResult = func_0x00018088c530(*(undefined4 *)(objectContext + 0x10), contextHandles);
+  operationResult = ValidateObjectContext(*(undefined4 *)(objectContext + 0x10), contextHandles);
   if ((int)operationResult == 0) {
     objectIterator = *(longlong **)(contextHandles[0] + 0x20);
     while ((*(longlong **)(contextHandles[0] + 0x20) <= objectIterator &&
@@ -3503,7 +3503,7 @@ undefined8 DecrementSystemResourceCounter(longlong systemContext, undefined8 res
   int resourceCounter;
   longlong contextHandles [2];
   
-  operationResult = func_0x00018088c530(*(undefined4 *)(systemContext + 0x10), contextHandles);
+  operationResult = ValidateObjectContext(*(undefined4 *)(systemContext + 0x10), contextHandles);
   contextData = contextHandles[0];
   if ((int)operationResult != 0) {
     return operationResult;
@@ -3550,7 +3550,7 @@ undefined8 IncrementObjectReferenceCount(longlong objectContext)
   undefined8 operationResult;
   longlong contextHandles [4];
   
-  operationResult = func_0x00018088c530(*(undefined4 *)(objectContext + 0x10), contextHandles);
+  operationResult = ValidateObjectContext(*(undefined4 *)(objectContext + 0x10), contextHandles);
   if ((int)operationResult != 0) {
     return operationResult;
   }
@@ -3585,7 +3585,7 @@ undefined8 InitializeObjectHandleA(longlong param_1)
   undefined8 uVar1;
   longlong lStackX_8;
   
-  uVar1 = func_0x00018088c530(*(undefined4 *)(param_1 + 0x10),&lStackX_8);
+  uVar1 = ValidateObjectContext(*(undefined4 *)(param_1 + 0x10),&lStackX_8);
   if ((int)uVar1 == 0) {
     if (lStackX_8 == 0) {
       lStackX_8 = 0;
@@ -3595,7 +3595,7 @@ undefined8 InitializeObjectHandleA(longlong param_1)
     }
     if (*(longlong *)(lStackX_8 + 0x10) != 0) {
                     // WARNING: Subroutine does not return
-      FUN_180862e00(*(longlong *)(lStackX_8 + 0x10),1);
+      ExecuteSystemExitOperation(*(longlong *)(lStackX_8 + 0x10),1);
     }
     uVar1 = 0;
   }
@@ -3626,7 +3626,7 @@ undefined8 CleanupObjectHandle(void)
   }
   if (*(longlong *)(adjustedPointer + 0x10) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_180862e00(*(longlong *)(adjustedPointer + 0x10), 1);
+    ExecuteSystemExitOperation(*(longlong *)(adjustedPointer + 0x10), 1);
   }
   return 0;
 }
@@ -3645,7 +3645,7 @@ undefined8 ValidateCharacterParameter(char CharInput)
 {
   if (CharInput != '\0') {
                     // WARNING: Subroutine does not return
-    FUN_180862e00();
+    ExecuteSystemExitOperation();
   }
   return 0;
 }
@@ -3679,7 +3679,7 @@ undefined8 ValidateObjectHandle(longlong objectPointer)
   undefined8 validationResult;
   longlong handleStorage;
   
-  validationResult = func_0x00018088c530(*(undefined4 *)(objectPointer + 0x10), &handleStorage);
+  validationResult = ValidateObjectContext(*(undefined4 *)(objectPointer + 0x10), &handleStorage);
   if ((int)validationResult != 0) {
     return validationResult;
   }
@@ -3693,7 +3693,7 @@ undefined8 ValidateObjectHandle(longlong objectPointer)
     return 0x1c;
   }
                     // WARNING: Subroutine does not return
-  FUN_180862e00(*(longlong *)(handleStorage + 0x10), 1);
+  ExecuteSystemExitOperation(*(longlong *)(handleStorage + 0x10), 1);
 }
 
 
@@ -3720,7 +3720,7 @@ undefined4 ValidateObjectHandleFromRegister(void)
     return 0x1c;
   }
                     // WARNING: Subroutine does not return
-  FUN_180862e00(*(longlong *)(adjustedPointer + 0x10), 1);
+  ExecuteSystemExitOperation(*(longlong *)(adjustedPointer + 0x10), 1);
 }
 
 
@@ -3735,7 +3735,7 @@ void TriggerSystemException(void)
 
 {
                     // WARNING: Subroutine does not return
-  FUN_180862e00();
+  ExecuteSystemExitOperation();
 }
 
 
@@ -3768,7 +3768,7 @@ undefined8 ValidateAndProcessObjectHandle(longlong objectHandle)
   undefined8 operationResult;
   longlong handleBuffer;
   
-  operationResult = func_0x00018088c530(*(undefined4 *)(objectHandle + 0x10), &handleBuffer);
+  operationResult = ValidateObjectContext(*(undefined4 *)(objectHandle + 0x10), &handleBuffer);
   if ((int)operationResult != 0) {
     return operationResult;
   }
@@ -3782,7 +3782,7 @@ undefined8 ValidateAndProcessObjectHandle(longlong objectHandle)
     return 0x1c;
   }
                     // WARNING: Subroutine does not return
-  FUN_180862e00(*(longlong *)(handleBuffer + 0x10), 1);
+  ExecuteSystemExitOperation(*(longlong *)(handleBuffer + 0x10), 1);
 }
 
 
@@ -3810,7 +3810,7 @@ undefined4 validateObjectHandleFromRegisterV2(void)
     return 0x1c;
   }
                     // WARNING: Subroutine does not return
-  FUN_180862e00(*(longlong *)(adjustedPointer + 0x10), 1);
+  ExecuteSystemExitOperation(*(longlong *)(adjustedPointer + 0x10), 1);
 }
 
 
@@ -3826,7 +3826,7 @@ void triggerSystemExceptionV2(void)
 
 {
                     // WARNING: Subroutine does not return
-  FUN_180862e00();
+  ExecuteSystemExitOperation();
 }
 
 
@@ -3859,7 +3859,7 @@ undefined8 ProcessComplexObjectHandle(longlong ObjectContext)
   longlong resultBuffer[2];
   longlong handleBuffer[2];
   
-  operationResult = func_0x00018088c530(*(undefined4 *)(ObjectContext + 0x10), handleBuffer);
+  operationResult = ValidateObjectContext(*(undefined4 *)(ObjectContext + 0x10), handleBuffer);
   if ((int)operationResult == 0) {
     if (handleBuffer[0] == 0) {
       handleBuffer[0] = 0;
@@ -3904,7 +3904,7 @@ undefined8 ValidateAndProcessObjectStatus(longlong objectContext)
   longlong alStackX_8 [2];
   longlong alStackX_18 [2];
   
-  uVar1 = func_0x00018088c530(*(undefined4 *)(param_1 + 0x10),alStackX_18);
+  uVar1 = ValidateObjectContext(*(undefined4 *)(param_1 + 0x10),alStackX_18);
   if ((int)uVar1 == 0) {
     if (alStackX_18[0] == 0) {
       alStackX_18[0] = 0;
@@ -3959,7 +3959,7 @@ undefined8 InitializeObjectHandleB(longlong param_1)
   undefined1 auVar8 [16];
   longlong lStackX_8;
   
-  uVar4 = func_0x00018088c530(*(undefined4 *)(param_1 + 0x1c),&lStackX_8);
+  uVar4 = ValidateObjectContext(*(undefined4 *)(param_1 + 0x1c),&lStackX_8);
   if ((int)uVar4 != 0) {
     return uVar4;
   }
@@ -3987,7 +3987,7 @@ undefined8 InitializeObjectHandleB(longlong param_1)
           uVar3 = movmskps(uVar2,auVar8);
           fVar7 = (float)(int)(iVar6 - (uVar3 & 1));
         }
-        fVar7 = (float)func_0x00018084dcc0(*(longlong *)(lVar1 + 0x18),fVar7);
+        fVar7 = (float)CalculateFloatValue(*(longlong *)(lVar1 + 0x18),fVar7);
         if (((*(char *)(lVar1 + 0x34) == '\0') ||
             ((*(uint *)(*(longlong *)(lVar1 + 0x18) + 0x34) >> 1 & 1) == 0)) &&
            (fVar7 != *(float *)(lVar1 + 0x20))) {
@@ -4026,7 +4026,7 @@ undefined8 InitializeObjectHandleC(longlong param_1)
   longlong lVar8;
   longlong lStackX_8;
   
-  uVar3 = func_0x00018088c530(*(undefined4 *)(param_1 + 0x10),&lStackX_8);
+  uVar3 = ValidateObjectContext(*(undefined4 *)(param_1 + 0x10),&lStackX_8);
   if ((int)uVar3 == 0) {
     uVar7 = 0;
     uVar5 = lStackX_8 - 8;
@@ -4166,7 +4166,7 @@ undefined8 InitializeObjectHandleE(longlong param_1)
   longlong lStackX_8;
   ulonglong uVar5;
   
-  uVar1 = func_0x00018088c530(*(undefined4 *)(param_1 + 0x10),&lStackX_8);
+  uVar1 = ValidateObjectContext(*(undefined4 *)(param_1 + 0x10),&lStackX_8);
   if ((int)uVar1 == 0) {
     uVar5 = 0;
     uVar6 = lStackX_8 - 8;
@@ -4310,7 +4310,7 @@ undefined8 ValidateResourceHandle(longlong resourceHandle)
   undefined8 validationResult;
   longlong adjustedHandle;
   
-  validationResult = func_0x00018088c530(*(undefined4 *)(resourceHandle + 0x10),&adjustedHandle);
+  validationResult = ValidateObjectContext(*(undefined4 *)(resourceHandle + 0x10),&adjustedHandle);
   if ((int)validationResult != 0) {
     return validationResult;
   }
@@ -4370,7 +4370,7 @@ void TriggerSystemShutdown(void)
 
 {
                     // WARNING: Subroutine does not return
-  FUN_180862e00();
+  ExecuteSystemExitOperation();
 }
 
 
@@ -4407,7 +4407,7 @@ uint64_t ProcessResourceHandle(longlong resourceHandle)
   undefined8 uVar1;
   longlong lStackX_8;
   
-  uVar1 = func_0x00018088c530(*(undefined4 *)(param_1 + 0x10),&lStackX_8);
+  uVar1 = ValidateObjectContext(*(undefined4 *)(param_1 + 0x10),&lStackX_8);
   if ((int)uVar1 != 0) {
     return uVar1;
   }
@@ -4421,7 +4421,7 @@ uint64_t ProcessResourceHandle(longlong resourceHandle)
     return 0x1c;
   }
                     // WARNING: Subroutine does not return
-  FUN_180862e00(*(longlong *)(lStackX_8 + 0x10),1);
+  ExecuteSystemExitOperation(*(longlong *)(lStackX_8 + 0x10),1);
 }
 
 
@@ -4451,7 +4451,7 @@ uint32_t ProcessSystemResource(void)
     return 0x1c;
   }
                     // WARNING: Subroutine does not return
-  FUN_180862e00(*(longlong *)(lVar1 + 0x10),1);
+  ExecuteSystemExitOperation(*(longlong *)(lVar1 + 0x10),1);
 }
 
 
@@ -4468,7 +4468,7 @@ void ExecuteSystemTermination(void)
 
 {
                     // WARNING: Subroutine does not return
-  FUN_180862e00();
+  ExecuteSystemExitOperation();
 }
 
 
@@ -4506,7 +4506,7 @@ uint64_t HandleResourceOperation(longlong resourceHandle)
   longlong lVar2;
   longlong lStackX_8;
   
-  uVar1 = func_0x00018088c530(*(undefined4 *)(param_1 + 0x10),&lStackX_8);
+  uVar1 = ValidateObjectContext(*(undefined4 *)(param_1 + 0x10),&lStackX_8);
   if ((int)uVar1 != 0) {
     return uVar1;
   }
@@ -4518,7 +4518,7 @@ uint64_t HandleResourceOperation(longlong resourceHandle)
     return 0x1c;
   }
                     // WARNING: Subroutine does not return
-  FUN_180862e00(*(longlong *)(lVar2 + 0x10),1);
+  ExecuteSystemExitOperation(*(longlong *)(lVar2 + 0x10),1);
 }
 
 
@@ -4546,7 +4546,7 @@ uint32_t ProcessResourceTask(void)
     return 0x1c;
   }
                     // WARNING: Subroutine does not return
-  FUN_180862e00(*(longlong *)(lVar1 + 0x10),1);
+  ExecuteSystemExitOperation(*(longlong *)(lVar1 + 0x10),1);
 }
 
 
@@ -4563,7 +4563,7 @@ void TriggerSystemTermination(void)
 
 {
                     // WARNING: Subroutine does not return
-  FUN_180862e00();
+  ExecuteSystemExitOperation();
 }
 
 
@@ -4599,7 +4599,7 @@ uint64_t ValidateAndProcessObjectHandle(uint64_t objectHandle)
   uint64_t validationResult;
   int64_t stackOffset;
   
-  validationResult = func_0x00018088c530(*(uint32_t *)(objectHandle + 0x10),&stackOffset);
+  validationResult = ValidateObjectContext(*(uint32_t *)(objectHandle + 0x10),&stackOffset);
   if ((int)validationResult != 0) {
     return validationResult;
   }
@@ -4613,7 +4613,7 @@ uint64_t ValidateAndProcessObjectHandle(uint64_t objectHandle)
     return 0x1c;
   }
                     // WARNING: Subroutine does not return
-  FUN_180862e00(*(int64_t *)(stackOffset + 0x10),1);
+  ExecuteSystemExitOperation(*(int64_t *)(stackOffset + 0x10),1);
 }
 
 
@@ -4642,7 +4642,7 @@ uint32_t ValidateAndProcessCurrentObjectHandle(void)
     return 0x1c;
   }
                     // WARNING: Subroutine does not return
-  FUN_180862e00(*(int64_t *)(processedValue + 0x10),1);
+  ExecuteSystemExitOperation(*(int64_t *)(processedValue + 0x10),1);
 }
 
 
@@ -4659,7 +4659,7 @@ void ExecuteSystemTermination(void)
 
 {
                     // WARNING: Subroutine does not return
-  FUN_180862e00();
+  ExecuteSystemExitOperation();
 }
 
 
@@ -4695,7 +4695,7 @@ uint64_t ValidateAndProcessExtendedObjectHandle(uint64_t extendedObjectHandle)
   uint64_t validationResult;
   int64_t stackOffset;
   
-  validationResult = func_0x00018088c530(*(uint32_t *)(extendedObjectHandle + 0x10),&stackOffset);
+  validationResult = ValidateObjectContext(*(uint32_t *)(extendedObjectHandle + 0x10),&stackOffset);
   if ((int)validationResult != 0) {
     return validationResult;
   }
@@ -4709,7 +4709,7 @@ uint64_t ValidateAndProcessExtendedObjectHandle(uint64_t extendedObjectHandle)
     return 0x1c;
   }
                     // WARNING: Subroutine does not return
-  FUN_180862e00(*(int64_t *)(stackOffset + 0x10),1);
+  ExecuteSystemExitOperation(*(int64_t *)(stackOffset + 0x10),1);
 }
 
 
@@ -4738,7 +4738,7 @@ uint32_t ValidateAndProcessCurrentObjectHandleExtended(void)
     return 0x1c;
   }
                     // WARNING: Subroutine does not return
-  FUN_180862e00(*(int64_t *)(processedValue + 0x10),1);
+  ExecuteSystemExitOperation(*(int64_t *)(processedValue + 0x10),1);
 }
 
 
@@ -4755,7 +4755,7 @@ void FatalErrorHandler(void)
 
 {
                     // WARNING: Subroutine does not return
-  FUN_180862e00();
+  ExecuteSystemExitOperation();
 }
 
 
@@ -4791,7 +4791,7 @@ uint64_t ValidateAndProcessAdvancedObjectHandle(uint64_t advancedObjectHandle)
   uint64_t validationResult;
   int64_t stackOffset;
   
-  validationResult = func_0x00018088c530(*(uint32_t *)(advancedObjectHandle + 0x10),&stackOffset);
+  validationResult = ValidateObjectContext(*(uint32_t *)(advancedObjectHandle + 0x10),&stackOffset);
   if ((int)validationResult != 0) {
     return validationResult;
   }
@@ -4805,7 +4805,7 @@ uint64_t ValidateAndProcessAdvancedObjectHandle(uint64_t advancedObjectHandle)
     return 0x1c;
   }
                     // WARNING: Subroutine does not return
-  FUN_180862e00(*(int64_t *)(stackOffset + 0x10),1);
+  ExecuteSystemExitOperation(*(int64_t *)(stackOffset + 0x10),1);
 }
 
 
@@ -4851,7 +4851,7 @@ void ExecuteNonReturningFunction180862e00(void)
 
 {
                     // WARNING: Subroutine does not return
-  FUN_180862e00();
+  ExecuteSystemExitOperation();
 }
 
 
@@ -4887,7 +4887,7 @@ uint64_t ValidateObjectPointerAndExecuteExit(longlong objectPointer)
   uint64_t validationResult;
   longlong stackOffset;
   
-  validationResult = func_0x00018088c530(*(undefined4 *)(objectPointer + 0x10),&stackOffset);
+  validationResult = ValidateObjectContext(*(undefined4 *)(objectPointer + 0x10),&stackOffset);
   if ((int)validationResult != 0) {
     return validationResult;
   }
@@ -4940,7 +4940,7 @@ void ExecuteNonReturningFunctionAtLocation180d49f90(void)
 
 {
                     // WARNING: Subroutine does not return
-  FUN_180862e00();
+  ExecuteSystemExitOperation();
 }
 
 
@@ -4957,7 +4957,7 @@ void ExecuteNonReturningFunctionAtLocation180d49fe0(void)
 
 {
                     // WARNING: Subroutine does not return
-  FUN_180862e00();
+  ExecuteSystemExitOperation();
 }
 
 
@@ -4983,7 +4983,7 @@ undefined8 ValidateObjectPointer(longlong ObjectPointer)
   undefined8 ValidationResult;
   longlong StackOffset;
   
-  ValidationResult = func_0x00018088c530(*(undefined4 *)(ObjectPointer + 0x10),&StackOffset);
+  ValidationResult = ValidateObjectContext(*(undefined4 *)(ObjectPointer + 0x10),&StackOffset);
   if ((int)ValidationResult != 0) {
     return ValidationResult;
   }
@@ -4994,7 +4994,7 @@ undefined8 ValidateObjectPointer(longlong ObjectPointer)
     return 0x1c;
   }
                     // WARNING: Subroutine does not return
-  FUN_180862e00(*(longlong *)(StackOffset + 0x10),1);
+  ExecuteSystemExitOperation(*(longlong *)(StackOffset + 0x10),1);
 }
 
 
@@ -5018,7 +5018,7 @@ undefined4 ValidateStackObject(void)
     return 0x1c;
   }
                     // WARNING: Subroutine does not return
-  FUN_180862e00(*(longlong *)(StackPointer + 0x10),1);
+  ExecuteSystemExitOperation(*(longlong *)(StackPointer + 0x10),1);
 }
 
 
@@ -5033,7 +5033,7 @@ void InitializeSystemResources(void)
 
 {
                     // WARNING: Subroutine does not return
-  FUN_180862e00();
+  ExecuteSystemExitOperation();
 }
 
 
@@ -5129,7 +5129,7 @@ uint64_t ProcessFloatParameterAndUpdateSystem(longlong parameterObject)
   undefined1 vectorData [16];
   longlong stackOffset;
   
-  processResult = func_0x00018088c530(*(undefined4 *)(parameterObject + 0x10),&stackOffset);
+  processResult = ValidateObjectContext(*(undefined4 *)(parameterObject + 0x10),&stackOffset);
   if ((int)processResult != 0) {
     return processResult;
   }
@@ -5157,7 +5157,7 @@ uint64_t ProcessFloatParameterAndUpdateSystem(longlong parameterObject)
           statusFlags2 = movmskps(statusFlags1, vectorData);
           floatValue = (float)(int)(intValue - (statusFlags2 & 1));
         }
-        floatValue = (float)func_0x00018084dcc0(*(longlong *)(systemData + 0x18), floatValue);
+        floatValue = (float)CalculateFloatValue(*(longlong *)(systemData + 0x18), floatValue);
         if (((*(char *)(systemData + 0x34) == '\0') ||
             ((*(uint *)(*(longlong *)(systemData + 0x18) + 0x34) >> 1 & 1) == 0)) &&
            (floatValue != *(float *)(systemData + 0x20))) {
@@ -5198,7 +5198,7 @@ int InitializeSystemManager(longlong managerHandle)
   if (0 < *(int *)(param_1 + 0x20)) {
     lVar2 = *(longlong *)(param_1 + 0x18);
   }
-  iVar1 = func_0x00018088c530(*(undefined4 *)(param_1 + 0x4c),auStackX_8);
+  iVar1 = ValidateObjectContext(*(undefined4 *)(param_1 + 0x4c),auStackX_8);
   if (iVar1 == 0) {
     iVar1 = *(int *)(param_1 + 0x10);
     if (0x38 < *(int *)(param_1 + 0x10)) {
@@ -5233,7 +5233,7 @@ void ProcessSystemMessageQueue(longlong messageQueueHandle, undefined8 configura
   int aiStack_58 [2];
   longlong lStack_50;
   
-  aiStack_58[0] = func_0x00018088c530(*(undefined4 *)(messageQueueHandle + 0x10),&uStackX_8);
+  aiStack_58[0] = ValidateObjectContext(*(undefined4 *)(messageQueueHandle + 0x10),&uStackX_8);
   if (aiStack_58[0] == 0) {
     lStack_50 = messageQueueHandle + 0x18;
     FUN_180894dd0(configurationData,aiStack_58,*(undefined4 *)(messageQueueHandle + 0x14),uStackX_8);
@@ -5266,7 +5266,7 @@ ulonglong ProcessSystemResourceAllocation(longlong resourceHandle, undefined8 op
   longlong lStack_50;
   int iStack_48;
   
-  uVar2 = func_0x00018088c530(*(undefined4 *)(resourceHandle + 0x24),&uStackX_8);
+  uVar2 = ValidateObjectContext(*(undefined4 *)(resourceHandle + 0x24),&uStackX_8);
   if ((int)uVar2 == 0) {
     iStack_48 = *(int *)(resourceHandle + 0x18);
     if ((0 < iStack_48) && (*(uint *)(resourceHandle + 0x1c) < 2)) {
@@ -5554,7 +5554,7 @@ undefined8 ValidateSystemConfiguration(longlong configHandle)
   undefined8 ValidationResult;
   longlong ConfigBuffer [4];
   
-  ValidationResult = func_0x00018088c530(*(undefined4 *)(configHandle + 0x10),ConfigBuffer);
+  ValidationResult = ValidateObjectContext(*(undefined4 *)(configHandle + 0x10),ConfigBuffer);
   if ((int)ValidationResult == 0) {
     *(undefined4 *)(*(longlong *)(ConfigBuffer[0] + 0x10) + 0x50) = *(undefined4 *)(configHandle + 0x18);
     if ((*(longlong *)(ConfigBuffer[0] + 8) != 0) && (ValidationResult = FUN_1808c44f0(), (int)ValidationResult != 0)) {
@@ -5649,7 +5649,7 @@ void InitializeObjectPropertiesAndDispatch(longlong objectContext, longlong sche
   int initializationStatus;
   longlong propertyBuffer;
   
-  initializationStatus = func_0x00018088c530(*(undefined4 *)(objectContext + 0x10),&propertyBuffer);
+  initializationStatus = ValidateObjectContext(*(undefined4 *)(objectContext + 0x10),&propertyBuffer);
   if (initializationStatus == 0) {
     *(undefined4 *)(objectContext + 0x18) = *(undefined4 *)(propertyBuffer + 0x30);
     *(undefined4 *)(objectContext + 0x1c) = *(undefined4 *)(propertyBuffer + 0x34);
@@ -5677,7 +5677,7 @@ void ValidateObjectPropertiesAndDispatch(longlong objectContext, longlong schedu
   int validationStatus;
   undefined8 propertyBuffer;
   
-  validationStatus = func_0x00018088c530(*(undefined4 *)(objectContext + 0x10),&propertyBuffer);
+  validationStatus = ValidateObjectContext(*(undefined4 *)(objectContext + 0x10),&propertyBuffer);
   if (validationStatus == 0) {
     validationStatus = FUN_1808deb90(propertyBuffer,objectContext + 0x18);
     if (validationStatus == 0) {
@@ -5739,7 +5739,7 @@ undefined8 CheckObjectPropertiesAndIncrementCounter(longlong objectContext, long
   undefined8 operationResult;
   longlong propertyBuffer;
   
-  operationResult = func_0x00018088c530(*(undefined4 *)(objectContext + 0x10),&propertyBuffer);
+  operationResult = ValidateObjectContext(*(undefined4 *)(objectContext + 0x10),&propertyBuffer);
   if ((int)operationResult == 0) {
     if (*(int *)(propertyBuffer + 0x34) != 0) {
       return 0x2e;
@@ -5773,7 +5773,7 @@ void ResetObjectPropertiesAndDispatch(longlong objectContext, longlong scheduler
   int initializationStatus;
   longlong propertyBuffer;
   
-  initializationStatus = func_0x00018088c530(*(undefined4 *)(objectContext + 0x10),&propertyBuffer);
+  initializationStatus = ValidateObjectContext(*(undefined4 *)(objectContext + 0x10),&propertyBuffer);
   if (initializationStatus == 0) {
     *(undefined4 *)(propertyBuffer + 0x30) = 0;
                     // WARNING: Subroutine does not return
@@ -5803,7 +5803,7 @@ undefined8 CheckObjectPropertiesAndDecrementCounter(longlong objectContext, long
   undefined8 operationResult;
   longlong propertyBuffer;
   
-  operationResult = func_0x00018088c530(*(undefined4 *)(objectContext + 0x10),&propertyBuffer);
+  operationResult = ValidateObjectContext(*(undefined4 *)(objectContext + 0x10),&propertyBuffer);
   if ((int)operationResult == 0) {
     if (*(int *)(propertyBuffer + 0x34) != 0) {
       return 0x2e;
@@ -5844,7 +5844,7 @@ undefined8 ExtractObjectPropertiesAndDispatch(longlong objectContext, longlong s
   undefined8 operationResult;
   longlong propertyBuffer;
   
-  operationResult = func_0x00018088c530(*(undefined4 *)(objectContext + 0x10),&propertyBuffer);
+  operationResult = ValidateObjectContext(*(undefined4 *)(objectContext + 0x10),&propertyBuffer);
   if ((int)operationResult == 0) {
     if (*(longlong *)(propertyBuffer + 8) == 0) {
       return 0x4c;
@@ -5874,7 +5874,7 @@ undefined8 ActivateObjectPropertiesAndDispatch(longlong objectContext, longlong 
   undefined8 operationResult;
   longlong propertyBuffer;
   
-  operationResult = func_0x00018088c530(*(undefined4 *)(objectContext + 0x10),&propertyBuffer);
+  operationResult = ValidateObjectContext(*(undefined4 *)(objectContext + 0x10),&propertyBuffer);
   if ((int)operationResult != 0) {
     return operationResult;
   }
@@ -5889,18 +5889,26 @@ undefined8 ActivateObjectPropertiesAndDispatch(longlong objectContext, longlong 
 
 
 
- void FUN_180891ca0(longlong param_1,longlong param_2)
-void FUN_180891ca0(longlong param_1,longlong param_2)
+ /**
+ * @brief 设置对象上下文字节29
+ * 
+ * 该函数验证对象上下文，并在验证通过后设置上下文字节29的值
+ * 然后调用处理函数继续执行相关操作
+ * 
+ * @param objectContext 对象上下文指针
+ * @param processContext 处理上下文指针，包含处理所需的数据
+ */
+void SetObjectContextByte29(longlong objectContext, longlong processContext)
 
 {
-  int iVar1;
-  longlong lStackX_8;
+  int validationStatus;
+  longlong contextBuffer;
   
-  iVar1 = func_0x00018088c530(*(undefined4 *)(param_1 + 0x10),&lStackX_8);
-  if (iVar1 == 0) {
-    *(undefined1 *)(lStackX_8 + 0x29) = *(undefined1 *)(param_1 + 0x18);
+  validationStatus = ValidateObjectContext(*(undefined4 *)(objectContext + 0x10),&contextBuffer);
+  if (validationStatus == 0) {
+    *(undefined1 *)(contextBuffer + 0x29) = *(undefined1 *)(objectContext + 0x18);
                     // WARNING: Subroutine does not return
-    FUN_18088d720(*(undefined8 *)(param_2 + 0x98),param_1);
+    ProcessContextData(*(undefined8 *)(processContext + 0x98),objectContext);
   }
   return;
 }
@@ -5915,7 +5923,7 @@ void FUN_180891cf0(longlong param_1,longlong param_2)
   int iVar1;
   longlong lStackX_8;
   
-  iVar1 = func_0x00018088c530(*(undefined4 *)(param_1 + 0x10),&lStackX_8);
+  iVar1 = ValidateObjectContext(*(undefined4 *)(param_1 + 0x10),&lStackX_8);
   if (iVar1 == 0) {
     *(undefined1 *)(lStackX_8 + 0x28) = *(undefined1 *)(param_1 + 0x18);
                     // WARNING: Subroutine does not return
@@ -5937,7 +5945,7 @@ undefined8 FUN_180891d40(longlong param_1,longlong param_2)
   if ((uStackX_8 & 0x7f800000) == 0x7f800000) {
     return 0x1d;
   }
-  uVar1 = func_0x00018088c530(*(undefined4 *)(param_1 + 0x10),&uStackX_8);
+  uVar1 = ValidateObjectContext(*(undefined4 *)(param_1 + 0x10),&uStackX_8);
   if ((int)uVar1 == 0) {
     *(undefined4 *)(CONCAT44(uStackX_c,uStackX_8) + 0x24) = *(undefined4 *)(param_1 + 0x18);
                     // WARNING: Subroutine does not return
@@ -5954,7 +5962,7 @@ undefined8 FUN_180891de0(longlong param_1,longlong param_2)
   undefined8 uVar1;
   longlong lStackX_8;
   
-  uVar1 = func_0x00018088c530(*(undefined4 *)(param_1 + 0x10),&lStackX_8);
+  uVar1 = ValidateObjectContext(*(undefined4 *)(param_1 + 0x10),&lStackX_8);
   if ((int)uVar1 != 0) {
     return uVar1;
   }
@@ -5983,7 +5991,7 @@ void FUN_180891e40(longlong param_1,longlong param_2)
   longlong lStackX_8;
   longlong lStackX_18;
   
-  iVar1 = func_0x00018088c530(*(undefined4 *)(param_1 + 0x10),&lStackX_18);
+  iVar1 = ValidateObjectContext(*(undefined4 *)(param_1 + 0x10),&lStackX_18);
   if (((iVar1 != 0) || (iVar1 = FUN_180867bc0(&lStackX_8), iVar1 != 0)) ||
      (iVar1 = FUN_180868490(lStackX_8,param_2,*(undefined8 *)(lStackX_18 + 8)), iVar1 != 0)) {
     return;
@@ -6276,7 +6284,7 @@ void FUN_180891ff0(longlong param_1,longlong param_2)
   int iVar1;
   undefined8 uStackX_8;
   
-  iVar1 = func_0x00018088c530(*(undefined4 *)(param_1 + 0x10),&uStackX_8);
+  iVar1 = ValidateObjectContext(*(undefined4 *)(param_1 + 0x10),&uStackX_8);
   if (iVar1 == 0) {
     iVar1 = func_0x0001808c8710(uStackX_8);
     if (iVar1 < 1) {
@@ -6366,7 +6374,7 @@ void FUN_180892090(longlong param_1,longlong param_2)
   int iVar1;
   undefined8 uStackX_8;
   
-  iVar1 = func_0x00018088c530(*(undefined4 *)(param_1 + 0x10),&uStackX_8);
+  iVar1 = ValidateObjectContext(*(undefined4 *)(param_1 + 0x10),&uStackX_8);
   if (iVar1 == 0) {
     iVar1 = func_0x0001808c8470(uStackX_8);
     if (iVar1 == 0) {
@@ -6387,7 +6395,7 @@ void FUN_1808920e0(longlong param_1,longlong param_2)
   int iVar1;
   undefined1 auStackX_8 [8];
   
-  iVar1 = func_0x00018088c530(*(undefined4 *)(param_1 + 0x10),auStackX_8);
+  iVar1 = ValidateObjectContext(*(undefined4 *)(param_1 + 0x10),auStackX_8);
   if (iVar1 == 0) {
                     // WARNING: Subroutine does not return
     FUN_18088d720(*(undefined8 *)(param_2 + 0x98),param_1);
@@ -6405,7 +6413,7 @@ void FUN_180892120(longlong param_1,longlong param_2)
   int iVar1;
   undefined8 uStackX_8;
   
-  iVar1 = func_0x00018088c530(*(undefined4 *)(param_1 + 0x10),&uStackX_8);
+  iVar1 = ValidateObjectContext(*(undefined4 *)(param_1 + 0x10),&uStackX_8);
   if (iVar1 == 0) {
     iVar1 = func_0x0001808c7d30(uStackX_8);
     if (iVar1 == 0) {
@@ -6424,7 +6432,7 @@ undefined8 FUN_180892170(longlong param_1,longlong param_2)
   undefined8 uVar1;
   longlong lStackX_8;
   
-  uVar1 = func_0x00018088c530(*(undefined4 *)(param_1 + 0x10),&lStackX_8);
+  uVar1 = ValidateObjectContext(*(undefined4 *)(param_1 + 0x10),&lStackX_8);
   if ((int)uVar1 == 0) {
     if (lStackX_8 != 0) {
       lStackX_8 = lStackX_8 + -8;
@@ -6447,7 +6455,7 @@ undefined8 FUN_1808921f0(longlong param_1,longlong param_2)
   undefined8 uVar1;
   longlong lStackX_8;
   
-  uVar1 = func_0x00018088c530(*(undefined4 *)(param_1 + 0x10),&lStackX_8);
+  uVar1 = ValidateObjectContext(*(undefined4 *)(param_1 + 0x10),&lStackX_8);
   if ((int)uVar1 == 0) {
     if (lStackX_8 != 0) {
       lStackX_8 = lStackX_8 + -8;
@@ -6483,7 +6491,7 @@ undefined8 FUN_180892270(longlong param_1,longlong param_2)
   if (param_1 + 0x1c == 0) {
     return 0x1f;
   }
-  uVar3 = func_0x00018088c530(*(undefined4 *)(param_1 + 0x10),&lStackX_8);
+  uVar3 = ValidateObjectContext(*(undefined4 *)(param_1 + 0x10),&lStackX_8);
   if ((int)uVar3 == 0) {
     uVar6 = 0;
     uVar8 = uVar6;
@@ -6614,7 +6622,7 @@ undefined8 FUN_180892370(longlong param_1,longlong param_2)
   longlong lVar3;
   longlong lStackX_8;
   
-  uVar2 = func_0x00018088c530(*(undefined4 *)(param_1 + 0x10),&lStackX_8);
+  uVar2 = ValidateObjectContext(*(undefined4 *)(param_1 + 0x10),&lStackX_8);
   if ((int)uVar2 != 0) {
     return uVar2;
   }
@@ -6673,7 +6681,7 @@ void FUN_180892410(longlong param_1,longlong param_2)
   ulonglong uStack_18;
   
   uStack_18 = _DAT_180bf00a8 ^ (ulonglong)auStack_68;
-  iVar2 = func_0x00018088c530(*(undefined4 *)(param_1 + 0x10),&lStack_48);
+  iVar2 = ValidateObjectContext(*(undefined4 *)(param_1 + 0x10),&lStack_48);
   if (iVar2 == 0) {
     if (lStack_48 != 0) {
       lStack_48 = lStack_48 + -8;
@@ -6825,7 +6833,7 @@ undefined8 FUN_1808924f0(longlong param_1,longlong param_2)
     if (((fStackX_20 == 0.0) && (*(float *)(param_1 + 0x40) == 0.0)) && (fVar1 == 0.0)) {
       return 0x1f;
     }
-    uVar5 = func_0x00018088c530(*(undefined4 *)(param_1 + 0x10),alStackX_8);
+    uVar5 = ValidateObjectContext(*(undefined4 *)(param_1 + 0x10),alStackX_8);
     if ((int)uVar5 != 0) {
       return uVar5;
     }
@@ -6882,7 +6890,7 @@ void FUN_180892720(longlong param_1,longlong param_2)
   longlong lVar2;
   undefined8 uStackX_8;
   
-  iVar1 = func_0x00018088c530(*(undefined4 *)(param_1 + 0x10));
+  iVar1 = ValidateObjectContext(*(undefined4 *)(param_1 + 0x10));
   if (iVar1 == 0) {
     if (uStackX_8 == 0) {
       lVar2 = 0;
@@ -6913,7 +6921,7 @@ undefined8 FUN_180892780(longlong param_1,longlong param_2)
   if ((*(uint *)(param_1 + 0x20) & 0x7f800000) == 0x7f800000) {
     return 0x1d;
   }
-  uVar3 = func_0x00018088c530(*(undefined4 *)(param_1 + 0x10),alStackX_18);
+  uVar3 = ValidateObjectContext(*(undefined4 *)(param_1 + 0x10),alStackX_18);
   if ((int)uVar3 == 0) {
     if (alStackX_18[0] == 0) {
       alStackX_18[0] = 0;
@@ -6960,7 +6968,7 @@ undefined8 FUN_180892880(longlong param_1,longlong param_2)
   longlong lStackX_8;
   longlong alStackX_18 [2];
   
-  uVar3 = func_0x00018088c530(*(undefined4 *)(param_1 + 0x10),alStackX_18);
+  uVar3 = ValidateObjectContext(*(undefined4 *)(param_1 + 0x10),alStackX_18);
   if ((int)uVar3 == 0) {
     if (alStackX_18[0] == 0) {
       alStackX_18[0] = 0;
@@ -7164,7 +7172,7 @@ undefined8 FUN_180892990(longlong param_1,longlong param_2)
     return 0x1d;
   }
   if (param_1 + 0x28 != 0) {
-    uVar4 = func_0x00018088c530(*(undefined4 *)(param_1 + 0x10),&lStackX_18);
+    uVar4 = ValidateObjectContext(*(undefined4 *)(param_1 + 0x10),&lStackX_18);
     if ((int)uVar4 != 0) {
       return uVar4;
     }
@@ -7216,7 +7224,7 @@ undefined8 FUN_180892ac0(longlong param_1,longlong param_2)
   longlong lStackX_18;
   
   if (param_1 + 0x28 != 0) {
-    uVar4 = func_0x00018088c530(*(undefined4 *)(param_1 + 0x10),&lStackX_18);
+    uVar4 = ValidateObjectContext(*(undefined4 *)(param_1 + 0x10),&lStackX_18);
     if ((int)uVar4 != 0) {
       return uVar4;
     }
@@ -7274,7 +7282,7 @@ undefined8 FUN_180892bd0(longlong param_1,longlong param_2,undefined8 param_3,un
   if ((*(uint *)(param_1 + 0x20) & 0x7f800000) == 0x7f800000) {
     return 0x1d;
   }
-  uVar4 = func_0x00018088c530(*(undefined4 *)(param_1 + 0x10),&lStackX_8);
+  uVar4 = ValidateObjectContext(*(undefined4 *)(param_1 + 0x10),&lStackX_8);
   if ((int)uVar4 != 0) {
     return uVar4;
   }
@@ -7345,7 +7353,7 @@ undefined8 FUN_180892cc0(longlong param_1,longlong param_2)
   undefined4 uStackX_c;
   ulonglong uVar10;
   
-  uVar3 = func_0x00018088c530(*(undefined4 *)(param_1 + 0x10),&fStackX_8);
+  uVar3 = ValidateObjectContext(*(undefined4 *)(param_1 + 0x10),&fStackX_8);
   if ((int)uVar3 != 0) {
     return uVar3;
   }
@@ -7521,7 +7529,7 @@ void FUN_180892e50(longlong param_1,undefined8 param_2)
   
   uStack_30 = _DAT_180bf00a8 ^ (ulonglong)alStack_58;
   uStack_38 = param_2;
-  iVar1 = func_0x00018088c530(*(undefined4 *)(param_1 + 0x10),alStack_58);
+  iVar1 = ValidateObjectContext(*(undefined4 *)(param_1 + 0x10),alStack_58);
   if (iVar1 == 0) {
     bVar4 = alStack_58[0] == 0;
     alStack_58[0] = alStack_58[0] + -8;
@@ -7561,7 +7569,7 @@ void UpdateSystemConfigurationAndExecute(longlong configObject, longlong systemC
   longlong configOffset;
   undefined8 configBuffer;
   
-  validationStatus = func_0x00018088c530(*(undefined4 *)(configObject + 0x10));
+  validationStatus = ValidateObjectContext(*(undefined4 *)(configObject + 0x10));
   if (validationStatus == 0) {
     if (configBuffer == 0) {
       configOffset = 0;
@@ -7595,7 +7603,7 @@ undefined8 FUN_1808930e0(longlong param_1,longlong param_2,undefined8 param_3,un
   if ((fVar1 < 0.0) || (3.4028235e+38 <= fVar1)) {
     return 0x1f;
   }
-  uVar2 = func_0x00018088c530(*(undefined4 *)(param_1 + 0x10),&lStackX_8);
+  uVar2 = ValidateObjectContext(*(undefined4 *)(param_1 + 0x10),&lStackX_8);
   if ((int)uVar2 != 0) {
     return uVar2;
   }
@@ -7663,7 +7671,7 @@ code_r0x000180893206:
     }
   }
 code_r0x00018089322c:
-  uVar2 = func_0x00018088c530(*(undefined4 *)(param_1 + 0x10));
+  uVar2 = ValidateObjectContext(*(undefined4 *)(param_1 + 0x10));
   if ((int)uVar2 != 0) {
     return uVar2;
   }
@@ -7711,7 +7719,7 @@ undefined8 FUN_180893290(longlong param_1,longlong param_2)
   if ((*(uint *)(param_1 + 0x1c) & 0x7f800000) == 0x7f800000) {
     return 0x1d;
   }
-  uVar1 = func_0x00018088c530(*(undefined4 *)(param_1 + 0x10));
+  uVar1 = ValidateObjectContext(*(undefined4 *)(param_1 + 0x10));
   if ((int)uVar1 != 0) {
     return uVar1;
   }
@@ -7757,7 +7765,7 @@ undefined8 FUN_180893330(longlong param_1,longlong param_2)
   if ((uStackX_8 & 0x7f800000) == 0x7f800000) {
     return 0x1d;
   }
-  uVar1 = func_0x00018088c530(*(undefined4 *)(param_1 + 0x10),&uStackX_8);
+  uVar1 = ValidateObjectContext(*(undefined4 *)(param_1 + 0x10),&uStackX_8);
   if ((int)uVar1 == 0) {
     if (CONCAT44(uStackX_c,uStackX_8) == 0) {
       lVar2 = 0;
@@ -7782,7 +7790,7 @@ void FUN_1808933c0(longlong param_1,longlong param_2)
   int iVar1;
   longlong lStackX_8;
   
-  iVar1 = func_0x00018088c530(*(undefined4 *)(param_1 + 0x10),&lStackX_8);
+  iVar1 = ValidateObjectContext(*(undefined4 *)(param_1 + 0x10),&lStackX_8);
   if (iVar1 == 0) {
     if (lStackX_8 != 0) {
       lStackX_8 = lStackX_8 + -8;
@@ -7805,7 +7813,7 @@ void FUN_180893420(longlong param_1,longlong param_2)
   int iVar1;
   longlong lStackX_8;
   
-  iVar1 = func_0x00018088c530(*(undefined4 *)(param_1 + 0x10),&lStackX_8);
+  iVar1 = ValidateObjectContext(*(undefined4 *)(param_1 + 0x10),&lStackX_8);
   if (iVar1 == 0) {
     if (lStackX_8 != 0) {
       lStackX_8 = lStackX_8 + -8;
@@ -7834,7 +7842,7 @@ undefined8 FUN_180893480(longlong param_1,longlong param_2)
   if ((uStackX_8 & 0x7f800000) == 0x7f800000) {
     return 0x1d;
   }
-  uVar3 = func_0x00018088c530(*(undefined4 *)(param_1 + 0x10),&uStackX_8);
+  uVar3 = ValidateObjectContext(*(undefined4 *)(param_1 + 0x10),&uStackX_8);
   if ((int)uVar3 != 0) {
     return uVar3;
   }
@@ -8010,7 +8018,7 @@ int FUN_180893760(longlong param_1,longlong param_2)
     if (*(int *)(param_1 + 0x20) < 1) {
       iVar1 = FUN_1808de900(param_2,param_1 + 0x4c);
       if ((iVar1 == 0) &&
-         (iVar1 = func_0x00018088c530(*(undefined4 *)(param_1 + 0x4c),&lStackX_8), iVar1 == 0)) {
+         (iVar1 = ValidateObjectContext(*(undefined4 *)(param_1 + 0x4c),&lStackX_8), iVar1 == 0)) {
         if (*(int *)(lStackX_8 + 0x30) == 1) {
           *(undefined4 *)(lStackX_8 + 0x30) = 2;
         }
@@ -8052,7 +8060,7 @@ int FUN_18089379d(longlong param_1,undefined8 param_2)
   if ((int)param_2 < 1) {
     iVar1 = FUN_1808de900();
     if ((iVar1 == 0) &&
-       (iVar1 = func_0x00018088c530(*(undefined4 *)(unaff_RDI + 0x4c),&stack0x00000060), iVar1 == 0)
+       (iVar1 = ValidateObjectContext(*(undefined4 *)(unaff_RDI + 0x4c),&stack0x00000060), iVar1 == 0)
        ) {
       if (*(int *)(in_stack_00000060 + 0x30) == 1) {
         *(undefined4 *)(in_stack_00000060 + 0x30) = 2;
@@ -8188,7 +8196,7 @@ int FUN_180893964(undefined8 param_1,undefined8 param_2)
   else {
     iVar1 = FUN_1808de900();
     if ((iVar1 == 0) &&
-       (iVar1 = func_0x00018088c530(*(undefined4 *)(unaff_RDI + 0x24),&stack0x00000060), iVar1 == 0)
+       (iVar1 = ValidateObjectContext(*(undefined4 *)(unaff_RDI + 0x24),&stack0x00000060), iVar1 == 0)
        ) {
       if (*(int *)(in_stack_00000060 + 0x30) == 1) {
         *(undefined4 *)(in_stack_00000060 + 0x30) = 2;
@@ -8705,7 +8713,7 @@ undefined8 FUN_180894300(longlong param_1,longlong param_2)
   if ((uStackX_8 & 0x7f800000) == 0x7f800000) {
     return 0x1d;
   }
-  uVar1 = func_0x00018088c530(*(undefined4 *)(param_1 + 0x10),&uStackX_8);
+  uVar1 = ValidateObjectContext(*(undefined4 *)(param_1 + 0x10),&uStackX_8);
   if ((int)uVar1 == 0) {
     *(undefined4 *)(CONCAT44(uStackX_c,uStackX_8) + 0x18) = *(undefined4 *)(param_1 + 0x18);
                     // WARNING: Subroutine does not return
@@ -9762,7 +9770,7 @@ LAB_18089555d:
         uStack_6f4 = *(undefined4 *)(lVar9 + 0x20);
         iVar4 = FUN_180895c60(param_1,iVar4,&uStack_6f4);
         if (iVar4 != 0) goto FUN_180895b89;
-        iVar4 = func_0x00018088c530(uStack_6f4,alStack_6b0);
+        iVar4 = ValidateObjectContext(uStack_6f4,alStack_6b0);
         if ((iVar4 != 0) || (*(int *)(alStack_6b0[0] + 0x30) != 2)) goto LAB_18089555d;
       }
     }
@@ -9884,7 +9892,7 @@ LAB_18089555d:
       in_stack_00000040._4_4_ = *(undefined4 *)(lVar8 + 0x20);
       iVar4 = FUN_180895c60(param_1,unaff_EBX,(longlong)&stack0x00000040 + 4);
       if (iVar4 != 0) goto LAB_180895b69;
-      iVar4 = func_0x00018088c530(in_stack_00000040._4_4_,unaff_RBP + -0x78);
+      iVar4 = ValidateObjectContext(in_stack_00000040._4_4_,unaff_RBP + -0x78);
       if ((iVar4 != 0) || (*(int *)(*(longlong *)(unaff_RBP + -0x78) + 0x30) != 2))
       goto LAB_18089555d;
     }
@@ -10634,7 +10642,7 @@ ulonglong FUN_180896140(longlong param_1)
           lVar15 = (longlong)aiStackX_8[0];
           iVar4 = *(int *)(lVar5 + 8 + lVar15 * 0x10);
           if (iVar4 == 2) {
-            iVar4 = func_0x00018088c530(*(undefined4 *)(lVar5 + 0xc + lVar15 * 0x10),&uStackX_18);
+            iVar4 = ValidateObjectContext(*(undefined4 *)(lVar5 + 0xc + lVar15 * 0x10),&uStackX_18);
             uVar3 = uStackX_18;
             plVar13 = plStack_108;
             if ((iVar4 == 0) &&
@@ -10651,7 +10659,7 @@ ulonglong FUN_180896140(longlong param_1)
             }
           }
           else if (iVar4 == 3) {
-            iVar4 = func_0x00018088c530(*(undefined4 *)(lVar5 + 0xc + lVar15 * 0x10),auStackX_20);
+            iVar4 = ValidateObjectContext(*(undefined4 *)(lVar5 + 0xc + lVar15 * 0x10),auStackX_20);
             plVar13 = plStack_108;
             if (iVar4 == 0) {
               puStack_d8 = &UNK_180983b68;
@@ -10667,7 +10675,7 @@ ulonglong FUN_180896140(longlong param_1)
             }
           }
           else if (iVar4 == 5) {
-            iVar4 = func_0x00018088c530(*(undefined4 *)(lVar5 + 0xc + lVar15 * 0x10),auStack_78);
+            iVar4 = ValidateObjectContext(*(undefined4 *)(lVar5 + 0xc + lVar15 * 0x10),auStack_78);
             plVar13 = plStack_108;
             if (iVar4 == 0) {
               puStack_d8 = &UNK_1809842e0;
@@ -10693,7 +10701,7 @@ ulonglong FUN_180896140(longlong param_1)
             }
           }
           else if (iVar4 == 6) {
-            iVar4 = func_0x00018088c530(*(undefined4 *)(lVar5 + 0xc + lVar15 * 0x10),auStack_70);
+            iVar4 = ValidateObjectContext(*(undefined4 *)(lVar5 + 0xc + lVar15 * 0x10),auStack_70);
             plVar13 = plStack_108;
             if (iVar4 == 0) {
               puStack_b8 = &UNK_1809844c8;
@@ -10705,7 +10713,7 @@ ulonglong FUN_180896140(longlong param_1)
             }
           }
           else if ((iVar4 == 7) &&
-                  (iVar4 = func_0x00018088c530(*(undefined4 *)(lVar5 + 0xc + lVar15 * 0x10),
+                  (iVar4 = ValidateObjectContext(*(undefined4 *)(lVar5 + 0xc + lVar15 * 0x10),
                                                auStack_68), plVar13 = plStack_108, iVar4 == 0)) {
             uVar2 = *(undefined4 *)(lVar5 + 0xc + lVar15 * 0x10);
             iVar7 = (int)uVar6 + 1;
