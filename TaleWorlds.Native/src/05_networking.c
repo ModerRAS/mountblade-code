@@ -10657,7 +10657,22 @@ LAB_18084b4a9:
 
 
 // 函数: void FUN_18084b5a0(NetworkHandle connectionContext,NetworkHandle *packetData,longlong *dataSize)
-void FUN_18084b5a0(NetworkHandle connectionContext,NetworkHandle *packetData,longlong *dataSize)
+/**
+ * @brief 处理网络连接数据包验证和状态检查
+ * 
+ * 该函数负责处理网络连接中的数据包验证和状态检查，包括：
+ * - 遍历数据包数组并验证每个数据包
+ * - 提取数据包的各个字段信息
+ * - 调用数据包处理函数进行验证
+ * - 处理验证结果和错误情况
+ * 
+ * @param connectionContext 网络连接上下文句柄
+ * @param packetData 数据包数据指针数组
+ * @param dataSize 数据大小指针
+ * 
+ * 注意：这是一个反编译的函数实现
+ */
+void ProcessNetworkPacketValidationAndStatusCheck(NetworkHandle connectionContext,NetworkHandle *packetData,longlong *dataSize)
 
 {
   int networkStatus1;
