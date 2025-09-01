@@ -3146,25 +3146,37 @@ int ProcessNetworkConnectionProtocol(longlong connectionContext,longlong packetD
 
 
 
-int FUN_180843270(longlong connectionContext,longlong packetData,int dataSize)
+// 函数: int HandleNetworkConnectionRequest(longlong connectionContext,longlong packetData,int dataSize)
+/**
+ * @brief 处理网络连接请求
+ * 
+ * 该函数负责处理客户端的网络连接请求
+ * 执行连接验证、资源分配和连接建立操作
+ * 
+ * @param connectionContext 网络连接上下文
+ * @param packetData 数据包数据指针
+ * @param dataSize 数据包大小
+ * @return 处理结果，成功返回0，失败返回错误码
+ */
+int HandleNetworkConnectionRequest(longlong connectionContext,longlong packetData,int dataSize)
 
 {
-  NetworkStatus uVar1;
-  NetworkStatus uVar2;
-  int networkStatus3;
-  int networkStatus4;
+  NetworkStatus connectionState;
+  NetworkStatus requestFlags;
+  int requestOffset;
+  int processedSize;
   
-  uVar1 = *(NetworkStatus *)(connectionContext + 0x18);
-  uVar2 = *(NetworkStatus *)(connectionContext + 0x10);
-  networkStatus3 = FUN_18074b880(packetData,dataSize,&UNK_180983930);
-  networkStatus4 = FUN_18074b880(networkStatus3 + packetData,dataSize - networkStatus3,&g_NetworkBufferDataTemplate);
-  networkStatus3 = networkStatus3 + networkStatus4;
-  networkStatus4 = func_0x00018074b800(networkStatus3 + packetData,dataSize - networkStatus3,uVar2);
-  networkStatus3 = networkStatus3 + networkStatus4;
-  networkStatus4 = FUN_18074b880(networkStatus3 + packetData,dataSize - networkStatus3,&g_NetworkBufferDataTemplate);
-  networkStatus3 = networkStatus3 + networkStatus4;
-  networkStatus4 = func_0x00018074b800(networkStatus3 + packetData,dataSize - networkStatus3,uVar1);
-  return networkStatus4 + networkStatus3;
+  connectionState = *(NetworkStatus *)(connectionContext + 0x18);
+  requestFlags = *(NetworkStatus *)(connectionContext + 0x10);
+  requestOffset = FUN_18074b880(packetData,dataSize,&UNK_180983930);
+  processedSize = FUN_18074b880(requestOffset + packetData,dataSize - requestOffset,&g_NetworkBufferDataTemplate);
+  requestOffset = requestOffset + processedSize;
+  processedSize = func_0x00018074b800(requestOffset + packetData,dataSize - requestOffset,requestFlags);
+  requestOffset = requestOffset + processedSize;
+  processedSize = FUN_18074b880(requestOffset + packetData,dataSize - requestOffset,&g_NetworkBufferDataTemplate);
+  requestOffset = requestOffset + processedSize;
+  processedSize = func_0x00018074b800(requestOffset + packetData,dataSize - requestOffset,connectionState);
+  return processedSize + requestOffset;
 }
 
 
