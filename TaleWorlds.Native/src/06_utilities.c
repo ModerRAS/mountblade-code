@@ -2027,13 +2027,13 @@ undefined SystemMemoryConfigDataTemplateV;
 undefined SystemMemoryConfigDataTemplateW;
 undefined SystemMemoryConfigDataTemplateW2;
 undefined SystemMemoryConfigDataTemplateW3;
-undefined DAT_180c8ed00;
-undefined DAT_180c8ed50;
-char DAT_180bf0102;
-undefined DAT_180c8ed58;
-undefined DAT_180c8ed48;
-undefined DAT_180c8ed40;
-undefined DAT_180c86940;
+undefined GlobalSystemMemoryPool;
+undefined SystemResourceAllocator;
+char SystemMemoryConfigFlag;
+undefined SystemMemoryConfigData;
+undefined SystemResourceCache;
+undefined SystemMemoryBuffer;
+undefined SystemMemoryAllocator;
 undefined SystemMemoryConfigDataTemplateX;
 undefined SystemMemoryConfigDataTemplateY;
 undefined SystemMemoryConfigDataTemplateZ;
@@ -12979,7 +12979,7 @@ LAB_1808974ec:
               }
               func_0x00018076b450(auStack_e0,presourceHash2,0x80);
               iVar6 = GetAndValidateResourceData(param_1,&puStack_108);
-              if (iVar6 != 0) goto FUN_180897b16;
+              if (iVar6 != 0) goto HandleMemoryCleanup;
             }
             lVar8 = lVar8 + 1;
             lVar14 = lVar14 + 0x18;
@@ -13008,7 +13008,7 @@ LAB_1808974ec:
               uStack_114 = *(undefined4 *)(resourceTable + 100);
               uStack_148 = uStack_1c8;
               iVar6 = GetAndValidateResourceData(param_1,&puStack_158);
-              if (iVar6 != 0) goto FUN_180897b16;
+              if (iVar6 != 0) goto HandleMemoryCleanup;
             }
           }
           iVar6 = ValidateResourceTable(resourceTable,&fStack_19c,0);
@@ -13019,7 +13019,7 @@ LAB_1808974ec:
               uStack_1b0 = uStack_1c8;
               uStack_1b8 = 0;
               iVar6 = GetAndValidateResourceData(param_1,&puStack_1c0);
-              if (iVar6 != 0) goto FUN_180897b16;
+              if (iVar6 != 0) goto HandleMemoryCleanup;
             }
             iVar6 = CheckResourceIntegrity(resourceTable,afStack_198,0);
             if (iVar6 == 0) {
@@ -13029,7 +13029,7 @@ LAB_1808974ec:
                 uStack_1b0 = uStack_1c8;
                 uStack_1b8 = 0;
                 iVar6 = GetAndValidateResourceData(param_1,&puStack_1c0);
-                if (iVar6 != 0) goto FUN_180897b16;
+                if (iVar6 != 0) goto HandleMemoryCleanup;
               }
               fVar13 = 0.0;
               pfVar15 = (float *)(resourceTable + 0x94);
@@ -13041,7 +13041,7 @@ LAB_1808974ec:
                   fStack_1a8 = fVar13;
                   fStack_1a4 = *pfVar15;
                   iVar6 = GetAndValidateResourceData(param_1,&puStack_1c0);
-                  if (iVar6 != 0) goto FUN_180897b16;
+                  if (iVar6 != 0) goto HandleMemoryCleanup;
                 }
                 fVar13 = (float)((int)fVar13 + 1);
                 pfVar15 = pfVar15 + 1;
@@ -13057,7 +13057,7 @@ LAB_1808974ec:
                   fStack_1a8 = fVar13;
                   fStack_1a4 = fVar1;
                   iVar6 = GetAndValidateResourceData(param_1,&puStack_1c0);
-                  if (iVar6 != 0) goto FUN_180897b16;
+                  if (iVar6 != 0) goto HandleMemoryCleanup;
                 }
                 fVar13 = (float)((int)fVar13 + 1);
                 pfVar15 = pfVar15 + 1;
@@ -13069,7 +13069,7 @@ LAB_1808974ec:
                 uStack_1b8 = 0;
                 fStack_1a8 = (float)(uVar7 / 0x30);
                 iVar6 = GetAndValidateResourceData(param_1,&puStack_1c0);
-                if (iVar6 != 0) goto FUN_180897b16;
+                if (iVar6 != 0) goto HandleMemoryCleanup;
               }
               if ((*(uint *)(resourceData + 0x2d8) >> 1 & 1) != 0) {
                 uStack_1b8 = 0;
@@ -13077,7 +13077,7 @@ LAB_1808974ec:
                 uStack_1b0 = uStack_1c8;
                 fStack_1a8 = (float)CONCAT31(fStack_1a8._1_3_,1);
                 iVar6 = GetAndValidateResourceData(param_1,&puStack_1c0);
-                if (iVar6 != 0) goto FUN_180897b16;
+                if (iVar6 != 0) goto HandleMemoryCleanup;
               }
               iVar6 = GetResourceType(param_2);
               if (iVar6 != 2) {
@@ -13085,7 +13085,7 @@ LAB_1808974ec:
                 puStack_1c0 = &UNK_180983ae8;
                 uStack_1b0 = uStack_1c8;
                 iVar6 = GetAndValidateResourceData(param_1,&puStack_1c0);
-                if (iVar6 != 0) goto FUN_180897b16;
+                if (iVar6 != 0) goto HandleMemoryCleanup;
               }
               iVar6 = GetResourceType(param_2);
               if (iVar6 == 4) {
@@ -13094,7 +13094,7 @@ LAB_1808974ec:
                 uStack_1b0 = uStack_1c8;
                 fStack_1a8 = 0.0;
                 iVar6 = GetAndValidateResourceData(param_1,&puStack_1c0);
-                if (iVar6 != 0) goto FUN_180897b16;
+                if (iVar6 != 0) goto HandleMemoryCleanup;
               }
               if ((*(uint *)(resourceData + 0x2d8) >> 3 & 1) != 0) {
                 uStack_1b8 = 0;
@@ -13235,7 +13235,7 @@ void BufferValidationErrorHandler(void)
             }
             validationResult4 = func_0x00018076b450(unaff_RBP + 1,presourceHash8,0x80);
             iVar13 = GetAndValidateResourceData(validationResult4,unaff_RBP + -4);
-            if (iVar13 != 0) goto FUN_180897b0e;
+            if (iVar13 != 0) goto ProcessMemoryRelease;
           }
           unaff_R13D = 0.0;
           validationResult3 = validationResult3 + 1;
@@ -13278,7 +13278,7 @@ void BufferValidationErrorHandler(void)
             *(undefined4 *)((longlong)unaff_RBP + -0x2c) = resourceHash1;
             iVar13 = GetAndValidateResourceData(uVar8,unaff_RBP + -0xe);
             validationResult4 = extraout_XMM0_Da_02;
-            if (iVar13 != 0) goto FUN_180897b0e;
+            if (iVar13 != 0) goto ProcessMemoryRelease;
           }
         }
         iVar13 = ValidateResourceTable(validationResult4,(longlong)&stack0x00000048 + 4,0);
@@ -13292,7 +13292,7 @@ void BufferValidationErrorHandler(void)
             in_stack_00000030 = unaff_R13D;
             iVar13 = GetAndValidateResourceData(fStack000000000000004c,&stack0x00000028);
             fStack000000000000004c = extraout_XMM0_Da_03;
-            if (iVar13 != 0) goto FUN_180897b0e;
+            if (iVar13 != 0) goto ProcessMemoryRelease;
           }
           iVar13 = CheckResourceIntegrity(fStack000000000000004c,&stack0x00000050,0);
           if (iVar13 == 0) {
@@ -13302,7 +13302,7 @@ void BufferValidationErrorHandler(void)
               in_stack_00000038 = uStackX_20;
               in_stack_00000030 = unaff_R13D;
               iVar13 = GetAndValidateResourceData(in_stack_00000050,&stack0x00000028);
-              if (iVar13 != 0) goto FUN_180897b0e;
+              if (iVar13 != 0) goto ProcessMemoryRelease;
             }
             pfVar21 = (float *)(unaff_R15 + 0x94);
             fVar19 = unaff_R13D;
@@ -13315,7 +13315,7 @@ void BufferValidationErrorHandler(void)
                 fStack0000000000000040 = fVar19;
                 fStack0000000000000044 = fVar1;
                 iVar13 = GetAndValidateResourceData(fVar1,&stack0x00000028);
-                if (iVar13 != 0) goto FUN_180897b0e;
+                if (iVar13 != 0) goto ProcessMemoryRelease;
               }
               fVar19 = (float)((int)fVar19 + 1);
               pfVar21 = pfVar21 + 1;
@@ -13331,7 +13331,7 @@ void BufferValidationErrorHandler(void)
                 fStack0000000000000040 = fVar19;
                 fStack0000000000000044 = fVar1;
                 iVar13 = GetAndValidateResourceData(fVar1,&stack0x00000028);
-                if (iVar13 != 0) goto FUN_180897b0e;
+                if (iVar13 != 0) goto ProcessMemoryRelease;
               }
               fVar19 = (float)((int)fVar19 + 1);
               pfVar21 = pfVar21 + 1;
@@ -13345,7 +13345,7 @@ void BufferValidationErrorHandler(void)
               fStack0000000000000040 = (float)(resourceHash4 / 0x30);
               iVar13 = GetAndValidateResourceData(extraout_XMM0_Da_04,&stack0x00000028);
               validationResult4 = extraout_XMM0_Da_05;
-              if (iVar13 != 0) goto FUN_180897b0e;
+              if (iVar13 != 0) goto ProcessMemoryRelease;
             }
             if ((*(uint *)(unaff_R14 + 0x2d8) >> 1 & 1) != 0) {
               in_stack_00000028 = &UNK_180983a60;
@@ -13353,7 +13353,7 @@ void BufferValidationErrorHandler(void)
               fStack0000000000000040 = (float)CONCAT31(fStack0000000000000040._1_3_,1);
               in_stack_00000030 = unaff_R13D;
               iVar13 = GetAndValidateResourceData(validationResult4,&stack0x00000028);
-              if (iVar13 != 0) goto FUN_180897b0e;
+              if (iVar13 != 0) goto ProcessMemoryRelease;
             }
             iVar13 = GetResourceType(unaff_R14);
             if (iVar13 != 2) {
@@ -13361,7 +13361,7 @@ void BufferValidationErrorHandler(void)
               in_stack_00000038 = uStackX_20;
               in_stack_00000030 = unaff_R13D;
               iVar13 = GetAndValidateResourceData(extraout_XMM0_Da_06,&stack0x00000028);
-              if (iVar13 != 0) goto FUN_180897b0e;
+              if (iVar13 != 0) goto ProcessMemoryRelease;
             }
             iVar13 = GetResourceType(unaff_R14);
             validationResult4 = extraout_XMM0_Da_07;
@@ -13372,7 +13372,7 @@ void BufferValidationErrorHandler(void)
               fStack0000000000000040 = unaff_R13D;
               iVar13 = GetAndValidateResourceData(extraout_XMM0_Da_07,&stack0x00000028);
               validationResult4 = extraout_XMM0_Da_08;
-              if (iVar13 != 0) goto FUN_180897b0e;
+              if (iVar13 != 0) goto ProcessMemoryRelease;
             }
             if ((*(uint *)(unaff_R14 + 0x2d8) >> 3 & 1) != 0) {
               in_stack_00000028 = &UNK_180983cf8;
@@ -13496,7 +13496,7 @@ void DataProcessingErrorHandler(void)
         }
         validationResult3 = func_0x00018076b450(unaff_RBP + 1,presourceHash8,0x80);
         iVar13 = GetAndValidateResourceData(validationResult3,unaff_RBP + -4);
-        if (iVar13 != 0) goto FUN_180897afe;
+        if (iVar13 != 0) goto ExecuteMemoryDeallocation;
       }
       unaff_R13D = 0.0;
       validationResult2 = validationResult2 + 1;
@@ -13539,7 +13539,7 @@ void DataProcessingErrorHandler(void)
         *(undefined4 *)((longlong)unaff_RBP + -0x2c) = resourceHash1;
         iVar13 = GetAndValidateResourceData(uVar8,unaff_RBP + -0xe);
         validationResult3 = extraout_XMM0_Da_01;
-        if (iVar13 != 0) goto FUN_180897afe;
+        if (iVar13 != 0) goto ExecuteMemoryDeallocation;
       }
     }
     iVar13 = ValidateResourceTable(validationResult3,(longlong)&stack0x00000048 + 4,0);
@@ -13553,7 +13553,7 @@ void DataProcessingErrorHandler(void)
         in_stack_00000030 = unaff_R13D;
         iVar13 = GetAndValidateResourceData(in_stack_00000048._4_4_,&stack0x00000028);
         in_stack_00000048._4_4_ = extraout_XMM0_Da_02;
-        if (iVar13 != 0) goto FUN_180897afe;
+        if (iVar13 != 0) goto ExecuteMemoryDeallocation;
       }
       iVar13 = CheckResourceIntegrity(in_stack_00000048._4_4_,&stack0x00000050,0);
       if (iVar13 == 0) {
@@ -13563,7 +13563,7 @@ void DataProcessingErrorHandler(void)
           in_stack_00000038 = uStackX_20;
           in_stack_00000030 = unaff_R13D;
           iVar13 = GetAndValidateResourceData(in_stack_00000050,&stack0x00000028);
-          if (iVar13 != 0) goto FUN_180897afe;
+          if (iVar13 != 0) goto ExecuteMemoryDeallocation;
         }
         pfVar21 = (float *)(unaff_R15 + 0x94);
         fVar19 = unaff_R13D;
@@ -13576,7 +13576,7 @@ void DataProcessingErrorHandler(void)
             fStack0000000000000040 = fVar19;
             fStack0000000000000044 = fVar1;
             iVar13 = GetAndValidateResourceData(fVar1,&stack0x00000028);
-            if (iVar13 != 0) goto FUN_180897afe;
+            if (iVar13 != 0) goto ExecuteMemoryDeallocation;
           }
           fVar19 = (float)((int)fVar19 + 1);
           pfVar21 = pfVar21 + 1;
@@ -13592,7 +13592,7 @@ void DataProcessingErrorHandler(void)
             fStack0000000000000040 = fVar19;
             fStack0000000000000044 = fVar1;
             iVar13 = GetAndValidateResourceData(fVar1,&stack0x00000028);
-            if (iVar13 != 0) goto FUN_180897afe;
+            if (iVar13 != 0) goto ExecuteMemoryDeallocation;
           }
           fVar19 = (float)((int)fVar19 + 1);
           pfVar21 = pfVar21 + 1;
@@ -13606,7 +13606,7 @@ void DataProcessingErrorHandler(void)
           fStack0000000000000040 = (float)(resourceHash4 / 0x30);
           iVar13 = GetAndValidateResourceData(extraout_XMM0_Da_03,&stack0x00000028);
           validationResult3 = extraout_XMM0_Da_04;
-          if (iVar13 != 0) goto FUN_180897afe;
+          if (iVar13 != 0) goto ExecuteMemoryDeallocation;
         }
         if ((*(uint *)(unaff_R14 + 0x2d8) >> 1 & 1) != 0) {
           in_stack_00000028 = &UNK_180983a60;
@@ -13614,7 +13614,7 @@ void DataProcessingErrorHandler(void)
           fStack0000000000000040 = (float)CONCAT31(fStack0000000000000040._1_3_,1);
           in_stack_00000030 = unaff_R13D;
           iVar13 = GetAndValidateResourceData(validationResult3,&stack0x00000028);
-          if (iVar13 != 0) goto FUN_180897afe;
+          if (iVar13 != 0) goto ExecuteMemoryDeallocation;
         }
         iVar13 = GetResourceType(unaff_R14);
         if (iVar13 != 2) {
@@ -13622,7 +13622,7 @@ void DataProcessingErrorHandler(void)
           in_stack_00000038 = uStackX_20;
           in_stack_00000030 = unaff_R13D;
           iVar13 = GetAndValidateResourceData(extraout_XMM0_Da_05,&stack0x00000028);
-          if (iVar13 != 0) goto FUN_180897afe;
+          if (iVar13 != 0) goto ExecuteMemoryDeallocation;
         }
         iVar13 = GetResourceType(unaff_R14);
         validationResult3 = extraout_XMM0_Da_06;
@@ -13633,7 +13633,7 @@ void DataProcessingErrorHandler(void)
           fStack0000000000000040 = unaff_R13D;
           iVar13 = GetAndValidateResourceData(extraout_XMM0_Da_06,&stack0x00000028);
           validationResult3 = extraout_XMM0_Da_07;
-          if (iVar13 != 0) goto FUN_180897afe;
+          if (iVar13 != 0) goto ExecuteMemoryDeallocation;
         }
         if ((*(uint *)(unaff_R14 + 0x2d8) >> 3 & 1) != 0) {
           in_stack_00000028 = &UNK_180983cf8;
@@ -83655,8 +83655,8 @@ void ProcessSystemStateResetWithCallback(undefined8 systemHandle, longlong conte
 void ConfigureSystemParameters(undefined8 *parameterArray, longlong configurationContext)
 
 {
-  FUN_1808fc51c(*(undefined8 *)(configurationContext + 0x60),*(undefined4 *)(configurationContext + 0x68),
-                *(undefined8 *)(configurationContext + 0x70),FUN_1808fc074,*(undefined4 *)*parameterArray,parameterArray);
+  ConfigureResourceSystem(*(undefined8 *)(configurationContext + 0x60),*(undefined4 *)(configurationContext + 0x68),
+                *(undefined8 *)(configurationContext + 0x70),ProcessResourceCallback,*(undefined4 *)*parameterArray,parameterArray);
   return;
 }
 
@@ -83684,7 +83684,7 @@ void ProcessNetworkConnectionDataTransfer(undefined8 ConnectionHandle, longlong 
 
 {
   if (*(char *)(ConnectionContext + 0x20) == '\0') {
-    FUN_1808fc914(*(undefined8 *)(ConnectionContext + 0x50),*(undefined8 *)(ConnectionContext + 0x58),
+    HandleResourceConnection(*(undefined8 *)(ConnectionContext + 0x50),*(undefined8 *)(ConnectionContext + 0x58),
                   *(undefined8 *)(ConnectionContext + 0x28),*(undefined8 *)(ConnectionContext + 0x70));
   }
   return;
@@ -83697,7 +83697,7 @@ void ProcessNetworkConnectionDataTransfer(undefined8 ConnectionHandle, longlong 
 
 {
   if (*(char *)(ConnectionContext + 0x20) == '\0') {
-    FUN_1808fc914(*(undefined8 *)(ConnectionContext + 0x60),*(undefined8 *)(ConnectionContext + 0x68),
+    HandleResourceConnection(*(undefined8 *)(ConnectionContext + 0x60),*(undefined8 *)(ConnectionContext + 0x68),
                   *(undefined8 *)(ConnectionContext + 0x70),*(undefined8 *)(ConnectionContext + 0x78));
   }
   return;
@@ -83735,7 +83735,7 @@ void ExecuteConditionalResourceInitialization(undefined8 ResourceHandle, longlon
 
 {
   if (*(char *)(ResourceContext + 0x20) == '\0') {
-    FUN_1808fc914(*(undefined8 *)(ResourceContext + 0x60),*(undefined8 *)(ResourceContext + 0x70),
+    HandleResourceConnection(*(undefined8 *)(ResourceContext + 0x60),*(undefined8 *)(ResourceContext + 0x70),
                   *(undefined8 *)(ResourceContext + 0x28),*(undefined8 *)(ResourceContext + 0x88));
   }
   return;
