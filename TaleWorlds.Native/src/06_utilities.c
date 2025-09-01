@@ -38,7 +38,7 @@ void* ModuleDependencyHandle;
  * 设置模块A所需的数据结构和运行环境
  */
 void InitializeGlobalModuleA(void);
-void* g_globalModuleA_Instance;
+void* GlobalModuleA_Instance;
 void* g_globalModuleA_Config;
 uint32_t g_globalModuleA_Status;
 void* g_globalModuleA_Handle;
@@ -943,8 +943,14 @@ undefined DAT_180bf9520;
 undefined DAT_180bf9528;
 undefined UNK_180a22c48;
 
-// 函数: undefined FUN_180942020;
-undefined FUN_180942020;
+// 函数: void InitializeMemoryDebugger;
+/**
+ * @brief 初始化内存调试器
+ * 
+ * 该函数负责初始化内存调试系统
+ * 设置内存调试和错误检测功能
+ */
+void InitializeMemoryDebugger;
 undefined DAT_180bf9570;
 undefined DAT_180bf9578;
 undefined DAT_180bf9580;
