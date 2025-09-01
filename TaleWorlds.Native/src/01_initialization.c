@@ -26149,7 +26149,7 @@ void SystemDataInitializer(void)
   pointerToUnsigned10[4] = 0x2f7365;
   uStack_68 = 0x13;
   uStack_60._0_4_ = unsignedSystemValue7;
-  FUN_18062bd50(&puStack_78,&puStack_50);
+  InitializeSystemStack(&puStack_78,&puStack_50);
   puStack_78 = &SystemGlobalDataReference;
   if (puStack_70 != (uint32_t *)0x0) {
                     // WARNING: Subroutine does not return
@@ -26847,7 +26847,7 @@ bool SystemResourceValidator(long long SystemResourcePointer)
   int iStack_20;
   
   pointerToUnsigned1 = (void* *)(SystemResourcePointer + 0x2e0);
-  FUN_1806279c0(&puStack_30);
+  SetupSystemMemory(&puStack_30);
   punsignedSystemValue8 = *(void* **)(SystemResourcePointer + 0x2f0);
   pointerToUnsigned11 = pointerToUnsigned1;
   if (punsignedSystemValue8 != (void* *)0x0) {
@@ -27527,7 +27527,7 @@ void SystemStringFormatter(void* formatData,long long stringBuffer)
   CopySystemDataStructure(auStack_e8,
                 (long long)*(int *)(SystemTextureManagerPointer + 0x1d40) * 0xd0 +
                 *(long long *)(SystemTextureManagerPointer + 0x1d20));
-  FUN_180623de0(&puStack_198);
+  InitializeSystemBuffer(&puStack_198);
   systemResult = 0;
   *(uint32_t *)(param_2 + 0x10) = 0;
   if (*(uint8_t **)(param_2 + 8) != (uint8_t *)0x0) {
@@ -28147,7 +28147,7 @@ void SystemResourceDataProcessor(long long *SystemResourcePointer,long long para
   lStack_1d8 = 0;
   uStack_1d0 = 0;
   localSystemFlags = *SystemResourcePointer;
-  FUN_1806279c0(&puStack_168,param_2);
+  SetupSystemMemory(&puStack_168,param_2);
   systemResult = FUN_1801426a0(localSystemFlags,&puStack_168);
   puStack_168 = &SystemGlobalDataReference;
   if (lStack_160 != 0) {
@@ -33003,7 +33003,7 @@ void FUN_180059000(long long *SystemResourcePointer)
         }
         if (!bVar26) {
           unsignedSystemValue9 = FUN_180624440(&uStack_268,pppppppointerToUnsigned14 + 8);
-          FUN_1806279c0(&puStack_330,unsignedSystemValue9);
+          SetupSystemMemory(&puStack_330,unsignedSystemValue9);
           uStack_268 = &SystemMemoryAllocatorReference;
           ppppppointerToUnsigned19 = (void* ******)&SystemStringTemplate;
           if (pppppppointerToUnsigned14[5] != (void* ******)0x0) {
@@ -36597,7 +36597,7 @@ void FUN_18005dbb0(void)
   uStack_168 = 0xfffffffffffffffe;
   uStack_38 = SystemEncryptionKeyTemplate ^ (ulong long)auStack_1b8;
   lStack_178 = SystemAllocationFlagsTemplate;
-  FUN_180623de0(apuStack_108);
+  InitializeSystemBuffer(apuStack_108);
   systemStatus2 = iStack_70 + -1;
   if (*(int *)(localAllocationFlags + 0x7b4) < iStack_70 + -1) {
     systemStatus2 = *(int *)(localAllocationFlags + 0x7b4);
@@ -53215,7 +53215,7 @@ uint8_t FUN_1800755c0(long long SystemResourcePointer,void* param_2,void* param_
   long long lStack_28;
   
   unsignedSystemValue2 = 0xfffffffffffffffe;
-  FUN_1806279c0(&puStack_30);
+  SetupSystemMemory(&puStack_30);
   unsignedSystemValue1 = FUN_180063510(SystemResourcePointer + 0x218,&puStack_30,param_3,param_4,unsignedSystemValue2);
   puStack_30 = &SystemGlobalDataReference;
   if (lStack_28 != 0) {
