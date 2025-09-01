@@ -1356,7 +1356,17 @@ uint32 UNK_180a25900;
 uint32 UNK_180a25ad0;
 uint32 UNK_180a25a6c;
 
-// 函数: void engine_register_texture_resource(void)
+/**
+ * @brief 注册纹理资源到引擎资源管理器
+ * 
+ * 此函数负责将纹理资源注册到引擎的资源管理系统中，包括：
+ * - 分配纹理资源所需的内存空间
+ * - 初始化纹理数据结构
+ * - 设置纹理的引用计数
+ * - 将纹理添加到资源管理器的跟踪列表中
+ * 
+ * @return void 无返回值
+ */
 void engine_register_texture_resource(void)
 
 {
