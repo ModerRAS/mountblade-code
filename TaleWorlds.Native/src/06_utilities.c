@@ -20108,55 +20108,62 @@ void ValidateAndProcessResourceData(longlong objectContextParam, uint8_t8 *valid
 
 
 
- bc5a(void)
-bc5a(void)
+ /**
+ * @brief 资源数据验证处理器
+ * 
+ * 该函数负责处理资源数据的验证和处理工作
+ * 包括数据加载、哈希验证和资源条目处理
+ * 
+ * @note 这是一个简化的资源处理函数，用于特定场景下的资源操作
+ */
+void ResourceDataValidationProcessor(void)
 
 {
   longlong loopCounter;
   uint8_t8 validationResult;
-  uint unsignedValue3;
-  int iVar4;
-  int tableEntry;
-  longlong unaff_RBX;
-  uint8_t8 *unaff_RDI;
+  uint resourceDataLength;
+  int processingResult;
+  int resourceTableEntry;
+  longlong resourceContextPointer;
+  uint8_t8 *validationContextPointer;
   uint configurationFlags;
-  uint uStack0000000000000088;
+  uint resourceStackBuffer [2];
   
-  uStack0000000000000088 = 0;
-  iVar4 = LoadResourceData();
-  unsignedResult3 = uStack0000000000000088;
-  if (iVar4 == 0) {
-    unsignedValue6 = uStack0000000000000088 >> 1;
-    iVar4 = ProcessResourceEntry((longlong *)(unaff_RBX + 0x20),unsignedValue6);
-    if (iVar4 == 0) {
-      iVar4 = 0;
-      if (unsignedResult3 >> 1 != 0) {
+  resourceStackBuffer[0] = 0;
+  processingResult = LoadResourceData();
+  resourceDataLength = resourceStackBuffer[0];
+  if (processingResult == 0) {
+    configurationFlags = resourceStackBuffer[0] >> 1;
+    processingResult = ProcessResourceEntry((longlong *)(resourceContextPointer + 0x20),configurationFlags);
+    if (processingResult == 0) {
+      processingResult = 0;
+      if (resourceDataLength >> 1 != 0) {
         do {
-          tableEntry = ExtractResourceInfo();
-          if (tableEntry != 0) {
+          resourceTableEntry = ExtractResourceInfo();
+          if (resourceTableEntry != 0) {
             return;
           }
-          if (*(int *)(unaff_RDI[1] + 0x18) == 0) {
-            validationResult = *unaff_RDI;
-            loopCounter = *(longlong *)(unaff_RBX + 0x20) + (longlong)iVar4 * 8;
-            tableEntry = CalculateResourceHash(validationResult,localContextPointer);
-            if (tableEntry != 0) {
+          if (*(int *)(validationContextPointer[1] + 0x18) == 0) {
+            validationResult = *validationContextPointer;
+            loopCounter = *(longlong *)(resourceContextPointer + 0x20) + (longlong)processingResult * 8;
+            resourceTableEntry = CalculateResourceHash(validationResult,localContextPointer);
+            if (resourceTableEntry != 0) {
               return;
             }
-            tableEntry = CalculateResourceHash(validationResult,localContextPointer + 4);
+            resourceTableEntry = CalculateResourceHash(validationResult,localContextPointer + 4);
           }
           else {
-            tableEntry = 0x1c;
+            resourceTableEntry = 0x1c;
           }
-          if (tableEntry != 0) {
+          if (resourceTableEntry != 0) {
             return;
           }
-          tableEntry = ParseResourceMetadata();
-          if (tableEntry != 0) {
+          resourceTableEntry = ParseResourceMetadata();
+          if (resourceTableEntry != 0) {
             return;
           }
-          iVar4 = iVar4 + 1;
-        } while (iVar4 < (int)unsignedValue6);
+          processingResult = processingResult + 1;
+        } while (processingResult < (int)configurationFlags);
       }
                     // WARNING: Subroutine does not return
       CleanupResourceData();
