@@ -27308,128 +27308,140 @@ LAB_180052de5:
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180052ef0(long long *SystemResourcePointer,void* param_2,void* param_3,uint8_t param_4)
-void FUN_180052ef0(long long *SystemResourcePointer,void* param_2,void* param_3,uint8_t param_4)
-
+/**
+ * @brief 系统资源和渲染管理处理函数
+ * 
+ * 该函数负责处理系统资源和渲染管理的复杂逻辑，包括：
+ * - 检查系统节点管理器的状态标志
+ * - 处理渲染管理器的数据缓冲区
+ * - 管理内存分配和资源处理
+ * - 计算和调整缩放因子
+ * 
+ * @param SystemResourcePointer 系统资源指针
+ * @param ResourceData 资源数据指针
+ * @param RenderConfig 渲染配置指针
+ * @param OperationFlags 操作标志
+ */
+void ProcessSystemResourceAndRenderManagement(long long *SystemResourcePointer,void* ResourceData,void* RenderConfig,uint8_t OperationFlags)
 {
-  int iVar1;
-  long long localSystemHandle;
-  long long localResourceOffset;
-  void* unsignedSystemValue4;
-  long long *plocalSystemPointer;
-  int *pointerToInteger6;
-  long long localDataPointer;
-  ulong long unsignedSystemValue8;
-  uint unsignedSystemValue9;
-  ulong long unsignedSystemValue10;
-  float fVar11;
-  float fVar12;
-  long long *plStackX_8;
-  long long *plStackX_10;
-  long long **pplStackX_18;
-  long long alStack_70 [2];
-  void* *puStack_60;
-  void* *puStack_58;
-  long long alStack_50 [2];
-  void* *puStack_40;
-  void* *puStack_38;
+  int systemStatusValue;
+  long long systemHandle;
+  long long renderManagerOffset;
+  void* memoryAllocationHandle;
+  long long *systemResourcePointer;
+  int *resourceCountPointer;
+  long long dataBufferPointer;
+  ulong long loopCounter;
+  uint itemCounter;
+  ulong long maxItemCount;
+  float scaleFactor1;
+  float scaleFactor2;
+  long long *stackParameter1;
+  long long *stackParameter2;
+  long long **stackParameter3;
+  long long localBuffer1 [2];
+  void* *localBuffer2;
+  void* *localBuffer3;
+  long long localBuffer4 [2];
+  void* *localBuffer5;
+  void* *localBuffer6;
   
-  localSystemHandle = SystemStatusFlagsPointer;
-  plStackX_8 = SystemResourcePointer;
+  systemHandle = SystemStatusFlagsPointer;
+  stackParameter1 = SystemResourcePointer;
   if (*(int *)(SystemNodeManagerPointer + 0xd94) != *(int *)(SystemNodeManagerPointer + 0xd90)) {
-    FUN_18004caf0(SystemStatusFlagsPointer,param_2,param_3,param_4,0xfffffffffffffffe);
+    FUN_18004caf0(SystemStatusFlagsPointer,ResourceData,RenderConfig,OperationFlags,0xfffffffffffffffe);
   }
-  localResourceOffset = SystemRenderManagerPointer;
+  renderManagerOffset = SystemRenderManagerPointer;
   if (SystemRenderManagerPointer != 0) {
-    unsignedSystemValue8 = 0;
-    localDataPointer = *(long long *)(SystemRenderManagerPointer + 0x1868);
-    unsignedSystemValue10 = unsignedSystemValue8;
-    if (*(long long *)(SystemRenderManagerPointer + 0x1870) - localDataPointer >> 3 != 0) {
+    loopCounter = 0;
+    dataBufferPointer = *(long long *)(SystemRenderManagerPointer + 0x1868);
+    maxItemCount = loopCounter;
+    if (*(long long *)(SystemRenderManagerPointer + 0x1870) - dataBufferPointer >> 3 != 0) {
       do {
-        if (*(long long **)(unsignedSystemValue8 + localDataPointer) != (long long *)0x0) {
-          (**(code **)(**(long long **)(unsignedSystemValue8 + localDataPointer) + 0x108))();
+        if (*(long long **)(loopCounter + dataBufferPointer) != (long long *)0x0) {
+          (**(code **)(**(long long **)(loopCounter + dataBufferPointer) + 0x108))();
         }
-        unsignedSystemValue9 = (int)unsignedSystemValue10 + 1;
-        unsignedSystemValue8 = unsignedSystemValue8 + 8;
-        localDataPointer = *(long long *)(localResourceOffset + 0x1868);
-        unsignedSystemValue10 = (ulong long)unsignedSystemValue9;
-      } while ((ulong long)(long long)(int)unsignedSystemValue9 <
-               (ulong long)(*(long long *)(localResourceOffset + 0x1870) - localDataPointer >> 3));
+        itemCounter = (int)maxItemCount + 1;
+        loopCounter = loopCounter + 8;
+        dataBufferPointer = *(long long *)(renderManagerOffset + 0x1868);
+        maxItemCount = (ulong long)itemCounter;
+      } while ((ulong long)(long long)(int)itemCounter <
+               (ulong long)(*(long long *)(renderManagerOffset + 0x1870) - dataBufferPointer >> 3));
     }
     (**(code **)(_DAT_180c8a9c0 + 0x40))();
   }
-  (**(code **)(**(long long **)(localSystemHandle + 0x2b0) + 0xd0))();
+  (**(code **)(**(long long **)(systemHandle + 0x2b0) + 0xd0))();
   if (((*(int *)(SystemNodeManagerPointer + 0x4d4) != *(int *)(SystemNodeManagerPointer + 0x4d0)) ||
       (*(int *)(SystemNodeManagerPointer + 0x314) != *(int *)(SystemNodeManagerPointer + 0x310))) ||
      (*(int *)(SystemNodeManagerPointer + 0x544) != *(int *)(SystemNodeManagerPointer + 0x540))) {
-    plStackX_8 = alStack_70;
-    puStack_60 = &UNK_180058f90;
-    puStack_58 = &UNK_180058f80;
-    ProcessSystemResourceData(alStack_70);
+    stackParameter1 = localBuffer1;
+    localBuffer2 = &UNK_180058f90;
+    localBuffer3 = &UNK_180058f80;
+    ProcessSystemResourceData(localBuffer1);
   }
   if ((_DAT_180c8a9d0 != 0) &&
      ((*(int *)(SystemNodeManagerPointer + 900) != *(int *)(SystemNodeManagerPointer + 0x380) ||
       (*(int *)(SystemNodeManagerPointer + 0x3f4) != *(int *)(SystemNodeManagerPointer + 0x3f0))))) {
-    unsignedSystemValue4 = SystemMemoryAllocationFunction(SystemMemoryAllocationTemplate,0x40,8,3);
-    plStackX_8 = alStack_50;
-    puStack_40 = &UNK_180058f60;
-    puStack_38 = &UNK_180058f50;
-    plocalSystemPointer = (long long *)FUN_18005c2a0(unsignedSystemValue4,alStack_50);
-    plStackX_10 = plocalSystemPointer;
-    if (plocalSystemPointer != (long long *)0x0) {
-      (**(code **)(*plocalSystemPointer + 0x28))(plocalSystemPointer);
+    memoryAllocationHandle = SystemMemoryAllocationFunction(SystemMemoryAllocationTemplate,0x40,8,3);
+    stackParameter1 = localBuffer4;
+    localBuffer5 = &UNK_180058f60;
+    localBuffer6 = &UNK_180058f50;
+    systemResourcePointer = (long long *)FUN_18005c2a0(memoryAllocationHandle,localBuffer4);
+    stackParameter2 = systemResourcePointer;
+    if (systemResourcePointer != (long long *)0x0) {
+      (**(code **)(*systemResourcePointer + 0x28))(systemResourcePointer);
     }
-    unsignedSystemValue4 = SystemAllocationFlagsTemplate;
-    pplStackX_18 = &plStackX_8;
-    plStackX_8 = plocalSystemPointer;
-    if (plocalSystemPointer != (long long *)0x0) {
-      (**(code **)(*plocalSystemPointer + 0x28))(plocalSystemPointer);
+    memoryAllocationHandle = SystemAllocationFlagsTemplate;
+    stackParameter3 = &stackParameter1;
+    stackParameter1 = systemResourcePointer;
+    if (systemResourcePointer != (long long *)0x0) {
+      (**(code **)(*systemResourcePointer + 0x28))(systemResourcePointer);
     }
-    FUN_18005e370(unsignedSystemValue4,&plStackX_8);
-    if (plocalSystemPointer != (long long *)0x0) {
-      (**(code **)(*plocalSystemPointer + 0x38))(plocalSystemPointer);
+    FUN_18005e370(memoryAllocationHandle,&stackParameter1);
+    if (systemResourcePointer != (long long *)0x0) {
+      (**(code **)(*systemResourcePointer + 0x38))(systemResourcePointer);
     }
   }
-  localResourceOffset = SystemNodeManagerPointer;
+  renderManagerOffset = SystemNodeManagerPointer;
   if ((*(long long *)(_DAT_180c86890 + 0x7ab8) == 0) || (*(int *)(SystemNodeManagerPointer + 0x540) < 1)) {
     if (*(int *)(SystemNodeManagerPointer + 0x2140) == 0) {
-      fVar11 = *(float *)(SystemNodeManagerPointer + 0x20d0);
+      scaleFactor1 = *(float *)(SystemNodeManagerPointer + 0x20d0);
     }
     else {
-      fVar11 = 100.0;
+      scaleFactor1 = 100.0;
     }
-    fVar11 = fVar11 * 0.01;
+    scaleFactor1 = scaleFactor1 * 0.01;
   }
   else {
-    fVar11 = 1.0;
+    scaleFactor1 = 1.0;
   }
-  *(float *)(localSystemHandle + 0x234) = fVar11;
-  *(uint32_t *)(localSystemHandle + 0x238) = 0x3f800000;
-  fVar12 = 1.0;
-  if (*(int *)(localResourceOffset + 0x1ea0) == 1) {
-    iVar1 = *(int *)(localResourceOffset + 0x1d50);
-    pointerToInteger6 = (int *)FUN_180171f10(*(void* *)(SystemStatusFlagsPointer + 8),&plStackX_10);
-    fVar12 = (float)iVar1 / (float)*pointerToInteger6;
-    fVar11 = fVar12 * *(float *)(localSystemHandle + 0x234);
-    fVar12 = fVar12 * *(float *)(localSystemHandle + 0x238);
+  *(float *)(systemHandle + 0x234) = scaleFactor1;
+  *(uint32_t *)(systemHandle + 0x238) = 0x3f800000;
+  scaleFactor2 = 1.0;
+  if (*(int *)(renderManagerOffset + 0x1ea0) == 1) {
+    systemStatusValue = *(int *)(renderManagerOffset + 0x1d50);
+    resourceCountPointer = (int *)FUN_180171f10(*(void* *)(SystemStatusFlagsPointer + 8),&stackParameter2);
+    scaleFactor2 = (float)systemStatusValue / (float)*resourceCountPointer;
+    scaleFactor1 = scaleFactor2 * *(float *)(systemHandle + 0x234);
+    scaleFactor2 = scaleFactor2 * *(float *)(systemHandle + 0x238);
   }
-  if (0.2 <= fVar11) {
-    if (1.0 <= fVar11) {
-      fVar11 = 1.0;
+  if (0.2 <= scaleFactor1) {
+    if (1.0 <= scaleFactor1) {
+      scaleFactor1 = 1.0;
     }
   }
   else {
-    fVar11 = 0.2;
+    scaleFactor1 = 0.2;
   }
-  *(float *)(localSystemHandle + 0x234) = fVar11;
-  if (0.2 <= fVar12) {
-    if (1.0 <= fVar12) {
-      fVar12 = 1.0;
+  *(float *)(systemHandle + 0x234) = scaleFactor1;
+  if (0.2 <= scaleFactor2) {
+    if (1.0 <= scaleFactor2) {
+      scaleFactor2 = 1.0;
     }
-    *(float *)(localSystemHandle + 0x238) = fVar12;
+    *(float *)(systemHandle + 0x238) = scaleFactor2;
   }
   else {
-    *(uint32_t *)(localSystemHandle + 0x238) = 0x3e4ccccd;
+    *(uint32_t *)(systemHandle + 0x238) = 0x3e4ccccd;
   }
   return;
 }
@@ -27667,138 +27679,150 @@ void SystemStringFormatter(void* formatData,long long stringBuffer)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_1800533d0(void* SystemResourcePointer,void* param_2,long long param_3)
-void FUN_1800533d0(void* SystemResourcePointer,void* param_2,long long param_3)
+/**
+ * @brief 系统线程对象创建和管理函数
+ * 
+ * 该函数负责创建和管理系统线程对象，包括：
+ * - 初始化系统进程ID和内存分配
+ * - 创建系统线程对象和缓冲区
+ * - 处理线程启动和数据复制
+ * - 管理线程参数和配置
+ * 
+ * @param SystemResourcePointer 系统资源指针
+ * @param ThreadConfig 线程配置指针
+ * @param ThreadParams 线程参数指针
+ */
+void CreateAndManageSystemThreadObject(void* SystemResourcePointer,void* ThreadConfig,long long ThreadParams)
 
 {
-  long long localMemoryPointer;
-  long long localSystemHandle;
-  uint32_t unsignedSystemValue3;
-  int iVar4;
-  uint unsignedSystemValue5;
-  uint unsignedSystemValue6;
-  uint8_t *systemPreviousNode;
-  ulong long unsignedSystemValue8;
-  void* *punsignedSystemValue9;
-  long long localAllocationFlags;
-  uint unsignedSystemValue11;
-  uint8_t auStack_228 [32];
-  uint8_t uStack_208;
-  uint32_t uStack_1f8;
-  uint32_t uStack_1f4;
-  void* *puStack_1b0;
-  uint8_t *puStack_1a8;
-  uint uStack_1a0;
-  void* uStack_198;
-  void* *puStack_f0;
-  long long lStack_e8;
-  uint uStack_e0;
-  void* uStack_d8;
-  void* uStack_d0;
-  void* *puStack_c8;
-  void* uStack_c0;
-  uint32_t uStack_b8;
-  void* uStack_b0;
+  long long memoryBufferPointer;
+  long long systemHandle;
+  uint32_t processId;
+  int bufferSize;
+  uint threadId;
+  uint dataLength;
+  uint8_t *threadBuffer;
+  ulong long bufferOffset;
+  void* *dataTemplatePointer;
+  long long allocationSize;
+  uint threadFlags;
+  uint8_t encryptionBuffer [32];
+  uint8_t bufferFlags;
+  uint32_t operationFlags1;
+  uint32_t operationFlags2;
+  void* *resourcePointer1;
+  uint8_t *threadBufferPointer;
+  uint threadStatus;
+  void* threadHandle;
+  void* *configPointer;
+  long long configValue;
+  uint configFlags;
+  void* dataBuffer1;
+  void* dataBuffer2;
+  void* *systemGlobalPointer;
+  void* dataBuffer3;
+  uint32_t dataFlags;
+  void* dataBuffer4;
   uint8_t stackBuffer [32];
-  void* uStack_68;
-  void* uStack_60;
-  char acStack_58 [16];
-  ulong long uStack_48;
+  void* parameter1;
+  void* parameter2;
+  char processNameBuffer [16];
+  ulong long encryptionKey;
   
-  uStack_68 = 0xfffffffffffffffe;
-  uStack_48 = SystemEncryptionKeyTemplate ^ (ulong long)auStack_228;
-  systemPreviousNode = (uint8_t *)0x0;
-  uStack_1f8 = 0;
-  uStack_d0 = param_2;
-  uStack_60 = param_2;
-  unsignedSystemValue3 = GetCurrentProcessId();
-  puStack_f0 = &SystemGlobalDataReference;
-  uStack_d8 = 0;
-  lStack_e8 = 0;
-  uStack_e0 = 0;
-  FUN_1806277c0(&puStack_f0,6);
-  localMemoryPointer = lStack_e8;
-  unsignedSystemValue8 = (ulong long)uStack_e0;
-  *(uint32_t *)(unsignedSystemValue8 + lStack_e8) = 0x44495020;
-  *(void*2 *)(unsignedSystemValue8 + 4 + lStack_e8) = 0x203a;
-  *(uint8_t *)(unsignedSystemValue8 + 6 + lStack_e8) = 0;
-  uStack_e0 = 6;
-  FUN_180060680(acStack_58,&SystemDataBufferTemplateI,unsignedSystemValue3);
-  localSystemHandle = -1;
+  parameter1 = 0xfffffffffffffffe;
+  encryptionKey = SystemEncryptionKeyTemplate ^ (ulong long)encryptionBuffer;
+  threadBuffer = (uint8_t *)0x0;
+  operationFlags1 = 0;
+  dataBuffer2 = ThreadConfig;
+  parameter2 = ThreadConfig;
+  processId = GetCurrentProcessId();
+  configPointer = &SystemGlobalDataReference;
+  dataBuffer1 = 0;
+  configValue = 0;
+  configFlags = 0;
+  FUN_1806277c0(&configPointer,6);
+  memoryBufferPointer = configValue;
+  bufferOffset = (ulong long)configFlags;
+  *(uint32_t *)(bufferOffset + configValue) = 0x44495020;
+  *(void*2 *)(bufferOffset + 4 + configValue) = 0x203a;
+  *(uint8_t *)(bufferOffset + 6 + configValue) = 0;
+  configFlags = 6;
+  FUN_180060680(processNameBuffer,&SystemDataBufferTemplateI,processId);
+  systemHandle = -1;
   do {
-    localAllocationFlags = localSystemHandle;
-    localSystemHandle = localAllocationFlags + 1;
-  } while (acStack_58[localAllocationFlags + 1] != '\0');
-  if (0 < (int)(localAllocationFlags + 1)) {
-    FUN_1806277c0(&puStack_f0,(int)localAllocationFlags + 7);
+    allocationSize = systemHandle;
+    systemHandle = allocationSize + 1;
+  } while (processNameBuffer[allocationSize + 1] != '\0');
+  if (0 < (int)(allocationSize + 1)) {
+    FUN_1806277c0(&configPointer,(int)allocationSize + 7);
                     // WARNING: Subroutine does not return
-    memcpy((ulong long)uStack_e0 + lStack_e8,acStack_58,(long long)((int)localAllocationFlags + 2));
+    memcpy((ulong long)configFlags + configValue,processNameBuffer,(long long)((int)allocationSize + 2));
   }
-  punsignedSystemValue9 = &DAT_1809fd128;
+  dataTemplatePointer = &DAT_1809fd128;
   if (DAT_180c82841 != '\0') {
-    punsignedSystemValue9 = &UNK_1809fd730;
+    dataTemplatePointer = &UNK_1809fd730;
   }
-  FUN_180627910(stackBuffer,punsignedSystemValue9);
-  puStack_c8 = &SystemGlobalDataReference;
-  uStack_b0 = 0;
-  uStack_c0 = 0;
-  uStack_b8 = 0;
-  puStack_1b0 = &SystemGlobalDataReference;
-  unsignedSystemValue11 = 0;
-  uStack_198 = 0;
-  puStack_1a8 = (uint8_t *)0x0;
-  uStack_1a0 = 0;
-  uStack_1f8 = 2;
-  unsignedSystemValue6 = *(uint *)(param_3 + 0x10);
-  unsignedSystemValue8 = (ulong long)unsignedSystemValue6;
-  unsignedSystemValue5 = 0;
-  if (*(long long *)(param_3 + 8) == 0) {
+  FUN_180627910(stackBuffer,dataTemplatePointer);
+  systemGlobalPointer = &SystemGlobalDataReference;
+  dataBuffer4 = 0;
+  dataBuffer3 = 0;
+  dataFlags = 0;
+  resourcePointer1 = &SystemGlobalDataReference;
+  threadFlags = 0;
+  threadHandle = 0;
+  threadBufferPointer = (uint8_t *)0x0;
+  threadStatus = 0;
+  operationFlags1 = 2;
+  dataLength = *(uint *)(ThreadParams + 0x10);
+  bufferOffset = (ulong long)dataLength;
+  threadId = 0;
+  if (*(long long *)(ThreadParams + 8) == 0) {
 LAB_1800535b0:
-    unsignedSystemValue11 = unsignedSystemValue5;
-    if (unsignedSystemValue6 != 0) {
+    threadFlags = threadId;
+    if (dataLength != 0) {
                     // WARNING: Subroutine does not return
-      memcpy(systemPreviousNode,*(void* *)(param_3 + 8),unsignedSystemValue8);
+      memcpy(threadBuffer,*(void* *)(ThreadParams + 8),bufferOffset);
     }
   }
-  else if (unsignedSystemValue6 != 0) {
-    iVar4 = unsignedSystemValue6 + 1;
-    if (iVar4 < 0x10) {
-      iVar4 = 0x10;
+  else if (dataLength != 0) {
+    bufferSize = dataLength + 1;
+    if (bufferSize < 0x10) {
+      bufferSize = 0x10;
     }
-    systemPreviousNode = (uint8_t *)CreateSystemThreadObject(SystemMemoryAllocationTemplate,(long long)iVar4,0x13);
-    *systemPreviousNode = 0;
-    puStack_1a8 = systemPreviousNode;
-    unsignedSystemValue5 = StartSystemThread(systemPreviousNode);
-    uStack_198 = CONCAT44(uStack_198._4_4_,unsignedSystemValue5);
+    threadBuffer = (uint8_t *)CreateSystemThreadObject(SystemMemoryAllocationTemplate,(long long)bufferSize,0x13);
+    *threadBuffer = 0;
+    threadBufferPointer = threadBuffer;
+    threadId = StartSystemThread(threadBuffer);
+    threadHandle = CONCAT44(threadHandle._4_4_,threadId);
     goto LAB_1800535b0;
   }
-  if (systemPreviousNode != (uint8_t *)0x0) {
-    systemPreviousNode[unsignedSystemValue8] = 0;
+  if (threadBuffer != (uint8_t *)0x0) {
+    threadBuffer[bufferOffset] = 0;
   }
-  uStack_1f4 = *(uint32_t *)(param_3 + 0x1c);
-  uStack_198 = CONCAT44(uStack_1f4,(uint32_t)uStack_198);
-  uStack_1a0 = unsignedSystemValue6;
-  if (unsignedSystemValue6 != 0xfffffffa) {
-    unsignedSystemValue6 = unsignedSystemValue6 + 7;
-    if (systemPreviousNode == (uint8_t *)0x0) {
-      if ((int)unsignedSystemValue6 < 0x10) {
-        unsignedSystemValue6 = 0x10;
+  operationFlags2 = *(uint32_t *)(ThreadParams + 0x1c);
+  threadHandle = CONCAT44(operationFlags2,(uint32_t)threadHandle);
+  threadStatus = dataLength;
+  if (dataLength != 0xfffffffa) {
+    dataLength = dataLength + 7;
+    if (threadBuffer == (uint8_t *)0x0) {
+      if ((int)dataLength < 0x10) {
+        dataLength = 0x10;
       }
-      systemPreviousNode = (uint8_t *)CreateSystemThreadObject(SystemMemoryAllocationTemplate,(long long)(int)unsignedSystemValue6,0x13);
-      *systemPreviousNode = 0;
+      threadBuffer = (uint8_t *)CreateSystemThreadObject(SystemMemoryAllocationTemplate,(long long)(int)dataLength,0x13);
+      *threadBuffer = 0;
     }
     else {
-      if (unsignedSystemValue6 <= unsignedSystemValue11) goto LAB_18005364c;
-      uStack_208 = 0x13;
-      systemPreviousNode = (uint8_t *)FUN_18062b8b0(SystemMemoryAllocationTemplate,systemPreviousNode,unsignedSystemValue6,0x10);
+      if (dataLength <= threadFlags) goto LAB_18005364c;
+      bufferFlags = 0x13;
+      threadBuffer = (uint8_t *)FUN_18062b8b0(SystemMemoryAllocationTemplate,threadBuffer,dataLength,0x10);
     }
-    puStack_1a8 = systemPreviousNode;
-    unsignedSystemValue3 = StartSystemThread(systemPreviousNode);
-    uStack_198 = CONCAT44(uStack_198._4_4_,unsignedSystemValue3);
+    threadBufferPointer = threadBuffer;
+    processId = StartSystemThread(threadBuffer);
+    threadHandle = CONCAT44(threadHandle._4_4_,processId);
   }
 LAB_18005364c:
                     // WARNING: Subroutine does not return
-  memcpy(systemPreviousNode + unsignedSystemValue8,localMemoryPointer,7);
+  memcpy(threadBuffer + bufferOffset,memoryBufferPointer,7);
 }
 
 
