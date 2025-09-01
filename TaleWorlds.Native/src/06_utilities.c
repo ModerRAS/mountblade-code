@@ -325,12 +325,12 @@ void* physicsConstraintSolver;
  * 设置键盘、鼠标和手柄输入的处理机制
  */
 void InitializeInputManager(void);
-void* InputSystemInstance;
-void* InputDeviceManager;
-void* KeyboardHandler;
-void* MouseHandler;
-void* ControllerManager;
-void* InputEventQueue;
+void* inputSystemInstance;
+void* inputDeviceManager;
+void* keyboardHandler;
+void* mouseHandler;
+void* controllerManager;
+void* inputEventQueue;
 
  /**
  * @brief 初始化网络管理器
@@ -339,11 +339,11 @@ void* InputEventQueue;
  * 设置网络连接、数据传输和通信协议
  */
 void InitializeNetworkManager(void);
-void* NetworkSystemInstance;
-void* NetworkConnectionManager;
-void* PacketHandler;
-void* NetworkProtocolManager;
-void* NetworkEventDispatcher;
+void* networkSystemInstance;
+void* networkConnectionManager;
+void* packetHandler;
+void* networkProtocolManager;
+void* networkEventDispatcher;
 
  /**
  * @brief 初始化渲染系统
@@ -352,11 +352,11 @@ void* NetworkEventDispatcher;
  * 设置图形设备、着色器和渲染队列等相关组件
  */
 void* InitializeRenderingSystem(void);
-void* RenderingEngineInstance;
-void* GraphicsDeviceHandle;
-void* ShaderManager;
-void* RenderQueueManager;
-void* GraphicsMemoryPool;
+void* renderingEngineInstance;
+void* graphicsDeviceHandle;
+void* shaderManager;
+void* renderQueueManager;
+void* graphicsMemoryPool;
 
  /**
  * @brief 初始化动画系统
