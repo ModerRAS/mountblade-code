@@ -6073,52 +6073,52 @@ void ExpandDynamicBufferCapacity(longlong objectContext, longlong systemContext)
   longlong tempStackBuffer;
   longlong bufferContext;
   
-  iVar1 = ValidateObjectContext(*(undefined4 *)(param_1 + 0x10),&lStackX_18);
-  if (((iVar1 != 0) || (iVar1 = FUN_180867bc0(&lStackX_8), iVar1 != 0)) ||
-     (iVar1 = FUN_180868490(lStackX_8,param_2,*(undefined8 *)(lStackX_18 + 8)), iVar1 != 0)) {
+  validationStatus = ValidateObjectContext(*(undefined4 *)(objectContext + 0x10),&bufferContext);
+  if (((validationStatus != 0) || (validationStatus = FUN_180867bc0(&tempStackBuffer), validationStatus != 0)) ||
+     (validationStatus = FUN_180868490(tempStackBuffer,systemContext,*(undefined8 *)(bufferContext + 8)), validationStatus != 0)) {
     return;
   }
-  lVar3 = 0;
-  lVar4 = lStackX_8 + 8;
-  if (lStackX_8 == 0) {
-    lVar4 = lVar3;
+  newBufferPointer = 0;
+  bufferOffset = tempStackBuffer + 8;
+  if (tempStackBuffer == 0) {
+    bufferOffset = newBufferPointer;
   }
-  iVar1 = ValidateBufferContext(lVar4,param_1 + 0x18);
-  if (iVar1 != 0) {
+  validationStatus = ValidateBufferContext(bufferOffset,objectContext + 0x18);
+  if (validationStatus != 0) {
     return;
   }
-  uVar5 = (int)*(uint *)(lStackX_18 + 0x2c) >> 0x1f;
-  iVar2 = (*(uint *)(lStackX_18 + 0x2c) ^ uVar5) - uVar5;
-  iVar1 = *(int *)(lStackX_18 + 0x28) + 1;
-  if (iVar2 < iVar1) {
-    iVar2 = (int)((float)iVar2 * 1.5);
-    if (iVar1 <= iVar2) {
-      iVar1 = iVar2;
+  capacityCheck = (int)*(uint *)(bufferContext + 0x2c) >> 0x1f;
+  newCapacity = (*(uint *)(bufferContext + 0x2c) ^ capacityCheck) - capacityCheck;
+  validationStatus = *(int *)(bufferContext + 0x28) + 1;
+  if (newCapacity < validationStatus) {
+    newCapacity = (int)((float)newCapacity * 1.5);
+    if (validationStatus <= newCapacity) {
+      validationStatus = newCapacity;
     }
-    if (iVar1 < 8) {
-      iVar1 = 8;
+    if (validationStatus < 8) {
+      validationStatus = 8;
     }
-    if (iVar1 < *(int *)(lStackX_18 + 0x28)) goto LAB_180891fc0;
-    if (iVar1 != 0) {
-      if ((0x3ffffffe < iVar1 * 8 - 1U) ||
-         (lVar3 = FUN_180741e10(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),iVar1 * 8,&UNK_180957f70,
-                                0xf4,0,0,1), lVar3 == 0)) goto LAB_180891fc0;
-      if (*(int *)(lStackX_18 + 0x28) != 0) {
+    if (validationStatus < *(int *)(bufferContext + 0x28)) goto LAB_180891fc0;
+    if (validationStatus != 0) {
+      if ((0x3ffffffe < validationStatus * 8 - 1U) ||
+         (newBufferPointer = FUN_180741e10(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),validationStatus * 8,&UNK_180957f70,
+                                0xf4,0,0,1), newBufferPointer == 0)) goto LAB_180891fc0;
+      if (*(int *)(bufferContext + 0x28) != 0) {
                     // WARNING: Subroutine does not return
-        memcpy(lVar3,*(undefined8 *)(lStackX_18 + 0x20),(longlong)*(int *)(lStackX_18 + 0x28) << 3);
+        memcpy(newBufferPointer,*(undefined8 *)(bufferContext + 0x20),(longlong)*(int *)(bufferContext + 0x28) << 3);
       }
     }
-    if ((0 < *(int *)(lStackX_18 + 0x2c)) && (*(longlong *)(lStackX_18 + 0x20) != 0)) {
+    if ((0 < *(int *)(bufferContext + 0x2c)) && (*(longlong *)(bufferContext + 0x20) != 0)) {
                     // WARNING: Subroutine does not return
-      FUN_180742250(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),*(longlong *)(lStackX_18 + 0x20),
+      FUN_180742250(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),*(longlong *)(bufferContext + 0x20),
                     &UNK_180957f70,0x100,1);
     }
-    *(longlong *)(lStackX_18 + 0x20) = lVar3;
-    *(int *)(lStackX_18 + 0x2c) = iVar1;
+    *(longlong *)(bufferContext + 0x20) = newBufferPointer;
+    *(int *)(bufferContext + 0x2c) = validationStatus;
   }
-  *(longlong *)(*(longlong *)(lStackX_18 + 0x20) + (longlong)*(int *)(lStackX_18 + 0x28) * 8) =
-       lStackX_8;
-  *(int *)(lStackX_18 + 0x28) = *(int *)(lStackX_18 + 0x28) + 1;
+  *(longlong *)(*(longlong *)(bufferContext + 0x20) + (longlong)*(int *)(bufferContext + 0x28) * 8) =
+       tempStackBuffer;
+  *(int *)(bufferContext + 0x28) = *(int *)(bufferContext + 0x28) + 1;
 LAB_180891fc0:
                     // WARNING: Subroutine does not return
   FUN_18088d720(*(undefined8 *)(param_2 + 0x98),param_1);

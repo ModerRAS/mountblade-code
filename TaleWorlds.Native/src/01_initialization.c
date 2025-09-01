@@ -17433,23 +17433,33 @@ InitializeSystemPointerPool(undefined8 *systemPointerPool,ulonglong initializati
 
 
 
-undefined8 * FUN_180045dc0(undefined8 *param_1,uint param_2)
+/**
+ * @brief 清理系统完成端口资源
+ * 
+ * 该函数负责清理系统的完成端口资源，关闭句柄，销毁互斥体，
+ * 并根据标志释放相关内存。这是系统资源清理的重要组成部分。
+ * 
+ * @param systemResourcePointer 系统资源指针
+ * @param cleanupFlags 清理标志，用于控制是否释放内存
+ * @return 返回清理后的系统资源指针
+ */
+void* CleanupSystemCompletionPortResources(void* systemResourcePointer, uint32_t cleanupFlags)
 
 {
-  *param_1 = &UNK_1809fee70;
-  PostQueuedCompletionStatus(param_1[0x42686],0,0xffffffffffffffff,0,0xfffffffffffffffe);
-  CloseHandle(param_1[0x42686]);
-  if (param_1[0x42687] != 0) {
+  *systemResourcePointer = &SystemCompletionPortTemplate;
+  PostQueuedCompletionStatus(systemResourcePointer[0x42686],0,0xffffffffffffffff,0,0xfffffffffffffffe);
+  CloseHandle(systemResourcePointer[0x42686]);
+  if (systemResourcePointer[0x42687] != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemProcess();
   }
   _Mtx_destroy_in_situ();
   _Mtx_destroy_in_situ();
-  FUN_18006bfe0(param_1);
-  if ((param_2 & 1) != 0) {
-    free(param_1,0x213458);
+  CleanupSystemResourceData(systemResourcePointer);
+  if ((cleanupFlags & 1) != 0) {
+    free(systemResourcePointer,0x213458);
   }
-  return param_1;
+  return systemResourcePointer;
 }
 
 
@@ -17624,36 +17634,48 @@ void FUN_180046160(undefined8 *param_1)
 
 
 
-undefined8 FUN_180046190(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+/**
+ * @brief 等待系统节点就绪
+ * 
+ * 该函数负责等待系统节点就绪状态，使用互斥锁和条件变量来同步
+ * 系统节点的状态变化。这是系统初始化过程中的同步机制。
+ * 
+ * @param systemNodePointer 系统节点指针
+ * @param timeoutParameter 超时参数
+ * @param conditionVariable 条件变量
+ * @param syncFlag 同步标志
+ * @return 成功返回1，失败返回错误代码
+ */
+uint64_t WaitForSystemNodeReady(longlong systemNodePointer, uint64_t timeoutParameter, uint64_t conditionVariable, uint64_t syncFlag)
 
 {
-  char systemNodeFlag;
-  int iVar2;
-  longlong lVar3;
-  undefined8 uVar4;
-  undefined1 uVar5;
+  bool systemNodeReady;
+  int mutexLockResult;
+  longlong mutexHandle;
+  uint64_t waitTimeout;
+  bool waitFlag;
   
-  uVar4 = 0xfffffffffffffffe;
-  lVar3 = param_1 + 0x48;
-  iVar2 = _Mtx_lock();
-  if (iVar2 != 0) {
-    __Throw_C_error_std__YAXH_Z(iVar2);
+  waitTimeout = 0xfffffffffffffffe;
+  mutexHandle = systemNodePointer + 0x48;
+  mutexLockResult = _Mtx_lock();
+  if (mutexLockResult != 0) {
+    __Throw_C_error_std__YAXH_Z(mutexLockResult);
   }
-  uVar5 = 1;
-  if (*(char *)(param_1 + 0x98) != '\x01') {
-    cVar1 = *(char *)(param_1 + 0x98);
-    while (systemNodeFlag == '\0') {
-      iVar2 = _Cnd_wait(param_1,lVar3,param_3,param_4,uVar4,lVar3,uVar5);
-      if (iVar2 != 0) {
-        __Throw_C_error_std__YAXH_Z(iVar2);
+  waitFlag = true;
+  if (*(char *)(systemNodePointer + 0x98) != '\x01') {
+    char nodeStatus = *(char *)(systemNodePointer + 0x98);
+    while (systemNodeReady == false) {
+      mutexLockResult = _Cnd_wait(systemNodePointer,mutexHandle,conditionVariable,syncFlag,waitTimeout,mutexHandle,waitFlag);
+      if (mutexLockResult != 0) {
+        __Throw_C_error_std__YAXH_Z(mutexLockResult);
       }
-      cVar1 = *(char *)(param_1 + 0x98);
+      nodeStatus = *(char *)(systemNodePointer + 0x98);
     }
   }
-  *(undefined1 *)(param_1 + 0x98) = 0;
-  iVar2 = _Mtx_unlock(lVar3);
-  if (iVar2 != 0) {
-    __Throw_C_error_std__YAXH_Z(iVar2);
+  *(char *)(systemNodePointer + 0x98) = 0;
+  mutexLockResult = _Mtx_unlock(mutexHandle);
+  if (mutexLockResult != 0) {
+    __Throw_C_error_std__YAXH_Z(mutexLockResult);
   }
   return 1;
 }
