@@ -10620,7 +10620,7 @@ uint32_t SystemGetBufferSize(void)
   uint32_t in_R11D;
   return in_R11D;
 }
-longlong SystemBufferConfigure(uint64_t param_1,uint64_t param_2,longlong param_3)
+longlong SystemBufferConfigure(uint64_t bufferId, uint64_t bufferSize, longlong configData)
 {
   int64_t ModuleInitializationResult;
   longlong lVar2;
@@ -11052,7 +11052,7 @@ uint32_t SystemGetDeviceParameter(int param_1)
   DAT_180c8f020 = 0;
   return;
 }
-uint64_t SystemMemoryAllocate(uint64_t param_1)
+uint64_t SystemMemoryAllocate(uint64_t memorySize)
 {
   uint64_t MemoryAddress;
   longlong lVar2;
