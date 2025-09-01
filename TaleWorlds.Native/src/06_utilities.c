@@ -40,10 +40,10 @@ undefined g_moduleDependencyHandle;
  * 设置模块A所需的数据结构和运行环境
  */
 void InitializeGlobalModuleA(void);
-undefined GlobalModuleA_Instance;
-undefined GlobalModuleA_Config;
-undefined GlobalModuleA_Status;
-undefined GlobalModuleA_Handle;
+void* GlobalModuleA_Instance;
+void* GlobalModuleA_Config;
+uint32_t GlobalModuleA_Status;
+void* GlobalModuleA_Handle;
 
 // 函数: void InitializeGlobalModuleB(void)
 /**
@@ -53,11 +53,11 @@ undefined GlobalModuleA_Handle;
  * 设置模块B所需的数据结构和运行环境
  */
 void InitializeGlobalModuleB(void);
-undefined g_globalModuleB_Instance;
-undefined g_globalModuleB_Config;
-undefined g_globalModuleB_Status;
-undefined g_globalModuleB_Handle;
-undefined g_globalModuleB_Context;
+void* g_globalModuleB_Instance;
+void* g_globalModuleB_Config;
+uint32_t g_globalModuleB_Status;
+void* g_globalModuleB_Handle;
+void* g_globalModuleB_Context;
 
 // 函数: void InitializeGlobalModuleC(void)
 /**
@@ -67,11 +67,11 @@ undefined g_globalModuleB_Context;
  * 设置模块C所需的数据结构和运行环境
  */
 void InitializeGlobalModuleC(void);
-undefined g_globalModuleC_Instance;
-undefined g_globalModuleC_Config;
-undefined g_globalModuleC_Status;
-undefined g_globalModuleC_Handle;
-undefined g_globalModuleC_Context;
+void* g_globalModuleC_Instance;
+void* g_globalModuleC_Config;
+uint32_t g_globalModuleC_Status;
+void* g_globalModuleC_Handle;
+void* g_globalModuleC_Context;
 
 // 函数: void InitializeGlobalModuleD(void)
 /**
@@ -81,10 +81,10 @@ undefined g_globalModuleC_Context;
  * 设置模块D所需的数据结构和运行环境
  */
 void InitializeGlobalModuleD(void);
-undefined g_globalModuleD_Instance;
-undefined g_globalModuleD_Config;
-undefined g_globalModuleD_Status;
-undefined g_globalModuleD_Handle;
+void* g_globalModuleD_Instance;
+void* g_globalModuleD_Config;
+uint32_t g_globalModuleD_Status;
+void* g_globalModuleD_Handle;
 
 // 函数: void InitializeGlobalModuleE(void)
 /**
@@ -3645,8 +3645,14 @@ undefined8 FUN_180890923(void)
 
 
 
-// 函数: void FUN_1808909b4(void)
-void FUN_1808909b4(void)
+// 函数: void CleanupSystemResources(void)
+/**
+ * @brief 清理系统资源
+ * 
+ * 该函数负责清理系统运行过程中产生的临时资源
+ * 释放内存，重置系统状态，为下次运行做准备
+ */
+void CleanupSystemResources(void)
 
 {
   return;

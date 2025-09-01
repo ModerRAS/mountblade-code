@@ -14,35 +14,35 @@
  * 
  * 注意：这是一个反编译的函数实现
  */
-uint CompareNetworkConnectionTimestamps(longlong *connection1,longlong *connection2);
+uint CompareNetworkConnectionTimestamps(int64_t *connection1,int64_t *connection2);
 
-undefined g_NetworkConnectionTable;
-undefined g_NetworkConnectionStatus;
-undefined g_NetworkConnectionTimeout;
-undefined g_NetworkPacketBuffer;
-undefined g_NetworkPacketHeader;
-undefined g_NetworkConnectionLimit;
-undefined g_NetworkConnectionFlags;
-undefined g_NetworkConnectionType;
-undefined g_NetworkConnectionProtocol;
-undefined g_NetworkServerAddress;
-undefined g_NetworkServerPort;
-undefined g_NetworkClientAddress;
-undefined g_NetworkClientPort;
-undefined g_NetworkSocketHandle;
-undefined g_NetworkSocketType;
-undefined g_NetworkSocketProtocol;
-undefined g_NetworkConnectionPool;
-undefined g_NetworkSendBuffer;
-undefined g_NetworkReceiveBuffer;
-undefined g_NetworkSendBufferSize;
-undefined g_NetworkReceiveBufferSize;
-undefined g_NetworkPacketSize;
-undefined g_NetworkMaxPacketSize;
-undefined g_NetworkConnectionTimeoutValue;
-undefined g_NetworkEncryptionKey;
-undefined g_NetworkCompressionLevel;
-undefined g_NetworkConnectionStateFlags;
+uint32_t NetworkConnectionTable;
+uint32_t NetworkConnectionStatus;
+uint32_t NetworkConnectionTimeout;
+uint32_t NetworkPacketBuffer;
+uint32_t NetworkPacketHeader;
+uint32_t NetworkConnectionLimit;
+uint32_t NetworkConnectionFlags;
+uint32_t NetworkConnectionType;
+uint32_t NetworkConnectionProtocol;
+uint32_t NetworkServerAddress;
+uint32_t NetworkServerPort;
+uint32_t NetworkClientAddress;
+uint32_t NetworkClientPort;
+uint32_t NetworkSocketHandle;
+uint32_t NetworkSocketType;
+uint32_t NetworkSocketProtocol;
+uint32_t NetworkConnectionPool;
+uint32_t NetworkSendBuffer;
+uint32_t NetworkReceiveBuffer;
+uint32_t NetworkSendBufferSize;
+uint32_t NetworkReceiveBufferSize;
+uint32_t NetworkPacketSize;
+uint32_t NetworkMaxPacketSize;
+uint32_t NetworkConnectionTimeoutValue;
+uint32_t NetworkEncryptionKey;
+uint32_t NetworkCompressionLevel;
+uint32_t NetworkConnectionStateFlags;
 
 // 函数: void InitializeNetworkConnectionPool(void)
 /**
@@ -52,7 +52,7 @@ undefined g_NetworkConnectionStateFlags;
  * 和数据结构，为后续的网络连接管理做准备
  */
 void InitializeNetworkConnectionPool(void);
-undefined g_networkConnectionPoolData;
+uint32_t NetworkConnectionPoolData;
 
 // 函数: void CreateNetworkSocket(void)
 /**
@@ -71,7 +71,7 @@ void CreateNetworkSocket(void);
  * 设置套接字的本地绑定信息，准备接收网络连接
  */
 void BindNetworkSocket(void);
-undefined g_networkSocketBindingData;
+uint32_t NetworkSocketBindingData;
 
 // 函数: void ListenNetworkConnections(void)
 /**
@@ -157,34 +157,34 @@ void ProcessNetworkPacket(void);
  * 记录错误信息，尝试恢复连接或通知上层应用
  */
 void HandleNetworkError(void);
-undefined g_NetworkErrorHandler;
-undefined g_NetworkErrorCounter;
-undefined g_NetworkConnectionAttempts;
-undefined g_NetworkConnectionFailures;
-undefined g_NetworkBytesSent;
-undefined g_NetworkBytesReceived;
-undefined g_NetworkPacketsSent;
-undefined g_NetworkPacketsReceived;
-undefined g_NetworkConnectionTime;
-undefined g_NetworkLastActivity;
-undefined g_NetworkBandwidthUsage;
-undefined g_NetworkLatency;
-undefined g_NetworkPacketLoss;
-undefined g_NetworkRetransmissionCount;
-undefined g_NetworkActiveConnections;
-undefined g_NetworkMaxConnections;
-undefined g_NetworkConnectionQueue;
-undefined g_NetworkPendingRequests;
-undefined g_NetworkSecurityFlags;
-undefined g_NetworkAuthenticationLevel;
-undefined g_NetworkEncryptionType;
-undefined g_NetworkCompressionType;
-undefined g_NetworkStatisticsData;
-undefined g_NetworkSessionKey;
-undefined g_NetworkSessionTimeout;
-undefined4 g_NetworkPortRangeStart;
-undefined4 g_NetworkPortRangeEnd;
-undefined4 g_NetworkConnectionFlagsExtended;
+uint32_t NetworkErrorHandler;
+uint32_t NetworkErrorCounter;
+uint32_t NetworkConnectionAttempts;
+uint32_t NetworkConnectionFailures;
+uint32_t NetworkBytesSent;
+uint32_t NetworkBytesReceived;
+uint32_t NetworkPacketsSent;
+uint32_t NetworkPacketsReceived;
+uint32_t NetworkConnectionTime;
+uint32_t NetworkLastActivity;
+uint32_t NetworkBandwidthUsage;
+uint32_t NetworkLatency;
+uint32_t NetworkPacketLoss;
+uint32_t NetworkRetransmissionCount;
+uint32_t NetworkActiveConnections;
+uint32_t NetworkMaxConnections;
+uint32_t NetworkConnectionQueue;
+uint32_t NetworkPendingRequests;
+uint32_t NetworkSecurityFlags;
+uint32_t NetworkAuthenticationLevel;
+uint32_t NetworkEncryptionType;
+uint32_t NetworkCompressionType;
+uint32_t NetworkStatisticsData;
+uint32_t NetworkSessionKey;
+uint32_t NetworkSessionTimeout;
+uint32_t NetworkPortRangeStart;
+uint32_t NetworkPortRangeEnd;
+uint32_t NetworkConnectionFlagsExtended;
 undefined g_NetworkKeepAliveInterval;
 undefined g_NetworkRetryInterval;
 undefined g_NetworkTimeoutInterval;
@@ -883,43 +883,43 @@ uint32_t InitializeNetworkConnectionContext(uint32_t connectionFlags, int64_t co
   uint64_t connectionId;
   int64_t connectionOffset;
   
-  if (param_3 == (undefined8 *)0x0) {
+  if (contextPointer == (uint64_t *)0x0) {
     return 0x1f;
   }
-  if (param_2 == 0) {
-    if (param_3 != (undefined8 *)0x0) {
-      *param_3 = 0;
-      param_3[1] = 0;
-      param_3[2] = 0;
+  if (connectionHandle == 0) {
+    if (contextPointer != (uint64_t *)0x0) {
+      *contextPointer = 0;
+      contextPointer[1] = 0;
+      contextPointer[2] = 0;
     }
     return 0x1f;
   }
-  lStack_28 = 0;
-  uStack_38 = 0;
-  uStack_30 = 0;
-  iVar3 = func_0x00018088c590(0,&uStack_30);
-  if (((iVar3 == 0) && (iVar3 = FUN_18088c740(&uStack_38,uStack_30), iVar3 == 0)) &&
-     (iVar3 = func_0x00018088c530(param_1,alStackX_18), iVar3 == 0)) {
-    lStack_28 = *(longlong *)(alStackX_18[0] + 8);
+  connectionOffset = 0;
+  networkContext = 0;
+  connectionId = 0;
+  status = func_0x00018088c590(0,&connectionId);
+  if (((status == 0) && (status = FUN_18088c740(&networkContext,connectionId), status == 0)) &&
+     (status = func_0x00018088c530(connectionFlags,connectionParams), status == 0)) {
+    connectionOffset = *(int64_t *)(connectionParams[0] + 8);
   }
-  else if (iVar3 != 0) goto LAB_1808408dd;
-  puVar1 = (undefined8 *)(lStack_28 + 0xb0);
-  puVar5 = &DAT_18098bc73;
-  for (puVar2 = (undefined8 *)*puVar1; puVar2 != puVar1; puVar2 = (undefined8 *)*puVar2) {
-    if (*(int *)(puVar2 + 3) < 1) {
-      puVar4 = &DAT_18098bc73;
+  else if (status != 0) goto LAB_1808408dd;
+  connectionTable = (uint64_t *)(connectionOffset + 0xb0);
+  connectionResult = &DAT_18098bc73;
+  for (connectionEntry = (uint64_t *)*connectionTable; connectionEntry != connectionTable; connectionEntry = (uint64_t *)*connectionEntry) {
+    if (*(int32_t *)(connectionEntry + 3) < 1) {
+      connectionData = &DAT_18098bc73;
     }
     else {
-      puVar4 = (undefined *)puVar2[2];
+      connectionData = (uint8_t *)connectionEntry[2];
     }
-    iVar3 = func_0x00018076b420(puVar4,param_2);
-    if (iVar3 == 0) {
-      if (0 < *(int *)(puVar2 + 3)) {
-        puVar5 = (undefined *)puVar2[2];
+    status = func_0x00018076b420(connectionData,connectionHandle);
+    if (status == 0) {
+      if (0 < *(int32_t *)(connectionEntry + 3)) {
+        connectionResult = (uint8_t *)connectionEntry[2];
       }
-      *param_3 = puVar5;
-      *(undefined4 *)(param_3 + 1) = 2;
-      *(undefined4 *)(param_3 + 2) = *(undefined4 *)(puVar2 + 4);
+      *contextPointer = connectionResult;
+      *(uint32_t *)(contextPointer + 1) = 2;
+      *(uint32_t *)(contextPointer + 2) = *(uint32_t *)(connectionEntry + 4);
       goto LAB_1808408dd;
     }
     if (puVar2 == puVar1) goto LAB_1808408dd;
