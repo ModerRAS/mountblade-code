@@ -12461,7 +12461,7 @@ void ProcessNetworkConfigurationManager(NetworkHandle *connectionContext)
     CleanupNetworkConnectionBuffers(plVar11 + 0x10);
     CleanupNetworkConnectionResources(plVar11 + 0xe);
     CleanupNetworkConnectionResources(plVar11 + 0xc);
-    FUN_1808b0fb0(plVar11 + 8,0);
+    ClearNetworkMemoryRegion(plVar11 + 8,0);
     *(longlong *)plVar11[1] = *plVar11;
     *(longlong *)(*plVar11 + 8) = plVar11[1];
     plVar11[1] = (longlong)plVar11;
@@ -12668,7 +12668,7 @@ void ProcessNetworkConfigurationValidator(NetworkHandle *connectionContext)
     CleanupNetworkConnectionBuffers(plVar11 + 0x10);
     CleanupNetworkConnectionResources(plVar11 + 0xe);
     CleanupNetworkConnectionResources(plVar11 + 0xc);
-    FUN_1808b0fb0(plVar11 + 8,0);
+    ClearNetworkMemoryRegion(plVar11 + 8,0);
     *(longlong *)plVar11[1] = *plVar11;
     *(longlong *)(*plVar11 + 8) = plVar11[1];
     plVar11[1] = (longlong)plVar11;
@@ -12876,7 +12876,7 @@ void ProcessNetworkConfigurationChecker(NetworkHandle *connectionContext)
     CleanupNetworkConnectionBuffers(plVar11 + 0x10);
     CleanupNetworkConnectionResources(plVar11 + 0xe);
     CleanupNetworkConnectionResources(plVar11 + 0xc);
-    FUN_1808b0fb0(plVar11 + 8,0);
+    ClearNetworkMemoryRegion(plVar11 + 8,0);
     *(longlong *)plVar11[1] = *plVar11;
     *(longlong *)(*plVar11 + 8) = plVar11[1];
     plVar11[1] = (longlong)plVar11;
