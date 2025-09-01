@@ -2324,11 +2324,11 @@ undefined DAT_180bfbb60;
 undefined DAT_180bfbb70;
 undefined DAT_180bfbb80;
 
- undefined FUN_180942a40;
-undefined FUN_180942a40;
+ undefined InitializeResourceManager;
+undefined InitializeResourceManager;
 
- undefined FUN_180942aa0;
-undefined FUN_180942aa0;
+ undefined ConfigureResourceSettings;
+undefined ConfigureResourceSettings;
 undefined DAT_180a2de40;
 undefined1 DAT_180d49e30;
 undefined UNK_180a2dfd0;
@@ -2337,8 +2337,8 @@ undefined UNK_180a2e040;
 undefined UNK_180a2e070;
 undefined UNK_180a2e088;
 
- undefined FUN_180943020;
-undefined FUN_180943020;
+ undefined ProcessResourceOperations;
+undefined ProcessResourceOperations;
 undefined UNK_180a30ce8;
 undefined UNK_180a30d28;
 undefined DAT_180c96128;
@@ -2352,8 +2352,8 @@ undefined DAT_180d49ec4;
 undefined DAT_180c9642c;
 undefined DAT_180c96430;
 
- undefined FUN_180943040;
-undefined FUN_180943040;
+ undefined ValidateResourceIntegrity;
+undefined ValidateResourceIntegrity;
 undefined DAT_180c963e8;
 undefined DAT_180d49f60;
 undefined DAT_180d49f64;
@@ -2627,12 +2627,12 @@ undefined UNK_180a33ca8;
 undefined UNK_18053eee0;
 undefined UNK_18053efd0;
 
- undefined FUN_180943090;
-undefined FUN_180943090;
+ undefined ExecuteResourceCleanup;
+undefined ExecuteResourceCleanup;
 undefined DAT_180d49ff8;
 
- undefined FUN_1809430b0;
-undefined FUN_1809430b0;
+ undefined OptimizeResourceUsage;
+undefined OptimizeResourceUsage;
 undefined UNK_180a38958;
 undefined UNK_180a38978;
 undefined UNK_180a38988;
@@ -3032,8 +3032,8 @@ undefined DAT_180c92510;
 char DAT_180c8aa68;
 undefined UNK_180a3e5e8;
 
- undefined FUN_1809430e0;
-undefined FUN_1809430e0;
+ undefined MonitorResourcePerformance;
+undefined MonitorResourcePerformance;
 undefined1 DAT_180bf66d8;
 undefined DAT_180c96858;
 undefined DAT_180bfbf64;
@@ -83737,8 +83737,8 @@ void FUN_180942fc0(void)
 
 
 
- void FUN_180943020(void)
-void FUN_180943020(void)
+ void ProcessResourceOperations(void)
+void ProcessResourceOperations(void)
 
 {
                     // WARNING: Could not recover jumptable at 0x000180943038. Too many branches
@@ -83750,8 +83750,8 @@ void FUN_180943020(void)
 
 
 
- void FUN_180943040(void)
-void FUN_180943040(void)
+ void ValidateResourceIntegrity(void)
+void ValidateResourceIntegrity(void)
 
 {
                     // WARNING: Could not recover jumptable at 0x000180943058. Too many branches
@@ -83784,14 +83784,14 @@ void FUN_180943070(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void FUN_180943090(void)
+ void ExecuteResourceCleanup(void)
 /**
  * @brief 重置全局数据指针
  * 
  * 该函数负责重置全局数据指针到初始状态
  * 清理系统数据结构并恢复默认值
  */
-void FUN_180943090(void)
+void ExecuteResourceCleanup(void)
 
 {
   _DAT_180d49f80 = &UNK_18098bcb0;
@@ -83803,14 +83803,14 @@ void FUN_180943090(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void FUN_1809430b0(void)
+ void OptimizeResourceUsage(void)
 /**
  * @brief 重置系统数据表指针
  * 
  * 该函数负责重置系统数据表指针到初始状态
  * 清理数据表并恢复默认配置
  */
-void FUN_1809430b0(void)
+void OptimizeResourceUsage(void)
 
 {
   _DAT_180d49fe0 = &UNK_18098bcb0;

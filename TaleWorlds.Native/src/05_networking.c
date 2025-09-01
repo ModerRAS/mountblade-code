@@ -3021,7 +3021,7 @@ int ProcessNetworkPacketPhaseThree(longlong connectionContext, longlong packetDa
   
   firstNetworkFlag = *(NetworkStatus *)(connectionContext + 0x18);
   secondNetworkFlag = *(NetworkStatus *)(connectionContext + 0x10);
-  firstProcessingStatus = FUN_18074b880(packetData, dataSize, &UNK_1809844b0);
+  firstProcessingStatus = FUN_18074b880(packetData, dataSize, &NetworkConnectionPhaseOneTemplate);
   secondProcessingStatus = FUN_18074b880(firstProcessingStatus + packetData, dataSize - firstProcessingStatus, &g_NetworkBufferDataTemplate);
   cumulativeProcessedSize = firstProcessingStatus + secondProcessingStatus;
   secondProcessingStatus = func_0x00018074b800(cumulativeProcessedSize + packetData, dataSize - cumulativeProcessedSize, secondNetworkFlag);
@@ -3055,7 +3055,7 @@ int ProcessNetworkPacketPhaseFour(longlong connectionContext, longlong packetDat
   int secondProcessingStatus;
   
   networkFlag = *(NetworkStatus *)(connectionContext + 0x10);
-  firstProcessingStatus = FUN_18074b880(packetData, dataSize, &UNK_180984248);
+  firstProcessingStatus = FUN_18074b880(packetData, dataSize, &NetworkConnectionPhaseTwoTemplate);
   secondProcessingStatus = NetworkBufferCopyData(packetData + firstProcessingStatus, dataSize - firstProcessingStatus, &NetworkBufferDataTemplate);
   firstProcessingStatus = firstProcessingStatus + secondProcessingStatus;
   secondProcessingStatus = func_0x00018074b800(firstProcessingStatus + packetData, dataSize - firstProcessingStatus, networkFlag);
@@ -3088,7 +3088,7 @@ int ValidateNetworkConnectionPacket(longlong connectionContext, longlong packetD
   
   firstNetworkFlag = *(NetworkStatus *)(connectionContext + 0x18);
   secondNetworkFlag = *(NetworkStatus *)(connectionContext + 0x10);
-  firstValidationStatus = FUN_18074b880(packetData, dataSize, &UNK_180983320);
+  firstValidationStatus = FUN_18074b880(packetData, dataSize, &NetworkConnectionValidationTemplate);
   secondValidationStatus = FUN_18074b880(firstValidationStatus + packetData, dataSize - firstValidationStatus, &g_NetworkBufferDataTemplate);
   cumulativeValidationResult = firstValidationStatus + secondValidationStatus;
   secondValidationStatus = func_0x00018074b800(cumulativeValidationResult + packetData, dataSize - cumulativeValidationResult, secondNetworkFlag);
