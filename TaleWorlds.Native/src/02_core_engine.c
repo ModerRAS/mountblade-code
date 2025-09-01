@@ -323,26 +323,26 @@ void* engine_initialize_render_pipeline;
 // engine_setup_input_handlers;
 void* engine_setup_input_handlers;
 void* engine_input_context_ptr;
-uint32_t engine_data_1809fe80c;
-uint32_t engine_data_10;
+uint32_t engine_memory_pool_address;
+uint32_t engine_frame_counter;
 void* engine_controller_state_ptr;
 void* engine_touch_input_ptr;
 void* engine_gesture_data_ptr;
 void* engine_input_buffer_ptr;
-uint32_t engine_data_1809fe8b0;
-uint32_t engine_data_18098ba10;
-uint32_t engine_data_28;
-uint32_t engine_data_18098ba40;
-uint32_t engine_data_18098ba50;
-uint32_t engine_data_18098ba60;
-uint32_t engine_data_18098ba70;
+uint32_t engine_render_state_address;
+uint32_t engine_network_buffer_address;
+uint32_t engine_render_mode;
+uint32_t engine_audio_buffer_address;
+uint32_t engine_texture_buffer_address;
+uint32_t engine_shader_buffer_address;
+uint32_t engine_lighting_buffer_address;
 void* engine_base_data_offset_80;
-uint32_t engine_data_18098ba98;
-uint32_t engine_data_18098baa0;
-uint32_t engine_data_28;
-uint32_t engine_data_1809fe7f8;
-uint32_t engine_data_1809fe8f8;
-uint32_t engine_data_1809fe900;
+uint32_t engine_camera_buffer_address;
+uint32_t engine_physics_buffer_address;
+uint32_t engine_render_mode;
+uint32_t engine_input_buffer_address;
+uint32_t engine_performance_buffer_address;
+uint32_t engine_config_buffer_address;
 void* engine_base_data_offset_10;
 void* engine_base_data_offset_28;
 void* engine_base_data_offset_40;
@@ -354,7 +354,7 @@ void* engine_base_data_offset_98;
 void* engine_base_data_offset_a8;
 void* engine_base_data_offset_b8;
 void* engine_base_data_offset_c8;
-void* engine_data_d8;
+void* engine_physics_flags;
 void* engine_control_data;
 char engine_network_flag;
 char engine_render_flag;
@@ -366,7 +366,7 @@ void* engine_base_data_offset_68;
 void* engine_base_data_offset_a0;
 void* engine_unknown_24;
 void* engine_base_data_offset_28;
-void* engine_data_50;
+void* engine_ui_flags;
 void* engine_base_data_offset_58;
 void* engine_base_data_offset_70;
 void* engine_base_data_offset_88;
@@ -398,7 +398,7 @@ uint64_t engine_data_reserved_1e0;
 uint64_t engine_data_reserved_1e8;
 uint64_t engine_data_reserved_1f0;
 int64_t engine_data_reserved_1f8;
-uint8_t engine_data_bc;
+uint8_t engine_network_flags;
 void* engine_base_data_offset_a8;
 void* engine_base_data_offset_b8;
 void* engine_base_data_offset_c8;
@@ -424,9 +424,9 @@ void* engine_base_data_offset_f8;
 engine_base_data_offset_10;
 engine_base_data_offset_30;
 char engine_system_initialized_flag;
-engine_data_08;
+engine_system_flags;
 engine_base_data_offset_48;
-engine_data_60;
+engine_audio_flags;
 engine_base_data_offset_88;
 engine_base_data_offset_b0;
 engine_special_flag_bc;
@@ -482,7 +482,7 @@ engine_initialize_debug_tools;
 
 // engine_configure_resource_manager;
 engine_configure_resource_manager;
-engine_data_60;
+engine_audio_flags;
 engine_base_data_offset_f8;
 engine_base_data_offset_60;
 engine_base_data_offset_28;
@@ -532,13 +532,13 @@ engine_process_frame_update;
 engine_base_data_offset_50;
 engine_data_f8;
 engine_data_00;
-engine_data_08;
+engine_system_flags;
 
 // engine_handle_render_frame;
 engine_handle_render_frame;
 engine_base_data_offset_30;
 engine_special_flag_14;
-engine_data_10;
+engine_frame_counter;
 uint32 engine_system_tick_counter;
 engine_base_data_offset_48;
 engine_base_data_offset_60;
@@ -557,10 +557,10 @@ engine_process_input_events;
 engine_base_data_offset_c8;
 engine_base_data_offset_d8;
 char engine_data_46;
-engine_data_10;
+engine_frame_counter;
 engine_data_20;
 engine_data_18;
-engine_data_28;
+engine_render_mode;
 engine_data_30;
 
 // void engine_update_game_state(void);
@@ -700,7 +700,7 @@ engine_data_f8;
 engine_data_00;
 engine_data_40;
 engine_data_48;
-engine_data_50;
+engine_ui_flags;
 engine_data_58;
 engine_data_98;
 engine_data_a0;
@@ -749,8 +749,8 @@ engine_data_f0;
 engine_data_f8;
 engine_data_00;
 char engine_data_52;
-engine_data_08;
-engine_data_10;
+engine_system_flags;
+engine_frame_counter;
 
 // engine_create_particle_emitter;
 engine_create_particle_emitter;
@@ -808,7 +808,7 @@ engine_base_data_offset_20;
 engine_base_data_offset_70;
 engine_base_data_offset_40;
 engine_base_data_offset_88;
-engine_data_60;
+engine_audio_flags;
 engine_base_data_offset_f8;
 engine_base_data_offset_18;
 
@@ -877,7 +877,7 @@ engine_data_30;
 
 // engine_initialize_lighting_system;
 engine_initialize_lighting_system;
-engine_data_28;
+engine_render_mode;
 engine_base_data_offset_50;
 
 // engine_create_directional_light;
@@ -1092,7 +1092,7 @@ engine_base_data_offset_10;
 engine_base_data_offset_e0;
 engine_base_data_offset_f0;
 engine_base_data_offset_f0;
-engine_data_60;
+engine_audio_flags;
 engine_base_data_offset_98;
 
 // uint32 engine_initialize_input_system;
@@ -1216,8 +1216,8 @@ engine_base_data_offset_e0;
 engine_base_data_offset_8;
 engine_base_data_offset_20;
 engine_base_data_offset_40;
-engine_data_28;
-engine_data_10;
+engine_render_mode;
+engine_frame_counter;
 engine_data_70;
 engine_base_data_offset_f0;
 uint32 engine_data_18022a4a0;
@@ -1271,7 +1271,7 @@ engine_base_data_offset_f0;
 uint8 engine_data_a8;
 uint32 engine_data_1802a1d4c;
 engine_data_18;
-engine_data_28;
+engine_render_mode;
 engine_unknown_03;
 engine_base_data_offset_18;
 uint32 engine_data_180a27cb0;
@@ -1449,7 +1449,7 @@ engine_base_data_offset_f8;
 uint32 engine_data_180a25bfc;
 uint32 engine_data_180a25ce8;
 uint32 engine_data_180a25cf8;
-engine_data_28;
+engine_render_mode;
 uint32 engine_data_180a0209c;
 uint32 engine_data_180a022f0;
 uint32 engine_data_180a02320;
@@ -1710,7 +1710,7 @@ void engine_register_animation_resource(void)
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
-    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_28,MEMORY_COMPARE_SIZE_0x10);
+    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_render_mode,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       next_data_pointer = (void*)temp_data_pointer[2];
       temp_data_pointer = current_data_pointer;
@@ -1722,7 +1722,7 @@ void engine_register_animation_resource(void)
     temp_data_pointer = next_data_pointer;
     resource_status_flag = *(char *)((longlong)next_data_pointer + MEMORY_OFFSET_0x19);
   }
-  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_28,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
+  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_render_mode,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     memory_allocation_result = engine_allocate_memory_block(main_context_pointer);
     engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + MEMORY_OFFSET_0x20,memory_allocation_result);
     current_data_pointer = local_resource_node;
@@ -2294,7 +2294,7 @@ void engine_configure_texture_system(void)
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
-    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_28,MEMORY_COMPARE_SIZE_0x10);
+    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_render_mode,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       next_data_pointer = (void*)temp_data_pointer[2];
       temp_data_pointer = current_data_pointer;
@@ -2306,7 +2306,7 @@ void engine_configure_texture_system(void)
     temp_data_pointer = next_data_pointer;
     resource_status_flag = *(char *)((longlong)next_data_pointer + MEMORY_OFFSET_0x19);
   }
-  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_28,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
+  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_render_mode,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     memory_allocation_result = engine_allocate_memory_block(main_context_pointer);
     engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + MEMORY_OFFSET_0x20,memory_allocation_result);
     current_data_pointer = local_resource_node;
@@ -2676,7 +2676,7 @@ void engine_setup_asset_streaming(void)
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
-    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_28,MEMORY_COMPARE_SIZE_0x10);
+    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_render_mode,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       next_data_pointer = (void*)temp_data_pointer[2];
       temp_data_pointer = current_data_pointer;
@@ -2688,7 +2688,7 @@ void engine_setup_asset_streaming(void)
     temp_data_pointer = next_data_pointer;
     resource_status_flag = *(char *)((longlong)next_data_pointer + MEMORY_OFFSET_0x19);
   }
-  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_28,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
+  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_render_mode,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     memory_allocation_result = engine_allocate_memory_block(main_context_pointer);
     engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + MEMORY_OFFSET_0x20,memory_allocation_result);
     current_data_pointer = local_resource_node;
@@ -2903,7 +2903,7 @@ void engine_register_font_resource(void)
   engine_stack_buffer_88[0] = 0;
   engine_stack_uint_90 = 9;
   strcpy_s(engine_stack_buffer_88,0x80,&engine_base_data_offset_f8,engine_register_r9,0xfffffffffffffffe);
-  _engine_data_60 = engine_calculate_resource_checksum(&engine_stack_param_a0);
+  _engine_audio_flags = engine_calculate_resource_checksum(&engine_stack_param_a0);
   return;
 }
 
@@ -3278,7 +3278,7 @@ void engine_configure_font_system(void)
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
-    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_28,MEMORY_COMPARE_SIZE_0x10);
+    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_render_mode,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       next_data_pointer = (void*)temp_data_pointer[2];
       temp_data_pointer = current_data_pointer;
@@ -3290,7 +3290,7 @@ void engine_configure_font_system(void)
     temp_data_pointer = next_data_pointer;
     resource_status_flag = *(char *)((longlong)next_data_pointer + MEMORY_OFFSET_0x19);
   }
-  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_28,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
+  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_render_mode,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     memory_allocation_result = engine_allocate_memory_block(main_context_pointer);
     engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + MEMORY_OFFSET_0x20,memory_allocation_result);
     current_data_pointer = local_resource_node;
@@ -3628,7 +3628,7 @@ void engine_create_config_cache(void)
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
-    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_28,MEMORY_COMPARE_SIZE_0x10);
+    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_render_mode,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       next_data_pointer = (void*)temp_data_pointer[2];
       temp_data_pointer = current_data_pointer;
@@ -3640,7 +3640,7 @@ void engine_create_config_cache(void)
     temp_data_pointer = next_data_pointer;
     resource_status_flag = *(char *)((longlong)next_data_pointer + MEMORY_OFFSET_0x19);
   }
-  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_28,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
+  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_render_mode,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     memory_allocation_result = engine_allocate_memory_block(main_context_pointer);
     engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + MEMORY_OFFSET_0x20,memory_allocation_result);
     current_data_pointer = local_resource_node;
@@ -4235,7 +4235,7 @@ void engine_initialize_text_manager(void)
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
-    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_28,MEMORY_COMPARE_SIZE_0x10);
+    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_render_mode,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       next_data_pointer = (void*)temp_data_pointer[2];
       temp_data_pointer = current_data_pointer;
@@ -4247,7 +4247,7 @@ void engine_initialize_text_manager(void)
     temp_data_pointer = next_data_pointer;
     resource_status_flag = *(char *)((longlong)next_data_pointer + MEMORY_OFFSET_0x19);
   }
-  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_28,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
+  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_render_mode,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     memory_allocation_result = engine_allocate_memory_block(main_context_pointer);
     engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + MEMORY_OFFSET_0x20,memory_allocation_result);
     current_data_pointer = local_resource_node;
@@ -4685,7 +4685,7 @@ void engine_register_render_target_resource(void)
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
-    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_28,MEMORY_COMPARE_SIZE_0x10);
+    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_render_mode,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       next_data_pointer = (void*)temp_data_pointer[2];
       temp_data_pointer = current_data_pointer;
@@ -4697,7 +4697,7 @@ void engine_register_render_target_resource(void)
     temp_data_pointer = next_data_pointer;
     resource_status_flag = *(char *)((longlong)next_data_pointer + MEMORY_OFFSET_0x19);
   }
-  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_28,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
+  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_render_mode,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     memory_allocation_result = engine_allocate_memory_block(main_context_pointer);
     engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + MEMORY_OFFSET_0x20,memory_allocation_result);
     current_data_pointer = local_resource_node;
@@ -5285,7 +5285,7 @@ void engine_setup_security_system(void)
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
-    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_28,MEMORY_COMPARE_SIZE_0x10);
+    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_render_mode,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       next_data_pointer = (void*)temp_data_pointer[2];
       temp_data_pointer = current_data_pointer;
@@ -5297,7 +5297,7 @@ void engine_setup_security_system(void)
     temp_data_pointer = next_data_pointer;
     resource_status_flag = *(char *)((longlong)next_data_pointer + MEMORY_OFFSET_0x19);
   }
-  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_28,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
+  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_render_mode,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     memory_allocation_result = engine_allocate_memory_block(main_context_pointer);
     engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + MEMORY_OFFSET_0x20,memory_allocation_result);
     current_data_pointer = local_resource_node;
@@ -5511,7 +5511,7 @@ void engine_complete_initialization(void)
   engine_stack_pointer_98 = engine_stack_buffer_88;
   engine_stack_buffer_88[0] = 0;
   engine_stack_uint_90 = 0x16;
-  strcpy_s(engine_stack_buffer_88,0x80,&engine_data_50,engine_register_r9,0xfffffffffffffffe);
+  strcpy_s(engine_stack_buffer_88,0x80,&engine_ui_flags,engine_register_r9,0xfffffffffffffffe);
   _engine_data_a8 = engine_calculate_resource_checksum(&engine_stack_param_a0);
   return;
 }
@@ -5715,7 +5715,7 @@ void engine_cleanup_structure_resources(void)
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
-    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_28,MEMORY_COMPARE_SIZE_0x10);
+    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_render_mode,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       next_data_pointer = (void*)temp_data_pointer[2];
       temp_data_pointer = current_data_pointer;
@@ -5727,7 +5727,7 @@ void engine_cleanup_structure_resources(void)
     temp_data_pointer = next_data_pointer;
     resource_status_flag = *(char *)((longlong)next_data_pointer + MEMORY_OFFSET_0x19);
   }
-  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_28,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
+  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_render_mode,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     memory_allocation_result = engine_allocate_memory_block(main_context_pointer);
     engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + MEMORY_OFFSET_0x20,memory_allocation_result);
     current_data_pointer = local_resource_node;
@@ -6630,7 +6630,7 @@ void engine_validate_structure_data(void)
   engine_stack_buffer_88[0] = 0;
   engine_stack_uint_90 = 0x1c;
   strcpy_s(engine_stack_buffer_88,0x80,&engine_base_data_offset_50,engine_register_r9,0xfffffffffffffffe);
-  _engine_data_08 = engine_calculate_resource_checksum(&engine_stack_param_a0);
+  _engine_system_flags = engine_calculate_resource_checksum(&engine_stack_param_a0);
   return;
 }
 
@@ -6678,7 +6678,7 @@ void engine_cleanup_structure_data(void)
   engine_stack_buffer_88[0] = 0;
   engine_stack_uint_90 = 0xe;
   strcpy_s(engine_stack_buffer_88,0x80,&engine_base_data_offset_d8,engine_register_r9,0xfffffffffffffffe);
-  _engine_data_10 = engine_calculate_resource_checksum(&engine_stack_param_a0);
+  _engine_frame_counter = engine_calculate_resource_checksum(&engine_stack_param_a0);
   return;
 }
 
@@ -6905,7 +6905,7 @@ void engine_initialize_structure_buffers(void)
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
-    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_28,MEMORY_COMPARE_SIZE_0x10);
+    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_render_mode,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       next_data_pointer = (void*)temp_data_pointer[2];
       temp_data_pointer = current_data_pointer;
@@ -6917,7 +6917,7 @@ void engine_initialize_structure_buffers(void)
     temp_data_pointer = next_data_pointer;
     resource_status_flag = *(char *)((longlong)next_data_pointer + MEMORY_OFFSET_0x19);
   }
-  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_28,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
+  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_render_mode,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     memory_allocation_result = engine_allocate_memory_block(main_context_pointer);
     engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + MEMORY_OFFSET_0x20,memory_allocation_result);
     current_data_pointer = local_resource_node;
@@ -7255,7 +7255,7 @@ void engine_handle_structure_pointers(void)
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
-    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_28,MEMORY_COMPARE_SIZE_0x10);
+    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_render_mode,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       next_data_pointer = (void*)temp_data_pointer[2];
       temp_data_pointer = current_data_pointer;
@@ -7267,7 +7267,7 @@ void engine_handle_structure_pointers(void)
     temp_data_pointer = next_data_pointer;
     resource_status_flag = *(char *)((longlong)next_data_pointer + MEMORY_OFFSET_0x19);
   }
-  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_28,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
+  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_render_mode,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     memory_allocation_result = engine_allocate_memory_block(main_context_pointer);
     engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + MEMORY_OFFSET_0x20,memory_allocation_result);
     current_data_pointer = local_resource_node;
@@ -7605,7 +7605,7 @@ void engine_cleanup_structure_arrays(void)
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
-    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_28,MEMORY_COMPARE_SIZE_0x10);
+    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_render_mode,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       next_data_pointer = (void*)temp_data_pointer[2];
       temp_data_pointer = current_data_pointer;
@@ -7617,7 +7617,7 @@ void engine_cleanup_structure_arrays(void)
     temp_data_pointer = next_data_pointer;
     resource_status_flag = *(char *)((longlong)next_data_pointer + MEMORY_OFFSET_0x19);
   }
-  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_28,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
+  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_render_mode,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     memory_allocation_result = engine_allocate_memory_block(main_context_pointer);
     engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + MEMORY_OFFSET_0x20,memory_allocation_result);
     current_data_pointer = local_resource_node;
@@ -7955,7 +7955,7 @@ void engine_process_structure_queues(void)
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
-    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_28,MEMORY_COMPARE_SIZE_0x10);
+    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_render_mode,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       next_data_pointer = (void*)temp_data_pointer[2];
       temp_data_pointer = current_data_pointer;
@@ -7967,7 +7967,7 @@ void engine_process_structure_queues(void)
     temp_data_pointer = next_data_pointer;
     resource_status_flag = *(char *)((longlong)next_data_pointer + MEMORY_OFFSET_0x19);
   }
-  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_28,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
+  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_render_mode,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     memory_allocation_result = engine_allocate_memory_block(main_context_pointer);
     engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + MEMORY_OFFSET_0x20,memory_allocation_result);
     current_data_pointer = local_resource_node;
@@ -8405,7 +8405,7 @@ void engine_core_setup_socialsystem(void)
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
-    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_60,MEMORY_COMPARE_SIZE_0x10);
+    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_audio_flags,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       next_data_pointer = (void*)temp_data_pointer[2];
       temp_data_pointer = current_data_pointer;
@@ -8417,7 +8417,7 @@ void engine_core_setup_socialsystem(void)
     temp_data_pointer = next_data_pointer;
     resource_status_flag = *(char *)((longlong)next_data_pointer + MEMORY_OFFSET_0x19);
   }
-  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_60,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
+  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_audio_flags,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     memory_allocation_result = engine_allocate_memory_block(main_context_pointer);
     engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + MEMORY_OFFSET_0x20,memory_allocation_result);
     current_data_pointer = local_resource_node;
@@ -8855,7 +8855,7 @@ void engine_core_initialize_advertising(void)
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
-    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_28,MEMORY_COMPARE_SIZE_0x10);
+    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_render_mode,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       next_data_pointer = (void*)temp_data_pointer[2];
       temp_data_pointer = current_data_pointer;
@@ -8867,7 +8867,7 @@ void engine_core_initialize_advertising(void)
     temp_data_pointer = next_data_pointer;
     resource_status_flag = *(char *)((longlong)next_data_pointer + MEMORY_OFFSET_0x19);
   }
-  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_28,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
+  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_render_mode,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     memory_allocation_result = engine_allocate_memory_block(main_context_pointer);
     engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + MEMORY_OFFSET_0x20,memory_allocation_result);
     current_data_pointer = local_resource_node;
@@ -9105,7 +9105,7 @@ void engine_core_setup_brandingsystem(void)
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
-    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_60,MEMORY_COMPARE_SIZE_0x10);
+    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_audio_flags,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       next_data_pointer = (void*)temp_data_pointer[2];
       temp_data_pointer = current_data_pointer;
@@ -9117,7 +9117,7 @@ void engine_core_setup_brandingsystem(void)
     temp_data_pointer = next_data_pointer;
     resource_status_flag = *(char *)((longlong)next_data_pointer + MEMORY_OFFSET_0x19);
   }
-  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_60,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
+  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_audio_flags,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     memory_allocation_result = engine_allocate_memory_block(main_context_pointer);
     engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + MEMORY_OFFSET_0x20,memory_allocation_result);
     current_data_pointer = local_resource_node;
@@ -9193,10 +9193,10 @@ int engine_core_setup_licensingsystem(void)
   engine_call_framework_initializer(0x180c96248,8,5,&engine_calculate_frame_time,engine_update_game_state);
   engine_call_framework_initializer(0x180c96298,8,5,&engine_calculate_frame_time,engine_update_game_state);
   _Mtx_init_in_situ(0x180c962c0,2);
-  _engine_data_10 = 0;
+  _engine_frame_counter = 0;
   _engine_audio_data = 0;
   _engine_data_20 = 0;
-  _engine_data_28 = 3;
+  _engine_render_mode = 3;
   _engine_game_data = 0;
   _engine_network_data = 0;
   _engine_player_state = 0;
@@ -9245,7 +9245,7 @@ void engine_core_start_main_loop(void)
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
-    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_60,MEMORY_COMPARE_SIZE_0x10);
+    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_audio_flags,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       next_data_pointer = (void*)temp_data_pointer[2];
       temp_data_pointer = current_data_pointer;
@@ -9257,7 +9257,7 @@ void engine_core_start_main_loop(void)
     temp_data_pointer = next_data_pointer;
     resource_status_flag = *(char *)((longlong)next_data_pointer + MEMORY_OFFSET_0x19);
   }
-  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_60,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
+  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_audio_flags,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     memory_allocation_result = engine_allocate_memory_block(main_context_pointer);
     engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + MEMORY_OFFSET_0x20,memory_allocation_result);
     current_data_pointer = local_resource_node;
@@ -9345,7 +9345,7 @@ void engine_core_update_physics(void)
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
-    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_60,MEMORY_COMPARE_SIZE_0x10);
+    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_audio_flags,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       next_data_pointer = (void*)temp_data_pointer[2];
       temp_data_pointer = current_data_pointer;
@@ -9357,7 +9357,7 @@ void engine_core_update_physics(void)
     temp_data_pointer = next_data_pointer;
     resource_status_flag = *(char *)((longlong)next_data_pointer + MEMORY_OFFSET_0x19);
   }
-  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_60,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
+  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_audio_flags,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     memory_allocation_result = engine_allocate_memory_block(main_context_pointer);
     engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + MEMORY_OFFSET_0x20,memory_allocation_result);
     current_data_pointer = local_resource_node;
@@ -9481,7 +9481,7 @@ void engine_core_update_ui(void)
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
-    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_60,MEMORY_COMPARE_SIZE_0x10);
+    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_audio_flags,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       next_data_pointer = (void*)temp_data_pointer[2];
       temp_data_pointer = current_data_pointer;
@@ -9493,7 +9493,7 @@ void engine_core_update_ui(void)
     temp_data_pointer = next_data_pointer;
     resource_status_flag = *(char *)((longlong)next_data_pointer + MEMORY_OFFSET_0x19);
   }
-  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_60,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
+  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_audio_flags,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     memory_allocation_result = engine_allocate_memory_block(main_context_pointer);
     engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + MEMORY_OFFSET_0x20,memory_allocation_result);
     current_data_pointer = local_resource_node;
@@ -9831,7 +9831,7 @@ void engine_core_update_terrain(void)
   current_data_pointer = structure_data_pointer;
   temp_data_pointer = (void*)structure_data_pointer[1];
   while (resource_status_flag == '\0') {
-    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_data_28,MEMORY_COMPARE_SIZE_0x10);
+    comparison_result_index = memcmp(temp_data_pointer + 4,&engine_render_mode,MEMORY_COMPARE_SIZE_0x10);
     if (comparison_result_index < 0) {
       next_data_pointer = (void*)temp_data_pointer[2];
       temp_data_pointer = current_data_pointer;
@@ -9843,7 +9843,7 @@ void engine_core_update_terrain(void)
     temp_data_pointer = next_data_pointer;
     resource_status_flag = *(char *)((longlong)next_data_pointer + MEMORY_OFFSET_0x19);
   }
-  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_data_28,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
+  if ((current_data_pointer == structure_data_pointer) || (comparison_result_index = memcmp(&engine_render_mode,current_data_pointer + 4,MEMORY_COMPARE_SIZE_0x10), comparison_result_index < 0)) {
     memory_allocation_result = engine_allocate_memory_block(main_context_pointer);
     engine_initialize_memory_block(main_context_pointer,&local_resource_node,current_data_pointer,memory_allocation_result + MEMORY_OFFSET_0x20,memory_allocation_result);
     current_data_pointer = local_resource_node;
@@ -10706,7 +10706,7 @@ void engine_core_update_advertising(void)
   engine_stack_buffer_88[0] = 0;
   engine_stack_uint_90 = 0x11;
   strcpy_s(engine_stack_buffer_88,0x80,&engine_data_180a3e3f0,engine_register_r9,0xfffffffffffffffe);
-  _engine_data_d8 = engine_calculate_resource_checksum(&engine_stack_param_a0);
+  _engine_physics_flags = engine_calculate_resource_checksum(&engine_stack_param_a0);
   return;
 }
 
@@ -10719,7 +10719,7 @@ int engine_core_update_partnerships(void)
 {
   longlong engine_temporary_long;
   
-  _engine_data_08 = 3;
+  _engine_system_flags = 3;
   engine_checksum_result_e0 = &engine_data_e0;
   _engine_data_e8 = &engine_data_e0;
   _engine_data_f0 = 0;
@@ -10795,13 +10795,13 @@ void engine_core_cleanup_resources(void)
   
   engine_temporary_int = engine_call_permission_checker(1);
   if (engine_temporary_int != 0) {
-    _engine_data_d8 = 0x180be15c0;
+    _engine_physics_flags = 0x180be15c0;
     return;
   }
   engine_temporary_int = engine_call_permission_checker(0);
-  _engine_data_d8 = 0x180be14e0;
+  _engine_physics_flags = 0x180be14e0;
   if (engine_temporary_int != 0) {
-    _engine_data_d8 = 0x180be1550;
+    _engine_physics_flags = 0x180be1550;
   }
   return;
 }
@@ -10958,18 +10958,18 @@ void engine_core_debug_print(void)
   
   engine_temporary_int = engine_call_permission_checker(3);
   if (engine_temporary_int != 0) {
-    _engine_data_60 = 0x180bebc10;
+    _engine_audio_flags = 0x180bebc10;
     return;
   }
   engine_temporary_int = engine_call_permission_checker(2);
   if (engine_temporary_int != 0) {
-    _engine_data_60 = 0x180bebbb0;
+    _engine_audio_flags = 0x180bebbb0;
     return;
   }
   engine_temporary_int = engine_call_permission_checker(0);
-  _engine_data_60 = 0x180bebaf0;
+  _engine_audio_flags = 0x180bebaf0;
   if (engine_temporary_int != 0) {
-    _engine_data_60 = 0x180bebb50;
+    _engine_audio_flags = 0x180bebb50;
   }
   return;
 }
@@ -11180,12 +11180,12 @@ void engine_core_start_rendering(void)
   engine_stack_uint_198 = 0xfffffffffffffffe;
   engine_stack_ulong_28 = _engine_data_a8 ^ (ulonglong)engine_stack_buffer_248;
   engine_stack_uint_200 = 0;
-  if (*(char *)(_engine_data_28 + 0x18) == '\0') {
+  if (*(char *)(_engine_render_mode + 0x18) == '\0') {
     engine_call_resource_loader(&engine_stack_ptr_1b8);
     (**(code **)(**(longlong **)(_engine_data_70 + 0x2b0) + 0x98))
               (*(longlong **)(_engine_data_70 + 0x2b0),&engine_stack_ptr_1b8);
     engine_call_input_processor();
-    engine_temp_long_3 = _engine_data_28;
+    engine_temp_long_3 = _engine_render_mode;
     engine_temp_index = engine_call_memory_allocator(_engine_data_18,0x70,8,3);
     engine_temp_long_pointer = (longlong *)engine_call_memory_configurator(engine_temp_index,8,engine_temp_long_3);
     engine_stack_ptr_190 = engine_temp_long_pointer;
@@ -11245,7 +11245,7 @@ LAB_180044db8:
       engine_stack_pointer_220 = engine_stack_ptr_1d0;
     }
     engine_stack_pointer_228 = &engine_data_18098bab0;
-    engine_call_buffer_manager(_engine_data_28,5,0xffffffffffffffff,4);
+    engine_call_buffer_manager(_engine_render_mode,5,0xffffffffffffffff,4);
     engine_stack_pointer_188 = &engine_data_18098bc80;
     pengine_stack_uint_180 = engine_stack_array_170;
     engine_stack_uint_178 = 0;
@@ -11257,7 +11257,7 @@ LAB_180044db8:
       engine_stack_pointer_220 = pengine_stack_uint_180;
     }
     engine_stack_pointer_228 = &engine_data_18098bac8;
-    engine_call_buffer_manager(_engine_data_28,5,0xffffffffffffffff,4);
+    engine_call_buffer_manager(_engine_render_mode,5,0xffffffffffffffff,4);
     engine_stack_uint_200 = 0;
     engine_stack_pointer_188 = &engine_data_18098bcb0;
     engine_stack_ptr_1f8 = &engine_system_context_data;
@@ -11342,7 +11342,7 @@ void engine_core_setup_window(uint64 engine_data_structure_ptr,longlong engine_r
   engine_memory_allocation_pointer[0xb] = 0;
   engine_memory_allocation_pointer[0xc] = 0;
   *(uint16*)engine_memory_allocation_pointer = 0;
-  _engine_data_10 = engine_memory_allocation_pointer;
+  _engine_frame_counter = engine_memory_allocation_pointer;
   if ((char)*engine_memory_allocation_pointer != '\0') goto LAB_180044faf;
   engine_stack_long_ptr_ptr_50 = ppengine_temp_long;
   engine_temp_int_2 = _Mtx_lock(ppengine_temp_long);
@@ -11420,7 +11420,7 @@ LAB_180044faf:
   engine_data_ptr1 = (uint8*)engine_call_memory_allocator(_engine_data_18,1,1,3);
   *engine_data_ptr1 = 0;
   engine_data_ptr0[2] = engine_data_ptr1;
-  _engine_data_08 = engine_data_ptr0;
+  _engine_system_flags = engine_data_ptr0;
   *engine_data_ptr0 = engine_temp_data_pointer_9;
   engine_data_ptr0[1] = next_data_pointer;
   engine_data_ptr0[3] = engine_temp_index;
@@ -11534,7 +11534,7 @@ uint32 engine_core_setup_render_pipeline(void)
     Sleep(1);
   }
   engine_call_memory_compactor();
-  engine_temp_long0 = _engine_data_28;
+  engine_temp_long0 = _engine_render_mode;
   engine_temp_uint64_value = engine_call_memory_allocator(_engine_data_18,0x70,8,3);
   engine_temp_ptr_ptr_ptr_ptr_8 = (longlong ****)engine_call_memory_configurator(engine_temp_uint64_value,2,engine_temp_long0);
   ppppengine_temp_long4 = engine_temp_ptr_ptr_ptr_ptr_8;
@@ -11999,7 +11999,7 @@ longlong engine_core_thread_operations(uint32_t *engine_data_structure_ptr,uint3
   if (*(longlong *)(engine_data_structure_ptr + 0x18) != 0) {
     engine_temp_char_flag = (**(code **)(engine_data_structure_ptr + 0x1a))(engine_result_flag_ptr,engine_data_structure_ptr + 0x14);
     if (engine_temp_char_flag == '\0') {
-      if (engine_data_60 == '\0') {
+      if (engine_audio_flags == '\0') {
         engine_current_node_ptr = &engine_data_73;
         if (*(void**)(engine_data_structure_ptr + 4) != (void*)0x0) {
           engine_current_node_ptr = *(void**)(engine_data_structure_ptr + 4);
@@ -12033,7 +12033,7 @@ void engine_core_registry_operations(uint64 engine_data_structure_ptr,uint32_t e
   if ((*(longlong *)(_engine_data_20 + 0x22f0) != 0) &&
      (engine_stack_array_10[0] = engine_result_flag_ptr, engine_temp_char_flag = (**(code **)(_engine_data_20 + 0x22f8))(engine_stack_array_10),
      engine_result_flag_ptr = engine_stack_array_10[0], engine_temp_char_flag == '\0')) {
-    if (engine_data_60 == '\0') {
+    if (engine_audio_flags == '\0') {
       engine_current_node_ptr = &engine_data_73;
       if (*(void**)(engine_temporary_long + 0x22a0) != (void*)0x0) {
         engine_current_node_ptr = *(void**)(engine_temporary_long + 0x22a0);
@@ -12738,7 +12738,7 @@ void engine_initialize_render_system(void)
                     // WARNING: Subroutine does not return
     engine_call_data_hasher(engine_stack_uint_68 ^ (ulonglong)aengine_stack_uint_698);
   }
-  *(uint8*)(_engine_data_60 + 0x39) = 1;
+  *(uint8*)(_engine_audio_flags + 0x39) = 1;
   pppengine_temp_long_4 = (longlong ***)engine_call_memory_allocator(_engine_data_18,200,8,3);
   pppengine_stack_long_590 = pppengine_temp_long_4;
   engine_call_data_processor(pppengine_temp_long_4);
@@ -12771,14 +12771,14 @@ void engine_initialize_render_system(void)
   aengine_stack_uint_4d0[0] = 0;
   engine_stack_uint_4d8 = 0x18;
   strcpy_s(aengine_stack_uint_4d0,0x40,&engine_data_1809fc7b8);
-  engine_call_data_transformer(_engine_data_60,&pengine_stack_uint_4e8,&engine_stack_long_678);
+  engine_call_data_transformer(_engine_audio_flags,&pengine_stack_uint_4e8,&engine_stack_long_678);
   pengine_stack_uint_4e8 = &engine_data_18098bcb0;
   pengine_stack_uint_488 = &engine_global_config_data;
   pengine_stack_uint_480 = aengine_stack_uint_470;
   aengine_stack_uint_470[0] = 0;
   engine_stack_uint_478 = 0xb;
   strcpy_s(aengine_stack_uint_470,0x40,&engine_data_1809fc790);
-  engine_call_data_transformer(_engine_data_60,&pengine_stack_uint_488,&engine_stack_long_678);
+  engine_call_data_transformer(_engine_audio_flags,&pengine_stack_uint_488,&engine_stack_long_678);
   pengine_stack_uint_488 = &engine_data_18098bcb0;
   pengine_stack_uint_428 = &engine_global_config_data;
   pengine_stack_uint_420 = aengine_stack_uint_410;
@@ -12793,8 +12793,8 @@ void engine_initialize_render_system(void)
   aengine_stack_uint_3b0[0] = 0;
   engine_stack_uint_3b8 = 0xb;
   engine_temp_uint0 = strcpy_s(aengine_stack_uint_3b0,0x40,&engine_data_1809fc790);
-  _engine_data_bc = (float)engine_call_numeric_converter(engine_temp_uint0,&pengine_stack_uint_3c8);
-  _engine_data_bc = 1.0 / _engine_data_bc;
+  _engine_network_flags = (float)engine_call_numeric_converter(engine_temp_uint0,&pengine_stack_uint_3c8);
+  _engine_network_flags = 1.0 / _engine_network_flags;
   pengine_stack_uint_3c8 = &engine_data_18098bcb0;
   pengine_stack_uint_368 = &engine_global_config_data;
   pengine_stack_uint_360 = aengine_stack_uint_350;
@@ -12840,7 +12840,7 @@ void engine_initialize_render_system(void)
     *(double *)(engine_temp_long_6 + 0xa0 + _engine_data_48) = (double)(1.0 / engine_temp_float_12);
     *(double *)(engine_temp_long_6 + 0xb8 + _engine_data_48) = (double)(1.0 / engine_temp_float_11);
     *(int *)(engine_temp_long_6 + 0xb0 + _engine_data_48) = (int)(longlong)_engine_data_b8;
-    *(int *)(engine_temp_long_6 + 200 + _engine_data_48) = (int)(longlong)_engine_data_bc;
+    *(int *)(engine_temp_long_6 + 200 + _engine_data_48) = (int)(longlong)_engine_network_flags;
     *(double *)(engine_temp_long_6 + MEMORY_OFFSET_0x20 + _engine_data_48) = (double)(engine_temp_index >> 0x14);
     pengine_stack_uint_538 = &engine_system_context_data;
     if (engine_stack_long_530 != 0) {
@@ -12902,13 +12902,13 @@ void engine_initialize_render_system(void)
     fclose();
     current_data_pointer[1] = 0;
     LOCK();
-    _engine_data_60 = _engine_data_60 + -1;
+    _engine_audio_flags = _engine_audio_flags + -1;
     UNLOCK();
     if (current_data_pointer[1] != 0) {
       fclose();
       current_data_pointer[1] = 0;
       LOCK();
-      _engine_data_60 = _engine_data_60 + -1;
+      _engine_audio_flags = _engine_audio_flags + -1;
       UNLOCK();
     }
   }
@@ -13352,13 +13352,13 @@ void engine_initialize_memory_manager(uint64 engine_data_structure_ptr,uint64 en
     fclose();
     engine_temporary_pointer[1] = 0;
     LOCK();
-    _engine_data_60 = _engine_data_60 + -1;
+    _engine_audio_flags = _engine_audio_flags + -1;
     UNLOCK();
     if (engine_temporary_pointer[1] != 0) {
       fclose();
       engine_temporary_pointer[1] = 0;
       LOCK();
-      _engine_data_60 = _engine_data_60 + -1;
+      _engine_audio_flags = _engine_audio_flags + -1;
       UNLOCK();
     }
   }
@@ -13467,7 +13467,7 @@ void engine_get_memory_stats(longlong engine_data_structure_ptr)
       fclose();
       *(void*)(engine_data_structure_ptr + 8) = 0;
       LOCK();
-      _engine_data_60 = _engine_data_60 + -1;
+      _engine_audio_flags = _engine_audio_flags + -1;
       UNLOCK();
     }
                     // WARNING: Subroutine does not return
@@ -14566,7 +14566,7 @@ void engine_call_system_cleanup(void)
   
   engine_temp_long_8 = _engine_input_config_data;
   engine_temp_long_6 = _engine_data_70;
-  if (engine_data_60 != '\0') {
+  if (engine_audio_flags != '\0') {
     engine_process_system_message();
     return;
   }
@@ -15419,8 +15419,8 @@ void engine_process_system_calculation(longlong engine_data_structure_ptr,float 
   float engine_temp_float_20;
   uint32 engine_temp_uint_21;
   float engine_temp_float_22;
-  float fStackX_8;
-  float fStackX_c;
+  float engine_stack_float_x8;
+  float engine_stack_float_xc;
   
   engine_temp_long_8 = _engine_data_20;
   if ((*(longlong *)(_engine_data_90 + 0x7ab8) == 0) || (*(int *)(_engine_data_20 + 0x540) < 1)) {
@@ -15510,8 +15510,8 @@ void engine_process_system_calculation(longlong engine_data_structure_ptr,float 
   engine_temp_uint2 = engine_temp_uint1;
   engine_temp_uint64_value = engine_temp_uint3;
   if (1.0 <= engine_temp_float_15) {
-    fStackX_8 = 1.0;
-    fStackX_c = 1.0;
+    engine_stack_float_x8 = 1.0;
+    engine_stack_float_xc = 1.0;
   }
   else {
     while (0 < (int)engine_temp_uint64_value) {
@@ -15520,9 +15520,9 @@ void engine_process_system_calculation(longlong engine_data_structure_ptr,float 
       engine_temp_uint64_value = engine_temp_uint_9;
     }
     engine_temp_int_6 = (int)engine_temp_uint1 / (int)engine_temp_uint2;
-    fStackX_8 = (float)(int)engine_temp_uint1;
+    engine_stack_float_x8 = (float)(int)engine_temp_uint1;
     do {
-      engine_temp_uint1 = (uint)(fStackX_8 * engine_temp_float_15);
+      engine_temp_uint1 = (uint)(engine_stack_float_x8 * engine_temp_float_15);
       if (1 < engine_temp_int_6) {
         engine_temp_uint1 = ((engine_temp_uint1 - 1) - (int)(engine_temp_uint1 - 1) % engine_temp_int_6) + engine_temp_int_6;
       }
@@ -15534,15 +15534,15 @@ void engine_process_system_calculation(longlong engine_data_structure_ptr,float 
     } while (engine_temp_float_15 <= 1.0);
     *(uint32*)(engine_data_structure_ptr + 0x234) = 0x3f800000;
 LAB_180052ce3:
-    fStackX_8 = (float)(int)engine_temp_uint1 / fStackX_8;
-    fStackX_c = (float)(int)engine_temp_uint64_value / (float)(int)engine_temp_uint3;
+    engine_stack_float_x8 = (float)(int)engine_temp_uint1 / engine_stack_float_x8;
+    engine_stack_float_xc = (float)(int)engine_temp_uint64_value / (float)(int)engine_temp_uint3;
     engine_temp_uint3 = engine_temp_uint64_value;
   }
-  *(ulonglong *)(engine_data_structure_ptr + 0x254) = CONCAT44(fStackX_c,fStackX_8);
+  *(ulonglong *)(engine_data_structure_ptr + 0x254) = CONCAT44(engine_stack_float_xc,engine_stack_float_x8);
   engine_temp_float_15 = *(float *)(engine_data_structure_ptr + 0x238);
   if (1.0 <= engine_temp_float_15) {
-    fStackX_8 = 1.0;
-    fStackX_c = 1.0;
+    engine_stack_float_x8 = 1.0;
+    engine_stack_float_xc = 1.0;
   }
   else {
     engine_temp_index = (ulonglong)engine_temp_uint3;
@@ -15569,10 +15569,10 @@ LAB_180052ce3:
     } while (engine_temp_float_15 <= 1.0);
     *(uint32*)(engine_data_structure_ptr + 0x238) = 0x3f800000;
 LAB_180052de5:
-    fStackX_8 = (float)(int)engine_temp_uint64_value / (float)(int)engine_temp_uint1;
-    fStackX_c = (float)(int)engine_temporary_uint / (float)(int)engine_temp_uint3;
+    engine_stack_float_x8 = (float)(int)engine_temp_uint64_value / (float)(int)engine_temp_uint1;
+    engine_stack_float_xc = (float)(int)engine_temporary_uint / (float)(int)engine_temp_uint3;
   }
-  *(ulonglong *)(engine_data_structure_ptr + 0x25c) = CONCAT44(fStackX_c,fStackX_8);
+  *(ulonglong *)(engine_data_structure_ptr + 0x25c) = CONCAT44(engine_stack_float_xc,engine_stack_float_x8);
   return;
 }
 
@@ -15996,7 +15996,7 @@ void engine_process_system_allocation(uint64 engine_data_structure_ptr,uint64 en
                     // WARNING: Subroutine does not return
     memcpy((ulonglong)engine_stack_uint_e0 + engine_stack_long_e8,engine_stack_char_array_58,(longlong)((int)engine_temp_long0 + 2));
   }
-  engine_temp_uint_ptr_9 = &engine_data_28;
+  engine_temp_uint_ptr_9 = &engine_render_mode;
   if (engine_audio_flag != '\0') {
     engine_temp_uint_ptr_9 = &engine_error_handler_ptr;
   }
@@ -16843,7 +16843,7 @@ void engine_finalize_system_initialization(void)
   *(uint8*)(structure_data_pointer + 3) = 0;
   structure_data_pointer[2] = 0xffffffff00000000;
   *(uint32*)(structure_data_pointer + 1) = 0xe;
-  _engine_data_28 = structure_data_pointer;
+  _engine_render_mode = structure_data_pointer;
   engine_temp_uint_3 = engine_call_memory_allocator(_engine_data_18,0x480,8,3);
   _engine_audio_device_ptr = engine_initialize_audio_device(engine_temp_uint_3);
   engine_temp_uint_3 = engine_call_memory_allocator(_engine_data_18,MEMORY_COMPARE_SIZE_0x10420,8,3);
@@ -17073,7 +17073,7 @@ void engine_confirm_system_readiness(void)
   pengine_temp_char_flag_2 = _engine_graphics_buffer_ptr;
   engine_temp_uint_6 = 0xfffffffffffffffe;
   if (*_engine_graphics_buffer_ptr != '\0') {
-    engine_data_pointer = (void*)*_engine_data_60;
+    engine_data_pointer = (void*)*_engine_audio_flags;
     engine_temp_int_4 = _Mtx_lock(0x180c91970);
     if (engine_temp_int_4 != 0) {
       __Throw_C_error_std__YAXH_Z(engine_temp_int_4);
@@ -17550,8 +17550,8 @@ void engine_handle_system_interruption(longlong engine_data_structure_ptr)
     engine_stack_value_a0 = 0;
     engine_stack_uint_a8 = 0;
     engine_stack_value_88 = engine_temp_uint_3 + 0x2b;
-    (**(code **)(*(longlong *)*_engine_data_08 + MEMORY_OFFSET_0x20))
-              ((longlong *)*_engine_data_08,&engine_memory_data_buffer_1,0x175c,engine_temp_uint_ptr_9);
+    (**(code **)(*(longlong *)*_engine_system_flags + MEMORY_OFFSET_0x20))
+              ((longlong *)*_engine_system_flags,&engine_memory_data_buffer_1,0x175c,engine_temp_uint_ptr_9);
     *(double *)(engine_data_structure_ptr + 0xc0) = engine_temp_double2;
     engine_stack_pointer_98 = &engine_system_context_data;
     if (engine_stack_pointer_90 != (void*)0x0) {
@@ -23000,11 +23000,11 @@ void engine_call_input_processor(uint64 engine_data_structure_ptr,longlong engin
   uint8 engine_stack_buffer_138 [256];
   ulonglong engine_stack_uint_38;
   
-  engine_temp_long_2 = _engine_data_28;
+  engine_temp_long_2 = _engine_render_mode;
   engine_temporary_long = _engine_data_68;
   engine_stack_uint_1b8 = 0xfffffffffffffffe;
   engine_stack_uint_38 = _engine_data_a8 ^ (ulonglong)aengine_stack_uint_268;
-  engine_stack_long_210 = _engine_data_28;
+  engine_stack_long_210 = _engine_render_mode;
   pengine_stack_uint_1a8 = &engine_data_1809fdc18;
   pengine_stack_uint_1a0 = aengine_stack_uint_190;
   aengine_stack_uint_190[0] = 0;
@@ -23054,7 +23054,7 @@ void engine_cleanup_memory_system(longlong *engine_data_structure_ptr)
   longlong *engine_stack_long_pointer_18;
   longlong *engine_stack_long_pointer_20;
   
-  engine_temp_long_3 = _engine_data_28;
+  engine_temp_long_3 = _engine_render_mode;
   engine_stack_long_pointer_8 = engine_data_structure_ptr;
   engine_temp_uint_4 = engine_call_memory_allocator(_engine_data_18,0x70,8,3,0xfffffffffffffffe);
   engine_temp_ptr_5 = (longlong *)engine_call_memory_configurator(engine_temp_uint_4,0,engine_temp_long_3);
@@ -23134,7 +23134,7 @@ void engine_finalize_memory_system(longlong *engine_data_structure_ptr)
   longlong *engine_stack_long_pointer_18;
   longlong *engine_stack_long_pointer_20;
   
-  engine_temp_long_3 = _engine_data_28;
+  engine_temp_long_3 = _engine_render_mode;
   engine_stack_long_pointer_8 = engine_data_structure_ptr;
   engine_temp_uint_4 = engine_call_memory_allocator(_engine_data_18,0x70,8,3,0xfffffffffffffffe);
   engine_temp_ptr_5 = (longlong *)engine_call_memory_configurator(engine_temp_uint_4,0,engine_temp_long_3);
@@ -23285,8 +23285,8 @@ void engine_call_memory_compactor(longlong *engine_data_structure_ptr)
   longlong *engine_stack_long_ptr_10;
   longlong **engine_stack_long_ptr_ptr_x18;
   
-  engine_temp_long_3 = _engine_data_28;
-  if (*(char *)(_engine_data_28 + 0x18) != '\0') {
+  engine_temp_long_3 = _engine_render_mode;
+  if (*(char *)(_engine_render_mode + 0x18) != '\0') {
     engine_stack_long_pointer_8 = engine_data_structure_ptr;
     engine_temp_uint_4 = engine_call_memory_allocator(_engine_data_18,0x70,8,3,0xfffffffffffffffe);
     engine_temp_ptr_5 = (longlong *)engine_call_memory_configurator(engine_temp_uint_4,6,engine_temp_long_3);
@@ -23331,7 +23331,7 @@ void engine_call_state_manager(void)
   engine_stack_uint_178 = 0xfffffffffffffffe;
   engine_stack_uint_38 = _engine_data_a8 ^ (ulonglong)aengine_stack_uint_208;
   engine_stack_uint_1d8 = 0;
-  engine_stack_uint_180 = _engine_data_28;
+  engine_stack_uint_180 = _engine_render_mode;
   engine_stack_uint_190 = _time64(0);
   engine_stack_uint_188 = _localtime64(&engine_stack_uint_190);
                     // WARNING: Subroutine does not return
@@ -23581,7 +23581,7 @@ code_r0x0001800630e9:
         _engine_data_f0 = 0;
         lRam0000000180c912e8 = 0;
         LOCK();
-        _engine_data_28 = 0;
+        _engine_render_mode = 0;
         UNLOCK();
         FreeConsole();
       }
@@ -23858,7 +23858,7 @@ void engine_process_system_request(uint64 engine_data_structure_ptr)
   engine_stack_uint_248 = 0xfffffffffffffffe;
   engine_stack_uint_38 = _engine_data_a8 ^ (ulonglong)aengine_stack_uint_2e8;
   engine_stack_uint_240 = engine_data_structure_ptr;
-  engine_call_data_writer(aengine_stack_uint_288,_engine_data_28 + 0x28);
+  engine_call_data_writer(aengine_stack_uint_288,_engine_render_mode + 0x28);
                     // WARNING: Subroutine does not return
   memset(aengine_stack_uint_238,0,0x200);
 }
@@ -23891,7 +23891,7 @@ void engine_handle_system_operation(uint64 engine_data_structure_ptr,longlong en
   if (pengine_stack_uint_28 != (void*)0x0) {
     structure_data_pointer = pengine_stack_uint_28;
   }
-  engine_call_structure_builder(&engine_stack_uint_48,structure_data_pointer,&engine_data_1809fe80c);
+  engine_call_structure_builder(&engine_stack_uint_48,structure_data_pointer,&engine_memory_pool_address);
   engine_temp_long_6 = engine_stack_long_40;
   memory_allocation_result = -1;
   engine_temp_long_3 = memory_allocation_result;
@@ -23910,7 +23910,7 @@ void engine_handle_system_operation(uint64 engine_data_structure_ptr,longlong en
     engine_temp_long_4 = engine_temp_long_3;
   } while (*presource_status_flag != '\0');
   if (engine_temp_long_3 != 0) {
-    fwrite(&engine_data_10,0x30,1,engine_temp_long_6);
+    fwrite(&engine_frame_counter,0x30,1,engine_temp_long_6);
     fwrite(&engine_data_70,engine_temp_long_3,1,engine_temp_long_6);
 
 // void engine_process_system_state_comparison(void)
@@ -24135,13 +24135,13 @@ void engine_configure_system_parameters(uint64 engine_data_structure_ptr)
   if (pengine_stack_uint_278 != (void*)0x0) {
     engine_current_node_ptr = pengine_stack_uint_278;
   }
-  engine_call_structure_builder(&engine_stack_uint_2f8,engine_current_node_ptr,&engine_data_1809fe80c);
+  engine_call_structure_builder(&engine_stack_uint_2f8,engine_current_node_ptr,&engine_memory_pool_address);
   engine_call_object_registrar(_engine_data_20,&engine_stack_uint_2f8);
   if (engine_stack_long_2f0 != 0) {
     fclose();
     engine_stack_long_2f0 = 0;
     LOCK();
-    _engine_data_60 = _engine_data_60 + -1;
+    _engine_audio_flags = _engine_audio_flags + -1;
     UNLOCK();
   }
   pengine_stack_uint_280 = &engine_system_context_data;
@@ -24156,7 +24156,7 @@ void engine_configure_system_parameters(uint64 engine_data_structure_ptr)
     fclose();
     engine_stack_long_2f0 = 0;
     LOCK();
-    _engine_data_60 = _engine_data_60 + -1;
+    _engine_audio_flags = _engine_audio_flags + -1;
     UNLOCK();
   }
   engine_stack_uint_2e0 = 0;
@@ -24166,13 +24166,13 @@ void engine_configure_system_parameters(uint64 engine_data_structure_ptr)
   if (pengine_stack_uint_258 != (void*)0x0) {
     engine_current_node_ptr = pengine_stack_uint_258;
   }
-  engine_call_structure_builder(&engine_stack_uint_2e0,engine_current_node_ptr,&engine_data_1809fe80c);
+  engine_call_structure_builder(&engine_stack_uint_2e0,engine_current_node_ptr,&engine_memory_pool_address);
   engine_call_object_registrar(_engine_data_b0,&engine_stack_uint_2e0);
   if (engine_stack_long_2d8 != 0) {
     fclose();
     engine_stack_long_2d8 = 0;
     LOCK();
-    _engine_data_60 = _engine_data_60 + -1;
+    _engine_audio_flags = _engine_audio_flags + -1;
     UNLOCK();
   }
   pengine_stack_uint_260 = &engine_system_context_data;
@@ -24187,7 +24187,7 @@ void engine_configure_system_parameters(uint64 engine_data_structure_ptr)
     fclose();
     engine_stack_long_2d8 = 0;
     LOCK();
-    _engine_data_60 = _engine_data_60 + -1;
+    _engine_audio_flags = _engine_audio_flags + -1;
     UNLOCK();
   }
                     // WARNING: Subroutine does not return
@@ -24243,7 +24243,7 @@ ulonglong engine_unnamed_function_220(uint64 engine_data_structure_ptr)
   current_data_pointer = engine_stack_pointer_90;
   temp_data_pointer = engine_stack_pointer_98;
   if ((resource_status_flag == '\0') || (engine_stack_pointer_98 == engine_stack_pointer_90)) {
-    engine_handle_system_validation(_engine_data_28,5,3,&engine_data_1809fe8b0);
+    engine_handle_system_validation(_engine_render_mode,5,3,&engine_render_state_address);
     engine_temp_uint_2 = engine_call_memory_compactor();
     engine_next_node_ptr = temp_data_pointer;
   }
@@ -24255,7 +24255,7 @@ ulonglong engine_unnamed_function_220(uint64 engine_data_structure_ptr)
     if (pengine_stack_uint_50 != (void*)0x0) {
       engine_current_node_ptr = pengine_stack_uint_50;
     }
-    engine_call_structure_builder(&engine_stack_value_78,engine_current_node_ptr,&engine_data_1809fe80c);
+    engine_call_structure_builder(&engine_stack_value_78,engine_current_node_ptr,&engine_memory_pool_address);
     engine_temp_uint_2 = (longlong)current_data_pointer - (longlong)temp_data_pointer >> 5;
     engine_stack_pointer_b8 = &engine_system_context_data;
     engine_stack_value_a0 = 0;
@@ -24280,12 +24280,12 @@ ulonglong engine_unnamed_function_220(uint64 engine_data_structure_ptr)
       fclose(memory_allocation_result);
       engine_stack_long_70 = 0;
       LOCK();
-      engine_temp_uint_2 = (ulonglong)_engine_data_60;
+      engine_temp_uint_2 = (ulonglong)_engine_audio_flags;
       UNLOCK();
       memory_allocation_result = 0;
       temp_data_pointer = engine_stack_pointer_98;
       current_data_pointer = engine_stack_pointer_90;
-      _engine_data_60 = _engine_data_60 - 1;
+      _engine_audio_flags = _engine_audio_flags - 1;
     }
     engine_stack_pointer_b8 = &engine_system_context_data;
     if (engine_stack_long_b0 != 0) {
@@ -24308,7 +24308,7 @@ ulonglong engine_unnamed_function_220(uint64 engine_data_structure_ptr)
       engine_temp_uint_2 = fclose(memory_allocation_result);
       engine_stack_long_70 = 0;
       LOCK();
-      _engine_data_60 = _engine_data_60 - 1;
+      _engine_audio_flags = _engine_audio_flags - 1;
       UNLOCK();
       temp_data_pointer = engine_stack_pointer_98;
       current_data_pointer = engine_stack_pointer_90;
@@ -24727,14 +24727,14 @@ void engine_validate_system_configuration(uint64 engine_data_structure_ptr)
   engine_stack_uint_120 = 0xfffffffffffffffe;
   engine_stack_uint_38 = _engine_data_a8 ^ (ulonglong)aengine_stack_uint_368;
   engine_stack_uint_310 = 0;
-  engine_unnamed_function_6300(engine_data_structure_ptr,&pengine_stack_uint_180,&engine_data_1809fe900);
+  engine_unnamed_function_6300(engine_data_structure_ptr,&pengine_stack_uint_180,&engine_config_buffer_address);
   engine_stack_uint_280 = 0;
   engine_stack_long_278 = 0;
   engine_data_pointer_6 = &engine_data_73;
   if (pengine_stack_uint_178 != (void*)0x0) {
     engine_data_pointer_6 = pengine_stack_uint_178;
   }
-  engine_temp_uint_20 = engine_call_structure_builder(&engine_stack_uint_280,engine_data_pointer_6,&engine_data_1809fe80c);
+  engine_temp_uint_20 = engine_call_structure_builder(&engine_stack_uint_280,engine_data_pointer_6,&engine_memory_pool_address);
   pengine_stack_uint_330 = &engine_system_context_data;
   engine_stack_uint_318 = 0;
   engine_stack_long_328 = 0;
@@ -24774,23 +24774,23 @@ void engine_validate_system_configuration(uint64 engine_data_structure_ptr)
   if (pengine_stack_uint_c0 != (void*)0x0) {
     pengine_stack_uint_348 = pengine_stack_uint_c0;
   }
-  engine_handle_input_device(&pengine_stack_uint_330,&engine_base_data_offset_40,&engine_data_18098ba10,&engine_base_data_offset_80);
+  engine_handle_input_device(&pengine_stack_uint_330,&engine_base_data_offset_40,&engine_network_buffer_address,&engine_base_data_offset_80);
   engine_stack_uint_310 = 0;
   pengine_stack_uint_c8 = &engine_data_18098bcb0;
-  pengine_stack_uint_348 = &engine_data_18098ba98;
-  engine_handle_input_device(&pengine_stack_uint_330,&engine_base_data_offset_40,&engine_data_18098ba10,&engine_data_18098baa0);
-  pengine_stack_uint_348 = &engine_data_28;
-  engine_handle_input_device(&pengine_stack_uint_330,&engine_base_data_offset_40,&engine_data_18098ba10,&engine_data_18098ba40);
+  pengine_stack_uint_348 = &engine_camera_buffer_address;
+  engine_handle_input_device(&pengine_stack_uint_330,&engine_base_data_offset_40,&engine_network_buffer_address,&engine_physics_buffer_address);
+  pengine_stack_uint_348 = &engine_render_mode;
+  engine_handle_input_device(&pengine_stack_uint_330,&engine_base_data_offset_40,&engine_network_buffer_address,&engine_audio_buffer_address);
   pengine_stack_uint_348 = &engine_data_73;
   if (engine_stack_ptr_1b8 != (void*)0x0) {
     pengine_stack_uint_348 = engine_stack_ptr_1b8;
   }
-  engine_handle_input_device(&pengine_stack_uint_330,&engine_base_data_offset_40,&engine_data_18098ba10,&engine_data_18098ba70);
+  engine_handle_input_device(&pengine_stack_uint_330,&engine_base_data_offset_40,&engine_network_buffer_address,&engine_lighting_buffer_address);
   pengine_stack_uint_348 = &engine_data_73;
   if (engine_stack_ptr_1d8 != (void*)0x0) {
     pengine_stack_uint_348 = engine_stack_ptr_1d8;
   }
-  engine_handle_input_device(&pengine_stack_uint_330,&engine_base_data_offset_40,&engine_data_18098ba10,&engine_data_18098ba60);
+  engine_handle_input_device(&pengine_stack_uint_330,&engine_base_data_offset_40,&engine_network_buffer_address,&engine_shader_buffer_address);
   pengine_stack_uint_1e0 = &engine_system_context_data;
   if (engine_stack_ptr_1d8 != (void*)0x0) {
                     // WARNING: Subroutine does not return
@@ -24820,7 +24820,7 @@ void engine_validate_system_configuration(uint64 engine_data_structure_ptr)
   pengine_stack_uint_300 = (void*)0x0;
   engine_stack_uint_2f8 = 0;
   engine_temp_uint0 = engine_call_data_counter();
-  engine_handle_input_device(&pengine_stack_uint_2e8,&engine_data_1809fe8f8,engine_temp_uint0 / 0x100000 & 0xffffffff);
+  engine_handle_input_device(&pengine_stack_uint_2e8,&engine_performance_buffer_address,engine_temp_uint0 / 0x100000 & 0xffffffff);
   engine_stack_buffer_88[0] = 0x48;
   engine_temp_uint1 = GetCurrentProcess();
   engine_temp_int_8 = K32GetProcessMemoryInfo(engine_temp_uint1,engine_stack_buffer_88,0x48);
@@ -24828,19 +24828,19 @@ void engine_validate_system_configuration(uint64 engine_data_structure_ptr)
   if (engine_temp_int_8 != 0) {
     engine_temp_uint0 = engine_stack_uint_50;
   }
-  engine_handle_input_device(&pengine_stack_uint_308,&engine_data_1809fe8f8,engine_temp_uint0 / 0x100000 & 0xffffffff);
+  engine_handle_input_device(&pengine_stack_uint_308,&engine_performance_buffer_address,engine_temp_uint0 / 0x100000 & 0xffffffff);
   pengine_stack_uint_348 = &engine_data_73;
-  engine_handle_input_device(&pengine_stack_uint_330,&engine_base_data_offset_40,&engine_data_18098ba10,&engine_base_data_offset_50);
+  engine_handle_input_device(&pengine_stack_uint_330,&engine_base_data_offset_40,&engine_network_buffer_address,&engine_base_data_offset_50);
   pengine_stack_uint_348 = &engine_data_73;
   if (pengine_stack_uint_2e0 != (void*)0x0) {
     pengine_stack_uint_348 = pengine_stack_uint_2e0;
   }
-  engine_handle_input_device(&pengine_stack_uint_330,&engine_base_data_offset_40,&engine_data_18098ba10,&engine_base_data_offset_68);
+  engine_handle_input_device(&pengine_stack_uint_330,&engine_base_data_offset_40,&engine_network_buffer_address,&engine_base_data_offset_68);
   pengine_stack_uint_348 = &engine_data_73;
   if (pengine_stack_uint_300 != (void*)0x0) {
     pengine_stack_uint_348 = pengine_stack_uint_300;
   }
-  engine_handle_input_device(&pengine_stack_uint_330,&engine_base_data_offset_40,&engine_data_18098ba10,&engine_base_data_offset_78);
+  engine_handle_input_device(&pengine_stack_uint_330,&engine_base_data_offset_40,&engine_network_buffer_address,&engine_base_data_offset_78);
   engine_temp_long_9 = _engine_data_70;
   pengine_stack_uint_308 = &engine_system_context_data;
   if (pengine_stack_uint_300 != (void*)0x0) {
@@ -24868,12 +24868,12 @@ void engine_validate_system_configuration(uint64 engine_data_structure_ptr)
   }
   pengine_stack_uint_348 = (void*)
                 ((double)(engine_temp_long4 - _engine_data_48) * engine_data_pointer_50 - *(double *)(engine_temp_long_9 + 0x210));
-  engine_handle_input_device(&pengine_stack_uint_330,&engine_base_data_offset_98,&engine_data_18098ba10,&engine_base_data_offset_88);
+  engine_handle_input_device(&pengine_stack_uint_330,&engine_base_data_offset_98,&engine_network_buffer_address,&engine_base_data_offset_88);
   pengine_stack_uint_348 = &engine_data_73;
   if (engine_stack_ptr_1f8 != (void*)0x0) {
     pengine_stack_uint_348 = engine_stack_ptr_1f8;
   }
-  engine_handle_input_device(&pengine_stack_uint_330,&engine_base_data_offset_40,&engine_data_18098ba10,&engine_data_18098ba50);
+  engine_handle_input_device(&pengine_stack_uint_330,&engine_base_data_offset_40,&engine_network_buffer_address,&engine_texture_buffer_address);
   engine_stack_pointer_220 = (void*)0x0;
   engine_stack_pointer_218 = (void*)0x0;
   engine_stack_uint_210 = 0;
@@ -24895,7 +24895,7 @@ void engine_validate_system_configuration(uint64 engine_data_structure_ptr)
     pengine_stack_uint_110 = aengine_stack_uint_100;
     aengine_stack_uint_100[0] = 0;
     engine_stack_uint_108 = 1;
-    strcpy_s(aengine_stack_uint_100,MEMORY_COMPARE_SIZE_0x10,&engine_data_28);
+    strcpy_s(aengine_stack_uint_100,MEMORY_COMPARE_SIZE_0x10,&engine_render_mode);
     engine_process_data_structure_operations(&engine_stack_pointer_220,engine_data_ptr9 + 4,&pengine_stack_uint_118);
     pengine_stack_uint_118 = &engine_data_18098bcb0;
   }
@@ -25080,7 +25080,7 @@ LAB_180065a3e:
     if (engine_stack_pointer_198 != (void*)0x0) {
       engine_data_pointer_6 = engine_stack_pointer_198;
     }
-    engine_handle_input_device(&pengine_stack_uint_330,&engine_data_1809fe7f8,engine_data_pointer_6);
+    engine_handle_input_device(&pengine_stack_uint_330,&engine_input_buffer_address,engine_data_pointer_6);
     pengine_stack_uint_1a0 = &engine_system_context_data;
     if (engine_stack_pointer_198 != (void*)0x0) {
                     // WARNING: Subroutine does not return
@@ -25098,7 +25098,7 @@ LAB_180065a3e:
     fclose(engine_temp_long_9);
     engine_stack_long_278 = 0;
     LOCK();
-    _engine_data_60 = _engine_data_60 + -1;
+    _engine_audio_flags = _engine_audio_flags + -1;
     UNLOCK();
     engine_temp_long_9 = 0;
     engine_next_node_ptr = engine_stack_pointer_220;
@@ -25135,7 +25135,7 @@ LAB_180065a3e:
       fclose(engine_temp_long_9);
       engine_stack_long_278 = 0;
       LOCK();
-      _engine_data_60 = _engine_data_60 + -1;
+      _engine_audio_flags = _engine_audio_flags + -1;
       UNLOCK();
     }
     pengine_stack_uint_180 = &engine_system_context_data;
@@ -25223,7 +25223,7 @@ void engine_execute_system_validation(uint64 engine_data_structure_ptr,longlong 
   uint64 engine_stack_uint_48;
   
   engine_stack_uint_48 = 0xfffffffffffffffe;
-  pengine_stack_long_b0 = *(longlong **)(_engine_data_08 + 0x18);
+  pengine_stack_long_b0 = *(longlong **)(_engine_system_flags + 0x18);
   engine_call_data_writer(&pengine_stack_uint_a8,_engine_data_70 + 0x170,engine_comparison_params,engine_system_parameter_4,0);
   engine_temp_int_5 = engine_stack_uint_98 + 3;
   engine_call_array_builder(&pengine_stack_uint_a8,engine_temp_int_5);
@@ -25235,10 +25235,10 @@ void engine_execute_system_validation(uint64 engine_data_structure_ptr,longlong 
   }
   ppengine_stack_uint_68 = &pengine_stack_uint_a8;
   ppengine_stack_long_60 = &pengine_stack_long_b0;
-  engine_handle_system_data_processing(&ppengine_stack_uint_68,_engine_data_20,&engine_data_d8);
+  engine_handle_system_data_processing(&ppengine_stack_uint_68,_engine_data_20,&engine_physics_flags);
   engine_handle_system_data_processing(&ppengine_stack_uint_68,_engine_data_b0,&engine_control_data);
   presource_status_flag = *(code **)(*pengine_stack_long_b0 + 0x40);
-  engine_temp_uint_3 = engine_call_data_writer(&ppengine_stack_uint_68,_engine_data_28 + 0x28);
+  engine_temp_uint_3 = engine_call_data_writer(&ppengine_stack_uint_68,_engine_render_mode + 0x28);
   (*presource_status_flag)(pengine_stack_long_b0,engine_temp_uint_3);
   ppengine_stack_uint_68 = (undefined **)&engine_system_context_data;
   if (ppengine_stack_long_60 != (longlong **)0x0) {
@@ -25249,7 +25249,7 @@ void engine_execute_system_validation(uint64 engine_data_structure_ptr,longlong 
   engine_stack_uint_50 = 0;
   ppengine_stack_uint_68 = (undefined **)&engine_data_18098bcb0;
   presource_status_flag = *(code **)(*pengine_stack_long_b0 + 0x40);
-  engine_temp_uint_3 = engine_call_data_writer(&engine_stack_pointer_88,_engine_data_28 + 0xe0);
+  engine_temp_uint_3 = engine_call_data_writer(&engine_stack_pointer_88,_engine_render_mode + 0xe0);
   (*presource_status_flag)(pengine_stack_long_b0,engine_temp_uint_3);
   engine_stack_pointer_88 = &engine_system_context_data;
   if (engine_stack_long_80 != 0) {
@@ -25345,13 +25345,13 @@ void engine_handle_system_data_processing(longlong *engine_data_structure_ptr,ui
   if (pengine_stack_uint_48 != (void*)0x0) {
     engine_current_node_ptr = pengine_stack_uint_48;
   }
-  engine_call_structure_builder(&engine_stack_value_88,engine_current_node_ptr,&engine_data_1809fe80c,engine_system_parameter_4,0);
+  engine_call_structure_builder(&engine_stack_value_88,engine_current_node_ptr,&engine_memory_pool_address,engine_system_parameter_4,0);
   engine_call_object_registrar(engine_result_flag_ptr,&engine_stack_value_88);
   if (engine_stack_long_80 != 0) {
     fclose();
     engine_stack_long_80 = 0;
     LOCK();
-    _engine_data_60 = _engine_data_60 + -1;
+    _engine_audio_flags = _engine_audio_flags + -1;
     UNLOCK();
   }
   (**(code **)(**(longlong **)engine_data_structure_ptr[1] + 0x40))(*(longlong **)engine_data_structure_ptr[1],&pengine_stack_uint_50);
@@ -25366,7 +25366,7 @@ void engine_handle_system_data_processing(longlong *engine_data_structure_ptr,ui
   if (engine_stack_long_80 != 0) {
     fclose();
     LOCK();
-    _engine_data_60 = _engine_data_60 + -1;
+    _engine_audio_flags = _engine_audio_flags + -1;
     UNLOCK();
   }
   return;
@@ -25429,7 +25429,7 @@ void engine_process_system_operations(uint64 engine_data_structure_ptr,uint64 en
   
   engine_stack_uint_b0 = 0xfffffffffffffffe;
   engine_stack_uint_48 = _engine_data_a8 ^ (ulonglong)aengine_stack_uint_1f8;
-  resource_status_flag = (**(code **)**(void**)(_engine_data_08 + 0x18))();
+  resource_status_flag = (**(code **)**(void**)(_engine_system_flags + 0x18))();
   engine_temp_int_4 = 0;
   if (resource_status_flag != '\0') {
     engine_process_system_configuration(&engine_stack_ptr_1b8,&engine_data_70);
@@ -25446,12 +25446,12 @@ void engine_process_system_operations(uint64 engine_data_structure_ptr,uint64 en
   }
   if (((engine_network_flag != '\0') || (engine_render_flag != '\0')) ||
      (*(int *)(_engine_data_b0 + 0x10e0) == 1)) {
-    engine_handle_system_validation(_engine_data_28,5,3,&engine_base_data_offset_68);
+    engine_handle_system_validation(_engine_render_mode,5,3,&engine_base_data_offset_68);
     engine_call_memory_compactor();
     goto LAB_180066971;
   }
   if ((engine_comparison_params == '\0') && (engine_graphics_flag == '\0')) {
-    if (((engine_data_60 == '\0') || (engine_temp_int_2 = IsDebuggerPresent(), engine_temp_int_2 != 0)) &&
+    if (((engine_audio_flags == '\0') || (engine_temp_int_2 = IsDebuggerPresent(), engine_temp_int_2 != 0)) &&
        (engine_physics_flag == '\0')) {
       engine_temp_uint_3 = MessageBoxA(0,&engine_base_data_offset_a0,&engine_unknown_24,0x40004);
       switch(engine_temp_uint_3) {
@@ -25474,18 +25474,18 @@ void engine_process_system_operations(uint64 engine_data_structure_ptr,uint64 en
       }
       if (engine_temp_int_4 == 4) goto LAB_18006650a;
     }
-    else if (*(char *)(_engine_data_28 + 0x18) != '\0') {
+    else if (*(char *)(_engine_render_mode + 0x18) != '\0') {
       pengine_stack_uint_1c8 = &engine_base_data_offset_a0;
       engine_stack_ptr_1d0 = &engine_unknown_24;
       engine_stack_ptr_1d8 = &engine_base_data_offset_8;
-      engine_call_buffer_manager(_engine_data_28,3,0xffffffff00000000,0xd);
+      engine_call_buffer_manager(_engine_render_mode,3,0xffffffff00000000,0xd);
     }
-    engine_handle_system_validation(_engine_data_28,5,3,&engine_base_data_offset_28);
+    engine_handle_system_validation(_engine_render_mode,5,3,&engine_base_data_offset_28);
   }
   else {
 LAB_18006650a:
     engine_process_system_data_request(&engine_stack_pointer_198);
-    engine_temp_index = engine_process_system_configuration(&engine_stack_pointer_138,&engine_data_50);
+    engine_temp_index = engine_process_system_configuration(&engine_stack_pointer_138,&engine_ui_flags);
     engine_temp_int_4 = engine_process_stack_data(&engine_stack_pointer_198,engine_temp_index);
     engine_stack_pointer_138 = &engine_system_context_data;
     if (engine_stack_long_130 != 0) {
@@ -25509,7 +25509,7 @@ LAB_18006650a:
     pengine_stack_uint_170 = (void*)0x0;
     engine_stack_uint_168 = 0;
     engine_temp_uint_6 = engine_call_data_counter();
-    engine_handle_input_device(&engine_stack_pointer_158,&engine_data_1809fe8f8,engine_temp_uint_6 / 0x100000 & 0xffffffff);
+    engine_handle_input_device(&engine_stack_pointer_158,&engine_performance_buffer_address,engine_temp_uint_6 / 0x100000 & 0xffffffff);
     aengine_stack_uint_98[0] = 0x48;
     engine_temp_index = GetCurrentProcess();
     engine_temp_int_4 = K32GetProcessMemoryInfo(engine_temp_index,aengine_stack_uint_98,0x48);
@@ -25517,34 +25517,34 @@ LAB_18006650a:
     if (engine_temp_int_4 != 0) {
       engine_temp_uint_6 = engine_stack_value_60;
     }
-    engine_handle_input_device(&pengine_stack_uint_178,&engine_data_1809fe8f8,engine_temp_uint_6 / 0x100000 & 0xffffffff);
-    engine_handle_system_validation(_engine_data_28,5,3,&engine_data_18);
+    engine_handle_input_device(&pengine_stack_uint_178,&engine_performance_buffer_address,engine_temp_uint_6 / 0x100000 & 0xffffffff);
+    engine_handle_system_validation(_engine_render_mode,5,3,&engine_data_18);
     engine_stack_ptr_1d8 = &engine_data_73;
     if (pengine_stack_uint_150 != (void*)0x0) {
       engine_stack_ptr_1d8 = pengine_stack_uint_150;
     }
-    engine_handle_system_validation(_engine_data_28,5,3,&engine_base_data_offset_58);
+    engine_handle_system_validation(_engine_render_mode,5,3,&engine_base_data_offset_58);
     engine_stack_ptr_1d8 = &engine_data_73;
     if (pengine_stack_uint_170 != (void*)0x0) {
       engine_stack_ptr_1d8 = pengine_stack_uint_170;
     }
-    engine_handle_system_validation(_engine_data_28,5,3,&engine_base_data_offset_70);
+    engine_handle_system_validation(_engine_render_mode,5,3,&engine_base_data_offset_70);
     engine_stack_ptr_1d8 = &engine_data_73;
-    engine_handle_system_validation(_engine_data_28,5,3,&engine_base_data_offset_88);
+    engine_handle_system_validation(_engine_render_mode,5,3,&engine_base_data_offset_88);
     engine_stack_ptr_1d8 = &engine_data_73;
     if (pengine_stack_uint_c8 != (void*)0x0) {
       engine_stack_ptr_1d8 = pengine_stack_uint_c8;
     }
-    engine_handle_system_validation(_engine_data_28,5,3,&engine_base_data_offset_a8);
+    engine_handle_system_validation(_engine_render_mode,5,3,&engine_base_data_offset_a8);
     engine_stack_ptr_1d8 = &engine_base_data_offset_c8;
     if (engine_comparison_params != '\0') {
       engine_stack_ptr_1d8 = &engine_base_data_offset_c0;
     }
-    engine_handle_system_validation(_engine_data_28,5,3,&engine_base_data_offset_d8);
+    engine_handle_system_validation(_engine_render_mode,5,3,&engine_base_data_offset_d8);
     engine_call_memory_compactor();
     if (((engine_system_parameter_4 == '\0') || (engine_animation_flag != '\0')) || (*(int *)(_engine_data_b0 + 0x1150) != 0))
     {
-      engine_handle_system_validation(_engine_data_28,5,3,&engine_base_data_offset_f0);
+      engine_handle_system_validation(_engine_render_mode,5,3,&engine_base_data_offset_f0);
       engine_call_memory_compactor();
     }
     else {
@@ -25651,7 +25651,7 @@ void engine_validate_component_states(uint64 engine_data_structure_ptr,uint64 en
   uint64 engine_stack_value_88;
   uint8 engine_stack_array_80 [72];
   
-  engine_temp_char_flag = (**(code **)**(void**)(_engine_data_08 + 0x18))();
+  engine_temp_char_flag = (**(code **)**(void**)(_engine_system_flags + 0x18))();
   if (engine_temp_char_flag == '\0') {
     if ((engine_network_flag == '\0') && (*(int *)(_engine_data_b0 + 0x10e0) != 1)) {
       comparison_result_index = 0;
@@ -25674,7 +25674,7 @@ LAB_180066bf4:
                     // WARNING: Subroutine does not return
         engine_call_cleanup_routine(engine_temporary_pointer);
       }
-      if (((engine_data_60 == '\0') || (engine_temp_int_6 = IsDebuggerPresent(), engine_temp_int_6 != 0)) &&
+      if (((engine_audio_flags == '\0') || (engine_temp_int_6 = IsDebuggerPresent(), engine_temp_int_6 != 0)) &&
          (engine_physics_flag == '\0')) {
         engine_temp_uint_4 = MessageBoxA(0,&engine_base_data_offset_a0,&engine_unknown_24,0x40004);
         switch(engine_temp_uint_4) {
@@ -25697,14 +25697,14 @@ LAB_180066bf4:
         }
         if (comparison_result_index == 4) goto LAB_180066bf4;
       }
-      else if (*(char *)(_engine_data_28 + 0x18) != '\0') {
-        engine_call_buffer_manager(_engine_data_28,3,0xffffffff00000000,0xd,&engine_base_data_offset_8,&engine_unknown_24,
+      else if (*(char *)(_engine_render_mode + 0x18) != '\0') {
+        engine_call_buffer_manager(_engine_render_mode,3,0xffffffff00000000,0xd,&engine_base_data_offset_8,&engine_unknown_24,
                       &engine_base_data_offset_a0);
       }
-      engine_handle_system_validation(_engine_data_28,5,3,&engine_base_data_offset_28);
+      engine_handle_system_validation(_engine_render_mode,5,3,&engine_base_data_offset_28);
     }
     else {
-      engine_handle_system_validation(_engine_data_28,5,3,&engine_base_data_offset_68);
+      engine_handle_system_validation(_engine_render_mode,5,3,&engine_base_data_offset_68);
       engine_call_memory_compactor();
     }
   }
@@ -26216,7 +26216,7 @@ void engine_unnamed_function_330(longlong engine_data_structure_ptr)
     engine_unnamed_function_340(*(void*)(engine_data_structure_ptr + MEMORY_OFFSET_0x20));
   }
                     // WARNING: Subroutine does not return
-  engine_validate_system_compatibility(_engine_data_28,&engine_base_data_offset_50,comparison_result_index);
+  engine_validate_system_compatibility(_engine_render_mode,&engine_base_data_offset_50,comparison_result_index);
 }
 
 
@@ -26237,7 +26237,7 @@ void engine_unnamed_function_340(uint64 engine_data_structure_ptr,longlong engin
     structure_data_pointer = engine_data_pointer;
   }
                     // WARNING: Subroutine does not return
-  engine_validate_system_compatibility(_engine_data_28,&engine_base_data_offset_70,structure_data_pointer);
+  engine_validate_system_compatibility(_engine_render_mode,&engine_base_data_offset_70,structure_data_pointer);
 }
 
 
@@ -26476,7 +26476,7 @@ void engine_unnamed_function_400(longlong engine_data_structure_ptr,longlong eng
       engine_next_node_ptr = *(undefined **)(engine_result_flag_ptr + 8);
     }
                     // WARNING: Subroutine does not return
-    engine_validate_system_compatibility(_engine_data_28,&engine_base_data_offset_d8,engine_next_node_ptr);
+    engine_validate_system_compatibility(_engine_render_mode,&engine_base_data_offset_d8,engine_next_node_ptr);
   }
   engine_temp_long_3 = CreateIoCompletionPort(engine_temp_long_2,*(void*)(engine_data_structure_ptr + 0x213430),0,0);
   if (engine_temp_long_3 != *(longlong *)(engine_data_structure_ptr + 0x213430)) {
@@ -26485,7 +26485,7 @@ void engine_unnamed_function_400(longlong engine_data_structure_ptr,longlong eng
       engine_next_node_ptr = *(undefined **)(engine_result_flag_ptr + 8);
     }
                     // WARNING: Subroutine does not return
-    engine_validate_system_compatibility(_engine_data_28,&engine_base_data_offset_10,engine_next_node_ptr);
+    engine_validate_system_compatibility(_engine_render_mode,&engine_base_data_offset_10,engine_next_node_ptr);
   }
   engine_temp_long_3 = engine_data_structure_ptr + 0x2133e0;
   engine_stack_long_2a8 = engine_temp_long_3;
@@ -26589,12 +26589,12 @@ uint64 engine_unnamed_function_410(longlong engine_data_structure_ptr,longlong e
                          0);
         if (comparison_result_index != 0) {
                     // WARNING: Subroutine does not return
-          engine_validate_system_compatibility(_engine_data_28,&engine_base_data_offset_78);
+          engine_validate_system_compatibility(_engine_render_mode,&engine_base_data_offset_78);
         }
         comparison_result_index = GetLastError();
         if (comparison_result_index != 0x3e5) {
                     // WARNING: Subroutine does not return
-          engine_validate_system_compatibility(_engine_data_28,&engine_base_data_offset_40,comparison_result_index);
+          engine_validate_system_compatibility(_engine_render_mode,&engine_base_data_offset_40,comparison_result_index);
         }
         engine_temp_uint_4 = 1;
       }
@@ -27075,7 +27075,7 @@ longlong engine_unnamed_function_490(longlong *engine_data_structure_ptr,longlon
     }
     else {
       if (engine_comparison_params == 1) {
-        engine_temporary_long = engine_call_memory_allocator(_engine_data_18,0x20,8,engine_data_bc);
+        engine_temporary_long = engine_call_memory_allocator(_engine_data_18,0x20,8,engine_network_flags);
         engine_temp_long_2 = *engine_result_flag_ptr;
         *(void*)(engine_temporary_long + 0x10) = 0;
         *(code **)(engine_temporary_long + 0x18) = _guard_check_icall;
@@ -27857,7 +27857,7 @@ uint64 engine_unnamed_function_700(int engine_data_structure_ptr)
   if ((engine_data_structure_ptr != -0x3fffff03) && (engine_data_structure_ptr != -0x3ffffffb)) {
     return 0;
   }
-  (**(code **)(*(longlong *)*_engine_data_08 + 0x68))();
+  (**(code **)(*(longlong *)*_engine_system_flags + 0x68))();
   return 1;
 }
 
@@ -27913,7 +27913,7 @@ void engine_unnamed_function_780(uint64 engine_data_structure_ptr,uint64 engine_
     return;
   }
   engine_temp_byte9 = true;
-  engine_temp_char_flag = (**(code **)**(void**)(_engine_data_08 + 0x18))();
+  engine_temp_char_flag = (**(code **)**(void**)(_engine_system_flags + 0x18))();
   if ((engine_temp_char_flag == '\0') && (comparison_result_index = IsDebuggerPresent(), comparison_result_index != 0)) {
     engine_temp_byte = true;
   }
@@ -27946,17 +27946,17 @@ void engine_unnamed_function_780(uint64 engine_data_structure_ptr,uint64 engine_
   engine_stack_pointer_68 = (void*)0x0;
   engine_stack_value_60 = 0;
   engine_handle_input_device(&engine_stack_pointer_70,&engine_base_data_offset_38,engine_result_flag_ptr);
-  engine_perform_system_validation(_engine_data_28,5,0xffffffff00000000,&engine_base_data_offset_50);
+  engine_perform_system_validation(_engine_render_mode,5,0xffffffff00000000,&engine_base_data_offset_50);
   temp_data_pointer = &engine_data_73;
   if (engine_stack_pointer_68 != (void*)0x0) {
     temp_data_pointer = engine_stack_pointer_68;
   }
-  engine_perform_system_validation(_engine_data_28,5,0xffffffff00000000,&engine_base_data_offset_b0,temp_data_pointer);
+  engine_perform_system_validation(_engine_render_mode,5,0xffffffff00000000,&engine_base_data_offset_b0,temp_data_pointer);
   temp_data_pointer = &engine_data_73;
   if (next_data_pointer != (void*)0x0) {
     temp_data_pointer = next_data_pointer;
   }
-  engine_call_buffer_manager(_engine_data_28,5,0xffffffff00000000,3,temp_data_pointer);
+  engine_call_buffer_manager(_engine_render_mode,5,0xffffffff00000000,3,temp_data_pointer);
   engine_call_memory_compactor();
   next_data_pointer = &engine_data_73;
   if (engine_stack_pointer_68 != (void*)0x0) {
@@ -28168,7 +28168,7 @@ LAB_180070b00:
   engine_stack_uint_128 = 0;
   engine_stack_pointer_138 = (uint8*)0x0;
   engine_stack_uint_130 = 0;
-  engine_data_ptr8 = &engine_data_60;
+  engine_data_ptr8 = &engine_audio_flags;
   if (engine_stack_char_120 != '\0') {
     engine_data_ptr8 = &engine_base_data_offset_48;
   }
@@ -28371,7 +28371,7 @@ LAB_18007113f:
   }
   engine_temp_byte13 = 1;
   engine_stack_char_11f = '\x01';
-  engine_temp_char_flag_2 = (**(code **)**(void**)(_engine_data_08 + 0x18))();
+  engine_temp_char_flag_2 = (**(code **)**(void**)(_engine_system_flags + 0x18))();
   if ((engine_temp_char_flag_2 != '\0') || (engine_temp_int_4 = IsDebuggerPresent(), engine_temp_int_4 == 0)) {
     engine_temp_byte13 = 0;
   }
@@ -28421,17 +28421,17 @@ LAB_18007113f:
     pengine_stack_uint_d8 = &engine_data_18098bcb0;
   }
   engine_data_ptr0 = pengine_stack_uint_110;
-  engine_perform_system_validation(_engine_data_28,5,0xffffffff00000000,&engine_base_data_offset_50);
+  engine_perform_system_validation(_engine_render_mode,5,0xffffffff00000000,&engine_base_data_offset_50);
   engine_stack_pointer_168 = &engine_data_73;
   if (engine_stack_pointer_138 != (uint8*)0x0) {
     engine_stack_pointer_168 = engine_stack_pointer_138;
   }
-  engine_perform_system_validation(_engine_data_28,4,0xffffffff00000000,&engine_base_data_offset_b0);
+  engine_perform_system_validation(_engine_render_mode,4,0xffffffff00000000,&engine_base_data_offset_b0);
   engine_stack_pointer_168 = &engine_data_73;
   if (engine_data_ptr0 != (uint8*)0x0) {
     engine_stack_pointer_168 = engine_data_ptr0;
   }
-  engine_call_buffer_manager(_engine_data_28,4,0xffffffff00000000,3);
+  engine_call_buffer_manager(_engine_render_mode,4,0xffffffff00000000,3);
   engine_call_memory_compactor();
   engine_data_ptr2 = &engine_data_73;
   if (engine_stack_pointer_138 != (uint8*)0x0) {
@@ -28439,7 +28439,7 @@ LAB_18007113f:
   }
   OutputDebugStringA(engine_data_ptr2);
   engine_unnamed_function_30(engine_temp_long5);
-  if (engine_data_60 != '\0') {
+  if (engine_audio_flags != '\0') {
     if (engine_temp_byte13 != 0) {
       if (((engine_stack_char_147 == '\0') && (engine_param_6 != '\0')) && (*(int *)(_engine_data_70 + 0x340) != 2)) {
         engine_stack_value_148 = 1;
@@ -28451,7 +28451,7 @@ LAB_18007113f:
       }
     }
     if ((_engine_data_48 == 0) || (*(int *)(_engine_data_48 + 0x168) == 2)) {
-      engine_perform_system_validation(_engine_data_28,4,0xffffffff00000000,&engine_base_data_offset_88);
+      engine_perform_system_validation(_engine_render_mode,4,0xffffffff00000000,&engine_base_data_offset_88);
       engine_call_memory_compactor();
       engine_temp_int_4 = IsDebuggerPresent();
       if ((engine_temp_int_4 != 0) && (engine_graphics_flag == '\0')) {
@@ -28472,13 +28472,13 @@ LAB_18007113f:
         if (engine_stack_pointer_138 != (uint8*)0x0) {
           engine_data_ptr2 = engine_stack_pointer_138;
         }
-        if (((engine_data_60 == '\0') || (engine_temp_int_4 = IsDebuggerPresent(), engine_temp_int_4 != 0)) &&
+        if (((engine_audio_flags == '\0') || (engine_temp_int_4 = IsDebuggerPresent(), engine_temp_int_4 != 0)) &&
            (engine_physics_flag == '\0')) break;
-        if (*(char *)(_engine_data_28 + 0x18) != '\0') {
+        if (*(char *)(_engine_render_mode + 0x18) != '\0') {
           engine_stack_pointer_168 = &engine_base_data_offset_8;
           pengine_stack_uint_160 = engine_data_ptr8;
           engine_stack_pointer_158 = engine_data_ptr2;
-          engine_call_buffer_manager(_engine_data_28,3,0xffffffff00000000,0xd);
+          engine_call_buffer_manager(_engine_render_mode,3,0xffffffff00000000,0xd);
         }
       }
       engine_temp_uint64_value = MessageBoxA(0,engine_data_ptr2,engine_data_ptr8,0x52012);
@@ -28508,15 +28508,15 @@ LAB_18007113f:
         if (engine_data_ptr0 != (uint8*)0x0) {
           engine_data_ptr2 = engine_data_ptr0;
         }
-        if (((engine_data_60 == '\0') || (engine_temp_int_4 = IsDebuggerPresent(), engine_temp_int_4 != 0)) &&
+        if (((engine_audio_flags == '\0') || (engine_temp_int_4 = IsDebuggerPresent(), engine_temp_int_4 != 0)) &&
            (engine_physics_flag == '\0')) {
           MessageBoxA(0,engine_data_ptr2,&engine_base_data_offset_c8,0x41010);
         }
-        else if (*(char *)(_engine_data_28 + 0x18) != '\0') {
+        else if (*(char *)(_engine_render_mode + 0x18) != '\0') {
           pengine_stack_uint_160 = &engine_base_data_offset_c8;
           engine_stack_pointer_168 = &engine_base_data_offset_8;
           engine_stack_pointer_158 = engine_data_ptr2;
-          engine_call_buffer_manager(_engine_data_28,3,0xffffffff00000000,0xd);
+          engine_call_buffer_manager(_engine_render_mode,3,0xffffffff00000000,0xd);
         }
       }
       else if (((engine_param_6 == '\0') || (*(int *)(_engine_data_70 + 0x340) == 2)) &&
@@ -28591,7 +28591,7 @@ LAB_1800715eb:
   }
   engine_temp_uint64_value = engine_unnamed_function_5330(engine_data_ptr8);
                     // WARNING: Subroutine does not return
-  engine_validate_system_compatibility(_engine_data_28,&engine_base_data_offset_e0,engine_temp_byte13 ^ 1,engine_temp_uint64_value);
+  engine_validate_system_compatibility(_engine_render_mode,&engine_base_data_offset_e0,engine_temp_byte13 ^ 1,engine_temp_uint64_value);
 }
 
 
@@ -28848,17 +28848,17 @@ LAB_180071e34:
 LAB_180071eb0:
   *(uint16*)(engine_stack_pointer_88 + engine_stack_value_80) = 10;
   engine_stack_value_80 = engine_temp_uint_2 + 0xe;
-  engine_perform_system_validation(_engine_data_28,5,0xffffffff00000000,&engine_base_data_offset_50);
+  engine_perform_system_validation(_engine_render_mode,5,0xffffffff00000000,&engine_base_data_offset_50);
   next_data_pointer = &engine_data_73;
   if (engine_stack_pointer_88 != (uint8*)0x0) {
     next_data_pointer = engine_stack_pointer_88;
   }
-  engine_perform_system_validation(_engine_data_28,4,0xffffffff00000000,&engine_base_data_offset_b0,next_data_pointer);
+  engine_perform_system_validation(_engine_render_mode,4,0xffffffff00000000,&engine_base_data_offset_b0,next_data_pointer);
   engine_temporary_pointer = &engine_data_73;
   if (engine_temp_uint_ptr_9 != (void*)0x0) {
     engine_temporary_pointer = engine_temp_uint_ptr_9;
   }
-  engine_call_buffer_manager(_engine_data_28,4,0xffffffff00000000,3,engine_temporary_pointer);
+  engine_call_buffer_manager(_engine_render_mode,4,0xffffffff00000000,3,engine_temporary_pointer);
   engine_call_memory_compactor();
   next_data_pointer = &engine_data_73;
   if (engine_stack_pointer_88 != (uint8*)0x0) {
@@ -28958,7 +28958,7 @@ void engine_unnamed_function_810(uint64 engine_data_structure_ptr,longlong engin
   engine_stack_uint_116 = 0;
   engine_stack_uint_b0 = engine_comparison_params;
   engine_stack_long_88 = engine_system_parameter_4;
-  if ((engine_data_60 != '\0') || (engine_render_flag != '\0')) goto LAB_180072d7b;
+  if ((engine_audio_flags != '\0') || (engine_render_flag != '\0')) goto LAB_180072d7b;
   engine_stack_value_58 = 0;
   engine_stack_uint_50 = 0;
   engine_initialize_component(&engine_stack_value_58,MEMORY_COMPARE_SIZE_0x10,&engine_magic_header_data,engine_comparison_params);
@@ -29055,7 +29055,7 @@ LAB_1800721e1:
     comparison_result_index = WaitForSingleObject(_engine_screen_resolution,0);
     if (comparison_result_index == 0) {
       engine_stack_char_117 = '\x01';
-      engine_temp_char_flag = (**(code **)**(void**)(_engine_data_08 + 0x18))();
+      engine_temp_char_flag = (**(code **)**(void**)(_engine_system_flags + 0x18))();
       if ((engine_temp_char_flag == '\0') && (comparison_result_index = IsDebuggerPresent(), comparison_result_index != 0)) {
         engine_temp_char_flag = '\x01';
       }
@@ -29352,12 +29352,12 @@ LAB_1800729bd:
         pengine_stack_value_148 = pengine_stack_uint_130;
       }
       engine_stack_uint_128 = engine_temp_uint_6 + 0x6d;
-      engine_perform_system_validation(_engine_data_28,4,0xffffffff00000000,&engine_base_data_offset_b0);
+      engine_perform_system_validation(_engine_render_mode,4,0xffffffff00000000,&engine_base_data_offset_b0);
       pengine_stack_value_148 = &engine_data_73;
       if (engine_data_ptr0 != (void*)0x0) {
         pengine_stack_value_148 = engine_data_ptr0;
       }
-      engine_call_buffer_manager(_engine_data_28,4,0xffffffff00000000,3);
+      engine_call_buffer_manager(_engine_render_mode,4,0xffffffff00000000,3);
       engine_call_memory_compactor();
       engine_data_ptr4 = &engine_data_73;
       if (pengine_stack_uint_130 != (uint8*)0x0) {
@@ -29502,7 +29502,7 @@ bool engine_unnamed_function_830(uint64 engine_data_structure_ptr,uint64_t *engi
   void* engine_data_ptr2;
   void* engine_data_ptr3;
   void* engine_data_ptr4;
-  char cStackX_10;
+  char engine_stack_char_x10;
   uint engine_temp_uint5;
   void* pengine_stack_uint_110;
   void* pengine_stack_uint_108;
@@ -29620,11 +29620,11 @@ bool engine_unnamed_function_830(uint64 engine_data_structure_ptr,uint64_t *engi
   if (engine_stack_pointer_e8 != (uint16*)0x0) {
     engine_data_ptr0 = engine_stack_pointer_e8;
   }
-  engine_call_buffer_manager(_engine_data_28,5,0xffffffff00000000,3,&engine_data_1809fe62c,engine_data_ptr0);
+  engine_call_buffer_manager(_engine_render_mode,5,0xffffffff00000000,3,&engine_data_1809fe62c,engine_data_ptr0);
   engine_call_memory_compactor();
   engine_temp_long_4 = _engine_data_70;
   if (_engine_data_70 == 0) {
-    cStackX_10 = '\0';
+    engine_stack_char_x10 = '\0';
     pengine_stack_uint_110 = &engine_system_context_data;
     engine_stack_uint_f8 = 0;
     pengine_stack_uint_108 = (void*)0x0;
@@ -29651,7 +29651,7 @@ bool engine_unnamed_function_830(uint64 engine_data_structure_ptr,uint64_t *engi
     engine_temporary_pointer = pengine_stack_uint_a8;
   }
   else {
-    cStackX_10 = *(char *)(_engine_data_70 + 0x141);
+    engine_stack_char_x10 = *(char *)(_engine_data_70 + 0x141);
     engine_stack_pointer_b0 = &engine_system_context_data;
     engine_stack_uint_98 = 0;
     pengine_stack_uint_a8 = (void*)0x0;
@@ -29730,7 +29730,7 @@ bool engine_unnamed_function_830(uint64 engine_data_structure_ptr,uint64_t *engi
   if (engine_data_ptr3 != (void*)0x0) {
     engine_data_ptr4 = engine_data_ptr3;
   }
-  engine_process_system_operations(0,&engine_stack_pointer_90,cStackX_10,1,engine_data_ptr4,engine_data_ptr0,engine_temp_uint5);
+  engine_process_system_operations(0,&engine_stack_pointer_90,engine_stack_char_x10,1,engine_data_ptr4,engine_data_ptr0,engine_temp_uint5);
   if (engine_stack_long_48 != 0) {
     engine_unnamed_function_120();
   }
@@ -29763,7 +29763,7 @@ bool engine_unnamed_function_830(uint64 engine_data_structure_ptr,uint64_t *engi
     engine_stack_pointer_d0 = &engine_data_18098bcb0;
     engine_stack_pointer_f0 = &engine_system_context_data;
     if (engine_stack_pointer_e8 == (uint16*)0x0) {
-      return cStackX_10 != '\0';
+      return engine_stack_char_x10 != '\0';
     }
                     // WARNING: Subroutine does not return
     engine_call_cleanup_routine();
@@ -29787,20 +29787,20 @@ void engine_unnamed_function_840(uint64 engine_data_structure_ptr,uint64 engine_
   void* pengine_stack_uint_30;
   longlong engine_stack_long_28;
   
-  engine_call_buffer_manager(_engine_data_28,0,MEMORY_COMPARE_SIZE_0x100000000,0,&engine_base_data_offset_18,engine_result_flag_ptr,0xfffffffffffffffe);
-  if (engine_data_60 == '\0') {
+  engine_call_buffer_manager(_engine_render_mode,0,MEMORY_COMPARE_SIZE_0x100000000,0,&engine_base_data_offset_18,engine_result_flag_ptr,0xfffffffffffffffe);
+  if (engine_audio_flags == '\0') {
     engine_stack_array_18[0] = 0xffff0000;
     engine_process_system_configuration(&pengine_stack_uint_30,engine_result_flag_ptr);
-    engine_data_pointer = *(undefined **)*_engine_data_08;
+    engine_data_pointer = *(undefined **)*_engine_system_flags;
     if (engine_data_pointer == &engine_data_18098bb88) {
       engine_temp_char_flag = *(int *)(_engine_data_c8 + 0xc40) != 0;
     }
     else {
-      engine_temp_char_flag = (**(code **)(engine_data_pointer + 0x50))((void*)*_engine_data_08);
+      engine_temp_char_flag = (**(code **)(engine_data_pointer + 0x50))((void*)*_engine_system_flags);
     }
     if (engine_temp_char_flag == '\0') {
-      (**(code **)(*(longlong *)_engine_data_08[1] + 0x18))
-                ((longlong *)_engine_data_08[1],&pengine_stack_uint_30,engine_stack_array_18);
+      (**(code **)(*(longlong *)_engine_system_flags[1] + 0x18))
+                ((longlong *)_engine_system_flags[1],&pengine_stack_uint_30,engine_stack_array_18);
     }
     pengine_stack_uint_30 = &engine_system_context_data;
     if (engine_stack_long_28 != 0) {
@@ -29826,20 +29826,20 @@ void engine_unnamed_function_850(uint64 engine_data_structure_ptr,uint64 engine_
   void* pengine_stack_uint_30;
   longlong engine_stack_long_28;
   
-  engine_call_buffer_manager(_engine_data_28,0,MEMORY_COMPARE_SIZE_0x100000000,1,&engine_base_data_offset_38,engine_result_flag_ptr,0xfffffffffffffffe);
-  if (engine_data_60 == '\0') {
+  engine_call_buffer_manager(_engine_render_mode,0,MEMORY_COMPARE_SIZE_0x100000000,1,&engine_base_data_offset_38,engine_result_flag_ptr,0xfffffffffffffffe);
+  if (engine_audio_flags == '\0') {
     engine_stack_array_18[0] = 0xff00ff00;
     engine_process_system_configuration(&pengine_stack_uint_30,engine_result_flag_ptr);
-    engine_data_pointer = *(undefined **)*_engine_data_08;
+    engine_data_pointer = *(undefined **)*_engine_system_flags;
     if (engine_data_pointer == &engine_data_18098bb88) {
       engine_temp_char_flag = *(int *)(_engine_data_c8 + 0xc40) != 0;
     }
     else {
-      engine_temp_char_flag = (**(code **)(engine_data_pointer + 0x50))((void*)*_engine_data_08);
+      engine_temp_char_flag = (**(code **)(engine_data_pointer + 0x50))((void*)*_engine_system_flags);
     }
     if (engine_temp_char_flag == '\0') {
-      (**(code **)(*(longlong *)_engine_data_08[1] + 0x18))
-                ((longlong *)_engine_data_08[1],&pengine_stack_uint_30,engine_stack_array_18);
+      (**(code **)(*(longlong *)_engine_system_flags[1] + 0x18))
+                ((longlong *)_engine_system_flags[1],&pengine_stack_uint_30,engine_stack_array_18);
     }
     pengine_stack_uint_30 = &engine_system_context_data;
     if (engine_stack_long_28 != 0) {
@@ -29865,20 +29865,20 @@ void engine_unnamed_function_860(uint64 engine_data_structure_ptr,uint32_t engin
   void* pengine_stack_uint_30;
   longlong engine_stack_long_28;
   
-  engine_call_buffer_manager(_engine_data_28,0,MEMORY_COMPARE_SIZE_0x100000000,0xc,&engine_base_data_offset_58,engine_comparison_params,0xfffffffffffffffe);
-  if (engine_data_60 == '\0') {
+  engine_call_buffer_manager(_engine_render_mode,0,MEMORY_COMPARE_SIZE_0x100000000,0xc,&engine_base_data_offset_58,engine_comparison_params,0xfffffffffffffffe);
+  if (engine_audio_flags == '\0') {
     engine_stack_uint_array_20[0] = engine_result_flag_ptr;
     engine_process_system_configuration(&pengine_stack_uint_30,engine_comparison_params);
-    engine_data_pointer = *(undefined **)*_engine_data_08;
+    engine_data_pointer = *(undefined **)*_engine_system_flags;
     if (engine_data_pointer == &engine_data_18098bb88) {
       engine_temp_char_flag = *(int *)(_engine_data_c8 + 0xc40) != 0;
     }
     else {
-      engine_temp_char_flag = (**(code **)(engine_data_pointer + 0x50))((void*)*_engine_data_08);
+      engine_temp_char_flag = (**(code **)(engine_data_pointer + 0x50))((void*)*_engine_system_flags);
     }
     if (engine_temp_char_flag == '\0') {
-      (**(code **)(*(longlong *)_engine_data_08[1] + 0x18))
-                ((longlong *)_engine_data_08[1],&pengine_stack_uint_30,engine_stack_uint_array_20);
+      (**(code **)(*(longlong *)_engine_system_flags[1] + 0x18))
+                ((longlong *)_engine_system_flags[1],&pengine_stack_uint_30,engine_stack_uint_array_20);
     }
     pengine_stack_uint_30 = &engine_system_context_data;
     if (engine_stack_long_28 != 0) {
@@ -34422,22 +34422,22 @@ void engine_unnamed_function_133c(void)
   uint64 in_stack_00000088;
   uint64 in_stack_00000090;
   uint64 in_stack_00000098;
-  float fStack00000000000000a0;
-  float fStack00000000000000a4;
-  float fStack00000000000000a8;
-  float fStack00000000000000ac;
-  float fStack00000000000000b0;
-  float fStack00000000000000b4;
-  float fStack00000000000000b8;
-  float fStack00000000000000bc;
-  float fStack00000000000000c0;
-  float fStack00000000000000c4;
-  float fStack00000000000000c8;
-  float fStack00000000000000cc;
-  float fStack00000000000000d0;
-  float fStack00000000000000d4;
-  float fStack00000000000000d8;
-  float fStack00000000000000dc;
+  float engine_stack_float_a0;
+  float engine_stack_float_a4;
+  float engine_stack_float_a8;
+  float engine_stack_float_ac;
+  float engine_stack_float_b0;
+  float engine_stack_float_b4;
+  float engine_stack_float_b8;
+  float engine_stack_float_bc;
+  float engine_stack_float_c0;
+  float engine_stack_float_c4;
+  float engine_stack_float_c8;
+  float engine_stack_float_cc;
+  float engine_stack_float_d0;
+  float engine_stack_float_d4;
+  float engine_stack_float_d8;
+  float engine_stack_float_dc;
   uint32 in_stack_000000e0;
   uint32 in_stack_000000e8;
   uint32 in_stack_000000f0;
@@ -34611,32 +34611,32 @@ void engine_unnamed_function_133c(void)
     engine_temp_float_4 = *(float *)(engine_register_rbx + 0x128);
     engine_temp_float_5 = *(float *)(engine_register_rbx + 0x134);
     engine_temp_float_6 = *(float *)(engine_register_rbx + 0x130);
-    fStack00000000000000a0 = engine_temp_float_2 * engine_temp_float_13 + engine_temp_float_3 * engine_temp_float_9 + engine_temp_float_4 * engine_temp_float_17;
-    fStack00000000000000a4 = engine_temp_float_2 * engine_temp_float_14 + engine_temp_float_3 * engine_temp_float_10 + engine_temp_float_4 * engine_temp_float_18;
-    fStack00000000000000a8 = engine_temp_float_2 * engine_temp_float_15 + engine_temp_float_3 * engine_temp_float_11 + engine_temp_float_4 * engine_temp_float_19;
-    fStack00000000000000ac = engine_temp_float_2 * engine_temp_float_16 + engine_temp_float_3 * engine_temp_float_12 + engine_temp_float_4 * engine_temp_float_20;
+    engine_stack_float_a0 = engine_temp_float_2 * engine_temp_float_13 + engine_temp_float_3 * engine_temp_float_9 + engine_temp_float_4 * engine_temp_float_17;
+    engine_stack_float_a4 = engine_temp_float_2 * engine_temp_float_14 + engine_temp_float_3 * engine_temp_float_10 + engine_temp_float_4 * engine_temp_float_18;
+    engine_stack_float_a8 = engine_temp_float_2 * engine_temp_float_15 + engine_temp_float_3 * engine_temp_float_11 + engine_temp_float_4 * engine_temp_float_19;
+    engine_stack_float_ac = engine_temp_float_2 * engine_temp_float_16 + engine_temp_float_3 * engine_temp_float_12 + engine_temp_float_4 * engine_temp_float_20;
     engine_temp_float_2 = *(float *)(engine_register_rbx + 0x138);
     engine_temp_float_3 = *(float *)(engine_register_rbx + 0x140);
     engine_temp_float_4 = *(float *)(engine_register_rbx + 0x144);
-    fStack00000000000000b0 = engine_temp_float_5 * engine_temp_float_13 + engine_temp_float_6 * engine_temp_float_9 + engine_temp_float_2 * engine_temp_float_17;
-    fStack00000000000000b4 = engine_temp_float_5 * engine_temp_float_14 + engine_temp_float_6 * engine_temp_float_10 + engine_temp_float_2 * engine_temp_float_18;
-    fStack00000000000000b8 = engine_temp_float_5 * engine_temp_float_15 + engine_temp_float_6 * engine_temp_float_11 + engine_temp_float_2 * engine_temp_float_19;
-    fStack00000000000000bc = engine_temp_float_5 * engine_temp_float_16 + engine_temp_float_6 * engine_temp_float_12 + engine_temp_float_2 * engine_temp_float_20;
+    engine_stack_float_b0 = engine_temp_float_5 * engine_temp_float_13 + engine_temp_float_6 * engine_temp_float_9 + engine_temp_float_2 * engine_temp_float_17;
+    engine_stack_float_b4 = engine_temp_float_5 * engine_temp_float_14 + engine_temp_float_6 * engine_temp_float_10 + engine_temp_float_2 * engine_temp_float_18;
+    engine_stack_float_b8 = engine_temp_float_5 * engine_temp_float_15 + engine_temp_float_6 * engine_temp_float_11 + engine_temp_float_2 * engine_temp_float_19;
+    engine_stack_float_bc = engine_temp_float_5 * engine_temp_float_16 + engine_temp_float_6 * engine_temp_float_12 + engine_temp_float_2 * engine_temp_float_20;
     engine_temp_float_2 = *(float *)(engine_register_rbx + 0x148);
     engine_temp_float_5 = *(float *)(engine_register_rbx + 0x154);
     engine_temp_float_6 = *(float *)(engine_register_rbx + 0x150);
-    fStack00000000000000c0 = engine_temp_float_4 * engine_temp_float_13 + engine_temp_float_3 * engine_temp_float_9 + engine_temp_float_2 * engine_temp_float_17;
-    fStack00000000000000c4 = engine_temp_float_4 * engine_temp_float_14 + engine_temp_float_3 * engine_temp_float_10 + engine_temp_float_2 * engine_temp_float_18;
-    fStack00000000000000c8 = engine_temp_float_4 * engine_temp_float_15 + engine_temp_float_3 * engine_temp_float_11 + engine_temp_float_2 * engine_temp_float_19;
-    fStack00000000000000cc = engine_temp_float_4 * engine_temp_float_16 + engine_temp_float_3 * engine_temp_float_12 + engine_temp_float_2 * engine_temp_float_20;
+    engine_stack_float_c0 = engine_temp_float_4 * engine_temp_float_13 + engine_temp_float_3 * engine_temp_float_9 + engine_temp_float_2 * engine_temp_float_17;
+    engine_stack_float_c4 = engine_temp_float_4 * engine_temp_float_14 + engine_temp_float_3 * engine_temp_float_10 + engine_temp_float_2 * engine_temp_float_18;
+    engine_stack_float_c8 = engine_temp_float_4 * engine_temp_float_15 + engine_temp_float_3 * engine_temp_float_11 + engine_temp_float_2 * engine_temp_float_19;
+    engine_stack_float_cc = engine_temp_float_4 * engine_temp_float_16 + engine_temp_float_3 * engine_temp_float_12 + engine_temp_float_2 * engine_temp_float_20;
     engine_temp_float_2 = *(float *)(engine_register_rbx + 0x158);
-    fStack00000000000000d0 =
+    engine_stack_float_d0 =
          engine_temp_float_5 * engine_temp_float_13 + engine_temp_float_6 * engine_temp_float_9 + engine_temp_float_2 * engine_temp_float_17 + in_stack_00000180[0xc];
-    fStack00000000000000d4 =
+    engine_stack_float_d4 =
          engine_temp_float_5 * engine_temp_float_14 + engine_temp_float_6 * engine_temp_float_10 + engine_temp_float_2 * engine_temp_float_18 + in_stack_00000180[0xd];
-    fStack00000000000000d8 =
+    engine_stack_float_d8 =
          engine_temp_float_5 * engine_temp_float_15 + engine_temp_float_6 * engine_temp_float_11 + engine_temp_float_2 * engine_temp_float_19 + in_stack_00000180[0xe];
-    fStack00000000000000dc =
+    engine_stack_float_dc =
          engine_temp_float_5 * engine_temp_float_16 + engine_temp_float_6 * engine_temp_float_12 + engine_temp_float_2 * engine_temp_float_20 + in_stack_00000180[0xf];
     pengine_temp_float_39 = &stack0x000000a0;
   }
@@ -34743,22 +34743,22 @@ void engine_unnamed_function_1348(void)
   uint64 in_stack_00000088;
   uint64 in_stack_00000090;
   uint64 in_stack_00000098;
-  float fStack00000000000000a0;
-  float fStack00000000000000a4;
-  float fStack00000000000000a8;
-  float fStack00000000000000ac;
-  float fStack00000000000000b0;
-  float fStack00000000000000b4;
-  float fStack00000000000000b8;
-  float fStack00000000000000bc;
-  float fStack00000000000000c0;
-  float fStack00000000000000c4;
-  float fStack00000000000000c8;
-  float fStack00000000000000cc;
-  float fStack00000000000000d0;
-  float fStack00000000000000d4;
-  float fStack00000000000000d8;
-  float fStack00000000000000dc;
+  float engine_stack_float_a0;
+  float engine_stack_float_a4;
+  float engine_stack_float_a8;
+  float engine_stack_float_ac;
+  float engine_stack_float_b0;
+  float engine_stack_float_b4;
+  float engine_stack_float_b8;
+  float engine_stack_float_bc;
+  float engine_stack_float_c0;
+  float engine_stack_float_c4;
+  float engine_stack_float_c8;
+  float engine_stack_float_cc;
+  float engine_stack_float_d0;
+  float engine_stack_float_d4;
+  float engine_stack_float_d8;
+  float engine_stack_float_dc;
   uint32 in_stack_000000e0;
   uint32 in_stack_000000e8;
   uint32 in_stack_000000f0;
@@ -34876,32 +34876,32 @@ void engine_unnamed_function_1348(void)
     engine_temp_float_3 = *(float *)(engine_register_rbx + 0x128);
     engine_temp_float_4 = *(float *)(engine_register_rbx + 0x134);
     engine_temp_float_5 = *(float *)(engine_register_rbx + 0x130);
-    fStack00000000000000a0 = engine_temp_float * engine_temp_float_13 + engine_temp_float_2 * engine_temp_float_9 + engine_temp_float_3 * engine_temp_float_17;
-    fStack00000000000000a4 = engine_temp_float * engine_temp_float_14 + engine_temp_float_2 * engine_temp_float_10 + engine_temp_float_3 * engine_temp_float_18;
-    fStack00000000000000a8 = engine_temp_float * engine_temp_float_15 + engine_temp_float_2 * engine_temp_float_11 + engine_temp_float_3 * engine_temp_float_19;
-    fStack00000000000000ac = engine_temp_float * engine_temp_float_16 + engine_temp_float_2 * engine_temp_float_12 + engine_temp_float_3 * engine_temp_float_20;
+    engine_stack_float_a0 = engine_temp_float * engine_temp_float_13 + engine_temp_float_2 * engine_temp_float_9 + engine_temp_float_3 * engine_temp_float_17;
+    engine_stack_float_a4 = engine_temp_float * engine_temp_float_14 + engine_temp_float_2 * engine_temp_float_10 + engine_temp_float_3 * engine_temp_float_18;
+    engine_stack_float_a8 = engine_temp_float * engine_temp_float_15 + engine_temp_float_2 * engine_temp_float_11 + engine_temp_float_3 * engine_temp_float_19;
+    engine_stack_float_ac = engine_temp_float * engine_temp_float_16 + engine_temp_float_2 * engine_temp_float_12 + engine_temp_float_3 * engine_temp_float_20;
     engine_temp_float = *(float *)(engine_register_rbx + 0x138);
     engine_temp_float_2 = *(float *)(engine_register_rbx + 0x140);
     engine_temp_float_3 = *(float *)(engine_register_rbx + 0x144);
-    fStack00000000000000b0 = engine_temp_float_4 * engine_temp_float_13 + engine_temp_float_5 * engine_temp_float_9 + engine_temp_float * engine_temp_float_17;
-    fStack00000000000000b4 = engine_temp_float_4 * engine_temp_float_14 + engine_temp_float_5 * engine_temp_float_10 + engine_temp_float * engine_temp_float_18;
-    fStack00000000000000b8 = engine_temp_float_4 * engine_temp_float_15 + engine_temp_float_5 * engine_temp_float_11 + engine_temp_float * engine_temp_float_19;
-    fStack00000000000000bc = engine_temp_float_4 * engine_temp_float_16 + engine_temp_float_5 * engine_temp_float_12 + engine_temp_float * engine_temp_float_20;
+    engine_stack_float_b0 = engine_temp_float_4 * engine_temp_float_13 + engine_temp_float_5 * engine_temp_float_9 + engine_temp_float * engine_temp_float_17;
+    engine_stack_float_b4 = engine_temp_float_4 * engine_temp_float_14 + engine_temp_float_5 * engine_temp_float_10 + engine_temp_float * engine_temp_float_18;
+    engine_stack_float_b8 = engine_temp_float_4 * engine_temp_float_15 + engine_temp_float_5 * engine_temp_float_11 + engine_temp_float * engine_temp_float_19;
+    engine_stack_float_bc = engine_temp_float_4 * engine_temp_float_16 + engine_temp_float_5 * engine_temp_float_12 + engine_temp_float * engine_temp_float_20;
     engine_temp_float = *(float *)(engine_register_rbx + 0x148);
     engine_temp_float_4 = *(float *)(engine_register_rbx + 0x154);
     engine_temp_float_5 = *(float *)(engine_register_rbx + 0x150);
-    fStack00000000000000c0 = engine_temp_float_3 * engine_temp_float_13 + engine_temp_float_2 * engine_temp_float_9 + engine_temp_float * engine_temp_float_17;
-    fStack00000000000000c4 = engine_temp_float_3 * engine_temp_float_14 + engine_temp_float_2 * engine_temp_float_10 + engine_temp_float * engine_temp_float_18;
-    fStack00000000000000c8 = engine_temp_float_3 * engine_temp_float_15 + engine_temp_float_2 * engine_temp_float_11 + engine_temp_float * engine_temp_float_19;
-    fStack00000000000000cc = engine_temp_float_3 * engine_temp_float_16 + engine_temp_float_2 * engine_temp_float_12 + engine_temp_float * engine_temp_float_20;
+    engine_stack_float_c0 = engine_temp_float_3 * engine_temp_float_13 + engine_temp_float_2 * engine_temp_float_9 + engine_temp_float * engine_temp_float_17;
+    engine_stack_float_c4 = engine_temp_float_3 * engine_temp_float_14 + engine_temp_float_2 * engine_temp_float_10 + engine_temp_float * engine_temp_float_18;
+    engine_stack_float_c8 = engine_temp_float_3 * engine_temp_float_15 + engine_temp_float_2 * engine_temp_float_11 + engine_temp_float * engine_temp_float_19;
+    engine_stack_float_cc = engine_temp_float_3 * engine_temp_float_16 + engine_temp_float_2 * engine_temp_float_12 + engine_temp_float * engine_temp_float_20;
     engine_temp_float = *(float *)(engine_register_rbx + 0x158);
-    fStack00000000000000d0 =
+    engine_stack_float_d0 =
          engine_temp_float_4 * engine_temp_float_13 + engine_temp_float_5 * engine_temp_float_9 + engine_temp_float * engine_temp_float_17 + in_stack_00000180[0xc];
-    fStack00000000000000d4 =
+    engine_stack_float_d4 =
          engine_temp_float_4 * engine_temp_float_14 + engine_temp_float_5 * engine_temp_float_10 + engine_temp_float * engine_temp_float_18 + in_stack_00000180[0xd];
-    fStack00000000000000d8 =
+    engine_stack_float_d8 =
          engine_temp_float_4 * engine_temp_float_15 + engine_temp_float_5 * engine_temp_float_11 + engine_temp_float * engine_temp_float_19 + in_stack_00000180[0xe];
-    fStack00000000000000dc =
+    engine_stack_float_dc =
          engine_temp_float_4 * engine_temp_float_16 + engine_temp_float_5 * engine_temp_float_12 + engine_temp_float * engine_temp_float_20 + in_stack_00000180[0xf];
     pengine_temp_float_36 = &stack0x000000a0;
   }
@@ -35000,22 +35000,22 @@ void engine_unnamed_function_1356(void)
   uint64 in_stack_00000088;
   uint64 in_stack_00000090;
   uint64 in_stack_00000098;
-  float fStack00000000000000a0;
-  float fStack00000000000000a4;
-  float fStack00000000000000a8;
-  float fStack00000000000000ac;
-  float fStack00000000000000b0;
-  float fStack00000000000000b4;
-  float fStack00000000000000b8;
-  float fStack00000000000000bc;
-  float fStack00000000000000c0;
-  float fStack00000000000000c4;
-  float fStack00000000000000c8;
-  float fStack00000000000000cc;
-  float fStack00000000000000d0;
-  float fStack00000000000000d4;
-  float fStack00000000000000d8;
-  float fStack00000000000000dc;
+  float engine_stack_float_a0;
+  float engine_stack_float_a4;
+  float engine_stack_float_a8;
+  float engine_stack_float_ac;
+  float engine_stack_float_b0;
+  float engine_stack_float_b4;
+  float engine_stack_float_b8;
+  float engine_stack_float_bc;
+  float engine_stack_float_c0;
+  float engine_stack_float_c4;
+  float engine_stack_float_c8;
+  float engine_stack_float_cc;
+  float engine_stack_float_d0;
+  float engine_stack_float_d4;
+  float engine_stack_float_d8;
+  float engine_stack_float_dc;
   
   if (!in_ZF) {
     engine_temp_float_7 = *unaff_RSI;
@@ -35035,29 +35035,29 @@ void engine_unnamed_function_1356(void)
     engine_temp_float_3 = *(float *)(engine_register_rbx + 0x128);
     engine_temp_float_4 = *(float *)(engine_register_rbx + 0x134);
     engine_temp_float_5 = *(float *)(engine_register_rbx + 0x130);
-    fStack00000000000000a0 = engine_temp_float * engine_temp_float_11 + engine_temp_float_2 * engine_temp_float_7 + engine_temp_float_3 * engine_temp_float_15;
-    fStack00000000000000a4 = engine_temp_float * engine_temp_float_12 + engine_temp_float_2 * engine_temp_float_8 + engine_temp_float_3 * engine_temp_float_16;
-    fStack00000000000000a8 = engine_temp_float * engine_temp_float_13 + engine_temp_float_2 * engine_temp_float_9 + engine_temp_float_3 * engine_temp_float_17;
-    fStack00000000000000ac = engine_temp_float * engine_temp_float_14 + engine_temp_float_2 * engine_temp_float_10 + engine_temp_float_3 * engine_temp_float_18;
+    engine_stack_float_a0 = engine_temp_float * engine_temp_float_11 + engine_temp_float_2 * engine_temp_float_7 + engine_temp_float_3 * engine_temp_float_15;
+    engine_stack_float_a4 = engine_temp_float * engine_temp_float_12 + engine_temp_float_2 * engine_temp_float_8 + engine_temp_float_3 * engine_temp_float_16;
+    engine_stack_float_a8 = engine_temp_float * engine_temp_float_13 + engine_temp_float_2 * engine_temp_float_9 + engine_temp_float_3 * engine_temp_float_17;
+    engine_stack_float_ac = engine_temp_float * engine_temp_float_14 + engine_temp_float_2 * engine_temp_float_10 + engine_temp_float_3 * engine_temp_float_18;
     engine_temp_float = *(float *)(engine_register_rbx + 0x138);
     engine_temp_float_2 = *(float *)(engine_register_rbx + 0x140);
     engine_temp_float_3 = *(float *)(engine_register_rbx + 0x144);
-    fStack00000000000000b0 = engine_temp_float_4 * engine_temp_float_11 + engine_temp_float_5 * engine_temp_float_7 + engine_temp_float * engine_temp_float_15;
-    fStack00000000000000b4 = engine_temp_float_4 * engine_temp_float_12 + engine_temp_float_5 * engine_temp_float_8 + engine_temp_float * engine_temp_float_16;
-    fStack00000000000000b8 = engine_temp_float_4 * engine_temp_float_13 + engine_temp_float_5 * engine_temp_float_9 + engine_temp_float * engine_temp_float_17;
-    fStack00000000000000bc = engine_temp_float_4 * engine_temp_float_14 + engine_temp_float_5 * engine_temp_float_10 + engine_temp_float * engine_temp_float_18;
+    engine_stack_float_b0 = engine_temp_float_4 * engine_temp_float_11 + engine_temp_float_5 * engine_temp_float_7 + engine_temp_float * engine_temp_float_15;
+    engine_stack_float_b4 = engine_temp_float_4 * engine_temp_float_12 + engine_temp_float_5 * engine_temp_float_8 + engine_temp_float * engine_temp_float_16;
+    engine_stack_float_b8 = engine_temp_float_4 * engine_temp_float_13 + engine_temp_float_5 * engine_temp_float_9 + engine_temp_float * engine_temp_float_17;
+    engine_stack_float_bc = engine_temp_float_4 * engine_temp_float_14 + engine_temp_float_5 * engine_temp_float_10 + engine_temp_float * engine_temp_float_18;
     engine_temp_float = *(float *)(engine_register_rbx + 0x148);
     engine_temp_float_4 = *(float *)(engine_register_rbx + 0x154);
     engine_temp_float_5 = *(float *)(engine_register_rbx + 0x150);
-    fStack00000000000000c0 = engine_temp_float_3 * engine_temp_float_11 + engine_temp_float_2 * engine_temp_float_7 + engine_temp_float * engine_temp_float_15;
-    fStack00000000000000c4 = engine_temp_float_3 * engine_temp_float_12 + engine_temp_float_2 * engine_temp_float_8 + engine_temp_float * engine_temp_float_16;
-    fStack00000000000000c8 = engine_temp_float_3 * engine_temp_float_13 + engine_temp_float_2 * engine_temp_float_9 + engine_temp_float * engine_temp_float_17;
-    fStack00000000000000cc = engine_temp_float_3 * engine_temp_float_14 + engine_temp_float_2 * engine_temp_float_10 + engine_temp_float * engine_temp_float_18;
+    engine_stack_float_c0 = engine_temp_float_3 * engine_temp_float_11 + engine_temp_float_2 * engine_temp_float_7 + engine_temp_float * engine_temp_float_15;
+    engine_stack_float_c4 = engine_temp_float_3 * engine_temp_float_12 + engine_temp_float_2 * engine_temp_float_8 + engine_temp_float * engine_temp_float_16;
+    engine_stack_float_c8 = engine_temp_float_3 * engine_temp_float_13 + engine_temp_float_2 * engine_temp_float_9 + engine_temp_float * engine_temp_float_17;
+    engine_stack_float_cc = engine_temp_float_3 * engine_temp_float_14 + engine_temp_float_2 * engine_temp_float_10 + engine_temp_float * engine_temp_float_18;
     engine_temp_float = *(float *)(engine_register_rbx + 0x158);
-    fStack00000000000000d0 = engine_temp_float_4 * engine_temp_float_11 + engine_temp_float_5 * engine_temp_float_7 + engine_temp_float * engine_temp_float_15 + unaff_RSI[0xc];
-    fStack00000000000000d4 = engine_temp_float_4 * engine_temp_float_12 + engine_temp_float_5 * engine_temp_float_8 + engine_temp_float * engine_temp_float_16 + unaff_RSI[0xd];
-    fStack00000000000000d8 = engine_temp_float_4 * engine_temp_float_13 + engine_temp_float_5 * engine_temp_float_9 + engine_temp_float * engine_temp_float_17 + unaff_RSI[0xe];
-    fStack00000000000000dc = engine_temp_float_4 * engine_temp_float_14 + engine_temp_float_5 * engine_temp_float_10 + engine_temp_float * engine_temp_float_18 + unaff_RSI[0xf];
+    engine_stack_float_d0 = engine_temp_float_4 * engine_temp_float_11 + engine_temp_float_5 * engine_temp_float_7 + engine_temp_float * engine_temp_float_15 + unaff_RSI[0xc];
+    engine_stack_float_d4 = engine_temp_float_4 * engine_temp_float_12 + engine_temp_float_5 * engine_temp_float_8 + engine_temp_float * engine_temp_float_16 + unaff_RSI[0xd];
+    engine_stack_float_d8 = engine_temp_float_4 * engine_temp_float_13 + engine_temp_float_5 * engine_temp_float_9 + engine_temp_float * engine_temp_float_17 + unaff_RSI[0xe];
+    engine_stack_float_dc = engine_temp_float_4 * engine_temp_float_14 + engine_temp_float_5 * engine_temp_float_10 + engine_temp_float * engine_temp_float_18 + unaff_RSI[0xf];
   }
   engine_unnamed_function_2650(&stack0x00000060,unaff_R13 + 0x30,*(uint8*)(engine_register_rbx + 0xf7));
   engine_temp_uint_26 = in_stack_00000098;
@@ -35154,22 +35154,22 @@ void engine_unnamed_function_1366(void)
   uint64 in_stack_00000088;
   uint64 in_stack_00000090;
   uint64 in_stack_00000098;
-  float fStack00000000000000a0;
-  float fStack00000000000000a4;
-  float fStack00000000000000a8;
-  float fStack00000000000000ac;
-  float fStack00000000000000b0;
-  float fStack00000000000000b4;
-  float fStack00000000000000b8;
-  float fStack00000000000000bc;
-  float fStack00000000000000c0;
-  float fStack00000000000000c4;
-  float fStack00000000000000c8;
-  float fStack00000000000000cc;
-  float fStack00000000000000d0;
-  float fStack00000000000000d4;
-  float fStack00000000000000d8;
-  float fStack00000000000000dc;
+  float engine_stack_float_a0;
+  float engine_stack_float_a4;
+  float engine_stack_float_a8;
+  float engine_stack_float_ac;
+  float engine_stack_float_b0;
+  float engine_stack_float_b4;
+  float engine_stack_float_b8;
+  float engine_stack_float_bc;
+  float engine_stack_float_c0;
+  float engine_stack_float_c4;
+  float engine_stack_float_c8;
+  float engine_stack_float_cc;
+  float engine_stack_float_d0;
+  float engine_stack_float_d4;
+  float engine_stack_float_d8;
+  float engine_stack_float_dc;
   uint32 in_stack_000000e0;
   uint32 in_stack_000000e8;
   uint32 in_stack_000000f0;
@@ -35202,32 +35202,32 @@ void engine_unnamed_function_1366(void)
     engine_temp_float_3 = *(float *)(engine_register_rbx + 0x128);
     engine_temp_float_4 = *(float *)(engine_register_rbx + 0x134);
     engine_temp_float_5 = *(float *)(engine_register_rbx + 0x130);
-    fStack00000000000000a0 = engine_temp_float * engine_temp_float_11 + engine_temp_float_2 * engine_temp_float_7 + engine_temp_float_3 * engine_temp_float_15;
-    fStack00000000000000a4 = engine_temp_float * engine_temp_float_12 + engine_temp_float_2 * engine_temp_float_8 + engine_temp_float_3 * engine_temp_float_16;
-    fStack00000000000000a8 = engine_temp_float * engine_temp_float_13 + engine_temp_float_2 * engine_temp_float_9 + engine_temp_float_3 * engine_temp_float_17;
-    fStack00000000000000ac = engine_temp_float * engine_temp_float_14 + engine_temp_float_2 * engine_temp_float_10 + engine_temp_float_3 * engine_temp_float_18;
+    engine_stack_float_a0 = engine_temp_float * engine_temp_float_11 + engine_temp_float_2 * engine_temp_float_7 + engine_temp_float_3 * engine_temp_float_15;
+    engine_stack_float_a4 = engine_temp_float * engine_temp_float_12 + engine_temp_float_2 * engine_temp_float_8 + engine_temp_float_3 * engine_temp_float_16;
+    engine_stack_float_a8 = engine_temp_float * engine_temp_float_13 + engine_temp_float_2 * engine_temp_float_9 + engine_temp_float_3 * engine_temp_float_17;
+    engine_stack_float_ac = engine_temp_float * engine_temp_float_14 + engine_temp_float_2 * engine_temp_float_10 + engine_temp_float_3 * engine_temp_float_18;
     engine_temp_float = *(float *)(engine_register_rbx + 0x138);
     engine_temp_float_2 = *(float *)(engine_register_rbx + 0x140);
     engine_temp_float_3 = *(float *)(engine_register_rbx + 0x144);
-    fStack00000000000000b0 = engine_temp_float_4 * engine_temp_float_11 + engine_temp_float_5 * engine_temp_float_7 + engine_temp_float * engine_temp_float_15;
-    fStack00000000000000b4 = engine_temp_float_4 * engine_temp_float_12 + engine_temp_float_5 * engine_temp_float_8 + engine_temp_float * engine_temp_float_16;
-    fStack00000000000000b8 = engine_temp_float_4 * engine_temp_float_13 + engine_temp_float_5 * engine_temp_float_9 + engine_temp_float * engine_temp_float_17;
-    fStack00000000000000bc = engine_temp_float_4 * engine_temp_float_14 + engine_temp_float_5 * engine_temp_float_10 + engine_temp_float * engine_temp_float_18;
+    engine_stack_float_b0 = engine_temp_float_4 * engine_temp_float_11 + engine_temp_float_5 * engine_temp_float_7 + engine_temp_float * engine_temp_float_15;
+    engine_stack_float_b4 = engine_temp_float_4 * engine_temp_float_12 + engine_temp_float_5 * engine_temp_float_8 + engine_temp_float * engine_temp_float_16;
+    engine_stack_float_b8 = engine_temp_float_4 * engine_temp_float_13 + engine_temp_float_5 * engine_temp_float_9 + engine_temp_float * engine_temp_float_17;
+    engine_stack_float_bc = engine_temp_float_4 * engine_temp_float_14 + engine_temp_float_5 * engine_temp_float_10 + engine_temp_float * engine_temp_float_18;
     engine_temp_float = *(float *)(engine_register_rbx + 0x148);
     engine_temp_float_4 = *(float *)(engine_register_rbx + 0x154);
     engine_temp_float_5 = *(float *)(engine_register_rbx + 0x150);
-    fStack00000000000000c0 = engine_temp_float_3 * engine_temp_float_11 + engine_temp_float_2 * engine_temp_float_7 + engine_temp_float * engine_temp_float_15;
-    fStack00000000000000c4 = engine_temp_float_3 * engine_temp_float_12 + engine_temp_float_2 * engine_temp_float_8 + engine_temp_float * engine_temp_float_16;
-    fStack00000000000000c8 = engine_temp_float_3 * engine_temp_float_13 + engine_temp_float_2 * engine_temp_float_9 + engine_temp_float * engine_temp_float_17;
-    fStack00000000000000cc = engine_temp_float_3 * engine_temp_float_14 + engine_temp_float_2 * engine_temp_float_10 + engine_temp_float * engine_temp_float_18;
+    engine_stack_float_c0 = engine_temp_float_3 * engine_temp_float_11 + engine_temp_float_2 * engine_temp_float_7 + engine_temp_float * engine_temp_float_15;
+    engine_stack_float_c4 = engine_temp_float_3 * engine_temp_float_12 + engine_temp_float_2 * engine_temp_float_8 + engine_temp_float * engine_temp_float_16;
+    engine_stack_float_c8 = engine_temp_float_3 * engine_temp_float_13 + engine_temp_float_2 * engine_temp_float_9 + engine_temp_float * engine_temp_float_17;
+    engine_stack_float_cc = engine_temp_float_3 * engine_temp_float_14 + engine_temp_float_2 * engine_temp_float_10 + engine_temp_float * engine_temp_float_18;
     engine_temp_float = *(float *)(engine_register_rbx + 0x158);
-    fStack00000000000000d0 =
+    engine_stack_float_d0 =
          engine_temp_float_4 * engine_temp_float_11 + engine_temp_float_5 * engine_temp_float_7 + engine_temp_float * engine_temp_float_15 + in_stack_00000180[0xc];
-    fStack00000000000000d4 =
+    engine_stack_float_d4 =
          engine_temp_float_4 * engine_temp_float_12 + engine_temp_float_5 * engine_temp_float_8 + engine_temp_float * engine_temp_float_16 + in_stack_00000180[0xd];
-    fStack00000000000000d8 =
+    engine_stack_float_d8 =
          engine_temp_float_4 * engine_temp_float_13 + engine_temp_float_5 * engine_temp_float_9 + engine_temp_float * engine_temp_float_17 + in_stack_00000180[0xe];
-    fStack00000000000000dc =
+    engine_stack_float_dc =
          engine_temp_float_4 * engine_temp_float_14 + engine_temp_float_5 * engine_temp_float_10 + engine_temp_float * engine_temp_float_18 + in_stack_00000180[0xf];
     pengine_temp_float_29 = &stack0x000000a0;
   }
@@ -35518,21 +35518,21 @@ void engine_unnamed_function_1401(uint64 engine_data_structure_ptr,uint64 engine
   float in_XMM4_Dc;
   float in_XMM5_Da;
   uint32 uStack0000000000000028;
-  float fStack0000000000000030;
-  float fStack0000000000000034;
-  float fStack0000000000000038;
+  float engine_stack_float_30;
+  float engine_stack_float_34;
+  float engine_stack_float_38;
   uint32 uStack000000000000003c;
-  float fStack0000000000000040;
-  float fStack0000000000000044;
-  float fStack0000000000000048;
+  float engine_stack_float_40;
+  float engine_stack_float_44;
+  float engine_stack_float_48;
   uint32 uStack000000000000004c;
-  float fStack0000000000000050;
-  float fStack0000000000000054;
-  float fStack0000000000000058;
+  float engine_stack_float_50;
+  float engine_stack_float_54;
+  float engine_stack_float_58;
   uint32 uStack000000000000005c;
-  float fStack0000000000000060;
-  float fStack0000000000000064;
-  float fStack0000000000000068;
+  float engine_stack_float_60;
+  float engine_stack_float_64;
+  float engine_stack_float_68;
   uint32 uStack000000000000006c;
   uint32 in_stack_000000e0;
   uint32 in_stack_000000e8;
@@ -35545,25 +35545,25 @@ void engine_unnamed_function_1401(uint64 engine_data_structure_ptr,uint64 engine
   engine_temp_float_9 = unaff_RDI[10];
   engine_temp_float = *(float *)(engine_register_rbx + 0x124);
   engine_temp_float_2 = *(float *)(engine_register_rbx + 0x130);
-  fStack0000000000000030 = engine_temp_float * in_XMM4_Da + (float)engine_data_structure_ptr * engine_temp_float_4 + (float)engine_result_flag_ptr * engine_temp_float_7;
-  fStack0000000000000034 =
+  engine_stack_float_30 = engine_temp_float * in_XMM4_Da + (float)engine_data_structure_ptr * engine_temp_float_4 + (float)engine_result_flag_ptr * engine_temp_float_7;
+  engine_stack_float_34 =
        engine_temp_float * in_XMM4_Db + (float)((ulonglong)engine_data_structure_ptr >> 0x20) * engine_temp_float_5 +
        (float)((ulonglong)engine_result_flag_ptr >> 0x20) * engine_temp_float_8;
-  fStack0000000000000038 = engine_temp_float * in_XMM4_Dc + in_XMM0_Dc * engine_temp_float_6 + in_XMM1_Dc * engine_temp_float_9;
+  engine_stack_float_38 = engine_temp_float * in_XMM4_Dc + in_XMM0_Dc * engine_temp_float_6 + in_XMM1_Dc * engine_temp_float_9;
   engine_temp_float = *(float *)(engine_register_rbx + 0x138);
   engine_temp_float_3 = *(float *)(engine_register_rbx + 0x140);
-  fStack0000000000000040 = in_XMM5_Da * in_XMM4_Da + engine_temp_float_2 * engine_temp_float_4 + engine_temp_float * engine_temp_float_7;
-  fStack0000000000000044 = in_XMM5_Da * in_XMM4_Db + engine_temp_float_2 * engine_temp_float_5 + engine_temp_float * engine_temp_float_8;
-  fStack0000000000000048 = in_XMM5_Da * in_XMM4_Dc + engine_temp_float_2 * engine_temp_float_6 + engine_temp_float * engine_temp_float_9;
+  engine_stack_float_40 = in_XMM5_Da * in_XMM4_Da + engine_temp_float_2 * engine_temp_float_4 + engine_temp_float * engine_temp_float_7;
+  engine_stack_float_44 = in_XMM5_Da * in_XMM4_Db + engine_temp_float_2 * engine_temp_float_5 + engine_temp_float * engine_temp_float_8;
+  engine_stack_float_48 = in_XMM5_Da * in_XMM4_Dc + engine_temp_float_2 * engine_temp_float_6 + engine_temp_float * engine_temp_float_9;
   engine_temp_float = *(float *)(engine_register_rbx + 0x148);
   engine_temp_float_2 = *(float *)(engine_register_rbx + 0x150);
-  fStack0000000000000050 = engine_system_parameter_4 * in_XMM4_Da + engine_temp_float_3 * engine_temp_float_4 + engine_temp_float * engine_temp_float_7;
-  fStack0000000000000054 = engine_system_parameter_4 * in_XMM4_Db + engine_temp_float_3 * engine_temp_float_5 + engine_temp_float * engine_temp_float_8;
-  fStack0000000000000058 = engine_system_parameter_4 * in_XMM4_Dc + engine_temp_float_3 * engine_temp_float_6 + engine_temp_float * engine_temp_float_9;
+  engine_stack_float_50 = engine_system_parameter_4 * in_XMM4_Da + engine_temp_float_3 * engine_temp_float_4 + engine_temp_float * engine_temp_float_7;
+  engine_stack_float_54 = engine_system_parameter_4 * in_XMM4_Db + engine_temp_float_3 * engine_temp_float_5 + engine_temp_float * engine_temp_float_8;
+  engine_stack_float_58 = engine_system_parameter_4 * in_XMM4_Dc + engine_temp_float_3 * engine_temp_float_6 + engine_temp_float * engine_temp_float_9;
   engine_temp_float = *(float *)(engine_register_rbx + 0x158);
-  fStack0000000000000060 = engine_comparison_params * in_XMM4_Da + engine_temp_float_2 * engine_temp_float_4 + engine_temp_float * engine_temp_float_7 + unaff_RDI[0xc];
-  fStack0000000000000064 = engine_comparison_params * in_XMM4_Db + engine_temp_float_2 * engine_temp_float_5 + engine_temp_float * engine_temp_float_8 + unaff_RDI[0xd];
-  fStack0000000000000068 = engine_comparison_params * in_XMM4_Dc + engine_temp_float_2 * engine_temp_float_6 + engine_temp_float * engine_temp_float_9 + unaff_RDI[0xe];
+  engine_stack_float_60 = engine_comparison_params * in_XMM4_Da + engine_temp_float_2 * engine_temp_float_4 + engine_temp_float * engine_temp_float_7 + unaff_RDI[0xc];
+  engine_stack_float_64 = engine_comparison_params * in_XMM4_Db + engine_temp_float_2 * engine_temp_float_5 + engine_temp_float * engine_temp_float_8 + unaff_RDI[0xd];
+  engine_stack_float_68 = engine_comparison_params * in_XMM4_Dc + engine_temp_float_2 * engine_temp_float_6 + engine_temp_float * engine_temp_float_9 + unaff_RDI[0xe];
   uStack0000000000000028 = in_stack_000000e8;
   uStack000000000000006c = 0x3f800000;
   uStack000000000000005c = 0;
@@ -38234,7 +38234,7 @@ undefined * engine_unnamed_function_1580(longlong engine_data_structure_ptr,uint
               0x48) < engine_data_pointer_58) {
     engine_get_game_state_status(&engine_data_58);
     if (engine_data_pointer_58 == -1) {
-      _engine_data_60 = &engine_data_1809fcc28;
+      _engine_audio_flags = &engine_data_1809fcc28;
       _engine_data_68 = &engine_data_78;
 
 // void engine_unnamed_function_1590(longlong engine_data_structure_ptr)
@@ -38401,7 +38401,7 @@ float * engine_unnamed_function_1630(float *engine_data_structure_ptr)
       engine_stack_pointer_58 = &engine_base_data_offset_30;
       engine_stack_value_80 = 0x18007967a;
       engine_stack_float_50 = engine_temp_float_6;
-      engine_call_buffer_manager(_engine_data_28,0,0x80000000000,3);
+      engine_call_buffer_manager(_engine_render_mode,0,0x80000000000,3);
     }
     engine_data_structure_ptr[0x40] = (float)((uint)engine_data_structure_ptr[0x40] | 0x10000);
     engine_stack_value_80 = 0x18007968e;
@@ -38657,7 +38657,7 @@ void engine_unnamed_function_1640(longlong engine_data_structure_ptr)
   float engine_temp_float_51;
   float engine_temp_float_52;
   float engine_temp_float_53;
-  int iStackX_10;
+  int engine_stack_int_x10;
   ulonglong engine_stack_uint_18;
   ulonglong engine_stack_uint_20;
   int *engine_stack_int_pointer_218;
@@ -38666,7 +38666,7 @@ void engine_unnamed_function_1640(longlong engine_data_structure_ptr)
   uint32 engine_stack_uint_200;
   int *piStack_1f8;
   int *piStack_1f0;
-  int iStack_1e8;
+  int engine_stack_int_1e8;
   uint8_t (*paengine_stack_uint_1e0) [16];
   ulonglong engine_stack_uint_1d8;
   longlong engine_stack_long_1d0;
@@ -38713,7 +38713,7 @@ void engine_unnamed_function_1640(longlong engine_data_structure_ptr)
   engine_temp_int_27 = *pengine_temp_int;
   engine_temp_int1 = *(int *)(engine_data_structure_ptr + 0x88);
   engine_temp_uint_28 = (ulonglong)engine_temp_int1;
-  iStack_1e8 = *(int *)(engine_data_structure_ptr + 0x10);
+  engine_stack_int_1e8 = *(int *)(engine_data_structure_ptr + 0x10);
   pengine_stack_uint_130 = (uint32*)0x0;
   engine_stack_uint_128 = 0;
   engine_stack_uint_120 = 0;
@@ -38995,7 +38995,7 @@ LAB_180079d9b:
   if (*pengine_temp_int < 1) {
 LAB_18007a5ac:
     engine_unnamed_function_2070(&engine_stack_long_170);
-    engine_temp_long_21 = (longlong)iStack_1e8;
+    engine_temp_long_21 = (longlong)engine_stack_int_1e8;
     engine_stack_uint_1d8 = (ulonglong)*(ushort *)(engine_data_structure_ptr + 0xc0);
     engine_stack_uint_18 = -1;
     do {
@@ -39249,7 +39249,7 @@ LAB_18007ac04:
           piStack_1f8 = piStack_1f8 + 3;
           engine_temp_long_23 = engine_temp_long_23 + 0x10;
         } while ((longlong)piStack_1f0 < (longlong)engine_temp_uint_28);
-        engine_temp_long_21 = (longlong)iStack_1e8;
+        engine_temp_long_21 = (longlong)engine_stack_int_1e8;
       }
       engine_temp_long7 = 0;
       engine_temp_long_23 = engine_temp_long7;
@@ -39410,7 +39410,7 @@ LAB_18007ac04:
           engine_temp_long_23 = engine_temp_long_23 + 1;
           engine_temp_long7 = engine_temp_long7 + 0xc;
         } while (engine_temp_long_23 < (longlong)engine_temp_uint_28);
-        engine_temp_long_21 = (longlong)iStack_1e8;
+        engine_temp_long_21 = (longlong)engine_stack_int_1e8;
       }
       engine_unnamed_function_2090(&engine_stack_int_pointer_218);
       engine_stack_uint_18 = engine_stack_uint_18 + 1;
@@ -39459,7 +39459,7 @@ LAB_180079e40:
       pengine_temp_int3 = (int *)0x0;
       pengine_stack_int_208 = (int *)0x0;
       engine_stack_uint_200 = 3;
-      iStackX_10 = 1;
+      engine_stack_int_x10 = 1;
       piStack_1f8 = *(int **)(*paengine_temp_uint_42 + engine_stack_long_170);
       pengine_temp_int5 = pengine_temp_int_20;
       engine_stack_uint_1a0 = pengine_temp_int4;
@@ -39503,11 +39503,11 @@ LAB_180079fb3:
             engine_stack_int_pointer_210 = pengine_temp_int6;
           }
           engine_stack_int_pointer_210 = engine_stack_int_pointer_210 + 1;
-          iStackX_10 = iStackX_10 + 1;
+          engine_stack_int_x10 = engine_stack_int_x10 + 1;
           engine_stack_uint_20 = engine_stack_uint_20 + 4;
           piStack_1f8 = *(int **)(*paengine_temp_uint_42 + engine_stack_long_170);
           pengine_temp_int_25 = pengine_temp_int6;
-        } while ((ulonglong)(longlong)iStackX_10 <
+        } while ((ulonglong)(longlong)engine_stack_int_x10 <
                  (ulonglong)(*(longlong *)(*paengine_temp_uint_42 + engine_stack_long_170 + 8) - (longlong)piStack_1f8 >> 2)
                 );
       }
@@ -41084,7 +41084,7 @@ uint64_t * engine_unnamed_function_2100(uint64_t *engine_data_structure_ptr,uint
   engine_result_flag_ptr[3] = 0;
   engine_data_structure_ptr[2] = engine_configure_resource_manager;
   engine_data_structure_ptr[3] = engine_initialize_debug_tools;
-  engine_temporary_pointer = (void*)engine_call_memory_allocator(_engine_data_18,0x20,8,engine_data_bc,0xfffffffffffffffe);
+  engine_temporary_pointer = (void*)engine_call_memory_allocator(_engine_data_18,0x20,8,engine_network_flags,0xfffffffffffffffe);
   *engine_temporary_pointer = engine_temp_uint_2;
   *(uint8*)(engine_temporary_pointer + 1) = engine_temporary_uint;
   engine_temporary_pointer[2] = engine_temp_uint_3;
@@ -41130,7 +41130,7 @@ void engine_unnamed_function_2110(uint64 engine_data_structure_ptr,longlong *eng
   aengine_stack_value_70[0] = 0;
   engine_stack_value_78 = 0x1c;
   pengine_stack_long_98 = engine_result_flag_ptr;
-  strcpy_s(aengine_stack_value_70,0x40,&engine_data_60);
+  strcpy_s(aengine_stack_value_70,0x40,&engine_audio_flags);
   engine_unnamed_function_5770();
   engine_stack_pointer_88 = &engine_data_18098bcb0;
   engine_temp_uint_2 = engine_call_memory_allocator(_engine_data_18,engine_comparison_params,MEMORY_COMPARE_SIZE_0x10,3);
@@ -41175,7 +41175,7 @@ void engine_unnamed_function_2120(uint64 engine_data_structure_ptr,longlong *eng
   aengine_stack_value_70[0] = 0;
   engine_stack_value_78 = 0x1c;
   pengine_stack_long_98 = engine_result_flag_ptr;
-  strcpy_s(aengine_stack_value_70,0x40,&engine_data_60);
+  strcpy_s(aengine_stack_value_70,0x40,&engine_audio_flags);
   engine_unnamed_function_5770();
   engine_stack_pointer_88 = &engine_data_18098bcb0;
   engine_temp_uint_2 = engine_call_memory_allocator(_engine_data_18,engine_comparison_params,MEMORY_COMPARE_SIZE_0x10,3);
@@ -41217,7 +41217,7 @@ void engine_unnamed_function_2130(uint64 engine_data_structure_ptr,longlong *eng
   aengine_stack_value_70[0] = 0;
   engine_stack_value_78 = 0x1c;
   pengine_stack_long_98 = engine_result_flag_ptr;
-  strcpy_s(aengine_stack_value_70,0x40,&engine_data_60);
+  strcpy_s(aengine_stack_value_70,0x40,&engine_audio_flags);
   engine_unnamed_function_5770();
   engine_stack_pointer_88 = &engine_data_18098bcb0;
   engine_temporary_uint = engine_call_memory_allocator(_engine_data_18,engine_comparison_params,MEMORY_COMPARE_SIZE_0x10,3);
@@ -41261,7 +41261,7 @@ void engine_unnamed_function_2140(uint64 engine_data_structure_ptr,longlong *eng
   aengine_stack_value_70[0] = 0;
   engine_stack_value_78 = 0x1c;
   pengine_stack_long_98 = engine_result_flag_ptr;
-  strcpy_s(aengine_stack_value_70,0x40,&engine_data_60);
+  strcpy_s(aengine_stack_value_70,0x40,&engine_audio_flags);
   engine_unnamed_function_5770();
   engine_stack_pointer_88 = &engine_data_18098bcb0;
   engine_temp_uint_2 = engine_call_memory_allocator(_engine_data_18,engine_comparison_params,MEMORY_COMPARE_SIZE_0x10,0x20);
@@ -41311,7 +41311,7 @@ void engine_unnamed_function_2150(longlong engine_data_structure_ptr,longlong *e
     engine_stack_pointer_90 = engine_stack_array_80;
     engine_stack_array_80[0] = 0;
     engine_stack_value_88 = 0x1c;
-    strcpy_s(engine_stack_array_80,0x40,&engine_data_60);
+    strcpy_s(engine_stack_array_80,0x40,&engine_audio_flags);
     engine_unnamed_function_5770();
     engine_stack_pointer_98 = &engine_data_18098bcb0;
     engine_temp_long_4 = engine_call_memory_allocator(_engine_data_18,engine_temporary_int,MEMORY_COMPARE_SIZE_0x10,0x1e);
@@ -41381,7 +41381,7 @@ void engine_unnamed_function_2160(longlong engine_data_structure_ptr,longlong *e
     engine_stack_pointer_90 = engine_stack_array_80;
     engine_stack_array_80[0] = 0;
     engine_stack_value_88 = 0x1c;
-    strcpy_s(engine_stack_array_80,0x40,&engine_data_60);
+    strcpy_s(engine_stack_array_80,0x40,&engine_audio_flags);
     engine_unnamed_function_5770();
     engine_stack_pointer_98 = &engine_data_18098bcb0;
     engine_temp_long_4 = engine_call_memory_allocator(_engine_data_18,engine_temporary_int,MEMORY_COMPARE_SIZE_0x10,0x1e);
@@ -41451,7 +41451,7 @@ void engine_unnamed_function_2170(longlong engine_data_structure_ptr,longlong *e
     engine_stack_pointer_90 = engine_stack_array_80;
     engine_stack_array_80[0] = 0;
     engine_stack_value_88 = 0x1c;
-    strcpy_s(engine_stack_array_80,0x40,&engine_data_60);
+    strcpy_s(engine_stack_array_80,0x40,&engine_audio_flags);
     engine_unnamed_function_5770();
     engine_stack_pointer_98 = &engine_data_18098bcb0;
     engine_temp_long_3 = engine_call_memory_allocator(_engine_data_18,engine_temp_int_4,MEMORY_COMPARE_SIZE_0x10,0x1e);
@@ -41521,7 +41521,7 @@ void engine_unnamed_function_2180(longlong engine_data_structure_ptr,longlong *e
     engine_stack_pointer_90 = engine_stack_array_80;
     engine_stack_array_80[0] = 0;
     engine_stack_value_88 = 0x1c;
-    strcpy_s(engine_stack_array_80,0x40,&engine_data_60);
+    strcpy_s(engine_stack_array_80,0x40,&engine_audio_flags);
     engine_unnamed_function_5770();
     engine_stack_pointer_98 = &engine_data_18098bcb0;
     engine_temp_long_4 = engine_call_memory_allocator(_engine_data_18,engine_temporary_int,MEMORY_COMPARE_SIZE_0x10,0x1e);
@@ -41591,7 +41591,7 @@ void engine_unnamed_function_2190(longlong engine_data_structure_ptr,longlong *e
     engine_stack_pointer_90 = engine_stack_array_80;
     engine_stack_array_80[0] = 0;
     engine_stack_value_88 = 0x1c;
-    strcpy_s(engine_stack_array_80,0x40,&engine_data_60);
+    strcpy_s(engine_stack_array_80,0x40,&engine_audio_flags);
     engine_unnamed_function_5770();
     engine_stack_pointer_98 = &engine_data_18098bcb0;
     engine_temp_long_4 = engine_call_memory_allocator(_engine_data_18,engine_temporary_int,MEMORY_COMPARE_SIZE_0x10,0x1e);
@@ -41660,7 +41660,7 @@ void engine_unnamed_function_2200(longlong engine_data_structure_ptr,longlong *e
     engine_stack_pointer_90 = engine_stack_array_80;
     engine_stack_array_80[0] = 0;
     engine_stack_value_88 = 0x1c;
-    strcpy_s(engine_stack_array_80,0x40,&engine_data_60);
+    strcpy_s(engine_stack_array_80,0x40,&engine_audio_flags);
     engine_unnamed_function_5770();
     engine_stack_pointer_98 = &engine_data_18098bcb0;
     engine_temp_long_4 = engine_call_memory_allocator(_engine_data_18,engine_temporary_int,MEMORY_COMPARE_SIZE_0x10,0x1e);
@@ -41730,7 +41730,7 @@ void engine_unnamed_function_2210(longlong engine_data_structure_ptr,longlong *e
     engine_stack_pointer_90 = engine_stack_array_80;
     engine_stack_array_80[0] = 0;
     engine_stack_value_88 = 0x1c;
-    strcpy_s(engine_stack_array_80,0x40,&engine_data_60);
+    strcpy_s(engine_stack_array_80,0x40,&engine_audio_flags);
     engine_unnamed_function_5770();
     engine_stack_pointer_98 = &engine_data_18098bcb0;
     engine_temp_long_4 = engine_call_memory_allocator(_engine_data_18,engine_temporary_int,MEMORY_COMPARE_SIZE_0x10,0x1e);
@@ -42375,7 +42375,7 @@ longlong engine_initialize_physics_engine(longlong *engine_data_structure_ptr,lo
   }
   else {
     if (engine_comparison_params == 1) {
-      engine_next_node_ptr = (void*)engine_call_memory_allocator(_engine_data_18,0x20,8,engine_data_bc,0xfffffffffffffffe);
+      engine_next_node_ptr = (void*)engine_call_memory_allocator(_engine_data_18,0x20,8,engine_network_flags,0xfffffffffffffffe);
       engine_data_pointer = (void*)*engine_result_flag_ptr;
       *engine_next_node_ptr = *engine_data_pointer;
       *(uint8*)(engine_next_node_ptr + 1) = *(uint8*)(engine_data_pointer + 1);
@@ -42539,7 +42539,7 @@ longlong engine_configure_resource_manager(longlong *engine_data_structure_ptr,l
   }
   else {
     if (engine_comparison_params == 1) {
-      engine_temporary_long = engine_call_memory_allocator(_engine_data_18,0x20,8,engine_data_bc,0xfffffffffffffffe);
+      engine_temporary_long = engine_call_memory_allocator(_engine_data_18,0x20,8,engine_network_flags,0xfffffffffffffffe);
       engine_unnamed_function_1680(engine_temporary_long,*engine_result_flag_ptr);
       *engine_data_structure_ptr = engine_temporary_long;
       return 0;
@@ -42586,7 +42586,7 @@ longlong engine_initialize_audio_system(longlong *engine_data_structure_ptr,long
   }
   else {
     if (engine_comparison_params == 1) {
-      engine_next_node_ptr = (void*)engine_call_memory_allocator(_engine_data_18,0x20,8,engine_data_bc,0xfffffffffffffffe);
+      engine_next_node_ptr = (void*)engine_call_memory_allocator(_engine_data_18,0x20,8,engine_network_flags,0xfffffffffffffffe);
       engine_data_pointer = (void*)*engine_result_flag_ptr;
       *engine_next_node_ptr = *engine_data_pointer;
       *(uint8*)(engine_next_node_ptr + 1) = *(uint8*)(engine_data_pointer + 1);
@@ -43958,11 +43958,11 @@ void engine_unnamed_function_267d(void)
   uint64 engine_register_r9;
   float *in_R10;
   longlong in_R11;
-  float fStackX_20;
-  float fStackX_24;
+  float engine_stack_float_x20;
+  float engine_stack_float_x24;
   float in_stack_00000028;
   
-  engine_unnamed_function_2640(engine_register_r9,&fStackX_20);
+  engine_unnamed_function_2640(engine_register_r9,&engine_stack_float_x20);
   engine_temporary_uint = *(void*)(in_R11 + 200);
   engine_temp_uint_2 = *(void*)(in_R11 + 0xd0);
   engine_temp_uint_3 = *(void*)(in_R11 + 0xd8);
@@ -43974,12 +43974,12 @@ void engine_unnamed_function_267d(void)
   *(void*)(in_R10 + 6) = engine_temp_uint_3;
   *(void*)(in_R10 + 8) = engine_temporary_uint;
   *(void*)(in_R10 + 10) = engine_temp_uint_4;
-  in_R10[1] = fStackX_20 * in_R10[1];
-  *in_R10 = fStackX_20 * *in_R10;
-  in_R10[2] = fStackX_20 * in_R10[2];
-  in_R10[4] = fStackX_24 * in_R10[4];
-  in_R10[5] = fStackX_24 * in_R10[5];
-  in_R10[6] = fStackX_24 * in_R10[6];
+  in_R10[1] = engine_stack_float_x20 * in_R10[1];
+  *in_R10 = engine_stack_float_x20 * *in_R10;
+  in_R10[2] = engine_stack_float_x20 * in_R10[2];
+  in_R10[4] = engine_stack_float_x24 * in_R10[4];
+  in_R10[5] = engine_stack_float_x24 * in_R10[5];
+  in_R10[6] = engine_stack_float_x24 * in_R10[6];
   in_R10[8] = in_stack_00000028 * in_R10[8];
   in_R10[9] = in_stack_00000028 * in_R10[9];
   in_R10[10] = in_stack_00000028 * in_R10[10];
@@ -45603,7 +45603,7 @@ uint64 engine_unnamed_function_3100(longlong engine_data_structure_ptr,longlong 
   longlong engine_temp_long3;
   void* pengine_stack_uint_50;
   byte *pbStack_48;
-  int iStack_40;
+  int engine_stack_int_40;
   ulonglong engine_stack_uint_38;
   
   memory_allocation_result = *(longlong *)(engine_data_structure_ptr + 0x80);
@@ -45615,7 +45615,7 @@ uint64 engine_unnamed_function_3100(longlong engine_data_structure_ptr,longlong 
     pengine_stack_uint_50 = &engine_system_context_data;
     engine_stack_uint_38 = 0;
     pbStack_48 = (byte *)0x0;
-    iStack_40 = 0;
+    engine_stack_int_40 = 0;
     engine_call_array_builder(&pengine_stack_uint_50,*(uint32*)(engine_result_flag_ptr + 0x10));
     if (0 < *(int *)(engine_result_flag_ptr + 0x10)) {
       next_data_pointer = &engine_data_73;
@@ -45625,7 +45625,7 @@ uint64 engine_unnamed_function_3100(longlong engine_data_structure_ptr,longlong 
                     // WARNING: Subroutine does not return
       memcpy(pbStack_48,next_data_pointer,(longlong)(*(int *)(engine_result_flag_ptr + 0x10) + 1));
     }
-    if ((*(longlong *)(engine_result_flag_ptr + 8) != 0) && (iStack_40 = 0, pbStack_48 != (byte *)0x0)) {
+    if ((*(longlong *)(engine_result_flag_ptr + 8) != 0) && (engine_stack_int_40 = 0, pbStack_48 != (byte *)0x0)) {
       *pbStack_48 = 0;
     }
     engine_data_ptr1 = *(void**)(memory_allocation_result + 0x70);
@@ -45636,7 +45636,7 @@ LAB_180087337:
     }
     else {
       do {
-        if (iStack_40 == 0) {
+        if (engine_stack_int_40 == 0) {
           engine_temp_byte3 = false;
           engine_data_ptr2 = (void*)engine_data_ptr1[1];
         }
@@ -45670,7 +45670,7 @@ LAB_1800872f7:
       } while (engine_data_ptr2 != (void*)0x0);
       if (engine_data_ptr0 == engine_data_pointer) goto LAB_180087337;
       if (*(int *)(engine_data_ptr0 + 6) != 0) {
-        if (iStack_40 != 0) {
+        if (engine_stack_int_40 != 0) {
           engine_byte_ptr_4 = (byte *)engine_data_ptr0[5];
           engine_temp_long3 = (longlong)pbStack_48 - (longlong)engine_byte_ptr_4;
           do {
@@ -45746,8 +45746,8 @@ LAB_180087418:
   engine_stack_long_70 = 0;
   engine_stack_uint_68 = 0;
   engine_current_node_ptr = &engine_data_73;
-  if (_engine_data_d8 != (void*)0x0) {
-    engine_current_node_ptr = _engine_data_d8;
+  if (_engine_physics_flags != (void*)0x0) {
+    engine_current_node_ptr = _engine_physics_flags;
   }
   engine_temporary_pointer = &engine_data_73;
   if (pengine_stack_uint_50 != (void*)0x0) {
@@ -45759,8 +45759,8 @@ LAB_180087418:
   engine_stack_long_90 = 0;
   engine_stack_value_88 = 0;
   engine_current_node_ptr = &engine_data_73;
-  if (_engine_data_28 != (void*)0x0) {
-    engine_current_node_ptr = _engine_data_28;
+  if (_engine_render_mode != (void*)0x0) {
+    engine_current_node_ptr = _engine_render_mode;
   }
   engine_temporary_pointer = &engine_data_73;
   if (pengine_stack_uint_50 != (void*)0x0) {
@@ -45796,8 +45796,8 @@ LAB_18008755d:
     resource_status_flag = engine_call_condition_evaluator(&engine_stack_pointer_98);
     if (resource_status_flag == '\0') goto LAB_18008755d;
     engine_current_node_ptr = &engine_data_73;
-    if (_engine_data_d8 != (void*)0x0) {
-      engine_current_node_ptr = _engine_data_d8;
+    if (_engine_physics_flags != (void*)0x0) {
+      engine_current_node_ptr = _engine_physics_flags;
     }
     (**(code **)(*engine_result_flag_ptr + 0x10))(engine_result_flag_ptr,engine_current_node_ptr);
   }
@@ -45934,7 +45934,7 @@ void engine_unnamed_function_3130(uint64_t *engine_data_structure_ptr,uint64_t *
   uint64 engine_stack_uint_b0;
   void* pengine_stack_uint_a8;
   void* engine_stack_param_a0;
-  int iStack_98;
+  int engine_stack_int_98;
   uint engine_stack_uint_94;
   uint32 engine_stack_uint_90;
   uint32 engine_stack_uint_8c;
@@ -46025,7 +46025,7 @@ LAB_1800878e0:
       }
       engine_stack_uint_f8 = 0;
       engine_stack_pointer_138 = (void*)0x0;
-      engine_temp_int0 = ReadFile(engine_temp_long5,(longlong)&iStack_98 + (longlong)pengine_temp_long_20,engine_temp_uint_26,&engine_stack_uint_f8);
+      engine_temp_int0 = ReadFile(engine_temp_long5,(longlong)&engine_stack_int_98 + (longlong)pengine_temp_long_20,engine_temp_uint_26,&engine_stack_uint_f8);
       if (engine_temp_int0 == 0) goto LAB_18008807f;
     } while ((engine_stack_uint_f8 != 0) &&
             (pengine_temp_long_20 = (longlong *)((longlong)pengine_temp_long_20 + (ulonglong)engine_stack_uint_f8),
@@ -46070,7 +46070,7 @@ LAB_18008807f:
       *engine_comparison_params = &engine_data_18098bcb0;
       goto LAB_180088131;
     }
-    if (iStack_98 == 0x43415054) {
+    if (engine_stack_int_98 == 0x43415054) {
       if (engine_stack_uint_94 < 3) {
         SetFilePointerEx(engine_temp_long5,0,&engine_stack_long_d0,1);
         engine_stack_long_c8 = engine_stack_long_d0;
@@ -46159,7 +46159,7 @@ LAB_18008807f:
             if (engine_data_ptr7 == (void*)0x0) {
 LAB_180087f81:
                     // WARNING: Subroutine does not return
-              engine_validate_system_compatibility(_engine_data_28,&engine_base_data_offset_80);
+              engine_validate_system_compatibility(_engine_render_mode,&engine_base_data_offset_80);
             }
             do {
               engine_temp_int0 = memcmp(engine_data_ptr7 + 4,&engine_stack_value_70,MEMORY_COMPARE_SIZE_0x10);
@@ -46383,7 +46383,7 @@ void engine_unnamed_function_3140(uint64 engine_data_structure_ptr,uint8_t engin
   longlong engine_temp_long4;
   uint8 aengine_stack_uint_318 [32];
   uint8 engine_stack_uint_2f8;
-  int iStack_2e8;
+  int engine_stack_int_2e8;
   longlong *pengine_stack_long_2e0;
   longlong engine_stack_long_2d8;
   void* pengine_stack_uint_2d0;
@@ -46417,7 +46417,7 @@ void engine_unnamed_function_3140(uint64 engine_data_structure_ptr,uint8_t engin
   engine_stack_uint_48 = _engine_data_a8 ^ (ulonglong)aengine_stack_uint_318;
   engine_temp_long0 = 0;
   pengine_stack_long_2e0 = _engine_data_a8;
-  iStack_2e8 = 0;
+  engine_stack_int_2e8 = 0;
   engine_temp_int_4 = (int)((_engine_data_a8[2] - _engine_data_a8[1]) / 0x60);
   engine_temp_long4 = (longlong)engine_temp_int_4;
   engine_stack_uint_2f8 = engine_result_flag_ptr;
@@ -46544,7 +46544,7 @@ void engine_unnamed_function_3140(uint64 engine_data_structure_ptr,uint8_t engin
         if (engine_data_pointer != (void*)0x0) {
           (**(code **)*engine_data_pointer)(engine_data_pointer,&pengine_stack_uint_2d0);
         }
-        iStack_2e8 = iStack_2e8 + 1;
+        engine_stack_int_2e8 = engine_stack_int_2e8 + 1;
         engine_stack_uint_1e8 = 0;
         engine_stack_uint_1e0 = 0;
         engine_stack_uint_1d8 = 0;
@@ -46554,7 +46554,7 @@ void engine_unnamed_function_3140(uint64 engine_data_structure_ptr,uint8_t engin
           engine_data_ptr2 = pengine_stack_uint_288;
         }
                     // WARNING: Subroutine does not return
-        engine_validate_system_compatibility(_engine_data_28,&engine_base_data_offset_e0,engine_data_ptr2);
+        engine_validate_system_compatibility(_engine_render_mode,&engine_base_data_offset_e0,engine_data_ptr2);
       }
       pengine_stack_uint_290 = &engine_system_context_data;
       if (pengine_stack_uint_288 != (void*)0x0) {
@@ -46574,7 +46574,7 @@ void engine_unnamed_function_3140(uint64 engine_data_structure_ptr,uint8_t engin
       pengine_stack_uint_2d0 = &engine_data_18098bcb0;
       engine_stack_long_258 = engine_temp_long_6 + 1;
     } while (engine_stack_long_258 < engine_temp_long0);
-    if (iStack_2e8 != 0) goto LAB_180088ac9;
+    if (engine_stack_int_2e8 != 0) goto LAB_180088ac9;
   }
   engine_call_buffer_allocator(&engine_base_data_offset_f8);
 LAB_180088ac9:
@@ -46621,7 +46621,7 @@ LAB_180088ac9:
     } while (pengine_temp_long_7 != pengine_stack_long_2e0 + 0x16);
   }
                     // WARNING: Subroutine does not return
-  engine_validate_system_compatibility(_engine_data_28,&engine_base_data_offset_30);
+  engine_validate_system_compatibility(_engine_render_mode,&engine_base_data_offset_30);
 }
 
 
@@ -46726,7 +46726,7 @@ ulonglong engine_unnamed_function_3160(longlong *engine_data_structure_ptr,uint6
   longlong *pengine_temp_long3;
   uint8 auStackX_8 [8];
   byte *pbStack_60;
-  int iStack_58;
+  int engine_stack_int_58;
   void* pengine_stack_uint_48;
   longlong engine_stack_long_40;
   uint32 engine_stack_uint_30;
@@ -46743,7 +46743,7 @@ LAB_1800892ba:
   }
   else {
     do {
-      if (iStack_58 == 0) {
+      if (engine_stack_int_58 == 0) {
         engine_comparison_result = false;
         pengine_temp_long3 = (longlong *)pengine_temp_long2[1];
       }
@@ -46777,7 +46777,7 @@ LAB_18008927d:
     } while (pengine_temp_long3 != (longlong *)0x0);
     if (engine_temp_ptr_5 == pengine_temp_long0) goto LAB_1800892ba;
     if ((int)engine_temp_ptr_5[6] != 0) {
-      if (iStack_58 != 0) {
+      if (engine_stack_int_58 != 0) {
         engine_temp_byte_ptr_7 = (byte *)engine_temp_ptr_5[5];
         engine_temp_long_9 = (longlong)pbStack_60 - (longlong)engine_temp_byte_ptr_7;
         do {
@@ -46883,7 +46883,7 @@ void engine_unnamed_function_3180(void)
   uint32 engine_stack_uint_68;
   uint8 aengine_stack_uint_60 [32];
   uint8 aengine_stack_uint_40 [4];
-  int iStack_3c;
+  int engine_stack_int_3c;
   ulonglong engine_stack_uint_38;
   
   engine_temp_long_3 = _engine_data_a8;
@@ -46906,7 +46906,7 @@ void engine_unnamed_function_3180(void)
       engine_stack_uint_68 = 0;
       aengine_stack_uint_60[0] = 0;
       aengine_stack_uint_40[0] = 0;
-      iStack_3c = 0xffffffff;
+      engine_stack_int_3c = 0xffffffff;
       engine_temp_long_8 = *(longlong *)(engine_temp_long_2 + 0x8a8) + engine_temp_uint_9;
       engine_temporary_uint = *(uint *)(engine_temp_long_8 + 0x10);
       engine_temp_uint64_value = (ulonglong)engine_temporary_uint;
@@ -46922,7 +46922,7 @@ void engine_unnamed_function_3180(void)
       }
       engine_stack_value_80 = CONCAT44(*(uint32*)(engine_temp_long_8 + 0x1c),(uint32_t)engine_stack_value_80);
       engine_stack_value_88 = engine_temporary_uint;
-      iStack_3c = (int)engine_temp_uint_6;
+      engine_stack_int_3c = (int)engine_temp_uint_6;
       engine_temp_char_4 = engine_unnamed_function_3110(engine_temp_uint_6,&engine_stack_pointer_78,aengine_stack_uint_40);
       if (engine_temp_char_4 != '\0') {
         engine_temp_uint64_value = *(ulonglong *)(engine_temp_long_3 + 0x10);
@@ -46932,7 +46932,7 @@ void engine_unnamed_function_3180(void)
           engine_call_data_writer(engine_temp_uint64_value);
           engine_unnamed_function_10(engine_temp_uint64_value + MEMORY_OFFSET_0x20,&engine_stack_pointer_78);
           *(uint8*)(engine_temp_uint64_value + 0x58) = aengine_stack_uint_40[0];
-          *(int *)(engine_temp_uint64_value + 0x5c) = iStack_3c;
+          *(int *)(engine_temp_uint64_value + 0x5c) = engine_stack_int_3c;
         }
         else {
           engine_expand_data_structure(engine_temp_long_3 + 8,&engine_stack_pointer_98);
@@ -47040,7 +47040,7 @@ void engine_unnamed_function_3200(void)
   ulonglong engine_stack_uint_358;
   void* pengine_stack_uint_350;
   uint8* pengine_stack_uint_348;
-  int iStack_340;
+  int engine_stack_int_340;
   ulonglong engine_stack_uint_338;
   void* pengine_stack_uint_330;
   longlong engine_stack_long_328;
@@ -47094,7 +47094,7 @@ void engine_unnamed_function_3200(void)
   undefined *apengine_stack_uint_180 [5];
   void* engine_stack_pointer_158;
   void* pengine_stack_uint_150;
-  int iStack_148;
+  int engine_stack_int_148;
   ulonglong engine_stack_uint_38;
   
   engine_stack_uint_1c8 = 0xfffffffffffffffe;
@@ -47111,7 +47111,7 @@ void engine_unnamed_function_3200(void)
       engine_temp_int8 = (int)engine_temp_uint_24;
       if ((int)pengine_temp_long9[1] == 6) {
         engine_temp_uint_24 = engine_temp_uint_27;
-        while (engine_temp_uint_8 = engine_temp_uint_24 + 1, *(char *)(*pengine_temp_long9 + engine_temp_uint_24) == (&engine_data_28)[engine_temp_uint_24]) {
+        while (engine_temp_uint_8 = engine_temp_uint_24 + 1, *(char *)(*pengine_temp_long9 + engine_temp_uint_24) == (&engine_render_mode)[engine_temp_uint_24]) {
           engine_temp_uint_24 = engine_temp_uint_8;
           if (engine_temp_uint_8 == 7) {
             if (engine_temp_int8 == -1) goto LAB_18008984e;
@@ -47133,7 +47133,7 @@ void engine_unnamed_function_3200(void)
   }
 LAB_18008984e:
                     // WARNING: Subroutine does not return
-  engine_validate_system_compatibility(_engine_data_28,&engine_base_data_offset_48);
+  engine_validate_system_compatibility(_engine_render_mode,&engine_base_data_offset_48);
 LAB_1800897d5:
   engine_temp_long1 = engine_stack_long_3b8;
   engine_temp_uint_26 = 0;
@@ -47183,7 +47183,7 @@ LAB_180089891:
     pengine_stack_uint_350 = &engine_system_context_data;
     engine_stack_uint_338 = 0;
     pengine_stack_uint_348 = (uint8*)0x0;
-    iStack_340 = 0;
+    engine_stack_int_340 = 0;
     engine_stack_uint_3e4 = engine_temp_uint_26;
     engine_call_array_builder(&pengine_stack_uint_350);
     engine_next_node_ptr = pengine_stack_uint_348;
@@ -47195,10 +47195,10 @@ LAB_180089891:
                     // WARNING: Subroutine does not return
       memcpy(pengine_stack_uint_348,engine_data_ptr4,(longlong)(*(int *)(pengine_data_ptr0 + 2) + 1));
     }
-    if ((pengine_data_ptr0[1] != (void*)0x0) && (iStack_340 = 0, pengine_stack_uint_348 != (uint8*)0x0)) {
+    if ((pengine_data_ptr0[1] != (void*)0x0) && (engine_stack_int_340 = 0, pengine_stack_uint_348 != (uint8*)0x0)) {
       *pengine_stack_uint_348 = 0;
     }
-    engine_temp_int8 = iStack_340;
+    engine_temp_int8 = engine_stack_int_340;
     if ((engine_temp_uint_26 & 2) != 0) {
       engine_temp_uint_26 = engine_temp_uint_26 & 0xfffffffd;
       pengine_stack_uint_1a8 = &engine_data_18098bcb0;
@@ -47311,14 +47311,14 @@ LAB_180089891:
       engine_stack_uint_2d0 = 0;
       pengine_stack_uint_2e0 = (uint8*)0x0;
       engine_stack_uint_2d8 = 0;
-      engine_call_array_builder(&pengine_stack_uint_2e8,iStack_148);
-      if (0 < iStack_148) {
+      engine_call_array_builder(&pengine_stack_uint_2e8,engine_stack_int_148);
+      if (0 < engine_stack_int_148) {
         engine_data_ptr4 = &engine_data_73;
         if (pengine_stack_uint_150 != (void*)0x0) {
           engine_data_ptr4 = pengine_stack_uint_150;
         }
                     // WARNING: Subroutine does not return
-        memcpy(pengine_stack_uint_2e0,engine_data_ptr4,(longlong)(iStack_148 + 1));
+        memcpy(pengine_stack_uint_2e0,engine_data_ptr4,(longlong)(engine_stack_int_148 + 1));
       }
       if ((pengine_stack_uint_150 != (void*)0x0) && (engine_stack_uint_2d8 = 0, pengine_stack_uint_2e0 != (uint8*)0x0)) {
         *pengine_stack_uint_2e0 = 0;
@@ -47741,7 +47741,7 @@ void engine_unnamed_function_3220(uint64_t *engine_data_structure_ptr)
   uint32 aengine_stack_uint_380 [264];
   void* pengine_stack_uint_278;
   void* pengine_stack_uint_270;
-  int iStack_268;
+  int engine_stack_int_268;
   uint32 aengine_stack_uint_260 [264];
   void* engine_stack_pointer_158;
   void* pengine_stack_uint_150;
@@ -47782,7 +47782,7 @@ void engine_unnamed_function_3220(uint64_t *engine_data_structure_ptr)
 LAB_18008a753:
         pengine_stack_uint_278 = &engine_base_data_offset_a8;
         pengine_stack_uint_270 = aengine_stack_uint_260;
-        iStack_268 = 0;
+        engine_stack_int_268 = 0;
         aengine_stack_uint_260[0] = 0;
         pengine_stack_uint_398 = &engine_base_data_offset_a8;
         pengine_stack_uint_390 = aengine_stack_uint_380;
@@ -47935,14 +47935,14 @@ LAB_18008acc1:
           engine_stack_uint_560 = 0;
           pengine_stack_uint_570 = (void*)0x0;
           engine_stack_uint_568 = engine_stack_uint_568 & 0xffffffff00000000;
-          engine_call_array_builder(&pengine_stack_uint_578,iStack_268);
-          if (0 < iStack_268) {
+          engine_call_array_builder(&pengine_stack_uint_578,engine_stack_int_268);
+          if (0 < engine_stack_int_268) {
             engine_data_ptr_21 = &engine_data_73;
             if (pengine_stack_uint_270 != (void*)0x0) {
               engine_data_ptr_21 = pengine_stack_uint_270;
             }
                     // WARNING: Subroutine does not return
-            memcpy(pengine_stack_uint_570,engine_data_ptr_21,(longlong)(iStack_268 + 1));
+            memcpy(pengine_stack_uint_570,engine_data_ptr_21,(longlong)(engine_stack_int_268 + 1));
           }
           if ((pengine_stack_uint_270 != (void*)0x0) &&
              (engine_stack_uint_568 = engine_stack_uint_568 & 0xffffffff00000000, pengine_stack_uint_570 != (void*)0x0)) {
@@ -48444,7 +48444,7 @@ void engine_unnamed_function_3260(longlong engine_data_structure_ptr,longlong *e
       } while (engine_temp_long_6 < engine_temp_int_4);
     }
                     // WARNING: Subroutine does not return
-    engine_validate_system_compatibility(_engine_data_28,&engine_base_data_offset_18);
+    engine_validate_system_compatibility(_engine_render_mode,&engine_base_data_offset_18);
   }
   engine_stack_uint_90 = 0;
   engine_data_pointer = (void*)(engine_data_structure_ptr + 0xb0);
@@ -48542,7 +48542,7 @@ void engine_unnamed_function_3270(uint64 engine_data_structure_ptr,longlong engi
     resource_status_flag = *(char *)((longlong)engine_comparison_params + 0x44);
     if (resource_status_flag != '\0') {
       pengine_stack_uint_268 = &engine_base_data_offset_50;
-      engine_call_buffer_manager(_engine_data_28,0,0x80000000000,9);
+      engine_call_buffer_manager(_engine_render_mode,0,0x80000000000,9);
       resource_status_flag = *(char *)((longlong)engine_comparison_params + 0x44);
     }
     engine_stack_long_240 = engine_system_parameter_4[1];
@@ -48599,7 +48599,7 @@ void engine_unnamed_function_3270(uint64 engine_data_structure_ptr,longlong engi
   }
   engine_stack_char_pointer_a0 = engine_process_frame_update;
   pcStack_98 = engine_start_main_loop;
-  engine_temp_uint_3 = engine_call_memory_allocator(_engine_data_18,0x38,8,engine_data_bc);
+  engine_temp_uint_3 = engine_call_memory_allocator(_engine_data_18,0x38,8,engine_network_flags);
   engine_unnamed_function_3730(engine_temp_uint_3,&engine_stack_long_240);
   aengine_stack_uint_b0[0] = engine_temp_uint_3;
   if (aengine_stack_uint_90 != engine_param_6) {
@@ -48714,7 +48714,7 @@ void engine_unnamed_function_3290(uint64 engine_data_structure_ptr,longlong engi
   if (engine_system_parameter_4 != (longlong *)0x0) {
     if (*(char *)((longlong)engine_comparison_params + 0x44) != '\0') {
       pengine_stack_uint_308 = &engine_base_data_offset_50;
-      engine_call_buffer_manager(_engine_data_28,0,0x80000000000,9);
+      engine_call_buffer_manager(_engine_render_mode,0,0x80000000000,9);
       if (*(char *)((longlong)engine_comparison_params + 0x44) != '\0') goto LAB_18008c01e;
     }
     engine_temp_long_7 = engine_temp_long_7 + *engine_system_parameter_4;
@@ -49351,7 +49351,7 @@ undefined * engine_unnamed_function_3360(void)
     engine_get_game_state_status(&engine_data_f8);
     if (_engine_data_f8 == -1) {
       _engine_data_00 = 0;
-      _engine_data_08 = 0;
+      _engine_system_flags = 0;
       _engine_data_00 = engine_unnamed_function_3390();
       engine_unnamed_function_6530(engine_unnamed_function_6580);
       engine_set_game_state_data(&engine_data_f8);
@@ -49377,7 +49377,7 @@ void engine_unnamed_function_3370(uint64 engine_data_structure_ptr,uint64 engine
   _engine_data_00[1] = (longlong)pengine_temp_long;
   *_engine_data_00 = (longlong)pengine_temp_long;
   _engine_data_00[2] = (longlong)pengine_temp_long;
-  _engine_data_08 = 0;
+  _engine_system_flags = 0;
                     // WARNING: Could not recover jumptable at 0x0001808ffc83. Too many branches
                     // WARNING: Treating indirect jump as call
   free(_engine_data_00,0x58);
@@ -50730,17 +50730,17 @@ void engine_unnamed_function_3620(longlong *engine_data_structure_ptr,longlong *
   longlong *pengine_temp_long_8;
   longlong engine_temp_long_9;
   longlong *pengine_temp_long0;
-  int iStack_10;
+  int engine_stack_int_10;
   
   if (engine_data_structure_ptr != engine_result_flag_ptr) {
     for (pengine_temp_long_7 = engine_data_structure_ptr + 2; pengine_temp_long_7 != engine_result_flag_ptr; pengine_temp_long_7 = pengine_temp_long_7 + 2) {
       engine_temp_long_3 = *pengine_temp_long_7;
-      iStack_10 = (int)pengine_temp_long_7[1];
+      engine_stack_int_10 = (int)pengine_temp_long_7[1];
       pengine_temp_long0 = pengine_temp_long_7;
       main_context_pointer = pengine_temp_long_7;
       while (main_context_pointer != engine_data_structure_ptr) {
         pengine_temp_long_8 = main_context_pointer + -2;
-        if (iStack_10 == (int)main_context_pointer[-1]) {
+        if (engine_stack_int_10 == (int)main_context_pointer[-1]) {
           if (*(int *)(*pengine_temp_long_8 + 0x78) == 0) {
             engine_comparison_result = false;
           }
@@ -50760,7 +50760,7 @@ void engine_unnamed_function_3620(longlong *engine_data_structure_ptr,longlong *
           }
         }
         else {
-          engine_comparison_result = iStack_10 < (int)main_context_pointer[-1];
+          engine_comparison_result = engine_stack_int_10 < (int)main_context_pointer[-1];
         }
         if (!engine_comparison_result) break;
         *pengine_temp_long0 = *pengine_temp_long_8;
@@ -50769,7 +50769,7 @@ void engine_unnamed_function_3620(longlong *engine_data_structure_ptr,longlong *
         main_context_pointer = pengine_temp_long_8;
       }
       *pengine_temp_long0 = engine_temp_long_3;
-      *(int *)(pengine_temp_long0 + 1) = iStack_10;
+      *(int *)(pengine_temp_long0 + 1) = engine_stack_int_10;
     }
   }
   return;
@@ -50792,7 +50792,7 @@ void engine_unnamed_function_3633(longlong *engine_data_structure_ptr,longlong *
   longlong *pengine_temp_long_8;
   longlong engine_temp_long_9;
   longlong *pengine_temp_long0;
-  int iStackX_8;
+  int engine_stack_int_x8;
   
   pengine_temp_long_7 = engine_data_structure_ptr + 2;
   do {
@@ -50800,12 +50800,12 @@ void engine_unnamed_function_3633(longlong *engine_data_structure_ptr,longlong *
       return;
     }
     engine_temp_long_3 = *pengine_temp_long_7;
-    iStackX_8 = (int)pengine_temp_long_7[1];
+    engine_stack_int_x8 = (int)pengine_temp_long_7[1];
     pengine_temp_long0 = pengine_temp_long_7;
     main_context_pointer = pengine_temp_long_7;
     while (main_context_pointer != engine_data_structure_ptr) {
       pengine_temp_long_8 = main_context_pointer + -2;
-      if (iStackX_8 == (int)main_context_pointer[-1]) {
+      if (engine_stack_int_x8 == (int)main_context_pointer[-1]) {
         if (*(int *)(*pengine_temp_long_8 + 0x78) == 0) {
           engine_comparison_result = false;
         }
@@ -50825,7 +50825,7 @@ void engine_unnamed_function_3633(longlong *engine_data_structure_ptr,longlong *
         }
       }
       else {
-        engine_comparison_result = iStackX_8 < (int)main_context_pointer[-1];
+        engine_comparison_result = engine_stack_int_x8 < (int)main_context_pointer[-1];
       }
       if (!engine_comparison_result) break;
       *pengine_temp_long0 = *pengine_temp_long_8;
@@ -50835,7 +50835,7 @@ void engine_unnamed_function_3633(longlong *engine_data_structure_ptr,longlong *
     }
     pengine_temp_long_7 = pengine_temp_long_7 + 2;
     *pengine_temp_long0 = engine_temp_long_3;
-    *(int *)(pengine_temp_long0 + 1) = iStackX_8;
+    *(int *)(pengine_temp_long0 + 1) = engine_stack_int_x8;
   } while( true );
 }
 
@@ -50858,16 +50858,16 @@ void engine_unnamed_function_364b(void)
   longlong *pengine_temp_long_7;
   longlong engine_temp_long_8;
   longlong *engine_temp_long_ptr_9;
-  int iStackX_8;
+  int engine_stack_int_x8;
   
   do {
     engine_temp_long_3 = *unaff_RDI;
-    iStackX_8 = (int)unaff_RDI[1];
+    engine_stack_int_x8 = (int)unaff_RDI[1];
     main_context_pointer = unaff_RDI;
     engine_temp_long_ptr_9 = unaff_RDI;
     while (main_context_pointer != unaff_RSI) {
       pengine_temp_long_7 = main_context_pointer + -2;
-      if (iStackX_8 == (int)main_context_pointer[-1]) {
+      if (engine_stack_int_x8 == (int)main_context_pointer[-1]) {
         if (*(int *)(*pengine_temp_long_7 + 0x78) == 0) {
           engine_comparison_result = false;
         }
@@ -50887,7 +50887,7 @@ void engine_unnamed_function_364b(void)
         }
       }
       else {
-        engine_comparison_result = iStackX_8 < (int)main_context_pointer[-1];
+        engine_comparison_result = engine_stack_int_x8 < (int)main_context_pointer[-1];
       }
       if (!engine_comparison_result) break;
       *engine_temp_long_ptr_9 = *pengine_temp_long_7;
@@ -50897,7 +50897,7 @@ void engine_unnamed_function_364b(void)
     }
     unaff_RDI = unaff_RDI + 2;
     *engine_temp_long_ptr_9 = engine_temp_long_3;
-    *(int *)(engine_temp_long_ptr_9 + 1) = iStackX_8;
+    *(int *)(engine_temp_long_ptr_9 + 1) = engine_stack_int_x8;
     if (unaff_RDI == unaff_RBP) {
       return;
     }
@@ -51183,7 +51183,7 @@ longlong engine_process_frame_update(longlong *engine_data_structure_ptr,longlon
   }
   else {
     if (engine_comparison_params == 1) {
-      engine_temporary_long = engine_call_memory_allocator(_engine_data_18,0x38,8,engine_data_bc);
+      engine_temporary_long = engine_call_memory_allocator(_engine_data_18,0x38,8,engine_network_flags);
       engine_unnamed_function_3730(engine_temporary_long,*engine_result_flag_ptr);
       *engine_data_structure_ptr = engine_temporary_long;
       return 0;
@@ -53585,9 +53585,9 @@ void engine_process_render_queue(void)
   uint8 aengine_stack_uint_d8 [32];
   uint8 engine_stack_uint_b8;
   int engine_stack_int_a8;
-  int iStack_a4;
-  int iStack_a0;
-  int iStack_9c;
+  int engine_stack_int_a4;
+  int engine_stack_int_a0;
+  int engine_stack_int_9c;
   longlong *pengine_stack_long_98;
   uint64 engine_stack_uint_90;
   void* engine_stack_pointer_88;
@@ -53639,7 +53639,7 @@ LAB_180091164:
 LAB_1800911c4:
   engine_unnamed_function_4210(engine_temp_long_6);
   engine_unnamed_function_4010(engine_temp_long_6 + 0x30);
-  if ((engine_data_60 == '\0') && (*(int *)(_engine_data_08 + 0x7e0) == 0)) {
+  if ((engine_audio_flags == '\0') && (*(int *)(_engine_system_flags + 0x7e0) == 0)) {
     if ((**(char **)(_engine_input_config_data + MEMORY_OFFSET_0x2010) == '\0') ||
        (*(char *)(*(longlong *)(_engine_data_70 + 8) + 0xbc +
                  (ulonglong)(*(uint *)(*(longlong *)(_engine_data_70 + 8) + 0x13c) & 1) * 0x48) ==
@@ -53653,10 +53653,10 @@ LAB_1800911c4:
       engine_temp_uint_9 = (ulonglong)(*(uint *)(engine_temp_long_4 + 0x13c) & 1);
       memory_allocation_result = *(longlong *)(_engine_data_70 + 8);
       engine_temp_uint0 = (ulonglong)(*(uint *)(memory_allocation_result + 0x13c) & 1);
-      iStack_a4 = *(int *)(engine_temp_long_4 + 0xf0 + engine_temp_uint_9 * 0x48) + *(int *)(engine_temp_long_3 + 0xb0 + engine_temp_uint_8 * 0x48);
+      engine_stack_int_a4 = *(int *)(engine_temp_long_4 + 0xf0 + engine_temp_uint_9 * 0x48) + *(int *)(engine_temp_long_3 + 0xb0 + engine_temp_uint_8 * 0x48);
       engine_stack_int_a8 = *(int *)(engine_temp_long_4 + 0xec + engine_temp_uint_9 * 0x48) + *(int *)(engine_temp_long_3 + 0xac + engine_temp_uint_8 * 0x48);
-      iStack_9c = *(int *)(memory_allocation_result + 0xf0 + engine_temp_uint0 * 0x48) + *(int *)(engine_temp_long_3 + 0xb8 + engine_temp_uint_8 * 0x48);
-      iStack_a0 = *(int *)(memory_allocation_result + 0xec + engine_temp_uint0 * 0x48) + *(int *)(engine_temp_long_3 + 0xb4 + engine_temp_uint_8 * 0x48);
+      engine_stack_int_9c = *(int *)(memory_allocation_result + 0xf0 + engine_temp_uint0 * 0x48) + *(int *)(engine_temp_long_3 + 0xb8 + engine_temp_uint_8 * 0x48);
+      engine_stack_int_a0 = *(int *)(memory_allocation_result + 0xec + engine_temp_uint0 * 0x48) + *(int *)(engine_temp_long_3 + 0xb4 + engine_temp_uint_8 * 0x48);
       engine_unnamed_function_5590(*(void*)(_engine_data_70 + 8),&engine_stack_int_a8);
       engine_temp_long_3 = *(longlong *)(_engine_input_config_data + MEMORY_OFFSET_0x2010);
       engine_unnamed_function_4180(engine_temp_long_3,*(uint32*)(engine_temp_long_3 + 4),*(uint32*)(engine_temp_long_3 + 8));
@@ -53697,7 +53697,7 @@ void engine_unnamed_function_4060(void)
     return;
   }
                     // WARNING: Subroutine does not return
-  engine_validate_system_compatibility(_engine_data_28,&engine_base_data_offset_d0,*(int *)(presource_status_flag + 4),*(uint32*)(presource_status_flag + 8),comparison_result_index
+  engine_validate_system_compatibility(_engine_render_mode,&engine_base_data_offset_d0,*(int *)(presource_status_flag + 4),*(uint32*)(presource_status_flag + 8),comparison_result_index
                 ,engine_temp_int_2);
 }
 
@@ -53867,7 +53867,7 @@ void engine_unnamed_function_4070(void)
     if (ppengine_stack_long_128 != (longlong **)0x0) {
       (*(code *)(*ppengine_stack_long_128)[7])();
     }
-    engine_temporary_int = *(int *)(_engine_data_08 + 0x30c);
+    engine_temporary_int = *(int *)(_engine_system_flags + 0x30c);
     if (engine_temporary_int != 0) {
       pengine_stack_uint_118 = &engine_system_context_data;
       engine_stack_uint_100 = 0;
@@ -56196,8 +56196,8 @@ void engine_unnamed_function_4300(longlong *engine_data_structure_ptr,uint64 eng
   uint8 aengine_stack_uint_30 [8];
   uint64 engine_stack_uint_28;
   longlong *pengine_stack_long_18;
-  char cStack_10;
-  char cStack_f;
+  char engine_stack_char_10;
+  char engine_stack_char_f;
   char engine_stack_char_e;
   
   engine_temp_uint_2 = 0xfffffffffffffffe;
@@ -56219,10 +56219,10 @@ void engine_unnamed_function_4300(longlong *engine_data_structure_ptr,uint64 eng
       engine_unnamed_function_1180();
     }
     engine_unnamed_function_1740(aengine_stack_uint_30);
-    if (cStack_10 != '\0') {
+    if (engine_stack_char_10 != '\0') {
       engine_unnamed_function_1590(pengine_stack_long_40);
     }
-    if (cStack_f != '\0') {
+    if (engine_stack_char_f != '\0') {
       engine_unnamed_function_1590(pengine_stack_long_40);
     }
     pengine_temp_long = pengine_stack_long_38;
@@ -56644,17 +56644,17 @@ uint64 engine_call_numeric_converter(void)
   longlong engine_temp_long4;
   void* pengine_stack_uint_50;
   byte *pbStack_48;
-  int iStack_40;
+  int engine_stack_int_40;
   uint32 engine_stack_uint_38;
   
-  engine_temp_long4 = _engine_data_60;
-  engine_data_ptr1 = (void*)(_engine_data_60 + 0x40);
+  engine_temp_long4 = _engine_audio_flags;
+  engine_data_ptr1 = (void*)(_engine_audio_flags + 0x40);
   engine_setup_processing_environment(&pengine_stack_uint_50);
   engine_data_ptr3 = *(void**)(engine_temp_long4 + 0x50);
   engine_temp_uint_ptr_9 = engine_data_ptr1;
   if (engine_data_ptr3 != (void*)0x0) {
     do {
-      if (iStack_40 == 0) {
+      if (engine_stack_int_40 == 0) {
         engine_temp_byte3 = false;
         engine_data_ptr2 = (void*)engine_data_ptr3[1];
       }
@@ -56689,7 +56689,7 @@ LAB_180095527:
     engine_data_ptr3 = (void*)0x0;
     if (engine_data_ptr0 != engine_data_ptr1) {
       if (*(int *)(engine_data_ptr0 + 6) == 0) goto LAB_18009556a;
-      if (iStack_40 != 0) {
+      if (engine_stack_int_40 != 0) {
         engine_byte_ptr_4 = (byte *)engine_data_ptr0[5];
         engine_temp_long4 = (longlong)pbStack_48 - (longlong)engine_byte_ptr_4;
         do {
@@ -56787,17 +56787,17 @@ uint64 engine_call_coordinate_converter(void)
   longlong engine_temp_long4;
   void* pengine_stack_uint_50;
   byte *pbStack_48;
-  int iStack_40;
+  int engine_stack_int_40;
   uint32 engine_stack_uint_38;
   
-  engine_temp_long4 = _engine_data_60;
-  engine_data_ptr1 = (void*)(_engine_data_60 + 0x40);
+  engine_temp_long4 = _engine_audio_flags;
+  engine_data_ptr1 = (void*)(_engine_audio_flags + 0x40);
   engine_setup_processing_environment(&pengine_stack_uint_50);
   engine_data_ptr3 = *(void**)(engine_temp_long4 + 0x50);
   engine_temp_uint_ptr_9 = engine_data_ptr1;
   if (engine_data_ptr3 != (void*)0x0) {
     do {
-      if (iStack_40 == 0) {
+      if (engine_stack_int_40 == 0) {
         engine_temp_byte3 = false;
         engine_data_ptr2 = (void*)engine_data_ptr3[1];
       }
@@ -56832,7 +56832,7 @@ LAB_1800957c7:
     engine_data_ptr3 = (void*)0x0;
     if (engine_data_ptr0 != engine_data_ptr1) {
       if (*(int *)(engine_data_ptr0 + 6) == 0) goto LAB_18009580a;
-      if (iStack_40 != 0) {
+      if (engine_stack_int_40 != 0) {
         engine_byte_ptr_4 = (byte *)engine_data_ptr0[5];
         engine_temp_long4 = (longlong)pbStack_48 - (longlong)engine_byte_ptr_4;
         do {
@@ -56923,7 +56923,7 @@ void engine_unnamed_function_4410(uint64 engine_data_structure_ptr,uint32_t engi
   uint32_t *engine_temporary_pointer;
   uint64 engine_temp_uint_6;
   
-  engine_data_pointer = _engine_data_60;
+  engine_data_pointer = _engine_audio_flags;
   engine_temp_uint_6 = 0xfffffffffffffffe;
   engine_temp_int_2 = _Mtx_lock(0x180c91970);
   if (engine_temp_int_2 != 0) {
@@ -57100,8 +57100,8 @@ void engine_unnamed_function_4430(void)
   int engine_stack_int_20;
   uint32 engine_stack_uint_18;
   
-  engine_temp_long1 = _engine_data_60;
-  next_data_pointer = (void*)(_engine_data_60 + 0x40);
+  engine_temp_long1 = _engine_audio_flags;
+  next_data_pointer = (void*)(_engine_audio_flags + 0x40);
   engine_initialize_stack_context(&pengine_stack_uint_30);
   engine_temp_uint_ptr_9 = *(void**)(engine_temp_long1 + 0x50);
   temp_data_pointer = next_data_pointer;
@@ -57679,7 +57679,7 @@ void engine_unnamed_function_4460(uint64 engine_data_structure_ptr,longlong engi
   uint64 engine_stack_uint_3a0;
   ulonglong engine_stack_value_58;
   
-  engine_next_node_ptr = _engine_data_60;
+  engine_next_node_ptr = _engine_audio_flags;
   if (engine_comparison_params == 0) {
     return;
   }
@@ -57714,10 +57714,10 @@ void engine_unnamed_function_4460(uint64 engine_data_structure_ptr,longlong engi
     __Throw_C_error_std__YAXH_Z(engine_temp_int_7);
   }
   if (engine_system_parameter_4 == '\0') {
-    pengine_temp_long0 = (longlong *)_engine_data_60[1];
+    pengine_temp_long0 = (longlong *)_engine_audio_flags[1];
   }
   else {
-    pengine_temp_long0 = (longlong *)*_engine_data_60;
+    pengine_temp_long0 = (longlong *)*_engine_audio_flags;
   }
   _engine_data_b0 = *pengine_temp_long0;
   if (0.0 < *(double *)(engine_comparison_params + 0x40)) {
@@ -57806,7 +57806,7 @@ LAB_180096e94:
     }
     engine_next_node_ptr[4] = engine_temp_uint_3 - 4;
     engine_call_buffer_allocator(&engine_base_data_offset_c0);
-    fStack_8f8 = (float)_engine_data_10;
+    fStack_8f8 = (float)_engine_frame_counter;
     engine_manage_system_buffer(engine_next_node_ptr + 3,&fStack_8f8);
     pengine_stack_uint_548 = &engine_base_data_offset_a8;
     engine_stack_uint_3a8 = 0x3f4ccccd3e4ccccd;
@@ -58057,8 +58057,8 @@ void engine_unnamed_function_4500(longlong *engine_data_structure_ptr,int engine
   float engine_temp_float_10;
   uint8 aengine_stack_uint_178 [48];
   longlong **ppengine_stack_long_148;
-  int iStack_140;
-  int iStack_13c;
+  int engine_stack_int_140;
+  int engine_stack_int_13c;
   longlong *pengine_stack_long_138;
   longlong *pengine_stack_long_130;
   longlong *pengine_stack_long_128;
@@ -58071,8 +58071,8 @@ void engine_unnamed_function_4500(longlong *engine_data_structure_ptr,int engine
   longlong *pengine_stack_long_f0;
   uint32 engine_stack_uint_e8;
   uint8 engine_stack_uint_e4;
-  int iStack_e0;
-  int iStack_dc;
+  int engine_stack_int_e0;
+  int engine_stack_int_dc;
   uint32 engine_stack_uint_d8;
   uint32 engine_stack_uint_d4;
   uint64 engine_stack_uint_d0;
@@ -58211,8 +58211,8 @@ void engine_unnamed_function_4500(longlong *engine_data_structure_ptr,int engine
   if (pengine_stack_long_90 != (longlong *)0x0) {
     (**(code **)(*pengine_stack_long_90 + 0x38))();
   }
-  engine_temp_index = engine_unnamed_function_6140(*(void*)(engine_temp_long_3 + 0xa0),&engine_stack_value_88,&iStack_140,&iStack_13c);
-  engine_unnamed_function_4840(engine_temp_index,apengine_stack_long_120,engine_stack_value_88,iStack_140 * iStack_13c);
+  engine_temp_index = engine_unnamed_function_6140(*(void*)(engine_temp_long_3 + 0xa0),&engine_stack_value_88,&engine_stack_int_140,&engine_stack_int_13c);
+  engine_unnamed_function_4840(engine_temp_index,apengine_stack_long_120,engine_stack_value_88,engine_stack_int_140 * engine_stack_int_13c);
   pengine_temp_long_8 = apengine_stack_long_120[0];
   engine_stack_uint_110 = 1;
   engine_stack_uint_104 = 0;
@@ -58229,9 +58229,9 @@ void engine_unnamed_function_4500(longlong *engine_data_structure_ptr,int engine
   }
   pengine_stack_long_f0 = pengine_temp_long_8;
   pengine_stack_long_138 = (longlong *)engine_data_structure_ptr[0xc];
-  ppengine_stack_long_148 = (longlong **)&iStack_e0;
-  iStack_e0 = iStack_140;
-  iStack_dc = iStack_13c;
+  ppengine_stack_long_148 = (longlong **)&engine_stack_int_e0;
+  engine_stack_int_e0 = engine_stack_int_140;
+  engine_stack_int_dc = engine_stack_int_13c;
   engine_stack_uint_d8 = 1;
   engine_stack_uint_d4 = 1;
   engine_stack_uint_d0 = 7;
@@ -58243,7 +58243,7 @@ void engine_unnamed_function_4500(longlong *engine_data_structure_ptr,int engine
   }
   engine_stack_uint_b0 = 0xffffffff;
   engine_stack_uint_ac = 0;
-  engine_unnamed_function_5110(_engine_data_38,&iStack_e0,pengine_stack_long_138);
+  engine_unnamed_function_5110(_engine_data_38,&engine_stack_int_e0,pengine_stack_long_138);
   *(longlong *)(*(longlong *)(engine_temp_long_3 + 0xa0) + 8) = engine_data_structure_ptr[0xc];
   engine_temp_float = *(float *)(_engine_data_b0 + 0x14);
   engine_temp_float_2 = *(float *)(_engine_data_b0 + 0x10);
@@ -58515,9 +58515,9 @@ void engine_unnamed_function_4520(longlong engine_data_structure_ptr,longlong en
   uint8 aengine_stack_uint_2f8 [32];
   code *pcStack_2d8;
   uint8* pengine_stack_uint_2d0;
-  int iStack_2c8;
-  int iStack_2c4;
-  int iStack_2c0;
+  int engine_stack_int_2c8;
+  int engine_stack_int_2c4;
+  int engine_stack_int_2c0;
   ulonglong engine_stack_uint_2b8;
   longlong *pengine_stack_long_2b0;
   longlong engine_stack_long_2a8;
@@ -58612,7 +58612,7 @@ void engine_unnamed_function_4520(longlong engine_data_structure_ptr,longlong en
       engine_data_ptr_23 = *(uint32_t **)(engine_temp_uint_20 + 0x10);
       engine_stack_long_2a0 = pengine_stack_long_2b0[2];
       engine_temp_int_33 = 0;
-      iStack_2c8 = 0;
+      engine_stack_int_2c8 = 0;
       if (0 < *(int *)(engine_result_flag_ptr + 0x10)) {
         engine_temp_long7 = 0;
         engine_stack_uint_2b8 = 0;
@@ -58682,11 +58682,11 @@ void engine_unnamed_function_4520(longlong engine_data_structure_ptr,longlong en
             } while (engine_temp_int_25 < *(int *)(engine_temp_long_24 + 0x10));
           }
           engine_temp_int_33 = engine_temp_int_33 + *(int *)(engine_temp_long_24 + MEMORY_OFFSET_0x20);
-          iStack_2c8 = iStack_2c8 + 1;
+          engine_stack_int_2c8 = engine_stack_int_2c8 + 1;
           engine_temp_uint_20 = engine_stack_uint_2b8 + 8;
           engine_data_structure_ptr = engine_stack_long_298;
           engine_stack_uint_2b8 = engine_temp_uint_20;
-        } while (iStack_2c8 < *(int *)(engine_stack_long_2a8 + 0x10));
+        } while (engine_stack_int_2c8 < *(int *)(engine_stack_long_2a8 + 0x10));
       }
       engine_temp_uint_38 = engine_unnamed_function_5790(engine_temp_uint_20,*(void*)(*(longlong *)(engine_data_structure_ptr + 0x10) + 0x18),
                              aengine_stack_uint_238);
@@ -58745,15 +58745,15 @@ void engine_unnamed_function_4520(longlong engine_data_structure_ptr,longlong en
       engine_temp_long7 = *(longlong *)(engine_temp_long_24 + 0x1cd8);
       engine_unnamed_function_6180(engine_temp_long7,*(void*)(engine_temp_long_24 + 0x1ca8),engine_temp_long7 + 0x80,0x80);
       engine_temp_int_33 = 0;
-      iStack_2c8 = 0;
-      iStack_2c4 = 0;
+      engine_stack_int_2c8 = 0;
+      engine_stack_int_2c4 = 0;
       engine_stack_uint_2b8 = engine_stack_uint_2b8 & 0xffffffff00000000;
       if (0 < *(int *)(engine_stack_long_2a8 + 0x10)) {
         engine_stack_long_2a0 = 0;
         engine_temp_int_25 = engine_temp_int_33;
         do {
           pengine_temp_int_5 = *(int **)(engine_stack_long_2a0 + *(longlong *)(engine_stack_long_2a8 + 8));
-          iStack_2c0 = 0;
+          engine_stack_int_2c0 = 0;
           if (0 < *pengine_temp_int_5) {
             engine_stack_long_290 = 0;
             do {
@@ -58813,7 +58813,7 @@ void engine_unnamed_function_4520(longlong engine_data_structure_ptr,longlong en
                 engine_temp_int_25 = engine_temp_int_25 + 1;
                 *(float *)(*(longlong *)(_engine_data_38 + 0x1cd8) + 0xc0) = (float)engine_temp_int_33;
                 engine_temp_long7 = *(longlong *)(engine_temp_long_24 + 0x1cd8);
-                iStack_2c4 = engine_temp_int_25;
+                engine_stack_int_2c4 = engine_temp_int_25;
                 engine_unnamed_function_6180(engine_temp_long7,*(void*)(engine_temp_long_24 + 0x1ca8),engine_temp_long7 + 0x80,0x80);
               }
               if (*(code **)(engine_current_node_ptr6 + 8) == (code *)0x0) {
@@ -58890,21 +58890,21 @@ void engine_unnamed_function_4520(longlong engine_data_structure_ptr,longlong en
                 engine_stack_uint_244 = engine_temp_uint_31;
                 (**(code **)(*pengine_temp_long9 + 0x168))(pengine_temp_long9,1,&engine_stack_uint_250);
                 engine_data_structure_ptr = engine_stack_long_298;
-                engine_temp_int_25 = iStack_2c4;
+                engine_temp_int_25 = engine_stack_int_2c4;
                 if (engine_data_46 == '\0') {
                   pengine_temp_long9 = *(longlong **)(*(longlong *)(_engine_data_38 + 0x1cd8) + 0x8400);
-                  (**(code **)(*pengine_temp_long9 + 0x60))(pengine_temp_long9,(*engine_current_node_ptr6 / 3) * 3,iStack_2c8,0);
+                  (**(code **)(*pengine_temp_long9 + 0x60))(pengine_temp_long9,(*engine_current_node_ptr6 / 3) * 3,engine_stack_int_2c8,0);
                   engine_data_structure_ptr = engine_stack_long_298;
-                  engine_temp_int_25 = iStack_2c4;
+                  engine_temp_int_25 = engine_stack_int_2c4;
                 }
               }
               else {
                 (**(code **)(engine_current_node_ptr6 + 8))(pengine_temp_int_5,engine_current_node_ptr6);
               }
-              iStack_2c8 = iStack_2c8 + *engine_current_node_ptr6;
-              iStack_2c0 = iStack_2c0 + 1;
+              engine_stack_int_2c8 = engine_stack_int_2c8 + *engine_current_node_ptr6;
+              engine_stack_int_2c0 = engine_stack_int_2c0 + 1;
               engine_stack_long_290 = engine_stack_long_290 + 0x30;
-            } while (iStack_2c0 < *pengine_temp_int_5);
+            } while (engine_stack_int_2c0 < *pengine_temp_int_5);
             engine_temp_int_33 = (int)engine_stack_uint_2b8;
           }
           engine_temp_int_33 = engine_temp_int_33 + 1;
@@ -58913,8 +58913,8 @@ void engine_unnamed_function_4520(longlong engine_data_structure_ptr,longlong en
           pengine_temp_long9 = pengine_stack_long_2b0;
         } while (engine_temp_int_33 < *(int *)(engine_stack_long_2a8 + 0x10));
       }
-      pengine_stack_long_278 = *(longlong **)(_engine_data_60 + 0x10);
-      *(void*)(_engine_data_60 + 0x10) = 0;
+      pengine_stack_long_278 = *(longlong **)(_engine_audio_flags + 0x10);
+      *(void*)(_engine_audio_flags + 0x10) = 0;
       if (pengine_stack_long_278 != (longlong *)0x0) {
         (**(code **)(*pengine_stack_long_278 + 0x38))();
       }
@@ -58950,15 +58950,15 @@ engine_process_input_events(uint64 engine_data_structure_ptr,uint64 engine_resul
   
   engine_temp_uint_2 = 0xfffffffffffffffe;
   if (*(int *)(*(longlong *)((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * 8) +
-              0x48) < _engine_data_10) {
-    engine_get_game_state_status(&engine_data_10);
-    if (_engine_data_10 == -1) {
+              0x48) < _engine_frame_counter) {
+    engine_get_game_state_status(&engine_frame_counter);
+    if (_engine_frame_counter == -1) {
       _engine_data_18 = &engine_system_context_data;
       _engine_data_30 = 0;
       _engine_data_20 = (void*)0x0;
-      _engine_data_28 = 0;
+      _engine_render_mode = 0;
       engine_unnamed_function_6530(engine_unnamed_function_6590);
-      engine_set_game_state_data(&engine_data_10);
+      engine_set_game_state_data(&engine_frame_counter);
     }
   }
   engine_unnamed_function_5560(*(void*)(_engine_data_70 + 8),&engine_data_18,engine_comparison_params,engine_system_parameter_4,engine_temp_uint_2);
@@ -58980,7 +58980,7 @@ uint8_t engine_unnamed_function_4540(uint64 engine_data_structure_ptr,longlong e
   uint engine_temp_uint_4;
   uint64 uStackX_8;
   uint32 uStackX_10;
-  float fStackX_14;
+  float engine_stack_float_x14;
   uint64 engine_stack_uint_18;
   void* pengine_stack_uint_20;
   uint64 engine_stack_uint_40;
@@ -59005,7 +59005,7 @@ uint8_t engine_unnamed_function_4540(uint64 engine_data_structure_ptr,longlong e
   engine_stack_uint_28 = 0;
   engine_stack_uint_18 = 0x3f8000003f800000;
   uStackX_8 = 0;
-  fStackX_14 = ((float)*(ushort *)(engine_result_flag_ptr + 0x32e) * 256.0) / (float)*(ushort *)(engine_result_flag_ptr + 0x32c);
+  engine_stack_float_x14 = ((float)*(ushort *)(engine_result_flag_ptr + 0x32e) * 256.0) / (float)*(ushort *)(engine_result_flag_ptr + 0x32c);
   uStackX_10 = 0x43800000;
   engine_temporary_uint = engine_unnamed_function_5360(engine_result_flag_ptr,&uStackX_10,&uStackX_8,&engine_stack_uint_18,engine_temp_uint_4,&engine_stack_uint_30,&engine_stack_uint_40);
   engine_unnamed_function_5460();
@@ -59630,14 +59630,14 @@ void engine_unnamed_function_4620(uint64_t *engine_data_structure_ptr)
   ulonglong engine_temp_uint_9;
   longlong engine_temp_long0;
   longlong engine_temp_long1;
-  float fStackX_10;
-  float fStackX_14;
+  float engine_stack_float_x10;
+  float engine_stack_float_x14;
   
   engine_temp_long_3 = _engine_input_config_data;
-  fStackX_10 = (float)*(void*)(engine_data_pointer_50 + 0x17ec);
-  fStackX_14 = (float)((ulonglong)*(void*)(engine_data_pointer_50 + 0x17ec) >> 0x20);
-  *engine_data_structure_ptr = CONCAT44(fStackX_14 * *(float *)(engine_data_pointer_50 + 0x17e4),
-                      fStackX_10 * *(float *)(engine_data_pointer_50 + 0x17e0));
+  engine_stack_float_x10 = (float)*(void*)(engine_data_pointer_50 + 0x17ec);
+  engine_stack_float_x14 = (float)((ulonglong)*(void*)(engine_data_pointer_50 + 0x17ec) >> 0x20);
+  *engine_data_structure_ptr = CONCAT44(engine_stack_float_x14 * *(float *)(engine_data_pointer_50 + 0x17e4),
+                      engine_stack_float_x10 * *(float *)(engine_data_pointer_50 + 0x17e0));
   *(float *)(engine_data_structure_ptr + 1) =
        (float)*(int *)(*(longlong *)(engine_temp_long_3 + MEMORY_OFFSET_0x2010) + 0x74) /
        *(float *)(*(longlong *)(engine_temp_long_3 + MEMORY_OFFSET_0x2010) + 0xc);
