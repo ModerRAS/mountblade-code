@@ -5712,7 +5712,15 @@ void InitializeSystemEventNode(void)
 
 
 // 函数: void FUN_180033f50(void)
-void FUN_180033f50(void)
+/**
+ * @brief 初始化系统节点树处理器
+ * 
+ * 该函数负责初始化系统的节点树处理组件，设置节点操作的基础结构。
+ * 它会遍历系统节点树，进行内存比较，分配必要的内存，并设置节点属性。
+ * 
+ * @note 这是系统初始化过程中的重要组成部分，确保节点树处理系统的正常运行
+ */
+void InitializeSystemNodeTreeProcessor(void)
 
 {
   char systemNodeFlag;
@@ -5762,7 +5770,15 @@ void FUN_180033f50(void)
 
 
 // 函数: void FUN_180034050(void)
-void FUN_180034050(void)
+/**
+ * @brief 初始化系统内存池管理器
+ * 
+ * 该函数负责初始化系统的内存池管理组件，设置内存池操作的基础结构。
+ * 它会遍历系统内存池节点树，进行内存比较，分配必要的内存，并设置内存池属性。
+ * 
+ * @note 这是系统初始化过程中的重要组成部分，确保内存池管理系统的正常运行
+ */
+void InitializeSystemMemoryPoolManager(void)
 
 {
   char systemNodeFlag;
@@ -5812,7 +5828,15 @@ void FUN_180034050(void)
 
 
 // 函数: void FUN_180034150(void)
-void FUN_180034150(void)
+/**
+ * @brief 初始化系统服务管理器
+ * 
+ * 该函数负责初始化系统的服务管理组件，设置服务操作的基础结构。
+ * 它会遍历系统节点树，进行内存比较，分配必要的内存，并设置服务节点属性。
+ * 
+ * @note 这是系统初始化过程中的重要组成部分，确保服务管理系统的正常运行
+ */
+void InitializeSystemServiceManager(void)
 
 {
   char systemNodeFlag;
@@ -5862,7 +5886,15 @@ void FUN_180034150(void)
 
 
 // 函数: void FUN_180034250(void)
-void FUN_180034250(void)
+/**
+ * @brief 初始化系统资源管理器
+ * 
+ * 该函数负责初始化系统的资源管理组件，设置资源操作的基础结构。
+ * 它会遍历系统节点树，进行内存比较，分配必要的内存，并设置资源节点属性。
+ * 
+ * @note 这是系统初始化过程中的重要组成部分，确保资源管理系统的正常运行
+ */
+void InitializeSystemResourceManager(void)
 
 {
   char systemNodeFlag;
@@ -5912,7 +5944,15 @@ void FUN_180034250(void)
 
 
 // 函数: void FUN_180034350(void)
-void FUN_180034350(void)
+/**
+ * @brief 初始化系统事件处理器
+ * 
+ * 该函数负责初始化系统的事件处理组件，设置事件处理的基础结构。
+ * 它会遍历系统节点树，进行内存比较，分配必要的内存，并设置事件处理节点属性。
+ * 
+ * @note 这是系统初始化过程中的重要组成部分，确保事件处理系统的正常运行
+ */
+void InitializeSystemEventHandler(void)
 
 {
   char systemNodeFlag;
@@ -5962,7 +6002,15 @@ void FUN_180034350(void)
 
 
 // 函数: void FUN_180034450(void)
-void FUN_180034450(void)
+/**
+ * @brief 初始化系统任务管理器
+ * 
+ * 该函数负责初始化系统的任务管理组件，设置任务操作的基础结构。
+ * 它会遍历系统节点树，进行内存比较，分配必要的内存，并设置任务管理节点属性。
+ * 
+ * @note 这是系统初始化过程中的重要组成部分，确保任务管理系统的正常运行
+ */
+void InitializeSystemTaskManager(void)
 
 {
   char systemNodeFlag;
@@ -6012,7 +6060,15 @@ void FUN_180034450(void)
 
 
 // 函数: void FUN_180034550(void)
-void FUN_180034550(void)
+/**
+ * @brief 初始化系统数据处理器
+ * 
+ * 该函数负责初始化系统的数据处理组件，设置数据处理的基础结构。
+ * 它会遍历系统节点树，进行内存比较，分配必要的内存，并设置数据处理节点属性。
+ * 
+ * @note 这是系统初始化过程中的重要组成部分，确保数据处理系统的正常运行
+ */
+void InitializeSystemDataProcessor(void)
 
 {
   char systemNodeFlag;
@@ -6062,7 +6118,15 @@ void FUN_180034550(void)
 
 
 // 函数: void FUN_180034650(void)
-void FUN_180034650(void)
+/**
+ * @brief 初始化系统通信管理器
+ * 
+ * 该函数负责初始化系统的通信管理组件，设置通信操作的基础结构。
+ * 它会遍历系统节点树，进行内存比较，分配必要的内存，并设置通信管理节点属性。
+ * 
+ * @note 这是系统初始化过程中的重要组成部分，确保通信管理系统的正常运行
+ */
+void InitializeSystemCommunicationManager(void)
 
 {
   char systemNodeFlag;
@@ -6112,7 +6176,15 @@ void FUN_180034650(void)
 
 
 // 函数: void FUN_180034750(void)
-void FUN_180034750(void)
+/**
+ * @brief 初始化系统内存管理器
+ * 
+ * 该函数负责初始化系统的内存管理组件，设置内存操作的基础结构。
+ * 它会遍历系统节点树，进行内存比较，分配必要的内存，并设置内存管理节点属性。
+ * 
+ * @note 这是系统初始化过程中的重要组成部分，确保内存管理系统的正常运行
+ */
+void InitializeSystemMemoryManager(void)
 
 {
   char systemNodeFlag;
@@ -6162,7 +6234,15 @@ void FUN_180034750(void)
 
 
 // 函数: void FUN_180034850(void)
-void FUN_180034850(void)
+/**
+ * @brief 初始化系统线程管理器
+ * 
+ * 该函数负责初始化系统的线程管理组件，设置线程操作的基础结构。
+ * 它会遍历系统节点树，进行内存比较，分配必要的内存，并设置线程管理节点属性。
+ * 
+ * @note 这是系统初始化过程中的重要组成部分，确保线程管理系统的正常运行
+ */
+void InitializeSystemThreadManager(void)
 
 {
   char systemNodeFlag;
@@ -6261,8 +6341,15 @@ void FUN_180034950(void)
 
 
 
-// 函数: void FUN_180034a50(void)
-void FUN_180034a50(void)
+/**
+ * @brief 初始化系统浮点数计算器
+ * 
+ * 该函数负责初始化系统的浮点数计算组件，设置浮点运算的基础结构。
+ * 它会计算浮点数的平方根值，进行数值归一化处理，并设置浮点计算表。
+ * 
+ * @note 这是系统初始化过程中的重要组成部分，确保浮点计算系统的正常运行
+ */
+void InitializeSystemFloatingPointCalculator(void)
 
 {
   ulonglong uVar1;
@@ -7920,8 +8007,15 @@ void FUN_180036a50(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180036b50(void)
-void FUN_180036b50(void)
+/**
+ * @brief 初始化系统配置管理器
+ * 
+ * 该函数负责初始化系统的配置管理组件，设置配置参数的基础结构。
+ * 它会创建配置缓冲区，设置配置字符串，并建立配置管理标识符。
+ * 
+ * @note 这是系统初始化过程中的重要组成部分，确保配置管理系统的正常运行
+ */
+void InitializeSystemConfigurationManager(void)
 
 {
   undefined8 in_R9;
@@ -17464,7 +17558,15 @@ void WotsMain(undefined8 param_1)
                     // 0x45a00  27  WotsMain
 
 // 函数: void FUN_180045af0(longlong *param_1)
-void FUN_180045af0(longlong *param_1)
+/**
+ * @brief 执行系统回调函数
+ * 
+ * 该函数负责执行系统的回调函数，检查参数指针是否有效，然后调用相应的回调函数。
+ * 
+ * @param param_1 指向回调函数参数的指针
+ * @note 这是系统回调机制的重要组成部分，确保回调函数的正确执行
+ */
+void ExecuteSystemCallback(longlong *param_1)
 
 {
   if ((longlong *)*param_1 != (longlong *)0x0) {
@@ -17477,7 +17579,17 @@ void FUN_180045af0(longlong *param_1)
 
 
 // 函数: void FUN_180045b20(longlong param_1,longlong param_2)
-void FUN_180045b20(longlong param_1,longlong param_2)
+/**
+ * @brief 处理系统字符串复制
+ * 
+ * 该函数负责处理系统字符串的复制操作，检查源字符串长度，执行字符串复制，
+ * 并设置相应的长度标志。
+ * 
+ * @param param_1 目标缓冲区指针
+ * @param param_2 源字符串指针
+ * @note 这是系统字符串处理的重要组成部分，确保字符串复制的安全性
+ */
+void ProcessSystemStringCopy(longlong param_1,longlong param_2)
 
 {
   longlong lVar1;
@@ -17508,7 +17620,18 @@ void FUN_180045b20(longlong param_1,longlong param_2)
 
 
 // 函数: void FUN_180045ba0(longlong param_1,undefined8 param_2,int param_3)
-void FUN_180045ba0(longlong param_1,undefined8 param_2,int param_3)
+/**
+ * @brief 处理系统内存复制
+ * 
+ * 该函数负责处理系统内存的复制操作，检查复制长度是否安全，执行内存复制，
+ * 并设置相应的结束标志。
+ * 
+ * @param param_1 目标缓冲区指针
+ * @param param_2 源数据指针
+ * @param param_3 要复制的字节数
+ * @note 这是系统内存处理的重要组成部分，确保内存复制的安全性
+ */
+void ProcessSystemMemoryCopy(longlong param_1,undefined8 param_2,int param_3)
 
 {
   if (param_3 + 1 < 0x1000) {
@@ -20478,11 +20601,14 @@ void FUN_18004a180(longlong param_1,longlong param_2)
 
 
 /**
- * 互斥锁销毁器 - 清理系统互斥锁资源
- * 负责销毁系统中的互斥锁对象，释放相关资源
+ * @brief 销毁系统互斥锁
  * 
+ * 该函数负责销毁系统中的互斥锁对象，释放相关资源。
+ * 这是一个清理函数，在系统关闭时调用，确保互斥锁资源的正确释放。
+ * 
+ * @note 这是系统清理过程中的重要组成部分，确保资源的正确释放
  */
-void FUN_18004a200(void)
+void DestroySystemMutex(void)
 
 {
   _Mtx_destroy_in_situ();
