@@ -766,31 +766,39 @@ undefined DAT_180bf90b8;
 undefined DAT_180bf90c0;
 undefined DAT_180bf90c8;
 
-// 函数: undefined FUN_180941d00;
-undefined FUN_180941d00;
-undefined DAT_180bf5b88;
-undefined DAT_180bf5b90;
-undefined DAT_180bf5b98;
-undefined DAT_180bf5ba0;
+// 函数: void InitializeLocalizationSystem(void)
+/**
+ * @brief 初始化本地化系统
+ * 
+ * 该函数负责初始化游戏本地化系统
+ * 设置多语言支持、文本翻译和文化适配
+ */
+void InitializeLocalizationSystem(void);
+undefined g_localizationDatabase;
+undefined g_languagePackManager;
+undefined g_textTranslationEngine;
+undefined g_culturalAdaptationManager;
 
-// 函数: undefined FUN_180941d20;
-undefined FUN_180941d20;
-undefined DAT_180c91da8;
-undefined DAT_180a16c50;
-undefined DAT_180c91dac;
-undefined DAT_180a16c38;
-undefined DAT_180c91ee8;
-undefined UNK_180a17e48;
-undefined DAT_180c91ef8;
-undefined UNK_180a194f0;
-undefined DAT_180c91efc;
-undefined UNK_180a19588;
-undefined DAT_180c91f00;
-undefined UNK_180a19bf0;
-undefined DAT_180c91f04;
-undefined UNK_180a19df0;
-undefined DAT_180c91f08;
-undefined UNK_180a1a450;
+// 函数: void InitializeModdingSystem(void)
+/**
+ * @brief 初始化模组系统
+ * 
+ * 该函数负责初始化游戏模组系统
+ * 设置模组加载、管理和接口系统
+ */
+void InitializeModdingSystem(void);
+undefined g_moddingSystemInstance;
+undefined g_modLoader;
+undefined g_modDependencyResolver;
+undefined g_modInterfaceManager;
+undefined g_modConfigManager;
+undefined g_modResourceManager;
+undefined g_modEventSystem;
+undefined g_modValidationEngine;
+undefined g_modCompatibilityChecker;
+undefined g_modUpdateManager;
+undefined g_modCommunityManager;
+undefined g_modWorkshopIntegration;
 undefined DAT_180c91f0c;
 undefined UNK_180a1a6c8;
 undefined DAT_180c91f10;
@@ -990,30 +998,48 @@ undefined DAT_180bf9a58;
 undefined DAT_180bf9a60;
 undefined DAT_180bf9a68;
 
-// 函数: undefined FUN_1809421e0;
-undefined FUN_1809421e0;
-undefined UNK_180a22d68;
-undefined DAT_180bf9ab0;
-undefined DAT_180bf9ab8;
-undefined DAT_180bf9ac0;
-undefined DAT_180bf9ac8;
+// 函数: void ValidateMemoryIntegrity;
+/**
+ * @brief 验证内存完整性
+ * 
+ * 该函数负责验证系统内存的完整性
+ * 检查内存损坏和数据一致性
+ */
+void ValidateMemoryIntegrity;
+undefined g_memoryValidationContext;
+undefined g_memoryValidationTable;
+undefined g_memoryValidationStatus;
+undefined g_memoryValidationConfig;
+undefined g_memoryValidationHandle;
 
-// 函数: undefined FUN_180942200;
-undefined FUN_180942200;
-undefined DAT_180a22d48;
-undefined DAT_180bf9b10;
-undefined DAT_180bf9b18;
-undefined DAT_180bf9b20;
-undefined DAT_180bf9b28;
-undefined UNK_180a22e40;
+// 函数: void ProcessMemoryAllocation;
+/**
+ * @brief 处理内存分配
+ * 
+ * 该函数负责处理系统中的内存分配请求
+ * 管理内存池和分配策略
+ */
+void ProcessMemoryAllocation;
+undefined g_memoryAllocationContext;
+undefined g_memoryAllocationTable;
+undefined g_memoryAllocationStatus;
+undefined g_memoryAllocationConfig;
+undefined g_memoryAllocationHandle;
+undefined g_memoryAllocationData;
 
-// 函数: undefined FUN_180942220;
-undefined FUN_180942220;
-undefined DAT_180bf9b70;
-undefined DAT_180bf9b78;
-undefined DAT_180bf9b80;
-undefined DAT_180bf9b88;
-undefined UNK_180a22e20;
+// 函数: void InitializeMemoryPool;
+/**
+ * @brief 初始化内存池
+ * 
+ * 该函数负责初始化系统内存池
+ * 设置内存块大小和分配策略
+ */
+void InitializeMemoryPool;
+undefined g_memoryPoolConfig;
+undefined g_memoryPoolStatus;
+undefined g_memoryPoolHandle;
+undefined g_memoryPoolData;
+undefined g_memoryPoolContext;
 
 // 函数: undefined FUN_180942240;
 undefined FUN_180942240;

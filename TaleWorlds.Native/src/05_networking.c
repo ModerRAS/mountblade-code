@@ -16,33 +16,33 @@
  */
 uint CompareNetworkConnectionTimestamps(longlong *connection1,longlong *connection2);
 
-undefined g_networkConnectionTable;
-undefined g_networkConnectionStatus;
-undefined g_networkConnectionTimeout;
-undefined g_networkPacketBuffer;
-undefined g_networkPacketHeader;
-undefined g_networkConnectionLimit;
-undefined g_networkConnectionFlags;
-undefined g_networkConnectionType;
-undefined g_networkConnectionProtocol;
-undefined g_networkServerAddress;
-undefined g_networkServerPort;
-undefined g_networkClientAddress;
-undefined g_networkClientPort;
-undefined g_networkSocketHandle;
-undefined g_networkSocketType;
-undefined g_networkSocketProtocol;
-undefined g_networkConnectionPool;
-undefined g_networkSendBuffer;
-undefined g_networkReceiveBuffer;
-undefined g_networkSendBufferSize;
-undefined g_networkReceiveBufferSize;
-undefined g_networkPacketSize;
-undefined g_networkMaxPacketSize;
-undefined g_networkConnectionTimeout;
-undefined g_networkEncryptionKey;
-undefined g_networkCompressionLevel;
-undefined g_networkConnectionStatus;
+undefined g_NetworkConnectionTable;
+undefined g_NetworkConnectionStatus;
+undefined g_NetworkConnectionTimeout;
+undefined g_NetworkPacketBuffer;
+undefined g_NetworkPacketHeader;
+undefined g_NetworkConnectionLimit;
+undefined g_NetworkConnectionFlags;
+undefined g_NetworkConnectionType;
+undefined g_NetworkConnectionProtocol;
+undefined g_NetworkServerAddress;
+undefined g_NetworkServerPort;
+undefined g_NetworkClientAddress;
+undefined g_NetworkClientPort;
+undefined g_NetworkSocketHandle;
+undefined g_NetworkSocketType;
+undefined g_NetworkSocketProtocol;
+undefined g_NetworkConnectionPool;
+undefined g_NetworkSendBuffer;
+undefined g_NetworkReceiveBuffer;
+undefined g_NetworkSendBufferSize;
+undefined g_NetworkReceiveBufferSize;
+undefined g_NetworkPacketSize;
+undefined g_NetworkMaxPacketSize;
+undefined g_NetworkConnectionTimeoutValue;
+undefined g_NetworkEncryptionKey;
+undefined g_NetworkCompressionLevel;
+undefined g_NetworkConnectionStateFlags;
 
 // 函数: void InitializeNetworkConnectionPool(void)
 /**
@@ -157,42 +157,42 @@ void ProcessNetworkPacket(void);
  * 记录错误信息，尝试恢复连接或通知上层应用
  */
 void HandleNetworkError(void);
-undefined g_networkErrorHandler;
-undefined g_networkErrorCounter;
-undefined g_networkConnectionAttempts;
-undefined g_networkConnectionFailures;
-undefined g_networkBytesSent;
-undefined g_networkBytesReceived;
-undefined g_networkPacketsSent;
-undefined g_networkPacketsReceived;
-undefined g_networkConnectionTime;
-undefined g_networkLastActivity;
-undefined g_networkBandwidthUsage;
-undefined g_networkLatency;
-undefined g_networkPacketLoss;
-undefined g_networkRetransmissionCount;
-undefined g_networkActiveConnections;
-undefined g_networkMaxConnections;
-undefined g_networkConnectionQueue;
-undefined g_networkPendingRequests;
-undefined g_networkSecurityFlags;
-undefined g_networkAuthenticationLevel;
-undefined g_networkEncryptionType;
-undefined g_networkCompressionType;
-undefined g_networkStatisticsData;
-undefined g_networkSessionKey;
-undefined g_networkSessionTimeout;
-undefined4 g_networkPortRangeStart;
-undefined4 g_networkPortRangeEnd;
-undefined4 g_networkConnectionFlags;
-undefined g_networkKeepAliveInterval;
-undefined g_networkRetryInterval;
-undefined g_networkTimeoutInterval;
-undefined g_networkHandshakeTimeout;
-undefined g_networkConnectionState;
-undefined g_networkProtocolVersion;
-undefined g_networkEventQueue;
-undefined g_networkCallbackHandler;
+undefined g_NetworkErrorHandler;
+undefined g_NetworkErrorCounter;
+undefined g_NetworkConnectionAttempts;
+undefined g_NetworkConnectionFailures;
+undefined g_NetworkBytesSent;
+undefined g_NetworkBytesReceived;
+undefined g_NetworkPacketsSent;
+undefined g_NetworkPacketsReceived;
+undefined g_NetworkConnectionTime;
+undefined g_NetworkLastActivity;
+undefined g_NetworkBandwidthUsage;
+undefined g_NetworkLatency;
+undefined g_NetworkPacketLoss;
+undefined g_NetworkRetransmissionCount;
+undefined g_NetworkActiveConnections;
+undefined g_NetworkMaxConnections;
+undefined g_NetworkConnectionQueue;
+undefined g_NetworkPendingRequests;
+undefined g_NetworkSecurityFlags;
+undefined g_NetworkAuthenticationLevel;
+undefined g_NetworkEncryptionType;
+undefined g_NetworkCompressionType;
+undefined g_NetworkStatisticsData;
+undefined g_NetworkSessionKey;
+undefined g_NetworkSessionTimeout;
+undefined4 g_NetworkPortRangeStart;
+undefined4 g_NetworkPortRangeEnd;
+undefined4 g_NetworkConnectionFlagsExtended;
+undefined g_NetworkKeepAliveInterval;
+undefined g_NetworkRetryInterval;
+undefined g_NetworkTimeoutInterval;
+undefined g_NetworkHandshakeTimeout;
+undefined g_NetworkConnectionStateMachine;
+undefined g_NetworkProtocolVersion;
+undefined g_NetworkEventQueue;
+undefined g_NetworkCallbackHandler;
 
 // 函数: undefined ProcessNetworkTimeout;
 /**
@@ -206,49 +206,49 @@ undefined g_networkCallbackHandler;
  * @return 超时处理结果
  */
 undefined ProcessNetworkTimeout;
-undefined g_networkConnectionState;
-undefined g_networkConnectionMode;
-undefined g_networkConnectionFlags;
-undefined g_networkConnectionPriority;
-undefined g_networkConnectionQuality;
-undefined g_networkConnectionBandwidth;
-undefined g_networkConnectionLatency;
-undefined g_networkEncryptionAlgorithm;
-undefined g_networkCompressionMethod;
-undefined g_networkAuthenticationType;
-undefined g_networkSecurityLevel;
-undefined g_networkPacketSequence;
-undefined g_networkAcknowledgeNumber;
-undefined g_networkWindowScale;
-undefined g_networkRetransmitTimer;
-undefined g_networkKeepAliveInterval;
-undefined g_networkHeartbeatTimeout;
-undefined g_networkConnectionPoolSize;
-undefined g_networkMaxConnections;
-undefined g_networkReceiveBufferSize;
-undefined g_networkSendBufferSize;
-undefined g_networkPacketLossRate;
-undefined g_networkRoundTripTime;
-undefined g_networkConnectionTimeout;
-undefined g_networkHandshakeTimeout;
-undefined g_networkAuthenticationTimeout;
-undefined g_networkEncryptionTimeout;
-undefined g_networkDataCompressionLevel;
-undefined g_networkEncryptionKeyLength;
-undefined g_networkHashAlgorithm;
-undefined g_networkSignatureMethod;
-undefined g_networkConnectionRetryCount;
-undefined g_networkConnectionBackoffTime;
-undefined g_networkConnectionJitterBuffer;
-undefined g_networkConnectionErrorRate;
-undefined g_networkThroughputMonitor;
-undefined g_networkLatencyMonitor;
-undefined g_networkBandwidthMonitor;
-undefined g_networkPacketMonitor;
-undefined g_networkConnectionHealth;
-undefined g_networkConnectionStability;
-undefined g_networkConnectionReliability;
-undefined g_networkConnectionPerformance;
+undefined g_NetworkConnectionStateMachine;
+undefined g_NetworkConnectionMode;
+undefined g_NetworkConnectionFlags;
+undefined g_NetworkConnectionPriority;
+undefined g_NetworkConnectionQuality;
+undefined g_NetworkConnectionBandwidth;
+undefined g_NetworkConnectionLatency;
+undefined g_NetworkEncryptionAlgorithm;
+undefined g_NetworkCompressionMethod;
+undefined g_NetworkAuthenticationType;
+undefined g_NetworkSecurityLevel;
+undefined g_NetworkPacketSequence;
+undefined g_NetworkAcknowledgeNumber;
+undefined g_NetworkWindowScale;
+undefined g_NetworkRetransmitTimer;
+undefined g_NetworkKeepAliveIntervalValue;
+undefined g_NetworkHeartbeatTimeout;
+undefined g_NetworkConnectionPoolSize;
+undefined g_NetworkMaxConnectionsValue;
+undefined g_NetworkReceiveBufferSizeValue;
+undefined g_NetworkSendBufferSizeValue;
+undefined g_NetworkPacketLossRate;
+undefined g_NetworkRoundTripTime;
+undefined g_NetworkConnectionTimeoutValue;
+undefined g_NetworkHandshakeTimeoutValue;
+undefined g_NetworkAuthenticationTimeout;
+undefined g_NetworkEncryptionTimeout;
+undefined g_NetworkDataCompressionLevel;
+undefined g_NetworkEncryptionKeyLength;
+undefined g_NetworkHashAlgorithm;
+undefined g_NetworkSignatureMethod;
+undefined g_NetworkConnectionRetryCount;
+undefined g_NetworkConnectionBackoffTime;
+undefined g_NetworkConnectionJitterBuffer;
+undefined g_NetworkConnectionErrorRate;
+undefined g_NetworkThroughputMonitor;
+undefined g_NetworkLatencyMonitor;
+undefined g_NetworkBandwidthMonitor;
+undefined g_NetworkPacketMonitor;
+undefined g_NetworkConnectionHealth;
+undefined g_NetworkConnectionStability;
+undefined g_NetworkConnectionReliability;
+undefined g_NetworkConnectionPerformance;
 undefined UNK_180986488;
 undefined UNK_1809864b0;
 undefined UNK_180986940;
@@ -809,35 +809,49 @@ void SendNetworkPacketEx(undefined8 packetId,undefined8 connectionId,undefined8 
 
 
 
-// 函数: void FUN_180840746(void)
-void FUN_180840746(void)
+/**
+ * 清空网络连接缓冲区
+ * 
+ * 该函数负责清空网络连接的缓冲区数据，将连接状态重置为初始状态。
+ * 主要用于网络连接重置或清理时的数据初始化。
+ * 
+ * 注意：这是一个反编译的函数实现
+ */
+void ClearNetworkConnectionBuffer(void)
 
 {
-  undefined8 *unaff_RBX;
-  ulonglong in_stack_00000068;
+  uint64_t *connectionBuffer;
+  ulonglong stackParameter;
   
-  *unaff_RBX = 0;
-  unaff_RBX[1] = 0;
-  unaff_RBX[2] = 0;
-  unaff_RBX[3] = 0;
-  unaff_RBX[4] = 0;
-  unaff_RBX[5] = 0;
-  unaff_RBX[6] = 0;
+  *connectionBuffer = 0;
+  connectionBuffer[1] = 0;
+  connectionBuffer[2] = 0;
+  connectionBuffer[3] = 0;
+  connectionBuffer[4] = 0;
+  connectionBuffer[5] = 0;
+  connectionBuffer[6] = 0;
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_00000068 ^ (ulonglong)&stack0x00000000);
+  FUN_1808fc050(stackParameter ^ (ulonglong)&stack0x00000000);
 }
 
 
 
 
-// 函数: void FUN_18084076d(void)
-void FUN_18084076d(void)
+/**
+ * 重置网络连接状态
+ * 
+ * 该函数负责重置网络连接的状态，将连接恢复到初始状态。
+ * 主要用于网络连接失败或需要重新建立连接时的状态重置。
+ * 
+ * 注意：这是一个反编译的函数实现
+ */
+void ResetNetworkConnectionState(void)
 
 {
-  ulonglong in_stack_00000068;
+  ulonglong stackParameter;
   
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_00000068 ^ (ulonglong)&stack0x00000000);
+  FUN_1808fc050(stackParameter ^ (ulonglong)&stack0x00000000);
 }
 
 
