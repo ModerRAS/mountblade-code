@@ -47604,7 +47604,19 @@ void ReleaseResourceTableLock(uint8_t ObjectContextParameter,int64_t ValidationC
 
 
 
-void Unwind_180906090(uint8_t ObjectContextParameter,int64_t ValidationContextParameter)
+/**
+ * @brief 销毁资源表并释放资源句柄
+ * 
+ * 该函数负责销毁资源表中的互斥锁，并释放相关的资源句柄
+ * 用于清理系统资源管理相关的数据结构
+ * 
+ * @param ObjectContextParameter 对象上下文参数，包含对象的运行时信息
+ * @param ValidationContextParameter 验证上下文参数，用于访问资源表的上下文信息
+ * @return 无返回值
+ * @note 此函数会调用互斥锁销毁和资源句柄释放函数
+ * @warning 调用此函数后，相关的资源句柄将不再可用
+ */
+void DestroyResourceTableAndReleaseHandle(uint8_t ObjectContextParameter, int64_t ValidationContextParameter)
 
 {
   int64_t *processPointer;
@@ -47622,7 +47634,19 @@ void Unwind_180906090(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 
 
 
-void Unwind_1809060b0(uint8_t ObjectContextParameter,int64_t ValidationContextParameter)
+/**
+ * @brief 释放资源上下文指针
+ * 
+ * 该函数负责释放资源上下文指针，确保资源被正确清理
+ * 主要用于处理资源管理系统的清理工作
+ * 
+ * @param ObjectContextParameter 对象上下文参数，包含对象的运行时信息
+ * @param ValidationContextParameter 验证上下文参数，用于访问资源上下文的指针信息
+ * @return 无返回值
+ * @note 此函数会检查资源上下文指针的有效性
+ * @warning 调用此函数后，资源上下文指针将被释放
+ */
+void ReleaseResourceContextPointer(uint8_t ObjectContextParameter, int64_t ValidationContextParameter)
 
 {
   int64_t *processPointer;
@@ -47637,7 +47661,17 @@ void Unwind_1809060b0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 
 
 
-void Unwind_1809060c0(void)
+/**
+ * @brief 销毁互斥锁
+ * 
+ * 该函数负责销毁当前位置的互斥锁
+ * 用于清理线程同步相关的资源
+ * 
+ * @return 无返回值
+ * @note 此函数会调用互斥锁销毁函数
+ * @warning 调用此函数后，相关的互斥锁将被销毁
+ */
+void DestroyMutexInPlace(void)
 
 {
   _Mtx_destroy_in_situ();
@@ -47646,7 +47680,19 @@ void Unwind_1809060c0(void)
 
 
 
-void Unwind_1809060d0(uint8_t ObjectContextParameter,int64_t ValidationContextParameter)
+/**
+ * @brief 释放验证上下文中的资源指针
+ * 
+ * 该函数负责释放验证上下文中存储的资源指针
+ * 用于处理资源管理系统的清理工作
+ * 
+ * @param ObjectContextParameter 对象上下文参数，包含对象的运行时信息
+ * @param ValidationContextParameter 验证上下文参数，用于访问资源指针的上下文信息
+ * @return 无返回值
+ * @note 此函数会检查资源指针的有效性
+ * @warning 调用此函数后，资源指针将被释放
+ */
+void ReleaseValidationContextResourcePointer(uint8_t ObjectContextParameter, int64_t ValidationContextParameter)
 
 {
   int64_t *processPointer;
