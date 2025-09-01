@@ -79,7 +79,17 @@ void* engine_keyboard_state;
  */
 void engine_handle_input_events(void);
 
-// void engine_update_game_state(void);
+/**
+ * @brief 更新游戏状态
+ * @return 无返回值
+ *
+ * 更新游戏逻辑状态，包括：
+ * - 玩家状态更新
+ * - 游戏世界更新
+ * - 物理模拟更新
+ * - AI行为更新
+ * - 音频状态更新
+ */
 void engine_update_game_state(void);
 void* engine_game_data;
 void* engine_player_state;
