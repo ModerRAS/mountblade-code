@@ -3333,10 +3333,10 @@ LAB_18004e062:
           (**(code **)(*pModuleInitializationResult + 0x38))();
         }
       }
-      SystemModuleCleanup(_DAT_180c8ed68);
-      pModuleInitializationResult = _DAT_180c8ed00;
-      if (*(code **)(*_DAT_180c8ed00 + 8) == (code *)&UNK_180639070) {
-        *(uint32_t *)(_DAT_180c8ed00 + 9) = 0;
+      SystemModuleCleanup(SystemCleanupDataAddress);
+      pModuleInitializationResult = SystemModuleDataAddress;
+      if (*(code **)(*SystemModuleDataAddress + 8) == (code *)&UNK_180639070) {
+        *(uint32_t *)(SystemModuleDataAddress + 9) = 0;
         puVar4 = (uint8_t *)pModuleInitializationResult[8];
         if (puVar4 != (uint8_t *)0x0) {
           *puVar4 = 0;
@@ -3344,7 +3344,7 @@ LAB_18004e062:
         *(uint32_t *)((longlong)pModuleInitializationResult + 0x54) = 0;
       }
       else {
-        (**(code **)(*_DAT_180c8ed00 + 8))();
+        (**(code **)(*SystemModuleDataAddress + 8))();
       }
     }
     else {
@@ -3356,7 +3356,7 @@ LAB_18004e062:
       ConfigureNetworkSettings();
     }
     QueryPerformanceCounter(&lStack_90);
-    dVar15 = (double)lStack_90 * _DAT_180c8ed50;
+    dVar15 = (double)lStack_90 * PerformanceCounterFactor;
     _DAT_180d48d20 = _DAT_180d48d20 + 1;
     dVar16 = dVar15 - _DAT_180d48d18;
     if (1.0 < dVar16) {
@@ -3373,13 +3373,13 @@ LAB_18004e062:
       dVar15 = *(double *)(lVar6 + 0x218);
       do {
         QueryPerformanceCounter(&lStack_88);
-      } while ((double)lStack_88 * _DAT_180c8ed50 < (double)fVar14 + dVar15);
+      } while ((double)lStack_88 * PerformanceCounterFactor < (double)fVar14 + dVar15);
       QueryPerformanceCounter(&lStack_80);
       lVar8 = lStack_80 - _DAT_180c8ed40;
       _DAT_180c8ed40 = lStack_80;
-      *(double *)(lVar6 + 0x208) = (double)lVar8 * _DAT_180c8ed50;
+      *(double *)(lVar6 + 0x208) = (double)lVar8 * PerformanceCounterFactor;
       QueryPerformanceCounter(&lStack_78);
-      *(double *)(lVar6 + 0x218) = (double)lStack_78 * _DAT_180c8ed50;
+      *(double *)(lVar6 + 0x218) = (double)lStack_78 * PerformanceCounterFactor;
     }
   }
   return;
@@ -3442,10 +3442,10 @@ LAB_18004e062:
           (**(code **)(*pModuleInitializationResult + 0x38))();
         }
       }
-      SystemModuleCleanup(_DAT_180c8ed68);
-      pModuleInitializationResult = _DAT_180c8ed00;
-      if (*(code **)(*_DAT_180c8ed00 + 8) == (code *)&UNK_180639070) {
-        *(uint32_t *)(_DAT_180c8ed00 + 9) = 0;
+      SystemModuleCleanup(SystemCleanupDataAddress);
+      pModuleInitializationResult = SystemModuleDataAddress;
+      if (*(code **)(*SystemModuleDataAddress + 8) == (code *)&UNK_180639070) {
+        *(uint32_t *)(SystemModuleDataAddress + 9) = 0;
         puVar4 = (uint8_t *)pModuleInitializationResult[8];
         if (puVar4 != (uint8_t *)0x0) {
           *puVar4 = 0;
@@ -3453,7 +3453,7 @@ LAB_18004e062:
         *(uint32_t *)((longlong)pModuleInitializationResult + 0x54) = 0;
       }
       else {
-        (**(code **)(*_DAT_180c8ed00 + 8))();
+        (**(code **)(*SystemModuleDataAddress + 8))();
       }
     }
     else {
@@ -3465,7 +3465,7 @@ LAB_18004e062:
       ConfigureNetworkSettings();
     }
     QueryPerformanceCounter(&lStack_90);
-    dVar14 = (double)lStack_90 * _DAT_180c8ed50;
+    dVar14 = (double)lStack_90 * PerformanceCounterFactor;
     _DAT_180d48d20 = _DAT_180d48d20 + 1;
     dVar15 = dVar14 - _DAT_180d48d18;
     if (1.0 < dVar15) {
@@ -3482,13 +3482,13 @@ LAB_18004e062:
       dVar14 = *(double *)(param_1 + 0x218);
       do {
         QueryPerformanceCounter(&lStack_88);
-      } while ((double)lStack_88 * _DAT_180c8ed50 < (double)fVar13 + dVar14);
+      } while ((double)lStack_88 * PerformanceCounterFactor < (double)fVar13 + dVar14);
       QueryPerformanceCounter(&lStack_80);
       lVar7 = lStack_80 - _DAT_180c8ed40;
       _DAT_180c8ed40 = lStack_80;
-      *(double *)(param_1 + 0x208) = (double)lVar7 * _DAT_180c8ed50;
+      *(double *)(param_1 + 0x208) = (double)lVar7 * PerformanceCounterFactor;
       QueryPerformanceCounter(&lStack_78);
-      *(double *)(param_1 + 0x218) = (double)lStack_78 * _DAT_180c8ed50;
+      *(double *)(param_1 + 0x218) = (double)lStack_78 * PerformanceCounterFactor;
     }
   }
   return;
@@ -4210,10 +4210,10 @@ LAB_1800d3d65:
   pplStack_220[3] = (longlong *)0x0;
   pplStack_220[1] = (longlong *)0x0;
   *(uint32_t *)(pplStack_220 + 2) = 0;
-  pModuleInitializationResult7 = _DAT_180c8ed00;
+  pModuleInitializationResult7 = SystemModuleDataAddress;
   uStack_e0 = 0;
   BufferSize4 = *(uint32_t *)(pplStack_220 + 3);
-  *(int *)(pplStack_220 + 3) = (int)_DAT_180c8ed00[10];
+  *(int *)(pplStack_220 + 3) = (int)SystemModuleDataAddress[10];
   *(uint32_t *)(pModuleInitializationResult7 + 10) = BufferSize4;
   ModuleInitializationResult6 = (longlong)pplStack_220[1];
   pplStack_220[1] = (longlong *)pModuleInitializationResult7[8];
@@ -9428,7 +9428,7 @@ double SystemGetPerformanceTime(void)
     QueryPerformanceCounter(alStackX_8);
     ModuleInitializationResult = alStackX_8[0];
   }
-  return (double)(ModuleInitializationResult - _DAT_180c8ed48) * _DAT_180c8ed50;
+  return (double)(ModuleInitializationResult - _DAT_180c8ed48) * PerformanceCounterFactor;
 }
 bool SystemCompareStringData(longlong param_1,longlong param_2,char param_3)
 {

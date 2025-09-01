@@ -1014,10 +1014,10 @@ void* SystemDiagnosticsConfigTableSecondary;
  * 设置多语言支持、文本翻译和文化适配
  */
 void InitializeLocalizationSystem(void);
-void* LocalizationDatabase;
-void* LanguagePackManager;
-void* TextTranslationEngine;
-void* CulturalAdaptationManager;
+void* LocalizationDatabaseInstance;
+void* LanguagePackManagerInstance;
+void* TextTranslationEngineInstance;
+void* CulturalAdaptationManagerInstance;
 
  /**
  * @brief 初始化模组系统
@@ -4624,15 +4624,13 @@ void TriggerSystemShutdown(void)
 
 
 
- void PerformNoOperation(void)
-/**
- * @brief 空返回函数
+ /**
+ * @brief 执行空操作
  * 
- * 该函数是一个空函数，直接返回
+ * 该函数是一个空操作函数，不执行任何实际操作
  * 通常用作占位符或默认实现
  */
-void PerformNoOperation(void)
-
+void ExecuteNoOperation(void)
 {
   return;
 }
