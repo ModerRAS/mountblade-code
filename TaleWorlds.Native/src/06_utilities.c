@@ -2696,45 +2696,45 @@ undefined DAT_180bfbd80;
 void ProcessGameDataObjects(longlong gameContext, longlong systemContext)
 
 {
-  undefined8 resultValue;
-  int status;
-  longlong objectPointer;
-  int objectCount;
-  undefined1 objectBuffer[32];
-  longlong handleArray[2];
-  undefined1 *objectList;
-  int listIndex;
-  undefined4 maxItems;
-  undefined1 tempBuffer[512];
-  ulonglong securityToken;
+  undefined8 validationResult;
+  int operationStatus;
+  longlong currentObjectPointer;
+  int processedObjectCount;
+  undefined1 objectMetadataBuffer[32];
+  longlong contextHandles[2];
+  undefined1 *objectDataList;
+  int listIterator;
+  undefined4 maximumItems;
+  undefined1 processingBuffer[512];
+  ulonglong accessSecurityToken;
   
-  securityToken = _DAT_180bf00a8 ^ (ulonglong)objectBuffer;
-  status = func_0x00018088c530(*(undefined4 *)(gameContext + 0x10), handleArray);
-  if ((status == 0) && (*(longlong *)(handleArray[0] + 8) != 0)) {
-    objectList = tempBuffer;
-    objectCount = 0;
-    listIndex = 0;
-    maxItems = 0xffffffc0;
-    status = FUN_1808bf350(*(undefined8 *)(systemContext + 0x90), *(longlong *)(handleArray[0] + 8),
-                          &objectList);
-    if (status == 0) {
-      if (0 < listIndex) {
-        objectPointer = 0;
+  accessSecurityToken = _DAT_180bf00a8 ^ (ulonglong)objectMetadataBuffer;
+  operationStatus = GetContextHandles(*(undefined4 *)(gameContext + 0x10), contextHandles);
+  if ((operationStatus == 0) && (*(longlong *)(contextHandles[0] + 8) != 0)) {
+    objectDataList = processingBuffer;
+    processedObjectCount = 0;
+    listIterator = 0;
+    maximumItems = 0xffffffc0;
+    operationStatus = RetrieveObjectList(*(undefined8 *)(systemContext + 0x90), *(longlong *)(contextHandles[0] + 8),
+                          &objectDataList);
+    if (operationStatus == 0) {
+      if (0 < listIterator) {
+        currentObjectPointer = 0;
         do {
-          resultValue = *(undefined8 *)(objectList + objectPointer);
-          status = FUN_1808605e0(resultValue);
-          if (status != 2) {
+          validationResult = *(undefined8 *)(objectDataList + currentObjectPointer);
+          operationStatus = ValidateObjectStatus(validationResult);
+          if (operationStatus != 2) {
                     // WARNING: Subroutine does not return
-            FUN_180862e00(resultValue, 1);
+            HandleInvalidObject(validationResult, 1);
           }
-          objectCount = objectCount + 1;
-          objectPointer = objectPointer + 8;
-        } while (objectCount < listIndex);
+          processedObjectCount = processedObjectCount + 1;
+          currentObjectPointer = currentObjectPointer + 8;
+        } while (processedObjectCount < listIterator);
       }
-      FUN_18085dbf0(&objectList);
+      ReleaseObjectListMemory(&objectDataList);
     }
     else {
-      FUN_18085dbf0(&objectList);
+      ReleaseObjectListMemory(&objectDataList);
     }
   }
                     // WARNING: Subroutine does not return
