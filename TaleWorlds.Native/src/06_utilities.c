@@ -7164,17 +7164,21 @@ void CleanupSecurityTokenFunction(void)
 
 
 
-uint8_t ValidateMatrixTransformationData(int64_t matrixDataPointer,int64_t contextPointer)
 /**
  * @brief 验证矩阵变换数据
  * 
  * 该函数验证3D矩阵变换数据的有效性，检查矩阵元素是否为无穷大或NaN值
- * 确保矩阵数据可以安全用于3D变换计算
+ * 确保矩阵数据可以安全用于3D变换计算。函数会检查矩阵的多行元素是否存在
+ * 无效的浮点数值，包括无穷大和NaN值，以及零向量特殊情况。
  * 
  * @param matrixDataPointer 矩阵数据指针，包含变换矩阵的所有元素
  * @param contextPointer 上下文指针，包含系统状态和配置信息
- * @return 验证状态，0表示成功，0x1f表示验证失败
+ * @return uint8_t 验证状态，0表示成功，0x1f表示验证失败，其他值表示具体错误类型
+ * 
+ * @note 该函数执行严格的浮点数验证，确保所有矩阵元素都是有效的数值
+ * @warning 如果矩阵包含无效的浮点数值，系统将拒绝使用该矩阵进行变换计算
  */
+uint8_t ValidateMatrixTransformationData(int64_t matrixDataPointer,int64_t contextPointer)
 
 {
   float matrixElement1;
@@ -7182,126 +7186,127 @@ uint8_t ValidateMatrixTransformationData(int64_t matrixDataPointer,int64_t conte
   float matrixElement3;
   float matrixElement4;
   uint8_t validationStatus;
-  int infinityCheckResult1;
-  int infinityCheckResult2;
-  int infinityCheckResult3;
+  int firstRowInfinityCheck;
+  int secondRowInfinityCheck;
+  int thirdRowInfinityCheck;
+  int infinityStatusFlag;
   int64_t transformContext;
   int64_t matrixBuffer [2];
   uint matrixFlags;
   float matrixScaleFactor;
   
   localContextPointer0 = 0;
-  iVar8 = 0;
-  iVar9 = iVar8;
+  firstRowInfinityCheck = 0;
+  secondRowInfinityCheck = firstRowInfinityCheck;
   if ((*(uint *)(objectContextParam + 0x20) & 0x7f800000) == 0x7f800000) {
-    iVar9 = 0x1d;
+    secondRowInfinityCheck = 0x1d;
   }
-  integerValue6 = iVar8;
+  thirdRowInfinityCheck = firstRowInfinityCheck;
   if ((*(uint *)(objectContextParam + 0x1c) & 0x7f800000) == 0x7f800000) {
-    integerValue6 = 0x1d;
+    thirdRowInfinityCheck = 0x1d;
   }
-  iVar7 = iVar8;
+  infinityStatusFlag = firstRowInfinityCheck;
   if ((*(uint *)(objectContextParam + 0x18) & 0x7f800000) == 0x7f800000) {
-    iVar7 = 0x1d;
+    infinityStatusFlag = 0x1d;
   }
-  if ((iVar9 != 0 || integerValue6 != 0) || iVar7 != 0) {
+  if ((secondRowInfinityCheck != 0 || thirdRowInfinityCheck != 0) || infinityStatusFlag != 0) {
     return 0x1f;
   }
-  iVar9 = 0;
+  secondRowInfinityCheck = 0;
   if ((*(uint *)(objectContextParam + 0x2c) & 0x7f800000) == 0x7f800000) {
-    iVar8 = 0x1d;
+    firstRowInfinityCheck = 0x1d;
   }
-  integerValue6 = iVar9;
+  thirdRowInfinityCheck = secondRowInfinityCheck;
   if ((*(uint *)(objectContextParam + 0x28) & 0x7f800000) == 0x7f800000) {
-    integerValue6 = 0x1d;
+    thirdRowInfinityCheck = 0x1d;
   }
-  iVar7 = iVar9;
+  infinityStatusFlag = secondRowInfinityCheck;
   if ((*(uint *)(objectContextParam + 0x24) & 0x7f800000) == 0x7f800000) {
-    iVar7 = 0x1d;
+    infinityStatusFlag = 0x1d;
   }
-  if ((iVar8 != 0 || integerValue6 != 0) || iVar7 != 0) {
+  if ((firstRowInfinityCheck != 0 || thirdRowInfinityCheck != 0) || infinityStatusFlag != 0) {
     return 0x1f;
   }
-  iVar8 = iVar9;
+  firstRowInfinityCheck = secondRowInfinityCheck;
   if ((*(uint *)(objectContextParam + 0x38) & 0x7f800000) == 0x7f800000) {
-    iVar8 = 0x1d;
+    firstRowInfinityCheck = 0x1d;
   }
-  integerValue6 = iVar9;
+  thirdRowInfinityCheck = secondRowInfinityCheck;
   if ((*(uint *)(objectContextParam + 0x34) & 0x7f800000) == 0x7f800000) {
-    integerValue6 = 0x1d;
+    thirdRowInfinityCheck = 0x1d;
   }
   if (((uint)*(float *)(objectContextParam + 0x30) & 0x7f800000) == 0x7f800000) {
-    iVar9 = 0x1d;
+    secondRowInfinityCheck = 0x1d;
   }
-  if ((iVar8 != 0 || integerValue6 != 0) || iVar9 != 0) {
+  if ((firstRowInfinityCheck != 0 || thirdRowInfinityCheck != 0) || secondRowInfinityCheck != 0) {
     return 0x1f;
   }
-  fVar1 = *(float *)(objectContextParam + 0x44);
-  iVar8 = 0;
-  SecurityValidationContext = *(uint *)(objectContextParam + 0x40);
-  fStackX_20 = *(float *)(objectContextParam + 0x3c);
-  ValidationStackBuffer8[0] = CONCAT44(ValidationStackBuffer8[0]._4_4_,fVar1);
-  iVar9 = iVar8;
-  if (((uint)fVar1 & 0x7f800000) == 0x7f800000) {
-    iVar9 = 0x1d;
+  float matrixElementX = *(float *)(objectContextParam + 0x44);
+  firstRowInfinityCheck = 0;
+  uint32_t securityValidationContext = *(uint *)(objectContextParam + 0x40);
+  float matrixElementW = *(float *)(objectContextParam + 0x3c);
+  ValidationStackBuffer8[0] = CONCAT44(ValidationStackBuffer8[0]._4_4_,matrixElementX);
+  secondRowInfinityCheck = firstRowInfinityCheck;
+  if (((uint)matrixElementX & 0x7f800000) == 0x7f800000) {
+    secondRowInfinityCheck = 0x1d;
   }
-  integerValue6 = iVar8;
-  if ((SecurityValidationContext & 0x7f800000) == 0x7f800000) {
-    integerValue6 = 0x1d;
+  thirdRowInfinityCheck = firstRowInfinityCheck;
+  if ((securityValidationContext & 0x7f800000) == 0x7f800000) {
+    thirdRowInfinityCheck = 0x1d;
   }
-  if (((uint)fStackX_20 & 0x7f800000) == 0x7f800000) {
-    iVar8 = 0x1d;
+  if (((uint)matrixElementW & 0x7f800000) == 0x7f800000) {
+    firstRowInfinityCheck = 0x1d;
   }
-  if ((iVar9 == 0 && integerValue6 == 0) && iVar8 == 0) {
+  if ((secondRowInfinityCheck == 0 && thirdRowInfinityCheck == 0) && firstRowInfinityCheck == 0) {
     if (((*(float *)(objectContextParam + 0x30) == 0.0) && (*(float *)(objectContextParam + 0x34) == 0.0)) &&
        (*(float *)(objectContextParam + 0x38) == 0.0)) {
       return 0x1f;
     }
-    if (((fStackX_20 == 0.0) && (*(float *)(objectContextParam + 0x40) == 0.0)) && (fVar1 == 0.0)) {
+    if (((matrixElementW == 0.0) && (*(float *)(objectContextParam + 0x40) == 0.0)) && (matrixElementX == 0.0)) {
       return 0x1f;
     }
-    unsignedValue5 = ValidateObjectContext(*(uint32_t *)(objectContextParam + 0x10),ValidationStackBuffer8);
-    if ((int)unsignedValue5 != 0) {
-      return unsignedValue5;
+    uint32_t validationContextResult = ValidateObjectContext(*(uint32_t *)(objectContextParam + 0x10),ValidationStackBuffer8);
+    if ((int)validationContextResult != 0) {
+      return validationContextResult;
     }
     if (ValidationStackBuffer8[0] != 0) {
       localContextPointer0 = ValidationStackBuffer8[0] + -8;
     }
-    unsignedValue5 = *(uint8_t *)(objectContextParam + 0x20);
+    uint8_t matrixTypeValue = *(uint8_t *)(objectContextParam + 0x20);
     *(uint8_t *)(localContextPointer0 + 0x38) = *(uint8_t *)(objectContextParam + 0x18);
-    *(uint8_t *)(localContextPointer0 + 0x40) = unsignedValue5;
-    validationResult = *(uint32_t *)(objectContextParam + 0x2c);
-    unsignedResult3 = *(uint32_t *)(objectContextParam + 0x30);
-    unsignedResult4 = *(uint32_t *)(objectContextParam + 0x34);
+    *(uint8_t *)(localContextPointer0 + 0x40) = matrixTypeValue;
+    uint32_t matrixFlagsValue1 = *(uint32_t *)(objectContextParam + 0x2c);
+    uint32_t matrixFlagsValue2 = *(uint32_t *)(objectContextParam + 0x30);
+    uint32_t matrixFlagsValue3 = *(uint32_t *)(objectContextParam + 0x34);
     *(uint32_t *)(localContextPointer0 + 0x48) = *(uint32_t *)(objectContextParam + 0x28);
-    *(uint32_t *)(localContextPointer0 + 0x4c) = validationResult;
-    *(uint32_t *)(localContextPointer0 + 0x50) = unsignedResult3;
-    *(uint32_t *)(localContextPointer0 + 0x54) = unsignedResult4;
-    validationResult = *(uint32_t *)(objectContextParam + 0x3c);
-    unsignedResult3 = *(uint32_t *)(objectContextParam + 0x40);
-    unsignedResult4 = *(uint32_t *)(objectContextParam + 0x44);
+    *(uint32_t *)(localContextPointer0 + 0x4c) = matrixFlagsValue1;
+    *(uint32_t *)(localContextPointer0 + 0x50) = matrixFlagsValue2;
+    *(uint32_t *)(localContextPointer0 + 0x54) = matrixFlagsValue3;
+    uint32_t matrixFlagsValue4 = *(uint32_t *)(objectContextParam + 0x3c);
+    uint32_t matrixFlagsValue5 = *(uint32_t *)(objectContextParam + 0x40);
+    uint32_t matrixFlagsValue6 = *(uint32_t *)(objectContextParam + 0x44);
     *(uint32_t *)(localContextPointer0 + 0x58) = *(uint32_t *)(objectContextParam + 0x38);
-    *(uint32_t *)(localContextPointer0 + 0x5c) = validationResult;
-    *(uint32_t *)(localContextPointer0 + 0x60) = unsignedResult3;
-    *(uint32_t *)(localContextPointer0 + 100) = unsignedResult4;
+    *(uint32_t *)(localContextPointer0 + 0x5c) = matrixFlagsValue4;
+    *(uint32_t *)(localContextPointer0 + 0x60) = matrixFlagsValue5;
+    *(uint32_t *)(localContextPointer0 + 100) = matrixFlagsValue6;
     localContextPointer0 = *(int64_t *)(validationContextParam + 0x98);
     if ((*(int *)(localContextPointer0 + 0x180) != 0) || (*(int *)(localContextPointer0 + 0x184) != 0)) {
       ValidationStackBuffer8[0] = 0;
       InitializeSecurityContext(ValidationStackBuffer8);
       if (ValidationStackBuffer8[0] == *(int64_t *)((int64_t)*(int *)(localContextPointer0 + 0x17c) * 8 + 0x180c4f450)) {
-        unsignedValue5 = ProcessResourceValidation(localContextPointer0,objectContextParam);
-        if ((int)unsignedValue5 == 0) {
+        uint32_t resourceValidationResult = ProcessResourceValidation(localContextPointer0,objectContextParam);
+        if ((int)resourceValidationResult == 0) {
           return 0;
         }
-        return unsignedValue5;
+        return resourceValidationResult;
       }
     }
     *(uint *)(objectContextParam + 8) = *(int *)(objectContextParam + 8) + 0xfU & 0xfffffff0;
-    unsignedValue5 = ExecuteSystemOperation(*(uint8_t *)(localContextPointer0 + 0x1e0));
-    if ((int)unsignedValue5 == 0) {
+    uint32_t systemOperationResult = ExecuteSystemOperation(*(uint8_t *)(localContextPointer0 + 0x1e0));
+    if ((int)systemOperationResult == 0) {
       return 0;
     }
-    return unsignedValue5;
+    return systemOperationResult;
   }
   return 0x1f;
 }
