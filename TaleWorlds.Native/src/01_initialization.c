@@ -14709,8 +14709,9 @@ void InitializeSystemNetworkComponent(void)
 
 
 
-// 函数: void FUN_180040ae0(void)
-void FUN_180040ae0(void)
+// 函数: InitializeSystemDatabaseComponent
+// 初始化系统数据库组件，负责数据存储
+void InitializeSystemDatabaseComponent(void)
 
 {
   char systemNodeFlag;
@@ -14759,8 +14760,9 @@ void FUN_180040ae0(void)
 
 
 
-// 函数: void FUN_180040be0(void)
-void FUN_180040be0(void)
+// 函数: InitializeSystemLoggingComponent
+// 初始化系统日志组件，负责日志记录
+void InitializeSystemLoggingComponent(void)
 
 {
   char systemNodeFlag;
@@ -14809,8 +14811,9 @@ void FUN_180040be0(void)
 
 
 
-// 函数: void FUN_180040ce0(void)
-void FUN_180040ce0(void)
+// 函数: InitializeSystemPerformanceComponent
+// 初始化系统性能监控组件，负责性能分析
+void InitializeSystemPerformanceComponent(void)
 
 {
   char systemNodeFlag;
