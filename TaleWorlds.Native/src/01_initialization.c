@@ -1426,8 +1426,11 @@ void InitializeSystemEventManager(void)
 /**
  * @brief 初始化系统资源管理器
  * 
- * 该函数负责初始化系统资源管理器，
- * 设置资源加载、释放和管理机制。
+ * 该函数负责初始化系统的资源管理器，为系统提供资源加载、释放和管理机制。
+ * 它会设置资源池、资源分配策略和资源回收机制。
+ * 
+ * @note 该函数在系统初始化过程中调用，确保资源管理功能正常工作。
+ * @note 函数会遍历系统节点树，查找或创建资源管理器节点。
  */
 void InitializeSystemResourceManager(void)
 
@@ -1482,46 +1485,51 @@ void InitializeSystemResourceManager(void)
 
 
 /**
- * 初始化系统核心数据结构
- * 设置系统启动所需的基本数据结构和初始化参数
+ * @brief 初始化系统核心数据结构
+ * 
+ * 该函数负责初始化系统的核心数据结构，设置系统启动所需的基本数据结构和初始化参数。
+ * 它会遍历系统节点树，查找或创建核心数据结构节点。
+ * 
+ * @note 该函数在系统初始化过程中调用，确保核心数据结构正确设置。
+ * @note 函数使用SystemDataComparisonTemplateA进行系统识别。
  */
 void InitializeSystemCoreData(void)
 
 {
-  char StatusFlag;
-  void** SystemRootPointer;
-  int ComparisonResult;
-  long long *SystemHandle;
-  long long MemorySize;
-  void** CurrentNode;
-  void** PreviousNode;
-  void** NextNode;
-  void** NewNode;
-  code *InitializationCallback;
+  char SystemNodeFlag;
+  void** SystemRootNodePointer;
+  int MemoryComparisonResult;
+  long long *SystemDataTablePointer;
+  long long RequiredMemorySize;
+  void** CurrentSystemNode;
+  void** PreviousSystemNode;
+  void** NextSystemNode;
+  void** AllocatedSystemNode;
+  void* SystemInitializationCallback;
   
-  SystemHandle = (long long*)GetSystemRootPointer();
-  SystemRootPointer = (void* *)*SystemHandle;
-  StatusFlag = *(char*)((long long)SystemRootPointer[1] + 0x19);
-  InitializationCallback = GetSystemInitializationCallback;
-  PreviousNode = SystemRootPointer;
-  CurrentNode = (void* *)SystemRootPointer[1];
-  while (StatusFlag == '\0') {
-    ComparisonResult = memcmp(CurrentNode + 4,&SystemDataComparisonTemplateA,0x10);
-    if (ComparisonResult < 0) {
-      NextNode = (void* *)CurrentNode[2];
-      CurrentNode = PreviousNode;
+  SystemDataTablePointer = (long long*)GetSystemRootPointer();
+  SystemRootNodePointer = (void**)*SystemDataTablePointer;
+  SystemNodeFlag = *(char*)((long long)SystemRootNodePointer[1] + 0x19);
+  SystemInitializationCallback = GetSystemInitializationCallback;
+  PreviousSystemNode = SystemRootNodePointer;
+  CurrentSystemNode = (void**)SystemRootNodePointer[1];
+  while (SystemNodeFlag == '\0') {
+    MemoryComparisonResult = memcmp(CurrentSystemNode + 4,&SystemDataComparisonTemplateA,0x10);
+    if (MemoryComparisonResult < 0) {
+      NextSystemNode = (void**)CurrentSystemNode[2];
+      CurrentSystemNode = PreviousSystemNode;
     }
     else {
-      NextNode = (void* *)*CurrentNode;
+      NextSystemNode = (void**)*CurrentSystemNode;
     }
-    PreviousNode = CurrentNode;
-    CurrentNode = NextNode;
-    StatusFlag = *(char*)((long long)NextNode + 0x19);
+    PreviousSystemNode = CurrentSystemNode;
+    CurrentSystemNode = NextSystemNode;
+    SystemNodeFlag = *(char*)((long long)NextSystemNode + 0x19);
   }
-  if ((PreviousNode == SystemRootPointer) || (ComparisonResult = memcmp(&SystemDataComparisonTemplateA,PreviousNode + 4,0x10), ComparisonResult < 0)) {
-    MemorySize = GetSystemMemorySize(SystemHandle);
-    AllocateSystemMemory(SystemHandle,&NewNode,PreviousNode,MemorySize + 0x20,MemorySize);
-    PreviousNode = NewNode;
+  if ((PreviousSystemNode == SystemRootNodePointer) || (MemoryComparisonResult = memcmp(&SystemDataComparisonTemplateA,PreviousSystemNode + 4,0x10), MemoryComparisonResult < 0)) {
+    RequiredMemorySize = GetSystemMemorySize(SystemDataTablePointer);
+    AllocateSystemMemory(SystemDataTablePointer,&AllocatedSystemNode,PreviousSystemNode,RequiredMemorySize + 0x20,RequiredMemorySize);
+    PreviousSystemNode = AllocatedSystemNode;
   }
   PreviousNode[6] = 0x421c3cedd07d816d;
   PreviousNode[7] = 0xbec25de793b7afa6;
