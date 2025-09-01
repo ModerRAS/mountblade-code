@@ -35701,17 +35701,28 @@ void ExecuteSystemResourceOperation(long long systemResourcePointer, void* confi
 
 
 
-void* * FUN_18005b870(void* *SystemResourcePointer)
+/**
+ * @brief 系统资源指针初始化函数
+ * 
+ * 该函数负责初始化系统资源指针，设置内存分配器引用和全局数据引用。
+ * 它会重置资源指针的各种状态和标志位。
+ * 
+ * @param systemResourcePointer 系统资源指针的指针
+ * @return 返回系统资源指针的指针
+ * 
+ * 原始函数名为FUN_18005b870，现已重命名为InitializeSystemResourcePointer
+ */
+void** InitializeSystemResourcePointer(void** systemResourcePointer)
 
 {
-  *SystemResourcePointer = &SystemMemoryAllocatorReference;
-  SystemResourcePointer[1] = 0;
-  *(uint32_t *)(SystemResourcePointer + 2) = 0;
-  *SystemResourcePointer = &SystemGlobalDataReference;
-  SystemResourcePointer[3] = 0;
-  SystemResourcePointer[1] = 0;
-  *(uint32_t *)(SystemResourcePointer + 2) = 0;
-  SystemResourcePointer[4] = &SystemMemoryAllocatorReference;
+  *systemResourcePointer = &SystemMemoryAllocatorReference;
+  systemResourcePointer[1] = 0;
+  *(uint32_t *)(systemResourcePointer + 2) = 0;
+  *systemResourcePointer = &SystemGlobalDataReference;
+  systemResourcePointer[3] = 0;
+  systemResourcePointer[1] = 0;
+  *(uint32_t *)(systemResourcePointer + 2) = 0;
+  systemResourcePointer[4] = &SystemMemoryAllocatorReference;
   SystemResourcePointer[5] = 0;
   *(uint32_t *)(SystemResourcePointer + 6) = 0;
   SystemResourcePointer[4] = &SystemGlobalDataReference;
