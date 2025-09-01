@@ -1043,9 +1043,9 @@ void* MemoryManagerInstance;
  * 配置内存分配策略和参数
  */
 void SetupMemoryAllocator(void);
-void* SystemResourceConfigTable2;
-void* SystemFileSystemConfigTable2;
-void* SystemThreadingConfigTable3;
+void* SystemResourceConfigTableSecondary;
+void* SystemFileSystemConfigTableSecondary;
+void* SystemThreadingConfigTableTertiary;
 void* SystemProcessConfigTable4;
 void* MemoryPoolFunction;
 void* SystemEventConfigTable6;
