@@ -87584,7 +87584,7 @@ void InitializeSystemDataStructureCV(void)
                     // WARNING: Subroutine does not return
       ReleaseResourceHandle(localContextPointer);
     }
-    _DAT_180c96138 = 0;
+    ResourceHandlerContextPointer = 0;
 
  /**
  * 初始化系统数据结构CW
