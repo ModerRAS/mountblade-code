@@ -44,6 +44,20 @@ uint ProcessNetworkConnectionData(longlong *connectionContext, longlong packetDa
  */
 uint SendNetworkPacketData(longlong socketData, NetworkHandle connectionHandle, longlong packetData);
 
+/**
+ * 验证网络数据包
+ * 
+ * 该函数负责验证网络数据包的完整性和有效性。
+ * 主要用于网络数据包的验证和安全检查。
+ * 
+ * @param packetData 数据包数据
+ * @param connectionContext 连接上下文
+ * @return 验证结果状态码
+ * 
+ * 注意：这是一个反编译的函数实现
+ */
+uint ValidateNetworkPacket(longlong packetData, longlong connectionContext);
+
 uint32_t NetworkConnectionTableHandle;
 uint32_t NetworkConnectionStatusFlags;
 uint32_t NetworkConnectionTimeoutDuration;
@@ -7666,7 +7680,7 @@ void ProcessLongNetworkConnectionPacketTransfer(longlong connectionContext,Netwo
 {
   int networkTransferStatus;
   
-  networkTransferStatus = FUN_18088ee60(packetData,connectionContext + 0x10);
+  networkTransferStatus = ValidateNetworkPacket(packetData,connectionContext + 0x10);
   if (networkTransferStatus == 0) {
     FUN_18088ee20(packetData,connectionContext + 0x18);
   }
@@ -7695,7 +7709,7 @@ void ProcessNetworkConnectionPacketWriteOperation(longlong connectionContext,Net
 {
   int networkWriteStatus;
   
-  networkWriteStatus = FUN_18088ee60(packetData,connectionContext + 0x10);
+  networkWriteStatus = ValidateNetworkPacket(packetData,connectionContext + 0x10);
   if (networkWriteStatus == 0) {
     networkWriteStatus = FUN_18088ee20(packetData,connectionContext + 0x18);
     if (networkWriteStatus == 0) {
@@ -7727,13 +7741,13 @@ void ProcessNetworkConnectionPacketWriteExtended(longlong connectionContext,Netw
 {
   int networkExtendedStatus;
   
-  networkExtendedStatus = FUN_18088ee60(packetData,connectionContext + 0x10);
+  networkExtendedStatus = ValidateNetworkPacket(packetData,connectionContext + 0x10);
   if (networkExtendedStatus == 0) {
     networkExtendedStatus = FUN_18088ee20(packetData,connectionContext + 0x18);
     if (networkExtendedStatus == 0) {
       networkExtendedStatus = FUN_18088f1a0(packetData,connectionContext + 0x1c);
       if (networkExtendedStatus == 0) {
-        FUN_18088ee60(packetData,connectionContext + 0x2c);
+        ValidateNetworkPacket(packetData,connectionContext + 0x2c);
       }
     }
   }
@@ -7969,7 +7983,7 @@ void ProcessNetworkConnectionStateConfiguration(longlong connectionContext,Netwo
 {
   int networkConfigStatus;
   
-  networkConfigStatus = FUN_18088ee60(packetData,connectionContext + 0x10);
+  networkConfigStatus = ValidateNetworkPacket(packetData,connectionContext + 0x10);
   if (networkConfigStatus == 0) {
     networkConfigStatus = FUN_18088f310(packetData,connectionContext + 0x18);
     if (networkConfigStatus == 0) {
@@ -8005,7 +8019,7 @@ void ProcessNetworkConnectionDataConfiguration(longlong connectionContext,Networ
 {
   int networkDataConfigStatus;
   
-  networkDataConfigStatus = FUN_18088ee60(packetData,connectionContext + 0x10);
+  networkDataConfigStatus = ValidateNetworkPacket(packetData,connectionContext + 0x10);
   if (networkDataConfigStatus == 0) {
     networkDataConfigStatus = FUN_18088f4d0(packetData,connectionContext + 0x28,0x80);
     if (networkDataConfigStatus == 0) {
@@ -8041,7 +8055,7 @@ void ProcessNetworkConnectionTransferConfiguration(longlong connectionContext,Ne
 {
   int networkTransferConfigStatus;
   
-  networkTransferConfigStatus = FUN_18088ee60(packetData,connectionContext + 0x10);
+  networkTransferConfigStatus = ValidateNetworkPacket(packetData,connectionContext + 0x10);
   if (networkTransferConfigStatus == 0) {
     networkTransferConfigStatus = FUN_18088f4d0(packetData,connectionContext + 0x28,0x80);
     if (networkTransferConfigStatus == 0) {
@@ -8078,7 +8092,7 @@ void ProcessNetworkConnectionControlConfiguration(longlong connectionContext,Net
   int networkControlStatus;
   NetworkStatus controlParameterBuffer [2];
   
-  networkControlStatus = FUN_18088ee60(packetData,connectionContext + 0x10);
+  networkControlStatus = ValidateNetworkPacket(packetData,connectionContext + 0x10);
   if (networkControlStatus == 0) {
     networkControlStatus = FUN_18088ee20(packetData,controlParameterBuffer);
     if (networkControlStatus == 0) {
@@ -8112,7 +8126,7 @@ void ProcessNetworkConnectionProtocolConfiguration(longlong connectionContext,Ne
 {
   int networkStatus1;
   
-  networkStatus1 = FUN_18088ee60(packetData,connectionContext + 0x10);
+  networkStatus1 = ValidateNetworkPacket(packetData,connectionContext + 0x10);
   if (networkStatus1 == 0) {
     networkStatus1 = FUN_18088ee20(packetData,connectionContext + 0x18);
     if (networkStatus1 == 0) {
@@ -8267,7 +8281,7 @@ void ConfigureNetworkConnectionDataSize(longlong connectionContext,NetworkHandle
   if (networkStatus1 == 0) {
     networkStatus1 = FUN_18088ee60(packetData,connectionContext + 0x14);
     if (networkStatus1 == 0) {
-      FUN_18088ee60(packetData,connectionContext + 0x10);
+      ValidateNetworkPacket(packetData,connectionContext + 0x10);
     }
   }
   return;
@@ -16472,7 +16486,16 @@ void ProcessNetworkEventInitializer(void)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-ulonglong FUN_18084f040(longlong *connectionContext)
+/**
+ * @brief 获取网络连接上下文状态
+ * 
+ * 该函数负责获取网络连接上下文的当前状态信息。
+ * 主要用于连接状态监控和诊断。
+ * 
+ * @param connectionContext 网络连接上下文指针
+ * @return 连接状态标志位
+ */
+ulonglong GetNetworkConnectionContextState(longlong *connectionContext)
 
 {
   uint *networkPointer1;
@@ -96996,7 +97019,7 @@ void FUN_180894c70(longlong connectionContext,NetworkHandle packetData)
 {
   int networkStatus1;
   
-  networkStatus1 = FUN_18088ee60(packetData,connectionContext + 0x10);
+  networkStatus1 = ValidateNetworkPacket(packetData,connectionContext + 0x10);
   if (((networkStatus1 == 0) && (networkStatus1 = FUN_18088ee20(packetData,connectionContext + 0x18), networkStatus1 == 0)) &&
      (networkStatus1 = FUN_18088f530(packetData,connectionContext + 0x20,*(NetworkStatus *)(connectionContext + 0x18)), networkStatus1 == 0)) {
     FUN_18088f5c0(packetData,connectionContext + 0x20 + (longlong)*(int *)(connectionContext + 0x18) * 4);
@@ -97042,7 +97065,7 @@ void FUN_180894ce0(longlong connectionContext,NetworkHandle packetData)
 {
   int networkStatus1;
   
-  networkStatus1 = FUN_18088ee60(packetData,connectionContext + 0x10);
+  networkStatus1 = ValidateNetworkPacket(packetData,connectionContext + 0x10);
   if ((((networkStatus1 == 0) && (networkStatus1 = FUN_18088ee20(packetData,connectionContext + 0x18), networkStatus1 == 0)) &&
       (networkStatus1 = FUN_18088f620(packetData,connectionContext + 0x20,*(NetworkStatus *)(connectionContext + 0x18)), networkStatus1 == 0))
      && (networkStatus1 = FUN_18088f5c0(packetData,connectionContext + 0x20 + (longlong)*(int *)(connectionContext + 0x18) * 8),
