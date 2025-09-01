@@ -85264,14 +85264,14 @@ void InitializeSystemDataStructureAI(void)
 
  /**
  * 初始化系统数据结构AJ
- * 将全局变量 _DAT_180bf91b0 设置为指向 SystemDataStructure001
+ * 将全局变量 SystemDataStructurePointer002 设置为指向 SystemDataStructure001
  * 这是一个简单的初始化函数，用于设置系统数据结构的指针
  */
 void InitializeSystemDataStructureAJ(void)
 void InitializeSystemDataStructureAJ(void)
 
 {
-  _DAT_180bf91b0 = &SystemDataStructure;
+  SystemDataStructurePointer002 = &SystemDataStructure;
   return;
 }
 
@@ -85282,14 +85282,14 @@ void InitializeSystemDataStructureAJ(void)
 
  /**
  * 初始化系统数据结构AK
- * 将全局变量 _DAT_180bf9210 设置为指向 SystemDataStructure001
+ * 将全局变量 SystemDataStructurePointer003 设置为指向 SystemDataStructure001
  * 这是一个简单的初始化函数，用于设置系统数据结构的指针
  */
 void InitializeSystemDataStructureAK(void)
 void InitializeSystemDataStructureAK(void)
 
 {
-  _DAT_180bf9210 = &SystemDataStructure;
+  SystemDataStructurePointer003 = &SystemDataStructure;
   return;
 }
 
