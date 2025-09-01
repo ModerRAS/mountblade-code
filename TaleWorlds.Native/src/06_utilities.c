@@ -84302,7 +84302,7 @@ void InitializeResourceTableManager(void)
 void InitializeGlobalModuleA(void)
 
 {
-  _DAT_180bf5320 = &SystemDataStructure;
+  GlobalModuleADataPointer = &SystemDataStructure;
   return;
 }
 
@@ -84315,7 +84315,7 @@ void InitializeGlobalModuleA(void)
 void InitializeGlobalModuleB(void)
 
 {
-  _DAT_180bf5770 = &SystemDataStructure;
+  GlobalModuleBDataPointer = &SystemDataStructure;
   return;
 }
 
