@@ -33558,7 +33558,7 @@ void MemoryContextCleanup(uint8_t ObjectContextParameter,int64_t ValidationConte
 
 
 
-void Unwind_180903080(uint8_t ObjectContextParameter,int64_t ValidationContextParameter,uint8_t CleanupOption,uint8_t CleanupFlag)
+void ResourcePoolFinalizer(uint8_t ObjectContextParameter,int64_t ValidationContextParameter,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   uint8_t *presourceHash;
