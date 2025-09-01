@@ -1196,14 +1196,14 @@ undefined SystemMemoryDescriptor;
 undefined MemoryReliabilityConfigData;
 undefined SecurityContextData;
 
- void InitializeMemorySecurity;
+ void InitializeMemorySecurity(void);
 /**
  * @brief 初始化内存安全
  * 
  * 该函数负责初始化内存安全系统
  * 设置内存访问控制和数据保护
  */
-void InitializeMemorySecurity;
+void InitializeMemorySecurity(void);
 undefined SystemMemoryValidationFlag;
 undefined SystemSecurityContextFlag;
 undefined SystemMemoryProtectionFlag;
@@ -1211,14 +1211,14 @@ void* MemorySecurityConfigData;
 undefined SystemConfigTable1;
 undefined SystemConfigTable2;
 
- void ConfigureMemoryIsolation;
+ void ConfigureMemoryIsolation(void);
 /**
  * @brief 配置内存隔离
  * 
  * 该函数负责配置内存隔离机制
  * 设置进程间内存隔离和保护
  */
-void ConfigureMemoryIsolation;
+void ConfigureMemoryIsolation(void);
 undefined SystemConfigTable3;
 void* MemoryValidationContextData;
 void* MemoryIsolationConfigData;
