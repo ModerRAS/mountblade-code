@@ -11,7 +11,7 @@
  * @param memoryAddress 内存地址参数
  * @note 这是底层内存操作函数，用于管理内存页面
  */
-void ProcessSystemMemoryPage(long long memoryAddress);
+void ProcessSystemMemoryPage(long long MemoryAddress);
 
 /**
  * @brief 系统资源释放函数
@@ -34,7 +34,7 @@ void ReleaseSystemResource(void);
  * @param sourceData 源数据指针（可选）
  * @note 这是内存管理系统的初始化函数
  */
-void InitializeSystemMemoryBuffer(void* memoryTemplate, long long bufferSize, void* sourceData);
+void InitializeSystemMemoryBuffer(void* MemoryTemplate, long long BufferSize, void* SourceData);
 
 /**
  * @brief 数据写入缓冲区函数
@@ -47,7 +47,7 @@ void InitializeSystemMemoryBuffer(void* memoryTemplate, long long bufferSize, vo
  * @param ... 可变参数，根据不同的写入模式传递不同的参数
  * @note 这是数据操作系统的核心函数
  */
-void WriteDataToBuffer(void* buffer, long long dataSize, ...);
+void WriteDataToBuffer(void* Buffer, long long DataSize, ...);
 /**
  * @brief 游戏系统主入口点
  * 
