@@ -19741,7 +19741,7 @@ LAB_180850d9b:
     else {
       lVar8 = (**(code **)(*(longlong *)(dataSize + 8) + 0x30))(dataSize + 8);
     }
-    iVar5 = FUN_1808b89f0(lVar8,plStack_118);
+    iVar5 = NetworkFinalizeConnectionSetup(lVar8,plStack_118);
     plVar2 = plStack_118;
     lVar13 = lStack_b0;
     lVar15 = lStack_d8;
@@ -19756,7 +19756,7 @@ LAB_180850d9b:
          ((longlong)*(int *)(lVar8 + 0x40) * 0x10 + *(ulonglong *)(lVar8 + 0x38) <= primaryNetworkFlag9))
       goto LAB_180850eb0;
       lStack_110 = 0;
-      iVar5 = FUN_1808bc240(connectionContext[2],primaryNetworkFlag9,0xffffffff,&lStack_110);
+      iVar5 = NetworkCreateConnectionHandle(connectionContext[2],primaryNetworkFlag9,0xffffffff,&lStack_110);
       if ((iVar5 != 0) ||
          ((lStack_110 != 0 && (iVar5 = ValidateNetworkPacketChannel(lStack_110,plVar2,1), iVar5 != 0)))) break;
       primaryNetworkFlag9 = primaryNetworkFlag9 + 0x10;
@@ -20143,7 +20143,7 @@ LAB_180850d9b:
     else {
       lVar10 = (**(code **)(*(longlong *)(unaff_R14 + 8) + 0x30))(unaff_R14 + 8);
     }
-    iVar7 = FUN_1808b89f0(lVar10,in_stack_00000030);
+    iVar7 = NetworkFinalizeConnectionSetup(lVar10,in_stack_00000030);
     if (iVar7 != 0) goto LAB_180851223;
     lVar10 = (**(code **)*in_stack_00000030)(in_stack_00000030);
     primaryNetworkFlag8 = *(ulonglong *)(lVar10 + 0x38);
@@ -20152,7 +20152,7 @@ LAB_180850d9b:
          ((longlong)*(int *)(lVar10 + 0x40) * 0x10 + *(ulonglong *)(lVar10 + 0x38) <= primaryNetworkFlag8))
       goto LAB_180850eb0;
       in_stack_00000038 = 0;
-      iVar7 = FUN_1808bc240(*(NetworkHandle *)(unaff_R15 + 0x10),primaryNetworkFlag8,0xffffffff,&stack0x00000038);
+      iVar7 = NetworkCreateConnectionHandle(*(NetworkHandle *)(unaff_R15 + 0x10),primaryNetworkFlag8,0xffffffff,&stack0x00000038);
       if ((iVar7 != 0) ||
          ((in_stack_00000038 != 0 &&
           (iVar7 = ValidateSecurityContext(in_stack_00000038,in_stack_00000030,1), iVar7 != 0)))) break;
@@ -21578,7 +21578,7 @@ LAB_1808524b7:
      ((((int)((ulonglong)uStack_2c8 >> 0x20) != 0 || ((int)uStack_2c0 != 0)) ||
       ((int)(uStack_2c0 >> 0x20) != 0)))) {
     uStack_2b8 = 0;
-    iVar5 = FUN_1808bc240(connectionContext[7],&uStack_2c8,0xffffffff,&uStack_2b8);
+    iVar5 = NetworkCreateConnectionHandle(connectionContext[7],&uStack_2c8,0xffffffff,&uStack_2b8);
     if ((iVar5 != 0) ||
        ((uStack_2b8 != 0 && (iVar5 = ValidateSecurityContext(uStack_2b8,connectionContext), iVar5 != 0))))
     goto FUN_180852aaa;
@@ -22058,7 +22058,7 @@ LAB_1808524b7:
       ((int)(_iStack0000000000000078 >> 0x20) != 0)))) {
     secondaryNetworkFlag3 = unaff_R15[7];
     *(NetworkHandle *)(unaff_RBP + -0x80) = 0;
-    networkStatus3 = FUN_1808bc240(secondaryNetworkFlag3,&stack0x00000070,0xffffffff,unaff_RBP + -0x80);
+    networkStatus3 = NetworkCreateConnectionHandle(secondaryNetworkFlag3,&stack0x00000070,0xffffffff,unaff_RBP + -0x80);
     if ((networkStatus3 != 0) ||
        ((*(longlong *)(unaff_RBP + -0x80) != 0 && (networkStatus3 = ValidateSecurityContext(), networkStatus3 != 0))))
     goto LAB_180852a9a;
