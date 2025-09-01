@@ -694,15 +694,15 @@ void InitializeGameCoreSystem(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((systemPreviousNode == systemRootPointer) || (systemComparisonResult = memcmp(&DAT_1809fc740,systemPreviousNode + 4,0x10), systemComparisonResult < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
-  puVar7[6] = 0x4fc124d23d41985f;
-  puVar7[7] = 0xe2f4a30d6e6ae482;
-  puVar7[8] = &UNK_18098c790;
-  puVar7[9] = 0;
-  puVar7[10] = pcStackX_18;
+  systemPreviousNode[6] = 0x4fc124d23d41985f;
+  systemPreviousNode[7] = 0xe2f4a30d6e6ae482;
+  systemPreviousNode[8] = &UNK_18098c790;
+  systemPreviousNode[9] = 0;
+  systemPreviousNode[10] = systemInitializationFunction;
   return;
 }
 
@@ -751,7 +751,7 @@ void initializeSystemDataTable_BaseAllocator(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_1809fc768,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
@@ -806,14 +806,14 @@ void InitializeSystemDataTableAllocator(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_18098c9b8,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x4666df49b97e0f10;
   puVar7[7] = 0x4e4b0d63a6ad1d8f;
   puVar7[8] = &UNK_18098c7b8;
-  puVar7[9] = 0;
+  systemPreviousNode[9] = 0;
   puVar7[10] = uStackX_18;
   return;
 }
@@ -861,14 +861,14 @@ void InitializeSystemCoreConfig(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_18098c940,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x46ecbd4daf41613e;
   puVar7[7] = 0xdc42c056bbde8482;
   puVar7[8] = &UNK_18098c7c8;
-  puVar7[9] = 0;
+  systemPreviousNode[9] = 0;
   puVar7[10] = uStackX_18;
   return;
 }
@@ -916,14 +916,14 @@ void InitializeSystemMemoryPool(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_18098c918,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x4c868a42644030f6;
   puVar7[7] = 0xc29193aa9d9b35b9;
   puVar7[8] = &UNK_18098c7d8;
-  puVar7[9] = 0;
+  systemPreviousNode[9] = 0;
   puVar7[10] = uStackX_18;
   return;
 }
@@ -971,7 +971,7 @@ void InitializeSystemThreadPool(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_18098c968,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
@@ -1026,7 +1026,7 @@ void InitializeSystemEventManager(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_18098c990,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
@@ -1081,14 +1081,14 @@ void InitializeSystemResourceManager(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_18098c9e0,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x42d293584c8cf3e5;
   puVar7[7] = 0x355ffeb2d29e668a;
   puVar7[8] = &UNK_18098c870;
-  puVar7[9] = 0;
+  systemPreviousNode[9] = 0;
   puVar7[10] = uStackX_18;
   return;
 }
@@ -1114,7 +1114,7 @@ void initializeSystemCoreData(void)
   undefined8 *newNode;
   code *initializationCallback;
   
-  systemHandle = (longlong *)FUN_18008d070();
+  systemHandle = (longlong *)getSystemRootPointer();
   systemRootPointer = (undefined8 *)*systemHandle;
   statusFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
   initializationCallback = FUN_180073930;
@@ -1134,7 +1134,7 @@ void initializeSystemCoreData(void)
     statusFlag = *(char *)((longlong)nextNode + 0x19);
   }
   if ((previousNode == systemRootPointer) || (comparisonResult = memcmp(&DAT_18098c8f0,previousNode + 4,0x10), comparisonResult < 0)) {
-    memorySize = FUN_18008f0d0(systemHandle);
+    memorySize = getSystemMemorySize(systemHandle);
     FUN_18008f140(systemHandle,&newNode,previousNode,memorySize + 0x20,memorySize);
     previousNode = newNode;
   }
@@ -1167,7 +1167,7 @@ void initializeSystemDataTable(void)
   undefined8 *newNode;
   undefined8 systemFlag;
   
-  systemHandle = (longlong *)FUN_18008d070();
+  systemHandle = (longlong *)getSystemRootPointer();
   systemRootPointer = (undefined8 *)*systemHandle;
   statusFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
   systemFlag = 0;
@@ -1187,7 +1187,7 @@ void initializeSystemDataTable(void)
     statusFlag = *(char *)((longlong)nextNode + 0x19);
   }
   if ((previousNode == systemRootPointer) || (comparisonResult = memcmp(&DAT_18098c8c8,previousNode + 4,0x10), comparisonResult < 0)) {
-    memorySize = FUN_18008f0d0(systemHandle);
+    memorySize = getSystemMemorySize(systemHandle);
     FUN_18008f140(systemHandle,&newNode,previousNode,memorySize + 0x20,memorySize);
     previousNode = newNode;
   }
@@ -1247,7 +1247,7 @@ void InitializeRenderingSystemConfig(void)
   undefined8 *allocatedNode;
   undefined8 initializationFlag;
   
-  systemTablePointer = (longlong *)FUN_18008d070();
+  systemTablePointer = (longlong *)getSystemRootPointer();
   systemRootPointer = (undefined8 *)*systemTablePointer;
   nodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
   initializationFlag = 0;
@@ -1267,7 +1267,7 @@ void InitializeRenderingSystemConfig(void)
     nodeFlag = *(char *)((longlong)nextNode + 0x19);
   }
   if ((previousNode == systemRootPointer) || (comparisonResult = memcmp(&DAT_1809fe0d0,previousNode + 4,0x10), comparisonResult < 0)) {
-    allocationSize = FUN_18008f0d0(systemTablePointer);
+    allocationSize = getSystemMemorySize(systemTablePointer);
     FUN_18008f140(systemTablePointer,&allocatedNode,previousNode,allocationSize + 0x20,allocationSize);
     previousNode = allocatedNode;
   }
@@ -1375,15 +1375,15 @@ void InitializeSystemMemoryManager(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_1809ff9e8,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x406be72011d07d37;
   puVar7[7] = 0x71876af946c867ab;
   puVar7[8] = &UNK_1809ff978;
-  puVar7[9] = 0;
-  puVar7[10] = pcStackX_18;
+  systemPreviousNode[9] = 0;
+  systemPreviousNode[10] = systemInitializationFunction;
   return;
 }
 
@@ -1430,7 +1430,7 @@ void InitializeSystemMemoryAllocator(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_1809ff9c0,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
@@ -1438,7 +1438,7 @@ void InitializeSystemMemoryAllocator(void)
   puVar7[7] = 0x2f4bab01d34055a5;
   puVar7[8] = &UNK_1809ff990;
   puVar7[9] = 3;
-  puVar7[10] = pcStackX_18;
+  systemPreviousNode[10] = systemInitializationFunction;
   return;
 }
 
@@ -1539,7 +1539,7 @@ void InitializeSystemThreadManager(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a010a0,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
@@ -1547,7 +1547,7 @@ void InitializeSystemThreadManager(void)
   puVar7[7] = 0xdcfdc333a769ec93;
   puVar7[8] = &UNK_180a00370;
   puVar7[9] = 1;
-  puVar7[10] = pcStackX_18;
+  systemPreviousNode[10] = systemInitializationFunction;
   return;
 }
 
@@ -1594,7 +1594,7 @@ void InitializeSystemEventManager(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a01078,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
@@ -1602,7 +1602,7 @@ void InitializeSystemEventManager(void)
   puVar7[7] = 0xb97f048d2153e1b0;
   puVar7[8] = &UNK_180a00388;
   puVar7[9] = 4;
-  puVar7[10] = pcStackX_18;
+  systemPreviousNode[10] = systemInitializationFunction;
   return;
 }
 
@@ -1630,7 +1630,7 @@ void InitializeSystemConfigurationNode(void)
   undefined8 *allocatedNode;
   undefined8 initializationFlag;
   
-  systemTablePointer = (longlong *)FUN_18008d070();
+  systemTablePointer = (longlong *)getSystemRootPointer();
   systemRootPointer = (undefined8 *)*systemTablePointer;
   nodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
   initializationFlag = 0;
@@ -1650,7 +1650,7 @@ void InitializeSystemConfigurationNode(void)
     nodeFlag = *(char *)((longlong)nextNode + 0x19);
   }
   if ((previousNode == systemRootPointer) || (comparisonResult = memcmp(&DAT_180a01050,previousNode + 4,0x10), comparisonResult < 0)) {
-    allocationSize = FUN_18008f0d0(systemTablePointer);
+    allocationSize = getSystemMemorySize(systemTablePointer);
     FUN_18008f140(systemTablePointer,&allocatedNode,previousNode,allocationSize + 0x20,allocationSize);
     previousNode = allocatedNode;
   }
@@ -1686,7 +1686,7 @@ void InitializeSystemResourceNode(void)
   undefined8 *allocatedNode;
   undefined8 *initializationCallback;
   
-  systemTablePointer = (longlong *)FUN_18008d070();
+  systemTablePointer = (longlong *)getSystemRootPointer();
   systemRootPointer = (undefined8 *)*systemTablePointer;
   nodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
   initializationCallback = FUN_18025d270;
@@ -1706,7 +1706,7 @@ void InitializeSystemResourceNode(void)
     nodeFlag = *(char *)((longlong)nextNode + 0x19);
   }
   if ((previousNode == systemRootPointer) || (comparisonResult = memcmp(&DAT_180a01028,previousNode + 4,0x10), comparisonResult < 0)) {
-    allocationSize = FUN_18008f0d0(systemTablePointer);
+    allocationSize = getSystemMemorySize(systemTablePointer);
     FUN_18008f140(systemTablePointer,&allocatedNode,previousNode,allocationSize + 0x20,allocationSize);
     previousNode = allocatedNode;
   }
@@ -1742,7 +1742,7 @@ void InitializeSystemMemoryNode(void)
   undefined8 *allocatedNode;
   undefined8 initializationFlag;
   
-  systemTablePointer = (longlong *)FUN_18008d070();
+  systemTablePointer = (longlong *)getSystemRootPointer();
   systemRootPointer = (undefined8 *)*systemTablePointer;
   nodeFlag = *(char *)((longlong)systemRootPointer[1] + 0x19);
   initializationFlag = 0;
@@ -1762,7 +1762,7 @@ void InitializeSystemMemoryNode(void)
     nodeFlag = *(char *)((longlong)nextNode + 0x19);
   }
   if ((previousNode == systemRootPointer) || (comparisonResult = memcmp(&DAT_180a01000,previousNode + 4,0x10), comparisonResult < 0)) {
-    allocationSize = FUN_18008f0d0(systemTablePointer);
+    allocationSize = getSystemMemorySize(systemTablePointer);
     FUN_18008f140(systemTablePointer,&allocatedNode,previousNode,allocationSize + 0x20,allocationSize);
     previousNode = allocatedNode;
   }
@@ -1798,7 +1798,7 @@ void InitializeSystemDataTableStructureA(void)
   undefined8 *newNodePointer;
   undefined *systemDataReference;
   
-  systemRootPointer = (longlong *)FUN_18008d070();
+  systemRootPointer = (longlong *)getSystemRootPointer();
   dataTablePointer = (undefined8 *)*systemRootPointer;
   dataTypeFlag = *(char *)((longlong)dataTablePointer[1] + 0x19);
   systemDataReference = &UNK_1800868c0;
@@ -1818,7 +1818,7 @@ void InitializeSystemDataTableStructureA(void)
     dataTypeFlag = *(char *)((longlong)nextNode + 0x19);
   }
   if ((previousNode == dataTablePointer) || (memoryCompareResult = memcmp(&DAT_180a00fd8,previousNode + 4,0x10), memoryCompareResult < 0)) {
-    allocationSize = FUN_18008f0d0(systemRootPointer);
+    allocationSize = getSystemMemorySize(systemRootPointer);
     FUN_18008f140(systemRootPointer,&newNodePointer,previousNode,allocationSize + 0x20,allocationSize);
     previousNode = newNodePointer;
   }
@@ -1854,7 +1854,7 @@ void InitializeSystemDataTableStructureB(void)
   undefined8 *newNodePointer;
   undefined8 initializationFlag;
   
-  systemRootPointer = (longlong *)FUN_18008d070();
+  systemRootPointer = (longlong *)getSystemRootPointer();
   dataTablePointer = (undefined8 *)*systemRootPointer;
   dataTypeFlag = *(char *)((longlong)dataTablePointer[1] + 0x19);
   initializationFlag = 0;
@@ -1874,7 +1874,7 @@ void InitializeSystemDataTableStructureB(void)
     dataTypeFlag = *(char *)((longlong)nextNode + 0x19);
   }
   if ((previousNode == dataTablePointer) || (memoryCompareResult = memcmp(&DAT_180a00fb0,previousNode + 4,0x10), memoryCompareResult < 0)) {
-    allocationSize = FUN_18008f0d0(systemRootPointer);
+    allocationSize = getSystemMemorySize(systemRootPointer);
     FUN_18008f140(systemRootPointer,&newNodePointer,previousNode,allocationSize + 0x20,allocationSize);
     previousNode = newNodePointer;
   }
@@ -1930,15 +1930,15 @@ void InitializeSystemDataTableStructureC(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a00e28,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x449bafe9b77ddd3c;
   puVar7[7] = 0xc160408bde99e59f;
   puVar7[8] = &UNK_180a00430;
-  puVar7[9] = 0;
-  puVar7[10] = pcStackX_18;
+  systemPreviousNode[9] = 0;
+  systemPreviousNode[10] = systemInitializationFunction;
   return;
 }
 
@@ -1986,15 +1986,15 @@ void InitializeSystemDataTableStructureD(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a00d48,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x45425dc186a5d575;
   puVar7[7] = 0xfab48faa65382fa5;
   puVar7[8] = &UNK_180a00460;
-  puVar7[9] = 0;
-  puVar7[10] = pcStackX_18;
+  systemPreviousNode[9] = 0;
+  systemPreviousNode[10] = systemInitializationFunction;
   return;
 }
 
@@ -2042,15 +2042,15 @@ void InitializeSystemDataTableStructureE(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_1809ff9e8,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x406be72011d07d37;
   puVar7[7] = 0x71876af946c867ab;
   puVar7[8] = &UNK_1809ff978;
-  puVar7[9] = 0;
-  puVar7[10] = pcStackX_18;
+  systemPreviousNode[9] = 0;
+  systemPreviousNode[10] = systemInitializationFunction;
   return;
 }
 
@@ -2098,7 +2098,7 @@ void InitializeSystemDataTableStructureF(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_1809ff9c0,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
@@ -2106,7 +2106,7 @@ void InitializeSystemDataTableStructureF(void)
   puVar7[7] = 0x2f4bab01d34055a5;
   puVar7[8] = &UNK_1809ff990;
   puVar7[9] = 3;
-  puVar7[10] = pcStackX_18;
+  systemPreviousNode[10] = systemInitializationFunction;
   return;
 }
 
@@ -2154,14 +2154,14 @@ void InitializeSystemDataTableStructureG(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_1809fe0d0,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x42bea5b911d9c4bf;
   puVar7[7] = 0x1aa83fc0020dc1b6;
   puVar7[8] = &UNK_1809fd0d8;
-  puVar7[9] = 0;
+  systemPreviousNode[9] = 0;
   puVar7[10] = uStackX_18;
   return;
 }
@@ -2210,7 +2210,7 @@ void InitializeSystemDataTableStructureH(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a00bb0,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
@@ -2218,7 +2218,7 @@ void InitializeSystemDataTableStructureH(void)
   puVar7[7] = 0x81d539e33614429f;
   puVar7[8] = &UNK_180a004a8;
   puVar7[9] = 4;
-  puVar7[10] = pcStackX_18;
+  systemPreviousNode[10] = systemInitializationFunction;
   return;
 }
 
@@ -2266,7 +2266,7 @@ void InitializeSystemDataTableStructureI(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a00b88,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
@@ -2274,7 +2274,7 @@ void InitializeSystemDataTableStructureI(void)
   puVar7[7] = 0x703a29a844ce399;
   puVar7[8] = &UNK_180a004c0;
   puVar7[9] = 3;
-  puVar7[10] = pcStackX_18;
+  systemPreviousNode[10] = systemInitializationFunction;
   return;
 }
 
@@ -2362,7 +2362,7 @@ void InitializeSystemMemoryManager(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a010a0,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
@@ -2370,7 +2370,7 @@ void InitializeSystemMemoryManager(void)
   puVar7[7] = 0xdcfdc333a769ec93;
   puVar7[8] = &UNK_180a00370;
   puVar7[9] = 1;
-  puVar7[10] = pcStackX_18;
+  systemPreviousNode[10] = systemInitializationFunction;
   return;
 }
 
@@ -2412,7 +2412,7 @@ void FUN_18002ea70(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a01078,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
@@ -2420,7 +2420,7 @@ void FUN_18002ea70(void)
   puVar7[7] = 0xb97f048d2153e1b0;
   puVar7[8] = &UNK_180a00388;
   puVar7[9] = 4;
-  puVar7[10] = pcStackX_18;
+  systemPreviousNode[10] = systemInitializationFunction;
   return;
 }
 
@@ -2462,14 +2462,14 @@ void FUN_18002eb70(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a01050,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x4b2d79e470ee4e2c;
   puVar7[7] = 0x9c552acd3ed5548d;
   puVar7[8] = &UNK_180a003a0;
-  puVar7[9] = 0;
+  systemPreviousNode[9] = 0;
   puVar7[10] = uStackX_18;
   return;
 }
@@ -2512,15 +2512,15 @@ void FUN_18002ec70(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a01028,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x49086ba08ab981a7;
   puVar7[7] = 0xa9191d34ad910696;
   puVar7[8] = &UNK_180a003b8;
-  puVar7[9] = 0;
-  puVar7[10] = pcStackX_18;
+  systemPreviousNode[9] = 0;
+  systemPreviousNode[10] = systemInitializationFunction;
   return;
 }
 
@@ -2562,14 +2562,14 @@ void FUN_18002ed70(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a01000,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x402feffe4481676e;
   puVar7[7] = 0xd4c2151109de93a0;
   puVar7[8] = &UNK_180a003d0;
-  puVar7[9] = 0;
+  systemPreviousNode[9] = 0;
   puVar7[10] = uStackX_18;
   return;
 }
@@ -2612,14 +2612,14 @@ void FUN_18002ee70(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a00fd8,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x4384dcc4b6d3f417;
   puVar7[7] = 0x92a15d52fe2679bd;
   puVar7[8] = &UNK_180a003e8;
-  puVar7[9] = 0;
+  systemPreviousNode[9] = 0;
   puVar7[10] = puStackX_18;
   return;
 }
@@ -2662,14 +2662,14 @@ void FUN_18002ef70(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a00fb0,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x4140994454d56503;
   puVar7[7] = 0x399eced9bb5517ad;
   puVar7[8] = &UNK_180a00400;
-  puVar7[9] = 0;
+  systemPreviousNode[9] = 0;
   puVar7[10] = uStackX_18;
   return;
 }
@@ -2712,15 +2712,15 @@ void FUN_18002f070(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a00d48,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x45425dc186a5d575;
   puVar7[7] = 0xfab48faa65382fa5;
   puVar7[8] = &UNK_180a00460;
-  puVar7[9] = 0;
-  puVar7[10] = pcStackX_18;
+  systemPreviousNode[9] = 0;
+  systemPreviousNode[10] = systemInitializationFunction;
   return;
 }
 
@@ -2762,7 +2762,7 @@ void FUN_18002f170(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a010a0,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
@@ -2770,7 +2770,7 @@ void FUN_18002f170(void)
   puVar7[7] = 0xdcfdc333a769ec93;
   puVar7[8] = &UNK_180a00370;
   puVar7[9] = 1;
-  puVar7[10] = pcStackX_18;
+  systemPreviousNode[10] = systemInitializationFunction;
   return;
 }
 
@@ -2812,7 +2812,7 @@ void FUN_18002f270(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a01078,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
@@ -2820,7 +2820,7 @@ void FUN_18002f270(void)
   puVar7[7] = 0xb97f048d2153e1b0;
   puVar7[8] = &UNK_180a00388;
   puVar7[9] = 4;
-  puVar7[10] = pcStackX_18;
+  systemPreviousNode[10] = systemInitializationFunction;
   return;
 }
 
@@ -2862,14 +2862,14 @@ void FUN_18002f370(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a01050,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x4b2d79e470ee4e2c;
   puVar7[7] = 0x9c552acd3ed5548d;
   puVar7[8] = &UNK_180a003a0;
-  puVar7[9] = 0;
+  systemPreviousNode[9] = 0;
   puVar7[10] = uStackX_18;
   return;
 }
@@ -2912,15 +2912,15 @@ void FUN_18002f470(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a01028,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x49086ba08ab981a7;
   puVar7[7] = 0xa9191d34ad910696;
   puVar7[8] = &UNK_180a003b8;
-  puVar7[9] = 0;
-  puVar7[10] = pcStackX_18;
+  systemPreviousNode[9] = 0;
+  systemPreviousNode[10] = systemInitializationFunction;
   return;
 }
 
@@ -2962,14 +2962,14 @@ void FUN_18002f570(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a01000,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x402feffe4481676e;
   puVar7[7] = 0xd4c2151109de93a0;
   puVar7[8] = &UNK_180a003d0;
-  puVar7[9] = 0;
+  systemPreviousNode[9] = 0;
   puVar7[10] = uStackX_18;
   return;
 }
@@ -3012,14 +3012,14 @@ void FUN_18002f670(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a00fd8,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x4384dcc4b6d3f417;
   puVar7[7] = 0x92a15d52fe2679bd;
   puVar7[8] = &UNK_180a003e8;
-  puVar7[9] = 0;
+  systemPreviousNode[9] = 0;
   puVar7[10] = puStackX_18;
   return;
 }
@@ -3062,14 +3062,14 @@ void FUN_18002f770(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a00fb0,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x4140994454d56503;
   puVar7[7] = 0x399eced9bb5517ad;
   puVar7[8] = &UNK_180a00400;
-  puVar7[9] = 0;
+  systemPreviousNode[9] = 0;
   puVar7[10] = uStackX_18;
   return;
 }
@@ -3112,7 +3112,7 @@ void FUN_18002f870(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a010a0,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
@@ -3120,7 +3120,7 @@ void FUN_18002f870(void)
   puVar7[7] = 0xdcfdc333a769ec93;
   puVar7[8] = &UNK_180a00370;
   puVar7[9] = 1;
-  puVar7[10] = pcStackX_18;
+  systemPreviousNode[10] = systemInitializationFunction;
   return;
 }
 
@@ -3162,7 +3162,7 @@ void FUN_18002f970(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a01078,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
@@ -3170,7 +3170,7 @@ void FUN_18002f970(void)
   puVar7[7] = 0xb97f048d2153e1b0;
   puVar7[8] = &UNK_180a00388;
   puVar7[9] = 4;
-  puVar7[10] = pcStackX_18;
+  systemPreviousNode[10] = systemInitializationFunction;
   return;
 }
 
@@ -3212,14 +3212,14 @@ void FUN_18002fa70(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a01050,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x4b2d79e470ee4e2c;
   puVar7[7] = 0x9c552acd3ed5548d;
   puVar7[8] = &UNK_180a003a0;
-  puVar7[9] = 0;
+  systemPreviousNode[9] = 0;
   puVar7[10] = uStackX_18;
   return;
 }
@@ -3262,15 +3262,15 @@ void FUN_18002fb70(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a01028,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x49086ba08ab981a7;
   puVar7[7] = 0xa9191d34ad910696;
   puVar7[8] = &UNK_180a003b8;
-  puVar7[9] = 0;
-  puVar7[10] = pcStackX_18;
+  systemPreviousNode[9] = 0;
+  systemPreviousNode[10] = systemInitializationFunction;
   return;
 }
 
@@ -3312,14 +3312,14 @@ void FUN_18002fc70(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a01000,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x402feffe4481676e;
   puVar7[7] = 0xd4c2151109de93a0;
   puVar7[8] = &UNK_180a003d0;
-  puVar7[9] = 0;
+  systemPreviousNode[9] = 0;
   puVar7[10] = uStackX_18;
   return;
 }
@@ -3362,14 +3362,14 @@ void FUN_18002fd70(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a00fd8,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x4384dcc4b6d3f417;
   puVar7[7] = 0x92a15d52fe2679bd;
   puVar7[8] = &UNK_180a003e8;
-  puVar7[9] = 0;
+  systemPreviousNode[9] = 0;
   puVar7[10] = puStackX_18;
   return;
 }
@@ -3412,14 +3412,14 @@ void FUN_18002fe70(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a00fb0,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x4140994454d56503;
   puVar7[7] = 0x399eced9bb5517ad;
   puVar7[8] = &UNK_180a00400;
-  puVar7[9] = 0;
+  systemPreviousNode[9] = 0;
   puVar7[10] = uStackX_18;
   return;
 }
@@ -3462,14 +3462,14 @@ void FUN_18002ff70(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_1809fe0d0,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x42bea5b911d9c4bf;
   puVar7[7] = 0x1aa83fc0020dc1b6;
   puVar7[8] = &UNK_1809fd0d8;
-  puVar7[9] = 0;
+  systemPreviousNode[9] = 0;
   puVar7[10] = uStackX_18;
   return;
 }
@@ -3512,15 +3512,15 @@ void FUN_180030070(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a00d48,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x45425dc186a5d575;
   puVar7[7] = 0xfab48faa65382fa5;
   puVar7[8] = &UNK_180a00460;
-  puVar7[9] = 0;
-  puVar7[10] = pcStackX_18;
+  systemPreviousNode[9] = 0;
+  systemPreviousNode[10] = systemInitializationFunction;
   return;
 }
 
@@ -3562,7 +3562,7 @@ void FUN_180030170(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a010a0,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
@@ -3570,7 +3570,7 @@ void FUN_180030170(void)
   puVar7[7] = 0xdcfdc333a769ec93;
   puVar7[8] = &UNK_180a00370;
   puVar7[9] = 1;
-  puVar7[10] = pcStackX_18;
+  systemPreviousNode[10] = systemInitializationFunction;
   return;
 }
 
@@ -3612,7 +3612,7 @@ void FUN_180030270(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a01078,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
@@ -3620,7 +3620,7 @@ void FUN_180030270(void)
   puVar7[7] = 0xb97f048d2153e1b0;
   puVar7[8] = &UNK_180a00388;
   puVar7[9] = 4;
-  puVar7[10] = pcStackX_18;
+  systemPreviousNode[10] = systemInitializationFunction;
   return;
 }
 
@@ -3662,14 +3662,14 @@ void FUN_180030370(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a01050,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x4b2d79e470ee4e2c;
   puVar7[7] = 0x9c552acd3ed5548d;
   puVar7[8] = &UNK_180a003a0;
-  puVar7[9] = 0;
+  systemPreviousNode[9] = 0;
   puVar7[10] = uStackX_18;
   return;
 }
@@ -3712,15 +3712,15 @@ void FUN_180030470(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a01028,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x49086ba08ab981a7;
   puVar7[7] = 0xa9191d34ad910696;
   puVar7[8] = &UNK_180a003b8;
-  puVar7[9] = 0;
-  puVar7[10] = pcStackX_18;
+  systemPreviousNode[9] = 0;
+  systemPreviousNode[10] = systemInitializationFunction;
   return;
 }
 
@@ -3762,14 +3762,14 @@ void FUN_180030570(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a01000,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x402feffe4481676e;
   puVar7[7] = 0xd4c2151109de93a0;
   puVar7[8] = &UNK_180a003d0;
-  puVar7[9] = 0;
+  systemPreviousNode[9] = 0;
   puVar7[10] = uStackX_18;
   return;
 }
@@ -3812,14 +3812,14 @@ void FUN_180030670(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a00fd8,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x4384dcc4b6d3f417;
   puVar7[7] = 0x92a15d52fe2679bd;
   puVar7[8] = &UNK_180a003e8;
-  puVar7[9] = 0;
+  systemPreviousNode[9] = 0;
   puVar7[10] = puStackX_18;
   return;
 }
@@ -3862,14 +3862,14 @@ void FUN_180030770(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a00fb0,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x4140994454d56503;
   puVar7[7] = 0x399eced9bb5517ad;
   puVar7[8] = &UNK_180a00400;
-  puVar7[9] = 0;
+  systemPreviousNode[9] = 0;
   puVar7[10] = uStackX_18;
   return;
 }
@@ -3946,15 +3946,15 @@ void FUN_180031a10(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_1809ff9e8,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x406be72011d07d37;
   puVar7[7] = 0x71876af946c867ab;
   puVar7[8] = &UNK_1809ff978;
-  puVar7[9] = 0;
-  puVar7[10] = pcStackX_18;
+  systemPreviousNode[9] = 0;
+  systemPreviousNode[10] = systemInitializationFunction;
   return;
 }
 
@@ -3996,7 +3996,7 @@ void FUN_180031b10(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_1809ff9c0,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
@@ -4004,7 +4004,7 @@ void FUN_180031b10(void)
   puVar7[7] = 0x2f4bab01d34055a5;
   puVar7[8] = &UNK_1809ff990;
   puVar7[9] = 3;
-  puVar7[10] = pcStackX_18;
+  systemPreviousNode[10] = systemInitializationFunction;
   return;
 }
 
@@ -4046,15 +4046,15 @@ void FUN_180031c10(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_1809ff9e8,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x406be72011d07d37;
   puVar7[7] = 0x71876af946c867ab;
   puVar7[8] = &UNK_1809ff978;
-  puVar7[9] = 0;
-  puVar7[10] = pcStackX_18;
+  systemPreviousNode[9] = 0;
+  systemPreviousNode[10] = systemInitializationFunction;
   return;
 }
 
@@ -4096,7 +4096,7 @@ void FUN_180031d10(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_1809ff9c0,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
@@ -4104,7 +4104,7 @@ void FUN_180031d10(void)
   puVar7[7] = 0x2f4bab01d34055a5;
   puVar7[8] = &UNK_1809ff990;
   puVar7[9] = 3;
-  puVar7[10] = pcStackX_18;
+  systemPreviousNode[10] = systemInitializationFunction;
   return;
 }
 
@@ -4146,7 +4146,7 @@ void FUN_180031e10(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a010a0,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
@@ -4154,7 +4154,7 @@ void FUN_180031e10(void)
   puVar7[7] = 0xdcfdc333a769ec93;
   puVar7[8] = &UNK_180a00370;
   puVar7[9] = 1;
-  puVar7[10] = pcStackX_18;
+  systemPreviousNode[10] = systemInitializationFunction;
   return;
 }
 
@@ -4196,7 +4196,7 @@ void FUN_180031f10(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a01078,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
@@ -4204,7 +4204,7 @@ void FUN_180031f10(void)
   puVar7[7] = 0xb97f048d2153e1b0;
   puVar7[8] = &UNK_180a00388;
   puVar7[9] = 4;
-  puVar7[10] = pcStackX_18;
+  systemPreviousNode[10] = systemInitializationFunction;
   return;
 }
 
@@ -4246,14 +4246,14 @@ void FUN_180032010(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a01050,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x4b2d79e470ee4e2c;
   puVar7[7] = 0x9c552acd3ed5548d;
   puVar7[8] = &UNK_180a003a0;
-  puVar7[9] = 0;
+  systemPreviousNode[9] = 0;
   puVar7[10] = uStackX_18;
   return;
 }
@@ -4296,15 +4296,15 @@ void FUN_180032110(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a01028,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x49086ba08ab981a7;
   puVar7[7] = 0xa9191d34ad910696;
   puVar7[8] = &UNK_180a003b8;
-  puVar7[9] = 0;
-  puVar7[10] = pcStackX_18;
+  systemPreviousNode[9] = 0;
+  systemPreviousNode[10] = systemInitializationFunction;
   return;
 }
 
@@ -4346,14 +4346,14 @@ void FUN_180032210(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a01000,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x402feffe4481676e;
   puVar7[7] = 0xd4c2151109de93a0;
   puVar7[8] = &UNK_180a003d0;
-  puVar7[9] = 0;
+  systemPreviousNode[9] = 0;
   puVar7[10] = uStackX_18;
   return;
 }
@@ -4396,14 +4396,14 @@ void FUN_180032310(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a00fd8,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x4384dcc4b6d3f417;
   puVar7[7] = 0x92a15d52fe2679bd;
   puVar7[8] = &UNK_180a003e8;
-  puVar7[9] = 0;
+  systemPreviousNode[9] = 0;
   puVar7[10] = puStackX_18;
   return;
 }
@@ -4446,14 +4446,14 @@ void FUN_180032410(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a00fb0,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x4140994454d56503;
   puVar7[7] = 0x399eced9bb5517ad;
   puVar7[8] = &UNK_180a00400;
-  puVar7[9] = 0;
+  systemPreviousNode[9] = 0;
   puVar7[10] = uStackX_18;
   return;
 }
@@ -4520,7 +4520,7 @@ void FUN_1800325a0(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a010a0,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
@@ -4528,7 +4528,7 @@ void FUN_1800325a0(void)
   puVar7[7] = 0xdcfdc333a769ec93;
   puVar7[8] = &UNK_180a00370;
   puVar7[9] = 1;
-  puVar7[10] = pcStackX_18;
+  systemPreviousNode[10] = systemInitializationFunction;
   return;
 }
 
@@ -4570,7 +4570,7 @@ void FUN_1800326a0(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a01078,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
@@ -4578,7 +4578,7 @@ void FUN_1800326a0(void)
   puVar7[7] = 0xb97f048d2153e1b0;
   puVar7[8] = &UNK_180a00388;
   puVar7[9] = 4;
-  puVar7[10] = pcStackX_18;
+  systemPreviousNode[10] = systemInitializationFunction;
   return;
 }
 
@@ -4620,14 +4620,14 @@ void FUN_1800327a0(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a01050,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x4b2d79e470ee4e2c;
   puVar7[7] = 0x9c552acd3ed5548d;
   puVar7[8] = &UNK_180a003a0;
-  puVar7[9] = 0;
+  systemPreviousNode[9] = 0;
   puVar7[10] = uStackX_18;
   return;
 }
@@ -4670,15 +4670,15 @@ void FUN_1800328a0(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a01028,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x49086ba08ab981a7;
   puVar7[7] = 0xa9191d34ad910696;
   puVar7[8] = &UNK_180a003b8;
-  puVar7[9] = 0;
-  puVar7[10] = pcStackX_18;
+  systemPreviousNode[9] = 0;
+  systemPreviousNode[10] = systemInitializationFunction;
   return;
 }
 
@@ -4720,14 +4720,14 @@ void FUN_1800329a0(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a01000,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x402feffe4481676e;
   puVar7[7] = 0xd4c2151109de93a0;
   puVar7[8] = &UNK_180a003d0;
-  puVar7[9] = 0;
+  systemPreviousNode[9] = 0;
   puVar7[10] = uStackX_18;
   return;
 }
@@ -4770,14 +4770,14 @@ void FUN_180032aa0(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a00fd8,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x4384dcc4b6d3f417;
   puVar7[7] = 0x92a15d52fe2679bd;
   puVar7[8] = &UNK_180a003e8;
-  puVar7[9] = 0;
+  systemPreviousNode[9] = 0;
   puVar7[10] = puStackX_18;
   return;
 }
@@ -4820,14 +4820,14 @@ void FUN_180032ba0(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a00fb0,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x4140994454d56503;
   puVar7[7] = 0x399eced9bb5517ad;
   puVar7[8] = &UNK_180a00400;
-  puVar7[9] = 0;
+  systemPreviousNode[9] = 0;
   puVar7[10] = uStackX_18;
   return;
 }
@@ -5022,7 +5022,7 @@ void FUN_180033a50(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a00bb0,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
@@ -5030,7 +5030,7 @@ void FUN_180033a50(void)
   puVar7[7] = 0x81d539e33614429f;
   puVar7[8] = &UNK_180a004a8;
   puVar7[9] = 4;
-  puVar7[10] = pcStackX_18;
+  systemPreviousNode[10] = systemInitializationFunction;
   return;
 }
 
@@ -5072,7 +5072,7 @@ void FUN_180033b50(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a00b88,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
@@ -5080,7 +5080,7 @@ void FUN_180033b50(void)
   puVar7[7] = 0x703a29a844ce399;
   puVar7[8] = &UNK_180a004c0;
   puVar7[9] = 3;
-  puVar7[10] = pcStackX_18;
+  systemPreviousNode[10] = systemInitializationFunction;
   return;
 }
 
@@ -5122,7 +5122,7 @@ void FUN_180033c50(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a010a0,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
@@ -5130,7 +5130,7 @@ void FUN_180033c50(void)
   puVar7[7] = 0xdcfdc333a769ec93;
   puVar7[8] = &UNK_180a00370;
   puVar7[9] = 1;
-  puVar7[10] = pcStackX_18;
+  systemPreviousNode[10] = systemInitializationFunction;
   return;
 }
 
@@ -5172,7 +5172,7 @@ void FUN_180033d50(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a01078,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
@@ -5180,7 +5180,7 @@ void FUN_180033d50(void)
   puVar7[7] = 0xb97f048d2153e1b0;
   puVar7[8] = &UNK_180a00388;
   puVar7[9] = 4;
-  puVar7[10] = pcStackX_18;
+  systemPreviousNode[10] = systemInitializationFunction;
   return;
 }
 
@@ -5222,14 +5222,14 @@ void FUN_180033e50(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a01050,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x4b2d79e470ee4e2c;
   puVar7[7] = 0x9c552acd3ed5548d;
   puVar7[8] = &UNK_180a003a0;
-  puVar7[9] = 0;
+  systemPreviousNode[9] = 0;
   puVar7[10] = uStackX_18;
   return;
 }
@@ -5272,15 +5272,15 @@ void FUN_180033f50(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a01028,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x49086ba08ab981a7;
   puVar7[7] = 0xa9191d34ad910696;
   puVar7[8] = &UNK_180a003b8;
-  puVar7[9] = 0;
-  puVar7[10] = pcStackX_18;
+  systemPreviousNode[9] = 0;
+  systemPreviousNode[10] = systemInitializationFunction;
   return;
 }
 
@@ -5322,14 +5322,14 @@ void FUN_180034050(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a01000,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x402feffe4481676e;
   puVar7[7] = 0xd4c2151109de93a0;
   puVar7[8] = &UNK_180a003d0;
-  puVar7[9] = 0;
+  systemPreviousNode[9] = 0;
   puVar7[10] = uStackX_18;
   return;
 }
@@ -5372,14 +5372,14 @@ void FUN_180034150(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a00fd8,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x4384dcc4b6d3f417;
   puVar7[7] = 0x92a15d52fe2679bd;
   puVar7[8] = &UNK_180a003e8;
-  puVar7[9] = 0;
+  systemPreviousNode[9] = 0;
   puVar7[10] = puStackX_18;
   return;
 }
@@ -5422,14 +5422,14 @@ void FUN_180034250(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a00fb0,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x4140994454d56503;
   puVar7[7] = 0x399eced9bb5517ad;
   puVar7[8] = &UNK_180a00400;
-  puVar7[9] = 0;
+  systemPreviousNode[9] = 0;
   puVar7[10] = uStackX_18;
   return;
 }
@@ -5472,7 +5472,7 @@ void FUN_180034350(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a010a0,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
@@ -5480,7 +5480,7 @@ void FUN_180034350(void)
   puVar7[7] = 0xdcfdc333a769ec93;
   puVar7[8] = &UNK_180a00370;
   puVar7[9] = 1;
-  puVar7[10] = pcStackX_18;
+  systemPreviousNode[10] = systemInitializationFunction;
   return;
 }
 
@@ -5522,7 +5522,7 @@ void FUN_180034450(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a01078,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
@@ -5530,7 +5530,7 @@ void FUN_180034450(void)
   puVar7[7] = 0xb97f048d2153e1b0;
   puVar7[8] = &UNK_180a00388;
   puVar7[9] = 4;
-  puVar7[10] = pcStackX_18;
+  systemPreviousNode[10] = systemInitializationFunction;
   return;
 }
 
@@ -5572,14 +5572,14 @@ void FUN_180034550(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a01050,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x4b2d79e470ee4e2c;
   puVar7[7] = 0x9c552acd3ed5548d;
   puVar7[8] = &UNK_180a003a0;
-  puVar7[9] = 0;
+  systemPreviousNode[9] = 0;
   puVar7[10] = uStackX_18;
   return;
 }
@@ -5622,15 +5622,15 @@ void FUN_180034650(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a01028,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x49086ba08ab981a7;
   puVar7[7] = 0xa9191d34ad910696;
   puVar7[8] = &UNK_180a003b8;
-  puVar7[9] = 0;
-  puVar7[10] = pcStackX_18;
+  systemPreviousNode[9] = 0;
+  systemPreviousNode[10] = systemInitializationFunction;
   return;
 }
 
@@ -5672,14 +5672,14 @@ void FUN_180034750(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a01000,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x402feffe4481676e;
   puVar7[7] = 0xd4c2151109de93a0;
   puVar7[8] = &UNK_180a003d0;
-  puVar7[9] = 0;
+  systemPreviousNode[9] = 0;
   puVar7[10] = uStackX_18;
   return;
 }
@@ -5722,14 +5722,14 @@ void FUN_180034850(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a00fd8,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x4384dcc4b6d3f417;
   puVar7[7] = 0x92a15d52fe2679bd;
   puVar7[8] = &UNK_180a003e8;
-  puVar7[9] = 0;
+  systemPreviousNode[9] = 0;
   puVar7[10] = puStackX_18;
   return;
 }
@@ -5772,14 +5772,14 @@ void FUN_180034950(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a00fb0,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x4140994454d56503;
   puVar7[7] = 0x399eced9bb5517ad;
   puVar7[8] = &UNK_180a00400;
-  puVar7[9] = 0;
+  systemPreviousNode[9] = 0;
   puVar7[10] = uStackX_18;
   return;
 }
@@ -5879,15 +5879,15 @@ void FUN_180034b40(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a00d48,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x45425dc186a5d575;
   puVar7[7] = 0xfab48faa65382fa5;
   puVar7[8] = &UNK_180a00460;
-  puVar7[9] = 0;
-  puVar7[10] = pcStackX_18;
+  systemPreviousNode[9] = 0;
+  systemPreviousNode[10] = systemInitializationFunction;
   return;
 }
 
@@ -5929,15 +5929,15 @@ void FUN_180034c40(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a00e28,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x449bafe9b77ddd3c;
   puVar7[7] = 0xc160408bde99e59f;
   puVar7[8] = &UNK_180a00430;
-  puVar7[9] = 0;
-  puVar7[10] = pcStackX_18;
+  systemPreviousNode[9] = 0;
+  systemPreviousNode[10] = systemInitializationFunction;
   return;
 }
 
@@ -5979,15 +5979,15 @@ void FUN_180034d40(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_1809ff9e8,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x406be72011d07d37;
   puVar7[7] = 0x71876af946c867ab;
   puVar7[8] = &UNK_1809ff978;
-  puVar7[9] = 0;
-  puVar7[10] = pcStackX_18;
+  systemPreviousNode[9] = 0;
+  systemPreviousNode[10] = systemInitializationFunction;
   return;
 }
 
@@ -6029,7 +6029,7 @@ void FUN_180034e40(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_1809ff9c0,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
@@ -6037,7 +6037,7 @@ void FUN_180034e40(void)
   puVar7[7] = 0x2f4bab01d34055a5;
   puVar7[8] = &UNK_1809ff990;
   puVar7[9] = 3;
-  puVar7[10] = pcStackX_18;
+  systemPreviousNode[10] = systemInitializationFunction;
   return;
 }
 
@@ -6079,7 +6079,7 @@ void FUN_180034f40(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a010a0,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
@@ -6087,7 +6087,7 @@ void FUN_180034f40(void)
   puVar7[7] = 0xdcfdc333a769ec93;
   puVar7[8] = &UNK_180a00370;
   puVar7[9] = 1;
-  puVar7[10] = pcStackX_18;
+  systemPreviousNode[10] = systemInitializationFunction;
   return;
 }
 
@@ -6129,7 +6129,7 @@ void FUN_180035040(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a01078,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
@@ -6137,7 +6137,7 @@ void FUN_180035040(void)
   puVar7[7] = 0xb97f048d2153e1b0;
   puVar7[8] = &UNK_180a00388;
   puVar7[9] = 4;
-  puVar7[10] = pcStackX_18;
+  systemPreviousNode[10] = systemInitializationFunction;
   return;
 }
 
@@ -6179,14 +6179,14 @@ void FUN_180035140(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a01050,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x4b2d79e470ee4e2c;
   puVar7[7] = 0x9c552acd3ed5548d;
   puVar7[8] = &UNK_180a003a0;
-  puVar7[9] = 0;
+  systemPreviousNode[9] = 0;
   puVar7[10] = uStackX_18;
   return;
 }
@@ -6229,15 +6229,15 @@ void FUN_180035240(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a01028,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x49086ba08ab981a7;
   puVar7[7] = 0xa9191d34ad910696;
   puVar7[8] = &UNK_180a003b8;
-  puVar7[9] = 0;
-  puVar7[10] = pcStackX_18;
+  systemPreviousNode[9] = 0;
+  systemPreviousNode[10] = systemInitializationFunction;
   return;
 }
 
@@ -6279,14 +6279,14 @@ void FUN_180035340(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a01000,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x402feffe4481676e;
   puVar7[7] = 0xd4c2151109de93a0;
   puVar7[8] = &UNK_180a003d0;
-  puVar7[9] = 0;
+  systemPreviousNode[9] = 0;
   puVar7[10] = uStackX_18;
   return;
 }
@@ -6329,14 +6329,14 @@ void FUN_180035440(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a00fd8,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x4384dcc4b6d3f417;
   puVar7[7] = 0x92a15d52fe2679bd;
   puVar7[8] = &UNK_180a003e8;
-  puVar7[9] = 0;
+  systemPreviousNode[9] = 0;
   puVar7[10] = puStackX_18;
   return;
 }
@@ -6379,14 +6379,14 @@ void FUN_180035540(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a00fb0,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x4140994454d56503;
   puVar7[7] = 0x399eced9bb5517ad;
   puVar7[8] = &UNK_180a00400;
-  puVar7[9] = 0;
+  systemPreviousNode[9] = 0;
   puVar7[10] = uStackX_18;
   return;
 }
@@ -6429,7 +6429,7 @@ void FUN_180035640(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a00bb0,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
@@ -6437,7 +6437,7 @@ void FUN_180035640(void)
   puVar7[7] = 0x81d539e33614429f;
   puVar7[8] = &UNK_180a004a8;
   puVar7[9] = 4;
-  puVar7[10] = pcStackX_18;
+  systemPreviousNode[10] = systemInitializationFunction;
   return;
 }
 
@@ -6479,7 +6479,7 @@ void FUN_180035740(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a00b88,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
@@ -6487,7 +6487,7 @@ void FUN_180035740(void)
   puVar7[7] = 0x703a29a844ce399;
   puVar7[8] = &UNK_180a004c0;
   puVar7[9] = 3;
-  puVar7[10] = pcStackX_18;
+  systemPreviousNode[10] = systemInitializationFunction;
   return;
 }
 
@@ -6529,7 +6529,7 @@ void FUN_180035840(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a010a0,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
@@ -6537,7 +6537,7 @@ void FUN_180035840(void)
   puVar7[7] = 0xdcfdc333a769ec93;
   puVar7[8] = &UNK_180a00370;
   puVar7[9] = 1;
-  puVar7[10] = pcStackX_18;
+  systemPreviousNode[10] = systemInitializationFunction;
   return;
 }
 
@@ -6579,7 +6579,7 @@ void FUN_180035940(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a01078,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
@@ -6587,7 +6587,7 @@ void FUN_180035940(void)
   puVar7[7] = 0xb97f048d2153e1b0;
   puVar7[8] = &UNK_180a00388;
   puVar7[9] = 4;
-  puVar7[10] = pcStackX_18;
+  systemPreviousNode[10] = systemInitializationFunction;
   return;
 }
 
@@ -6629,14 +6629,14 @@ void FUN_180035a40(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a01050,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x4b2d79e470ee4e2c;
   puVar7[7] = 0x9c552acd3ed5548d;
   puVar7[8] = &UNK_180a003a0;
-  puVar7[9] = 0;
+  systemPreviousNode[9] = 0;
   puVar7[10] = uStackX_18;
   return;
 }
@@ -6679,15 +6679,15 @@ void FUN_180035b40(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a01028,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x49086ba08ab981a7;
   puVar7[7] = 0xa9191d34ad910696;
   puVar7[8] = &UNK_180a003b8;
-  puVar7[9] = 0;
-  puVar7[10] = pcStackX_18;
+  systemPreviousNode[9] = 0;
+  systemPreviousNode[10] = systemInitializationFunction;
   return;
 }
 
@@ -6729,14 +6729,14 @@ void FUN_180035c40(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a01000,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x402feffe4481676e;
   puVar7[7] = 0xd4c2151109de93a0;
   puVar7[8] = &UNK_180a003d0;
-  puVar7[9] = 0;
+  systemPreviousNode[9] = 0;
   puVar7[10] = uStackX_18;
   return;
 }
@@ -6779,14 +6779,14 @@ void FUN_180035d40(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a00fd8,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x4384dcc4b6d3f417;
   puVar7[7] = 0x92a15d52fe2679bd;
   puVar7[8] = &UNK_180a003e8;
-  puVar7[9] = 0;
+  systemPreviousNode[9] = 0;
   puVar7[10] = puStackX_18;
   return;
 }
@@ -6829,14 +6829,14 @@ void FUN_180035e40(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a00fb0,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x4140994454d56503;
   puVar7[7] = 0x399eced9bb5517ad;
   puVar7[8] = &UNK_180a00400;
-  puVar7[9] = 0;
+  systemPreviousNode[9] = 0;
   puVar7[10] = uStackX_18;
   return;
 }
@@ -6879,15 +6879,15 @@ void FUN_180035f50(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a00e28,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x449bafe9b77ddd3c;
   puVar7[7] = 0xc160408bde99e59f;
   puVar7[8] = &UNK_180a00430;
-  puVar7[9] = 0;
-  puVar7[10] = pcStackX_18;
+  systemPreviousNode[9] = 0;
+  systemPreviousNode[10] = systemInitializationFunction;
   return;
 }
 
@@ -6929,15 +6929,15 @@ void FUN_180036050(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a00d48,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x45425dc186a5d575;
   puVar7[7] = 0xfab48faa65382fa5;
   puVar7[8] = &UNK_180a00460;
-  puVar7[9] = 0;
-  puVar7[10] = pcStackX_18;
+  systemPreviousNode[9] = 0;
+  systemPreviousNode[10] = systemInitializationFunction;
   return;
 }
 
@@ -6979,7 +6979,7 @@ void FUN_180036150(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a00bb0,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
@@ -6987,7 +6987,7 @@ void FUN_180036150(void)
   puVar7[7] = 0x81d539e33614429f;
   puVar7[8] = &UNK_180a004a8;
   puVar7[9] = 4;
-  puVar7[10] = pcStackX_18;
+  systemPreviousNode[10] = systemInitializationFunction;
   return;
 }
 
@@ -7029,7 +7029,7 @@ void FUN_180036250(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a00b88,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
@@ -7037,7 +7037,7 @@ void FUN_180036250(void)
   puVar7[7] = 0x703a29a844ce399;
   puVar7[8] = &UNK_180a004c0;
   puVar7[9] = 3;
-  puVar7[10] = pcStackX_18;
+  systemPreviousNode[10] = systemInitializationFunction;
   return;
 }
 
@@ -7079,14 +7079,14 @@ void FUN_180036350(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_1809fe0d0,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x42bea5b911d9c4bf;
   puVar7[7] = 0x1aa83fc0020dc1b6;
   puVar7[8] = &UNK_1809fd0d8;
-  puVar7[9] = 0;
+  systemPreviousNode[9] = 0;
   puVar7[10] = uStackX_18;
   return;
 }
@@ -7129,7 +7129,7 @@ void FUN_180036450(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a010a0,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
@@ -7137,7 +7137,7 @@ void FUN_180036450(void)
   puVar7[7] = 0xdcfdc333a769ec93;
   puVar7[8] = &UNK_180a00370;
   puVar7[9] = 1;
-  puVar7[10] = pcStackX_18;
+  systemPreviousNode[10] = systemInitializationFunction;
   return;
 }
 
@@ -7179,7 +7179,7 @@ void FUN_180036550(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a01078,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
@@ -7187,7 +7187,7 @@ void FUN_180036550(void)
   puVar7[7] = 0xb97f048d2153e1b0;
   puVar7[8] = &UNK_180a00388;
   puVar7[9] = 4;
-  puVar7[10] = pcStackX_18;
+  systemPreviousNode[10] = systemInitializationFunction;
   return;
 }
 
@@ -7229,14 +7229,14 @@ void FUN_180036650(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a01050,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x4b2d79e470ee4e2c;
   puVar7[7] = 0x9c552acd3ed5548d;
   puVar7[8] = &UNK_180a003a0;
-  puVar7[9] = 0;
+  systemPreviousNode[9] = 0;
   puVar7[10] = uStackX_18;
   return;
 }
@@ -7279,15 +7279,15 @@ void FUN_180036750(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a01028,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x49086ba08ab981a7;
   puVar7[7] = 0xa9191d34ad910696;
   puVar7[8] = &UNK_180a003b8;
-  puVar7[9] = 0;
-  puVar7[10] = pcStackX_18;
+  systemPreviousNode[9] = 0;
+  systemPreviousNode[10] = systemInitializationFunction;
   return;
 }
 
@@ -7329,14 +7329,14 @@ void FUN_180036850(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a01000,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x402feffe4481676e;
   puVar7[7] = 0xd4c2151109de93a0;
   puVar7[8] = &UNK_180a003d0;
-  puVar7[9] = 0;
+  systemPreviousNode[9] = 0;
   puVar7[10] = uStackX_18;
   return;
 }
@@ -7379,14 +7379,14 @@ void FUN_180036950(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a00fd8,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x4384dcc4b6d3f417;
   puVar7[7] = 0x92a15d52fe2679bd;
   puVar7[8] = &UNK_180a003e8;
-  puVar7[9] = 0;
+  systemPreviousNode[9] = 0;
   puVar7[10] = puStackX_18;
   return;
 }
@@ -7429,14 +7429,14 @@ void FUN_180036a50(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a00fb0,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x4140994454d56503;
   puVar7[7] = 0x399eced9bb5517ad;
   puVar7[8] = &UNK_180a00400;
-  puVar7[9] = 0;
+  systemPreviousNode[9] = 0;
   puVar7[10] = uStackX_18;
   return;
 }
@@ -7559,7 +7559,7 @@ void FUN_180036df0(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a010a0,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
@@ -7567,7 +7567,7 @@ void FUN_180036df0(void)
   puVar7[7] = 0xdcfdc333a769ec93;
   puVar7[8] = &UNK_180a00370;
   puVar7[9] = 1;
-  puVar7[10] = pcStackX_18;
+  systemPreviousNode[10] = systemInitializationFunction;
   return;
 }
 
@@ -7609,7 +7609,7 @@ void FUN_180036ef0(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a01078,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
@@ -7617,7 +7617,7 @@ void FUN_180036ef0(void)
   puVar7[7] = 0xb97f048d2153e1b0;
   puVar7[8] = &UNK_180a00388;
   puVar7[9] = 4;
-  puVar7[10] = pcStackX_18;
+  systemPreviousNode[10] = systemInitializationFunction;
   return;
 }
 
@@ -7659,14 +7659,14 @@ void FUN_180036ff0(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a01050,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x4b2d79e470ee4e2c;
   puVar7[7] = 0x9c552acd3ed5548d;
   puVar7[8] = &UNK_180a003a0;
-  puVar7[9] = 0;
+  systemPreviousNode[9] = 0;
   puVar7[10] = uStackX_18;
   return;
 }
@@ -7709,15 +7709,15 @@ void FUN_1800370f0(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a01028,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x49086ba08ab981a7;
   puVar7[7] = 0xa9191d34ad910696;
   puVar7[8] = &UNK_180a003b8;
-  puVar7[9] = 0;
-  puVar7[10] = pcStackX_18;
+  systemPreviousNode[9] = 0;
+  systemPreviousNode[10] = systemInitializationFunction;
   return;
 }
 
@@ -7759,14 +7759,14 @@ void FUN_1800371f0(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a01000,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x402feffe4481676e;
   puVar7[7] = 0xd4c2151109de93a0;
   puVar7[8] = &UNK_180a003d0;
-  puVar7[9] = 0;
+  systemPreviousNode[9] = 0;
   puVar7[10] = uStackX_18;
   return;
 }
@@ -7809,14 +7809,14 @@ void FUN_1800372f0(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a00fd8,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x4384dcc4b6d3f417;
   puVar7[7] = 0x92a15d52fe2679bd;
   puVar7[8] = &UNK_180a003e8;
-  puVar7[9] = 0;
+  systemPreviousNode[9] = 0;
   puVar7[10] = puStackX_18;
   return;
 }
@@ -7859,14 +7859,14 @@ void FUN_1800373f0(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a00fb0,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x4140994454d56503;
   puVar7[7] = 0x399eced9bb5517ad;
   puVar7[8] = &UNK_180a00400;
-  puVar7[9] = 0;
+  systemPreviousNode[9] = 0;
   puVar7[10] = uStackX_18;
   return;
 }
@@ -7909,14 +7909,14 @@ void FUN_1800374f0(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_1809fe0d0,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x42bea5b911d9c4bf;
   puVar7[7] = 0x1aa83fc0020dc1b6;
   puVar7[8] = &UNK_1809fd0d8;
-  puVar7[9] = 0;
+  systemPreviousNode[9] = 0;
   puVar7[10] = uStackX_18;
   return;
 }
@@ -7983,15 +7983,15 @@ void FUN_180037680(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((systemPreviousNode == systemRootPointer) || (systemComparisonResult = memcmp(&DAT_1809fc740,systemPreviousNode + 4,0x10), systemComparisonResult < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
-  puVar7[6] = 0x4fc124d23d41985f;
-  puVar7[7] = 0xe2f4a30d6e6ae482;
-  puVar7[8] = &UNK_18098c790;
-  puVar7[9] = 0;
-  puVar7[10] = pcStackX_18;
+  systemPreviousNode[6] = 0x4fc124d23d41985f;
+  systemPreviousNode[7] = 0xe2f4a30d6e6ae482;
+  systemPreviousNode[8] = &UNK_18098c790;
+  systemPreviousNode[9] = 0;
+  systemPreviousNode[10] = systemInitializationFunction;
   return;
 }
 
@@ -8033,7 +8033,7 @@ void FUN_180037780(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_1809fc768,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
@@ -8083,14 +8083,14 @@ void FUN_180037880(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_18098c9b8,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x4666df49b97e0f10;
   puVar7[7] = 0x4e4b0d63a6ad1d8f;
   puVar7[8] = &UNK_18098c7b8;
-  puVar7[9] = 0;
+  systemPreviousNode[9] = 0;
   puVar7[10] = uStackX_18;
   return;
 }
@@ -8133,14 +8133,14 @@ void FUN_180037980(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_18098c940,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x46ecbd4daf41613e;
   puVar7[7] = 0xdc42c056bbde8482;
   puVar7[8] = &UNK_18098c7c8;
-  puVar7[9] = 0;
+  systemPreviousNode[9] = 0;
   puVar7[10] = uStackX_18;
   return;
 }
@@ -8183,14 +8183,14 @@ void FUN_180037a80(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_18098c918,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x4c868a42644030f6;
   puVar7[7] = 0xc29193aa9d9b35b9;
   puVar7[8] = &UNK_18098c7d8;
-  puVar7[9] = 0;
+  systemPreviousNode[9] = 0;
   puVar7[10] = uStackX_18;
   return;
 }
@@ -8233,7 +8233,7 @@ void FUN_180037b80(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_18098c968,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
@@ -8283,7 +8283,7 @@ void FUN_180037c80(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_18098c990,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
@@ -8333,14 +8333,14 @@ void FUN_180037d80(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_18098c9e0,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x42d293584c8cf3e5;
   puVar7[7] = 0x355ffeb2d29e668a;
   puVar7[8] = &UNK_18098c870;
-  puVar7[9] = 0;
+  systemPreviousNode[9] = 0;
   puVar7[10] = uStackX_18;
   return;
 }
@@ -8383,15 +8383,15 @@ void FUN_180037e80(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_18098c8f0,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x421c3cedd07d816d;
   puVar7[7] = 0xbec25de793b7afa6;
   puVar7[8] = &UNK_18098c880;
-  puVar7[9] = 0;
-  puVar7[10] = pcStackX_18;
+  systemPreviousNode[9] = 0;
+  systemPreviousNode[10] = systemInitializationFunction;
   return;
 }
 
@@ -8433,7 +8433,7 @@ void FUN_180037f80(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_18098c8c8,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
@@ -8483,15 +8483,15 @@ void FUN_180038080(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a00d48,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x45425dc186a5d575;
   puVar7[7] = 0xfab48faa65382fa5;
   puVar7[8] = &UNK_180a00460;
-  puVar7[9] = 0;
-  puVar7[10] = pcStackX_18;
+  systemPreviousNode[9] = 0;
+  systemPreviousNode[10] = systemInitializationFunction;
   return;
 }
 
@@ -8749,7 +8749,7 @@ void FUN_1800386a0(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a010a0,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
@@ -8757,7 +8757,7 @@ void FUN_1800386a0(void)
   puVar7[7] = 0xdcfdc333a769ec93;
   puVar7[8] = &UNK_180a00370;
   puVar7[9] = 1;
-  puVar7[10] = pcStackX_18;
+  systemPreviousNode[10] = systemInitializationFunction;
   return;
 }
 
@@ -8799,7 +8799,7 @@ void FUN_1800387a0(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a01078,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
@@ -8807,7 +8807,7 @@ void FUN_1800387a0(void)
   puVar7[7] = 0xb97f048d2153e1b0;
   puVar7[8] = &UNK_180a00388;
   puVar7[9] = 4;
-  puVar7[10] = pcStackX_18;
+  systemPreviousNode[10] = systemInitializationFunction;
   return;
 }
 
@@ -8849,14 +8849,14 @@ void FUN_1800388a0(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a01050,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x4b2d79e470ee4e2c;
   puVar7[7] = 0x9c552acd3ed5548d;
   puVar7[8] = &UNK_180a003a0;
-  puVar7[9] = 0;
+  systemPreviousNode[9] = 0;
   puVar7[10] = uStackX_18;
   return;
 }
@@ -8899,15 +8899,15 @@ void FUN_1800389a0(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a01028,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x49086ba08ab981a7;
   puVar7[7] = 0xa9191d34ad910696;
   puVar7[8] = &UNK_180a003b8;
-  puVar7[9] = 0;
-  puVar7[10] = pcStackX_18;
+  systemPreviousNode[9] = 0;
+  systemPreviousNode[10] = systemInitializationFunction;
   return;
 }
 
@@ -8949,14 +8949,14 @@ void FUN_180038aa0(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a01000,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x402feffe4481676e;
   puVar7[7] = 0xd4c2151109de93a0;
   puVar7[8] = &UNK_180a003d0;
-  puVar7[9] = 0;
+  systemPreviousNode[9] = 0;
   puVar7[10] = uStackX_18;
   return;
 }
@@ -8999,14 +8999,14 @@ void FUN_180038ba0(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a00fd8,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x4384dcc4b6d3f417;
   puVar7[7] = 0x92a15d52fe2679bd;
   puVar7[8] = &UNK_180a003e8;
-  puVar7[9] = 0;
+  systemPreviousNode[9] = 0;
   puVar7[10] = puStackX_18;
   return;
 }
@@ -9049,14 +9049,14 @@ void FUN_180038ca0(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a00fb0,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x4140994454d56503;
   puVar7[7] = 0x399eced9bb5517ad;
   puVar7[8] = &UNK_180a00400;
-  puVar7[9] = 0;
+  systemPreviousNode[9] = 0;
   puVar7[10] = uStackX_18;
   return;
 }
@@ -9099,7 +9099,7 @@ void FUN_180038da0(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a010a0,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
@@ -9107,7 +9107,7 @@ void FUN_180038da0(void)
   puVar7[7] = 0xdcfdc333a769ec93;
   puVar7[8] = &UNK_180a00370;
   puVar7[9] = 1;
-  puVar7[10] = pcStackX_18;
+  systemPreviousNode[10] = systemInitializationFunction;
   return;
 }
 
@@ -9149,7 +9149,7 @@ void FUN_180038ea0(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a01078,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
@@ -9157,7 +9157,7 @@ void FUN_180038ea0(void)
   puVar7[7] = 0xb97f048d2153e1b0;
   puVar7[8] = &UNK_180a00388;
   puVar7[9] = 4;
-  puVar7[10] = pcStackX_18;
+  systemPreviousNode[10] = systemInitializationFunction;
   return;
 }
 
@@ -9199,14 +9199,14 @@ void FUN_180038fa0(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a01050,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x4b2d79e470ee4e2c;
   puVar7[7] = 0x9c552acd3ed5548d;
   puVar7[8] = &UNK_180a003a0;
-  puVar7[9] = 0;
+  systemPreviousNode[9] = 0;
   puVar7[10] = uStackX_18;
   return;
 }
@@ -9249,15 +9249,15 @@ void FUN_1800390a0(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a01028,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x49086ba08ab981a7;
   puVar7[7] = 0xa9191d34ad910696;
   puVar7[8] = &UNK_180a003b8;
-  puVar7[9] = 0;
-  puVar7[10] = pcStackX_18;
+  systemPreviousNode[9] = 0;
+  systemPreviousNode[10] = systemInitializationFunction;
   return;
 }
 
@@ -9299,14 +9299,14 @@ void FUN_1800391a0(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a01000,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x402feffe4481676e;
   puVar7[7] = 0xd4c2151109de93a0;
   puVar7[8] = &UNK_180a003d0;
-  puVar7[9] = 0;
+  systemPreviousNode[9] = 0;
   puVar7[10] = uStackX_18;
   return;
 }
@@ -9349,14 +9349,14 @@ void FUN_1800392a0(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a00fd8,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x4384dcc4b6d3f417;
   puVar7[7] = 0x92a15d52fe2679bd;
   puVar7[8] = &UNK_180a003e8;
-  puVar7[9] = 0;
+  systemPreviousNode[9] = 0;
   puVar7[10] = puStackX_18;
   return;
 }
@@ -9399,14 +9399,14 @@ void FUN_1800393a0(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a00fb0,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x4140994454d56503;
   puVar7[7] = 0x399eced9bb5517ad;
   puVar7[8] = &UNK_180a00400;
-  puVar7[9] = 0;
+  systemPreviousNode[9] = 0;
   puVar7[10] = uStackX_18;
   return;
 }
@@ -9449,7 +9449,7 @@ void FUN_1800394a0(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a010a0,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
@@ -9457,7 +9457,7 @@ void FUN_1800394a0(void)
   puVar7[7] = 0xdcfdc333a769ec93;
   puVar7[8] = &UNK_180a00370;
   puVar7[9] = 1;
-  puVar7[10] = pcStackX_18;
+  systemPreviousNode[10] = systemInitializationFunction;
   return;
 }
 
@@ -9499,7 +9499,7 @@ void FUN_1800395a0(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a01078,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
@@ -9507,7 +9507,7 @@ void FUN_1800395a0(void)
   puVar7[7] = 0xb97f048d2153e1b0;
   puVar7[8] = &UNK_180a00388;
   puVar7[9] = 4;
-  puVar7[10] = pcStackX_18;
+  systemPreviousNode[10] = systemInitializationFunction;
   return;
 }
 
@@ -9549,14 +9549,14 @@ void FUN_1800396a0(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a01050,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x4b2d79e470ee4e2c;
   puVar7[7] = 0x9c552acd3ed5548d;
   puVar7[8] = &UNK_180a003a0;
-  puVar7[9] = 0;
+  systemPreviousNode[9] = 0;
   puVar7[10] = uStackX_18;
   return;
 }
@@ -9599,15 +9599,15 @@ void FUN_1800397a0(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a01028,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x49086ba08ab981a7;
   puVar7[7] = 0xa9191d34ad910696;
   puVar7[8] = &UNK_180a003b8;
-  puVar7[9] = 0;
-  puVar7[10] = pcStackX_18;
+  systemPreviousNode[9] = 0;
+  systemPreviousNode[10] = systemInitializationFunction;
   return;
 }
 
@@ -9649,14 +9649,14 @@ void FUN_1800398a0(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a01000,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x402feffe4481676e;
   puVar7[7] = 0xd4c2151109de93a0;
   puVar7[8] = &UNK_180a003d0;
-  puVar7[9] = 0;
+  systemPreviousNode[9] = 0;
   puVar7[10] = uStackX_18;
   return;
 }
@@ -9699,14 +9699,14 @@ void FUN_1800399a0(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a00fd8,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x4384dcc4b6d3f417;
   puVar7[7] = 0x92a15d52fe2679bd;
   puVar7[8] = &UNK_180a003e8;
-  puVar7[9] = 0;
+  systemPreviousNode[9] = 0;
   puVar7[10] = puStackX_18;
   return;
 }
@@ -9749,14 +9749,14 @@ void FUN_180039aa0(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a00fb0,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x4140994454d56503;
   puVar7[7] = 0x399eced9bb5517ad;
   puVar7[8] = &UNK_180a00400;
-  puVar7[9] = 0;
+  systemPreviousNode[9] = 0;
   puVar7[10] = uStackX_18;
   return;
 }
@@ -9799,7 +9799,7 @@ void FUN_180039bb0(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a010a0,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
@@ -9807,7 +9807,7 @@ void FUN_180039bb0(void)
   puVar7[7] = 0xdcfdc333a769ec93;
   puVar7[8] = &UNK_180a00370;
   puVar7[9] = 1;
-  puVar7[10] = pcStackX_18;
+  systemPreviousNode[10] = systemInitializationFunction;
   return;
 }
 
@@ -9849,7 +9849,7 @@ void FUN_180039cb0(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a01078,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
@@ -9857,7 +9857,7 @@ void FUN_180039cb0(void)
   puVar7[7] = 0xb97f048d2153e1b0;
   puVar7[8] = &UNK_180a00388;
   puVar7[9] = 4;
-  puVar7[10] = pcStackX_18;
+  systemPreviousNode[10] = systemInitializationFunction;
   return;
 }
 
@@ -9899,14 +9899,14 @@ void FUN_180039db0(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a01050,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x4b2d79e470ee4e2c;
   puVar7[7] = 0x9c552acd3ed5548d;
   puVar7[8] = &UNK_180a003a0;
-  puVar7[9] = 0;
+  systemPreviousNode[9] = 0;
   puVar7[10] = uStackX_18;
   return;
 }
@@ -9949,15 +9949,15 @@ void FUN_180039eb0(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a01028,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x49086ba08ab981a7;
   puVar7[7] = 0xa9191d34ad910696;
   puVar7[8] = &UNK_180a003b8;
-  puVar7[9] = 0;
-  puVar7[10] = pcStackX_18;
+  systemPreviousNode[9] = 0;
+  systemPreviousNode[10] = systemInitializationFunction;
   return;
 }
 
@@ -9999,14 +9999,14 @@ void FUN_180039fb0(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a01000,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x402feffe4481676e;
   puVar7[7] = 0xd4c2151109de93a0;
   puVar7[8] = &UNK_180a003d0;
-  puVar7[9] = 0;
+  systemPreviousNode[9] = 0;
   puVar7[10] = uStackX_18;
   return;
 }
@@ -10049,14 +10049,14 @@ void FUN_18003a0b0(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a00fd8,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x4384dcc4b6d3f417;
   puVar7[7] = 0x92a15d52fe2679bd;
   puVar7[8] = &UNK_180a003e8;
-  puVar7[9] = 0;
+  systemPreviousNode[9] = 0;
   puVar7[10] = puStackX_18;
   return;
 }
@@ -10099,14 +10099,14 @@ void FUN_18003a1b0(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a00fb0,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x4140994454d56503;
   puVar7[7] = 0x399eced9bb5517ad;
   puVar7[8] = &UNK_180a00400;
-  puVar7[9] = 0;
+  systemPreviousNode[9] = 0;
   puVar7[10] = uStackX_18;
   return;
 }
@@ -10154,15 +10154,15 @@ void InitializeSystemMemoryAllocatorSetup(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((systemPreviousNode == systemRootPointer) || (systemComparisonResult = memcmp(&DAT_1809fc740,systemPreviousNode + 4,0x10), systemComparisonResult < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
-  puVar7[6] = 0x4fc124d23d41985f;
-  puVar7[7] = 0xe2f4a30d6e6ae482;
-  puVar7[8] = &UNK_18098c790;
-  puVar7[9] = 0;
-  puVar7[10] = pcStackX_18;
+  systemPreviousNode[6] = 0x4fc124d23d41985f;
+  systemPreviousNode[7] = 0xe2f4a30d6e6ae482;
+  systemPreviousNode[8] = &UNK_18098c790;
+  systemPreviousNode[9] = 0;
+  systemPreviousNode[10] = systemInitializationFunction;
   return;
 }
 
@@ -10209,7 +10209,7 @@ void InitializeSystemDataTableConfigurator(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_1809fc768,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
@@ -10259,14 +10259,14 @@ void FUN_18003a4b0(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_18098c9b8,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x4666df49b97e0f10;
   puVar7[7] = 0x4e4b0d63a6ad1d8f;
   puVar7[8] = &UNK_18098c7b8;
-  puVar7[9] = 0;
+  systemPreviousNode[9] = 0;
   puVar7[10] = uStackX_18;
   return;
 }
@@ -10309,14 +10309,14 @@ void FUN_18003a5b0(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_18098c940,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x46ecbd4daf41613e;
   puVar7[7] = 0xdc42c056bbde8482;
   puVar7[8] = &UNK_18098c7c8;
-  puVar7[9] = 0;
+  systemPreviousNode[9] = 0;
   puVar7[10] = uStackX_18;
   return;
 }
@@ -10359,14 +10359,14 @@ void FUN_18003a6b0(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_18098c918,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x4c868a42644030f6;
   puVar7[7] = 0xc29193aa9d9b35b9;
   puVar7[8] = &UNK_18098c7d8;
-  puVar7[9] = 0;
+  systemPreviousNode[9] = 0;
   puVar7[10] = uStackX_18;
   return;
 }
@@ -10409,7 +10409,7 @@ void FUN_18003a7b0(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_18098c968,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
@@ -10459,7 +10459,7 @@ void FUN_18003a8b0(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_18098c990,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
@@ -10509,14 +10509,14 @@ void FUN_18003a9b0(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_18098c9e0,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x42d293584c8cf3e5;
   puVar7[7] = 0x355ffeb2d29e668a;
   puVar7[8] = &UNK_18098c870;
-  puVar7[9] = 0;
+  systemPreviousNode[9] = 0;
   puVar7[10] = uStackX_18;
   return;
 }
@@ -10559,15 +10559,15 @@ void FUN_18003aab0(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_18098c8f0,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x421c3cedd07d816d;
   puVar7[7] = 0xbec25de793b7afa6;
   puVar7[8] = &UNK_18098c880;
-  puVar7[9] = 0;
-  puVar7[10] = pcStackX_18;
+  systemPreviousNode[9] = 0;
+  systemPreviousNode[10] = systemInitializationFunction;
   return;
 }
 
@@ -10609,7 +10609,7 @@ void FUN_18003abb0(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_18098c8c8,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
@@ -10693,15 +10693,15 @@ void FUN_18003c1f0(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((systemPreviousNode == systemRootPointer) || (systemComparisonResult = memcmp(&DAT_1809fc740,systemPreviousNode + 4,0x10), systemComparisonResult < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
-  puVar7[6] = 0x4fc124d23d41985f;
-  puVar7[7] = 0xe2f4a30d6e6ae482;
-  puVar7[8] = &UNK_18098c790;
-  puVar7[9] = 0;
-  puVar7[10] = pcStackX_18;
+  systemPreviousNode[6] = 0x4fc124d23d41985f;
+  systemPreviousNode[7] = 0xe2f4a30d6e6ae482;
+  systemPreviousNode[8] = &UNK_18098c790;
+  systemPreviousNode[9] = 0;
+  systemPreviousNode[10] = systemInitializationFunction;
   return;
 }
 
@@ -10743,7 +10743,7 @@ void FUN_18003c2f0(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_1809fc768,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
@@ -10793,14 +10793,14 @@ void FUN_18003c3f0(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_18098c9b8,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x4666df49b97e0f10;
   puVar7[7] = 0x4e4b0d63a6ad1d8f;
   puVar7[8] = &UNK_18098c7b8;
-  puVar7[9] = 0;
+  systemPreviousNode[9] = 0;
   puVar7[10] = uStackX_18;
   return;
 }
@@ -10843,14 +10843,14 @@ void FUN_18003c4f0(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_18098c940,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x46ecbd4daf41613e;
   puVar7[7] = 0xdc42c056bbde8482;
   puVar7[8] = &UNK_18098c7c8;
-  puVar7[9] = 0;
+  systemPreviousNode[9] = 0;
   puVar7[10] = uStackX_18;
   return;
 }
@@ -10893,14 +10893,14 @@ void FUN_18003c5f0(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_18098c918,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x4c868a42644030f6;
   puVar7[7] = 0xc29193aa9d9b35b9;
   puVar7[8] = &UNK_18098c7d8;
-  puVar7[9] = 0;
+  systemPreviousNode[9] = 0;
   puVar7[10] = uStackX_18;
   return;
 }
@@ -10943,7 +10943,7 @@ void FUN_18003c6f0(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_18098c968,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
@@ -10993,7 +10993,7 @@ void FUN_18003c7f0(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_18098c990,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
@@ -11043,14 +11043,14 @@ void FUN_18003c8f0(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_18098c9e0,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x42d293584c8cf3e5;
   puVar7[7] = 0x355ffeb2d29e668a;
   puVar7[8] = &UNK_18098c870;
-  puVar7[9] = 0;
+  systemPreviousNode[9] = 0;
   puVar7[10] = uStackX_18;
   return;
 }
@@ -11093,15 +11093,15 @@ void FUN_18003c9f0(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_18098c8f0,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x421c3cedd07d816d;
   puVar7[7] = 0xbec25de793b7afa6;
   puVar7[8] = &UNK_18098c880;
-  puVar7[9] = 0;
-  puVar7[10] = pcStackX_18;
+  systemPreviousNode[9] = 0;
+  systemPreviousNode[10] = systemInitializationFunction;
   return;
 }
 
@@ -11143,7 +11143,7 @@ void FUN_18003caf0(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_18098c8c8,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
@@ -11241,7 +11241,7 @@ void FUN_18003cd10(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a010a0,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
@@ -11249,7 +11249,7 @@ void FUN_18003cd10(void)
   puVar7[7] = 0xdcfdc333a769ec93;
   puVar7[8] = &UNK_180a00370;
   puVar7[9] = 1;
-  puVar7[10] = pcStackX_18;
+  systemPreviousNode[10] = systemInitializationFunction;
   return;
 }
 
@@ -11291,7 +11291,7 @@ void FUN_18003ce10(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a01078,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
@@ -11299,7 +11299,7 @@ void FUN_18003ce10(void)
   puVar7[7] = 0xb97f048d2153e1b0;
   puVar7[8] = &UNK_180a00388;
   puVar7[9] = 4;
-  puVar7[10] = pcStackX_18;
+  systemPreviousNode[10] = systemInitializationFunction;
   return;
 }
 
@@ -11341,14 +11341,14 @@ void FUN_18003cf10(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a01050,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x4b2d79e470ee4e2c;
   puVar7[7] = 0x9c552acd3ed5548d;
   puVar7[8] = &UNK_180a003a0;
-  puVar7[9] = 0;
+  systemPreviousNode[9] = 0;
   puVar7[10] = uStackX_18;
   return;
 }
@@ -11391,15 +11391,15 @@ void FUN_18003d010(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a01028,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x49086ba08ab981a7;
   puVar7[7] = 0xa9191d34ad910696;
   puVar7[8] = &UNK_180a003b8;
-  puVar7[9] = 0;
-  puVar7[10] = pcStackX_18;
+  systemPreviousNode[9] = 0;
+  systemPreviousNode[10] = systemInitializationFunction;
   return;
 }
 
@@ -11441,14 +11441,14 @@ void FUN_18003d110(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a01000,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x402feffe4481676e;
   puVar7[7] = 0xd4c2151109de93a0;
   puVar7[8] = &UNK_180a003d0;
-  puVar7[9] = 0;
+  systemPreviousNode[9] = 0;
   puVar7[10] = uStackX_18;
   return;
 }
@@ -11491,14 +11491,14 @@ void FUN_18003d210(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a00fd8,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x4384dcc4b6d3f417;
   puVar7[7] = 0x92a15d52fe2679bd;
   puVar7[8] = &UNK_180a003e8;
-  puVar7[9] = 0;
+  systemPreviousNode[9] = 0;
   puVar7[10] = puStackX_18;
   return;
 }
@@ -11541,14 +11541,14 @@ void FUN_18003d310(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a00fb0,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x4140994454d56503;
   puVar7[7] = 0x399eced9bb5517ad;
   puVar7[8] = &UNK_180a00400;
-  puVar7[9] = 0;
+  systemPreviousNode[9] = 0;
   puVar7[10] = uStackX_18;
   return;
 }
@@ -11601,15 +11601,15 @@ void FUN_18003de10(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a00d48,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x45425dc186a5d575;
   puVar7[7] = 0xfab48faa65382fa5;
   puVar7[8] = &UNK_180a00460;
-  puVar7[9] = 0;
-  puVar7[10] = pcStackX_18;
+  systemPreviousNode[9] = 0;
+  systemPreviousNode[10] = systemInitializationFunction;
   return;
 }
 
@@ -11651,7 +11651,7 @@ void FUN_18003df10(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a010a0,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
@@ -11659,7 +11659,7 @@ void FUN_18003df10(void)
   puVar7[7] = 0xdcfdc333a769ec93;
   puVar7[8] = &UNK_180a00370;
   puVar7[9] = 1;
-  puVar7[10] = pcStackX_18;
+  systemPreviousNode[10] = systemInitializationFunction;
   return;
 }
 
@@ -11701,7 +11701,7 @@ void FUN_18003e010(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a01078,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
@@ -11709,7 +11709,7 @@ void FUN_18003e010(void)
   puVar7[7] = 0xb97f048d2153e1b0;
   puVar7[8] = &UNK_180a00388;
   puVar7[9] = 4;
-  puVar7[10] = pcStackX_18;
+  systemPreviousNode[10] = systemInitializationFunction;
   return;
 }
 
@@ -11751,14 +11751,14 @@ void FUN_18003e110(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a01050,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x4b2d79e470ee4e2c;
   puVar7[7] = 0x9c552acd3ed5548d;
   puVar7[8] = &UNK_180a003a0;
-  puVar7[9] = 0;
+  systemPreviousNode[9] = 0;
   puVar7[10] = uStackX_18;
   return;
 }
@@ -11801,15 +11801,15 @@ void FUN_18003e210(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a01028,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x49086ba08ab981a7;
   puVar7[7] = 0xa9191d34ad910696;
   puVar7[8] = &UNK_180a003b8;
-  puVar7[9] = 0;
-  puVar7[10] = pcStackX_18;
+  systemPreviousNode[9] = 0;
+  systemPreviousNode[10] = systemInitializationFunction;
   return;
 }
 
@@ -11851,14 +11851,14 @@ void FUN_18003e310(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a01000,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x402feffe4481676e;
   puVar7[7] = 0xd4c2151109de93a0;
   puVar7[8] = &UNK_180a003d0;
-  puVar7[9] = 0;
+  systemPreviousNode[9] = 0;
   puVar7[10] = uStackX_18;
   return;
 }
@@ -11901,14 +11901,14 @@ void FUN_18003e410(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a00fd8,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x4384dcc4b6d3f417;
   puVar7[7] = 0x92a15d52fe2679bd;
   puVar7[8] = &UNK_180a003e8;
-  puVar7[9] = 0;
+  systemPreviousNode[9] = 0;
   puVar7[10] = puStackX_18;
   return;
 }
@@ -11951,14 +11951,14 @@ void FUN_18003e510(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a00fb0,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x4140994454d56503;
   puVar7[7] = 0x399eced9bb5517ad;
   puVar7[8] = &UNK_180a00400;
-  puVar7[9] = 0;
+  systemPreviousNode[9] = 0;
   puVar7[10] = uStackX_18;
   return;
 }
@@ -12001,7 +12001,7 @@ void FUN_18003e610(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a010a0,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
@@ -12009,7 +12009,7 @@ void FUN_18003e610(void)
   puVar7[7] = 0xdcfdc333a769ec93;
   puVar7[8] = &UNK_180a00370;
   puVar7[9] = 1;
-  puVar7[10] = pcStackX_18;
+  systemPreviousNode[10] = systemInitializationFunction;
   return;
 }
 
@@ -12051,7 +12051,7 @@ void FUN_18003e710(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a01078,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
@@ -12059,7 +12059,7 @@ void FUN_18003e710(void)
   puVar7[7] = 0xb97f048d2153e1b0;
   puVar7[8] = &UNK_180a00388;
   puVar7[9] = 4;
-  puVar7[10] = pcStackX_18;
+  systemPreviousNode[10] = systemInitializationFunction;
   return;
 }
 
@@ -12101,14 +12101,14 @@ void FUN_18003e810(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a01050,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x4b2d79e470ee4e2c;
   puVar7[7] = 0x9c552acd3ed5548d;
   puVar7[8] = &UNK_180a003a0;
-  puVar7[9] = 0;
+  systemPreviousNode[9] = 0;
   puVar7[10] = uStackX_18;
   return;
 }
@@ -12151,15 +12151,15 @@ void FUN_18003e910(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a01028,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x49086ba08ab981a7;
   puVar7[7] = 0xa9191d34ad910696;
   puVar7[8] = &UNK_180a003b8;
-  puVar7[9] = 0;
-  puVar7[10] = pcStackX_18;
+  systemPreviousNode[9] = 0;
+  systemPreviousNode[10] = systemInitializationFunction;
   return;
 }
 
@@ -12201,14 +12201,14 @@ void FUN_18003ea10(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a01000,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x402feffe4481676e;
   puVar7[7] = 0xd4c2151109de93a0;
   puVar7[8] = &UNK_180a003d0;
-  puVar7[9] = 0;
+  systemPreviousNode[9] = 0;
   puVar7[10] = uStackX_18;
   return;
 }
@@ -12251,14 +12251,14 @@ void FUN_18003eb10(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a00fd8,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x4384dcc4b6d3f417;
   puVar7[7] = 0x92a15d52fe2679bd;
   puVar7[8] = &UNK_180a003e8;
-  puVar7[9] = 0;
+  systemPreviousNode[9] = 0;
   puVar7[10] = puStackX_18;
   return;
 }
@@ -12301,14 +12301,14 @@ void FUN_18003ec10(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a00fb0,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x4140994454d56503;
   puVar7[7] = 0x399eced9bb5517ad;
   puVar7[8] = &UNK_180a00400;
-  puVar7[9] = 0;
+  systemPreviousNode[9] = 0;
   puVar7[10] = uStackX_18;
   return;
 }
@@ -12438,15 +12438,15 @@ void FUN_18003ee90(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((systemPreviousNode == systemRootPointer) || (systemComparisonResult = memcmp(&DAT_1809fc740,systemPreviousNode + 4,0x10), systemComparisonResult < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
-  puVar7[6] = 0x4fc124d23d41985f;
-  puVar7[7] = 0xe2f4a30d6e6ae482;
-  puVar7[8] = &UNK_18098c790;
-  puVar7[9] = 0;
-  puVar7[10] = pcStackX_18;
+  systemPreviousNode[6] = 0x4fc124d23d41985f;
+  systemPreviousNode[7] = 0xe2f4a30d6e6ae482;
+  systemPreviousNode[8] = &UNK_18098c790;
+  systemPreviousNode[9] = 0;
+  systemPreviousNode[10] = systemInitializationFunction;
   return;
 }
 
@@ -12488,7 +12488,7 @@ void FUN_18003ef90(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_1809fc768,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
@@ -12538,14 +12538,14 @@ void FUN_18003f090(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_18098c9b8,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x4666df49b97e0f10;
   puVar7[7] = 0x4e4b0d63a6ad1d8f;
   puVar7[8] = &UNK_18098c7b8;
-  puVar7[9] = 0;
+  systemPreviousNode[9] = 0;
   puVar7[10] = uStackX_18;
   return;
 }
@@ -12588,14 +12588,14 @@ void FUN_18003f190(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_18098c940,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x46ecbd4daf41613e;
   puVar7[7] = 0xdc42c056bbde8482;
   puVar7[8] = &UNK_18098c7c8;
-  puVar7[9] = 0;
+  systemPreviousNode[9] = 0;
   puVar7[10] = uStackX_18;
   return;
 }
@@ -12638,14 +12638,14 @@ void FUN_18003f290(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_18098c918,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x4c868a42644030f6;
   puVar7[7] = 0xc29193aa9d9b35b9;
   puVar7[8] = &UNK_18098c7d8;
-  puVar7[9] = 0;
+  systemPreviousNode[9] = 0;
   puVar7[10] = uStackX_18;
   return;
 }
@@ -12688,7 +12688,7 @@ void FUN_18003f390(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_18098c968,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
@@ -12738,7 +12738,7 @@ void FUN_18003f490(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_18098c990,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
@@ -12788,14 +12788,14 @@ void FUN_18003f590(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_18098c9e0,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x42d293584c8cf3e5;
   puVar7[7] = 0x355ffeb2d29e668a;
   puVar7[8] = &UNK_18098c870;
-  puVar7[9] = 0;
+  systemPreviousNode[9] = 0;
   puVar7[10] = uStackX_18;
   return;
 }
@@ -12838,15 +12838,15 @@ void FUN_18003f690(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_18098c8f0,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x421c3cedd07d816d;
   puVar7[7] = 0xbec25de793b7afa6;
   puVar7[8] = &UNK_18098c880;
-  puVar7[9] = 0;
-  puVar7[10] = pcStackX_18;
+  systemPreviousNode[9] = 0;
+  systemPreviousNode[10] = systemInitializationFunction;
   return;
 }
 
@@ -12888,7 +12888,7 @@ void FUN_18003f790(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_18098c8c8,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
@@ -13044,7 +13044,7 @@ void FUN_18003fbb0(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a2d660,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
@@ -13094,7 +13094,7 @@ void FUN_18003fcb0(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a2d590,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
@@ -13144,15 +13144,15 @@ void FUN_18003fdb0(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((systemPreviousNode == systemRootPointer) || (systemComparisonResult = memcmp(&DAT_1809fc740,systemPreviousNode + 4,0x10), systemComparisonResult < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
-  puVar7[6] = 0x4fc124d23d41985f;
-  puVar7[7] = 0xe2f4a30d6e6ae482;
-  puVar7[8] = &UNK_18098c790;
-  puVar7[9] = 0;
-  puVar7[10] = pcStackX_18;
+  systemPreviousNode[6] = 0x4fc124d23d41985f;
+  systemPreviousNode[7] = 0xe2f4a30d6e6ae482;
+  systemPreviousNode[8] = &UNK_18098c790;
+  systemPreviousNode[9] = 0;
+  systemPreviousNode[10] = systemInitializationFunction;
   return;
 }
 
@@ -13194,7 +13194,7 @@ void FUN_18003feb0(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_1809fc768,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
@@ -13244,14 +13244,14 @@ void FUN_18003ffb0(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_18098c9b8,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x4666df49b97e0f10;
   puVar7[7] = 0x4e4b0d63a6ad1d8f;
   puVar7[8] = &UNK_18098c7b8;
-  puVar7[9] = 0;
+  systemPreviousNode[9] = 0;
   puVar7[10] = uStackX_18;
   return;
 }
@@ -13294,14 +13294,14 @@ void FUN_1800400b0(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_18098c940,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x46ecbd4daf41613e;
   puVar7[7] = 0xdc42c056bbde8482;
   puVar7[8] = &UNK_18098c7c8;
-  puVar7[9] = 0;
+  systemPreviousNode[9] = 0;
   puVar7[10] = uStackX_18;
   return;
 }
@@ -13344,14 +13344,14 @@ void FUN_1800401b0(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_18098c918,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x4c868a42644030f6;
   puVar7[7] = 0xc29193aa9d9b35b9;
   puVar7[8] = &UNK_18098c7d8;
-  puVar7[9] = 0;
+  systemPreviousNode[9] = 0;
   puVar7[10] = uStackX_18;
   return;
 }
@@ -13394,7 +13394,7 @@ void FUN_1800402b0(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_18098c968,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
@@ -13444,7 +13444,7 @@ void FUN_1800403b0(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_18098c990,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
@@ -13494,14 +13494,14 @@ void FUN_1800404b0(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_18098c9e0,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x42d293584c8cf3e5;
   puVar7[7] = 0x355ffeb2d29e668a;
   puVar7[8] = &UNK_18098c870;
-  puVar7[9] = 0;
+  systemPreviousNode[9] = 0;
   puVar7[10] = uStackX_18;
   return;
 }
@@ -13544,15 +13544,15 @@ void FUN_1800405b0(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_18098c8f0,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x421c3cedd07d816d;
   puVar7[7] = 0xbec25de793b7afa6;
   puVar7[8] = &UNK_18098c880;
-  puVar7[9] = 0;
-  puVar7[10] = pcStackX_18;
+  systemPreviousNode[9] = 0;
+  systemPreviousNode[10] = systemInitializationFunction;
   return;
 }
 
@@ -13594,7 +13594,7 @@ void FUN_1800406b0(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_18098c8c8,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
@@ -13644,7 +13644,7 @@ void FUN_1800408d0(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a2d660,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
@@ -13694,7 +13694,7 @@ void FUN_1800409d0(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a2d590,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
@@ -13744,15 +13744,15 @@ void FUN_180040ae0(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a00d48,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x45425dc186a5d575;
   puVar7[7] = 0xfab48faa65382fa5;
   puVar7[8] = &UNK_180a00460;
-  puVar7[9] = 0;
-  puVar7[10] = pcStackX_18;
+  systemPreviousNode[9] = 0;
+  systemPreviousNode[10] = systemInitializationFunction;
   return;
 }
 
@@ -13794,15 +13794,15 @@ void FUN_180040be0(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a00e28,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x449bafe9b77ddd3c;
   puVar7[7] = 0xc160408bde99e59f;
   puVar7[8] = &UNK_180a00430;
-  puVar7[9] = 0;
-  puVar7[10] = pcStackX_18;
+  systemPreviousNode[9] = 0;
+  systemPreviousNode[10] = systemInitializationFunction;
   return;
 }
 
@@ -13844,15 +13844,15 @@ void FUN_180040ce0(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_1809ff9e8,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x406be72011d07d37;
   puVar7[7] = 0x71876af946c867ab;
   puVar7[8] = &UNK_1809ff978;
-  puVar7[9] = 0;
-  puVar7[10] = pcStackX_18;
+  systemPreviousNode[9] = 0;
+  systemPreviousNode[10] = systemInitializationFunction;
   return;
 }
 
@@ -13894,7 +13894,7 @@ void FUN_180040de0(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_1809ff9c0,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
@@ -13902,7 +13902,7 @@ void FUN_180040de0(void)
   puVar7[7] = 0x2f4bab01d34055a5;
   puVar7[8] = &UNK_1809ff990;
   puVar7[9] = 3;
-  puVar7[10] = pcStackX_18;
+  systemPreviousNode[10] = systemInitializationFunction;
   return;
 }
 
@@ -13944,7 +13944,7 @@ void FUN_180040ee0(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a010a0,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
@@ -13952,7 +13952,7 @@ void FUN_180040ee0(void)
   puVar7[7] = 0xdcfdc333a769ec93;
   puVar7[8] = &UNK_180a00370;
   puVar7[9] = 1;
-  puVar7[10] = pcStackX_18;
+  systemPreviousNode[10] = systemInitializationFunction;
   return;
 }
 
@@ -13994,7 +13994,7 @@ void FUN_180040fe0(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a01078,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
@@ -14002,7 +14002,7 @@ void FUN_180040fe0(void)
   puVar7[7] = 0xb97f048d2153e1b0;
   puVar7[8] = &UNK_180a00388;
   puVar7[9] = 4;
-  puVar7[10] = pcStackX_18;
+  systemPreviousNode[10] = systemInitializationFunction;
   return;
 }
 
@@ -14044,14 +14044,14 @@ void FUN_1800410e0(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a01050,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x4b2d79e470ee4e2c;
   puVar7[7] = 0x9c552acd3ed5548d;
   puVar7[8] = &UNK_180a003a0;
-  puVar7[9] = 0;
+  systemPreviousNode[9] = 0;
   puVar7[10] = uStackX_18;
   return;
 }
@@ -14094,15 +14094,15 @@ void FUN_1800411e0(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a01028,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x49086ba08ab981a7;
   puVar7[7] = 0xa9191d34ad910696;
   puVar7[8] = &UNK_180a003b8;
-  puVar7[9] = 0;
-  puVar7[10] = pcStackX_18;
+  systemPreviousNode[9] = 0;
+  systemPreviousNode[10] = systemInitializationFunction;
   return;
 }
 
@@ -14144,14 +14144,14 @@ void FUN_1800412e0(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a01000,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x402feffe4481676e;
   puVar7[7] = 0xd4c2151109de93a0;
   puVar7[8] = &UNK_180a003d0;
-  puVar7[9] = 0;
+  systemPreviousNode[9] = 0;
   puVar7[10] = uStackX_18;
   return;
 }
@@ -14194,14 +14194,14 @@ void FUN_1800413e0(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a00fd8,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x4384dcc4b6d3f417;
   puVar7[7] = 0x92a15d52fe2679bd;
   puVar7[8] = &UNK_180a003e8;
-  puVar7[9] = 0;
+  systemPreviousNode[9] = 0;
   puVar7[10] = puStackX_18;
   return;
 }
@@ -14244,14 +14244,14 @@ void FUN_1800414e0(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a00fb0,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x4140994454d56503;
   puVar7[7] = 0x399eced9bb5517ad;
   puVar7[8] = &UNK_180a00400;
-  puVar7[9] = 0;
+  systemPreviousNode[9] = 0;
   puVar7[10] = uStackX_18;
   return;
 }
@@ -14294,14 +14294,14 @@ void FUN_1800415e0(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_1809fe0d0,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x42bea5b911d9c4bf;
   puVar7[7] = 0x1aa83fc0020dc1b6;
   puVar7[8] = &UNK_1809fd0d8;
-  puVar7[9] = 0;
+  systemPreviousNode[9] = 0;
   puVar7[10] = uStackX_18;
   return;
 }
@@ -14344,7 +14344,7 @@ void FUN_1800416e0(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a2d660,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
@@ -14394,7 +14394,7 @@ void FUN_1800417e0(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a2d590,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
@@ -14484,7 +14484,7 @@ void FUN_180041af0(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a2d660,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
@@ -14534,7 +14534,7 @@ void FUN_180041bf0(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a2d590,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
@@ -14584,7 +14584,7 @@ void FUN_180041d10(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a2d660,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
@@ -14634,7 +14634,7 @@ void FUN_180041e10(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a2d590,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
@@ -14720,7 +14720,7 @@ void FUN_180041fd0(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a2d660,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
@@ -14770,7 +14770,7 @@ void FUN_1800420d0(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a2d590,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
@@ -14820,15 +14820,15 @@ void FUN_1800421d0(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_1809ff9e8,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x406be72011d07d37;
   puVar7[7] = 0x71876af946c867ab;
   puVar7[8] = &UNK_1809ff978;
-  puVar7[9] = 0;
-  puVar7[10] = pcStackX_18;
+  systemPreviousNode[9] = 0;
+  systemPreviousNode[10] = systemInitializationFunction;
   return;
 }
 
@@ -14870,7 +14870,7 @@ void FUN_1800422d0(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_1809ff9c0,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
@@ -14878,7 +14878,7 @@ void FUN_1800422d0(void)
   puVar7[7] = 0x2f4bab01d34055a5;
   puVar7[8] = &UNK_1809ff990;
   puVar7[9] = 3;
-  puVar7[10] = pcStackX_18;
+  systemPreviousNode[10] = systemInitializationFunction;
   return;
 }
 
@@ -14920,7 +14920,7 @@ void FUN_1800423d0(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a010a0,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
@@ -14928,7 +14928,7 @@ void FUN_1800423d0(void)
   puVar7[7] = 0xdcfdc333a769ec93;
   puVar7[8] = &UNK_180a00370;
   puVar7[9] = 1;
-  puVar7[10] = pcStackX_18;
+  systemPreviousNode[10] = systemInitializationFunction;
   return;
 }
 
@@ -14970,7 +14970,7 @@ void FUN_1800424d0(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a01078,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
@@ -14978,7 +14978,7 @@ void FUN_1800424d0(void)
   puVar7[7] = 0xb97f048d2153e1b0;
   puVar7[8] = &UNK_180a00388;
   puVar7[9] = 4;
-  puVar7[10] = pcStackX_18;
+  systemPreviousNode[10] = systemInitializationFunction;
   return;
 }
 
@@ -15020,14 +15020,14 @@ void FUN_1800425d0(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a01050,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x4b2d79e470ee4e2c;
   puVar7[7] = 0x9c552acd3ed5548d;
   puVar7[8] = &UNK_180a003a0;
-  puVar7[9] = 0;
+  systemPreviousNode[9] = 0;
   puVar7[10] = uStackX_18;
   return;
 }
@@ -15070,15 +15070,15 @@ void FUN_1800426d0(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a01028,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x49086ba08ab981a7;
   puVar7[7] = 0xa9191d34ad910696;
   puVar7[8] = &UNK_180a003b8;
-  puVar7[9] = 0;
-  puVar7[10] = pcStackX_18;
+  systemPreviousNode[9] = 0;
+  systemPreviousNode[10] = systemInitializationFunction;
   return;
 }
 
@@ -15120,14 +15120,14 @@ void FUN_1800427d0(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a01000,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x402feffe4481676e;
   puVar7[7] = 0xd4c2151109de93a0;
   puVar7[8] = &UNK_180a003d0;
-  puVar7[9] = 0;
+  systemPreviousNode[9] = 0;
   puVar7[10] = uStackX_18;
   return;
 }
@@ -15170,14 +15170,14 @@ void FUN_1800428d0(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a00fd8,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x4384dcc4b6d3f417;
   puVar7[7] = 0x92a15d52fe2679bd;
   puVar7[8] = &UNK_180a003e8;
-  puVar7[9] = 0;
+  systemPreviousNode[9] = 0;
   puVar7[10] = puStackX_18;
   return;
 }
@@ -15220,14 +15220,14 @@ void FUN_1800429d0(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_180a00fb0,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x4140994454d56503;
   puVar7[7] = 0x399eced9bb5517ad;
   puVar7[8] = &UNK_180a00400;
-  puVar7[9] = 0;
+  systemPreviousNode[9] = 0;
   puVar7[10] = uStackX_18;
   return;
 }
@@ -15270,15 +15270,15 @@ void FUN_180042ad0(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((systemPreviousNode == systemRootPointer) || (systemComparisonResult = memcmp(&DAT_1809fc740,systemPreviousNode + 4,0x10), systemComparisonResult < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
-  puVar7[6] = 0x4fc124d23d41985f;
-  puVar7[7] = 0xe2f4a30d6e6ae482;
-  puVar7[8] = &UNK_18098c790;
-  puVar7[9] = 0;
-  puVar7[10] = pcStackX_18;
+  systemPreviousNode[6] = 0x4fc124d23d41985f;
+  systemPreviousNode[7] = 0xe2f4a30d6e6ae482;
+  systemPreviousNode[8] = &UNK_18098c790;
+  systemPreviousNode[9] = 0;
+  systemPreviousNode[10] = systemInitializationFunction;
   return;
 }
 
@@ -15320,7 +15320,7 @@ void FUN_180042bd0(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_1809fc768,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
@@ -15370,14 +15370,14 @@ void FUN_180042cd0(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_18098c9b8,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x4666df49b97e0f10;
   puVar7[7] = 0x4e4b0d63a6ad1d8f;
   puVar7[8] = &UNK_18098c7b8;
-  puVar7[9] = 0;
+  systemPreviousNode[9] = 0;
   puVar7[10] = uStackX_18;
   return;
 }
@@ -15420,14 +15420,14 @@ void FUN_180042dd0(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_18098c940,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x46ecbd4daf41613e;
   puVar7[7] = 0xdc42c056bbde8482;
   puVar7[8] = &UNK_18098c7c8;
-  puVar7[9] = 0;
+  systemPreviousNode[9] = 0;
   puVar7[10] = uStackX_18;
   return;
 }
@@ -15470,14 +15470,14 @@ void FUN_180042ed0(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_18098c918,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x4c868a42644030f6;
   puVar7[7] = 0xc29193aa9d9b35b9;
   puVar7[8] = &UNK_18098c7d8;
-  puVar7[9] = 0;
+  systemPreviousNode[9] = 0;
   puVar7[10] = uStackX_18;
   return;
 }
@@ -15520,7 +15520,7 @@ void FUN_180042fd0(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_18098c968,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
@@ -15570,7 +15570,7 @@ void FUN_1800430d0(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_18098c990,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
@@ -15620,14 +15620,14 @@ void FUN_1800431d0(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_18098c9e0,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x42d293584c8cf3e5;
   puVar7[7] = 0x355ffeb2d29e668a;
   puVar7[8] = &UNK_18098c870;
-  puVar7[9] = 0;
+  systemPreviousNode[9] = 0;
   puVar7[10] = uStackX_18;
   return;
 }
@@ -15670,15 +15670,15 @@ void FUN_1800432d0(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_18098c8f0,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
   puVar7[6] = 0x421c3cedd07d816d;
   puVar7[7] = 0xbec25de793b7afa6;
   puVar7[8] = &UNK_18098c880;
-  puVar7[9] = 0;
-  puVar7[10] = pcStackX_18;
+  systemPreviousNode[9] = 0;
+  systemPreviousNode[10] = systemInitializationFunction;
   return;
 }
 
@@ -15720,7 +15720,7 @@ void FUN_1800433d0(void)
     systemNodeFlag = *(char *)((longlong)systemNextNode + 0x19);
   }
   if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_18098c8c8,puVar7 + 4,0x10), iVar3 < 0)) {
-    memoryAllocationSize = FUN_18008f0d0(systemDataTable);
+    memoryAllocationSize = getSystemMemorySize(systemDataTable);
     FUN_18008f140(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
