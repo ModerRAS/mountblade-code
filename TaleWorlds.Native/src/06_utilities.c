@@ -9578,11 +9578,11 @@ int ProcessDataWithStack(longlong *param_1,longlong param_2,int param_3)
       uStack_98 = uStack_50 & 0xff;
       uStack_a8 = uStack_54 & 0xffff;
                     // WARNING: Subroutine does not return
-      FUN_18076b390(auStack_40,0x27,&UNK_180958180,uStack_58);
+      ExecuteSecurityOperation(auStack_40,0x27,&SecurityOperationData,uStack_58);
     }
     if (((*(byte *)(resourceIndex + 0xc4) & 1) != 0) &&
        ((lStack_48 = *(longlong *)(resourceIndex + 0x68), lStack_48 != 0 ||
-        (iVar2 = FUN_18088c7c0(param_1,resourceIndex,&lStack_48), iVar2 == 0)))) {
+        (iVar2 = ValidateResourceAccess(param_1,resourceIndex,&lStack_48), iVar2 == 0)))) {
       *param_3 = lStack_48;
     }
   }
@@ -9596,7 +9596,7 @@ int ProcessDataWithStack(longlong *param_1,longlong param_2,int param_3)
  
 {
                     // WARNING: Subroutine does not return
-  FUN_18076b390();
+  ExecuteSecurityOperation();
 }
 
 
@@ -9662,7 +9662,7 @@ int ProcessDataWithStack(longlong *param_1,longlong param_2,int param_3)
       uStack_88 = uStack_40 & 0xff;
       uStack_98 = uStack_44 & 0xffff;
                     // WARNING: Subroutine does not return
-      FUN_18076b390(auStack_38,0x27,&UNK_180958180,uStack_48);
+      ExecuteSecurityOperation(auStack_38,0x27,&SecurityOperationData,uStack_48);
     }
     if ((**(int **)(resourceIndex + 0xd0) != 0) ||
        (iVar2 = FUN_18088c060(*(undefined4 *)(param_1 + 0x18)), iVar2 == 0)) {
@@ -9692,7 +9692,7 @@ int ProcessDataWithStack(longlong *param_1,longlong param_2,int param_3)
   resourceTable = (**(code **)(in_RAX + 0x288))();
   if (resourceTable == 0) {
                     // WARNING: Subroutine does not return
-    FUN_18076b390(&stack0x00000080,0x27,&UNK_180958180,uStack0000000000000070 & 0xffffffff,
+    ExecuteSecurityOperation(&stack0x00000080,0x27,&SecurityOperationData,uStack0000000000000070 & 0xffffffff,
                   uStack0000000000000070._4_2_);
   }
   if (**(int **)(resourceTable + 0xd0) == 0) {
@@ -9769,7 +9769,7 @@ LAB_180894aca:
       uStack_98 = uStack_50 & 0xff;
       uStack_a8 = uStack_54 & 0xffff;
                     // WARNING: Subroutine does not return
-      FUN_18076b390(auStack_40,0x27,&UNK_180958180,uStack_58);
+      ExecuteSecurityOperation(auStack_40,0x27,&SecurityOperationData,uStack_58);
     }
     lStack_48 = *(longlong *)(resourceIndex + 0x48);
     if ((lStack_48 != 0) || (iVar2 = FUN_18088ca20(param_1,resourceIndex,&lStack_48), iVar2 == 0)) {
@@ -9788,7 +9788,7 @@ LAB_180894aca:
 
 {
                     // WARNING: Subroutine does not return
-  FUN_18076b390();
+  ExecuteSecurityOperation();
 }
 
 
