@@ -2822,8 +2822,8 @@ uint8_t SystemEventHandlerThread;
 uint8_t SystemEventHandlerFile;
 uint8_t SystemEventHandlerDatabase;
 uint8_t SystemEventHandlerSecurity;
-uint8_t SystemEventHandlerCustom01;
-uint8_t SystemEventHandlerCustom02;
+uint8_t SystemEventHandlerCustomPrimary;
+uint8_t SystemEventHandlerCustomSecondary;
 uint8_t SystemEventHandlerCustom03;
 uint8_t SystemEventHandlerCustom04;
 uint8_t SystemEventHandlerCustom05;
@@ -6256,17 +6256,17 @@ void ExpandDynamicBufferCapacity(int64_t objectContext, int64_t SystemContext)
   int64_t newBufferPointer;
   int64_t bufferOffset;
   uint capacityCheck;
-  int64_t tempStackBuffer;
+  int64_t temporaryStackBuffer;
   int64_t bufferContext;
   
   validationStatus = ValidateObjectContext(*(uint32_t *)(objectContext + 0x10),&bufferContext);
-  if (((validationStatus != 0) || (validationStatus = InitializeTempBuffer(&tempStackBuffer), validationStatus != 0)) ||
-     (validationStatus = ProcessSystemContext(tempStackBuffer,SystemContext,*(uint8_t *)(bufferContext + 8)), validationStatus != 0)) {
+  if (((validationStatus != 0) || (validationStatus = InitializeTempBuffer(&temporaryStackBuffer), validationStatus != 0)) ||
+     (validationStatus = ProcessSystemContext(temporaryStackBuffer,SystemContext,*(uint8_t *)(bufferContext + 8)), validationStatus != 0)) {
     return;
   }
   newBufferPointer = 0;
-  bufferOffset = tempStackBuffer + 8;
-  if (tempStackBuffer == 0) {
+  bufferOffset = temporaryStackBuffer + 8;
+  if (temporaryStackBuffer == 0) {
     bufferOffset = newBufferPointer;
   }
   validationStatus = ValidateBufferContext(bufferOffset,objectContext + 0x18);
