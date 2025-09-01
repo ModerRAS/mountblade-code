@@ -13,7 +13,7 @@
  * @param moduleContext 模块上下文，包含模块运行的环境信息
  */
 void InitializeModuleDependencies(longlong moduleHandle, longlong moduleContext);
-undefined g_moduleDependencyTable;
+void* g_moduleDependencyTable;
 undefined g_moduleDependencyCount;
 undefined g_moduleDependencyFlags;
 undefined g_moduleDependencyStatus;
@@ -197,12 +197,12 @@ void* g_resourceBufferPool3;
  * 设置纹理加载、缓存和释放的相关数据结构
  */
 void InitializeTextureManager(void);
-undefined textureManagerInstance;
-undefined textureSystemData;
-undefined textureCacheHandle;
-undefined textureLoaderHandle;
-undefined textureMemoryPool;
-undefined textureDescriptorTable;
+void* textureManagerInstance;
+void* textureSystemData;
+void* textureCacheHandle;
+void* textureLoaderHandle;
+void* textureMemoryPool;
+void* textureDescriptorTable;
 
 // 函数: void InitializeAudioSystem(void)
 /**
@@ -212,11 +212,11 @@ undefined textureDescriptorTable;
  * 设置音效、音乐和语音播放的相关参数
  */
 void InitializeAudioSystem(void);
-undefined audioSystemInstance;
-undefined audioDeviceHandle;
-undefined audioMixerHandle;
-undefined audioBufferPool;
-undefined audioStreamManager;
+void* audioSystemInstance;
+void* audioDeviceHandle;
+void* audioMixerHandle;
+void* audioBufferPool;
+void* audioStreamManager;
 
 // 函数: void InitializePhysicsEngine(void)
 /**
@@ -3313,7 +3313,7 @@ void TriggerSystemException(void)
  * 
  * 该函数负责清理系统资源，释放不再使用的内存和对象
  */
-void cleanupSystemResources(void)
+void CleanupSystemResources(void)
 
 {
   return;
@@ -3329,7 +3329,7 @@ void cleanupSystemResources(void)
  * 该函数验证对象句柄的有效性，并执行相应的资源管理操作
  * 这是validateObjectHandle函数的另一个版本
  */
-undefined8 validateAndProcessObjectHandle(longlong objectHandle)
+undefined8 ValidateAndProcessObjectHandle(longlong objectHandle)
 
 {
   undefined8 operationResult;
@@ -7110,7 +7110,7 @@ undefined8 get_error_status_code(void)
  * @param data_context 数据上下文指针
  * @param operation_context 操作上下文指针
  */
-void execute_data_validation_and_processing(longlong data_context, longlong operation_context)
+void ExecuteDataValidationAndProcessing(longlong data_context, longlong operation_context)
 
 {
   int validation_result;
