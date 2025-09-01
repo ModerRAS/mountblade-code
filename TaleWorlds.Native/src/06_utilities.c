@@ -15846,7 +15846,7 @@ uint8_t ProcessResourceTableQuery(int64_t *tableContext,uint *queryParam)
   else {
     if (objectContextParam[2] != 0) {
       ArrayUnionStackX8[0] = 0;
-      resourceHash = func_0x00018076a7d0(*objectContextParam,ArrayUnionStackX8);
+      resourceHash = ValidateResourceAccess(*objectContextParam,ArrayUnionStackX8);
       if ((int)resourceHash != 0) {
         return resourceHash;
       }
@@ -15893,7 +15893,7 @@ uint8_t ProcessResourceValidationOperation(int64_t *resourceContext)
   else {
     if (objectContextParam[2] != 0) {
       in_stack_00000040 = 0;
-      resourceHash = func_0x00018076a7d0(*objectContextParam,&ObjectStackBuffer40);
+      resourceHash = ValidateResourceAccess(*objectContextParam,&ObjectStackBuffer40);
       if ((int)resourceHash != 0) {
         return resourceHash;
       }
@@ -16022,7 +16022,7 @@ uint8_t ProcessResourceTableQueryOperation(uint8_t *tableHandle,int64_t *queryPa
   else {
     if (validationContextParam[2] != 0) {
       auStackX_10[0] = 0;
-      resourceHash = func_0x00018076a7d0(*validationContextParam,auStackX_10);
+      resourceHash = ValidateResourceAccess(*validationContextParam,auStackX_10);
       if ((int)resourceHash != 0) {
         return resourceHash;
       }
@@ -16110,7 +16110,7 @@ LAB_180899546:
   else {
     if (objectContextParam[2] != 0) {
       ArrayUnionStackX8[0] = 0;
-      integerValue1 = func_0x00018076a7d0(*objectContextParam,ArrayUnionStackX8);
+      integerValue1 = ValidateResourceAccess(*objectContextParam,ArrayUnionStackX8);
       if (integerValue1 != 0) {
         return;
       }
@@ -16155,7 +16155,7 @@ uint8_t ProcessResourceDataExtraction(int64_t *resourceContext,int64_t *outputDa
   else {
     if (objectContextParam[2] != 0) {
       auStackX_10[0] = 0;
-      resourceHash = func_0x00018076a7d0(*objectContextParam,auStackX_10);
+      resourceHash = ValidateResourceAccess(*objectContextParam,auStackX_10);
       if ((int)resourceHash != 0) {
         return resourceHash;
       }
@@ -18479,7 +18479,7 @@ LAB_18089af81:
       }
       else {
         uStack0000000000000034 = 0;
-        unsignedResult3 = func_0x00018076a7d0(*plocalContextPointer,(int64_t)&ObjectStackBuffer30 + 4);
+        unsignedResult3 = ValidateResourceAccess(*plocalContextPointer,(int64_t)&ObjectStackBuffer30 + 4);
         if (unsignedResult3 == 0) {
           if ((uint64_t)uStack0000000000000034 + 1 <= (uint64_t)plocalContextPointer[2]) goto LAB_18089af81;
           unsignedResult3 = 0x11;
@@ -18582,7 +18582,7 @@ LAB_18089b1ab:
       }
       else {
         uStack0000000000000034 = 0;
-        unaff_EDI = func_0x00018076a7d0(*plocalContextPointer,(int64_t)&ObjectStackBuffer30 + 4);
+        unaff_EDI = ValidateResourceAccess(*plocalContextPointer,(int64_t)&ObjectStackBuffer30 + 4);
         if (unaff_EDI == 0) {
           if ((uint64_t)uStack0000000000000034 + 4 <= (uint64_t)plocalContextPointer[2]) goto LAB_18089b1ab;
           unaff_EDI = 0x11;
@@ -19069,7 +19069,7 @@ uint8_t ProcessResourceBufferData(int64_t ResourceContext, int64_t *ResourceData
   }
   else {
     if (validationContextParam[2] != 0) {
-      validationResult = func_0x00018076a7d0(*validationContextParam,&stack0x00000018);
+      validationResult = ValidateResourceAccess(*validationContextParam,&stack0x00000018);
       if ((int)validationResult != 0) {
         return validationResult;
       }
@@ -19155,7 +19155,7 @@ uint8_t GetResourcePoolInfo(void)
   else {
     if (presourceTable[2] != 0) {
       in_stack_00000040 = 0;
-      unsignedResult3 = func_0x00018076a7d0(*presourceTable,&ObjectStackBuffer40);
+      unsignedResult3 = ValidateResourceAccess(*presourceTable,&ObjectStackBuffer40);
       if ((int)unsignedResult3 != 0) {
         return unsignedResult3;
       }
@@ -19216,7 +19216,7 @@ uint8_t ValidateResourceTableIntegrity(void)
   else {
     if (presourceTable[2] != 0) {
       in_stack_00000040 = 0;
-      unsignedResult3 = func_0x00018076a7d0(*presourceTable,&ObjectStackBuffer40);
+      unsignedResult3 = ValidateResourceAccess(*presourceTable,&ObjectStackBuffer40);
       if ((int)unsignedResult3 != 0) {
         return unsignedResult3;
       }
@@ -19297,7 +19297,7 @@ uint8_t InitializeSystemResourceCheck(int ResourceCheckFlag)
   else {
     if (plocalContextPointer[2] != 0) {
       uStack0000000000000040 = 0;
-      validationResult = func_0x00018076a7d0(*plocalContextPointer,&ObjectStackBuffer40);
+      validationResult = ValidateResourceAccess(*plocalContextPointer,&ObjectStackBuffer40);
       if ((int)validationResult != 0) {
         return validationResult;
       }
@@ -19588,7 +19588,7 @@ LAB_18089b91c:
     }
     else {
       auStackX_20[0] = 0;
-      unsignedResult4 = func_0x00018076a7d0(*plocalContextPointer,auStackX_20);
+      unsignedResult4 = ValidateResourceAccess(*plocalContextPointer,auStackX_20);
       if (unsignedResult4 == 0) {
         if ((uint64_t)auStackX_20[0] + 1 <= (uint64_t)plocalContextPointer[2]) goto LAB_18089b91c;
         unsignedResult4 = 0x11;
@@ -19760,7 +19760,7 @@ LAB_18089b91c:
     }
     else {
       in_stack_00000098 = 0;
-      unsignedResult4 = func_0x00018076a7d0(*plocalContextPointer,&stack0x00000098);
+      unsignedResult4 = ValidateResourceAccess(*plocalContextPointer,&stack0x00000098);
       if (unsignedResult4 == 0) {
         if ((uint64_t)in_stack_00000098 + 1 <= (uint64_t)plocalContextPointer[2]) goto LAB_18089b91c;
         unsignedResult4 = 0x11;
@@ -19914,7 +19914,7 @@ LAB_18089b91c:
     }
     else {
       in_stack_00000098 = 0;
-      unsignedResult4 = func_0x00018076a7d0(*plocalContextPointer,&stack0x00000098);
+      unsignedResult4 = ValidateResourceAccess(*plocalContextPointer,&stack0x00000098);
       if (unsignedResult4 == 0) {
         if ((uint64_t)in_stack_00000098 + 1 <= (uint64_t)plocalContextPointer[2]) goto LAB_18089b91c;
         unsignedResult4 = 0x11;
@@ -20064,7 +20064,7 @@ LAB_18089b91c:
     }
     else {
       in_stack_00000098 = 0;
-      unsignedResult3 = func_0x00018076a7d0(*plocalContextPointer,&stack0x00000098);
+      unsignedResult3 = ValidateResourceAccess(*plocalContextPointer,&stack0x00000098);
       if (unsignedResult3 == 0) {
         if ((uint64_t)in_stack_00000098 + 1 <= (uint64_t)plocalContextPointer[2]) goto LAB_18089b91c;
         unsignedResult3 = 0x11;
@@ -21783,7 +21783,7 @@ LAB_18089c743:
     }
     else {
       auStackX_20[0] = 0;
-      uVar9 = func_0x00018076a7d0(*plocalContextPointer,auStackX_20);
+      uVar9 = ValidateResourceAccess(*plocalContextPointer,auStackX_20);
       if (uVar9 == 0) {
         if ((uint64_t)auStackX_20[0] + 1 <= (uint64_t)plocalContextPointer[2]) goto LAB_18089c743;
         uVar9 = 0x11;
@@ -21820,7 +21820,7 @@ LAB_18089c78f:
   else {
     if (plocalContextPointer[2] != 0) {
       aSecurityValidationContext[0] = 0;
-      unsignedResult3 = func_0x00018076a7d0(*plocalContextPointer,aSecurityValidationContext);
+      unsignedResult3 = ValidateResourceAccess(*plocalContextPointer,aSecurityValidationContext);
       if ((int)unsignedResult3 != 0) {
         return unsignedResult3;
       }
@@ -21933,7 +21933,7 @@ LAB_18089c9a8:
     }
     else {
       uStack_84 = 0;
-      validationResult = func_0x00018076a7d0(*plocalContextPointer,&uStack_84);
+      validationResult = ValidateResourceAccess(*plocalContextPointer,&uStack_84);
       if (validationResult == 0) {
         if ((uint64_t)uStack_84 + 1 <= (uint64_t)plocalContextPointer[2]) goto LAB_18089c9a8;
         validationResult = 0x11;
@@ -21961,7 +21961,7 @@ LAB_18089c9ee:
   if ((int)unsignedResult3 != 0) {
     return unsignedResult3;
   }
-  if ((*(uint *)(resourceData + 8) < 0x60) && (unsignedResult3 = func_0x0001808de610(validationContextParam), (int)unsignedResult3 != 0)) {
+  if ((*(uint *)(resourceData + 8) < 0x60) && (unsignedResult3 = CheckSecurityValidation(validationContextParam), (int)unsignedResult3 != 0)) {
     return unsignedResult3;
   }
   unsignedResult3 = unsignedValue6;
@@ -21989,7 +21989,7 @@ LAB_18089ca9c:
       }
       else {
         uStack_84 = 0;
-        validationResult = func_0x00018076a7d0(*plocalContextPointer,&uStack_84);
+        validationResult = ValidateResourceAccess(*plocalContextPointer,&uStack_84);
         if (validationResult == 0) {
           if ((uint64_t)uStack_84 + 1 <= (uint64_t)plocalContextPointer[2]) goto LAB_18089ca9c;
           validationResult = 0x11;
@@ -22142,7 +22142,7 @@ LAB_18089c743:
     }
     else {
       *(uint32_t *)(ExecutionContextPointer + 0x7f) = 0;
-      uVar8 = func_0x00018076a7d0(resourceTable,ExecutionContextPointer + 0x7f);
+      uVar8 = ValidateResourceAccess(resourceTable,ExecutionContextPointer + 0x7f);
       if (uVar8 == 0) {
         if ((uint64_t)*(uint *)(ExecutionContextPointer + 0x7f) + 1 <= (uint64_t)plocalContextPointer[2]) goto LAB_18089c743;
         uVar8 = 0x11;
@@ -22180,7 +22180,7 @@ LAB_18089c78f:
   else {
     if (plocalContextPointer[2] != 0) {
       *(uint32_t *)(ExecutionContextPointer + 0x77) = 0;
-      unsignedResult4 = func_0x00018076a7d0(resourceTable,ExecutionContextPointer + 0x77);
+      unsignedResult4 = ValidateResourceAccess(resourceTable,ExecutionContextPointer + 0x77);
       if ((int)byteValue4 != 0) {
         return byteValue4;
       }
@@ -22295,7 +22295,7 @@ LAB_18089c9a8:
       }
       else {
         *(uint32_t *)(ExecutionContextPointer + -0x25) = 0;
-        unsignedResult3 = func_0x00018076a7d0(resourceTable,ExecutionContextPointer + -0x25);
+        unsignedResult3 = ValidateResourceAccess(resourceTable,ExecutionContextPointer + -0x25);
         fVar9 = extraout_XMM0_Da_00;
         if (unsignedResult3 == 0) {
           if ((uint64_t)*(uint *)(ExecutionContextPointer + -0x25) + 1 <= (uint64_t)plocalContextPointer[2])
@@ -22324,7 +22324,7 @@ LAB_18089c9a8:
     return byteValue4;
   }
   if ((*(uint *)(ResourceContextPointer + 8) < 0x60) &&
-     (unsignedResult4 = func_0x0001808de610(), fVar9 = extraout_XMM0_Da_02, (int)byteValue4 != 0)) {
+     (unsignedResult4 = CheckSecurityValidation(), fVar9 = extraout_XMM0_Da_02, (int)byteValue4 != 0)) {
     return byteValue4;
   }
   unsignedResult4 = unsignedValue7;
@@ -22358,7 +22358,7 @@ LAB_18089ca9c:
   }
   else {
     *(uint32_t *)(ExecutionContextPointer + -0x25) = 0;
-    unsignedResult3 = func_0x00018076a7d0(resourceTable,ExecutionContextPointer + -0x25);
+    unsignedResult3 = ValidateResourceAccess(resourceTable,ExecutionContextPointer + -0x25);
     fVar9 = extraout_XMM0_Da_04;
     if (unsignedResult3 == 0) {
       if ((uint64_t)*(uint *)(ExecutionContextPointer + -0x25) + 1 <= (uint64_t)plocalContextPointer[2]) goto LAB_18089ca9c;
@@ -22549,7 +22549,7 @@ LAB_18089c9a8:
       }
       else {
         *(uint32_t *)(ExecutionContextPointer + -0x25) = 0;
-        unsignedResult4 = func_0x00018076a7d0(resourceTable,ExecutionContextPointer + -0x25);
+        unsignedResult4 = ValidateResourceAccess(resourceTable,ExecutionContextPointer + -0x25);
         fVar12 = extraout_XMM0_Da_00;
         if (unsignedResult4 == 0) {
           if ((uint64_t)*(uint *)(ExecutionContextPointer + -0x25) + 1 <= (uint64_t)plocalContextPointer[2])
@@ -22580,7 +22580,7 @@ LAB_18089c9a8:
     return unsignedValue5;
   }
   if ((*(uint *)(ResourceContextPointer + 8) < 0x60) &&
-     (unsignedValue5 = func_0x0001808de610(), fVar12 = extraout_XMM0_Da_02, (int)unsignedValue5 != 0)) {
+     (unsignedValue5 = CheckSecurityValidation(), fVar12 = extraout_XMM0_Da_02, (int)unsignedValue5 != 0)) {
     return unsignedValue5;
   }
   if (*(uint *)(ResourceContextPointer + 8) < 0x52) {
@@ -22616,7 +22616,7 @@ LAB_18089ca9c:
   }
   else {
     *(uint32_t *)(ExecutionContextPointer + -0x25) = 0;
-    unsignedResult4 = func_0x00018076a7d0(resourceTable,ExecutionContextPointer + -0x25);
+    unsignedResult4 = ValidateResourceAccess(resourceTable,ExecutionContextPointer + -0x25);
     fVar12 = extraout_XMM0_Da_04;
     if (unsignedResult4 == 0) {
       if ((uint64_t)*(uint *)(ExecutionContextPointer + -0x25) + 1 <= (uint64_t)plocalContextPointer[2]) goto LAB_18089ca9c;
@@ -22807,7 +22807,7 @@ LAB_18089c9a8:
       }
       else {
         *(uint32_t *)(ExecutionContextPointer + -0x25) = 0;
-        unsignedResult4 = func_0x00018076a7d0(resourceTable,ExecutionContextPointer + -0x25);
+        unsignedResult4 = ValidateResourceAccess(resourceTable,ExecutionContextPointer + -0x25);
         fVar12 = extraout_XMM0_Da_00;
         if (unsignedResult4 == 0) {
           if ((uint64_t)*(uint *)(ExecutionContextPointer + -0x25) + 1 <= (uint64_t)plocalContextPointer[2])
@@ -22838,7 +22838,7 @@ LAB_18089c9a8:
     return unsignedValue5;
   }
   if ((*(uint *)(ResourceContextPointer + 8) < 0x60) &&
-     (unsignedValue5 = func_0x0001808de610(), fVar12 = extraout_XMM0_Da_02, (int)unsignedValue5 != 0)) {
+     (unsignedValue5 = CheckSecurityValidation(), fVar12 = extraout_XMM0_Da_02, (int)unsignedValue5 != 0)) {
     return unsignedValue5;
   }
   if (*(uint *)(ResourceContextPointer + 8) < 0x52) {
@@ -22874,7 +22874,7 @@ LAB_18089ca9c:
   }
   else {
     *(uint32_t *)(ExecutionContextPointer + -0x25) = 0;
-    unsignedResult4 = func_0x00018076a7d0(resourceTable,ExecutionContextPointer + -0x25);
+    unsignedResult4 = ValidateResourceAccess(resourceTable,ExecutionContextPointer + -0x25);
     fVar12 = extraout_XMM0_Da_04;
     if (unsignedResult4 == 0) {
       if ((uint64_t)*(uint *)(ExecutionContextPointer + -0x25) + 1 <= (uint64_t)plocalContextPointer[2]) goto LAB_18089ca9c;
@@ -23019,7 +23019,7 @@ LAB_18089c9a8:
       }
       else {
         *(int *)(ExecutionContextPointer + -0x25) = iVar9;
-        unsignedResult4 = func_0x00018076a7d0(resourceTable,ExecutionContextPointer + -0x25);
+        unsignedResult4 = ValidateResourceAccess(resourceTable,ExecutionContextPointer + -0x25);
         objectContextParam = extraout_XMM0_Da;
         if (unsignedResult4 == 0) {
           if ((uint64_t)*(uint *)(ExecutionContextPointer + -0x25) + 1 <= (uint64_t)plocalContextPointer[2])
@@ -23050,7 +23050,7 @@ LAB_18089c9a8:
     return unsignedValue6;
   }
   if ((*(uint *)(ResourceContextPointer + 8) < 0x60) &&
-     (unsignedValue6 = func_0x0001808de610(), objectContextParam = extraout_XMM0_Da_01, (int)unsignedValue6 != 0)) {
+     (unsignedValue6 = CheckSecurityValidation(), objectContextParam = extraout_XMM0_Da_01, (int)unsignedValue6 != 0)) {
     return unsignedValue6;
   }
   if (*(uint *)(ResourceContextPointer + 8) < 0x52) {
@@ -23081,7 +23081,7 @@ LAB_18089ca9c:
       }
       else {
         *(int *)(ExecutionContextPointer + -0x25) = iVar9;
-        unsignedResult4 = func_0x00018076a7d0(resourceTable,ExecutionContextPointer + -0x25);
+        unsignedResult4 = ValidateResourceAccess(resourceTable,ExecutionContextPointer + -0x25);
         objectContextParam = extraout_XMM0_Da_03;
         if (unsignedResult4 == 0) {
           if ((uint64_t)*(uint *)(ExecutionContextPointer + -0x25) + 1 <= (uint64_t)plocalContextPointer[2])
@@ -23230,7 +23230,7 @@ uint64_t ResourceDataVerifier(int64_t objectContextParam,int64_t *validationCont
     else {
       if (plocalContextPointer[2] != 0) {
         auStackX_20[0] = 0;
-        unsignedResult3 = func_0x00018076a7d0(*plocalContextPointer,auStackX_20);
+        unsignedResult3 = ValidateResourceAccess(*plocalContextPointer,auStackX_20);
         if ((int)unsignedResult3 != 0) {
           return unsignedResult3;
         }
@@ -23310,7 +23310,7 @@ uint64_t ValidateAndProcessResourceDataIntegrity(void)
     else {
       if (plocalContextPointer[2] != 0) {
         in_stack_00000088 = 0;
-        unsignedResult3 = func_0x00018076a7d0(*plocalContextPointer,&stack0x00000088);
+        unsignedResult3 = ValidateResourceAccess(*plocalContextPointer,&stack0x00000088);
         if ((int)unsignedResult3 != 0) {
           return unsignedResult3;
         }
@@ -23442,7 +23442,7 @@ uint64_t ValidateResourcePackageStructure(int64_t objectContextParam,int64_t *va
   else {
     if (plocalContextPointer[2] != 0) {
       aSecurityValidationContext[0] = 0;
-      validationResult = func_0x00018076a7d0(*plocalContextPointer,aSecurityValidationContext);
+      validationResult = ValidateResourceAccess(*plocalContextPointer,aSecurityValidationContext);
       if ((int)validationResult != 0) {
         return validationResult;
       }
@@ -23475,7 +23475,7 @@ LAB_18089cef2:
   else {
     if (plocalContextPointer[2] != 0) {
       aSecurityValidationContext[0] = 0;
-      validationResult = func_0x00018076a7d0(*plocalContextPointer,aSecurityValidationContext);
+      validationResult = ValidateResourceAccess(*plocalContextPointer,aSecurityValidationContext);
       if ((int)validationResult != 0) {
         return validationResult;
       }
@@ -23513,7 +23513,7 @@ LAB_18089d034:
     }
     else {
       auStackX_20[0] = 0;
-      unsignedResult3 = func_0x00018076a7d0(*plocalContextPointer,auStackX_20);
+      unsignedResult3 = ValidateResourceAccess(*plocalContextPointer,auStackX_20);
       if (unsignedResult3 == 0) {
         if ((uint64_t)auStackX_20[0] + 1 <= (uint64_t)plocalContextPointer[2]) goto LAB_18089d034;
         unsignedResult3 = 0x11;
@@ -23567,7 +23567,7 @@ uint64_t ExecuteResourceDataIntegrityValidation(void)
   else {
     if (plocalContextPointer[2] != 0) {
       _cStack0000000000000090 = 0;
-      validationResult = func_0x00018076a7d0(*plocalContextPointer,&stack0x00000090);
+      validationResult = ValidateResourceAccess(*plocalContextPointer,&stack0x00000090);
       if ((int)validationResult != 0) {
         return validationResult;
       }
@@ -23600,7 +23600,7 @@ LAB_18089cef2:
   else {
     if (plocalContextPointer[2] != 0) {
       _cStack0000000000000090 = 0;
-      validationResult = func_0x00018076a7d0(*plocalContextPointer,&stack0x00000090);
+      validationResult = ValidateResourceAccess(*plocalContextPointer,&stack0x00000090);
       if ((int)validationResult != 0) {
         return validationResult;
       }
@@ -23638,7 +23638,7 @@ LAB_18089d034:
     }
     else {
       in_stack_00000098 = 0;
-      unsignedResult3 = func_0x00018076a7d0(*plocalContextPointer,&stack0x00000098);
+      unsignedResult3 = ValidateResourceAccess(*plocalContextPointer,&stack0x00000098);
       if (unsignedResult3 == 0) {
         if ((uint64_t)in_stack_00000098 + 1 <= (uint64_t)plocalContextPointer[2]) goto LAB_18089d034;
         unsignedResult3 = 0x11;
@@ -23692,7 +23692,7 @@ LAB_18089d034:
     }
     else {
       in_stack_00000098 = (uint)unaff_R15;
-      validationResult = func_0x00018076a7d0(*plocalContextPointer,&stack0x00000098);
+      validationResult = ValidateResourceAccess(*plocalContextPointer,&stack0x00000098);
       if (validationResult == 0) {
         if ((uint64_t)in_stack_00000098 + 1 <= (uint64_t)plocalContextPointer[2]) goto LAB_18089d034;
         validationResult = 0x11;
@@ -23982,7 +23982,7 @@ LAB_18089d455:
   else {
     if (plocalContextPointer[2] != 0) {
       auStackX_20[0] = 0;
-      unsignedResult3 = func_0x00018076a7d0(*plocalContextPointer,auStackX_20);
+      unsignedResult3 = ValidateResourceAccess(*plocalContextPointer,auStackX_20);
       if ((int)unsignedResult3 != 0) {
         return unsignedResult3;
       }
@@ -24086,7 +24086,7 @@ LAB_18089d455:
   else {
     if (plocalContextPointer[2] != 0) {
       in_stack_000000b8 = 0;
-      unsignedResult3 = func_0x00018076a7d0(*plocalContextPointer,&stack0x000000b8);
+      unsignedResult3 = ValidateResourceAccess(*plocalContextPointer,&stack0x000000b8);
       if ((int)unsignedResult3 != 0) {
         return unsignedResult3;
       }
@@ -25149,7 +25149,7 @@ uint64_t ProcessResourceDataExtraction(int64_t objectContextParam,int64_t *valid
   else {
     if (plocalContextPointer[2] != 0) {
       aSecurityValidationContext[0] = 0;
-      validationResult = func_0x00018076a7d0(*plocalContextPointer,aSecurityValidationContext);
+      validationResult = ValidateResourceAccess(*plocalContextPointer,aSecurityValidationContext);
       if ((int)validationResult != 0) {
         return validationResult;
       }
@@ -25265,7 +25265,7 @@ uint64_t ValidateAndProcessResourceData(void)
   else {
     if (plocalContextPointer[2] != 0) {
       in_stack_000000b0 = 0;
-      validationResult = func_0x00018076a7d0(*plocalContextPointer,&stack0x000000b0);
+      validationResult = ValidateResourceAccess(*plocalContextPointer,&stack0x000000b0);
       if ((int)validationResult != 0) {
         return validationResult;
       }
@@ -25376,7 +25376,7 @@ uint64_t ValidateAndProcessResourceDataVariantB(void)
   else {
     if (plocalContextPointer[2] != 0) {
       in_stack_000000b0 = 0;
-      validationResult = func_0x00018076a7d0(*plocalContextPointer,&stack0x000000b0);
+      validationResult = ValidateResourceAccess(*plocalContextPointer,&stack0x000000b0);
       if ((int)validationResult != 0) {
         return validationResult;
       }
@@ -25483,7 +25483,7 @@ uint64_t ValidateAndProcessResourceDataVariantC(void)
   else {
     if (plocalContextPointer[2] != 0) {
       in_stack_000000b0 = 0;
-      validationResult = func_0x00018076a7d0(*plocalContextPointer,&stack0x000000b0);
+      validationResult = ValidateResourceAccess(*plocalContextPointer,&stack0x000000b0);
       if ((int)validationResult != 0) {
         return validationResult;
       }
@@ -25987,7 +25987,7 @@ LAB_18089ea0f:
   }
   else {
     aSecurityValidationContext[0] = 0;
-    unsignedResult4 = func_0x00018076a7d0(*presourceTable,aSecurityValidationContext);
+    unsignedResult4 = ValidateResourceAccess(*presourceTable,aSecurityValidationContext);
     if ((int)byteValue4 == 0) {
       if ((uint64_t)aSecurityValidationContext[0] + 4 <= (uint64_t)presourceTable[2]) goto LAB_18089ea0f;
       unsignedResult4 = 0x11;
@@ -26020,7 +26020,7 @@ LAB_18089ea93:
           goto LAB_18089eaae;
         }
         uStack_a4 = 0;
-        unsignedResult3 = func_0x00018076a7d0(*presourceTable,&uStack_a4);
+        unsignedResult3 = ValidateResourceAccess(*presourceTable,&uStack_a4);
         bVar8 = unsignedResult3 == 0;
         if (bVar8) {
           if ((uint64_t)presourceTable[2] < (uint64_t)uStack_a4 + 1) {
@@ -26055,7 +26055,7 @@ LAB_18089eb22:
       }
       else {
         uStack_a4 = 0;
-        unsignedResult3 = func_0x00018076a7d0(*presourceTable,&uStack_a4);
+        unsignedResult3 = ValidateResourceAccess(*presourceTable,&uStack_a4);
         if (unsignedResult3 == 0) {
           if ((uint64_t)uStack_a4 + 1 <= (uint64_t)presourceTable[2]) goto LAB_18089eb22;
           unsignedResult3 = 0x11;
@@ -26089,7 +26089,7 @@ LAB_18089ebaa:
       }
       else {
         uStack_a4 = 0;
-        unsignedResult3 = func_0x00018076a7d0(*presourceTable,&uStack_a4);
+        unsignedResult3 = ValidateResourceAccess(*presourceTable,&uStack_a4);
         if (unsignedResult3 == 0) {
           if ((uint64_t)uStack_a4 + 1 <= (uint64_t)presourceTable[2]) goto LAB_18089ebaa;
           unsignedResult3 = 0x11;
@@ -26123,7 +26123,7 @@ LAB_18089ec32:
       }
       else {
         uStack_a4 = 0;
-        unsignedResult3 = func_0x00018076a7d0(*presourceTable,&uStack_a4);
+        unsignedResult3 = ValidateResourceAccess(*presourceTable,&uStack_a4);
         if (unsignedResult3 == 0) {
           if ((uint64_t)uStack_a4 + 1 <= (uint64_t)presourceTable[2]) goto LAB_18089ec32;
           unsignedResult3 = 0x11;
@@ -26155,7 +26155,7 @@ LAB_18089ecba:
       }
       else {
         uStack_a4 = 0;
-        unsignedResult3 = func_0x00018076a7d0(*presourceTable,&uStack_a4);
+        unsignedResult3 = ValidateResourceAccess(*presourceTable,&uStack_a4);
         if (unsignedResult3 == 0) {
           if ((uint64_t)uStack_a4 + 1 <= (uint64_t)presourceTable[2]) goto LAB_18089ecba;
           unsignedResult3 = 0x11;
@@ -26293,7 +26293,7 @@ LAB_18089ea0f:
   }
   else {
     *(uint32_t *)(ExecutionContextPointer + 0x77) = 0;
-    unsignedResult4 = func_0x00018076a7d0(localContextPointer,ExecutionContextPointer + 0x77);
+    unsignedResult4 = ValidateResourceAccess(localContextPointer,ExecutionContextPointer + 0x77);
     if ((int)byteValue4 == 0) {
       if ((uint64_t)*(uint *)(ExecutionContextPointer + 0x77) + 4 <= (uint64_t)presourceTable[2]) goto LAB_18089ea0f;
       unsignedResult4 = 0x11;
@@ -26327,7 +26327,7 @@ LAB_18089ea93:
           goto LAB_18089eaae;
         }
         *(uint32_t *)(ExecutionContextPointer + -0x45) = 0;
-        unsignedResult3 = func_0x00018076a7d0(localContextPointer,ExecutionContextPointer + -0x45);
+        unsignedResult3 = ValidateResourceAccess(localContextPointer,ExecutionContextPointer + -0x45);
         bVar7 = unsignedResult3 == 0;
         if (bVar7) {
           if ((uint64_t)presourceTable[2] < (uint64_t)*(uint *)(ExecutionContextPointer + -0x45) + 1) {
@@ -26363,7 +26363,7 @@ LAB_18089eb22:
       }
       else {
         *(uint32_t *)(ExecutionContextPointer + -0x45) = 0;
-        unsignedResult3 = func_0x00018076a7d0(localContextPointer,ExecutionContextPointer + -0x45);
+        unsignedResult3 = ValidateResourceAccess(localContextPointer,ExecutionContextPointer + -0x45);
         if (unsignedResult3 == 0) {
           if ((uint64_t)*(uint *)(ExecutionContextPointer + -0x45) + 1 <= (uint64_t)presourceTable[2])
           goto LAB_18089eb22;
@@ -26399,7 +26399,7 @@ LAB_18089ebaa:
       }
       else {
         *(uint32_t *)(ExecutionContextPointer + -0x45) = 0;
-        unsignedResult3 = func_0x00018076a7d0(localContextPointer,ExecutionContextPointer + -0x45);
+        unsignedResult3 = ValidateResourceAccess(localContextPointer,ExecutionContextPointer + -0x45);
         if (unsignedResult3 == 0) {
           if ((uint64_t)*(uint *)(ExecutionContextPointer + -0x45) + 1 <= (uint64_t)presourceTable[2])
           goto LAB_18089ebaa;
@@ -26435,7 +26435,7 @@ LAB_18089ec32:
       }
       else {
         *(uint32_t *)(ExecutionContextPointer + -0x45) = 0;
-        unsignedResult3 = func_0x00018076a7d0(localContextPointer,ExecutionContextPointer + -0x45);
+        unsignedResult3 = ValidateResourceAccess(localContextPointer,ExecutionContextPointer + -0x45);
         if (unsignedResult3 == 0) {
           if ((uint64_t)*(uint *)(ExecutionContextPointer + -0x45) + 1 <= (uint64_t)presourceTable[2])
           goto LAB_18089ec32;
@@ -26471,7 +26471,7 @@ LAB_18089ecba:
       }
       else {
         *(uint32_t *)(ExecutionContextPointer + -0x45) = 0;
-        unsignedResult3 = func_0x00018076a7d0(localContextPointer,ExecutionContextPointer + -0x45);
+        unsignedResult3 = ValidateResourceAccess(localContextPointer,ExecutionContextPointer + -0x45);
         if (unsignedResult3 == 0) {
           if ((uint64_t)*(uint *)(ExecutionContextPointer + -0x45) + 1 <= (uint64_t)presourceTable[2])
           goto LAB_18089ecba;
@@ -26548,7 +26548,7 @@ LAB_18089ea0f:
     }
     else {
       *(int *)(ExecutionContextPointer + 0x77) = (int)CleanupOption;
-      unsignedResult4 = func_0x00018076a7d0(resourceTable,ExecutionContextPointer + 0x77);
+      unsignedResult4 = ValidateResourceAccess(resourceTable,ExecutionContextPointer + 0x77);
       if ((int)byteValue4 == 0) {
         CleanupOption = 0;
         if ((uint64_t)plocalContextPointer[2] < (uint64_t)*(uint *)(ExecutionContextPointer + 0x77) + 4) {
@@ -26590,7 +26590,7 @@ LAB_18089ea93:
         goto LAB_18089eaae;
       }
       *(int *)(ExecutionContextPointer + -0x45) = (int)CleanupOption;
-      unsignedResult3 = func_0x00018076a7d0(resourceTable,ExecutionContextPointer + -0x45);
+      unsignedResult3 = ValidateResourceAccess(resourceTable,ExecutionContextPointer + -0x45);
       bVar7 = unsignedResult3 == 0;
       if (bVar7) {
         if ((uint64_t)plocalContextPointer[2] < (uint64_t)*(uint *)(ExecutionContextPointer + -0x45) + 1) {
@@ -26628,7 +26628,7 @@ LAB_18089eb22:
       }
       else {
         *(int *)(ExecutionContextPointer + -0x45) = (int)CleanupOption;
-        unsignedResult3 = func_0x00018076a7d0(resourceTable,ExecutionContextPointer + -0x45);
+        unsignedResult3 = ValidateResourceAccess(resourceTable,ExecutionContextPointer + -0x45);
         if (unsignedResult3 == 0) {
           CleanupOption = 0;
           if ((uint64_t)plocalContextPointer[2] < (uint64_t)*(uint *)(ExecutionContextPointer + -0x45) + 1) {
@@ -26671,7 +26671,7 @@ LAB_18089ebaa:
       }
       else {
         *(int *)(ExecutionContextPointer + -0x45) = (int)CleanupOption;
-        unsignedResult3 = func_0x00018076a7d0(resourceTable,ExecutionContextPointer + -0x45);
+        unsignedResult3 = ValidateResourceAccess(resourceTable,ExecutionContextPointer + -0x45);
         if (unsignedResult3 == 0) {
           CleanupOption = 0;
           if ((uint64_t)plocalContextPointer[2] < (uint64_t)*(uint *)(ExecutionContextPointer + -0x45) + 1) {
@@ -26714,7 +26714,7 @@ LAB_18089ec32:
       }
       else {
         *(int *)(ExecutionContextPointer + -0x45) = (int)CleanupOption;
-        unsignedResult3 = func_0x00018076a7d0(resourceTable,ExecutionContextPointer + -0x45);
+        unsignedResult3 = ValidateResourceAccess(resourceTable,ExecutionContextPointer + -0x45);
         if (unsignedResult3 == 0) {
           CleanupOption = 0;
           if ((uint64_t)plocalContextPointer[2] < (uint64_t)*(uint *)(ExecutionContextPointer + -0x45) + 1) {
@@ -26757,7 +26757,7 @@ LAB_18089ecba:
       }
       else {
         *(int *)(ExecutionContextPointer + -0x45) = (int)CleanupOption;
-        unsignedResult3 = func_0x00018076a7d0(resourceTable,ExecutionContextPointer + -0x45);
+        unsignedResult3 = ValidateResourceAccess(resourceTable,ExecutionContextPointer + -0x45);
         if (unsignedResult3 == 0) {
           CleanupOption = 0;
           if ((uint64_t)plocalContextPointer[2] < (uint64_t)*(uint *)(ExecutionContextPointer + -0x45) + 1) {
@@ -28389,7 +28389,7 @@ void CleanupValidationResultResources(uint8_t exceptionHandlerType, int64_t exce
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -28437,7 +28437,7 @@ void CleanupValidationResultResourcesDuplicate(uint8_t exceptionHandlerType, int
       }
     }
     else {
-      func_0x00018064e870(resourceBase,CONCAT71(0xff000000,*(void ***)(resourceBase + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(resourceBase,CONCAT71(0xff000000,*(void ***)(resourceBase + 0x70) == &ExceptionList),
                           validationResult,resourceBase,0xfffffffffffffffe);
     }
   }
@@ -28515,7 +28515,7 @@ void CleanupNestedValidationResultResources(uint8_t exceptionHandlerType, int64_
       }
     }
     else {
-      func_0x00018064e870(resourceBase,CONCAT71(0xff000000,*(void ***)(resourceBase + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(resourceBase,CONCAT71(0xff000000,*(void ***)(resourceBase + 0x70) == &ExceptionList),
                           validationResult,resourceBase,0xfffffffffffffffe);
     }
   }
@@ -28560,7 +28560,7 @@ void HandleExceptionResourceCleanup(uint8_t exceptionCode, int64_t exceptionCont
       }
     }
     else {
-      func_0x00018064e870(memoryMask,CONCAT71(0xff000000,*(void ***)(memoryMask + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(memoryMask,CONCAT71(0xff000000,*(void ***)(memoryMask + 0x70) == &ExceptionList),
                           resourcePointer,memoryMask,0xfffffffffffffffe);
     }
   }
@@ -29365,7 +29365,7 @@ void ReleaseValidationResourceAndUpdateReferenceCount(uint8_t objectContextParam
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -29721,7 +29721,7 @@ void ReleaseResourceHandleOnException(uint8_t objectContextParam, int64_t valida
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -30106,7 +30106,7 @@ void ExceptionResourceCleanupHandler(uint8_t objectContextParam,int64_t validati
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -31029,7 +31029,7 @@ void UnwindMemoryManager001(uint8_t objectContextParam,int64_t validationContext
       }
     }
     else {
-      func_0x00018064e870(memoryAddress,CONCAT71(0xff000000,*(void ***)(memoryAddress + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(memoryAddress,CONCAT71(0xff000000,*(void ***)(memoryAddress + 0x70) == &ExceptionList),
                           validationResult,memoryAddress,0xfffffffffffffffe);
     }
   }
@@ -31088,7 +31088,7 @@ void UnwindProcessController001(uint8_t objectContextParam,int64_t validationCon
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -31187,7 +31187,7 @@ void UnwindStackFrame001(uint8_t objectContextParam,int64_t validationContextPar
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -31196,7 +31196,19 @@ void UnwindStackFrame001(uint8_t objectContextParam,int64_t validationContextPar
 
 
 
-void Unwind_180902900(uint8_t objectContextParam,int64_t validationContextParam)
+/**
+ * @brief 互斥锁解锁处理器
+ * 
+ * 该函数负责处理互斥锁的解锁操作
+ * 确保线程安全和资源同步
+ * 
+ * @param objectContextParam 对象上下文参数
+ * @param validationContextParam 验证上下文参数
+ * @return 无返回值
+ * @note 此函数用于互斥锁解锁处理
+ * @warning 解锁失败可能导致死锁
+ */
+void MutexUnlockHandler(uint8_t objectContextParam,int64_t validationContextParam)
 
 {
   int *pintegerValue1;
@@ -31223,7 +31235,7 @@ void Unwind_180902900(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -31243,7 +31255,21 @@ void UnwindResourceLockHandler(uint8_t objectContextParam,int64_t validationCont
 
 
 
-void Unwind_180902930(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 安全上下文清理处理器
+ * 
+ * 该函数负责清理安全上下文相关资源
+ * 处理安全验证和清理操作
+ * 
+ * @param objectContextParam 对象上下文参数
+ * @param validationContextParam 验证上下文参数
+ * @param CleanupOption 清理选项
+ * @param CleanupFlag 清理标志
+ * @return 无返回值
+ * @note 此函数用于安全上下文清理处理
+ * @warning 清理失败可能导致安全问题
+ */
+void SecurityContextCleanupHandler(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   ProcessResourceValidation(*(int64_t *)(validationContextParam + 0x78),*(uint8_t *)(*(int64_t *)(validationContextParam + 0x78) + 0x10),
@@ -31253,7 +31279,21 @@ void Unwind_180902930(uint8_t objectContextParam,int64_t validationContextParam,
 
 
 
-void Unwind_180902940(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 验证上下文清理处理器
+ * 
+ * 该函数负责清理验证上下文相关资源
+ * 处理验证状态和清理操作
+ * 
+ * @param objectContextParam 对象上下文参数
+ * @param validationContextParam 验证上下文参数
+ * @param CleanupOption 清理选项
+ * @param CleanupFlag 清理标志
+ * @return 无返回值
+ * @note 此函数用于验证上下文清理处理
+ * @warning 清理失败可能导致验证错误
+ */
+void ValidationContextCleanupHandler(uint8_t objectContextParam,int64_t validationContextParam,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   ProcessResourceValidation(*(int64_t *)(validationContextParam + 0x78),*(uint8_t *)(*(int64_t *)(validationContextParam + 0x78) + 0x10),
@@ -31307,7 +31347,7 @@ void Unwind_180902950(uint8_t objectContextParam,int64_t validationContextParam)
         }
       }
       else {
-        func_0x00018064e870(unsignedValue7,CONCAT71(0xff000000,*(void ***)(unsignedValue7 + 0x70) == &ExceptionList),
+        ValidateMemoryAccess(unsignedValue7,CONCAT71(0xff000000,*(void ***)(unsignedValue7 + 0x70) == &ExceptionList),
                             punsignedResult3,unsignedValue7,0xfffffffffffffffe);
       }
     }
@@ -31362,7 +31402,7 @@ void Unwind_180902960(uint8_t objectContextParam,int64_t validationContextParam)
         }
       }
       else {
-        func_0x00018064e870(unsignedValue7,CONCAT71(0xff000000,*(void ***)(unsignedValue7 + 0x70) == &ExceptionList),
+        ValidateMemoryAccess(unsignedValue7,CONCAT71(0xff000000,*(void ***)(unsignedValue7 + 0x70) == &ExceptionList),
                             punsignedResult3,unsignedValue7,0xfffffffffffffffe);
       }
     }
@@ -31465,7 +31505,7 @@ void Unwind_180902a40(uint8_t objectContextParam,int64_t validationContextParam)
         }
       }
       else {
-        func_0x00018064e870(unsignedValue7,CONCAT71(0xff000000,*(void ***)(unsignedValue7 + 0x70) == &ExceptionList),
+        ValidateMemoryAccess(unsignedValue7,CONCAT71(0xff000000,*(void ***)(unsignedValue7 + 0x70) == &ExceptionList),
                             punsignedResult3,unsignedValue7,0xfffffffffffffffe);
       }
     }
@@ -31520,7 +31560,7 @@ void Unwind_180902a50(uint8_t objectContextParam,int64_t validationContextParam)
         }
       }
       else {
-        func_0x00018064e870(unsignedValue7,CONCAT71(0xff000000,*(void ***)(unsignedValue7 + 0x70) == &ExceptionList),
+        ValidateMemoryAccess(unsignedValue7,CONCAT71(0xff000000,*(void ***)(unsignedValue7 + 0x70) == &ExceptionList),
                             punsignedResult3,unsignedValue7,0xfffffffffffffffe);
       }
     }
@@ -31703,7 +31743,7 @@ void Unwind_180902ab0(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -31967,7 +32007,7 @@ void Unwind_180902bb0(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -32050,7 +32090,7 @@ void Unwind_180902bf0(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -32086,7 +32126,7 @@ void Unwind_180902c00(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -32122,7 +32162,7 @@ void Unwind_180902c10(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -32167,7 +32207,7 @@ void Unwind_180902c30(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -32203,7 +32243,7 @@ void Unwind_180902c40(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -32369,7 +32409,7 @@ void Unwind_180902cd0(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -32405,7 +32445,7 @@ void Unwind_180902ce0(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -32690,7 +32730,7 @@ void Unwind_180902e50(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -32726,7 +32766,7 @@ void Unwind_180902e60(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -32762,7 +32802,7 @@ void Unwind_180902e70(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -32803,7 +32843,7 @@ void Unwind_180902e80(uint8_t objectContextParam,int64_t validationContextParam)
         }
       }
       else {
-        func_0x00018064e870(unsignedValue6,CONCAT71(0xff000000,*(void ***)(unsignedValue6 + 0x70) == &ExceptionList),
+        ValidateMemoryAccess(unsignedValue6,CONCAT71(0xff000000,*(void ***)(unsignedValue6 + 0x70) == &ExceptionList),
                             pvalidationResult,unsignedValue6,0xfffffffffffffffe);
       }
     }
@@ -32865,7 +32905,7 @@ void Unwind_180902eb0(uint8_t objectContextParam,int64_t validationContextParam)
         }
       }
       else {
-        func_0x00018064e870(unsignedValue6,CONCAT71(0xff000000,*(void ***)(unsignedValue6 + 0x70) == &ExceptionList),
+        ValidateMemoryAccess(unsignedValue6,CONCAT71(0xff000000,*(void ***)(unsignedValue6 + 0x70) == &ExceptionList),
                             pvalidationResult,unsignedValue6,0xfffffffffffffffe);
       }
     }
@@ -32908,7 +32948,7 @@ void Unwind_180902ec0(uint8_t objectContextParam,int64_t validationContextParam)
         }
       }
       else {
-        func_0x00018064e870(unsignedValue6,CONCAT71(0xff000000,*(void ***)(unsignedValue6 + 0x70) == &ExceptionList),
+        ValidateMemoryAccess(unsignedValue6,CONCAT71(0xff000000,*(void ***)(unsignedValue6 + 0x70) == &ExceptionList),
                             pvalidationResult,unsignedValue6,0xfffffffffffffffe);
       }
     }
@@ -33021,7 +33061,7 @@ void Unwind_180902f60(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -33392,7 +33432,7 @@ void Unwind_180903130(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -33428,7 +33468,7 @@ void Unwind_180903140(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -33487,7 +33527,7 @@ void Unwind_180903160(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -33565,7 +33605,7 @@ void Unwind_180903190(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -33677,7 +33717,7 @@ void Unwind_1809031f0(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -33713,7 +33753,7 @@ void Unwind_180903200(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -33884,7 +33924,7 @@ void Unwind_180903310(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -34105,7 +34145,7 @@ void Unwind_180903460(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedValue6,CONCAT71(0xff000000,*(void ***)(unsignedValue6 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedValue6,CONCAT71(0xff000000,*(void ***)(unsignedValue6 + 0x70) == &ExceptionList),
                           punsignedResult3,unsignedValue6,0xfffffffffffffffe);
     }
   }
@@ -34159,7 +34199,7 @@ void Unwind_1809034b0(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -34195,7 +34235,7 @@ void Unwind_1809034c0(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -34231,7 +34271,7 @@ void Unwind_1809034d0(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -34267,7 +34307,7 @@ void Unwind_1809034e0(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -34303,7 +34343,7 @@ void Unwind_1809034f0(uint8_t objectContextParam,int64_t validationContextParam)
         }
       }
       else {
-        func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+        ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                             pvalidationResult,unsignedResult4,0xfffffffffffffffe);
       }
     }
@@ -34341,7 +34381,7 @@ void Unwind_180903500(uint8_t objectContextParam,int64_t validationContextParam)
         }
       }
       else {
-        func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+        ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                             pvalidationResult,unsignedResult4,0xfffffffffffffffe);
       }
     }
@@ -34406,7 +34446,7 @@ void Unwind_180903510(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedValue6,CONCAT71(0xff000000,*(void ***)(unsignedValue6 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedValue6,CONCAT71(0xff000000,*(void ***)(unsignedValue6 + 0x70) == &ExceptionList),
                           punsignedResult3,unsignedValue6,0xfffffffffffffffe);
     }
   }
@@ -34442,7 +34482,7 @@ void Unwind_180903520(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -34492,7 +34532,7 @@ void Unwind_180903560(uint8_t objectContextParam,int64_t validationContextParam)
         }
       }
       else {
-        func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+        ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                             pvalidationResult,unsignedResult4,0xfffffffffffffffe);
       }
     }
@@ -34555,7 +34595,7 @@ void Unwind_180903580(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedValue6,CONCAT71(0xff000000,*(void ***)(unsignedValue6 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedValue6,CONCAT71(0xff000000,*(void ***)(unsignedValue6 + 0x70) == &ExceptionList),
                           punsignedResult3,unsignedValue6,0xfffffffffffffffe);
     }
   }
@@ -34618,7 +34658,7 @@ void Unwind_1809035e0(uint8_t objectContextParam,int64_t validationContextParam)
         }
       }
       else {
-        func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+        ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                             pvalidationResult,unsignedResult4,0xfffffffffffffffe);
       }
     }
@@ -34656,7 +34696,7 @@ void Unwind_1809035f0(uint8_t objectContextParam,int64_t validationContextParam)
         }
       }
       else {
-        func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+        ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                             pvalidationResult,unsignedResult4,0xfffffffffffffffe);
       }
     }
@@ -39496,7 +39536,7 @@ void Unwind_180904630(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -40058,7 +40098,7 @@ void Unwind_180904920(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -40094,7 +40134,7 @@ void Unwind_180904930(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -40174,7 +40214,7 @@ void Unwind_180904960(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedValue6,CONCAT71(0xff000000,*(void ***)(unsignedValue6 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedValue6,CONCAT71(0xff000000,*(void ***)(unsignedValue6 + 0x70) == &ExceptionList),
                           punsignedResult3,unsignedValue6,0xfffffffffffffffe);
     }
   }
@@ -40236,7 +40276,7 @@ void Unwind_180904970(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedValue6,CONCAT71(0xff000000,*(void ***)(unsignedValue6 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedValue6,CONCAT71(0xff000000,*(void ***)(unsignedValue6 + 0x70) == &ExceptionList),
                           punsignedResult3,unsignedValue6,0xfffffffffffffffe);
     }
   }
@@ -40298,7 +40338,7 @@ void Unwind_180904990(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedValue6,CONCAT71(0xff000000,*(void ***)(unsignedValue6 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedValue6,CONCAT71(0xff000000,*(void ***)(unsignedValue6 + 0x70) == &ExceptionList),
                           punsignedResult3,unsignedValue6,0xfffffffffffffffe);
     }
   }
@@ -40352,7 +40392,7 @@ void Unwind_1809049d0(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -40388,7 +40428,7 @@ void Unwind_1809049e0(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -40424,7 +40464,7 @@ void Unwind_1809049f0(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -40504,7 +40544,7 @@ void Unwind_180904a20(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedValue6,CONCAT71(0xff000000,*(void ***)(unsignedValue6 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedValue6,CONCAT71(0xff000000,*(void ***)(unsignedValue6 + 0x70) == &ExceptionList),
                           punsignedResult3,unsignedValue6,0xfffffffffffffffe);
     }
   }
@@ -40566,7 +40606,7 @@ void Unwind_180904a30(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedValue6,CONCAT71(0xff000000,*(void ***)(unsignedValue6 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedValue6,CONCAT71(0xff000000,*(void ***)(unsignedValue6 + 0x70) == &ExceptionList),
                           punsignedResult3,unsignedValue6,0xfffffffffffffffe);
     }
   }
@@ -40628,7 +40668,7 @@ void Unwind_180904a50(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedValue6,CONCAT71(0xff000000,*(void ***)(unsignedValue6 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedValue6,CONCAT71(0xff000000,*(void ***)(unsignedValue6 + 0x70) == &ExceptionList),
                           punsignedResult3,unsignedValue6,0xfffffffffffffffe);
     }
   }
@@ -40673,7 +40713,7 @@ void Unwind_180904a80(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -40709,7 +40749,7 @@ void Unwind_180904a90(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -41375,7 +41415,7 @@ void Unwind_180904e70(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -41489,7 +41529,7 @@ void Unwind_180904f30(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -41617,7 +41657,7 @@ void Unwind_180904fb0(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -41777,7 +41817,7 @@ void Unwind_180905030(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -41834,7 +41874,7 @@ void Unwind_180905050(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -42191,7 +42231,7 @@ void Unwind_180905200(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -42248,7 +42288,7 @@ void Unwind_180905220(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -42323,7 +42363,7 @@ void Unwind_180905260(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -42380,7 +42420,7 @@ void Unwind_180905280(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -42523,7 +42563,7 @@ void Unwind_180905380(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -42890,7 +42930,7 @@ void Unwind_180905540(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -42953,7 +42993,7 @@ void Unwind_1809055b0(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -42989,7 +43029,7 @@ void Unwind_1809055c0(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -43581,7 +43621,7 @@ void Unwind_180905880(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -43832,7 +43872,7 @@ void Unwind_180905940(uint8_t objectContextParam,int64_t validationContextParam)
         }
       }
       else {
-        func_0x00018064e870(unsignedValue6,CONCAT71(0xff000000,*(void ***)(unsignedValue6 + 0x70) == &ExceptionList),
+        ValidateMemoryAccess(unsignedValue6,CONCAT71(0xff000000,*(void ***)(unsignedValue6 + 0x70) == &ExceptionList),
                             pvalidationResult,unsignedValue6,0xfffffffffffffffe);
       }
     }
@@ -44377,7 +44417,7 @@ void CleanupExceptionUnwindResources(uint8_t objectContextParam, int64_t validat
       }
     }
     else {
-      func_0x00018064e870(resourceAddress,CONCAT71(0xff000000,*(void ***)(resourceAddress + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(resourceAddress,CONCAT71(0xff000000,*(void ***)(resourceAddress + 0x70) == &ExceptionList),
                           resourcePointer,resourceAddress,0xfffffffffffffffe);
     }
   }
@@ -44483,7 +44523,7 @@ void Unwind_180905b90(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedValue6,CONCAT71(0xff000000,*(void ***)(unsignedValue6 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedValue6,CONCAT71(0xff000000,*(void ***)(unsignedValue6 + 0x70) == &ExceptionList),
                           punsignedResult3,unsignedValue6,0xfffffffffffffffe);
     }
   }
@@ -44736,7 +44776,7 @@ void Unwind_180905c50(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedValue6,CONCAT71(0xff000000,*(void ***)(unsignedValue6 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedValue6,CONCAT71(0xff000000,*(void ***)(unsignedValue6 + 0x70) == &ExceptionList),
                           punsignedResult3,unsignedValue6,0xfffffffffffffffe);
     }
   }
@@ -44905,7 +44945,7 @@ void Unwind_180905ca0(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedValue6,CONCAT71(0xff000000,*(void ***)(unsignedValue6 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedValue6,CONCAT71(0xff000000,*(void ***)(unsignedValue6 + 0x70) == &ExceptionList),
                           punsignedResult3,unsignedValue6,0xfffffffffffffffe);
     }
   }
@@ -45274,7 +45314,7 @@ void Unwind_180905ea0(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedValue6,CONCAT71(0xff000000,*(void ***)(unsignedValue6 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedValue6,CONCAT71(0xff000000,*(void ***)(unsignedValue6 + 0x70) == &ExceptionList),
                           punsignedResult3,unsignedValue6,0xfffffffffffffffe);
     }
   }
@@ -45377,7 +45417,7 @@ void Unwind_180905ef0(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedValue6,CONCAT71(0xff000000,*(void ***)(unsignedValue6 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedValue6,CONCAT71(0xff000000,*(void ***)(unsignedValue6 + 0x70) == &ExceptionList),
                           punsignedResult3,unsignedValue6,0xfffffffffffffffe);
     }
   }
@@ -45483,7 +45523,7 @@ void Unwind_180905f70(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedValue6,CONCAT71(0xff000000,*(void ***)(unsignedValue6 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedValue6,CONCAT71(0xff000000,*(void ***)(unsignedValue6 + 0x70) == &ExceptionList),
                           punsignedResult3,unsignedValue6,0xfffffffffffffffe);
     }
   }
@@ -45585,7 +45625,7 @@ void Unwind_180905fa0(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedValue6,CONCAT71(0xff000000,*(void ***)(unsignedValue6 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedValue6,CONCAT71(0xff000000,*(void ***)(unsignedValue6 + 0x70) == &ExceptionList),
                           punsignedResult3,unsignedValue6,0xfffffffffffffffe);
     }
   }
@@ -45667,7 +45707,7 @@ void Unwind_180905fe0(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedValue6,CONCAT71(0xff000000,*(void ***)(unsignedValue6 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedValue6,CONCAT71(0xff000000,*(void ***)(unsignedValue6 + 0x70) == &ExceptionList),
                           punsignedResult3,unsignedValue6,0xfffffffffffffffe);
     }
   }
@@ -45947,7 +45987,7 @@ void Unwind_180906160(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -45983,7 +46023,7 @@ void Unwind_180906180(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -46019,7 +46059,7 @@ void Unwind_180906190(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -46111,7 +46151,7 @@ void Unwind_1809061f0(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -46357,7 +46397,7 @@ void Unwind_180906470(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -47724,7 +47764,7 @@ void Unwind_180906b50(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -47849,7 +47889,7 @@ void Unwind_180906bb0(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -47885,7 +47925,7 @@ void Unwind_180906bc0(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -48002,7 +48042,7 @@ void Unwind_180906c50(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -48080,7 +48120,7 @@ void Unwind_180906c80(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -48116,7 +48156,7 @@ void Unwind_180906c90(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -48152,7 +48192,7 @@ void Unwind_180906ca0(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -48209,7 +48249,7 @@ void Unwind_180906cc0(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -48245,7 +48285,7 @@ void Unwind_180906cd0(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -48302,7 +48342,7 @@ void Unwind_180906cf0(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -48338,7 +48378,7 @@ void Unwind_180906d00(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -48374,7 +48414,7 @@ void Unwind_180906d10(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -48431,7 +48471,7 @@ void Unwind_180906d30(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -48467,7 +48507,7 @@ void Unwind_180906d40(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -48503,7 +48543,7 @@ void Unwind_180906d50(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -48539,7 +48579,7 @@ void Unwind_180906d60(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -48575,7 +48615,7 @@ void Unwind_180906d70(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -48611,7 +48651,7 @@ void Unwind_180906d80(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -48647,7 +48687,7 @@ void Unwind_180906d90(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -48683,7 +48723,7 @@ void Unwind_180906da0(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -48740,7 +48780,7 @@ void Unwind_180906dc0(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -49783,7 +49823,7 @@ void Unwind_180907350(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -49819,7 +49859,7 @@ void Unwind_180907360(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -49855,7 +49895,7 @@ void Unwind_180907370(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -50072,7 +50112,7 @@ void Unwind_1809074d0(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -50108,7 +50148,7 @@ void Unwind_1809074e0(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -50144,7 +50184,7 @@ void Unwind_1809074f0(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -50895,7 +50935,7 @@ void Unwind_180907880(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -51226,7 +51266,7 @@ void UnwindSystemResourceHandler002(uint8_t objectContextParam,int64_t validatio
         }
       }
       else {
-        func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+        ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                             pvalidationResult,unsignedResult4,0xfffffffffffffffe);
       }
     }
@@ -51264,7 +51304,7 @@ void ProcessResourceCleanup(uint8_t objectContextParam,int64_t validationContext
       }
     }
     else {
-      func_0x00018064e870(memoryAddress,CONCAT71(0xff000000,*(void ***)(memoryAddress + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(memoryAddress,CONCAT71(0xff000000,*(void ***)(memoryAddress + 0x70) == &ExceptionList),
                           validationResult,memoryAddress,0xfffffffffffffffe);
     }
   }
@@ -51318,7 +51358,7 @@ void ProcessResourceValidationCleanup(uint8_t objectContextParam,int64_t validat
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -51397,7 +51437,7 @@ void Unwind_180907a50(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -51433,7 +51473,7 @@ void Unwind_180907a60(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -51830,7 +51870,7 @@ void SystemUnwindValidationHandler(uint8_t objectContextParam,int64_t validation
       }
     }
     else {
-      func_0x00018064e870(AddressMask,CONCAT71(0xff000000,*(void ***)(AddressMask + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(AddressMask,CONCAT71(0xff000000,*(void ***)(AddressMask + 0x70) == &ExceptionList),
                           ValidationResult,AddressMask,0xfffffffffffffffe);
     }
   }
@@ -51937,7 +51977,7 @@ void UnwindResourceValidationAndCleanup(uint8_t exceptionContext, int64_t system
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -51973,7 +52013,7 @@ void Unwind_180907c80(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -52154,7 +52194,7 @@ void Unwind_180907d30(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -52337,7 +52377,7 @@ void Unwind_180907e90(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -52373,7 +52413,7 @@ void Unwind_180907ea0(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -52409,7 +52449,7 @@ void Unwind_180907eb0(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -52445,7 +52485,7 @@ void Unwind_180907ec0(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -52481,7 +52521,7 @@ void Unwind_180907ed0(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -52708,7 +52748,7 @@ void Unwind_180908000(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -52776,7 +52816,7 @@ void Unwind_180908030(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -53549,7 +53589,7 @@ void Unwind_180908650(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -53804,7 +53844,7 @@ void Unwind_1809087c0(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -53914,7 +53954,7 @@ void Unwind_180908830(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -53950,7 +53990,7 @@ void Unwind_180908840(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -54018,7 +54058,7 @@ void Unwind_180908870(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -54357,7 +54397,7 @@ void UnwindMutexLockD(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -54393,7 +54433,7 @@ void Unwind_180908a30(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -54429,7 +54469,7 @@ void Unwind_180908a40(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -54465,7 +54505,7 @@ void Unwind_180908a50(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -54501,7 +54541,7 @@ void Unwind_180908a60(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -54537,7 +54577,7 @@ void Unwind_180908a70(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -54573,7 +54613,7 @@ void Unwind_180908a80(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -54609,7 +54649,7 @@ void Unwind_180908a90(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -54654,7 +54694,7 @@ void Unwind_180908ab0(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -54690,7 +54730,7 @@ void Unwind_180908ac0(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -54726,7 +54766,7 @@ void Unwind_180908ad0(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -54799,7 +54839,7 @@ void Unwind_180908b10(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -55302,7 +55342,7 @@ void Unwind_180908dd0(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -55347,7 +55387,7 @@ void Unwind_180908df0(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -55383,7 +55423,7 @@ void Unwind_180908e00(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -55447,7 +55487,7 @@ void Unwind_180908e50(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -55483,7 +55523,7 @@ void Unwind_180908e60(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -55519,7 +55559,7 @@ void Unwind_180908e70(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -55903,7 +55943,7 @@ void Unwind_180909090(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -55994,7 +56034,7 @@ void Unwind_1809090b0(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -56231,7 +56271,7 @@ void Unwind_180909290(uint8_t objectContextParam,int64_t validationContextParam)
         }
       }
       else {
-        func_0x00018064e870(unsignedValue6,CONCAT71(0xff000000,*(void ***)(unsignedValue6 + 0x70) == &ExceptionList),
+        ValidateMemoryAccess(unsignedValue6,CONCAT71(0xff000000,*(void ***)(unsignedValue6 + 0x70) == &ExceptionList),
                             pvalidationResult,unsignedValue6,0xfffffffffffffffe);
       }
     }
@@ -56288,7 +56328,7 @@ void Unwind_1809092d0(uint8_t objectContextParam,int64_t validationContextParam)
         }
       }
       else {
-        func_0x00018064e870(unsignedValue6,CONCAT71(0xff000000,*(void ***)(unsignedValue6 + 0x70) == &ExceptionList),
+        ValidateMemoryAccess(unsignedValue6,CONCAT71(0xff000000,*(void ***)(unsignedValue6 + 0x70) == &ExceptionList),
                             pvalidationResult,unsignedValue6,0xfffffffffffffffe);
       }
     }
@@ -56331,7 +56371,7 @@ void Unwind_1809092e0(uint8_t objectContextParam,int64_t validationContextParam)
         }
       }
       else {
-        func_0x00018064e870(unsignedValue6,CONCAT71(0xff000000,*(void ***)(unsignedValue6 + 0x70) == &ExceptionList),
+        ValidateMemoryAccess(unsignedValue6,CONCAT71(0xff000000,*(void ***)(unsignedValue6 + 0x70) == &ExceptionList),
                             pvalidationResult,unsignedValue6,0xfffffffffffffffe);
       }
     }
@@ -57207,7 +57247,7 @@ void Unwind_180909660(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -57243,7 +57283,7 @@ void Unwind_180909670(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -57279,7 +57319,7 @@ void Unwind_180909680(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -57315,7 +57355,7 @@ void Unwind_180909690(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -57351,7 +57391,7 @@ void Unwind_1809096a0(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -57811,7 +57851,7 @@ void Unwind_180909860(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -58018,7 +58058,7 @@ void Unwind_180909a00(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -58086,7 +58126,7 @@ void Unwind_180909a40(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -58122,7 +58162,7 @@ void Unwind_180909a50(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -58384,7 +58424,7 @@ void Unwind_180909c20(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -58783,7 +58823,7 @@ void Unwind_180909f60(uint8_t objectContextParam,int64_t validationContextParam)
         }
       }
       else {
-        func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+        ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                             pvalidationResult,unsignedResult4,0xfffffffffffffffe);
       }
     }
@@ -59403,7 +59443,7 @@ void Unwind_18090a450(uint8_t objectContextParam,int64_t validationContextParam)
         }
       }
       else {
-        func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+        ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                             pvalidationResult,unsignedResult4,0xfffffffffffffffe);
       }
     }
@@ -59604,7 +59644,7 @@ void Unwind_18090a5c0(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -59640,7 +59680,7 @@ void Unwind_18090a5d0(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -59848,7 +59888,7 @@ void Unwind_18090a780(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -59898,7 +59938,7 @@ void Unwind_18090a7a0(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -60077,7 +60117,7 @@ void Unwind_18090a880(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -60113,7 +60153,7 @@ void Unwind_18090a890(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -60337,7 +60377,7 @@ void Unwind_18090a930(uint8_t objectContextParam,int64_t validationContextParam)
         }
       }
       else {
-        func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+        ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                             pvalidationResult,unsignedResult4,0xfffffffffffffffe);
       }
     }
@@ -60375,7 +60415,7 @@ void Unwind_18090a940(uint8_t objectContextParam,int64_t validationContextParam)
         }
       }
       else {
-        func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+        ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                             pvalidationResult,unsignedResult4,0xfffffffffffffffe);
       }
     }
@@ -60413,7 +60453,7 @@ void Unwind_18090a950(uint8_t objectContextParam,int64_t validationContextParam)
         }
       }
       else {
-        func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+        ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                             pvalidationResult,unsignedResult4,0xfffffffffffffffe);
       }
     }
@@ -60451,7 +60491,7 @@ void Unwind_18090a960(uint8_t objectContextParam,int64_t validationContextParam)
         }
       }
       else {
-        func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+        ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                             pvalidationResult,unsignedResult4,0xfffffffffffffffe);
       }
     }
@@ -60489,7 +60529,7 @@ void Unwind_18090a970(uint8_t objectContextParam,int64_t validationContextParam)
         }
       }
       else {
-        func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+        ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                             pvalidationResult,unsignedResult4,0xfffffffffffffffe);
       }
     }
@@ -63522,7 +63562,7 @@ void Unwind_18090c140(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -63667,7 +63707,7 @@ void Unwind_18090c1c0(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -63822,7 +63862,7 @@ void Unwind_18090c280(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -63894,7 +63934,7 @@ void Unwind_18090c2d0(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -63930,7 +63970,7 @@ void Unwind_18090c2e0(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -64078,7 +64118,7 @@ void Unwind_18090c3b0(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -64137,7 +64177,7 @@ void Unwind_18090c400(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -64435,7 +64475,7 @@ void Unwind_18090c530(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -64856,7 +64896,7 @@ void Unwind_18090c610(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -64892,7 +64932,7 @@ void Unwind_18090c620(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -67017,7 +67057,7 @@ void Unwind_18090d000(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -67053,7 +67093,7 @@ void Unwind_18090d010(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -67089,7 +67129,7 @@ void Unwind_18090d020(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -67125,7 +67165,7 @@ void Unwind_18090d030(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -67161,7 +67201,7 @@ void Unwind_18090d040(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -67197,7 +67237,7 @@ void Unwind_18090d050(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -67233,7 +67273,7 @@ void Unwind_18090d060(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -67269,7 +67309,7 @@ void Unwind_18090d070(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -67305,7 +67345,7 @@ void Unwind_18090d080(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -67341,7 +67381,7 @@ void Unwind_18090d090(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -67377,7 +67417,7 @@ void Unwind_18090d0a0(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -67413,7 +67453,7 @@ void Unwind_18090d0b0(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -67449,7 +67489,7 @@ void Unwind_18090d0c0(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -67485,7 +67525,7 @@ void Unwind_18090d0d0(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -67521,7 +67561,7 @@ void Unwind_18090d0e0(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -67557,7 +67597,7 @@ void Unwind_18090d0f0(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -67593,7 +67633,7 @@ void Unwind_18090d100(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -67629,7 +67669,7 @@ void Unwind_18090d110(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -67665,7 +67705,7 @@ void Unwind_18090d120(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -67701,7 +67741,7 @@ void Unwind_18090d130(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -67737,7 +67777,7 @@ void Unwind_18090d140(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -67773,7 +67813,7 @@ void Unwind_18090d150(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -67809,7 +67849,7 @@ void Unwind_18090d160(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -67845,7 +67885,7 @@ void Unwind_18090d170(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -67881,7 +67921,7 @@ void Unwind_18090d180(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -67928,7 +67968,7 @@ void Unwind_18090d1a0(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -67964,7 +68004,7 @@ void Unwind_18090d1b0(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -68000,7 +68040,7 @@ void Unwind_18090d1c0(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -68036,7 +68076,7 @@ void Unwind_18090d1d0(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -68072,7 +68112,7 @@ void Unwind_18090d1e0(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -68108,7 +68148,7 @@ void Unwind_18090d1f0(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -68144,7 +68184,7 @@ void Unwind_18090d200(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -68180,7 +68220,7 @@ void Unwind_18090d210(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -68216,7 +68256,7 @@ void Unwind_18090d220(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -68252,7 +68292,7 @@ void Unwind_18090d230(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -68288,7 +68328,7 @@ void Unwind_18090d240(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -68324,7 +68364,7 @@ void Unwind_18090d250(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -68360,7 +68400,7 @@ void Unwind_18090d260(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -68396,7 +68436,7 @@ void Unwind_18090d270(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -68432,7 +68472,7 @@ void Unwind_18090d280(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -68468,7 +68508,7 @@ void Unwind_18090d290(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -68504,7 +68544,7 @@ void Unwind_18090d2a0(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -68540,7 +68580,7 @@ void Unwind_18090d2b0(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -68576,7 +68616,7 @@ void Unwind_18090d2c0(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -68612,7 +68652,7 @@ void Unwind_18090d2d0(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -68648,7 +68688,7 @@ void Unwind_18090d2e0(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -68684,7 +68724,7 @@ void Unwind_18090d2f0(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -68720,7 +68760,7 @@ void Unwind_18090d300(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -68756,7 +68796,7 @@ void Unwind_18090d310(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -68848,7 +68888,7 @@ void Unwind_18090d360(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -68884,7 +68924,7 @@ void Unwind_18090d370(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -68920,7 +68960,7 @@ void Unwind_18090d380(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -68956,7 +68996,7 @@ void Unwind_18090d390(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -68992,7 +69032,7 @@ void Unwind_18090d3a0(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -69028,7 +69068,7 @@ void Unwind_18090d3b0(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -69064,7 +69104,7 @@ void Unwind_18090d3c0(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -69100,7 +69140,7 @@ void Unwind_18090d3d0(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -69136,7 +69176,7 @@ void Unwind_18090d3e0(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -69172,7 +69212,7 @@ void Unwind_18090d3f0(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -69208,7 +69248,7 @@ void Unwind_18090d400(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -69244,7 +69284,7 @@ void Unwind_18090d410(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -69280,7 +69320,7 @@ void Unwind_18090d420(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -69316,7 +69356,7 @@ void Unwind_18090d430(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -69352,7 +69392,7 @@ void Unwind_18090d440(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -69388,7 +69428,7 @@ void Unwind_18090d450(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -69424,7 +69464,7 @@ void Unwind_18090d460(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -69460,7 +69500,7 @@ void Unwind_18090d470(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -69496,7 +69536,7 @@ void Unwind_18090d480(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -69532,7 +69572,7 @@ void Unwind_18090d490(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -69568,7 +69608,7 @@ void Unwind_18090d4a0(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -69604,7 +69644,7 @@ void Unwind_18090d4b0(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -69640,7 +69680,7 @@ void Unwind_18090d4c0(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -69676,7 +69716,7 @@ void Unwind_18090d4d0(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -69712,7 +69752,7 @@ void Unwind_18090d4e0(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -69748,7 +69788,7 @@ void Unwind_18090d4f0(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -70242,7 +70282,7 @@ void Unwind_18090d7e0(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -70765,7 +70805,7 @@ void Unwind_18090de40(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -71016,7 +71056,7 @@ void Unwind_18090e000(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -71327,7 +71367,7 @@ void Unwind_18090e3c0(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -71363,7 +71403,7 @@ void Unwind_18090e3d0(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -73361,7 +73401,7 @@ void Unwind_18090eeb0(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -73406,7 +73446,7 @@ void Unwind_18090eee0(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -73456,7 +73496,7 @@ void Unwind_18090ef20(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -73506,7 +73546,7 @@ void Unwind_18090ef50(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -73542,7 +73582,7 @@ void Unwind_18090ef60(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -74176,7 +74216,7 @@ void Unwind_18090f1b0(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -74212,7 +74252,7 @@ void Unwind_18090f1d0(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -74270,7 +74310,7 @@ void Unwind_18090f210(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -74306,7 +74346,7 @@ void Unwind_18090f230(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -74342,7 +74382,7 @@ void Unwind_18090f250(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -74378,7 +74418,7 @@ void Unwind_18090f270(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -74414,7 +74454,7 @@ void Unwind_18090f290(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -74450,7 +74490,7 @@ void Unwind_18090f2b0(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -74507,7 +74547,7 @@ void Unwind_18090f2f0(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -76305,7 +76345,7 @@ void Unwind_18090ff90(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -77173,7 +77213,7 @@ void Unwind_180910320(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -77230,7 +77270,7 @@ void Unwind_180910340(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -77266,7 +77306,7 @@ void Unwind_180910350(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -77341,7 +77381,7 @@ void Unwind_1809103c0(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -77546,7 +77586,7 @@ void Unwind_1809104f0(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -77582,7 +77622,7 @@ void Unwind_180910510(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -77767,7 +77807,7 @@ void Unwind_180910640(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -77803,7 +77843,7 @@ void Unwind_180910660(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -77901,7 +77941,7 @@ void Unwind_1809106e0(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -77961,7 +78001,7 @@ void Unwind_180910750(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -78019,7 +78059,7 @@ void Unwind_180910770(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -78055,7 +78095,7 @@ void Unwind_180910780(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -78091,7 +78131,7 @@ void Unwind_180910790(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -82245,7 +82285,7 @@ void Unwind_1809118c0(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -82311,7 +82351,7 @@ void Unwind_1809118f0(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -82452,7 +82492,7 @@ void Unwind_180911950(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -85379,7 +85419,7 @@ void Unwind_180912930(uint8_t objectContextParam,int64_t validationContextParam)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           pvalidationResult,unsignedResult4,0xfffffffffffffffe);
     }
   }
@@ -86182,7 +86222,7 @@ void InitializeSystemDataStructureW(void)
       }
     }
     else {
-      func_0x00018064e870(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(unsignedResult4,CONCAT71(0xff000000,*(void ***)(unsignedResult4 + 0x70) == &ExceptionList),
                           SystemResourceValidator,unsignedResult4,0xfffffffffffffffe);
     }
   }
