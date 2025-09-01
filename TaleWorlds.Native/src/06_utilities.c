@@ -1209,8 +1209,8 @@ void* MemoryDebuggerConfigurationData;
  * 配置内存地址对齐和边界检查
  */
 void SetupMemoryAlignment(void);
-uint32_t MemoryAlignmentPrimaryConfig;
-uint32_t MemoryAlignmentSecondaryConfig;
+uint32_t MemorySystemAlignmentPrimaryConfig;
+uint32_t MemorySystemAlignmentSecondaryConfig;
 uint32_t MemoryAlignmentTertiaryConfig;
 uint32_t MemoryAlignmentQuaternaryConfig;
 void* MemoryAlignmentReservedMemory;
@@ -37674,7 +37674,21 @@ void CleanupCharacterPointerResources(uint8_t ObjectContextParameter,int64_t Val
 
 
 
-void Unwind_180903af0(uint8_t ObjectContextParameter,int64_t ValidationContextParameter,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 执行验证上下文清理操作
+ * 
+ * 该函数负责清理和释放验证上下文相关的资源
+ * 通过调用验证上下文中存储的清理函数来释放资源
+ * 
+ * @param ObjectContextParameter 对象上下文参数，用于标识特定的资源对象
+ * @param ValidationContextParameter 验证上下文参数，包含系统验证所需的信息
+ * @param CleanupOption 清理选项，指定清理的方式和范围
+ * @param CleanupFlag 清理标志，用于控制清理过程的行为
+ * @return 无返回值
+ * @note 此函数通常在验证上下文清理过程中调用
+ * @warning 清理过程中可能会调用其他清理函数
+ */
+void CleanupValidationContextResources(uint8_t ObjectContextParameter,int64_t ValidationContextParameter,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   code *CharPointer;
