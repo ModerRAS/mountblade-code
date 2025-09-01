@@ -2114,13 +2114,13 @@ void InitializeSystemMemoryAllocator(void)
  * @param semaphoreConfig 信号量配置
  * @return 初始化成功返回0，失败返回-1
  */
-int InitializeSystemThreadSynchronization(void* threadPool, void* syncConfig, size_t mutexSize, void* semaphoreConfig)
+int InitializeSystemThreadSynchronization(void* ThreadPool, void* SyncConfig, size_t MutexSize, void* SemaphoreConfig)
 
 {
   long long initializationResult;
   
   // 初始化互斥锁和信号量
-  InitializeMutexInSitu(SystemMutexPool, 2, mutexSize, semaphoreConfig, MAX_THREAD_COUNT);
+  InitializeMutexInSitu(SystemMutexPool, 2, MutexSize, SemaphoreConfig, MAX_THREAD_COUNT);
   initializationResult = InitializeThreadPool(SystemThreadPoolInstance);
   return (initializationResult != 0) - 1;
 }
@@ -4731,7 +4731,7 @@ void InitializeSystemStringProcessor(void)
   dataBufferPointer = dataBuffer;
   dataBuffer[0] = 0;
   bufferSize = 8;
-  strcpy_s(dataBuffer,0x80,&SystemStringProcessorTemplate,stringParameter,0xfffffffffffffffe);
+  strcpy_s(DataBuffer,0x80,&SystemStringProcessorTemplate,StringParameter,0xfffffffffffffffe);
   SystemStringProcessorHandle = InitializeStringProcessorCallback(&callbackPointer);
   return;
 }
