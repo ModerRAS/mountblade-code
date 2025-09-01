@@ -26059,11 +26059,13 @@ void FUN_180051de4(long long param_1)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-// 函数: void FUN_180051e13(void)
-void FUN_180051e13(void)
+/**
+ * @brief 系统内存配置器
+ * 
+ * 负责配置系统内存管理相关的参数和设置。
+ * 该函数确保内存分配器能够正确工作。
+ */
+void SystemMemoryConfigurator(void)
 
 {
   long long lVar1;
