@@ -469,7 +469,7 @@ void* SystemStackConfigTable;
 void* SystemConfigurationTable;
 void* SystemStatusTable;
 void* SystemResourceTable;
-undefined SystemDataBuffer001;
+void* SystemDataBuffer001;
 undefined SystemDataBuffer002;
 undefined SystemDataBuffer003;
 undefined SystemDataBuffer004;
@@ -26671,7 +26671,15 @@ void InitializeUtilitySystemWithParameters(undefined8 *systemParameters)
 
 
 
-void Unwind_180901ee0(undefined8 param_1,longlong param_2)
+/**
+ * @brief 异常处理函数：解卷处理器类型1
+ * 
+ * 该函数负责处理异常情况下的资源清理和状态恢复
+ * 
+ * @param param_1 异常上下文参数
+ * @param param_2 系统上下文指针
+ */
+void UnwindExceptionHandlerType1(undefined8 param_1,longlong param_2)
 
 {
   if ((longlong *)**(longlong **)(param_2 + 0xc0) != (longlong *)0x0) {
@@ -26682,7 +26690,15 @@ void Unwind_180901ee0(undefined8 param_1,longlong param_2)
 
 
 
-void Unwind_180901ef0(undefined8 param_1,longlong param_2)
+/**
+ * @brief 异常处理函数：解卷处理器类型2
+ * 
+ * 该函数负责处理异常情况下的资源清理和状态恢复
+ * 
+ * @param param_1 异常上下文参数
+ * @param param_2 系统上下文指针
+ */
+void UnwindExceptionHandlerType2(undefined8 param_1,longlong param_2)
 
 {
   if (*(longlong **)(param_2 + 0x58) != (longlong *)0x0) {
@@ -82427,15 +82443,15 @@ void Unwind_180912970(undefined8 param_1,longlong param_2)
 undefined4 UNK_180d49260;
 
  void FUN_18094136c(undefined8 param_1,longlong param_2)
-void FUN_18094136c(undefined8 param_1,longlong param_2)
+void ProcessSystemStateReset(undefined8 systemHandle, longlong contextPointer)
 
 {
-  char cVar1;
-  int iVar2;
+  char systemState;
+  int systemStatus;
   
-  cVar1 = *(char *)(param_2 + 0x40);
-  iVar2 = func_0x0001808fd8d4();
-  if ((iVar2 != 0) && (cVar1 == '\0')) {
+  systemState = *(char *)(contextPointer + 0x40);
+  systemStatus = func_0x0001808fd8d4();
+  if ((systemStatus != 0) && (systemState == '\0')) {
     LOCK();
     _DAT_180c821d0 = 0;
     UNLOCK();
@@ -82449,16 +82465,16 @@ void FUN_18094136c(undefined8 param_1,longlong param_2)
 
 
  void FUN_180941383(undefined8 param_1,longlong param_2)
-void FUN_180941383(undefined8 param_1,longlong param_2)
+void ProcessSystemStateResetWithCallback(undefined8 systemHandle, longlong contextPointer)
 
 {
-  char cVar1;
-  int iVar2;
+  char systemState;
+  int systemStatus;
   
   FUN_1808fc5ac();
-  cVar1 = *(char *)(param_2 + 0x38);
-  iVar2 = func_0x0001808fd8d4();
-  if ((iVar2 != 0) && (cVar1 == '\0')) {
+  systemState = *(char *)(contextPointer + 0x38);
+  systemStatus = func_0x0001808fd8d4();
+  if ((systemStatus != 0) && (systemState == '\0')) {
     LOCK();
     _DAT_180c821d0 = 0;
     UNLOCK();
@@ -82470,20 +82486,20 @@ void FUN_180941383(undefined8 param_1,longlong param_2)
 
 
  void FUN_18094139f(undefined8 *param_1,longlong param_2)
-void FUN_18094139f(undefined8 *param_1,longlong param_2)
+void ConfigureSystemParameters(undefined8 *parameterArray, longlong configurationContext)
 
 {
-  FUN_1808fc51c(*(undefined8 *)(param_2 + 0x60),*(undefined4 *)(param_2 + 0x68),
-                *(undefined8 *)(param_2 + 0x70),FUN_1808fc074,*(undefined4 *)*param_1,param_1);
+  FUN_1808fc51c(*(undefined8 *)(configurationContext + 0x60),*(undefined4 *)(configurationContext + 0x68),
+                *(undefined8 *)(configurationContext + 0x70),FUN_1808fc074,*(undefined4 *)*parameterArray,parameterArray);
   return;
 }
 
 
 
-bool FUN_1809413d5(undefined8 *param_1)
+bool CheckSystemConfigurationStatus(undefined8 *configurationPointer)
 
 {
-  return *(int *)*param_1 == -0x3ffffffb;
+  return *(int *)*configurationPointer == -0x3ffffffb;
 }
 
 

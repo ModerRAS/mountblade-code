@@ -7667,7 +7667,7 @@ void ProcessNetworkConnectionPacketWriteOperation(longlong connectionContext,Net
 
 
 
-// 函数: void FUN_1808484d0(longlong connectionContext,NetworkHandle packetData)
+// 函数: void NetworkExtendedDataProcessor(longlong connectionContext,NetworkHandle packetData)
 /**
  * @brief 处理网络连接数据包写入操作
  * 
@@ -7908,7 +7908,7 @@ void SetNetworkConnectionFullConfiguration(longlong connectionHandle, uint8_t co
 
 
 
-// 函数: void FUN_180848780(longlong connectionContext,NetworkHandle packetData)
+// 函数: void NetworkConfigDataProcessor(longlong connectionContext,NetworkHandle packetData)
 /**
  * @brief 处理网络连接状态配置
  * 
@@ -7944,7 +7944,7 @@ void ProcessNetworkConnectionStateConfiguration(longlong connectionContext,Netwo
 
 
 
-// 函数: void FUN_1808487e0(longlong connectionContext,NetworkHandle packetData)
+// 函数: void NetworkDataConfigProcessor(longlong connectionContext,NetworkHandle packetData)
 /**
  * @brief 处理网络连接数据配置
  * 
@@ -7980,7 +7980,7 @@ void ProcessNetworkConnectionDataConfiguration(longlong connectionContext,Networ
 
 
 
-// 函数: void FUN_180848840(longlong connectionContext,NetworkHandle packetData)
+// 函数: void NetworkTransferConfigProcessor(longlong connectionContext,NetworkHandle packetData)
 /**
  * @brief 处理网络连接传输配置
  * 
@@ -8016,7 +8016,7 @@ void ProcessNetworkConnectionTransferConfiguration(longlong connectionContext,Ne
 
 
 
-// 函数: void FUN_1808488b0(longlong connectionContext,NetworkHandle packetData)
+// 函数: void NetworkControlProcessor(longlong connectionContext,NetworkHandle packetData)
 /**
  * @brief 处理网络连接控制配置
  * 
@@ -9915,8 +9915,18 @@ LAB_18084a1fa:
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_18084a280(NetworkHandle connectionContext,NetworkStatus packetData)
-void FUN_18084a280(NetworkHandle connectionContext,NetworkStatus packetData)
+/**
+ * @brief 网络状态数据发送器
+ * 
+ * 该函数负责发送网络状态信息。
+ * 它通过连接发送状态数据，并处理相关的连接管理。
+ * 
+ * @param connectionContext 网络连接句柄
+ * @param packetData 状态数据包
+ * @return void
+ * @note 该函数用于网络状态信息的同步和传输
+ */
+void NetworkStatusDataSender(NetworkHandle connectionContext,NetworkStatus packetData)
 
 {
   int networkStatus1;
@@ -9958,8 +9968,19 @@ LAB_18084a346:
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_18084a3d0(NetworkHandle connectionContext,NetworkStatus packetData,NetworkStatus dataSize)
-void FUN_18084a3d0(NetworkHandle connectionContext,NetworkStatus packetData,NetworkStatus dataSize)
+/**
+ * @brief 网络状态数据包处理器
+ * 
+ * 该函数处理带有状态信息的数据包。
+ * 它接收连接上下文、状态数据和数据大小，进行处理和传输。
+ * 
+ * @param connectionContext 网络连接句柄
+ * @param packetData 状态数据包
+ * @param dataSize 数据包大小
+ * @return void
+ * @note 该函数处理包含状态信息的完整数据包
+ */
+void NetworkStatusPacketHandler(NetworkHandle connectionContext,NetworkStatus packetData,NetworkStatus dataSize)
 
 {
   int networkStatus1;
@@ -10002,8 +10023,18 @@ LAB_18084a498:
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_18084a550(NetworkHandle connectionContext,NetworkStatus packetData)
-void FUN_18084a550(NetworkHandle connectionContext,NetworkStatus packetData)
+/**
+ * @brief 网络状态传输器
+ * 
+ * 该函数负责传输网络状态信息。
+ * 它通过连接发送状态数据，并处理连接的初始化和清理。
+ * 
+ * @param connectionContext 网络连接句柄
+ * @param packetData 状态数据
+ * @return void
+ * @note 该函数用于网络状态的同步和传输
+ */
+void NetworkStatusTransmitter(NetworkHandle connectionContext,NetworkStatus packetData)
 
 {
   int networkStatus1;
@@ -10044,8 +10075,18 @@ LAB_18084a608:
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_18084a680(NetworkStatus connectionContext,NetworkHandle packetData)
-void FUN_18084a680(NetworkStatus connectionContext,NetworkHandle packetData)
+/**
+ * @brief 网络连接状态处理器
+ * 
+ * 该函数处理网络连接的状态信息。
+ * 它验证连接状态，设置连接参数，并处理状态数据。
+ * 
+ * @param connectionContext 连接状态标识符
+ * @param packetData 网络数据包句柄
+ * @return void
+ * @note 该函数用于连接状态的管理和处理
+ */
+void NetworkConnectionStatusProcessor(NetworkStatus connectionContext,NetworkHandle packetData)
 
 {
   int networkStatus1;
@@ -10077,8 +10118,18 @@ LAB_18084a719:
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_18084a7a0(NetworkStatus connectionContext,NetworkHandle packetData)
-void FUN_18084a7a0(NetworkStatus connectionContext,NetworkHandle packetData)
+/**
+ * @brief 网络状态数据管理器
+ * 
+ * 该函数管理网络状态数据，包括数据的存储和检索。
+ * 它初始化连接，处理状态数据，并管理数据传输。
+ * 
+ * @param connectionContext 连接状态标识符
+ * @param packetData 网络数据包句柄
+ * @return void
+ * @note 该函数用于网络状态数据的综合管理
+ */
+void NetworkStatusDataManager(NetworkStatus connectionContext,NetworkHandle packetData)
 
 {
   int networkStatus1;
@@ -10116,8 +10167,18 @@ LAB_18084a83e:
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_18084a8c0(NetworkHandle connectionContext,NetworkStatus packetData)
-void FUN_18084a8c0(NetworkHandle connectionContext,NetworkStatus packetData)
+/**
+ * @brief 网络连接状态发送器
+ * 
+ * 该函数负责发送网络连接状态信息。
+ * 它通过连接发送状态数据，并处理连接的初始化和清理。
+ * 
+ * @param connectionContext 网络连接句柄
+ * @param packetData 状态数据包
+ * @return void
+ * @note 该函数用于网络连接状态的传输和同步
+ */
+void NetworkConnectionStatusSender(NetworkHandle connectionContext,NetworkStatus packetData)
 
 {
   int networkStatus1;
