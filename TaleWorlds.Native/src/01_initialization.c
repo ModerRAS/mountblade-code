@@ -307,20 +307,24 @@ void* SystemMemoryRegion410;
 void* SystemMemoryRegion411;
 void* SystemMemoryRegion412;
 
-// 函数: undefined FUN_1800596a0;
-undefined FUN_1800596a0;
-undefined UNK_180a06950;
-undefined UNK_180a069b0;
-undefined UNK_180a069c0;
-undefined UNK_180a071f8;
-char DAT_180c8ecee;
-undefined UNK_180a069e8;
-undefined UNK_180a06be0;
-undefined DAT_18098c090;
-undefined UNK_180a06dc8;
-undefined UNK_180a071e8;
-undefined UNK_180a071c8;
-undefined UNK_180a071d8;
+// 函数: 系统初始化入口点F
+/**
+ * @brief 系统初始化入口点F
+ * 
+ * 该函数负责系统初始化过程中的音频组件配置
+ */
+void* SystemInitializationEntryPointF;
+void* SystemMemoryRegion413;
+void* SystemMemoryRegion414;
+void* SystemMemoryRegion415;
+void* SystemMemoryRegion416;
+char SystemStatusFlagI;
+void* SystemMemoryRegion417;
+void* SystemMemoryRegion418;
+void* SystemDataTableEntryI;
+void* SystemMemoryRegion419;
+void* SystemMemoryRegion420;
+void* SystemMemoryRegion421;
 undefined DAT_180d49288;
 undefined DAT_180d49290;
 undefined DAT_180d49298;
