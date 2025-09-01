@@ -2161,9 +2161,10 @@ uint8_t SystemMemoryConfigDataTemplateTenth;               // 第10配置项
  * 设置日志文件路径和控制台输出
  */
 void ConfigureLogOutput(void);
-uint8_t SystemMemoryConfigDataTemplateB;
-uint8_t LogOutputConfigDataTemplateA;
-uint8_t LogOutputConfigDataTemplateB;
+// 日志输出配置数据模板变量
+uint8_t SystemMemoryConfigDataTemplateB;                   // 备用内存配置B
+uint8_t LogOutputConfigDataTemplateA;                     // 日志输出配置A
+uint8_t LogOutputConfigDataTemplateB;                     // 日志输出配置B
 
  void ProcessLogMessage(void);
 /**
@@ -2173,16 +2174,17 @@ uint8_t LogOutputConfigDataTemplateB;
  * 格式化消息并输出到配置的目标
  */
 void ProcessLogMessage(void);
-uint8_t LogMessageProcessorDataTemplateA;
-uint8_t LogMessageProcessorDataTemplateB;
-uint8_t LogMessageProcessorDataTemplateC;
-uint8_t LogMessageProcessorDataTemplateD;
-uint8_t SystemMemoryPool;
-uint8_t SystemMemoryManager;
-uint8_t LogMessageProcessorDataTemplateE;
-uint8_t LogMessageProcessorContextDataA;
-uint8_t LogMessageProcessorContextDataB;
-uint8_t LogMessageProcessorContextDataC;
+// 日志消息处理器数据模板变量
+uint8_t LogMessageProcessorDataTemplateA;                 // 日志处理器模板A
+uint8_t LogMessageProcessorDataTemplateB;                 // 日志处理器模板B
+uint8_t LogMessageProcessorDataTemplateC;                 // 日志处理器模板C
+uint8_t LogMessageProcessorDataTemplateD;                 // 日志处理器模板D
+uint8_t SystemMemoryPool;                                  // 系统内存池
+uint8_t SystemMemoryManager;                               // 系统内存管理器
+uint8_t LogMessageProcessorDataTemplateE;                 // 日志处理器模板E
+uint8_t LogMessageProcessorContextDataA;                  // 日志处理器上下文A
+uint8_t LogMessageProcessorContextDataB;                  // 日志处理器上下文B
+uint8_t LogMessageProcessorContextDataC;                  // 日志处理器上下文C
 uint8_t SystemMemoryController;
 uint8_t* LocaleConversionTablePointer;
 uint8_t SystemLocaleConversionDataA;
