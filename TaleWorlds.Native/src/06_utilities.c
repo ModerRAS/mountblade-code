@@ -10814,30 +10814,41 @@ LAB_180895ccb:
 
 
 
-undefined8 FUN_180895cf1(longlong param_1,undefined8 param_2,longlong param_3)
+/**
+ * @brief 处理资源哈希值和回调函数
+ * 
+ * 该函数用于处理资源哈希值，并根据哈希值执行相应的回调函数
+ * 主要用于资源管理和事件处理系统
+ * 
+ * @param resourceArray 资源数组指针，包含资源信息
+ * @param contextContext 上下文指针，包含运行时环境信息
+ * @param callbackIndex 回调函数索引，用于确定要执行的回调函数
+ * @return uint8_t 操作结果，成功返回0
+ */
+uint8_t ProcessResourceHashAndCallback(longlong resourceArray, undefined8 contextContext, longlong callbackIndex)
 
 {
   undefined8 resourceHash;
-  longlong in_RAX;
-  undefined8 *puVar2;
-  int *unaff_RDI;
-  longlong in_R10;
-  undefined8 uStack0000000000000040;
+  longlong arrayIndex;
+  undefined8 *callbackPointer;
+  int *resultPointer;
+  longlong contextBase;
+  undefined8 callbackParameter;
   
-  resourceHash = *(undefined8 *)(param_1 + 8 + in_RAX * 8);
-  uStack0000000000000040._4_4_ = (int)((ulonglong)resourceHash >> 0x20);
-  if (uStack0000000000000040._4_4_ != 0) {
-    *unaff_RDI = uStack0000000000000040._4_4_;
+  resourceHash = *(undefined8 *)(resourceArray + 8 + arrayIndex * 8);
+  callbackParameter._4_4_ = (int)((ulonglong)resourceHash >> 0x20);
+  if (callbackParameter._4_4_ != 0) {
+    *resultPointer = callbackParameter._4_4_;
     return 0;
   }
-  puVar2 = (undefined8 *)
-           ((longlong)*(int *)(*(longlong *)(in_R10 + 0x18) + param_3 * 0xc) +
-           *(longlong *)(in_R10 + 8));
-  if (puVar2 != (undefined8 *)0x0) {
-    uStack0000000000000040 = resourceHash;
-    (**(code **)*puVar2)();
+  callbackPointer = (undefined8 *)
+           ((longlong)*(int *)(*(longlong *)(contextBase + 0x18) + callbackIndex * 0xc) +
+           *(longlong *)(contextBase + 8));
+  if (callbackPointer != (undefined8 *)0x0) {
+    callbackParameter = resourceHash;
+    (**(code **)*callbackPointer)();
   }
-  *unaff_RDI = 0;
+  *resultPointer = 0;
   return 0;
 }
 
@@ -10858,85 +10869,96 @@ uint8_t GetSystemStatusCode(void)
 
 
 
-undefined8 FUN_180895d30(longlong *param_1,uint *param_2,undefined8 *param_3)
+/**
+ * @brief 在哈希表中插入或更新资源项
+ * 
+ * 该函数用于在哈希表中插入新的资源项或更新已存在的资源项
+ * 支持动态扩容和链式冲突解决
+ * 
+ * @param hashTablePointer 哈希表指针，指向哈希表结构体
+ * @param resourceHashPointer 资源哈希值指针，指向要插入的资源哈希值
+ * @param resourceDataPointer 资源数据指针，指向要插入的资源数据
+ * @return uint8_t 操作结果，成功返回0，失败返回错误码
+ */
+uint8_t InsertOrUpdateResourceInHashTable(longlong *hashTablePointer, uint *resourceHashPointer, undefined8 *resourceDataPointer)
 
 {
   uint resourceHash;
-  int iVar2;
-  int iVar3;
-  undefined8 uVar4;
-  undefined8 uVar5;
-  undefined8 *puVar6;
-  int iVar7;
-  longlong lVar8;
-  longlong lVar9;
-  uint *presourceHash0;
-  uint resourceHash1;
-  int iVar12;
-  int *piVar13;
+  int existingEntryIndex;
+  int tableCapacity;
+  undefined8 operationResult;
+  undefined8 allocationResult;
+  undefined8 *newEntryPointer;
+  int newCapacity;
+  longlong hashIndex;
+  longlong entryIndex;
+  uint *freeEntryPointer;
+  uint capacityMask;
+  int calculatedCapacity;
+  int *previousEntryPointer;
   
-  uVar4 = FUN_180895210();
-  if ((int)uVar4 == 0) {
-    if ((int)param_1[1] == 0) {
+  operationResult = ValidateHashTableState();
+  if ((int)operationResult == 0) {
+    if ((int)hashTablePointer[1] == 0) {
       return 0x1c;
     }
-    resourceHash = *param_2;
-    lVar8 = (longlong)(int)((int)param_1[1] - 1U & resourceHash);
-    piVar13 = (int *)(*param_1 + lVar8 * 4);
-    iVar2 = *(int *)(*param_1 + lVar8 * 4);
-    if (iVar2 != -1) {
-      lVar8 = param_1[2];
+    resourceHash = *resourceHashPointer;
+    hashIndex = (longlong)(int)((int)hashTablePointer[1] - 1U & resourceHash);
+    previousEntryPointer = (int *)(*hashTablePointer + hashIndex * 4);
+    existingEntryIndex = *(int *)(*hashTablePointer + hashIndex * 4);
+    if (existingEntryIndex != -1) {
+      hashIndex = hashTablePointer[2];
       do {
-        lVar9 = (longlong)iVar2;
-        if (*(uint *)(lVar8 + lVar9 * 0x10) == resourceHash) {
-          *(undefined8 *)(lVar8 + 8 + lVar9 * 0x10) = *param_3;
+        entryIndex = (longlong)existingEntryIndex;
+        if (*(uint *)(hashIndex + entryIndex * 0x10) == resourceHash) {
+          *(undefined8 *)(hashIndex + 8 + entryIndex * 0x10) = *resourceDataPointer;
           return 0;
         }
-        iVar2 = *(int *)(lVar8 + 4 + lVar9 * 0x10);
-        piVar13 = (int *)(lVar8 + 4 + lVar9 * 0x10);
-      } while (iVar2 != -1);
+        existingEntryIndex = *(int *)(hashIndex + 4 + entryIndex * 0x10);
+        previousEntryPointer = (int *)(hashIndex + 4 + entryIndex * 0x10);
+      } while (existingEntryIndex != -1);
     }
-    iVar2 = (int)param_1[4];
-    if (iVar2 == -1) {
-      uVar4 = *param_3;
-      iVar2 = (int)param_1[3];
-      iVar7 = iVar2 + 1;
-      resourceHash1 = (int)*(uint *)((longlong)param_1 + 0x1c) >> 0x1f;
-      iVar3 = (*(uint *)((longlong)param_1 + 0x1c) ^ resourceHash1) - resourceHash1;
-      if (iVar3 < iVar7) {
-        iVar12 = (int)((float)iVar3 * 1.5);
-        iVar3 = iVar7;
-        if (iVar7 <= iVar12) {
-          iVar3 = iVar12;
+    existingEntryIndex = (int)hashTablePointer[4];
+    if (existingEntryIndex == -1) {
+      operationResult = *resourceDataPointer;
+      existingEntryIndex = (int)hashTablePointer[3];
+      newCapacity = existingEntryIndex + 1;
+      capacityMask = (int)*(uint *)((longlong)hashTablePointer + 0x1c) >> 0x1f;
+      tableCapacity = (*(uint *)((longlong)hashTablePointer + 0x1c) ^ capacityMask) - capacityMask;
+      if (tableCapacity < newCapacity) {
+        calculatedCapacity = (int)((float)tableCapacity * 1.5);
+        tableCapacity = newCapacity;
+        if (newCapacity <= calculatedCapacity) {
+          tableCapacity = calculatedCapacity;
         }
-        if (iVar3 < 4) {
-          iVar12 = 4;
+        if (tableCapacity < 4) {
+          calculatedCapacity = 4;
         }
-        else if (iVar12 < iVar7) {
-          iVar12 = iVar7;
+        else if (calculatedCapacity < newCapacity) {
+          calculatedCapacity = newCapacity;
         }
-        uVar5 = FUN_1807d3f50(param_1 + 2,iVar12);
-        if ((int)uVar5 != 0) {
-          return uVar5;
+        allocationResult = ReallocateHashTableEntries(hashTablePointer + 2,calculatedCapacity);
+        if ((int)allocationResult != 0) {
+          return allocationResult;
         }
       }
-      puVar6 = (undefined8 *)((longlong)(int)param_1[3] * 0x10 + param_1[2]);
-      *puVar6 = CONCAT44(0xffffffff,resourceHash);
-      puVar6[1] = uVar4;
-      *(int *)(param_1 + 3) = (int)param_1[3] + 1;
+      newEntryPointer = (undefined8 *)((longlong)(int)hashTablePointer[3] * 0x10 + hashTablePointer[2]);
+      *newEntryPointer = CONCAT44(0xffffffff,resourceHash);
+      newEntryPointer[1] = operationResult;
+      *(int *)(hashTablePointer + 3) = (int)hashTablePointer[3] + 1;
     }
     else {
-      presourceHash0 = (uint *)((longlong)iVar2 * 0x10 + param_1[2]);
-      *(uint *)(param_1 + 4) = presourceHash0[1];
-      presourceHash0[1] = 0xffffffff;
-      *presourceHash0 = *param_2;
-      *(undefined8 *)(presourceHash0 + 2) = *param_3;
+      freeEntryPointer = (uint *)((longlong)existingEntryIndex * 0x10 + hashTablePointer[2]);
+      *(uint *)(hashTablePointer + 4) = freeEntryPointer[1];
+      freeEntryPointer[1] = 0xffffffff;
+      *freeEntryPointer = *resourceHashPointer;
+      *(undefined8 *)(freeEntryPointer + 2) = *resourceDataPointer;
     }
-    *piVar13 = iVar2;
-    *(int *)((longlong)param_1 + 0x24) = *(int *)((longlong)param_1 + 0x24) + 1;
-    uVar4 = 0;
+    *previousEntryPointer = existingEntryIndex;
+    *(int *)((longlong)hashTablePointer + 0x24) = *(int *)((longlong)hashTablePointer + 0x24) + 1;
+    operationResult = 0;
   }
-  return uVar4;
+  return operationResult;
 }
 
 
@@ -11313,7 +11335,14 @@ LAB_180895fdc:
 
 
 
-undefined8 FUN_180896027(void)
+/**
+ * @brief 获取内存分配失败错误码
+ * 
+ * 该函数返回一个固定的错误码，表示内存分配失败
+ * 
+ * @return uint8_t 错误码0x26，表示内存分配失败
+ */
+uint8_t GetMemoryAllocationFailureCode(void)
 
 {
   return 0x26;
