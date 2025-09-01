@@ -1285,10 +1285,10 @@ void* MemoryValidationHandle;
 void ProcessMemoryAllocation;
 void* MemoryAllocationContext;
 void* MemoryAllocationTable;
-void* g_memoryAllocationStatus;
-void* g_memoryAllocationConfig;
-void* g_memoryAllocationHandle;
-void* g_memoryAllocationData;
+void* MemoryAllocationStatus;
+void* MemoryAllocationConfig;
+void* MemoryAllocationHandle;
+void* MemoryAllocationData;
 
  void InitializeMemoryPool;
 /**
@@ -1298,10 +1298,10 @@ void* g_memoryAllocationData;
  * 设置内存块大小和分配策略
  */
 void InitializeMemoryPool;
-void* g_memoryPoolConfig;
-void* g_memoryPoolStatus;
-void* g_memoryPoolHandle;
-void* g_memoryPoolData;
+void* MemoryPoolConfig;
+void* MemoryPoolStatus;
+void* MemoryPoolHandle;
+void* MemoryPoolData;
 void* g_memoryPoolContext;
 
  void CleanupMemoryPool;
