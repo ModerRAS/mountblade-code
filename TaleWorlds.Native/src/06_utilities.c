@@ -18386,7 +18386,17 @@ b26e(void)
 
 
 
-ulonglong FUN_18089b2a0(longlong param_1,undefined8 *param_2)
+/**
+ * @brief 处理资源数据读取和验证
+ * 
+ * 该函数负责处理资源数据的读取、验证和完整性检查
+ * 从资源句柄中读取数据并进行必要的验证操作
+ * 
+ * @param ResourceHandle 资源句柄，用于标识特定的资源
+ * @param ResourceData 资源数据指针，包含资源的相关信息
+ * @return ulonglong 返回操作状态码，0表示成功，非0表示错误类型
+ */
+ulonglong ProcessResourceDataReadAndValidate(longlong ResourceHandle,undefined8 *ResourceData)
 
 {
   undefined8 resourceHash;
@@ -18444,7 +18454,15 @@ ulonglong FUN_18089b2a0(longlong param_1,undefined8 *param_2)
 
 
 
-ulonglong FUN_18089b307(void)
+/**
+ * @brief 执行资源数据验证和完整性检查
+ * 
+ * 该函数负责执行资源数据的验证操作，确保数据的完整性
+ * 通过读取和验证资源数据来保证系统的稳定性
+ * 
+ * @return ulonglong 返回验证状态码，0表示成功，非0表示错误类型
+ */
+ulonglong ExecuteResourceDataValidation(void)
 
 {
   undefined8 resourceHash;

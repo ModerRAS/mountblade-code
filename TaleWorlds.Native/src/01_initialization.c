@@ -11500,22 +11500,29 @@ void InitializeSystemDeviceNodeManager(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_18003acb0(void)
-void FUN_18003acb0(void)
+/**
+ * @brief 初始化系统字符串处理器
+ * 
+ * 该函数负责初始化系统的字符串处理组件，设置字符串处理的相关配置。
+ * 它会初始化字符串处理所需的数据结构和缓冲区。
+ * 
+ * @note 这是系统初始化过程中的重要组成部分，确保字符串处理系统的正常运行
+ */
+void InitializeSystemStringProcessor(void)
 
 {
-  undefined8 in_R9;
-  undefined *puStack_a0;
-  undefined1 *puStack_98;
-  undefined4 uStack_90;
-  undefined1 auStack_88 [136];
+  undefined8 systemRegisterR9;
+  undefined *systemStackPointerA0;
+  undefined1 *systemStackPointer98;
+  undefined4 systemStackValue90;
+  undefined1 systemStackBuffer88 [136];
   
-  puStack_a0 = &UNK_1809fcc28;
-  puStack_98 = auStack_88;
-  auStack_88[0] = 0;
-  uStack_90 = 0x16;
-  strcpy_s(auStack_88,0x80,&UNK_180a22538,in_R9,0xfffffffffffffffe);
-  _DAT_180c91f68 = FUN_180623800(&puStack_a0);
+  systemStackPointerA0 = &UNK_1809fcc28;
+  systemStackPointer98 = systemStackBuffer88;
+  systemStackBuffer88[0] = 0;
+  systemStackValue90 = 0x16;
+  strcpy_s(systemStackBuffer88,0x80,&UNK_180a22538,systemRegisterR9,0xfffffffffffffffe);
+  _DAT_180c91f68 = FUN_180623800(&systemStackPointerA0);
   return;
 }
 
