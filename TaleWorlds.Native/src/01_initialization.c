@@ -1478,8 +1478,13 @@ void InitializeSystemThreadManager(void)
 
 
 
-// 函数: void FUN_18002d6e0(void)
-void FUN_18002d6e0(void)
+/**
+ * @brief 初始化系统事件管理器
+ * 
+ * 该函数负责初始化系统事件管理器，设置事件处理机制和事件队列，
+ * 为系统提供事件驱动支持。
+ */
+void InitializeSystemEventManager(void)
 
 {
   char cVar1;
