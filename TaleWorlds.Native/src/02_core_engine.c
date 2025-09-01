@@ -32576,7 +32576,7 @@ float * engine_unnamed_function_1180(float *engine_data_structure_ptr)
   uint64 engine_stack_value_70;
   uint64 engine_stack_uint_68;
   uint64 engine_stack_value_60;
-  float fStack_58;
+  float engine_stack_float_58;
   float fStack_54;
   float fStack_50;
   float fStack_4c;
@@ -32648,7 +32648,7 @@ float * engine_unnamed_function_1180(float *engine_data_structure_ptr)
       engine_stack_value_70 = *(void*)(engine_data_structure_ptr + 0x4a);
       engine_stack_uint_68 = *(void*)(engine_data_structure_ptr + 0x4c);
       engine_stack_value_60 = *(void*)(engine_data_structure_ptr + 0x4e);
-      fStack_58 = engine_data_structure_ptr[0x50];
+      engine_stack_float_58 = engine_data_structure_ptr[0x50];
       fStack_54 = engine_data_structure_ptr[0x51];
       fStack_50 = engine_data_structure_ptr[0x52];
       fStack_4c = engine_data_structure_ptr[0x53];
@@ -32662,7 +32662,7 @@ float * engine_unnamed_function_1180(float *engine_data_structure_ptr)
         engine_stack_value_70 = *(void*)(engine_data_structure_ptr + 0x4a);
         engine_stack_uint_68 = *(void*)(engine_data_structure_ptr + 0x4c);
         engine_stack_value_60 = *(void*)(engine_data_structure_ptr + 0x4e);
-        fStack_58 = engine_data_structure_ptr[0x50];
+        engine_stack_float_58 = engine_data_structure_ptr[0x50];
         fStack_54 = engine_data_structure_ptr[0x51];
         fStack_50 = engine_data_structure_ptr[0x52];
         fStack_4c = engine_data_structure_ptr[0x53];
@@ -32674,7 +32674,7 @@ float * engine_unnamed_function_1180(float *engine_data_structure_ptr)
         engine_stack_value_70 = *(void*)(engine_data_structure_ptr + 0x4a);
         engine_stack_uint_68 = *(void*)(engine_data_structure_ptr + 0x4c);
         engine_stack_value_60 = *(void*)(engine_data_structure_ptr + 0x4e);
-        fStack_58 = engine_data_structure_ptr[0x50];
+        engine_stack_float_58 = engine_data_structure_ptr[0x50];
         fStack_54 = engine_data_structure_ptr[0x51];
         fStack_50 = engine_data_structure_ptr[0x52];
         fStack_4c = engine_data_structure_ptr[0x53];
@@ -35357,7 +35357,7 @@ ulonglong engine_unnamed_function_1390(longlong engine_data_structure_ptr,uint64
   ulonglong engine_stack_value_70;
   uint64 engine_stack_uint_68;
   ulonglong engine_stack_value_60;
-  float fStack_58;
+  float engine_stack_float_58;
   float fStack_54;
   float fStack_50;
   uint32 engine_stack_uint_4c;
@@ -35395,7 +35395,7 @@ LAB_180077fcf:
         engine_stack_value_70._0_4_ = (float)*(void*)(engine_system_parameter_4 + 6);
         engine_stack_uint_68 = *(void*)(engine_system_parameter_4 + 8);
         engine_stack_value_60._0_4_ = (float)*(void*)(engine_system_parameter_4 + 10);
-        fStack_58 = engine_system_parameter_4[0xc];
+        engine_stack_float_58 = engine_system_parameter_4[0xc];
         fStack_54 = engine_system_parameter_4[0xd];
         fStack_50 = engine_system_parameter_4[0xe];
       }
@@ -35430,7 +35430,7 @@ LAB_180077fcf:
                              engine_temp_float_3 * engine_temp_float_10 + engine_temp_float_7 * engine_temp_float_13 + engine_temp_float_8 * engine_temp_float_16);
         engine_stack_uint_68 = CONCAT44(engine_temp_float_4 * engine_temp_float_11 + engine_temp_float_9 * engine_temp_float_14 + engine_temp_float * engine_temp_float_17,
                              engine_temp_float_4 * engine_temp_float_10 + engine_temp_float_9 * engine_temp_float_13 + engine_temp_float * engine_temp_float_16);
-        fStack_58 = engine_temp_float_5 * engine_temp_float_10 + engine_temp_float_2 * engine_temp_float_13 + engine_temp_float_6 * engine_temp_float_16 + engine_system_parameter_4[0xc];
+        engine_stack_float_58 = engine_temp_float_5 * engine_temp_float_10 + engine_temp_float_2 * engine_temp_float_13 + engine_temp_float_6 * engine_temp_float_16 + engine_system_parameter_4[0xc];
         fStack_54 = engine_temp_float_5 * engine_temp_float_11 + engine_temp_float_2 * engine_temp_float_14 + engine_temp_float_6 * engine_temp_float_17 + engine_system_parameter_4[0xd];
         fStack_50 = engine_temp_float_5 * engine_temp_float_12 + engine_temp_float_2 * engine_temp_float_15 + engine_temp_float_6 * engine_temp_float_18 + engine_system_parameter_4[0xe];
       }
