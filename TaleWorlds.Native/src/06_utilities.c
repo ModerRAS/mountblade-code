@@ -8109,7 +8109,7 @@ uint8_t ProcessObjectContextFloatRangeValidationAndClamping(void)
     }
   }
                     // WARNING: Subroutine does not return
-  ReleaseSystemContextResources(*(uint8_t *)(RegisterR15 + 0x98));
+  ReleaseSystemContextResources(*(uint8_t *)(SecurityContextData + 0x98));
 }
 
 
@@ -8812,7 +8812,7 @@ int ProcessObjectContextValidationAndStatusUpdateSimple(int64_t ObjectContextPar
         *(uint32_t *)(StackParameter60 + 0x30) = 2;
       }
                     // WARNING: Subroutine does not return
-      ReleaseSystemContextResources(*(uint8_t *)(RegisterR15 + 0x98));
+      ReleaseSystemContextResources(*(uint8_t *)(SecurityContextData + 0x98));
     }
   }
   else if (*(int64_t *)(ObjectContextParameter + 0x18) == 0) {
@@ -8947,7 +8947,7 @@ int ProcessDataBlockOperationAndMemoryAllocation(uint8_t ObjectContextParameter,
   int operationResult;
   int64_t resourceTable;
   int64_t UnaffectedRegisterValue;
-  int64_t RegisterR15;
+  int64_t SecurityContextData;
   int64_t StackParameter60;
   
   if (in_EAX == 0) {
@@ -8967,7 +8967,7 @@ int ProcessDataBlockOperationAndMemoryAllocation(uint8_t ObjectContextParameter,
         *(uint32_t *)(StackParameter60 + 0x30) = 2;
       }
                     // WARNING: Subroutine does not return
-      ReleaseSystemContextResources(*(uint8_t *)(RegisterR15 + 0x98));
+      ReleaseSystemContextResources(*(uint8_t *)(SecurityContextData + 0x98));
     }
   }
   return OperationStatus;
@@ -34457,7 +34457,18 @@ void UnwindResourceProcessWithFlagsV2(uint8_t ObjectContextParameter,int64_t Val
 
 
 
-void Unwind_180903250(uint8_t ObjectContextParameter,int64_t ValidationContextParameter,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 处理资源操作回滚A
+ * 
+ * 该函数负责在异常情况下回滚资源操作A
+ * 处理偏移量0x90处的资源操作
+ * 
+ * @param ObjectContextParameter 对象上下文参数
+ * @param ValidationContextParameter 验证上下文参数
+ * @param CleanupOption 清理选项
+ * @param CleanupFlag 清理标志
+ */
+void ProcessResourceOperationUnwindA(uint8_t ObjectContextParameter, int64_t ValidationContextParameter, uint8_t CleanupOption, uint8_t CleanupFlag)
 
 {
   ProcessResourceOperation(*(int64_t *)(ValidationContextParameter + 0x40) + 0x90,
@@ -34468,7 +34479,18 @@ void Unwind_180903250(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 
 
 
-void Unwind_180903270(uint8_t ObjectContextParameter,int64_t ValidationContextParameter,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 处理资源操作回滚B
+ * 
+ * 该函数负责在异常情况下回滚资源操作B
+ * 处理偏移量0xc0处的资源操作
+ * 
+ * @param ObjectContextParameter 对象上下文参数
+ * @param ValidationContextParameter 验证上下文参数
+ * @param CleanupOption 清理选项
+ * @param CleanupFlag 清理标志
+ */
+void ProcessResourceOperationUnwindB(uint8_t ObjectContextParameter, int64_t ValidationContextParameter, uint8_t CleanupOption, uint8_t CleanupFlag)
 
 {
   ProcessResourceOperation(*(int64_t *)(ValidationContextParameter + 0x40) + 0xc0,
