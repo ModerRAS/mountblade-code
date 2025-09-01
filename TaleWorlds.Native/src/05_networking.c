@@ -2462,7 +2462,7 @@ int ProcessNetworkPacketPhaseOne(longlong connectionContext, longlong packetData
 void ProcessNetworkConnectionRequest(longlong requestContext, NetworkHandle connectionInfo, NetworkStatus requestFlags)
 
 {
-  FUN_18083f850(packetData,dataSize,&UNK_180983020,*(NetworkStatus *)(connectionContext + 0x10),
+  FUN_18083f850(packetData,dataSize,&NetworkDataProcessingBuffer,*(NetworkStatus *)(connectionContext + 0x10),
                 *(NetworkStatus *)(connectionContext + 0x18));
   return;
 }
@@ -2483,7 +2483,7 @@ void ProcessNetworkConnectionRequest(longlong requestContext, NetworkHandle conn
 void ProcessNetworkConnectionResponse(longlong responseContext, NetworkHandle responseData, NetworkStatus responseFlags)
 
 {
-  FUN_18083f8f0(responseData,responseFlags,&UNK_1809830a0,*(NetworkStatus *)(responseContext + 0x10),
+  FUN_18083f8f0(responseData,responseFlags,&NetworkResponseBuffer,*(NetworkStatus *)(responseContext + 0x10),
                 *(NetworkStatus *)(responseContext + 0x18),*(NetworkStatus *)(responseContext + 0x1c));
   return;
 }
@@ -2521,7 +2521,7 @@ int SerializeNetworkConnectionData(longlong connectionData, longlong outputBuffe
   headerField1 = *(NetworkStatus *)(connectionData + 0x2c);
   headerField2 = *(NetworkStatus *)(connectionData + 0x18);
   headerField3 = *(NetworkStatus *)(connectionData + 0x10);
-  bytesProcessed = FUN_18074b880(outputBuffer,bufferSize,&UNK_180983120);
+  bytesProcessed = FUN_18074b880(outputBuffer,bufferSize,&NetworkSerializationBuffer);
   currentOffset = FUN_18074b880(outputBuffer + bytesProcessed,bufferSize - bytesProcessed,&g_NetworkBufferDataTemplate);
   bytesProcessed = bytesProcessed + currentOffset;
   currentOffset = func_0x00018074b800(bytesProcessed + outputBuffer,bufferSize - bytesProcessed,headerField3);
@@ -2556,7 +2556,7 @@ int SerializeNetworkConnectionData(longlong connectionData, longlong outputBuffe
 void ValidateNetworkConnectionStatus(longlong connectionContext, NetworkHandle validationData, NetworkStatus validationFlags)
 
 {
-  FUN_18083f850(validationData,validationFlags,&UNK_180982ea0,*(NetworkStatus *)(connectionContext + 0x10),
+  FUN_18083f850(validationData,validationFlags,&NetworkReservedMemoryRegion2ea0,*(NetworkStatus *)(connectionContext + 0x10),
                 *(NetworkStatus *)(connectionContext + 0x18));
   return;
 }
@@ -2577,7 +2577,7 @@ void ValidateNetworkConnectionStatus(longlong connectionContext, NetworkHandle v
 void UpdateNetworkConnectionConfig(longlong configContext, NetworkHandle configData, NetworkStatus configFlags)
 
 {
-  FUN_18083f8f0(configData,configFlags,&UNK_180982f20,*(NetworkStatus *)(configContext + 0x10),
+  FUN_18083f8f0(configData,configFlags,&NetworkReservedMemoryRegion2f20,*(NetworkStatus *)(configContext + 0x10),
                 *(NetworkStatus *)(configContext + 0x18),*(NetworkStatus *)(configContext + 0x1c));
   return;
 }
@@ -2615,7 +2615,7 @@ int SerializeNetworkConfigData(longlong configData, longlong outputBuffer, int b
   configField1 = *(NetworkStatus *)(configData + 0x2c);
   configField2 = *(NetworkStatus *)(configData + 0x18);
   configField3 = *(NetworkStatus *)(configData + 0x10);
-  bytesProcessed = FUN_18074b880(outputBuffer,bufferSize,&UNK_180982fa0);
+  bytesProcessed = FUN_18074b880(outputBuffer,bufferSize,&NetworkReservedMemoryRegion2fa0);
   currentOffset = FUN_18074b880(outputBuffer + bytesProcessed,bufferSize - bytesProcessed,&g_NetworkBufferDataTemplate);
   bytesProcessed = bytesProcessed + currentOffset;
   currentOffset = func_0x00018074b800(bytesProcessed + outputBuffer,bufferSize - bytesProcessed,configField3);
@@ -3927,34 +3927,56 @@ void SendNetworkDataPacket(longlong connectionContext,NetworkHandle packetData,N
 
 
 
-int FUN_180843b70(longlong connectionContext,longlong packetData,int dataSize)
+/**
+ * @brief 处理网络连接数据包（基础处理流程）
+ * 
+ * 该函数负责处理网络连接中的数据包，执行基础的数据处理流程。
+ * 主要用于网络数据包的解析、验证和转发。
+ * 
+ * @param connectionContext 网络连接上下文指针
+ * @param packetData 数据包数据指针
+ * @param dataSize 数据包大小
+ * @return 处理的数据总大小
+ */
+int ProcessNetworkConnectionBasicPacket(longlong connectionContext, longlong packetData, int dataSize)
 
 {
-  NetworkStatus uVar1;
-  int networkStatus2;
-  int networkStatus3;
+  NetworkStatus connectionStatus;
+  int firstProcessingStatus;
+  int secondProcessingStatus;
   
-  uVar1 = *(NetworkStatus *)(connectionContext + 0x10);
-  networkStatus2 = FUN_18074b880(packetData,dataSize,&UNK_180983b50);
-  networkStatus3 = NetworkBufferCopyData(packetData + networkStatus2,dataSize - networkStatus2,&NetworkBufferDataTemplate);
-  networkStatus2 = networkStatus2 + networkStatus3;
-  networkStatus3 = func_0x00018074b800(networkStatus2 + packetData,dataSize - networkStatus2,uVar1);
-  return networkStatus3 + networkStatus2;
+  connectionStatus = *(NetworkStatus *)(connectionContext + 0x10);
+  firstProcessingStatus = FUN_18074b880(packetData,dataSize,&UNK_180983b50);
+  secondProcessingStatus = NetworkBufferCopyData(packetData + firstProcessingStatus,dataSize - firstProcessingStatus,&NetworkBufferDataTemplate);
+  firstProcessingStatus = firstProcessingStatus + secondProcessingStatus;
+  secondProcessingStatus = func_0x00018074b800(firstProcessingStatus + packetData,dataSize - firstProcessingStatus,connectionStatus);
+  return secondProcessingStatus + firstProcessingStatus;
 }
 
 
 
-int FUN_180843be0(longlong connectionContext,longlong packetData,int dataSize)
+/**
+ * @brief 处理网络连接高级数据包
+ * 
+ * 该函数负责处理网络连接中的高级数据包，执行复杂的数据处理流程。
+ * 主要用于网络数据包的高级解析、验证和转发。
+ * 
+ * @param connectionContext 网络连接上下文指针
+ * @param packetData 数据包数据指针
+ * @param dataSize 数据包大小
+ * @return 处理的数据总大小
+ */
+int ProcessNetworkConnectionAdvancedPacket(longlong connectionContext,longlong packetData,int dataSize)
 
 {
-  NetworkStatus uVar1;
-  NetworkStatus uVar2;
-  int networkStatus3;
-  int networkStatus4;
+  NetworkStatus connectionTimeout;
+  NetworkStatus connectionFlags;
+  int firstProcessingStatus;
+  int secondProcessingStatus;
   
-  uVar1 = *(NetworkStatus *)(connectionContext + 0x18);
-  uVar2 = *(NetworkStatus *)(connectionContext + 0x10);
-  networkStatus3 = FUN_18074b880(packetData,dataSize,&UNK_180983bd0);
+  connectionTimeout = *(NetworkStatus *)(connectionContext + 0x18);
+  connectionFlags = *(NetworkStatus *)(connectionContext + 0x10);
+  firstProcessingStatus = FUN_18074b880(packetData,dataSize,&NetworkAdvancedProcessingBuffer);
   networkStatus4 = NetworkProcessBufferData(networkStatus3 + packetData,dataSize - networkStatus3,&g_NetworkBufferDataTemplate);
   networkStatus3 = networkStatus3 + networkStatus4;
   networkStatus4 = func_0x00018074b800(networkStatus3 + packetData,dataSize - networkStatus3,uVar2);

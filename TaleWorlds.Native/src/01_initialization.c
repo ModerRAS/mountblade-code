@@ -711,7 +711,7 @@ void InitializeGameCoreSystem(void)
   systemPreviousNode[7] = 0xe2f4a30d6e6ae482;
   systemPreviousNode[8] = &GAME_CORE_NODE_DATA;
   systemPreviousNode[9] = 0;
-  systemPreviousNode[10] = systemInitializationFunction;
+  systemPreviousNode[10] = eventCallbackPointer;
   return;
 }
 
@@ -1404,11 +1404,11 @@ void InitializeSystemMemoryManager(void)
     AllocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
-  puVar7[6] = 0x406be72011d07d37;
-  puVar7[7] = 0x71876af946c867ab;
-  puVar7[8] = &UNK_1809ff978;
+  systemPreviousNode[6] = 0x406be72011d07d37;
+  systemPreviousNode[7] = 0x71876af946c867ab;
+  systemPreviousNode[8] = &UNK_1809ff978;
   systemPreviousNode[9] = 0;
-  systemPreviousNode[10] = systemInitializationFunction;
+  systemPreviousNode[10] = eventCallbackPointer;
   return;
 }
 
@@ -1463,7 +1463,7 @@ void InitializeSystemMemoryAllocator(void)
   puVar7[7] = 0x2f4bab01d34055a5;
   puVar7[8] = &UNK_1809ff990;
   puVar7[9] = 3;
-  systemPreviousNode[10] = systemInitializationFunction;
+  systemPreviousNode[10] = eventCallbackPointer;
   return;
 }
 
@@ -1572,7 +1572,7 @@ void InitializeSystemThreadManager(void)
   puVar7[7] = 0xdcfdc333a769ec93;
   puVar7[8] = &UNK_180a00370;
   puVar7[9] = 1;
-  systemPreviousNode[10] = systemInitializationFunction;
+  systemPreviousNode[10] = eventCallbackPointer;
   return;
 }
 
@@ -1627,7 +1627,7 @@ void InitializeSystemEventManager(void)
   puVar7[7] = 0xb97f048d2153e1b0;
   puVar7[8] = &UNK_180a00388;
   puVar7[9] = 4;
-  systemPreviousNode[10] = systemInitializationFunction;
+  systemPreviousNode[10] = eventCallbackPointer;
   return;
 }
 
@@ -1963,7 +1963,7 @@ void InitializeSystemDataTableStructureC(void)
   puVar7[7] = 0xc160408bde99e59f;
   puVar7[8] = &UNK_180a00430;
   systemPreviousNode[9] = 0;
-  systemPreviousNode[10] = systemInitializationFunction;
+  systemPreviousNode[10] = eventCallbackPointer;
   return;
 }
 
@@ -2019,7 +2019,7 @@ void InitializeSystemDataTableStructureD(void)
   puVar7[7] = 0xfab48faa65382fa5;
   puVar7[8] = &UNK_180a00460;
   systemPreviousNode[9] = 0;
-  systemPreviousNode[10] = systemInitializationFunction;
+  systemPreviousNode[10] = eventCallbackPointer;
   return;
 }
 
@@ -2071,11 +2071,11 @@ void InitializeSystemDataTableStructureE(void)
     AllocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
-  puVar7[6] = 0x406be72011d07d37;
-  puVar7[7] = 0x71876af946c867ab;
-  puVar7[8] = &UNK_1809ff978;
+  systemPreviousNode[6] = 0x406be72011d07d37;
+  systemPreviousNode[7] = 0x71876af946c867ab;
+  systemPreviousNode[8] = &UNK_1809ff978;
   systemPreviousNode[9] = 0;
-  systemPreviousNode[10] = systemInitializationFunction;
+  systemPreviousNode[10] = eventCallbackPointer;
   return;
 }
 
@@ -2131,7 +2131,7 @@ void InitializeSystemDataTableStructureF(void)
   puVar7[7] = 0x2f4bab01d34055a5;
   puVar7[8] = &UNK_1809ff990;
   puVar7[9] = 3;
-  systemPreviousNode[10] = systemInitializationFunction;
+  systemPreviousNode[10] = eventCallbackPointer;
   return;
 }
 
@@ -2243,7 +2243,7 @@ void InitializeSystemDataTableStructureH(void)
   puVar7[7] = 0x81d539e33614429f;
   puVar7[8] = &UNK_180a004a8;
   puVar7[9] = 4;
-  systemPreviousNode[10] = systemInitializationFunction;
+  systemPreviousNode[10] = eventCallbackPointer;
   return;
 }
 
@@ -2299,7 +2299,7 @@ void InitializeSystemDataTableStructureI(void)
   puVar7[7] = 0x703a29a844ce399;
   puVar7[8] = &UNK_180a004c0;
   puVar7[9] = 3;
-  systemPreviousNode[10] = systemInitializationFunction;
+  systemPreviousNode[10] = eventCallbackPointer;
   return;
 }
 
@@ -2406,7 +2406,7 @@ void InitializeSystemMemoryManager(void)
   puVar7[7] = 0xdcfdc333a769ec93;
   puVar7[8] = &UNK_180a00370;
   puVar7[9] = 1;
-  systemPreviousNode[10] = systemInitializationFunction;
+  systemPreviousNode[10] = eventCallbackPointer;
   return;
 }
 
@@ -2565,7 +2565,7 @@ void InitializeSystemNodeTree(void)
   puVar7[7] = 0xa9191d34ad910696;
   puVar7[8] = &UNK_180a003b8;
   systemPreviousNode[9] = 0;
-  systemPreviousNode[10] = systemInitializationFunction;
+  systemPreviousNode[10] = eventCallbackPointer;
   return;
 }
 
@@ -2769,7 +2769,7 @@ void InitializeEventSystem(void)
   puVar7[7] = 0xfab48faa65382fa5;
   puVar7[8] = &UNK_180a00460;
   systemPreviousNode[9] = 0;
-  systemPreviousNode[10] = systemInitializationFunction;
+  systemPreviousNode[10] = eventCallbackPointer;
   return;
 }
 
@@ -2824,7 +2824,7 @@ void InitializeSystemMemoryManager(void)
   puVar7[7] = 0xdcfdc333a769ec93;
   puVar7[8] = &UNK_180a00370;
   puVar7[9] = 1;
-  systemPreviousNode[10] = systemInitializationFunction;
+  systemPreviousNode[10] = eventCallbackPointer;
   return;
 }
 
@@ -2879,7 +2879,7 @@ void InitializeSystemThreadPoolManager(void)
   puVar7[7] = 0xb97f048d2153e1b0;
   puVar7[8] = &UNK_180a00388;
   puVar7[9] = 4;
-  systemPreviousNode[10] = systemInitializationFunction;
+  systemPreviousNode[10] = eventCallbackPointer;
   return;
 }
 
@@ -2991,7 +2991,7 @@ void InitializeSystemNodeTree(void)
   puVar7[7] = 0xa9191d34ad910696;
   puVar7[8] = &UNK_180a003b8;
   systemPreviousNode[9] = 0;
-  systemPreviousNode[10] = systemInitializationFunction;
+  systemPreviousNode[10] = eventCallbackPointer;
   return;
 }
 
@@ -3213,7 +3213,7 @@ void InitializeSystemSecurityManager(void)
   puVar7[7] = 0xdcfdc333a769ec93;
   puVar7[8] = &UNK_180a00370;
   puVar7[9] = 1;
-  systemPreviousNode[10] = systemInitializationFunction;
+  systemPreviousNode[10] = eventCallbackPointer;
   return;
 }
 
@@ -3268,7 +3268,7 @@ void InitializeSystemPerformanceMonitor(void)
   puVar7[7] = 0xb97f048d2153e1b0;
   puVar7[8] = &UNK_180a00388;
   puVar7[9] = 4;
-  systemPreviousNode[10] = systemInitializationFunction;
+  systemPreviousNode[10] = eventCallbackPointer;
   return;
 }
 
@@ -3380,7 +3380,7 @@ void InitializeSystemMemoryAllocator(void)
   puVar7[7] = 0xa9191d34ad910696;
   puVar7[8] = &UNK_180a003b8;
   systemPreviousNode[9] = 0;
-  systemPreviousNode[10] = systemInitializationFunction;
+  systemPreviousNode[10] = eventCallbackPointer;
   return;
 }
 
@@ -3665,7 +3665,7 @@ void InitializeSystemDebugManager(void)
   puVar7[7] = 0xfab48faa65382fa5;
   puVar7[8] = &UNK_180a00460;
   systemPreviousNode[9] = 0;
-  systemPreviousNode[10] = systemInitializationFunction;
+  systemPreviousNode[10] = eventCallbackPointer;
   return;
 }
 
@@ -3722,7 +3722,7 @@ void InitializeSystemEventHandler(void)
   puVar7[7] = 0xdcfdc333a769ec93;
   puVar7[8] = &UNK_180a00370;
   puVar7[9] = 1;
-  systemPreviousNode[10] = systemInitializationFunction;
+  systemPreviousNode[10] = eventCallbackPointer;
   return;
 }
 
@@ -3779,7 +3779,7 @@ void InitializeSystemNetworkManager(void)
   puVar7[7] = 0xb97f048d2153e1b0;
   puVar7[8] = &UNK_180a00388;
   puVar7[9] = 4;
-  systemPreviousNode[10] = systemInitializationFunction;
+  systemPreviousNode[10] = eventCallbackPointer;
   return;
 }
 
@@ -3893,7 +3893,7 @@ void InitializeSystemDataTableStructureA(void)
   puVar7[7] = 0xa9191d34ad910696;
   puVar7[8] = &UNK_180a003b8;
   systemPreviousNode[9] = 0;
-  systemPreviousNode[10] = systemInitializationFunction;
+  systemPreviousNode[10] = eventCallbackPointer;
   return;
 }
 
@@ -4175,11 +4175,11 @@ void InitializeSystemEventManager(void)
     AllocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
-  puVar7[6] = 0x406be72011d07d37;
-  puVar7[7] = 0x71876af946c867ab;
-  puVar7[8] = &UNK_1809ff978;
+  systemPreviousNode[6] = 0x406be72011d07d37;
+  systemPreviousNode[7] = 0x71876af946c867ab;
+  systemPreviousNode[8] = &UNK_1809ff978;
   systemPreviousNode[9] = 0;
-  systemPreviousNode[10] = systemInitializationFunction;
+  systemPreviousNode[10] = eventCallbackPointer;
   return;
 }
 
@@ -4229,7 +4229,7 @@ void FUN_180031b10(void)
   puVar7[7] = 0x2f4bab01d34055a5;
   puVar7[8] = &UNK_1809ff990;
   puVar7[9] = 3;
-  systemPreviousNode[10] = systemInitializationFunction;
+  systemPreviousNode[10] = eventCallbackPointer;
   return;
 }
 
@@ -4275,11 +4275,11 @@ void FUN_180031c10(void)
     AllocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
-  puVar7[6] = 0x406be72011d07d37;
-  puVar7[7] = 0x71876af946c867ab;
-  puVar7[8] = &UNK_1809ff978;
+  systemPreviousNode[6] = 0x406be72011d07d37;
+  systemPreviousNode[7] = 0x71876af946c867ab;
+  systemPreviousNode[8] = &UNK_1809ff978;
   systemPreviousNode[9] = 0;
-  systemPreviousNode[10] = systemInitializationFunction;
+  systemPreviousNode[10] = eventCallbackPointer;
   return;
 }
 
@@ -4329,7 +4329,7 @@ void FUN_180031d10(void)
   puVar7[7] = 0x2f4bab01d34055a5;
   puVar7[8] = &UNK_1809ff990;
   puVar7[9] = 3;
-  systemPreviousNode[10] = systemInitializationFunction;
+  systemPreviousNode[10] = eventCallbackPointer;
   return;
 }
 
@@ -4379,7 +4379,7 @@ void FUN_180031e10(void)
   puVar7[7] = 0xdcfdc333a769ec93;
   puVar7[8] = &UNK_180a00370;
   puVar7[9] = 1;
-  systemPreviousNode[10] = systemInitializationFunction;
+  systemPreviousNode[10] = eventCallbackPointer;
   return;
 }
 
@@ -4429,7 +4429,7 @@ void FUN_180031f10(void)
   puVar7[7] = 0xb97f048d2153e1b0;
   puVar7[8] = &UNK_180a00388;
   puVar7[9] = 4;
-  systemPreviousNode[10] = systemInitializationFunction;
+  systemPreviousNode[10] = eventCallbackPointer;
   return;
 }
 
@@ -4529,7 +4529,7 @@ void FUN_180032110(void)
   puVar7[7] = 0xa9191d34ad910696;
   puVar7[8] = &UNK_180a003b8;
   systemPreviousNode[9] = 0;
-  systemPreviousNode[10] = systemInitializationFunction;
+  systemPreviousNode[10] = eventCallbackPointer;
   return;
 }
 
@@ -4753,7 +4753,7 @@ void FUN_1800325a0(void)
   puVar7[7] = 0xdcfdc333a769ec93;
   puVar7[8] = &UNK_180a00370;
   puVar7[9] = 1;
-  systemPreviousNode[10] = systemInitializationFunction;
+  systemPreviousNode[10] = eventCallbackPointer;
   return;
 }
 
@@ -4803,7 +4803,7 @@ void FUN_1800326a0(void)
   puVar7[7] = 0xb97f048d2153e1b0;
   puVar7[8] = &UNK_180a00388;
   puVar7[9] = 4;
-  systemPreviousNode[10] = systemInitializationFunction;
+  systemPreviousNode[10] = eventCallbackPointer;
   return;
 }
 
@@ -4903,7 +4903,7 @@ void FUN_1800328a0(void)
   puVar7[7] = 0xa9191d34ad910696;
   puVar7[8] = &UNK_180a003b8;
   systemPreviousNode[9] = 0;
-  systemPreviousNode[10] = systemInitializationFunction;
+  systemPreviousNode[10] = eventCallbackPointer;
   return;
 }
 
@@ -5255,7 +5255,7 @@ void FUN_180033a50(void)
   puVar7[7] = 0x81d539e33614429f;
   puVar7[8] = &UNK_180a004a8;
   puVar7[9] = 4;
-  systemPreviousNode[10] = systemInitializationFunction;
+  systemPreviousNode[10] = eventCallbackPointer;
   return;
 }
 
@@ -5305,7 +5305,7 @@ void FUN_180033b50(void)
   puVar7[7] = 0x703a29a844ce399;
   puVar7[8] = &UNK_180a004c0;
   puVar7[9] = 3;
-  systemPreviousNode[10] = systemInitializationFunction;
+  systemPreviousNode[10] = eventCallbackPointer;
   return;
 }
 
@@ -5355,7 +5355,7 @@ void FUN_180033c50(void)
   puVar7[7] = 0xdcfdc333a769ec93;
   puVar7[8] = &UNK_180a00370;
   puVar7[9] = 1;
-  systemPreviousNode[10] = systemInitializationFunction;
+  systemPreviousNode[10] = eventCallbackPointer;
   return;
 }
 
@@ -5405,7 +5405,7 @@ void FUN_180033d50(void)
   puVar7[7] = 0xb97f048d2153e1b0;
   puVar7[8] = &UNK_180a00388;
   puVar7[9] = 4;
-  systemPreviousNode[10] = systemInitializationFunction;
+  systemPreviousNode[10] = eventCallbackPointer;
   return;
 }
 
@@ -5505,7 +5505,7 @@ void FUN_180033f50(void)
   puVar7[7] = 0xa9191d34ad910696;
   puVar7[8] = &UNK_180a003b8;
   systemPreviousNode[9] = 0;
-  systemPreviousNode[10] = systemInitializationFunction;
+  systemPreviousNode[10] = eventCallbackPointer;
   return;
 }
 
@@ -5705,7 +5705,7 @@ void FUN_180034350(void)
   puVar7[7] = 0xdcfdc333a769ec93;
   puVar7[8] = &UNK_180a00370;
   puVar7[9] = 1;
-  systemPreviousNode[10] = systemInitializationFunction;
+  systemPreviousNode[10] = eventCallbackPointer;
   return;
 }
 
@@ -5755,7 +5755,7 @@ void FUN_180034450(void)
   puVar7[7] = 0xb97f048d2153e1b0;
   puVar7[8] = &UNK_180a00388;
   puVar7[9] = 4;
-  systemPreviousNode[10] = systemInitializationFunction;
+  systemPreviousNode[10] = eventCallbackPointer;
   return;
 }
 
@@ -5855,7 +5855,7 @@ void FUN_180034650(void)
   puVar7[7] = 0xa9191d34ad910696;
   puVar7[8] = &UNK_180a003b8;
   systemPreviousNode[9] = 0;
-  systemPreviousNode[10] = systemInitializationFunction;
+  systemPreviousNode[10] = eventCallbackPointer;
   return;
 }
 
@@ -6112,7 +6112,7 @@ void FUN_180034b40(void)
   puVar7[7] = 0xfab48faa65382fa5;
   puVar7[8] = &UNK_180a00460;
   systemPreviousNode[9] = 0;
-  systemPreviousNode[10] = systemInitializationFunction;
+  systemPreviousNode[10] = eventCallbackPointer;
   return;
 }
 
@@ -6162,7 +6162,7 @@ void FUN_180034c40(void)
   puVar7[7] = 0xc160408bde99e59f;
   puVar7[8] = &UNK_180a00430;
   systemPreviousNode[9] = 0;
-  systemPreviousNode[10] = systemInitializationFunction;
+  systemPreviousNode[10] = eventCallbackPointer;
   return;
 }
 
@@ -6208,11 +6208,11 @@ void FUN_180034d40(void)
     AllocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
-  puVar7[6] = 0x406be72011d07d37;
-  puVar7[7] = 0x71876af946c867ab;
-  puVar7[8] = &UNK_1809ff978;
+  systemPreviousNode[6] = 0x406be72011d07d37;
+  systemPreviousNode[7] = 0x71876af946c867ab;
+  systemPreviousNode[8] = &UNK_1809ff978;
   systemPreviousNode[9] = 0;
-  systemPreviousNode[10] = systemInitializationFunction;
+  systemPreviousNode[10] = eventCallbackPointer;
   return;
 }
 
@@ -6262,7 +6262,7 @@ void FUN_180034e40(void)
   puVar7[7] = 0x2f4bab01d34055a5;
   puVar7[8] = &UNK_1809ff990;
   puVar7[9] = 3;
-  systemPreviousNode[10] = systemInitializationFunction;
+  systemPreviousNode[10] = eventCallbackPointer;
   return;
 }
 
@@ -6312,7 +6312,7 @@ void FUN_180034f40(void)
   puVar7[7] = 0xdcfdc333a769ec93;
   puVar7[8] = &UNK_180a00370;
   puVar7[9] = 1;
-  systemPreviousNode[10] = systemInitializationFunction;
+  systemPreviousNode[10] = eventCallbackPointer;
   return;
 }
 
@@ -6362,7 +6362,7 @@ void FUN_180035040(void)
   puVar7[7] = 0xb97f048d2153e1b0;
   puVar7[8] = &UNK_180a00388;
   puVar7[9] = 4;
-  systemPreviousNode[10] = systemInitializationFunction;
+  systemPreviousNode[10] = eventCallbackPointer;
   return;
 }
 
@@ -6462,7 +6462,7 @@ void FUN_180035240(void)
   puVar7[7] = 0xa9191d34ad910696;
   puVar7[8] = &UNK_180a003b8;
   systemPreviousNode[9] = 0;
-  systemPreviousNode[10] = systemInitializationFunction;
+  systemPreviousNode[10] = eventCallbackPointer;
   return;
 }
 
@@ -6662,7 +6662,7 @@ void FUN_180035640(void)
   puVar7[7] = 0x81d539e33614429f;
   puVar7[8] = &UNK_180a004a8;
   puVar7[9] = 4;
-  systemPreviousNode[10] = systemInitializationFunction;
+  systemPreviousNode[10] = eventCallbackPointer;
   return;
 }
 
@@ -6712,7 +6712,7 @@ void FUN_180035740(void)
   puVar7[7] = 0x703a29a844ce399;
   puVar7[8] = &UNK_180a004c0;
   puVar7[9] = 3;
-  systemPreviousNode[10] = systemInitializationFunction;
+  systemPreviousNode[10] = eventCallbackPointer;
   return;
 }
 
@@ -6762,7 +6762,7 @@ void FUN_180035840(void)
   puVar7[7] = 0xdcfdc333a769ec93;
   puVar7[8] = &UNK_180a00370;
   puVar7[9] = 1;
-  systemPreviousNode[10] = systemInitializationFunction;
+  systemPreviousNode[10] = eventCallbackPointer;
   return;
 }
 
@@ -6812,7 +6812,7 @@ void FUN_180035940(void)
   puVar7[7] = 0xb97f048d2153e1b0;
   puVar7[8] = &UNK_180a00388;
   puVar7[9] = 4;
-  systemPreviousNode[10] = systemInitializationFunction;
+  systemPreviousNode[10] = eventCallbackPointer;
   return;
 }
 
@@ -6912,7 +6912,7 @@ void FUN_180035b40(void)
   puVar7[7] = 0xa9191d34ad910696;
   puVar7[8] = &UNK_180a003b8;
   systemPreviousNode[9] = 0;
-  systemPreviousNode[10] = systemInitializationFunction;
+  systemPreviousNode[10] = eventCallbackPointer;
   return;
 }
 
@@ -7112,7 +7112,7 @@ void FUN_180035f50(void)
   puVar7[7] = 0xc160408bde99e59f;
   puVar7[8] = &UNK_180a00430;
   systemPreviousNode[9] = 0;
-  systemPreviousNode[10] = systemInitializationFunction;
+  systemPreviousNode[10] = eventCallbackPointer;
   return;
 }
 
@@ -7162,7 +7162,7 @@ void FUN_180036050(void)
   puVar7[7] = 0xfab48faa65382fa5;
   puVar7[8] = &UNK_180a00460;
   systemPreviousNode[9] = 0;
-  systemPreviousNode[10] = systemInitializationFunction;
+  systemPreviousNode[10] = eventCallbackPointer;
   return;
 }
 
@@ -7212,7 +7212,7 @@ void FUN_180036150(void)
   puVar7[7] = 0x81d539e33614429f;
   puVar7[8] = &UNK_180a004a8;
   puVar7[9] = 4;
-  systemPreviousNode[10] = systemInitializationFunction;
+  systemPreviousNode[10] = eventCallbackPointer;
   return;
 }
 
@@ -7262,7 +7262,7 @@ void FUN_180036250(void)
   puVar7[7] = 0x703a29a844ce399;
   puVar7[8] = &UNK_180a004c0;
   puVar7[9] = 3;
-  systemPreviousNode[10] = systemInitializationFunction;
+  systemPreviousNode[10] = eventCallbackPointer;
   return;
 }
 
@@ -7362,7 +7362,7 @@ void FUN_180036450(void)
   puVar7[7] = 0xdcfdc333a769ec93;
   puVar7[8] = &UNK_180a00370;
   puVar7[9] = 1;
-  systemPreviousNode[10] = systemInitializationFunction;
+  systemPreviousNode[10] = eventCallbackPointer;
   return;
 }
 
@@ -7412,7 +7412,7 @@ void FUN_180036550(void)
   puVar7[7] = 0xb97f048d2153e1b0;
   puVar7[8] = &UNK_180a00388;
   puVar7[9] = 4;
-  systemPreviousNode[10] = systemInitializationFunction;
+  systemPreviousNode[10] = eventCallbackPointer;
   return;
 }
 
@@ -7512,7 +7512,7 @@ void FUN_180036750(void)
   puVar7[7] = 0xa9191d34ad910696;
   puVar7[8] = &UNK_180a003b8;
   systemPreviousNode[9] = 0;
-  systemPreviousNode[10] = systemInitializationFunction;
+  systemPreviousNode[10] = eventCallbackPointer;
   return;
 }
 
@@ -7792,7 +7792,7 @@ void FUN_180036df0(void)
   puVar7[7] = 0xdcfdc333a769ec93;
   puVar7[8] = &UNK_180a00370;
   puVar7[9] = 1;
-  systemPreviousNode[10] = systemInitializationFunction;
+  systemPreviousNode[10] = eventCallbackPointer;
   return;
 }
 
@@ -7842,7 +7842,7 @@ void FUN_180036ef0(void)
   puVar7[7] = 0xb97f048d2153e1b0;
   puVar7[8] = &UNK_180a00388;
   puVar7[9] = 4;
-  systemPreviousNode[10] = systemInitializationFunction;
+  systemPreviousNode[10] = eventCallbackPointer;
   return;
 }
 
@@ -7942,7 +7942,7 @@ void FUN_1800370f0(void)
   puVar7[7] = 0xa9191d34ad910696;
   puVar7[8] = &UNK_180a003b8;
   systemPreviousNode[9] = 0;
-  systemPreviousNode[10] = systemInitializationFunction;
+  systemPreviousNode[10] = eventCallbackPointer;
   return;
 }
 
@@ -8216,7 +8216,7 @@ void FUN_180037680(void)
   systemPreviousNode[7] = 0xe2f4a30d6e6ae482;
   systemPreviousNode[8] = &GAME_CORE_NODE_DATA;
   systemPreviousNode[9] = 0;
-  systemPreviousNode[10] = systemInitializationFunction;
+  systemPreviousNode[10] = eventCallbackPointer;
   return;
 }
 
@@ -8616,7 +8616,7 @@ void FUN_180037e80(void)
   puVar7[7] = 0xbec25de793b7afa6;
   puVar7[8] = &UNK_18098c880;
   systemPreviousNode[9] = 0;
-  systemPreviousNode[10] = systemInitializationFunction;
+  systemPreviousNode[10] = eventCallbackPointer;
   return;
 }
 
@@ -8716,7 +8716,7 @@ void FUN_180038080(void)
   puVar7[7] = 0xfab48faa65382fa5;
   puVar7[8] = &UNK_180a00460;
   systemPreviousNode[9] = 0;
-  systemPreviousNode[10] = systemInitializationFunction;
+  systemPreviousNode[10] = eventCallbackPointer;
   return;
 }
 
@@ -8982,7 +8982,7 @@ void FUN_1800386a0(void)
   puVar7[7] = 0xdcfdc333a769ec93;
   puVar7[8] = &UNK_180a00370;
   puVar7[9] = 1;
-  systemPreviousNode[10] = systemInitializationFunction;
+  systemPreviousNode[10] = eventCallbackPointer;
   return;
 }
 
@@ -9032,7 +9032,7 @@ void FUN_1800387a0(void)
   puVar7[7] = 0xb97f048d2153e1b0;
   puVar7[8] = &UNK_180a00388;
   puVar7[9] = 4;
-  systemPreviousNode[10] = systemInitializationFunction;
+  systemPreviousNode[10] = eventCallbackPointer;
   return;
 }
 
@@ -9132,7 +9132,7 @@ void FUN_1800389a0(void)
   puVar7[7] = 0xa9191d34ad910696;
   puVar7[8] = &UNK_180a003b8;
   systemPreviousNode[9] = 0;
-  systemPreviousNode[10] = systemInitializationFunction;
+  systemPreviousNode[10] = eventCallbackPointer;
   return;
 }
 
@@ -9332,7 +9332,7 @@ void FUN_180038da0(void)
   puVar7[7] = 0xdcfdc333a769ec93;
   puVar7[8] = &UNK_180a00370;
   puVar7[9] = 1;
-  systemPreviousNode[10] = systemInitializationFunction;
+  systemPreviousNode[10] = eventCallbackPointer;
   return;
 }
 
@@ -9382,7 +9382,7 @@ void FUN_180038ea0(void)
   puVar7[7] = 0xb97f048d2153e1b0;
   puVar7[8] = &UNK_180a00388;
   puVar7[9] = 4;
-  systemPreviousNode[10] = systemInitializationFunction;
+  systemPreviousNode[10] = eventCallbackPointer;
   return;
 }
 
@@ -9482,7 +9482,7 @@ void FUN_1800390a0(void)
   puVar7[7] = 0xa9191d34ad910696;
   puVar7[8] = &UNK_180a003b8;
   systemPreviousNode[9] = 0;
-  systemPreviousNode[10] = systemInitializationFunction;
+  systemPreviousNode[10] = eventCallbackPointer;
   return;
 }
 
@@ -9682,7 +9682,7 @@ void FUN_1800394a0(void)
   puVar7[7] = 0xdcfdc333a769ec93;
   puVar7[8] = &UNK_180a00370;
   puVar7[9] = 1;
-  systemPreviousNode[10] = systemInitializationFunction;
+  systemPreviousNode[10] = eventCallbackPointer;
   return;
 }
 
@@ -9732,7 +9732,7 @@ void FUN_1800395a0(void)
   puVar7[7] = 0xb97f048d2153e1b0;
   puVar7[8] = &UNK_180a00388;
   puVar7[9] = 4;
-  systemPreviousNode[10] = systemInitializationFunction;
+  systemPreviousNode[10] = eventCallbackPointer;
   return;
 }
 
@@ -9832,7 +9832,7 @@ void FUN_1800397a0(void)
   puVar7[7] = 0xa9191d34ad910696;
   puVar7[8] = &UNK_180a003b8;
   systemPreviousNode[9] = 0;
-  systemPreviousNode[10] = systemInitializationFunction;
+  systemPreviousNode[10] = eventCallbackPointer;
   return;
 }
 
@@ -10032,7 +10032,7 @@ void FUN_180039bb0(void)
   puVar7[7] = 0xdcfdc333a769ec93;
   puVar7[8] = &UNK_180a00370;
   puVar7[9] = 1;
-  systemPreviousNode[10] = systemInitializationFunction;
+  systemPreviousNode[10] = eventCallbackPointer;
   return;
 }
 
@@ -10082,7 +10082,7 @@ void FUN_180039cb0(void)
   puVar7[7] = 0xb97f048d2153e1b0;
   puVar7[8] = &UNK_180a00388;
   puVar7[9] = 4;
-  systemPreviousNode[10] = systemInitializationFunction;
+  systemPreviousNode[10] = eventCallbackPointer;
   return;
 }
 
@@ -10182,7 +10182,7 @@ void FUN_180039eb0(void)
   puVar7[7] = 0xa9191d34ad910696;
   puVar7[8] = &UNK_180a003b8;
   systemPreviousNode[9] = 0;
-  systemPreviousNode[10] = systemInitializationFunction;
+  systemPreviousNode[10] = eventCallbackPointer;
   return;
 }
 
@@ -10387,7 +10387,7 @@ void InitializeSystemMemoryAllocatorSetup(void)
   systemPreviousNode[7] = 0xe2f4a30d6e6ae482;
   systemPreviousNode[8] = &GAME_CORE_NODE_DATA;
   systemPreviousNode[9] = 0;
-  systemPreviousNode[10] = systemInitializationFunction;
+  systemPreviousNode[10] = eventCallbackPointer;
   return;
 }
 
@@ -10792,7 +10792,7 @@ void FUN_18003aab0(void)
   puVar7[7] = 0xbec25de793b7afa6;
   puVar7[8] = &UNK_18098c880;
   systemPreviousNode[9] = 0;
-  systemPreviousNode[10] = systemInitializationFunction;
+  systemPreviousNode[10] = eventCallbackPointer;
   return;
 }
 
@@ -10926,7 +10926,7 @@ void FUN_18003c1f0(void)
   systemPreviousNode[7] = 0xe2f4a30d6e6ae482;
   systemPreviousNode[8] = &GAME_CORE_NODE_DATA;
   systemPreviousNode[9] = 0;
-  systemPreviousNode[10] = systemInitializationFunction;
+  systemPreviousNode[10] = eventCallbackPointer;
   return;
 }
 
@@ -11326,7 +11326,7 @@ void FUN_18003c9f0(void)
   puVar7[7] = 0xbec25de793b7afa6;
   puVar7[8] = &UNK_18098c880;
   systemPreviousNode[9] = 0;
-  systemPreviousNode[10] = systemInitializationFunction;
+  systemPreviousNode[10] = eventCallbackPointer;
   return;
 }
 
@@ -11474,7 +11474,7 @@ void FUN_18003cd10(void)
   puVar7[7] = 0xdcfdc333a769ec93;
   puVar7[8] = &UNK_180a00370;
   puVar7[9] = 1;
-  systemPreviousNode[10] = systemInitializationFunction;
+  systemPreviousNode[10] = eventCallbackPointer;
   return;
 }
 
@@ -11524,7 +11524,7 @@ void FUN_18003ce10(void)
   puVar7[7] = 0xb97f048d2153e1b0;
   puVar7[8] = &UNK_180a00388;
   puVar7[9] = 4;
-  systemPreviousNode[10] = systemInitializationFunction;
+  systemPreviousNode[10] = eventCallbackPointer;
   return;
 }
 
@@ -11624,7 +11624,7 @@ void FUN_18003d010(void)
   puVar7[7] = 0xa9191d34ad910696;
   puVar7[8] = &UNK_180a003b8;
   systemPreviousNode[9] = 0;
-  systemPreviousNode[10] = systemInitializationFunction;
+  systemPreviousNode[10] = eventCallbackPointer;
   return;
 }
 
@@ -11834,7 +11834,7 @@ void FUN_18003de10(void)
   puVar7[7] = 0xfab48faa65382fa5;
   puVar7[8] = &UNK_180a00460;
   systemPreviousNode[9] = 0;
-  systemPreviousNode[10] = systemInitializationFunction;
+  systemPreviousNode[10] = eventCallbackPointer;
   return;
 }
 
@@ -11884,7 +11884,7 @@ void FUN_18003df10(void)
   puVar7[7] = 0xdcfdc333a769ec93;
   puVar7[8] = &UNK_180a00370;
   puVar7[9] = 1;
-  systemPreviousNode[10] = systemInitializationFunction;
+  systemPreviousNode[10] = eventCallbackPointer;
   return;
 }
 
@@ -11934,7 +11934,7 @@ void FUN_18003e010(void)
   puVar7[7] = 0xb97f048d2153e1b0;
   puVar7[8] = &UNK_180a00388;
   puVar7[9] = 4;
-  systemPreviousNode[10] = systemInitializationFunction;
+  systemPreviousNode[10] = eventCallbackPointer;
   return;
 }
 
@@ -12034,7 +12034,7 @@ void FUN_18003e210(void)
   puVar7[7] = 0xa9191d34ad910696;
   puVar7[8] = &UNK_180a003b8;
   systemPreviousNode[9] = 0;
-  systemPreviousNode[10] = systemInitializationFunction;
+  systemPreviousNode[10] = eventCallbackPointer;
   return;
 }
 
@@ -12234,7 +12234,7 @@ void FUN_18003e610(void)
   puVar7[7] = 0xdcfdc333a769ec93;
   puVar7[8] = &UNK_180a00370;
   puVar7[9] = 1;
-  systemPreviousNode[10] = systemInitializationFunction;
+  systemPreviousNode[10] = eventCallbackPointer;
   return;
 }
 
@@ -12284,7 +12284,7 @@ void FUN_18003e710(void)
   puVar7[7] = 0xb97f048d2153e1b0;
   puVar7[8] = &UNK_180a00388;
   puVar7[9] = 4;
-  systemPreviousNode[10] = systemInitializationFunction;
+  systemPreviousNode[10] = eventCallbackPointer;
   return;
 }
 
@@ -12384,7 +12384,7 @@ void FUN_18003e910(void)
   puVar7[7] = 0xa9191d34ad910696;
   puVar7[8] = &UNK_180a003b8;
   systemPreviousNode[9] = 0;
-  systemPreviousNode[10] = systemInitializationFunction;
+  systemPreviousNode[10] = eventCallbackPointer;
   return;
 }
 
@@ -12671,7 +12671,7 @@ void FUN_18003ee90(void)
   systemPreviousNode[7] = 0xe2f4a30d6e6ae482;
   systemPreviousNode[8] = &GAME_CORE_NODE_DATA;
   systemPreviousNode[9] = 0;
-  systemPreviousNode[10] = systemInitializationFunction;
+  systemPreviousNode[10] = eventCallbackPointer;
   return;
 }
 
@@ -13071,7 +13071,7 @@ void FUN_18003f690(void)
   puVar7[7] = 0xbec25de793b7afa6;
   puVar7[8] = &UNK_18098c880;
   systemPreviousNode[9] = 0;
-  systemPreviousNode[10] = systemInitializationFunction;
+  systemPreviousNode[10] = eventCallbackPointer;
   return;
 }
 
@@ -13377,7 +13377,7 @@ void FUN_18003fdb0(void)
   systemPreviousNode[7] = 0xe2f4a30d6e6ae482;
   systemPreviousNode[8] = &GAME_CORE_NODE_DATA;
   systemPreviousNode[9] = 0;
-  systemPreviousNode[10] = systemInitializationFunction;
+  systemPreviousNode[10] = eventCallbackPointer;
   return;
 }
 
@@ -13777,7 +13777,7 @@ void FUN_1800405b0(void)
   puVar7[7] = 0xbec25de793b7afa6;
   puVar7[8] = &UNK_18098c880;
   systemPreviousNode[9] = 0;
-  systemPreviousNode[10] = systemInitializationFunction;
+  systemPreviousNode[10] = eventCallbackPointer;
   return;
 }
 
@@ -13977,7 +13977,7 @@ void FUN_180040ae0(void)
   puVar7[7] = 0xfab48faa65382fa5;
   puVar7[8] = &UNK_180a00460;
   systemPreviousNode[9] = 0;
-  systemPreviousNode[10] = systemInitializationFunction;
+  systemPreviousNode[10] = eventCallbackPointer;
   return;
 }
 
@@ -14027,7 +14027,7 @@ void FUN_180040be0(void)
   puVar7[7] = 0xc160408bde99e59f;
   puVar7[8] = &UNK_180a00430;
   systemPreviousNode[9] = 0;
-  systemPreviousNode[10] = systemInitializationFunction;
+  systemPreviousNode[10] = eventCallbackPointer;
   return;
 }
 
@@ -14073,11 +14073,11 @@ void FUN_180040ce0(void)
     AllocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
-  puVar7[6] = 0x406be72011d07d37;
-  puVar7[7] = 0x71876af946c867ab;
-  puVar7[8] = &UNK_1809ff978;
+  systemPreviousNode[6] = 0x406be72011d07d37;
+  systemPreviousNode[7] = 0x71876af946c867ab;
+  systemPreviousNode[8] = &UNK_1809ff978;
   systemPreviousNode[9] = 0;
-  systemPreviousNode[10] = systemInitializationFunction;
+  systemPreviousNode[10] = eventCallbackPointer;
   return;
 }
 
@@ -14127,7 +14127,7 @@ void FUN_180040de0(void)
   puVar7[7] = 0x2f4bab01d34055a5;
   puVar7[8] = &UNK_1809ff990;
   puVar7[9] = 3;
-  systemPreviousNode[10] = systemInitializationFunction;
+  systemPreviousNode[10] = eventCallbackPointer;
   return;
 }
 
@@ -14177,7 +14177,7 @@ void FUN_180040ee0(void)
   puVar7[7] = 0xdcfdc333a769ec93;
   puVar7[8] = &UNK_180a00370;
   puVar7[9] = 1;
-  systemPreviousNode[10] = systemInitializationFunction;
+  systemPreviousNode[10] = eventCallbackPointer;
   return;
 }
 
@@ -14227,7 +14227,7 @@ void FUN_180040fe0(void)
   puVar7[7] = 0xb97f048d2153e1b0;
   puVar7[8] = &UNK_180a00388;
   puVar7[9] = 4;
-  systemPreviousNode[10] = systemInitializationFunction;
+  systemPreviousNode[10] = eventCallbackPointer;
   return;
 }
 
@@ -14327,7 +14327,7 @@ void FUN_1800411e0(void)
   puVar7[7] = 0xa9191d34ad910696;
   puVar7[8] = &UNK_180a003b8;
   systemPreviousNode[9] = 0;
-  systemPreviousNode[10] = systemInitializationFunction;
+  systemPreviousNode[10] = eventCallbackPointer;
   return;
 }
 
@@ -15049,11 +15049,11 @@ void FUN_1800421d0(void)
     AllocateSystemMemory(systemDataTable,&systemAllocatedNode,systemPreviousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     systemPreviousNode = systemAllocatedNode;
   }
-  puVar7[6] = 0x406be72011d07d37;
-  puVar7[7] = 0x71876af946c867ab;
-  puVar7[8] = &UNK_1809ff978;
+  systemPreviousNode[6] = 0x406be72011d07d37;
+  systemPreviousNode[7] = 0x71876af946c867ab;
+  systemPreviousNode[8] = &UNK_1809ff978;
   systemPreviousNode[9] = 0;
-  systemPreviousNode[10] = systemInitializationFunction;
+  systemPreviousNode[10] = eventCallbackPointer;
   return;
 }
 
@@ -15103,7 +15103,7 @@ void FUN_1800422d0(void)
   puVar7[7] = 0x2f4bab01d34055a5;
   puVar7[8] = &UNK_1809ff990;
   puVar7[9] = 3;
-  systemPreviousNode[10] = systemInitializationFunction;
+  systemPreviousNode[10] = eventCallbackPointer;
   return;
 }
 
@@ -15153,7 +15153,7 @@ void FUN_1800423d0(void)
   puVar7[7] = 0xdcfdc333a769ec93;
   puVar7[8] = &UNK_180a00370;
   puVar7[9] = 1;
-  systemPreviousNode[10] = systemInitializationFunction;
+  systemPreviousNode[10] = eventCallbackPointer;
   return;
 }
 
@@ -15203,7 +15203,7 @@ void FUN_1800424d0(void)
   puVar7[7] = 0xb97f048d2153e1b0;
   puVar7[8] = &UNK_180a00388;
   puVar7[9] = 4;
-  systemPreviousNode[10] = systemInitializationFunction;
+  systemPreviousNode[10] = eventCallbackPointer;
   return;
 }
 
@@ -15303,7 +15303,7 @@ void FUN_1800426d0(void)
   puVar7[7] = 0xa9191d34ad910696;
   puVar7[8] = &UNK_180a003b8;
   systemPreviousNode[9] = 0;
-  systemPreviousNode[10] = systemInitializationFunction;
+  systemPreviousNode[10] = eventCallbackPointer;
   return;
 }
 
@@ -15503,7 +15503,7 @@ void FUN_180042ad0(void)
   systemPreviousNode[7] = 0xe2f4a30d6e6ae482;
   systemPreviousNode[8] = &GAME_CORE_NODE_DATA;
   systemPreviousNode[9] = 0;
-  systemPreviousNode[10] = systemInitializationFunction;
+  systemPreviousNode[10] = eventCallbackPointer;
   return;
 }
 
@@ -15903,7 +15903,7 @@ void FUN_1800432d0(void)
   puVar7[7] = 0xbec25de793b7afa6;
   puVar7[8] = &UNK_18098c880;
   systemPreviousNode[9] = 0;
-  systemPreviousNode[10] = systemInitializationFunction;
+  systemPreviousNode[10] = eventCallbackPointer;
   return;
 }
 

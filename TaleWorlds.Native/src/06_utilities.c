@@ -5394,16 +5394,16 @@ void ProcessSystemDataPacketTransmission(longlong packetHandle, longlong transmi
   iVar1 = FUN_18073b5f0(*(undefined8 *)(param_2 + 0x78),*(undefined4 *)(param_1 + 0x10),
                         param_1 + 0x14,param_1 + 0x20,param_1 + 0x2c,param_1 + 0x38);
   if ((iVar1 == 0) &&
-     (iVar1 = func_0x0001808d2620((longlong)*(int *)(param_1 + 0x10) * 0x44 +
+     (iVar1 = InitializeDataStructure((longlong)*(int *)(param_1 + 0x10) * 0x44 +
                                   *(longlong *)(param_2 + 0x90) + 0x554,param_1 + 0x14), iVar1 == 0)
      ) {
     if ((*(char *)(param_1 + 0x50) != '\0') &&
-       (iVar1 = func_0x0001808d2660((longlong)*(int *)(param_1 + 0x10) * 0x44 +
+       (iVar1 = ConfigureDataStructure((longlong)*(int *)(param_1 + 0x10) * 0x44 +
                                     *(longlong *)(param_2 + 0x90) + 0x554,param_1 + 0x44),
        iVar1 != 0)) {
       return;
     }
-    func_0x0001808d2830((longlong)*(int *)(param_1 + 0x10) * 0x44 +
+    FinalizeDataStructure((longlong)*(int *)(param_1 + 0x10) * 0x44 +
                         *(longlong *)(param_2 + 0x90) + 0x554,*(undefined1 *)(param_1 + 0x50));
   }
   return;
@@ -5428,7 +5428,7 @@ void ProcessSystemObjectLifecycle(longlong objectHandle, longlong lifecycleConfi
   
   validationStatus = FUN_18073b810(*(undefined8 *)(lifecycleConfig + 0x78),*(undefined4 *)(objectHandle + 0x10));
   if (validationStatus == 0) {
-    func_0x0001808c2130(*(undefined8 *)(lifecycleConfig + 0x90),*(undefined4 *)(objectHandle + 0x10));
+    ProcessObjectLifecycle(*(undefined8 *)(lifecycleConfig + 0x90),*(undefined4 *)(objectHandle + 0x10));
   }
   return;
 }
@@ -5587,7 +5587,7 @@ void ValidateObjectStateAndDispatch(longlong objectContext, longlong schedulerCo
   if (*(int *)(objectContext + 0x2c) == 0) {
     validationStatus = FUN_180894860(schedulerContext,objectContext + 0x1c,&validationBuffer);
     if (validationStatus == 0) {
-      validationStatus = func_0x00018088c500(validationBuffer,objectContext + 0x2c);
+      validationStatus = ValidateBufferContext(validationBuffer,objectContext + 0x2c);
       if (validationStatus == 0) goto LAB_1808918d2;
     }
     return;
@@ -5621,7 +5621,7 @@ void ProcessObjectStateAndSchedule(longlong objectContext, longlong schedulerCon
     if (processingStatus != 0) {
       return;
     }
-    processingStatus = func_0x00018088c500(*(undefined8 *)(processingBuffer + 0xd0),objectContext + 0x2c);
+    processingStatus = ValidateBufferContext(*(undefined8 *)(processingBuffer + 0xd0),objectContext + 0x2c);
     if (processingStatus != 0) {
       return;
     }
@@ -5709,7 +5709,7 @@ void ValidateObjectStateAndDispatchB(longlong objectContext, longlong schedulerC
   if (*(int *)(objectContext + 0x2c) == 0) {
     validationStatus = FUN_180894b00(schedulerContext,objectContext + 0x1c,&validationBuffer);
     if (validationStatus == 0) {
-      validationStatus = func_0x00018088c500(validationBuffer,objectContext + 0x2c);
+      validationStatus = ValidateBufferContext(validationBuffer,objectContext + 0x2c);
       if (validationStatus == 0) goto LAB_180891a52;
     }
     return;
@@ -6009,7 +6009,7 @@ void FUN_180891e40(longlong param_1,longlong param_2)
   if (lStackX_8 == 0) {
     lVar4 = lVar3;
   }
-  iVar1 = func_0x00018088c500(lVar4,param_1 + 0x18);
+  iVar1 = ValidateBufferContext(lVar4,param_1 + 0x18);
   if (iVar1 != 0) {
     return;
   }
@@ -6078,7 +6078,7 @@ void FUN_180891e7d(undefined8 param_1,undefined8 param_2)
   if (in_stack_00000060 == 0) {
     lVar4 = lVar3;
   }
-  iVar1 = func_0x00018088c500(lVar4,unaff_RBP + 0x18);
+  iVar1 = ValidateBufferContext(lVar4,unaff_RBP + 0x18);
   if (iVar1 != 0) {
     return;
   }
@@ -6146,7 +6146,7 @@ void FUN_180891ea1(void)
   if (in_RAX == 0) {
     lVar4 = lVar3;
   }
-  iVar1 = func_0x00018088c500(lVar4);
+  iVar1 = ValidateBufferContext(lVar4);
   if (iVar1 != 0) {
     return;
   }
@@ -6471,7 +6471,7 @@ undefined8 FUN_1808921f0(longlong param_1,longlong param_2)
     if (*(longlong *)(lStackX_8 + 0x18) == 0) {
       return 0x1e;
     }
-    uVar1 = func_0x00018088c500(*(undefined8 *)(*(longlong *)(lStackX_8 + 0x18) + 0xd0),
+    uVar1 = ValidateBufferContext(*(undefined8 *)(*(longlong *)(lStackX_8 + 0x18) + 0xd0),
                                 param_1 + 0x18);
     if ((int)uVar1 == 0) {
       uVar1 = FUN_18088d7c0(*(undefined8 *)(param_2 + 0x98),param_1);
@@ -6522,7 +6522,7 @@ undefined8 FUN_180892270(longlong param_1,longlong param_2)
         }
         iVar2 = func_0x00018076b630(puVar4,param_1 + 0x1c);
         if (iVar2 == 0) {
-          uVar3 = func_0x00018088c500(lVar7,param_1 + 0x18);
+          uVar3 = ValidateBufferContext(lVar7,param_1 + 0x18);
           if ((int)uVar3 != 0) {
             return uVar3;
           }
@@ -6578,7 +6578,7 @@ undefined8 FUN_1808922ad(void)
       }
       iVar2 = func_0x00018076b630(puVar4);
       if (iVar2 == 0) {
-        uVar3 = func_0x00018088c500(lVar7,unaff_R14 + 0x18);
+        uVar3 = ValidateBufferContext(lVar7,unaff_R14 + 0x18);
         if ((int)uVar3 != 0) {
           return uVar3;
         }
@@ -6613,7 +6613,7 @@ void FUN_18089233e(void)
   int iVar1;
   longlong unaff_R13;
   
-  iVar1 = func_0x00018088c500();
+  iVar1 = ValidateBufferContext();
   if (iVar1 == 0) {
     FUN_18088d7c0(*(undefined8 *)(unaff_R13 + 0x98));
   }
@@ -6645,7 +6645,7 @@ undefined8 FUN_180892370(longlong param_1,longlong param_2)
   if (*(longlong *)(*(longlong *)(lVar3 + 0x20) + 0x10 + (longlong)iVar1 * 0x18) == 0) {
     return 0x1e;
   }
-  uVar2 = func_0x00018088c500(*(longlong *)(lVar3 + 0x20) + (longlong)iVar1 * 0x18,param_1 + 0x1c);
+  uVar2 = ValidateBufferContext(*(longlong *)(lVar3 + 0x20) + (longlong)iVar1 * 0x18,param_1 + 0x1c);
   if ((int)uVar2 != 0) {
     return uVar2;
   }
@@ -7316,7 +7316,7 @@ undefined8 FUN_180892bd0(longlong param_1,longlong param_2,undefined8 param_3,un
     }
     *(float *)(param_1 + 0x20) = fVar6;
     *(float *)(lVar5 + 4) = fVar6;
-    uVar4 = func_0x00018088c500(lVar5,param_1 + 0x1c);
+    uVar4 = ValidateBufferContext(lVar5,param_1 + 0x1c);
     if ((int)uVar4 != 0) {
       return uVar4;
     }
@@ -7895,7 +7895,7 @@ undefined8 FUN_180893540(longlong param_1,longlong param_2)
     uVar2 = 0x4a;
   }
   else {
-    uVar2 = func_0x00018088c500(*(longlong *)(lVar1 + 0x2e8),param_1 + 0x20);
+    uVar2 = ValidateBufferContext(*(longlong *)(lVar1 + 0x2e8),param_1 + 0x20);
     if ((int)uVar2 == 0) {
       uVar2 = FUN_18088d7c0(*(undefined8 *)(param_2 + 0x98),param_1);
       return uVar2;
@@ -7925,7 +7925,7 @@ undefined8 FUN_1808935c0(longlong param_1,longlong param_2)
   if ((lVar1 == 0) || (*(longlong *)(lVar1 + 0x2e8) == 0)) {
     return 0x4a;
   }
-  uVar2 = func_0x00018088c500(*(longlong *)(lVar1 + 0x2e8),param_1 + 0x20);
+  uVar2 = ValidateBufferContext(*(longlong *)(lVar1 + 0x2e8),param_1 + 0x20);
   if ((int)uVar2 != 0) {
     return uVar2;
   }
@@ -7959,7 +7959,7 @@ void FUN_180893640(longlong param_1,longlong param_2)
   
   iVar1 = FUN_180894860(param_2,param_1 + 0x10,&uStackX_8);
   if (iVar1 == 0) {
-    iVar1 = func_0x00018088c500(uStackX_8,param_1 + 0x20);
+    iVar1 = ValidateBufferContext(uStackX_8,param_1 + 0x20);
     if (iVar1 == 0) {
                     // WARNING: Subroutine does not return
       FUN_18088d720(*(undefined8 *)(param_2 + 0x98),param_1);
@@ -7980,7 +7980,7 @@ void FUN_1808936a0(longlong param_1,longlong param_2)
   
   iVar1 = FUN_1808949c0(param_2,param_1 + 0x10,&lStackX_8);
   if (iVar1 == 0) {
-    iVar1 = func_0x00018088c500(*(undefined8 *)(lStackX_8 + 0xd0),param_1 + 0x20);
+    iVar1 = ValidateBufferContext(*(undefined8 *)(lStackX_8 + 0xd0),param_1 + 0x20);
     if (iVar1 == 0) {
       FUN_18088d7c0(*(undefined8 *)(param_2 + 0x98),param_1);
     }
@@ -8000,7 +8000,7 @@ void FUN_180893700(longlong param_1,longlong param_2)
   
   iVar1 = FUN_180894b00(param_2,param_1 + 0x10,&uStackX_8);
   if (iVar1 == 0) {
-    iVar1 = func_0x00018088c500(uStackX_8,param_1 + 0x20);
+    iVar1 = ValidateBufferContext(uStackX_8,param_1 + 0x20);
     if (iVar1 == 0) {
                     // WARNING: Subroutine does not return
       FUN_18088d720(*(undefined8 *)(param_2 + 0x98),param_1);
@@ -9299,7 +9299,7 @@ undefined4 FUN_180894dd0(longlong param_1,undefined8 param_2,uint param_3,longlo
     if ((uVar2 & 1) == 0) {
       uVar6 = param_3;
     }
-    iVar3 = func_0x0001808757f0(param_1,param_2,uVar6,&uStackX_20);
+    iVar3 = ProcessConfigurationData(param_1,param_2,uVar6,&uStackX_20);
     if ((iVar3 == 0) && (plVar1 = (longlong *)(param_4 + 8), plVar1 != (longlong *)0x0)) {
       plVar4 = (longlong *)*plVar1;
       if (plVar4 != plVar1) {
@@ -10378,7 +10378,7 @@ undefined4 FUN_180895ef0(undefined8 param_1)
   undefined4 auStackX_10 [6];
   
   auStackX_10[0] = 0;
-  iVar1 = func_0x00018088c500(param_1,auStackX_10);
+  iVar1 = ValidateBufferContext(param_1,auStackX_10);
   if (iVar1 == 0) {
     return auStackX_10[0];
   }
@@ -11194,7 +11194,7 @@ LAB_180896ce3:
       lVar2 = *(longlong *)(lVar1 + 0x68);
       if (((*(byte *)(lVar1 + 0xc4) & 1) != 0) && (lVar2 != 0)) {
         uStack_308 = 0;
-        iVar7 = func_0x00018088c500(lVar2,&uStack_308);
+        iVar7 = ValidateBufferContext(lVar2,&uStack_308);
         if (iVar7 != 0) goto FUN_1808974f4;
         uStack_28c = *(undefined4 *)(lVar1 + 0x10);
         uStack_288 = *(uint *)(lVar1 + 0x14);
@@ -11241,7 +11241,7 @@ LAB_180896ce3:
       lVar2 = *(longlong *)(lVar1 + 0x68);
       if (((*(byte *)(lVar1 + 0xc4) & 1) != 0) && (lVar2 != 0)) {
         uStack_308 = 0;
-        iVar7 = func_0x00018088c500(lVar2,&uStack_308);
+        iVar7 = ValidateBufferContext(lVar2,&uStack_308);
         if (iVar7 != 0) goto FUN_1808974f4;
         uStack_28c = *(undefined4 *)(lVar1 + 0x10);
         uStack_288 = *(uint *)(lVar1 + 0x14);
@@ -11288,7 +11288,7 @@ LAB_180896ce3:
       lVar2 = *(longlong *)(lVar1 + 0x68);
       if (((*(byte *)(lVar1 + 0xc4) & 1) != 0) && (lVar2 != 0)) {
         uStack_308 = 0;
-        iVar7 = func_0x00018088c500(lVar2,&uStack_308);
+        iVar7 = ValidateBufferContext(lVar2,&uStack_308);
         if (iVar7 != 0) goto FUN_1808974f4;
         uStack_28c = *(undefined4 *)(lVar1 + 0x10);
         uStack_288 = *(uint *)(lVar1 + 0x14);
@@ -11335,7 +11335,7 @@ LAB_180896ce3:
       lVar2 = *(longlong *)(lVar1 + 0x68);
       if (((*(byte *)(lVar1 + 0xc4) & 1) != 0) && (lVar2 != 0)) {
         uStack_308 = 0;
-        iVar7 = func_0x00018088c500(lVar2,&uStack_308);
+        iVar7 = ValidateBufferContext(lVar2,&uStack_308);
         if (iVar7 != 0) goto FUN_1808974f4;
         uStack_28c = *(undefined4 *)(lVar1 + 0x10);
         uStack_288 = *(uint *)(lVar1 + 0x14);
@@ -11385,7 +11385,7 @@ LAB_180896ce3:
       lVar2 = *(longlong *)(lVar1 + 0x48);
       if (lVar2 != 0) {
         uStack_308 = 0;
-        iVar7 = func_0x00018088c500(lVar2,&uStack_308);
+        iVar7 = ValidateBufferContext(lVar2,&uStack_308);
         if (iVar7 != 0) break;
         uStack_28c = *(undefined4 *)(lVar1 + 0x10);
         uStack_288 = *(uint *)(lVar1 + 0x14);
@@ -11461,7 +11461,7 @@ void FUN_180896e11(void)
       lVar2 = *(longlong *)(lVar1 + 0x68);
       if (((*(byte *)(lVar1 + 0xc4) & 1) != 0) && (lVar2 != 0)) {
         uStackX_20 = 0;
-        iVar8 = func_0x00018088c500(lVar2,&uStackX_20);
+        iVar8 = ValidateBufferContext(lVar2,&uStackX_20);
         if (iVar8 != 0) goto LAB_1808974ec;
         uVar3 = *(undefined4 *)(lVar1 + 0x10);
         uVar4 = *(undefined4 *)(lVar1 + 0x14);
@@ -11514,7 +11514,7 @@ void FUN_180896e11(void)
       lVar2 = *(longlong *)(lVar1 + 0x68);
       if (((*(byte *)(lVar1 + 0xc4) & 1) != 0) && (lVar2 != 0)) {
         uStackX_20 = 0;
-        iVar8 = func_0x00018088c500(lVar2,&uStackX_20);
+        iVar8 = ValidateBufferContext(lVar2,&uStackX_20);
         if (iVar8 != 0) goto LAB_1808974ec;
         uVar3 = *(undefined4 *)(lVar1 + 0x10);
         uVar4 = *(undefined4 *)(lVar1 + 0x14);
@@ -11567,7 +11567,7 @@ void FUN_180896e11(void)
       lVar2 = *(longlong *)(lVar1 + 0x68);
       if (((*(byte *)(lVar1 + 0xc4) & 1) != 0) && (lVar2 != 0)) {
         uStackX_20 = 0;
-        iVar8 = func_0x00018088c500(lVar2,&uStackX_20);
+        iVar8 = ValidateBufferContext(lVar2,&uStackX_20);
         if (iVar8 != 0) goto LAB_1808974ec;
         uVar3 = *(undefined4 *)(lVar1 + 0x10);
         uVar4 = *(undefined4 *)(lVar1 + 0x14);
@@ -11620,7 +11620,7 @@ void FUN_180896e11(void)
       lVar2 = *(longlong *)(lVar1 + 0x68);
       if (((*(byte *)(lVar1 + 0xc4) & 1) != 0) && (lVar2 != 0)) {
         uStackX_20 = 0;
-        iVar8 = func_0x00018088c500(lVar2,&uStackX_20);
+        iVar8 = ValidateBufferContext(lVar2,&uStackX_20);
         if (iVar8 != 0) goto LAB_1808974ec;
         uVar3 = *(undefined4 *)(lVar1 + 0x10);
         uVar4 = *(undefined4 *)(lVar1 + 0x14);
@@ -11676,7 +11676,7 @@ void FUN_180896e11(void)
       lVar2 = *(longlong *)(lVar1 + 0x48);
       if (lVar2 != 0) {
         uStackX_20 = 0;
-        iVar9 = func_0x00018088c500(lVar2,&uStackX_20);
+        iVar9 = ValidateBufferContext(lVar2,&uStackX_20);
         if (iVar9 != 0) break;
         uVar3 = *(undefined4 *)(lVar1 + 0x10);
         uVar4 = *(undefined4 *)(lVar1 + 0x14);
@@ -11872,13 +11872,13 @@ void FUN_1808975e0(longlong param_1,longlong param_2)
     lVar8 = lVar14;
   }
   lStack_180 = param_2;
-  iVar6 = func_0x00018088c500(lVar8,&uStack_1c8);
+  iVar6 = ValidateBufferContext(lVar8,&uStack_1c8);
   if (iVar6 == 0) {
     puVar16 = (undefined8 *)(param_2 + 8);
     uStack_1a0 = 0;
     puStack_190 = puVar16;
     lVar8 = (*(code *)**(undefined8 **)(param_2 + 8))(puVar16);
-    iVar6 = func_0x00018088c500(*(undefined8 *)(lVar8 + 0xd0),&uStack_1a0);
+    iVar6 = ValidateBufferContext(*(undefined8 *)(lVar8 + 0xd0),&uStack_1a0);
     if (iVar6 == 0) {
       uStack_170 = 0;
       puStack_178 = &UNK_1809832b8;
@@ -12116,7 +12116,7 @@ void FUN_180897644(void)
   fStack0000000000000048 = unaff_R13D;
   puStack0000000000000058 = puVar22;
   lVar15 = (*(code *)*in_RAX)(puVar22);
-  iVar13 = func_0x00018088c500(*(undefined8 *)(lVar15 + 0xd0),&stack0x00000048);
+  iVar13 = ValidateBufferContext(*(undefined8 *)(lVar15 + 0xd0),&stack0x00000048);
   if (iVar13 == 0) {
     in_stack_00000070 = &UNK_1809832b8;
     *(undefined4 *)(unaff_RBP + -0xf) = uStackX_20;
@@ -12763,7 +12763,7 @@ void FUN_180897b40(longlong *param_1,longlong param_2,undefined4 param_3)
     lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x1a0) + (longlong)iVar7 * 8);
     if (**(int **)(lVar1 + 0xd0) != 0) {
       auStack_288[0] = 0;
-      iVar3 = func_0x00018088c500(*(int **)(lVar1 + 0xd0),auStack_288);
+      iVar3 = ValidateBufferContext(*(int **)(lVar1 + 0xd0),auStack_288);
       if (iVar3 != 0) {
 LAB_180897ce8:
                     // WARNING: Subroutine does not return
@@ -13049,7 +13049,7 @@ void FUN_180898040(longlong *param_1)
           lVar15 = plVar10[3];
           if (lVar15 != 0) {
             afStack_348[0] = 0.0;
-            iVar6 = func_0x00018088c500(plVar10,afStack_348);
+            iVar6 = ValidateBufferContext(plVar10,afStack_348);
             if ((iVar6 != 0) || (iVar6 = FUN_180896c60(param_1,lVar15,afStack_348[0],0), iVar6 != 0)
                ) goto LAB_18089866f;
           }
