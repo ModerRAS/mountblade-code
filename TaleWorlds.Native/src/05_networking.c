@@ -2975,7 +2975,7 @@ int SerializeNetworkStatsData(longlong statsData, longlong outputBuffer, int buf
 void ProcessNetworkHandshake(longlong handshakeContext, NetworkHandle handshakeData, NetworkStatus handshakeFlags)
 
 {
-  InitializeNetworkHandshakeStream(handshakeData,handshakeFlags,&UNK_180984438,*(NetworkStatus *)(handshakeContext + 0x10),
+  InitializeNetworkHandshakeStream(handshakeData,handshakeFlags,&NetworkHandshakeStreamTemplate,*(NetworkStatus *)(handshakeContext + 0x10),
                 *(NetworkByte *)(handshakeContext + 0x18));
   return;
 }
@@ -2996,7 +2996,7 @@ void ProcessNetworkHandshake(longlong handshakeContext, NetworkHandle handshakeD
 void InitializeNetworkHandshakeProtocol(longlong handshakeContext, NetworkHandle handshakeData, NetworkStatus handshakeFlags)
 
 {
-  InitializeNetworkHandshakeStream(packetData,dataSize,&UNK_1809843c0,*(NetworkStatus *)(connectionContext + 0x10),
+  InitializeNetworkHandshakeStream(packetData,dataSize,&NetworkHandshakeDataTemplate,*(NetworkStatus *)(connectionContext + 0x10),
                 *(NetworkByte *)(connectionContext + 0x18));
   return;
 }
@@ -3027,7 +3027,7 @@ int ProcessNetworkPacketPhaseTwo(longlong connectionContext, longlong packetData
   
   firstNetworkFlag = *(NetworkStatus *)(connectionContext + 0x10);
   secondNetworkFlag = *(NetworkStatus *)(connectionContext + 0x18);
-  firstProcessingStatus = ProcessNetworkBufferData(packetData, dataSize, &UNK_180984348);
+  firstProcessingStatus = ProcessNetworkBufferData(packetData, dataSize, &NetworkPacketProcessingTemplate);
   secondProcessingStatus = ProcessNetworkBufferData(packetData + firstProcessingStatus, dataSize - firstProcessingStatus, &g_NetworkBufferDataTemplate);
   cumulativeProcessedSize = firstProcessingStatus + secondProcessingStatus;
   secondProcessingStatus = ProcessNetworkBufferCopy(cumulativeProcessedSize + packetData, dataSize - cumulativeProcessedSize, firstNetworkFlag);
@@ -3168,7 +3168,7 @@ int ProcessNetworkPacketPhaseFive(longlong connectionContext, longlong packetDat
   
   firstNetworkFlag = *(NetworkStatus *)(connectionContext + 0x18);
   secondNetworkFlag = *(NetworkStatus *)(connectionContext + 0x10);
-  firstProcessingStatus = ProcessNetworkBufferData(packetData, dataSize, &UNK_1809833b0);
+  firstProcessingStatus = ProcessNetworkBufferData(packetData, dataSize, &NetworkConnectionTemplate);
   secondProcessingStatus = ProcessNetworkBufferData(firstProcessingStatus + packetData, dataSize - firstProcessingStatus, &g_NetworkBufferDataTemplate);
   cumulativeProcessedSize = firstProcessingStatus + secondProcessingStatus;
   secondProcessingStatus = ProcessNetworkBufferCopy(cumulativeProcessedSize + packetData, dataSize - cumulativeProcessedSize, secondNetworkFlag);
@@ -3207,7 +3207,7 @@ int ProcessNetworkPacketPhaseSix(longlong connectionContext, longlong packetData
   firstNetworkFlag = *(NetworkStatus *)(connectionContext + 0x1c);
   secondNetworkFlag = *(NetworkStatus *)(connectionContext + 0x18);
   thirdNetworkFlag = *(NetworkStatus *)(connectionContext + 0x10);
-  firstProcessingStatus = ProcessNetworkBufferData(packetData, dataSize, &UNK_180983440);
+  firstProcessingStatus = ProcessNetworkBufferData(packetData, dataSize, &NetworkSecurityTemplate);
   secondProcessingStatus = ProcessNetworkBufferData(packetData + firstProcessingStatus, dataSize - firstProcessingStatus, &g_NetworkBufferDataTemplate);
   cumulativeProcessedSize = firstProcessingStatus + secondProcessingStatus;
   secondProcessingStatus = ProcessNetworkBufferCopy(cumulativeProcessedSize + packetData, dataSize - cumulativeProcessedSize, thirdNetworkFlag);
@@ -3248,7 +3248,7 @@ int ProcessNetworkPacketHeader(longlong connectionContext,longlong packetData,in
   primaryNetworkFlag = *(NetworkStatus *)(connectionContext + 0x1c);
   secondaryNetworkFlag = *(NetworkStatus *)(connectionContext + 0x18);
   tertiaryNetworkFlag = *(NetworkStatus *)(connectionContext + 0x10);
-  networkStatus4 = ProcessNetworkBufferData(packetData,dataSize,&UNK_1809834d0);
+  networkStatus4 = ProcessNetworkBufferData(packetData,dataSize,&NetworkValidationTemplate);
   iVar5 = ProcessNetworkBufferData(packetData + networkStatus4,dataSize - networkStatus4,&g_NetworkBufferDataTemplate);
   networkStatus4 = networkStatus4 + iVar5;
   iVar5 = ProcessNetworkBufferCopy(networkStatus4 + packetData,dataSize - networkStatus4,tertiaryNetworkFlag);
@@ -3286,7 +3286,7 @@ int ProcessNetworkPacketWithMultipleBuffers(longlong connectionContext,longlong 
   
   primaryBufferStatus = *(NetworkStatus *)(connectionContext + 0x18);
   secondaryBufferStatus = *(NetworkStatus *)(connectionContext + 0x10);
-  firstProcessingOffset = ProcessNetworkBufferData(packetData,dataSize,&UNK_180983680);
+  firstProcessingOffset = ProcessNetworkBufferData(packetData,dataSize,&NetworkEncryptionTemplate);
   secondProcessingOffset = ProcessNetworkBufferData(firstProcessingOffset + packetData,dataSize - firstProcessingOffset,&g_NetworkBufferDataTemplate);
   firstProcessingOffset = firstProcessingOffset + secondProcessingOffset;
   secondProcessingOffset = ProcessNetworkBufferCopy(firstProcessingOffset + packetData,dataSize - firstProcessingOffset,secondaryBufferStatus);
@@ -7388,7 +7388,16 @@ void ProcessNetworkConnectionContextPacket(ulonglong connectionContext,NetworkBy
 
 
 
-bool FUN_180847f30(NetworkHandle connectionContext)
+/**
+ * @brief 验证网络连接上下文
+ * 
+ * 该函数负责验证网络连接上下文的有效性，检查连接标志是否正确设置。
+ * 主要用于网络连接的安全验证和状态检查。
+ * 
+ * @param connectionContext 网络连接上下文句柄
+ * @return 验证结果，true表示验证成功，false表示验证失败
+ */
+bool ValidateNetworkConnectionContext(NetworkHandle connectionContext)
 
 {
   int networkStatus1;
