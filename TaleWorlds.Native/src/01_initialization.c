@@ -22254,7 +22254,7 @@ void system_handle_texture_compression_quaternary(void)
   void* *system_system_stack_context_ptr_b;
   void* *system_stack_byte_pointer;
   int64_t system_stack_long_ai_params [2];
-  char acStack_60 [16];
+  char system_stack_char_buffer_60[16];
   
   system_stack_long_ai_params[1] = 0xfffffffffffffffe;
   system_stack_context_hash_value = system_global_data_pointer ^ (uint64_t)system_system_stack_buffer_c8;
@@ -22313,13 +22313,13 @@ void system_handle_texture_compression_quaternary(void)
     *(void**)(camera_traverse_node_next + 8) = 0x2072;
     *(uint8_t* *)((int64_t)camera_traverse_node_next + 0x22) = 0;
     system_stack_context_hash_value = 0x3e;
-    system_process_context_data(acStack_60,&system_null_ptr,900);
+    system_process_context_data(system_stack_char_buffer_60, &system_null_ptr, 900);
     system_parameter_value_secondary = system_stack_context_hash_value;
     system_calculated_offset = -1;
     do {
       system_data_handle = system_calculated_offset;
       system_calculated_offset = system_data_handle + 1;
-    } while (acStack_60[system_data_handle + 1] != '\0');
+    } while (system_stack_char_buffer_60[system_data_handle + 1] != '\0');
     system_result_code = (int)(system_data_handle + 1);
     if (0 < system_result_code) break;
     system_temp_unsigned_value_primary = system_stack_context_hash_value + 10;
@@ -22359,7 +22359,7 @@ void system_handle_texture_compression_quaternary(void)
     system_system_stack_context_ptr_b = &system_null_ptr;
   }
   system_process_context_data(&system_system_stack_context_ptr_b,system_stack_context_hash_value + system_result_code);
-  memcpy(system_stack_byte_pointer + system_stack_context_hash_value,acStack_60,(int64_t)((int)system_data_handle + 2));
+  memcpy(system_stack_byte_pointer + system_stack_context_hash_value, system_stack_char_buffer_60, (int64_t)((int)system_data_handle + 2));
 }
 
 
@@ -42745,17 +42745,17 @@ float * system_process_context_data(float *system_context_ptr)
   int64_t *system_secondary_data_ptr;
   float *system_float_ptr_quaternary;
   float *system_float_ptr_senary;
-  float fStack_b8;
-  float fStack_b4;
-  float fStack_b0;
-  float fStack_a8;
-  float fStack_a4;
-  float fStack_a0;
-  float *pfStack_98;
-  float fStack_58;
-  float fStack_54;
-  float fStack_50;
-  float fStack_4c;
+  float system_stack_float_b8;
+  float system_stack_float_b4;
+  float system_stack_float_b0;
+  float system_stack_float_a8;
+  float system_stack_float_a4;
+  float system_stack_float_a0;
+  float* system_stack_float_ptr_98;
+  float system_stack_float_58;
+  float system_stack_float_54;
+  float system_stack_float_50;
+  float system_stack_float_4c;
   
   system_stack_context_hash_value = 0xfffffffffffffffe;
   system_float_ptr_senary = system_context_ptr;
@@ -53992,16 +53992,15 @@ static system_status_t g_system_status = SYSTEM_STATUS_UNINITIALIZED;
 static system_init_config_t g_system_config = {0};
 
 /**
- * @brief 系统初始化主函数
- * @param config 系统初始化配置
- * @return int 初始化结果，0表示成功，-1表示失败
+ * @brief 系统主初始化函数
  * 
- * 这是系统的主要初始化函数，负责初始化所有系统组件。
+ * 该函数负责初始化整个系统，包括各个子系统的初始化。
  * 
- * @note 这是简化实现，提供基本的初始化功能
- * @warning 调用此函数前需要确保config参数有效
- * @param config 必须为有效的配置指针
- * @return 返回状态码：0=成功，-1=失败
+ * @param config 系统初始化配置结构体指针
+ * @return int 初始化成功返回SYSTEM_INIT_SUCCESS，失败返回SYSTEM_INIT_FAILURE
+ * 
+ * @note 这是简化实现，主要处理基本的初始化流程
+ * @warning 调用此函数前，必须确保config参数有效
  */
 int system_initialize_main(const system_init_config_t* config) {
     if (config == NULL) {
