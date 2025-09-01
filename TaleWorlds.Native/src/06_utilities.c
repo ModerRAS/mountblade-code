@@ -35292,7 +35292,19 @@ void ValidateResourceIndex(uint8_t ObjectContextParameter, int64_t ValidationCon
 
 
 
-void Unwind_180903510(uint8_t ObjectContextParameter,int64_t ValidationContextParameter)
+/**
+ * @brief 清理资源句柄并释放内存
+ * 
+ * 该函数负责清理系统中的资源句柄，释放相关内存
+ * 执行资源释放操作并重置系统状态
+ * 
+ * @param ObjectContextParameter 对象上下文参数
+ * @param ValidationContextParameter 验证上下文参数
+ * @return 无返回值
+ * @note 此函数用于系统资源清理和内存释放
+ * @warning 调用此函数后，相关资源将不再可用
+ */
+void CleanupResourceHandlesAndReleaseMemory(uint8_t ObjectContextParameter, int64_t ValidationContextParameter)
 
 {
   int *pResourceIndex;
@@ -35355,7 +35367,19 @@ void Unwind_180903510(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 
 
 
-void Unwind_180903520(uint8_t ObjectContextParameter,int64_t ValidationContextParameter)
+/**
+ * @brief 销毁互斥锁和条件变量
+ * 
+ * 该函数负责销毁系统中的互斥锁和条件变量
+ * 清理线程同步相关的资源
+ * 
+ * @param ObjectContextParameter 对象上下文参数
+ * @param ValidationContextParameter 验证上下文参数
+ * @return 无返回值
+ * @note 此函数用于清理线程同步资源
+ * @warning 调用此函数后，相关同步对象将被销毁
+ */
+void DestroyMutexAndConditionVariables(uint8_t ObjectContextParameter, int64_t ValidationContextParameter)
 
 {
   int *pResourceIndex;
@@ -35391,7 +35415,19 @@ void Unwind_180903520(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 
 
 
-void Unwind_180903540(uint8_t ObjectContextParameter,int64_t ValidationContextParameter)
+/**
+ * @brief 释放系统资源并清理
+ * 
+ * 该函数负责释放系统资源，执行清理操作
+ * 重置系统状态并释放相关内存
+ * 
+ * @param ObjectContextParameter 对象上下文参数
+ * @param ValidationContextParameter 验证上下文参数
+ * @return 无返回值
+ * @note 此函数用于系统资源清理和状态重置
+ * @warning 调用此函数后，相关系统资源将被释放
+ */
+void ReleaseSystemResourcesAndCleanup(uint8_t ObjectContextParameter, int64_t ValidationContextParameter)
 
 {
   int64_t *processPointer;
@@ -35405,7 +35441,19 @@ void Unwind_180903540(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 
 
 
-void Unwind_180903560(uint8_t ObjectContextParameter,int64_t ValidationContextParameter)
+/**
+ * @brief 清理线程本地存储
+ * 
+ * 该函数负责清理线程本地存储中的资源
+ * 重置线程状态并释放相关内存
+ * 
+ * @param ObjectContextParameter 对象上下文参数
+ * @param ValidationContextParameter 验证上下文参数
+ * @return 无返回值
+ * @note 此函数用于清理线程本地存储资源
+ * @warning 调用此函数后，线程本地存储将被重置
+ */
+void CleanupThreadLocalStorage(uint8_t ObjectContextParameter, int64_t ValidationContextParameter)
 
 {
   int *pResourceIndex;
@@ -35443,7 +35491,19 @@ void Unwind_180903560(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 
 
 
-void Unwind_180903580(uint8_t ObjectContextParameter,int64_t ValidationContextParameter)
+/**
+ * @brief 重置系统上下文和处理器
+ * 
+ * 该函数负责重置系统上下文和处理器
+ * 清理系统状态并重置相关指针
+ * 
+ * @param ObjectContextParameter 对象上下文参数
+ * @param ValidationContextParameter 验证上下文参数
+ * @return 无返回值
+ * @note 此函数用于重置系统上下文和处理器
+ * @warning 调用此函数后，系统上下文将被重置
+ */
+void ResetSystemContextAndHandlers(uint8_t ObjectContextParameter, int64_t ValidationContextParameter)
 
 {
   int *pResourceIndex;
@@ -36918,7 +36978,21 @@ void UnwindSystemDataStructureHandler(uint8_t ObjectContextParameter,int64_t Val
 
 
 
-void Unwind_180903930(uint8_t ObjectContextParameter,int64_t ValidationContextParameter,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 清理本地上下文资源
+ * 
+ * 该函数负责清理本地上下文中的资源
+ * 释放相关内存并重置系统状态
+ * 
+ * @param ObjectContextParameter 对象上下文参数
+ * @param ValidationContextParameter 验证上下文参数
+ * @param CleanupOption 清理选项
+ * @param CleanupFlag 清理标志
+ * @return 无返回值
+ * @note 此函数用于清理本地上下文资源
+ * @warning 调用此函数后，相关资源将被释放
+ */
+void CleanupLocalContextResources(uint8_t ObjectContextParameter, int64_t ValidationContextParameter, uint8_t CleanupOption, uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
@@ -36948,7 +37022,21 @@ void Unwind_180903930(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 
 
 
-void Unwind_180903950(uint8_t ObjectContextParameter,int64_t ValidationContextParameter,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 释放系统数据结构
+ * 
+ * 该函数负责释放系统中的数据结构
+ * 清理相关指针和内存
+ * 
+ * @param ObjectContextParameter 对象上下文参数
+ * @param ValidationContextParameter 验证上下文参数
+ * @param CleanupOption 清理选项
+ * @param CleanupFlag 清理标志
+ * @return 无返回值
+ * @note 此函数用于释放系统数据结构
+ * @warning 调用此函数后，相关数据结构将被释放
+ */
+void ReleaseSystemDataStructures(uint8_t ObjectContextParameter, int64_t ValidationContextParameter, uint8_t CleanupOption, uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
