@@ -1,8 +1,8 @@
 #ifndef DATA_DEFINITIONS_H
 #define DATA_DEFINITIONS_H
 
-undefined g_systemGlobalData;
-undefined g_unknownGlobalData;
+undefined8 g_systemGlobalData;
+undefined8 g_unknownGlobalData;
 
 /**
  * 初始化渲染系统模块
@@ -129,10 +129,10 @@ int InitializeMemoryManager(void)
 int InitializeRenderingThreadSync(undefined8 threadId,undefined8 syncPtr,undefined8 mutexType,undefined8 mutexAttr)
 {
   longlong callbackResult;
-  undefined8 mutexFlags;
-  mutexFlags = 0xfffffffffffffffe;
+  undefined8 renderingMutexFlags;
+  renderingMutexFlags = 0xfffffffffffffffe;
   _Cnd_init_in_situ();
-  _Mtx_init_in_situ(RENDER_MUTEX_ADDRESS,2,mutexType,mutexAttr,mutexFlags);
+  _Mtx_init_in_situ(RENDER_MUTEX_ADDRESS,2,mutexType,mutexAttr,renderingMutexFlags);
   g_renderingSyncState = 0;
   callbackResult = RegisterSystemCallback(RenderingThreadSyncCallback);
   return (callbackResult != 0) - 1;
@@ -150,8 +150,8 @@ int InitializeRenderingThreadSync(undefined8 threadId,undefined8 syncPtr,undefin
 int InitializePhysicsEngineSync(undefined8 threadId,undefined8 syncPtr,undefined8 mutexType,undefined8 mutexAttr)
 {
   longlong callbackResult;
-  undefined8 mutexFlags;
-  mutexFlags = 0xfffffffffffffffe;
+  undefined8 physicsMutexFlags;
+  physicsMutexFlags = 0xfffffffffffffffe;
   _Cnd_init_in_situ();
   _Mtx_init_in_situ(PHYSICS_MUTEX_ADDRESS,2,mutexType,mutexAttr,mutexFlags);
   g_physicsSyncState = 0;
@@ -261,11 +261,11 @@ int InitializeStringProcessorE(void)
 {
   longlong result;
   undefined8 stringFlags;
-  globalData_180bf6620 = &unknownData_1809fdc18;
-  globalData_180bf6628 = &globalData_180bf6638;
-  globalData_180bf6638 = 0;
-  globalData_180bf6630 = 0xc;
-  strcpy_s(&globalData_180bf6638,0x10,&unknownData_180a00528,stringFlags,0xfffffffffffffffe);
+  g_stringProcessorE_Base = &unknownData_1809fdc18;
+  g_stringProcessorE_BufferPtr = &g_stringProcessorE_Buffer;
+  g_stringProcessorE_Buffer = 0;
+  g_stringProcessorE_Length = 0xc;
+  strcpy_s(&g_stringProcessorE_Buffer,0x10,&unknownData_180a00528,stringFlags,0xfffffffffffffffe);
   result = RegisterSystemCallback(InitializeStringProcessorE_Callback);
   return (result != 0) - 1;
 }
@@ -277,7 +277,7 @@ int InitializeStringProcessorF(void)
 {
   longlong result;
   undefined8 stringFlags;
-  globalData_180bf6650 = &unknownData_1809fdc18;
+  g_stringProcessorF_Base = &unknownData_1809fdc18;
   globalData_180bf6658 = &globalData_180bf6668;
   globalData_180bf6668 = 0;
   globalData_180bf6660 = 4;

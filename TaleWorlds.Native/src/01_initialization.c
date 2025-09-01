@@ -16602,50 +16602,50 @@ undefined4 FinalSystemInitialization(void)
   (*(code *)(*systemManager)[5])(systemManager);
   FUN_18005e300(systemObject,&stackManager8);
   while( true ) {
-    if (*pppplVar6 == (longlong ***)&UNK_1809ff2f8) {
-      cVar11 = *(char *)(pppplVar6 + 2) != '\0';
+    if (*systemManager == (longlong ***)&UNK_1809ff2f8) {
+      isActiveFlag = *(char *)(systemManager + 2) != '\0';
     }
     else {
-      cVar11 = (*(code *)(*pppplVar6)[0xd])(pppplVar6);
+      isActiveFlag = (*(code *)(*systemManager)[0xd])(systemManager);
     }
-    if (cVar11 != '\0') break;
+    if (isActiveFlag != '\0') break;
     Sleep(1);
   }
   FUN_1800623e0();
-  lVar10 = _DAT_180c86928;
-  uVar7 = FUN_18062b1e0(_DAT_180c8ed18,0x70,8,3);
-  pppplVar8 = (longlong ****)FUN_1800636f0(uVar7,2,lVar10);
-  pppplVar14 = pppplVar8;
-  if (pppplVar8 != (longlong ****)0x0) {
-    (*(code *)(*pppplVar8)[5])(pppplVar8);
+  systemObject = _DAT_180c86928;
+  allocationFlags = FUN_18062b1e0(_DAT_180c8ed18,0x70,8,3);
+  tempManager8 = (longlong ****)FUN_1800636f0(allocationFlags,2,systemObject);
+  tempManager14 = tempManager8;
+  if (tempManager8 != (longlong ****)0x0) {
+    (*(code *)(*tempManager8)[5])(tempManager8);
   }
-  puVar1 = *(undefined8 **)(lVar10 + 400);
-  pcVar2 = *(code **)*puVar1;
-  pppplStackX_8 = &ppplStackX_10;
-  ppplStackX_10 = (longlong ***)pppplVar8;
-  if (pppplVar8 != (longlong ****)0x0) {
-    (*(code *)(*pppplVar8)[5])(pppplVar8);
+  systemPtr = *(undefined8 **)(systemObject + 400);
+  systemCallback = *(code **)*systemPtr;
+  stackManager8 = &stackManager10;
+  stackManager10 = (longlong ***)tempManager8;
+  if (tempManager8 != (longlong ****)0x0) {
+    (*(code *)(*tempManager8)[5])(tempManager8);
   }
-  (*pcVar2)(puVar1,&ppplStackX_10);
-  uVar12 = FUN_18062b1e0(_DAT_180c8ed18,0x70,8,3,uVar12,ppppplVar13,pppplVar14);
-  ppplVar9 = (longlong ***)FUN_1800636f0(uVar12,0,lVar10);
-  if (ppplVar9 != (longlong ***)0x0) {
-    (*(code *)(*ppplVar9)[5])(ppplVar9);
+  (*systemCallback)(systemPtr,&stackManager10);
+  systemFlags = FUN_18062b1e0(_DAT_180c8ed18,0x70,8,3,systemFlags,systemSuperManager,tempManager14);
+  tempManager9 = (longlong ***)FUN_1800636f0(systemFlags,0,systemObject);
+  if (tempManager9 != (longlong ***)0x0) {
+    (*(code *)(*tempManager9)[5])(tempManager9);
   }
-  puVar1 = *(undefined8 **)(lVar10 + 400);
-  pcVar2 = *(code **)*puVar1;
-  pppplStackX_8 = (longlong ****)&pplStackX_18;
-  pplStackX_18 = (longlong **)ppplVar9;
-  if (ppplVar9 != (longlong ***)0x0) {
-    (*(code *)(*ppplVar9)[5])(ppplVar9);
+  systemPtr = *(undefined8 **)(systemObject + 400);
+  systemCallback = *(code **)*systemPtr;
+  stackManager8 = (longlong ****)&stackController18;
+  stackController18 = (longlong **)tempManager9;
+  if (tempManager9 != (longlong ***)0x0) {
+    (*(code *)(*tempManager9)[5])(tempManager9);
   }
-  (*pcVar2)(puVar1,&pplStackX_18);
-  FUN_18020f150(*(undefined8 *)(lVar10 + 400));
-  if (ppplVar9 != (longlong ***)0x0) {
-    (*(code *)(*ppplVar9)[7])(ppplVar9);
+  (*systemCallback)(systemPtr,&stackController18);
+  FUN_18020f150(*(undefined8 *)(systemObject + 400));
+  if (tempManager9 != (longlong ***)0x0) {
+    (*(code *)(*tempManager9)[7])(tempManager9);
   }
-  if (pppplVar8 != (longlong ****)0x0) {
-    (*(code *)(*pppplVar8)[7])(pppplVar8);
+  if (tempManager8 != (longlong ****)0x0) {
+    (*(code *)(*tempManager8)[7])(tempManager8);
   }
   pppplVar14 = _DAT_180c86940;
   *(undefined1 *)(_DAT_180c86940[1] + 0x80) = 1;
