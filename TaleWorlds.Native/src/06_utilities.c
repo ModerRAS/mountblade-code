@@ -368,22 +368,34 @@ void* DatabasePool;
 void* DatabaseConnectionPoolInstance;
 // 数据库连接池配置
 void* DatabaseConnectionPoolConfig;
-undefined DAT_180bf6a10;
-undefined DAT_180bf6a18;
-undefined DAT_180bf6a20;
-undefined DAT_180bf6a28;
-undefined DAT_180bf6a68;
-undefined DAT_180bf6a70;
-undefined DAT_180bf6a78;
-undefined DAT_180bf6a80;
-undefined DAT_180bf6ac0;
-undefined DAT_180bf6ac8;
-undefined DAT_180bf6ad0;
-undefined DAT_180bf6ad8;
-undefined DAT_180bf6b18;
-undefined DAT_180bf6b20;
-undefined DAT_180bf6b28;
-undefined DAT_180bf6b30;
+// 数据库连接池状态标志
+void* DatabaseConnectionPoolStatus;
+// 数据库连接池配置参数
+void* DatabaseConnectionPoolParams;
+// 数据库连接池缓存区域
+void* DatabaseConnectionPoolCache;
+// 数据库连接池索引表
+void* DatabaseConnectionPoolIndex;
+// 数据库连接池事务管理器
+void* DatabaseConnectionPoolTransactionManager;
+// 数据库连接池备份系统
+void* DatabaseConnectionPoolBackupSystem;
+// 数据库查询缓存管理器
+void* DatabaseQueryCacheManager;
+// 数据库查询结果存储
+void* DatabaseQueryResultStorage;
+// 数据库查询优化器
+void* DatabaseQueryOptimizer;
+// 数据库查询执行计划
+void* DatabaseQueryExecutionPlan;
+// 数据库事务日志记录器
+void* DatabaseTransactionLogger;
+// 数据库事务状态管理器
+void* DatabaseTransactionStateManager;
+// 数据库事务回滚管理器
+void* DatabaseTransactionRollbackManager;
+// 数据库事务提交管理器
+void* DatabaseTransactionCommitManager;
 undefined DAT_180bf6b70;
 undefined DAT_180bf6b78;
 undefined DAT_180bf6b80;
@@ -4524,8 +4536,14 @@ undefined4 FUN_180890f03(void)
 
 
 
-// 函数: void FUN_180890f2c(void)
-void FUN_180890f2c(void)
+// 函数: void ExecuteNonReturningFunction180862e00(void)
+/**
+ * @brief 执行不返回的函数
+ * 
+ * 该函数调用一个不会返回的函数
+ * 用于处理某些特殊情况下的程序退出
+ */
+void ExecuteNonReturningFunction180862e00(void)
 
 {
                     // WARNING: Subroutine does not return
@@ -4535,8 +4553,14 @@ void FUN_180890f2c(void)
 
 
 
-// 函数: void FUN_180890f7f(void)
-void FUN_180890f7f(void)
+// 函数: void EmptyFunction(void)
+/**
+ * @brief 空函数
+ * 
+ * 该函数不执行任何操作，直接返回
+ * 可能用作占位符或空操作
+ */
+void EmptyFunction(void)
 
 {
   return;
