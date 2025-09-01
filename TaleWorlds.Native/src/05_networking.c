@@ -9356,7 +9356,22 @@ void ProcessNetworkConnectionInitializationAndValidation(NetworkHandle connectio
 
 
 // 函数: void FUN_1808496c0(NetworkStatus connectionContext,longlong packetData,NetworkStatus dataSize)
-void FUN_1808496c0(NetworkStatus connectionContext,longlong packetData,NetworkStatus dataSize)
+/**
+ * @brief 网络连接数据管理器
+ * 
+ * 该函数负责管理网络连接的数据，包括：
+ * - 网络连接ID初始化和验证
+ * - 连接句柄初始化
+ * - 连接标志验证
+ * - 数据包状态设置
+ * 
+ * @param connectionContext 网络连接状态上下文
+ * @param packetData 数据包数据指针
+ * @param dataSize 数据大小状态
+ * 
+ * 注意：这是一个反编译的函数实现
+ */
+void NetworkConnectionDataManager(NetworkStatus connectionContext,longlong packetData,NetworkStatus dataSize)
 
 {
   longlong lVar1;
@@ -9719,7 +9734,22 @@ LAB_180849c81:
 
 
 // 函数: void FUN_180849d40(ulonglong connectionContext,longlong packetData,NetworkStatus dataSize)
-void FUN_180849d40(ulonglong connectionContext,longlong packetData,NetworkStatus dataSize)
+/**
+ * @brief 处理网络连接数据传输和配置
+ * 
+ * 该函数负责处理网络连接的数据传输和配置操作，包括：
+ * - 网络连接ID初始化
+ * - 连接句柄初始化
+ * - 数据传输处理
+ * - 配置参数设置
+ * 
+ * @param connectionContext 网络连接上下文
+ * @param packetData 数据包数据
+ * @param dataSize 数据大小
+ * 
+ * 注意：这是一个反编译的函数实现
+ */
+void ProcessNetworkConnectionDataTransferAndConfiguration(ulonglong connectionContext,longlong packetData,NetworkStatus dataSize)
 
 {
   int networkStatus1;
