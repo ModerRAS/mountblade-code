@@ -58,32 +58,59 @@ uint SendNetworkPacketData(longlong socketData, NetworkHandle connectionHandle, 
  */
 uint ValidateNetworkPacket(longlong packetData, longlong connectionContext);
 
+// 网络连接表句柄，用于管理所有网络连接的索引
 uint32_t NetworkConnectionTableHandle;
+// 网络连接状态标志，表示连接的当前状态
 uint32_t NetworkConnectionStatusFlags;
+// 网络连接超时时间，单位毫秒
 uint32_t NetworkConnectionTimeoutDuration;
+// 网络数据包缓冲区数据
 uint32_t NetworkPacketBufferData;
+// 网络数据包头数据
 uint32_t NetworkPacketHeaderData;
+// 网络连接最大限制数
 uint32_t NetworkConnectionMaximumLimit;
+// 网络连接属性标志
 uint32_t NetworkConnectionAttributeFlags;
+// 网络连接协议类型
 uint32_t NetworkConnectionProtocolType;
+// 网络连接协议版本
 uint32_t NetworkConnectionProtocolVersion;
+// 网络服务器IP地址
 uint32_t NetworkServerIpAddress;
+// 网络服务器端口号
 uint32_t NetworkServerPortNumber;
+// 网络客户端IP地址
 uint32_t NetworkClientIpAddress;
+// 网络客户端端口号
 uint32_t NetworkClientPortNumber;
+// 网络套接字文件描述符
 uint32_t NetworkSocketFileDescriptor;
+// 网络套接字类别
 uint32_t NetworkSocketCategory;
+// 网络套接字协议类型
 uint32_t NetworkSocketProtocolType;
+// 网络连接池
 uint32_t NetworkConnectionPool;
+// 网络发送缓冲区
 uint32_t NetworkSendBuffer;
+// 网络接收缓冲区
 uint32_t NetworkReceiveBuffer;
+// 网络发送缓冲区容量
 uint32_t NetworkSendBufferCapacity;
+// 网络接收缓冲区容量
 uint32_t NetworkReceiveBufferCapacity;
+// 网络数据包负载大小
 uint32_t NetworkPacketPayloadSize;
+// 网络最大数据包大小
 uint32_t NetworkMaxPacketSize;
+// 网络连接超时毫秒数
 uint32_t NetworkConnectionTimeoutMilliseconds;
+// 网络加密密钥
 uint32_t NetworkEncryptionKey;
+// 网络压缩级别
 uint32_t NetworkCompressionLevel;
+// 网络连接状态标志
 uint32_t NetworkConnectionStateFlags;
 
 // 网络缓冲区数据模板
@@ -16991,7 +17018,7 @@ LAB_18084f34c:
         networkStatus2 = *pnetworkStatus11;
       }
     }
-    FUN_1808bb9e0(quaternaryNetworkFlag);
+    ValidateNetworkConnectionState(quaternaryNetworkFlag);
                     // WARNING: Subroutine does not return
     ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),quaternaryNetworkFlag,&UNK_180984cd0,0x62,1);
   }
@@ -17113,7 +17140,7 @@ LAB_18084f34c:
         networkStatus2 = *pnetworkStatus11;
       }
     }
-    FUN_1808bb9e0(quaternaryNetworkFlag);
+    ValidateNetworkConnectionState(quaternaryNetworkFlag);
                     // WARNING: Subroutine does not return
     ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),quaternaryNetworkFlag,&UNK_180984cd0,0x62,1);
   }
@@ -17256,7 +17283,7 @@ LAB_18084f5dc:
         networkStatus2 = *pnetworkStatus11;
       }
     }
-    FUN_1808bbe80(quaternaryNetworkFlag);
+    ResetNetworkConnectionState(quaternaryNetworkFlag);
                     // WARNING: Subroutine does not return
     ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),quaternaryNetworkFlag,&UNK_180984cd0,0x62,1);
   }
@@ -17378,7 +17405,7 @@ LAB_18084f5dc:
         networkStatus2 = *pnetworkStatus11;
       }
     }
-    FUN_1808bbe80(quaternaryNetworkFlag);
+    ResetNetworkConnectionState(quaternaryNetworkFlag);
                     // WARNING: Subroutine does not return
     ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),quaternaryNetworkFlag,&UNK_180984cd0,0x62,1);
   }
@@ -17635,7 +17662,7 @@ LAB_18084faac:
     networkPointer14 = networkPointer15 + 1;
     if (quinaryNetworkFlag == 0xffffffff) goto LAB_18084faac;
   }
-  networkStatus11 = FUN_1807d28c0(lVar9,networkPointer13,networkPointer15 + 2);
+  networkStatus11 = ProcessNetworkPacketData(lVar9,networkPointer13,networkPointer15 + 2);
   if (networkStatus11 != 0) goto LAB_18084fc83;
   primaryNetworkFlag = *networkPointer14;
   lVar8 = (longlong)(int)primaryNetworkFlag * 0x10 + plVar6[2];
@@ -17685,7 +17712,7 @@ LAB_18084f970:
     }
   }
 LAB_18084f987:
-  FUN_1808bb9a0(plVar6);
+  CleanupNetworkConnectionResources(plVar6);
                     // WARNING: Subroutine does not return
   ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),plVar6,&UNK_180984cd0,0x193,1);
 }
@@ -17932,7 +17959,7 @@ LAB_18084f970:
     }
   }
 LAB_18084f987:
-  FUN_1808bb9a0(plVar5);
+  CleanupNetworkConnectionResources(plVar5);
                     // WARNING: Subroutine does not return
   ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),plVar5,&UNK_180984cd0,0x193,1);
 }
@@ -18138,7 +18165,7 @@ LAB_18084ff8c:
     networkPointer14 = networkPointer15 + 1;
     if (quinaryNetworkFlag == 0xffffffff) goto LAB_18084ff8c;
   }
-  networkStatus11 = FUN_1807d28c0(lVar9,networkPointer13,networkPointer15 + 2);
+  networkStatus11 = ProcessNetworkPacketData(lVar9,networkPointer13,networkPointer15 + 2);
   if (networkStatus11 != 0) goto LAB_180850163;
   primaryNetworkFlag = *networkPointer14;
   lVar8 = (longlong)(int)primaryNetworkFlag * 0x10 + plVar6[2];
@@ -18188,7 +18215,7 @@ LAB_18084fe50:
     }
   }
 LAB_18084fe67:
-  FUN_1808bb9a0(plVar6);
+  CleanupNetworkConnectionResources(plVar6);
                     // WARNING: Subroutine does not return
   ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),plVar6,&UNK_180984cd0,0x193,1);
 }
@@ -18446,7 +18473,7 @@ LAB_18084fe50:
     }
   }
 LAB_18084fe67:
-  FUN_1808bb9a0(plVar5);
+  CleanupNetworkConnectionResources(plVar5);
                     // WARNING: Subroutine does not return
   ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),plVar5,&UNK_180984cd0,0x193,1);
 }
@@ -18650,7 +18677,7 @@ LAB_18085046c:
     networkPointer14 = networkPointer15 + 1;
     if (quinaryNetworkFlag == 0xffffffff) goto LAB_18085046c;
   }
-  networkStatus11 = FUN_1807d28c0(lVar9,networkPointer13,networkPointer15 + 2);
+  networkStatus11 = ProcessNetworkPacketData(lVar9,networkPointer13,networkPointer15 + 2);
   if (networkStatus11 != 0) goto LAB_180850643;
   primaryNetworkFlag = *networkPointer14;
   lVar8 = (longlong)(int)primaryNetworkFlag * 0x10 + plVar6[2];
@@ -19160,7 +19187,7 @@ LAB_18085094c:
     networkPointer14 = networkPointer15 + 1;
     if (quinaryNetworkFlag == 0xffffffff) goto LAB_18085094c;
   }
-  networkStatus11 = FUN_1807d28c0(lVar9,networkPointer13,networkPointer15 + 2);
+  networkStatus11 = ProcessNetworkPacketData(lVar9,networkPointer13,networkPointer15 + 2);
   if (networkStatus11 != 0) goto LAB_180850b23;
   primaryNetworkFlag = *networkPointer14;
   lVar8 = (longlong)(int)primaryNetworkFlag * 0x10 + plVar6[2];
@@ -22659,7 +22686,7 @@ LAB_180852f9c:
   if (puVar7 == (NetworkHandle *)0x0) {
     return networkStatus10;
   }
-  FUN_1808bb9a0(puVar7);
+  CleanupNetworkConnectionResources(puVar7);
                     // WARNING: Subroutine does not return
   ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),puVar7,&UNK_18095b500,0xc6,1);
 }
@@ -22810,7 +22837,7 @@ LAB_180852f9c:
   if (puVar7 == (NetworkHandle *)0x0) {
     return networkStatus10;
   }
-  FUN_1808bb9a0(puVar7);
+  CleanupNetworkConnectionResources(puVar7);
                     // WARNING: Subroutine does not return
   ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),puVar7,&UNK_18095b500,0xc6,1);
 }
@@ -22834,7 +22861,7 @@ NetworkStatus CheckNetworkConnectionState(void)
   if (unaff_RBX == 0) {
     return 0x1c;
   }
-  FUN_1808bb9a0();
+  CleanupNetworkConnectionResources();
                     // WARNING: Subroutine does not return
   ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0));
 }
@@ -23282,7 +23309,7 @@ LAB_180853663:
       quaternaryNetworkFlag = FUN_180853840(connectionContext + 6,plVar7 + 5);
     }
     if (quaternaryNetworkFlag == 0) {
-      FUN_1808bb9a0(plVar7);
+      CleanupNetworkConnectionResources(plVar7);
                     // WARNING: Subroutine does not return
       ValidateNetworkConnectionData(*(NetworkHandle *)(g_NetworkConnectionTable + 0x1a0),plVar7,&UNK_180984cd0,0xe1,1);
     }
@@ -23527,13 +23554,13 @@ void NetworkConnectionDataSender(NetworkHandle connectionContext,int packetData)
     if (networkStatus1 == 0) {
       networkStatus1 = FUN_18073a840(auStackX_18[0],0,auStackX_10,0);
       if (networkStatus1 == 0) {
-        FUN_1807411a0(connectionContext,0,0,auStackX_10[0]);
+        CreateNetworkConnectionHandle(connectionContext,0,0,auStackX_10[0]);
         return;
       }
     }
   }
   else {
-    FUN_1807411a0(connectionContext,0,0,packetData);
+    CreateNetworkConnectionHandle(connectionContext,0,0,packetData);
   }
   return;
 }
@@ -24451,7 +24478,7 @@ LAB_1808547bc:
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-NetworkStatus FUN_1808547cb(void)
+NetworkStatus GetNetworkSystemStatus(void)
 
 {
   int *pnetworkStatus1;
@@ -24471,7 +24498,7 @@ NetworkStatus FUN_1808547cb(void)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-int FUN_180854810(longlong connectionContext,ulonglong packetData,NetworkStatus dataSize,NetworkHandle *param_4)
+int ProcessNetworkDataTransfer(longlong connectionContext,ulonglong packetData,NetworkStatus dataSize,NetworkHandle *param_4)
 
 {
   longlong *plVar1;
@@ -24552,7 +24579,7 @@ LAB_180854958:
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-int FUN_180854818(longlong connectionContext,ulonglong packetData,NetworkStatus dataSize,NetworkHandle *param_4,
+int ProcessNetworkStreamData(longlong connectionContext,ulonglong packetData,NetworkStatus dataSize,NetworkHandle *param_4,
                  NetworkHandle param_5,ulonglong param_6,NetworkHandle param_7,longlong param_8)
 
 {
@@ -24639,7 +24666,7 @@ LAB_180854958:
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-NetworkStatus FUN_18085497c(void)
+NetworkStatus GetNetworkConnectionStatistics(void)
 
 {
   int *pnetworkStatus1;
@@ -24657,7 +24684,7 @@ NetworkStatus FUN_18085497c(void)
 
 
 
-NetworkHandle FUN_1808549c0(longlong *connectionContext,int *packetData,int *dataSize)
+NetworkHandle ValidateNetworkPacketHeaders(longlong *connectionContext,int *packetData,int *dataSize)
 
 {
   longlong lVar1;
