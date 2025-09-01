@@ -2844,21 +2844,21 @@ void CheckSystemFlags(void)
 undefined8 ValidateObjectRegistration(longlong objectContext)
 
 {
-  longlong objectData;
-  longlong objectHandle;
-  int resizeCount;
-  undefined8 validationStatus;
-  undefined8 objectStatus;
-  longlong *objectArray;
-  int arraySize;
-  ulonglong currentIndex;
-  int newSize;
-  ulonglong searchIndex;
-  longlong *arrayPointer;
-  longlong stackData;
-  char objectName[16];
+  longlong registrationObjectData;
+  longlong registrationObjectHandle;
+  int arrayResizeCount;
+  undefined8 registrationValidationStatus;
+  undefined8 objectRegistrationStatus;
+  longlong *objectRegistrationArray;
+  int registrationArraySize;
+  ulonglong currentArrayIndex;
+  int newRegistrationSize;
+  ulonglong objectSearchIndex;
+  longlong *registrationArrayPointer;
+  longlong contextStackData;
+  char registeredObjectName[16];
   
-  validationStatus = func_0x00018088c530(*(undefined4 *)(objectContext + 0x10), &stackData);
+  registrationValidationStatus = GetRegistrationContextData(*(undefined4 *)(objectContext + 0x10), &contextStackData);
   if ((int)validationStatus != 0) {
     return validationStatus;
   }

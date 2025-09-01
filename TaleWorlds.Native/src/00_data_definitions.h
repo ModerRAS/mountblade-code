@@ -1148,6 +1148,12 @@ int InitializeStringProcessorR(void)
   CallbackResult = RegisterSystemCallback(InitializeStringProcessorR_Callback);
   return (CallbackResult != 0) - 1;
 }
+/**
+ * 初始化字符串处理器S
+ * 设置字符串处理S所需的数据结构和回调
+ * 
+ * @return 初始化成功返回0，失败返回-1
+ */
 int InitializeStringProcessorS(void)
 {
   longlong LocalResult;

@@ -344,8 +344,8 @@ void InitializeNetworkConnectionState(void)
 void ResetNetworkConnectionPointer(void)
 
 {
-  longlong connectionContext;
-  uint64_t *connectionPtr;
+  longlong networkConnectionContext;
+  uint64_t *networkConnectionPointer;
   
   *connectionPtr = (uint64_t)*(uint *)(connectionContext + 0x20);
   CleanupNetworkConnectionStack(&stack0x00000078);
@@ -21327,8 +21327,20 @@ LAB_180854bfc:
 
 
 
-undefined8
-FUN_180854ce0(longlong param_1,longlong param_2,longlong param_3,uint param_4,uint *param_5)
+/**
+ * 计算网络数据包缓冲区大小
+ * 
+ * 该函数负责计算网络数据包的缓冲区大小，处理数据包分片和重传机制。
+ * 根据网络连接状态和参数动态调整缓冲区大小。
+ * 
+ * @param connectionContext 网络连接上下文
+ * @param packetBuffer 数据包缓冲区指针
+ * @param packetParams 数据包参数
+ * @param bufferSize 缓冲区大小
+ * @param adjustedSize 调整后的缓冲区大小
+ * @return 计算结果状态码
+ */
+undefined8 CalculateNetworkPacketBufferSize(longlong connectionContext, longlong packetBuffer, longlong packetParams, uint bufferSize, uint *adjustedSize)
 
 {
   undefined1 auVar1 [16];
