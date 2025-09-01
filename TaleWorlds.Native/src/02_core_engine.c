@@ -10968,7 +10968,16 @@ LAB_180043e47:
 
 
 
-undefined8 *
+// 函数: void* engine_core_setup_function_pointers
+// 功能: 设置核心系统函数指针，初始化函数调用表
+// 参数: 
+//   - engine_engine_param_1: 函数指针数组
+//   - engine_engine_param_2: 配置标志位
+//   - engine_param_3: 系统参数1
+//   - engine_param_4: 系统参数2
+// 返回值: 函数指针数组
+// 简化实现: 保留核心函数指针设置功能
+void*
 engine_core_setup_function_pointers(uint64 engine_engine_param_1,ulonglong engine_engine_param_2,uint64 engine_param_3,uint64 engine_param_4)
 
 {
@@ -13936,8 +13945,10 @@ undefined1 FUN_1800496b0(longlong engine_engine_param_1,uint64 engine_engine_par
 
 
 
-// 函数: void FUN_180049770(void)
-void FUN_180049770(void)
+// 函数: void engine_cleanup_condition_variable
+// 功能: 清理条件变量资源，释放相关内存
+// 简化实现: 保留核心条件变量清理功能
+void engine_cleanup_condition_variable(void)
 
 {
   _Cnd_destroy_in_situ();
