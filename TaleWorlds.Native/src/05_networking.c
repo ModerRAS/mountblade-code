@@ -10511,7 +10511,7 @@ LAB_18084abcf:
   if ((networkStatus2 == 0) &&
      (networkStatus1 = ValidateAndProcessNetworkConnectionData(*(NetworkHandle *)(alStack_148[0] + 0x98),apuStack_138,0x20), networkStatus1 == 0))
   {
-    *apuStack_138[0] = &UNK_1809844c8;
+    *apuStack_138[0] = &NetworkProxyTemplate;
     *(NetworkStatus *)(apuStack_138[0] + 1) = 0x20;
     *(NetworkStatus *)(apuStack_138[0] + 3) = packetData;
     *(int *)(apuStack_138[0] + 2) = (int)connectionContext;
@@ -10563,7 +10563,7 @@ LAB_18084ad14:
   if ((networkStatus2 == 0) &&
      (networkStatus1 = ValidateAndProcessNetworkConnectionData(*(NetworkHandle *)(networkHandleArray[0] + 0x98),apuStack_128,0x18), networkStatus1 == 0))
   {
-    *apuStack_128[0] = &UNK_180983ae8;
+    *apuStack_128[0] = &NetworkDnsTemplate;
     *(NetworkStatus *)(apuStack_128[0] + 1) = 0x18;
     *(int *)(apuStack_128[0] + 2) = (int)connectionContext;
     ProcessNetworkConnectionCleanup(*(NetworkHandle *)(networkHandleArray[0] + 0x98));
@@ -10615,7 +10615,7 @@ LAB_18084ae43:
   if ((networkStatus2 == 0) &&
      (networkStatus1 = ValidateAndProcessNetworkConnectionData(*(NetworkHandle *)(alStack_148[0] + 0x98),apuStack_138,0x20), networkStatus1 == 0))
   {
-    *apuStack_138[0] = &UNK_180983b68;
+    *apuStack_138[0] = &NetworkGatewayTemplate;
     *(NetworkStatus *)(apuStack_138[0] + 1) = 0x20;
     *(int *)(apuStack_138[0] + 2) = (int)connectionContext;
     *(NetworkStatus *)(apuStack_138[0] + 3) = packetData;
@@ -10741,7 +10741,7 @@ NetworkHandle ValidateNetworkConnectionProtocol(NetworkHandle connectionContext,
   if (networkStatus1 == 0) {
     networkStatus1 = ValidateAndProcessNetworkConnectionData(*(NetworkHandle *)(in_stack_00000038 + 0x98),&stack0x00000048,0x10);
     if (networkStatus1 == 0) {
-      *in_stack_00000048 = &UNK_180982ab0;
+      *in_stack_00000048 = &NetworkSubnetTemplate;
       *(NetworkStatus *)(in_stack_00000048 + 1) = 0x10;
       networkStatus1 = ProcessNetworkConnectionCleanup(*(NetworkHandle *)(in_stack_00000038 + 0x98));
       if (networkStatus1 == 0) {
@@ -10983,7 +10983,7 @@ void NetworkConnectionByteProcessor(NetworkHandle connectionContext,NetworkByte 
        (((*(uint *)(alStackX_18[0] + 0x24) >> 1 & 1) != 0 &&
         (networkStatus2 = NetworkConnectionHandleInitialize(alStackX_18 + 1), networkStatus2 == 0)))) && (networkStatus1 == 0)) &&
      (networkStatus1 = ValidateAndProcessNetworkConnectionData(*(NetworkHandle *)(alStackX_18[0] + 0x98),apuStack_18,0x18), networkStatus1 == 0)) {
-    *apuStack_18[0] = &UNK_180982790;
+    *apuStack_18[0] = &NetworkMaskTemplate;
     *(NetworkStatus *)(apuStack_18[0] + 1) = 0x18;
     *(NetworkByte *)(apuStack_18[0] + 2) = packetData;
     ProcessNetworkConnectionCleanup(*(NetworkHandle *)(alStackX_18[0] + 0x98));
@@ -11060,7 +11060,7 @@ void ProcessNetworkSecurityValidation(NetworkHandle connectionContext)
     puStack_128 = auStack_118;
     auStack_118[0] = 0;
                     // WARNING: Subroutine does not return
-    LogNetworkConnectionError(networkStatus1,0xb,connectionContext,&UNK_1809827f8);
+    LogNetworkConnectionError(networkStatus1,0xb,connectionContext,&NetworkBroadcastTemplate);
   }
                     // WARNING: Subroutine does not return
   NetworkSecurityGuardCleanup(uStack_18 ^ (ulonglong)auStack_148);
@@ -11098,7 +11098,7 @@ LAB_18084b46d:
     puStack_138 = auStack_118;
     auStack_118[0] = 0;
                     // WARNING: Subroutine does not return
-    LogNetworkConnectionError(networkStatus1,0xb,connectionContext,&UNK_180957310);
+    LogNetworkConnectionError(networkStatus1,0xb,connectionContext,&NetworkMulticastTemplate);
   }
 LAB_18084b4a9:
                     // WARNING: Subroutine does not return
@@ -19995,15 +19995,15 @@ LAB_1808513a8:
   }
   if ((char)uStack_f8 == '\0') {
     *(NetworkStatus *)(lVar13 + 0x60) = 0;
-    FUN_18084f040(lVar13 + 0x30);
+    ReleaseNetworkConnectionResource(lVar13 + 0x30);
   }
   if ((char)uStack_f4 == '\0') {
     *(NetworkStatus *)(lVar18 + 0x1d0) = 0;
-    FUN_18084f040(lVar18 + 0x1a0);
+    ReleaseNetworkConnectionResource(lVar18 + 0x1a0);
   }
   if ((char)uStack_f0 == '\0') {
     *(NetworkStatus *)(lVar17 + 0x60) = 0;
-    FUN_18084f2d0(lVar17 + 0x30);
+    CleanupNetworkConnectionMemory(lVar17 + 0x30);
   }
 LAB_180851437:
                     // WARNING: Subroutine does not return
@@ -20171,7 +20171,7 @@ LAB_180850eb0:
     *(NetworkStatus *)(unaff_RBP + -0x44) = quaternaryNetworkFlag;
     iVar7 = ConfigureNetworkSettings(primaryNetworkFlag,unaff_RBP + -0x50,in_stack_00000030);
     if ((((iVar7 != 0) ||
-         (iVar7 = FUN_1808c18c0(*(NetworkHandle *)(unaff_R15 + 0x10),in_stack_00000030), iVar7 != 0))
+         (iVar7 = SendNetworkDataPacket(*(NetworkHandle *)(unaff_R15 + 0x10),in_stack_00000030), iVar7 != 0))
         || (iVar7 = ValidateNetworkConnectionState(in_stack_00000030), iVar7 != 0)) ||
        (iVar7 = ValidateNetworkConnection(in_stack_00000030,0), lVar10 = in_stack_00000060, iVar7 != 0))
     goto LAB_180851223;
@@ -20261,7 +20261,7 @@ LAB_1808511a4:
       iVar9 = 0x1c;
     }
     else {
-      if ((*(int *)(lVar16 + 0x60) != 1) || (iVar9 = FUN_1808501b0(lVar16), iVar9 == 0)) {
+      if ((*(int *)(lVar16 + 0x60) != 1) || (iVar9 = ValidateNetworkConnectionState(lVar16), iVar9 == 0)) {
         *(int *)(lVar16 + 0x60) = *(int *)(lVar16 + 0x60) + -1;
         iVar9 = 0;
       }
@@ -20317,7 +20317,7 @@ LAB_1808511a4:
       if (iVar9 != 0) goto LAB_1808513a8;
       if (0 < *(int *)(lStack0000000000000070 + 0x60)) {
         if ((*(int *)(lStack0000000000000070 + 0x60) != 1) ||
-           (iVar7 = FUN_180850690(lStack0000000000000070), iVar7 == 0)) {
+           (iVar7 = InitializeNetworkConnectionPool(lStack0000000000000070), iVar7 == 0)) {
           *(int *)(lVar14 + 0x60) = *(int *)(lVar14 + 0x60) + -1;
           iVar7 = 0;
         }
@@ -20355,15 +20355,15 @@ LAB_1808513bf:
   }
   if (cStack0000000000000050 == '\0') {
     *(NetworkStatus *)(lVar10 + 0x60) = 0;
-    FUN_18084f040(lVar10 + 0x30);
+    ReleaseNetworkConnectionResource(lVar10 + 0x30);
   }
   if (cStack0000000000000054 == '\0') {
     *(NetworkStatus *)(lVar17 + 0x1d0) = 0;
-    FUN_18084f040(lVar17 + 0x1a0);
+    ReleaseNetworkConnectionResource(lVar17 + 0x1a0);
   }
   if (cStack0000000000000058 == '\0') {
     *(NetworkStatus *)(lVar16 + 0x60) = 0;
-    FUN_18084f2d0(lVar16 + 0x30);
+    CleanupNetworkConnectionMemory(lVar16 + 0x30);
   }
                     // WARNING: Subroutine does not return
   NetworkSecurityGuardCleanup(*(ulonglong *)(unaff_RBP + -8) ^ (ulonglong)&stack0x00000000);
@@ -20403,15 +20403,15 @@ void UpdateNetworkConnectionStatus(void)
   }
   if (cStack0000000000000050 == '\0') {
     *(NetworkStatus *)(unaff_RSI + 0x60) = unaff_R12D;
-    FUN_18084f040(unaff_RSI + 0x30);
+    ReleaseNetworkConnectionResource(unaff_RSI + 0x30);
   }
   if (cStack0000000000000054 == '\0') {
     *(NetworkStatus *)(unaff_R14 + 0x1d0) = unaff_R12D;
-    FUN_18084f040(unaff_R14 + 0x1a0);
+    ReleaseNetworkConnectionResource(unaff_R14 + 0x1a0);
   }
   if (in_stack_00000058 == '\0') {
     *(NetworkStatus *)(unaff_R13 + 0x60) = unaff_R12D;
-    FUN_18084f2d0(unaff_R13 + 0x30);
+    CleanupNetworkConnectionMemory(unaff_R13 + 0x30);
   }
                     // WARNING: Subroutine does not return
   NetworkSecurityGuardCleanup(*(ulonglong *)(unaff_RBP + -8) ^ (ulonglong)&stack0x00000000);
@@ -20507,7 +20507,7 @@ NetworkHandle ProcessNetworkConnectionData(longlong connectionContext, longlong 
     }
     ValidateNetworkConnectionStatus(plVar5[2]);
   }
-  networkResult = FUN_18073cdf0(*(NetworkHandle *)(packetData + 0x78),0);
+  networkResult = CloseNetworkConnection(*(NetworkHandle *)(packetData + 0x78),0);
   if ((int)networkResult == 0) {
     for (networkHandleArray = *(NetworkHandle **)(packetData + 0x80);
         (*(NetworkHandle **)(packetData + 0x80) <= networkHandleArray &&
@@ -20549,7 +20549,7 @@ NetworkHandle ProcessNetworkConnectionData(longlong connectionContext, longlong 
             return networkResult;
           }
         }
-        networkResult = FUN_1808b1f70(packetData);
+        networkResult = ProcessNetworkPacketHeader(packetData);
         if ((int)networkResult == 0) {
           connectionStatus = *(longlong *)(packetData + 0x48);
           if (connectionStatus != 0) {
@@ -20559,8 +20559,8 @@ NetworkHandle ProcessNetworkConnectionData(longlong connectionContext, longlong 
             NetworkSetupConnectionParameters(connectionStatus,0);
           }
           if (((*(short *)(*(longlong *)(packetData + 0x40) + 0xc) != 2) ||
-              (networkResult = FUN_180740d90(*(NetworkHandle *)(packetData + 0x68)), (int)networkResult == 0)) &&
-             (networkResult = FUN_18073f710(*(NetworkHandle *)(packetData + 0x78)), (int)networkResult == 0)) {
+              (networkResult = ValidateNetworkPacketChecksum(*(NetworkHandle *)(packetData + 0x68)), (int)networkResult == 0)) &&
+             (networkResult = DecryptNetworkPacketData(*(NetworkHandle *)(packetData + 0x78)), (int)networkResult == 0)) {
             func_0x0001808bef10(*(NetworkHandle *)(connectionContext + 0x10),packetData);
             networkResult = 0;
           }
@@ -20660,7 +20660,7 @@ NetworkHandle FreeNetworkConnectionResources(longlong connectionContext)
   longlong *stackPointer;
   
   if (((*(byte *)(*(longlong *)(connectionContext + 0x40) + 0xc4) & 1) != 0) ||
-     (tertiaryNetworkFlag = FUN_1808b8f60(0,connectionContext), (int)tertiaryNetworkFlag == 0)) {
+     (tertiaryNetworkFlag = CreateNetworkConnectionEndpoint(0,connectionContext), (int)tertiaryNetworkFlag == 0)) {
     lVar1 = *(longlong *)(connectionContext + 0x60);
     if (lVar1 != 0) {
       plStack_20 = *(longlong **)(lVar1 + 0x50);
@@ -20676,7 +20676,7 @@ NetworkHandle FreeNetworkConnectionResources(longlong connectionContext)
           return tertiaryNetworkFlag;
         }
         uStackX_10 = 0;
-        tertiaryNetworkFlag = FUN_18073a200(uStackX_8,&uStackX_10);
+        tertiaryNetworkFlag = EstablishNetworkConnection(uStackX_8,&uStackX_10);
         if ((int)tertiaryNetworkFlag != 0) {
           return tertiaryNetworkFlag;
         }
@@ -20760,7 +20760,7 @@ NetworkHandle ProcessNetworkDataTransfer(longlong connectionContext, NetworkHand
         return tertiaryNetworkFlag;
       }
       in_stack_00000058 = 0;
-      tertiaryNetworkFlag = FUN_18073a200(in_stack_00000050,&stack0x00000058);
+      tertiaryNetworkFlag = EstablishNetworkConnection(in_stack_00000050,&stack0x00000058);
       if ((int)tertiaryNetworkFlag != 0) {
         return tertiaryNetworkFlag;
       }
@@ -21424,7 +21424,7 @@ void NetworkConnectionContextManager(NetworkHandle *connectionContext,NetworkHan
     }
     connectionContext[8] = lVar6;
   }
-  iVar5 = FUN_1808b2950(connectionContext,packetData);
+  iVar5 = CheckNetworkConnectionStatus(connectionContext,packetData);
   if (iVar5 != 0) goto FUN_180852aaa;
   cVar3 = func_0x0001808c5700(packetData,connectionContext[8]);
   if (cVar3 != '\0') {
@@ -21438,7 +21438,7 @@ void NetworkConnectionContextManager(NetworkHandle *connectionContext,NetworkHan
         puStack_288 = auStack_278;
         iStack_280 = 0;
         uStack_27c = 0xffffffc0;
-        iVar5 = FUN_1808bf350(connectionContext[7],connectionContext);
+        iVar5 = UpdateNetworkConnectionState(connectionContext[7],connectionContext);
         networkStatus18 = iStack_280;
         networkPointer2 = puStack_288;
         if (iVar5 != 0) {
@@ -21461,7 +21461,7 @@ LAB_180852282:
               goto LAB_180852282;
             }
             if (iVar5 == 4) {
-              pcVar21 = FUN_1808632b0;
+              pcVar21 = HandleNetworkConnectionTimeout;
               goto LAB_180852282;
             }
           }
@@ -21507,7 +21507,7 @@ LAB_180852302:
       lVar6 = connectionContext[8];
     }
     sVar4 = GetNetworkConnectionStatus(lVar6);
-    if ((sVar4 != 4) || (iVar5 = FUN_18084edf0(connectionContext), iVar5 == 0)) {
+    if ((sVar4 != 4) || (iVar5 = VerifyNetworkConnectionActive(connectionContext), iVar5 == 0)) {
       puVar8 = connectionContext + 0x16;
       networkPointer12 = (NetworkHandle *)*puVar8;
 joined_r0x0001808523af:
@@ -21543,13 +21543,13 @@ LAB_180852a22:
   for (networkPointer11 = (NetworkHandle *)connectionContext[0x10];
       ((NetworkHandle *)connectionContext[0x10] <= networkPointer11 &&
       (networkPointer11 < (NetworkHandle *)connectionContext[0x10] + *(int *)(connectionContext + 0x11))); networkPointer11 = networkPointer11 + 1) {
-    iVar5 = FUN_1808b50d0(*networkPointer11,packetData);
+    iVar5 = ProcessNetworkDataTransmission(*networkPointer11,packetData);
     if (iVar5 != 0) goto FUN_180852aaa;
   }
   networkPointer11 = (NetworkHandle *)connectionContext[0x12];
   while ((((NetworkHandle *)connectionContext[0x12] <= networkPointer11 &&
           (networkPointer11 < (NetworkHandle *)connectionContext[0x12] + *(int *)(connectionContext + 0x13))) &&
-         (iVar5 = FUN_1808b50d0(*networkPointer11,packetData), iVar5 == 0))) {
+         (iVar5 = ProcessNetworkDataTransmission(*networkPointer11,packetData), iVar5 == 0))) {
     networkPointer11 = networkPointer11 + 1;
   }
 FUN_180852aaa:
@@ -21600,7 +21600,7 @@ LAB_180852518:
       primaryNetworkFlag9 = primaryNetworkFlag4;
       do {
         networkStatus18 = (int)primaryNetworkFlag5;
-        iVar5 = FUN_18073cdf0(connectionContext[0xf],
+        iVar5 = CloseNetworkConnection(connectionContext[0xf],
                               *(NetworkHandle *)(*(longlong *)(connectionContext[0x10] + lStack_2a0) + 0x30));
         if (iVar5 != 0) goto LAB_180852943;
         lStack_2a8 = connectionContext[0x10];
@@ -21671,7 +21671,7 @@ LAB_1808526bf:
     if (0 < *(int *)(connectionContext + 0x13)) {
       do {
         networkStatus18 = (int)primaryNetworkFlag5;
-        iVar5 = FUN_18073cdf0(connectionContext[0xf],
+        iVar5 = CloseNetworkConnection(connectionContext[0xf],
                               *(NetworkHandle *)(*(longlong *)(connectionContext[0x12] + secondaryNetworkFlag3) + 0x30));
         if (iVar5 != 0) goto LAB_180852943;
         lStack_2a8 = connectionContext[0x12];
@@ -21733,18 +21733,18 @@ LAB_1808526bf:
        ) {
       puStack_310 = &uStack_2c8;
       plStack_318 = connectionContext + 0x10;
-      iVar5 = FUN_180851e40(connectionContext,connectionContext[8] + 0x80,connectionContext[8] + 0xa0,(int)uStack_2b8 + 1);
+      iVar5 = ValidateNetworkConnectionParameters(connectionContext,connectionContext[8] + 0x80,connectionContext[8] + 0xa0,(int)uStack_2b8 + 1);
       if (iVar5 == 0) {
         puStack_310 = &uStack_2c8;
         plStack_318 = plVar13;
-        iVar5 = FUN_180851e40(connectionContext,connectionContext[8] + 0x90,connectionContext[8] + 0xb0,uStack_2b8 & 0xffffffff);
+        iVar5 = ValidateNetworkConnectionParameters(connectionContext,connectionContext[8] + 0x90,connectionContext[8] + 0xb0,uStack_2b8 & 0xffffffff);
         if (iVar5 == 0) {
           iVar5 = (int)uStack_2c0;
           networkStatus18 = 0;
           networkPointer11 = uStack_2c8;
           if (0 < (int)uStack_2c0) {
             do {
-              networkStatus10 = FUN_1808b4f00(*networkPointer11);
+              networkStatus10 = GetNetworkConnectionStatistics(*networkPointer11);
               if ((networkStatus10 != 0) ||
                  (networkStatus10 = TransferNetworkData(connectionContext[7] + 0x388,*networkPointer11), networkStatus10 != 0))
               goto LAB_180852943;
@@ -21775,7 +21775,7 @@ LAB_180852980:
   primaryNetworkFlag9 = primaryNetworkFlag5;
   if (0 < *(int *)(connectionContext + 0x11)) {
     do {
-      FUN_1808b5c90(*(NetworkHandle *)(connectionContext[0x10] + primaryNetworkFlag9),
+      SendNetworkKeepAlivePacket(*(NetworkHandle *)(connectionContext[0x10] + primaryNetworkFlag9),
                     *(NetworkStatus *)(*(longlong *)(connectionContext[8] + 0xa0) + secondaryNetworkFlag3));
       primaryNetworkFlag7 = (int)primaryNetworkFlag4 + 1;
       primaryNetworkFlag4 = (ulonglong)primaryNetworkFlag7;
@@ -21788,7 +21788,7 @@ LAB_180852980:
   secondaryNetworkFlag3 = primaryNetworkFlag5;
   if (0 < *(int *)(connectionContext + 0x13)) {
     do {
-      FUN_1808b5c90(*(NetworkHandle *)(connectionContext[0x12] + primaryNetworkFlag5),
+      SendNetworkKeepAlivePacket(*(NetworkHandle *)(connectionContext[0x12] + primaryNetworkFlag5),
                     *(NetworkStatus *)(*(longlong *)(connectionContext[8] + 0xb0) + primaryNetworkFlag4));
       primaryNetworkFlag7 = (int)secondaryNetworkFlag3 + 1;
       primaryNetworkFlag5 = primaryNetworkFlag5 + 8;
@@ -21933,7 +21933,7 @@ void NetworkBufferCleanup(void)
         *(longlong *)(unaff_RBP + -0x50) = unaff_RBP + -0x40;
         *(NetworkStatus *)(unaff_RBP + -0x48) = 0;
         *(NetworkStatus *)(unaff_RBP + -0x44) = 0xffffffc0;
-        networkStatus3 = FUN_1808bf350(secondaryNetworkFlag3);
+        networkStatus3 = UpdateNetworkConnectionState(secondaryNetworkFlag3);
         if (networkStatus3 != 0) {
 LAB_1808522f9:
           ValidateConnectionResource(unaff_RBP + -0x50);
@@ -21955,7 +21955,7 @@ LAB_180852282:
               goto LAB_180852282;
             }
             if (networkStatus17 == 4) {
-              pcVar20 = FUN_1808632b0;
+              pcVar20 = HandleNetworkConnectionTimeout;
               goto LAB_180852282;
             }
           }
@@ -22001,7 +22001,7 @@ LAB_180852302:
       lVar4 = unaff_R15[8];
     }
     sVar2 = GetNetworkConnectionStatus(lVar4);
-    if ((sVar2 != 4) || (networkStatus3 = FUN_18084edf0(), networkStatus3 == 0)) {
+    if ((sVar2 != 4) || (networkStatus3 = VerifyNetworkConnectionActive(), networkStatus3 == 0)) {
       networkPointer5 = unaff_R15 + 0x16;
       networkPointer11 = (NetworkHandle *)*networkPointer5;
 joined_r0x0001808523af:
@@ -22084,7 +22084,7 @@ LAB_180852518:
       secondaryNetworkFlag2 = uVar9;
       do {
         networkStatus17 = (int)primaryNetworkFlag4;
-        networkStatus3 = FUN_18073cdf0(unaff_R15[0xf],
+        networkStatus3 = CloseNetworkConnection(unaff_R15[0xf],
                               *(NetworkHandle *)(*(longlong *)(unaff_R15[0x10] + uVar9) + 0x30));
         if (networkStatus3 != 0) goto LAB_180852943;
         iVar8 = (int)secondaryNetworkFlag2 + 1;
@@ -22155,7 +22155,7 @@ LAB_1808526bf:
     if (0 < *(int *)(unaff_R15 + 0x13)) {
       do {
         networkStatus17 = (int)primaryNetworkFlag4;
-        networkStatus3 = FUN_18073cdf0(unaff_R15[0xf],
+        networkStatus3 = CloseNetworkConnection(unaff_R15[0xf],
                               *(NetworkHandle *)(*(longlong *)(unaff_R15[0x12] + uVar9) + 0x30));
         if (networkStatus3 != 0) goto LAB_180852943;
         iVar8 = (int)primaryNetworkFlag3 + 1;
@@ -22216,9 +22216,9 @@ LAB_1808526bf:
     if ((((networkStatus3 == 0) &&
          (networkStatus3 = ProcessNetworkBuffer(unaff_R15[0xf],*(NetworkHandle *)(unaff_RBP + -0x60),unaff_RBP + -0x80)
          , networkStatus3 == 0)) &&
-        (networkStatus3 = FUN_180851e40(extraout_XMM0_Qa_03,unaff_R15[8] + 0x80,unaff_R15[8] + 0xa0,
+        (networkStatus3 = ValidateNetworkConnectionParameters(extraout_XMM0_Qa_03,unaff_R15[8] + 0x80,unaff_R15[8] + 0xa0,
                                *(int *)(unaff_RBP + -0x80) + 1,unaff_R15 + 0x10), networkStatus3 == 0)) &&
-       (networkStatus3 = FUN_180851e40(extraout_XMM0_Qa_04,unaff_R15[8] + 0x90,unaff_R15[8] + 0xb0,
+       (networkStatus3 = ValidateNetworkConnectionParameters(extraout_XMM0_Qa_04,unaff_R15[8] + 0x90,unaff_R15[8] + 0xb0,
                               *(NetworkStatus *)(unaff_RBP + -0x80),plVar12), networkStatus3 == 0)) {
       networkStatus3 = iStack0000000000000078;
       networkStatus17 = 0;
@@ -22226,7 +22226,7 @@ LAB_1808526bf:
       secondaryNetworkFlag3 = extraout_XMM0_Qa_05;
       if (0 < iStack0000000000000078) {
         do {
-          iVar8 = FUN_1808b4f00(*networkPointer10);
+          iVar8 = GetNetworkConnectionStatistics(*networkPointer10);
           if ((iVar8 != 0) || (iVar8 = TransferNetworkData(unaff_R15[7] + 0x388,*networkPointer10), iVar8 != 0))
           goto LAB_180852943;
           networkStatus17 = networkStatus17 + 1;
@@ -22254,7 +22254,7 @@ LAB_180852980:
   primaryNetworkFlag8 = primaryNetworkFlag4;
   if (0 < *(int *)(unaff_R15 + 0x11)) {
     do {
-      FUN_1808b5c90(*(NetworkHandle *)(unaff_R15[0x10] + primaryNetworkFlag8),
+      SendNetworkKeepAlivePacket(*(NetworkHandle *)(unaff_R15[0x10] + primaryNetworkFlag8),
                     *(NetworkStatus *)(*(longlong *)(unaff_R15[8] + 0xa0) + uVar9));
       primaryNetworkFlag6 = (int)primaryNetworkFlag3 + 1;
       primaryNetworkFlag3 = (ulonglong)primaryNetworkFlag6;
@@ -22266,7 +22266,7 @@ LAB_180852980:
   uVar9 = primaryNetworkFlag4;
   if (0 < *(int *)(unaff_R15 + 0x13)) {
     do {
-      FUN_1808b5c90(*(NetworkHandle *)(unaff_R15[0x12] + primaryNetworkFlag4),
+      SendNetworkKeepAlivePacket(*(NetworkHandle *)(unaff_R15[0x12] + primaryNetworkFlag4),
                     *(NetworkStatus *)(*(longlong *)(unaff_R15[8] + 0xb0) + primaryNetworkFlag3));
       primaryNetworkFlag6 = (int)uVar9 + 1;
       primaryNetworkFlag4 = primaryNetworkFlag4 + 8;
@@ -22280,13 +22280,13 @@ LAB_180852a22:
       ((NetworkHandle *)unaff_R15[0x10] <= networkPointer10 &&
       (networkPointer10 < (NetworkHandle *)unaff_R15[0x10] + *(int *)(unaff_R15 + 0x11))); networkPointer10 = networkPointer10 + 1
       ) {
-    networkStatus3 = FUN_1808b50d0(*networkPointer10,unaff_RDI);
+    networkStatus3 = ProcessNetworkDataTransmission(*networkPointer10,unaff_RDI);
     if (networkStatus3 != 0) goto LAB_180852a9a;
   }
   networkPointer10 = (NetworkHandle *)unaff_R15[0x12];
   while ((((NetworkHandle *)unaff_R15[0x12] <= networkPointer10 &&
           (networkPointer10 < (NetworkHandle *)unaff_R15[0x12] + *(int *)(unaff_R15 + 0x13))) &&
-         (networkStatus3 = FUN_1808b50d0(*networkPointer10,unaff_RDI), networkStatus3 == 0))) {
+         (networkStatus3 = ProcessNetworkDataTransmission(*networkPointer10,unaff_RDI), networkStatus3 == 0))) {
     networkPointer10 = networkPointer10 + 1;
   }
 LAB_180852a9a:
@@ -23003,7 +23003,7 @@ NetworkHandle ProcessNetworkBufferTemplateEx(longlong connectionContext,int pack
     }
     *(float *)(connectionContext + 200) = fVar2;
     *(uint *)(connectionContext + 0xc0) = *(uint *)(connectionContext + 0xc0) | 4;
-    primaryNetworkFlag = FUN_18084ed10(connectionContext);
+    primaryNetworkFlag = InitializeNetworkBuffer(connectionContext);
     if ((int)primaryNetworkFlag != 0) {
       return primaryNetworkFlag;
     }
@@ -23019,7 +23019,7 @@ NetworkHandle ProcessNetworkBufferTemplateEx(longlong connectionContext,int pack
     *(float *)(connectionContext + 0xd8) = fVar2;
     fVar2 = fVar2 * *(float *)(connectionContext + 0xd4) * *(float *)(connectionContext + 0xdc);
     *(float *)(connectionContext + 0xe0) = fVar2;
-    primaryNetworkFlag = FUN_18073d980(*(NetworkHandle *)(connectionContext + 0x78),fVar2);
+    primaryNetworkFlag = AllocateNetworkMemory(*(NetworkHandle *)(connectionContext + 0x78),fVar2);
     if ((int)primaryNetworkFlag != 0) {
       return primaryNetworkFlag;
     }
@@ -23056,7 +23056,7 @@ void NetworkConnectionSecurityValidator(longlong connectionContext)
   ulonglong uStack_18;
   
   uStack_30 = 0x180853242;
-  networkStatus2 = FUN_18073c9b0(*(NetworkHandle *)(connectionContext + 0x78));
+  networkStatus2 = FreeNetworkMemory(*(NetworkHandle *)(connectionContext + 0x78));
   if (networkStatus2 != 0) {
     return;
   }
@@ -23339,10 +23339,10 @@ LAB_180853663:
       if (networkStatus10 != 0) goto LAB_180853768;
     }
     if (bVar3) {
-      quaternaryNetworkFlag = FUN_180853840(connectionContext,plVar7 + 5);
+      quaternaryNetworkFlag = ProcessNetworkProtocolData(connectionContext,plVar7 + 5);
     }
     else {
-      quaternaryNetworkFlag = FUN_180853840(connectionContext + 6,plVar7 + 5);
+      quaternaryNetworkFlag = ProcessNetworkProtocolData(connectionContext + 6,plVar7 + 5);
     }
     if (quaternaryNetworkFlag == 0) {
       CleanupNetworkConnectionResources(plVar7);
@@ -23510,7 +23510,7 @@ NetworkHandle InitializeNetworkConnectionContext(longlong connectionContext)
       tertiaryNetworkFlag = FUN_18073cc30(*(NetworkHandle *)(connectionContext + 0x78),&uStackX_8);
       if (((((int)tertiaryNetworkFlag == 0) &&
            (tertiaryNetworkFlag = InitializeNetworkSession(*(NetworkHandle *)(connectionContext + 0x78),0), (int)tertiaryNetworkFlag == 0)) &&
-          (tertiaryNetworkFlag = FUN_18084ed10(connectionContext), (int)tertiaryNetworkFlag == 0)) &&
+          (tertiaryNetworkFlag = InitializeNetworkBuffer(connectionContext), (int)tertiaryNetworkFlag == 0)) &&
          (tertiaryNetworkFlag = InitializeNetworkSession(*(NetworkHandle *)(connectionContext + 0x78),uStackX_8 & 0xff), (int)tertiaryNetworkFlag == 0))
       {
         for (plVar5 = *(longlong **)(connectionContext + 0x80);
@@ -26102,7 +26102,7 @@ NetworkHandle CheckNetworkConnectionStatus(longlong connectionContext)
 
 
 
-NetworkHandle FUN_18085565a(NetworkHandle connectionContext,NetworkHandle packetData,uint dataSize)
+NetworkHandle ValidateNetworkConnectionData(NetworkHandle connectionContext,NetworkHandle packetData,uint dataSize)
 
 {
   NetworkHandle primaryNetworkFlag;
@@ -33962,10 +33962,23 @@ void FUN_18085bbe0(longlong connectionContext,NetworkStatus packetData)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
+/**
+ * 处理网络连接数据包
+ * 
+ * 该函数负责处理网络连接的数据包，包括数据包的验证、处理和转发。
+ * 主要用于网络连接的数据包处理和管理。
+ * 
+ * @param connectionContext 网络连接上下文指针
+ * @param packetData 数据包数据
+ * @param dataSize 数据大小
+ * @param param_4 处理标志
+ * @param param_5 网络状态指针
+ * @return 处理结果状态码，0表示成功
+ * 
+ * 注意：这是一个反编译的函数实现，原始函数名为FUN_18085bc30
+ */
 NetworkHandle
-FUN_18085bc30(longlong connectionContext,uint packetData,char dataSize,char param_4,NetworkHandle *param_5)
+ProcessNetworkConnectionPacket(longlong connectionContext, uint packetData, char dataSize, char param_4, NetworkHandle *param_5)
 
 {
   longlong *plVar1;
@@ -37511,7 +37524,7 @@ thunk_FUN_18085fbb0(longlong connectionContext,NetworkHandle *packetData,Network
   
   alStack_38[0] = 0;
   uStackX_8 = 0;
-  uVar6 = FUN_18073a200(*(NetworkHandle *)(*(longlong *)(connectionContext + 0x2c8) + 0x4c0),&uStackX_8);
+  uVar6 = EstablishNetworkConnection(*(NetworkHandle *)(*(longlong *)(connectionContext + 0x2c8) + 0x4c0),&uStackX_8);
   if (((int)uVar6 == 0) && (uVar6 = HandleConnectionAuthentication(uStackX_8,alStack_38,0), (int)uVar6 == 0)) {
     cVar4 = FUN_180863210(param_4,0,0);
     if (cVar4 == '\0') {
@@ -37604,7 +37617,7 @@ FUN_18085fbb0(longlong connectionContext,NetworkHandle *packetData,NetworkHandle
   
   alStack_38[0] = 0;
   uStackX_8 = 0;
-  uVar6 = FUN_18073a200(*(NetworkHandle *)(*(longlong *)(connectionContext + 0x2c8) + 0x4c0),&uStackX_8);
+  uVar6 = EstablishNetworkConnection(*(NetworkHandle *)(*(longlong *)(connectionContext + 0x2c8) + 0x4c0),&uStackX_8);
   if (((int)uVar6 == 0) && (uVar6 = HandleConnectionAuthentication(uStackX_8,alStack_38,0), (int)uVar6 == 0)) {
     cVar4 = FUN_180863210(param_4,0,0);
     if (cVar4 == '\0') {
@@ -37955,7 +37968,7 @@ NetworkHandle FUN_1808600b0(longlong connectionContext)
       (*(NetworkHandle **)(connectionContext + 0x80) <= networkPointer2 &&
       (networkPointer2 < *(NetworkHandle **)(connectionContext + 0x80) + *(int *)(connectionContext + 0x88))); networkPointer2 = networkPointer2 + 1)
   {
-    primaryNetworkFlag = FUN_1808b4f00(*networkPointer2);
+    primaryNetworkFlag = GetNetworkConnectionStatistics(*networkPointer2);
     if ((int)primaryNetworkFlag != 0) {
       return primaryNetworkFlag;
     }
@@ -37964,7 +37977,7 @@ NetworkHandle FUN_1808600b0(longlong connectionContext)
       (*(NetworkHandle **)(connectionContext + 0x90) <= networkPointer2 &&
       (networkPointer2 < *(NetworkHandle **)(connectionContext + 0x90) + *(int *)(connectionContext + 0x98))); networkPointer2 = networkPointer2 + 1)
   {
-    primaryNetworkFlag = FUN_1808b4f00(*networkPointer2);
+    primaryNetworkFlag = GetNetworkConnectionStatistics(*networkPointer2);
     if ((int)primaryNetworkFlag != 0) {
       return primaryNetworkFlag;
     }
@@ -38030,7 +38043,7 @@ NetworkHandle thunk_FUN_180865550(longlong connectionContext)
   secondaryNetworkFlag = *(ulonglong *)(connectionContext + 0x4e0);
   uStackX_20 = 0;
   uStackX_18 = 0;
-  uVar8 = FUN_18073a200(*(NetworkHandle *)(*(longlong *)(connectionContext + 0x2c8) + 0x4c0),&uStackX_18);
+  uVar8 = EstablishNetworkConnection(*(NetworkHandle *)(*(longlong *)(connectionContext + 0x2c8) + 0x4c0),&uStackX_18);
   if (((int)uVar8 == 0) && (uVar8 = HandleConnectionAuthentication(uStackX_18,&uStackX_20,0), (int)uVar8 == 0)) {
     while ((*(ulonglong *)(connectionContext + 0x4e0) <= secondaryNetworkFlag &&
            (secondaryNetworkFlag < (longlong)*(int *)(connectionContext + 0x4e8) * 0x38 + *(ulonglong *)(connectionContext + 0x4e0))))
@@ -38479,7 +38492,7 @@ void FUN_180860690(longlong connectionContext,NetworkHandle *packetData)
     *(longlong *)(connectionContext + 0x88) = lVar7;
   }
   iVar6 = FUN_1808b8950(connectionContext + 0x90,packetData);
-  if ((iVar6 == 0) && (iVar6 = FUN_1808b2950(connectionContext + 8,packetData), iVar6 == 0)) {
+  if ((iVar6 == 0) && (iVar6 = CheckNetworkConnectionStatus(connectionContext + 8,packetData), iVar6 == 0)) {
     lVar7 = *(longlong *)(connectionContext + 0x88);
     if (lVar7 != 0) {
       plVar19 = packetData + 0x8d;
@@ -45638,7 +45651,7 @@ NetworkHandle FUN_180865550(longlong connectionContext,char packetData)
   lVar17 = *(longlong *)(connectionContext + 0x4e0);
   uStackX_20 = 0;
   uStackX_18 = 0;
-  uVar9 = FUN_18073a200(*(NetworkHandle *)(*(longlong *)(connectionContext + 0x2c8) + 0x4c0),&uStackX_18);
+  uVar9 = EstablishNetworkConnection(*(NetworkHandle *)(*(longlong *)(connectionContext + 0x2c8) + 0x4c0),&uStackX_18);
   if (((int)uVar9 == 0) && (uVar9 = HandleConnectionAuthentication(uStackX_18,&uStackX_20,0), (int)uVar9 == 0)) {
     networkPointer16 = (NetworkHandle *)(lVar17 + 0x20);
     while( true ) {
@@ -86997,7 +87010,7 @@ void FUN_18088af30(longlong connectionContext,NetworkHandle packetData,NetworkBy
     lStack_278 = 0;
     uStack_250 = 0;
     uStack_248 = 0;
-    networkStatus2 = FUN_18073a200(*(NetworkHandle *)(connectionContext + 0x78),&lStack_278);
+    networkStatus2 = EstablishNetworkConnection(*(NetworkHandle *)(connectionContext + 0x78),&lStack_278);
     if ((networkStatus2 != 0) ||
        (plStack_298 = (longlong *)(connectionContext + 0xb8),
        networkStatus2 = FUN_1808e5d30(*(NetworkHandle *)(connectionContext + 0xa8),&uStack_250,
@@ -87172,7 +87185,7 @@ void FUN_18088afd0(void)
       in_stack_00000040 = 0;
       in_stack_00000068 = 0;
       in_stack_00000070 = 0;
-      iVar6 = FUN_18073a200(*(NetworkHandle *)(unaff_RDI + 0x78),&stack0x00000040);
+      iVar6 = EstablishNetworkConnection(*(NetworkHandle *)(unaff_RDI + 0x78),&stack0x00000040);
       if ((iVar6 != 0) ||
          (iVar6 = FUN_1808e5d30(*(NetworkHandle *)(unaff_RDI + 0xa8),&stack0x00000068,
                                 *(NetworkHandle *)(unaff_RDI + 0x78),in_stack_00000040,plVar7),
@@ -91798,7 +91811,7 @@ int FUN_18088fb40(longlong connectionContext,NetworkHandle packetData,NetworkHan
     networkStatus3 = 0x1c;
     networkStatus2 = networkStatus3;
     if (0 < *(int *)(connectionContext + 0x98)) {
-      if ((*(int *)(connectionContext + 0x98) != 1) || (networkStatus2 = FUN_1808501b0(connectionContext + 0x38), networkStatus2 == 0)) {
+      if ((*(int *)(connectionContext + 0x98) != 1) || (networkStatus2 = ValidateNetworkConnectionState(connectionContext + 0x38), networkStatus2 == 0)) {
         networkStatus2 = 0;
         *(int *)(connectionContext + 0x98) = *(int *)(connectionContext + 0x98) + -1;
       }
@@ -91836,7 +91849,7 @@ int FUN_18088fb40(longlong connectionContext,NetworkHandle packetData,NetworkHan
         if (networkStatus2 == 0) {
           if (0 < *(int *)(connectionContext + 0x238)) {
             if ((*(int *)(connectionContext + 0x238) != 1) ||
-               (networkStatus3 = FUN_180850690(connectionContext + 0x1d8), networkStatus3 == 0)) {
+               (networkStatus3 = InitializeNetworkConnectionPool(connectionContext + 0x1d8), networkStatus3 == 0)) {
               *(int *)(connectionContext + 0x238) = *(int *)(connectionContext + 0x238) + -1;
               networkStatus3 = 0;
             }
@@ -91862,15 +91875,15 @@ int FUN_18088fb40(longlong connectionContext,NetworkHandle packetData,NetworkHan
   }
   if (!bVar5) {
     *(NetworkStatus *)(connectionContext + 0x168) = 0;
-    FUN_18084f040(connectionContext + 0x138);
+    ReleaseNetworkConnectionResource(connectionContext + 0x138);
   }
   if (!bVar6) {
     *(NetworkStatus *)(connectionContext + 0x1d0) = 0;
-    FUN_18084f040(connectionContext + 0x1a0);
+    ReleaseNetworkConnectionResource(connectionContext + 0x1a0);
   }
   if (!bVar4) {
     *(NetworkStatus *)(connectionContext + 0x98) = 0;
-    FUN_18084f2d0(connectionContext + 0x68);
+    CleanupNetworkConnectionMemory(connectionContext + 0x68);
   }
   return networkStatus2;
 }
@@ -91901,7 +91914,7 @@ int FUN_18088fb47(longlong connectionContext,NetworkHandle packetData,NetworkHan
     networkStatus3 = 0x1c;
     networkStatus2 = networkStatus3;
     if (0 < *(int *)(connectionContext + 0x98)) {
-      if ((*(int *)(connectionContext + 0x98) != 1) || (networkStatus2 = FUN_1808501b0(connectionContext + 0x38), networkStatus2 == 0)) {
+      if ((*(int *)(connectionContext + 0x98) != 1) || (networkStatus2 = ValidateNetworkConnectionState(connectionContext + 0x38), networkStatus2 == 0)) {
         networkStatus2 = 0;
         *(int *)(connectionContext + 0x98) = *(int *)(connectionContext + 0x98) + -1;
       }
@@ -91939,7 +91952,7 @@ int FUN_18088fb47(longlong connectionContext,NetworkHandle packetData,NetworkHan
         if (networkStatus2 == 0) {
           if (0 < *(int *)(connectionContext + 0x238)) {
             if ((*(int *)(connectionContext + 0x238) != 1) ||
-               (networkStatus3 = FUN_180850690(connectionContext + 0x1d8), networkStatus3 == 0)) {
+               (networkStatus3 = InitializeNetworkConnectionPool(connectionContext + 0x1d8), networkStatus3 == 0)) {
               *(int *)(connectionContext + 0x238) = *(int *)(connectionContext + 0x238) + -1;
               networkStatus3 = 0;
             }
@@ -91965,15 +91978,15 @@ int FUN_18088fb47(longlong connectionContext,NetworkHandle packetData,NetworkHan
   }
   if (!bVar5) {
     *(NetworkStatus *)(connectionContext + 0x168) = 0;
-    FUN_18084f040(connectionContext + 0x138);
+    ReleaseNetworkConnectionResource(connectionContext + 0x138);
   }
   if (!bVar6) {
     *(NetworkStatus *)(connectionContext + 0x1d0) = 0;
-    FUN_18084f040(connectionContext + 0x1a0);
+    ReleaseNetworkConnectionResource(connectionContext + 0x1a0);
   }
   if (!bVar4) {
     *(NetworkStatus *)(connectionContext + 0x98) = 0;
-    FUN_18084f2d0(connectionContext + 0x68);
+    CleanupNetworkConnectionMemory(connectionContext + 0x68);
   }
   return networkStatus2;
 }
@@ -92001,7 +92014,7 @@ int FUN_18088fb75(longlong connectionContext,NetworkHandle packetData)
     networkStatus3 = 0x1c;
     networkStatus2 = networkStatus3;
     if (0 < *(int *)(unaff_RSI + 0x60)) {
-      if ((*(int *)(unaff_RSI + 0x60) != 1) || (networkStatus2 = FUN_1808501b0(), networkStatus2 == 0)) {
+      if ((*(int *)(unaff_RSI + 0x60) != 1) || (networkStatus2 = ValidateNetworkConnectionState(), networkStatus2 == 0)) {
         networkStatus2 = 0;
         *(int *)(unaff_RSI + 0x60) = *(int *)(unaff_RSI + 0x60) + -1;
       }
@@ -92038,7 +92051,7 @@ int FUN_18088fb75(longlong connectionContext,NetworkHandle packetData)
         if (networkStatus2 == 0) {
           if (0 < *(int *)(connectionContext + 0x238)) {
             if ((*(int *)(connectionContext + 0x238) != 1) ||
-               (networkStatus3 = FUN_180850690(connectionContext + 0x1d8), networkStatus3 == 0)) {
+               (networkStatus3 = InitializeNetworkConnectionPool(connectionContext + 0x1d8), networkStatus3 == 0)) {
               *(int *)(connectionContext + 0x238) = *(int *)(connectionContext + 0x238) + -1;
               networkStatus3 = 0;
             }
@@ -92064,15 +92077,15 @@ int FUN_18088fb75(longlong connectionContext,NetworkHandle packetData)
   }
   if (!bVar5) {
     *(NetworkStatus *)(connectionContext + 0x168) = 0;
-    FUN_18084f040(connectionContext + 0x138);
+    ReleaseNetworkConnectionResource(connectionContext + 0x138);
   }
   if (!bVar6) {
     *(NetworkStatus *)(unaff_RBP + 0x60) = 0;
-    FUN_18084f040(unaff_RBP + 0x30);
+    ReleaseNetworkConnectionResource(unaff_RBP + 0x30);
   }
   if (!bVar4) {
     *(NetworkStatus *)(unaff_RSI + 0x60) = 0;
-    FUN_18084f2d0(unaff_RSI + 0x30);
+    CleanupNetworkConnectionMemory(unaff_RSI + 0x30);
   }
   return networkStatus2;
 }
@@ -92095,15 +92108,15 @@ NetworkStatus FUN_18088fd22(NetworkHandle connectionContext,NetworkStatus packet
   FlushNetworkBuffer(unaff_R14 + 0x30);
   if (in_stack_00000070 == '\0') {
     *(NetworkStatus *)(unaff_R15 + 0x60) = 0;
-    FUN_18084f040(unaff_R15 + 0x30);
+    ReleaseNetworkConnectionResource(unaff_R15 + 0x30);
   }
   if (in_stack_00000088 == '\0') {
     *(NetworkStatus *)(unaff_RBP + 0x60) = 0;
-    FUN_18084f040(unaff_RBP + 0x30);
+    ReleaseNetworkConnectionResource(unaff_RBP + 0x30);
   }
   if (uStackX_20 == '\0') {
     *(NetworkStatus *)(unaff_RSI + 0x60) = 0;
-    FUN_18084f2d0(unaff_RSI + 0x30);
+    CleanupNetworkConnectionMemory(unaff_RSI + 0x30);
   }
   return unaff_EBX;
 }
@@ -92121,14 +92134,14 @@ NetworkStatus FUN_18088fd3d(NetworkHandle connectionContext,NetworkStatus packet
   char in_stack_00000088;
   
   *(NetworkStatus *)(unaff_R15 + 0x60) = packetData;
-  FUN_18084f040(unaff_R15 + 0x30);
+  ReleaseNetworkConnectionResource(unaff_R15 + 0x30);
   if (in_stack_00000088 == '\0') {
     *(NetworkStatus *)(unaff_RBP + 0x60) = 0;
-    FUN_18084f040(unaff_RBP + 0x30);
+    ReleaseNetworkConnectionResource(unaff_RBP + 0x30);
   }
   if (uStackX_20 == '\0') {
     *(NetworkStatus *)(unaff_RSI + 0x60) = 0;
-    FUN_18084f2d0(unaff_RSI + 0x30);
+    CleanupNetworkConnectionMemory(unaff_RSI + 0x30);
   }
   return unaff_EBX;
 }
@@ -92144,10 +92157,10 @@ NetworkStatus FUN_18088fd59(void)
   NetworkByte uStackX_20;
   
   *(NetworkStatus *)(unaff_RBP + 0x60) = 0;
-  FUN_18084f040(unaff_RBP + 0x30);
+  ReleaseNetworkConnectionResource(unaff_RBP + 0x30);
   if (uStackX_20 == '\0') {
     *(NetworkStatus *)(unaff_RSI + 0x60) = 0;
-    FUN_18084f2d0(unaff_RSI + 0x30);
+    CleanupNetworkConnectionMemory(unaff_RSI + 0x30);
   }
   return unaff_EBX;
 }
@@ -92161,7 +92174,7 @@ NetworkStatus FUN_18088fd75(void)
   longlong unaff_RSI;
   
   *(NetworkStatus *)(unaff_RSI + 0x60) = 0;
-  FUN_18084f2d0(unaff_RSI + 0x30);
+  CleanupNetworkConnectionMemory(unaff_RSI + 0x30);
   return unaff_EBX;
 }
 
@@ -92552,7 +92565,7 @@ NetworkHandle FUN_180890090(longlong connectionContext)
   primaryNetworkFlag = NetworkConnectionFlagsValidate(*(NetworkStatus *)(connectionContext + 0x10),alStackX_8);
   if ((int)primaryNetworkFlag == 0) {
     *(NetworkStatus *)(*(longlong *)(alStackX_8[0] + 0x10) + 0x70) = *(NetworkStatus *)(connectionContext + 0x18);
-    if ((*(longlong *)(alStackX_8[0] + 8) != 0) && (primaryNetworkFlag = FUN_18084ed10(), (int)primaryNetworkFlag != 0)) {
+    if ((*(longlong *)(alStackX_8[0] + 8) != 0) && (primaryNetworkFlag = InitializeNetworkBuffer(), (int)primaryNetworkFlag != 0)) {
       return primaryNetworkFlag;
     }
     primaryNetworkFlag = 0;
@@ -92602,7 +92615,7 @@ void ProcessNetworkConnectionResources(longlong connectionHandle, longlong netwo
     resourceCount = 0;
     bufferLength = 0;
     bufferFlags = 0xffffffc0;
-    operationStatus = FUN_1808bf350(*(NetworkHandle *)(networkContext + 0x90),*(longlong *)(connectionContext[0] + 8),
+    operationStatus = UpdateNetworkConnectionState(*(NetworkHandle *)(networkContext + 0x90),*(longlong *)(connectionContext[0] + 8),
                           &resourceBuffer);
     if (operationStatus == 0) {
       if (0 < bufferLength) {
@@ -92662,7 +92675,7 @@ void CleanupNetworkConnectionResources(void)
     networkStatus4 = 0;
     iStack0000000000000038 = 0;
     uStack000000000000003c = 0xffffffc0;
-    networkStatus2 = FUN_1808bf350(*(NetworkHandle *)(unaff_RBX + 0x90),*(longlong *)(in_RAX + 8),
+    networkStatus2 = UpdateNetworkConnectionState(*(NetworkHandle *)(unaff_RBX + 0x90),*(longlong *)(in_RAX + 8),
                           &stack0x00000030);
     if (networkStatus2 == 0) {
       if (0 < iStack0000000000000038) {
@@ -99463,7 +99476,7 @@ ulonglong FUN_180896140(longlong connectionContext)
             networkStatus4 = NetworkConnectionFlagsValidate(*(NetworkStatus *)(lVar5 + 0xc + lVar15 * 0x10),auStackX_20);
             plVar13 = plStack_108;
             if (networkStatus4 == 0) {
-              puStack_d8 = &UNK_180983b68;
+              puStack_d8 = &NetworkGatewayTemplate;
               uStack_c8 = *(NetworkStatus *)(lVar5 + 0xc + lVar15 * 0x10);
               uStack_d0 = 0;
               uStack_c0 = 1;
@@ -99505,7 +99518,7 @@ ulonglong FUN_180896140(longlong connectionContext)
             networkStatus4 = NetworkConnectionFlagsValidate(*(NetworkStatus *)(lVar5 + 0xc + lVar15 * 0x10),auStack_70);
             plVar13 = plStack_108;
             if (networkStatus4 == 0) {
-              puStack_b8 = &UNK_1809844c8;
+              puStack_b8 = &NetworkProxyTemplate;
               uStack_a8 = *(NetworkStatus *)(lVar5 + 0xc + lVar15 * 0x10);
               uStack_b0 = 0;
               uStack_a0 = 0x3f800000;
@@ -100195,7 +100208,7 @@ LAB_180896ce3:
         iVar5 = networkStatus4;
         if (afStack_304[0] != 1.0) {
           uStack_2e0 = CONCAT44(uStack_2e0._4_4_,afStack_304[0]);
-          puStack_2f8 = &UNK_1809844c8;
+          puStack_2f8 = &NetworkProxyTemplate;
           uStack_2e8 = CONCAT44(uStack_2e8._4_4_,uStack_308);
           iStack_2f0 = iVar7;
           iVar7 = FUN_180897520(connectionContext,&puStack_2f8);
@@ -100489,7 +100502,7 @@ void FUN_180896e11(void)
         if ((iVar9 != 0) || (iVar9 = FUN_18088cbb0(lVar2,&fStackX_24,0), iVar9 != 0)) break;
         if (fStackX_24 != 1.0) {
           in_stack_00000048 = fStackX_24;
-          in_stack_00000030 = &UNK_1809844c8;
+          in_stack_00000030 = &NetworkProxyTemplate;
           in_stack_00000040 = uStackX_20;
           in_stack_00000038 = iVar9;
           iVar9 = FUN_180897520(fStackX_24,&stack0x00000030);
@@ -100807,7 +100820,7 @@ void FUN_1808975e0(longlong connectionContext,longlong packetData)
               iVar6 = CheckNetworkConnectionStatus(packetData);
               if (iVar6 != 2) {
                 uStack_1b8 = 0;
-                puStack_1c0 = &UNK_180983ae8;
+                puStack_1c0 = &NetworkDnsTemplate;
                 uStack_1b0 = uStack_1c8;
                 iVar6 = FUN_180897520(connectionContext,&puStack_1c0);
                 if (iVar6 != 0) goto FUN_180897b16;
@@ -100815,7 +100828,7 @@ void FUN_1808975e0(longlong connectionContext,longlong packetData)
               iVar6 = CheckNetworkConnectionStatus(packetData);
               if (iVar6 == 4) {
                 uStack_1b8 = 0;
-                puStack_1c0 = &UNK_180983b68;
+                puStack_1c0 = &NetworkGatewayTemplate;
                 uStack_1b0 = uStack_1c8;
                 fStack_1a8 = 0.0;
                 iVar6 = FUN_180897520(connectionContext,&puStack_1c0);
@@ -101067,7 +101080,7 @@ void FUN_180897644(void)
             }
             networkStatus13 = CheckNetworkConnectionStatus(unaff_R14);
             if (networkStatus13 != 2) {
-              in_stack_00000028 = &UNK_180983ae8;
+              in_stack_00000028 = &NetworkDnsTemplate;
               in_stack_00000038 = uStackX_20;
               in_stack_00000030 = unaff_R13D;
               networkStatus13 = FUN_180897520(extraout_XMM0_Da_06,&stack0x00000028);
@@ -101076,7 +101089,7 @@ void FUN_180897644(void)
             networkStatus13 = CheckNetworkConnectionStatus(unaff_R14);
             secondaryNetworkFlag4 = extraout_XMM0_Da_07;
             if (networkStatus13 == 4) {
-              in_stack_00000028 = &UNK_180983b68;
+              in_stack_00000028 = &NetworkGatewayTemplate;
               in_stack_00000038 = uStackX_20;
               in_stack_00000030 = unaff_R13D;
               fStack0000000000000040 = unaff_R13D;
@@ -101313,7 +101326,7 @@ void FUN_1808976b0(void)
         }
         networkStatus13 = CheckNetworkConnectionStatus(unaff_R14);
         if (networkStatus13 != 2) {
-          in_stack_00000028 = &UNK_180983ae8;
+          in_stack_00000028 = &NetworkDnsTemplate;
           in_stack_00000038 = uStackX_20;
           in_stack_00000030 = unaff_R13D;
           networkStatus13 = FUN_180897520(extraout_XMM0_Da_05,&stack0x00000028);
@@ -101322,7 +101335,7 @@ void FUN_1808976b0(void)
         networkStatus13 = CheckNetworkConnectionStatus(unaff_R14);
         secondaryNetworkFlag3 = extraout_XMM0_Da_06;
         if (networkStatus13 == 4) {
-          in_stack_00000028 = &UNK_180983b68;
+          in_stack_00000028 = &NetworkGatewayTemplate;
           in_stack_00000038 = uStackX_20;
           in_stack_00000030 = unaff_R13D;
           fStack0000000000000040 = unaff_R13D;
@@ -101447,7 +101460,7 @@ void FUN_180897859(float connectionContext)
     }
     networkStatus2 = CheckNetworkConnectionStatus();
     if (networkStatus2 != 2) {
-      in_stack_00000028 = &UNK_180983ae8;
+      in_stack_00000028 = &NetworkDnsTemplate;
       in_stack_00000038 = uStackX_20;
       in_stack_00000030 = unaff_R13D;
       networkStatus2 = FUN_180897520(extraout_XMM0_Da_02,&stack0x00000028);
@@ -101456,7 +101469,7 @@ void FUN_180897859(float connectionContext)
     networkStatus2 = CheckNetworkConnectionStatus();
     uVar6 = extraout_XMM0_Da_03;
     if (networkStatus2 == 4) {
-      in_stack_00000028 = &UNK_180983b68;
+      in_stack_00000028 = &NetworkGatewayTemplate;
       in_stack_00000038 = uStackX_20;
       in_stack_00000030 = unaff_R13D;
       fStack0000000000000040 = unaff_R13D;
@@ -101945,7 +101958,7 @@ void FUN_180898040(longlong *connectionContext)
             lVar11 = connectionContext[4];
             if ((char)lVar11 == '\0') {
               *(NetworkByte *)(connectionContext + 4) = 1;
-              iVar7 = FUN_18073a200(*(NetworkHandle *)(connectionContext[1] + 0x78),auStack_2e8);
+              iVar7 = EstablishNetworkConnection(*(NetworkHandle *)(connectionContext[1] + 0x78),auStack_2e8);
               if (((iVar7 != 0) || (iVar7 = HandleConnectionAuthentication(auStack_2e8[0],&lStack_320,0), iVar7 != 0)
                   ) || (iVar7 = (**(code **)(*connectionContext + 0x10))(connectionContext), iVar7 != 0))
               goto LAB_18089866f;
@@ -102151,7 +102164,7 @@ NetworkHandle FUN_1808987e0(longlong *connectionContext,char packetData)
   ulonglong uStack_18;
   
   *(NetworkByte *)(connectionContext + 4) = 1;
-  secondaryNetworkFlag = FUN_18073a200(*(NetworkHandle *)(connectionContext[1] + 0x78),&uStackX_8);
+  secondaryNetworkFlag = EstablishNetworkConnection(*(NetworkHandle *)(connectionContext[1] + 0x78),&uStackX_8);
   if ((((int)secondaryNetworkFlag == 0) && (secondaryNetworkFlag = HandleConnectionAuthentication(uStackX_8,alStackX_18,0), (int)secondaryNetworkFlag == 0)) &&
      (secondaryNetworkFlag = (**(code **)(*connectionContext + 0x10))(connectionContext), (int)secondaryNetworkFlag == 0)) {
     tertiaryNetworkFlag = (ulonglong)(alStackX_18[0] * 48000) / (ulonglong)*(uint *)((longlong)connectionContext + 0x1c);

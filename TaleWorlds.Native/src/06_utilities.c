@@ -12752,7 +12752,7 @@ void ProcessComplexResourceWithRegisters(void)
         uVar6 = *(undefined4 *)(lVar1 + 0x1c);
         *(undefined4 *)(unaff_RBP + -0x78) = 0;
         *(int *)(unaff_RBP + -0x68) = iVar8;
-        *(undefined **)(unaff_RBP + -0x80) = &UNK_180983238;
+        *(undefined **)(unaff_RBP + -0x80) = &SystemResourceTemplateB;
         iVar8 = iVar8 + 1;
         *(undefined4 *)(unaff_RBP + -0x54) = uStackX_20;
         *(undefined4 *)(unaff_RBP + -0x70) = unaff_EBX;
@@ -12949,7 +12949,7 @@ LAB_1808974ec:
     iVar6 = ValidateBufferContext(*(undefined8 *)(lVar8 + 0xd0),&uStack_1a0);
     if (iVar6 == 0) {
       uStack_170 = 0;
-      puStack_178 = &UNK_1809832b8;
+      puStack_178 = &SystemResourceTemplateC;
       uStack_160 = uStack_1c8;
       uStack_168 = uStack_1a0;
       iVar6 = GetAndValidateResourceData(param_1,&puStack_178);
@@ -12965,7 +12965,7 @@ LAB_1808974ec:
             presourceHash6 = puStack_190;
             if ((cVar5 == '\0') && (*(float *)(resourceIndex + 0x4c) != *(float *)(lVar4 + 0x28))) {
               uStack_f0 = *(undefined4 *)(lVar14 + 4 + lVar9);
-              puStack_108 = &UNK_180984038;
+              puStack_108 = &SystemResourceTemplateD;
               uStack_f8 = uStack_1c8;
               uStack_100 = 0;
               lVar9 = (**(code **)*puStack_190)(puStack_190);
@@ -13000,7 +13000,7 @@ LAB_1808974ec:
               uStack_12c = *(undefined4 *)(resourceTable + 0x4c);
               uStack_128 = *(undefined4 *)(resourceTable + 0x50);
               uStack_124 = *(undefined4 *)(resourceTable + 0x54);
-              puStack_158 = &UNK_180983840;
+              puStack_158 = &SystemResourceTemplateE;
               uStack_150 = 0;
               uStack_120 = *(undefined4 *)(resourceTable + 0x58);
               uStack_11c = *(undefined4 *)(resourceTable + 0x5c);
@@ -13015,7 +13015,7 @@ LAB_1808974ec:
           if (iVar6 == 0) {
             if (fStack_19c != 1.0) {
               fStack_1a8 = fStack_19c;
-              puStack_1c0 = &UNK_180983738;
+              puStack_1c0 = &SystemResourceTemplateF;
               uStack_1b0 = uStack_1c8;
               uStack_1b8 = 0;
               iVar6 = GetAndValidateResourceData(param_1,&puStack_1c0);
@@ -13025,7 +13025,7 @@ LAB_1808974ec:
             if (iVar6 == 0) {
               if (afStack_198[0] != 1.0) {
                 fStack_1a8 = afStack_198[0];
-                puStack_1c0 = &UNK_1809837c0;
+                puStack_1c0 = &SystemResourceTemplateG;
                 uStack_1b0 = uStack_1c8;
                 uStack_1b8 = 0;
                 iVar6 = GetAndValidateResourceData(param_1,&puStack_1c0);
@@ -13037,7 +13037,7 @@ LAB_1808974ec:
                 if (*pfVar15 != 0.0) {
                   uStack_1b0 = uStack_1c8;
                   uStack_1b8 = 0;
-                  puStack_1c0 = &UNK_1809839d8;
+                  puStack_1c0 = &SystemResourceTemplateH;
                   fStack_1a8 = fVar13;
                   fStack_1a4 = *pfVar15;
                   iVar6 = GetAndValidateResourceData(param_1,&puStack_1c0);
@@ -13046,14 +13046,14 @@ LAB_1808974ec:
                 fVar13 = (float)((int)fVar13 + 1);
                 pfVar15 = pfVar15 + 1;
               } while ((int)fVar13 < 4);
-              pfVar15 = (float *)&UNK_1809850f8;
+              pfVar15 = (float *)&SystemFloatTemplateA;
               fVar13 = 0.0;
               do {
                 fVar1 = *(float *)(resourceTable + -0x180985054 + (longlong)pfVar15);
                 if (fVar1 != *pfVar15) {
                   uStack_1b0 = uStack_1c8;
                   uStack_1b8 = 0;
-                  puStack_1c0 = &UNK_180983950;
+                  puStack_1c0 = &SystemResourceTemplateI;
                   fStack_1a8 = fVar13;
                   fStack_1a4 = fVar1;
                   iVar6 = GetAndValidateResourceData(param_1,&puStack_1c0);
@@ -13064,7 +13064,7 @@ LAB_1808974ec:
               } while ((int)fVar13 < 6);
               uVar7 = func_0x000180855b70(param_2 + 200);
               if ((float)(uVar7 / 0x30) != 0.0) {
-                puStack_1c0 = &UNK_180983be8;
+                puStack_1c0 = &SystemResourceTemplateJ;
                 uStack_1b0 = uStack_1c8;
                 uStack_1b8 = 0;
                 fStack_1a8 = (float)(uVar7 / 0x30);
@@ -13073,7 +13073,7 @@ LAB_1808974ec:
               }
               if ((*(uint *)(resourceData + 0x2d8) >> 1 & 1) != 0) {
                 uStack_1b8 = 0;
-                puStack_1c0 = &UNK_180983a60;
+                puStack_1c0 = &SystemResourceTemplateK;
                 uStack_1b0 = uStack_1c8;
                 fStack_1a8 = (float)CONCAT31(fStack_1a8._1_3_,1);
                 iVar6 = GetAndValidateResourceData(param_1,&puStack_1c0);
@@ -13082,7 +13082,7 @@ LAB_1808974ec:
               iVar6 = GetResourceType(param_2);
               if (iVar6 != 2) {
                 uStack_1b8 = 0;
-                puStack_1c0 = &UNK_180983ae8;
+                puStack_1c0 = &SystemResourceTemplateL;
                 uStack_1b0 = uStack_1c8;
                 iVar6 = GetAndValidateResourceData(param_1,&puStack_1c0);
                 if (iVar6 != 0) goto HandleMemoryCleanup;
@@ -13090,7 +13090,7 @@ LAB_1808974ec:
               iVar6 = GetResourceType(param_2);
               if (iVar6 == 4) {
                 uStack_1b8 = 0;
-                puStack_1c0 = &UNK_180983b68;
+                puStack_1c0 = &SystemResourceTemplateM;
                 uStack_1b0 = uStack_1c8;
                 fStack_1a8 = 0.0;
                 iVar6 = GetAndValidateResourceData(param_1,&puStack_1c0);
@@ -13098,7 +13098,7 @@ LAB_1808974ec:
               }
               if ((*(uint *)(resourceData + 0x2d8) >> 3 & 1) != 0) {
                 uStack_1b8 = 0;
-                puStack_1c0 = &UNK_180983cf8;
+                puStack_1c0 = &SystemResourceTemplateN;
                 uStack_1b0 = uStack_1c8;
                 GetAndValidateResourceData(param_1,&puStack_1c0);
               }
@@ -13201,7 +13201,7 @@ void BufferValidationErrorHandler(void)
   lVar15 = (*(code *)*in_RAX)(pvalidationResult2);
   iVar13 = ValidateBufferContext(*(undefined8 *)(lVar15 + 0xd0),&stack0x00000048);
   if (iVar13 == 0) {
-    in_stack_00000070 = &UNK_1809832b8;
+    in_stack_00000070 = &SystemResourceTemplateC;
     *(undefined4 *)(unaff_RBP + -0xf) = uStackX_20;
     *(float *)(unaff_RBP + -0x10) = fStack0000000000000048;
     in_stack_00000078 = unaff_R13D;
@@ -13219,7 +13219,7 @@ void BufferValidationErrorHandler(void)
           pvalidationResult2 = puStack0000000000000058;
           if ((cVar12 == '\0') && (*(float *)(resourceTable + 0x4c) != *(float *)(resourceIndex + 0x28))) {
             validationResult4 = *(undefined4 *)(validationResult0 + 4 + lVar15);
-            unaff_RBP[-4] = &UNK_180984038;
+            unaff_RBP[-4] = &SystemResourceTemplateD;
             *(undefined4 *)(unaff_RBP + -2) = uStackX_20;
             puVar4 = (undefined8 *)*puStack0000000000000058;
             *(undefined4 *)(unaff_RBP + -1) = validationResult4;
@@ -13259,7 +13259,7 @@ void BufferValidationErrorHandler(void)
             uVar5 = *(undefined4 *)(unaff_R15 + 0x4c);
             uVar6 = *(undefined4 *)(unaff_R15 + 0x50);
             uVar7 = *(undefined4 *)(unaff_R15 + 0x54);
-            unaff_RBP[-0xe] = &UNK_180983840;
+            unaff_RBP[-0xe] = &SystemResourceTemplateE;
             unaff_RBP[-0xb] = resourceHash7;
             unaff_RBP[-10] = resourceHash6;
             *(float *)(unaff_RBP + -0xd) = unaff_R13D;
@@ -13287,7 +13287,7 @@ void BufferValidationErrorHandler(void)
           in_stack_000001a8 = unaff_XMM6_Dc;
           if (fStack000000000000004c != 1.0) {
             fStack0000000000000040 = fStack000000000000004c;
-            in_stack_00000028 = &UNK_180983738;
+            in_stack_00000028 = &SystemResourceTemplateF;
             in_stack_00000038 = uStackX_20;
             in_stack_00000030 = unaff_R13D;
             iVar13 = GetAndValidateResourceData(fStack000000000000004c,&stack0x00000028);
@@ -13298,7 +13298,7 @@ void BufferValidationErrorHandler(void)
           if (iVar13 == 0) {
             if (in_stack_00000050 != 1.0) {
               fStack0000000000000040 = in_stack_00000050;
-              in_stack_00000028 = &UNK_1809837c0;
+              in_stack_00000028 = &SystemResourceTemplateG;
               in_stack_00000038 = uStackX_20;
               in_stack_00000030 = unaff_R13D;
               iVar13 = GetAndValidateResourceData(in_stack_00000050,&stack0x00000028);
@@ -13310,7 +13310,7 @@ void BufferValidationErrorHandler(void)
               fVar1 = *pfVar21;
               if (fVar1 != 0.0) {
                 in_stack_00000038 = uStackX_20;
-                in_stack_00000028 = &UNK_1809839d8;
+                in_stack_00000028 = &SystemResourceTemplateH;
                 in_stack_00000030 = unaff_R13D;
                 fStack0000000000000040 = fVar19;
                 fStack0000000000000044 = fVar1;
@@ -13320,13 +13320,13 @@ void BufferValidationErrorHandler(void)
               fVar19 = (float)((int)fVar19 + 1);
               pfVar21 = pfVar21 + 1;
             } while ((int)fVar19 < 4);
-            pfVar21 = (float *)&UNK_1809850f8;
+            pfVar21 = (float *)&SystemFloatTemplateA;
             fVar19 = unaff_R13D;
             do {
               fVar1 = *(float *)(unaff_R15 + -0x180985054 + (longlong)pfVar21);
               if (fVar1 != *pfVar21) {
                 in_stack_00000038 = uStackX_20;
-                in_stack_00000028 = &UNK_180983950;
+                in_stack_00000028 = &SystemResourceTemplateI;
                 in_stack_00000030 = unaff_R13D;
                 fStack0000000000000040 = fVar19;
                 fStack0000000000000044 = fVar1;
@@ -13339,7 +13339,7 @@ void BufferValidationErrorHandler(void)
             resourceHash4 = func_0x000180855b70(unaff_R14 + 200);
             validationResult4 = extraout_XMM0_Da_04;
             if ((float)(resourceHash4 / 0x30) != 0.0) {
-              in_stack_00000028 = &UNK_180983be8;
+              in_stack_00000028 = &SystemResourceTemplateJ;
               in_stack_00000038 = uStackX_20;
               in_stack_00000030 = unaff_R13D;
               fStack0000000000000040 = (float)(resourceHash4 / 0x30);
@@ -13348,7 +13348,7 @@ void BufferValidationErrorHandler(void)
               if (iVar13 != 0) goto ProcessMemoryRelease;
             }
             if ((*(uint *)(unaff_R14 + 0x2d8) >> 1 & 1) != 0) {
-              in_stack_00000028 = &UNK_180983a60;
+              in_stack_00000028 = &SystemResourceTemplateK;
               in_stack_00000038 = uStackX_20;
               fStack0000000000000040 = (float)CONCAT31(fStack0000000000000040._1_3_,1);
               in_stack_00000030 = unaff_R13D;
@@ -13357,7 +13357,7 @@ void BufferValidationErrorHandler(void)
             }
             iVar13 = GetResourceType(unaff_R14);
             if (iVar13 != 2) {
-              in_stack_00000028 = &UNK_180983ae8;
+              in_stack_00000028 = &SystemResourceTemplateL;
               in_stack_00000038 = uStackX_20;
               in_stack_00000030 = unaff_R13D;
               iVar13 = GetAndValidateResourceData(extraout_XMM0_Da_06,&stack0x00000028);
@@ -13366,7 +13366,7 @@ void BufferValidationErrorHandler(void)
             iVar13 = GetResourceType(unaff_R14);
             validationResult4 = extraout_XMM0_Da_07;
             if (iVar13 == 4) {
-              in_stack_00000028 = &UNK_180983b68;
+              in_stack_00000028 = &SystemResourceTemplateM;
               in_stack_00000038 = uStackX_20;
               in_stack_00000030 = unaff_R13D;
               fStack0000000000000040 = unaff_R13D;
@@ -13375,7 +13375,7 @@ void BufferValidationErrorHandler(void)
               if (iVar13 != 0) goto ProcessMemoryRelease;
             }
             if ((*(uint *)(unaff_R14 + 0x2d8) >> 3 & 1) != 0) {
-              in_stack_00000028 = &UNK_180983cf8;
+              in_stack_00000028 = &SystemResourceTemplateN;
               in_stack_00000038 = uStackX_20;
               in_stack_00000030 = unaff_R13D;
               GetAndValidateResourceData(validationResult4,&stack0x00000028);
@@ -13480,7 +13480,7 @@ void DataProcessingErrorHandler(void)
       unaff_R12 = in_stack_00000058;
       if ((cVar12 == '\0') && (*(float *)(resourceTable + 0x4c) != *(float *)(resourceIndex + 0x28))) {
         validationResult3 = *(undefined4 *)(validationResult0 + 4 + lVar15);
-        unaff_RBP[-4] = &UNK_180984038;
+        unaff_RBP[-4] = &SystemResourceTemplateD;
         *(undefined4 *)(unaff_RBP + -2) = uStackX_20;
         puVar4 = (undefined8 *)*in_stack_00000058;
         *(undefined4 *)(unaff_RBP + -1) = validationResult3;
@@ -13520,7 +13520,7 @@ void DataProcessingErrorHandler(void)
         uVar5 = *(undefined4 *)(unaff_R15 + 0x4c);
         uVar6 = *(undefined4 *)(unaff_R15 + 0x50);
         uVar7 = *(undefined4 *)(unaff_R15 + 0x54);
-        unaff_RBP[-0xe] = &UNK_180983840;
+        unaff_RBP[-0xe] = &SystemResourceTemplateE;
         unaff_RBP[-0xb] = resourceHash7;
         unaff_RBP[-10] = resourceHash6;
         *(float *)(unaff_RBP + -0xd) = unaff_R13D;
@@ -13548,7 +13548,7 @@ void DataProcessingErrorHandler(void)
       in_stack_000001a8 = unaff_XMM6_Dc;
       if (in_stack_00000048._4_4_ != 1.0) {
         fStack0000000000000040 = in_stack_00000048._4_4_;
-        in_stack_00000028 = &UNK_180983738;
+        in_stack_00000028 = &SystemResourceTemplateF;
         in_stack_00000038 = uStackX_20;
         in_stack_00000030 = unaff_R13D;
         iVar13 = GetAndValidateResourceData(in_stack_00000048._4_4_,&stack0x00000028);
@@ -13559,7 +13559,7 @@ void DataProcessingErrorHandler(void)
       if (iVar13 == 0) {
         if (in_stack_00000050 != 1.0) {
           fStack0000000000000040 = in_stack_00000050;
-          in_stack_00000028 = &UNK_1809837c0;
+          in_stack_00000028 = &SystemResourceTemplateG;
           in_stack_00000038 = uStackX_20;
           in_stack_00000030 = unaff_R13D;
           iVar13 = GetAndValidateResourceData(in_stack_00000050,&stack0x00000028);
@@ -13571,7 +13571,7 @@ void DataProcessingErrorHandler(void)
           fVar1 = *pfVar21;
           if (fVar1 != 0.0) {
             in_stack_00000038 = uStackX_20;
-            in_stack_00000028 = &UNK_1809839d8;
+            in_stack_00000028 = &SystemResourceTemplateH;
             in_stack_00000030 = unaff_R13D;
             fStack0000000000000040 = fVar19;
             fStack0000000000000044 = fVar1;
@@ -13581,13 +13581,13 @@ void DataProcessingErrorHandler(void)
           fVar19 = (float)((int)fVar19 + 1);
           pfVar21 = pfVar21 + 1;
         } while ((int)fVar19 < 4);
-        pfVar21 = (float *)&UNK_1809850f8;
+        pfVar21 = (float *)&SystemFloatTemplateA;
         fVar19 = unaff_R13D;
         do {
           fVar1 = *(float *)(unaff_R15 + -0x180985054 + (longlong)pfVar21);
           if (fVar1 != *pfVar21) {
             in_stack_00000038 = uStackX_20;
-            in_stack_00000028 = &UNK_180983950;
+            in_stack_00000028 = &SystemResourceTemplateI;
             in_stack_00000030 = unaff_R13D;
             fStack0000000000000040 = fVar19;
             fStack0000000000000044 = fVar1;
@@ -13600,7 +13600,7 @@ void DataProcessingErrorHandler(void)
         resourceHash4 = func_0x000180855b70(unaff_R14 + 200);
         validationResult3 = extraout_XMM0_Da_03;
         if ((float)(resourceHash4 / 0x30) != 0.0) {
-          in_stack_00000028 = &UNK_180983be8;
+          in_stack_00000028 = &SystemResourceTemplateJ;
           in_stack_00000038 = uStackX_20;
           in_stack_00000030 = unaff_R13D;
           fStack0000000000000040 = (float)(resourceHash4 / 0x30);
@@ -13609,7 +13609,7 @@ void DataProcessingErrorHandler(void)
           if (iVar13 != 0) goto ExecuteMemoryDeallocation;
         }
         if ((*(uint *)(unaff_R14 + 0x2d8) >> 1 & 1) != 0) {
-          in_stack_00000028 = &UNK_180983a60;
+          in_stack_00000028 = &SystemResourceTemplateK;
           in_stack_00000038 = uStackX_20;
           fStack0000000000000040 = (float)CONCAT31(fStack0000000000000040._1_3_,1);
           in_stack_00000030 = unaff_R13D;
@@ -13618,7 +13618,7 @@ void DataProcessingErrorHandler(void)
         }
         iVar13 = GetResourceType(unaff_R14);
         if (iVar13 != 2) {
-          in_stack_00000028 = &UNK_180983ae8;
+          in_stack_00000028 = &SystemResourceTemplateL;
           in_stack_00000038 = uStackX_20;
           in_stack_00000030 = unaff_R13D;
           iVar13 = GetAndValidateResourceData(extraout_XMM0_Da_05,&stack0x00000028);
@@ -13627,7 +13627,7 @@ void DataProcessingErrorHandler(void)
         iVar13 = GetResourceType(unaff_R14);
         validationResult3 = extraout_XMM0_Da_06;
         if (iVar13 == 4) {
-          in_stack_00000028 = &UNK_180983b68;
+          in_stack_00000028 = &SystemResourceTemplateM;
           in_stack_00000038 = uStackX_20;
           in_stack_00000030 = unaff_R13D;
           fStack0000000000000040 = unaff_R13D;
@@ -13636,7 +13636,7 @@ void DataProcessingErrorHandler(void)
           if (iVar13 != 0) goto ExecuteMemoryDeallocation;
         }
         if ((*(uint *)(unaff_R14 + 0x2d8) >> 3 & 1) != 0) {
-          in_stack_00000028 = &UNK_180983cf8;
+          in_stack_00000028 = &SystemResourceTemplateN;
           in_stack_00000038 = uStackX_20;
           in_stack_00000030 = unaff_R13D;
           GetAndValidateResourceData(validationResult3,&stack0x00000028);
@@ -13696,7 +13696,7 @@ void FloatProcessingErrorHandler(void)
   float in_stack_00000050;
   
   if (param_1 != 1.0) {
-    in_stack_00000028 = &UNK_180983738;
+    in_stack_00000028 = &SystemResourceTemplateF;
     in_stack_00000038 = uStackX_20;
     in_stack_00000030 = unaff_R13D;
     fStack0000000000000040 = param_1;
@@ -13708,7 +13708,7 @@ void FloatProcessingErrorHandler(void)
   if (iVar2 == 0) {
     if (in_stack_00000050 != 1.0) {
       fStack0000000000000040 = in_stack_00000050;
-      in_stack_00000028 = &UNK_1809837c0;
+      in_stack_00000028 = &SystemResourceTemplateG;
       in_stack_00000038 = uStackX_20;
       in_stack_00000030 = unaff_R13D;
       iVar2 = GetAndValidateResourceData(in_stack_00000050,&stack0x00000028);
@@ -13720,7 +13720,7 @@ void FloatProcessingErrorHandler(void)
       fVar1 = *pfVar5;
       if (fVar1 != 0.0) {
         in_stack_00000038 = uStackX_20;
-        in_stack_00000028 = &UNK_1809839d8;
+        in_stack_00000028 = &SystemResourceTemplateH;
         in_stack_00000030 = unaff_R13D;
         fStack0000000000000040 = fVar4;
         fStack0000000000000044 = fVar1;
@@ -13730,13 +13730,13 @@ void FloatProcessingErrorHandler(void)
       fVar4 = (float)((int)fVar4 + 1);
       pfVar5 = pfVar5 + 1;
     } while ((int)fVar4 < 4);
-    pfVar5 = (float *)&UNK_1809850f8;
+    pfVar5 = (float *)&SystemFloatTemplateA;
     fVar4 = unaff_R13D;
     do {
       fVar1 = *(float *)(unaff_R15 + -0x180985054 + (longlong)pfVar5);
       if (fVar1 != *pfVar5) {
         in_stack_00000038 = uStackX_20;
-        in_stack_00000028 = &UNK_180983950;
+        in_stack_00000028 = &SystemResourceTemplateI;
         in_stack_00000030 = unaff_R13D;
         fStack0000000000000040 = fVar4;
         fStack0000000000000044 = fVar1;
@@ -13749,7 +13749,7 @@ void FloatProcessingErrorHandler(void)
     uVar3 = func_0x000180855b70(unaff_R14 + 200);
     uVar6 = extraout_XMM0_Da_00;
     if ((float)(uVar3 / 0x30) != 0.0) {
-      in_stack_00000028 = &UNK_180983be8;
+      in_stack_00000028 = &SystemResourceTemplateJ;
       in_stack_00000038 = uStackX_20;
       in_stack_00000030 = unaff_R13D;
       fStack0000000000000040 = (float)(uVar3 / 0x30);
@@ -13758,7 +13758,7 @@ void FloatProcessingErrorHandler(void)
       if (iVar2 != 0) goto LAB_180897af6;
     }
     if ((*(uint *)(unaff_R14 + 0x2d8) >> 1 & 1) != 0) {
-      in_stack_00000028 = &UNK_180983a60;
+      in_stack_00000028 = &SystemResourceTemplateK;
       in_stack_00000038 = uStackX_20;
       fStack0000000000000040 = (float)CONCAT31(fStack0000000000000040._1_3_,1);
       in_stack_00000030 = unaff_R13D;
@@ -13767,7 +13767,7 @@ void FloatProcessingErrorHandler(void)
     }
     iVar2 = GetResourceType();
     if (iVar2 != 2) {
-      in_stack_00000028 = &UNK_180983ae8;
+      in_stack_00000028 = &SystemResourceTemplateL;
       in_stack_00000038 = uStackX_20;
       in_stack_00000030 = unaff_R13D;
       iVar2 = GetAndValidateResourceData(extraout_XMM0_Da_02,&stack0x00000028);
@@ -13776,7 +13776,7 @@ void FloatProcessingErrorHandler(void)
     iVar2 = GetResourceType();
     uVar6 = extraout_XMM0_Da_03;
     if (iVar2 == 4) {
-      in_stack_00000028 = &UNK_180983b68;
+      in_stack_00000028 = &SystemResourceTemplateM;
       in_stack_00000038 = uStackX_20;
       in_stack_00000030 = unaff_R13D;
       fStack0000000000000040 = unaff_R13D;
@@ -13785,7 +13785,7 @@ void FloatProcessingErrorHandler(void)
       if (iVar2 != 0) goto LAB_180897af6;
     }
     if ((*(uint *)(unaff_R14 + 0x2d8) >> 3 & 1) != 0) {
-      in_stack_00000028 = &UNK_180983cf8;
+      in_stack_00000028 = &SystemResourceTemplateN;
       in_stack_00000038 = uStackX_20;
       in_stack_00000030 = unaff_R13D;
       GetAndValidateResourceData(uVar6,&stack0x00000028);
@@ -13888,7 +13888,7 @@ LAB_180897ce8:
       uStack_240 = *(undefined4 *)(lVar1 + 0x1c);
       uStack_260 = 0;
       iVar3 = iVar4 + 1;
-      puStack_268 = &UNK_180982f38;
+      puStack_268 = &SystemMemoryTemplateA;
       uStack_23c = dataChecksumBuffer8[0];
       uStack_258 = param_3;
       iStack_250 = iVar4;
@@ -13901,7 +13901,7 @@ LAB_180897ce8:
         do {
           uStack_278 = 0;
           resourceTable = param_1[4];
-          puStack_280 = &UNK_1809834f8;
+          puStack_280 = &SystemMemoryTemplateB;
           uStack_270 = dataChecksumBuffer8[0];
           if (((char)resourceTable == '\0') && (iVar3 = CheckSystemStatus(param_1,1), iVar3 != 0))
           goto LAB_180897ce8;
@@ -14199,7 +14199,7 @@ undefined8 ValidateResourceRenderingState(void)
       iVar6 = *(int *)(lVar15 + 0x28);
       if (iVar6 != 1) {
         uStack_338 = uStack_338 & 0xffffffff00000000;
-        plStack_340 = (longlong *)&UNK_180982378;
+        plStack_340 = (longlong *)&SystemMemoryTemplateC;
         aplStack_330[0] = (longlong *)CONCAT44(aplStack_330[0]._4_4_,iVar6);
         iVar7 = GetAndValidateResourceData(param_1,&plStack_340);
         if (iVar7 != 0) goto LAB_18089866f;
@@ -14213,7 +14213,7 @@ undefined8 ValidateResourceRenderingState(void)
         do {
           lVar15 = param_1[1];
           uStack_2d0 = 0;
-          puStack_2d8 = &UNK_1809823f8;
+          puStack_2d8 = &SystemMemoryTemplateD;
           fVar18 = SUB84(plVar13,0);
           plVar13 = (longlong *)(lVar15 + 0xe0 + (longlong)plVar10);
           lVar11 = *plVar13;
@@ -14271,7 +14271,7 @@ undefined8 ValidateResourceRenderingState(void)
             uStack_2bc = auStack_2f0._4_4_;
             fStack_2c8 = afStack_348[0];
             uStack_2d0 = 0;
-            puStack_2d8 = &UNK_180982260;
+            puStack_2d8 = &SystemMemoryTemplateE;
             uStack_2c4 = uStack_2c4 & 0xffffff00;
             if (*(int *)(lVar11 + 0x58) < 1) {
               presourceHash2 = &ResourceHashTemplate;
@@ -14290,7 +14290,7 @@ undefined8 ValidateResourceRenderingState(void)
               uVar9 = (ulonglong)(lStack_320 * 48000) /
                       (ulonglong)*(uint *)((longlong)param_1 + 0x1c);
               lVar4 = param_1[2];
-              plStack_340 = (longlong *)&UNK_180986390;
+              plStack_340 = (longlong *)&SystemMemoryTemplateF;
               uStack_338 = uStack_338 & 0xffffffff00000000;
               param_1[2] = uVar9;
               aplStack_330[0] = plVar16;
@@ -14522,7 +14522,7 @@ undefined8 ProcessResourceTimeSynchronization(longlong *param_1,char param_2)
       if (lVar1 != 0) {
         uStack_18 = uVar4;
       }
-      puStack_28 = &UNK_180986390;
+      puStack_28 = &SystemMemoryTemplateF;
       validationResult = GetAndValidateResourceData(param_1,&puStack_28);
       if ((int)validationResult != 0) {
         return validationResult;
@@ -27939,7 +27939,7 @@ void Unwind_180901f60(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -27975,7 +27975,7 @@ void Unwind_180901f70(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -28028,7 +28028,7 @@ void Unwind_180901fa0(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -28064,7 +28064,7 @@ void Unwind_180901fc0(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -28083,7 +28083,7 @@ void Unwind_180901fe0(undefined8 param_1,longlong param_2)
 {
   if ((*(uint *)(resourceData + 0x20) & 1) != 0) {
     *(uint *)(resourceData + 0x20) = *(uint *)(resourceData + 0x20) & 0xfffffffe;
-    FUN_180627b90(*(undefined8 *)(param_2 + 0x48));
+    ReleaseSystemResource(*(undefined8 *)(param_2 + 0x48));
   }
   return;
 }
@@ -28095,7 +28095,7 @@ void Unwind_180902010(undefined8 param_1,longlong param_2)
 {
   if ((*(uint *)(resourceData + 0x20) & 1) != 0) {
     *(uint *)(resourceData + 0x20) = *(uint *)(resourceData + 0x20) & 0xfffffffe;
-    FUN_180627b90(*(undefined8 *)(param_2 + 0x58));
+    ReleaseSystemResource(*(undefined8 *)(param_2 + 0x58));
   }
   return;
 }
@@ -28107,7 +28107,7 @@ void Unwind_180902040(undefined8 param_1,longlong param_2)
 {
   if ((*(uint *)(resourceData + 0x20) & 2) != 0) {
     *(uint *)(resourceData + 0x20) = *(uint *)(resourceData + 0x20) & 0xfffffffd;
-    FUN_180627b90(param_2 + 0x30);
+    ReleaseSystemResource(param_2 + 0x30);
   }
   return;
 }
@@ -28144,7 +28144,7 @@ void Unwind_180902090(undefined8 param_1,longlong param_2)
 {
   if ((*(uint *)(resourceData + 0x30) & 1) != 0) {
     *(uint *)(resourceData + 0x30) = *(uint *)(resourceData + 0x30) & 0xfffffffe;
-    FUN_180627b90(*(undefined8 *)(param_2 + 0xd8));
+    ReleaseSystemResource(*(undefined8 *)(param_2 + 0xd8));
   }
   return;
 }
@@ -28156,7 +28156,7 @@ void Unwind_1809020c0(undefined8 param_1,longlong param_2)
 {
   if ((*(uint *)(resourceData + 0x30) & 2) != 0) {
     *(uint *)(resourceData + 0x30) = *(uint *)(resourceData + 0x30) & 0xfffffffd;
-    FUN_180627b90(param_2 + 0x40);
+    ReleaseSystemResource(param_2 + 0x40);
   }
   return;
 }
@@ -28302,7 +28302,7 @@ void Unwind_180902170(undefined8 param_1,longlong param_2)
 void Unwind_180902180(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined8 *)(param_2 + 0x1a0) = &UNK_180a3c3e0;
+  *(undefined8 *)(param_2 + 0x1a0) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(param_2 + 0x1a8) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -28320,7 +28320,7 @@ void Unwind_180902190(undefined8 param_1,longlong param_2)
 {
   if ((*(uint *)(resourceData + 0x30) & 1) != 0) {
     *(uint *)(resourceData + 0x30) = *(uint *)(resourceData + 0x30) & 0xfffffffe;
-    FUN_180627b90(*(undefined8 *)(param_2 + 0x1c8));
+    ReleaseSystemResource(*(undefined8 *)(param_2 + 0x1c8));
   }
   return;
 }
@@ -28330,7 +28330,7 @@ void Unwind_180902190(undefined8 param_1,longlong param_2)
 void Unwind_1809021c0(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined8 *)(param_2 + 0x180) = &UNK_180a3c3e0;
+  *(undefined8 *)(param_2 + 0x180) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(param_2 + 0x188) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -28357,7 +28357,7 @@ void Unwind_1809021e0(undefined8 param_1,longlong param_2)
 {
   if ((*(uint *)(resourceData + 0x30) & 2) != 0) {
     *(uint *)(resourceData + 0x30) = *(uint *)(resourceData + 0x30) & 0xfffffffd;
-    FUN_180627b90(param_2 + 0x78);
+    ReleaseSystemResource(param_2 + 0x78);
   }
   return;
 }
@@ -28378,7 +28378,7 @@ void Unwind_180902220(undefined8 param_1,longlong param_2)
 {
   if ((*(uint *)(resourceData + 0x30) & 4) != 0) {
     *(uint *)(resourceData + 0x30) = *(uint *)(resourceData + 0x30) & 0xfffffffb;
-    FUN_180627b90(param_2 + 0x118);
+    ReleaseSystemResource(param_2 + 0x118);
   }
   return;
 }
@@ -28399,7 +28399,7 @@ void Unwind_180902260(undefined8 param_1,longlong param_2)
 {
   if ((*(uint *)(resourceData + 0x30) & 8) != 0) {
     *(uint *)(resourceData + 0x30) = *(uint *)(resourceData + 0x30) & 0xfffffff7;
-    FUN_180627b90(param_2 + 0xf8);
+    ReleaseSystemResource(param_2 + 0xf8);
   }
   return;
 }
@@ -28420,7 +28420,7 @@ void Unwind_1809022a0(undefined8 param_1,longlong param_2)
 {
   if ((*(uint *)(resourceData + 0x30) & 0x10) != 0) {
     *(uint *)(resourceData + 0x30) = *(uint *)(resourceData + 0x30) & 0xffffffef;
-    FUN_180627b90(param_2 + 0x58);
+    ReleaseSystemResource(param_2 + 0x58);
   }
   return;
 }
@@ -28432,7 +28432,7 @@ void Unwind_1809022d0(undefined8 param_1,longlong param_2)
 {
   if ((*(uint *)(resourceData + 0x30) & 0x20) != 0) {
     *(uint *)(resourceData + 0x30) = *(uint *)(resourceData + 0x30) & 0xffffffdf;
-    FUN_180627b90(param_2 + 0xd8);
+    ReleaseSystemResource(param_2 + 0xd8);
   }
   return;
 }
@@ -28453,7 +28453,7 @@ void Unwind_180902310(undefined8 param_1,longlong param_2)
 {
   if ((*(uint *)(resourceData + 0x30) & 0x40) != 0) {
     *(uint *)(resourceData + 0x30) = *(uint *)(resourceData + 0x30) & 0xffffffbf;
-    FUN_180627b90(param_2 + 0xb8);
+    ReleaseSystemResource(param_2 + 0xb8);
   }
   return;
 }
@@ -28465,7 +28465,7 @@ void Unwind_180902340(undefined8 param_1,longlong param_2)
 {
   if ((*(uint *)(resourceData + 0x30) & 0x80) != 0) {
     *(uint *)(resourceData + 0x30) = *(uint *)(resourceData + 0x30) & 0xffffff7f;
-    FUN_180627b90(param_2 + 0x98);
+    ReleaseSystemResource(param_2 + 0x98);
   }
   return;
 }
@@ -28486,7 +28486,7 @@ void Unwind_180902380(undefined8 param_1,longlong param_2)
 {
   if ((*(uint *)(resourceData + 0x30) & 0x100) != 0) {
     *(uint *)(resourceData + 0x30) = *(uint *)(resourceData + 0x30) & 0xfffffeff;
-    FUN_180627b90(param_2 + 0x38);
+    ReleaseSystemResource(param_2 + 0x38);
   }
   return;
 }
@@ -28575,7 +28575,7 @@ void Unwind_1809023f0(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -28592,7 +28592,7 @@ void Unwind_1809023f0(undefined8 param_1,longlong param_2)
 void Unwind_180902400(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined8 *)(param_2 + 0x78) = &UNK_180a3c3e0;
+  *(undefined8 *)(param_2 + 0x78) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(param_2 + 0x80) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -28628,7 +28628,7 @@ void Unwind_180902420(undefined8 param_1,longlong param_2)
 void Unwind_180902430(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined8 *)(param_2 + 0xa8) = &UNK_180a3c3e0;
+  *(undefined8 *)(param_2 + 0xa8) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(param_2 + 0xb0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -28644,7 +28644,7 @@ void Unwind_180902430(undefined8 param_1,longlong param_2)
 void Unwind_180902440(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined8 *)(param_2 + 0xd0) = &UNK_180a3c3e0;
+  *(undefined8 *)(param_2 + 0xd0) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(param_2 + 0xd8) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -28660,7 +28660,7 @@ void Unwind_180902440(undefined8 param_1,longlong param_2)
 void Unwind_180902450(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined8 *)(param_2 + 0x78) = &UNK_180a3c3e0;
+  *(undefined8 *)(param_2 + 0x78) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(param_2 + 0x80) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -28696,7 +28696,7 @@ void Unwind_180902480(undefined8 param_1,longlong param_2)
 {
   if ((*(uint *)(resourceData + 0x50) & 1) != 0) {
     *(uint *)(resourceData + 0x50) = *(uint *)(resourceData + 0x50) & 0xfffffffe;
-    FUN_180627b90(param_2 + 0x30);
+    ReleaseSystemResource(param_2 + 0x30);
   }
   return;
 }
@@ -28745,7 +28745,7 @@ void Unwind_1809024d0(undefined8 param_1,longlong param_2,undefined8 param_3,und
 void Unwind_1809024e0(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined8 *)(param_2 + 0x100) = &UNK_180a3c3e0;
+  *(undefined8 *)(param_2 + 0x100) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(param_2 + 0x108) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -28761,7 +28761,7 @@ void Unwind_1809024e0(undefined8 param_1,longlong param_2)
 void Unwind_1809024f0(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined8 *)(param_2 + 0x88) = &UNK_180a3c3e0;
+  *(undefined8 *)(param_2 + 0x88) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(param_2 + 0x90) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -28817,7 +28817,7 @@ void Unwind_180902510(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -28855,13 +28855,13 @@ void Unwind_180902540(undefined8 param_1,longlong param_2)
   longlong lVar1;
   
   lVar1 = *(longlong *)(param_2 + 0x70);
-  *(undefined8 *)(lVar1 + 0x20) = &UNK_180a3cf50;
+  *(undefined8 *)(lVar1 + 0x20) = &SystemResourceHandlerA;
   if (*(char *)(lVar1 + 0xd1) != '\0') {
     FUN_180639250();
   }
   _Mtx_destroy_in_situ();
-  *(undefined8 *)(lVar1 + 0x20) = &UNK_180a30778;
-  *(undefined8 *)(lVar1 + 0x58) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x20) = &SystemResourceHandlerB;
+  *(undefined8 *)(lVar1 + 0x58) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x60) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -28869,7 +28869,7 @@ void Unwind_180902540(undefined8 param_1,longlong param_2)
   *(undefined8 *)(lVar1 + 0x60) = 0;
   *(undefined4 *)(lVar1 + 0x70) = 0;
   *(undefined8 *)(lVar1 + 0x58) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x28) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x28) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x30) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -28888,13 +28888,13 @@ void Unwind_180902550(undefined8 param_1,longlong param_2)
   longlong lVar1;
   
   lVar1 = *(longlong *)(param_2 + 0x70);
-  *(undefined8 *)(lVar1 + 0xd8) = &UNK_180a3cf50;
+  *(undefined8 *)(lVar1 + 0xd8) = &SystemResourceHandlerA;
   if (*(char *)(lVar1 + 0x189) != '\0') {
     FUN_180639250();
   }
   _Mtx_destroy_in_situ();
-  *(undefined8 *)(lVar1 + 0xd8) = &UNK_180a30778;
-  *(undefined8 *)(lVar1 + 0x110) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0xd8) = &SystemResourceHandlerB;
+  *(undefined8 *)(lVar1 + 0x110) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x118) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -28902,7 +28902,7 @@ void Unwind_180902550(undefined8 param_1,longlong param_2)
   *(undefined8 *)(lVar1 + 0x118) = 0;
   *(undefined4 *)(lVar1 + 0x128) = 0;
   *(undefined8 *)(lVar1 + 0x110) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0xe0) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0xe0) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0xe8) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -28921,13 +28921,13 @@ void Unwind_180902570(undefined8 param_1,longlong param_2)
   undefined8 *presourceHash;
   
   presourceHash = *(undefined8 **)(param_2 + 0x78);
-  *presourceHash = &UNK_180a3cf50;
+  *presourceHash = &SystemResourceHandlerA;
   if (*(char *)((longlong)presourceHash + 0xb1) != '\0') {
     FUN_180639250();
   }
   _Mtx_destroy_in_situ();
-  *presourceHash = &UNK_180a30778;
-  presourceHash[7] = &UNK_180a3c3e0;
+  *presourceHash = &SystemResourceHandlerB;
+  presourceHash[7] = &SystemResourceHandlerTemplate;
   if (presourceHash[8] != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -28935,7 +28935,7 @@ void Unwind_180902570(undefined8 param_1,longlong param_2)
   presourceHash[8] = 0;
   *(undefined4 *)(presourceHash + 10) = 0;
   presourceHash[7] = &SystemDataStructure;
-  presourceHash[1] = &UNK_180a3c3e0;
+  presourceHash[1] = &SystemResourceHandlerTemplate;
   if (presourceHash[2] != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -28955,8 +28955,8 @@ void Unwind_180902580(undefined8 param_1,longlong param_2)
   
   presourceHash = *(undefined8 **)(param_2 + 0x78);
   _Mtx_destroy_in_situ();
-  *presourceHash = &UNK_180a30778;
-  presourceHash[7] = &UNK_180a3c3e0;
+  *presourceHash = &SystemResourceHandlerB;
+  presourceHash[7] = &SystemResourceHandlerTemplate;
   if (presourceHash[8] != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -28964,7 +28964,7 @@ void Unwind_180902580(undefined8 param_1,longlong param_2)
   presourceHash[8] = 0;
   *(undefined4 *)(presourceHash + 10) = 0;
   presourceHash[7] = &SystemDataStructure;
-  presourceHash[1] = &UNK_180a3c3e0;
+  presourceHash[1] = &SystemResourceHandlerTemplate;
   if (presourceHash[2] != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -29070,7 +29070,7 @@ void Unwind_180902600(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -29477,7 +29477,7 @@ void Unwind_1809027c0(undefined8 param_1,longlong param_2)
   longlong lVar1;
   
   lVar1 = *(longlong *)(param_2 + 0x70);
-  *(undefined8 *)(lVar1 + 0x28) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x28) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x30) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -29496,7 +29496,7 @@ void Unwind_1809027d0(undefined8 param_1,longlong param_2)
   longlong lVar1;
   
   lVar1 = *(longlong *)(param_2 + 0x70);
-  *(undefined8 *)(lVar1 + 0x50) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x50) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x58) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -29657,7 +29657,7 @@ void Unwind_180902880(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -29704,7 +29704,7 @@ void Unwind_1809028a0(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -29744,7 +29744,7 @@ void Unwind_1809028e0(undefined8 param_1,longlong param_2)
   longlong lVar1;
   
   lVar1 = *(longlong *)(param_2 + 0x70);
-  *(undefined8 *)(lVar1 + 0x40) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x40) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x48) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -29779,7 +29779,7 @@ void Unwind_1809028f0(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -29815,7 +29815,7 @@ void Unwind_180902900(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -29899,7 +29899,7 @@ void Unwind_180902950(undefined8 param_1,longlong param_2)
         piVar1 = (int *)(lVar5 + 0x18);
         *piVar1 = *piVar1 + -1;
         if (*piVar1 == 0) {
-          FUN_18064d630();
+          SystemCleanupHandler();
           return;
         }
       }
@@ -29954,7 +29954,7 @@ void Unwind_180902960(undefined8 param_1,longlong param_2)
         piVar1 = (int *)(lVar5 + 0x18);
         *piVar1 = *piVar1 + -1;
         if (*piVar1 == 0) {
-          FUN_18064d630();
+          SystemCleanupHandler();
           return;
         }
       }
@@ -30057,7 +30057,7 @@ void Unwind_180902a40(undefined8 param_1,longlong param_2)
         piVar1 = (int *)(lVar5 + 0x18);
         *piVar1 = *piVar1 + -1;
         if (*piVar1 == 0) {
-          FUN_18064d630();
+          SystemCleanupHandler();
           return;
         }
       }
@@ -30112,7 +30112,7 @@ void Unwind_180902a50(undefined8 param_1,longlong param_2)
         piVar1 = (int *)(lVar5 + 0x18);
         *piVar1 = *piVar1 + -1;
         if (*piVar1 == 0) {
-          FUN_18064d630();
+          SystemCleanupHandler();
           return;
         }
       }
@@ -30295,7 +30295,7 @@ void Unwind_180902ab0(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -30486,7 +30486,7 @@ void Unwind_180902b80(undefined8 param_1,longlong param_2)
   longlong lVar1;
   
   lVar1 = *(longlong *)(param_2 + 0x20);
-  *(undefined8 *)(lVar1 + 8) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 8) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x10) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -30505,7 +30505,7 @@ void Unwind_180902b90(undefined8 param_1,longlong param_2)
   longlong lVar1;
   
   lVar1 = *(longlong *)(param_2 + 0x40);
-  *(undefined8 *)(lVar1 + 8) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 8) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x10) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -30524,7 +30524,7 @@ void Unwind_180902ba0(undefined8 param_1,longlong param_2)
   longlong lVar1;
   
   lVar1 = *(longlong *)(param_2 + 0x80);
-  *(undefined8 *)(lVar1 + 0x20) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x20) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x28) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -30559,7 +30559,7 @@ void Unwind_180902bb0(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -30588,7 +30588,7 @@ void Unwind_180902bd0(undefined8 param_1,longlong param_2)
   undefined8 *presourceHash;
   
   presourceHash = *(undefined8 **)(param_2 + 0x90);
-  *presourceHash = &UNK_180a3c3e0;
+  *presourceHash = &SystemResourceHandlerTemplate;
   if (presourceHash[1] != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -30607,7 +30607,7 @@ void Unwind_180902be0(undefined8 param_1,longlong param_2)
   longlong lVar1;
   
   lVar1 = *(longlong *)(param_2 + 0x90);
-  *(undefined8 *)(lVar1 + 0x20) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x20) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x28) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -30642,7 +30642,7 @@ void Unwind_180902bf0(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -30678,7 +30678,7 @@ void Unwind_180902c00(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -30714,7 +30714,7 @@ void Unwind_180902c10(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -30759,7 +30759,7 @@ void Unwind_180902c30(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -30795,7 +30795,7 @@ void Unwind_180902c40(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -30897,7 +30897,7 @@ void Unwind_180902c90(undefined8 param_1,longlong param_2)
   undefined8 *presourceHash;
   
   presourceHash = *(undefined8 **)(param_2 + 0x38);
-  *presourceHash = &UNK_180a3c3e0;
+  *presourceHash = &SystemResourceHandlerTemplate;
   if (presourceHash[1] != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -30961,7 +30961,7 @@ void Unwind_180902cd0(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -30997,7 +30997,7 @@ void Unwind_180902ce0(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -31089,7 +31089,7 @@ void Unwind_180902d40(undefined8 param_1,longlong param_2)
   lVar1 = *(longlong *)(param_2 + 0x40);
   validationResult = 0xfffffffffffffffe;
   _Mtx_destroy_in_situ();
-  RegisterResourceHandler(lVar1 + 0x3e0,0x20,0x20,FUN_180627b90,validationResult);
+  RegisterResourceHandler(lVar1 + 0x3e0,0x20,0x20,ReleaseSystemResource,validationResult);
   FUN_18005d580();
   RegisterResourceHandler(lVar1 + 0x138,8,0x20,FUN_180045af0);
   RegisterResourceHandler(lVar1 + 0x38,8,0x20,FUN_180045af0);
@@ -31119,7 +31119,7 @@ void Unwind_180902d50(undefined8 param_1,longlong param_2)
   if (*(longlong **)(resourceTable + 0x15d0) != (longlong *)0x0) {
     (**(code **)(**(longlong **)(resourceTable + 0x15d0) + 0x38))();
   }
-  RegisterResourceHandler(resourceTable + 0x8e0,0x20,0x50,FUN_180627b90,uVar3);
+  RegisterResourceHandler(resourceTable + 0x8e0,0x20,0x50,ReleaseSystemResource,uVar3);
   RegisterResourceHandler(resourceTable + 0x8b8,8,4,FUN_180045af0);
   plVar1 = *(longlong **)(resourceTable + 0x8b0);
   if (plVar1 != (longlong *)0x0) {
@@ -31247,7 +31247,7 @@ void Unwind_180902e40(undefined8 param_1,longlong param_2)
   longlong lVar1;
   
   lVar1 = *(longlong *)(param_2 + 0x50);
-  *(undefined8 *)(lVar1 + 0x20) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x20) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x28) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -31282,7 +31282,7 @@ void Unwind_180902e50(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -31318,7 +31318,7 @@ void Unwind_180902e60(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -31354,7 +31354,7 @@ void Unwind_180902e70(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -31395,7 +31395,7 @@ void Unwind_180902e80(undefined8 param_1,longlong param_2)
         piVar1 = (int *)(lVar4 + 0x18);
         *piVar1 = *piVar1 + -1;
         if (*piVar1 == 0) {
-          FUN_18064d630();
+          SystemCleanupHandler();
           return;
         }
       }
@@ -31417,7 +31417,7 @@ void Unwind_180902e90(undefined8 param_1,longlong param_2)
   longlong lVar1;
   
   lVar1 = *(longlong *)(param_2 + 0x40);
-  *(undefined8 *)(lVar1 + 0x148) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x148) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x150) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -31457,7 +31457,7 @@ void Unwind_180902eb0(undefined8 param_1,longlong param_2)
         piVar1 = (int *)(resourceIndex + 0x18);
         *piVar1 = *piVar1 + -1;
         if (*piVar1 == 0) {
-          FUN_18064d630();
+          SystemCleanupHandler();
           return;
         }
       }
@@ -31500,7 +31500,7 @@ void Unwind_180902ec0(undefined8 param_1,longlong param_2)
         piVar1 = (int *)(lVar4 + 0x18);
         *piVar1 = *piVar1 + -1;
         if (*piVar1 == 0) {
-          FUN_18064d630();
+          SystemCleanupHandler();
           return;
         }
       }
@@ -31613,7 +31613,7 @@ void Unwind_180902f60(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -31644,7 +31644,7 @@ void Unwind_180902fa0(undefined8 param_1,longlong param_2)
   longlong lVar1;
   
   lVar1 = *(longlong *)(param_2 + 0x40);
-  *(undefined8 *)(lVar1 + 0x918) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x918) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x920) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -31887,7 +31887,7 @@ void Unwind_1809030f0(undefined8 param_1,longlong param_2)
   
   lVar1 = *(longlong *)(param_2 + 0x68);
   FUN_180058db0(lVar1 + 0x40);
-  *(undefined8 *)(lVar1 + 0x20) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x20) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x28) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -31926,7 +31926,7 @@ void Unwind_180903110(undefined8 param_1,longlong param_2)
   longlong lVar1;
   
   lVar1 = *(longlong *)(param_2 + 0x68);
-  *(undefined8 *)(lVar1 + 0x20) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x20) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x28) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -31949,7 +31949,7 @@ void Unwind_180903120(undefined8 param_1,longlong param_2)
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(undefined8 *)(lVar1 + 0x20) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x20) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x28) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -31984,7 +31984,7 @@ void Unwind_180903130(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -32020,7 +32020,7 @@ void Unwind_180903140(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -32044,7 +32044,7 @@ void Unwind_180903150(undefined8 param_1,longlong param_2)
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(undefined8 *)(lVar1 + 0x20) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x20) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x28) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -32079,7 +32079,7 @@ void Unwind_180903160(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -32103,7 +32103,7 @@ void Unwind_180903170(undefined8 param_1,longlong param_2)
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  *(undefined8 *)(lVar1 + 0x20) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x20) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x28) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -32122,7 +32122,7 @@ void Unwind_180903180(undefined8 param_1,longlong param_2)
   undefined8 *presourceHash;
   
   presourceHash = *(undefined8 **)(param_2 + 0x48);
-  *presourceHash = &UNK_180a3c3e0;
+  *presourceHash = &SystemResourceHandlerTemplate;
   if (presourceHash[1] != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -32157,7 +32157,7 @@ void Unwind_180903190(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -32269,7 +32269,7 @@ void Unwind_1809031f0(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -32305,7 +32305,7 @@ void Unwind_180903200(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -32476,7 +32476,7 @@ void Unwind_180903310(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -32497,7 +32497,7 @@ void Unwind_180903320(undefined8 param_1,longlong param_2)
   
   lVar1 = *(longlong *)(param_2 + 0x78);
   FUN_18004b730();
-  *(undefined8 *)(lVar1 + 0x20) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x20) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x28) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -32564,7 +32564,7 @@ void Unwind_180903360(undefined8 param_1,longlong param_2)
   longlong lVar1;
   
   lVar1 = *(longlong *)(param_2 + 0x50);
-  *(undefined8 *)(lVar1 + 0x40) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x40) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x48) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -32697,7 +32697,7 @@ void Unwind_180903460(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(lVar5 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -32751,7 +32751,7 @@ void Unwind_1809034b0(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -32787,7 +32787,7 @@ void Unwind_1809034c0(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -32823,7 +32823,7 @@ void Unwind_1809034d0(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -32859,7 +32859,7 @@ void Unwind_1809034e0(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -32895,7 +32895,7 @@ void Unwind_1809034f0(undefined8 param_1,longlong param_2)
         piVar1 = (int *)(resourceIndex + 0x18);
         *piVar1 = *piVar1 + -1;
         if (*piVar1 == 0) {
-          FUN_18064d630();
+          SystemCleanupHandler();
           return;
         }
       }
@@ -32933,7 +32933,7 @@ void Unwind_180903500(undefined8 param_1,longlong param_2)
         piVar1 = (int *)(resourceIndex + 0x18);
         *piVar1 = *piVar1 + -1;
         if (*piVar1 == 0) {
-          FUN_18064d630();
+          SystemCleanupHandler();
           return;
         }
       }
@@ -32998,7 +32998,7 @@ void Unwind_180903510(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(lVar5 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -33034,7 +33034,7 @@ void Unwind_180903520(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -33084,7 +33084,7 @@ void Unwind_180903560(undefined8 param_1,longlong param_2)
         piVar1 = (int *)(resourceIndex + 0x18);
         *piVar1 = *piVar1 + -1;
         if (*piVar1 == 0) {
-          FUN_18064d630();
+          SystemCleanupHandler();
           return;
         }
       }
@@ -33147,7 +33147,7 @@ void Unwind_180903580(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(lVar5 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -33210,7 +33210,7 @@ void Unwind_1809035e0(undefined8 param_1,longlong param_2)
         piVar1 = (int *)(resourceIndex + 0x18);
         *piVar1 = *piVar1 + -1;
         if (*piVar1 == 0) {
-          FUN_18064d630();
+          SystemCleanupHandler();
           return;
         }
       }
@@ -33248,7 +33248,7 @@ void Unwind_1809035f0(undefined8 param_1,longlong param_2)
         piVar1 = (int *)(resourceIndex + 0x18);
         *piVar1 = *piVar1 + -1;
         if (*piVar1 == 0) {
-          FUN_18064d630();
+          SystemCleanupHandler();
           return;
         }
       }
@@ -33281,8 +33281,8 @@ void Unwind_180903610(undefined8 param_1,longlong param_2,undefined8 param_3,und
   undefined8 *presourceHash;
   
   presourceHash = *(undefined8 **)(param_2 + 0x40);
-  *presourceHash = &UNK_180a02968;
-  presourceHash[0x18] = &UNK_180a3c3e0;
+  *presourceHash = &SystemResourceHandlerC;
+  presourceHash[0x18] = &SystemResourceHandlerTemplate;
   if (presourceHash[0x19] != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -33321,7 +33321,7 @@ void Unwind_180903620(undefined8 param_1,longlong param_2,undefined8 param_3,und
   if (*(code **)(lVar1 + 0x140) != (code *)0x0) {
     (**(code **)(lVar1 + 0x140))(lVar1 + 0x130,0,0,param_4,0xfffffffffffffffe);
   }
-  *(undefined8 *)(lVar1 + 0x108) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x108) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x110) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -33329,7 +33329,7 @@ void Unwind_180903620(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x110) = 0;
   *(undefined4 *)(lVar1 + 0x120) = 0;
   *(undefined8 *)(lVar1 + 0x108) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0xe8) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0xe8) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0xf0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -33351,7 +33351,7 @@ void Unwind_180903640(undefined8 param_1,longlong param_2,undefined8 param_3,und
   if (*(code **)(lVar1 + 0x1b0) != (code *)0x0) {
     (**(code **)(lVar1 + 0x1b0))(lVar1 + 0x1a0,0,0,param_4,0xfffffffffffffffe);
   }
-  *(undefined8 *)(lVar1 + 0x178) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x178) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x180) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -33359,7 +33359,7 @@ void Unwind_180903640(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x180) = 0;
   *(undefined4 *)(lVar1 + 400) = 0;
   *(undefined8 *)(lVar1 + 0x178) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x158) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x158) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x160) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -33381,7 +33381,7 @@ void Unwind_180903660(undefined8 param_1,longlong param_2,undefined8 param_3,und
   if (*(code **)(lVar1 + 0x220) != (code *)0x0) {
     (**(code **)(lVar1 + 0x220))(lVar1 + 0x210,0,0,param_4,0xfffffffffffffffe);
   }
-  *(undefined8 *)(lVar1 + 0x1e8) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x1e8) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x1f0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -33389,7 +33389,7 @@ void Unwind_180903660(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x1f0) = 0;
   *(undefined4 *)(lVar1 + 0x200) = 0;
   *(undefined8 *)(lVar1 + 0x1e8) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x1c8) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x1c8) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x1d0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -33411,7 +33411,7 @@ void Unwind_180903680(undefined8 param_1,longlong param_2,undefined8 param_3,und
   if (*(code **)(lVar1 + 0x290) != (code *)0x0) {
     (**(code **)(lVar1 + 0x290))(lVar1 + 0x280,0,0,param_4,0xfffffffffffffffe);
   }
-  *(undefined8 *)(lVar1 + 600) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 600) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x260) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -33419,7 +33419,7 @@ void Unwind_180903680(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x260) = 0;
   *(undefined4 *)(lVar1 + 0x270) = 0;
   *(undefined8 *)(lVar1 + 600) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x238) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x238) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x240) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -33441,7 +33441,7 @@ void Unwind_1809036a0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   if (*(code **)(lVar1 + 0x300) != (code *)0x0) {
     (**(code **)(lVar1 + 0x300))(lVar1 + 0x2f0,0,0,param_4,0xfffffffffffffffe);
   }
-  *(undefined8 *)(lVar1 + 0x2c8) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x2c8) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x2d0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -33449,7 +33449,7 @@ void Unwind_1809036a0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x2d0) = 0;
   *(undefined4 *)(lVar1 + 0x2e0) = 0;
   *(undefined8 *)(lVar1 + 0x2c8) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x2a8) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x2a8) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x2b0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -33471,7 +33471,7 @@ void Unwind_1809036c0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   if (*(code **)(lVar1 + 0x370) != (code *)0x0) {
     (**(code **)(lVar1 + 0x370))(lVar1 + 0x360,0,0,param_4,0xfffffffffffffffe);
   }
-  *(undefined8 *)(lVar1 + 0x338) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x338) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x340) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -33479,7 +33479,7 @@ void Unwind_1809036c0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x340) = 0;
   *(undefined4 *)(lVar1 + 0x350) = 0;
   *(undefined8 *)(lVar1 + 0x338) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x318) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x318) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 800) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -33501,7 +33501,7 @@ void Unwind_1809036e0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   if (*(code **)(lVar1 + 0x3e0) != (code *)0x0) {
     (**(code **)(lVar1 + 0x3e0))(lVar1 + 0x3d0,0,0,param_4,0xfffffffffffffffe);
   }
-  *(undefined8 *)(lVar1 + 0x3a8) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x3a8) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x3b0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -33509,7 +33509,7 @@ void Unwind_1809036e0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x3b0) = 0;
   *(undefined4 *)(lVar1 + 0x3c0) = 0;
   *(undefined8 *)(lVar1 + 0x3a8) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x388) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x388) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x390) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -33531,7 +33531,7 @@ void Unwind_180903700(undefined8 param_1,longlong param_2,undefined8 param_3,und
   if (*(code **)(lVar1 + 0x450) != (code *)0x0) {
     (**(code **)(lVar1 + 0x450))(lVar1 + 0x440,0,0,param_4,0xfffffffffffffffe);
   }
-  *(undefined8 *)(lVar1 + 0x418) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x418) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x420) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -33539,7 +33539,7 @@ void Unwind_180903700(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x420) = 0;
   *(undefined4 *)(lVar1 + 0x430) = 0;
   *(undefined8 *)(lVar1 + 0x418) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x3f8) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x3f8) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x400) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -33561,7 +33561,7 @@ void Unwind_180903720(undefined8 param_1,longlong param_2,undefined8 param_3,und
   if (*(code **)(lVar1 + 0x510) != (code *)0x0) {
     (**(code **)(lVar1 + 0x510))(lVar1 + 0x500,0,0,param_4,0xfffffffffffffffe);
   }
-  *(undefined8 *)(lVar1 + 0x4e0) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x4e0) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x4e8) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -33569,7 +33569,7 @@ void Unwind_180903720(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x4e8) = 0;
   *(undefined4 *)(lVar1 + 0x4f8) = 0;
   *(undefined8 *)(lVar1 + 0x4e0) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x4c0) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x4c0) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x4c8) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -33577,7 +33577,7 @@ void Unwind_180903720(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x4c8) = 0;
   *(undefined4 *)(lVar1 + 0x4d8) = 0;
   *(undefined8 *)(lVar1 + 0x4c0) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x4a0) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x4a0) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x4a8) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -33585,7 +33585,7 @@ void Unwind_180903720(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x4a8) = 0;
   *(undefined4 *)(lVar1 + 0x4b8) = 0;
   *(undefined8 *)(lVar1 + 0x4a0) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x480) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x480) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x488) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -33593,7 +33593,7 @@ void Unwind_180903720(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x488) = 0;
   *(undefined4 *)(lVar1 + 0x498) = 0;
   *(undefined8 *)(lVar1 + 0x480) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x460) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x460) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x468) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -33615,7 +33615,7 @@ void Unwind_180903740(undefined8 param_1,longlong param_2,undefined8 param_3,und
   if (*(code **)(lVar1 + 0x580) != (code *)0x0) {
     (**(code **)(lVar1 + 0x580))(lVar1 + 0x570,0,0,param_4,0xfffffffffffffffe);
   }
-  *(undefined8 *)(lVar1 + 0x548) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x548) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x550) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -33623,7 +33623,7 @@ void Unwind_180903740(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x550) = 0;
   *(undefined4 *)(lVar1 + 0x560) = 0;
   *(undefined8 *)(lVar1 + 0x548) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x528) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x528) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x530) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -33642,8 +33642,8 @@ void Unwind_180903760(undefined8 param_1,longlong param_2,undefined8 param_3,und
   undefined8 *presourceHash;
   
   presourceHash = *(undefined8 **)(param_2 + 0x80);
-  *presourceHash = &UNK_180a02968;
-  presourceHash[0x18] = &UNK_180a3c3e0;
+  *presourceHash = &SystemResourceHandlerC;
+  presourceHash[0x18] = &SystemResourceHandlerTemplate;
   if (presourceHash[0x19] != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -33682,7 +33682,7 @@ void Unwind_180903770(undefined8 param_1,longlong param_2,undefined8 param_3,und
   if (*(code **)(lVar1 + 0x140) != (code *)0x0) {
     (**(code **)(lVar1 + 0x140))(lVar1 + 0x130,0,0,param_4,0xfffffffffffffffe);
   }
-  *(undefined8 *)(lVar1 + 0x108) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x108) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x110) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -33690,7 +33690,7 @@ void Unwind_180903770(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x110) = 0;
   *(undefined4 *)(lVar1 + 0x120) = 0;
   *(undefined8 *)(lVar1 + 0x108) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0xe8) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0xe8) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0xf0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -33712,7 +33712,7 @@ void Unwind_180903790(undefined8 param_1,longlong param_2,undefined8 param_3,und
   if (*(code **)(lVar1 + 0x1b0) != (code *)0x0) {
     (**(code **)(lVar1 + 0x1b0))(lVar1 + 0x1a0,0,0,param_4,0xfffffffffffffffe);
   }
-  *(undefined8 *)(lVar1 + 0x178) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x178) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x180) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -33720,7 +33720,7 @@ void Unwind_180903790(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x180) = 0;
   *(undefined4 *)(lVar1 + 400) = 0;
   *(undefined8 *)(lVar1 + 0x178) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x158) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x158) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x160) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -33742,7 +33742,7 @@ void Unwind_1809037b0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   if (*(code **)(lVar1 + 0x220) != (code *)0x0) {
     (**(code **)(lVar1 + 0x220))(lVar1 + 0x210,0,0,param_4,0xfffffffffffffffe);
   }
-  *(undefined8 *)(lVar1 + 0x1e8) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x1e8) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x1f0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -33750,7 +33750,7 @@ void Unwind_1809037b0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x1f0) = 0;
   *(undefined4 *)(lVar1 + 0x200) = 0;
   *(undefined8 *)(lVar1 + 0x1e8) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x1c8) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x1c8) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x1d0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -33772,7 +33772,7 @@ void Unwind_1809037d0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   if (*(code **)(lVar1 + 0x290) != (code *)0x0) {
     (**(code **)(lVar1 + 0x290))(lVar1 + 0x280,0,0,param_4,0xfffffffffffffffe);
   }
-  *(undefined8 *)(lVar1 + 600) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 600) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x260) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -33780,7 +33780,7 @@ void Unwind_1809037d0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x260) = 0;
   *(undefined4 *)(lVar1 + 0x270) = 0;
   *(undefined8 *)(lVar1 + 600) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x238) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x238) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x240) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -33802,7 +33802,7 @@ void Unwind_1809037f0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   if (*(code **)(lVar1 + 0x300) != (code *)0x0) {
     (**(code **)(lVar1 + 0x300))(lVar1 + 0x2f0,0,0,param_4,0xfffffffffffffffe);
   }
-  *(undefined8 *)(lVar1 + 0x2c8) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x2c8) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x2d0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -33810,7 +33810,7 @@ void Unwind_1809037f0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x2d0) = 0;
   *(undefined4 *)(lVar1 + 0x2e0) = 0;
   *(undefined8 *)(lVar1 + 0x2c8) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x2a8) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x2a8) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x2b0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -33832,7 +33832,7 @@ void Unwind_180903810(undefined8 param_1,longlong param_2,undefined8 param_3,und
   if (*(code **)(lVar1 + 0x370) != (code *)0x0) {
     (**(code **)(lVar1 + 0x370))(lVar1 + 0x360,0,0,param_4,0xfffffffffffffffe);
   }
-  *(undefined8 *)(lVar1 + 0x338) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x338) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x340) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -33840,7 +33840,7 @@ void Unwind_180903810(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x340) = 0;
   *(undefined4 *)(lVar1 + 0x350) = 0;
   *(undefined8 *)(lVar1 + 0x338) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x318) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x318) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 800) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -33862,7 +33862,7 @@ void Unwind_180903830(undefined8 param_1,longlong param_2,undefined8 param_3,und
   if (*(code **)(lVar1 + 0x3e0) != (code *)0x0) {
     (**(code **)(lVar1 + 0x3e0))(lVar1 + 0x3d0,0,0,param_4,0xfffffffffffffffe);
   }
-  *(undefined8 *)(lVar1 + 0x3a8) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x3a8) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x3b0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -33870,7 +33870,7 @@ void Unwind_180903830(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x3b0) = 0;
   *(undefined4 *)(lVar1 + 0x3c0) = 0;
   *(undefined8 *)(lVar1 + 0x3a8) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x388) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x388) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x390) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -33892,7 +33892,7 @@ void Unwind_180903850(undefined8 param_1,longlong param_2,undefined8 param_3,und
   if (*(code **)(lVar1 + 0x450) != (code *)0x0) {
     (**(code **)(lVar1 + 0x450))(lVar1 + 0x440,0,0,param_4,0xfffffffffffffffe);
   }
-  *(undefined8 *)(lVar1 + 0x418) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x418) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x420) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -33900,7 +33900,7 @@ void Unwind_180903850(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x420) = 0;
   *(undefined4 *)(lVar1 + 0x430) = 0;
   *(undefined8 *)(lVar1 + 0x418) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x3f8) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x3f8) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x400) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -33922,7 +33922,7 @@ void Unwind_180903870(undefined8 param_1,longlong param_2,undefined8 param_3,und
   if (*(code **)(lVar1 + 0x510) != (code *)0x0) {
     (**(code **)(lVar1 + 0x510))(lVar1 + 0x500,0,0,param_4,0xfffffffffffffffe);
   }
-  *(undefined8 *)(lVar1 + 0x4e0) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x4e0) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x4e8) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -33930,7 +33930,7 @@ void Unwind_180903870(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x4e8) = 0;
   *(undefined4 *)(lVar1 + 0x4f8) = 0;
   *(undefined8 *)(lVar1 + 0x4e0) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x4c0) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x4c0) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x4c8) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -33938,7 +33938,7 @@ void Unwind_180903870(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x4c8) = 0;
   *(undefined4 *)(lVar1 + 0x4d8) = 0;
   *(undefined8 *)(lVar1 + 0x4c0) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x4a0) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x4a0) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x4a8) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -33946,7 +33946,7 @@ void Unwind_180903870(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x4a8) = 0;
   *(undefined4 *)(lVar1 + 0x4b8) = 0;
   *(undefined8 *)(lVar1 + 0x4a0) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x480) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x480) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x488) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -33954,7 +33954,7 @@ void Unwind_180903870(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x488) = 0;
   *(undefined4 *)(lVar1 + 0x498) = 0;
   *(undefined8 *)(lVar1 + 0x480) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x460) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x460) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x468) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -33976,7 +33976,7 @@ void Unwind_180903890(undefined8 param_1,longlong param_2,undefined8 param_3,und
   if (*(code **)(lVar1 + 0x580) != (code *)0x0) {
     (**(code **)(lVar1 + 0x580))(lVar1 + 0x570,0,0,param_4,0xfffffffffffffffe);
   }
-  *(undefined8 *)(lVar1 + 0x548) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x548) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x550) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -33984,7 +33984,7 @@ void Unwind_180903890(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x550) = 0;
   *(undefined4 *)(lVar1 + 0x560) = 0;
   *(undefined8 *)(lVar1 + 0x548) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x528) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x528) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x530) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -34003,7 +34003,7 @@ void Unwind_1809038b0(undefined8 param_1,longlong param_2)
   longlong lVar1;
   
   lVar1 = *(longlong *)(param_2 + 0x88);
-  *(undefined8 *)(lVar1 + 8) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 8) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x10) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -34022,7 +34022,7 @@ void Unwind_1809038c0(undefined8 param_1,longlong param_2)
   longlong lVar1;
   
   lVar1 = *(longlong *)(param_2 + 0x88);
-  *(undefined8 *)(lVar1 + 0x28) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x28) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x30) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -34072,7 +34072,7 @@ void Unwind_1809038f0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   if (*(code **)(lVar1 + 0x4c0) != (code *)0x0) {
     (**(code **)(lVar1 + 0x4c0))(lVar1 + 0x4b0,0,0,param_4,0xfffffffffffffffe);
   }
-  *(undefined8 *)(lVar1 + 0x488) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x488) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x490) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -34080,7 +34080,7 @@ void Unwind_1809038f0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x490) = 0;
   *(undefined4 *)(lVar1 + 0x4a0) = 0;
   *(undefined8 *)(lVar1 + 0x488) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x468) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x468) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x470) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -34102,7 +34102,7 @@ void Unwind_180903910(undefined8 param_1,longlong param_2,undefined8 param_3,und
   if (*(code **)(lVar1 + 0x530) != (code *)0x0) {
     (**(code **)(lVar1 + 0x530))(lVar1 + 0x520,0,0,param_4,0xfffffffffffffffe);
   }
-  *(undefined8 *)(lVar1 + 0x4f8) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x4f8) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x500) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -34110,7 +34110,7 @@ void Unwind_180903910(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x500) = 0;
   *(undefined4 *)(lVar1 + 0x510) = 0;
   *(undefined8 *)(lVar1 + 0x4f8) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x4d8) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x4d8) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x4e0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -34132,7 +34132,7 @@ void Unwind_180903930(undefined8 param_1,longlong param_2,undefined8 param_3,und
   if (*(code **)(lVar1 + 0x5a0) != (code *)0x0) {
     (**(code **)(lVar1 + 0x5a0))(lVar1 + 0x590,0,0,param_4,0xfffffffffffffffe);
   }
-  *(undefined8 *)(lVar1 + 0x568) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x568) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x570) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -34140,7 +34140,7 @@ void Unwind_180903930(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x570) = 0;
   *(undefined4 *)(lVar1 + 0x580) = 0;
   *(undefined8 *)(lVar1 + 0x568) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x548) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x548) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x550) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -34162,7 +34162,7 @@ void Unwind_180903950(undefined8 param_1,longlong param_2,undefined8 param_3,und
   if (*(code **)(lVar1 + 0x610) != (code *)0x0) {
     (**(code **)(lVar1 + 0x610))(lVar1 + 0x600,0,0,param_4,0xfffffffffffffffe);
   }
-  *(undefined8 *)(lVar1 + 0x5d8) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x5d8) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x5e0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -34170,7 +34170,7 @@ void Unwind_180903950(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x5e0) = 0;
   *(undefined4 *)(lVar1 + 0x5f0) = 0;
   *(undefined8 *)(lVar1 + 0x5d8) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x5b8) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x5b8) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x5c0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -34192,7 +34192,7 @@ void Unwind_180903970(undefined8 param_1,longlong param_2,undefined8 param_3,und
   if (*(code **)(lVar1 + 0x680) != (code *)0x0) {
     (**(code **)(lVar1 + 0x680))(lVar1 + 0x670,0,0,param_4,0xfffffffffffffffe);
   }
-  *(undefined8 *)(lVar1 + 0x648) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x648) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x650) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -34200,7 +34200,7 @@ void Unwind_180903970(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x650) = 0;
   *(undefined4 *)(lVar1 + 0x660) = 0;
   *(undefined8 *)(lVar1 + 0x648) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x628) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x628) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x630) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -34222,7 +34222,7 @@ void Unwind_180903990(undefined8 param_1,longlong param_2,undefined8 param_3,und
   if (*(code **)(lVar1 + 0x6f0) != (code *)0x0) {
     (**(code **)(lVar1 + 0x6f0))(lVar1 + 0x6e0,0,0,param_4,0xfffffffffffffffe);
   }
-  *(undefined8 *)(lVar1 + 0x6b8) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x6b8) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x6c0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -34230,7 +34230,7 @@ void Unwind_180903990(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x6c0) = 0;
   *(undefined4 *)(lVar1 + 0x6d0) = 0;
   *(undefined8 *)(lVar1 + 0x6b8) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x698) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x698) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x6a0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -34252,7 +34252,7 @@ void Unwind_1809039b0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   if (*(code **)(lVar1 + 0x760) != (code *)0x0) {
     (**(code **)(lVar1 + 0x760))(lVar1 + 0x750,0,0,param_4,0xfffffffffffffffe);
   }
-  *(undefined8 *)(lVar1 + 0x728) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x728) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x730) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -34260,7 +34260,7 @@ void Unwind_1809039b0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x730) = 0;
   *(undefined4 *)(lVar1 + 0x740) = 0;
   *(undefined8 *)(lVar1 + 0x728) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x708) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x708) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x710) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -34282,7 +34282,7 @@ void Unwind_1809039d0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   if (*(code **)(lVar1 + 2000) != (code *)0x0) {
     (**(code **)(lVar1 + 2000))(lVar1 + 0x7c0,0,0,param_4,0xfffffffffffffffe);
   }
-  *(undefined8 *)(lVar1 + 0x798) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x798) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x7a0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -34290,7 +34290,7 @@ void Unwind_1809039d0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x7a0) = 0;
   *(undefined4 *)(lVar1 + 0x7b0) = 0;
   *(undefined8 *)(lVar1 + 0x798) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x778) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x778) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x780) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -34312,7 +34312,7 @@ void Unwind_1809039f0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   if (*(code **)(lVar1 + 0x840) != (code *)0x0) {
     (**(code **)(lVar1 + 0x840))(lVar1 + 0x830,0,0,param_4,0xfffffffffffffffe);
   }
-  *(undefined8 *)(lVar1 + 0x808) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x808) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x810) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -34320,7 +34320,7 @@ void Unwind_1809039f0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x810) = 0;
   *(undefined4 *)(lVar1 + 0x820) = 0;
   *(undefined8 *)(lVar1 + 0x808) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x7e8) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x7e8) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x7f0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -34342,7 +34342,7 @@ void Unwind_180903a10(undefined8 param_1,longlong param_2,undefined8 param_3,und
   if (*(code **)(lVar1 + 0x8b0) != (code *)0x0) {
     (**(code **)(lVar1 + 0x8b0))(lVar1 + 0x8a0,0,0,param_4,0xfffffffffffffffe);
   }
-  *(undefined8 *)(lVar1 + 0x878) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x878) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x880) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -34350,7 +34350,7 @@ void Unwind_180903a10(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x880) = 0;
   *(undefined4 *)(lVar1 + 0x890) = 0;
   *(undefined8 *)(lVar1 + 0x878) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x858) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x858) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x860) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -34372,7 +34372,7 @@ void Unwind_180903a30(undefined8 param_1,longlong param_2,undefined8 param_3,und
   if (*(code **)(lVar1 + 0x920) != (code *)0x0) {
     (**(code **)(lVar1 + 0x920))(lVar1 + 0x910,0,0,param_4,0xfffffffffffffffe);
   }
-  *(undefined8 *)(lVar1 + 0x8e8) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x8e8) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x8f0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -34380,7 +34380,7 @@ void Unwind_180903a30(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x8f0) = 0;
   *(undefined4 *)(lVar1 + 0x900) = 0;
   *(undefined8 *)(lVar1 + 0x8e8) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x8c8) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x8c8) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x8d0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -34402,7 +34402,7 @@ void Unwind_180903a50(undefined8 param_1,longlong param_2,undefined8 param_3,und
   if (*(code **)(lVar1 + 0x990) != (code *)0x0) {
     (**(code **)(lVar1 + 0x990))(lVar1 + 0x980,0,0,param_4,0xfffffffffffffffe);
   }
-  *(undefined8 *)(lVar1 + 0x958) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x958) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x960) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -34410,7 +34410,7 @@ void Unwind_180903a50(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x960) = 0;
   *(undefined4 *)(lVar1 + 0x970) = 0;
   *(undefined8 *)(lVar1 + 0x958) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x938) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x938) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x940) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -34432,7 +34432,7 @@ void Unwind_180903a70(undefined8 param_1,longlong param_2,undefined8 param_3,und
   if (*(code **)(lVar1 + 0xa08) != (code *)0x0) {
     (**(code **)(lVar1 + 0xa08))(lVar1 + 0x9f8,0,0,param_4,0xfffffffffffffffe);
   }
-  *(undefined8 *)(lVar1 + 0x9d0) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x9d0) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x9d8) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -34440,7 +34440,7 @@ void Unwind_180903a70(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x9d8) = 0;
   *(undefined4 *)(lVar1 + 0x9e8) = 0;
   *(undefined8 *)(lVar1 + 0x9d0) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x9b0) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x9b0) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x9b8) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -34462,7 +34462,7 @@ void Unwind_180903a90(undefined8 param_1,longlong param_2,undefined8 param_3,und
   if (*(code **)(lVar1 + 0xa80) != (code *)0x0) {
     (**(code **)(lVar1 + 0xa80))(lVar1 + 0xa70,0,0,param_4,0xfffffffffffffffe);
   }
-  *(undefined8 *)(lVar1 + 0xa48) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0xa48) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0xa50) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -34470,7 +34470,7 @@ void Unwind_180903a90(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0xa50) = 0;
   *(undefined4 *)(lVar1 + 0xa60) = 0;
   *(undefined8 *)(lVar1 + 0xa48) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0xa28) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0xa28) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0xa30) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -34503,7 +34503,7 @@ void Unwind_180903ac0(undefined8 param_1,longlong param_2)
   longlong lVar1;
   
   lVar1 = *(longlong *)(param_2 + 0x50);
-  *(undefined8 *)(lVar1 + 0x10) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x10) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x18) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -34522,7 +34522,7 @@ void Unwind_180903ad0(undefined8 param_1,longlong param_2)
   longlong lVar1;
   
   lVar1 = *(longlong *)(param_2 + 0x50);
-  *(undefined8 *)(lVar1 + 0x30) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x30) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x38) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -34572,7 +34572,7 @@ void Unwind_180903b00(undefined8 param_1,longlong param_2,undefined8 param_3,und
   if (*(code **)(lVar1 + 0x4c0) != (code *)0x0) {
     (**(code **)(lVar1 + 0x4c0))(lVar1 + 0x4b0,0,0,param_4,0xfffffffffffffffe);
   }
-  *(undefined8 *)(lVar1 + 0x488) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x488) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x490) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -34580,7 +34580,7 @@ void Unwind_180903b00(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x490) = 0;
   *(undefined4 *)(lVar1 + 0x4a0) = 0;
   *(undefined8 *)(lVar1 + 0x488) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x468) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x468) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x470) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -34602,7 +34602,7 @@ void Unwind_180903b20(undefined8 param_1,longlong param_2,undefined8 param_3,und
   if (*(code **)(lVar1 + 0x530) != (code *)0x0) {
     (**(code **)(lVar1 + 0x530))(lVar1 + 0x520,0,0,param_4,0xfffffffffffffffe);
   }
-  *(undefined8 *)(lVar1 + 0x4f8) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x4f8) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x500) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -34610,7 +34610,7 @@ void Unwind_180903b20(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x500) = 0;
   *(undefined4 *)(lVar1 + 0x510) = 0;
   *(undefined8 *)(lVar1 + 0x4f8) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x4d8) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x4d8) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x4e0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -34632,7 +34632,7 @@ void Unwind_180903b40(undefined8 param_1,longlong param_2,undefined8 param_3,und
   if (*(code **)(lVar1 + 0x5a0) != (code *)0x0) {
     (**(code **)(lVar1 + 0x5a0))(lVar1 + 0x590,0,0,param_4,0xfffffffffffffffe);
   }
-  *(undefined8 *)(lVar1 + 0x568) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x568) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x570) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -34640,7 +34640,7 @@ void Unwind_180903b40(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x570) = 0;
   *(undefined4 *)(lVar1 + 0x580) = 0;
   *(undefined8 *)(lVar1 + 0x568) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x548) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x548) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x550) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -34662,7 +34662,7 @@ void Unwind_180903b60(undefined8 param_1,longlong param_2,undefined8 param_3,und
   if (*(code **)(lVar1 + 0x610) != (code *)0x0) {
     (**(code **)(lVar1 + 0x610))(lVar1 + 0x600,0,0,param_4,0xfffffffffffffffe);
   }
-  *(undefined8 *)(lVar1 + 0x5d8) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x5d8) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x5e0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -34670,7 +34670,7 @@ void Unwind_180903b60(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x5e0) = 0;
   *(undefined4 *)(lVar1 + 0x5f0) = 0;
   *(undefined8 *)(lVar1 + 0x5d8) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x5b8) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x5b8) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x5c0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -34692,7 +34692,7 @@ void Unwind_180903b80(undefined8 param_1,longlong param_2,undefined8 param_3,und
   if (*(code **)(lVar1 + 0x680) != (code *)0x0) {
     (**(code **)(lVar1 + 0x680))(lVar1 + 0x670,0,0,param_4,0xfffffffffffffffe);
   }
-  *(undefined8 *)(lVar1 + 0x648) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x648) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x650) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -34700,7 +34700,7 @@ void Unwind_180903b80(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x650) = 0;
   *(undefined4 *)(lVar1 + 0x660) = 0;
   *(undefined8 *)(lVar1 + 0x648) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x628) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x628) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x630) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -34722,7 +34722,7 @@ void Unwind_180903ba0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   if (*(code **)(lVar1 + 0x6f0) != (code *)0x0) {
     (**(code **)(lVar1 + 0x6f0))(lVar1 + 0x6e0,0,0,param_4,0xfffffffffffffffe);
   }
-  *(undefined8 *)(lVar1 + 0x6b8) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x6b8) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x6c0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -34730,7 +34730,7 @@ void Unwind_180903ba0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x6c0) = 0;
   *(undefined4 *)(lVar1 + 0x6d0) = 0;
   *(undefined8 *)(lVar1 + 0x6b8) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x698) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x698) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x6a0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -34752,7 +34752,7 @@ void Unwind_180903bc0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   if (*(code **)(lVar1 + 0x760) != (code *)0x0) {
     (**(code **)(lVar1 + 0x760))(lVar1 + 0x750,0,0,param_4,0xfffffffffffffffe);
   }
-  *(undefined8 *)(lVar1 + 0x728) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x728) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x730) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -34760,7 +34760,7 @@ void Unwind_180903bc0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x730) = 0;
   *(undefined4 *)(lVar1 + 0x740) = 0;
   *(undefined8 *)(lVar1 + 0x728) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x708) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x708) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x710) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -34782,7 +34782,7 @@ void Unwind_180903be0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   if (*(code **)(lVar1 + 2000) != (code *)0x0) {
     (**(code **)(lVar1 + 2000))(lVar1 + 0x7c0,0,0,param_4,0xfffffffffffffffe);
   }
-  *(undefined8 *)(lVar1 + 0x798) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x798) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x7a0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -34790,7 +34790,7 @@ void Unwind_180903be0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x7a0) = 0;
   *(undefined4 *)(lVar1 + 0x7b0) = 0;
   *(undefined8 *)(lVar1 + 0x798) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x778) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x778) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x780) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -34812,7 +34812,7 @@ void Unwind_180903c00(undefined8 param_1,longlong param_2,undefined8 param_3,und
   if (*(code **)(lVar1 + 0x840) != (code *)0x0) {
     (**(code **)(lVar1 + 0x840))(lVar1 + 0x830,0,0,param_4,0xfffffffffffffffe);
   }
-  *(undefined8 *)(lVar1 + 0x808) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x808) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x810) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -34820,7 +34820,7 @@ void Unwind_180903c00(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x810) = 0;
   *(undefined4 *)(lVar1 + 0x820) = 0;
   *(undefined8 *)(lVar1 + 0x808) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x7e8) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x7e8) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x7f0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -34842,7 +34842,7 @@ void Unwind_180903c20(undefined8 param_1,longlong param_2,undefined8 param_3,und
   if (*(code **)(lVar1 + 0x8b0) != (code *)0x0) {
     (**(code **)(lVar1 + 0x8b0))(lVar1 + 0x8a0,0,0,param_4,0xfffffffffffffffe);
   }
-  *(undefined8 *)(lVar1 + 0x878) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x878) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x880) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -34850,7 +34850,7 @@ void Unwind_180903c20(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x880) = 0;
   *(undefined4 *)(lVar1 + 0x890) = 0;
   *(undefined8 *)(lVar1 + 0x878) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x858) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x858) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x860) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -34872,7 +34872,7 @@ void Unwind_180903c40(undefined8 param_1,longlong param_2,undefined8 param_3,und
   if (*(code **)(lVar1 + 0x920) != (code *)0x0) {
     (**(code **)(lVar1 + 0x920))(lVar1 + 0x910,0,0,param_4,0xfffffffffffffffe);
   }
-  *(undefined8 *)(lVar1 + 0x8e8) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x8e8) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x8f0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -34880,7 +34880,7 @@ void Unwind_180903c40(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x8f0) = 0;
   *(undefined4 *)(lVar1 + 0x900) = 0;
   *(undefined8 *)(lVar1 + 0x8e8) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x8c8) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x8c8) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x8d0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -34902,7 +34902,7 @@ void Unwind_180903c60(undefined8 param_1,longlong param_2,undefined8 param_3,und
   if (*(code **)(lVar1 + 0x990) != (code *)0x0) {
     (**(code **)(lVar1 + 0x990))(lVar1 + 0x980,0,0,param_4,0xfffffffffffffffe);
   }
-  *(undefined8 *)(lVar1 + 0x958) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x958) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x960) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -34910,7 +34910,7 @@ void Unwind_180903c60(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x960) = 0;
   *(undefined4 *)(lVar1 + 0x970) = 0;
   *(undefined8 *)(lVar1 + 0x958) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x938) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x938) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x940) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -34932,7 +34932,7 @@ void Unwind_180903c80(undefined8 param_1,longlong param_2,undefined8 param_3,und
   if (*(code **)(lVar1 + 0xa08) != (code *)0x0) {
     (**(code **)(lVar1 + 0xa08))(lVar1 + 0x9f8,0,0,param_4,0xfffffffffffffffe);
   }
-  *(undefined8 *)(lVar1 + 0x9d0) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x9d0) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x9d8) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -34940,7 +34940,7 @@ void Unwind_180903c80(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x9d8) = 0;
   *(undefined4 *)(lVar1 + 0x9e8) = 0;
   *(undefined8 *)(lVar1 + 0x9d0) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x9b0) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x9b0) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x9b8) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -34962,7 +34962,7 @@ void Unwind_180903ca0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   if (*(code **)(lVar1 + 0xa80) != (code *)0x0) {
     (**(code **)(lVar1 + 0xa80))(lVar1 + 0xa70,0,0,param_4,0xfffffffffffffffe);
   }
-  *(undefined8 *)(lVar1 + 0xa48) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0xa48) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0xa50) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -34970,7 +34970,7 @@ void Unwind_180903ca0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0xa50) = 0;
   *(undefined4 *)(lVar1 + 0xa60) = 0;
   *(undefined8 *)(lVar1 + 0xa48) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0xa28) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0xa28) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0xa30) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -34989,7 +34989,7 @@ void Unwind_180903cc0(undefined8 param_1,longlong param_2)
   longlong lVar1;
   
   lVar1 = *(longlong *)(param_2 + 0x88);
-  *(undefined8 *)(lVar1 + 0x10) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x10) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x18) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -35008,7 +35008,7 @@ void Unwind_180903cd0(undefined8 param_1,longlong param_2)
   longlong lVar1;
   
   lVar1 = *(longlong *)(param_2 + 0x88);
-  *(undefined8 *)(lVar1 + 0x30) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x30) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x38) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -35044,7 +35044,7 @@ void Unwind_180903cf0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   if (*(code **)(lVar1 + 400) != (code *)0x0) {
     (**(code **)(lVar1 + 400))(lVar1 + 0x180,0,0,param_4,0xfffffffffffffffe);
   }
-  *(undefined8 *)(lVar1 + 0x160) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x160) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x168) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -35052,7 +35052,7 @@ void Unwind_180903cf0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x168) = 0;
   *(undefined4 *)(lVar1 + 0x178) = 0;
   *(undefined8 *)(lVar1 + 0x160) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x140) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x140) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x148) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -35060,7 +35060,7 @@ void Unwind_180903cf0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x148) = 0;
   *(undefined4 *)(lVar1 + 0x158) = 0;
   *(undefined8 *)(lVar1 + 0x140) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x120) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x120) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x128) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -35068,7 +35068,7 @@ void Unwind_180903cf0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x128) = 0;
   *(undefined4 *)(lVar1 + 0x138) = 0;
   *(undefined8 *)(lVar1 + 0x120) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x100) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x100) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x108) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -35076,7 +35076,7 @@ void Unwind_180903cf0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x108) = 0;
   *(undefined4 *)(lVar1 + 0x118) = 0;
   *(undefined8 *)(lVar1 + 0x100) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0xe0) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0xe0) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0xe8) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -35098,7 +35098,7 @@ void Unwind_180903d10(undefined8 param_1,longlong param_2,undefined8 param_3,und
   if (*(code **)(lVar1 + 0x250) != (code *)0x0) {
     (**(code **)(lVar1 + 0x250))(lVar1 + 0x240,0,0,param_4,0xfffffffffffffffe);
   }
-  *(undefined8 *)(lVar1 + 0x220) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x220) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x228) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -35106,7 +35106,7 @@ void Unwind_180903d10(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x228) = 0;
   *(undefined4 *)(lVar1 + 0x238) = 0;
   *(undefined8 *)(lVar1 + 0x220) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x200) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x200) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x208) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -35114,7 +35114,7 @@ void Unwind_180903d10(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x208) = 0;
   *(undefined4 *)(lVar1 + 0x218) = 0;
   *(undefined8 *)(lVar1 + 0x200) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x1e0) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x1e0) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x1e8) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -35122,7 +35122,7 @@ void Unwind_180903d10(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x1e8) = 0;
   *(undefined4 *)(lVar1 + 0x1f8) = 0;
   *(undefined8 *)(lVar1 + 0x1e0) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x1c0) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x1c0) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x1c8) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -35130,7 +35130,7 @@ void Unwind_180903d10(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x1c8) = 0;
   *(undefined4 *)(lVar1 + 0x1d8) = 0;
   *(undefined8 *)(lVar1 + 0x1c0) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x1a0) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x1a0) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x1a8) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -35152,7 +35152,7 @@ void Unwind_180903d30(undefined8 param_1,longlong param_2,undefined8 param_3,und
   if (*(code **)(lVar1 + 0x310) != (code *)0x0) {
     (**(code **)(lVar1 + 0x310))(lVar1 + 0x300,0,0,param_4,0xfffffffffffffffe);
   }
-  *(undefined8 *)(lVar1 + 0x2e0) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x2e0) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x2e8) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -35160,7 +35160,7 @@ void Unwind_180903d30(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x2e8) = 0;
   *(undefined4 *)(lVar1 + 0x2f8) = 0;
   *(undefined8 *)(lVar1 + 0x2e0) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x2c0) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x2c0) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x2c8) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -35168,7 +35168,7 @@ void Unwind_180903d30(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x2c8) = 0;
   *(undefined4 *)(lVar1 + 0x2d8) = 0;
   *(undefined8 *)(lVar1 + 0x2c0) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x2a0) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x2a0) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x2a8) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -35176,7 +35176,7 @@ void Unwind_180903d30(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x2a8) = 0;
   *(undefined4 *)(lVar1 + 0x2b8) = 0;
   *(undefined8 *)(lVar1 + 0x2a0) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x280) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x280) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x288) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -35184,7 +35184,7 @@ void Unwind_180903d30(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x288) = 0;
   *(undefined4 *)(lVar1 + 0x298) = 0;
   *(undefined8 *)(lVar1 + 0x280) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x260) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x260) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x268) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -35206,7 +35206,7 @@ void Unwind_180903d50(undefined8 param_1,longlong param_2,undefined8 param_3,und
   if (*(code **)(lVar1 + 0x3d0) != (code *)0x0) {
     (**(code **)(lVar1 + 0x3d0))(lVar1 + 0x3c0,0,0,param_4,0xfffffffffffffffe);
   }
-  *(undefined8 *)(lVar1 + 0x3a0) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x3a0) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x3a8) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -35214,7 +35214,7 @@ void Unwind_180903d50(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x3a8) = 0;
   *(undefined4 *)(lVar1 + 0x3b8) = 0;
   *(undefined8 *)(lVar1 + 0x3a0) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x380) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x380) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x388) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -35222,7 +35222,7 @@ void Unwind_180903d50(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x388) = 0;
   *(undefined4 *)(lVar1 + 0x398) = 0;
   *(undefined8 *)(lVar1 + 0x380) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x360) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x360) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x368) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -35230,7 +35230,7 @@ void Unwind_180903d50(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x368) = 0;
   *(undefined4 *)(lVar1 + 0x378) = 0;
   *(undefined8 *)(lVar1 + 0x360) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x340) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x340) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x348) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -35238,7 +35238,7 @@ void Unwind_180903d50(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x348) = 0;
   *(undefined4 *)(lVar1 + 0x358) = 0;
   *(undefined8 *)(lVar1 + 0x340) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 800) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 800) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x328) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -35260,7 +35260,7 @@ void Unwind_180903d70(undefined8 param_1,longlong param_2,undefined8 param_3,und
   if (*(code **)(lVar1 + 0x490) != (code *)0x0) {
     (**(code **)(lVar1 + 0x490))(lVar1 + 0x480,0,0,param_4,0xfffffffffffffffe);
   }
-  *(undefined8 *)(lVar1 + 0x460) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x460) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x468) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -35268,7 +35268,7 @@ void Unwind_180903d70(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x468) = 0;
   *(undefined4 *)(lVar1 + 0x478) = 0;
   *(undefined8 *)(lVar1 + 0x460) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x440) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x440) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x448) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -35276,7 +35276,7 @@ void Unwind_180903d70(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x448) = 0;
   *(undefined4 *)(lVar1 + 0x458) = 0;
   *(undefined8 *)(lVar1 + 0x440) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x420) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x420) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x428) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -35284,7 +35284,7 @@ void Unwind_180903d70(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x428) = 0;
   *(undefined4 *)(lVar1 + 0x438) = 0;
   *(undefined8 *)(lVar1 + 0x420) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x400) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x400) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x408) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -35292,7 +35292,7 @@ void Unwind_180903d70(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x408) = 0;
   *(undefined4 *)(lVar1 + 0x418) = 0;
   *(undefined8 *)(lVar1 + 0x400) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x3e0) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x3e0) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 1000) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -35314,7 +35314,7 @@ void Unwind_180903d90(undefined8 param_1,longlong param_2,undefined8 param_3,und
   if (*(code **)(lVar1 + 0x550) != (code *)0x0) {
     (**(code **)(lVar1 + 0x550))(lVar1 + 0x540,0,0,param_4,0xfffffffffffffffe);
   }
-  *(undefined8 *)(lVar1 + 0x520) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x520) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x528) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -35322,7 +35322,7 @@ void Unwind_180903d90(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x528) = 0;
   *(undefined4 *)(lVar1 + 0x538) = 0;
   *(undefined8 *)(lVar1 + 0x520) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x500) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x500) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x508) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -35330,7 +35330,7 @@ void Unwind_180903d90(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x508) = 0;
   *(undefined4 *)(lVar1 + 0x518) = 0;
   *(undefined8 *)(lVar1 + 0x500) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x4e0) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x4e0) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x4e8) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -35338,7 +35338,7 @@ void Unwind_180903d90(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x4e8) = 0;
   *(undefined4 *)(lVar1 + 0x4f8) = 0;
   *(undefined8 *)(lVar1 + 0x4e0) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x4c0) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x4c0) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x4c8) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -35346,7 +35346,7 @@ void Unwind_180903d90(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x4c8) = 0;
   *(undefined4 *)(lVar1 + 0x4d8) = 0;
   *(undefined8 *)(lVar1 + 0x4c0) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x4a0) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x4a0) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x4a8) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -35368,7 +35368,7 @@ void Unwind_180903db0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   if (*(code **)(lVar1 + 0x610) != (code *)0x0) {
     (**(code **)(lVar1 + 0x610))(lVar1 + 0x600,0,0,param_4,0xfffffffffffffffe);
   }
-  *(undefined8 *)(lVar1 + 0x5e0) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x5e0) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x5e8) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -35376,7 +35376,7 @@ void Unwind_180903db0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x5e8) = 0;
   *(undefined4 *)(lVar1 + 0x5f8) = 0;
   *(undefined8 *)(lVar1 + 0x5e0) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x5c0) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x5c0) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x5c8) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -35384,7 +35384,7 @@ void Unwind_180903db0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x5c8) = 0;
   *(undefined4 *)(lVar1 + 0x5d8) = 0;
   *(undefined8 *)(lVar1 + 0x5c0) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x5a0) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x5a0) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x5a8) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -35392,7 +35392,7 @@ void Unwind_180903db0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x5a8) = 0;
   *(undefined4 *)(lVar1 + 0x5b8) = 0;
   *(undefined8 *)(lVar1 + 0x5a0) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x580) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x580) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x588) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -35400,7 +35400,7 @@ void Unwind_180903db0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x588) = 0;
   *(undefined4 *)(lVar1 + 0x598) = 0;
   *(undefined8 *)(lVar1 + 0x580) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x560) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x560) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x568) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -35422,7 +35422,7 @@ void Unwind_180903dd0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   if (*(code **)(lVar1 + 0x6d0) != (code *)0x0) {
     (**(code **)(lVar1 + 0x6d0))(lVar1 + 0x6c0,0,0,param_4,0xfffffffffffffffe);
   }
-  *(undefined8 *)(lVar1 + 0x6a0) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x6a0) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x6a8) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -35430,7 +35430,7 @@ void Unwind_180903dd0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x6a8) = 0;
   *(undefined4 *)(lVar1 + 0x6b8) = 0;
   *(undefined8 *)(lVar1 + 0x6a0) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x680) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x680) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x688) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -35438,7 +35438,7 @@ void Unwind_180903dd0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x688) = 0;
   *(undefined4 *)(lVar1 + 0x698) = 0;
   *(undefined8 *)(lVar1 + 0x680) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x660) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x660) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x668) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -35446,7 +35446,7 @@ void Unwind_180903dd0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x668) = 0;
   *(undefined4 *)(lVar1 + 0x678) = 0;
   *(undefined8 *)(lVar1 + 0x660) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x640) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x640) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x648) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -35454,7 +35454,7 @@ void Unwind_180903dd0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x648) = 0;
   *(undefined4 *)(lVar1 + 0x658) = 0;
   *(undefined8 *)(lVar1 + 0x640) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x620) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x620) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x628) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -35476,7 +35476,7 @@ void Unwind_180903df0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   if (*(code **)(lVar1 + 0x790) != (code *)0x0) {
     (**(code **)(lVar1 + 0x790))(lVar1 + 0x780,0,0,param_4,0xfffffffffffffffe);
   }
-  *(undefined8 *)(lVar1 + 0x760) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x760) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x768) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -35484,7 +35484,7 @@ void Unwind_180903df0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x768) = 0;
   *(undefined4 *)(lVar1 + 0x778) = 0;
   *(undefined8 *)(lVar1 + 0x760) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x740) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x740) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x748) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -35492,7 +35492,7 @@ void Unwind_180903df0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x748) = 0;
   *(undefined4 *)(lVar1 + 0x758) = 0;
   *(undefined8 *)(lVar1 + 0x740) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x720) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x720) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x728) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -35500,7 +35500,7 @@ void Unwind_180903df0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x728) = 0;
   *(undefined4 *)(lVar1 + 0x738) = 0;
   *(undefined8 *)(lVar1 + 0x720) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x700) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x700) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x708) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -35508,7 +35508,7 @@ void Unwind_180903df0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x708) = 0;
   *(undefined4 *)(lVar1 + 0x718) = 0;
   *(undefined8 *)(lVar1 + 0x700) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x6e0) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x6e0) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x6e8) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -35530,7 +35530,7 @@ void Unwind_180903e10(undefined8 param_1,longlong param_2,undefined8 param_3,und
   if (*(code **)(lVar1 + 0x850) != (code *)0x0) {
     (**(code **)(lVar1 + 0x850))(lVar1 + 0x840,0,0,param_4,0xfffffffffffffffe);
   }
-  *(undefined8 *)(lVar1 + 0x820) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x820) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x828) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -35538,7 +35538,7 @@ void Unwind_180903e10(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x828) = 0;
   *(undefined4 *)(lVar1 + 0x838) = 0;
   *(undefined8 *)(lVar1 + 0x820) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x800) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x800) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x808) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -35546,7 +35546,7 @@ void Unwind_180903e10(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x808) = 0;
   *(undefined4 *)(lVar1 + 0x818) = 0;
   *(undefined8 *)(lVar1 + 0x800) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x7e0) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x7e0) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x7e8) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -35554,7 +35554,7 @@ void Unwind_180903e10(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x7e8) = 0;
   *(undefined4 *)(lVar1 + 0x7f8) = 0;
   *(undefined8 *)(lVar1 + 0x7e0) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x7c0) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x7c0) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x7c8) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -35562,7 +35562,7 @@ void Unwind_180903e10(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x7c8) = 0;
   *(undefined4 *)(lVar1 + 0x7d8) = 0;
   *(undefined8 *)(lVar1 + 0x7c0) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x7a0) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x7a0) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x7a8) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -35584,7 +35584,7 @@ void Unwind_180903e30(undefined8 param_1,longlong param_2,undefined8 param_3,und
   if (*(code **)(lVar1 + 0x910) != (code *)0x0) {
     (**(code **)(lVar1 + 0x910))(lVar1 + 0x900,0,0,param_4,0xfffffffffffffffe);
   }
-  *(undefined8 *)(lVar1 + 0x8e0) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x8e0) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x8e8) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -35592,7 +35592,7 @@ void Unwind_180903e30(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x8e8) = 0;
   *(undefined4 *)(lVar1 + 0x8f8) = 0;
   *(undefined8 *)(lVar1 + 0x8e0) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x8c0) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x8c0) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x8c8) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -35600,7 +35600,7 @@ void Unwind_180903e30(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x8c8) = 0;
   *(undefined4 *)(lVar1 + 0x8d8) = 0;
   *(undefined8 *)(lVar1 + 0x8c0) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x8a0) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x8a0) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x8a8) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -35608,7 +35608,7 @@ void Unwind_180903e30(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x8a8) = 0;
   *(undefined4 *)(lVar1 + 0x8b8) = 0;
   *(undefined8 *)(lVar1 + 0x8a0) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x880) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x880) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x888) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -35616,7 +35616,7 @@ void Unwind_180903e30(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x888) = 0;
   *(undefined4 *)(lVar1 + 0x898) = 0;
   *(undefined8 *)(lVar1 + 0x880) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x860) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x860) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x868) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -35638,7 +35638,7 @@ void Unwind_180903e50(undefined8 param_1,longlong param_2,undefined8 param_3,und
   if (*(code **)(lVar1 + 0x9d0) != (code *)0x0) {
     (**(code **)(lVar1 + 0x9d0))(lVar1 + 0x9c0,0,0,param_4,0xfffffffffffffffe);
   }
-  *(undefined8 *)(lVar1 + 0x9a0) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x9a0) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x9a8) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -35646,7 +35646,7 @@ void Unwind_180903e50(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x9a8) = 0;
   *(undefined4 *)(lVar1 + 0x9b8) = 0;
   *(undefined8 *)(lVar1 + 0x9a0) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x980) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x980) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x988) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -35654,7 +35654,7 @@ void Unwind_180903e50(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x988) = 0;
   *(undefined4 *)(lVar1 + 0x998) = 0;
   *(undefined8 *)(lVar1 + 0x980) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x960) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x960) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x968) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -35662,7 +35662,7 @@ void Unwind_180903e50(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x968) = 0;
   *(undefined4 *)(lVar1 + 0x978) = 0;
   *(undefined8 *)(lVar1 + 0x960) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x940) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x940) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x948) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -35670,7 +35670,7 @@ void Unwind_180903e50(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x948) = 0;
   *(undefined4 *)(lVar1 + 0x958) = 0;
   *(undefined8 *)(lVar1 + 0x940) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x920) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x920) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x928) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -35692,7 +35692,7 @@ void Unwind_180903e70(undefined8 param_1,longlong param_2,undefined8 param_3,und
   if (*(code **)(lVar1 + 0xa90) != (code *)0x0) {
     (**(code **)(lVar1 + 0xa90))(lVar1 + 0xa80,0,0,param_4,0xfffffffffffffffe);
   }
-  *(undefined8 *)(lVar1 + 0xa60) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0xa60) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0xa68) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -35700,7 +35700,7 @@ void Unwind_180903e70(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0xa68) = 0;
   *(undefined4 *)(lVar1 + 0xa78) = 0;
   *(undefined8 *)(lVar1 + 0xa60) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0xa40) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0xa40) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0xa48) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -35708,7 +35708,7 @@ void Unwind_180903e70(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0xa48) = 0;
   *(undefined4 *)(lVar1 + 0xa58) = 0;
   *(undefined8 *)(lVar1 + 0xa40) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0xa20) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0xa20) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0xa28) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -35716,7 +35716,7 @@ void Unwind_180903e70(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0xa28) = 0;
   *(undefined4 *)(lVar1 + 0xa38) = 0;
   *(undefined8 *)(lVar1 + 0xa20) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0xa00) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0xa00) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0xa08) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -35724,7 +35724,7 @@ void Unwind_180903e70(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0xa08) = 0;
   *(undefined4 *)(lVar1 + 0xa18) = 0;
   *(undefined8 *)(lVar1 + 0xa00) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x9e0) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x9e0) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x9e8) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -35746,7 +35746,7 @@ void Unwind_180903e90(undefined8 param_1,longlong param_2,undefined8 param_3,und
   if (*(code **)(lVar1 + 0xb50) != (code *)0x0) {
     (**(code **)(lVar1 + 0xb50))(lVar1 + 0xb40,0,0,param_4,0xfffffffffffffffe);
   }
-  *(undefined8 *)(lVar1 + 0xb20) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0xb20) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0xb28) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -35754,7 +35754,7 @@ void Unwind_180903e90(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0xb28) = 0;
   *(undefined4 *)(lVar1 + 0xb38) = 0;
   *(undefined8 *)(lVar1 + 0xb20) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0xb00) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0xb00) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0xb08) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -35762,7 +35762,7 @@ void Unwind_180903e90(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0xb08) = 0;
   *(undefined4 *)(lVar1 + 0xb18) = 0;
   *(undefined8 *)(lVar1 + 0xb00) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0xae0) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0xae0) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0xae8) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -35770,7 +35770,7 @@ void Unwind_180903e90(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0xae8) = 0;
   *(undefined4 *)(lVar1 + 0xaf8) = 0;
   *(undefined8 *)(lVar1 + 0xae0) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0xac0) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0xac0) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0xac8) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -35778,7 +35778,7 @@ void Unwind_180903e90(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0xac8) = 0;
   *(undefined4 *)(lVar1 + 0xad8) = 0;
   *(undefined8 *)(lVar1 + 0xac0) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0xaa0) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0xaa0) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0xaa8) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -35800,7 +35800,7 @@ void Unwind_180903eb0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   if (*(code **)(lVar1 + 0xc10) != (code *)0x0) {
     (**(code **)(lVar1 + 0xc10))(lVar1 + 0xc00,0,0,param_4,0xfffffffffffffffe);
   }
-  *(undefined8 *)(lVar1 + 0xbe0) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0xbe0) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0xbe8) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -35808,7 +35808,7 @@ void Unwind_180903eb0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0xbe8) = 0;
   *(undefined4 *)(lVar1 + 0xbf8) = 0;
   *(undefined8 *)(lVar1 + 0xbe0) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0xbc0) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0xbc0) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0xbc8) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -35816,7 +35816,7 @@ void Unwind_180903eb0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0xbc8) = 0;
   *(undefined4 *)(lVar1 + 0xbd8) = 0;
   *(undefined8 *)(lVar1 + 0xbc0) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0xba0) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0xba0) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0xba8) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -35824,7 +35824,7 @@ void Unwind_180903eb0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0xba8) = 0;
   *(undefined4 *)(lVar1 + 3000) = 0;
   *(undefined8 *)(lVar1 + 0xba0) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0xb80) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0xb80) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0xb88) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -35832,7 +35832,7 @@ void Unwind_180903eb0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0xb88) = 0;
   *(undefined4 *)(lVar1 + 0xb98) = 0;
   *(undefined8 *)(lVar1 + 0xb80) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0xb60) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0xb60) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0xb68) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -35854,7 +35854,7 @@ void Unwind_180903ed0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   if (*(code **)(lVar1 + 0xcd0) != (code *)0x0) {
     (**(code **)(lVar1 + 0xcd0))(lVar1 + 0xcc0,0,0,param_4,0xfffffffffffffffe);
   }
-  *(undefined8 *)(lVar1 + 0xca0) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0xca0) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0xca8) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -35862,7 +35862,7 @@ void Unwind_180903ed0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0xca8) = 0;
   *(undefined4 *)(lVar1 + 0xcb8) = 0;
   *(undefined8 *)(lVar1 + 0xca0) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0xc80) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0xc80) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0xc88) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -35870,7 +35870,7 @@ void Unwind_180903ed0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0xc88) = 0;
   *(undefined4 *)(lVar1 + 0xc98) = 0;
   *(undefined8 *)(lVar1 + 0xc80) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0xc60) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0xc60) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0xc68) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -35878,7 +35878,7 @@ void Unwind_180903ed0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0xc68) = 0;
   *(undefined4 *)(lVar1 + 0xc78) = 0;
   *(undefined8 *)(lVar1 + 0xc60) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0xc40) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0xc40) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0xc48) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -35886,7 +35886,7 @@ void Unwind_180903ed0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0xc48) = 0;
   *(undefined4 *)(lVar1 + 0xc58) = 0;
   *(undefined8 *)(lVar1 + 0xc40) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0xc20) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0xc20) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0xc28) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -35908,7 +35908,7 @@ void Unwind_180903ef0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   if (*(code **)(lVar1 + 0xd40) != (code *)0x0) {
     (**(code **)(lVar1 + 0xd40))(lVar1 + 0xd30,0,0,param_4,0xfffffffffffffffe);
   }
-  *(undefined8 *)(lVar1 + 0xd08) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0xd08) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0xd10) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -35916,7 +35916,7 @@ void Unwind_180903ef0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0xd10) = 0;
   *(undefined4 *)(lVar1 + 0xd20) = 0;
   *(undefined8 *)(lVar1 + 0xd08) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0xce8) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0xce8) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0xcf0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -35938,7 +35938,7 @@ void Unwind_180903f10(undefined8 param_1,longlong param_2,undefined8 param_3,und
   if (*(code **)(lVar1 + 0xdb0) != (code *)0x0) {
     (**(code **)(lVar1 + 0xdb0))(lVar1 + 0xda0,0,0,param_4,0xfffffffffffffffe);
   }
-  *(undefined8 *)(lVar1 + 0xd78) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0xd78) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0xd80) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -35946,7 +35946,7 @@ void Unwind_180903f10(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0xd80) = 0;
   *(undefined4 *)(lVar1 + 0xd90) = 0;
   *(undefined8 *)(lVar1 + 0xd78) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0xd58) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0xd58) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0xd60) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -35968,7 +35968,7 @@ void Unwind_180903f30(undefined8 param_1,longlong param_2,undefined8 param_3,und
   if (*(code **)(lVar1 + 0xe20) != (code *)0x0) {
     (**(code **)(lVar1 + 0xe20))(lVar1 + 0xe10,0,0,param_4,0xfffffffffffffffe);
   }
-  *(undefined8 *)(lVar1 + 0xde8) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0xde8) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0xdf0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -35976,7 +35976,7 @@ void Unwind_180903f30(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0xdf0) = 0;
   *(undefined4 *)(lVar1 + 0xe00) = 0;
   *(undefined8 *)(lVar1 + 0xde8) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0xdc8) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0xdc8) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0xdd0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -35998,7 +35998,7 @@ void Unwind_180903f50(undefined8 param_1,longlong param_2,undefined8 param_3,und
   if (*(code **)(lVar1 + 0xee0) != (code *)0x0) {
     (**(code **)(lVar1 + 0xee0))(lVar1 + 0xed0,0,0,param_4,0xfffffffffffffffe);
   }
-  *(undefined8 *)(lVar1 + 0xeb0) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0xeb0) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0xeb8) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -36006,7 +36006,7 @@ void Unwind_180903f50(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0xeb8) = 0;
   *(undefined4 *)(lVar1 + 0xec8) = 0;
   *(undefined8 *)(lVar1 + 0xeb0) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0xe90) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0xe90) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0xe98) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -36014,7 +36014,7 @@ void Unwind_180903f50(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0xe98) = 0;
   *(undefined4 *)(lVar1 + 0xea8) = 0;
   *(undefined8 *)(lVar1 + 0xe90) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0xe70) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0xe70) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0xe78) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -36022,7 +36022,7 @@ void Unwind_180903f50(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0xe78) = 0;
   *(undefined4 *)(lVar1 + 0xe88) = 0;
   *(undefined8 *)(lVar1 + 0xe70) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0xe50) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0xe50) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0xe58) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -36030,7 +36030,7 @@ void Unwind_180903f50(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0xe58) = 0;
   *(undefined4 *)(lVar1 + 0xe68) = 0;
   *(undefined8 *)(lVar1 + 0xe50) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0xe30) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0xe30) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0xe38) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -36052,7 +36052,7 @@ void Unwind_180903f70(undefined8 param_1,longlong param_2,undefined8 param_3,und
   if (*(code **)(lVar1 + 4000) != (code *)0x0) {
     (**(code **)(lVar1 + 4000))(lVar1 + 0xf90,0,0,param_4,0xfffffffffffffffe);
   }
-  *(undefined8 *)(lVar1 + 0xf70) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0xf70) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0xf78) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -36060,7 +36060,7 @@ void Unwind_180903f70(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0xf78) = 0;
   *(undefined4 *)(lVar1 + 0xf88) = 0;
   *(undefined8 *)(lVar1 + 0xf70) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0xf50) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0xf50) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0xf58) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -36068,7 +36068,7 @@ void Unwind_180903f70(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0xf58) = 0;
   *(undefined4 *)(lVar1 + 0xf68) = 0;
   *(undefined8 *)(lVar1 + 0xf50) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0xf30) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0xf30) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0xf38) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -36076,7 +36076,7 @@ void Unwind_180903f70(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0xf38) = 0;
   *(undefined4 *)(lVar1 + 0xf48) = 0;
   *(undefined8 *)(lVar1 + 0xf30) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0xf10) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0xf10) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0xf18) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -36084,7 +36084,7 @@ void Unwind_180903f70(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0xf18) = 0;
   *(undefined4 *)(lVar1 + 0xf28) = 0;
   *(undefined8 *)(lVar1 + 0xf10) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0xef0) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0xef0) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0xef8) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -36106,7 +36106,7 @@ void Unwind_180903f90(undefined8 param_1,longlong param_2,undefined8 param_3,und
   if (*(code **)(lVar1 + 0x1060) != (code *)0x0) {
     (**(code **)(lVar1 + 0x1060))(lVar1 + 0x1050,0,0,param_4,0xfffffffffffffffe);
   }
-  *(undefined8 *)(lVar1 + 0x1030) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x1030) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x1038) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -36114,7 +36114,7 @@ void Unwind_180903f90(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x1038) = 0;
   *(undefined4 *)(lVar1 + 0x1048) = 0;
   *(undefined8 *)(lVar1 + 0x1030) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x1010) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x1010) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x1018) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -36122,7 +36122,7 @@ void Unwind_180903f90(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x1018) = 0;
   *(undefined4 *)(lVar1 + 0x1028) = 0;
   *(undefined8 *)(lVar1 + 0x1010) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0xff0) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0xff0) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0xff8) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -36130,7 +36130,7 @@ void Unwind_180903f90(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0xff8) = 0;
   *(undefined4 *)(lVar1 + 0x1008) = 0;
   *(undefined8 *)(lVar1 + 0xff0) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0xfd0) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0xfd0) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0xfd8) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -36138,7 +36138,7 @@ void Unwind_180903f90(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0xfd8) = 0;
   *(undefined4 *)(lVar1 + 0xfe8) = 0;
   *(undefined8 *)(lVar1 + 0xfd0) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0xfb0) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0xfb0) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0xfb8) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -36160,7 +36160,7 @@ void Unwind_180903fb0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   if (*(code **)(lVar1 + 0x10d0) != (code *)0x0) {
     (**(code **)(lVar1 + 0x10d0))(lVar1 + 0x10c0,0,0,param_4,0xfffffffffffffffe);
   }
-  *(undefined8 *)(lVar1 + 0x1098) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x1098) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x10a0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -36168,7 +36168,7 @@ void Unwind_180903fb0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x10a0) = 0;
   *(undefined4 *)(lVar1 + 0x10b0) = 0;
   *(undefined8 *)(lVar1 + 0x1098) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x1078) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x1078) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x1080) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -36190,7 +36190,7 @@ void Unwind_180903fd0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   if (*(code **)(lVar1 + 0x1140) != (code *)0x0) {
     (**(code **)(lVar1 + 0x1140))(lVar1 + 0x1130,0,0,param_4,0xfffffffffffffffe);
   }
-  *(undefined8 *)(lVar1 + 0x1108) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x1108) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x1110) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -36198,7 +36198,7 @@ void Unwind_180903fd0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x1110) = 0;
   *(undefined4 *)(lVar1 + 0x1120) = 0;
   *(undefined8 *)(lVar1 + 0x1108) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x10e8) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x10e8) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x10f0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -36220,7 +36220,7 @@ void Unwind_180903ff0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   if (*(code **)(lVar1 + 0x11b0) != (code *)0x0) {
     (**(code **)(lVar1 + 0x11b0))(lVar1 + 0x11a0,0,0,param_4,0xfffffffffffffffe);
   }
-  *(undefined8 *)(lVar1 + 0x1178) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x1178) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x1180) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -36228,7 +36228,7 @@ void Unwind_180903ff0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x1180) = 0;
   *(undefined4 *)(lVar1 + 0x1190) = 0;
   *(undefined8 *)(lVar1 + 0x1178) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x1158) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x1158) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x1160) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -36250,7 +36250,7 @@ void Unwind_180904010(undefined8 param_1,longlong param_2,undefined8 param_3,und
   if (*(code **)(lVar1 + 0x1220) != (code *)0x0) {
     (**(code **)(lVar1 + 0x1220))(lVar1 + 0x1210,0,0,param_4,0xfffffffffffffffe);
   }
-  *(undefined8 *)(lVar1 + 0x11e8) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x11e8) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x11f0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -36258,7 +36258,7 @@ void Unwind_180904010(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x11f0) = 0;
   *(undefined4 *)(lVar1 + 0x1200) = 0;
   *(undefined8 *)(lVar1 + 0x11e8) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x11c8) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x11c8) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x11d0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -36280,7 +36280,7 @@ void Unwind_180904030(undefined8 param_1,longlong param_2,undefined8 param_3,und
   if (*(code **)(lVar1 + 0x1290) != (code *)0x0) {
     (**(code **)(lVar1 + 0x1290))(lVar1 + 0x1280,0,0,param_4,0xfffffffffffffffe);
   }
-  *(undefined8 *)(lVar1 + 0x1258) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x1258) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x1260) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -36288,7 +36288,7 @@ void Unwind_180904030(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x1260) = 0;
   *(undefined4 *)(lVar1 + 0x1270) = 0;
   *(undefined8 *)(lVar1 + 0x1258) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x1238) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x1238) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x1240) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -36310,7 +36310,7 @@ void Unwind_180904050(undefined8 param_1,longlong param_2,undefined8 param_3,und
   if (*(code **)(lVar1 + 0x1300) != (code *)0x0) {
     (**(code **)(lVar1 + 0x1300))(lVar1 + 0x12f0,0,0,param_4,0xfffffffffffffffe);
   }
-  *(undefined8 *)(lVar1 + 0x12c8) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x12c8) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x12d0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -36318,7 +36318,7 @@ void Unwind_180904050(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x12d0) = 0;
   *(undefined4 *)(lVar1 + 0x12e0) = 0;
   *(undefined8 *)(lVar1 + 0x12c8) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x12a8) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x12a8) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x12b0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -36340,7 +36340,7 @@ void Unwind_180904070(undefined8 param_1,longlong param_2,undefined8 param_3,und
   if (*(code **)(lVar1 + 0x1370) != (code *)0x0) {
     (**(code **)(lVar1 + 0x1370))(lVar1 + 0x1360,0,0,param_4,0xfffffffffffffffe);
   }
-  *(undefined8 *)(lVar1 + 0x1338) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x1338) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x1340) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -36348,7 +36348,7 @@ void Unwind_180904070(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x1340) = 0;
   *(undefined4 *)(lVar1 + 0x1350) = 0;
   *(undefined8 *)(lVar1 + 0x1338) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x1318) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x1318) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x1320) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -36413,7 +36413,7 @@ void Unwind_1809040d0(undefined8 param_1,longlong param_2)
   longlong lVar1;
   
   lVar1 = *(longlong *)(param_2 + 0x20);
-  *(undefined8 *)(lVar1 + 0x28) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x28) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x30) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -36460,7 +36460,7 @@ void Unwind_180904100(undefined8 param_1,longlong param_2)
   longlong lVar1;
   
   lVar1 = *(longlong *)(param_2 + 0x50);
-  *(undefined8 *)(lVar1 + 0x28) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x28) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x30) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -36493,7 +36493,7 @@ void Unwind_180904120(undefined8 param_1,longlong param_2)
   undefined8 *presourceHash;
   
   presourceHash = *(undefined8 **)(param_2 + 0x20);
-  *presourceHash = &UNK_180a3c3e0;
+  *presourceHash = &SystemResourceHandlerTemplate;
   if (presourceHash[1] != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -36512,7 +36512,7 @@ void Unwind_180904130(undefined8 param_1,longlong param_2)
   longlong lVar1;
   
   lVar1 = *(longlong *)(param_2 + 0x20);
-  *(undefined8 *)(lVar1 + 0x20) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x20) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x28) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -36531,7 +36531,7 @@ void Unwind_180904140(undefined8 param_1,longlong param_2)
   longlong lVar1;
   
   lVar1 = *(longlong *)(param_2 + 0x20);
-  *(undefined8 *)(lVar1 + 0x40) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x40) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x48) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -36550,7 +36550,7 @@ void Unwind_180904150(undefined8 param_1,longlong param_2)
   longlong lVar1;
   
   lVar1 = *(longlong *)(param_2 + 0x20);
-  *(undefined8 *)(lVar1 + 0x60) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x60) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x68) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -36569,7 +36569,7 @@ void Unwind_180904160(undefined8 param_1,longlong param_2)
   longlong lVar1;
   
   lVar1 = *(longlong *)(param_2 + 0x20);
-  *(undefined8 *)(lVar1 + 0x80) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x80) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x88) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -36602,7 +36602,7 @@ void Unwind_1809041a0(undefined8 param_1,longlong param_2)
   longlong lVar1;
   
   lVar1 = *(longlong *)(param_2 + 0x50);
-  *(undefined8 *)(lVar1 + 0x60) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x60) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x68) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -36638,7 +36638,7 @@ void Unwind_1809041d0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   if (*(code **)(lVar1 + 400) != (code *)0x0) {
     (**(code **)(lVar1 + 400))(lVar1 + 0x180,0,0,param_4,0xfffffffffffffffe);
   }
-  *(undefined8 *)(lVar1 + 0x160) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x160) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x168) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -36646,7 +36646,7 @@ void Unwind_1809041d0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x168) = 0;
   *(undefined4 *)(lVar1 + 0x178) = 0;
   *(undefined8 *)(lVar1 + 0x160) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x140) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x140) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x148) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -36654,7 +36654,7 @@ void Unwind_1809041d0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x148) = 0;
   *(undefined4 *)(lVar1 + 0x158) = 0;
   *(undefined8 *)(lVar1 + 0x140) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x120) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x120) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x128) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -36662,7 +36662,7 @@ void Unwind_1809041d0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x128) = 0;
   *(undefined4 *)(lVar1 + 0x138) = 0;
   *(undefined8 *)(lVar1 + 0x120) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x100) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x100) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x108) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -36670,7 +36670,7 @@ void Unwind_1809041d0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x108) = 0;
   *(undefined4 *)(lVar1 + 0x118) = 0;
   *(undefined8 *)(lVar1 + 0x100) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0xe0) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0xe0) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0xe8) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -36692,7 +36692,7 @@ void Unwind_1809041f0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   if (*(code **)(lVar1 + 0x250) != (code *)0x0) {
     (**(code **)(lVar1 + 0x250))(lVar1 + 0x240,0,0,param_4,0xfffffffffffffffe);
   }
-  *(undefined8 *)(lVar1 + 0x220) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x220) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x228) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -36700,7 +36700,7 @@ void Unwind_1809041f0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x228) = 0;
   *(undefined4 *)(lVar1 + 0x238) = 0;
   *(undefined8 *)(lVar1 + 0x220) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x200) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x200) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x208) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -36708,7 +36708,7 @@ void Unwind_1809041f0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x208) = 0;
   *(undefined4 *)(lVar1 + 0x218) = 0;
   *(undefined8 *)(lVar1 + 0x200) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x1e0) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x1e0) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x1e8) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -36716,7 +36716,7 @@ void Unwind_1809041f0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x1e8) = 0;
   *(undefined4 *)(lVar1 + 0x1f8) = 0;
   *(undefined8 *)(lVar1 + 0x1e0) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x1c0) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x1c0) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x1c8) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -36724,7 +36724,7 @@ void Unwind_1809041f0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x1c8) = 0;
   *(undefined4 *)(lVar1 + 0x1d8) = 0;
   *(undefined8 *)(lVar1 + 0x1c0) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x1a0) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x1a0) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x1a8) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -36746,7 +36746,7 @@ void Unwind_180904210(undefined8 param_1,longlong param_2,undefined8 param_3,und
   if (*(code **)(lVar1 + 0x310) != (code *)0x0) {
     (**(code **)(lVar1 + 0x310))(lVar1 + 0x300,0,0,param_4,0xfffffffffffffffe);
   }
-  *(undefined8 *)(lVar1 + 0x2e0) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x2e0) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x2e8) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -36754,7 +36754,7 @@ void Unwind_180904210(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x2e8) = 0;
   *(undefined4 *)(lVar1 + 0x2f8) = 0;
   *(undefined8 *)(lVar1 + 0x2e0) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x2c0) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x2c0) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x2c8) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -36762,7 +36762,7 @@ void Unwind_180904210(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x2c8) = 0;
   *(undefined4 *)(lVar1 + 0x2d8) = 0;
   *(undefined8 *)(lVar1 + 0x2c0) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x2a0) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x2a0) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x2a8) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -36770,7 +36770,7 @@ void Unwind_180904210(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x2a8) = 0;
   *(undefined4 *)(lVar1 + 0x2b8) = 0;
   *(undefined8 *)(lVar1 + 0x2a0) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x280) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x280) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x288) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -36778,7 +36778,7 @@ void Unwind_180904210(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x288) = 0;
   *(undefined4 *)(lVar1 + 0x298) = 0;
   *(undefined8 *)(lVar1 + 0x280) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x260) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x260) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x268) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -36800,7 +36800,7 @@ void Unwind_180904230(undefined8 param_1,longlong param_2,undefined8 param_3,und
   if (*(code **)(lVar1 + 0x3d0) != (code *)0x0) {
     (**(code **)(lVar1 + 0x3d0))(lVar1 + 0x3c0,0,0,param_4,0xfffffffffffffffe);
   }
-  *(undefined8 *)(lVar1 + 0x3a0) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x3a0) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x3a8) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -36808,7 +36808,7 @@ void Unwind_180904230(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x3a8) = 0;
   *(undefined4 *)(lVar1 + 0x3b8) = 0;
   *(undefined8 *)(lVar1 + 0x3a0) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x380) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x380) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x388) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -36816,7 +36816,7 @@ void Unwind_180904230(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x388) = 0;
   *(undefined4 *)(lVar1 + 0x398) = 0;
   *(undefined8 *)(lVar1 + 0x380) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x360) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x360) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x368) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -36824,7 +36824,7 @@ void Unwind_180904230(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x368) = 0;
   *(undefined4 *)(lVar1 + 0x378) = 0;
   *(undefined8 *)(lVar1 + 0x360) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x340) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x340) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x348) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -36832,7 +36832,7 @@ void Unwind_180904230(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x348) = 0;
   *(undefined4 *)(lVar1 + 0x358) = 0;
   *(undefined8 *)(lVar1 + 0x340) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 800) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 800) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x328) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -36854,7 +36854,7 @@ void Unwind_180904250(undefined8 param_1,longlong param_2,undefined8 param_3,und
   if (*(code **)(lVar1 + 0x490) != (code *)0x0) {
     (**(code **)(lVar1 + 0x490))(lVar1 + 0x480,0,0,param_4,0xfffffffffffffffe);
   }
-  *(undefined8 *)(lVar1 + 0x460) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x460) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x468) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -36862,7 +36862,7 @@ void Unwind_180904250(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x468) = 0;
   *(undefined4 *)(lVar1 + 0x478) = 0;
   *(undefined8 *)(lVar1 + 0x460) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x440) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x440) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x448) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -36870,7 +36870,7 @@ void Unwind_180904250(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x448) = 0;
   *(undefined4 *)(lVar1 + 0x458) = 0;
   *(undefined8 *)(lVar1 + 0x440) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x420) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x420) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x428) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -36878,7 +36878,7 @@ void Unwind_180904250(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x428) = 0;
   *(undefined4 *)(lVar1 + 0x438) = 0;
   *(undefined8 *)(lVar1 + 0x420) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x400) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x400) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x408) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -36886,7 +36886,7 @@ void Unwind_180904250(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x408) = 0;
   *(undefined4 *)(lVar1 + 0x418) = 0;
   *(undefined8 *)(lVar1 + 0x400) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x3e0) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x3e0) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 1000) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -36908,7 +36908,7 @@ void Unwind_180904270(undefined8 param_1,longlong param_2,undefined8 param_3,und
   if (*(code **)(lVar1 + 0x550) != (code *)0x0) {
     (**(code **)(lVar1 + 0x550))(lVar1 + 0x540,0,0,param_4,0xfffffffffffffffe);
   }
-  *(undefined8 *)(lVar1 + 0x520) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x520) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x528) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -36916,7 +36916,7 @@ void Unwind_180904270(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x528) = 0;
   *(undefined4 *)(lVar1 + 0x538) = 0;
   *(undefined8 *)(lVar1 + 0x520) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x500) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x500) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x508) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -36924,7 +36924,7 @@ void Unwind_180904270(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x508) = 0;
   *(undefined4 *)(lVar1 + 0x518) = 0;
   *(undefined8 *)(lVar1 + 0x500) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x4e0) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x4e0) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x4e8) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -36932,7 +36932,7 @@ void Unwind_180904270(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x4e8) = 0;
   *(undefined4 *)(lVar1 + 0x4f8) = 0;
   *(undefined8 *)(lVar1 + 0x4e0) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x4c0) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x4c0) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x4c8) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -36940,7 +36940,7 @@ void Unwind_180904270(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x4c8) = 0;
   *(undefined4 *)(lVar1 + 0x4d8) = 0;
   *(undefined8 *)(lVar1 + 0x4c0) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x4a0) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x4a0) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x4a8) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -36962,7 +36962,7 @@ void Unwind_180904290(undefined8 param_1,longlong param_2,undefined8 param_3,und
   if (*(code **)(lVar1 + 0x610) != (code *)0x0) {
     (**(code **)(lVar1 + 0x610))(lVar1 + 0x600,0,0,param_4,0xfffffffffffffffe);
   }
-  *(undefined8 *)(lVar1 + 0x5e0) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x5e0) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x5e8) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -36970,7 +36970,7 @@ void Unwind_180904290(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x5e8) = 0;
   *(undefined4 *)(lVar1 + 0x5f8) = 0;
   *(undefined8 *)(lVar1 + 0x5e0) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x5c0) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x5c0) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x5c8) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -36978,7 +36978,7 @@ void Unwind_180904290(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x5c8) = 0;
   *(undefined4 *)(lVar1 + 0x5d8) = 0;
   *(undefined8 *)(lVar1 + 0x5c0) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x5a0) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x5a0) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x5a8) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -36986,7 +36986,7 @@ void Unwind_180904290(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x5a8) = 0;
   *(undefined4 *)(lVar1 + 0x5b8) = 0;
   *(undefined8 *)(lVar1 + 0x5a0) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x580) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x580) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x588) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -36994,7 +36994,7 @@ void Unwind_180904290(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x588) = 0;
   *(undefined4 *)(lVar1 + 0x598) = 0;
   *(undefined8 *)(lVar1 + 0x580) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x560) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x560) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x568) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -37016,7 +37016,7 @@ void Unwind_1809042b0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   if (*(code **)(lVar1 + 0x6d0) != (code *)0x0) {
     (**(code **)(lVar1 + 0x6d0))(lVar1 + 0x6c0,0,0,param_4,0xfffffffffffffffe);
   }
-  *(undefined8 *)(lVar1 + 0x6a0) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x6a0) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x6a8) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -37024,7 +37024,7 @@ void Unwind_1809042b0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x6a8) = 0;
   *(undefined4 *)(lVar1 + 0x6b8) = 0;
   *(undefined8 *)(lVar1 + 0x6a0) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x680) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x680) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x688) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -37032,7 +37032,7 @@ void Unwind_1809042b0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x688) = 0;
   *(undefined4 *)(lVar1 + 0x698) = 0;
   *(undefined8 *)(lVar1 + 0x680) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x660) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x660) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x668) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -37040,7 +37040,7 @@ void Unwind_1809042b0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x668) = 0;
   *(undefined4 *)(lVar1 + 0x678) = 0;
   *(undefined8 *)(lVar1 + 0x660) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x640) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x640) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x648) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -37048,7 +37048,7 @@ void Unwind_1809042b0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x648) = 0;
   *(undefined4 *)(lVar1 + 0x658) = 0;
   *(undefined8 *)(lVar1 + 0x640) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x620) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x620) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x628) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -37070,7 +37070,7 @@ void Unwind_1809042d0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   if (*(code **)(lVar1 + 0x790) != (code *)0x0) {
     (**(code **)(lVar1 + 0x790))(lVar1 + 0x780,0,0,param_4,0xfffffffffffffffe);
   }
-  *(undefined8 *)(lVar1 + 0x760) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x760) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x768) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -37078,7 +37078,7 @@ void Unwind_1809042d0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x768) = 0;
   *(undefined4 *)(lVar1 + 0x778) = 0;
   *(undefined8 *)(lVar1 + 0x760) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x740) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x740) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x748) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -37086,7 +37086,7 @@ void Unwind_1809042d0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x748) = 0;
   *(undefined4 *)(lVar1 + 0x758) = 0;
   *(undefined8 *)(lVar1 + 0x740) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x720) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x720) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x728) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -37094,7 +37094,7 @@ void Unwind_1809042d0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x728) = 0;
   *(undefined4 *)(lVar1 + 0x738) = 0;
   *(undefined8 *)(lVar1 + 0x720) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x700) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x700) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x708) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -37102,7 +37102,7 @@ void Unwind_1809042d0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x708) = 0;
   *(undefined4 *)(lVar1 + 0x718) = 0;
   *(undefined8 *)(lVar1 + 0x700) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x6e0) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x6e0) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x6e8) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -37124,7 +37124,7 @@ void Unwind_1809042f0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   if (*(code **)(lVar1 + 0x850) != (code *)0x0) {
     (**(code **)(lVar1 + 0x850))(lVar1 + 0x840,0,0,param_4,0xfffffffffffffffe);
   }
-  *(undefined8 *)(lVar1 + 0x820) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x820) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x828) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -37132,7 +37132,7 @@ void Unwind_1809042f0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x828) = 0;
   *(undefined4 *)(lVar1 + 0x838) = 0;
   *(undefined8 *)(lVar1 + 0x820) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x800) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x800) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x808) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -37140,7 +37140,7 @@ void Unwind_1809042f0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x808) = 0;
   *(undefined4 *)(lVar1 + 0x818) = 0;
   *(undefined8 *)(lVar1 + 0x800) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x7e0) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x7e0) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x7e8) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -37148,7 +37148,7 @@ void Unwind_1809042f0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x7e8) = 0;
   *(undefined4 *)(lVar1 + 0x7f8) = 0;
   *(undefined8 *)(lVar1 + 0x7e0) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x7c0) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x7c0) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x7c8) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -37156,7 +37156,7 @@ void Unwind_1809042f0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x7c8) = 0;
   *(undefined4 *)(lVar1 + 0x7d8) = 0;
   *(undefined8 *)(lVar1 + 0x7c0) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x7a0) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x7a0) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x7a8) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -37178,7 +37178,7 @@ void Unwind_180904310(undefined8 param_1,longlong param_2,undefined8 param_3,und
   if (*(code **)(lVar1 + 0x910) != (code *)0x0) {
     (**(code **)(lVar1 + 0x910))(lVar1 + 0x900,0,0,param_4,0xfffffffffffffffe);
   }
-  *(undefined8 *)(lVar1 + 0x8e0) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x8e0) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x8e8) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -37186,7 +37186,7 @@ void Unwind_180904310(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x8e8) = 0;
   *(undefined4 *)(lVar1 + 0x8f8) = 0;
   *(undefined8 *)(lVar1 + 0x8e0) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x8c0) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x8c0) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x8c8) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -37194,7 +37194,7 @@ void Unwind_180904310(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x8c8) = 0;
   *(undefined4 *)(lVar1 + 0x8d8) = 0;
   *(undefined8 *)(lVar1 + 0x8c0) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x8a0) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x8a0) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x8a8) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -37202,7 +37202,7 @@ void Unwind_180904310(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x8a8) = 0;
   *(undefined4 *)(lVar1 + 0x8b8) = 0;
   *(undefined8 *)(lVar1 + 0x8a0) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x880) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x880) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x888) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -37210,7 +37210,7 @@ void Unwind_180904310(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x888) = 0;
   *(undefined4 *)(lVar1 + 0x898) = 0;
   *(undefined8 *)(lVar1 + 0x880) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x860) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x860) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x868) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -37232,7 +37232,7 @@ void Unwind_180904330(undefined8 param_1,longlong param_2,undefined8 param_3,und
   if (*(code **)(lVar1 + 0x9d0) != (code *)0x0) {
     (**(code **)(lVar1 + 0x9d0))(lVar1 + 0x9c0,0,0,param_4,0xfffffffffffffffe);
   }
-  *(undefined8 *)(lVar1 + 0x9a0) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x9a0) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x9a8) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -37240,7 +37240,7 @@ void Unwind_180904330(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x9a8) = 0;
   *(undefined4 *)(lVar1 + 0x9b8) = 0;
   *(undefined8 *)(lVar1 + 0x9a0) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x980) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x980) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x988) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -37248,7 +37248,7 @@ void Unwind_180904330(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x988) = 0;
   *(undefined4 *)(lVar1 + 0x998) = 0;
   *(undefined8 *)(lVar1 + 0x980) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x960) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x960) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x968) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -37256,7 +37256,7 @@ void Unwind_180904330(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x968) = 0;
   *(undefined4 *)(lVar1 + 0x978) = 0;
   *(undefined8 *)(lVar1 + 0x960) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x940) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x940) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x948) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -37264,7 +37264,7 @@ void Unwind_180904330(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x948) = 0;
   *(undefined4 *)(lVar1 + 0x958) = 0;
   *(undefined8 *)(lVar1 + 0x940) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x920) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x920) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x928) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -37286,7 +37286,7 @@ void Unwind_180904350(undefined8 param_1,longlong param_2,undefined8 param_3,und
   if (*(code **)(lVar1 + 0xa90) != (code *)0x0) {
     (**(code **)(lVar1 + 0xa90))(lVar1 + 0xa80,0,0,param_4,0xfffffffffffffffe);
   }
-  *(undefined8 *)(lVar1 + 0xa60) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0xa60) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0xa68) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -37294,7 +37294,7 @@ void Unwind_180904350(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0xa68) = 0;
   *(undefined4 *)(lVar1 + 0xa78) = 0;
   *(undefined8 *)(lVar1 + 0xa60) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0xa40) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0xa40) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0xa48) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -37302,7 +37302,7 @@ void Unwind_180904350(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0xa48) = 0;
   *(undefined4 *)(lVar1 + 0xa58) = 0;
   *(undefined8 *)(lVar1 + 0xa40) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0xa20) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0xa20) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0xa28) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -37310,7 +37310,7 @@ void Unwind_180904350(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0xa28) = 0;
   *(undefined4 *)(lVar1 + 0xa38) = 0;
   *(undefined8 *)(lVar1 + 0xa20) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0xa00) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0xa00) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0xa08) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -37318,7 +37318,7 @@ void Unwind_180904350(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0xa08) = 0;
   *(undefined4 *)(lVar1 + 0xa18) = 0;
   *(undefined8 *)(lVar1 + 0xa00) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x9e0) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x9e0) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x9e8) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -37340,7 +37340,7 @@ void Unwind_180904370(undefined8 param_1,longlong param_2,undefined8 param_3,und
   if (*(code **)(lVar1 + 0xb50) != (code *)0x0) {
     (**(code **)(lVar1 + 0xb50))(lVar1 + 0xb40,0,0,param_4,0xfffffffffffffffe);
   }
-  *(undefined8 *)(lVar1 + 0xb20) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0xb20) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0xb28) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -37348,7 +37348,7 @@ void Unwind_180904370(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0xb28) = 0;
   *(undefined4 *)(lVar1 + 0xb38) = 0;
   *(undefined8 *)(lVar1 + 0xb20) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0xb00) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0xb00) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0xb08) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -37356,7 +37356,7 @@ void Unwind_180904370(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0xb08) = 0;
   *(undefined4 *)(lVar1 + 0xb18) = 0;
   *(undefined8 *)(lVar1 + 0xb00) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0xae0) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0xae0) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0xae8) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -37364,7 +37364,7 @@ void Unwind_180904370(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0xae8) = 0;
   *(undefined4 *)(lVar1 + 0xaf8) = 0;
   *(undefined8 *)(lVar1 + 0xae0) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0xac0) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0xac0) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0xac8) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -37372,7 +37372,7 @@ void Unwind_180904370(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0xac8) = 0;
   *(undefined4 *)(lVar1 + 0xad8) = 0;
   *(undefined8 *)(lVar1 + 0xac0) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0xaa0) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0xaa0) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0xaa8) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -37394,7 +37394,7 @@ void Unwind_180904390(undefined8 param_1,longlong param_2,undefined8 param_3,und
   if (*(code **)(lVar1 + 0xc10) != (code *)0x0) {
     (**(code **)(lVar1 + 0xc10))(lVar1 + 0xc00,0,0,param_4,0xfffffffffffffffe);
   }
-  *(undefined8 *)(lVar1 + 0xbe0) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0xbe0) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0xbe8) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -37402,7 +37402,7 @@ void Unwind_180904390(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0xbe8) = 0;
   *(undefined4 *)(lVar1 + 0xbf8) = 0;
   *(undefined8 *)(lVar1 + 0xbe0) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0xbc0) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0xbc0) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0xbc8) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -37410,7 +37410,7 @@ void Unwind_180904390(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0xbc8) = 0;
   *(undefined4 *)(lVar1 + 0xbd8) = 0;
   *(undefined8 *)(lVar1 + 0xbc0) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0xba0) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0xba0) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0xba8) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -37418,7 +37418,7 @@ void Unwind_180904390(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0xba8) = 0;
   *(undefined4 *)(lVar1 + 3000) = 0;
   *(undefined8 *)(lVar1 + 0xba0) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0xb80) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0xb80) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0xb88) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -37426,7 +37426,7 @@ void Unwind_180904390(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0xb88) = 0;
   *(undefined4 *)(lVar1 + 0xb98) = 0;
   *(undefined8 *)(lVar1 + 0xb80) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0xb60) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0xb60) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0xb68) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -37448,7 +37448,7 @@ void Unwind_1809043b0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   if (*(code **)(lVar1 + 0xcd0) != (code *)0x0) {
     (**(code **)(lVar1 + 0xcd0))(lVar1 + 0xcc0,0,0,param_4,0xfffffffffffffffe);
   }
-  *(undefined8 *)(lVar1 + 0xca0) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0xca0) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0xca8) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -37456,7 +37456,7 @@ void Unwind_1809043b0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0xca8) = 0;
   *(undefined4 *)(lVar1 + 0xcb8) = 0;
   *(undefined8 *)(lVar1 + 0xca0) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0xc80) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0xc80) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0xc88) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -37464,7 +37464,7 @@ void Unwind_1809043b0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0xc88) = 0;
   *(undefined4 *)(lVar1 + 0xc98) = 0;
   *(undefined8 *)(lVar1 + 0xc80) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0xc60) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0xc60) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0xc68) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -37472,7 +37472,7 @@ void Unwind_1809043b0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0xc68) = 0;
   *(undefined4 *)(lVar1 + 0xc78) = 0;
   *(undefined8 *)(lVar1 + 0xc60) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0xc40) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0xc40) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0xc48) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -37480,7 +37480,7 @@ void Unwind_1809043b0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0xc48) = 0;
   *(undefined4 *)(lVar1 + 0xc58) = 0;
   *(undefined8 *)(lVar1 + 0xc40) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0xc20) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0xc20) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0xc28) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -37502,7 +37502,7 @@ void Unwind_1809043d0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   if (*(code **)(lVar1 + 0xd40) != (code *)0x0) {
     (**(code **)(lVar1 + 0xd40))(lVar1 + 0xd30,0,0,param_4,0xfffffffffffffffe);
   }
-  *(undefined8 *)(lVar1 + 0xd08) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0xd08) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0xd10) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -37510,7 +37510,7 @@ void Unwind_1809043d0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0xd10) = 0;
   *(undefined4 *)(lVar1 + 0xd20) = 0;
   *(undefined8 *)(lVar1 + 0xd08) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0xce8) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0xce8) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0xcf0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -37532,7 +37532,7 @@ void Unwind_1809043f0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   if (*(code **)(lVar1 + 0xdb0) != (code *)0x0) {
     (**(code **)(lVar1 + 0xdb0))(lVar1 + 0xda0,0,0,param_4,0xfffffffffffffffe);
   }
-  *(undefined8 *)(lVar1 + 0xd78) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0xd78) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0xd80) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -37540,7 +37540,7 @@ void Unwind_1809043f0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0xd80) = 0;
   *(undefined4 *)(lVar1 + 0xd90) = 0;
   *(undefined8 *)(lVar1 + 0xd78) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0xd58) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0xd58) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0xd60) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -37562,7 +37562,7 @@ void Unwind_180904410(undefined8 param_1,longlong param_2,undefined8 param_3,und
   if (*(code **)(lVar1 + 0xe20) != (code *)0x0) {
     (**(code **)(lVar1 + 0xe20))(lVar1 + 0xe10,0,0,param_4,0xfffffffffffffffe);
   }
-  *(undefined8 *)(lVar1 + 0xde8) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0xde8) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0xdf0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -37570,7 +37570,7 @@ void Unwind_180904410(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0xdf0) = 0;
   *(undefined4 *)(lVar1 + 0xe00) = 0;
   *(undefined8 *)(lVar1 + 0xde8) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0xdc8) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0xdc8) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0xdd0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -37592,7 +37592,7 @@ void Unwind_180904430(undefined8 param_1,longlong param_2,undefined8 param_3,und
   if (*(code **)(lVar1 + 0xee0) != (code *)0x0) {
     (**(code **)(lVar1 + 0xee0))(lVar1 + 0xed0,0,0,param_4,0xfffffffffffffffe);
   }
-  *(undefined8 *)(lVar1 + 0xeb0) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0xeb0) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0xeb8) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -37600,7 +37600,7 @@ void Unwind_180904430(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0xeb8) = 0;
   *(undefined4 *)(lVar1 + 0xec8) = 0;
   *(undefined8 *)(lVar1 + 0xeb0) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0xe90) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0xe90) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0xe98) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -37608,7 +37608,7 @@ void Unwind_180904430(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0xe98) = 0;
   *(undefined4 *)(lVar1 + 0xea8) = 0;
   *(undefined8 *)(lVar1 + 0xe90) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0xe70) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0xe70) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0xe78) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -37616,7 +37616,7 @@ void Unwind_180904430(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0xe78) = 0;
   *(undefined4 *)(lVar1 + 0xe88) = 0;
   *(undefined8 *)(lVar1 + 0xe70) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0xe50) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0xe50) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0xe58) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -37624,7 +37624,7 @@ void Unwind_180904430(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0xe58) = 0;
   *(undefined4 *)(lVar1 + 0xe68) = 0;
   *(undefined8 *)(lVar1 + 0xe50) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0xe30) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0xe30) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0xe38) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -37646,7 +37646,7 @@ void Unwind_180904450(undefined8 param_1,longlong param_2,undefined8 param_3,und
   if (*(code **)(lVar1 + 4000) != (code *)0x0) {
     (**(code **)(lVar1 + 4000))(lVar1 + 0xf90,0,0,param_4,0xfffffffffffffffe);
   }
-  *(undefined8 *)(lVar1 + 0xf70) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0xf70) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0xf78) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -37654,7 +37654,7 @@ void Unwind_180904450(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0xf78) = 0;
   *(undefined4 *)(lVar1 + 0xf88) = 0;
   *(undefined8 *)(lVar1 + 0xf70) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0xf50) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0xf50) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0xf58) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -37662,7 +37662,7 @@ void Unwind_180904450(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0xf58) = 0;
   *(undefined4 *)(lVar1 + 0xf68) = 0;
   *(undefined8 *)(lVar1 + 0xf50) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0xf30) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0xf30) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0xf38) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -37670,7 +37670,7 @@ void Unwind_180904450(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0xf38) = 0;
   *(undefined4 *)(lVar1 + 0xf48) = 0;
   *(undefined8 *)(lVar1 + 0xf30) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0xf10) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0xf10) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0xf18) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -37678,7 +37678,7 @@ void Unwind_180904450(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0xf18) = 0;
   *(undefined4 *)(lVar1 + 0xf28) = 0;
   *(undefined8 *)(lVar1 + 0xf10) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0xef0) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0xef0) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0xef8) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -37700,7 +37700,7 @@ void Unwind_180904470(undefined8 param_1,longlong param_2,undefined8 param_3,und
   if (*(code **)(lVar1 + 0x1060) != (code *)0x0) {
     (**(code **)(lVar1 + 0x1060))(lVar1 + 0x1050,0,0,param_4,0xfffffffffffffffe);
   }
-  *(undefined8 *)(lVar1 + 0x1030) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x1030) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x1038) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -37708,7 +37708,7 @@ void Unwind_180904470(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x1038) = 0;
   *(undefined4 *)(lVar1 + 0x1048) = 0;
   *(undefined8 *)(lVar1 + 0x1030) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x1010) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x1010) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x1018) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -37716,7 +37716,7 @@ void Unwind_180904470(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x1018) = 0;
   *(undefined4 *)(lVar1 + 0x1028) = 0;
   *(undefined8 *)(lVar1 + 0x1010) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0xff0) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0xff0) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0xff8) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -37724,7 +37724,7 @@ void Unwind_180904470(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0xff8) = 0;
   *(undefined4 *)(lVar1 + 0x1008) = 0;
   *(undefined8 *)(lVar1 + 0xff0) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0xfd0) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0xfd0) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0xfd8) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -37732,7 +37732,7 @@ void Unwind_180904470(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0xfd8) = 0;
   *(undefined4 *)(lVar1 + 0xfe8) = 0;
   *(undefined8 *)(lVar1 + 0xfd0) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0xfb0) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0xfb0) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0xfb8) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -37754,7 +37754,7 @@ void Unwind_180904490(undefined8 param_1,longlong param_2,undefined8 param_3,und
   if (*(code **)(lVar1 + 0x10d0) != (code *)0x0) {
     (**(code **)(lVar1 + 0x10d0))(lVar1 + 0x10c0,0,0,param_4,0xfffffffffffffffe);
   }
-  *(undefined8 *)(lVar1 + 0x1098) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x1098) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x10a0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -37762,7 +37762,7 @@ void Unwind_180904490(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x10a0) = 0;
   *(undefined4 *)(lVar1 + 0x10b0) = 0;
   *(undefined8 *)(lVar1 + 0x1098) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x1078) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x1078) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x1080) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -37784,7 +37784,7 @@ void Unwind_1809044b0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   if (*(code **)(lVar1 + 0x1140) != (code *)0x0) {
     (**(code **)(lVar1 + 0x1140))(lVar1 + 0x1130,0,0,param_4,0xfffffffffffffffe);
   }
-  *(undefined8 *)(lVar1 + 0x1108) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x1108) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x1110) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -37792,7 +37792,7 @@ void Unwind_1809044b0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x1110) = 0;
   *(undefined4 *)(lVar1 + 0x1120) = 0;
   *(undefined8 *)(lVar1 + 0x1108) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x10e8) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x10e8) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x10f0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -37814,7 +37814,7 @@ void Unwind_1809044d0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   if (*(code **)(lVar1 + 0x11b0) != (code *)0x0) {
     (**(code **)(lVar1 + 0x11b0))(lVar1 + 0x11a0,0,0,param_4,0xfffffffffffffffe);
   }
-  *(undefined8 *)(lVar1 + 0x1178) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x1178) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x1180) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -37822,7 +37822,7 @@ void Unwind_1809044d0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x1180) = 0;
   *(undefined4 *)(lVar1 + 0x1190) = 0;
   *(undefined8 *)(lVar1 + 0x1178) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x1158) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x1158) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x1160) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -37844,7 +37844,7 @@ void Unwind_1809044f0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   if (*(code **)(lVar1 + 0x1220) != (code *)0x0) {
     (**(code **)(lVar1 + 0x1220))(lVar1 + 0x1210,0,0,param_4,0xfffffffffffffffe);
   }
-  *(undefined8 *)(lVar1 + 0x11e8) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x11e8) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x11f0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -37852,7 +37852,7 @@ void Unwind_1809044f0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x11f0) = 0;
   *(undefined4 *)(lVar1 + 0x1200) = 0;
   *(undefined8 *)(lVar1 + 0x11e8) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x11c8) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x11c8) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x11d0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -37874,7 +37874,7 @@ void Unwind_180904510(undefined8 param_1,longlong param_2,undefined8 param_3,und
   if (*(code **)(lVar1 + 0x1290) != (code *)0x0) {
     (**(code **)(lVar1 + 0x1290))(lVar1 + 0x1280,0,0,param_4,0xfffffffffffffffe);
   }
-  *(undefined8 *)(lVar1 + 0x1258) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x1258) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x1260) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -37882,7 +37882,7 @@ void Unwind_180904510(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x1260) = 0;
   *(undefined4 *)(lVar1 + 0x1270) = 0;
   *(undefined8 *)(lVar1 + 0x1258) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x1238) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x1238) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x1240) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -37904,7 +37904,7 @@ void Unwind_180904530(undefined8 param_1,longlong param_2,undefined8 param_3,und
   if (*(code **)(lVar1 + 0x1300) != (code *)0x0) {
     (**(code **)(lVar1 + 0x1300))(lVar1 + 0x12f0,0,0,param_4,0xfffffffffffffffe);
   }
-  *(undefined8 *)(lVar1 + 0x12c8) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x12c8) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x12d0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -37912,7 +37912,7 @@ void Unwind_180904530(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x12d0) = 0;
   *(undefined4 *)(lVar1 + 0x12e0) = 0;
   *(undefined8 *)(lVar1 + 0x12c8) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x12a8) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x12a8) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x12b0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -37934,7 +37934,7 @@ void Unwind_180904550(undefined8 param_1,longlong param_2,undefined8 param_3,und
   if (*(code **)(lVar1 + 0x1370) != (code *)0x0) {
     (**(code **)(lVar1 + 0x1370))(lVar1 + 0x1360,0,0,param_4,0xfffffffffffffffe);
   }
-  *(undefined8 *)(lVar1 + 0x1338) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x1338) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x1340) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -37942,7 +37942,7 @@ void Unwind_180904550(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x1340) = 0;
   *(undefined4 *)(lVar1 + 0x1350) = 0;
   *(undefined8 *)(lVar1 + 0x1338) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x1318) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x1318) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x1320) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -38064,7 +38064,7 @@ void Unwind_180904630(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -38176,7 +38176,7 @@ void Unwind_1809046c0(undefined8 param_1,longlong param_2)
   longlong lVar1;
   
   lVar1 = *(longlong *)(param_2 + 0x40);
-  *(undefined8 *)(lVar1 + 0x18) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x18) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x20) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -38195,7 +38195,7 @@ void Unwind_1809046d0(undefined8 param_1,longlong param_2)
   longlong lVar1;
   
   lVar1 = *(longlong *)(param_2 + 0x60);
-  *(undefined8 *)(lVar1 + 0x18) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x18) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x20) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -38405,7 +38405,7 @@ void Unwind_180904810(undefined8 param_1,longlong param_2)
   longlong lVar1;
   
   lVar1 = *(longlong *)(param_2 + 0x60);
-  *(undefined8 *)(lVar1 + 0x40) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x40) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x48) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -38413,7 +38413,7 @@ void Unwind_180904810(undefined8 param_1,longlong param_2)
   *(undefined8 *)(lVar1 + 0x48) = 0;
   *(undefined4 *)(lVar1 + 0x58) = 0;
   *(undefined8 *)(lVar1 + 0x40) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x20) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x20) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x28) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -38432,7 +38432,7 @@ void Unwind_180904820(undefined8 param_1,longlong param_2)
   longlong lVar1;
   
   lVar1 = *(longlong *)(param_2 + 0x60);
-  *(undefined8 *)(lVar1 + 0x20) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x20) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x28) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -38469,7 +38469,7 @@ void Unwind_180904840(undefined8 param_1,longlong param_2)
 void Unwind_180904870(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined8 *)(param_2 + 0x50) = &UNK_180a3c3e0;
+  *(undefined8 *)(param_2 + 0x50) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(param_2 + 0x58) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -38552,7 +38552,7 @@ void Unwind_1809048e0(undefined8 param_1,longlong param_2)
   longlong lVar1;
   
   lVar1 = *(longlong *)(param_2 + 0x48);
-  *(undefined8 *)(lVar1 + 0x20) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x20) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x28) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -38571,7 +38571,7 @@ void Unwind_1809048f0(undefined8 param_1,longlong param_2)
   longlong lVar1;
   
   lVar1 = *(longlong *)(param_2 + 0x68);
-  *(undefined8 *)(lVar1 + 0x20) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x20) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x28) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -38626,7 +38626,7 @@ void Unwind_180904920(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -38662,7 +38662,7 @@ void Unwind_180904930(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -38742,7 +38742,7 @@ void Unwind_180904960(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(lVar5 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -38804,7 +38804,7 @@ void Unwind_180904970(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(lVar5 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -38866,7 +38866,7 @@ void Unwind_180904990(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(lVar5 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -38920,7 +38920,7 @@ void Unwind_1809049d0(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -38956,7 +38956,7 @@ void Unwind_1809049e0(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -38992,7 +38992,7 @@ void Unwind_1809049f0(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -39072,7 +39072,7 @@ void Unwind_180904a20(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(lVar5 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -39134,7 +39134,7 @@ void Unwind_180904a30(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(lVar5 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -39196,7 +39196,7 @@ void Unwind_180904a50(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(lVar5 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -39241,7 +39241,7 @@ void Unwind_180904a80(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -39277,7 +39277,7 @@ void Unwind_180904a90(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -39594,13 +39594,13 @@ void Unwind_180904dd0(undefined8 param_1,longlong param_2)
   undefined8 *presourceHash;
   
   presourceHash = *(undefined8 **)(param_2 + 0x40);
-  *presourceHash = &UNK_180a3cf50;
+  *presourceHash = &SystemResourceHandlerA;
   if (*(char *)((longlong)presourceHash + 0xb1) != '\0') {
     FUN_180639250();
   }
   _Mtx_destroy_in_situ();
-  *presourceHash = &UNK_180a30778;
-  presourceHash[7] = &UNK_180a3c3e0;
+  *presourceHash = &SystemResourceHandlerB;
+  presourceHash[7] = &SystemResourceHandlerTemplate;
   if (presourceHash[8] != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -39608,7 +39608,7 @@ void Unwind_180904dd0(undefined8 param_1,longlong param_2)
   presourceHash[8] = 0;
   *(undefined4 *)(presourceHash + 10) = 0;
   presourceHash[7] = &SystemDataStructure;
-  presourceHash[1] = &UNK_180a3c3e0;
+  presourceHash[1] = &SystemResourceHandlerTemplate;
   if (presourceHash[2] != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -39628,8 +39628,8 @@ void Unwind_180904de0(undefined8 param_1,longlong param_2)
   
   presourceHash = *(undefined8 **)(param_2 + 0x40);
   _Mtx_destroy_in_situ();
-  *presourceHash = &UNK_180a30778;
-  presourceHash[7] = &UNK_180a3c3e0;
+  *presourceHash = &SystemResourceHandlerB;
+  presourceHash[7] = &SystemResourceHandlerTemplate;
   if (presourceHash[8] != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -39637,7 +39637,7 @@ void Unwind_180904de0(undefined8 param_1,longlong param_2)
   presourceHash[8] = 0;
   *(undefined4 *)(presourceHash + 10) = 0;
   presourceHash[7] = &SystemDataStructure;
-  presourceHash[1] = &UNK_180a3c3e0;
+  presourceHash[1] = &SystemResourceHandlerTemplate;
   if (presourceHash[2] != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -39656,8 +39656,8 @@ void Unwind_180904df0(undefined8 param_1,longlong param_2)
   undefined8 *presourceHash;
   
   presourceHash = *(undefined8 **)(param_2 + 0x40);
-  *presourceHash = &UNK_180a30778;
-  presourceHash[7] = &UNK_180a3c3e0;
+  *presourceHash = &SystemResourceHandlerB;
+  presourceHash[7] = &SystemResourceHandlerTemplate;
   if (presourceHash[8] != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -39665,7 +39665,7 @@ void Unwind_180904df0(undefined8 param_1,longlong param_2)
   presourceHash[8] = 0;
   *(undefined4 *)(presourceHash + 10) = 0;
   presourceHash[7] = &SystemDataStructure;
-  presourceHash[1] = &UNK_180a3c3e0;
+  presourceHash[1] = &SystemResourceHandlerTemplate;
   if (presourceHash[2] != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -39817,7 +39817,7 @@ void Unwind_180904e70(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -39848,7 +39848,7 @@ void Unwind_180904eb0(undefined8 param_1,longlong param_2)
 {
   if ((*(uint *)(resourceData + 0x30) & 1) != 0) {
     *(uint *)(resourceData + 0x30) = *(uint *)(resourceData + 0x30) & 0xfffffffe;
-    FUN_180627b90(param_2 + 0x38);
+    ReleaseSystemResource(param_2 + 0x38);
   }
   return;
 }
@@ -39860,7 +39860,7 @@ void Unwind_180904ee0(undefined8 param_1,longlong param_2)
 {
   if ((*(uint *)(resourceData + 0x30) & 2) != 0) {
     *(uint *)(resourceData + 0x30) = *(uint *)(resourceData + 0x30) & 0xfffffffd;
-    FUN_180627b90(param_2 + 0x98);
+    ReleaseSystemResource(param_2 + 0x98);
   }
   return;
 }
@@ -39931,7 +39931,7 @@ void Unwind_180904f30(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -39950,7 +39950,7 @@ void Unwind_180904f40(undefined8 param_1,longlong param_2)
 {
   if ((*(uint *)(resourceData + 0x68) & 1) != 0) {
     *(uint *)(resourceData + 0x68) = *(uint *)(resourceData + 0x68) & 0xfffffffe;
-    FUN_180627b90(param_2 + 0x70);
+    ReleaseSystemResource(param_2 + 0x70);
   }
   return;
 }
@@ -39963,7 +39963,7 @@ void Unwind_180904f70(undefined8 param_1,longlong param_2)
   longlong lVar1;
   
   lVar1 = *(longlong *)(param_2 + 0x40);
-  *(undefined8 *)(lVar1 + 0x30) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x30) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x38) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -39982,7 +39982,7 @@ void Unwind_180904f80(undefined8 param_1,longlong param_2)
   undefined8 *presourceHash;
   
   presourceHash = *(undefined8 **)(param_2 + 0xa8);
-  *presourceHash = &UNK_180a3c3e0;
+  *presourceHash = &SystemResourceHandlerTemplate;
   if (presourceHash[1] != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -40059,7 +40059,7 @@ void Unwind_180904fb0(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -40076,7 +40076,7 @@ void Unwind_180904fb0(undefined8 param_1,longlong param_2)
 void Unwind_180904fc0(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined8 *)(param_2 + 0xb8) = &UNK_180a3c3e0;
+  *(undefined8 *)(param_2 + 0xb8) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(param_2 + 0xc0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -40130,7 +40130,7 @@ void Unwind_180904fe0(undefined8 param_1,longlong param_2)
 void Unwind_180904ff0(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined8 *)(param_2 + 0xd8) = &UNK_180a3c3e0;
+  *(undefined8 *)(param_2 + 0xd8) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(param_2 + 0xe0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -40163,7 +40163,7 @@ void Unwind_180905000(undefined8 param_1,longlong param_2)
 void Unwind_180905010(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined8 *)(param_2 + 0xf8) = &UNK_180a3c3e0;
+  *(undefined8 *)(param_2 + 0xf8) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(param_2 + 0x100) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -40219,7 +40219,7 @@ void Unwind_180905030(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -40276,7 +40276,7 @@ void Unwind_180905050(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -40332,7 +40332,7 @@ void Unwind_180905090(undefined8 param_1,longlong param_2)
 void Unwind_1809050c0(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined8 *)(param_2 + 0x1e8) = &UNK_180a3c3e0;
+  *(undefined8 *)(param_2 + 0x1e8) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(param_2 + 0x1f0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -40365,7 +40365,7 @@ void Unwind_1809050d0(undefined8 param_1,longlong param_2)
 void Unwind_1809050e0(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined8 *)(param_2 + 0x168) = &UNK_180a3c3e0;
+  *(undefined8 *)(param_2 + 0x168) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(param_2 + 0x170) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -40381,7 +40381,7 @@ void Unwind_1809050e0(undefined8 param_1,longlong param_2)
 void Unwind_1809050f0(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined8 *)(param_2 + 0x1a8) = &UNK_180a3c3e0;
+  *(undefined8 *)(param_2 + 0x1a8) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(param_2 + 0x1b0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -40397,7 +40397,7 @@ void Unwind_1809050f0(undefined8 param_1,longlong param_2)
 void Unwind_180905100(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined8 *)(param_2 + 0x188) = &UNK_180a3c3e0;
+  *(undefined8 *)(param_2 + 0x188) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(param_2 + 400) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -40473,7 +40473,7 @@ void Unwind_180905140(undefined8 param_1,longlong param_2)
 void Unwind_180905150(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined8 *)(param_2 + 0x128) = &UNK_180a3c3e0;
+  *(undefined8 *)(param_2 + 0x128) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(param_2 + 0x130) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -40531,7 +40531,7 @@ void Unwind_180905170(undefined8 param_1,longlong param_2,undefined8 param_3,und
 void Unwind_180905180(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined8 *)(param_2 + 200) = &UNK_180a3c3e0;
+  *(undefined8 *)(param_2 + 200) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(param_2 + 0xd0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -40547,7 +40547,7 @@ void Unwind_180905180(undefined8 param_1,longlong param_2)
 void Unwind_180905190(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined8 *)(param_2 + 0x1c8) = &UNK_180a3c3e0;
+  *(undefined8 *)(param_2 + 0x1c8) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(param_2 + 0x1d0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -40633,7 +40633,7 @@ void Unwind_180905200(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -40690,7 +40690,7 @@ void Unwind_180905220(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -40765,7 +40765,7 @@ void Unwind_180905260(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -40822,7 +40822,7 @@ void Unwind_180905280(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -40868,7 +40868,7 @@ void Unwind_1809052c0(undefined8 param_1,longlong param_2)
 {
   if ((*(uint *)(resourceData + 0x20) & 1) != 0) {
     *(uint *)(resourceData + 0x20) = *(uint *)(resourceData + 0x20) & 0xfffffffe;
-    FUN_180627b90(param_2 + 0x70);
+    ReleaseSystemResource(param_2 + 0x70);
   }
   return;
 }
@@ -40880,7 +40880,7 @@ void Unwind_1809052f0(undefined8 param_1,longlong param_2)
 {
   if ((*(uint *)(resourceData + 0x20) & 2) != 0) {
     *(uint *)(resourceData + 0x20) = *(uint *)(resourceData + 0x20) & 0xfffffffd;
-    FUN_180627b90(param_2 + 0x50);
+    ReleaseSystemResource(param_2 + 0x50);
   }
   return;
 }
@@ -40892,7 +40892,7 @@ void Unwind_180905320(undefined8 param_1,longlong param_2)
 {
   if ((*(uint *)(resourceData + 0x20) & 1) != 0) {
     *(uint *)(resourceData + 0x20) = *(uint *)(resourceData + 0x20) & 0xfffffffe;
-    FUN_180627b90(param_2 + 0x48);
+    ReleaseSystemResource(param_2 + 0x48);
   }
   return;
 }
@@ -40905,7 +40905,7 @@ void Unwind_180905350(undefined8 param_1,longlong param_2)
   undefined8 *presourceHash;
   
   presourceHash = *(undefined8 **)(param_2 + 0x150);
-  *presourceHash = &UNK_180a3c3e0;
+  *presourceHash = &SystemResourceHandlerTemplate;
   if (presourceHash[1] != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -40921,7 +40921,7 @@ void Unwind_180905350(undefined8 param_1,longlong param_2)
 void Unwind_180905360(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined8 *)(param_2 + 0x108) = &UNK_180a3c3e0;
+  *(undefined8 *)(param_2 + 0x108) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(param_2 + 0x110) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -40965,7 +40965,7 @@ void Unwind_180905380(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -41235,7 +41235,7 @@ void Unwind_1809054b0(undefined8 param_1,longlong param_2)
 void Unwind_1809054c0(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined8 *)(param_2 + 0x90) = &UNK_180a3c3e0;
+  *(undefined8 *)(param_2 + 0x90) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(param_2 + 0x98) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -41251,7 +41251,7 @@ void Unwind_1809054c0(undefined8 param_1,longlong param_2)
 void Unwind_1809054d0(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined8 *)(param_2 + 0x90) = &UNK_180a3c3e0;
+  *(undefined8 *)(param_2 + 0x90) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(param_2 + 0x98) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -41332,7 +41332,7 @@ void Unwind_180905540(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -41395,7 +41395,7 @@ void Unwind_1809055b0(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -41431,7 +41431,7 @@ void Unwind_1809055c0(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -41826,7 +41826,7 @@ void Unwind_1809057c0(undefined8 param_1,longlong param_2)
   longlong lVar1;
   
   lVar1 = *(longlong *)(param_2 + 0x40);
-  *(undefined8 *)(lVar1 + 0xc0) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0xc0) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 200) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -41842,7 +41842,7 @@ void Unwind_1809057c0(undefined8 param_1,longlong param_2)
 void Unwind_1809057e0(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined8 *)(param_2 + 0x100) = &UNK_180a3c3e0;
+  *(undefined8 *)(param_2 + 0x100) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(param_2 + 0x108) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -41850,7 +41850,7 @@ void Unwind_1809057e0(undefined8 param_1,longlong param_2)
   *(undefined8 *)(param_2 + 0x108) = 0;
   *(undefined4 *)(param_2 + 0x118) = 0;
   *(undefined8 *)(param_2 + 0x100) = &SystemDataStructure;
-  *(undefined8 *)(param_2 + 0xe0) = &UNK_180a3c3e0;
+  *(undefined8 *)(param_2 + 0xe0) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(param_2 + 0xe8) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -41858,7 +41858,7 @@ void Unwind_1809057e0(undefined8 param_1,longlong param_2)
   *(undefined8 *)(param_2 + 0xe8) = 0;
   *(undefined4 *)(param_2 + 0xf8) = 0;
   *(undefined8 *)(param_2 + 0xe0) = &SystemDataStructure;
-  *(undefined8 *)(param_2 + 0xb8) = &UNK_180a3c3e0;
+  *(undefined8 *)(param_2 + 0xb8) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(param_2 + 0xc0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -41866,7 +41866,7 @@ void Unwind_1809057e0(undefined8 param_1,longlong param_2)
   *(undefined8 *)(param_2 + 0xc0) = 0;
   *(undefined4 *)(param_2 + 0xd0) = 0;
   *(undefined8 *)(param_2 + 0xb8) = &SystemDataStructure;
-  *(undefined8 *)(param_2 + 0x98) = &UNK_180a3c3e0;
+  *(undefined8 *)(param_2 + 0x98) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(param_2 + 0xa0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -42023,7 +42023,7 @@ void Unwind_180905880(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -42047,7 +42047,7 @@ void Unwind_180905890(undefined8 param_1,longlong param_2)
   presourceTable = *(longlong **)(param_2 + 0x2e0);
   lVar1 = presourceTable[1];
   for (resourceIndex = *presourceTable; resourceIndex != lVar1; resourceIndex = resourceIndex + 0x28) {
-    *(undefined8 *)(resourceIndex + 8) = &UNK_180a3c3e0;
+    *(undefined8 *)(resourceIndex + 8) = &SystemResourceHandlerTemplate;
     if (*(longlong *)(resourceIndex + 0x10) != 0) {
                     // WARNING: Subroutine does not return
       ExecuteSystemEmergencyExit();
@@ -42121,7 +42121,7 @@ void Unwind_1809058c0(undefined8 param_1,longlong param_2)
   presourceTable = *(longlong **)(param_2 + 0x2e8);
   lVar1 = presourceTable[1];
   for (resourceIndex = *presourceTable; resourceIndex != lVar1; resourceIndex = resourceIndex + 0x28) {
-    *(undefined8 *)(resourceIndex + 8) = &UNK_180a3c3e0;
+    *(undefined8 *)(resourceIndex + 8) = &SystemResourceHandlerTemplate;
     if (*(longlong *)(resourceIndex + 0x10) != 0) {
                     // WARNING: Subroutine does not return
       ExecuteSystemEmergencyExit();
@@ -42142,7 +42142,7 @@ void Unwind_1809058c0(undefined8 param_1,longlong param_2)
 void Unwind_1809058d0(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined8 *)(param_2 + 0x200) = &UNK_180a3c3e0;
+  *(undefined8 *)(param_2 + 0x200) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(param_2 + 0x208) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -42274,7 +42274,7 @@ void Unwind_180905940(undefined8 param_1,longlong param_2)
         piVar1 = (int *)(lVar4 + 0x18);
         *piVar1 = *piVar1 + -1;
         if (*piVar1 == 0) {
-          FUN_18064d630();
+          SystemCleanupHandler();
           return;
         }
       }
@@ -42450,7 +42450,7 @@ void Unwind_180905980(undefined8 param_1,longlong param_2)
   presourceTable = (longlong *)(*(longlong *)(param_2 + 0x2e8) + 0x280);
   presourceHash = *(undefined8 **)(*(longlong *)(param_2 + 0x2e8) + 0x288);
   for (puVar3 = (undefined8 *)*presourceTable; puVar3 != presourceHash; puVar3 = puVar3 + 5) {
-    *puVar3 = &UNK_180a3c3e0;
+    *puVar3 = &SystemResourceHandlerTemplate;
     if (puVar3[1] != 0) {
                     // WARNING: Subroutine does not return
       ExecuteSystemEmergencyExit();
@@ -42617,7 +42617,7 @@ void Unwind_180905a80(undefined8 param_1,longlong param_2)
 void Unwind_180905a90(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined8 *)(param_2 + 0x98) = &UNK_180a3c3e0;
+  *(undefined8 *)(param_2 + 0x98) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(param_2 + 0xa0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -42633,7 +42633,7 @@ void Unwind_180905a90(undefined8 param_1,longlong param_2)
 void Unwind_180905aa0(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined8 *)(param_2 + 0xb8) = &UNK_180a3c3e0;
+  *(undefined8 *)(param_2 + 0xb8) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(param_2 + 0xc0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -42649,7 +42649,7 @@ void Unwind_180905aa0(undefined8 param_1,longlong param_2)
 void Unwind_180905ab0(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined8 *)(param_2 + 0xe0) = &UNK_180a3c3e0;
+  *(undefined8 *)(param_2 + 0xe0) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(param_2 + 0xe8) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -42665,7 +42665,7 @@ void Unwind_180905ab0(undefined8 param_1,longlong param_2)
 void Unwind_180905ad0(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined8 *)(param_2 + 0x100) = &UNK_180a3c3e0;
+  *(undefined8 *)(param_2 + 0x100) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(param_2 + 0x108) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -42733,7 +42733,7 @@ void Unwind_180905b40(undefined8 param_1,longlong param_2)
   longlong lVar1;
   
   lVar1 = *(longlong *)(param_2 + 0x40);
-  *(undefined8 *)(lVar1 + 0x20) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x20) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x28) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -42819,7 +42819,7 @@ void CleanupExceptionUnwindResources(undefined8 param_1, longlong param_2)
       resourceCount = (int *)(resourceItem + 0x18);
       *resourceCount = *resourceCount + -1;
       if (*resourceCount == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -42925,7 +42925,7 @@ void Unwind_180905b90(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(lVar5 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -43178,7 +43178,7 @@ void Unwind_180905c50(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(lVar5 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -43347,7 +43347,7 @@ void Unwind_180905ca0(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(lVar5 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -43698,7 +43698,7 @@ void Unwind_180905ea0(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(lVar5 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -43801,7 +43801,7 @@ void Unwind_180905ef0(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(lVar5 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -43907,7 +43907,7 @@ void Unwind_180905f70(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(lVar5 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -44009,7 +44009,7 @@ void Unwind_180905fa0(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(lVar5 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -44091,7 +44091,7 @@ void Unwind_180905fe0(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(lVar5 + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -44371,7 +44371,7 @@ void Unwind_180906160(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -44407,7 +44407,7 @@ void Unwind_180906180(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -44443,7 +44443,7 @@ void Unwind_180906190(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -44535,7 +44535,7 @@ void Unwind_1809061f0(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -44565,7 +44565,7 @@ void Unwind_180906220(undefined8 param_1,longlong param_2)
 {
   if ((*(uint *)(resourceData + 0x40) & 1) != 0) {
     *(uint *)(resourceData + 0x40) = *(uint *)(resourceData + 0x40) & 0xfffffffe;
-    FUN_180627b90(param_2 + 0xa8);
+    ReleaseSystemResource(param_2 + 0xa8);
   }
   return;
 }
@@ -44577,7 +44577,7 @@ void Unwind_180906250(undefined8 param_1,longlong param_2)
 {
   if ((*(uint *)(resourceData + 0x44) & 1) != 0) {
     *(uint *)(resourceData + 0x44) = *(uint *)(resourceData + 0x44) & 0xfffffffe;
-    FUN_180627b90(param_2 + 200);
+    ReleaseSystemResource(param_2 + 200);
   }
   return;
 }
@@ -44589,7 +44589,7 @@ void Unwind_180906280(undefined8 param_1,longlong param_2)
 {
   if ((*(uint *)(resourceData + 0x44) & 2) != 0) {
     *(uint *)(resourceData + 0x44) = *(uint *)(resourceData + 0x44) & 0xfffffffd;
-    FUN_180627b90(param_2 + 0x88);
+    ReleaseSystemResource(param_2 + 0x88);
   }
   return;
 }
@@ -44599,7 +44599,7 @@ void Unwind_180906280(undefined8 param_1,longlong param_2)
 void Unwind_1809062b0(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined8 *)(param_2 + 0xb0) = &UNK_180a3c3e0;
+  *(undefined8 *)(param_2 + 0xb0) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(param_2 + 0xb8) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -44617,7 +44617,7 @@ void Unwind_1809062c0(undefined8 param_1,longlong param_2)
 {
   if ((*(uint *)(resourceData + 0x6c) & 1) != 0) {
     *(uint *)(resourceData + 0x6c) = *(uint *)(resourceData + 0x6c) & 0xfffffffe;
-    FUN_180627b90(param_2 + 0x108);
+    ReleaseSystemResource(param_2 + 0x108);
   }
   return;
 }
@@ -44629,7 +44629,7 @@ void Unwind_1809062f0(undefined8 param_1,longlong param_2)
 {
   if ((*(uint *)(resourceData + 0x6c) & 2) != 0) {
     *(uint *)(resourceData + 0x6c) = *(uint *)(resourceData + 0x6c) & 0xfffffffd;
-    FUN_180627b90(param_2 + 0xd0);
+    ReleaseSystemResource(param_2 + 0xd0);
   }
   return;
 }
@@ -44641,7 +44641,7 @@ void Unwind_180906320(undefined8 param_1,longlong param_2)
 {
   if ((*(uint *)(resourceData + 0x6c) & 4) != 0) {
     *(uint *)(resourceData + 0x6c) = *(uint *)(resourceData + 0x6c) & 0xfffffffb;
-    FUN_180627b90(param_2 + 0x70);
+    ReleaseSystemResource(param_2 + 0x70);
   }
   return;
 }
@@ -44662,7 +44662,7 @@ void Unwind_180906360(undefined8 param_1,longlong param_2)
 {
   if ((*(uint *)(resourceData + 0x54) & 1) != 0) {
     *(uint *)(resourceData + 0x54) = *(uint *)(resourceData + 0x54) & 0xfffffffe;
-    FUN_180627b90(param_2 + 0xe8);
+    ReleaseSystemResource(param_2 + 0xe8);
   }
   return;
 }
@@ -44674,7 +44674,7 @@ void Unwind_180906390(undefined8 param_1,longlong param_2)
 {
   if ((*(uint *)(resourceData + 0x54) & 2) != 0) {
     *(uint *)(resourceData + 0x54) = *(uint *)(resourceData + 0x54) & 0xfffffffd;
-    FUN_180627b90(param_2 + 0x98);
+    ReleaseSystemResource(param_2 + 0x98);
   }
   return;
 }
@@ -44686,7 +44686,7 @@ void Unwind_1809063c0(undefined8 param_1,longlong param_2)
 {
   if ((*(uint *)(resourceData + 0x54) & 4) != 0) {
     *(uint *)(resourceData + 0x54) = *(uint *)(resourceData + 0x54) & 0xfffffffb;
-    FUN_180627b90(param_2 + 0x58);
+    ReleaseSystemResource(param_2 + 0x58);
   }
   return;
 }
@@ -44719,7 +44719,7 @@ void Unwind_180906400(undefined8 param_1,longlong param_2)
 {
   if ((*(uint *)(resourceData + 0x30) & 1) != 0) {
     *(uint *)(resourceData + 0x30) = *(uint *)(resourceData + 0x30) & 0xfffffffe;
-    FUN_180627b90(param_2 + 0x98);
+    ReleaseSystemResource(param_2 + 0x98);
   }
   return;
 }
@@ -44731,7 +44731,7 @@ void Unwind_180906430(undefined8 param_1,longlong param_2)
 {
   if ((*(uint *)(resourceData + 0x30) & 2) != 0) {
     *(uint *)(resourceData + 0x30) = *(uint *)(resourceData + 0x30) & 0xfffffffd;
-    FUN_180627b90(param_2 + 0x38);
+    ReleaseSystemResource(param_2 + 0x38);
   }
   return;
 }
@@ -44781,7 +44781,7 @@ void Unwind_180906470(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -44819,7 +44819,7 @@ void Unwind_180906480(undefined8 param_1,longlong param_2)
   }
   *(undefined8 *)(param_2 + 0x78) = 0;
   FUN_180074a80();
-  *(undefined8 *)(param_2 + 0x30) = &UNK_180a3c3e0;
+  *(undefined8 *)(param_2 + 0x30) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(param_2 + 0x38) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -45527,7 +45527,7 @@ void Unwind_1809067b0(undefined8 param_1,longlong param_2)
   longlong lVar1;
   
   lVar1 = *(longlong *)(param_2 + 0x48);
-  *(undefined8 *)(lVar1 + 0x20) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x20) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x28) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -46060,7 +46060,7 @@ void Unwind_180906b10(undefined8 param_1,longlong param_2)
   
   presourceHash = *(undefined8 **)(param_2 + 0x90);
   for (pvalidationResult = *(undefined8 **)(param_2 + 0x88); pvalidationResult != presourceHash; pvalidationResult = pvalidationResult + 6) {
-    *pvalidationResult = &UNK_180a3c3e0;
+    *pvalidationResult = &SystemResourceHandlerTemplate;
     if (pvalidationResult[1] != 0) {
                     // WARNING: Subroutine does not return
       ExecuteSystemEmergencyExit();
@@ -46108,7 +46108,7 @@ void Unwind_180906b40(undefined8 param_1,longlong param_2)
   
   presourceHash = *(undefined8 **)(param_2 + 0x90);
   for (pvalidationResult = *(undefined8 **)(param_2 + 0x88); pvalidationResult != presourceHash; pvalidationResult = pvalidationResult + 6) {
-    *pvalidationResult = &UNK_180a3c3e0;
+    *pvalidationResult = &SystemResourceHandlerTemplate;
     if (pvalidationResult[1] != 0) {
                     // WARNING: Subroutine does not return
       ExecuteSystemEmergencyExit();
@@ -46148,7 +46148,7 @@ void Unwind_180906b50(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -46172,7 +46172,7 @@ void Unwind_180906b60(undefined8 param_1,longlong param_2)
   presourceTable = *(longlong **)(param_2 + 0x40);
   presourceHash = (undefined8 *)presourceTable[1];
   for (puVar3 = (undefined8 *)*presourceTable; puVar3 != presourceHash; puVar3 = puVar3 + 6) {
-    *puVar3 = &UNK_180a3c3e0;
+    *puVar3 = &SystemResourceHandlerTemplate;
     if (puVar3[1] != 0) {
                     // WARNING: Subroutine does not return
       ExecuteSystemEmergencyExit();
@@ -46273,7 +46273,7 @@ void Unwind_180906bb0(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -46309,7 +46309,7 @@ void Unwind_180906bc0(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -46426,7 +46426,7 @@ void Unwind_180906c50(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -46504,7 +46504,7 @@ void Unwind_180906c80(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -46540,7 +46540,7 @@ void Unwind_180906c90(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -46576,7 +46576,7 @@ void Unwind_180906ca0(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -46633,7 +46633,7 @@ void Unwind_180906cc0(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -46669,7 +46669,7 @@ void Unwind_180906cd0(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -46726,7 +46726,7 @@ void Unwind_180906cf0(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -46762,7 +46762,7 @@ void Unwind_180906d00(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -46798,7 +46798,7 @@ void Unwind_180906d10(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -46855,7 +46855,7 @@ void Unwind_180906d30(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -46891,7 +46891,7 @@ void Unwind_180906d40(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -46927,7 +46927,7 @@ void Unwind_180906d50(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -46963,7 +46963,7 @@ void Unwind_180906d60(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -46999,7 +46999,7 @@ void Unwind_180906d70(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -47035,7 +47035,7 @@ void Unwind_180906d80(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -47071,7 +47071,7 @@ void Unwind_180906d90(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -47107,7 +47107,7 @@ void Unwind_180906da0(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -47164,7 +47164,7 @@ void Unwind_180906dc0(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -48207,7 +48207,7 @@ void Unwind_180907350(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -48243,7 +48243,7 @@ void Unwind_180907360(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -48279,7 +48279,7 @@ void Unwind_180907370(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -48496,7 +48496,7 @@ void Unwind_1809074d0(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -48532,7 +48532,7 @@ void Unwind_1809074e0(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -48568,7 +48568,7 @@ void Unwind_1809074f0(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -48915,7 +48915,7 @@ void Unwind_180907700(undefined8 param_1,longlong param_2)
   longlong lVar1;
   
   lVar1 = *(longlong *)(param_2 + 0x40);
-  *(undefined8 *)(lVar1 + 0x20) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x20) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x28) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -48951,7 +48951,7 @@ void Unwind_180907710(undefined8 param_1,longlong param_2)
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  pvalidationResult[0xd] = &UNK_180a3c3e0;
+  pvalidationResult[0xd] = &SystemResourceHandlerTemplate;
   if (pvalidationResult[0xe] != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -49003,7 +49003,7 @@ void Unwind_180907740(undefined8 param_1,longlong param_2)
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  pvalidationResult[0xd] = &UNK_180a3c3e0;
+  pvalidationResult[0xd] = &SystemResourceHandlerTemplate;
   if (pvalidationResult[0xe] != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -49251,7 +49251,7 @@ void Unwind_180907880(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -49428,7 +49428,7 @@ void Unwind_180907950(undefined8 param_1,longlong param_2)
   undefined8 *presourceHash;
   
   presourceHash = *(undefined8 **)(param_2 + 0xb8);
-  *presourceHash = &UNK_180a3c3e0;
+  *presourceHash = &SystemResourceHandlerTemplate;
   if (presourceHash[1] != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -49447,7 +49447,7 @@ void Unwind_180907960(undefined8 param_1,longlong param_2)
   undefined8 *presourceHash;
   
   presourceHash = *(undefined8 **)(param_2 + 0xb0);
-  *presourceHash = &UNK_180a3c3e0;
+  *presourceHash = &SystemResourceHandlerTemplate;
   if (presourceHash[1] != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -49504,7 +49504,7 @@ void Unwind_1809079a0(undefined8 param_1,longlong param_2)
   longlong lVar1;
   
   lVar1 = *(longlong *)(param_2 + 0x80);
-  *(undefined8 *)(lVar1 + 0x18) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x18) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x20) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -49523,7 +49523,7 @@ void Unwind_1809079b0(undefined8 param_1,longlong param_2)
   longlong lVar1;
   
   lVar1 = *(longlong *)(param_2 + 0x80);
-  *(undefined8 *)(lVar1 + 0x38) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x38) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x40) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -49542,7 +49542,7 @@ void Unwind_1809079c0(undefined8 param_1,longlong param_2)
   longlong lVar1;
   
   lVar1 = *(longlong *)(param_2 + 0x80);
-  *(undefined8 *)(lVar1 + 0x58) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x58) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x60) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -49582,7 +49582,7 @@ void Unwind_1809079d0(undefined8 param_1,longlong param_2)
         piVar1 = (int *)(resourceIndex + 0x18);
         *piVar1 = *piVar1 + -1;
         if (*piVar1 == 0) {
-          FUN_18064d630();
+          SystemCleanupHandler();
           return;
         }
       }
@@ -49620,7 +49620,7 @@ void Unwind_1809079e0(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -49674,7 +49674,7 @@ void Unwind_180907a10(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -49753,7 +49753,7 @@ void Unwind_180907a50(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -49789,7 +49789,7 @@ void Unwind_180907a60(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -49827,7 +49827,7 @@ void Unwind_180907a90(undefined8 param_1,longlong param_2)
   longlong lVar1;
   
   lVar1 = *(longlong *)(param_2 + 0x28);
-  *(undefined8 *)(lVar1 + 0x20) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x20) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x28) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -49983,7 +49983,7 @@ void Unwind_180907b70(undefined8 param_1,longlong param_2)
 
 {
   *(undefined **)(param_2 + 0x50) = &SystemDataStructure;
-  *(undefined8 *)(param_2 + 0x30) = &UNK_180a3c3e0;
+  *(undefined8 *)(param_2 + 0x30) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(param_2 + 0x38) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -50105,7 +50105,7 @@ void Unwind_180907c10(undefined8 param_1,longlong param_2)
   undefined8 *presourceHash;
   
   presourceHash = *(undefined8 **)(param_2 + 600);
-  *presourceHash = &UNK_180a3c3e0;
+  *presourceHash = &SystemResourceHandlerTemplate;
   if (presourceHash[1] != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -50140,7 +50140,7 @@ void Unwind_180907c20(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -50247,7 +50247,7 @@ void UnwindResourceValidationAndCleanup(undefined8 exceptionContext, longlong sy
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -50283,7 +50283,7 @@ void Unwind_180907c80(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -50372,7 +50372,7 @@ void Unwind_180907ce0(undefined8 param_1,longlong param_2)
 void Unwind_180907cf0(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined8 *)(param_2 + 0x1c0) = &UNK_180a3c3e0;
+  *(undefined8 *)(param_2 + 0x1c0) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(param_2 + 0x1c8) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -50391,7 +50391,7 @@ void Unwind_180907d00(undefined8 param_1,longlong param_2)
   undefined8 *presourceHash;
   
   presourceHash = *(undefined8 **)(param_2 + 0x1e8);
-  *presourceHash = &UNK_180a3c3e0;
+  *presourceHash = &SystemResourceHandlerTemplate;
   if (presourceHash[1] != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -50464,7 +50464,7 @@ void Unwind_180907d30(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -50534,7 +50534,7 @@ void Unwind_180907dd0(undefined8 param_1,longlong param_2)
 {
   if ((*(uint *)(resourceData + 0x30) & 4) != 0) {
     *(uint *)(resourceData + 0x30) = *(uint *)(resourceData + 0x30) & 0xfffffffb;
-    FUN_180627b90(param_2 + 0x40);
+    ReleaseSystemResource(param_2 + 0x40);
   }
   return;
 }
@@ -50647,7 +50647,7 @@ void Unwind_180907e90(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -50683,7 +50683,7 @@ void Unwind_180907ea0(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -50719,7 +50719,7 @@ void Unwind_180907eb0(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -50755,7 +50755,7 @@ void Unwind_180907ec0(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -50791,7 +50791,7 @@ void Unwind_180907ed0(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -50930,7 +50930,7 @@ void Unwind_180907f80(undefined8 param_1,longlong param_2)
 void Unwind_180907f90(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined8 *)(param_2 + 0xa0) = &UNK_180a3c3e0;
+  *(undefined8 *)(param_2 + 0xa0) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(param_2 + 0xa8) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -50946,7 +50946,7 @@ void Unwind_180907f90(undefined8 param_1,longlong param_2)
 void Unwind_180907fa0(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined8 *)(param_2 + 0xa0) = &UNK_180a3c3e0;
+  *(undefined8 *)(param_2 + 0xa0) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(param_2 + 0xa8) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -51018,7 +51018,7 @@ void Unwind_180908000(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -51086,7 +51086,7 @@ void Unwind_180908030(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -51329,7 +51329,7 @@ void Unwind_180908130(undefined8 param_1,longlong param_2)
   undefined8 *presourceHash;
   
   presourceHash = *(undefined8 **)(param_2 + 0x98);
-  *presourceHash = &UNK_180a3c3e0;
+  *presourceHash = &SystemResourceHandlerTemplate;
   if (presourceHash[1] != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -51622,7 +51622,7 @@ void Unwind_180908340(undefined8 param_1,longlong param_2,undefined8 param_3,und
 void Unwind_180908360(undefined8 param_1,longlong param_2)
 
 {
-  RegisterResourceHandler(*(longlong *)(param_2 + 0x80) + 0x3b0,0x20,0x20,FUN_180627b90,0xfffffffffffffffe);
+  RegisterResourceHandler(*(longlong *)(param_2 + 0x80) + 0x3b0,0x20,0x20,ReleaseSystemResource,0xfffffffffffffffe);
   return;
 }
 
@@ -51640,7 +51640,7 @@ void Unwind_180908380(void)
 void Unwind_1809083a0(undefined8 param_1,longlong param_2)
 
 {
-  RegisterResourceHandler(*(longlong *)(param_2 + 0x88) + 8,0x20,0x20,FUN_180627b90);
+  RegisterResourceHandler(*(longlong *)(param_2 + 0x88) + 8,0x20,0x20,ReleaseSystemResource);
   return;
 }
 
@@ -51704,7 +51704,7 @@ void Unwind_180908460(undefined8 param_1,longlong param_2,undefined8 param_3,und
 void Unwind_180908480(undefined8 param_1,longlong param_2)
 
 {
-  RegisterResourceHandler(*(longlong *)(param_2 + 0x40) + 0x3b0,0x20,0x20,FUN_180627b90,0xfffffffffffffffe);
+  RegisterResourceHandler(*(longlong *)(param_2 + 0x40) + 0x3b0,0x20,0x20,ReleaseSystemResource,0xfffffffffffffffe);
   return;
 }
 
@@ -51722,7 +51722,7 @@ void Unwind_1809084a0(void)
 void Unwind_1809084c0(undefined8 param_1,longlong param_2)
 
 {
-  RegisterResourceHandler(*(longlong *)(param_2 + 0x48) + 8,0x20,0x20,FUN_180627b90);
+  RegisterResourceHandler(*(longlong *)(param_2 + 0x48) + 8,0x20,0x20,ReleaseSystemResource);
   return;
 }
 
@@ -51740,7 +51740,7 @@ void Unwind_1809084f0(undefined8 param_1,longlong param_2)
 void Unwind_180908520(undefined8 param_1,longlong param_2)
 
 {
-  RegisterResourceHandler(*(longlong *)(param_2 + 0x40) + 0x30,0x20,0x50,FUN_180627b90);
+  RegisterResourceHandler(*(longlong *)(param_2 + 0x40) + 0x30,0x20,0x50,ReleaseSystemResource);
   return;
 }
 
@@ -51763,7 +51763,7 @@ void Unwind_180908550(undefined8 param_1,longlong param_2)
 void Unwind_180908570(undefined8 param_1,longlong param_2)
 
 {
-  RegisterResourceHandler(*(longlong *)(param_2 + 0x40) + 8,0x20,0x20,FUN_180627b90);
+  RegisterResourceHandler(*(longlong *)(param_2 + 0x40) + 8,0x20,0x20,ReleaseSystemResource);
   return;
 }
 
@@ -51817,7 +51817,7 @@ void Unwind_1809085d0(undefined8 param_1,longlong param_2)
 void Unwind_180908600(undefined8 param_1,longlong param_2)
 
 {
-  RegisterResourceHandler(*(longlong *)(param_2 + 0x50) + 0x30,0x20,0x50,FUN_180627b90);
+  RegisterResourceHandler(*(longlong *)(param_2 + 0x50) + 0x30,0x20,0x50,ReleaseSystemResource);
   return;
 }
 
@@ -51859,7 +51859,7 @@ void Unwind_180908650(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -51882,7 +51882,7 @@ void Unwind_180908660(undefined8 param_1,longlong param_2)
   lVar1 = *(longlong *)(param_2 + 0x50);
   validationResult = 0xfffffffffffffffe;
   _Mtx_destroy_in_situ();
-  RegisterResourceHandler(lVar1 + 0x3e0,0x20,0x20,FUN_180627b90,validationResult);
+  RegisterResourceHandler(lVar1 + 0x3e0,0x20,0x20,ReleaseSystemResource,validationResult);
   FUN_18005d580();
   RegisterResourceHandler(lVar1 + 0x138,8,0x20,FUN_180045af0);
   RegisterResourceHandler(lVar1 + 0x38,8,0x20,FUN_180045af0);
@@ -51912,7 +51912,7 @@ void Unwind_180908670(undefined8 param_1,longlong param_2)
   if (*(longlong **)(resourceTable + 0x15d0) != (longlong *)0x0) {
     (**(code **)(**(longlong **)(resourceTable + 0x15d0) + 0x38))();
   }
-  RegisterResourceHandler(resourceTable + 0x8e0,0x20,0x50,FUN_180627b90,uVar3);
+  RegisterResourceHandler(resourceTable + 0x8e0,0x20,0x50,ReleaseSystemResource,uVar3);
   RegisterResourceHandler(resourceTable + 0x8b8,8,4,FUN_180045af0);
   plVar1 = *(longlong **)(resourceTable + 0x8b0);
   if (plVar1 != (longlong *)0x0) {
@@ -52114,7 +52114,7 @@ void Unwind_1809087c0(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -52224,7 +52224,7 @@ void Unwind_180908830(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -52260,7 +52260,7 @@ void Unwind_180908840(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -52328,7 +52328,7 @@ void Unwind_180908870(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -52424,7 +52424,7 @@ void Unwind_180908900(undefined8 param_1,longlong param_2)
   longlong lVar1;
   
   lVar1 = *(longlong *)(param_2 + 0x70);
-  *(undefined8 *)(lVar1 + 0x18) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x18) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x20) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -52443,7 +52443,7 @@ void Unwind_180908910(undefined8 param_1,longlong param_2)
   longlong lVar1;
   
   lVar1 = *(longlong *)(param_2 + 0x20);
-  *(undefined8 *)(lVar1 + 0x18) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x18) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x20) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -52640,7 +52640,7 @@ void Unwind_180908a20(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -52676,7 +52676,7 @@ void Unwind_180908a30(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -52712,7 +52712,7 @@ void Unwind_180908a40(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -52748,7 +52748,7 @@ void Unwind_180908a50(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -52784,7 +52784,7 @@ void Unwind_180908a60(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -52820,7 +52820,7 @@ void Unwind_180908a70(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -52856,7 +52856,7 @@ void Unwind_180908a80(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -52892,7 +52892,7 @@ void Unwind_180908a90(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -52937,7 +52937,7 @@ void Unwind_180908ab0(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -52973,7 +52973,7 @@ void Unwind_180908ac0(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -53009,7 +53009,7 @@ void Unwind_180908ad0(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -53047,7 +53047,7 @@ void Unwind_180908b00(undefined8 param_1,longlong param_2)
   longlong lVar1;
   
   lVar1 = *(longlong *)(param_2 + 0x30);
-  *(undefined8 *)(lVar1 + 0x20) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x20) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x28) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -53082,7 +53082,7 @@ void Unwind_180908b10(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -53197,7 +53197,7 @@ void Unwind_180908ba0(undefined8 param_1,longlong param_2)
   if (*(longlong **)(param_2 + 0xd8) != (longlong *)0x0) {
     (**(code **)(**(longlong **)(param_2 + 0xd8) + 0x38))();
   }
-  *(undefined8 *)(param_2 + 0xa8) = &UNK_180a3c3e0;
+  *(undefined8 *)(param_2 + 0xa8) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(param_2 + 0xb0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -53230,7 +53230,7 @@ void Unwind_180908bc0(undefined8 param_1,longlong param_2)
   if (*(longlong **)(param_2 + 0x78) != (longlong *)0x0) {
     (**(code **)(**(longlong **)(param_2 + 0x78) + 0x38))();
   }
-  *(undefined8 *)(param_2 + 0x48) = &UNK_180a3c3e0;
+  *(undefined8 *)(param_2 + 0x48) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(param_2 + 0x50) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -53255,7 +53255,7 @@ void Unwind_180908bd0(undefined8 param_1,longlong param_2)
   if (*(longlong **)(lVar1 + 0x58) != (longlong *)0x0) {
     (**(code **)(**(longlong **)(lVar1 + 0x58) + 0x38))();
   }
-  *(undefined8 *)(lVar1 + 0x28) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x28) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x30) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -53285,7 +53285,7 @@ void Unwind_180908be0(undefined8 param_1,longlong param_2)
 void Unwind_180908bf0(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined8 *)(param_2 + 0xa8) = &UNK_180a3c3e0;
+  *(undefined8 *)(param_2 + 0xa8) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(param_2 + 0xb0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -53332,7 +53332,7 @@ void Unwind_180908c20(undefined8 param_1,longlong param_2)
 void Unwind_180908c30(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined8 *)(param_2 + 0x48) = &UNK_180a3c3e0;
+  *(undefined8 *)(param_2 + 0x48) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(param_2 + 0x50) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -53376,7 +53376,7 @@ void Unwind_180908c60(undefined8 param_1,longlong param_2)
   longlong lVar1;
   
   lVar1 = *(longlong *)(param_2 + 0x1b8);
-  *(undefined8 *)(lVar1 + 0x28) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x28) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x30) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -53518,7 +53518,7 @@ void Unwind_180908d80(undefined8 param_1,longlong param_2)
 {
   if ((*(uint *)(resourceData + 0x30) & 1) != 0) {
     *(uint *)(resourceData + 0x30) = *(uint *)(resourceData + 0x30) & 0xfffffffe;
-    FUN_180627b90(param_2 + 0x58);
+    ReleaseSystemResource(param_2 + 0x58);
   }
   return;
 }
@@ -53531,7 +53531,7 @@ void Unwind_180908db0(undefined8 param_1,longlong param_2)
   undefined8 *presourceHash;
   
   presourceHash = *(undefined8 **)(param_2 + 0x108);
-  *presourceHash = &UNK_180a3c3e0;
+  *presourceHash = &SystemResourceHandlerTemplate;
   if (presourceHash[1] != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -53550,7 +53550,7 @@ void Unwind_180908dc0(undefined8 param_1,longlong param_2)
   longlong lVar1;
   
   lVar1 = *(longlong *)(param_2 + 0x108);
-  *(undefined8 *)(lVar1 + 0x20) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x20) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x28) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -53585,7 +53585,7 @@ void Unwind_180908dd0(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -53630,7 +53630,7 @@ void Unwind_180908df0(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -53666,7 +53666,7 @@ void Unwind_180908e00(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -53730,7 +53730,7 @@ void Unwind_180908e50(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -53766,7 +53766,7 @@ void Unwind_180908e60(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -53802,7 +53802,7 @@ void Unwind_180908e70(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -53842,7 +53842,7 @@ void Unwind_180908e90(undefined8 param_1,longlong param_2)
   longlong lVar1;
   
   lVar1 = *(longlong *)(param_2 + 0x40);
-  *(undefined8 *)(lVar1 + 0x28) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x28) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x30) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -54186,7 +54186,7 @@ void Unwind_180909090(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -54277,7 +54277,7 @@ void Unwind_1809090b0(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -54514,7 +54514,7 @@ void Unwind_180909290(undefined8 param_1,longlong param_2)
         piVar1 = (int *)(resourceIndex + 0x18);
         *piVar1 = *piVar1 + -1;
         if (*piVar1 == 0) {
-          FUN_18064d630();
+          SystemCleanupHandler();
           return;
         }
       }
@@ -54571,7 +54571,7 @@ void Unwind_1809092d0(undefined8 param_1,longlong param_2)
         piVar1 = (int *)(lVar4 + 0x18);
         *piVar1 = *piVar1 + -1;
         if (*piVar1 == 0) {
-          FUN_18064d630();
+          SystemCleanupHandler();
           return;
         }
       }
@@ -54614,7 +54614,7 @@ void Unwind_1809092e0(undefined8 param_1,longlong param_2)
         piVar1 = (int *)(lVar4 + 0x18);
         *piVar1 = *piVar1 + -1;
         if (*piVar1 == 0) {
-          FUN_18064d630();
+          SystemCleanupHandler();
           return;
         }
       }
@@ -55185,7 +55185,7 @@ void Unwind_1809094e0(undefined8 param_1,longlong param_2)
 void Unwind_1809094f0(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined8 *)(param_2 + 0x218) = &UNK_180a3c3e0;
+  *(undefined8 *)(param_2 + 0x218) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(param_2 + 0x220) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -55201,7 +55201,7 @@ void Unwind_1809094f0(undefined8 param_1,longlong param_2)
 void Unwind_180909500(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined8 *)(param_2 + 0x298) = &UNK_180a3c3e0;
+  *(undefined8 *)(param_2 + 0x298) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(param_2 + 0x2a0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -55226,7 +55226,7 @@ void Unwind_180909510(undefined8 param_1,longlong param_2)
 void Unwind_180909520(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined8 *)(param_2 + 0x278) = &UNK_180a3c3e0;
+  *(undefined8 *)(param_2 + 0x278) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(param_2 + 0x280) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -55288,7 +55288,7 @@ void Unwind_180909550(undefined8 param_1,longlong param_2)
 void Unwind_180909560(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined8 *)(param_2 + 0x1f8) = &UNK_180a3c3e0;
+  *(undefined8 *)(param_2 + 0x1f8) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(param_2 + 0x200) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -55321,7 +55321,7 @@ void Unwind_180909570(undefined8 param_1,longlong param_2)
 void Unwind_180909580(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined8 *)(param_2 + 0xf0) = &UNK_180a3c3e0;
+  *(undefined8 *)(param_2 + 0xf0) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(param_2 + 0xf8) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -55354,7 +55354,7 @@ void Unwind_180909590(undefined8 param_1,longlong param_2)
 void Unwind_1809095a0(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined8 *)(param_2 + 0x198) = &UNK_180a3c3e0;
+  *(undefined8 *)(param_2 + 0x198) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(param_2 + 0x1a0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -55409,7 +55409,7 @@ void Unwind_180909600(undefined8 param_1,longlong param_2)
 void Unwind_180909610(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined8 *)(param_2 + 0x2f0) = &UNK_180a3c3e0;
+  *(undefined8 *)(param_2 + 0x2f0) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(param_2 + 0x2f8) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -55490,7 +55490,7 @@ void Unwind_180909660(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -55526,7 +55526,7 @@ void Unwind_180909670(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -55562,7 +55562,7 @@ void Unwind_180909680(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -55598,7 +55598,7 @@ void Unwind_180909690(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -55634,7 +55634,7 @@ void Unwind_1809096a0(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -55862,7 +55862,7 @@ void Unwind_180909740(undefined8 param_1,longlong param_2)
   longlong lVar1;
   
   lVar1 = *(longlong *)(param_2 + 0x40);
-  *(undefined8 *)(lVar1 + 0x58) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x58) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x60) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -55878,7 +55878,7 @@ void Unwind_180909740(undefined8 param_1,longlong param_2)
 void Unwind_180909750(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined8 *)(param_2 + 8) = &UNK_180a3c3e0;
+  *(undefined8 *)(param_2 + 8) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(param_2 + 0x10) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -55906,7 +55906,7 @@ void Unwind_180909770(undefined8 param_1,longlong param_2)
   longlong lVar1;
   
   lVar1 = *(longlong *)(param_2 + 0x78);
-  *(undefined8 *)(lVar1 + 0x28) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x28) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x30) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -55925,7 +55925,7 @@ void Unwind_180909780(undefined8 param_1,longlong param_2)
   longlong lVar1;
   
   lVar1 = *(longlong *)(param_2 + 0x80);
-  *(undefined8 *)(lVar1 + 8) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 8) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x10) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -56094,7 +56094,7 @@ void Unwind_180909860(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -56164,7 +56164,7 @@ void Unwind_1809098d0(undefined8 param_1,longlong param_2)
 {
   if ((*(uint *)(resourceData + 0x40) & 1) != 0) {
     *(uint *)(resourceData + 0x40) = *(uint *)(resourceData + 0x40) & 0xfffffffe;
-    FUN_180627b90(*(undefined8 *)(param_2 + 0x50));
+    ReleaseSystemResource(*(undefined8 *)(param_2 + 0x50));
   }
   return;
 }
@@ -56301,7 +56301,7 @@ void Unwind_180909a00(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -56369,7 +56369,7 @@ void Unwind_180909a40(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -56405,7 +56405,7 @@ void Unwind_180909a50(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -56667,7 +56667,7 @@ void Unwind_180909c20(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -56784,7 +56784,7 @@ void Unwind_180909ce0(undefined8 param_1,longlong param_2)
   longlong lVar1;
   
   lVar1 = *(longlong *)(param_2 + 0x40);
-  *(undefined8 *)(lVar1 + 0x560) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x560) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x568) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -57066,7 +57066,7 @@ void Unwind_180909f60(undefined8 param_1,longlong param_2)
         piVar1 = (int *)(resourceIndex + 0x18);
         *piVar1 = *piVar1 + -1;
         if (*piVar1 == 0) {
-          FUN_18064d630();
+          SystemCleanupHandler();
           return;
         }
       }
@@ -57349,7 +57349,7 @@ void Unwind_18090a1d0(undefined8 param_1,longlong param_2)
   longlong lVar1;
   
   lVar1 = *(longlong *)(param_2 + 0x60);
-  *(undefined8 *)(lVar1 + 0x560) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x560) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x568) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -57631,7 +57631,7 @@ void Unwind_18090a450(undefined8 param_1,longlong param_2)
         piVar1 = (int *)(resourceIndex + 0x18);
         *piVar1 = *piVar1 + -1;
         if (*piVar1 == 0) {
-          FUN_18064d630();
+          SystemCleanupHandler();
           return;
         }
       }
@@ -57832,7 +57832,7 @@ void Unwind_18090a5c0(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -57868,7 +57868,7 @@ void Unwind_18090a5d0(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -58023,7 +58023,7 @@ void Unwind_18090a6f0(undefined8 param_1,longlong param_2)
 {
   if ((*(uint *)(resourceData + 0x30) & 1) != 0) {
     *(uint *)(resourceData + 0x30) = *(uint *)(resourceData + 0x30) & 0xfffffffe;
-    FUN_180627b90(param_2 + 0xb8);
+    ReleaseSystemResource(param_2 + 0xb8);
   }
   return;
 }
@@ -58035,7 +58035,7 @@ void Unwind_18090a720(undefined8 param_1,longlong param_2)
 {
   if ((*(uint *)(resourceData + 0x30) & 4) != 0) {
     *(uint *)(resourceData + 0x30) = *(uint *)(resourceData + 0x30) & 0xfffffffb;
-    FUN_180627b90(param_2 + 0x78);
+    ReleaseSystemResource(param_2 + 0x78);
   }
   return;
 }
@@ -58047,7 +58047,7 @@ void Unwind_18090a750(undefined8 param_1,longlong param_2)
 {
   if ((*(uint *)(resourceData + 0x30) & 8) != 0) {
     *(uint *)(resourceData + 0x30) = *(uint *)(resourceData + 0x30) & 0xfffffff7;
-    FUN_180627b90(param_2 + 0x58);
+    ReleaseSystemResource(param_2 + 0x58);
   }
   return;
 }
@@ -58076,7 +58076,7 @@ void Unwind_18090a780(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -58126,7 +58126,7 @@ void Unwind_18090a7a0(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -58146,7 +58146,7 @@ void Unwind_18090a7b0(undefined8 param_1,longlong param_2)
   if (*(longlong **)(param_2 + 0x48) != (longlong *)0x0) {
     (**(code **)(**(longlong **)(param_2 + 0x48) + 0x38))();
   }
-  *(undefined8 *)(param_2 + 0x28) = &UNK_180a3c3e0;
+  *(undefined8 *)(param_2 + 0x28) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(param_2 + 0x30) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -58176,7 +58176,7 @@ void Unwind_18090a7d0(undefined8 param_1,longlong param_2)
   undefined8 *presourceHash;
   
   presourceHash = *(undefined8 **)(param_2 + 0xa0);
-  *presourceHash = &UNK_180a3c3e0;
+  *presourceHash = &SystemResourceHandlerTemplate;
   if (presourceHash[1] != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -58305,7 +58305,7 @@ void Unwind_18090a880(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -58341,7 +58341,7 @@ void Unwind_18090a890(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -58507,7 +58507,7 @@ void Unwind_18090a910(undefined8 param_1,longlong param_2)
   if (*(longlong **)(lVar1 + 0x40) != (longlong *)0x0) {
     (**(code **)(**(longlong **)(lVar1 + 0x40) + 0x38))();
   }
-  *(undefined8 *)(lVar1 + 0x20) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x20) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x28) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -58565,7 +58565,7 @@ void Unwind_18090a930(undefined8 param_1,longlong param_2)
         piVar1 = (int *)(resourceIndex + 0x18);
         *piVar1 = *piVar1 + -1;
         if (*piVar1 == 0) {
-          FUN_18064d630();
+          SystemCleanupHandler();
           return;
         }
       }
@@ -58603,7 +58603,7 @@ void Unwind_18090a940(undefined8 param_1,longlong param_2)
         piVar1 = (int *)(resourceIndex + 0x18);
         *piVar1 = *piVar1 + -1;
         if (*piVar1 == 0) {
-          FUN_18064d630();
+          SystemCleanupHandler();
           return;
         }
       }
@@ -58641,7 +58641,7 @@ void Unwind_18090a950(undefined8 param_1,longlong param_2)
         piVar1 = (int *)(resourceIndex + 0x18);
         *piVar1 = *piVar1 + -1;
         if (*piVar1 == 0) {
-          FUN_18064d630();
+          SystemCleanupHandler();
           return;
         }
       }
@@ -58679,7 +58679,7 @@ void Unwind_18090a960(undefined8 param_1,longlong param_2)
         piVar1 = (int *)(resourceIndex + 0x18);
         *piVar1 = *piVar1 + -1;
         if (*piVar1 == 0) {
-          FUN_18064d630();
+          SystemCleanupHandler();
           return;
         }
       }
@@ -58717,7 +58717,7 @@ void Unwind_18090a970(undefined8 param_1,longlong param_2)
         piVar1 = (int *)(resourceIndex + 0x18);
         *piVar1 = *piVar1 + -1;
         if (*piVar1 == 0) {
-          FUN_18064d630();
+          SystemCleanupHandler();
           return;
         }
       }
@@ -58766,7 +58766,7 @@ void Unwind_18090a9b0(undefined8 param_1,longlong param_2)
 {
   if ((*(uint *)(resourceData + 0x30) & 1) != 0) {
     *(uint *)(resourceData + 0x30) = *(uint *)(resourceData + 0x30) & 0xfffffffe;
-    FUN_180627b90(*(undefined8 *)(param_2 + 0x40));
+    ReleaseSystemResource(*(undefined8 *)(param_2 + 0x40));
   }
   return;
 }
@@ -58778,7 +58778,7 @@ void Unwind_18090a9e0(undefined8 param_1,longlong param_2)
 {
   if ((*(uint *)(resourceData + 0x60) & 1) != 0) {
     *(uint *)(resourceData + 0x60) = *(uint *)(resourceData + 0x60) & 0xfffffffe;
-    FUN_180627b90(*(undefined8 *)(param_2 + 0x70));
+    ReleaseSystemResource(*(undefined8 *)(param_2 + 0x70));
   }
   return;
 }
@@ -58799,7 +58799,7 @@ void Unwind_18090aa20(undefined8 param_1,longlong param_2)
 {
   if ((*(uint *)(resourceData + 0x30) & 2) != 0) {
     *(uint *)(resourceData + 0x30) = *(uint *)(resourceData + 0x30) & 0xfffffffd;
-    FUN_180627b90(param_2 + 0x80);
+    ReleaseSystemResource(param_2 + 0x80);
   }
   return;
 }
@@ -58811,7 +58811,7 @@ void Unwind_18090aa50(undefined8 param_1,longlong param_2)
 {
   if ((*(uint *)(resourceData + 0x30) & 4) != 0) {
     *(uint *)(resourceData + 0x30) = *(uint *)(resourceData + 0x30) & 0xfffffffb;
-    FUN_180627b90(param_2 + 0x38);
+    ReleaseSystemResource(param_2 + 0x38);
   }
   return;
 }
@@ -58823,7 +58823,7 @@ void Unwind_18090aa80(undefined8 param_1,longlong param_2)
 {
   if ((*(uint *)(resourceData + 0x30) & 8) != 0) {
     *(uint *)(resourceData + 0x30) = *(uint *)(resourceData + 0x30) & 0xfffffff7;
-    FUN_180627b90(param_2 + 0x38);
+    ReleaseSystemResource(param_2 + 0x38);
   }
   return;
 }
@@ -58835,7 +58835,7 @@ void Unwind_18090aab0(undefined8 param_1,longlong param_2)
 {
   if ((*(uint *)(resourceData + 0x30) & 1) != 0) {
     *(uint *)(resourceData + 0x30) = *(uint *)(resourceData + 0x30) & 0xfffffffe;
-    FUN_180627b90(*(undefined8 *)(param_2 + 0x120));
+    ReleaseSystemResource(*(undefined8 *)(param_2 + 0x120));
   }
   return;
 }
@@ -58845,7 +58845,7 @@ void Unwind_18090aab0(undefined8 param_1,longlong param_2)
 void Unwind_18090aae0(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined8 *)(param_2 + 0x98) = &UNK_180a3c3e0;
+  *(undefined8 *)(param_2 + 0x98) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(param_2 + 0xa0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -58863,7 +58863,7 @@ void Unwind_18090aaf0(undefined8 param_1,longlong param_2)
 {
   if ((*(uint *)(resourceData + 0x60) & 1) != 0) {
     *(uint *)(resourceData + 0x60) = *(uint *)(resourceData + 0x60) & 0xfffffffe;
-    FUN_180627b90(*(undefined8 *)(param_2 + 0x90));
+    ReleaseSystemResource(*(undefined8 *)(param_2 + 0x90));
   }
   return;
 }
@@ -58887,7 +58887,7 @@ void Unwind_18090ab50(undefined8 param_1,longlong param_2)
 {
   if ((*(uint *)(resourceData + 0x20) & 1) != 0) {
     *(uint *)(resourceData + 0x20) = *(uint *)(resourceData + 0x20) & 0xfffffffe;
-    FUN_180627b90(*(undefined8 *)(param_2 + 0x70));
+    ReleaseSystemResource(*(undefined8 *)(param_2 + 0x70));
   }
   return;
 }
@@ -61750,7 +61750,7 @@ void Unwind_18090c140(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -61773,7 +61773,7 @@ void Unwind_18090c150(undefined8 param_1,longlong param_2)
   if (*(longlong **)(lVar1 + 0x40) != (longlong *)0x0) {
     (**(code **)(**(longlong **)(lVar1 + 0x40) + 0x38))();
   }
-  *(undefined8 *)(lVar1 + 0x20) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x20) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x28) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -61809,7 +61809,7 @@ void Unwind_18090c170(undefined8 param_1,longlong param_2)
   if (*(longlong **)(lVar1 + 0x40) != (longlong *)0x0) {
     (**(code **)(**(longlong **)(lVar1 + 0x40) + 0x38))();
   }
-  *(undefined8 *)(lVar1 + 0x20) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x20) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x28) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -61895,7 +61895,7 @@ void Unwind_18090c1c0(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -62050,7 +62050,7 @@ void Unwind_18090c280(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -62122,7 +62122,7 @@ void Unwind_18090c2d0(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -62158,7 +62158,7 @@ void Unwind_18090c2e0(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -62196,7 +62196,7 @@ void Unwind_18090c310(undefined8 param_1,longlong param_2)
   longlong lVar1;
   
   lVar1 = *(longlong *)(param_2 + 0x78);
-  *(undefined8 *)(lVar1 + 0x20) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x20) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x28) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -62306,7 +62306,7 @@ void Unwind_18090c3b0(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -62365,7 +62365,7 @@ void Unwind_18090c400(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -62506,7 +62506,7 @@ void Unwind_18090c4a0(undefined8 param_1,longlong param_2)
   if (*(longlong **)(param_2 + 0x108) != (longlong *)0x0) {
     (**(code **)(**(longlong **)(param_2 + 0x108) + 0x38))();
   }
-  *(undefined8 *)(param_2 + 0xd8) = &UNK_180a3c3e0;
+  *(undefined8 *)(param_2 + 0xd8) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(param_2 + 0xe0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -62531,7 +62531,7 @@ void Unwind_18090c4b0(undefined8 param_1,longlong param_2)
   if (*(longlong **)(lVar1 + 0x58) != (longlong *)0x0) {
     (**(code **)(**(longlong **)(lVar1 + 0x58) + 0x38))();
   }
-  *(undefined8 *)(lVar1 + 0x28) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x28) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x30) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -62570,7 +62570,7 @@ void Unwind_18090c4d0(undefined8 param_1,longlong param_2)
 void Unwind_18090c4e0(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined8 *)(param_2 + 0xd8) = &UNK_180a3c3e0;
+  *(undefined8 *)(param_2 + 0xd8) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(param_2 + 0xe0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -62614,7 +62614,7 @@ void Unwind_18090c510(undefined8 param_1,longlong param_2)
   longlong lVar1;
   
   lVar1 = *(longlong *)(param_2 + 0x118);
-  *(undefined8 *)(lVar1 + 0x28) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x28) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x30) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -62663,7 +62663,7 @@ void Unwind_18090c530(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -63084,7 +63084,7 @@ void Unwind_18090c610(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -63120,7 +63120,7 @@ void Unwind_18090c620(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -63338,7 +63338,7 @@ void Unwind_18090c780(undefined8 param_1,longlong param_2,undefined8 param_3,und
 void Unwind_18090c790(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined8 *)(param_2 + 0x148) = &UNK_180a3c3e0;
+  *(undefined8 *)(param_2 + 0x148) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(param_2 + 0x150) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -64641,7 +64641,7 @@ void Unwind_18090cd00(undefined8 param_1,longlong param_2)
 {
   if ((*(uint *)(resourceData + 0x20) & 2) != 0) {
     *(uint *)(resourceData + 0x20) = *(uint *)(resourceData + 0x20) & 0xfffffffd;
-    FUN_180627b90(param_2 + 0x88);
+    ReleaseSystemResource(param_2 + 0x88);
   }
   return;
 }
@@ -64653,7 +64653,7 @@ void Unwind_18090cd30(undefined8 param_1,longlong param_2)
 {
   if ((*(uint *)(resourceData + 0x20) & 8) != 0) {
     *(uint *)(resourceData + 0x20) = *(uint *)(resourceData + 0x20) & 0xfffffff7;
-    FUN_180627b90(param_2 + 0x68);
+    ReleaseSystemResource(param_2 + 0x68);
   }
   return;
 }
@@ -64665,7 +64665,7 @@ void Unwind_18090cd60(undefined8 param_1,longlong param_2)
 {
   if ((*(uint *)(resourceData + 0x20) & 0x10) != 0) {
     *(uint *)(resourceData + 0x20) = *(uint *)(resourceData + 0x20) & 0xffffffef;
-    FUN_180627b90(param_2 + 0x48);
+    ReleaseSystemResource(param_2 + 0x48);
   }
   return;
 }
@@ -64677,7 +64677,7 @@ void Unwind_18090cd90(undefined8 param_1,longlong param_2)
 {
   if ((*(uint *)(resourceData + 0x20) & 0x20) != 0) {
     *(uint *)(resourceData + 0x20) = *(uint *)(resourceData + 0x20) & 0xffffffdf;
-    FUN_180627b90(param_2 + 0x68);
+    ReleaseSystemResource(param_2 + 0x68);
   }
   return;
 }
@@ -64689,7 +64689,7 @@ void Unwind_18090cdc0(undefined8 param_1,longlong param_2)
 {
   if ((*(uint *)(resourceData + 0x20) & 0x40) != 0) {
     *(uint *)(resourceData + 0x20) = *(uint *)(resourceData + 0x20) & 0xffffffbf;
-    FUN_180627b90(param_2 + 0x48);
+    ReleaseSystemResource(param_2 + 0x48);
   }
   return;
 }
@@ -64702,7 +64702,7 @@ void Unwind_18090cdf0(undefined8 param_1,longlong param_2)
   if (*(longlong **)(param_2 + 0x178) != (longlong *)0x0) {
     (**(code **)(**(longlong **)(param_2 + 0x178) + 0x38))();
   }
-  *(undefined8 *)(param_2 + 0x148) = &UNK_180a3c3e0;
+  *(undefined8 *)(param_2 + 0x148) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(param_2 + 0x150) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -64727,7 +64727,7 @@ void Unwind_18090ce00(undefined8 param_1,longlong param_2)
   if (*(longlong **)(lVar1 + 0x58) != (longlong *)0x0) {
     (**(code **)(**(longlong **)(lVar1 + 0x58) + 0x38))();
   }
-  *(undefined8 *)(lVar1 + 0x28) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x28) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x30) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -64749,7 +64749,7 @@ void Unwind_18090ce10(undefined8 param_1,longlong param_2)
   if (*(longlong **)(param_2 + 0x388) != (longlong *)0x0) {
     (**(code **)(**(longlong **)(param_2 + 0x388) + 0x38))();
   }
-  *(undefined8 *)(param_2 + 0x358) = &UNK_180a3c3e0;
+  *(undefined8 *)(param_2 + 0x358) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(param_2 + 0x360) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -64774,7 +64774,7 @@ void Unwind_18090ce20(undefined8 param_1,longlong param_2)
   if (*(longlong **)(lVar1 + 0x58) != (longlong *)0x0) {
     (**(code **)(**(longlong **)(lVar1 + 0x58) + 0x38))();
   }
-  *(undefined8 *)(lVar1 + 0x28) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x28) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x30) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -64796,7 +64796,7 @@ void Unwind_18090ce30(undefined8 param_1,longlong param_2)
   if (*(longlong **)(param_2 + 0x228) != (longlong *)0x0) {
     (**(code **)(**(longlong **)(param_2 + 0x228) + 0x38))();
   }
-  *(undefined8 *)(param_2 + 0x1f8) = &UNK_180a3c3e0;
+  *(undefined8 *)(param_2 + 0x1f8) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(param_2 + 0x200) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -64818,7 +64818,7 @@ void Unwind_18090ce40(undefined8 param_1,longlong param_2)
   if (*(longlong **)(param_2 + 0x288) != (longlong *)0x0) {
     (**(code **)(**(longlong **)(param_2 + 0x288) + 0x38))();
   }
-  *(undefined8 *)(param_2 + 600) = &UNK_180a3c3e0;
+  *(undefined8 *)(param_2 + 600) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(param_2 + 0x260) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -64840,7 +64840,7 @@ void Unwind_18090ce50(undefined8 param_1,longlong param_2)
   if (*(longlong **)(param_2 + 0x2e8) != (longlong *)0x0) {
     (**(code **)(**(longlong **)(param_2 + 0x2e8) + 0x38))();
   }
-  *(undefined8 *)(param_2 + 0x2b8) = &UNK_180a3c3e0;
+  *(undefined8 *)(param_2 + 0x2b8) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(param_2 + 0x2c0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -64862,7 +64862,7 @@ void Unwind_18090ce60(undefined8 param_1,longlong param_2)
   if (*(longlong **)(param_2 + 1000) != (longlong *)0x0) {
     (**(code **)(**(longlong **)(param_2 + 1000) + 0x38))();
   }
-  *(undefined8 *)(param_2 + 0x3b8) = &UNK_180a3c3e0;
+  *(undefined8 *)(param_2 + 0x3b8) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(param_2 + 0x3c0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -64887,7 +64887,7 @@ void Unwind_18090ce70(undefined8 param_1,longlong param_2)
   if (*(longlong **)(lVar1 + 0x58) != (longlong *)0x0) {
     (**(code **)(**(longlong **)(lVar1 + 0x58) + 0x38))();
   }
-  *(undefined8 *)(lVar1 + 0x28) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x28) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x30) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -64917,7 +64917,7 @@ void Unwind_18090ce80(undefined8 param_1,longlong param_2)
 void Unwind_18090ce90(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined8 *)(param_2 + 0x148) = &UNK_180a3c3e0;
+  *(undefined8 *)(param_2 + 0x148) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(param_2 + 0x150) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -64961,7 +64961,7 @@ void Unwind_18090cec0(undefined8 param_1,longlong param_2)
   longlong lVar1;
   
   lVar1 = *(longlong *)(param_2 + 0x38);
-  *(undefined8 *)(lVar1 + 0x28) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x28) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x30) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -65002,7 +65002,7 @@ void Unwind_18090cee0(undefined8 param_1,longlong param_2)
 void Unwind_18090cef0(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined8 *)(param_2 + 0x358) = &UNK_180a3c3e0;
+  *(undefined8 *)(param_2 + 0x358) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(param_2 + 0x360) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -65040,7 +65040,7 @@ void Unwind_18090cf10(undefined8 param_1,longlong param_2)
 void Unwind_18090cf20(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined8 *)(param_2 + 0x1f8) = &UNK_180a3c3e0;
+  *(undefined8 *)(param_2 + 0x1f8) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(param_2 + 0x200) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -65078,7 +65078,7 @@ void Unwind_18090cf40(undefined8 param_1,longlong param_2)
 void Unwind_18090cf50(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined8 *)(param_2 + 600) = &UNK_180a3c3e0;
+  *(undefined8 *)(param_2 + 600) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(param_2 + 0x260) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -65116,7 +65116,7 @@ void Unwind_18090cf70(undefined8 param_1,longlong param_2)
 void Unwind_18090cf80(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined8 *)(param_2 + 0x2b8) = &UNK_180a3c3e0;
+  *(undefined8 *)(param_2 + 0x2b8) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(param_2 + 0x2c0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -65154,7 +65154,7 @@ void Unwind_18090cfa0(undefined8 param_1,longlong param_2)
 void Unwind_18090cfb0(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined8 *)(param_2 + 0x3b8) = &UNK_180a3c3e0;
+  *(undefined8 *)(param_2 + 0x3b8) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(param_2 + 0x3c0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -65245,7 +65245,7 @@ void Unwind_18090d000(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -65281,7 +65281,7 @@ void Unwind_18090d010(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -65317,7 +65317,7 @@ void Unwind_18090d020(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -65353,7 +65353,7 @@ void Unwind_18090d030(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -65389,7 +65389,7 @@ void Unwind_18090d040(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -65425,7 +65425,7 @@ void Unwind_18090d050(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -65461,7 +65461,7 @@ void Unwind_18090d060(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -65497,7 +65497,7 @@ void Unwind_18090d070(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -65533,7 +65533,7 @@ void Unwind_18090d080(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -65569,7 +65569,7 @@ void Unwind_18090d090(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -65605,7 +65605,7 @@ void Unwind_18090d0a0(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -65641,7 +65641,7 @@ void Unwind_18090d0b0(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -65677,7 +65677,7 @@ void Unwind_18090d0c0(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -65713,7 +65713,7 @@ void Unwind_18090d0d0(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -65749,7 +65749,7 @@ void Unwind_18090d0e0(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -65785,7 +65785,7 @@ void Unwind_18090d0f0(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -65821,7 +65821,7 @@ void Unwind_18090d100(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -65857,7 +65857,7 @@ void Unwind_18090d110(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -65893,7 +65893,7 @@ void Unwind_18090d120(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -65929,7 +65929,7 @@ void Unwind_18090d130(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -65965,7 +65965,7 @@ void Unwind_18090d140(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -66001,7 +66001,7 @@ void Unwind_18090d150(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -66037,7 +66037,7 @@ void Unwind_18090d160(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -66073,7 +66073,7 @@ void Unwind_18090d170(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -66109,7 +66109,7 @@ void Unwind_18090d180(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -66156,7 +66156,7 @@ void Unwind_18090d1a0(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -66192,7 +66192,7 @@ void Unwind_18090d1b0(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -66228,7 +66228,7 @@ void Unwind_18090d1c0(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -66264,7 +66264,7 @@ void Unwind_18090d1d0(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -66300,7 +66300,7 @@ void Unwind_18090d1e0(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -66336,7 +66336,7 @@ void Unwind_18090d1f0(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -66372,7 +66372,7 @@ void Unwind_18090d200(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -66408,7 +66408,7 @@ void Unwind_18090d210(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -66444,7 +66444,7 @@ void Unwind_18090d220(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -66480,7 +66480,7 @@ void Unwind_18090d230(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -66516,7 +66516,7 @@ void Unwind_18090d240(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -66552,7 +66552,7 @@ void Unwind_18090d250(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -66588,7 +66588,7 @@ void Unwind_18090d260(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -66624,7 +66624,7 @@ void Unwind_18090d270(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -66660,7 +66660,7 @@ void Unwind_18090d280(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -66696,7 +66696,7 @@ void Unwind_18090d290(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -66732,7 +66732,7 @@ void Unwind_18090d2a0(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -66768,7 +66768,7 @@ void Unwind_18090d2b0(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -66804,7 +66804,7 @@ void Unwind_18090d2c0(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -66840,7 +66840,7 @@ void Unwind_18090d2d0(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -66876,7 +66876,7 @@ void Unwind_18090d2e0(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -66912,7 +66912,7 @@ void Unwind_18090d2f0(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -66948,7 +66948,7 @@ void Unwind_18090d300(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -66984,7 +66984,7 @@ void Unwind_18090d310(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -67076,7 +67076,7 @@ void Unwind_18090d360(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -67112,7 +67112,7 @@ void Unwind_18090d370(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -67148,7 +67148,7 @@ void Unwind_18090d380(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -67184,7 +67184,7 @@ void Unwind_18090d390(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -67220,7 +67220,7 @@ void Unwind_18090d3a0(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -67256,7 +67256,7 @@ void Unwind_18090d3b0(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -67292,7 +67292,7 @@ void Unwind_18090d3c0(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -67328,7 +67328,7 @@ void Unwind_18090d3d0(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -67364,7 +67364,7 @@ void Unwind_18090d3e0(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -67400,7 +67400,7 @@ void Unwind_18090d3f0(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -67436,7 +67436,7 @@ void Unwind_18090d400(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -67472,7 +67472,7 @@ void Unwind_18090d410(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -67508,7 +67508,7 @@ void Unwind_18090d420(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -67544,7 +67544,7 @@ void Unwind_18090d430(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -67580,7 +67580,7 @@ void Unwind_18090d440(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -67616,7 +67616,7 @@ void Unwind_18090d450(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -67652,7 +67652,7 @@ void Unwind_18090d460(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -67688,7 +67688,7 @@ void Unwind_18090d470(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -67724,7 +67724,7 @@ void Unwind_18090d480(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -67760,7 +67760,7 @@ void Unwind_18090d490(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -67796,7 +67796,7 @@ void Unwind_18090d4a0(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -67832,7 +67832,7 @@ void Unwind_18090d4b0(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -67868,7 +67868,7 @@ void Unwind_18090d4c0(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -67904,7 +67904,7 @@ void Unwind_18090d4d0(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -67940,7 +67940,7 @@ void Unwind_18090d4e0(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -67976,7 +67976,7 @@ void Unwind_18090d4f0(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -68027,7 +68027,7 @@ void Unwind_18090d530(undefined8 param_1,longlong param_2)
   if (*(longlong **)(lVar1 + 0x58) != (longlong *)0x0) {
     (**(code **)(**(longlong **)(lVar1 + 0x58) + 0x38))();
   }
-  *(undefined8 *)(lVar1 + 0x28) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x28) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x30) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -68072,7 +68072,7 @@ void Unwind_18090d560(undefined8 param_1,longlong param_2)
   longlong lVar1;
   
   lVar1 = *(longlong *)(param_2 + 0x130);
-  *(undefined8 *)(lVar1 + 0x28) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x28) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x30) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -68105,7 +68105,7 @@ void Unwind_18090d580(undefined8 param_1,longlong param_2)
   if (*(longlong **)(param_2 + 0xb8) != (longlong *)0x0) {
     (**(code **)(**(longlong **)(param_2 + 0xb8) + 0x38))();
   }
-  *(undefined8 *)(param_2 + 0x88) = &UNK_180a3c3e0;
+  *(undefined8 *)(param_2 + 0x88) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(param_2 + 0x90) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -68130,7 +68130,7 @@ void Unwind_18090d590(undefined8 param_1,longlong param_2)
   if (*(longlong **)(lVar1 + 0x58) != (longlong *)0x0) {
     (**(code **)(**(longlong **)(lVar1 + 0x58) + 0x38))();
   }
-  *(undefined8 *)(lVar1 + 0x28) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x28) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x30) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -68160,7 +68160,7 @@ void Unwind_18090d5a0(undefined8 param_1,longlong param_2)
 void Unwind_18090d5b0(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined8 *)(param_2 + 0x88) = &UNK_180a3c3e0;
+  *(undefined8 *)(param_2 + 0x88) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(param_2 + 0x90) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -68320,7 +68320,7 @@ void Unwind_18090d680(undefined8 param_1,longlong param_2)
 void Unwind_18090d6a0(undefined8 param_1,longlong param_2)
 
 {
-  RegisterResourceHandler(*(longlong *)(param_2 + 0x40) + 0xf20,0x20,0x1d,FUN_180627b90);
+  RegisterResourceHandler(*(longlong *)(param_2 + 0x40) + 0xf20,0x20,0x1d,ReleaseSystemResource);
   return;
 }
 
@@ -68470,7 +68470,7 @@ void Unwind_18090d7e0(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -68846,7 +68846,7 @@ void Unwind_18090dd00(undefined8 param_1,longlong param_2)
   presourceTable = (longlong *)(*(longlong *)(param_2 + 0x40) + 0x48);
   presourceHash = *(undefined8 **)(*(longlong *)(param_2 + 0x40) + 0x50);
   for (puVar3 = (undefined8 *)*presourceTable; puVar3 != presourceHash; puVar3 = puVar3 + 6) {
-    *puVar3 = &UNK_180a3c3e0;
+    *puVar3 = &SystemResourceHandlerTemplate;
     if (puVar3[1] != 0) {
                     // WARNING: Subroutine does not return
       ExecuteSystemEmergencyExit();
@@ -68874,7 +68874,7 @@ void Unwind_18090dd10(undefined8 param_1,longlong param_2)
   presourceTable = *(longlong **)(param_2 + 0x48);
   presourceHash = (undefined8 *)presourceTable[1];
   for (puVar3 = (undefined8 *)*presourceTable; puVar3 != presourceHash; puVar3 = puVar3 + 6) {
-    *puVar3 = &UNK_180a3c3e0;
+    *puVar3 = &SystemResourceHandlerTemplate;
     if (puVar3[1] != 0) {
                     // WARNING: Subroutine does not return
       ExecuteSystemEmergencyExit();
@@ -68993,7 +68993,7 @@ void Unwind_18090de40(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -69094,7 +69094,7 @@ void Unwind_18090dea0(undefined8 param_1,longlong param_2)
 void Unwind_18090dec0(undefined8 param_1,longlong param_2)
 
 {
-  RegisterResourceHandler(*(longlong *)(param_2 + 0xe0) + 0xf20,0x20,0x1d,FUN_180627b90);
+  RegisterResourceHandler(*(longlong *)(param_2 + 0xe0) + 0xf20,0x20,0x1d,ReleaseSystemResource);
   return;
 }
 
@@ -69244,7 +69244,7 @@ void Unwind_18090e000(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -69555,7 +69555,7 @@ void Unwind_18090e3c0(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -69591,7 +69591,7 @@ void Unwind_18090e3d0(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -70496,7 +70496,7 @@ void Unwind_18090e8e0(undefined8 param_1,longlong param_2)
   if (*(longlong **)(lVar1 + 0x58) != (longlong *)0x0) {
     (**(code **)(**(longlong **)(lVar1 + 0x58) + 0x38))();
   }
-  *(undefined8 *)(lVar1 + 0x28) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x28) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x30) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -70518,7 +70518,7 @@ void Unwind_18090e8f0(undefined8 param_1,longlong param_2)
   if (*(longlong **)(param_2 + 0x128) != (longlong *)0x0) {
     (**(code **)(**(longlong **)(param_2 + 0x128) + 0x38))();
   }
-  *(undefined8 *)(param_2 + 0xf8) = &UNK_180a3c3e0;
+  *(undefined8 *)(param_2 + 0xf8) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(param_2 + 0x100) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -70601,7 +70601,7 @@ void Unwind_18090e950(undefined8 param_1,longlong param_2)
   longlong lVar1;
   
   lVar1 = *(longlong *)(param_2 + 0x28);
-  *(undefined8 *)(lVar1 + 0x28) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x28) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x30) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -70642,7 +70642,7 @@ void Unwind_18090e970(undefined8 param_1,longlong param_2)
 void Unwind_18090e980(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined8 *)(param_2 + 0xf8) = &UNK_180a3c3e0;
+  *(undefined8 *)(param_2 + 0xf8) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(param_2 + 0x100) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -70734,7 +70734,7 @@ void Unwind_18090e9e0(undefined8 param_1,longlong param_2)
 {
   if ((*(uint *)(resourceData + 0x30) & 2) != 0) {
     *(uint *)(resourceData + 0x30) = *(uint *)(resourceData + 0x30) & 0xfffffffd;
-    FUN_180627b90(param_2 + 200);
+    ReleaseSystemResource(param_2 + 200);
   }
   return;
 }
@@ -70746,7 +70746,7 @@ void Unwind_18090ea10(undefined8 param_1,longlong param_2)
 {
   if ((*(uint *)(resourceData + 0x30) & 8) != 0) {
     *(uint *)(resourceData + 0x30) = *(uint *)(resourceData + 0x30) & 0xfffffff7;
-    FUN_180627b90(param_2 + 200);
+    ReleaseSystemResource(param_2 + 200);
   }
   return;
 }
@@ -70758,7 +70758,7 @@ void Unwind_18090ea40(undefined8 param_1,longlong param_2)
 {
   if ((*(uint *)(resourceData + 0x30) & 0x10) != 0) {
     *(uint *)(resourceData + 0x30) = *(uint *)(resourceData + 0x30) & 0xffffffef;
-    FUN_180627b90(param_2 + 0x38);
+    ReleaseSystemResource(param_2 + 0x38);
   }
   return;
 }
@@ -70770,7 +70770,7 @@ void Unwind_18090ea70(undefined8 param_1,longlong param_2)
 {
   if ((*(uint *)(resourceData + 0x30) & 0x20) != 0) {
     *(uint *)(resourceData + 0x30) = *(uint *)(resourceData + 0x30) & 0xffffffdf;
-    FUN_180627b90(param_2 + 200);
+    ReleaseSystemResource(param_2 + 200);
   }
   return;
 }
@@ -70782,7 +70782,7 @@ void Unwind_18090eaa0(undefined8 param_1,longlong param_2)
 {
   if ((*(uint *)(resourceData + 0x30) & 0x40) != 0) {
     *(uint *)(resourceData + 0x30) = *(uint *)(resourceData + 0x30) & 0xffffffbf;
-    FUN_180627b90(param_2 + 0x38);
+    ReleaseSystemResource(param_2 + 0x38);
   }
   return;
 }
@@ -70794,7 +70794,7 @@ void Unwind_18090ead0(undefined8 param_1,longlong param_2)
 {
   if ((*(uint *)(resourceData + 0x30) & 0x80) != 0) {
     *(uint *)(resourceData + 0x30) = *(uint *)(resourceData + 0x30) & 0xffffff7f;
-    FUN_180627b90(param_2 + 200);
+    ReleaseSystemResource(param_2 + 200);
   }
   return;
 }
@@ -70865,7 +70865,7 @@ void Unwind_18090eb20(undefined8 param_1,longlong param_2)
   if (*(longlong **)(lVar1 + 0x58) != (longlong *)0x0) {
     (**(code **)(**(longlong **)(lVar1 + 0x58) + 0x38))();
   }
-  *(undefined8 *)(lVar1 + 0x28) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x28) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x30) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -70910,7 +70910,7 @@ void Unwind_18090eb50(undefined8 param_1,longlong param_2)
   longlong lVar1;
   
   lVar1 = *(longlong *)(param_2 + 0x108);
-  *(undefined8 *)(lVar1 + 0x28) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x28) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x30) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -70979,7 +70979,7 @@ void Unwind_18090ebf0(undefined8 param_1,longlong param_2)
   if (*(longlong **)(param_2 + 200) != (longlong *)0x0) {
     (**(code **)(**(longlong **)(param_2 + 200) + 0x38))();
   }
-  *(undefined8 *)(param_2 + 0x98) = &UNK_180a3c3e0;
+  *(undefined8 *)(param_2 + 0x98) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(param_2 + 0xa0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -71004,7 +71004,7 @@ void Unwind_18090ec00(undefined8 param_1,longlong param_2)
   if (*(longlong **)(lVar1 + 0x58) != (longlong *)0x0) {
     (**(code **)(**(longlong **)(lVar1 + 0x58) + 0x38))();
   }
-  *(undefined8 *)(lVar1 + 0x28) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x28) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x30) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -71034,7 +71034,7 @@ void Unwind_18090ec10(undefined8 param_1,longlong param_2)
 void Unwind_18090ec20(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined8 *)(param_2 + 0x98) = &UNK_180a3c3e0;
+  *(undefined8 *)(param_2 + 0x98) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(param_2 + 0xa0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -71064,7 +71064,7 @@ void Unwind_18090ec40(undefined8 param_1,longlong param_2)
   longlong lVar1;
   
   lVar1 = *(longlong *)(param_2 + 0x30);
-  *(undefined8 *)(lVar1 + 0x28) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x28) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x30) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -71217,7 +71217,7 @@ void Unwind_18090ed20(undefined8 param_1,longlong param_2)
   if (*(longlong **)(param_2 + 0xf8) != (longlong *)0x0) {
     (**(code **)(**(longlong **)(param_2 + 0xf8) + 0x38))();
   }
-  *(undefined8 *)(param_2 + 200) = &UNK_180a3c3e0;
+  *(undefined8 *)(param_2 + 200) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(param_2 + 0xd0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -71242,7 +71242,7 @@ void Unwind_18090ed30(undefined8 param_1,longlong param_2)
   if (*(longlong **)(lVar1 + 0x58) != (longlong *)0x0) {
     (**(code **)(**(longlong **)(lVar1 + 0x58) + 0x38))();
   }
-  *(undefined8 *)(lVar1 + 0x28) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x28) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x30) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -71272,7 +71272,7 @@ void Unwind_18090ed40(undefined8 param_1,longlong param_2)
 void Unwind_18090ed50(undefined8 param_1,longlong param_2)
 
 {
-  *(undefined8 *)(param_2 + 200) = &UNK_180a3c3e0;
+  *(undefined8 *)(param_2 + 200) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(param_2 + 0xd0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -71302,7 +71302,7 @@ void Unwind_18090ed70(undefined8 param_1,longlong param_2)
   longlong lVar1;
   
   lVar1 = *(longlong *)(param_2 + 0x60);
-  *(undefined8 *)(lVar1 + 0x28) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x28) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x30) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -71589,7 +71589,7 @@ void Unwind_18090eeb0(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -71634,7 +71634,7 @@ void Unwind_18090eee0(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -71684,7 +71684,7 @@ void Unwind_18090ef20(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -71734,7 +71734,7 @@ void Unwind_18090ef50(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -71770,7 +71770,7 @@ void Unwind_18090ef60(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -72270,7 +72270,7 @@ void Unwind_18090f140(undefined8 param_1,longlong param_2)
   longlong lVar1;
   
   lVar1 = *(longlong *)(param_2 + 0x78);
-  *(undefined8 *)(lVar1 + 0x28) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x28) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x30) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -72289,7 +72289,7 @@ void Unwind_18090f150(undefined8 param_1,longlong param_2)
   longlong lVar1;
   
   lVar1 = *(longlong *)(param_2 + 0x80);
-  *(undefined8 *)(lVar1 + 8) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 8) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x10) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -72308,7 +72308,7 @@ void Unwind_18090f160(undefined8 param_1,longlong param_2)
   longlong lVar1;
   
   lVar1 = *(longlong *)(param_2 + 0x78);
-  *(undefined8 *)(lVar1 + 8) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 8) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x10) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -72355,7 +72355,7 @@ void Unwind_18090f190(undefined8 param_1,longlong param_2)
   longlong lVar1;
   
   lVar1 = *(longlong *)(param_2 + 0x40);
-  *(undefined8 *)(lVar1 + 8) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 8) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x10) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -72404,7 +72404,7 @@ void Unwind_18090f1b0(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -72440,7 +72440,7 @@ void Unwind_18090f1d0(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -72498,7 +72498,7 @@ void Unwind_18090f210(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -72534,7 +72534,7 @@ void Unwind_18090f230(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -72570,7 +72570,7 @@ void Unwind_18090f250(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -72606,7 +72606,7 @@ void Unwind_18090f270(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -72642,7 +72642,7 @@ void Unwind_18090f290(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -72678,7 +72678,7 @@ void Unwind_18090f2b0(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -72735,7 +72735,7 @@ void Unwind_18090f2f0(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -73129,7 +73129,7 @@ void Unwind_18090f650(undefined8 param_1,longlong param_2)
   longlong lVar1;
   
   lVar1 = *(longlong *)(param_2 + 0x60);
-  *(undefined8 *)(lVar1 + 0x4140) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x4140) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x4148) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -73148,7 +73148,7 @@ void Unwind_18090f670(undefined8 param_1,longlong param_2)
   longlong lVar1;
   
   lVar1 = *(longlong *)(param_2 + 0x60);
-  *(undefined8 *)(lVar1 + 0x4190) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x4190) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x4198) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -73841,7 +73841,7 @@ void Unwind_18090fac0(undefined8 param_1,longlong param_2)
   if (*(longlong **)(lVar1 + 0x58) != (longlong *)0x0) {
     (**(code **)(**(longlong **)(lVar1 + 0x58) + 0x38))();
   }
-  *(undefined8 *)(lVar1 + 0x28) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x28) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x30) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -73886,7 +73886,7 @@ void Unwind_18090faf0(undefined8 param_1,longlong param_2)
   longlong lVar1;
   
   lVar1 = *(longlong *)(param_2 + 0x120);
-  *(undefined8 *)(lVar1 + 0x28) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x28) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x30) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -73973,7 +73973,7 @@ void Unwind_18090fb70(undefined8 param_1,longlong param_2)
   undefined8 *presourceHash;
   
   presourceHash = *(undefined8 **)(param_2 + 0xd0);
-  *presourceHash = &UNK_180a3c3e0;
+  *presourceHash = &SystemResourceHandlerTemplate;
   if (presourceHash[1] != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -74390,7 +74390,7 @@ void Unwind_18090feb0(undefined8 param_1,longlong param_2)
 {
   if ((*(uint *)(resourceData + 0x30) & 1) != 0) {
     *(uint *)(resourceData + 0x30) = *(uint *)(resourceData + 0x30) & 0xfffffffe;
-    FUN_180627b90(param_2 + 0x40);
+    ReleaseSystemResource(param_2 + 0x40);
   }
   return;
 }
@@ -74533,7 +74533,7 @@ void Unwind_18090ff90(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -74561,7 +74561,7 @@ void Unwind_18090ffb0(undefined8 param_1,longlong param_2)
 {
   if ((*(uint *)(resourceData + 0x30) & 4) != 0) {
     *(uint *)(resourceData + 0x30) = *(uint *)(resourceData + 0x30) & 0xfffffffb;
-    FUN_180627b90(param_2 + 0x60);
+    ReleaseSystemResource(param_2 + 0x60);
   }
   return;
 }
@@ -75006,7 +75006,7 @@ void Unwind_180910110(undefined8 param_1,longlong param_2)
   longlong lVar1;
   
   lVar1 = *(longlong *)(param_2 + 0x60);
-  *(undefined8 *)(lVar1 + 0x108) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x108) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x110) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -75025,7 +75025,7 @@ void Unwind_180910130(undefined8 param_1,longlong param_2)
   longlong lVar1;
   
   lVar1 = *(longlong *)(param_2 + 0x50);
-  *(undefined8 *)(lVar1 + 0x108) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x108) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x110) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -75062,7 +75062,7 @@ void Unwind_180910150(undefined8 param_1,longlong param_2)
 void Unwind_180910160(undefined8 param_1,longlong param_2)
 
 {
-  RegisterResourceHandler(*(longlong *)(param_2 + 0x40) + 0x18,0x20,2,FUN_180627b90);
+  RegisterResourceHandler(*(longlong *)(param_2 + 0x40) + 0x18,0x20,2,ReleaseSystemResource);
   return;
 }
 
@@ -75083,7 +75083,7 @@ void Unwind_1809101c0(undefined8 param_1,longlong param_2)
   longlong lVar1;
   
   lVar1 = *(longlong *)(param_2 + 0x40);
-  *(undefined8 *)(lVar1 + 0x108) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x108) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x110) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -75286,7 +75286,7 @@ void Unwind_1809102b0(undefined8 param_1,longlong param_2)
 {
   if ((*(uint *)(resourceData + 0x40) & 1) != 0) {
     *(uint *)(resourceData + 0x40) = *(uint *)(resourceData + 0x40) & 0xfffffffe;
-    FUN_180627b90(*(undefined8 *)(param_2 + 0x140));
+    ReleaseSystemResource(*(undefined8 *)(param_2 + 0x140));
   }
   return;
 }
@@ -75401,7 +75401,7 @@ void Unwind_180910320(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -75458,7 +75458,7 @@ void Unwind_180910340(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -75494,7 +75494,7 @@ void Unwind_180910350(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -75513,7 +75513,7 @@ void Unwind_180910360(undefined8 param_1,longlong param_2)
 {
   if ((*(uint *)(resourceData + 0x20) & 1) != 0) {
     *(uint *)(resourceData + 0x20) = *(uint *)(resourceData + 0x20) & 0xfffffffe;
-    FUN_180627b90(*(undefined8 *)(param_2 + 0x38));
+    ReleaseSystemResource(*(undefined8 *)(param_2 + 0x38));
   }
   return;
 }
@@ -75569,7 +75569,7 @@ void Unwind_1809103c0(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -75774,7 +75774,7 @@ void Unwind_1809104f0(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -75810,7 +75810,7 @@ void Unwind_180910510(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -75995,7 +75995,7 @@ void Unwind_180910640(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -76031,7 +76031,7 @@ void Unwind_180910660(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -76129,7 +76129,7 @@ void Unwind_1809106e0(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -76189,7 +76189,7 @@ void Unwind_180910750(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -76247,7 +76247,7 @@ void Unwind_180910770(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -76283,7 +76283,7 @@ void Unwind_180910780(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -76319,7 +76319,7 @@ void Unwind_180910790(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -76342,7 +76342,7 @@ void Unwind_1809107a0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   if (*(code **)(lVar1 + 0xa00) != (code *)0x0) {
     (**(code **)(lVar1 + 0xa00))(lVar1 + 0x9f0,0,0,param_4,0xfffffffffffffffe);
   }
-  *(undefined8 *)(lVar1 + 0x9c8) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x9c8) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x9d0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -76350,7 +76350,7 @@ void Unwind_1809107a0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x9d0) = 0;
   *(undefined4 *)(lVar1 + 0x9e0) = 0;
   *(undefined8 *)(lVar1 + 0x9c8) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x9a8) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x9a8) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x9b0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -76372,7 +76372,7 @@ void Unwind_1809107c0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   if (*(code **)(lVar1 + 0xa70) != (code *)0x0) {
     (**(code **)(lVar1 + 0xa70))(lVar1 + 0xa60,0,0,param_4,0xfffffffffffffffe);
   }
-  *(undefined8 *)(lVar1 + 0xa38) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0xa38) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0xa40) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -76380,7 +76380,7 @@ void Unwind_1809107c0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0xa40) = 0;
   *(undefined4 *)(lVar1 + 0xa50) = 0;
   *(undefined8 *)(lVar1 + 0xa38) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0xa18) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0xa18) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0xa20) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -76402,7 +76402,7 @@ void Unwind_1809107e0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   if (*(code **)(lVar1 + 0xae0) != (code *)0x0) {
     (**(code **)(lVar1 + 0xae0))(lVar1 + 0xad0,0,0,param_4,0xfffffffffffffffe);
   }
-  *(undefined8 *)(lVar1 + 0xaa8) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0xaa8) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0xab0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -76410,7 +76410,7 @@ void Unwind_1809107e0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0xab0) = 0;
   *(undefined4 *)(lVar1 + 0xac0) = 0;
   *(undefined8 *)(lVar1 + 0xaa8) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0xa88) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0xa88) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0xa90) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -76432,7 +76432,7 @@ void Unwind_180910800(undefined8 param_1,longlong param_2,undefined8 param_3,und
   if (*(code **)(lVar1 + 0xb50) != (code *)0x0) {
     (**(code **)(lVar1 + 0xb50))(lVar1 + 0xb40,0,0,param_4,0xfffffffffffffffe);
   }
-  *(undefined8 *)(lVar1 + 0xb18) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0xb18) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0xb20) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -76440,7 +76440,7 @@ void Unwind_180910800(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0xb20) = 0;
   *(undefined4 *)(lVar1 + 0xb30) = 0;
   *(undefined8 *)(lVar1 + 0xb18) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0xaf8) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0xaf8) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0xb00) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -76462,7 +76462,7 @@ void Unwind_180910820(undefined8 param_1,longlong param_2,undefined8 param_3,und
   if (*(code **)(lVar1 + 0xbc0) != (code *)0x0) {
     (**(code **)(lVar1 + 0xbc0))(lVar1 + 0xbb0,0,0,param_4,0xfffffffffffffffe);
   }
-  *(undefined8 *)(lVar1 + 0xb88) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0xb88) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0xb90) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -76470,7 +76470,7 @@ void Unwind_180910820(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0xb90) = 0;
   *(undefined4 *)(lVar1 + 0xba0) = 0;
   *(undefined8 *)(lVar1 + 0xb88) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0xb68) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0xb68) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0xb70) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -76492,7 +76492,7 @@ void Unwind_180910840(undefined8 param_1,longlong param_2,undefined8 param_3,und
   if (*(code **)(lVar1 + 0xc30) != (code *)0x0) {
     (**(code **)(lVar1 + 0xc30))(lVar1 + 0xc20,0,0,param_4,0xfffffffffffffffe);
   }
-  *(undefined8 *)(lVar1 + 0xbf8) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0xbf8) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0xc00) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -76500,7 +76500,7 @@ void Unwind_180910840(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0xc00) = 0;
   *(undefined4 *)(lVar1 + 0xc10) = 0;
   *(undefined8 *)(lVar1 + 0xbf8) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0xbd8) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0xbd8) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0xbe0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -76522,7 +76522,7 @@ void Unwind_180910860(undefined8 param_1,longlong param_2,undefined8 param_3,und
   if (*(code **)(lVar1 + 0xca0) != (code *)0x0) {
     (**(code **)(lVar1 + 0xca0))(lVar1 + 0xc90,0,0,param_4,0xfffffffffffffffe);
   }
-  *(undefined8 *)(lVar1 + 0xc68) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0xc68) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0xc70) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -76530,7 +76530,7 @@ void Unwind_180910860(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0xc70) = 0;
   *(undefined4 *)(lVar1 + 0xc80) = 0;
   *(undefined8 *)(lVar1 + 0xc68) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0xc48) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0xc48) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0xc50) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -76552,7 +76552,7 @@ void Unwind_180910880(undefined8 param_1,longlong param_2,undefined8 param_3,und
   if (*(code **)(lVar1 + 0xd10) != (code *)0x0) {
     (**(code **)(lVar1 + 0xd10))(lVar1 + 0xd00,0,0,param_4,0xfffffffffffffffe);
   }
-  *(undefined8 *)(lVar1 + 0xcd8) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0xcd8) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0xce0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -76560,7 +76560,7 @@ void Unwind_180910880(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0xce0) = 0;
   *(undefined4 *)(lVar1 + 0xcf0) = 0;
   *(undefined8 *)(lVar1 + 0xcd8) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0xcb8) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0xcb8) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0xcc0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -76582,7 +76582,7 @@ void Unwind_1809108a0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   if (*(code **)(lVar1 + 0xd80) != (code *)0x0) {
     (**(code **)(lVar1 + 0xd80))(lVar1 + 0xd70,0,0,param_4,0xfffffffffffffffe);
   }
-  *(undefined8 *)(lVar1 + 0xd48) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0xd48) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0xd50) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -76590,7 +76590,7 @@ void Unwind_1809108a0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0xd50) = 0;
   *(undefined4 *)(lVar1 + 0xd60) = 0;
   *(undefined8 *)(lVar1 + 0xd48) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0xd28) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0xd28) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0xd30) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -76612,7 +76612,7 @@ void Unwind_1809108c0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   if (*(code **)(lVar1 + 0xdf0) != (code *)0x0) {
     (**(code **)(lVar1 + 0xdf0))(lVar1 + 0xde0,0,0,param_4,0xfffffffffffffffe);
   }
-  *(undefined8 *)(lVar1 + 0xdb8) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0xdb8) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0xdc0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -76620,7 +76620,7 @@ void Unwind_1809108c0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0xdc0) = 0;
   *(undefined4 *)(lVar1 + 0xdd0) = 0;
   *(undefined8 *)(lVar1 + 0xdb8) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0xd98) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0xd98) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0xda0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -76642,7 +76642,7 @@ void Unwind_1809108e0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   if (*(code **)(lVar1 + 0xe60) != (code *)0x0) {
     (**(code **)(lVar1 + 0xe60))(lVar1 + 0xe50,0,0,param_4,0xfffffffffffffffe);
   }
-  *(undefined8 *)(lVar1 + 0xe28) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0xe28) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0xe30) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -76650,7 +76650,7 @@ void Unwind_1809108e0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0xe30) = 0;
   *(undefined4 *)(lVar1 + 0xe40) = 0;
   *(undefined8 *)(lVar1 + 0xe28) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0xe08) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0xe08) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0xe10) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -76672,7 +76672,7 @@ void Unwind_180910900(undefined8 param_1,longlong param_2,undefined8 param_3,und
   if (*(code **)(lVar1 + 0xed0) != (code *)0x0) {
     (**(code **)(lVar1 + 0xed0))(lVar1 + 0xec0,0,0,param_4,0xfffffffffffffffe);
   }
-  *(undefined8 *)(lVar1 + 0xe98) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0xe98) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0xea0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -76680,7 +76680,7 @@ void Unwind_180910900(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0xea0) = 0;
   *(undefined4 *)(lVar1 + 0xeb0) = 0;
   *(undefined8 *)(lVar1 + 0xe98) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0xe78) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0xe78) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0xe80) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -76702,7 +76702,7 @@ void Unwind_180910920(undefined8 param_1,longlong param_2,undefined8 param_3,und
   if (*(code **)(lVar1 + 0xf40) != (code *)0x0) {
     (**(code **)(lVar1 + 0xf40))(lVar1 + 0xf30,0,0,param_4,0xfffffffffffffffe);
   }
-  *(undefined8 *)(lVar1 + 0xf08) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0xf08) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0xf10) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -76710,7 +76710,7 @@ void Unwind_180910920(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0xf10) = 0;
   *(undefined4 *)(lVar1 + 0xf20) = 0;
   *(undefined8 *)(lVar1 + 0xf08) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0xee8) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0xee8) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0xef0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -76732,7 +76732,7 @@ void Unwind_180910940(undefined8 param_1,longlong param_2,undefined8 param_3,und
   if (*(code **)(lVar1 + 0xfb0) != (code *)0x0) {
     (**(code **)(lVar1 + 0xfb0))(lVar1 + 4000,0,0,param_4,0xfffffffffffffffe);
   }
-  *(undefined8 *)(lVar1 + 0xf78) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0xf78) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0xf80) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -76740,7 +76740,7 @@ void Unwind_180910940(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0xf80) = 0;
   *(undefined4 *)(lVar1 + 0xf90) = 0;
   *(undefined8 *)(lVar1 + 0xf78) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0xf58) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0xf58) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0xf60) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -76762,7 +76762,7 @@ void Unwind_180910960(undefined8 param_1,longlong param_2,undefined8 param_3,und
   if (*(code **)(lVar1 + 0x1020) != (code *)0x0) {
     (**(code **)(lVar1 + 0x1020))(lVar1 + 0x1010,0,0,param_4,0xfffffffffffffffe);
   }
-  *(undefined8 *)(lVar1 + 0xfe8) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0xfe8) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0xff0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -76770,7 +76770,7 @@ void Unwind_180910960(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0xff0) = 0;
   *(undefined4 *)(lVar1 + 0x1000) = 0;
   *(undefined8 *)(lVar1 + 0xfe8) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0xfc8) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0xfc8) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0xfd0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -76792,7 +76792,7 @@ void Unwind_180910980(undefined8 param_1,longlong param_2,undefined8 param_3,und
   if (*(code **)(lVar1 + 0x1090) != (code *)0x0) {
     (**(code **)(lVar1 + 0x1090))(lVar1 + 0x1080,0,0,param_4,0xfffffffffffffffe);
   }
-  *(undefined8 *)(lVar1 + 0x1058) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x1058) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x1060) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -76800,7 +76800,7 @@ void Unwind_180910980(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x1060) = 0;
   *(undefined4 *)(lVar1 + 0x1070) = 0;
   *(undefined8 *)(lVar1 + 0x1058) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x1038) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x1038) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x1040) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -76822,7 +76822,7 @@ void Unwind_1809109a0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   if (*(code **)(lVar1 + 0x1100) != (code *)0x0) {
     (**(code **)(lVar1 + 0x1100))(lVar1 + 0x10f0,0,0,param_4,0xfffffffffffffffe);
   }
-  *(undefined8 *)(lVar1 + 0x10c8) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x10c8) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x10d0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -76830,7 +76830,7 @@ void Unwind_1809109a0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x10d0) = 0;
   *(undefined4 *)(lVar1 + 0x10e0) = 0;
   *(undefined8 *)(lVar1 + 0x10c8) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x10a8) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x10a8) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x10b0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -76852,7 +76852,7 @@ void Unwind_1809109c0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   if (*(code **)(lVar1 + 0x1170) != (code *)0x0) {
     (**(code **)(lVar1 + 0x1170))(lVar1 + 0x1160,0,0,param_4,0xfffffffffffffffe);
   }
-  *(undefined8 *)(lVar1 + 0x1138) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x1138) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x1140) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -76860,7 +76860,7 @@ void Unwind_1809109c0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x1140) = 0;
   *(undefined4 *)(lVar1 + 0x1150) = 0;
   *(undefined8 *)(lVar1 + 0x1138) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x1118) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x1118) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x1120) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -76882,7 +76882,7 @@ void Unwind_1809109e0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   if (*(code **)(lVar1 + 0x11e0) != (code *)0x0) {
     (**(code **)(lVar1 + 0x11e0))(lVar1 + 0x11d0,0,0,param_4,0xfffffffffffffffe);
   }
-  *(undefined8 *)(lVar1 + 0x11a8) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x11a8) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x11b0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -76890,7 +76890,7 @@ void Unwind_1809109e0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x11b0) = 0;
   *(undefined4 *)(lVar1 + 0x11c0) = 0;
   *(undefined8 *)(lVar1 + 0x11a8) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x1188) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x1188) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x1190) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -76912,7 +76912,7 @@ void Unwind_180910a00(undefined8 param_1,longlong param_2,undefined8 param_3,und
   if (*(code **)(lVar1 + 0x1250) != (code *)0x0) {
     (**(code **)(lVar1 + 0x1250))(lVar1 + 0x1240,0,0,param_4,0xfffffffffffffffe);
   }
-  *(undefined8 *)(lVar1 + 0x1218) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x1218) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x1220) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -76920,7 +76920,7 @@ void Unwind_180910a00(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x1220) = 0;
   *(undefined4 *)(lVar1 + 0x1230) = 0;
   *(undefined8 *)(lVar1 + 0x1218) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x11f8) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x11f8) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x1200) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -76942,7 +76942,7 @@ void Unwind_180910a20(undefined8 param_1,longlong param_2,undefined8 param_3,und
   if (*(code **)(lVar1 + 0x12c0) != (code *)0x0) {
     (**(code **)(lVar1 + 0x12c0))(lVar1 + 0x12b0,0,0,param_4,0xfffffffffffffffe);
   }
-  *(undefined8 *)(lVar1 + 0x1288) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x1288) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x1290) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -76950,7 +76950,7 @@ void Unwind_180910a20(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x1290) = 0;
   *(undefined4 *)(lVar1 + 0x12a0) = 0;
   *(undefined8 *)(lVar1 + 0x1288) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x1268) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x1268) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x1270) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -76972,7 +76972,7 @@ void Unwind_180910a40(undefined8 param_1,longlong param_2,undefined8 param_3,und
   if (*(code **)(lVar1 + 0x1330) != (code *)0x0) {
     (**(code **)(lVar1 + 0x1330))(lVar1 + 0x1320,0,0,param_4,0xfffffffffffffffe);
   }
-  *(undefined8 *)(lVar1 + 0x12f8) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x12f8) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x1300) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -76980,7 +76980,7 @@ void Unwind_180910a40(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x1300) = 0;
   *(undefined4 *)(lVar1 + 0x1310) = 0;
   *(undefined8 *)(lVar1 + 0x12f8) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x12d8) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x12d8) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x12e0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -77002,7 +77002,7 @@ void Unwind_180910a60(undefined8 param_1,longlong param_2,undefined8 param_3,und
   if (*(code **)(lVar1 + 0x13a0) != (code *)0x0) {
     (**(code **)(lVar1 + 0x13a0))(lVar1 + 0x1390,0,0,param_4,0xfffffffffffffffe);
   }
-  *(undefined8 *)(lVar1 + 0x1368) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x1368) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x1370) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -77010,7 +77010,7 @@ void Unwind_180910a60(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x1370) = 0;
   *(undefined4 *)(lVar1 + 0x1380) = 0;
   *(undefined8 *)(lVar1 + 0x1368) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x1348) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x1348) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x1350) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -77032,7 +77032,7 @@ void Unwind_180910a80(undefined8 param_1,longlong param_2,undefined8 param_3,und
   if (*(code **)(lVar1 + 0x1410) != (code *)0x0) {
     (**(code **)(lVar1 + 0x1410))(lVar1 + 0x1400,0,0,param_4,0xfffffffffffffffe);
   }
-  *(undefined8 *)(lVar1 + 0x13d8) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x13d8) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x13e0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -77040,7 +77040,7 @@ void Unwind_180910a80(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x13e0) = 0;
   *(undefined4 *)(lVar1 + 0x13f0) = 0;
   *(undefined8 *)(lVar1 + 0x13d8) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x13b8) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x13b8) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x13c0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -77062,7 +77062,7 @@ void Unwind_180910aa0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   if (*(code **)(lVar1 + 0x1480) != (code *)0x0) {
     (**(code **)(lVar1 + 0x1480))(lVar1 + 0x1470,0,0,param_4,0xfffffffffffffffe);
   }
-  *(undefined8 *)(lVar1 + 0x1448) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x1448) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x1450) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -77070,7 +77070,7 @@ void Unwind_180910aa0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x1450) = 0;
   *(undefined4 *)(lVar1 + 0x1460) = 0;
   *(undefined8 *)(lVar1 + 0x1448) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x1428) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x1428) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x1430) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -77092,7 +77092,7 @@ void Unwind_180910ac0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   if (*(code **)(lVar1 + 0x14f0) != (code *)0x0) {
     (**(code **)(lVar1 + 0x14f0))(lVar1 + 0x14e0,0,0,param_4,0xfffffffffffffffe);
   }
-  *(undefined8 *)(lVar1 + 0x14b8) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x14b8) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x14c0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -77100,7 +77100,7 @@ void Unwind_180910ac0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x14c0) = 0;
   *(undefined4 *)(lVar1 + 0x14d0) = 0;
   *(undefined8 *)(lVar1 + 0x14b8) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x1498) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x1498) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x14a0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -77122,7 +77122,7 @@ void Unwind_180910ae0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   if (*(code **)(lVar1 + 0x1560) != (code *)0x0) {
     (**(code **)(lVar1 + 0x1560))(lVar1 + 0x1550,0,0,param_4,0xfffffffffffffffe);
   }
-  *(undefined8 *)(lVar1 + 0x1528) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x1528) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x1530) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -77130,7 +77130,7 @@ void Unwind_180910ae0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x1530) = 0;
   *(undefined4 *)(lVar1 + 0x1540) = 0;
   *(undefined8 *)(lVar1 + 0x1528) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x1508) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x1508) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x1510) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -77152,7 +77152,7 @@ void Unwind_180910b00(undefined8 param_1,longlong param_2,undefined8 param_3,und
   if (*(code **)(lVar1 + 0x15d0) != (code *)0x0) {
     (**(code **)(lVar1 + 0x15d0))(lVar1 + 0x15c0,0,0,param_4,0xfffffffffffffffe);
   }
-  *(undefined8 *)(lVar1 + 0x1598) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x1598) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x15a0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -77160,7 +77160,7 @@ void Unwind_180910b00(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x15a0) = 0;
   *(undefined4 *)(lVar1 + 0x15b0) = 0;
   *(undefined8 *)(lVar1 + 0x1598) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x1578) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x1578) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x1580) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -77182,7 +77182,7 @@ void Unwind_180910b20(undefined8 param_1,longlong param_2,undefined8 param_3,und
   if (*(code **)(lVar1 + 0x1640) != (code *)0x0) {
     (**(code **)(lVar1 + 0x1640))(lVar1 + 0x1630,0,0,param_4,0xfffffffffffffffe);
   }
-  *(undefined8 *)(lVar1 + 0x1608) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x1608) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x1610) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -77190,7 +77190,7 @@ void Unwind_180910b20(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x1610) = 0;
   *(undefined4 *)(lVar1 + 0x1620) = 0;
   *(undefined8 *)(lVar1 + 0x1608) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x15e8) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x15e8) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x15f0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -77212,7 +77212,7 @@ void Unwind_180910b40(undefined8 param_1,longlong param_2,undefined8 param_3,und
   if (*(code **)(lVar1 + 0x16b0) != (code *)0x0) {
     (**(code **)(lVar1 + 0x16b0))(lVar1 + 0x16a0,0,0,param_4,0xfffffffffffffffe);
   }
-  *(undefined8 *)(lVar1 + 0x1678) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x1678) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x1680) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -77220,7 +77220,7 @@ void Unwind_180910b40(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x1680) = 0;
   *(undefined4 *)(lVar1 + 0x1690) = 0;
   *(undefined8 *)(lVar1 + 0x1678) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x1658) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x1658) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x1660) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -77242,7 +77242,7 @@ void Unwind_180910b60(undefined8 param_1,longlong param_2,undefined8 param_3,und
   if (*(code **)(lVar1 + 0x1720) != (code *)0x0) {
     (**(code **)(lVar1 + 0x1720))(lVar1 + 0x1710,0,0,param_4,0xfffffffffffffffe);
   }
-  *(undefined8 *)(lVar1 + 0x16e8) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x16e8) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x16f0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -77250,7 +77250,7 @@ void Unwind_180910b60(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x16f0) = 0;
   *(undefined4 *)(lVar1 + 0x1700) = 0;
   *(undefined8 *)(lVar1 + 0x16e8) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x16c8) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x16c8) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x16d0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -77272,7 +77272,7 @@ void Unwind_180910b80(undefined8 param_1,longlong param_2,undefined8 param_3,und
   if (*(code **)(lVar1 + 0x1790) != (code *)0x0) {
     (**(code **)(lVar1 + 0x1790))(lVar1 + 0x1780,0,0,param_4,0xfffffffffffffffe);
   }
-  *(undefined8 *)(lVar1 + 0x1758) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x1758) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x1760) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -77280,7 +77280,7 @@ void Unwind_180910b80(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x1760) = 0;
   *(undefined4 *)(lVar1 + 6000) = 0;
   *(undefined8 *)(lVar1 + 0x1758) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x1738) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x1738) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x1740) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -77302,7 +77302,7 @@ void Unwind_180910ba0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   if (*(code **)(lVar1 + 0x1800) != (code *)0x0) {
     (**(code **)(lVar1 + 0x1800))(lVar1 + 0x17f0,0,0,param_4,0xfffffffffffffffe);
   }
-  *(undefined8 *)(lVar1 + 0x17c8) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x17c8) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x17d0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -77310,7 +77310,7 @@ void Unwind_180910ba0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x17d0) = 0;
   *(undefined4 *)(lVar1 + 0x17e0) = 0;
   *(undefined8 *)(lVar1 + 0x17c8) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x17a8) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x17a8) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x17b0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -77332,7 +77332,7 @@ void Unwind_180910bc0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   if (*(code **)(lVar1 + 0x1870) != (code *)0x0) {
     (**(code **)(lVar1 + 0x1870))(lVar1 + 0x1860,0,0,param_4,0xfffffffffffffffe);
   }
-  *(undefined8 *)(lVar1 + 0x1838) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x1838) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x1840) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -77340,7 +77340,7 @@ void Unwind_180910bc0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x1840) = 0;
   *(undefined4 *)(lVar1 + 0x1850) = 0;
   *(undefined8 *)(lVar1 + 0x1838) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x1818) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x1818) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x1820) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -77362,7 +77362,7 @@ void Unwind_180910be0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   if (*(code **)(lVar1 + 0x18e0) != (code *)0x0) {
     (**(code **)(lVar1 + 0x18e0))(lVar1 + 0x18d0,0,0,param_4,0xfffffffffffffffe);
   }
-  *(undefined8 *)(lVar1 + 0x18a8) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x18a8) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x18b0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -77370,7 +77370,7 @@ void Unwind_180910be0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x18b0) = 0;
   *(undefined4 *)(lVar1 + 0x18c0) = 0;
   *(undefined8 *)(lVar1 + 0x18a8) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x1888) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x1888) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x1890) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -77392,7 +77392,7 @@ void Unwind_180910c00(undefined8 param_1,longlong param_2,undefined8 param_3,und
   if (*(code **)(lVar1 + 0x1950) != (code *)0x0) {
     (**(code **)(lVar1 + 0x1950))(lVar1 + 0x1940,0,0,param_4,0xfffffffffffffffe);
   }
-  *(undefined8 *)(lVar1 + 0x1918) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x1918) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x1920) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -77400,7 +77400,7 @@ void Unwind_180910c00(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x1920) = 0;
   *(undefined4 *)(lVar1 + 0x1930) = 0;
   *(undefined8 *)(lVar1 + 0x1918) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x18f8) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x18f8) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x1900) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -77422,7 +77422,7 @@ void Unwind_180910c20(undefined8 param_1,longlong param_2,undefined8 param_3,und
   if (*(code **)(lVar1 + 0x19c0) != (code *)0x0) {
     (**(code **)(lVar1 + 0x19c0))(lVar1 + 0x19b0,0,0,param_4,0xfffffffffffffffe);
   }
-  *(undefined8 *)(lVar1 + 0x1988) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x1988) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x1990) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -77430,7 +77430,7 @@ void Unwind_180910c20(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x1990) = 0;
   *(undefined4 *)(lVar1 + 0x19a0) = 0;
   *(undefined8 *)(lVar1 + 0x1988) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x1968) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x1968) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x1970) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -77452,7 +77452,7 @@ void Unwind_180910c40(undefined8 param_1,longlong param_2,undefined8 param_3,und
   if (*(code **)(lVar1 + 0x1a30) != (code *)0x0) {
     (**(code **)(lVar1 + 0x1a30))(lVar1 + 0x1a20,0,0,param_4,0xfffffffffffffffe);
   }
-  *(undefined8 *)(lVar1 + 0x19f8) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x19f8) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x1a00) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -77460,7 +77460,7 @@ void Unwind_180910c40(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x1a00) = 0;
   *(undefined4 *)(lVar1 + 0x1a10) = 0;
   *(undefined8 *)(lVar1 + 0x19f8) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x19d8) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x19d8) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x19e0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -77482,7 +77482,7 @@ void Unwind_180910c60(undefined8 param_1,longlong param_2,undefined8 param_3,und
   if (*(code **)(lVar1 + 0x1aa0) != (code *)0x0) {
     (**(code **)(lVar1 + 0x1aa0))(lVar1 + 0x1a90,0,0,param_4,0xfffffffffffffffe);
   }
-  *(undefined8 *)(lVar1 + 0x1a68) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x1a68) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x1a70) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -77490,7 +77490,7 @@ void Unwind_180910c60(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x1a70) = 0;
   *(undefined4 *)(lVar1 + 0x1a80) = 0;
   *(undefined8 *)(lVar1 + 0x1a68) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x1a48) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x1a48) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x1a50) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -77512,7 +77512,7 @@ void Unwind_180910c80(undefined8 param_1,longlong param_2,undefined8 param_3,und
   if (*(code **)(lVar1 + 0x1b10) != (code *)0x0) {
     (**(code **)(lVar1 + 0x1b10))(lVar1 + 0x1b00,0,0,param_4,0xfffffffffffffffe);
   }
-  *(undefined8 *)(lVar1 + 0x1ad8) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x1ad8) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x1ae0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -77520,7 +77520,7 @@ void Unwind_180910c80(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x1ae0) = 0;
   *(undefined4 *)(lVar1 + 0x1af0) = 0;
   *(undefined8 *)(lVar1 + 0x1ad8) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x1ab8) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x1ab8) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x1ac0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -77542,7 +77542,7 @@ void Unwind_180910ca0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   if (*(code **)(lVar1 + 0x1b80) != (code *)0x0) {
     (**(code **)(lVar1 + 0x1b80))(lVar1 + 0x1b70,0,0,param_4,0xfffffffffffffffe);
   }
-  *(undefined8 *)(lVar1 + 0x1b48) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x1b48) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x1b50) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -77550,7 +77550,7 @@ void Unwind_180910ca0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x1b50) = 0;
   *(undefined4 *)(lVar1 + 0x1b60) = 0;
   *(undefined8 *)(lVar1 + 0x1b48) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x1b28) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x1b28) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x1b30) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -77572,7 +77572,7 @@ void Unwind_180910cc0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   if (*(code **)(lVar1 + 0x1bf0) != (code *)0x0) {
     (**(code **)(lVar1 + 0x1bf0))(lVar1 + 0x1be0,0,0,param_4,0xfffffffffffffffe);
   }
-  *(undefined8 *)(lVar1 + 0x1bb8) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x1bb8) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x1bc0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -77580,7 +77580,7 @@ void Unwind_180910cc0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x1bc0) = 0;
   *(undefined4 *)(lVar1 + 0x1bd0) = 0;
   *(undefined8 *)(lVar1 + 0x1bb8) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x1b98) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x1b98) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x1ba0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -77602,7 +77602,7 @@ void Unwind_180910ce0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   if (*(code **)(lVar1 + 0x1c60) != (code *)0x0) {
     (**(code **)(lVar1 + 0x1c60))(lVar1 + 0x1c50,0,0,param_4,0xfffffffffffffffe);
   }
-  *(undefined8 *)(lVar1 + 0x1c28) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x1c28) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x1c30) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -77610,7 +77610,7 @@ void Unwind_180910ce0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x1c30) = 0;
   *(undefined4 *)(lVar1 + 0x1c40) = 0;
   *(undefined8 *)(lVar1 + 0x1c28) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x1c08) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x1c08) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x1c10) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -77632,7 +77632,7 @@ void Unwind_180910d00(undefined8 param_1,longlong param_2,undefined8 param_3,und
   if (*(code **)(lVar1 + 0x1cd0) != (code *)0x0) {
     (**(code **)(lVar1 + 0x1cd0))(lVar1 + 0x1cc0,0,0,param_4,0xfffffffffffffffe);
   }
-  *(undefined8 *)(lVar1 + 0x1c98) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x1c98) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x1ca0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -77640,7 +77640,7 @@ void Unwind_180910d00(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x1ca0) = 0;
   *(undefined4 *)(lVar1 + 0x1cb0) = 0;
   *(undefined8 *)(lVar1 + 0x1c98) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x1c78) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x1c78) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x1c80) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -77662,7 +77662,7 @@ void Unwind_180910d20(undefined8 param_1,longlong param_2,undefined8 param_3,und
   if (*(code **)(lVar1 + 0x1d40) != (code *)0x0) {
     (**(code **)(lVar1 + 0x1d40))(lVar1 + 0x1d30,0,0,param_4,0xfffffffffffffffe);
   }
-  *(undefined8 *)(lVar1 + 0x1d08) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x1d08) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x1d10) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -77670,7 +77670,7 @@ void Unwind_180910d20(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x1d10) = 0;
   *(undefined4 *)(lVar1 + 0x1d20) = 0;
   *(undefined8 *)(lVar1 + 0x1d08) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x1ce8) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x1ce8) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x1cf0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -77692,7 +77692,7 @@ void Unwind_180910d40(undefined8 param_1,longlong param_2,undefined8 param_3,und
   if (*(code **)(lVar1 + 0x1db0) != (code *)0x0) {
     (**(code **)(lVar1 + 0x1db0))(lVar1 + 0x1da0,0,0,param_4,0xfffffffffffffffe);
   }
-  *(undefined8 *)(lVar1 + 0x1d78) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x1d78) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x1d80) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -77700,7 +77700,7 @@ void Unwind_180910d40(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x1d80) = 0;
   *(undefined4 *)(lVar1 + 0x1d90) = 0;
   *(undefined8 *)(lVar1 + 0x1d78) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x1d58) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x1d58) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x1d60) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -77722,7 +77722,7 @@ void Unwind_180910d60(undefined8 param_1,longlong param_2,undefined8 param_3,und
   if (*(code **)(lVar1 + 0x1e20) != (code *)0x0) {
     (**(code **)(lVar1 + 0x1e20))(lVar1 + 0x1e10,0,0,param_4,0xfffffffffffffffe);
   }
-  *(undefined8 *)(lVar1 + 0x1de8) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x1de8) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x1df0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -77730,7 +77730,7 @@ void Unwind_180910d60(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x1df0) = 0;
   *(undefined4 *)(lVar1 + 0x1e00) = 0;
   *(undefined8 *)(lVar1 + 0x1de8) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x1dc8) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x1dc8) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x1dd0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -77752,7 +77752,7 @@ void Unwind_180910d80(undefined8 param_1,longlong param_2,undefined8 param_3,und
   if (*(code **)(lVar1 + 0x1e90) != (code *)0x0) {
     (**(code **)(lVar1 + 0x1e90))(lVar1 + 0x1e80,0,0,param_4,0xfffffffffffffffe);
   }
-  *(undefined8 *)(lVar1 + 0x1e58) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x1e58) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x1e60) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -77760,7 +77760,7 @@ void Unwind_180910d80(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x1e60) = 0;
   *(undefined4 *)(lVar1 + 0x1e70) = 0;
   *(undefined8 *)(lVar1 + 0x1e58) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x1e38) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x1e38) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x1e40) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -77782,7 +77782,7 @@ void Unwind_180910da0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   if (*(code **)(lVar1 + 0x1f00) != (code *)0x0) {
     (**(code **)(lVar1 + 0x1f00))(lVar1 + 0x1ef0,0,0,param_4,0xfffffffffffffffe);
   }
-  *(undefined8 *)(lVar1 + 0x1ec8) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x1ec8) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x1ed0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -77790,7 +77790,7 @@ void Unwind_180910da0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x1ed0) = 0;
   *(undefined4 *)(lVar1 + 0x1ee0) = 0;
   *(undefined8 *)(lVar1 + 0x1ec8) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x1ea8) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x1ea8) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x1eb0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -77812,7 +77812,7 @@ void Unwind_180910dc0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   if (*(code **)(lVar1 + 0x1f70) != (code *)0x0) {
     (**(code **)(lVar1 + 0x1f70))(lVar1 + 0x1f60,0,0,param_4,0xfffffffffffffffe);
   }
-  *(undefined8 *)(lVar1 + 0x1f38) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x1f38) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 8000) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -77820,7 +77820,7 @@ void Unwind_180910dc0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 8000) = 0;
   *(undefined4 *)(lVar1 + 0x1f50) = 0;
   *(undefined8 *)(lVar1 + 0x1f38) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x1f18) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x1f18) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x1f20) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -77842,7 +77842,7 @@ void Unwind_180910de0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   if (*(code **)(lVar1 + 0x1fe0) != (code *)0x0) {
     (**(code **)(lVar1 + 0x1fe0))(lVar1 + 0x1fd0,0,0,param_4,0xfffffffffffffffe);
   }
-  *(undefined8 *)(lVar1 + 0x1fa8) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x1fa8) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x1fb0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -77850,7 +77850,7 @@ void Unwind_180910de0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x1fb0) = 0;
   *(undefined4 *)(lVar1 + 0x1fc0) = 0;
   *(undefined8 *)(lVar1 + 0x1fa8) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x1f88) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x1f88) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x1f90) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -77872,7 +77872,7 @@ void Unwind_180910e00(undefined8 param_1,longlong param_2,undefined8 param_3,und
   if (*(code **)(lVar1 + 0x2050) != (code *)0x0) {
     (**(code **)(lVar1 + 0x2050))(lVar1 + 0x2040,0,0,param_4,0xfffffffffffffffe);
   }
-  *(undefined8 *)(lVar1 + 0x2018) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x2018) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x2020) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -77880,7 +77880,7 @@ void Unwind_180910e00(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x2020) = 0;
   *(undefined4 *)(lVar1 + 0x2030) = 0;
   *(undefined8 *)(lVar1 + 0x2018) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x1ff8) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x1ff8) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x2000) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -77902,7 +77902,7 @@ void Unwind_180910e20(undefined8 param_1,longlong param_2,undefined8 param_3,und
   if (*(code **)(lVar1 + 0x20c0) != (code *)0x0) {
     (**(code **)(lVar1 + 0x20c0))(lVar1 + 0x20b0,0,0,param_4,0xfffffffffffffffe);
   }
-  *(undefined8 *)(lVar1 + 0x2088) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x2088) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x2090) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -77910,7 +77910,7 @@ void Unwind_180910e20(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x2090) = 0;
   *(undefined4 *)(lVar1 + 0x20a0) = 0;
   *(undefined8 *)(lVar1 + 0x2088) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x2068) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x2068) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x2070) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -77932,7 +77932,7 @@ void Unwind_180910e40(undefined8 param_1,longlong param_2,undefined8 param_3,und
   if (*(code **)(lVar1 + 0x2130) != (code *)0x0) {
     (**(code **)(lVar1 + 0x2130))(lVar1 + 0x2120,0,0,param_4,0xfffffffffffffffe);
   }
-  *(undefined8 *)(lVar1 + 0x20f8) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x20f8) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x2100) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -77940,7 +77940,7 @@ void Unwind_180910e40(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x2100) = 0;
   *(undefined4 *)(lVar1 + 0x2110) = 0;
   *(undefined8 *)(lVar1 + 0x20f8) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x20d8) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x20d8) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x20e0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -77962,7 +77962,7 @@ void Unwind_180910e60(undefined8 param_1,longlong param_2,undefined8 param_3,und
   if (*(code **)(lVar1 + 0x21a0) != (code *)0x0) {
     (**(code **)(lVar1 + 0x21a0))(lVar1 + 0x2190,0,0,param_4,0xfffffffffffffffe);
   }
-  *(undefined8 *)(lVar1 + 0x2168) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x2168) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x2170) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -77970,7 +77970,7 @@ void Unwind_180910e60(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x2170) = 0;
   *(undefined4 *)(lVar1 + 0x2180) = 0;
   *(undefined8 *)(lVar1 + 0x2168) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x2148) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x2148) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x2150) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -77992,7 +77992,7 @@ void Unwind_180910e80(undefined8 param_1,longlong param_2,undefined8 param_3,und
   if (*(code **)(lVar1 + 0x2210) != (code *)0x0) {
     (**(code **)(lVar1 + 0x2210))(lVar1 + 0x2200,0,0,param_4,0xfffffffffffffffe);
   }
-  *(undefined8 *)(lVar1 + 0x21d8) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x21d8) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x21e0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -78000,7 +78000,7 @@ void Unwind_180910e80(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x21e0) = 0;
   *(undefined4 *)(lVar1 + 0x21f0) = 0;
   *(undefined8 *)(lVar1 + 0x21d8) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x21b8) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x21b8) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x21c0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -78022,7 +78022,7 @@ void Unwind_180910ea0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   if (*(code **)(lVar1 + 0x2280) != (code *)0x0) {
     (**(code **)(lVar1 + 0x2280))(lVar1 + 0x2270,0,0,param_4,0xfffffffffffffffe);
   }
-  *(undefined8 *)(lVar1 + 0x2248) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x2248) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x2250) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -78030,7 +78030,7 @@ void Unwind_180910ea0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x2250) = 0;
   *(undefined4 *)(lVar1 + 0x2260) = 0;
   *(undefined8 *)(lVar1 + 0x2248) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x2228) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x2228) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x2230) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -78052,7 +78052,7 @@ void Unwind_180910ec0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   if (*(code **)(lVar1 + 0x22f0) != (code *)0x0) {
     (**(code **)(lVar1 + 0x22f0))(lVar1 + 0x22e0,0,0,param_4,0xfffffffffffffffe);
   }
-  *(undefined8 *)(lVar1 + 0x22b8) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x22b8) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x22c0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -78060,7 +78060,7 @@ void Unwind_180910ec0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x22c0) = 0;
   *(undefined4 *)(lVar1 + 0x22d0) = 0;
   *(undefined8 *)(lVar1 + 0x22b8) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x2298) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x2298) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x22a0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -78082,7 +78082,7 @@ void Unwind_180910ee0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   if (*(code **)(lVar1 + 0x2360) != (code *)0x0) {
     (**(code **)(lVar1 + 0x2360))(lVar1 + 0x2350,0,0,param_4,0xfffffffffffffffe);
   }
-  *(undefined8 *)(lVar1 + 9000) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 9000) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x2330) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -78090,7 +78090,7 @@ void Unwind_180910ee0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x2330) = 0;
   *(undefined4 *)(lVar1 + 0x2340) = 0;
   *(undefined8 *)(lVar1 + 9000) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x2308) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x2308) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x2310) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -78112,7 +78112,7 @@ void Unwind_180910f00(undefined8 param_1,longlong param_2,undefined8 param_3,und
   if (*(code **)(lVar1 + 0x23d0) != (code *)0x0) {
     (**(code **)(lVar1 + 0x23d0))(lVar1 + 0x23c0,0,0,param_4,0xfffffffffffffffe);
   }
-  *(undefined8 *)(lVar1 + 0x2398) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x2398) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x23a0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -78120,7 +78120,7 @@ void Unwind_180910f00(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x23a0) = 0;
   *(undefined4 *)(lVar1 + 0x23b0) = 0;
   *(undefined8 *)(lVar1 + 0x2398) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x2378) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x2378) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x2380) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -78142,7 +78142,7 @@ void Unwind_180910f20(undefined8 param_1,longlong param_2,undefined8 param_3,und
   if (*(code **)(lVar1 + 0x2440) != (code *)0x0) {
     (**(code **)(lVar1 + 0x2440))(lVar1 + 0x2430,0,0,param_4,0xfffffffffffffffe);
   }
-  *(undefined8 *)(lVar1 + 0x2408) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x2408) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x2410) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -78150,7 +78150,7 @@ void Unwind_180910f20(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x2410) = 0;
   *(undefined4 *)(lVar1 + 0x2420) = 0;
   *(undefined8 *)(lVar1 + 0x2408) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x23e8) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x23e8) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x23f0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -78172,7 +78172,7 @@ void Unwind_180910f40(undefined8 param_1,longlong param_2,undefined8 param_3,und
   if (*(code **)(lVar1 + 0x24b0) != (code *)0x0) {
     (**(code **)(lVar1 + 0x24b0))(lVar1 + 0x24a0,0,0,param_4,0xfffffffffffffffe);
   }
-  *(undefined8 *)(lVar1 + 0x2478) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x2478) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x2480) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -78180,7 +78180,7 @@ void Unwind_180910f40(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x2480) = 0;
   *(undefined4 *)(lVar1 + 0x2490) = 0;
   *(undefined8 *)(lVar1 + 0x2478) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x2458) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x2458) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x2460) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -78202,7 +78202,7 @@ void Unwind_180910f60(undefined8 param_1,longlong param_2,undefined8 param_3,und
   if (*(code **)(lVar1 + 0x2520) != (code *)0x0) {
     (**(code **)(lVar1 + 0x2520))(lVar1 + 0x2510,0,0,param_4,0xfffffffffffffffe);
   }
-  *(undefined8 *)(lVar1 + 0x24e8) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x24e8) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x24f0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -78210,7 +78210,7 @@ void Unwind_180910f60(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x24f0) = 0;
   *(undefined4 *)(lVar1 + 0x2500) = 0;
   *(undefined8 *)(lVar1 + 0x24e8) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x24c8) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x24c8) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x24d0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -78232,7 +78232,7 @@ void Unwind_180910f80(undefined8 param_1,longlong param_2,undefined8 param_3,und
   if (*(code **)(lVar1 + 0x2590) != (code *)0x0) {
     (**(code **)(lVar1 + 0x2590))(lVar1 + 0x2580,0,0,param_4,0xfffffffffffffffe);
   }
-  *(undefined8 *)(lVar1 + 0x2558) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x2558) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x2560) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -78240,7 +78240,7 @@ void Unwind_180910f80(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x2560) = 0;
   *(undefined4 *)(lVar1 + 0x2570) = 0;
   *(undefined8 *)(lVar1 + 0x2558) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x2538) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x2538) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x2540) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -78262,7 +78262,7 @@ void Unwind_180910fa0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   if (*(code **)(lVar1 + 0x2600) != (code *)0x0) {
     (**(code **)(lVar1 + 0x2600))(lVar1 + 0x25f0,0,0,param_4,0xfffffffffffffffe);
   }
-  *(undefined8 *)(lVar1 + 0x25c8) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x25c8) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x25d0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -78270,7 +78270,7 @@ void Unwind_180910fa0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x25d0) = 0;
   *(undefined4 *)(lVar1 + 0x25e0) = 0;
   *(undefined8 *)(lVar1 + 0x25c8) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x25a8) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x25a8) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x25b0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -78338,7 +78338,7 @@ void Unwind_180911000(undefined8 param_1,longlong param_2,undefined8 param_3,und
   if (*(code **)(lVar1 + 0xa00) != (code *)0x0) {
     (**(code **)(lVar1 + 0xa00))(lVar1 + 0x9f0,0,0,param_4,0xfffffffffffffffe);
   }
-  *(undefined8 *)(lVar1 + 0x9c8) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x9c8) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x9d0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -78346,7 +78346,7 @@ void Unwind_180911000(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x9d0) = 0;
   *(undefined4 *)(lVar1 + 0x9e0) = 0;
   *(undefined8 *)(lVar1 + 0x9c8) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x9a8) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x9a8) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x9b0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -78368,7 +78368,7 @@ void Unwind_180911020(undefined8 param_1,longlong param_2,undefined8 param_3,und
   if (*(code **)(lVar1 + 0xa70) != (code *)0x0) {
     (**(code **)(lVar1 + 0xa70))(lVar1 + 0xa60,0,0,param_4,0xfffffffffffffffe);
   }
-  *(undefined8 *)(lVar1 + 0xa38) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0xa38) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0xa40) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -78376,7 +78376,7 @@ void Unwind_180911020(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0xa40) = 0;
   *(undefined4 *)(lVar1 + 0xa50) = 0;
   *(undefined8 *)(lVar1 + 0xa38) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0xa18) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0xa18) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0xa20) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -78398,7 +78398,7 @@ void Unwind_180911040(undefined8 param_1,longlong param_2,undefined8 param_3,und
   if (*(code **)(lVar1 + 0xae0) != (code *)0x0) {
     (**(code **)(lVar1 + 0xae0))(lVar1 + 0xad0,0,0,param_4,0xfffffffffffffffe);
   }
-  *(undefined8 *)(lVar1 + 0xaa8) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0xaa8) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0xab0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -78406,7 +78406,7 @@ void Unwind_180911040(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0xab0) = 0;
   *(undefined4 *)(lVar1 + 0xac0) = 0;
   *(undefined8 *)(lVar1 + 0xaa8) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0xa88) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0xa88) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0xa90) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -78428,7 +78428,7 @@ void Unwind_180911060(undefined8 param_1,longlong param_2,undefined8 param_3,und
   if (*(code **)(lVar1 + 0xb50) != (code *)0x0) {
     (**(code **)(lVar1 + 0xb50))(lVar1 + 0xb40,0,0,param_4,0xfffffffffffffffe);
   }
-  *(undefined8 *)(lVar1 + 0xb18) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0xb18) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0xb20) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -78436,7 +78436,7 @@ void Unwind_180911060(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0xb20) = 0;
   *(undefined4 *)(lVar1 + 0xb30) = 0;
   *(undefined8 *)(lVar1 + 0xb18) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0xaf8) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0xaf8) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0xb00) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -78458,7 +78458,7 @@ void Unwind_180911080(undefined8 param_1,longlong param_2,undefined8 param_3,und
   if (*(code **)(lVar1 + 0xbc0) != (code *)0x0) {
     (**(code **)(lVar1 + 0xbc0))(lVar1 + 0xbb0,0,0,param_4,0xfffffffffffffffe);
   }
-  *(undefined8 *)(lVar1 + 0xb88) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0xb88) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0xb90) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -78466,7 +78466,7 @@ void Unwind_180911080(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0xb90) = 0;
   *(undefined4 *)(lVar1 + 0xba0) = 0;
   *(undefined8 *)(lVar1 + 0xb88) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0xb68) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0xb68) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0xb70) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -78488,7 +78488,7 @@ void Unwind_1809110a0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   if (*(code **)(lVar1 + 0xc30) != (code *)0x0) {
     (**(code **)(lVar1 + 0xc30))(lVar1 + 0xc20,0,0,param_4,0xfffffffffffffffe);
   }
-  *(undefined8 *)(lVar1 + 0xbf8) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0xbf8) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0xc00) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -78496,7 +78496,7 @@ void Unwind_1809110a0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0xc00) = 0;
   *(undefined4 *)(lVar1 + 0xc10) = 0;
   *(undefined8 *)(lVar1 + 0xbf8) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0xbd8) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0xbd8) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0xbe0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -78518,7 +78518,7 @@ void Unwind_1809110c0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   if (*(code **)(lVar1 + 0xca0) != (code *)0x0) {
     (**(code **)(lVar1 + 0xca0))(lVar1 + 0xc90,0,0,param_4,0xfffffffffffffffe);
   }
-  *(undefined8 *)(lVar1 + 0xc68) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0xc68) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0xc70) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -78526,7 +78526,7 @@ void Unwind_1809110c0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0xc70) = 0;
   *(undefined4 *)(lVar1 + 0xc80) = 0;
   *(undefined8 *)(lVar1 + 0xc68) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0xc48) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0xc48) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0xc50) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -78548,7 +78548,7 @@ void Unwind_1809110e0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   if (*(code **)(lVar1 + 0xd10) != (code *)0x0) {
     (**(code **)(lVar1 + 0xd10))(lVar1 + 0xd00,0,0,param_4,0xfffffffffffffffe);
   }
-  *(undefined8 *)(lVar1 + 0xcd8) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0xcd8) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0xce0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -78556,7 +78556,7 @@ void Unwind_1809110e0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0xce0) = 0;
   *(undefined4 *)(lVar1 + 0xcf0) = 0;
   *(undefined8 *)(lVar1 + 0xcd8) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0xcb8) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0xcb8) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0xcc0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -78578,7 +78578,7 @@ void Unwind_180911100(undefined8 param_1,longlong param_2,undefined8 param_3,und
   if (*(code **)(lVar1 + 0xd80) != (code *)0x0) {
     (**(code **)(lVar1 + 0xd80))(lVar1 + 0xd70,0,0,param_4,0xfffffffffffffffe);
   }
-  *(undefined8 *)(lVar1 + 0xd48) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0xd48) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0xd50) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -78586,7 +78586,7 @@ void Unwind_180911100(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0xd50) = 0;
   *(undefined4 *)(lVar1 + 0xd60) = 0;
   *(undefined8 *)(lVar1 + 0xd48) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0xd28) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0xd28) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0xd30) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -78608,7 +78608,7 @@ void Unwind_180911120(undefined8 param_1,longlong param_2,undefined8 param_3,und
   if (*(code **)(lVar1 + 0xdf0) != (code *)0x0) {
     (**(code **)(lVar1 + 0xdf0))(lVar1 + 0xde0,0,0,param_4,0xfffffffffffffffe);
   }
-  *(undefined8 *)(lVar1 + 0xdb8) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0xdb8) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0xdc0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -78616,7 +78616,7 @@ void Unwind_180911120(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0xdc0) = 0;
   *(undefined4 *)(lVar1 + 0xdd0) = 0;
   *(undefined8 *)(lVar1 + 0xdb8) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0xd98) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0xd98) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0xda0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -78638,7 +78638,7 @@ void Unwind_180911140(undefined8 param_1,longlong param_2,undefined8 param_3,und
   if (*(code **)(lVar1 + 0xe60) != (code *)0x0) {
     (**(code **)(lVar1 + 0xe60))(lVar1 + 0xe50,0,0,param_4,0xfffffffffffffffe);
   }
-  *(undefined8 *)(lVar1 + 0xe28) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0xe28) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0xe30) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -78646,7 +78646,7 @@ void Unwind_180911140(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0xe30) = 0;
   *(undefined4 *)(lVar1 + 0xe40) = 0;
   *(undefined8 *)(lVar1 + 0xe28) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0xe08) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0xe08) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0xe10) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -78668,7 +78668,7 @@ void Unwind_180911160(undefined8 param_1,longlong param_2,undefined8 param_3,und
   if (*(code **)(lVar1 + 0xed0) != (code *)0x0) {
     (**(code **)(lVar1 + 0xed0))(lVar1 + 0xec0,0,0,param_4,0xfffffffffffffffe);
   }
-  *(undefined8 *)(lVar1 + 0xe98) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0xe98) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0xea0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -78676,7 +78676,7 @@ void Unwind_180911160(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0xea0) = 0;
   *(undefined4 *)(lVar1 + 0xeb0) = 0;
   *(undefined8 *)(lVar1 + 0xe98) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0xe78) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0xe78) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0xe80) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -78698,7 +78698,7 @@ void Unwind_180911180(undefined8 param_1,longlong param_2,undefined8 param_3,und
   if (*(code **)(lVar1 + 0xf40) != (code *)0x0) {
     (**(code **)(lVar1 + 0xf40))(lVar1 + 0xf30,0,0,param_4,0xfffffffffffffffe);
   }
-  *(undefined8 *)(lVar1 + 0xf08) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0xf08) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0xf10) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -78706,7 +78706,7 @@ void Unwind_180911180(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0xf10) = 0;
   *(undefined4 *)(lVar1 + 0xf20) = 0;
   *(undefined8 *)(lVar1 + 0xf08) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0xee8) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0xee8) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0xef0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -78728,7 +78728,7 @@ void Unwind_1809111a0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   if (*(code **)(lVar1 + 0xfb0) != (code *)0x0) {
     (**(code **)(lVar1 + 0xfb0))(lVar1 + 4000,0,0,param_4,0xfffffffffffffffe);
   }
-  *(undefined8 *)(lVar1 + 0xf78) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0xf78) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0xf80) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -78736,7 +78736,7 @@ void Unwind_1809111a0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0xf80) = 0;
   *(undefined4 *)(lVar1 + 0xf90) = 0;
   *(undefined8 *)(lVar1 + 0xf78) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0xf58) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0xf58) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0xf60) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -78758,7 +78758,7 @@ void Unwind_1809111c0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   if (*(code **)(lVar1 + 0x1020) != (code *)0x0) {
     (**(code **)(lVar1 + 0x1020))(lVar1 + 0x1010,0,0,param_4,0xfffffffffffffffe);
   }
-  *(undefined8 *)(lVar1 + 0xfe8) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0xfe8) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0xff0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -78766,7 +78766,7 @@ void Unwind_1809111c0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0xff0) = 0;
   *(undefined4 *)(lVar1 + 0x1000) = 0;
   *(undefined8 *)(lVar1 + 0xfe8) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0xfc8) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0xfc8) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0xfd0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -78788,7 +78788,7 @@ void Unwind_1809111e0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   if (*(code **)(lVar1 + 0x1090) != (code *)0x0) {
     (**(code **)(lVar1 + 0x1090))(lVar1 + 0x1080,0,0,param_4,0xfffffffffffffffe);
   }
-  *(undefined8 *)(lVar1 + 0x1058) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x1058) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x1060) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -78796,7 +78796,7 @@ void Unwind_1809111e0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x1060) = 0;
   *(undefined4 *)(lVar1 + 0x1070) = 0;
   *(undefined8 *)(lVar1 + 0x1058) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x1038) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x1038) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x1040) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -78818,7 +78818,7 @@ void Unwind_180911200(undefined8 param_1,longlong param_2,undefined8 param_3,und
   if (*(code **)(lVar1 + 0x1100) != (code *)0x0) {
     (**(code **)(lVar1 + 0x1100))(lVar1 + 0x10f0,0,0,param_4,0xfffffffffffffffe);
   }
-  *(undefined8 *)(lVar1 + 0x10c8) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x10c8) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x10d0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -78826,7 +78826,7 @@ void Unwind_180911200(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x10d0) = 0;
   *(undefined4 *)(lVar1 + 0x10e0) = 0;
   *(undefined8 *)(lVar1 + 0x10c8) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x10a8) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x10a8) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x10b0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -78848,7 +78848,7 @@ void Unwind_180911220(undefined8 param_1,longlong param_2,undefined8 param_3,und
   if (*(code **)(lVar1 + 0x1170) != (code *)0x0) {
     (**(code **)(lVar1 + 0x1170))(lVar1 + 0x1160,0,0,param_4,0xfffffffffffffffe);
   }
-  *(undefined8 *)(lVar1 + 0x1138) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x1138) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x1140) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -78856,7 +78856,7 @@ void Unwind_180911220(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x1140) = 0;
   *(undefined4 *)(lVar1 + 0x1150) = 0;
   *(undefined8 *)(lVar1 + 0x1138) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x1118) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x1118) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x1120) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -78878,7 +78878,7 @@ void Unwind_180911240(undefined8 param_1,longlong param_2,undefined8 param_3,und
   if (*(code **)(lVar1 + 0x11e0) != (code *)0x0) {
     (**(code **)(lVar1 + 0x11e0))(lVar1 + 0x11d0,0,0,param_4,0xfffffffffffffffe);
   }
-  *(undefined8 *)(lVar1 + 0x11a8) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x11a8) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x11b0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -78886,7 +78886,7 @@ void Unwind_180911240(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x11b0) = 0;
   *(undefined4 *)(lVar1 + 0x11c0) = 0;
   *(undefined8 *)(lVar1 + 0x11a8) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x1188) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x1188) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x1190) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -78908,7 +78908,7 @@ void Unwind_180911260(undefined8 param_1,longlong param_2,undefined8 param_3,und
   if (*(code **)(lVar1 + 0x1250) != (code *)0x0) {
     (**(code **)(lVar1 + 0x1250))(lVar1 + 0x1240,0,0,param_4,0xfffffffffffffffe);
   }
-  *(undefined8 *)(lVar1 + 0x1218) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x1218) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x1220) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -78916,7 +78916,7 @@ void Unwind_180911260(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x1220) = 0;
   *(undefined4 *)(lVar1 + 0x1230) = 0;
   *(undefined8 *)(lVar1 + 0x1218) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x11f8) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x11f8) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x1200) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -78938,7 +78938,7 @@ void Unwind_180911280(undefined8 param_1,longlong param_2,undefined8 param_3,und
   if (*(code **)(lVar1 + 0x12c0) != (code *)0x0) {
     (**(code **)(lVar1 + 0x12c0))(lVar1 + 0x12b0,0,0,param_4,0xfffffffffffffffe);
   }
-  *(undefined8 *)(lVar1 + 0x1288) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x1288) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x1290) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -78946,7 +78946,7 @@ void Unwind_180911280(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x1290) = 0;
   *(undefined4 *)(lVar1 + 0x12a0) = 0;
   *(undefined8 *)(lVar1 + 0x1288) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x1268) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x1268) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x1270) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -78968,7 +78968,7 @@ void Unwind_1809112a0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   if (*(code **)(lVar1 + 0x1330) != (code *)0x0) {
     (**(code **)(lVar1 + 0x1330))(lVar1 + 0x1320,0,0,param_4,0xfffffffffffffffe);
   }
-  *(undefined8 *)(lVar1 + 0x12f8) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x12f8) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x1300) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -78976,7 +78976,7 @@ void Unwind_1809112a0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x1300) = 0;
   *(undefined4 *)(lVar1 + 0x1310) = 0;
   *(undefined8 *)(lVar1 + 0x12f8) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x12d8) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x12d8) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x12e0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -78998,7 +78998,7 @@ void Unwind_1809112c0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   if (*(code **)(lVar1 + 0x13a0) != (code *)0x0) {
     (**(code **)(lVar1 + 0x13a0))(lVar1 + 0x1390,0,0,param_4,0xfffffffffffffffe);
   }
-  *(undefined8 *)(lVar1 + 0x1368) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x1368) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x1370) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -79006,7 +79006,7 @@ void Unwind_1809112c0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x1370) = 0;
   *(undefined4 *)(lVar1 + 0x1380) = 0;
   *(undefined8 *)(lVar1 + 0x1368) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x1348) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x1348) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x1350) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -79028,7 +79028,7 @@ void Unwind_1809112e0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   if (*(code **)(lVar1 + 0x1410) != (code *)0x0) {
     (**(code **)(lVar1 + 0x1410))(lVar1 + 0x1400,0,0,param_4,0xfffffffffffffffe);
   }
-  *(undefined8 *)(lVar1 + 0x13d8) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x13d8) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x13e0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -79036,7 +79036,7 @@ void Unwind_1809112e0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x13e0) = 0;
   *(undefined4 *)(lVar1 + 0x13f0) = 0;
   *(undefined8 *)(lVar1 + 0x13d8) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x13b8) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x13b8) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x13c0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -79058,7 +79058,7 @@ void Unwind_180911300(undefined8 param_1,longlong param_2,undefined8 param_3,und
   if (*(code **)(lVar1 + 0x1480) != (code *)0x0) {
     (**(code **)(lVar1 + 0x1480))(lVar1 + 0x1470,0,0,param_4,0xfffffffffffffffe);
   }
-  *(undefined8 *)(lVar1 + 0x1448) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x1448) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x1450) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -79066,7 +79066,7 @@ void Unwind_180911300(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x1450) = 0;
   *(undefined4 *)(lVar1 + 0x1460) = 0;
   *(undefined8 *)(lVar1 + 0x1448) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x1428) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x1428) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x1430) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -79088,7 +79088,7 @@ void Unwind_180911320(undefined8 param_1,longlong param_2,undefined8 param_3,und
   if (*(code **)(lVar1 + 0x14f0) != (code *)0x0) {
     (**(code **)(lVar1 + 0x14f0))(lVar1 + 0x14e0,0,0,param_4,0xfffffffffffffffe);
   }
-  *(undefined8 *)(lVar1 + 0x14b8) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x14b8) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x14c0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -79096,7 +79096,7 @@ void Unwind_180911320(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x14c0) = 0;
   *(undefined4 *)(lVar1 + 0x14d0) = 0;
   *(undefined8 *)(lVar1 + 0x14b8) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x1498) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x1498) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x14a0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -79118,7 +79118,7 @@ void Unwind_180911340(undefined8 param_1,longlong param_2,undefined8 param_3,und
   if (*(code **)(lVar1 + 0x1560) != (code *)0x0) {
     (**(code **)(lVar1 + 0x1560))(lVar1 + 0x1550,0,0,param_4,0xfffffffffffffffe);
   }
-  *(undefined8 *)(lVar1 + 0x1528) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x1528) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x1530) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -79126,7 +79126,7 @@ void Unwind_180911340(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x1530) = 0;
   *(undefined4 *)(lVar1 + 0x1540) = 0;
   *(undefined8 *)(lVar1 + 0x1528) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x1508) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x1508) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x1510) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -79148,7 +79148,7 @@ void Unwind_180911360(undefined8 param_1,longlong param_2,undefined8 param_3,und
   if (*(code **)(lVar1 + 0x15d0) != (code *)0x0) {
     (**(code **)(lVar1 + 0x15d0))(lVar1 + 0x15c0,0,0,param_4,0xfffffffffffffffe);
   }
-  *(undefined8 *)(lVar1 + 0x1598) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x1598) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x15a0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -79156,7 +79156,7 @@ void Unwind_180911360(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x15a0) = 0;
   *(undefined4 *)(lVar1 + 0x15b0) = 0;
   *(undefined8 *)(lVar1 + 0x1598) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x1578) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x1578) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x1580) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -79178,7 +79178,7 @@ void Unwind_180911380(undefined8 param_1,longlong param_2,undefined8 param_3,und
   if (*(code **)(lVar1 + 0x1640) != (code *)0x0) {
     (**(code **)(lVar1 + 0x1640))(lVar1 + 0x1630,0,0,param_4,0xfffffffffffffffe);
   }
-  *(undefined8 *)(lVar1 + 0x1608) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x1608) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x1610) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -79186,7 +79186,7 @@ void Unwind_180911380(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x1610) = 0;
   *(undefined4 *)(lVar1 + 0x1620) = 0;
   *(undefined8 *)(lVar1 + 0x1608) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x15e8) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x15e8) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x15f0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -79208,7 +79208,7 @@ void Unwind_1809113a0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   if (*(code **)(lVar1 + 0x16b0) != (code *)0x0) {
     (**(code **)(lVar1 + 0x16b0))(lVar1 + 0x16a0,0,0,param_4,0xfffffffffffffffe);
   }
-  *(undefined8 *)(lVar1 + 0x1678) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x1678) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x1680) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -79216,7 +79216,7 @@ void Unwind_1809113a0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x1680) = 0;
   *(undefined4 *)(lVar1 + 0x1690) = 0;
   *(undefined8 *)(lVar1 + 0x1678) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x1658) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x1658) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x1660) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -79238,7 +79238,7 @@ void Unwind_1809113c0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   if (*(code **)(lVar1 + 0x1720) != (code *)0x0) {
     (**(code **)(lVar1 + 0x1720))(lVar1 + 0x1710,0,0,param_4,0xfffffffffffffffe);
   }
-  *(undefined8 *)(lVar1 + 0x16e8) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x16e8) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x16f0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -79246,7 +79246,7 @@ void Unwind_1809113c0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x16f0) = 0;
   *(undefined4 *)(lVar1 + 0x1700) = 0;
   *(undefined8 *)(lVar1 + 0x16e8) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x16c8) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x16c8) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x16d0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -79268,7 +79268,7 @@ void Unwind_1809113e0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   if (*(code **)(lVar1 + 0x1790) != (code *)0x0) {
     (**(code **)(lVar1 + 0x1790))(lVar1 + 0x1780,0,0,param_4,0xfffffffffffffffe);
   }
-  *(undefined8 *)(lVar1 + 0x1758) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x1758) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x1760) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -79276,7 +79276,7 @@ void Unwind_1809113e0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x1760) = 0;
   *(undefined4 *)(lVar1 + 6000) = 0;
   *(undefined8 *)(lVar1 + 0x1758) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x1738) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x1738) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x1740) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -79298,7 +79298,7 @@ void Unwind_180911400(undefined8 param_1,longlong param_2,undefined8 param_3,und
   if (*(code **)(lVar1 + 0x1800) != (code *)0x0) {
     (**(code **)(lVar1 + 0x1800))(lVar1 + 0x17f0,0,0,param_4,0xfffffffffffffffe);
   }
-  *(undefined8 *)(lVar1 + 0x17c8) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x17c8) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x17d0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -79306,7 +79306,7 @@ void Unwind_180911400(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x17d0) = 0;
   *(undefined4 *)(lVar1 + 0x17e0) = 0;
   *(undefined8 *)(lVar1 + 0x17c8) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x17a8) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x17a8) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x17b0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -79328,7 +79328,7 @@ void Unwind_180911420(undefined8 param_1,longlong param_2,undefined8 param_3,und
   if (*(code **)(lVar1 + 0x1870) != (code *)0x0) {
     (**(code **)(lVar1 + 0x1870))(lVar1 + 0x1860,0,0,param_4,0xfffffffffffffffe);
   }
-  *(undefined8 *)(lVar1 + 0x1838) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x1838) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x1840) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -79336,7 +79336,7 @@ void Unwind_180911420(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x1840) = 0;
   *(undefined4 *)(lVar1 + 0x1850) = 0;
   *(undefined8 *)(lVar1 + 0x1838) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x1818) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x1818) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x1820) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -79358,7 +79358,7 @@ void Unwind_180911440(undefined8 param_1,longlong param_2,undefined8 param_3,und
   if (*(code **)(lVar1 + 0x18e0) != (code *)0x0) {
     (**(code **)(lVar1 + 0x18e0))(lVar1 + 0x18d0,0,0,param_4,0xfffffffffffffffe);
   }
-  *(undefined8 *)(lVar1 + 0x18a8) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x18a8) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x18b0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -79366,7 +79366,7 @@ void Unwind_180911440(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x18b0) = 0;
   *(undefined4 *)(lVar1 + 0x18c0) = 0;
   *(undefined8 *)(lVar1 + 0x18a8) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x1888) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x1888) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x1890) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -79388,7 +79388,7 @@ void Unwind_180911460(undefined8 param_1,longlong param_2,undefined8 param_3,und
   if (*(code **)(lVar1 + 0x1950) != (code *)0x0) {
     (**(code **)(lVar1 + 0x1950))(lVar1 + 0x1940,0,0,param_4,0xfffffffffffffffe);
   }
-  *(undefined8 *)(lVar1 + 0x1918) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x1918) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x1920) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -79396,7 +79396,7 @@ void Unwind_180911460(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x1920) = 0;
   *(undefined4 *)(lVar1 + 0x1930) = 0;
   *(undefined8 *)(lVar1 + 0x1918) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x18f8) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x18f8) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x1900) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -79418,7 +79418,7 @@ void Unwind_180911480(undefined8 param_1,longlong param_2,undefined8 param_3,und
   if (*(code **)(lVar1 + 0x19c0) != (code *)0x0) {
     (**(code **)(lVar1 + 0x19c0))(lVar1 + 0x19b0,0,0,param_4,0xfffffffffffffffe);
   }
-  *(undefined8 *)(lVar1 + 0x1988) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x1988) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x1990) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -79426,7 +79426,7 @@ void Unwind_180911480(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x1990) = 0;
   *(undefined4 *)(lVar1 + 0x19a0) = 0;
   *(undefined8 *)(lVar1 + 0x1988) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x1968) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x1968) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x1970) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -79448,7 +79448,7 @@ void Unwind_1809114a0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   if (*(code **)(lVar1 + 0x1a30) != (code *)0x0) {
     (**(code **)(lVar1 + 0x1a30))(lVar1 + 0x1a20,0,0,param_4,0xfffffffffffffffe);
   }
-  *(undefined8 *)(lVar1 + 0x19f8) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x19f8) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x1a00) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -79456,7 +79456,7 @@ void Unwind_1809114a0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x1a00) = 0;
   *(undefined4 *)(lVar1 + 0x1a10) = 0;
   *(undefined8 *)(lVar1 + 0x19f8) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x19d8) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x19d8) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x19e0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -79478,7 +79478,7 @@ void Unwind_1809114c0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   if (*(code **)(lVar1 + 0x1aa0) != (code *)0x0) {
     (**(code **)(lVar1 + 0x1aa0))(lVar1 + 0x1a90,0,0,param_4,0xfffffffffffffffe);
   }
-  *(undefined8 *)(lVar1 + 0x1a68) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x1a68) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x1a70) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -79486,7 +79486,7 @@ void Unwind_1809114c0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x1a70) = 0;
   *(undefined4 *)(lVar1 + 0x1a80) = 0;
   *(undefined8 *)(lVar1 + 0x1a68) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x1a48) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x1a48) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x1a50) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -79508,7 +79508,7 @@ void Unwind_1809114e0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   if (*(code **)(lVar1 + 0x1b10) != (code *)0x0) {
     (**(code **)(lVar1 + 0x1b10))(lVar1 + 0x1b00,0,0,param_4,0xfffffffffffffffe);
   }
-  *(undefined8 *)(lVar1 + 0x1ad8) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x1ad8) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x1ae0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -79516,7 +79516,7 @@ void Unwind_1809114e0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x1ae0) = 0;
   *(undefined4 *)(lVar1 + 0x1af0) = 0;
   *(undefined8 *)(lVar1 + 0x1ad8) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x1ab8) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x1ab8) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x1ac0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -79538,7 +79538,7 @@ void Unwind_180911500(undefined8 param_1,longlong param_2,undefined8 param_3,und
   if (*(code **)(lVar1 + 0x1b80) != (code *)0x0) {
     (**(code **)(lVar1 + 0x1b80))(lVar1 + 0x1b70,0,0,param_4,0xfffffffffffffffe);
   }
-  *(undefined8 *)(lVar1 + 0x1b48) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x1b48) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x1b50) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -79546,7 +79546,7 @@ void Unwind_180911500(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x1b50) = 0;
   *(undefined4 *)(lVar1 + 0x1b60) = 0;
   *(undefined8 *)(lVar1 + 0x1b48) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x1b28) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x1b28) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x1b30) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -79568,7 +79568,7 @@ void Unwind_180911520(undefined8 param_1,longlong param_2,undefined8 param_3,und
   if (*(code **)(lVar1 + 0x1bf0) != (code *)0x0) {
     (**(code **)(lVar1 + 0x1bf0))(lVar1 + 0x1be0,0,0,param_4,0xfffffffffffffffe);
   }
-  *(undefined8 *)(lVar1 + 0x1bb8) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x1bb8) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x1bc0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -79576,7 +79576,7 @@ void Unwind_180911520(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x1bc0) = 0;
   *(undefined4 *)(lVar1 + 0x1bd0) = 0;
   *(undefined8 *)(lVar1 + 0x1bb8) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x1b98) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x1b98) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x1ba0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -79598,7 +79598,7 @@ void Unwind_180911540(undefined8 param_1,longlong param_2,undefined8 param_3,und
   if (*(code **)(lVar1 + 0x1c60) != (code *)0x0) {
     (**(code **)(lVar1 + 0x1c60))(lVar1 + 0x1c50,0,0,param_4,0xfffffffffffffffe);
   }
-  *(undefined8 *)(lVar1 + 0x1c28) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x1c28) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x1c30) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -79606,7 +79606,7 @@ void Unwind_180911540(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x1c30) = 0;
   *(undefined4 *)(lVar1 + 0x1c40) = 0;
   *(undefined8 *)(lVar1 + 0x1c28) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x1c08) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x1c08) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x1c10) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -79628,7 +79628,7 @@ void Unwind_180911560(undefined8 param_1,longlong param_2,undefined8 param_3,und
   if (*(code **)(lVar1 + 0x1cd0) != (code *)0x0) {
     (**(code **)(lVar1 + 0x1cd0))(lVar1 + 0x1cc0,0,0,param_4,0xfffffffffffffffe);
   }
-  *(undefined8 *)(lVar1 + 0x1c98) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x1c98) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x1ca0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -79636,7 +79636,7 @@ void Unwind_180911560(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x1ca0) = 0;
   *(undefined4 *)(lVar1 + 0x1cb0) = 0;
   *(undefined8 *)(lVar1 + 0x1c98) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x1c78) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x1c78) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x1c80) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -79658,7 +79658,7 @@ void Unwind_180911580(undefined8 param_1,longlong param_2,undefined8 param_3,und
   if (*(code **)(lVar1 + 0x1d40) != (code *)0x0) {
     (**(code **)(lVar1 + 0x1d40))(lVar1 + 0x1d30,0,0,param_4,0xfffffffffffffffe);
   }
-  *(undefined8 *)(lVar1 + 0x1d08) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x1d08) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x1d10) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -79666,7 +79666,7 @@ void Unwind_180911580(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x1d10) = 0;
   *(undefined4 *)(lVar1 + 0x1d20) = 0;
   *(undefined8 *)(lVar1 + 0x1d08) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x1ce8) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x1ce8) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x1cf0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -79688,7 +79688,7 @@ void Unwind_1809115a0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   if (*(code **)(lVar1 + 0x1db0) != (code *)0x0) {
     (**(code **)(lVar1 + 0x1db0))(lVar1 + 0x1da0,0,0,param_4,0xfffffffffffffffe);
   }
-  *(undefined8 *)(lVar1 + 0x1d78) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x1d78) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x1d80) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -79696,7 +79696,7 @@ void Unwind_1809115a0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x1d80) = 0;
   *(undefined4 *)(lVar1 + 0x1d90) = 0;
   *(undefined8 *)(lVar1 + 0x1d78) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x1d58) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x1d58) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x1d60) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -79718,7 +79718,7 @@ void Unwind_1809115c0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   if (*(code **)(lVar1 + 0x1e20) != (code *)0x0) {
     (**(code **)(lVar1 + 0x1e20))(lVar1 + 0x1e10,0,0,param_4,0xfffffffffffffffe);
   }
-  *(undefined8 *)(lVar1 + 0x1de8) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x1de8) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x1df0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -79726,7 +79726,7 @@ void Unwind_1809115c0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x1df0) = 0;
   *(undefined4 *)(lVar1 + 0x1e00) = 0;
   *(undefined8 *)(lVar1 + 0x1de8) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x1dc8) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x1dc8) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x1dd0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -79748,7 +79748,7 @@ void Unwind_1809115e0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   if (*(code **)(lVar1 + 0x1e90) != (code *)0x0) {
     (**(code **)(lVar1 + 0x1e90))(lVar1 + 0x1e80,0,0,param_4,0xfffffffffffffffe);
   }
-  *(undefined8 *)(lVar1 + 0x1e58) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x1e58) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x1e60) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -79756,7 +79756,7 @@ void Unwind_1809115e0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x1e60) = 0;
   *(undefined4 *)(lVar1 + 0x1e70) = 0;
   *(undefined8 *)(lVar1 + 0x1e58) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x1e38) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x1e38) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x1e40) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -79778,7 +79778,7 @@ void Unwind_180911600(undefined8 param_1,longlong param_2,undefined8 param_3,und
   if (*(code **)(lVar1 + 0x1f00) != (code *)0x0) {
     (**(code **)(lVar1 + 0x1f00))(lVar1 + 0x1ef0,0,0,param_4,0xfffffffffffffffe);
   }
-  *(undefined8 *)(lVar1 + 0x1ec8) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x1ec8) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x1ed0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -79786,7 +79786,7 @@ void Unwind_180911600(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x1ed0) = 0;
   *(undefined4 *)(lVar1 + 0x1ee0) = 0;
   *(undefined8 *)(lVar1 + 0x1ec8) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x1ea8) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x1ea8) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x1eb0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -79808,7 +79808,7 @@ void Unwind_180911620(undefined8 param_1,longlong param_2,undefined8 param_3,und
   if (*(code **)(lVar1 + 0x1f70) != (code *)0x0) {
     (**(code **)(lVar1 + 0x1f70))(lVar1 + 0x1f60,0,0,param_4,0xfffffffffffffffe);
   }
-  *(undefined8 *)(lVar1 + 0x1f38) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x1f38) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 8000) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -79816,7 +79816,7 @@ void Unwind_180911620(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 8000) = 0;
   *(undefined4 *)(lVar1 + 0x1f50) = 0;
   *(undefined8 *)(lVar1 + 0x1f38) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x1f18) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x1f18) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x1f20) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -79838,7 +79838,7 @@ void Unwind_180911640(undefined8 param_1,longlong param_2,undefined8 param_3,und
   if (*(code **)(lVar1 + 0x1fe0) != (code *)0x0) {
     (**(code **)(lVar1 + 0x1fe0))(lVar1 + 0x1fd0,0,0,param_4,0xfffffffffffffffe);
   }
-  *(undefined8 *)(lVar1 + 0x1fa8) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x1fa8) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x1fb0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -79846,7 +79846,7 @@ void Unwind_180911640(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x1fb0) = 0;
   *(undefined4 *)(lVar1 + 0x1fc0) = 0;
   *(undefined8 *)(lVar1 + 0x1fa8) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x1f88) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x1f88) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x1f90) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -79868,7 +79868,7 @@ void Unwind_180911660(undefined8 param_1,longlong param_2,undefined8 param_3,und
   if (*(code **)(lVar1 + 0x2050) != (code *)0x0) {
     (**(code **)(lVar1 + 0x2050))(lVar1 + 0x2040,0,0,param_4,0xfffffffffffffffe);
   }
-  *(undefined8 *)(lVar1 + 0x2018) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x2018) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x2020) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -79876,7 +79876,7 @@ void Unwind_180911660(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x2020) = 0;
   *(undefined4 *)(lVar1 + 0x2030) = 0;
   *(undefined8 *)(lVar1 + 0x2018) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x1ff8) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x1ff8) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x2000) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -79898,7 +79898,7 @@ void Unwind_180911680(undefined8 param_1,longlong param_2,undefined8 param_3,und
   if (*(code **)(lVar1 + 0x20c0) != (code *)0x0) {
     (**(code **)(lVar1 + 0x20c0))(lVar1 + 0x20b0,0,0,param_4,0xfffffffffffffffe);
   }
-  *(undefined8 *)(lVar1 + 0x2088) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x2088) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x2090) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -79906,7 +79906,7 @@ void Unwind_180911680(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x2090) = 0;
   *(undefined4 *)(lVar1 + 0x20a0) = 0;
   *(undefined8 *)(lVar1 + 0x2088) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x2068) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x2068) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x2070) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -79928,7 +79928,7 @@ void Unwind_1809116a0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   if (*(code **)(lVar1 + 0x2130) != (code *)0x0) {
     (**(code **)(lVar1 + 0x2130))(lVar1 + 0x2120,0,0,param_4,0xfffffffffffffffe);
   }
-  *(undefined8 *)(lVar1 + 0x20f8) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x20f8) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x2100) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -79936,7 +79936,7 @@ void Unwind_1809116a0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x2100) = 0;
   *(undefined4 *)(lVar1 + 0x2110) = 0;
   *(undefined8 *)(lVar1 + 0x20f8) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x20d8) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x20d8) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x20e0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -79958,7 +79958,7 @@ void Unwind_1809116c0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   if (*(code **)(lVar1 + 0x21a0) != (code *)0x0) {
     (**(code **)(lVar1 + 0x21a0))(lVar1 + 0x2190,0,0,param_4,0xfffffffffffffffe);
   }
-  *(undefined8 *)(lVar1 + 0x2168) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x2168) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x2170) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -79966,7 +79966,7 @@ void Unwind_1809116c0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x2170) = 0;
   *(undefined4 *)(lVar1 + 0x2180) = 0;
   *(undefined8 *)(lVar1 + 0x2168) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x2148) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x2148) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x2150) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -79988,7 +79988,7 @@ void Unwind_1809116e0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   if (*(code **)(lVar1 + 0x2210) != (code *)0x0) {
     (**(code **)(lVar1 + 0x2210))(lVar1 + 0x2200,0,0,param_4,0xfffffffffffffffe);
   }
-  *(undefined8 *)(lVar1 + 0x21d8) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x21d8) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x21e0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -79996,7 +79996,7 @@ void Unwind_1809116e0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x21e0) = 0;
   *(undefined4 *)(lVar1 + 0x21f0) = 0;
   *(undefined8 *)(lVar1 + 0x21d8) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x21b8) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x21b8) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x21c0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -80018,7 +80018,7 @@ void Unwind_180911700(undefined8 param_1,longlong param_2,undefined8 param_3,und
   if (*(code **)(lVar1 + 0x2280) != (code *)0x0) {
     (**(code **)(lVar1 + 0x2280))(lVar1 + 0x2270,0,0,param_4,0xfffffffffffffffe);
   }
-  *(undefined8 *)(lVar1 + 0x2248) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x2248) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x2250) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -80026,7 +80026,7 @@ void Unwind_180911700(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x2250) = 0;
   *(undefined4 *)(lVar1 + 0x2260) = 0;
   *(undefined8 *)(lVar1 + 0x2248) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x2228) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x2228) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x2230) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -80048,7 +80048,7 @@ void Unwind_180911720(undefined8 param_1,longlong param_2,undefined8 param_3,und
   if (*(code **)(lVar1 + 0x22f0) != (code *)0x0) {
     (**(code **)(lVar1 + 0x22f0))(lVar1 + 0x22e0,0,0,param_4,0xfffffffffffffffe);
   }
-  *(undefined8 *)(lVar1 + 0x22b8) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x22b8) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x22c0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -80056,7 +80056,7 @@ void Unwind_180911720(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x22c0) = 0;
   *(undefined4 *)(lVar1 + 0x22d0) = 0;
   *(undefined8 *)(lVar1 + 0x22b8) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x2298) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x2298) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x22a0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -80078,7 +80078,7 @@ void Unwind_180911740(undefined8 param_1,longlong param_2,undefined8 param_3,und
   if (*(code **)(lVar1 + 0x2360) != (code *)0x0) {
     (**(code **)(lVar1 + 0x2360))(lVar1 + 0x2350,0,0,param_4,0xfffffffffffffffe);
   }
-  *(undefined8 *)(lVar1 + 9000) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 9000) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x2330) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -80086,7 +80086,7 @@ void Unwind_180911740(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x2330) = 0;
   *(undefined4 *)(lVar1 + 0x2340) = 0;
   *(undefined8 *)(lVar1 + 9000) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x2308) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x2308) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x2310) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -80108,7 +80108,7 @@ void Unwind_180911760(undefined8 param_1,longlong param_2,undefined8 param_3,und
   if (*(code **)(lVar1 + 0x23d0) != (code *)0x0) {
     (**(code **)(lVar1 + 0x23d0))(lVar1 + 0x23c0,0,0,param_4,0xfffffffffffffffe);
   }
-  *(undefined8 *)(lVar1 + 0x2398) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x2398) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x23a0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -80116,7 +80116,7 @@ void Unwind_180911760(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x23a0) = 0;
   *(undefined4 *)(lVar1 + 0x23b0) = 0;
   *(undefined8 *)(lVar1 + 0x2398) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x2378) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x2378) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x2380) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -80138,7 +80138,7 @@ void Unwind_180911780(undefined8 param_1,longlong param_2,undefined8 param_3,und
   if (*(code **)(lVar1 + 0x2440) != (code *)0x0) {
     (**(code **)(lVar1 + 0x2440))(lVar1 + 0x2430,0,0,param_4,0xfffffffffffffffe);
   }
-  *(undefined8 *)(lVar1 + 0x2408) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x2408) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x2410) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -80146,7 +80146,7 @@ void Unwind_180911780(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x2410) = 0;
   *(undefined4 *)(lVar1 + 0x2420) = 0;
   *(undefined8 *)(lVar1 + 0x2408) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x23e8) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x23e8) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x23f0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -80168,7 +80168,7 @@ void Unwind_1809117a0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   if (*(code **)(lVar1 + 0x24b0) != (code *)0x0) {
     (**(code **)(lVar1 + 0x24b0))(lVar1 + 0x24a0,0,0,param_4,0xfffffffffffffffe);
   }
-  *(undefined8 *)(lVar1 + 0x2478) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x2478) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x2480) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -80176,7 +80176,7 @@ void Unwind_1809117a0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x2480) = 0;
   *(undefined4 *)(lVar1 + 0x2490) = 0;
   *(undefined8 *)(lVar1 + 0x2478) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x2458) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x2458) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x2460) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -80198,7 +80198,7 @@ void Unwind_1809117c0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   if (*(code **)(lVar1 + 0x2520) != (code *)0x0) {
     (**(code **)(lVar1 + 0x2520))(lVar1 + 0x2510,0,0,param_4,0xfffffffffffffffe);
   }
-  *(undefined8 *)(lVar1 + 0x24e8) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x24e8) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x24f0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -80206,7 +80206,7 @@ void Unwind_1809117c0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x24f0) = 0;
   *(undefined4 *)(lVar1 + 0x2500) = 0;
   *(undefined8 *)(lVar1 + 0x24e8) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x24c8) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x24c8) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x24d0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -80228,7 +80228,7 @@ void Unwind_1809117e0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   if (*(code **)(lVar1 + 0x2590) != (code *)0x0) {
     (**(code **)(lVar1 + 0x2590))(lVar1 + 0x2580,0,0,param_4,0xfffffffffffffffe);
   }
-  *(undefined8 *)(lVar1 + 0x2558) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x2558) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x2560) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -80236,7 +80236,7 @@ void Unwind_1809117e0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x2560) = 0;
   *(undefined4 *)(lVar1 + 0x2570) = 0;
   *(undefined8 *)(lVar1 + 0x2558) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x2538) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x2538) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x2540) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -80258,7 +80258,7 @@ void Unwind_180911800(undefined8 param_1,longlong param_2,undefined8 param_3,und
   if (*(code **)(lVar1 + 0x2600) != (code *)0x0) {
     (**(code **)(lVar1 + 0x2600))(lVar1 + 0x25f0,0,0,param_4,0xfffffffffffffffe);
   }
-  *(undefined8 *)(lVar1 + 0x25c8) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x25c8) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x25d0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -80266,7 +80266,7 @@ void Unwind_180911800(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(lVar1 + 0x25d0) = 0;
   *(undefined4 *)(lVar1 + 0x25e0) = 0;
   *(undefined8 *)(lVar1 + 0x25c8) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x25a8) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x25a8) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x25b0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -80473,7 +80473,7 @@ void Unwind_1809118c0(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -80539,7 +80539,7 @@ void Unwind_1809118f0(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -80680,7 +80680,7 @@ void Unwind_180911950(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -83542,7 +83542,7 @@ void Unwind_1809128b0(undefined8 param_1,longlong param_2)
 {
   if ((*(uint *)(resourceData + 0x30) & 2) != 0) {
     *(uint *)(resourceData + 0x30) = *(uint *)(resourceData + 0x30) & 0xfffffffd;
-    FUN_180627b90(param_2 + 0x60);
+    ReleaseSystemResource(param_2 + 0x60);
   }
   return;
 }
@@ -83564,7 +83564,7 @@ void Unwind_180912910(undefined8 param_1,longlong param_2)
   longlong lVar1;
   
   lVar1 = *(longlong *)(param_2 + 0x80);
-  *(undefined8 *)(lVar1 + 0x218) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x218) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x220) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -83572,7 +83572,7 @@ void Unwind_180912910(undefined8 param_1,longlong param_2)
   *(undefined8 *)(lVar1 + 0x220) = 0;
   *(undefined4 *)(lVar1 + 0x230) = 0;
   *(undefined8 *)(lVar1 + 0x218) = &SystemDataStructure;
-  *(undefined8 *)(lVar1 + 0x1f8) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x1f8) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x200) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -83607,7 +83607,7 @@ void Unwind_180912930(undefined8 param_1,longlong param_2)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -83627,7 +83627,7 @@ void Unwind_180912950(undefined8 param_1,longlong param_2)
   longlong lVar1;
   
   lVar1 = *(longlong *)(param_2 + 0x80);
-  *(undefined8 *)(lVar1 + 0x388) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x388) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x390) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -83646,7 +83646,7 @@ void Unwind_180912970(undefined8 param_1,longlong param_2)
   longlong lVar1;
   
   lVar1 = *(longlong *)(param_2 + 0x80);
-  *(undefined8 *)(lVar1 + 0x3a8) = &UNK_180a3c3e0;
+  *(undefined8 *)(lVar1 + 0x3a8) = &SystemResourceHandlerTemplate;
   if (*(longlong *)(lVar1 + 0x3b0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -83830,7 +83830,7 @@ void InitializeResourceTableManager(void)
   longlong lVar1;
   longlong resourceTable;
   
-  _DAT_180bf52c0 = &UNK_180a3c3e0;
+  _DAT_180bf52c0 = &SystemResourceHandlerTemplate;
   if (_DAT_180bf52c8 != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -84347,7 +84347,7 @@ void InitializeSystemDataStructureU(void)
 void InitializeSystemDataStructureU(void)
 
 {
-  _DAT_180d49218 = &UNK_180a3c3e0;
+  _DAT_180d49218 = &SystemResourceHandlerTemplate;
   if (_DAT_180d49220 != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -84375,7 +84375,7 @@ void InitializeSystemDataStructureV(void)
 void InitializeSystemDataStructureV(void)
 
 {
-  _DAT_180d49240 = &UNK_180a3c3e0;
+  _DAT_180d49240 = &SystemResourceHandlerTemplate;
   if (_DAT_180d49248 != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -84422,7 +84422,7 @@ void InitializeSystemDataStructureW(void)
       piVar1 = (int *)(resourceIndex + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        FUN_18064d630();
+        SystemCleanupHandler();
         return;
       }
     }
@@ -84451,7 +84451,7 @@ void InitializeSystemDataStructureX(void)
 void InitializeSystemDataStructureX(void)
 
 {
-  _DAT_180d49638 = &UNK_180a3c3e0;
+  _DAT_180d49638 = &SystemResourceHandlerTemplate;
   if (_DAT_180d49640 != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -84601,7 +84601,7 @@ void InitializeSystemDataStructureAE(void)
 void InitializeSystemDataStructureAE(void)
 
 {
-  _DAT_180d48db8 = &UNK_180a3c3e0;
+  _DAT_180d48db8 = &SystemResourceHandlerTemplate;
   if (_DAT_180d48dc0 != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
@@ -85996,7 +85996,7 @@ void ProcessSystemOperationD(undefined8 param_1,undefined8 param_2,undefined8 pa
   FUN_18005d260(&DAT_180bfaec0,_DAT_180bfaed0,param_3,param_4,0xfffffffffffffffe);
   presourceHash = _DAT_180bfaea8;
   for (pvalidationResult = _DAT_180bfaea0; pvalidationResult != presourceHash; pvalidationResult = pvalidationResult + 7) {
-    *pvalidationResult = &UNK_180a3c3e0;
+    *pvalidationResult = &SystemResourceHandlerTemplate;
     if (pvalidationResult[1] != 0) {
                     // WARNING: Subroutine does not return
       ExecuteSystemEmergencyExit();
