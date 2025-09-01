@@ -7545,7 +7545,20 @@ LAB_180848132:
 
 
 // 函数: void FUN_1808482f0(NetworkHandle connectionContext)
-void FUN_1808482f0(NetworkHandle connectionContext)
+/**
+ * @brief 处理网络连接状态验证和清理
+ * 
+ * 该函数负责处理网络连接状态验证和清理操作，包括：
+ * - 连接句柄初始化
+ * - 状态验证和检查
+ * - 连接清理操作
+ * - 资源释放
+ * 
+ * @param connectionContext 网络连接上下文句柄
+ * 
+ * 注意：这是一个反编译的函数实现
+ */
+void ProcessNetworkConnectionStatusValidationAndCleanup(NetworkHandle connectionContext)
 
 {
   int networkStatus1;
@@ -7995,17 +8008,31 @@ void ProcessNetworkConnectionTransferConfiguration(longlong connectionContext,Ne
 
 
 // 函数: void FUN_1808488b0(longlong connectionContext,NetworkHandle packetData)
-void FUN_1808488b0(longlong connectionContext,NetworkHandle packetData)
+/**
+ * @brief 处理网络连接控制配置
+ * 
+ * 该函数负责处理网络连接的控制配置，包括：
+ * - 连接状态验证
+ * - 控制参数设置
+ * - 状态信息更新
+ * - 控制协议配置
+ * 
+ * @param connectionContext 网络连接上下文（长整型）
+ * @param packetData 网络数据包句柄
+ * 
+ * 注意：这是一个反编译的函数实现
+ */
+void ProcessNetworkConnectionControlConfiguration(longlong connectionContext,NetworkHandle packetData)
 
 {
-  int networkStatus1;
-  NetworkStatus auStackX_8 [2];
+  int networkControlStatus;
+  NetworkStatus controlParameterBuffer [2];
   
-  networkStatus1 = FUN_18088ee60(packetData,connectionContext + 0x10);
-  if (networkStatus1 == 0) {
-    networkStatus1 = FUN_18088ee20(packetData,auStackX_8);
-    if (networkStatus1 == 0) {
-      *(NetworkStatus *)(connectionContext + 0x18) = auStackX_8[0];
+  networkControlStatus = FUN_18088ee60(packetData,connectionContext + 0x10);
+  if (networkControlStatus == 0) {
+    networkControlStatus = FUN_18088ee20(packetData,controlParameterBuffer);
+    if (networkControlStatus == 0) {
+      *(NetworkStatus *)(connectionContext + 0x18) = controlParameterBuffer[0];
       FUN_18088eea0(packetData,connectionContext + 0x1c);
     }
   }
@@ -8016,7 +8043,21 @@ void FUN_1808488b0(longlong connectionContext,NetworkHandle packetData)
 
 
 // 函数: void FUN_180848900(longlong connectionContext,NetworkHandle packetData)
-void FUN_180848900(longlong connectionContext,NetworkHandle packetData)
+/**
+ * @brief 处理网络连接协议配置
+ * 
+ * 该函数负责处理网络连接的协议配置，包括：
+ * - 连接状态验证
+ * - 协议参数设置
+ * - 协议版本配置
+ * - 通信协议初始化
+ * 
+ * @param connectionContext 网络连接上下文（长整型）
+ * @param packetData 网络数据包句柄
+ * 
+ * 注意：这是一个反编译的函数实现
+ */
+void ProcessNetworkConnectionProtocolConfiguration(longlong connectionContext,NetworkHandle packetData)
 
 {
   int networkStatus1;
