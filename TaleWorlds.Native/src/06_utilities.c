@@ -1729,15 +1729,15 @@ undefined SystemMemoryConfigDataTemplateN;
  * 配置内存质量评估和改进策略
  */
 void SetupMemoryQuality;
-undefined DAT_180bfc150;
-undefined1 DAT_180bfc140;
-undefined DAT_180bfc160;
-undefined DAT_180bfc168;
+undefined SystemMemoryQualityController;
+undefined1 SystemMemoryQualityEnabled;
+undefined SystemMemoryQualityThreshold;
+undefined SystemMemoryQualityMetric;
 undefined8 SystemPerformanceCounterA;
-undefined DAT_180bfaec0;
-undefined DAT_180bfaec8;
-undefined DAT_180bfaed0;
-undefined DAT_180bfaed8;
+undefined SystemMemoryValidationController;
+undefined SystemMemoryValidationStatus;
+undefined SystemMemoryValidationFlags;
+undefined SystemMemoryValidationData;
 
  void InitializeMemoryValidation;
 /**
@@ -1747,12 +1747,12 @@ undefined DAT_180bfaed8;
  * 设置内存数据验证和完整性检查
  */
 void InitializeMemoryValidation;
-undefined DAT_180bfaee0;
-undefined DAT_180bfaee8;
-undefined DAT_180c92050;
-undefined DAT_180c92058;
-undefined DAT_180c92060;
-undefined DAT_180c92068;
+undefined SystemMemoryRecoveryController;
+undefined SystemMemoryRecoveryStatus;
+undefined SystemMemoryRecoveryPoolA;
+undefined SystemMemoryRecoveryPoolB;
+undefined SystemMemoryRecoveryPoolC;
+undefined SystemMemoryRecoveryPoolD;
 
  void ConfigureMemoryRecovery;
 /**
@@ -18255,11 +18255,11 @@ LAB_18089af81:
     return uVar4;
   }
   if (0x5a < *(uint *)(unaff_RBX + 8)) {
-    uVar4 = FUN_1808a4a20();
+    uVar4 = ProcessResourceHash();
     if ((int)uVar4 != 0) {
       return uVar4;
     }
-    uVar4 = FUN_1808a4a20();
+    uVar4 = ProcessResourceHash();
     if ((int)uVar4 != 0) {
       return uVar4;
     }
@@ -18637,7 +18637,7 @@ b400(longlong param_1,undefined8 param_2)
   
   iVar1 = ComputeDataChecksum(param_2,dataChecksumBuffer,0,0x4f525443);
   if (iVar1 == 0) {
-    iVar1 = FUN_1808a79f0(param_2,param_1 + 8);
+    iVar1 = ComputeDataChecksum(param_2,param_1 + 8);
     if (iVar1 == 0) {
                     // WARNING: Subroutine does not return
       CleanupResourceData(param_2,dataChecksumBuffer);
@@ -20412,7 +20412,7 @@ ulonglong ProcessResourceAllocation(longlong ResourceHandle,undefined8 *Resource
     return uVar7;
   }
   if (0x81 < *(uint *)(resourceData + 8)) {
-    uVar7 = FUN_1808a79f0(param_2,param_1 + 0x58);
+    uVar7 = ComputeDataChecksum(param_2,param_1 + 0x58);
     if ((int)uVar7 != 0) {
       return uVar7;
     }
@@ -20660,7 +20660,7 @@ undefined8 * GetResourceDataPointerA(void)
     return presourceHash3;
   }
   if (0x81 < *(uint *)(unaff_RDI + 8)) {
-    presourceHash1 = (undefined8 *)FUN_1808a79f0(validationResult0,unaff_RSI + 0x58);
+    presourceHash1 = (undefined8 *)ComputeDataChecksum(validationResult0,unaff_RSI + 0x58);
     fVar21 = extraout_XMM0_Da_00;
     if ((int)presourceHash1 != 0) {
       return presourceHash1;
@@ -20915,7 +20915,7 @@ undefined8 * GetResourceDataPointerB(void)
     return presourceHash2;
   }
   if (0x81 < *(uint *)(unaff_RDI + 8)) {
-    presourceHash3 = (undefined8 *)FUN_1808a79f0(validationResult0,unaff_RSI + 0x58);
+    presourceHash3 = (undefined8 *)ComputeDataChecksum(validationResult0,unaff_RSI + 0x58);
     fVar21 = extraout_XMM0_Da_00;
     if ((int)presourceHash3 != 0) {
       return presourceHash3;
@@ -21135,7 +21135,7 @@ ulonglong ResourceProcessingHandler(undefined8 param_1)
   
   uVar8 = (uint)unaff_R12;
   if (0x81 < in_EAX) {
-    resourceHash1 = FUN_1808a79f0(param_1,unaff_RSI + 0x58);
+    resourceHash1 = ComputeDataChecksum(param_1,unaff_RSI + 0x58);
     fVar20 = extraout_XMM0_Da;
     if ((int)resourceHash1 != 0) {
       return resourceHash1;
@@ -23634,7 +23634,7 @@ LAB_18089d378:
         if ((int)uVar3 != 0) {
           return uVar3;
         }
-        uVar3 = FUN_1808a79f0(param_2,resourceTable + 0x20);
+        uVar3 = ComputeDataChecksum(param_2,resourceTable + 0x20);
         if ((int)uVar3 != 0) {
           return uVar3;
         }
@@ -23738,7 +23738,7 @@ LAB_18089d378:
         if ((int)uVar3 != 0) {
           return uVar3;
         }
-        uVar3 = FUN_1808a79f0();
+        uVar3 = ComputeDataChecksum();
         if ((int)uVar3 != 0) {
           return uVar3;
         }
@@ -25223,7 +25223,7 @@ ulonglong ProcessComplexResourceOperations(longlong param_1,undefined8 *param_2)
       if (*(uint *)(resourceData + 8) < 0x84) {
         puStack_88 = (undefined4 *)0x0;
         uStack_80 = 0;
-        uVar3 = FUN_1808a4a20(param_2,&puStack_88,0);
+        uVar3 = ProcessResourceHash(param_2,&puStack_88,0);
         uVar4 = (ulonglong)uVar3;
         if (uVar3 != 0) {
 LAB_18089e70b:
@@ -25346,7 +25346,7 @@ ulonglong ProcessResourceHashCalculationAndValidation(void)
     if (*(uint *)(unaff_RDI + 8) < 0x84) {
       *(undefined8 *)(unaff_RBP + -0x29) = 0;
       *(undefined8 *)(unaff_RBP + -0x21) = 0;
-      uVar5 = FUN_1808a4a20(extraout_XMM0_Da_01,unaff_RBP + -0x29,0);
+      uVar5 = ProcessResourceHash(extraout_XMM0_Da_01,unaff_RBP + -0x29,0);
       uVar8 = (ulonglong)uVar5;
       if (uVar5 != 0) {
 LAB_18089e70b:
@@ -25429,7 +25429,7 @@ ulonglong ProcessResourceValidationAndMemoryAllocation(void)
   if (*(uint *)(unaff_RDI + 0x40) < 0x84) {
     *(undefined8 *)(unaff_RBP + -0x29) = unaff_RBX;
     *(undefined8 *)(unaff_RBP + -0x21) = unaff_RBX;
-    validationResult = FUN_1808a4a20();
+    validationResult = ProcessResourceHash();
     uVar4 = (ulonglong)validationResult;
     if (validationResult != 0) {
 LAB_18089e70b:
@@ -27073,7 +27073,7 @@ ulonglong ValidateResourceDataIntegrity(longlong param_1,undefined8 *param_2,und
 
 
 
-ulonglong FUN_18089f571(void)
+ulonglong ValidateResourceDataIntegrityInternal(void)
 
 {
   uint resourceHash;

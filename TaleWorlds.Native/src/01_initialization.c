@@ -359,13 +359,13 @@ uint32_t SystemInitializationStatusE;  // _DAT_180bf5290
 uint32_t SystemInitializationStatusF;  // _DAT_180bf52a0
 
 // 系统回调函数指针
-void* SystemEventCallbackPointer;     // FUN_180262b00
-void* SystemInitializationCallbackA;  // FUN_18025c000
-void* SystemInitializationCallbackB;  // FUN_18025d270
-void* SystemDebugCallback;            // FUN_18025e330
-void* SystemEventCallback;            // FUN_1802281a0
-void* SystemNetworkCallback;          // FUN_1802285e0
-void* SystemGlobalDataProcessor;      // FUN_180623800
+void* SystemEventCallbackPointer;     // SystemEventNotificationHandler
+void* SystemInitializationCallbackA;  // SystemInitializationHandlerA
+void* SystemInitializationCallbackB;  // SystemInitializationHandlerB
+void* SystemDebugCallback;            // SystemDebugMessageHandler
+void* SystemEventCallback;            // SystemEventProcessor
+void* SystemNetworkCallback;          // SystemNetworkEventHandler
+void* SystemGlobalDataProcessor;      // SystemGlobalDataManager
 
 // 系统全局数据指针
 void* SystemGlobalDataPointerA;        // UNK_180a3c3e0
@@ -5386,7 +5386,6 @@ void InitializeSystemPerformanceMonitor(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_1800338a0(void)
 /**
  * @brief 初始化系统安全监控器
  * 
@@ -5418,7 +5417,6 @@ void InitializeSystemSecurityMonitor(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180033930(void)
 /**
  * @brief 初始化系统资源管理器
  * 
@@ -5450,7 +5448,6 @@ void InitializeSystemResourceManager(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_1800339c0(void)
 /**
  * @brief 初始化系统网络管理器
  * 
@@ -5480,7 +5477,6 @@ void InitializeSystemNetworkManager(void)
 
 
 
-// 函数: void FUN_180033a50(void)
 /**
  * @brief 初始化系统存储管理器
  * 
@@ -16111,8 +16107,15 @@ void InitializeSystemSearchManager(void)
 
 
 
-// 函数: void FUN_1800422d0(void)
-void FUN_1800422d0(void)
+/**
+ * @brief 初始化系统节点管理器
+ * 
+ * 该函数负责初始化系统的节点管理组件，设置节点管理的基础结构。
+ * 它会遍历系统节点树，进行内存比较，分配必要的内存，并设置节点属性。
+ * 
+ * @note 这是系统初始化过程中的重要组成部分，确保节点管理系统的正常运行
+ */
+void InitializeSystemNodeManager(void)
 
 {
   char systemNodeFlag;
