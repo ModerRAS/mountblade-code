@@ -2028,8 +2028,8 @@ uint8_t RandomGeneratorState;
  * 用于加密和安全相关操作
  */
 void GenerateSecureRandom(void);
-uint8_t _tls_index;
-void *ThreadLocalStorageData;
+uint8_t ThreadLocalStorageIndex;
+void* ThreadLocalStorageDataPointer;
 uint8_t SystemMemoryConfigDataTemplateV;
 uint8_t SystemMemoryConfigDataTemplateT;
 uint8_t SystemMemoryConfigDataTemplateW;
@@ -2111,7 +2111,7 @@ uint8_t SystemConfigDataTenth;
 char SystemConfigStatusFlag;
 uint8_t SystemConfigDataEleventh;
 uint8_t SystemResourceTracker;
-void *SystemExceptionList;
+void* SystemExceptionListPointer;
 uint8_t SystemMemoryConfigDataTemplateThirtieth;
 uint8_t SystemMemoryConfigDataTemplateThirtyFirst;
 uint8_t SystemPerformanceMonitor;
@@ -2176,7 +2176,7 @@ uint8_t LogMessageProcessorContextDataA;
 uint8_t LogMessageProcessorContextDataB;
 uint8_t LogMessageProcessorContextDataC;
 uint8_t SystemMemoryController;
-uint8_t *LocaleConversionTableData;
+uint8_t* LocaleConversionTablePointer;
 uint8_t SystemLocaleConversionDataA;
 uint8_t SystemModuleDataTemplateD;
 uint8_t SystemModuleDataTemplateA;
