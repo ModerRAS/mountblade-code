@@ -4900,7 +4900,7 @@ void InitializeSystemStringConfigurationManager(void)
   auStack_88[0] = 0;
   uStack_90 = 0xb;
   strcpy_s(auStack_88,0x80,&UNK_180a13a98,in_R9,0xfffffffffffffffe);
-  _DAT_180c91d54 = SystemGlobalDataProcessor(&puStack_a0);
+  SystemGlobalDataProcessorResult = SystemGlobalDataProcessor(&puStack_a0);
   return;
 }
 
@@ -9218,7 +9218,7 @@ void InitializeSystemEventConfigurationManager(void)
   systemDataTable = (long long *)GetSystemRootPointer();
   systemRootNode = (void* *)*systemDataTable;
   systemNodeFlag = *(char *)((long long)systemRootNode[1] + 0x19);
-  systemCallbackPointer = FUN_180073930;
+  systemCallbackPointer = SystemCallbackManager;
   systemPreviousNode = systemRootNode;
   systemCurrentNode = (void* *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
@@ -11484,7 +11484,7 @@ void InitializeSystemMemoryNodeManager(void)
   systemDataTable = (long long *)GetSystemRootPointer();
   systemRootNode = (void* *)*systemDataTable;
   systemNodeFlag = *(char *)((long long)systemRootNode[1] + 0x19);
-  systemCallbackPointer = FUN_180073930;
+  systemCallbackPointer = SystemCallbackManager;
   systemPreviousNode = systemRootNode;
   systemCurrentNode = (void* *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
@@ -12105,7 +12105,7 @@ void InitializeSystemDataNode(void)
   systemDataTable = (long long *)GetSystemRootPointer();
   systemRootNode = (void* *)*systemDataTable;
   systemNodeFlag = *(char *)((long long)systemRootNode[1] + 0x19);
-  systemCallbackPointer = FUN_180073930;
+  systemCallbackPointer = SystemCallbackManager;
   systemPreviousNode = systemRootNode;
   systemCurrentNode = (void* *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
@@ -14030,7 +14030,7 @@ void InitializeSystemResourceManagerI(void)
   systemDataTable = (long long *)GetSystemRootPointer();
   systemRootNode = (void* *)*systemDataTable;
   systemNodeFlag = *(char *)((long long)systemRootNode[1] + 0x19);
-  systemCallbackPointer = FUN_180073930;
+  systemCallbackPointer = SystemCallbackManager;
   systemPreviousNode = systemRootNode;
   systemCurrentNode = (void* *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
@@ -14782,7 +14782,7 @@ void InitializeSystemThreadComponent(void)
   systemDataTable = (long long *)GetSystemRootPointer();
   systemRootNode = (void* *)*systemDataTable;
   systemNodeFlag = *(char *)((long long)systemRootNode[1] + 0x19);
-  systemCallbackPointer = FUN_180073930;
+  systemCallbackPointer = SystemCallbackManager;
   systemPreviousNode = systemRootNode;
   systemCurrentNode = (void* *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
@@ -17034,7 +17034,7 @@ void FUN_1800432d0(void)
   systemDataTable = (long long *)GetSystemRootPointer();
   systemRootNode = (void* *)*systemDataTable;
   systemNodeFlag = *(char *)((long long)systemRootNode[1] + 0x19);
-  systemCallbackPointer = FUN_180073930;
+  systemCallbackPointer = SystemCallbackManager;
   systemPreviousNode = systemRootNode;
   systemCurrentNode = (void* *)systemRootNode[1];
   while (systemNodeFlag == '\0') {
@@ -48685,7 +48685,18 @@ void FUN_180073830(void* param_1,undefined4 param_2,void* param_3)
 
 
 // 函数: void FUN_180073930(void* param_1,void* param_2,void* param_3,void* param_4)
-void FUN_180073930(void* param_1,void* param_2,void* param_3,void* param_4)
+/**
+ * @brief 系统回调函数管理器
+ * 
+ * 该函数负责管理系统回调函数的初始化和设置，处理系统全局数据引用。
+ * 它会调用其他相关函数来完成回调函数的配置和清理工作。
+ * 
+ * @param param_1 回调函数参数1
+ * @param param_2 回调函数参数2  
+ * @param param_3 回调函数参数3
+ * @param param_4 回调函数参数4
+ */
+void SystemCallbackManager(void* param_1,void* param_2,void* param_3,void* param_4)
 
 {
   undefined *puStack_88;

@@ -1,0 +1,222 @@
+# 05_networking.c 函数重命名映射
+# 原始函数名 -> 语义化函数名
+
+# 连接初始化函数
+FUN_180851917 -> InitializeNetworkConnectionContext
+FUN_18085198d -> ValidateNetworkConnectionState
+FUN_180851a40 -> ProcessNetworkConnectionRequest
+FUN_180851a66 -> HandleNetworkConnectionEvent
+FUN_180851b86 -> GetNetworkConnectionSize
+FUN_180851d83 -> GetNetworkConnectionHandle
+FUN_180853470 -> InitializeNetworkConnection
+FUN_180854200 -> ValidateNetworkConnection
+FUN_1808560c0 -> InitializeNetworkConnectionContext
+FUN_1808553b0 -> ValidateNetworkConnectionState
+FUN_1808554a0 -> ValidateNetworkConnectionState
+FUN_1808555a0 -> ValidateNetworkConnectionState
+FUN_180855ce0 -> ProcessNetworkConnectionValidation
+FUN_180857ac0 -> ValidateNetworkConnectionPool
+
+# 数据包处理函数
+FUN_180851c50 -> SendNetworkPacketData
+FUN_180851d20 -> ProcessNetworkPacket
+FUN_180851d5f -> ValidateNetworkPacket
+FUN_180852b00 -> HandleNetworkPacketReceive
+FUN_180852bb0 -> ProcessNetworkPacketStream
+FUN_180852bd2 -> ValidateNetworkStream
+FUN_180853560 -> ProcessNetworkPacketHeader
+FUN_1808542a0 -> ProcessNetworkPacketTransmission
+FUN_1808542fa -> GetNetworkTransmissionStatus
+FUN_1808545c4 -> ReleaseNetworkPacketReference
+FUN_18085461a -> HandleNetworkDataPacket
+FUN_1808547cb -> ReleaseNetworkDataReference
+FUN_180854810 -> ProcessNetworkDataPacket
+FUN_180854818 -> HandleNetworkPacketTransmission
+FUN_1808549c0 -> GetNetworkPacketData
+FUN_180854af0 -> ProcessNetworkDataStreamTransfer
+FUN_180854df5 -> ValidateNetworkPacketChecksum
+FUN_180855130 -> ProcessNetworkPacketValidation
+FUN_180855f70 -> ValidateNetworkPacketFormat
+FUN_180855fc0 -> ProcessNetworkPacketData
+FUN_180855fdf -> HandleNetworkPacketTransmission
+FUN_180856099 -> GetNetworkPacketData
+FUN_180856570 -> ProcessNetworkPacketValidation
+FUN_180856830 -> HandleNetworkPacketProcessing
+FUN_180856c80 -> ProcessNetworkDataReceiving
+FUN_180856d20 -> InitializeNetworkDataReceiving
+FUN_1808577c0 -> ProcessNetworkConnectionClosing
+FUN_180857940 -> ProcessNetworkByteTransmission
+
+# 数据处理函数
+FUN_180851e40 -> ProcessNetworkDataTransfer
+FUN_180853040 -> ValidateNetworkData
+FUN_180853180 -> ProcessNetworkByteData
+FUN_180853260 -> HandleNetworkByteTransfer
+FUN_1808532e0 -> ValidateNetworkBufferSize
+FUN_180853304 -> ProcessNetworkBufferOperation
+FUN_1808533d0 -> HandleNetworkBufferRead
+FUN_1808538a0 -> ProcessNetworkConnectionQueue
+FUN_180853ba0 -> SetNetworkConnectionFlag
+FUN_180853c50 -> ProcessNetworkUIntData
+FUN_180853d20 -> HandleNetworkDataTransmission
+FUN_180853e80 -> ProcessNetworkCharData
+FUN_180853fc0 -> UpdateNetworkConnectionState
+FUN_180854040 -> ProcessNetworkDataStream
+FUN_180855512 -> ProcessNetworkIntData
+FUN_18085551e -> ValidateNetworkIntData
+FUN_180855559 -> ProcessNetworkHandleData
+FUN_18085555e -> HandleNetworkHandleOperation
+FUN_180855615 -> ProcessNetworkStatusData
+FUN_180855621 -> ValidateNetworkStatusData
+FUN_18085565a -> ProcessNetworkHandleTransfer
+FUN_18085565f -> HandleNetworkHandleTransmission
+FUN_1808558e0 -> InitializeNetworkDataStream
+FUN_180855e40 -> ProcessNetworkDataTransfer
+FUN_180855e6b -> ValidateNetworkDataTransfer
+FUN_180856280 -> ProcessNetworkDataTransmission
+FUN_1808577e2 -> GetNetworkClosingStatus
+FUN_180857962 -> GetNetworkByteTransmissionStatus
+
+# 缓冲区管理函数
+FUN_1808533bb -> GetNetworkBufferSize
+FUN_180853e60 -> GetNetworkConnectionByteFlag
+FUN_180854d7d -> InitializeNetworkEncryption
+FUN_180854f3f -> ReleaseNetworkResource
+FUN_180855415 -> ProcessNetworkUIntRequest
+FUN_180855467 -> HandleNetworkUIntOperation
+FUN_180855d06 -> GetNetworkPacketSize
+FUN_180855e29 -> GetNetworkBufferSize
+FUN_180859470 -> ValidateNetworkBufferAccess
+FUN_1808595a0 -> ValidateNetworkBufferState
+
+# 连接管理函数
+FUN_180853790 -> RemoveNetworkConnection
+FUN_180853980 -> ValidateNetworkConnectionStatus
+FUN_1808559c0 -> CleanupNetworkConnection
+FUN_180855b80 -> ValidateNetworkDataStream
+FUN_180855ba6 -> GetNetworkConnectionStatus
+FUN_180855f53 -> GetNetworkConnectionType
+FUN_1808561bc -> GetNetworkConnectionState
+FUN_18085622e -> GetNetworkProtocolVersion
+FUN_1808552c0 -> ValidateNetworkConnectionData
+FUN_1808552ca -> ProcessNetworkConnectionValidation
+
+# 统计和状态函数
+FUN_180852f68 -> ExecuteNetworkCleanup
+FUN_180853304 -> ProcessNetworkBufferOperation
+FUN_18085497c -> ReleaseNetworkConnectionReference
+FUN_180855370 -> ReleaseNetworkValidationReference
+FUN_180855cc9 -> GetNetworkTransmissionRate
+FUN_180856362 -> GetNetworkTransmissionStatistics
+FUN_18085644f -> GetNetworkConnectionStatistics
+FUN_180856460 -> GetNetworkDataStatistics
+FUN_18085652b -> ValidateNetworkStatistics
+
+# 网络协议处理函数
+FUN_18085219c -> InitializeNetworkProtocol
+FUN_180857aaa -> InitializeNetworkProtocolHandler
+FUN_180857ac0 -> ValidateNetworkConnectionPool
+FUN_180857b40 -> ProcessNetworkProtocolData
+FUN_180857bad -> HandleNetworkProtocolEvent
+FUN_180857c7a -> CleanupNetworkProtocol
+FUN_180857c8f -> ValidateNetworkProtocolState
+FUN_180857de5 -> ResetNetworkProtocol
+
+# 数据传输函数
+FUN_180857e50 -> ProcessNetworkDataTransmissionEx
+FUN_180859210 -> HandleNetworkDataTransfer
+FUN_1808592c0 -> ProcessNetworkDataPacket
+FUN_1808592ca -> ValidateNetworkDataPacket
+FUN_180859384 -> SendNetworkDataPacket
+FUN_1808593e4 -> GetNetworkTransferStatus
+FUN_180859494 -> ValidateNetworkTransfer
+FUN_180859580 -> InitializeNetworkTransfer
+FUN_1808595c4 -> HandleNetworkTransferOperation
+FUN_1808596b0 -> GetNetworkTransferResult
+FUN_1808596d0 -> ProcessNetworkTransferData
+FUN_180859a50 -> ValidateNetworkTransferContext
+FUN_180859ba0 -> HandleNetworkTransferStream
+FUN_180859e40 -> ProcessNetworkTransferBuffer
+FUN_180859f30 -> ValidateNetworkTransferParameters
+FUN_18085a550 -> ProcessNetworkTransferRequest
+FUN_18085a5e5 -> GetNetworkTransferError
+
+# 网络状态管理函数
+FUN_18085a934 -> HandleNetworkStatusEvent
+FUN_18085a980 -> GetNetworkStatusContext
+FUN_18085ab70 -> ValidateNetworkStatusData
+FUN_18085abf2 -> ProcessNetworkStatusUpdate
+FUN_18085ac39 -> GetNetworkStatusInfo
+FUN_18085aca0 -> ValidateNetworkStatusContext
+
+# 网络缓冲区函数
+FUN_18085b200 -> ProcessNetworkBufferData
+FUN_18085b580 -> ValidateNetworkBufferParameters
+FUN_18085b595 -> ProcessNetworkBufferValidation
+FUN_18085b8e0 -> InitializeNetworkBufferPool
+FUN_18085b920 -> HandleNetworkBufferOperation
+FUN_18085ba10 -> ProcessNetworkBufferDataEx
+FUN_18085bb20 -> ValidateNetworkBufferData
+FUN_18085bbe0 -> UpdateNetworkBufferState
+FUN_18085c230 -> HandleNetworkBufferEvent
+FUN_18085c5b0 -> ProcessNetworkBufferStream
+FUN_18085c620 -> ValidateNetworkBufferSizeEx
+FUN_18085c6f0 -> ProcessNetworkBufferTransfer
+FUN_18085c820 -> GetNetworkBufferStatus
+FUN_18085c8a0 -> HandleNetworkBufferDataTransfer
+FUN_18085ca30 -> ProcessNetworkBufferCleanup
+
+# 网络连接处理函数
+FUN_18085d460 -> ProcessNetworkConnectionTransfer
+FUN_18085d570 -> HandleNetworkConnectionStream
+FUN_18085d650 -> ValidateNetworkConnectionBuffer
+FUN_18085d7f0 -> ProcessNetworkConnectionEvent
+FUN_18085dbf0 -> GetNetworkConnectionInfo
+FUN_18085dca0 -> ValidateNetworkConnectionInfo
+FUN_18085dd4b -> ProcessNetworkConnectionUpdate
+FUN_18085dd7c -> CleanupNetworkConnection
+FUN_18085dff0 -> InitializeNetworkConnectionPool
+FUN_18085e003 -> ValidateNetworkConnectionPoolEx
+FUN_18085e112 -> ResetNetworkConnection
+FUN_18085e221 -> CleanupNetworkConnectionResources
+FUN_18085e4a0 -> HandleNetworkConnectionError
+FUN_18085e820 -> ProcessNetworkConnectionRequest
+FUN_18085e860 -> ValidateNetworkConnectionRequest
+FUN_18085e990 -> ProcessNetworkConnectionData
+FUN_18085ea80 -> HandleNetworkConnectionTransfer
+FUN_18085eabf -> GetNetworkConnectionResult
+FUN_18085ec78 -> CleanupNetworkConnectionContext
+FUN_18085ec90 -> ValidateNetworkConnectionTransfer
+FUN_18085ee30 -> ProcessNetworkConnectionFloatData
+FUN_18085ee5e -> GetNetworkConnectionFloatStatus
+FUN_18085eec6 -> ValidateNetworkConnectionFloatData
+FUN_18085ef10 -> ValidateNetworkConnectionContext
+FUN_18085f080 -> GetNetworkConnectionFloatValue
+FUN_18085f0e0 -> ProcessNetworkConnectionCharData
+FUN_18085f11f -> ValidateNetworkConnectionHandle
+FUN_18085f163 -> ProcessNetworkConnectionHandleData
+FUN_18085f294 -> InitializeNetworkConnectionFlags
+FUN_18085f299 -> ValidateNetworkConnectionFlags
+FUN_18085f2b0 -> ProcessNetworkConnectionFlagData
+FUN_18085f2d3 -> GetNetworkConnectionFlagStatus
+FUN_18085f336 -> CleanupNetworkConnectionFlags
+FUN_18085f340 -> ValidateNetworkConnectionFlagState
+FUN_18085f36d -> GetNetworkConnectionFlagInfo
+FUN_18085f39d -> ResetNetworkConnectionFlags
+FUN_18085f440 -> ProcessNetworkConnectionFlagOperation
+FUN_18085f500 -> GetNetworkConnectionFlagValue
+FUN_18085f670 -> UpdateNetworkConnectionFlagData
+FUN_18085f812 -> GetNetworkConnectionFlagResult
+FUN_18085f879 -> CleanupNetworkConnectionFlagContext
+FUN_18085f893 -> ValidateNetworkConnectionFlagTransfer
+FUN_18085f8bb -> GetNetworkConnectionFlagStatistics
+FUN_18085f960 -> ProcessNetworkConnectionFlagStream
+FUN_18085fa90 -> HandleNetworkConnectionFlagTransfer
+FUN_18085fb30 -> ValidateNetworkConnectionFlagState
+FUN_18085fc0e -> GetNetworkConnectionFlagError
+FUN_18085fd51 -> CleanupNetworkConnectionFlagResources
+FUN_18085fdf0 -> ProcessNetworkConnectionFlagUpdate
+FUN_18085ff30 -> ValidateNetworkConnectionFlagContext
+FUN_18085ff70 -> GetNetworkConnectionFlagStatus
+FUN_18085ffc0 -> ProcessNetworkConnectionFlagDataTransfer
+FUN_18085fff0 -> ValidateNetworkConnectionFlagOperation

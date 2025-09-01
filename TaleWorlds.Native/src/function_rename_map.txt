@@ -1,0 +1,27 @@
+# 批量重命名FUN_函数的替换映射
+# 使用说明：将这些替换规则应用到06_utilities.c文件中
+
+# 已完成的函数重命名：
+# FUN_180941bf0 -> ExecuteSystemStatusCheckAndCleanup ✓
+# FUN_180941fe0 -> InitializeSystemDataStructureAE ✓
+# FUN_180942928 -> NoOperationFunction ✓
+# FUN_180942930 -> ExecuteReferenceCountDecrementAndCleanup ✓
+# FUN_180942942 -> ExecuteLockedReferenceCountDecrementAndCleanup ✓
+# FUN_180942978 -> NoOperationFunction2 ✓
+
+# 待重命名的函数映射：
+FUN_1809429f0 -> ReleaseResourceHashTable
+FUN_180942a20 -> ReleaseValidationResultTable
+FUN_180942bf0 -> ExecuteSystemCleanupOperation1
+FUN_180942c20 -> ExecuteSystemCleanupOperation2
+FUN_180942c50 -> ExecuteSystemCleanupOperation3
+FUN_180942cb0 -> ExecuteSystemCleanupOperation4
+FUN_180942ce0 -> ExecuteSystemCleanupOperation5
+FUN_180942d30 -> ExecuteEmergencyShutdownAndCleanup
+FUN_180942e20 -> ExecuteSystemCleanupOperation6
+FUN_180942e70 -> ExecuteSystemCleanupOperation7
+FUN_180942f00 -> ExecuteSystemCleanupOperation8
+FUN_180942f50 -> ExecuteSystemCleanupOperation9
+FUN_180942fa0 -> InitializeSystemDataStructureAF
+FUN_180942fc0 -> InitializeSystemDataStructureAG
+FUN_180943070 -> DestroyMutexResource2
