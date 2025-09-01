@@ -1380,7 +1380,6 @@ void* MemoryPoolHandle;
 void* MemoryPoolData;
 void* MemoryPoolContext;
 
- void CleanupMemoryPool(void);
 /**
  * @brief 清理内存池
  * 
