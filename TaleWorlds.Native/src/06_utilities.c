@@ -10,24 +10,24 @@
  * @param ModuleContext 模块上下文，包含模块运行所需的环境信息
  */
 void InitializeModuleDependencies(longlong ModuleHandle, longlong ModuleContext);
-void* moduleDependencyTable;
-uint32_t moduleDependencyCount;
-uint32_t moduleDependencyFlags;
-uint32_t moduleDependencyStatus;
-void* moduleDependencyLock;
-void* moduleDependencyMutex;
-bool moduleDependencyInitialized;
-void* moduleDependencyContext;
-void* moduleDependencyConfiguration;
-bool moduleDependencyEnabled;
-void* moduleDependencyData;
-void* moduleDependencyCache;
-void* moduleDependencyBuffer;
-uint32_t moduleDependencyVersion;
-uint32_t moduleDependencyBuild;
-uint32_t moduleDependencyChecksum;
-void* moduleDependencySignature;
-void* moduleDependencyHandle;
+void* ModuleDependencyTable;
+uint32_t ModuleDependencyCount;
+uint32_t ModuleDependencyFlags;
+uint32_t ModuleDependencyStatus;
+void* ModuleDependencyLock;
+void* ModuleDependencyMutex;
+bool ModuleDependencyInitialized;
+void* ModuleDependencyContext;
+void* ModuleDependencyConfiguration;
+bool ModuleDependencyEnabled;
+void* ModuleDependencyData;
+void* ModuleDependencyCache;
+void* ModuleDependencyBuffer;
+uint32_t ModuleDependencyVersion;
+uint32_t ModuleDependencyBuild;
+uint32_t ModuleDependencyChecksum;
+void* ModuleDependencySignature;
+void* ModuleDependencyHandle;
 
 /**
  * @brief 初始化全局模块A
@@ -39,10 +39,10 @@ void* moduleDependencyHandle;
  * @note 此函数必须在系统启动时调用
  */
 void InitializeGlobalModuleA(void);
-void* globalModuleAInstance;
-void* globalModuleAConfiguration;
-uint32_t globalModuleAStatus;
-void* globalModuleAHandle;
+void* GlobalModuleAInstance;
+void* GlobalModuleAConfiguration;
+uint32_t GlobalModuleAStatus;
+void* GlobalModuleAHandle;
 
  /**
  * @brief 初始化全局模块B
@@ -54,11 +54,11 @@ void* globalModuleAHandle;
  * @note 此函数必须在系统启动时调用
  */
 void InitializeGlobalModuleB(void);
-void* globalModuleBInstance;
-void* globalModuleBConfiguration;
-uint32_t globalModuleBStatus;
-void* globalModuleBHandle;
-void* globalModuleBContext;
+void* GlobalModuleBInstance;
+void* GlobalModuleBConfiguration;
+uint32_t GlobalModuleBStatus;
+void* GlobalModuleBHandle;
+void* GlobalModuleBContext;
 /**
  * @brief 初始化全局模块C
  * 
@@ -66,11 +66,11 @@ void* globalModuleBContext;
  * 设置模块C所需的数据结构和运行环境
  */
 void InitializeGlobalModuleC(void);
-void* globalModuleCInstance;
-void* globalModuleCConfiguration;
-uint32_t globalModuleCStatus;
-void* globalModuleCHandle;
-void* globalModuleCContext;
+void* GlobalModuleCInstance;
+void* GlobalModuleCConfiguration;
+uint32_t GlobalModuleCStatus;
+void* GlobalModuleCHandle;
+void* GlobalModuleCContext;
 
 
 /**
@@ -80,10 +80,10 @@ void* globalModuleCContext;
  * 设置模块D所需的数据结构和运行环境
  */
 void InitializeGlobalModuleD(void);
-void* globalModuleDInstance;
-void* globalModuleDConfiguration;
-uint32_t globalModuleDStatus;
-void* globalModuleDHandle;
+void* GlobalModuleDInstance;
+void* GlobalModuleDConfiguration;
+uint32_t GlobalModuleDStatus;
+void* GlobalModuleDHandle;
 
 
 /**

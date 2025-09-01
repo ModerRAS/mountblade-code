@@ -33,10 +33,10 @@ char SystemConfigBufferJ[0x40];
 // 系统地址常量定义
 #define ConditionMutexAddressA ConditionMutexAddressA
 #define ConditionMutexAddressB ConditionMutexAddressB
-#define SystemMutexAddressA 0x180c91970
-#define EventMutexAddress 0x180c91f70
-#define RequestMutexAddress 0x180c91ff0
-#define SystemMutexFlags 0xfffffffffffffffe
+#define SystemMutexAddressA SystemMutexAddressA
+#define EventMutexAddress EventMutexAddress
+#define RequestMutexAddress RequestMutexAddress
+#define SystemMutexFlags SystemMutexFlags
 
 // 系统配置字符串模板 - 用于系统初始化和配置
 char SystemConfigDataTemplate5740[] = "SystemConfigTemplateE";
@@ -230,7 +230,7 @@ int InitializeRenderingThreadSync(uint64_t threadId, uint64_t syncPtr, uint64_t 
 {
   int64_t CallbackResult;
   uint64_t renderingMutexFlags;
-  renderingMutexFlags = 0xfffffffffffffffe;
+  renderingMutexFlags = SystemMutexFlags;
   _Cnd_init_in_situ();
   _Mtx_init_in_situ(RENDER_MUTEX_ADDRESS, 2, mutexType, mutexAttr, renderingMutexFlags);
   RenderingSyncState = 0;
@@ -251,7 +251,7 @@ int InitializePhysicsEngineSync(uint64_t threadId, uint64_t syncPtr, uint64_t mu
 {
   int64_t CallbackResult;
   uint64_t physicsMutexFlags;
-  physicsMutexFlags = 0xfffffffffffffffe;
+  physicsMutexFlags = SystemMutexFlags;
   _Cnd_init_in_situ();
   _Mtx_init_in_situ(PHYSICS_MUTEX_ADDRESS, 2, mutexType, mutexAttr, physicsMutexFlags);
   PhysicsSyncState = 0;
@@ -272,7 +272,7 @@ int InitializeConditionMutexC(uint64_t threadId,uint64_t syncPtr,uint64_t mutexT
 {
   int64_t result;
   uint64_t ConditionMutexFlags;
-  ConditionMutexFlags = 0xfffffffffffffffe;
+  ConditionMutexFlags = SystemMutexFlags;
   _Cnd_init_in_situ();
   _Mtx_init_in_situ(ConditionMutexAddressA,2,mutexType,mutexAttr,ConditionMutexFlags);
   GlobalConditionMutexCStatus = 0;
@@ -293,7 +293,7 @@ int InitializeConditionMutexD(uint64_t threadId,uint64_t syncPtr,uint64_t mutexT
 {
   int64_t result;
   uint64_t ConditionMutexDFlags;
-  ConditionMutexDFlags = 0xfffffffffffffffe;
+  ConditionMutexDFlags = SystemMutexFlags;
   _Cnd_init_in_situ();
   _Mtx_init_in_situ(ConditionMutexAddressB,2,mutexType,mutexAttr,ConditionMutexDFlags);
   GlobalConditionMutexDStatus = 0;
@@ -313,7 +313,7 @@ int InitializeStringProcessorA(void)
   StringProcessorA_BufferPtr = &StringProcessorA_Buffer;
   StringProcessorA_Buffer = 0;
   StringProcessorA_Length = 0xd;
-  strcpy_s(&StringProcessorA_Buffer,0x10,&StringProcessorATemplate,stringProcessorAFlags,0xfffffffffffffffe);
+  strcpy_s(&StringProcessorA_Buffer,0x10,&StringProcessorATemplate,stringProcessorAFlags,SystemMutexFlags);
   result = RegisterSystemCallback(InitializeStringProcessorA_Callback);
   return (result != 0) - 1;
 }
@@ -329,7 +329,7 @@ int InitializeStringProcessorB(void)
   StringProcessorB_BufferPtr = &StringProcessorB_Buffer;
   StringProcessorB_Buffer = 0;
   StringProcessorB_Length = 0xf;
-  strcpy_s(&StringProcessorB_Buffer,0x10,&StringProcessorBTemplate,stringProcessorBFlags,0xfffffffffffffffe);
+  strcpy_s(&StringProcessorB_Buffer,0x10,&StringProcessorBTemplate,stringProcessorBFlags,SystemMutexFlags);
   result = RegisterSystemCallback(InitializeStringProcessorB_Callback);
   return (result != 0) - 1;
 }
@@ -345,7 +345,7 @@ int InitializeStringProcessorC(void)
   g_stringProcessorC_BufferPtr = &g_stringProcessorC_Buffer;
   g_stringProcessorC_Buffer = 0;
   g_stringProcessorC_Length = 0xf;
-  strcpy_s(&g_stringProcessorC_Buffer,0x10,&StringProcessorCTemplate,stringProcessorCFlags,0xfffffffffffffffe);
+  strcpy_s(&g_stringProcessorC_Buffer,0x10,&StringProcessorCTemplate,stringProcessorCFlags,SystemMutexFlags);
   result = RegisterSystemCallback(InitializeStringProcessorC_Callback);
   return (result != 0) - 1;
 }
@@ -361,7 +361,7 @@ int InitializeStringProcessorD(void)
   g_stringProcessorD_BufferPtr = &g_stringProcessorD_Buffer;
   g_stringProcessorD_Buffer = 0;
   g_stringProcessorD_Length = 0xd;
-  strcpy_s(&g_stringProcessorD_Buffer,0x10,&unknownData_180a00518,stringProcessorDFlags,0xfffffffffffffffe);
+  strcpy_s(&g_stringProcessorD_Buffer,0x10,&unknownData_180a00518,stringProcessorDFlags,SystemMutexFlags);
   result = RegisterSystemCallback(InitializeStringProcessorD_Callback);
   return (result != 0) - 1;
 }
@@ -377,7 +377,7 @@ int InitializeStringProcessorE(void)
   g_stringProcessorE_BufferPtr = &g_stringProcessorE_Buffer;
   g_stringProcessorE_Buffer = 0;
   g_stringProcessorE_Length = 0xc;
-  strcpy_s(&g_stringProcessorE_Buffer,0x10,&unknownData_180a00528,stringProcessorEFlags,0xfffffffffffffffe);
+  strcpy_s(&g_stringProcessorE_Buffer,0x10,&unknownData_180a00528,stringProcessorEFlags,SystemMutexFlags);
   result = RegisterSystemCallback(InitializeStringProcessorE_Callback);
   return (result != 0) - 1;
 }
@@ -393,7 +393,7 @@ int InitializeStringProcessorF(void)
   globalData_180bf6658 = &globalData_180bf6668;
   globalData_180bf6668 = 0;
   globalData_180bf6660 = 4;
-  strcpy_s(&globalData_180bf6668,0x10,&unknownData_180a00538,stringFlags,0xfffffffffffffffe);
+  strcpy_s(&globalData_180bf6668,0x10,&unknownData_180a00538,stringFlags,SystemMutexFlags);
   result = RegisterSystemCallback(InitializeStringProcessorF_Callback);
   return (result != 0) - 1;
 }
@@ -411,7 +411,7 @@ int InitializeModuleConfigurationA(void)
   g_stringProcessorConfigPointerA = &STRING_PROCESSOR_CONFIG_A;
   STRING_PROCESSOR_CONFIG_A = 0;
   g_stringProcessorBufferSizeA = 5;
-  strcpy_s(&STRING_PROCESSOR_CONFIG_A,0x10,&SystemStringDataConstantA,StringProcessorFlags,0xfffffffffffffffe);
+  strcpy_s(&STRING_PROCESSOR_CONFIG_A,0x10,&SystemStringDataConstantA,StringProcessorFlags,SystemMutexFlags);
   longlong CallbackResult = RegisterSystemModule(InitializeSystemModuleA);
   return (CallbackResult != 0) - 1;
 }
@@ -429,7 +429,7 @@ int InitializeStringProcessorG(void)
   g_stringProcessorConfigPointerB = &STRING_PROCESSOR_CONFIG_B;
   STRING_PROCESSOR_CONFIG_B = 0;
   g_stringProcessorBufferSizeB = 5;
-  strcpy_s(&STRING_PROCESSOR_CONFIG_B,0x10,&SystemStringDataConstantC,stringProcessorGFlags,0xfffffffffffffffe);
+  strcpy_s(&STRING_PROCESSOR_CONFIG_B,0x10,&SystemStringDataConstantC,stringProcessorGFlags,SystemMutexFlags);
   CallbackResult = RegisterSystemModule(InitializeSystemModuleB);
   return (CallbackResult != 0) - 1;
 }
@@ -447,7 +447,7 @@ int InitializeStringProcessorH(void)
   g_stringProcessorConfigPointerC = &STRING_PROCESSOR_CONFIG_C;
   STRING_PROCESSOR_CONFIG_C = 0;
   g_stringProcessorBufferSizeC = 0xd;
-  strcpy_s(&STRING_PROCESSOR_CONFIG_C,0x20,&SystemStringDataConstantD,stringProcessorHFlags,0xfffffffffffffffe);
+  strcpy_s(&STRING_PROCESSOR_CONFIG_C,0x20,&SystemStringDataConstantD,stringProcessorHFlags,SystemMutexFlags);
   CallbackResult = RegisterSystemModule(InitializeStringProcessorModule);
   return (CallbackResult != 0) - 1;
 }
@@ -465,7 +465,7 @@ int InitializeStringProcessorI(void)
   g_stringProcessorConfigPointerD = &STRING_PROCESSOR_CONFIG_D;
   STRING_PROCESSOR_CONFIG_D = 0;
   g_stringProcessorBufferSizeD = 9;
-  strcpy_s(&STRING_PROCESSOR_CONFIG_D,0x20,&SystemStringDataConstantE,stringProcessorIFlags,0xfffffffffffffffe);
+  strcpy_s(&STRING_PROCESSOR_CONFIG_D,0x20,&SystemStringDataConstantE,stringProcessorIFlags,SystemMutexFlags);
   CallbackResult = RegisterSystemModule(InitializeNetworkModule);
   return (CallbackResult != 0) - 1;
 }
@@ -482,13 +482,13 @@ int InitializeStringProcessorI(void)
 int InitializeConfigurationMutex(uint64_t threadId,uint64_t syncPtr,uint64_t mutexType,uint64_t mutexAttr)
 {
   int64_t CallbackResult;
-  _Mtx_init_in_situ(0x180c91970,0x102,mutexType,mutexAttr,0xfffffffffffffffe);
+  _Mtx_init_in_situ(SystemMutexAddressA,0x102,mutexType,mutexAttr,SystemMutexFlags);
   CallbackResult = RegisterSystemModule(InitializeCoreGameEngine);
   return (CallbackResult != 0) - 1;
 }
   CONFIG_DATA_BUFFER_A = 0;
   g_configDataBufferSizeA = 0x13;
-  strcpy_s(&CONFIG_DATA_BUFFER_A,0x40,&SystemConfigDataTemplateCB48,StringProcessorFlags,0xfffffffffffffffe);
+  strcpy_s(&CONFIG_DATA_BUFFER_A,0x40,&SystemConfigDataTemplateCB48,StringProcessorFlags,SystemMutexFlags);
   g_configDataPointerA = &SystemMemoryPool;
   g_configDataPointerB = &CONFIG_DATA_BUFFER_B;
   CONFIG_DATA_BUFFER_B = 0;
@@ -555,35 +555,35 @@ int InitializeConfigurationMutex(uint64_t threadId,uint64_t syncPtr,uint64_t mut
   _DAT_180bf6bd8 = 7;
   strcpy_s(&SystemConfigBufferJ,0x40,&SystemConfigStringTemplateF);
   _DAT_180bf6c20 = &SystemMemoryPool;
-  _DAT_180bf6c28 = &DAT_180bf6c38;
-  DAT_180bf6c38 = 0;
+  _DAT_180bf6c28 = &SystemConfigStringBufferA;
+  SystemConfigStringBufferA = 0;
   _DAT_180bf6c30 = 0x19;
-  strcpy_s(&DAT_180bf6c38,0x40,&SystemConfigStringTemplateG);
+  strcpy_s(&SystemConfigStringBufferA,0x40,&SystemConfigStringTemplateG);
   _DAT_180bf6c78 = &SystemMemoryPool;
-  _DAT_180bf6c80 = &DAT_180bf6c90;
-  DAT_180bf6c90 = 0;
+  _DAT_180bf6c80 = &SystemConfigStringBufferB;
+  SystemConfigStringBufferB = 0;
   _DAT_180bf6c88 = 0x12;
-  strcpy_s(&DAT_180bf6c90,0x40,&SystemConfigStringTemplateH);
+  strcpy_s(&SystemConfigStringBufferB,0x40,&SystemConfigStringTemplateH);
   _DAT_180bf6cd0 = &SystemMemoryPool;
-  _DAT_180bf6cd8 = &DAT_180bf6ce8;
-  DAT_180bf6ce8 = 0;
+  _DAT_180bf6cd8 = &SystemConfigStringBufferC;
+  SystemConfigStringBufferC = 0;
   _DAT_180bf6ce0 = 0x12;
-  strcpy_s(&DAT_180bf6ce8,0x40,&SystemConfigStringTemplateI);
+  strcpy_s(&SystemConfigStringBufferC,0x40,&SystemConfigStringTemplateI);
   _DAT_180bf6d28 = &SystemMemoryPool;
-  _DAT_180bf6d30 = &DAT_180bf6d40;
-  DAT_180bf6d40 = 0;
+  _DAT_180bf6d30 = &SystemConfigStringBufferD;
+  SystemConfigStringBufferD = 0;
   _DAT_180bf6d38 = 0x19;
-  strcpy_s(&DAT_180bf6d40,0x40,&SystemConfigStringTemplateJ);
+  strcpy_s(&SystemConfigStringBufferD,0x40,&SystemConfigStringTemplateJ);
   _DAT_180bf6d80 = &SystemMemoryPool;
-  _DAT_180bf6d88 = &DAT_180bf6d98;
-  DAT_180bf6d98 = 0;
+  _DAT_180bf6d88 = &SystemConfigStringBufferE;
+  SystemConfigStringBufferE = 0;
   _DAT_180bf6d90 = 0x11;
-  strcpy_s(&DAT_180bf6d98,0x40,&SystemConfigStringTemplateK);
+  strcpy_s(&SystemConfigStringBufferE,0x40,&SystemConfigStringTemplateK);
   _DAT_180bf6dd8 = &SystemMemoryPool;
-  _DAT_180bf6de0 = &DAT_180bf6df0;
-  DAT_180bf6df0 = 0;
+  _DAT_180bf6de0 = &SystemConfigStringBufferF;
+  SystemConfigStringBufferF = 0;
   _DAT_180bf6de8 = 0x18;
-  strcpy_s(&DAT_180bf6df0,0x40,&SystemConfigStringTemplateL);
+  strcpy_s(&SystemConfigStringBufferF,0x40,&SystemConfigStringTemplateL);
   _DAT_180bf6e30 = &SystemMemoryPool;
   _DAT_180bf6e38 = &DAT_180bf6e48;
   DAT_180bf6e48 = 0;
@@ -661,7 +661,7 @@ int InitializeStringProcessorJ(void)
   g_stringProcessorJ_BufferPtr = &g_stringProcessorJ_Buffer;
   g_stringProcessorJ_Buffer = 0;
   g_stringProcessorJ_Length = 0xb;
-  strcpy_s(&g_stringProcessorJ_Buffer,0x40,&StringProcessorTemplateA,stringProcessorJFlags,0xfffffffffffffffe);
+  strcpy_s(&g_stringProcessorJ_Buffer,0x40,&StringProcessorTemplateA,stringProcessorJFlags,SystemMutexFlags);
   CallbackResult = RegisterSystemCallback(InitializeStringProcessorJ_Callback);
   return (CallbackResult != 0) - 1;
 }
@@ -679,7 +679,7 @@ int InitializeStringProcessorK(void)
   g_stringProcessorK_BufferPtr = &g_stringProcessorK_Buffer;
   g_stringProcessorK_Buffer = 0;
   g_stringProcessorK_Length = 9;
-  strcpy_s(&g_stringProcessorK_Buffer,0x40,&StringProcessorTemplateB,stringProcessorKFlags,0xfffffffffffffffe);
+  strcpy_s(&g_stringProcessorK_Buffer,0x40,&StringProcessorTemplateB,stringProcessorKFlags,SystemMutexFlags);
   CallbackResult = RegisterSystemCallback(InitializeStringProcessorK_Callback);
   return (CallbackResult != 0) - 1;
 }
@@ -697,7 +697,7 @@ int InitializeStringProcessorL(void)
   g_stringProcessorL_BufferPtr = &g_stringProcessorL_Buffer;
   g_stringProcessorL_Buffer = 0;
   g_stringProcessorL_Length = 9;
-  strcpy_s(&g_stringProcessorL_Buffer,0x40,&StringProcessorTemplateC,stringProcessorLFlags,0xfffffffffffffffe);
+  strcpy_s(&g_stringProcessorL_Buffer,0x40,&StringProcessorTemplateC,stringProcessorLFlags,SystemMutexFlags);
   CallbackResult = RegisterSystemCallback(InitializeStringProcessorL_Callback);
   return (CallbackResult != 0) - 1;
 }
@@ -717,7 +717,7 @@ int InitializeMultiStringProcessorSystem(void)
   g_stringProcessorN_BufferPtr = &g_stringProcessorN_Buffer;
   g_stringProcessorN_Buffer = 0;
   g_stringProcessorN_Length = 0xb;
-  strcpy_s(&g_stringProcessorN_Buffer,0x80,&unknownData_180a0fd60,systemFlags,0xfffffffffffffffe);
+  strcpy_s(&g_stringProcessorN_Buffer,0x80,&unknownData_180a0fd60,systemFlags,SystemMutexFlags);
   
   // 初始化字符串处理器O
   g_stringProcessorO_Base = &unknownData_1809fcc28;
@@ -829,7 +829,7 @@ int InitializeMultiStringProcessorSystem(void)
 }
   DAT_180bf7ea8 = 0;
   _DAT_180bf7ea0 = 0x13;
-  strcpy_s(&DAT_180bf7ea8,0x40,&SystemConfigStringA,StringProcessorFlags,0xfffffffffffffffe);
+  strcpy_s(&DAT_180bf7ea8,0x40,&SystemConfigStringA,StringProcessorFlags,SystemMutexFlags);
   _DAT_180bf7ee8 = &SystemMemoryPool;
   _DAT_180bf7ef0 = &DAT_180bf7f00;
   DAT_180bf7f00 = 0;
@@ -849,17 +849,17 @@ int InitializeMultiStringProcessorSystem(void)
   _DAT_180bf7ff8 = &DAT_180bf8008;
   DAT_180bf8008 = 0;
   _DAT_180bf8000 = 0xc;
-  strcpy_s(&DAT_180bf8008,0x40,&UNK_180a0cb70);
+  strcpy_s(&DAT_180bf8008,0x40,&UnknownConfigTemplateA);
   _DAT_180bf8048 = &SystemMemoryPool;
   _DAT_180bf8050 = &DAT_180bf8060;
   DAT_180bf8060 = 0;
   _DAT_180bf8058 = 0xc;
-  strcpy_s(&DAT_180bf8060,0x40,&UNK_180a0cbe0);
+  strcpy_s(&DAT_180bf8060,0x40,&UnknownConfigTemplateB);
   _DAT_180bf80a0 = &SystemMemoryPool;
   _DAT_180bf80a8 = &DAT_180bf80b8;
   DAT_180bf80b8 = 0;
   _DAT_180bf80b0 = 0x10;
-  strcpy_s(&DAT_180bf80b8,0x40,&UNK_180a0cbf0);
+  strcpy_s(&DAT_180bf80b8,0x40,&UnknownConfigTemplateC);
   _DAT_180bf80f8 = &SystemMemoryPool;
   _DAT_180bf8100 = &DAT_180bf8110;
   DAT_180bf8110 = 0;
@@ -990,7 +990,7 @@ int InitializeMultiStringProcessorSystem(void)
 }
   DAT_180bf90c8 = 0;
   _DAT_180bf90c0 = 0xd;
-  strcpy_s(&DAT_180bf90c8,0x20,&UNK_180a01300,StringProcessorFlags,0xfffffffffffffffe);
+  strcpy_s(&DAT_180bf90c8,0x20,&UNK_180a01300,StringProcessorFlags,SystemMutexFlags);
   ModuleInitializationResult = RegisterSystemModule(InitializePhysicsSubsystem);
   return (ModuleInitializationResult != 0) - 1;
 }
@@ -1008,13 +1008,13 @@ int InitializeStringProcessorAD(void)
   g_stringProcessorAD_BufferPtr = &g_stringProcessorAD_Buffer;
   g_stringProcessorAD_Buffer = 0;
   g_stringProcessorAD_Length = 9;
-  strcpy_s(&g_stringProcessorAD_Buffer,0x20,&unknownData_180a01330,stringProcessorADFlags,0xfffffffffffffffe);
+  strcpy_s(&g_stringProcessorAD_Buffer,0x20,&unknownData_180a01330,stringProcessorADFlags,SystemMutexFlags);
   CallbackResult = RegisterSystemCallback(InitializeStringProcessorAD_Callback);
   return (CallbackResult != 0) - 1;
 }
   DAT_180bf91c8 = 0;
   _DAT_180bf91c0 = 0x10;
-  strcpy_s(&DAT_180bf91c8,0x40,&UNK_180a22b38,StringProcessorFlags,0xfffffffffffffffe);
+  strcpy_s(&DAT_180bf91c8,0x40,&UNK_180a22b38,StringProcessorFlags,SystemMutexFlags);
   ModuleInitializationResult = RegisterSystemModule(InitializeRenderingPipeline);
   return (ModuleInitializationResult != 0) - 1;
 }
@@ -1032,7 +1032,7 @@ int InitializeStringProcessorAE(void)
   g_stringProcessorAE_BufferPtr = &g_stringProcessorAE_Buffer;
   g_stringProcessorAE_Buffer = 0;
   g_stringProcessorAE_Length = 0x13;
-  strcpy_s(&g_stringProcessorAE_Buffer,0x40,&unknownData_180a22b90,stringProcessorAEFlags,0xfffffffffffffffe);
+  strcpy_s(&g_stringProcessorAE_Buffer,0x40,&unknownData_180a22b90,stringProcessorAEFlags,SystemMutexFlags);
   CallbackResult = RegisterSystemCallback(InitializeStringProcessorAE_Callback);
   return (CallbackResult != 0) - 1;
 }
@@ -1050,7 +1050,7 @@ int InitializeStringProcessorAF(void)
   g_stringProcessorAF_BufferPtr = &g_stringProcessorAF_Buffer;
   g_stringProcessorAF_Buffer = 0;
   g_stringProcessorAF_Length = 0x12;
-  strcpy_s(&g_stringProcessorAF_Buffer,0x40,&unknownData_180a22b78,stringProcessorAFFlags,0xfffffffffffffffe);
+  strcpy_s(&g_stringProcessorAF_Buffer,0x40,&unknownData_180a22b78,stringProcessorAFFlags,SystemMutexFlags);
   CallbackResult = RegisterSystemCallback(InitializeStringProcessorAF_Callback);
   return (CallbackResult != 0) - 1;
 }
@@ -1068,7 +1068,7 @@ int InitializeStringProcessorG(void)
   GlobalStringProcessorG_BufferPtr = &GlobalStringProcessorG_Buffer;
   GlobalStringProcessorG_Buffer = 0;
   GlobalStringProcessorG_Length = 0x12;
-  strcpy_s(&GlobalStringProcessorG_Buffer,0x40,&GlobalUnknownDataBase,processorFlags,0xfffffffffffffffe);
+  strcpy_s(&GlobalStringProcessorG_Buffer,0x40,&GlobalUnknownDataBase,processorFlags,SystemMutexFlags);
   CallbackResult = RegisterSystemCallback(StringProcessorG_Callback);
   return (CallbackResult != 0) - 1;
 }
@@ -1086,7 +1086,7 @@ int InitializeStringProcessorH(void)
   GlobalStringProcessorH_BufferPtr = &GlobalStringProcessorH_Buffer;
   GlobalStringProcessorH_Buffer = 0;
   GlobalStringProcessorH_Length = 0xd;
-  strcpy_s(&GlobalStringProcessorH_Buffer,0x40,&GlobalUnknownDataBase,processorFlags,0xfffffffffffffffe);
+  strcpy_s(&GlobalStringProcessorH_Buffer,0x40,&GlobalUnknownDataBase,processorFlags,SystemMutexFlags);
   CallbackResult = RegisterSystemCallback(StringProcessorH_Callback);
   return (CallbackResult != 0) - 1;
 }
@@ -1104,7 +1104,7 @@ int InitializeStringProcessorAA(void)
   StringProcessorAABufferPtr = &StringProcessorAABuffer;
   StringProcessorAABuffer = 0;
   StringProcessorAALength = 0x10;
-  strcpy_s(&StringProcessorAABuffer, 0x40, &SystemStringConfigDataAA, StringProcessorFlags, 0xfffffffffffffffe);
+  strcpy_s(&StringProcessorAABuffer, 0x40, &SystemStringConfigDataAA, StringProcessorFlags, SystemMutexFlags);
   InitializationResult = RegisterSystemCallback(StringProcessorAACallback);
   return (InitializationResult != 0) - 1;
 }
@@ -1122,7 +1122,7 @@ int InitializeStringProcessorAA(void)
   _DAT_180bf93f8 = &DAT_180bf9408;
   DAT_180bf9408 = 0;
   _DAT_180bf9400 = 0x17;
-  strcpy_s(&DAT_180bf9408,0x40,&SystemNetworkConfigData,StringProcessorFlags,0xfffffffffffffffe);
+  strcpy_s(&DAT_180bf9408,0x40,&SystemNetworkConfigData,StringProcessorFlags,SystemMutexFlags);
   ModuleInitializationResult = RegisterSystemModule(RegisterSystemModuleA);
   return (ModuleInitializationResult != 0) - 1;
 }
@@ -1140,7 +1140,7 @@ int InitializeStringProcessorK(void)
   StringProcessorK_BufferPtr = &StringProcessorK_Buffer;
   StringProcessorK_Buffer = 0;
   StringProcessorK_Length = 0x10;
-  strcpy_s(&StringProcessorK_Buffer,0x40,&SystemStringConfigDataK,stringProcessorKFlags,0xfffffffffffffffe);
+  strcpy_s(&StringProcessorK_Buffer,0x40,&SystemStringConfigDataK,stringProcessorKFlags,SystemMutexFlags);
   CallbackResult = RegisterSystemCallback(InitializeStringProcessorK_Callback);
   return (CallbackResult != 0) - 1;
 }
@@ -1158,7 +1158,7 @@ int InitializeStringProcessorL(void)
   StringProcessorL_BufferPtr = &StringProcessorL_Buffer;
   StringProcessorL_Buffer = 0;
   StringProcessorL_Length = 0xd;
-  strcpy_s(&StringProcessorL_Buffer,0x40,&SystemStringConfigDataL,stringProcessorLFlags,0xfffffffffffffffe);
+  strcpy_s(&StringProcessorL_Buffer,0x40,&SystemStringConfigDataL,stringProcessorLFlags,SystemMutexFlags);
   CallbackResult = RegisterSystemCallback(InitializeStringProcessorL_Callback);
   return (CallbackResult != 0) - 1;
 }
@@ -1176,7 +1176,7 @@ int InitializeStringProcessorM(void)
   StringProcessorM_BufferPtr = &StringProcessorM_Buffer;
   StringProcessorM_Buffer = 0;
   StringProcessorM_Length = 0xc;
-  strcpy_s(&StringProcessorM_Buffer,0x40,&UnknownData180a22c48,stringProcessorMFlags,0xfffffffffffffffe);
+  strcpy_s(&StringProcessorM_Buffer,0x40,&UnknownData180a22c48,stringProcessorMFlags,SystemMutexFlags);
   CallbackResult = RegisterSystemCallback(InitializeStringProcessorM_Callback);
   return (CallbackResult != 0) - 1;
 }
@@ -1194,7 +1194,7 @@ int InitializeStringProcessorN(void)
   StringProcessorN_BufferPtr = &StringProcessorN_Buffer;
   StringProcessorN_Buffer = 0;
   StringProcessorN_Length = 0x16;
-  strcpy_s(&StringProcessorN_Buffer,0x40,&UnknownData180a22c30,stringProcessorNFlags,0xfffffffffffffffe);
+  strcpy_s(&StringProcessorN_Buffer,0x40,&UnknownData180a22c30,stringProcessorNFlags,SystemMutexFlags);
   CallbackResult = RegisterSystemCallback(InitializeStringProcessorN_Callback);
   return (CallbackResult != 0) - 1;
 }
@@ -1212,7 +1212,7 @@ int InitializeStringProcessorO(void)
   StringProcessorO_BufferPtr = &StringProcessorO_Buffer;
   StringProcessorO_Buffer = 0;
   StringProcessorO_Length = 0x13;
-  strcpy_s(&StringProcessorO_Buffer,0x40,&UnknownData180a22c18,stringProcessorOFlags,0xfffffffffffffffe);
+  strcpy_s(&StringProcessorO_Buffer,0x40,&UnknownData180a22c18,stringProcessorOFlags,SystemMutexFlags);
   CallbackResult = RegisterSystemCallback(InitializeStringProcessorO_Callback);
   return (CallbackResult != 0) - 1;
 }
@@ -1230,7 +1230,7 @@ int InitializeStringProcessorP(void)
   StringProcessorP_BufferPtr = &StringProcessorP_Buffer;
   StringProcessorP_Buffer = 0;
   StringProcessorP_Length = 0x14;
-  strcpy_s(&StringProcessorP_Buffer,0x40,&UnknownData180a22c00,stringProcessorPFlags,0xfffffffffffffffe);
+  strcpy_s(&StringProcessorP_Buffer,0x40,&UnknownData180a22c00,stringProcessorPFlags,SystemMutexFlags);
   CallbackResult = RegisterSystemCallback(InitializeStringProcessorP_Callback);
   return (CallbackResult != 0) - 1;
 }
@@ -1248,7 +1248,7 @@ int InitializeStringProcessorQ(void)
   StringProcessorQ_BufferPtr = &StringProcessorQ_Buffer;
   StringProcessorQ_Buffer = 0;
   StringProcessorQ_Length = 0x17;
-  strcpy_s(&StringProcessorQ_Buffer,0x40,&Data180a22cb0,stringProcessorQFlags,0xfffffffffffffffe);
+  strcpy_s(&StringProcessorQ_Buffer,0x40,&Data180a22cb0,stringProcessorQFlags,SystemMutexFlags);
   CallbackResult = RegisterSystemCallback(InitializeStringProcessorQ_Callback);
   return (CallbackResult != 0) - 1;
 }
@@ -1266,7 +1266,7 @@ int InitializeStringProcessorR(void)
   StringProcessorR_BufferPtr = &StringProcessorR_Buffer;
   StringProcessorR_Buffer = 0;
   StringProcessorR_Length = 0x17;
-  strcpy_s(&StringProcessorR_Buffer,0x40,&UnknownData180a22c98,stringProcessorRFlags,0xfffffffffffffffe);
+  strcpy_s(&StringProcessorR_Buffer,0x40,&UnknownData180a22c98,stringProcessorRFlags,SystemMutexFlags);
   CallbackResult = RegisterSystemCallback(InitializeStringProcessorR_Callback);
   return (CallbackResult != 0) - 1;
 }
@@ -1284,7 +1284,7 @@ int InitializeStringProcessorS(void)
   _DAT_180bf9758 = &DAT_180bf9768;
   DAT_180bf9768 = 0;
   _DAT_180bf9760 = 0x20;
-  strcpy_s(&DAT_180bf9768,0x40,&UNK_180a22c70,StringProcessorFlags,0xfffffffffffffffe);
+  strcpy_s(&DAT_180bf9768,0x40,&UNK_180a22c70,StringProcessorFlags,SystemMutexFlags);
   ModuleInitializationResult = RegisterSystemModule(RegisterSystemModuleB);
   return (ModuleInitializationResult != 0) - 1;
 }
@@ -1296,7 +1296,7 @@ int InitializeStringProcessorT(void)
   _DAT_180bf97b8 = &DAT_180bf97c8;
   DAT_180bf97c8 = 0;
   _DAT_180bf97c0 = 0x13;
-  strcpy_s(&DAT_180bf97c8,0x40,&UNK_180a22c58,StringProcessorFlags,0xfffffffffffffffe);
+  strcpy_s(&DAT_180bf97c8,0x40,&UNK_180a22c58,StringProcessorFlags,SystemMutexFlags);
   ModuleInitializationResult = RegisterSystemModule(RegisterSystemModuleC);
   return (ModuleInitializationResult != 0) - 1;
 }
@@ -1308,7 +1308,7 @@ int InitializeStringProcessorU(void)
   _DAT_180bf9818 = &DAT_180bf9828;
   DAT_180bf9828 = 0;
   _DAT_180bf9820 = 0x1e;
-  strcpy_s(&DAT_180bf9828,0x40,&UNK_180a22d28,StringProcessorFlags,0xfffffffffffffffe);
+  strcpy_s(&DAT_180bf9828,0x40,&UNK_180a22d28,StringProcessorFlags,SystemMutexFlags);
   ModuleInitializationResult = RegisterSystemModule(RegisterSystemModuleD);
   return (ModuleInitializationResult != 0) - 1;
 }
@@ -1320,7 +1320,7 @@ int InitializeStringProcessorV(void)
   _DAT_180bf9878 = &DAT_180bf9888;
   DAT_180bf9888 = 0;
   _DAT_180bf9880 = 0x1b;
-  strcpy_s(&DAT_180bf9888,0x40,&UNK_180a22d08,StringProcessorFlags,0xfffffffffffffffe);
+  strcpy_s(&DAT_180bf9888,0x40,&UNK_180a22d08,StringProcessorFlags,SystemMutexFlags);
   ModuleInitializationResult = RegisterSystemModule(InitializeSystemModuleA);
   return (ModuleInitializationResult != 0) - 1;
 }
@@ -1338,7 +1338,7 @@ int InitializeSystemModuleB(void)
   _DAT_180bf98d8 = &SYSTEM_MODULE_B_BUFFER;
   SYSTEM_MODULE_B_BUFFER = 0;
   _DAT_180bf98e0 = 0x1b;
-  strcpy_s(&SYSTEM_MODULE_B_BUFFER,0x40,&UNK_180a22ce8,StringProcessorFlags,0xfffffffffffffffe);
+  strcpy_s(&SYSTEM_MODULE_B_BUFFER,0x40,&UNK_180a22ce8,StringProcessorFlags,SystemMutexFlags);
   ModuleInitializationResult = RegisterSystemModule(InitializeSystemModuleB);
   return (ModuleInitializationResult != 0) - 1;
 }
@@ -1350,7 +1350,7 @@ int InitializeSystemModuleC(void)
   _DAT_180bf9938 = &SYSTEM_MODULE_C_BUFFER;
   SYSTEM_MODULE_C_BUFFER = 0;
   _DAT_180bf9940 = 0x1c;
-  strcpy_s(&SYSTEM_MODULE_C_BUFFER,0x40,&UNK_180a22cc8,StringProcessorFlags,0xfffffffffffffffe);
+  strcpy_s(&SYSTEM_MODULE_C_BUFFER,0x40,&UNK_180a22cc8,StringProcessorFlags,SystemMutexFlags);
   ModuleInitializationResult = RegisterSystemModule(InitializeSystemModuleC);
   return (ModuleInitializationResult != 0) - 1;
 }
@@ -1362,7 +1362,7 @@ int InitializeSystemModuleD(void)
   _DAT_180bf9998 = &DAT_180bf99a8;
   DAT_180bf99a8 = 0;
   _DAT_180bf99a0 = 0x1d;
-  strcpy_s(&DAT_180bf99a8,0x40,&UNK_180a22db0,StringProcessorFlags,0xfffffffffffffffe);
+  strcpy_s(&DAT_180bf99a8,0x40,&UNK_180a22db0,StringProcessorFlags,SystemMutexFlags);
   ModuleInitializationResult = RegisterSystemModule(InitializeSystemModuleD);
   return (ModuleInitializationResult != 0) - 1;
 }
@@ -1380,7 +1380,7 @@ int InitializeStringProcessingSystemM(void)
   _DAT_180bf99f8 = &DAT_180bf9a08;
   DAT_180bf9a08 = 0;
   _DAT_180bf9a00 = 0x20;
-  strcpy_s(&DAT_180bf9a08,0x40,&UNK_180a22d88,StringProcessorFlags,0xfffffffffffffffe);
+  strcpy_s(&DAT_180bf9a08,0x40,&UNK_180a22d88,StringProcessorFlags,SystemMutexFlags);
   ModuleInitializationResult = RegisterSystemModule(InitializeSystemModuleE);
   return (ModuleInitializationResult != 0) - 1;
 }
@@ -1398,7 +1398,7 @@ int InitializeStringProcessingSystemN(void)
   _DAT_180bf9a58 = &DAT_180bf9a68;
   DAT_180bf9a68 = 0;
   _DAT_180bf9a60 = 0x1d;
-  strcpy_s(&DAT_180bf9a68,0x40,&UNK_180a22d68,StringProcessorFlags,0xfffffffffffffffe);
+  strcpy_s(&DAT_180bf9a68,0x40,&UNK_180a22d68,StringProcessorFlags,SystemMutexFlags);
   ModuleInitializationResult = RegisterSystemModule(InitializeStringProcessingSystemN);
   return (ModuleInitializationResult != 0) - 1;
 }
@@ -1416,7 +1416,7 @@ int InitializeStringProcessingSystemO(void)
   _DAT_180bf9ab8 = &DAT_180bf9ac8;
   DAT_180bf9ac8 = 0;
   _DAT_180bf9ac0 = 0x1c;
-  strcpy_s(&DAT_180bf9ac8,0x40,&DAT_180a22d48,StringProcessorFlags,0xfffffffffffffffe);
+  strcpy_s(&DAT_180bf9ac8,0x40,&DAT_180a22d48,StringProcessorFlags,SystemMutexFlags);
   ModuleInitializationResult = RegisterSystemModule(InitializeStringProcessingSystemO);
   return (ModuleInitializationResult != 0) - 1;
 }
@@ -1434,7 +1434,7 @@ int InitializeStringProcessingSystemP(void)
   _DAT_180bf9b18 = &DAT_180bf9b28;
   DAT_180bf9b28 = 0;
   _DAT_180bf9b20 = 0x17;
-  strcpy_s(&DAT_180bf9b28,0x40,&UNK_180a22e40,StringProcessorFlags,0xfffffffffffffffe);
+  strcpy_s(&DAT_180bf9b28,0x40,&UNK_180a22e40,StringProcessorFlags,SystemMutexFlags);
   ModuleInitializationResult = RegisterSystemModule(InitializeStringProcessingSystemP);
   return (ModuleInitializationResult != 0) - 1;
 }
@@ -1452,7 +1452,7 @@ int InitializeStringProcessingSystemQ(void)
   _DAT_180bf9b78 = &DAT_180bf9b88;
   DAT_180bf9b88 = 0;
   _DAT_180bf9b80 = 0x1f;
-  strcpy_s(&DAT_180bf9b88,0x40,&UNK_180a22e20,StringProcessorFlags,0xfffffffffffffffe);
+  strcpy_s(&DAT_180bf9b88,0x40,&UNK_180a22e20,StringProcessorFlags,SystemMutexFlags);
   ModuleInitializationResult = RegisterSystemModule(InitializeStringProcessingSystemQ);
   return (ModuleInitializationResult != 0) - 1;
 }
@@ -1470,7 +1470,7 @@ int InitializeStringProcessingSystemR(void)
   _DAT_180bf9bd8 = &DAT_180bf9be8;
   DAT_180bf9be8 = 0;
   _DAT_180bf9be0 = 0x21;
-  strcpy_s(&DAT_180bf9be8,0x40,&UNK_180a22df8,StringProcessorFlags,0xfffffffffffffffe);
+  strcpy_s(&DAT_180bf9be8,0x40,&UNK_180a22df8,StringProcessorFlags,SystemMutexFlags);
   ModuleInitializationResult = RegisterSystemModule(InitializeStringProcessingSystemR);
   return (ModuleInitializationResult != 0) - 1;
 }
@@ -1488,7 +1488,7 @@ int InitializeStringProcessingSystemS(void)
   _DAT_180bf9c38 = &DAT_180bf9c48;
   DAT_180bf9c48 = 0;
   _DAT_180bf9c40 = 0x25;
-  strcpy_s(&DAT_180bf9c48,0x40,&UNK_180a22dd0,StringProcessorFlags,0xfffffffffffffffe);
+  strcpy_s(&DAT_180bf9c48,0x40,&UNK_180a22dd0,StringProcessorFlags,SystemMutexFlags);
   ModuleInitializationResult = RegisterSystemModule(InitializeStringProcessingSystemS);
   return (ModuleInitializationResult != 0) - 1;
 }
@@ -1506,7 +1506,7 @@ int InitializeStringProcessingSystemT(void)
   _DAT_180bf9c98 = &DAT_180bf9ca8;
   DAT_180bf9ca8 = 0;
   _DAT_180bf9ca0 = 0x23;
-  strcpy_s(&DAT_180bf9ca8,0x40,&UNK_180a22eb0,StringProcessorFlags,0xfffffffffffffffe);
+  strcpy_s(&DAT_180bf9ca8,0x40,&UNK_180a22eb0,StringProcessorFlags,SystemMutexFlags);
   ModuleInitializationResult = RegisterSystemModule(InitializeStringProcessingSystemT);
   return (ModuleInitializationResult != 0) - 1;
 }
@@ -1524,7 +1524,7 @@ int InitializeStringProcessingSystemU(void)
   _DAT_180bf9cf8 = &DAT_180bf9d08;
   DAT_180bf9d08 = 0;
   _DAT_180bf9d00 = 0x1e;
-  strcpy_s(&DAT_180bf9d08,0x40,&UNK_180a22e90,StringProcessorFlags,0xfffffffffffffffe);
+  strcpy_s(&DAT_180bf9d08,0x40,&UNK_180a22e90,StringProcessorFlags,SystemMutexFlags);
   ModuleInitializationResult = RegisterSystemModule(InitializeStringProcessingSystemU);
   return (ModuleInitializationResult != 0) - 1;
 }
@@ -1542,7 +1542,7 @@ int InitializeStringProcessingSystemV(void)
   _DAT_180bf9d58 = &DAT_180bf9d68;
   DAT_180bf9d68 = 0;
   _DAT_180bf9d60 = 0x1e;
-  strcpy_s(&DAT_180bf9d68,0x40,&UNK_180a22e70,StringProcessorFlags,0xfffffffffffffffe);
+  strcpy_s(&DAT_180bf9d68,0x40,&UNK_180a22e70,StringProcessorFlags,SystemMutexFlags);
   ModuleInitializationResult = RegisterSystemModule(InitializeStringProcessingSystemV);
   return (ModuleInitializationResult != 0) - 1;
 }
@@ -1560,7 +1560,7 @@ int InitializeStringProcessingSystemW(void)
   _DAT_180bf9db8 = &DAT_180bf9dc8;
   DAT_180bf9dc8 = 0;
   _DAT_180bf9dc0 = 0x12;
-  strcpy_s(&DAT_180bf9dc8,0x40,&UNK_180a22e58,StringProcessorFlags,0xfffffffffffffffe);
+  strcpy_s(&DAT_180bf9dc8,0x40,&UNK_180a22e58,StringProcessorFlags,SystemMutexFlags);
   ModuleInitializationResult = RegisterSystemModule(InitializeStringProcessingSystemW);
   return (ModuleInitializationResult != 0) - 1;
 }
@@ -1578,7 +1578,7 @@ int InitializeStringProcessingSystemX(void)
   _DAT_180bf9e18 = &DAT_180bf9e28;
   DAT_180bf9e28 = 0;
   _DAT_180bf9e20 = 0x13;
-  strcpy_s(&DAT_180bf9e28,0x40,&UNK_180a22f28,StringProcessorFlags,0xfffffffffffffffe);
+  strcpy_s(&DAT_180bf9e28,0x40,&UNK_180a22f28,StringProcessorFlags,SystemMutexFlags);
   ModuleInitializationResult = RegisterSystemModule(InitializeStringProcessingSystemX);
   return (ModuleInitializationResult != 0) - 1;
 }
@@ -1596,7 +1596,7 @@ int InitializeStringProcessingSystemY(void)
   _DAT_180bf9e78 = &DAT_180bf9e88;
   DAT_180bf9e88 = 0;
   _DAT_180bf9e80 = 0x13;
-  strcpy_s(&DAT_180bf9e88,0x40,&UNK_180a22f10,StringProcessorFlags,0xfffffffffffffffe);
+  strcpy_s(&DAT_180bf9e88,0x40,&UNK_180a22f10,StringProcessorFlags,SystemMutexFlags);
   ModuleInitializationResult = RegisterSystemModule(InitializeStringProcessingSystemY);
   return (ModuleInitializationResult != 0) - 1;
 }
@@ -1614,7 +1614,7 @@ int InitializeStringProcessingSystemZ(void)
   _DAT_180bf9ed8 = &DAT_180bf9ee8;
   DAT_180bf9ee8 = 0;
   _DAT_180bf9ee0 = 0x16;
-  strcpy_s(&DAT_180bf9ee8,0x40,&UNK_180a22ef8,StringProcessorFlags,0xfffffffffffffffe);
+  strcpy_s(&DAT_180bf9ee8,0x40,&UNK_180a22ef8,StringProcessorFlags,SystemMutexFlags);
   ModuleInitializationResult = RegisterSystemModule(InitializeStringProcessingSystemZ);
   return (ModuleInitializationResult != 0) - 1;
 }
@@ -1632,7 +1632,7 @@ int InitializeStringProcessingSystemAA(void)
   _DAT_180bf9f38 = &DAT_180bf9f48;
   DAT_180bf9f48 = 0;
   _DAT_180bf9f40 = 0x1a;
-  strcpy_s(&DAT_180bf9f48,0x40,&UNK_180a22ed8,StringProcessorFlags,0xfffffffffffffffe);
+  strcpy_s(&DAT_180bf9f48,0x40,&UNK_180a22ed8,StringProcessorFlags,SystemMutexFlags);
   ModuleInitializationResult = RegisterSystemModule(InitializeStringProcessingSystemAA);
   return (ModuleInitializationResult != 0) - 1;
 }
@@ -1650,7 +1650,7 @@ int InitializeStringProcessingSystemAB(void)
   _DAT_180bf9f98 = &DAT_180bf9fa8;
   DAT_180bf9fa8 = 0;
   _DAT_180bf9fa0 = 0x15;
-  strcpy_s(&DAT_180bf9fa8,0x40,&SystemModuleConfigTemplate22F90,StringProcessorFlags,0xfffffffffffffffe);
+  strcpy_s(&DAT_180bf9fa8,0x40,&SystemModuleConfigTemplate22F90,StringProcessorFlags,SystemMutexFlags);
   ModuleInitializationResult = RegisterSystemModule(InitializeStringProcessingSystemAB);
   return (ModuleInitializationResult != 0) - 1;
 }
@@ -1668,7 +1668,7 @@ int InitializeStringProcessingSystemAC(void)
   _DAT_180bf9ff8 = &DAT_180bfa008;
   DAT_180bfa008 = 0;
   _DAT_180bfa000 = 0x13;
-  strcpy_s(&DAT_180bfa008,0x40,&SystemModuleConfigTemplate22F78,StringProcessorFlags,0xfffffffffffffffe);
+  strcpy_s(&DAT_180bfa008,0x40,&SystemModuleConfigTemplate22F78,StringProcessorFlags,SystemMutexFlags);
   ModuleInitializationResult = RegisterSystemModule(InitializeStringProcessingSystemAC);
   return (ModuleInitializationResult != 0) - 1;
 }
@@ -1686,7 +1686,7 @@ int InitializeStringProcessingSystemAD(void)
   _DAT_180bfa058 = &DAT_180bfa068;
   DAT_180bfa068 = 0;
   _DAT_180bfa060 = 0x13;
-  strcpy_s(&DAT_180bfa068,0x40,&SystemModuleConfigTemplate22F60,StringProcessorFlags,0xfffffffffffffffe);
+  strcpy_s(&DAT_180bfa068,0x40,&SystemModuleConfigTemplate22F60,StringProcessorFlags,SystemMutexFlags);
   ModuleInitializationResult = RegisterSystemModule(InitializeStringProcessingSystemAD);
   return (ModuleInitializationResult != 0) - 1;
 }
@@ -1704,7 +1704,7 @@ int InitializeStringProcessingSystemAE(void)
   _DAT_180bfa0b8 = &DAT_180bfa0c8;
   DAT_180bfa0c8 = 0;
   _DAT_180bfa0c0 = 0x1b;
-  strcpy_s(&DAT_180bfa0c8,0x40,&SystemModuleConfigTemplate22F40,StringProcessorFlags,0xfffffffffffffffe);
+  strcpy_s(&DAT_180bfa0c8,0x40,&SystemModuleConfigTemplate22F40,StringProcessorFlags,SystemMutexFlags);
   ModuleInitializationResult = RegisterSystemModule(InitializeStringProcessingSystemAE);
   return (ModuleInitializationResult != 0) - 1;
 }
@@ -1722,7 +1722,7 @@ int InitializeStringProcessingSystemAF(void)
   _DAT_180bfa118 = &DAT_180bfa128;
   DAT_180bfa128 = 0;
   _DAT_180bfa120 = 0x19;
-  strcpy_s(&DAT_180bfa128,0x40,&SystemModuleConfigTemplate23018,StringProcessorFlags,0xfffffffffffffffe);
+  strcpy_s(&DAT_180bfa128,0x40,&SystemModuleConfigTemplate23018,StringProcessorFlags,SystemMutexFlags);
   ModuleInitializationResult = RegisterSystemModule(InitializeStringProcessingSystemAF);
   return (ModuleInitializationResult != 0) - 1;
 }
@@ -1740,7 +1740,7 @@ int InitializeStringProcessingSystemAG(void)
   _DAT_180bfa178 = &DAT_180bfa188;
   DAT_180bfa188 = 0;
   _DAT_180bfa180 = 0x15;
-  strcpy_s(&DAT_180bfa188,0x40,&SystemModuleConfigTemplate23000,StringProcessorFlags,0xfffffffffffffffe);
+  strcpy_s(&DAT_180bfa188,0x40,&SystemModuleConfigTemplate23000,StringProcessorFlags,SystemMutexFlags);
   ModuleInitializationResult = RegisterSystemModule(InitializeStringProcessingSystemAG);
   return (ModuleInitializationResult != 0) - 1;
 }
@@ -1758,7 +1758,7 @@ int InitializeStringProcessingSystemAH(void)
   _DAT_180bfa1d8 = &DAT_180bfa1e8;
   DAT_180bfa1e8 = 0;
   _DAT_180bfa1e0 = 0x28;
-  strcpy_s(&DAT_180bfa1e8,0x40,&DAT_180a22fd0,StringProcessorFlags,0xfffffffffffffffe);
+  strcpy_s(&DAT_180bfa1e8,0x40,&DAT_180a22fd0,StringProcessorFlags,SystemMutexFlags);
   ModuleInitializationResult = RegisterSystemModule(InitializeStringProcessingSystemAH);
   return (ModuleInitializationResult != 0) - 1;
 }
@@ -1776,7 +1776,7 @@ int InitializeStringProcessingSystemAI(void)
   _DAT_180bfa238 = &DAT_180bfa248;
   DAT_180bfa248 = 0;
   _DAT_180bfa240 = 0x23;
-  strcpy_s(&DAT_180bfa248,0x40,&DAT_180a22fa8,StringProcessorFlags,0xfffffffffffffffe);
+  strcpy_s(&DAT_180bfa248,0x40,&DAT_180a22fa8,StringProcessorFlags,SystemMutexFlags);
   ModuleInitializationResult = RegisterSystemModule(InitializeStringProcessingSystemAI);
   return (ModuleInitializationResult != 0) - 1;
 }
@@ -1794,7 +1794,7 @@ int InitializeStringProcessingSystemAJ(void)
   _DAT_180bfa298 = &DAT_180bfa2a8;
   DAT_180bfa2a8 = 0;
   _DAT_180bfa2a0 = 0x17;
-  strcpy_s(&DAT_180bfa2a8,0x40,&SystemModuleConfigTemplate23068,StringProcessorFlags,0xfffffffffffffffe);
+  strcpy_s(&DAT_180bfa2a8,0x40,&SystemModuleConfigTemplate23068,StringProcessorFlags,SystemMutexFlags);
   ModuleInitializationResult = RegisterSystemModule(InitializeStringProcessingSystemAJ);
   return (ModuleInitializationResult != 0) - 1;
 }
@@ -1837,13 +1837,13 @@ int InitializeStringProcessingSystemAM(void)
 int ProcessSystemEvent(uint64_t systemId,uint64_t eventType,uint64_t eventData,uint64_t eventFlags)
 {
   int64_t ModuleInitializationResult;
-  _Mtx_init_in_situ(0x180c91f70,2,param_3,param_4,0xfffffffffffffffe);
+  _Mtx_init_in_situ(EventMutexAddress,2,param_3,param_4,SystemMutexFlags);
   ModuleInitializationResult = RegisterSystemModule(InitializeSystemEventHandler);
   return (ModuleInitializationResult != 0) - 1;
 }
   DAT_180bfa368 = 0;
   _DAT_180bfa360 = 7;
-  strcpy_s(&DAT_180bfa368,0x80,&UNK_180a0f5b8,StringProcessorFlags,0xfffffffffffffffe);
+  strcpy_s(&DAT_180bfa368,0x80,&UNK_180a0f5b8,StringProcessorFlags,SystemMutexFlags);
   _DAT_180bfa3e8 = &SystemMemoryConfigTemplate;
   _DAT_180bfa3f0 = &DAT_180bfa400;
   DAT_180bfa400 = 0;
@@ -1891,7 +1891,7 @@ int InitializeSystemEventHandler(void)
   _DAT_180bfa788 = &DAT_180bfa798;
   DAT_180bfa798 = 0;
   _DAT_180bfa790 = 0x1b;
-  strcpy_s(&DAT_180bfa798,0x80,&UNK_180a24bd0,StringProcessorFlags,0xfffffffffffffffe);
+  strcpy_s(&DAT_180bfa798,0x80,&UNK_180a24bd0,StringProcessorFlags,SystemMutexFlags);
   _DAT_180bfa818 = &SystemMemoryConfigTemplate;
   _DAT_180bfa820 = &DAT_180bfa830;
   DAT_180bfa830 = 0;
@@ -1934,7 +1934,7 @@ int InitializeSystemMessageHandler(void)
   _DAT_180bfab18 = &DAT_180bfab28;
   DAT_180bfab28 = 0;
   _DAT_180bfab20 = 0x13;
-  strcpy_s(&DAT_180bfab28,0x80,&UNK_180a24da8,StringProcessorFlags,0xfffffffffffffffe);
+  strcpy_s(&DAT_180bfab28,0x80,&UNK_180a24da8,StringProcessorFlags,SystemMutexFlags);
   _DAT_180bfaba8 = &SystemMemoryConfigTemplate;
   _DAT_180bfabb0 = &DAT_180bfabc0;
   DAT_180bfabc0 = 0;
@@ -2001,7 +2001,7 @@ int InitializeSystemResourceManager(void)
 int HandleSystemRequest(uint64_t requestId,uint64_t requestType,uint64_t requestData,uint64_t requestFlags)
 {
   int64_t ModuleInitializationResult;
-  _Mtx_init_in_situ(0x180c91ff0,2,param_3,param_4,0xfffffffffffffffe);
+  _Mtx_init_in_situ(RequestMutexAddress,2,param_3,param_4,SystemMutexFlags);
   _DAT_180c92050 = &SystemMemoryPoolTemplate;
   _DAT_180c92058 = &DAT_180c92068;
   _DAT_180c92060 = 0;
@@ -2023,7 +2023,7 @@ int InitializeSystemDebugManager(void)
   _DAT_180bfaef8 = &DAT_180bfaf08;
   DAT_180bfaf08 = 0;
   _DAT_180bfaf00 = 0x10;
-  strcpy_s(&DAT_180bfaf08,0x400,&UNK_180a27a58,StringProcessorFlags,0xfffffffffffffffe);
+  strcpy_s(&DAT_180bfaf08,0x400,&UNK_180a27a58,StringProcessorFlags,SystemMutexFlags);
   ModuleInitializationResult = RegisterSystemModule(InitializeDebugManagerModule);
   return (ModuleInitializationResult != 0) - 1;
 }
@@ -2041,7 +2041,7 @@ int InitializeSystemPerformanceMonitor(void)
   _DAT_180bfb318 = &DAT_180bfb328;
   DAT_180bfb328 = 0;
   _DAT_180bfb320 = 3;
-  strcpy_s(&DAT_180bfb328,0x400,&UNK_180a27a6c,StringProcessorFlags,0xfffffffffffffffe);
+  strcpy_s(&DAT_180bfb328,0x400,&UNK_180a27a6c,StringProcessorFlags,SystemMutexFlags);
   ModuleInitializationResult = RegisterSystemModule(InitializePerformanceMonitorModule);
   return (ModuleInitializationResult != 0) - 1;
 }
@@ -2059,13 +2059,13 @@ int InitializeSystemLogManager(void)
   _DAT_180bfb738 = &DAT_180bfb748;
   DAT_180bfb748 = 0;
   _DAT_180bfb740 = 5;
-  strcpy_s(&DAT_180bfb748,0x400,&UNK_180a27a70,StringProcessorFlags,0xfffffffffffffffe);
+  strcpy_s(&DAT_180bfb748,0x400,&UNK_180a27a70,StringProcessorFlags,SystemMutexFlags);
   ModuleInitializationResult = RegisterSystemModule(InitializeLogManagerModule);
   return (ModuleInitializationResult != 0) - 1;
 }
   DAT_180bf6060 = 0;
   _DAT_180bf6058 = 0xd;
-  strcpy_s(&DAT_180bf6060,0x20,&UNK_180a01300,StringProcessorFlags,0xfffffffffffffffe);
+  strcpy_s(&DAT_180bf6060,0x20,&UNK_180a01300,StringProcessorFlags,SystemMutexFlags);
   ModuleInitializationResult = RegisterSystemModule(InitializeNetworkManagerModule);
   return (ModuleInitializationResult != 0) - 1;
 }
@@ -2083,13 +2083,13 @@ int InitializeSystemNetworkManager(void)
   _DAT_180bf64a0 = &DAT_180bf64b0;
   DAT_180bf64b0 = 0;
   _DAT_180bf64a8 = 9;
-  strcpy_s(&DAT_180bf64b0,0x20,&UNK_180a01330,StringProcessorFlags,0xfffffffffffffffe);
+  strcpy_s(&DAT_180bf64b0,0x20,&UNK_180a01330,StringProcessorFlags,SystemMutexFlags);
   ModuleInitializationResult = RegisterSystemModule(InitializeStringMemoryModule);
   return (ModuleInitializationResult != 0) - 1;
 }
   DAT_180bf6510 = 0;
   _DAT_180bf6508 = 0xd;
-  strcpy_s(&DAT_180bf6510,0x20,&UNK_180a01300,StringProcessorFlags,0xfffffffffffffffe);
+  strcpy_s(&DAT_180bf6510,0x20,&UNK_180a01300,StringProcessorFlags,SystemMutexFlags);
   ModuleInitializationResult = RegisterSystemModule(InitializeSecurityManagerModule);
   return (ModuleInitializationResult != 0) - 1;
 }
@@ -2107,7 +2107,7 @@ int InitializeSystemSecurityManager(void)
   _DAT_180bf6560 = &DAT_180bf6570;
   DAT_180bf6570 = 0;
   _DAT_180bf6568 = 9;
-  strcpy_s(&DAT_180bf6570,0x20,&UNK_180a01330,StringProcessorFlags,0xfffffffffffffffe);
+  strcpy_s(&DAT_180bf6570,0x20,&UNK_180a01330,StringProcessorFlags,SystemMutexFlags);
   ModuleInitializationResult = RegisterSystemModule(InitializeSecurityManagerModule);
   return (ModuleInitializationResult != 0) - 1;
 }
@@ -3330,7 +3330,7 @@ LAB_18004e062:
   } while (lVar9 != 0);
 LAB_18005122d:
   puVar7 = (uint64_t *)_DAT_180c86960[1];
-  iVar4 = _Mtx_lock(0x180c91970);
+  iVar4 = _Mtx_lock(SystemMutexAddressA);
   if (iVar4 != 0) {
     __Throw_C_error_std__YAXH_Z(iVar4);
   }
@@ -3351,12 +3351,12 @@ LAB_18005122d:
     CleanupSystemResources();
   }
   _DAT_180c8a9b0 = pModuleInitializationResult4;
-  iVar4 = _Mtx_unlock(0x180c91970);
+  iVar4 = _Mtx_unlock(SystemMutexAddressA);
   if (iVar4 != 0) {
     __Throw_C_error_std__YAXH_Z(iVar4);
   }
   pModuleInitializationResult4 = (longlong *)*_DAT_180c86960;
-  iVar4 = _Mtx_lock(0x180c91970);
+  iVar4 = _Mtx_lock(SystemMutexAddressA);
   if (iVar4 != 0) {
     __Throw_C_error_std__YAXH_Z(iVar4);
   }
@@ -3401,13 +3401,13 @@ LAB_18005122d:
     CleanupSystemResources();
   }
   _DAT_180c8a9b0 = pModuleInitializationResult;
-  iVar4 = _Mtx_unlock(0x180c91970);
+  iVar4 = _Mtx_unlock(SystemMutexAddressA);
   if (iVar4 != 0) {
     __Throw_C_error_std__YAXH_Z(iVar4);
   }
   if (*(int *)(_DAT_180c86950 + 0x161c) == 0x11) {
     puVar7 = (uint64_t *)*_DAT_180c86960;
-    iVar4 = _Mtx_lock(0x180c91970);
+    iVar4 = _Mtx_lock(SystemMutexAddressA);
     if (iVar4 != 0) {
       __Throw_C_error_std__YAXH_Z(iVar4);
     }
@@ -3430,14 +3430,14 @@ LAB_18005122d:
     RegisterSystemComponent(&SystemConstantFF,4,_DAT_180c86950 + 0x1680,&uStack_308);
     FinalizeSystemComponent();
     _DAT_180c8a9b0 = pModuleInitializationResult4;
-    iVar4 = _Mtx_unlock(0x180c91970);
+    iVar4 = _Mtx_unlock(SystemMutexAddressA);
     if (iVar4 != 0) {
       __Throw_C_error_std__YAXH_Z(iVar4);
     }
   }
   if (*(int *)(_DAT_180c86950 + 0x161c) == 0xc) {
     puVar7 = (uint64_t *)*_DAT_180c86960;
-    iVar4 = _Mtx_lock(0x180c91970);
+    iVar4 = _Mtx_lock(SystemMutexAddressA);
     if (iVar4 != 0) {
       __Throw_C_error_std__YAXH_Z(iVar4);
     }
@@ -3453,14 +3453,14 @@ LAB_18005122d:
     RegisterSystemConfigurationParameter(&UNK_1809fd970,4,_DAT_180c86950 + 0x1688,&plStack_2f8);
     FinalizeSystemComponent();
     _DAT_180c8a9b0 = pModuleInitializationResult4;
-    iVar4 = _Mtx_unlock(0x180c91970);
+    iVar4 = _Mtx_unlock(SystemMutexAddressA);
     if (iVar4 != 0) {
       __Throw_C_error_std__YAXH_Z(iVar4);
     }
   }
   if (*(int *)(_DAT_180c86950 + 0x161c) == 0xd) {
     puVar7 = (uint64_t *)*_DAT_180c86960;
-    iVar4 = _Mtx_lock(0x180c91970);
+    iVar4 = _Mtx_lock(SystemMutexAddressA);
     if (iVar4 != 0) {
       __Throw_C_error_std__YAXH_Z(iVar4);
     }
@@ -3479,7 +3479,7 @@ LAB_18005122d:
     }
     FinalizeSystemComponent();
     _DAT_180c8a9b0 = pModuleInitializationResult4;
-    iVar4 = _Mtx_unlock(0x180c91970);
+    iVar4 = _Mtx_unlock(SystemMutexAddressA);
     if (iVar4 != 0) {
       __Throw_C_error_std__YAXH_Z(iVar4);
     }
@@ -3593,7 +3593,7 @@ LAB_18005122d:
     ModuleInitializationResult2 = _DAT_180c868c8;
     uStack_2d8 = 0x18;
     puVar7 = (uint64_t *)*_DAT_180c86960;
-    iVar4 = _Mtx_lock(0x180c91970);
+    iVar4 = _Mtx_lock(SystemMutexAddressA);
     if (iVar4 != 0) {
       __Throw_C_error_std__YAXH_Z(iVar4);
     }
@@ -3611,7 +3611,7 @@ LAB_18005122d:
       *(uint8_t *)(ModuleInitializationResult2 + 0x60) = 0;
     }
     _DAT_180c8a9b0 = pModuleInitializationResult4;
-    iVar4 = _Mtx_unlock(0x180c91970);
+    iVar4 = _Mtx_unlock(SystemMutexAddressA);
     if (iVar4 != 0) {
       __Throw_C_error_std__YAXH_Z(iVar4);
     }
@@ -3719,7 +3719,7 @@ uint64_t *
 ProcessMemoryAllocation(uint64_t *param_1,ulonglong param_2,uint64_t param_3,uint64_t param_4)
 {
   uint64_t MemoryAddress;
-  MemoryAddress = 0xfffffffffffffffe;
+  MemoryAddress = SystemMutexFlags;
   *param_1 = &UNK_1809ff2f8;
   InitializeSystemMemory();
   if ((param_2 & 1) != 0) {
@@ -3818,7 +3818,7 @@ LAB_1800d37d8:
   pcVar12 = _DAT_180c82868;
   if (*_DAT_180c82868 != '\0') {
     pMemoryAddress5 = (uint64_t *)*_DAT_180c86960;
-    LoopCounter3 = _Mtx_lock(0x180c91970);
+    LoopCounter3 = _Mtx_lock(SystemMutexAddressA);
     if (LoopCounter3 != 0) {
       __Throw_C_error_std__YAXH_Z(LoopCounter3);
     }
@@ -3850,7 +3850,7 @@ LAB_1800d37d8:
     FUN_18010f010(&UNK_1809fe1d8,dVar7 / dVar8);
     FinalizeSystemComponent();
     _DAT_180c8a9b0 = MemoryAddress4;
-    LoopCounter3 = _Mtx_unlock(0x180c91970);
+    LoopCounter3 = _Mtx_unlock(SystemMutexAddressA);
     if (LoopCounter3 != 0) {
       __Throw_C_error_std__YAXH_Z(LoopCounter3);
     }
@@ -3938,7 +3938,7 @@ LAB_1800d37d8:
     _DAT_180c86958 = (_DAT_180c86958 - 1 | 0xfffffffe) + 1;
   }
   pMemoryAddress5 = (uint64_t *)*_DAT_180c86960;
-  LoopCounter3 = _Mtx_lock(0x180c91970);
+  LoopCounter3 = _Mtx_lock(SystemMutexAddressA);
   if (LoopCounter3 != 0) {
     __Throw_C_error_std__YAXH_Z(LoopCounter3);
   }
@@ -3982,7 +3982,7 @@ LAB_1800d37d8:
   }
   FUN_180127860();
   _DAT_180c8a9b0 = MemoryAddress4;
-  LoopCounter3 = _Mtx_unlock(0x180c91970);
+  LoopCounter3 = _Mtx_unlock(SystemMutexAddressA);
   if (LoopCounter3 != 0) {
     __Throw_C_error_std__YAXH_Z(LoopCounter3);
   }
@@ -4176,7 +4176,7 @@ LAB_1800d3d65:
   param_1[3] = 0;
   param_1[1] = 0;
   *(uint32_t *)(param_1 + 2) = 0;
-  SystemBufferCopy(param_1,3,param_3,param_4,0,0xfffffffffffffffe);
+  SystemBufferCopy(param_1,3,param_3,param_4,0,SystemMutexFlags);
   *(uint32_t *)param_1[1] = 0x2e6b4f;
   *(uint32_t *)(param_1 + 2) = 3;
   return param_1;
@@ -4461,7 +4461,7 @@ uint64_t* InitializeSystemBufferTemplate(uint64_t *BufferTemplate, longlong Data
   param_1[3] = 0;
   param_1[1] = 0;
   *(uint32_t *)(param_1 + 2) = 0;
-  SystemBufferCopy(param_1,9,param_3,param_4,0,0xfffffffffffffffe);
+  SystemBufferCopy(param_1,9,param_3,param_4,0,SystemMutexFlags);
   pBufferSize = (uint64_t *)param_1[1];
   *pBufferSize = 0x6a624f656e656353;
   *(uint16_t *)(pBufferSize + 1) = 0x2f;
@@ -5861,7 +5861,7 @@ uint64_t ValidateAndProcessModuleData(longlong ModuleHandle, longlong *DataBuffe
   longlong **pplStack_68;
   longlong *plStack_60;
   uint8_t auStack_58 [32];
-  uStack_70 = 0xfffffffffffffffe;
+  uStack_70 = SystemMutexFlags;
   uVar5 = 0;
   bVar2 = *(byte *)(param_3 + 2);
   if ((param_4 >> 1 & 1) != 0) {
@@ -6375,7 +6375,7 @@ FUN_18045d840(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_
   void *puStack_28;
   longlong lStack_20;
   pcVar1 = *(code **)(*_DAT_180c8f008 + 0x70);
-  uVar3 = FUN_1800ba4b0(&puStack_28,&UNK_180a02fc8,param_3,param_4,0,0xfffffffffffffffe);
+  uVar3 = FUN_1800ba4b0(&puStack_28,&UNK_180a02fc8,param_3,param_4,0,SystemMutexFlags);
   BufferSize = (*pcVar1)(_DAT_180c8f008,uVar3,param_3,param_4,1);
   puStack_28 = &UNK_180a3c3e0;
   if (lStack_20 != 0) {
@@ -6392,7 +6392,7 @@ FUN_18045d8e0(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_
   void *puStack_28;
   longlong lStack_20;
   pcVar1 = *(code **)(*_DAT_180c8f008 + 0x70);
-  uVar3 = FUN_1800ba4b0(&puStack_28,&UNK_180a02fa0,param_3,param_4,0,0xfffffffffffffffe);
+  uVar3 = FUN_1800ba4b0(&puStack_28,&UNK_180a02fa0,param_3,param_4,0,SystemMutexFlags);
   BufferSize = (*pcVar1)(_DAT_180c8f008,uVar3,param_3,param_4,1);
   puStack_28 = &UNK_180a3c3e0;
   if (lStack_20 != 0) {
@@ -6409,7 +6409,7 @@ FUN_18045d980(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_
   uint64_t uVar4;
   void *puStack_30;
   longlong lStack_28;
-  uVar4 = 0xfffffffffffffffe;
+  uVar4 = SystemMutexFlags;
   pcVar1 = *(code **)(*_DAT_180c8f008 + 0x70);
   uVar3 = FUN_18004b100(&puStack_30);
   BufferSize = (*pcVar1)(_DAT_180c8f008,uVar3,param_3,param_4,uVar4);
@@ -7200,7 +7200,7 @@ int SystemDataProcessBatch(uint64_t param_1,uint64_t param_2,uint64_t param_3,ui
   void *puStack_30;
   longlong lStack_28;
   int iStack_20;
-  InitializeSystemBuffer(&puStack_30,param_1,param_3,param_4,0xfffffffffffffffe);
+  InitializeSystemBuffer(&puStack_30,param_1,param_3,param_4,SystemMutexFlags);
   lVar3 = lStack_28;
   if (iStack_20 == 0x10) {
     LoopCounter = strcmp(lStack_28,&UNK_180a389f0);
@@ -7589,7 +7589,7 @@ FUN_1806090b0(uint64_t param_1,uint64_t param_2,uint8_t param_3,uint64_t param_4
   uint64_t uVar3;
   uint8_t auStack_50 [32];
   uint8_t auStack_30 [40];
-  InitializeSystemBuffer(auStack_30,param_1,param_3,param_4,0xfffffffffffffffe);
+  InitializeSystemBuffer(auStack_30,param_1,param_3,param_4,SystemMutexFlags);
   InitializeSystemBuffer(auStack_50,param_2);
   cVar1 = FUN_180629850(auStack_30,&UNK_180a389d8,1);
   if (cVar1 == '\0') {
@@ -9351,7 +9351,7 @@ uint64_t * SystemDataProcess(longlong param_1,uint64_t *param_2,int param_3,int 
   if (iVar3 - param_3 < StringIndex) {
     StringIndex = iVar3 - param_3;
   }
-  SystemBufferCopy(param_2,StringIndex + 1,param_3,param_4,1,0xfffffffffffffffe);
+  SystemBufferCopy(param_2,StringIndex + 1,param_3,param_4,1,SystemMutexFlags);
   for (uVar5 = uVar4;
       ((longlong)uVar4 < (longlong)iVar3 && ((uint)uVar5 < *(uint *)(param_1 + 0x10)));
       uVar5 = (ulonglong)((uint)uVar5 + 1)) {
@@ -9511,7 +9511,7 @@ char * SystemStringProcessData(uint32_t param_1,uint64_t param_2,char *param_3,u
   uint64_t uStack_58;
   uint64_t *puStack_50;
   ulonglong MemoryAddress7;
-  uStack_58 = 0xfffffffffffffffe;
+  uStack_58 = SystemMutexFlags;
   plStack_120 = param_5;
   lStack_d0 = param_6;
   uStack_d8 = param_7;
@@ -9831,7 +9831,7 @@ char * SystemStringProcessBuffer(uint64_t param_1,uint64_t param_2,uint64_t *par
   uint64_t uStack_50;
   uint64_t *puStack_48;
   uint64_t *puStack_40;
-  uStack_50 = 0xfffffffffffffffe;
+  uStack_50 = SystemMutexFlags;
   puStack_40 = param_7;
   pcVar14 = (char *)0x0;
   puStack_48 = param_3;
@@ -10027,7 +10027,7 @@ longlong SystemMemoryAllocateBuffer(longlong param_1,longlong param_2,uint32_t p
   char *pcStack_48;
   int iStack_40;
   uint64_t uStack_38;
-  MemoryAddress4 = 0xfffffffffffffffe;
+  MemoryAddress4 = SystemMutexFlags;
   pcVar11 = (char *)0x0;
   FUN_180057110(param_4);
   FUN_180632160(param_1,param_3);
@@ -10420,7 +10420,7 @@ longlong SystemBufferConfigure(uint64_t param_1,uint64_t param_2,longlong param_
   uint64_t uVar5;
   void *puStack_30;
   char *pcStack_28;
-  uVar5 = 0xfffffffffffffffe;
+  uVar5 = SystemMutexFlags;
   ModuleInitializationResult = FUN_1800a02a0();
   if (ModuleInitializationResult == 0) {
     return 0;
@@ -10497,7 +10497,7 @@ longlong SystemBufferInitialize(uint64_t param_1,uint64_t param_2,longlong param
   longlong lVar4;
   void *puStack_30;
   char *pcStack_28;
-  ModuleInitializationResult = FUN_1800a02a0(param_1,&UNK_180a0696c,param_3,param_4,0xfffffffffffffffe);
+  ModuleInitializationResult = FUN_1800a02a0(param_1,&UNK_180a0696c,param_3,param_4,SystemMutexFlags);
   if (ModuleInitializationResult == 0) {
     return 0;
   }
@@ -10537,7 +10537,7 @@ longlong SystemBufferCreate(uint64_t param_1,uint64_t param_2,longlong param_3)
   uint64_t uVar6;
   void *puStack_30;
   char *pcStack_28;
-  uVar6 = 0xfffffffffffffffe;
+  uVar6 = SystemMutexFlags;
   lVar2 = FUN_1800a02a0();
   if (lVar2 == 0) {
     return 0;
@@ -10581,7 +10581,7 @@ longlong SystemBufferManage(uint64_t param_1,uint64_t param_2,longlong param_3)
   uint64_t uVar5;
   void *puStack_30;
   char *pcStack_28;
-  uVar5 = 0xfffffffffffffffe;
+  uVar5 = SystemMutexFlags;
   ModuleInitializationResult = FUN_1800a02a0(param_1,&UNK_180a16818);
   if (ModuleInitializationResult == 0) {
     return 0;
@@ -10662,7 +10662,7 @@ longlong SystemBufferHandle(uint64_t param_1,uint64_t param_2,longlong param_3)
   uint64_t uVar6;
   void *puStack_58;
   char *pcStack_50;
-  uVar6 = 0xfffffffffffffffe;
+  uVar6 = SystemMutexFlags;
   lVar2 = FUN_1800a02a0();
   if (lVar2 != 0) {
     pModuleInitializationResult = (longlong *)(lVar2 + 8);
@@ -10902,7 +10902,7 @@ longlong SystemMemoryFree(longlong *param_1)
     else {
       lVar3 = func_0x00018064e870(uVar4,CONCAT71(0xff000000,
                                                  *(void ***)(uVar4 + 0x70) == &ExceptionList),
-                                  param_1,uVar4,0xfffffffffffffffe);
+                                  param_1,uVar4,SystemMutexFlags);
     }
   }
   return lVar3;
