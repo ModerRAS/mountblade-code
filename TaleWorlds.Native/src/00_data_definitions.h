@@ -29,7 +29,7 @@ int InitializeRenderingSystem(void)
 int InitializePhysicsEngine(void)
 {
   longlong callbackResult;
-  g_physicsEngineData = &unknownGlobalData;
+  g_physicsEngineData = &g_unknownGlobalData;
   g_physicsEngineConfig = &g_physicsEngineState;
   g_physicsEngineFlags = 0;
   g_physicsEngineState = 0;
@@ -45,7 +45,7 @@ int InitializePhysicsEngine(void)
 int InitializeAudioSystem(void)
 {
   longlong callbackResult;
-  g_audioSystemData = &unknownGlobalData;
+  g_audioSystemData = &g_unknownGlobalData;
   g_audioSystemConfig = &g_audioSystemState;
   g_audioSystemFlags = 0;
   g_audioSystemState = 0;
@@ -61,7 +61,7 @@ int InitializeAudioSystem(void)
 int InitializeInputSystem(void)
 {
   longlong callbackResult;
-  g_inputSystemData = &unknownInputData;
+  g_inputSystemData = &g_unknownInputData;
   g_inputSystemConfig = &g_inputSystemState;
   g_inputSystemFlags = 0;
   g_inputSystemState = 0;
@@ -77,7 +77,7 @@ int InitializeInputSystem(void)
 int InitializeNetworkSystem(void)
 {
   longlong callbackResult;
-  g_networkSystemData = &unknownNetworkData;
+  g_networkSystemData = &g_unknownNetworkData;
   g_networkSystemConfig = &g_networkSystemState;
   g_networkSystemFlags = 0;
   g_networkSystemState = 0;
@@ -93,7 +93,7 @@ int InitializeNetworkSystem(void)
 int InitializeFileSystem(void)
 {
   longlong callbackResult;
-  g_fileSystemData = &unknownGlobalData;
+  g_fileSystemData = &g_unknownGlobalData;
   g_fileSystemConfig = &g_fileSystemState;
   g_fileSystemFlags = 0;
   g_fileSystemState = 0;
@@ -109,7 +109,7 @@ int InitializeFileSystem(void)
 int InitializeMemoryManager(void)
 {
   longlong callbackResult;
-  g_memoryManagerData = &unknownGlobalData;
+  g_memoryManagerData = &g_unknownGlobalData;
   g_memoryManagerConfig = &g_memoryManagerState;
   g_memoryManagerFlags = 0;
   g_memoryManagerState = 0;
@@ -169,7 +169,7 @@ int InitializeConditionMutexC(undefined8 param_1,undefined8 param_2,undefined8 p
   mutexFlags = 0xfffffffffffffffe;
   _Cnd_init_in_situ();
   _Mtx_init_in_situ(0x180c911e8,2,param_3,param_4,mutexFlags);
-  globalData_180c91238 = 0;
+  g_conditionMutexC_Status = 0;
   result = RegisterSystemCallback(InitializeConditionMutexC_Callback);
   return (result != 0) - 1;
 }
@@ -184,7 +184,7 @@ int InitializeConditionMutexD(undefined8 param_1,undefined8 param_2,undefined8 p
   mutexFlags = 0xfffffffffffffffe;
   _Cnd_init_in_situ();
   _Mtx_init_in_situ(0x180c91288,2,param_3,param_4,mutexFlags);
-  globalData_180c912d8 = 0;
+  g_conditionMutexD_Status = 0;
   result = RegisterSystemCallback(InitializeConditionMutexD_Callback);
   return (result != 0) - 1;
 }
@@ -197,11 +197,11 @@ int InitializeStringProcessorA(void)
 {
   longlong result;
   undefined8 stringFlags;
-  globalData_180bf6530 = &unknownData_1809fdc18;
-  globalData_180bf6538 = &globalData_180bf6548;
-  globalData_180bf6548 = 0;
-  globalData_180bf6540 = 0xd;
-  strcpy_s(&globalData_180bf6548,0x10,&unknownData_180a004e8,stringFlags,0xfffffffffffffffe);
+  g_stringProcessorA_Base = &unknownData_1809fdc18;
+  g_stringProcessorA_BufferPtr = &g_stringProcessorA_Buffer;
+  g_stringProcessorA_Buffer = 0;
+  g_stringProcessorA_Length = 0xd;
+  strcpy_s(&g_stringProcessorA_Buffer,0x10,&unknownData_180a004e8,stringFlags,0xfffffffffffffffe);
   result = RegisterSystemCallback(InitializeStringProcessorA_Callback);
   return (result != 0) - 1;
 }
@@ -213,11 +213,11 @@ int InitializeStringProcessorB(void)
 {
   longlong result;
   undefined8 stringFlags;
-  globalData_180bf6590 = &unknownData_1809fdc18;
-  globalData_180bf6598 = &globalData_180bf65a8;
-  globalData_180bf65a8 = 0;
-  globalData_180bf65a0 = 0xf;
-  strcpy_s(&globalData_180bf65a8,0x10,&unknownData_180a004f8,stringFlags,0xfffffffffffffffe);
+  g_stringProcessorB_Base = &unknownData_1809fdc18;
+  g_stringProcessorB_BufferPtr = &g_stringProcessorB_Buffer;
+  g_stringProcessorB_Buffer = 0;
+  g_stringProcessorB_Length = 0xf;
+  strcpy_s(&g_stringProcessorB_Buffer,0x10,&unknownData_180a004f8,stringFlags,0xfffffffffffffffe);
   result = RegisterSystemCallback(InitializeStringProcessorB_Callback);
   return (result != 0) - 1;
 }
@@ -229,11 +229,11 @@ int InitializeStringProcessorC(void)
 {
   longlong result;
   undefined8 stringFlags;
-  globalData_180bf65c0 = &unknownData_1809fdc18;
-  globalData_180bf65c8 = &globalData_180bf65d8;
-  globalData_180bf65d8 = 0;
-  globalData_180bf65d0 = 0xf;
-  strcpy_s(&globalData_180bf65d8,0x10,&unknownData_180a00508,stringFlags,0xfffffffffffffffe);
+  g_stringProcessorC_Base = &unknownData_1809fdc18;
+  g_stringProcessorC_BufferPtr = &g_stringProcessorC_Buffer;
+  g_stringProcessorC_Buffer = 0;
+  g_stringProcessorC_Length = 0xf;
+  strcpy_s(&g_stringProcessorC_Buffer,0x10,&unknownData_180a00508,stringFlags,0xfffffffffffffffe);
   result = RegisterSystemCallback(InitializeStringProcessorC_Callback);
   return (result != 0) - 1;
 }
@@ -245,7 +245,7 @@ int InitializeStringProcessorD(void)
 {
   longlong result;
   undefined8 stringFlags;
-  globalData_180bf65f0 = &unknownData_1809fdc18;
+  g_stringProcessorD_Base = &unknownData_1809fdc18;
   globalData_180bf65f8 = &globalData_180bf6608;
   globalData_180bf6608 = 0;
   globalData_180bf6600 = 0xd;
@@ -291,7 +291,7 @@ int InitializeStringProcessorF(void)
  * 
  * @return 初始化成功返回0，失败返回-1
  */
-int initializeModuleConfigurationA(void)
+int InitializeModuleConfigurationA(void)
 {
   longlong initializationResult;
   undefined8 configurationFlags;

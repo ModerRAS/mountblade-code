@@ -16558,49 +16558,49 @@ void InitializeThreadManager(void)
 undefined4 FinalSystemInitialization(void)
 
 {
-  undefined8 *puVar1;
-  code *pcVar2;
-  longlong **pplVar3;
-  undefined4 uVar4;
-  int iVar5;
-  longlong ****pppplVar6;
-  undefined8 uVar7;
-  longlong ****pppplVar8;
-  longlong ***ppplVar9;
-  longlong lVar10;
-  char cVar11;
-  longlong ****pppplStackX_8;
-  longlong ***ppplStackX_10;
-  longlong **pplStackX_18;
-  longlong ***ppplStackX_20;
-  undefined8 uVar12;
-  longlong *****ppppplVar13;
-  longlong ****pppplVar14;
+  undefined8 *systemPtr;
+  code *systemCallback;
+  longlong **systemController;
+  undefined4 initResult;
+  int waitResult;
+  longlong ****systemManager;
+  undefined8 allocationFlags;
+  longlong ****tempManager8;
+  longlong ***tempManager9;
+  longlong systemObject;
+  char isActiveFlag;
+  longlong ****stackManager8;
+  longlong ***stackManager10;
+  longlong **stackController18;
+  longlong ***stackManager20;
+  undefined8 systemFlags;
+  longlong *****systemSuperManager;
+  longlong ****tempManager14;
   
-  uVar12 = 0xfffffffffffffffe;
+  systemFlags = 0xfffffffffffffffe;
   if (_DAT_180c91048 != (undefined8 *)0x0) {
     while( true ) {
       if ((undefined *)*_DAT_180c91048 == &UNK_1809fe100) {
-        cVar11 = *(char *)(_DAT_180c91048 + 2) != '\0';
+        isActiveFlag = *(char *)(_DAT_180c91048 + 2) != '\0';
       }
       else {
-        cVar11 = (**(code **)((undefined *)*_DAT_180c91048 + 0x68))();
+        isActiveFlag = (**(code **)((undefined *)*_DAT_180c91048 + 0x68))();
       }
-      if (cVar11 != '\0') break;
+      if (isActiveFlag != '\0') break;
       Sleep(1);
     }
   }
-  pppplVar6 = (longlong ****)FUN_18062b1e0(_DAT_180c8ed18,0xc0,8,3,uVar12);
-  pppplStackX_8 = pppplVar6;
-  FUN_180049830(pppplVar6);
-  *pppplVar6 = (longlong ***)&UNK_1809ff2f8;
-  ppplStackX_20 = (longlong ***)pppplVar6;
-  (*(code *)(*pppplVar6)[5])(pppplVar6);
-  lVar10 = _DAT_180c82868;
-  ppppplVar13 = &pppplStackX_8;
-  pppplStackX_8 = pppplVar6;
-  (*(code *)(*pppplVar6)[5])(pppplVar6);
-  FUN_18005e300(lVar10,&pppplStackX_8);
+  systemManager = (longlong ****)FUN_18062b1e0(_DAT_180c8ed18,0xc0,8,3,systemFlags);
+  stackManager8 = systemManager;
+  FUN_180049830(systemManager);
+  *systemManager = (longlong ***)&UNK_1809ff2f8;
+  stackManager20 = (longlong ***)systemManager;
+  (*(code *)(*systemManager)[5])(systemManager);
+  systemObject = _DAT_180c82868;
+  systemSuperManager = &stackManager8;
+  stackManager8 = systemManager;
+  (*(code *)(*systemManager)[5])(systemManager);
+  FUN_18005e300(systemObject,&stackManager8);
   while( true ) {
     if (*pppplVar6 == (longlong ***)&UNK_1809ff2f8) {
       cVar11 = *(char *)(pppplVar6 + 2) != '\0';

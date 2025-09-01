@@ -121,50 +121,68 @@ void SendNetworkData(void);
  */
 void ReceiveNetworkData(void);
 
-// 函数: undefined FUN_180876d90;
-undefined FUN_180876d90;
+// 函数: void ValidateNetworkPacket(void)
+/**
+ * @brief 验证网络数据包
+ * 
+ * 该函数负责验证接收到的网络数据包的完整性
+ * 检查数据包的校验和、序列号和格式
+ */
+void ValidateNetworkPacket(void);
 
-// 函数: undefined FUN_180876eb0;
-undefined FUN_180876eb0;
+// 函数: void ProcessNetworkPacket(void)
+/**
+ * @brief 处理网络数据包
+ * 
+ * 该函数负责处理接收到的网络数据包
+ * 根据数据包类型执行相应的处理逻辑
+ */
+void ProcessNetworkPacket(void);
 
-// 函数: undefined FUN_180876fb0;
-undefined FUN_180876fb0;
-undefined UNK_180985ae8;
-undefined UNK_18006b434;
-undefined UNK_180873e4c;
-undefined UNK_180873e54;
-undefined UNK_180873e5c;
-undefined UNK_180873e64;
-undefined UNK_180873e6c;
-undefined UNK_180873e74;
-undefined UNK_180873e7c;
-undefined UNK_180873e84;
-undefined UNK_180873e9c;
-undefined UNK_180873ea4;
-undefined UNK_180873eac;
-undefined UNK_180873eb4;
-undefined UNK_180985548;
-undefined UNK_180985578;
-undefined UNK_1809855a0;
-undefined UNK_1809855d0;
-undefined UNK_180985620;
-undefined UNK_180985648;
-undefined UNK_1809856c8;
-undefined UNK_1809856f0;
-undefined UNK_180985f78;
-undefined DAT_180c4eaf8;
-undefined UNK_180985a80;
-undefined4 UNK_180c4eafc;
-undefined4 UNK_180c4eb00;
-undefined4 UNK_180c4eb04;
-undefined UNK_180985f90;
-undefined UNK_180986010;
-undefined UNK_180986090;
-undefined UNK_180986190;
-undefined UNK_180986208;
-undefined UNK_180986108;
-undefined UNK_18088d500;
-undefined UNK_180986170;
+// 函数: void HandleNetworkError(void)
+/**
+ * @brief 处理网络错误
+ * 
+ * 该函数负责处理网络通信中出现的错误
+ * 记录错误信息，尝试恢复连接或通知上层应用
+ */
+void HandleNetworkError(void);
+undefined g_networkErrorHandler;
+undefined g_networkErrorCounter;
+undefined g_networkConnectionAttempts;
+undefined g_networkConnectionFailures;
+undefined g_networkBytesSent;
+undefined g_networkBytesReceived;
+undefined g_networkPacketsSent;
+undefined g_networkPacketsReceived;
+undefined g_networkConnectionTime;
+undefined g_networkLastActivity;
+undefined g_networkBandwidthUsage;
+undefined g_networkLatency;
+undefined g_networkPacketLoss;
+undefined g_networkRetransmissionCount;
+undefined g_networkActiveConnections;
+undefined g_networkMaxConnections;
+undefined g_networkConnectionQueue;
+undefined g_networkPendingRequests;
+undefined g_networkSecurityFlags;
+undefined g_networkAuthenticationLevel;
+undefined g_networkEncryptionType;
+undefined g_networkCompressionType;
+undefined g_networkStatisticsData;
+undefined g_networkSessionKey;
+undefined g_networkSessionTimeout;
+undefined4 g_networkPortRangeStart;
+undefined4 g_networkPortRangeEnd;
+undefined4 g_networkConnectionFlags;
+undefined g_networkKeepAliveInterval;
+undefined g_networkRetryInterval;
+undefined g_networkTimeoutInterval;
+undefined g_networkHandshakeTimeout;
+undefined g_networkConnectionState;
+undefined g_networkProtocolVersion;
+undefined g_networkEventQueue;
+undefined g_networkCallbackHandler;
 
 // 函数: undefined FUN_18088ea60;
 undefined FUN_18088ea60;
@@ -700,9 +718,26 @@ void SendNetworkPacket(undefined8 packetId,undefined8 connectionId,undefined1 pa
 
 
 
-// 函数: void FUN_18084063e(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4,
-void FUN_18084063e(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4,
-                  undefined8 param_5,undefined8 param_6,longlong param_7)
+// 函数: void SendNetworkPacketEx(undefined8 packetId,undefined8 connectionId,undefined8 packetFlags,undefined8 targetAddress,
+/**
+ * 发送扩展网络数据包
+ * 
+ * 发送带有额外标志信息的网络数据包。与基本发送函数相比，
+ * 此函数支持更多的数据包标志和选项，提供更灵活的数据包发送功能。
+ * 
+ * @param packetId 数据包ID
+ * @param connectionId 连接ID
+ * @param packetFlags 数据包标志
+ * @param targetAddress 目标地址
+ * @param sourceAddress 源地址
+ * @param networkContext 网络上下文
+ * @param packetData 数据包数据指针
+ * @return 无返回值
+ * 
+ * 注意：这是一个反编译的函数实现
+ */
+void SendNetworkPacketEx(undefined8 packetId,undefined8 connectionId,undefined8 packetFlags,undefined8 targetAddress,
+                  undefined8 sourceAddress,undefined8 networkContext,longlong packetData)
 
 {
   longlong *plVar1;
