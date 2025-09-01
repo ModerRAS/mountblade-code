@@ -100,7 +100,7 @@ void AcceptNetworkConnection(void);
  */
 void CloseNetworkConnection(void);
 
-// 函数: uint32_t HandleNetworkConnectionEvent;
+// 函数: uint32_t NetworkConnectionEventHandler;
 /**
  * 处理网络连接事件
  * 
@@ -111,7 +111,7 @@ void CloseNetworkConnection(void);
  * 
  * @return 事件处理结果
  */
-uint32_t HandleNetworkConnectionEvent;
+uint32_t NetworkConnectionEventHandler;
 
 // 函数: void SendNetworkData(void)
 /**
@@ -189,7 +189,7 @@ uint32_t NetworkKeepAliveInterval;
 uint32_t NetworkRetryInterval;
 uint32_t NetworkTimeoutInterval;
 uint32_t NetworkHandshakeTimeout;
-uint32_t NetworkConnectionStateMachine;
+uint32_t NetworkConnectionStateController;
 uint32_t NetworkProtocolVersion;
 uint32_t NetworkEventQueue;
 uint32_t NetworkCallbackHandler;
@@ -205,8 +205,8 @@ uint32_t NetworkCallbackHandler;
  * 
  * @return 超时处理结果
  */
-uint32_t ProcessNetworkTimeout;
-uint32_t NetworkConnectionStateMachine;
+uint32_t NetworkTimeoutProcessor;
+uint32_t NetworkConnectionStateController;
 uint32_t NetworkConnectionMode;
 uint32_t NetworkConnectionAttributeFlags;
 uint32_t NetworkConnectionPriority;
