@@ -16575,8 +16575,14 @@ void FUN_1800428d0(void)
 
 
 
-// 函数: void FUN_1800429d0(void)
-void FUN_1800429d0(void)
+/**
+ * @brief 初始化系统资源初始化节点
+ * 
+ * 该函数负责初始化系统资源初始化节点，在系统节点树中查找合适的位置
+ * 插入资源初始化节点，并设置节点的标识符和回调函数。
+ * 这是系统资源管理的重要组成部分。
+ */
+void InitializeSystemResourceInitializationNode(void)
 
 {
   char systemNodeFlag;
@@ -16625,8 +16631,14 @@ void FUN_1800429d0(void)
 
 
 
-// 函数: void FUN_180042ad0(void)
-void FUN_180042ad0(void)
+/**
+ * @brief 初始化游戏核心系统节点
+ * 
+ * 该函数负责初始化游戏核心系统节点，在系统节点树中查找合适的位置
+ * 插入游戏核心系统节点，并设置节点的标识符和事件回调函数。
+ * 这是游戏核心系统管理的重要组成部分。
+ */
+void InitializeGameCoreSystemNode(void)
 
 {
   char systemNodeFlag;

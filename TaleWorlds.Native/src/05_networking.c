@@ -141,19 +141,12 @@ uint32_t NetworkConnectionPoolAllocation;
 uint32_t NetworkConnectionPoolDeallocation;
 
 /**
- * 初始化网络连接池
- * 
- * 该函数负责初始化网络连接池，分配必要的内存资源并设置初始状态。
- * 主要用于网络系统的启动时初始化操作。
- * 
- * @return 初始化结果状态码
- */
-int InitializeNetworkConnectionPool(void)
-/**
  * @brief 初始化网络连接池
  * 
  * 该函数负责初始化网络连接池，设置连接池的基本参数
  * 和数据结构，为后续的网络连接管理做准备
+ * 
+ * @return void
  */
 void InitializeNetworkConnectionPool(void);
 uint32_t NetworkConnectionPoolManager;
@@ -572,14 +565,6 @@ void InitializeNetworkConnectionState(void)
 
 
 
-/**
- * 重置网络连接指针
- * 
- * 该函数负责重置网络连接的指针状态，确保连接状态的一致性。
- * 主要用于网络连接失败或需要重新初始化时的清理工作。
- * 
- * 注意：这是一个反编译的函数实现
- */
 /**
  * @brief 重置网络连接指针
  * 
@@ -6342,7 +6327,7 @@ void ProcessNetworkConnectionData(ulonglong connectionContext,NetworkStatus *pac
                     // WARNING: Subroutine does not return
     NetworkConnectionHandleRelease(&uStack_148);
   }
-  secondaryNetworkFlag = func_0x0001808682c0(lStack_138);
+  secondaryNetworkFlag = ProcessNetworkStatusFlag(lStack_138);
   *packetData = secondaryNetworkFlag;
                     // WARNING: Subroutine does not return
   NetworkConnectionHandleRelease(&uStack_148);
