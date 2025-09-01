@@ -36885,6 +36885,7 @@ void InitializeSystemResources(ulong long SystemResourcePointer,long long Config
   char SystemMainBuffer [1024];
   ulong long uStack_38;
   void* uStack_30;
+  void* LocalSystemPointer;
   
   SystemMemoryOffset = -1;
   SystemErrorCode = -1;
@@ -36912,27 +36913,27 @@ void InitializeSystemResources(ulong long SystemResourcePointer,long long Config
   uStack_38 = SystemEncryptionKeyTemplate ^ (ulong long)SystemBuffer1;
   SystemResourceHandlePointer = (ulong long *)SystemGlobalDataAllocate();
   LocalSystemPointer = 0;
-  uStack_458 = 0;
-  pdStack_450 = &dStackX_18;
-  systemCode = __stdio_common_vsprintf(*punsignedSystemValue4 | 1,0,0,&SystemFormatString);
-  if (systemCode < 0) {
-    systemCode = -1;
+  SystemPointer1 = 0;
+  SystemDoublePointer = &SystemDoubleValue;
+  SystemErrorCode = __stdio_common_vsprintf(*SystemResourceHandlePointer | 1,0,0,&SystemFormatString);
+  if (SystemErrorCode < 0) {
+    SystemErrorCode = -1;
   }
-  if (systemCode < 0x400) {
-    uStack_458 = 0;
-    pdStack_450 = &dStackX_18;
-    __stdio_common_vsprintf(*punsignedSystemValue4 | 1,acStack_438,0x400,&SystemFormatString);
-    localSystemPointer = -1;
+  if (SystemErrorCode < 0x400) {
+    SystemPointer1 = 0;
+    SystemDoublePointer = &SystemDoubleValue;
+    __stdio_common_vsprintf(*SystemResourceHandlePointer | 1,SystemMainBuffer,0x400,&SystemFormatString);
+    LocalSystemPointer = -1;
     do {
-      localSystemFlags = localSystemPointer;
-      localSystemPointer = localSystemFlags + 1;
-    } while (acStack_438[localSystemFlags + 1] != '\0');
-    systemCode = (int)(localSystemFlags + 1);
-    if (0 < systemCode) {
-      ExecuteSystemCommand(ConfigurationDataPointer,*(int *)(ConfigurationDataPointer + 0x10) + systemCode);
+      LocalSystemFlags = LocalSystemPointer;
+      LocalSystemPointer = LocalSystemFlags + 1;
+    } while (SystemMainBuffer[LocalSystemFlags + 1] != '\0');
+    SystemErrorCode = (int)(LocalSystemFlags + 1);
+    if (0 < SystemErrorCode) {
+      ExecuteSystemCommand(ConfigurationDataPointer,*(int *)(ConfigurationDataPointer + 0x10) + SystemErrorCode);
                     // WARNING: Subroutine does not return
-      memcpy((ulong long)*(uint *)(ConfigurationDataPointer + 0x10) + *(long long *)(ComparisonDataPointer + 8),acStack_438,
-             (long long)((int)localSystemFlags + 2));
+      memcpy((ulong long)*(uint *)(ConfigurationDataPointer + 0x10) + *(long long *)(ComparisonDataPointer + 8),SystemMainBuffer,
+             (long long)((int)LocalSystemFlags + 2));
     }
   }
   else {
