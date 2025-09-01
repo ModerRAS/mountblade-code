@@ -21893,7 +21893,7 @@ void* * SystemMemoryAllocatorInitializer(void* *SystemResourcePointer,long long 
   *SystemResourcePointer = &SystemMemoryAllocatorReference;
   SystemResourcePointer[1] = 0;
   *(uint32_t *)(SystemResourcePointer + 2) = 0;
-  *SystemResourcePointer = &UNK_1809fcc28;
+  *SystemResourcePointer = &SystemResourceTemplatePrimary;
   SystemResourcePointer[1] = SystemResourcePointer + 3;
   *(uint32_t *)(SystemResourcePointer + 2) = 0;
   *(uint8_t *)(SystemResourcePointer + 3) = 0;
@@ -27983,7 +27983,7 @@ void SystemResourceDataProcessor(long long *SystemResourcePointer,long long Conf
   uStack_107 = 0x1010101;
   uStack_103 = 1;
   uStack_108 = 1;
-  puStack_e8 = &UNK_1809fcc28;
+  puStack_e8 = &SystemResourceTemplatePrimary;
   puStack_e0 = auStack_d0;
   auStack_d0[0] = 0;
   uStack_d8 = *(uint32_t *)(ConfigurationDataPointer + 0x10);
@@ -29489,7 +29489,7 @@ void InitializeSystemResource(void* SystemResourcePointer,void* *ConfigurationDa
   uStack_128 = 0xfffffffffffffffe;
   uStack_28 = SystemEncryptionKeyTemplate ^ (ulong long)auStack_158;
   ppuStack_138 = &puStack_108;
-  puStack_108 = &UNK_1809fcc28;
+  puStack_108 = &SystemResourceTemplatePrimary;
   puStack_100 = auStack_f0;
   uStack_f8 = 0;
   auStack_f0[0] = 0;
@@ -35691,7 +35691,7 @@ void* * FUN_18005ce30(void* *SystemResourcePointer,void* *ConfigurationDataPoint
   *pointerToUnsigned1 = &SystemMemoryAllocatorReference;
   SystemResourcePointer[5] = 0;
   *(uint32_t *)(SystemResourcePointer + 6) = 0;
-  *pointerToUnsigned1 = &UNK_1809fcc28;
+  *pointerToUnsigned1 = &SystemResourceTemplatePrimary;
   SystemResourcePointer[5] = SystemResourcePointer + 7;
   *(uint32_t *)(SystemResourcePointer + 6) = 0;
   *(uint8_t *)(SystemResourcePointer + 7) = 0;
@@ -52514,7 +52514,7 @@ void ManageSystemResourceTimestamp(long long SystemResourcePointer, long long Ti
   localSystemPointer = *(long long *)(ComparisonDataPointer + 8);
   *(uint32_t **)(ConfigurationDataPointer + 8) = (uint32_t *)(localSystemPointer + 1);
   if (systemResult == 0) {
-    puStack_c8 = &UNK_1809fcc28;
+    puStack_c8 = &SystemResourceTemplatePrimary;
     puStack_c0 = auStack_b0;
     uStack_b8 = 0;
     auStack_b0[0] = 0;
@@ -52623,7 +52623,7 @@ void FUN_1800746c0(long long SystemResourcePointer)
     plocalResourceOffset[2] = (long long)&SystemMemoryAllocatorReference;
     plocalResourceOffset[3] = 0;
     *(uint32_t *)(plocalResourceOffset + 4) = 0;
-    plocalResourceOffset[2] = (long long)&UNK_1809fcc28;
+    plocalResourceOffset[2] = (long long)&SystemResourceTemplatePrimary;
     plocalResourceOffset[3] = (long long)(plocalResourceOffset + 5);
     *(uint32_t *)(plocalResourceOffset + 4) = 0;
     *(uint8_t *)(plocalResourceOffset + 5) = 0;
@@ -53079,7 +53079,7 @@ FUN_180074fb0(void* SystemResourcePointer,void* *ConfigurationDataPointer,void* 
   *ConfigurationDataPointer = &SystemMemoryAllocatorReference;
   ConfigurationDataPointer[1] = 0;
   *(uint32_t *)(ConfigurationDataPointer + 2) = 0;
-  *ConfigurationDataPointer = &UNK_1809fcc28;
+  *ConfigurationDataPointer = &SystemResourceTemplatePrimary;
   ConfigurationDataPointer[1] = ConfigurationDataPointer + 3;
   *(uint8_t *)(ConfigurationDataPointer + 3) = 0;
   *(uint32_t *)(ConfigurationDataPointer + 2) = 7;
@@ -53105,7 +53105,7 @@ void* * FUN_180075030(void* *SystemResourcePointer,char ConfigurationDataPointer
   SystemResourcePointer[2] = &SystemMemoryAllocatorReference;
   SystemResourcePointer[3] = 0;
   *(uint32_t *)(SystemResourcePointer + 4) = 0;
-  SystemResourcePointer[2] = &UNK_1809fcc28;
+  SystemResourcePointer[2] = &SystemResourceTemplatePrimary;
   SystemResourcePointer[3] = SystemResourcePointer + 5;
   *(uint32_t *)(SystemResourcePointer + 4) = 0;
   *(uint8_t *)(SystemResourcePointer + 5) = 0;
@@ -59330,7 +59330,7 @@ void* * FUN_180079430(long long SystemResourcePointer,void* ConfigurationDataPoi
               0x48) < _DAT_180d49158) {
     CheckSystemDataAvailability(&DAT_180d49158);
     if (_DAT_180d49158 == -1) {
-      _DAT_180d49160 = &UNK_1809fcc28;
+      _DAT_180d49160 = &SystemResourceTemplatePrimary;
       _DAT_180d49168 = &DAT_180d49178;
 
 // 函数: void FUN_180079520(long long SystemResourcePointer)
