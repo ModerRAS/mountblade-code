@@ -18307,7 +18307,6 @@ LAB_180044db8:
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180044dc0(void* param_1,long long param_2)
 /**
  * @brief 初始化系统调试符号管理器
  * 
@@ -18679,7 +18678,6 @@ void WotsMain(void* param_1)
   
                     // 0x45a00  27  WotsMain
 
-// 函数: void FUN_180045af0(long long *param_1)
 /**
  * @brief 执行系统回调函数
  * 
@@ -21371,14 +21369,23 @@ void ResetSystemMemoryManager(void* *param_1)
 
 
 
-void* FUN_1800494f0(void* param_1,ulong long param_2)
+/**
+ * @brief 内存释放管理函数
+ * 
+ * 根据标志位管理内存的释放操作
+ * 
+ * @param memoryPointer 内存指针
+ * @param flags 操作标志位
+ * @return 返回内存指针
+ */
+void* MemoryReleaseManager(void* memoryPointer, unsigned long long flags)
 
 {
-  FUN_180049470();
-  if ((param_2 & 1) != 0) {
-    free(param_1,0xc0);
+  MemoryManagementInternalFunction();
+  if ((flags & 1) != 0) {
+    free(memoryPointer,0xc0);
   }
-  return param_1;
+  return memoryPointer;
 }
 
 
@@ -22309,7 +22316,18 @@ void DestroySystemMutex(void)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void* FUN_18004a220(long long param_1,uint32_t param_2,void* param_3,void* param_4)
+/**
+ * @brief 系统线程对象管理器
+ * 
+ * 创建和管理系统线程对象，处理线程池的动态扩展和互斥锁同步
+ * 
+ * @param threadPoolContext 线程池上下文指针
+ * @param threadFlags 线程创建标志位
+ * @param threadCallback 线程回调函数指针
+ * @param threadParameter 线程参数指针
+ * @return 返回创建的线程对象指针
+ */
+void* SystemThreadObjectManager(long long threadPoolContext, uint32_t threadFlags, void* threadCallback, void* threadParameter)
 
 {
   int iVar1;
@@ -22395,14 +22413,23 @@ void DestroySystemMutex(void* *param_1)
 
 
 
-void* FUN_18004a3c0(void* param_1,ulong long param_2)
+/**
+ * @brief 系统内存分配器
+ * 
+ * 管理系统内存的分配和释放操作
+ * 
+ * @param memoryContext 内存上下文指针
+ * @param allocationSize 分配大小
+ * @return 返回内存指针
+ */
+void* SystemMemoryAllocator(void* memoryContext, unsigned long long allocationSize)
 
 {
   DestroySystemMutex();
-  if ((param_2 & 1) != 0) {
-    free(param_1,0x78);
+  if ((allocationSize & 1) != 0) {
+    free(memoryContext,0x78);
   }
-  return param_1;
+  return memoryContext;
 }
 
 
