@@ -1771,7 +1771,7 @@ uint8_t SystemMemoryConfigDataNovendenary;
 uint8_t SystemMemoryConfigDataVigesimal;
 uint8_t SystemMemoryConfigDataUnvigesimal;
 uint8_t SystemMemoryConfigDataDuovigesimal;
-uint8_t SystemMemoryConfigDataTemplateDuodenary;
+uint8_t SystemMemoryConfigDataTemplateAudio;
 uint8_t SystemMemoryConfigDataTemplateSecureenary;
 uint8_t SystemMemoryConfigDataTemplateSecureeptenary;
 uint8_t SystemMemoryConfigDataCore;
@@ -2445,7 +2445,7 @@ void GetMemoryBlockSize(void);
  * 该函数负责获取已分配内存块的大小
  * 用于内存管理和调试目的
  */
-void GetMemoryBlockSize;
+void GetMemoryBlockSize(void);
 uint8_t SystemMemoryConfigDataPrimary;
 uint8_t SystemMemoryConfigDataSecondary;
 uint8_t SystemMemoryConfigDataTertiary;
@@ -2468,7 +2468,7 @@ void InitializeThreadManager(void);
  * 该函数负责初始化系统的线程管理器
  * 设置线程池和调度策略
  */
-void InitializeThreadManager;
+void InitializeThreadManager(void);
 uint8_t ThreadManagerContextData;
 uint8_t ThreadSchedulerData;
 uint8_t PhysicsWorldTable;
@@ -4278,7 +4278,7 @@ uint8_t InitializeObjectHandleC(int64_t objectContext)
 
 {
   int64_t resourceOffset;
-  int resourceIndex;
+  int ResourceIndex;
   uint8_t operationResult;
   uint32_t *resourceIdPointer;
   uint64_t contextHandle;
@@ -4298,9 +4298,9 @@ uint8_t InitializeObjectHandleC(int64_t objectContext)
     if (0 < *(int *)(objectContext + 0x18)) {
       baseAddressOffset = (objectContext + 0x20) - (int64_t)resourceIdPointer;
       do {
-        resourceIndex = *(int *)(baseAddressOffset + (int64_t)resourceIdPointer);
-        if (resourceIndex != -1) {
-          resourceOffset = *(int64_t *)(contextHandle + 0x20) + (int64_t)resourceIndex * 0x18;
+        ResourceIndex = *(int *)(baseAddressOffset + (int64_t)resourceIdPointer);
+        if (ResourceIndex != -1) {
+          resourceOffset = *(int64_t *)(contextHandle + 0x20) + (int64_t)ResourceIndex * 0x18;
           int64_t resourceContext = *(int64_t *)(resourceOffset + 8);
           if ((resourceContext == 0)) {
             return 0x1c;
@@ -4334,7 +4334,7 @@ uint8_t InitializeObjectHandleD(void)
 
 {
   int64_t resourceOffset;
-  int resourceIndex;
+  int ResourceIndex;
   int64_t registerValue;
   uint8_t operationResult;
   uint32_t *resourceIdPointer;
@@ -4353,9 +4353,9 @@ uint8_t InitializeObjectHandleD(void)
   if (0 < *(int *)(SystemContext + 0x18)) {
     baseAddressOffset = (SystemContext + 0x20) - (int64_t)resourceIdPointer;
     do {
-      resourceIndex = *(int *)(baseAddressOffset + (int64_t)resourceIdPointer);
-      if (resourceIndex != -1) {
-        resourceOffset = *(int64_t *)(contextHandle + 0x20) + (int64_t)resourceIndex * 0x18;
+      ResourceIndex = *(int *)(baseAddressOffset + (int64_t)resourceIdPointer);
+      if (ResourceIndex != -1) {
+        resourceOffset = *(int64_t *)(contextHandle + 0x20) + (int64_t)ResourceIndex * 0x18;
         int64_t resourceContext = *(int64_t *)(resourceOffset + 8);
         if ((resourceContext == 0)) {
           return 0x1c;
@@ -4427,7 +4427,7 @@ uint8_t InitializeObjectHandleE(int64_t objectContext)
   uint loopCounter;
   uint64_t contextOffset;
   int64_t stackBuffer;
-  uint64_t resourceIndex;
+  uint64_t ResourceIndex;
   int64_t ObjectContextValidation;
   int64_t ResourceValidationContext;
   
@@ -5528,7 +5528,7 @@ uint64_t ProcessSystemResourceAllocation(int64_t resourceHandle, uint8_t operati
 {
   uint resourceHash;
   uint64_t ResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint8_t ValidationContext;
   uint32_t ResourceOperationBuffer [2];
   int64_t ResourceHandleValue;
@@ -5538,11 +5538,11 @@ uint64_t ProcessSystemResourceAllocation(int64_t resourceHandle, uint8_t operati
   if ((int)ResourceValidationResult == 0) {
     ResourceCount = *(int *)(resourceHandle + 0x18);
     if ((0 < ResourceCount) && (*(uint *)(resourceHandle + 0x1c) < 2)) {
-      resourceIndex = 0;
+      ResourceIndex = 0;
       if (*(uint *)(resourceHandle + 0x1c) == 0) {
         ResourceHandleValue = *(int64_t *)(resourceHandle + 0x10);
         ResourceOperationBuffer[0] = 1;
-        resourceIndex = ResourceHandleValue;
+        ResourceIndex = ResourceHandleValue;
       }
       else {
         ResourceHandleValue = *(int64_t *)(resourceHandle + 0x10);
@@ -5553,8 +5553,8 @@ uint64_t ProcessSystemResourceAllocation(int64_t resourceHandle, uint8_t operati
       if (resourceHash == 0) {
         ResourceValidationResult = 0;
       }
-      else if (resourceIndex != 0) {
-        ProcessResourceRelease(*(uint8_t *)(SystemContextPointer + 0x1a0),resourceIndex,&ResourceTableTemplate,0xe9);
+      else if (ResourceIndex != 0) {
+        ProcessResourceRelease(*(uint8_t *)(SystemContextPointer + 0x1a0),ResourceIndex,&ResourceTableTemplate,0xe9);
         return ResourceValidationResult;
       }
       return ResourceValidationResult;
@@ -6399,11 +6399,11 @@ void ProcessSystemDataBufferExpansion(uint8_t SystemContext, uint8_t bufferConte
     if (ResourceIndex < *(int *)(in_stack_00000070 + 0x28)) goto LAB_180891fc0;
     if (ResourceIndex != 0) {
       if ((0x3ffffffe < ResourceIndex * 8 - 1U) ||
-         (resourceIndex = AllocateMemoryBlock(*(uint8_t *)(SystemContextPointer + 0x1a0),ResourceIndex * 8,&ResourceTableTemplate,
-                                0xf4,0), resourceIndex == 0)) goto LAB_180891fc0;
+         (ResourceIndex = AllocateMemoryBlock(*(uint8_t *)(SystemContextPointer + 0x1a0),ResourceIndex * 8,&ResourceTableTemplate,
+                                0xf4,0), ResourceIndex == 0)) goto LAB_180891fc0;
       if (*(int *)(in_stack_00000070 + 0x28) != 0) {
                     // WARNING: Subroutine does not return
-        memcpy(resourceIndex,*(uint8_t *)(in_stack_00000070 + 0x20),
+        memcpy(ResourceIndex,*(uint8_t *)(in_stack_00000070 + 0x20),
                (int64_t)*(int *)(in_stack_00000070 + 0x28) << 3);
       }
     }
@@ -6413,7 +6413,7 @@ void ProcessSystemDataBufferExpansion(uint8_t SystemContext, uint8_t bufferConte
       ProcessResourceAllocation(*(uint8_t *)(SystemContextPointer + 0x1a0),*(int64_t *)(in_stack_00000070 + 0x20),
                     &ResourceTableTemplate,0x100,1);
     }
-    *(int64_t *)(in_stack_00000070 + 0x20) = resourceIndex;
+    *(int64_t *)(in_stack_00000070 + 0x20) = ResourceIndex;
     *(int *)(in_stack_00000070 + 0x2c) = ResourceIndex;
   }
   *(int64_t *)
@@ -6445,17 +6445,17 @@ void ProcessDynamicBufferReallocation(void)
   int operationResult;
   int OperationResult;
   int64_t InputRegisterValue;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   int64_t bufferPointer;
   uint ResourceContextOffset;
   int64_t ResourceContextPointer;
   int64_t RegisterR14;
   uint8_t StackParameter60;
   
-  resourceIndex = 0;
+  ResourceIndex = 0;
   bufferPointer = InputRAX + 8;
   if (InputRAX == 0) {
-    bufferPointer = resourceIndex;
+    bufferPointer = ResourceIndex;
   }
   ResourceIndex = ValidateBufferContext(bufferPointer);
   if (ResourceIndex != 0) {
@@ -6475,12 +6475,12 @@ void ProcessDynamicBufferReallocation(void)
     if (ResourceIndex < *(int *)(ResourceContextPointer + 0x28)) goto LAB_180891fc0;
     if (ResourceIndex != 0) {
       if (0x3ffffffe < ResourceIndex * 8 - 1U) goto LAB_180891fc0;
-      resourceIndex = AllocateMemoryBlock(*(uint8_t *)(SystemContextPointer + 0x1a0),ResourceIndex * 8,&ResourceTableTemplate,0xf4,0)
+      ResourceIndex = AllocateMemoryBlock(*(uint8_t *)(SystemContextPointer + 0x1a0),ResourceIndex * 8,&ResourceTableTemplate,0xf4,0)
       ;
-      if (resourceIndex == 0) goto LAB_180891fc0;
+      if (ResourceIndex == 0) goto LAB_180891fc0;
       if (*(int *)(ResourceContextPointer + 0x28) != 0) {
                     // WARNING: Subroutine does not return
-        memcpy(resourceIndex,*(uint8_t *)(ResourceContextPointer + 0x20),(int64_t)*(int *)(ResourceContextPointer + 0x28) << 3);
+        memcpy(ResourceIndex,*(uint8_t *)(ResourceContextPointer + 0x20),(int64_t)*(int *)(ResourceContextPointer + 0x28) << 3);
       }
     }
     if ((0 < *(int *)(ResourceContextPointer + 0x2c)) && (*(int64_t *)(ResourceContextPointer + 0x20) != 0)) {
@@ -6488,7 +6488,7 @@ void ProcessDynamicBufferReallocation(void)
       ProcessResourceAllocation(*(uint8_t *)(SystemContextPointer + 0x1a0),*(int64_t *)(ResourceContextPointer + 0x20),
                     &ResourceTableTemplate,0x100,1);
     }
-    *(int64_t *)(ResourceContextPointer + 0x20) = resourceIndex;
+    *(int64_t *)(ResourceContextPointer + 0x20) = ResourceIndex;
     *(int *)(ResourceContextPointer + 0x2c) = ResourceIndex;
   }
   *(uint8_t *)(*(int64_t *)(ResourceContextPointer + 0x20) + (int64_t)*(int *)(ResourceContextPointer + 0x28) * 8) =
@@ -7940,15 +7940,15 @@ uint8_t ValidateObjectContextAndProcessParameterizedComplexFloatOperation(int64_
     return 0x1f;
   }
   ResourceTablePointer = *(int64_t *)(ResourceTablePointer + 0x20) + (int64_t)OperationResult * 0x18;
-  resourceIndex = *(int64_t *)(ResourceTablePointer + 0x10);
-  if (resourceIndex == 0) {
+  ResourceIndex = *(int64_t *)(ResourceTablePointer + 0x10);
+  if (ResourceIndex == 0) {
     return 0x1e;
   }
-  if ((*(byte *)(resourceIndex + 0x34) & 0x11) == 0) {
+  if ((*(byte *)(ResourceIndex + 0x34) & 0x11) == 0) {
     floatValue1 = *(float *)(ObjectContextParameter + 0x20);
-    floatValue6 = *(float *)(resourceIndex + 0x38);
-    if ((*(float *)(resourceIndex + 0x38) <= floatValue1) &&
-       (floatValue6 = *(float *)(resourceIndex + 0x3c), floatValue1 <= *(float *)(resourceIndex + 0x3c))) {
+    floatValue6 = *(float *)(ResourceIndex + 0x38);
+    if ((*(float *)(ResourceIndex + 0x38) <= floatValue1) &&
+       (floatValue6 = *(float *)(ResourceIndex + 0x3c), floatValue1 <= *(float *)(ResourceIndex + 0x3c))) {
       floatValue6 = floatValue1;
     }
     *(float *)(ObjectContextParameter + 0x20) = floatValue6;
@@ -8332,7 +8332,7 @@ uint8_t ValidateObjectContextAndProcessFloatRange(int64_t ObjectContextParameter
 {
   float CalculatedFloatValue;
   uint8_t ResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   int64_t lStackX_8;
   float FloatValueToValidate;
   
@@ -8368,19 +8368,19 @@ code_r0x00018089322c:
     return ResourceValidationResult;
   }
   if (lStackX_8 == 0) {
-    resourceIndex = 0;
+    ResourceIndex = 0;
   }
   else {
-    resourceIndex = lStackX_8 + -8;
+    ResourceIndex = lStackX_8 + -8;
   }
-  *(uint32_t *)(resourceIndex + 0xa4 + (int64_t)*(int *)(ObjectContextParameter + 0x18) * 4) =
+  *(uint32_t *)(ResourceIndex + 0xa4 + (int64_t)*(int *)(ObjectContextParameter + 0x18) * 4) =
        *(uint32_t *)(ObjectContextParameter + 0x1c);
-  resourceIndex = *(int64_t *)(ValidationContextParameter + 0x98);
-  if ((*(int *)(resourceIndex + 0x180) != 0) || (*(int *)(resourceIndex + 0x184) != 0)) {
+  ResourceIndex = *(int64_t *)(ValidationContextParameter + 0x98);
+  if ((*(int *)(ResourceIndex + 0x180) != 0) || (*(int *)(ResourceIndex + 0x184) != 0)) {
     lStackX_8 = 0;
     InitializeSecurityContext(&lStackX_8);
-    if (lStackX_8 == *(int64_t *)((int64_t)*(int *)(resourceIndex + 0x17c) * 8 + 0x180c4f450)) {
-      ResourceValidationResult = ProcessResourceValidation(resourceIndex,ObjectContextParameter);
+    if (lStackX_8 == *(int64_t *)((int64_t)*(int *)(ResourceIndex + 0x17c) * 8 + 0x180c4f450)) {
+      ResourceValidationResult = ProcessResourceValidation(ResourceIndex,ObjectContextParameter);
       if ((int)ResourceValidationResult == 0) {
         return 0;
       }
@@ -8388,7 +8388,7 @@ code_r0x00018089322c:
     }
   }
   *(uint *)(ObjectContextParameter + 8) = *(int *)(ObjectContextParameter + 8) + 0xfU & 0xfffffff0;
-  ResourceValidationResult = ExecuteSystemOperation(*(uint8_t *)(resourceIndex + 0x1e0));
+  ResourceValidationResult = ExecuteSystemOperation(*(uint8_t *)(ResourceIndex + 0x1e0));
   if ((int)ResourceValidationResult == 0) {
     return 0;
   }
@@ -9174,21 +9174,21 @@ uint8_t ProcessFloatDataValidationAndConversion(int64_t ObjectContextParameter,i
 {
   float CalculatedFloatValue;
   uint8_t ResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint32_t ArrayStackBuffer [2];
   
   SystemCommandParams[0] = 0;
   ResourceValidationResult = ProcessDataHashing(ValidationContextParameter + 0x60,ObjectContextParameter + 0x10,SystemCommandParams);
   if ((int)ResourceValidationResult == 0) {
-    resourceIndex = LookupResourceIndex(ValidationContextParameter + 0x60,SystemCommandParams[0]);
-    if ((*(uint *)(resourceIndex + 0x34) >> 4 & 1) != 0) {
+    ResourceIndex = LookupResourceIndex(ValidationContextParameter + 0x60,SystemCommandParams[0]);
+    if ((*(uint *)(ResourceIndex + 0x34) >> 4 & 1) != 0) {
       return 0x1f;
     }
-    ResourceValidationResult = ValidateObjectContextAndProcessData(resourceIndex,ObjectContextParameter + 0x1d,ObjectContextParameter + 0x18);
+    ResourceValidationResult = ValidateObjectContextAndProcessData(ResourceIndex,ObjectContextParameter + 0x1d,ObjectContextParameter + 0x18);
     if ((int)ResourceValidationResult == 0) {
       floatValue1 = *(float *)(ObjectContextParameter + 0x18);
-      if ((floatValue1 < *(float *)(resourceIndex + 0x38)) ||
-         (*(float *)(resourceIndex + 0x3c) <= floatValue1 && floatValue1 != *(float *)(resourceIndex + 0x3c))) {
+      if ((floatValue1 < *(float *)(ResourceIndex + 0x38)) ||
+         (*(float *)(ResourceIndex + 0x3c) <= floatValue1 && floatValue1 != *(float *)(ResourceIndex + 0x3c))) {
         ResourceValidationResult = 0x1c;
       }
       else {
@@ -9315,7 +9315,7 @@ uint8_t ProcessDataValidationAndSystemOperation(int64_t ObjectContextParameter,i
 {
   float CalculatedFloatValue;
   uint8_t ResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint8_t *pLoopIncrement;
   float TertiaryFloatValue;
   uint ArrayUnionStackX8 [2];
@@ -9328,14 +9328,14 @@ uint8_t ProcessDataValidationAndSystemOperation(int64_t ObjectContextParameter,i
   aSecurityValidationContext[0] = 0;
   ResourceValidationResult = ProcessDataValidationAdvanced(ValidationContextParameter,ObjectContextParameter + 0x20,aSecurityValidationContext);
   if ((int)ResourceValidationResult == 0) {
-    resourceIndex = LookupResourceIndex(ValidationContextParameter + 0x60,aSecurityValidationContext[0]);
-    if ((*(uint *)(resourceIndex + 0x34) >> 4 & 1) != 0) {
+    ResourceIndex = LookupResourceIndex(ValidationContextParameter + 0x60,aSecurityValidationContext[0]);
+    if ((*(uint *)(ResourceIndex + 0x34) >> 4 & 1) != 0) {
       return 0x1f;
     }
     floatValue1 = *(float *)(ObjectContextParameter + 0x10);
-    floatValue5 = *(float *)(resourceIndex + 0x38);
-    if ((*(float *)(resourceIndex + 0x38) <= floatValue1) &&
-       (floatValue5 = *(float *)(resourceIndex + 0x3c), floatValue1 <= *(float *)(resourceIndex + 0x3c))) {
+    floatValue5 = *(float *)(ResourceIndex + 0x38);
+    if ((*(float *)(ResourceIndex + 0x38) <= floatValue1) &&
+       (floatValue5 = *(float *)(ResourceIndex + 0x3c), floatValue1 <= *(float *)(ResourceIndex + 0x3c))) {
       floatValue5 = floatValue1;
     }
     *(float *)(ObjectContextParameter + 0x10) = floatValue5;
@@ -9468,7 +9468,7 @@ uint8_t ProcessFloatRangeValidationAndDataHandling(int64_t ObjectContextParamete
 {
   float CalculatedFloatValue;
   uint8_t ResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint8_t *pLoopIncrement;
   uint8_t ArrayUnionStackX8 [8];
   uint32_t aSecurityValidationContext [2];
@@ -9476,15 +9476,15 @@ uint8_t ProcessFloatRangeValidationAndDataHandling(int64_t ObjectContextParamete
   aSecurityValidationContext[0] = 0;
   ResourceValidationResult = ProcessDataValidationAdvanced(ValidationContextParameter,ObjectContextParameter + 0x20,aSecurityValidationContext);
   if ((int)ResourceValidationResult == 0) {
-    resourceIndex = LookupResourceIndex(ValidationContextParameter + 0x60,aSecurityValidationContext[0]);
-    if ((*(uint *)(resourceIndex + 0x34) >> 4 & 1) != 0) {
+    ResourceIndex = LookupResourceIndex(ValidationContextParameter + 0x60,aSecurityValidationContext[0]);
+    if ((*(uint *)(ResourceIndex + 0x34) >> 4 & 1) != 0) {
       return 0x1f;
     }
-    ResourceValidationResult = ValidateObjectContextAndProcessData(resourceIndex,ObjectContextParameter + 0xa0,ObjectContextParameter + 0x10);
+    ResourceValidationResult = ValidateObjectContextAndProcessData(ResourceIndex,ObjectContextParameter + 0xa0,ObjectContextParameter + 0x10);
     if ((int)ResourceValidationResult == 0) {
       floatValue1 = *(float *)(ObjectContextParameter + 0x10);
-      if ((floatValue1 < *(float *)(resourceIndex + 0x38)) ||
-         (*(float *)(resourceIndex + 0x3c) <= floatValue1 && floatValue1 != *(float *)(resourceIndex + 0x3c))) {
+      if ((floatValue1 < *(float *)(ResourceIndex + 0x38)) ||
+         (*(float *)(ResourceIndex + 0x3c) <= floatValue1 && floatValue1 != *(float *)(ResourceIndex + 0x3c))) {
         ResourceValidationResult = 0x1c;
       }
       else {
@@ -9871,7 +9871,7 @@ int ProcessDataWithStack(int64_t *ObjectContextParameter,int64_t ValidationConte
 {
   int64_t *processPointer;
   int OperationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint8_t SecurityDataBuffer [32];
   uint resourceFlagHigh;
   uint resourceFlagLow;
@@ -9898,8 +9898,8 @@ int ProcessDataWithStack(int64_t *ObjectContextParameter,int64_t ValidationConte
     ResourceFlag10 = ValidationContextParameter[1];
     ResourceFlag11 = ValidationContextParameter[2];
     ResourceFlag12 = ValidationContextParameter[3];
-    resourceIndex = (**(code **)(*ResourceContextPointer + 0x150))(ResourceContextPointer,&ResourceFlag9,1);
-    if (resourceIndex == 0) {
+    ResourceIndex = (**(code **)(*ResourceContextPointer + 0x150))(ResourceContextPointer,&ResourceFlag9,1);
+    if (ResourceIndex == 0) {
       ResourceFlag4 = ResourceFlag11 >> 0x18;
       ResourceFlag8 = ResourceFlag12 >> 0x18;
       resourceFlagLow = ResourceFlag10 >> 0x10;
@@ -9913,10 +9913,10 @@ int ProcessDataWithStack(int64_t *ObjectContextParameter,int64_t ValidationConte
                     // WARNING: Subroutine does not return
       ExecuteSecurityOperation(ResourceDataBuffer,0x27,&SecurityOperationData,ResourceFlag9);
     }
-    if (((*(byte *)(resourceIndex + 0xc4) & 1) != 0) &&
-       ((ResourceHandleBackup = *(int64_t *)(resourceIndex + 0x68), ResourceHandleBackup != 0 ||
-        (OperationResult = ValidateResourceAccess(ObjectContextParameter,resourceIndex,&ResourceHandleBackup), OperationResult == 0)))) {
-      *resourceIndexOutput = ResourceHandleBackup;
+    if (((*(byte *)(ResourceIndex + 0xc4) & 1) != 0) &&
+       ((ResourceHandleBackup = *(int64_t *)(ResourceIndex + 0x68), ResourceHandleBackup != 0 ||
+        (OperationResult = ValidateResourceAccess(ObjectContextParameter,ResourceIndex,&ResourceHandleBackup), OperationResult == 0)))) {
+      *ResourceIndexOutput = ResourceHandleBackup;
     }
   }
                     // WARNING: Subroutine does not return
@@ -9949,13 +9949,13 @@ int ProcessDataWithStack(int64_t *ObjectContextParameter,int64_t ValidationConte
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void ProcessResourceIndexAndSecurity(int64_t ObjectContextParameter,uint32_t *ValidationContextParameter,int64_t *resourceIndexOutput)
-void ProcessResourceIndexAndSecurity(int64_t ObjectContextParameter,uint32_t *ValidationContextParameter,int64_t *resourceIndexOutput)
+ void ProcessResourceIndexAndSecurity(int64_t ObjectContextParameter,uint32_t *ValidationContextParameter,int64_t *ResourceIndexOutput)
+void ProcessResourceIndexAndSecurity(int64_t ObjectContextParameter,uint32_t *ValidationContextParameter,int64_t *ResourceIndexOutput)
 
 {
   int64_t *processPointer;
   int OperationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint8_t auStack_b8 [32];
   uint ResourceFlag1;
   uint ResourceFlag2;
@@ -9981,8 +9981,8 @@ void ProcessResourceIndexAndSecurity(int64_t ObjectContextParameter,uint32_t *Va
     ValidationParam2 = ValidationContextParameter[1];
     ValidationParam3 = ValidationContextParameter[2];
     ValidationParam4 = ValidationContextParameter[3];
-    resourceIndex = (**(code **)(*ResourceContextPointer + 0x288))(ResourceContextPointer,&ValidationParam1,1);
-    if (resourceIndex == 0) {
+    ResourceIndex = (**(code **)(*ResourceContextPointer + 0x288))(ResourceContextPointer,&ValidationParam1,1);
+    if (ResourceIndex == 0) {
       ResourceFlag6 = ValidationParam3 >> 0x18;
       ResourceFlag11 = ValidationParam4 >> 0x18;
       ResourceFlag2 = ValidationParam2 >> 0x10;
@@ -9996,9 +9996,9 @@ void ProcessResourceIndexAndSecurity(int64_t ObjectContextParameter,uint32_t *Va
                     // WARNING: Subroutine does not return
       ExecuteSecurityOperation(aEncryptedValue,0x27,&SecurityOperationData,ValidationParam1);
     }
-    if ((**(int **)(resourceIndex + 0xd0) != 0) ||
+    if ((**(int **)(ResourceIndex + 0xd0) != 0) ||
        (OperationResult = CheckResourceAvailability(*(uint32_t *)(ObjectContextParameter + 0x18)), OperationResult == 0)) {
-      *resourceIndexOutput = resourceIndex;
+      *ResourceIndexOutput = ResourceIndex;
     }
   }
                     // WARNING: Subroutine does not return
@@ -10027,21 +10027,21 @@ ValidateResourceTableAccess(uint64_t resource_handle)
   uint64_t StackSecurityToken;
   uint64_t in_stack_000000a8;
   
-  uStack0000000000000070 = ObjectContextParameter;
+  LocalContextPointer = ObjectContextParameter;
   resourceTable = (**(code **)(InputRAX + 0x288))();
   if (resourceTable == 0) {
                     // WARNING: Subroutine does not return
-    ExecuteSecurityOperation(&stack0x00000080,0x27,&SecurityOperationData,uStack0000000000000070 & 0xffffffff,
-                  uStack0000000000000070._4_2_);
+    ExecuteSecurityOperation(&SecurityStackBuffer,0x27,&SecurityOperationData,LocalContextPointer & 0xffffffff,
+                  LocalContextPointer._4_2_);
   }
   if (**(int **)(resourceTable + 0xd0) == 0) {
     ResourceIndex = CheckResourceAvailability(*(uint32_t *)(RegisterRDI + 0x18));
-    if (ResourceIndex != 0) goto LAB_180894aca;
+    if (ResourceIndex != 0) goto ValidationSuccessLabel;
   }
   *SystemContextPointer = resourceTable;
-LAB_180894aca:
+ValidationSuccessLabel:
                     // WARNING: Subroutine does not return
-  FinalizeSecurityOperation(in_stack_000000a8 ^ (uint64_t)&SystemSecurityValidationBuffer);
+  FinalizeSecurityOperation(StackSecurityToken ^ (uint64_t)&SystemSecurityValidationBuffer);
 }
 
 
@@ -10117,8 +10117,8 @@ uint32_t HandleResourceIndexOperation(int64_t ResourceHandle, uint32_t *Resource
     ResourceFlag10 = ValidationContextParameter[1];
     ResourceFlag11 = ValidationContextParameter[2];
     ResourceFlag12 = ValidationContextParameter[3];
-    resourceIndex = (**(code **)(*ResourceContextPointer + 0x2f8))(ResourceContextPointer,&ResourceFlag9,1);
-    if (resourceIndex == 0) {
+    ResourceIndex = (**(code **)(*ResourceContextPointer + 0x2f8))(ResourceContextPointer,&ResourceFlag9,1);
+    if (ResourceIndex == 0) {
       ResourceFlag4 = ResourceFlag11 >> 0x18;
       ResourceFlag8 = ResourceFlag12 >> 0x18;
       resourceFlagLow = ResourceFlag10 >> 0x10;
@@ -10132,9 +10132,9 @@ uint32_t HandleResourceIndexOperation(int64_t ResourceHandle, uint32_t *Resource
                     // WARNING: Subroutine does not return
       ExecuteSecurityOperation(ResourceDataBuffer,0x27,&SecurityOperationData,ResourceFlag9);
     }
-    ResourceHandleBackup = *(int64_t *)(resourceIndex + 0x48);
-    if ((ResourceHandleBackup != 0) || (OperationResult = AcquireResourceLock(ObjectContextParameter,resourceIndex,&ResourceHandleBackup), OperationResult == 0)) {
-      *resourceIndexOutput = ResourceHandleBackup;
+    ResourceHandleBackup = *(int64_t *)(ResourceIndex + 0x48);
+    if ((ResourceHandleBackup != 0) || (OperationResult = AcquireResourceLock(ObjectContextParameter,ResourceIndex,&ResourceHandleBackup), OperationResult == 0)) {
+      *ResourceIndexOutput = ResourceHandleBackup;
     }
   }
                     // WARNING: Subroutine does not return
@@ -10815,29 +10815,29 @@ void ProcessResourceCalculationAndValidation(int64_t ObjectContextParameter,uint
   uint64_t ValidationParam1;
   
   ValidationParam1 = SecurityEncryptionKey ^ (uint64_t)SecurityValidationBuffer;
-  iVar4 = *(int *)(ObjectContextParameter + 0xac);
-  lVar7 = (int64_t)iVar4;
+  OperationResult = *(int *)(ObjectContextParameter + 0xac);
+  ArrayIndex = (int64_t)OperationResult;
   ParameterPointer = CleanupOption;
-  if (iVar4 < *(int *)(ObjectContextParameter + 0x20)) {
+  if (OperationResult < *(int *)(ObjectContextParameter + 0x20)) {
     ObjectContextOffset = *(int64_t *)(ObjectContextParameter + 0x18);
-    SecurityContextOffset = lVar7 * 3;
-    SystemDataPointer = (int64_t)*(int *)(ObjectContextOffset + lVar7 * 0xc) + *(int64_t *)(ObjectContextParameter + 8);
-    CharVariable3 = *(char *)(ObjectContextOffset + 8 + lVar7 * 0xc);
-    if (CharVariable3 == '\x01') {
-      iVar8 = *(int *)(ObjectContextParameter + 0xb0);
-      if (iVar4 < iVar8) {
-        *(int *)(ObjectContextParameter + 0xac) = iVar4 + 1;
+    SecurityContextOffset = ArrayIndex * 3;
+    SystemDataPointer = (int64_t)*(int *)(ObjectContextOffset + ArrayIndex * 0xc) + *(int64_t *)(ObjectContextParameter + 8);
+    SystemStatusChar = *(char *)(ObjectContextOffset + 8 + ArrayIndex * 0xc);
+    if (SystemStatusChar == '\x01') {
+      MaxOperationCount = *(int *)(ObjectContextParameter + 0xb0);
+      if (OperationResult < MaxOperationCount) {
+        *(int *)(ObjectContextParameter + 0xac) = OperationResult + 1;
         goto HandleSystemError;
       }
-      floatValue10 = *(float *)(SystemDataPointer + 0x18);
-      floatValue11 = floatValue10;
-      if (iVar8 != -1) {
-        floatValue11 = *(float *)(ObjectContextParameter + 0xb4);
-        iVar8 = -1;
+      CalculatedFloatValue = *(float *)(SystemDataPointer + 0x18);
+      ResultFloatValue = CalculatedFloatValue;
+      if (MaxOperationCount != -1) {
+        ResultFloatValue = *(float *)(ObjectContextParameter + 0xb4);
+        MaxOperationCount = -1;
         *(uint32_t *)(ObjectContextParameter + 0xb0) = 0xffffffff;
         *(uint32_t *)(ObjectContextParameter + 0xb4) = 0xbf800000;
       }
-      *(float *)(ObjectContextParameter + 0xa8) = floatValue10;
+      *(float *)(ObjectContextParameter + 0xa8) = CalculatedFloatValue;
       lVar7 = 0;
       floatValue10 = (float)*(uint *)(ObjectContextParameter + 0x68) * floatValue10;
       if ((9.223372e+18 <= floatValue10) && (floatValue10 = floatValue10 - 9.223372e+18, floatValue10 < 9.223372e+18)) {
@@ -11060,7 +11060,7 @@ void ProcessResourceHashAndIndex(int64_t ObjectContextParameter,int ValidationCo
 {
   uint8_t resourceHash;
   int *pOperationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   int64_t DataOffset;
   int tableEntry;
   
@@ -11080,7 +11080,7 @@ void ProcessResourceHashAndIndex(int64_t ObjectContextParameter,int ValidationCo
     lVar4 = (int64_t)(ValidationContextParameter + 1);
     pOperationResult = (int *)(*(int64_t *)(ObjectContextParameter + 0x18) + lVar4 * 0xc);
     while (((char)pOperationResult[2] != '\x02' ||
-           (resourceIndex = (int64_t)*pOperationResult + *(int64_t *)(ObjectContextParameter + 8), *(int *)(resourceIndex + 0x20) != tableEntry)
+           (ResourceIndex = (int64_t)*pOperationResult + *(int64_t *)(ObjectContextParameter + 8), *(int *)(ResourceIndex + 0x20) != tableEntry)
            )) {
       lVar4 = lVar4 + 1;
       pOperationResult = pOperationResult + 3;
@@ -11088,8 +11088,8 @@ void ProcessResourceHashAndIndex(int64_t ObjectContextParameter,int ValidationCo
         return;
       }
     }
-    resourceHash = *(uint8_t *)(resourceIndex + 0x18);
-    *hashOutput = *(uint8_t *)(resourceIndex + 0x10);
+    resourceHash = *(uint8_t *)(ResourceIndex + 0x18);
+    *hashOutput = *(uint8_t *)(ResourceIndex + 0x10);
     hashOutput[1] = resourceHash;
   }
   return;
@@ -11113,7 +11113,7 @@ uint64_t ProcessParameterizedDataValidationAndOperation(int64_t dataContext,int 
 {
   uint resourceHash;
   int64_t resourceTable;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint8_t *callbackFunction;
   int tableEntry;
   uint32_t ResourceValidationResult;
@@ -11127,16 +11127,16 @@ uint64_t ProcessParameterizedDataValidationAndOperation(int64_t dataContext,int 
       {
         resourceTable = *(int64_t *)(dataContext + 0x80);
         do {
-          resourceIndex = (int64_t)tableEntry;
-          if (*(uint *)(resourceTable + resourceIndex * 0x10) == resourceHash) {
-            uStackX_1c = (uint)((uint64_t)*(uint8_t *)(resourceTable + 8 + resourceIndex * 0x10) >> 0x20);
+          ResourceIndex = (int64_t)tableEntry;
+          if (*(uint *)(resourceTable + ResourceIndex * 0x10) == resourceHash) {
+            uStackX_1c = (uint)((uint64_t)*(uint8_t *)(resourceTable + 8 + ResourceIndex * 0x10) >> 0x20);
             if (uStackX_1c != 0) {
               *hashOutput = uStackX_1c;
               return 0;
             }
             goto LAB_180895ccb;
           }
-          tableEntry = *(int *)(resourceTable + 4 + resourceIndex * 0x10);
+          tableEntry = *(int *)(resourceTable + 4 + ResourceIndex * 0x10);
         } while (tableEntry != -1);
       }
       uStackX_1c = 0;
@@ -12814,7 +12814,7 @@ void ModuleProcessErrorHandler(void)
 void ProcessComplexResourceWithRegisters(void)
 
 {
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   int64_t resourceTablePointer;
   uint32_t validationStatus1;
   uint32_t validationStatus2;
@@ -12846,7 +12846,7 @@ void ProcessComplexResourceWithRegisters(void)
   if (((systemFlag1 != '\0') || (*(int *)(*(int64_t *)(systemRegister3 + 0x2e8) + 0x34) == systemRegister2)) &&
      (operationResult = ProcessResourceOperation(), operationResult == 0)) {
     for (operationResult = 0; (-1 < operationResult && (operationResult < *(int *)(systemRegister3 + 0x48))); operationResult = operationResult + 1) {
-      resourceIndex = *(int64_t *)(*(int64_t *)(systemRegister3 + 0x40) + (int64_t)operationResult * 8);
+      ResourceIndex = *(int64_t *)(*(int64_t *)(systemRegister3 + 0x40) + (int64_t)operationResult * 8);
       resourceTablePointer = *(int64_t *)(localContextPointer + 0x68);
       if (((*(byte *)(localContextPointer + 0xc4) & 1) != 0) && (resourceTablePointer != 0)) {
         contextFlags = 0;
@@ -12899,7 +12899,7 @@ void ProcessComplexResourceWithRegisters(void)
       }
     }
     for (operationResult = 0; (-1 < operationResult && (operationResult < *(int *)(systemRegister3 + 0x58))); operationResult = operationResult + 1) {
-      resourceIndex = *(int64_t *)(*(int64_t *)(systemRegister3 + 0x50) + (int64_t)operationResult * 8);
+      ResourceIndex = *(int64_t *)(*(int64_t *)(systemRegister3 + 0x50) + (int64_t)operationResult * 8);
       resourceTablePointer = *(int64_t *)(localContextPointer + 0x68);
       if (((*(byte *)(localContextPointer + 0xc4) & 1) != 0) && (resourceTablePointer != 0)) {
         contextFlags = 0;
@@ -12952,7 +12952,7 @@ void ProcessComplexResourceWithRegisters(void)
       }
     }
     for (operationResult = 0; (-1 < operationResult && (operationResult < *(int *)(systemRegister3 + 0x68))); operationResult = operationResult + 1) {
-      resourceIndex = *(int64_t *)(*(int64_t *)(systemRegister3 + 0x60) + (int64_t)operationResult * 8);
+      ResourceIndex = *(int64_t *)(*(int64_t *)(systemRegister3 + 0x60) + (int64_t)operationResult * 8);
       resourceTablePointer = *(int64_t *)(localContextPointer + 0x68);
       if (((*(byte *)(localContextPointer + 0xc4) & 1) != 0) && (resourceTablePointer != 0)) {
         contextFlags = 0;
@@ -13005,7 +13005,7 @@ void ProcessComplexResourceWithRegisters(void)
       }
     }
     for (operationResult = 0; (-1 < operationResult && (operationResult < *(int *)(systemRegister3 + 0x78))); operationResult = operationResult + 1) {
-      resourceIndex = *(int64_t *)(*(int64_t *)(systemRegister3 + 0x70) + (int64_t)operationResult * 8);
+      ResourceIndex = *(int64_t *)(*(int64_t *)(systemRegister3 + 0x70) + (int64_t)operationResult * 8);
       resourceTablePointer = *(int64_t *)(localContextPointer + 0x68);
       if (((*(byte *)(localContextPointer + 0xc4) & 1) != 0) && (resourceTablePointer != 0)) {
         contextFlags = 0;
@@ -13061,7 +13061,7 @@ void ProcessComplexResourceWithRegisters(void)
     operationResult = 0;
     do {
       if ((operationResult < 0) || (*(int *)(systemRegister3 + 200) <= operationResult)) break;
-      resourceIndex = *(int64_t *)(*(int64_t *)(systemRegister3 + 0xc0) + (int64_t)operationResult * 8);
+      ResourceIndex = *(int64_t *)(*(int64_t *)(systemRegister3 + 0xc0) + (int64_t)operationResult * 8);
       resourceTablePointer = *(int64_t *)(localContextPointer + 0x48);
       if (resourceTablePointer != 0) {
         contextFlags = 0;
@@ -13235,7 +13235,7 @@ int SystemResourceProcessorB(int64_t ObjectContext,int64_t ValidationContext)
 {
   float CalculatedFloatValue;
   int64_t resourceTable;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   int64_t DataOffset;
   char cVar5;
   int integerValue6;
@@ -13317,11 +13317,11 @@ int SystemResourceProcessorB(int64_t ObjectContext,int64_t ValidationContext)
         if (0 < lStack_188) {
           do {
             SystemDataPointer = *(int64_t *)(resourceTable + 0x20);
-            resourceIndex = *(int64_t *)(localContextPointer4 + 0x10 + SystemDataPointer);
+            ResourceIndex = *(int64_t *)(localContextPointer4 + 0x10 + SystemDataPointer);
             lVar4 = *(int64_t *)(localContextPointer4 + 8 + SystemDataPointer);
-            cVar5 = CheckResourceIndex(resourceIndex,1);
+            cVar5 = CheckResourceIndex(ResourceIndex,1);
             presourceHash6 = puStack_190;
-            if ((cVar5 == '\0') && (*(float *)(resourceIndex + 0x4c) != *(float *)(lVar4 + 0x28))) {
+            if ((cVar5 == '\0') && (*(float *)(ResourceIndex + 0x4c) != *(float *)(lVar4 + 0x28))) {
               uStack_f0 = *(uint32_t *)(localContextPointer4 + 4 + SystemDataPointer);
               pOperationParam38 = &SystemResourceTemplateDatabase;
               uStack_f8 = uStack_1c8;
@@ -13329,11 +13329,11 @@ int SystemResourceProcessorB(int64_t ObjectContext,int64_t ValidationContext)
               SystemDataPointer = (**(code **)*puStack_190)(puStack_190);
               uStack_e8 = *(uint8_t *)(*(int64_t *)(SystemDataPointer + 0x90) + longValue8 * 8);
               uStack_ec = 0;
-              if (*(int *)(resourceIndex + 0x58) < 1) {
+              if (*(int *)(ResourceIndex + 0x58) < 1) {
                 presourceHash2 = &ResourceHashTemplate;
               }
               else {
-                presourceHash2 = *(uint8_t **)(resourceIndex + 0x50);
+                presourceHash2 = *(uint8_t **)(ResourceIndex + 0x50);
               }
               CopySecurityData(auStack_e0,presourceHash2,0x80);
               integerValue6 = GetAndValidateResourceData(ObjectContextParameter,&pOperationParam38);
@@ -13502,7 +13502,7 @@ void SystemInitializerA(void)
 {
   float CalculatedFloatValue;
   int64_t resourceTable;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint8_t *pLoopIncrement;
   uint32_t ResourceContextOffset;
   uint32_t ContextValidationResult;
@@ -13551,7 +13551,7 @@ void SystemInitializerA(void)
   float fStack0000000000000044;
   float fStack0000000000000048;
   float fStack000000000000004c;
-  float in_stack_00000050;
+  float StackParameter50;
   uint8_t *puStack0000000000000058;
   int64_t StackParameter60;
   int64_t in_stack_00000068;
@@ -13579,10 +13579,10 @@ void SystemInitializerA(void)
         do {
           localContextPointer5 = *(int64_t *)(RegisterR15 + 0x20);
           resourceTable = *(int64_t *)(ResourceValidationResult0 + 0x10 + localContextPointer5);
-          resourceIndex = *(int64_t *)(ResourceValidationResult0 + 8 + localContextPointer5);
+          ResourceIndex = *(int64_t *)(ResourceValidationResult0 + 8 + localContextPointer5);
           cVar12 = CheckResourceIndex(resourceTable,1);
           pResourceValidationResult2 = puStack0000000000000058;
-          if ((cVar12 == '\0') && (*(float *)(resourceTable + 0x4c) != *(float *)(resourceIndex + 0x28))) {
+          if ((cVar12 == '\0') && (*(float *)(resourceTable + 0x4c) != *(float *)(ResourceIndex + 0x28))) {
             ResourceValidationResult4 = *(uint32_t *)(ResourceValidationResult0 + 4 + localContextPointer5);
             ExecutionContextPointer[-4] = &SystemResourceTemplateDatabase;
             *(uint32_t *)(ExecutionContextPointer + -2) = uStackX_20;
@@ -13779,7 +13779,7 @@ void DataProcessingErrorHandler(void)
 {
   float CalculatedFloatValue;
   int64_t resourceTable;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint8_t *pLoopIncrement;
   uint32_t ResourceContextOffset;
   uint32_t ContextValidationResult;
@@ -13826,7 +13826,7 @@ void DataProcessingErrorHandler(void)
   float fStack0000000000000040;
   float fStack0000000000000044;
   uint8_t StackParameter48;
-  float in_stack_00000050;
+  float StackParameter50;
   uint8_t *in_stack_00000058;
   int64_t lStack0000000000000060;
   int64_t in_stack_00000068;
@@ -13840,10 +13840,10 @@ void DataProcessingErrorHandler(void)
     do {
       localContextPointer5 = *(int64_t *)(RegisterR15 + 0x20);
       resourceTable = *(int64_t *)(ResourceValidationResult0 + 0x10 + localContextPointer5);
-      resourceIndex = *(int64_t *)(ResourceValidationResult0 + 8 + localContextPointer5);
+      ResourceIndex = *(int64_t *)(ResourceValidationResult0 + 8 + localContextPointer5);
       cVar12 = CheckResourceIndex(resourceTable,1);
       UnaffectedRegisterR12 = in_stack_00000058;
-      if ((cVar12 == '\0') && (*(float *)(resourceTable + 0x4c) != *(float *)(resourceIndex + 0x28))) {
+      if ((cVar12 == '\0') && (*(float *)(resourceTable + 0x4c) != *(float *)(ResourceIndex + 0x28))) {
         ResourceValidationResult3 = *(uint32_t *)(ResourceValidationResult0 + 4 + localContextPointer5);
         ExecutionContextPointer[-4] = &SystemResourceTemplateDatabase;
         *(uint32_t *)(ExecutionContextPointer + -2) = uStackX_20;
@@ -14058,7 +14058,7 @@ void FloatProcessingErrorHandler(void)
   uint32_t in_stack_00000038;
   float fStack0000000000000040;
   float fStack0000000000000044;
-  float in_stack_00000050;
+  float StackParameter50;
   
   if (ObjectContextParameter != 1.0) {
     in_stack_00000028 = &SystemResourceTemplateFile;
@@ -14348,7 +14348,7 @@ uint8_t InitializeResourceRenderingConfiguration(int64_t *ObjectContextParameter
 {
   int64_t loopCounter;
   uint8_t ResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint32_t LoopIncrement;
   uint32_t ResourceContextOffset;
   uint32_t ContextValidationResult;
@@ -14366,8 +14366,8 @@ uint8_t InitializeResourceRenderingConfiguration(int64_t *ObjectContextParameter
   ResourceValidationResult = GetAndValidateResourceData(ObjectContextParameter,&puStack_28);
   if ((int)ResourceValidationResult == 0) {
     loopCounter = *(int64_t *)(ObjectContextParameter[1] + 0x78);
-    resourceIndex = GetThreadContext();
-    if (resourceIndex == 0) {
+    ResourceIndex = GetThreadContext();
+    if (ResourceIndex == 0) {
       ResourceValidationResult = 0x1c;
     }
     else {
@@ -14402,9 +14402,9 @@ uint8_t InitializeResourceRenderingConfiguration(int64_t *ObjectContextParameter
                                   *(uint32_t *)(localContextPointer + 0x11654),*(uint32_t *)(localContextPointer + 0x11658),
                                   *(uint32_t *)(localContextPointer + 0x1165c),ContextValidationResult,SecurityHashValue,ResourceCounter,LoopIncrement);
             if ((int)ResourceValidationResult == 0) {
-              ResourceContextOffset = *(uint32_t *)(resourceIndex + 0x10);
-              ResourceValidationResult = ProcessNetworkRequest(ObjectContextParameter,&NetworkStreamTemplate,*(uint32_t *)(resourceIndex + 4),
-                                    *(uint32_t *)(resourceIndex + 8),*(uint32_t *)(resourceIndex + 0xc),ResourceContextOffset,
+              ResourceContextOffset = *(uint32_t *)(ResourceIndex + 0x10);
+              ResourceValidationResult = ProcessNetworkRequest(ObjectContextParameter,&NetworkStreamTemplate,*(uint32_t *)(ResourceIndex + 4),
+                                    *(uint32_t *)(ResourceIndex + 8),*(uint32_t *)(ResourceIndex + 0xc),ResourceContextOffset,
                                     ContextValidationResult,SecurityHashValue,ResourceCounter,LoopIncrement);
               if ((((int)ResourceValidationResult == 0) &&
                   (ResourceValidationResult = ProcessNetworkRequest(ObjectContextParameter,&NetworkConnectionTemplate,*(uint32_t *)(localContextPointer + 0x1e0),
@@ -15230,7 +15230,7 @@ uint32_t HandleResourceHashProcessing(int64_t *ResourceTable, int ResourceIndex,
  * @param CleanupOption 输出参数，用于返回提取的哈希数据
  * @return 操作状态码，0表示成功，非0表示错误
  */
-uint32_t ExtractResourceHashData(uint8_t resourceTableHandle,int resourceIndex,uint32_t *outputHashData)
+uint32_t ExtractResourceHashData(uint8_t resourceTableHandle,int ResourceIndex,uint32_t *outputHashData)
 
 {
   uint32_t *presourceHash;
@@ -16030,7 +16030,7 @@ uint8_t ProcessResourceValidationOperation(int64_t *resourceContext)
   uint8_t resourceHash;
   uint *RegisterRDI;
   uint StackParameter40;
-  uint in_stack_00000050;
+  uint StackParameter50;
   
   ObjectContextParameter = (int64_t *)*ObjectContextParameter;
   if (*ObjectContextParameter == 0) {
@@ -19169,7 +19169,7 @@ uint8_t ProcessResourceBufferData(int64_t ResourceContext, int64_t *ResourceData
        (ResourceValidationResult = ReadResourceData(localContextPointer,ObjectContextParameter + 0x66,2), (int)ResourceValidationResult == 0)) {
       ResourceValidationResult = ReadResourceData(localContextPointer,ObjectContextParameter + 0x68,8);
     }
-    in_stack_00000008 = unaff_BPL;
+    SystemStackRegister = UnaffectedRegisterBPL;
     if ((int)ResourceValidationResult != 0) {
       return ResourceValidationResult;
     }
@@ -19215,7 +19215,7 @@ uint8_t ProcessResourceBufferData(int64_t ResourceContext, int64_t *ResourceData
   }
 LAB_1808a2e6d:
   if ((int)ResourceValidationResult == 0) {
-    *(bool *)(ObjectContextParameter + 0x7c) = in_stack_00000008 != (char)ResourceValidationResult;
+    *(bool *)(ObjectContextParameter + 0x7c) = SystemStackRegister != (char)ResourceValidationResult;
   }
   return ResourceValidationResult;
 }
@@ -20647,7 +20647,7 @@ ValidateResourceIntegrity(void)
   int64_t MemoryRegion;
   int UnaffectedRegisterR12D;
   int64_t RegisterR15;
-  uint in_stack_00000050;
+  uint StackParameter50;
   uint uStack0000000000000068;
   
   uStack0000000000000068 = in_EAX;
@@ -28579,7 +28579,7 @@ void CleanupValidationResultResources(uint8_t exceptionHandlerType, int64_t exce
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = *(uint8_t **)(ValidationContextParameter + 0x2b8);
@@ -28588,12 +28588,12 @@ void CleanupValidationResultResources(uint8_t exceptionHandlerType, int64_t exce
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -28627,7 +28627,7 @@ void CleanupValidationResultResourcesDuplicate(uint8_t exceptionHandlerType, int
 {
   int *referenceCount;
   uint8_t *ResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t resourceBase;
   
   ResourceValidationResult = *(uint8_t **)(exceptionContext + 0x2b8);
@@ -28636,12 +28636,12 @@ void CleanupValidationResultResourcesDuplicate(uint8_t exceptionHandlerType, int
   }
   resourceBase = (uint64_t)ResourceValidationResult & 0xffffffffffc00000;
   if (resourceBase != 0) {
-    resourceIndex = resourceBase + 0x80 + ((int64_t)ResourceValidationResult - resourceBase >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(resourceBase + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *ResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = ResourceValidationResult;
-      referenceCount = (int *)(resourceIndex + 0x18);
+    ResourceIndex = resourceBase + 0x80 + ((int64_t)ResourceValidationResult - resourceBase >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(resourceBase + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = ResourceValidationResult;
+      referenceCount = (int *)(ResourceIndex + 0x18);
       *referenceCount = *referenceCount - 1;
       if (*referenceCount == 0) {
         SystemCleanupHandler();
@@ -28705,7 +28705,7 @@ void CleanupNestedValidationResultResources(uint8_t exceptionHandlerType, int64_
 {
   int *referenceCount;
   uint8_t *ResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t resourceBase;
   
   ResourceValidationResult = *(uint8_t **)(*(int64_t *)(exceptionContext + 0x20) + 0x218);
@@ -28714,12 +28714,12 @@ void CleanupNestedValidationResultResources(uint8_t exceptionHandlerType, int64_
   }
   resourceBase = (uint64_t)ResourceValidationResult & 0xffffffffffc00000;
   if (resourceBase != 0) {
-    resourceIndex = resourceBase + 0x80 + ((int64_t)ResourceValidationResult - resourceBase >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(resourceBase + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *ResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = ResourceValidationResult;
-      referenceCount = (int *)(resourceIndex + 0x18);
+    ResourceIndex = resourceBase + 0x80 + ((int64_t)ResourceValidationResult - resourceBase >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(resourceBase + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = ResourceValidationResult;
+      referenceCount = (int *)(ResourceIndex + 0x18);
       *referenceCount = *referenceCount - 1;
       if (*referenceCount == 0) {
         SystemCleanupHandler();
@@ -29555,7 +29555,7 @@ void ReleaseValidationResourceAndUpdateReferenceCount(uint8_t ObjectContextParam
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = *(uint8_t **)(ValidationContextParameter + 0x48);
@@ -29564,12 +29564,12 @@ void ReleaseValidationResourceAndUpdateReferenceCount(uint8_t ObjectContextParam
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -29911,7 +29911,7 @@ void ReleaseResourceHandleOnException(uint8_t ObjectContextParameter, int64_t Va
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = *(uint8_t **)(ValidationContextParameter + 0x120);
@@ -29920,12 +29920,12 @@ void ReleaseResourceHandleOnException(uint8_t ObjectContextParameter, int64_t Va
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -30296,7 +30296,7 @@ void ExceptionResourceCleanupHandler(uint8_t ObjectContextParameter,int64_t Vali
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = *(uint8_t **)(*(int64_t *)(ValidationContextParameter + 0x70) + 0xc0);
@@ -30305,12 +30305,12 @@ void ExceptionResourceCleanupHandler(uint8_t ObjectContextParameter,int64_t Vali
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -30414,12 +30414,12 @@ void ResourceTableCleanupHandler(uint8_t ObjectContextParameter, int64_t Validat
 {
   int64_t loopCounter;
   int64_t *pResourceTable;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   
   pResourceTable = (int64_t *)(*(int64_t *)(ValidationContextParameter + 0x70) + 0x50);
   loopCounter = *(int64_t *)(*(int64_t *)(ValidationContextParameter + 0x70) + 0x58);
-  for (resourceIndex = *pResourceTable; resourceIndex != localContextPointer; resourceIndex = resourceIndex + 0x48) {
-    CleanupResourceHandle(resourceIndex);
+  for (ResourceIndex = *pResourceTable; ResourceIndex != localContextPointer; ResourceIndex = ResourceIndex + 0x48) {
+    CleanupResourceHandle(ResourceIndex);
   }
   if (*pResourceTable == 0) {
     return;
@@ -30446,12 +30446,12 @@ void ResourceLoopCleanupHandler(uint8_t ObjectContextParameter, int64_t Validati
 {
   int64_t loopCounter;
   int64_t *pResourceTable;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   
   pResourceTable = *(int64_t **)(ValidationContextParameter + 0x78);
   localContextPointer = pResourceTable[1];
-  for (resourceIndex = *pResourceTable; resourceIndex != localContextPointer; resourceIndex = resourceIndex + 0x48) {
-    CleanupResourceHandle(resourceIndex);
+  for (ResourceIndex = *pResourceTable; ResourceIndex != localContextPointer; ResourceIndex = ResourceIndex + 0x48) {
+    CleanupResourceHandle(ResourceIndex);
   }
   if (*pResourceTable == 0) {
     return;
@@ -30551,25 +30551,25 @@ void ResourceTableValidationHandler(uint8_t ObjectContextParameter,int64_t Valid
 {
   int64_t loopCounter;
   int64_t *presourceTable;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   
   presourceTable = (int64_t *)(*(int64_t *)(ValidationContextParameter + 0x70) + 0x10);
   loopCounter = *(int64_t *)(*(int64_t *)(ValidationContextParameter + 0x70) + 0x18);
-  resourceIndex = *presourceTable;
+  ResourceIndex = *presourceTable;
   while( true ) {
-    if (resourceIndex == localContextPointer) {
+    if (ResourceIndex == localContextPointer) {
       if (*presourceTable == 0) {
         return;
       }
                     // WARNING: Subroutine does not return
       ExecuteSystemEmergencyExit();
     }
-    if (*(int64_t **)(resourceIndex + 0x40) != (int64_t *)0x0) {
-      (**(code **)(**(int64_t **)(resourceIndex + 0x40) + 0x38))();
+    if (*(int64_t **)(ResourceIndex + 0x40) != (int64_t *)0x0) {
+      (**(code **)(**(int64_t **)(ResourceIndex + 0x40) + 0x38))();
     }
-    if (*(int64_t *)(resourceIndex + 0x20) != 0) break;
-    ProcessSystemState(resourceIndex);
-    resourceIndex = resourceIndex + 0x48;
+    if (*(int64_t *)(ResourceIndex + 0x20) != 0) break;
+    ProcessSystemState(ResourceIndex);
+    ResourceIndex = ResourceIndex + 0x48;
   }
                     // WARNING: Subroutine does not return
   ExecuteSystemEmergencyExit();
@@ -30593,25 +30593,25 @@ void ContextStateHandler(uint8_t ObjectContextParameter, int64_t ValidationConte
 {
   int64_t loopCounter;
   int64_t *pResourceTable;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   
   pResourceTable = *(int64_t **)(ValidationContextParameter + 0x78);
   pLocalContextPointer = pResourceTable[1];
-  resourceIndex = *pResourceTable;
+  ResourceIndex = *pResourceTable;
   while( true ) {
-    if (resourceIndex == pLocalContextPointer) {
+    if (ResourceIndex == pLocalContextPointer) {
       if (*pResourceTable == 0) {
         return;
       }
                     // WARNING: Subroutine does not return
       ExecuteSystemEmergencyExit();
     }
-    if (*(int64_t **)(resourceIndex + 0x40) != (int64_t *)0x0) {
-      (**(code **)(**(int64_t **)(resourceIndex + 0x40) + 0x38))();
+    if (*(int64_t **)(ResourceIndex + 0x40) != (int64_t *)0x0) {
+      (**(code **)(**(int64_t **)(ResourceIndex + 0x40) + 0x38))();
     }
-    if (*(int64_t *)(resourceIndex + 0x20) != 0) break;
-    ProcessSystemState(resourceIndex);
-    resourceIndex = resourceIndex + 0x48;
+    if (*(int64_t *)(ResourceIndex + 0x20) != 0) break;
+    ProcessSystemState(ResourceIndex);
+    ResourceIndex = ResourceIndex + 0x48;
   }
                     // WARNING: Subroutine does not return
   ExecuteSystemEmergencyExit();
@@ -31219,7 +31219,7 @@ void UnwindMemoryManagerBase(uint8_t ObjectContextParameter,int64_t ValidationCo
 {
   int *referenceCount;
   uint8_t *ResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t memoryAddress;
   
   ResourceValidationResult = *(uint8_t **)(*(int64_t *)(ValidationContextParameter + 0x70) + 0x18);
@@ -31228,12 +31228,12 @@ void UnwindMemoryManagerBase(uint8_t ObjectContextParameter,int64_t ValidationCo
   }
   memoryAddress = (uint64_t)ResourceValidationResult & 0xffffffffffc00000;
   if (memoryAddress != 0) {
-    resourceIndex = memoryAddress + 0x80 + ((int64_t)ResourceValidationResult - memoryAddress >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(memoryAddress + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *ResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = ResourceValidationResult;
-      referenceCount = (int *)(resourceIndex + 0x18);
+    ResourceIndex = memoryAddress + 0x80 + ((int64_t)ResourceValidationResult - memoryAddress >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(memoryAddress + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = ResourceValidationResult;
+      referenceCount = (int *)(ResourceIndex + 0x18);
       *referenceCount = *referenceCount - 1;
       if (*referenceCount == 0) {
         SystemCleanupHandler();
@@ -31278,7 +31278,7 @@ void UnwindProcessControllerBase(uint8_t ObjectContextParameter,int64_t Validati
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = *(uint8_t **)(*(int64_t *)(ValidationContextParameter + 0x70) + 0x98);
@@ -31287,12 +31287,12 @@ void UnwindProcessControllerBase(uint8_t ObjectContextParameter,int64_t Validati
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -31377,7 +31377,7 @@ void UnwindStackFrameBase(uint8_t ObjectContextParameter,int64_t ValidationConte
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = *(uint8_t **)(*(int64_t *)(ValidationContextParameter + 0x70) + 0x68);
@@ -31386,12 +31386,12 @@ void UnwindStackFrameBase(uint8_t ObjectContextParameter,int64_t ValidationConte
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -31425,7 +31425,7 @@ void MutexUnlockHandler(uint8_t ObjectContextParameter,int64_t ValidationContext
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = *(uint8_t **)(*(int64_t *)(ValidationContextParameter + 0x70) + 0x88);
@@ -31434,12 +31434,12 @@ void MutexUnlockHandler(uint8_t ObjectContextParameter,int64_t ValidationContext
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -31663,12 +31663,12 @@ void CleanupResourceTableBuffer(uint8_t ObjectContextParameter,int64_t Validatio
 {
   int64_t loopCounter;
   int64_t *presourceTable;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   
   presourceTable = (int64_t *)(*(int64_t *)(ValidationContextParameter + 0x70) + 0x70);
   loopCounter = *(int64_t *)(*(int64_t *)(ValidationContextParameter + 0x70) + 0x78);
-  for (resourceIndex = *presourceTable; resourceIndex != localContextPointer; resourceIndex = resourceIndex + 0x18) {
-    HandleBufferOperations(resourceIndex);
+  for (ResourceIndex = *presourceTable; ResourceIndex != localContextPointer; ResourceIndex = ResourceIndex + 0x18) {
+    HandleBufferOperations(ResourceIndex);
   }
   if (*presourceTable == 0) {
     return;
@@ -31902,12 +31902,12 @@ void UnwindResourceTableOperations(uint8_t ObjectContextParameter, int64_t Valid
 {
   int64_t loopCounter;
   int64_t *presourceTable;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   
   presourceTable = *(int64_t **)(ValidationContextParameter + 0x78);
   localContextPointer = presourceTable[1];
-  for (resourceIndex = *presourceTable; resourceIndex != localContextPointer; resourceIndex = resourceIndex + 0x18) {
-    HandleBufferOperations(resourceIndex);
+  for (ResourceIndex = *presourceTable; ResourceIndex != localContextPointer; ResourceIndex = ResourceIndex + 0x18) {
+    HandleBufferOperations(ResourceIndex);
   }
   if (*presourceTable == 0) {
     return;
@@ -31936,13 +31936,13 @@ void UnwindResourceReleaseOperations(uint8_t ObjectContextParameter, int64_t Val
 {
   int64_t loopCounter;
   int64_t resourceTable;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t resourceCount;
   uint64_t currentIndex;
   
-  resourceIndex = *(int64_t *)(ValidationContextParameter + 0x70);
-  resourceCount = *(uint64_t *)(resourceIndex + 0x10);
-  loopCounter = *(int64_t *)(resourceIndex + 8);
+  ResourceIndex = *(int64_t *)(ValidationContextParameter + 0x70);
+  resourceCount = *(uint64_t *)(ResourceIndex + 0x10);
+  loopCounter = *(int64_t *)(ResourceIndex + 8);
   currentIndex = 0;
   if (resourceCount != 0) {
     do {
@@ -31957,10 +31957,10 @@ void UnwindResourceReleaseOperations(uint8_t ObjectContextParameter, int64_t Val
       *(uint8_t *)(localContextPointer + currentIndex * 8) = 0;
       currentIndex = currentIndex + 1;
     } while (currentIndex < resourceCount);
-    resourceCount = *(uint64_t *)(resourceIndex + 0x10);
+    resourceCount = *(uint64_t *)(ResourceIndex + 0x10);
   }
-  *(uint8_t *)(resourceIndex + 0x18) = 0;
-  if ((1 < resourceCount) && (*(int64_t *)(resourceIndex + 8) != 0)) {
+  *(uint8_t *)(ResourceIndex + 0x18) = 0;
+  if ((1 < resourceCount) && (*(int64_t *)(ResourceIndex + 8) != 0)) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
@@ -31987,13 +31987,13 @@ void UnwindResourceTableCleanup(uint8_t ObjectContextParameter, int64_t Validati
 {
   int64_t loopCounter;
   int64_t resourceTable;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t resourceCount;
   uint64_t currentIndex;
   
-  resourceIndex = *(int64_t *)(ValidationContextParameter + 0x78);
-  resourceCount = *(uint64_t *)(resourceIndex + 0x10);
-  loopCounter = *(int64_t *)(resourceIndex + 8);
+  ResourceIndex = *(int64_t *)(ValidationContextParameter + 0x78);
+  resourceCount = *(uint64_t *)(ResourceIndex + 0x10);
+  loopCounter = *(int64_t *)(ResourceIndex + 8);
   currentIndex = 0;
   if (resourceCount != 0) {
     do {
@@ -32008,10 +32008,10 @@ void UnwindResourceTableCleanup(uint8_t ObjectContextParameter, int64_t Validati
       *(uint8_t *)(localContextPointer + currentIndex * 8) = 0;
       currentIndex = currentIndex + 1;
     } while (currentIndex < resourceCount);
-    resourceCount = *(uint64_t *)(resourceIndex + 0x10);
+    resourceCount = *(uint64_t *)(ResourceIndex + 0x10);
   }
-  *(uint8_t *)(resourceIndex + 0x18) = 0;
-  if ((1 < resourceCount) && (*(int64_t *)(resourceIndex + 8) != 0)) {
+  *(uint8_t *)(ResourceIndex + 0x18) = 0;
+  if ((1 < resourceCount) && (*(int64_t *)(ResourceIndex + 8) != 0)) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
@@ -32038,13 +32038,13 @@ void UnwindBatchResourceRelease(uint8_t ObjectContextParameter, int64_t Validati
 {
   int64_t loopCounter;
   int64_t resourceTable;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t resourceCount;
   uint64_t currentIndex;
   
-  resourceIndex = *(int64_t *)(ValidationContextParameter + 0x78);
-  resourceCount = *(uint64_t *)(resourceIndex + 0x10);
-  loopCounter = *(int64_t *)(resourceIndex + 8);
+  ResourceIndex = *(int64_t *)(ValidationContextParameter + 0x78);
+  resourceCount = *(uint64_t *)(ResourceIndex + 0x10);
+  loopCounter = *(int64_t *)(ResourceIndex + 8);
   currentIndex = 0;
   if (resourceCount != 0) {
     do {
@@ -32059,10 +32059,10 @@ void UnwindBatchResourceRelease(uint8_t ObjectContextParameter, int64_t Validati
       *(uint8_t *)(localContextPointer + currentIndex * 8) = 0;
       currentIndex = currentIndex + 1;
     } while (currentIndex < resourceCount);
-    resourceCount = *(uint64_t *)(resourceIndex + 0x10);
+    resourceCount = *(uint64_t *)(ResourceIndex + 0x10);
   }
-  *(uint8_t *)(resourceIndex + 0x18) = 0;
-  if ((1 < resourceCount) && (*(int64_t *)(resourceIndex + 8) != 0)) {
+  *(uint8_t *)(ResourceIndex + 0x18) = 0;
+  if ((1 < resourceCount) && (*(int64_t *)(ResourceIndex + 8) != 0)) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
@@ -32098,7 +32098,7 @@ void UnwindExceptionResourceValidator(uint8_t ObjectContextParameter,int64_t Val
 {
   int *presourceReferenceCount;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t memoryAddressMask;
   
   pResourceValidationResult = *(uint8_t **)(*(int64_t *)(ValidationContextParameter + 0x70) + 0x30);
@@ -32107,12 +32107,12 @@ void UnwindExceptionResourceValidator(uint8_t ObjectContextParameter,int64_t Val
   }
   memoryAddressMask = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (memoryAddressMask != 0) {
-    resourceIndex = memoryAddressMask + 0x80 + ((int64_t)pResourceValidationResult - memoryAddressMask >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(memoryAddressMask + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      presourceReferenceCount = (int *)(resourceIndex + 0x18);
+    ResourceIndex = memoryAddressMask + 0x80 + ((int64_t)pResourceValidationResult - memoryAddressMask >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(memoryAddressMask + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      presourceReferenceCount = (int *)(ResourceIndex + 0x18);
       *presourceReferenceCount = *presourceReferenceCount + -1;
       if (*presourceReferenceCount == 0) {
         SystemCleanupHandler();
@@ -32224,13 +32224,13 @@ void UnwindResourceTableCleanupHandler(uint8_t ObjectContextParameter,int64_t Va
 {
   int64_t loopCounter;
   int64_t *presourceTable;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   int64_t resourceTableEnd;
   
   presourceTable = *(int64_t **)(ValidationContextParameter + 0x40);
   resourceTableEnd = presourceTable[1];
-  for (resourceIndex = *presourceTable; resourceIndex != resourceTableEnd; resourceIndex = resourceIndex + 0x48) {
-    CleanupResourceHandle(resourceIndex);
+  for (ResourceIndex = *presourceTable; ResourceIndex != resourceTableEnd; ResourceIndex = ResourceIndex + 0x48) {
+    CleanupResourceHandle(ResourceIndex);
   }
   if (*presourceTable == 0) {
     return;
@@ -32278,13 +32278,13 @@ void UnwindBatchResourceReleaseHandler(uint8_t ObjectContextParameter,int64_t Va
 {
   int64_t loopCounter;
   int64_t resourceTable;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t resourceCount;
   uint64_t currentIndex;
   
-  resourceIndex = *(int64_t *)(ValidationContextParameter + 0x40);
-  resourceCount = *(uint64_t *)(resourceIndex + 0x10);
-  loopCounter = *(int64_t *)(resourceIndex + 8);
+  ResourceIndex = *(int64_t *)(ValidationContextParameter + 0x40);
+  resourceCount = *(uint64_t *)(ResourceIndex + 0x10);
+  loopCounter = *(int64_t *)(ResourceIndex + 8);
   currentIndex = 0;
   if (resourceCount != 0) {
     do {
@@ -32299,10 +32299,10 @@ void UnwindBatchResourceReleaseHandler(uint8_t ObjectContextParameter,int64_t Va
       *(uint8_t *)(localContextPointer + currentIndex * 8) = 0;
       currentIndex = currentIndex + 1;
     } while (currentIndex < resourceCount);
-    resourceCount = *(uint64_t *)(resourceIndex + 0x10);
+    resourceCount = *(uint64_t *)(ResourceIndex + 0x10);
   }
-  *(uint8_t *)(resourceIndex + 0x18) = 0;
-  if ((1 < resourceCount) && (*(int64_t *)(resourceIndex + 8) != 0)) {
+  *(uint8_t *)(ResourceIndex + 0x18) = 0;
+  if ((1 < resourceCount) && (*(int64_t *)(ResourceIndex + 8) != 0)) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
@@ -32328,13 +32328,13 @@ void UnwindResourceReleaseConfirmation(uint8_t ObjectContextParameter,int64_t Va
 {
   int64_t loopCounter;
   int64_t resourceTable;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t resourceCount;
   uint64_t currentIndex;
   
-  resourceIndex = *(int64_t *)(ValidationContextParameter + 0x40);
-  resourceCount = *(uint64_t *)(resourceIndex + 0x10);
-  loopCounter = *(int64_t *)(resourceIndex + 8);
+  ResourceIndex = *(int64_t *)(ValidationContextParameter + 0x40);
+  resourceCount = *(uint64_t *)(ResourceIndex + 0x10);
+  loopCounter = *(int64_t *)(ResourceIndex + 8);
   currentIndex = 0;
   if (resourceCount != 0) {
     do {
@@ -32349,10 +32349,10 @@ void UnwindResourceReleaseConfirmation(uint8_t ObjectContextParameter,int64_t Va
       *(uint8_t *)(localContextPointer + currentIndex * 8) = 0;
       currentIndex = currentIndex + 1;
     } while (currentIndex < resourceCount);
-    resourceCount = *(uint64_t *)(resourceIndex + 0x10);
+    resourceCount = *(uint64_t *)(ResourceIndex + 0x10);
   }
-  *(uint8_t *)(resourceIndex + 0x18) = 0;
-  if ((1 < resourceCount) && (*(int64_t *)(resourceIndex + 8) != 0)) {
+  *(uint8_t *)(ResourceIndex + 0x18) = 0;
+  if ((1 < resourceCount) && (*(int64_t *)(ResourceIndex + 8) != 0)) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
@@ -32471,7 +32471,7 @@ void CleanupSystemResourceHandlerC(uint8_t ObjectContextParameter,int64_t Valida
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = *(uint8_t **)(*(int64_t *)(ValidationContextParameter + 0x80) + 0x48);
@@ -32480,12 +32480,12 @@ void CleanupSystemResourceHandlerC(uint8_t ObjectContextParameter,int64_t Valida
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -32598,7 +32598,7 @@ void MemoryValidationCleanupHandler(uint8_t ObjectContextParameter,int64_t Valid
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = *(uint8_t **)(*(int64_t *)(ValidationContextParameter + 0x90) + 0x48);
@@ -32607,12 +32607,12 @@ void MemoryValidationCleanupHandler(uint8_t ObjectContextParameter,int64_t Valid
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -32634,7 +32634,7 @@ void ExceptionHandlerCleanup(uint8_t ObjectContextParameter,int64_t ValidationCo
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = (uint8_t *)**(uint64_t **)(ValidationContextParameter + 0x98);
@@ -32643,12 +32643,12 @@ void ExceptionHandlerCleanup(uint8_t ObjectContextParameter,int64_t ValidationCo
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -32670,7 +32670,7 @@ void ResourceIndexCleanupHandler(uint8_t ObjectContextParameter,int64_t Validati
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = (uint8_t *)**(uint64_t **)(ValidationContextParameter + 0x98);
@@ -32679,12 +32679,12 @@ void ResourceIndexCleanupHandler(uint8_t ObjectContextParameter,int64_t Validati
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -32715,7 +32715,7 @@ void SystemContextInitializer(uint8_t ObjectContextParameter,int64_t ValidationC
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = *(uint8_t **)(ValidationContextParameter + 0x28);
@@ -32724,12 +32724,12 @@ void SystemContextInitializer(uint8_t ObjectContextParameter,int64_t ValidationC
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -32751,7 +32751,7 @@ void ExceptionListManager(uint8_t ObjectContextParameter,int64_t ValidationConte
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = *(uint8_t **)(ValidationContextParameter + 0x28);
@@ -32760,12 +32760,12 @@ void ExceptionListManager(uint8_t ObjectContextParameter,int64_t ValidationConte
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -32917,7 +32917,7 @@ void SystemMemoryAllocator(uint8_t ObjectContextParameter,int64_t ValidationCont
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = (uint8_t *)**(uint64_t **)(ValidationContextParameter + 0x20);
@@ -32926,12 +32926,12 @@ void SystemMemoryAllocator(uint8_t ObjectContextParameter,int64_t ValidationCont
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -32953,7 +32953,7 @@ void ResourcePoolManager(uint8_t ObjectContextParameter,int64_t ValidationContex
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = (uint8_t *)**(uint64_t **)(ValidationContextParameter + 0x20);
@@ -32962,12 +32962,12 @@ void ResourcePoolManager(uint8_t ObjectContextParameter,int64_t ValidationContex
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -32989,13 +32989,13 @@ void MemorySegmentCleaner(uint8_t ObjectContextParameter,int64_t ValidationConte
 {
   int64_t *processPointer;
   int64_t *presourceTable;
-  int64_t *presourceIndex;
+  int64_t *pResourceIndex;
   
   presourceTable = *(int64_t **)(ValidationContextParameter + 0x20);
   ResourceContextPointer = (int64_t *)presourceTable[1];
-  for (presourceIndex = (int64_t *)*presourceTable; presourceIndex != ResourceContextPointer; presourceIndex = presourceIndex + 1) {
-    if ((int64_t *)*presourceIndex != (int64_t *)0x0) {
-      (**(code **)(*(int64_t *)*presourceIndex + 0x38))();
+  for (pResourceIndex = (int64_t *)*presourceTable; pResourceIndex != ResourceContextPointer; pResourceIndex = pResourceIndex + 1) {
+    if ((int64_t *)*pResourceIndex != (int64_t *)0x0) {
+      (**(code **)(*(int64_t *)*pResourceIndex + 0x38))();
     }
   }
   if (*presourceTable == 0) {
@@ -33184,13 +33184,13 @@ void ProcessResourceTableCleanup(uint8_t ObjectContextParameter, int64_t Validat
 {
   int64_t *processPointer;
   int64_t *presourceTable;
-  int64_t *presourceIndex;
+  int64_t *pResourceIndex;
   
   presourceTable = (int64_t *)(*(int64_t *)(ValidationContextParameter + 0x40) + 0x1868);
   ResourceContextPointer = *(int64_t **)(*(int64_t *)(ValidationContextParameter + 0x40) + 0x1870);
-  for (presourceIndex = (int64_t *)*presourceTable; presourceIndex != ResourceContextPointer; presourceIndex = presourceIndex + 1) {
-    if ((int64_t *)*presourceIndex != (int64_t *)0x0) {
-      (**(code **)(*(int64_t *)*presourceIndex + 0x38))();
+  for (pResourceIndex = (int64_t *)*presourceTable; pResourceIndex != ResourceContextPointer; pResourceIndex = pResourceIndex + 1) {
+    if ((int64_t *)*pResourceIndex != (int64_t *)0x0) {
+      (**(code **)(*(int64_t *)*pResourceIndex + 0x38))();
     }
   }
   if (*presourceTable == 0) {
@@ -33218,13 +33218,13 @@ void ProcessSecondaryResourceTableCleanup(uint8_t ObjectContextParameter, int64_
 {
   int64_t *processPointer;
   int64_t *presourceTable;
-  int64_t *presourceIndex;
+  int64_t *pResourceIndex;
   
   presourceTable = *(int64_t **)(ValidationContextParameter + 0x48);
   ResourceContextPointer = (int64_t *)presourceTable[1];
-  for (presourceIndex = (int64_t *)*presourceTable; presourceIndex != ResourceContextPointer; presourceIndex = presourceIndex + 1) {
-    if ((int64_t *)*presourceIndex != (int64_t *)0x0) {
-      (**(code **)(*(int64_t *)*presourceIndex + 0x38))();
+  for (pResourceIndex = (int64_t *)*presourceTable; pResourceIndex != ResourceContextPointer; pResourceIndex = pResourceIndex + 1) {
+    if ((int64_t *)*pResourceIndex != (int64_t *)0x0) {
+      (**(code **)(*(int64_t *)*pResourceIndex + 0x38))();
     }
   }
   if (*presourceTable == 0) {
@@ -33270,7 +33270,7 @@ void UnwindSystemContextInitializer(uint8_t ObjectContextParameter,int64_t Valid
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = *(uint8_t **)(*(int64_t *)(ValidationContextParameter + 0x50) + 0x48);
@@ -33279,12 +33279,12 @@ void UnwindSystemContextInitializer(uint8_t ObjectContextParameter,int64_t Valid
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -33316,7 +33316,7 @@ void ValidateAndProcessResourceIndex(uint8_t ObjectContextParameter, int64_t Val
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = (uint8_t *)**(uint64_t **)(ValidationContextParameter + 0x58);
@@ -33325,12 +33325,12 @@ void ValidateAndProcessResourceIndex(uint8_t ObjectContextParameter, int64_t Val
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -33362,7 +33362,7 @@ void ExecuteSystemResourceRelease(uint8_t ObjectContextParameter, int64_t Valida
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = (uint8_t *)**(uint64_t **)(ValidationContextParameter + 0x58);
@@ -33371,12 +33371,12 @@ void ExecuteSystemResourceRelease(uint8_t ObjectContextParameter, int64_t Valida
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -33460,7 +33460,7 @@ void UnwindProcessControllerSetup(uint8_t ObjectContextParameter,int64_t Validat
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t *pLoopIncrement;
   uint8_t *bytePointer5;
   uint64_t ContextValidationResult;
@@ -33474,12 +33474,12 @@ void UnwindProcessControllerSetup(uint8_t ObjectContextParameter,int64_t Validat
   if (pResourceValidationResult != (uint8_t *)0x0) {
     ContextValidationResult = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
     if (ContextValidationResult != 0) {
-      resourceIndex = ContextValidationResult + 0x80 + ((int64_t)pResourceValidationResult - ContextValidationResult >> 0x10) * 0x50;
-      resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-      if ((*(void ***)(ContextValidationResult + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-        *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-        *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-        pResourceIndex = (int *)(resourceIndex + 0x18);
+      ResourceIndex = ContextValidationResult + 0x80 + ((int64_t)pResourceValidationResult - ContextValidationResult >> 0x10) * 0x50;
+      ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+      if ((*(void ***)(ContextValidationResult + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+        *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+        *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+        pResourceIndex = (int *)(ResourceIndex + 0x18);
         *pResourceIndex = *pResourceIndex + -1;
         if (*pResourceIndex == 0) {
           SystemCleanupHandler();
@@ -33643,7 +33643,7 @@ void UnwindResourceCleanupHandler(uint8_t ObjectContextParameter,int64_t Validat
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = *(uint8_t **)(*(int64_t *)(ValidationContextParameter + 0x40) + 0x8c8);
@@ -33652,12 +33652,12 @@ void UnwindResourceCleanupHandler(uint8_t ObjectContextParameter,int64_t Validat
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -34025,7 +34025,7 @@ void UnwindErrorHandler(uint8_t ObjectContextParameter,int64_t ValidationContext
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = *(uint8_t **)(*(int64_t *)(ValidationContextParameter + 0x80) + 0x20);
@@ -34034,12 +34034,12 @@ void UnwindErrorHandler(uint8_t ObjectContextParameter,int64_t ValidationContext
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -34061,7 +34061,7 @@ void UnwindStateSynchronizer(uint8_t ObjectContextParameter,int64_t ValidationCo
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = (uint8_t *)**(uint64_t **)(ValidationContextParameter + 0x88);
@@ -34070,12 +34070,12 @@ void UnwindStateSynchronizer(uint8_t ObjectContextParameter,int64_t ValidationCo
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -34120,7 +34120,7 @@ void UnwindBufferManager(uint8_t ObjectContextParameter,int64_t ValidationContex
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = *(uint8_t **)(*(int64_t *)(ValidationContextParameter + 0x80) + 0x20);
@@ -34129,12 +34129,12 @@ void UnwindBufferManager(uint8_t ObjectContextParameter,int64_t ValidationContex
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -34198,7 +34198,7 @@ void UnwindCriticalSectionHandler(uint8_t ObjectContextParameter,int64_t Validat
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = *(uint8_t **)(*(int64_t *)(ValidationContextParameter + 0x48) + 0x20);
@@ -34207,12 +34207,12 @@ void UnwindCriticalSectionHandler(uint8_t ObjectContextParameter,int64_t Validat
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -34234,12 +34234,12 @@ void UnwindMutexHandler(uint8_t ObjectContextParameter,int64_t ValidationContext
 {
   int64_t loopCounter;
   int64_t *presourceTable;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   
   presourceTable = (int64_t *)(*(int64_t *)(ValidationContextParameter + 0x40) + 0x28);
   loopCounter = *(int64_t *)(*(int64_t *)(ValidationContextParameter + 0x40) + 0x30);
-  for (resourceIndex = *presourceTable; resourceIndex != localContextPointer; resourceIndex = resourceIndex + 0x548) {
-    ReleaseResourceMemory(resourceIndex);
+  for (ResourceIndex = *presourceTable; ResourceIndex != localContextPointer; ResourceIndex = ResourceIndex + 0x548) {
+    ReleaseResourceMemory(ResourceIndex);
   }
   if (*presourceTable == 0) {
     return;
@@ -34255,12 +34255,12 @@ void UnwindEventNotifier(uint8_t ObjectContextParameter,int64_t ValidationContex
 {
   int64_t loopCounter;
   int64_t *presourceTable;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   
   presourceTable = *(int64_t **)(ValidationContextParameter + 0x48);
   localContextPointer = presourceTable[1];
-  for (resourceIndex = *presourceTable; resourceIndex != localContextPointer; resourceIndex = resourceIndex + 0x548) {
-    ReleaseResourceMemory(resourceIndex);
+  for (ResourceIndex = *presourceTable; ResourceIndex != localContextPointer; ResourceIndex = ResourceIndex + 0x548) {
+    ReleaseResourceMemory(ResourceIndex);
   }
   if (*presourceTable == 0) {
     return;
@@ -34310,7 +34310,7 @@ void UnwindIoCompletionHandler(uint8_t ObjectContextParameter,int64_t Validation
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = *(uint8_t **)(*(int64_t *)(ValidationContextParameter + 0x40) + 0x20);
@@ -34319,12 +34319,12 @@ void UnwindIoCompletionHandler(uint8_t ObjectContextParameter,int64_t Validation
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -34356,7 +34356,7 @@ void ProcessResourceValidation(uint8_t ObjectContextParameter,int64_t Validation
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = (uint8_t *)**(uint64_t **)(ValidationContextParameter + 0x48);
@@ -34365,12 +34365,12 @@ void ProcessResourceValidation(uint8_t ObjectContextParameter,int64_t Validation
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -34402,12 +34402,12 @@ void CleanupResourceTable(uint8_t ObjectContextParameter,int64_t ValidationConte
 {
   int64_t loopCounter;
   int64_t *presourceTable;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   
   presourceTable = *(int64_t **)(ValidationContextParameter + 0x40);
   localContextPointer = presourceTable[1];
-  for (resourceIndex = *presourceTable; resourceIndex != localContextPointer; resourceIndex = resourceIndex + 0x548) {
-    ReleaseResourceMemory(resourceIndex);
+  for (ResourceIndex = *presourceTable; ResourceIndex != localContextPointer; ResourceIndex = ResourceIndex + 0x548) {
+    ReleaseResourceMemory(ResourceIndex);
   }
   if (*presourceTable == 0) {
     return;
@@ -34582,7 +34582,7 @@ void Unwind_180903310(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = *(uint8_t **)(*(int64_t *)(ValidationContextParameter + 0x40) + 0x20);
@@ -34591,12 +34591,12 @@ void Unwind_180903310(uint8_t ObjectContextParameter,int64_t ValidationContextPa
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -34748,12 +34748,12 @@ void Unwind_180903440(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int64_t loopCounter;
   int64_t *presourceTable;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   
   presourceTable = *(int64_t **)(ValidationContextParameter + 0x40);
   localContextPointer = presourceTable[1];
-  for (resourceIndex = *presourceTable; resourceIndex != localContextPointer; resourceIndex = resourceIndex + 0x50) {
-    ReleaseResourceIndex(resourceIndex);
+  for (ResourceIndex = *presourceTable; ResourceIndex != localContextPointer; ResourceIndex = ResourceIndex + 0x50) {
+    ReleaseResourceIndex(ResourceIndex);
   }
   if (*presourceTable == 0) {
     return;
@@ -34857,7 +34857,7 @@ void Unwind_1809034b0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = *(uint8_t **)(*(int64_t *)(ValidationContextParameter + 0x40) + 0x18);
@@ -34866,12 +34866,12 @@ void Unwind_1809034b0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -34893,7 +34893,7 @@ void Unwind_1809034c0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = *(uint8_t **)(*(int64_t *)(ValidationContextParameter + 0x60) + 0x18);
@@ -34902,12 +34902,12 @@ void Unwind_1809034c0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -34929,7 +34929,7 @@ void Unwind_1809034d0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = *(uint8_t **)(*(int64_t *)(ValidationContextParameter + 0x60) + 0x18);
@@ -34938,12 +34938,12 @@ void Unwind_1809034d0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -34965,7 +34965,7 @@ void Unwind_1809034e0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = (uint8_t *)**(uint64_t **)(ValidationContextParameter + 0x60);
@@ -34974,12 +34974,12 @@ void Unwind_1809034e0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -35001,21 +35001,21 @@ void Unwind_1809034f0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
-  resourceIndex = *(int64_t *)(ValidationContextParameter + 0x40);
+  ResourceIndex = *(int64_t *)(ValidationContextParameter + 0x40);
   CleanupResourceSystem();
-  if ((1 < *(uint64_t *)(resourceIndex + 0x10)) &&
-     (pResourceValidationResult = *(uint8_t **)(resourceIndex + 8), pResourceValidationResult != (uint8_t *)0x0)) {
+  if ((1 < *(uint64_t *)(ResourceIndex + 0x10)) &&
+     (pResourceValidationResult = *(uint8_t **)(ResourceIndex + 8), pResourceValidationResult != (uint8_t *)0x0)) {
     LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
     if (LoopIncrement != 0) {
-      resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-      resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-      if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-        *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-        *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-        pResourceIndex = (int *)(resourceIndex + 0x18);
+      ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+      ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+      if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+        *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+        *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+        pResourceIndex = (int *)(ResourceIndex + 0x18);
         *pResourceIndex = *pResourceIndex + -1;
         if (*pResourceIndex == 0) {
           SystemCleanupHandler();
@@ -35039,21 +35039,21 @@ void Unwind_180903500(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
-  resourceIndex = *(int64_t *)(ValidationContextParameter + 0x40);
+  ResourceIndex = *(int64_t *)(ValidationContextParameter + 0x40);
   CleanupResourceSystem();
-  if ((1 < *(uint64_t *)(resourceIndex + 0x10)) &&
-     (pResourceValidationResult = *(uint8_t **)(resourceIndex + 8), pResourceValidationResult != (uint8_t *)0x0)) {
+  if ((1 < *(uint64_t *)(ResourceIndex + 0x10)) &&
+     (pResourceValidationResult = *(uint8_t **)(ResourceIndex + 8), pResourceValidationResult != (uint8_t *)0x0)) {
     LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
     if (LoopIncrement != 0) {
-      resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-      resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-      if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-        *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-        *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-        pResourceIndex = (int *)(resourceIndex + 0x18);
+      ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+      ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+      if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+        *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+        *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+        pResourceIndex = (int *)(ResourceIndex + 0x18);
         *pResourceIndex = *pResourceIndex + -1;
         if (*pResourceIndex == 0) {
           SystemCleanupHandler();
@@ -35140,7 +35140,7 @@ void Unwind_180903520(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = *(uint8_t **)(*(int64_t *)(ValidationContextParameter + 0x70) + 0x300);
@@ -35149,12 +35149,12 @@ void Unwind_180903520(uint8_t ObjectContextParameter,int64_t ValidationContextPa
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -35190,21 +35190,21 @@ void Unwind_180903560(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
-  resourceIndex = *(int64_t *)(ValidationContextParameter + 0x70);
+  ResourceIndex = *(int64_t *)(ValidationContextParameter + 0x70);
   CleanupResourceSystem();
-  if ((1 < *(uint64_t *)(resourceIndex + 0x340)) &&
-     (pResourceValidationResult = *(uint8_t **)(resourceIndex + 0x338), pResourceValidationResult != (uint8_t *)0x0)) {
+  if ((1 < *(uint64_t *)(ResourceIndex + 0x340)) &&
+     (pResourceValidationResult = *(uint8_t **)(ResourceIndex + 0x338), pResourceValidationResult != (uint8_t *)0x0)) {
     LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
     if (LoopIncrement != 0) {
-      resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-      resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-      if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-        *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-        *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-        pResourceIndex = (int *)(resourceIndex + 0x18);
+      ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+      ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+      if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+        *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+        *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+        pResourceIndex = (int *)(ResourceIndex + 0x18);
         *pResourceIndex = *pResourceIndex + -1;
         if (*pResourceIndex == 0) {
           SystemCleanupHandler();
@@ -35316,21 +35316,21 @@ void Unwind_1809035e0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
-  resourceIndex = *(int64_t *)(ValidationContextParameter + 0x80);
+  ResourceIndex = *(int64_t *)(ValidationContextParameter + 0x80);
   CleanupResourceSystem();
-  if ((1 < *(uint64_t *)(resourceIndex + 0x10)) &&
-     (pResourceValidationResult = *(uint8_t **)(resourceIndex + 8), pResourceValidationResult != (uint8_t *)0x0)) {
+  if ((1 < *(uint64_t *)(ResourceIndex + 0x10)) &&
+     (pResourceValidationResult = *(uint8_t **)(ResourceIndex + 8), pResourceValidationResult != (uint8_t *)0x0)) {
     LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
     if (LoopIncrement != 0) {
-      resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-      resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-      if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-        *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-        *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-        pResourceIndex = (int *)(resourceIndex + 0x18);
+      ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+      ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+      if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+        *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+        *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+        pResourceIndex = (int *)(ResourceIndex + 0x18);
         *pResourceIndex = *pResourceIndex + -1;
         if (*pResourceIndex == 0) {
           SystemCleanupHandler();
@@ -35354,21 +35354,21 @@ void Unwind_1809035f0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
-  resourceIndex = *(int64_t *)(ValidationContextParameter + 0x80);
+  ResourceIndex = *(int64_t *)(ValidationContextParameter + 0x80);
   CleanupResourceSystem();
-  if ((1 < *(uint64_t *)(resourceIndex + 0x10)) &&
-     (pResourceValidationResult = *(uint8_t **)(resourceIndex + 8), pResourceValidationResult != (uint8_t *)0x0)) {
+  if ((1 < *(uint64_t *)(ResourceIndex + 0x10)) &&
+     (pResourceValidationResult = *(uint8_t **)(ResourceIndex + 8), pResourceValidationResult != (uint8_t *)0x0)) {
     LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
     if (LoopIncrement != 0) {
-      resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-      resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-      if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-        *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-        *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-        pResourceIndex = (int *)(resourceIndex + 0x18);
+      ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+      ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+      if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+        *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+        *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+        pResourceIndex = (int *)(ResourceIndex + 0x18);
         *pResourceIndex = *pResourceIndex + -1;
         if (*pResourceIndex == 0) {
           SystemCleanupHandler();
@@ -40887,9 +40887,9 @@ void ReleaseSystemMutexLock(uint8_t ObjectContextParameter,int64_t ValidationCon
 void CleanupSystemResourceContextA(uint8_t ObjectContextParameter,int64_t ValidationContextParameter)
 
 {
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   
-  resourceIndex = *(int64_t *)(ValidationContextParameter + 0x48);
+  ResourceIndex = *(int64_t *)(ValidationContextParameter + 0x48);
   *(uint8_t *)(localContextPointer + 0x20) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(localContextPointer + 0x28) != 0) {
                     // WARNING: Subroutine does not return
@@ -40947,7 +40947,7 @@ void Unwind_180904920(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = *(uint8_t **)(*(int64_t *)(ValidationContextParameter + 0x40) + 0x28);
@@ -40956,12 +40956,12 @@ void Unwind_180904920(uint8_t ObjectContextParameter,int64_t ValidationContextPa
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -40983,7 +40983,7 @@ void Unwind_180904930(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = *(uint8_t **)(*(int64_t *)(ValidationContextParameter + 0x40) + 0x48);
@@ -40992,12 +40992,12 @@ void Unwind_180904930(uint8_t ObjectContextParameter,int64_t ValidationContextPa
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -41241,7 +41241,7 @@ void Unwind_1809049d0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = *(uint8_t **)(*(int64_t *)(ValidationContextParameter + 0x70) + 8);
@@ -41250,12 +41250,12 @@ void Unwind_1809049d0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -41277,7 +41277,7 @@ void Unwind_1809049e0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = *(uint8_t **)(*(int64_t *)(ValidationContextParameter + 0x70) + 0x28);
@@ -41286,12 +41286,12 @@ void Unwind_1809049e0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -41313,7 +41313,7 @@ void Unwind_1809049f0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = *(uint8_t **)(*(int64_t *)(ValidationContextParameter + 0x70) + 0x48);
@@ -41322,12 +41322,12 @@ void Unwind_1809049f0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -41562,7 +41562,7 @@ void Unwind_180904a80(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = (uint8_t *)**(uint64_t **)(ValidationContextParameter + 0x70);
@@ -41571,12 +41571,12 @@ void Unwind_180904a80(uint8_t ObjectContextParameter,int64_t ValidationContextPa
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -41598,7 +41598,7 @@ void Unwind_180904a90(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = (uint8_t *)**(uint64_t **)(ValidationContextParameter + 0x70);
@@ -41607,12 +41607,12 @@ void Unwind_180904a90(uint8_t ObjectContextParameter,int64_t ValidationContextPa
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -41847,7 +41847,7 @@ void Catch_180904b90(uint8_t ObjectContextParameter,int64_t ValidationContextPar
 {
   uint64_t resourceHash;
   int64_t resourceTable;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   int64_t DataOffset;
   uint64_t ResourceContextOffset;
   uint64_t ContextValidationResult;
@@ -41856,7 +41856,7 @@ void Catch_180904b90(uint8_t ObjectContextParameter,int64_t ValidationContextPar
   
   resourceHash = *(uint64_t *)(ValidationContextParameter + 0x20);
   resourceTable = *(int64_t *)(ValidationContextParameter + 0xa0);
-  resourceIndex = *(int64_t *)(resourceTable + 0x40);
+  ResourceIndex = *(int64_t *)(resourceTable + 0x40);
   *(uint8_t *)(resourceTable + 0x70) = *(uint8_t *)(ValidationContextParameter + 0x30);
   *(uint8_t *)(resourceTable + 0x60) = *(uint8_t *)(ValidationContextParameter + 0xb8);
   lVar7 = *(int64_t *)(ValidationContextParameter + 0x28);
@@ -41884,7 +41884,7 @@ void Catch_180904b90(uint8_t ObjectContextParameter,int64_t ValidationContextPar
       } while (ContextValidationResult != ResourceCounter);
       *(uint64_t *)(ValidationContextParameter + 0x20) = ContextValidationResult;
     }
-    if (lVar7 == resourceIndex) break;
+    if (lVar7 == ResourceIndex) break;
     lVar7 = *(int64_t *)(lVar7 + 0x100);
     ResourceContextOffset = ContextValidationResult;
   }
@@ -41899,7 +41899,7 @@ void Catch_180904c60(uint8_t ObjectContextParameter,int64_t ValidationContextPar
 {
   int64_t loopCounter;
   int64_t resourceTable;
-  int64_t *presourceIndex;
+  int64_t *pResourceIndex;
   uint64_t LoopIncrement;
   uint64_t ResourceContextOffset;
   int64_t MemoryAddress;
@@ -41941,14 +41941,14 @@ void Catch_180904c60(uint8_t ObjectContextParameter,int64_t ValidationContextPar
   if (resourceTable != 0) {
     while( true ) {
       *(uint64_t *)(ValidationContextParameter + 0x20) = ResourceCounter + 0x20;
-      presourceIndex = *(int64_t **)(localContextPointer + 0x60);
+      pResourceIndex = *(int64_t **)(localContextPointer + 0x60);
       *(uint8_t *)
        (*(int64_t *)
-         (presourceIndex[3] +
-         (((ResourceCounter + 0x20 & 0xffffffffffffffe0) - **(int64_t **)(presourceIndex[3] + presourceIndex[1] * 8) >> 5) +
-          presourceIndex[1] & *presourceIndex - 1U) * 8) + 8) = 0;
-      presourceIndex = *(int64_t **)(localContextPointer + 0x60);
-      presourceIndex[1] = presourceIndex[1] - 1U & *presourceIndex - 1U;
+         (pResourceIndex[3] +
+         (((ResourceCounter + 0x20 & 0xffffffffffffffe0) - **(int64_t **)(pResourceIndex[3] + pResourceIndex[1] * 8) >> 5) +
+          pResourceIndex[1] & *pResourceIndex - 1U) * 8) + 8) = 0;
+      pResourceIndex = *(int64_t **)(localContextPointer + 0x60);
+      pResourceIndex[1] = pResourceIndex[1] - 1U & *pResourceIndex - 1U;
       SystemDataPointer = *(int64_t *)(SystemDataPointer + 0x100);
       if (SystemDataPointer == 0) break;
       ResourceCounter = *(uint64_t *)(ValidationContextParameter + 0x20);
@@ -42264,7 +42264,7 @@ void Unwind_180904e70(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = *(uint8_t **)(ValidationContextParameter + 0xc0);
@@ -42273,12 +42273,12 @@ void Unwind_180904e70(uint8_t ObjectContextParameter,int64_t ValidationContextPa
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -42378,7 +42378,7 @@ void Unwind_180904f30(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = *(uint8_t **)(ValidationContextParameter + 0x90);
@@ -42387,12 +42387,12 @@ void Unwind_180904f30(uint8_t ObjectContextParameter,int64_t ValidationContextPa
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -42506,7 +42506,7 @@ void Unwind_180904fb0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = *(uint8_t **)(ValidationContextParameter + 0x20);
@@ -42515,12 +42515,12 @@ void Unwind_180904fb0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -42666,7 +42666,7 @@ void Unwind_180905030(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = *(uint8_t **)(ValidationContextParameter + 0x40);
@@ -42675,12 +42675,12 @@ void Unwind_180905030(uint8_t ObjectContextParameter,int64_t ValidationContextPa
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -42723,7 +42723,7 @@ void Unwind_180905050(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = *(uint8_t **)(ValidationContextParameter + 0x98);
@@ -42732,12 +42732,12 @@ void Unwind_180905050(uint8_t ObjectContextParameter,int64_t ValidationContextPa
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -43080,7 +43080,7 @@ void Unwind_180905200(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = *(uint8_t **)(ValidationContextParameter + 0x148);
@@ -43089,12 +43089,12 @@ void Unwind_180905200(uint8_t ObjectContextParameter,int64_t ValidationContextPa
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -43137,7 +43137,7 @@ void Unwind_180905220(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = *(uint8_t **)(ValidationContextParameter + 0x208);
@@ -43146,12 +43146,12 @@ void Unwind_180905220(uint8_t ObjectContextParameter,int64_t ValidationContextPa
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -43212,7 +43212,7 @@ void Unwind_180905260(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = *(uint8_t **)(ValidationContextParameter + 0x108);
@@ -43221,12 +43221,12 @@ void Unwind_180905260(uint8_t ObjectContextParameter,int64_t ValidationContextPa
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -43269,7 +43269,7 @@ void Unwind_180905280(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = *(uint8_t **)(ValidationContextParameter + 0x228);
@@ -43278,12 +43278,12 @@ void Unwind_180905280(uint8_t ObjectContextParameter,int64_t ValidationContextPa
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -43412,7 +43412,7 @@ void Unwind_180905380(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = (uint8_t *)**(uint64_t **)(ValidationContextParameter + 0x20);
@@ -43421,12 +43421,12 @@ void Unwind_180905380(uint8_t ObjectContextParameter,int64_t ValidationContextPa
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -43779,7 +43779,7 @@ void Unwind_180905540(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = *(uint8_t **)(*(int64_t *)(ValidationContextParameter + 0x50) + 0x213438);
@@ -43788,12 +43788,12 @@ void Unwind_180905540(uint8_t ObjectContextParameter,int64_t ValidationContextPa
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -43842,7 +43842,7 @@ void Unwind_1809055b0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = (uint8_t *)**(uint64_t **)(ValidationContextParameter + 0x30);
@@ -43851,12 +43851,12 @@ void Unwind_1809055b0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -43878,7 +43878,7 @@ void Unwind_1809055c0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = (uint8_t *)**(uint64_t **)(ValidationContextParameter + 0x30);
@@ -43887,12 +43887,12 @@ void Unwind_1809055c0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -44164,7 +44164,7 @@ void Unwind_1809057b0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int64_t *processPointer;
   int64_t *presourceTable;
-  int64_t *presourceIndex;
+  int64_t *pResourceIndex;
   int64_t *contextPointer;
   uint8_t *bytePointer5;
   int integerValue6;
@@ -44229,9 +44229,9 @@ LAB_1801571ef:
   }
   ResourceContextPointer = resourcePointer5 + 6;
   ValidateResourceBuffer(ResourceContextPointer);
-  presourceIndex = resourcePointer5 + 0x2d;
+  pResourceIndex = resourcePointer5 + 0x2d;
   plVar4 = (int64_t *)resourcePointer5[0x2e];
-  plongValue8 = (int64_t *)*presourceIndex;
+  plongValue8 = (int64_t *)*pResourceIndex;
   if (plongValue8 != plVar4) {
     do {
       if ((int64_t *)*plongValue8 != (int64_t *)0x0) {
@@ -44239,7 +44239,7 @@ LAB_1801571ef:
       }
       plongValue8 = plongValue8 + 1;
     } while (plongValue8 != plVar4);
-    plongValue8 = (int64_t *)*presourceIndex;
+    plongValue8 = (int64_t *)*pResourceIndex;
   }
   resourcePointer5[0x2e] = plongValue8;
   integerValue6 = _Mtx_unlock(presourceTable);
@@ -44255,8 +44255,8 @@ LAB_1801571ef:
   if ((int64_t *)resourcePointer5[0x3d] != (int64_t *)0x0) {
     (**(code **)(*(int64_t *)resourcePointer5[0x3d] + 0x38))();
   }
-  plStackX_10 = presourceIndex;
-  UpdateResourceIndex(presourceIndex);
+  plStackX_10 = pResourceIndex;
+  UpdateResourceIndex(pResourceIndex);
   plStackX_10 = resourcePointer5 + 0x28;
   ResetResourceSystem();
   plStackX_10 = resourcePointer5 + 0x24;
@@ -44470,7 +44470,7 @@ void Unwind_180905880(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = (uint8_t *)**(uint64_t **)(ValidationContextParameter + 0x2e8);
@@ -44479,12 +44479,12 @@ void Unwind_180905880(uint8_t ObjectContextParameter,int64_t ValidationContextPa
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -44506,19 +44506,19 @@ void Unwind_180905890(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int64_t loopCounter;
   int64_t *presourceTable;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   
   presourceTable = *(int64_t **)(ValidationContextParameter + 0x2e0);
   localContextPointer = presourceTable[1];
-  for (resourceIndex = *presourceTable; resourceIndex != localContextPointer; resourceIndex = resourceIndex + 0x28) {
-    *(uint8_t *)(resourceIndex + 8) = &SystemResourceHandlerTemplate;
-    if (*(int64_t *)(resourceIndex + 0x10) != 0) {
+  for (ResourceIndex = *presourceTable; ResourceIndex != localContextPointer; ResourceIndex = ResourceIndex + 0x28) {
+    *(uint8_t *)(ResourceIndex + 8) = &SystemResourceHandlerTemplate;
+    if (*(int64_t *)(ResourceIndex + 0x10) != 0) {
                     // WARNING: Subroutine does not return
       ExecuteSystemEmergencyExit();
     }
-    *(uint8_t *)(resourceIndex + 0x10) = 0;
-    *(uint32_t *)(resourceIndex + 0x20) = 0;
-    *(uint8_t *)(resourceIndex + 8) = &SystemDataStructure;
+    *(uint8_t *)(ResourceIndex + 0x10) = 0;
+    *(uint32_t *)(ResourceIndex + 0x20) = 0;
+    *(uint8_t *)(ResourceIndex + 8) = &SystemDataStructure;
   }
   if (*presourceTable != 0) {
                     // WARNING: Subroutine does not return
@@ -44580,19 +44580,19 @@ void Unwind_1809058c0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int64_t loopCounter;
   int64_t *presourceTable;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   
   presourceTable = *(int64_t **)(ValidationContextParameter + 0x2e8);
   localContextPointer = presourceTable[1];
-  for (resourceIndex = *presourceTable; resourceIndex != localContextPointer; resourceIndex = resourceIndex + 0x28) {
-    *(uint8_t *)(resourceIndex + 8) = &SystemResourceHandlerTemplate;
-    if (*(int64_t *)(resourceIndex + 0x10) != 0) {
+  for (ResourceIndex = *presourceTable; ResourceIndex != localContextPointer; ResourceIndex = ResourceIndex + 0x28) {
+    *(uint8_t *)(ResourceIndex + 8) = &SystemResourceHandlerTemplate;
+    if (*(int64_t *)(ResourceIndex + 0x10) != 0) {
                     // WARNING: Subroutine does not return
       ExecuteSystemEmergencyExit();
     }
-    *(uint8_t *)(resourceIndex + 0x10) = 0;
-    *(uint32_t *)(resourceIndex + 0x20) = 0;
-    *(uint8_t *)(resourceIndex + 8) = &SystemDataStructure;
+    *(uint8_t *)(ResourceIndex + 0x10) = 0;
+    *(uint32_t *)(ResourceIndex + 0x20) = 0;
+    *(uint8_t *)(ResourceIndex + 8) = &SystemDataStructure;
   }
   if (*presourceTable != 0) {
                     // WARNING: Subroutine does not return
@@ -44761,7 +44761,7 @@ void Unwind_180905950(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int64_t *processPointer;
   int64_t *presourceTable;
-  int64_t *presourceIndex;
+  int64_t *pResourceIndex;
   int64_t *contextPointer;
   uint8_t *bytePointer5;
   int integerValue6;
@@ -44826,9 +44826,9 @@ LAB_1801571ef:
   }
   ResourceContextPointer = resourcePointer5 + 6;
   ValidateResourceBuffer(ResourceContextPointer);
-  presourceIndex = resourcePointer5 + 0x2d;
+  pResourceIndex = resourcePointer5 + 0x2d;
   plVar4 = (int64_t *)resourcePointer5[0x2e];
-  plongValue8 = (int64_t *)*presourceIndex;
+  plongValue8 = (int64_t *)*pResourceIndex;
   if (plongValue8 != plVar4) {
     do {
       if ((int64_t *)*plongValue8 != (int64_t *)0x0) {
@@ -44836,7 +44836,7 @@ LAB_1801571ef:
       }
       plongValue8 = plongValue8 + 1;
     } while (plongValue8 != plVar4);
-    plongValue8 = (int64_t *)*presourceIndex;
+    plongValue8 = (int64_t *)*pResourceIndex;
   }
   resourcePointer5[0x2e] = plongValue8;
   integerValue6 = _Mtx_unlock(presourceTable);
@@ -44852,8 +44852,8 @@ LAB_1801571ef:
   if ((int64_t *)resourcePointer5[0x3d] != (int64_t *)0x0) {
     (**(code **)(*(int64_t *)resourcePointer5[0x3d] + 0x38))();
   }
-  plStackX_10 = presourceIndex;
-  UpdateResourceIndex(presourceIndex);
+  plStackX_10 = pResourceIndex;
+  UpdateResourceIndex(pResourceIndex);
   plStackX_10 = resourcePointer5 + 0x28;
   ResetResourceSystem();
   plStackX_10 = resourcePointer5 + 0x24;
@@ -45453,13 +45453,13 @@ void Unwind_180905c10(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int64_t loopCounter;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   uint64_t ResourceContextOffset;
   
-  resourceIndex = *(int64_t *)(ValidationContextParameter + 0x38);
-  LoopIncrement = *(uint64_t *)(resourceIndex + 0x10);
-  loopCounter = *(int64_t *)(resourceIndex + 8);
+  ResourceIndex = *(int64_t *)(ValidationContextParameter + 0x38);
+  LoopIncrement = *(uint64_t *)(ResourceIndex + 0x10);
+  loopCounter = *(int64_t *)(ResourceIndex + 8);
   ResourceContextOffset = 0;
   if (LoopIncrement != 0) {
     do {
@@ -45472,10 +45472,10 @@ void Unwind_180905c10(uint8_t ObjectContextParameter,int64_t ValidationContextPa
       *(uint8_t *)(localContextPointer + ResourceContextOffset * 8) = 0;
       ResourceContextOffset = ResourceContextOffset + 1;
     } while (ResourceContextOffset < LoopIncrement);
-    LoopIncrement = *(uint64_t *)(resourceIndex + 0x10);
+    LoopIncrement = *(uint64_t *)(ResourceIndex + 0x10);
   }
-  *(uint8_t *)(resourceIndex + 0x18) = 0;
-  if ((1 < LoopIncrement) && (*(int64_t *)(resourceIndex + 8) != 0)) {
+  *(uint8_t *)(ResourceIndex + 0x18) = 0;
+  if ((1 < LoopIncrement) && (*(int64_t *)(ResourceIndex + 8) != 0)) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
@@ -45489,13 +45489,13 @@ void Unwind_180905c20(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int64_t loopCounter;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   uint64_t ResourceContextOffset;
   
-  resourceIndex = *(int64_t *)(ValidationContextParameter + 0x38);
-  LoopIncrement = *(uint64_t *)(resourceIndex + 0x10);
-  loopCounter = *(int64_t *)(resourceIndex + 8);
+  ResourceIndex = *(int64_t *)(ValidationContextParameter + 0x38);
+  LoopIncrement = *(uint64_t *)(ResourceIndex + 0x10);
+  loopCounter = *(int64_t *)(ResourceIndex + 8);
   ResourceContextOffset = 0;
   if (LoopIncrement != 0) {
     do {
@@ -45508,10 +45508,10 @@ void Unwind_180905c20(uint8_t ObjectContextParameter,int64_t ValidationContextPa
       *(uint8_t *)(localContextPointer + ResourceContextOffset * 8) = 0;
       ResourceContextOffset = ResourceContextOffset + 1;
     } while (ResourceContextOffset < LoopIncrement);
-    LoopIncrement = *(uint64_t *)(resourceIndex + 0x10);
+    LoopIncrement = *(uint64_t *)(ResourceIndex + 0x10);
   }
-  *(uint8_t *)(resourceIndex + 0x18) = 0;
-  if ((1 < LoopIncrement) && (*(int64_t *)(resourceIndex + 8) != 0)) {
+  *(uint8_t *)(ResourceIndex + 0x18) = 0;
+  if ((1 < LoopIncrement) && (*(int64_t *)(ResourceIndex + 8) != 0)) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
@@ -45525,13 +45525,13 @@ void Unwind_180905c30(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int64_t loopCounter;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   uint64_t ResourceContextOffset;
   
-  resourceIndex = *(int64_t *)(ValidationContextParameter + 0x40);
-  LoopIncrement = *(uint64_t *)(resourceIndex + 0x10);
-  loopCounter = *(int64_t *)(resourceIndex + 8);
+  ResourceIndex = *(int64_t *)(ValidationContextParameter + 0x40);
+  LoopIncrement = *(uint64_t *)(ResourceIndex + 0x10);
+  loopCounter = *(int64_t *)(ResourceIndex + 8);
   ResourceContextOffset = 0;
   if (LoopIncrement != 0) {
     do {
@@ -45544,10 +45544,10 @@ void Unwind_180905c30(uint8_t ObjectContextParameter,int64_t ValidationContextPa
       *(uint8_t *)(localContextPointer + ResourceContextOffset * 8) = 0;
       ResourceContextOffset = ResourceContextOffset + 1;
     } while (ResourceContextOffset < LoopIncrement);
-    LoopIncrement = *(uint64_t *)(resourceIndex + 0x10);
+    LoopIncrement = *(uint64_t *)(ResourceIndex + 0x10);
   }
-  *(uint8_t *)(resourceIndex + 0x18) = 0;
-  if ((1 < LoopIncrement) && (*(int64_t *)(resourceIndex + 8) != 0)) {
+  *(uint8_t *)(ResourceIndex + 0x18) = 0;
+  if ((1 < LoopIncrement) && (*(int64_t *)(ResourceIndex + 8) != 0)) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
@@ -45561,13 +45561,13 @@ void Unwind_180905c40(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int64_t loopCounter;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   uint64_t ResourceContextOffset;
   
-  resourceIndex = *(int64_t *)(ValidationContextParameter + 0x40);
-  LoopIncrement = *(uint64_t *)(resourceIndex + 0x10);
-  loopCounter = *(int64_t *)(resourceIndex + 8);
+  ResourceIndex = *(int64_t *)(ValidationContextParameter + 0x40);
+  LoopIncrement = *(uint64_t *)(ResourceIndex + 0x10);
+  loopCounter = *(int64_t *)(ResourceIndex + 8);
   ResourceContextOffset = 0;
   if (LoopIncrement != 0) {
     do {
@@ -45580,10 +45580,10 @@ void Unwind_180905c40(uint8_t ObjectContextParameter,int64_t ValidationContextPa
       *(uint8_t *)(localContextPointer + ResourceContextOffset * 8) = 0;
       ResourceContextOffset = ResourceContextOffset + 1;
     } while (ResourceContextOffset < LoopIncrement);
-    LoopIncrement = *(uint64_t *)(resourceIndex + 0x10);
+    LoopIncrement = *(uint64_t *)(ResourceIndex + 0x10);
   }
-  *(uint8_t *)(resourceIndex + 0x18) = 0;
-  if ((1 < LoopIncrement) && (*(int64_t *)(resourceIndex + 8) != 0)) {
+  *(uint8_t *)(ResourceIndex + 0x18) = 0;
+  if ((1 < LoopIncrement) && (*(int64_t *)(ResourceIndex + 8) != 0)) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
@@ -45661,13 +45661,13 @@ void Unwind_180905c60(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int64_t loopCounter;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   uint64_t ResourceContextOffset;
   
-  resourceIndex = *(int64_t *)(ValidationContextParameter + 0x40);
-  LoopIncrement = *(uint64_t *)(resourceIndex + 0x340);
-  loopCounter = *(int64_t *)(resourceIndex + 0x338);
+  ResourceIndex = *(int64_t *)(ValidationContextParameter + 0x40);
+  LoopIncrement = *(uint64_t *)(ResourceIndex + 0x340);
+  loopCounter = *(int64_t *)(ResourceIndex + 0x338);
   ResourceContextOffset = 0;
   if (LoopIncrement != 0) {
     do {
@@ -45680,10 +45680,10 @@ void Unwind_180905c60(uint8_t ObjectContextParameter,int64_t ValidationContextPa
       *(uint8_t *)(localContextPointer + ResourceContextOffset * 8) = 0;
       ResourceContextOffset = ResourceContextOffset + 1;
     } while (ResourceContextOffset < LoopIncrement);
-    LoopIncrement = *(uint64_t *)(resourceIndex + 0x340);
+    LoopIncrement = *(uint64_t *)(ResourceIndex + 0x340);
   }
-  *(uint8_t *)(resourceIndex + 0x348) = 0;
-  if ((1 < LoopIncrement) && (*(int64_t *)(resourceIndex + 0x338) != 0)) {
+  *(uint8_t *)(ResourceIndex + 0x348) = 0;
+  if ((1 < LoopIncrement) && (*(int64_t *)(ResourceIndex + 0x338) != 0)) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
@@ -45697,13 +45697,13 @@ void Unwind_180905c80(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int64_t loopCounter;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   uint64_t ResourceContextOffset;
   
-  resourceIndex = *(int64_t *)(ValidationContextParameter + 0x48);
-  LoopIncrement = *(uint64_t *)(resourceIndex + 0x10);
-  loopCounter = *(int64_t *)(resourceIndex + 8);
+  ResourceIndex = *(int64_t *)(ValidationContextParameter + 0x48);
+  LoopIncrement = *(uint64_t *)(ResourceIndex + 0x10);
+  loopCounter = *(int64_t *)(ResourceIndex + 8);
   ResourceContextOffset = 0;
   if (LoopIncrement != 0) {
     do {
@@ -45716,10 +45716,10 @@ void Unwind_180905c80(uint8_t ObjectContextParameter,int64_t ValidationContextPa
       *(uint8_t *)(localContextPointer + ResourceContextOffset * 8) = 0;
       ResourceContextOffset = ResourceContextOffset + 1;
     } while (ResourceContextOffset < LoopIncrement);
-    LoopIncrement = *(uint64_t *)(resourceIndex + 0x10);
+    LoopIncrement = *(uint64_t *)(ResourceIndex + 0x10);
   }
-  *(uint8_t *)(resourceIndex + 0x18) = 0;
-  if ((1 < LoopIncrement) && (*(int64_t *)(resourceIndex + 8) != 0)) {
+  *(uint8_t *)(ResourceIndex + 0x18) = 0;
+  if ((1 < LoopIncrement) && (*(int64_t *)(ResourceIndex + 8) != 0)) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
@@ -45733,13 +45733,13 @@ void Unwind_180905c90(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int64_t loopCounter;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   uint64_t ResourceContextOffset;
   
-  resourceIndex = *(int64_t *)(ValidationContextParameter + 0x48);
-  LoopIncrement = *(uint64_t *)(resourceIndex + 0x10);
-  loopCounter = *(int64_t *)(resourceIndex + 8);
+  ResourceIndex = *(int64_t *)(ValidationContextParameter + 0x48);
+  LoopIncrement = *(uint64_t *)(ResourceIndex + 0x10);
+  loopCounter = *(int64_t *)(ResourceIndex + 8);
   ResourceContextOffset = 0;
   if (LoopIncrement != 0) {
     do {
@@ -45752,10 +45752,10 @@ void Unwind_180905c90(uint8_t ObjectContextParameter,int64_t ValidationContextPa
       *(uint8_t *)(localContextPointer + ResourceContextOffset * 8) = 0;
       ResourceContextOffset = ResourceContextOffset + 1;
     } while (ResourceContextOffset < LoopIncrement);
-    LoopIncrement = *(uint64_t *)(resourceIndex + 0x10);
+    LoopIncrement = *(uint64_t *)(ResourceIndex + 0x10);
   }
-  *(uint8_t *)(resourceIndex + 0x18) = 0;
-  if ((1 < LoopIncrement) && (*(int64_t *)(resourceIndex + 8) != 0)) {
+  *(uint8_t *)(ResourceIndex + 0x18) = 0;
+  if ((1 < LoopIncrement) && (*(int64_t *)(ResourceIndex + 8) != 0)) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
@@ -46033,7 +46033,7 @@ void Unwind_180905e40(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int64_t *processPointer;
   int *pOperationResult;
-  int64_t *presourceIndex;
+  int64_t *pResourceIndex;
   int ResultIndex;
   int64_t MemoryRegion;
   int64_t MemoryAddress;
@@ -46041,16 +46041,16 @@ void Unwind_180905e40(uint8_t ObjectContextParameter,int64_t ValidationContextPa
   int64_t longValue8;
   bool bVar9;
   
-  presourceIndex = (int64_t *)(ValidationContextParameter + 0x28);
-  ProcessResourceIndex((uint64_t)(*(uint *)(resourceData + 0x30) & 0x1f) * 0x1a8 + *presourceIndex);
+  pResourceIndex = (int64_t *)(ValidationContextParameter + 0x28);
+  ProcessResourceIndex((uint64_t)(*(uint *)(resourceData + 0x30) & 0x1f) * 0x1a8 + *pResourceIndex);
   LOCK();
-  ResourceContextPointer = (int64_t *)(*presourceIndex + 0x3508);
+  ResourceContextPointer = (int64_t *)(*pResourceIndex + 0x3508);
   ResourceTablePointer = *ResourceContextPointer;
   *ResourceContextPointer = *ResourceContextPointer + 1;
   UNLOCK();
   if (ResourceTablePointer == 0x1f) {
     *(uint8_t *)(*(int64_t *)(ValidationContextParameter + 0x38) + 8) = 0;
-    ResourceTablePointer = *presourceIndex;
+    ResourceTablePointer = *pResourceIndex;
     ResourceEntryPointer = *(int64_t *)(ValidationContextParameter + 0x40);
     LOCK();
     pOperationResult = (int *)(ResourceTablePointer + 0x3530);
@@ -46199,12 +46199,12 @@ void Unwind_180905ec0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int64_t loopCounter;
   int64_t *presourceTable;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   
   presourceTable = (int64_t *)(*(int64_t *)(ValidationContextParameter + 0x50) + 0x3c8);
   loopCounter = *(int64_t *)(*(int64_t *)(ValidationContextParameter + 0x50) + 0x3d0);
-  for (resourceIndex = *presourceTable; resourceIndex != localContextPointer; resourceIndex = resourceIndex + 0x1a8) {
-    ProcessResourceIndex(resourceIndex);
+  for (ResourceIndex = *presourceTable; ResourceIndex != localContextPointer; ResourceIndex = ResourceIndex + 0x1a8) {
+    ProcessResourceIndex(ResourceIndex);
   }
   if (*presourceTable == 0) {
     return;
@@ -46220,12 +46220,12 @@ void Unwind_180905ee0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int64_t loopCounter;
   int64_t *presourceTable;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   
   presourceTable = *(int64_t **)(ValidationContextParameter + 0x60);
   localContextPointer = presourceTable[1];
-  for (resourceIndex = *presourceTable; resourceIndex != localContextPointer; resourceIndex = resourceIndex + 0x1a8) {
-    ProcessResourceIndex(resourceIndex);
+  for (ResourceIndex = *presourceTable; ResourceIndex != localContextPointer; ResourceIndex = ResourceIndex + 0x1a8) {
+    ProcessResourceIndex(ResourceIndex);
   }
   if (*presourceTable == 0) {
     return;
@@ -46408,12 +46408,12 @@ void Unwind_180905f80(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int64_t loopCounter;
   int64_t *presourceTable;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   
   presourceTable = *(int64_t **)(ValidationContextParameter + 0x40);
   localContextPointer = presourceTable[1];
-  for (resourceIndex = *presourceTable; resourceIndex != localContextPointer; resourceIndex = resourceIndex + 0x1a8) {
-    ProcessResourceIndex(resourceIndex);
+  for (ResourceIndex = *presourceTable; ResourceIndex != localContextPointer; ResourceIndex = ResourceIndex + 0x1a8) {
+    ProcessResourceIndex(ResourceIndex);
   }
   if (*presourceTable == 0) {
     return;
@@ -46510,12 +46510,12 @@ void Unwind_180905fc0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int64_t loopCounter;
   int64_t *presourceTable;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   
   presourceTable = (int64_t *)(*(int64_t *)(ValidationContextParameter + 0x70) + 0x3c8);
   loopCounter = *(int64_t *)(*(int64_t *)(ValidationContextParameter + 0x70) + 0x3d0);
-  for (resourceIndex = *presourceTable; resourceIndex != localContextPointer; resourceIndex = resourceIndex + 0x1a8) {
-    ProcessResourceIndex(resourceIndex);
+  for (ResourceIndex = *presourceTable; ResourceIndex != localContextPointer; ResourceIndex = ResourceIndex + 0x1a8) {
+    ProcessResourceIndex(ResourceIndex);
   }
   if (*presourceTable == 0) {
     return;
@@ -46637,12 +46637,12 @@ void Unwind_180906060(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int64_t loopCounter;
   int64_t *presourceTable;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   
   presourceTable = *(int64_t **)(ValidationContextParameter + 0x78);
   localContextPointer = presourceTable[1];
-  for (resourceIndex = *presourceTable; resourceIndex != localContextPointer; resourceIndex = resourceIndex + 0x1a8) {
-    ProcessResourceIndex(resourceIndex);
+  for (ResourceIndex = *presourceTable; ResourceIndex != localContextPointer; ResourceIndex = ResourceIndex + 0x1a8) {
+    ProcessResourceIndex(ResourceIndex);
   }
   if (*presourceTable == 0) {
     return;
@@ -46836,7 +46836,7 @@ void Unwind_180906160(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = *(uint8_t **)(*(int64_t *)(ValidationContextParameter + 0xa8) + 0x1d8);
@@ -46845,12 +46845,12 @@ void Unwind_180906160(uint8_t ObjectContextParameter,int64_t ValidationContextPa
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -46872,7 +46872,7 @@ void Unwind_180906180(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = (uint8_t *)**(uint64_t **)(ValidationContextParameter + 0xb0);
@@ -46881,12 +46881,12 @@ void Unwind_180906180(uint8_t ObjectContextParameter,int64_t ValidationContextPa
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -46908,7 +46908,7 @@ void Unwind_180906190(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = (uint8_t *)**(uint64_t **)(ValidationContextParameter + 0xb0);
@@ -46917,12 +46917,12 @@ void Unwind_180906190(uint8_t ObjectContextParameter,int64_t ValidationContextPa
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -47000,7 +47000,7 @@ void Unwind_1809061f0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = *(uint8_t **)(*(int64_t *)(ValidationContextParameter + 0x40) + 0x1d8);
@@ -47009,12 +47009,12 @@ void Unwind_1809061f0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -47246,7 +47246,7 @@ void Unwind_180906470(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = *(uint8_t **)(ValidationContextParameter + 0xe0);
@@ -47255,12 +47255,12 @@ void Unwind_180906470(uint8_t ObjectContextParameter,int64_t ValidationContextPa
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -47396,37 +47396,37 @@ void Unwind_1809064c0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int64_t *processPointer;
   int64_t *presourceTable;
-  int64_t *presourceIndex;
+  int64_t *pResourceIndex;
   
   presourceTable = *(int64_t **)(ValidationContextParameter + 0x20);
   ResourceContextPointer = (int64_t *)presourceTable[1];
-  presourceIndex = (int64_t *)*presourceTable;
+  pResourceIndex = (int64_t *)*presourceTable;
   while( true ) {
-    if (presourceIndex == ResourceContextPointer) {
+    if (pResourceIndex == ResourceContextPointer) {
       if (*presourceTable != 0) {
                     // WARNING: Subroutine does not return
         ExecuteSystemEmergencyExit();
       }
       return;
     }
-    if (*(int64_t *)((int64_t)presourceIndex + 0x12) != 0) {
+    if (*(int64_t *)((int64_t)pResourceIndex + 0x12) != 0) {
                     // WARNING: Subroutine does not return
       ExecuteSystemEmergencyExit();
     }
-    *(uint8_t *)((int64_t)presourceIndex + 0x12) = 0;
-    if (*(int64_t *)((int64_t)presourceIndex + 0x1a) != 0) break;
-    *(uint8_t *)((int64_t)presourceIndex + 0x1a) = 0;
-    if (*presourceIndex != 0) {
+    *(uint8_t *)((int64_t)pResourceIndex + 0x12) = 0;
+    if (*(int64_t *)((int64_t)pResourceIndex + 0x1a) != 0) break;
+    *(uint8_t *)((int64_t)pResourceIndex + 0x1a) = 0;
+    if (*pResourceIndex != 0) {
                     // WARNING: Subroutine does not return
       ExecuteSystemEmergencyExit();
     }
-    *presourceIndex = 0;
-    if (presourceIndex[1] != 0) {
+    *pResourceIndex = 0;
+    if (pResourceIndex[1] != 0) {
                     // WARNING: Subroutine does not return
       ExecuteSystemEmergencyExit();
     }
-    presourceIndex[1] = 0;
-    presourceIndex = (int64_t *)((int64_t)presourceIndex + 0x24);
+    pResourceIndex[1] = 0;
+    pResourceIndex = (int64_t *)((int64_t)pResourceIndex + 0x24);
   }
                     // WARNING: Subroutine does not return
   ExecuteSystemEmergencyExit();
@@ -47439,37 +47439,37 @@ void Unwind_1809064d0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int64_t *processPointer;
   int64_t *presourceTable;
-  int64_t *presourceIndex;
+  int64_t *pResourceIndex;
   
   presourceTable = (int64_t *)(*(int64_t *)(ValidationContextParameter + 0x40) + 0x20);
   ResourceContextPointer = *(int64_t **)(*(int64_t *)(ValidationContextParameter + 0x40) + 0x28);
-  presourceIndex = (int64_t *)*presourceTable;
+  pResourceIndex = (int64_t *)*presourceTable;
   while( true ) {
-    if (presourceIndex == ResourceContextPointer) {
+    if (pResourceIndex == ResourceContextPointer) {
       if (*presourceTable != 0) {
                     // WARNING: Subroutine does not return
         ExecuteSystemEmergencyExit();
       }
       return;
     }
-    if (*(int64_t *)((int64_t)presourceIndex + 0x12) != 0) {
+    if (*(int64_t *)((int64_t)pResourceIndex + 0x12) != 0) {
                     // WARNING: Subroutine does not return
       ExecuteSystemEmergencyExit();
     }
-    *(uint8_t *)((int64_t)presourceIndex + 0x12) = 0;
-    if (*(int64_t *)((int64_t)presourceIndex + 0x1a) != 0) break;
-    *(uint8_t *)((int64_t)presourceIndex + 0x1a) = 0;
-    if (*presourceIndex != 0) {
+    *(uint8_t *)((int64_t)pResourceIndex + 0x12) = 0;
+    if (*(int64_t *)((int64_t)pResourceIndex + 0x1a) != 0) break;
+    *(uint8_t *)((int64_t)pResourceIndex + 0x1a) = 0;
+    if (*pResourceIndex != 0) {
                     // WARNING: Subroutine does not return
       ExecuteSystemEmergencyExit();
     }
-    *presourceIndex = 0;
-    if (presourceIndex[1] != 0) {
+    *pResourceIndex = 0;
+    if (pResourceIndex[1] != 0) {
                     // WARNING: Subroutine does not return
       ExecuteSystemEmergencyExit();
     }
-    presourceIndex[1] = 0;
-    presourceIndex = (int64_t *)((int64_t)presourceIndex + 0x24);
+    pResourceIndex[1] = 0;
+    pResourceIndex = (int64_t *)((int64_t)pResourceIndex + 0x24);
   }
                     // WARNING: Subroutine does not return
   ExecuteSystemEmergencyExit();
@@ -47524,37 +47524,37 @@ void Unwind_180906500(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int64_t *processPointer;
   int64_t *presourceTable;
-  int64_t *presourceIndex;
+  int64_t *pResourceIndex;
   
   presourceTable = *(int64_t **)(ValidationContextParameter + 0x48);
   ResourceContextPointer = (int64_t *)presourceTable[1];
-  presourceIndex = (int64_t *)*presourceTable;
+  pResourceIndex = (int64_t *)*presourceTable;
   while( true ) {
-    if (presourceIndex == ResourceContextPointer) {
+    if (pResourceIndex == ResourceContextPointer) {
       if (*presourceTable != 0) {
                     // WARNING: Subroutine does not return
         ExecuteSystemEmergencyExit();
       }
       return;
     }
-    if (*(int64_t *)((int64_t)presourceIndex + 0x12) != 0) {
+    if (*(int64_t *)((int64_t)pResourceIndex + 0x12) != 0) {
                     // WARNING: Subroutine does not return
       ExecuteSystemEmergencyExit();
     }
-    *(uint8_t *)((int64_t)presourceIndex + 0x12) = 0;
-    if (*(int64_t *)((int64_t)presourceIndex + 0x1a) != 0) break;
-    *(uint8_t *)((int64_t)presourceIndex + 0x1a) = 0;
-    if (*presourceIndex != 0) {
+    *(uint8_t *)((int64_t)pResourceIndex + 0x12) = 0;
+    if (*(int64_t *)((int64_t)pResourceIndex + 0x1a) != 0) break;
+    *(uint8_t *)((int64_t)pResourceIndex + 0x1a) = 0;
+    if (*pResourceIndex != 0) {
                     // WARNING: Subroutine does not return
       ExecuteSystemEmergencyExit();
     }
-    *presourceIndex = 0;
-    if (presourceIndex[1] != 0) {
+    *pResourceIndex = 0;
+    if (pResourceIndex[1] != 0) {
                     // WARNING: Subroutine does not return
       ExecuteSystemEmergencyExit();
     }
-    presourceIndex[1] = 0;
-    presourceIndex = (int64_t *)((int64_t)presourceIndex + 0x24);
+    pResourceIndex[1] = 0;
+    pResourceIndex = (int64_t *)((int64_t)pResourceIndex + 0x24);
   }
                     // WARNING: Subroutine does not return
   ExecuteSystemEmergencyExit();
@@ -47567,37 +47567,37 @@ void Unwind_180906510(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int64_t *processPointer;
   int64_t *presourceTable;
-  int64_t *presourceIndex;
+  int64_t *pResourceIndex;
   
   presourceTable = *(int64_t **)(ValidationContextParameter + 0x40);
   ResourceContextPointer = (int64_t *)presourceTable[1];
-  presourceIndex = (int64_t *)*presourceTable;
+  pResourceIndex = (int64_t *)*presourceTable;
   while( true ) {
-    if (presourceIndex == ResourceContextPointer) {
+    if (pResourceIndex == ResourceContextPointer) {
       if (*presourceTable != 0) {
                     // WARNING: Subroutine does not return
         ExecuteSystemEmergencyExit();
       }
       return;
     }
-    if (*(int64_t *)((int64_t)presourceIndex + 0x12) != 0) {
+    if (*(int64_t *)((int64_t)pResourceIndex + 0x12) != 0) {
                     // WARNING: Subroutine does not return
       ExecuteSystemEmergencyExit();
     }
-    *(uint8_t *)((int64_t)presourceIndex + 0x12) = 0;
-    if (*(int64_t *)((int64_t)presourceIndex + 0x1a) != 0) break;
-    *(uint8_t *)((int64_t)presourceIndex + 0x1a) = 0;
-    if (*presourceIndex != 0) {
+    *(uint8_t *)((int64_t)pResourceIndex + 0x12) = 0;
+    if (*(int64_t *)((int64_t)pResourceIndex + 0x1a) != 0) break;
+    *(uint8_t *)((int64_t)pResourceIndex + 0x1a) = 0;
+    if (*pResourceIndex != 0) {
                     // WARNING: Subroutine does not return
       ExecuteSystemEmergencyExit();
     }
-    *presourceIndex = 0;
-    if (presourceIndex[1] != 0) {
+    *pResourceIndex = 0;
+    if (pResourceIndex[1] != 0) {
                     // WARNING: Subroutine does not return
       ExecuteSystemEmergencyExit();
     }
-    presourceIndex[1] = 0;
-    presourceIndex = (int64_t *)((int64_t)presourceIndex + 0x24);
+    pResourceIndex[1] = 0;
+    pResourceIndex = (int64_t *)((int64_t)pResourceIndex + 0x24);
   }
                     // WARNING: Subroutine does not return
   ExecuteSystemEmergencyExit();
@@ -48613,7 +48613,7 @@ void Unwind_180906b50(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = *(uint8_t **)(ValidationContextParameter + 0x88);
@@ -48622,12 +48622,12 @@ void Unwind_180906b50(uint8_t ObjectContextParameter,int64_t ValidationContextPa
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -48738,7 +48738,7 @@ void Unwind_180906bb0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = *(uint8_t **)(ValidationContextParameter + 0x58);
@@ -48747,12 +48747,12 @@ void Unwind_180906bb0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -48774,7 +48774,7 @@ void Unwind_180906bc0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = *(uint8_t **)(ValidationContextParameter + 0x58);
@@ -48783,12 +48783,12 @@ void Unwind_180906bc0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -48891,7 +48891,7 @@ void Unwind_180906c50(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = *(uint8_t **)(ValidationContextParameter + 0x118);
@@ -48900,12 +48900,12 @@ void Unwind_180906c50(uint8_t ObjectContextParameter,int64_t ValidationContextPa
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -48969,7 +48969,7 @@ void Unwind_180906c80(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = *(uint8_t **)(ValidationContextParameter + 0xa8);
@@ -48978,12 +48978,12 @@ void Unwind_180906c80(uint8_t ObjectContextParameter,int64_t ValidationContextPa
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -49005,7 +49005,7 @@ void Unwind_180906c90(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = *(uint8_t **)(ValidationContextParameter + 0x30);
@@ -49014,12 +49014,12 @@ void Unwind_180906c90(uint8_t ObjectContextParameter,int64_t ValidationContextPa
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -49041,7 +49041,7 @@ void Unwind_180906ca0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = *(uint8_t **)(ValidationContextParameter + 0x88);
@@ -49050,12 +49050,12 @@ void Unwind_180906ca0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -49098,7 +49098,7 @@ void Unwind_180906cc0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = *(uint8_t **)(ValidationContextParameter + 0x118);
@@ -49107,12 +49107,12 @@ void Unwind_180906cc0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -49134,7 +49134,7 @@ void Unwind_180906cd0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = *(uint8_t **)(ValidationContextParameter + 0x118);
@@ -49143,12 +49143,12 @@ void Unwind_180906cd0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -49191,7 +49191,7 @@ void Unwind_180906cf0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = *(uint8_t **)(ValidationContextParameter + 0xf8);
@@ -49200,12 +49200,12 @@ void Unwind_180906cf0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -49227,7 +49227,7 @@ void Unwind_180906d00(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = (uint8_t *)**(uint64_t **)(ValidationContextParameter + 0x260);
@@ -49236,12 +49236,12 @@ void Unwind_180906d00(uint8_t ObjectContextParameter,int64_t ValidationContextPa
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -49263,7 +49263,7 @@ void Unwind_180906d10(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = (uint8_t *)**(uint64_t **)(ValidationContextParameter + 0x260);
@@ -49272,12 +49272,12 @@ void Unwind_180906d10(uint8_t ObjectContextParameter,int64_t ValidationContextPa
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -49320,7 +49320,7 @@ void Unwind_180906d30(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = *(uint8_t **)(ValidationContextParameter + 0xd8);
@@ -49329,12 +49329,12 @@ void Unwind_180906d30(uint8_t ObjectContextParameter,int64_t ValidationContextPa
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -49356,7 +49356,7 @@ void Unwind_180906d40(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = *(uint8_t **)(ValidationContextParameter + 0xa8);
@@ -49365,12 +49365,12 @@ void Unwind_180906d40(uint8_t ObjectContextParameter,int64_t ValidationContextPa
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -49392,7 +49392,7 @@ void Unwind_180906d50(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = *(uint8_t **)(ValidationContextParameter + 0xa8);
@@ -49401,12 +49401,12 @@ void Unwind_180906d50(uint8_t ObjectContextParameter,int64_t ValidationContextPa
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -49428,7 +49428,7 @@ void Unwind_180906d60(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = *(uint8_t **)(ValidationContextParameter + 0x30);
@@ -49437,12 +49437,12 @@ void Unwind_180906d60(uint8_t ObjectContextParameter,int64_t ValidationContextPa
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -49464,7 +49464,7 @@ void Unwind_180906d70(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = *(uint8_t **)(ValidationContextParameter + 0x30);
@@ -49473,12 +49473,12 @@ void Unwind_180906d70(uint8_t ObjectContextParameter,int64_t ValidationContextPa
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -49500,7 +49500,7 @@ void Unwind_180906d80(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = *(uint8_t **)(ValidationContextParameter + 0x88);
@@ -49509,12 +49509,12 @@ void Unwind_180906d80(uint8_t ObjectContextParameter,int64_t ValidationContextPa
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -49536,7 +49536,7 @@ void Unwind_180906d90(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = (uint8_t *)**(uint64_t **)(ValidationContextParameter + 0x268);
@@ -49545,12 +49545,12 @@ void Unwind_180906d90(uint8_t ObjectContextParameter,int64_t ValidationContextPa
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -49572,7 +49572,7 @@ void Unwind_180906da0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = (uint8_t *)**(uint64_t **)(ValidationContextParameter + 0x268);
@@ -49581,12 +49581,12 @@ void Unwind_180906da0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -49629,7 +49629,7 @@ void Unwind_180906dc0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = *(uint8_t **)(ValidationContextParameter + 0x30);
@@ -49638,12 +49638,12 @@ void Unwind_180906dc0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -50760,7 +50760,7 @@ void Unwind_180907350(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = (uint8_t *)**(uint64_t **)(ValidationContextParameter + 0x40);
@@ -50769,12 +50769,12 @@ void Unwind_180907350(uint8_t ObjectContextParameter,int64_t ValidationContextPa
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -50796,7 +50796,7 @@ void Unwind_180907360(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = (uint8_t *)**(uint64_t **)(ValidationContextParameter + 0x48);
@@ -50805,12 +50805,12 @@ void Unwind_180907360(uint8_t ObjectContextParameter,int64_t ValidationContextPa
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -50844,7 +50844,7 @@ void Unwind_180907370(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = (uint8_t *)**(uint64_t **)(ValidationContextParameter + 0x48);
@@ -50853,12 +50853,12 @@ void Unwind_180907370(uint8_t ObjectContextParameter,int64_t ValidationContextPa
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -51061,7 +51061,7 @@ void Unwind_1809074d0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = (uint8_t *)**(uint64_t **)(ValidationContextParameter + 0x50);
@@ -51070,12 +51070,12 @@ void Unwind_1809074d0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -51097,7 +51097,7 @@ void Unwind_1809074e0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = (uint8_t *)**(uint64_t **)(ValidationContextParameter + 0x50);
@@ -51106,12 +51106,12 @@ void Unwind_1809074e0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -51133,7 +51133,7 @@ void Unwind_1809074f0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = (uint8_t *)**(uint64_t **)(ValidationContextParameter + 0x40);
@@ -51142,12 +51142,12 @@ void Unwind_1809074f0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -51525,17 +51525,17 @@ void Unwind_180907710(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   uint8_t *presourceHash;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   
   pResourceValidationResult = *(uint8_t **)(ValidationContextParameter + 0x50);
   *pResourceValidationResult = &ResourceValidationTable001;
   presourceHash = (uint8_t *)pResourceValidationResult[0x11];
   if (presourceHash != (uint8_t *)0x0) {
-    resourceIndex = __RTCastToVoid(presourceHash);
+    ResourceIndex = __RTCastToVoid(presourceHash);
     (**(code **)*presourceHash)(presourceHash,0);
-    if (resourceIndex != 0) {
+    if (ResourceIndex != 0) {
                     // WARNING: Subroutine does not return
-      ReleaseResourceHandle(resourceIndex);
+      ReleaseResourceHandle(ResourceIndex);
     }
   }
   pResourceValidationResult[0x11] = 0;
@@ -51577,17 +51577,17 @@ void Unwind_180907740(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   uint8_t *presourceHash;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   
   pResourceValidationResult = *(uint8_t **)(ValidationContextParameter + 0x40);
   *pResourceValidationResult = &ResourceValidationTable001;
   presourceHash = (uint8_t *)pResourceValidationResult[0x11];
   if (presourceHash != (uint8_t *)0x0) {
-    resourceIndex = __RTCastToVoid(presourceHash);
+    ResourceIndex = __RTCastToVoid(presourceHash);
     (**(code **)*presourceHash)(presourceHash,0);
-    if (resourceIndex != 0) {
+    if (ResourceIndex != 0) {
                     // WARNING: Subroutine does not return
-      ReleaseResourceHandle(resourceIndex);
+      ReleaseResourceHandle(ResourceIndex);
     }
   }
   pResourceValidationResult[0x11] = 0;
@@ -51746,12 +51746,12 @@ void ValidateResourceVersion180907800(uint8_t ObjectContextParameter,int64_t Val
 {
   int64_t loopCounter;
   int64_t *presourceTable;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   
   presourceTable = (int64_t *)(*(int64_t *)(ValidationContextParameter + 0x20) + 8);
   loopCounter = *(int64_t *)(*(int64_t *)(ValidationContextParameter + 0x20) + 0x10);
-  for (resourceIndex = *presourceTable; resourceIndex != localContextPointer; resourceIndex = resourceIndex + 0x60) {
-    CheckResourceVersion(resourceIndex);
+  for (ResourceIndex = *presourceTable; ResourceIndex != localContextPointer; ResourceIndex = ResourceIndex + 0x60) {
+    CheckResourceVersion(ResourceIndex);
   }
   if (*presourceTable == 0) {
     return;
@@ -51884,7 +51884,7 @@ void Unwind_180907880(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = *(uint8_t **)(*(int64_t *)(ValidationContextParameter + 0x20) + 0x110);
@@ -51893,12 +51893,12 @@ void Unwind_180907880(uint8_t ObjectContextParameter,int64_t ValidationContextPa
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -51920,12 +51920,12 @@ void Unwind_1809078a0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int64_t loopCounter;
   int64_t *presourceTable;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   
   presourceTable = *(int64_t **)(ValidationContextParameter + 0x28);
   localContextPointer = presourceTable[1];
-  for (resourceIndex = *presourceTable; resourceIndex != localContextPointer; resourceIndex = resourceIndex + 0x60) {
-    CheckResourceVersion(resourceIndex);
+  for (ResourceIndex = *presourceTable; ResourceIndex != localContextPointer; ResourceIndex = ResourceIndex + 0x60) {
+    CheckResourceVersion(ResourceIndex);
   }
   if (*presourceTable == 0) {
     return;
@@ -52036,12 +52036,12 @@ void Unwind_180907920(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int64_t loopCounter;
   int64_t *presourceTable;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   
   presourceTable = *(int64_t **)(ValidationContextParameter + 0x40);
   localContextPointer = presourceTable[1];
-  for (resourceIndex = *presourceTable; resourceIndex != localContextPointer; resourceIndex = resourceIndex + 0x60) {
-    CheckResourceVersion(resourceIndex);
+  for (ResourceIndex = *presourceTable; ResourceIndex != localContextPointer; ResourceIndex = ResourceIndex + 0x60) {
+    CheckResourceVersion(ResourceIndex);
   }
   if (*presourceTable == 0) {
     return;
@@ -52210,26 +52210,26 @@ void UnwindSystemResourceHandler002(uint8_t ObjectContextParameter,int64_t Valid
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
-  resourceIndex = *(int64_t *)(ValidationContextParameter + 0x80);
-  *(uint8_t **)(resourceIndex + 0xd8) = &SystemDataStructure;
-  if (*(int64_t *)(resourceIndex + 0xa8) != 0) {
+  ResourceIndex = *(int64_t *)(ValidationContextParameter + 0x80);
+  *(uint8_t **)(ResourceIndex + 0xd8) = &SystemDataStructure;
+  if (*(int64_t *)(ResourceIndex + 0xa8) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  UpdateResourceTimestamp(resourceIndex + 0x78);
-  if ((1 < *(uint64_t *)(resourceIndex + 0x88)) &&
-     (pResourceValidationResult = *(uint8_t **)(resourceIndex + 0x80), pResourceValidationResult != (uint8_t *)0x0)) {
+  UpdateResourceTimestamp(ResourceIndex + 0x78);
+  if ((1 < *(uint64_t *)(ResourceIndex + 0x88)) &&
+     (pResourceValidationResult = *(uint8_t **)(ResourceIndex + 0x80), pResourceValidationResult != (uint8_t *)0x0)) {
     LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
     if (LoopIncrement != 0) {
-      resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-      resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-      if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-        *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-        *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-        pResourceIndex = (int *)(resourceIndex + 0x18);
+      ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+      ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+      if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+        *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+        *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+        pResourceIndex = (int *)(ResourceIndex + 0x18);
         *pResourceIndex = *pResourceIndex + -1;
         if (*pResourceIndex == 0) {
           SystemCleanupHandler();
@@ -52253,7 +52253,7 @@ void ProcessResourceCleanup(uint8_t ObjectContextParameter,int64_t ValidationCon
 {
   int *referenceCount;
   uint8_t *ResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t memoryAddress;
   
   ResourceValidationResult = *(uint8_t **)(*(int64_t *)(ValidationContextParameter + 0x80) + 0x180);
@@ -52262,12 +52262,12 @@ void ProcessResourceCleanup(uint8_t ObjectContextParameter,int64_t ValidationCon
   }
   memoryAddress = (uint64_t)ResourceValidationResult & 0xffffffffffc00000;
   if (memoryAddress != 0) {
-    resourceIndex = memoryAddress + 0x80 + ((int64_t)ResourceValidationResult - memoryAddress >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(memoryAddress + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *ResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = ResourceValidationResult;
-      referenceCount = (int *)(resourceIndex + 0x18);
+    ResourceIndex = memoryAddress + 0x80 + ((int64_t)ResourceValidationResult - memoryAddress >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(memoryAddress + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *ResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = ResourceValidationResult;
+      referenceCount = (int *)(ResourceIndex + 0x18);
       *referenceCount = *referenceCount - 1;
       if (*referenceCount == 0) {
         SystemCleanupHandler();
@@ -52307,7 +52307,7 @@ void ProcessResourceValidationCleanup(uint8_t ObjectContextParameter,int64_t Val
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = *(uint8_t **)(ValidationContextParameter + 0x130);
@@ -52316,12 +52316,12 @@ void ProcessResourceValidationCleanup(uint8_t ObjectContextParameter,int64_t Val
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -52386,7 +52386,7 @@ void Unwind_180907a50(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = *(uint8_t **)(ValidationContextParameter + 0x130);
@@ -52395,12 +52395,12 @@ void Unwind_180907a50(uint8_t ObjectContextParameter,int64_t ValidationContextPa
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -52422,7 +52422,7 @@ void Unwind_180907a60(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = *(uint8_t **)(ValidationContextParameter + 0x130);
@@ -52431,12 +52431,12 @@ void Unwind_180907a60(uint8_t ObjectContextParameter,int64_t ValidationContextPa
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -52926,7 +52926,7 @@ void UnwindResourceValidationAndCleanup(uint8_t exceptionContext, int64_t System
 {
   int *referenceCount;
   uint8_t *ResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t resourceBaseAddress;
   
   pResourceValidationResult = *(uint8_t **)(ValidationContextParameter + 0x230);
@@ -52935,12 +52935,12 @@ void UnwindResourceValidationAndCleanup(uint8_t exceptionContext, int64_t System
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -52962,7 +52962,7 @@ void Unwind_180907c80(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = *(uint8_t **)(ValidationContextParameter + 0x230);
@@ -52971,12 +52971,12 @@ void Unwind_180907c80(uint8_t ObjectContextParameter,int64_t ValidationContextPa
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -53143,7 +53143,7 @@ void Unwind_180907d30(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = *(uint8_t **)(ValidationContextParameter + 0x168);
@@ -53152,12 +53152,12 @@ void Unwind_180907d30(uint8_t ObjectContextParameter,int64_t ValidationContextPa
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -53326,7 +53326,7 @@ void Unwind_180907e90(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = *(uint8_t **)(ValidationContextParameter + 0x28);
@@ -53335,12 +53335,12 @@ void Unwind_180907e90(uint8_t ObjectContextParameter,int64_t ValidationContextPa
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -53362,7 +53362,7 @@ void Unwind_180907ea0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = *(uint8_t **)(ValidationContextParameter + 0x38);
@@ -53371,12 +53371,12 @@ void Unwind_180907ea0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -53398,7 +53398,7 @@ void Unwind_180907eb0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = *(uint8_t **)(ValidationContextParameter + 0x60);
@@ -53407,12 +53407,12 @@ void Unwind_180907eb0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -53434,7 +53434,7 @@ void Unwind_180907ec0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = *(uint8_t **)(ValidationContextParameter + 0x38);
@@ -53443,12 +53443,12 @@ void Unwind_180907ec0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -53470,7 +53470,7 @@ void Unwind_180907ed0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = *(uint8_t **)(ValidationContextParameter + 0x38);
@@ -53479,12 +53479,12 @@ void Unwind_180907ed0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -53697,7 +53697,7 @@ void Unwind_180908000(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = *(uint8_t **)(ValidationContextParameter + 0x48);
@@ -53706,12 +53706,12 @@ void Unwind_180908000(uint8_t ObjectContextParameter,int64_t ValidationContextPa
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -53765,7 +53765,7 @@ void Unwind_180908030(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = *(uint8_t **)(ValidationContextParameter + 0x48);
@@ -53774,12 +53774,12 @@ void Unwind_180908030(uint8_t ObjectContextParameter,int64_t ValidationContextPa
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -54538,7 +54538,7 @@ void Unwind_180908650(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = *(uint8_t **)(*(int64_t *)(ValidationContextParameter + 0x50) + 0x10);
@@ -54547,12 +54547,12 @@ void Unwind_180908650(uint8_t ObjectContextParameter,int64_t ValidationContextPa
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -54689,13 +54689,13 @@ void Unwind_180908730(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int64_t *processPointer;
   int64_t *presourceTable;
-  int64_t *presourceIndex;
+  int64_t *pResourceIndex;
   
   presourceTable = (int64_t *)(*(int64_t *)(ValidationContextParameter + 0x50) + 0x1868);
   ResourceContextPointer = *(int64_t **)(*(int64_t *)(ValidationContextParameter + 0x50) + 0x1870);
-  for (presourceIndex = (int64_t *)*presourceTable; presourceIndex != ResourceContextPointer; presourceIndex = presourceIndex + 1) {
-    if ((int64_t *)*presourceIndex != (int64_t *)0x0) {
-      (**(code **)(*(int64_t *)*presourceIndex + 0x38))();
+  for (pResourceIndex = (int64_t *)*presourceTable; pResourceIndex != ResourceContextPointer; pResourceIndex = pResourceIndex + 1) {
+    if ((int64_t *)*pResourceIndex != (int64_t *)0x0) {
+      (**(code **)(*(int64_t *)*pResourceIndex + 0x38))();
     }
   }
   if (*presourceTable == 0) {
@@ -54730,13 +54730,13 @@ void Unwind_180908770(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int64_t *processPointer;
   int64_t *presourceTable;
-  int64_t *presourceIndex;
+  int64_t *pResourceIndex;
   
   presourceTable = *(int64_t **)(ValidationContextParameter + 0x60);
   ResourceContextPointer = (int64_t *)presourceTable[1];
-  for (presourceIndex = (int64_t *)*presourceTable; presourceIndex != ResourceContextPointer; presourceIndex = presourceIndex + 1) {
-    if ((int64_t *)*presourceIndex != (int64_t *)0x0) {
-      (**(code **)(*(int64_t *)*presourceIndex + 0x38))();
+  for (pResourceIndex = (int64_t *)*presourceTable; pResourceIndex != ResourceContextPointer; pResourceIndex = pResourceIndex + 1) {
+    if ((int64_t *)*pResourceIndex != (int64_t *)0x0) {
+      (**(code **)(*(int64_t *)*pResourceIndex + 0x38))();
     }
   }
   if (*presourceTable == 0) {
@@ -54793,7 +54793,7 @@ void Unwind_1809087c0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = *(uint8_t **)(ValidationContextParameter + 0xa0);
@@ -54802,12 +54802,12 @@ void Unwind_1809087c0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -54903,7 +54903,7 @@ void Unwind_180908830(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = *(uint8_t **)(ValidationContextParameter + 0xa0);
@@ -54912,12 +54912,12 @@ void Unwind_180908830(uint8_t ObjectContextParameter,int64_t ValidationContextPa
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -54939,7 +54939,7 @@ void Unwind_180908840(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = *(uint8_t **)(ValidationContextParameter + 0xa0);
@@ -54948,12 +54948,12 @@ void Unwind_180908840(uint8_t ObjectContextParameter,int64_t ValidationContextPa
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -55007,7 +55007,7 @@ void Unwind_180908870(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = *(uint8_t **)(ValidationContextParameter + 0x160);
@@ -55016,12 +55016,12 @@ void Unwind_180908870(uint8_t ObjectContextParameter,int64_t ValidationContextPa
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -55346,7 +55346,7 @@ void UnwindMutexLockD(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = *(uint8_t **)(ValidationContextParameter + 0x1a0);
@@ -55355,12 +55355,12 @@ void UnwindMutexLockD(uint8_t ObjectContextParameter,int64_t ValidationContextPa
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -55382,7 +55382,7 @@ void Unwind_180908a30(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = *(uint8_t **)(ValidationContextParameter + 0x160);
@@ -55391,12 +55391,12 @@ void Unwind_180908a30(uint8_t ObjectContextParameter,int64_t ValidationContextPa
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -55418,7 +55418,7 @@ void Unwind_180908a40(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = *(uint8_t **)(ValidationContextParameter + 0x120);
@@ -55427,12 +55427,12 @@ void Unwind_180908a40(uint8_t ObjectContextParameter,int64_t ValidationContextPa
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -55454,7 +55454,7 @@ void Unwind_180908a50(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = *(uint8_t **)(ValidationContextParameter + 0x1a0);
@@ -55463,12 +55463,12 @@ void Unwind_180908a50(uint8_t ObjectContextParameter,int64_t ValidationContextPa
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -55490,7 +55490,7 @@ void Unwind_180908a60(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = *(uint8_t **)(ValidationContextParameter + 0x1a0);
@@ -55499,12 +55499,12 @@ void Unwind_180908a60(uint8_t ObjectContextParameter,int64_t ValidationContextPa
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -55526,7 +55526,7 @@ void Unwind_180908a70(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = *(uint8_t **)(ValidationContextParameter + 0x160);
@@ -55535,12 +55535,12 @@ void Unwind_180908a70(uint8_t ObjectContextParameter,int64_t ValidationContextPa
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -55562,7 +55562,7 @@ void Unwind_180908a80(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = *(uint8_t **)(ValidationContextParameter + 0x120);
@@ -55571,12 +55571,12 @@ void Unwind_180908a80(uint8_t ObjectContextParameter,int64_t ValidationContextPa
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -55598,7 +55598,7 @@ void Unwind_180908a90(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = *(uint8_t **)(ValidationContextParameter + 0x68);
@@ -55607,12 +55607,12 @@ void Unwind_180908a90(uint8_t ObjectContextParameter,int64_t ValidationContextPa
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -55643,7 +55643,7 @@ void Unwind_180908ab0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = *(uint8_t **)(*(int64_t *)(ValidationContextParameter + 0x60) + 0x48);
@@ -55652,12 +55652,12 @@ void Unwind_180908ab0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -55679,7 +55679,7 @@ void Unwind_180908ac0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = *(uint8_t **)(ValidationContextParameter + 0x68);
@@ -55688,12 +55688,12 @@ void Unwind_180908ac0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -55715,7 +55715,7 @@ void Unwind_180908ad0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = *(uint8_t **)(ValidationContextParameter + 0x68);
@@ -55724,12 +55724,12 @@ void Unwind_180908ad0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -55788,7 +55788,7 @@ void Unwind_180908b10(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = *(uint8_t **)(*(int64_t *)(ValidationContextParameter + 0x30) + 0x48);
@@ -55797,12 +55797,12 @@ void Unwind_180908b10(uint8_t ObjectContextParameter,int64_t ValidationContextPa
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -56291,7 +56291,7 @@ void Unwind_180908dd0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = *(uint8_t **)(*(int64_t *)(ValidationContextParameter + 0x108) + 0x48);
@@ -56300,12 +56300,12 @@ void Unwind_180908dd0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -56336,7 +56336,7 @@ void Unwind_180908df0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = (uint8_t *)**(uint64_t **)(ValidationContextParameter + 0xa0);
@@ -56345,12 +56345,12 @@ void Unwind_180908df0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -56372,7 +56372,7 @@ void Unwind_180908e00(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = (uint8_t *)**(uint64_t **)(ValidationContextParameter + 0xa0);
@@ -56381,12 +56381,12 @@ void Unwind_180908e00(uint8_t ObjectContextParameter,int64_t ValidationContextPa
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -56436,7 +56436,7 @@ void Unwind_180908e50(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = *(uint8_t **)(*(int64_t *)(ValidationContextParameter + 0x60) + 0x20);
@@ -56445,12 +56445,12 @@ void Unwind_180908e50(uint8_t ObjectContextParameter,int64_t ValidationContextPa
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -56472,7 +56472,7 @@ void Unwind_180908e60(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = (uint8_t *)**(uint64_t **)(ValidationContextParameter + 0x68);
@@ -56481,12 +56481,12 @@ void Unwind_180908e60(uint8_t ObjectContextParameter,int64_t ValidationContextPa
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -56508,7 +56508,7 @@ void Unwind_180908e70(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = (uint8_t *)**(uint64_t **)(ValidationContextParameter + 0x68);
@@ -56517,12 +56517,12 @@ void Unwind_180908e70(uint8_t ObjectContextParameter,int64_t ValidationContextPa
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -56687,20 +56687,20 @@ void Unwind_180908f30(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   uint8_t resourceHash;
   int64_t resourceTable;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint8_t *pLoopIncrement;
   
-  resourceIndex = *(int64_t *)(ValidationContextParameter + 0x40);
-  pLoopIncrement = (uint8_t *)(resourceIndex + -0xa0);
+  ResourceIndex = *(int64_t *)(ValidationContextParameter + 0x40);
+  pLoopIncrement = (uint8_t *)(ResourceIndex + -0xa0);
   *pLoopIncrement = &SystemDataPointer001;
-  if ((*(int64_t *)(resourceIndex + -0x20) != 0) && (**(int64_t **)(resourceIndex + -0x88) == resourceIndex + -0x30)) {
-    resourceHash = *(uint8_t *)(resourceIndex + -0x10);
-    resourceTable = *(int64_t *)(resourceIndex + -0x18);
-    **(int64_t **)(resourceIndex + -0x88) = resourceTable;
-    **(int64_t **)(resourceIndex + -0x68) = resourceTable;
-    **(int **)(resourceIndex + -0x50) = (int)resourceHash - (int)resourceTable;
+  if ((*(int64_t *)(ResourceIndex + -0x20) != 0) && (**(int64_t **)(ResourceIndex + -0x88) == ResourceIndex + -0x30)) {
+    resourceHash = *(uint8_t *)(ResourceIndex + -0x10);
+    resourceTable = *(int64_t *)(ResourceIndex + -0x18);
+    **(int64_t **)(ResourceIndex + -0x88) = resourceTable;
+    **(int64_t **)(ResourceIndex + -0x68) = resourceTable;
+    **(int **)(ResourceIndex + -0x50) = (int)resourceHash - (int)resourceTable;
   }
-  if (*(char *)(resourceIndex + -0x24) != '\0') {
+  if (*(char *)(ResourceIndex + -0x24) != '\0') {
     ProcessResourcePointer(pLoopIncrement);
   }
                     // WARNING: Could not recover jumptable at 0x00018009fbce. Too many branches
@@ -56892,7 +56892,7 @@ void Unwind_180909090(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = *(uint8_t **)(*(int64_t *)(ValidationContextParameter + 0x20) + 0x48);
@@ -56901,12 +56901,12 @@ void Unwind_180909090(uint8_t ObjectContextParameter,int64_t ValidationContextPa
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -56983,7 +56983,7 @@ void Unwind_1809090b0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = *(uint8_t **)(*(int64_t *)(ValidationContextParameter + 0x60) + 0x121c0);
@@ -56992,12 +56992,12 @@ void Unwind_1809090b0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -57215,7 +57215,7 @@ void Unwind_180909290(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t *pLoopIncrement;
   uint64_t ResourceContextOffset;
   uint64_t ContextValidationResult;
@@ -57229,12 +57229,12 @@ void Unwind_180909290(uint8_t ObjectContextParameter,int64_t ValidationContextPa
   if (pResourceValidationResult != (uint8_t *)0x0) {
     ContextValidationResult = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
     if (ContextValidationResult != 0) {
-      resourceIndex = ContextValidationResult + 0x80 + ((int64_t)pResourceValidationResult - ContextValidationResult >> 0x10) * 0x50;
-      resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-      if ((*(void ***)(ContextValidationResult + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-        *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-        *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-        pResourceIndex = (int *)(resourceIndex + 0x18);
+      ResourceIndex = ContextValidationResult + 0x80 + ((int64_t)pResourceValidationResult - ContextValidationResult >> 0x10) * 0x50;
+      ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+      if ((*(void ***)(ContextValidationResult + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+        *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+        *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+        pResourceIndex = (int *)(ResourceIndex + 0x18);
         *pResourceIndex = *pResourceIndex + -1;
         if (*pResourceIndex == 0) {
           SystemCleanupHandler();
@@ -57614,16 +57614,16 @@ void Unwind_1809093c0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int64_t *processPointer;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   int64_t DataOffset;
   int64_t MemoryRegion;
   uint64_t ContextValidationResult;
   
-  resourceIndex = *(int64_t *)(ValidationContextParameter + 0x90);
+  ResourceIndex = *(int64_t *)(ValidationContextParameter + 0x90);
   ContextValidationResult = 0;
-  ResourceContextPointer = (int64_t *)(resourceIndex + 0x8090);
+  ResourceContextPointer = (int64_t *)(ResourceIndex + 0x8090);
   lVar4 = *ResourceContextPointer;
-  if (*(int64_t *)(resourceIndex + 0x8098) - lVar4 >> 3 != 0) {
+  if (*(int64_t *)(ResourceIndex + 0x8098) - lVar4 >> 3 != 0) {
     do {
       pResourceValidationResult = *(uint8_t **)(ContextValidationResult * 8 + lVar4);
       if (pResourceValidationResult != (uint8_t *)0x0) {
@@ -57654,30 +57654,30 @@ void Unwind_1809093c0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
       *(uint8_t *)(ContextValidationResult * 8 + *ResourceContextPointer) = 0;
       ContextValidationResult = (uint64_t)((int)ContextValidationResult + 1);
       lVar4 = *ResourceContextPointer;
-    } while (ContextValidationResult < (uint64_t)(*(int64_t *)(resourceIndex + 0x8098) - lVar4 >> 3));
+    } while (ContextValidationResult < (uint64_t)(*(int64_t *)(ResourceIndex + 0x8098) - lVar4 >> 3));
   }
-  *(int64_t *)(resourceIndex + 0x8098) = lVar4;
-  pResourceValidationResult = *(uint8_t **)(resourceIndex + 0x8218);
+  *(int64_t *)(ResourceIndex + 0x8098) = lVar4;
+  pResourceValidationResult = *(uint8_t **)(ResourceIndex + 0x8218);
   if (pResourceValidationResult != (uint8_t *)0x0) {
-    ProcessResourceValidation(resourceIndex + 0x8208,*pResourceValidationResult);
+    ProcessResourceValidation(ResourceIndex + 0x8208,*pResourceValidationResult);
     pResourceValidationResult[4] = &SystemDataStructure;
                     // WARNING: Subroutine does not return
     ReleaseResourceHandle(pResourceValidationResult);
   }
-  ProcessResourceOperation(resourceIndex + 0x81d8,*(uint8_t *)(resourceIndex + 0x81e8),CleanupOption,CleanupFlag,0xfffffffffffffffe);
-  ProcessResourceOperation(resourceIndex + 0x81a8,*(uint8_t *)(resourceIndex + 0x81b8));
-  ProcessResourceOperation(resourceIndex + 0x8178,*(uint8_t *)(resourceIndex + 0x8188));
-  RegisterResourceHandler(resourceIndex + 0x80d8,0x20,5,SystemResourceHandler);
+  ProcessResourceOperation(ResourceIndex + 0x81d8,*(uint8_t *)(ResourceIndex + 0x81e8),CleanupOption,CleanupFlag,0xfffffffffffffffe);
+  ProcessResourceOperation(ResourceIndex + 0x81a8,*(uint8_t *)(ResourceIndex + 0x81b8));
+  ProcessResourceOperation(ResourceIndex + 0x8178,*(uint8_t *)(ResourceIndex + 0x8188));
+  RegisterResourceHandler(ResourceIndex + 0x80d8,0x20,5,SystemResourceHandler);
   if (*ResourceContextPointer != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  RegisterResourceHandler(resourceIndex + 0x7fe8,0x20,5,SystemResourceHandler);
-  lVar4 = *(int64_t *)(resourceIndex + 0x7fd0);
-  for (ResourceTablePointer = *(int64_t *)(resourceIndex + 0x7fc8); ResourceTablePointer != lVar4; ResourceTablePointer = ResourceTablePointer + 0x40) {
+  RegisterResourceHandler(ResourceIndex + 0x7fe8,0x20,5,SystemResourceHandler);
+  lVar4 = *(int64_t *)(ResourceIndex + 0x7fd0);
+  for (ResourceTablePointer = *(int64_t *)(ResourceIndex + 0x7fc8); ResourceTablePointer != lVar4; ResourceTablePointer = ResourceTablePointer + 0x40) {
     ProcessMemoryAllocation(ResourceTablePointer);
   }
-  if (*(int64_t *)(resourceIndex + 0x7fc8) != 0) {
+  if (*(int64_t *)(ResourceIndex + 0x7fc8) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
@@ -57861,12 +57861,12 @@ void Unwind_1809094c0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int64_t loopCounter;
   int64_t *presourceTable;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   
   presourceTable = *(int64_t **)(ValidationContextParameter + 0x40);
   localContextPointer = presourceTable[1];
-  for (resourceIndex = *presourceTable; resourceIndex != localContextPointer; resourceIndex = resourceIndex + 0x78) {
-    UpdateResourceTable(resourceIndex);
+  for (ResourceIndex = *presourceTable; ResourceIndex != localContextPointer; ResourceIndex = ResourceIndex + 0x78) {
+    UpdateResourceTable(ResourceIndex);
   }
   if (*presourceTable == 0) {
     return;
@@ -58196,7 +58196,7 @@ void Unwind_180909660(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = *(uint8_t **)(ValidationContextParameter + 0xd8);
@@ -58205,12 +58205,12 @@ void Unwind_180909660(uint8_t ObjectContextParameter,int64_t ValidationContextPa
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -58232,7 +58232,7 @@ void Unwind_180909670(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = *(uint8_t **)(ValidationContextParameter + 0xd8);
@@ -58241,12 +58241,12 @@ void Unwind_180909670(uint8_t ObjectContextParameter,int64_t ValidationContextPa
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -58268,7 +58268,7 @@ void Unwind_180909680(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = *(uint8_t **)(*(int64_t *)(ValidationContextParameter + 0xb8) + 8);
@@ -58277,12 +58277,12 @@ void Unwind_180909680(uint8_t ObjectContextParameter,int64_t ValidationContextPa
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -58304,7 +58304,7 @@ void Unwind_180909690(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = (uint8_t *)**(uint64_t **)(ValidationContextParameter + 0xb8);
@@ -58313,12 +58313,12 @@ void Unwind_180909690(uint8_t ObjectContextParameter,int64_t ValidationContextPa
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -58340,7 +58340,7 @@ void Unwind_1809096a0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = (uint8_t *)**(uint64_t **)(ValidationContextParameter + 0xb8);
@@ -58349,12 +58349,12 @@ void Unwind_1809096a0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -58457,16 +58457,16 @@ void Unwind_1809096c0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int64_t *processPointer;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   int64_t DataOffset;
   int64_t MemoryRegion;
   uint64_t ContextValidationResult;
   
-  resourceIndex = *(int64_t *)(ValidationContextParameter + 0x40);
+  ResourceIndex = *(int64_t *)(ValidationContextParameter + 0x40);
   ContextValidationResult = 0;
-  ResourceContextPointer = (int64_t *)(resourceIndex + 0x8090);
+  ResourceContextPointer = (int64_t *)(ResourceIndex + 0x8090);
   lVar4 = *ResourceContextPointer;
-  if (*(int64_t *)(resourceIndex + 0x8098) - lVar4 >> 3 != 0) {
+  if (*(int64_t *)(ResourceIndex + 0x8098) - lVar4 >> 3 != 0) {
     do {
       pResourceValidationResult = *(uint8_t **)(ContextValidationResult * 8 + lVar4);
       if (pResourceValidationResult != (uint8_t *)0x0) {
@@ -58497,30 +58497,30 @@ void Unwind_1809096c0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
       *(uint8_t *)(ContextValidationResult * 8 + *ResourceContextPointer) = 0;
       ContextValidationResult = (uint64_t)((int)ContextValidationResult + 1);
       lVar4 = *ResourceContextPointer;
-    } while (ContextValidationResult < (uint64_t)(*(int64_t *)(resourceIndex + 0x8098) - lVar4 >> 3));
+    } while (ContextValidationResult < (uint64_t)(*(int64_t *)(ResourceIndex + 0x8098) - lVar4 >> 3));
   }
-  *(int64_t *)(resourceIndex + 0x8098) = lVar4;
-  pResourceValidationResult = *(uint8_t **)(resourceIndex + 0x8218);
+  *(int64_t *)(ResourceIndex + 0x8098) = lVar4;
+  pResourceValidationResult = *(uint8_t **)(ResourceIndex + 0x8218);
   if (pResourceValidationResult != (uint8_t *)0x0) {
-    ProcessResourceValidation(resourceIndex + 0x8208,*pResourceValidationResult);
+    ProcessResourceValidation(ResourceIndex + 0x8208,*pResourceValidationResult);
     pResourceValidationResult[4] = &SystemDataStructure;
                     // WARNING: Subroutine does not return
     ReleaseResourceHandle(pResourceValidationResult);
   }
-  ProcessResourceOperation(resourceIndex + 0x81d8,*(uint8_t *)(resourceIndex + 0x81e8),CleanupOption,CleanupFlag,0xfffffffffffffffe);
-  ProcessResourceOperation(resourceIndex + 0x81a8,*(uint8_t *)(resourceIndex + 0x81b8));
-  ProcessResourceOperation(resourceIndex + 0x8178,*(uint8_t *)(resourceIndex + 0x8188));
-  RegisterResourceHandler(resourceIndex + 0x80d8,0x20,5,SystemResourceHandler);
+  ProcessResourceOperation(ResourceIndex + 0x81d8,*(uint8_t *)(ResourceIndex + 0x81e8),CleanupOption,CleanupFlag,0xfffffffffffffffe);
+  ProcessResourceOperation(ResourceIndex + 0x81a8,*(uint8_t *)(ResourceIndex + 0x81b8));
+  ProcessResourceOperation(ResourceIndex + 0x8178,*(uint8_t *)(ResourceIndex + 0x8188));
+  RegisterResourceHandler(ResourceIndex + 0x80d8,0x20,5,SystemResourceHandler);
   if (*ResourceContextPointer != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  RegisterResourceHandler(resourceIndex + 0x7fe8,0x20,5,SystemResourceHandler);
-  lVar4 = *(int64_t *)(resourceIndex + 0x7fd0);
-  for (ResourceTablePointer = *(int64_t *)(resourceIndex + 0x7fc8); ResourceTablePointer != lVar4; ResourceTablePointer = ResourceTablePointer + 0x40) {
+  RegisterResourceHandler(ResourceIndex + 0x7fe8,0x20,5,SystemResourceHandler);
+  lVar4 = *(int64_t *)(ResourceIndex + 0x7fd0);
+  for (ResourceTablePointer = *(int64_t *)(ResourceIndex + 0x7fc8); ResourceTablePointer != lVar4; ResourceTablePointer = ResourceTablePointer + 0x40) {
     ProcessMemoryAllocation(ResourceTablePointer);
   }
-  if (*(int64_t *)(resourceIndex + 0x7fc8) != 0) {
+  if (*(int64_t *)(ResourceIndex + 0x7fc8) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
@@ -58800,7 +58800,7 @@ void Unwind_180909860(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = *(uint8_t **)(*(int64_t *)(ValidationContextParameter + 0x40) + 0x68);
@@ -58809,12 +58809,12 @@ void Unwind_180909860(uint8_t ObjectContextParameter,int64_t ValidationContextPa
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -59007,7 +59007,7 @@ void Unwind_180909a00(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = *(uint8_t **)(ValidationContextParameter + 0x38);
@@ -59016,12 +59016,12 @@ void Unwind_180909a00(uint8_t ObjectContextParameter,int64_t ValidationContextPa
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -59075,7 +59075,7 @@ void Unwind_180909a40(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = *(uint8_t **)(ValidationContextParameter + 0x38);
@@ -59084,12 +59084,12 @@ void Unwind_180909a40(uint8_t ObjectContextParameter,int64_t ValidationContextPa
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -59111,7 +59111,7 @@ void Unwind_180909a50(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = *(uint8_t **)(ValidationContextParameter + 0x38);
@@ -59120,12 +59120,12 @@ void Unwind_180909a50(uint8_t ObjectContextParameter,int64_t ValidationContextPa
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -59373,7 +59373,7 @@ void Unwind_180909c20(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = *(uint8_t **)(*(int64_t *)(ValidationContextParameter + 0x30) + 8);
@@ -59382,12 +59382,12 @@ void Unwind_180909c20(uint8_t ObjectContextParameter,int64_t ValidationContextPa
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -59525,13 +59525,13 @@ void Unwind_180909d00(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int64_t *processPointer;
   int64_t *presourceTable;
-  int64_t *presourceIndex;
+  int64_t *pResourceIndex;
   
   presourceTable = (int64_t *)(*(int64_t *)(ValidationContextParameter + 0x40) + 0x580);
   ResourceContextPointer = *(int64_t **)(*(int64_t *)(ValidationContextParameter + 0x40) + 0x588);
-  for (presourceIndex = (int64_t *)*presourceTable; presourceIndex != ResourceContextPointer; presourceIndex = presourceIndex + 1) {
-    if ((int64_t *)*presourceIndex != (int64_t *)0x0) {
-      (**(code **)(*(int64_t *)*presourceIndex + 0x38))();
+  for (pResourceIndex = (int64_t *)*presourceTable; pResourceIndex != ResourceContextPointer; pResourceIndex = pResourceIndex + 1) {
+    if ((int64_t *)*pResourceIndex != (int64_t *)0x0) {
+      (**(code **)(*(int64_t *)*pResourceIndex + 0x38))();
     }
   }
   if (*presourceTable == 0) {
@@ -59557,13 +59557,13 @@ void Unwind_180909d60(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int64_t *processPointer;
   int64_t *presourceTable;
-  int64_t *presourceIndex;
+  int64_t *pResourceIndex;
   
   presourceTable = (int64_t *)(*(int64_t *)(ValidationContextParameter + 0x40) + 0x6c0);
   ResourceContextPointer = *(int64_t **)(*(int64_t *)(ValidationContextParameter + 0x40) + 0x6c8);
-  for (presourceIndex = (int64_t *)*presourceTable; presourceIndex != ResourceContextPointer; presourceIndex = presourceIndex + 1) {
-    if ((int64_t *)*presourceIndex != (int64_t *)0x0) {
-      (**(code **)(*(int64_t *)*presourceIndex + 0x38))();
+  for (pResourceIndex = (int64_t *)*presourceTable; pResourceIndex != ResourceContextPointer; pResourceIndex = pResourceIndex + 1) {
+    if ((int64_t *)*pResourceIndex != (int64_t *)0x0) {
+      (**(code **)(*(int64_t *)*pResourceIndex + 0x38))();
     }
   }
   if (*presourceTable == 0) {
@@ -59580,13 +59580,13 @@ void Unwind_180909d80(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int64_t *processPointer;
   int64_t *presourceTable;
-  int64_t *presourceIndex;
+  int64_t *pResourceIndex;
   
   presourceTable = (int64_t *)(*(int64_t *)(ValidationContextParameter + 0x40) + 0x6e0);
   ResourceContextPointer = *(int64_t **)(*(int64_t *)(ValidationContextParameter + 0x40) + 0x6e8);
-  for (presourceIndex = (int64_t *)*presourceTable; presourceIndex != ResourceContextPointer; presourceIndex = presourceIndex + 1) {
-    if ((int64_t *)*presourceIndex != (int64_t *)0x0) {
-      (**(code **)(*(int64_t *)*presourceIndex + 0x38))();
+  for (pResourceIndex = (int64_t *)*presourceTable; pResourceIndex != ResourceContextPointer; pResourceIndex = pResourceIndex + 1) {
+    if ((int64_t *)*pResourceIndex != (int64_t *)0x0) {
+      (**(code **)(*(int64_t *)*pResourceIndex + 0x38))();
     }
   }
   if (*presourceTable == 0) {
@@ -59603,13 +59603,13 @@ void Unwind_180909da0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int64_t *processPointer;
   int64_t *presourceTable;
-  int64_t *presourceIndex;
+  int64_t *pResourceIndex;
   
   presourceTable = (int64_t *)(*(int64_t *)(ValidationContextParameter + 0x40) + 0x700);
   ResourceContextPointer = *(int64_t **)(*(int64_t *)(ValidationContextParameter + 0x40) + 0x708);
-  for (presourceIndex = (int64_t *)*presourceTable; presourceIndex != ResourceContextPointer; presourceIndex = presourceIndex + 1) {
-    if ((int64_t *)*presourceIndex != (int64_t *)0x0) {
-      (**(code **)(*(int64_t *)*presourceIndex + 0x38))();
+  for (pResourceIndex = (int64_t *)*presourceTable; pResourceIndex != ResourceContextPointer; pResourceIndex = pResourceIndex + 1) {
+    if ((int64_t *)*pResourceIndex != (int64_t *)0x0) {
+      (**(code **)(*(int64_t *)*pResourceIndex + 0x38))();
     }
   }
   if (*presourceTable == 0) {
@@ -59626,13 +59626,13 @@ void Unwind_180909dc0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int64_t *processPointer;
   int64_t *presourceTable;
-  int64_t *presourceIndex;
+  int64_t *pResourceIndex;
   
   presourceTable = (int64_t *)(*(int64_t *)(ValidationContextParameter + 0x40) + 0x720);
   ResourceContextPointer = *(int64_t **)(*(int64_t *)(ValidationContextParameter + 0x40) + 0x728);
-  for (presourceIndex = (int64_t *)*presourceTable; presourceIndex != ResourceContextPointer; presourceIndex = presourceIndex + 1) {
-    if ((int64_t *)*presourceIndex != (int64_t *)0x0) {
-      (**(code **)(*(int64_t *)*presourceIndex + 0x38))();
+  for (pResourceIndex = (int64_t *)*presourceTable; pResourceIndex != ResourceContextPointer; pResourceIndex = pResourceIndex + 1) {
+    if ((int64_t *)*pResourceIndex != (int64_t *)0x0) {
+      (**(code **)(*(int64_t *)*pResourceIndex + 0x38))();
     }
   }
   if (*presourceTable == 0) {
@@ -59767,26 +59767,26 @@ void Unwind_180909f60(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
-  resourceIndex = *(int64_t *)(ValidationContextParameter + 0x40);
+  ResourceIndex = *(int64_t *)(ValidationContextParameter + 0x40);
   FinalizeResourceRegistration();
   _Mtx_destroy_in_situ();
-  if (*(int64_t *)(resourceIndex + 0xae0) != 0) {
+  if (*(int64_t *)(ResourceIndex + 0xae0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  pResourceValidationResult = *(uint8_t **)(resourceIndex + 0xac0);
+  pResourceValidationResult = *(uint8_t **)(ResourceIndex + 0xac0);
   if (pResourceValidationResult != (uint8_t *)0x0) {
     LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
     if (LoopIncrement != 0) {
-      resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-      resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-      if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-        *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-        *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-        pResourceIndex = (int *)(resourceIndex + 0x18);
+      ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+      ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+      if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+        *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+        *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+        pResourceIndex = (int *)(ResourceIndex + 0x18);
         *pResourceIndex = *pResourceIndex + -1;
         if (*pResourceIndex == 0) {
           SystemCleanupHandler();
@@ -59873,13 +59873,13 @@ void Unwind_18090a060(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int64_t *processPointer;
   int64_t *presourceTable;
-  int64_t *presourceIndex;
+  int64_t *pResourceIndex;
   
   presourceTable = (int64_t *)(*(int64_t *)(ValidationContextParameter + 0x40) + 0xd00);
   ResourceContextPointer = *(int64_t **)(*(int64_t *)(ValidationContextParameter + 0x40) + 0xd08);
-  for (presourceIndex = (int64_t *)*presourceTable; presourceIndex != ResourceContextPointer; presourceIndex = presourceIndex + 1) {
-    if ((int64_t *)*presourceIndex != (int64_t *)0x0) {
-      (**(code **)(*(int64_t *)*presourceIndex + 0x38))();
+  for (pResourceIndex = (int64_t *)*presourceTable; pResourceIndex != ResourceContextPointer; pResourceIndex = pResourceIndex + 1) {
+    if ((int64_t *)*pResourceIndex != (int64_t *)0x0) {
+      (**(code **)(*(int64_t *)*pResourceIndex + 0x38))();
     }
   }
   if (*presourceTable == 0) {
@@ -60145,13 +60145,13 @@ void Unwind_18090a1f0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int64_t *processPointer;
   int64_t *presourceTable;
-  int64_t *presourceIndex;
+  int64_t *pResourceIndex;
   
   presourceTable = (int64_t *)(*(int64_t *)(ValidationContextParameter + 0x60) + 0x580);
   ResourceContextPointer = *(int64_t **)(*(int64_t *)(ValidationContextParameter + 0x60) + 0x588);
-  for (presourceIndex = (int64_t *)*presourceTable; presourceIndex != ResourceContextPointer; presourceIndex = presourceIndex + 1) {
-    if ((int64_t *)*presourceIndex != (int64_t *)0x0) {
-      (**(code **)(*(int64_t *)*presourceIndex + 0x38))();
+  for (pResourceIndex = (int64_t *)*presourceTable; pResourceIndex != ResourceContextPointer; pResourceIndex = pResourceIndex + 1) {
+    if ((int64_t *)*pResourceIndex != (int64_t *)0x0) {
+      (**(code **)(*(int64_t *)*pResourceIndex + 0x38))();
     }
   }
   if (*presourceTable == 0) {
@@ -60177,13 +60177,13 @@ void Unwind_18090a250(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int64_t *processPointer;
   int64_t *presourceTable;
-  int64_t *presourceIndex;
+  int64_t *pResourceIndex;
   
   presourceTable = (int64_t *)(*(int64_t *)(ValidationContextParameter + 0x60) + 0x6c0);
   ResourceContextPointer = *(int64_t **)(*(int64_t *)(ValidationContextParameter + 0x60) + 0x6c8);
-  for (presourceIndex = (int64_t *)*presourceTable; presourceIndex != ResourceContextPointer; presourceIndex = presourceIndex + 1) {
-    if ((int64_t *)*presourceIndex != (int64_t *)0x0) {
-      (**(code **)(*(int64_t *)*presourceIndex + 0x38))();
+  for (pResourceIndex = (int64_t *)*presourceTable; pResourceIndex != ResourceContextPointer; pResourceIndex = pResourceIndex + 1) {
+    if ((int64_t *)*pResourceIndex != (int64_t *)0x0) {
+      (**(code **)(*(int64_t *)*pResourceIndex + 0x38))();
     }
   }
   if (*presourceTable == 0) {
@@ -60200,13 +60200,13 @@ void Unwind_18090a270(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int64_t *processPointer;
   int64_t *presourceTable;
-  int64_t *presourceIndex;
+  int64_t *pResourceIndex;
   
   presourceTable = (int64_t *)(*(int64_t *)(ValidationContextParameter + 0x60) + 0x6e0);
   ResourceContextPointer = *(int64_t **)(*(int64_t *)(ValidationContextParameter + 0x60) + 0x6e8);
-  for (presourceIndex = (int64_t *)*presourceTable; presourceIndex != ResourceContextPointer; presourceIndex = presourceIndex + 1) {
-    if ((int64_t *)*presourceIndex != (int64_t *)0x0) {
-      (**(code **)(*(int64_t *)*presourceIndex + 0x38))();
+  for (pResourceIndex = (int64_t *)*presourceTable; pResourceIndex != ResourceContextPointer; pResourceIndex = pResourceIndex + 1) {
+    if ((int64_t *)*pResourceIndex != (int64_t *)0x0) {
+      (**(code **)(*(int64_t *)*pResourceIndex + 0x38))();
     }
   }
   if (*presourceTable == 0) {
@@ -60223,13 +60223,13 @@ void Unwind_18090a290(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int64_t *processPointer;
   int64_t *presourceTable;
-  int64_t *presourceIndex;
+  int64_t *pResourceIndex;
   
   presourceTable = (int64_t *)(*(int64_t *)(ValidationContextParameter + 0x60) + 0x700);
   ResourceContextPointer = *(int64_t **)(*(int64_t *)(ValidationContextParameter + 0x60) + 0x708);
-  for (presourceIndex = (int64_t *)*presourceTable; presourceIndex != ResourceContextPointer; presourceIndex = presourceIndex + 1) {
-    if ((int64_t *)*presourceIndex != (int64_t *)0x0) {
-      (**(code **)(*(int64_t *)*presourceIndex + 0x38))();
+  for (pResourceIndex = (int64_t *)*presourceTable; pResourceIndex != ResourceContextPointer; pResourceIndex = pResourceIndex + 1) {
+    if ((int64_t *)*pResourceIndex != (int64_t *)0x0) {
+      (**(code **)(*(int64_t *)*pResourceIndex + 0x38))();
     }
   }
   if (*presourceTable == 0) {
@@ -60246,13 +60246,13 @@ void Unwind_18090a2b0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int64_t *processPointer;
   int64_t *presourceTable;
-  int64_t *presourceIndex;
+  int64_t *pResourceIndex;
   
   presourceTable = (int64_t *)(*(int64_t *)(ValidationContextParameter + 0x60) + 0x720);
   ResourceContextPointer = *(int64_t **)(*(int64_t *)(ValidationContextParameter + 0x60) + 0x728);
-  for (presourceIndex = (int64_t *)*presourceTable; presourceIndex != ResourceContextPointer; presourceIndex = presourceIndex + 1) {
-    if ((int64_t *)*presourceIndex != (int64_t *)0x0) {
-      (**(code **)(*(int64_t *)*presourceIndex + 0x38))();
+  for (pResourceIndex = (int64_t *)*presourceTable; pResourceIndex != ResourceContextPointer; pResourceIndex = pResourceIndex + 1) {
+    if ((int64_t *)*pResourceIndex != (int64_t *)0x0) {
+      (**(code **)(*(int64_t *)*pResourceIndex + 0x38))();
     }
   }
   if (*presourceTable == 0) {
@@ -60387,26 +60387,26 @@ void Unwind_18090a450(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
-  resourceIndex = *(int64_t *)(ValidationContextParameter + 0x60);
+  ResourceIndex = *(int64_t *)(ValidationContextParameter + 0x60);
   FinalizeResourceRegistration();
   _Mtx_destroy_in_situ();
-  if (*(int64_t *)(resourceIndex + 0xae0) != 0) {
+  if (*(int64_t *)(ResourceIndex + 0xae0) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  pResourceValidationResult = *(uint8_t **)(resourceIndex + 0xac0);
+  pResourceValidationResult = *(uint8_t **)(ResourceIndex + 0xac0);
   if (pResourceValidationResult != (uint8_t *)0x0) {
     LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
     if (LoopIncrement != 0) {
-      resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-      resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-      if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-        *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-        *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-        pResourceIndex = (int *)(resourceIndex + 0x18);
+      ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+      ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+      if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+        *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+        *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+        pResourceIndex = (int *)(ResourceIndex + 0x18);
         *pResourceIndex = *pResourceIndex + -1;
         if (*pResourceIndex == 0) {
           SystemCleanupHandler();
@@ -60493,13 +60493,13 @@ void Unwind_18090a550(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int64_t *processPointer;
   int64_t *presourceTable;
-  int64_t *presourceIndex;
+  int64_t *pResourceIndex;
   
   presourceTable = (int64_t *)(*(int64_t *)(ValidationContextParameter + 0x60) + 0xd00);
   ResourceContextPointer = *(int64_t **)(*(int64_t *)(ValidationContextParameter + 0x60) + 0xd08);
-  for (presourceIndex = (int64_t *)*presourceTable; presourceIndex != ResourceContextPointer; presourceIndex = presourceIndex + 1) {
-    if ((int64_t *)*presourceIndex != (int64_t *)0x0) {
-      (**(code **)(*(int64_t *)*presourceIndex + 0x38))();
+  for (pResourceIndex = (int64_t *)*presourceTable; pResourceIndex != ResourceContextPointer; pResourceIndex = pResourceIndex + 1) {
+    if ((int64_t *)*pResourceIndex != (int64_t *)0x0) {
+      (**(code **)(*(int64_t *)*pResourceIndex + 0x38))();
     }
   }
   if (*presourceTable == 0) {
@@ -60516,13 +60516,13 @@ void Unwind_18090a570(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int64_t *processPointer;
   int64_t *presourceTable;
-  int64_t *presourceIndex;
+  int64_t *pResourceIndex;
   
   presourceTable = *(int64_t **)(ValidationContextParameter + 0x68);
   ResourceContextPointer = (int64_t *)presourceTable[1];
-  for (presourceIndex = (int64_t *)*presourceTable; presourceIndex != ResourceContextPointer; presourceIndex = presourceIndex + 1) {
-    if ((int64_t *)*presourceIndex != (int64_t *)0x0) {
-      (**(code **)(*(int64_t *)*presourceIndex + 0x38))();
+  for (pResourceIndex = (int64_t *)*presourceTable; pResourceIndex != ResourceContextPointer; pResourceIndex = pResourceIndex + 1) {
+    if ((int64_t *)*pResourceIndex != (int64_t *)0x0) {
+      (**(code **)(*(int64_t *)*pResourceIndex + 0x38))();
     }
   }
   if (*presourceTable == 0) {
@@ -60593,7 +60593,7 @@ void Unwind_18090a5c0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = (uint8_t *)**(uint64_t **)(ValidationContextParameter + 0x68);
@@ -60602,12 +60602,12 @@ void Unwind_18090a5c0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -60629,7 +60629,7 @@ void Unwind_18090a5d0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = *(uint8_t **)(*(int64_t *)(ValidationContextParameter + 0x68) + 0x20);
@@ -60638,12 +60638,12 @@ void Unwind_18090a5d0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -60873,7 +60873,7 @@ void Unwind_18090a780(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = *(uint8_t **)(ValidationContextParameter + 0x40);
@@ -60882,12 +60882,12 @@ void Unwind_18090a780(uint8_t ObjectContextParameter,int64_t ValidationContextPa
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -60923,7 +60923,7 @@ void Unwind_18090a7a0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = *(uint8_t **)(ValidationContextParameter + 0x40);
@@ -60932,12 +60932,12 @@ void Unwind_18090a7a0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -61102,7 +61102,7 @@ void Unwind_18090a880(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = *(uint8_t **)(*(int64_t *)(ValidationContextParameter + 0x50) + 8);
@@ -61111,12 +61111,12 @@ void Unwind_18090a880(uint8_t ObjectContextParameter,int64_t ValidationContextPa
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -61138,7 +61138,7 @@ void Unwind_18090a890(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = *(uint8_t **)(*(int64_t *)(ValidationContextParameter + 0x60) + 8);
@@ -61147,12 +61147,12 @@ void Unwind_18090a890(uint8_t ObjectContextParameter,int64_t ValidationContextPa
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -61174,13 +61174,13 @@ void Unwind_18090a8a0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int64_t *processPointer;
   int64_t *presourceTable;
-  int64_t *presourceIndex;
+  int64_t *pResourceIndex;
   
   presourceTable = (int64_t *)(*(int64_t *)(ValidationContextParameter + 0x58) + 0x28);
   ResourceContextPointer = *(int64_t **)(*(int64_t *)(ValidationContextParameter + 0x58) + 0x30);
-  for (presourceIndex = (int64_t *)*presourceTable; presourceIndex != ResourceContextPointer; presourceIndex = presourceIndex + 1) {
-    if ((int64_t *)*presourceIndex != (int64_t *)0x0) {
-      (**(code **)(*(int64_t *)*presourceIndex + 0x38))();
+  for (pResourceIndex = (int64_t *)*presourceTable; pResourceIndex != ResourceContextPointer; pResourceIndex = pResourceIndex + 1) {
+    if ((int64_t *)*pResourceIndex != (int64_t *)0x0) {
+      (**(code **)(*(int64_t *)*pResourceIndex + 0x38))();
     }
   }
   if (*presourceTable == 0) {
@@ -61197,13 +61197,13 @@ void Unwind_18090a8b0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int64_t *processPointer;
   int64_t *presourceTable;
-  int64_t *presourceIndex;
+  int64_t *pResourceIndex;
   
   presourceTable = (int64_t *)(*(int64_t *)(ValidationContextParameter + 0x60) + 8);
   ResourceContextPointer = *(int64_t **)(*(int64_t *)(ValidationContextParameter + 0x60) + 0x10);
-  for (presourceIndex = (int64_t *)*presourceTable; presourceIndex != ResourceContextPointer; presourceIndex = presourceIndex + 1) {
-    if ((int64_t *)*presourceIndex != (int64_t *)0x0) {
-      (**(code **)(*(int64_t *)*presourceIndex + 0x38))();
+  for (pResourceIndex = (int64_t *)*presourceTable; pResourceIndex != ResourceContextPointer; pResourceIndex = pResourceIndex + 1) {
+    if ((int64_t *)*pResourceIndex != (int64_t *)0x0) {
+      (**(code **)(*(int64_t *)*pResourceIndex + 0x38))();
     }
   }
   if (*presourceTable == 0) {
@@ -61220,13 +61220,13 @@ void Unwind_18090a8c0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int64_t *processPointer;
   int64_t *presourceTable;
-  int64_t *presourceIndex;
+  int64_t *pResourceIndex;
   
   presourceTable = (int64_t *)(*(int64_t *)(ValidationContextParameter + 0x70) + 8);
   ResourceContextPointer = *(int64_t **)(*(int64_t *)(ValidationContextParameter + 0x70) + 0x10);
-  for (presourceIndex = (int64_t *)*presourceTable; presourceIndex != ResourceContextPointer; presourceIndex = presourceIndex + 1) {
-    if ((int64_t *)*presourceIndex != (int64_t *)0x0) {
-      (**(code **)(*(int64_t *)*presourceIndex + 0x38))();
+  for (pResourceIndex = (int64_t *)*presourceTable; pResourceIndex != ResourceContextPointer; pResourceIndex = pResourceIndex + 1) {
+    if ((int64_t *)*pResourceIndex != (int64_t *)0x0) {
+      (**(code **)(*(int64_t *)*pResourceIndex + 0x38))();
     }
   }
   if (*presourceTable == 0) {
@@ -61243,13 +61243,13 @@ void Unwind_18090a8d0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int64_t *processPointer;
   int64_t *presourceTable;
-  int64_t *presourceIndex;
+  int64_t *pResourceIndex;
   
   presourceTable = *(int64_t **)(ValidationContextParameter + 0x88);
   ResourceContextPointer = (int64_t *)presourceTable[1];
-  for (presourceIndex = (int64_t *)*presourceTable; presourceIndex != ResourceContextPointer; presourceIndex = presourceIndex + 1) {
-    if ((int64_t *)*presourceIndex != (int64_t *)0x0) {
-      (**(code **)(*(int64_t *)*presourceIndex + 0x38))();
+  for (pResourceIndex = (int64_t *)*presourceTable; pResourceIndex != ResourceContextPointer; pResourceIndex = pResourceIndex + 1) {
+    if ((int64_t *)*pResourceIndex != (int64_t *)0x0) {
+      (**(code **)(*(int64_t *)*pResourceIndex + 0x38))();
     }
   }
   if (*presourceTable == 0) {
@@ -61294,13 +61294,13 @@ void Unwind_18090a900(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int64_t *processPointer;
   int64_t *presourceTable;
-  int64_t *presourceIndex;
+  int64_t *pResourceIndex;
   
   presourceTable = *(int64_t **)(ValidationContextParameter + 0x50);
   ResourceContextPointer = (int64_t *)presourceTable[1];
-  for (presourceIndex = (int64_t *)*presourceTable; presourceIndex != ResourceContextPointer; presourceIndex = presourceIndex + 1) {
-    if ((int64_t *)*presourceIndex != (int64_t *)0x0) {
-      (**(code **)(*(int64_t *)*presourceIndex + 0x38))();
+  for (pResourceIndex = (int64_t *)*presourceTable; pResourceIndex != ResourceContextPointer; pResourceIndex = pResourceIndex + 1) {
+    if ((int64_t *)*pResourceIndex != (int64_t *)0x0) {
+      (**(code **)(*(int64_t *)*pResourceIndex + 0x38))();
     }
   }
   if (*presourceTable == 0) {
@@ -61339,13 +61339,13 @@ void Unwind_18090a920(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int64_t *processPointer;
   int64_t *presourceTable;
-  int64_t *presourceIndex;
+  int64_t *pResourceIndex;
   
   presourceTable = (int64_t *)(*(int64_t *)(ValidationContextParameter + 0x40) + 8);
   ResourceContextPointer = *(int64_t **)(*(int64_t *)(ValidationContextParameter + 0x40) + 0x10);
-  for (presourceIndex = (int64_t *)*presourceTable; presourceIndex != ResourceContextPointer; presourceIndex = presourceIndex + 1) {
-    if ((int64_t *)*presourceIndex != (int64_t *)0x0) {
-      (**(code **)(*(int64_t *)*presourceIndex + 0x38))();
+  for (pResourceIndex = (int64_t *)*presourceTable; pResourceIndex != ResourceContextPointer; pResourceIndex = pResourceIndex + 1) {
+    if ((int64_t *)*pResourceIndex != (int64_t *)0x0) {
+      (**(code **)(*(int64_t *)*pResourceIndex + 0x38))();
     }
   }
   if (*presourceTable == 0) {
@@ -61362,21 +61362,21 @@ void Unwind_18090a930(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
-  resourceIndex = *(int64_t *)(ValidationContextParameter + 0x40);
+  ResourceIndex = *(int64_t *)(ValidationContextParameter + 0x40);
   ExecuteResourceInitialization();
-  if ((1 < *(uint64_t *)(resourceIndex + 0x10)) &&
-     (pResourceValidationResult = *(uint8_t **)(resourceIndex + 8), pResourceValidationResult != (uint8_t *)0x0)) {
+  if ((1 < *(uint64_t *)(ResourceIndex + 0x10)) &&
+     (pResourceValidationResult = *(uint8_t **)(ResourceIndex + 8), pResourceValidationResult != (uint8_t *)0x0)) {
     LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
     if (LoopIncrement != 0) {
-      resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-      resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-      if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-        *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-        *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-        pResourceIndex = (int *)(resourceIndex + 0x18);
+      ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+      ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+      if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+        *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+        *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+        pResourceIndex = (int *)(ResourceIndex + 0x18);
         *pResourceIndex = *pResourceIndex + -1;
         if (*pResourceIndex == 0) {
           SystemCleanupHandler();
@@ -61400,21 +61400,21 @@ void Unwind_18090a940(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
-  resourceIndex = *(int64_t *)(ValidationContextParameter + 0x40);
+  ResourceIndex = *(int64_t *)(ValidationContextParameter + 0x40);
   ExecuteResourceInitialization();
-  if ((1 < *(uint64_t *)(resourceIndex + 0x10)) &&
-     (pResourceValidationResult = *(uint8_t **)(resourceIndex + 8), pResourceValidationResult != (uint8_t *)0x0)) {
+  if ((1 < *(uint64_t *)(ResourceIndex + 0x10)) &&
+     (pResourceValidationResult = *(uint8_t **)(ResourceIndex + 8), pResourceValidationResult != (uint8_t *)0x0)) {
     LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
     if (LoopIncrement != 0) {
-      resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-      resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-      if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-        *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-        *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-        pResourceIndex = (int *)(resourceIndex + 0x18);
+      ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+      ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+      if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+        *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+        *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+        pResourceIndex = (int *)(ResourceIndex + 0x18);
         *pResourceIndex = *pResourceIndex + -1;
         if (*pResourceIndex == 0) {
           SystemCleanupHandler();
@@ -61438,21 +61438,21 @@ void Unwind_18090a950(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
-  resourceIndex = *(int64_t *)(ValidationContextParameter + 0x40);
+  ResourceIndex = *(int64_t *)(ValidationContextParameter + 0x40);
   ExecuteResourceInitialization();
-  if ((1 < *(uint64_t *)(resourceIndex + 0x10)) &&
-     (pResourceValidationResult = *(uint8_t **)(resourceIndex + 8), pResourceValidationResult != (uint8_t *)0x0)) {
+  if ((1 < *(uint64_t *)(ResourceIndex + 0x10)) &&
+     (pResourceValidationResult = *(uint8_t **)(ResourceIndex + 8), pResourceValidationResult != (uint8_t *)0x0)) {
     LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
     if (LoopIncrement != 0) {
-      resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-      resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-      if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-        *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-        *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-        pResourceIndex = (int *)(resourceIndex + 0x18);
+      ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+      ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+      if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+        *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+        *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+        pResourceIndex = (int *)(ResourceIndex + 0x18);
         *pResourceIndex = *pResourceIndex + -1;
         if (*pResourceIndex == 0) {
           SystemCleanupHandler();
@@ -61476,21 +61476,21 @@ void Unwind_18090a960(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
-  resourceIndex = *(int64_t *)(ValidationContextParameter + 0x50);
+  ResourceIndex = *(int64_t *)(ValidationContextParameter + 0x50);
   ExecuteResourceInitialization();
-  if ((1 < *(uint64_t *)(resourceIndex + 0x10)) &&
-     (pResourceValidationResult = *(uint8_t **)(resourceIndex + 8), pResourceValidationResult != (uint8_t *)0x0)) {
+  if ((1 < *(uint64_t *)(ResourceIndex + 0x10)) &&
+     (pResourceValidationResult = *(uint8_t **)(ResourceIndex + 8), pResourceValidationResult != (uint8_t *)0x0)) {
     LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
     if (LoopIncrement != 0) {
-      resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-      resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-      if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-        *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-        *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-        pResourceIndex = (int *)(resourceIndex + 0x18);
+      ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+      ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+      if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+        *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+        *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+        pResourceIndex = (int *)(ResourceIndex + 0x18);
         *pResourceIndex = *pResourceIndex + -1;
         if (*pResourceIndex == 0) {
           SystemCleanupHandler();
@@ -61514,21 +61514,21 @@ void Unwind_18090a970(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
-  resourceIndex = *(int64_t *)(ValidationContextParameter + 0x50);
+  ResourceIndex = *(int64_t *)(ValidationContextParameter + 0x50);
   ExecuteResourceInitialization();
-  if ((1 < *(uint64_t *)(resourceIndex + 0x10)) &&
-     (pResourceValidationResult = *(uint8_t **)(resourceIndex + 8), pResourceValidationResult != (uint8_t *)0x0)) {
+  if ((1 < *(uint64_t *)(ResourceIndex + 0x10)) &&
+     (pResourceValidationResult = *(uint8_t **)(ResourceIndex + 8), pResourceValidationResult != (uint8_t *)0x0)) {
     LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
     if (LoopIncrement != 0) {
-      resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-      resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-      if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-        *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-        *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-        pResourceIndex = (int *)(resourceIndex + 0x18);
+      ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+      ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+      if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+        *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+        *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+        pResourceIndex = (int *)(ResourceIndex + 0x18);
         *pResourceIndex = *pResourceIndex + -1;
         if (*pResourceIndex == 0) {
           SystemCleanupHandler();
@@ -62188,13 +62188,13 @@ void Unwind_18090af70(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int64_t loopCounter;
   int64_t resourceTable;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   uint64_t ResourceContextOffset;
   
-  resourceIndex = *(int64_t *)(ValidationContextParameter + 0x50);
-  LoopIncrement = *(uint64_t *)(resourceIndex + 0x2b0);
-  loopCounter = *(int64_t *)(resourceIndex + 0x2a8);
+  ResourceIndex = *(int64_t *)(ValidationContextParameter + 0x50);
+  LoopIncrement = *(uint64_t *)(ResourceIndex + 0x2b0);
+  loopCounter = *(int64_t *)(ResourceIndex + 0x2a8);
   ResourceContextOffset = 0;
   if (LoopIncrement != 0) {
     do {
@@ -62209,10 +62209,10 @@ void Unwind_18090af70(uint8_t ObjectContextParameter,int64_t ValidationContextPa
       *(uint8_t *)(localContextPointer + ResourceContextOffset * 8) = 0;
       ResourceContextOffset = ResourceContextOffset + 1;
     } while (ResourceContextOffset < LoopIncrement);
-    LoopIncrement = *(uint64_t *)(resourceIndex + 0x2b0);
+    LoopIncrement = *(uint64_t *)(ResourceIndex + 0x2b0);
   }
-  *(uint8_t *)(resourceIndex + 0x2b8) = 0;
-  if ((1 < LoopIncrement) && (*(int64_t *)(resourceIndex + 0x2a8) != 0)) {
+  *(uint8_t *)(ResourceIndex + 0x2b8) = 0;
+  if ((1 < LoopIncrement) && (*(int64_t *)(ResourceIndex + 0x2a8) != 0)) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
@@ -62795,13 +62795,13 @@ void Unwind_18090b4b0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int64_t loopCounter;
   int64_t resourceTable;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   uint64_t ResourceContextOffset;
   
-  resourceIndex = *(int64_t *)(ValidationContextParameter + 0x58);
-  LoopIncrement = *(uint64_t *)(resourceIndex + 0x10);
-  loopCounter = *(int64_t *)(resourceIndex + 8);
+  ResourceIndex = *(int64_t *)(ValidationContextParameter + 0x58);
+  LoopIncrement = *(uint64_t *)(ResourceIndex + 0x10);
+  loopCounter = *(int64_t *)(ResourceIndex + 8);
   ResourceContextOffset = 0;
   if (LoopIncrement != 0) {
     do {
@@ -62816,10 +62816,10 @@ void Unwind_18090b4b0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
       *(uint8_t *)(localContextPointer + ResourceContextOffset * 8) = 0;
       ResourceContextOffset = ResourceContextOffset + 1;
     } while (ResourceContextOffset < LoopIncrement);
-    LoopIncrement = *(uint64_t *)(resourceIndex + 0x10);
+    LoopIncrement = *(uint64_t *)(ResourceIndex + 0x10);
   }
-  *(uint8_t *)(resourceIndex + 0x18) = 0;
-  if ((1 < LoopIncrement) && (*(int64_t *)(resourceIndex + 8) != 0)) {
+  *(uint8_t *)(ResourceIndex + 0x18) = 0;
+  if ((1 < LoopIncrement) && (*(int64_t *)(ResourceIndex + 8) != 0)) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
@@ -62833,13 +62833,13 @@ void Unwind_18090b4c0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int64_t loopCounter;
   int64_t resourceTable;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   uint64_t ResourceContextOffset;
   
-  resourceIndex = *(int64_t *)(ValidationContextParameter + 0x58);
-  LoopIncrement = *(uint64_t *)(resourceIndex + 0x10);
-  loopCounter = *(int64_t *)(resourceIndex + 8);
+  ResourceIndex = *(int64_t *)(ValidationContextParameter + 0x58);
+  LoopIncrement = *(uint64_t *)(ResourceIndex + 0x10);
+  loopCounter = *(int64_t *)(ResourceIndex + 8);
   ResourceContextOffset = 0;
   if (LoopIncrement != 0) {
     do {
@@ -62854,10 +62854,10 @@ void Unwind_18090b4c0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
       *(uint8_t *)(localContextPointer + ResourceContextOffset * 8) = 0;
       ResourceContextOffset = ResourceContextOffset + 1;
     } while (ResourceContextOffset < LoopIncrement);
-    LoopIncrement = *(uint64_t *)(resourceIndex + 0x10);
+    LoopIncrement = *(uint64_t *)(ResourceIndex + 0x10);
   }
-  *(uint8_t *)(resourceIndex + 0x18) = 0;
-  if ((1 < LoopIncrement) && (*(int64_t *)(resourceIndex + 8) != 0)) {
+  *(uint8_t *)(ResourceIndex + 0x18) = 0;
+  if ((1 < LoopIncrement) && (*(int64_t *)(ResourceIndex + 8) != 0)) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
@@ -62889,13 +62889,13 @@ void Unwind_18090b4f0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int64_t loopCounter;
   int64_t resourceTable;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   uint64_t ResourceContextOffset;
   
-  resourceIndex = *(int64_t *)(ValidationContextParameter + 0x40);
-  LoopIncrement = *(uint64_t *)(resourceIndex + 0x10);
-  loopCounter = *(int64_t *)(resourceIndex + 8);
+  ResourceIndex = *(int64_t *)(ValidationContextParameter + 0x40);
+  LoopIncrement = *(uint64_t *)(ResourceIndex + 0x10);
+  loopCounter = *(int64_t *)(ResourceIndex + 8);
   ResourceContextOffset = 0;
   if (LoopIncrement != 0) {
     do {
@@ -62910,10 +62910,10 @@ void Unwind_18090b4f0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
       *(uint8_t *)(localContextPointer + ResourceContextOffset * 8) = 0;
       ResourceContextOffset = ResourceContextOffset + 1;
     } while (ResourceContextOffset < LoopIncrement);
-    LoopIncrement = *(uint64_t *)(resourceIndex + 0x10);
+    LoopIncrement = *(uint64_t *)(ResourceIndex + 0x10);
   }
-  *(uint8_t *)(resourceIndex + 0x18) = 0;
-  if ((1 < LoopIncrement) && (*(int64_t *)(resourceIndex + 8) != 0)) {
+  *(uint8_t *)(ResourceIndex + 0x18) = 0;
+  if ((1 < LoopIncrement) && (*(int64_t *)(ResourceIndex + 8) != 0)) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
@@ -62927,13 +62927,13 @@ void Unwind_18090b500(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int64_t loopCounter;
   int64_t resourceTable;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   uint64_t ResourceContextOffset;
   
-  resourceIndex = *(int64_t *)(ValidationContextParameter + 0x40);
-  LoopIncrement = *(uint64_t *)(resourceIndex + 0x10);
-  loopCounter = *(int64_t *)(resourceIndex + 8);
+  ResourceIndex = *(int64_t *)(ValidationContextParameter + 0x40);
+  LoopIncrement = *(uint64_t *)(ResourceIndex + 0x10);
+  loopCounter = *(int64_t *)(ResourceIndex + 8);
   ResourceContextOffset = 0;
   if (LoopIncrement != 0) {
     do {
@@ -62948,10 +62948,10 @@ void Unwind_18090b500(uint8_t ObjectContextParameter,int64_t ValidationContextPa
       *(uint8_t *)(localContextPointer + ResourceContextOffset * 8) = 0;
       ResourceContextOffset = ResourceContextOffset + 1;
     } while (ResourceContextOffset < LoopIncrement);
-    LoopIncrement = *(uint64_t *)(resourceIndex + 0x10);
+    LoopIncrement = *(uint64_t *)(ResourceIndex + 0x10);
   }
-  *(uint8_t *)(resourceIndex + 0x18) = 0;
-  if ((1 < LoopIncrement) && (*(int64_t *)(resourceIndex + 8) != 0)) {
+  *(uint8_t *)(ResourceIndex + 0x18) = 0;
+  if ((1 < LoopIncrement) && (*(int64_t *)(ResourceIndex + 8) != 0)) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
@@ -63230,13 +63230,13 @@ void Unwind_18090b7d0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int64_t loopCounter;
   int64_t resourceTable;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   uint64_t ResourceContextOffset;
   
-  resourceIndex = *(int64_t *)(ValidationContextParameter + 0x40);
-  LoopIncrement = *(uint64_t *)(resourceIndex + 0x2b0);
-  loopCounter = *(int64_t *)(resourceIndex + 0x2a8);
+  ResourceIndex = *(int64_t *)(ValidationContextParameter + 0x40);
+  LoopIncrement = *(uint64_t *)(ResourceIndex + 0x2b0);
+  loopCounter = *(int64_t *)(ResourceIndex + 0x2a8);
   ResourceContextOffset = 0;
   if (LoopIncrement != 0) {
     do {
@@ -63251,10 +63251,10 @@ void Unwind_18090b7d0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
       *(uint8_t *)(localContextPointer + ResourceContextOffset * 8) = 0;
       ResourceContextOffset = ResourceContextOffset + 1;
     } while (ResourceContextOffset < LoopIncrement);
-    LoopIncrement = *(uint64_t *)(resourceIndex + 0x2b0);
+    LoopIncrement = *(uint64_t *)(ResourceIndex + 0x2b0);
   }
-  *(uint8_t *)(resourceIndex + 0x2b8) = 0;
-  if ((1 < LoopIncrement) && (*(int64_t *)(resourceIndex + 0x2a8) != 0)) {
+  *(uint8_t *)(ResourceIndex + 0x2b8) = 0;
+  if ((1 < LoopIncrement) && (*(int64_t *)(ResourceIndex + 0x2a8) != 0)) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
@@ -63837,13 +63837,13 @@ void Unwind_18090bd10(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int64_t loopCounter;
   int64_t resourceTable;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   uint64_t ResourceContextOffset;
   
-  resourceIndex = *(int64_t *)(ValidationContextParameter + 0x48);
-  LoopIncrement = *(uint64_t *)(resourceIndex + 0x10);
-  loopCounter = *(int64_t *)(resourceIndex + 8);
+  ResourceIndex = *(int64_t *)(ValidationContextParameter + 0x48);
+  LoopIncrement = *(uint64_t *)(ResourceIndex + 0x10);
+  loopCounter = *(int64_t *)(ResourceIndex + 8);
   ResourceContextOffset = 0;
   if (LoopIncrement != 0) {
     do {
@@ -63858,10 +63858,10 @@ void Unwind_18090bd10(uint8_t ObjectContextParameter,int64_t ValidationContextPa
       *(uint8_t *)(localContextPointer + ResourceContextOffset * 8) = 0;
       ResourceContextOffset = ResourceContextOffset + 1;
     } while (ResourceContextOffset < LoopIncrement);
-    LoopIncrement = *(uint64_t *)(resourceIndex + 0x10);
+    LoopIncrement = *(uint64_t *)(ResourceIndex + 0x10);
   }
-  *(uint8_t *)(resourceIndex + 0x18) = 0;
-  if ((1 < LoopIncrement) && (*(int64_t *)(resourceIndex + 8) != 0)) {
+  *(uint8_t *)(ResourceIndex + 0x18) = 0;
+  if ((1 < LoopIncrement) && (*(int64_t *)(ResourceIndex + 8) != 0)) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
@@ -63875,13 +63875,13 @@ void Unwind_18090bd20(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int64_t loopCounter;
   int64_t resourceTable;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   uint64_t ResourceContextOffset;
   
-  resourceIndex = *(int64_t *)(ValidationContextParameter + 0x48);
-  LoopIncrement = *(uint64_t *)(resourceIndex + 0x10);
-  loopCounter = *(int64_t *)(resourceIndex + 8);
+  ResourceIndex = *(int64_t *)(ValidationContextParameter + 0x48);
+  LoopIncrement = *(uint64_t *)(ResourceIndex + 0x10);
+  loopCounter = *(int64_t *)(ResourceIndex + 8);
   ResourceContextOffset = 0;
   if (LoopIncrement != 0) {
     do {
@@ -63896,10 +63896,10 @@ void Unwind_18090bd20(uint8_t ObjectContextParameter,int64_t ValidationContextPa
       *(uint8_t *)(localContextPointer + ResourceContextOffset * 8) = 0;
       ResourceContextOffset = ResourceContextOffset + 1;
     } while (ResourceContextOffset < LoopIncrement);
-    LoopIncrement = *(uint64_t *)(resourceIndex + 0x10);
+    LoopIncrement = *(uint64_t *)(ResourceIndex + 0x10);
   }
-  *(uint8_t *)(resourceIndex + 0x18) = 0;
-  if ((1 < LoopIncrement) && (*(int64_t *)(resourceIndex + 8) != 0)) {
+  *(uint8_t *)(ResourceIndex + 0x18) = 0;
+  if ((1 < LoopIncrement) && (*(int64_t *)(ResourceIndex + 8) != 0)) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
@@ -64305,13 +64305,13 @@ void Unwind_18090bfe0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int64_t *processPointer;
   int64_t *presourceTable;
-  int64_t *presourceIndex;
+  int64_t *pResourceIndex;
   
   presourceTable = (int64_t *)(*(int64_t *)(ValidationContextParameter + 0x20) + 0x80);
   ResourceContextPointer = *(int64_t **)(*(int64_t *)(ValidationContextParameter + 0x20) + 0x88);
-  for (presourceIndex = (int64_t *)*presourceTable; presourceIndex != ResourceContextPointer; presourceIndex = presourceIndex + 1) {
-    if ((int64_t *)*presourceIndex != (int64_t *)0x0) {
-      (**(code **)(*(int64_t *)*presourceIndex + 0x38))();
+  for (pResourceIndex = (int64_t *)*presourceTable; pResourceIndex != ResourceContextPointer; pResourceIndex = pResourceIndex + 1) {
+    if ((int64_t *)*pResourceIndex != (int64_t *)0x0) {
+      (**(code **)(*(int64_t *)*pResourceIndex + 0x38))();
     }
   }
   if (*presourceTable == 0) {
@@ -64379,13 +64379,13 @@ void Unwind_18090c060(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int64_t *processPointer;
   int64_t *presourceTable;
-  int64_t *presourceIndex;
+  int64_t *pResourceIndex;
   
   presourceTable = *(int64_t **)(ValidationContextParameter + 0x28);
   ResourceContextPointer = (int64_t *)presourceTable[1];
-  for (presourceIndex = (int64_t *)*presourceTable; presourceIndex != ResourceContextPointer; presourceIndex = presourceIndex + 1) {
-    if ((int64_t *)*presourceIndex != (int64_t *)0x0) {
-      (**(code **)(*(int64_t *)*presourceIndex + 0x38))();
+  for (pResourceIndex = (int64_t *)*presourceTable; pResourceIndex != ResourceContextPointer; pResourceIndex = pResourceIndex + 1) {
+    if ((int64_t *)*pResourceIndex != (int64_t *)0x0) {
+      (**(code **)(*(int64_t *)*pResourceIndex + 0x38))();
     }
   }
   if (*presourceTable == 0) {
@@ -64547,7 +64547,7 @@ void Unwind_18090c140(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = *(uint8_t **)(ValidationContextParameter + 0x50);
@@ -64556,12 +64556,12 @@ void Unwind_18090c140(uint8_t ObjectContextParameter,int64_t ValidationContextPa
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -64692,7 +64692,7 @@ void Unwind_18090c1c0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = *(uint8_t **)(*(int64_t *)(ValidationContextParameter + 0x20) + 8);
@@ -64701,12 +64701,12 @@ void Unwind_18090c1c0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -64760,20 +64760,20 @@ void Unwind_18090c200(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   uint8_t resourceHash;
   int64_t resourceTable;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint8_t *pLoopIncrement;
   
-  resourceIndex = *(int64_t *)(ValidationContextParameter + 0x70);
-  pLoopIncrement = (uint8_t *)(resourceIndex + -0xa0);
+  ResourceIndex = *(int64_t *)(ValidationContextParameter + 0x70);
+  pLoopIncrement = (uint8_t *)(ResourceIndex + -0xa0);
   *pLoopIncrement = &SystemDataPointer001;
-  if ((*(int64_t *)(resourceIndex + -0x20) != 0) && (**(int64_t **)(resourceIndex + -0x88) == resourceIndex + -0x30)) {
-    resourceHash = *(uint8_t *)(resourceIndex + -0x10);
-    resourceTable = *(int64_t *)(resourceIndex + -0x18);
-    **(int64_t **)(resourceIndex + -0x88) = resourceTable;
-    **(int64_t **)(resourceIndex + -0x68) = resourceTable;
-    **(int **)(resourceIndex + -0x50) = (int)resourceHash - (int)resourceTable;
+  if ((*(int64_t *)(ResourceIndex + -0x20) != 0) && (**(int64_t **)(ResourceIndex + -0x88) == ResourceIndex + -0x30)) {
+    resourceHash = *(uint8_t *)(ResourceIndex + -0x10);
+    resourceTable = *(int64_t *)(ResourceIndex + -0x18);
+    **(int64_t **)(ResourceIndex + -0x88) = resourceTable;
+    **(int64_t **)(ResourceIndex + -0x68) = resourceTable;
+    **(int **)(ResourceIndex + -0x50) = (int)resourceHash - (int)resourceTable;
   }
-  if (*(char *)(resourceIndex + -0x24) != '\0') {
+  if (*(char *)(ResourceIndex + -0x24) != '\0') {
     ProcessResourcePointer(pLoopIncrement);
   }
                     // WARNING: Could not recover jumptable at 0x00018009fbce. Too many branches
@@ -64800,20 +64800,20 @@ void Unwind_18090c240(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   uint8_t resourceHash;
   int64_t resourceTable;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint8_t *pLoopIncrement;
   
-  resourceIndex = *(int64_t *)(ValidationContextParameter + 0x40);
-  pLoopIncrement = (uint8_t *)(resourceIndex + -0xa0);
+  ResourceIndex = *(int64_t *)(ValidationContextParameter + 0x40);
+  pLoopIncrement = (uint8_t *)(ResourceIndex + -0xa0);
   *pLoopIncrement = &SystemDataPointer001;
-  if ((*(int64_t *)(resourceIndex + -0x20) != 0) && (**(int64_t **)(resourceIndex + -0x88) == resourceIndex + -0x30)) {
-    resourceHash = *(uint8_t *)(resourceIndex + -0x10);
-    resourceTable = *(int64_t *)(resourceIndex + -0x18);
-    **(int64_t **)(resourceIndex + -0x88) = resourceTable;
-    **(int64_t **)(resourceIndex + -0x68) = resourceTable;
-    **(int **)(resourceIndex + -0x50) = (int)resourceHash - (int)resourceTable;
+  if ((*(int64_t *)(ResourceIndex + -0x20) != 0) && (**(int64_t **)(ResourceIndex + -0x88) == ResourceIndex + -0x30)) {
+    resourceHash = *(uint8_t *)(ResourceIndex + -0x10);
+    resourceTable = *(int64_t *)(ResourceIndex + -0x18);
+    **(int64_t **)(ResourceIndex + -0x88) = resourceTable;
+    **(int64_t **)(ResourceIndex + -0x68) = resourceTable;
+    **(int **)(ResourceIndex + -0x50) = (int)resourceHash - (int)resourceTable;
   }
-  if (*(char *)(resourceIndex + -0x24) != '\0') {
+  if (*(char *)(ResourceIndex + -0x24) != '\0') {
     ProcessResourcePointer(pLoopIncrement);
   }
                     // WARNING: Could not recover jumptable at 0x00018009fbce. Too many branches
@@ -64847,7 +64847,7 @@ void Unwind_18090c280(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = *(uint8_t **)(ValidationContextParameter + 0xe8);
@@ -64856,12 +64856,12 @@ void Unwind_18090c280(uint8_t ObjectContextParameter,int64_t ValidationContextPa
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -64919,7 +64919,7 @@ void Unwind_18090c2d0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = *(uint8_t **)(ValidationContextParameter + 0xe8);
@@ -64928,12 +64928,12 @@ void Unwind_18090c2d0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -64955,7 +64955,7 @@ void Unwind_18090c2e0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = *(uint8_t **)(ValidationContextParameter + 0xe8);
@@ -64964,12 +64964,12 @@ void Unwind_18090c2e0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -65060,20 +65060,20 @@ void Unwind_18090c380(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   uint8_t resourceHash;
   int64_t resourceTable;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint8_t *pLoopIncrement;
   
-  resourceIndex = *(int64_t *)(ValidationContextParameter + 0x40);
-  pLoopIncrement = (uint8_t *)(resourceIndex + 0x18);
+  ResourceIndex = *(int64_t *)(ValidationContextParameter + 0x40);
+  pLoopIncrement = (uint8_t *)(ResourceIndex + 0x18);
   *pLoopIncrement = &SystemDataPointer001;
-  if ((*(int64_t *)(resourceIndex + 0x98) != 0) && (**(int64_t **)(resourceIndex + 0x30) == resourceIndex + 0x88)) {
-    resourceHash = *(uint8_t *)(resourceIndex + 0xa8);
-    resourceTable = *(int64_t *)(resourceIndex + 0xa0);
-    **(int64_t **)(resourceIndex + 0x30) = resourceTable;
-    **(int64_t **)(resourceIndex + 0x50) = resourceTable;
-    **(int **)(resourceIndex + 0x68) = (int)resourceHash - (int)resourceTable;
+  if ((*(int64_t *)(ResourceIndex + 0x98) != 0) && (**(int64_t **)(ResourceIndex + 0x30) == ResourceIndex + 0x88)) {
+    resourceHash = *(uint8_t *)(ResourceIndex + 0xa8);
+    resourceTable = *(int64_t *)(ResourceIndex + 0xa0);
+    **(int64_t **)(ResourceIndex + 0x30) = resourceTable;
+    **(int64_t **)(ResourceIndex + 0x50) = resourceTable;
+    **(int **)(ResourceIndex + 0x68) = (int)resourceHash - (int)resourceTable;
   }
-  if (*(char *)(resourceIndex + 0x94) != '\0') {
+  if (*(char *)(ResourceIndex + 0x94) != '\0') {
     ProcessResourcePointer(pLoopIncrement);
   }
                     // WARNING: Could not recover jumptable at 0x00018009fbce. Too many branches
@@ -65103,7 +65103,7 @@ void Unwind_18090c3b0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = *(uint8_t **)(*(int64_t *)(ValidationContextParameter + 0x70) + 0x1d8);
@@ -65112,12 +65112,12 @@ void Unwind_18090c3b0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -65162,7 +65162,7 @@ void Unwind_18090c400(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = *(uint8_t **)(*(int64_t *)(ValidationContextParameter + 0x70) + 0x2d0);
@@ -65171,12 +65171,12 @@ void Unwind_18090c400(uint8_t ObjectContextParameter,int64_t ValidationContextPa
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -65275,7 +65275,7 @@ void Unwind_18090c490(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int64_t ResourceEntry;
   int ArraySize;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   int64_t *ResourceTablePointer;
   int64_t MemoryPointer;
   
@@ -65290,9 +65290,9 @@ void Unwind_18090c490(uint8_t ObjectContextParameter,int64_t ValidationContextPa
       if (*(int64_t *)(ResourceEntry + 0x68) == 0) {
         *(int64_t *)(MemoryPointer + 0x80b0 + (int64_t)*(int *)(MemoryPointer + 0x8088) * 8) = ResourceEntry;
       }
-      resourceIndex = (int64_t)*(int *)(MemoryPointer + 0x8088) * 0x20;
-      ResourceArrayStart = *(int64_t *)(resourceIndex + 200 + MemoryPointer + 0x7f20);
-      ArraySize = (int)(*(int64_t *)(resourceIndex + 0xd0 + MemoryPointer + 0x7f20) - ResourceArrayStart >> 3) + -1;
+      ResourceIndex = (int64_t)*(int *)(MemoryPointer + 0x8088) * 0x20;
+      ResourceArrayStart = *(int64_t *)(ResourceIndex + 200 + MemoryPointer + 0x7f20);
+      ArraySize = (int)(*(int64_t *)(ResourceIndex + 0xd0 + MemoryPointer + 0x7f20) - ResourceArrayStart >> 3) + -1;
       if (-1 < ArraySize) {
         MemoryPointer = (int64_t)ArraySize;
         do {
@@ -65460,7 +65460,7 @@ void Unwind_18090c530(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = *(uint8_t **)(ValidationContextParameter + 0xb8);
@@ -65469,12 +65469,12 @@ void Unwind_18090c530(uint8_t ObjectContextParameter,int64_t ValidationContextPa
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -65498,7 +65498,7 @@ void Unwind_18090c540(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int64_t loopCounter;
   int OperationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   int64_t *contextPointer;
   int64_t MemoryRegion;
   
@@ -65513,9 +65513,9 @@ void Unwind_18090c540(uint8_t ObjectContextParameter,int64_t ValidationContextPa
       if (*(int64_t *)(localContextPointer + 0x68) == 0) {
         *(int64_t *)(ResourceTablePointer + 0x80b0 + (int64_t)*(int *)(ResourceTablePointer + 0x8088) * 8) = localContextPointer;
       }
-      resourceIndex = (int64_t)*(int *)(ResourceTablePointer + 0x8088) * 0x20;
-      loopCounter = *(int64_t *)(resourceIndex + 200 + ResourceTablePointer + 0x7f20);
-      OperationResult = (int)(*(int64_t *)(resourceIndex + 0xd0 + ResourceTablePointer + 0x7f20) - localContextPointer >> 3) + -1;
+      ResourceIndex = (int64_t)*(int *)(ResourceTablePointer + 0x8088) * 0x20;
+      loopCounter = *(int64_t *)(ResourceIndex + 200 + ResourceTablePointer + 0x7f20);
+      OperationResult = (int)(*(int64_t *)(ResourceIndex + 0xd0 + ResourceTablePointer + 0x7f20) - localContextPointer >> 3) + -1;
       if (-1 < OperationResult) {
         ResourceTablePointer = (int64_t)OperationResult;
         do {
@@ -65544,7 +65544,7 @@ void Unwind_18090c550(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int64_t loopCounter;
   int OperationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   int64_t *contextPointer;
   int64_t MemoryRegion;
   
@@ -65559,9 +65559,9 @@ void Unwind_18090c550(uint8_t ObjectContextParameter,int64_t ValidationContextPa
       if (*(int64_t *)(localContextPointer + 0x68) == 0) {
         *(int64_t *)(ResourceTablePointer + 0x80b0 + (int64_t)*(int *)(ResourceTablePointer + 0x8088) * 8) = localContextPointer;
       }
-      resourceIndex = (int64_t)*(int *)(ResourceTablePointer + 0x8088) * 0x20;
-      loopCounter = *(int64_t *)(resourceIndex + 200 + ResourceTablePointer + 0x7f20);
-      OperationResult = (int)(*(int64_t *)(resourceIndex + 0xd0 + ResourceTablePointer + 0x7f20) - localContextPointer >> 3) + -1;
+      ResourceIndex = (int64_t)*(int *)(ResourceTablePointer + 0x8088) * 0x20;
+      loopCounter = *(int64_t *)(ResourceIndex + 200 + ResourceTablePointer + 0x7f20);
+      OperationResult = (int)(*(int64_t *)(ResourceIndex + 0xd0 + ResourceTablePointer + 0x7f20) - localContextPointer >> 3) + -1;
       if (-1 < OperationResult) {
         ResourceTablePointer = (int64_t)OperationResult;
         do {
@@ -65620,7 +65620,7 @@ void Unwind_18090c590(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int64_t loopCounter;
   int OperationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   int64_t *contextPointer;
   int64_t MemoryRegion;
   
@@ -65635,9 +65635,9 @@ void Unwind_18090c590(uint8_t ObjectContextParameter,int64_t ValidationContextPa
       if (*(int64_t *)(localContextPointer + 0x68) == 0) {
         *(int64_t *)(ResourceTablePointer + 0x80b0 + (int64_t)*(int *)(ResourceTablePointer + 0x8088) * 8) = localContextPointer;
       }
-      resourceIndex = (int64_t)*(int *)(ResourceTablePointer + 0x8088) * 0x20;
-      loopCounter = *(int64_t *)(resourceIndex + 200 + ResourceTablePointer + 0x7f20);
-      OperationResult = (int)(*(int64_t *)(resourceIndex + 0xd0 + ResourceTablePointer + 0x7f20) - localContextPointer >> 3) + -1;
+      ResourceIndex = (int64_t)*(int *)(ResourceTablePointer + 0x8088) * 0x20;
+      loopCounter = *(int64_t *)(ResourceIndex + 200 + ResourceTablePointer + 0x7f20);
+      OperationResult = (int)(*(int64_t *)(ResourceIndex + 0xd0 + ResourceTablePointer + 0x7f20) - localContextPointer >> 3) + -1;
       if (-1 < OperationResult) {
         ResourceTablePointer = (int64_t)OperationResult;
         do {
@@ -65687,7 +65687,7 @@ void Unwind_18090c5c0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int64_t loopCounter;
   int OperationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   int64_t *contextPointer;
   int64_t MemoryRegion;
   
@@ -65702,9 +65702,9 @@ void Unwind_18090c5c0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
       if (*(int64_t *)(localContextPointer + 0x68) == 0) {
         *(int64_t *)(ResourceTablePointer + 0x80b0 + (int64_t)*(int *)(ResourceTablePointer + 0x8088) * 8) = localContextPointer;
       }
-      resourceIndex = (int64_t)*(int *)(ResourceTablePointer + 0x8088) * 0x20;
-      loopCounter = *(int64_t *)(resourceIndex + 200 + ResourceTablePointer + 0x7f20);
-      OperationResult = (int)(*(int64_t *)(resourceIndex + 0xd0 + ResourceTablePointer + 0x7f20) - localContextPointer >> 3) + -1;
+      ResourceIndex = (int64_t)*(int *)(ResourceTablePointer + 0x8088) * 0x20;
+      loopCounter = *(int64_t *)(ResourceIndex + 200 + ResourceTablePointer + 0x7f20);
+      OperationResult = (int)(*(int64_t *)(ResourceIndex + 0xd0 + ResourceTablePointer + 0x7f20) - localContextPointer >> 3) + -1;
       if (-1 < OperationResult) {
         ResourceTablePointer = (int64_t)OperationResult;
         do {
@@ -65733,7 +65733,7 @@ void Unwind_18090c5d0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int64_t loopCounter;
   int OperationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   int64_t *contextPointer;
   int64_t MemoryRegion;
   
@@ -65748,9 +65748,9 @@ void Unwind_18090c5d0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
       if (*(int64_t *)(localContextPointer + 0x68) == 0) {
         *(int64_t *)(ResourceTablePointer + 0x80b0 + (int64_t)*(int *)(ResourceTablePointer + 0x8088) * 8) = localContextPointer;
       }
-      resourceIndex = (int64_t)*(int *)(ResourceTablePointer + 0x8088) * 0x20;
-      loopCounter = *(int64_t *)(resourceIndex + 200 + ResourceTablePointer + 0x7f20);
-      OperationResult = (int)(*(int64_t *)(resourceIndex + 0xd0 + ResourceTablePointer + 0x7f20) - localContextPointer >> 3) + -1;
+      ResourceIndex = (int64_t)*(int *)(ResourceTablePointer + 0x8088) * 0x20;
+      loopCounter = *(int64_t *)(ResourceIndex + 200 + ResourceTablePointer + 0x7f20);
+      OperationResult = (int)(*(int64_t *)(ResourceIndex + 0xd0 + ResourceTablePointer + 0x7f20) - localContextPointer >> 3) + -1;
       if (-1 < OperationResult) {
         ResourceTablePointer = (int64_t)OperationResult;
         do {
@@ -65791,7 +65791,7 @@ void Unwind_18090c5f0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int64_t loopCounter;
   int OperationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   int64_t *contextPointer;
   int64_t MemoryRegion;
   
@@ -65806,9 +65806,9 @@ void Unwind_18090c5f0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
       if (*(int64_t *)(localContextPointer + 0x68) == 0) {
         *(int64_t *)(ResourceTablePointer + 0x80b0 + (int64_t)*(int *)(ResourceTablePointer + 0x8088) * 8) = localContextPointer;
       }
-      resourceIndex = (int64_t)*(int *)(ResourceTablePointer + 0x8088) * 0x20;
-      loopCounter = *(int64_t *)(resourceIndex + 200 + ResourceTablePointer + 0x7f20);
-      OperationResult = (int)(*(int64_t *)(resourceIndex + 0xd0 + ResourceTablePointer + 0x7f20) - localContextPointer >> 3) + -1;
+      ResourceIndex = (int64_t)*(int *)(ResourceTablePointer + 0x8088) * 0x20;
+      loopCounter = *(int64_t *)(ResourceIndex + 200 + ResourceTablePointer + 0x7f20);
+      OperationResult = (int)(*(int64_t *)(ResourceIndex + 0xd0 + ResourceTablePointer + 0x7f20) - localContextPointer >> 3) + -1;
       if (-1 < OperationResult) {
         ResourceTablePointer = (int64_t)OperationResult;
         do {
@@ -65837,7 +65837,7 @@ void Unwind_18090c600(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int64_t loopCounter;
   int OperationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   int64_t *contextPointer;
   int64_t MemoryRegion;
   
@@ -65852,9 +65852,9 @@ void Unwind_18090c600(uint8_t ObjectContextParameter,int64_t ValidationContextPa
       if (*(int64_t *)(localContextPointer + 0x68) == 0) {
         *(int64_t *)(ResourceTablePointer + 0x80b0 + (int64_t)*(int *)(ResourceTablePointer + 0x8088) * 8) = localContextPointer;
       }
-      resourceIndex = (int64_t)*(int *)(ResourceTablePointer + 0x8088) * 0x20;
-      loopCounter = *(int64_t *)(resourceIndex + 200 + ResourceTablePointer + 0x7f20);
-      OperationResult = (int)(*(int64_t *)(resourceIndex + 0xd0 + ResourceTablePointer + 0x7f20) - localContextPointer >> 3) + -1;
+      ResourceIndex = (int64_t)*(int *)(ResourceTablePointer + 0x8088) * 0x20;
+      loopCounter = *(int64_t *)(ResourceIndex + 200 + ResourceTablePointer + 0x7f20);
+      OperationResult = (int)(*(int64_t *)(ResourceIndex + 0xd0 + ResourceTablePointer + 0x7f20) - localContextPointer >> 3) + -1;
       if (-1 < OperationResult) {
         ResourceTablePointer = (int64_t)OperationResult;
         do {
@@ -65881,7 +65881,7 @@ void Unwind_18090c610(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = *(uint8_t **)(ValidationContextParameter + 0xb8);
@@ -65890,12 +65890,12 @@ void Unwind_18090c610(uint8_t ObjectContextParameter,int64_t ValidationContextPa
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -65917,7 +65917,7 @@ void Unwind_18090c620(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = *(uint8_t **)(ValidationContextParameter + 0xb8);
@@ -65926,12 +65926,12 @@ void Unwind_18090c620(uint8_t ObjectContextParameter,int64_t ValidationContextPa
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -66526,7 +66526,7 @@ void Unwind_18090ca20(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int64_t loopCounter;
   int OperationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   int64_t *contextPointer;
   int64_t MemoryRegion;
   
@@ -66541,9 +66541,9 @@ void Unwind_18090ca20(uint8_t ObjectContextParameter,int64_t ValidationContextPa
       if (*(int64_t *)(localContextPointer + 0x68) == 0) {
         *(int64_t *)(ResourceTablePointer + 0x80b0 + (int64_t)*(int *)(ResourceTablePointer + 0x8088) * 8) = localContextPointer;
       }
-      resourceIndex = (int64_t)*(int *)(ResourceTablePointer + 0x8088) * 0x20;
-      loopCounter = *(int64_t *)(resourceIndex + 200 + ResourceTablePointer + 0x7f20);
-      OperationResult = (int)(*(int64_t *)(resourceIndex + 0xd0 + ResourceTablePointer + 0x7f20) - localContextPointer >> 3) + -1;
+      ResourceIndex = (int64_t)*(int *)(ResourceTablePointer + 0x8088) * 0x20;
+      loopCounter = *(int64_t *)(ResourceIndex + 200 + ResourceTablePointer + 0x7f20);
+      OperationResult = (int)(*(int64_t *)(ResourceIndex + 0xd0 + ResourceTablePointer + 0x7f20) - localContextPointer >> 3) + -1;
       if (-1 < OperationResult) {
         ResourceTablePointer = (int64_t)OperationResult;
         do {
@@ -66584,7 +66584,7 @@ void Unwind_18090ca40(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int64_t loopCounter;
   int OperationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   int64_t *contextPointer;
   int64_t MemoryRegion;
   
@@ -66599,9 +66599,9 @@ void Unwind_18090ca40(uint8_t ObjectContextParameter,int64_t ValidationContextPa
       if (*(int64_t *)(localContextPointer + 0x68) == 0) {
         *(int64_t *)(ResourceTablePointer + 0x80b0 + (int64_t)*(int *)(ResourceTablePointer + 0x8088) * 8) = localContextPointer;
       }
-      resourceIndex = (int64_t)*(int *)(ResourceTablePointer + 0x8088) * 0x20;
-      loopCounter = *(int64_t *)(resourceIndex + 200 + ResourceTablePointer + 0x7f20);
-      OperationResult = (int)(*(int64_t *)(resourceIndex + 0xd0 + ResourceTablePointer + 0x7f20) - localContextPointer >> 3) + -1;
+      ResourceIndex = (int64_t)*(int *)(ResourceTablePointer + 0x8088) * 0x20;
+      loopCounter = *(int64_t *)(ResourceIndex + 200 + ResourceTablePointer + 0x7f20);
+      OperationResult = (int)(*(int64_t *)(ResourceIndex + 0xd0 + ResourceTablePointer + 0x7f20) - localContextPointer >> 3) + -1;
       if (-1 < OperationResult) {
         ResourceTablePointer = (int64_t)OperationResult;
         do {
@@ -66654,7 +66654,7 @@ void Unwind_18090ca70(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int64_t loopCounter;
   int OperationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   int64_t *contextPointer;
   int64_t MemoryRegion;
   
@@ -66669,9 +66669,9 @@ void Unwind_18090ca70(uint8_t ObjectContextParameter,int64_t ValidationContextPa
       if (*(int64_t *)(localContextPointer + 0x68) == 0) {
         *(int64_t *)(ResourceTablePointer + 0x80b0 + (int64_t)*(int *)(ResourceTablePointer + 0x8088) * 8) = localContextPointer;
       }
-      resourceIndex = (int64_t)*(int *)(ResourceTablePointer + 0x8088) * 0x20;
-      loopCounter = *(int64_t *)(resourceIndex + 200 + ResourceTablePointer + 0x7f20);
-      OperationResult = (int)(*(int64_t *)(resourceIndex + 0xd0 + ResourceTablePointer + 0x7f20) - localContextPointer >> 3) + -1;
+      ResourceIndex = (int64_t)*(int *)(ResourceTablePointer + 0x8088) * 0x20;
+      loopCounter = *(int64_t *)(ResourceIndex + 200 + ResourceTablePointer + 0x7f20);
+      OperationResult = (int)(*(int64_t *)(ResourceIndex + 0xd0 + ResourceTablePointer + 0x7f20) - localContextPointer >> 3) + -1;
       if (-1 < OperationResult) {
         ResourceTablePointer = (int64_t)OperationResult;
         do {
@@ -66721,7 +66721,7 @@ void Unwind_18090caa0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int64_t loopCounter;
   int OperationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   int64_t *contextPointer;
   int64_t MemoryRegion;
   
@@ -66736,9 +66736,9 @@ void Unwind_18090caa0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
       if (*(int64_t *)(localContextPointer + 0x68) == 0) {
         *(int64_t *)(ResourceTablePointer + 0x80b0 + (int64_t)*(int *)(ResourceTablePointer + 0x8088) * 8) = localContextPointer;
       }
-      resourceIndex = (int64_t)*(int *)(ResourceTablePointer + 0x8088) * 0x20;
-      loopCounter = *(int64_t *)(resourceIndex + 200 + ResourceTablePointer + 0x7f20);
-      OperationResult = (int)(*(int64_t *)(resourceIndex + 0xd0 + ResourceTablePointer + 0x7f20) - localContextPointer >> 3) + -1;
+      ResourceIndex = (int64_t)*(int *)(ResourceTablePointer + 0x8088) * 0x20;
+      loopCounter = *(int64_t *)(ResourceIndex + 200 + ResourceTablePointer + 0x7f20);
+      OperationResult = (int)(*(int64_t *)(ResourceIndex + 0xd0 + ResourceTablePointer + 0x7f20) - localContextPointer >> 3) + -1;
       if (-1 < OperationResult) {
         ResourceTablePointer = (int64_t)OperationResult;
         do {
@@ -66788,7 +66788,7 @@ void Unwind_18090cad0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int64_t loopCounter;
   int OperationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   int64_t *contextPointer;
   int64_t MemoryRegion;
   
@@ -66803,9 +66803,9 @@ void Unwind_18090cad0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
       if (*(int64_t *)(localContextPointer + 0x68) == 0) {
         *(int64_t *)(ResourceTablePointer + 0x80b0 + (int64_t)*(int *)(ResourceTablePointer + 0x8088) * 8) = localContextPointer;
       }
-      resourceIndex = (int64_t)*(int *)(ResourceTablePointer + 0x8088) * 0x20;
-      loopCounter = *(int64_t *)(resourceIndex + 200 + ResourceTablePointer + 0x7f20);
-      OperationResult = (int)(*(int64_t *)(resourceIndex + 0xd0 + ResourceTablePointer + 0x7f20) - localContextPointer >> 3) + -1;
+      ResourceIndex = (int64_t)*(int *)(ResourceTablePointer + 0x8088) * 0x20;
+      loopCounter = *(int64_t *)(ResourceIndex + 200 + ResourceTablePointer + 0x7f20);
+      OperationResult = (int)(*(int64_t *)(ResourceIndex + 0xd0 + ResourceTablePointer + 0x7f20) - localContextPointer >> 3) + -1;
       if (-1 < OperationResult) {
         ResourceTablePointer = (int64_t)OperationResult;
         do {
@@ -66855,7 +66855,7 @@ void Unwind_18090cb00(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int64_t loopCounter;
   int OperationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   int64_t *contextPointer;
   int64_t MemoryRegion;
   
@@ -66870,9 +66870,9 @@ void Unwind_18090cb00(uint8_t ObjectContextParameter,int64_t ValidationContextPa
       if (*(int64_t *)(localContextPointer + 0x68) == 0) {
         *(int64_t *)(ResourceTablePointer + 0x80b0 + (int64_t)*(int *)(ResourceTablePointer + 0x8088) * 8) = localContextPointer;
       }
-      resourceIndex = (int64_t)*(int *)(ResourceTablePointer + 0x8088) * 0x20;
-      loopCounter = *(int64_t *)(resourceIndex + 200 + ResourceTablePointer + 0x7f20);
-      OperationResult = (int)(*(int64_t *)(resourceIndex + 0xd0 + ResourceTablePointer + 0x7f20) - localContextPointer >> 3) + -1;
+      ResourceIndex = (int64_t)*(int *)(ResourceTablePointer + 0x8088) * 0x20;
+      loopCounter = *(int64_t *)(ResourceIndex + 200 + ResourceTablePointer + 0x7f20);
+      OperationResult = (int)(*(int64_t *)(ResourceIndex + 0xd0 + ResourceTablePointer + 0x7f20) - localContextPointer >> 3) + -1;
       if (-1 < OperationResult) {
         ResourceTablePointer = (int64_t)OperationResult;
         do {
@@ -66910,7 +66910,7 @@ void Unwind_18090cb20(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int64_t loopCounter;
   int OperationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   int64_t *contextPointer;
   int64_t MemoryRegion;
   
@@ -66925,9 +66925,9 @@ void Unwind_18090cb20(uint8_t ObjectContextParameter,int64_t ValidationContextPa
       if (*(int64_t *)(localContextPointer + 0x68) == 0) {
         *(int64_t *)(ResourceTablePointer + 0x80b0 + (int64_t)*(int *)(ResourceTablePointer + 0x8088) * 8) = localContextPointer;
       }
-      resourceIndex = (int64_t)*(int *)(ResourceTablePointer + 0x8088) * 0x20;
-      loopCounter = *(int64_t *)(resourceIndex + 200 + ResourceTablePointer + 0x7f20);
-      OperationResult = (int)(*(int64_t *)(resourceIndex + 0xd0 + ResourceTablePointer + 0x7f20) - localContextPointer >> 3) + -1;
+      ResourceIndex = (int64_t)*(int *)(ResourceTablePointer + 0x8088) * 0x20;
+      loopCounter = *(int64_t *)(ResourceIndex + 200 + ResourceTablePointer + 0x7f20);
+      OperationResult = (int)(*(int64_t *)(ResourceIndex + 0xd0 + ResourceTablePointer + 0x7f20) - localContextPointer >> 3) + -1;
       if (-1 < OperationResult) {
         ResourceTablePointer = (int64_t)OperationResult;
         do {
@@ -66965,7 +66965,7 @@ void Unwind_18090cb40(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int64_t loopCounter;
   int OperationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   int64_t *contextPointer;
   int64_t MemoryRegion;
   
@@ -66980,9 +66980,9 @@ void Unwind_18090cb40(uint8_t ObjectContextParameter,int64_t ValidationContextPa
       if (*(int64_t *)(localContextPointer + 0x68) == 0) {
         *(int64_t *)(ResourceTablePointer + 0x80b0 + (int64_t)*(int *)(ResourceTablePointer + 0x8088) * 8) = localContextPointer;
       }
-      resourceIndex = (int64_t)*(int *)(ResourceTablePointer + 0x8088) * 0x20;
-      loopCounter = *(int64_t *)(resourceIndex + 200 + ResourceTablePointer + 0x7f20);
-      OperationResult = (int)(*(int64_t *)(resourceIndex + 0xd0 + ResourceTablePointer + 0x7f20) - localContextPointer >> 3) + -1;
+      ResourceIndex = (int64_t)*(int *)(ResourceTablePointer + 0x8088) * 0x20;
+      loopCounter = *(int64_t *)(ResourceIndex + 200 + ResourceTablePointer + 0x7f20);
+      OperationResult = (int)(*(int64_t *)(ResourceIndex + 0xd0 + ResourceTablePointer + 0x7f20) - localContextPointer >> 3) + -1;
       if (-1 < OperationResult) {
         ResourceTablePointer = (int64_t)OperationResult;
         do {
@@ -67023,7 +67023,7 @@ void Unwind_18090cb60(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int64_t loopCounter;
   int OperationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   int64_t *contextPointer;
   int64_t MemoryRegion;
   
@@ -67038,9 +67038,9 @@ void Unwind_18090cb60(uint8_t ObjectContextParameter,int64_t ValidationContextPa
       if (*(int64_t *)(localContextPointer + 0x68) == 0) {
         *(int64_t *)(ResourceTablePointer + 0x80b0 + (int64_t)*(int *)(ResourceTablePointer + 0x8088) * 8) = localContextPointer;
       }
-      resourceIndex = (int64_t)*(int *)(ResourceTablePointer + 0x8088) * 0x20;
-      loopCounter = *(int64_t *)(resourceIndex + 200 + ResourceTablePointer + 0x7f20);
-      OperationResult = (int)(*(int64_t *)(resourceIndex + 0xd0 + ResourceTablePointer + 0x7f20) - localContextPointer >> 3) + -1;
+      ResourceIndex = (int64_t)*(int *)(ResourceTablePointer + 0x8088) * 0x20;
+      loopCounter = *(int64_t *)(ResourceIndex + 200 + ResourceTablePointer + 0x7f20);
+      OperationResult = (int)(*(int64_t *)(ResourceIndex + 0xd0 + ResourceTablePointer + 0x7f20) - localContextPointer >> 3) + -1;
       if (-1 < OperationResult) {
         ResourceTablePointer = (int64_t)OperationResult;
         do {
@@ -67078,7 +67078,7 @@ void Unwind_18090cb80(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int64_t loopCounter;
   int OperationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   int64_t *contextPointer;
   int64_t MemoryRegion;
   
@@ -67093,9 +67093,9 @@ void Unwind_18090cb80(uint8_t ObjectContextParameter,int64_t ValidationContextPa
       if (*(int64_t *)(localContextPointer + 0x68) == 0) {
         *(int64_t *)(ResourceTablePointer + 0x80b0 + (int64_t)*(int *)(ResourceTablePointer + 0x8088) * 8) = localContextPointer;
       }
-      resourceIndex = (int64_t)*(int *)(ResourceTablePointer + 0x8088) * 0x20;
-      loopCounter = *(int64_t *)(resourceIndex + 200 + ResourceTablePointer + 0x7f20);
-      OperationResult = (int)(*(int64_t *)(resourceIndex + 0xd0 + ResourceTablePointer + 0x7f20) - localContextPointer >> 3) + -1;
+      ResourceIndex = (int64_t)*(int *)(ResourceTablePointer + 0x8088) * 0x20;
+      loopCounter = *(int64_t *)(ResourceIndex + 200 + ResourceTablePointer + 0x7f20);
+      OperationResult = (int)(*(int64_t *)(ResourceIndex + 0xd0 + ResourceTablePointer + 0x7f20) - localContextPointer >> 3) + -1;
       if (-1 < OperationResult) {
         ResourceTablePointer = (int64_t)OperationResult;
         do {
@@ -67169,7 +67169,7 @@ void Unwind_18090cbd0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int64_t loopCounter;
   int OperationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   int64_t *contextPointer;
   int64_t MemoryRegion;
   
@@ -67184,9 +67184,9 @@ void Unwind_18090cbd0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
       if (*(int64_t *)(localContextPointer + 0x68) == 0) {
         *(int64_t *)(ResourceTablePointer + 0x80b0 + (int64_t)*(int *)(ResourceTablePointer + 0x8088) * 8) = localContextPointer;
       }
-      resourceIndex = (int64_t)*(int *)(ResourceTablePointer + 0x8088) * 0x20;
-      loopCounter = *(int64_t *)(resourceIndex + 200 + ResourceTablePointer + 0x7f20);
-      OperationResult = (int)(*(int64_t *)(resourceIndex + 0xd0 + ResourceTablePointer + 0x7f20) - localContextPointer >> 3) + -1;
+      ResourceIndex = (int64_t)*(int *)(ResourceTablePointer + 0x8088) * 0x20;
+      loopCounter = *(int64_t *)(ResourceIndex + 200 + ResourceTablePointer + 0x7f20);
+      OperationResult = (int)(*(int64_t *)(ResourceIndex + 0xd0 + ResourceTablePointer + 0x7f20) - localContextPointer >> 3) + -1;
       if (-1 < OperationResult) {
         ResourceTablePointer = (int64_t)OperationResult;
         do {
@@ -67236,7 +67236,7 @@ void Unwind_18090cc00(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int64_t loopCounter;
   int OperationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   int64_t *contextPointer;
   int64_t MemoryRegion;
   
@@ -67251,9 +67251,9 @@ void Unwind_18090cc00(uint8_t ObjectContextParameter,int64_t ValidationContextPa
       if (*(int64_t *)(localContextPointer + 0x68) == 0) {
         *(int64_t *)(ResourceTablePointer + 0x80b0 + (int64_t)*(int *)(ResourceTablePointer + 0x8088) * 8) = localContextPointer;
       }
-      resourceIndex = (int64_t)*(int *)(ResourceTablePointer + 0x8088) * 0x20;
-      loopCounter = *(int64_t *)(resourceIndex + 200 + ResourceTablePointer + 0x7f20);
-      OperationResult = (int)(*(int64_t *)(resourceIndex + 0xd0 + ResourceTablePointer + 0x7f20) - localContextPointer >> 3) + -1;
+      ResourceIndex = (int64_t)*(int *)(ResourceTablePointer + 0x8088) * 0x20;
+      loopCounter = *(int64_t *)(ResourceIndex + 200 + ResourceTablePointer + 0x7f20);
+      OperationResult = (int)(*(int64_t *)(ResourceIndex + 0xd0 + ResourceTablePointer + 0x7f20) - localContextPointer >> 3) + -1;
       if (-1 < OperationResult) {
         ResourceTablePointer = (int64_t)OperationResult;
         do {
@@ -67402,7 +67402,7 @@ void Unwind_18090cce0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int64_t loopCounter;
   int OperationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   int64_t *contextPointer;
   int64_t MemoryRegion;
   
@@ -67417,9 +67417,9 @@ void Unwind_18090cce0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
       if (*(int64_t *)(localContextPointer + 0x68) == 0) {
         *(int64_t *)(ResourceTablePointer + 0x80b0 + (int64_t)*(int *)(ResourceTablePointer + 0x8088) * 8) = localContextPointer;
       }
-      resourceIndex = (int64_t)*(int *)(ResourceTablePointer + 0x8088) * 0x20;
-      loopCounter = *(int64_t *)(resourceIndex + 200 + ResourceTablePointer + 0x7f20);
-      OperationResult = (int)(*(int64_t *)(resourceIndex + 0xd0 + ResourceTablePointer + 0x7f20) - localContextPointer >> 3) + -1;
+      ResourceIndex = (int64_t)*(int *)(ResourceTablePointer + 0x8088) * 0x20;
+      loopCounter = *(int64_t *)(ResourceIndex + 200 + ResourceTablePointer + 0x7f20);
+      OperationResult = (int)(*(int64_t *)(ResourceIndex + 0xd0 + ResourceTablePointer + 0x7f20) - localContextPointer >> 3) + -1;
       if (-1 < OperationResult) {
         ResourceTablePointer = (int64_t)OperationResult;
         do {
@@ -68042,7 +68042,7 @@ void Unwind_18090d000(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = *(uint8_t **)(ValidationContextParameter + 0xb0);
@@ -68051,12 +68051,12 @@ void Unwind_18090d000(uint8_t ObjectContextParameter,int64_t ValidationContextPa
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -68078,7 +68078,7 @@ void Unwind_18090d010(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = *(uint8_t **)(ValidationContextParameter + 0xd0);
@@ -68087,12 +68087,12 @@ void Unwind_18090d010(uint8_t ObjectContextParameter,int64_t ValidationContextPa
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -68114,7 +68114,7 @@ void Unwind_18090d020(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = *(uint8_t **)(ValidationContextParameter + 0xf0);
@@ -68123,12 +68123,12 @@ void Unwind_18090d020(uint8_t ObjectContextParameter,int64_t ValidationContextPa
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -68150,7 +68150,7 @@ void Unwind_18090d030(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = *(uint8_t **)(ValidationContextParameter + 0x110);
@@ -68159,12 +68159,12 @@ void Unwind_18090d030(uint8_t ObjectContextParameter,int64_t ValidationContextPa
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -68186,7 +68186,7 @@ void Unwind_18090d040(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = *(uint8_t **)(ValidationContextParameter + 0x150);
@@ -68195,12 +68195,12 @@ void Unwind_18090d040(uint8_t ObjectContextParameter,int64_t ValidationContextPa
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -68222,7 +68222,7 @@ void Unwind_18090d050(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = *(uint8_t **)(ValidationContextParameter + 0x170);
@@ -68231,12 +68231,12 @@ void Unwind_18090d050(uint8_t ObjectContextParameter,int64_t ValidationContextPa
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -68258,7 +68258,7 @@ void Unwind_18090d060(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = *(uint8_t **)(ValidationContextParameter + 400);
@@ -68267,12 +68267,12 @@ void Unwind_18090d060(uint8_t ObjectContextParameter,int64_t ValidationContextPa
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -68294,7 +68294,7 @@ void Unwind_18090d070(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = *(uint8_t **)(ValidationContextParameter + 0x1b0);
@@ -68303,12 +68303,12 @@ void Unwind_18090d070(uint8_t ObjectContextParameter,int64_t ValidationContextPa
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -68330,7 +68330,7 @@ void Unwind_18090d080(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = *(uint8_t **)(ValidationContextParameter + 0x1d0);
@@ -68339,12 +68339,12 @@ void Unwind_18090d080(uint8_t ObjectContextParameter,int64_t ValidationContextPa
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -68366,7 +68366,7 @@ void Unwind_18090d090(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = *(uint8_t **)(ValidationContextParameter + 0x1f0);
@@ -68375,12 +68375,12 @@ void Unwind_18090d090(uint8_t ObjectContextParameter,int64_t ValidationContextPa
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -68402,7 +68402,7 @@ void Unwind_18090d0a0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = *(uint8_t **)(ValidationContextParameter + 0x210);
@@ -68411,12 +68411,12 @@ void Unwind_18090d0a0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -68438,7 +68438,7 @@ void Unwind_18090d0b0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = *(uint8_t **)(ValidationContextParameter + 0x250);
@@ -68447,12 +68447,12 @@ void Unwind_18090d0b0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -68474,7 +68474,7 @@ void Unwind_18090d0c0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = *(uint8_t **)(ValidationContextParameter + 0x390);
@@ -68483,12 +68483,12 @@ void Unwind_18090d0c0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -68510,7 +68510,7 @@ void Unwind_18090d0d0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = *(uint8_t **)(ValidationContextParameter + 0x3b0);
@@ -68519,12 +68519,12 @@ void Unwind_18090d0d0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -68546,7 +68546,7 @@ void Unwind_18090d0e0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = *(uint8_t **)(ValidationContextParameter + 0x490);
@@ -68555,12 +68555,12 @@ void Unwind_18090d0e0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -68582,7 +68582,7 @@ void Unwind_18090d0f0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = *(uint8_t **)(ValidationContextParameter + 0x2f0);
@@ -68591,12 +68591,12 @@ void Unwind_18090d0f0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -68618,7 +68618,7 @@ void Unwind_18090d100(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = *(uint8_t **)(ValidationContextParameter + 0x310);
@@ -68627,12 +68627,12 @@ void Unwind_18090d100(uint8_t ObjectContextParameter,int64_t ValidationContextPa
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -68654,7 +68654,7 @@ void Unwind_18090d110(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = *(uint8_t **)(ValidationContextParameter + 0x330);
@@ -68663,12 +68663,12 @@ void Unwind_18090d110(uint8_t ObjectContextParameter,int64_t ValidationContextPa
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -68690,7 +68690,7 @@ void Unwind_18090d120(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = *(uint8_t **)(ValidationContextParameter + 0x350);
@@ -68699,12 +68699,12 @@ void Unwind_18090d120(uint8_t ObjectContextParameter,int64_t ValidationContextPa
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -68726,7 +68726,7 @@ void Unwind_18090d130(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = *(uint8_t **)(ValidationContextParameter + 0x470);
@@ -68735,12 +68735,12 @@ void Unwind_18090d130(uint8_t ObjectContextParameter,int64_t ValidationContextPa
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -68762,7 +68762,7 @@ void Unwind_18090d140(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = *(uint8_t **)(ValidationContextParameter + 0x370);
@@ -68771,12 +68771,12 @@ void Unwind_18090d140(uint8_t ObjectContextParameter,int64_t ValidationContextPa
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -68798,7 +68798,7 @@ void Unwind_18090d150(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = *(uint8_t **)(ValidationContextParameter + 0x270);
@@ -68807,12 +68807,12 @@ void Unwind_18090d150(uint8_t ObjectContextParameter,int64_t ValidationContextPa
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -68834,7 +68834,7 @@ void Unwind_18090d160(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = *(uint8_t **)(ValidationContextParameter + 0x290);
@@ -68843,12 +68843,12 @@ void Unwind_18090d160(uint8_t ObjectContextParameter,int64_t ValidationContextPa
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -68870,7 +68870,7 @@ void Unwind_18090d170(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = *(uint8_t **)(ValidationContextParameter + 0x2b0);
@@ -68879,12 +68879,12 @@ void Unwind_18090d170(uint8_t ObjectContextParameter,int64_t ValidationContextPa
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -68906,7 +68906,7 @@ void Unwind_18090d180(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = *(uint8_t **)(ValidationContextParameter + 0x2d0);
@@ -68915,12 +68915,12 @@ void Unwind_18090d180(uint8_t ObjectContextParameter,int64_t ValidationContextPa
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -68953,7 +68953,7 @@ void Unwind_18090d1a0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = *(uint8_t **)(ValidationContextParameter + 0xb0);
@@ -68962,12 +68962,12 @@ void Unwind_18090d1a0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -68989,7 +68989,7 @@ void Unwind_18090d1b0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = *(uint8_t **)(ValidationContextParameter + 0xb0);
@@ -68998,12 +68998,12 @@ void Unwind_18090d1b0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -69025,7 +69025,7 @@ void Unwind_18090d1c0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = *(uint8_t **)(ValidationContextParameter + 0xd0);
@@ -69034,12 +69034,12 @@ void Unwind_18090d1c0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -69061,7 +69061,7 @@ void Unwind_18090d1d0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = *(uint8_t **)(ValidationContextParameter + 0xd0);
@@ -69070,12 +69070,12 @@ void Unwind_18090d1d0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -69097,7 +69097,7 @@ void Unwind_18090d1e0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = *(uint8_t **)(ValidationContextParameter + 0xf0);
@@ -69106,12 +69106,12 @@ void Unwind_18090d1e0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -69133,7 +69133,7 @@ void Unwind_18090d1f0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = *(uint8_t **)(ValidationContextParameter + 0xf0);
@@ -69142,12 +69142,12 @@ void Unwind_18090d1f0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -69169,7 +69169,7 @@ void Unwind_18090d200(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = *(uint8_t **)(ValidationContextParameter + 0x110);
@@ -69178,12 +69178,12 @@ void Unwind_18090d200(uint8_t ObjectContextParameter,int64_t ValidationContextPa
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -69205,7 +69205,7 @@ void Unwind_18090d210(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = *(uint8_t **)(ValidationContextParameter + 0x110);
@@ -69214,12 +69214,12 @@ void Unwind_18090d210(uint8_t ObjectContextParameter,int64_t ValidationContextPa
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -69241,7 +69241,7 @@ void Unwind_18090d220(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = *(uint8_t **)(ValidationContextParameter + 0x150);
@@ -69250,12 +69250,12 @@ void Unwind_18090d220(uint8_t ObjectContextParameter,int64_t ValidationContextPa
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -69277,7 +69277,7 @@ void Unwind_18090d230(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = *(uint8_t **)(ValidationContextParameter + 0x150);
@@ -69286,12 +69286,12 @@ void Unwind_18090d230(uint8_t ObjectContextParameter,int64_t ValidationContextPa
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -69313,7 +69313,7 @@ void Unwind_18090d240(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = *(uint8_t **)(ValidationContextParameter + 0x170);
@@ -69322,12 +69322,12 @@ void Unwind_18090d240(uint8_t ObjectContextParameter,int64_t ValidationContextPa
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -69349,7 +69349,7 @@ void Unwind_18090d250(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = *(uint8_t **)(ValidationContextParameter + 0x170);
@@ -69358,12 +69358,12 @@ void Unwind_18090d250(uint8_t ObjectContextParameter,int64_t ValidationContextPa
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -69385,7 +69385,7 @@ void Unwind_18090d260(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = *(uint8_t **)(ValidationContextParameter + 400);
@@ -69394,12 +69394,12 @@ void Unwind_18090d260(uint8_t ObjectContextParameter,int64_t ValidationContextPa
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -69421,7 +69421,7 @@ void Unwind_18090d270(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = *(uint8_t **)(ValidationContextParameter + 400);
@@ -69430,12 +69430,12 @@ void Unwind_18090d270(uint8_t ObjectContextParameter,int64_t ValidationContextPa
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -69457,7 +69457,7 @@ void Unwind_18090d280(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = *(uint8_t **)(ValidationContextParameter + 0x1b0);
@@ -69466,12 +69466,12 @@ void Unwind_18090d280(uint8_t ObjectContextParameter,int64_t ValidationContextPa
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -69493,7 +69493,7 @@ void Unwind_18090d290(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = *(uint8_t **)(ValidationContextParameter + 0x1b0);
@@ -69502,12 +69502,12 @@ void Unwind_18090d290(uint8_t ObjectContextParameter,int64_t ValidationContextPa
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -69529,7 +69529,7 @@ void Unwind_18090d2a0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = *(uint8_t **)(ValidationContextParameter + 0x1d0);
@@ -69538,12 +69538,12 @@ void Unwind_18090d2a0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -69565,7 +69565,7 @@ void Unwind_18090d2b0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = *(uint8_t **)(ValidationContextParameter + 0x1d0);
@@ -69574,12 +69574,12 @@ void Unwind_18090d2b0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -69601,7 +69601,7 @@ void Unwind_18090d2c0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = *(uint8_t **)(ValidationContextParameter + 0x1f0);
@@ -69610,12 +69610,12 @@ void Unwind_18090d2c0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -69637,7 +69637,7 @@ void Unwind_18090d2d0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = *(uint8_t **)(ValidationContextParameter + 0x1f0);
@@ -69646,12 +69646,12 @@ void Unwind_18090d2d0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -69673,7 +69673,7 @@ void Unwind_18090d2e0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = *(uint8_t **)(ValidationContextParameter + 0x210);
@@ -69682,12 +69682,12 @@ void Unwind_18090d2e0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -69709,7 +69709,7 @@ void Unwind_18090d2f0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = *(uint8_t **)(ValidationContextParameter + 0x210);
@@ -69718,12 +69718,12 @@ void Unwind_18090d2f0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -69745,7 +69745,7 @@ void Unwind_18090d300(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = *(uint8_t **)(ValidationContextParameter + 0x250);
@@ -69754,12 +69754,12 @@ void Unwind_18090d300(uint8_t ObjectContextParameter,int64_t ValidationContextPa
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -69781,7 +69781,7 @@ void Unwind_18090d310(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = *(uint8_t **)(ValidationContextParameter + 0x250);
@@ -69790,12 +69790,12 @@ void Unwind_18090d310(uint8_t ObjectContextParameter,int64_t ValidationContextPa
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -69873,7 +69873,7 @@ void Unwind_18090d360(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = *(uint8_t **)(ValidationContextParameter + 0x390);
@@ -69882,12 +69882,12 @@ void Unwind_18090d360(uint8_t ObjectContextParameter,int64_t ValidationContextPa
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -69909,7 +69909,7 @@ void Unwind_18090d370(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = *(uint8_t **)(ValidationContextParameter + 0x390);
@@ -69918,12 +69918,12 @@ void Unwind_18090d370(uint8_t ObjectContextParameter,int64_t ValidationContextPa
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -69945,7 +69945,7 @@ void Unwind_18090d380(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = *(uint8_t **)(ValidationContextParameter + 0x3b0);
@@ -69954,12 +69954,12 @@ void Unwind_18090d380(uint8_t ObjectContextParameter,int64_t ValidationContextPa
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -69981,7 +69981,7 @@ void Unwind_18090d390(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = *(uint8_t **)(ValidationContextParameter + 0x3b0);
@@ -69990,12 +69990,12 @@ void Unwind_18090d390(uint8_t ObjectContextParameter,int64_t ValidationContextPa
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -70017,7 +70017,7 @@ void Unwind_18090d3a0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = *(uint8_t **)(ValidationContextParameter + 0x490);
@@ -70026,12 +70026,12 @@ void Unwind_18090d3a0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -70053,7 +70053,7 @@ void Unwind_18090d3b0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = *(uint8_t **)(ValidationContextParameter + 0x490);
@@ -70062,12 +70062,12 @@ void Unwind_18090d3b0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -70089,7 +70089,7 @@ void Unwind_18090d3c0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = *(uint8_t **)(ValidationContextParameter + 0x2f0);
@@ -70098,12 +70098,12 @@ void Unwind_18090d3c0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -70125,7 +70125,7 @@ void Unwind_18090d3d0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = *(uint8_t **)(ValidationContextParameter + 0x2f0);
@@ -70134,12 +70134,12 @@ void Unwind_18090d3d0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -70161,7 +70161,7 @@ void Unwind_18090d3e0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = *(uint8_t **)(ValidationContextParameter + 0x310);
@@ -70170,12 +70170,12 @@ void Unwind_18090d3e0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -70197,7 +70197,7 @@ void Unwind_18090d3f0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = *(uint8_t **)(ValidationContextParameter + 0x310);
@@ -70206,12 +70206,12 @@ void Unwind_18090d3f0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -70233,7 +70233,7 @@ void Unwind_18090d400(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = *(uint8_t **)(ValidationContextParameter + 0x330);
@@ -70242,12 +70242,12 @@ void Unwind_18090d400(uint8_t ObjectContextParameter,int64_t ValidationContextPa
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -70269,7 +70269,7 @@ void Unwind_18090d410(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = *(uint8_t **)(ValidationContextParameter + 0x330);
@@ -70278,12 +70278,12 @@ void Unwind_18090d410(uint8_t ObjectContextParameter,int64_t ValidationContextPa
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -70305,7 +70305,7 @@ void Unwind_18090d420(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = *(uint8_t **)(ValidationContextParameter + 0x350);
@@ -70314,12 +70314,12 @@ void Unwind_18090d420(uint8_t ObjectContextParameter,int64_t ValidationContextPa
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -70341,7 +70341,7 @@ void Unwind_18090d430(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = *(uint8_t **)(ValidationContextParameter + 0x350);
@@ -70350,12 +70350,12 @@ void Unwind_18090d430(uint8_t ObjectContextParameter,int64_t ValidationContextPa
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -70377,7 +70377,7 @@ void Unwind_18090d440(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = *(uint8_t **)(ValidationContextParameter + 0x470);
@@ -70386,12 +70386,12 @@ void Unwind_18090d440(uint8_t ObjectContextParameter,int64_t ValidationContextPa
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -70413,7 +70413,7 @@ void Unwind_18090d450(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = *(uint8_t **)(ValidationContextParameter + 0x470);
@@ -70422,12 +70422,12 @@ void Unwind_18090d450(uint8_t ObjectContextParameter,int64_t ValidationContextPa
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -70449,7 +70449,7 @@ void Unwind_18090d460(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = *(uint8_t **)(ValidationContextParameter + 0x370);
@@ -70458,12 +70458,12 @@ void Unwind_18090d460(uint8_t ObjectContextParameter,int64_t ValidationContextPa
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -70485,7 +70485,7 @@ void Unwind_18090d470(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = *(uint8_t **)(ValidationContextParameter + 0x370);
@@ -70494,12 +70494,12 @@ void Unwind_18090d470(uint8_t ObjectContextParameter,int64_t ValidationContextPa
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -70521,7 +70521,7 @@ void Unwind_18090d480(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = *(uint8_t **)(ValidationContextParameter + 0x270);
@@ -70530,12 +70530,12 @@ void Unwind_18090d480(uint8_t ObjectContextParameter,int64_t ValidationContextPa
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -70557,7 +70557,7 @@ void Unwind_18090d490(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = *(uint8_t **)(ValidationContextParameter + 0x270);
@@ -70566,12 +70566,12 @@ void Unwind_18090d490(uint8_t ObjectContextParameter,int64_t ValidationContextPa
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -70593,7 +70593,7 @@ void Unwind_18090d4a0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = *(uint8_t **)(ValidationContextParameter + 0x290);
@@ -70602,12 +70602,12 @@ void Unwind_18090d4a0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -70629,7 +70629,7 @@ void Unwind_18090d4b0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = *(uint8_t **)(ValidationContextParameter + 0x290);
@@ -70638,12 +70638,12 @@ void Unwind_18090d4b0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -70665,7 +70665,7 @@ void Unwind_18090d4c0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = *(uint8_t **)(ValidationContextParameter + 0x2b0);
@@ -70674,12 +70674,12 @@ void Unwind_18090d4c0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -70701,7 +70701,7 @@ void Unwind_18090d4d0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = *(uint8_t **)(ValidationContextParameter + 0x2b0);
@@ -70710,12 +70710,12 @@ void Unwind_18090d4d0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -70737,7 +70737,7 @@ void Unwind_18090d4e0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = *(uint8_t **)(ValidationContextParameter + 0x2d0);
@@ -70746,12 +70746,12 @@ void Unwind_18090d4e0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -70773,7 +70773,7 @@ void Unwind_18090d4f0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = *(uint8_t **)(ValidationContextParameter + 0x2d0);
@@ -70782,12 +70782,12 @@ void Unwind_18090d4f0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -71089,13 +71089,13 @@ void Unwind_18090d650(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int64_t *processPointer;
   int64_t *presourceTable;
-  int64_t *presourceIndex;
+  int64_t *pResourceIndex;
   
   presourceTable = (int64_t *)(*(int64_t *)(ValidationContextParameter + 0x40) + 0x40);
   ResourceContextPointer = *(int64_t **)(*(int64_t *)(ValidationContextParameter + 0x40) + 0x48);
-  for (presourceIndex = (int64_t *)*presourceTable; presourceIndex != ResourceContextPointer; presourceIndex = presourceIndex + 1) {
-    if ((int64_t *)*presourceIndex != (int64_t *)0x0) {
-      (**(code **)(*(int64_t *)*presourceIndex + 0x38))();
+  for (pResourceIndex = (int64_t *)*presourceTable; pResourceIndex != ResourceContextPointer; pResourceIndex = pResourceIndex + 1) {
+    if ((int64_t *)*pResourceIndex != (int64_t *)0x0) {
+      (**(code **)(*(int64_t *)*pResourceIndex + 0x38))();
     }
   }
   if (*presourceTable == 0) {
@@ -71266,36 +71266,36 @@ void Unwind_18090d7e0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
-  resourceIndex = *(int64_t *)(ValidationContextParameter + 0x40);
-  if (*(int64_t **)(resourceIndex + 0x14d0) != (int64_t *)0x0) {
-    (**(code **)(**(int64_t **)(resourceIndex + 0x14d0) + 0x38))();
+  ResourceIndex = *(int64_t *)(ValidationContextParameter + 0x40);
+  if (*(int64_t **)(ResourceIndex + 0x14d0) != (int64_t *)0x0) {
+    (**(code **)(**(int64_t **)(ResourceIndex + 0x14d0) + 0x38))();
   }
-  if (*(int64_t **)(resourceIndex + 0x14c8) != (int64_t *)0x0) {
-    (**(code **)(**(int64_t **)(resourceIndex + 0x14c8) + 0x38))();
+  if (*(int64_t **)(ResourceIndex + 0x14c8) != (int64_t *)0x0) {
+    (**(code **)(**(int64_t **)(ResourceIndex + 0x14c8) + 0x38))();
   }
-  if (*(int64_t **)(resourceIndex + 0x14c0) != (int64_t *)0x0) {
-    (**(code **)(**(int64_t **)(resourceIndex + 0x14c0) + 0x38))();
+  if (*(int64_t **)(ResourceIndex + 0x14c0) != (int64_t *)0x0) {
+    (**(code **)(**(int64_t **)(ResourceIndex + 0x14c0) + 0x38))();
   }
   ExecuteSystemInitialization();
-  if (*(int64_t *)(resourceIndex + 0x1480) != 0) {
+  if (*(int64_t *)(ResourceIndex + 0x1480) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  pResourceValidationResult = *(uint8_t **)(resourceIndex + 0x1460);
+  pResourceValidationResult = *(uint8_t **)(ResourceIndex + 0x1460);
   if (pResourceValidationResult == (uint8_t *)0x0) {
     return;
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -71804,7 +71804,7 @@ void Unwind_18090de40(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = *(uint8_t **)(*(int64_t *)(ValidationContextParameter + 0xe0) + 0x20);
@@ -71813,12 +71813,12 @@ void Unwind_18090de40(uint8_t ObjectContextParameter,int64_t ValidationContextPa
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -71840,13 +71840,13 @@ void Unwind_18090de50(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int64_t *processPointer;
   int64_t *presourceTable;
-  int64_t *presourceIndex;
+  int64_t *pResourceIndex;
   
   presourceTable = (int64_t *)(*(int64_t *)(ValidationContextParameter + 0xe0) + 0x40);
   ResourceContextPointer = *(int64_t **)(*(int64_t *)(ValidationContextParameter + 0xe0) + 0x48);
-  for (presourceIndex = (int64_t *)*presourceTable; presourceIndex != ResourceContextPointer; presourceIndex = presourceIndex + 1) {
-    if ((int64_t *)*presourceIndex != (int64_t *)0x0) {
-      (**(code **)(*(int64_t *)*presourceIndex + 0x38))();
+  for (pResourceIndex = (int64_t *)*presourceTable; pResourceIndex != ResourceContextPointer; pResourceIndex = pResourceIndex + 1) {
+    if ((int64_t *)*pResourceIndex != (int64_t *)0x0) {
+      (**(code **)(*(int64_t *)*pResourceIndex + 0x38))();
     }
   }
   if (*presourceTable == 0) {
@@ -72040,36 +72040,36 @@ void Unwind_18090e000(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
-  resourceIndex = *(int64_t *)(ValidationContextParameter + 0xe0);
-  if (*(int64_t **)(resourceIndex + 0x14d0) != (int64_t *)0x0) {
-    (**(code **)(**(int64_t **)(resourceIndex + 0x14d0) + 0x38))();
+  ResourceIndex = *(int64_t *)(ValidationContextParameter + 0xe0);
+  if (*(int64_t **)(ResourceIndex + 0x14d0) != (int64_t *)0x0) {
+    (**(code **)(**(int64_t **)(ResourceIndex + 0x14d0) + 0x38))();
   }
-  if (*(int64_t **)(resourceIndex + 0x14c8) != (int64_t *)0x0) {
-    (**(code **)(**(int64_t **)(resourceIndex + 0x14c8) + 0x38))();
+  if (*(int64_t **)(ResourceIndex + 0x14c8) != (int64_t *)0x0) {
+    (**(code **)(**(int64_t **)(ResourceIndex + 0x14c8) + 0x38))();
   }
-  if (*(int64_t **)(resourceIndex + 0x14c0) != (int64_t *)0x0) {
-    (**(code **)(**(int64_t **)(resourceIndex + 0x14c0) + 0x38))();
+  if (*(int64_t **)(ResourceIndex + 0x14c0) != (int64_t *)0x0) {
+    (**(code **)(**(int64_t **)(ResourceIndex + 0x14c0) + 0x38))();
   }
   ExecuteSystemInitialization();
-  if (*(int64_t *)(resourceIndex + 0x1480) != 0) {
+  if (*(int64_t *)(ResourceIndex + 0x1480) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  pResourceValidationResult = *(uint8_t **)(resourceIndex + 0x1460);
+  pResourceValidationResult = *(uint8_t **)(ResourceIndex + 0x1460);
   if (pResourceValidationResult == (uint8_t *)0x0) {
     return;
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -72366,7 +72366,7 @@ void Unwind_18090e3c0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = (uint8_t *)**(uint64_t **)(ValidationContextParameter + 0xe8);
@@ -72375,12 +72375,12 @@ void Unwind_18090e3c0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -72402,7 +72402,7 @@ void Unwind_18090e3d0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = (uint8_t *)**(uint64_t **)(ValidationContextParameter + 0xe8);
@@ -72411,12 +72411,12 @@ void Unwind_18090e3d0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -72438,13 +72438,13 @@ void Unwind_18090e3e0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int64_t *processPointer;
   int64_t *presourceTable;
-  int64_t *presourceIndex;
+  int64_t *pResourceIndex;
   
   presourceTable = *(int64_t **)(ValidationContextParameter + 0xe8);
   ResourceContextPointer = (int64_t *)presourceTable[1];
-  for (presourceIndex = (int64_t *)*presourceTable; presourceIndex != ResourceContextPointer; presourceIndex = presourceIndex + 1) {
-    if ((int64_t *)*presourceIndex != (int64_t *)0x0) {
-      (**(code **)(*(int64_t *)*presourceIndex + 0x38))();
+  for (pResourceIndex = (int64_t *)*presourceTable; pResourceIndex != ResourceContextPointer; pResourceIndex = pResourceIndex + 1) {
+    if ((int64_t *)*pResourceIndex != (int64_t *)0x0) {
+      (**(code **)(*(int64_t *)*pResourceIndex + 0x38))();
     }
   }
   if (*presourceTable == 0) {
@@ -72689,7 +72689,7 @@ void Unwind_18090e760(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int64_t loopCounter;
   int OperationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   int64_t *contextPointer;
   int64_t MemoryRegion;
   
@@ -72704,9 +72704,9 @@ void Unwind_18090e760(uint8_t ObjectContextParameter,int64_t ValidationContextPa
       if (*(int64_t *)(localContextPointer + 0x68) == 0) {
         *(int64_t *)(ResourceTablePointer + 0x80b0 + (int64_t)*(int *)(ResourceTablePointer + 0x8088) * 8) = localContextPointer;
       }
-      resourceIndex = (int64_t)*(int *)(ResourceTablePointer + 0x8088) * 0x20;
-      loopCounter = *(int64_t *)(resourceIndex + 200 + ResourceTablePointer + 0x7f20);
-      OperationResult = (int)(*(int64_t *)(resourceIndex + 0xd0 + ResourceTablePointer + 0x7f20) - localContextPointer >> 3) + -1;
+      ResourceIndex = (int64_t)*(int *)(ResourceTablePointer + 0x8088) * 0x20;
+      loopCounter = *(int64_t *)(ResourceIndex + 200 + ResourceTablePointer + 0x7f20);
+      OperationResult = (int)(*(int64_t *)(ResourceIndex + 0xd0 + ResourceTablePointer + 0x7f20) - localContextPointer >> 3) + -1;
       if (-1 < OperationResult) {
         ResourceTablePointer = (int64_t)OperationResult;
         do {
@@ -72747,7 +72747,7 @@ void Unwind_18090e7a0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int64_t loopCounter;
   int OperationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   int64_t *contextPointer;
   int64_t MemoryRegion;
   
@@ -72762,9 +72762,9 @@ void Unwind_18090e7a0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
       if (*(int64_t *)(localContextPointer + 0x68) == 0) {
         *(int64_t *)(ResourceTablePointer + 0x80b0 + (int64_t)*(int *)(ResourceTablePointer + 0x8088) * 8) = localContextPointer;
       }
-      resourceIndex = (int64_t)*(int *)(ResourceTablePointer + 0x8088) * 0x20;
-      loopCounter = *(int64_t *)(resourceIndex + 200 + ResourceTablePointer + 0x7f20);
-      OperationResult = (int)(*(int64_t *)(resourceIndex + 0xd0 + ResourceTablePointer + 0x7f20) - localContextPointer >> 3) + -1;
+      ResourceIndex = (int64_t)*(int *)(ResourceTablePointer + 0x8088) * 0x20;
+      loopCounter = *(int64_t *)(ResourceIndex + 200 + ResourceTablePointer + 0x7f20);
+      OperationResult = (int)(*(int64_t *)(ResourceIndex + 0xd0 + ResourceTablePointer + 0x7f20) - localContextPointer >> 3) + -1;
       if (-1 < OperationResult) {
         ResourceTablePointer = (int64_t)OperationResult;
         do {
@@ -72793,7 +72793,7 @@ void Unwind_18090e7b0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int64_t loopCounter;
   int OperationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   int64_t *contextPointer;
   int64_t MemoryRegion;
   
@@ -72808,9 +72808,9 @@ void Unwind_18090e7b0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
       if (*(int64_t *)(localContextPointer + 0x68) == 0) {
         *(int64_t *)(ResourceTablePointer + 0x80b0 + (int64_t)*(int *)(ResourceTablePointer + 0x8088) * 8) = localContextPointer;
       }
-      resourceIndex = (int64_t)*(int *)(ResourceTablePointer + 0x8088) * 0x20;
-      loopCounter = *(int64_t *)(resourceIndex + 200 + ResourceTablePointer + 0x7f20);
-      OperationResult = (int)(*(int64_t *)(resourceIndex + 0xd0 + ResourceTablePointer + 0x7f20) - localContextPointer >> 3) + -1;
+      ResourceIndex = (int64_t)*(int *)(ResourceTablePointer + 0x8088) * 0x20;
+      loopCounter = *(int64_t *)(ResourceIndex + 200 + ResourceTablePointer + 0x7f20);
+      OperationResult = (int)(*(int64_t *)(ResourceIndex + 0xd0 + ResourceTablePointer + 0x7f20) - localContextPointer >> 3) + -1;
       if (-1 < OperationResult) {
         ResourceTablePointer = (int64_t)OperationResult;
         do {
@@ -72839,7 +72839,7 @@ void Unwind_18090e7c0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int64_t loopCounter;
   int OperationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   int64_t *contextPointer;
   int64_t MemoryRegion;
   
@@ -72854,9 +72854,9 @@ void Unwind_18090e7c0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
       if (*(int64_t *)(localContextPointer + 0x68) == 0) {
         *(int64_t *)(ResourceTablePointer + 0x80b0 + (int64_t)*(int *)(ResourceTablePointer + 0x8088) * 8) = localContextPointer;
       }
-      resourceIndex = (int64_t)*(int *)(ResourceTablePointer + 0x8088) * 0x20;
-      loopCounter = *(int64_t *)(resourceIndex + 200 + ResourceTablePointer + 0x7f20);
-      OperationResult = (int)(*(int64_t *)(resourceIndex + 0xd0 + ResourceTablePointer + 0x7f20) - localContextPointer >> 3) + -1;
+      ResourceIndex = (int64_t)*(int *)(ResourceTablePointer + 0x8088) * 0x20;
+      loopCounter = *(int64_t *)(ResourceIndex + 200 + ResourceTablePointer + 0x7f20);
+      OperationResult = (int)(*(int64_t *)(ResourceIndex + 0xd0 + ResourceTablePointer + 0x7f20) - localContextPointer >> 3) + -1;
       if (-1 < OperationResult) {
         ResourceTablePointer = (int64_t)OperationResult;
         do {
@@ -72885,7 +72885,7 @@ void Unwind_18090e7d0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int64_t loopCounter;
   int OperationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   int64_t *contextPointer;
   int64_t MemoryRegion;
   
@@ -72900,9 +72900,9 @@ void Unwind_18090e7d0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
       if (*(int64_t *)(localContextPointer + 0x68) == 0) {
         *(int64_t *)(ResourceTablePointer + 0x80b0 + (int64_t)*(int *)(ResourceTablePointer + 0x8088) * 8) = localContextPointer;
       }
-      resourceIndex = (int64_t)*(int *)(ResourceTablePointer + 0x8088) * 0x20;
-      loopCounter = *(int64_t *)(resourceIndex + 200 + ResourceTablePointer + 0x7f20);
-      OperationResult = (int)(*(int64_t *)(resourceIndex + 0xd0 + ResourceTablePointer + 0x7f20) - localContextPointer >> 3) + -1;
+      ResourceIndex = (int64_t)*(int *)(ResourceTablePointer + 0x8088) * 0x20;
+      loopCounter = *(int64_t *)(ResourceIndex + 200 + ResourceTablePointer + 0x7f20);
+      OperationResult = (int)(*(int64_t *)(ResourceIndex + 0xd0 + ResourceTablePointer + 0x7f20) - localContextPointer >> 3) + -1;
       if (-1 < OperationResult) {
         ResourceTablePointer = (int64_t)OperationResult;
         do {
@@ -72931,7 +72931,7 @@ void Unwind_18090e7e0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int64_t loopCounter;
   int OperationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   int64_t *contextPointer;
   int64_t MemoryRegion;
   
@@ -72946,9 +72946,9 @@ void Unwind_18090e7e0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
       if (*(int64_t *)(localContextPointer + 0x68) == 0) {
         *(int64_t *)(ResourceTablePointer + 0x80b0 + (int64_t)*(int *)(ResourceTablePointer + 0x8088) * 8) = localContextPointer;
       }
-      resourceIndex = (int64_t)*(int *)(ResourceTablePointer + 0x8088) * 0x20;
-      loopCounter = *(int64_t *)(resourceIndex + 200 + ResourceTablePointer + 0x7f20);
-      OperationResult = (int)(*(int64_t *)(resourceIndex + 0xd0 + ResourceTablePointer + 0x7f20) - localContextPointer >> 3) + -1;
+      ResourceIndex = (int64_t)*(int *)(ResourceTablePointer + 0x8088) * 0x20;
+      loopCounter = *(int64_t *)(ResourceIndex + 200 + ResourceTablePointer + 0x7f20);
+      OperationResult = (int)(*(int64_t *)(ResourceIndex + 0xd0 + ResourceTablePointer + 0x7f20) - localContextPointer >> 3) + -1;
       if (-1 < OperationResult) {
         ResourceTablePointer = (int64_t)OperationResult;
         do {
@@ -72977,7 +72977,7 @@ void Unwind_18090e7f0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int64_t loopCounter;
   int OperationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   int64_t *contextPointer;
   int64_t MemoryRegion;
   
@@ -72992,9 +72992,9 @@ void Unwind_18090e7f0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
       if (*(int64_t *)(localContextPointer + 0x68) == 0) {
         *(int64_t *)(ResourceTablePointer + 0x80b0 + (int64_t)*(int *)(ResourceTablePointer + 0x8088) * 8) = localContextPointer;
       }
-      resourceIndex = (int64_t)*(int *)(ResourceTablePointer + 0x8088) * 0x20;
-      loopCounter = *(int64_t *)(resourceIndex + 200 + ResourceTablePointer + 0x7f20);
-      OperationResult = (int)(*(int64_t *)(resourceIndex + 0xd0 + ResourceTablePointer + 0x7f20) - localContextPointer >> 3) + -1;
+      ResourceIndex = (int64_t)*(int *)(ResourceTablePointer + 0x8088) * 0x20;
+      loopCounter = *(int64_t *)(ResourceIndex + 200 + ResourceTablePointer + 0x7f20);
+      OperationResult = (int)(*(int64_t *)(ResourceIndex + 0xd0 + ResourceTablePointer + 0x7f20) - localContextPointer >> 3) + -1;
       if (-1 < OperationResult) {
         ResourceTablePointer = (int64_t)OperationResult;
         do {
@@ -73023,7 +73023,7 @@ void Unwind_18090e800(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int64_t loopCounter;
   int OperationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   int64_t *contextPointer;
   int64_t MemoryRegion;
   
@@ -73038,9 +73038,9 @@ void Unwind_18090e800(uint8_t ObjectContextParameter,int64_t ValidationContextPa
       if (*(int64_t *)(localContextPointer + 0x68) == 0) {
         *(int64_t *)(ResourceTablePointer + 0x80b0 + (int64_t)*(int *)(ResourceTablePointer + 0x8088) * 8) = localContextPointer;
       }
-      resourceIndex = (int64_t)*(int *)(ResourceTablePointer + 0x8088) * 0x20;
-      loopCounter = *(int64_t *)(resourceIndex + 200 + ResourceTablePointer + 0x7f20);
-      OperationResult = (int)(*(int64_t *)(resourceIndex + 0xd0 + ResourceTablePointer + 0x7f20) - localContextPointer >> 3) + -1;
+      ResourceIndex = (int64_t)*(int *)(ResourceTablePointer + 0x8088) * 0x20;
+      loopCounter = *(int64_t *)(ResourceIndex + 200 + ResourceTablePointer + 0x7f20);
+      OperationResult = (int)(*(int64_t *)(ResourceIndex + 0xd0 + ResourceTablePointer + 0x7f20) - localContextPointer >> 3) + -1;
       if (-1 < OperationResult) {
         ResourceTablePointer = (int64_t)OperationResult;
         do {
@@ -73081,7 +73081,7 @@ void Unwind_18090e820(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int64_t loopCounter;
   int OperationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   int64_t *contextPointer;
   int64_t MemoryRegion;
   
@@ -73096,9 +73096,9 @@ void Unwind_18090e820(uint8_t ObjectContextParameter,int64_t ValidationContextPa
       if (*(int64_t *)(localContextPointer + 0x68) == 0) {
         *(int64_t *)(ResourceTablePointer + 0x80b0 + (int64_t)*(int *)(ResourceTablePointer + 0x8088) * 8) = localContextPointer;
       }
-      resourceIndex = (int64_t)*(int *)(ResourceTablePointer + 0x8088) * 0x20;
-      loopCounter = *(int64_t *)(resourceIndex + 200 + ResourceTablePointer + 0x7f20);
-      OperationResult = (int)(*(int64_t *)(resourceIndex + 0xd0 + ResourceTablePointer + 0x7f20) - localContextPointer >> 3) + -1;
+      ResourceIndex = (int64_t)*(int *)(ResourceTablePointer + 0x8088) * 0x20;
+      loopCounter = *(int64_t *)(ResourceIndex + 200 + ResourceTablePointer + 0x7f20);
+      OperationResult = (int)(*(int64_t *)(ResourceIndex + 0xd0 + ResourceTablePointer + 0x7f20) - localContextPointer >> 3) + -1;
       if (-1 < OperationResult) {
         ResourceTablePointer = (int64_t)OperationResult;
         do {
@@ -73139,7 +73139,7 @@ void Unwind_18090e840(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int64_t loopCounter;
   int OperationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   int64_t *contextPointer;
   int64_t MemoryRegion;
   
@@ -73154,9 +73154,9 @@ void Unwind_18090e840(uint8_t ObjectContextParameter,int64_t ValidationContextPa
       if (*(int64_t *)(localContextPointer + 0x68) == 0) {
         *(int64_t *)(ResourceTablePointer + 0x80b0 + (int64_t)*(int *)(ResourceTablePointer + 0x8088) * 8) = localContextPointer;
       }
-      resourceIndex = (int64_t)*(int *)(ResourceTablePointer + 0x8088) * 0x20;
-      loopCounter = *(int64_t *)(resourceIndex + 200 + ResourceTablePointer + 0x7f20);
-      OperationResult = (int)(*(int64_t *)(resourceIndex + 0xd0 + ResourceTablePointer + 0x7f20) - localContextPointer >> 3) + -1;
+      ResourceIndex = (int64_t)*(int *)(ResourceTablePointer + 0x8088) * 0x20;
+      loopCounter = *(int64_t *)(ResourceIndex + 200 + ResourceTablePointer + 0x7f20);
+      OperationResult = (int)(*(int64_t *)(ResourceIndex + 0xd0 + ResourceTablePointer + 0x7f20) - localContextPointer >> 3) + -1;
       if (-1 < OperationResult) {
         ResourceTablePointer = (int64_t)OperationResult;
         do {
@@ -73197,7 +73197,7 @@ void Unwind_18090e860(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int64_t loopCounter;
   int OperationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   int64_t *contextPointer;
   int64_t MemoryRegion;
   
@@ -73212,9 +73212,9 @@ void Unwind_18090e860(uint8_t ObjectContextParameter,int64_t ValidationContextPa
       if (*(int64_t *)(localContextPointer + 0x68) == 0) {
         *(int64_t *)(ResourceTablePointer + 0x80b0 + (int64_t)*(int *)(ResourceTablePointer + 0x8088) * 8) = localContextPointer;
       }
-      resourceIndex = (int64_t)*(int *)(ResourceTablePointer + 0x8088) * 0x20;
-      loopCounter = *(int64_t *)(resourceIndex + 200 + ResourceTablePointer + 0x7f20);
-      OperationResult = (int)(*(int64_t *)(resourceIndex + 0xd0 + ResourceTablePointer + 0x7f20) - localContextPointer >> 3) + -1;
+      ResourceIndex = (int64_t)*(int *)(ResourceTablePointer + 0x8088) * 0x20;
+      loopCounter = *(int64_t *)(ResourceIndex + 200 + ResourceTablePointer + 0x7f20);
+      OperationResult = (int)(*(int64_t *)(ResourceIndex + 0xd0 + ResourceTablePointer + 0x7f20) - localContextPointer >> 3) + -1;
       if (-1 < OperationResult) {
         ResourceTablePointer = (int64_t)OperationResult;
         do {
@@ -73636,7 +73636,7 @@ void Unwind_18090eb00(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int64_t loopCounter;
   int OperationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   int64_t *contextPointer;
   int64_t MemoryRegion;
   
@@ -73651,9 +73651,9 @@ void Unwind_18090eb00(uint8_t ObjectContextParameter,int64_t ValidationContextPa
       if (*(int64_t *)(localContextPointer + 0x68) == 0) {
         *(int64_t *)(ResourceTablePointer + 0x80b0 + (int64_t)*(int *)(ResourceTablePointer + 0x8088) * 8) = localContextPointer;
       }
-      resourceIndex = (int64_t)*(int *)(ResourceTablePointer + 0x8088) * 0x20;
-      loopCounter = *(int64_t *)(resourceIndex + 200 + ResourceTablePointer + 0x7f20);
-      OperationResult = (int)(*(int64_t *)(resourceIndex + 0xd0 + ResourceTablePointer + 0x7f20) - localContextPointer >> 3) + -1;
+      ResourceIndex = (int64_t)*(int *)(ResourceTablePointer + 0x8088) * 0x20;
+      loopCounter = *(int64_t *)(ResourceIndex + 200 + ResourceTablePointer + 0x7f20);
+      OperationResult = (int)(*(int64_t *)(ResourceIndex + 0xd0 + ResourceTablePointer + 0x7f20) - localContextPointer >> 3) + -1;
       if (-1 < OperationResult) {
         ResourceTablePointer = (int64_t)OperationResult;
         do {
@@ -74400,7 +74400,7 @@ void Unwind_18090eeb0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = *(uint8_t **)(*(int64_t *)(ValidationContextParameter + 0x88) + 8);
@@ -74409,12 +74409,12 @@ void Unwind_18090eeb0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -74445,7 +74445,7 @@ void Unwind_18090eee0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = *(uint8_t **)(*(int64_t *)(ValidationContextParameter + 0x88) + 0x2d0);
@@ -74454,12 +74454,12 @@ void Unwind_18090eee0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -74495,7 +74495,7 @@ void Unwind_18090ef20(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = *(uint8_t **)(*(int64_t *)(ValidationContextParameter + 0x48) + 0x1d8);
@@ -74504,12 +74504,12 @@ void Unwind_18090ef20(uint8_t ObjectContextParameter,int64_t ValidationContextPa
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -74545,7 +74545,7 @@ void Unwind_18090ef50(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = (uint8_t *)**(uint64_t **)(ValidationContextParameter + 0x10);
@@ -74554,12 +74554,12 @@ void Unwind_18090ef50(uint8_t ObjectContextParameter,int64_t ValidationContextPa
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -74581,7 +74581,7 @@ void Unwind_18090ef60(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = (uint8_t *)**(uint64_t **)(ValidationContextParameter + 0x10);
@@ -74590,12 +74590,12 @@ void Unwind_18090ef60(uint8_t ObjectContextParameter,int64_t ValidationContextPa
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -74665,25 +74665,25 @@ void Unwind_18090efe0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int64_t loopCounter;
   int64_t *presourceTable;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   int64_t DataOffset;
   int64_t *pResourceTablePointer;
   
   loopCounter = *(int64_t *)(ValidationContextParameter + 0x70);
   presourceTable = (int64_t *)(localContextPointer + 0x300);
-  resourceIndex = *(int64_t *)(localContextPointer + 0x310);
+  ResourceIndex = *(int64_t *)(localContextPointer + 0x310);
   lVar4 = *(int64_t *)(localContextPointer + 800);
   pResourceTablePointer = *(int64_t **)(localContextPointer + 0x328);
-  if (resourceIndex != *(int64_t *)(localContextPointer + 0x330)) {
+  if (ResourceIndex != *(int64_t *)(localContextPointer + 0x330)) {
     do {
-      ResourceCleanupHandler(resourceIndex);
-      resourceIndex = resourceIndex + 0x78;
-      if (resourceIndex == lVar4) {
+      ResourceCleanupHandler(ResourceIndex);
+      ResourceIndex = ResourceIndex + 0x78;
+      if (ResourceIndex == lVar4) {
         pResourceTablePointer = pResourceTablePointer + 1;
-        resourceIndex = *pResourceTablePointer;
-        lVar4 = resourceIndex + 0x1e0;
+        ResourceIndex = *pResourceTablePointer;
+        lVar4 = ResourceIndex + 0x1e0;
       }
-    } while (resourceIndex != *(int64_t *)(localContextPointer + 0x330));
+    } while (ResourceIndex != *(int64_t *)(localContextPointer + 0x330));
   }
   if (*presourceTable != 0) {
     pResourceTablePointer = *(int64_t **)(localContextPointer + 0x328);
@@ -74711,22 +74711,22 @@ void Unwind_18090f000(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int64_t *processPointer;
   int64_t *presourceTable;
-  int64_t *presourceIndex;
+  int64_t *pResourceIndex;
   
   presourceTable = (int64_t *)(*(int64_t *)(ValidationContextParameter + 0x70) + 0x358);
   ResourceContextPointer = *(int64_t **)(*(int64_t *)(ValidationContextParameter + 0x70) + 0x360);
-  for (presourceIndex = (int64_t *)*presourceTable; presourceIndex != ResourceContextPointer; presourceIndex = presourceIndex + 4) {
-    if ((int64_t *)presourceIndex[3] != (int64_t *)0x0) {
-      (**(code **)(*(int64_t *)presourceIndex[3] + 0x38))();
+  for (pResourceIndex = (int64_t *)*presourceTable; pResourceIndex != ResourceContextPointer; pResourceIndex = pResourceIndex + 4) {
+    if ((int64_t *)pResourceIndex[3] != (int64_t *)0x0) {
+      (**(code **)(*(int64_t *)pResourceIndex[3] + 0x38))();
     }
-    if ((int64_t *)presourceIndex[2] != (int64_t *)0x0) {
-      (**(code **)(*(int64_t *)presourceIndex[2] + 0x38))();
+    if ((int64_t *)pResourceIndex[2] != (int64_t *)0x0) {
+      (**(code **)(*(int64_t *)pResourceIndex[2] + 0x38))();
     }
-    if ((int64_t *)presourceIndex[1] != (int64_t *)0x0) {
-      (**(code **)(*(int64_t *)presourceIndex[1] + 0x38))();
+    if ((int64_t *)pResourceIndex[1] != (int64_t *)0x0) {
+      (**(code **)(*(int64_t *)pResourceIndex[1] + 0x38))();
     }
-    if ((int64_t *)*presourceIndex != (int64_t *)0x0) {
-      (**(code **)(*(int64_t *)*presourceIndex + 0x38))();
+    if ((int64_t *)*pResourceIndex != (int64_t *)0x0) {
+      (**(code **)(*(int64_t *)*pResourceIndex + 0x38))();
     }
   }
   if (*presourceTable == 0) {
@@ -74763,30 +74763,30 @@ void Unwind_18090f040(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int64_t *processPointer;
   int64_t resourceTable;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   int64_t *contextPointer;
   
   ResourceContextPointer = *(int64_t **)(ValidationContextParameter + 0x78);
   resourceTable = ResourceContextPointer[2];
-  resourceIndex = ResourceContextPointer[4];
+  ResourceIndex = ResourceContextPointer[4];
   plVar4 = (int64_t *)ResourceContextPointer[5];
   if (resourceTable != ResourceContextPointer[6]) {
     do {
       ResourceCleanupHandler(resourceTable);
       resourceTable = resourceTable + 0x78;
-      if (resourceTable == resourceIndex) {
+      if (resourceTable == ResourceIndex) {
         plVar4 = plVar4 + 1;
         resourceTable = *plVar4;
-        resourceIndex = resourceTable + 0x1e0;
+        ResourceIndex = resourceTable + 0x1e0;
       }
     } while (resourceTable != ResourceContextPointer[6]);
   }
   if (*ResourceContextPointer != 0) {
     plVar4 = (int64_t *)ResourceContextPointer[5];
     while (plVar4 < (int64_t *)(ResourceContextPointer[9] + 8)) {
-      resourceIndex = *plVar4;
+      ResourceIndex = *plVar4;
       plVar4 = plVar4 + 1;
-      if (resourceIndex != 0) {
+      if (ResourceIndex != 0) {
                     // WARNING: Subroutine does not return
         ExecuteSystemEmergencyExit();
       }
@@ -74807,21 +74807,21 @@ void Unwind_18090f050(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int64_t *processPointer;
   int64_t resourceTable;
-  int64_t *presourceIndex;
+  int64_t *pResourceIndex;
   
   ResourceContextPointer = *(int64_t **)(ValidationContextParameter + 0x78);
   resourceTable = *ResourceContextPointer;
   if (resourceTable != 0) {
-    presourceIndex = (int64_t *)ResourceContextPointer[5];
-    if (presourceIndex < (int64_t *)(ResourceContextPointer[9] + 8)) {
+    pResourceIndex = (int64_t *)ResourceContextPointer[5];
+    if (pResourceIndex < (int64_t *)(ResourceContextPointer[9] + 8)) {
       do {
-        resourceTable = *presourceIndex;
-        presourceIndex = presourceIndex + 1;
+        resourceTable = *pResourceIndex;
+        pResourceIndex = pResourceIndex + 1;
         if (resourceTable != 0) {
                     // WARNING: Subroutine does not return
           ExecuteSystemEmergencyExit();
         }
-      } while (presourceIndex < (int64_t *)(ResourceContextPointer[9] + 8));
+      } while (pResourceIndex < (int64_t *)(ResourceContextPointer[9] + 8));
       resourceTable = *ResourceContextPointer;
     }
     if (resourceTable != 0) {
@@ -74840,22 +74840,22 @@ void Unwind_18090f060(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int64_t *processPointer;
   int64_t *presourceTable;
-  int64_t *presourceIndex;
+  int64_t *pResourceIndex;
   
   presourceTable = *(int64_t **)(ValidationContextParameter + 0x78);
   ResourceContextPointer = (int64_t *)presourceTable[1];
-  for (presourceIndex = (int64_t *)*presourceTable; presourceIndex != ResourceContextPointer; presourceIndex = presourceIndex + 4) {
-    if ((int64_t *)presourceIndex[3] != (int64_t *)0x0) {
-      (**(code **)(*(int64_t *)presourceIndex[3] + 0x38))();
+  for (pResourceIndex = (int64_t *)*presourceTable; pResourceIndex != ResourceContextPointer; pResourceIndex = pResourceIndex + 4) {
+    if ((int64_t *)pResourceIndex[3] != (int64_t *)0x0) {
+      (**(code **)(*(int64_t *)pResourceIndex[3] + 0x38))();
     }
-    if ((int64_t *)presourceIndex[2] != (int64_t *)0x0) {
-      (**(code **)(*(int64_t *)presourceIndex[2] + 0x38))();
+    if ((int64_t *)pResourceIndex[2] != (int64_t *)0x0) {
+      (**(code **)(*(int64_t *)pResourceIndex[2] + 0x38))();
     }
-    if ((int64_t *)presourceIndex[1] != (int64_t *)0x0) {
-      (**(code **)(*(int64_t *)presourceIndex[1] + 0x38))();
+    if ((int64_t *)pResourceIndex[1] != (int64_t *)0x0) {
+      (**(code **)(*(int64_t *)pResourceIndex[1] + 0x38))();
     }
-    if ((int64_t *)*presourceIndex != (int64_t *)0x0) {
-      (**(code **)(*(int64_t *)*presourceIndex + 0x38))();
+    if ((int64_t *)*pResourceIndex != (int64_t *)0x0) {
+      (**(code **)(*(int64_t *)*pResourceIndex + 0x38))();
     }
   }
   if (*presourceTable == 0) {
@@ -74926,30 +74926,30 @@ void Unwind_18090f0c0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int64_t *processPointer;
   int64_t resourceTable;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   int64_t *contextPointer;
   
   ResourceContextPointer = *(int64_t **)(ValidationContextParameter + 0x40);
   resourceTable = ResourceContextPointer[2];
-  resourceIndex = ResourceContextPointer[4];
+  ResourceIndex = ResourceContextPointer[4];
   plVar4 = (int64_t *)ResourceContextPointer[5];
   if (resourceTable != ResourceContextPointer[6]) {
     do {
       ResourceCleanupHandler(resourceTable);
       resourceTable = resourceTable + 0x78;
-      if (resourceTable == resourceIndex) {
+      if (resourceTable == ResourceIndex) {
         plVar4 = plVar4 + 1;
         resourceTable = *plVar4;
-        resourceIndex = resourceTable + 0x1e0;
+        ResourceIndex = resourceTable + 0x1e0;
       }
     } while (resourceTable != ResourceContextPointer[6]);
   }
   if (*ResourceContextPointer != 0) {
     plVar4 = (int64_t *)ResourceContextPointer[5];
     while (plVar4 < (int64_t *)(ResourceContextPointer[9] + 8)) {
-      resourceIndex = *plVar4;
+      ResourceIndex = *plVar4;
       plVar4 = plVar4 + 1;
-      if (resourceIndex != 0) {
+      if (ResourceIndex != 0) {
                     // WARNING: Subroutine does not return
         ExecuteSystemEmergencyExit();
       }
@@ -74970,22 +74970,22 @@ void Unwind_18090f0d0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int64_t *processPointer;
   int64_t *presourceTable;
-  int64_t *presourceIndex;
+  int64_t *pResourceIndex;
   
   presourceTable = *(int64_t **)(ValidationContextParameter + 0x40);
   ResourceContextPointer = (int64_t *)presourceTable[1];
-  for (presourceIndex = (int64_t *)*presourceTable; presourceIndex != ResourceContextPointer; presourceIndex = presourceIndex + 4) {
-    if ((int64_t *)presourceIndex[3] != (int64_t *)0x0) {
-      (**(code **)(*(int64_t *)presourceIndex[3] + 0x38))();
+  for (pResourceIndex = (int64_t *)*presourceTable; pResourceIndex != ResourceContextPointer; pResourceIndex = pResourceIndex + 4) {
+    if ((int64_t *)pResourceIndex[3] != (int64_t *)0x0) {
+      (**(code **)(*(int64_t *)pResourceIndex[3] + 0x38))();
     }
-    if ((int64_t *)presourceIndex[2] != (int64_t *)0x0) {
-      (**(code **)(*(int64_t *)presourceIndex[2] + 0x38))();
+    if ((int64_t *)pResourceIndex[2] != (int64_t *)0x0) {
+      (**(code **)(*(int64_t *)pResourceIndex[2] + 0x38))();
     }
-    if ((int64_t *)presourceIndex[1] != (int64_t *)0x0) {
-      (**(code **)(*(int64_t *)presourceIndex[1] + 0x38))();
+    if ((int64_t *)pResourceIndex[1] != (int64_t *)0x0) {
+      (**(code **)(*(int64_t *)pResourceIndex[1] + 0x38))();
     }
-    if ((int64_t *)*presourceIndex != (int64_t *)0x0) {
-      (**(code **)(*(int64_t *)*presourceIndex + 0x38))();
+    if ((int64_t *)*pResourceIndex != (int64_t *)0x0) {
+      (**(code **)(*(int64_t *)*pResourceIndex + 0x38))();
     }
   }
   if (*presourceTable == 0) {
@@ -75036,21 +75036,21 @@ void Unwind_18090f110(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int64_t *processPointer;
   int64_t resourceTable;
-  int64_t *presourceIndex;
+  int64_t *pResourceIndex;
   
   ResourceContextPointer = *(int64_t **)(ValidationContextParameter + 0x40);
   resourceTable = *ResourceContextPointer;
   if (resourceTable != 0) {
-    presourceIndex = (int64_t *)ResourceContextPointer[5];
-    if (presourceIndex < (int64_t *)(ResourceContextPointer[9] + 8)) {
+    pResourceIndex = (int64_t *)ResourceContextPointer[5];
+    if (pResourceIndex < (int64_t *)(ResourceContextPointer[9] + 8)) {
       do {
-        resourceTable = *presourceIndex;
-        presourceIndex = presourceIndex + 1;
+        resourceTable = *pResourceIndex;
+        pResourceIndex = pResourceIndex + 1;
         if (resourceTable != 0) {
                     // WARNING: Subroutine does not return
           ExecuteSystemEmergencyExit();
         }
-      } while (presourceIndex < (int64_t *)(ResourceContextPointer[9] + 8));
+      } while (pResourceIndex < (int64_t *)(ResourceContextPointer[9] + 8));
       resourceTable = *ResourceContextPointer;
     }
     if (resourceTable != 0) {
@@ -75215,7 +75215,7 @@ void Unwind_18090f1b0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = *(uint8_t **)(*(int64_t *)(ValidationContextParameter + 0x20) + 0x130);
@@ -75224,12 +75224,12 @@ void Unwind_18090f1b0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -75251,7 +75251,7 @@ void Unwind_18090f1d0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = *(uint8_t **)(*(int64_t *)(ValidationContextParameter + 0x20) + 0x150);
@@ -75260,12 +75260,12 @@ void Unwind_18090f1d0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -75309,7 +75309,7 @@ void Unwind_18090f210(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = *(uint8_t **)(*(int64_t *)(ValidationContextParameter + 0x60) + 0xc0);
@@ -75318,12 +75318,12 @@ void Unwind_18090f210(uint8_t ObjectContextParameter,int64_t ValidationContextPa
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -75345,7 +75345,7 @@ void Unwind_18090f230(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = *(uint8_t **)(*(int64_t *)(ValidationContextParameter + 0x60) + 0xe0);
@@ -75354,12 +75354,12 @@ void Unwind_18090f230(uint8_t ObjectContextParameter,int64_t ValidationContextPa
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -75381,7 +75381,7 @@ void Unwind_18090f250(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = *(uint8_t **)(*(int64_t *)(ValidationContextParameter + 0x60) + 0x100);
@@ -75390,12 +75390,12 @@ void Unwind_18090f250(uint8_t ObjectContextParameter,int64_t ValidationContextPa
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -75417,7 +75417,7 @@ void Unwind_18090f270(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = *(uint8_t **)(*(int64_t *)(ValidationContextParameter + 0x60) + 0x120);
@@ -75426,12 +75426,12 @@ void Unwind_18090f270(uint8_t ObjectContextParameter,int64_t ValidationContextPa
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -75453,7 +75453,7 @@ void Unwind_18090f290(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = *(uint8_t **)(*(int64_t *)(ValidationContextParameter + 0x60) + 0x140);
@@ -75462,12 +75462,12 @@ void Unwind_18090f290(uint8_t ObjectContextParameter,int64_t ValidationContextPa
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -75489,7 +75489,7 @@ void Unwind_18090f2b0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = *(uint8_t **)(*(int64_t *)(ValidationContextParameter + 0x60) + 0x160);
@@ -75498,12 +75498,12 @@ void Unwind_18090f2b0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -75525,11 +75525,11 @@ void Unwind_18090f2d0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int64_t loopCounter;
   int64_t *presourceTable;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   
   presourceTable = (int64_t *)(*(int64_t *)(ValidationContextParameter + 0x60) + 0x180);
   loopCounter = *(int64_t *)(*(int64_t *)(ValidationContextParameter + 0x60) + 0x188);
-  for (resourceIndex = *presourceTable; resourceIndex != localContextPointer; resourceIndex = resourceIndex + 0x30) {
+  for (ResourceIndex = *presourceTable; ResourceIndex != localContextPointer; ResourceIndex = ResourceIndex + 0x30) {
     ExecuteResourceFinalization();
   }
   if (*presourceTable == 0) {
@@ -75546,7 +75546,7 @@ void Unwind_18090f2f0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = *(uint8_t **)(*(int64_t *)(ValidationContextParameter + 0x60) + 0x1a0);
@@ -75555,12 +75555,12 @@ void Unwind_18090f2f0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -75591,13 +75591,13 @@ void Unwind_18090f330(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int64_t *processPointer;
   int64_t *presourceTable;
-  int64_t *presourceIndex;
+  int64_t *pResourceIndex;
   
   presourceTable = (int64_t *)(*(int64_t *)(ValidationContextParameter + 0x60) + 0x210);
   ResourceContextPointer = *(int64_t **)(*(int64_t *)(ValidationContextParameter + 0x60) + 0x218);
-  for (presourceIndex = (int64_t *)*presourceTable; presourceIndex != ResourceContextPointer; presourceIndex = presourceIndex + 1) {
-    if ((int64_t *)*presourceIndex != (int64_t *)0x0) {
-      (**(code **)(*(int64_t *)*presourceIndex + 0x38))();
+  for (pResourceIndex = (int64_t *)*presourceTable; pResourceIndex != ResourceContextPointer; pResourceIndex = pResourceIndex + 1) {
+    if ((int64_t *)*pResourceIndex != (int64_t *)0x0) {
+      (**(code **)(*(int64_t *)*pResourceIndex + 0x38))();
     }
   }
   if (*presourceTable == 0) {
@@ -75614,13 +75614,13 @@ void Unwind_18090f350(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int64_t *processPointer;
   int64_t *presourceTable;
-  int64_t *presourceIndex;
+  int64_t *pResourceIndex;
   
   presourceTable = (int64_t *)(*(int64_t *)(ValidationContextParameter + 0x60) + 0x230);
   ResourceContextPointer = *(int64_t **)(*(int64_t *)(ValidationContextParameter + 0x60) + 0x238);
-  for (presourceIndex = (int64_t *)*presourceTable; presourceIndex != ResourceContextPointer; presourceIndex = presourceIndex + 1) {
-    if ((int64_t *)*presourceIndex != (int64_t *)0x0) {
-      (**(code **)(*(int64_t *)*presourceIndex + 0x38))();
+  for (pResourceIndex = (int64_t *)*presourceTable; pResourceIndex != ResourceContextPointer; pResourceIndex = pResourceIndex + 1) {
+    if ((int64_t *)*pResourceIndex != (int64_t *)0x0) {
+      (**(code **)(*(int64_t *)*pResourceIndex + 0x38))();
     }
   }
   if (*presourceTable == 0) {
@@ -75994,11 +75994,11 @@ void Unwind_18090f690(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int64_t loopCounter;
   int64_t *presourceTable;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   
   presourceTable = *(int64_t **)(ValidationContextParameter + 0x68);
   localContextPointer = presourceTable[1];
-  for (resourceIndex = *presourceTable; resourceIndex != localContextPointer; resourceIndex = resourceIndex + 0x30) {
+  for (ResourceIndex = *presourceTable; ResourceIndex != localContextPointer; ResourceIndex = ResourceIndex + 0x30) {
     ExecuteResourceFinalization();
   }
   if (*presourceTable == 0) {
@@ -76188,11 +76188,11 @@ void Unwind_18090f7e0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int64_t loopCounter;
   int64_t *presourceTable;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   
   presourceTable = *(int64_t **)(ValidationContextParameter + 0x40);
   localContextPointer = presourceTable[1];
-  for (resourceIndex = *presourceTable; resourceIndex != localContextPointer; resourceIndex = resourceIndex + 0x30) {
+  for (ResourceIndex = *presourceTable; ResourceIndex != localContextPointer; ResourceIndex = ResourceIndex + 0x30) {
     ExecuteResourceFinalization();
   }
   if (*presourceTable == 0) {
@@ -77134,12 +77134,12 @@ void Unwind_18090fe50(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int64_t loopCounter;
   int64_t *presourceTable;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   
   presourceTable = (int64_t *)(*(int64_t *)(ValidationContextParameter + 0x70) + 8);
   loopCounter = *(int64_t *)(*(int64_t *)(ValidationContextParameter + 0x70) + 0x10);
-  for (resourceIndex = *presourceTable; resourceIndex != localContextPointer; resourceIndex = resourceIndex + 0x128) {
-    ProcessResourceCleanup(resourceIndex);
+  for (ResourceIndex = *presourceTable; ResourceIndex != localContextPointer; ResourceIndex = ResourceIndex + 0x128) {
+    ProcessResourceCleanup(ResourceIndex);
   }
   if (*presourceTable == 0) {
     return;
@@ -77155,12 +77155,12 @@ void Unwind_18090fe60(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int64_t loopCounter;
   int64_t *presourceTable;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   
   presourceTable = *(int64_t **)(ValidationContextParameter + 0x80);
   localContextPointer = presourceTable[1];
-  for (resourceIndex = *presourceTable; resourceIndex != localContextPointer; resourceIndex = resourceIndex + 0x128) {
-    ProcessResourceCleanup(resourceIndex);
+  for (ResourceIndex = *presourceTable; ResourceIndex != localContextPointer; ResourceIndex = ResourceIndex + 0x128) {
+    ProcessResourceCleanup(ResourceIndex);
   }
   if (*presourceTable == 0) {
     return;
@@ -77261,12 +77261,12 @@ void Unwind_18090ff10(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int64_t loopCounter;
   int64_t *presourceTable;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   
   presourceTable = (int64_t *)(*(int64_t *)(ValidationContextParameter + 0x100) + 0x18);
   loopCounter = *(int64_t *)(*(int64_t *)(ValidationContextParameter + 0x100) + 0x20);
-  for (resourceIndex = *presourceTable; resourceIndex != localContextPointer; resourceIndex = resourceIndex + 0x128) {
-    ProcessResourceCleanup(resourceIndex);
+  for (ResourceIndex = *presourceTable; ResourceIndex != localContextPointer; ResourceIndex = ResourceIndex + 0x128) {
+    ProcessResourceCleanup(ResourceIndex);
   }
   if (*presourceTable == 0) {
     return;
@@ -77323,12 +77323,12 @@ void Unwind_18090ff80(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int64_t loopCounter;
   int64_t *presourceTable;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   
   presourceTable = *(int64_t **)(ValidationContextParameter + 0x158);
   localContextPointer = presourceTable[1];
-  for (resourceIndex = *presourceTable; resourceIndex != localContextPointer; resourceIndex = resourceIndex + 0x128) {
-    ProcessResourceCleanup(resourceIndex);
+  for (ResourceIndex = *presourceTable; ResourceIndex != localContextPointer; ResourceIndex = ResourceIndex + 0x128) {
+    ProcessResourceCleanup(ResourceIndex);
   }
   if (*presourceTable == 0) {
     return;
@@ -77344,7 +77344,7 @@ void Unwind_18090ff90(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = (uint8_t *)**(uint64_t **)(ValidationContextParameter + 0x158);
@@ -77353,12 +77353,12 @@ void Unwind_18090ff90(uint8_t ObjectContextParameter,int64_t ValidationContextPa
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -77401,12 +77401,12 @@ void Unwind_18090ffe0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int64_t loopCounter;
   int64_t *presourceTable;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   
   presourceTable = (int64_t *)(*(int64_t *)(ValidationContextParameter + 0x58) + 8);
   loopCounter = *(int64_t *)(*(int64_t *)(ValidationContextParameter + 0x58) + 0x10);
-  for (resourceIndex = *presourceTable; resourceIndex != localContextPointer; resourceIndex = resourceIndex + 0x128) {
-    ProcessResourceCleanup(resourceIndex);
+  for (ResourceIndex = *presourceTable; ResourceIndex != localContextPointer; ResourceIndex = ResourceIndex + 0x128) {
+    ProcessResourceCleanup(ResourceIndex);
   }
   if (*presourceTable == 0) {
     return;
@@ -77422,12 +77422,12 @@ void Unwind_18090fff0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int64_t loopCounter;
   int64_t *presourceTable;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   
   presourceTable = *(int64_t **)(ValidationContextParameter + 0x60);
   localContextPointer = presourceTable[1];
-  for (resourceIndex = *presourceTable; resourceIndex != localContextPointer; resourceIndex = resourceIndex + 0x128) {
-    ProcessResourceCleanup(resourceIndex);
+  for (ResourceIndex = *presourceTable; ResourceIndex != localContextPointer; ResourceIndex = ResourceIndex + 0x128) {
+    ProcessResourceCleanup(ResourceIndex);
   }
   if (*presourceTable == 0) {
     return;
@@ -77457,12 +77457,12 @@ void Unwind_180910010(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int64_t loopCounter;
   int64_t *presourceTable;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   
   presourceTable = (int64_t *)(*(int64_t *)(ValidationContextParameter + 0x60) + 8);
   loopCounter = *(int64_t *)(*(int64_t *)(ValidationContextParameter + 0x60) + 0x10);
-  for (resourceIndex = *presourceTable; resourceIndex != localContextPointer; resourceIndex = resourceIndex + 0x128) {
-    ProcessResourceCleanup(resourceIndex);
+  for (ResourceIndex = *presourceTable; ResourceIndex != localContextPointer; ResourceIndex = ResourceIndex + 0x128) {
+    ProcessResourceCleanup(ResourceIndex);
   }
   if (*presourceTable == 0) {
     return;
@@ -77478,12 +77478,12 @@ void Unwind_180910020(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int64_t loopCounter;
   int64_t *presourceTable;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   
   presourceTable = *(int64_t **)(ValidationContextParameter + 0x68);
   localContextPointer = presourceTable[1];
-  for (resourceIndex = *presourceTable; resourceIndex != localContextPointer; resourceIndex = resourceIndex + 0x128) {
-    ProcessResourceCleanup(resourceIndex);
+  for (ResourceIndex = *presourceTable; ResourceIndex != localContextPointer; ResourceIndex = ResourceIndex + 0x128) {
+    ProcessResourceCleanup(ResourceIndex);
   }
   if (*presourceTable == 0) {
     return;
@@ -77499,13 +77499,13 @@ void Unwind_180910030(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int64_t *processPointer;
   int64_t resourceTable;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   
   ResourceContextPointer = (int64_t *)(*(int64_t *)(ValidationContextParameter + 0x68) + 0x28);
   resourceTable = *(int64_t *)(*(int64_t *)(ValidationContextParameter + 0x68) + 0x30);
-  for (resourceIndex = *ResourceContextPointer; resourceIndex != resourceTable; resourceIndex = resourceIndex + 0x18) {
-    if (*(int64_t **)(resourceIndex + 8) != (int64_t *)0x0) {
-      (**(code **)(**(int64_t **)(resourceIndex + 8) + 0x38))();
+  for (ResourceIndex = *ResourceContextPointer; ResourceIndex != resourceTable; ResourceIndex = ResourceIndex + 0x18) {
+    if (*(int64_t **)(ResourceIndex + 8) != (int64_t *)0x0) {
+      (**(code **)(**(int64_t **)(ResourceIndex + 8) + 0x38))();
     }
   }
   if (*ResourceContextPointer == 0) {
@@ -77522,13 +77522,13 @@ void Unwind_180910040(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int64_t loopCounter;
   int64_t *presourceTable;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   
   presourceTable = (int64_t *)(*(int64_t *)(ValidationContextParameter + 0x70) + 8);
   loopCounter = *(int64_t *)(*(int64_t *)(ValidationContextParameter + 0x70) + 0x10);
-  for (resourceIndex = *presourceTable; resourceIndex != localContextPointer; resourceIndex = resourceIndex + 0x18) {
-    if (*(int64_t **)(resourceIndex + 8) != (int64_t *)0x0) {
-      (**(code **)(**(int64_t **)(resourceIndex + 8) + 0x38))();
+  for (ResourceIndex = *presourceTable; ResourceIndex != localContextPointer; ResourceIndex = ResourceIndex + 0x18) {
+    if (*(int64_t **)(ResourceIndex + 8) != (int64_t *)0x0) {
+      (**(code **)(**(int64_t **)(ResourceIndex + 8) + 0x38))();
     }
   }
   if (*presourceTable == 0) {
@@ -77545,13 +77545,13 @@ void Unwind_180910050(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int64_t loopCounter;
   int64_t *presourceTable;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   
   presourceTable = *(int64_t **)(ValidationContextParameter + 0x78);
   localContextPointer = presourceTable[1];
-  for (resourceIndex = *presourceTable; resourceIndex != localContextPointer; resourceIndex = resourceIndex + 0x18) {
-    if (*(int64_t **)(resourceIndex + 8) != (int64_t *)0x0) {
-      (**(code **)(**(int64_t **)(resourceIndex + 8) + 0x38))();
+  for (ResourceIndex = *presourceTable; ResourceIndex != localContextPointer; ResourceIndex = ResourceIndex + 0x18) {
+    if (*(int64_t **)(ResourceIndex + 8) != (int64_t *)0x0) {
+      (**(code **)(**(int64_t **)(ResourceIndex + 8) + 0x38))();
     }
   }
   if (*presourceTable == 0) {
@@ -77714,13 +77714,13 @@ void Unwind_1809100d0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int64_t loopCounter;
   int64_t *presourceTable;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   
   presourceTable = (int64_t *)(*(int64_t *)(ValidationContextParameter + 0x40) + 8);
   loopCounter = *(int64_t *)(*(int64_t *)(ValidationContextParameter + 0x40) + 0x10);
-  for (resourceIndex = *presourceTable; resourceIndex != localContextPointer; resourceIndex = resourceIndex + 0x18) {
-    if (*(int64_t **)(resourceIndex + 8) != (int64_t *)0x0) {
-      (**(code **)(**(int64_t **)(resourceIndex + 8) + 0x38))();
+  for (ResourceIndex = *presourceTable; ResourceIndex != localContextPointer; ResourceIndex = ResourceIndex + 0x18) {
+    if (*(int64_t **)(ResourceIndex + 8) != (int64_t *)0x0) {
+      (**(code **)(**(int64_t **)(ResourceIndex + 8) + 0x38))();
     }
   }
   if (*presourceTable == 0) {
@@ -77737,13 +77737,13 @@ void Unwind_1809100e0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int64_t loopCounter;
   int64_t *presourceTable;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   
   presourceTable = *(int64_t **)(ValidationContextParameter + 0x48);
   localContextPointer = presourceTable[1];
-  for (resourceIndex = *presourceTable; resourceIndex != localContextPointer; resourceIndex = resourceIndex + 0x18) {
-    if (*(int64_t **)(resourceIndex + 8) != (int64_t *)0x0) {
-      (**(code **)(**(int64_t **)(resourceIndex + 8) + 0x38))();
+  for (ResourceIndex = *presourceTable; ResourceIndex != localContextPointer; ResourceIndex = ResourceIndex + 0x18) {
+    if (*(int64_t **)(ResourceIndex + 8) != (int64_t *)0x0) {
+      (**(code **)(**(int64_t **)(ResourceIndex + 8) + 0x38))();
     }
   }
   if (*presourceTable == 0) {
@@ -77810,13 +77810,13 @@ void Unwind_180910100(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int64_t loopCounter;
   int64_t *presourceTable;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   
   presourceTable = *(int64_t **)(ValidationContextParameter + 0x40);
   localContextPointer = presourceTable[1];
-  for (resourceIndex = *presourceTable; resourceIndex != localContextPointer; resourceIndex = resourceIndex + 0x18) {
-    if (*(int64_t **)(resourceIndex + 8) != (int64_t *)0x0) {
-      (**(code **)(**(int64_t **)(resourceIndex + 8) + 0x38))();
+  for (ResourceIndex = *presourceTable; ResourceIndex != localContextPointer; ResourceIndex = ResourceIndex + 0x18) {
+    if (*(int64_t **)(ResourceIndex + 8) != (int64_t *)0x0) {
+      (**(code **)(**(int64_t **)(ResourceIndex + 8) + 0x38))();
     }
   }
   if (*presourceTable == 0) {
@@ -77871,12 +77871,12 @@ void Unwind_180910150(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int64_t loopCounter;
   int64_t *presourceTable;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   
   presourceTable = *(int64_t **)(ValidationContextParameter + 0x40);
   localContextPointer = presourceTable[1];
-  for (resourceIndex = *presourceTable; resourceIndex != localContextPointer; resourceIndex = resourceIndex + 0x128) {
-    ProcessResourceCleanup(resourceIndex);
+  for (ResourceIndex = *presourceTable; ResourceIndex != localContextPointer; ResourceIndex = ResourceIndex + 0x128) {
+    ProcessResourceCleanup(ResourceIndex);
   }
   if (*presourceTable == 0) {
     return;
@@ -78212,7 +78212,7 @@ void Unwind_180910320(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = (uint8_t *)**(uint64_t **)(ValidationContextParameter + 0x150);
@@ -78221,12 +78221,12 @@ void Unwind_180910320(uint8_t ObjectContextParameter,int64_t ValidationContextPa
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -78269,7 +78269,7 @@ void Unwind_180910340(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = *(uint8_t **)(ValidationContextParameter + 0xa8);
@@ -78278,12 +78278,12 @@ void Unwind_180910340(uint8_t ObjectContextParameter,int64_t ValidationContextPa
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -78305,7 +78305,7 @@ void Unwind_180910350(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = (uint8_t *)**(uint64_t **)(ValidationContextParameter + 0x150);
@@ -78314,12 +78314,12 @@ void Unwind_180910350(uint8_t ObjectContextParameter,int64_t ValidationContextPa
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -78380,7 +78380,7 @@ void Unwind_1809103c0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = *(uint8_t **)(*(int64_t *)(ValidationContextParameter + 0x48) + 8);
@@ -78389,12 +78389,12 @@ void Unwind_1809103c0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -78497,16 +78497,16 @@ void Unwind_180910450(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int64_t loopCounter;
   int OperationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   
-  resourceIndex = *(int64_t *)(ValidationContextParameter + 0x60);
-  localContextPointer = resourceIndex + 0x1d8;
-  *(uint8_t **)((int64_t)*(int *)(*(int64_t *)(resourceIndex + 0x128) + 4) + -0xb0 + localContextPointer) =
+  ResourceIndex = *(int64_t *)(ValidationContextParameter + 0x60);
+  localContextPointer = ResourceIndex + 0x1d8;
+  *(uint8_t **)((int64_t)*(int *)(*(int64_t *)(ResourceIndex + 0x128) + 4) + -0xb0 + localContextPointer) =
        &SystemResourcePointer001;
-  OperationResult = *(int *)(*(int64_t *)(resourceIndex + 0x128) + 4);
+  OperationResult = *(int *)(*(int64_t *)(ResourceIndex + 0x128) + 4);
   *(int *)((int64_t)OperationResult + -0xb4 + localContextPointer) = OperationResult + -0xb0;
-  ValidateSystemResource(resourceIndex + 0x138);
-  __1__basic_istream_DU__char_traits_D_std___std__UEAA_XZ(resourceIndex + 0x140);
+  ValidateSystemResource(ResourceIndex + 0x138);
+  __1__basic_istream_DU__char_traits_D_std___std__UEAA_XZ(ResourceIndex + 0x140);
                     // WARNING: Could not recover jumptable at 0x0001800fd4a2. Too many branches
                     // WARNING: Treating indirect jump as call
   __1__basic_ios_DU__char_traits_D_std___std__UEAA_XZ(localContextPointer);
@@ -78562,13 +78562,13 @@ void Unwind_1809104d0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int64_t *processPointer;
   int64_t *presourceTable;
-  int64_t *presourceIndex;
+  int64_t *pResourceIndex;
   
   presourceTable = (int64_t *)(*(int64_t *)(ValidationContextParameter + 0x60) + 0x268);
   ResourceContextPointer = *(int64_t **)(*(int64_t *)(ValidationContextParameter + 0x60) + 0x270);
-  for (presourceIndex = (int64_t *)*presourceTable; presourceIndex != ResourceContextPointer; presourceIndex = presourceIndex + 1) {
-    if ((int64_t *)*presourceIndex != (int64_t *)0x0) {
-      (**(code **)(*(int64_t *)*presourceIndex + 0x38))();
+  for (pResourceIndex = (int64_t *)*presourceTable; pResourceIndex != ResourceContextPointer; pResourceIndex = pResourceIndex + 1) {
+    if ((int64_t *)*pResourceIndex != (int64_t *)0x0) {
+      (**(code **)(*(int64_t *)*pResourceIndex + 0x38))();
     }
   }
   if (*presourceTable == 0) {
@@ -78585,7 +78585,7 @@ void Unwind_1809104f0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = *(uint8_t **)(*(int64_t *)(ValidationContextParameter + 0x60) + 0x338);
@@ -78594,12 +78594,12 @@ void Unwind_1809104f0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -78621,7 +78621,7 @@ void Unwind_180910510(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = *(uint8_t **)(*(int64_t *)(ValidationContextParameter + 0x60) + 0x358);
@@ -78630,12 +78630,12 @@ void Unwind_180910510(uint8_t ObjectContextParameter,int64_t ValidationContextPa
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -78680,20 +78680,20 @@ void Unwind_180910580(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   uint8_t resourceHash;
   int64_t resourceTable;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint8_t *pLoopIncrement;
   
-  resourceIndex = *(int64_t *)(ValidationContextParameter + 0x68);
-  pLoopIncrement = (uint8_t *)(resourceIndex + 0x10);
+  ResourceIndex = *(int64_t *)(ValidationContextParameter + 0x68);
+  pLoopIncrement = (uint8_t *)(ResourceIndex + 0x10);
   *pLoopIncrement = &SystemDataPointer001;
-  if ((*(int64_t *)(resourceIndex + 0x90) != 0) && (**(int64_t **)(resourceIndex + 0x28) == resourceIndex + 0x80)) {
-    resourceHash = *(uint8_t *)(resourceIndex + 0xa0);
-    resourceTable = *(int64_t *)(resourceIndex + 0x98);
-    **(int64_t **)(resourceIndex + 0x28) = resourceTable;
-    **(int64_t **)(resourceIndex + 0x48) = resourceTable;
-    **(int **)(resourceIndex + 0x60) = (int)resourceHash - (int)resourceTable;
+  if ((*(int64_t *)(ResourceIndex + 0x90) != 0) && (**(int64_t **)(ResourceIndex + 0x28) == ResourceIndex + 0x80)) {
+    resourceHash = *(uint8_t *)(ResourceIndex + 0xa0);
+    resourceTable = *(int64_t *)(ResourceIndex + 0x98);
+    **(int64_t **)(ResourceIndex + 0x28) = resourceTable;
+    **(int64_t **)(ResourceIndex + 0x48) = resourceTable;
+    **(int **)(ResourceIndex + 0x60) = (int)resourceHash - (int)resourceTable;
   }
-  if (*(char *)(resourceIndex + 0x8c) != '\0') {
+  if (*(char *)(ResourceIndex + 0x8c) != '\0') {
     ProcessResourcePointer(pLoopIncrement);
   }
                     // WARNING: Could not recover jumptable at 0x00018009fbce. Too many branches
@@ -78718,16 +78718,16 @@ void Unwind_1809105a0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int64_t loopCounter;
   int OperationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   
-  resourceIndex = *(int64_t *)(ValidationContextParameter + 0x40);
-  localContextPointer = resourceIndex + 0x1d8;
-  *(uint8_t **)((int64_t)*(int *)(*(int64_t *)(resourceIndex + 0x128) + 4) + -0xb0 + localContextPointer) =
+  ResourceIndex = *(int64_t *)(ValidationContextParameter + 0x40);
+  localContextPointer = ResourceIndex + 0x1d8;
+  *(uint8_t **)((int64_t)*(int *)(*(int64_t *)(ResourceIndex + 0x128) + 4) + -0xb0 + localContextPointer) =
        &SystemResourcePointer001;
-  OperationResult = *(int *)(*(int64_t *)(resourceIndex + 0x128) + 4);
+  OperationResult = *(int *)(*(int64_t *)(ResourceIndex + 0x128) + 4);
   *(int *)((int64_t)OperationResult + -0xb4 + localContextPointer) = OperationResult + -0xb0;
-  ValidateSystemResource(resourceIndex + 0x138);
-  __1__basic_istream_DU__char_traits_D_std___std__UEAA_XZ(resourceIndex + 0x140);
+  ValidateSystemResource(ResourceIndex + 0x138);
+  __1__basic_istream_DU__char_traits_D_std___std__UEAA_XZ(ResourceIndex + 0x140);
                     // WARNING: Could not recover jumptable at 0x0001800fd4a2. Too many branches
                     // WARNING: Treating indirect jump as call
   __1__basic_ios_DU__char_traits_D_std___std__UEAA_XZ(localContextPointer);
@@ -78783,13 +78783,13 @@ void Unwind_180910620(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int64_t *processPointer;
   int64_t *presourceTable;
-  int64_t *presourceIndex;
+  int64_t *pResourceIndex;
   
   presourceTable = (int64_t *)(*(int64_t *)(ValidationContextParameter + 0x40) + 0x268);
   ResourceContextPointer = *(int64_t **)(*(int64_t *)(ValidationContextParameter + 0x40) + 0x270);
-  for (presourceIndex = (int64_t *)*presourceTable; presourceIndex != ResourceContextPointer; presourceIndex = presourceIndex + 1) {
-    if ((int64_t *)*presourceIndex != (int64_t *)0x0) {
-      (**(code **)(*(int64_t *)*presourceIndex + 0x38))();
+  for (pResourceIndex = (int64_t *)*presourceTable; pResourceIndex != ResourceContextPointer; pResourceIndex = pResourceIndex + 1) {
+    if ((int64_t *)*pResourceIndex != (int64_t *)0x0) {
+      (**(code **)(*(int64_t *)*pResourceIndex + 0x38))();
     }
   }
   if (*presourceTable == 0) {
@@ -78806,7 +78806,7 @@ void Unwind_180910640(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = *(uint8_t **)(*(int64_t *)(ValidationContextParameter + 0x40) + 0x338);
@@ -78815,12 +78815,12 @@ void Unwind_180910640(uint8_t ObjectContextParameter,int64_t ValidationContextPa
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -78842,7 +78842,7 @@ void Unwind_180910660(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = *(uint8_t **)(*(int64_t *)(ValidationContextParameter + 0x40) + 0x358);
@@ -78851,12 +78851,12 @@ void Unwind_180910660(uint8_t ObjectContextParameter,int64_t ValidationContextPa
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -78889,20 +78889,20 @@ void Unwind_1809106a0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   uint8_t resourceHash;
   int64_t resourceTable;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint8_t *pLoopIncrement;
   
-  resourceIndex = *(int64_t *)(ValidationContextParameter + 0x40);
-  pLoopIncrement = (uint8_t *)(resourceIndex + -0xa0);
+  ResourceIndex = *(int64_t *)(ValidationContextParameter + 0x40);
+  pLoopIncrement = (uint8_t *)(ResourceIndex + -0xa0);
   *pLoopIncrement = &SystemDataPointer001;
-  if ((*(int64_t *)(resourceIndex + -0x20) != 0) && (**(int64_t **)(resourceIndex + -0x88) == resourceIndex + -0x30)) {
-    resourceHash = *(uint8_t *)(resourceIndex + -0x10);
-    resourceTable = *(int64_t *)(resourceIndex + -0x18);
-    **(int64_t **)(resourceIndex + -0x88) = resourceTable;
-    **(int64_t **)(resourceIndex + -0x68) = resourceTable;
-    **(int **)(resourceIndex + -0x50) = (int)resourceHash - (int)resourceTable;
+  if ((*(int64_t *)(ResourceIndex + -0x20) != 0) && (**(int64_t **)(ResourceIndex + -0x88) == ResourceIndex + -0x30)) {
+    resourceHash = *(uint8_t *)(ResourceIndex + -0x10);
+    resourceTable = *(int64_t *)(ResourceIndex + -0x18);
+    **(int64_t **)(ResourceIndex + -0x88) = resourceTable;
+    **(int64_t **)(ResourceIndex + -0x68) = resourceTable;
+    **(int **)(ResourceIndex + -0x50) = (int)resourceHash - (int)resourceTable;
   }
-  if (*(char *)(resourceIndex + -0x24) != '\0') {
+  if (*(char *)(ResourceIndex + -0x24) != '\0') {
     ProcessResourcePointer(pLoopIncrement);
   }
                     // WARNING: Could not recover jumptable at 0x00018009fbce. Too many branches
@@ -78940,7 +78940,7 @@ void Unwind_1809106e0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = *(uint8_t **)(ValidationContextParameter + 0x78);
@@ -78949,12 +78949,12 @@ void Unwind_1809106e0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -79000,7 +79000,7 @@ void Unwind_180910750(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = *(uint8_t **)(ValidationContextParameter + 0x78);
@@ -79009,12 +79009,12 @@ void Unwind_180910750(uint8_t ObjectContextParameter,int64_t ValidationContextPa
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -79058,7 +79058,7 @@ void Unwind_180910770(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = *(uint8_t **)(ValidationContextParameter + 0x30);
@@ -79067,12 +79067,12 @@ void Unwind_180910770(uint8_t ObjectContextParameter,int64_t ValidationContextPa
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -79094,7 +79094,7 @@ void Unwind_180910780(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = *(uint8_t **)(ValidationContextParameter + 0x30);
@@ -79103,12 +79103,12 @@ void Unwind_180910780(uint8_t ObjectContextParameter,int64_t ValidationContextPa
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -79130,7 +79130,7 @@ void Unwind_180910790(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = *(uint8_t **)(*(int64_t *)(ValidationContextParameter + 0x58) + 8);
@@ -79139,12 +79139,12 @@ void Unwind_180910790(uint8_t ObjectContextParameter,int64_t ValidationContextPa
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -83284,7 +83284,7 @@ void Unwind_1809118c0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = *(uint8_t **)(ValidationContextParameter + 0x20);
@@ -83293,12 +83293,12 @@ void Unwind_1809118c0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -83350,7 +83350,7 @@ void Unwind_1809118f0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = *(uint8_t **)(ValidationContextParameter + 0x70);
@@ -83359,12 +83359,12 @@ void Unwind_1809118f0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -83491,7 +83491,7 @@ void Unwind_180911950(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = *(uint8_t **)(ValidationContextParameter + 0x20);
@@ -83500,12 +83500,12 @@ void Unwind_180911950(uint8_t ObjectContextParameter,int64_t ValidationContextPa
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -84161,7 +84161,7 @@ void Unwind_180911de0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int *pResourceIndex;
   int OperationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   int64_t DataOffset;
   uint64_t ResourceContextOffset;
   uint configurationFlags;
@@ -84175,39 +84175,39 @@ void Unwind_180911de0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
     do {
       OperationResult = *(int *)(*(int64_t *)(lVar4 + 0x1e78) + 8 + ResourceContextOffset);
       if ((OperationResult != -1) &&
-         (resourceIndex = *(int64_t *)((int64_t)OperationResult * 0x60 + *(int64_t *)(lVar4 + 0x1e68) + 8),
-         resourceIndex != 0)) {
+         (ResourceIndex = *(int64_t *)((int64_t)OperationResult * 0x60 + *(int64_t *)(lVar4 + 0x1e68) + 8),
+         ResourceIndex != 0)) {
         if (GlobalUnwindContext != 0) {
           *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
         }
                     // WARNING: Subroutine does not return
-        ProcessResourceOperation(resourceIndex,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+        ProcessResourceOperation(ResourceIndex,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
       }
       ContextValidationResult = (int)SecurityHashValue + 1;
       ResourceContextOffset = ResourceContextOffset + 0x10;
       SecurityHashValue = (uint64_t)ContextValidationResult;
     } while ((int)ContextValidationResult < *pResourceIndex);
   }
-  resourceIndex = *(int64_t *)(lVar4 + 0x1e78);
-  if (resourceIndex != 0) {
+  ResourceIndex = *(int64_t *)(lVar4 + 0x1e78);
+  if (ResourceIndex != 0) {
     pResourceIndex[0] = 0;
     pResourceIndex[1] = 0;
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    ProcessResourceOperation(resourceIndex,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+    ProcessResourceOperation(ResourceIndex,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
-  resourceIndex = *(int64_t *)(lVar4 + 0x1e68);
-  if (resourceIndex == 0) {
+  ResourceIndex = *(int64_t *)(lVar4 + 0x1e68);
+  if (ResourceIndex == 0) {
     *(uint32_t *)(lVar4 + 0x1e80) = 0;
-    resourceIndex = *(int64_t *)(lVar4 + 0x1e78);
-    if (resourceIndex != 0) {
+    ResourceIndex = *(int64_t *)(lVar4 + 0x1e78);
+    if (ResourceIndex != 0) {
       if (GlobalUnwindContext != 0) {
         *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
       }
                     // WARNING: Subroutine does not return
-      ProcessResourceOperation(resourceIndex,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+      ProcessResourceOperation(ResourceIndex,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
     }
     lVar4 = *(int64_t *)(lVar4 + 0x1e68);
     if (lVar4 == 0) {
@@ -84224,7 +84224,7 @@ void Unwind_180911de0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
     *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
   }
                     // WARNING: Subroutine does not return
-  ProcessResourceOperation(resourceIndex,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
+  ProcessResourceOperation(ResourceIndex,SystemResourcePointer002,CleanupOption,CleanupFlag,0xfffffffffffffffe);
 }
 
 
@@ -86418,7 +86418,7 @@ void Unwind_180912930(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = *(uint8_t **)(*(int64_t *)(ValidationContextParameter + 0x80) + 0x360);
@@ -86427,12 +86427,12 @@ void Unwind_180912930(uint8_t ObjectContextParameter,int64_t ValidationContextPa
   }
   LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *pResourceValidationResult = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *pResourceValidationResult = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
@@ -87221,7 +87221,7 @@ void InitializeSystemDataStructureW(void)
 {
   int *pResourceIndex;
   uint8_t *pResourceValidationResult;
-  int64_t resourceIndex;
+  int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
   pResourceValidationResult = SystemResourceValidator;
@@ -87230,12 +87230,12 @@ void InitializeSystemDataStructureW(void)
   }
   LoopIncrement = (uint64_t)SystemResourceValidator & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    resourceIndex = LoopIncrement + 0x80 + ((int64_t)SystemResourceValidator - LoopIncrement >> 0x10) * 0x50;
-    resourceIndex = resourceIndex - (uint64_t)*(uint *)(resourceIndex + 4);
-    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(resourceIndex + 0xe) == '\0')) {
-      *SystemResourceValidator = *(uint8_t *)(resourceIndex + 0x20);
-      *(uint8_t **)(resourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(resourceIndex + 0x18);
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)SystemResourceValidator - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
+    if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+      *SystemResourceValidator = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
+      pResourceIndex = (int *)(ResourceIndex + 0x18);
       *pResourceIndex = *pResourceIndex + -1;
       if (*pResourceIndex == 0) {
         SystemCleanupHandler();
