@@ -21319,50 +21319,90 @@ void DestroySystemMutexDuplicate(void)
 
 
 
-// 函数: void FUN_1800497f0(void* param_1)
-void FUN_1800497f0(void* param_1)
+// 函数: 销毁互斥锁和条件变量
+/**
+ * @brief 销毁系统互斥锁和条件变量
+ * 
+ * 该函数负责同时销毁系统中的互斥锁和条件变量，释放相关资源。
+ * 这是线程同步清理工作的完整部分。
+ * 
+ * @param conditionVariable 条件变量指针，需要被销毁的条件变量
+ * 
+ * @note 这是系统资源清理的重要函数，确保互斥锁和条件变量都正确销毁
+ */
+void DestroySystemMutexAndConditionVariable(void* conditionVariable)
 
 {
   _Mtx_destroy_in_situ();
-  _Cnd_destroy_in_situ(param_1);
+  _Cnd_destroy_in_situ(conditionVariable);
   return;
 }
 
 
 
+// 函数: 初始化同步对象
+/**
+ * @brief 初始化系统同步对象
+ * 
+ * 该函数负责初始化系统中的同步对象，包括互斥锁和条件变量。
+ * 它会设置同步对象的各种属性，包括内存分配器、标志位等。
+ * 
+ * @param syncObject 同步对象指针，需要被初始化的同步对象
+ * @param unknownParam1 未知参数1
+ * @param unknownParam2 未知参数2
+ * @param unknownParam3 未知参数3
+ * @return void** 返回初始化后的同步对象指针
+ * 
+ * @note 这是系统初始化的重要函数，确保同步对象正确初始化
+ */
 void* *
-FUN_180049830(void* *param_1,void* param_2,void* param_3,void* param_4)
+InitializeSystemSyncObject(void* *syncObject,void* unknownParam1,void* unknownParam2,void* unknownParam3)
 
 {
-  void* uVar1;
+  void* systemErrorFlag;
   
-  uVar1 = 0xfffffffffffffffe;
-  *param_1 = &UNK_180a21690;
-  *param_1 = &UNK_180a21720;
-  *(uint32_t *)(param_1 + 1) = 0;
-  *param_1 = &UNK_18098bdc8;
+  systemErrorFlag = 0xfffffffffffffffe;
+  *syncObject = &SystemMemoryRegionTemplateA;
+  *syncObject = &SystemMemoryRegionTemplateB;
+  *(uint32_t *)(syncObject + 1) = 0;
+  *syncObject = &SystemMemoryAllocatorReference;
   LOCK();
-  *(uint8_t *)(param_1 + 2) = 0;
+  *(uint8_t *)(syncObject + 2) = 0;
   UNLOCK();
-  param_1[3] = 0xffffffffffffffff;
-  *param_1 = &SystemMutexTemplate;
-  _Cnd_init_in_situ(param_1 + 4);
-  _Mtx_init_in_situ(param_1 + 0xd,2,param_3,param_4,uVar1);
-  *(uint8_t *)(param_1 + 0x17) = 0;
-  return param_1;
+  syncObject[3] = 0xffffffffffffffff;
+  *syncObject = &SystemMutexTemplate;
+  _Cnd_init_in_situ(syncObject + 4);
+  _Mtx_init_in_situ(syncObject + 0xd,2,unknownParam2,unknownParam3,systemErrorFlag);
+  *(uint8_t *)(syncObject + 0x17) = 0;
+  return syncObject;
 }
 
 
 
+// 函数: 释放内存并设置分配器
+/**
+ * @brief 释放内存并设置内存分配器
+ * 
+ * 该函数负责释放指定的内存，并设置内存分配器引用。
+ * 它会根据标志位决定是否执行内存释放操作。
+ * 
+ * @param memoryBlock 内存块指针，需要被处理的内存块
+ * @param memoryFlags 内存标志位，控制内存释放行为
+ * @param unknownParam1 未知参数1
+ * @param unknownParam2 未知参数2
+ * @return void** 返回处理后的内存块指针
+ * 
+ * @note 这是内存管理的重要函数，确保内存正确释放和分配器设置
+ */
 void* *
-FUN_1800498d0(void* *param_1,ulong long param_2,void* param_3,void* param_4)
+FreeMemoryAndSetAllocator(void* *memoryBlock,ulong long memoryFlags,void* unknownParam1,void* unknownParam2)
 
 {
-  *param_1 = &SystemMemoryAllocatorReference;
-  if ((param_2 & 1) != 0) {
-    free(param_1,0x98,param_3,param_4,0xfffffffffffffffe);
+  *memoryBlock = &SystemMemoryAllocatorReference;
+  if ((memoryFlags & 1) != 0) {
+    free(memoryBlock,0x98,unknownParam1,unknownParam2,0xfffffffffffffffe);
   }
-  return param_1;
+  return memoryBlock;
 }
 
 
