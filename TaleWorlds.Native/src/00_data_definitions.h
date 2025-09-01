@@ -418,11 +418,11 @@ int InitializeStringProcessorF(void)
 {
   int64_t result;
   uint64_t stringFlags;
-  g_stringProcessorF_Base = &unknownData_1809fdc18;
-  globalData_180bf6658 = &globalData_180bf6668;
-  globalData_180bf6668 = 0;
-  globalData_180bf6660 = 4;
-  strcpy_s(&globalData_180bf6668,0x10,&unknownData_180a00538,stringFlags,SystemMutexFlags);
+  g_stringProcessorF_Base = &StringProcessorDataBaseF;
+  GlobalStringDataPointerF = &GlobalStringDataBufferF;
+  GlobalStringDataBufferF = 0;
+  GlobalStringDataLengthF = 4;
+  strcpy_s(&GlobalStringDataBufferF,0x10,&StringProcessorDataTemplateF,stringFlags,SystemMutexFlags);
   result = RegisterSystemCallback(InitializeStringProcessorF_Callback);
   return (result != 0) - 1;
 }
