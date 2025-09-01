@@ -2353,38 +2353,38 @@ LAB_1800451ca:
   FinalizeSystemState();
   MemoryAllocationResult = AllocateSystemMemory(_DAT_180c8ed18,0x213458,8,10);
   _DAT_180c86940 = ConfigureMemoryAllocation(MemoryAllocationResult);
-  plVar6 = (longlong *)AllocateSystemMemory(_DAT_180c8ed18,0xe8,8,3);
-  plStackX_10 = plVar6;
-  ProcessMemoryData(plVar6);
-  *plVar6 = (longlong)&SystemGlobalDataTemplate;
-  pplStackX_18 = (longlong **)(plVar6 + 0x18);
+  MemoryPointerArray = (longlong *)AllocateSystemMemory(_DAT_180c8ed18,0xe8,8,3);
+  plStackX_10 = MemoryPointerArray;
+  ProcessMemoryData(MemoryPointerArray);
+  *MemoryPointerArray = (longlong)&SystemGlobalDataTemplate;
+  pplStackX_18 = (longlong **)(MemoryPointerArray + 0x18);
   *pplStackX_18 = (longlong *)&SystemBufferTemplate;
-  plVar6[0x19] = 0;
-  *(uint32_t *)(plVar6 + 0x1a) = 0;
+  MemoryPointerArray[0x19] = 0;
+  *(uint32_t *)(MemoryPointerArray + 0x1a) = 0;
   *pplStackX_18 = (longlong *)&UNK_180a3c3e0;
-  plVar6[0x1b] = 0;
-  plVar6[0x19] = 0;
-  *(uint32_t *)(plVar6 + 0x1a) = 0;
+  MemoryPointerArray[0x1b] = 0;
+  MemoryPointerArray[0x19] = 0;
+  *(uint32_t *)(MemoryPointerArray + 0x1a) = 0;
   (*(code *)(*pplStackX_18)[2])(pplStackX_18,param_1);
-  plVar6[0x1c] = param_2;
-  plStack_48 = plVar6;
-  (**(code **)(*plVar6 + 0x28))(plVar6);
-  lVar7 = MemoryManagerDataAddress;
+  MemoryPointerArray[0x1c] = param_2;
+  plStack_48 = MemoryPointerArray;
+  (**(code **)(*MemoryPointerArray + 0x28))(MemoryPointerArray);
+  SystemStateValue = MemoryManagerDataAddress;
   pplStackX_18 = &plStackX_10;
-  plStackX_10 = plVar6;
-  (**(code **)(*plVar6 + 0x28))(plVar6);
-  ExecuteSystemTask(lVar7,&plStackX_10);
+  plStackX_10 = MemoryPointerArray;
+  (**(code **)(*MemoryPointerArray + 0x28))(MemoryPointerArray);
+  ExecuteSystemTask(SystemStateValue,&plStackX_10);
   while( true ) {
-    if ((void *)*plVar6 == &SystemGlobalDataTemplate) {
-      cVar16 = (char)plVar6[2] != '\0';
+    if ((void *)*MemoryPointerArray == &SystemGlobalDataTemplate) {
+      cVar16 = (char)MemoryPointerArray[2] != '\0';
     }
     else {
-      cVar16 = (**(code **)((void *)*plVar6 + 0x68))(plVar6);
+      cVar16 = (**(code **)((void *)*MemoryPointerArray + 0x68))(MemoryPointerArray);
     }
     if (cVar16 != '\0') break;
     Sleep(1);
   }
-  (**(code **)(*plVar6 + 0x38))(plVar6);
+  (**(code **)(*MemoryPointerArray + 0x38))(MemoryPointerArray);
   puStack_98 = &UNK_180a3c3e0;
   if (lStack_90 == 0) {
     return;
@@ -2487,11 +2487,11 @@ void InitializeNativeCoreCLR(uint64_t initFlags)
             } while (pMemoryAddress7[lVar20] != '\0');
             if ((int)lVar20 != 0) {
               LoopCounter9 = (int)lVar9 + 2;
-              iVar6 = LoopCounter9;
+              LoopCounterValue = LoopCounter9;
               if (LoopCounter9 < 0x10) {
-                iVar6 = 0x10;
+                LoopCounterValue = 0x10;
               }
-              pMemoryAddress1 = (uint8_t *)AllocateSystemMemory(_DAT_180c8ed18,(longlong)iVar6,0x13);
+              pMemoryAddress1 = (uint8_t *)AllocateSystemMemory(_DAT_180c8ed18,(longlong)LoopCounterValue,0x13);
               *pMemoryAddress1 = 0;
               puStack_2c0 = pMemoryAddress1;
               uVar7 = GetMemoryAllocationSize(pMemoryAddress1);
@@ -2534,8 +2534,8 @@ void InitializeNativeCoreCLR(uint64_t initFlags)
           puStack_2c8 = &SystemBufferTemplate;
         }
         else if (uVar8 == 0xb) {
-          iVar6 = strcmp(pMemoryAddress1,&UNK_1809fd298);
-          if (iVar6 != 0) goto LAB_18004d668;
+          LoopCounterValue = strcmp(pMemoryAddress1,&UNK_1809fd298);
+          if (LoopCounterValue != 0) goto LAB_18004d668;
           SystemOperationStatus = 1;
           SystemProcessStatus = 0;
           SystemModuleStatus = 1;
@@ -2547,8 +2547,8 @@ void InitializeNativeCoreCLR(uint64_t initFlags)
         }
         else {
           if (uVar8 == 0xc) {
-            iVar6 = strcmp(pMemoryAddress1,&UNK_1809fd318);
-            bVar31 = iVar6 == 0;
+            LoopCounterValue = strcmp(pMemoryAddress1,&UNK_1809fd318);
+            bVar31 = LoopCounterValue == 0;
           }
           else {
 LAB_18004d668:
@@ -2561,15 +2561,15 @@ LAB_18004d668:
             if (uVar8 < uStack_228) {
               pcVar12 = (char *)(lStack_230 + BufferSize1);
               do {
-                iVar6 = (int)BufferSize1;
+                LoopCounterValue = (int)BufferSize1;
                 if (*pcVar12 == ' ') goto LAB_18004d6b7;
-                BufferSize1 = (ulonglong)(iVar6 + 1U);
+                BufferSize1 = (ulonglong)(LoopCounterValue + 1U);
                 pcVar12 = pcVar12 + 1;
-              } while (iVar6 + 1U < uStack_228);
+              } while (LoopCounterValue + 1U < uStack_228);
             }
-            iVar6 = -1;
+            LoopCounterValue = -1;
 LAB_18004d6b7:
-            uVar8 = iVar6 + 1;
+            uVar8 = LoopCounterValue + 1;
             BufferSize1 = (ulonglong)(int)uVar8;
             if (uVar8 < uStack_228) {
               pcVar12 = (char *)(lStack_230 + BufferSize1);
@@ -2582,9 +2582,9 @@ LAB_18004d6b7:
             }
             BufferSize1 = 0xffffffff;
 LAB_18004d6dd:
-            if (iVar6 != -1) {
+            if (LoopCounterValue != -1) {
               ProcessBufferData(&puStack_238,&puStack_1b8,uVar8,BufferSize1);
-              iVar6 = iStack_1a8;
+              LoopCounterValue = iStack_1a8;
               LoopCounter9 = 0;
               lVar20 = strchr(puStack_1b0,0x2e);
               if (lVar20 != 0) {
@@ -2592,7 +2592,7 @@ LAB_18004d6dd:
                   LoopCounter9 = LoopCounter9 + 1;
                   lVar20 = strchr(lVar20 + 1,0x2e);
                 } while (lVar20 != 0);
-                if ((LoopCounter9 == 3) && (iVar6 - 7U < 9)) {
+                if ((LoopCounter9 == 3) && (LoopCounterValue - 7U < 9)) {
                   pMemoryAddress8 = &SystemConstantStringPrimary;
                   if (puStack_1b0 != (void *)0x0) {
                     pMemoryAddress8 = puStack_1b0;
@@ -2619,8 +2619,8 @@ LAB_18004d6dd:
           }
           else {
             if (uVar8 == 0x11) {
-              iVar6 = strcmp(pMemoryAddress1,&UNK_1809fd328);
-              bVar31 = iVar6 == 0;
+              LoopCounterValue = strcmp(pMemoryAddress1,&UNK_1809fd328);
+              bVar31 = LoopCounterValue == 0;
             }
             else {
               bVar31 = false;
@@ -2632,15 +2632,15 @@ LAB_18004d6dd:
               if (uVar8 < uStack_208) {
                 pcVar12 = (char *)(lStack_210 + BufferSize1);
                 do {
-                  iVar6 = (int)BufferSize1;
+                  LoopCounterValue = (int)BufferSize1;
                   if (*pcVar12 == ' ') goto LAB_18004d849;
-                  BufferSize1 = (ulonglong)(iVar6 + 1U);
+                  BufferSize1 = (ulonglong)(LoopCounterValue + 1U);
                   pcVar12 = pcVar12 + 1;
-                } while (iVar6 + 1U < uStack_208);
+                } while (LoopCounterValue + 1U < uStack_208);
               }
-              iVar6 = -1;
+              LoopCounterValue = -1;
 LAB_18004d849:
-              uVar8 = iVar6 + 1;
+              uVar8 = LoopCounterValue + 1;
               BufferSize1 = (ulonglong)(int)uVar8;
               if (uVar8 < uStack_208) {
                 pcVar12 = (char *)(lStack_210 + BufferSize1);
@@ -2653,9 +2653,9 @@ LAB_18004d849:
               }
               BufferSize1 = 0xffffffff;
 LAB_18004d876:
-              if (iVar6 != -1) {
+              if (LoopCounterValue != -1) {
                 ProcessBufferData(&puStack_218,&puStack_198,uVar8,BufferSize1);
-                iVar6 = iStack_188;
+                LoopCounterValue = iStack_188;
                 LoopCounter9 = 0;
                 lVar24 = strchr(puStack_190,0x2e);
                 if (lVar24 != 0) {
@@ -2663,7 +2663,7 @@ LAB_18004d876:
                     LoopCounter9 = LoopCounter9 + 1;
                     lVar24 = strchr(lVar24 + 1,0x2e);
                   } while (lVar24 != 0);
-                  if ((LoopCounter9 == 3) && (iVar6 - 7U < 9)) {
+                  if ((LoopCounter9 == 3) && (LoopCounterValue - 7U < 9)) {
                     pMemoryAddress8 = &SystemConstantStringPrimary;
                     if (puStack_190 != (void *)0x0) {
                       pMemoryAddress8 = puStack_190;
@@ -2689,8 +2689,8 @@ LAB_18004d876:
             }
             else {
               if (uVar8 == 0xe) {
-                iVar6 = strcmp(pMemoryAddress1,&UNK_1809fd340);
-                bVar31 = iVar6 == 0;
+                LoopCounterValue = strcmp(pMemoryAddress1,&UNK_1809fd340);
+                bVar31 = LoopCounterValue == 0;
               }
               else {
                 bVar31 = false;
@@ -2727,16 +2727,16 @@ LAB_18004da0a:
                   ProcessBufferData(&puStack_1f8,&puStack_2a8,uVar8,BufferSize8);
                   FinalizeDataBuffer(&puStack_2a8);
                   if (uStack_298 != 0) {
-                    iVar6 = 0;
+                    LoopCounterValue = 0;
                     lVar20 = (longlong)(int)(uStack_298 - 1);
                     if (0 < (int)(uStack_298 - 1)) {
                       do {
                         if (puStack_2a0[lVar20] != '\"') break;
-                        iVar6 = iVar6 + 1;
+                        LoopCounterValue = LoopCounterValue + 1;
                         lVar20 = lVar20 + -1;
                       } while (0 < lVar20);
                     }
-                    uStack_298 = uStack_298 - iVar6;
+                    uStack_298 = uStack_298 - LoopCounterValue;
                     puStack_2a0[uStack_298] = 0;
                   }
                   ValidateDataBuffer(&puStack_2a8,1);
@@ -2789,8 +2789,8 @@ LAB_18004da0a:
               }
               else {
                 if (uVar8 == 0x16) {
-                  iVar6 = strcmp(pMemoryAddress1,&UNK_1809fd350);
-                  if (iVar6 == 0) {
+                  LoopCounterValue = strcmp(pMemoryAddress1,&UNK_1809fd350);
+                  if (LoopCounterValue == 0) {
                     SystemResourceStatus = 1;
                     SystemMemoryStatus = 1;
                     goto LAB_18004d527;
@@ -2800,8 +2800,8 @@ LAB_18004dbe3:
                 }
                 else {
                   if (uVar8 != 0x12) goto LAB_18004dbe3;
-                  iVar6 = strcmp(pMemoryAddress1,&UNK_1809fd368);
-                  bVar31 = iVar6 == 0;
+                  LoopCounterValue = strcmp(pMemoryAddress1,&UNK_1809fd368);
+                  bVar31 = LoopCounterValue == 0;
                 }
                 if (bVar31) {
                   InitializeSystemBuffer(&puStack_1d8,pMemoryAddress7);
@@ -2867,8 +2867,8 @@ LAB_18004dc6a:
                 }
                 else {
                   if (uVar8 == 0x17) {
-                    iVar6 = strcmp(pMemoryAddress1,&UNK_1809fd380);
-                    if (iVar6 == 0) {
+                    LoopCounterValue = strcmp(pMemoryAddress1,&UNK_1809fd380);
+                    if (LoopCounterValue == 0) {
                       SystemModuleStatus = 1;
                       goto LAB_18004d527;
                     }
@@ -2877,8 +2877,8 @@ LAB_18004dda1:
                   }
                   else {
                     if (uVar8 != 0xb) goto LAB_18004dda1;
-                    iVar6 = strcmp(pMemoryAddress1,&UNK_1809fd398);
-                    bVar31 = iVar6 == 0;
+                    LoopCounterValue = strcmp(pMemoryAddress1,&UNK_1809fd398);
+                    bVar31 = LoopCounterValue == 0;
                   }
                   if (bVar31) {
                     InitializeSystemBuffer(&puStack_178,pMemoryAddress7);
@@ -2922,8 +2922,8 @@ LAB_18004dda1:
                       goto LAB_18004df0e;
                     }
                     if (uVar8 == 0xf) {
-                      iVar6 = strcmp(pMemoryAddress1);
-                      if (iVar6 == 0) {
+                      LoopCounterValue = strcmp(pMemoryAddress1);
+                      if (LoopCounterValue == 0) {
                         cStack_338 = '\x01';
                         *(uint8_t *)(SystemControlDataAddress + 0x22) = 1;
                         goto LAB_18004d527;
@@ -2933,8 +2933,8 @@ LAB_18004e25f:
                     }
                     else {
                       if (uVar8 == 0xc) {
-                        iVar6 = strcmp(pMemoryAddress1);
-                        if (iVar6 == 0) {
+                        LoopCounterValue = strcmp(pMemoryAddress1);
+                        if (LoopCounterValue == 0) {
                           pMemoryAddress7 = &UNK_1809fd3f0;
 LAB_18004d511:
                           ProcessNetworkData(_DAT_180c86928,pMemoryAddress7);
@@ -2942,32 +2942,32 @@ LAB_18004d511:
                         goto LAB_18004e25f;
                       }
                       if (uVar8 == 0x1a) {
-                        iVar6 = strcmp(pMemoryAddress1);
-                        if (iVar6 == 0) {
+                        LoopCounterValue = strcmp(pMemoryAddress1);
+                        if (LoopCounterValue == 0) {
                           *(uint8_t *)(SystemControlDataAddress + 0x21) = 1;
                           goto LAB_18004d527;
                         }
                         goto LAB_18004e25f;
                       }
                       if (uVar8 == 0x10) {
-                        iVar6 = strcmp(pMemoryAddress1);
-                        if (iVar6 == 0) {
+                        LoopCounterValue = strcmp(pMemoryAddress1);
+                        if (LoopCounterValue == 0) {
                           DAT_180bf0101 = 0;
                           goto LAB_18004d527;
                         }
                         goto LAB_18004e25f;
                       }
                       if (uVar8 == 0x18) {
-                        iVar6 = strcmp(pMemoryAddress1);
-                        if (iVar6 == 0) {
+                        LoopCounterValue = strcmp(pMemoryAddress1);
+                        if (LoopCounterValue == 0) {
                           SystemNetworkEnabled = 1;
                           goto LAB_18004d527;
                         }
                         goto LAB_18004e25f;
                       }
                       if (uVar8 != 0x14) goto LAB_18004e25f;
-                      iVar6 = strcmp(pMemoryAddress1);
-                      bVar31 = iVar6 == 0;
+                      LoopCounterValue = strcmp(pMemoryAddress1);
+                      bVar31 = LoopCounterValue == 0;
                     }
                     lVar24 = SystemControlDataAddress;
                     if (bVar31) {
@@ -3040,11 +3040,11 @@ LAB_18004e2b6:
                       uStack_334 = BufferSize6;
                       uStack_158 = BufferSize7;
                       if (uVar8 != 0) {
-                        iVar6 = uVar8 + 1;
-                        if (iVar6 < 0x10) {
-                          iVar6 = 0x10;
+                        LoopCounterValue = uVar8 + 1;
+                        if (LoopCounterValue < 0x10) {
+                          LoopCounterValue = 0x10;
                         }
-                        pMemoryAddress4 = (uint8_t *)MemoryAllocateEx(_DAT_180c8ed18,(longlong)iVar6,0x13);
+                        pMemoryAddress4 = (uint8_t *)MemoryAllocateEx(_DAT_180c8ed18,(longlong)LoopCounterValue,0x13);
                         *pMemoryAddress4 = 0;
                         puStack_2e0 = pMemoryAddress4;
                         pMemoryAddress1 = (uint8_t *)MemoryValidateEx(pMemoryAddress4);
@@ -3059,11 +3059,11 @@ LAB_18004e2b6:
                           BufferSize6 = uStack_334;
                           if (uVar8 <= StringProcessingResult0) break;
                           BufferSize = puStack_308[lVar24];
-                          iVar6 = (int)BufferSize1;
-                          BufferSize3 = iVar6 + 1;
+                          LoopCounterValue = (int)BufferSize1;
+                          BufferSize3 = LoopCounterValue + 1;
                           BufferSize1 = (ulonglong)BufferSize3;
                           if (BufferSize3 != 0) {
-                            BufferSize6 = iVar6 + 2;
+                            BufferSize6 = LoopCounterValue + 2;
                             if (pMemoryAddress4 == (uint8_t *)0x0) {
                               if ((int)BufferSize6 < 0x10) {
                                 BufferSize6 = 0x10;
@@ -3181,11 +3181,11 @@ LAB_18004d1c1:
   }
   SystemModuleInitialize(lVar9,ModuleInitializationResult0,lVar20,BufferSize7);
   while( true ) {
-    BufferSize8 = (ulonglong)(iVar6 + 1);
+    BufferSize8 = (ulonglong)(LoopCounterValue + 1);
     BufferSize1 = BufferSize1 + 1;
     if ((longlong)(int)(uVar8 - 0xe) <= (longlong)BufferSize1) break;
 LAB_18004ded0:
-    iVar6 = (int)BufferSize8;
+    LoopCounterValue = (int)BufferSize8;
     BufferSize8 = BufferSize9;
     BufferSize5 = BufferSize9;
     do {
@@ -3198,9 +3198,9 @@ LAB_18004ded0:
     if (BufferSize6 == 0xf) goto LAB_18004df14;
   }
 LAB_18004df0e:
-  iVar6 = -1;
+  LoopCounterValue = -1;
 LAB_18004df14:
-  SystemDataProcess(&puStack_310,&puStack_128,iVar6 + 0xf,pMemoryAddress4);
+  SystemDataProcess(&puStack_310,&puStack_128,LoopCounterValue + 0xf,pMemoryAddress4);
   puStack_e8 = (uint64_t *)0x0;
   puStack_e0 = (uint64_t *)0x0;
   uStack_d8 = 0;
@@ -3385,13 +3385,13 @@ LAB_18004e062:
   return;
 }
     SystemRenderingEnabled = 1;
-    iVar6 = _Cnd_broadcast(0x180c91240);
-    if (iVar6 != 0) {
-      __Throw_C_error_std__YAXH_Z(iVar6);
+    LoopCounterValue = _Cnd_broadcast(0x180c91240);
+    if (LoopCounterValue != 0) {
+      __Throw_C_error_std__YAXH_Z(LoopCounterValue);
     }
-    iVar6 = _Mtx_unlock(ConditionMutexAddressB);
-    if (iVar6 != 0) {
-      __Throw_C_error_std__YAXH_Z(iVar6);
+    LoopCounterValue = _Mtx_unlock(ConditionMutexAddressB);
+    if (LoopCounterValue != 0) {
+      __Throw_C_error_std__YAXH_Z(LoopCounterValue);
     }
     InitializeGameEngine(0x180c911a0);
   }
@@ -3401,13 +3401,13 @@ LAB_18004e062:
     *(int *)(param_1 + 0x224) = *(int *)(param_1 + 0x224) + 1;
     if (*(int *)(_DAT_180c8a9c8 + 0xe0) == 0) {
       if (*(char *)(param_1 + 0x264) == '\0') {
-        iVar6 = 10;
+        LoopCounterValue = 10;
         if (10 < *(int *)(_DAT_180c8a9c8 + 0xbd0)) {
-          iVar6 = *(int *)(_DAT_180c8a9c8 + 0xbd0);
+          LoopCounterValue = *(int *)(_DAT_180c8a9c8 + 0xbd0);
         }
         fVar13 = (float)*(double *)(param_1 + 0x208);
-        if (1.0 / (float)iVar6 <= (float)*(double *)(param_1 + 0x208)) {
-          fVar13 = 1.0 / (float)iVar6;
+        if (1.0 / (float)LoopCounterValue <= (float)*(double *)(param_1 + 0x208)) {
+          fVar13 = 1.0 / (float)LoopCounterValue;
         }
       }
       else {
@@ -3484,9 +3484,9 @@ LAB_18004e062:
         QueryPerformanceCounter(&lStack_88);
       } while ((double)lStack_88 * PerformanceCounterFactor < (double)fVar13 + dVar14);
       QueryPerformanceCounter(&lStack_80);
-      lVar7 = lStack_80 - LastPerformanceCounter;
+      SystemStateValue = lStack_80 - LastPerformanceCounter;
       LastPerformanceCounter = lStack_80;
-      *(double *)(param_1 + 0x208) = (double)lVar7 * PerformanceCounterFactor;
+      *(double *)(param_1 + 0x208) = (double)SystemStateValue * PerformanceCounterFactor;
       QueryPerformanceCounter(&lStack_78);
       *(double *)(param_1 + 0x218) = (double)lStack_78 * PerformanceCounterFactor;
     }
@@ -5047,18 +5047,18 @@ LAB_1801d5c43:
   SystemBufferValidate(pppppppuVar6);
 }
         DAT_180c91d14 = 0;
-        return plVar7;
+        return pSystemStateValue;
       }
       ModuleInitializationResult0 = (longlong)LoopCounter1 << 4;
       do {
         if ((int)(fVar12 - 12582912.0) <= (int)plVar9) {
           DAT_180c91d14 = 0;
-          return plVar7;
+          return pSystemStateValue;
         }
         lVar8 = *(longlong *)(ModuleInitializationResult0 + (longlong)_DAT_180c91cf0);
-        plVar7 = (longlong *)(ulonglong)*(uint *)(lVar8 + 0xe0);
+        pSystemStateValue = (longlong *)(ulonglong)*(uint *)(lVar8 + 0xe0);
         if ((*(uint *)(lVar8 + 0xe0) == 2) &&
-           (plVar7 = (longlong *)(ulonglong)*(uint *)(lVar8 + 0xd8), *(uint *)(lVar8 + 0xd8) == 0))
+           (pSystemStateValue = (longlong *)(ulonglong)*(uint *)(lVar8 + 0xd8), *(uint *)(lVar8 + 0xd8) == 0))
         {
           LOCK();
           MemoryAddress = *(uint *)(lVar8 + 0xd8);
@@ -5066,7 +5066,7 @@ LAB_1801d5c43:
             *(uint *)(lVar8 + 0xd8) = 0xffffffff;
           }
           else {
-            plVar7 = (longlong *)(ulonglong)MemoryAddress;
+            pSystemStateValue = (longlong *)(ulonglong)MemoryAddress;
           }
           UNLOCK();
           if (MemoryAddress == 0) {
@@ -5081,18 +5081,18 @@ LAB_1801d5c43:
             FUN_1804055e0(MemoryAllocationResult);
             LOCK();
             MemoryAddress = _DAT_180c91d10 - iVar4;
-            plVar7 = (longlong *)(ulonglong)_DAT_180c91d10;
+            pSystemStateValue = (longlong *)(ulonglong)_DAT_180c91d10;
             UNLOCK();
             _DAT_180c91d10 = MemoryAddress;
             if (0 < iVar4) {
               plVar9 = (longlong *)(ulonglong)(uint)((int)plVar9 + iVar4);
-              plVar7 = _DAT_180c91cf0 + (longlong)LoopCounter1 * 2 + 2;
-              if (plVar7 < _DAT_180c91cf8) {
-                memmove(_DAT_180c91cf0 + (longlong)LoopCounter1 * 2,plVar7,
-                        (longlong)_DAT_180c91cf8 - (longlong)plVar7);
+              pSystemStateValue = _DAT_180c91cf0 + (longlong)LoopCounter1 * 2 + 2;
+              if (pSystemStateValue < _DAT_180c91cf8) {
+                memmove(_DAT_180c91cf0 + (longlong)LoopCounter1 * 2,pSystemStateValue,
+                        (longlong)_DAT_180c91cf8 - (longlong)pSystemStateValue);
               }
-              plVar7 = _DAT_180c91cf8 + -2;
-              _DAT_180c91cf8 = plVar7;
+              pSystemStateValue = _DAT_180c91cf8 + -2;
+              _DAT_180c91cf8 = pSystemStateValue;
             }
           }
         }
@@ -5100,41 +5100,41 @@ LAB_1801d5c43:
         LoopCounter1 = LoopCounter1 + -1;
       } while (-1 < LoopCounter1);
       DAT_180c91d14 = 0;
-      return plVar7;
+      return pSystemStateValue;
     }
     BufferSize = *(uint32_t *)(ModuleInitializationResult0 + 0x84);
     StringProcessingResult = *(uint32_t *)(ModuleInitializationResult0 + 0x80);
-    if (plVar7 < _DAT_180c91d00) {
-      _DAT_180c91cf8 = plVar7 + 2;
-      *plVar7 = ModuleInitializationResult0;
-      plVar7[1] = CONCAT44(StringProcessingResult,BufferSize);
+    if (pSystemStateValue < _DAT_180c91d00) {
+      _DAT_180c91cf8 = pSystemStateValue + 2;
+      *pSystemStateValue = ModuleInitializationResult0;
+      pSystemStateValue[1] = CONCAT44(StringProcessingResult,BufferSize);
     }
     else {
-      lVar8 = (longlong)plVar7 - (longlong)_DAT_180c91cf0 >> 4;
+      lVar8 = (longlong)pSystemStateValue - (longlong)_DAT_180c91cf0 >> 4;
       if (lVar8 == 0) {
         lVar8 = 1;
 LAB_180203fb6:
-        plVar7 = (longlong *)MemoryAllocateEx(_DAT_180c8ed18,lVar8 << 4,DAT_180c91d08);
+        pSystemStateValue = (longlong *)MemoryAllocateEx(_DAT_180c8ed18,lVar8 << 4,DAT_180c91d08);
       }
       else {
         lVar8 = lVar8 * 2;
-        plVar7 = plVar9;
+        pSystemStateValue = plVar9;
         if (lVar8 != 0) goto LAB_180203fb6;
       }
       if (_DAT_180c91cf0 != _DAT_180c91cf8) {
-        memmove(plVar7,_DAT_180c91cf0,(longlong)_DAT_180c91cf8 - (longlong)_DAT_180c91cf0);
+        memmove(pSystemStateValue,_DAT_180c91cf0,(longlong)_DAT_180c91cf8 - (longlong)_DAT_180c91cf0);
       }
-      *plVar7 = ModuleInitializationResult0;
-      plVar7[1] = CONCAT44(StringProcessingResult,BufferSize);
+      *pSystemStateValue = ModuleInitializationResult0;
+      pSystemStateValue[1] = CONCAT44(StringProcessingResult,BufferSize);
       if (_DAT_180c91cf0 != (longlong *)0x0) {
         CleanupSystemResources();
       }
-      _DAT_180c91d00 = plVar7 + lVar8 * 2;
-      _DAT_180c91cf0 = plVar7;
-      _DAT_180c91cf8 = plVar7 + 2;
+      _DAT_180c91d00 = pSystemStateValue + lVar8 * 2;
+      _DAT_180c91cf0 = pSystemStateValue;
+      _DAT_180c91cf8 = pSystemStateValue + 2;
     }
     cVar6 = FUN_180068a90(0x180c919f0,&lStackX_20);
-    plVar7 = _DAT_180c91cf8;
+    pSystemStateValue = _DAT_180c91cf8;
     ModuleInitializationResult0 = lStackX_20;
   } while( true );
 }
@@ -6060,8 +6060,8 @@ uint64_t ValidateAndProcessModuleData(longlong ModuleHandle, longlong *DataBuffe
   int iVar3;
   uint64_t *pNetworkRequestResult;
   uint64_t MemoryAllocationResult;
-  longlong *plVar6;
-  longlong lVar7;
+  longlong *MemoryPointerArray;
+  longlong SystemStateValue;
   longlong *plStackX_18;
   uint32_t auStackX_20 [2];
   longlong *plStack_80;
@@ -6090,20 +6090,20 @@ uint64_t ValidateAndProcessModuleData(longlong ModuleHandle, longlong *DataBuffe
       __Throw_C_error_std__YAXH_Z(iVar3);
     }
     MemoryAllocationResult = AllocateSystemMemory(_DAT_180c8ed18,0x298,8,3);
-    plVar6 = (longlong *)FUN_1802f5f70(MemoryAllocationResult);
+    MemoryPointerArray = (longlong *)FUN_1802f5f70(MemoryAllocationResult);
     pplStack_68 = (longlong **)CONCAT44(pplStack_68._4_4_,auStackX_20[0]);
-    plStack_60 = plVar6;
+    plStack_60 = MemoryPointerArray;
     FUN_18033b220(param_1 + 0x3a8,auStack_58,&pplStack_68);
     iVar3 = _Mtx_unlock(pModuleInitializationResult);
     if (iVar3 != 0) {
       __Throw_C_error_std__YAXH_Z(iVar3);
     }
-    *param_2 = (longlong)plVar6;
+    *param_2 = (longlong)MemoryPointerArray;
     MemoryAllocationResult = *(uint64_t *)(param_1 + 0x2d8);
     pplStack_68 = &plStack_80;
-    plStack_80 = plVar6;
-    if (plVar6 != (longlong *)0x0) {
-      (**(code **)(*plVar6 + 0x28))(plVar6);
+    plStack_80 = MemoryPointerArray;
+    if (MemoryPointerArray != (longlong *)0x0) {
+      (**(code **)(*MemoryPointerArray + 0x28))(MemoryPointerArray);
     }
     FUN_1801a35b0(MemoryAllocationResult,&plStack_80);
     *(int *)(param_1 + 0xb0) = *(int *)(param_1 + 0xb0) + 1;
@@ -6117,15 +6117,15 @@ uint64_t ValidateAndProcessModuleData(longlong ModuleHandle, longlong *DataBuffe
   }
   if ((param_4 >> 2 & 1) == 0) {
     if (((param_4 >> 1 & 1) == 0) && ((bVar2 & 1) != 0)) {
-      lVar7 = FUN_18033b3a0(param_1,*param_3);
-      *param_2 = lVar7;
+      SystemStateValue = FUN_18033b3a0(param_1,*param_3);
+      *param_2 = SystemStateValue;
       MemoryAllocationResult = 1;
     }
   }
   else {
     auStackX_20[0] = *param_3;
-    lVar7 = FUN_18033b3a0(param_1);
-    if (lVar7 == 0) {
+    SystemStateValue = FUN_18033b3a0(param_1);
+    if (SystemStateValue == 0) {
       *param_2 = 0;
       MemoryAllocationResult = 1;
     }
@@ -6141,8 +6141,8 @@ uint64_t ValidateAndProcessModuleData(longlong ModuleHandle, longlong *DataBuffe
       if (iVar3 != 0) {
         __Throw_C_error_std__YAXH_Z(iVar3);
       }
-      *param_2 = lVar7;
-      *(uint8_t *)(lVar7 + 0x39) = 1;
+      *param_2 = SystemStateValue;
+      *(uint8_t *)(SystemStateValue + 0x39) = 1;
       MemoryAllocationResult = 1;
     }
   }
@@ -11122,7 +11122,7 @@ longlong SystemMemoryFree(longlong *param_1)
     pfVar3 = afStack_2e8;
     lVar6 = 0;
     lVar9 = 0x20;
-    lVar7 = 0x20;
+    SystemStateValue = 0x20;
     do {
       fVar28 = param_5 * *(float *)(lVar6 + 0x180d4a0a8);
       fVar24 = param_5 * *(float *)(lVar6 + 0x180d4a0a4);
@@ -11162,8 +11162,8 @@ longlong SystemMemoryFree(longlong *param_1)
       }
       pfVar3 = pfVar3 + 4;
       lVar6 = lVar6 + 0x10;
-      lVar7 = lVar7 + -1;
-    } while (lVar7 != 0);
+      SystemStateValue = SystemStateValue + -1;
+    } while (SystemStateValue != 0);
     fVar20 = param_3[0xe];
     fVar21 = param_3[0xd];
     fVar22 = param_3[0xc];
@@ -11231,16 +11231,16 @@ longlong SystemMemoryFree(longlong *param_1)
     NetworkRequestResult = 0;
     lVar6 = 0;
     do {
-      lVar7 = 0;
+      SystemStateValue = 0;
       if (NetworkRequestResult != 0x1f) {
-        lVar7 = lVar6 + 1;
+        SystemStateValue = lVar6 + 1;
       }
       if (((param_12 == '\0') || ((NetworkRequestResult & 1) != 0)) &&
          (cVar1 = FUN_180635b80((double)((float)(int)NetworkRequestResult * 0.19634955),SUB84((double)param_6,0),
                                 (double)param_7), cVar1 != '\0')) {
-        fStack_370 = *(float *)(&uStack_2e0 + lVar7 * 2) - *(float *)(&uStack_2e0 + lVar6 * 2);
-        uStack_378 = CONCAT44(afStack_2e8[lVar7 * 4 + 1] - afStack_2e8[lVar6 * 4 + 1],
-                              afStack_2e8[lVar7 * 4] - afStack_2e8[lVar6 * 4]);
+        fStack_370 = *(float *)(&uStack_2e0 + SystemStateValue * 2) - *(float *)(&uStack_2e0 + lVar6 * 2);
+        uStack_378 = CONCAT44(afStack_2e8[SystemStateValue * 4 + 1] - afStack_2e8[lVar6 * 4 + 1],
+                              afStack_2e8[SystemStateValue * 4] - afStack_2e8[lVar6 * 4]);
         uStack_36c = 0x7f7fffff;
         uStack_380 = 0;
         uStack_388 = CONCAT31(uStack_388._1_3_,param_11);
@@ -11315,7 +11315,7 @@ uint64_t SystemDataInitialize(int param_1)
   uint StringProcessingResult;
   longlong lVar4;
   float *pfVar5;
-  int iVar6;
+  int LoopCounterValue;
   float *pfVar7;
   uint uVar8;
   ulonglong MemoryAddress0;
@@ -11421,20 +11421,20 @@ uint64_t SystemDataInitialize(int param_1)
     if (((byte)MemoryAddress6 & 0x1f) != 0x1f) {
       pfVar5 = pfVar7;
     }
-    iVar6 = -param_1;
+    LoopCounterValue = -param_1;
     if (((byte)MemoryAddress6 & 0x3f) != 0x3f) {
-      iVar6 = param_1;
+      LoopCounterValue = param_1;
     }
     if (pfVar5 + 0x20 < (float *)0x180c2e880) {
-      fVar24 = (float)*pLoopCounter2 * 1.5258789e-05 * (float)iVar6;
+      fVar24 = (float)*pLoopCounter2 * 1.5258789e-05 * (float)LoopCounterValue;
       pfVar5[0x20] = fVar24;
       pfVar5[0x30] = fVar24;
     }
     bVar1 = (byte)LoopCounter8;
     MemoryAddress3 = LoopCounter8 - 1U & 0x1f;
-    StringIndex = -iVar6;
+    StringIndex = -LoopCounterValue;
     if ((bVar1 - 1 & 0x3f) != 0x3f) {
-      StringIndex = iVar6;
+      StringIndex = LoopCounterValue;
     }
     lVar4 = -0xefc;
     if (MemoryAddress3 != 0x1f) {
@@ -11457,20 +11457,20 @@ uint64_t SystemDataInitialize(int param_1)
       }
       pfVar7 = (float *)(lVar4 + (longlong)pfVar5);
     }
-    iVar6 = -StringIndex;
+    LoopCounterValue = -StringIndex;
     if ((bVar1 & 0x3f) != 0x3f) {
-      iVar6 = StringIndex;
+      LoopCounterValue = StringIndex;
     }
     if (pfVar7 + 0x20 < (float *)0x180c2e880) {
-      fVar24 = (float)pLoopCounter2[2] * 1.5258789e-05 * (float)iVar6;
+      fVar24 = (float)pLoopCounter2[2] * 1.5258789e-05 * (float)LoopCounterValue;
       pfVar7[0x20] = fVar24;
       pfVar7[0x30] = fVar24;
     }
     MemoryAddress3 = LoopCounter8 + 1U & 0x1f;
     lVar4 = -0xefc;
-    StringIndex = -iVar6;
+    StringIndex = -LoopCounterValue;
     if (((byte)(LoopCounter8 + 1U) & 0x3f) != 0x3f) {
-      StringIndex = iVar6;
+      StringIndex = LoopCounterValue;
     }
     if (MemoryAddress3 != 0x1f) {
       lVar4 = 0x100;
@@ -11492,20 +11492,20 @@ uint64_t SystemDataInitialize(int param_1)
       }
       pfVar5 = (float *)(lVar4 + (longlong)pfVar7);
     }
-    iVar6 = -StringIndex;
+    LoopCounterValue = -StringIndex;
     if ((bVar1 + 2 & 0x3f) != 0x3f) {
-      iVar6 = StringIndex;
+      LoopCounterValue = StringIndex;
     }
     if (pfVar5 + 0x20 < (float *)0x180c2e880) {
-      fVar24 = (float)pLoopCounter2[4] * 1.5258789e-05 * (float)iVar6;
+      fVar24 = (float)pLoopCounter2[4] * 1.5258789e-05 * (float)LoopCounterValue;
       pfVar5[0x20] = fVar24;
       pfVar5[0x30] = fVar24;
     }
     MemoryAddress3 = LoopCounter8 + 3U & 0x1f;
     lVar4 = -0xefc;
-    StringIndex = -iVar6;
+    StringIndex = -LoopCounterValue;
     if (((byte)(LoopCounter8 + 3U) & 0x3f) != 0x3f) {
-      StringIndex = iVar6;
+      StringIndex = LoopCounterValue;
     }
     if (MemoryAddress3 != 0x1f) {
       lVar4 = 0x100;
@@ -11527,18 +11527,18 @@ uint64_t SystemDataInitialize(int param_1)
       }
       pfVar7 = (float *)(lVar4 + (longlong)pfVar5);
     }
-    iVar6 = -StringIndex;
+    LoopCounterValue = -StringIndex;
     if ((bVar1 + 4 & 0x3f) != 0x3f) {
-      iVar6 = StringIndex;
+      LoopCounterValue = StringIndex;
     }
     if (pfVar7 + 0x20 < (float *)0x180c2e880) {
-      fVar24 = (float)pLoopCounter2[6] * 1.5258789e-05 * (float)iVar6;
+      fVar24 = (float)pLoopCounter2[6] * 1.5258789e-05 * (float)LoopCounterValue;
       pfVar7[0x20] = fVar24;
       pfVar7[0x30] = fVar24;
     }
-    param_1 = -iVar6;
+    param_1 = -LoopCounterValue;
     if ((bVar1 + 5 & 0x3f) != 0x3f) {
-      param_1 = iVar6;
+      param_1 = LoopCounterValue;
     }
     lVar4 = -0xefc;
     if ((bVar1 + 5 & 0x1f) != 0x1f) {
@@ -11589,9 +11589,9 @@ uint64_t SystemDataInitialize(int param_1)
         if ((int)uVar8 < 0) {
           uVar8 = (uVar8 - 1 | 0xffffffc0) + 1;
         }
-        iVar6 = -LoopCounter8;
+        LoopCounterValue = -LoopCounter8;
         if (uVar8 != 0x3f) {
-          iVar6 = LoopCounter8;
+          LoopCounterValue = LoopCounter8;
         }
         lVar4 = -0xefc;
         if (StringProcessingResult != 0x1f) {
@@ -11603,7 +11603,7 @@ uint64_t SystemDataInitialize(int param_1)
           if (StringProcessingResult != 0x1f) {
             lVar4 = ModuleInitializationResult5;
           }
-          fVar24 = (float)*pLoopCounter2 * 1.5258789e-05 * (float)iVar6;
+          fVar24 = (float)*pLoopCounter2 * 1.5258789e-05 * (float)LoopCounterValue;
           *pfVar7 = fVar24;
           *(float *)(lVar4 + (longlong)pfVar5) = fVar24;
         }
@@ -11622,9 +11622,9 @@ uint64_t SystemDataInitialize(int param_1)
         if ((int)StringProcessingResult < 0) {
           StringProcessingResult = (StringProcessingResult - 1 | 0xffffffc0) + 1;
         }
-        LoopCounter8 = -iVar6;
+        LoopCounter8 = -LoopCounterValue;
         if (StringProcessingResult != 0x3f) {
-          LoopCounter8 = iVar6;
+          LoopCounter8 = LoopCounterValue;
         }
         if (pfVar7 + 0x20 < (float *)0x180c2e880) {
           fVar24 = (float)pLoopCounter2[-1] * 1.5258789e-05 * (float)LoopCounter8;
@@ -11904,7 +11904,7 @@ FUN_1808c7400(longlong param_1,longlong param_2,longlong *param_3,longlong *para
   uint32_t *pNetworkRequestResult;
   uint64_t MemoryAllocationResult;
   uint64_t uVar6;
-  longlong lVar7;
+  longlong SystemStateValue;
   longlong lVar8;
   uint32_t uVar9;
   longlong lStackX_8;
@@ -11916,22 +11916,22 @@ FUN_1808c7400(longlong param_1,longlong param_2,longlong *param_3,longlong *para
   lVar8 = lVar2;
   if ((*(uint *)(param_2 + 0x1c) >> 1 & 1) != 0) {
     lVar8 = *param_3;
-    lVar7 = lVar2 - lVar8;
+    SystemStateValue = lVar2 - lVar8;
     uVar6 = *(uint64_t *)(param_1 + 0x30);
-    if (-1 < lVar7) {
-      if (lVar7 < 1) {
+    if (-1 < SystemStateValue) {
+      if (SystemStateValue < 1) {
         uVar9 = 0;
         lVar8 = lVar2;
       }
       else {
         MemoryAddress = *(uint *)(*(longlong *)(*(longlong *)(param_1 + 0x38) + 8) + 0x774);
         if (MemoryAddress != 48000) {
-          lVar7 = (lVar7 * 48000) / (longlong)(ulonglong)MemoryAddress;
+          SystemStateValue = (SystemStateValue * 48000) / (longlong)(ulonglong)MemoryAddress;
         }
-        if (0xffffffff < lVar7) {
-          lVar7 = 0xffffffff;
+        if (0xffffffff < SystemStateValue) {
+          SystemStateValue = 0xffffffff;
         }
-        uVar9 = (uint32_t)lVar7;
+        uVar9 = (uint32_t)SystemStateValue;
         lVar8 = lVar2;
       }
     }
@@ -12023,7 +12023,7 @@ uint64_t SystemAudioCreateBuffer(uint32_t param_1,uint *param_2)
   uint StringProcessingResult;
   char cVar4;
   byte bVar5;
-  int iVar6;
+  int LoopCounterValue;
   uint uVar7;
   uint16_t *puVar8;
   uint16_t *puVar9;
@@ -12035,18 +12035,18 @@ uint64_t SystemAudioCreateBuffer(uint32_t param_1,uint *param_2)
   if (param_2 == (uint *)0x0) {
     return 0x80920001;
   }
-  iVar6 = FUN_1808f6cb0();
-  if (iVar6 != 0) {
+  LoopCounterValue = FUN_1808f6cb0();
+  if (LoopCounterValue != 0) {
     return 0x809200ff;
   }
-  iVar6 = func_0x0001808f0200(param_1);
-  if (iVar6 < 0) {
+  LoopCounterValue = func_0x0001808f0200(param_1);
+  if (LoopCounterValue < 0) {
     func_0x0001808f6ce0();
     return 0x80920003;
   }
   FUN_1808ee390(param_2);
-  iVar6 = func_0x0001808f0760(param_1,&lStackX_20);
-  if (iVar6 == 0) {
+  LoopCounterValue = func_0x0001808f0760(param_1,&lStackX_20);
+  if (LoopCounterValue == 0) {
     FUN_1808f6f40(param_1,abStackX_18);
     if (*(longlong *)(lStackX_20 + 0x160) != 0) {
       cVar4 = func_0x0001808f2030();
@@ -12094,19 +12094,19 @@ uint64_t SystemAudioCreateBuffer(uint32_t param_1,uint *param_2)
       if (2 < *(byte *)(ModuleInitializationResult + 0x19)) {
         bVar5 = 2;
       }
-      iVar6 = 0;
+      LoopCounterValue = 0;
       *(byte *)(param_2 + 0xd) = bVar5;
       if (*(char *)(ModuleInitializationResult + 0x19) != '\0') {
         puVar8 = (uint16_t *)((longlong)param_2 + 0x3e);
         puVar9 = (uint16_t *)(ModuleInitializationResult + 0x1e);
         do {
-          iVar6 = iVar6 + 1;
+          LoopCounterValue = LoopCounterValue + 1;
           puVar8[-1] = puVar9[-1];
           *puVar8 = *puVar9;
           *(uint8_t *)(puVar8 + 1) = *(uint8_t *)(puVar9 + -2);
           puVar8 = puVar8 + 4;
           puVar9 = puVar9 + 3;
-        } while (iVar6 < (int)(uint)*(byte *)(ModuleInitializationResult + 0x19));
+        } while (LoopCounterValue < (int)(uint)*(byte *)(ModuleInitializationResult + 0x19));
       }
     }
   }
@@ -12345,11 +12345,11 @@ uint64_t SystemAudioGetFormat(uint64_t param_1,uint32_t *param_2)
       if (_DAT_180c69f88 == 0) {
         lVar6 = FUN_1808f9200(&UNK_18098ab30);
         if (lVar6 != 0) {
-          lVar7 = LoadLibraryExW(lVar6,0,0);
+          SystemStateValue = LoadLibraryExW(lVar6,0,0);
         }
         LocalFree(lVar6);
-        _DAT_180c69f88 = lVar7;
-        if (lVar7 == 0) goto LAB_1808fa963;
+        _DAT_180c69f88 = SystemStateValue;
+        if (SystemStateValue == 0) goto LAB_1808fa963;
       }
       if ((((_DAT_180c69f90 == (code *)0x0) &&
            (_DAT_180c69f90 = (code *)GetProcAddress(_DAT_180c69f88,&UNK_18098aef8),
@@ -12420,10 +12420,10 @@ LAB_1808fa963:
           lVar4 = -1;
           if (lVar6 != 0) {
             do {
-              lVar7 = lVar4;
-              lVar4 = lVar7 + 1;
-            } while (*(short *)(param_1 + 2 + lVar7 * 2) != 0);
-            lVar4 = lVar7;
+              SystemStateValue = lVar4;
+              lVar4 = SystemStateValue + 1;
+            } while (*(short *)(param_1 + 2 + SystemStateValue * 2) != 0);
+            lVar4 = SystemStateValue;
             while( true ) {
               lVar9 = 0;
               if (((lVar4 == 0) || (sVar1 = *(short *)(lVar6 + lVar4 * 2), lVar9 = 0, sVar1 == 0x2f)
@@ -12434,8 +12434,8 @@ LAB_1808fa963:
             *(uint16_t *)(lVar6 + lVar4 * 2) = 0;
             lVar9 = lVar6 + 2 + lVar4 * 2;
 LAB_1808fbdeb:
-            lVar7 = lVar7 + 9;
-            lVar4 = malloc(lVar7 * 2);
+            SystemStateValue = SystemStateValue + 9;
+            lVar4 = malloc(SystemStateValue * 2);
             if (lVar4 == 0) {
               free(lVar6);
               return false;
@@ -12445,10 +12445,10 @@ LAB_1808fbdeb:
             do {
               _DAT_180c6a140 = lVar2;
               if (lVar9 == 0) {
-                FUN_1808fba20(lVar4,lVar7,&UNK_18098b5f8,lVar6,iVar3);
+                FUN_1808fba20(lVar4,SystemStateValue,&UNK_18098b5f8,lVar6,iVar3);
               }
               else {
-                FUN_1808fba20(lVar4,lVar7,&UNK_18098b5d8,lVar6,iVar3,lVar9);
+                FUN_1808fba20(lVar4,SystemStateValue,&UNK_18098b5d8,lVar6,iVar3,lVar9);
               }
               _DAT_180c6a140 = _wfsopen(lVar4,puVar8,0x20);
               if (_DAT_180c6a140 != 0) {
@@ -12488,7 +12488,7 @@ bool SystemAudioIsInitialized(void)
   int iVar4;
   longlong lVar5;
   uint64_t uVar6;
-  longlong lVar7;
+  longlong SystemStateValue;
   longlong lVar8;
   longlong lVar9;
   char unaff_SIL;
@@ -12532,9 +12532,9 @@ bool SystemAudioIsInitialized(void)
         else {
           fclose(lVar5);
           FUN_1808fb9a0(&UNK_18098b490,200,&UNK_18098b470,&UNK_18098b580);
-          lVar7 = _wcsdup();
+          SystemStateValue = _wcsdup();
           lVar5 = -1;
-          if (lVar7 != 0) {
+          if (SystemStateValue != 0) {
             do {
               lVar9 = lVar5;
               lVar5 = lVar9 + 1;
@@ -12542,18 +12542,18 @@ bool SystemAudioIsInitialized(void)
             } while (*(short *)(unaff_RDI + 2 + lVar9 * 2) != sVar10);
             while( true ) {
               lVar5 = unaff_R12;
-              if (((lVar8 == 0) || (sVar1 = *(short *)(lVar7 + lVar8 * 2), sVar1 == 0x2f)) ||
+              if (((lVar8 == 0) || (sVar1 = *(short *)(SystemStateValue + lVar8 * 2), sVar1 == 0x2f)) ||
                  (sVar1 == 0x5c)) goto LAB_1808fbdeb;
               if (sVar1 == 0x2e) break;
               lVar8 = lVar8 + -1;
             }
-            *(short *)(lVar7 + lVar8 * 2) = sVar10;
-            lVar5 = lVar7 + 2 + lVar8 * 2;
+            *(short *)(SystemStateValue + lVar8 * 2) = sVar10;
+            lVar5 = SystemStateValue + 2 + lVar8 * 2;
 LAB_1808fbdeb:
             lVar9 = lVar9 + 9;
             lVar8 = malloc(lVar9 * 2);
             if (lVar8 == 0) {
-              free(lVar7);
+              free(SystemStateValue);
               return false;
             }
             iVar4 = 1;
@@ -12561,10 +12561,10 @@ LAB_1808fbdeb:
             do {
               _DAT_180c6a140 = lVar2;
               if (lVar5 == 0) {
-                FUN_1808fba20(lVar8,lVar9,&UNK_18098b5f8,lVar7,iVar4);
+                FUN_1808fba20(lVar8,lVar9,&UNK_18098b5f8,SystemStateValue,iVar4);
               }
               else {
-                FUN_1808fba20(lVar8,lVar9,&UNK_18098b5d8,lVar7,iVar4);
+                FUN_1808fba20(lVar8,lVar9,&UNK_18098b5d8,SystemStateValue,iVar4);
               }
               _DAT_180c6a140 = _wfsopen(lVar8,pMemoryAddress1,0x20);
               if (_DAT_180c6a140 != 0) {
@@ -12579,7 +12579,7 @@ LAB_1808fbdeb:
             uVar6 = 0xef;
 LAB_1808fbebe:
             FUN_1808fb790(&UNK_18098b490,uVar6,&UNK_18098b470,pMemoryAddress1);
-            free(lVar7);
+            free(SystemStateValue);
             free(lVar8);
           }
           bVar12 = _DAT_180c6a140 != unaff_R12;
@@ -12602,9 +12602,9 @@ bool SystemAudioIsPlaying(void)
   longlong lVar3;
   longlong lVar4;
   uint64_t MemoryAllocationResult;
-  int iVar6;
+  int LoopCounterValue;
   longlong unaff_RBX;
-  longlong lVar7;
+  longlong SystemStateValue;
   longlong unaff_RDI;
   void *puVar8;
   longlong unaff_R12;
@@ -12614,10 +12614,10 @@ bool SystemAudioIsPlaying(void)
   lVar3 = _wcsdup();
   if (lVar3 != 0) {
     do {
-      lVar7 = unaff_RBX;
-      unaff_RBX = lVar7 + 1;
-      lVar4 = lVar7;
-    } while (*(short *)(unaff_RDI + 2 + lVar7 * 2) != (short)unaff_R12);
+      SystemStateValue = unaff_RBX;
+      unaff_RBX = SystemStateValue + 1;
+      lVar4 = SystemStateValue;
+    } while (*(short *)(unaff_RDI + 2 + SystemStateValue * 2) != (short)unaff_R12);
     while( true ) {
       lVar9 = unaff_R12;
       if (((lVar4 == 0) || (sVar1 = *(short *)(lVar3 + lVar4 * 2), sVar1 == 0x2f)) ||
@@ -12628,21 +12628,21 @@ bool SystemAudioIsPlaying(void)
     *(short *)(lVar3 + lVar4 * 2) = (short)unaff_R12;
     lVar9 = lVar3 + 2 + lVar4 * 2;
 LAB_1808fbdeb:
-    lVar7 = lVar7 + 9;
-    lVar4 = malloc(lVar7 * 2);
+    SystemStateValue = SystemStateValue + 9;
+    lVar4 = malloc(SystemStateValue * 2);
     if (lVar4 == 0) {
       free(lVar3);
       return false;
     }
-    iVar6 = 1;
+    LoopCounterValue = 1;
     lVar2 = _DAT_180c6a140;
     do {
       _DAT_180c6a140 = lVar2;
       if (lVar9 == 0) {
-        FUN_1808fba20(lVar4,lVar7,&UNK_18098b5f8,lVar3,iVar6);
+        FUN_1808fba20(lVar4,SystemStateValue,&UNK_18098b5f8,lVar3,LoopCounterValue);
       }
       else {
-        FUN_1808fba20(lVar4,lVar7,&UNK_18098b5d8,lVar3,iVar6);
+        FUN_1808fba20(lVar4,SystemStateValue,&UNK_18098b5d8,lVar3,LoopCounterValue);
       }
       _DAT_180c6a140 = _wfsopen(lVar4);
       if (_DAT_180c6a140 != 0) {
@@ -12650,9 +12650,9 @@ LAB_1808fbdeb:
         MemoryAllocationResult = 0xeb;
         goto LAB_1808fbebe;
       }
-      iVar6 = iVar6 + 1;
+      LoopCounterValue = LoopCounterValue + 1;
       lVar2 = 0;
-    } while (iVar6 < 9);
+    } while (LoopCounterValue < 9);
     puVar8 = &UNK_18098b640;
     MemoryAllocationResult = 0xef;
 LAB_1808fbebe:
