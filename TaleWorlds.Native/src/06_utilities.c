@@ -12716,7 +12716,7 @@ void ProcessComplexResourceWithRegisters(void)
         resourceData2 = *(uint32_t *)(localContextPointer + 0x1c);
         *(uint32_t *)(executionContext + -0x78) = 0;
         *(int *)(executionContext + -0x68) = systemRegister2;
-        *(uint8_t **)(executionContext + -0x80) = &SystemResourceTemplateA;
+        *(uint8_t **)(executionContext + -0x80) = &SystemResourceTemplateActive;
         systemRegister2 = systemRegister2 + 1;
         *(uint32_t *)(executionContext + -0x54) = contextFlags;
         *(uint32_t *)(executionContext + -0x70) = systemRegister1;
@@ -12769,7 +12769,7 @@ void ProcessComplexResourceWithRegisters(void)
         resourceData2 = *(uint32_t *)(localContextPointer + 0x1c);
         *(uint32_t *)(executionContext + -0x78) = 0;
         *(int *)(executionContext + -0x68) = systemRegister2;
-        *(uint8_t **)(executionContext + -0x80) = &SystemResourceTemplateA;
+        *(uint8_t **)(executionContext + -0x80) = &SystemResourceTemplateActive;
         systemRegister2 = systemRegister2 + 1;
         *(uint32_t *)(executionContext + -0x54) = contextFlags;
         *(uint32_t *)(executionContext + -0x70) = systemRegister1;
@@ -12822,7 +12822,7 @@ void ProcessComplexResourceWithRegisters(void)
         resourceData2 = *(uint32_t *)(localContextPointer + 0x1c);
         *(uint32_t *)(executionContext + -0x78) = 0;
         *(int *)(executionContext + -0x68) = systemRegister2;
-        *(uint8_t **)(executionContext + -0x80) = &SystemResourceTemplateA;
+        *(uint8_t **)(executionContext + -0x80) = &SystemResourceTemplateActive;
         systemRegister2 = systemRegister2 + 1;
         *(uint32_t *)(executionContext + -0x54) = contextFlags;
         *(uint32_t *)(executionContext + -0x70) = systemRegister1;
@@ -12875,7 +12875,7 @@ void ProcessComplexResourceWithRegisters(void)
         resourceData2 = *(uint32_t *)(localContextPointer + 0x1c);
         *(uint32_t *)(executionContext + -0x78) = 0;
         *(int *)(executionContext + -0x68) = systemRegister2;
-        *(uint8_t **)(executionContext + -0x80) = &SystemResourceTemplateA;
+        *(uint8_t **)(executionContext + -0x80) = &SystemResourceTemplateActive;
         systemRegister2 = systemRegister2 + 1;
         *(uint32_t *)(executionContext + -0x54) = contextFlags;
         *(uint32_t *)(executionContext + -0x70) = systemRegister1;

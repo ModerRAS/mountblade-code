@@ -30648,7 +30648,7 @@ void InitializeSystemResourceAllocator(void)
 
 
 
-// 函数: void FUN_1800575f0(long long SystemResourcePointer,void* param_2,void* param_3,void* param_4)
+// 函数: void SystemResourceHandlerDelegate(long long SystemResourcePointer,void* param_2,void* param_3,void* param_4)
 /**
  * @brief 系统资源处理委托函数
  * 
