@@ -19982,7 +19982,7 @@ LAB_180046c03:
         }
 LAB_180046c5e:
         if (systemFlag == 0) {
-          *(int *)(SystemResourcePointer + 0x68) = (int)unsignedSystemValue10;
+          *(int *)(SystemResourcePointer + 0x68) = (int)comparisonIndex;
           goto LAB_180046c90;
         }
       }
