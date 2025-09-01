@@ -102,7 +102,7 @@ void* GlobalModuleEHandle;
 uint32_t SystemStatusFlag1;
 bool SystemStatusFlag1Initialized;
 
- uint32_t GetSystemStatusFlag2;
+
 /**
  * @brief 获取系统状态标志2
  * 
@@ -112,7 +112,7 @@ bool SystemStatusFlag1Initialized;
 uint32_t SystemStatusFlag2;
 bool SystemStatusFlag2Initialized;
 
- uint32_t GetSystemStatusFlag3;
+
 /**
  * @brief 获取系统状态标志3
  * 
