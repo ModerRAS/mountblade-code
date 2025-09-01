@@ -21701,8 +21701,18 @@ void ValidateSystemIntegrity(void)
 
 
 
- c61e(void)
-c61e(void)
+ /**
+ * @brief 执行系统自检
+ * 
+ * 该函数负责执行系统自检，检查系统各个模块的状态
+ * 确保系统各个模块正常工作
+ * 
+ * @return 无返回值
+ * @note 此函数为空实现，用于系统自检
+ */
+void ExecuteSystemSelfCheck(void);
+
+void ExecuteSystemSelfCheck(void)
 
 {
   return;
@@ -29562,7 +29572,14 @@ void SystemUnwindSetSystemDataStructureA8(uint8_t objectContextParam, long long 
 
 
 
-void Unwind_1809024c0(uint8_t objectContextParam,longlong validationContextParam)
+/**
+ * 在异常处理时设置系统数据结构到0xc8偏移位置
+ * 将系统数据结构指针设置到验证上下文的指定位置
+ * @param objectContextParam 对象上下文参数
+ * @param validationContextParam 验证上下文参数
+ * @note 此函数用于在异常处理过程中设置系统数据结构
+ */
+void SystemUnwindSetSystemDataStructureC8(uint8_t objectContextParam, long long validationContextParam)
 
 {
   **(uint8_t **)(validationContextParam + 200) = &SystemDataStructure;
