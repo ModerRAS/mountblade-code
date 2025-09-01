@@ -83718,7 +83718,7 @@ void Unwind_180912970(undefined8 param_1,longlong param_2)
 }
 
 
-undefined4 UNK_180d49260;
+undefined4 SystemConfigurationFlag;
 
  void ProcessSystemStateReset(undefined8 systemHandle, longlong contextPointer)
 
@@ -83761,8 +83761,7 @@ undefined4 UNK_180d49260;
 
 
 
- void FUN_18094139f(undefined8 *param_1,longlong param_2)
-void ConfigureSystemParameters(undefined8 *parameterArray, longlong configurationContext)
+ void ConfigureSystemParameters(undefined8 *parameterArray, longlong configurationContext)
 
 {
   ConfigureResourceSystem(*(undefined8 *)(configurationContext + 0x60),*(undefined4 *)(configurationContext + 0x68),
@@ -83874,8 +83873,7 @@ void TriggerResourceHandleOperation(undefined8 *ResourceHandlePtr)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void FUN_1809414f0(void)
-/**
+ /**
  * @brief 初始化资源表管理器
  * 
  * 该函数负责初始化系统的资源表管理器
@@ -83978,8 +83976,7 @@ void InitializeSystemDataStructureB(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void FUN_180941610(void)
-/**
+ /**
  * @brief 初始化系统数据结构C
  * 
  * 该函数负责初始化系统的数据结构C
@@ -84211,8 +84208,7 @@ void InitializeSystemDataStructureM(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void FUN_180941880(void)
-/**
+ /**
  * @brief 初始化系统数据结构N
  * 
  * 该函数负责初始化系统的数据结构N
@@ -84230,8 +84226,7 @@ void InitializeSystemDataStructureN(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void FUN_1809418a0(void)
-/**
+ /**
  * @brief 初始化系统数据结构O
  * 
  * 该函数负责初始化系统的数据结构O
@@ -84249,8 +84244,7 @@ void InitializeSystemDataStructureO(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void FUN_1809418c0(void)
-/**
+ /**
  * @brief 初始化系统数据结构P
  * 
  * 该函数负责初始化系统的数据结构P
@@ -84268,8 +84262,7 @@ void InitializeSystemDataStructureP(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void FUN_1809418e0(void)
-/**
+ /**
  * @brief 初始化系统数据结构Q
  * 
  * 该函数负责初始化系统的数据结构Q
@@ -84287,8 +84280,7 @@ void InitializeSystemDataStructureQ(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void FUN_180941900(void)
-/**
+ /**
  * @brief 初始化系统数据结构R
  * 
  * 该函数负责初始化系统的数据结构R
@@ -84306,19 +84298,18 @@ void InitializeSystemDataStructureR(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void FUN_180941920(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
-/**
+ /**
  * @brief 释放内存资源
  * 
  * 该函数负责释放指定的内存资源
  * 处理内存指针的清理和释放操作
  * 
- * @param Param1 第一个参数，通常为内存指针或相关标识符
- * @param Param2 第二个参数，用于内存管理操作
- * @param Param3 第三个参数，用于内存管理操作
- * @param Param4 第四个参数，用于内存管理操作
+ * @param memoryPointer 内存指针
+ * @param resourceHandle 资源句柄
+ * @param cleanupFlag 清理标志
+ * @param operationMode 操作模式
  */
-void FreeMemoryResources(undefined8 Param1, undefined8 Param2, undefined8 Param3, undefined8 Param4)
+void ReleaseMemoryResources(undefined8 memoryPointer, undefined8 resourceHandle, undefined8 cleanupFlag, undefined8 operationMode)
 
 {
   longlong *MemoryPointer;
