@@ -14032,7 +14032,7 @@ LAB_18084cfd9:
 
 
 
-NetworkHandle FUN_18084d140(longlong connectionContext,uint packetData,int *dataSize,uint *param_4)
+NetworkHandle ProcessNetworkConnectionRequest(longlong connectionContext,uint packetData,int *dataSize,uint *param_4)
 
 {
   float fVar1;
@@ -14138,7 +14138,7 @@ LAB_18084d22e:
 
 
 
-NetworkHandle FUN_18084d169(void)
+NetworkHandle InitializeNetworkConnection(void)
 
 {
   float fVar1;
@@ -14247,7 +14247,7 @@ LAB_18084d22e:
 
 
 
-NetworkHandle FUN_18084d1d0(NetworkByte *connectionContext,NetworkHandle packetData,NetworkByte *dataSize)
+NetworkHandle ProcessNetworkDataTransfer(NetworkByte *connectionContext,NetworkHandle packetData,NetworkByte *dataSize)
 
 {
   float fVar1;
