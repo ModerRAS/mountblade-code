@@ -50016,6 +50016,18 @@ void Unwind_180907360(uint8_t objectContextParam,int64_t validationContextParam)
 
 
 
+/**
+ * @brief 执行系统展开操作
+ * 
+ * 该函数负责执行系统的展开操作，处理异常情况下的资源清理
+ * 验证内存访问并管理资源索引的生命周期
+ * 
+ * @param objectContextParam 对象上下文参数，包含对象相关的上下文信息
+ * @param validationContextParam 验证上下文参数，用于验证和处理资源索引
+ * @return 无返回值
+ * @note 此函数会在异常处理过程中自动调用
+ * @warning 调用此函数可能会触发系统清理操作
+ */
 void Unwind_180907370(uint8_t objectContextParam,int64_t validationContextParam)
 
 {
@@ -59985,6 +59997,18 @@ void Unwind_18090a6f0(uint8_t objectContextParam,int64_t validationContextParam)
 
 
 
+/**
+ * @brief 执行系统展开操作（版本18090a720）
+ * 
+ * 该函数负责执行系统展开操作，处理特定资源位的清理
+ * 当资源数据的第30位第2位被设置时，清除该位并释放系统资源
+ * 
+ * @param objectContextParam 对象上下文参数，包含对象相关的上下文信息
+ * @param validationContextParam 验证上下文参数，用于验证和释放系统资源
+ * @return 无返回值
+ * @note 此函数会在异常处理过程中自动调用
+ * @warning 调用此函数会修改资源数据的状态位
+ */
 void Unwind_18090a720(uint8_t objectContextParam,int64_t validationContextParam)
 
 {
@@ -59997,6 +60021,18 @@ void Unwind_18090a720(uint8_t objectContextParam,int64_t validationContextParam)
 
 
 
+/**
+ * @brief 执行系统展开操作（版本18090a750）
+ * 
+ * 该函数负责执行系统展开操作，处理特定资源位的清理
+ * 当资源数据的第30位第3位被设置时，清除该位并释放系统资源
+ * 
+ * @param objectContextParam 对象上下文参数，包含对象相关的上下文信息
+ * @param validationContextParam 验证上下文参数，用于验证和释放系统资源
+ * @return 无返回值
+ * @note 此函数会在异常处理过程中自动调用
+ * @warning 调用此函数会修改资源数据的状态位
+ */
 void Unwind_18090a750(uint8_t objectContextParam,int64_t validationContextParam)
 
 {
@@ -60009,6 +60045,18 @@ void Unwind_18090a750(uint8_t objectContextParam,int64_t validationContextParam)
 
 
 
+/**
+ * @brief 执行系统展开操作（版本18090a780）
+ * 
+ * 该函数负责执行系统展开操作，处理异常情况下的资源清理
+ * 验证内存访问并管理资源索引的生命周期，类似于版本180907370的功能
+ * 
+ * @param objectContextParam 对象上下文参数，包含对象相关的上下文信息
+ * @param validationContextParam 验证上下文参数，用于验证和处理资源索引
+ * @return 无返回值
+ * @note 此函数会在异常处理过程中自动调用
+ * @warning 调用此函数可能会触发系统清理操作
+ */
 void Unwind_18090a780(uint8_t objectContextParam,int64_t validationContextParam)
 
 {

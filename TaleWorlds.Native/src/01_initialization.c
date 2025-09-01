@@ -1552,8 +1552,8 @@ void InitializeSystemCoreData(void)
   long long memorySize;
   void** CurrentNode;
   void** PreviousNode;
-  void* *nextNode;
-  void* *newNode;
+  void** NextNode;
+  void** NewNode;
   code *initializationCallback;
   
   systemHandle = (long long*)GetSystemRootPointer();
@@ -1605,8 +1605,8 @@ void InitializeSystemDataTable(void)
   long long memorySize;
   void** CurrentNode;
   void** PreviousNode;
-  void* *nextNode;
-  void* *newNode;
+  void** NextNode;
+  void** NewNode;
   void* systemFlag;
   
   systemHandle = (long long*)GetSystemRootPointer();
@@ -2139,9 +2139,9 @@ void InitializeSystemResourceNode(void)
   long long allocationSize;
   void** CurrentNode;
   void** PreviousNode;
-  void* *nextNode;
-  void* *allocatedNode;
-  void* *initializationCallback;
+  void** NextNode;
+  void** AllocatedNode;
+  void** InitializationCallback;
   
   systemTablePointer = (long long*)GetSystemRootPointer();
   systemRootPointer = (void* *)*systemTablePointer;
@@ -2195,8 +2195,8 @@ void InitializeSystemMemoryNode(void)
   long long allocationSize;
   void** CurrentNode;
   void** PreviousNode;
-  void* *nextNode;
-  void* *allocatedNode;
+  void** NextNode;
+  void** AllocatedNode;
   void* initializationFlag;
   
   systemTablePointer = (long long*)GetSystemRootPointer();
@@ -2245,13 +2245,13 @@ void InitializeSystemDataTableStructureA(void)
 
 {
   char DataTypeFlag;
-  void* *dataTablePointer;
+  void** DataTablePointer;
   int memoryCompareResult;
   long long *systemRootPointer;
   long long allocationSize;
   void** CurrentNode;
   void** PreviousNode;
-  void* *nextNode;
+  void** NextNode;
   void* *newNodePointer;
   void** SystemDataReference;
   
@@ -2863,8 +2863,8 @@ void InitializeSystemDataStructure(void)
   long long allocationSize;
   void** CurrentNode;
   void** PreviousNode;
-  void* *nextNode;
-  void* *allocatedNode;
+  void** NextNode;
+  void** AllocatedNode;
   void* *initializationFunction;
   
   systemTablePointer = (long long*)GetSystemRootPointer();
@@ -4579,7 +4579,7 @@ void InitializeSystemEventManager(void)
   long long timeValue;
   void* *rootNode;
   void** CurrentNode;
-  void* *nextNode;
+  void** NextNode;
   void** PreviousNode;
   code *eventCallbackPointer;
   
@@ -4638,7 +4638,7 @@ void InitializeSystemNetworkManager(void)
   long long timeValue;
   void* *rootNode;
   void** CurrentNode;
-  void* *nextNode;
+  void** NextNode;
   void** PreviousNode;
   code *networkCallbackPointer;
   
@@ -4663,7 +4663,7 @@ void InitializeSystemNetworkManager(void)
   }
   if ((previousNode == rootNode) || (memoryCompareResult = memcmp(&SystemDataComparisonTemplateG,previousNode + 4,0x10), memoryCompareResult < 0)) {
     long long memoryAllocationSize;
-    void* *allocatedNode;
+    void** AllocatedNode;
     memoryAllocationSize = GetSystemMemorySize(dataTable);
     AllocateSystemMemory(dataTable,&allocatedNode,previousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     previousNode = allocatedNode;
@@ -4697,7 +4697,7 @@ void InitializeSystemConfigurationManager(void)
   long long timeValue;
   void* *rootNode;
   void** CurrentNode;
-  void* *nextNode;
+  void** NextNode;
   void** PreviousNode;
   code *initializationFunction;
   
@@ -4722,7 +4722,7 @@ void InitializeSystemConfigurationManager(void)
   }
   if ((previousNode == rootNode) || (memoryCompareResult = memcmp(&CONFIGURATION_MANAGER_ID,previousNode + 4,0x10), memoryCompareResult < 0)) {
     long long memoryAllocationSize;
-    void* *allocatedNode;
+    void** AllocatedNode;
     memoryAllocationSize = GetSystemMemorySize(dataTable);
     AllocateSystemMemory(dataTable,&allocatedNode,previousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     previousNode = allocatedNode;
@@ -4756,7 +4756,7 @@ void InitializeSystemResourceManager(void)
   long long timeValue;
   void* *rootNode;
   void** CurrentNode;
-  void* *nextNode;
+  void** NextNode;
   void** PreviousNode;
   code *initializationFunction;
   
@@ -4781,7 +4781,7 @@ void InitializeSystemResourceManager(void)
   }
   if ((previousNode == rootNode) || (memoryCompareResult = memcmp(&RESOURCE_MANAGER_ID,previousNode + 4,0x10), memoryCompareResult < 0)) {
     long long memoryAllocationSize;
-    void* *allocatedNode;
+    void** AllocatedNode;
     memoryAllocationSize = GetSystemMemorySize(dataTable);
     AllocateSystemMemory(dataTable,&allocatedNode,previousNode,memoryAllocationSize + 0x20,memoryAllocationSize);
     previousNode = allocatedNode;
@@ -28231,7 +28231,16 @@ void SystemResourceDataProcessor(long long *SystemResourcePointer,long long para
 
 
 // 函数: void FUN_1800547b0(void)
-void FUN_1800547b0(void)
+/**
+ * @brief 系统资源枚举和配置函数
+ * 
+ * 该函数负责枚举和配置系统资源，包括内存分配、字符串处理、
+ * 资源管理和系统初始化。它会遍历系统资源表，为每个资源分配
+ * 适当的内存空间，并设置相关的配置参数。
+ * 
+ * @note 这是系统初始化过程中的重要函数，用于建立和管理系统资源
+ */
+void SystemResourceEnumerator(void)
 
 {
   uint unsignedSystemValue1;
@@ -28629,7 +28638,16 @@ LAB_180054ec9:
 
 
 // 函数: void FUN_180055050(void)
-void FUN_180055050(void)
+/**
+ * @brief 系统上下文管理器初始化函数
+ * 
+ * 该函数负责初始化系统上下文管理器，包括内存分配、计数器创建、
+ * 互斥锁初始化和系统数据结构设置。它会为系统管理器分配必要的
+ * 内存资源，并建立各种系统组件之间的连接关系。
+ * 
+ * @note 这是系统初始化的核心函数，用于建立系统的基本管理结构
+ */
+void SystemContextManagerInitializer(void)
 
 {
   void* *pointerToUnsigned1;
@@ -28697,7 +28715,16 @@ void FUN_180055050(void)
 
 
 // 函数: void FUN_180055e10(long long *SystemResourcePointer)
-void FUN_180055e10(long long *SystemResourcePointer)
+/**
+ * @brief 系统资源清理函数
+ * 
+ * 该函数负责清理系统资源，遍历资源链表并释放每个资源占用的内存。
+ * 它会检查资源指针的有效性，确保资源被正确释放，避免内存泄漏。
+ * 
+ * @param SystemResourcePointer 系统资源指针数组，包含要清理的资源信息
+ * @note 这是系统资源管理的重要组成部分，用于确保资源的正确释放
+ */
+void SystemResourceCleaner(long long *SystemResourcePointer)
 
 {
   long long localMemoryPointer;
