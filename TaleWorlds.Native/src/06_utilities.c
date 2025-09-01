@@ -46756,7 +46756,16 @@ void DestroyMutexWithContext(uint8_t ObjectContextParameter,int64_t ValidationCo
 
 
 
-void Unwind_180906060(uint8_t ObjectContextParameter,int64_t ValidationContextParameter)
+/**
+ * @brief 处理资源表条目
+ * 
+ * 该函数负责遍历并处理资源表中的所有条目
+ * 对每个资源索引执行相应的处理操作
+ * 
+ * @param ObjectContextParameter 对象上下文参数
+ * @param ValidationContextParameter 验证上下文参数
+ */
+void ProcessResourceTableEntries(uint8_t ObjectContextParameter,int64_t ValidationContextParameter)
 
 {
   int64_t loopCounter;
@@ -46777,7 +46786,16 @@ void Unwind_180906060(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 
 
 
-void Unwind_180906070(uint8_t ObjectContextParameter,int64_t ValidationContextParameter)
+/**
+ * @brief 验证资源表访问
+ * 
+ * 该函数负责验证资源表的访问权限
+ * 确保资源上下文指针的有效性
+ * 
+ * @param ObjectContextParameter 对象上下文参数
+ * @param ValidationContextParameter 验证上下文参数
+ */
+void ValidateResourceTableAccess(uint8_t ObjectContextParameter,int64_t ValidationContextParameter)
 
 {
   int64_t *processPointer;
@@ -46795,7 +46813,16 @@ void Unwind_180906070(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 
 
 
-void Unwind_180906080(uint8_t ObjectContextParameter,int64_t ValidationContextParameter)
+/**
+ * @brief 释放资源表锁
+ * 
+ * 该函数负责释放资源表的锁
+ * 确保资源上下文指针的正确释放
+ * 
+ * @param ObjectContextParameter 对象上下文参数
+ * @param ValidationContextParameter 验证上下文参数
+ */
+void ReleaseResourceTableLock(uint8_t ObjectContextParameter,int64_t ValidationContextParameter)
 
 {
   int64_t *processPointer;

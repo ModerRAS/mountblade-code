@@ -34261,11 +34261,11 @@ void CleanupSystemResources(long long *ResourceHandle)
 void InitializeSystemDataPointer(long long *SystemResourcePointer)
 
 {
-  int *pointerToInteger1;
-  char *pcVar2;
-  void* *pointerToUnsigned3;
-  long long localBufferAddress;
-  ulong long unsignedSystemValue5;
+  int *systemIntegerPointer;
+  char *systemCharacterPointer;
+  void* *systemResourcePointer;
+  long long systemBufferAddress;
+  ulong long systemUnsignedValue;
   
   pointerToUnsigned3 = (void* *)*SystemResourcePointer;
   if (pointerToUnsigned3 != (void* *)0x0) {
