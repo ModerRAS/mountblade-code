@@ -3333,7 +3333,7 @@ LAB_18004e062:
           (**(code **)(*pModuleInitializationResult + 0x38))();
         }
       }
-      func_0x00018005c480(_DAT_180c8ed68);
+      SystemModuleCleanup(_DAT_180c8ed68);
       pModuleInitializationResult = _DAT_180c8ed00;
       if (*(code **)(*_DAT_180c8ed00 + 8) == (code *)&UNK_180639070) {
         *(uint32_t *)(_DAT_180c8ed00 + 9) = 0;
@@ -3442,7 +3442,7 @@ LAB_18004e062:
           (**(code **)(*pModuleInitializationResult + 0x38))();
         }
       }
-      func_0x00018005c480(_DAT_180c8ed68);
+      SystemModuleCleanup(_DAT_180c8ed68);
       pModuleInitializationResult = _DAT_180c8ed00;
       if (*(code **)(*_DAT_180c8ed00 + 8) == (code *)&UNK_180639070) {
         *(uint32_t *)(_DAT_180c8ed00 + 9) = 0;
@@ -4061,8 +4061,8 @@ LAB_1800d37d8:
     } while ((int)BufferSize1 < (int)ModuleInitializationResult8);
   }
   InitializeGameModules();
-  func_0x00018024f7f0();
-  BufferSize4 = func_0x0001800e2850(ModuleInitializationResult6);
+  InitializeCoreSystem();
+  BufferSize4 = GetModuleBufferSize(ModuleInitializationResult6);
   ProcessGameAudio(BufferSize4,1,0);
   if (*(char *)(ModuleInitializationResult6 + 0xf18) != '\0') {
     FinalizeModuleInitialization(ModuleInitializationResult6);
@@ -4965,7 +4965,7 @@ LAB_1801d5c43:
         pppppppuVar8 = (uint64_t *******)*puVar7;
       }
       pppppppuVar8[5] = (uint64_t ******)0x0;
-      pppppppuVar9 = (uint64_t *******)func_0x00018066bd70(pppppppuVar9);
+      pppppppuVar9 = (uint64_t *******)CreateMemoryPointerArray(pppppppuVar9);
     } while ((uint64_t ********)pppppppuVar9 != &pppppppuStack_188);
   }
   pppppppuVar9 = pppppppuStack_178;
