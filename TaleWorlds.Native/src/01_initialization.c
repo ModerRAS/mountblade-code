@@ -6761,8 +6761,16 @@ void InitializeSystemPerformanceMonitor(void)
 
 
 
-// 函数: void FUN_180035140(void)
-void FUN_180035140(void)
+// 函数: void InitializeSystemResourceManager(void)
+/**
+ * @brief 初始化系统资源管理器
+ * 
+ * 该函数负责初始化系统的资源管理组件，设置资源管理的基础结构。
+ * 它会遍历系统资源节点树，进行内存比较，分配必要的内存，并设置资源管理节点属性。
+ * 
+ * @note 这是系统初始化过程中的重要组成部分，确保资源管理系统的正常运行
+ */
+void InitializeSystemResourceManager(void)
 
 {
   char systemNodeFlag;
@@ -6811,8 +6819,16 @@ void FUN_180035140(void)
 
 
 
-// 函数: void FUN_180035240(void)
-void FUN_180035240(void)
+// 函数: void InitializeSystemEventDispatcher(void)
+/**
+ * @brief 初始化系统事件分发器
+ * 
+ * 该函数负责初始化系统的事件分发组件，设置事件分发的基础结构。
+ * 它会遍历系统事件分发节点树，进行内存比较，分配必要的内存，并设置事件分发节点属性。
+ * 
+ * @note 这是系统初始化过程中的重要组成部分，确保事件分发系统的正常运行
+ */
+void InitializeSystemEventDispatcher(void)
 
 {
   char systemNodeFlag;
@@ -6861,8 +6877,16 @@ void FUN_180035240(void)
 
 
 
-// 函数: void FUN_180035340(void)
-void FUN_180035340(void)
+// 函数: void InitializeSystemSecurityManager(void)
+/**
+ * @brief 初始化系统安全管理器
+ * 
+ * 该函数负责初始化系统的安全管理组件，设置安全管理的基础结构。
+ * 它会遍历系统安全节点树，进行内存比较，分配必要的内存，并设置安全管理节点属性。
+ * 
+ * @note 这是系统初始化过程中的重要组成部分，确保安全管理系统的正常运行
+ */
+void InitializeSystemSecurityManager(void)
 
 {
   char systemNodeFlag;
