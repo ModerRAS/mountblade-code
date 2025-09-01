@@ -1,75 +1,98 @@
 #ifndef DATA_DEFINITIONS_H
 #define DATA_DEFINITIONS_H
 
-// 数据定义 - 从原始文件中提取
-undefined DAT_1809fc740;
-undefined UNK_18098c790;
-  DAT_180bf5240 = 1;
-  _DAT_180bf52a8 = 0;
-  _DAT_180bf52b0 = 0x7fffffffffffffff;
-  DAT_180bf52e0 = 0;
-  lVar1 = FUN_1808fc7d0(FUN_1809414f0);
-  return (lVar1 != 0) - 1;
+undefined globalData_1809fc740;
+undefined unknownData_18098c790;
+  globalData_180bf5240 = 1;
+  globalData_180bf52a8 = 0;
+  globalData_180bf52b0 = 0x7fffffffffffffff;
+  globalData_180bf52e0 = 0;
+  result = registerSystemCallback(initializeModuleA);
+  return (result != 0) - 1;
 }
-int FUN_18002ce30(void)
+/**
+ * 初始化模块B
+ * 设置模块B所需的全局数据结构
+ */
+int initializeModuleB(void)
 {
-  longlong lVar1;
-  _DAT_180bf5320 = &UNK_18098bb30;
-  _DAT_180bf5328 = &DAT_180bf5338;
-  _DAT_180bf5330 = 0;
-  DAT_180bf5338 = 0;
-  lVar1 = FUN_1808fc7d0(FUN_180941590);
-  return (lVar1 != 0) - 1;
+  longlong result;
+  globalData_180bf5320 = &unknownData_18098bb30;
+  globalData_180bf5328 = &globalData_180bf5338;
+  globalData_180bf5330 = 0;
+  globalData_180bf5338 = 0;
+  result = registerSystemCallback(initializeModuleB_Callback);
+  return (result != 0) - 1;
 }
-int FUN_18002ce80(void)
+/**
+ * 初始化模块C
+ * 设置模块C所需的全局数据结构和回调
+ */
+int initializeModuleC(void)
 {
-  longlong lVar1;
-  _DAT_180bf5770 = &UNK_18098bb30;
-  _DAT_180bf5778 = &DAT_180bf5788;
-  _DAT_180bf5780 = 0;
-  DAT_180bf5788 = 0;
-  lVar1 = FUN_1808fc7d0(FUN_1809415b0);
-  return (lVar1 != 0) - 1;
+  longlong result;
+  globalData_180bf5770 = &unknownData_18098bb30;
+  globalData_180bf5778 = &globalData_180bf5788;
+  globalData_180bf5780 = 0;
+  globalData_180bf5788 = 0;
+  result = registerSystemCallback(initializeModuleC_Callback);
+  return (result != 0) - 1;
 }
-int FUN_18002ced0(void)
+/**
+ * 初始化模块D
+ * 设置模块D所需的全局数据结构和回调
+ */
+int initializeModuleD(void)
 {
-  longlong lVar1;
-  _DAT_180bf5208 = &UNK_18098bc80;
-  _DAT_180bf5210 = &DAT_180bf5220;
-  _DAT_180bf5218 = 0;
-  DAT_180bf5220 = 0;
-  lVar1 = FUN_1808fc7d0(FUN_1809415d0);
-  return (lVar1 != 0) - 1;
+  longlong result;
+  globalData_180bf5208 = &unknownData_18098bc80;
+  globalData_180bf5210 = &globalData_180bf5220;
+  globalData_180bf5218 = 0;
+  globalData_180bf5220 = 0;
+  result = registerSystemCallback(initializeModuleD_Callback);
+  return (result != 0) - 1;
 }
-int FUN_18002cf20(void)
+/**
+ * 初始化模块E
+ * 设置模块E所需的全局数据结构和回调
+ */
+int initializeModuleE(void)
 {
-  longlong lVar1;
-  _DAT_180bf5bc0 = &UNK_1809fcc58;
-  _DAT_180bf5bc8 = &DAT_180bf5bd8;
-  _DAT_180bf5bd0 = 0;
-  DAT_180bf5bd8 = 0;
-  lVar1 = FUN_1808fc7d0(FUN_1809415f0);
-  return (lVar1 != 0) - 1;
+  longlong result;
+  globalData_180bf5bc0 = &unknownData_1809fcc58;
+  globalData_180bf5bc8 = &globalData_180bf5bd8;
+  globalData_180bf5bd0 = 0;
+  globalData_180bf5bd8 = 0;
+  result = registerSystemCallback(initializeModuleE_Callback);
+  return (result != 0) - 1;
 }
-int FUN_18002cf70(void)
+/**
+ * 初始化模块F
+ * 设置模块F所需的全局数据结构和回调
+ */
+int initializeModuleF(void)
 {
-  longlong lVar1;
-  _DAT_180bf5c30 = &UNK_18098bb30;
-  _DAT_180bf5c38 = &DAT_180bf5c48;
-  _DAT_180bf5c40 = 0;
-  DAT_180bf5c48 = 0;
-  lVar1 = FUN_1808fc7d0(FUN_180941610);
-  return (lVar1 != 0) - 1;
+  longlong result;
+  globalData_180bf5c30 = &unknownData_18098bb30;
+  globalData_180bf5c38 = &globalData_180bf5c48;
+  globalData_180bf5c40 = 0;
+  globalData_180bf5c48 = 0;
+  result = registerSystemCallback(initializeModuleF_Callback);
+  return (result != 0) - 1;
 }
-int FUN_18002cfc0(void)
+/**
+ * 初始化模块G
+ * 设置模块G所需的全局数据结构和回调
+ */
+int initializeModuleG(void)
 {
-  longlong lVar1;
-  _DAT_180bf6080 = &UNK_18098bb30;
-  _DAT_180bf6088 = &DAT_180bf6098;
-  _DAT_180bf6090 = 0;
-  DAT_180bf6098 = 0;
-  lVar1 = FUN_1808fc7d0(FUN_180941630);
-  return (lVar1 != 0) - 1;
+  longlong result;
+  globalData_180bf6080 = &unknownData_18098bb30;
+  globalData_180bf6088 = &globalData_180bf6098;
+  globalData_180bf6090 = 0;
+  globalData_180bf6098 = 0;
+  result = registerSystemCallback(initializeModuleG_Callback);
+  return (result != 0) - 1;
 }
 int FUN_18002d010(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
 {
