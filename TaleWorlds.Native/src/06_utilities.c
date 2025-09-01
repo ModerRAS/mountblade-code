@@ -2015,11 +2015,11 @@ uint8_t SystemMemoryConfigTemplateZone;            // 内存区域
 uint8_t SystemMemoryConfigTemplateAlternate;       // 备用配置
 
  void VerifyDataIntegrity(void);
-uint8_t SystemEnvironmentDataTemplatePrimary;
-uint8_t SystemEnvironmentDataTemplateBackup;
-uint8_t SystemConfigurationDataTemplateCache;
-uint8_t SystemConfigurationDataTemplateData;
-uint8_t SystemConfigurationDataTemplateExtra;
+uint8_t SystemEnvironmentConfigTemplatePrimary;
+uint8_t SystemEnvironmentConfigTemplateBackup;
+uint8_t SystemConfigurationTemplateCache;
+uint8_t SystemConfigurationTemplateData;
+uint8_t SystemConfigurationTemplateExtra;
 uint8_t SystemCoreConfigData;
 uint8_t SystemEngineConfigData;
 uint8_t NetworkPrimaryConfigDataStream;
@@ -2027,7 +2027,7 @@ uint8_t NetworkSecondaryConfigDataStream;
 uint8_t NetworkTertiaryConfigDataStream;
 uint8_t NetworkQuaternaryConfigDataStream;
 uint8_t NetworkQuinaryConfigDataStream;
-uint8_t NetworkDataStreamTemplatePrimary;
+uint8_t NetworkDataStreamConfigPrimary;
 uint8_t SystemNetworkConfigDataPrimary;
 uint8_t SystemTertiaryConfigData;
 uint8_t SystemQuaternaryConfigData;
@@ -2077,7 +2077,7 @@ uint8_t SystemMemoryConfigDataTemplateTwentySixth;      // 第26配置项
 uint8_t SystemMemoryConfigDataTemplateTwentySeventh;    // 第27配置项
 uint8_t SystemMemoryConfigDataTemplateTwentyEighth;     // 第28配置项
 uint8_t SystemMemoryConfigDataTemplateTwentyNinth;      // 第29配置项
-uint8_t SystemConfigDataTemplate;                        // 系统配置模板
+uint8_t SystemConfigurationTemplate;                        // 系统配置模板
 uint8_t SystemConfigDataTenth;                          // 第10配置项
 char SystemConfigStatusFlag;                             // 配置状态标志
 uint8_t SystemConfigDataEleventh;                        // 第11配置项
@@ -7132,60 +7132,60 @@ void CleanupSecurityTokenFunction(void)
 uint8_t ValidateMatrixTransformationData(int64_t matrixDataPointer,int64_t contextPointer)
 
 {
-    uint8_t validationStatus;
-  int firstRowInfinityCheck;
-  int secondRowInfinityCheck;
-  int thirdRowInfinityCheck;
-  int infinityStatusFlag;
-  int64_t transformContext;
-  int64_t matrixBuffer [2];
-  uint matrixFlags;
-  float matrixScaleFactor;
+    uint8_t MatrixValidationStatus;
+  int FirstRowInfinityCheck;
+  int SecondRowInfinityCheck;
+  int ThirdRowInfinityCheck;
+  int InfinityStatusFlag;
+  int64_t TransformContext;
+  int64_t MatrixBuffer [2];
+  uint MatrixFlags;
+  float MatrixScaleFactor;
   
   LocalContextData0 = 0;
-  firstRowInfinityCheck = 0;
-  secondRowInfinityCheck = firstRowInfinityCheck;
+  FirstRowInfinityCheck = 0;
+  SecondRowInfinityCheck = FirstRowInfinityCheck;
   if ((*(uint *)(ObjectContextParameter + 0x20) & 0x7f800000) == 0x7f800000) {
-    secondRowInfinityCheck = 0x1d;
+    SecondRowInfinityCheck = 0x1d;
   }
-  thirdRowInfinityCheck = firstRowInfinityCheck;
+  ThirdRowInfinityCheck = FirstRowInfinityCheck;
   if ((*(uint *)(ObjectContextParameter + 0x1c) & 0x7f800000) == 0x7f800000) {
-    thirdRowInfinityCheck = 0x1d;
+    ThirdRowInfinityCheck = 0x1d;
   }
-  infinityStatusFlag = firstRowInfinityCheck;
+  InfinityStatusFlag = FirstRowInfinityCheck;
   if ((*(uint *)(ObjectContextParameter + 0x18) & 0x7f800000) == 0x7f800000) {
-    infinityStatusFlag = 0x1d;
+    InfinityStatusFlag = 0x1d;
   }
-  if ((secondRowInfinityCheck != 0 || thirdRowInfinityCheck != 0) || infinityStatusFlag != 0) {
+  if ((SecondRowInfinityCheck != 0 || ThirdRowInfinityCheck != 0) || InfinityStatusFlag != 0) {
     return 0x1f;
   }
-  secondRowInfinityCheck = 0;
+  SecondRowInfinityCheck = 0;
   if ((*(uint *)(ObjectContextParameter + 0x2c) & 0x7f800000) == 0x7f800000) {
-    firstRowInfinityCheck = 0x1d;
+    FirstRowInfinityCheck = 0x1d;
   }
-  thirdRowInfinityCheck = secondRowInfinityCheck;
+  ThirdRowInfinityCheck = SecondRowInfinityCheck;
   if ((*(uint *)(ObjectContextParameter + 0x28) & 0x7f800000) == 0x7f800000) {
-    thirdRowInfinityCheck = 0x1d;
+    ThirdRowInfinityCheck = 0x1d;
   }
-  infinityStatusFlag = secondRowInfinityCheck;
+  InfinityStatusFlag = SecondRowInfinityCheck;
   if ((*(uint *)(ObjectContextParameter + 0x24) & 0x7f800000) == 0x7f800000) {
-    infinityStatusFlag = 0x1d;
+    InfinityStatusFlag = 0x1d;
   }
-  if ((firstRowInfinityCheck != 0 || thirdRowInfinityCheck != 0) || infinityStatusFlag != 0) {
+  if ((FirstRowInfinityCheck != 0 || ThirdRowInfinityCheck != 0) || InfinityStatusFlag != 0) {
     return 0x1f;
   }
-  firstRowInfinityCheck = secondRowInfinityCheck;
+  FirstRowInfinityCheck = SecondRowInfinityCheck;
   if ((*(uint *)(ObjectContextParameter + 0x38) & 0x7f800000) == 0x7f800000) {
-    firstRowInfinityCheck = 0x1d;
+    FirstRowInfinityCheck = 0x1d;
   }
-  thirdRowInfinityCheck = secondRowInfinityCheck;
+  ThirdRowInfinityCheck = SecondRowInfinityCheck;
   if ((*(uint *)(ObjectContextParameter + 0x34) & 0x7f800000) == 0x7f800000) {
-    thirdRowInfinityCheck = 0x1d;
+    ThirdRowInfinityCheck = 0x1d;
   }
   if (((uint)*(float *)(ObjectContextParameter + 0x30) & 0x7f800000) == 0x7f800000) {
-    secondRowInfinityCheck = 0x1d;
+    SecondRowInfinityCheck = 0x1d;
   }
-  if ((firstRowInfinityCheck != 0 || thirdRowInfinityCheck != 0) || secondRowInfinityCheck != 0) {
+  if ((FirstRowInfinityCheck != 0 || ThirdRowInfinityCheck != 0) || SecondRowInfinityCheck != 0) {
     return 0x1f;
   }
   float matrixElementXCoordinate = *(float *)(ObjectContextParameter + 0x44);
@@ -8838,30 +8838,30 @@ int ProcessDataBlockOperation(int64_t data_context, int64_t operation_context)
   int64_t MemoryBufferPointer;
   int64_t TemporaryStackBuffer;
   
-  OperationMode = *(uint *)(data_context + 0x1c);
-  if ((((OperationMode != 1) || ((*(byte *)(data_context + 0x10) & 0x1f) == 0)) && (0 < *(int *)(data_context + 0x18))
-      ) && (OperationMode < 2)) {
-    if (OperationMode == 0) {
-      AllocatedBuffer = allocate_buffer_memory(*(uint8_t *)(SystemContextPointer + 0x1a0), *(int *)(data_context + 0x18), 0x20,
+  DataOperationMode = *(uint *)(data_context + 0x1c);
+  if ((((DataOperationMode != 1) || ((*(byte *)(data_context + 0x10) & 0x1f) == 0)) && (0 < *(int *)(data_context + 0x18))
+      ) && (DataOperationMode < 2)) {
+    if (DataOperationMode == 0) {
+      MemoryBufferPointer = allocate_buffer_memory(*(uint8_t *)(SystemContextPointer + 0x1a0), *(int *)(data_context + 0x18), 0x20,
                             &ResourceTableTemplate, 0xdd, 0, 0);
-      if (AllocatedBuffer != 0) {
+      if (MemoryBufferPointer != 0) {
                     // WARNING: Subroutine does not return
-        memcpy(AllocatedBuffer, *(uint8_t *)(data_context + 0x10), (int64_t)*(int *)(data_context + 0x18));
+        memcpy(MemoryBufferPointer, *(uint8_t *)(data_context + 0x10), (int64_t)*(int *)(data_context + 0x18));
       }
-      ResultStatus = 0x26;
+      ProcessingResult = 0x26;
     }
     else {
-      ResultStatus = validate_data_format(operation_context, data_context + 0x24);
-      if ((ResultStatus == 0) &&
-         (ResultStatus = check_data_integrity(*(uint32_t *)(data_context + 0x24), &TempStackBuffer), ResultStatus == 0)) {
-        if (*(int *)(TempStackBuffer + 0x30) == 1) {
-          *(uint32_t *)(TempStackBuffer + 0x30) = 2;
+      ProcessingResult = validate_data_format(operation_context, data_context + 0x24);
+      if ((ProcessingResult == 0) &&
+         (ProcessingResult = check_data_integrity(*(uint32_t *)(data_context + 0x24), &TemporaryStackBuffer), ProcessingResult == 0)) {
+        if (*(int *)(TemporaryStackBuffer + 0x30) == 1) {
+          *(uint32_t *)(TemporaryStackBuffer + 0x30) = 2;
         }
                     // WARNING: Subroutine does not return
         execute_data_operation(*(uint8_t *)(operation_context + 0x98), data_context);
       }
     }
-    return ResultStatus;
+    return ProcessingResult;
   }
   return 0x1f;
 }

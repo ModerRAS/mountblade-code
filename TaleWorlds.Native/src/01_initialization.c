@@ -36340,25 +36340,33 @@ void ProcessSystemResourceData(long long *SystemResourcePointer)
 
 
 
-// 函数: void FUN_18005c830(uint *SystemResourcePointer)
-void FUN_18005c830(uint *SystemResourcePointer)
+/**
+ * @brief 系统资源时间戳生成器函数
+ * 
+ * 该函数负责生成系统资源的时间戳，用于标识资源的创建时间。
+ * 它会检查系统内存块的状态，并根据不同的状态生成不同的时间戳。
+ * 
+ * @param ResourcePointer 资源指针，用于存储生成的时间戳
+ * @note 这是系统资源管理的重要组成部分，用于时间戳生成和资源标识
+ */
+void GenerateSystemResourceTimestamp(uint *ResourcePointer)
 
 {
-  uint unsignedSystemValue1;
-  char cVar2;
+  uint currentTimeStamp;
+  char systemStatusFlag;
   
   if (*(void* **)*SystemMemoryBlockStorage == &SystemMemoryBlockTemplatePrimary) {
-    cVar2 = *(int *)(SystemStatusFlags + 0xe0) != 0;
+    systemStatusFlag = *(int *)(SystemStatusFlags + 0xe0) != 0;
   }
   else {
-    cVar2 = (**(code **)(*(void* **)*SystemMemoryBlockStorage + 0x48))();
+    systemStatusFlag = (**(code **)(*(void* **)*SystemMemoryBlockStorage + 0x48))();
   }
-  if (cVar2 != '\0') {
-    *SystemResourcePointer = 0x41c6fe0c;
+  if (systemStatusFlag != '\0') {
+    *ResourcePointer = 0x41c6fe0c;
     return;
   }
-  unsignedSystemValue1 = timeGetTime();
-  *SystemResourcePointer = unsignedSystemValue1 ^ 0x41c64e6d;
+  currentTimeStamp = timeGetTime();
+  *ResourcePointer = currentTimeStamp ^ 0x41c64e6d;
   return;
 }
 
@@ -36392,51 +36400,61 @@ void* ProcessMemoryManagerOperation(long long SystemResourcePointer,void* Config
 
 
 
-// 函数: void FUN_18005c930(void* *SystemResourcePointer,void* ConfigurationDataPointer,int *AdditionalParameter)
-void FUN_18005c930(void* *SystemResourcePointer,void* ConfigurationDataPointer,int *AdditionalParameter)
+/**
+ * @brief 系统资源状态管理器函数
+ * 
+ * 该函数负责管理系统资源的状态，包括状态的检查、比较和更新。
+ * 它会创建系统线程对象，并根据状态值进行相应的资源管理操作。
+ * 
+ * @param ResourcePointer 资源指针，包含资源的基本信息
+ * @param ConfigurationDataPointer 配置数据指针，包含系统的配置信息
+ * @param StatusPointer 状态指针，指向需要管理的状态值
+ * @note 这是系统资源管理的重要组成部分，用于状态管理和资源控制
+ */
+void ManageSystemResourceStatus(void* *ResourcePointer,void* ConfigurationDataPointer,int *StatusPointer)
 
 {
-  int systemStatus;
-  bool bVar2;
-  void* *pointerToUnsigned3;
-  long long localBufferAddress;
-  void* *punsignedSystemValue5;
-  void* unsignedSystemValue6;
+  int resourceStatus;
+  bool statusComparisonResult;
+  void* *currentResourceNode;
+  long long threadObjectAddress;
+  void* *nextResourceNode;
+  void* insertionPosition;
   
-  localBufferAddress = CreateSystemThreadObject(SystemMemoryAllocationTemplate,0x28,*(uint8_t *)(SystemResourcePointer + 5));
-  systemStatus = *AdditionalParameter;
-  bVar2 = true;
-  *(int *)(localBufferAddress + 0x20) = systemStatus;
-  punsignedSystemValue5 = (void* *)SystemResourcePointer[2];
-  pointerToUnsigned3 = SystemResourcePointer;
-  while (punsignedSystemValue5 != (void* *)0x0) {
-    bVar2 = systemStatus < *(int *)(punsignedSystemValue5 + 4);
-    pointerToUnsigned3 = punsignedSystemValue5;
-    if (systemStatus < *(int *)(punsignedSystemValue5 + 4)) {
-      punsignedSystemValue5 = (void* *)punsignedSystemValue5[1];
+  threadObjectAddress = CreateSystemThreadObject(SystemMemoryAllocationTemplate,0x28,*(uint8_t *)(ResourcePointer + 5));
+  resourceStatus = *StatusPointer;
+  statusComparisonResult = true;
+  *(int *)(threadObjectAddress + 0x20) = resourceStatus;
+  nextResourceNode = (void* *)ResourcePointer[2];
+  currentResourceNode = ResourcePointer;
+  while (nextResourceNode != (void* *)0x0) {
+    statusComparisonResult = resourceStatus < *(int *)(nextResourceNode + 4);
+    currentResourceNode = nextResourceNode;
+    if (resourceStatus < *(int *)(nextResourceNode + 4)) {
+      nextResourceNode = (void* *)nextResourceNode[1];
     }
     else {
-      punsignedSystemValue5 = (void* *)*punsignedSystemValue5;
+      nextResourceNode = (void* *)*nextResourceNode;
     }
   }
-  punsignedSystemValue5 = pointerToUnsigned3;
-  if (bVar2) {
-    if (pointerToUnsigned3 == (void* *)SystemResourcePointer[1]) goto LAB_18005c9be;
-    punsignedSystemValue5 = (void* *)SystemResourceOffsetGet(pointerToUnsigned3);
+  nextResourceNode = currentResourceNode;
+  if (statusComparisonResult) {
+    if (currentResourceNode == (void* *)ResourcePointer[1]) goto LAB_18005c9be;
+    nextResourceNode = (void* *)SystemResourceOffsetGet(currentResourceNode);
   }
-  if (*(int *)(localBufferAddress + 0x20) <= *(int *)(punsignedSystemValue5 + 4)) {
+  if (*(int *)(threadObjectAddress + 0x20) <= *(int *)(nextResourceNode + 4)) {
                     // WARNING: Subroutine does not return
-    SystemCleanupFunction(localBufferAddress);
+    SystemCleanupFunction(threadObjectAddress);
   }
 LAB_18005c9be:
-  if ((pointerToUnsigned3 == SystemResourcePointer) || (*(int *)(localBufferAddress + 0x20) < *(int *)(pointerToUnsigned3 + 4))) {
-    unsignedSystemValue6 = 0;
+  if ((currentResourceNode == ResourcePointer) || (*(int *)(threadObjectAddress + 0x20) < *(int *)(currentResourceNode + 4))) {
+    insertionPosition = 0;
   }
   else {
-    unsignedSystemValue6 = 1;
+    insertionPosition = 1;
   }
                     // WARNING: Subroutine does not return
-  ConfigureSystemResourceHandle(localBufferAddress,pointerToUnsigned3,SystemResourcePointer,unsignedSystemValue6);
+  ConfigureSystemResourceHandle(threadObjectAddress,currentResourceNode,ResourcePointer,insertionPosition);
 }
 
 
