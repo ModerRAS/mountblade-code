@@ -43623,7 +43623,7 @@ void FUN_180066320(void* SystemResourcePointer,void* ConfigurationDataPointer,ch
   }
   if ((AdditionalParameter == '\0') && (SystemDebugFlag == '\0')) {
     if (((SystemInitializationFlag == '\0') || (systemResult = IsDebuggerPresent(), systemResult != 0)) &&
-       (DAT_180c82842 == '\0')) {
+       (SystemSilentMode == '\0')) {
       unsignedSystemValue3 = MessageBoxA(0,&SystemMessageTitle,&SystemMessageText,0x40004);
       switch(unsignedSystemValue3) {
       case 1:
@@ -43845,7 +43845,7 @@ LAB_180066bf4:
         SystemCleanupFunction(punsignedSystemValue5);
       }
       if (((SystemInitializationFlag == '\0') || (systemFlag = IsDebuggerPresent(), systemFlag != 0)) &&
-         (DAT_180c82842 == '\0')) {
+         (SystemSilentMode == '\0')) {
         unsignedSystemValue4 = MessageBoxA(0,&SystemMessageTitle,&SystemMessageText,0x40004);
         switch(unsignedSystemValue4) {
         case 1:
@@ -49556,9 +49556,9 @@ ulong long FUN_18006f620(void* SystemResourcePointer,void* ConfigurationDataPoin
                   *(uint32_t *)(SystemRenderManagerPointer + 0x160c));
     *(uint8_t *)(localResourceOffset + 0x1609) = 1;
   }
-  if (DAT_180c82842 == '\0') {
+  if (SystemSilentMode == '\0') {
     if ((SystemInitializationFlag == '\0') ||
-       ((systemValue = IsDebuggerPresent(), systemValue != 0 && (DAT_180c82842 == '\0')))) {
+       ((systemValue = IsDebuggerPresent(), systemValue != 0 && (SystemSilentMode == '\0')))) {
       MessageBoxA(0,ConfigurationDataPointer,&UNK_1809ff5b8,0x41010);
     }
     else if (*(char *)(SystemContextManagerPointer + 0x18) != '\0') {
@@ -49712,7 +49712,7 @@ ulong long FUN_18006f940(void* SystemResourcePointer,void* ConfigurationDataPoin
       }
       bStackX_20 = 1;
     }
-    if (DAT_180c82842 == '\0') {
+    if (SystemSilentMode == '\0') {
       if (bVar15) {
         if (*(long long *)(SystemStatusFlagsPointer + 8) != 0) {
           FUN_1801719d0(*(long long *)(SystemStatusFlagsPointer + 8));
@@ -49738,7 +49738,7 @@ ulong long FUN_18006f940(void* SystemResourcePointer,void* ConfigurationDataPoin
       *(uint32_t *)(pointerToUnsigned14 + 1) = 0x474e49;
       uStack_d0 = 0xb;
       if (((SystemInitializationFlag == '\0') || (systemOffset = IsDebuggerPresent(), systemOffset != 0)) &&
-         (DAT_180c82842 == '\0')) {
+         (SystemSilentMode == '\0')) {
         MessageBoxA(0,ConfigurationDataPointer,pointerToUnsigned14,0x41030);
       }
       else if (*(char *)(SystemContextManagerPointer + 0x18) != '\0') {
@@ -49794,7 +49794,7 @@ ulong long FUN_18006f940(void* SystemResourcePointer,void* ConfigurationDataPoin
     if (cVar6 != '\0') {
       SystemGlobalStateStorage = 5;
     }
-    if ((DAT_180c82842 == '\0') && (bVar15)) {
+    if ((SystemSilentMode == '\0') && (bVar15)) {
       if (*(long long *)(SystemStatusFlagsPointer + 8) != 0) {
         FUN_1801718f0();
       }
@@ -49947,7 +49947,7 @@ ulong long FUN_18006ff80(void* SystemResourcePointer,void* ConfigurationDataPoin
   unsignedSystemValue11 = 0;
 LAB_180070230:
   if (*(int *)(SystemMemoryBlockSecondary + 0x460) == 0) {
-    if (DAT_180c82842 == '\0') {
+    if (SystemSilentMode == '\0') {
       if (bVar14) {
         if (*(long long *)(SystemStatusFlagsPointer + 8) != 0) {
           FUN_1801719d0(*(long long *)(SystemStatusFlagsPointer + 8));
@@ -49961,7 +49961,7 @@ LAB_180070230:
         }
       }
       if (((SystemInitializationFlag == '\0') || (systemIndex = IsDebuggerPresent(), systemIndex != 0)) &&
-         (DAT_180c82842 == '\0')) {
+         (SystemSilentMode == '\0')) {
         MessageBoxA(0,ConfigurationDataPointer,&UNK_1809ff630,0x41030);
       }
       else if (*(char *)(SystemContextManagerPointer + 0x18) != '\0') {
@@ -50054,7 +50054,7 @@ LAB_180070230:
     if (cVar3 != '\0') {
       SystemGlobalStateStorage = 5;
     }
-    if ((DAT_180c82842 == '\0') && (bVar14)) {
+    if ((SystemSilentMode == '\0') && (bVar14)) {
       if (*(long long *)(SystemStatusFlagsPointer + 8) != 0) {
         FUN_1801718f0();
       }
@@ -50188,7 +50188,7 @@ void FUN_180070680(void* SystemResourcePointer,void* ConfigurationDataPointer)
                   *(uint32_t *)(SystemRenderManagerPointer + 0x160c));
     *(uint8_t *)(localSystemPointer + 0x1609) = 1;
   }
-  if (DAT_180c82842 == '\0') {
+  if (SystemSilentMode == '\0') {
     FUN_1800f93e0();
   }
   else {
@@ -50607,7 +50607,7 @@ LAB_18007113f:
     bVar2 = (bool)cStack_11f;
   }
   localResourcePointer = SystemRenderManagerPointer;
-  if ((DAT_180c82842 == '\0') && (bVar2)) {
+  if ((SystemSilentMode == '\0') && (bVar2)) {
     if ((SystemRenderManagerPointer != 0) && (*(char *)(SystemRenderManagerPointer + 0x1609) != '\x01')) {
       FUN_1801723a0(*(void* *)(SystemStatusFlagsPointer + 8),*(char *)(SystemRuntimeCounter + 0x2028) != '\0',
                     *(uint32_t *)(SystemRenderManagerPointer + 0x160c));
@@ -50679,7 +50679,7 @@ LAB_18007113f:
       }
     }
   }
-  if (DAT_180c82842 == '\0') {
+  if (SystemSilentMode == '\0') {
     pointerToUnsigned18 = &UNK_1809ff6bc;
     if (cStack_120 != '\0') {
       pointerToUnsigned18 = &UNK_1809ff6b0;
@@ -50691,7 +50691,7 @@ LAB_18007113f:
           punsignedSystemValue12 = systemMemoryContext;
         }
         if (((SystemInitializationFlag == '\0') || (systemIndex = IsDebuggerPresent(), systemIndex != 0)) &&
-           (DAT_180c82842 == '\0')) break;
+           (SystemSilentMode == '\0')) break;
         if (*(char *)(SystemContextManagerPointer + 0x18) != '\0') {
           puStack_168 = &UNK_180a04f08;
           puStack_160 = pointerToUnsigned18;
@@ -50727,7 +50727,7 @@ LAB_18007113f:
           punsignedSystemValue12 = pointerToUnsigned10;
         }
         if (((SystemInitializationFlag == '\0') || (systemIndex = IsDebuggerPresent(), systemIndex != 0)) &&
-           (DAT_180c82842 == '\0')) {
+           (SystemSilentMode == '\0')) {
           MessageBoxA(0,punsignedSystemValue12,&UNK_1809ff6c8,0x41010);
         }
         else if (*(char *)(SystemContextManagerPointer + 0x18) != '\0') {
@@ -50760,7 +50760,7 @@ LAB_18007113f:
     if (cVar3 != '\0') {
       SystemGlobalStateStorage = 5;
     }
-    if ((DAT_180c82842 == '\0') && (cStack_11f != '\0')) {
+    if ((SystemSilentMode == '\0') && (cStack_11f != '\0')) {
       if (*(long long *)(SystemStatusFlagsPointer + 8) != 0) {
         FUN_1801718f0();
       }
