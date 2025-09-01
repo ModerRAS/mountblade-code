@@ -253,11 +253,11 @@ void* g_inputEventQueue;
  * 设置网络连接、数据传输和通信协议
  */
 void InitializeNetworkManager(void);
-void* NetworkSystemInstance;
-void* NetworkConnectionManager;
-void* PacketHandler;
-void* NetworkProtocolManager;
-void* NetworkEventDispatcher;
+void* g_networkSystemInstance;
+void* g_networkConnectionManager;
+void* g_packetHandler;
+void* g_networkProtocolManager;
+void* g_networkEventDispatcher;
 
 // 函数: void* InitializeRenderingSystem;
 /**
@@ -333,7 +333,7 @@ void* InitializeFileSystem;
 void* InitializeDatabaseSystem;
 void* g_databaseConnectionPool;
 void* g_databaseQueryCache;
-void* DatabaseTransactionManager;
+void* g_databaseTransactionManager;
 void* g_databaseIndexManager;
 void* g_databaseSchemaManager;
 void* g_databaseRecordManager;
@@ -347,23 +347,23 @@ void* g_databaseSchemaTable;
 void* g_databaseRecordTable;
 void* g_databaseLockTable;
 void* g_databaseBackupTable;
-void* DatabaseStatistics;
-void* DatabaseMetrics;
-void* DatabasePerformance;
-void* DatabaseLogger;
-void* DatabaseCache;
-void* DatabaseBuffer;
-void* DatabaseQueue;
-void* DatabaseEvent;
-void* DatabaseSignal;
-void* DatabaseThread;
-void* DatabaseMutex;
-void* DatabaseSemaphore;
-void* DatabaseCondition;
-void* DatabaseMemory;
-void* DatabaseHeap;
-void* DatabaseStack;
-void* DatabasePool;
+void* g_databaseStatistics;
+void* g_databaseMetrics;
+void* g_databasePerformance;
+void* g_databaseLogger;
+void* g_databaseCache;
+void* g_databaseBuffer;
+void* g_databaseQueue;
+void* g_databaseEvent;
+void* g_databaseSignal;
+void* g_databaseThread;
+void* g_databaseMutex;
+void* g_databaseSemaphore;
+void* g_databaseCondition;
+void* g_databaseMemory;
+void* g_databaseHeap;
+void* g_databaseStack;
+void* g_databasePool;
 // 数据库连接池实例
 void* DatabaseConnectionPoolInstance;
 // 数据库连接池配置
