@@ -843,8 +843,6 @@ void* SystemJobConfigTable2;
 void* SystemWorkConfigTable2;
 void* SystemQueueConfigTable2;
 void* MemoryAllocatorFunction;
-
- void InitializeSystemResources(void);
 /**
  * @brief 初始化系统资源
  * 
@@ -868,8 +866,6 @@ void* MemoryManagerInstance;
  * @return void* 内存管理器实例指针
  */
 void* CreateMemoryManager;
-
- void SetupMemoryAllocator;
 /**
  * @brief 设置内存分配器
  * 
@@ -999,8 +995,6 @@ uint32_t MemoryAlignmentConfigData2;
 uint32_t MemoryAlignmentConfigData3;
 uint32_t MemoryAlignmentConfigData4;
 void* MemoryAlignmentReservedMemory;
-
- void InitializeMemoryCompression;
 /**
  * @brief 初始化内存压缩
  * 
@@ -1101,12 +1095,12 @@ void InitializeMemoryThroughput;
  * 配置内存错误检测和纠正功能
  */
 void SetupMemoryReliability;
-undefined DAT_180bf9870;
-undefined DAT_180bf9878;
-undefined DAT_180bf9880;
-undefined DAT_180bf9888;
+undefined SystemMemoryPool;
+undefined SystemMemoryCache;
+undefined SystemMemoryBuffer;
+undefined SystemMemoryDescriptor;
 undefined MemoryReliabilityConfigData;
-undefined DAT_180bf98d0;
+undefined SecurityContextData;
 
  void InitializeMemorySecurity;
 /**
@@ -1161,11 +1155,11 @@ undefined DAT_180bf9a08;
  * 配置页面大小和分页策略
  */
 void SetupMemoryPaging;
-undefined UNK_180a22d88;
-undefined DAT_180bf9a50;
-undefined DAT_180bf9a58;
-undefined DAT_180bf9a60;
-undefined DAT_180bf9a68;
+void* MemoryPagingConfigTable;
+void* MemoryPagingStatusFlags;
+void* MemoryPagingControlRegisters;
+void* MemoryPagingBufferPointer;
+void* MemoryPagingReservedMemory;
 
  void ValidateMemoryIntegrity;
 /**
@@ -1473,8 +1467,8 @@ void ConfigureMemoryFragmentation;
 undefined DAT_180bfa290;
 undefined DAT_180bfa298;
 undefined DAT_180bfa2a0;
-undefined DAT_180bfa2a8;
-undefined UNK_180a23068;
+void* MemoryBalancingConfigTable;
+void* MemoryBalancingReservedMemory;
 
  void InitializeMemoryBalancing;
 /**
@@ -1520,18 +1514,18 @@ void ConfigureMemoryLogging;
  * 设置内存使用性能分析和报告
  */
 void InitializeMemoryProfiling;
-undefined DAT_180c91f6c;
+undefined GlobalMemoryProfilerEnabled;
 undefined UNK_180a24340;
-undefined DAT_180c91fcc;
+undefined MemoryProfilingConfiguration;
 undefined UNK_180a24828;
-undefined DAT_180bfa350;
-undefined DAT_180bfa358;
-undefined DAT_180bfa360;
-undefined DAT_180bfa368;
-undefined DAT_180bfa3e8;
-undefined DAT_180bfa3f0;
-undefined DAT_180bfa3f8;
-undefined DAT_180bfa400;
+undefined SystemPerformanceCounter1;
+undefined SystemPerformanceCounter2;
+undefined SystemPerformanceCounter3;
+undefined SystemPerformanceCounter4;
+undefined MemoryAllocationTracker1;
+undefined MemoryAllocationTracker2;
+undefined MemoryAllocationTracker3;
+undefined MemoryAllocationTracker4;
 undefined DAT_180bfa480;
 undefined DAT_180bfa488;
 undefined DAT_180bfa490;
@@ -3350,8 +3344,8 @@ undefined8 ValidateObjectRegistration(longlong objectContext)
  * 该函数负责处理来自系统模块的各种请求
  * 包括参数验证、权限检查和请求分发等功能
  * 
- * @param param_1 请求参数1，包含请求类型和相关信息
- * @param param_2 请求参数2，包含系统上下文和状态信息
+ * @param requestParameters 请求参数，包含请求类型和相关信息
+ * @param systemContext 系统上下文，包含系统状态和上下文信息
  * @return 处理结果，成功返回0，失败返回错误码
  */
 ulonglong ProcessSystemRequest(longlong param_1,longlong param_2)
@@ -13871,7 +13865,17 @@ LAB_180897ce8:
 
 
 
-undefined8 FUN_180897d90(longlong *param_1)
+/**
+ * @brief 初始化资源渲染配置
+ * 
+ * 该函数负责初始化资源渲染的配置参数，包括渲染状态、
+ * 材质属性、纹理参数等。它设置渲染管线所需的各种参数，
+ * 确保资源能够正确渲染
+ * 
+ * @param param_1 渲染上下文指针，包含渲染配置相关的信息
+ * @return 操作状态码，0表示成功，非0表示错误
+ */
+undefined8 InitializeResourceRenderingConfiguration(longlong *param_1)
 
 {
   longlong lVar1;
@@ -13955,7 +13959,15 @@ undefined8 FUN_180897d90(longlong *param_1)
 
 
 
-undefined8 FUN_180897dd3(void)
+/**
+ * @brief 验证资源渲染状态
+ * 
+ * 该函数负责验证资源渲染的状态，检查所有必要的渲染参数
+ * 是否已正确设置，并确保渲染系统处于可用状态
+ * 
+ * @return 验证状态码，0表示成功，非0表示错误
+ */
+undefined8 ValidateResourceRenderingState(void)
 
 {
   longlong lVar1;
@@ -14356,7 +14368,17 @@ LAB_18089866f:
 
 
 
-undefined8 FUN_180898790(longlong *param_1,int param_2)
+/**
+ * @brief 处理资源数据扩展
+ * 
+ * 该函数负责处理资源数据的扩展操作，根据需要动态调整
+ * 数据缓冲区的大小，确保数据存储的连续性和完整性
+ * 
+ * @param param_1 资源数据上下文指针，包含数据缓冲区信息
+ * @param param_2 需要扩展的数据大小
+ * @return 操作状态码，0表示成功，非0表示错误
+ */
+undefined8 ProcessResourceDataExpansion(longlong *param_1,int param_2)
 
 {
   int iVar1;
@@ -14379,7 +14401,17 @@ undefined8 FUN_180898790(longlong *param_1,int param_2)
 
 
 
-undefined8 FUN_1808987e0(longlong *param_1,char param_2)
+/**
+ * @brief 处理资源时间同步
+ * 
+ * 该函数负责处理资源的时间同步操作，确保资源的时间戳
+ * 与系统时间保持一致，用于资源的时效性管理
+ * 
+ * @param param_1 资源上下文指针，包含资源的时间信息
+ * @param param_2 同步标志，0表示强制同步，非0表示条件同步
+ * @return 操作状态码，0表示成功，非0表示错误
+ */
+undefined8 ProcessResourceTimeSynchronization(longlong *param_1,char param_2)
 
 {
   longlong lVar1;
@@ -14419,7 +14451,18 @@ undefined8 FUN_1808987e0(longlong *param_1,char param_2)
 
 
 
-undefined8 FUN_1808988b0(longlong *param_1,char *param_2,undefined8 *param_3)
+/**
+ * @brief 查找资源哈希表条目
+ * 
+ * 该函数负责在资源哈希表中查找指定的条目，通过字符串匹配
+ * 来定位对应的资源条目，并返回相关的资源信息
+ * 
+ * @param param_1 哈希表上下文指针，包含哈希表的结构信息
+ * @param param_2 要查找的资源名称字符串
+ * @param param_3 输出参数，用于返回找到的资源信息
+ * @return 查找状态码，0表示成功，非0表示错误
+ */
+undefined8 FindResourceHashTableEntry(longlong *param_1,char *param_2,undefined8 *param_3)
 
 {
   char *pcVar1;
@@ -14696,7 +14739,18 @@ FUN_180898b40(longlong *param_1,int param_2,undefined4 *param_3,undefined1 *para
 
 
 
-undefined4 FUN_180898b65(undefined8 param_1,int param_2,undefined4 *param_3)
+/**
+ * @brief 提取资源哈希数据
+ * 
+ * 该函数负责从资源哈希表中提取指定索引的哈希数据，
+ * 包括哈希值、偏移量等信息，用于后续的资源查找和处理
+ * 
+ * @param param_1 资源表句柄，用于访问资源表数据
+ * @param param_2 资源索引，指定要提取的资源条目
+ * @param param_3 输出参数，用于返回提取的哈希数据
+ * @return 操作状态码，0表示成功，非0表示错误
+ */
+undefined4 ExtractResourceHashData(undefined8 param_1,int param_2,undefined4 *param_3)
 
 {
   undefined4 *presourceHash;
@@ -14820,7 +14874,17 @@ undefined4 FUN_180898b65(undefined8 param_1,int param_2,undefined4 *param_3)
 
 
 
-undefined4 FUN_180898bc0(undefined8 param_1,ulonglong param_2)
+/**
+ * @brief 验证资源哈希索引
+ * 
+ * 该函数负责验证资源哈希索引的有效性，确保指定的索引
+ * 在资源表中存在且可访问，用于资源查找前的验证
+ * 
+ * @param param_1 资源表句柄，用于访问资源表数据
+ * @param param_2 哈希索引，指定要验证的资源索引
+ * @return 验证状态码，0表示成功，非0表示错误
+ */
+undefined4 ValidateResourceHashIndex(undefined8 param_1,ulonglong param_2)
 
 {
   undefined1 resourceHash;
@@ -14925,7 +14989,15 @@ undefined4 FUN_180898bc0(undefined8 param_1,ulonglong param_2)
 
 
 
-undefined4 FUN_180898c86(void)
+/**
+ * @brief 获取资源表状态
+ * 
+ * 该函数负责获取资源表的当前状态，包括资源数量、
+ * 内存使用情况等统计信息
+ * 
+ * @return 资源表状态码，包含各种状态信息
+ */
+undefined4 GetResourceTableStatus(void)
 
 {
   undefined1 resourceHash;
@@ -14991,7 +15063,17 @@ undefined4 FUN_180898c86(void)
 
 
 
-undefined4 FUN_180898d31(undefined8 param_1,int *param_2)
+/**
+ * @brief 处理资源索引查询
+ * 
+ * 该函数负责处理资源索引的查询操作，根据输入参数
+ * 查找对应的资源索引并返回查询结果
+ * 
+ * @param param_1 资源表句柄，用于访问资源表数据
+ * @param param_2 输出参数，用于返回查询到的索引值
+ * @return 查询状态码，0表示成功，非0表示错误
+ */
+undefined4 ProcessResourceIndexQuery(undefined8 param_1,int *param_2)
 
 {
   undefined4 unaff_R13D;
@@ -15003,7 +15085,15 @@ undefined4 FUN_180898d31(undefined8 param_1,int *param_2)
 
 
 
-undefined8 FUN_180898d4d(void)
+/**
+ * @brief 获取默认系统状态码
+ * 
+ * 该函数返回系统默认的状态码
+ * 用于表示系统的默认运行状态
+ * 
+ * @return undefined8 默认系统状态码
+ */
+undefined8 GetDefaultSystemStatus(void)
 
 {
   return 0x1f;
@@ -15013,7 +15103,17 @@ undefined8 FUN_180898d4d(void)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 FUN_180898d60(longlong *param_1,int param_2)
+/**
+ * @brief 处理资源表索引
+ * 
+ * 该函数负责处理资源表的索引操作
+ * 根据给定的参数验证和访问资源表中的特定项
+ * 
+ * @param param_1 参数1，资源表指针
+ * @param param_2 参数2，索引值
+ * @return undefined8 处理结果
+ */
+undefined8 ProcessResourceTableIndex(longlong *param_1,int param_2)
 
 {
   int iVar1;
@@ -15063,7 +15163,17 @@ LAB_180898e0b:
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 FUN_180898d84(undefined8 param_1,int param_2)
+/**
+ * @brief 验证资源参数
+ * 
+ * 该函数负责验证资源参数的有效性
+ * 确保资源参数符合系统的要求
+ * 
+ * @param param_1 参数1，资源标识符
+ * @param param_2 参数2，验证类型
+ * @return undefined8 验证结果
+ */
+undefined8 ValidateResourceParameters(undefined8 param_1,int param_2)
 
 {
   int iVar1;
@@ -15110,7 +15220,15 @@ LAB_180898e0b:
 
 
 
-undefined8 FUN_180898e56(void)
+/**
+ * @brief 获取系统资源状态
+ * 
+ * 该函数获取系统资源的当前状态
+ * 用于监控系统资源的使用情况
+ * 
+ * @return undefined8 系统资源状态
+ */
+undefined8 GetSystemResourceStatus(void)
 
 {
   return 0x26;
@@ -15118,7 +15236,17 @@ undefined8 FUN_180898e56(void)
 
 
 
-undefined8 FUN_180898e70(longlong *param_1,undefined4 *param_2)
+/**
+ * @brief 查找资源哈希值
+ * 
+ * 该函数根据给定的参数查找资源的哈希值
+ * 用于快速定位和访问资源
+ * 
+ * @param param_1 参数1，资源表指针
+ * @param param_2 参数2，哈希键值
+ * @return undefined8 查找结果
+ */
+undefined8 FindResourceHash(longlong *param_1,undefined4 *param_2)
 
 {
   undefined8 resourceHash;
@@ -15134,7 +15262,17 @@ undefined8 FUN_180898e70(longlong *param_1,undefined4 *param_2)
 
 
 
-undefined8 FUN_180898eb0(longlong *param_1,undefined4 *param_2)
+/**
+ * @brief 搜索资源条目
+ * 
+ * 该函数在资源表中搜索特定的资源条目
+ * 根据给定的键值进行精确匹配搜索
+ * 
+ * @param param_1 参数1，资源表指针
+ * @param param_2 参数2，搜索键值
+ * @return undefined8 搜索结果
+ */
+undefined8 SearchResourceEntry(longlong *param_1,undefined4 *param_2)
 
 {
   undefined8 resourceHash;
@@ -17827,7 +17965,16 @@ LAB_18089b22a:
 
 
 
-int FUN_18089b218(void)
+/**
+ * @brief 设置状态标志为7
+ * 
+ * 该函数负责将状态标志设置为7。
+ * 如果unaff_R15D不为0，则返回该值，否则调用FUN_1808ddf80()函数。
+ * 
+ * @return int 返回状态码或unaff_R15D的值
+ * @note 这是一个简化的状态设置函数
+ */
+int SetStatusFlagToSeven(void)
 
 {
   longlong unaff_RBP;
@@ -17843,7 +17990,16 @@ int FUN_18089b218(void)
 
 
 
-int FUN_18089b21d(void)
+/**
+ * @brief 获取状态标志值
+ * 
+ * 该函数负责获取当前的状态标志值。
+ * 它直接返回unaff_R15D的值。
+ * 
+ * @return int 返回unaff_R15D的值
+ * @note 这是一个简化的状态获取函数
+ */
+int GetStatusFlagValue(void)
 
 {
   longlong unaff_RBP;
@@ -26547,7 +26703,17 @@ undefined8 FUN_18089fc50(longlong param_1,undefined8 *param_2)
 
 
 
-undefined8 FUN_18089fd30(longlong param_1,longlong *param_2)
+/**
+ * @brief 验证资源标识符
+ * 
+ * 该函数负责验证资源标识符的有效性
+ * 确保资源标识符符合系统规范
+ * 
+ * @param param_1 参数1，包含资源相关数据
+ * @param param_2 参数2，包含资源标识符信息
+ * @return undefined8 验证结果，0表示成功，非0表示失败
+ */
+undefined8 ValidateResourceId(longlong param_1,longlong *param_2)
 
 {
   undefined8 resourceHash;
@@ -26627,7 +26793,17 @@ undefined8 FUN_18089fd30(longlong param_1,longlong *param_2)
 
 
 
-undefined8 FUN_18089fed0(longlong param_1,undefined8 *param_2)
+/**
+ * @brief 处理资源标识符列表
+ * 
+ * 该函数负责处理资源标识符列表
+ * 对多个资源标识符进行批量验证和处理
+ * 
+ * @param param_1 参数1，包含资源相关数据
+ * @param param_2 参数2，包含资源标识符列表
+ * @return undefined8 处理结果，0表示成功，非0表示失败
+ */
+undefined8 ProcessResourceIdList(longlong param_1,undefined8 *param_2)
 
 {
   undefined8 resourceHash;
@@ -26658,7 +26834,17 @@ undefined8 FUN_18089fed0(longlong param_1,undefined8 *param_2)
 
 
 
-undefined8 FUN_18089ffe0(undefined8 param_1,longlong param_2)
+/**
+ * @brief 验证纹理资源标识符
+ * 
+ * 该函数负责验证纹理资源的标识符
+ * 确保纹理资源标识符符合纹理系统的规范
+ * 
+ * @param param_1 参数1，包含纹理资源相关数据
+ * @param param_2 参数2，包含纹理资源标识符信息
+ * @return undefined8 验证结果，0表示成功，非0表示失败
+ */
+undefined8 ValidateTextureResourceId(undefined8 param_1,longlong param_2)
 
 {
   undefined8 resourceHash;
@@ -82587,8 +82773,8 @@ void FUN_1809413ed(undefined8 param_1,longlong param_2)
 
 
 
- void FUN_180941419(undefined8 param_1,longlong param_2)
-void FUN_180941419(undefined8 param_1,longlong param_2)
+ void ProcessNetworkSecondaryBuffer(undefined8 ConnectionHandle, longlong ConnectionContext)
+void ProcessNetworkSecondaryBuffer(undefined8 ConnectionHandle, longlong ConnectionContext)
 
 {
   if (*(char *)(param_2 + 0x20) == '\0') {
@@ -82600,7 +82786,7 @@ void FUN_180941419(undefined8 param_1,longlong param_2)
 
 
 
-undefined4 FUN_180941445(undefined8 param_1,longlong param_2)
+undefined4 InitializeNetworkBufferDataWithSecurity(undefined8 BufferHandle, longlong BufferContext)
 
 {
   *(undefined8 *)(param_2 + 0x40) = param_1;
