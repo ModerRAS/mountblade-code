@@ -30557,7 +30557,13 @@ void SystemCleanupFunction(void)
 
 
 // 函数: void FUN_1800575b6(void)
-void FUN_1800575b6(void)
+/**
+ * @brief 系统资源管理器初始化函数
+ * 
+ * 该函数负责初始化系统资源管理器，设置资源管理相关的数据结构和指针。
+ * 用于系统资源管理的前期准备工作。
+ */
+void InitializeSystemResourceManager(void)
 
 {
   int *pointerToInteger1;
@@ -31006,7 +31012,7 @@ void SystemExceptionHandler(void)
 
 
 
-// 函数: void FUN_180057830(long long *SystemResourcePointer)
+// 函数: void ReleaseSystemResources(long long *SystemResourcePointer)
 /**
  * @brief 系统资源释放函数
  * 
@@ -31056,7 +31062,7 @@ void DestroyRenderingSystem(void)
   if (SystemRenderManagerPointer == (void* *)0x0) {
     return;
   }
-  FUN_180057830();
+  ReleaseSystemResources();
   if ((long long *)pointerToUnsigned2[0x30b] != (long long *)0x0) {
     (**(code **)(*(long long *)pointerToUnsigned2[0x30b] + 0x38))();
   }
