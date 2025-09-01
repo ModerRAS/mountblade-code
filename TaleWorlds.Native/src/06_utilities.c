@@ -1299,7 +1299,6 @@ void* SystemMemoryDescriptor;
 void* MemoryReliabilityConfigData;
 void* SecurityContextData;
 
- void InitializeMemorySecurity(void);
 /**
  * @brief 初始化内存安全
  * 
