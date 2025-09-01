@@ -19060,7 +19060,13 @@ void* CleanupSystemCompletionPortResources(void* systemResourcePointer, uint32_t
 
 
 
-void _guard_check_icall(void)
+/**
+ * @brief 执行ICALL（内部调用）安全检查
+ * 
+ * 该函数用于执行内部调用的安全检查，确保调用的合法性
+ * 这是.NET运行时安全机制的一部分
+ */
+void GuardCheckICall(void)
 
 {
   return;
@@ -20233,7 +20239,7 @@ void InitializeSystemCoreEngine(void)
   (*(code *)(*ppplocalBufferAddress)[7])(ppplocalBufferAddress);
   InitializeSystemContext(&lStack_678,&DAT_180bf52c0);
   if (iStack_668 == 0) {
-    (**(code **)(lStack_678 + 0x10))(&lStack_678,&UNK_1809fc7a0);
+    (**(code **)(lStack_678 + 0x10))(&lStack_678,&SystemRuntimeDataTemplate);
     cVar2 = ValidateSystemConfiguration(&lStack_678);
     if (cVar2 == '\0') {
       SetupSystemResources(&lStack_678);
@@ -20714,63 +20720,63 @@ void InitializeSystemConfigurationData(void* SystemResourcePointer,void* param_2
       if (localMemoryPointer1 < 0) {
         dVar1 = dVar1 + 1.8446744073709552e+19;
       }
-      FUN_18062e0f0(punsignedSystemValue5,&SystemConfigurationTemplate,&UNK_1809fc990,
+      SetSystemConfigurationNumericValue(punsignedSystemValue5,&SystemConfigurationTemplate,&SystemConfigurationSizeTemplate,
                     (double)(float)(dVar1 * 9.5367431640625e-07));
       localMemoryPointer1 = *(long long *)(localMemoryPointer3 + 0x38 + unsignedSystemValue10);
       dVar1 = (double)localMemoryPointer1;
       if (localMemoryPointer1 < 0) {
         dVar1 = dVar1 + 1.8446744073709552e+19;
       }
-      FUN_18062e0f0(punsignedSystemValue5,&SystemConfigurationTemplate,&UNK_1809fc9b0,
+      SetSystemConfigurationNumericValue(punsignedSystemValue5,&SystemConfigurationTemplate,&SystemConfigurationWidthTemplate,
                     (double)(float)(dVar1 * 9.5367431640625e-07));
       localMemoryPointer1 = *(long long *)(localMemoryPointer3 + 0x40 + unsignedSystemValue10);
       dVar1 = (double)localMemoryPointer1;
       if (localMemoryPointer1 < 0) {
         dVar1 = dVar1 + 1.8446744073709552e+19;
       }
-      FUN_18062e0f0(punsignedSystemValue5,&SystemConfigurationTemplate,&UNK_1809fc9d0,
+      SetSystemConfigurationNumericValue(punsignedSystemValue5,&SystemConfigurationTemplate,&SystemConfigurationHeightTemplate,
                     (double)(float)(dVar1 * 9.5367431640625e-07));
       localMemoryPointer1 = *(long long *)(localMemoryPointer3 + 0x48 + unsignedSystemValue10);
       dVar1 = (double)localMemoryPointer1;
       if (localMemoryPointer1 < 0) {
         dVar1 = dVar1 + 1.8446744073709552e+19;
       }
-      FUN_18062e0f0(punsignedSystemValue5,&SystemConfigurationTemplate,&UNK_1809fc9f8,
+      SetSystemConfigurationNumericValue(punsignedSystemValue5,&SystemConfigurationTemplate,&SystemConfigurationDepthTemplate,
                     (double)(float)(dVar1 * 9.5367431640625e-07));
       localMemoryPointer1 = *(long long *)(localMemoryPointer3 + 0x50 + unsignedSystemValue10);
       dVar1 = (double)localMemoryPointer1;
       if (localMemoryPointer1 < 0) {
         dVar1 = dVar1 + 1.8446744073709552e+19;
       }
-      FUN_18062e0f0(punsignedSystemValue5,&SystemConfigurationTemplate,&UNK_1809fca20,
+      SetSystemConfigurationNumericValue(punsignedSystemValue5,&SystemConfigurationTemplate,&SystemConfigurationFormatTemplate,
                     (double)(float)(dVar1 * 9.5367431640625e-07));
       localMemoryPointer1 = *(long long *)(localMemoryPointer3 + 0x58 + unsignedSystemValue10);
       dVar1 = (double)localMemoryPointer1;
       if (localMemoryPointer1 < 0) {
         dVar1 = dVar1 + 1.8446744073709552e+19;
       }
-      FUN_18062e0f0(punsignedSystemValue5,&SystemConfigurationTemplate,&UNK_1809fca48,
+      SetSystemConfigurationNumericValue(punsignedSystemValue5,&SystemConfigurationTemplate,&SystemConfigurationTypeTemplate,
                     (double)(float)(dVar1 * 9.5367431640625e-07));
       localMemoryPointer1 = *(long long *)(localMemoryPointer3 + 0x60 + unsignedSystemValue10);
       dVar1 = (double)localMemoryPointer1;
       if (localMemoryPointer1 < 0) {
         dVar1 = dVar1 + 1.8446744073709552e+19;
       }
-      FUN_18062e0f0(punsignedSystemValue5,&SystemConfigurationTemplate,&UNK_1809fca60,
+      SetSystemConfigurationNumericValue(punsignedSystemValue5,&SystemConfigurationTemplate,&SystemConfigurationModeTemplate,
                     (double)(float)(dVar1 * 9.5367431640625e-07));
       localMemoryPointer1 = *(long long *)(localMemoryPointer3 + 0x68 + unsignedSystemValue10);
       dVar1 = (double)localMemoryPointer1;
       if (localMemoryPointer1 < 0) {
         dVar1 = dVar1 + 1.8446744073709552e+19;
       }
-      FUN_18062e0f0(punsignedSystemValue5,&SystemConfigurationTemplate,&UNK_1809fca88,
+      SetSystemConfigurationNumericValue(punsignedSystemValue5,&SystemConfigurationTemplate,&SystemConfigurationSpeedTemplate,
                     (double)(float)(dVar1 * 9.5367431640625e-07));
       localMemoryPointer1 = *(long long *)(localMemoryPointer3 + 0x70 + unsignedSystemValue10);
       dVar1 = (double)localMemoryPointer1;
       if (localMemoryPointer1 < 0) {
         dVar1 = dVar1 + 1.8446744073709552e+19;
       }
-      FUN_18062e0f0(punsignedSystemValue5,&SystemConfigurationTemplate,&UNK_1809fcaa8,
+      SetSystemConfigurationNumericValue(punsignedSystemValue5,&SystemConfigurationTemplate,&SystemConfigurationQualityTemplate,
                     (double)(float)(dVar1 * 9.5367431640625e-07));
       dVar1 = *(double *)(localMemoryPointer3 + 0x78 + unsignedSystemValue10);
       if (dVar1 != 0.0) {

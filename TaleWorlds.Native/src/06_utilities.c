@@ -29208,10 +29208,10 @@ void ResetSystemResourceManagerPointer(uint8_t8 objectContextParam, longlong val
  * 遍历验证结果链表，对每个结果执行清理操作，处理异常情况
  * @param objectContextParam 对象上下文参数
  * @param validationContextParam 验证上下文参数
- * @param param_3 清理参数3
- * @param param_4 清理参数4
+ * @param cleanupParam3 清理参数3
+ * @param cleanupParam4 清理参数4
  */
-void ExecuteResourceCleanupLoop(uint8_t8 objectContextParam, longlong validationContextParam, uint8_t8 param_3, uint8_t8 param_4)
+void ExecuteResourceCleanupLoop(uint8_t8 objectContextParam, longlong validationContextParam, uint8_t8 cleanupParam3, uint8_t8 cleanupParam4)
 
 {
   uint8_t8 *resourceHashPointer;
