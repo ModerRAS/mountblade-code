@@ -38294,7 +38294,19 @@ void CleanupSystemResourcesPhase7(uint8_t ObjectContextParameter, int64_t Valida
 
 
 
-void Unwind_180903c80(uint8_t ObjectContextParameter,int64_t ValidationContextParameter,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 清理系统资源处理器
+ * 
+ * 该函数负责清理和释放系统资源处理器
+ * 包括内存管理、句柄清理和状态重置
+ * 
+ * @param ObjectContextParameter 对象上下文参数
+ * @param ValidationContextParameter 验证上下文参数
+ * @param CleanupOption 清理选项
+ * @param CleanupFlag 清理标志
+ * @return 无返回值
+ */
+void CleanupSystemResourceHandler(uint8_t ObjectContextParameter,int64_t ValidationContextParameter,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
