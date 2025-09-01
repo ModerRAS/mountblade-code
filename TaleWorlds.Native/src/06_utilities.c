@@ -32465,7 +32465,7 @@ void ExceptionHandlerCleanup(uint8_t ObjectContextParameter,int64_t ValidationCo
 
 
 
-void Unwind_180902c10(uint8_t ObjectContextParameter,int64_t ValidationContextParameter)
+void ResourceIndexCleanupHandler(uint8_t ObjectContextParameter,int64_t ValidationContextParameter)
 
 {
   int *pResourceIndex;
@@ -32501,7 +32501,7 @@ void Unwind_180902c10(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 
 
 
-void Unwind_180902c20(uint8_t ObjectContextParameter,int64_t ValidationContextParameter)
+void MemoryAccessValidator(uint8_t ObjectContextParameter,int64_t ValidationContextParameter)
 
 {
   **(uint8_t **)(ValidationContextParameter + 0xa0) = &SystemDataStructure;
@@ -32510,7 +32510,7 @@ void Unwind_180902c20(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 
 
 
-void Unwind_180902c30(uint8_t ObjectContextParameter,int64_t ValidationContextParameter)
+void SystemContextInitializer(uint8_t ObjectContextParameter,int64_t ValidationContextParameter)
 
 {
   int *pResourceIndex;
