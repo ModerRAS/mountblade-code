@@ -15766,15 +15766,19 @@ int InitializeEngineModuleB(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_1800439e0(void)
-void FUN_1800439e0(void)
+/**
+ * 设置系统指针A
+ * 根据系统配置设置适当的系统指针地址
+ * 检查系统状态并选择合适的指针地址
+ */
+void SetSystemPointerA(void)
 
 {
-  int iVar1;
+  int systemStatus;
   
-  iVar1 = FUN_1807681a0(0);
+  systemStatus = FUN_1807681a0(0);
   _DAT_180c0c6d0 = 0x180be14a8;
-  if (iVar1 != 0) {
+  if (systemStatus != 0) {
     _DAT_180c0c6d0 = 0x180be14c0;
   }
   return;
@@ -15785,20 +15789,24 @@ void FUN_1800439e0(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180043a10(void)
-void FUN_180043a10(void)
+/**
+ * 设置系统指针B
+ * 根据系统配置设置复杂的系统指针地址
+ * 首先检查高级配置，然后回退到基础配置
+ */
+void SetSystemPointerB(void)
 
 {
-  int iVar1;
+  int systemStatus;
   
-  iVar1 = FUN_1807681a0(1);
-  if (iVar1 != 0) {
+  systemStatus = FUN_1807681a0(1);
+  if (systemStatus != 0) {
     _DAT_180c0c6d8 = 0x180be15c0;
     return;
   }
-  iVar1 = FUN_1807681a0(0);
+  systemStatus = FUN_1807681a0(0);
   _DAT_180c0c6d8 = 0x180be14e0;
-  if (iVar1 != 0) {
+  if (systemStatus != 0) {
     _DAT_180c0c6d8 = 0x180be1550;
   }
   return;
@@ -15809,15 +15817,18 @@ void FUN_180043a10(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180043a90(void)
-void FUN_180043a90(void)
+/**
+ * 设置渲染系统指针
+ * 根据系统配置设置渲染相关的系统指针地址
+ */
+void SetRenderSystemPointer(void)
 
 {
-  int iVar1;
+  int systemStatus;
   
-  iVar1 = FUN_1807681a0(0);
+  systemStatus = FUN_1807681a0(0);
   _DAT_180c0d100 = 0x180be1c00;
-  if (iVar1 != 0) {
+  if (systemStatus != 0) {
     _DAT_180c0d100 = 0x180be1c08;
   }
   return;
