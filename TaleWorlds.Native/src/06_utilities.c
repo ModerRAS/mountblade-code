@@ -20047,55 +20047,55 @@ void ValidateAndProcessResourceData(longlong objectContextParam, uint8_t8 *valid
 {
   longlong loopCounter;
   uint8_t8 validationResult;
-  uint unsignedValue3;
-  int iVar4;
-  int tableEntry;
+  uint resourceDataLength;
+  int checksumValidationResult;
+  int resourceTableEntry;
   uint configurationFlags;
-  uint unsignedValue7;
+  uint resourceCount;
   uint resourceStackBuffer18 [2];
   uint resourceStackBuffer20 [2];
   uint8_t1 resourceValidationBuffer [32];
   
-  iVar4 = ComputeDataChecksum(validationContextParam,resourceValidationBuffer,0,0x2050414d);
-  if ((iVar4 == 0) && (iVar4 = ValidateResourceHash(validationContextParam,objectContextParam + 0x10), iVar4 == 0)) {
+  checksumValidationResult = ComputeDataChecksum(validationContextParam,resourceValidationBuffer,0,0x2050414d);
+  if ((checksumValidationResult == 0) && (checksumValidationResult = ValidateResourceHash(validationContextParam,objectContextParam + 0x10), checksumValidationResult == 0)) {
     resourceStackBuffer20[0] = 0;
-    iVar4 = LoadResourceData(*validationContextParam,resourceStackBuffer20);
-    unsignedResult3 = resourceStackBuffer20[0];
-    if (iVar4 == 0) {
-      unsignedValue6 = resourceStackBuffer20[0] & 1;
-      unsignedValue7 = resourceStackBuffer20[0] >> 1;
-      iVar4 = ProcessResourceEntry((longlong *)(objectContextParam + 0x20),unsignedValue7);
-      if (iVar4 == 0) {
+    checksumValidationResult = LoadResourceData(*validationContextParam,resourceStackBuffer20);
+    resourceDataLength = resourceStackBuffer20[0];
+    if (checksumValidationResult == 0) {
+      configurationFlags = resourceStackBuffer20[0] & 1;
+      resourceCount = resourceStackBuffer20[0] >> 1;
+      checksumValidationResult = ProcessResourceEntry((longlong *)(objectContextParam + 0x20),resourceCount);
+      if (checksumValidationResult == 0) {
         resourceStackBuffer18[0] = 0;
-        iVar4 = 0;
-        if (unsignedResult3 >> 1 != 0) {
+        checksumValidationResult = 0;
+        if (resourceDataLength >> 1 != 0) {
           do {
-            tableEntry = ExtractResourceInfo(validationContextParam,resourceStackBuffer18[0]);
-            if (tableEntry != 0) {
+            resourceTableEntry = ExtractResourceInfo(validationContextParam,resourceStackBuffer18[0]);
+            if (resourceTableEntry != 0) {
               return;
             }
             if (*(int *)(resourceData[1] + 0x18) == 0) {
               validationResult = *validationContextParam;
-              loopCounter = *(longlong *)(objectContextParam + 0x20) + (longlong)iVar4 * 8;
-              tableEntry = CalculateResourceHash(validationResult,localContextPointer);
-              if (tableEntry != 0) {
+              loopCounter = *(longlong *)(objectContextParam + 0x20) + (longlong)checksumValidationResult * 8;
+              resourceTableEntry = CalculateResourceHash(validationResult,localContextPointer);
+              if (resourceTableEntry != 0) {
                 return;
               }
-              tableEntry = CalculateResourceHash(validationResult,localContextPointer + 4);
+              resourceTableEntry = CalculateResourceHash(validationResult,localContextPointer + 4);
             }
             else {
-              tableEntry = 0x1c;
+              resourceTableEntry = 0x1c;
             }
-            if (tableEntry != 0) {
+            if (resourceTableEntry != 0) {
               return;
             }
-            tableEntry = ParseResourceMetadata(validationContextParam,resourceStackBuffer18);
-            if (tableEntry != 0) {
+            resourceTableEntry = ParseResourceMetadata(validationContextParam,resourceStackBuffer18);
+            if (resourceTableEntry != 0) {
               return;
             }
-            iVar4 = iVar4 + 1;
-            resourceStackBuffer18[0] = resourceStackBuffer18[0] & -unsignedValue6;
-          } while (iVar4 < (int)unsignedValue7);
+            checksumValidationResult = checksumValidationResult + 1;
+            resourceStackBuffer18[0] = resourceStackBuffer18[0] & -configurationFlags;
+          } while (checksumValidationResult < (int)resourceCount);
         }
                     // WARNING: Subroutine does not return
         CleanupResourceData(validationContextParam,resourceValidationBuffer);
