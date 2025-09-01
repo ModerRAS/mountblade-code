@@ -365,32 +365,32 @@ void ResetNetworkConnectionPointer(void)
 uint ValidateNetworkConnectionParameters(longlong *connectionParams)
 
 {
-  int iVar1;
-  uint uVar2;
-  uint uVar3;
+  int connectionCount;
+  uint validationStatus;
+  uint parameterValue;
   
-  uVar3 = *(uint *)((longlong)param_1 + 0xc);
-  uVar2 = uVar3 ^ (int)uVar3 >> 0x1f;
-  if ((int)(uVar2 - ((int)uVar3 >> 0x1f)) < 0) {
-    if (0 < (int)param_1[1]) {
-      return uVar2;
+  parameterValue = *(uint *)((longlong)connectionParams + 0xc);
+  validationStatus = parameterValue ^ (int)parameterValue >> 0x1f;
+  if ((int)(validationStatus - ((int)parameterValue >> 0x1f)) < 0) {
+    if (0 < (int)connectionParams[1]) {
+      return validationStatus;
     }
-    if ((0 < (int)uVar3) && (*param_1 != 0)) {
+    if ((0 < (int)parameterValue) && (*connectionParams != 0)) {
                     // WARNING: Subroutine does not return
-      ValidateNetworkConnectionSecurity(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),*param_1,&g_NetworkSecurityValidationData,0x100,1);
+      ValidateNetworkConnectionSecurity(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),*connectionParams,&g_NetworkSecurityValidationData,0x100,1);
     }
-    *param_1 = 0;
-    uVar3 = 0;
-    *(undefined4 *)((longlong)param_1 + 0xc) = 0;
+    *connectionParams = 0;
+    parameterValue = 0;
+    *(undefined4 *)((longlong)connectionParams + 0xc) = 0;
   }
-  iVar1 = (int)param_1[1];
-  if (iVar1 < 0) {
-    if (iVar1 < 0) {
+  connectionCount = (int)connectionParams[1];
+  if (connectionCount < 0) {
+    if (connectionCount < 0) {
                     // WARNING: Subroutine does not return
-      memset(*param_1 + (longlong)iVar1 * 0x14,0,(ulonglong)(uint)-iVar1 * 0x14);
+      memset(*connectionParams + (longlong)connectionCount * 0x14,0,(ulonglong)(uint)-connectionCount * 0x14);
     }
   }
-  *(undefined4 *)(param_1 + 1) = 0;
+  *(undefined4 *)(connectionParams + 1) = 0;
   uVar3 = (uVar3 ^ (int)uVar3 >> 0x1f) - ((int)uVar3 >> 0x1f);
   if ((int)uVar3 < 1) {
     return uVar3;
