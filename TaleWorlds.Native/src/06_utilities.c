@@ -3770,7 +3770,7 @@ uint8_t8 IncrementObjectReferenceCount(longlong objectContext)
  * 该函数负责处理对象句柄的初始化操作，包括句柄分配、
  * 状态检查和初始化设置等步骤
  * 
- * @param param_1 对象上下文参数
+ * @param objectContext 对象上下文参数
  * @return 操作结果状态码
  */
 uint8_t8 InitializeObjectHandleA(longlong objectContext)
@@ -3779,7 +3779,7 @@ uint8_t8 InitializeObjectHandleA(longlong objectContext)
   uint8_t8 resourceHash;
   longlong lStackX_8;
   
-  resourceHash = ValidateObjectContext(*(uint8_t4 *)(param_1 + 0x10),&lStackX_8);
+  resourceHash = ValidateObjectContext(*(uint8_t4 *)(objectContext + 0x10),&lStackX_8);
   if ((int)resourceHash == 0) {
     if (lStackX_8 == 0) {
       lStackX_8 = 0;
@@ -4365,12 +4365,12 @@ uint8_t8 InitializeObjectHandleE(longlong objectContext)
 
 {
   uint8_t8 resourceHash;
-  int *piVar2;
-  uint8_t4 *puVar3;
-  uint uVar4;
-  ulonglong uVar6;
-  longlong lStackX_8;
-  ulonglong uVar5;
+  int *validationCodePointer;
+  uint8_t4 *resourceDataPointer;
+  uint loopCounter;
+  ulonglong contextOffset;
+  longlong stackBuffer;
+  ulonglong resourceIndex;
   
   resourceHash = ValidateObjectContext(*(uint8_t4 *)(param_1 + 0x10),&lStackX_8);
   if ((int)resourceHash == 0) {
