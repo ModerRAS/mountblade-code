@@ -12907,54 +12907,69 @@ void ExecuteQuickSecurityOperationFinalization(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
- void ProcessContextDataValidation(longlong *objectContext,longlong *validationContext)
+ /**
+ * @brief 处理上下文数据验证
+ * 
+ * 该函数负责处理上下文数据的验证操作
+ * 包括系统状态检查、数据加密和安全操作终结
+ * 这是一个不会返回的函数
+ * 
+ * @param objectContext 对象上下文指针，包含对象的验证信息
+ * @param validationContext 验证上下文指针，包含验证所需的数据
+ */
 void ProcessContextDataValidation(longlong *objectContext,longlong *validationContext)
 
 {
   longlong loopCounter;
-  int integerValue2;
-  uint8_t1 auStack_248 [32];
-  uint8_t1 auStack_228 [512];
-  ulonglong uStack_28;
+  int operationResult;
+  uint8_t1 encryptionBuffer [32];
+  uint8_t1 dataBuffer [512];
+  ulonglong securityParameter;
   
-  uStack_28 = SecurityEncryptionKey ^ (ulonglong)auStack_248;
-  localContextPointer = objectContextParam[4];
-  if (((char)localContextPointer != '\0') || (integerValue2 = CheckSystemStatus(objectContextParam,1), integerValue2 == 0)) {
-    integerValue2 = (**(code **)(*validationContextParam + 0x10))(validationContextParam,auStack_228,0x200);
-    func_0x00018074b7b0(auStack_228 + integerValue2,0x200 - integerValue2,10);
-    integerValue2 = (**(code **)(*objectContextParam + 8))(objectContextParam,auStack_228);
-    if ((integerValue2 == 0) &&
-       (((char)localContextPointer == '\0' && (integerValue2 = (**(code **)(*objectContextParam + 0x18))(objectContextParam), integerValue2 == 0)))) {
-      *(uint8_t1 *)(objectContextParam + 4) = 0;
+  securityParameter = SecurityEncryptionKey ^ (ulonglong)encryptionBuffer;
+  localContextPointer = objectContext[4];
+  if (((char)localContextPointer != '\0') || (operationResult = CheckSystemStatus(objectContext,1), operationResult == 0)) {
+    operationResult = (**(code **)(*validationContext + 0x10))(validationContext,dataBuffer,0x200);
+    func_0x00018074b7b0(dataBuffer + operationResult,0x200 - operationResult,10);
+    operationResult = (**(code **)(*objectContext + 8))(objectContext,dataBuffer);
+    if ((operationResult == 0) &&
+       (((char)localContextPointer == '\0' && (operationResult = (**(code **)(*objectContext + 0x18))(objectContext), operationResult == 0)))) {
+      *(uint8_t1 *)(objectContext + 4) = 0;
     }
   }
                     // WARNING: Subroutine does not return
-  FinalizeSecurityOperation(uStack_28 ^ (ulonglong)auStack_248);
+  FinalizeSecurityOperation(securityParameter ^ (ulonglong)encryptionBuffer);
 }
 
 
 
 
- 7560(void)
-7560(void)
+ /**
+ * @brief 执行简化的上下文数据验证
+ * 
+ * 该函数是一个简化的上下文数据验证函数
+ * 执行基本的验证操作并调用安全操作终结
+ * 这是一个不会返回的函数
+ */
+void ExecuteSimplifiedContextValidation(void)
 
 {
   int operationResult;
-  longlong in_RAX;
-  char unaff_SIL;
-  longlong *unaff_RDI;
-  uint8_t1 auStackX_20 [8];
-  ulonglong in_stack_00000220;
+  longlong systemContext;
+  char systemFlag;
+  longlong *resourcePointer;
+  uint8_t1 validationBuffer [8];
+  ulonglong stackParameter;
   
-  integerValue1 = (**(code **)(in_RAX + 0x10))();
-  func_0x00018074b7b0(auStackX_20 + integerValue1,0x200 - integerValue1,10);
-  integerValue1 = (**(code **)(*unaff_RDI + 8))();
-  if (((integerValue1 == 0) && (unaff_SIL == '\0')) &&
-     (integerValue1 = (**(code **)(*unaff_RDI + 0x18))(), integerValue1 == 0)) {
-    *(uint8_t1 *)(unaff_RDI + 4) = 0;
+  operationResult = (**(code **)(systemContext + 0x10))();
+  func_0x00018074b7b0(validationBuffer + operationResult,0x200 - operationResult,10);
+  operationResult = (**(code **)(*resourcePointer + 8))();
+  if (((operationResult == 0) && (systemFlag == '\0')) &&
+     (operationResult = (**(code **)(*resourcePointer + 0x18))(), operationResult == 0)) {
+    *(uint8_t1 *)(resourcePointer + 4) = 0;
   }
                     // WARNING: Subroutine does not return
-  FinalizeSecurityOperation(in_stack_00000220 ^ (ulonglong)&ObjectStackBuffer00);
+  FinalizeSecurityOperation(stackParameter ^ (ulonglong)&ObjectStackBuffer00);
 }
 
 
