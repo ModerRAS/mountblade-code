@@ -4750,24 +4750,24 @@ void FUN_18089107f(void)
 
 
 
-undefined8 FUN_180891090(longlong param_1)
+undefined8 ValidateObjectPointer(longlong ObjectPointer)
 
 {
-  undefined8 uVar1;
-  longlong lStackX_8;
+  undefined8 ValidationResult;
+  longlong StackOffset;
   
-  uVar1 = func_0x00018088c530(*(undefined4 *)(param_1 + 0x10),&lStackX_8);
-  if ((int)uVar1 != 0) {
-    return uVar1;
+  ValidationResult = func_0x00018088c530(*(undefined4 *)(ObjectPointer + 0x10),&StackOffset);
+  if ((int)ValidationResult != 0) {
+    return ValidationResult;
   }
-  if (lStackX_8 != 0) {
-    lStackX_8 = lStackX_8 + -8;
+  if (StackOffset != 0) {
+    StackOffset = StackOffset + -8;
   }
-  if (*(longlong *)(lStackX_8 + 0x10) == 0) {
+  if (*(longlong *)(StackOffset + 0x10) == 0) {
     return 0x1c;
   }
                     // WARNING: Subroutine does not return
-  FUN_180862e00(*(longlong *)(lStackX_8 + 0x10),1);
+  FUN_180862e00(*(longlong *)(StackOffset + 0x10),1);
 }
 
 
