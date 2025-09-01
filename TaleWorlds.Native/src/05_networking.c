@@ -10602,7 +10602,20 @@ void FUN_18084b5a0(NetworkHandle connectionContext,NetworkHandle *packetData,lon
 
 
 // 函数: void FUN_18084b6c0(longlong connectionContext,longlong packetData)
-void FUN_18084b6c0(longlong connectionContext,longlong packetData)
+/**
+ * @brief 处理网络连接数据包数组
+ * 
+ * 该函数负责处理网络连接中的数据包数组，包括：
+ * - 数据包数组验证和处理
+ * - 连接状态设置
+ * - 数据包数组传递给后续处理函数
+ * 
+ * @param connectionContext 网络连接上下文指针
+ * @param packetData 数据包数据指针
+ * 
+ * 注意：这是一个反编译的函数实现
+ */
+void ProcessNetworkPacketArrayData(longlong connectionContext,longlong packetData)
 
 {
   longlong lVar1;
@@ -10633,7 +10646,20 @@ void FUN_18084b6c0(longlong connectionContext,longlong packetData)
 
 
 // 函数: void FUN_18084b760(longlong connectionContext,longlong packetData)
-void FUN_18084b760(longlong connectionContext,longlong packetData)
+/**
+ * @brief 处理网络连接数据包状态
+ * 
+ * 该函数负责处理网络连接中的数据包状态，包括：
+ * - 数据包状态验证和设置
+ * - 浮点数值检查
+ * - 数据包状态更新
+ * 
+ * @param connectionContext 网络连接上下文指针
+ * @param packetData 数据包数据指针
+ * 
+ * 注意：这是一个反编译的函数实现
+ */
+void ProcessNetworkPacketStatus(longlong connectionContext,longlong packetData)
 
 {
   int networkStatus1;
