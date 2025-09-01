@@ -20010,26 +20010,38 @@ void NetworkConnectionCleanupProcessor(void)
 
 
 
-NetworkHandle FUN_180851490(longlong connectionContext,longlong packetData)
+/**
+ * @brief 网络连接数据处理器
+ * 
+ * 该函数负责处理网络连接中的数据包，进行数据验证和处理
+ * 遍历不同的数据结构，调用相应的处理函数来验证和处理网络数据
+ * 
+ * @param connectionContext 连接上下文指针，包含连接状态和信息
+ * @param packetData 数据包数据指针，包含需要处理的数据
+ * @return 处理结果，成功返回0，失败返回错误码
+ * 
+ * 注意：这是一个反编译的函数实现
+ */
+NetworkHandle ProcessNetworkConnectionData(longlong connectionContext, longlong packetData)
 
 {
-  longlong *plVar1;
-  longlong lVar2;
-  NetworkHandle tertiaryNetworkFlag;
-  longlong *plVar4;
-  longlong *plVar5;
-  NetworkHandle *puVar6;
-  longlong *plVar7;
+  longlong *dataPointer1;
+  longlong connectionStatus;
+  NetworkHandle networkResult;
+  longlong *dataPointer2;
+  longlong *dataPointer3;
+  NetworkHandle *networkHandleArray;
+  longlong *nullPointer;
   
-  plVar7 = (longlong *)0x0;
-  plVar1 = (longlong *)(packetData + 0xa0);
-  plVar4 = (longlong *)(*plVar1 + -0x20);
-  if (*plVar1 == 0) {
-    plVar4 = plVar7;
+  nullPointer = (longlong *)0x0;
+  dataPointer1 = (longlong *)(packetData + 0xa0);
+  dataPointer2 = (longlong *)(*dataPointer1 + -0x20);
+  if (*dataPointer1 == 0) {
+    dataPointer2 = nullPointer;
   }
-  plVar5 = plVar7;
-  if (plVar4 != (longlong *)0x0) {
-    plVar5 = plVar4 + 4;
+  dataPointer3 = nullPointer;
+  if (dataPointer2 != (longlong *)0x0) {
+    dataPointer3 = dataPointer2 + 4;
   }
   while (plVar5 != plVar1) {
     plVar4 = plVar5 + -4;

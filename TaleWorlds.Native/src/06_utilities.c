@@ -2118,17 +2118,17 @@ undefined LogOutputConfigDataTemplateB;
 void ProcessLogMessage;
 undefined LogMessageProcessorDataTemplateA;
 undefined LogMessageProcessorDataTemplateB;
-undefined UNK_180a01604;
-undefined UNK_180a01610;
+undefined LogMessageProcessorDataTemplateC;
+undefined LogMessageProcessorDataTemplateD;
 undefined DAT_180a01440;
 undefined DAT_180d48d38;
-undefined UNK_180a01668;
-undefined UNK_18098b928;
-undefined UNK_180a01638;
-undefined UNK_180a01650;
+undefined LogMessageProcessorDataTemplateE;
+undefined LogMessageProcessorContextDataA;
+undefined LogMessageProcessorContextDataB;
+undefined LogMessageProcessorContextDataC;
 undefined DAT_180d48d30;
 undefined *PTR_?id@?$codecvt@DDU_Mbstatet@@@std@@2V0locale@2@A_180944718;
-undefined UNK_180bd8990;
+undefined SystemLocaleConversionDataA;
 undefined UNK_180a01630;
 undefined UNK_18009ee10;
 undefined UNK_18009edf0;
@@ -14762,100 +14762,100 @@ ProcessResourceHashData(longlong *ResourceTable,int ResourceIndex,undefined4 *Ha
   undefined4 StatusFlag;
   int TotalProcessed;
   
-  if ((-1 < param_2) && (param_2 < (int)param_1[3])) {
-    if (param_3 != (undefined4 *)0x0) {
-      presourceHash = (undefined4 *)(param_1[2] + (longlong)param_2 * 0x10);
-      resourceHash6 = presourceHash[1];
-      uVar5 = presourceHash[2];
-      uVar6 = presourceHash[3];
-      *param_3 = *presourceHash;
-      param_3[1] = resourceHash6;
-      param_3[2] = uVar5;
-      param_3[3] = uVar6;
+  if ((-1 < ResourceIndex) && (ResourceIndex < (int)ResourceTable[3])) {
+    if (HashDataOutput != (undefined4 *)0x0) {
+      HashEntryPointer = (undefined4 *)(ResourceTable[2] + (longlong)ResourceIndex * 0x10);
+      StatusFlag = HashEntryPointer[1];
+      HashComponent1 = HashEntryPointer[2];
+      HashComponent2 = HashEntryPointer[3];
+      *HashDataOutput = *HashEntryPointer;
+      HashDataOutput[1] = StatusFlag;
+      HashDataOutput[2] = HashComponent1;
+      HashDataOutput[3] = HashComponent2;
     }
-    iVar17 = 0;
-    resourceHash2 = 0;
-    uVar4 = *(uint3 *)((longlong)param_2 * 3 + param_1[6]);
-    while (uVar7 = (uint)uVar4, uVar7 != 0xffffff) {
-      uVar3 = *(uint *)(*param_1 + (ulonglong)uVar7 * 8);
-      if ((uVar3 & 0xffffff) != 0xffffff) {
-        lVar13 = (ulonglong)(uVar3 & 0xffffff) + param_1[4];
-        iVar8 = func_0x00018076b690(lVar13);
-        if (param_5 != 0) {
-          presourceHash4 = (undefined1 *)((iVar8 + -1) + lVar13);
-          iVar15 = iVar8;
-          while (0 < iVar15) {
-            iVar9 = iVar15;
-            if ((int)(param_5 - resourceHash2) <= iVar15) {
-              iVar9 = param_5 - resourceHash2;
+    TotalProcessed = 0;
+    ProcessedBytes = 0;
+    HashIndex = *(uint3 *)((longlong)ResourceIndex * 3 + ResourceTable[6]);
+    while (EntryIndex = (uint)HashIndex, EntryIndex != 0xffffff) {
+      HashValue = *(uint *)(*ResourceTable + (ulonglong)EntryIndex * 8);
+      if ((HashValue & 0xffffff) != 0xffffff) {
+        ResourceOffset = (ulonglong)(HashValue & 0xffffff) + ResourceTable[4];
+        DataLength = func_0x00018076b690(ResourceOffset);
+        if (BufferSize != 0) {
+          ResourceData = (undefined1 *)((DataLength + -1) + ResourceOffset);
+          RemainingLength = DataLength;
+          while (0 < RemainingLength) {
+            CopyLength = RemainingLength;
+            if ((int)(BufferSize - ProcessedBytes) <= RemainingLength) {
+              CopyLength = BufferSize - ProcessedBytes;
             }
-            iVar15 = iVar15 - iVar9;
-            if (iVar9 != 0) {
-              presourceHash0 = param_4 + (int)resourceHash2;
-              resourceHash2 = resourceHash2 + iVar9;
+            RemainingLength = RemainingLength - CopyLength;
+            if (CopyLength != 0) {
+              DestBuffer = ResourceBuffer + (int)ProcessedBytes;
+              ProcessedBytes = ProcessedBytes + CopyLength;
               do {
-                uVar2 = *presourceHash4;
-                presourceHash4 = presourceHash4 + -1;
-                *presourceHash0 = uVar2;
-                presourceHash0 = presourceHash0 + 1;
-                iVar9 = iVar9 + -1;
-              } while (iVar9 != 0);
+                DataByte = *ResourceData;
+                ResourceData = ResourceData + -1;
+                *DestBuffer = DataByte;
+                DestBuffer = DestBuffer + 1;
+                CopyLength = CopyLength + -1;
+              } while (CopyLength != 0);
             }
-            resourceHash2 = resourceHash2 & (int)(resourceHash2 - param_5) >> 0x1f;
+            ProcessedBytes = ProcessedBytes & (int)(ProcessedBytes - BufferSize) >> 0x1f;
           }
         }
-        iVar17 = iVar17 + iVar8;
+        TotalProcessed = TotalProcessed + DataLength;
       }
-      uVar4 = *(uint3 *)((ulonglong)uVar7 * 3 + param_1[8]);
+      HashIndex = *(uint3 *)((ulonglong)EntryIndex * 3 + ResourceTable[8]);
     }
-    resourceHash6 = 0;
-    if (param_5 != 0) {
-      if (iVar17 < param_5) {
-        presourceHash0 = param_4 + iVar17;
-        presourceHash4 = presourceHash0 + -1;
-        if (param_4 < presourceHash4) {
+    StatusFlag = 0;
+    if (BufferSize != 0) {
+      if (TotalProcessed < BufferSize) {
+        DestBuffer = ResourceBuffer + TotalProcessed;
+        ResourceData = DestBuffer + -1;
+        if (ResourceBuffer < ResourceData) {
           do {
-            uVar2 = *param_4;
-            *param_4 = *presourceHash4;
-            param_4 = param_4 + 1;
-            *presourceHash4 = uVar2;
-            presourceHash4 = presourceHash4 + -1;
-          } while (param_4 < presourceHash4);
+            DataByte = *ResourceBuffer;
+            *ResourceBuffer = *ResourceData;
+            ResourceBuffer = ResourceBuffer + 1;
+            *ResourceData = DataByte;
+            ResourceData = ResourceData + -1;
+          } while (ResourceBuffer < ResourceData);
         }
-        *presourceHash0 = 0;
-        resourceHash6 = 0;
+        *DestBuffer = 0;
+        StatusFlag = 0;
       }
       else {
-        presourceHash1 = param_4 + (int)resourceHash2;
-        presourceHash4 = presourceHash1 + -1;
-        presourceHash0 = param_4;
-        if (param_4 < presourceHash4) {
+        SourceBuffer = ResourceBuffer + (int)ProcessedBytes;
+        ResourceData = SourceBuffer + -1;
+        DestBuffer = ResourceBuffer;
+        if (ResourceBuffer < ResourceData) {
           do {
-            uVar2 = *presourceHash0;
-            *presourceHash0 = *presourceHash4;
-            presourceHash0 = presourceHash0 + 1;
-            *presourceHash4 = uVar2;
-            presourceHash4 = presourceHash4 + -1;
-          } while (presourceHash0 < presourceHash4);
+            DataByte = *DestBuffer;
+            *DestBuffer = *ResourceData;
+            DestBuffer = DestBuffer + 1;
+            *ResourceData = DataByte;
+            ResourceData = ResourceData + -1;
+          } while (DestBuffer < ResourceData);
         }
-        presourceHash4 = presourceHash1 + (longlong)(int)(param_5 - resourceHash2) + -1;
-        if (presourceHash1 < presourceHash4) {
+        ResourceData = SourceBuffer + (longlong)(int)(BufferSize - ProcessedBytes) + -1;
+        if (SourceBuffer < ResourceData) {
           do {
-            uVar2 = *presourceHash1;
-            *presourceHash1 = *presourceHash4;
-            presourceHash1 = presourceHash1 + 1;
-            *presourceHash4 = uVar2;
-            presourceHash4 = presourceHash4 + -1;
-          } while (presourceHash1 < presourceHash4);
+            DataByte = *SourceBuffer;
+            *SourceBuffer = *ResourceData;
+            SourceBuffer = SourceBuffer + 1;
+            *ResourceData = DataByte;
+            ResourceData = ResourceData + -1;
+          } while (SourceBuffer < ResourceData);
         }
-        param_4[(longlong)param_5 + -1] = 0;
-        resourceHash6 = 0x41;
+        ResourceBuffer[(longlong)BufferSize + -1] = 0;
+        StatusFlag = 0x41;
       }
     }
-    if (param_6 != (int *)0x0) {
-      *param_6 = iVar17 + 1;
+    if (ProcessedCount != (int *)0x0) {
+      *ProcessedCount = TotalProcessed + 1;
     }
-    return resourceHash6;
+    return StatusFlag;
   }
   return 0x1f;
 }
