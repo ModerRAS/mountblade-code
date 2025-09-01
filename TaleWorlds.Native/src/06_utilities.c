@@ -3290,20 +3290,20 @@ uint8_t SystemMemoryFlagK;
 void ProcessGameDataObjects(int64_t GameContext, int64_t SystemContext)
 
 {
-  uint8_t ValidationResult;
-  int OperationStatus;
+  uint8_t ObjectValidationResult;
+  int ProcessingStatus;
   int64_t CurrentObjectPointer;
   int ProcessedObjectCount;
   uint8_t1 ObjectMetadataBuffer[32];
   int64_t ContextHandles[2];
-  uint8_t1 *ObjectDataList;
+  uint8_t1 *GameDataList;
   int ListIterator;
   uint32_t MaximumItems;
   uint8_t1 ObjectProcessingBuffer[512];
   uint64_t SecurityAccessToken;
   
   SecurityAccessToken = SecurityEncryptionKey ^ (uint64_t)ObjectMetadataBuffer;
-  OperationStatus = GetContextHandles(*(uint32_t *)(gameContext + 0x10), ContextHandles);
+  ProcessingStatus = GetContextHandles(*(uint32_t *)(GameContext + 0x10), ContextHandles);
   if ((OperationStatus == 0) && (*(int64_t *)(ContextHandles[0] + 8) != 0)) {
     ObjectDataList = ObjectProcessingBuffer;
     ProcessedObjectCount = 0;
