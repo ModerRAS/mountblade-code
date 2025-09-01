@@ -3035,36 +3035,60 @@ int ProcessNetworkPacketStream(longlong connectionContext,longlong packetData,in
 
 
 
-int FUN_1808430d0(longlong connectionContext,longlong packetData,int dataSize)
+// 函数: int DecodePacketDataStream(longlong connectionContext,longlong packetData,int dataSize)
+/**
+ * @brief 解码数据包数据流
+ * 
+ * 该函数负责解码网络数据包中的数据流
+ * 执行数据解密和解压缩操作
+ * 
+ * @param connectionContext 网络连接上下文
+ * @param packetData 数据包数据指针
+ * @param dataSize 数据包大小
+ * @return 解码结果，成功返回0，失败返回错误码
+ */
+int DecodePacketDataStream(longlong connectionContext,longlong packetData,int dataSize)
 
 {
-  NetworkStatus uVar1;
-  int networkStatus2;
-  int networkStatus3;
+  NetworkStatus connectionStatus;
+  int dataOffset;
+  int decodedSize;
   
-  uVar1 = *(NetworkStatus *)(connectionContext + 0x10);
-  networkStatus2 = FUN_18074b880(packetData,dataSize,&UNK_180983ce0);
-  networkStatus3 = NetworkBufferCopyData(packetData + networkStatus2,dataSize - networkStatus2,&NetworkBufferDataTemplate);
-  networkStatus2 = networkStatus2 + networkStatus3;
-  networkStatus3 = func_0x00018074b800(networkStatus2 + packetData,dataSize - networkStatus2,uVar1);
-  return networkStatus3 + networkStatus2;
+  connectionStatus = *(NetworkStatus *)(connectionContext + 0x10);
+  dataOffset = FUN_18074b880(packetData,dataSize,&UNK_180983ce0);
+  decodedSize = NetworkBufferCopyData(packetData + dataOffset,dataSize - dataOffset,&NetworkBufferDataTemplate);
+  dataOffset = dataOffset + decodedSize;
+  decodedSize = func_0x00018074b800(dataOffset + packetData,dataSize - dataOffset,connectionStatus);
+  return decodedSize + dataOffset;
 }
 
 
 
-int FUN_180843140(longlong connectionContext,longlong packetData,int dataSize)
+// 函数: int ValidateNetworkPacketHeader(longlong connectionContext,longlong packetData,int dataSize)
+/**
+ * @brief 验证网络数据包头
+ * 
+ * 该函数负责验证网络数据包的头部信息
+ * 检查数据包的格式、版本和完整性标记
+ * 
+ * @param connectionContext 网络连接上下文
+ * @param packetData 数据包数据指针
+ * @param dataSize 数据包大小
+ * @return 验证结果，成功返回0，失败返回错误码
+ */
+int ValidateNetworkPacketHeader(longlong connectionContext,longlong packetData,int dataSize)
 
 {
-  NetworkStatus uVar1;
-  int networkStatus2;
-  int networkStatus3;
+  NetworkStatus connectionStatus;
+  int headerOffset;
+  int validationSize;
   
-  uVar1 = *(NetworkStatus *)(connectionContext + 0x10);
-  networkStatus2 = FUN_18074b880(packetData,dataSize,&UNK_180983d60);
-  networkStatus3 = NetworkBufferCopyData(packetData + networkStatus2,dataSize - networkStatus2,&NetworkBufferDataTemplate);
-  networkStatus2 = networkStatus2 + networkStatus3;
-  networkStatus3 = func_0x00018074b800(networkStatus2 + packetData,dataSize - networkStatus2,uVar1);
-  return networkStatus3 + networkStatus2;
+  connectionStatus = *(NetworkStatus *)(connectionContext + 0x10);
+  headerOffset = FUN_18074b880(packetData,dataSize,&UNK_180983d60);
+  validationSize = NetworkBufferCopyData(packetData + headerOffset,dataSize - headerOffset,&NetworkBufferDataTemplate);
+  headerOffset = headerOffset + validationSize;
+  validationSize = func_0x00018074b800(headerOffset + packetData,dataSize - headerOffset,connectionStatus);
+  return validationSize + headerOffset;
 }
 
 
