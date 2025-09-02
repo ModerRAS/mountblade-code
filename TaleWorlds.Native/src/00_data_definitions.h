@@ -5872,7 +5872,7 @@ FUN_1802a1af3:
       }
       goto LAB_1802a83bc;
     }
-    MemoryAllocationResult = FUN_18062c100(&puStack_268,param_1);
+    MemoryAllocationResult = CreateSystemMemoryPool(&puStack_268,param_1);
     SystemBufferInitialize(MemoryAllocationResult,1);
     puStack_268 = &SystemNullPointer;
     if (puStack_260 != (void *)0x0) {
@@ -5898,7 +5898,7 @@ FUN_1802a1af3:
     puVar7 = puStack_260;
     if (lVar6 != 0) {
       lStack_278 = lVar6;
-      FUN_1804300b0(&puStack_268,BufferSize,MemoryAddress,iVar3);
+      ProcessSystemBufferData(&puStack_268,BufferSize,MemoryAddress,iVar3);
       puVar7 = puStack_260;
     }
   }
@@ -5915,10 +5915,10 @@ LAB_1802a83bc:
       if (*(void **)(param_1 + 8) != (void *)0x0) {
         puVar7 = *(void **)(param_1 + 8);
       }
-      FUN_180062300(_DAT_180c86928,&UNK_180a17960,puVar7);
+      InitializeSystemDataProcessing(_DAT_180c86928,&UNK_180a17960,puVar7);
     }
   }
-  cVar3 = FUN_1802a9200(param_3);
+  cVar3 = ProcessModuleConfigurationValidation(param_3);
   if (cVar3 == '\0') {
     puVar7 = &SystemConstantStringPrimary;
     if (*(void **)(param_1 + 8) != (void *)0x0) {

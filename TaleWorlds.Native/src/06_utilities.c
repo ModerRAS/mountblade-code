@@ -28189,8 +28189,8 @@ uint64_t ProcessResourceCertificateRevocation(void)
 
 
 
- fb06(void)
-fb06(void)
+ ResourceSignatureVerifier(void)
+ResourceSignatureVerifier(void)
 
 {
   int operationResult;
@@ -28206,8 +28206,8 @@ fb06(void)
 
 
 
- fb2b(void)
-fb2b(void)
+ SystemCleanupHandler(void)
+SystemCleanupHandler(void)
 
 {
   return;
