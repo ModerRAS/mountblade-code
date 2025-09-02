@@ -14982,7 +14982,7 @@ void ProcessResourceDataValidation(int64_t *ObjectContext)
         do {
           LocalContextPointer = ObjectContext[1];
           GraphicsOperationFlagTertiary = 0;
-          StackPointer2d8 = &SystemMemoryTemplateD;
+          MemoryTemplatePointer = &SystemMemoryTemplateD;
           inputFloatValue8 = SUB84(ResourceContext3,0);
           ResourceContext3 = (int64_t *)(LocalContextPointer + 0xe0 + (int64_t)ResourceContext0);
           LocalContextHandle = *ResourceContext3;
@@ -15011,7 +15011,7 @@ void ProcessResourceDataValidation(int64_t *ObjectContext)
           if (((char)LocalContextPointer == '\0') &&
              (integerValue6 = CheckSystemStatus(ObjectContext,CONCAT71((uint7)(uint3)(ResourceDataSize >> 8),1)), integerValue6 != 0
              )) goto ResourceProcessingComplete;
-          integerValue6 = (**(code **)(StackPointer2d8 + 0x10))(&StackPointer2d8,StackBuffer238,0x200);
+          integerValue6 = (**(code **)(MemoryTemplatePointer + 0x10))(&MemoryTemplatePointer,MemoryOperationBuffer,0x200);
           ProcessDataBuffer(StackBuffer238 + integerValue6,0x200 - integerValue6,10);
           integerValue6 = (**(code **)(*ObjectContext + 8))(ObjectContext,StackBuffer238);
           if (integerValue6 != 0) goto ResourceProcessingComplete;
@@ -46730,7 +46730,18 @@ void CleanupResourceHashValidation(uint8_t ObjectContext,int64_t ValidationConte
 
 
 
-void ReleaseSystemComponentAtOffset0x70(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 释放异常列表偏移量处的系统组件
+ * 
+ * 该函数负责释放验证上下文中异常列表偏移量处的系统组件
+ * 用于系统资源清理和内存管理
+ * 
+ * @param ObjectContext 对象上下文参数，用于标识当前处理的对象
+ * @param ValidationContext 验证上下文参数，包含验证相关的上下文信息
+ * @return 无返回值
+ * @note 此函数通常在系统清理或异常处理时调用
+ */
+void ReleaseSystemComponentAtExceptionListOffset(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   ReleaseSystemComponent(ValidationContext + 0x70);
@@ -50524,7 +50535,21 @@ void InitializeResourceHashTable(uint8_t ObjectContext,int64_t ValidationContext
 
 
 
-void Unwind_180905b10(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 执行资源清理回调函数
+ * 
+ * 该函数负责执行资源清理的回调操作
+ * 根据提供的清理标志调用相应的回调函数
+ * 
+ * @param ObjectContext 对象上下文，包含对象相关的状态信息
+ * @param ValidationContext 验证上下文，包含验证所需的数据和参数
+ * @param CleanupOption 清理选项，控制清理行为的具体参数
+ * @param CleanupFlag 清理标志，指定清理操作的标志位
+ * @return 无返回值
+ * @note 此函数会根据清理标志执行相应的回调操作
+ * @warning 回调函数的执行可能会导致系统状态的变化
+ */
+void ExecuteResourceCleanupCallback(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   code *charPointer;
@@ -50552,7 +50577,19 @@ void DestroyMutexResource(void)
 
 
 
-void Unwind_180905b40(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 重置系统上下文状态
+ * 
+ * 该函数负责重置系统上下文的状态信息
+ * 清理系统资源处理器并重置相关的状态标志
+ * 
+ * @param ObjectContext 对象上下文，包含对象相关的状态信息
+ * @param ValidationContext 验证上下文，包含验证所需的数据和参数
+ * @return 无返回值
+ * @note 此函数会重置系统上下文并清理相关资源
+ * @warning 如果系统上下文状态异常，可能会触发系统紧急退出
+ */
+void ResetSystemContextState(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t loopCounter;
@@ -50571,7 +50608,19 @@ void Unwind_180905b40(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180905b50(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行资源上下文回调操作
+ * 
+ * 该函数负责执行资源上下文相关的回调操作
+ * 从验证上下文中获取资源上下文并执行相应的回调函数
+ * 
+ * @param ObjectContext 对象上下文，包含对象相关的状态信息
+ * @param ValidationContext 验证上下文，包含验证所需的数据和参数
+ * @return 无返回值
+ * @note 此函数会执行资源上下文的回调函数
+ * @warning 回调函数的执行可能会导致系统状态的变化
+ */
+void ExecuteResourceContextCallback(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t *processPointer;
