@@ -43577,11 +43577,11 @@ LAB_18006650a:
     if (AdditionalParameter != '\0') {
       puStack_1d8 = &SystemStackDataTemplate3;
     }
-    FUN_1800622d0(SystemContextManagerPointer,5,3,&UNK_1809febd8);
+    FUN_1800622d0(SystemContextManagerPointer,5,3,&SystemContextParam6);
     InitializeSystemManager();
     if (((ConfigurationFlag == '\0') || (SystemDebugFlagPtr != '\0')) || (*(int *)(SystemMemoryManagerPointer + 0x1150) != 0))
     {
-      FUN_1800622d0(SystemContextManagerPointer,5,3,&UNK_1809febf0);
+      FUN_1800622d0(SystemContextManagerPointer,5,3,&SystemContextParam7);
       InitializeSystemManager();
     }
     else {
@@ -43593,8 +43593,8 @@ LAB_18006650a:
     ConfigureSecurityParameters(&puStack_198,SystemContextPointer);
     FUN_180063cf0(&puStack_198);
     SetupSystemConfiguration(&systemMemoryContext);
-    FUN_180627e10(&systemMemoryContext,&puStack_f0,&UNK_1809fe848);
-    FUN_180627e10(&puStack_198,&puStack_110,&UNK_1809fe848);
+    FUN_180627e10(&systemMemoryContext,&puStack_f0,&SystemMemoryBufferTemplate1);
+    FUN_180627e10(&puStack_198,&puStack_110,&SystemMemoryBufferTemplate1);
     ProcessSystemDataTransfer(&puStack_110,&puStack_f0);
     puStack_110 = &SystemGlobalDataReference;
     if (lStack_108 != 0) {
