@@ -7916,93 +7916,93 @@ uint64_t BufferProcessSystemData(uint64_t BufferPointer,ulonglong ProcessingFlag
  */
 int SystemDataProcessBatch(uint64_t SystemContextPointer,uint64_t BufferSizeParameter,uint64_t MemoryAddressParameter,uint64_t ProcessingFlags)
 {
-  int LoopCounter;
-  longlong LongCounter;
+  int IterationCounter;
+  longlong LongIterationCounter;
   longlong LongIndex;
-  void *pNetworkRequestResult;
-  void *pStackCounter4;
-  longlong lStack_28;
-  int iStack_20;
-  InitializeSystemBuffer(&pStackCounter4,param_1,param_3,param_4,SystemMutexFlags);
-  LongIndex = lStack_28;
-  if (iStack_20 == 0x10) {
-    LoopCounter = strcmp(lStack_28,&NetworkRequestStringLogin);
-    if (LoopCounter == 0) goto Label_180609067;
-    LoopCounter = strcmp(LongIndex,&NetworkRequestStringAuth);
-    if (LoopCounter == 0) {
-      LoopCounter = 100;
+  void *NetworkResponseData;
+  void *StackBufferPointer;
+  longlong StackBufferLong;
+  int StackBufferInteger;
+  InitializeSystemBuffer(&StackBufferPointer,SystemContextPointer,MemoryAddressParameter,ProcessingFlags,SystemMutexFlags);
+  LongIndex = StackBufferLong;
+  if (StackBufferInteger == 0x10) {
+    IterationCounter = strcmp(StackBufferLong,&NetworkLoginRequestString);
+    if (IterationCounter == 0) goto Label_180609067;
+    IterationCounter = strcmp(LongIndex,&NetworkAuthRequestString);
+    if (IterationCounter == 0) {
+      IterationCounter = 100;
       goto Label_180609070;
     }
-    pNetworkRequestResult = &NetworkRequestResultSuccess;
+    NetworkResponseData = &NetworkSuccessResponse;
 Label_18060905e:
-    LoopCounter = strcmp(LongIndex,pNetworkRequestResult);
-    if (LoopCounter != 0) {
+    IterationCounter = strcmp(LongIndex,NetworkResponseData);
+    if (IterationCounter != 0) {
 Label_18060906e:
-      LoopCounter = 0;
+      IterationCounter = 0;
       goto Label_180609070;
     }
   }
   else {
-    if (iStack_20 == 0x15) {
-      LoopCounter = strcmp(lStack_28,&NetworkRequestStringConnect);
-      if (LoopCounter == 0) {
-        LoopCounter = 0x30;
+    if (StackBufferInteger == 0x15) {
+      IterationCounter = strcmp(StackBufferLong,&NetworkConnectRequestString);
+      if (IterationCounter == 0) {
+        IterationCounter = 0x30;
         goto Label_180609070;
       }
 Label_180608a24:
-      LoopCounter = strcmp(LongIndex,&NetworkRequestStringVerify);
-      if (LoopCounter == 0) {
-        LoopCounter = 0xb0;
+      IterationCounter = strcmp(LongIndex,&NetworkVerifyRequestString);
+      if (IterationCounter == 0) {
+        IterationCounter = 0xb0;
         goto Label_180609070;
       }
 Label_180608a96:
-      LoopCounter = strcmp(LongIndex,&NetworkRequestStringValidate);
-      if (LoopCounter == 0) {
-        LoopCounter = 0xd4;
+      IterationCounter = strcmp(LongIndex,&NetworkValidateRequestString);
+      if (IterationCounter == 0) {
+        IterationCounter = 0xd4;
         goto Label_180609070;
       }
 Label_180608bee:
-      pNetworkRequestResult = &SystemNetworkConfigData1;
+      NetworkResponseData = &SystemNetworkConfigData1;
       goto Label_18060905e;
     }
-    if (iStack_20 == 0x1b) {
-      pNetworkRequestResult = &SystemNetworkConfigData2;
+    if (StackBufferInteger == 0x1b) {
+      NetworkResponseData = &SystemNetworkConfigData2;
       goto Label_18060905e;
     }
-    if (iStack_20 == 0xd) {
-      LoopCounter = strcmp(lStack_28,&NetworkRequestStringDisconnect);
-      if (LoopCounter == 0) {
-        LoopCounter = 4;
+    if (StackBufferInteger == 0xd) {
+      IterationCounter = strcmp(StackBufferLong,&NetworkDisconnectRequestString);
+      if (IterationCounter == 0) {
+        IterationCounter = 4;
         goto Label_180609070;
       }
 Label_180608e70:
-      pNetworkRequestResult = &SystemNetworkConfigData3;
+      NetworkResponseData = &SystemNetworkConfigData3;
       goto Label_18060905e;
     }
-    if (iStack_20 == 0x1a) {
-      LoopCounter = strcmp(lStack_28,&SystemNetworkConfigData4);
-      if (LoopCounter == 0) {
-        LoopCounter = 0x1c;
+    if (StackBufferInteger == 0x1a) {
+      IterationCounter = strcmp(StackBufferLong,&SystemNetworkConfigData4);
+      if (IterationCounter == 0) {
+        IterationCounter = 0x1c;
         goto Label_180609070;
       }
 Label_180608dad:
-      LoopCounter = strcmp(LongIndex,&SystemNetworkConfigData5);
-      if (LoopCounter == 0) {
-        LoopCounter = 0x18;
+      IterationCounter = strcmp(LongIndex,&SystemNetworkConfigData5);
+      if (IterationCounter == 0) {
+        IterationCounter = 0x18;
         goto Label_180609070;
       }
 Label_180608fee:
-      LoopCounter = strcmp(LongIndex,&NetworkRequestStringLogin);
-      if (LoopCounter == 0) {
-        LoopCounter = 0x554;
+      IterationCounter = strcmp(LongIndex,&NetworkLoginRequestString);
+      if (IterationCounter == 0) {
+        IterationCounter = 0x554;
         goto Label_180609070;
       }
       goto Label_18060906e;
     }
-    if (iStack_20 == 0x20) {
-      LoopCounter = strcmp(lStack_28,&SystemStringDisconnect);
-      if (LoopCounter == 0) {
-        LoopCounter = 0x30;
+    if (StackBufferInteger == 0x20) {
+      IterationCounter = strcmp(StackBufferLong,&SystemStringDisconnect);
+      if (IterationCounter == 0) {
+        IterationCounter = 0x30;
         goto Label_180609070;
       }
       goto Label_18060906e;
