@@ -65244,6 +65244,17 @@ void InitializeResourceHashProcessor(uint8_t ObjectContext,int64_t ValidationCon
 
 
 
+/**
+ * @brief 处理资源上下文清理
+ * 
+ * 该函数负责处理资源上下文的清理操作，释放相关内存
+ * 用于系统资源管理的清理流程
+ * 
+ * @param ObjectContext 对象上下文，包含对象相关信息
+ * @param ValidationContext 验证上下文，包含验证相关数据
+ * 
+ * 原始函数名：Unwind_180908ae0
+ */
 void ProcessResourceContextCleanup(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
@@ -65253,6 +65264,17 @@ void ProcessResourceContextCleanup(uint8_t ObjectContext,int64_t ValidationConte
 
 
 
+/**
+ * @brief 执行资源表回调操作
+ * 
+ * 该函数负责执行资源表的回调操作，处理资源表相关的事务
+ * 用于系统资源管理的回调处理
+ * 
+ * @param ObjectContext 对象上下文，包含对象相关信息
+ * @param ValidationContext 验证上下文，包含验证相关数据
+ * 
+ * 原始函数名：Unwind_180908af0
+ */
 void ExecuteResourceTableCallback(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
@@ -65262,6 +65284,17 @@ void ExecuteResourceTableCallback(uint8_t ObjectContext,int64_t ValidationContex
 
 
 
+/**
+ * @brief 完成资源表操作
+ * 
+ * 该函数负责完成资源表的操作，进行最终的状态处理
+ * 用于系统资源管理的收尾工作
+ * 
+ * @param ObjectContext 对象上下文，包含对象相关信息
+ * @param ValidationContext 验证上下文，包含验证相关数据
+ * 
+ * 原始函数名：Unwind_180908b00
+ */
 void FinalizeResourceTableOperation(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
@@ -65280,6 +65313,17 @@ void FinalizeResourceTableOperation(uint8_t ObjectContext,int64_t ValidationCont
 
 
 
+/**
+ * @brief 重置资源表状态
+ * 
+ * 该函数负责重置资源表的状态，恢复到初始状态
+ * 用于系统资源管理的状态重置
+ * 
+ * @param ObjectContext 对象上下文，包含对象相关信息
+ * @param ValidationContext 验证上下文，包含验证相关数据
+ * 
+ * 原始函数名：Unwind_180908b10
+ */
 void ResetResourceTableState(uint8_t ObjectContext,int64_t ValidationContext)
 
 {

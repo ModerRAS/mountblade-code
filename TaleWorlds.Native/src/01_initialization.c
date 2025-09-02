@@ -21114,7 +21114,7 @@ void ProcessSystemMemoryRegion(long long *SystemResourceManager)
   long long nextDataIndex;
   long long localSystemHandle;
   
-  nextDataIndex = SystemResourceManager[1];
+  nextDataIndex = SystemResourceManager[SYSTEM_RESOURCE_DATA_POINTER_OFFSET];
   for (localSystemHandle = *SystemResourceManager; localSystemHandle != nextDataIndex; localSystemHandle = localSystemHandle + 0x100) {
     ProcessSystemMemoryPage(localSystemHandle);
   }
@@ -21428,7 +21428,7 @@ LABEL_TARGET_NODE_VALIDATION_CONTINUE:
   }
 ComparisonResultHandler:
   ComparisonResult = true;
-  MemoryListNode = (long long *)SystemResourceManager[2];
+  MemoryListNode = (long long *)SystemResourceManager[SYSTEM_RESOURCE_HASH_TABLE_OFFSET];
   SystemMemoryPointer = SystemResourceManager;
   while (MemoryListNode != (long long *)0x0) {
     SystemMemoryPointer = MemoryListNode;
@@ -21458,7 +21458,7 @@ MemoryListTraversal:
   }
   pbufferBaseAddress = pResourceDataOffset;
   if (ComparisonResult) {
-    if (pResourceDataOffset != (long long *)SystemResourceManager[1]) {
+    if (pResourceDataOffset != (long long *)SystemResourceManager[SYSTEM_RESOURCE_DATA_POINTER_OFFSET]) {
       pbufferBaseAddress = (long long *)SystemResourceOffsetGet(pResourceDataOffset);
       goto SystemDataValidation;
     }
@@ -22223,7 +22223,7 @@ void* * SystemMemoryAllocatorInitializer(void* *SystemResourceManager,long long 
   SystemResourceManager[SYSTEM_RESOURCE_DATA_POINTER_OFFSET] = 0;
   *(uint32_t *)(SystemResourceManager + 2) = 0;
   *SystemResourceManager = &SystemResourceTemplatePrimary;
-  SystemResourceManager[1] = SystemResourceManager + 3;
+  SystemResourceManager[SYSTEM_RESOURCE_DATA_POINTER_OFFSET] = SystemResourceManager + 3;
   *(uint32_t *)(SystemResourceManager + 2) = 0;
   *(uint8_t *)(SystemResourceManager + 3) = 0;
   *(uint32_t *)(SystemResourceManager + 2) = *(uint32_t *)(ConfigurationDataPointer + 0x10);
@@ -23388,7 +23388,7 @@ void ConfigureAndInitializeSystemMemoryAllocator(void* *SystemResourceManager)
   SystemResourceManager[SYSTEM_RESOURCE_DATA_POINTER_OFFSET] = 0;
   *(uint32_t *)(SystemResourceManager + 2) = 0;
   *SystemResourceManager = &SystemMemoryTemplateE;
-  SystemResourceManager[1] = SystemResourceManager + 3;
+  SystemResourceManager[SYSTEM_RESOURCE_DATA_POINTER_OFFSET] = SystemResourceManager + 3;
   *(uint32_t *)(SystemResourceManager + 2) = 0;
   *(uint8_t *)(SystemResourceManager + 3) = 0;
   SystemOperationStatus = *(uint *)(SystemResourceManager + 2);
@@ -28797,7 +28797,7 @@ void SystemResourceCleaner(long long *SystemResourceManager)
   long long nextDataIndex;
   long long localSystemHandle;
   
-  nextDataIndex = SystemResourceManager[1];
+  nextDataIndex = SystemResourceManager[SYSTEM_RESOURCE_DATA_POINTER_OFFSET];
   for (localSystemHandle = *SystemResourceManager; localSystemHandle != nextDataIndex; localSystemHandle = localSystemHandle + 0x48) {
     DestroySystemResource(localSystemHandle);
   }
@@ -30017,7 +30017,7 @@ SystemMemoryAllocatorConfigurator(void* *SystemResourceManager,long long Configu
   SystemResourceManager[SYSTEM_RESOURCE_DATA_POINTER_OFFSET] = 0;
   *(uint32_t *)(SystemResourceManager + 2) = 0;
   *SystemResourceManager = &SystemResourceTemplateSecondary;
-  SystemResourceManager[1] = SystemResourceManager + 3;
+  SystemResourceManager[SYSTEM_RESOURCE_DATA_POINTER_OFFSET] = SystemResourceManager + 3;
   *(uint32_t *)(SystemResourceManager + 2) = 0;
   *(uint8_t *)(SystemResourceManager + 3) = 0;
   if (ConfigurationDataPointer != 0) {
@@ -30405,7 +30405,7 @@ void CleanupSystemResources(long long *SystemResourceManager)
   long long nextDataIndex;
   long long localSystemHandle;
   
-  nextDataIndex = SystemResourceManager[1];
+  nextDataIndex = SystemResourceManager[SYSTEM_RESOURCE_DATA_POINTER_OFFSET];
   for (localSystemHandle = *SystemResourceManager; localSystemHandle != nextDataIndex; localSystemHandle = localSystemHandle + 0x48) {
     DestroySystemResource(localSystemHandle);
   }
@@ -30849,7 +30849,7 @@ void ProcessSystemQueue(long long *SystemResourceManager)
   long long nextDataIndex;
   long long localSystemHandle;
   
-  nextDataIndex = SystemResourceManager[1];
+  nextDataIndex = SystemResourceManager[SYSTEM_RESOURCE_DATA_POINTER_OFFSET];
   for (localSystemHandle = *SystemResourceManager; localSystemHandle != nextDataIndex; localSystemHandle = localSystemHandle + 0x18) {
     ProcessQueueItem(localSystemHandle);
   }
@@ -32663,7 +32663,7 @@ void CleanupSystemResourceMemoryRegion(long long *SystemResourceManager)
   long long nextDataIndex;
   long long localSystemHandle;
   
-  nextDataIndex = SystemResourceManager[1];
+  nextDataIndex = SystemResourceManager[SYSTEM_RESOURCE_DATA_POINTER_OFFSET];
   for (localSystemHandle = *SystemResourceManager; localSystemHandle != nextDataIndex; localSystemHandle = localSystemHandle + 0x548) {
     FinalizeSystemMemoryAllocation(localSystemHandle);
   }
@@ -33428,7 +33428,7 @@ void FreeSystemMemoryPool(long long *SystemResourceManager)
   long long nextDataIndex;
   long long localSystemHandle;
   
-  nextDataIndex = SystemResourceManager[1];
+  nextDataIndex = SystemResourceManager[SYSTEM_RESOURCE_DATA_POINTER_OFFSET];
   for (localSystemHandle = *SystemResourceManager; localSystemHandle != nextDataIndex; localSystemHandle = localSystemHandle + 0x548) {
     FinalizeSystemMemoryAllocation(localSystemHandle);
   }
@@ -33755,7 +33755,7 @@ void CleanupSystemResources(long long *SystemResourceManager)
   long long nextDataIndex;
   long long localSystemHandle;
   
-  nextDataIndex = SystemResourceManager[1];
+  nextDataIndex = SystemResourceManager[SYSTEM_RESOURCE_DATA_POINTER_OFFSET];
   for (localSystemHandle = *SystemResourceManager; localSystemHandle != nextDataIndex; localSystemHandle = localSystemHandle + 0x50) {
     ResetSystemResources(localSystemHandle);
   }
@@ -33784,7 +33784,7 @@ void CleanupSystemResourcesIterator(long long *SystemResourceManager)
   long long nextDataIndex;
   long long localSystemHandle;
   
-  nextDataIndex = SystemResourceManager[1];
+  nextDataIndex = SystemResourceManager[SYSTEM_RESOURCE_DATA_POINTER_OFFSET];
   for (localSystemHandle = *SystemResourceManager; localSystemHandle != nextDataIndex; localSystemHandle = localSystemHandle + 0x50) {
     ResetSystemResources(localSystemHandle);
   }
@@ -35822,7 +35822,7 @@ void CleanupSystemResourceManager(long long *SystemResourceManager)
   long long nextDataIndex;
   long long localSystemHandle;
   
-  nextDataIndex = SystemResourceManager[1];
+  nextDataIndex = SystemResourceManager[SYSTEM_RESOURCE_DATA_POINTER_OFFSET];
   localSystemHandle = *SystemResourceManager;
   if (localSystemHandle == nextDataIndex) {
     SystemResourceManager[1] = localSystemHandle;
@@ -46163,7 +46163,7 @@ InitializeSystemResourceStringTemplate(void* *SystemResourceManager,long long Co
   SystemResourceManager[SYSTEM_RESOURCE_DATA_POINTER_OFFSET] = 0;
   *(uint32_t *)(SystemResourceManager + 2) = 0;
   *SystemResourceManager = &SystemMemoryAllocatorTemplate;
-  SystemResourceManager[1] = SystemResourceManager + 3;
+  SystemResourceManager[SYSTEM_RESOURCE_DATA_POINTER_OFFSET] = SystemResourceManager + 3;
   *(uint32_t *)(SystemResourceManager + 2) = 0;
   *(uint8_t *)(SystemResourceManager + 3) = 0;
   *(uint32_t *)(SystemResourceManager + 2) = *(uint32_t *)(ConfigurationDataPointer + 0x10);
@@ -46195,7 +46195,7 @@ void* * InitializeSystemMemoryAllocatorTemplate(void* *SystemResourceManager)
   SystemResourceManager[SYSTEM_RESOURCE_DATA_POINTER_OFFSET] = 0;
   *(uint32_t *)(SystemResourceManager + 2) = 0;
   *SystemResourceManager = &SystemMemoryAllocatorTemplate;
-  SystemResourceManager[1] = SystemResourceManager + 3;
+  SystemResourceManager[SYSTEM_RESOURCE_DATA_POINTER_OFFSET] = SystemResourceManager + 3;
   *(uint32_t *)(SystemResourceManager + 2) = 0;
   *(uint8_t *)(SystemResourceManager + 3) = 0;
   SystemResourceManager[0x2b] = 0;
