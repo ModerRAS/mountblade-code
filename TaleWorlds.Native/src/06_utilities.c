@@ -43477,13 +43477,13 @@ void ExecuteResourceTableCleanup(uint8_t ObjectContext, int64_t ValidationContex
   uint8_t *ResourceHashPointer;
   int64_t *ResourceTablePointer;
   uint8_t *HashValidationResultAddress;
-  uint8_t LoopControlVariable;
+  uint8_t ResourceCleanupFlag;
   
   ResourceTablePointer = *(int64_t **)(ValidationContext + 0x88);
-  LoopControlVariable = 0xfffffffffffffffe;
+  ResourceCleanupFlag = 0xfffffffffffffffe;
   ResourceHashPointer = (uint8_t *)ResourceTablePointer[1];
   for (HashValidationResultAddress = (uint8_t *)*ResourceTablePointer; HashValidationResultAddress != ResourceHashAddress; HashValidationResultAddress = HashValidationResultAddress + 4) {
-    (**(code **)*HashValidationResultAddress)(HashValidationResultAddress, 0, CleanupOption, CleanupFlag, LoopControlVariable);
+    (**(code **)*HashValidationResultAddress)(HashValidationResultAddress, 0, CleanupOption, CleanupFlag, ResourceCleanupFlag);
   }
   if (*ResourceTablePointer == 0) {
     return;
