@@ -60284,7 +60284,16 @@ void RegisterSystemResourceReleaseHandlerExtended4(uint8_t ObjectContext,int64_t
 
 
 
-void Unwind_180908550(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行资源上下文处理操作
+ * 
+ * 该函数负责执行资源上下文处理操作，调用资源上下文中的处理函数
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @return 无返回值
+ */
+void ExecuteResourceContextProcessing(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t *processPointer;
@@ -60298,7 +60307,16 @@ void Unwind_180908550(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180908570(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 注册系统资源释放处理器（第五个扩展版本）
+ * 
+ * 该函数负责注册系统资源释放处理器的第五个扩展版本
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @return 无返回值
+ */
+void RegisterSystemResourceReleaseHandlerExtended5(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   RegisterResourceHandler(*(int64_t *)(ValidationContext + 0x40) + 8,0x20,0x20,ReleaseSystemResource);
@@ -60308,7 +60326,14 @@ void Unwind_180908570(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_1809085a0(void)
+/**
+ * @brief 初始化系统数据指针
+ * 
+ * 该函数负责初始化系统数据指针，将其指向系统数据结构
+ * 
+ * @return 无返回值
+ */
+void InitializeSystemDataPointer(void)
 
 {
   SystemDataPointer009 = &SystemDataStructure;
