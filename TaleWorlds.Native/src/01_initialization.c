@@ -37333,7 +37333,20 @@ void* GetSystemResourceDataPointer(long long SystemResourcePointer)
 
 
 
-void* * FUN_18005d4b0(long long SystemResourcePointer,char *ConfigurationDataPointer,long long AdditionalParameter)
+/**
+ * @brief 查找系统资源字符串匹配
+ * 
+ * 该函数在系统资源中查找与指定配置数据字符串匹配的资源
+ * 支持字符串长度计算和比较操作
+ * 
+ * @param SystemResourcePointer 系统资源指针
+ * @param ConfigurationDataPointer 配置数据字符串指针
+ * @param AdditionalParameter 额外参数（字符串长度）
+ * @return 匹配的资源指针，未找到返回NULL
+ * 
+ * 原始函数名为FUN_18005d4b0，现已重命名为FindSystemResourceStringMatch
+ */
+void* * FindSystemResourceStringMatch(long long SystemResourcePointer,char *ConfigurationDataPointer,long long AdditionalParameter)
 
 {
   char *pcVar1;
