@@ -660,7 +660,7 @@ void* SystemSemaphoreControlBuffer;
 void* SystemMutexHandleBuffer;
 void* SystemConditionVariableBuffer;
 void* SystemBarrierManagerBuffer;
-void* SystemMemoryPoolBuffer;
+void* MemoryPoolBuffer;
 void* TaskExecutionQueueBuffer;
 void* StackManagerBuffer;
 void* SystemLinkedListBuffer;
@@ -687,7 +687,7 @@ void* SystemSemaphoreControlTable;
 void* SystemMutexHandleTable;
 void* SystemConditionVariableTable;
 void* SystemBarrierManagerTable;
-void* SystemMemoryPoolTable;
+void* MemoryPoolTable;
 void* TaskManagementQueueTable;
 void* StackManagerTable;
 void* SystemLinkedListTable;
@@ -942,8 +942,8 @@ void* SystemLinkedListTable;
 void* SystemDataBufferMemoryPool;
 void* SystemDataBufferDataCache;
 void* DataBufferQueueManager;
-void* SystemMemoryPoolBufferPrimary;
-void* SystemMemoryPoolBufferSecondary;
+void* MemoryPoolBufferPrimary;
+void* MemoryPoolBufferSecondary;
 void* SystemGraphicsTextureBuffer;
 void* SystemAudioSampleBuffer;
 void* SystemPhysicsCollisionBuffer;
@@ -1225,7 +1225,7 @@ void* SystemSecurityConfigTableQuinary;
  * 配置内存块大小和池管理策略
  */
 void SetupMemoryPool(void);
-void* SystemMemoryPool;
+void* MemoryPool;
 void* SystemNetworkConfigTableQuaternary;
 void* SystemEventConfigTableOctonary;
 void* SystemLoggingConfigTableSeptenary;
@@ -1751,10 +1751,10 @@ uint8_t SystemDataTablePrimary;
 uint8_t SystemDataTableSecondary;
 uint8_t SystemDataTableTertiary;
 uint8_t SystemDataTableQuaternary;
-uint8_t SystemMemoryPoolBufferPrimary;
-uint8_t SystemMemoryPoolBufferSecondary;
-uint8_t SystemMemoryPoolBufferTertiary;
-uint8_t SystemMemoryPoolBufferQuaternary;
+uint8_t MemoryPoolBufferPrimary;
+uint8_t MemoryPoolBufferSecondary;
+uint8_t MemoryPoolBufferTertiary;
+uint8_t MemoryPoolBufferQuaternary;
 uint8_t SystemConfigBufferPrimary;
 uint8_t SystemConfigBufferSecondary;
 uint8_t SystemConfigBufferTertiary;
@@ -1818,7 +1818,7 @@ uint8_t SystemMemoryConfigTemplateDuovigesimal;
 uint8_t SystemMemoryConfigTemplateTervigesimal;
 uint8_t SystemMemoryConfigTemplateQuattuorvigesimal;
 uint8_t SystemMemoryConfigTemplateAlternate;
-uint8_t SystemMemoryPoolBufferPool;
+uint8_t MemoryPoolBufferPool;
 uint8_t SystemMemoryCachePool;
 uint8_t SystemMemoryDescriptorPool;
 uint8_t SystemMemoryControlFlags;
@@ -2279,7 +2279,7 @@ uint8_t LogMessageFilterData;
 uint8_t LogMessageFormatterData;
 uint8_t LogMessageHandlerData;
 uint8_t LogSystemTimestampData;
-uint8_t LogSystemMemoryPoolData;
+uint8_t LogMemoryPoolData;
 uint8_t LogSystemThreadData;
 int64_t PerformanceCounterData;
 uint ConfigurationVersion;
@@ -2435,10 +2435,10 @@ uint8_t MemoryAllocationTree;
 uint8_t MemoryAllocationGraph;
 uint8_t MemoryAllocationNetwork;
 
- uint8_t SystemMemoryPoolManager;
+ uint8_t MemoryPoolManager;
 uint8_t MemoryAllocator;
 uint8_t SystemMemoryDescriptor;
-uint8_t SystemMemoryPoolBuffer;
+uint8_t MemoryPoolBuffer;
 uint8_t SystemMemoryCache;
 uint8_t SystemMemoryHeap;
 uint8_t SystemMemoryStack;
@@ -2552,7 +2552,7 @@ uint32_t SystemResourceState;
 uint8_t SystemResourceHandler;
 uint8_t ScriptFunctionTable;
 uint8_t SystemResourceManager;
-uint8_t SystemResourcePool;
+uint8_t ResourcePool;
 uint8_t ScriptVariableTable;
 uint8_t ScriptClassTable;
 uint8_t ScriptMethodTable;
@@ -2569,7 +2569,7 @@ uint8_t SystemResourceQueue;
 uint8_t SystemResourceStack;
 uint8_t SystemResourceBuffer;
 uint8_t SystemResourceCache;
-uint8_t SystemResourcePoolManager;
+uint8_t ResourcePoolManager;
 
  // 资源操作处理器 - 用于处理资源相关操作
  uint8_t ResourceOperationsProcessor;
@@ -2639,8 +2639,8 @@ uint8_t SystemThreadPool;
 uint8_t SystemThreadQueue;
 uint8_t SystemThreadMonitor;
 uint8_t ThreadMonitorTable;
-uint8_t SystemMemoryPoolBufferPrimary;
-uint8_t SystemMemoryPoolBufferSecondary;
+uint8_t MemoryPoolBufferPrimary;
+uint8_t MemoryPoolBufferSecondary;
 // 第三级内存池缓冲区 - 用于存储第三级系统内存池数据
 uint8_t TertiaryMemoryPoolBuffer;
 uint8_t ResourceAllocationTable;
@@ -2664,10 +2664,10 @@ uint8_t EventTable;
 uint8_t ThreadManager;
 uint8_t ProcessManager;
 uint8_t MemoryAllocator;
-uint8_t SystemMemoryPool;
-uint8_t SystemTaskScheduler;
-uint8_t SystemResourcePool;
-uint8_t SystemDataManager;
+uint8_t MemoryPool;
+uint8_t TaskScheduler;
+uint8_t ResourcePool;
+uint8_t DataManager;
 uint8_t SystemDataBufferManager;
 uint8_t SystemIoManager;
 uint8_t SystemFileHandler;
@@ -2701,11 +2701,11 @@ uint8_t SystemStatistics;
 uint8_t SystemMetrics;
 uint8_t SystemAnalyzer;
 uint8_t SystemOptimizer;
-uint8_t SystemMemoryPoolManager;
+uint8_t MemoryPoolManager;
 uint8_t MemoryAllocator;
 uint8_t SystemMemoryTracker;
 uint8_t SystemMemoryCache;
-uint8_t SystemMemoryPoolBuffer;
+uint8_t MemoryPoolBuffer;
 uint8_t SystemMemoryManager;
 uint8_t SystemMemoryController;
 uint8_t SystemMemoryHandler;
@@ -2811,7 +2811,7 @@ uint8_t SystemResourceRestorer;
 uint8_t SystemResourceMementoManager;
 uint8_t SystemResourceCache;
 uint8_t SystemResourceBuffer;
-uint8_t SystemResourcePool;
+uint8_t ResourcePool;
 uint8_t SystemResourceQueue;
 uint8_t SystemResourceStack;
 uint8_t SystemResourceHeap;
@@ -93923,21 +93923,21 @@ void InitializeSystemDataStructureCD(void)
   int64_t loopCounter;
   int64_t ResourceTable;
   
-  if (0xf < SystemResourcePoolCounter) {
-    LocalContextData = CONCAT71(SystemResourcePoolHighPointer,SystemResourcePoolLowPointer);
+  if (0xf < ResourcePoolCounter) {
+    LocalContextData = CONCAT71(ResourcePoolHighPointer,ResourcePoolLowPointer);
     resourceTable = LocalContextData;
-    if (0xfff < SystemResourcePoolCounter + 1) {
+    if (0xfff < ResourcePoolCounter + 1) {
       resourceTable = *(int64_t *)(LocalContextData + -8);
       if (0x1f < (LocalContextData - resourceTable) - 8U) {
                     // WARNING: Subroutine does not return
-        _invalid_parameter_noinfo_noreturn(LocalContextData - resourceTable,SystemResourcePoolCounter + 0x28);
+        _invalid_parameter_noinfo_noreturn(LocalContextData - resourceTable,ResourcePoolCounter + 0x28);
       }
     }
     free(resourceTable);
   }
-  SystemResourcePoolCleanupFlag = 0;
-  SystemResourcePoolCounter = 0xf;
-  SystemResourcePoolLowPointer = 0;
+  ResourcePoolCleanupFlag = 0;
+  ResourcePoolCounter = 0xf;
+  ResourcePoolLowPointer = 0;
   return;
 }
 
@@ -93959,21 +93959,21 @@ void InitializeSystemDataStructureCE(void)
   int64_t loopCounter;
   int64_t ResourceTable;
   
-  if (0xf < SystemMemoryPoolCounter) {
-    LocalContextData = CONCAT71(SystemMemoryPoolHighPointer,SystemMemoryPoolLowPointer);
+  if (0xf < MemoryPoolCounter) {
+    LocalContextData = CONCAT71(MemoryPoolHighPointer,MemoryPoolLowPointer);
     resourceTable = LocalContextData;
-    if (0xfff < SystemMemoryPoolCounter + 1) {
+    if (0xfff < MemoryPoolCounter + 1) {
       resourceTable = *(int64_t *)(LocalContextData + -8);
       if (0x1f < (LocalContextData - resourceTable) - 8U) {
                     // WARNING: Subroutine does not return
-        _invalid_parameter_noinfo_noreturn(LocalContextData - resourceTable,SystemMemoryPoolCounter + 0x28);
+        _invalid_parameter_noinfo_noreturn(LocalContextData - resourceTable,MemoryPoolCounter + 0x28);
       }
     }
     free(resourceTable);
   }
-  SystemMemoryPoolCleanupFlag = 0;
-  SystemMemoryPoolCounter = 0xf;
-  SystemMemoryPoolLowPointer = 0;
+  MemoryPoolCleanupFlag = 0;
+  MemoryPoolCounter = 0xf;
+  MemoryPoolLowPointer = 0;
   return;
 }
 

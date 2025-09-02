@@ -19996,58 +19996,57 @@ int InitializeSystemCoreComponents(long long SystemResourcePointer,long long Ini
   void* ****ppppunsignedSystemValue9;
   void* ***pppuStackX_8;
   void* *systemMemoryContext;
-  long long lStack_130;
-  uint32_t uStack_128;
-  void* uStack_120;
-  void* uStack_118;
-  void* uStack_110;
-  void* uStack_108;
-  void* uStack_100;
-  void* uStack_f8;
-  void* uStack_f0;
-  void* uStack_e8;
-  void* uStack_e0;
-  void* uStack_d8;
-  void* uStack_d0;
-  void* uStack_c8;
-  void* uStack_c0;
-  void* uStack_b8;
-  void* uStack_b0;
-  void* uStack_a8;
-  void* uStack_a0;
-  void* uStack_98;
-  void* StackParameterC;
-  void* uStack_88;
-  void* uStack_80;
-  void* uStack_78;
-  void* uStack_70;
-  void* ***pppEncryptionValue68;
-  void* ***pppuStack_60;
-  void* uStack_58;
-  void* uStack_50;
-  void* EncryptionValue48;
-  uint32_t uStack_40;
-  void* uStack_38;
+  long long LocalMemoryBufferHandle;
+  uint32_t LocalInitializationFlags;
+  void* LocalSystemContextA;
+  void* LocalSystemContextB;
+  void* LocalMemoryPointerA;
+  void* LocalMemoryPointerB;
+  void* LocalMemoryPointerC;
+  void* LocalMemoryPointerD;
+  void* LocalMemoryPointerE;
+  void* LocalMemoryPointerF;
+  void* LocalMemoryPointerG;
+  void* LocalMemoryPointerH;
+  void* LocalMemoryPointerI;
+  void* LocalMemoryPointerJ;
+  void* LocalMemoryPointerK;
+  void* LocalMemoryPointerL;
+  void* LocalMemoryPointerM;
+  void* LocalMemoryPointerN;
+  void* LocalMemoryPointerO;
+  void* LocalMemoryParameterC;
+  void* LocalMemoryPointerP;
+  void* LocalMemoryPointerQ;
+  void* LocalMemoryPointerR;
+  void* LocalMemoryPointerS;
+  void* ***LocalEncryptionContext;
+  void* ***LocalSystemContextX;
+  void* LocalMemoryPointerT;
+  void* LocalMemoryPointerU;
+  void* LocalEncryptionValue;
+  uint32_t LocalSystemStatus;
+  void* LocalSystemHandle;
   
-  uStack_38 = 0xfffffffffffffffe;
+  LocalSystemHandle = 0xfffffffffffffffe;
   localSystemHandle = 0;
   systemMemoryContext = (void* *)&SystemGlobalDataReference;
-  uStack_120 = 0;
-  lStack_130 = 0;
-  uStack_128 = 0;
-  uStack_108 = 0;
-  uStack_100 = 0;
-  uStack_f8 = 0;
-  uStack_f0 = 0;
-  uStack_e8 = 0;
-  uStack_e0 = 0;
-  uStack_d8 = 0;
-  uStack_d0 = 0;
-  uStack_c8 = 0;
-  uStack_40 = 3;
-  uStack_58 = 0;
-  uStack_50 = 0;
-  EncryptionValue48 = 0;
+  LocalSystemContextA = 0;
+  LocalMemoryBufferHandle = 0;
+  LocalInitializationFlags = 0;
+  LocalMemoryPointerB = 0;
+  LocalMemoryPointerC = 0;
+  LocalMemoryPointerD = 0;
+  LocalMemoryPointerE = 0;
+  LocalMemoryPointerF = 0;
+  LocalMemoryPointerG = 0;
+  LocalMemoryPointerH = 0;
+  LocalMemoryPointerI = 0;
+  LocalMemoryPointerJ = 0;
+  LocalSystemStatus = 3;
+  LocalMemoryPointerT = 0;
+  LocalMemoryPointerU = 0;
+  LocalEncryptionValue = 0;
   pointerToUnsigned3 = &SystemStringTemplate;
   if (*(void* **)(ConfigurationDataPointer + 8) != (void* *)0x0) {
     pointerToUnsigned3 = *(void* **)(ConfigurationDataPointer + 8);
@@ -26898,12 +26897,12 @@ SystemValidationCheck:
           if (bVar2 != allocationSize) break;
           pbVar4 = pbVar4 + 1;
         } while (allocationSize != 0);
-        if ((int)(bVar2 - allocationSize) < 1) goto LAB_SystemValueValidation;
+        if ((int)(bVar2 - allocationSize) < 1) goto SystemValueValidationCheck;
       }
     }
   }
   pointerToUnsigned10 = pointerToUnsigned1;
-LAB_SystemValueValidation:
+SystemValueValidationCheck:
   puStack_30 = &SystemGlobalDataReference;
   if (pbStack_28 == (byte *)0x0) {
     return pointerToUnsigned10 != pointerToUnsigned1;
@@ -27288,12 +27287,12 @@ void SystemFloatingPointProcessor(long long SystemResourcePointer,float paramete
       }
       systemStatus = (long long)(int)(((int)systemStatus3 / (int)systemStatus2) * systemStatus1) / (long long)systemFlag;
       unsignedSystemValue7 = (uint)systemStatus;
-      if (((systemStatus1 & 1) == 0) && ((systemStatus & 1) == 0)) goto LAB_SystemFlagHandler;
+      if (((systemStatus1 & 1) == 0) && ((systemStatus & 1) == 0)) goto SystemFlagHandlerCheck;
       fVar15 = fVar15 + 0.01;
       *(float *)(SystemResourcePointer + 0x234) = fVar15;
     } while (fVar15 <= 1.0);
     *(uint32_t *)(SystemResourcePointer + 0x234) = 0x3f800000;
-LAB_SystemFlagHandler:
+SystemFlagHandlerCheck:
     fStackX_8 = (float)(int)systemStatus1 / fStackX_8;
     fStackX_c = (float)(int)unsignedSystemValue7 / (float)(int)systemStatus3;
     systemStatus3 = unsignedSystemValue7;
