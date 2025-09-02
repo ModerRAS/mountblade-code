@@ -11042,18 +11042,28 @@ uint8_t ExpandResourcePoolCapacity(int64_t *ResourcePoolHandle)
  * 该函数是ExpandResourcePoolCapacity的简化版本，
  * 用于处理资源池容量扩展的简化场景。
  * 
+ * 该函数执行以下操作：
+ * 1. 验证输入参数的有效性
+ * 2. 检查资源池的当前状态
+ * 3. 执行资源池容量扩展操作
+ * 4. 初始化扩展后的资源池结构
+ * 5. 验证扩展操作的结果
+ * 
  * @return 返回操作状态码，0表示成功，非0表示失败
+ * @note 这是一个简化版本的函数，适用于基本的资源池扩展需求
+ * @warning 调用此函数前必须确保资源池已正确初始化
+ * @see ExpandResourcePoolCapacity
  */
 uint8_t ExpandResourcePoolCapacitySimple(void)
 
 {
-  int64_t loopCounter;
+  int64_t LoopCounter;
   int InputValidationResult;
   uint8_t HashCheckResult;
   uint64_t HashValidationResult;
   int64_t DataOffset;
   uint ResourceContextOffset;
-  int *ResourceDataPointer66;
+  int *ResourceDataPointer;
   int64_t *ResourceContext;
   int DataIndexRegister;
   int PackageValidationStatusCode;
@@ -11094,13 +11104,13 @@ uint8_t ExpandResourcePoolCapacitySimple(void)
           return 0x1c;
         }
         LoopOffset = (int64_t)(int)(*(uint *)(HashValidationResult + ResourceContext[2]) & (int)ResourceContext[1] - 1U);
-        ResourceDataPointer6 = (int *)(*ResourceContext + LoopOffset * 4);
+        ResourceDataPointer = (int *)(*ResourceContext + LoopOffset * 4);
         ResourceCount = *(int *)(*ResourceContext + LoopOffset * 4);
         while (ResourceCount != -1) {
-          ResourceDataPointer6 = (int *)(ResourceContext[2] + 4 + (int64_t)ResourceCount * 0x10);
-          ResourceCount = *ResourceDataPointer6;
+          ResourceDataPointer = (int *)(ResourceContext[2] + 4 + (int64_t)ResourceCount * 0x10);
+          ResourceCount = *ResourceDataPointer;
         }
-        *ResourceDataPointer6 = (int)ResourceCounter;
+        *ResourceDataPointer = (int)ResourceCounter;
         ValidationCounter = ValidationCounter + 1;
         ResourceCounter = (uint64_t)((int)ResourceCounter + 1);
         *(uint32_t *)(ResourceContext[2] + 4 + HashValidationResult) = 0xffffffff;
@@ -15102,11 +15112,11 @@ void ProcessResourceDataValidation(int64_t *ObjectContext)
       }
       MaximumUnsignedValue = 0xffffffffffffffff;
       TempFloatBuffer[0] = -NAN;
-      PointerStack318 = (int64_t *)(*(int64_t *)(ObjectContext[1] + 0x90) + 0x38);
-      ResourceSettingsConfigFlag(PointerStack318,&MaximumUnsignedValue,TempFloatBuffer);
+      ResourceContextPointer = (int64_t *)(*(int64_t *)(ObjectContext[1] + 0x90) + 0x38);
+      ResourceSettingsConfigFlag(ResourceContextPointer,&MaximumUnsignedValue,TempFloatBuffer);
       ValidationFloatBuffer[0] = TempFloatBuffer[0];
       if (TempFloatBuffer[0] != -NAN) {
-        ResourceContext6 = PointerStack318;
+        ResourceContext6 = ResourceContextPointer;
         inputFloatValue8 = (float)MaximumUnsignedValue;
         do {
           do {
@@ -15148,7 +15158,7 @@ void ProcessResourceDataValidation(int64_t *ObjectContext)
                 ResourceCount = ProcessStatus;
 ResourceSearchSuccess:
                 LocalContextPointer = AudioSampleRate;
-                ResourceContext6 = PointerStack318;
+                ResourceContext6 = ResourceContextPointer;
               } while (ProcessStatus != -1);
             }
           } while ((ValidationFloatBuffer[0] != -NAN) &&
