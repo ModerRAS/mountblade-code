@@ -50103,18 +50103,18 @@ long long * CreateSystemResourcePool(long long ResourceManager, long long Config
  * 
  *FUN_18006e0b0：CleanupResourceManager
  */
-long long CleanupResourceManager(long long SystemResourceManager,ulong long ConfigurationDataPointer)
+long long CleanupResourceManager(long long ResourceManager, ulong long CleanupFlags)
 
 {
   CleanupSystemResourceArray();
   _Mtx_destroy_in_situ();
   _Cnd_destroy_in_situ();
-  CleanupSystemResourceManagers(SystemResourceManager + 200);
-  ReleaseSystemResources(SystemResourceManager);
-  if ((ConfigurationDataPointer & 1) != 0) {
-    free(SystemResourceManager,0x408);
+  CleanupSystemResourceManagers(ResourceManager + 200);
+  ReleaseSystemResources(ResourceManager);
+  if ((CleanupFlags & 1) != 0) {
+    free(ResourceManager, 0x408);
   }
-  return SystemResourceManager;
+  return ResourceManager;
 }
 
 
