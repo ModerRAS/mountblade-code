@@ -5754,8 +5754,8 @@ void ProcessObjectConfiguration(int64_t ObjectPointer, uint8_t ConfigData)
 
 {
   int ProcessResult;
-  uint8_t TemporaryBuffer [4];
-  uint32_t ConfigurationParameters [2];
+  uint8_t TemporaryProcessingBuffer [4];
+  uint32_t SystemConfigurationParameters [2];
   uint8_t ObjectConfiguration;
   uint32_t ObjectFlags;
   
@@ -5924,7 +5924,7 @@ uint64_t ProcessSystemResourceAllocation(int64_t ResourceHandle, uint8_t Operati
   uint64_t ResourceHashValidationResult;
   int64_t ResourceIndex;
   uint8_t ValidationContext;
-  uint32_t ResourceOperationBuffer [2];
+  uint32_t ResourceProcessingOperationBuffer [2];
   int64_t ResourceHandleValue;
   int ResourceCount;
   
@@ -5935,14 +5935,14 @@ uint64_t ProcessSystemResourceAllocation(int64_t ResourceHandle, uint8_t Operati
       ResourceIndex = 0;
       if (*(uint *)(ResourceHandle + ObjectStatusFlagsOffset) == 0) {
         ResourceHandleValue = *(int64_t *)(ResourceHandle + ObjectHandleMemoryOffset);
-        ResourceOperationBuffer[0] = 1;
+        ResourceProcessingOperationBuffer[0] = 1;
         ResourceIndex = ResourceHandleValue;
       }
       else {
         ResourceHandleValue = *(int64_t *)(ResourceHandle + ObjectHandleMemoryOffset);
-        ResourceOperationBuffer[0] = 2;
+        ResourceProcessingOperationBuffer[0] = 2;
       }
-      ResourceHash = ProcessResourceOperationEx(OperationFlag,ResourceOperationBuffer,*(uint32_t *)(ResourceHandle + ObjectDataSizeOffset),ValidationContext);
+      ResourceHash = ProcessResourceOperationEx(OperationFlag,ResourceProcessingOperationBuffer,*(uint32_t *)(ResourceHandle + ObjectDataSizeOffset),ValidationContext);
       ResourceHashValidationResult = (uint64_t)ResourceHash;
       if (ResourceHash == 0) {
         ResourceHashValidationResult = 0;
@@ -7962,7 +7962,7 @@ uint8_t ProcessFloatComparisonOperation(void)
       *(float *)(StackBuffer + 4) = FloatValueToCompare;
       
       // 释放系统上下文资源
-      ReleaseSystemContextResources(OperationResult);
+      ReleaseSystemContextResources(OperationStatusCode);
     }
     OperationStatusCode = 0x1c; // ErrorValueOutOfRange
   }
@@ -8019,7 +8019,7 @@ uint8_t ProcessBufferedFloatComparison(void)
       *(float *)(StackBuffer + 4) = FloatValueToCompare;
       
       // 释放系统上下文资源
-      ReleaseSystemContextResources(OperationResult);
+      ReleaseSystemContextResources(OperationStatusCode);
     }
     OperationStatusCode = 0x1c; // ErrorValueOutOfRange
   }
@@ -12809,26 +12809,29 @@ uint8_t ExpandResourceTableCapacity(int64_t ObjectContext)
 /**
  * @brief 处理数据块操作与基础验证器
  * 
- * 该函数负责处理数据块操作，使用基础验证器来确保数据的完整性和有效性
+ * 该函数负责处理数据块操作，使用基础验证器来确保数据的完整性和有效性。
+ * 函数会解析数据内容，处理字符串操作，并验证数据格式。
  * 
- * @param ObjectContext 数据上下文指针
- * @param ValidationContext 操作上下文指针  
- * @param validationFlag 验证标志
- * @return 处理结果状态码
+ * @param ObjectContext 数据上下文指针，包含要处理的数据信息和资源哈希值
+ * @param ValidationContext 验证上下文指针，用于数据验证和处理
+ * @param validationFlag 验证标志，指定验证的类型和级别
+ * @return int 返回处理结果状态码，成功返回0，失败返回错误码
+ * @note 此函数使用基础验证器，适用于常规数据处理场景
+ * @warning 调用此函数前必须确保ObjectContext和ValidationContext已正确初始化
  */
 int ProcessDataBlockOperationWithBasicValidator(int64_t ObjectContext,int64_t ValidationContext,int validationFlag)
 
 {
   uint32_t ResourceHash;
-  int ProcessingStatusCode;
-  int PackageValidationStatusCode;
+  int DataParsingResult;
+  int StringProcessingResult;
+  int DataValidationResult;
   
   ResourceHash = *(uint32_t *)(ObjectContext + 0x14);
-  OperationStatusCode = ParseDataContent(ValidationContext,validationFlag,*(uint32_t *)(ObjectContext + 0x10));
-  ValidationStatusCode = ProcessStringOperation(ValidationContext + OperationResult,validationFlag - OperationResult,&StringProcessingTemplate);
-  OperationStatusCode = OperationResult + HashValidationResult;
-  ValidationStatusCode = ValidateDataFormat(OperationResult + ValidationContext,validationFlag - OperationResult,ResourceHash);
-  return HashValidationResult + OperationResult;
+  DataParsingResult = ParseDataContent(ValidationContext,validationFlag,*(uint32_t *)(ObjectContext + 0x10));
+  StringProcessingResult = ProcessStringOperation(ValidationContext + DataParsingResult,validationFlag - DataParsingResult,&StringProcessingTemplate);
+  DataValidationResult = ValidateDataFormat(DataParsingResult + ValidationContext,validationFlag - DataParsingResult,ResourceHash);
+  return StringProcessingResult + DataParsingResult;
 }
 
 
@@ -12847,15 +12850,15 @@ int ProcessDataBlockOperationWithExtendedValidator(int64_t ObjectContext,int64_t
 
 {
   uint8_t ResourceHash;
-  int ProcessingStatusCode;
-  int PackageValidationStatusCode;
+  int PrimaryStringProcessingResult;
+  int SecondaryStringProcessingResult;
+  int ResourceValidationResult;
   
   ResourceHash = *(uint8_t *)(ObjectContext + 0x10);
-  OperationStatusCode = ProcessStringOperation(ValidationContext,validationFlag,&StringOperationTemplate);
-  ValidationStatusCode = ProcessStringOperation(ValidationContext + OperationResult,validationFlag - OperationResult,&StringProcessingTemplate);
-  OperationStatusCode = OperationResult + HashValidationResult;
-  ValidationStatusCode = ValidateResourceData(OperationResult + ValidationContext,validationFlag - OperationResult,ResourceHash);
-  return HashValidationResult + OperationResult;
+  PrimaryStringProcessingResult = ProcessStringOperation(ValidationContext,validationFlag,&StringOperationTemplate);
+  SecondaryStringProcessingResult = ProcessStringOperation(ValidationContext + PrimaryStringProcessingResult,validationFlag - PrimaryStringProcessingResult,&StringProcessingTemplate);
+  ResourceValidationResult = ValidateResourceData(PrimaryStringProcessingResult + ValidationContext,validationFlag - PrimaryStringProcessingResult,ResourceHash);
+  return SecondaryStringProcessingResult + PrimaryStringProcessingResult;
 }
 
 
@@ -12874,27 +12877,26 @@ int ProcessDataBlockOperationWithSimplifiedValidator(int64_t ObjectContext,int64
 
 {
   uint32_t ResourceHash;
-  uint32_t ResourceHashValidationResult;
-  int PackageValidationStatusCode;
-  int ResultRecordIndex;
-  int PrimaryStringProcessingResult;
-  int SecondaryStringProcessingResult;
+  uint32_t DataSize;
+  int FirstStringProcessingResult;
+  int SecondStringProcessingResult;
+  int ThirdStringProcessingResult;
   int DataParsingResult;
   int DataHashValidationResult;
-  uint32_t ValidationResult;
-  int DataValidationStatusCode;
+  int TotalProcessingResult;
+  int DataValidationResult;
   
   ResourceHash = *(uint32_t *)(ObjectContext + 0x14);
-  ValidationResult = *(uint32_t *)(ObjectContext + 0x10);
-  PrimaryStringProcessingStatusCode = ProcessStringOperation(ValidationContext,validationFlag,&StringProcessingTemplate);
-  SecondaryStringProcessingStatusCode = ProcessStringOperation(PrimaryStringProcessingResult + ValidationContext,validationFlag - PrimaryStringProcessingResult,&StringProcessingTemplate);
-  PrimaryStringProcessingStatusCode = PrimaryStringProcessingResult + SecondaryStringProcessingResult;
-  DataParsingResult = ParseDataContent(PrimaryStringProcessingResult + ValidationContext,validationFlag - PrimaryStringProcessingResult,ResourceHashValidationResult);
-  PrimaryStringProcessingStatusCode = PrimaryStringProcessingResult + DataParsingResult;
-  SecondaryStringProcessingStatusCode = ProcessStringOperation(PrimaryStringProcessingResult + ValidationContext,validationFlag - PrimaryStringProcessingResult,&StringProcessingTemplate);
-  PrimaryStringProcessingStatusCode = PrimaryStringProcessingResult + SecondaryStringProcessingResult;
-  DataValidationStatusCode = ValidateDataFormat(PrimaryStringProcessingResult + ValidationContext,validationFlag - PrimaryStringProcessingResult,ResourceHash);
-  return DataHashValidationResult + PrimaryStringProcessingResult;
+  DataSize = *(uint32_t *)(ObjectContext + 0x10);
+  FirstStringProcessingResult = ProcessStringOperation(ValidationContext,validationFlag,&StringProcessingTemplate);
+  SecondStringProcessingResult = ProcessStringOperation(FirstStringProcessingResult + ValidationContext,validationFlag - FirstStringProcessingResult,&StringProcessingTemplate);
+  TotalProcessingResult = FirstStringProcessingResult + SecondStringProcessingResult;
+  DataParsingResult = ParseDataContent(TotalProcessingResult + ValidationContext,validationFlag - TotalProcessingResult,DataHashValidationResult);
+  TotalProcessingResult = TotalProcessingResult + DataParsingResult;
+  ThirdStringProcessingResult = ProcessStringOperation(TotalProcessingResult + ValidationContext,validationFlag - TotalProcessingResult,&StringProcessingTemplate);
+  TotalProcessingResult = TotalProcessingResult + ThirdStringProcessingResult;
+  DataValidationResult = ValidateDataFormat(TotalProcessingResult + ValidationContext,validationFlag - TotalProcessingResult,ResourceHash);
+  return DataHashValidationResult + TotalProcessingResult;
 }
 
 
