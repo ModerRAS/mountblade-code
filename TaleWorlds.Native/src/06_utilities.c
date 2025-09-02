@@ -3838,18 +3838,6 @@ uint8_t SystemMemoryFlagKernel;
  * @note 此函数会进行安全验证，确保只有有效的对象被处理
  * @warning 调用此函数前必须确保游戏上下文和系统上下文已正确初始化
  */
-/**
- * @brief 处理游戏对象集合
- * 
- * 该函数负责处理游戏中的对象集合，包括对象的验证、处理和管理
- * 通过安全验证和上下文处理确保游戏对象的正确处理
- * 
- * @param GameContext 游戏上下文参数，包含游戏相关的状态信息
- * @param SystemContext 系统上下文参数，包含系统资源和管理信息
- * @return 无返回值
- * @note 此函数会处理游戏对象集合的验证和处理
- * @warning 此函数涉及游戏对象处理，需要确保安全验证通过
- */
 void ProcessGameObjectCollection(int64_t GameContext, int64_t SystemContext)
 {
   uint8_t ObjectValidationState;
