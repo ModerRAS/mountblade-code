@@ -37826,23 +37826,35 @@ void ProcessSystemResourceSemaphore(long long SystemResourcePointer,long long *C
 
 
 
-// 函数: void FUN_18005e1d0(long long SystemResourcePointer,long long *ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
-void FUN_18005e1d0(long long SystemResourcePointer,long long *ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
+/**
+ * @brief 处理扩展系统资源信号量
+ * 
+ * 该函数负责处理扩展系统资源的信号量操作，处理特定的系统句柄
+ * 并释放相关资源，适用于更复杂的系统资源管理场景
+ * 
+ * @param SystemResourcePointer 系统资源指针
+ * @param ConfigurationDataPointer 配置数据指针
+ * @param AdditionalParameter 额外参数
+ * @param ConfigurationFlag 配置标志
+ * 
+ * 原始函数名为FUN_18005e1d0，现已重命名为ProcessExtendedSystemResourceSemaphore
+ */
+void ProcessExtendedSystemResourceSemaphore(long long SystemResourcePointer,long long *ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
 {
-  int systemStatus;
-  long long localSystemHandle;
-  void* unsignedSystemValue3;
+  int SystemStatus;
+  long long SystemHandle;
+  void* ConfigurationMask;
   
-  unsignedSystemValue3 = 0xfffffffffffffffe;
+  ConfigurationMask = (void*)0xfffffffffffffffe;
   (**(code **)(*(long long *)*ConfigurationDataPointer + 0x78))();
-  localSystemHandle = FUN_18005eb80(SystemResourcePointer + 0x548);
-  if (localSystemHandle != 0) {
-    FUN_18005f220(localSystemHandle,ConfigurationDataPointer);
+  SystemHandle = GetResourceOffsetHandler(SystemResourcePointer + 0x548);
+  if (SystemHandle != 0) {
+    ProcessResourceConfiguration(SystemHandle,ConfigurationDataPointer);
   }
   do {
-    systemStatus = ReleaseSemaphore(*(void* *)(SystemResourcePointer + 0x68),1,0,ConfigurationFlag,unsignedSystemValue3);
-  } while (systemStatus == 0);
+    SystemStatus = ReleaseSemaphore(*(void* *)(SystemResourcePointer + 0x68),1,0,ConfigurationFlag,ConfigurationMask);
+  } while (SystemStatus == 0);
   if ((long long *)*ConfigurationDataPointer != (long long *)0x0) {
     (**(code **)(*(long long *)*ConfigurationDataPointer + 0x38))();
   }
@@ -37853,16 +37865,27 @@ void FUN_18005e1d0(long long SystemResourcePointer,long long *ConfigurationDataP
 
 
 
-// 函数: void FUN_18005e250(long long SystemResourcePointer,void* ConfigurationDataPointer,int AdditionalParameter)
-void FUN_18005e250(long long SystemResourcePointer,void* ConfigurationDataPointer,int AdditionalParameter)
+/**
+ * @brief 处理带整型参数的系统资源
+ * 
+ * 该函数负责处理带整型参数的系统资源操作，根据线程本地存储状态
+ * 选择不同的资源处理路径，适用于需要整型参数的资源管理场景
+ * 
+ * @param SystemResourcePointer 系统资源指针
+ * @param ConfigurationDataPointer 配置数据指针
+ * @param AdditionalParameter 整型额外参数
+ * 
+ * 原始函数名为FUN_18005e250，现已重命名为ProcessSystemResourceWithIntParameter
+ */
+void ProcessSystemResourceWithIntParameter(long long SystemResourcePointer,void* ConfigurationDataPointer,int AdditionalParameter)
 
 {
-  uint unsignedSystemValue1;
-  int systemResult;
-  long long localResourceOffset;
-  long long localBufferAddress;
+  uint ThreadLocalStorageIndex;
+  int SystemResult;
+  long long ResourceOffset;
+  long long BufferAddress;
   
-  unsignedSystemValue1 = *(uint *)(*(long long *)((long long)ThreadLocalStoragePointer + (ulong long)__tls_index * 8)
+  ThreadLocalStorageIndex = *(uint *)(*(long long *)((long long)ThreadLocalStoragePointer + (ulong long)__tls_index * 8)
                    + 0xc);
   if (unsignedSystemValue1 == 0xffffffff) {
     localResourceOffset = FUN_18005eb80(SystemResourcePointer + 0x78);

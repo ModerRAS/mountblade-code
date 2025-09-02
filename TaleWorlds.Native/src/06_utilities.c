@@ -3195,9 +3195,6 @@ uint8_t SystemDataBufferSeptenary;
 uint8_t SystemMemoryFlagKernel;
 
  /**
- * @brief 处理游戏数据对象
- * 
- /**
  * @brief 处理游戏对象的主函数
  * 
  * 该函数负责处理游戏中的所有对象，包括对象的验证、状态检查和安全验证
