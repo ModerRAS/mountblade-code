@@ -20702,11 +20702,11 @@ ResourceOperationStatus:
  * 该函数负责验证系统中资源的完整性和一致性
  * 检查资源是否损坏或被篡改，确保数据安全
  * 
- * @return 无返回值
+ * @return void 无返回值
  * @note 此函数会在资源访问时自动调用
  * @warning 如果资源完整性检查失败，系统可能会拒绝访问该资源
  */
-ValidateResourceIntegrity(void)
+void ValidateResourceIntegrity(void)
 
 {
   uint InputRegisterResult;
@@ -49879,7 +49879,7 @@ void ReleaseResourceHandle(uint8_t objectContext,int64_t validationContext)
 
 
 
-void Unwind_180906140(uint8_t objectContext,int64_t validationContext)
+void UnwindResourceContextAt0xa8(uint8_t objectContext,int64_t validationContext)
 
 {
   int64_t *processPointer;
