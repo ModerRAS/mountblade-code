@@ -4398,9 +4398,7 @@ uint64_t DecrementSystemResourceCount(int64_t SystemContext, uint64_t ResourceHa
  * @param ObjectContext 对象上下文指针，包含对象管理所需的信息
  * @return uint8_t 操作状态码，0表示成功，0x1c表示错误
  */
-uint8_t IncrementObjectReferenceCount(int64_t ObjectContext)
-
-{
+uint8_t IncrementObjectReferenceCount(int64_t ObjectContext) {
   int64_t SystemObjectPointer;
   uint8_t ReferenceCountResult;
   int64_t ObjectContextHandles [4];
@@ -29393,9 +29391,7 @@ void InitializeUtilitySystemWithParameters(uint8_t *systemParameters)
  * @param ObjectContext 异常上下文参数
  * @param ValidationContext 系统上下文指针
  */
-void UnwindExceptionHandlerTypeOne(uint8_t ObjectContext,int64_t ValidationContext)
-
-{
+void UnwindExceptionHandlerTypeOne(uint8_t ObjectContext, int64_t ValidationContext) {
   if ((int64_t *)**(int64_t **)(ValidationContext + ExceptionHandlerPrimaryContextOffset) != (int64_t *)0x0) {
     (**(code **)(*(int64_t *)**(int64_t **)(ValidationContext + ExceptionHandlerPrimaryContextOffset) + ExceptionHandlerFunctionPointerOffset))();
   }
@@ -29412,9 +29408,7 @@ void UnwindExceptionHandlerTypeOne(uint8_t ObjectContext,int64_t ValidationConte
  * @param ObjectContext 异常上下文参数
  * @param ValidationContext 系统上下文指针
  */
-void UnwindExceptionHandlerTypeTwo(uint8_t ObjectContext,int64_t ValidationContext)
-
-{
+void UnwindExceptionHandlerTypeTwo(uint8_t ObjectContext, int64_t ValidationContext) {
   if (*(int64_t **)(ValidationContext + ExceptionHandlerSecondaryContextOffset) != (int64_t *)0x0) {
     (**(code **)(**(int64_t **)(ValidationContext + ExceptionHandlerSecondaryContextOffset) + ExceptionHandlerFunctionPointerOffset))();
   }
