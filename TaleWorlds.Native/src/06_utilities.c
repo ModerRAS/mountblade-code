@@ -63221,11 +63221,11 @@ void InitializeMemoryManagementArrayAndExecuteCleanup(uint8_t ObjectContext,uint
 {
   int64_t *processPointer;
   
-  ResourceContext = _MemoryManagementArray;
-  InitializeMemoryManagement(&MemoryManagementArray,_MemoryManagementArray[1],CleanupOption,CleanupFlag,0xfffffffffffffffe);
-  _MemoryManagementArray[1] = (int64_t)ResourceContext;
-  *_MemoryManagementArray = (int64_t)ResourceContext;
-  _MemoryManagementArray[2] = (int64_t)ResourceContext;
+  ResourceContext = MemoryManagementArray;
+  InitializeMemoryManagement(&MemoryManagementArray,MemoryManagementArray[1],CleanupOption,CleanupFlag,0xfffffffffffffffe);
+  MemoryManagementArray[1] = (int64_t)ResourceContext;
+  *MemoryManagementArray = (int64_t)ResourceContext;
+  MemoryManagementArray[2] = (int64_t)ResourceContext;
   MemoryAllocationStatus = 0;
                       free(_MemoryManagementArray,0x58);
   return;
@@ -72594,7 +72594,19 @@ void Unwind_ResourceTableAccessCleanupProcessor(uint8_t ObjectContext,int64_t Va
 
 
 
-void Unwind_18090a590(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 资源表访问清理处理器（备用版本）
+ * 
+ * 该函数是资源表访问清理处理器的备用版本，功能与主版本相同
+ * 用于不同的清理场景和上下文
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @param CleanupOption 清理选项
+ * @param CleanupFlag 清理标志
+ * @remark 原始函数名：Unwind_18090a590
+ */
+void Unwind_ResourceTableAccessCleanupProcessorAlternate(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   HandleResourceTableAccess(*(int64_t *)(ValidationContext + 0x68),*(uint8_t *)(*(int64_t *)(ValidationContext + 0x68) + 0x10),
