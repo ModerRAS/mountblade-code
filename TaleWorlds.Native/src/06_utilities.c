@@ -13734,7 +13734,7 @@ int SystemResourceProcessorSecondary(int64_t ObjectContext,int64_t ValidationCon
                   ResourceContextFlags = 0;
                   StackPointer1c0 = &SystemResourceTemplateHardware;
                   FloatStackValue = inputFloatValue3;
-                  FloatInputParameter1a4 = *pinputFloatValue5;
+                  FloatInputHardwareValue = *pinputFloatValue5;
                   integerValue6 = GetAndValidateResourceData(objectContext,&StackPointer1c0);
                   if (integerValue6 != 0) goto HandleMemoryCleanup;
                 }
@@ -13750,7 +13750,7 @@ int SystemResourceProcessorSecondary(int64_t ObjectContext,int64_t ValidationCon
                   ResourceContextFlags = 0;
                   StackPointer1c0 = &SystemResourceTemplateInput;
                   FloatStackValue = inputFloatValue3;
-                  FloatInputParameter1a4 = inputFloatValue;
+                  FloatInputHardwareValue = inputFloatValue;
                   integerValue6 = GetAndValidateResourceData(objectContext,&StackPointer1c0);
                   if (integerValue6 != 0) goto HandleMemoryCleanup;
                 }
