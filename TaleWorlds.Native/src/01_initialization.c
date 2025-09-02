@@ -32905,8 +32905,7 @@ void InitializeSystemResourceManager(long long *resourcePointer)
           if ((long long)pointerToUnsigned13 - (long long)pointerToUnsigned17 != 0) {
               memcpy(&uStack_268,pointerToUnsigned17,(long long)pointerToUnsigned13 - (long long)pointerToUnsigned17);
           }
-                    // WARNING: Ignoring partial resolution of indirect
-          uStack_268._0_1_ = 0;
+                              uStack_268._0_1_ = 0;
           unsignedSystemValue16 = 0;
           unsignedSystemValue7 = 0;
           puStack_330 = &SystemGlobalDataReference;
@@ -35408,8 +35407,7 @@ void InitializeSystemResourceManager(void* *SystemResourcePointer,void* Configur
   // 设置全局数据引用和内存分配器
   SystemResourcePointer[0x10] = &SystemGlobalDataReference;
   if (SystemResourcePointer[0x11] != 0) {
-    // WARNING: Subroutine does not return
-    SystemCleanupFunction();
+      SystemCleanupFunction();
   }
   SystemResourcePointer[0x11] = 0;
   *(uint32_t *)(SystemResourcePointer + 0x13) = 0;
@@ -35418,8 +35416,7 @@ void InitializeSystemResourceManager(void* *SystemResourcePointer,void* Configur
   // 初始化第三组系统资源
   SystemResourcePointer[0xc] = &SystemGlobalDataReference;
   if (SystemResourcePointer[0xd] != 0) {
-    // WARNING: Subroutine does not return
-    SystemCleanupFunction();
+      SystemCleanupFunction();
   }
   SystemResourcePointer[0xd] = 0;
   *(uint32_t *)(SystemResourcePointer + 0xf) = 0;
@@ -35428,8 +35425,7 @@ void InitializeSystemResourceManager(void* *SystemResourcePointer,void* Configur
   // 初始化第二组系统资源
   SystemResourcePointer[8] = &SystemGlobalDataReference;
   if (SystemResourcePointer[9] != 0) {
-    // WARNING: Subroutine does not return
-    SystemCleanupFunction();
+      SystemCleanupFunction();
   }
   SystemResourcePointer[9] = 0;
   *(uint32_t *)(SystemResourcePointer + 0xb) = 0;
@@ -35438,8 +35434,7 @@ void InitializeSystemResourceManager(void* *SystemResourcePointer,void* Configur
   // 初始化第一组系统资源
   SystemResourcePointer[4] = &SystemGlobalDataReference;
   if (SystemResourcePointer[5] != 0) {
-    // WARNING: Subroutine does not return
-    SystemCleanupFunction();
+      SystemCleanupFunction();
   }
   SystemResourcePointer[5] = 0;
   *(uint32_t *)(SystemResourcePointer + 7) = 0;
@@ -35448,8 +35443,7 @@ void InitializeSystemResourceManager(void* *SystemResourcePointer,void* Configur
   // 初始化主系统资源
   *SystemResourcePointer = &SystemGlobalDataReference;
   if (SystemResourcePointer[1] != 0) {
-    // WARNING: Subroutine does not return
-    SystemCleanupFunction();
+      SystemCleanupFunction();
   }
   SystemResourcePointer[1] = 0;
   *(uint32_t *)(SystemResourcePointer + 3) = 0;
@@ -35509,7 +35503,6 @@ void InitializeSystemThread(void* SystemResourcePointer,void* ConfigurationDataP
   ManageSystemResource(SystemResourcePointer, &memoryAllocationEnd);
   memoryAllocationEnd = &SystemGlobalDataReference;
   
-  // WARNING: Subroutine does not return
   SystemCleanupFunction(threadObject);
 }
 
@@ -52032,8 +52025,7 @@ void ProcessSystemDataBlock(long long DataBlockHandle, long long *DataBufferPoin
           ExpandDataBuffer(DataBufferPointer,(long long)UInt32BufferPointer + (DataSize - *DataBufferPointer));
           UInt32BufferPointer = (uint32_t *)DataBufferPointer[1];
         }
-        // WARNING: Subroutine does not return
-        memcpy(UInt32BufferPointer, DataPointer, DataSize);
+              memcpy(UInt32BufferPointer, DataPointer, DataSize);
       }
       DataElementOffset = *(long long *)(DataBlockHandle + 0x20) + ElementIndex;
       if ((ulong long)((*DataBufferPointer - (long long)UInt32BufferPointer) + DataBufferPointer[2]) < 5) {
@@ -52065,8 +52057,7 @@ void ProcessSystemDataBlock(long long DataBlockHandle, long long *DataBufferPoin
           ExpandDataBuffer(DataBufferPointer,(long long)UInt32BufferPointer + (DataSize - *DataBufferPointer));
           UInt32BufferPointer = (uint32_t *)DataBufferPointer[1];
         }
-        // WARNING: Subroutine does not return
-        memcpy(UInt32BufferPointer, DataPointer, DataSize);
+              memcpy(UInt32BufferPointer, DataPointer, DataSize);
       }
       ElementIndex = ElementIndex + 0x24;
       DataBlockSize = DataBlockSize + -1;
@@ -52101,8 +52092,7 @@ void ProcessSystemDataBlock(long long DataBlockHandle, long long *DataBufferPoin
       ExpandDataBuffer(DataBufferPointer,(long long)UInt32BufferPointer + (DataSize - *DataBufferPointer));
       UInt32BufferPointer = (uint32_t *)DataBufferPointer[1];
     }
-    // WARNING: Subroutine does not return
-    memcpy(UInt32BufferPointer, DataPointer, DataSize);
+      memcpy(UInt32BufferPointer, DataPointer, DataSize);
   }
   if ((ulong long)((*DataBufferPointer - (long long)UInt32BufferPointer) + DataBufferPointer[2]) < 5) {
     ExpandDataBuffer(DataBufferPointer,(long long)UInt32BufferPointer + (4 - *DataBufferPointer));
@@ -52135,7 +52125,6 @@ void ProcessSystemDataBlock(long long DataBlockHandle, long long *DataBufferPoin
     ExpandDataBuffer(DataBufferPointer,DataSize + (DataBlockSize - *DataBufferPointer));
     DataBlockSize = DataBufferPointer[1];
   }
-  // WARNING: Subroutine does not return
   memcpy(DataBlockSize, DataPointer, DataSize);
 }
 
