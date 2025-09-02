@@ -56838,23 +56838,23 @@ void ConfigureSystemResourceManager(long long SystemResourceManager,long long *C
   uint32_t SystemContextValue;
   long long LocalSystemValue;
   uint8_t aEncryptionKeyValue [8];
-  long long lStack_20;
+  long long LocalMemorySize;
   uint32_t ConcatenatedValue44;
-  long long *plStack_10;
+  long long *LocalResourcePointer;
   
   if (*(long long *)(SystemResourceManager + 0x1b0) != *ConfigurationDataPointer) {
     if (*ConfigurationDataPointer == 0) {
-      plStack_10 = (long long *)0x0;
+      LocalResourcePointer = (long long *)0x0;
       aEncryptionKeyValue[0] = 0;
       ConcatenatedValue44 = 0;
-      lStack_20 = SystemResourceManager;
+      LocalMemorySize = SystemResourceManager;
       InitializeSystemEncryptionContext(aEncryptionKeyValue);
       if ((*(int *)(SystemResourceManager + 0x208) != 0) || (*(int *)(SystemResourceManager + 0x204) != 0)) {
         SystemOperationCounter = *(void* *)(SystemResourceManager + 0x1b0);
         SystemContextValue = 0;
         AcquireSystemOperationCounter(&SystemOperationCounter);
-        PrimaryResourcePointer = plStack_10;
-        InitializeResourcePointer(plStack_10 + 2,LocalSystemValue + 0x10);
+        PrimaryResourcePointer = LocalResourcePointer;
+        InitializeResourcePointer(LocalResourcePointer + 2,LocalSystemValue + 0x10);
         InitializeResourcePointer(PrimaryResourcePointer + 7,LocalSystemValue + 0x38);
         ConfigureResourceSettings(PrimaryResourcePointer + 0xc,LocalSystemValue + 0x60);
         SetupResourceParameters(PrimaryResourcePointer + 0x11,LocalSystemValue + 0x88);
@@ -56862,8 +56862,8 @@ void ConfigureSystemResourceManager(long long SystemResourceManager,long long *C
         ReleaseSystemOperationCounter(&SystemOperationCounter);
       }
       CleanupSystemResourceEncryption(aEncryptionKeyValue);
-      if (plStack_10 != (long long *)0x0) {
-        (**(code **)(*plStack_10 + 0x38))();
+      if (LocalResourcePointer != (long long *)0x0) {
+        (**(code **)(*LocalResourcePointer + 0x38))();
       }
     }
     ConfigurationDataPointer = (long long *)*ConfigurationDataPointer;
@@ -56956,9 +56956,9 @@ float * ProcessSystemResourceManagerFloat(float *SystemResourceManager)
   void* SystemProcessFlags70;
   void* EncryptionValue68;
   void* ThreadContextFlag;
-  float fStack_58;
-  float fStack_54;
-  float fStack_50;
+  float SystemFloatValue1;
+  float SystemFloatValue2;
+  float SystemFloatValue3;
   float fStack_4c;
   void* SystemEncryptionKey;
   void* SystemOperationCounter;
@@ -57028,9 +57028,9 @@ float * ProcessSystemResourceManagerFloat(float *SystemResourceManager)
       SystemProcessFlags70 = *(void* *)(SystemResourceManager + 0x4a);
       EncryptionValue68 = *(void* *)(SystemResourceManager + 0x4c);
       SystemThreadContext = *(void* *)(SystemResourceManager + 0x4e);
-      fStack_58 = SystemResourceManager[0x50];
-      fStack_54 = SystemResourceManager[0x51];
-      fStack_50 = SystemResourceManager[0x52];
+      SystemFloatValue1 = SystemResourceManager[0x50];
+      SystemFloatValue2 = SystemResourceManager[0x51];
+      SystemFloatValue3 = SystemResourceManager[0x52];
       fStack_4c = SystemResourceManager[0x53];
       SystemEncryptionKey = *(void* *)(SystemResourceManager + 0x54);
       SystemOperationCounter = *(void* *)(SystemResourceManager + 0x56);
@@ -57042,9 +57042,9 @@ float * ProcessSystemResourceManagerFloat(float *SystemResourceManager)
         SystemProcessFlags70 = *(void* *)(SystemResourceManager + 0x4a);
         EncryptionValue68 = *(void* *)(SystemResourceManager + 0x4c);
         SystemThreadContext = *(void* *)(SystemResourceManager + 0x4e);
-        fStack_58 = SystemResourceManager[0x50];
-        fStack_54 = SystemResourceManager[0x51];
-        fStack_50 = SystemResourceManager[0x52];
+        SystemFloatValue1 = SystemResourceManager[0x50];
+        SystemFloatValue2 = SystemResourceManager[0x51];
+        SystemFloatValue3 = SystemResourceManager[0x52];
         fStack_4c = SystemResourceManager[0x53];
         SystemEncryptionKey = *(void* *)(SystemResourceManager + 0x54);
         SystemOperationCounter = *(void* *)(SystemResourceManager + 0x56);
@@ -57054,9 +57054,9 @@ float * ProcessSystemResourceManagerFloat(float *SystemResourceManager)
         SystemProcessFlags70 = *(void* *)(SystemResourceManager + 0x4a);
         EncryptionValue68 = *(void* *)(SystemResourceManager + 0x4c);
         SystemThreadContext = *(void* *)(SystemResourceManager + 0x4e);
-        fStack_58 = SystemResourceManager[0x50];
-        fStack_54 = SystemResourceManager[0x51];
-        fStack_50 = SystemResourceManager[0x52];
+        SystemFloatValue1 = SystemResourceManager[0x50];
+        SystemFloatValue2 = SystemResourceManager[0x51];
+        SystemFloatValue3 = SystemResourceManager[0x52];
         fStack_4c = SystemResourceManager[0x53];
         SystemEncryptionKey = *(void* *)(SystemResourceManager + 0x54);
         SystemOperationCounter = *(void* *)(SystemResourceManager + 0x56);
@@ -59890,9 +59890,9 @@ ulong long ProcessSystemResourceInitialization(long long SystemResourceManager,v
   ulong long SystemProcessFlags70;
   void* EncryptionValue68;
   ulong long SystemThreadContext;
-  float fStack_58;
-  float fStack_54;
-  float fStack_50;
+  float SystemFloatValue1;
+  float SystemFloatValue2;
+  float SystemFloatValue3;
   uint32_t StackUnsignedValue4C;
   
   SystemThreadHandle2 = *(long long *)(SystemResourceManager + 0x1b8);
@@ -59928,9 +59928,9 @@ LAB_180077fcf:
         SystemProcessFlags70._0_4_ = (float)*(void* *)(ConfigurationFlag + 6);
         EncryptionValue68 = *(void* *)(ConfigurationFlag + 8);
         SystemThreadContext.PrimaryField = (float)*(void* *)(ConfigurationFlag + 10);
-        fStack_58 = ConfigurationFlag[0xc];
-        fStack_54 = ConfigurationFlag[0xd];
-        fStack_50 = ConfigurationFlag[0xe];
+        SystemFloatValue1 = ConfigurationFlag[0xc];
+        SystemFloatValue2 = ConfigurationFlag[0xd];
+        SystemFloatValue3 = ConfigurationFlag[0xe];
       }
       else {
         ScalingFactor = ConfigurationFlag[4];
@@ -59963,9 +59963,9 @@ LAB_180077fcf:
                              floatValue3 * ScalingFactor + floatValue7 * InterpolationParam1 + floatValue8 * InterpolationParam4);
         EncryptionValue68 = ConcatenatedValue44(floatValue4 * OffsetValue + ScaleValue * InterpolationParam2 + floatValue1 * InterpolationParam5,
                              floatValue4 * ScalingFactor + ScaleValue * InterpolationParam1 + floatValue1 * InterpolationParam4);
-        fStack_58 = BaseValue * ScalingFactor + floatValue2 * InterpolationParam1 + floatValue6 * InterpolationParam4 + ConfigurationFlag[0xc];
-        fStack_54 = BaseValue * OffsetValue + floatValue2 * InterpolationParam2 + floatValue6 * InterpolationParam5 + ConfigurationFlag[0xd];
-        fStack_50 = BaseValue * RatioValue + floatValue2 * InterpolationParam3 + floatValue6 * MagnitudeSquared + ConfigurationFlag[0xe];
+        SystemFloatValue1 = BaseValue * ScalingFactor + floatValue2 * InterpolationParam1 + floatValue6 * InterpolationParam4 + ConfigurationFlag[0xc];
+        SystemFloatValue2 = BaseValue * OffsetValue + floatValue2 * InterpolationParam2 + floatValue6 * InterpolationParam5 + ConfigurationFlag[0xd];
+        SystemFloatValue3 = BaseValue * RatioValue + floatValue2 * InterpolationParam3 + floatValue6 * MagnitudeSquared + ConfigurationFlag[0xe];
       }
       uStack_4c = 0x3f800000;
       SystemThreadContext = (ulong long)(uint)(float)SystemThreadContext;
@@ -63037,7 +63037,7 @@ float * ProcessSystemFloatData(float *SystemResourceManager)
   void* EncryptionValue68;
   void* ThreadContextFlag;
   void* *memoryAllocationBuffer;
-  float fStack_50;
+  float SystemFloatValue3;
   float fStack_4c;
   void* *pSystemEncryptionKey;
   void* SystemOperationCounter;
@@ -63065,7 +63065,7 @@ float * ProcessSystemFloatData(float *SystemResourceManager)
       SystemOperationCounter = ConcatenatedValue44(SystemOperationCounter._4_4_,*(uint32_t *)(*(long long *)(SystemResourceManager + 0x84) + 0x60));
       memoryAllocationBuffer = &SystemMemoryBufferTemplateA;
       UnsignedStackFlag80 = 0x18007967a;
-      fStack_50 = floatValue6;
+      SystemFloatValue3 = floatValue6;
       SystemManagerSetFlags(SystemContextManagerPointer,0,0x80000000000,3);
     }
     SystemResourceManager[0x40] = (float)((uint)SystemResourceManager[0x40] | 0x10000);
@@ -63137,7 +63137,7 @@ float * ProcessSystemFloatData(float *SystemResourceManager)
       EncryptionValue68 = *(void* *)(SystemResourceManager + 0x4c);
       SystemThreadContext = *(void* *)(SystemResourceManager + 0x4e);
       memoryAllocationBuffer = *(void* **)(SystemResourceManager + 0x50);
-      fStack_50 = SystemResourceManager[0x52];
+      SystemFloatValue3 = SystemResourceManager[0x52];
       fStack_4c = SystemResourceManager[0x53];
       pSystemEncryptionKey = *(void* **)(SystemResourceManager + 0x54);
       SystemOperationCounter = *(void* *)(SystemResourceManager + 0x56);
@@ -63150,7 +63150,7 @@ float * ProcessSystemFloatData(float *SystemResourceManager)
         EncryptionValue68 = *(void* *)(SystemResourceManager + 0x4c);
         SystemThreadContext = *(void* *)(SystemResourceManager + 0x4e);
         memoryAllocationBuffer = *(void* **)(SystemResourceManager + 0x50);
-        fStack_50 = SystemResourceManager[0x52];
+        SystemFloatValue3 = SystemResourceManager[0x52];
         fStack_4c = SystemResourceManager[0x53];
         pSystemEncryptionKey = *(void* **)(SystemResourceManager + 0x54);
         SystemOperationCounter = *(void* *)(SystemResourceManager + 0x56);
@@ -63161,7 +63161,7 @@ float * ProcessSystemFloatData(float *SystemResourceManager)
         EncryptionValue68 = *(void* *)(SystemResourceManager + 0x4c);
         SystemThreadContext = *(void* *)(SystemResourceManager + 0x4e);
         memoryAllocationBuffer = *(void* **)(SystemResourceManager + 0x50);
-        fStack_50 = SystemResourceManager[0x52];
+        SystemFloatValue3 = SystemResourceManager[0x52];
         fStack_4c = SystemResourceManager[0x53];
         pSystemEncryptionKey = *(void* **)(SystemResourceManager + 0x54);
         SystemOperationCounter = *(void* *)(SystemResourceManager + 0x56);

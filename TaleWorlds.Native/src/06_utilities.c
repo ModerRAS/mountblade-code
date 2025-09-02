@@ -4837,20 +4837,20 @@ uint8_t ValidateObjectHandle(int64_t objectHandleToValidate)
   uint8_t ContextValidationStatusCode;
   int64_t HandleMemoryBuffer;
   
-  contextValidationStatusCode = ValidateObjectContext(*(uint32_t *)(objectHandleToValidate + ObjectHandleMemoryOffset), &handleMemoryBuffer);
-  if ((int)contextValidationStatusCode != 0) {
-    return contextValidationStatusCode;
+  ContextValidationStatusCode = ValidateObjectContext(*(uint32_t *)(objectHandleToValidate + ObjectHandleMemoryOffset), &HandleMemoryBuffer);
+  if ((int)ContextValidationStatusCode != 0) {
+    return ContextValidationStatusCode;
   }
-  if (handleMemoryBuffer == 0) {
-    handleMemoryBuffer = 0;
+  if (HandleMemoryBuffer == 0) {
+    HandleMemoryBuffer = 0;
   }
   else {
-    handleMemoryBuffer = handleMemoryBuffer + -8;
+    HandleMemoryBuffer = HandleMemoryBuffer + -8;
   }
-  if (*(int64_t *)(handleMemoryBuffer + ObjectHandleMemoryOffset) == 0) {
+  if (*(int64_t *)(HandleMemoryBuffer + ObjectHandleMemoryOffset) == 0) {
     return ErrorInvalidObjectHandle;
   }
-        ExecuteSystemExitOperation(*(int64_t *)(handleMemoryBuffer + ObjectHandleMemoryOffset), 1);
+        ExecuteSystemExitOperation(*(int64_t *)(HandleMemoryBuffer + ObjectHandleMemoryOffset), 1);
 }
 
 
@@ -4923,22 +4923,22 @@ uint8_t ValidateAndProcessObjectHandle(int64_t objectHandleToValidate)
 
 {
   uint8_t validationStatusCode;
-  int64_t handleMemoryBuffer;
+  int64_t HandleMemoryBuffer;
   
-  validationStatusCode = ValidateObjectContext(*(uint32_t *)(objectHandleToValidate + ObjectContextValidationOffset), &handleMemoryBuffer);
+  validationStatusCode = ValidateObjectContext(*(uint32_t *)(objectHandleToValidate + ObjectContextValidationOffset), &HandleMemoryBuffer);
   if ((int)validationStatusCode != 0) {
     return validationStatusCode;
   }
-  if (handleMemoryBuffer == 0) {
-    handleMemoryBuffer = 0;
+  if (HandleMemoryBuffer == 0) {
+    HandleMemoryBuffer = 0;
   }
   else {
-    handleMemoryBuffer = handleMemoryBuffer + -8;
+    HandleMemoryBuffer = HandleMemoryBuffer + -8;
   }
-  if (*(int64_t *)(handleMemoryBuffer + HandleMemoryBufferHeaderOffset) == 0) {
+  if (*(int64_t *)(HandleMemoryBuffer + HandleMemoryBufferHeaderOffset) == 0) {
     return ErrorInvalidObjectHandle;
   }
-        ExecuteSystemExitOperation(*(int64_t *)(handleMemoryBuffer + HandleMemoryBufferHeaderOffset), 1);
+        ExecuteSystemExitOperation(*(int64_t *)(HandleMemoryBuffer + HandleMemoryBufferHeaderOffset), 1);
 }
 
 
