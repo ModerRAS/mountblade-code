@@ -1986,8 +1986,7 @@ uint8_t DataTableInstance;
 uint8_t DataBufferStorage;
 uint8_t DataCacheMemory;
 
- void CleanupMemoryBlock(void);
-/**
+ /**
  * @brief 清理内存块
  * 
  * 该函数负责清理系统中的内存块资源
@@ -2220,8 +2219,7 @@ uint8_t MemoryConfigSecondary;           // 次要内存配置模板
 uint8_t LogOutputConfigPrimary;               // 主要日志输出配置
 uint8_t LogOutputConfigSecondary;             // 次要日志输出配置
 
- void ProcessLogMessage(void);
-/**
+ /**
  * @brief 处理日志消息
  * 
  * 该函数负责处理系统生成的日志消息
@@ -2259,8 +2257,7 @@ uint8_t ModuleDataTemplateDenary;                     // 第十系统模块模�
 uint8_t ModuleDataTemplateUndenary;                   // 第十一系统模块模板
 uint8_t ModuleDataTemplateDuodenary;                  // 第十二系统模块模板
 
- void FlushLogBuffer(void);
-/**
+ /**
  * @brief 刷新日志缓冲区
  * 
  * 该函数负责刷新日志缓冲区中的内容
@@ -2275,8 +2272,7 @@ uint8_t MemoryScheduler;
 uint8_t MemoryOptimizer;
 uint8_t LogSystemConfigurationData;
 
- void SetLogLevel(void);
-/**
+ /**
  * @brief 设置日志级别
  * 
  * 该函数负责设置系统的日志级别
@@ -10077,34 +10073,34 @@ int ProcessDataWithStack(int64_t *ObjectContext,int64_t ValidationContext,int Da
 void ProcessResourceIndexAndSecurity(int64_t objectContext,uint32_t *validationContext,int64_t *resourceIndexOutput)
 
 {
-  int64_t *processPointer;
-  int processingResult;
-  int64_t resourceIndex;
-  uint8_t securityDataBuffer [32];
-  uint resourcePrimaryByte;
-  uint resourceSecondaryByte;
-  uint resourceTertiaryByte;
-  uint resourceFlagByte4;
-  uint resourceFlagByte5;
-  uint resourceFlagByte6;
-  uint resourceFlagByte7;
-  uint resourceFlagByte8;
-  uint resourceValidationFlagNonary;
-  uint resourceFlagSecondary2;
-  uint32_t validationParameter;
-  uint validationParameterSecondary;
-  uint validationParameterTertiary;
-  uint validationParameterQuaternary;
-  uint8_t encryptedDataBuffer [40];
-  uint64_t operationParameter;
+  int64_t *ResourceProcessingPointer;
+  int ResourceProcessingResult;
+  int64_t ResourceIndex;
+  uint8_t SecurityDataBuffer [32];
+  uint ResourceValidationPrimaryByte;
+  uint ResourceValidationSecondaryByte;
+  uint ResourceValidationTertiaryByte;
+  uint ResourceValidationQuaternaryByte;
+  uint ResourceValidationQuinaryByte;
+  uint ResourceValidationSenaryByte;
+  uint ResourceValidationSeptenaryByte;
+  uint ResourceValidationOctonaryByte;
+  uint ResourceValidationNonaryByte;
+  uint ResourceValidationSecondaryFlag;
+  uint32_t ValidationParameterPrimary;
+  uint ValidationParameterSecondary;
+  uint ValidationParameterTertiary;
+  uint ValidationParameterQuaternary;
+  uint8_t EncryptedDataBuffer [40];
+  uint64_t SecurityOperationParameter;
   
-  operationParameter = SecurityEncryptionKey ^ (uint64_t)securityDataBuffer;
-  resourceContext = *(int64_t **)(objectContext + 800);
-  if (resourceContext != (int64_t *)0x0) {
-    validationParameter = *validationContext;
-    validationParameterSecondary = validationContext[1];
-    validationParameterTertiary = validationContext[2];
-    validationParameterQuaternary = validationContext[3];
+  SecurityOperationParameter = SecurityEncryptionKey ^ (uint64_t)SecurityDataBuffer;
+  ResourceContext = *(int64_t **)(objectContext + 800);
+  if (ResourceContext != (int64_t *)0x0) {
+    ValidationParameterPrimary = *validationContext;
+    ValidationParameterSecondary = validationContext[1];
+    ValidationParameterTertiary = validationContext[2];
+    ValidationParameterQuaternary = validationContext[3];
     resourceIndex = (**(code **)(*resourceContext + 0x288))(resourceContext,&validationParameter,1);
     if (resourceIndex == 0) {
       resourceMidByteFlag = validationParameterTertiary >> 0x18;
@@ -12726,7 +12722,7 @@ ResourceProcessingHandler:
         GraphicsDataStatus = GraphicsDataFlag;
         GraphicsDataIndex2 = resourceCount;
         ResourceOperationType = CleanupOption;
-        iStack_290 = tableEntry;
+        TableEntryBackup = tableEntry;
         tableEntry = GetAndValidateResourceData(objectContext,&GraphicsDataPointer2);
         if ((tableEntry != 0) || (tableEntry = FindResourceEntry(resourceTable,GraphicsTransformMatrix), tableEntry != 0))
         goto ResourceErrorHandler;
@@ -12773,7 +12769,7 @@ ResourceProcessingHandler:
         GraphicsDataStatus = GraphicsDataFlag;
         GraphicsDataIndex2 = resourceCount;
         ResourceOperationType = CleanupOption;
-        iStack_290 = tableEntry;
+        TableEntryBackup = tableEntry;
         tableEntry = GetAndValidateResourceData(objectContext,&GraphicsDataPointer2);
         if ((tableEntry != 0) || (tableEntry = FindResourceEntry(resourceTable,GraphicsTransformMatrix), tableEntry != 0))
         goto ResourceErrorHandler;
@@ -12820,7 +12816,7 @@ ResourceProcessingHandler:
         GraphicsDataStatus = GraphicsDataFlag;
         GraphicsDataIndex2 = resourceCount;
         ResourceOperationType = CleanupOption;
-        iStack_290 = tableEntry;
+        TableEntryBackup = tableEntry;
         tableEntry = GetAndValidateResourceData(objectContext,&GraphicsDataPointer2);
         if ((tableEntry != 0) || (tableEntry = FindResourceEntry(resourceTable,GraphicsTransformMatrix), tableEntry != 0))
         goto ResourceErrorHandler;
@@ -12867,7 +12863,7 @@ ResourceProcessingHandler:
         GraphicsDataStatus = GraphicsDataFlag;
         GraphicsDataIndex2 = resourceCount;
         ResourceOperationType = CleanupOption;
-        iStack_290 = tableEntry;
+        TableEntryBackup = tableEntry;
         tableEntry = GetAndValidateResourceData(objectContext,&GraphicsDataPointer2);
         if ((tableEntry != 0) || (tableEntry = FindResourceEntry(resourceTable,GraphicsTransformMatrix), tableEntry != 0))
         goto ResourceErrorHandler;
@@ -12917,7 +12913,7 @@ ResourceProcessingHandler:
         GraphicsDataStatus = GraphicsDataFlag;
         GraphicsDataIndex2 = resourceCount;
         ResourceOperationType = CleanupOption;
-        iStack_290 = tableEntry;
+        TableEntryBackup = tableEntry;
         tableEntry = GetAndValidateResourceData(objectContext,&GraphicsDataPointer2);
         if ((tableEntry != 0) || (resourceCount = SearchResourceTable(resourceTable,GraphicsTransformMatrix,0), resourceCount != 0)) break;
         tableEntry = OperationResult;
