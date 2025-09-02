@@ -46521,7 +46521,7 @@ void ConfigureSystemResourceAndProcessData(long long SystemResourceManager,long 
   
   CalculationFlags178 = 0xfffffffffffffffe;
   SystemEncryptionKey = SystemEncryptionKeyTemplate ^ (ulong long)aSystemStackFlag;
-  puStack_168 = &SystemMemoryAllocatorTemplate;
+  SystemMemoryAllocatorPointer = &SystemMemoryAllocatorTemplate;
   SystemResourcePointer160 = aSystemResourceSize;
   SystemConfigurationId = 0;
   aSystemResourceSize[0] = 0;
@@ -46537,7 +46537,7 @@ void ConfigureSystemResourceAndProcessData(long long SystemResourceManager,long 
     } while (*(char *)(SystemThreadHandle + AdditionalParameter) != '\0');
       memcpy(SystemResourcePointer160,*(long long *)(SystemResourceManager + 8),resourceDataIndex - *(long long *)(SystemResourceManager + 8));
   }
-  puStack_168 = &SystemMemoryAllocatorReference;
+  SystemMemoryAllocatorPointer = &SystemMemoryAllocatorReference;
     ValidateSystemChecksum(SystemEncryptionKey ^ (ulong long)aSystemStackFlag);
 }
 
