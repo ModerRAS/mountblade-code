@@ -52426,7 +52426,20 @@ LAB_1800715eb:
 000180071c73)
 
 
-// 函数: void InitializeSystemResourceManager(void* ResourceManagerPointer,long long ConfigurationDataPointer,uint32_t AdditionalParameter,long long ConfigurationFlag)
+/**
+ * @brief 初始化系统资源管理器
+ * 
+ * 该函数负责初始化系统资源管理器，包括线程创建、内存分配和资源配置
+ * 用于系统资源的统一管理和调度
+ * 
+ * @param ResourceManagerPointer 资源管理器指针，指向要初始化的资源管理器
+ * @param ConfigurationDataPointer 配置数据指针，包含资源配置的相关信息
+ * @param AdditionalParameter 额外参数，用于初始化过程中的附加配置
+ * @param ConfigurationFlag 配置标志，指定初始化的方式和选项
+ * @return 无返回值
+ * 
+ * 原始函数名为FUN_180071940，现已重命名为InitializeSystemResourceManager
+ */
 void InitializeSystemResourceManager(void* ResourceManagerPointer,long long ConfigurationDataPointer,uint32_t AdditionalParameter,long long ConfigurationFlag)
 
 {
@@ -52509,96 +52522,96 @@ LAB_180071af3:
     threadObjectPointer = (uint8_t *)AllocateThreadMemoryBuffer(SystemMemoryPoolTemplate,threadObjectPointer,0x13,0x10,0x13);
     goto LAB_180071af3;
   }
-  *(void*2 *)(pUnsignedStackFlag88 + UnsignedStackFlag80) = 10;
-  UnsignedStackFlag80 = 0x12;
-  creationFlags = 0x13;
-  if (pUnsignedStackFlag88 == (uint8_t *)0x0) {
-    UnsignedStackFlag80 = 0x12;
-    pUnsignedStackFlag88 = (uint8_t *)CreateSystemThreadObject(SystemMemoryPoolTemplate,0x14,0x13);
-    *pUnsignedStackFlag88 = 0;
+  *(void*2 *)(threadObjectPointer + stackParameterOffset) = 10;
+  stackParameterOffset = 0x12;
+  threadCreationFlags = 0x13;
+  if (threadObjectPointer == (uint8_t *)0x0) {
+    stackParameterOffset = 0x12;
+    threadObjectPointer = (uint8_t *)CreateSystemThreadObject(SystemMemoryPoolTemplate,0x14,0x13);
+    *threadObjectPointer = 0;
 LAB_180071b69:
-    allocationContext = StartSystemThread(pUnsignedStackFlag88);
-    UnsignedStackFlag78 = CONCAT44(UnsignedStackFlag78._4_4_,allocationContext);
+    memoryAllocationContext = StartSystemThread(threadObjectPointer);
+    threadHandleValue = CONCAT44(threadHandleValue._4_4_,memoryAllocationContext);
   }
-  else if ((uint)UnsignedStackFlag78 < 0x14) {
-    UnsignedStackFlag80 = 0x12;
-    pUnsignedStackFlag88 = (uint8_t *)AllocateThreadMemoryBuffer(SystemMemoryPoolTemplate,pUnsignedStackFlag88,0x14,0x10,0x13);
+  else if ((uint)threadHandleValue < 0x14) {
+    stackParameterOffset = 0x12;
+    threadObjectPointer = (uint8_t *)AllocateThreadMemoryBuffer(SystemMemoryPoolTemplate,threadObjectPointer,0x14,0x10,0x13);
     goto LAB_180071b69;
   }
-  *(void*2 *)(pUnsignedStackFlag88 + UnsignedStackFlag80) = 10;
-  UnsignedStackFlag80 = 0x13;
+  *(void*2 *)(threadObjectPointer + stackParameterOffset) = 10;
+  stackParameterOffset = 0x13;
   if (ConfigurationDataPointer != 0) {
-    bufferBaseAddress = -1;
+    systemBufferAddress = -1;
     do {
-      allocationFlags = bufferBaseAddress;
-      bufferBaseAddress = allocationFlags + 1;
-    } while (*(char *)(ConfigurationDataPointer + bufferBaseAddress) != '\0');
-    systemStatus = (int)bufferBaseAddress;
+      memoryAllocationFlags = systemBufferAddress;
+      systemBufferAddress = memoryAllocationFlags + 1;
+    } while (*(char *)(ConfigurationDataPointer + systemBufferAddress) != '\0');
+    systemStatus = (int)systemBufferAddress;
     if (0 < systemStatus) {
-      systemStatus1 = creationFlags;
+      systemOperationStatus1 = threadCreationFlags;
       if (systemStatus != -0x13) {
-        systemStatus2 = systemStatus + 0x14;
-        if (pUnsignedStackFlag88 == (uint8_t *)0x0) {
-          if ((int)systemStatus2 < 0x10) {
-            systemStatus2 = 0x10;
+        systemOperationStatus2 = systemStatus + 0x14;
+        if (threadObjectPointer == (uint8_t *)0x0) {
+          if ((int)systemOperationStatus2 < 0x10) {
+            systemOperationStatus2 = 0x10;
           }
-          UnsignedStackFlag80 = creationFlags;
-          pUnsignedStackFlag88 = (uint8_t *)CreateSystemThreadObject(SystemMemoryPoolTemplate,(long long)(int)systemStatus2,0x13);
-          *pUnsignedStackFlag88 = 0;
+          stackParameterOffset = threadCreationFlags;
+          threadObjectPointer = (uint8_t *)CreateSystemThreadObject(SystemMemoryPoolTemplate,(long long)(int)systemOperationStatus2,0x13);
+          *threadObjectPointer = 0;
         }
         else {
-          systemStatus1 = UnsignedStackFlag80;
-          if (systemStatus2 <= (uint)UnsignedStackFlag78) goto LAB_180071c1a;
-          UnsignedStackFlag80 = creationFlags;
-          pUnsignedStackFlag88 = (uint8_t *)AllocateThreadMemoryBuffer(SystemMemoryPoolTemplate,pUnsignedStackFlag88,systemStatus2,0x10,0x13);
+          systemOperationStatus1 = stackParameterOffset;
+          if (systemOperationStatus2 <= (uint)threadHandleValue) goto LAB_180071c1a;
+          stackParameterOffset = threadCreationFlags;
+          threadObjectPointer = (uint8_t *)AllocateThreadMemoryBuffer(SystemMemoryPoolTemplate,threadObjectPointer,systemOperationStatus2,0x10,0x13);
         }
-        allocationContext = StartSystemThread(pUnsignedStackFlag88);
-        UnsignedStackFlag78 = CONCAT44(UnsignedStackFlag78._4_4_,allocationContext);
-        systemStatus1 = UnsignedStackFlag80;
+        memoryAllocationContext = StartSystemThread(threadObjectPointer);
+        threadHandleValue = CONCAT44(threadHandleValue._4_4_,memoryAllocationContext);
+        systemOperationStatus1 = stackParameterOffset;
       }
 LAB_180071c1a:
-      UnsignedStackFlag80 = systemStatus1;
-        memcpy(pUnsignedStackFlag88 + UnsignedStackFlag80,ConfigurationDataPointer,(long long)((int)allocationFlags + 2));
+      stackParameterOffset = systemOperationStatus1;
+        memcpy(threadObjectPointer + stackParameterOffset,ConfigurationDataPointer,(long long)((int)memoryAllocationFlags + 2));
     }
   }
-  if (pUnsignedStackFlag88 == (uint8_t *)0x0) {
-    UnsignedStackFlag80 = creationFlags;
-    pUnsignedStackFlag88 = (uint8_t *)CreateSystemThreadObject(SystemMemoryPoolTemplate,0x15,0x13);
-    *pUnsignedStackFlag88 = 0;
+  if (threadObjectPointer == (uint8_t *)0x0) {
+    stackParameterOffset = threadCreationFlags;
+    threadObjectPointer = (uint8_t *)CreateSystemThreadObject(SystemMemoryPoolTemplate,0x15,0x13);
+    *threadObjectPointer = 0;
 LAB_180071c93:
-    allocationContext = StartSystemThread(pUnsignedStackFlag88);
-    UnsignedStackFlag78 = CONCAT44(UnsignedStackFlag78._4_4_,allocationContext);
+    memoryAllocationContext = StartSystemThread(threadObjectPointer);
+    threadHandleValue = CONCAT44(threadHandleValue._4_4_,memoryAllocationContext);
   }
-  else if ((uint)UnsignedStackFlag78 < 0x15) {
-    UnsignedStackFlag80 = creationFlags;
-    pUnsignedStackFlag88 = (uint8_t *)AllocateThreadMemoryBuffer(SystemMemoryPoolTemplate,pUnsignedStackFlag88,0x15,0x10,0x13);
+  else if ((uint)threadHandleValue < 0x15) {
+    stackParameterOffset = threadCreationFlags;
+    threadObjectPointer = (uint8_t *)AllocateThreadMemoryBuffer(SystemMemoryPoolTemplate,threadObjectPointer,0x15,0x10,0x13);
     goto LAB_180071c93;
   }
-  *(void*2 *)(pUnsignedStackFlag88 + UnsignedStackFlag80) = 0x3a;
-  UnsignedStackFlag80 = 0x14;
-  ProcessSystemData(&pStackParameterC,AdditionalParameter);
-  creationFlags = UnsignedStackFlag80;
-  systemStatus1 = UnsignedStackFlag80 + 1;
-  if (systemStatus1 != 0) {
-    systemStatus2 = UnsignedStackFlag80 + 2;
-    if (pUnsignedStackFlag88 == (uint8_t *)0x0) {
-      if ((int)systemStatus2 < 0x10) {
-        systemStatus2 = 0x10;
+  *(void*2 *)(threadObjectPointer + stackParameterOffset) = 0x3a;
+  stackParameterOffset = 0x14;
+  ProcessSystemData(&stackParameterPointer,AdditionalParameter);
+  threadCreationFlags = stackParameterOffset;
+  systemOperationStatus1 = stackParameterOffset + 1;
+  if (systemOperationStatus1 != 0) {
+    systemOperationStatus2 = stackParameterOffset + 2;
+    if (threadObjectPointer == (uint8_t *)0x0) {
+      if ((int)systemOperationStatus2 < 0x10) {
+        systemOperationStatus2 = 0x10;
       }
-      pUnsignedStackFlag88 = (uint8_t *)CreateSystemThreadObject(SystemMemoryPoolTemplate,(long long)(int)systemStatus2,0x13);
-      *pUnsignedStackFlag88 = 0;
+      threadObjectPointer = (uint8_t *)CreateSystemThreadObject(SystemMemoryPoolTemplate,(long long)(int)systemOperationStatus2,0x13);
+      *threadObjectPointer = 0;
     }
     else {
-      if (systemStatus2 <= (uint)UnsignedStackFlag78) goto LAB_180071d1f;
-      pUnsignedStackFlag88 = (uint8_t *)AllocateThreadMemoryBuffer(SystemMemoryPoolTemplate,pUnsignedStackFlag88,systemStatus2,0x10,0x13);
+      if (systemOperationStatus2 <= (uint)threadHandleValue) goto LAB_180071d1f;
+      threadObjectPointer = (uint8_t *)AllocateThreadMemoryBuffer(SystemMemoryPoolTemplate,threadObjectPointer,systemOperationStatus2,0x10,0x13);
     }
-    allocationContext = StartSystemThread(pUnsignedStackFlag88);
-    UnsignedStackFlag78 = CONCAT44(UnsignedStackFlag78._4_4_,allocationContext);
+    memoryAllocationContext = StartSystemThread(threadObjectPointer);
+    threadHandleValue = CONCAT44(threadHandleValue._4_4_,memoryAllocationContext);
   }
 LAB_180071d1f:
-  *(void*2 *)(pUnsignedStackFlag88 + UnsignedStackFlag80) = 10;
-  systemStatus2 = creationFlags + 0xd;
-  UnsignedStackFlag80 = systemStatus1;
+  *(void*2 *)(threadObjectPointer + stackParameterOffset) = 10;
+  systemOperationStatus2 = threadCreationFlags + 0xd;
+  stackParameterOffset = systemOperationStatus1;
   if (systemStatus2 != 0) {
     systemStatus1 = creationFlags + 0xe;
     if (pUnsignedStackFlag88 == (uint8_t *)0x0) {
@@ -52711,7 +52724,22 @@ LAB_180071eb0:
 
 
 // 函数: void FUN_180072000(void* ResourceManagerPointer,long long ConfigurationDataPointer,uint32_t AdditionalParameter,long long ConfigurationFlag,
-void FUN_180072000(void* ResourceManagerPointer,long long ConfigurationDataPointer,uint32_t AdditionalParameter,long long ConfigurationFlag,
+/**
+ * @brief 系统资源操作处理函数
+ * 
+ * 该函数负责处理系统资源的各种操作，包括资源分配、数据处理和系统模式配置。
+ * 函数会根据操作类型和系统模式执行相应的资源管理操作。
+ * 
+ * @param ResourceManagerPointer 资源管理器指针
+ * @param ConfigurationDataPointer 配置数据指针
+ * @param AdditionalParameter 附加参数
+ * @param ConfigurationFlag 配置标志
+ * @param OperationType 操作类型
+ * @param SystemMode 系统模式
+ * 
+ * 原始函数名为FUN_180072000，现已重命名为ProcessSystemResourceOperation
+ */
+void ProcessSystemResourceOperation(void* ResourceManagerPointer,long long ConfigurationDataPointer,uint32_t AdditionalParameter,long long ConfigurationFlag,
                   uint8_t OperationType,char SystemMode)
 
 {
@@ -53645,8 +53673,19 @@ void FUN_180073730(void* ResourceManagerPointer,void* ConfigurationDataPointer)
 
 
 
-// 函数: void FUN_180073830(void* ResourceManagerPointer,uint32_t ConfigurationDataPointer,void* AdditionalParameter)
-void FUN_180073830(void* ResourceManagerPointer,uint32_t ConfigurationDataPointer,void* AdditionalParameter)
+/**
+ * @brief 系统管理器参数设置函数
+ * 
+ * 该函数负责设置系统管理器的各种参数和配置。
+ * 函数会根据系统初始化状态执行相应的管理器参数设置操作。
+ * 
+ * @param ResourceManagerPointer 资源管理器指针
+ * @param ConfigurationDataPointer 配置数据指针
+ * @param AdditionalParameter 附加参数
+ * 
+ * 原始函数名为FUN_180073830，现已重命名为SetSystemManagerParameters
+ */
+void SetSystemManagerParameters(void* ResourceManagerPointer,uint32_t ConfigurationDataPointer,void* AdditionalParameter)
 
 {
   void* *pointerToUnsigned1;
@@ -53736,8 +53775,17 @@ void SystemCallbackManager(void* ResourceManagerPointer,void* ConfigurationDataP
 
 
 
-// 函数: void FUN_1800739f0(void* *ResourceManagerPointer)
-void FUN_1800739f0(void* *ResourceManagerPointer)
+/**
+ * @brief 资源管理器重置函数
+ * 
+ * 该函数负责重置资源管理器的各种状态和指针。
+ * 函数会清理资源管理器的各个字段，并重置为初始状态。
+ * 
+ * @param ResourceManagerPointer 资源管理器指针
+ * 
+ * 原始函数名为FUN_1800739f0，现已重命名为ResetResourceManager
+ */
+void ResetResourceManager(void* *ResourceManagerPointer)
 
 {
   if (*(long long *)((long long)ResourceManagerPointer + 0x52) != 0) {
