@@ -2031,17 +2031,19 @@ void InitializeRenderingSystemConfig(void)
 /**
  * @brief 初始化音频系统资源池
  * 
- * 创建并配置音频系统的资源池，返回初始化状态
+ * 创建并配置音频系统的资源池，注册音频系统事件处理器，
+ * 并初始化音频系统配置。该函数是音频系统初始化的核心入口点。
+ * 
  * @return 初始化成功返回0，失败返回-1
  */
 int InitializeAudioSystemResourcePool(void)
 
 {
-  long long AudioInitializationResult;
+  long long AudioInitializationStatus;
   
-  RegisterSystemEventHandler(SYSTEM_EVENT_HANDLER_PRIMARY_ADDRESS,0x20,8,GetSystemEventCallbackA,GetSystemEventCallbackB);
-  AudioInitializationResult = InitializeAudioSystem(&AudioSystemConfiguration);
-  return (AudioInitializationResult != 0) - 1;
+  RegisterSystemEventHandler(SYSTEM_EVENT_HANDLER_PRIMARY_ADDRESS, 0x20, 8, GetSystemEventCallbackA, GetSystemEventCallbackB);
+  AudioInitializationStatus = InitializeAudioSystem(&AudioSystemConfiguration);
+  return (AudioInitializationStatus != 0) - 1;
 }
 
 
@@ -2049,17 +2051,19 @@ int InitializeAudioSystemResourcePool(void)
 /**
  * @brief 初始化输入系统资源池
  * 
- * 创建并配置输入系统的资源池，返回初始化状态
+ * 创建并配置输入系统的资源池，注册输入系统事件处理器，
+ * 并初始化输入系统配置。该函数是输入系统初始化的核心入口点。
+ * 
  * @return 初始化成功返回0，失败返回-1
  */
 int InitializeInputSystemResourcePool(void)
 
 {
-  long long InputInitializationResult;
+  long long InputInitializationStatus;
   
-  RegisterSystemEventHandler(SYSTEM_EVENT_HANDLER_SECONDARY_ADDRESS,0x20,8,GetSystemEventCallbackC,GetSystemEventCallbackB);
-  InputInitializationResult = InitializeInputSystem(&InputSystemConfiguration);
-  return (InputInitializationResult != 0) - 1;
+  RegisterSystemEventHandler(SYSTEM_EVENT_HANDLER_SECONDARY_ADDRESS, 0x20, 8, GetSystemEventCallbackC, GetSystemEventCallbackB);
+  InputInitializationStatus = InitializeInputSystem(&InputSystemConfiguration);
+  return (InputInitializationStatus != 0) - 1;
 }
 
 
