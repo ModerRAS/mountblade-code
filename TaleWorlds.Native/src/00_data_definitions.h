@@ -6544,8 +6544,8 @@ uint64_t ValidateAndProcessModuleData(longlong ModuleHandle, longlong *DataBuffe
   bVar2 = *(byte *)(param_3 + 2);
   if ((param_4 >> 1 & 1) != 0) {
     InitializeSystemDataProcessing(_DAT_180c86930,&plStack_78,param_3 + 0x14,1);
-    pNetworkRequestResult = (uint64_t *)FUN_1800bf6c0();
-    FUN_1800763c0(*pNetworkRequestResult,&plStackX_18);
+    pNetworkRequestResult = (uint64_t *)CreateNetworkRequestContext();
+    ProcessNetworkRequestData(*pNetworkRequestResult,&plStackX_18);
     if (plStack_80 != (longlong *)0x0) {
       (**(code **)(*plStack_80 + 0x38))();
     }

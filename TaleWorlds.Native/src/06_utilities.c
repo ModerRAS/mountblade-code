@@ -20480,7 +20480,18 @@ uint8_t ProcessResourceValidation(int64_t ValidationParam,uint8_t *ResourcePoint
 
 
 
- ProcessResourceData(int64_t ResourceContext, uint8_t *ResourceData, int ProcessFlags)
+ /**
+ * @brief 处理资源数据
+ * 
+ * 该函数负责处理系统中的资源数据，包括数据的验证、转换和存储操作。
+ * 它接收资源上下文、资源数据和处理标志作为输入参数。
+ * 
+ * @param ResourceContext 资源上下文，包含资源处理所需的环境信息
+ * @param ResourceData 资源数据指针，指向要处理的数据
+ * @param ProcessFlags 处理标志，控制资源处理的行为和选项
+ * @return uint8_t 返回处理结果状态码，0表示成功，非0表示错误
+ */
+ProcessResourceData(int64_t ResourceContext, uint8_t *ResourceData, int ProcessFlags)
 ProcessResourceData(int64_t ResourceContext, uint8_t *ResourceData, int ProcessFlags)
 
 {
