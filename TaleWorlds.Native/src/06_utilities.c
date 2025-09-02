@@ -21705,9 +21705,9 @@ ResourceValidationWait:
         SystemContextPointer7 = (int64_t)resourceAllocationCount * 0x18 + 0x14 + (int64_t)ResourceHashPointer3;
         do {
           matrixDataPointer = (float *)AllocateMemoryBlock();
-          matrixElementXCoordinate = *matrixDataPointer;
-          matrixElementY = matrixDataPointer[1];
-          matrixElementZ = matrixDataPointer[2];
+          MatrixElementX = *matrixDataPointer;
+          MatrixElementY = matrixDataPointer[1];
+          MatrixElementZ = matrixDataPointer[2];
           matrixElementWComponent = matrixDataPointer[3];
           *(float *)(SystemContextPointer7 + -0x14) = matrixElementXCoordinate;
           *(float *)(SystemContextPointer7 + -0x10) = matrixElementY;
