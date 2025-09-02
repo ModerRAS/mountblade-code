@@ -102527,7 +102527,6 @@ void ProcessNetworkDataPacket(uint8_t ObjectContext,uint8_t ValidationContext,ui
  * 确保系统配置参数符合预期要求
  */
 void ValidateSystemConfiguration(void)
-void ValidateSystemConfiguration(void)
 
 {
   if (SystemConfigValidationFlag != '\0') {

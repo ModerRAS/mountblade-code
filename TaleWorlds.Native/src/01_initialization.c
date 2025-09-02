@@ -51618,7 +51618,7 @@ ulong long InitializeAndProcessSystemResources(void* SystemResourceManager,void*
       *(uint8_t *)SystemThreadLocalStoragePointer = 0;
       SystemMemoryAllocatorReferencePointer = SystemThreadLocalStoragePointer;
       ThreadContextFlag = StartSystemThread(SystemThreadLocalStoragePointer);
-      uStack_c8 = ConcatenatedValue44(uStack_c8._4_4_,ThreadContextFlag);
+      SystemThreadIdentifier = ConcatenatedValue44(SystemThreadIdentifier._4_4_,ThreadContextFlag);
       *SystemThreadLocalStoragePointer = 0x4e524157204c4752;
       *(uint32_t *)(SystemThreadLocalStoragePointer + 1) = 0x474e49;
       uStack_d0 = 0xb;
