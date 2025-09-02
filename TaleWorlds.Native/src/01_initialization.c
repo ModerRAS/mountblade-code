@@ -60096,20 +60096,20 @@ void InitializeSystemResourceManagerEx(long long ResourceManagerPointer)
   long long systemResourceHandle;
   byte systemConfigurationFlag;
   
-  localSystemHandle = *(long long *)(ResourceManagerPointer + 0x210);
-  *(uint32_t *)(ResourceManagerPointer + 0x1f8) = *(uint32_t *)(localSystemHandle + 0x10);
-  *(uint32_t *)(ResourceManagerPointer + 0x1fc) = *(uint32_t *)(localSystemHandle + 0x88);
-  *(uint32_t *)(ResourceManagerPointer + 0x200) = *(uint32_t *)(localSystemHandle + 0x60);
-  bVar3 = *(byte *)(ResourceManagerPointer + 0xfd) & 0x40;
-  if ((((bVar3 != 0) && (localSystemHandle != 0)) || (*(long long *)(ResourceManagerPointer + 0x1b0) == 0)) ||
-     (nextDataIndex = FUN_180085900(), ResourceManagerPointer == nextDataIndex)) {
-    *(uint32_t *)(ResourceManagerPointer + 0x204) = *(uint32_t *)(localSystemHandle + 200);
+  systemResourceHandle = *(long long *)(ResourceManagerPointer + 0x210);
+  *(uint32_t *)(ResourceManagerPointer + 0x1f8) = *(uint32_t *)(systemResourceHandle + 0x10);
+  *(uint32_t *)(ResourceManagerPointer + 0x1fc) = *(uint32_t *)(systemResourceHandle + 0x88);
+  *(uint32_t *)(ResourceManagerPointer + 0x200) = *(uint32_t *)(systemResourceHandle + 0x60);
+  systemConfigurationFlag = *(byte *)(ResourceManagerPointer + 0xfd) & 0x40;
+  if ((((systemConfigurationFlag != 0) && (systemResourceHandle != 0)) || (*(long long *)(ResourceManagerPointer + 0x1b0) == 0)) ||
+     (systemDataIndex = GetSystemConfigurationStatus(), ResourceManagerPointer == systemDataIndex)) {
+    *(uint32_t *)(ResourceManagerPointer + 0x204) = *(uint32_t *)(systemResourceHandle + 200);
   }
-  if (((bVar3 == 0) || (localSystemHandle == 0)) &&
-     ((*(long long *)(ResourceManagerPointer + 0x1b0) != 0 && (nextDataIndex = FUN_180085900(), ResourceManagerPointer != nextDataIndex)))) {
+  if (((systemConfigurationFlag == 0) || (systemResourceHandle == 0)) &&
+     ((*(long long *)(ResourceManagerPointer + 0x1b0) != 0 && (systemDataIndex = GetSystemConfigurationStatus(), ResourceManagerPointer != systemDataIndex)))) {
     return;
   }
-  *(uint *)(ResourceManagerPointer + 0x208) = (uint)*(ushort *)(localSystemHandle + 0xc0);
+  *(uint *)(ResourceManagerPointer + 0x208) = (uint)*(ushort *)(systemResourceHandle + 0xc0);
   return;
 }
 
