@@ -12599,8 +12599,8 @@ uint64_t SystemAudioCreateBuffer(uint32_t BufferSizeParameter,uint *AudioFormatP
       }
       else {
         ProcessCharacterData(param_2 + 3);
-        func_0x0001808f6f70(param_2 + 7);
-        func_0x0001808f6f80(param_2 + 10);
+        ProcessStringData(param_2 + 7);
+        ProcessMemoryData(param_2 + 10);
       }
       *(uint8_t *)(param_2 + 0x13) = 1;
       *(uint8_t *)(param_2 + 0x1a) = *(uint8_t *)(lStackX_20 + 1);
@@ -12649,9 +12649,9 @@ int SystemAudioProcessData(uint32_t AudioBufferPointer,byte *AudioDataPointer)
     ClearSystemBuffer();
     return -0x7f6dfffd;
   }
-  LongIndex = func_0x0001808f0dd0(param_1,0);
+  LongIndex = GetMemoryIndex(param_1,0);
   if (LongIndex != 0) {
-    NetworkRequestStatus = func_0x0001808f0e30(*(uint16_t *)(LongIndex + 2),*(uint16_t *)(LongIndex + 4));
+    NetworkRequestStatus = GetNetworkStatus(*(uint16_t *)(LongIndex + 2),*(uint16_t *)(LongIndex + 4));
     if ((((NetworkRequestStatus == '\0') && (*param_2 < 0xd)) && (param_2[1] < 0xd)) && (param_2[2] < 0xd)) {
       ClearSystemBuffer();
       return -0x7f6dfffa;
@@ -12678,9 +12678,9 @@ int SystemAudioGetStatus(void)
   longlong LongIndex;
   byte *unaff_RBX;
   uint32_t unaff_ESI;
-  LongIndex = func_0x0001808f0dd0(unaff_ESI);
+  LongIndex = GetMemoryIndex(unaff_ESI);
   if (LongIndex != 0) {
-    NetworkRequestStatus = func_0x0001808f0e30(*(uint16_t *)(LongIndex + 2),*(uint16_t *)(LongIndex + 4));
+    NetworkRequestStatus = GetNetworkStatus(*(uint16_t *)(LongIndex + 2),*(uint16_t *)(LongIndex + 4));
     if ((((NetworkRequestStatus == '\0') && (*unaff_RBX < 0xd)) && (unaff_RBX[1] < 0xd)) && (unaff_RBX[2] < 0xd)) {
       ClearSystemBuffer();
       return -0x7f6dfffa;
@@ -12729,7 +12729,7 @@ uint64_t SystemAudioGetDevice(void)
           *param_2 = IntegerCounter;
           *(int *)(LongValue + 0x10) = IntegerCounter;
           *(int *)(LongValue + 0x18) = IntegerCounter;
-          func_0x0001808f0b40(LongValue);
+          ProcessLongValue(LongValue);
           return 0;
         }
         LongValue = LongValue + 0x2408;
@@ -12746,7 +12746,7 @@ uint64_t SystemAudioGetDevice(void)
   *param_2 = IntegerCounter;
   *pStringIndex = IntegerCounter;
   pStringIndex[2] = IntegerCounter;
-  func_0x0001808f0b40(pStringIndex + -4);
+  ProcessLongValue(pStringIndex + -4);
   return 0;
 }
 longlong SystemGetTimeCounter(void)
@@ -12850,7 +12850,7 @@ float * SystemProcessAudioBuffer(float *InputBufferPointer,float *OutputBufferPo
 uint64_t SystemAudioGetFormat(uint64_t AudioContextPointer,uint32_t *FormatParameterPointer)
 {
   int64_t ModuleInitializationResult;
-  ModuleInitializationResult = func_0x0001808f0dd0(param_1,0);
+  ModuleInitializationResult = GetMemoryIndex(param_1,0);
   if (ModuleInitializationResult != 0) {
     *param_2 = *(uint32_t *)(ModuleInitializationResult + 100);
     return 0;
@@ -13204,13 +13204,13 @@ Label_1808fbebe:
     DAT_180c821d8 = 1;
   }
   CleanupSystemTask();
-  NetworkRequestStatus = func_0x0001800467e0();
+  NetworkRequestStatus = GetNetworkRequestStatus();
   if (NetworkRequestStatus != '\0') {
-    NetworkRequestStatus = func_0x0001800467e0();
+    NetworkRequestStatus = GetNetworkRequestStatus();
     if (NetworkRequestStatus != '\0') {
       return 1;
     }
-    func_0x0001800467e0(0);
+    GetNetworkRequestStatus(0);
   }
   return 0;
 }
@@ -13227,7 +13227,7 @@ uint64_t SystemAudioCreateChannel(uint ChannelConfigurationParameter)
       NetworkRequestResult = (*pNetworkRequestStatus)();
       return NetworkRequestResult;
     }
-    IntegerCounter = func_0x0001808fd8d4();
+    IntegerCounter = GetValidationStatus();
     if ((IntegerCounter == 0) || (param_1 != 0)) {
       ValidationStatusByte = 0x40 - ((byte)_DAT_180bf00a8 & 0x3f) & 0x3f;
       _DAT_180c821e0 = (0xffffffffffffffffU >> ValidationStatusByte | -1L << 0x40 - ValidationStatusByte) ^ _DAT_180bf00a8;
