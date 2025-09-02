@@ -6904,11 +6904,11 @@ void ProcessObjectContextRelease(int64_t ObjectHandle, int64_t SystemContext)
 
 {
   int PackageValidationStatusCode;
-  uint8_t contextBuffer;
+  uint8_t ContextBuffer;
   
-  ValidationStatus = ValidateObjectContext(*(uint32_t *)(ObjectHandle + 0x10), &contextBuffer);
+  ValidationStatus = ValidateObjectContext(*(uint32_t *)(ObjectHandle + 0x10), &ContextBuffer);
   if (ValidationStatus == 0) {
-    ValidationStatus = ProcessSystemValidation(contextBuffer);
+    ValidationStatus = ProcessSystemValidation(ContextBuffer);
     if (ValidationStatus == 0) {
             ReleaseSystemContextResources(*(uint8_t *)(SystemContext + 0x98), ObjectHandle);
     }
@@ -6932,9 +6932,9 @@ void ProcessObjectValidation(int64_t ObjectContext, int64_t SystemContext)
 
 {
   int PackageValidationStatusCode;
-  uint8_t validationBuffer [8];
+  uint8_t ValidationBuffer [8];
   
-  ValidationStatus = ValidateObjectContext(*(uint32_t *)(ObjectContext + 0x10), validationBuffer);
+  ValidationStatus = ValidateObjectContext(*(uint32_t *)(ObjectContext + 0x10), ValidationBuffer);
   if (ValidationStatus == 0) {
           ProcessSystemObject(*(uint8_t *)(SystemContext + 0x98), ObjectContext);
   }
@@ -7130,12 +7130,12 @@ uint64_t ValidateSystemDataBufferContext(void)
   uint64_t ArrayIndex;
   int64_t PrimarySystemContext;
   int64_t SecondarySystemContext;
-  int64_t stackParameter;
+  int64_t StackParameter;
   
   systemStatus = 0;
   contextOffset = systemStatus;
-  if (stackParameter != 0) {
-    contextOffset = stackParameter - 8;
+  if (StackParameter != 0) {
+    contextOffset = StackParameter - 8;
   }
   arrayIndex = systemStatus;
   if (0 < *(int *)(contextOffset + 0x28)) {
@@ -7229,15 +7229,15 @@ uint8_t ValidateAndProcessComplexObjectContext(int64_t ObjectContext, int64_t Sy
   int ObjectElementIndex;
   uint8_t ProcessingResult;
   int64_t ContextPointer;
-  int64_t validationBuffer;
+  int64_t ValidationBuffer;
   
-  ProcessingResult = ValidateObjectContext(*(uint32_t *)(ObjectContext + 0x10), &validationBuffer);
+  ProcessingResult = ValidateObjectContext(*(uint32_t *)(ObjectContext + 0x10), &ValidationBuffer);
   if ((int)ProcessingResult != 0) {
     return ProcessingResult;
   }
-  ContextPointer = validationBuffer;
-  if (validationBuffer != 0) {
-    ContextPointer = validationBuffer + -8;
+  ContextPointer = ValidationBuffer;
+  if (ValidationBuffer != 0) {
+    ContextPointer = ValidationBuffer + -8;
   }
   objectIndex = *(int *)(ObjectContext + ObjectContextValidationDataOffset);
   if ((objectIndex < 0) || (*(int *)(ContextPointer + 0x28) <= objectIndex)) {
@@ -7255,9 +7255,9 @@ uint8_t ValidateAndProcessComplexObjectContext(int64_t ObjectContext, int64_t Sy
     return 0;
   }
   if ((*(int *)(ContextPointer + 0x180) != 0) || (*(int *)(ContextPointer + 0x184) != 0)) {
-    validationBuffer = 0;
-    InitializeProcessingBuffer(&validationBuffer);
-    if (validationBuffer == *(int64_t *)((int64_t)*(int *)(ContextPointer + 0x17c) * 8 + 0x180c4f450)) {
+    ValidationBuffer = 0;
+    InitializeProcessingBuffer(&ValidationBuffer);
+    if (ValidationBuffer == *(int64_t *)((int64_t)*(int *)(ContextPointer + 0x17c) * 8 + 0x180c4f450)) {
       ProcessingResult = ProcessSystemObjectWithBuffer(ContextPointer, ObjectContext);
       goto ObjectContextProcessingComplete;
     }
@@ -7287,7 +7287,7 @@ ObjectContextProcessingComplete:
 void ValidateObjectContextAndProcessPointerValidation(int64_t ObjectContext, int64_t SystemContext)
 
 {
-  int64_t objectDataPointer;
+  int64_t ObjectDataPointer;
   int PackageValidationStatusCode;
   int64_t allocatedMemory;
   int64_t *pointerReference;
@@ -13403,17 +13403,17 @@ void ExecuteSimplifiedContextValidation(void)
   int64_t SystemContext;
   char systemFlag;
   int64_t *resourcePointer;
-  uint8_t validationBuffer [8];
+  uint8_t ValidationBuffer [8];
   uint64_t StackParameter;
   
   OperationResult = (**(code **)(SystemContext + 0x10))();
-  ProcessDataBuffer(validationBuffer + OperationResult,0x200 - OperationResult,10);
+  ProcessDataBuffer(ValidationBuffer + OperationResult,0x200 - OperationResult,10);
   OperationResult = (**(code **)(*resourcePointer + 8))();
   if (((OperationResult == 0) && (systemFlag == '\0')) &&
      (OperationResult = (**(code **)(*resourcePointer + 0x18))(), OperationResult == 0)) {
     *(uint8_t *)(resourcePointer + 4) = 0;
   }
-        FinalizeSecurityOperation(stackParameter ^ (uint64_t)&SystemSecurityValidationBuffer);
+        FinalizeSecurityOperation(StackParameter ^ (uint64_t)&SystemSecurityValidationBuffer);
 }
 
 
