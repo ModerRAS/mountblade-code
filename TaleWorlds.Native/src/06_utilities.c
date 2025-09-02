@@ -4371,20 +4371,20 @@ uint8_t ValidateObjectRegistrationStatus(int64_t ObjectContext)
   // 检查注册状态
   if (*(int *)(RegistrationHandle + RegistrationStatusOffset) == InvalidRegistrationStatus) {
     // 获取对象名称
-    ValidationStatusCode = GetRegisteredObjectName(RegistrationHandle, ObjectName);
-    if ((int)ValidationStatusCode != 0) {
-      return ValidationStatusCode;
+    RegistrationValidationStatus = GetRegisteredObjectName(RegistrationHandle, ObjectName);
+    if ((int)RegistrationValidationStatus != 0) {
+      return RegistrationValidationStatus;
     }
     
     // 验证对象状态
-    StatusResult = VerifyObjectRegistrationStatus(RegistrationHandle);
-    if ((int)StatusResult != 0) {
-      return StatusResult;
+    RegistrationStatusResult = VerifyObjectRegistrationStatus(RegistrationHandle);
+    if ((int)RegistrationStatusResult != 0) {
+      return RegistrationStatusResult;
     }
     
     // 验证状态一致性
-    if ((char)ValidationStatusCode == (char)StatusResult) {
-      if (ObjectName[0] == (char)StatusResult) {
+    if ((char)RegistrationValidationStatus == (char)RegistrationStatusResult) {
+      if (ObjectName[0] == (char)RegistrationStatusResult) {
         // 搜索现有注册项
         RegistrationBasePointer = (int64_t *)(RegistrationData + RegistrationArrayOffset);
         RegistrationIterator = 0;
@@ -4706,16 +4706,24 @@ uint8_t IncrementObjectReferenceCount(int64_t ObjectContext) {
   uint8_t ObjectValidationResult;
   int64_t ObjectValidationContext [4];
   
+  // 验证对象上下文的有效性
   ObjectValidationResult = ValidateObjectContext(*(uint32_t *)(ObjectContext + ObjectContextDataArrayOffset), ObjectValidationContext);
   if ((int)ObjectValidationResult != 0) {
     return ObjectValidationResult;
   }
+  
+  // 调整对象验证上下文指针
   if (ObjectValidationContext[0] != 0) {
     ObjectValidationContext[0] = ObjectValidationContext[0] - 8;
   }
+  
+  // 获取验证后的对象内存指针
   ValidatedObjectMemoryPointer = *(int64_t *)(ObjectValidationContext[0] + ObjectHandleMemoryOffset);
   if (ValidatedObjectMemoryPointer != 0) {
+    // 增加对象引用计数
     *(int *)(ValidatedObjectMemoryPointer + ObjectReferenceCountOffset) = *(int *)(ValidatedObjectMemoryPointer + ObjectReferenceCountOffset) + 1;
+    
+    // 检查系统状态
     if ((*(char *)(ValidatedObjectMemoryPointer + ObjectSystemStatusFlagsOffset) != '\0') && (ObjectValidationResult = CheckSystemStatus(), (int)ObjectValidationResult != 0)) {
       return ObjectValidationResult;
     }
