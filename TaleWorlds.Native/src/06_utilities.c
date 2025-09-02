@@ -66288,7 +66288,17 @@ void ReleaseValidationMemoryHandler(uint8_t ObjectContext,int64_t ValidationCont
 
 
 
-void Unwind_180908d80(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 释放系统资源处理器
+ * 
+ * 该函数负责释放系统资源
+ * 清理系统资源并更新状态标志
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @return 无返回值
+ */
+void ReleaseSystemResourceHandler(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   if ((*(uint *)(ResourceData + 0x30) & 1) != 0) {
@@ -66300,7 +66310,17 @@ void Unwind_180908d80(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180908db0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 初始化资源哈希处理器
+ * 
+ * 该函数负责初始化资源哈希处理器
+ * 设置资源哈希指针并验证系统状态
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @return 无返回值
+ */
+void InitializeResourceHashHandler(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   uint8_t *ResourceHashPointer;
