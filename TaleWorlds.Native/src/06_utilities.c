@@ -54979,7 +54979,17 @@ void BeginResourceTransactionHandling(uint8_t ObjectContext,int64_t ValidationCo
 
 
 
-void Unwind_180906ba0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行主要资源处理操作
+ * 
+ * 该函数负责处理主要资源的清理和释放
+ * 确保系统在异常情况下能够正确处理主要资源
+ * 
+ * @param ObjectContext 对象上下文参数
+ * @param ValidationContext 验证上下文参数
+ * @return 无返回值
+ */
+void ExecutePrimaryResourceHandler(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t *processPointer;
