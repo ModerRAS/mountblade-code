@@ -11185,7 +11185,7 @@ void ProcessModuleInitialization(int64_t ModuleHandle, void* ModuleContext, int*
       *(int *)(ObjectContext + 0xac) = ResourceIterationIndex + 1;
       goto HANDLE_CONTEXT_ERROR;
     }
-    float FifthFloatResult = *(float *)(LongValue8 + 0x18);
+    float FifthFloatResult = *(float *)(ResourceContextDataPointer + 0x18);
     float CalculatedFloatResult = calculatedFloatValue;
     if (OperationResult != -1) {
       CalculatedFloatResult = *(float *)(ObjectContext + 0xb4);
@@ -54352,7 +54352,18 @@ void HandleResourceValidation(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180906a00(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 清理验证上下文中的资源事务处理器 (地址: 0x180906a00)
+ * 
+ * 该函数负责清理验证上下文中的资源事务处理器
+ * 执行资源事务回滚和提交操作，并清理相关的资源处理器
+ * 
+ * @param ObjectContext 对象上下文，标识要处理的对象
+ * @param ValidationContext 验证上下文，包含要清理的资源处理器
+ * @return 无返回值
+ * @note 此函数通常在异常处理或资源清理时调用
+ */
+void CleanupValidationContextResourceTransactionHandler(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t *processPointer;
@@ -54465,7 +54476,18 @@ void CleanupValidationContextExtendedResourceHandlerInTransaction(uint8_t Object
 
 
 
-void Unwind_180906a50(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 清理系统资源上下文处理器 (地址: 0x180906a50)
+ * 
+ * 该函数负责清理系统资源上下文中的处理器
+ * 通过访问系统数据结构中的特定偏移量来清理资源处理器
+ * 
+ * @param ObjectContext 对象上下文，标识要处理的对象
+ * @param ValidationContext 验证上下文，包含系统资源上下文信息
+ * @return 无返回值
+ * @note 此函数通常在系统资源清理时调用
+ */
+void CleanupSystemResourceContextHandler(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t *processPointer;
@@ -54479,7 +54501,18 @@ void Unwind_180906a50(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180906a60(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 清理验证上下文中的主要资源处理器 (地址: 0x180906a60)
+ * 
+ * 该函数负责清理验证上下文中偏移量0xa0处的主要资源处理器
+ * 通过调用资源处理器的清理函数来释放相关资源
+ * 
+ * @param ObjectContext 对象上下文，标识要处理的对象
+ * @param ValidationContext 验证上下文，包含要清理的主要资源处理器
+ * @return 无返回值
+ * @note 此函数通常在异常处理或资源清理时调用
+ */
+void CleanupValidationContextPrimaryResourceHandler(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   if (*(int64_t **)(ValidationContext + 0xa0) != (int64_t *)0x0) {
@@ -54490,7 +54523,7 @@ void Unwind_180906a60(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180906a70(uint8_t ObjectContext,int64_t ValidationContext)
+void ExecuteSystemCallbackAtOffsetA8(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   if (*(int64_t **)(ValidationContext + 0xa8) != (int64_t *)0x0) {
@@ -54501,7 +54534,17 @@ void Unwind_180906a70(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180906a80(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行资源事务回滚操作
+ * 
+ * 该函数负责回滚资源事务并清理相关资源
+ * 确保系统在异常情况下能够正确回滚事务
+ * 
+ * @param ObjectContext 对象上下文参数
+ * @param ValidationContext 验证上下文参数
+ * @return 无返回值
+ */
+void ExecuteResourceTransactionRollback(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   BeginResourceTransaction();
@@ -54513,7 +54556,17 @@ void Unwind_180906a80(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180906a90(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行资源数据清理操作
+ * 
+ * 该函数负责清理资源数据并处理相关操作
+ * 确保系统在异常情况下能够正确清理资源数据
+ * 
+ * @param ObjectContext 对象上下文参数
+ * @param ValidationContext 验证上下文参数
+ * @return 无返回值
+ */
+void ExecuteResourceDataCleanup(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   if ((*(uint *)(ResourceData + 0x20) & 1) != 0) {
@@ -54525,7 +54578,17 @@ void Unwind_180906a90(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180906ac0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行标准资源事务管理
+ * 
+ * 该函数负责管理标准资源事务的处理
+ * 包括回滚旧事务和开始新事务，以及处理多个资源上下文
+ * 
+ * @param ObjectContext 对象上下文参数
+ * @param ValidationContext 验证上下文参数
+ * @return 无返回值
+ */
+void ExecuteStandardResourceTransactionManagement(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t *processPointer;
@@ -54549,7 +54612,17 @@ void Unwind_180906ac0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180906ad0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行验证上下文回调操作
+ * 
+ * 该函数负责执行验证上下文相关的回调操作
+ * 确保系统在异常情况下能够正确执行回调
+ * 
+ * @param ObjectContext 对象上下文参数
+ * @param ValidationContext 验证上下文参数
+ * @return 无返回值
+ */
+void ExecuteValidationContextCallback(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   if (*(int64_t **)(ValidationContext + 0x30) != (int64_t *)0x0) {
@@ -54560,7 +54633,17 @@ void Unwind_180906ad0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180906ae0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行资源事务提交操作
+ * 
+ * 该函数负责提交资源事务并清理相关资源
+ * 确保系统在异常情况下能够正确提交事务
+ * 
+ * @param ObjectContext 对象上下文参数
+ * @param ValidationContext 验证上下文参数
+ * @return 无返回值
+ */
+void ExecuteResourceTransactionCommit(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   BeginResourceTransaction();
@@ -54572,7 +54655,17 @@ void Unwind_180906ae0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180906af0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行资源上下文清理操作
+ * 
+ * 该函数负责清理资源上下文相关的事务和资源
+ * 确保系统在异常情况下能够正确释放资源上下文
+ * 
+ * @param ObjectContext 对象上下文参数
+ * @param ValidationContext 验证上下文参数
+ * @return 无返回值
+ */
+void ExecuteResourceContextCleanup(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t *processPointer;
@@ -54643,7 +54736,18 @@ void ProcessResourceHashCleanup(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180906b20(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 清理验证上下文中的系统资源处理器 (地址: 0x180906b20)
+ * 
+ * 该函数负责清理验证上下文中偏移量0x100处的系统资源处理器
+ * 通过访问嵌套的指针结构来调用相应的清理函数
+ * 
+ * @param ObjectContext 对象上下文，标识要处理的对象
+ * @param ValidationContext 验证上下文，包含系统资源处理器信息
+ * @return 无返回值
+ * @note 此函数通常在系统资源清理时调用
+ */
+void CleanupValidationContextSystemResourceHandler(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   if ((int64_t *)**(int64_t **)(ValidationContext + 0x100) != (int64_t *)0x0) {
@@ -54654,7 +54758,20 @@ void Unwind_180906b20(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180906b30(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 执行验证上下文清理操作 (地址: 0x180906b30)
+ * 
+ * 该函数负责执行验证上下文的清理操作，调用相应的清理函数
+ * 主要用于系统资源管理中的清理流程，支持清理选项和标志
+ * 
+ * @param ObjectContext 对象上下文参数
+ * @param ValidationContext 验证上下文参数
+ * @param CleanupOption 清理选项
+ * @param CleanupFlag 清理标志
+ * @return 无返回值
+ * @note 此函数通常在系统资源清理时调用
+ */
+void ExecuteValidationContextCleanupWithFlags(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   if (*(code **)(ValidationContext + 0x78) != (code *)0x0) {
@@ -54665,7 +54782,18 @@ void Unwind_180906b30(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 
 
 
-void Unwind_180906b40(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 验证资源哈希在偏移量B4处
+ * 
+ * 该函数负责验证资源哈希数据，遍历资源哈希指针并进行验证
+ * 如果发现异常情况会调用系统紧急退出函数
+ * 
+ * @param ObjectContext 对象上下文，用于标识操作的对象
+ * @param ValidationContext 验证上下文，包含资源哈希数据和验证结果指针
+ * @return 无返回值
+ * @note 此函数用于资源哈希验证和完整性检查
+ */
+void ValidateResourceHashAtOffsetB4(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   uint8_t *ResourceHashPointer;
@@ -54689,7 +54817,18 @@ void Unwind_180906b40(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180906b50(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 验证资源哈希在索引处
+ * 
+ * 该函数负责验证指定索引处的资源哈希数据
+ * 处理资源索引指针和哈希验证结果指针
+ * 
+ * @param ObjectContext 对象上下文，用于标识操作的对象
+ * @param ValidationContext 验证上下文，包含资源索引和哈希验证数据
+ * @return 无返回值
+ * @note 此函数用于资源索引处的哈希验证
+ */
+void ValidateResourceHashAtIndex(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int *ResourceIndexPointer;
@@ -54725,7 +54864,18 @@ void Unwind_180906b50(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180906b60(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 清理资源表中的哈希数据 (地址: 0x180906b60)
+ * 
+ * 该函数负责清理资源表中的哈希数据和相关验证结果
+ * 遍历资源表指针，重置哈希验证状态，确保资源表清理完成
+ * 
+ * @param ObjectContext 对象上下文，标识要处理的对象
+ * @param ValidationContext 验证上下文，包含资源表和哈希数据
+ * @return 无返回值
+ * @note 此函数通常在资源表清理时调用
+ */
+void CleanupResourceTableHashData(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   uint8_t *ResourceHashPointer;
@@ -54751,7 +54901,18 @@ void Unwind_180906b60(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180906b70(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 清理资源事务处理器 (地址: 0x180906b70)
+ * 
+ * 该函数负责清理资源事务处理器，执行事务回滚和提交操作
+ * 清理验证上下文中不同偏移量的资源处理器
+ * 
+ * @param ObjectContext 对象上下文，标识要处理的对象
+ * @param ValidationContext 验证上下文，包含资源事务处理器信息
+ * @return 无返回值
+ * @note 此函数通常在资源事务清理时调用
+ */
+void CleanupResourceTransactionHandler(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t *processPointer;
@@ -54832,7 +54993,18 @@ void Unwind_180906ba0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180906bb0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 验证资源哈希在次要索引处
+ * 
+ * 该函数负责验证次要索引处的资源哈希数据
+ * 处理资源索引指针和哈希验证结果指针
+ * 
+ * @param ObjectContext 对象上下文，用于标识操作的对象
+ * @param ValidationContext 验证上下文，包含次要资源索引和哈希验证数据
+ * @return 无返回值
+ * @note 此函数用于次要索引处的资源哈希验证
+ */
+void ValidateResourceHashAtSecondaryIndex(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int *ResourceIndexPointer;
@@ -54949,7 +55121,18 @@ void InitializeSystemDataTablePointer(void)
 
 
 
-void Unwind_180906c20(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 清理验证上下文中的事务资源处理器偏移量60 (地址: 0x180906c20)
+ * 
+ * 该函数负责清理验证上下文中偏移量0x60处的事务资源处理器
+ * 开始资源事务并调用相应的清理函数
+ * 
+ * @param ObjectContext 对象上下文，标识要处理的对象
+ * @param ValidationContext 验证上下文，包含要清理的事务资源处理器
+ * @return 无返回值
+ * @note 此函数通常在异常处理或资源清理时调用
+ */
+void CleanupValidationContextTransactionResourceHandlerAtOffset60(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   BeginResourceTransaction();
@@ -54961,7 +55144,18 @@ void Unwind_180906c20(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180906c30(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 清理验证上下文中的资源处理器偏移量60 (地址: 0x180906c30)
+ * 
+ * 该函数负责清理验证上下文中偏移量0x60处的资源处理器
+ * 通过调用资源处理器的清理函数来释放相关资源
+ * 
+ * @param ObjectContext 对象上下文，标识要处理的对象
+ * @param ValidationContext 验证上下文，包含要清理的资源处理器
+ * @return 无返回值
+ * @note 此函数通常在异常处理或资源清理时调用
+ */
+void CleanupValidationContextResourceHandlerAtOffset60(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   if (*(int64_t **)(ValidationContext + 0x60) != (int64_t *)0x0) {
