@@ -59519,7 +59519,7 @@ void InitializeSystemVectorCalculations(void)
   void* StackParameter188;
   
   uStack0000000000000030 = 0xffffffff;
-  FUN_180080e90(unaff_R13 + 0x3388,&stack0x00000030);
+  FUN_180080e90(unaff_R13 + 0x3388,&stackBuffer30);
   pfloatValue29 = FloatParameterArray;
   if ((*(uint *)(MemoryBlockAddress + 0x100) & 0x4000000) != 0) {
     FloatVectorFirstComponent = *FloatParameterArray;

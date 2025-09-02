@@ -6222,7 +6222,7 @@ void ProcessObjectStateAndSchedule(int64_t ObjectContext, int64_t SchedulerConte
     if (ObjectProcessingStatus != 0) {
       return;
     }
-    ObjectProcessingStatus = ValidateBufferContext(*(uint8_t *)(DataProcessingBuffer + 0xd0), ObjectContext + ObjectContextMatrixFlagsOffset);
+    ObjectProcessingStatus = ValidateBufferContext(*(uint8_t *)(DataProcessingBuffer + DataProcessingBufferOffset), ObjectContext + ObjectContextMatrixFlagsOffset);
     if (ObjectProcessingStatus != 0) {
       return;
     }
@@ -70609,7 +70609,19 @@ void ExecuteResourceContextCallback(uint8_t ObjectContext, int64_t ValidationCon
 
 
 
-void Unwind_18090a7f0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行资源表回调操作
+ * 
+ * 该函数负责执行资源表的回调操作
+ * 遍历资源表中的所有资源并执行相应的回调函数
+ * 
+ * @param ObjectContext 对象上下文，包含资源处理所需的对象信息
+ * @param ValidationContext 验证上下文，用于验证资源状态的上下文信息
+ * @return 无返回值
+ * @note 此函数会遍历资源表并执行所有资源的回调函数
+ * @warning 如果资源表为空，会触发系统紧急退出
+ */
+void ExecuteResourceTableCallback(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int64_t *processPointer;
