@@ -47344,7 +47344,7 @@ void Unwind_SystemCleanup_ScriptManager(uint8_t ObjectContext,int64_t Validation
 
 
 
-void Unwind_1809052c0(uint8_t ObjectContext,int64_t ValidationContext)
+void Unwind_SystemCleanup_AnimationManager(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   if ((*(uint *)(resourceData + 0x20) & 1) != 0) {
@@ -80000,7 +80000,7 @@ void Unwind_18090ef20(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090ef40(uint8_t ObjectContext,int64_t ValidationContext)
+void Unwind_ResourceContextCleanup(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t *processPointer;
