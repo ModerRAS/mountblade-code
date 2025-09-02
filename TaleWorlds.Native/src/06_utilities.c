@@ -71190,7 +71190,13 @@ void UnwindResourceHandlerExtendedRegistrar(uint8_t ObjectContext,int64_t Valida
 
 
 
-void Unwind_180909d60(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief Unwind异常处理函数：资源表处理器
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @remark 原始函数名：Unwind_180909d60
+ */
+void UnwindResourceTableProcessor(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t *processPointer;
@@ -71212,7 +71218,13 @@ void Unwind_180909d60(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180909d80(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief Unwind异常处理函数：系统上下文验证器
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @remark 原始函数名：Unwind_180909d80
+ */
+void UnwindSystemContextValidator(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t *processPointer;
@@ -71234,7 +71246,13 @@ void Unwind_180909d80(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180909da0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief Unwind异常处理函数：资源处理器清理器
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @remark 原始函数名：Unwind_180909da0
+ */
+void UnwindResourceHandlerCleanup(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t *processPointer;
@@ -71256,7 +71274,13 @@ void Unwind_180909da0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180909dc0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief Unwind异常处理函数：系统上下文终结器
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @remark 原始函数名：Unwind_180909dc0
+ */
+void UnwindSystemContextFinalizer(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t *processPointer;
@@ -71278,7 +71302,15 @@ void Unwind_180909dc0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180909de0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief Unwind异常处理函数：系统资源处理器
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @param CleanupOption 清理选项
+ * @param CleanupFlag 清理标志
+ * @remark 原始函数名：Unwind_180909de0
+ */
+void UnwindSystemResourceProcessor(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   ProcessResourceAllocation(*(int64_t *)(ValidationContext + SystemContextResourceOffset) + 0x740,
