@@ -898,10 +898,10 @@ void FreeMemoryResource(void* MemoryPointer);
  * 该函数负责处理数据上下文的相关操作
  * 管理数据的生命周期和状态转换
  * 
- * @param dataContext 数据上下文，包含数据的状态和管理信息
+ * @param DataContext 数据上下文，包含数据的状态和管理信息
  * @return int 返回处理结果，0表示成功，非0表示错误代码
  */
-int ProcessDataContextOperations(void* dataContext);
+int ProcessDataContextOperations(void* DataContext);
 
 /**
  * @brief 在资源池中查找条目
@@ -909,11 +909,11 @@ int ProcessDataContextOperations(void* dataContext);
  * 该函数负责在资源池中查找指定的资源条目
  * 根据索引或标识符定位并返回资源条目
  * 
- * @param resourcePool 资源池指针，指向要搜索的资源池
- * @param entryIndex 条目索引，指定要查找的条目位置
+ * @param ResourcePool 资源池指针，指向要搜索的资源池
+ * @param EntryIndex 条目索引，指定要查找的条目位置
  * @return uint8_t 返回找到的资源条目指针，如果未找到返回NULL
  */
-void* FindEntryInResourcePool(void* resourcePool, int entryIndex);
+void* FindEntryInResourcePool(void* ResourcePool, int EntryIndex);
 
 /**
  * @brief 验证资源条目完整性
@@ -921,10 +921,10 @@ void* FindEntryInResourcePool(void* resourcePool, int entryIndex);
  * 该函数负责验证资源条目的完整性
  * 检查条目数据的有效性和一致性
  * 
- * @param entryPointer 条目指针，指向要验证的资源条目
+ * @param EntryPointer 条目指针，指向要验证的资源条目
  * @return int 返回验证结果，0表示验证成功，非0表示验证失败
  */
-int ValidateResourceEntryIntegrity(void* entryPointer);
+int ValidateResourceEntryIntegrity(void* EntryPointer);
 
 /**
  * @brief 初始化资源条目数据
@@ -932,9 +932,9 @@ int ValidateResourceEntryIntegrity(void* entryPointer);
  * 该函数负责初始化资源条目的数据结构
  * 设置条目的初始状态和默认值
  * 
- * @param entryPointer 条目指针，指向要初始化的资源条目
+ * @param EntryPointer 条目指针，指向要初始化的资源条目
  */
-void InitializeResourceEntryData(void* entryPointer);
+void InitializeResourceEntryData(void* EntryPointer);
 
 /**
  * @brief 检查资源表状态
@@ -942,11 +942,11 @@ void InitializeResourceEntryData(void* entryPointer);
  * 该函数负责检查资源表的当前状态
  * 验证表的完整性和可用性
  * 
- * @param tablePointer 表指针，指向要检查的资源表
- * @param checkType 检查类型，指定要执行的检查类型
+ * @param TablePointer 表指针，指向要检查的资源表
+ * @param CheckType 检查类型，指定要执行的检查类型
  * @return uint8_t 返回检查结果，0表示检查通过，非0表示发现问题
  */
-void* CheckResourceTableStatus(void* tablePointer, uint32_t checkType);
+void* CheckResourceTableStatus(void* TablePointer, uint32_t CheckType);
 
 void* SystemThreadConfigurationTable;
 void* SystemProcessControlTable;
@@ -4359,18 +4359,18 @@ uint8_t ProcessComplexObjectHandle(int64_t ObjectContext)
 
 {
   uint8_t OperationResult;
-  int64_t resultBuffer[2];
-  int64_t handleBuffer[2];
+  int64_t ResultBuffer[2];
+  int64_t HandleBuffer[2];
   
-  OperationResult = ValidateObjectContext(*(uint32_t *)(ObjectContext + ObjectContextDataArrayOffset), handleBuffer);
+  OperationResult = ValidateObjectContext(*(uint32_t *)(ObjectContext + ObjectContextDataArrayOffset), HandleBuffer);
   if ((int)OperationResult == 0) {
-    if (handleBuffer[0] == 0) {
-      handleBuffer[0] = 0;
+    if (HandleBuffer[0] == 0) {
+      HandleBuffer[0] = 0;
     }
     else {
-      handleBuffer[0] = handleBuffer[0] + -8;
+      HandleBuffer[0] = HandleBuffer[0] + -8;
     }
-    resultBuffer[0] = 0;
+    ResultBuffer[0] = 0;
     OperationResult = ProcessSystemContextValidation(HandleBuffer[0], ObjectContext + ObjectContextValidationDataOffset, ResultBuffer);
     if ((int)OperationResult == 0) {
       if (ResultBuffer[0] != 0) {
@@ -7055,7 +7055,7 @@ uint8_t ValidateObjectContextAndProcessBuffers(int64_t ObjectContext, int64_t Sy
   int64_t BufferEntryPointer;
   int ComparisonResult;
   uint8_t ValidationStatus;
-  uint8_t *stringPointer;
+  uint8_t *StringPointer;
   uint IterationCounter;
   uint64_t BufferIndex;
   int64_t BufferContext;
@@ -7082,12 +7082,12 @@ uint8_t ValidateObjectContextAndProcessBuffers(int64_t ObjectContext, int64_t Sy
           return 0x1e;
         }
         if (*(int *)(bufferEntryPointer + 0x58) < 1) {
-          stringPointer = &ResourceHashTemplate;
+          StringPointer = &ResourceHashTemplate;
         }
         else {
-          stringPointer = *(uint8_t **)(bufferEntryPointer + 0x50);
+          StringPointer = *(uint8_t **)(bufferEntryPointer + 0x50);
         }
-        ComparisonResult = CompareStringWithContext(stringPointer,ObjectContext + ObjectContextHandleDataOffset);
+        ComparisonResult = CompareStringWithContext(StringPointer,ObjectContext + ObjectContextHandleDataOffset);
         if (ComparisonResult == 0) {
           ValidationStatus = ValidateBufferContext(bufferContext,ObjectContext + ObjectContextValidationDataOffset);
           if ((int)ValidationStatus != 0) {
@@ -7122,7 +7122,7 @@ uint64_t ValidateSystemDataBufferContext(void)
   int64_t BufferDataPointer;
   int PackageValidationStatusCode;
   uint8_t OperationResult;
-  uint8_t *stringPointer;
+  uint8_t *StringPointer;
   uint IterationCounter;
   uint64_t SystemStatus;
   int64_t ContextPointer;
@@ -7146,12 +7146,12 @@ uint64_t ValidateSystemDataBufferContext(void)
         return 0x1e;
       }
       if (*(int *)(bufferDataPointer + 0x58) < 1) {
-        stringPointer = &ResourceHashTemplate;
+        StringPointer = &ResourceHashTemplate;
       }
       else {
-        stringPointer = *(uint8_t **)(bufferDataPointer + 0x50);
+        StringPointer = *(uint8_t **)(bufferDataPointer + 0x50);
       }
-      ValidationStatus = CompareStringWithContext(stringPointer);
+      ValidationStatus = CompareStringWithContext(StringPointer);
       if (ValidationStatus == 0) {
         OperationResult = ValidateBufferContext(ContextPointer,SecondarySystemContext + 0x18);
         if ((int)OperationResult != 0) {
@@ -7848,13 +7848,13 @@ uint8_t ProcessParameterizedFloatComparison(uint32_t Parameter)
   if ((*(byte *)(DataPointer + 0x34) & 0x11) != 0) {
     return 0x1f;
   }
-  OperationResult = ValidateObjectContextAndProcessData(parameter,ObjectContext + 0x25,ObjectContext + ObjectContextProcessingDataOffset);
+  OperationResult = ValidateObjectContextAndProcessData(Parameter,ObjectContext + 0x25,ObjectContext + ObjectContextProcessingDataOffset);
   if ((int)OperationResult == 0) {
-    floatValue = *(float *)(ObjectContext + ObjectContextProcessingDataOffset);
-    if ((*(float *)(DataPointer + 0x38) <= floatValue) &&
-       (floatValue < *(float *)(DataPointer + 0x3c) || floatValue == *(float *)(DataPointer + 0x3c))) {
+    FloatValue = *(float *)(ObjectContext + ObjectContextProcessingDataOffset);
+    if ((*(float *)(DataPointer + 0x38) <= FloatValue) &&
+       (FloatValue < *(float *)(DataPointer + 0x3c) || FloatValue == *(float *)(DataPointer + 0x3c))) {
       OperationResult = *(uint8_t *)(SystemContext + 0x98);
-      *(float *)(StackBuffer + 4) = floatValue;
+      *(float *)(StackBuffer + 4) = FloatValue;
             ReleaseSystemContextResources(OperationResult);
     }
     OperationResult = 0x1c;
@@ -7870,7 +7870,7 @@ uint8_t ProcessParameterizedFloatComparison(uint32_t Parameter)
  * 该函数处理简化的参数化浮点数比较操作，直接进行范围检查
  * 根据传入的参数和上下文信息，检查浮点数是否在指定范围内
  * 
- * @param parameter 操作参数，用于控制比较行为
+ * @param Parameter 操作参数，用于控制比较行为
  * @return uint8_t 操作结果，成功返回0，失败返回错误码
  */
 uint8_t ProcessSimplifiedParameterizedFloatComparison(uint32_t Parameter)
@@ -7883,13 +7883,13 @@ uint8_t ProcessSimplifiedParameterizedFloatComparison(uint32_t Parameter)
   int64_t ObjectContext;
   int64_t StackBuffer;
   
-  HashValidationResult = ValidateObjectContextAndProcessData(ObjectContext,processingContext + 0x25,processingContext + 0x20);
+  HashValidationResult = ValidateObjectContextAndProcessData(ObjectContext,ProcessingContext + 0x25,ProcessingContext + 0x20);
   if ((int)ValidationResult == 0) {
-    firstFloatValue = *(float *)(processingContext + 0x20);
-    if ((*(float *)(ResourceContext + 0x38) <= firstFloatValue) &&
-       (firstFloatValue < *(float *)(ResourceContext + 0x3c) || firstFloatValue == *(float *)(ResourceContext + 0x3c))) {
+    FirstFloatValue = *(float *)(ProcessingContext + 0x20);
+    if ((*(float *)(ResourceContext + 0x38) <= FirstFloatValue) &&
+       (FirstFloatValue < *(float *)(ResourceContext + 0x3c) || FirstFloatValue == *(float *)(ResourceContext + 0x3c))) {
       ValidationResult = *(uint8_t *)(ExecutionContextPointer + 0x98);
-      *(float *)(ResourceContextSecondary + 4) = firstFloatValue;
+      *(float *)(ResourceContextSecondary + 4) = FirstFloatValue;
             ReleaseSystemContextResources(ValidationResult);
     }
     ValidationResult = 0x1c;
@@ -26536,8 +26536,6 @@ SecurityValidationLoop:
  * @return 无返回值
  */
 void ResourceContextHandler(void)
-
-ResourceContextHandler(void)
 
 {
   return;
