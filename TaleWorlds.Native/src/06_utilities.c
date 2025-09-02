@@ -8555,9 +8555,9 @@ uint8_t ValidateAndProcessObjectContextWithParameters(int64_t ObjectContext,int6
   *(uint32_t *)(ContextPointer + 0x90) = *(uint32_t *)(ObjectContext + ObjectContextValidationDataOffset);
   ContextPointer = *(int64_t *)(ValidationContext + 0x98);
   if ((*(int *)(ContextPointer + 0x180) != 0) || (*(int *)(ContextPointer + 0x184) != 0)) {
-    StackBuffer = 0;
-    InitializeSecurityContext(&StackBuffer,ObjectContext,securityFlags,operationMode,SecurityContextParameter);
-    if (StackBuffer == *(int64_t *)((int64_t)*(int *)(ContextPointer + 0x17c) * 8 + 0x180c4f450)) {
+    ValidationContextBuffer = 0;
+    InitializeSecurityContext(&ValidationContextBuffer,ObjectContext,securityFlags,operationMode,SecurityContextParameter);
+    if (ValidationContextBuffer == *(int64_t *)((int64_t)*(int *)(ContextPointer + 0x17c) * 8 + 0x180c4f450)) {
       ValidationResult = ProcessResourceValidation(ContextPointer,ObjectContext);
       if ((int)ValidationResult == 0) {
         return 0;

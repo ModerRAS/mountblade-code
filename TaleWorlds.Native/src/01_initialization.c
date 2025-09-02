@@ -19869,7 +19869,7 @@ void ReleaseMemoryBlockReference(ulong long *ResourceManagerPointer)
 int InitializeSystemCoreComponents(long long ResourceManagerPointer,long long InitializationFlags)
 
 {
-  void* ***pppointerToUnsigned1;
+  void*** SystemResourcePointer;           // 系统资源指针
   long long localSystemHandle;
   void* *HashNodePointer;
   long long bufferBaseAddress;
@@ -51853,7 +51853,7 @@ LAB_18007113f:
           MessageBoxA(0,psystemStatus2,&SystemErrorMessageBuffer,0x41010);
         }
         else if (*(char *)(SystemContextManagerPointer + 0x18) != '\0') {
-          puStack_160 = &UNK_1809ff6c8;
+          puStack_160 = &SystemErrorMessageBuffer;
           puStack_168 = &SystemStackDataTemplate1;
           puStack_158 = psystemStatus2;
           SystemManagerSetFlags(SystemContextManagerPointer,3,0xffffffff00000000,0xd);
