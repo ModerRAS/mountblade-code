@@ -8817,39 +8817,39 @@ uint8_t ValidateObjectContextAndProcessFloatRange(int64_t ObjectContext,int64_t 
   uint32_t stackBuffer;
   uint64_t resourceHash;
   
-  hashValidationResult = ValidateObjectContext(*(uint32_t *)(ObjectContext + 0x10),&CurrentValue);
+  hashValidationResult = ValidateObjectContext(*(uint32_t *)(ObjectContext + ObjectContextDataOffset),&CurrentValidationValue);
   if ((int)hashValidationResult != 0) {
-    return resourceHashValidationResult;
+    return ResourceHashValidationResult;
   }
-  LoopCounter = 0;
-  ContextOffset = CombineFloatAndInt(StackBufferData,CurrentValue) - 8;
-  if (CombineFloatAndInt(StackBufferData,CurrentValue) == 0) {
-    ContextOffset = LoopCounter;
+  ArrayProcessingIndex = 0;
+  ObjectContextOffset = CombineFloatAndInt(StackBufferData,CurrentValidationValue) - 8;
+  if (CombineFloatAndInt(StackBufferData,CurrentValidationValue) == 0) {
+    ObjectContextOffset = ArrayProcessingIndex;
   }
-  ArrayIterationIndex = *(int *)(ContextOffset + 0x28);
-  FloatArrayPointer = (float *)(ObjectContext + ObjectContextProcessingDataOffset + (int64_t)*(int *)(ObjectContext + ObjectContextValidationDataOffset) * 4);
+  ArrayIterationCount = *(int *)(ObjectContextOffset + ObjectContextArraySizeOffset);
+  FloatArrayProcessingPointer = (float *)(ObjectContext + ObjectContextProcessingDataOffset + (int64_t)*(int *)(ObjectContext + ObjectContextValidationDataOffset) * 4);
   if (0 < *(int *)(ObjectContext + ObjectContextValidationDataOffset)) {
-    FloatPointer = FloatArrayPointer;
-    ResourceHash = LoopCounter;
+    FloatProcessingPointer = FloatArrayProcessingPointer;
+    ResourceProcessingHash = ArrayProcessingIndex;
     do {
-      arrayIndex = *(int *)(((ObjectContext + ObjectContextProcessingDataOffset) - (int64_t)FloatArrayPointer) + (int64_t)FloatPointer);
-      if (arrayIndex != -1) {
-        CurrentValue = *FloatPointer;
-        if (((uint)CurrentValue & FloatInfinityMask) == FloatInfinityMask) {
+      ArrayElementIndex = *(int *)(((ObjectContext + ObjectContextProcessingDataOffset) - (int64_t)FloatArrayProcessingPointer) + (int64_t)FloatProcessingPointer);
+      if (ArrayElementIndex != -1) {
+        CurrentFloatProcessingValue = *FloatProcessingPointer;
+        if (((uint)CurrentFloatProcessingValue & FloatInfinityMask) == FloatInfinityMask) {
           return ErrorFloatValidationFailure;
         }
-        if ((arrayIndex < 0) || (arrayIndex <= arrayIndex)) {
+        if ((ArrayElementIndex < 0) || (ArrayElementIndex <= ArrayElementIndex)) {
           return ErrorResourceValidationFailed;
         }
-        ResourcePointer = *(int64_t *)(ContextOffset + 0x20) + (int64_t)arrayIndex * 0x18;
-        if (ResourcePointer == 0) {
+        ResourceDataPointer = *(int64_t *)(ObjectContextOffset + ObjectContextResourceDataOffset) + (int64_t)ArrayElementIndex * ResourceEntrySizeBytes;
+        if (ResourceDataPointer == 0) {
           return ErrorInvalidObjectHandle;
         }
-        ResourcePointer = *(int64_t *)(ResourcePointer + 0x10);
-        if (ResourcePointer == 0) {
+        ResourceDataPointer = *(int64_t *)(ResourceDataPointer + ResourceDataOffset);
+        if (ResourceDataPointer == 0) {
           return ErrorInvalidResourceData;
         }
-        if (*(int *)(ResourcePointer + 0x30) != 0) {
+        if (*(int *)(ResourceDataPointer + ResourceValidationOffset) != 0) {
           return ErrorResourceValidationFailed;
         }
         MinValue = *(float *)(ResourcePointer + 0x38);
