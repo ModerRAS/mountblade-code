@@ -38217,8 +38217,17 @@ void CleanupSystemDataIndex(void)
 
 
 
-// 函数: void FUN_18005e630(long long SystemResourcePointer)
-void FUN_18005e630(long long SystemResourcePointer)
+/**
+ * @brief 处理系统纹理管理器锁操作
+ * 
+ * 该函数负责处理系统纹理管理器的锁操作，包括获取锁和释放锁。
+ * 用于同步纹理管理器的访问，确保线程安全。
+ * 
+ * @param SystemResourcePointer 系统资源指针，包含纹理管理器信息
+ * 
+ * 原始函数名为FUN_18005e630，现已重命名为ProcessSystemTextureManagerLock
+ */
+void ProcessSystemTextureManagerLock(long long SystemResourcePointer)
 
 {
   int systemStatus;
@@ -38232,8 +38241,7 @@ void FUN_18005e630(long long SystemResourcePointer)
   }
   systemStatus = _Mtx_unlock(localSystemHandle);
   if (systemStatus != 0) {
-                    00018005e68f. Too many branches
-                        __Throw_C_error_std__YAXH_Z(systemStatus);
+    __Throw_C_error_std__YAXH_Z(systemStatus);
     return;
   }
   return;
@@ -39139,7 +39147,19 @@ LAB_18005f0e6:
 
 
 
-void* FUN_18005f220(long long SystemResourcePointer,long long *ConfigurationDataPointer)
+/**
+ * @brief 处理系统资源句柄操作
+ * 
+ * 该函数负责处理系统资源句柄的操作，包括句柄的创建、配置和管理。
+ * 主要用于系统资源句柄的生命周期管理。
+ * 
+ * @param SystemResourcePointer 系统资源指针
+ * @param ConfigurationDataPointer 配置数据指针
+ * @return 操作结果指针
+ * 
+ * 原始函数名为FUN_18005f220，现已重命名为ProcessSystemResourceHandleOperation
+ */
+void* ProcessSystemResourceHandleOperation(long long SystemResourcePointer,long long *ConfigurationDataPointer)
 
 {
   ulong long unsignedSystemValue1;

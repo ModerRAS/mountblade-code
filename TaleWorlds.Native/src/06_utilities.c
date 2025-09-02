@@ -29108,6 +29108,18 @@ void ResetSystemUnwindFlag(void)
 
 
 
+/**
+ * @brief 处理对象上下文清理
+ * 
+ * 该函数负责处理对象上下文的清理操作
+ * 根据清理选项和标志执行相应的清理函数
+ * 
+ * @param ObjectContextParameter 对象上下文参数
+ * @param ValidationContextParameter 验证上下文参数
+ * @param CleanupOption 清理选项
+ * @param CleanupFlag 清理标志
+ * @return 无返回值
+ */
 void ProcessObjectContextCleanup(uint8_t ObjectContextParameter, int64_t ValidationContextParameter, uint8_t CleanupOption, uint8_t CleanupFlag)
 
 {
@@ -29122,6 +29134,16 @@ void ProcessObjectContextCleanup(uint8_t ObjectContextParameter, int64_t Validat
 
 
 
+/**
+ * @brief 执行验证清理
+ * 
+ * 该函数负责执行验证相关的清理操作
+ * 调用验证清理函数来释放验证过程中使用的资源
+ * 
+ * @param ObjectContextParameter 对象上下文参数
+ * @param ValidationContextParameter 验证上下文参数
+ * @return 无返回值
+ */
 void ExecuteValidationCleanup(uint8_t ObjectContextParameter, int64_t ValidationContextParameter)
 
 {
@@ -29136,6 +29158,18 @@ void ExecuteValidationCleanup(uint8_t ObjectContextParameter, int64_t Validation
 
 
 
+/**
+ * @brief 处理资源验证
+ * 
+ * 该函数负责处理资源验证操作
+ * 根据清理选项和标志执行相应的资源验证函数
+ * 
+ * @param ObjectContextParameter 对象上下文参数
+ * @param ValidationContextParameter 验证上下文参数
+ * @param CleanupOption 清理选项
+ * @param CleanupFlag 清理标志
+ * @return 无返回值
+ */
 void ProcessResourceValidation(uint8_t ObjectContextParameter, int64_t ValidationContextParameter, uint8_t CleanupOption, uint8_t CleanupFlag)
 
 {
