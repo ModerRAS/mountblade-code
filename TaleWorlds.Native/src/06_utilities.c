@@ -3787,7 +3787,7 @@ uint8_t ValidateObjectRegistrationStatus(int64_t ObjectContext)
   
   // 获取注册数据
   RegistrationData = *(int64_t *)(RegistrationHandle + REGISTRATION_DATA_OFFSET);
-  if (RegistrationHandle == 0) {
+  if (RegistrationData == 0) {
     return ERROR_INVALID_REGISTRATION_DATA;
   }
   
@@ -58347,28 +58347,42 @@ void ResourceContextValidationHandler(uint8_t ObjectContext, int64_t ValidationC
 
 
 
-void Unwind_180907390(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行资源处理器回调函数 - 偏移量0x10
+ * @details 从验证上下文中获取资源上下文，并执行其回调函数
+ * @param ObjectContext 对象上下文标识符
+ * @param ValidationContext 验证上下文指针，包含资源状态信息
+ * @remark 原始函数名：Unwind_180907390
+ */
+void ExecuteResourceHandlerCallbackOffset10(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
-  int64_t *processPointer;
+  int64_t **resourceContext;
   
-  ResourceContext = *(int64_t **)(*(int64_t *)(ValidationContext + 0x80) + 0x10);
-  if (ResourceContext != (int64_t *)0x0) {
-    (**(code **)(*ResourceContext + 0x38))();
+  resourceContext = *(int64_t **)(*(int64_t *)(ValidationContext + 0x80) + 0x10);
+  if (resourceContext != (int64_t **)0x0) {
+    (**(code **)(*resourceContext + 0x38))();
   }
   return;
 }
 
 
 
-void Unwind_1809073a0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行资源处理器回调函数 - 偏移量0x18
+ * @details 从验证上下文中获取资源上下文，并执行其回调函数
+ * @param ObjectContext 对象上下文标识符
+ * @param ValidationContext 验证上下文指针，包含资源状态信息
+ * @remark 原始函数名：Unwind_1809073a0
+ */
+void ExecuteResourceHandlerCallbackOffset18(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
-  int64_t *processPointer;
+  int64_t **resourceContext;
   
-  ResourceContext = *(int64_t **)(*(int64_t *)(ValidationContext + 0x80) + 0x18);
-  if (ResourceContext != (int64_t *)0x0) {
-    (**(code **)(*ResourceContext + 0x38))();
+  resourceContext = *(int64_t **)(*(int64_t *)(ValidationContext + 0x80) + 0x18);
+  if (resourceContext != (int64_t **)0x0) {
+    (**(code **)(*resourceContext + 0x38))();
   }
   return;
 }
