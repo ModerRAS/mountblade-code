@@ -60651,7 +60651,20 @@ void ValidateResourceIndexAndHandleExceptions(uint8_t ObjectContext, int64_t Val
 
 
 
-void Unwind_180907a70(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 执行系统资源数据处理回调A
+ * 
+ * 该函数负责执行系统资源数据的处理回调操作
+ * 从验证上下文中提取资源数据并执行处理
+ * 
+ * @param ObjectContext 对象上下文，包含对象相关的状态信息
+ * @param ValidationContext 验证上下文，包含验证所需的数据和参数
+ * @param CleanupOption 清理选项，指定资源清理的方式
+ * @param CleanupFlag 清理标志，控制清理过程的标志位
+ * @return 无返回值
+ * @note 此函数会调用ProcessResourceData函数处理资源数据
+ */
+void ExecuteSystemResourceDataProcessingCallbackA(uint8_t ObjectContext, int64_t ValidationContext, uint8_t CleanupOption, uint8_t CleanupFlag)
 
 {
   ProcessResourceData(ValidationContext + 0xe8,*(uint8_t *)(ValidationContext + 0xf8),CleanupOption,CleanupFlag,0xfffffffffffffffe);
@@ -60660,7 +60673,20 @@ void Unwind_180907a70(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 
 
 
-void Unwind_180907a80(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 执行系统资源数据处理回调B
+ * 
+ * 该函数负责执行系统资源数据的处理回调操作
+ * 与ExecuteSystemResourceDataProcessingCallbackA功能相同，但用于不同的调用上下文
+ * 
+ * @param ObjectContext 对象上下文，包含对象相关的状态信息
+ * @param ValidationContext 验证上下文，包含验证所需的数据和参数
+ * @param CleanupOption 清理选项，指定资源清理的方式
+ * @param CleanupFlag 清理标志，控制清理过程的标志位
+ * @return 无返回值
+ * @note 此函数与ExecuteSystemResourceDataProcessingCallbackA功能相同
+ */
+void ExecuteSystemResourceDataProcessingCallbackB(uint8_t ObjectContext, int64_t ValidationContext, uint8_t CleanupOption, uint8_t CleanupFlag)
 
 {
   ProcessResourceData(ValidationContext + 0xe8,*(uint8_t *)(ValidationContext + 0xf8),CleanupOption,CleanupFlag,0xfffffffffffffffe);
