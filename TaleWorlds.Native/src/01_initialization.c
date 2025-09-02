@@ -51447,7 +51447,7 @@ ulong long InitializeAndProcessSystemResources(void* SystemResourceManager,void*
         SystemCleanupFunction(SystemThreadLocalStoragePointer);
     }
     if (SystemInitializationFlag == '\0') {
-      FUN_1806272a0(&SystemDebugTemplate,ConfigurationDataPointer);
+      FormatSystemResourceData(&SystemDebugTemplate,ConfigurationDataPointer);
     }
     systemOffset = GetSystemConfigurationValue(ConfigurationDataPointer);
     if (((!isOperationComplete) && (systemOffset == 0)) && (*(char *)(SystemGlobalStatusFlags + 0x2a) != '\0')) {
@@ -51584,54 +51584,54 @@ ulong long ConfigureAndManageSystemResources(void* SystemResourceManager,void* C
   if (SystemThreadHandle != 0) {
     ProcessSystemResourceOffset(SystemThreadHandle);
   }
-  isByteValid4 = true;
-  charFlag = (**(code **)**(void* **)(SystemMemoryBlockStorage + 0x18))();
-  if ((charFlag == '\0') && (systemIndex = IsDebuggerPresent(), systemIndex != 0)) {
-    isByteValid5 = true;
+  IsByteValidPrimary = true;
+  CharacterProcessingFlag = (**(code **)**(void* **)(SystemMemoryBlockStorage + 0x18))();
+  if ((CharacterProcessingFlag == '\0') && (SystemIndex = IsDebuggerPresent(), SystemIndex != 0)) {
+    IsByteValidSecondary = true;
   }
   else {
-    isByteValid5 = false;
+    IsByteValidSecondary = false;
   }
   if (SystemThreadHandle != 0) {
-    systemIndex = *(int *)(**(long long **)(SystemThreadHandle + 8) + 0x48);
-    systemValue = _Thrd_id();
-    isByteValid4 = systemValue == systemIndex;
+    SystemIndex = *(int *)(**(long long **)(SystemThreadHandle + 8) + 0x48);
+    SystemValue = _Thrd_id();
+    IsByteValidPrimary = SystemValue == SystemIndex;
   }
-  pSystemSecondaryStatus = (void* *)0x0;
-  if (!isByteValid5) {
-    localDataIndex = ProcessSystemMemoryAllocation(&SystemProcessFlagsPointer,0);
-    pSystemSecondaryStatus = *(void* **)(localDataIndex + 8);
-    *(uint32_t *)(localDataIndex + 0x10) = 0;
-    *(void* *)(localDataIndex + 8) = 0;
-    *(void* *)(localDataIndex + 0x18) = 0;
+  SystemSecondaryStatusPointer = (void* *)0x0;
+  if (!IsByteValidSecondary) {
+    LocalDataIndex = ProcessSystemMemoryAllocation(&SystemProcessFlagsPointer,0);
+    SystemSecondaryStatusPointer = *(void* **)(LocalDataIndex + 8);
+    *(uint32_t *)(LocalDataIndex + 0x10) = 0;
+    *(void* )(LocalDataIndex + 8) = 0;
+    *(void* )(LocalDataIndex + 0x18) = 0;
     SystemProcessFlagsPointer = &SystemGlobalDataReference;
-    if (lStack_68 != 0) {
+    if (SystemStackOffset != 0) {
         SystemCleanupFunction();
     }
-    lStack_68 = 0;
-    SystemProcessFlags58 = 0;
+    SystemStackOffset = 0;
+    SystemProcessFlags = 0;
     SystemProcessFlagsPointer = &SystemMemoryAllocatorReference;
   }
-  alternateBufferPtrB0 = &SystemGlobalDataReference;
-  systemConfigurationValue = 0;
-  pUnsignedStackFlagA8 = (void* *)0x0;
-  UnsignedStackFlagA0 = 0;
-  ConfigureSystemDataBuffer(&alternateBufferPtrB0,&SystemAlternateBufferTemplate,ConfigurationDataPointer);
+  AlternateBufferPointer = &SystemGlobalDataReference;
+  SystemConfigurationValue = 0;
+  SystemDataBufferPointer = (void* *)0x0;
+  SystemStackFlag = 0;
+  ConfigureSystemDataBuffer(&AlternateBufferPointer,&SystemAlternateBufferTemplate,ConfigurationDataPointer);
   ConfigureSystemManager(SystemContextManagerPointer,5,0xffffffff00000000,&SystemConfigurationTemplate);
-  SystemDataPointer0 = &SystemStringTemplate;
-  if (pUnsignedStackFlagA8 != (void* *)0x0) {
-    SystemDataPointer0 = pUnsignedStackFlagA8;
+  SystemDataPointer = &SystemStringTemplate;
+  if (SystemDataBufferPointer != (void* *)0x0) {
+    SystemDataPointer = SystemDataBufferPointer;
   }
-  ConfigureSystemManager(SystemContextManagerPointer,2,0xffffffff00000000,&SystemStringTemplateBuffer,SystemDataPointer0);
+  ConfigureSystemManager(SystemContextManagerPointer,2,0xffffffff00000000,&SystemStringTemplateBuffer,SystemDataPointer);
   if (SystemResourceFlagPtr != '\0') {
-    SystemDataPointer0 = &SystemStringTemplate;
-    if (pSystemSecondaryStatus != (void* *)0x0) {
-      SystemDataPointer0 = pSystemSecondaryStatus;
+    SystemDataPointer = &SystemStringTemplate;
+    if (SystemSecondaryStatusPointer != (void* *)0x0) {
+      SystemDataPointer = SystemSecondaryStatusPointer;
     }
-    SystemManagerSetFlags(SystemContextManagerPointer,2,0xffffffff00000000,3,SystemDataPointer0);
+    SystemManagerSetFlags(SystemContextManagerPointer,2,0xffffffff00000000,3,SystemDataPointer);
   }
   InitializeSystemManager();
-  SystemDataPointer0 = &SystemStringTemplate;
+  SystemDataPointer = &SystemStringTemplate;
   if (pUnsignedStackFlagA8 != (void* *)0x0) {
     SystemDataPointer0 = pUnsignedStackFlagA8;
   }
@@ -51676,7 +51676,7 @@ LAB_180070230:
       }
     }
     else if (SystemInitializationFlag == '\0') {
-      FUN_1806272a0(&SystemWarningTemplate,ConfigurationDataPointer);
+      FormatSystemResourceData(&SystemWarningTemplate,ConfigurationDataPointer);
     }
     systemIndex = GetSystemConfigurationValue(ConfigurationDataPointer);
     if ((!isByteValid5) && (systemIndex == 0)) {
@@ -51766,7 +51766,7 @@ LAB_180070230:
       }
     }
     if (SystemThreadHandle != 0) {
-      FUN_18005db30(SystemThreadHandle);
+      ResumeSystemThreads(SystemThreadHandle);
     }
     do {
       systemIndex = ReleaseSemaphore(SystemSemaphoreHandle,1);
@@ -51785,7 +51785,7 @@ LAB_180070230:
   }
   else {
     if (*(int *)(SystemMemoryBlockSecondary + 0x460) == 1) {
-      FUN_1806272a0(&SystemRuntimeConfigurationData,ConfigurationDataPointer);
+      FormatSystemResourceData(&SystemRuntimeConfigurationData,ConfigurationDataPointer);
     }
     alternateBufferPtrB0 = &SystemGlobalDataReference;
     if (pUnsignedStackFlagA8 != (void* *)0x0) {
@@ -51901,7 +51901,7 @@ void InitializeResourceManagerConfiguration(void* SystemResourceManager,void* Co
   }
   else {
     SystemThreadContextFlag = GetSystemStatusFlagsInternal(&SystemProcessFlagsPointer);
-    FUN_1806272a0(SystemThreadContextFlag);
+    FormatSystemResourceData(SystemThreadContextFlag);
   }
   InitializeSystemData(&SystemInitializationDataPtr,1);
   _Exit(5);
