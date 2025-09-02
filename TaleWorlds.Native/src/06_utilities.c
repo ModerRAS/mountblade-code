@@ -190,6 +190,8 @@
 #define ObjectContextTertiaryResourceOffset 0x70
 #define ObjectContextSecurityResourceOffset 0x40
 #define ResourceMetadataTableSizeOffset 0x18
+#define InputParameterValidationOffset 0x18
+#define ResourceContextSecurityOffset 0x40
 
 /**
  * @brief 初始化模块依赖关系
