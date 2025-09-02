@@ -74311,7 +74311,7 @@ void ProcessSystemResourceCleanupAtAddress8d0(uint8_t ObjectContext,int64_t Vali
 
 
 
-void Unwind_18090a8e0(uint8_t ObjectContext,int64_t ValidationContext)
+void ProcessSystemResourceCleanupAtAddress8e0(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t *processPointer;
@@ -74325,7 +74325,7 @@ void Unwind_18090a8e0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090a8f0(uint8_t ObjectContext,int64_t ValidationContext)
+void ProcessSystemResourceCleanupAtAddress8f0(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t *processPointer;
