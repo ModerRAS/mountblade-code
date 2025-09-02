@@ -50191,7 +50191,19 @@ void InitializeSystemResourceProcessor(uint8_t objectContext, int64_t validation
 
 
 
-void Unwind_1809067c0(uint8_t objectContext,int64_t validationContext)
+/**
+ * @brief 配置资源哈希表和缓存模板
+ * 
+ * 该函数负责配置资源哈希表006和相关的系统数据结构
+ * 设置资源表模板和资源缓存模板的指针
+ * 
+ * @param objectContext 对象上下文，标识当前操作的对象
+ * @param validationContext 验证上下文，包含资源管理的相关信息
+ * @return 无返回值
+ * @note 此函数用于初始化资源哈希表和缓存模板的配置
+ * @warning 调用此函数前必须确保验证上下文有效
+ */
+void ConfigureResourceHashTablesAndCache(uint8_t objectContext, int64_t validationContext)
 
 {
   uint8_t *presourceHash;
