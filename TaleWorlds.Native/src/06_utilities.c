@@ -4109,7 +4109,7 @@ uint8_t InitializeObjectHandleA(int64_t ObjectContext)
   uint8_t ResourceValidationHash;
   int64_t ObjectValidationContext;
   
-  ResourceValidationHash = ValidateObjectContext(*(uint32_t *)(ObjectContext + 0x10),&ObjectValidationContext);
+  ResourceValidationHash = ValidateObjectContext(*(uint32_t *)(ObjectContext + ObjectContextDataArrayOffset),&ObjectValidationContext);
   if ((int)ResourceValidationHash == 0) {
     if (ObjectValidationContext == 0) {
       ObjectValidationContext = 0;
@@ -4392,7 +4392,7 @@ uint8_t ProcessComplexObjectHandle(int64_t ObjectContext)
   int64_t resultBuffer[2];
   int64_t handleBuffer[2];
   
-  OperationResult = ValidateObjectContext(*(uint32_t *)(ObjectContext + 0x10), handleBuffer);
+  OperationResult = ValidateObjectContext(*(uint32_t *)(ObjectContext + ObjectContextDataArrayOffset), handleBuffer);
   if ((int)operationResult == 0) {
     if (handleBuffer[0] == 0) {
       handleBuffer[0] = 0;
@@ -4437,7 +4437,7 @@ uint8_t ValidateAndProcessObjectStatus(int64_t ObjectContext)
   int64_t ResourceValidationBuffer [2];
   int64_t ValidationStackBuffer [2];
   
-  ResourceHash = ValidateObjectContext(*(uint32_t *)(ObjectContext + 0x10),ValidationStackBuffer);
+  ResourceHash = ValidateObjectContext(*(uint32_t *)(ObjectContext + ObjectContextDataArrayOffset),ValidationStackBuffer);
   if ((int)ResourceHash == 0) {
     if (ValidationStackBuffer[0] == 0) {
       ValidationStackBuffer[0] = 0;
