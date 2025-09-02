@@ -10009,23 +10009,27 @@ int ProcessDataWithExtendedValidator(int64_t ObjectContext,int64_t validationCon
 int ProcessDataWithSimplifiedValidator(int64_t objectContext,int64_t validationContext,int dataLength)
 
 {
-  int ProcessingResult;
-  int ProcessingResult;
+  int ResourceIndex;
+  int operationStatusCode;
+  int OperationResult;
+  int DataLength;
+  void* StringProcessingTemplate;
   
-  ResourceIndex = ParseDataContent(validationContext,dataLength,*(uint32_t *)(objectContext + 0x10));
-  operationStatusCode = ProcessStringOperation(validationContext + ResourceIndex,dataLength - ResourceIndex,&StringProcessingTemplate);
+  DataLength = dataLength;
+  ResourceIndex = ParseDataContent(validationContext,DataLength,*(uint32_t *)(objectContext + 0x10));
+  operationStatusCode = ProcessStringOperation(validationContext + ResourceIndex,DataLength - ResourceIndex,&StringProcessingTemplate);
   ResourceIndex = ResourceIndex + OperationResult;
-  operationStatusCode = ProcessStringValidation(ResourceIndex + validationContext,dataLength - ResourceIndex,objectContext + 0x18,
+  operationStatusCode = ProcessStringValidation(ResourceIndex + validationContext,DataLength - ResourceIndex,objectContext + 0x18,
                         *(uint32_t *)(objectContext + 0x10));
   ResourceIndex = ResourceIndex + OperationResult;
-  operationStatusCode = ProcessStringOperation(ResourceIndex + validationContext,dataLength - ResourceIndex,&StringProcessingTemplate);
+  operationStatusCode = ProcessStringOperation(ResourceIndex + validationContext,DataLength - ResourceIndex,&StringProcessingTemplate);
   ResourceIndex = ResourceIndex + OperationResult;
-  operationStatusCode = ProcessResourceData(ResourceIndex + validationContext,dataLength - ResourceIndex,
+  operationStatusCode = ProcessResourceData(ResourceIndex + validationContext,DataLength - ResourceIndex,
                         objectContext + 0x18 + (int64_t)*(int *)(objectContext + 0x10) * 8);
   ResourceIndex = ResourceIndex + OperationResult;
-  operationStatusCode = ProcessStringOperation(ResourceIndex + validationContext,dataLength - ResourceIndex,&StringProcessingTemplate);
+  operationStatusCode = ProcessStringOperation(ResourceIndex + validationContext,DataLength - ResourceIndex,&StringProcessingTemplate);
   ResourceIndex = ResourceIndex + OperationResult;
-  operationStatusCode = ValidateResourceFormat(ResourceIndex + validationContext,CleanupOption - ResourceIndex,*(uint8_t *)(objectContext + 0x14));
+  operationStatusCode = ValidateResourceFormat(ResourceIndex + validationContext,DataLength - ResourceIndex,*(uint8_t *)(objectContext + 0x14));
   return OperationResult + ResourceIndex;
 }
 
@@ -10045,17 +10049,22 @@ int ProcessDataWithSimplifiedValidator(int64_t objectContext,int64_t validationC
 int ProcessDataWithBuffer(int64_t *objectContext,int64_t validationContext,int dataLength)
 
 {
-  int ProcessingResult;
-  int ProcessingResult;
+  int ResourceIndex;
+  int operationStatusCode;
+  int OperationResult;
+  int DataLength;
+  void* SystemStringBufferA;
+  void* StringProcessingTemplate;
   
-  ResourceIndex = ProcessStringOperation(validationContext,dataLength,&SystemStringBufferA);
-  operationStatusCode = ProcessStringOperation(validationContext + ResourceIndex,dataLength - ResourceIndex,&StringProcessingTemplate);
+  DataLength = dataLength;
+  ResourceIndex = ProcessStringOperation(validationContext,DataLength,&SystemStringBufferA);
+  operationStatusCode = ProcessStringOperation(validationContext + ResourceIndex,DataLength - ResourceIndex,&StringProcessingTemplate);
   ResourceIndex = ResourceIndex + OperationResult;
-  operationStatusCode = ParseDataContent(ResourceIndex + validationContext,dataLength - ResourceIndex,(int)objectContext[3] * 8 + 0x20);
+  operationStatusCode = ParseDataContent(ResourceIndex + validationContext,DataLength - ResourceIndex,(int)objectContext[3] * 8 + 0x20);
   ResourceIndex = ResourceIndex + OperationResult;
-  operationStatusCode = ProcessStringOperation(ResourceIndex + validationContext,dataLength - ResourceIndex,&StringProcessingTemplate);
+  operationStatusCode = ProcessStringOperation(ResourceIndex + validationContext,DataLength - ResourceIndex,&StringProcessingTemplate);
   ResourceIndex = ResourceIndex + OperationResult;
-  operationStatusCode = (**(code **)(*objectContext + 8))(objectContext,ResourceIndex + validationContext,dataLength - ResourceIndex);
+  operationStatusCode = (**(code **)(*objectContext + 8))(objectContext,ResourceIndex + validationContext,DataLength - ResourceIndex);
   return OperationResult + ResourceIndex;
 }
 
@@ -10075,17 +10084,22 @@ int ProcessDataWithBuffer(int64_t *objectContext,int64_t validationContext,int d
 int ProcessDataWithQueue(int64_t *objectContext,int64_t validationContext,int dataLength)
 
 {
-  int ProcessingResult;
-  int ProcessingResult;
+  int ResourceIndex;
+  int operationStatusCode;
+  int OperationResult;
+  int DataLength;
+  void* SystemStringBufferB;
+  void* StringProcessingTemplate;
   
-  ResourceIndex = ProcessStringOperation(validationContext,dataLength,&SystemStringBufferB);
-  operationStatusCode = ProcessStringOperation(validationContext + ResourceIndex,dataLength - ResourceIndex,&StringProcessingTemplate);
+  DataLength = dataLength;
+  ResourceIndex = ProcessStringOperation(validationContext,DataLength,&SystemStringBufferB);
+  operationStatusCode = ProcessStringOperation(validationContext + ResourceIndex,DataLength - ResourceIndex,&StringProcessingTemplate);
   ResourceIndex = ResourceIndex + OperationResult;
-  operationStatusCode = ParseDataContent(ResourceIndex + validationContext,dataLength - ResourceIndex,(int)objectContext[3] * 0xc + 0x20);
+  operationStatusCode = ParseDataContent(ResourceIndex + validationContext,DataLength - ResourceIndex,(int)objectContext[3] * 0xc + 0x20);
   ResourceIndex = ResourceIndex + OperationResult;
-  operationStatusCode = ProcessStringOperation(ResourceIndex + validationContext,dataLength - ResourceIndex,&StringProcessingTemplate);
+  operationStatusCode = ProcessStringOperation(ResourceIndex + validationContext,DataLength - ResourceIndex,&StringProcessingTemplate);
   ResourceIndex = ResourceIndex + OperationResult;
-  operationStatusCode = (**(code **)(*objectContext + 8))(objectContext,ResourceIndex + validationContext,dataLength - ResourceIndex);
+  operationStatusCode = (**(code **)(*objectContext + 8))(objectContext,ResourceIndex + validationContext,DataLength - ResourceIndex);
   return OperationResult + ResourceIndex;
 }
 
@@ -10105,17 +10119,22 @@ int ProcessDataWithQueue(int64_t *objectContext,int64_t validationContext,int da
 int ProcessDataWithStack(int64_t *ObjectContext,int64_t ValidationContext,int DataLength)
 
 {
-  int ProcessingResult;
-  int ProcessingResult;
+  int ResourceIndex;
+  int operationStatusCode;
+  int OperationResult;
+  int dataLength;
+  void* SystemStringBufferC;
+  void* StringProcessingTemplate;
   
-  ResourceIndex = ProcessStringOperation(ValidationContext,DataLength,&SystemStringBufferC);
-  operationStatusCode = ProcessStringOperation(ValidationContext + ResourceIndex,DataLength - ResourceIndex,&StringProcessingTemplate);
+  dataLength = DataLength;
+  ResourceIndex = ProcessStringOperation(ValidationContext,dataLength,&SystemStringBufferC);
+  operationStatusCode = ProcessStringOperation(ValidationContext + ResourceIndex,dataLength - ResourceIndex,&StringProcessingTemplate);
   ResourceIndex = ResourceIndex + OperationResult;
-  operationStatusCode = ParseDataContent(ResourceIndex + ValidationContext,DataLength - ResourceIndex,((int)ObjectContext[2] + 2) * 0xc);
+  operationStatusCode = ParseDataContent(ResourceIndex + ValidationContext,dataLength - ResourceIndex,((int)ObjectContext[2] + 2) * 0xc);
   ResourceIndex = ResourceIndex + OperationResult;
-  operationStatusCode = ProcessStringOperation(ResourceIndex + ValidationContext,DataLength - ResourceIndex,&StringProcessingTemplate);
+  operationStatusCode = ProcessStringOperation(ResourceIndex + ValidationContext,dataLength - ResourceIndex,&StringProcessingTemplate);
   ResourceIndex = ResourceIndex + OperationResult;
-  operationStatusCode = (**(code **)(*ObjectContext + 8))(ObjectContext,ResourceIndex + ValidationContext,DataLength - ResourceIndex);
+  operationStatusCode = (**(code **)(*ObjectContext + 8))(ObjectContext,ResourceIndex + ValidationContext,dataLength - ResourceIndex);
   return OperationResult + ResourceIndex;
 }
 
@@ -13634,7 +13653,7 @@ int SystemResourceProcessorSecondary(int64_t ObjectContext,int64_t ValidationCon
   if (resourceTable == 0) {
     ResourceDataOffset = LocalContextBuffer;
   }
-  StackBuffer180 = validationContext;
+  ContextDataBuffer = validationContext;
   integerValue6 = ValidateBufferContext(longValue8,&BufferContextSize);
   if (integerValue6 == 0) {
     resourceHashPointer6 = (uint8_t *)(validationContext + 8);
@@ -13649,9 +13668,9 @@ int SystemResourceProcessorSecondary(int64_t ObjectContext,int64_t ValidationCon
       SecondaryContextLength = SecondaryBufferSize;
       integerValue6 = GetAndValidateResourceData(objectContext,&StackPointer178);
       if (integerValue6 == 0) {
-        StackBuffer188 = (int64_t)*(int *)(resourceTable + 0x28);
+        ResourceValidationBuffer = (int64_t)*(int *)(resourceTable + 0x28);
         ResourceDataOffset = LocalContextBuffer;
-        if (0 < StackBuffer188) {
+        if (0 < ResourceValidationBuffer) {
           do {
             SystemDataPointer = *(int64_t *)(resourceTable + 0x20);
             ResourceIndex = *(int64_t *)(LocalContextBuffer + 0x10 + SystemDataPointer);
@@ -13678,8 +13697,8 @@ int SystemResourceProcessorSecondary(int64_t ObjectContext,int64_t ValidationCon
             }
             ResourceDataOffset = longValue8 + 1;
             LocalContextBuffer = LocalContextBuffer + 0x18;
-            validationContext = StackBuffer180;
-          } while (longValue8 < StackBuffer188);
+            validationContext = ContextDataBuffer;
+          } while (longValue8 < ResourceValidationBuffer);
         }
         resourceHash1 = *(uint8_t *)(*(int64_t *)(objectContext + 8) + 800);
         resourceHash0 = (**(code **)*resourceHashPointer6)(resourceHashPointer6);
