@@ -39094,7 +39094,7 @@ void CleanupSystemResourceHandlerPhaseFive(uint8_t ObjectContext, int64_t Valida
  * @note 此函数通常在异常处理过程中被调用
  * @warning 清理过程中如果检测到错误会触发系统紧急退出
  */
-void CleanupSystemResourceHandlerSet6(uint8_t ObjectContext, int64_t ValidationContext, uint8_t CleanupOption, uint8_t CleanupFlag)
+void CleanupSystemResourceHandlerPhaseSix(uint8_t ObjectContext, int64_t ValidationContext, uint8_t CleanupOption, uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
@@ -39136,7 +39136,7 @@ void CleanupSystemResourceHandlerSet6(uint8_t ObjectContext, int64_t ValidationC
  * @note 此函数通常在异常处理过程中被调用
  * @warning 清理过程中如果检测到错误会触发系统紧急退出
  */
-void CleanupSystemResourceHandlerSet7(uint8_t ObjectContext, int64_t ValidationContext, uint8_t CleanupOption, uint8_t CleanupFlag)
+void CleanupSystemResourceHandlerPhaseSeven(uint8_t ObjectContext, int64_t ValidationContext, uint8_t CleanupOption, uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
@@ -39645,7 +39645,7 @@ void CleanupSystemResourceHandlerBasic(uint8_t ObjectContext,int64_t ValidationC
  * @note 此函数会清理系统资源处理器集合1中的所有资源
  * @warning 调用此函数后，相关资源将不再可用
  */
-void CleanupSystemResourceHandlerSet1(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+void CleanupSystemResourceHandlerPhaseOne(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
