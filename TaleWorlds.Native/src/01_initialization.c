@@ -49559,7 +49559,7 @@ long long * FUN_18006e000(long long ResourceManagerPointer,long long Configurati
 long long CleanupResourceManager(long long ResourceManagerPointer,ulong long ConfigurationDataPointer)
 
 {
-  FUN_18006e5d0();
+  CleanupSystemResourceArray();
   _Mtx_destroy_in_situ();
   _Cnd_destroy_in_situ();
   CleanupResourceManagerPointers(ResourceManagerPointer + 200);
