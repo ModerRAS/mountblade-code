@@ -7034,8 +7034,8 @@ void SetObjectContextProcessingStatusFlag(int64_t ObjectContext, int64_t Process
   int PackageValidationStatusCode;
   int64_t ContextBuffer;
   
-  PackageValidationStatus = ValidateObjectContext(*(uint32_t *)(ObjectContext + ObjectContextValidationDataOffset), &ContextBuffer);
-  if (PackageValidationStatus == 0) {
+  PackageValidationStatusCode = ValidateObjectContext(*(uint32_t *)(ObjectContext + ObjectContextValidationDataOffset), &ContextBuffer);
+  if (PackageValidationStatusCode == 0) {
     *(uint8_t *)(ContextBuffer + ContextBufferStatusOffset) = *(uint8_t *)(ObjectContext + ObjectContextValidationDataOffset);
           ProcessContext(*(uint8_t *)(ProcessContext + 0x98), ObjectContext);
   }
@@ -7060,8 +7060,8 @@ void SetObjectContextPackageValidationStatusFlag(int64_t ObjectContext, int64_t 
   int PackageValidationStatusCode;
   int64_t ContextBuffer;
   
-  ValidationStatus = ValidateObjectContext(*(uint32_t *)(ObjectContext + ObjectContextValidationDataOffset),&ContextBuffer);
-  if (ValidationStatus == 0) {
+  PackageValidationStatusCode = ValidateObjectContext(*(uint32_t *)(ObjectContext + ObjectContextValidationDataOffset),&ContextBuffer);
+  if (PackageValidationStatusCode == 0) {
     *(uint8_t *)(ContextBuffer + ContextBufferDataOffset) = *(uint8_t *)(ObjectContext + ObjectContextValidationDataOffset);
           ProcessContext(*(uint8_t *)(ProcessContext + ProcessContextObjectOffset),ObjectContext);
   }
