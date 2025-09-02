@@ -59519,7 +59519,15 @@ void InitializeSystemDataPointer001(void)
 
 
 
-void Unwind_180907790(void)
+/**
+ * @brief 初始化系统数据指针002
+ * 
+ * 该函数负责初始化系统数据指针002
+ * 设置系统数据指针到系统数据结构
+ * 
+ * @note 此函数会设置 SystemDataPointer002 到 SystemDataStructure
+ */
+void InitializeSystemDataPointer002(void)
 
 {
   SystemDataPointer002 = &SystemDataStructure;
@@ -59529,7 +59537,15 @@ void Unwind_180907790(void)
 
 
 
-void Unwind_1809077a0(void)
+/**
+ * @brief 初始化系统数据指针003
+ * 
+ * 该函数负责初始化系统数据指针003
+ * 设置系统数据指针到系统数据结构
+ * 
+ * @note 此函数会设置 SystemDataPointer003 到 SystemDataStructure
+ */
+void InitializeSystemDataPointer003(void)
 
 {
   SystemDataPointer003 = &SystemDataStructure;

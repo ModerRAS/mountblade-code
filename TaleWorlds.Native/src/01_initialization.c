@@ -28245,7 +28245,7 @@ void SystemResourceDataProcessor(long long *SystemResourceManager,long long Conf
   StackVariable218 = 0xffffffff;
   StackVariable1d0 = SystemOperationStatus;
   StackValue1c8._4_4_ = *(uint *)(localSystemFlags + 0x1c);
-  ConfigureSystemData(pbufferBaseAddress,SystemConfigurationData,&pGlobalDataFlags2,&uStack_148);
+  ConfigureSystemData(pbufferBaseAddress,SystemConfigurationData,&pGlobalDataFlags2,&StackVariable148);
   ReleaseSystemResources(pbufferBaseAddress);
   (**(code **)(*(long long *)SystemResourceManager[0x56] + 0x138))((long long *)SystemResourceManager[0x56],pbufferBaseAddress);
   InitializeSystemBuffer(pbufferBaseAddress,0x3d072b02,1);
@@ -28269,13 +28269,13 @@ void SystemResourceDataProcessor(long long *SystemResourceManager,long long Conf
   if (pbufferBaseAddress != (long long *)0x0) {
     (**(code **)(*pbufferBaseAddress + 0x38))(pbufferBaseAddress);
   }
-  ppuStack_170 = &pGlobalDataFlags;
+  StackDoublePointer170 = &pGlobalDataFlags;
   pGlobalDataFlags = &SystemGlobalDataReference;
-  if (lStack_1b8 != 0) {
+  if (LongStackVariable1b8 != 0) {
       SystemCleanupFunction();
   }
-  lStack_1b8 = 0;
-  uStack_1a8 = uStack_1a8 & 0xffffffff00000000;
+  LongStackVariable1b8 = 0;
+  StackVariable1a8 = StackVariable1a8 & 0xffffffff00000000;
   pGlobalDataFlags = &SystemMemoryAllocatorReference;
     ValidateSystemChecksum(EncryptionValue48 ^ (ulong long)auStack_238);
 }
