@@ -54004,7 +54004,7 @@ void ExecuteResourceContextHandler(uint8_t ObjectContext,int64_t ValidationConte
 
 
 
-void Unwind_180906890(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+void ProcessResourceHashCleanup(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   uint8_t *ResourceHashPointer;
@@ -54013,10 +54013,10 @@ void Unwind_180906890(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   uint8_t LoopCondition;
   
   ResourceTablePointer = (int64_t *)(*(int64_t *)(ValidationContext + 0x50) + 0x218);
-  loopIncrement = 0xfffffffffffffffe;
+  ArrayIterationIndex = 0xfffffffffffffffe;
   ResourceHashPointer = *(uint8_t **)(*(int64_t *)(ValidationContext + 0x50) + 0x220);
   for (PackageValidationStatusCodePointer = (uint8_t *)*ResourceTablePointer; HashValidationResultPointer != ResourceHashPointer; PackageValidationStatusCodePointer = HashValidationResultPointer + 4) {
-    (**(code **)*HashValidationResultPointer)(HashValidationResultPointer,0,CleanupOption,CleanupFlag,loopIncrement);
+    (**(code **)*HashValidationResultPointer)(HashValidationResultPointer,0,CleanupOption,CleanupFlag,ArrayIterationIndex);
   }
   if (*ResourceTablePointer == 0) {
     return;
@@ -95227,8 +95227,8 @@ void CleanupNetworkResources(void)
 
 {
   if (NetworkCleanupFlag != '\0') {
-    SystemModuleInitializer(ModuleInitializerPointer);
-    ModuleInitializerPointer = 0;
+    SystemModuleInitializer(SystemModuleInitializerPointer);
+    SystemModuleInitializerPointer = 0;
   }
 }
 
@@ -95261,9 +95261,9 @@ void TerminateSystemProcess(void)
  */
 void ExecuteSystemCleanupOperation1(void)
 {
-  if (CleanupOperation1Flag != '\0') {
-    SystemModuleConfigurator(ModuleConfiguratorPrimaryPointer);
-    ModuleConfiguratorPrimaryPointer = 0;
+  if (SystemCleanupOperation1Flag != '\0') {
+    SystemModuleConfigurator(PrimaryModuleConfiguratorPointer);
+    PrimaryModuleConfiguratorPointer = 0;
   }
 }
 
@@ -95275,9 +95275,9 @@ void ExecuteSystemCleanupOperation1(void)
  */
 void ExecuteSystemCleanupOperation2(void)
 {
-  if (CleanupOperation2Flag != '\0') {
-    SystemModuleConfigurator(ModuleConfiguratorSecondaryPointer);
-    ModuleConfiguratorSecondaryPointer = 0;
+  if (SystemCleanupOperation2Flag != '\0') {
+    SystemModuleConfigurator(SecondaryModuleConfiguratorPointer);
+    SecondaryModuleConfiguratorPointer = 0;
   }
 }
 
@@ -95292,8 +95292,8 @@ void ExecuteSystemCleanupOperation3(void)
 {
   if (CleanupOperation3Flag != '\0') {
     SystemOperationHandler();
-    if (OperationHandlerPointer != (int64_t *)0x0) {
-      (**(code **)(*OperationHandlerPointer + 0x38))();
+    if (SystemOperationHandlerPointer != (int64_t *)0x0) {
+      (**(code **)(*SystemOperationHandlerPointer + 0x38))();
     }
   }
 }
