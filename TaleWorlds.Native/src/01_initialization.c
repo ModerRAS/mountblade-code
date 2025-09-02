@@ -46715,7 +46715,7 @@ ulong long AllocateSystemResource(void* ResourceManagerPointer,void* *Configurat
         resourcePoolPointer[1] = currentThreadId;
       }
       else {
-        currentThreadId = FUN_18005f430(bufferBaseAddress);
+        currentThreadId = GetSystemResourceStatus(bufferBaseAddress);
         if ((char)currentThreadId == '\0') goto LAB_180069dc3;
         resourcePoolPointer = *(long long **)(bufferBaseAddress + 0x60);
         currentThreadId = *resourcePoolPointer - 1U & resourcePoolPointer[1] + 1U;
@@ -48992,7 +48992,7 @@ LAB_18006d7fb:
       resourcePoolPointer[1] = unsignedSystemValue4;
     }
     else {
-      cVar3 = FUN_18005f430(ResourceManagerPointer);
+      cVar3 = GetSystemResourceStatus(ResourceManagerPointer);
       if (characterProcessingFlag == '\0') {
         return 0;
       }
