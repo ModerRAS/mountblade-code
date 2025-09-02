@@ -42841,7 +42841,7 @@ void InitializeAndConfigureSystemResources(void* ResourceManagerPointer)
   }
   uStack_2e0 = 0;
   lStack_2d8 = 0;
-  FUN_180627e10(ResourceManagerPointer,&puStack_260,&SystemDataBufferTemplate2);
+  ConfigureSystemResources(ResourceManagerPointer,&puStack_260,&SystemDataBufferTemplate2);
   HashNodePointer = &SystemStringTemplate;
   if (puStack_258 != (void* *)0x0) {
     HashNodePointer = puStack_258;
@@ -43451,7 +43451,7 @@ void ReleaseSystemResource(void* ResourceManagerPointer)
   uStack_120 = 0xfffffffffffffffe;
   uStack_38 = SystemEncryptionKeyTemplate ^ (ulong long)auStack_368;
   uStack_310 = 0;
-  FUN_180627e10(ResourceManagerPointer,&LocalStackBuffer,&SystemDataBufferTemplate5);
+  ConfigureSystemResources(ResourceManagerPointer,&LocalStackBuffer,&SystemDataBufferTemplate5);
   EncryptionKeyValue0 = 0;
   lStack_278 = 0;
   pointerToUnsigned16 = &SystemStringTemplate;
@@ -43541,7 +43541,7 @@ void ReleaseSystemResource(void* ResourceManagerPointer)
   uStack_2f0 = 0;
   DataBufferPtr300 = (void* *)0x0;
   uStack_2f8 = 0;
-  systemOperationFlags = FUN_180623ce0();
+  systemOperationFlags = GetSystemStatusFlags();
   ConfigureSystemDataBuffer(&puStack_2e8,&SystemDataBufferSizeTemplate,systemOperationFlags / 0x100000 & 0xffffffff);
   StackBuffer[0] = 0x48;
   systemStatus1 = GetCurrentProcess();
@@ -44065,7 +44065,7 @@ void ExecuteSystemResourceCommand(long long *ResourceManagerPointer,void* Config
   ExecuteSystemCommand(&puStack_70,1);
   *(void*2 *)((ulong long)uStack_60 + lStack_68) = 0x5c;
   uStack_60 = 1;
-  FUN_180627e10(&puStack_70,&memoryAllocationEnd,AdditionalParameter);
+  ConfigureSystemResources(&puStack_70,&memoryAllocationEnd,AdditionalParameter);
   puStack_70 = &SystemGlobalDataReference;
   if (lStack_68 != 0) {
       SystemCleanupFunction();
@@ -44284,8 +44284,8 @@ LAB_18006650a:
     ConfigureSecurityParameters(&pSystemStackFlag,SystemContextPointer);
     FUN_180063cf0(&pSystemStackFlag);
     SetupSystemConfiguration(&systemMemoryContext);
-    FUN_180627e10(&systemMemoryContext,&puStack_f0,&SystemMemoryBufferTemplate1);
-    FUN_180627e10(&pSystemStackFlag,&puStack_110,&SystemMemoryBufferTemplate1);
+    ConfigureSystemResources(&systemMemoryContext,&puStack_f0,&SystemMemoryBufferTemplate1);
+    ConfigureSystemResources(&pSystemStackFlag,&puStack_110,&SystemMemoryBufferTemplate1);
     ProcessSystemDataTransfer(&puStack_110,&puStack_f0);
     puStack_110 = &SystemGlobalDataReference;
     if (lStack_108 != 0) {

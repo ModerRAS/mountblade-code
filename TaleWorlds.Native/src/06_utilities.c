@@ -11262,32 +11262,32 @@ HandleSystemError:
  */
 void ProcessModuleInitialization(int64_t ModuleHandle, void* ModuleContext, int* StatusPointer)
 {
-  int64_t ModuleInitializationLoopCounter;
-  char ModuleInitializationCharacterFlag;
-  int ModuleInitializationValidationStatusCode;
-  int ModuleInitializationResultRecordIndex;
-  int64_t ModuleInitializationInputParameterValue;
-  int64_t ModuleInitializationMemoryRegion;
-  uint8_t ModuleInitializationContextHashValidationResult;
-  int64_t ModuleInitializationBufferPointer;
-  int ModuleInitializationArrayIndexRegister;
-  uint32_t ModuleInitializationSavedRegisterValue1c;
-  int64_t ModuleInitializationExecutionContextPointer;
-  int64_t ModuleInitializationSavedRegisterValue;
-  char ModuleInitializationInputParameterByte;
-  uint8_t *ModuleInitializationSystemContext;
-  int64_t ModuleInitializationResourceDataOffset;
-  float ModuleInitializationRangeValue;
-  float ModuleInitializationResultFloatValue;
-  uint8_t ModuleInitializationStackParameterContextForty;
-  int *ModuleInitializationStackParameterContextExtended;
+  int64_t LoopCounter;
+  char CharacterFlag;
+  int ValidationStatusCode;
+  int ResultRecordIndex;
+  int64_t InputParameterValue;
+  int64_t MemoryRegion;
+  uint8_t ContextHashValidationResult;
+  int64_t BufferPointer;
+  int ArrayIndexRegister;
+  uint32_t SavedRegisterValue1c;
+  int64_t ExecutionContextPointer;
+  int64_t SavedRegisterValue;
+  char InputParameterByte;
+  uint8_t *SystemContext;
+  int64_t ResourceDataOffset;
+  float RangeValue;
+  float ResultFloatValue;
+  uint8_t StackParameterContextForty;
+  int *StackParameterContextExtended;
   
-  int64_t ModuleInitializationResourceTablePointer = CONCAT44(ModuleInitializationSavedRegisterValue1c,RegisterEBX) + CONCAT44(ModuleInitializationSavedRegisterValue1c,RegisterEBX) * 2;
-  ModuleInitializationResourceDataOffset = (int64_t)*(int *)(InputParameter + ModuleInitializationResourceTablePointer * 4) + *(int64_t *)(ObjectContext + 8);
-  char ModuleInitializationResourceStatusFlag = *(char *)(InputParameter + 8 + ModuleInitializationResourceTablePointer * 4);
-  *(int64_t *)(ModuleInitializationExecutionContextPointer + -0x80) = ModuleInitializationResourceTablePointer;
-  if (ModuleInitializationResourceStatusFlag == StatusByte) {
-    int ModuleInitializationOperationStatusCode = *(int *)(ObjectContext + 0xb0);
+  int64_t ResourceTablePointer = CONCAT44(SavedRegisterValue1c,RegisterEBX) + CONCAT44(SavedRegisterValue1c,RegisterEBX) * 2;
+  ResourceDataOffset = (int64_t)*(int *)(InputParameter + ResourceTablePointer * 4) + *(int64_t *)(ObjectContext + 8);
+  char ResourceStatusFlag = *(char *)(InputParameter + 8 + ResourceTablePointer * 4);
+  *(int64_t *)(ExecutionContextPointer + -0x80) = ResourceTablePointer;
+  if (ResourceStatusFlag == StatusByte) {
+    int OperationStatusCode = *(int *)(ObjectContext + 0xb0);
     if (RegisterEBX < OperationResult) {
       *(int *)(ObjectContext + 0xac) = RegisterEBX + 1;
       goto HANDLE_CONTEXT_ERROR;
