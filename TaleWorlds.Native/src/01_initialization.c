@@ -45407,7 +45407,7 @@ void CreateSystemIoCompletionPort(long long ResourceManagerPointer,long long Con
       }
       lRam0000000000000128 = localSystemHandle;
       uStack_2c8 = hashValue;
-      FUN_180068860(ResourceManagerPointer + 0x330,alStack_288,unsignedSystemValue8,ConfigurationDataPointer);
+      ConfigureSystemResourceAllocation(ResourceManagerPointer + 0x330,alStack_288,unsignedSystemValue8,ConfigurationDataPointer);
       *(void* *)(alStack_288[0] + 0x118) = 0;
       puStack_268 = &SystemMemoryAllocatorReference;
         ValidateSystemChecksum(EncryptionValue48 ^ (ulong long)auStack_2e8);
@@ -50115,8 +50115,17 @@ void CleanupSystemStringIteratorResources(void)
 
 
 
-// 函数: void FUN_18006e570(void* *ResourceManagerPointer)
-void FUN_18006e570(void* *ResourceManagerPointer)
+/**
+ * @brief 系统资源释放管理器
+ * 
+ * 该函数负责管理系统资源的释放，包括资源引用计数的管理和资源释放操作
+ * 当资源引用计数降为0时，会调用系统资源释放函数来清理资源
+ * 
+ * @param ResourceManagerPointer 系统资源管理器指针
+ * 
+ * 原始函数名为FUN_18006e570，现已重命名为ReleaseSystemResourceManager
+ */
+void ReleaseSystemResourceManager(void* *ResourceManagerPointer)
 
 {
   int *pointerToInteger1;
@@ -50148,8 +50157,17 @@ void FUN_18006e570(void* *ResourceManagerPointer)
 
 
 
-// 函数: void FUN_18006e580(long long *ResourceManagerPointer)
-void FUN_18006e580(long long *ResourceManagerPointer)
+/**
+ * @brief 系统资源清理和销毁函数
+ * 
+ * 该函数负责系统资源的清理和销毁操作，包括互斥锁、条件变量的销毁
+ * 以及哈希节点的清理和系统内存的释放
+ * 
+ * @param ResourceManagerPointer 系统资源管理器指针
+ * 
+ * 原始函数名为FUN_18006e580，现已重命名为DestroySystemResources
+ */
+void DestroySystemResources(long long *ResourceManagerPointer)
 
 {
   int *pointerToInteger1;
