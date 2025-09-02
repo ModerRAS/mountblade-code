@@ -583,6 +583,9 @@ uint32_t ReleaseValidationResources(void* ResourceHandles);
 #define ObjectContextResourceTableOffset 0xa0
 #define ObjectContextResourceDataOffset 0xa8
 #define SystemRegisterContextTableOffset 0xa0
+#define ResourceIndexTableOffset 0xa0
+#define ResourceIndexDataOffset 0xa4
+#define ResourceIndexHashOffset 0xa8
 #define SystemContextOperationOffset 0x50
 #define SystemContextResourceOffset 0x40
 #define SystemContextPrimaryResourceManagerOffset 0x70
@@ -77499,7 +77502,7 @@ void Unwind_18090c380(uint8_t ObjectContext,int64_t ValidationContext)
   *LoopProcessingPointer = &SystemDataPointer001;
   if ((*(int64_t *)(ResourceIndex + 0x98) != 0) && (**(int64_t **)(ResourceIndex + 0x30) == ResourceIndex + 0x88)) {
     ResourceHash = *(uint8_t *)(ResourceIndex + 0xa8);
-    ResourceTable = *(int64_t *)(ResourceIndex + 0xa0);
+    ResourceTable = *(int64_t *)(ResourceIndex + ResourceIndexTableOffset);
     **(int64_t **)(ResourceIndex + 0x30) = ResourceTable;
     **(int64_t **)(ResourceIndex + 0x50) = ResourceTable;
     **(int **)(ResourceIndex + 0x68) = (int)ResourceHash - (int)ResourceTable;
@@ -91459,7 +91462,7 @@ void Unwind_180910580(uint8_t ObjectContext,int64_t ValidationContext)
   LoopProcessingPointer = (uint8_t *)(ResourceIndex + 0x10);
   *LoopProcessingPointer = &SystemDataPointer001;
   if ((*(int64_t *)(ResourceIndex + 0x90) != 0) && (**(int64_t **)(ResourceIndex + 0x28) == ResourceIndex + 0x80)) {
-    ResourceHash = *(uint8_t *)(ResourceIndex + 0xa0);
+    ResourceHash = *(uint8_t *)(ResourceIndex + ResourceIndexTableOffset);
     ResourceTable = *(int64_t *)(ResourceIndex + 0x98);
     **(int64_t **)(ResourceIndex + 0x28) = ResourceTable;
     **(int64_t **)(ResourceIndex + 0x48) = ResourceTable;
