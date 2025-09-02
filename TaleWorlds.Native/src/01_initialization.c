@@ -67510,8 +67510,18 @@ void FUN_18007f27a(void)
 
 
 
-// 函数: void FUN_18007f2cf(void)
-void FUN_18007f2cf(void)
+/**
+ * @brief 设置系统资源计数器
+ * 
+ * 该函数负责设置系统资源计数器，将系统数据索引指针中的资源计数器更新为指定值。
+ * 这是一个简单的计数器设置操作，用于管理系统资源的数量。
+ * 
+ * @param 无参数
+ * @return 无返回值
+ * 
+ * 原始函数名：FUN_18007f2cf
+ */
+void SetSystemResourceCounter(void)
 
 {
   long long systemDataIndexPtr;
@@ -67817,8 +67827,18 @@ LAB_18007f7cf:
 
 
 
-// 函数: void FUN_18007f820(void)
-void FUN_18007f820(void)
+/**
+ * @brief 执行系统资源处理操作
+ * 
+ * 该函数负责执行系统资源处理操作，调用系统资源处理函数来完成相关操作。
+ * 这是一个包装函数，用于简化系统资源处理的调用。
+ * 
+ * @param 无参数
+ * @return 无返回值
+ * 
+ * 原始函数名：FUN_18007f820
+ */
+void ExecuteSystemResourceProcessingOperation(void)
 
 {
   FUN_18007f840();
