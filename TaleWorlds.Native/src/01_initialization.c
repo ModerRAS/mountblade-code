@@ -36613,7 +36613,7 @@ void ConfigureSystemResourceAllocation(void* **ResourcePointer,void* Configurati
   CreateSystemObject(&additionalParameterObject,AdditionalParameter);
   allocationFlags = 1;
   dataManagerOffset = CreateSystemThreadObject(SystemMemoryAllocationTemplate,0x60,*(uint8_t *)(dataManagerOffset + 0x98));
-  FUN_18005caa0(dataManagerOffset + 0x20,&configurationDataObject);
+  ConfigureSystemResourceMemoryAllocator(dataManagerOffset + 0x20,&configurationDataObject);
   allocatedResourcePointer = (void* **)SystemResourceAllocator(systemDataManagerPointer,configurationFlagBuffer,dataManagerOffset + 0x20);
   if (configurationFlagBuffer[0] == '\0') {
     ValidateSystemResourceConfiguration(dataManagerOffset);
@@ -36781,7 +36781,7 @@ uint32_t GetSystemResourceStatus(long long SystemResourcePointer)
   if (systemStatus != 0) {
     __Throw_C_error_std__YAXH_Z(systemStatus);
   }
-  unsignedSystemValue2 = FUN_1800b2bd0();
+  unsignedSystemValue2 = CheckSystemInputManagerStatus();
   systemStatus = _Mtx_unlock(SystemResourcePointer + 0x9f0);
   if (systemStatus != 0) {
     __Throw_C_error_std__YAXH_Z(systemStatus);
@@ -36819,7 +36819,7 @@ int CheckSystemInputManagerStatus(void)
   if (systemCounter != 0) {
     __Throw_C_error_std__YAXH_Z(systemCounter);
   }
-  systemCounter = FUN_1800b2bd0();
+  systemCounter = CheckSystemInputManagerStatus();
   systemIndex = _Mtx_unlock(localMemoryPointer);
   if (systemIndex != 0) {
     __Throw_C_error_std__YAXH_Z(systemIndex);
@@ -36828,7 +36828,7 @@ int CheckSystemInputManagerStatus(void)
   if (systemIndex != 0) {
     __Throw_C_error_std__YAXH_Z(systemIndex);
   }
-  systemIndex = FUN_1800b2bd0();
+  systemIndex = CheckSystemInputManagerStatus();
   systemValue = _Mtx_unlock(localSystemHandle + 0x7c0);
   if (systemValue != 0) {
     __Throw_C_error_std__YAXH_Z(systemValue);
@@ -36838,7 +36838,7 @@ int CheckSystemInputManagerStatus(void)
   if (systemFlag != 0) {
     __Throw_C_error_std__YAXH_Z(systemFlag);
   }
-  systemFlag = FUN_1800b2bd0();
+  systemFlag = CheckSystemInputManagerStatus();
   systemOffset = _Mtx_unlock(localSystemHandle + 0x950);
   if (systemOffset != 0) {
     __Throw_C_error_std__YAXH_Z(systemOffset);
@@ -37593,7 +37593,7 @@ void InitializeSystemLogger(long long SystemResourcePointer,void* ConfigurationD
   if (*(long long *)(SystemResourcePointer + 0x10) - *PrimaryResourcePointer >> 3 != 0) {
     localSystemPointer = 0;
     do {
-      FUN_18020e7b0(*(void* *)(*PrimaryResourcePointer + localSystemPointer));
+      ManageSystemThreads(*(void* )(*PrimaryResourcePointer + localSystemPointer));
       systemFlag = systemFlag + 1;
       localSystemPointer = localSystemPointer + 8;
     } while ((ulong long)(long long)systemFlag < (ulong long)(*(long long *)(SystemResourcePointer + 0x10) - *PrimaryResourcePointer >> 3))
@@ -37604,7 +37604,7 @@ void InitializeSystemLogger(long long SystemResourcePointer,void* ConfigurationD
   if (*(long long *)(SystemResourcePointer + 0x30) - *SecondaryResourcePointer >> 3 != 0) {
     localSystemPointer = 0;
     do {
-      FUN_18020e7b0(*(void* *)(*SecondaryResourcePointer + localSystemPointer));
+      ManageSystemThreads(*(void* )(*SecondaryResourcePointer + localSystemPointer));
       systemFlag = systemFlag + 1;
       localSystemPointer = localSystemPointer + 8;
     } while ((ulong long)(long long)systemFlag < (ulong long)(*(long long *)(SystemResourcePointer + 0x30) - *SecondaryResourcePointer >> 3))
@@ -37615,7 +37615,7 @@ void InitializeSystemLogger(long long SystemResourcePointer,void* ConfigurationD
   if (*(long long *)(SystemResourcePointer + 0x50) - *plocalResourceOffset >> 3 != 0) {
     localSystemPointer = 0;
     do {
-      FUN_18020e7b0(*(void* *)(*plocalResourceOffset + localSystemPointer));
+      ManageSystemThreads(*(void* )(*plocalResourceOffset + localSystemPointer));
       systemFlag = systemFlag + 1;
       localSystemPointer = localSystemPointer + 8;
     } while ((ulong long)(long long)systemFlag < (ulong long)(*(long long *)(SystemResourcePointer + 0x50) - *plocalResourceOffset >> 3))
