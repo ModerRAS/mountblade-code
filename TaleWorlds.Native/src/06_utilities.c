@@ -34608,6 +34608,20 @@ void UnwindExceptionHandlerTypeSix(uint8_t ObjectContext, int64_t ValidationCont
 
 
 
+/**
+ * @brief 释放文件系统锁
+ * 
+ * 该函数负责释放文件系统中的锁资源，确保文件访问的安全性
+ * 主要用于多线程环境下的文件系统同步操作
+ * 
+ * @param ObjectContext 对象上下文参数
+ * @param ValidationContext 验证上下文参数
+ * @param CleanupOption 清理选项，指定清理的方式
+ * @param CleanupFlag 清理标志，控制清理过程的行为
+ * @return 无返回值
+ * @note 此函数在文件系统操作完成后调用
+ * @warning 调用此函数前必须确保锁资源已被正确获取
+ */
 void ReleaseFileSystemLock(uint8_t ObjectContext, int64_t ValidationContext, uint8_t CleanupOption, uint8_t CleanupFlag) {
   HandleResourceRequest(*(int64_t *)(ValidationContext + SystemContextResourceOffset) + 0x858,
                 *(uint8_t *)(*(int64_t *)(ValidationContext + SystemContextResourceOffset) + 0x868),CleanupOption,CleanupFlag,
