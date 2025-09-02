@@ -14956,7 +14956,7 @@ HANDLE_RESOURCE_DATA_END:
       }
       return 0x4a;
     }
-LAB_1808989f7:
+HashValidationComplete:
     ResourceCounter = ResourceHashPointer[1] & 0xffffff;
     if (((char)(ResourceHashPointer[1] >> 0x18) == '\0') && ((int)ResourceCounter < (int)ObjectContextParameter[3])) {
       pResourceValidationCode = (uint8_t *)(ObjectContextParameter[2] + (uint64_t)ResourceCounter * 0x10);
