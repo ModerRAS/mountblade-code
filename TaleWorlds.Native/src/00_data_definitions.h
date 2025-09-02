@@ -2579,12 +2579,12 @@ int InitializeSystemMessageHandler(void)
   SystemConfigDataSize1 = 0x13;
   strcpy_s(&SystemMemoryConfigBufferPrimary,0x80,&UnknownDataPointer180a24da8,StringProcessorFlags,SystemMutexFlags);
   SystemConfigTemplateAddress1 = &SystemMemoryConfigTemplate;
-  _DAT_180bfabb0 = &SystemMemoryConfigBufferSecondary;
+  SystemConfigDataAddress2 = &SystemMemoryConfigBufferSecondary;
   SystemMemoryConfigBufferSecondary = 0;
-  _DAT_180bfabb8 = 0x13;
+  SystemConfigDataSize2 = 0x13;
   strcpy_s(&SystemMemoryConfigBufferSecondary,0x80,&UnknownDataPointer180a24da8);
-  _DAT_180bfac40 = &SystemMemoryConfigTemplate;
-  _DAT_180bfac48 = &SystemMemoryConfigBufferTertiary;
+  SystemConfigTemplateAddress2 = &SystemMemoryConfigTemplate;
+  SystemConfigDataAddress3 = &SystemMemoryConfigBufferTertiary;
   SystemMemoryConfigBufferTertiary = 0;
   _DAT_180bfac50 = 0x13;
   strcpy_s(&SystemMemoryConfigBufferTertiary,0x80,&UnknownDataPointer180a24da8);
@@ -7928,7 +7928,7 @@ LAB_180608bee:
       goto LAB_18060905e;
     }
     if (iStack_20 == 0x1b) {
-      pNetworkRequestResult = &UNK_180a38a20;
+      pNetworkRequestResult = &SystemNetworkConfigData2;
       goto LAB_18060905e;
     }
     if (iStack_20 == 0xd) {
@@ -7938,17 +7938,17 @@ LAB_180608bee:
         goto LAB_180609070;
       }
 LAB_180608e70:
-      pNetworkRequestResult = &UNK_180a38c98;
+      pNetworkRequestResult = &SystemNetworkConfigData3;
       goto LAB_18060905e;
     }
     if (iStack_20 == 0x1a) {
-      LoopCounter = strcmp(lStack_28,&UNK_180a38958);
+      LoopCounter = strcmp(lStack_28,&SystemNetworkConfigData4);
       if (LoopCounter == 0) {
         LoopCounter = 0x1c;
         goto LAB_180609070;
       }
 LAB_180608dad:
-      LoopCounter = strcmp(lVar3,&UNK_180a38c08);
+      LoopCounter = strcmp(lVar3,&SystemNetworkConfigData5);
       if (LoopCounter == 0) {
         LoopCounter = 0x18;
         goto LAB_180609070;
@@ -8280,7 +8280,7 @@ FUN_1806090b0(uint64_t param_1,uint64_t param_2,uint8_t param_3,uint64_t param_4
   if (cVar1 == '\0') {
     cVar1 = FUN_180629850(auStack_30,&NetworkRequestStringAuth,1);
     if (cVar1 == '\0') {
-      cVar1 = FUN_180629850(auStack_30,&UNK_180a38958,1);
+      cVar1 = FUN_180629850(auStack_30,&SystemNetworkConfigData4,1);
       if (cVar1 == '\0') {
         cVar1 = FUN_180629850(auStack_30,&UNK_180a389b0,1);
         if (cVar1 == '\0') {
@@ -8316,7 +8316,7 @@ FUN_1806090b0(uint64_t param_1,uint64_t param_2,uint8_t param_3,uint64_t param_4
                                       if (cVar1 == '\0') {
                                         cVar1 = ValidateSystemConfiguration(auStack_30,&UNK_180a38bd0);
                                         if (cVar1 == '\0') {
-                                          cVar1 = ValidateSystemConfiguration(auStack_30,&UNK_180a38c08);
+                                          cVar1 = ValidateSystemConfiguration(auStack_30,&SystemNetworkConfigData5);
                                           if (cVar1 == '\0') {
                                             cVar1 = ValidateSystemConfiguration(auStack_30,&SystemValidationCore);
                                             if (cVar1 == '\0') {
