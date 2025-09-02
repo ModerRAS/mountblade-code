@@ -6045,13 +6045,13 @@ uint8_t ValidateSystemConfiguration(int64_t configHandle)
   uint8_t HashValidationResult;
   int64_t ConfigBuffer [4];
   
-  validationStatusCode = ValidateObjectContext(*(uint32_t *)(configHandle + 0x10),ConfigBuffer);
-  if ((int)validationStatusCode == 0) {
+  HashValidationResult = ValidateObjectContext(*(uint32_t *)(configHandle + 0x10),ConfigBuffer);
+  if ((int)HashValidationResult == 0) {
     *(uint32_t *)(*(int64_t *)(ConfigBuffer[0] + 0x10) + 0x50) = *(uint32_t *)(configHandle + 0x18);
-    if ((*(int64_t *)(ConfigBuffer[0] + 8) != 0) && (validationStatusCode = ValidateSecurityContext(), (int)HashValidationResult != 0)) {
+    if ((*(int64_t *)(ConfigBuffer[0] + 8) != 0) && (HashValidationResult = ValidateSecurityContext(), (int)HashValidationResult != 0)) {
       return HashValidationResult;
     }
-    validationStatusCode = 0;
+    HashValidationResult = 0;
   }
   return HashValidationResult;
 }
@@ -6076,10 +6076,10 @@ void ValidateObjectStateAndDispatch(int64_t ObjectContext, int64_t schedulerCont
   uint8_t ValidationBuffer;
   
   if (*(int *)(ObjectContext + 0x2c) == 0) {
-    PackageValidationStatus = ProcessSchedulerValidation(schedulerContext,ObjectContext + 0x1c,&ValidationBuffer);
-    if (PackageValidationStatus == 0) {
-      PackageValidationStatus = ValidateBufferContext(ValidationBuffer,ObjectContext + 0x2c);
-      if (PackageValidationStatus == 0) goto ValidationFailureLabel;
+    PackageValidationStatusCode = ProcessSchedulerValidation(schedulerContext,ObjectContext + 0x1c,&ValidationBuffer);
+    if (PackageValidationStatusCode == 0) {
+      PackageValidationStatusCode = ValidateBufferContext(ValidationBuffer,ObjectContext + 0x2c);
+      if (PackageValidationStatusCode == 0) goto ValidationFailureLabel;
     }
     return;
   }
