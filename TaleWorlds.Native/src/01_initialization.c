@@ -53096,7 +53096,7 @@ void FUN_180073630(void* ResourceManagerPointer,void* ConfigurationDataPointer)
   void* *puStack_30;
   long long lStack_28;
   
-  SystemManagerSetFlags(SystemContextManagerPointer,0,0x100000000,0,&UNK_1809ff918,ConfigurationDataPointer,0xfffffffffffffffe);
+  SystemManagerSetFlags(SystemContextManagerPointer,0,0x100000000,0,&SystemResourceManagerDataBufferA,ConfigurationDataPointer,0xfffffffffffffffe);
   if (SystemInitializationFlag == '\0') {
     auStackX_18[0] = 0xffff0000;
     ProcessSystemQueue(&puStack_30,ConfigurationDataPointer);
@@ -53133,7 +53133,7 @@ void FUN_180073730(void* ResourceManagerPointer,void* ConfigurationDataPointer)
   void* *puStack_30;
   long long lStack_28;
   
-  SystemManagerSetFlags(SystemContextManagerPointer,0,0x100000000,1,&UNK_1809ff938,ConfigurationDataPointer,0xfffffffffffffffe);
+  SystemManagerSetFlags(SystemContextManagerPointer,0,0x100000000,1,&SystemResourceManagerDataBufferB,ConfigurationDataPointer,0xfffffffffffffffe);
   if (SystemInitializationFlag == '\0') {
     auStackX_18[0] = 0xff00ff00;
     ProcessSystemQueue(&puStack_30,ConfigurationDataPointer);
@@ -53170,7 +53170,7 @@ void FUN_180073830(void* ResourceManagerPointer,uint32_t ConfigurationDataPointe
   void* *puStack_30;
   long long lStack_28;
   
-  SystemManagerSetFlags(SystemContextManagerPointer,0,0x100000000,0xc,&UNK_1809ff958,AdditionalParameter,0xfffffffffffffffe);
+  SystemManagerSetFlags(SystemContextManagerPointer,0,0x100000000,0xc,&SystemResourceManagerDataBufferC,AdditionalParameter,0xfffffffffffffffe);
   if (SystemInitializationFlag == '\0') {
     auStackX_20[0] = ConfigurationDataPointer;
     ProcessSystemQueue(&puStack_30,AdditionalParameter);
@@ -54789,8 +54789,8 @@ void* * CreateAndConfigureSystemDataTable(void* ResourceManagerPointer, long lon
   void** SystemDataTable;
   
   HashEntryStatus = (void* *)SystemMemoryAllocationFunction(SystemMemoryPoolTemplate,0x38,8,3,0xfffffffffffffffe);
-  *HashEntryStatus = &UNK_1809ffa18;
-  *HashEntryStatus = &UNK_1809ff9a8;
+  *HashEntryStatus = &SystemResourceManagerDataTableA;
+  *HashEntryStatus = &SystemResourceManagerDataTableB;
   *(void* *)((long long)HashEntryStatus + 0x2c) = 0;
   *(uint32_t *)((long long)HashEntryStatus + 0x34) = 0;
   *(uint8_t *)(HashEntryStatus + 5) = 0;
