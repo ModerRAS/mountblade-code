@@ -58248,9 +58248,16 @@ LAB_180077879:
 
 
 /**
- * @brief 系统空操作函数A
+ * @brief 系统资源管理和线程初始化函数
  * 
- * 该函数是一个空操作函数，用于系统调试和测试目的。
+ * 该函数负责系统资源的分配、管理和线程初始化操作。
+ * 主要功能包括：
+ * - 系统内存池的分配和管理
+ * - 线程对象的创建和初始化
+ * - 系统资源状态的检查和更新
+ * - 哈希节点的管理和同步
+ * 
+ * @return 无返回值
  * 
  * 原始函数名为FUN_18007799c，现已重命名为SystemNoOperationA
  */
@@ -58454,15 +58461,15 @@ void SystemNoOperationA(void)
   if (*(long long *)(ResourceOffset + 0x28) == 0) {
     InputStackParameter30 = 0xffffffff;
     HashNodePointer5 = &stack0x00000030;
-    localResourceOffset3 = in_stack_00000178;
+    localResourceOffset3 = ResourceOffset;
   }
   else {
-    in_stack_00000170 = 0xffffffff;
+    ThreadCreationFlags = 0xffffffff;
     HashNodePointer5 = &stack0x00000170;
-    localResourceOffset3 = *(long long *)(in_stack_00000178 + 0x28);
+    localResourceOffset3 = *(long long *)(ResourceOffset + 0x28);
   }
   FUN_180080e90(localResourceOffset3 + 0x3388,HashNodePointer5,&stack0x00000040);
-  pfloatValue39 = in_stack_00000180;
+  pfloatValue39 = FloatParameterArray;
   if ((*(uint *)(systemMemoryBlockPtr + 0x100) & 0x4000000) != 0) {
     floatValue9 = *in_stack_00000180;
     FloatScaleFactor = in_stack_00000180[1];
@@ -58511,7 +58518,7 @@ void SystemNoOperationA(void)
     pfloatValue39 = &stack0x000000a0;
   }
   FUN_180085190(&stack0x00000060,localResourceOffset4 + 0x30,*(uint8_t *)(systemMemoryBlockPtr + 0xf7),pfloatValue39);
-  creationFlags8 = in_stack_00000098;
+  creationFlags8 = ThreadCreationParameter;
   creationFlags7 = InputStackParameter90;
   creationFlags6 = InputStackParameter88;
   creationFlags5 = InputStackParameter80;
@@ -58538,7 +58545,7 @@ void SystemNoOperationA(void)
     *(void* *)(systemMemoryBlockPtr + 0x180) = InputStackParameter80;
     *(void* *)(systemMemoryBlockPtr + 0x188) = InputStackParameter88;
     *(void* *)(systemMemoryBlockPtr + 400) = InputStackParameter90;
-    *(void* *)(systemMemoryBlockPtr + 0x198) = in_stack_00000098;
+    *(void* *)(systemMemoryBlockPtr + 0x198) = ThreadCreationParameter;
   }
   FUN_18024a290(localResourceOffset4);
   *(byte *)(systemMemoryBlockPtr + 0xfd) = *(byte *)(systemMemoryBlockPtr + 0xfd) & 0xfe;
@@ -58611,7 +58618,7 @@ void FUN_180077ad8(void)
   void* InputStackParameter80;
   void* InputStackParameter88;
   void* InputStackParameter90;
-  void* in_stack_00000098;
+  void* ThreadCreationParameter;
   float fStack00000000000000a0;
   float fStack00000000000000a4;
   float fStack00000000000000a8;
@@ -58718,12 +58725,12 @@ void FUN_180077ad8(void)
   if (*(long long *)(ResourceOffset + 0x28) == 0) {
     InputStackParameter30 = 0xffffffff;
     HashNodePointer4 = &stack0x00000030;
-    localResourceOffset3 = in_stack_00000178;
+    localResourceOffset3 = ResourceOffset;
   }
   else {
-    in_stack_00000170 = 0xffffffff;
+    ThreadCreationFlags = 0xffffffff;
     HashNodePointer4 = &stack0x00000170;
-    localResourceOffset3 = *(long long *)(in_stack_00000178 + 0x28);
+    localResourceOffset3 = *(long long *)(ResourceOffset + 0x28);
   }
   FUN_180080e90(localResourceOffset3 + 0x3388,HashNodePointer4,&stack0x00000040);
   pfloatValue36 = in_stack_00000180;
@@ -58775,7 +58782,7 @@ void FUN_180077ad8(void)
     pfloatValue36 = &stack0x000000a0;
   }
   FUN_180085190(&stack0x00000060,localSystemHandle9 + 0x30,*(uint8_t *)(systemMemoryBlockPtr + 0xf7),pfloatValue36);
-  creationFlags8 = in_stack_00000098;
+  creationFlags8 = ThreadCreationParameter;
   creationFlags7 = InputStackParameter90;
   creationFlags6 = InputStackParameter88;
   creationFlags5 = InputStackParameter80;
@@ -58802,7 +58809,7 @@ void FUN_180077ad8(void)
     *(void* *)(systemMemoryBlockPtr + 0x180) = InputStackParameter80;
     *(void* *)(systemMemoryBlockPtr + 0x188) = InputStackParameter88;
     *(void* *)(systemMemoryBlockPtr + 400) = InputStackParameter90;
-    *(void* *)(systemMemoryBlockPtr + 0x198) = in_stack_00000098;
+    *(void* *)(systemMemoryBlockPtr + 0x198) = ThreadCreationParameter;
   }
   FUN_18024a290(localSystemHandle9);
   *(byte *)(systemMemoryBlockPtr + 0xfd) = *(byte *)(systemMemoryBlockPtr + 0xfd) & 0xfe;
@@ -58867,7 +58874,7 @@ void FUN_180077c96(void)
   void* InputStackParameter80;
   void* InputStackParameter88;
   void* InputStackParameter90;
-  void* in_stack_00000098;
+  void* ThreadCreationParameter;
   float fStack00000000000000a0;
   float fStack00000000000000a4;
   float fStack00000000000000a8;
@@ -58928,7 +58935,7 @@ void FUN_180077c96(void)
     fStack00000000000000dc = floatValue4 * interpolationFactor2 + floatValue5 * FloatScaleFactor + floatValue1 * magnitudeSquared1 + systemStringIteratorPtr[0xf];
   }
   FUN_180085190(&stack0x00000060,unaff_R13 + 0x30,*(uint8_t *)(systemMemoryBlockPtr + 0xf7));
-  creationFlags6 = in_stack_00000098;
+  creationFlags6 = ThreadCreationParameter;
   creationFlags5 = InputStackParameter90;
   creationFlags4 = InputStackParameter88;
   creationFlags3 = InputStackParameter80;
@@ -58955,7 +58962,7 @@ void FUN_180077c96(void)
     *(void* *)(systemMemoryBlockPtr + 0x180) = InputStackParameter80;
     *(void* *)(systemMemoryBlockPtr + 0x188) = InputStackParameter88;
     *(void* *)(systemMemoryBlockPtr + 400) = InputStackParameter90;
-    *(void* *)(systemMemoryBlockPtr + 0x198) = in_stack_00000098;
+    *(void* *)(systemMemoryBlockPtr + 0x198) = ThreadCreationParameter;
   }
   FUN_18024a290();
   *(byte *)(systemMemoryBlockPtr + 0xfd) = *(byte *)(systemMemoryBlockPtr + 0xfd) & 0xfe;
@@ -59020,7 +59027,7 @@ void FUN_180077dc6(void)
   void* InputStackParameter80;
   void* InputStackParameter88;
   void* InputStackParameter90;
-  void* in_stack_00000098;
+  void* ThreadCreationParameter;
   float fStack00000000000000a0;
   float fStack00000000000000a4;
   float fStack00000000000000a8;
@@ -59099,7 +59106,7 @@ void FUN_180077dc6(void)
     pfloatValue29 = &stack0x000000a0;
   }
   FUN_180085190(&stack0x00000060,unaff_R13 + 0x30,*(uint8_t *)(systemMemoryBlockPtr + 0xf7),pfloatValue29);
-  creationFlags6 = in_stack_00000098;
+  creationFlags6 = ThreadCreationParameter;
   creationFlags5 = InputStackParameter90;
   creationFlags4 = InputStackParameter88;
   creationFlags3 = InputStackParameter80;
@@ -59126,7 +59133,7 @@ void FUN_180077dc6(void)
     *(void* *)(systemMemoryBlockPtr + 0x180) = InputStackParameter80;
     *(void* *)(systemMemoryBlockPtr + 0x188) = InputStackParameter88;
     *(void* *)(systemMemoryBlockPtr + 400) = InputStackParameter90;
-    *(void* *)(systemMemoryBlockPtr + 0x198) = in_stack_00000098;
+    *(void* *)(systemMemoryBlockPtr + 0x198) = ThreadCreationParameter;
   }
   FUN_18024a290();
   *(byte *)(systemMemoryBlockPtr + 0xfd) = *(byte *)(systemMemoryBlockPtr + 0xfd) & 0xfe;
@@ -59172,10 +59179,10 @@ void FUN_180077dec(void)
   void* InputStackParameter80;
   void* InputStackParameter88;
   void* InputStackParameter90;
-  void* in_stack_00000098;
+  void* ThreadCreationParameter;
   
   FUN_180085190(&stack0x00000060,unaff_R13 + 0x30,*(uint8_t *)(systemMemoryBlockPtr + 0xf7));
-  unsignedSystemValue9 = in_stack_00000098;
+  unsignedSystemValue9 = ThreadCreationParameter;
   unsignedSystemValue8 = InputStackParameter90;
   unsignedSystemValue7 = InputStackParameter88;
   hashValue = InputStackParameter80;
@@ -59202,7 +59209,7 @@ void FUN_180077dec(void)
     *(void* *)(systemMemoryBlockPtr + 0x180) = InputStackParameter80;
     *(void* *)(systemMemoryBlockPtr + 0x188) = InputStackParameter88;
     *(void* *)(systemMemoryBlockPtr + 400) = InputStackParameter90;
-    *(void* *)(systemMemoryBlockPtr + 0x198) = in_stack_00000098;
+    *(void* *)(systemMemoryBlockPtr + 0x198) = ThreadCreationParameter;
   }
   FUN_18024a290();
   *(byte *)(systemMemoryBlockPtr + 0xfd) = *(byte *)(systemMemoryBlockPtr + 0xfd) & 0xfe;
