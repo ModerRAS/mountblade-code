@@ -45276,7 +45276,8 @@ void CleanupResourceHashTable(uint8_t ObjectContext,int64_t ValidationContext,ui
 
 {
   uint8_t *ResourceHashPointer;
-  char StatusCharacter;
+  char statusIndicator;
+  char operationStatus;
   uint8_t HashValidationResult;
   
   ResourceHashPointer = *(uint8_t **)(ValidationContext + 0x160);
