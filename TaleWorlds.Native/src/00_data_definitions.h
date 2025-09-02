@@ -6618,7 +6618,7 @@ uint64_t ValidateAndProcessModuleData(longlong ModuleHandle, longlong *DataBuffe
   return MemoryAllocationResult;
 }
     DAT_180d49748 = 0;
-    FUN_180327540(0x180d496e0);
+    InitializeSystemDataTemplate(0x180d496e0);
     FUN_1808fc820(FUN_180941dd0);
     FUN_1808fcb30(&DAT_180d496d0);
   }
@@ -6649,7 +6649,7 @@ LAB_18032b96c:
     if ((pStringProcessingResult != *(uint **)(ModuleInitializationResult + lVar4 * 8)) && (lVar4 = *(longlong *)(pStringProcessingResult + 2), lVar4 != 0)
        ) goto LAB_18032b98e;
   }
-  FUN_180327540(0x180d496e0);
+  InitializeSystemDataTemplate(0x180d496e0);
   lVar4 = 0x180d496e0;
 LAB_18032b98e:
   StringIndex = _Mtx_unlock(param_1 + 0x6e8);
