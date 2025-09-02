@@ -35125,7 +35125,7 @@ void InitializeAndCleanupSystemResource(void* *systemResourceManager)
  * @return 返回清理后的系统资源指针
  * @note 这是系统资源清理的重要组成部分，用于处理复杂的多重清理操作
  */
-void* * CleanupAndReleaseMultipleSystemResources(void* *SystemResourceManager,ulong long ConfigurationDataPointer)
+void* * CleanupAndReleaseMultipleSystemResources(void* *systemResourceManager,ulong long configurationDataPointer)
 
 {
   *SystemResourceManager = &SystemMemoryData3;

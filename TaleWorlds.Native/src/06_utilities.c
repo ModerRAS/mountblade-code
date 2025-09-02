@@ -11320,36 +11320,36 @@ uint32_t ProcessSystemConfigurationAndValidation(int64_t SystemContext, uint8_t 
   if (ResultBuffer == 0) {
     return ErrorResourceValidationFailed;
   }
-  ResourceEntryCounter = 0;
-  ResourceHashValidationStatusCode = *(uint *)(SystemContext + 0x20);
-  ChecksumBuffer[0] = 0;
-  SystemInitializationResult = InitializeProcessingQueue(ChecksumBuffer, SystemContext);
-  if (SystemInitializationResult == 0) {
-    SystemStackSize = 0;
-    PackageValidationStatus = ValidationFlags | 0x10000000;
-    if ((ResourceHashValidationStatusCode & 1) == 0) {
-      PackageValidationStatus = ValidationFlags;
+  ResourceEntryCount = 0;
+  ResourceHashValidationCode = *(uint *)(SystemContext + 0x20);
+  ChecksumValidationBuffer[0] = 0;
+  SystemInitializationStatusCode = InitializeProcessingQueue(ChecksumValidationBuffer, SystemContext);
+  if (SystemInitializationStatusCode == 0) {
+    SystemCallStackSize = 0;
+    PackageValidationState = ValidationFlags | 0x10000000;
+    if ((ResourceHashValidationCode & 1) == 0) {
+      PackageValidationState = ValidationFlags;
     }
-    SystemProcessingStatus = ProcessConfigurationData(SystemContext, ConfigurationData, ResourceHashValidationStatusCode, &SystemStackSize);
-    if ((SystemProcessingStatus == 0) && (SystemResourceContext = (int64_t *)(ResultBuffer + 8)) && (SystemResourceContext != (int64_t *)0x0)) {
-      ResourceLinkPointer = (int64_t *)*SystemResourceContext;
-      if (ResourceLinkPointer != SystemResourceContext) {
+    SystemProcessingStatusCode = ProcessConfigurationData(SystemContext, ConfigurationData, ResourceHashValidationCode, &SystemCallStackSize);
+    if ((SystemProcessingStatusCode == 0) && (SystemResourceManagerContext = (int64_t *)(ResultBuffer + 8)) && (SystemResourceManagerContext != (int64_t *)0x0)) {
+      ResourceLinkNode = (int64_t *)*SystemResourceManagerContext;
+      if (ResourceLinkNode != SystemResourceManagerContext) {
         do {
-          ResourceLinkPointer = (int64_t *)*ResourceLinkPointer;
-          ResourceEntryCounter = ResourceEntryCounter + 1;
-        } while (ResourceLinkPointer != SystemResourceContext);
-        if (ResourceEntryCounter != 0) goto CleanupHandler;
+          ResourceLinkNode = (int64_t *)*ResourceLinkNode;
+          ResourceEntryCount = ResourceEntryCount + 1;
+        } while (ResourceLinkNode != SystemResourceManagerContext);
+        if (ResourceEntryCount != 0) goto CleanupHandler;
       }
       *(uint8_t *)(ResultBuffer + 0x10) = *(uint8_t *)(SystemContext + 0x58);
-      *SystemResourceContext = SystemContext + 0x50;
-      *(int64_t **)(SystemContext + 0x58) = SystemResourceContext;
-      **(int64_t **)(ResultBuffer + 0x10) = (int64_t)SystemResourceContext;
-      ExecuteSystemOperation(ResultBuffer, SystemStackSize);
-      ProcessDataBlockOperation(SystemContext, SystemStackSize);
+      *SystemResourceManagerContext = SystemContext + 0x50;
+      *(int64_t **)(SystemContext + 0x58) = SystemResourceManagerContext;
+      **(int64_t **)(ResultBuffer + 0x10) = (int64_t)SystemResourceManagerContext;
+      ExecuteSystemOperation(ResultBuffer, SystemCallStackSize);
+      ProcessDataBlockOperation(SystemContext, SystemCallStackSize);
     }
   }
 CleanupHandler:
-        CleanupProcessingQueue(ChecksumBuffer);
+        CleanupProcessingQueue(ChecksumValidationBuffer);
 }
 
 
