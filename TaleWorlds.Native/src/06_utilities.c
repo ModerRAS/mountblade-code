@@ -167,14 +167,25 @@
 #define ObjectContextValidationDataOffset 0x14
 #define SystemObjectContextSize 0x1000
 #define SystemDataStructureSize 0x1000
+#define ResourceDataPointerOffset 0x20
+#define ResourceCountOffset 0x28
+#define ResourceCapacityOffset 0x2c
+#define SystemContextAllocationOffset 0x1a0
 #define NullPointerValue 0x0
 #define BufferDataOffset 0x10
 #define ResourceStatusFlagsOffset 0x34
 #define ResourceStatusActiveMask 0x11
+#define ObjectContextPointerOffset 0x10
+#define ResourceTableOffset 0x2b0
+#define ResourceDataOffset 0x78
 #define ResourceMinRangeOffset 0x38
 #define ResourceMaxRangeOffset 0x3c
 #define ObjectContextProcessingDataOffset 0x20
 #define SystemResourceManagerOffset 0x98
+#define ObjectArrayDataOffset 0x20
+#define ObjectArrayCapacityOffset 0x28
+#define ObjectEntrySize 0x18
+#define ObjectEntryHeaderOffset 0x10
 #define ResourceAllocationErrorCode 0xe9
 #define ExtendedDataOffset 0x30
 #define ObjectContextMatrixFlagsOffset 0x28
@@ -6378,7 +6389,7 @@ uint8_t ValidateSystemConfiguration(int64_t ConfigHandle)
   
   HashValidationResult = ValidateObjectContext(*(uint32_t *)(configHandle + ObjectContextOffset),ConfigBuffer);
   if ((int)HashValidationResult == 0) {
-    *(uint32_t *)(*(int64_t *)(ConfigBuffer[0] + 0x10) + 0x50) = *(uint32_t *)(configHandle + RegistrationHandleOffset);
+    *(uint32_t *)(*(int64_t *)(ConfigBuffer[0] + ObjectContextOffset) + 0x50) = *(uint32_t *)(configHandle + RegistrationHandleOffset);
     if ((*(int64_t *)(ConfigBuffer[0] + 8) != 0) && (HashValidationResult = ValidateSecurityContext(), (int)HashValidationResult != 0)) {
       return HashValidationResult;
     }
@@ -7071,21 +7082,21 @@ void ProcessSystemConfigurationUpdate(int ConfigurationIndex, int ConfigurationS
       SystemContext = AllocateMemoryBlock(*(uint8_t *)(SystemContext + 0x1a0),OperationResult * 8,&ResourceAllocationTemplate,
                                 0xf4);
       if (SystemContext == 0) goto SystemErrorHandler;
-      if (*(int *)(ResourceContext + 0x28) != 0) {
-              memcpy(SystemContext,*(uint8_t *)(ResourceContext + 0x20),(int64_t)*(int *)(ResourceContext + 0x28) << 3
+      if (*(int *)(ResourceContext + ResourceCountOffset) != 0) {
+              memcpy(SystemContext,*(uint8_t *)(ResourceContext + ResourceDataPointerOffset),(int64_t)*(int *)(ResourceContext + ResourceCountOffset) << 3
               );
       }
     }
-    if ((0 < *(int *)(ResourceContext + 0x2c)) && (*(int64_t *)(ResourceContext + 0x20) != 0)) {
-            ProcessResourceAllocation(*(uint8_t *)(SystemContext + 0x1a0),*(int64_t *)(ResourceContext + 0x20),
+    if ((0 < *(int *)(ResourceContext + ResourceCapacityOffset)) && (*(int64_t *)(ResourceContext + ResourceDataPointerOffset) != 0)) {
+            ProcessResourceAllocation(*(uint8_t *)(SystemContext + SystemContextAllocationOffset),*(int64_t *)(ResourceContext + ResourceDataPointerOffset),
                     &ResourceAllocationTemplate,0x100,1);
     }
-    *(int64_t *)(ResourceContext + 0x20) = SystemContext;
-    *(int *)(ResourceContext + 0x2c) = OperationResult;
+    *(int64_t *)(ResourceContext + ResourceDataPointerOffset) = SystemContext;
+    *(int *)(ResourceContext + ResourceCapacityOffset) = OperationResult;
   }
-  *(uint8_t *)(*(int64_t *)(ResourceContext + 0x20) + (int64_t)*(int *)(ResourceContext + 0x28) * 8) =
+  *(uint8_t *)(*(int64_t *)(ResourceContext + ResourceDataPointerOffset) + (int64_t)*(int *)(ResourceContext + ResourceCountOffset) * 8) =
        StackParameterContext;
-  *(int *)(ResourceContext + 0x28) = *(int *)(ResourceContext + 0x28) + 1;
+  *(int *)(ResourceContext + ResourceCountOffset) = *(int *)(ResourceContext + ResourceCountOffset) + 1;
 SystemErrorHandler:
         ReleaseSystemContextResources(*(uint8_t *)(SystemContextHandle + 0x98));
 }
@@ -7342,11 +7353,11 @@ uint8_t ValidateAndProcessObjectAttributeSetting(int64_t ObjectContext, int64_t 
     if (ObjectContextBuffer != 0) {
       ObjectContextBuffer = ObjectContextBuffer + -8;
     }
-    if (*(int64_t *)(ObjectContextBuffer + 0x10) == 0) {
+    if (*(int64_t *)(ObjectContextBuffer + ObjectContextPointerOffset) == 0) {
       return ErrorPointerCheckFailure;
     }
     *(uint8_t *)(ObjectContext + ObjectContextValidationDataOffset) =
-         *(uint8_t *)(*(int64_t *)(*(int64_t *)(ObjectContextBuffer + 0x10) + 0x2b0) + 0x78);
+         *(uint8_t *)(*(int64_t *)(*(int64_t *)(ObjectContextBuffer + ObjectContextPointerOffset) + ResourceTableOffset) + ResourceDataOffset);
     ProcessingStatusCode = ProcessSystemObjectWithCleanup(*(uint8_t *)(SystemContext + SystemResourceManagerOffset), ObjectContext);
   }
   return ProcessingResult;
@@ -7590,13 +7601,13 @@ uint8_t ValidateAndProcessComplexObjectContext(int64_t ObjectContext, int64_t Sy
     ContextPointer = ValidationBuffer + -8;
   }
   objectIndex = *(int *)(ObjectContext + ObjectContextValidationDataOffset);
-  if ((objectIndex < 0) || (*(int *)(ContextPointer + 0x28) <= objectIndex)) {
+  if ((objectIndex < 0) || (*(int *)(ContextPointer + ObjectArrayCapacityOffset) <= objectIndex)) {
     return ErrorResourceValidationFailed;
   }
-  if (*(int64_t *)(*(int64_t *)(ContextPointer + 0x20) + 0x10 + (int64_t)objectIndex * 0x18) == 0) {
+  if (*(int64_t *)(*(int64_t *)(ContextPointer + ObjectArrayDataOffset) + ObjectEntryHeaderOffset + (int64_t)objectIndex * ObjectEntrySize) == 0) {
     return ErrorInvalidResourceData;
   }
-  ProcessingStatusCode = ValidateBufferContext(*(int64_t *)(ContextPointer + 0x20) + (int64_t)objectIndex * 0x18, ObjectContext + ObjectContextHandleDataOffset);
+  ProcessingStatusCode = ValidateBufferContext(*(int64_t *)(ContextPointer + ObjectArrayDataOffset) + (int64_t)objectIndex * ObjectEntrySize, ObjectContext + ObjectContextHandleDataOffset);
   if ((int)ProcessingResult != 0) {
     return ProcessingResult;
   }
