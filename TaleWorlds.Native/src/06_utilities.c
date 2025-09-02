@@ -4742,19 +4742,19 @@ uint8_t InitializeObjectHandleBasic(int64_t ObjectContext) {
   int64_t ValidatedSystemContext;
   
   ObjectValidationStatusCode = ValidateObjectContext(*(uint32_t *)(ObjectContext + ObjectContextDataArrayOffset), &ValidatedSystemContext);
-  if ((int)objectValidationStatusCode == 0) {
-    if (validatedSystemContext == 0) {
-      validatedSystemContext = 0;
+  if ((int)ObjectValidationStatusCode == 0) {
+    if (ValidatedSystemContext == 0) {
+      ValidatedSystemContext = 0;
     }
     else {
-      validatedSystemContext = validatedSystemContext + -8;
+      ValidatedSystemContext = ValidatedSystemContext + -8;
     }
-    if (*(int64_t *)(validatedSystemContext + ObjectHandleMemoryOffset) != 0) {
-            ExecuteSystemExitOperation(*(int64_t *)(validatedSystemContext + ObjectHandleMemoryOffset), 1);
+    if (*(int64_t *)(ValidatedSystemContext + ObjectHandleMemoryOffset) != 0) {
+            ExecuteSystemExitOperation(*(int64_t *)(ValidatedSystemContext + ObjectHandleMemoryOffset), 1);
     }
-    objectValidationStatusCode = 0;
+    ObjectValidationStatusCode = 0;
   }
-  return objectValidationStatusCode;
+  return ObjectValidationStatusCode;
 }
 
 
