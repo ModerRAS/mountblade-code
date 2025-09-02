@@ -59181,32 +59181,32 @@ void CleanupGlobalSystemResources(void)
 void ProcessSystemMatrixOperations(void)
 
 {
-  float FloatVariable1;
-  float FloatVariable2;
-  float FloatVariable3;
-  float FloatVariable4;
-  float floatValue5;
-  int systemFlag;
-  float floatValue7;
-  float floatValue8;
-  float floatValue9;
-  float FloatScaleFactor;
-  float floatValue11;
-  float FloatRatioValue;
-  float interpolationFactor1;
-  float interpolationFactor2;
-  float interpolationFactor3;
-  float interpolationFactor4;
-  float interpolationFactor5;
-  float magnitudeSquared1;
-  void* SystemOperationStatus9;
-  void* creationFlags0;
-  void* creationFlags1;
-  void* creationFlags2;
-  void* creationFlags3;
-  void* creationFlags4;
-  void* creationFlags5;
-  void* creationFlags6;
+  float MatrixElementX;
+  float MatrixElementY;
+  float MatrixElementZ;
+  float MatrixElementW;
+  float VectorMagnitude;
+  int CalculationFlags;
+  float RotationAngleX;
+  float RotationAngleY;
+  float RotationAngleZ;
+  float ScaleFactor;
+  float TranslationX;
+  float AspectRatio;
+  float InterpolationAlpha;
+  float InterpolationBeta;
+  float InterpolationGamma;
+  float InterpolationDelta;
+  float InterpolationEpsilon;
+  float MagnitudeSquared;
+  void* SystemContextPointer;
+  void* ResourceCreationFlags;
+  void* ThreadCreationFlags;
+  void* MemoryAllocationFlags;
+  void* ResourceInitializationFlags;
+  void* SystemConfigurationFlags;
+  void* SecurityContextFlags;
+  void* NetworkConnectionFlags;
   byte isSystemActive7;
   long long systemMemoryBlockPtr;
   byte isSystemActive8;
@@ -59714,8 +59714,8 @@ LAB_180077fcf:
 
 
 
-// 函数: void FUN_180078051(void* SystemResourceManager,void* ConfigurationDataPointer,float AdditionalParameter,float ConfigurationFlag)
-void FUN_180078051(void* SystemResourceManager,void* ConfigurationDataPointer,float AdditionalParameter,float ConfigurationFlag)
+// 函数: void ProcessSystemFloatOperations(void* SystemResourceManager,void* ConfigurationDataPointer,float AdditionalParameter,float ConfigurationFlag)
+void ProcessSystemFloatOperations(void* SystemResourceManager,void* ConfigurationDataPointer,float AdditionalParameter,float ConfigurationFlag)
 
 {
   float FloatVariable1;

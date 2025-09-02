@@ -7384,7 +7384,7 @@ uint8_t ValidateAndProcessComplexObjectContext(int64_t ObjectContext, int64_t Sy
   if (*(int *)(ContextPointer + 0x200) == 0) {
     return 0;
   }
-  if ((*(int *)(ContextPointer + 0x180) != 0) || (*(int *)(ContextPointer + 0x184) != 0)) {
+  if ((*(int *)(ContextPointer + SystemContextStatusFlag1Offset) != 0) || (*(int *)(ContextPointer + SystemContextStatusFlag2Offset) != 0)) {
     ValidationBuffer = 0;
     InitializeProcessingBuffer(&ValidationBuffer);
     if (ValidationBuffer == SystemDataBaseAddress(ContextPointer)) {
@@ -7621,7 +7621,7 @@ uint8_t ValidateMatrixTransformationData(int64_t matrixDataPointer,int64_t Conte
     *(uint32_t *)(matrixContextPointer + MatrixViewDataOffset) = matrixViewFlags;
     *(uint32_t *)(matrixContextPointer + MatrixWorldDataOffset) = MatrixWorldFlags;
     matrixContextPointer = *(int64_t *)(SystemContext + SystemContextMatrixPointerOffset);
-    if ((*(int *)(matrixContextPointer + 0x180) != 0) || (*(int *)(matrixContextPointer + 0x184) != 0)) {
+    if ((*(int *)(matrixContextPointer + SystemContextStatusFlag1Offset) != 0) || (*(int *)(matrixContextPointer + SystemContextStatusFlag2Offset) != 0)) {
       ResourceValidationBuffer[0] = 0;
       InitializeSecurityContext(ResourceValidationBuffer);
       if (ResourceValidationBuffer[0] == SystemDataBaseAddress(matrixContextPointer)) {
@@ -8249,7 +8249,7 @@ uint8_t ValidateObjectContextAndProcessComplexFloatOperation(int64_t ObjectConte
       return LoopCondition;
     }
     ResourceTableData = *(int64_t *)(ValidationContext + 0x98);
-    if ((*(int *)(ResourceTableData + 0x180) != 0) || (*(int *)(ResourceTableData + 0x184) != 0)) {
+    if ((*(int *)(ResourceTableData + SystemContextStatusFlag1Offset) != 0) || (*(int *)(ResourceTableData + SystemContextStatusFlag2Offset) != 0)) {
       SecurityContext = 0;
       InitializeSecurityContext(&SecurityContext,ObjectContext,OperationControlParam1,OperationControlParam2,SecurityContext);
       if (SecurityContext == SystemDataBaseAddress(ResourceTableData)) {
@@ -8595,7 +8595,7 @@ uint8_t ValidateAndProcessObjectContextWithParameters(int64_t ObjectContext,int6
   }
   *(uint32_t *)(ContextPointer + 0x90) = *(uint32_t *)(ObjectContext + ObjectContextValidationDataOffset);
   ContextPointer = *(int64_t *)(ValidationContext + 0x98);
-  if ((*(int *)(ContextPointer + 0x180) != 0) || (*(int *)(ContextPointer + 0x184) != 0)) {
+  if ((*(int *)(ContextPointer + SystemContextStatusFlag1Offset) != 0) || (*(int *)(ContextPointer + SystemContextStatusFlag2Offset) != 0)) {
     ValidationContextBuffer = 0;
     InitializeSecurityContext(&ValidationContextBuffer,ObjectContext,securityFlags,operationMode,SecurityContextParameter);
     if (ValidationContextBuffer == SystemDataBaseAddress(ContextPointer)) {
@@ -8671,7 +8671,7 @@ ValidationCompleteLabel:
   *(uint32_t *)(ResourceIndex + 0xa4 + (int64_t)*(int *)(ObjectContext + ObjectContextValidationDataOffset) * 4) =
        *(uint32_t *)(ObjectContext + ObjectContextHandleDataOffset);
   ResourceIndex = *(int64_t *)(ValidationContext + 0x98);
-  if ((*(int *)(ResourceIndex + 0x180) != 0) || (*(int *)(ResourceIndex + 0x184) != 0)) {
+  if ((*(int *)(ResourceIndex + SystemContextStatusFlag1Offset) != 0) || (*(int *)(ResourceIndex + SystemContextStatusFlag2Offset) != 0)) {
     StackContextPointer = 0;
     InitializeSecurityContext(&StackContextPointer);
     if (StackContextPointer == SystemDataBaseAddress(ResourceIndex)) {
