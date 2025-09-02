@@ -30001,14 +30001,14 @@ void RestoreSystemResourceHandlerAtContextOffset88(uint8_t ObjectContextParamete
 void CleanupResourceValidationResults(uint8_t ObjectContextParameter, int64_t ValidationContextParameter, uint8_t CleanupOption, uint8_t CleanupFlag)
 
 {
-  uint8_t *presourceHash;
-  uint8_t *pResourceValidationResult;
-  uint8_t cleanupFlag;
+  uint8_t *ResourceHashPointer;
+  uint8_t *ResourceValidationResultPointer;
+  uint8_t CleanupFlagValue;
   
-  cleanupFlag = 0xfffffffffffffffe;
-  presourceHash = *(uint8_t **)(ValidationContextParameter + 0x128);
-  for (pResourceValidationCode = *(uint8_t **)(ValidationContextParameter + 0x120); pResourceValidationCode != presourceHash; pResourceValidationCode = pResourceValidationResult + 4) {
-    (**(code **)*pResourceValidationResult)(pResourceValidationResult,0,CleanupOption,CleanupFlag,cleanupFlag);
+  CleanupFlagValue = 0xfffffffffffffffe;
+  ResourceHashPointer = *(uint8_t **)(ValidationContextParameter + 0x128);
+  for (pResourceValidationCode = *(uint8_t **)(ValidationContextParameter + 0x120); pResourceValidationCode != ResourceHashPointer; pResourceValidationCode = ResourceValidationResultPointer + 4) {
+    (**(code **)*ResourceValidationResultPointer)(ResourceValidationResultPointer,0,CleanupOption,CleanupFlag,CleanupFlagValue);
   }
   if (*(int64_t *)(ValidationContextParameter + 0x120) == 0) {
     return;
@@ -30032,8 +30032,8 @@ void CleanupResourceValidationResults(uint8_t ObjectContextParameter, int64_t Va
 void ReleaseResourceHandleOnException(uint8_t ObjectContextParameter, int64_t ValidationContextParameter)
 
 {
-  int *pResourceIndex;
-  uint8_t *pResourceValidationResult;
+  int *ResourceIndexPointer;
+  uint8_t *ResourceValidationResultPointer;
   int64_t ResourceIndex;
   uint64_t LoopIncrement;
   
@@ -30041,9 +30041,9 @@ void ReleaseResourceHandleOnException(uint8_t ObjectContextParameter, int64_t Va
   if (pResourceValidationCode == (uint8_t *)0x0) {
     return;
   }
-  LoopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
+  LoopIncrement = (uint64_t)ResourceValidationResultPointer & 0xffffffffffc00000;
   if (LoopIncrement != 0) {
-    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)pResourceValidationResult - LoopIncrement >> 0x10) * 0x50;
+    ResourceIndex = LoopIncrement + 0x80 + ((int64_t)ResourceValidationResultPointer - LoopIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
     if ((*(void ***)(LoopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
       *pResourceValidationCode = *(uint8_t *)(ResourceIndex + 0x20);
@@ -40001,12 +40001,23 @@ void Unwind_180904120(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 
 
 
+/**
+ * @brief 系统展开处理函数180904130
+ * 
+ * 该函数负责处理系统展开操作，重置资源处理器模板和数据结构
+ * 用于异常处理和资源清理过程中的状态重置
+ * 
+ * @param ObjectContextParameter 对象上下文参数
+ * @param ValidationContextParameter 验证上下文参数
+ * @note 此函数会重置本地上下文数据并清理资源状态
+ * @warning 如果系统状态异常，可能会触发紧急退出
+ */
 void Unwind_180904130(uint8_t ObjectContextParameter,int64_t ValidationContextParameter)
 
 {
-  int64_t loopCounter;
+  int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContextParameter + 0x20);
+  LoopCounter = *(int64_t *)(ValidationContextParameter + 0x20);
   *(uint8_t *)(LocalContextData + 0x20) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(LocalContextData + 0x28) != 0) {
                     // WARNING: Subroutine does not return
@@ -40020,12 +40031,23 @@ void Unwind_180904130(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 
 
 
+/**
+ * @brief 系统展开处理函数180904140
+ * 
+ * 该函数负责处理系统展开操作，重置资源处理器模板和数据结构
+ * 用于异常处理和资源清理过程中的状态重置
+ * 
+ * @param ObjectContextParameter 对象上下文参数
+ * @param ValidationContextParameter 验证上下文参数
+ * @note 此函数会重置本地上下文数据并清理资源状态
+ * @warning 如果系统状态异常，可能会触发紧急退出
+ */
 void Unwind_180904140(uint8_t ObjectContextParameter,int64_t ValidationContextParameter)
 
 {
-  int64_t loopCounter;
+  int64_t LoopCounter;
   
-  loopCounter = *(int64_t *)(ValidationContextParameter + 0x20);
+  LoopCounter = *(int64_t *)(ValidationContextParameter + 0x20);
   *(uint8_t *)(LocalContextData + 0x40) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(LocalContextData + 0x48) != 0) {
                     // WARNING: Subroutine does not return
