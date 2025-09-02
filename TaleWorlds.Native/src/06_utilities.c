@@ -5575,17 +5575,17 @@ uint32_t ProcessSystemResource(void)
   int64_t ProcessingCounter;
   int64_t SystemContextHandle;
   
-  InputParameterValue = InputParameter;
-  if (InputParameterValue == 0) {
-    SystemContextPointer = 0;
+  ValidatedSystemContext = InputParameter;
+  if (ValidatedSystemContext == 0) {
+    SystemContextHandle = 0;
   }
   else {
-    SystemContextPointer = InputParameterValue - 8;
+    SystemContextHandle = ValidatedSystemContext - 8;
   }
-  if (*(int64_t *)(SystemContextPointer + ObjectContextOffset) == 0) {
+  if (*(int64_t *)(SystemContextHandle + ObjectContextOffset) == 0) {
     return ErrorInvalidObjectHandle;
   }
-        ExecuteSystemExitOperation(*(int64_t *)(SystemContextPointer + ObjectContextOffset),1);
+        ExecuteSystemExitOperation(*(int64_t *)(SystemContextHandle + ObjectContextOffset),1);
 }
 
 
