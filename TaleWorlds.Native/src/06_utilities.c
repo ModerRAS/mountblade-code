@@ -41339,50 +41339,73 @@ void SystemResourceCleanupBatchSecondaryHandler(uint8_t ObjectContext, int64_t V
  * - 如果资源处理器处于活动状态，会触发系统紧急退出
  * - 确保所有资源处理器都被正确重置和释放
  */
-void Unwind_SystemResourceCleanup_Batch5(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
-
+/**
+ * @brief 执行系统资源批量清理操作
+ * 
+ * 该函数负责执行系统资源的批量清理操作，包括：
+ * - 清理系统上下文中的多个资源处理器
+ * - 重置资源处理器的状态
+ * - 验证资源清理的完整性
+ * 
+ * @param ObjectContext 对象上下文，标识要清理的资源对象
+ * @param ValidationContext 验证上下文，包含资源验证信息
+ * @param CleanupOption 清理选项，指定清理的方式和范围
+ * @param CleanupFlag 清理标志，控制清理过程的行为
+ */
+void ExecuteSystemResourceBatchCleanup(uint8_t ObjectContext, int64_t ValidationContext, uint8_t CleanupOption, uint8_t CleanupFlag)
 {
-  int64_t loopCounter;
+  int64_t ResourceCleanupCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + 0x80);
+  ResourceCleanupCounter = *(int64_t *)(ValidationContext + 0x80);
   if (*(code **)(SystemContextPointer + 0x550) != (code *)0x0) {
-    (**(code **)(SystemContextPointer + 0x550))(SystemContextPointer + 0x540,0,0,CleanupFlag,0xfffffffffffffffe);
+    (**(code **)(SystemContextPointer + 0x550))(SystemContextPointer + 0x540, 0, 0, CleanupFlag, 0xfffffffffffffffe);
   }
+  
+  // 清理第一个资源处理器
   *(uint8_t *)(SystemContextPointer + 0x520) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x528) != 0) {
-          ExecuteSystemEmergencyExit();
+    ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x528) = 0;
   *(uint32_t *)(SystemContextPointer + 0x538) = 0;
   *(uint8_t *)(SystemContextPointer + 0x520) = &SystemDataStructure;
+  
+  // 清理第二个资源处理器
   *(uint8_t *)(SystemContextPointer + 0x500) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x508) != 0) {
-          ExecuteSystemEmergencyExit();
+    ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x508) = 0;
   *(uint32_t *)(SystemContextPointer + 0x518) = 0;
   *(uint8_t *)(SystemContextPointer + 0x500) = &SystemDataStructure;
+  
+  // 清理第三个资源处理器
   *(uint8_t *)(SystemContextPointer + 0x4e0) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x4e8) != 0) {
-          ExecuteSystemEmergencyExit();
+    ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x4e8) = 0;
   *(uint32_t *)(SystemContextPointer + 0x4f8) = 0;
   *(uint8_t *)(SystemContextPointer + 0x4e0) = &SystemDataStructure;
+  
+  // 清理第四个资源处理器
   *(uint8_t *)(SystemContextPointer + 0x4c0) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x4c8) != 0) {
-          ExecuteSystemEmergencyExit();
+    ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x4c8) = 0;
   *(uint32_t *)(SystemContextPointer + 0x4d8) = 0;
   *(uint8_t *)(SystemContextPointer + 0x4c0) = &SystemDataStructure;
+  
+  // 清理第五个资源处理器
   *(uint8_t *)(SystemContextPointer + 0x4a0) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x4a8) != 0) {
-          ExecuteSystemEmergencyExit();
+    ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x4a8) = 0;
   *(uint32_t *)(SystemContextPointer + 0x4b8) = 0;
   *(uint8_t *)(SystemContextPointer + 0x4a0) = &SystemDataStructure;
+  
   return;
 }
 
@@ -43015,37 +43038,33 @@ void ResetResourceHashTablePointer(uint8_t ObjectContext, int64_t ValidationCont
 
 
 /**
- * 上下文清理函数 - 基础模式1
+ * @brief 执行基础上下文清理操作
  * 
- * 功能描述：
- * 清理对象和验证上下文，重置相关状态标志。
- * 该函数处理基本的上下文清理操作，确保相关资源被正确释放。
+ * 该函数负责执行基础的上下文清理操作，包括：
+ * - 清理对象和验证上下文
+ * - 重置相关状态标志
+ * - 确保相关资源被正确释放
  * 
- * 参数说明：
  * @param ObjectContext 对象上下文，标识要清理的对象
  * @param ValidationContext 验证上下文，包含清理所需的验证信息
- * 
- * 返回值：
- * 无返回值
- * 
- * 注意事项：
- * - 确保上下文相关资源被正确释放
- * - 如果资源处理器处于活动状态，会触发系统紧急退出
- * - 重置所有相关的状态标志和计数器
  */
-void Unwind_ContextCleanup_Basic1(uint8_t ObjectContext,int64_t ValidationContext)
-
+void ExecuteBaseContextCleanup(uint8_t ObjectContext, int64_t ValidationContext)
 {
-  int64_t loopCounter;
+  int64_t CleanupIterationCounter;
   
-  loopCounter = *(int64_t *)(ValidationContext + 0x40);
+  CleanupIterationCounter = *(int64_t *)(ValidationContext + 0x40);
+  
+  // 设置资源处理器模板并检查状态
   *(uint8_t *)(SystemContextPointer + 0x18) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x20) != 0) {
-          ExecuteSystemEmergencyExit();
+    ExecuteSystemEmergencyExit();
   }
+  
+  // 重置资源处理器状态
   *(uint8_t *)(SystemContextPointer + 0x20) = 0;
   *(uint32_t *)(SystemContextPointer + 0x30) = 0;
   *(uint8_t *)(SystemContextPointer + 0x18) = &SystemDataStructure;
+  
   return;
 }
 
@@ -46960,9 +46979,19 @@ void CleanupAudioManagerResources(uint8_t ObjectContext,int64_t ValidationContex
 
 
 
-void Unwind_SystemCleanup_InputManager(uint8_t ObjectContext,int64_t ValidationContext)
-
+/**
+ * @brief 执行输入管理器系统清理操作
+ * 
+ * 该函数负责执行输入管理器的系统清理操作，包括：
+ * - 重置输入管理器的系统数据结构指针
+ * - 确保输入管理器的数据结构引用正确性
+ * 
+ * @param ObjectContext 对象上下文，包含对象的配置信息
+ * @param ValidationContext 验证上下文，用于验证操作的合法性
+ */
+void ExecuteInputManagerSystemCleanup(uint8_t ObjectContext, int64_t ValidationContext)
 {
+  // 重置输入管理器的系统数据结构指针
   *(uint8_t **)(ValidationContext + 0x1c8) = &SystemDataStructure;
   return;
 }
@@ -48887,37 +48916,41 @@ void FreeSystemResourceMemory(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 /**
- * @brief 清理内存池资源
+ * @brief 执行内存池资源清理操作
  * 
- * 该函数负责清理系统内存池中的资源，释放不再使用的内存块
- * 并重置内存池状态，确保内存资源的正确回收
+ * 该函数负责执行系统内存池中的资源清理操作，包括：
+ * - 释放不再使用的内存块
+ * - 重置内存池状态
+ * - 确保内存资源的正确回收
  * 
  * @param ObjectContext 对象上下文，包含对象相关的状态信息
  * @param ValidationContext 验证上下文，用于验证操作的合法性
  * @param CleanupOption 清理选项，控制清理行为的具体参数
  * @param CleanupFlag 清理标志，指定清理操作的标志位
- * @return 无返回值
- * @note 此函数会遍历所有内存池资源进行清理
- * @warning 清理过程可能会导致系统紧急退出
  */
-void Unwind_MemoryPoolCleanup(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
-
+void ExecuteMemoryPoolResourceCleanup(uint8_t ObjectContext, int64_t ValidationContext, uint8_t CleanupOption, uint8_t CleanupFlag)
 {
   uint8_t *ResourceHashPointer;
   int64_t *ResourceTablePointer;
   uint8_t *HashValidationResultPointer;
-  uint8_t LoopCondition;
+  uint8_t CleanupIterationStatus;
   
+  // 获取资源表指针和资源哈希指针
   ResourceTablePointer = (int64_t *)(*(int64_t *)(ValidationContext + 0x2e0) + 8);
-  loopIncrement = 0xfffffffffffffffe;
   ResourceHashPointer = *(uint8_t **)(*(int64_t *)(ValidationContext + 0x2e0) + 0x10);
-  for (PackageValidationStatusCodePointer = (uint8_t *)*ResourceTablePointer; HashValidationResultPointer != ResourceHashPointer; PackageValidationStatusCodePointer = HashValidationResultPointer + 4) {
-    (**(code **)*HashValidationResultPointer)(HashValidationResultPointer,0,CleanupOption,CleanupFlag,loopIncrement);
+  
+  // 遍历资源哈希表进行清理
+  for (HashValidationResultPointer = (uint8_t *)*ResourceTablePointer; HashValidationResultPointer != ResourceHashPointer; HashValidationResultPointer = HashValidationResultPointer + 4) {
+    (**(code **)*HashValidationResultPointer)(HashValidationResultPointer, 0, CleanupOption, CleanupFlag, 0xfffffffffffffffe);
   }
+  
+  // 检查资源表状态
   if (*ResourceTablePointer == 0) {
     return;
   }
-        ExecuteSystemEmergencyExit();
+  
+  // 如果资源表不为空，执行系统紧急退出
+  ExecuteSystemEmergencyExit();
 }
 
 
@@ -49185,20 +49218,19 @@ void ResetValidationContextResourceHandler(uint8_t ObjectContext, int64_t Valida
 
 
 /**
- * @brief 重置线程上下文
+ * @brief 执行线程上下文重置操作
  * 
- * 该函数负责重置线程的上下文信息，恢复到初始状态
- * 清理线程相关的数据和状态，确保线程可以安全地重新启动
+ * 该函数负责执行线程上下文的重置操作，包括：
+ * - 重置线程的上下文信息到初始状态
+ * - 清理线程相关的数据和状态
+ * - 确保线程可以安全地重新启动
  * 
  * @param ObjectContext 对象上下文，包含对象相关的状态信息
  * @param ValidationContext 验证上下文，用于验证操作的合法性
- * @return 无返回值
- * @note 此函数会将系统数据结构重置到初始状态
- * @warning 重置后线程的所有状态信息将丢失
  */
-void Unwind_ThreadContextReset(uint8_t ObjectContext,int64_t ValidationContext)
-
+void ExecuteThreadContextReset(uint8_t ObjectContext, int64_t ValidationContext)
 {
+  // 重置线程上下文的系统数据结构指针
   *(uint8_t **)(ValidationContext + 0x200) = &SystemDataStructure;
   return;
 }
@@ -65360,18 +65392,36 @@ void ResetResourceTableState(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180908b20(uint8_t ObjectContext,int64_t ValidationContext)
-
+/**
+ * @brief 重置验证上下文的系统数据结构指针（偏移量0x118）
+ * 
+ * 该函数负责重置验证上下文中偏移量0x118处的系统数据结构指针
+ * 确保系统数据结构的引用正确性
+ * 
+ * @param ObjectContext 对象上下文，包含对象相关的状态信息
+ * @param ValidationContext 验证上下文，用于验证操作的合法性
+ */
+void ResetValidationContextSystemDataPointer1(uint8_t ObjectContext, int64_t ValidationContext)
 {
+  // 重置验证上下文的系统数据结构指针
   *(uint8_t **)(ValidationContext + 0x118) = &SystemDataStructure;
   return;
 }
 
 
 
-void Unwind_180908b30(uint8_t ObjectContext,int64_t ValidationContext)
-
+/**
+ * @brief 执行验证上下文的回调函数（偏移量0x110）
+ * 
+ * 该函数负责执行验证上下文中偏移量0x110处的回调函数
+ * 如果回调函数存在，则调用该函数
+ * 
+ * @param ObjectContext 对象上下文，包含对象相关的状态信息
+ * @param ValidationContext 验证上下文，用于验证操作的合法性
+ */
+void ExecuteValidationContextCallback1(uint8_t ObjectContext, int64_t ValidationContext)
 {
+  // 检查并执行验证上下文的回调函数
   if (*(int64_t **)(ValidationContext + 0x110) != (int64_t *)0x0) {
     (**(code **)(**(int64_t **)(ValidationContext + 0x110) + 0x38))();
   }
@@ -65380,9 +65430,18 @@ void Unwind_180908b30(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180908b40(uint8_t ObjectContext,int64_t ValidationContext)
-
+/**
+ * @brief 执行验证上下文的回调函数（偏移量0x88）
+ * 
+ * 该函数负责执行验证上下文中偏移量0x88处的回调函数
+ * 如果回调函数存在，则调用该函数
+ * 
+ * @param ObjectContext 对象上下文，包含对象相关的状态信息
+ * @param ValidationContext 验证上下文，用于验证操作的合法性
+ */
+void ExecuteValidationContextCallback2(uint8_t ObjectContext, int64_t ValidationContext)
 {
+  // 检查并执行验证上下文的回调函数
   if (*(int64_t **)(ValidationContext + 0x88) != (int64_t *)0x0) {
     (**(code **)(**(int64_t **)(ValidationContext + 0x88) + 0x38))();
   }
@@ -65391,28 +65450,46 @@ void Unwind_180908b40(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180908b50(uint8_t ObjectContext,int64_t ValidationContext)
-
+/**
+ * @brief 执行资源上下文的回调函数（偏移量0x28）
+ * 
+ * 该函数负责执行资源上下文中偏移量0x28处的回调函数
+ * 如果资源上下文存在，则调用其回调函数
+ * 
+ * @param ObjectContext 对象上下文，包含对象相关的状态信息
+ * @param ValidationContext 验证上下文，用于验证操作的合法性
+ */
+void ExecuteResourceContextCallback1(uint8_t ObjectContext, int64_t ValidationContext)
 {
-  int64_t *processPointer;
+  int64_t *ResourceContextPointer;
   
-  ResourceContext = *(int64_t **)(*(int64_t *)(ValidationContext + 0x30) + 0x28);
-  if (ResourceContext != (int64_t *)0x0) {
-    (**(code **)(*ResourceContext + 0x38))();
+  // 获取资源上下文指针
+  ResourceContextPointer = *(int64_t **)(*(int64_t *)(ValidationContext + 0x30) + 0x28);
+  if (ResourceContextPointer != (int64_t *)0x0) {
+    (**(code **)(*ResourceContextPointer + 0x38))();
   }
   return;
 }
 
 
 
-void Unwind_180908b60(uint8_t ObjectContext,int64_t ValidationContext)
-
+/**
+ * @brief 执行资源上下文的回调函数（偏移量0x20）
+ * 
+ * 该函数负责执行资源上下文中偏移量0x20处的回调函数
+ * 如果资源上下文存在，则调用其回调函数
+ * 
+ * @param ObjectContext 对象上下文，包含对象相关的状态信息
+ * @param ValidationContext 验证上下文，用于验证操作的合法性
+ */
+void ExecuteResourceContextCallback2(uint8_t ObjectContext, int64_t ValidationContext)
 {
-  int64_t *processPointer;
+  int64_t *ResourceContextPointer;
   
-  ResourceContext = *(int64_t **)(*(int64_t *)(ValidationContext + 0x30) + 0x20);
-  if (ResourceContext != (int64_t *)0x0) {
-    (**(code **)(*ResourceContext + 0x38))();
+  // 获取资源上下文指针
+  ResourceContextPointer = *(int64_t **)(*(int64_t *)(ValidationContext + 0x30) + 0x20);
+  if (ResourceContextPointer != (int64_t *)0x0) {
+    (**(code **)(*ResourceContextPointer + 0x38))();
   }
   return;
 }
@@ -65430,7 +65507,17 @@ void Unwind_180908b70(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180908b80(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行资源上下文清理处理器
+ * 
+ * 该函数负责执行资源上下文的清理操作，处理资源相关的异常情况
+ * 
+ * @param ObjectContext 对象上下文，包含资源处理的对象信息
+ * @param ValidationContext 验证上下文，包含验证相关的数据
+ * @return 无返回值
+ * @remark 原始函数名: Unwind_180908b80
+ */
+void ExecuteResourceContextCleanupHandler(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t *processPointer;
@@ -65444,7 +65531,17 @@ void Unwind_180908b80(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180908b90(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行系统数据结构清理处理器
+ * 
+ * 该函数负责执行系统数据结构的清理操作，处理系统数据相关的异常情况
+ * 
+ * @param ObjectContext 对象上下文，包含数据结构处理的对象信息
+ * @param ValidationContext 验证上下文，包含验证相关的数据
+ * @return 无返回值
+ * @remark 原始函数名: Unwind_180908b90
+ */
+void ExecuteSystemDataStructureCleanupHandler(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   if (*(int64_t **)(ValidationContext + 0x1a8) != (int64_t *)0x0) {
@@ -65455,7 +65552,17 @@ void Unwind_180908b90(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180908ba0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行系统资源处理器初始化
+ * 
+ * 该函数负责执行系统资源处理器的初始化操作，设置系统资源的处理模板
+ * 
+ * @param ObjectContext 对象上下文，包含资源处理的对象信息
+ * @param ValidationContext 验证上下文，包含验证相关的数据
+ * @return 无返回值
+ * @remark 原始函数名: Unwind_180908ba0
+ */
+void InitializeSystemResourceProcessor(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   if (*(int64_t **)(ValidationContext + 0xd8) != (int64_t *)0x0) {

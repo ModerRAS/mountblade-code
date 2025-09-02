@@ -717,13 +717,13 @@ char SystemStatusFlagSecure;
 void* SystemMemoryBlockVault;
 void* SystemMemoryBlockSafe;
 void* SystemMemoryBlockLockbox;
-void* SystemMemoryBlockArchiveA;
-void* SystemMemoryBlockArchiveB;
-void* SystemMemoryBlockArchiveC;
-void* SystemMemoryBlockArchiveD;
+void* SystemMemoryBlockArchiveAlpha;
+void* SystemMemoryBlockArchiveBeta;
+void* SystemMemoryBlockArchiveGamma;
+void* SystemMemoryBlockArchiveDelta;
 char SystemStatusFlagProtected;
 void* SystemDataTableEntrySystem;
-void* SystemMemoryBlockArchiveE;
+void* SystemMemoryBlockArchiveEpsilon;
 void* SystemDataTableEntryKernel;
 void* SystemMemoryBlockArchiveF;
 void* SystemMemoryBlockArchiveG;
@@ -753,12 +753,12 @@ void* SystemFunctionPointerEmergency;
  * 和数据结构，为后续的系统启动做准备
  */
 void* SystemInitializationEntryPointAlpha;
-void* SystemMemoryRegionReservedA;
-void* SystemMemoryRegionReservedB;
-void* SystemMemoryRegionReservedC;
+void* SystemMemoryRegionReservedAlpha;
+void* SystemMemoryRegionReservedBeta;
+void* SystemMemoryRegionReservedGamma;
 void* SystemDataTableEntryDriver;
-void* SystemMemoryRegionReservedD;
-void* SystemMemoryRegionReservedE;
+void* SystemMemoryRegionReservedDelta;
+void* SystemMemoryRegionReservedEpsilon;
 void* SystemDataTableEntryFirmware;
 
 // 函数: 系统初始化入口点B
@@ -812,14 +812,14 @@ void* SystemInitializationEntryPointZeta;
 void* SystemMemoryRegionTwoHundredThree;
 void* SystemMemoryRegionTwoHundredFour;
 void* SystemMemoryRegionTwoHundredFive;
-void* SystemMemoryRegionTwoHundredSix;
+void* SystemMemoryRegionExtendedTwoHundredSix;
 char SystemStatusFlagEighth;
-void* SystemMemoryRegionTwoHundredSeven;
-void* SystemMemoryRegionTwoHundredEight;
+void* SystemMemoryRegionExtendedTwoHundredSeven;
+void* SystemMemoryRegionExtendedTwoHundredEight;
 void* SystemDataTableEntryTwelfth;
-void* SystemMemoryRegionTwoHundredNine;
-void* SystemMemoryRegionThreeHundred;
-void* SystemMemoryRegionThreeHundredOne;
+void* SystemMemoryRegionExtendedTwoHundredNine;
+void* SystemMemoryRegionExtendedThreeHundred;
+void* SystemMemoryRegionExtendedThreeHundredOne;
 // 系统全局数据常量块
 // 系统配置和状态数据块
 void* SystemGlobalDataConfigBlockPrimary;

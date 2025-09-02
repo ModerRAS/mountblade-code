@@ -14,6 +14,23 @@ sed -i 's/Unwind_180907a00/ResetResourceValidationTable/g' "$INPUT_FILE"
 sed -i 's/Unwind_180907a10/ProcessResourceValidationCleanup/g' "$INPUT_FILE"
 sed -i 's/func_0x00018064e870/SystemExceptionalHandler/g' "$INPUT_FILE"
 
+# 美化Unwind函数名
+sed -i 's/UnwindExceptionHandler180908850/ExecuteExceptionCleanupHandler/g' "$INPUT_FILE"
+sed -i 's/UnwindResourceTableHandler180908860/ExecuteResourceTableCleanupHandler/g' "$INPUT_FILE"
+sed -i 's/UnwindMemoryAccessValidator180908870/ValidateMemoryAccessWithCleanup/g' "$INPUT_FILE"
+sed -i 's/UnwindMutexUnlockHandler180908880/ExecuteMutexUnlockHandler/g' "$INPUT_FILE"
+sed -i 's/UnwindMutexUnlockSecondary180908890/ExecuteMutexUnlockSecondaryHandler/g' "$INPUT_FILE"
+sed -i 's/UnwindResourceOperationHandler1809088a0/ExecuteResourceOperationHandler/g' "$INPUT_FILE"
+sed -i 's/UnwindResourceHashInitializer1809088d0/InitializeResourceHashWithCleanup/g' "$INPUT_FILE"
+sed -i 's/UnwindExceptionHandler180908910/HandleExceptionCleanup/g' "$INPUT_FILE"
+sed -i 's/UnwindMemoryManager180908920/ExecuteMemoryCleanupManager/g' "$INPUT_FILE"
+sed -i 's/UnwindSystemCleanupHandler180908950/ExecuteSystemCleanupHandler/g' "$INPUT_FILE"
+sed -i 's/UnwindResourceValidator180908980/ValidateResourceWithCleanup/g' "$INPUT_FILE"
+sed -i 's/UnwindSystemValidator180908990/ValidateSystemWithCleanup/g' "$INPUT_FILE"
+sed -i 's/UnwindSecurityValidator1809089a0/ValidateSecurityWithCleanup/g' "$INPUT_FILE"
+sed -i 's/UnwindTransactionHandler1809089b0/ExecuteTransactionHandler/g' "$INPUT_FILE"
+sed -i 's/UnwindExceptionHandler1809089e0/HandleExceptionWithCleanup/g' "$INPUT_FILE"
+
 # 美化变量名
 sed -i 's/pintegerValue1/pReferenceCount/g' "$INPUT_FILE"
 sed -i 's/pvalidationResult/pResourceStatus/g' "$INPUT_FILE"
