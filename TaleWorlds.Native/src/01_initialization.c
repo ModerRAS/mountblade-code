@@ -48740,7 +48740,7 @@ void SystemCleanupFunctionB(void)
 
 
 
-// 函数: long long FUN_18006cd80(long long SystemResourceManager,long long ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
+// 函数: long long ProcessSystemResourceData(long long SystemResourceManager,long long ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 /**
  * @brief 处理系统资源数据
  * 
@@ -48801,7 +48801,7 @@ long long ProcessSystemResourceDataB(long long SystemResourceManager,long long C
 
 
 
-// 函数: void FUN_18006cf00(void* *SystemResourceManager)
+// 函数: void InitializeSystemResourceManager(void* *SystemResourceManager)
 /**
  * @brief 初始化系统资源指针
  * 
@@ -50522,7 +50522,7 @@ void* * InitializeSystemResourceManagerAndDataTable(void* *SystemResourceManager
   SystemResourceManager[0x23] = 0;
   SystemResourceManager[0x1f] = SystemResourceManager + 0x21;
   SystemResourceManager[0x1d] = 0x15;
-  SystemBufferAddress = FUN_18006e140();
+  SystemBufferAddress = InitializeSystemThreadObject();
   SystemResourceManager[0x1c] = SystemBufferAddress;
   if (SystemBufferAddress == 0) {
     SystemResourceManager[0x1d] = 0;
@@ -50633,7 +50633,7 @@ void ManageSystemInitializationState(void)
   long long* SystemMemoryPointer;
   
   nextDataIndex = SystemInitializationFlag;
-  FUN_18006f160(SystemInitializationFlag);
+  InitializeSystemFlag(SystemInitializationFlag);
   *(int *)(nextDataIndex + 0xec) = *(int *)(nextDataIndex + 0xec) + 1;
   systemCounter = _Mtx_lock(nextDataIndex + 0x98);
   if (systemCounter != 0) {
@@ -50693,7 +50693,7 @@ void FinalizeSystemMemorySetup(void* SystemResourceManager,void* ConfigurationDa
   
   localSystemHandle = SystemInitializationFlag;
   FUN_18005e630(SystemAllocationFlagsTemplate,ConfigurationDataPointer,AdditionalParameter,ConfigurationFlag,0xfffffffffffffffe);
-  FUN_18006efc0(localSystemHandle);
+  InitializeSystemHandle(localSystemHandle);
   systemCounter = _Mtx_lock(localSystemHandle + 0x98);
   if (systemCounter != 0) {
     __Throw_C_error_std__YAXH_Z(systemCounter);
