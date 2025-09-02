@@ -64999,7 +64999,19 @@ void UnwindMemoryAccessValidator180908a50(uint8_t ObjectContext, int64_t Validat
  * @param ValidationContext 验证上下文
  * @remark 原始函数名：Unwind_180908a60
  */
-void Unwind_ResourceHashCleanupHandler1(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行资源哈希清理处理器1
+ * 
+ * 该函数负责执行资源哈希清理的第一个处理器，验证资源哈希的完整性
+ * 清理无效的资源哈希条目，确保资源表的正确性
+ * 
+ * @param ObjectContext 对象上下文，标识要操作的对象
+ * @param ValidationContext 验证上下文，包含验证所需的数据
+ * @return 无返回值
+ * @note 此函数在资源哈希清理过程中被调用
+ * @warning 原始函数名：Unwind_ResourceHashCleanupHandler1
+ */
+void ExecuteResourceHashCleanupHandler1(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int *ResourceIndexPointer;
@@ -65041,7 +65053,19 @@ void Unwind_ResourceHashCleanupHandler1(uint8_t ObjectContext,int64_t Validation
  * @param ValidationContext 验证上下文
  * @remark 原始函数名：Unwind_180908a70
  */
-void Unwind_ResourceHashCleanupHandler2(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行资源哈希清理处理器2
+ * 
+ * 该函数负责执行资源哈希清理的第二个处理器，验证资源哈希的完整性
+ * 清理无效的资源哈希条目，确保资源表的正确性
+ * 
+ * @param ObjectContext 对象上下文，标识要操作的对象
+ * @param ValidationContext 验证上下文，包含验证所需的数据
+ * @return 无返回值
+ * @note 此函数在资源哈希清理过程中被调用
+ * @warning 原始函数名：Unwind_ResourceHashCleanupHandler2
+ */
+void ExecuteResourceHashCleanupHandler2(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int *ResourceIndexPointer;
@@ -65083,7 +65107,19 @@ void Unwind_ResourceHashCleanupHandler2(uint8_t ObjectContext,int64_t Validation
  * @param ValidationContext 验证上下文
  * @remark 原始函数名：Unwind_180908a80
  */
-void Unwind_ResourceHashCleanupHandler3(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行资源哈希清理处理器3
+ * 
+ * 该函数负责执行资源哈希清理的第三个处理器，验证资源哈希的完整性
+ * 清理无效的资源哈希条目，确保资源表的正确性
+ * 
+ * @param ObjectContext 对象上下文，标识要操作的对象
+ * @param ValidationContext 验证上下文，包含验证所需的数据
+ * @return 无返回值
+ * @note 此函数在资源哈希清理过程中被调用
+ * @warning 原始函数名：Unwind_ResourceHashCleanupHandler3
+ */
+void ExecuteResourceHashCleanupHandler3(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int *ResourceIndexPointer;
@@ -65125,7 +65161,19 @@ void Unwind_ResourceHashCleanupHandler3(uint8_t ObjectContext,int64_t Validation
  * @param ValidationContext 验证上下文
  * @remark 原始函数名：Unwind_180908a90
  */
-void Unwind_ResourceHashCleanupHandler4(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行资源哈希清理处理器4
+ * 
+ * 该函数负责执行资源哈希清理的第四个处理器，验证资源哈希的完整性
+ * 清理无效的资源哈希条目，确保资源表的正确性
+ * 
+ * @param ObjectContext 对象上下文，标识要操作的对象
+ * @param ValidationContext 验证上下文，包含验证所需的数据
+ * @return 无返回值
+ * @note 此函数在资源哈希清理过程中被调用
+ * @warning 原始函数名：Unwind_ResourceHashCleanupHandler4
+ */
+void ExecuteResourceHashCleanupHandler4(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int *ResourceIndexPointer;
@@ -65167,7 +65215,19 @@ void Unwind_ResourceHashCleanupHandler4(uint8_t ObjectContext,int64_t Validation
  * @param ValidationContext 验证上下文
  * @remark 原始函数名：Unwind_180908aa0
  */
-void Unwind_SystemMemoryReleaseHandler1(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行系统内存释放处理器1
+ * 
+ * 该函数负责执行系统内存释放的第一个处理器，释放系统内存资源
+ * 清理无效的内存条目，确保内存管理的正确性
+ * 
+ * @param ObjectContext 对象上下文，标识要操作的对象
+ * @param ValidationContext 验证上下文，包含验证所需的数据
+ * @return 无返回值
+ * @note 此函数在系统内存释放过程中被调用
+ * @warning 原始函数名：Unwind_SystemMemoryReleaseHandler1
+ */
+void ExecuteSystemMemoryReleaseHandler1(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   ReleaseSystemMemory(ValidationContext + 0x170);
@@ -65182,7 +65242,19 @@ void Unwind_SystemMemoryReleaseHandler1(uint8_t ObjectContext,int64_t Validation
  * @param ValidationContext 验证上下文
  * @remark 原始函数名：Unwind_180908ab0
  */
-void Unwind_ResourceHashCleanupHandler5(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行资源哈希清理处理器5
+ * 
+ * 该函数负责执行资源哈希清理的第五个处理器，验证资源哈希的完整性
+ * 清理无效的资源哈希条目，确保资源表的正确性
+ * 
+ * @param ObjectContext 对象上下文，标识要操作的对象
+ * @param ValidationContext 验证上下文，包含验证所需的数据
+ * @return 无返回值
+ * @note 此函数在资源哈希清理过程中被调用
+ * @warning 原始函数名：Unwind_ResourceHashCleanupHandler5
+ */
+void ExecuteResourceHashCleanupHandler5(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int *ResourceIndexPointer;
@@ -65532,7 +65604,19 @@ void ExecuteResourceContextCallback2(uint8_t ObjectContext, int64_t ValidationCo
 
 
 
-void Unwind_180908b70(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行验证上下文回调函数
+ * 
+ * 该函数负责执行验证上下文中的回调函数，处理资源相关的异常情况
+ * 如果验证上下文中存在回调函数指针，则调用该回调函数
+ * 
+ * @param ObjectContext 对象上下文，包含对象相关的状态信息
+ * @param ValidationContext 验证上下文，用于验证操作的合法性
+ * @return 无返回值
+ * @note 此函数在异常处理过程中被调用
+ * @warning 原始函数名：Unwind_180908b70
+ */
+void ExecuteValidationContextCallback1(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   if (*(int64_t **)(ValidationContext + 0x88) != (int64_t *)0x0) {
@@ -65640,7 +65724,19 @@ void ExecuteSystemResourceManagerCleanupHandler(uint8_t ObjectContext,int64_t Va
 
 
 
-void Unwind_180908bc0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 重置验证上下文状态
+ * 
+ * 该函数负责重置验证上下文的状态，清理资源处理器
+ * 执行系统资源的重置操作，确保系统状态的正确性
+ * 
+ * @param ObjectContext 对象上下文，包含对象相关的状态信息
+ * @param ValidationContext 验证上下文，用于验证操作的合法性
+ * @return 无返回值
+ * @note 此函数在系统重置过程中被调用
+ * @warning 原始函数名：Unwind_180908bc0
+ */
+void ResetValidationContextSystemDataPointer1(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   if (*(int64_t **)(ValidationContext + 0x78) != (int64_t *)0x0) {
