@@ -25369,10 +25369,10 @@ void ProcessSystemResourceAllocation(void* ResourceManagerPointer,long long Conf
   void* *pointerUnsigned258;
   long long longValue250;
   uint unsignedValue248;
-  uint32_t uStack_240;
-  uint32_t uStack_23c;
-  void* *puStack_238;
-  long long lStack_230;
+  uint32_t unsignedValue240;
+  uint32_t unsignedValue23c;
+  void* *pointerUnsigned238;
+  long long longValue230;
   uint uStack_228;
   uint32_t uStack_220;
   void* *SystemStringTemplatePtr;
@@ -41528,7 +41528,7 @@ void StartInputSystem(void* ResourceManagerPointer,long long ConfigurationDataPo
   void* *HashNodePointer;
   uint8_t auStack_268 [32];
   long long lStack_248;
-  void* *puStack_238;
+  void* *pointerUnsigned238;
   uint8_t auStack_230 [8];
   long long lStack_228;
   uint uStack_220;
@@ -41554,12 +41554,12 @@ void StartInputSystem(void* ResourceManagerPointer,long long ConfigurationDataPo
   strcpy_s(auStack_190,0x10,&SystemStringPathTemplate);
   HashNodePointer = (void* *)SystemMemoryAllocationFunction(SystemMemoryPoolTemplate,0x208,8,3);
   lStack_248 = nextDataIndex + 0x70;
-  puStack_238 = HashNodePointer;
+  pointerUnsigned238 = HashNodePointer;
   InitializeSystemMemoryContext(HashNodePointer,&puStack_1a8,3,nextDataIndex + 0x2e0);
   *HashNodePointer = &SystemValueReference;
-  puStack_238 = HashNodePointer;
+  pointerUnsigned238 = HashNodePointer;
   ProcessHashNodeData(HashNodePointer);
-  InitializeSystemHandle(nextDataIndex + 0x48,&puStack_238);
+  InitializeSystemHandle(nextDataIndex + 0x48,&pointerUnsigned238);
   *(void* **)(localSystemHandle + 400) = HashNodePointer;
   puStack_1a8 = &SystemMemoryAllocatorReference;
   ExecuteSystemConfigurationUpdate(SystemStatusFlagsPointer + 0x170,auStack_230,&SystemConfigurationData);
@@ -42796,11 +42796,11 @@ void InitializeAndConfigureSystemResources(void* ResourceManagerPointer)
   void* *puStack_260;
   void* *pointerUnsigned258;
   uint32_t unsignedValue248;
-  void* uStack_240;
+  void* unsignedValue240;
   uint8_t auStack_238 [512];
   ulong long uStack_38;
   
-  uStack_240 = 0xfffffffffffffffe;
+  unsignedValue240 = 0xfffffffffffffffe;
   uStack_38 = SystemEncryptionKeyTemplate ^ (ulong long)auStack_358;
   SetupSystemConfiguration(&pointerUnsigned2a0);
   punsignedValue318 = (void* *)0x0;
@@ -43431,7 +43431,7 @@ void ReleaseSystemResource(void* ResourceManagerPointer)
   void* *pointerUnsigned258;
   void* uStack_250;
   uint32_t unsignedValue248;
-  void* *puStack_240;
+  void* *punsignedValue240;
   long long lStack_238;
   uint32_t uStack_228;
   void* *SystemStringTemplatePtr2;
@@ -43671,14 +43671,14 @@ void ReleaseSystemResource(void* ResourceManagerPointer)
         pointerToUnsigned16 = *(void* **)(resourceCounter + 8);
       }
     }
-    ProcessSystemQueue(&puStack_240,pointerToUnsigned16);
+    ProcessSystemQueue(&punsignedValue240,pointerToUnsigned16);
     puStack_260 = (void* *)0x0;
     pointerUnsigned258 = (void* *)0x0;
     uStack_250 = 0;
     unsignedValue248 = 3;
     auStack_338[0] = 10;
     if (lStack_238 != 0) {
-      ProcessSystemMemoryBuffer(&puStack_240,&puStack_260,auStack_338);
+      ProcessSystemMemoryBuffer(&punsignedValue240,&puStack_260,auStack_338);
     }
     systemStatus2 = (long long)pointerUnsigned258 - (long long)puStack_260 >> 5;
     pointerToUnsigned19 = puStack_260;
@@ -43796,7 +43796,7 @@ LAB_180065a3e:
       pointerUnsigned258 = pointerToUnsigned17;
         SystemCleanupFunction(pcurrentThreadId);
     }
-    puStack_240 = &SystemGlobalDataReference;
+    punsignedValue240 = &SystemGlobalDataReference;
     if (lStack_238 != 0) {
       puStack_260 = pointerToUnsigned18;
       pointerUnsigned258 = pointerToUnsigned17;
@@ -43804,7 +43804,7 @@ LAB_180065a3e:
     }
     lStack_238 = 0;
     uStack_228 = 0;
-    puStack_240 = &SystemMemoryAllocatorReference;
+    punsignedValue240 = &SystemMemoryAllocatorReference;
     puStack_260 = pointerToUnsigned18;
     pointerUnsigned258 = pointerToUnsigned17;
   }
@@ -43915,8 +43915,8 @@ void InitializeSystemResourceAllocator(void)
   uint32_t uStack_24c;
   uint32_t unsignedValue248;
   uint32_t uStack_244;
-  uint32_t uStack_240;
-  uint32_t uStack_23c;
+  uint32_t unsignedValue240;
+  uint32_t unsignedValue23c;
   uint32_t uStack_238;
   uint32_t uStack_234;
   uint32_t uStack_230;
@@ -43929,8 +43929,8 @@ void InitializeSystemResourceAllocator(void)
   uStack_260 = 0x736172435c2e2e22;
   uStack_258 = 0x6564616f6c705568;
   uStack_22c = 0;
-  uStack_240 = 0x616f6c70;
-  uStack_23c = 0x2e726564;
+  unsignedValue240 = 0x616f6c70;
+  unsignedValue23c = 0x2e726564;
   uStack_238 = 0x6c627550;
   uStack_234 = 0x2e687369;
   uStack_250 = 0x75502e72;
@@ -48017,7 +48017,7 @@ void ProcessSystemResourceNodeQueue(long long ResourceManagerPointer)
   void* **ppunsignedValue248;
   long long *plStack_240;
   long long lStack_238;
-  long long lStack_230;
+  long long longValue230;
   uint8_t uStack_228;
   void* uStack_218;
   int iStack_210;
@@ -48080,7 +48080,7 @@ void ProcessSystemResourceNodeQueue(long long ResourceManagerPointer)
       if (systemAvailabilityFlag == '\0') {
         nextDataIndex3 = ResourceManagerPointer + 0x378;
         uStack_228 = 0;
-        lStack_230 = nextDataIndex3;
+        longValue230 = nextDataIndex3;
         systemStatus7 = _Mtx_lock(nextDataIndex3);
         if (systemStatus7 != 0) {
           __Throw_C_error_std__YAXH_Z(systemStatus7);

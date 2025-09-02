@@ -10126,6 +10126,16 @@ void ProcessResourceIndexAndSecurity(int64_t ObjectContext, uint32_t* Validation
 
 
  
+/**
+ * @brief 安全操作处理器函数
+ * 
+ * 该函数作为安全操作的处理器，负责执行系统安全操作
+ * 它是一个简单的包装函数，调用核心的安全操作功能
+ * 
+ * @return 无返回值
+ * @note 此函数会调用ExecuteSecurityOperation()执行实际的安全操作
+ * @warning 调用此函数可能会触发系统安全验证机制
+ */
 void ExecuteSecurityOperationHandler(void)
 {
         ExecuteSecurityOperation();
