@@ -5195,15 +5195,6 @@ uint8_t InitializeObjectHandleFinal(void)
  * @return 无返回值
  * @note 这是一个占位符函数，不会执行任何实际操作
  */
-/**
- * @brief 初始化占位符函数
- * 
- * 这是一个占位符函数，用于系统初始化过程中的预留接口
- * 当前实现为空，保留给未来扩展使用
- * 
- * @return 无返回值
- * @note 此函数为系统架构预留接口
- */
 void InitializePlaceholder(void)
 
 {
