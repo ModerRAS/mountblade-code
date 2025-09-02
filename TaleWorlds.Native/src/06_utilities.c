@@ -220,7 +220,7 @@ void InitializeNetworkSystemModule(void);
 void* NetworkInstance;
 void* NetworkConfiguration;
 uint32_t NetworkInitializationStatus;
-void* NetworkModuleHandle;
+void* NetworkHandle;
 
 
 /**
@@ -326,11 +326,11 @@ void CloseSystemHandle(void);
  * @warning 调用此函数后，线程资源将被完全释放
  */
 void CleanupThreadResources(void);
-uint32_t ThreadResourceCleanupStatusFlag;
-void* ThreadCleanupMainDataStorage;
-void* ThreadCleanupSecondaryDataStorage;
+uint32_t ThreadCleanupStatus;
+void* ThreadCleanupMainStorage;
+void* ThreadCleanupSecondaryStorage;
 void* ThreadCleanupResourceHandle;
-void* ThreadCleanupAuxiliaryDataStorage;
+void* ThreadCleanupAuxiliaryStorage;
 
  /**
  * @brief 初始化资源管理器
@@ -3352,18 +3352,6 @@ uint8_t SystemMemoryFlagKernel;
  * @return 无返回值
  * @note 此函数会进行安全验证，确保只有有效的对象被处理
  * @warning 调用此函数前必须确保游戏上下文和系统上下文已正确初始化
- */
-/**
- * @brief 处理游戏对象
- * 
- * 该函数负责处理系统中的游戏对象，包括对象验证、状态检查和安全验证
- * 从游戏上下文中获取对象列表，并对每个对象进行验证处理
- * 
- * @param GameContext 游戏上下文，包含游戏相关的状态和数据
- * @param SystemContext 系统上下文，包含系统相关的配置和资源
- * @return 无返回值
- * @note 此函数会验证所有游戏对象的状态，并执行相应的处理逻辑
- * @warning 如果对象验证失败，函数将不会返回
  */
 void ProcessGameObjects(int64_t GameContext, int64_t SystemContext)
 {
