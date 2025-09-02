@@ -2804,20 +2804,20 @@ LAB_1800451a4:
   MemoryAddress4 = 0xffffffff;
 LAB_1800451ca:
   if (StringIndex != -1) {
-    ProcessStackOperation(&puStack_98,&puStack_78,StringProcessingResult,MemoryAddress4);
+    ProcessStackOperation(&StackBufferPointer,&StackDataBuffer,StringProcessingResult,MemoryAddress4);
     pMemoryAddress3 = &SystemConstantStringPrimary;
-    if (puStack_70 != (void *)0x0) {
-      pMemoryAddress3 = puStack_70;
+    if (StackPointer != (void *)0x0) {
+      pMemoryAddress3 = StackPointer;
     }
     NetworkRequestResult = atoi(pMemoryAddress3);
     *(uint32_t *)(MemoryManagerDataAddress + 0x7b4) = NetworkRequestResult;
-    puStack_78 = &SystemNullPointer;
-    if (puStack_70 != (void *)0x0) {
+    StackDataBuffer = &SystemNullPointer;
+    if (StackPointer != (void *)0x0) {
       CleanupSystemResources();
     }
-    puStack_70 = (void *)0x0;
-    uStack_60 = 0;
-    puStack_78 = &SystemBufferTemplate;
+    StackPointer = (void *)0x0;
+    StackDataSize = 0;
+    StackDataBuffer = &SystemBufferTemplate;
   }
   FinalizeSystemState();
   MemoryAllocationResult = AllocateSystemMemory(SystemMemoryAllocationPointer,0x213458,8,10);
@@ -2854,8 +2854,8 @@ LAB_1800451ca:
     Sleep(1);
   }
   (**(code **)(*MemoryPointerArray + 0x38))(MemoryPointerArray);
-  puStack_98 = &SystemNullPointer;
-  if (lStack_90 == 0) {
+  StackBufferPointer = &SystemNullPointer;
+  if (StackMemoryAddress == 0) {
     return;
   }
   CleanupSystemResources();
@@ -7932,7 +7932,7 @@ LAB_180608bee:
       goto LAB_18060905e;
     }
     if (iStack_20 == 0xd) {
-      LoopCounter = strcmp(lStack_28,&UNK_180a38978);
+      LoopCounter = strcmp(lStack_28,&NetworkRequestStringDisconnect);
       if (LoopCounter == 0) {
         LoopCounter = 4;
         goto LAB_180609070;
@@ -11745,7 +11745,7 @@ longlong SystemMemoryFree(longlong *memoryPtr)
                   }
                 }
                 pBufferSize6 = puVar9;
-                *(void **)((longlong)pBufferSize6 + -8) = &UNK_18076804b;
+                *(void **)((longlong)pBufferSize6 + -8) = &SystemExceptionHandler;
                 (*unaff_RDI)();
                 *(uint64_t *)((longlong)pBufferSize6 + -8) = 0x180768051;
                 CoUninitialize();
@@ -12775,11 +12775,11 @@ uint32_t SystemProcessAudioData(byte param_1,byte *param_2,int param_3)
   uint StringProcessingResult;
   param_3 = param_3 + -4;
   pMemoryAddress = (uint *)(param_2 + param_3);
-  StringProcessingResult = *(uint *)(&UNK_18098a100 + (ulonglong)(byte)~param_1 * 4) ^ 0xffffff;
+  StringProcessingResult = *(uint *)(&SystemHashTable + (ulonglong)(byte)~param_1 * 4) ^ 0xffffff;
   for (; 0 < param_3; param_3 = param_3 + -1) {
     bVar2 = *param_2;
     param_2 = param_2 + 1;
-    StringProcessingResult = *(uint *)(&UNK_18098a100 + (ulonglong)(byte)(bVar2 ^ (byte)StringProcessingResult) * 4) ^ StringProcessingResult >> 8;
+    StringProcessingResult = *(uint *)(&SystemHashTable + (ulonglong)(byte)(bVar2 ^ (byte)StringProcessingResult) * 4) ^ StringProcessingResult >> 8;
   }
   return CONCAT31((int3)(~StringProcessingResult >> 8),*pMemoryAddress != ~StringProcessingResult);
 }
