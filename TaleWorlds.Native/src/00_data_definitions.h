@@ -3016,7 +3016,7 @@ void InitializeNativeSDLL(uint64_t InitFlags)
   StringProcessingResult = ValidateStackData(&StackBufferPointer,&SystemStackValidationTemplate);
   MemoryAddress4 = (ulonglong)(int)StringProcessingResult;
   if (StringProcessingResult < StackBufferSize) {
-    StringPointer = (char *)(lStack_90 + MemoryAddress4);
+    StringPointer = (char *)(StringProcessingStack + MemoryAddress4);
     do {
       StringIndex = (int)MemoryAddress4;
       if (*StringPointer == ' ') goto LabelStringProcessingSpaceCheck1;
@@ -3029,7 +3029,7 @@ LabelStringProcessingSpaceCheck1:
   StringProcessingResult = StringIndex + 1;
   MemoryAddress4 = (ulonglong)(int)StringProcessingResult;
   if (StringProcessingResult < StackBufferSize) {
-    StringPointer = (char *)(lStack_90 + MemoryAddress4);
+    StringPointer = (char *)(StringProcessingStack + MemoryAddress4);
     do {
       if (*StringPointer == ' ') goto LabelStringProcessingSpaceCheck2;
       MemoryAddress5 = (int)MemoryAddress4 + 1;
@@ -3143,10 +3143,10 @@ void InitializeNativeCoreCLR(uint64_t InitFlags)
   InitializeSystemBuffer(&StackBufferPointer2,SystemContextPointer);
   ProcessSystemDataBuffer(&StackCounter1,&StackBufferPointer2);
   StackBufferPointer2 = &SystemNullPointer;
-  if (lStack_40 != 0) {
+  if (SystemResourceCleanupFlag != 0) {
     CleanupSystemResources();
   }
-  lStack_40 = 0;
+  SystemResourceCleanupFlag = 0;
   StackCounter4 = 0;
   StackBufferPointer2 = &SystemBufferTemplate;
   StackBufferSize = 0;
