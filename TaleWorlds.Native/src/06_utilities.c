@@ -4258,7 +4258,7 @@ uint8_t InitializeObjectHandleOperationC(int64_t ObjectContext)
         uint32_t NextIterationCount = (uint32_t)IterationCount + 1;
         IterationCount = (uint64_t)NextIterationCount;
         ResourceIdentifierPointer = ResourceIdentifierPointer + 1;
-      } while ((int)NextIterationCount < *(int *)(objectContext + 0x18));
+      } while ((int)NextIterationCount < *(int *)(ObjectContext + 0x18));
     }
     operationResultCode = 0;
   }
@@ -13807,7 +13807,7 @@ void CalculateFloatValueAndValidateResources(void)
         ResourceValidationResult3 = *(uint32_t *)(ResourceValidationResult0 + 4 + LocalContextData5);
         ExecutionContextPointer[-4] = &SystemResourceTemplateDatabase;
         *(uint32_t *)(ExecutionContextPointer + -2) = StackContextBuffer;
-        ploopIncrement = (uint8_t *)*StackVariable58;
+        ploopIncrement = (uint8_t *)*ResourceBufferPointer;
         *(uint32_t *)(ExecutionContextPointer + -1) = ResourceValidationResult3;
         *(uint32_t *)(ExecutionContextPointer + -3) = 0;
         LocalContextData5 = (*(code *)*ploopIncrement)(StackVariable58);
@@ -23737,17 +23737,17 @@ uint64_t ExecuteResourceDataIntegrityValidation(void)
   }
   else {
     if (resourceContext[2] != 0) {
-      SecurityValidationBuffer = 0;
-      validationResult = ValidateResourceAccess(*resourceContext,&SecurityValidationStack);
+      securityValidationBuffer = 0;
+      validationResult = ValidateResourceAccess(*resourceContext, &SecurityValidationStack);
       if ((int)validationResult != 0) {
         return ResourceValidationResult;
       }
-      if ((uint64_t)resourceContext[2] < (uint64_t)SecurityValidationBuffer + 4) {
+      if ((uint64_t)resourceContext[2] < (uint64_t)securityValidationBuffer + 4) {
         validationResult = 0x11;
         goto ValidateHashResult;
       }
     }
-    validationResult = CalculateResourceHash(*resourceContext,&HashValidationStack,1,4,0);
+    validationResult = CalculateResourceHash(*resourceContext, &HashValidationStack, 1, 4, 0);
   }
 ValidateHashResult:
   if ((int)validationResult != 0) {
@@ -23770,17 +23770,17 @@ ValidateHashResult:
   }
   else {
     if (resourceContext[2] != 0) {
-      SecurityValidationBuffer = 0;
-      validationResult = ValidateResourceAccess(*resourceContext,&SecurityValidationStack);
+      securityValidationBuffer = 0;
+      validationResult = ValidateResourceAccess(*resourceContext, &SecurityValidationStack);
       if ((int)validationResult != 0) {
         return ResourceValidationResult;
       }
-      if ((uint64_t)resourceContext[2] < (uint64_t)SecurityValidationBuffer + 4) {
+      if ((uint64_t)resourceContext[2] < (uint64_t)securityValidationBuffer + 4) {
         validationResult = 0x11;
         goto ValidateSecondHash;
       }
     }
-    validationResult = CalculateResourceHash(*resourceContext,&HashValidationStack,1,4,0);
+    validationResult = CalculateResourceHash(*resourceContext, &HashValidationStack, 1, 4, 0);
   }
 ValidateSecondHash:
   if ((int)validationResult != 0) {
@@ -23799,17 +23799,17 @@ ValidateSecondHash:
     return ResourceValidationResult;
   }
   if (2 < (int)RegisterContext[8] - 0x65U) goto LAB_18089d07f;
-  HasValidResource = false;
+  hasValidResource = false;
   if (*(int *)(RegisterContext[1] + 0x18) != 0) goto ReturnValidationResult;
   resourceContext = (int64_t *)*RegisterContext;
   if (*resourceContext != 0) {
     if (resourceContext[2] == 0) {
 CalculateResourceHash:
-      validationStatusCode = CalculateResourceHash(*resourceContext,&SecurityValidationStack,1,1,0);
+      validationStatusCode = CalculateResourceHash(*resourceContext, &SecurityValidationStack, 1, 1, 0);
     }
     else {
       HashValidationValue = 0;
-      validationStatusCode = ValidateResourceAccess(*resourceContext,&HashValidationStack);
+      validationStatusCode = ValidateResourceAccess(*resourceContext, &HashValidationStack);
       if (validationStatusCode == 0) {
         if ((uint64_t)HashValidationValue + 1 <= (uint64_t)resourceContext[2]) goto CalculateResourceHash;
         validationStatusCode = 0x11;
@@ -23817,14 +23817,14 @@ CalculateResourceHash:
     }
   }
   if (validationStatusCode == 0) {
-    HasValidResource = SecurityValidationChar != '\0';
+    hasValidResource = SecurityValidationChar != '\0';
     validationStatusCode = 0;
   }
   if (ValidationResult != 0) {
 ReturnValidationResult:
     return (uint64_t)ValidationResult;
   }
-  if (HasValidResource) {
+  if (hasValidResource) {
     *(uint32_t *)(ResourceRegisterPointer + 0x10) = 3;
   }
 LAB_18089d07f:
@@ -23854,43 +23854,43 @@ uint64_t ProcessResourceDataValidationFlow(void)
 
 {
   int64_t *processPointer;
-  uint InputRegisterResult;
-  uint ResourceValidationResult;
+  uint inputRegisterResult;
+  uint resourceValidationResult;
   uint64_t resourceContext;
-  int64_t *RegisterContext;
-  int64_t ResourceRegisterPointer;
-  uint64_t RegisterR15;
-  char SecurityValidationValue;
-  uint HashValidationValue;
+  int64_t *registerContext;
+  int64_t resourceRegisterPointer;
+  uint64_t registerR15;
+  char securityValidationValue;
+  uint hashValidationValue;
   
   validationResult = (uint)resourceContext;
   if (2 < InputRegisterValue) goto LAB_18089d07f;
-  if (*(uint *)(RegisterContext[1] + 0x18) != (uint)RegisterR15) goto ReturnValidationResult;
-  resourceContext = (int64_t *)*RegisterContext;
+  if (*(uint *)(registerContext[1] + 0x18) != (uint)registerR15) goto ReturnValidationResult;
+  resourceContext = (int64_t *)*registerContext;
   if (*resourceContext != 0) {
-    if (resourceContext[2] == RegisterR15) {
+    if (resourceContext[2] == registerR15) {
 CalculateResourceHash:
-      validationResult = CalculateResourceHash(*resourceContext,&SecurityValidationStack,1);
+      validationResult = CalculateResourceHash(*resourceContext, &SecurityValidationStack, 1);
     }
     else {
-      HashValidationValue = (uint)RegisterR15;
-      validationResult = ValidateResourceAccess(*resourceContext,&HashValidationStack);
+      hashValidationValue = (uint)registerR15;
+      validationResult = ValidateResourceAccess(*resourceContext, &HashValidationStack);
       if (validationResult == 0) {
-        if ((uint64_t)HashValidationValue + 1 <= (uint64_t)resourceContext[2]) goto CalculateResourceHash;
+        if ((uint64_t)hashValidationValue + 1 <= (uint64_t)resourceContext[2]) goto CalculateResourceHash;
         validationResult = 0x11;
       }
     }
   }
-  resourceContext = (uint64_t)ResourceValidationResult;
+  resourceContext = (uint64_t)resourceValidationResult;
   if (validationResult == 0) {
-    resourceContext = RegisterR15 & 0xffffffff;
+    resourceContext = registerR15 & 0xffffffff;
   }
   if ((int)resourceContext != 0) {
 ReturnValidationResult:
     return resourceContext & 0xffffffff;
   }
-  if (validationResult == 0 && SecurityValidationValue != (char)RegisterR15) {
-    *(uint32_t *)(ResourceRegisterPointer + 0x10) = 3;
+  if (validationResult == 0 && securityValidationValue != (char)registerR15) {
+    *(uint32_t *)(resourceRegisterPointer + 0x10) = 3;
   }
 LAB_18089d07f:
                     // WARNING: Subroutine does not return
