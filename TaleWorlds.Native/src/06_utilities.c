@@ -66672,23 +66672,43 @@ void InitializeSystemDataTable(uint8_t ObjectContext, int64_t ValidationContext)
 
 
 
-void Unwind_180908ee0(uint8_t ObjectContext,int64_t ValidationContext)
-
+/**
+ * @brief 系统数据表扩展初始化器
+ * 
+ * 该函数负责初始化系统数据表的扩展部分，设置数据表指针并销毁异常对象
+ * 包括系统数据表001的设置和异常对象的清理
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @return 无返回值
+ * @note 此函数在系统数据结构扩展初始化过程中调用
+ */
+void InitializeSystemDataTableExtended(uint8_t ObjectContext, int64_t ValidationContext)
 {
-  uint8_t *ResourceHashPointer;
+  uint8_t *DataTablePointer;
   
-  ResourceHashPointer = *(uint8_t **)(ValidationContext + 0x40);
-  *ResourceHashPointer = &SystemDataTable001;
-  __std_exception_destroy(ResourceHashPointer + 1);
+  DataTablePointer = *(uint8_t **)(ValidationContext + 0x40);
+  *DataTablePointer = &SystemDataTable001;
+  DestroyStdExceptionObject(DataTablePointer + 1);
   return;
 }
 
 
 
-void Unwind_180908ef0(uint8_t ObjectContext,int64_t ValidationContext)
-
+/**
+ * @brief 标准库锁初始化器
+ * 
+ * 该函数负责初始化标准库的锁机制，确保线程安全
+ * 通过调用标准库锁初始化函数来设置锁状态
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @return 无返回值
+ * @note 此函数在多线程环境初始化过程中调用
+ */
+void InitializeStdLibraryLock(uint8_t ObjectContext, int64_t ValidationContext)
 {
-                      __1_Lockit_std__QEAA_XZ(ValidationContext + 0x60);
+  InitializeStdLock(ValidationContext + 0x60);
   return;
 }
 
