@@ -68823,7 +68823,19 @@ void SetSystemDataStructurePointer(uint8_t ObjectContext,int64_t ValidationConte
 
 
 
-void Unwind_180909540(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 关闭文件句柄并更新资源引用计数
+ * 
+ * 该函数负责关闭文件句柄并更新资源引用计数
+ * 确保文件资源被正确释放并且引用计数得到维护
+ * 
+ * @param ObjectContext 对象上下文，用于标识特定的对象实例
+ * @param ValidationContext 验证上下文，包含系统验证所需的环境信息
+ * @return 无返回值
+ * @note 此函数会检查文件句柄是否存在，如果存在则关闭并更新引用计数
+ * @warning 调用此函数会修改验证上下文中的文件句柄和全局资源引用计数
+ */
+void CloseFileHandleAndUpdateResourceReference(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   if (*(int64_t *)(ValidationContext + 0x268) != 0) {
@@ -100511,8 +100523,20 @@ void ExecuteResourceCleanup(void)
  /**
  * @brief 优化资源使用
  * 
- * 该函数负责优化系统资源的使用效率
- * 通过重新组织和压缩资源来提高性能
+ * 该函数负责优化系统资源的使用效率，通过重新组织和压缩资源来提高性能。
+ * 它会分析当前资源使用情况，识别性能瓶颈，并实施优化策略。
+ * 
+ * @优化策略包括：
+ * - 重新组织内存布局以减少碎片
+ * - 压缩重复数据以节省内存空间
+ * - 调整资源分配策略以提高访问效率
+ * - 清理未使用的资源以释放系统负担
+ * 
+ * @return 无返回值
+ * @note 此函数会分析当前资源使用情况并进行优化
+ * @warning 优化过程可能会暂时影响系统性能，建议在系统负载较低时调用
+ * @see ConfigureResourceSettings
+ * @see ProcessResourceOperations
  */
 void OptimizeResourceUsage(void)
 
@@ -100528,9 +100552,21 @@ void OptimizeResourceUsage(void)
  /**
  * @brief 清理系统缓存并重置状态
  * 
- * 该函数负责清理系统缓存并重置相关状态
- * 检查资源状态并进行必要的清理操作
- * 重置系统缓存指针和相关数据结构
+ * 该函数负责清理系统缓存并重置相关状态，检查资源状态并进行必要的清理操作，
+ * 重置系统缓存指针和相关数据结构。这是一个重要的系统维护函数，确保系统
+ * 缓存处于干净状态。
+ * 
+ * @清理过程包括：
+ * - 检查当前缓存状态，如果有活动缓存则执行紧急清理
+ * - 重置缓存状态标志为初始状态
+ * - 清空缓存数据内容
+ * - 将缓存指针重置为默认值
+ * 
+ * @return 无返回值
+ * @note 此函数会清理系统缓存中的所有数据
+ * @warning 如果系统缓存处于活动状态，调用此函数可能会触发紧急清理程序
+ * @see EmergencyCleanupFunction
+ * @see ResetThreadLocalStorage
  */
 void ClearSystemCacheAndResetState(void)
 
@@ -100552,10 +100588,19 @@ void ClearSystemCacheAndResetState(void)
  * @brief 销毁互斥锁资源
  * 
  * 该函数负责销毁指定的互斥锁资源，释放互斥锁占用的内存和相关资源。
- * 这是一个简化的互斥锁销毁操作，直接调用底层销毁函数。
+ * 这是一个简化的互斥锁销毁操作，直接调用底层销毁函数来清理特定地址的互斥锁。
  * 
- * @note 此函数会销毁固定地址的互斥锁资源
- * @warning 销毁后互斥锁将不再可用，可能导致未定义行为
+ * @销毁过程包括：
+ * - 调用底层互斥锁销毁函数
+ * - 释放互斥锁占用的系统资源
+ * - 清理相关的同步对象
+ * 
+ * @return 无返回值
+ * @note 此函数会销毁固定地址(0x180c966f0)的互斥锁资源
+ * @warning 销毁后互斥锁将不再可用，如果仍有线程等待此互斥锁会导致未定义行为
+ * @warning 调用此函数前确保没有线程持有此互斥锁
+ * @see CleanupMutexResources
+ * @see MutexDestroyInPlace
  */
 void DestroyMutexResource(void)
 
@@ -100573,8 +100618,17 @@ void DestroyMutexResource(void)
  * 该函数负责清理系统中不再需要的互斥锁资源，释放相关内存并重置互斥锁状态。
  * 这是一个简化的互斥锁清理操作，直接调用底层销毁函数清理特定地址的互斥锁。
  * 
- * @note 此函数会清理固定地址的互斥锁资源
- * @warning 清理后互斥锁将不再可用，可能导致系统状态不一致
+ * @清理过程包括：
+ * - 调用底层互斥锁销毁函数
+ * - 释放互斥锁占用的系统资源
+ * - 重置互斥锁状态为未初始化状态
+ * 
+ * @return 无返回值
+ * @note 此函数会清理固定地址(0x180c96740)的互斥锁资源
+ * @warning 清理后互斥锁将不再可用，如果仍有线程等待此互斥锁会导致系统状态不一致
+ * @warning 调用此函数前确保没有线程持有此互斥锁
+ * @see DestroyMutexResource
+ * @see MutexDestroyInPlace
  */
 void CleanupMutexResources(void)
 
@@ -100590,16 +100644,27 @@ void CleanupMutexResources(void)
 /**
  * @brief 初始化系统上下文并设置相关参数
  * 
- * 该函数负责初始化系统上下文，设置必要的参数和回调函数
- * 配置系统处理程序并初始化相关的数据结构
+ * 该函数负责初始化系统上下文，设置必要的参数和回调函数，配置系统处理程序
+ * 并初始化相关的数据结构。这是系统启动过程中的关键函数，确保系统上下文
+ * 正确初始化并准备好处理后续操作。
+ * 
+ * @初始化过程包括：
+ * - 验证系统上下文处理程序的有效性
+ * - 初始化上下文数据和配置参数
+ * - 设置系统处理程序和回调函数
+ * - 执行系统处理程序以完成初始化
  * 
  * @param ContextPtr 上下文指针，指向系统上下文数据结构
  * @param SetupParam 设置参数，包含系统初始化所需的配置信息
  * @param ConfigParam 配置参数，指定系统运行时的配置选项
  * @param FlagsParam 标志参数，控制初始化过程的标志位
  * @return 无返回值
- * @note 此函数必须在系统启动时调用
+ * @note 此函数必须在系统启动时调用，确保系统上下文正确初始化
  * @warning 调用此函数后，系统处理程序将被设置且不会返回
+ * @warning 如果系统上下文处理程序无效，初始化过程将跳过
+ * @see InitializeContextData
+ * @see SetupSystemHandler
+ * @see ExecuteSystemHandler
  */
 void InitializeSystemContext(uint8_t ContextPtr, uint8_t SetupParam, uint8_t ConfigParam, uint8_t FlagsParam)
 
