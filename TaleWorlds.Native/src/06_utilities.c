@@ -4654,6 +4654,17 @@ uint64_t DecrementSystemResourceCount(int64_t SystemContext, uint64_t ResourceHa
  * @note 此函数用于对象的引用计数管理，防止对象被过早释放
  * @warning 如果对象句柄无效或系统状态检查失败，将返回错误码
  */
+/**
+ * @brief 增加对象引用计数
+ * 
+ * 该函数用于增加指定对象的引用计数，确保对象在使用期间不会被意外释放
+ * 同时执行系统状态检查以确保引用计数增加的安全性
+ * 
+ * @param ObjectContext 对象上下文指针，包含对象的引用信息和状态数据
+ * @return uint8_t 操作结果状态码，0表示成功，非0表示失败
+ * @note 引用计数增加前会验证对象上下文的有效性
+ * @warning 如果对象句柄无效或系统状态检查失败，将返回相应的错误代码
+ */
 uint8_t IncrementObjectReferenceCount(int64_t ObjectContext) {
   int64_t SystemObjectPointer;
   uint8_t SystemValidationStatus;
@@ -6772,7 +6783,7 @@ void InitializeObjectPropertiesAndDispatch(int64_t ObjectContext, int64_t Schedu
  * @param ObjectContext 对象上下文指针，包含对象的标识符和属性信息
  * @param schedulerContext 调度器上下文，包含调度相关的配置信息
  */
-void ValidateObjectPropertiesAndDispatch(int64_t ObjectContext, int64_t schedulerContext)
+void ValidateObjectPropertiesAndDispatch(int64_t ObjectContext, int64_t SchedulerContext)
 
 {
   int PackageValidationStatusCode;
@@ -6801,7 +6812,7 @@ void ValidateObjectPropertiesAndDispatch(int64_t ObjectContext, int64_t schedule
  * @param ObjectContext 对象上下文指针，包含对象的状态信息
  * @param schedulerContext 调度器上下文，包含调度相关的配置信息
  */
-void ValidateObjectStateAndDispatchB(int64_t ObjectContext, int64_t schedulerContext)
+void ValidateObjectStateAndDispatchB(int64_t ObjectContext, int64_t SchedulerContext)
 
 {
   int PackageValidationStatusCode;
@@ -6832,7 +6843,7 @@ ValidationCompleteLabel:
  * @param schedulerContext 调度器上下文，包含调度相关的配置信息
  * @return 处理结果状态码，0表示成功，0x2e表示标志位检查失败
  */
-uint8_t CheckObjectPropertiesAndIncrementCounter(int64_t ObjectContext, int64_t schedulerContext)
+uint8_t CheckObjectPropertiesAndIncrementCounter(int64_t ObjectContext, int64_t SchedulerContext)
 
 {
   int CounterValue;
@@ -6866,7 +6877,7 @@ uint8_t CheckObjectPropertiesAndIncrementCounter(int64_t ObjectContext, int64_t 
  * @param ObjectContext 对象上下文指针，包含对象的标识符和属性信息
  * @param schedulerContext 调度器上下文，包含调度相关的配置信息
  */
-void ResetObjectPropertiesAndDispatch(int64_t ObjectContext, int64_t schedulerContext)
+void ResetObjectPropertiesAndDispatch(int64_t ObjectContext, int64_t SchedulerContext)
 
 {
   int InitializationStatus;
@@ -7020,13 +7031,13 @@ void SetObjectContextProcessingStatusFlag(int64_t ObjectContext, int64_t Process
  * @param ObjectContext 对象上下文指针
  * @param processContext 处理上下文指针，包含处理所需的数据
  */
-void SetObjectContextPackageValidationStatusFlag(int64_t ObjectContext, int64_t processContext)
+void SetObjectContextPackageValidationStatusFlag(int64_t ObjectContext, int64_t ProcessContext)
 
 {
   int PackageValidationStatusCode;
   int64_t ContextBuffer;
   
-  ValidationStatus = ValidateObjectContext(*(uint32_t *)(ObjectContext + ObjectContextValidationDataOffset),&contextBuffer);
+  ValidationStatus = ValidateObjectContext(*(uint32_t *)(ObjectContext + ObjectContextValidationDataOffset),&ContextBuffer);
   if (ValidationStatus == 0) {
     *(uint8_t *)(contextBuffer + ContextBufferDataOffset) = *(uint8_t *)(ObjectContext + ObjectContextValidationDataOffset);
           ProcessContext(*(uint8_t *)(processContext + ProcessContextObjectOffset),ObjectContext);
@@ -7711,15 +7722,15 @@ uint8_t ValidateObjectContextAndProcessBuffers(int64_t ObjectContext, int64_t Sy
         if (BufferEntryPointer == 0) {
           return ErrorInvalidResourceData;
         }
-        if (*(int *)(bufferEntryPointer + 0x58) < 1) {
+        if (*(int *)(BufferEntryPointer + 0x58) < 1) {
           StringPointer = &ResourceHashTemplate;
         }
         else {
-          StringPointer = *(uint8_t **)(bufferEntryPointer + 0x50);
+          StringPointer = *(uint8_t **)(BufferEntryPointer + 0x50);
         }
         ComparisonResult = CompareStringWithContext(StringPointer,ObjectContext + ObjectContextHandleDataOffset);
         if (ComparisonResult == 0) {
-          ValidationStatus = ValidateBufferContext(bufferContext,ObjectContext + ObjectContextValidationDataOffset);
+          ValidationStatus = ValidateBufferContext(BufferContext,ObjectContext + ObjectContextValidationDataOffset);
           if ((int)ValidationStatus != 0) {
             return ValidationStatus;
           }
@@ -29659,6 +29670,18 @@ void InitializeUtilitySystemWithParameters(uint8_t *systemParameters)
  * 该函数负责处理异常情况下的资源清理和状态恢复
  * 主要用于处理程序异常终止时的资源释放和状态恢复
  * 专门处理主级异常情况的资源清理工作
+ * 
+ * @param ObjectContext 异常上下文参数，包含对象相关的状态信息
+ * @param ValidationContext 系统上下文指针，包含系统运行时状态数据
+ * @note 此函数在异常处理过程中被自动调用
+ * @warning 调用此函数会释放相关资源并恢复系统状态
+ */
+/**
+ * @brief 异常处理函数：解卷主上下文异常处理器
+ * 
+ * 该函数负责处理异常情况下的资源清理和状态恢复
+ * 主要用于处理程序异常终止时的资源释放和状态恢复
+ * 专门处理一级异常情况的资源清理工作
  * 
  * @param ObjectContext 异常上下文参数，包含对象相关的状态信息
  * @param ValidationContext 系统上下文指针，包含系统运行时状态数据
