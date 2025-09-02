@@ -3772,6 +3772,8 @@ uint8_t ValidateObjectRegistrationStatus(int64_t ObjectContext)
   int64_t *ArrayBasePointer;
   int64_t ContextStackPointer;
   char ObjectName[16];
+  int RegistrationCounter;
+  int TargetSize;
   
   // 获取注册上下文数据
   HashValidationResult = GetRegistrationContextData(*(uint32_t *)(ObjectContext + OBJECT_CONTEXT_OFFSET), &ContextStackPointer);
