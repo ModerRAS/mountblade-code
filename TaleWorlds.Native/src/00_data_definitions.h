@@ -628,7 +628,7 @@ char SystemConfigStateArray[64];
 #define SystemRequestMutexAddress 0x180c91ff0
 #define SystemMutexFlagsMask 0xfffffffffffffffe
 
-// 未知数据模板常量定义
+// 系统配置数据常量定义
 #define SystemConfigTemplateAlpha SystemConfigDataAlpha
 #define SystemConfigTemplateBeta SystemConfigDataBeta  
 #define SystemConfigTemplateGamma SystemConfigDataGamma
@@ -7017,7 +7017,7 @@ uint8_t SystemModuleInitializeComplete(void)
   uint8_t unaff_SIL;
   return unaff_SIL;
 }
-  DAT_1dc4331ba = DAT_1dc4331ba + unaff_BL;
+  MemoryAllocationCounter = MemoryAllocationCounter + unaff_BL;
   MemoryAllocationResult = in(StringProcessingResult);
   pNetworkRequestStatus = (char *)((ulonglong)MemoryAllocationResult + 0x1c0042ed);
   *pNetworkRequestStatus = *pNetworkRequestStatus + (char)unaff_RDI + '\x04';
@@ -11611,7 +11611,7 @@ longlong SystemMemoryFree(longlong *memoryPtr)
   }
   return LongIndex;
 }
-      DAT_180d4913c = '\x01';
+      SystemInitializationFlag = '\x01';
       param_1 = uStack_378;
     }
     pfVar3 = afStack_2e8;
@@ -11751,8 +11751,8 @@ longlong SystemMemoryFree(longlong *memoryPtr)
   }
   SystemSecurityCheck(uStack_e8 ^ (ulonglong)auStack_3a8);
 }
-                    DAT_1ac76f654 = DAT_1ac76f654 + NetworkRequestStatus2;
-                    if (DAT_1ac76f654 != '\0' && ValidationStatusByte7 == DAT_1ac76f654 < '\0') {
+                    NetworkRequestStatusCounter = NetworkRequestStatusCounter + NetworkRequestStatus2;
+                    if (NetworkRequestStatusCounter != '\0' && ValidationStatusByte7 == NetworkRequestStatusCounter < '\0') {
                       out((short)param_2,LoopCounter1);
                       halt_baddata();
                     }
@@ -11793,7 +11793,7 @@ Label_18076802d:
   *(uint8_t **)((longlong)register0x00000020 + -8) = &Label_180768039;
   ProcessSystemOperation(UnsignedValue,pNetworkRequestStatus5,param_3,param_4);
 }
-    DAT_180c2e030 = '\x01';
+    SystemConfigurationStatusFlag = '\x01';
   }
   if (param_3 != (int *)0x0) {
     *param_3 = ((param_2 + 1) / 2) * 0x48d0;
@@ -11833,7 +11833,7 @@ uint64_t SystemDataInitialize(int initFlags)
   uint8_t unaff_XMM6 [16];
   uint8_t aBufferSize5 [16];
   ulonglong UnsignedSize;
-  pModuleInitializationResult4 = (longlong *)&DAT_180be5740;
+  pModuleInitializationResult4 = (longlong *)&ModuleInitializationResultPointer;
   LoopCounter8 = 0;
   do {
     UnsignedSize = 0;
@@ -11899,7 +11899,7 @@ uint64_t SystemDataInitialize(int initFlags)
   } while (LoopCounter8 < 5);
   pLoopCounter2 = (int *)0x180be5774;
   SecondaryColorProcessingPointer = (float *)0x180c2e040;
-  _DAT_180c2e978 = 0x180c2e040;
+  SystemConfigurationDataAddress = 0x180c2e040;
   param_1 = -param_1;
   LoopCounter8 = 2;
   LoopCounter7 = 0x100;
@@ -12181,7 +12181,7 @@ uint64_t SystemDataInitialize(int initFlags)
   }
   return 0;
 }
-      DAT_180c2e030 = '\x01';
+      SystemConfigurationStatusFlag = '\x01';
     }
     IntegerResult = ProcessNetworkOperation(*(uint64_t *)(unaff_RBX + 0x170),*(uint32_t *)(unaff_RBX + 0x110),0);
     if ((IntegerResult != 0) ||
@@ -12289,7 +12289,7 @@ Label_1807c2ec7:
 Label_1807c2a43:
   SystemSecurityCheck(*(ulonglong *)(unaff_RBP + 0x4ab0) ^ (ulonglong)&stack0x00000000);
 }
-      DAT_180c30370 = '\x01';
+      SystemProcessingStatusFlag = '\x01';
     }
     if (((in_stack_00000040._4_4_ != unaff_R15D) ||
         (IntegerResult = (**(code **)(**(longlong **)(unaff_RDI + 0x170) + 0x10))
@@ -12303,12 +12303,12 @@ Label_1807c2a43:
 FUN_1807c3d8b:
   SystemSecurityCheck(*(ulonglong *)(unaff_RBP + 0x218) ^ (ulonglong)&stack0x00000000);
 }
-      DAT_180c4f4e8 = 0;
-      _DAT_180c4f4ac = MemoryAddress;
-      ProcessSystemConfigurationData(&DAT_180c4f4f0);
+      SystemMemoryAllocationCounter = 0;
+      SystemMemoryAllocationAddress = MemoryAddress;
+      ProcessSystemConfigurationData(&SystemConfigurationDataProcessor);
     }
   }
-  return &DAT_180c4f4a0;
+  return &SystemConfigurationDataBuffer;
 }
 uint64_t SystemConfigureParameters(uint64_t *param_1,longlong param_2,char param_3,char param_4)
 {
@@ -12452,7 +12452,7 @@ HandleNetworkOperation(longlong param_1,longlong param_2,longlong *param_3,longl
   }
   return uVar6;
 }
-    DAT_180c4f818 = '\x01';
+    SystemProcessingEnabledFlag = '\x01';
   }
   return 0;
 }
@@ -12477,7 +12477,7 @@ uint64_t SystemInitializeAudio(void)
   if (NetworkRequestStatus == '\0') {
     return 0x809200ff;
   }
-  DAT_180c4f818 = 1;
+  SystemProcessingEnabledFlag = 1;
   return 0;
 }
 uint64_t SystemGetAudioError(void)
@@ -12489,7 +12489,7 @@ uint32_t SystemAudioConfigure(int param_1,int param_2,int param_3)
   int LoopCounter;
   uint32_t BufferSize;
   uint32_t aStackCounter5 [4];
-  if (DAT_180c4f818 == '\0') {
+  if (SystemProcessingEnabledFlag == '\0') {
     return 0x80920005;
   }
   if (((param_2 != 0) || (param_3 != 0)) || (3 < param_1 - 1U)) {
@@ -12524,7 +12524,7 @@ uint64_t SystemAudioCreateBuffer(uint32_t param_1,uint *param_2)
   uint16_t *pUnsignedSize;
   byte abStackX_18 [8];
   longlong lStackX_20;
-  if (DAT_180c4f818 == '\0') {
+  if (SystemProcessingEnabledFlag == '\0') {
     return 0x80920005;
   }
   if (param_2 == (uint *)0x0) {
@@ -12613,7 +12613,7 @@ int SystemAudioProcessData(uint32_t param_1,byte *param_2)
   char NetworkRequestStatus;
   int StringIndex;
   longlong LongIndex;
-  if (DAT_180c4f818 == '\0') {
+  if (SystemProcessingEnabledFlag == '\0') {
     return -0x7f6dfffb;
   }
   if (param_2 == (byte *)0x0) {
@@ -12704,7 +12704,7 @@ uint64_t SystemAudioGetDevice(void)
   func_0x0001808f6ce0();
   return 0x809200ff;
 }
-          DAT_180c58840 = CharValue;
+          SystemCharacterCounter = CharValue;
           *param_2 = IntegerCounter;
           *(int *)(LongValue + 0x10) = IntegerCounter;
           *(int *)(LongValue + 0x18) = IntegerCounter;
@@ -12716,12 +12716,12 @@ uint64_t SystemAudioGetDevice(void)
       return 0x8001002d;
     }
   }
-  CharValue = DAT_180c58840 + 1;
+  CharValue = SystemCharacterCounter + 1;
   if (CharValue == 0) {
-    CharValue = DAT_180c58840 + 2;
+    CharValue = SystemCharacterCounter + 2;
   }
   IntegerCounter = (uint)CharValue * 0x100 + IntegerCounter;
-  DAT_180c58840 = CharValue;
+  SystemCharacterCounter = CharValue;
   *param_2 = IntegerCounter;
   *pStringIndex = IntegerCounter;
   pStringIndex[2] = IntegerCounter;
@@ -12773,18 +12773,18 @@ uint SystemProcessTimer(longlong param_1,int param_2,int param_3,char param_4)
   }
   return MemoryAllocationResult;
 }
-  DAT_180c58854 = 1;
-  DAT_180c58853 = 1;
-  DAT_180c58855 = 1;
-  DAT_180c58850 = 1;
-  _DAT_180c698c0 = _beginthread(StartSystemThread,0,0);
-  if ((_DAT_180c698c0 != -1) &&
-     (_DAT_180c698c8 = _beginthread(InitializeSystemThread,0,0), _DAT_180c698c8 != -1)) {
+  SystemThreadStatusFlag1 = 1;
+  SystemThreadStatusFlag2 = 1;
+  SystemThreadStatusFlag3 = 1;
+  SystemThreadEnabledFlag = 1;
+  SystemThreadIdentifier = _beginthread(StartSystemThread,0,0);
+  if ((SystemThreadIdentifier != -1) &&
+     (SystemInitializationThreadIdentifier = _beginthread(InitializeSystemThread,0,0), SystemInitializationThreadIdentifier != -1)) {
     return 1;
   }
   return 0;
 }
-  DAT_180c69e20 = 1;
+  SystemInitializationCompleteFlag = 1;
   return;
 }
 uint32_t SystemProcessAudioData(byte param_1,byte *param_2,int param_3)
@@ -12836,23 +12836,23 @@ uint64_t SystemAudioGetFormat(uint64_t param_1,uint32_t *param_2)
   }
   return 0x8001002d;
 }
-      DAT_180bf0080 = '\0';
-      if (_DAT_180c69f88 == 0) {
+      SystemStringTerminator = '\0';
+      if (SystemModuleHandle == 0) {
         LongData = GetSystemData(&UNK_18098ab30);
         if (LongData != 0) {
           SystemStateValue = LoadLibraryExW(LongData,0,0);
         }
         LocalFree(LongData);
-        _DAT_180c69f88 = SystemStateValue;
+        SystemModuleHandle = SystemStateValue;
         if (SystemStateValue == 0) goto Label_1808fa963;
       }
-      if ((((_DAT_180c69f90 == (code *)0x0) &&
-           (_DAT_180c69f90 = (code *)GetProcAddress(_DAT_180c69f88,&UNK_18098aef8),
-           _DAT_180c69f90 == (code *)0x0)) ||
-          ((_DAT_180c69f98 == 0 &&
-           (_DAT_180c69f98 = GetProcAddress(_DAT_180c69f88,&UNK_18098af08), _DAT_180c69f98 == 0))))
+      if ((((SystemFunctionPointer1 == (code *)0x0) &&
+           (SystemFunctionPointer1 = (code *)GetProcAddress(SystemModuleHandle,&UNK_18098aef8),
+           SystemFunctionPointer1 == (code *)0x0)) ||
+          ((SystemFunctionPointer2 == 0 &&
+           (SystemFunctionPointer2 = GetProcAddress(SystemModuleHandle,&UNK_18098af08), SystemFunctionPointer2 == 0))))
          || ((_DAT_180c69fa8 == 0 &&
-             (_DAT_180c69fa8 = GetProcAddress(_DAT_180c69f88,&UNK_18098af18), _DAT_180c69fa8 == 0)))
+             (_DAT_180c69fa8 = GetProcAddress(SystemModuleHandle,&UNK_18098af18), _DAT_180c69fa8 == 0)))
          ) goto Label_1808fa963;
       if ((_DAT_180c69fd0 == 0) &&
          (_DAT_180c69fd0 = InitializeSystemData(&UNK_18098af28,0), _DAT_180c69fd0 != 0)) {
@@ -12874,10 +12874,10 @@ uint64_t SystemAudioGetFormat(uint64_t param_1,uint32_t *param_2)
       _guard_check_icall(_DAT_180c69fd8);
       IntegerCounter = (*pBooleanCheck)(&uStack_1d0,&uStack_198,0x27);
       if (IntegerCounter != 0x27) goto Label_1808fa963;
-      for (pMemoryAddress1 = auStack_1c0; pBooleanCheck = _DAT_180c69f90, MemoryAddress0 = *pMemoryAddress1, MemoryAddress0 != 0;
+      for (pMemoryAddress1 = auStack_1c0; pBooleanCheck = SystemFunctionPointer1, MemoryAddress0 = *pMemoryAddress1, MemoryAddress0 != 0;
           pMemoryAddress1 = pMemoryAddress1 + 1) {
         uStack_1d8 = 0;
-        _guard_check_icall(_DAT_180c69f90);
+        _guard_check_icall(SystemFunctionPointer1);
         pStackValidationLimit = &uStack_1d8;
         IntegerCounter = (*pBooleanCheck)(0xffffffff80000002,&UNK_18098af50,0,MemoryAddress0 | 0x20019);
         if (IntegerCounter == 0) {
