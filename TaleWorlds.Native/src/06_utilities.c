@@ -62105,7 +62105,16 @@ void Unwind_180907f00(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 
 
 
-void Unwind_180907f10(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 设置系统数据结构指针到偏移量0x90
+ * 
+ * 该函数负责将系统数据结构指针设置到验证上下文的指定偏移量位置
+ * 
+ * @param ObjectContext 对象上下文，包含对象相关的状态信息
+ * @param ValidationContext 验证上下文，包含验证所需的数据和参数
+ * @return 无返回值
+ */
+void SetSystemDataStructurePointerAtOffset90(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   *(uint8_t **)(ValidationContext + 0x90) = &SystemDataStructure;
@@ -80004,7 +80013,15 @@ void Unwind_18090d680(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090d6a0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 注册系统资源处理器类型1
+ * 
+ * 该函数负责注册系统资源处理器，用于处理系统级别的资源管理
+ * 
+ * @param ObjectContext 对象上下文，包含对象相关的状态信息
+ * @param ValidationContext 验证上下文，包含验证所需的数据和参数
+ */
+void RegisterSystemResourceHandlerType1(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   RegisterResourceHandler(*(int64_t *)(ValidationContext + 0x40) + 0xf20,0x20,0x1d,ReleaseSystemResource);
@@ -80013,7 +80030,13 @@ void Unwind_18090d6a0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090d6e0(void)
+/**
+ * @brief 销毁原地互斥体
+ * 
+ * 该函数负责销毁原地的互斥体对象，释放相关资源
+ * 
+ */
+void DestroyMutexInSitu(void)
 
 {
   _Mtx_destroy_in_situ();
@@ -80022,7 +80045,16 @@ void Unwind_18090d6e0(void)
 
 
 
-void Unwind_18090d700(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行资源上下文回调函数13B8
+ * 
+ * 该函数负责执行位于13B8偏移处的资源上下文回调函数
+ * 从验证上下文中获取资源上下文并执行相应的回调函数
+ * 
+ * @param ObjectContext 对象上下文，包含对象相关的状态信息
+ * @param ValidationContext 验证上下文，包含验证所需的数据和参数
+ */
+void ExecuteResourceContextCallbackAt13B8(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t *processPointer;
@@ -80036,7 +80068,16 @@ void Unwind_18090d700(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090d720(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行资源上下文回调函数13D0
+ * 
+ * 该函数负责执行位于13D0偏移处的资源上下文回调函数
+ * 从验证上下文中获取资源上下文并执行相应的回调函数
+ * 
+ * @param ObjectContext 对象上下文，包含对象相关的状态信息
+ * @param ValidationContext 验证上下文，包含验证所需的数据和参数
+ */
+void ExecuteResourceContextCallbackAt13D0(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t *processPointer;
@@ -80050,7 +80091,16 @@ void Unwind_18090d720(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090d740(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行资源上下文回调函数13E8
+ * 
+ * 该函数负责执行位于13E8偏移处的资源上下文回调函数
+ * 从验证上下文中获取资源上下文并执行相应的回调函数
+ * 
+ * @param ObjectContext 对象上下文，包含对象相关的状态信息
+ * @param ValidationContext 验证上下文，包含验证所需的数据和参数
+ */
+void ExecuteResourceContextCallbackAt13E8(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t *processPointer;
@@ -80064,7 +80114,16 @@ void Unwind_18090d740(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090d760(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行资源上下文回调函数1400
+ * 
+ * 该函数负责执行位于1400偏移处的资源上下文回调函数
+ * 从验证上下文中获取资源上下文并执行相应的回调函数
+ * 
+ * @param ObjectContext 对象上下文，包含对象相关的状态信息
+ * @param ValidationContext 验证上下文，包含验证所需的数据和参数
+ */
+void ExecuteResourceContextCallbackAt1400(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t *processPointer;
@@ -80078,7 +80137,16 @@ void Unwind_18090d760(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090d780(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行资源上下文回调函数1418
+ * 
+ * 该函数负责执行位于1418偏移处的资源上下文回调函数
+ * 从验证上下文中获取资源上下文并执行相应的回调函数
+ * 
+ * @param ObjectContext 对象上下文，包含对象相关的状态信息
+ * @param ValidationContext 验证上下文，包含验证所需的数据和参数
+ */
+void ExecuteResourceContextCallbackAt1418(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t *processPointer;
@@ -80092,7 +80160,16 @@ void Unwind_18090d780(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090d7a0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行资源上下文回调函数1430
+ * 
+ * 该函数负责执行位于1430偏移处的资源上下文回调函数
+ * 从验证上下文中获取资源上下文并执行相应的回调函数
+ * 
+ * @param ObjectContext 对象上下文，包含对象相关的状态信息
+ * @param ValidationContext 验证上下文，包含验证所需的数据和参数
+ */
+void ExecuteResourceContextCallbackAt1430(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t *processPointer;
