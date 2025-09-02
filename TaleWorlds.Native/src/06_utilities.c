@@ -35022,12 +35022,12 @@ void ProcessDirectoryHandleCleanup(uint8_t ObjectContext,int64_t ValidationConte
 void UnwindResourceCleanupHandler(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int *ResourceReferenceCountPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
   
-  ValidationResultAddress = *(uint8_t **)(*(int64_t *)(ValidationContext + SystemContextResourceOffset) + 0x8c8);
+  ResourceHashValidationResultAddress = *(uint8_t **)(*(int64_t *)(ValidationContext + SystemContextResourceOffset) + 0x8c8);
   if (ResourceHashValidationResultAddress == (uint8_t *)0x0) {
     return;
   }
@@ -35038,9 +35038,9 @@ void UnwindResourceCleanupHandler(uint8_t ObjectContext,int64_t ValidationContex
     if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
       *ResourceHashValidationResultAddress = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationResultAddress;
-      ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
-      *ResourceIndexPointer = *ResourceIndexPointer + -1;
-      if (*ResourceIndexPointer == 0) {
+      ResourceReferenceCountPointer = (int *)(ResourceIndex + 0x18);
+      *ResourceReferenceCountPointer = *ResourceReferenceCountPointer + -1;
+      if (*ResourceReferenceCountPointer == 0) {
         SystemCleanupHandler();
         return;
       }
@@ -35055,6 +35055,19 @@ void UnwindResourceCleanupHandler(uint8_t ObjectContext,int64_t ValidationContex
 
 
 
+/**
+ * @brief 释放流资源锁处理函数
+ * 
+ * 该函数负责处理流资源锁的释放操作
+ * 执行资源操作处理并传递清理参数
+ * 
+ * @param ObjectContext 对象上下文参数
+ * @param ValidationContext 验证上下文参数
+ * @param CleanupOption 清理选项参数
+ * @param CleanupFlag 清理标志参数
+ * @return 无返回值
+ * @note 此函数在流资源锁释放过程中被调用
+ */
 void ReleaseStreamResourceLock(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
@@ -35080,9 +35093,9 @@ void ReleaseStreamResourceLock(uint8_t ObjectContext,int64_t ValidationContext,u
 void UnwindContextResetHandler(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int64_t iterationCount;
+  int64_t ResourceContextHandle;
   
-  iterationCount = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
+  ResourceContextHandle = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
   *(uint8_t *)(SystemContextPointer + 0x918) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x920) != 0) {
           ExecuteSystemEmergencyExit();
@@ -35095,6 +35108,19 @@ void UnwindContextResetHandler(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
+/**
+ * @brief 处理文件流清理操作
+ * 
+ * 该函数负责处理文件流的清理操作
+ * 包括资源分配处理、系统状态重置和资源句柄释放
+ * 
+ * @param ObjectContext 对象上下文参数
+ * @param ValidationContext 验证上下文参数
+ * @param CleanupOption 清理选项参数
+ * @param CleanupFlag 清理标志参数
+ * @return 无返回值
+ * @note 此函数在文件流清理过程中被调用
+ */
 void HandleFileStreamCleanup(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
@@ -35111,6 +35137,19 @@ void HandleFileStreamCleanup(uint8_t ObjectContext,int64_t ValidationContext,uin
 
 
 
+/**
+ * @brief 处理内存流清理操作
+ * 
+ * 该函数负责处理内存流的清理操作
+ * 包括资源分配处理、系统状态重置和资源句柄释放
+ * 
+ * @param ObjectContext 对象上下文参数
+ * @param ValidationContext 验证上下文参数
+ * @param CleanupOption 清理选项参数
+ * @param CleanupFlag 清理标志参数
+ * @return 无返回值
+ * @note 此函数在内存流清理过程中被调用
+ */
 void HandleMemoryStreamCleanup(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
