@@ -56202,7 +56202,20 @@ void ProcessSecondaryResourceHashValidationAndCleanup(uint8_t ObjectContext, int
 
 
 
-void Unwind_180906dc0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 处理主资源哈希验证和清理
+ * 
+ * 该函数负责处理主资源的哈希验证和清理操作
+ * 在验证失败时执行必要的资源清理和恢复操作
+ * 
+ * @param ObjectContext 对象上下文，包含资源管理相关的状态信息
+ * @param ValidationContext 验证上下文，包含验证所需的数据和状态
+ * @return 无返回值
+ * @note 此函数用于主资源管理系统的完整性验证
+ * @warning 调用此函数前必须确保上下文参数有效
+ * @remark 原始函数名：Unwind_180906dc0
+ */
+void ProcessPrimaryResourceHashValidationAndCleanup(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int *ResourceIndexPointer;
