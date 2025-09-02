@@ -481,11 +481,11 @@ void CloseSystemHandle(void);
  * @warning 调用此函数后，线程资源将被完全释放
  */
 void CleanupThreadResources(void);
-uint32_t ThreadCleanupStatus;
-void* ThreadCleanupMainStorage;
-void* ThreadCleanupSecondaryStorage;
-void* ThreadCleanupResourceHandle;
-void* ThreadCleanupAuxiliaryStorage;
+uint32_t ThreadCleanupStatus;                // 线程清理状态
+void* ThreadCleanupMainStorage;              // 线程清理主存储
+void* ThreadCleanupSecondaryStorage;         // 线程清理次级存储
+void* ThreadCleanupResourceHandle;           // 线程清理资源句柄
+void* ThreadCleanupAuxiliaryStorage;         // 线程清理辅助存储
 
  /**
  * @brief 初始化资源管理器
