@@ -45509,8 +45509,8 @@ void ConfigureSystemResourceWithMutex(long long SystemResourcePointer,void* *Con
 
 
 
-// 函数: void FUN_1800686b0(long long SystemResourcePointer)
-void FUN_1800686b0(long long SystemResourcePointer)
+// 函数: void CleanupSystemResourceData(long long SystemResourcePointer)
+void CleanupSystemResourceData(long long SystemResourcePointer)
 
 {
   long long *PrimaryResourcePointer;
@@ -45573,8 +45573,8 @@ void FUN_1800686b0(long long SystemResourcePointer)
 
 
 
-// 函数: void FUN_1800687d0(long long SystemResourcePointer,void* *ConfigurationDataPointer)
-void FUN_1800687d0(long long SystemResourcePointer,void* *ConfigurationDataPointer)
+// 函数: void ConfigureSystemResourceWithLock(long long SystemResourcePointer,void* *ConfigurationDataPointer)
+void ConfigureSystemResourceWithLock(long long SystemResourcePointer,void* *ConfigurationDataPointer)
 
 {
   int systemStatus;
@@ -45965,7 +45965,7 @@ void* * FUN_180069070(void* *SystemResourcePointer)
 
 
 
-// 函数: void FUN_180069130(long long SystemResourcePointer,long long ConfigurationDataPointer)
+// 函数: void ConfigureSystemResourceCallbacks(long long SystemResourcePointer,long long ConfigurationDataPointer)
 void FUN_180069130(long long SystemResourcePointer,long long ConfigurationDataPointer)
 
 {
