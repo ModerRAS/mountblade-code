@@ -1076,37 +1076,37 @@ void* SystemDataBufferStandardSeptenvigesimal;
 void* SystemDataBufferStandardOctovigesimal;
 void* SystemDataBufferStandardNovemvigesimal;
 void* SystemDataBufferStandardTrigesimal;
-void* SystemDataBufferStandardExtraOne;
-void* SystemDataBufferStandardExtraTwo;
-void* SystemDataBufferStandardExtraThree;
-void* SystemDataBufferStandardExtraFour;
-void* SystemDataBufferStandardExtraFive;
-void* SystemDataBufferStandardExtraSix;
-void* SystemDataBufferStandardExtraSeven;
-void* SystemDataBufferStandardExtraEight;
-void* SystemDataBufferStandardExtraNine;
-void* SystemDataBufferStandardExtraTen;
-void* SystemDataBufferStandardExtraEleven;
-void* SystemDataBufferStandardExtraTwelve;
-void* SystemDataBufferStandardExtraThirteen;
-void* SystemDataBufferStandardExtraFourteen;
-void* SystemDataBufferStandardExtraFifteen;
-void* SystemDataBufferStandardExtraSixteen;
-void* SystemDataBufferStandardExtraSeventeen;
-void* SystemDataBufferStandardExtraEighteen;
-void* SystemDataBufferStandardExtraNineteen;
-void* SystemDataBufferStandardExtraTwenty;
-void* SystemDataBufferStandardExtraTwentyOne;
-void* SystemDataBufferStandardExtraTwentyTwo;
-void* SystemDataBufferStandardExtraTwentyThree;
-void* SystemDataBufferStandardExtraTwentyFour;
-void* SystemDataBufferStandardExtraTwentyFive;
-void* SystemDataBufferStandardExtraTwentySix;
-void* SystemDataBufferStandardExtraTwentySeven;
-void* SystemDataBufferStandardExtraTwentyEight;
-void* SystemDataBufferStandardExtraTwentyNine;
-void* SystemDataBufferStandardExtraThirty;
-void* SystemDataBufferStandardExtraThirtyOne;
+void* SystemDataBufferExtended1;
+void* SystemDataBufferExtended2;
+void* SystemDataBufferExtended3;
+void* SystemDataBufferExtended4;
+void* SystemDataBufferExtended5;
+void* SystemDataBufferExtended6;
+void* SystemDataBufferExtended7;
+void* SystemDataBufferExtended8;
+void* SystemDataBufferExtended9;
+void* SystemDataBufferExtended10;
+void* SystemDataBufferExtended11;
+void* SystemDataBufferExtended12;
+void* SystemDataBufferExtended13;
+void* SystemDataBufferExtended14;
+void* SystemDataBufferExtended15;
+void* SystemDataBufferExtended16;
+void* SystemDataBufferExtended17;
+void* SystemDataBufferExtended18;
+void* SystemDataBufferExtended19;
+void* SystemDataBufferExtended20;
+void* SystemDataBufferExtended21;
+void* SystemDataBufferExtended22;
+void* SystemDataBufferExtended23;
+void* SystemDataBufferExtended24;
+void* SystemDataBufferExtended25;
+void* SystemDataBufferExtended26;
+void* SystemDataBufferExtended27;
+void* SystemDataBufferExtended28;
+void* SystemDataBufferExtended29;
+void* SystemDataBufferExtended30;
+void* SystemDataBufferExtended31;
 void* SystemDataBufferStandardExtraThirtyTwo;
 void* SystemDataBufferStandardExtraThirtyThree;
 void* SystemDataBufferStandardExtraThirtyFour;
@@ -20054,7 +20054,7 @@ int InitializeSystemCoreComponents(long long SystemResourcePointer,long long Ini
   localDataPointer = (long long)(unsignedSystemValue8 - localBufferAddress) >> 8;
   if (localDataPointer == 0) {
     localDataPointer = 1;
-LAB_1800469fd:
+LocalDataPointerCheck:
     localSystemHandle = CreateSystemThreadObject(SystemMemoryAllocationTemplate,localDataPointer << 8,*(uint8_t *)(SystemResourcePointer + 0x20));
     unsignedSystemValue8 = *(ulong long *)(SystemResourcePointer + 0x10);
     localBufferAddress = *(long long *)(SystemResourcePointer + 8);
@@ -45044,7 +45044,17 @@ void ExecuteSystemResourceOperation(long long SystemResourcePointer,void* Config
 
 
 // 函数: void FUN_180067840(long long *SystemResourcePointer)
-void FUN_180067840(long long *SystemResourcePointer)
+/**
+ * @brief 处理系统资源内存分配和缓冲区管理
+ * 
+ * 该函数负责处理系统资源的内存分配操作，包括缓冲区管理、
+ * 内存模板配置和系统资源的状态更新
+ * 
+ * @param SystemResourcePointer 系统资源指针
+ * 
+ * 原始函数名为FUN_180067840，现已重命名为ProcessSystemResourceMemoryAllocation
+ */
+void ProcessSystemResourceMemoryAllocation(long long *SystemResourcePointer)
 
 {
   int *pointerToInteger1;
@@ -45169,7 +45179,17 @@ void FUN_180067840(long long *SystemResourcePointer)
 
 
 // 函数: void FUN_180067bc0(void* *SystemResourcePointer)
-void FUN_180067bc0(void* *SystemResourcePointer)
+/**
+ * @brief 系统资源清理和初始化函数
+ * 
+ * 该函数负责系统资源的清理操作，包括内存释放、
+ * 资源重置和状态初始化
+ * 
+ * @param SystemResourcePointer 系统资源指针
+ * 
+ * 原始函数名为FUN_180067bc0，现已重命名为CleanupAndInitializeSystemResource
+ */
+void CleanupAndInitializeSystemResource(void* *SystemResourcePointer)
 
 {
   uint8_t auStack_b8 [48];
