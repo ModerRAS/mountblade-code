@@ -27161,12 +27161,12 @@ void* SystemResourceAllocator(void* ResourceManagerPointer,void* ConfigurationDa
  * 该函数负责处理系统中的浮点数运算。
  * 这是浮点数处理系统的核心函数。
  * 
- * @param ResourceManagerPointer 系统资源指针
- * @param parameter2 浮点参数
- * @param parameter3 处理参数3
- * @param parameter4 处理参数4
+ * @param resourceManagerPointer 系统资源指针
+ * @param floatValue 浮点数值
+ * @param processingContext 处理上下文
+ * @param operationFlags 操作标志
  */
-void SystemFloatingPointProcessor(long long ResourceManagerPointer,float parameter2,void* parameter3,void* parameter4)
+void SystemFloatingPointProcessor(long long resourceManagerPointer,float floatValue,void* processingContext,void* operationFlags)
 
 {
   ulong long systemStatus;
