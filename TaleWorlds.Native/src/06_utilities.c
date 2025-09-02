@@ -114,6 +114,9 @@
 #define ResourceTableEntrySize 0x18
 #define ValidationContextCleanupOffset -8
 #define ResourceDataEntryOffset 4
+#define SystemContextFlagCheckOffset 0x2d8
+#define SystemFlagCheckBitMask 7
+#define SystemFlagCheckBitPosition 1
 
 // 对象上下文偏移量常量
 #define ObjectContextDataArrayOffset 0x10
@@ -3674,7 +3677,7 @@ void CheckSystemFlags(void)
   int64_t SystemContext;
   uint64_t FlagCheckValidationToken;
   
-  if ((*(uint *)(SystemContext + 0x2d8) >> 7 & 1) != 0) {
+  if ((*(uint *)(SystemContext + SystemContextFlagCheckOffset) >> SystemFlagCheckBitMask & SystemFlagCheckBitPosition) != 0) {
           TriggerSystemFlagHandler();
   }
   ReleaseFlagCheckResources(&ObjectResourceBuffer);
@@ -3919,7 +3922,7 @@ uint64_t ProcessSystemRequest(int64_t RequestParameters,int64_t SystemContext)
         ResourceTablePointer = ResourceTablePointer + 3;
         ResourceIndexPointer = (int64_t *)(uint64_t)((int)ResourceIndexPointer + 1);
       }
-      return 0x1c;
+      return ErrorInvalidObjectHandle;
     }
   }
   if (PackageValidationStatusCode == 0) {
