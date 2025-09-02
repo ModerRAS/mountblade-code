@@ -3008,14 +3008,14 @@ void InitializeNativeCoreCLR(uint64_t initFlags)
         }
         else if (systemMode == 0xb) {
           LoopCounterValue = strcmp(pMemoryAddress1,&SystemConfigModeString);
-          if (LoopCounterValue != 0) goto LAB_18004d668;
+          if (LoopCounterValue != 0) goto LabelLoopProcessingContinue;
           SystemOperationStatus = 1;
           SystemProcessStatus = 0;
           SystemModuleStatus = 1;
           SystemDataPointer = strstr(pMemoryAddress7,&SystemDebugModeString);
           if (SystemDataPointer != 0) {
             pMemoryAddress7 = &SystemReleaseModeString;
-            goto LAB_18004d511;
+            goto LabelStringProcessingExit;
           }
         }
         else {
@@ -3024,7 +3024,7 @@ void InitializeNativeCoreCLR(uint64_t initFlags)
             bVar31 = LoopCounterValue == 0;
           }
           else {
-LAB_18004d668:
+LabelLoopProcessingContinue:
             bVar31 = false;
           }
           if (bVar31) {
