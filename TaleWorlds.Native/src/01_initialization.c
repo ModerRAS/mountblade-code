@@ -9625,7 +9625,20 @@ void InitializeSystemInputNode(void)
 
 
 
-// 函数: void InitializeSystemPhysicsNode(void)
+/**
+ * @brief 初始化系统物理节点
+ * 
+ * 该函数负责初始化系统物理节点，创建物理处理所需的系统节点结构。
+ * 它会在系统数据表中查找或创建物理节点，并设置节点的标识符和回调函数。
+ * 物理节点用于管理物理模拟相关的资源和处理流程。
+ * 
+ * @return 无返回值
+ * 
+ * @note 该函数使用内存分配和节点比较操作来确保物理节点的正确初始化
+ * @note 节点标识符为 0x4c868a42644030f6 和 0xc29193aa9d9b35b9
+ * 
+ *FUN_1800593b0：InitializeSystemPhysicsNode
+ */
 void InitializeSystemPhysicsNode(void)
 
 {
@@ -9675,7 +9688,20 @@ void InitializeSystemPhysicsNode(void)
 
 
 
-// 函数: void InitializeSystemFileSystemNode(void)
+/**
+ * @brief 初始化系统文件系统节点
+ * 
+ * 该函数负责初始化系统文件系统节点，创建文件系统处理所需的系统节点结构。
+ * 它会在系统数据表中查找或创建文件系统节点，并设置节点的标识符和回调函数。
+ * 文件系统节点用于管理文件操作相关的资源和处理流程。
+ * 
+ * @return 无返回值
+ * 
+ * @note 该函数使用内存分配和节点比较操作来确保文件系统节点的正确初始化
+ * @note 节点标识符为 0x40ea3a798283cbbb 和 0x7f74eb2c5a7fadae
+ * 
+ *FUN_180059400：InitializeSystemFileSystemNode
+ */
 void InitializeSystemFileSystemNode(void)
 
 {
@@ -9725,7 +9751,20 @@ void InitializeSystemFileSystemNode(void)
 
 
 
-// 函数: void InitializeSystemDatabaseNode(void)
+/**
+ * @brief 初始化系统数据库节点
+ * 
+ * 该函数负责初始化系统数据库节点，创建数据库处理所需的系统节点结构。
+ * 它会在系统数据表中查找或创建数据库节点，并设置节点的标识符和回调函数。
+ * 数据库节点用于管理数据库操作相关的资源和处理流程。
+ * 
+ * @return 无返回值
+ * 
+ * @note 该函数使用内存分配和节点比较操作来确保数据库节点的正确初始化
+ * @note 节点标识符为 SYSTEM_EVENT_NODE_IDENTIFIER1 和 SYSTEM_EVENT_NODE_IDENTIFIER2
+ * 
+ *FUN_180059450：InitializeSystemDatabaseNode
+ */
 void InitializeSystemDatabaseNode(void)
 
 {
@@ -9834,17 +9873,21 @@ void InitializeSystemConfigurationManager(void)
 
 
 
-// 函数: void InitializeMemoryManagementSystem(void)
 /**
- * @brief 初始化系统事件配置管理器
+ * @brief 初始化系统配置管理器
  * 
- * 该函数负责初始化系统的事件配置管理组件，设置事件配置节点的基础结构。
- * 它会遍历系统事件配置节点树，进行内存比较，分配必要的内存，并设置事件配置节点属性。
- * 该函数还负责配置系统事件的回调函数和内存管理。
+ * 该函数负责初始化系统的配置管理组件，设置系统配置节点的基础结构。
+ * 它会遍历系统配置节点树，进行内存比较，分配必要的内存，并设置配置节点属性。
+ * 该函数还负责配置系统资源的初始化回调函数和内存管理。
  * 
- * @note 这是系统初始化过程中的重要组成部分，确保事件配置管理系统的正常运行
+ * @return 无返回值
+ * 
+ * @note 该函数使用内存分配和节点比较操作来确保配置节点的正确初始化
+ * @note 节点标识符为 SYSTEM_RESOURCE_NODE_IDENTIFIER1 和 SYSTEM_RESOURCE_NODE_IDENTIFIER2
+ * 
+ *FUN_1800594a0：InitializeSystemConfigurationManager
  */
-void InitializeSystemEventConfigurationManager(void)
+void InitializeSystemConfigurationManager(void)
 
 {
   char SystemNodeFlag;
