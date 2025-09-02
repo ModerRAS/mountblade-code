@@ -18624,7 +18624,7 @@ void InitializeSystemInfoAndUserEnvironment(void)
     GlobalDataFlags2 = 0;
     AlternateStringBuffer2 = (void* *)0x0;
     SystemInitializationFlag = 0;
-    StackPointerValue = (long long *)CONCAT44(StackPointerValue._4_4_,0x10);
+    SystemMemoryOffset = (long long *)CONCAT44(SystemMemoryOffset._4_4_,0x10);
     OperationResult = GetComputerNameA(ComputerNameBufferPointer,&MemoryBufferSize);
     if (OperationResult == 0) {
       LogSystemError(&SystemStringConstantComputerNameErrorF);
@@ -18634,7 +18634,7 @@ void InitializeSystemInfoAndUserEnvironment(void)
       *(uint8_t *)((long long)ComputerNameBufferPointer + ((ulong long)MemoryBufferSize & 0xffffffff)) = 0;
       (**(code **)(SystemGlobalDataReferencePtr + 0x10))(&SystemGlobalDataReferencePtr,ComputerNameBufferPointer);
     }
-    MemoryBufferSize = (long long *)CONCAT44(MemoryBufferSize._4_4_,0x101);
+    UserNameBufferSize = (long long *)CONCAT44(UserNameBufferSize._4_4_,0x101);
     OperationResult = GetUserNameA(UserNameBuffer,&MemoryBufferSize);
     if (OperationResult == 0) {
       LogSystemError(&SystemStringConstantUserNameErrorG);
@@ -19018,9 +19018,9 @@ uint32_t FinalSystemInitialization(void)
     if ((long long ***)*ppplStackX_10 != (long long ***)0x0) {
         SystemCleanupFunction();
     }
-    ppplStackX_10 = (long long ***)(pppplocalMemoryAddress + 0x4267c);
+    SystemResourceTriplePointer = (long long ***)(pppplocalMemoryAddress + 0x4267c);
     _Mtx_destroy_in_situ();
-    ppplStackX_10 = (long long ***)(pppplocalMemoryAddress + 0x40070);
+    SystemResourceTriplePointer2 = (long long ***)(pppplocalMemoryAddress + 0x40070);
     _Mtx_destroy_in_situ();
     ConfigureSystemBuffer(pppplocalMemoryAddress);
     if (allocationFlags != 0) {
@@ -19036,7 +19036,7 @@ uint32_t FinalSystemInitialization(void)
   }
   SystemAllocationFlagsTemplate = 0;
   *(uint32_t *)(SystemInitializationFlag + 0x2d) = 2;
-  pppplStackX_8 = pppPrimaryResourcePointer4;
+  SystemResourceQuadruplePointer = pppPrimaryResourcePointer4;
   if (pppPrimaryResourcePointer4 == (long long ****)0x0) {
     SystemInitializationFlag = (long long ****)0x0;
     WaitForSingleObject(SystemSemaphoreHandle,0xffffffff);
@@ -25358,12 +25358,12 @@ void ProcessSystemResourceAllocation(void* SystemResourceManager,long long Confi
   ulong long creationFlags9;
   uint allocationContext0;
   bool isSystemResourceMatch;
-  uint32_t extraout_XMM0_Da;
-  uint32_t extraout_XMM0_Da_00;
-  uint8_t arrayUnsigned368 [32];
-  uint8_t unsignedValue348;
-  char charValue338;
-  char charValue337;
+  uint32_t SystemRegisterValue2;
+  uint32_t SystemRegisterValue;
+  uint8_t SystemByteArray [32];
+  uint8_t SystemByteValue;
+  char SystemCharValue1;
+  char SystemCharValue2;
   char arrayChar336 [2];
   uint unsignedValue334;
   void* *pointerUnsigned330;
@@ -43426,7 +43426,7 @@ void ReleaseSystemResource(void* SystemResourceManager)
   void* *SystemDataPointer8;
   void* *SystemDataPointer9;
   uint32_t creationFlags0;
-  uint8_t arrayUnsigned368 [32];
+  uint8_t SystemByteArray [32];
   void* *punsignedValue348;
   void*2 auStack_338 [2];
   void*2 aunsignedValue334 [2];
