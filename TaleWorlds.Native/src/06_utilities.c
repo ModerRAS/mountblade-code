@@ -4943,24 +4943,24 @@ void ExecuteNullOperation(void)
 uint64_t HandleResourceProcessing(int64_t ResourceHandleIdentifier)
 
 {
-  uint8_t ResourceHash;
-  int64_t StackContextPointer;
+  uint8_t ContextValidationStatus;
+  int64_t ValidatedContextPointer;
   
-  ResourceHash = ValidateObjectContext(*(uint32_t *)(ResourceHandleIdentifier + 0x10),&StackContextPointer);
-  if ((int)ResourceHash != 0) {
-    return ResourceHash;
+  ContextValidationStatus = ValidateObjectContext(*(uint32_t *)(ResourceHandleIdentifier + 0x10),&ValidatedContextPointer);
+  if ((int)ContextValidationStatus != 0) {
+    return ContextValidationStatus;
   }
-  if (StackContextPointer == 0) {
-    StackContextPointer = 0;
+  if (ValidatedContextPointer == 0) {
+    ValidatedContextPointer = 0;
   }
   else {
-    StackContextPointer = StackContextPointer + -8;
+    ValidatedContextPointer = ValidatedContextPointer - 8;
   }
-  if (*(int64_t *)(StackContextPointer + 0x10) == 0) {
+  if (*(int64_t *)(ValidatedContextPointer + 0x10) == 0) {
     return 0x1c;
   }
                     // WARNING: Subroutine does not return
-  ExecuteSystemExitOperation(*(int64_t *)(StackContextPointer + 0x10),1);
+  ExecuteSystemExitOperation(*(int64_t *)(ValidatedContextPointer + 0x10),1);
 }
 
 
@@ -4977,22 +4977,22 @@ uint64_t HandleResourceProcessing(int64_t ResourceHandleIdentifier)
 uint32_t ProcessSystemResource(void)
 
 {
-  int64_t inputParameterValue;
-  int64_t IterationCounter;
-  int64_t localContextData;
+  int64_t InputParameterValue;
+  int64_t LoopCounter;
+  int64_t ContextPointer;
   
-  inputParameterValue = InputParameter;
-  if (inputParameterValue == 0) {
-    localContextData = 0;
+  InputParameterValue = InputParameter;
+  if (InputParameterValue == 0) {
+    ContextPointer = 0;
   }
   else {
-    localContextData = inputParameterValue - 8;
+    ContextPointer = InputParameterValue - 8;
   }
-  if (*(int64_t *)(localContextData + 0x10) == 0) {
+  if (*(int64_t *)(ContextPointer + 0x10) == 0) {
     return 0x1c;
   }
                     // WARNING: Subroutine does not return
-  ExecuteSystemExitOperation(*(int64_t *)(localContextData + 0x10),1);
+  ExecuteSystemExitOperation(*(int64_t *)(ContextPointer + 0x10),1);
 }
 
 
@@ -5046,23 +5046,23 @@ void ReturnNoOperation(void)
 uint64_t HandleResourceOperation(int64_t resourceHandle)
 
 {
-  uint8_t ResourceValidationHash;
-  int64_t ResourceContextTable;
-  int64_t StackValidationContext;
+  uint8_t ContextValidationStatus;
+  int64_t ResourceContextPointer;
+  int64_t ValidatedContextPointer;
   
-  ResourceValidationHash = ValidateObjectContext(*(uint32_t *)(resourceHandle + 0x10),&StackValidationContext);
-  if ((int)ResourceValidationHash != 0) {
-    return ResourceValidationHash;
+  ContextValidationStatus = ValidateObjectContext(*(uint32_t *)(resourceHandle + 0x10),&ValidatedContextPointer);
+  if ((int)ContextValidationStatus != 0) {
+    return ContextValidationStatus;
   }
-  ResourceContextTable = StackValidationContext + -8;
-  if (StackValidationContext == 0) {
-    ResourceContextTable = 0;
+  ResourceContextPointer = ValidatedContextPointer - 8;
+  if (ValidatedContextPointer == 0) {
+    ResourceContextPointer = 0;
   }
-  if (*(int64_t *)(ResourceContextTable + 0x10) == 0) {
+  if (*(int64_t *)(ResourceContextPointer + 0x10) == 0) {
     return 0x1c;
   }
                     // WARNING: Subroutine does not return
-  ExecuteSystemExitOperation(*(int64_t *)(ResourceContextTable + 0x10),1);
+  ExecuteSystemExitOperation(*(int64_t *)(ResourceContextPointer + 0x10),1);
 }
 
 
@@ -5080,9 +5080,9 @@ uint32_t ProcessResourceTask(void)
 
 {
   int64_t TaskInputParameter;
-  int64_t TaskIterationCounter;
+  int64_t TaskLoopCounter;
   
-  SystemContextPointer = InputParameter + -8;
+  SystemContextPointer = InputParameter - 8;
   if (InputParameter == 0) {
     SystemContextPointer = 0;
   }
