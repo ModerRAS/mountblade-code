@@ -44546,7 +44546,7 @@ SystemIndexCheckPoint:
         SystemCleanupFunction();
     }
     pSystemOperationFlag170 = (void* *)0x0;
-    uStack_160 = uStack_160 & MAX_UNSIGNED_32_BIT00000000;
+    SystemOperationStatus160 = SystemOperationStatus160 & MAX_UNSIGNED_32_BIT00000000;
     pCalculationFlags178 = &SystemMemoryAllocatorReference;
     pSystemConfigurationId = &SystemGlobalDataReference;
     if (pSystemResourceSize != (void* *)0x0) {
@@ -45365,6 +45365,7 @@ void ProcessSystemResourceMemoryAllocation(long long* SystemResourceManager)
   void* systemDataBuffer;
   void*2 UnsignedStackFlagB0;
   uint8_t SystemOperationType;
+  uint8_t SystemAllocationMode;
   uint8_t StackBuffer [64];
   void* SystemEncryptionKey;
   void* SystemOperationCounter;
@@ -45377,17 +45378,17 @@ void ProcessSystemResourceMemoryAllocation(long long* SystemResourceManager)
   if (SystemBufferAddress != 0) {
     currentThreadId = *(void* *)(ResourceDataOffset + 0x158);
     ResourceHash = *(void* *)(ResourceDataOffset + 0x1e0);
-    lStackX_8 = *(long long *)(ResourceDataOffset + 0x140);
+    SystemResourceIndex = *(long long *)(ResourceDataOffset + 0x140);
     ResourceDataOffset = *(long long *)(ResourceDataOffset + 0x1f0);
     if (SystemBufferAddress - 2U < 2) {
       pSystemMemoryAddress = (long long *)SystemMemoryAllocationFunction(SystemMemoryPoolTemplate,0x10,8,3);
       *pSystemMemoryAddress = (long long)&SystemMemoryPoolTemplate;
       *(bool *)(pSystemMemoryAddress + 1) = SystemBufferAddress == 3;
     }
-    (**(code **)(*pSystemMemoryAddress + 0x18))(pSystemMemoryAddress,StackBuffer,systemId + ResourceDataOffset,lStackX_8,ResourceHash,currentThreadId);
+    (**(code **)(*pSystemMemoryAddress + 0x18))(pSystemMemoryAddress,StackBuffer,systemId + ResourceDataOffset,SystemResourceIndex,ResourceHash,currentThreadId);
       SystemCleanupFunction(pSystemMemoryAddress);
   }
-  uStack_ae = 3;
+  SystemAllocationMode = 3;
   ResourceDataOffset = SystemResourceManager[1];
   systemDataBuffer = *(void* *)(ResourceDataOffset + 0x140);
   SystemResourceContextPointer = (long long)systemId + *(long long *)(ResourceDataOffset + 0x1f0);
@@ -46512,7 +46513,7 @@ void ConfigureSystemResourceAndProcessData(long long SystemResourceManager,long 
   long long ResourceDataOffset;
   uint8_t aSystemStackFlag [32];
   void* CalculationFlags178;
-  void* *puStack_168;
+  void* *SystemMemoryAllocatorPointer;
   uint8_t *SystemResourcePointer160;
   uint32_t SystemConfigurationId;
   uint8_t aSystemResourceSize [264];

@@ -15932,7 +15932,7 @@ uint8_t ProcessResourceTimeSynchronization(int64_t *ObjectContext,char Validatio
 uint8_t FindResourceHashTableEntry(int64_t *ObjectContext,char *ValidationContext,uint8_t *hashTableEntry)
 
 {
-  char *CharacterPointer;
+  char *SystemCharacterBufferPointer;
   uint8_t *ResourceHashValidationResult;
   byte ResourceFlag;
   uint8_t LoopCondition;
@@ -15940,9 +15940,9 @@ uint8_t FindResourceHashTableEntry(int64_t *ObjectContext,char *ValidationContex
   char ResourceDataValidationResult;
   int ValidationStatusCode;
   uint ResourceCount;
-  char *ResourceDataAddress;
+  char *ResourceDataBufferPointer;
   int PrimaryResourceIndex;
-  uint *ResourceHashPointer;
+  uint32_t *ResourceHashValuePointer;
   
   ResourceHashPointer = (uint *)*ObjectContext;
   if (((ResourceHashPointer != (uint *)0x0) && (ObjectContext[4] != 0)) && (ObjectContext[2] != 0)) {
@@ -36561,7 +36561,7 @@ void ReleaseResourceHandlerReference(uint8_t ObjectContext,int64_t ValidationCon
 
 {
   int32_t *ResourceTableIndexPointer;
-  char *StatusCharacter;
+  char *SystemStatusCharacter;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t *ContextPointer;
   int64_t MemoryRegion;
@@ -36941,7 +36941,7 @@ void CleanupResourceHandlesAndReleaseMemory(uint8_t ObjectContext, int64_t Valid
 
 {
   int32_t *ResourceTableIndexPointer;
-  char *StatusCharacter;
+  char *SystemStatusCharacter;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t *ContextPointer;
   int64_t MemoryRegion;
@@ -37137,7 +37137,7 @@ void ResetSystemContextAndHandlers(uint8_t ObjectContext, int64_t ValidationCont
 
 {
   int32_t *ResourceTableIndexPointer;
-  char *StatusCharacter;
+  char *SystemStatusCharacter;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t *ContextPointer;
   int64_t MemoryRegion;
@@ -45082,7 +45082,7 @@ void ReleaseValidationContextResourceHandle(uint8_t ObjectContext,int64_t Valida
 
 {
   int32_t *ResourceTableIndexPointer;
-  char *StatusCharacter;
+  char *SystemStatusCharacter;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t DataOffset;
   int64_t MemoryRegion;
@@ -45381,7 +45381,7 @@ void ReleaseResourceHandleAtResourceManagerOffset(uint8_t ObjectContext,int64_t 
 
 {
   int32_t *ResourceTableIndexPointer;
-  char *StatusCharacter;
+  char *SystemStatusCharacter;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t DataOffset;
   int64_t MemoryRegion;
@@ -45452,7 +45452,7 @@ void ReleaseResourceHandleAtExtendedResourceManagerOffset(uint8_t ObjectContext,
 
 {
   int32_t *ResourceTableIndexPointer;
-  char *StatusCharacter;
+  char *SystemStatusCharacter;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t DataOffset;
   int64_t MemoryRegion;
@@ -45523,7 +45523,7 @@ void ReleaseResourceHandleAtTertiaryResourceManagerOffset(uint8_t ObjectContext,
 
 {
   int32_t *ResourceTableIndexPointer;
-  char *StatusCharacter;
+  char *SystemStatusCharacter;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t DataOffset;
   int64_t MemoryRegion;
@@ -51310,7 +51310,7 @@ void UnwindSystemContextCleanup(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int32_t *ResourceTableIndexPointer;
-  char *StatusCharacter;
+  char *SystemStatusCharacter;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t *ContextPointer;
   int64_t MemoryRegion;
@@ -52463,7 +52463,7 @@ void ValidateResourceTableStatus(uint8_t ObjectContext, int64_t ValidationContex
 
 {
   int32_t *ResourceTableIndexPointer;
-  char *StatusCharacter;
+  char *SystemStatusCharacter;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t DataOffset;
   int64_t MemoryRegion;
@@ -52600,7 +52600,7 @@ void ReleaseResourceHandleAndValidateStatus(uint8_t ObjectContext, int64_t Valid
 
 {
   int32_t *ResourceTableIndexPointer;
-  char *StatusCharacter;
+  char *SystemStatusCharacter;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t *ContextPointer;
   int64_t MemoryRegion;
@@ -52772,7 +52772,7 @@ void ValidateResourceContextAndCleanup(uint8_t ObjectContext, int64_t Validation
 
 {
   int32_t *ResourceTableIndexPointer;
-  char *StatusCharacter;
+  char *SystemStatusCharacter;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t *ContextPointer;
   int64_t MemoryRegion;
@@ -52905,7 +52905,7 @@ void DestroyResourceTableSyncObjectsAndValidateStatus(uint8_t ObjectContext, int
 
 {
   int32_t *ResourceTableIndexPointer;
-  char *StatusCharacter;
+  char *SystemStatusCharacter;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t DataOffset;
   int64_t MemoryRegion;
@@ -53013,7 +53013,7 @@ void ValidateResourceTableOffsetStatus(uint8_t ObjectContext, int64_t Validation
 
 {
   int32_t *ResourceTableIndexPointer;
-  char *StatusCharacter;
+  char *SystemStatusCharacter;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t *ContextPointer;
   int64_t MemoryRegion;
