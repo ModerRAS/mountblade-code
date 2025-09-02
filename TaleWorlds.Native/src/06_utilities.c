@@ -58391,48 +58391,70 @@ void ExecuteResourceHandlerCallbackOffset18(uint8_t ObjectContext, int64_t Valid
 
 
 
-void Unwind_1809073b0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行双资源处理器回调函数
+ * @details 从资源表中获取两个资源上下文，并分别执行它们的回调函数
+ * @param ObjectContext 对象上下文标识符
+ * @param ValidationContext 验证上下文指针，包含资源表信息
+ * @remark 原始函数名：Unwind_1809073b0
+ */
+void ExecuteDualResourceHandlerCallbacks(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int64_t *processPointer;
-  int64_t ResourceTable;
+  int64_t resourceTable;
+  int64_t **resourceContext;
   
-  ResourceTable = *(int64_t *)(ValidationContext + 0x80);
-  ResourceContext = *(int64_t **)(ResourceTable + 0x18);
-  if (ResourceContext != (int64_t *)0x0) {
-    (**(code **)(*ResourceContext + 0x38))();
+  resourceTable = *(int64_t *)(ValidationContext + 0x80);
+  resourceContext = *(int64_t **)(resourceTable + 0x18);
+  if (resourceContext != (int64_t **)0x0) {
+    (**(code **)(*resourceContext + 0x38))();
   }
-  ResourceContext = *(int64_t **)(ResourceTable + 0x10);
-  if (ResourceContext != (int64_t *)0x0) {
-    (**(code **)(*ResourceContext + 0x38))();
-  }
-  return;
-}
-
-
-
-void Unwind_1809073c0(uint8_t ObjectContext,int64_t ValidationContext)
-
-{
-  int64_t *processPointer;
-  
-  ResourceContext = *(int64_t **)(*(int64_t *)(ValidationContext + 0x88) + 0x10);
-  if (ResourceContext != (int64_t *)0x0) {
-    (**(code **)(*ResourceContext + 0x38))();
+  resourceContext = *(int64_t **)(resourceTable + 0x10);
+  if (resourceContext != (int64_t **)0x0) {
+    (**(code **)(*resourceContext + 0x38))();
   }
   return;
 }
 
 
 
-void Unwind_1809073d0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行资源处理器回调函数 - 偏移量0x88+0x10
+ * @details 从验证上下文中获取资源上下文，并执行其回调函数
+ * @param ObjectContext 对象上下文标识符
+ * @param ValidationContext 验证上下文指针，包含资源状态信息
+ * @remark 原始函数名：Unwind_1809073c0
+ */
+void ExecuteResourceHandlerCallbackOffset8810(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
-  int64_t *processPointer;
+  int64_t **resourceContext;
   
-  ResourceContext = *(int64_t **)(*(int64_t *)(ValidationContext + 0x88) + 0x18);
-  if (ResourceContext != (int64_t *)0x0) {
-    (**(code **)(*ResourceContext + 0x38))();
+  resourceContext = *(int64_t **)(*(int64_t *)(ValidationContext + 0x88) + 0x10);
+  if (resourceContext != (int64_t **)0x0) {
+    (**(code **)(*resourceContext + 0x38))();
+  }
+  return;
+}
+
+
+
+/**
+ * @brief 执行资源处理器回调函数 - 偏移量0x88+0x18
+ * @details 从验证上下文中获取资源上下文，并执行其回调函数
+ * @param ObjectContext 对象上下文标识符
+ * @param ValidationContext 验证上下文指针，包含资源状态信息
+ * @remark 原始函数名：Unwind_1809073d0
+ */
+void ExecuteResourceHandlerCallbackOffset8818(uint8_t ObjectContext, int64_t ValidationContext)
+
+{
+  int64_t **resourceContext;
+  
+  resourceContext = *(int64_t **)(*(int64_t *)(ValidationContext + 0x88) + 0x18);
+  if (resourceContext != (int64_t **)0x0) {
+    (**(code **)(*resourceContext + 0x38))();
   }
   return;
 }
