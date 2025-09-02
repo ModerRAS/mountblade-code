@@ -12777,7 +12777,7 @@ uint64_t InitializeResourceTableStructure(int64_t ObjectContext)
   uint ValidationCounter;
   uint64_t ResourceHashValue;
   int PrimaryResourceIndex;
-  uint32_t *SecondaryResourceHashAddress;
+  uint32_t *SecondaryResourceHashPointer;
   int64_t *TertiaryResourceContext;
   int QuaternaryResourceIndex;
   int64_t SystemContextPointerBuffer;
