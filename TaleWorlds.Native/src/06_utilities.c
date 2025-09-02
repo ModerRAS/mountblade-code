@@ -50008,10 +50008,10 @@ void ExecuteResourceCleanupCallback(uint8_t ObjectContext,int64_t ValidationCont
 void ResetSystemContextPointer(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  if (**(int64_t **)(ValidationContext + 0x40) != 0) {
+  if (**(int64_t **)(ValidationContext + ValidationContextPrimaryDataOffset) != 0) {
           ExecuteSystemEmergencyExit();
   }
-  **(int64_t **)(ValidationContext + 0x40) = 0;
+  **(int64_t **)(ValidationContext + ValidationContextPrimaryDataOffset) = 0;
   return;
 }
 
@@ -50049,7 +50049,7 @@ void ValidateAndResetResourceContext(uint8_t ObjectContext,int64_t ValidationCon
   int64_t *processPointer;
   int64_t *ResourceContext;
   
-  ResourceContext = *(int64_t **)(*(int64_t *)(ValidationContext + SystemContextResourceOffset) + 0xd0);
+  ResourceContext = *(int64_t **)(*(int64_t *)(ValidationContext + SystemContextResourceOffset) + ResourceContextSecondaryOffset);
   if (ResourceContext != (int64_t *)0x0) {
     (**(code **)(*ResourceContext + 0x38))();
   }
@@ -50075,7 +50075,7 @@ void ExecuteResourceContextCallback(uint8_t ObjectContext, int64_t ValidationCon
 {
   int64_t *ResourceContext;
   
-  ResourceContext = *(int64_t **)(*(int64_t *)(ValidationContext + SystemContextResourceOffset) + 0xd8);
+  ResourceContext = *(int64_t **)(*(int64_t *)(ValidationContext + SystemContextResourceOffset) + ResourceContextTertiaryOffset);
   if (ResourceContext != (int64_t *)0x0) {
     (**(code **)(*ResourceContext + 0x38))();
   }
