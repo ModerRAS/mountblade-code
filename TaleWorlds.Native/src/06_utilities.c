@@ -53979,7 +53979,7 @@ void ExecuteResourceCleanupCallbackG(uint8_t ObjectContext,int64_t ValidationCon
 
 
 
-void Unwind_180906850(uint8_t ObjectContext,int64_t ValidationContext)
+void ValidateResourceOperation(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   if (*(int64_t *)(*(int64_t *)(ValidationContext + 0x50) + 0x1e8) != 0) {
@@ -53990,10 +53990,10 @@ void Unwind_180906850(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180906870(uint8_t ObjectContext,int64_t ValidationContext)
+void ExecuteResourceContextHandler(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int64_t *processPointer;
+  int64_t *ResourceContextPointer;
   
   ResourceContext = *(int64_t **)(*(int64_t *)(ValidationContext + 0x50) + 0x210);
   if (ResourceContext != (int64_t *)0x0) {
