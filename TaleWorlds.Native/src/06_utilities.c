@@ -5210,14 +5210,14 @@ uint64_t HandleResourceOperation(int64_t resourceHandle)
 {
   uint8_t ContextValidationStatus;
   int64_t ResourceContextPointer;
-  int64_t ValidatedContextPointer;
+  int64_t ValidatedResourcePointer;
   
-  ContextValidationStatus = ValidateObjectContext(*(uint32_t *)(resourceHandle + 0x10),&ValidatedContextPointer);
+  ContextValidationStatus = ValidateObjectContext(*(uint32_t *)(resourceHandle + 0x10),&ValidatedResourcePointer);
   if ((int)ContextValidationStatus != 0) {
     return ContextValidationStatus;
   }
-  ResourceContextPointer = ValidatedContextPointer - 8;
-  if (ValidatedContextPointer == 0) {
+  ResourceContextPointer = ValidatedResourcePointer - 8;
+  if (ValidatedResourcePointer == 0) {
     ResourceContextPointer = 0;
   }
   if (*(int64_t *)(ResourceContextPointer + ObjectContextOffset) == 0) {
@@ -5241,8 +5241,9 @@ uint32_t ProcessResourceTask(void)
 {
   int64_t SystemTaskContext;
   int64_t TaskIterationCounter;
+  int64_t SystemTaskContextPointer;
   
-  SystemContextPointer = SystemTaskContext - 8;
+  SystemTaskContextPointer = SystemTaskContext - 8;
   if (SystemTaskContext == 0) {
     SystemContextPointer = 0;
   }

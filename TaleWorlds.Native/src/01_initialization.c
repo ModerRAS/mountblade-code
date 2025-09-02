@@ -60312,24 +60312,34 @@ LAB_1800782e0:
 
 
 // 函数: void FUN_1800782a8(long long SystemResourceManager)
-void FUN_1800782a8(long long SystemResourceManager)
+/**
+ * @brief 处理系统资源状态和配置
+ * 
+ * 该函数负责处理系统资源的状态管理和配置操作，包括资源状态检查、
+ * 哈希值设置和资源参数配置。用于系统资源的动态管理。
+ * 
+ * @param SystemResourceManager 系统资源指针，指向需要管理的资源
+ * 
+ *FUN_1800782a8：ProcessSystemResourceStatusAndConfiguration
+ */
+void ProcessSystemResourceStatusAndConfiguration(long long SystemResourceManager)
 
 {
-  long long nextDataIndex;
-  uint32_t creationFlags;
-  uint32_t allocationContext;
-  uint32_t SystemResourceAddress;
-  char operationStatusFlag;
-  uint8_t SystemHashValue;
-  void** SystemCurrentNode;
-  uint SystemOperationCode;
-  long long MemoryBlockAddress;
+  long long resourceDataIndex;
+  uint32_t resourceCreationFlags;
+  uint32_t resourceAllocationContext;
+  uint32_t resourceAddress;
+  char systemStatusFlag;
+  uint8_t resourceHashValue;
+  void** systemCurrentNode;
+  uint systemOperationCode;
+  long long memoryBlockAddress;
   bool isSystemBusy;
-  float unaff_XMM8_Da;
+  float systemFloatValue;
   
   if (*(long long *)(SystemResourceManager + 0x1b8) == 0) {
-LAB_1800782d4:
-    isSystemBusy = (*(byte *)(MemoryBlockAddress + 0xfd) & 2) != 0;
+LAB_SystemStatusCheck:
+    isSystemBusy = (*(byte *)(memoryBlockAddress + 0xfd) & 2) != 0;
   }
   else {
     SystemOperationCode = *(uint *)(*(long long *)(SystemResourceManager + 0x1b8) + 0x138);
