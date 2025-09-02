@@ -16113,7 +16113,7 @@ uint8_t ProcessResourceValidationOperation(int64_t *resourceContext)
     }
     resourceHash = CalculateResourceHash(*objectContext,&ObjectStackBufferResource50,1,4,0);
   }
-Label_1808992a5:
+ResourceValidationComplete:
   if ((int)resourceHash == 0) {
     *SystemRegisterContext = StackRegisterStorage50;
     if (2 < StackRegisterStorage50) {
@@ -16294,7 +16294,7 @@ AudioProcessingStart:
       ValidationStatusCodePointer = (uint *)((int64_t)ValidationResultPointer + resourceTable);
     }
     if (SystemCommandArray[0] != 0) {
-Label_180899546:
+SystemCommandError:
       return 0x1c;
     }
     resourceHash = 0;
@@ -16330,7 +16330,7 @@ Label_180899546:
     }
     ResourceIndex = CalculateResourceHash(*objectContext,aSecurityValidationContext,1,4,0);
   }
-Label_18089962f:
+ResourceIndexCheckComplete:
   if (ResourceIndex == 0) {
     *validationContext = aSecurityValidationContext[0];
   }
