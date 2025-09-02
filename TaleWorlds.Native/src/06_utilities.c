@@ -2851,14 +2851,14 @@ uint8_t SystemGlobalMemoryPoolSize;         // 系统全局内存池大小
 uint8_t SystemResourceAllocator;           // 系统资源分配器
 char SystemMemoryConfigFlag;                // 系统内存配置标志
 uint8_t SystemMemoryConfigData;            // 系统内存配置数据
-uint8_t SystemResourceCacheSize;
-uint8_t SystemMemoryPoolBuffer;
+uint8_t SystemResourceCacheSize;           // 系统资源缓存大小
+uint8_t SystemMemoryPoolBuffer;           // 系统内存池缓冲区
 // 内存分配器 - 负责内存分配操作
-uint8_t SystemMemoryAllocator;
+uint8_t SystemMemoryAllocator;               // 系统内存分配器
 // 系统内存配置数据模板扩展变量
-uint8_t SystemMemoryConfigAdditional;      // 系统内存配置附加项
-uint8_t SystemMemoryConfigExtra;    // 系统内存配置扩展项
-uint8_t SystemMemoryConfigOptional;      // 系统内存配置可选项
+uint8_t SystemMemoryConfigAdditional;      // 系统内存配置附加数据
+uint8_t SystemMemoryConfigExtra;           // 系统内存配置扩展数据
+uint8_t SystemMemoryConfigOptional;       // 系统内存配置可选数据
 uint8_t SystemConfigurationTemplate;        // 系统配置模板
 uint8_t SystemConfigDataAdvanced;              // 系统配置高级项
 char SystemConfigStatusFlag;                // 系统配置状态标志
