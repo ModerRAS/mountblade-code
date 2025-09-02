@@ -11956,7 +11956,7 @@ uint64_t ProcessExtendedResourcePoolDataValidation(uint8_t extendedResourcePoolI
   int OperationCounter;
   int64_t SavedRegisterValue;
   uint8_t *ResourceRegisterPointer;
-  uint32_t *RegisterR15;
+  uint32_t *GeneralPurposeRegisterR15;
   uint8_t StackValidationByte;
   
   int ResourceCount = *(int *)(SystemSystemRegisterContext + SystemRegisterContextCountOffsetSecondary);
