@@ -112,6 +112,7 @@
 #define ChecksumSeedValueBPANS 0x42414e53
 #define ChecksumSeedValueSPRP 0x53505250
 #define ChecksumSeedValuePORP 0x504f5250
+#define SystemExitOperationParameter 1
 #define ChecksumSeedValueNLMT 0x4e4c4d54
 #define ChecksumSeedValueBNLMT 0x424e4c54
 #define ChecksumSeedValueNART 0x4e415254
@@ -4383,10 +4384,10 @@ uint32_t ValidateObjectHandleFromRegister(void)
   else {
     MemoryPointer = RegisterValue + -8;
   }
-  if (*(int64_t *)(MemoryPointer + 0x10) == 0) {
-    return 0x1c;
+  if (*(int64_t *)(MemoryPointer + ObjectContextValidationOffset) == 0) {
+    return ErrorInvalidObjectHandle;
   }
-        ExecuteSystemExitOperation(*(int64_t *)(MemoryPointer + 0x10), 1);
+        ExecuteSystemExitOperation(*(int64_t *)(MemoryPointer + ObjectContextValidationOffset), SystemExitOperationParameter);
 }
 
 
