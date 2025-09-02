@@ -121,10 +121,10 @@ uint32_t ModuleDependencyConfigurationFlags;
 uint32_t ModuleDependencyInitializationStatus;
 void* ModuleDependencyAccessLock;
 void* ModuleDependencySyncMutex;
-bool ModuleDependencyIsInitialized;
+bool ModuleDependencyInitializationComplete;
 void* ModuleDependencyExecutionContext;
 void* ModuleDependencySystemConfig;
-bool ModuleDependencyIsEnabled;
+bool ModuleDependencySystemEnabled;
 void* ModuleDependencyPersistentStorage;
 void* ModuleDependencyCacheStorage;
 void* ModuleDependencyRuntimeBuffer;
@@ -234,7 +234,7 @@ void* NetworkHandle;
  * @warning 状态标志值的含义取决于具体的系统实现
  */
 uint32_t GetCoreEngineSystemStatusFlag(void);
-bool CoreEngineIsInitialized;
+bool CoreEngineInitializationComplete;
 
 
 /**
@@ -248,7 +248,7 @@ bool CoreEngineIsInitialized;
  * @warning 状态标志值的含义取决于具体的渲染引擎实现
  */
 uint32_t GetRenderingEngineSystemStatusFlag(void);
-bool RenderingEngineIsInitialized;
+bool RenderingEngineInitializationComplete;
 
 
 /**
@@ -262,7 +262,7 @@ bool RenderingEngineIsInitialized;
  * @warning 状态标志值的含义取决于具体的图形系统实现
  */
 uint32_t GetGraphicsSystemStatusFlag(void);
-bool GraphicsIsInitialized;
+bool GraphicsSystemInitializationComplete;
 
  /**
  * @brief 获取音频系统状态标志
@@ -275,7 +275,7 @@ bool GraphicsIsInitialized;
  * @warning 状态标志值的含义取决于具体的音频系统实现
  */
 uint32_t GetAudioSystemStatusFlag(void);
-bool AudioIsInitialized;
+bool AudioSystemInitializationComplete;
 
 
 /**
@@ -3123,12 +3123,18 @@ uint8_t SystemFrameTimeCounter;
 uint8_t SystemMemoryUsageCounter;
 uint8_t SystemCpuUsageCounter;
 uint8_t SystemGpuUsageCounter;
-uint8_t SystemPerformanceCounterFrameRate;
-uint8_t SystemPerformanceCounterMemoryUsage;
-uint8_t SystemPerformanceCounterCpuUtilization;
-uint8_t SystemPerformanceCounterGpuUtilization;
-uint8_t SystemPerformanceCounterDiskUsage;
-uint8_t SystemPerformanceCounterNetworkUsage;
+// 性能计数器帧率 - 帧率统计
+uint8_t PerformanceCounterFrameRate;
+// 性能计数器内存使用 - 内存使用统计
+uint8_t PerformanceCounterMemoryUsage;
+// 性能计数器CPU利用率 - CPU使用率统计
+uint8_t PerformanceCounterCpuUtilization;
+// 性能计数器GPU利用率 - GPU使用率统计
+uint8_t PerformanceCounterGpuUtilization;
+// 性能计数器磁盘使用 - 磁盘使用统计
+uint8_t PerformanceCounterDiskUsage;
+// 性能计数器网络使用 - 网络使用统计
+uint8_t PerformanceCounterNetworkUsage;
 uint8_t SystemConfigResolutionWidth;
 uint8_t SystemConfigResolutionHeight;
 uint8_t SystemConfigurationParameterGraphicsQuality;
