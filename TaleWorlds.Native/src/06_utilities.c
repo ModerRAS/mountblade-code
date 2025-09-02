@@ -65960,7 +65960,19 @@ void ExecuteValidationContextCallback3(uint8_t ObjectContext,int64_t ValidationC
 
 
 
-void Unwind_180908c50(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行资源清理回调函数2
+ * 
+ * 该函数负责执行资源清理的回调函数，处理资源相关的异常情况
+ * 如果资源上下文中存在回调函数指针，则调用该回调函数
+ * 
+ * @param ObjectContext 对象上下文，包含对象相关的状态信息
+ * @param ValidationContext 验证上下文，用于验证操作的合法性
+ * @return 无返回值
+ * @note 此函数在资源清理过程中被调用
+ * @warning 原始函数名：Unwind_180908c50
+ */
+void ExecuteResourceCleanupCallback2(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t *processPointer;
@@ -65974,7 +65986,19 @@ void Unwind_180908c50(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180908c60(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 重置系统上下文状态
+ * 
+ * 该函数负责重置系统上下文的状态，清理资源处理器
+ * 执行系统资源的重置操作，确保系统状态的正确性
+ * 
+ * @param ObjectContext 对象上下文，包含对象相关的状态信息
+ * @param ValidationContext 验证上下文，用于验证操作的合法性
+ * @return 无返回值
+ * @note 此函数在系统重置过程中被调用
+ * @warning 原始函数名：Unwind_180908c60
+ */
+void ResetSystemContextState(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t loopCounter;
@@ -65992,7 +66016,19 @@ void Unwind_180908c60(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180908c70(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行资源清理回调函数3
+ * 
+ * 该函数负责执行资源清理的回调函数，处理资源相关的异常情况
+ * 如果资源上下文中存在回调函数指针，则调用该回调函数
+ * 
+ * @param ObjectContext 对象上下文，包含对象相关的状态信息
+ * @param ValidationContext 验证上下文，用于验证操作的合法性
+ * @return 无返回值
+ * @note 此函数在资源清理过程中被调用
+ * @warning 原始函数名：Unwind_180908c70
+ */
+void ExecuteResourceCleanupCallback3(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t *processPointer;

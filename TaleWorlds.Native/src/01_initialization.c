@@ -1301,6 +1301,16 @@ void* GetSystemInitializationFunction;
  * 
  *InitializeGameCoreSystem：InitializeGameCoreSystem
  */
+/**
+ * @brief 初始化游戏核心系统
+ * 
+ * 该函数负责初始化游戏的核心系统组件，包括系统数据表、内存池和线程池等
+ * 用于游戏启动时的系统初始化工作
+ * 
+ * @return 无返回值
+ * 
+ * 游戏核心系统初始化器
+ */
 void InitializeGameCoreSystem(void)
 {
   bool IsSystemNodeActive;
