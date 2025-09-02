@@ -8116,14 +8116,14 @@ uint8_t ValidateMatrixTransformationData(int64_t matrixDataPointer,int64_t Conte
   float MatrixElementWComponent = *(float *)(ObjectContext + ObjectContextMatrixWComponentOffset);
   ResourceValidationData[0] = CombineFloatAndInt(ResourceValidationData[0].VectorComponent,MatrixElementXCoordinate);
   MatrixRow2InfinityCheck = MatrixRow1InfinityCheck;
-  if (((uint)matrixElementXCoordinate & FloatInfinityMask) == FloatInfinityMask) {
+  if (((uint)MatrixElementXCoordinate & FloatInfinityMask) == FloatInfinityMask) {
     MatrixRow2InfinityCheck = 0x1d;
   }
   MatrixRow3InfinityCheck = MatrixRow1InfinityCheck;
   if ((SecurityValidationContext & FloatInfinityMask) == FloatInfinityMask) {
     MatrixRow3InfinityCheck = 0x1d;
   }
-  if (((uint)matrixElementWComponent & FloatInfinityMask) == FloatInfinityMask) {
+  if (((uint)MatrixElementWComponent & FloatInfinityMask) == FloatInfinityMask) {
     MatrixRow1InfinityCheck = 0x1d;
   }
   if ((MatrixRow2InfinityCheck == 0 && MatrixRow3InfinityCheck == 0) && MatrixRow1InfinityCheck == 0) {
