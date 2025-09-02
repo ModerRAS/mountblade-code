@@ -11719,22 +11719,22 @@ uint64_t ProcessExtendedResourcePoolDataValidation(uint8_t extendedResourcePoolI
   if (ResourceCount == -1) {
     stackValidationByte = *resourceRegisterPointer;
     ResourceCount = *(int *)(SystemSystemRegisterContext + 0x18);
-    int capacityIndex = ResourceCount + 1;
-    int contextPackageValidationStatusCode = (int)*(uint *)(SystemSystemRegisterContext + 0x1c) >> 0x1f;
-    int resourceIndex = (*(uint *)(SystemSystemRegisterContext + 0x1c) ^ contextPackageValidationStatusCode) - contextPackageValidationStatusCode;
-    if (resourceIndex < capacityIndex) {
-      int expandedCapacity = (int)((float)resourceIndex * 1.5);
-      resourceIndex = capacityIndex;
-      if (capacityIndex <= expandedCapacity) {
-        resourceIndex = expandedCapacity;
+    int CapacityIndex = ResourceCount + 1;
+    int ContextPackageValidationStatusCode = (int)*(uint *)(SystemSystemRegisterContext + 0x1c) >> 0x1f;
+    int ResourceIndex = (*(uint *)(SystemSystemRegisterContext + 0x1c) ^ ContextPackageValidationStatusCode) - ContextPackageValidationStatusCode;
+    if (ResourceIndex < CapacityIndex) {
+      int ExpandedCapacity = (int)((float)ResourceIndex * 1.5);
+      ResourceIndex = CapacityIndex;
+      if (CapacityIndex <= ExpandedCapacity) {
+        ResourceIndex = ExpandedCapacity;
       }
-      if (resourceIndex < 4) {
-        expandedCapacity = 4;
+      if (ResourceIndex < 4) {
+        ExpandedCapacity = 4;
       }
-      else if (expandedCapacity < capacityIndex) {
-        expandedCapacity = capacityIndex;
+      else if (ExpandedCapacity < CapacityIndex) {
+        ExpandedCapacity = CapacityIndex;
       }
-      hashValidationResult = ResourcePoolOperation(SystemSystemRegisterContext + 0x10, expandedCapacity);
+      hashValidationResult = ResourcePoolOperation(SystemSystemRegisterContext + 0x10, ExpandedCapacity);
       if ((int)hashValidationResult != 0) {
         return hashValidationResult;
       }
@@ -14475,11 +14475,11 @@ void ExecuteSecurityEncryptionValidation(int64_t *ObjectContext,int64_t Validati
   uint64_t EncryptedValue;
   
   EncryptedValue = SecurityEncryptionKey ^ (uint64_t)SecurityEncryptionBuffer;
-  int resultCounter = 0;
-  int loopIndex = 0;
+  int ResultCounter = 0;
+  int LoopIndex = 0;
   do {
-    if ((loopIndex < 0) || (*(int *)(ValidationContext + 0x1a8) <= loopIndex)) goto LoopExit;
-    loopCounter = *(int64_t *)(*(int64_t *)(ValidationContext + 0x1a0) + (int64_t)loopIndex * 8);
+    if ((LoopIndex < 0) || (*(int *)(ValidationContext + 0x1a8) <= LoopIndex)) goto LoopExit;
+    LoopCounter = *(int64_t *)(*(int64_t *)(ValidationContext + 0x1a0) + (int64_t)LoopIndex * 8);
     if (**(int **)(SystemContextPointer + 0xd0) != 0) {
       DataChecksumBuffer8[0] = 0;
       int ValidationResult = ValidateBufferContext(*(int **)(SystemContextPointer + 0xd0),DataChecksumBuffer8);

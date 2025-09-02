@@ -43479,7 +43479,7 @@ void ReleaseSystemResource(void* ResourceManagerPointer)
   uStack_318 = 0;
   lStack_328 = 0;
   iStack_320 = 0;
-  FUN_180052020(creationFlags0,&pStackValue200);
+  InitializeCreationFlags(creationFlags0,&pStackValue200);
   if ((SystemCleanupHandler == (long long *)0x0) ||
      (cVar7 = (**(code **)(*SystemCleanupHandler + 0x28))(), cVar7 == '\0')) {
     pointerToUnsigned16 = &SystemUnsigned16Data1;
@@ -43623,7 +43623,7 @@ void ReleaseSystemResource(void* ResourceManagerPointer)
   EncryptionBufferD8[0] = 0;
   uStack_e0 = 9;
   strcpy_s(EncryptionBufferD8,0x10,&SystemStringTemplate1);
-  FUN_180064c00(&puStack_160,&pStackValue200,&puStack_f0);
+  ProcessSystemResourceTemplate(&puStack_160,&pStackValue200,&puStack_f0);
   pointerToUnsigned18 = puStack_158;
   pointerToUnsigned19 = puStack_160;
   if (1 < (ulong long)((long long)puStack_158 - (long long)puStack_160 >> 5)) {
@@ -43632,7 +43632,7 @@ void ReleaseSystemResource(void* ResourceManagerPointer)
     auStack_100[0] = 0;
     uStack_108 = 1;
     strcpy_s(auStack_100,0x10,&SystemStringConstantG);
-    FUN_180064c00(&SystemStringTemplatePtr2,pointerToUnsigned19 + 4,&puStack_118);
+    ProcessSystemResourceTemplate(&SystemStringTemplatePtr2,pointerToUnsigned19 + 4,&puStack_118);
     puStack_118 = &SystemMemoryAllocatorReference;
   }
   puStack_f0 = &SystemMemoryAllocatorReference;
@@ -43664,7 +43664,7 @@ void ReleaseSystemResource(void* ResourceManagerPointer)
     uStack_248 = 3;
     auStack_338[0] = 10;
     if (lStack_238 != 0) {
-      FUN_180057980(&puStack_240,&puStack_260,auStack_338);
+      ProcessSystemMemoryBuffer(&puStack_240,&puStack_260,auStack_338);
     }
     systemStatus2 = (long long)puStack_258 - (long long)puStack_260 >> 5;
     pointerToUnsigned19 = puStack_260;
@@ -43679,7 +43679,7 @@ void ReleaseSystemResource(void* ResourceManagerPointer)
         uStack_128 = 3;
         auStack_334[0] = 0x23;
         if (pointerToUnsigned19[1] != 0) {
-          FUN_180057980(pointerToUnsigned19,&puStack_140,auStack_334);
+          ProcessSystemMemoryBuffer(pointerToUnsigned19,&puStack_140,auStack_334);
         }
         pcurrentThreadId = systemMemoryContext;
         pointerToUnsigned17 = puStack_140;
@@ -44015,7 +44015,7 @@ void InitializeSystemResourceObject(void* ResourceManagerPointer,long long Confi
     uStack_70 = 0;
     puStack_88 = &SystemMemoryAllocatorReference;
   }
-  FUN_18062c470(&puStack_a8);
+  CleanupSystemMemoryBuffer(&puStack_a8);
   puStack_a8 = &SystemGlobalDataReference;
   if (lStack_a0 != 0) {
       SystemCleanupFunction();
@@ -44179,7 +44179,7 @@ void ProcessSystemResourceConfiguration(void* ResourceManagerPointer,void* Confi
   systemIndex = 0;
   if (initializationStatusFlag != '\0') {
     ProcessSystemQueue(&GameControllerBuffer,&SystemStringBuffer);
-    FUN_180065f00(&GameControllerBuffer,0);
+    InitializeGameController(&GameControllerBuffer,0);
     GameControllerBuffer = &SystemGlobalDataReference;
     if (lStack_1b0 != 0) {
         SystemCleanupFunction();
@@ -51474,26 +51474,36 @@ LAB_180070230:
 
 
 
-// 函数: void FUN_180070680(void* ResourceManagerPointer,void* ConfigurationDataPointer)
-void FUN_180070680(void* ResourceManagerPointer,void* ConfigurationDataPointer)
+/**
+ * @brief 初始化资源管理器配置
+ * 
+ * 该函数负责初始化资源管理器的配置参数，设置系统资源管理的相关属性
+ * 用于系统资源管理的前期准备工作
+ * 
+ * @param ResourceManagerPointer 资源管理器指针
+ * @param ConfigurationDataPointer 配置数据指针
+ * 
+ * 原始函数名为FUN_180070680，现已重命名为InitializeResourceManagerConfiguration
+ */
+void InitializeResourceManagerConfiguration(void* ResourceManagerPointer,void* ConfigurationDataPointer)
 
 {
-  bool bVar1;
+  bool isDebuggerPresent;
   char validationStatusFlag;
-  int MemoryComparisonResult;
+  int memoryComparisonResult;
   int systemIndex;
-  long long SystemTimeValue;
+  long long systemTimeValue;
   void* *resourceEntryPointer;
   void* unsignedSystemValue7;
   void* *newThreadLocalStorage;
   bool isSystemBusy;
-  void* *puStack_70;
-  void* *pEncryptionValue68;
-  uint32_t uStack_60;
-  void* uStack_58;
+  void* *systemStackPointer70;
+  void* *encryptionValuePointer68;
+  uint32_t systemStackValue60;
+  void* systemStackValue58;
   void* *memoryAllocationEnd;
-  long long lStack_48;
-  uint32_t uStack_38;
+  long long systemStackValue48;
+  uint32_t systemStackValue38;
   
   systemCounter = WaitForSingleObject(SystemSemaphoreHandle,0);
   if (systemCounter != 0) {
