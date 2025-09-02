@@ -4178,20 +4178,24 @@ void InitializeSystemResources(void)
 
 /**
  * @brief 验证对象句柄有效性
- * @param ObjectHandleToValidate 对象句柄
- * @return 返回验证结果，0表示成功，非0表示错误代码
  * 
  * 该函数验证对象句柄的有效性，并执行相应的资源管理操作
+ * 包括上下文验证、内存缓冲区检查和系统退出操作
+ * 
+ * @param ObjectHandleToValidate 对象句柄，用于标识要验证的对象
+ * @return uint8_t 返回验证结果，0表示成功，非0表示错误代码
+ * @note 此函数在对象操作前调用，确保对象句柄的有效性
+ * @warning 验证失败时会触发系统退出操作
  */
 uint8_t ValidateObjectHandle(int64_t ObjectHandleToValidate)
 
 {
-  uint8_t HashValidationResult;
+  uint8_t ContextValidationResult;
   int64_t HandleMemoryBuffer;
   
-  HashValidationResult = ValidateObjectContext(*(uint32_t *)(ObjectContextPointer + 0x10), &HandleMemoryBuffer);
-  if ((int)HashValidationResult != 0) {
-    return HashValidationResult;
+  ContextValidationResult = ValidateObjectContext(*(uint32_t *)(ObjectContextPointer + 0x10), &HandleMemoryBuffer);
+  if ((int)ContextValidationResult != 0) {
+    return ContextValidationResult;
   }
   if (HandleMemoryBuffer == 0) {
     HandleMemoryBuffer = 0;
@@ -4200,7 +4204,7 @@ uint8_t ValidateObjectHandle(int64_t ObjectHandleToValidate)
     HandleMemoryBuffer = HandleMemoryBuffer + -8;
   }
   if (*(int64_t *)(HandleMemoryBuffer + 0x10) == 0) {
-    return 0x1c;
+    return ErrorInvalidObjectHandle;
   }
                     // WARNING: Subroutine does not return
   ExecuteSystemExitOperation(*(int64_t *)(HandleMemoryBuffer + 0x10), 1);
