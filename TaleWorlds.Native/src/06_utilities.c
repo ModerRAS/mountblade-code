@@ -5571,9 +5571,9 @@ uint64_t HandleResourceProcessing(int64_t ResourceHandleIdentifier)
 uint32_t ProcessSystemResource(void)
 
 {
-  int64_t InputParameterValue;
-  int64_t LoopCounter;
-  int64_t SystemContextPointer;
+  int64_t ValidatedSystemContext;
+  int64_t ProcessingCounter;
+  int64_t SystemContextHandle;
   
   InputParameterValue = InputParameter;
   if (InputParameterValue == 0) {
