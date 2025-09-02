@@ -148,6 +148,70 @@
 
 // 新增的偏移量常量
 #define ObjectContextValidationDataOffset 0x14
+#define SystemObjectContextSize 0x1000
+#define SystemDataStructureSize 0x1000
+#define NullPointerValue 0x0
+#define BufferDataOffset 0x10
+#define ResourceStatusFlagsOffset 0x34
+#define ResourceStatusActiveMask 0x11
+#define ResourceMinRangeOffset 0x38
+#define ResourceMaxRangeOffset 0x3c
+#define ObjectContextProcessingDataOffset 0x20
+#define SystemResourceManagerOffset 0x98
+#define ResourceAllocationErrorCode 0xe9
+#define ExtendedDataOffset 0x30
+#define ObjectContextMatrixFlagsOffset 0x28
+#define ObjectContextMatrixRotationDataOffset 0x2c
+#define SystemManagerContextOffset 0x1a0
+#define ObjectDataSizeOffset 0x20
+#define ObjectContextMatrixXCoordinateOffset 0x24
+#define ValidationContextPrimaryDataOffset 0x10
+#define SystemContextSecondaryDataOffset 0x18
+#define QueueContextHeadOffset 0x20
+#define QueueContextTailOffset 0x28
+#define QueueContextSizeOffset 0x2c
+#define QueueContextIteratorOffset 0x50
+#define QueueNodeSize 0x18
+#define RegistrationHandleMemoryOffset 0x50
+#define SchedulerContextOffset 0x98
+#define PropertyBufferCounterOffset 0x28
+#define PropertyBufferCapacityOffset 0x2c
+#define PropertyBufferSizeOffset 0x30
+#define PropertyBufferStatusOffset 0x34
+#define PropertyBufferActiveOffset 0x2c
+#define BufferContextSizeOffset 0x28
+#define BufferContextDataOffset 0x20
+#define MemoryAllocationErrorCode 0xf4
+#define BufferExpansionErrorCode 0x100
+#define ResourceReleaseErrorCode 0x100
+#define ResourceContextDataOffset 0x20
+#define ResourceContextCapacityOffset 0x2c
+#define ResourceContextSizeOffset 0x28
+#define SystemContextPointerOffset 0x18
+#define SystemContextFlagsOffset 0x200
+#define MemoryAllocationSize 0x30
+#define SystemContextCodeOffset 800
+#define SystemContextCodeFunctionOffset 0x2f0
+#define MemoryAllocationHeaderSize 0x58
+#define MemoryAllocationTrailerSize 0x60
+#define ObjectPropertyDataOffset 0x88
+#define ObjectContextMatrixTranslationOffset 0x38
+#define ObjectContextMatrixScaleOffset 0x40
+#define ObjectContextRangeDataOffset 0x48
+#define ObjectContextStatusDataOffset 0x4c
+#define MatrixContextDataOffset 0x38
+#define MatrixContextTypeOffset 0x40
+#define MatrixContextRotationOffset 0x48
+#define MatrixContextScaleOffset 0x4c
+#define MatrixContextTranslationOffset 0x50
+#define MatrixContextElementOffset 0x58
+#define SystemOperationContextOffset 0x1e0
+#define StackBufferDataOffset 0x10
+#define FloatValidationExceptionCode 0x4a
+#define ValidationContextDataOffset 0x10
+#define RangeDataFlagsOffset 0x34
+#define RangeDataMinOffset 0x38
+#define RangeDataMaxOffset 0x3c
 #define SystemDataContextFloatValueOffset 0x20
 #define SystemDataContextConfigFlagOffset 0x34
 #define SystemDataContextConfigStatusOffset 0x35
@@ -332,6 +396,20 @@
 #define ResourceEntryMultiplier 8
 #define ResourceTableHeaderSize 0xc
 #define ResourceValidationFlags 0x34
+
+// 验证上下文相关偏移量常量
+#define ValidationContextMutexDestroyOffset 0x2e0
+#define ValidationContextCallbackPointerOffset 0x250
+#define ValidationContextCallbackFunctionOffset 0x38
+#define ResourceHashValidationResultOffset 0xb
+
+// 系统数据指针相关常量
+#define SystemDataHashPointerPrimary 0x001
+#define SystemDataHashPointerSecondary 0x002
+#define SystemDataHashPointerTertiary 0x003
+#define SystemDataValidationPointerPrimary 0x001
+#define SystemDataValidationPointerSecondary 0x002
+#define SystemDataValidationPointerTertiary 0x003
 
 /**
  * @brief 初始化模块依赖关系
@@ -8000,7 +8078,7 @@ uint8_t ProcessBufferedFloatComparison(void)
   float MaxRangeValue;
   
   // 从缓冲区获取资源数据指针
-  ResourceDataAddress = *(int64_t *)(BufferContext + 0x10);
+  ResourceDataAddress = *(int64_t *)(BufferContext + BufferDataOffset);
   if (ResourceDataAddress == 0) {
     return 0x1e; // ErrorInvalidResourceData
   }
@@ -46425,31 +46503,55 @@ void CloseFileAndDecrementReferenceCounter(uint8_t ObjectContext,int64_t Validat
 
 
 
-void ResetSystemResourceHandlerAtOffset0x168(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 重置系统资源处理器在次要偏移量处
+ * 
+ * 该函数负责重置系统资源处理器的次要配置
+ * 清理并重新初始化系统资源处理器的状态
+ * 
+ * @param ObjectContext 对象上下文，包含对象的配置信息
+ * @param ValidationContext 验证上下文，用于验证操作的合法性
+ * @return 无返回值
+ * @note 此函数会重置系统资源处理器的次要配置
+ * @warning 如果系统资源处理器状态异常，将触发系统紧急退出
+ */
+void ResetSystemResourceHandlerAtSecondaryOffset(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
-  *(uint8_t *)(ValidationContext + 0x168) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(ValidationContext + 0x170) != 0) {
+  *(uint8_t *)(ValidationContext + SystemResourceHandlerSecondaryOffset) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(ValidationContext + SystemResourceHandlerSecondaryStatusOffset) != 0) {
           ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(ValidationContext + 0x170) = 0;
-  *(uint32_t *)(ValidationContext + 0x180) = 0;
-  *(uint8_t *)(ValidationContext + 0x168) = &SystemDataStructure;
+  *(uint8_t *)(ValidationContext + SystemResourceHandlerSecondaryStatusOffset) = 0;
+  *(uint32_t *)(ValidationContext + SystemResourceHandlerSecondaryDataOffset) = 0;
+  *(uint8_t *)(ValidationContext + SystemResourceHandlerSecondaryOffset) = &SystemDataStructure;
   return;
 }
 
 
 
-void ResetSystemResourceHandlerAtOffset0x1a8(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 重置系统资源处理器在第三偏移量处
+ * 
+ * 该函数负责重置系统资源处理器的第三配置
+ * 清理并重新初始化系统资源处理器的状态
+ * 
+ * @param ObjectContext 对象上下文，包含对象的配置信息
+ * @param ValidationContext 验证上下文，用于验证操作的合法性
+ * @return 无返回值
+ * @note 此函数会重置系统资源处理器的第三配置
+ * @warning 如果系统资源处理器状态异常，将触发系统紧急退出
+ */
+void ResetSystemResourceHandlerAtTertiaryOffset(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
-  *(uint8_t *)(ValidationContext + 0x1a8) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(ValidationContext + 0x1b0) != 0) {
+  *(uint8_t *)(ValidationContext + SystemResourceHandlerTertiaryOffset) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(ValidationContext + SystemResourceHandlerTertiaryStatusOffset) != 0) {
           ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(ValidationContext + 0x1b0) = 0;
-  *(uint32_t *)(ValidationContext + 0x1c0) = 0;
-  *(uint8_t *)(ValidationContext + 0x1a8) = &SystemDataStructure;
+  *(uint8_t *)(ValidationContext + SystemResourceHandlerTertiaryStatusOffset) = 0;
+  *(uint32_t *)(ValidationContext + SystemResourceHandlerTertiaryDataOffset) = 0;
+  *(uint8_t *)(ValidationContext + SystemResourceHandlerTertiaryOffset) = &SystemDataStructure;
   return;
 }
 
@@ -46516,7 +46618,21 @@ void CleanupResourceHandlersAtMemoryOffset(uint8_t ObjectContext,int64_t Validat
 
 
 
-void CleanupResourceHandlersAtOffset0x208(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 清理资源处理器在扩展偏移量处
+ * 
+ * 该函数负责清理系统资源处理器的扩展配置
+ * 用于系统资源清理和内存管理
+ * 
+ * @param ObjectContext 对象上下文，包含对象的配置信息
+ * @param ValidationContext 验证上下文，用于验证操作的合法性
+ * @param CleanupOption 清理选项，指定清理的方式
+ * @param CleanupFlag 清理标志，控制清理的行为
+ * @return 无返回值
+ * @note 此函数会清理系统资源处理器的扩展配置
+ * @warning 如果验证上下文中的扩展偏移量为0，将执行系统紧急退出
+ */
+void CleanupResourceHandlersAtExtendedOffset(uint8_t ObjectContext, int64_t ValidationContext, uint8_t CleanupOption, uint8_t CleanupFlag)
 
 {
   uint8_t *ResourceHashAddress;
@@ -46524,11 +46640,11 @@ void CleanupResourceHandlersAtOffset0x208(uint8_t ObjectContext,int64_t Validati
   uint8_t cleanupFlag;
   
   cleanupFlag = 0xfffffffffffffffe;
-  ResourceHashAddress = *(uint8_t **)(ValidationContext + 0x210);
-  for (ValidationResultAddress = *(uint8_t **)(ValidationContext + 0x208); ValidationResultAddress != ResourceHashAddress; ValidationResultAddress = ResourceHashValidationResultAddress + 4) {
-    (**(code **)*ResourceHashValidationResultAddress)(ResourceHashValidationResultAddress,0,CleanupOption,CleanupFlag,cleanupFlag);
+  ResourceHashAddress = *(uint8_t **)(ValidationContext + SystemResourceHandlerExtendedListOffset);
+  for (ValidationResultAddress = *(uint8_t **)(ValidationContext + SystemResourceHandlerExtendedOffset); ValidationResultAddress != ResourceHashAddress; ValidationResultAddress = ResourceHashValidationResultAddress + 4) {
+    (**(code **)*ResourceHashValidationResultAddress)(ResourceHashValidationResultAddress, 0, CleanupOption, CleanupFlag, cleanupFlag);
   }
-  if (*(int64_t *)(ValidationContext + 0x208) == 0) {
+  if (*(int64_t *)(ValidationContext + SystemResourceHandlerExtendedOffset) == 0) {
     return;
   }
         ExecuteSystemEmergencyExit();
@@ -46536,10 +46652,21 @@ void CleanupResourceHandlersAtOffset0x208(uint8_t ObjectContext,int64_t Validati
 
 
 
-void SetSystemDataStructureAtOffset0x278(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 设置系统数据结构在主偏移量处
+ * 
+ * 该函数负责设置系统数据结构的主配置
+ * 用于系统初始化和配置管理
+ * 
+ * @param ObjectContext 对象上下文，包含对象的配置信息
+ * @param ValidationContext 验证上下文，用于验证操作的合法性
+ * @return 无返回值
+ * @note 此函数会设置系统数据结构的主配置
+ */
+void SetSystemDataStructureAtPrimaryOffset(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
-  *(uint8_t **)(ValidationContext + 0x278) = &SystemDataStructure;
+  *(uint8_t **)(ValidationContext + SystemDataStructurePrimaryOffset) = &SystemDataStructure;
   return;
 }
 
@@ -49993,7 +50120,7 @@ void DestroyMutexInSitu(void)
 void DestroyMutexFromContext(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
-  MutexDestroyInPlace(*(uint8_t *)(ValidationContext + 0x2e0));
+  MutexDestroyInPlace(*(uint8_t *)(ValidationContext + ValidationContextMutexDestroyOffset));
   return;
 }
 
@@ -101500,6 +101627,24 @@ void CleanupSystemResources(uint8_t ResourceType, uint8_t ResourceInstance, uint
 // 对象上下文相关偏移量常量
 #define ObjectContextOperationStatusOffset 0xb0
 #define ObjectContextResourceIterationOffset 0xac
+
+// 系统资源处理器相关偏移量常量
+#define SystemResourceHandlerSecondaryOffset 0x168
+#define SystemResourceHandlerSecondaryStatusOffset 0x170
+#define SystemResourceHandlerSecondaryDataOffset 0x180
+#define SystemResourceHandlerTertiaryOffset 0x1a8
+#define SystemResourceHandlerTertiaryStatusOffset 0x1b0
+#define SystemResourceHandlerTertiaryDataOffset 0x1c0
+#define SystemResourceHandlerPrimaryOffset 0x128
+#define SystemResourceHandlerPrimaryStatusOffset 0x130
+#define SystemResourceHandlerPrimaryDataOffset 0x140
+#define SystemResourceHandlerExtendedOffset 0x208
+#define SystemResourceHandlerExtendedListOffset 0x210
+#define SystemResourceHandlerQuaternaryOffset 0x148
+
+// 系统数据结构相关偏移量常量
+#define SystemDataStructurePrimaryOffset 0x278
+#define SystemDataStructureSecondaryOffset 0x250
 
 // 哈希表相关偏移量常量
 #define HashTableEntrySize 0x10
