@@ -38533,7 +38533,7 @@ void CleanupSystemResourcesPhaseTwo(uint8_t ObjectContext, int64_t ValidationCon
  * @note 此函数通常在异常处理过程中被调用
  * @warning 清理过程中如果检测到错误会触发系统紧急退出
  */
-void CleanupSystemResourcesPhase3(uint8_t ObjectContext, int64_t ValidationContext, uint8_t CleanupOption, uint8_t CleanupFlag)
+void CleanupSystemResourcesPhaseThree(uint8_t ObjectContext, int64_t ValidationContext, uint8_t CleanupOption, uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
@@ -44310,7 +44310,7 @@ void ProcessExtendedResourceIndexValidationAndCleanup(uint8_t ObjectContext,int6
  * @note 此函数会释放指定位置的资源句柄
  * @warning 调用此函数后，被释放的资源句柄将不再可用
  */
-void ReleaseResourceHandleAtContextOffset48(uint8_t ObjectContext,int64_t ValidationContext)
+void ReleaseResourceHandleAtRegistrationDataOffset(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int *ResourceIndexPointer;
