@@ -49893,7 +49893,7 @@ void UnwindResourceContextAt0xa8(uint8_t objectContext,int64_t validationContext
 
 
 
-void Unwind_180906160(uint8_t objectContext,int64_t validationContext)
+void UnwindResourceValidationAt0xa8(uint8_t objectContext,int64_t validationContext)
 
 {
   int *pResourceIndex;
@@ -90796,11 +90796,14 @@ void InitializeSystemDataPointer(void)
 
 
  /**
- * 初始化系统数据结构AA
+ * @brief 初始化系统数据结构AA
  * 
- * 此函数负责初始化系统中的某个关键数据结构AA，将全局变量
- * SystemDataStructurePointerB设置为指向预定义的数据结构SystemDataStructure001。
- * 这个数据结构可能用于系统启动时的基础配置。
+ * 该函数负责初始化系统中的数据结构AA，将全局变量
+ * SystemDataStructurePointerB设置为指向预定义的数据结构SystemDataStructure。
+ * 这个数据结构用于系统启动时的基础配置和数据管理。
+ * 
+ * @note 此函数在系统初始化阶段调用
+ * @warning 调用前必须确保SystemDataStructure已正确初始化
  */
 void InitializeSystemDataStructureAA(void)
 void InitializeSystemDataStructureAA(void)
@@ -90842,9 +90845,14 @@ void ExecuteSystemStatusCheckAndCleanup(void)
     SystemMemoryRegionCleanup(0x180c919f0);
 
  /**
- * 初始化系统数据结构AC
- * 将全局变量 ModuleDataPointerA 设置为指向 SystemDataStructure001
- * 这是一个简单的初始化函数，用于设置系统数据结构的指针
+ * @brief 初始化系统数据结构AC
+ * 
+ * 该函数负责初始化系统中的数据结构AC，将全局变量
+ * ModuleDataPointerA设置为指向预定义的数据结构SystemDataStructure。
+ * 这个数据结构用于模块化数据管理和系统配置。
+ * 
+ * @note 此函数在系统初始化阶段调用
+ * @warning 调用前必须确保SystemDataStructure已正确初始化
  */
 void InitializeSystemDataStructureAC(void)
 void InitializeSystemDataStructureAC(void)
@@ -90860,9 +90868,14 @@ void InitializeSystemDataStructureAC(void)
 
 
  /**
- * 初始化系统数据结构AD
- * 将全局变量 ModuleDataPointerB 设置为指向 SystemDataStructure001
- * 这是一个简单的初始化函数，用于设置系统数据结构的指针
+ * @brief 初始化系统数据结构AD
+ * 
+ * 该函数负责初始化系统中的数据结构AD，将全局变量
+ * ModuleDataPointerB设置为指向预定义的数据结构SystemDataStructure。
+ * 这个数据结构用于模块化数据管理和系统配置。
+ * 
+ * @note 此函数在系统初始化阶段调用
+ * @warning 调用前必须确保SystemDataStructure已正确初始化
  */
 void InitializeSystemDataStructureAD(void)
 void InitializeSystemDataStructureAD(void)
