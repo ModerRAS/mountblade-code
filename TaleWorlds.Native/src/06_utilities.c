@@ -11680,28 +11680,28 @@ uint64_t UpdateResourcePoolEntryData(int64_t entryIndex, uint8_t reservedParam, 
 uint64_t ValidateAndProcessParameters(int minValue,int maxValue,uint8_t SystemContext,uint8_t options,uint8_t AdditionalData)
 
 {
-  uint8_t ResourceHash;
-  uint8_t *pResourceValidationResult;
-  uint32_t *resourceContext;
-  uint32_t SavedBasePointer;
+  uint8_t ResourceValidationHash;
+  uint8_t *ResourceValidationResultPointer;
+  uint32_t *ResourceContextPointer;
+  uint32_t SavedBasePointerValue;
   int64_t SavedRegisterValue;
-  uint8_t StackContextBuffer;
+  uint8_t StackContextBufferData;
   
   if (maxValue < minValue) {
     maxValue = minValue;
   }
-  resourceHash = ResourcePoolOperation(SystemRegisterContext + 0x10,maxValue);
-  if ((int)ResourceHash == 0) {
-    pvalidationResult = (uint8_t *)
+  ResourceValidationHash = ResourcePoolOperation(SystemRegisterContext + 0x10,maxValue);
+  if ((int)ResourceValidationHash == 0) {
+    ResourceValidationResultPointer = (uint8_t *)
              ((int64_t)*(int *)(SystemRegisterContext + 0x18) * 0x10 + *(int64_t *)(SystemRegisterContext + 0x10));
-    *pvalidationResult = StackContextBuffer;
-    pResourceValidationResult[1] = AdditionalData;
+    *ResourceValidationResultPointer = StackContextBufferData;
+    ResourceValidationResultPointer[1] = AdditionalData;
     *(int *)(SystemRegisterContext + 0x18) = *(int *)(SystemRegisterContext + 0x18) + 1;
-    *resourceContext = SavedBasePointer;
+    *ResourceContextPointer = SavedBasePointerValue;
     *(int *)(SystemRegisterContext + 0x24) = *(int *)(SystemRegisterContext + 0x24) + 1;
-    resourceHash = 0;
+    ResourceValidationHash = 0;
   }
-  return ResourceHash;
+  return ResourceValidationHash;
 }
 
 
@@ -12087,37 +12087,37 @@ uint64_t InitializeResourceTableStructure(int64_t objectContext)
             }
           }
           else if (operationStatusCode == 3) {
-            OperationStatusCode = ValidateObjectContext(*(uint32_t *)(ResourceTablePointer + 0xc + LocalContextData5 * 0x10),StackContextBuffer);
+            OperationStatusCode = ValidateObjectContext(*(uint32_t *)(ResourceTablePointer + 0xc + ResourceIndexOffset * 0x10),StackContextBuffer);
             resourceContext3 = DataHandlerContextPointer;
             if (operationStatusCode == 0) {
               SerializationContextPointer = &SerializationTemplate;
-              SerializationContextFlags = *(uint32_t *)(ResourceTablePointer + 0xc + LocalContextData5 * 0x10);
+              SerializationContextFlags = *(uint32_t *)(ResourceTablePointer + 0xc + ResourceIndexOffset * 0x10);
               SerializationContextOffset = 0;
               SerializationContextMode = 1;
               SerializeData(&SerializationContextPointer,*(uint8_t *)(objectContext + 0x58));
               DeserializationContextPointer = &DeserializationTemplate;
-              DeserializationContextFlags = *(uint32_t *)(ResourceTablePointer + 0xc + LocalContextData5 * 0x10);
+              DeserializationContextFlags = *(uint32_t *)(ResourceTablePointer + 0xc + ResourceIndexOffset * 0x10);
               DeserializationContextOffset = 0;
               DeserializeData(&DeserializationContextPointer,*(uint8_t *)(objectContext + 0x58));
               resourceContext3 = DataHandlerContextPointer;
             }
           }
           else if (operationStatusCode == 5) {
-            OperationStatusCode = ValidateObjectContext(*(uint32_t *)(ResourceTablePointer + 0xc + LocalContextData5 * 0x10),ResourceLowByteFlag);
+            OperationStatusCode = ValidateObjectContext(*(uint32_t *)(ResourceTablePointer + 0xc + ResourceIndexOffset * 0x10),ResourceLowByteFlag);
             resourceContext3 = DataHandlerContextPointer;
             if (operationStatusCode == 0) {
               CompressionDataPointer = &CompressionTemplate;
-              CompressionResourceValue = *(uint32_t *)(ResourceTablePointer + 0xc + LocalContextData5 * 0x10);
+              CompressionResourceValue = *(uint32_t *)(ResourceTablePointer + 0xc + ResourceIndexOffset * 0x10);
               CompressionFlags = 0;
               CompressionScaleFactor = 0x3f800000;
               CompressData(&CompressionDataPointer,*(uint8_t *)(objectContext + 0x58));
               ResourcePrimaryFlagPointer = &DecompressionTemplate;
-              ResourceTertiaryFlag = *(uint32_t *)(ResourceTablePointer + 0xc + LocalContextData5 * 0x10);
+              ResourceTertiaryFlag = *(uint32_t *)(ResourceTablePointer + 0xc + ResourceIndexOffset * 0x10);
               ResourceSecondaryFlag = 0;
               ResourceQuaternaryFlag = 0;
               DecompressData(&ResourcePrimaryFlagPointer,*(uint8_t *)(objectContext + 0x58));
               EncodingDataPointer = &EncodingTemplate;
-              EncodingResourceValue = *(uint32_t *)(ResourceTablePointer + 0xc + LocalContextData5 * 0x10);
+              EncodingResourceValue = *(uint32_t *)(ResourceTablePointer + 0xc + ResourceIndexOffset * 0x10);
               EncodingFlags = 0;
               EncodingScaleFactor = EncodingScaleFactor & 0xffffff00;
               EncodeData(&EncodingDataPointer,*(uint8_t *)(objectContext + 0x58));
@@ -13638,7 +13638,7 @@ void SystemInitializerPrimary(void)
   int ResourceIndex3;
   uint resourceHash4;
   uint8_t *InputParameter;
-  int64_t LocalContextData5;
+  int64_t ResourceIndexOffset;
   uint8_t resourceHash6;
   uint8_t resourceHash7;
   uint8_t *presourceHash8;
@@ -13923,7 +13923,7 @@ void CalculateFloatValueAndValidateResources(void)
   int ResourceIndex3;
   uint resourceHash4;
   int64_t InputParameterValue;
-  int64_t LocalContextData5;
+  int64_t ResourceIndexOffset;
   uint8_t resourceHash6;
   uint8_t resourceHash7;
   uint8_t *presourceHash8;
@@ -14640,7 +14640,7 @@ uint8_t ValidateResourceRenderingState(void)
   uint8_t *presourceHash2;
   int64_t *resourceContext3;
   int64_t *resourceContext4;
-  int64_t LocalContextData5;
+  int64_t ResourceIndexOffset;
   int64_t *resourceContext6;
   uint resourceHash7;
   float inputFloatValue8;
@@ -21017,28 +21017,28 @@ ResourceLoopCondition:
 uint64_t ProcessResourceAllocation(int64_t ResourceHandle,uint8_t *ResourceData)
 
 {
-  uint8_t ResourceHash;
+  uint8_t ResourceValidationHash;
+  uint32_t ResourceValidationStatusCode;
   uint32_t ResourceValidationResult;
-  uint32_t validationStatusCode;
-  uint32_t loopIncrement;
+  uint32_t ResourceLoopIncrement;
   uint ResourceContextOffset;
-  uint configurationFlags;
-  uint64_t SecurityHashValue;
-  uint32_t *pResourceCounter;
-  uint ValidationCounter;
-  uint8_t *presourceHash0;
-  int64_t LocalContextData1;
-  int64_t LocalContextData2;
-  int ResourceIndex3;
-  uint8_t *pSecurityValidationContext;
-  uint8_t *pResourceTertiaryFlag;
+  uint ResourceConfigurationFlags;
+  uint64_t ResourceSecurityHash;
+  uint32_t *ResourceCounterPointer;
+  uint ResourceValidationCounter;
+  uint8_t *ResourceHashPointer;
+  int64_t ResourceLocalContextPrimary;
+  int64_t ResourceLocalContextSecondary;
+  int ResourceContextIndex;
+  uint8_t *ResourceSecurityValidationPointer;
+  uint8_t *ResourceTertiaryFlagPointer;
   uint8_t ResourceQuaternaryFlag;
   uint32_t ResourceLowByteFlag;
-  uint32_t ResourceCounterPrimary;
+  uint32_t ResourcePrimaryCounter;
   uint32_t ResourceMidByteFlag;
-  uint32_t ResourceCounterSecondary;
-  uint8_t EncryptionBuffer [32];
-  uint8_t resourceValidationBuffer [32];
+  uint32_t ResourceSecondaryCounter;
+  uint8_t ResourceEncryptionBuffer [32];
+  uint8_t ResourceValidationBuffer [32];
   
   SecurityHashValue = ComputeDataChecksum(validationContext,resourceValidationBuffer,1,0x4f4c4d50);
   if ((int)SecurityHashValue != 0) {
@@ -44176,7 +44176,19 @@ void Unwind_180904990(uint8_t objectContext,int64_t validationContext)
 
 
 
-void Unwind_1809049b0(uint8_t objectContext,int64_t validationContext)
+/**
+ * @brief 关闭系统句柄
+ * 
+ * 该函数负责关闭验证上下文中指定的系统句柄
+ * 确保系统句柄正确关闭，释放相关资源
+ * 
+ * @param objectContext 对象上下文，标识要操作的对象
+ * @param validationContext 验证上下文，包含句柄的位置信息
+ * @return 无返回值
+ * @note 此函数会关闭指定位置的系统句柄
+ * @warning 调用此函数后，被关闭的句柄将不再可用
+ */
+void CloseSystemHandle(uint8_t objectContext,int64_t validationContext)
 
 {
   CloseHandle(**(uint8_t **)(validationContext + 0x48));
@@ -44185,7 +44197,19 @@ void Unwind_1809049b0(uint8_t objectContext,int64_t validationContext)
 
 
 
-void Unwind_1809049c0(uint8_t objectContext,int64_t validationContext)
+/**
+ * @brief 关闭系统句柄扩展版本
+ * 
+ * 该函数负责关闭验证上下文中指定的系统句柄扩展版本
+ * 确保系统句柄正确关闭，释放相关资源
+ * 
+ * @param objectContext 对象上下文，标识要操作的对象
+ * @param validationContext 验证上下文，包含句柄的位置信息
+ * @return 无返回值
+ * @note 此函数会关闭指定位置的系统句柄
+ * @warning 调用此函数后，被关闭的句柄将不再可用
+ */
+void CloseSystemHandleExtended(uint8_t objectContext,int64_t validationContext)
 
 {
   CloseHandle(**(uint8_t **)(validationContext + 0x40));
