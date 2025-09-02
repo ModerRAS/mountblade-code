@@ -46496,7 +46496,7 @@ void UpdateSystemResourceStatus(void* *ResourceManagerPointer)
   ulong long systemOperationFlags;
   bool bVar11;
   
-  *ResourceManagerPointer = &SystemStringTemplatePrimary;
+  *ResourceManagerPointer = &SystemThreadLocalStoragePrimary;
   allocationContext = ResourceManagerPointer[4];
   resourceCounter = 0;
   unsignedSystemValue4 = ResourceManagerPointer[5];
@@ -46736,10 +46736,10 @@ void* * AllocateThreadLocalStorage(long long *ResourceManagerPointer)
     newThreadLocalStorage[8] = 0;
     *(uint8_t *)(newThreadLocalStorage + 9) = 0;
     newThreadLocalStorage[10] = ResourceManagerPointer;
-    *newThreadLocalStorage = &SystemStringTemplatePrimary;
+    *newThreadLocalStorage = &SystemThreadLocalStoragePrimary;
     newThreadLocalStorage[0xb] = 0x20;
     newThreadLocalStorage[0xc] = 0;
-    FUN_18005f430(newThreadLocalStorage);
+    ExpandSystemResourceAllocator(newThreadLocalStorage);
     LOCK();
     *(int *)(ResourceManagerPointer + 1) = (int)ResourceManagerPointer[1] + 1;
     UNLOCK();
@@ -48847,7 +48847,7 @@ void* * FUN_18006d0b0(long long *ResourceManagerPointer)
     *newThreadLocalStorage = &SystemResourceTemplateA;
     newThreadLocalStorage[0xb] = 0x20;
     newThreadLocalStorage[0xc] = 0;
-    FUN_18005f430(newThreadLocalStorage);
+    ExpandSystemResourceAllocator(newThreadLocalStorage);
     LOCK();
     *(int *)(ResourceManagerPointer + 1) = (int)ResourceManagerPointer[1] + 1;
     UNLOCK();
