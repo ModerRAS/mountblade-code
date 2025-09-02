@@ -4040,8 +4040,7 @@ uint64_t ProcessSystemRequest(int64_t RequestParameters,int64_t SystemContext)
 
 
 
- uint8_t ValidateSystemAccess(int64_t accessRequestParameters,int64_t SystemContextParameters)
-/**
+ /**
  * @brief 验证系统访问权限
  * 
  * 该函数负责验证对系统资源的访问权限，包括：
@@ -4052,9 +4051,7 @@ uint64_t ProcessSystemRequest(int64_t RequestParameters,int64_t SystemContext)
  * 
  * @param accessRequestParameters 访问请求参数，包含资源标识和访问类型
  * @param SystemContextParameters 系统上下文参数，包含安全策略和权限信息
- * @return 验证结果，成功返回0，失败返回错误码
- * @note 此函数是系统安全验证的重要组成部分
- * @warning 验证失败时可能会触发资源释放操作
+ * @return uint8_t 验证结果，成功返回0，失败返回错误码
  */
 uint8_t ValidateSystemAccess(int64_t AccessRequestParameters,int64_t SystemContextParameters)
 {
@@ -4087,15 +4084,6 @@ uint8_t ValidateSystemAccess(int64_t AccessRequestParameters,int64_t SystemConte
 
 
 
-/**
- * @brief 更新对象状态标志
- * 
- * 该函数遍历系统中的对象，更新特定对象的状态标志
- * 主要用于管理对象的生命周期和状态转换
- * 
- * @param ObjectContext 对象上下文指针，包含对象管理所需的信息
- * @return uint8_t 操作状态码，0表示成功，非0表示失败
- */
 /**
  * @brief 更新对象状态标志
  * 
