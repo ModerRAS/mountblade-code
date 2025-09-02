@@ -20420,14 +20420,14 @@ void InitializeSystemCoreEngine(void)
   DataBuffer350[0] = 0;
   uStack_358 = 0xb;
   systemOperationFlags = strcpy_s(DataBuffer350,0x40,&SystemDataBufferTemplateK);
-  fVar11 = (float)GetSystemResolutionFactor(systemOperationFlags,&puStack_368);
+  horizontalResolutionFactor = (float)GetSystemResolutionFactor(systemOperationFlags,&puStack_368);
   puStack_368 = &SystemMemoryAllocatorReference;
   puStack_308 = &SystemDataBufferTemplateB;
   DataBufferPtr300 = DataBuffer2F0;
   DataBuffer2F0[0] = 0;
   uStack_2f8 = 0x18;
   systemOperationFlags = strcpy_s(DataBuffer2F0,0x40,&SystemDataBufferTemplateJ);
-  fVar12 = (float)GetSystemResolutionFactor(systemOperationFlags,&puStack_308);
+  verticalResolutionFactor = (float)GetSystemResolutionFactor(systemOperationFlags,&puStack_308);
   puStack_308 = &SystemMemoryAllocatorReference;
   allocationSize = GetSystemInitializationStatus();
   if (0 < SystemConfigDataPointerD) {
@@ -20456,8 +20456,8 @@ void InitializeSystemCoreEngine(void)
     pcStack_500 = SystemStringFormatProcessor;
     appplStack_518[0] = (long long ***)&ppplStack_590;
     ProcessSystemResourceData(appplStack_518);
-    *(double *)(localSystemFlags + 0xa0 + SystemInitializationDataStart) = (double)(1.0 / fVar12);
-    *(double *)(localSystemFlags + 0xb8 + SystemInitializationDataStart) = (double)(1.0 / fVar11);
+    *(double *)(localSystemFlags + 0xa0 + SystemInitializationDataStart) = (double)(1.0 / verticalResolutionFactor);
+    *(double *)(localSystemFlags + 0xb8 + SystemInitializationDataStart) = (double)(1.0 / horizontalResolutionFactor);
     *(int *)(localSystemFlags + 0xb0 + SystemInitializationDataStart) = (int)(long long)SystemScaleFactorXStorage;
     *(int *)(localSystemFlags + 200 + SystemInitializationDataStart) = (int)(long long)SystemScaleFactorYStorage;
     *(double *)(localSystemFlags + 0x20 + SystemInitializationDataStart) = (double)(allocationSize >> 0x14);
@@ -20723,9 +20723,9 @@ SystemNodeDataValidation:
 void InitializeSystemConfigurationData(void* SystemResourcePointer,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
 {
-  double dVar1;
+  double scaleFactorValue;
   char validationStatusFlag;
-  double dVar3;
+  double numericValue;
   uint unsignedSystemValue4;
   void* *pallocationSize;
   long long localSystemFlags;

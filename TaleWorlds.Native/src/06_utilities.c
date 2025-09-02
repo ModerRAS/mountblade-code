@@ -1969,7 +1969,6 @@ uint8_t SystemMemoryConfigTemplateIntelligent;
 uint8_t SystemMemoryConfigTemplateJustInTime;
 uint8_t SystemMemoryConfigTemplateKernelOptimized;
 
- void InitializeThreadManager(void)
 /**
  * @brief 初始化系统线程管理器
  * 
@@ -2668,9 +2667,9 @@ uint8_t MemoryPool;
 uint8_t TaskScheduler;
 uint8_t ResourcePool;
 uint8_t DataManager;
-uint8_t SystemDataBufferManager;
-uint8_t SystemIoManager;
-uint8_t SystemFileHandler;
+uint8_t DataBufferManager;
+uint8_t IoManager;
+uint8_t FileHandler;
 uint8_t SystemNetworkManager;
 uint8_t SystemSocketManager;
 uint8_t SystemConnectionPool;
@@ -3707,7 +3706,7 @@ uint8_t ValidateObjectRegistrationStatus(int64_t ObjectContext)
 uint64_t ProcessSystemRequest(int64_t requestParameters,int64_t SystemContext)
 
 {
-  int64_t *ProcessResultPointer;
+  int64_t *processResultPointer;
   int64_t *ResourceTablePointer;
   int64_t *ResourceIndexPointer;
   int PackageValidationStatusCode;
