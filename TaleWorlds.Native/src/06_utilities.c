@@ -69572,7 +69572,21 @@ void UnwindSystemResourceProcessingF(uint8_t ObjectContext,int64_t ValidationCon
 
 
 
-void Unwind_1809096c0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 系统资源处理回滚函数G
+ * 
+ * 该函数负责系统资源处理的回滚操作
+ * 处理资源哈希验证结果的回滚和资源索引的更新
+ * 
+ * @param ObjectContext 对象上下文，用于标识特定的对象实例
+ * @param ValidationContext 验证上下文，包含系统验证所需的环境信息
+ * @param CleanupOption 清理选项，控制清理行为的具体参数
+ * @param CleanupFlag 清理标志，指定清理操作的标志位
+ * @return 无返回值
+ * @note 此函数会处理资源哈希验证结果的回滚操作
+ * @warning 如果资源处理失败，系统将执行清理处理程序
+ */
+void UnwindSystemResourceProcessingG(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t *processPointer;
@@ -69645,7 +69659,7 @@ void Unwind_1809096c0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 
 
 
-void Unwind_1809096e0(uint8_t ObjectContext,int64_t ValidationContext)
+void UnwindSystemResourceProcessingH(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t *processPointer;
@@ -69659,7 +69673,7 @@ void Unwind_1809096e0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180909700(uint8_t ObjectContext,int64_t ValidationContext)
+void UnwindSystemResourceProcessingI(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   *(uint8_t **)(*(int64_t *)(ValidationContext + 0x90) + 0x10) = &SystemDataStructure;
@@ -69668,7 +69682,7 @@ void Unwind_180909700(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180909710(uint8_t ObjectContext,int64_t ValidationContext)
+void UnwindSystemResourceProcessingJ(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   **(uint8_t **)(ValidationContext + 0x98) = &SystemDataStructure;
@@ -69677,7 +69691,7 @@ void Unwind_180909710(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180909720(uint8_t ObjectContext,int64_t ValidationContext)
+void UnwindSystemResourceProcessingK(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   *(uint8_t **)(*(int64_t *)(ValidationContext + 0x80) + 0x10) = &SystemDataStructure;
@@ -69686,7 +69700,7 @@ void Unwind_180909720(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180909730(uint8_t ObjectContext,int64_t ValidationContext)
+void UnwindSystemResourceProcessingL(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   **(uint8_t **)(ValidationContext + 0x88) = &SystemDataStructure;
