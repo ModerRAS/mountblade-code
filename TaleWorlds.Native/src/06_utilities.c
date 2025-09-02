@@ -56359,7 +56359,19 @@ void ProcessAdvancedResourceHashValidationAndCleanup(uint8_t ObjectContext,int64
 
 
 
-void Unwind_180906e10(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行系统资源回调函数A
+ * 
+ * 该函数负责执行系统资源回调函数A
+ * 在适当的时机调用预定义的系统资源回调函数
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @return 无返回值
+ * @note 此函数用于资源管理系统的回调处理
+ * @warning 调用此函数前必须确保上下文参数有效
+ */
+void ExecuteSystemResourceCallbackA(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   if (*(int64_t **)(ValidationContext + 0x120) != (int64_t *)0x0) {
@@ -56370,7 +56382,19 @@ void Unwind_180906e10(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180906e20(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行系统资源回调函数B
+ * 
+ * 该函数负责执行系统资源回调函数B
+ * 在适当的时机调用预定义的系统资源回调函数
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @return 无返回值
+ * @note 此函数用于资源管理系统的回调处理
+ * @warning 调用此函数前必须确保上下文参数有效
+ */
+void ExecuteSystemResourceCallbackB(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   if ((int64_t *)**(int64_t **)(ValidationContext + 0x170) != (int64_t *)0x0) {
@@ -56381,7 +56405,19 @@ void Unwind_180906e20(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180906e30(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行系统资源回调函数C
+ * 
+ * 该函数负责执行系统资源回调函数C
+ * 在适当的时机调用预定义的系统资源回调函数
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @return 无返回值
+ * @note 此函数用于资源管理系统的回调处理
+ * @warning 调用此函数前必须确保上下文参数有效
+ */
+void ExecuteSystemResourceCallbackC(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   if ((int64_t *)**(int64_t **)(ValidationContext + 0x178) != (int64_t *)0x0) {
@@ -56392,7 +56428,19 @@ void Unwind_180906e30(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180906e40(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 开始资源事务处理
+ * 
+ * 该函数负责开始资源事务处理
+ * 初始化资源事务并执行相关的回调函数
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @return 无返回值
+ * @note 此函数用于资源管理系统的事务处理
+ * @warning 调用此函数前必须确保上下文参数有效
+ */
+void BeginResourceTransactionProcessing(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   BeginResourceTransaction();
@@ -56559,7 +56607,19 @@ void ExecuteB0OffsetCleanup(uint8_t ObjectContext, int64_t ValidationContext)
 
 
 
-void Unwind_180906ec0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行资源上下文回调函数A
+ * 
+ * 该函数负责执行资源上下文回调函数A
+ * 在适当的时机调用预定义的资源上下文回调函数
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @return 无返回值
+ * @note 此函数用于资源管理系统的上下文回调处理
+ * @warning 调用此函数前必须确保上下文参数有效
+ */
+void ExecuteResourceContextCallbackA(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t *processPointer;
@@ -56573,7 +56633,19 @@ void Unwind_180906ec0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180906ed0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行资源上下文回调函数B
+ * 
+ * 该函数负责执行资源上下文回调函数B
+ * 在适当的时机调用预定义的资源上下文回调函数
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @return 无返回值
+ * @note 此函数用于资源管理系统的上下文回调处理
+ * @warning 调用此函数前必须确保上下文参数有效
+ */
+void ExecuteResourceContextCallbackB(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t *processPointer;
@@ -56587,7 +56659,19 @@ void Unwind_180906ed0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180906ee0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行资源上下文回调函数C
+ * 
+ * 该函数负责执行资源上下文回调函数C
+ * 在适当的时机调用预定义的资源上下文回调函数
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @return 无返回值
+ * @note 此函数用于资源管理系统的上下文回调处理
+ * @warning 调用此函数前必须确保上下文参数有效
+ */
+void ExecuteResourceContextCallbackC(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t *processPointer;
@@ -56607,7 +56691,21 @@ void Unwind_180906ee0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180906ef0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 执行资源上下文清理回调函数A
+ * 
+ * 该函数负责执行资源上下文清理回调函数A
+ * 在适当的时机调用预定义的资源上下文清理回调函数
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @param CleanupOption 清理选项
+ * @param CleanupFlag 清理标志
+ * @return 无返回值
+ * @note 此函数用于资源管理系统的上下文清理回调处理
+ * @warning 调用此函数前必须确保上下文参数有效
+ */
+void ExecuteResourceContextCleanupCallbackA(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   code *charPointer;
@@ -56621,7 +56719,19 @@ void Unwind_180906ef0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 
 
 
-void Unwind_180906f00(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 验证资源表完整性A
+ * 
+ * 该函数负责验证资源表A的完整性
+ * 检查资源表A的数据结构是否有效
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @return 无返回值
+ * @note 此函数用于资源管理系统的表完整性验证
+ * @warning 调用此函数前必须确保上下文参数有效
+ */
+void ValidateResourceTableIntegrityA(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t *processPointer;
@@ -56635,7 +56745,19 @@ void Unwind_180906f00(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180906f10(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 验证资源表完整性B
+ * 
+ * 该函数负责验证资源表B的完整性
+ * 检查资源表B的数据结构是否有效
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @return 无返回值
+ * @note 此函数用于资源管理系统的表完整性验证
+ * @warning 调用此函数前必须确保上下文参数有效
+ */
+void ValidateResourceTableIntegrityB(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t *processPointer;
