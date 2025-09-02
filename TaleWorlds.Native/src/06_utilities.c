@@ -8841,23 +8841,23 @@ uint8_t ValidateObjectContextAndProcessFloatRange(int64_t ObjectContext,int64_t 
   
   HashValidationResult = ValidateObjectContext(*(uint32_t *)(ObjectContext + ObjectContextDataOffset),&CurrentValidationValue);
   if ((int)HashValidationResult != 0) {
-    return ResourceHashValidationResult;
+    return HashValidationResult;
   }
-  ArrayProcessingIndex = 0;
-  ObjectContextOffset = CombineFloatAndInt(StackBufferData,CurrentValidationValue) - 8;
-  if (CombineFloatAndInt(StackBufferData,CurrentValidationValue) == 0) {
-    ObjectContextOffset = ArrayProcessingIndex;
+  ArrayElementIndex = 0;
+  ResourceDataPointer = CombineFloatAndInt(StackBuffer,CurrentValidationValue) - 8;
+  if (CombineFloatAndInt(StackBuffer,CurrentValidationValue) == 0) {
+    ResourceDataPointer = ArrayElementIndex;
   }
-  ArrayIterationCount = *(int *)(ObjectContextOffset + ObjectContextArraySizeOffset);
-  FloatArrayProcessingPointer = (float *)(ObjectContext + ObjectContextProcessingDataOffset + (int64_t)*(int *)(ObjectContext + ObjectContextValidationDataOffset) * 4);
+  TotalArraySize = *(int *)(ResourceDataPointer + ObjectContextArraySizeOffset);
+  FloatArrayDataPointer = (float *)(ObjectContext + ObjectContextProcessingDataOffset + (int64_t)*(int *)(ObjectContext + ObjectContextValidationDataOffset) * 4);
   if (0 < *(int *)(ObjectContext + ObjectContextValidationDataOffset)) {
-    FloatProcessingPointer = FloatArrayProcessingPointer;
-    ResourceProcessingHash = ArrayProcessingIndex;
+    FloatDataPointer = FloatArrayDataPointer;
+    ProcessingIterator = ArrayElementIndex;
     do {
-      ArrayElementIndex = *(int *)(((ObjectContext + ObjectContextProcessingDataOffset) - (int64_t)FloatArrayProcessingPointer) + (int64_t)FloatProcessingPointer);
+      ArrayElementIndex = *(int *)(((ObjectContext + ObjectContextProcessingDataOffset) - (int64_t)FloatArrayDataPointer) + (int64_t)FloatDataPointer);
       if (ArrayElementIndex != -1) {
-        CurrentFloatProcessingValue = *FloatProcessingPointer;
-        if (((uint)CurrentFloatProcessingValue & FloatInfinityMask) == FloatInfinityMask) {
+        CurrentFloatValue = *FloatDataPointer;
+        if (((uint)CurrentFloatValue & FloatInfinityMask) == FloatInfinityMask) {
           return ErrorFloatValidationFailure;
         }
         if ((ArrayElementIndex < 0) || (ArrayElementIndex <= ArrayElementIndex)) {
