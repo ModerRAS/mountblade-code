@@ -44164,6 +44164,7 @@ void InitializeSystemResourceObject(void* SystemResourceManager,long long Config
   long long *SystemMemoryBlockSizePointer;
   void* *SystemDataBufferPointerA8;
   long long SystemMemoryOffset;
+  long long SystemDataBufferOffset;
   uint secondarySystemDataBuffer;
   void* *pUnsignedStackFlag88;
   long long SystemDataSize;
@@ -44214,7 +44215,7 @@ void InitializeSystemResourceObject(void* SystemResourceManager,long long Config
     (**(code **)(*SystemMemoryManagerPointer + 8))(SystemMemoryManagerPointer,SystemResourceManager,*(uint32_t *)(SystemBufferAddress + 0x38));
   }
   else {
-    systemFunctionPointer = *(code **)(*plStack_b0 + 0x10);
+    systemFunctionPointer = *(code **)(*SystemMemoryManagerPointer + 0x10);
     resourceAllocationContext = ProcessSystemQueue(&pUnsignedStackFlag88,ConfigurationDataPointer);
     (*systemFunctionPointer)(plStack_b0,SystemResourceManager,resourceAllocationContext);
     pUnsignedStackFlag88 = &SystemGlobalDataReference;
