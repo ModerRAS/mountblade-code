@@ -20023,6 +20023,18 @@ void ReleaseMemoryBlockReference(ulong long *SystemResourceManager)
  * 
  * 原始函数名可能为类似FUN_xxxxx的形式：InitializeSystemCoreComponents
  */
+/**
+ * @brief 初始化系统核心组件
+ * 
+ * 该函数负责初始化系统的核心组件，包括内存管理器、资源管理器、
+ * 加密上下文和其他关键系统组件。这是系统启动过程中的重要步骤。
+ * 
+ * @param SystemResourceManager 系统资源管理器指针，用于管理系统资源
+ * @param InitializationFlags 初始化标志，指定初始化的方式和选项
+ * @return 初始化结果，返回0表示成功，非0表示失败
+ * 
+ * 系统核心组件初始化器
+ */
 int InitializeSystemCoreComponents(long long SystemResourceManager,long long InitializationFlags)
 
 {
@@ -20072,30 +20084,30 @@ int InitializeSystemCoreComponents(long long SystemResourceManager,long long Ini
   SystemGlobalHandle = 0xfffffffffffffffe;
   SystemHandle = 0;
   systemMemoryContext = (void* *)&SystemGlobalDataReference;
-  LocalSystemContextA = 0;
+  SystemContextPrimary = 0;
   LocalMemoryBufferHandle = 0;
-  LocalInitializationFlags = 0;
-  LocalMemoryPointerB = 0;
-  LocalMemoryPointerC = 0;
-  LocalMemoryPointerD = 0;
-  LocalMemoryPointerE = 0;
-  LocalMemoryPointerF = 0;
-  LocalMemoryPointerG = 0;
-  LocalMemoryPointerH = 0;
-  LocalMemoryPointerI = 0;
-  LocalMemoryPointerJ = 0;
-  LocalSystemStatus = 3;
-  LocalMemoryPointerT = 0;
-  LocalMemoryPointerU = 0;
-  LocalEncryptionValue = 0;
+  ResourceAllocationFlags = 0;
+  MemoryBufferSecondary = 0;
+  MemoryBufferTertiary = 0;
+  MemoryBufferQuaternary = 0;
+  MemoryBufferQuinary = 0;
+  MemoryBufferSenary = 0;
+  MemoryBufferSeptenary = 0;
+  MemoryBufferOctonary = 0;
+  MemoryBufferNonary = 0;
+  MemoryBufferDenary = 0;
+  SystemOperationStatus = 3;
+  MemoryBufferVigesimal = 0;
+  MemoryBufferUnvigesimal = 0;
+  EncryptionKeyValue = 0;
   HashNodeData = &SystemStringTemplate;
   if (*(void* **)(ConfigurationDataPointer + 8) != (void* *)0x0) {
     HashNodeData = *(void* **)(ConfigurationDataPointer + 8);
   }
-  encryptionPointerTripleX = &pppEncryptionValue68;
+  EncryptionContextPointer = &pppEncryptionValue68;
   pppEncryptionValue68 = &pppEncryptionValue68;
   encryptionPointerTriple60 = &pppEncryptionValue68;
-  InitializeSystemStructure(&systemMemoryContext,HashNodeData);
+  InitializeSystemStructure(&MemoryContextPointer,HashNodeData);
   UnsignedStackFlag118 = 0;
   UnsignedStackFlag110 = 0;
   UnsignedStackFlagC0 = 0;
@@ -20112,8 +20124,8 @@ int InitializeSystemCoreComponents(long long SystemResourceManager,long long Ini
   unsignedSystemValue8 = *(ulong long *)(SystemResourceManager + 0x10);
   if (unsignedSystemValue8 < *(ulong long *)(SystemResourceManager + 0x18)) {
     *(ulong long *)(SystemResourceManager + 0x10) = unsignedSystemValue8 + 0x100;
-    ProcessSystemData(unsignedSystemValue8,&systemMemoryContext);
-    ppppunsignedSystemValue9 = *(void* *****)(SystemResourceManager + 0x10);
+    ProcessSystemData(unsignedSystemValue8,&MemoryContextPointer);
+    SystemResourceTablePointer = *(void* *****)(SystemResourceManager + 0x10);
     goto MemoryAllocationComplete;
   }
   bufferBaseAddress = *(long long *)(SystemResourceManager + 8);
@@ -60313,200 +60325,201 @@ void FUN_180078550(void* *SystemResourceManager,void* ConfigurationDataPointer,v
 void FUN_1800786e0(void* *SystemResourceManager,long long ConfigurationDataPointer)
 
 {
-  long long nextDataIndex;
-  uint32_t creationFlags;
-  long long *pResourceDataOffset;
-  void* SystemResourceAddress;
-  float *pfloatValue5;
-  void* *resourceEntryPointer;
-  long long localDataIndex;
-  long long *plocalMemoryAddress;
-  int systemId;
-  float FloatScaleFactor;
-  uint32_t SystemOperationStatus1;
-  uint32_t SystemSecondaryStatus;
-  uint32_t SystemOperationStatus3;
-  float interpolationFactor2;
-  float interpolationFactor3;
-  float interpolationFactor4;
-  float interpolationFactor5;
-  float magnitudeSquared1;
-  float floatValue19;
-  float floatValue20;
-  float floatValue21;
-  float floatValue22;
-  float floatValue23;
-  float floatValue24;
-  float floatValue25;
-  float floatValue26;
-  float floatValue27;
-  float floatValue28;
-  float floatValue29;
-  float floatValue30;
-  float floatValue31;
-  long long *plStackX_8;
-  void* auStackX_10 [2];
-  void* uStackX_20;
-  void* processFlags58;
-  void* unsignedValue50;
-  uint32_t unsignedValue40;
+  long long resourceDataIndex;
+  uint32_t configurationFlags;
+  long long *resourceConfigurationPointer;
+  void* resourceIdentifier;
+  float *transformMatrixPointer;
+  void* *resourceNamePointer;
+  long long dataIndex;
+  long long *memoryAllocationPointer;
+  int resourceId;
+  float matrixScaleFactor;
+  uint32_t operationStatusPrimary;
+  uint32_t operationStatusSecondary;
+  uint32_t operationStatusTertiary;
+  float matrixInterpolationFactorX;
+  float matrixInterpolationFactorY;
+  float matrixInterpolationFactorZ;
+  float matrixInterpolationFactorW;
+  float vectorMagnitudeSquared;
+  float matrixElementX;
+  float matrixElementY;
+  float matrixElementZ;
+  float matrixElementW;
+  float matrixElementA;
+  float matrixElementB;
+  float matrixElementC;
+  float matrixElementD;
+  float matrixElementE;
+  float matrixElementF;
+  float matrixElementG;
+  float matrixElementH;
+  float matrixElementI;
+  float matrixElementJ;
+  long long *stackMemoryPointer;
+  void* stackBufferArray [2];
+  void* stackBufferPointer;
+  void* processBufferPointer;
+  void* resourceDataBuffer;
+  uint32_t bufferFlags;
   
-  systemId = 0;
-  plocalMemoryAddress = SystemResourceManager + 1;
+  resourceId = 0;
+  memoryAllocationPointer = SystemResourceManager + 1;
   do {
-    pResourceDataOffset = (long long *)GetResourceConfigurationPointer(ConfigurationDataPointer,systemId);
-    if (pResourceDataOffset != (long long *)0x0) {
-      plStackX_8 = pResourceDataOffset;
-      (**(code **)(*pResourceDataOffset + 0x28))(pResourceDataOffset);
+    resourceConfigurationPointer = (long long *)GetResourceConfigurationPointer(ConfigurationDataPointer,resourceId);
+    if (resourceConfigurationPointer != (long long *)0x0) {
+      stackMemoryPointer = resourceConfigurationPointer;
+      (**(code **)(*resourceConfigurationPointer + 0x28))(resourceConfigurationPointer);
     }
-    plStackX_8 = (long long *)*plocalMemoryAddress;
-    *plocalMemoryAddress = (long long)pResourceDataOffset;
-    if (plStackX_8 != (long long *)0x0) {
-      (**(code **)(*plStackX_8 + 0x38))();
+    stackMemoryPointer = (long long *)*memoryAllocationPointer;
+    *memoryAllocationPointer = (long long)resourceConfigurationPointer;
+    if (stackMemoryPointer != (long long *)0x0) {
+      (**(code **)(*stackMemoryPointer + 0x38))();
     }
     if ((((*(char *)(ConfigurationDataPointer + 0x380) != '\0') && (*(char *)(ConfigurationDataPointer + 0x381) == '\0')) &&
-        (nextDataIndex = *plocalMemoryAddress, nextDataIndex != 0)) && ((*(uint *)(nextDataIndex + 0x328) & 0x200000) == 0)) {
-      resourceEntryPointer = &SystemStringTemplate;
-      if (*(void* **)(nextDataIndex + 0x18) != (void* *)0x0) {
-        resourceEntryPointer = *(void* **)(nextDataIndex + 0x18);
+        (resourceDataIndex = *memoryAllocationPointer, resourceDataIndex != 0)) && ((*(uint *)(resourceDataIndex + 0x328) & 0x200000) == 0)) {
+      resourceNamePointer = &SystemStringTemplate;
+      if (*(void* **)(resourceDataIndex + 0x18) != (void* *)0x0) {
+        resourceNamePointer = *(void* **)(resourceDataIndex + 0x18);
       }
-      AllocateSystemMemory(&SystemResourceDataBuffer,resourceEntryPointer);
+      AllocateSystemMemory(&SystemResourceDataBuffer,resourceNamePointer);
     }
-    systemId = systemId + 1;
-    plocalMemoryAddress = plocalMemoryAddress + 1;
-  } while (systemId < 7);
-  SystemResourceAddress = GetSystemResourceIdentifier(ConfigurationDataPointer,&processFlags58);
-  nextDataIndex = SystemDataBufferPointer;
-  systemId = FindSystemDataIndex(SystemDataBufferPointer,SystemResourceAddress);
-  if ((systemId == -1) || (localDataIndex = (long long)systemId * 0x68 + *(long long *)(nextDataIndex + 0x38), localDataIndex == 0)) {
-    localDataIndex = *(long long *)(nextDataIndex + 0x28);
+    resourceId = resourceId + 1;
+    memoryAllocationPointer = memoryAllocationPointer + 1;
+  } while (resourceId < 7);
+  resourceIdentifier = GetSystemResourceIdentifier(ConfigurationDataPointer,&processBufferPointer);
+  resourceDataIndex = SystemDataBufferPointer;
+  resourceId = FindSystemDataIndex(SystemDataBufferPointer,resourceIdentifier);
+  if ((resourceId == -1) || (dataIndex = (long long)resourceId * 0x68 + *(long long *)(resourceDataIndex + 0x38), dataIndex == 0)) {
+    dataIndex = *(long long *)(resourceDataIndex + 0x28);
   }
-  processFlags58 = &SystemGlobalDataReference;
-  if (unsignedValue50 != 0) {
+  processBufferPointer = &SystemGlobalDataReference;
+  if (resourceDataBuffer != 0) {
       SystemCleanupFunction();
   }
-  unsignedValue50 = 0;
-  unsignedValue40 = 0;
-  processFlags58 = &SystemMemoryAllocatorReference;
-  if (localDataIndex == 0) {
-    localDataIndex = *(long long *)(SystemDataBufferPointer + 0x38);
+  resourceDataBuffer = 0;
+  bufferFlags = 0;
+  processBufferPointer = &SystemMemoryAllocatorReference;
+  if (dataIndex == 0) {
+    dataIndex = *(long long *)(SystemDataBufferPointer + 0x38);
   }
-  SystemResourceManager[0x26] = localDataIndex;
+  SystemResourceManager[0x26] = dataIndex;
   if ((*(char *)(ConfigurationDataPointer + 0x248) == '\0') && (*(long long *)(ConfigurationDataPointer + 0x3c8) != 0)) {
-    creationFlags = func_0x0001801fc730();
+    configurationFlags = func_0x0001801fc730();
   }
   else {
-    creationFlags = *(uint32_t *)(ConfigurationDataPointer + 0x240);
+    configurationFlags = *(uint32_t *)(ConfigurationDataPointer + 0x240);
   }
-  *(uint32_t *)((long long)SystemResourceManager + 0x114) = creationFlags;
+  *(uint32_t *)((long long)SystemResourceManager + 0x114) = configurationFlags;
   if ((*(char *)(ConfigurationDataPointer + 0x254) == '\0') && (*(long long *)(ConfigurationDataPointer + 0x3c8) != 0)) {
-    creationFlags = func_0x0001801fc760();
+    configurationFlags = func_0x0001801fc760();
   }
   else {
-    creationFlags = *(uint32_t *)(ConfigurationDataPointer + 0x24c);
+    configurationFlags = *(uint32_t *)(ConfigurationDataPointer + 0x24c);
   }
-  *(uint32_t *)(SystemResourceManager + 0x23) = creationFlags;
+  *(uint32_t *)(SystemResourceManager + 0x23) = configurationFlags;
   if ((*(char *)(ConfigurationDataPointer + 0x2f0) == '\0') && (*(long long *)(ConfigurationDataPointer + 0x3c8) != 0)) {
-    ProcessResourceConfigurationData(*(long long *)(ConfigurationDataPointer + 0x3c8),&processFlags58);
-    creationFlags = (uint32_t)processFlags58;
-    SystemOperationStatus1 = processFlags58._4_4_;
-    SystemSecondaryStatus = (uint32_t)unsignedValue50;
-    SystemOperationStatus3 = unsignedValue50._4_4_;
+    ProcessResourceConfigurationData(*(long long *)(ConfigurationDataPointer + 0x3c8),&processBufferPointer);
+    configurationFlags = (uint32_t)processBufferPointer;
+    operationStatusPrimary = processBufferPointer._4_4_;
+    operationStatusSecondary = (uint32_t)resourceDataBuffer;
+    operationStatusTertiary = resourceDataBuffer._4_4_;
   }
   else {
-    creationFlags = *(uint32_t *)(ConfigurationDataPointer + 0x2d0);
-    SystemOperationStatus1 = *(uint32_t *)(ConfigurationDataPointer + 0x2d4);
-    SystemSecondaryStatus = *(uint32_t *)(ConfigurationDataPointer + 0x2d8);
-    SystemOperationStatus3 = *(uint32_t *)(ConfigurationDataPointer + 0x2dc);
+    configurationFlags = *(uint32_t *)(ConfigurationDataPointer + 0x2d0);
+    operationStatusPrimary = *(uint32_t *)(ConfigurationDataPointer + 0x2d4);
+    operationStatusSecondary = *(uint32_t *)(ConfigurationDataPointer + 0x2d8);
+    operationStatusTertiary = *(uint32_t *)(ConfigurationDataPointer + 0x2dc);
   }
-  *(uint32_t *)(SystemResourceManager + 0x20) = creationFlags;
-  *(uint32_t *)((long long)SystemResourceManager + 0x104) = SystemOperationStatus1;
-  *(uint32_t *)(SystemResourceManager + 0x21) = SystemSecondaryStatus;
-  *(uint32_t *)((long long)SystemResourceManager + 0x10c) = SystemOperationStatus3;
+  *(uint32_t *)(SystemResourceManager + 0x20) = configurationFlags;
+  *(uint32_t *)((long long)SystemResourceManager + 0x104) = operationStatusPrimary;
+  *(uint32_t *)(SystemResourceManager + 0x21) = operationStatusSecondary;
+  *(uint32_t *)((long long)SystemResourceManager + 0x10c) = operationStatusTertiary;
   if ((*(char *)(ConfigurationDataPointer + 0x2fc) == '\0') && (*(long long *)(ConfigurationDataPointer + 0x3c8) != 0)) {
-    creationFlags = func_0x0001801fca90();
+    configurationFlags = func_0x0001801fca90();
   }
   else {
-    creationFlags = *(uint32_t *)(ConfigurationDataPointer + 0x2f4);
+    configurationFlags = *(uint32_t *)(ConfigurationDataPointer + 0x2f4);
   }
-  *(uint32_t *)(SystemResourceManager + 0x22) = creationFlags;
+  *(uint32_t *)(SystemResourceManager + 0x22) = configurationFlags;
   if ((*(char *)(ConfigurationDataPointer + 0x260) == '\0') && (*(long long *)(ConfigurationDataPointer + 0x3c8) != 0)) {
-    creationFlags = func_0x0001801fcac0();
+    configurationFlags = func_0x0001801fcac0();
   }
   else {
-    creationFlags = *(uint32_t *)(ConfigurationDataPointer + 600);
+    configurationFlags = *(uint32_t *)(ConfigurationDataPointer + 600);
   }
-  *(uint32_t *)((long long)SystemResourceManager + 0x11c) = creationFlags;
+  *(uint32_t *)((long long)SystemResourceManager + 0x11c) = configurationFlags;
   if ((*(char *)(ConfigurationDataPointer + 0x26c) == '\0') && (*(long long *)(ConfigurationDataPointer + 0x3c8) != 0)) {
-    creationFlags = func_0x0001801fcb00();
+    configurationFlags = func_0x0001801fcb00();
   }
   else {
-    creationFlags = *(uint32_t *)(ConfigurationDataPointer + 0x264);
+    configurationFlags = *(uint32_t *)(ConfigurationDataPointer + 0x264);
   }
-  *(uint32_t *)(SystemResourceManager + 0x24) = creationFlags;
+  *(uint32_t *)(SystemResourceManager + 0x24) = configurationFlags;
   if ((*(char *)(ConfigurationDataPointer + 0x278) == '\0') && (*(long long *)(ConfigurationDataPointer + 0x3c8) != 0)) {
-    creationFlags = func_0x0001801fcb40();
+    configurationFlags = func_0x0001801fcb40();
   }
   else {
-    creationFlags = *(uint32_t *)(ConfigurationDataPointer + 0x270);
+    configurationFlags = *(uint32_t *)(ConfigurationDataPointer + 0x270);
   }
-  *(uint32_t *)((long long)SystemResourceManager + 0x124) = creationFlags;
+  *(uint32_t *)((long long)SystemResourceManager + 0x124) = configurationFlags;
   if ((*(char *)(ConfigurationDataPointer + 0x284) == '\0') && (*(long long *)(ConfigurationDataPointer + 0x3c8) != 0)) {
-    creationFlags = func_0x0001801fcb80();
+    configurationFlags = func_0x0001801fcb80();
   }
   else {
-    creationFlags = *(uint32_t *)(ConfigurationDataPointer + 0x27c);
+    configurationFlags = *(uint32_t *)(ConfigurationDataPointer + 0x27c);
   }
-  *(uint32_t *)(SystemResourceManager + 0x25) = creationFlags;
+  *(uint32_t *)(SystemResourceManager + 0x25) = configurationFlags;
   if ((*(char *)(ConfigurationDataPointer + 0x290) == '\0') && (*(long long *)(ConfigurationDataPointer + 0x3c8) != 0)) {
-    creationFlags = func_0x0001801fc7a0();
+    configurationFlags = func_0x0001801fc7a0();
   }
   else {
-    creationFlags = *(uint32_t *)(ConfigurationDataPointer + 0x288);
+    configurationFlags = *(uint32_t *)(ConfigurationDataPointer + 0x288);
   }
-  *(uint32_t *)(SystemResourceManager + 0x27) = creationFlags;
+  *(uint32_t *)(SystemResourceManager + 0x27) = configurationFlags;
   if ((*(char *)(ConfigurationDataPointer + 0x29c) == '\0') && (*(long long *)(ConfigurationDataPointer + 0x3c8) != 0)) {
-    creationFlags = func_0x0001801fc7d0();
+    configurationFlags = func_0x0001801fc7d0();
   }
   else {
-    creationFlags = *(uint32_t *)(ConfigurationDataPointer + 0x294);
+    configurationFlags = *(uint32_t *)(ConfigurationDataPointer + 0x294);
   }
-  *(uint32_t *)((long long)SystemResourceManager + 0x13c) = creationFlags;
+  *(uint32_t *)((long long)SystemResourceManager + 0x13c) = configurationFlags;
   if ((*(char *)(ConfigurationDataPointer + 0x2a8) == '\0') && (*(long long *)(ConfigurationDataPointer + 0x3c8) != 0)) {
-    creationFlags = func_0x0001801fc800();
+    configurationFlags = func_0x0001801fc800();
   }
   else {
-    creationFlags = *(uint32_t *)(ConfigurationDataPointer + 0x2a0);
+    configurationFlags = *(uint32_t *)(ConfigurationDataPointer + 0x2a0);
   }
-  *(uint32_t *)(SystemResourceManager + 0x28) = creationFlags;
+  *(uint32_t *)(SystemResourceManager + 0x28) = configurationFlags;
   if ((*(char *)(ConfigurationDataPointer + 0x2b4) == '\0') && (*(long long *)(ConfigurationDataPointer + 0x3c8) != 0)) {
-    creationFlags = func_0x0001801fc840();
+    configurationFlags = func_0x0001801fc840();
   }
   else {
-    creationFlags = *(uint32_t *)(ConfigurationDataPointer + 0x2ac);
+    configurationFlags = *(uint32_t *)(ConfigurationDataPointer + 0x2ac);
   }
-  *(uint32_t *)((long long)SystemResourceManager + 0x144) = creationFlags;
+  *(uint32_t *)((long long)SystemResourceManager + 0x144) = configurationFlags;
   if ((*(char *)(ConfigurationDataPointer + 0x2c0) == '\0') && (*(long long *)(ConfigurationDataPointer + 0x3c8) != 0)) {
-    creationFlags = func_0x0001801fc880();
+    configurationFlags = func_0x0001801fc880();
   }
   else {
-    creationFlags = *(uint32_t *)(ConfigurationDataPointer + 0x2b8);
+    configurationFlags = *(uint32_t *)(ConfigurationDataPointer + 0x2b8);
   }
-  *(uint32_t *)(SystemResourceManager + 0x29) = creationFlags;
+  *(uint32_t *)(SystemResourceManager + 0x29) = configurationFlags;
   if ((*(char *)(ConfigurationDataPointer + 0x2cc) == '\0') && (*(long long *)(ConfigurationDataPointer + 0x3c8) != 0)) {
-    creationFlags = func_0x0001801fc8c0();
+    configurationFlags = func_0x0001801fc8c0();
   }
   else {
-    creationFlags = *(uint32_t *)(ConfigurationDataPointer + 0x2c4);
+    configurationFlags = *(uint32_t *)(ConfigurationDataPointer + 0x2c4);
   }
-  *(uint32_t *)((long long)SystemResourceManager + 0x14c) = creationFlags;
+  *(uint32_t *)((long long)SystemResourceManager + 0x14c) = configurationFlags;
   if ((*(char *)(ConfigurationDataPointer + 0x29c) == '\0') && (*(long long *)(ConfigurationDataPointer + 0x3c8) != 0)) {
-    creationFlags = func_0x0001801fc7d0();
+    configurationFlags = func_0x0001801fc7d0();
   }
   else {
-    creationFlags = *(uint32_t *)(ConfigurationDataPointer + 0x294);
+    configurationFlags = *(uint32_t *)(ConfigurationDataPointer + 0x294);
   }
-  *(uint32_t *)((long long)SystemResourceManager + 0x13c) = creationFlags;
+  *(uint32_t *)((long long)SystemResourceManager + 0x13c) = configurationFlags;
   *(uint8_t *)((long long)SystemResourceManager + 0x152) = *(uint8_t *)(ConfigurationDataPointer + 0x380);
   *(uint8_t *)(SystemResourceManager + 0x2a) = *(uint8_t *)(ConfigurationDataPointer + 0x381);
   if ((*(char *)(ConfigurationDataPointer + 0x35c) == '\0') && (*(long long *)(ConfigurationDataPointer + 0x3c8) != 0)) {
