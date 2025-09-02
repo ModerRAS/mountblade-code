@@ -38378,11 +38378,21 @@ long long AllocateSystemResourcePointer(long long SystemResourcePointer)
 
 
 
-void* * FUN_18005e950(void* *SystemResourcePointer)
+/**
+ * @brief 系统资源指针管理函数
+ * 
+ * 该函数负责管理系统资源指针，执行指针操作和资源管理。
+ * 
+ * @param SystemResourcePointer 系统资源指针
+ * @return 处理后的资源指针
+ * 
+ * 原始函数名为FUN_18005e950，现已重命名为ManageSystemResourcePointer
+ */
+void* * ManageSystemResourcePointer(void* *SystemResourcePointer)
 
 {
-  void* unsignedSystemValue1;
-  ulong long unsignedSystemValue2;
+  void* resourceHandle;
+  ulong long resourceIndex;
   void* *pointerToUnsigned3;
   ulong long unsignedSystemValue4;
   ulong long unsignedSystemValue5;
