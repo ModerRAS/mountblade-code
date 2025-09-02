@@ -58660,7 +58660,7 @@ uint8_t FUN_180077ef9(void)
 
 
 ulong long FUN_180077f20(long long ResourceManagerPointer,void* ConfigurationDataPointer,uint32_t AdditionalParameter,float *ConfigurationFlag,
-                       uint32_t param_5,uint32_t param_6)
+                       uint32_t primaryConfigurationParameter,uint32_t secondaryConfigurationParameter)
 
 {
   float fVar1;
@@ -58774,7 +58774,7 @@ LAB_180077fcf:
       uStack_60 = (ulong long)(uint)(float)uStack_60;
       uStack_70 = (ulong long)(uint)(float)uStack_70;
       uStack_80 = (ulong long)(uint)(float)uStack_80;
-      creationFlags1 = FUN_180252ca0(ConfigurationDataPointer,ResourceManagerPointer,AdditionalParameter,&uStack_88,param_5,param_6);
+      creationFlags1 = FUN_180252ca0(ConfigurationDataPointer,ResourceManagerPointer,AdditionalParameter,&uStack_88,primaryConfigurationParameter,secondaryConfigurationParameter);
       return creationFlags1;
     }
     in_RAX = 0;
