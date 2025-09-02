@@ -3223,13 +3223,13 @@ void ProcessGameObjects(int64_t GameContext, int64_t SystemContext)
 
 {
   uint8_t objectStatus;
-  int operationStatus;
+  int OperationStatus;
   int64_t currentObjectPtr;
   int TotalProcessedObjects;
   uint8_t ObjectMetadataBuffer[32];
   int64_t SystemHandleArray[2];
   uint8_t *GameObjectDataList;
-  int listIndex;
+  int ListIndex;
   uint32_t maxItems;
   uint8_t ObjectProcessingWorkspace[512];
   uint64_t securityKey;
@@ -3284,7 +3284,7 @@ void ValidateSystemObjectCollection(void)
 
 {
   uint8_t SystemObjectHandle;
-  int validationStatusCode;
+  int ValidationStatusCode;
   int64_t SystemObjectContext;
   int64_t systemContext;
   int64_t ObjectDataOffset;
@@ -3512,7 +3512,7 @@ uint64_t ProcessSystemRequest(int64_t requestParameters,int64_t SystemContext)
   int64_t *processResultPointer;
   int64_t *ResourceTablePointer;
   int64_t *ResourceIndexPointer;
-  int validationStatusCode;
+  int ValidationStatusCode;
   uint ProcessResult;
   uint64_t OperationResult;
   int64_t *ResourceDataPointer;
@@ -4154,8 +4154,8 @@ uint8_t InitializeObjectHandleB(int64_t ObjectContext)
 
 {
   int64_t resourceCount;
-  uint validationStatus;
-  uint resourceHash;
+  uint ValidationStatus;
+  uint ResourceHash;
   uint8_t contextValidationResult;
   uint8_t *resourcePointer;
   int floatConversionResult;
@@ -5449,7 +5449,7 @@ void ProcessSystemMessageQueue(int64_t messageQueueHandle, uint8_t Configuration
 uint64_t ProcessSystemResourceAllocation(int64_t resourceHandle, uint8_t operationFlag)
 
 {
-  uint resourceHash;
+  uint ResourceHash;
   uint64_t ResourceValidationResult;
   int64_t ResourceIndex;
   uint8_t ValidationContext;
@@ -11069,7 +11069,7 @@ void ProcessResourceHashAndIndex(int64_t objectContext, int validationContext, u
  */
 uint64_t ProcessParameterizedDataValidationAndOperation(int64_t dataContext, int operationType, uint *validationFlags)
 {
-  uint resourceHash;
+  uint ResourceHash;
   int64_t resourceTable;
   int64_t ResourceIndex;
   uint8_t *callbackFunction;
@@ -11239,7 +11239,7 @@ uint8_t GetSystemStatusCode(void)
 uint8_t InsertOrUpdateResourceInHashTable(int64_t *hashTablePointer, uint *resourceHashPointer, uint8_t *resourceDataPointer)
 
 {
-  uint resourceHash;
+  uint ResourceHash;
   int existingEntryIndex;
   int tableCapacity;
   uint8_t operationResult;
@@ -15004,7 +15004,7 @@ uint64_t BinarySearchInArray(int64_t ArrayData,uint *SearchKey,uint8_t SearchCon
              uint8_t AdditionalData)
 
 {
-  uint resourceHash;
+  uint ResourceHash;
   int64_t resourceTable;
   int validationStatus;
   int ResultIndex;
@@ -16866,7 +16866,7 @@ uint8_t ProcessResourceTableEntries(int64_t objectContext, int64_t *validationCo
 9ae6(uint8_t *objectContext)
 
 {
-  uint resourceHash;
+  uint ResourceHash;
   uint8_t *pResourceValidationResult;
   int validationStatus;
   int ResultIndex;
@@ -17264,7 +17264,7 @@ uint8_t ProcessResourceDataNormalizationSimple(void)
 9fe0(int64_t objectContext,uint32_t *validationContext)
 
 {
-  uint resourceHash;
+  uint ResourceHash;
   int OperationResult;
   int validationStatus;
   uint8_t loopCondition;
@@ -17405,7 +17405,7 @@ uint8_t ProcessResourceDataNormalizationSimple(void)
  */
 void ValidateResourcePropertiesAndProcessHash(uint32_t resourceId)
 {
-  uint resourceHash;
+  uint ResourceHash;
   uint8_t *ResourceValidationResult;
   int propertyCheckResult;
   int64_t resourceContextBase;
@@ -17878,7 +17878,7 @@ void ClearSystemCache(void)
 void ProcessResourceHash(int64_t resourceContext, uint *hashPointer)
 
 {
-  uint resourceHash;
+  uint ResourceHash;
   int processResult;
   uint8_t hashType;
   uint32_t formattedHash;
@@ -18991,7 +18991,7 @@ uint64_t GetResourceHashA(void)
 uint64_t GetResourceHashB(void)
 
 {
-  uint resourceHash;
+  uint ResourceHash;
   uint64_t ResourceValidationResult;
   uint8_t *resourceContext;
   int64_t ExecutionContextPointer;
@@ -19576,7 +19576,7 @@ void ProcessResourceDataLoading(void)
 {
   int operationResult;
   int infoExtractionResult;
-  uint resourceHash;
+  uint ResourceHash;
   uint stackBuffer;
   
   stackBuffer = 0;
@@ -20511,7 +20511,7 @@ ProcessResourceData(int64_t ResourceContext, uint8_t *ResourceData, int ProcessF
 ProcessResourceData(int64_t ResourceContext, uint8_t *ResourceData, int ProcessFlags)
 
 {
-  uint resourceHash;
+  uint ResourceHash;
   int OperationResult;
   int validationStatus;
   uint loopIncrement;
@@ -23977,7 +23977,7 @@ void ProcessObjectContextValidation(int64_t objectContext, uint8_t validationCon
 uint64_t ValidateResourceFileIntegrity(int64_t objectContext,uint8_t *validationContext)
 
 {
-  uint resourceHash;
+  uint ResourceHash;
   uint64_t ResourceValidationResult;
   uint64_t ValidationResult;
   uint8_t resourceValidationBuffer [32];
@@ -24035,7 +24035,7 @@ uint64_t ValidateResourceFileIntegrity(int64_t objectContext,uint8_t *validation
 uint64_t GetResourceHashAndValidate(void)
 
 {
-  uint resourceHash;
+  uint ResourceHash;
   int64_t InputRegisterValue;
   uint64_t ResourceValidationResult;
   uint8_t *resourceContext;
@@ -24086,7 +24086,7 @@ uint64_t GetResourceHashAndValidate(void)
 uint64_t ValidateResourceHashIntegrity(void)
 
 {
-  uint resourceHash;
+  uint ResourceHash;
   uint64_t ResourceValidationResult;
   uint8_t *resourceContext;
   int64_t systemContext;
@@ -27776,7 +27776,7 @@ uint64_t ValidateResourceDataIntegrity(int64_t objectContext,uint8_t *validation
                        char ValidationMode)
 
 {
-  uint resourceHash;
+  uint ResourceHash;
   uint64_t ResourceValidationResult;
   uint8_t aResourceFlag6 [64];
   uint8_t auStack_30 [40];
@@ -27805,7 +27805,7 @@ uint64_t ValidateResourceDataIntegrity(int64_t objectContext,uint8_t *validation
 uint64_t ValidateResourceDataIntegrityInternal(void)
 
 {
-  uint resourceHash;
+  uint ResourceHash;
   uint64_t ResourceValidationResult;
   uint8_t *resourceContext;
   int64_t ExecutionContextPointer;
@@ -28162,7 +28162,7 @@ uint64_t VerifyResourceCertificateIntegrity(void)
 uint64_t ValidateResourceCertificateTimestamp(void)
 
 {
-  uint resourceHash;
+  uint ResourceHash;
   uint64_t ResourceValidationResult;
   uint64_t resourceContext;
   int64_t ExecutionContextPointer;
@@ -28192,7 +28192,7 @@ uint64_t ValidateResourceCertificateTimestamp(void)
 uint64_t ProcessResourceCertificateRevocation(void)
 
 {
-  uint resourceHash;
+  uint ResourceHash;
   uint64_t ResourceValidationResult;
   uint64_t resourceContext;
   int64_t ExecutionContextPointer;
@@ -50140,7 +50140,16 @@ void Unwind_1809067a0(uint8_t objectContext,int64_t validationContext)
 
 
 
-void Unwind_1809067b0(uint8_t objectContext,int64_t validationContext)
+/**
+ * @brief 初始化系统资源处理器
+ * 
+ * 该函数负责初始化系统资源处理器，设置资源处理器模板和系统数据结构。
+ * 如果发现现有资源处理器非空，则触发系统紧急退出。
+ * 
+ * @param objectContext 对象上下文标识符
+ * @param validationContext 验证上下文，包含循环计数器
+ */
+void InitializeSystemResourceProcessor(uint8_t objectContext, int64_t validationContext)
 
 {
   int64_t loopCounter;
