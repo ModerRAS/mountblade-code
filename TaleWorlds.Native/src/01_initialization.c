@@ -9499,7 +9499,20 @@ void InitializeSystemNetworkNode(void)
 
 
 
-// 函数: void InitializeSystemAudioNode(void)
+/**
+ * @brief 初始化系统音频节点
+ * 
+ * 该函数负责初始化系统音频节点，创建音频处理所需的系统节点结构。
+ * 它会在系统数据表中查找或创建音频节点，并设置节点的标识符和回调函数。
+ * 音频节点用于管理音频相关的资源和处理流程。
+ * 
+ * @return 无返回值
+ * 
+ * @note 该函数使用内存分配和节点比较操作来确保音频节点的正确初始化
+ * @note 节点标识符为 0x4666df49b97e0f10 和 0x4e4b0d63a6ad1d8f
+ * 
+ *FUN_18005926c：InitializeSystemAudioNode
+ */
 void InitializeSystemAudioNode(void)
 
 {
@@ -9549,7 +9562,20 @@ void InitializeSystemAudioNode(void)
 
 
 
-// 函数: void InitializeSystemInputNode(void)
+/**
+ * @brief 初始化系统输入节点
+ * 
+ * 该函数负责初始化系统输入节点，创建输入处理所需的系统节点结构。
+ * 它会在系统数据表中查找或创建输入节点，并设置节点的标识符和回调函数。
+ * 输入节点用于管理用户输入相关的资源和处理流程。
+ * 
+ * @return 无返回值
+ * 
+ * @note 该函数使用内存分配和节点比较操作来确保输入节点的正确初始化
+ * @note 节点标识符为 0x46ecbd4daf41613e 和 0xdc42c056bbde8482
+ * 
+ *FUN_180059350：InitializeSystemInputNode
+ */
 void InitializeSystemInputNode(void)
 
 {
