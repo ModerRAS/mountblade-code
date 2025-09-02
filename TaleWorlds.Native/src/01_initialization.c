@@ -18504,31 +18504,31 @@ void InitializeSystemInfoAndUserEnvironment(void)
   void* allocationFlags;
   long long *controllerPtr;
   uint8_t StackBuffer248 [32];
-  void* *puStack_228;
-  void* *puStack_220;
-  void* *puStack_218;
-  long long *plStack_208;
+  void* *SystemConfigurationTemplatePointer;
+  void* *SystemStringTemplatePointer;
+  void* *SystemStringTemplatePointer2;
+  long long *SystemMemoryOffsetPointer;
   uint32_t StackValue200;
-  void* *puStack_1f8;
-  void* *puStack_1f0;
+  void* *SystemGlobalDataReferencePointer;
+  void* *SystemFunctionPointer;
   uint32_t StackValue1e8;
-  ulong long uStack_1e0;
-  void* *puStack_1d8;
-  void* *puStack_1d0;
+  ulong long SystemFlags;
+  void* *SystemGlobalDataReferencePointer2;
+  void* *SystemFunctionPointer2;
   uint32_t StackValue1c8;
-  ulong long uStack_1c0;
-  void* *puStack_1b8;
-  long long lStack_1b0;
-  uint32_t uStack_1a0;
-  void* uStack_198;
-  long long *plStack_190;
-  void* *puStack_188;
-  void* *puStack_180;
-  uint32_t uStack_178;
-  void* auStack_170 [32];
-  long long **applStack_150 [3];
+  ulong long SystemFlags2;
+  void* *GameControllerPointer;
+  long long SystemMemorySize;
+  uint32_t SystemOperationFlags;
+  void* SystemMemoryHandle;
+  long long *SystemMemoryPointer;
+  void* *SystemMemoryTemplatePointer;
+  void* *SystemDataBufferPointer;
+  uint32_t SystemDataFlags;
+  void* SystemDataArray [32];
+  long long **ApplicationPointerArray [3];
   uint8_t StackBuffer138 [272];
-  ulong long uStack_28;
+  ulong long SystemEncryptionKey;
   
   uStack_198 = 0xfffffffffffffffe;
   uStack_28 = SystemEncryptionKeyTemplate ^ (ulong long)StackBuffer248;
@@ -36878,15 +36878,27 @@ void* * SearchAndCompareSystemResourceString(void* SystemResourcePointer,void* *
 
 
 
-void* * FUN_18005d484(void* SystemResourcePointer,void* *ConfigurationDataPointer)
+/**
+ * @brief 系统资源数据指针查找函数
+ * 
+ * 该函数负责在系统资源中查找和匹配数据指针，通过遍历配置数据指针
+ * 来定位所需的资源数据。该函数包含内存块操作和指针比较逻辑。
+ * 
+ * @param SystemResourcePointer 系统资源指针
+ * @param ConfigurationDataPointer 配置数据指针
+ * @return 匹配的数据指针，如果未找到则返回NULL
+ * 
+ * 原始函数名为FUN_18005d484，现已重命名为FindSystemResourceDataPointer
+ */
+void* * FindSystemResourceDataPointer(void* SystemResourcePointer,void* *ConfigurationDataPointer)
 
 {
-  char *pcVar1;
-  char *pcVar2;
+  char *memoryBlockPointer1;
+  char *memoryBlockPointer2;
   char *systemMemoryBlockPtr;
   long long localResourceOffset;
-  long long in_R10;
-  long long in_R11;
+  long long targetOffset;
+  long long comparisonOffset;
   
   while( true ) {
     do {
@@ -36896,19 +36908,19 @@ void* * FUN_18005d484(void* SystemResourcePointer,void* *ConfigurationDataPointe
       }
       if ((char *)*ConfigurationDataPointer == (char *)0x0) {
         localResourceOffset = 0;
-        pcVar2 = systemMemoryBlockPtr;
+        memoryBlockPointer2 = systemMemoryBlockPtr;
       }
       else {
         localResourceOffset = ConfigurationDataPointer[2];
-        pcVar2 = (char *)*ConfigurationDataPointer;
+        memoryBlockPointer2 = (char *)*ConfigurationDataPointer;
       }
-    } while (localResourceOffset != in_R10);
-    pcVar1 = pcVar2 + localResourceOffset;
-    if (pcVar1 <= pcVar2) break;
-    localResourceOffset = in_R11 - (long long)pcVar2;
-    while (*pcVar2 == pcVar2[localResourceOffset]) {
-      pcVar2 = pcVar2 + 1;
-      if (pcVar1 <= pcVar2) {
+    } while (localResourceOffset != targetOffset);
+    memoryBlockPointer1 = memoryBlockPointer2 + localResourceOffset;
+    if (memoryBlockPointer1 <= memoryBlockPointer2) break;
+    localResourceOffset = comparisonOffset - (long long)memoryBlockPointer2;
+    while (*memoryBlockPointer2 == memoryBlockPointer2[localResourceOffset]) {
+      memoryBlockPointer2 = memoryBlockPointer2 + 1;
+      if (memoryBlockPointer1 <= memoryBlockPointer2) {
         return ConfigurationDataPointer;
       }
     }
