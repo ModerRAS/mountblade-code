@@ -5502,10 +5502,10 @@ void InitializeSystemStringConfigurationManager(void)
 
 {
   void* SystemRegisterValue;
-  void* *SystemDataPointer;
-  uint8_t *SystemBufferPointer;
+  void** SystemDataPointer;
+  uint8_t* SystemBufferPointer;
   uint32_t SystemConfigurationValue;
-  uint8_t SystemProcessingBuffer [136];
+  uint8_t SystemProcessingBuffer[136];
   
   SystemDataPointer = &SystemGlobalDataPointerC;
   SystemBufferPointer = SystemProcessingBuffer;
@@ -8858,10 +8858,10 @@ void InitializeSystemConfigurationManager(void)
 
 {
   void* SystemRegisterValue;
-  void* *SystemDataPointer;
-  uint8_t *SystemBufferPointer;
+  void** SystemDataPointer;
+  uint8_t* SystemBufferPointer;
   uint32_t SystemConfigurationValue;
-  uint8_t SystemProcessingBuffer [136];
+  uint8_t SystemProcessingBuffer[136];
   
   SystemDataPointer = &SystemGlobalDataPointerC;
   SystemBufferPointer = SystemProcessingBuffer;
@@ -8899,10 +8899,10 @@ void InitializeSystemExtensionManager(void)
 
 {
   void* SystemRegisterValue;
-  void* *SystemDataPointer;
-  uint8_t *SystemBufferPointer;
+  void** SystemDataPointer;
+  uint8_t* SystemBufferPointer;
   uint32_t SystemConfigurationValue;
-  uint8_t SystemProcessingBuffer [136];
+  uint8_t SystemProcessingBuffer[136];
   
   SystemDataPointer = &SystemGlobalDataPointerC;
   SystemBufferPointer = SystemProcessingBuffer;
@@ -8923,10 +8923,10 @@ void InitializeSystemLibraryManager(void)
 
 {
   void* SystemRegisterValue;
-  void* *SystemDataPointer;
-  uint8_t *SystemBufferPointer;
+  void** SystemDataPointer;
+  uint8_t* SystemBufferPointer;
   uint32_t SystemConfigurationValue;
-  uint8_t SystemProcessingBuffer [136];
+  uint8_t SystemProcessingBuffer[136];
   
   SystemDataPointer = &SystemGlobalDataPointerC;
   SystemBufferPointer = SystemProcessingBuffer;
@@ -9374,10 +9374,10 @@ void InitializeSystemPerformanceNode(void)
 
 {
   void* SystemRegisterValue;
-  void* *SystemDataPointer;
-  uint8_t *SystemBufferPointer;
+  void** SystemDataPointer;
+  uint8_t* SystemBufferPointer;
   uint32_t SystemConfigurationValue;
-  uint8_t SystemProcessingBuffer [136];
+  uint8_t SystemProcessingBuffer[136];
   
   SystemDataPointer = &SystemGlobalDataPointerC;
   SystemBufferPointer = SystemProcessingBuffer;
@@ -9991,10 +9991,10 @@ void InitializeSystemDebugInfoManager(void)
 
 {
   void* SystemRegisterValue;
-  void* *SystemDataPointer;
-  uint8_t *SystemBufferPointer;
+  void** SystemDataPointer;
+  uint8_t* SystemBufferPointer;
   uint32_t SystemConfigurationValue;
-  uint8_t SystemProcessingBuffer [136];
+  uint8_t SystemProcessingBuffer[136];
   
   SystemDataPointer = &SystemGlobalDataPointerC;
   SystemBufferPointer = SystemProcessingBuffer;
@@ -10022,10 +10022,10 @@ void InitializeSystemLogManager(void)
 
 {
   void* SystemRegisterValue;
-  void* *SystemDataPointer;
-  uint8_t *SystemBufferPointer;
+  void** SystemDataPointer;
+  uint8_t* SystemBufferPointer;
   uint32_t SystemConfigurationValue;
-  uint8_t SystemProcessingBuffer [136];
+  uint8_t SystemProcessingBuffer[136];
   
   SystemDataPointer = &SystemGlobalDataPointerC;
   SystemBufferPointer = SystemProcessingBuffer;
@@ -10054,9 +10054,9 @@ void InitializeSystemStringProcessorA(void)
 {
   void* SystemRegisterValue;
   void* *SystemStringPointer;
-  uint8_t *SystemBufferPointer;
+  uint8_t* SystemBufferPointer;
   uint32_t SystemConfigurationValue;
-  uint8_t SystemProcessingBuffer [136];
+  uint8_t SystemProcessingBuffer[136];
   
   SystemStringPointer = &SystemStringConstant;
   SystemBufferPointer = SystemProcessingBuffer;
@@ -10085,9 +10085,9 @@ void InitializeSystemStringProcessorB(void)
 {
   void* SystemRegisterValue;
   void* *SystemStringPointer;
-  uint8_t *SystemBufferPointer;
+  uint8_t* SystemBufferPointer;
   uint32_t SystemConfigurationValue;
-  uint8_t SystemProcessingBuffer [136];
+  uint8_t SystemProcessingBuffer[136];
   
   SystemStringPointer = &SystemStringConstant;
   SystemBufferPointer = SystemProcessingBuffer;
@@ -10116,9 +10116,9 @@ void InitializeSystemStringProcessorC(void)
 {
   void* SystemRegisterValue;
   void* *SystemStringPointer;
-  uint8_t *SystemBufferPointer;
+  uint8_t* SystemBufferPointer;
   uint32_t SystemConfigurationValue;
-  uint8_t SystemProcessingBuffer [136];
+  uint8_t SystemProcessingBuffer[136];
   
   SystemStringPointer = &SystemStringConstant;
   SystemBufferPointer = SystemProcessingBuffer;
@@ -10138,10 +10138,10 @@ void InitializeSystemStringProcessorA(void)
 
 {
   void* SystemRegisterValue;
-  void* *SystemDataPointer;
-  uint8_t *SystemBufferPointer;
+  void** SystemDataPointer;
+  uint8_t* SystemBufferPointer;
   uint32_t SystemConfigurationValue;
-  uint8_t SystemProcessingBuffer [136];
+  uint8_t SystemProcessingBuffer[136];
   
   SystemDataPointer = &SystemGlobalDataPointerC;
   SystemBufferPointer = SystemProcessingBuffer;
@@ -10161,10 +10161,10 @@ void InitializeSystemStringProcessorB(void)
 
 {
   void* SystemRegisterValue;
-  void* *SystemDataPointer;
-  uint8_t *SystemBufferPointer;
+  void** SystemDataPointer;
+  uint8_t* SystemBufferPointer;
   uint32_t SystemConfigurationValue;
-  uint8_t SystemProcessingBuffer [136];
+  uint8_t SystemProcessingBuffer[136];
   
   SystemDataPointer = &SystemGlobalDataPointerC;
   SystemBufferPointer = SystemProcessingBuffer;
@@ -10191,10 +10191,10 @@ void InitializeSystemStringProcessorC(void)
 
 {
   void* SystemRegisterValue;
-  void* *SystemDataPointer;
-  uint8_t *SystemBufferPointer;
+  void** SystemDataPointer;
+  uint8_t* SystemBufferPointer;
   uint32_t SystemConfigurationValue;
-  uint8_t SystemProcessingBuffer [136];
+  uint8_t SystemProcessingBuffer[136];
   
   SystemDataPointer = &SystemGlobalDataPointerC;
   SystemBufferPointer = SystemProcessingBuffer;
@@ -10221,10 +10221,10 @@ void InitializeSystemStringProcessorD(void)
 
 {
   void* SystemRegisterValue;
-  void* *SystemDataPointer;
-  uint8_t *SystemBufferPointer;
+  void** SystemDataPointer;
+  uint8_t* SystemBufferPointer;
   uint32_t SystemConfigurationValue;
-  uint8_t SystemProcessingBuffer [136];
+  uint8_t SystemProcessingBuffer[136];
   
   SystemDataPointer = &SystemGlobalDataPointerC;
   SystemBufferPointer = SystemProcessingBuffer;
@@ -12818,10 +12818,10 @@ void InitializeSystemMemoryNodeManager(void)
 
 {
   void* SystemRegisterValue;
-  void* *SystemDataPointer;
-  uint8_t *SystemBufferPointer;
+  void** SystemDataPointer;
+  uint8_t* SystemBufferPointer;
   uint32_t SystemConfigurationValue;
-  uint8_t SystemProcessingBuffer [136];
+  uint8_t SystemProcessingBuffer[136];
   
   SystemDataPointer = &SystemGlobalDataPointerC;
   SystemBufferPointer = SystemProcessingBuffer;
@@ -12847,10 +12847,10 @@ void InitializeSystemDeviceNodeManager(void)
 
 {
   void* SystemRegisterValue;
-  void* *SystemDataPointer;
-  uint8_t *SystemBufferPointer;
+  void** SystemDataPointer;
+  uint8_t* SystemBufferPointer;
   uint32_t SystemConfigurationValue;
-  uint8_t SystemProcessingBuffer [136];
+  uint8_t SystemProcessingBuffer[136];
   
   SystemDataPointer = &SystemGlobalDataPointerC;
   SystemBufferPointer = SystemProcessingBuffer;
@@ -14127,10 +14127,10 @@ void InitializeSystemEventManagerN(void)
 
 {
   void* SystemRegisterValue;
-  void* *SystemDataPointer;
-  uint8_t *SystemBufferPointer;
+  void** SystemDataPointer;
+  uint8_t* SystemBufferPointer;
   uint32_t SystemConfigurationValue;
-  uint8_t SystemProcessingBuffer [136];
+  uint8_t SystemProcessingBuffer[136];
   
   SystemDataPointer = &SystemGlobalDataPointerC;
   SystemBufferPointer = SystemProcessingBuffer;
@@ -14759,10 +14759,10 @@ void InitializeSystemResourceManagerK(void)
 
 {
   void* SystemRegisterValue;
-  void* *SystemDataPointer;
-  uint8_t *SystemBufferPointer;
+  void** SystemDataPointer;
+  uint8_t* SystemBufferPointer;
   uint32_t SystemConfigurationValue;
-  uint8_t SystemProcessingBuffer [136];
+  uint8_t SystemProcessingBuffer[136];
   
   SystemDataPointer = &SystemGlobalDataPointerC;
   SystemBufferPointer = SystemProcessingBuffer;
@@ -14785,10 +14785,10 @@ void InitializeSystemResourceManagerL(void)
 
 {
   void* SystemRegisterValue;
-  void* *SystemDataPointer;
-  uint8_t *SystemBufferPointer;
+  void** SystemDataPointer;
+  uint8_t* SystemBufferPointer;
   uint32_t SystemConfigurationValue;
-  uint8_t SystemProcessingBuffer [136];
+  uint8_t SystemProcessingBuffer[136];
   
   SystemDataPointer = &SystemGlobalDataPointerC;
   SystemBufferPointer = SystemProcessingBuffer;
@@ -14811,10 +14811,10 @@ void InitializeSystemResourceManagerM(void)
 
 {
   void* SystemRegisterValue;
-  void* *SystemDataPointer;
-  uint8_t *SystemBufferPointer;
+  void** SystemDataPointer;
+  uint8_t* SystemBufferPointer;
   uint32_t SystemConfigurationValue;
-  uint8_t SystemProcessingBuffer [136];
+  uint8_t SystemProcessingBuffer[136];
   
   SystemDataPointer = &SystemGlobalDataPointerC;
   SystemBufferPointer = SystemProcessingBuffer;
@@ -14837,10 +14837,10 @@ void InitializeSystemResourceManagerN(void)
 
 {
   void* SystemRegisterValue;
-  void* *SystemDataPointer;
-  uint8_t *SystemBufferPointer;
+  void** SystemDataPointer;
+  uint8_t* SystemBufferPointer;
   uint32_t SystemConfigurationValue;
-  uint8_t SystemProcessingBuffer [136];
+  uint8_t SystemProcessingBuffer[136];
   
   SystemDataPointer = &SystemGlobalDataPointerC;
   SystemBufferPointer = SystemProcessingBuffer;
@@ -16590,10 +16590,10 @@ void InitializeSystemSubcomponentM(void)
 
 {
   void* SystemRegisterValue;
-  void* *SystemDataPointer;
-  uint8_t *SystemBufferPointer;
+  void** SystemDataPointer;
+  uint8_t* SystemBufferPointer;
   uint32_t SystemConfigurationValue;
-  uint8_t SystemProcessingBuffer [136];
+  uint8_t SystemProcessingBuffer[136];
   
   SystemDataPointer = &SystemGlobalDataPointerC;
   SystemBufferPointer = SystemProcessingBuffer;
@@ -17827,10 +17827,10 @@ void SystemPerformanceMonitorInitializer(void)
 
 {
   void* SystemRegisterValue;
-  void* *SystemDataPointer;
-  uint8_t *SystemBufferPointer;
+  void** SystemDataPointer;
+  uint8_t* SystemBufferPointer;
   uint32_t SystemConfigurationValue;
-  uint8_t SystemProcessingBuffer [136];
+  uint8_t SystemProcessingBuffer[136];
   
   SystemDataPointer = &SystemGlobalDataPointerC;
   SystemBufferPointer = SystemProcessingBuffer;
@@ -17971,7 +17971,7 @@ void SystemNetworkManagerInitializer(void)
   void* *stackPointerParameter;
   uint8_t *StackBufferPointer;
   uint32_t StackBufferSize;
-  uint8_t SystemProcessingBuffer [136];
+  uint8_t SystemProcessingBuffer[136];
   
   stackPointerParameter = &SystemGlobalDataPointerC;
   StackBufferPointer = StackBuffer;
@@ -19490,7 +19490,7 @@ void ProcessSystemThreeParameterBuffer(long long MainParameter,long long Auxilia
   uint8_t StackSecurityBuffer [32];
   void* SystemSecurityFlag;
   void* *SystemMemoryReference;
-  uint8_t *SystemBufferPointer;
+  uint8_t* SystemBufferPointer;
   uint32_t SystemBufferLength;
   uint8_t SystemDataBuffer [1032];
   ulong long SystemChecksumValue;
@@ -19982,7 +19982,7 @@ InitializeSystemReferencePointersWithCleanup(void* *SystemReferencePointer,ulong
 
 
 
-// 函数: void ProcessSystemMemoryRange(long long *SystemResourceManager)
+// 函数: void ProcessSystemMemoryRange(long long* SystemResourceManager)
 void ProcessSystemMemoryRange(long long *MemoryRangePointer)
 
 {
@@ -20002,11 +20002,11 @@ void ProcessSystemMemoryRange(long long *MemoryRangePointer)
 
 
 
-// 函数: void InitializeSystemDataPointers(long long *SystemResourceManager)
-void InitializeSystemDataPointers(long long *SystemResourceManager)
+// 函数: void InitializeSystemDataPointers(long long* SystemResourceManager)
+void InitializeSystemDataPointers(long long* SystemResourceManager)
 
 {
-  void* *SystemDataPointer;
+  void** SystemDataPointer;
   void** SystemDataTable;
   
   SystemDataPointer = (void* *)SystemResourceManager[SYSTEM_RESOURCE_DATA_POINTER_OFFSET];
@@ -20034,10 +20034,10 @@ void InitializeSystemDataPointers(long long *SystemResourceManager)
  * 
  * @param SystemResourceManager 内存块指针的指针
  */
-void ReleaseMemoryBlockReference(ulong long *SystemResourceManager)
+void ReleaseMemoryBlockReference(ulong long* SystemResourceManager)
 
 {
-  int *SystemIntegerPointer;
+  int* SystemIntegerPointer;
   void** SystemDataTable;
   long long ResourceDataOffset;
   ulong long resourceAddress;
@@ -20337,7 +20337,7 @@ SystemResultZeroHandler:
  * @param SystemResourceManager 系统资源指针
  * @param SystemConfigurationPointer 系统配置指针
  */
-void InitializeSystemController(long long *SystemResourceManager,void* *SystemConfigurationPointer)
+void InitializeSystemController(long long* SystemResourceManager,void* *SystemConfigurationPointer)
 
 {
   long long *PrimaryResourcePointer;
@@ -21144,12 +21144,12 @@ void InitializeSystemConfigurationData(void* SystemResourceManager,void* Configu
 
 
 
-// 函数: void ProcessSystemMemoryRegion(long long *SystemResourceManager)
+// 函数: void ProcessSystemMemoryRegion(long long* SystemResourceManager)
 /**
  * @brief 处理系统内存区域
  * 遍历内存区域并调用相应的处理函数
  */
-void ProcessSystemMemoryRegion(long long *SystemResourceManager)
+void ProcessSystemMemoryRegion(long long* SystemResourceManager)
 
 {
   long long SystemResourceTableEnd;
@@ -21168,15 +21168,15 @@ void ProcessSystemMemoryRegion(long long *SystemResourceManager)
 
 
 
-// 函数: void InitializeSystemDataTable(long long *SystemResourceManager)
+// 函数: void InitializeSystemDataTable(long long* SystemResourceManager)
 /**
  * @brief 初始化系统数据表
  * 初始化系统数据表，设置全局数据引用和内存分配器引用
  */
-void InitializeSystemDataTable(long long *SystemResourceManager)
+void InitializeSystemDataTable(long long* SystemResourceManager)
 
 {
-  void* *SystemDataPointer;
+  void** SystemDataPointer;
   void** SystemDataTable;
   
   SystemDataPointer = (void* *)SystemResourceManager[SYSTEM_RESOURCE_DATA_POINTER_OFFSET];
@@ -21198,15 +21198,15 @@ void InitializeSystemDataTable(long long *SystemResourceManager)
 
 
 
-// 函数: void ProcessSystemExceptionList(ulong long *SystemResourceManager)
+// 函数: void ProcessSystemExceptionList(ulong long* SystemResourceManager)
 /**
  * @brief 处理系统异常列表
  * 处理系统异常列表，管理异常处理机制
  */
-void ProcessSystemExceptionList(ulong long *SystemResourceManager)
+void ProcessSystemExceptionList(ulong long* SystemResourceManager)
 
 {
-  int *SystemIntegerPointer;
+  int* SystemIntegerPointer;
   void** SystemDataTable;
   long long ResourceDataOffset;
   ulong long resourceAddress;
@@ -21397,7 +21397,7 @@ void* AllocateSystemResources(void* SystemResourceManager,ulong long Configurati
  * @param SearchParameters 查找参数，包含字符串比较信息
  * @return 返回找到的节点指针
  */
-void* * SystemMemoryNodeFinder(long long *SystemResourceManager,void* *OutputNodePointer,void* ReservedParameter,long long *TargetNodePointer,
+void* * SystemMemoryNodeFinder(long long* SystemResourceManager,void* *OutputNodePointer,void* ReservedParameter,long long *TargetNodePointer,
              long long SearchParameters)
 
 {
@@ -21625,7 +21625,7 @@ void* * CreateSystemResourceManager(long long SystemResourceManager,long long *C
 void* * CreateSystemResourceTemplate(long long SystemResourceManager,long long ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
 {
-  void* *SystemDataPointer;
+  void** SystemDataPointer;
   
   SystemDataPointer = (void* *)
            CreateSystemThreadObject(SystemMemoryPoolTemplate,0x68,*(uint8_t *)(SystemResourceManager + 0x28),ConfigurationFlag,
@@ -22257,7 +22257,7 @@ void SystemStringProcessor(long long SystemResourceManager,long long SourceStrin
 void* * SystemMemoryAllocatorInitializer(void* *SystemResourceManager,long long ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
 {
-  void* *SystemDataPointer;
+  void** SystemDataPointer;
   
   *SystemResourceManager = &SystemMemoryAllocatorReference;
   SystemResourceManager[SYSTEM_RESOURCE_DATA_POINTER_OFFSET] = 0;
@@ -23469,7 +23469,7 @@ void ConfigureAndInitializeSystemMemoryAllocator(void* *SystemResourceManager)
 
 
 
-long long * InitializeGameController(long long *SystemResourceManager,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
+long long * InitializeGameController(long long* SystemResourceManager,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
 {
   *SystemResourceManager = (long long)&SystemMemoryAllocatorReference;
@@ -24203,7 +24203,7 @@ void* * SystemMemoryAllocatorInitializer(void* *memoryAllocator)
 
 
 
-// 函数: void InitializeResourcePointer(long long *SystemResourceManager,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
+// 函数: void InitializeResourcePointer(long long* SystemResourceManager,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 /**
  * @brief 系统数据表处理器A
  * 
@@ -24237,7 +24237,7 @@ void SystemDataTableProcessorA(long long *DataTablePointer,void* systemContext,v
 
 
 
-// 函数: void SetupResourcePointer(long long *SystemResourceManager,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
+// 函数: void SetupResourcePointer(long long* SystemResourceManager,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 /**
  * @brief 系统数据表处理器B
  * 
@@ -24453,8 +24453,8 @@ void CleanupSystemQueue(long long *QueueHeader)
 
 
 
-// 函数: void SystemDataStructureProcess(long long *SystemResourceManager)
-void SystemDataStructureProcess(long long *SystemResourceManager)
+// 函数: void SystemDataStructureProcess(long long* SystemResourceManager)
+void SystemDataStructureProcess(long long* SystemResourceManager)
 
 {
   long long *PrimaryResourcePointer;
@@ -24529,7 +24529,7 @@ void ProcessSystemInitializationQueue(long long *queueHeader)
 void SystemMemoryInitialize(long long SystemResourceManager)
 
 {
-  int *SystemIntegerPointer;
+  int* SystemIntegerPointer;
   long long SystemThreadHandle;
   void* *SystemHashNodeData;
   long long SystemBufferAddress;
@@ -24583,9 +24583,9 @@ void SystemMemoryInitialize(long long SystemResourceManager)
 void SystemResourceAllocate(long long SystemResourceManager)
 
 {
-  void* *SystemDataPointer;
+  void** SystemDataPointer;
   uint8_t SystemStackBufferA8 [8];
-  void* *SystemDataPointer;
+  void** SystemDataPointer;
   uint secondarySystemDataBuffer;
   void* UnsignedStackFlag88;
   void* UnsignedStackFlag80;
@@ -24615,7 +24615,7 @@ void SystemResourceAllocate(long long SystemResourceManager)
  * @note 当引用计数归零时调用ReleaseSystemResource()函数
  * @note 函数处理异常列表和资源释放逻辑
  */
-void ManageSystemResourceReferenceCount(ulong long *SystemResourceManager)
+void ManageSystemResourceReferenceCount(ulong long* SystemResourceManager)
 
 {
   int *referenceCountPointer;
@@ -24666,7 +24666,7 @@ void ManageSystemResourceReferenceCount(ulong long *SystemResourceManager)
  * @note 函数使用0xfffffffffffffffe作为清理标志
  * @note 函数最后调用SystemCleanupFunction()进行最终清理
  */
-void ExecuteSystemCleanup(long long *SystemResourceManager,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
+void ExecuteSystemCleanup(long long* SystemResourceManager,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
 {
   void* *cleanupArrayEnd;
@@ -25090,7 +25090,7 @@ SystemBufferAllocationHandler:
  * 
  * @param SystemResourceManager 系统资源指针
  */
-void ExecuteSystemResourceCallback(long long *SystemResourceManager)
+void ExecuteSystemResourceCallback(long long* SystemResourceManager)
 
 {
   if ((long long *)*callbackParameter != (long long *)0x0) {
@@ -25220,7 +25220,7 @@ void CalculateRenderQualitySettings(long long SystemResourceManager)
  * 
  * @param SystemResourceManager 系统资源指针数组，包含所有需要清理的系统资源
  */
-void SystemResourceCleanupManager(long long *SystemResourceManager)
+void SystemResourceCleanupManager(long long* SystemResourceManager)
 {
   void* *SystemResourceArray;
   long long LocalSystemHandle;
@@ -25588,7 +25588,7 @@ void ProcessSystemResourceAllocation(void* SystemResourceManager,long long Confi
 void UpdateSystemRenderManager(long long SystemResourceManager)
 
 {
-  int *SystemIntegerPointer;
+  int* SystemIntegerPointer;
   uint32_t resourceCreationFlags;
   int NodeIdentifierComparisonResult;
   bool isTextureUpdateRequired;
@@ -26061,7 +26061,7 @@ void SystemCleanupHandler(void)
 void SystemMemoryManager(long long SystemResourceManager)
 
 {
-  int *SystemIntegerPointer;
+  int* SystemIntegerPointer;
   long long SystemThreadHandle;
   void* *SystemHashNodeData;
   long long SystemBufferAddress;
@@ -26123,7 +26123,7 @@ void SystemMemoryManager(long long SystemResourceManager)
 void SystemMemoryCleanup(long long SystemResourceManager)
 
 {
-  int *SystemIntegerPointer;
+  int* SystemIntegerPointer;
   long long SystemThreadHandle;
   void* *SystemHashNodeData;
   long long SystemBufferAddress;
@@ -26183,7 +26183,7 @@ void SystemMemoryCleanup(long long SystemResourceManager)
 void SystemDataInitializer(void)
 
 {
-  void* *SystemDataPointer;
+  void** SystemDataPointer;
   char *SystemStringPointer;
   void* resourceAllocationContext;
   long long SystemBufferAddress;
@@ -26977,7 +26977,7 @@ void SystemContextInitializer(void)
 bool SystemResourceValidator(long long SystemResourceManager)
 
 {
-  void* *SystemDataPointer;
+  void** SystemDataPointer;
   byte byteValue;
   bool isValidOperation;
   byte *stringPointer;
@@ -27093,13 +27093,13 @@ void* SystemStatusFlagProcessor(void* SystemResourceManager,void* ConfigurationD
 void SystemDataProcessor(long long SystemResourceManager)
 
 {
-  void* *SystemDataPointer;
+  void** SystemDataPointer;
   int systemResult;
   uint8_t aEncryptionOffset1 [32];
   uint32_t SystemInitializationStatus;
   void* systemDataBuffer;
   long long SystemResourceManagerHandle;
-  uint8_t aUnsignedStackFlagA8 [128];
+  uint8_t SystemUnsignedStackFlagA8 [128];
   ulong long EncryptionKeyValue;
   
   systemDataBuffer = 0xfffffffffffffffe;
@@ -27497,7 +27497,7 @@ SystemFlagHandler:
  * @param RenderConfig 渲染配置指针
  * @param OperationFlags 操作标志
  */
-void ProcessSystemResourceAndRenderManagement(long long *SystemResourceManager,void* ResourceData,void* RenderConfig,uint8_t OperationFlags)
+void ProcessSystemResourceAndRenderManagement(long long* SystemResourceManager,void* ResourceData,void* RenderConfig,uint8_t OperationFlags)
 {
   int SystemOperationStatusValue;
   long long systemHandle;
@@ -28133,7 +28133,7 @@ ResourceCountCheck:
 
 
 
-// 函数: void ConfigureSystemResource(long long *SystemResourceManager,long long ConfigurationDataPointer)
+// 函数: void ConfigureSystemResource(long long* SystemResourceManager,long long ConfigurationDataPointer)
 /**
  * @brief 系统资源数据处理函数
  * 
@@ -28144,7 +28144,7 @@ ResourceCountCheck:
  * @param ConfigurationDataPointer 处理参数，包含系统资源和处理标志
  * @note 这是系统初始化过程中的核心函数，用于建立系统资源的数据结构
  */
-void SystemResourceDataProcessor(long long *SystemResourceManager,long long ConfigurationDataPointer)
+void SystemResourceDataProcessor(long long* SystemResourceManager,long long ConfigurationDataPointer)
 
 {
   uint SystemOperationStatus;
@@ -28383,7 +28383,7 @@ void SystemResourceEnumerator(void)
   int SystemStatus;
   long long MemoryPointer;
   uint *ResourceFlagPointer;
-  void* *SystemDataPointer;
+  void** SystemDataPointer;
   uint32_t SystemResourceID;
   uint8_t LocalBufferArray [32];
   void* *StackResourcePointer158;
@@ -28760,8 +28760,8 @@ void SystemContextManagerInitializer(void)
   void** SystemDataTable;
   void* MemoryAllocationHandle;
   long long SystemBufferAddress;
-  void* *SystemDataPointer;
-  void* *SystemHashEntryPointer;
+  void** SystemDataPointer;
+  void** SystemHashEntryPointer;
   
   SystemHashEntryPointer = (void* *)SystemMemoryAllocationFunction(SystemMemoryPoolTemplate,0x198,8,3);
   SystemDataPointer = SystemHashEntryPointer + 4;
@@ -28821,7 +28821,7 @@ void SystemContextManagerInitializer(void)
 
 
 
-// 函数: void InitializeSystemDataPointer(long long *SystemResourceManager)
+// 函数: void InitializeSystemDataPointer(long long* SystemResourceManager)
 /**
  * @brief 系统资源清理函数
  * 
@@ -28831,7 +28831,7 @@ void SystemContextManagerInitializer(void)
  * @param SystemResourceManager 系统资源指针数组，包含要清理的资源信息
  * @note 这是系统资源管理的重要组成部分，用于确保资源的正确释放
  */
-void SystemResourceCleaner(long long *SystemResourceManager)
+void SystemResourceCleaner(long long* SystemResourceManager)
 
 {
   long long resourceDataIndex;
@@ -29386,16 +29386,16 @@ void ManageSystemResourceData(long long SystemResourceManager,void* Configuratio
  * @param SystemResourceManager 系统资源指针，指向需要初始化的内存资源
  * @note 该函数在系统启动时调用，确保内存资源正确初始化
  */
-void InitializeSystemMemoryResource(long long *SystemResourceManager)
+void InitializeSystemMemoryResource(long long* SystemResourceManager)
 
 {
-  void* *SystemDataPointer;
+  void** SystemDataPointer;
   code *SystemStringPointer;
   long long ResourceDataOffset;
   long long* SystemMemoryPointer;
   uint8_t asecondarySystemDataBuffer [32];
   long long SystemResourceOffset;
-  long long *SystemResourceManagerPointer;
+  long long* SystemResourceManagerPointer;
   long long **ppsystemMemoryOffset;
   void* SystemProcessFlags58;
   void* *memoryAllocationEnd;
@@ -29846,7 +29846,7 @@ void* * InitializeSystemResourceManager(void* *SystemResourceManager)
 void* * InitializeSystemResourceManagerExtended(void* *SystemResourceManager)
 
 {
-  void* *SystemDataPointer;
+  void** SystemDataPointer;
   
   *SystemResourceManager = 0;
   SystemResourceManager[SYSTEM_RESOURCE_DATA_POINTER_OFFSET] = 0;
@@ -29879,7 +29879,7 @@ void* * InitializeSystemResourceManagerExtended(void* *SystemResourceManager)
  * 
  * @note 这是资源管理系统中的核心函数，用于维护资源链表结构
  */
-long long * SystemResourceManagerLink(long long *SystemResourceManager,long long *ConfigurationDataPointer)
+long long * SystemResourceManagerLink(long long* SystemResourceManager,long long *ConfigurationDataPointer)
 
 {
   long long *PrimaryResourcePointer;
@@ -29912,7 +29912,7 @@ void ProcessSystemString(long long SystemResourceManager,long long Configuration
 
 {
   long long resourceDataIndex;
-  void* *SystemHashEntryPointer;
+  void** SystemHashEntryPointer;
   
   SystemHashEntryPointer = &SystemStringTemplate;
   if (*(void* **)(ConfigurationDataPointer + 8) != (void* *)0x0) {
@@ -29951,7 +29951,7 @@ void ProcessSystemString(long long SystemResourceManager,long long Configuration
  * @param SystemResourceManager 系统资源指针，指向要清理的资源链表
  * @note 这是系统资源管理的重要组成部分，用于释放不再使用的系统资源
  */
-void SystemResourceCleaner(long long *SystemResourceManager)
+void SystemResourceCleaner(long long* SystemResourceManager)
 
 {
   long long *PrimaryResourcePointer;
@@ -30083,7 +30083,7 @@ SystemMemoryAllocatorConfigurator(void* *SystemResourceManager,long long Configu
  * @param SystemResourceManager 系统资源指针，指向包含回调函数的资源链表
  * @note 这是系统资源管理的关键函数，用于执行资源的生命周期回调
  */
-void SystemResourceCallbackExecutor(long long *SystemResourceManager)
+void SystemResourceCallbackExecutor(long long* SystemResourceManager)
 
 {
   void* *ResourceListEnd;
@@ -30118,10 +30118,10 @@ void SystemResourceCallbackExecutor(long long *SystemResourceManager)
  * @param ConfigurationFlag 参数4
  * @note 这是系统数据处理的核心函数
  */
-void ProcessSystemDataTable(long long *SystemResourceManager,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
+void ProcessSystemDataTable(long long* SystemResourceManager,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
 {
-  void* *SystemDataPointer;
+  void** SystemDataPointer;
   void** SystemDataTable;
   void* resourceAllocationContext;
   
@@ -30150,7 +30150,7 @@ void ProcessSystemDataTable(long long *SystemResourceManager,void* Configuration
  * @param ConfigurationDataPointer 参数指针
  * @note 这是系统资源管理的核心函数，负责动态扩容
  */
-void ExpandSystemResourceArray(long long *SystemResourceManager,uint32_t *ConfigurationDataPointer)
+void ExpandSystemResourceArray(long long* SystemResourceManager,uint32_t *ConfigurationDataPointer)
 
 {
   long long resourceDataIndex;
@@ -30208,7 +30208,7 @@ SystemResourceComplete:
 void InitializeSystemContext(long long SystemResourceManager)
 
 {
-  void* *SystemDataPointer;
+  void** SystemDataPointer;
   
   SystemDataPointer = *(void* **)(SystemResourceManager + 0x10);
   if (SystemDataPointer != (void* *)0x0) {
@@ -30271,9 +30271,9 @@ void SystemNodeInitializer(void)
 
 
 
-// 函数: void ResizeSystemMemoryPool(long long *SystemResourceManager,ulong long ConfigurationDataPointer)
+// 函数: void ResizeSystemMemoryPool(long long* SystemResourceManager,ulong long ConfigurationDataPointer)
 // 功能: 调整系统内存池大小，处理内存分配和重新分配
-void ResizeSystemMemoryPool(long long *SystemResourceManager,ulong long ConfigurationDataPointer)
+void ResizeSystemMemoryPool(long long* SystemResourceManager,ulong long ConfigurationDataPointer)
 
 {
   long long resourceDataIndex;
@@ -30437,9 +30437,9 @@ void ProcessSystemResourceOperation(long long SystemResourceManager,void* Config
 
 
 
-// 函数: void CleanupSystemResources(long long *SystemResourceManager)
+// 函数: void CleanupSystemResources(long long* SystemResourceManager)
 // 功能: 清理系统资源，释放分配的内存和资源
-void CleanupSystemResources(long long *SystemResourceManager)
+void CleanupSystemResources(long long* SystemResourceManager)
 
 {
   long long resourceDataIndex;
@@ -30507,7 +30507,7 @@ void ProcessSystemMemoryBlock(long long SystemResourceManager,void* Configuratio
 void ReleaseSystemMemoryHandles(long long SystemResourceManager)
 
 {
-  int *SystemIntegerPointer;
+  int* SystemIntegerPointer;
   long long SystemThreadHandle;
   void* *SystemHashNodeData;
   long long SystemBufferAddress;
@@ -30569,7 +30569,7 @@ void ReleaseSystemMemoryHandles(long long SystemResourceManager)
 void CleanupSystemResourceArray(long long SystemResourceManager)
 
 {
-  int *SystemIntegerPointer;
+  int* SystemIntegerPointer;
   long long SystemThreadHandle;
   void* *SystemHashNodeData;
   long long SystemBufferAddress;
@@ -30629,7 +30629,7 @@ void CleanupSystemResourceArray(long long SystemResourceManager)
 void SystemCleanupFunction(void)
 
 {
-  int *SystemIntegerPointer;
+  int* SystemIntegerPointer;
   void** SystemDataTable;
   long long ResourceDataOffset;
   long long systemStackFramePtr;
@@ -30687,7 +30687,7 @@ void SystemCleanupFunction(void)
 void InitializeSystemResourceManager(void)
 
 {
-  int *SystemIntegerPointer;
+  int* SystemIntegerPointer;
   void** SystemDataTable;
   long long ResourceDataOffset;
   long long systemStackFramePtr;
@@ -30734,7 +30734,7 @@ void InitializeSystemResourceManager(void)
 void InitializeSystemResourceAllocator(void)
 
 {
-  int *SystemIntegerPointer;
+  int* SystemIntegerPointer;
   void** SystemDataTable;
   long long ResourceDataOffset;
   long long systemStackFramePtr;
@@ -30794,7 +30794,7 @@ void SystemResourceHandlerDelegate(long long SystemResourceManager,void* Configu
 
 
 
-// 函数: void ProcessResourceArrayCleanup(long long *SystemResourceManager,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
+// 函数: void ProcessResourceArrayCleanup(long long* SystemResourceManager,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 /**
  * @brief 资源数组清理处理函数
  * 
@@ -30807,10 +30807,10 @@ void SystemResourceHandlerDelegate(long long SystemResourceManager,void* Configu
  * @param ConfigurationFlag 传递给资源清理函数的参数
  * @note 这是资源批量清理的核心函数
  */
-void ProcessResourceArrayCleanup(long long *SystemResourceManager,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
+void ProcessResourceArrayCleanup(long long* SystemResourceManager,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
 {
-  void* *SystemDataPointer;
+  void** SystemDataPointer;
   void** SystemDataTable;
   void* resourceAllocationContext;
   
@@ -30873,7 +30873,7 @@ void CleanupSystemResourceHandles(long long SystemResourceManager)
 
 
 
-// 函数: void SystemQueueProcessor(long long *SystemResourceManager)
+// 函数: void SystemQueueProcessor(long long* SystemResourceManager)
 /**
  * @brief 系统队列处理器
  * 
@@ -30883,7 +30883,7 @@ void CleanupSystemResourceHandles(long long SystemResourceManager)
  * @param SystemResourceManager 系统资源指针，包含队列信息
  * @note 这是系统队列管理的核心函数
  */
-void ProcessSystemQueue(long long *SystemResourceManager)
+void ProcessSystemQueue(long long* SystemResourceManager)
 
 {
   long long resourceDataIndex;
@@ -30915,7 +30915,7 @@ void ProcessSystemQueue(long long *SystemResourceManager)
 void CleanupSystemBuffer(long long SystemResourceManager)
 
 {
-  int *SystemIntegerPointer;
+  int* SystemIntegerPointer;
   long long SystemThreadHandle;
   void* *SystemHashNodeData;
   long long SystemBufferAddress;
@@ -30978,7 +30978,7 @@ void CleanupSystemBuffer(long long SystemResourceManager)
 void DeepCleanupSystemResources(long long SystemResourceManager)
 
 {
-  int *SystemIntegerPointer;
+  int* SystemIntegerPointer;
   long long SystemThreadHandle;
   void* *SystemHashNodeData;
   long long SystemBufferAddress;
@@ -31147,7 +31147,7 @@ void SystemResourceRelease(void)
 void SystemExceptionHandler(void)
 
 {
-  int *SystemIntegerPointer;
+  int* SystemIntegerPointer;
   void** SystemDataTable;
   long long ResourceDataOffset;
   long long systemStackFramePtr;
@@ -31182,14 +31182,14 @@ void SystemExceptionHandler(void)
 
 
 
-// 函数: void ReleaseSystemResources(long long *SystemResourceManager)
+// 函数: void ReleaseSystemResources(long long* SystemResourceManager)
 /**
  * @brief 系统资源释放函数
  * 
  * 该函数负责释放系统资源，遍历资源指针数组并调用相应的释放函数。
  * 用于系统资源管理和内存清理工作。
  */
-void ReleaseSystemResources(long long *SystemResourceManager)
+void ReleaseSystemResources(long long* SystemResourceManager)
 
 {
   long long *PrimaryResourcePointer;
@@ -31221,7 +31221,7 @@ void ReleaseSystemResources(long long *SystemResourceManager)
 void DestroyRenderingSystem(void)
 
 {
-  int *SystemIntegerPointer;
+  int* SystemIntegerPointer;
   void** SystemDataTable;
   long long ResourceDataOffset;
   ulong long resourceAddress;
@@ -31477,11 +31477,11 @@ void* * InitializeSystemResourceHandler(void* *SystemResourceManager,uint Config
 
 
 
-// 函数: void ProcessSystemResourceData(long long *SystemResourceManager,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
-void ProcessSystemResourceData(long long *SystemResourceManager,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
+// 函数: void ProcessSystemResourceData(long long* SystemResourceManager,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
+void ProcessSystemResourceData(long long* SystemResourceManager,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
 {
-  void* *SystemDataPointer;
+  void** SystemDataPointer;
   void** SystemDataTable;
   void* resourceAllocationContext;
   
@@ -31545,7 +31545,7 @@ void InitializeSystemResource(long long SystemResourceManager,void* Configuratio
 void ReleaseSystemResourceManager(long long SystemResourceManager,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
 {
-  void* *SystemDataPointer;
+  void** SystemDataPointer;
   
   SystemDataPointer = *(void* **)(SystemResourceManager + 0x10);
   if (SystemDataPointer != (void* *)0x0) {
@@ -31574,7 +31574,7 @@ void InitializeSystemResourceStream(long long SystemResourceManager,void* Config
 void CleanupSystemResourceStream(long long SystemResourceManager,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
 {
-  void* *SystemDataPointer;
+  void** SystemDataPointer;
   
   SystemDataPointer = *(void* **)(SystemResourceManager + 0x10);
   if (SystemDataPointer != (void* *)0x0) {
@@ -31588,8 +31588,8 @@ void CleanupSystemResourceStream(long long SystemResourceManager,void* Configura
 
 
 
-// 函数: void FinalizeSystemResourceCleanup(long long *SystemResourceManager)
-void FinalizeSystemResourceCleanup(long long *SystemResourceManager)
+// 函数: void FinalizeSystemResourceCleanup(long long* SystemResourceManager)
+void FinalizeSystemResourceCleanup(long long* SystemResourceManager)
 
 {
   long long resourceDataIndex;
@@ -31642,7 +31642,7 @@ void ProcessSystemMemoryAllocation(long long SystemResourceManager,void* Configu
 void ReleaseSystemMemoryAllocation(long long SystemResourceManager,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
 {
-  void* *SystemDataPointer;
+  void** SystemDataPointer;
   
   SystemDataPointer = *(void* **)(SystemResourceManager + 0x10);
   if (SystemDataPointer != (void* *)0x0) {
@@ -31745,8 +31745,8 @@ SystemResourceNodeValidation:
 
 
 
-// 函数: void InitializeSystemResourceManager(ulong long *SystemResourceManager)
-void InitializeSystemResourceManager(ulong long *SystemResourceManager)
+// 函数: void InitializeSystemResourceManager(ulong long* SystemResourceManager)
+void InitializeSystemResourceManager(ulong long* SystemResourceManager)
 
 {
   int *resourceCounter;
@@ -31900,7 +31900,7 @@ void ReleaseMemoryRegion(void* SystemResourceManager,void* *ConfigurationDataPoi
 void ProcessSystemResourceAllocation(void* *SystemResourceManager,long long ConfigurationDataPointer)
 
 {
-  void* *SystemDataPointer;
+  void** SystemDataPointer;
   void** SystemDataTable;
   void* *SystemHashNodeData;
   void* *presourceAddress;
@@ -32154,7 +32154,7 @@ void SystemResourceInitializer(void* SystemResourceManager,long long Configurati
  * @param ConfigurationDataPointer 起始参数
  * @param AdditionalParameter 结束参数
  */
-void SystemResourceArrayManager(long long *SystemResourceManager,long long ConfigurationDataPointer,long long AdditionalParameter)
+void SystemResourceArrayManager(long long* SystemResourceManager,long long ConfigurationDataPointer,long long AdditionalParameter)
 
 {
   void* *resourcePointer1;
@@ -32281,7 +32281,7 @@ void SystemResourceArrayCreator(long long SystemResourceManager)
 void InitializeSystemTables(void)
 
 {
-  void* *SystemDataPointer;
+  void** SystemDataPointer;
   long long memoryBlockAddress;
   void** SystemDataTable;
   long long StringIteratorPointer;
@@ -32394,7 +32394,7 @@ void SystemResourceProcessor(long long SystemResourceManager,void* Configuration
 
 
 
-// 函数: void ProcessSystemParameters(long long *SystemResourceManager,long long ConfigurationDataPointer,long long AdditionalParameter,long long ConfigurationFlag)
+// 函数: void ProcessSystemParameters(long long* SystemResourceManager,long long ConfigurationDataPointer,long long AdditionalParameter,long long ConfigurationFlag)
 /**
  * @brief 系统资源范围处理器函数
  * 
@@ -32407,7 +32407,7 @@ void SystemResourceProcessor(long long SystemResourceManager,void* Configuration
  * @param ConfigurationFlag 配置标志，用于控制处理行为
  * @note 这是系统资源管理的重要组成部分，用于处理指定范围内的资源
  */
-void ProcessSystemResourceRange(long long *SystemResourceManager,long long ConfigurationDataPointer,long long AdditionalParameter,long long ConfigurationFlag)
+void ProcessSystemResourceRange(long long* SystemResourceManager,long long ConfigurationDataPointer,long long AdditionalParameter,long long ConfigurationFlag)
 
 {
   void* SystemOperationStatus;
@@ -32477,7 +32477,7 @@ void ProcessSystemResourceRange(long long *SystemResourceManager,long long Confi
  * @param ConfigurationFlag 配置标志，用于控制复制行为
  * @note 这是系统资源管理的重要组成部分，用于处理数据的复制和重组
  */
-void CopySystemResourceData(long long *SystemResourceManager,long long ConfigurationDataPointer,long long AdditionalParameter,long long ConfigurationFlag)
+void CopySystemResourceData(long long* SystemResourceManager,long long ConfigurationDataPointer,long long AdditionalParameter,long long ConfigurationFlag)
 
 {
   void* newMemoryBuffer;
@@ -32689,7 +32689,7 @@ void CleanupSystemResourceManager(void* *SystemResourceManager)
 
 
 
-// 函数: void ProcessSystemResourceData(long long *SystemResourceManager)
+// 函数: void ProcessSystemResourceData(long long* SystemResourceManager)
 /**
  * @brief 清理系统资源内存区域
  * 
@@ -32697,7 +32697,7 @@ void CleanupSystemResourceManager(void* *SystemResourceManager)
  * 
  * @param SystemResourceManager 系统资源指针
  */
-void CleanupSystemResourceMemoryRegion(long long *SystemResourceManager)
+void CleanupSystemResourceMemoryRegion(long long* SystemResourceManager)
 {
   long long resourceDataIndex;
   long long SystemThreadHandle;
@@ -33028,8 +33028,8 @@ void InitializeSystemResourceManager(long long *resourcePointer)
       SystemResourceValue = 0;
       SystemDataIndexCounter = 3;
       pSystemProcessFlags = &SystemResourceTemplateSecondary;
-      pEncryptionKeyValue8 = aSystemMemoryOffset;
-      aSystemMemoryOffset[0] = 0;
+      pEncryptionKeyValue8 = SystemMemoryOffsetBuffer;
+      SystemMemoryOffsetBuffer[0] = 0;
       EncryptionKeyValue0 = 4;
       strcpy_s(aSystemMemoryOffset,0x10,&SystemResourceString1);
       ProcessSystemResourceQueue(&pointerUnsigned2e8,&pointerUnsigned308,&pSystemProcessFlags);
@@ -33457,9 +33457,9 @@ SystemResourceProcess:
 
 
 
-// 函数: void FreeSystemMemoryPool(long long *SystemResourceManager)
+// 函数: void FreeSystemMemoryPool(long long* SystemResourceManager)
 // 功能: 释放系统内存池，清理内存资源
-void FreeSystemMemoryPool(long long *SystemResourceManager)
+void FreeSystemMemoryPool(long long* SystemResourceManager)
 
 {
   long long resourceDataIndex;
@@ -33781,7 +33781,7 @@ void InitializeSystemResources(void* *SystemResourceManager)
  * @param SystemResourceManager 系统资源指针
  * 
   */
-void CleanupSystemResources(long long *SystemResourceManager)
+void CleanupSystemResources(long long* SystemResourceManager)
 
 {
   long long resourceDataIndex;
@@ -33810,7 +33810,7 @@ void CleanupSystemResources(long long *SystemResourceManager)
  * 
  *FUN_180059640：CleanupSystemResourcesIterator
  */
-void CleanupSystemResourcesIterator(long long *SystemResourceManager)
+void CleanupSystemResourcesIterator(long long* SystemResourceManager)
 
 {
   long long resourceDataIndex;
@@ -33900,7 +33900,7 @@ void ValidateSystemResourceCleanup(long long SystemResourceManager)
 void* * CopySystemResourceDataExtended(void* *SystemResourceManager,void* *ConfigurationDataPointer,void* *AdditionalParameter)
 
 {
-  void* *SystemDataPointer;
+  void** SystemDataPointer;
   void** SystemDataTable;
   long long ResourceDataOffset;
   
@@ -33934,11 +33934,11 @@ void* * CopySystemResourceDataExtended(void* *SystemResourceManager,void* *Confi
 
 
 
-// 函数: void ProcessSystemConfiguration(long long *SystemResourceManager,void* ConfigurationDataPointer)
-void ProcessSystemConfiguration(long long *SystemResourceManager,void* ConfigurationDataPointer)
+// 函数: void ProcessSystemConfiguration(long long* SystemResourceManager,void* ConfigurationDataPointer)
+void ProcessSystemConfiguration(long long* SystemResourceManager,void* ConfigurationDataPointer)
 
 {
-  void* *SystemDataPointer;
+  void** SystemDataPointer;
   long long SystemThreadHandle;
   long long ResourceDataOffset;
   long long SystemBufferAddress;
@@ -34176,7 +34176,7 @@ void ProcessSystemResourceWithEncryption(long long SystemResourceManager,long lo
 void AllocateSystemResource(void* *SystemResourceManager)
 
 {
-  int *SystemIntegerPointer;
+  int* SystemIntegerPointer;
   long long SystemThreadHandle;
   ulong long resourceAllocationContext;
   
@@ -34349,7 +34349,7 @@ void InitializeSystemThreadStructure(void)
 void CleanupSystemResources(long long *ResourceHandle)
 
 {
-  int *SystemIntegerPointer;
+  int* SystemIntegerPointer;
   char *SystemStringPointer;
   void* *SystemHashNodeData;
   long long SystemBufferAddress;
@@ -34403,7 +34403,7 @@ void CleanupSystemResources(long long *ResourceHandle)
 
 
 
-// 函数: void InitializeSystemDataPointer(long long *SystemResourceManager)
+// 函数: void InitializeSystemDataPointer(long long* SystemResourceManager)
 /**
  * @brief 初始化系统数据指针
  * 
@@ -34413,7 +34413,7 @@ void CleanupSystemResources(long long *ResourceHandle)
  * @param SystemResourceManager 系统资源指针，指向需要初始化的系统资源
  * @note 这是系统初始化过程中的关键函数，确保数据管理系统的正常运行
  */
-void InitializeSystemDataPointer(long long *SystemResourceManager)
+void InitializeSystemDataPointer(long long* SystemResourceManager)
 
 {
   int *systemIntegerPointer;
@@ -34506,7 +34506,7 @@ void ReleaseSystemResourceReference(void)
 void CleanupSystemAndProcessBuffers(void)
 
 {
-  int *SystemIntegerPointer;
+  int* SystemIntegerPointer;
   char *SystemStringPointer;
   void* *SystemHashNodeData;
   long long SystemBufferAddress;
@@ -34568,7 +34568,7 @@ void CleanupSystemAndProcessBuffers(void)
 void ManageSystemResourceManagerWithExceptionHandling(void* *SystemResourceManager)
 
 {
-  int *SystemIntegerPointer;
+  int* SystemIntegerPointer;
   long long SystemThreadHandle;
   ulong long resourceAllocationContext;
   
@@ -34607,10 +34607,10 @@ void ManageSystemResourceManagerWithExceptionHandling(void* *SystemResourceManag
  * 
  *FUN_180059fc0：CleanupAndDestroySystemResources
  */
-void CleanupAndDestroySystemResources(long long *SystemResourceManager)
+void CleanupAndDestroySystemResources(long long* SystemResourceManager)
 
 {
-  int *SystemIntegerPointer;
+  int* SystemIntegerPointer;
   char *SystemStringPointer;
   void* *SystemHashNodeData;
   long long SystemBufferAddress;
@@ -34679,7 +34679,7 @@ void CleanupAndDestroySystemResources(long long *SystemResourceManager)
 void ProcessSystemResourceCleanup(long long SystemResourceManager)
 
 {
-  int *SystemIntegerPointer;
+  int* SystemIntegerPointer;
   void** SystemDataTable;
   long long ResourceDataOffset;
   ulong long resourceAddress;
@@ -34770,7 +34770,7 @@ void CleanupSystemResourceArray(long long SystemResourceManager)
 void ValidateSystemResourceManager(long long SystemResourceManager)
 
 {
-  int *SystemIntegerPointer;
+  int* SystemIntegerPointer;
   void** SystemDataTable;
   long long ResourceDataOffset;
   ulong long resourceAddress;
@@ -34818,7 +34818,7 @@ void ValidateSystemResourceManager(long long SystemResourceManager)
 void ValidateAndCleanupSystemResourceTable(long long SystemResourceManager)
 
 {
-  int *SystemIntegerPointer;
+  int* SystemIntegerPointer;
   void** SystemDataTable;
   long long ResourceDataOffset;
   ulong long resourceAddress;
@@ -34865,7 +34865,7 @@ void ValidateAndCleanupSystemResourceTable(long long SystemResourceManager)
 void HandleSystemResourceException(long long SystemResourceManager)
 
 {
-  int *SystemIntegerPointer;
+  int* SystemIntegerPointer;
   void** SystemDataTable;
   long long ResourceDataOffset;
   ulong long resourceAddress;
@@ -35776,7 +35776,7 @@ void* *
 CreateMemoryAllocationHandle(void* *SystemResourceManager,void* *ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
 {
-  void* *SystemDataPointer;
+  void** SystemDataPointer;
   code *SystemStringPointer;
   
   *SystemResourceManager = &SystemMemoryTemplateA;
@@ -35848,7 +35848,7 @@ void InitializeSystemDataReference(long long SystemResourceManager)
  * 
  *FUN_18005c3d0：CleanupSystemResourceManager
  */
-void CleanupSystemResourceManager(long long *SystemResourceManager)
+void CleanupSystemResourceManager(long long* SystemResourceManager)
 
 {
   long long resourceDataIndex;
@@ -36035,7 +36035,7 @@ InitializeSystemDataTableManager(void* *SystemResourceManager,void* *Configurati
  * 
  *FUN_18005c650：ProcessSystemResourceData
  */
-void ProcessSystemResourceData(long long *SystemResourceManager)
+void ProcessSystemResourceData(long long* SystemResourceManager)
 
 {
   int SystemOperationStatus;
@@ -36152,7 +36152,7 @@ void* ProcessMemoryManagerOperation(long long SystemResourceManager,void* Config
 
 {
   char SystemNodeFlag;
-  void* *SystemHashEntryPointer;
+  void** SystemHashEntryPointer;
   
   if (*(long long *)(SystemResourceManager + 0xb0) != 0) {
     initializationStatusFlag = (**(code **)(SystemResourceManager + 0xb8))(ConfigurationDataPointer);
@@ -36239,7 +36239,7 @@ void ProcessNodeManagerOperation(long long SystemResourceManager,uint32_t Config
 
 {
   char SystemNodeFlag;
-  void* *SystemHashEntryPointer;
+  void** SystemHashEntryPointer;
   uint32_t SystemStackParameters [6];
   
   if ((*(long long *)(SystemResourceManager + 0x1f00) != 0) &&
@@ -36463,7 +36463,7 @@ ConfigureSystemResourceMemoryAllocator(void* *SystemResourceManager,ulong long C
 void* * InitializeResourceContext(void* *SystemResourceManager,void* *ConfigurationDataPointer)
 
 {
-  void* *SystemDataPointer;
+  void** SystemDataPointer;
   void* resourceCreationFlags;
   
   *SystemResourceManager = &SystemMemoryTemplateA;
@@ -37311,7 +37311,7 @@ void* GetSystemResourceConfigurationPointer(long long SystemResourceManager)
  * @note 此函数会遍历整个资源数组并执行操作
  * @warning 如果系统资源指针为空，函数会直接返回
  */
-void ExecuteSystemResourceIterator(long long *SystemResourceManager,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
+void ExecuteSystemResourceIterator(long long* SystemResourceManager,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
 {
   void* *resourceIteratorEnd;
@@ -37332,11 +37332,11 @@ void ExecuteSystemResourceIterator(long long *SystemResourceManager,void* Config
 
 
 
-// 函数: void CleanupSystemMemoryAllocation(long long *SystemResourceManager,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
-void CleanupSystemMemoryAllocation(long long *SystemResourceManager,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
+// 函数: void CleanupSystemMemoryAllocation(long long* SystemResourceManager,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
+void CleanupSystemMemoryAllocation(long long* SystemResourceManager,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
 {
-  void* *SystemDataPointer;
+  void** SystemDataPointer;
   void** SystemDataTable;
   void* resourceAllocationContext;
   
@@ -38086,7 +38086,7 @@ void ProcessSystemResourceWithIntParameter(long long SystemResourceManager,void*
 void SystemManagerInitialize(long long SystemResourceManager,long long *ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
 {
-  void* *SystemDataPointer;
+  void** SystemDataPointer;
   code *SystemStringPointer;
   long long *plStackX_8;
   long long *plStackX_10;
@@ -38116,7 +38116,7 @@ void SystemManagerInitialize(long long SystemResourceManager,long long *Configur
 void SetupMemoryAllocationContext(long long SystemResourceManager,long long *ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
 {
-  void* *SystemDataPointer;
+  void** SystemDataPointer;
   code *SystemStringPointer;
   long long *plStackX_8;
   long long *plStackX_10;
@@ -38658,8 +38658,8 @@ void* * ManageSystemResourceManager(void* *SystemResourceManager)
 
 
 
-// 函数: void InitializeSystemHandle(ulong long *SystemResourceManager,void* *ConfigurationDataPointer)
-void InitializeSystemHandle(ulong long *SystemResourceManager,void* *ConfigurationDataPointer)
+// 函数: void InitializeSystemHandle(ulong long* SystemResourceManager,void* *ConfigurationDataPointer)
+void InitializeSystemHandle(ulong long* SystemResourceManager,void* *ConfigurationDataPointer)
 
 {
   long long resourceDataIndex;
@@ -39125,7 +39125,7 @@ long long ManageSystemResourceAllocationPool(void)
  * 
  *FUN_18005ee30：CreateAndInitializeSystemThreadObject
  */
-void* * CreateAndInitializeSystemThreadObject(long long *SystemResourceManager,char ConfigurationDataPointer,uint8_t *AdditionalParameter)
+void* * CreateAndInitializeSystemThreadObject(long long* SystemResourceManager,char ConfigurationDataPointer,uint8_t *AdditionalParameter)
 
 {
   long long *PrimaryResourcePointer;
@@ -39419,7 +39419,7 @@ ResourceProcessingLoop:
 void* ExpandSystemResourceAllocator(long long SystemResourceManager,long long ConfigurationDataPointer)
 
 {
-  void* *SystemDataPointer;
+  void** SystemDataPointer;
   long long SystemThreadHandle;
   void* resourceAllocationContext;
   void* *presourceAddress;
@@ -40504,7 +40504,7 @@ void* InitializeSystemResourceContext(void* SystemResourceManager,ulong long Con
 void AllocateSystemResources(void* *SystemResourceManager)
 
 {
-  int *SystemIntegerPointer;
+  int* SystemIntegerPointer;
   int systemResult;
   ulong long resourceAllocationContext;
   ulong long resourceAddress;
@@ -40730,7 +40730,7 @@ int InitializeProcessSystem(void* SystemResourceManager,void* ConfigurationDataP
 
 
 
-// 函数: void InitializeSystemResource(long long *SystemResourceManager)
+// 函数: void InitializeSystemResource(long long* SystemResourceManager)
 /**
  * @brief 系统资源初始化器函数
  * 
@@ -40740,14 +40740,14 @@ int InitializeProcessSystem(void* SystemResourceManager,void* ConfigurationDataP
  * @param SystemResourceManager 系统资源指针，包含需要初始化的资源信息
  * @note 这是系统资源管理的重要组成部分，用于资源的初始化和准备
  */
-void InitializeSystemResource(long long *SystemResourceManager)
+void InitializeSystemResource(long long* SystemResourceManager)
 
 {
   long long *PrimaryResourcePointer;
   char validationStatusFlag;
   int NodeIdentifierComparisonResult;
   void* uStackX_8;
-  long long *SystemResourceManager20;
+  long long* SystemResourceManager20;
   char SystemFlag18;
   
   if ((char)SystemResourceManager[0xb] != '\0') {
@@ -40921,7 +40921,7 @@ bool InitializeSystemResourceAndSynchronize(long long SystemResourceManager,void
  * 
  *FUN_180060a50：GetSystemResourceStatusValue
  */
-ulong long GetSystemResourceStatusValue(long long *SystemResourceManager,uint *ConfigurationDataPointer)
+ulong long GetSystemResourceStatusValue(long long* SystemResourceManager,uint *ConfigurationDataPointer)
 
 {
   uint SystemOperationStatus;
@@ -41026,7 +41026,7 @@ ulong long GetSystemResourceStatusValue(long long *SystemResourceManager,uint *C
  * 
  *FUN_180060b80：ProcessSystemResourceDataExchange
  */
-long long * ProcessSystemResourceDataExchange(long long *SystemResourceManager,long long *ConfigurationDataPointer)
+long long * ProcessSystemResourceDataExchange(long long* SystemResourceManager,long long *ConfigurationDataPointer)
 
 {
   long long resourceDataIndex;
@@ -41055,7 +41055,7 @@ long long * ProcessSystemResourceDataExchange(long long *SystemResourceManager,l
  * 
  *FUN_180060bd0：ReleaseSystemResourceAndReturnPointer
  */
-long long * ReleaseSystemResourceAndReturnPointer(long long *SystemResourceManager)
+long long * ReleaseSystemResourceAndReturnPointer(long long* SystemResourceManager)
 
 {
   if ((long long *)*SystemResourceManager != (long long *)0x0) {
@@ -41368,7 +41368,7 @@ bool ExecuteSystemResourceOperation(long long SystemResourceManager,void* Config
 
 
 
-// 函数: void SynchronizeSystemResources(long long *SystemResourceManager,long long *ConfigurationDataPointer)
+// 函数: void SynchronizeSystemResources(long long* SystemResourceManager,long long *ConfigurationDataPointer)
 /**
  * @brief 系统资源同步器函数
  * 
@@ -41379,7 +41379,7 @@ bool ExecuteSystemResourceOperation(long long SystemResourceManager,void* Config
  * @param ConfigurationDataPointer 配置数据指针，包含同步所需的配置信息
  * @note 这是系统资源管理的重要组成部分，用于资源的同步和状态管理
  */
-void SynchronizeSystemResources(long long *SystemResourceManager,long long *ConfigurationDataPointer)
+void SynchronizeSystemResources(long long* SystemResourceManager,long long *ConfigurationDataPointer)
 
 {
   long long *PrimaryResourcePointer;
@@ -41477,7 +41477,7 @@ void SynchronizeSystemResources(long long *SystemResourceManager,long long *Conf
 void ValidateSystemResourceEx(long long SystemResourceManager,long long *ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
 {
-  void* *SystemDataPointer;
+  void** SystemDataPointer;
   long long SystemThreadHandle;
   long long ResourceDataOffset;
   int systemIndex;
@@ -41669,11 +41669,11 @@ void StartInputSystem(void* SystemResourceManager,long long ConfigurationDataPoi
 
 
 
-// 函数: void ValidateSystemComponent(long long *SystemResourceManager)
-void ValidateSystemComponent(long long *SystemResourceManager)
+// 函数: void ValidateSystemComponent(long long* SystemResourceManager)
+void ValidateSystemComponent(long long* SystemResourceManager)
 
 {
-  void* *SystemDataPointer;
+  void** SystemDataPointer;
   code *SystemStringPointer;
   long long ResourceDataOffset;
   void* resourceAddress;
@@ -41758,10 +41758,10 @@ void ValidateSystemComponent(long long *SystemResourceManager)
  * 
  *ProcessSystemValidation：InitializeSystemContextManager
  */
-void InitializeSystemContextManager(long long *SystemResourceManager)
+void InitializeSystemContextManager(long long* SystemResourceManager)
 
 {
-  void* *SystemDataPointer;
+  void** SystemDataPointer;
   code *SystemStringPointer;
   long long ResourceDataOffset;
   void* resourceAddress;
@@ -41949,11 +41949,11 @@ void SystemManagerSetFlags(void)
 
 
 
-// 函数: void InitializeSystemManager(long long *SystemResourceManager)
-void InitializeSystemManager(long long *SystemResourceManager)
+// 函数: void InitializeSystemManager(long long* SystemResourceManager)
+void InitializeSystemManager(long long* SystemResourceManager)
 
 {
-  void* *SystemDataPointer;
+  void** SystemDataPointer;
   code *SystemStringPointer;
   long long ResourceDataOffset;
   void* resourceAddress;
@@ -42408,7 +42408,7 @@ int FormatSystemResourceString(void* SystemResourceManager,void* ConfigurationDa
  * 
  *SearchSystemResource：SearchSystemResource
  */
-ulong long SearchSystemResource(long long *SystemResourceManager,long long ConfigurationDataPointer)
+ulong long SearchSystemResource(long long* SystemResourceManager,long long ConfigurationDataPointer)
 
 {
   byte *pisByteValid;
@@ -42712,7 +42712,7 @@ void ConfigureSecurityParameters(void* SystemResourceManager,long long Configura
 void CleanupAndValidateSystemResources(void)
 
 {
-  void* *SystemDataPointer;
+  void** SystemDataPointer;
   bool isSystemActive;
   void* *SystemHashNodeData;
   void* *presourceAddress;
@@ -42862,7 +42862,7 @@ SystemActivityCheck:
 void InitializeAndConfigureSystemResources(void* SystemResourceManager)
 
 {
-  void* *SystemDataPointer;
+  void** SystemDataPointer;
   void** SystemDataTable;
   void* *SystemHashNodeData;
   void* *presourceAddress;
@@ -43176,7 +43176,7 @@ ulong long ProcessAndManageSystemResources(void* SystemResourceManager)
  * 
  *FUN_180064c00：ConfigureAndManageSystemResourceData
  */
-void ConfigureAndManageSystemResourceData(long long *SystemResourceManager,long long ConfigurationDataPointer,long long AdditionalParameter)
+void ConfigureAndManageSystemResourceData(long long* SystemResourceManager,long long ConfigurationDataPointer,long long AdditionalParameter)
 
 {
   uint SystemOperationStatus;
@@ -44148,7 +44148,7 @@ void InitializeSystemResourceObject(void* SystemResourceManager,long long Config
  * 
  *FUN_180066140：ExecuteSystemResourceCommand
  */
-void ExecuteSystemResourceCommand(long long *SystemResourceManager,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
+void ExecuteSystemResourceCommand(long long* SystemResourceManager,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
 {
   uint SystemOperationStatus;
@@ -44487,7 +44487,7 @@ void ConfigureSystemDataProcessing(void* SystemResourceManager,void* Configurati
   void* SystemThreadContext;
   int CalculationFlags;
   long long localDataIndex;
-  void* *SystemDataPointer;
+  void** SystemDataPointer;
   void* *stackParameterB;
   uint32_t SystemConfigurationValue;
   void* UnsignedStackFlag88;
@@ -44618,7 +44618,7 @@ void EmptyOperation(void)
  * 
  *FUN_180066df0：InitializeSystemResourceManager
  */
-void InitializeSystemResourceManager(long long *SystemResourceManager,long long ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
+void InitializeSystemResourceManager(long long* SystemResourceManager,long long ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
 {
   long long resourceDataIndex;
@@ -44762,7 +44762,7 @@ void HandleSystemOutOfRangeException(void)
 
 
 
-// 函数: void FreeSystemResourceMemory(long long *SystemResourceManager)
+// 函数: void FreeSystemResourceMemory(long long* SystemResourceManager)
 /**
  * @brief 释放系统资源内存
  * 
@@ -44773,7 +44773,7 @@ void HandleSystemOutOfRangeException(void)
  * 
  *FUN_180067070：FreeSystemResourceMemory
  */
-void FreeSystemResourceMemory(long long *SystemResourceManager)
+void FreeSystemResourceMemory(long long* SystemResourceManager)
 
 {
   ulong long SystemOperationStatus;
@@ -45189,8 +45189,8 @@ void ProcessSystemResourceQueueAndCompletion(long long SystemResourceManager)
 void UpdateSystemResourceContextManager(void* SystemResourceManager,long long ConfigurationDataPointer)
 
 {
-  void* *SystemDataPointer;
-  void* *SystemHashEntryPointer;
+  void** SystemDataPointer;
+  void** SystemHashEntryPointer;
   
   SystemDataPointer = *(void* **)(*(long long *)(ConfigurationDataPointer + 0x1f8) + 0x10);
   SystemHashEntryPointer = &SystemStringTemplate;
@@ -45229,7 +45229,7 @@ void ExecuteSystemResourceOperation(long long SystemResourceManager,void* Config
 
 
 
-// 函数: void FreeSystemResourceMemoryEx(long long *SystemResourceManager)
+// 函数: void FreeSystemResourceMemoryEx(long long* SystemResourceManager)
 /**
  * @brief 处理系统资源内存分配和缓冲区管理
  * 
@@ -45240,10 +45240,10 @@ void ExecuteSystemResourceOperation(long long SystemResourceManager,void* Config
  * 
  *FUN_180067840：ProcessSystemResourceMemoryAllocation
  */
-void ProcessSystemResourceMemoryAllocation(long long *SystemResourceManager)
+void ProcessSystemResourceMemoryAllocation(long long* SystemResourceManager)
 
 {
-  int *SystemIntegerPointer;
+  int* SystemIntegerPointer;
   long long *resourcePoolPointer;
   long long ResourceDataOffset;
   long long SystemBufferAddress;
@@ -45866,7 +45866,7 @@ ConfigureSystemResourceAllocation(long long SystemResourceManager,long long *Con
  * 
  *FUN_180068a90：FindSystemResourceManagerMapping
  */
-void* FindSystemResourceManagerMapping(ulong long *SystemResourceManager,void* *ConfigurationDataPointer)
+void* FindSystemResourceManagerMapping(ulong long* SystemResourceManager,void* *ConfigurationDataPointer)
 
 {
   long long *PrimaryResourcePointer;
@@ -46118,7 +46118,7 @@ void* AllocateAndLockSystemResource(long long SystemResourceManager,void* *Confi
  * 
  *FUN_180068ec0：ProcessSystemResourceManager
  */
-long long ProcessSystemResourceManager(long long *SystemResourceManager,long long *ConfigurationDataPointer,int AdditionalParameter,void* ConfigurationFlag)
+long long ProcessSystemResourceManager(long long* SystemResourceManager,long long *ConfigurationDataPointer,int AdditionalParameter,void* ConfigurationFlag)
 
 {
   long long resourceDataIndex;
@@ -46190,7 +46190,7 @@ void* *
 InitializeSystemResourceStringTemplate(void* *SystemResourceManager,long long ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
 {
-  void* *SystemDataPointer;
+  void** SystemDataPointer;
   
   *SystemResourceManager = &SystemMemoryAllocatorReference;
   SystemResourceManager[SYSTEM_RESOURCE_DATA_POINTER_OFFSET] = 0;
@@ -46634,7 +46634,7 @@ void* InitializeSystemResourceData(void* SystemResourceManager,ulong long Config
 void UpdateSystemResourceStatus(void* *SystemResourceManager)
 
 {
-  int *SystemIntegerPointer;
+  int* SystemIntegerPointer;
   int systemResult;
   ulong long resourceAllocationContext;
   ulong long resourceAddress;
@@ -46747,7 +46747,7 @@ SystemResourceLoopCheck:
  * 
  *AllocateThreadLocalStorage：AllocateThreadLocalStorage
  */
-void* * AllocateThreadLocalStorage(long long *SystemResourceManager)
+void* * AllocateThreadLocalStorage(long long* SystemResourceManager)
 
 {
   long long *PrimaryResourcePointer;
@@ -47385,10 +47385,10 @@ void ConfigureSystemResources(long long SystemResourceManager)
 
 
 
-long long ManageSystemResourceHandler(long long *SystemResourceManager,long long *ConfigurationDataPointer,int OperationParameter)
+long long ManageSystemResourceHandler(long long* SystemResourceManager,long long *ConfigurationDataPointer,int OperationParameter)
 
 {
-  void* *SystemDataPointer;
+  void** SystemDataPointer;
   void** SystemDataTable;
   
   if (AdditionalParameter == 3) {
@@ -47440,7 +47440,7 @@ void InitializeSystemDataBuffer(long long SystemResourceManager,uint32_t Configu
 
 {
   char SystemNodeFlag;
-  void* *SystemHashEntryPointer;
+  void** SystemHashEntryPointer;
   uint32_t SystemStackParameters [6];
   
   if ((*(long long *)(SystemResourceManager + 0x1e20) != 0) &&
@@ -47478,7 +47478,7 @@ void SetSystemStatusFlags(long long SystemResourceManager,uint32_t Configuration
 
 {
   char SystemNodeFlag;
-  void* *SystemHashEntryPointer;
+  void** SystemHashEntryPointer;
   uint32_t SystemStackParameters [6];
   
   if ((*(long long *)(SystemResourceManager + 0x1db0) != 0) &&
@@ -47615,7 +47615,7 @@ InitializeSystemResourceManager(void* *SystemResourceManager,void* *Configuratio
 
 
 
-// 函数: void InitializeSystemResourceConfiguration(long long *SystemResourceManager,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
+// 函数: void InitializeSystemResourceConfiguration(long long* SystemResourceManager,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 /**
  * @brief 初始化系统资源配置
  * 
@@ -47628,10 +47628,10 @@ InitializeSystemResourceManager(void* *SystemResourceManager,void* *Configuratio
  * 
  *FUN_18006b6f0：InitializeSystemResourceConfiguration
  */
-void InitializeSystemResourceConfiguration(long long *SystemResourceManager,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
+void InitializeSystemResourceConfiguration(long long* SystemResourceManager,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
 {
-  void* *SystemDataPointer;
+  void** SystemDataPointer;
   void** SystemDataTable;
   void* resourceAllocationContext;
   
@@ -47649,7 +47649,7 @@ void InitializeSystemResourceConfiguration(long long *SystemResourceManager,void
 
 
 
-// 函数: void ProcessSystemResourceConfigurationData(long long *SystemResourceManager,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
+// 函数: void ProcessSystemResourceConfigurationData(long long* SystemResourceManager,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 /**
  * @brief 处理系统资源配置数据
  * 
@@ -47662,10 +47662,10 @@ void InitializeSystemResourceConfiguration(long long *SystemResourceManager,void
  * 
  *FUN_18006b760：ProcessSystemResourceConfigurationData
  */
-void ProcessSystemResourceConfigurationData(long long *SystemResourceManager,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
+void ProcessSystemResourceConfigurationData(long long* SystemResourceManager,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
 {
-  void* *SystemDataPointer;
+  void** SystemDataPointer;
   void** SystemDataTable;
   void* resourceAllocationContext;
   
@@ -48105,7 +48105,7 @@ void ProcessSystemResourceNodeQueue(long long SystemResourceManager)
   long long *resourcePoolPointer3;
   void* *SystemHashEntryPointer4;
   ulong long SecurityParameter;
-  uint8_t aSystemMemoryOffset [32];
+  uint8_t SystemMemoryOffsetBuffer [32];
   ulong long SystemHashValidationValue;
   void* **ppSystemDataBufferOffset;
   long long *plStack_240;
@@ -48579,7 +48579,7 @@ void CleanupSystemResourceDataTable(long long SystemResourceManager)
 
 
 
-// 函数: ulong long AllocateSystemResourceNode(long long *SystemResourceManager,long long ConfigurationDataPointer)
+// 函数: ulong long AllocateSystemResourceNode(long long* SystemResourceManager,long long ConfigurationDataPointer)
 /**
  * @brief 分配系统资源节点
  * 
@@ -48592,7 +48592,7 @@ void CleanupSystemResourceDataTable(long long SystemResourceManager)
  * 
  *FUN_18006cc50：AllocateSystemResourceNode
  */
-ulong long AllocateSystemResourceNode(long long *SystemResourceManager,long long ConfigurationDataPointer)
+ulong long AllocateSystemResourceNode(long long* SystemResourceManager,long long ConfigurationDataPointer)
 
 {
   long long resourceDataIndex;
@@ -48841,7 +48841,7 @@ long long ProcessSystemResourceDataB(long long SystemResourceManager,long long C
 void InitializeSystemResourceManagerB(void* *SystemResourceManager)
 
 {
-  int *SystemIntegerPointer;
+  int* SystemIntegerPointer;
   int systemResult;
   ulong long resourceAllocationContext;
   ulong long resourceAddress;
@@ -49535,7 +49535,7 @@ ThreadIdValidationCheck:
 
 
 
-// 函数: void ProcessSystemResourceDataC(long long *SystemResourceManager)
+// 函数: void ProcessSystemResourceDataC(long long* SystemResourceManager)
 /**
  * @brief 处理系统资源数据
  * 
@@ -49546,7 +49546,7 @@ ThreadIdValidationCheck:
  * 
  *FUN_18006da50：ProcessSystemResourceDataC
  */
-void ProcessSystemResourceDataC(long long *SystemResourceManager)
+void ProcessSystemResourceDataC(long long* SystemResourceManager)
 
 {
   ReleaseSystemResource((ulong long)(*(uint *)(SystemResourceManager + 1) & BIT_MASK_32_BIT) * 0x1a8 + *SystemResourceManager);
@@ -49658,7 +49658,7 @@ ulong long GetSystemResourceHash(long long SystemResourceManager,void* Configura
 
 
 
-// 函数: void CleanupSystemResourceDataB(long long *SystemResourceManager)
+// 函数: void CleanupSystemResourceDataB(long long* SystemResourceManager)
 /**
  * @brief 清理系统资源数据
  * 
@@ -49669,7 +49669,7 @@ ulong long GetSystemResourceHash(long long SystemResourceManager,void* Configura
  * 
  *FUN_18006dc10：CleanupSystemResourceDataB
  */
-void CleanupSystemResourceDataB(long long *SystemResourceManager)
+void CleanupSystemResourceDataB(long long* SystemResourceManager)
 
 {
   long long *PrimaryResourcePointer;
@@ -49743,7 +49743,7 @@ long long ConfigureResourceManagerData(long long SystemResourceManager,long long
 
 {
   long long resourceDataIndex;
-  void* *SystemHashEntryPointer;
+  void** SystemHashEntryPointer;
   
   *(uint32_t *)(SystemResourceManager + 0x10) = *(uint32_t *)(ConfigurationDataPointer + 0x10);
   SystemHashEntryPointer = &SystemStringTemplate;
@@ -49795,10 +49795,10 @@ long long ConfigureResourceManagerData(long long SystemResourceManager,long long
  *FUN_18006de00：InitializeSystemMemoryAllocatorWithHashNodes
  */
 long long *
-InitializeSystemMemoryAllocatorWithHashNodes(long long *SystemResourceManager,void* *ConfigurationDataPointer,void* *AdditionalParameter,void* *ConfigurationFlag)
+InitializeSystemMemoryAllocatorWithHashNodes(long long* SystemResourceManager,void* *ConfigurationDataPointer,void* *AdditionalParameter,void* *ConfigurationFlag)
 
 {
-  void* *SystemDataPointer;
+  void** SystemDataPointer;
   code *SystemStringPointer;
   void* *SystemHashNodeData;
   void* *presourceAddress;
@@ -50119,10 +50119,10 @@ void* * InitializeSystemResourceTemplate(void* *SystemResourceManager,ulong long
  * 
  *FUN_18006e4a0：CleanupSystemResourceManagers
  */
-void CleanupSystemResourceManagers(long long *SystemResourceManager)
+void CleanupSystemResourceManagers(long long* SystemResourceManager)
 
 {
-  int *SystemIntegerPointer;
+  int* SystemIntegerPointer;
   char *SystemStringPointer;
   void* *SystemHashNodeData;
   long long SystemBufferAddress;
@@ -50186,10 +50186,10 @@ void CleanupSystemResourceManagers(long long *SystemResourceManager)
  * 
  *FUN_18006e4a4：CleanupResourceManagerExtendedPointers
  */
-void CleanupResourceManagerExtendedPointers(long long *SystemResourceManager)
+void CleanupResourceManagerExtendedPointers(long long* SystemResourceManager)
 
 {
-  int *SystemIntegerPointer;
+  int* SystemIntegerPointer;
   char *SystemStringPointer;
   void* *SystemHashNodeData;
   long long SystemBufferAddress;
@@ -50334,7 +50334,7 @@ void CleanupSystemStringIteratorResources(void)
 void ReleaseSystemResourceManager(void* *SystemResourceManager)
 
 {
-  int *SystemIntegerPointer;
+  int* SystemIntegerPointer;
   long long SystemThreadHandle;
   ulong long resourceAllocationContext;
   
@@ -50373,10 +50373,10 @@ void ReleaseSystemResourceManager(void* *SystemResourceManager)
  * 
  *FUN_18006e580：DestroySystemResources
  */
-void DestroySystemResources(long long *SystemResourceManager)
+void DestroySystemResources(long long* SystemResourceManager)
 
 {
-  int *SystemIntegerPointer;
+  int* SystemIntegerPointer;
   char *SystemStringPointer;
   void* *SystemHashNodeData;
   long long SystemBufferAddress;
@@ -50432,7 +50432,7 @@ void DestroySystemResources(long long *SystemResourceManager)
 
 
 
-// 函数: void CleanupSystemResourceArray(long long *SystemResourceManager)
+// 函数: void CleanupSystemResourceArray(long long* SystemResourceManager)
 /**
  * @brief 系统资源清理函数
  * 
@@ -50443,7 +50443,7 @@ void DestroySystemResources(long long *SystemResourceManager)
  * 
  *FUN_18006e5d0：CleanupSystemResourceArray
  */
-void CleanupSystemResourceArray(long long *SystemResourceManager)
+void CleanupSystemResourceArray(long long* SystemResourceManager)
 
 {
   long long resourceEndIndex;
@@ -50462,7 +50462,7 @@ void CleanupSystemResourceArray(long long *SystemResourceManager)
 
 
 
-// 函数: void ValidateSystemResourceArray(long long *SystemResourceManager)
+// 函数: void ValidateSystemResourceArray(long long* SystemResourceManager)
 /**
  * @brief 系统资源批量清理函数
  * 
@@ -50473,7 +50473,7 @@ void CleanupSystemResourceArray(long long *SystemResourceManager)
  * 
  *FUN_18006e640：CleanupSystemResourceBatch
  */
-void CleanupSystemResourceBatch(long long *SystemResourceManager)
+void CleanupSystemResourceBatch(long long* SystemResourceManager)
 
 {
   long long resourceEndIndex;
@@ -50852,7 +50852,7 @@ void* GetSystemResourceStatus(long long SystemResourceManager)
 
 
 
-// 函数: void ReleaseSystemResource(long long *SystemResourceManager)
+// 函数: void ReleaseSystemResource(long long* SystemResourceManager)
 /**
  * @brief 释放系统资源
  * 
@@ -50862,7 +50862,7 @@ void* GetSystemResourceStatus(long long SystemResourceManager)
  * @param SystemResourceManager 资源管理器指针
  * @return 无返回值
  */
-void ReleaseSystemResource(long long *SystemResourceManager)
+void ReleaseSystemResource(long long* SystemResourceManager)
 
 {
   _Mtx_destroy_in_situ();
@@ -50875,7 +50875,7 @@ void ReleaseSystemResource(long long *SystemResourceManager)
 
 
 
-// 函数: void CleanupSystemResourceArrayEx(long long *SystemResourceManager)
+// 函数: void CleanupSystemResourceArrayEx(long long* SystemResourceManager)
 /**
  * @brief 清理系统资源管理器
  * 
@@ -50887,7 +50887,7 @@ void ReleaseSystemResource(long long *SystemResourceManager)
  * 
  *FUN_18006ef80：CleanupSystemResourceManager
  */
-void CleanupSystemResourceManager(long long *SystemResourceManager)
+void CleanupSystemResourceManager(long long* SystemResourceManager)
 
 {
   if ((long long *)*SystemResourceManager != SystemResourceManager) {
@@ -50940,7 +50940,7 @@ void ExecuteSystemResourceCleanup(void* *SystemResourceManager,void* Configurati
 
 
 
-// 函数: void UpdateSystemResourceCounter(long long *SystemResourceManager,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
+// 函数: void UpdateSystemResourceCounter(long long* SystemResourceManager,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 /**
  * @brief 更新系统资源计数器
  * 
@@ -50954,7 +50954,7 @@ void ExecuteSystemResourceCleanup(void* *SystemResourceManager,void* Configurati
  * 
  *FUN_18006f160：UpdateSystemResourceCounter
  */
-void UpdateSystemResourceCounter(long long *SystemResourceManager,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
+void UpdateSystemResourceCounter(long long* SystemResourceManager,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
 {
   long long *PrimaryResourcePointer;
@@ -50982,7 +50982,7 @@ void UpdateSystemResourceCounter(long long *SystemResourceManager,void* Configur
 
 
 
-// 函数: void CleanupSystemResourceHandle(long long *SystemResourceManager)
+// 函数: void CleanupSystemResourceHandle(long long* SystemResourceManager)
 /**
  * @brief 清理系统资源句柄
  * 
@@ -50993,7 +50993,7 @@ void UpdateSystemResourceCounter(long long *SystemResourceManager,void* Configur
  * 
  *FUN_18006f310：CleanupSystemResourceHandle
  */
-void CleanupSystemResourceHandle(long long *SystemResourceManager)
+void CleanupSystemResourceHandle(long long* SystemResourceManager)
 
 {
   if ((long long *)*SystemResourceManager != SystemResourceManager) {
@@ -51015,7 +51015,7 @@ void CleanupSystemResourceHandle(long long *SystemResourceManager)
  * 
  *FUN_18006f340：ProcessSystemResourceQueue
  */
-void ProcessSystemResourceQueue(long long *SystemResourceManager)
+void ProcessSystemResourceQueue(long long* SystemResourceManager)
 
 {
   char SystemNodeFlag;
@@ -51379,7 +51379,7 @@ ulong long InitializeAndProcessSystemResources(void* SystemResourceManager,void*
   void* *systemGlobalDataPtrB8;
   uint32_t UnsignedStackFlagB0;
   void* UnsignedStackFlagA8;
-  void* *SystemDataPointer;
+  void** SystemDataPointer;
   void* *stackParameterB;
   uint32_t SystemConfigurationValue;
   ulong long UnsignedStackFlag88;
@@ -52942,7 +52942,7 @@ void ProcessSystemResourceOperation(void* SystemResourceManager,long long Config
   ulong long systemDataBuffer;
   uint32_t UnsignedStackFlagB0;
   void* *SystemDataBufferPointerA8;
-  void* *SystemDataPointer;
+  void** SystemDataPointer;
   uint32_t SystemConfigurationValue;
   long long lStack_88;
   void* *pUnsignedStackFlag80;
@@ -53795,7 +53795,7 @@ bool InitializeSystemThreadAndResourceManager(void* SystemResourceManager,void* 
 void InitializeSystemResourceManagerConfiguration(void* SystemResourceManager,void* ConfigurationDataPointer)
 
 {
-  void* *SystemDataPointer;
+  void** SystemDataPointer;
   char validationStatusFlag;
   uint32_t auStackX_18 [4];
   void* *pointerUnsigned30;
@@ -53841,7 +53841,7 @@ void InitializeSystemResourceManagerConfiguration(void* SystemResourceManager,vo
 void ConfigureSystemResourceManagerData(void* SystemResourceManager,void* ConfigurationDataPointer)
 
 {
-  void* *SystemDataPointer;
+  void** SystemDataPointer;
   char validationStatusFlag;
   uint32_t auStackX_18 [4];
   void* *pointerUnsigned30;
@@ -53889,7 +53889,7 @@ void ConfigureSystemResourceManagerData(void* SystemResourceManager,void* Config
 void SetSystemManagerParameters(void* SystemResourceManager,uint32_t ConfigurationDataPointer,void* AdditionalParameter)
 
 {
-  void* *SystemDataPointer;
+  void** SystemDataPointer;
   char validationStatusFlag;
   uint32_t auStackX_20 [2];
   void* *pointerUnsigned30;
@@ -54031,7 +54031,7 @@ void ResetResourceManager(void* *SystemResourceManager)
  * @note 函数使用循环遍历所有相关资源并进行清理
  * @note 如果清理过程中发现错误，会触发系统清理函数
  */
-void SystemResourceCleanupHandler(long long *SystemResourceManager)
+void SystemResourceCleanupHandler(long long* SystemResourceManager)
 
 {
   long long *PrimaryResourcePointer;
@@ -54779,7 +54779,7 @@ void ProcessSystemResourceOperationB(void)
 
 
 
-// 函数: void ProcessSystemResourceOperationC(long long *SystemResourceManager,long long ConfigurationDataPointer)
+// 函数: void ProcessSystemResourceOperationC(long long* SystemResourceManager,long long ConfigurationDataPointer)
 /**
  * @brief 处理系统资源操作C
  * 
@@ -54789,7 +54789,7 @@ void ProcessSystemResourceOperationB(void)
  * @param SystemResourceManager 系统资源指针
  * @param ConfigurationDataPointer 参数2，用于传递额外的系统参数
  */
-void ProcessSystemResourceOperationC(long long *SystemResourceManager,long long ConfigurationDataPointer)
+void ProcessSystemResourceOperationC(long long* SystemResourceManager,long long ConfigurationDataPointer)
 
 {
   long long *PrimaryResourcePointer;
@@ -54953,7 +54953,7 @@ void ProcessSystemResourceOperationC(long long *SystemResourceManager,long long 
 
 
 
-// 函数: void CleanupSystemResourceManagerFinal(long long *SystemResourceManager)
+// 函数: void CleanupSystemResourceManagerFinal(long long* SystemResourceManager)
 /**
  * @brief 处理系统资源分配和数据初始化
  * 
@@ -54965,7 +54965,7 @@ void ProcessSystemResourceOperationC(long long *SystemResourceManager,long long 
  * 
  *FUN_1800740a2：ProcessSystemResourceAllocation
  */
-void ProcessSystemResourceAllocation(long long *SystemResourceManager)
+void ProcessSystemResourceAllocation(long long* SystemResourceManager)
 
 {
   long long *PrimaryResourcePointer;
@@ -55784,7 +55784,7 @@ void ConfigureSystemResourceData(long long SystemResourceManager,long long *Conf
  * 
  *FUN_180074a80：ProcessSystemResourcePool
  */
-void ProcessSystemResourcePool(long long *SystemResourceManager)
+void ProcessSystemResourcePool(long long* SystemResourceManager)
 
 {
   long long *PrimaryResourcePointer;
@@ -55833,7 +55833,7 @@ void ProcessSystemResourcePool(long long *SystemResourceManager)
  * 
  *FUN_180074b30：AllocateSystemResourceMemory
  */
-void AllocateSystemResourceMemory(long long *SystemResourceManager,ulong long ConfigurationDataPointer)
+void AllocateSystemResourceMemory(long long* SystemResourceManager,ulong long ConfigurationDataPointer)
 
 {
   long long *PrimaryResourcePointer;
@@ -57069,7 +57069,7 @@ LAB_180075f4f:
 
 
 
-// 函数: void InitializeSystemResourceManagerFinal(long long *SystemResourceManager)
+// 函数: void InitializeSystemResourceManagerFinal(long long* SystemResourceManager)
 /**
  * @brief 系统资源管理器初始化函数（扩展版本）
  * 
@@ -57081,7 +57081,7 @@ LAB_180075f4f:
  * 
  *FUN_180075ff0：InitializeSystemResourceManagerExtended
  */
-void InitializeSystemResourceManagerExtended(long long *SystemResourceManager)
+void InitializeSystemResourceManagerExtended(long long* SystemResourceManager)
 
 {
   ushort SystemOperationStatus;
@@ -57268,7 +57268,7 @@ void InitializeSystemResourceManagerExtended(long long *SystemResourceManager)
  * 
  * 原始函数名：FUN_1800763c0
  */
-long long * SystemResourceManagerConfiguratorAndDataCopier(long long *SystemResourceManager,long long *ConfigurationDataPointer)
+long long * SystemResourceManagerConfiguratorAndDataCopier(long long* SystemResourceManager,long long *ConfigurationDataPointer)
 
 {
   byte *pisByteValid;
@@ -57458,7 +57458,7 @@ long long * SystemResourceManagerConfiguratorAndDataCopier(long long *SystemReso
 
 
 
-// 函数: void ProcessSystemResourceManagerFinal(long long *SystemResourceManager,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
+// 函数: void ProcessSystemResourceManagerFinal(long long* SystemResourceManager,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 /**
  * @brief 系统资源管理器高级配置函数
  * 
@@ -57473,7 +57473,7 @@ long long * SystemResourceManagerConfiguratorAndDataCopier(long long *SystemReso
  * 
  *FUN_180076760：ConfigureSystemResourceManagerAdvanced
  */
-void ConfigureSystemResourceManagerAdvanced(long long *SystemResourceManager,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
+void ConfigureSystemResourceManagerAdvanced(long long* SystemResourceManager,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
 {
   long long *PrimaryResourcePointer;
@@ -57941,10 +57941,10 @@ LAB_180076feb:
  * @param SystemResourceManager 系统资源管理器指针的指针，指向要释放的资源管理器
  * @note 这是系统资源清理的关键函数
  */
-void ReleaseSystemResourceManager(long long *SystemResourceManager)
+void ReleaseSystemResourceManager(long long* SystemResourceManager)
 
 {
-  void* *SystemDataPointer;
+  void** SystemDataPointer;
   void** SystemDataTable;
   
   SystemDataPointer = (void* *)SystemResourceManager[SYSTEM_RESOURCE_DATA_POINTER_OFFSET];
@@ -57969,7 +57969,7 @@ void ReleaseSystemResourceManager(long long *SystemResourceManager)
 ulong long InitializeSystemResourceContext(long long SystemResourceManager)
 
 {
-  int *SystemIntegerPointer;
+  int* SystemIntegerPointer;
   byte isSystemActive;
   long long ResourceDataOffset;
   ulong long resourceAddress;
@@ -58032,7 +58032,7 @@ ulong long InitializeSystemResourceContext(long long SystemResourceManager)
  * @param SystemResourceManager 系统资源管理器指针的指针，指向要销毁的资源管理器
  * @note 这是系统资源完全清理的最终函数
  */
-void DestroySystemResourceManager(long long *SystemResourceManager)
+void DestroySystemResourceManager(long long* SystemResourceManager)
 
 {
   void* SystemOperationStatus;
@@ -58289,7 +58289,7 @@ void* ConfigureSystemResourceData(long long SystemResourceManager,long long Conf
 void ResetSystemResourceManagerState(long long SystemResourceManager)
 
 {
-  int *SystemIntegerPointer;
+  int* SystemIntegerPointer;
   void** SystemDataTable;
   long long ResourceDataOffset;
   ulong long resourceAddress;
@@ -60471,7 +60471,7 @@ LAB_SystemStatusSet:
 void InitializeSystemDataIndex(void)
 
 {
-  void* *SystemDataPointer;
+  void** SystemDataPointer;
   long long memoryBlockAddress;
   void* systemDataIndexPtr;
   
@@ -63177,7 +63177,7 @@ LAB_180075f4f:
 void InitializeSystemResourceCache(long long SystemResourceManager)
 
 {
-  int *SystemIntegerPointer;
+  int* SystemIntegerPointer;
   uint *SystemHashEntryPointer;
   void* *SystemHashNodeData;
   void* *presourceAddress;
@@ -64337,7 +64337,7 @@ LAB_18007a58b:
  * @param SystemResourceManager 资源管理器指针，包含要配置的资源表
  * @return 无返回值
  */
-void ConfigureSystemResourceTable(long long *SystemResourceManager)
+void ConfigureSystemResourceTable(long long* SystemResourceManager)
 
 {
   long long *PrimaryResourcePointer;
@@ -64365,7 +64365,7 @@ void ConfigureSystemResourceTable(long long *SystemResourceManager)
  * @param SystemResourceManager 资源管理器指针，包含要验证的资源表
  * @return 无返回值
  */
-void ValidateSystemResourceTable(long long *SystemResourceManager)
+void ValidateSystemResourceTable(long long* SystemResourceManager)
 
 {
   long long *PrimaryResourcePointer;
@@ -64681,7 +64681,7 @@ LAB_18007b8fd:
  * @param SystemResourceManager 资源管理器指针，包含要分配的资源
  * @return 无返回值
  */
-void ProcessSystemResourceAllocation(long long *SystemResourceManager)
+void ProcessSystemResourceAllocation(long long* SystemResourceManager)
 
 {
   long long resourceDataIndex;
@@ -64807,7 +64807,7 @@ void InitializeSystemMemoryOperationStatus(long long SystemResourceManager)
  * 
  * 原始函数名：FUN_18007bb70
  */
-void ExecuteSystemResourceManagerCallbacks(long long *SystemResourceManager)
+void ExecuteSystemResourceManagerCallbacks(long long* SystemResourceManager)
 
 {
   if ((long long *)SystemResourceManager[1] != (long long *)0x0) {
@@ -65231,7 +65231,7 @@ void CopyGameObjectTransformData(long long targetObjectPointer,long long sourceO
  * 
  *FUN_18007c490：ConfigureSystemInitializationParameters
  */
-void ConfigureSystemInitializationParameters(long long *SystemResourceManager,byte ConfigurationDataPointer,long long *AdditionalParameter,long long *ConfigurationFlag,char InitializationFlag)
+void ConfigureSystemInitializationParameters(long long* SystemResourceManager,byte ConfigurationDataPointer,long long *AdditionalParameter,long long *ConfigurationFlag,char InitializationFlag)
 
 {
   char *SystemCharacterPointer;
@@ -65375,11 +65375,11 @@ void ConfigureSystemInitializationParameters(long long *SystemResourceManager,by
  * 
  * 原始函数名：FUN_18007c790
  */
-void ConfigureSystemHashTableAndMemoryAllocation(long long *SystemResourceManager)
+void ConfigureSystemHashTableAndMemoryAllocation(long long* SystemResourceManager)
 
 {
   char *systemFunctionPointer;
-  void* *SystemHashEntryPointer;
+  void** SystemHashEntryPointer;
   
   SystemHashEntryPointer = &SystemStringTemplate;
   if (*(void* **)(*SystemResourceManager + 0x18) != (void* *)0x0) {
@@ -67366,7 +67366,7 @@ void ResetSystemResourceManagerStatusFlags(long long SystemResourceManager)
 void ProcessSystemResourceManagerThread(long long SystemResourceManager,long long ConfigurationDataPointer,int AdditionalParameter)
 
 {
-  int *SystemIntegerPointer;
+  int* SystemIntegerPointer;
   void** SystemDataTable;
   void* *SystemHashNodeData;
   void* *presourceAddress;
@@ -67441,7 +67441,7 @@ void ProcessSystemResourceManagerThread(long long SystemResourceManager,long lon
 void InitializeSystemResourceManagerData(void)
 
 {
-  int *SystemIntegerPointer;
+  int* SystemIntegerPointer;
   ulong long *SystemHashEntryPointer;
   ulong long *SystemHashNodeData;
   ulong long memoryBlockAddress;
@@ -67509,7 +67509,7 @@ void InitializeSystemResourceManagerData(void)
 void ProcessSystemResourceManagerThreadData(void)
 
 {
-  int *SystemIntegerPointer;
+  int* SystemIntegerPointer;
   long long SystemThreadHandle;
   long long systemStackFramePtr;
   long long systemDataIndexPtr;
@@ -67868,7 +67868,7 @@ void CleanupSystemResourceEncryption(char *SystemResourceManager,void* Configura
  * 
  *FUN_18007f770：InitializeSystemThreadSynchronizer
  */
-void InitializeSystemThreadSynchronizer(long long *SystemResourceManager)
+void InitializeSystemThreadSynchronizer(long long* SystemResourceManager)
 
 {
   long long resourceDataIndex;
@@ -67942,7 +67942,7 @@ void ExecuteSystemResourceProcessingOperation(void)
  * 
  *FUN_18007f840：ProcessSystemResourceHandle
  */
-void ProcessSystemResourceHandle(long long *SystemResourceManager)
+void ProcessSystemResourceHandle(long long* SystemResourceManager)
 
 {
   int *ResourceIndexPointer;
