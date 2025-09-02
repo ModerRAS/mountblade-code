@@ -57633,7 +57633,7 @@ LAB_180077879:
       *(void* *)(ResourceManagerPointer + 400) = uStack_d8;
       *(void* *)(ResourceManagerPointer + 0x198) = uStack_d0;
     }
-    creationFlags5 = FUN_18024a290(ConfigurationDataPointer,ResourceManagerPointer,&uStack_108,ConfigurationFlag,param_5);
+    creationFlags5 = FUN_18024a290(ConfigurationDataPointer,ResourceManagerPointer,&uStack_108,ConfigurationFlag,systemConfigurationParameter);
     *(byte *)(ResourceManagerPointer + 0xfd) = *(byte *)(ResourceManagerPointer + 0xfd) & 0xfe;
     *(int *)(ResourceManagerPointer + 0x1d0) = systemCounter3;
     if (bVar22 != 0) {
