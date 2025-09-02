@@ -18519,8 +18519,12 @@ CleanupSystemMemoryManager(void* *memoryManager,ulong long cleanupFlags,void* re
 
 
 /**
- * 系统终止函数
- * 终止系统运行，此函数不会返回
+ * @brief 系统终止函数
+ * 
+ * 该函数负责终止系统的运行，执行必要的清理工作。
+ * 它会调用系统数据操作函数来完成系统终止过程。
+ * 
+ * @note 这是系统关闭时调用的最后一个主要函数
  */
 void TerminateSystem(void)
 
