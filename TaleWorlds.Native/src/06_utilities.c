@@ -5021,38 +5021,51 @@ void ResetSystemState(void)
  * 
  * 该函数执行复杂的对象句柄验证流程，包括句柄调整、子对象获取和验证
  */
-uint8_t ProcessComplexObjectHandle(int64_t ObjectContext)
-
+/**
+ * @brief 处理复杂对象句柄
+ * 
+ * 该函数负责处理复杂的对象句柄验证和操作流程，包括：
+ * - 验证对象上下文的有效性
+ * - 处理句柄调整和子对象获取
+ * - 执行系统上下文验证
+ * - 处理资源操作
+ * 
+ * 主要用于系统对象的深度验证和操作，确保对象句柄的完整性和可用性。
+ * 
+ * @param ObjectContext 对象上下文指针，包含对象管理所需的信息
+ * @return uint8_t 操作状态码，0表示成功，非0表示失败
+ */
+uint8_t ProcessComplexObjectHandle(int64_t objectContext)
 {
-  uint8_t OperationResult;
-  int64_t OperationResultBuffer[2];
-  int64_t ContextHandleBuffer[2];
+  uint8_t operationResult;
+  int64_t operationResultBuffer[2];
+  int64_t contextHandleBuffer[2];
   
-  OperationResult = ValidateObjectContext(*(uint32_t *)(ObjectContext + ObjectContextDataArrayOffset), ContextHandleBuffer);
-  if ((int)OperationResult == 0) {
-    if (ContextHandleBuffer[0] == 0) {
-      ContextHandleBuffer[0] = 0;
+  operationResult = ValidateObjectContext(*(uint32_t *)(objectContext + ObjectContextDataArrayOffset), contextHandleBuffer);
+  if ((int)operationResult == 0) {
+    if (contextHandleBuffer[0] == 0) {
+      contextHandleBuffer[0] = 0;
     }
     else {
-      ContextHandleBuffer[0] = ContextHandleBuffer[0] + -8;
+      contextHandleBuffer[0] = contextHandleBuffer[0] - 8;
     }
-    OperationResultBuffer[0] = 0;
-    OperationResult = ProcessSystemContextValidation(ContextHandleBuffer[0], ObjectContext + ObjectContextValidationDataOffset, OperationResultBuffer);
-    if ((int)OperationResult == 0) {
-      if (OperationResultBuffer[0] != 0) {
-        if (*(int64_t *)(OperationResultBuffer[0] + 8) == 0) {
+    operationResultBuffer[0] = 0;
+    operationResult = ProcessSystemContextValidation(contextHandleBuffer[0], objectContext + ObjectContextValidationDataOffset, operationResultBuffer);
+    if ((int)operationResult == 0) {
+      if (operationResultBuffer[0] != 0) {
+        if (*(int64_t *)(operationResultBuffer[0] + 8) == 0) {
           return ErrorInvalidObjectHandle;
         }
-        OperationResult = ProcessResourceOperation(*(int64_t *)(OperationResultBuffer[0] + 8), *(uint32_t *)(ObjectContext + ObjectContextProcessingDataOffset),
-                                      *(uint8_t *)(ObjectContext + ObjectContextStatusDataOffset));
-        if ((int)OperationResult != 0) {
-          return OperationResult;
+        operationResult = ProcessResourceOperation(*(int64_t *)(operationResultBuffer[0] + 8), *(uint32_t *)(objectContext + ObjectContextProcessingDataOffset),
+                                      *(uint8_t *)(objectContext + ObjectContextStatusDataOffset));
+        if ((int)operationResult != 0) {
+          return operationResult;
         }
       }
-      OperationResult = 0;
+      operationResult = 0;
     }
   }
-  return OperationResult;
+  return operationResult;
 }
 
 
