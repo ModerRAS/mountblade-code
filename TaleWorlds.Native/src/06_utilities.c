@@ -55231,7 +55231,19 @@ void ValidateObjectContextWithFlags(uint8_t ObjectContext,int64_t ValidationCont
 
 
 
-void Unwind_180906c50(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 处理资源哈希验证和清理
+ * 
+ * 该函数负责处理系统资源的哈希验证和清理操作
+ * 验证资源的完整性，并在需要时进行清理
+ * 
+ * @param ObjectContext 对象上下文，包含对象状态信息
+ * @param ValidationContext 验证上下文，包含验证数据和指针
+ * @return 无返回值
+ * @note 此函数会检查资源哈希验证结果，并在必要时调用系统清理处理器
+ * @warning 如果资源索引指针为0，将触发系统清理操作
+ */
+void ProcessResourceHashValidationAndCleanup(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int *ResourceIndexPointer;
@@ -55267,7 +55279,19 @@ void Unwind_180906c50(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180906c60(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 验证资源上下文完整性
+ * 
+ * 该函数负责验证系统资源上下文的完整性
+ * 检查资源上下文中的数据是否有效，确保系统安全运行
+ * 
+ * @param ObjectContext 对象上下文，包含对象状态信息
+ * @param ValidationContext 验证上下文，包含资源上下文数据
+ * @return 无返回值
+ * @note 此函数会遍历资源上下文数组，检查每个资源的有效性
+ * @warning 如果发现任何无效资源或资源上下文为空，将执行系统紧急退出
+ */
+void ValidateResourceContextIntegrity(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int64_t *processPointer;
@@ -55286,7 +55310,19 @@ void Unwind_180906c60(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180906c70(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 验证备用资源上下文完整性
+ * 
+ * 该函数负责验证系统备用资源上下文的完整性
+ * 检查备用资源上下文中的数据是否有效，确保系统安全运行
+ * 
+ * @param ObjectContext 对象上下文，包含对象状态信息
+ * @param ValidationContext 验证上下文，包含备用资源上下文数据
+ * @return 无返回值
+ * @note 此函数会遍历备用资源上下文数组，检查每个资源的有效性
+ * @warning 如果发现任何无效资源或资源上下文为空，将执行系统紧急退出
+ */
+void ValidateSecondaryResourceContextIntegrity(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int64_t *processPointer;
@@ -55305,7 +55341,19 @@ void Unwind_180906c70(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180906c80(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 处理备用资源哈希验证和清理
+ * 
+ * 该函数负责处理系统备用资源的哈希验证和清理操作
+ * 验证备用资源的完整性，并在需要时进行清理
+ * 
+ * @param ObjectContext 对象上下文，包含对象状态信息
+ * @param ValidationContext 验证上下文，包含验证数据和指针
+ * @return 无返回值
+ * @note 此函数会检查备用资源哈希验证结果，并在必要时调用系统清理处理器
+ * @warning 如果资源索引指针为0，将触发系统清理操作
+ */
+void ProcessSecondaryResourceHashValidationAndCleanup(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int *ResourceIndexPointer;
@@ -55341,7 +55389,19 @@ void Unwind_180906c80(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180906c90(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 处理扩展资源哈希验证和清理
+ * 
+ * 该函数负责处理系统扩展资源的哈希验证和清理操作
+ * 验证扩展资源的完整性，并在需要时进行清理
+ * 
+ * @param ObjectContext 对象上下文，包含对象状态信息
+ * @param ValidationContext 验证上下文，包含验证数据和指针
+ * @return 无返回值
+ * @note 此函数会检查扩展资源哈希验证结果，并在必要时调用系统清理处理器
+ * @warning 如果资源索引指针为0，将触发系统清理操作
+ */
+void ProcessExtendedResourceHashValidationAndCleanup(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int *ResourceIndexPointer;
@@ -55807,6 +55867,18 @@ void ProcessResourceCleanupWithValidation(uint8_t ObjectContext,int64_t Validati
 
 
 
+/**
+ * @brief 带资源管理的清理处理函数
+ * 
+ * 该函数负责执行带资源管理的清理操作，处理对象上下文和验证上下文
+ * 中的资源索引和内存地址，包含完整的资源管理机制
+ * 
+ * @param ObjectContext 对象上下文，包含要处理的资源对象信息
+ * @param ValidationContext 验证上下文，包含资源验证所需的参数和状态
+ * @return 无返回值
+ * @note 此函数会在资源清理过程中被调用，包含完整的资源管理机制
+ * @warning 调用此函数前必须确保上下文参数有效，资源管理机制已启用
+ */
 void ProcessResourceCleanupWithResources(uint8_t ObjectContext,int64_t ValidationContext)
 
 {

@@ -45478,13 +45478,13 @@ void* AllocateSystemMemoryWithMutex(long long ResourceManagerPointer,long long C
       if (systemCounter != 0) {
         __Throw_C_error_std__YAXH_Z(systemCounter);
       }
-      FUN_180068490(0x20,AdditionalParameter);
+      ConfigureSystemResourceAllocation(0x20,AdditionalParameter);
       uRam00000000000001f0 = 0;
       uRam00000000000001e8 = 0;
       uRam00000000000001e0 = 0;
       charResult = ConfigureResourceManager(ResourceManagerPointer,0x20,0x1e0,0x1e8,0x1f0);
       if (validationStatusFlag == '\0') {
-        FUN_1800687d0(ResourceManagerPointer + 0x370,0);
+        ProcessSystemResourceData(ResourceManagerPointer + 0x370,0);
         unsignedSystemValue4 = 0;
       }
       else {
@@ -45628,7 +45628,7 @@ void CleanupSystemResourceData(long long ResourceManagerPointer)
   long long *plocalDataIndex;
   long long *plStackX_8;
   
-  systemStatusFlag = FUN_180068a90(ResourceManagerPointer + 0x10,&plStackX_8);
+  systemStatusFlag = FindResourceManagerPointerMapping(ResourceManagerPointer + 0x10,&plStackX_8);
   do {
     if (systemStatusFlag == '\0') {
       return;
@@ -45672,7 +45672,7 @@ void CleanupSystemResourceData(long long ResourceManagerPointer)
         plocalDataIndex = (long long *)plocalSystemPointer[2];
       }
     }
-    systemStatusFlag = FUN_180068a90(ResourceManagerPointer + 0x10,&plStackX_8);
+    systemStatusFlag = FindResourceManagerPointerMapping(ResourceManagerPointer + 0x10,&plStackX_8);
   } while( true );
 }
 
@@ -45734,7 +45734,7 @@ ConfigureSystemResourceAllocation(long long ResourceManagerPointer,long long *Co
     FUN_18066c220(ResourceManagerPointer + 0x20,&ArraySize,*(uint32_t *)(ResourceManagerPointer + 0x10),
                   *(uint32_t *)(ResourceManagerPointer + 0x18),1);
     localResourceOffset = CreateSystemThreadObject(SystemMemoryPoolTemplate,0x128,*(uint8_t *)(ResourceManagerPointer + 0x2c));
-    FUN_180068ff0(localResourceOffset,ConfigurationFlag);
+    InitializeSystemResourceStringTemplate(localResourceOffset,ConfigurationFlag);
     *(void* *)(localResourceOffset + 0x118) = 0;
     *(void* *)(localResourceOffset + 0x120) = 0;
     if ((char)ArraySize != '\0') {
@@ -48171,7 +48171,7 @@ void ProcessSystemResourceNodeQueue(long long ResourceManagerPointer)
     }
     HashEntryStatus0 = *(void* **)(ResourceManagerPointer + 0xc0);
     if ((void* *)*HashEntryStatus0 == &SystemMemoryManagerTemplate) {
-      charOutput = FUN_180068a90(HashEntryStatus0 + 2,&plStack_240);
+      charOutput = FindResourceManagerPointerMapping(HashEntryStatus0 + 2,&plStack_240);
       while (charOutput != '\0') {
         resourcePoolPointer3 = (long long *)HashEntryStatus0[99];
         if (plStack_240 != (long long *)0x0) {
@@ -48213,7 +48213,7 @@ void ProcessSystemResourceNodeQueue(long long ResourceManagerPointer)
             PrimaryResourcePointer8 = (long long *)PrimaryResourcePointer1[2];
           }
         }
-        charOutput = FUN_180068a90(HashEntryStatus0 + 2,&plStack_240);
+        charOutput = FindResourceManagerPointerMapping(HashEntryStatus0 + 2,&plStack_240);
       }
     }
     else {
@@ -48514,7 +48514,7 @@ ulong long AllocateSystemResourceNode(long long *ResourceManagerPointer,long lon
   if (creationFlags < (ulong long)ResourceManagerPointer[2]) {
     ResourceManagerPointer[1] = creationFlags + 0x1a8;
     uStackX_8 = creationFlags;
-    FUN_180068ff0();
+    InitializeSystemResourceStringTemplate();
     *(void* *)(creationFlags + 0x118) = *(void* *)(ConfigurationDataPointer + 0x118);
     *(void* *)(creationFlags + 0x120) = *(void* *)(ConfigurationDataPointer + 0x120);
     *(void* *)(creationFlags + 0x128) = *(void* *)(ConfigurationDataPointer + 0x128);
@@ -48695,7 +48695,7 @@ long long ProcessSystemResourceDataB(long long ResourceManagerPointer,long long 
   void* creationFlags;
   
   creationFlags = 0xfffffffffffffffe;
-  FUN_180068ff0();
+  InitializeSystemResourceStringTemplate();
   *(void* *)(ResourceManagerPointer + 0x118) = *(void* *)(ConfigurationDataPointer + 0x118);
   *(void* *)(ResourceManagerPointer + 0x120) = *(void* *)(ConfigurationDataPointer + 0x120);
   *(void* *)(ResourceManagerPointer + 0x128) = *(void* *)(ConfigurationDataPointer + 0x128);
