@@ -5093,7 +5093,7 @@ uint8_t ProcessComplexObjectHandle(int64_t objectContext)
  */
 uint8_t ValidateAndProcessObjectStatus(int64_t objectContext)
 {
-  uint8_t validationHash;
+  uint8_t validationResult;
   int64_t resourceContextBuffer[2];
   int64_t validationStackBuffer[2];
   
@@ -29795,18 +29795,6 @@ void InitializeUtilitySystemWithParameters(uint8_t *systemParameters)
  * 
  * 该函数负责处理异常情况下的资源清理和状态恢复
  * 主要用于处理程序异常终止时的资源释放和状态恢复
- * 专门处理一级异常情况的资源清理工作
- * 
- * @param ObjectContext 异常上下文参数，包含对象相关的状态信息
- * @param ValidationContext 系统上下文指针，包含系统运行时状态数据
- * @note 此函数在异常处理过程中被自动调用
- * @warning 调用此函数会释放相关资源并恢复系统状态
- */
-/**
- * @brief 异常处理函数：解卷主上下文异常处理器
- * 
- * 该函数负责处理异常情况下的资源清理和状态恢复
- * 主要用于处理程序异常终止时的资源释放和状态恢复
  * 专门处理主级异常情况的资源清理工作
  * 
  * @param ObjectContext 异常上下文参数，包含对象相关的状态信息
@@ -30013,25 +30001,25 @@ void UnlockResourceHandleAndHandleException(uint8_t exceptionHandlerType, int64_
  * @param exceptionHandlerType 异常处理器类型
  * @param ExceptionContext 异常上下文指针
  */
-void CleanupResourceHashValidationStatusCodeAddressResources(uint8_t exceptionHandlerType, int64_t ExceptionContext)
+void CleanupResourceHashValidationResources(uint8_t exceptionHandlerType, int64_t ExceptionContext)
 
 {
   int32_t *ResourceTablePointerIndexPointer;
-  uint8_t *ResourceHashValidationStatusCodeAddress;
+  uint8_t *ResourceHashValidationStatusCodePointer;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
   
-  ValidationStatusCodeAddress = *(uint8_t **)(ValidationContext + 0x2b8);
-  if (ResourceHashValidationStatusCodeAddress == (uint8_t *)0x0) {
+  ResourceHashValidationStatusCodePointer = *(uint8_t **)(ValidationContext + 0x2b8);
+  if (ResourceHashValidationStatusCodePointer == (uint8_t *)0x0) {
     return;
   }
-  MemoryAddressIncrement = (uint64_t)ResourceHashValidationStatusCodeAddress & 0xffffffffffc00000;
+  MemoryAddressIncrement = (uint64_t)ResourceHashValidationStatusCodePointer & 0xffffffffffc00000;
   if (MemoryAddressIncrement != 0) {
-    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationStatusCodeAddress - MemoryAddressIncrement >> 0x10) * 0x50;
+    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashValidationStatusCodePointer - MemoryAddressIncrement >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
     if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ResourceHashValidationStatusCodeAddress = *(uint8_t *)(ResourceIndex + 0x20);
-      *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationStatusCodeAddress;
+      *ResourceHashValidationStatusCodePointer = *(uint8_t *)(ResourceIndex + 0x20);
+      *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashValidationStatusCodePointer;
       ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
       if (*ResourceIndexPointer == 0) {
@@ -30041,7 +30029,7 @@ void CleanupResourceHashValidationStatusCodeAddressResources(uint8_t exceptionHa
     }
     else {
       ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationStatusCodeAddress,MemoryAddressIncrement,0xfffffffffffffffe);
+                          ResourceHashValidationStatusCodePointer,MemoryAddressIncrement,0xfffffffffffffffe);
     }
   }
   return;
@@ -50015,20 +50003,20 @@ void ExecuteMemoryPoolResourceCleanup(uint8_t ObjectContext, int64_t ValidationC
 
 
 /**
- * @brief 清理资源哈希表中的验证结果
+ * @brief 清理资源哈希验证状态码
  * 
- * 该函数负责清理资源哈希表中存储的验证结果，遍历验证结果数组
- * 并对每个验证结果执行清理操作，释放相关资源
+ * 该函数负责清理资源哈希表中存储的验证状态码，遍历验证状态码数组
+ * 并对每个状态码执行清理操作，释放相关资源
  * 
  * @param ObjectContext 对象上下文参数，包含对象的状态信息
  * @param ValidationContext 验证上下文参数，包含验证相关的数据结构
  * @param CleanupOption 清理选项，控制清理行为的具体参数
  * @param CleanupFlag 清理标志，指定清理操作的标志位
  * @return 无返回值
- * @note 此函数会遍历资源表并清理所有验证结果
+ * @note 此函数会遍历资源表并清理所有验证状态码
  * @warning 如果资源表无效，系统将执行紧急退出
  */
-void CleanupResourceHashResourceHashValidationStatusCodes(uint8_t ObjectContext, int64_t ValidationContext, uint8_t CleanupOption, uint8_t CleanupFlag)
+void CleanupResourceHashValidationStatusCodes(uint8_t ObjectContext, int64_t ValidationContext, uint8_t CleanupOption, uint8_t CleanupFlag)
 
 {
   uint8_t *resourceHashPointer;
@@ -73975,7 +73963,19 @@ void ExecuteResourceTablePointerCallback(uint8_t ObjectContext, int64_t Validati
 
 
 
-void Unwind_18090a800(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 重置资源状态标志
+ * 
+ * 该函数负责重置资源状态标志
+ * 检查资源数据的状态标志并执行相应的重置操作
+ * 
+ * @param ObjectContext 对象上下文，包含资源处理所需的对象信息
+ * @param ValidationContext 验证上下文，用于验证资源状态的上下文信息
+ * @return 无返回值
+ * @note 此函数会重置资源数据中的状态标志
+ * @warning 资源状态的重置可能会影响系统的资源管理行为
+ */
+void ResetResourceStatusFlag(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   if ((*(uint *)(ResourceData + 0x20) & 1) != 0) {
