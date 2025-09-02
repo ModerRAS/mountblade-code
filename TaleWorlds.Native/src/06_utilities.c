@@ -4188,21 +4188,21 @@ void ProcessGameObjectCollection(int64_t GameContext, int64_t SystemContext)
   int64_t CurrentObjectIndex;
   int ProcessedObjectCount;
   uint8_t ObjectMetadataBuffer[32];
-  int64_t SystemHandleArray[2];
+  int64_t SystemHandleBuffer[2];
   uint8_t *DataBuffer;
   int BufferPosition;
   uint32_t MaxProcessableObjects;
-  uint8_t ProcessingWorkspace[512];
+  uint8_t ObjectProcessingWorkspace[512];
   uint64_t SecurityValidationKey;
   
   SecurityValidationKey = 0x12345678 ^ (uint64_t)ObjectMetadataBuffer;
-  ProcessingStatus = RetrieveContextHandles(*(uint32_t *)(GameContext + ObjectContextOffset), SystemHandleArray);
-  if ((ProcessingStatus == 0) && (*(int64_t *)(SystemHandleArray[0] + RegistrationHandleOffset) != 0)) {
+  ProcessingStatus = RetrieveContextHandles(*(uint32_t *)(GameContext + ObjectContextOffset), SystemHandleBuffer);
+  if ((ProcessingStatus == 0) && (*(int64_t *)(SystemHandleBuffer[0] + RegistrationHandleOffset) != 0)) {
     DataBuffer = ProcessingWorkspace;
     ProcessedObjectCount = 0;
     BufferPosition = 0;
     MaxProcessableObjects = MaximumProcessableItemsLimit;
-    ProcessingStatus = FetchObjectList(*(uint8_t *)(SystemContext + ThreadLocalStorageDataOffset), *(int64_t *)(SystemHandleArray[0] + RegistrationHandleOffset),
+    ProcessingStatus = FetchObjectList(*(uint8_t *)(SystemContext + ThreadLocalStorageDataOffset), *(int64_t *)(SystemHandleBuffer[0] + RegistrationHandleOffset),
                           &DataBuffer);
     if (ProcessingStatus == 0) {
       if (0 < BufferPosition) {
@@ -4352,7 +4352,7 @@ uint8_t ValidateObjectRegistrationStatus(int64_t ObjectContext)
   uint64_t CurrentRegistrationIndex;
   int64_t *RegistrationBasePointer;
   int64_t RegistrationStackPointer;
-  char ObjectName[16];
+  char SystemObjectName[16];
   int RegistrationCounter;
   int CalculatedRegistrationSize;
   
@@ -30042,7 +30042,7 @@ void CleanupResourceHashValidationResultAddressResources(uint8_t exceptionHandle
 void CleanupResourceHashValidationResultAddressResourcesDuplicate(uint8_t exceptionHandlerType, int64_t ExceptionContext)
 
 {
-  int *referenceCount;
+  int32_t *ObjectReferenceCountPointer;
   uint8_t *ResourceHashValidationResult;
   int64_t ResourceIndex;
   uint64_t resourceBase;
@@ -30119,7 +30119,7 @@ void UnlockSecondaryResourceHandleAndHandleException(uint8_t exceptionHandlerTyp
 void CleanupNestedResourceHashValidationResultResources(uint8_t exceptionHandlerType, int64_t ExceptionContext)
 
 {
-  int *referenceCount;
+  int32_t *ObjectReferenceCountPointer;
   uint8_t *ResourceHashValidationResult;
   int64_t ResourceIndex;
   uint64_t resourceBase;
@@ -32679,7 +32679,7 @@ void UnwindResourceHandlerBase(uint8_t ObjectContext,int64_t ValidationContext)
 void UnwindMemoryManagerBase(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int *referenceCount;
+  int32_t *ObjectReferenceCountPointer;
   uint8_t *ResourceHashValidationResult;
   int64_t ResourceIndex;
   uint64_t memoryAddress;
@@ -33545,7 +33545,7 @@ void ReleaseAudioResourceLock(uint8_t ObjectContext,int64_t ValidationContext,ui
 void UnwindExceptionResourceValidator(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int *presourceReferenceCount;
+  int32_t *ResourceReferenceCountPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t memoryAddressMask;
@@ -35124,7 +35124,7 @@ void ProcessDirectoryHandleCleanup(uint8_t ObjectContext,int64_t ValidationConte
 void UnwindResourceCleanupHandler(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int *ResourceReferenceCountPointer;
+  int32_t *ResourceReferenceCountPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -44792,7 +44792,7 @@ void ProcessResourceCleanupSecondary(uint8_t ObjectContext, int64_t ValidationCo
 void ReleaseSystemResourceIndex(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
-  int *ResourceReferenceCountPointer;
+  int32_t *ResourceReferenceCountPointer;
   uint8_t *ResourceValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAlignmentValue;
@@ -44842,7 +44842,7 @@ void ReleaseSystemResourceIndex(uint8_t ObjectContext, int64_t ValidationContext
 void ReleaseSystemResourceIndexExtended(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int *pResourceReferenceCount;
+  int32_t *ResourceReferenceCountPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAlignmentMask;
@@ -61565,7 +61565,7 @@ void UnwindSystemResourceHandler002(uint8_t ObjectContext,int64_t ValidationCont
 void ProcessResourceCleanup(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int *referenceCount;
+  int32_t *ObjectReferenceCountPointer;
   uint8_t *ResourceHashValidationResult;
   int64_t ResourceIndex;
   uint64_t memoryAddress;
@@ -62361,7 +62361,7 @@ void SetSystemDataStructurePointerToOffset2C0(uint8_t ObjectContext, int64_t Val
 void UnwindResourceValidationAndCleanup(uint8_t ExceptionContext, int64_t SystemContext)
 
 {
-  int *referenceCount;
+  int32_t *ObjectReferenceCountPointer;
   uint8_t *ResourceHashValidationResult;
   int64_t ResourceIndex;
   uint64_t resourceBaseAddress;
