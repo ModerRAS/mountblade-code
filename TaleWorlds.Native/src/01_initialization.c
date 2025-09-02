@@ -56718,7 +56718,7 @@ void ConfigureSystemResourceManager(long long SystemResourceManager,long long *C
         InitializeResourcePointer(PrimaryResourcePointer + 7,lStack_30 + 0x38);
         ConfigureResourceSettings(PrimaryResourcePointer + 0xc,lStack_30 + 0x60);
         SetupResourceParameters(PrimaryResourcePointer + 0x11,lStack_30 + 0x88);
-        FUN_180085ec0(PrimaryResourcePointer + 0x19,lStack_30 + 200);
+        ValidateResourceConfiguration(PrimaryResourcePointer + 0x19,lStack_30 + 200);
         ReleaseSystemOperationCounter(&SystemOperationCounter);
       }
       CleanupSystemResourceEncryption(aEncryptionKeyValue);
