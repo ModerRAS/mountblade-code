@@ -54219,7 +54219,12 @@ void InitializeResourceLockManager(uint8_t ObjectContext,int64_t ValidationConte
 
 
 
-void Unwind_1809069a0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * 获取资源锁并设置超时
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ */
+void AcquireResourceLockWithTimeout(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   if (*(int64_t **)(ValidationContext + 0xe0) != (int64_t *)0x0) {
