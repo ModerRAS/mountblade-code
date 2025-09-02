@@ -43955,9 +43955,9 @@ void InitializeSystemResourceObject(void* ResourceManagerPointer,long long Confi
   ExecuteSystemCommand(&puStack_a8,systemValue);
   *(uint32_t *)((ulong long)uStack_98 + lStack_a0) = 0x706d74;
   uStack_98 = systemValue;
-  cVar2 = FUN_180624a00(&puStack_a8);
+  SystemValidationResult = ValidateSystemMemoryAllocation(&puStack_a8);
   if (validationStatusFlag == '\0') {
-    FUN_180624910(&puStack_a8);
+    ReleaseSystemMemoryAllocation(&puStack_a8);
   }
   ppEncryptionValue68 = &puStack_a8;
   pplStack_60 = &plStack_b0;
