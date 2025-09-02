@@ -51296,13 +51296,13 @@ void FUN_180070680(void* ResourceManagerPointer,void* ConfigurationDataPointer)
   uStack_58 = 0;
   pEncryptionValue68 = (void* *)0x0;
   uStack_60 = 0;
-  ConfigureSystemDataBuffer(&puStack_70,&UNK_1809ff538,ConfigurationDataPointer);
-  FUN_180062380(SystemContextManagerPointer,5,0xffffffff00000000,&UNK_1809ff550);
+  ConfigureSystemDataBuffer(&puStack_70,&SystemConfigurationTemplateA,ConfigurationDataPointer);
+  FUN_180062380(SystemContextManagerPointer,5,0xffffffff00000000,&SystemConfigurationDataBufferA);
   resourceEntryPointer = &SystemStringTemplate;
   if (pEncryptionValue68 != (void* *)0x0) {
     resourceEntryPointer = pEncryptionValue68;
   }
-  FUN_180062380(SystemContextManagerPointer,5,0xffffffff00000000,&UNK_1809ff5b0,resourceEntryPointer);
+  FUN_180062380(SystemContextManagerPointer,5,0xffffffff00000000,&SystemConfigurationDataBufferB,resourceEntryPointer);
   resourceEntryPointer = &SystemStringTemplate;
   if (newThreadLocalStorage != (void* *)0x0) {
     SystemCurrentNode = SystemNextNode;
@@ -51514,7 +51514,7 @@ LAB_180070b00:
   uStack_130 = 0;
   pointerToUnsigned18 = &SystemRootDataPtr;
   if (cStack_120 != '\0') {
-    pointerToUnsigned18 = &UNK_1809ff648;
+    pointerToUnsigned18 = &SystemStatusDataPointer;
   }
   nextDataIndex5 = -1;
   do {

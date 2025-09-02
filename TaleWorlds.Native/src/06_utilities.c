@@ -5268,20 +5268,20 @@ uint64_t ValidateAndProcessExtendedObjectHandle(uint64_t extendedObjectHandle)
 uint32_t ValidateAndProcessCurrentObjectHandleExtended(void)
 
 {
-  int64_t currentRegister;
-  int64_t processedValue;
+  int64_t registerValue;
+  int64_t contextPointer;
   
-  if (currentRegister == 0) {
-    processedValue = 0;
+  if (registerValue == 0) {
+    contextPointer = 0;
   }
   else {
-    processedValue = currentRegister + -8;
+    contextPointer = registerValue + -8;
   }
-  if (*(int64_t *)(processedValue + 0x10) == 0) {
+  if (*(int64_t *)(contextPointer + 0x10) == 0) {
     return 0x1c;
   }
                     // WARNING: Subroutine does not return
-  ExecuteSystemExitOperation(*(int64_t *)(processedValue + 0x10),1);
+  ExecuteSystemExitOperation(*(int64_t *)(contextPointer + 0x10),1);
 }
 
 
@@ -6543,17 +6543,17 @@ void ExpandDynamicBufferCapacity(int64_t ObjectContext, int64_t SystemContext)
   int64_t newBufferPointer;
   int64_t bufferOffset;
   uint CapacitySignBit;
-  int64_t temporaryStackBuffer;
+  int64_t memoryContextBuffer;
   int64_t bufferContext;
   
   ValidationStatus = ValidateObjectContext(*(uint32_t *)(ObjectContext + 0x10),&bufferContext);
-  if (((ValidationStatus != 0) || (ValidationStatus = InitializeTempBuffer(&temporaryStackBuffer), ValidationStatus != 0)) ||
-     (ValidationStatus = ProcessSystemContext(temporaryStackBuffer,SystemContext,*(uint8_t *)(bufferContext + 8)), ValidationStatus != 0)) {
+  if (((ValidationStatus != 0) || (ValidationStatus = InitializeTempBuffer(&memoryContextBuffer), ValidationStatus != 0)) ||
+     (ValidationStatus = ProcessSystemContext(memoryContextBuffer,SystemContext,*(uint8_t *)(bufferContext + 8)), ValidationStatus != 0)) {
     return;
   }
   newBufferPointer = 0;
-  bufferOffset = temporaryStackBuffer + 8;
-  if (temporaryStackBuffer == 0) {
+  bufferOffset = memoryContextBuffer + 8;
+  if (memoryContextBuffer == 0) {
     bufferOffset = newBufferPointer;
   }
   ValidationStatus = ValidateBufferContext(bufferOffset,ObjectContext + ObjectContextValidationDataOffset);
