@@ -67,10 +67,10 @@
 #define BufferOffsetTertiary 0x88
 #define BufferOffsetQuaternary 0x94
 #define BufferOffsetHandle 0xb8
-#define FlagBitValidation 3
-#define FlagBitValidationMask (1 << FlagBitValidation)
-#define FlagBitCleanupMask 0xfdffffff
-#define FlagBitResetMask 0xfbffffff
+#define ValidationBitIndex 3
+#define ValidationBitMask (1 << ValidationBitIndex)
+#define CleanupBitMask 0xfdffffff
+#define ResetBitMask 0xfbffffff
 #define ByteAlignmentMask 0xffffff00
 #define ChecksumSeedValueFEFB 0x46464542
 #define ChecksumSeedValueBEFB 0x42464542
@@ -117,6 +117,18 @@
 #define SystemContextFlagCheckOffset 0x2d8
 #define SystemFlagCheckBitMask 7
 #define SystemFlagCheckBitPosition 1
+#define SystemContextResourceManagerOffset 0x1a0
+#define ObjectContextRangeDataOffset 0x28
+#define ObjectContextValidationParameterOffset 0x10
+#define ValidationContextDataOffset 0x18
+#define ValidationContextPointerOffset 0x20
+#define RangeDataEntrySize 0x18
+#define RangeDataValueOffset 0x38
+#define RangeDataMaxValueOffset 0x3c
+#define RangeDataFlagsOffset 0x34
+#define ObjectContextExtendedDataOffset 0x90
+#define ContextFloatValueOffset 4
+#define SystemContextCleanupOffset 0x98
 
 // 对象上下文偏移量常量
 #define ObjectContextDataArrayOffset 0x10
@@ -5730,7 +5742,7 @@ int InitializeSystemManager(int64_t ManagerHandle)
           memcpy(ObjectContextDataBuffer,ObjectContext + 0x10,(int64_t)ValidationOperationResult);
   }
   if (SystemResourceTableHandle != 0) {
-          ProcessResourceAllocation(*(uint8_t *)(SystemContext + 0x1a0),SystemResourceTableHandle,&SystemResourceTable,0xb8,1);
+          ProcessResourceAllocation(*(uint8_t *)(SystemContext + SystemContextResourceManagerOffset),SystemResourceTableHandle,&SystemResourceTable,0xb8,1);
   }
   return SystemResourceIndex;
 }
@@ -5809,7 +5821,7 @@ uint64_t ProcessSystemResourceAllocation(int64_t ResourceHandle, uint8_t Operati
         ResourceHashValidationResult = 0;
       }
       else if (ResourceIndex != 0) {
-        ProcessResourceRelease(*(uint8_t *)(SystemContext + 0x1a0),ResourceIndex,&ResourceAllocationTemplate,0xe9);
+        ProcessResourceRelease(*(uint8_t *)(SystemContext + SystemContextResourceManagerOffset),ResourceIndex,&ResourceAllocationTemplate,0xe9);
         return ResourceHashValidationResult;
       }
       return ResourceHashValidationResult;
@@ -5858,7 +5870,7 @@ int ValidateSystemConfigurationParameter(uint32_t ConfigParameter)
     ResourceIndex = 0;
   }
   else if (ResourceTable != 0) {
-    ProcessResourceRelease(*(uint8_t *)(SystemContext + 0x1a0),ResourceTable,&ResourceAllocationTemplate,0xe9,HashValidationResult);
+    ProcessResourceRelease(*(uint8_t *)(SystemContext + SystemContextResourceManagerOffset),ResourceTable,&ResourceAllocationTemplate,0xe9,HashValidationResult);
     return ResourceIndex;
   }
   return ResourceIndex;
@@ -8015,38 +8027,38 @@ uint8_t ValidateObjectContextAndProcessFloatRange(int64_t ObjectContext, int64_t
   if ((RangeIndex[0] & 0x7f800000) == 0x7f800000) {
     return 0x1d;
   }
-  if (ObjectContext + 0x28 != 0) {
-    ValidationStatus = ValidateObjectContext(*(uint32_t *)(ObjectContext + 0x10), &StackContext);
+  if (ObjectContext + ObjectContextRangeDataOffset != 0) {
+    ValidationStatus = ValidateObjectContext(*(uint32_t *)(ObjectContext + ObjectContextValidationParameterOffset), &StackContext);
     if ((int)ValidationStatus != 0) {
       return ValidationStatus;
     }
     ContextPointer = StackContext;
     if (StackContext != 0) {
-      ContextPointer = StackContext + -8;
+      ContextPointer = StackContext + ValidationContextCleanupOffset;
     }
-    ObjectData = *(int64_t *)(ContextPointer + 0x18);
+    ObjectData = *(int64_t *)(ContextPointer + ValidationContextDataOffset);
     if (ObjectData == 0) {
       return 0x1e;
     }
     RangeIndex[0] = 0;
-    ValidationStatus = ProcessRangeValidation(SystemContext, ContextPointer, ObjectContext + 0x28, RangeIndex);
+    ValidationStatus = ProcessRangeValidation(SystemContext, ContextPointer, ObjectContext + ObjectContextRangeDataOffset, RangeIndex);
     if ((int)ValidationStatus != 0) {
       return ValidationStatus;
     }
-    ContextPointer = *(int64_t *)(ContextPointer + 0x20);
-    RangeData = *(int64_t *)(ContextPointer + 0x10 + (int64_t)(int)RangeIndex[0] * 0x18);
-    if ((*(byte *)(RangeData + 0x34) & 0x11) == 0) {
+    ContextPointer = *(int64_t *)(ContextPointer + ValidationContextPointerOffset);
+    RangeData = *(int64_t *)(ContextPointer + ObjectContextValidationDataOffset + (int64_t)(int)RangeIndex[0] * RangeDataEntrySize);
+    if ((*(byte *)(RangeData + RangeDataFlagsOffset) & 0x11) == 0) {
       InputParameterValue = *(float *)(ObjectContext + ObjectContextValidationDataOffset);
-      ClampedValue = *(float *)(RangeData + 0x38);
-      if ((*(float *)(RangeData + 0x38) <= InputParameterValue) &&
-         (ClampedValue = *(float *)(RangeData + 0x3c), InputParameterValue <= *(float *)(RangeData + 0x3c))) {
+      ClampedValue = *(float *)(RangeData + RangeDataValueOffset);
+      if ((*(float *)(RangeData + RangeDataValueOffset) <= InputParameterValue) &&
+         (ClampedValue = *(float *)(RangeData + RangeDataMaxValueOffset), InputParameterValue <= *(float *)(RangeData + RangeDataMaxValueOffset))) {
         ClampedValue = InputParameterValue;
       }
       *(float *)(ObjectContext + ObjectContextValidationDataOffset) = ClampedValue;
-      ObjectData = *(int64_t *)(ObjectData + 0x90);
-      *(float *)(ContextPointer + 4 + (int64_t)(int)RangeIndex[0] * 0x18) = ClampedValue;
+      ObjectData = *(int64_t *)(ObjectData + ObjectContextExtendedDataOffset);
+      *(float *)(ContextPointer + ContextFloatValueOffset + (int64_t)(int)RangeIndex[0] * RangeDataEntrySize) = ClampedValue;
       *(uint8_t *)(ObjectContext + ObjectContextProcessingDataOffset) = *(uint8_t *)(ObjectData + (int64_t)(int)RangeIndex[0] * 8);
-            ReleaseSystemContextResources(*(uint8_t *)(SystemContext + 0x98), ObjectContext);
+            ReleaseSystemContextResources(*(uint8_t *)(SystemContext + SystemContextCleanupOffset), ObjectContext);
     }
   }
   return 0x1f;
