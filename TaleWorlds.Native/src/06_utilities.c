@@ -46844,7 +46844,21 @@ void CleanupResourceHandlersAtOffset0x148(uint8_t objectContext,int64_t validati
 
 
 
-void Unwind_180905170(uint8_t objectContext,int64_t validationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 清理偏移量0x108处的资源处理器
+ * 
+ * 该函数负责清理位于偏移量0x108处的资源处理器
+ * 释放相关资源并重置状态
+ * 
+ * @param objectContext 对象上下文，包含对象的配置信息
+ * @param validationContext 验证上下文，用于验证操作的合法性
+ * @param CleanupOption 清理选项，指定清理的方式
+ * @param CleanupFlag 清理标志，指示清理的状态
+ * @return 无返回值
+ * @note 此函数在系统关闭时调用
+ * @warning 调用此函数前必须确保资源处理器已停止工作
+ */
+void CleanupResourceHandlersAtOffset0x108(uint8_t objectContext,int64_t validationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   uint8_t *resourceHashPointer;
@@ -50005,7 +50019,7 @@ void UnwindAndCleanupResourceIndex(uint8_t objectContext,int64_t validationConte
 
 
 
-void Unwind_180905c20(uint8_t objectContext,int64_t validationContext)
+void UnwindResourceContextCleanup180905c20(uint8_t objectContext,int64_t validationContext)
 
 {
   int64_t loopCounter;
