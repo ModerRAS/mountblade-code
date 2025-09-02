@@ -28246,32 +28246,32 @@ uint8_t ModelResourceProcessor(int64_t ObjectContext,int64_t *ValidationContext)
   uint8_t DataChecksumBuffer [32];
   
   ResourceHashValue = CalculateDataChecksum(ValidationContext, DataChecksumBuffer, 1, 0x5453494c, 0x49444d43);
-  if (((int)ResourceHash == 0) &&
-     (ResourceHash = CalculateDataChecksum(ValidationContext,ResourceValidationBuffer,0,0x42444d43,0), (int)ResourceHash == 0)) {
+  if (((int)ResourceHashValue == 0) &&
+     (ResourceHashValue = CalculateDataChecksum(ValidationContext, ResourceValidationDataBuffer, 0, 0x42444d43, 0), (int)ResourceHashValue == 0)) {
     if (*(int *)(ResourceData[1] + 0x18) != 0) {
       return 0x1c;
     }
-    ResourceHash = GetResourceEntry(*ValidationContext,ObjectContext + 0x10);
-    if ((int)ResourceHash == 0) {
+    ResourceHashValue = GetResourceEntry(*ValidationContext, ObjectContext + 0x10);
+    if ((int)ResourceHashValue == 0) {
       if (*(int *)(ResourceData[1] + 0x18) != 0) {
         return 0x1c;
       }
       ResourceValidationBuffer[0] = *(uint32_t *)(ObjectContext + 0xd8);
-      ResourceHash = (**(code **)**(uint8_t **)(*ValidationContext + 8))
-                        (*(uint8_t **)(*ValidationContext + 8),ResourceValidationBuffer,4);
-      if ((int)ResourceHash == 0) {
+      ResourceHashValue = (**(code **)**(uint8_t **)(*ValidationContext + 8))
+                        (*(uint8_t **)(*ValidationContext + 8), ResourceValidationDataBuffer, 4);
+      if ((int)ResourceHashValue == 0) {
         if (*(int *)(ResourceData[1] + 0x18) != 0) {
           return 0x1c;
         }
-        ResourceHash = GetResourceEntry(*ValidationContext,ObjectContext + 0xdc);
-        if (((int)ResourceHash == 0) &&
-           (ResourceHash = ValidateResourceChunk(ValidationContext,ObjectContext + 0xec,0x80), (int)ResourceHash == 0)) {
-                CleanupResourceBuffer(ValidationContext,ResourceValidationBuffer);
+        ResourceHashValue = GetResourceEntry(*ValidationContext, ObjectContext + 0xdc);
+        if (((int)ResourceHashValue == 0) &&
+           (ResourceHashValue = ValidateResourceChunk(ValidationContext, ObjectContext + 0xec, 0x80), (int)ResourceHashValue == 0)) {
+                CleanupResourceBuffer(ValidationContext, ResourceValidationDataBuffer);
         }
       }
     }
   }
-  return ResourceHash;
+  return ResourceHashValue;
 }
 
 
