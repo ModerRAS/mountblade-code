@@ -224,17 +224,17 @@ void* SystemModuleDataPointerResourceCore;
 void* SystemModuleDataPointerAnimationCore;
 void* SystemModuleDataPointerParticleCore;
 void* SystemModuleDataPointerAudioEngine;
-void* SystemModuleDataPointer10;
-void* SystemModuleDataPointer11;
-void* SystemModuleDataPointer12;
-void* SystemModuleDataPointer13;
-void* SystemModuleDataPointer14;
-void* SystemModuleDataPointer15;
-void* SystemModuleDataPointer16;
-void* SystemModuleDataPointer17;
-void* SystemModuleDataPointer18;
-void* SystemModuleDataPointer19;
-void* SystemModuleDataPointer20;
+void* SystemModuleDataPointerGraphicsEngine;
+void* SystemModuleDataPointerPhysicsEngine;
+void* SystemModuleDataPointerNetworkEngine;
+void* SystemModuleDataPointerInputEngine;
+void* SystemModuleDataPointerResourceEngine;
+void* SystemModuleDataPointerAnimationEngine;
+void* SystemModuleDataPointerParticleEngine;
+void* SystemModuleDataPointerSystemCore;
+void* SystemModuleDataPointerSystemEngine;
+void* SystemModuleDataPointerRenderCore;
+void* SystemModuleDataPointerRenderEngine;
 
 // 字符串处理系统V-AA的变量声明 - 用于字符串处理系统的数据管理
 void* StringProcessingSystemV_BasePointer;
