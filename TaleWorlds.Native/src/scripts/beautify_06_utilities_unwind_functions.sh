@@ -8,6 +8,137 @@ echo "开始美化06_utilities.c文件中的Unwind函数名..."
 # 备份原文件
 cp /dev/shm/mountblade-code/TaleWorlds.Native/src/06_utilities.c /dev/shm/mountblade-code/TaleWorlds.Native/src/06_utilities.c.backup
 
+# 处理有意义的Unwind函数名
+echo "处理有意义的Unwind函数名..."
+
+# 系统资源清理相关函数
+sed -i 's/void Unwind_SystemResourceCleanupHandler1(/void CleanupSystemResourceHandler(/g' /dev/shm/mountblade-code/TaleWorlds.Native/src/06_utilities.c
+sed -i 's/Unwind_SystemResourceCleanupHandler1(/CleanupSystemResourceHandler(/g' /dev/shm/mountblade-code/TaleWorlds.Native/src/06_utilities.c
+
+sed -i 's/void Unwind_ResourceHashSecondaryCleanupHandler(/void CleanupResourceHashSecondaryHandler(/g' /dev/shm/mountblade-code/TaleWorlds.Native/src/06_utilities.c
+sed -i 's/Unwind_ResourceHashSecondaryCleanupHandler(/CleanupResourceHashSecondaryHandler(/g' /dev/shm/mountblade-code/TaleWorlds.Native/src/06_utilities.c
+
+sed -i 's/void Unwind_ResourceOperationProcessor(/void ProcessResourceOperationHandler(/g' /dev/shm/mountblade-code/TaleWorlds.Native/src/06_utilities.c
+sed -i 's/Unwind_ResourceOperationProcessor(/ProcessResourceOperationHandler(/g' /dev/shm/mountblade-code/TaleWorlds.Native/src/06_utilities.c
+
+# 资源注册相关函数
+sed -i 's/void Unwind_RegisterResourceHandlerAtOffsetC08(/void RegisterResourceHandlerAtC08(/g' /dev/shm/mountblade-code/TaleWorlds.Native/src/06_utilities.c
+sed -i 's/Unwind_RegisterResourceHandlerAtOffsetC08(/RegisterResourceHandlerAtC08(/g' /dev/shm/mountblade-code/TaleWorlds.Native/src/06_utilities.c
+
+sed -i 's/void Unwind_ProcessResourceContextAtOffsetC58(/void ProcessResourceContextAtC58(/g' /dev/shm/mountblade-code/TaleWorlds.Native/src/06_utilities.c
+sed -i 's/Unwind_ProcessResourceContextAtOffsetC58(/ProcessResourceContextAtC58(/g' /dev/shm/mountblade-code/TaleWorlds.Native/src/06_utilities.c
+
+sed -i 's/void Unwind_RegisterResourceHandlerForSystemCleanup(/void RegisterResourceCleanupHandler(/g' /dev/shm/mountblade-code/TaleWorlds.Native/src/06_utilities.c
+sed -i 's/Unwind_RegisterResourceHandlerForSystemCleanup(/RegisterResourceCleanupHandler(/g' /dev/shm/mountblade-code/TaleWorlds.Native/src/06_utilities.c
+
+sed -i 's/void Unwind_ExecuteResourceTablePointerCleanup(/void ExecuteResourceTableCleanup(/g' /dev/shm/mountblade-code/TaleWorlds.Native/src/06_utilities.c
+sed -i 's/Unwind_ExecuteResourceTablePointerCleanup(/ExecuteResourceTableCleanup(/g' /dev/shm/mountblade-code/TaleWorlds.Native/src/06_utilities.c
+
+sed -i 's/void Unwind_RegisterResourceHandlerWithValidation(/void RegisterResourceWithValidation(/g' /dev/shm/mountblade-code/TaleWorlds.Native/src/06_utilities.c
+sed -i 's/Unwind_RegisterResourceHandlerWithValidation(/RegisterResourceWithValidation(/g' /dev/shm/mountblade-code/TaleWorlds.Native/src/06_utilities.c
+
+sed -i 's/void Unwind_ProcessResourceValidationWithCleanup(/void ProcessResourceWithCleanup(/g' /dev/shm/mountblade-code/TaleWorlds.Native/src/06_utilities.c
+sed -i 's/Unwind_ProcessResourceValidationWithCleanup(/ProcessResourceWithCleanup(/g' /dev/shm/mountblade-code/TaleWorlds.Native/src/06_utilities.c
+
+sed -i 's/void Unwind_ValidateResourceContextAndCleanup(/void ValidateResourceAndCleanup(/g' /dev/shm/mountblade-code/TaleWorlds.Native/src/06_utilities.c
+sed -i 's/Unwind_ValidateResourceContextAndCleanup(/ValidateResourceAndCleanup(/g' /dev/shm/mountblade-code/TaleWorlds.Native/src/06_utilities.c
+
+# 资源表指针清理相关函数
+sed -i 's/void Unwind_ExecuteValidationContextResourceCleanup(/void ExecuteValidationResourceCleanup(/g' /dev/shm/mountblade-code/TaleWorlds.Native/src/06_utilities.c
+sed -i 's/Unwind_ExecuteValidationContextResourceCleanup(/ExecuteValidationResourceCleanup(/g' /dev/shm/mountblade-code/TaleWorlds.Native/src/06_utilities.c
+
+sed -i 's/void Unwind_ExecuteSecondaryResourceTablePointerCleanup(/void ExecuteSecondaryResourceTableCleanup(/g' /dev/shm/mountblade-code/TaleWorlds.Native/src/06_utilities.c
+sed -i 's/Unwind_ExecuteSecondaryResourceTablePointerCleanup(/ExecuteSecondaryResourceTableCleanup(/g' /dev/shm/mountblade-code/TaleWorlds.Native/src/06_utilities.c
+
+sed -i 's/void Unwind_ExecuteTertiaryResourceTablePointerCleanup(/void ExecuteTertiaryResourceTableCleanup(/g' /dev/shm/mountblade-code/TaleWorlds.Native/src/06_utilities.c
+sed -i 's/Unwind_ExecuteTertiaryResourceTablePointerCleanup(/ExecuteTertiaryResourceTableCleanup(/g' /dev/shm/mountblade-code/TaleWorlds.Native/src/06_utilities.c
+
+sed -i 's/void Unwind_HandleResourceTablePointerAccessWithCleanup(/void HandleResourceTableAccessWithCleanup(/g' /dev/shm/mountblade-code/TaleWorlds.Native/src/06_utilities.c
+sed -i 's/Unwind_HandleResourceTablePointerAccessWithCleanup(/HandleResourceTableAccessWithCleanup(/g' /dev/shm/mountblade-code/TaleWorlds.Native/src/06_utilities.c
+
+# 互斥锁销毁相关函数
+sed -i 's/void Unwind_DestroyMutex1(/void DestroyPrimaryMutex(/g' /dev/shm/mountblade-code/TaleWorlds.Native/src/06_utilities.c
+sed -i 's/Unwind_DestroyMutex1(/DestroyPrimaryMutex(/g' /dev/shm/mountblade-code/TaleWorlds.Native/src/06_utilities.c
+
+sed -i 's/void Unwind_DestroyMutex2(/void DestroySecondaryMutex(/g' /dev/shm/mountblade-code/TaleWorlds.Native/src/06_utilities.c
+sed -i 's/Unwind_DestroyMutex2(/DestroySecondaryMutex(/g' /dev/shm/mountblade-code/TaleWorlds.Native/src/06_utilities.c
+
+sed -i 's/void Unwind_DestroyMutex3(/void DestroyTertiaryMutex(/g' /dev/shm/mountblade-code/TaleWorlds.Native/src/06_utilities.c
+sed -i 's/Unwind_DestroyMutex3(/DestroyTertiaryMutex(/g' /dev/shm/mountblade-code/TaleWorlds.Native/src/06_utilities.c
+
+sed -i 's/void Unwind_DestroyMutex4(/void DestroyQuaternaryMutex(/g' /dev/shm/mountblade-code/TaleWorlds.Native/src/06_utilities.c
+sed -i 's/Unwind_DestroyMutex4(/DestroyQuaternaryMutex(/g' /dev/shm/mountblade-code/TaleWorlds.Native/src/06_utilities.c
+
+sed -i 's/void Unwind_DestroyMutex5(/void DestroyQuinaryMutex(/g' /dev/shm/mountblade-code/TaleWorlds.Native/src/06_utilities.c
+sed -i 's/Unwind_DestroyMutex5(/DestroyQuinaryMutex(/g' /dev/shm/mountblade-code/TaleWorlds.Native/src/06_utilities.c
+
+sed -i 's/void Unwind_DestroyMutex6(/void DestroySenaryMutex(/g' /dev/shm/mountblade-code/TaleWorlds.Native/src/06_utilities.c
+sed -i 's/Unwind_DestroyMutex6(/DestroySenaryMutex(/g' /dev/shm/mountblade-code/TaleWorlds.Native/src/06_utilities.c
+
+sed -i 's/void Unwind_DestroyMutex7(/void DestroySeptenaryMutex(/g' /dev/shm/mountblade-code/TaleWorlds.Native/src/06_utilities.c
+sed -i 's/Unwind_DestroyMutex7(/DestroySeptenaryMutex(/g' /dev/shm/mountblade-code/TaleWorlds.Native/src/06_utilities.c
+
+sed -i 's/void Unwind_DestroyMutex8(/void DestroyOctonaryMutex(/g' /dev/shm/mountblade-code/TaleWorlds.Native/src/06_utilities.c
+sed -i 's/Unwind_DestroyMutex8(/DestroyOctonaryMutex(/g' /dev/shm/mountblade-code/TaleWorlds.Native/src/06_utilities.c
+
+sed -i 's/void Unwind_DestroyMutex9(/void DestroyNonaryMutex(/g' /dev/shm/mountblade-code/TaleWorlds.Native/src/06_utilities.c
+sed -i 's/Unwind_DestroyMutex9(/DestroyNonaryMutex(/g' /dev/shm/mountblade-code/TaleWorlds.Native/src/06_utilities.c
+
+# 资源清理相关函数
+sed -i 's/void Unwind_ProcessResourceHashCleanup(/void ProcessResourceHashCleanup(/g' /dev/shm/mountblade-code/TaleWorlds.Native/src/06_utilities.c
+sed -i 's/Unwind_ProcessResourceHashCleanup(/ProcessResourceHashCleanup(/g' /dev/shm/mountblade-code/TaleWorlds.Native/src/06_utilities.c
+
+sed -i 's/void Unwind_FinalizeResourceRegistrationAndCleanup(/void FinalizeResourceRegistrationAndCleanup(/g' /dev/shm/mountblade-code/TaleWorlds.Native/src/06_utilities.c
+sed -i 's/Unwind_FinalizeResourceRegistrationAndCleanup(/FinalizeResourceRegistrationAndCleanup(/g' /dev/shm/mountblade-code/TaleWorlds.Native/src/06_utilities.c
+
+sed -i 's/void Unwind_ManageResourceTablePointerEntryWithCleanup(/void ManageResourceTableEntryWithCleanup(/g' /dev/shm/mountblade-code/TaleWorlds.Native/src/06_utilities.c
+sed -i 's/Unwind_ManageResourceTablePointerEntryWithCleanup(/ManageResourceTableEntryWithCleanup(/g' /dev/shm/mountblade-code/TaleWorlds.Native/src/06_utilities.c
+
+sed -i 's/void Unwind_ProcessResourceOperationWithCleanup(/void ProcessResourceOperationWithCleanup(/g' /dev/shm/mountblade-code/TaleWorlds.Native/src/06_utilities.c
+sed -i 's/Unwind_ProcessResourceOperationWithCleanup(/ProcessResourceOperationWithCleanup(/g' /dev/shm/mountblade-code/TaleWorlds.Native/src/06_utilities.c
+
+# 其他资源注册相关函数
+sed -i 's/void Unwind_RegisterResourceHandlerAtC08(/void RegisterResourceHandlerAtC08(/g' /dev/shm/mountblade-code/TaleWorlds.Native/src/06_utilities.c
+sed -i 's/Unwind_RegisterResourceHandlerAtC08(/RegisterResourceHandlerAtC08(/g' /dev/shm/mountblade-code/TaleWorlds.Native/src/06_utilities.c
+
+sed -i 's/void Unwind_ExecuteResourceContextCallback(/void ExecuteResourceContextCallback(/g' /dev/shm/mountblade-code/TaleWorlds.Native/src/06_utilities.c
+sed -i 's/Unwind_ExecuteResourceContextCallback(/ExecuteResourceContextCallback(/g' /dev/shm/mountblade-code/TaleWorlds.Native/src/06_utilities.c
+
+sed -i 's/void Unwind_RegisterResourceHandlerAtC60(/void RegisterResourceHandlerAtC60(/g' /dev/shm/mountblade-code/TaleWorlds.Native/src/06_utilities.c
+sed -i 's/Unwind_RegisterResourceHandlerAtC60(/RegisterResourceHandlerAtC60(/g' /dev/shm/mountblade-code/TaleWorlds.Native/src/06_utilities.c
+
+sed -i 's/void Unwind_RegisterResourceHandlerAtC68(/void RegisterResourceHandlerAtC68(/g' /dev/shm/mountblade-code/TaleWorlds.Native/src/06_utilities.c
+sed -i 's/Unwind_RegisterResourceHandlerAtC68(/RegisterResourceHandlerAtC68(/g' /dev/shm/mountblade-code/TaleWorlds.Native/src/06_utilities.c
+
+# 资源表指针处理相关函数
+sed -i 's/void Unwind_ResourceTablePointerCleanupProcessor(/void ProcessResourceTablePointerCleanup(/g' /dev/shm/mountblade-code/TaleWorlds.Native/src/06_utilities.c
+sed -i 's/Unwind_ResourceTablePointerCleanupProcessor(/ProcessResourceTablePointerCleanup(/g' /dev/shm/mountblade-code/TaleWorlds.Native/src/06_utilities.c
+
+sed -i 's/void Unwind_ResourceTablePointerAccessCleanupProcessor(/void ProcessResourceTableAccessCleanup(/g' /dev/shm/mountblade-code/TaleWorlds.Native/src/06_utilities.c
+sed -i 's/Unwind_ResourceTablePointerAccessCleanupProcessor(/ProcessResourceTableAccessCleanup(/g' /dev/shm/mountblade-code/TaleWorlds.Native/src/06_utilities.c
+
+sed -i 's/void Unwind_ResourceTablePointerAccessCleanupProcessorAlternate(/void ProcessResourceTableAccessCleanupAlternate(/g' /dev/shm/mountblade-code/TaleWorlds.Native/src/06_utilities.c
+sed -i 's/Unwind_ResourceTablePointerAccessCleanupProcessorAlternate(/ProcessResourceTableAccessCleanupAlternate(/g' /dev/shm/mountblade-code/TaleWorlds.Native/src/06_utilities.c
+
+# 系统互斥锁相关函数
+sed -i 's/void Unwind_SystemMutexUnlockHandler(/void UnlockSystemMutexHandler(/g' /dev/shm/mountblade-code/TaleWorlds.Native/src/06_utilities.c
+sed -i 's/Unwind_SystemMutexUnlockHandler(/UnlockSystemMutexHandler(/g' /dev/shm/mountblade-code/TaleWorlds.Native/src/06_utilities.c
+
+sed -i 's/void Unwind_ResourceHashValidationStatusCodeCleanupHandler(/void CleanupResourceHashValidationHandler(/g' /dev/shm/mountblade-code/TaleWorlds.Native/src/06_utilities.c
+sed -i 's/Unwind_ResourceHashValidationStatusCodeCleanupHandler(/CleanupResourceHashValidationHandler(/g' /dev/shm/mountblade-code/TaleWorlds.Native/src/06_utilities.c
+
+# 资源分配/释放相关函数
+sed -i 's/void Unwind_ExecuteResourceAllocationCleanup(/void ExecuteResourceAllocationCleanup(/g' /dev/shm/mountblade-code/TaleWorlds.Native/src/06_utilities.c
+sed -i 's/Unwind_ExecuteResourceAllocationCleanup(/ExecuteResourceAllocationCleanup(/g' /dev/shm/mountblade-code/TaleWorlds.Native/src/06_utilities.c
+
+sed -i 's/void Unwind_ExecuteResourceDeallocationHandler(/void ExecuteResourceDeallocationHandler(/g' /dev/shm/mountblade-code/TaleWorlds.Native/src/06_utilities.c
+sed -i 's/Unwind_ExecuteResourceDeallocationHandler(/ExecuteResourceDeallocationHandler(/g' /dev/shm/mountblade-code/TaleWorlds.Native/src/06_utilities.c
+
+sed -i 's/void Unwind_ExecuteResourceMemoryRelease(/void ReleaseResourceMemory(/g' /dev/shm/mountblade-code/TaleWorlds.Native/src/06_utilities.c
+sed -i 's/Unwind_ExecuteResourceMemoryRelease(/ReleaseResourceMemory(/g' /dev/shm/mountblade-code/TaleWorlds.Native/src/06_utilities.c
+
+echo "有意义的Unwind函数名替换完成!"
+
 # 定义函数名映射
 declare -A function_map=(
     ["Unwind_180907040"]="ExecuteValidationContextCleanup"

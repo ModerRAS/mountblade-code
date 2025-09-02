@@ -4504,8 +4504,8 @@ uint8_t ValidateObjectRegistrationStatus(int64_t ObjectContext)
 uint64_t ProcessSystemRequest(int64_t RequestParameters, int64_t SystemContext)
 {
   int64_t *ResultPointer;
-  int64_t *TablePointerPointer;
-  int64_t *IndexPointer;
+  int64_t *ResourceTablePointer;
+  int64_t *ResourceIndexPointer;
   int ValidationStatusCode;
   uint ProcessResult;
   uint64_t OperationResult;
@@ -4724,19 +4724,11 @@ uint64_t DecrementSystemResourceCount(int64_t SystemContext, uint64_t ResourceHa
 /**
  * @brief 增加对象引用计数
  * 
- * 该函数用于增加系统对象的引用计数，确保对象在使用期间不会被意外释放
+ * 该函数负责增加指定对象的引用计数，用于对象生命周期管理
+ * 当对象被引用时，调用此函数来增加引用计数，确保对象不会被意外释放
  * 包含对象上下文验证和系统状态检查
  * 
  * @param ObjectContext 对象上下文指针，包含对象的引用信息和状态数据
- * @return uint8_t 操作结果状态码，0表示成功，非0表示失败
- */
-/**
- * @brief 增加对象引用计数
- * 
- * 该函数负责增加指定对象的引用计数，用于对象生命周期管理
- * 当对象被引用时，调用此函数来增加引用计数，确保对象不会被意外释放
- * 
- * @param ObjectContext 对象上下文，包含对象的引用计数信息
  * @return uint8_t 操作结果状态码，0表示成功，非0表示失败
  * @note 如果对象句柄无效，返回ErrorInvalidObjectHandle
  */
