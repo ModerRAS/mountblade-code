@@ -45863,7 +45863,18 @@ void InitializeLocalContextAndResourceHandler(uint8_t objectContext,int64_t vali
 
 
 
-void Unwind_180904f80(uint8_t objectContext,int64_t validationContext)
+/**
+ * @brief 设置资源哈希指针并验证系统状态
+ * 
+ * 该函数负责设置资源哈希指针，验证系统状态
+ * 并在检测到异常状态时执行紧急退出操作
+ * 
+ * @param objectContext 对象上下文，包含资源相关的上下文信息
+ * @param validationContext 验证上下文，用于验证操作的环境信息
+ * @return 无返回值
+ * @note 此函数主要用于资源哈希指针的设置和系统状态验证
+ */
+void SetResourceHashPointerAndValidateSystem(uint8_t objectContext,int64_t validationContext)
 
 {
   uint8_t *resourceHashPointer;
@@ -45882,7 +45893,20 @@ void Unwind_180904f80(uint8_t objectContext,int64_t validationContext)
 
 
 
-void Unwind_180904f90(uint8_t objectContext,int64_t validationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 执行资源清理操作并验证系统状态
+ * 
+ * 该函数负责遍历资源哈希验证结果指针，执行资源清理操作
+ * 并在检测到异常状态时执行紧急退出操作
+ * 
+ * @param objectContext 对象上下文，包含资源相关的上下文信息
+ * @param validationContext 验证上下文，用于验证操作的环境信息
+ * @param CleanupOption 清理选项，控制清理行为的具体参数
+ * @param CleanupFlag 清理标志，指定清理操作的标志位
+ * @return 无返回值
+ * @note 此函数主要用于资源清理操作的执行和系统状态验证
+ */
+void ExecuteResourceCleanupAndValidateSystem(uint8_t objectContext,int64_t validationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   uint8_t *resourceHashPointer;
