@@ -25821,7 +25821,7 @@ uint64_t ValidateAndAllocateResourceData(void)
   uint8_t *ResourceContext;
   int64_t SystemContext;
   uint64_t MemoryAddressIncrement;
-  uint8_t ResourceValidationBuffer94[32];
+  uint8_t ResourceValidationBufferLarge[32];
   
   if (*(int *)(InputParameter + 0x18) != 0) {
     return ErrorInvalidObjectHandle;
@@ -27760,7 +27760,7 @@ ContextValidationCheck:
         ValidationStatusCode = ErrorInvalidObjectHandle;
       }
       else if (ResourceTablePointer[2] == 0) {
-MemoryBoundaryCheckLoop1:
+MemoryBoundaryCheckLoopPrimary:
         ValidationStatusCode = CalculateResourceHash(*ResourceTablePointer,SystemExecutionPointer + -0x49,ResourceDataAddressD,ResourceDataAddressD,0);
       }
       else {
@@ -27796,7 +27796,7 @@ MemoryBoundaryCheckLoop1:
         ValidationStatusCode = ErrorInvalidObjectHandle;
       }
       else if (ResourceTablePointer[2] == 0) {
-MemoryBoundaryCheckLoop2:
+MemoryBoundaryCheckLoopSecondary:
         ValidationStatusCode = CalculateResourceHash(*ResourceTablePointer,SystemExecutionPointer + -0x49,ResourceDataAddressD,ResourceDataAddressD,0);
       }
       else {
@@ -27832,7 +27832,7 @@ MemoryBoundaryCheckLoop2:
         ValidationStatusCode = ErrorInvalidObjectHandle;
       }
       else if (ResourceTablePointer[2] == 0) {
-MemoryBoundaryCheckLoop3:
+MemoryBoundaryCheckLoopTertiary:
         ValidationStatusCode = CalculateResourceHash(*ResourceTablePointer,SystemExecutionPointer + -0x49,ResourceDataAddressD,ResourceDataAddressD,0);
       }
       else {
@@ -27868,7 +27868,7 @@ MemoryBoundaryCheckLoop3:
         ValidationStatusCode = ErrorInvalidObjectHandle;
       }
       else if (ResourceTablePointer[2] == 0) {
-MemoryBoundaryCheckLoop4:
+MemoryBoundaryCheckLoopQuaternary:
         ValidationStatusCode = CalculateResourceHash(*ResourceTablePointer,SystemExecutionPointer + -0x49,ResourceDataAddressD,ResourceDataAddressD,0);
       }
       else {
