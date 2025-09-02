@@ -38081,43 +38081,53 @@ void* * CreateSystemResourceHandle(long long SystemResourcePointer,void* Configu
 
 
 
-// 函数: void ReleaseSystemResourceHandle(long long SystemResourcePointer,long long *ConfigurationDataPointer)
+/**
+ * @brief 释放系统资源句柄
+ * 
+ * 该函数负责释放系统资源句柄，清理系统资源和内存
+ * 用于系统资源管理的清理工作
+ * 
+ * @param SystemResourcePointer 系统资源指针
+ * @param ConfigurationDataPointer 配置数据指针
+ * 
+ * 原始函数名为ReleaseSystemResourceHandle，已优化变量命名
+ */
 void ReleaseSystemResourceHandle(long long SystemResourcePointer,long long *ConfigurationDataPointer)
 
 {
-  long long *PrimaryResourcePointer;
-  ulong long unsignedSystemValue2;
-  long long localResourceOffset;
-  long long* SystemMemoryPointer;
-  int systemValue;
-  ulong long unsignedSystemValue6;
+  long long *primaryResourcePointer;
+  ulong long systemResourceSize;
+  long long resourceOffset;
+  long long* systemMemoryPointer;
+  int resourceIndex;
+  ulong long resourceCount;
   
-  systemValue = 0;
-  PrimaryResourcePointer = *(long long **)(SystemResourcePointer + 0x48);
-  unsignedSystemValue6 = *(long long *)(SystemResourcePointer + 0x50) - (long long)PrimaryResourcePointer >> 3;
-  plocalBufferAddress = PrimaryResourcePointer;
-  if (unsignedSystemValue6 != 0) {
+  resourceIndex = 0;
+  primaryResourcePointer = *(long long **)(SystemResourcePointer + 0x48);
+  resourceCount = *(long long *)(SystemResourcePointer + 0x50) - (long long)primaryResourcePointer >> 3;
+  systemMemoryPointer = primaryResourcePointer;
+  if (resourceCount != 0) {
     do {
-      if ((long long *)*plocalBufferAddress == ConfigurationDataPointer) {
-        FUN_18020e7b0(PrimaryResourcePointer[systemValue]);
-        unsignedSystemValue2 = *(ulong long *)(SystemResourcePointer + 0x50);
-        localResourceOffset = *(long long *)(SystemResourcePointer + 0x48) + (long long)systemValue * 8;
-        unsignedSystemValue6 = localResourceOffset + 8;
-        if (unsignedSystemValue6 < unsignedSystemValue2) {
-            memmove(localResourceOffset,unsignedSystemValue6,unsignedSystemValue2 - unsignedSystemValue6);
+      if ((long long *)*systemMemoryPointer == ConfigurationDataPointer) {
+        FUN_18020e7b0(primaryResourcePointer[resourceIndex]);
+        systemResourceSize = *(ulong long *)(SystemResourcePointer + 0x50);
+        resourceOffset = *(long long *)(SystemResourcePointer + 0x48) + (long long)resourceIndex * 8;
+        resourceCount = resourceOffset + 8;
+        if (resourceCount < systemResourceSize) {
+            memmove(resourceOffset,resourceCount,systemResourceSize - resourceCount);
         }
-        *(ulong long *)(SystemResourcePointer + 0x50) = unsignedSystemValue2 - 8;
+        *(ulong long *)(SystemResourcePointer + 0x50) = systemResourceSize - 8;
         break;
       }
-      systemValue = systemValue + 1;
-      plocalBufferAddress = plocalBufferAddress + 1;
-    } while ((ulong long)(long long)systemValue < unsignedSystemValue6);
+      resourceIndex = resourceIndex + 1;
+      systemMemoryPointer = systemMemoryPointer + 1;
+    } while ((ulong long)(long long)resourceIndex < resourceCount);
   }
   if (ConfigurationDataPointer != (long long *)0x0) {
-    localResourceOffset = __RTCastToVoid(ConfigurationDataPointer);
+    resourceOffset = __RTCastToVoid(ConfigurationDataPointer);
     (**(code **)(*ConfigurationDataPointer + 0x28))(ConfigurationDataPointer,0);
-    if (localResourceOffset != 0) {
-        SystemCleanupFunction(localResourceOffset);
+    if (resourceOffset != 0) {
+        SystemCleanupFunction(resourceOffset);
     }
   }
   return;
@@ -38126,43 +38136,53 @@ void ReleaseSystemResourceHandle(long long SystemResourcePointer,long long *Conf
 
 
 
-// 函数: void FUN_18005e57a(long long SystemResourcePointer,long long *ConfigurationDataPointer)
-void FUN_18005e57a(long long SystemResourcePointer,long long *ConfigurationDataPointer)
+/**
+ * @brief 清理系统资源配置
+ * 
+ * 该函数负责清理系统资源配置，释放相关资源和内存
+ * 用于系统资源管理的清理工作
+ * 
+ * @param SystemResourcePointer 系统资源指针
+ * @param ConfigurationDataPointer 配置数据指针
+ * 
+ * 原始函数名为FUN_18005e57a，现已重命名为CleanupSystemResourceConfiguration
+ */
+void CleanupSystemResourceConfiguration(long long SystemResourcePointer,long long *ConfigurationDataPointer)
 
 {
-  long long *PrimaryResourcePointer;
-  ulong long unsignedSystemValue2;
-  long long localResourceOffset;
-  long long* SystemMemoryPointer;
-  int systemValue;
-  ulong long unsignedSystemValue6;
+  long long *primaryResourcePointer;
+  ulong long systemResourceSize;
+  long long resourceOffset;
+  long long* systemMemoryPointer;
+  int resourceIndex;
+  ulong long resourceCount;
   
-  systemValue = 0;
-  PrimaryResourcePointer = *(long long **)(SystemResourcePointer + 0x48);
-  unsignedSystemValue6 = *(long long *)(SystemResourcePointer + 0x50) - (long long)PrimaryResourcePointer >> 3;
-  plocalBufferAddress = PrimaryResourcePointer;
-  if (unsignedSystemValue6 != 0) {
+  resourceIndex = 0;
+  primaryResourcePointer = *(long long **)(SystemResourcePointer + 0x48);
+  resourceCount = *(long long *)(SystemResourcePointer + 0x50) - (long long)primaryResourcePointer >> 3;
+  systemMemoryPointer = primaryResourcePointer;
+  if (resourceCount != 0) {
     do {
-      if ((long long *)*plocalBufferAddress == ConfigurationDataPointer) {
-        FUN_18020e7b0(PrimaryResourcePointer[systemValue]);
-        unsignedSystemValue2 = *(ulong long *)(SystemResourcePointer + 0x50);
-        localResourceOffset = *(long long *)(SystemResourcePointer + 0x48) + (long long)systemValue * 8;
-        unsignedSystemValue6 = localResourceOffset + 8;
-        if (unsignedSystemValue6 < unsignedSystemValue2) {
-            memmove(localResourceOffset,unsignedSystemValue6,unsignedSystemValue2 - unsignedSystemValue6);
+      if ((long long *)*systemMemoryPointer == ConfigurationDataPointer) {
+        FUN_18020e7b0(primaryResourcePointer[resourceIndex]);
+        systemResourceSize = *(ulong long *)(SystemResourcePointer + 0x50);
+        resourceOffset = *(long long *)(SystemResourcePointer + 0x48) + (long long)resourceIndex * 8;
+        resourceCount = resourceOffset + 8;
+        if (resourceCount < systemResourceSize) {
+            memmove(resourceOffset,resourceCount,systemResourceSize - resourceCount);
         }
-        *(ulong long *)(SystemResourcePointer + 0x50) = unsignedSystemValue2 - 8;
+        *(ulong long *)(SystemResourcePointer + 0x50) = systemResourceSize - 8;
         break;
       }
-      systemValue = systemValue + 1;
-      plocalBufferAddress = plocalBufferAddress + 1;
-    } while ((ulong long)(long long)systemValue < unsignedSystemValue6);
+      resourceIndex = resourceIndex + 1;
+      systemMemoryPointer = systemMemoryPointer + 1;
+    } while ((ulong long)(long long)resourceIndex < resourceCount);
   }
   if (ConfigurationDataPointer != (long long *)0x0) {
-    localResourceOffset = __RTCastToVoid(ConfigurationDataPointer);
+    resourceOffset = __RTCastToVoid(ConfigurationDataPointer);
     (**(code **)(*ConfigurationDataPointer + 0x28))(ConfigurationDataPointer,0);
-    if (localResourceOffset != 0) {
-        SystemCleanupFunction(localResourceOffset);
+    if (resourceOffset != 0) {
+        SystemCleanupFunction(resourceOffset);
     }
   }
   return;
@@ -38171,17 +38191,24 @@ void FUN_18005e57a(long long SystemResourcePointer,long long *ConfigurationDataP
 
 
 
-// 函数: void FUN_18005e5ff(void)
-void FUN_18005e5ff(void)
+/**
+ * @brief 清理系统数据索引
+ * 
+ * 该函数负责清理系统数据索引，释放相关内存资源
+ * 用于系统数据管理的清理工作
+ * 
+ * 原始函数名为FUN_18005e5ff，现已重命名为CleanupSystemDataIndex
+ */
+void CleanupSystemDataIndex(void)
 
 {
-  long long localMemoryPointer;
-  long long *systemDataIndexPtr;
+  long long memoryPointer;
+  long long *systemDataIndexPointer;
   
-  localMemoryPointer = __RTCastToVoid();
-  (**(code **)(*systemDataIndexPtr + 0x28))();
-  if (localMemoryPointer != 0) {
-      SystemCleanupFunction(localMemoryPointer);
+  memoryPointer = __RTCastToVoid();
+  (**(code **)(*systemDataIndexPointer + 0x28))();
+  if (memoryPointer != 0) {
+      SystemCleanupFunction(memoryPointer);
   }
   return;
 }
@@ -41323,8 +41350,15 @@ void InitializeSystemContextManager(long long *SystemResourcePointer)
 
 
 
-// 函数: void FUN_180061f80(void)
-void FUN_180061f80(void)
+/**
+ * @brief 执行系统数据操作
+ * 
+ * 该函数负责执行系统数据操作，处理系统级别的数据操作
+ * 用于系统数据的管理和执行
+ * 
+ * @note 这是一个系统数据操作函数，用于系统数据管理的执行工作
+ */
+void ExecuteSystemDataOperation(void)
 
 {
     SystemDataOperation();
@@ -41333,11 +41367,23 @@ void FUN_180061f80(void)
 
 
 
-// 函数: void FUN_1800622d0(void* SystemResourcePointer,void* ConfigurationDataPointer,uint32_t AdditionalParameter,void* ConfigurationFlag)
-void FUN_1800622d0(void* SystemResourcePointer,void* ConfigurationDataPointer,uint32_t AdditionalParameter,void* ConfigurationFlag)
+/**
+ * @brief 处理系统资源配置操作
+ * 
+ * 该函数负责处理系统资源配置操作，执行系统级别的资源配置
+ * 用于系统资源的管理和配置
+ * 
+ * @param SystemResourcePointer 系统资源指针
+ * @param ConfigurationDataPointer 配置数据指针
+ * @param AdditionalParameter 额外参数
+ * @param ConfigurationFlag 配置标志
+ * 
+ * 原始函数名为FUN_1800622d0，现已重命名为ProcessSystemResourceConfigurationOperation
+ */
+void ProcessSystemResourceConfigurationOperation(void* SystemResourcePointer,void* ConfigurationDataPointer,uint32_t AdditionalParameter,void* ConfigurationFlag)
 
 {
-  FUN_180061f80(SystemResourcePointer,ConfigurationDataPointer,0xffffffff00000000,AdditionalParameter,ConfigurationFlag,&stack0x00000028);
+  ExecuteSystemDataOperation(SystemResourcePointer,ConfigurationDataPointer,0xffffffff00000000,AdditionalParameter,ConfigurationFlag,&stack0x00000028);
   return;
 }
 
