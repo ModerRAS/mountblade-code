@@ -48270,7 +48270,19 @@ void CleanupAnimationManagerResources(uint8_t ObjectContext,int64_t ValidationCo
  * @note 此函数用于异常处理时的资源清理
  * @warning 调用此函数会释放系统资源，调用后资源将不可用
  */
-void CleanupResourceStateFlag2(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 清理资源状态次要标志
+ * 
+ * 该函数负责清理资源数据中的状态次要标志（第2位）
+ * 并释放相关的系统资源
+ * 
+ * @param ObjectContext 对象上下文，包含对象相关的状态信息
+ * @param ValidationContext 验证上下文，包含验证相关的数据和资源
+ * @return 无返回值
+ * @note 此函数处理资源状态标志的第2位（位掩码0x2）
+ * @warning 调用此函数会释放系统资源，调用后资源将不可用
+ */
+void CleanupResourceStateSecondaryFlag(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   if ((*(uint *)(ResourceData + 0x20) & 2) != 0) {
@@ -48294,7 +48306,19 @@ void CleanupResourceStateFlag2(uint8_t ObjectContext,int64_t ValidationContext)
  * @note 此函数用于异常处理时的资源清理
  * @warning 调用此函数会释放系统资源，调用后资源将不可用
  */
-void CleanupResourceStateFlag1(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 清理资源状态主要标志
+ * 
+ * 该函数负责清理资源数据中的状态主要标志（第1位）
+ * 并释放相关的系统资源
+ * 
+ * @param ObjectContext 对象上下文，包含对象相关的状态信息
+ * @param ValidationContext 验证上下文，包含验证相关的数据和资源
+ * @return 无返回值
+ * @note 此函数处理资源状态标志的第1位（位掩码0x1）
+ * @warning 调用此函数会释放系统资源，调用后资源将不可用
+ */
+void CleanupResourceStatePrimaryFlag(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   if ((*(uint *)(ResourceData + 0x20) & 1) != 0) {
@@ -75140,7 +75164,17 @@ void InitializeResourceCleanupHandler(uint8_t ObjectContext,int64_t ValidationCo
 
 
 
-void Unwind_18090aba0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 清理系统操作处理器A
+ * 
+ * 该函数负责清理系统操作上下文中的第一个处理器，用于系统操作
+ * 的清理和资源释放。
+ * 
+ * @param ObjectContext 对象上下文，包含对象的相关信息
+ * @param ValidationContext 验证上下文，包含验证的相关信息
+ * @note 这是系统操作清理链中的第一个处理器
+ */
+void CleanupSystemOperationProcessorA(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t *processPointer;
@@ -75154,7 +75188,17 @@ void Unwind_18090aba0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090abb0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 清理系统操作处理器B
+ * 
+ * 该函数负责清理系统操作上下文中的第二个处理器，用于系统操作
+ * 的清理和资源释放。
+ * 
+ * @param ObjectContext 对象上下文，包含对象的相关信息
+ * @param ValidationContext 验证上下文，包含验证的相关信息
+ * @note 这是系统操作清理链中的第二个处理器
+ */
+void CleanupSystemOperationProcessorB(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t *processPointer;
