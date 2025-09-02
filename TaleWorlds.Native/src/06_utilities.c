@@ -13927,8 +13927,8 @@ void SystemInitializerPrimary(void)
   uint32_t FloatRegisterTransformZ;
   uint32_t FloatResourceRegisterValue;
   uint32_t FloatRegisterPrimaryValue;
-  uint32_t Xmm6RegisterPrimary;
-  uint32_t Xmm6RegisterSecondary;
+  uint32_t XmmRegisterPrimaryComponent;
+  uint32_t XmmRegisterSecondaryComponent;
   uint32_t StackContextBuffer;
   char ResourceChecksumBuffer[4];
   uint8_t *StackParameterPointer;
@@ -14211,21 +14211,21 @@ void CalculateFloatValueAndValidateResources(void)
   uint32_t DataBufferPointer;
   uint32_t SystemCallResult;
   uint32_t ReturnValue;
-  uint32_t Xmm6RegisterA;
-  uint32_t Xmm6RegisterC;
+  uint32_t XmmRegisterFirstComponent;
+  uint32_t XmmRegisterThirdComponent;
   uint32_t StackContextBuffer;
   char ResourceChecksumBuffer[4];
   uint8_t *StackResourcePointer;
   float StackFloatValue;
   uint32_t StackValidationCode;
-  float StackFloatValue1;
-  float stackFloatValue2;
+  float StackMatrixValueX;
+  float StackMatrixValueY;
   uint8_t StackParameterContextExtended;
-  float StackParameter50;
+  float StackTransformParameter;
   uint8_t *ResourceDataPointer;
   int64_t InputParameterLimit;
   int64_t ResourceRegisterPointer;
-  uint32_t Xmm6RegisterA;
+  uint32_t XmmRegisterFirstComponent;
   uint32_t ResourceContextOffset;
   
   if (0 < InputParameter) {
@@ -14460,9 +14460,9 @@ void ProcessFloatOperationsAndContextValidation(float ObjectContext)
   uint8_t *StackResourcePointer;
   float StackFloatValue;
   uint32_t StackValidationCode;
-  float StackFloatValue1;
-  float stackFloatValue2;
-  float StackParameter50;
+  float StackMatrixValueX;
+  float StackMatrixValueY;
+  float StackTransformParameter;
   
   if (ObjectContext != 1.0) {
     StackResourceTemplatePointer = &SystemResourceTemplateFile;
@@ -14624,7 +14624,7 @@ void ExecuteSecurityEncryptionValidation(int64_t *ObjectContext,int64_t Validati
   int PackageValidationStatusCode;
   int ResultRecordIndex;
   int tableEntry;
-  int ProcessedIntegerValue6;
+  int ProcessedResultIndex;
   int PackageValidationStatusCode;
   uint8_t SecurityEncryptionBuffer [32];
   uint32_t DataChecksumBuffer8 [2];
@@ -14657,8 +14657,8 @@ LoopExit:
                     // WARNING: Subroutine does not return
         FinalizeSecurityOperation(EncryptedValue ^ (uint64_t)SecurityEncryptionBuffer);
       }
-      uint32_t dataBuffer1 = *(uint32_t *)(SystemResourceContext + 0x10);
-      uint32_t dataBuffer2 = *(uint32_t *)(SystemResourceContext + 0x14);
+      uint32_t DataBufferFirst = *(uint32_t *)(SystemResourceContext + 0x10);
+      uint32_t DataBufferSecond = *(uint32_t *)(SystemResourceContext + 0x14);
       uint32_t dataBuffer3 = *(uint32_t *)(SystemResourceContext + 0x18);
       uint32_t dataBuffer4 = *(uint32_t *)(SystemResourceContext + 0x1c);
       uint32_t operationFlag = 0;
@@ -14899,7 +14899,7 @@ void ProcessResourceDataValidation(int64_t *ObjectContext)
   uint32_t *HashValidationResultPointer;
   int64_t DataOffset;
   char ResourceCheckResult;
-  int ProcessedIntegerValue6;
+  int ProcessedResultIndex;
   int PackageValidationStatusCode;
   int OperationCounter;
   uint64_t AllocationSize;
@@ -15209,7 +15209,7 @@ ResourceProcessingComplete:
   int PackageValidationStatusCode;
   int ResultRecordIndex;
   uint ResourceContextOffset;
-  int ProcessedIntegerValue6;
+  int ProcessedResultIndex;
   
   OperationStatusCode = GetResourceOffset(ValidationContext);
   ResourceIndex = *(int *)(ObjectContext + ObjectContextMatrixScaleOffset);
@@ -26595,7 +26595,7 @@ uint64_t ProcessResourceHashCalculationAndValidation(void)
   uint32_t ValidationStatusCode;
   uint32_t loopIncrement;
   uint ResourceContextOffset;
-  int ProcessedIntegerValue6;
+  int ProcessedResultIndex;
   uint32_t *pSecurityHashValue;
   uint64_t MemorySize;
   int64_t ResourceHandle;
@@ -50091,7 +50091,7 @@ void Unwind_ResourceTableRelease(uint8_t ObjectContext,int64_t ValidationContext
   int64_t *ResourceIndexPointer;
   int64_t *contextPointer;
   uint8_t *ByteDataPointer;
-  int ProcessedIntegerValue6;
+  int ProcessedResultIndex;
   int *ResourceCountPointer;
   int64_t *ResourceDataOffsetPointer;
   uint ValidationCounter;
@@ -96499,9 +96499,7 @@ void ClearSystemCacheAndResetState(void)
 void DestroyMutexInPlace(void)
 
 {
-                    // WARNING: Could not recover jumptable at 0x000180943158. Too many branches
-                    // WARNING: Treating indirect jump as call
-  _Mtx_destroy_in_situ(0x180c966f0);
+    _Mtx_destroy_in_situ(0x180c966f0);
   return;
 }
 
@@ -96517,9 +96515,7 @@ void DestroyMutexInPlace(void)
 void CleanupMutexResources(void)
 
 {
-                    // WARNING: Could not recover jumptable at 0x000180943178. Too many branches
-                    // WARNING: Treating indirect jump as call
-  _Mtx_destroy_in_situ(0x180c96740);
+      _Mtx_destroy_in_situ(0x180c96740);
   return;
 }
 
