@@ -6731,7 +6731,7 @@ longlong SystemModuleInitialize(uint64_t systemId, longlong *moduleArray, longlo
       _DAT_180d48df8 = GetSystemMemoryStatus();
       pMemoryAllocationResult = (uint64_t *)AllocateSystemMemory(_DAT_180c8ed18,0xb0,8,3);
       ProcessMemoryAllocationResult(pMemoryAllocationResult);
-      *pMemoryAllocationResult = &UNK_180a1b3f0;
+      *pMemoryAllocationResult = &SystemMemoryPoolSecondary;
       _DAT_180d48e00 = pMemoryAllocationResult;
       _DAT_180d48e08 = GetSystemNetworkStatus();
       _DAT_180d48e10 = (*_DAT_180c918d8)(&DAT_180c918c0);
@@ -7053,7 +7053,7 @@ ProcessStringBufferDataOperation(uint64_t param_1,uint64_t param_2,uint64_t para
   void *puStack_28;
   longlong lStack_20;
   pcVar1 = *(code **)(*_DAT_180c8f008 + 0x70);
-  StringProcessingResult = FUN_1800ba4b0(&puStack_28,&UNK_180a02fc8,param_3,param_4,0,SystemMutexFlags);
+  StringProcessingResult = FUN_1800ba4b0(&puStack_28,&SystemStringFormatPrimary,param_3,param_4,0,SystemMutexFlags);
   BufferSize = (*pcVar1)(_DAT_180c8f008,StringProcessingResult,param_3,param_4,1);
   puStack_28 = &SystemNullPointer;
   if (lStack_20 != 0) {
@@ -7070,7 +7070,7 @@ ProcessStringBufferSecondaryOperation(uint64_t param_1,uint64_t param_2,uint64_t
   void *puStack_28;
   longlong lStack_20;
   pcVar1 = *(code **)(*_DAT_180c8f008 + 0x70);
-  StringProcessingResult = FUN_1800ba4b0(&puStack_28,&UNK_180a02fa0,param_3,param_4,0,SystemMutexFlags);
+  StringProcessingResult = FUN_1800ba4b0(&puStack_28,&SystemStringFormatSecondary,param_3,param_4,0,SystemMutexFlags);
   BufferSize = (*pcVar1)(_DAT_180c8f008,StringProcessingResult,param_3,param_4,1);
   puStack_28 = &SystemNullPointer;
   if (lStack_20 != 0) {
@@ -7111,8 +7111,8 @@ ProcessStringBufferTertiaryOperation(uint64_t param_1,uint64_t param_2,uint64_t 
   }
   StringProcessingResult = AllocateSystemMemory(_DAT_180c8ed18,0xe0,8,3,StringProcessingResult);
   plStackX_10 = alStack_30;
-  puStack_20 = &UNK_18045f210;
-  puStack_18 = &UNK_18045f200;
+  puStack_20 = &SystemBufferPointerPrimary;
+  puStack_18 = &SystemBufferPointerSecondary;
   pModuleInitializationResult = (longlong *)CreateMemoryManagerContext(StringProcessingResult,alStack_30);
   plStackX_18 = pModuleInitializationResult;
   if (pModuleInitializationResult != (longlong *)0x0) {
@@ -7306,13 +7306,13 @@ uint64_t * BufferAllocateSystem(uint64_t *bufferPointerArray, int bufferSize)
   float adjustedValue;
   float floatCalculationResult;
   float finalValue;
-  *bufferPointerArray = &UNK_180a1a2f0;
+  *bufferPointerArray = &SystemDataBufferPrimary;
   allocatedMemory = 0;
   bufferPointerArray[1] = 0;
   bufferPointerArray[2] = 0;
   bufferPointerArray[3] = 0;
   *(uint32_t *)(bufferPointerArray + 4) = 3;
-  *bufferPointerArray = &UNK_180a2fc20;
+  *bufferPointerArray = &SystemDataBufferSecondary;
   bufferPointerArray[0xd] = 0;
   bufferPointerArray[0xe] = 0;
   bufferPointerArray[0xf] = 0;
@@ -7355,7 +7355,7 @@ uint64_t * BufferAllocateSystem(uint64_t *bufferPointerArray, int bufferSize)
   *(uint32_t *)(bufferPointerArray + 0x34) = 3;
   bufferIterator = bufferPointerArray + 0x35;
   iteratorCount = 8;
-  FUN_1808fc838(bufferIterator,0x28,8,&UNK_1804ce1a0,FUN_1804ce100);
+  FUN_1808fc838(bufferIterator,0x28,8,&SystemDataProcessor,FUN_1804ce100);
   _Mtx_init_in_situ(bufferPointerArray + 0x5d,0x102);
   stringIndex = GetStringIndexFromData(&DAT_180c95fc8);
   if (bufferSize < stringIndex) {
@@ -7846,7 +7846,7 @@ uint64_t BufferProcessSystemData(uint64_t param_1,ulonglong param_2)
 }
         DAT_180d49f98 = 0;
         _DAT_180d49f90 = 8;
-        strcpy_s(&DAT_180d49f98,0x40,&UNK_180a353b8);
+        strcpy_s(&DAT_180d49f98,0x40,&SystemConfigMessagePath);
         FUN_1808fc820(FUN_180943090);
         FUN_1808fcb30(&DAT_180d49f70);
       }
@@ -7888,14 +7888,14 @@ int SystemDataProcessBatch(uint64_t param_1,uint64_t param_2,uint64_t param_3,ui
   InitializeSystemBuffer(&puStack_30,param_1,param_3,param_4,SystemMutexFlags);
   lVar3 = lStack_28;
   if (iStack_20 == 0x10) {
-    LoopCounter = strcmp(lStack_28,&UNK_180a389f0);
+    LoopCounter = strcmp(lStack_28,&NetworkRequestStringLogin);
     if (LoopCounter == 0) goto LAB_180609067;
-    LoopCounter = strcmp(lVar3,&UNK_180a38a08);
+    LoopCounter = strcmp(lVar3,&NetworkRequestStringAuth);
     if (LoopCounter == 0) {
       LoopCounter = 100;
       goto LAB_180609070;
     }
-    pNetworkRequestResult = &UNK_180a38c28;
+    pNetworkRequestResult = &NetworkRequestResultSuccess;
 LAB_18060905e:
     LoopCounter = strcmp(lVar3,pNetworkRequestResult);
     if (LoopCounter != 0) {
@@ -7906,19 +7906,19 @@ LAB_18060906e:
   }
   else {
     if (iStack_20 == 0x15) {
-      LoopCounter = strcmp(lStack_28,&UNK_180a389d8);
+      LoopCounter = strcmp(lStack_28,&NetworkRequestStringConnect);
       if (LoopCounter == 0) {
         LoopCounter = 0x30;
         goto LAB_180609070;
       }
 LAB_180608a24:
-      LoopCounter = strcmp(lVar3,&UNK_180a38aa8);
+      LoopCounter = strcmp(lVar3,&NetworkRequestStringVerify);
       if (LoopCounter == 0) {
         LoopCounter = 0xb0;
         goto LAB_180609070;
       }
 LAB_180608a96:
-      LoopCounter = strcmp(lVar3,&UNK_180a38ac0);
+      LoopCounter = strcmp(lVar3,&NetworkRequestStringValidate);
       if (LoopCounter == 0) {
         LoopCounter = 0xd4;
         goto LAB_180609070;
@@ -8042,7 +8042,7 @@ LAB_180608c78:
       lVar3 = 0;
       do {
         lVar2 = lVar3 + 1;
-        if (*(char *)(lStack_28 + lVar3) != (&UNK_180a38a3c)[lVar3]) goto LAB_18060906e;
+        if (*(char *)(lStack_28 + lVar3) != (&SystemValidationData)[lVar3]) goto LAB_18060906e;
         lVar3 = lVar2;
       } while (lVar2 != 5);
       LoopCounter = 200;
@@ -8139,7 +8139,7 @@ LAB_18060901e:
               lVar3 = 0;
               do {
                 lVar2 = lVar3 + 1;
-                if (*(char *)(lStack_28 + lVar3) != (&UNK_180a29944)[lVar3]) goto LAB_18060906e;
+                if (*(char *)(lStack_28 + lVar3) != (&SystemValidationCore)[lVar3]) goto LAB_18060906e;
                 lVar3 = lVar2;
               } while (lVar2 != 4);
               goto LAB_180609070;
@@ -8276,9 +8276,9 @@ FUN_1806090b0(uint64_t param_1,uint64_t param_2,uint8_t param_3,uint64_t param_4
   uint8_t auStack_30 [40];
   InitializeSystemBuffer(auStack_30,param_1,param_3,param_4,SystemMutexFlags);
   InitializeSystemBuffer(auStack_50,param_2);
-  cVar1 = FUN_180629850(auStack_30,&UNK_180a389d8,1);
+  cVar1 = FUN_180629850(auStack_30,&NetworkRequestStringConnect,1);
   if (cVar1 == '\0') {
-    cVar1 = FUN_180629850(auStack_30,&UNK_180a38a08,1);
+    cVar1 = FUN_180629850(auStack_30,&NetworkRequestStringAuth,1);
     if (cVar1 == '\0') {
       cVar1 = FUN_180629850(auStack_30,&UNK_180a38958,1);
       if (cVar1 == '\0') {
@@ -8286,15 +8286,15 @@ FUN_1806090b0(uint64_t param_1,uint64_t param_2,uint8_t param_3,uint64_t param_4
         if (cVar1 == '\0') {
           cVar1 = FUN_180629850(auStack_30,&UNK_180a38988,1);
           if (cVar1 == '\0') {
-            cVar1 = FUN_180629850(auStack_30,&UNK_180a38aa8,1);
+            cVar1 = FUN_180629850(auStack_30,&NetworkRequestStringVerify,1);
             if (cVar1 == '\0') {
               cVar1 = FUN_180629850(auStack_30,&UNK_180a38a88,1);
               if (cVar1 == '\0') {
-                cVar1 = FUN_180629850(auStack_30,&UNK_180a38ac0,1);
+                cVar1 = FUN_180629850(auStack_30,&NetworkRequestStringValidate,1);
                 if (cVar1 == '\0') {
                   cVar1 = ValidateSystemConfiguration(auStack_30,&UNK_180a38a48);
                   if (cVar1 == '\0') {
-                    cVar1 = ValidateSystemConfiguration(auStack_30,&UNK_180a38a3c);
+                    cVar1 = ValidateSystemConfiguration(auStack_30,&SystemValidationData);
                     if (cVar1 == '\0') {
                       cVar1 = ValidateSystemConfiguration(auStack_30,&UNK_180a38a60);
                       if (cVar1 == '\0') {
@@ -8318,7 +8318,7 @@ FUN_1806090b0(uint64_t param_1,uint64_t param_2,uint8_t param_3,uint64_t param_4
                                         if (cVar1 == '\0') {
                                           cVar1 = ValidateSystemConfiguration(auStack_30,&UNK_180a38c08);
                                           if (cVar1 == '\0') {
-                                            cVar1 = ValidateSystemConfiguration(auStack_30,&UNK_180a29944);
+                                            cVar1 = ValidateSystemConfiguration(auStack_30,&SystemValidationCore);
                                             if (cVar1 == '\0') {
                                               cVar1 = ValidateSystemConfiguration(auStack_30,&UNK_180a38d10)
                                               ;
