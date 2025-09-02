@@ -12,7 +12,7 @@
 #define RegistrationValidationDataOffset 0x368
 #define ThreadLocalStorageDataOffset 0x18
 #define ThreadResourceStateOffset 0x20
-#define ThreadresourceCountOffset 0x30
+#define ThreadResourceCountOffset 0x30
 #define ResourceManagementStateOffset 0x4
 #define ResourceManagementCleanupOffset 0x5
 #define ResourceManagementStatusOffset 0x7
@@ -980,7 +980,7 @@ uint8_t ConditionDataBufferQueue;
 uint8_t BarrierDataBufferQueue;
 uint8_t PoolDataBufferQueue;
 uint8_t CacheDataBufferQueue;
-uint8_t SystemDataBufferBufferQueue;
+uint8_t SystemDataBufferStorageQueue;
 uint8_t SystemDataBufferConfigQueue;
 uint8_t SystemDataBufferStatusQueue;
 uint8_t SystemDataBufferDataQueue;
@@ -5997,14 +5997,14 @@ void ProcessObjectStateAndSchedule(int64_t ObjectContext, int64_t SchedulerConte
 
 {
   int ObjectProcessingStatus;
-  int64_t ProcessingDataBuffer;
+  int64_t DataProcessingBuffer;
   
   if (*(int *)(ObjectContext + 0x2c) == 0) {
-    ObjectProcessingStatus = ProcessSchedulerOperation(SchedulerContext, ObjectContext + 0x1c, &ProcessingDataBuffer);
+    ObjectProcessingStatus = ProcessSchedulerOperation(SchedulerContext, ObjectContext + 0x1c, &DataProcessingBuffer);
     if (ObjectProcessingStatus != 0) {
       return;
     }
-    ObjectProcessingStatus = ValidateBufferContext(*(uint8_t *)(ProcessingDataBuffer + 0xd0), ObjectContext + 0x2c);
+    ObjectProcessingStatus = ValidateBufferContext(*(uint8_t *)(DataProcessingBuffer + 0xd0), ObjectContext + 0x2c);
     if (ObjectProcessingStatus != 0) {
       return;
     }
@@ -6029,11 +6029,11 @@ void ProcessObjectStateAndSchedule(int64_t ObjectContext, int64_t SchedulerConte
 void InitializeObjectPropertiesAndDispatch(int64_t ObjectContext, int64_t SchedulerContext)
 
 {
-  int PropertyInitializationStatus;
+  int PropertyStatus;
   int64_t ObjectPropertyBuffer;
   
-  PropertyInitializationStatus = ValidateObjectContext(*(uint32_t *)(ObjectContext + 0x10), &ObjectPropertyBuffer);
-  if (PropertyInitializationStatus == 0) {
+  PropertyStatus = ValidateObjectContext(*(uint32_t *)(ObjectContext + 0x10), &ObjectPropertyBuffer);
+  if (PropertyStatus == 0) {
     *(uint32_t *)(ObjectContext + 0x18) = *(uint32_t *)(ObjectPropertyBuffer + 0x30);
     *(uint32_t *)(ObjectContext + 0x1c) = *(uint32_t *)(ObjectPropertyBuffer + 0x34);
     CleanupSystemContextData(*(uint8_t *)(SchedulerContext + 0x98), ObjectContext);
@@ -49406,7 +49406,12 @@ void Unwind_180905b90(uint8_t objectContext,int64_t validationContext)
 
 
 
-void Unwind_180905ba0(void)
+/**
+ * @brief 条件变量销毁器：销毁条件变量资源
+ * 
+ * 该函数负责销毁条件变量资源，确保线程同步资源的正确清理
+ */
+void DestroyConditionVariable(void)
 
 {
   _Cnd_destroy_in_situ();
