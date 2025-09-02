@@ -27495,8 +27495,6 @@ SecurityValidationFailed:
  */
 void ResourceDataCleaner(void)
 
-ResourceDataCleaner(void)
-
 {
   return;
 }
@@ -27612,22 +27610,20 @@ uint8_t DataCleanupHandler(void)
  */
 void ResourceValidationProcessor(void)
 
-ResourceValidationProcessor(void)
-
 {
-  uint8_t ResourceHash;
-  int ProcessingResult;
-  uint8_t *ResourceContext;
+  uint8_t ResourceHashValue;
+  int32_t ResourceProcessingResult;
+  uint8_t *ResourceContextPointer;
   int64_t SavedRegisterValue;
   
-  ResourceHash = *ResourceContext;
-  OperationStatusCode = ReadResourceData(ResourceHash,SystemRegisterContext + 0xdc,4);
+  ResourceHashValue = *ResourceContextPointer;
+  OperationStatusCode = ReadResourceData(ResourceHashValue, SystemRegisterContext + 0xdc, 4);
   if (OperationStatusCode == 0) {
-    OperationStatusCode = ReadResourceData(ResourceHash,SystemRegisterContext + 0xe0,2);
+    OperationStatusCode = ReadResourceData(ResourceHashValue, SystemRegisterContext + 0xe0, 2);
     if (OperationStatusCode == 0) {
-      OperationStatusCode = ReadResourceData(ResourceHash,SystemRegisterContext + 0xe2,2);
+      OperationStatusCode = ReadResourceData(ResourceHashValue, SystemRegisterContext + 0xe2, 2);
       if (OperationStatusCode == 0) {
-        OperationStatusCode = ReadResourceData(ResourceHash,SystemRegisterContext + 0xe4,8);
+        OperationStatusCode = ReadResourceData(ResourceHashValue, SystemRegisterContext + 0xe4, 8);
       }
     }
   }
@@ -28213,8 +28209,17 @@ uint64_t ValidateResourceDataIntegrityInternal(void)
 
 
 
- EmptyResourceHandler(void)
-EmptyResourceHandler(void)
+ /**
+ * @brief 空资源处理器
+ * 
+ * 该函数负责处理空资源情况，提供默认的资源处理行为
+ * 在资源为空或不存在时调用，确保系统稳定性
+ * 
+ * @return 无返回值
+ * @note 此函数在资源为空时调用
+ * @warning 调用此函数后，系统将继续正常执行
+ */
+void EmptyResourceHandler(void)
 
 {
   return;
@@ -28235,12 +28240,12 @@ EmptyResourceHandler(void)
 uint8_t ModelResourceProcessor(int64_t ObjectContext,int64_t *ValidationContext)
 
 {
-  uint8_t ResourceHash;
+  uint8_t ResourceHashValue;
   uint32_t ResourceValidationBuffer [4];
-  uint8_t ResourceValidationBuffer [32];
+  uint8_t ResourceValidationDataBuffer [32];
   uint8_t DataChecksumBuffer [32];
   
-  ResourceHash = CalculateDataChecksum(ValidationContext,DataChecksumBuffer,1,0x5453494c,0x49444d43);
+  ResourceHashValue = CalculateDataChecksum(ValidationContext, DataChecksumBuffer, 1, 0x5453494c, 0x49444d43);
   if (((int)ResourceHash == 0) &&
      (ResourceHash = CalculateDataChecksum(ValidationContext,ResourceValidationBuffer,0,0x42444d43,0), (int)ResourceHash == 0)) {
     if (*(int *)(ResourceData[1] + 0x18) != 0) {
@@ -52651,7 +52656,21 @@ void ReleaseResourceFlag4(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_1809063f0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 执行资源哈希表清理回调
+ * 
+ * 该函数负责遍历资源哈希表中的所有条目，并对每个条目执行清理回调函数
+ * 确保所有资源都被正确清理和释放
+ * 
+ * @param ObjectContext 对象上下文参数，用于标识特定的对象实例
+ * @param ValidationContext 验证上下文参数，包含资源哈希表和回调函数信息
+ * @param CleanupOption 清理选项，指定清理的方式和范围
+ * @param CleanupFlag 清理标志，控制清理过程的行为
+ * @return 无返回值
+ * @note 此函数会遍历所有资源哈希条目并执行相应的清理回调
+ * @warning 如果清理过程中发现错误，函数会触发紧急退出
+ */
+void ExecuteResourceHashCleanupCallbacks(uint8_t ObjectContext, int64_t ValidationContext, uint8_t CleanupOption, uint8_t CleanupFlag)
 
 {
   uint8_t *ResourceHashPointer;
@@ -52671,7 +52690,19 @@ void Unwind_1809063f0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 
 
 
-void Unwind_180906400(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 释放资源标志并清理系统资源
+ * 
+ * 该函数负责检查资源数据中的特定标志位，如果设置了资源释放标志，
+ * 则清除该标志并调用系统资源释放函数来释放相应的资源
+ * 
+ * @param ObjectContext 对象上下文参数，用于标识特定的对象实例
+ * @param ValidationContext 验证上下文参数，包含资源验证和状态信息
+ * @return 无返回值
+ * @note 此函数会检查资源标志位并相应地释放系统资源
+ * @warning 资源释放失败可能导致系统状态不一致
+ */
+void ReleaseResourceFlagAndCleanup(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   if ((*(uint *)(ResourceData + 0x30) & 1) != 0) {
@@ -52784,7 +52815,19 @@ void ReleaseSystemResourceAtOffset152(uint8_t ObjectContext,int64_t ValidationCo
 
 
 
-void Unwind_180906480(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 初始化验证上下文并重置系统状态
+ * 
+ * 该函数负责初始化验证上下文的各个字段，确保系统处于正确的初始状态
+ * 包括重置各种标志位、验证资源索引、设置系统资源处理器模板
+ * 
+ * @param ObjectContext 对象上下文参数，用于标识特定的对象实例
+ * @param ValidationContext 验证上下文参数，包含需要初始化的验证信息
+ * @return 无返回值
+ * @note 此函数会重置验证上下文中的多个字段并设置系统资源处理器
+ * @warning 如果发现任何无效的状态，函数会触发紧急退出
+ */
+void InitializeValidationContextAndResetSystem(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   if (*(int64_t *)(ValidationContext + 0x82) != 0) {
@@ -52816,7 +52859,19 @@ void Unwind_180906480(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180906490(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 清理资源表指针并重置资源上下文
+ * 
+ * 该函数负责清理验证上下文中的资源表指针和相关的资源上下文数据
+ * 遍历资源表中的所有条目，清理相应的数据并验证完整性
+ * 
+ * @param ObjectContext 对象上下文参数，用于标识特定的对象实例
+ * @param ValidationContext 验证上下文参数，包含资源表和上下文信息
+ * @return 无返回值
+ * @note 此函数会遍历资源表并清理所有相关数据
+ * @warning 如果发现任何无效的资源状态，函数会触发紧急退出
+ */
+void CleanupResourceTableAndResetContext(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int64_t *processPointer;
