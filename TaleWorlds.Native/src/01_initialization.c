@@ -59177,7 +59177,21 @@ void CleanupGlobalSystemResources(void)
 
 
 
-// 函数: void ProcessSystemMatrixOperations(void)
+/**
+ * @brief 处理系统矩阵运算
+ * 
+ * 该函数负责执行游戏引擎中的矩阵运算，包括矩阵变换、向量运算和插值计算。
+ * 主要用于3D图形渲染、物理模拟和动画系统的数学计算。
+ * 
+ * 功能包括：
+ * - 矩阵元素的计算和变换
+ * - 向量运算和插值
+ * - 旋转角度和缩放因子的处理
+ * - 四元数运算
+ * - 物理和音频系统的参数计算
+ * 
+ * @note 该函数在系统初始化和运行时都会被调用，是数学运算的核心组件
+ */
 void ProcessSystemMatrixOperations(void)
 
 {
