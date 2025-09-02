@@ -66457,7 +66457,20 @@ void ProcessExtendedResourceHashValidation(uint8_t ObjectContext, int64_t Valida
 
 
 
-void Unwind_180908e00(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 处理资源哈希验证结果重置
+ * 
+ * 该函数负责处理资源哈希验证后的状态重置操作
+ * 当资源数据中的特定标志位被设置时，会清除该标志并处理后续的资源操作
+ * 
+ * @param ObjectContext 对象上下文，包含资源对象的相关信息
+ * @param ValidationContext 验证上下文，包含验证状态和操作参数
+ * @return 无返回值
+ * @note 此函数主要用于资源验证完成后的状态清理
+ * @warning 调用此函数前必须确保ResourceData已正确初始化
+ * @remark 原始函数名：Unwind_180908e00
+ */
+void ProcessResourceHashValidationReset(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int *ResourceIndexPointer;
@@ -66494,13 +66507,19 @@ void Unwind_180908e00(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 /**
- * @brief 资源状态重置处理器
- * @param ObjectContext 对象上下文
- * @param ValidationContext 验证上下文
- * @remark 原始函数名：Unwind_180908e10
+ * @brief 处理资源哈希验证状态重置
+ * 
+ * 该函数负责处理资源哈希验证后的状态重置操作
+ * 当资源数据中的特定标志位被设置时，会清除该标志并处理后续的资源操作
+ * 
+ * @param ObjectContext 对象上下文，包含资源对象的相关信息
+ * @param ValidationContext 验证上下文，包含验证状态和操作参数
+ * @return 无返回值
+ * @note 此函数主要用于资源验证完成后的状态清理
+ * @warning 调用此函数前必须确保ResourceData已正确初始化
+ * @remark 原始函数名：Unwind_ResourceStatusResetHandler
  */
-void Unwind_ResourceStatusResetHandler(uint8_t ObjectContext,int64_t ValidationContext)
-
+void ProcessResourceHashValidationReset(uint8_t ObjectContext, int64_t ValidationContext)
 {
   if ((*(uint *)(ResourceData + 0x20) & 1) != 0) {
     *(uint *)(ResourceData + 0x20) = *(uint *)(ResourceData + 0x20) & 0xfffffffe;
@@ -66512,22 +66531,28 @@ void Unwind_ResourceStatusResetHandler(uint8_t ObjectContext,int64_t ValidationC
 
 
 /**
- * @brief 资源哈希清理处理器6
- * @param ObjectContext 对象上下文
- * @param ValidationContext 验证上下文
- * @param CleanupOption 清理选项
- * @param CleanupFlag 清理标志
- * @remark 原始函数名：Unwind_180908e40
+ * @brief 执行资源哈希清理操作（扩展版本）
+ * 
+ * 该函数负责执行资源哈希的清理操作，包括释放资源句柄和执行清理命令
+ * 当资源哈希指针存在时，会执行相应的资源命令并释放句柄
+ * 
+ * @param ObjectContext 对象上下文，包含资源对象的相关信息
+ * @param ValidationContext 验证上下文，包含验证状态和操作参数
+ * @param CleanupOption 清理选项，指定清理的具体方式
+ * @param CleanupFlag 清理标志，控制清理行为的标志位
+ * @return 无返回值
+ * @note 此函数主要用于资源哈希的深度清理操作
+ * @warning 调用此函数前必须确保ValidationContext已正确初始化
+ * @remark 原始函数名：Unwind_ResourceHashCleanupHandler6
  */
-void Unwind_ResourceHashCleanupHandler6(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
-
+void ExecuteResourceHashCleanupExtended(uint8_t ObjectContext, int64_t ValidationContext, uint8_t CleanupOption, uint8_t CleanupFlag)
 {
   uint8_t *ResourceHashPointer;
   
   ResourceHashPointer = *(uint8_t **)(*(int64_t *)(ValidationContext + 0x60) + 0x30);
   if (ResourceHashPointer != (uint8_t *)0x0) {
-    ExecuteResourceCommand(*(int64_t *)(ValidationContext + 0x60) + 0x20,*ResourceHashPointer,CleanupOption,CleanupFlag,0xfffffffffffffffe);
-          ReleaseResourceHandle(ResourceHashPointer);
+    ExecuteResourceCommand(*(int64_t *)(ValidationContext + 0x60) + 0x20, *ResourceHashPointer, CleanupOption, CleanupFlag, 0xfffffffffffffffe);
+    ReleaseResourceHandle(ResourceHashPointer);
   }
   return;
 }
@@ -66535,13 +66560,20 @@ void Unwind_ResourceHashCleanupHandler6(uint8_t ObjectContext,int64_t Validation
 
 
 /**
- * @brief 资源哈希清理处理器7
- * @param ObjectContext 对象上下文
- * @param ValidationContext 验证上下文
- * @remark 原始函数名：Unwind_180908e50
+ * @brief 执行资源哈希清理操作（完整版本）
+ * 
+ * 该函数负责执行完整的资源哈希清理操作，包括引用计数管理
+ * 当资源哈希验证结果指针存在时，会进行内存地址计算和资源索引验证
+ * 如果引用计数归零，会触发系统清理操作
+ * 
+ * @param ObjectContext 对象上下文，包含资源对象的相关信息
+ * @param ValidationContext 验证上下文，包含验证状态和操作参数
+ * @return 无返回值
+ * @note 此函数主要用于资源哈希的完整清理和引用计数管理
+ * @warning 调用此函数前必须确保ValidationContext已正确初始化
+ * @remark 原始函数名：Unwind_ResourceHashCleanupHandler7
  */
-void Unwind_ResourceHashCleanupHandler7(uint8_t ObjectContext,int64_t ValidationContext)
-
+void ExecuteResourceHashCleanupComplete(uint8_t ObjectContext, int64_t ValidationContext)
 {
   int *ResourceIndexPointer;
   uint8_t *ResourceHashValidationResultPointer;
@@ -66567,8 +66599,8 @@ void Unwind_ResourceHashCleanupHandler7(uint8_t ObjectContext,int64_t Validation
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement, CONCAT71(0xff000000, *(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer, MemoryAddressIncrement, 0xfffffffffffffffe);
     }
   }
   return;
@@ -66576,8 +66608,21 @@ void Unwind_ResourceHashCleanupHandler7(uint8_t ObjectContext,int64_t Validation
 
 
 
-void Unwind_180908e60(uint8_t ObjectContext,int64_t ValidationContext)
-
+/**
+ * @brief 处理资源哈希验证结果（基础版本）
+ * 
+ * 该函数负责处理资源哈希验证结果的基础操作
+ * 通过验证上下文获取验证结果指针，并进行相应的内存地址计算和资源索引验证
+ * 如果引用计数归零，会触发系统清理操作
+ * 
+ * @param ObjectContext 对象上下文，包含资源对象的相关信息
+ * @param ValidationContext 验证上下文，包含验证状态和操作参数
+ * @return 无返回值
+ * @note 此函数主要用于资源哈希验证的基础处理
+ * @warning 调用此函数前必须确保ValidationContext已正确初始化
+ * @remark 原始函数名：Unwind_180908e60
+ */
+void ProcessResourceHashValidationBasic(uint8_t ObjectContext, int64_t ValidationContext)
 {
   int *ResourceIndexPointer;
   uint8_t *ResourceHashValidationResultPointer;
@@ -66603,8 +66648,8 @@ void Unwind_180908e60(uint8_t ObjectContext,int64_t ValidationContext)
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
-                          ResourceHashValidationResultPointer,MemoryAddressIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement, CONCAT71(0xff000000, *(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+                          ResourceHashValidationResultPointer, MemoryAddressIncrement, 0xfffffffffffffffe);
     }
   }
   return;
@@ -66612,7 +66657,20 @@ void Unwind_180908e60(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180908e70(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行资源哈希验证和内存访问控制
+ * 
+ * 该函数负责执行资源哈希验证操作，并处理内存访问控制
+ * 主要用于资源验证完成后的内存管理和状态更新
+ * 
+ * @param ObjectContext 对象上下文，包含资源对象的相关信息
+ * @param ValidationContext 验证上下文，包含验证状态和操作参数
+ * @return 无返回值
+ * @note 此函数主要用于资源验证和内存访问控制
+ * @warning 调用此函数前必须确保ValidationContext已正确初始化
+ * @remark 原始函数名：Unwind_180908e70
+ */
+void ExecuteResourceHashValidationAndMemoryAccessControl(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int *ResourceIndexPointer;
@@ -66933,7 +66991,20 @@ uint8_t * HandleIOException(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180908f90(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 处理系统异常状态和资源清理
+ * 
+ * 该函数负责处理系统异常状态，并执行相应的资源清理操作
+ * 主要用于系统异常处理后的资源管理和状态恢复
+ * 
+ * @param ObjectContext 对象上下文，包含资源对象的相关信息
+ * @param ValidationContext 验证上下文，包含验证状态和操作参数
+ * @return 无返回值
+ * @note 此函数主要用于系统异常处理和资源清理
+ * @warning 调用此函数前必须确保ValidationContext已正确初始化
+ * @remark 原始函数名：Unwind_180908f90
+ */
+void ProcessSystemExceptionStatusAndResourceCleanup(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int64_t *processPointer;
@@ -66960,7 +67031,20 @@ void Unwind_180908f90(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180908fa0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行系统资源解锁和状态检查
+ * 
+ * 该函数负责执行系统资源解锁操作，并进行状态检查
+ * 主要用于系统资源管理中的解锁操作和状态验证
+ * 
+ * @param ObjectContext 对象上下文，包含资源对象的相关信息
+ * @param ValidationContext 验证上下文，包含验证状态和操作参数
+ * @return 无返回值
+ * @note 此函数主要用于系统资源解锁和状态检查
+ * @warning 调用此函数前必须确保ValidationContext已正确初始化
+ * @remark 原始函数名：Unwind_180908fa0
+ */
+void ExecuteSystemResourceUnlockAndStatusCheck(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int64_t *processPointer;
