@@ -50018,24 +50018,24 @@ void UnwindAndCleanupResourceIndex(uint8_t objectContext,int64_t validationConte
   uint64_t ResourceContextOffset;
   
   ResourceIndex = *(int64_t *)(validationContext + 0x38);
-  loopIncrement = *(uint64_t *)(ResourceIndex + 0x10);
+  MemoryAddressIncrement = *(uint64_t *)(ResourceIndex + 0x10);
   loopCounter = *(int64_t *)(ResourceIndex + 8);
   ResourceContextOffset = 0;
-  if (loopIncrement != 0) {
+  if (MemoryAddressIncrement != 0) {
     do {
-      pValidationResult = *(uint8_t **)(LocalContextData + ResourceContextOffset * 8);
-      if (pValidationResult != (uint8_t *)0x0) {
-        *pValidationResult = &SystemDataStructure;
+      ResourceHashValidationResultPointer = *(uint8_t **)(LocalContextData + ResourceContextOffset * 8);
+      if (ResourceHashValidationResultPointer != (uint8_t *)0x0) {
+        *ResourceHashValidationResultPointer = &SystemDataStructure;
                     // WARNING: Subroutine does not return
         ExecuteSystemEmergencyExit();
       }
       *(uint8_t *)(LocalContextData + ResourceContextOffset * 8) = 0;
       ResourceContextOffset = ResourceContextOffset + 1;
-    } while (ResourceContextOffset < loopIncrement);
-    loopIncrement = *(uint64_t *)(ResourceIndex + 0x10);
+    } while (ResourceContextOffset < MemoryAddressIncrement);
+    MemoryAddressIncrement = *(uint64_t *)(ResourceIndex + 0x10);
   }
   *(uint8_t *)(ResourceIndex + 0x18) = 0;
-  if ((1 < loopIncrement) && (*(int64_t *)(ResourceIndex + 8) != 0)) {
+  if ((1 < MemoryAddressIncrement) && (*(int64_t *)(ResourceIndex + 8) != 0)) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
