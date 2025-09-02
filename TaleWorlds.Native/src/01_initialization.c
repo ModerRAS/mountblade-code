@@ -58893,7 +58893,7 @@ void SystemNoOperationA(void)
   }
   if (*(long long *)(ResourceOffset + 0x28) == 0) {
     InputStackParameter30 = 0xffffffff;
-    HashNodeData2 = &stackBuffer30;
+    HashNodeData2 = &StackBuffer30;
     ResourceDataOffset3 = ResourceOffset;
   }
   else {
@@ -58901,7 +58901,7 @@ void SystemNoOperationA(void)
     HashNodeData2 = &stackBuffer170;
     ResourceDataOffset3 = *(long long *)(ResourceOffset + 0x28);
   }
-  FUN_180080e90(ResourceDataOffset3 + 0x3388,HashNodeData2,&stackBuffer40);
+  FUN_180080e90(ResourceDataOffset3 + 0x3388,HashNodeData2,&StackBuffer40);
   pfloatValue39 = FloatParameterArray;
   if ((*(uint *)(memoryBlockAddress + 0x100) & 0x4000000) != 0) {
     FloatVectorFirstComponent = *FloatParameterArray;
@@ -58949,7 +58949,7 @@ void SystemNoOperationA(void)
          BaseValue * InterpolationFactorW + floatValue6 * FloatVectorFourthComponent + floatValue2 * FloatVectorTenthComponent + FloatParameterArray[0xf];
     pfloatValue39 = &stackBufferA0;
   }
-  FUN_180085190(&stackBuffer60,ResourceDataOffset4 + 0x30,*(uint8_t *)(memoryBlockAddress + 0xf7),pfloatValue39);
+  FUN_180085190(&StackBuffer60,ResourceDataOffset4 + 0x30,*(uint8_t *)(memoryBlockAddress + 0xf7),pfloatValue39);
   resourceCreationFlags8 = ThreadCreationParameter;
   resourceCreationFlags7 = InputStackParameter90;
   NetworkConnectionFlags = InputStackParameter88;
@@ -59163,7 +59163,7 @@ void CleanupGlobalSystemResources(void)
   }
   if (*(long long *)(ResourceOffset + 0x28) == 0) {
     InputStackParameter30 = 0xffffffff;
-    SystemHashNodeData4 = &stackBuffer30;
+    SystemHashNodeData4 = &StackBuffer30;
     ResourceDataOffset3 = ResourceOffset;
   }
   else {
@@ -59171,7 +59171,7 @@ void CleanupGlobalSystemResources(void)
     SystemHashNodeData4 = &stackBuffer170;
     ResourceDataOffset3 = *(long long *)(ResourceOffset + 0x28);
   }
-  FUN_180080e90(ResourceDataOffset3 + 0x3388,SystemHashNodeData4,&stackBuffer40);
+  FUN_180080e90(ResourceDataOffset3 + 0x3388,SystemHashNodeData4,&StackBuffer40);
   pfloatValue36 = FloatParameterArray;
   if ((*(uint *)(memoryBlockAddress + 0x100) & 0x4000000) != 0) {
     FloatVectorFirstComponent = *FloatParameterArray;
@@ -59219,7 +59219,7 @@ void CleanupGlobalSystemResources(void)
          FloatTransformValue4 * InterpolationFactorW + FloatTransformValue5 * FloatVectorFourthComponent + FloatTransformValue6 * FloatVectorTenthComponent + FloatParameterArray[0xf];
     pfloatValue36 = &stackBufferA0;
   }
-  FUN_180085190(&stackBuffer60,SystemThreadHandle9 + 0x30,*(uint8_t *)(memoryBlockAddress + 0xf7),pfloatValue36);
+  FUN_180085190(&StackBuffer60,SystemThreadHandle9 + 0x30,*(uint8_t *)(memoryBlockAddress + 0xf7),pfloatValue36);
   resourceCreationFlags8 = ThreadCreationParameter;
   resourceCreationFlags7 = InputStackParameter90;
   NetworkConnectionFlags = InputStackParameter88;
@@ -59521,7 +59521,7 @@ void InitializeSystemVectorCalculations(void)
   void* StackParameter188;
   
   AudioSystemActivationFlag = 0xffffffff;
-  FUN_180080e90(SystemContextPointer + 0x3388,&stackBuffer30);
+  FUN_180080e90(SystemContextPointer + 0x3388,&StackBuffer30);
   pfloatValue29 = FloatParameterArray;
   if ((*(uint *)(memoryBlockAddress + 0x100) & 0x4000000) != 0) {
     FloatVectorFirstComponent = *FloatParameterArray;
@@ -59570,7 +59570,7 @@ void InitializeSystemVectorCalculations(void)
          FloatTransformValue4 * InterpolationFactorY + FloatTransformValue5 * FloatVectorFourthComponent + FloatTransformValue9 * MagnitudeSquared + FloatParameterArray[0xf];
     pfloatValue29 = &stackBufferA0;
   }
-  FUN_180085190(&stackBuffer60,SystemContextPointer + 0x30,*(uint8_t *)(memoryBlockAddress + 0xf7),pfloatValue29);
+  FUN_180085190(&StackBuffer60,SystemContextPointer + 0x30,*(uint8_t *)(memoryBlockAddress + 0xf7),pfloatValue29);
   NetworkConnectionFlags = ThreadCreationParameter;
   SecurityParameter = InputStackParameter90;
   ConfigurationData = InputStackParameter88;
@@ -59646,7 +59646,7 @@ void ExecuteSystemTransformOperations(void)
   void* InputStackParameter90;
   void* ThreadCreationParameter;
   
-  FUN_180085190(&stackBuffer60,SystemContextPointer + 0x30,*(uint8_t *)(memoryBlockAddress + 0xf7));
+  FUN_180085190(&StackBuffer60,SystemContextPointer + 0x30,*(uint8_t *)(memoryBlockAddress + 0xf7));
   ThreadContextFlag = ThreadCreationParameter;
   OperationCode = InputStackParameter90;
   ThreadContextFlag = InputStackParameter88;
@@ -59857,23 +59857,23 @@ void ProcessSystemFloatOperations(void* SystemResourceManager,void* Configuratio
   float in_XMM5_Da;
   uint32_t StackParameter28;
   float fStack0000000000000030;
-  float fStack0000000000000034;
-  float fStack0000000000000038;
-  uint32_t uStack000000000000003c;
-  float fStack0000000000000040;
-  float fStack0000000000000044;
-  float fStack0000000000000048;
-  uint32_t uStack000000000000004c;
-  float fStack0000000000000050;
-  float fStack0000000000000054;
-  float fStack0000000000000058;
-  uint32_t uStack000000000000005c;
-  float fStack0000000000000060;
-  float fStack0000000000000064;
-  float fStack0000000000000068;
+  float FloatStack34;
+  float FloatStack38;
+  uint32_t SystemDataFlag0;
+  float FloatStack40;
+  float FloatStack44;
+  float FloatStack48;
+  uint32_t SystemDataFlag1;
+  float FloatStack50;
+  float FloatStack54;
+  float FloatStack58;
+  uint32_t SystemDataFlag2;
+  float FloatStack60;
+  float FloatStack64;
+  float FloatStack68;
   uint32_t SystemDataPointer9;
   uint32_t InputParameterE0;
-  uint32_t in_stack_000000e8;
+  uint32_t InputParameterE8;
   
   floatValue4 = *systemDataIndexPtr;
   BaseValue = systemDataIndexPtr[1];
@@ -59884,30 +59884,30 @@ void ProcessSystemFloatOperations(void* SystemResourceManager,void* Configuratio
   floatValue1 = *(float *)(memoryBlockAddress + 0x124);
   floatValue2 = *(float *)(memoryBlockAddress + 0x130);
   fStack0000000000000030 = floatValue1 * in_XMM4_Da + (float)SystemResourceManager * floatValue4 + (float)ConfigurationDataPointer * floatValue7;
-  fStack0000000000000034 =
+  FloatStack34 =
        floatValue1 * in_XMM4_Db + (float)((ulong long)SystemResourceManager >> 0x20) * BaseValue +
        (float)((ulong long)ConfigurationDataPointer >> 0x20) * floatValue8;
-  fStack0000000000000038 = floatValue1 * in_XMM4_Dc + in_XMM0_Dc * floatValue6 + in_XMM1_Dc * ScaleValue;
+  FloatStack38 = floatValue1 * in_XMM4_Dc + in_XMM0_Dc * floatValue6 + in_XMM1_Dc * ScaleValue;
   floatValue1 = *(float *)(memoryBlockAddress + 0x138);
   floatValue3 = *(float *)(memoryBlockAddress + 0x140);
-  fStack0000000000000040 = in_XMM5_Da * in_XMM4_Da + floatValue2 * floatValue4 + floatValue1 * floatValue7;
-  fStack0000000000000044 = in_XMM5_Da * in_XMM4_Db + floatValue2 * BaseValue + floatValue1 * floatValue8;
-  fStack0000000000000048 = in_XMM5_Da * in_XMM4_Dc + floatValue2 * floatValue6 + floatValue1 * ScaleValue;
+  FloatStack40 = in_XMM5_Da * in_XMM4_Da + floatValue2 * floatValue4 + floatValue1 * floatValue7;
+  FloatStack44 = in_XMM5_Da * in_XMM4_Db + floatValue2 * BaseValue + floatValue1 * floatValue8;
+  FloatStack48 = in_XMM5_Da * in_XMM4_Dc + floatValue2 * floatValue6 + floatValue1 * ScaleValue;
   floatValue1 = *(float *)(memoryBlockAddress + 0x148);
   floatValue2 = *(float *)(memoryBlockAddress + 0x150);
-  fStack0000000000000050 = ConfigurationFlag * in_XMM4_Da + floatValue3 * floatValue4 + floatValue1 * floatValue7;
-  fStack0000000000000054 = ConfigurationFlag * in_XMM4_Db + floatValue3 * BaseValue + floatValue1 * floatValue8;
-  fStack0000000000000058 = ConfigurationFlag * in_XMM4_Dc + floatValue3 * floatValue6 + floatValue1 * ScaleValue;
+  FloatStack50 = ConfigurationFlag * in_XMM4_Da + floatValue3 * floatValue4 + floatValue1 * floatValue7;
+  FloatStack54 = ConfigurationFlag * in_XMM4_Db + floatValue3 * BaseValue + floatValue1 * floatValue8;
+  FloatStack58 = ConfigurationFlag * in_XMM4_Dc + floatValue3 * floatValue6 + floatValue1 * ScaleValue;
   floatValue1 = *(float *)(memoryBlockAddress + 0x158);
-  fStack0000000000000060 = AdditionalParameter * in_XMM4_Da + floatValue2 * floatValue4 + floatValue1 * floatValue7 + systemDataIndexPtr[0xc];
-  fStack0000000000000064 = AdditionalParameter * in_XMM4_Db + floatValue2 * BaseValue + floatValue1 * floatValue8 + systemDataIndexPtr[0xd];
-  fStack0000000000000068 = AdditionalParameter * in_XMM4_Dc + floatValue2 * floatValue6 + floatValue1 * ScaleValue + systemDataIndexPtr[0xe];
-  uStack0000000000000028 = in_stack_000000e8;
+  FloatStack60 = AdditionalParameter * in_XMM4_Da + floatValue2 * floatValue4 + floatValue1 * floatValue7 + systemDataIndexPtr[0xc];
+  FloatStack64 = AdditionalParameter * in_XMM4_Db + floatValue2 * BaseValue + floatValue1 * floatValue8 + systemDataIndexPtr[0xd];
+  FloatStack68 = AdditionalParameter * in_XMM4_Dc + floatValue2 * floatValue6 + floatValue1 * ScaleValue + systemDataIndexPtr[0xe];
+  StackParameter28 = InputParameterE8;
   SystemDataPointer9 = 0x3f800000;
-  uStack000000000000005c = 0;
-  uStack000000000000004c = 0;
-  uStack000000000000003c = 0;
-  FUN_180252ca0(0x3f800000,floatValue1 * floatValue7,systemResourceCounterD,&stackBuffer30,InputParameterE0);
+  SystemDataFlag2 = 0;
+  SystemDataFlag1 = 0;
+  SystemDataFlag0 = 0;
+  FUN_180252ca0(0x3f800000,floatValue1 * floatValue7,systemResourceCounterD,&StackBuffer30,InputParameterE0);
   return;
 }
 
@@ -59941,7 +59941,7 @@ void InitializeSystemDataIndexPointer(void)
   uint32_t SystemDataPointer8;
   uint32_t SystemDataPointer9;
   uint32_t InputParameterE0;
-  uint32_t in_stack_000000e8;
+  uint32_t InputParameterE8;
   
   SystemDataPointer0 = *systemDataIndexPtr;
   SystemDataPointer2 = systemDataIndexPtr[2];
@@ -59949,12 +59949,12 @@ void InitializeSystemDataIndexPointer(void)
   SystemDataPointer6 = *(uint32_t *)(systemDataIndexPtr + 6);
   SystemDataPointer7 = *(uint32_t *)((long long)systemDataIndexPtr + 0x34);
   SystemDataPointer8 = *(uint32_t *)(systemDataIndexPtr + 7);
-  uStack0000000000000028 = in_stack_000000e8;
+  StackParameter28 = InputParameterE8;
   SystemDataPointer9 = 0x3f800000;
   SystemDataPointer5 = systemDataIndexPtr[5] & 0xffffffff;
   SystemDataPointer3 = systemDataIndexPtr[3] & 0xffffffff;
   SystemDataPointer1 = systemDataIndexPtr[1] & 0xffffffff;
-  FUN_180252ca0(0x3f800000,SystemDataPointer6,systemResourceCounterD,&stackBuffer30,InputParameterE0);
+  FUN_180252ca0(0x3f800000,SystemDataPointer6,systemResourceCounterD,&StackBuffer30,InputParameterE0);
   return;
 }
 
@@ -61954,7 +61954,7 @@ void InitializeSystemResourcePool(void)
   uint32_t unaff_XMM7_Da;
   uint32_t unaff_XMM7_Db;
   void* SystemDataPointer4;
-  void* in_stack_00000058;
+  void* InputParameter58;
   
   resourceAllocationContext5 = (int)*(char *)(systemDataIndexPtr + 0xd) + *(int *)(systemDataIndexPtr + 0x18);
   pscaleResult1 = (float *)**(long long **)(memoryBlockAddress + 600);
@@ -62016,7 +62016,7 @@ void InitializeSystemResourcePool(void)
     systemIndex0 = *(int *)(resourceDataIndex6 + 0x1c) + *(int *)(resourceDataIndex6 + 0x18);
     *(int *)(resourceDataIndex6 + 0x28) = *(int *)(SystemGlobalStatusFlags + 0x224);
     if (0 < systemIndex0) {
-      SystemDataPointer4 = in_stack_00000058;
+      SystemDataPointer4 = InputParameter58;
       ResourceDataOffset1 = (long long)*(int *)(SystemDataMemoryContext + 0xe78) * 0x128 + SystemDataMemoryContext + 0xc28;
       resourceAllocationContext0 = FUN_180080380(ResourceDataOffset1,systemIndex0,SystemBufferAddress3,pInterpolationParam3,CONCAT44(unaff_XMM7_Db,unaff_XMM7_Da));
       *(uint32_t *)(resourceDataIndex6 + 0x30) = resourceAllocationContext0;
@@ -62255,7 +62255,7 @@ void ConfigureSystemResourceParameters(long long SystemResourceManager, uint Con
   uint32_t unaff_XMM7_Da;
   uint32_t unaff_XMM7_Db;
   void* SystemDataPointer4;
-  void* in_stack_00000058;
+  void* InputParameter58;
   
   SystemResourceManager = (long long)*(int *)(SystemResourceManager + 0x250) * 0x128 + SystemResourceManager;
   resourceDataIndex5 = *(long long *)(SystemResourceManager + 8 + (ulong long)(ConfigurationDataPointer >> 0xd) * 8);
@@ -62314,7 +62314,7 @@ void ConfigureSystemResourceParameters(long long SystemResourceManager, uint Con
     systemCounter9 = *(int *)(resourceDataIndex5 + 0x1c) + *(int *)(resourceDataIndex5 + 0x18);
     *(int *)(resourceDataIndex5 + 0x28) = *(int *)(SystemGlobalStatusFlags + 0x224);
     if (0 < systemCounter9) {
-      SystemDataPointer4 = in_stack_00000058;
+      SystemDataPointer4 = InputParameter58;
       ResourceDataOffset1 = (long long)*(int *)(SystemDataMemoryContext + 0xe78) * 0x128 + SystemDataMemoryContext + 0xc28;
       resourceCreationFlags9 = FUN_180080380(ResourceDataOffset1,systemCounter9,SystemResourceManager,ConfigurationFlag,CONCAT44(unaff_XMM7_Db,unaff_XMM7_Da));
       *(uint32_t *)(resourceDataIndex5 + 0x30) = resourceCreationFlags9;
@@ -62523,14 +62523,14 @@ void ResetSystemResourceCounter(void)
   ulong long InitializationFlags;
   bool isSystemActive4;
   void* SystemDataPointer4;
-  void* in_stack_00000058;
+  void* InputParameter58;
   
   localSystemPointer = *(long long *)(memoryBlockAddress + 600);
   if (*(int *)(localSystemPointer + 0x28) != *(int *)(SystemGlobalStatusFlags + 0x224)) {
     SystemOperationStatusFlags = *(int *)(localSystemPointer + 0x1c) + *(int *)(localSystemPointer + 0x18);
     *(int *)(localSystemPointer + 0x28) = *(int *)(SystemGlobalStatusFlags + 0x224);
     if (0 < SystemOperationStatusFlags) {
-      SystemDataPointer4 = in_stack_00000058;
+      SystemDataPointer4 = InputParameter58;
       resourceDataIndex2 = (long long)*(int *)(SystemDataMemoryContext + 0xe78) * 0x128 + SystemDataMemoryContext + 0xc28;
       ResourceHash = FUN_180080380(resourceDataIndex2,SystemOperationStatusFlags);
       *(uint32_t *)(localSystemPointer + 0x30) = ResourceHash;

@@ -44087,39 +44087,79 @@ void CleanupSystemResourceContextPrimary(uint8_t ObjectContext,int64_t Validatio
 
 
 
-void CleanupSystemResourceContextB(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 清理系统资源上下文辅助函数
+ * 
+ * 该函数负责清理系统资源上下文的辅助状态，包括释放资源、
+ * 重置状态标志和清理内存结构等操作
+ * 
+ * @param ObjectContext 对象上下文参数
+ * @param ValidationContext 验证上下文，包含系统状态和资源管理信息
+ * @return 无返回值
+ * @note 此函数会进行安全验证，确保资源被正确释放
+ * @warning 调用此函数前必须确保系统上下文已正确初始化
+ */
+void CleanupSystemResourceContextSecondary(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
-  int64_t contextIndex;
+  int64_t ContextIndex;
   
-  contextIndex = *(int64_t *)(ValidationContext + 0x68);
-  *(uint8_t *)(SystemContextPointer + 0x20) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(SystemContextPointer + 0x28) != 0) {
+  ContextIndex = *(int64_t *)(ValidationContext + ResourceContextSecondaryOffset);
+  *(uint8_t *)(SystemContextPointer + SystemContextResourceTableOffset) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + SystemContextOperationFlagOffset) != 0) {
           ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(SystemContextPointer + 0x28) = 0;
-  *(uint32_t *)(SystemContextPointer + 0x38) = 0;
-  *(uint8_t *)(SystemContextPointer + 0x20) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + SystemContextOperationFlagOffset) = 0;
+  *(uint32_t *)(SystemContextPointer + RegistrationDataOffset) = 0;
+  *(uint8_t *)(SystemContextPointer + SystemContextResourceTableOffset) = &SystemDataStructure;
   return;
 }
 
 
 
-void ProcessResourceCleanupPrimary(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 处理主要资源清理操作
+ * 
+ * 该函数负责处理系统资源的主要清理操作，包括释放内存、
+ * 清理句柄和重置状态等
+ * 
+ * @param ObjectContext 对象上下文参数
+ * @param ValidationContext 验证上下文，包含系统状态和资源管理信息
+ * @param CleanupOption 清理选项，指定清理的方式和范围
+ * @param CleanupFlag 清理标志，控制清理过程的执行
+ * @return 无返回值
+ * @note 此函数会调用底层的资源数据处理函数进行实际清理
+ * @warning 调用此函数前必须确保资源句柄有效
+ */
+void ProcessResourceCleanupPrimary(uint8_t ObjectContext, int64_t ValidationContext, uint8_t CleanupOption, uint8_t CleanupFlag)
 
 {
-  ProcessResourceData(*(int64_t *)(ValidationContext + SystemContextResourceOffset),*(uint8_t *)(*(int64_t *)(ValidationContext + SystemContextResourceOffset) + 0x10),
-                CleanupOption,CleanupFlag,0xfffffffffffffffe);
+  ProcessResourceData(*(int64_t *)(ValidationContext + SystemResourceOffset), *(uint8_t *)(*(int64_t *)(ValidationContext + SystemResourceOffset) + ResourceContextOffsetStandard),
+                CleanupOption, CleanupFlag, 0xfffffffffffffffe);
   return;
 }
 
 
 
-void ProcessResourceCleanupB(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 处理辅助资源清理操作
+ * 
+ * 该函数负责处理系统资源的辅助清理操作，作为主要清理操作的补充
+ * 处理特定的资源类型和清理场景
+ * 
+ * @param ObjectContext 对象上下文参数
+ * @param ValidationContext 验证上下文，包含系统状态和资源管理信息
+ * @param CleanupOption 清理选项，指定清理的方式和范围
+ * @param CleanupFlag 清理标志，控制清理过程的执行
+ * @return 无返回值
+ * @note 此函数会调用底层的资源数据处理函数进行实际清理
+ * @warning 调用此函数前必须确保资源句柄有效
+ */
+void ProcessResourceCleanupSecondary(uint8_t ObjectContext, int64_t ValidationContext, uint8_t CleanupOption, uint8_t CleanupFlag)
 
 {
-  ProcessResourceData(*(int64_t *)(ValidationContext + SystemContextResourceOffset),*(uint8_t *)(*(int64_t *)(ValidationContext + SystemContextResourceOffset) + 0x10),
-                CleanupOption,CleanupFlag,0xfffffffffffffffe);
+  ProcessResourceData(*(int64_t *)(ValidationContext + SystemResourceOffset), *(uint8_t *)(*(int64_t *)(ValidationContext + SystemResourceOffset) + ResourceContextOffsetStandard),
+                CleanupOption, CleanupFlag, 0xfffffffffffffffe);
   return;
 }
 
@@ -44139,19 +44179,19 @@ void ProcessResourceCleanupB(uint8_t ObjectContext,int64_t ValidationContext,uin
  * 
  * 原始函数名为Unwind_180904920，现已重命名为ReleaseSystemResourceIndex
  */
-void ReleaseSystemResourceIndex(uint8_t ObjectContext,int64_t ValidationContext)
+void ReleaseSystemResourceIndex(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
-  int *pResourceReferenceCount;
-  uint8_t *ResourceHashValidationResultAddress;
+  int *ResourceReferenceCountPointer;
+  uint8_t *ResourceValidationResultAddress;
   int64_t ResourceIndex;
-  uint64_t MemoryAlignmentMask;
+  uint64_t MemoryAlignmentValue;
   
-  ValidationResultAddress = *(uint8_t **)(*(int64_t *)(ValidationContext + SystemContextResourceOffset) + 0x28);
-  if (ResourceHashValidationResultAddress == (uint8_t *)0x0) {
+  ResourceValidationResultAddress = *(uint8_t **)(*(int64_t *)(ValidationContext + SystemResourceOffset) + BufferOffsetSecondary);
+  if (ResourceValidationResultAddress == (uint8_t *)0x0) {
     return;
   }
-  MemoryAlignmentMask = (uint64_t)ResourceHashValidationResultAddress & 0xffffffffffc00000;
+  MemoryAlignmentValue = (uint64_t)ResourceValidationResultAddress & MemoryAlignmentMask;
   if (MemoryAlignmentMask != 0) {
     ResourceIndex = MemoryAlignmentMask + 0x80 + ((int64_t)ResourceHashValidationResultAddress - MemoryAlignmentMask >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
