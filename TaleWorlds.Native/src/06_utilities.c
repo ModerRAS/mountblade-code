@@ -7493,7 +7493,7 @@ uint8_t ValidateMatrixTransformationData(int64_t matrixDataPointer,int64_t Conte
        (*(float *)(ObjectContext + 0x38) == 0.0)) {
       return 0x1f;
     }
-    if (((matrixElementWComponent == 0.0) && (*(float *)(ObjectContext + ObjectContextSecurityContextOffset) == 0.0)) && (matrixElementXCoordinate == 0.0)) {
+    if (((MatrixElementW == 0.0) && (*(float *)(ObjectContext + ObjectContextSecurityContextOffset) == 0.0)) && (MatrixElementX == 0.0)) {
       return 0x1f;
     }
     uint32_t ValidationContextResult = ValidateObjectContext(*(uint32_t *)(ObjectContext + 0x10),ResourceValidationBuffer);
@@ -8151,8 +8151,8 @@ uint8_t ValidateObjectContextAndProcessParameterizedComplexFloatOperation(int64_
     ResourceTablePointer = *(int64_t *)(ValidationContext + 0x98);
     if ((*(int *)(ResourceTablePointer + 0x180) != 0) || (*(int *)(ResourceTablePointer + 0x184) != 0)) {
       SecurityContext = 0;
-      InitializeSecurityContext(&securityContextBuffer,ObjectContext,OperationControlParam1,OperationControlParam2,SecurityContext);
-      if (securityContextBuffer == *(int64_t *)((int64_t)*(int *)(ResourceTablePointer + 0x17c) * 8 + 0x180c4f450)) {
+      InitializeSecurityContext(&SecurityContext,ObjectContext,OperationControlParam1,OperationControlParam2,SecurityContext);
+      if (SecurityContext == *(int64_t *)((int64_t)*(int *)(ResourceTablePointer + 0x17c) * 8 + 0x180c4f450)) {
         ValidationStatus = ProcessResourceValidation(ResourceTablePointer,ObjectContext);
         if ((int)LoopCondition == 0) {
           return 0;
@@ -8293,14 +8293,14 @@ uint8_t ProcessObjectContextFloatRangeValidationAndClamping(void)
     ValidationContext = (uint64_t)loopCounter;
   }
   ValidationRange = *(int *)(ValidationContext + 0x28);
-  floatArrayStart = (float *)(ObjectContext + ObjectContextProcessingDataOffset + (int64_t)*(int *)(ObjectContext + ObjectContextValidationDataOffset) * 4);
+  FloatArrayStart = (float *)(ObjectContext + ObjectContextProcessingDataOffset + (int64_t)*(int *)(ObjectContext + ObjectContextValidationDataOffset) * 4);
   if (0 < *(int *)(ObjectContext + ObjectContextValidationDataOffset)) {
-    floatArrayPointer = floatArrayStart;
+    FloatArrayPointer = FloatArrayStart;
     iterationIndex = loopCounter;
     do {
-      ArrayIndex = *(int *)(((ObjectContext + ObjectContextProcessingDataOffset) - (int64_t)floatArrayStart) + (int64_t)floatArrayPointer);
+      ArrayIndex = *(int *)(((ObjectContext + ObjectContextProcessingDataOffset) - (int64_t)FloatArrayStart) + (int64_t)FloatArrayPointer);
       if (ArrayIndex != -1) {
-        inputValue = *floatArrayPointer;
+        InputParameterValue = *FloatArrayPointer;
         if (((uint)inputFloatValue & 0x7f800000) == 0x7f800000) {
           return 0x1d;
         }
@@ -40940,7 +40940,7 @@ void ResetMultiLayerSystemResourceHandler(uint8_t ObjectContext, int64_t Validat
  * - 函数会重置所有相关的状态标志和计数器
  * - 确保在异常情况下也能正确清理资源
  */
-void Unwind_SystemResourceCleanup_Batch1(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+void ExceptionHandler_SystemResourceCleanup_Batch1(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
@@ -41010,7 +41010,7 @@ void Unwind_SystemResourceCleanup_Batch1(uint8_t ObjectContext,int64_t Validatio
  * - 如果资源处理器处于活动状态，会触发系统紧急退出
  * - 确保所有资源处理器都被正确重置和释放
  */
-void Unwind_SystemResourceCleanup_Batch2(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+void ExceptionHandler_SystemResourceCleanup_Batch2(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
@@ -91294,7 +91294,7 @@ void Unwind_180911fe0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 
 
 
-void Unwind_SystemResourceCleanup_Batch1(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+void ExceptionHandler_SystemResourceCleanup_Batch1(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
@@ -91312,7 +91312,7 @@ void Unwind_SystemResourceCleanup_Batch1(uint8_t ObjectContext,int64_t Validatio
 
 
 
-void Unwind_SystemResourceCleanup_Batch2(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+void ExceptionHandler_SystemResourceCleanup_Batch2(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
