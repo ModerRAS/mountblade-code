@@ -2780,30 +2780,30 @@ void InitializeNativeSDLL(uint64_t initFlags)
   SystemInitializationFlag = 0;
   MemoryAllocationResult = AllocateSystemMemory(SystemMemoryAllocationPointer,0x7b8,8,3);
   MemoryManagerDataAddress = InitializeMemoryBlock(MemoryAllocationResult);
-  InitializeStackBuffer(&puStack_98,param_1);
-  StringProcessingResult = ValidateStackData(&puStack_98,&SystemStackValidationTemplate);
+  InitializeStackBuffer(&StackBufferPointer,param_1);
+  StringProcessingResult = ValidateStackData(&StackBufferPointer,&SystemStackValidationTemplate);
   MemoryAddress4 = (ulonglong)(int)StringProcessingResult;
-  if (StringProcessingResult < uStack_88) {
+  if (StringProcessingResult < StackBufferSize) {
     pcVar12 = (char *)(lStack_90 + MemoryAddress4);
     do {
       StringIndex = (int)MemoryAddress4;
       if (*pcVar12 == ' ') goto LabelStringProcessingSpaceCheck1;
       MemoryAddress4 = (ulonglong)(StringIndex + 1U);
       pcVar12 = pcVar12 + 1;
-    } while (StringIndex + 1U < uStack_88);
+    } while (StringIndex + 1U < StackBufferSize);
   }
   StringIndex = -1;
 LabelStringProcessingSpaceCheck1:
   StringProcessingResult = StringIndex + 1;
   MemoryAddress4 = (ulonglong)(int)StringProcessingResult;
-  if (StringProcessingResult < uStack_88) {
+  if (StringProcessingResult < StackBufferSize) {
     pcVar12 = (char *)(lStack_90 + MemoryAddress4);
     do {
       if (*pcVar12 == ' ') goto LabelStringProcessingSpaceCheck2;
       MemoryAddress5 = (int)MemoryAddress4 + 1;
       MemoryAddress4 = (ulonglong)MemoryAddress5;
       pcVar12 = pcVar12 + 1;
-    } while (MemoryAddress5 < uStack_88);
+    } while (MemoryAddress5 < StackBufferSize);
   }
   MemoryAddress4 = 0xffffffff;
 LabelStringProcessingSpaceCheck2:
@@ -2904,33 +2904,33 @@ void InitializeNativeCoreCLR(uint64_t initFlags)
 }
     SystemBufferStatus = 0;
   }
-  uStack_68 = 0;
-  uStack_60 = 0;
-  uStack_58 = 0;
-  uStack_50 = 3;
-  InitializeSystemBuffer(&puStack_48,param_1);
-  ProcessSystemDataBuffer(&uStack_68,&puStack_48);
-  puStack_48 = &SystemNullPointer;
+  StackCounter1 = 0;
+  StackCounter2 = 0;
+  StackCounter3 = 0;
+  StackParameter1 = 3;
+  InitializeSystemBuffer(&StackBufferPointer2,param_1);
+  ProcessSystemDataBuffer(&StackCounter1,&StackBufferPointer2);
+  StackBufferPointer2 = &SystemNullPointer;
   if (lStack_40 != 0) {
     CleanupSystemResources();
   }
   lStack_40 = 0;
-  uStack_30 = 0;
-  puStack_48 = &SystemBufferTemplate;
-  uStack_88 = 0;
-  uStack_80 = 0;
-  uStack_78 = 0;
-  uStack_70 = 3;
-  InitializeSystemBufferStructure(&uStack_88,&uStack_68);
-  ProcessSystemBufferData(&uStack_88,auStack_a8);
-  if (0x1fff < uStack_98) {
-    uStack_98 = 0x1fff;
+  StackCounter4 = 0;
+  StackBufferPointer2 = &SystemBufferTemplate;
+  StackBufferSize = 0;
+  StackParameter3 = 0;
+  StackParameter4 = 0;
+  StackParameter2 = 3;
+  InitializeSystemBufferStructure(&StackBufferSize,&StackCounter1);
+  ProcessSystemBufferData(&StackBufferSize,auStack_a8);
+  if (0x1fff < StackLimitValue) {
+    StackLimitValue = 0x1fff;
   }
   pMemoryAddress = &SystemConstantStringPrimary;
   if (puStack_a0 != (void *)0x0) {
     pMemoryAddress = puStack_a0;
   }
-  memcpy(&SystemStringDataBufferB,pMemoryAddress,(longlong)(int)uStack_98);
+  memcpy(&SystemStringDataBufferB,pMemoryAddress,(longlong)(int)StackLimitValue);
 }
     SystemDataBufferStatus = 0;
     return;
@@ -3028,35 +3028,35 @@ LabelLoopProcessingContinue:
             bVar31 = false;
           }
           if (bVar31) {
-            InitializeSystemBuffer(&puStack_238,pMemoryAddress7);
-            systemMode = InitializeDataBuffer(&puStack_238,&SystemTestModeString);
+            InitializeSystemBuffer(&StackBufferPointer3,pMemoryAddress7);
+            systemMode = InitializeDataBuffer(&StackBufferPointer3,&SystemTestModeString);
             BufferSize1 = (ulonglong)(int)systemMode;
-            if (systemMode < uStack_228) {
+            if (systemMode < StackLoopLimit) {
               pcVar12 = (char *)(lStack_230 + BufferSize1);
               do {
                 LoopCounterValue = (int)BufferSize1;
                 if (*pcVar12 == ' ') goto LabelCheckSpaceCharacter;
                 BufferSize1 = (ulonglong)(LoopCounterValue + 1U);
                 pcVar12 = pcVar12 + 1;
-              } while (LoopCounterValue + 1U < uStack_228);
+              } while (LoopCounterValue + 1U < StackLoopLimit);
             }
             LoopCounterValue = -1;
 LabelCheckSpaceCharacter:
             uVar8 = LoopCounterValue + 1;
             BufferSize1 = (ulonglong)(int)systemMode;
-            if (systemMode < uStack_228) {
+            if (systemMode < StackLoopLimit) {
               pcVar12 = (char *)(lStack_230 + BufferSize1);
               do {
                 if (*pcVar12 == ' ') goto LabelValidateSpaceCharacter;
                 BufferSize6 = (int)BufferSize1 + 1;
                 BufferSize1 = (ulonglong)BufferSize6;
                 pcVar12 = pcVar12 + 1;
-              } while (BufferSize6 < uStack_228);
+              } while (BufferSize6 < StackLoopLimit);
             }
             BufferSize1 = 0xffffffff;
 LabelValidateSpaceCharacter:
             if (LoopCounterValue != -1) {
-              ProcessBufferData(&puStack_238,&puStack_1b8,uVar8,BufferSize1);
+              ProcessBufferData(&StackBufferPointer3,&StackBufferPointer4,uVar8,BufferSize1);
               LoopCounterValue = iStack_1a8;
               LoopCounter9 = 0;
               StringSearchResult = strchr(puStack_1b0,0x2e);
@@ -3074,21 +3074,21 @@ LabelValidateSpaceCharacter:
                             ((longlong *)(SystemDataPointer + 400),pMemoryAddress8);
                 }
               }
-              puStack_1b8 = &SystemNullPointer;
+              StackBufferPointer4 = &SystemNullPointer;
               if (puStack_1b0 != (void *)0x0) {
                 CleanupSystemResources();
               }
               puStack_1b0 = (void *)0x0;
               uStack_1a0 = 0;
-              puStack_1b8 = &SystemBufferTemplate;
+              StackBufferPointer4 = &SystemBufferTemplate;
             }
-            puStack_238 = &SystemNullPointer;
+            StackBufferPointer3 = &SystemNullPointer;
             if (lStack_230 != 0) {
               CleanupSystemResources();
             }
             lStack_230 = 0;
-            uStack_220 = 0;
-            puStack_238 = &SystemBufferTemplate;
+            StackResetFlag = 0;
+            StackBufferPointer3 = &SystemBufferTemplate;
           }
           else {
             if (uVar8 == 0x11) {
@@ -3099,38 +3099,38 @@ LabelValidateSpaceCharacter:
               bVar31 = false;
             }
             if (bVar31) {
-              InitializeSystemBuffer(&puStack_218,pMemoryAddress7);
-              uVar8 = InitializeDataBuffer(&puStack_218,&SystemPerformanceModeString);
+              InitializeSystemBuffer(&StackBufferPointer5,pMemoryAddress7);
+              uVar8 = InitializeDataBuffer(&StackBufferPointer5,&SystemPerformanceModeString);
               BufferSize1 = (ulonglong)(int)systemMode;
-              if (uVar8 < uStack_208) {
+              if (uVar8 < StackValidationLimit) {
                 pcVar12 = (char *)(lStack_210 + BufferSize1);
                 do {
                   LoopCounterValue = (int)BufferSize1;
                   if (*pcVar12 == ' ') goto Label_18004d849;
                   BufferSize1 = (ulonglong)(LoopCounterValue + 1U);
                   pcVar12 = pcVar12 + 1;
-                } while (LoopCounterValue + 1U < uStack_208);
+                } while (LoopCounterValue + 1U < StackValidationLimit);
               }
               LoopCounterValue = -1;
 Label_18004d849:
               uVar8 = LoopCounterValue + 1;
               BufferSize1 = (ulonglong)(int)systemMode;
-              if (uVar8 < uStack_208) {
+              if (uVar8 < StackValidationLimit) {
                 pcVar12 = (char *)(lStack_210 + BufferSize1);
                 do {
                   if (*pcVar12 == ' ') goto Label_18004d876;
                   BufferSize6 = (int)BufferSize1 + 1;
                   BufferSize1 = (ulonglong)BufferSize6;
                   pcVar12 = pcVar12 + 1;
-                } while (BufferSize6 < uStack_208);
+                } while (BufferSize6 < StackValidationLimit);
               }
               BufferSize1 = 0xffffffff;
 Label_18004d876:
               if (LoopCounterValue != -1) {
-                ProcessBufferData(&puStack_218,&puStack_198,uVar8,BufferSize1);
+                ProcessBufferData(&StackBufferPointer5,&StackBufferPointer6,uVar8,BufferSize1);
                 LoopCounterValue = iStack_188;
                 LoopCounter9 = 0;
-                SystemDataPointer = strchr(puStack_190,0x2e);
+                SystemDataPointer = strchr(StackBufferPointer7,0x2e);
                 if (SystemDataPointer != 0) {
                   do {
                     LoopCounter9 = LoopCounter9 + 1;
@@ -3138,27 +3138,27 @@ Label_18004d876:
                   } while (SystemDataPointer != 0);
                   if ((LoopCounter9 == 3) && (LoopCounterValue - 7U < 9)) {
                     pMemoryAddress8 = &SystemConstantStringPrimary;
-                    if (puStack_190 != (void *)0x0) {
-                      pMemoryAddress8 = puStack_190;
+                    if (StackBufferPointer7 != (void *)0x0) {
+                      pMemoryAddress8 = StackBufferPointer7;
                     }
                     (**(code **)(_SystemStringProcessor + 0x10))(&SystemStringProcessor,pMemoryAddress8);
                   }
                 }
-                puStack_198 = &SystemNullPointer;
-                if (puStack_190 != (void *)0x0) {
+                StackBufferPointer6 = &SystemNullPointer;
+                if (StackBufferPointer7 != (void *)0x0) {
                   CleanupSystemResources();
                 }
-                puStack_190 = (void *)0x0;
-                uStack_180 = 0;
-                puStack_198 = &SystemBufferTemplate;
+                StackBufferPointer7 = (void *)0x0;
+                StackCounter50 = 0;
+                StackBufferPointer6 = &SystemBufferTemplate;
               }
-              puStack_218 = &SystemNullPointer;
+              StackBufferPointer5 = &SystemNullPointer;
               if (lStack_210 != 0) {
                 CleanupSystemResources();
               }
               lStack_210 = 0;
               uStack_200 = 0;
-              puStack_218 = &SystemBufferTemplate;
+              StackBufferPointer5 = &SystemBufferTemplate;
             }
             else {
               if (uVar8 == 0xe) {
@@ -3531,7 +3531,7 @@ Label_18004e2b6:
                           BufferSize7 = uStack_158;
                           BufferSize6 = uStack_334;
                           if (uVar8 <= StringProcessingResult0) break;
-                          BufferSize = puStack_308[SystemDataPointer];
+                          BufferSize = pStackCounter48[SystemDataPointer];
                           LoopCounterValue = (int)BufferSize1;
                           BufferSize3 = LoopCounterValue + 1;
                           BufferSize1 = (ulonglong)BufferSize3;
@@ -3576,7 +3576,7 @@ Label_18004e56d:
                       puStack_2e0 = (uint8_t *)0x0;
                       uStack_2d0 = uStack_2d0 & 0xffffffff00000000;
                       puStack_2e8 = &SystemBufferTemplate;
-                      pMemoryAddress1 = puStack_308;
+                      pMemoryAddress1 = pStackCounter48;
                       pMemoryAddress7 = puStack_268;
                     }
                     else {
@@ -3601,7 +3601,7 @@ Label_18004e56d:
         }
 LabelSystemOperationExit:
         pMemoryAddress4 = (uint8_t *)0x0;
-        uStack_300 = 0;
+        StackCounter40 = 0;
         SystemDataPointer = lStack_260;
         if (pMemoryAddress1 != (uint8_t *)0x0) {
           *pMemoryAddress1 = 0;
@@ -3609,22 +3609,22 @@ LabelSystemOperationExit:
       }
       else {
         SystemBufferCopy(&puStack_310,uVar8 + 1);
-        puStack_308[uStack_300] = bVar1;
-        uStack_300 = uStack_300 + 1;
-        pMemoryAddress4 = (uint8_t *)(ulonglong)uStack_300;
-        pMemoryAddress4[(longlong)puStack_308] = 0;
-        pMemoryAddress1 = puStack_308;
+        pStackCounter48[StackCounter40] = bVar1;
+        StackCounter40 = StackCounter40 + 1;
+        pMemoryAddress4 = (uint8_t *)(ulonglong)StackCounter40;
+        pMemoryAddress4[(longlong)pStackCounter48] = 0;
+        pMemoryAddress1 = pStackCounter48;
       }
       uStack_2f0 = uStack_2f0 + 1;
     } while (uStack_2f0 < uStack_150);
   }
-  puStack_98 = &SystemMemoryPool;
-  puStack_90 = auStack_80;
-  auStack_80[0] = 0;
-  uStack_88 = 0x10;
-  strcpy_s(auStack_80,0x40,&SystemStackBufferA);
-  cVar5 = ProcessSystemData(SystemDataPointer,&puStack_98);
-  puStack_98 = &SystemBufferTemplate;
+  StackBufferPointer = &SystemMemoryPool;
+  puStack_90 = aStackParameter3;
+  aStackParameter3[0] = 0;
+  StackBufferSize = 0x10;
+  strcpy_s(aStackParameter3,0x40,&SystemStackBufferA);
+  cVar5 = ProcessSystemData(SystemDataPointer,&StackBufferPointer);
+  StackBufferPointer = &SystemBufferTemplate;
   if (cVar5 != '\0') {
     *(uint32_t *)(SystemDataPointer + 0x20) = 1;
   }
@@ -3634,7 +3634,7 @@ LabelSystemOperationExit:
   if (pMemoryAddress1 != (uint8_t *)0x0) {
     SystemBufferValidate(pMemoryAddress1);
   }
-  puStack_308 = (uint8_t *)0x0;
+  pStackCounter48 = (uint8_t *)0x0;
   uStack_2f8 = uStack_2f8 & 0xffffffff00000000;
   puStack_310 = &SystemBufferTemplate;
   SystemSecurityCheck(uStack_38 ^ (ulonglong)auStack_368);
@@ -3982,7 +3982,7 @@ Label_18005122d:
     __Throw_C_error_std__YAXH_Z(iVar4);
   }
   pModuleInitializationResult4 = SystemModuleContext;
-  uStack_308 = SystemModuleContext;
+  StackCounter48 = SystemModuleContext;
   SystemModuleContext = (longlong *)*puVar7;
   auStack_2a8[0] = 0;
   plStack_2f8 = alStack_90;
@@ -3990,7 +3990,7 @@ Label_18005122d:
   alStack_90[0] = 0;
   alStack_90[1] = 0;
   alStack_90[2] = 0;
-  uStack_78 = 3;
+  StackParameter4 = 3;
   InitializeGameSession(auStack_2a8);
   ProcessGameData((longlong)SystemFrameCounter * 0x238 + GameEngineDataAddress + 0x1598,auStack_2a8);
   plStack_2f8 = alStack_90;
@@ -4070,11 +4070,11 @@ Label_18005122d:
     pplStack_328 = (longlong **)&uStack_2f0;
     RegisterSystemComponent(&SystemConstantEE,4,SystemConfigurationData + 0x167c,auStack_2c8);
     plStack_2f8 = (longlong *)CONCAT44(plStack_2f8._4_4_,0x40000000);
-    uStack_308 = (longlong *)CONCAT44(uStack_308._4_4_,0x3f800000);
+    StackCounter48 = (longlong *)CONCAT44(StackCounter48._4_4_,0x3f800000);
     uStack_318 = 0x20000;
     puStack_320 = &SystemRegistrationBuffer;
     pplStack_328 = &plStack_2f8;
-    RegisterSystemComponent(&SystemConstantFF,4,SystemConfigurationData + 0x1680,&uStack_308);
+    RegisterSystemComponent(&SystemConstantFF,4,SystemConfigurationData + 0x1680,&StackCounter48);
     FinalizeSystemComponent();
     SystemModuleContext = pModuleInitializationResult4;
     iVar4 = _Mtx_unlock(SystemMutexAddressA);
@@ -4092,11 +4092,11 @@ Label_18005122d:
     plStack_2c0 = SystemModuleContext;
     SystemModuleContext = (longlong *)*puVar7;
     SystemInitializeSecondary(&SystemInitializationBufferB,0,0);
-    uStack_308 = (longlong *)CONCAT44(uStack_308._4_4_,0x40000000);
+    StackCounter48 = (longlong *)CONCAT44(StackCounter48._4_4_,0x40000000);
     plStack_2f8 = (longlong *)CONCAT44(plStack_2f8._4_4_,0x3f800000);
     uStack_318 = 0x20000;
     puStack_320 = &SystemRegistrationBuffer;
-    pplStack_328 = (longlong **)&uStack_308;
+    pplStack_328 = (longlong **)&StackCounter48;
     RegisterSystemConfigurationParameter(&SystemConfigurationParameterBuffer,4,SystemConfigurationData + 0x1688,&plStack_2f8);
     FinalizeSystemComponent();
     SystemModuleContext = pModuleInitializationResult4;
@@ -4115,11 +4115,11 @@ Label_18005122d:
     plStack_2c0 = SystemModuleContext;
     SystemModuleContext = (longlong *)*puVar7;
     SystemInitializeSecondary(&SystemInitializationBufferC,0,0);
-    uStack_308 = (longlong *)CONCAT44(uStack_308._4_4_,0x40000000);
+    StackCounter48 = (longlong *)CONCAT44(StackCounter48._4_4_,0x40000000);
     plStack_2f8 = (longlong *)CONCAT44(plStack_2f8._4_4_,0x3f800000);
     uStack_318 = 0x20000;
     puStack_320 = &SystemRegistrationBuffer;
-    pplStack_328 = (longlong **)&uStack_308;
+    pplStack_328 = (longlong **)&StackCounter48;
     RegisterSystemConfigurationParameter(&SystemConfigurationParameterBuffer,4,SystemConfigurationData + 0x168c,&plStack_2f8);
     if (*(float *)(SystemConfigurationData + 0x168c) == 0.0) {
       *(uint32_t *)(SystemConfigurationData + 0x168c) = 0x3f800000;
@@ -4180,12 +4180,12 @@ Label_18005122d:
   puVar7 = SystemNetworkConfigPointer;
   pModuleInitializationResult4 = *(longlong **)(SystemStatusDataPointer + 0x17ec);
   *SystemNetworkConfigPointer = 0;
-  uStack_308._0_4_ = SUB84(pModuleInitializationResult4,0);
-  *(uint32_t *)(puVar7 + 1) = (uint32_t)uStack_308;
-  uStack_308._4_4_ = (uint32_t)((ulonglong)pModuleInitializationResult4 >> 0x20);
-  *(uint32_t *)((longlong)puVar7 + 0xc) = uStack_308._4_4_;
+  StackCounter48._0_4_ = SUB84(pModuleInitializationResult4,0);
+  *(uint32_t *)(puVar7 + 1) = (uint32_t)StackCounter48;
+  StackCounter48._4_4_ = (uint32_t)((ulonglong)pModuleInitializationResult4 >> 0x20);
+  *(uint32_t *)((longlong)puVar7 + 0xc) = StackCounter48._4_4_;
   *(uint32_t *)(puVar7 + 8) = 0;
-  uStack_308 = pModuleInitializationResult4;
+  StackCounter48 = pModuleInitializationResult4;
   InitializeNetworkSystem();
   FinalizeNetworkSystem();
   if (((*(int *)(param_1 + 0x340) != 0) && (SystemModuleCallbackTable != (longlong *)0x0)) &&
@@ -4248,11 +4248,11 @@ Label_18005122d:
     plStack_2c0 = SystemModuleContext;
     SystemModuleContext = (longlong *)*puVar7;
     plStack_2f8 = (longlong *)0x0;
-    uStack_308 = (longlong *)0x0;
+    StackCounter48 = (longlong *)0x0;
     pplStack_328 = (longlong **)&cStack_300;
-    ConfigureModuleInitialization(ModuleInitializationResult2,&puStack_2e8,&plStack_2f8,&uStack_308);
+    ConfigureModuleInitialization(ModuleInitializationResult2,&puStack_2e8,&plStack_2f8,&StackCounter48);
     if (*(char *)(ModuleInitializationResult2 + 0x60) != '\0') {
-      ValidateModuleInitialization(ModuleInitializationResult2,&plStack_2f8,&uStack_308,acStack_2ff);
+      ValidateModuleInitialization(ModuleInitializationResult2,&plStack_2f8,&StackCounter48,acStack_2ff);
     }
     if ((cStack_300 == '\0') && (acStack_2ff[0] == '\0')) {
       *(uint8_t *)(ModuleInitializationResult2 + 0x60) = 0;
@@ -4265,7 +4265,7 @@ Label_18005122d:
     puStack_2e8 = &SystemNullPointer;
     SystemBufferValidate(puVar8);
   }
-  SystemSecurityCheck(uStack_68 ^ (ulonglong)auStack_348);
+  SystemSecurityCheck(StackCounter1 ^ (ulonglong)auStack_348);
 }
 /**
  * 初始化内存缓冲区
@@ -4303,11 +4303,11 @@ uint64_t * InitializeMemoryBuffer(uint64_t *memoryBufferPtr)
     UNLOCK();
     lVar6 = 0;
   }
-  puStack_30 = &SystemNullPointer;
+  pStackCounter4 = &SystemNullPointer;
   if (StackBuffer28 == (void *)0x0) {
     StackBuffer28 = (void *)0x0;
-    uStack_18 = 0;
-    puStack_30 = &SystemBufferTemplate;
+    StackCounter5 = 0;
+    pStackCounter4 = &SystemBufferTemplate;
     if (lVar6 != 0) {
       fclose(lVar6);
       LOCK();
@@ -4441,7 +4441,7 @@ uint HandleMutexOperations(void)
     SystemInitializationFlag = '\x01';
     SystemBufferInitialize(param_1,CONCAT71((int7)((ulonglong)pStringProcessingResult >> 8),1));
   }
-  SystemSecurityCheck(uStack_18 ^ (ulonglong)auStack_298);
+  SystemSecurityCheck(StackCounter5 ^ (ulonglong)auStack_298);
 }
     SystemRenderingActive = '\0';
     if ((cStack_208 != '\0') && (LoopCounter3 = _Mtx_unlock(uStack_210), LoopCounter3 != 0)) {
@@ -4668,11 +4668,11 @@ Label_1800d37d8:
   *(uint *)(SystemConfigurationData + 0x1614) =
        (*(int *)(SystemConfigurationData + 0x1614) + 1U) % *(uint *)(SystemMemoryPoolConfig + 0x1d4c);
 Label_1800d3d65:
-  pplStack_220 = (longlong **)&puStack_198;
-  puStack_198 = &SystemMemoryConfigTemplate;
-  puStack_190 = auStack_180;
-  uStack_188 = 0;
-  auStack_180[0] = 0;
+  pplStack_220 = (longlong **)&StackBufferPointer6;
+  StackBufferPointer6 = &SystemMemoryConfigTemplate;
+  StackBufferPointer7 = aStackCounter50;
+  StackCounter58 = 0;
+  aStackCounter50[0] = 0;
   uStack_100 = 0x19;
   uStack_f8 = param_2;
   pplStack_220 = (longlong **)AllocateSystemMemory(SystemMemoryAllocator,0x20,8,3);
@@ -4741,7 +4741,7 @@ Label_1800d3d65:
     } while ((ulonglong)(longlong)(int)BufferSize1 < (ulonglong)(ModuleInitializationResult8 - ModuleInitializationResult6 >> 3));
   }
   MemoryAddress4 = AllocateSystemMemory(SystemMemoryAllocator,0x100,8,3);
-  pModuleInitializationResult7 = (longlong *)InitializeModuleWithMemory(MemoryAddress4,&puStack_198);
+  pModuleInitializationResult7 = (longlong *)InitializeModuleWithMemory(MemoryAddress4,&StackBufferPointer6);
   ppuStack_1b0 = (void **)pModuleInitializationResult7;
   if (pModuleInitializationResult7 != (longlong *)0x0) {
     (**(code **)(*pModuleInitializationResult7 + 0x28))(pModuleInitializationResult7);
@@ -4768,9 +4768,9 @@ Label_1800d3d65:
     (**(code **)(*pModuleInitializationResult7 + 0x38))(pModuleInitializationResult7);
   }
   if (lStack_200 == 0) {
-    ppuStack_1b0 = &puStack_198;
-    puStack_198 = &SystemBufferTemplate;
-    SystemSecurityCheck(uStack_58 ^ (ulonglong)auStack_248);
+    ppuStack_1b0 = &StackBufferPointer6;
+    StackBufferPointer6 = &SystemBufferTemplate;
+    SystemSecurityCheck(StackCounter3 ^ (ulonglong)auStack_248);
   }
   CleanupSystemResources();
 }
@@ -4932,26 +4932,26 @@ longlong ProcessBulkMemoryCleanupAndResourceRelease(uint64_t MemoryRegion, longl
              (ulonglong)((longlong)in_RCX[0x1d] - (longlong)in_RCX[0x1c] >> 3));
   }
   ppplStack_b8 = (longlong ***)0x0;
-  uStack_58 = (longlong *)CONCAT44(uStack_58._4_4_,(uint32_t)uStack_58);
+  StackCounter3 = (longlong *)CONCAT44(StackCounter3._4_4_,(uint32_t)StackCounter3);
   if (*(int *)(*(longlong *)(alStackX_10[0] + 0x3580) + 0x110) != 0) {
-    uStack_58 = (longlong *)CONCAT44(uStack_58._4_4_,(uint32_t)uStack_58);
+    StackCounter3 = (longlong *)CONCAT44(StackCounter3._4_4_,(uint32_t)StackCounter3);
     if ((((*(byte *)(alStackX_10[0] + 0x1bd8) & 0x20) != 0) &&
-        (uStack_58 = (longlong *)CONCAT44(uStack_58._4_4_,(uint32_t)uStack_58),
+        (StackCounter3 = (longlong *)CONCAT44(StackCounter3._4_4_,(uint32_t)StackCounter3),
         *(char *)(SystemEngineContext + 0xf8) != '\0')) &&
-       (uStack_58 = (longlong *)CONCAT44(uStack_58._4_4_,(uint32_t)uStack_58),
+       (StackCounter3 = (longlong *)CONCAT44(StackCounter3._4_4_,(uint32_t)StackCounter3),
        6 < *(int *)(in_RCX + 0x4f8))) {
       uVar9 = AllocateSystemMemory(SystemMemoryAllocator,0xe0,8,3);
-      ppplStackX_8 = (longlong ***)&uStack_60;
+      ppplStackX_8 = (longlong ***)&StackCounter2;
       plStack_68 = alStackX_10;
-      puStack_50 = &SystemBufferPrimaryTemplate;
-      puStack_48 = &SystemBufferSecondaryTemplate;
-      uStack_70._0_4_ = SUB84(in_RCX,0);
-      uStack_70._4_4_ = (uint32_t)((ulonglong)in_RCX >> 0x20);
-      uStack_60._0_4_ = (uint32_t)uStack_70;
-      uStack_60._4_4_ = uStack_70._4_4_;
-      uStack_70 = in_RCX;
-      uStack_58 = plStack_68;
-      ppplStack_b8 = (longlong ***)CreateMemoryManagerContext(uVar9,&uStack_60);
+      pStackParameter1 = &SystemBufferPrimaryTemplate;
+      StackBufferPointer2 = &SystemBufferSecondaryTemplate;
+      StackParameter2._0_4_ = SUB84(in_RCX,0);
+      StackParameter2._4_4_ = (uint32_t)((ulonglong)in_RCX >> 0x20);
+      StackCounter2._0_4_ = (uint32_t)StackParameter2;
+      StackCounter2._4_4_ = StackParameter2._4_4_;
+      StackParameter2 = in_RCX;
+      StackCounter3 = plStack_68;
+      ppplStack_b8 = (longlong ***)CreateMemoryManagerContext(uVar9,&StackCounter2);
       if (ppplStack_b8 != (longlong ***)0x0) {
         ppplStack_80 = ppplStack_b8;
         (*(code *)(*ppplStack_b8)[5])(ppplStack_b8);
@@ -4984,7 +4984,7 @@ longlong ProcessBulkMemoryCleanupAndResourceRelease(uint64_t MemoryRegion, longl
     if (((in_RCX[0x89] != (longlong ****)0x0) && (*(char *)(SystemEngineContext + 0xfa) != '\0')) &&
        ((*(longlong *)(alStackX_10[0] + 0x3580) != 0 &&
         (*(int *)(*(longlong *)(alStackX_10[0] + 0x3580) + 0x110) != 0)))) {
-      uStack_70 = &pppplStackX_20;
+      StackParameter2 = &pppplStackX_20;
       pppplStackX_20 = (longlong ****)in_RCX[0x89][0x461];
       if (pppplStackX_20 != (longlong ****)0x0) {
         (*(code *)(*pppplStackX_20)[5])();
@@ -5133,15 +5133,15 @@ uint64_t* InitializeSystemBufferTemplate(uint64_t *BufferTemplate, longlong Data
 }
   SystemModuleStatus = 1;
   uStack_160 = 3;
-  pppppppuStack_188 = &pppppppuStack_188;
-  pppppppuStack_180 = &pppppppuStack_188;
+  pppppppStackCounter58 = &pppppppStackCounter58;
+  pppppppStackCounter50 = &pppppppStackCounter58;
   pppppppuStack_178 = (uint64_t *******)0x0;
   uStack_170 = 0;
   uStack_168 = 0;
-  uStack_68 = 0;
-  uStack_60 = 0;
-  uStack_58 = 0;
-  uStack_50 = 3;
+  StackCounter1 = 0;
+  StackCounter2 = 0;
+  StackCounter3 = 0;
+  StackParameter1 = 3;
   SystemDataPointer = *(longlong *)(*pModuleInitializationResult3 + 0x890) - *(longlong *)(*pModuleInitializationResult3 + 0x888) >> 5;
   lStack_b0 = SystemDataPointer;
   ppppppplStackX_8 = (longlong *******)((ulonglong)ppppppplStackX_8 & 0xffffffff00000000);
@@ -5199,7 +5199,7 @@ Label_1801d58d5:
         ppppppMemoryAddress2[1] = (uint64_t *****)0x0;
         ppppppMemoryAddress2[2] = (uint64_t *****)0x0;
         *(uint32_t *)(ppppppMemoryAddress2 + 3) = 3;
-        pppppppuVar6 = &pppppppuStack_188;
+        pppppppuVar6 = &pppppppStackCounter58;
         pppppppuVar9 = pppppppuStack_178;
         while (pppppppuVar9 != (uint64_t *******)0x0) {
           if (*(int *)(pppppppuVar9 + 4) < StringIndex1) {
@@ -5210,9 +5210,9 @@ Label_1801d58d5:
             pppppppuVar9 = (uint64_t *******)pppppppuVar9[1];
           }
         }
-        if (((uint64_t ********)pppppppuVar6 == &pppppppuStack_188) ||
+        if (((uint64_t ********)pppppppuVar6 == &pppppppStackCounter58) ||
            (StringIndex1 < *(int *)(pppppppuVar6 + 4))) {
-          puVar7 = (uint64_t *)CreateSystemMemoryBuffer(&pppppppuStack_188,auStack_90);
+          puVar7 = (uint64_t *)CreateSystemMemoryBuffer(&pppppppStackCounter58,auStack_90);
           pppppppuVar6 = (uint64_t *******)*puVar7;
         }
         pppppppuVar6[5] = ppppppMemoryAddress2;
@@ -5282,7 +5282,7 @@ Label_1801d58d5:
             }
             else {
 Label_1801d5c43:
-              pppppppuVar6 = &pppppppuStack_188;
+              pppppppuVar6 = &pppppppStackCounter58;
               pppppppuVar9 = pppppppuStack_178;
               while (pppppppuVar9 != (uint64_t *******)0x0) {
                 if (*(int *)(pppppppuVar9 + 4) < StringIndex1) {
@@ -5293,9 +5293,9 @@ Label_1801d5c43:
                   pppppppuVar9 = (uint64_t *******)pppppppuVar9[1];
                 }
               }
-              if (((uint64_t ********)pppppppuVar6 == &pppppppuStack_188) ||
+              if (((uint64_t ********)pppppppuVar6 == &pppppppStackCounter58) ||
                  (StringIndex1 < *(int *)(pppppppuVar6 + 4))) {
-                puVar7 = (uint64_t *)CreateSystemMemoryBuffer(&pppppppuStack_188,&ppppppuStack_a0);
+                puVar7 = (uint64_t *)CreateSystemMemoryBuffer(&pppppppStackCounter58,&ppppppuStack_a0);
                 pppppppuVar6 = (uint64_t *******)*puVar7;
               }
               ppppppMemoryAddress2 = pppppppuVar6[5];
@@ -5369,8 +5369,8 @@ Label_1801d5c43:
   pppppppuStack_128 = (uint64_t *******)0x0;
   uStack_120 = 0;
   uStack_118 = 0;
-  pppppppuVar9 = pppppppuStack_180;
-  if ((uint64_t ********)pppppppuStack_180 != &pppppppuStack_188) {
+  pppppppuVar9 = pppppppStackCounter50;
+  if ((uint64_t ********)pppppppStackCounter50 != &pppppppStackCounter58) {
     do {
       pppppppMemoryAddress6 = (uint64_t *******)pppppppuVar9[5];
       pppppppuVar6 = pppppppuVar9 + 4;
@@ -5395,7 +5395,7 @@ Label_1801d5c43:
       if (pppppppuVar8 + 5 != pppppppMemoryAddress6) {
         ProcessSystemMemoryData(pppppppuVar8 + 5,*pppppppMemoryAddress6,pppppppMemoryAddress6[1]);
       }
-      pppppppuVar8 = &pppppppuStack_188;
+      pppppppuVar8 = &pppppppStackCounter58;
       if (pppppppuStack_178 != (uint64_t *******)0x0) {
         pppppppMemoryAddress6 = pppppppuStack_178;
         do {
@@ -5408,9 +5408,9 @@ Label_1801d5c43:
           }
         } while (pppppppMemoryAddress6 != (uint64_t *******)0x0);
       }
-      if (((uint64_t ********)pppppppuVar8 == &pppppppuStack_188) ||
+      if (((uint64_t ********)pppppppuVar8 == &pppppppStackCounter58) ||
          (*(int *)pppppppuVar6 < *(int *)(pppppppuVar8 + 4))) {
-        puVar7 = (uint64_t *)CreateSystemMemoryBuffer(&pppppppuStack_188,&ppppppplStackX_8);
+        puVar7 = (uint64_t *)CreateSystemMemoryBuffer(&pppppppStackCounter58,&ppppppplStackX_8);
         pppppppuVar8 = (uint64_t *******)*puVar7;
       }
       ppppppMemoryAddress2 = pppppppuVar8[5];
@@ -5419,7 +5419,7 @@ Label_1801d5c43:
         FinalizeSystemMemoryAllocation(ppppppMemoryAddress2);
         SystemBufferValidate(ppppppMemoryAddress2);
       }
-      pppppppuVar8 = &pppppppuStack_188;
+      pppppppuVar8 = &pppppppStackCounter58;
       if (pppppppuStack_178 != (uint64_t *******)0x0) {
         pppppppMemoryAddress6 = pppppppuStack_178;
         do {
@@ -5432,22 +5432,22 @@ Label_1801d5c43:
           }
         } while (pppppppMemoryAddress6 != (uint64_t *******)0x0);
       }
-      if (((uint64_t ********)pppppppuVar8 == &pppppppuStack_188) ||
+      if (((uint64_t ********)pppppppuVar8 == &pppppppStackCounter58) ||
          (*(int *)pppppppuVar6 < *(int *)(pppppppuVar8 + 4))) {
-        puVar7 = (uint64_t *)CreateSystemMemoryBuffer(&pppppppuStack_188,&ppppppuStack_d8);
+        puVar7 = (uint64_t *)CreateSystemMemoryBuffer(&pppppppStackCounter58,&ppppppuStack_d8);
         pppppppuVar8 = (uint64_t *******)*puVar7;
       }
       pppppppuVar8[5] = (uint64_t ******)0x0;
       pppppppuVar9 = (uint64_t *******)CreateMemoryPointerArray(pppppppuVar9);
-    } while ((uint64_t ********)pppppppuVar9 != &pppppppuStack_188);
+    } while ((uint64_t ********)pppppppuVar9 != &pppppppStackCounter58);
   }
   pppppppuVar9 = pppppppuStack_178;
   if (pppppppuStack_178 != (uint64_t *******)0x0) {
-    ProcessSystemMemoryCleanup(&pppppppuStack_188,*pppppppuStack_178);
+    ProcessSystemMemoryCleanup(&pppppppStackCounter58,*pppppppuStack_178);
     SystemBufferValidate(pppppppuVar9);
   }
-  pppppppuStack_188 = &pppppppuStack_188;
-  pppppppuStack_180 = &pppppppuStack_188;
+  pppppppStackCounter58 = &pppppppStackCounter58;
+  pppppppStackCounter50 = &pppppppStackCounter58;
   pppppppuStack_178 = (uint64_t *******)0x0;
   uStack_170 = uStack_170 & 0xffffffffffffff00;
   uStack_168 = 0;
@@ -5504,7 +5504,7 @@ Label_1801d5c43:
   pppppppuStackX_18 = pppppppuStack_128;
   if (pppppppuStack_128 == (uint64_t *******)0x0) {
     if (pppppppuStack_178 != (uint64_t *******)0x0) {
-      ProcessSystemMemoryCleanup(&pppppppuStack_188,*pppppppuStack_178);
+      ProcessSystemMemoryCleanup(&pppppppStackCounter58,*pppppppuStack_178);
       SystemBufferValidate(pppppppuVar9);
     }
     puStack_158 = &SystemNullPointer;
@@ -5822,7 +5822,7 @@ code_r0x0001802a1829:
     param_2[3] = 1.0;
   }
 SystemSecurityValidationRoutine:
-  SystemSecurityCheck(uStack_58 ^ (ulonglong)auStack_2e8);
+  SystemSecurityCheck(StackCounter3 ^ (ulonglong)auStack_2e8);
 }
     SystemInitializationFlag = '\x01';
     InitializeSystemModuleConfiguration(unaff_RBP + -0x70,&SystemConfigPrimary,&SystemConfigSecondary,&SystemConfigTertiary,0x786);
@@ -5912,8 +5912,8 @@ Label_1802a83bc:
 }
         SystemStatusFlag3 = '\x01';
         puStack_2d8 = (void *)CONCAT44(puStack_2d8._4_4_,0xc88);
-        InitializeSystemModuleConfiguration(auStack_228,&SystemConfigPrimary,&SystemConfigSenary,&SystemConfigQuinary);
-        OutputDebugStringA(auStack_228);
+        InitializeSystemModuleConfiguration(aStackLoopLimit,&SystemConfigPrimary,&SystemConfigSenary,&SystemConfigQuinary);
+        OutputDebugStringA(aStackLoopLimit);
       }
       puVar7 = &SystemConstantStringPrimary;
       if (*(void **)(param_1 + 8) != (void *)0x0) {
@@ -5947,7 +5947,7 @@ Label_1802a912b:
   SystemSecurityCheck(uStack_28 ^ (ulonglong)auStack_2f8);
 }
       SystemStatusFlag4 = '\x01';
-      uStack_228 = 0xac7;
+      StackLoopLimit = 0xac7;
       InitializeSystemModuleConfiguration(auStack_218,&SystemConfigPrimary,&SystemConfigDenary,&SystemConfigQuinary);
       OutputDebugStringA(auStack_218);
     }
@@ -5955,7 +5955,7 @@ Label_1802a912b:
   else {
     ProcessSystemStringAllocation(&SystemConfigUndenary);
   }
-  SystemSecurityCheck(uStack_18 ^ (ulonglong)auStack_248);
+  SystemSecurityCheck(StackCounter5 ^ (ulonglong)auStack_248);
 }
 /**
  * @brief 系统参数验证函数
@@ -6438,14 +6438,14 @@ uint8_t NormalizeColorLuminance(uint64_t *color_data)
   SystemGamePaused = 0;
   *(uint32_t *)(ModuleInitializationResult + 0x4c) = 0;
   ProcessModuleSystemInitialization(*(uint64_t *)(ModuleInitializationResult + 0x108));
-  puStack_50 = &SystemStringMemoryTemplate;
-  puStack_48 = auStack_38;
+  pStackParameter1 = &SystemStringMemoryTemplate;
+  StackBufferPointer2 = auStack_38;
   auStack_38[0] = 0;
   uStack_40 = 0x12;
   strcpy_s(auStack_38,0x20,&SystemDefaultTemplatePath);
   FinalizeModuleInitialization();
-  puStack_50 = &SystemBufferTemplate;
-  SystemSecurityCheck(uStack_18 ^ (ulonglong)auStack_78);
+  pStackParameter1 = &SystemBufferTemplate;
+  SystemSecurityCheck(StackCounter5 ^ (ulonglong)aStackParameter4);
 }
         SystemMemoryPoolData3 = 0;
         SystemNetworkConnectionCount = 0;
@@ -6539,11 +6539,11 @@ uint64_t ValidateAndProcessModuleData(longlong ModuleHandle, longlong *DataBuffe
   uint32_t auStackX_20 [2];
   longlong *plStack_80;
   longlong *plStack_78;
-  uint64_t uStack_70;
+  uint64_t StackParameter2;
   longlong **pplStack_68;
   longlong *plStack_60;
-  uint8_t auStack_58 [32];
-  uStack_70 = SystemMutexFlags;
+  uint8_t aStackCounter3 [32];
+  StackParameter2 = SystemMutexFlags;
   MemoryAllocationResult = 0;
   bVar2 = *(byte *)(param_3 + 2);
   if ((param_4 >> 1 & 1) != 0) {
@@ -6566,7 +6566,7 @@ uint64_t ValidateAndProcessModuleData(longlong ModuleHandle, longlong *DataBuffe
     MemoryPointerArray = (longlong *)CreateMemoryPointerArray(MemoryAllocationResult);
     pplStack_68 = (longlong **)CONCAT44(pplStack_68._4_4_,auStackX_20[0]);
     plStack_60 = MemoryPointerArray;
-    ProcessSystemMemoryConfiguration(param_1 + 0x3a8,auStack_58,&pplStack_68);
+    ProcessSystemMemoryConfiguration(param_1 + 0x3a8,aStackCounter3,&pplStack_68);
     iVar3 = _Mtx_unlock(pModuleInitializationResult);
     if (iVar3 != 0) {
       __Throw_C_error_std__YAXH_Z(iVar3);
@@ -7089,13 +7089,13 @@ ProcessStringBufferTertiaryOperation(uint64_t param_1,uint64_t param_2,uint64_t 
   uint32_t BufferSize;
   uint64_t StringProcessingResult;
   uint64_t NetworkRequestResult;
-  void *puStack_30;
+  void *pStackCounter4;
   longlong lStack_28;
   NetworkRequestResult = SystemMutexFlags;
   pcVar1 = *(code **)(*SystemModuleCallbackTable + 0x70);
-  StringProcessingResult = ProcessSystemMemoryData(&puStack_30);
+  StringProcessingResult = ProcessSystemMemoryData(&pStackCounter4);
   BufferSize = (*pcVar1)(SystemModuleCallbackTable,StringProcessingResult,param_3,param_4,NetworkRequestResult);
-  puStack_30 = &SystemNullPointer;
+  pStackCounter4 = &SystemNullPointer;
   if (lStack_28 != 0) {
     CleanupSystemResources();
   }
@@ -7116,7 +7116,7 @@ ProcessStringBufferTertiaryOperation(uint64_t param_1,uint64_t param_2,uint64_t 
   StringProcessingResult = AllocateSystemMemory(SystemMemoryAllocator,0xe0,8,3,StringProcessingResult);
   plStackX_10 = alStack_30;
   puStack_20 = &SystemBufferPointerPrimary;
-  puStack_18 = &SystemBufferPointerSecondary;
+  pStackCounter5 = &SystemBufferPointerSecondary;
   pModuleInitializationResult = (longlong *)CreateMemoryManagerContext(StringProcessingResult,alStack_30);
   plStackX_18 = pModuleInitializationResult;
   if (pModuleInitializationResult != (longlong *)0x0) {
@@ -7255,19 +7255,19 @@ ProcessStringBufferTertiaryOperation(uint64_t param_1,uint64_t param_2,uint64_t 
   return;
 }
     DAT_180c82845 = '\x01';
-    lVar4 = SystemDataTransfer(&puStack_48,SystemEngineContext + 0x2c0);
+    lVar4 = SystemDataTransfer(&StackBufferPointer2,SystemEngineContext + 0x2c0);
     pMemoryAllocationResult = &SystemConstantStringPrimary;
     if (*(void **)(lVar4 + 8) != (void *)0x0) {
       pMemoryAllocationResult = *(void **)(lVar4 + 8);
     }
     (**(code **)(ModuleInitializationResult + 0x330))(*(uint32_t *)(_DAT_180c8ece0 + 0x10),pMemoryAllocationResult);
-    puStack_48 = &SystemNullPointer;
+    StackBufferPointer2 = &SystemNullPointer;
     if (lStack_40 != 0) {
       CleanupSystemResources();
     }
     lStack_40 = 0;
-    uStack_30 = 0;
-    puStack_48 = &SystemBufferTemplate;
+    StackCounter4 = 0;
+    StackBufferPointer2 = &SystemBufferTemplate;
   }
   plVar2 = (longlong *)*param_1;
   if (plVar2 != (longlong *)0x0) {
@@ -7280,8 +7280,8 @@ ProcessStringBufferTertiaryOperation(uint64_t param_1,uint64_t param_2,uint64_t 
     }
   }
   *(float *)(SystemEngineContext + 0x200) = 1.0 / (float)(int)param_1[1];
-  puStack_68 = &SystemNullPointer;
-  if (puStack_60 != (void *)0x0) {
+  pStackCounter1 = &SystemNullPointer;
+  if (pStackCounter2 != (void *)0x0) {
     CleanupSystemResources();
   }
   return;
@@ -7607,13 +7607,13 @@ uint64_t BufferProcessSystemData(uint64_t param_1,ulonglong param_2)
       fStack_148 = fStack_198;
       fStack_144 = fStack_194;
       fStack_140 = fStack_190;
-      uStack_13c = uStack_18c;
+      uStack_13c = StackCounter5c;
       ModuleInitializationResult2 = ModuleInitializationResult2 + -0x30;
       ModuleInitializationResult1 = ModuleInitializationResult1 + -1;
       FloatCalculationResult = fStack_198;
       fVar15 = fStack_194;
       fVar16 = fStack_190;
-      MemoryAddress7 = uStack_18c;
+      MemoryAddress7 = StackCounter5c;
       MemoryAddress9 = uStack_17c;
       fStack_158 = fVar18;
       fStack_154 = fVar13;
@@ -7640,7 +7640,7 @@ uint64_t BufferProcessSystemData(uint64_t param_1,ulonglong param_2)
     fStack_190 = *(float *)(param_1 + 0x878);
   }
   *(ulonglong *)(param_1 + 0x870) = CONCAT44(fStack_194,fStack_198);
-  *(ulonglong *)(param_1 + 0x878) = CONCAT44(uStack_18c,fStack_190);
+  *(ulonglong *)(param_1 + 0x878) = CONCAT44(StackCounter5c,fStack_190);
   fStack_198 = fVar18;
   if (fVar18 < *(float *)(param_1 + 0x880)) {
     fStack_198 = *(float *)(param_1 + 0x880);
@@ -7654,7 +7654,7 @@ uint64_t BufferProcessSystemData(uint64_t param_1,ulonglong param_2)
     fStack_190 = *(float *)(param_1 + 0x888);
   }
   *(ulonglong *)(param_1 + 0x880) = CONCAT44(fStack_194,fStack_198);
-  *(ulonglong *)(param_1 + 0x888) = CONCAT44(uStack_18c,fStack_190);
+  *(ulonglong *)(param_1 + 0x888) = CONCAT44(StackCounter5c,fStack_190);
   fStack_198 = FloatCalculationResult;
   if (*(float *)(param_1 + 0x870) < FloatCalculationResult) {
     fStack_198 = *(float *)(param_1 + 0x870);
@@ -7668,7 +7668,7 @@ uint64_t BufferProcessSystemData(uint64_t param_1,ulonglong param_2)
     fStack_190 = *(float *)(param_1 + 0x878);
   }
   *(ulonglong *)(param_1 + 0x870) = CONCAT44(fStack_194,fStack_198);
-  *(ulonglong *)(param_1 + 0x878) = CONCAT44(uStack_18c,fStack_190);
+  *(ulonglong *)(param_1 + 0x878) = CONCAT44(StackCounter5c,fStack_190);
   fStack_198 = FloatCalculationResult;
   if (FloatCalculationResult < *(float *)(param_1 + 0x880)) {
     fStack_198 = *(float *)(param_1 + 0x880);
@@ -7682,7 +7682,7 @@ uint64_t BufferProcessSystemData(uint64_t param_1,ulonglong param_2)
     fStack_190 = *(float *)(param_1 + 0x888);
   }
   *(ulonglong *)(param_1 + 0x880) = CONCAT44(fStack_194,fStack_198);
-  *(ulonglong *)(param_1 + 0x888) = CONCAT44(uStack_18c,fStack_190);
+  *(ulonglong *)(param_1 + 0x888) = CONCAT44(StackCounter5c,fStack_190);
   if (*(longlong *)(param_1 + 0x8a8) != 0) {
     ModuleInitializationResult1 = *(longlong *)(*(longlong *)(param_1 + 0x8a8) + 0x260);
   }
@@ -7717,7 +7717,7 @@ uint64_t BufferProcessSystemData(uint64_t param_1,ulonglong param_2)
         fStack_190 = pfVar3[2];
       }
       *(ulonglong *)pfVar3 = CONCAT44(fStack_194,fStack_198);
-      *(ulonglong *)(pfVar3 + 2) = CONCAT44(uStack_18c,fStack_190);
+      *(ulonglong *)(pfVar3 + 2) = CONCAT44(StackCounter5c,fStack_190);
       fStack_198 = FloatCalculationResult;
       if (FloatCalculationResult < pfVar3[4]) {
         fStack_198 = pfVar3[4];
@@ -7731,7 +7731,7 @@ uint64_t BufferProcessSystemData(uint64_t param_1,ulonglong param_2)
         fStack_190 = pfVar3[6];
       }
       *(ulonglong *)(pfVar3 + 4) = CONCAT44(fStack_194,fStack_198);
-      *(ulonglong *)(pfVar3 + 6) = CONCAT44(uStack_18c,fStack_190);
+      *(ulonglong *)(pfVar3 + 6) = CONCAT44(StackCounter5c,fStack_190);
       DAT_180d49f6c = '\0';
     }
     if (((fVar18 < *pfVar9) || (fVar13 < pfVar9[1])) || (fStack_180 < pfVar9[2])) {
@@ -7753,7 +7753,7 @@ uint64_t BufferProcessSystemData(uint64_t param_1,ulonglong param_2)
         fStack_190 = pfVar9[2];
       }
       *(ulonglong *)pfVar9 = CONCAT44(fStack_194,fStack_198);
-      *(ulonglong *)(pfVar9 + 2) = CONCAT44(uStack_18c,fStack_190);
+      *(ulonglong *)(pfVar9 + 2) = CONCAT44(StackCounter5c,fStack_190);
       fStack_198 = fVar18;
       if (fVar18 < pfVar9[4]) {
         fStack_198 = pfVar9[4];
@@ -7767,7 +7767,7 @@ uint64_t BufferProcessSystemData(uint64_t param_1,ulonglong param_2)
         fStack_190 = pfVar9[6];
       }
       *(ulonglong *)(pfVar9 + 4) = CONCAT44(fStack_194,fStack_198);
-      *(ulonglong *)(pfVar9 + 6) = CONCAT44(uStack_18c,fStack_190);
+      *(ulonglong *)(pfVar9 + 6) = CONCAT44(StackCounter5c,fStack_190);
       DAT_180d49f6c = '\0';
     }
     pfVar9 = *(float **)(param_1 + 0x868);
@@ -7792,7 +7792,7 @@ uint64_t BufferProcessSystemData(uint64_t param_1,ulonglong param_2)
         fStack_190 = pfVar3[2];
       }
       *(ulonglong *)pfVar3 = CONCAT44(fStack_194,fStack_198);
-      *(ulonglong *)(pfVar3 + 2) = CONCAT44(uStack_18c,fStack_190);
+      *(ulonglong *)(pfVar3 + 2) = CONCAT44(StackCounter5c,fStack_190);
       fStack_198 = FloatCalculationResult;
       if (FloatCalculationResult < pfVar3[4]) {
         fStack_198 = pfVar3[4];
@@ -7806,7 +7806,7 @@ uint64_t BufferProcessSystemData(uint64_t param_1,ulonglong param_2)
         fStack_190 = pfVar3[6];
       }
       *(ulonglong *)(pfVar3 + 4) = CONCAT44(fStack_194,fStack_198);
-      *(ulonglong *)(pfVar3 + 6) = CONCAT44(uStack_18c,fStack_190);
+      *(ulonglong *)(pfVar3 + 6) = CONCAT44(StackCounter5c,fStack_190);
       DAT_180d49f6c = '\0';
     }
     if (((fVar18 < *pfVar9) || (fVar13 < pfVar9[1])) || (fStack_180 < pfVar9[2])) {
@@ -7828,7 +7828,7 @@ uint64_t BufferProcessSystemData(uint64_t param_1,ulonglong param_2)
         fStack_190 = pfVar9[2];
       }
       *(ulonglong *)pfVar9 = CONCAT44(fStack_194,fStack_198);
-      *(ulonglong *)(pfVar9 + 2) = CONCAT44(uStack_18c,fStack_190);
+      *(ulonglong *)(pfVar9 + 2) = CONCAT44(StackCounter5c,fStack_190);
       fStack_198 = fVar18;
       if (fVar18 < pfVar9[4]) {
         fStack_198 = pfVar9[4];
@@ -7842,7 +7842,7 @@ uint64_t BufferProcessSystemData(uint64_t param_1,ulonglong param_2)
         fStack_190 = pfVar9[6];
       }
       *(ulonglong *)(pfVar9 + 4) = CONCAT44(fStack_194,fStack_198);
-      *(ulonglong *)(pfVar9 + 6) = CONCAT44(uStack_18c,fStack_190);
+      *(ulonglong *)(pfVar9 + 6) = CONCAT44(StackCounter5c,fStack_190);
       DAT_180d49f6c = '\0';
     }
   }
@@ -7886,10 +7886,10 @@ int SystemDataProcessBatch(uint64_t param_1,uint64_t param_2,uint64_t param_3,ui
   longlong lVar2;
   longlong lVar3;
   void *pNetworkRequestResult;
-  void *puStack_30;
+  void *pStackCounter4;
   longlong lStack_28;
   int iStack_20;
-  InitializeSystemBuffer(&puStack_30,param_1,param_3,param_4,SystemMutexFlags);
+  InitializeSystemBuffer(&pStackCounter4,param_1,param_3,param_4,SystemMutexFlags);
   lVar3 = lStack_28;
   if (iStack_20 == 0x10) {
     LoopCounter = strcmp(lStack_28,&NetworkRequestStringLogin);
@@ -8264,7 +8264,7 @@ Label_180608f73:
 Label_180609067:
   LoopCounter = 4;
 Label_180609070:
-  puStack_30 = &SystemNullPointer;
+  pStackCounter4 = &SystemNullPointer;
   if (lStack_28 == 0) {
     return LoopCounter;
   }
@@ -8276,171 +8276,171 @@ ProcessSystemConfiguration(uint64_t param_1,uint64_t param_2,uint8_t param_3,uin
   char cVar1;
   void *pBufferSize;
   uint64_t StringProcessingResult;
-  uint8_t auStack_50 [32];
-  uint8_t auStack_30 [40];
-  InitializeSystemBuffer(auStack_30,param_1,param_3,param_4,SystemMutexFlags);
-  InitializeSystemBuffer(auStack_50,param_2);
-  cVar1 = ProcessNetworkRequest(auStack_30,&NetworkRequestStringConnect,1);
+  uint8_t aStackParameter1 [32];
+  uint8_t aStackCounter4 [40];
+  InitializeSystemBuffer(aStackCounter4,param_1,param_3,param_4,SystemMutexFlags);
+  InitializeSystemBuffer(aStackParameter1,param_2);
+  cVar1 = ProcessNetworkRequest(aStackCounter4,&NetworkRequestStringConnect,1);
   if (cVar1 == '\0') {
-    cVar1 = ProcessNetworkRequest(auStack_30,&NetworkRequestStringAuth,1);
+    cVar1 = ProcessNetworkRequest(aStackCounter4,&NetworkRequestStringAuth,1);
     if (cVar1 == '\0') {
-      cVar1 = ProcessNetworkRequest(auStack_30,&SystemNetworkConfigData4,1);
+      cVar1 = ProcessNetworkRequest(aStackCounter4,&SystemNetworkConfigData4,1);
       if (cVar1 == '\0') {
-        cVar1 = ValidateSystemConfiguration(auStack_30,&SystemConfigStringB,1);
+        cVar1 = ValidateSystemConfiguration(aStackCounter4,&SystemConfigStringB,1);
         if (cVar1 == '\0') {
-          cVar1 = ValidateSystemConfiguration(auStack_30,&SystemConfigStringA,1);
+          cVar1 = ValidateSystemConfiguration(aStackCounter4,&SystemConfigStringA,1);
           if (cVar1 == '\0') {
-            cVar1 = ValidateNetworkRequest(auStack_30,&NetworkRequestStringVerify,1);
+            cVar1 = ValidateNetworkRequest(aStackCounter4,&NetworkRequestStringVerify,1);
             if (cVar1 == '\0') {
-              cVar1 = ValidateNetworkRequest(auStack_30,&NetworkRequestConfigStringA,1);
+              cVar1 = ValidateNetworkRequest(aStackCounter4,&NetworkRequestConfigStringA,1);
               if (cVar1 == '\0') {
-                cVar1 = ValidateNetworkRequest(auStack_30,&NetworkRequestConfigStringB,1);
+                cVar1 = ValidateNetworkRequest(aStackCounter4,&NetworkRequestConfigStringB,1);
                 if (cVar1 == '\0') {
-                  cVar1 = ValidateSystemConfiguration(auStack_30,&SystemValidationData);
+                  cVar1 = ValidateSystemConfiguration(aStackCounter4,&SystemValidationData);
                   if (cVar1 == '\0') {
-                    cVar1 = ValidateSystemConfiguration(auStack_30,&SystemValidationData);
+                    cVar1 = ValidateSystemConfiguration(aStackCounter4,&SystemValidationData);
                     if (cVar1 == '\0') {
-                      cVar1 = ValidateSystemConfiguration(auStack_30,&NetworkRequestStringConnect);
+                      cVar1 = ValidateSystemConfiguration(aStackCounter4,&NetworkRequestStringConnect);
                       if (cVar1 == '\0') {
-                        cVar1 = ValidateSystemConfiguration(auStack_30,&SystemValidationSenary);
+                        cVar1 = ValidateSystemConfiguration(aStackCounter4,&SystemValidationSenary);
                         if (cVar1 == '\0') {
-                          cVar1 = ValidateSystemConfiguration(auStack_30,&SystemValidationQuaternary);
+                          cVar1 = ValidateSystemConfiguration(aStackCounter4,&SystemValidationQuaternary);
                           if (cVar1 == '\0') {
-                            cVar1 = ValidateSystemConfiguration(auStack_30,&SystemValidationQuinary);
+                            cVar1 = ValidateSystemConfiguration(aStackCounter4,&SystemValidationQuinary);
                             if (cVar1 == '\0') {
-                              cVar1 = ValidateSystemConfiguration(auStack_30,&SystemConfigurationValidationBuffer3);
+                              cVar1 = ValidateSystemConfiguration(aStackCounter4,&SystemConfigurationValidationBuffer3);
                               if (cVar1 == '\0') {
-                                cVar1 = ValidateSystemConfiguration(auStack_30,&SystemConfigurationValidationBuffer4);
+                                cVar1 = ValidateSystemConfiguration(aStackCounter4,&SystemConfigurationValidationBuffer4);
                                 if (cVar1 == '\0') {
-                                  cVar1 = ValidateSystemConfiguration(auStack_30,&SystemConfigurationValidationBuffer5);
+                                  cVar1 = ValidateSystemConfiguration(aStackCounter4,&SystemConfigurationValidationBuffer5);
                                   if (cVar1 == '\0') {
-                                    cVar1 = ValidateSystemConfiguration(auStack_30,&SystemConfigurationValidationBuffer6);
+                                    cVar1 = ValidateSystemConfiguration(aStackCounter4,&SystemConfigurationValidationBuffer6);
                                     if (cVar1 == '\0') {
-                                      cVar1 = ValidateSystemConfiguration(auStack_30,&SystemConfigurationValidationBuffer7);
+                                      cVar1 = ValidateSystemConfiguration(aStackCounter4,&SystemConfigurationValidationBuffer7);
                                       if (cVar1 == '\0') {
-                                        cVar1 = ValidateSystemConfiguration(auStack_30,&SystemConfigurationValidationBuffer8);
+                                        cVar1 = ValidateSystemConfiguration(aStackCounter4,&SystemConfigurationValidationBuffer8);
                                         if (cVar1 == '\0') {
-                                          cVar1 = ValidateSystemConfiguration(auStack_30,&SystemNetworkConfigData5);
+                                          cVar1 = ValidateSystemConfiguration(aStackCounter4,&SystemNetworkConfigData5);
                                           if (cVar1 == '\0') {
-                                            cVar1 = ValidateSystemConfiguration(auStack_30,&SystemValidationCore);
+                                            cVar1 = ValidateSystemConfiguration(aStackCounter4,&SystemValidationCore);
                                             if (cVar1 == '\0') {
-                                              cVar1 = ValidateSystemConfiguration(auStack_30,&SystemConfigurationValidationBuffer9)
+                                              cVar1 = ValidateSystemConfiguration(aStackCounter4,&SystemConfigurationValidationBuffer9)
                                               ;
                                               if (cVar1 == '\0') {
-                                                cVar1 = ValidateSystemConfiguration(auStack_30,
+                                                cVar1 = ValidateSystemConfiguration(aStackCounter4,
                                                                             &SystemConfigurationValidationBuffer10);
                                                 if (cVar1 == '\0') {
-                                                  cVar1 = ValidateSystemConfiguration(auStack_30,
+                                                  cVar1 = ValidateSystemConfiguration(aStackCounter4,
                                                                               &SystemConfigurationValidationBuffer11);
                                                   if (cVar1 == '\0') {
-                                                    cVar1 = ValidateSystemConfiguration(auStack_30,
+                                                    cVar1 = ValidateSystemConfiguration(aStackCounter4,
                                                                                 &SystemConfigurationValidationBuffer12);
                                                     if (cVar1 == '\0') {
-                                                      cVar1 = ValidateSystemConfiguration(auStack_30,
+                                                      cVar1 = ValidateSystemConfiguration(aStackCounter4,
                                                                                   &SystemConfigurationValidationBuffer13);
                                                       if (cVar1 != '\0') goto Label_18060af51;
-                                                      cVar1 = ValidateSystemConfiguration(auStack_30,
+                                                      cVar1 = ValidateSystemConfiguration(aStackCounter4,
                                                                                   &SystemConfigurationValidationBuffer14);
                                                       if (cVar1 == '\0') {
-                                                        cVar1 = ValidateSystemConfiguration(auStack_30,
+                                                        cVar1 = ValidateSystemConfiguration(aStackCounter4,
                                                                                     &SystemConfigurationValidationBuffer15);
                                                         if (cVar1 == '\0') {
-                                                          cVar1 = ValidateSystemConfiguration(auStack_30,
+                                                          cVar1 = ValidateSystemConfiguration(aStackCounter4,
                                                                                       &SystemConfigurationValidationBuffer16
                                                                                      );
                                                           if (cVar1 == '\0') {
-                                                            cVar1 = ValidateSystemConfiguration(auStack_30,
+                                                            cVar1 = ValidateSystemConfiguration(aStackCounter4,
                                                                                         &
                                                   SystemConfigurationValidationBuffer17);
                                                   if (cVar1 == '\0') {
-                                                    cVar1 = ValidateSystemConfiguration(auStack_30,
+                                                    cVar1 = ValidateSystemConfiguration(aStackCounter4,
                                                                                 &SystemConfigurationValidationBuffer18);
                                                     if (cVar1 != '\0') {
-                                                      cVar1 = ValidateSystemConfiguration(auStack_50,
+                                                      cVar1 = ValidateSystemConfiguration(aStackParameter1,
                                                                                   &UNK_180a3ac00);
                                                       if (cVar1 == '\0') {
-                                                        cVar1 = ValidateSystemConfiguration(auStack_50,
+                                                        cVar1 = ValidateSystemConfiguration(aStackParameter1,
                                                                                     &UNK_180a3acf8);
                                                         if (cVar1 != '\0') goto Label_18060b9cb;
-                                                        cVar1 = ValidateSystemConfiguration(auStack_50,
+                                                        cVar1 = ValidateSystemConfiguration(aStackParameter1,
                                                                                     &UNK_180a3acd8);
                                                         if (cVar1 != '\0') goto Label_18060ad3e;
-                                                        cVar1 = ValidateSystemConfiguration(auStack_50,
+                                                        cVar1 = ValidateSystemConfiguration(aStackParameter1,
                                                                                     &UNK_180a3ad30);
                                                         if (cVar1 != '\0') goto Label_18060acd8;
-                                                        cVar1 = ValidateSystemConfiguration(auStack_50,
+                                                        cVar1 = ValidateSystemConfiguration(aStackParameter1,
                                                                                     &DAT_180a06a48);
                                                         if (cVar1 != '\0') goto Label_18060a114;
-                                                        cVar1 = ValidateSystemConfiguration(auStack_50,
+                                                        cVar1 = ValidateSystemConfiguration(aStackParameter1,
                                                                                     &UNK_180a3ad18);
                                                         if (cVar1 != '\0') goto Label_18060a91e;
-                                                        cVar1 = ValidateSystemConfiguration(auStack_50,
+                                                        cVar1 = ValidateSystemConfiguration(aStackParameter1,
                                                                                     &UNK_180a3ac90);
                                                         if (cVar1 != '\0') goto Label_18060ba49;
-                                                        cVar1 = ValidateSystemConfiguration(auStack_50,
+                                                        cVar1 = ValidateSystemConfiguration(aStackParameter1,
                                                                                     &UNK_180a3ac80);
                                                         if (cVar1 != '\0') goto Label_18060ba67;
-                                                        cVar1 = ValidateSystemConfiguration(auStack_50,
+                                                        cVar1 = ValidateSystemConfiguration(aStackParameter1,
                                                                                     &UNK_180a3acc8);
                                                         if (cVar1 != '\0') {
                                                           StringProcessingResult = 0x21c;
                                                           goto Label_18060bbae;
                                                         }
-                                                        cVar1 = ValidateSystemConfiguration(auStack_50,
+                                                        cVar1 = ValidateSystemConfiguration(aStackParameter1,
                                                                                     &UNK_180a3aca8);
                                                         if (cVar1 != '\0') {
                                                           StringProcessingResult = 0x41c;
                                                           goto Label_18060bbae;
                                                         }
-                                                        cVar1 = ValidateSystemConfiguration(auStack_50,
+                                                        cVar1 = ValidateSystemConfiguration(aStackParameter1,
                                                                                     &UNK_180a3ade8);
                                                         if (cVar1 != '\0') {
                                                           StringProcessingResult = 0x41d;
                                                           goto Label_18060bbae;
                                                         }
-                                                        cVar1 = ValidateSystemConfiguration(auStack_50,
+                                                        cVar1 = ValidateSystemConfiguration(aStackParameter1,
                                                                                     &UNK_180a3add0);
                                                         if (cVar1 != '\0') {
                                                           StringProcessingResult = 0x420;
                                                           goto Label_18060bbae;
                                                         }
-                                                        cVar1 = ValidateSystemConfiguration(auStack_50,
+                                                        cVar1 = ValidateSystemConfiguration(aStackParameter1,
                                                                                     &UNK_180a3ae18);
                                                         if (cVar1 != '\0') {
                                                           StringProcessingResult = 0x424;
                                                           goto Label_18060bbae;
                                                         }
-                                                        cVar1 = ValidateSystemConfiguration(auStack_50,
+                                                        cVar1 = ValidateSystemConfiguration(aStackParameter1,
                                                                                     &UNK_180a3ae00);
                                                         if (cVar1 != '\0') {
                                                           StringProcessingResult = 0x428;
                                                           goto Label_18060bbae;
                                                         }
-                                                        cVar1 = ValidateSystemConfiguration(auStack_50,
+                                                        cVar1 = ValidateSystemConfiguration(aStackParameter1,
                                                                                     &UNK_180a3ad88);
                                                         if (cVar1 != '\0') {
                                                           StringProcessingResult = 0x430;
                                                           goto Label_18060bbae;
                                                         }
-                                                        cVar1 = ValidateSystemConfiguration(auStack_50,
+                                                        cVar1 = ValidateSystemConfiguration(aStackParameter1,
                                                                                     &UNK_180a29da8);
                                                         if (cVar1 != '\0') {
                                                           StringProcessingResult = 0x438;
                                                           goto Label_18060bbae;
                                                         }
-                                                        cVar1 = ValidateSystemConfiguration(auStack_50,
+                                                        cVar1 = ValidateSystemConfiguration(aStackParameter1,
                                                                                     &UNK_180a3ad60);
                                                         if (cVar1 != '\0') {
                                                           StringProcessingResult = 0x439;
                                                           goto Label_18060bbae;
                                                         }
-                                                        cVar1 = ValidateSystemConfiguration(auStack_50,
+                                                        cVar1 = ValidateSystemConfiguration(aStackParameter1,
                                                                                     &UNK_180a3adb8);
                                                         if (cVar1 != '\0') {
                                                           StringProcessingResult = 0x43c;
                                                           goto Label_18060bbae;
                                                         }
-                                                        cVar1 = ValidateSystemConfiguration(auStack_50,
+                                                        cVar1 = ValidateSystemConfiguration(aStackParameter1,
                                                                                     &UNK_180a3ada0);
                                                         if (cVar1 != '\0') {
                                                           StringProcessingResult = 0x440;
@@ -8450,10 +8450,10 @@ ProcessSystemConfiguration(uint64_t param_1,uint64_t param_2,uint8_t param_3,uin
                                                     }
                                                   }
                                                   else {
-                                                    cVar1 = ValidateSystemConfiguration(auStack_50,
+                                                    cVar1 = ValidateSystemConfiguration(aStackParameter1,
                                                                                 &UNK_180a3abe0);
                                                     if (cVar1 == '\0') {
-                                                      cVar1 = ValidateSystemConfiguration(auStack_50,
+                                                      cVar1 = ValidateSystemConfiguration(aStackParameter1,
                                                                                   &UNK_180a1029c);
                                                       if (cVar1 == '\0') {
                                                         pBufferSize = &UNK_180a3ac10;
@@ -8464,7 +8464,7 @@ ProcessSystemConfiguration(uint64_t param_1,uint64_t param_2,uint8_t param_3,uin
                                                   }
                                                   }
                                                   else {
-                                                    cVar1 = ValidateSystemConfiguration(auStack_50,
+                                                    cVar1 = ValidateSystemConfiguration(aStackParameter1,
                                                                                 &UNK_180a3ac48);
                                                     if (cVar1 == '\0') {
                                                       pBufferSize = &UNK_180a3abe8;
@@ -8473,252 +8473,252 @@ ProcessSystemConfiguration(uint64_t param_1,uint64_t param_2,uint8_t param_3,uin
                                                   }
                                                   }
                                                   else {
-                                                    cVar1 = ValidateSystemConfiguration(auStack_50,
+                                                    cVar1 = ValidateSystemConfiguration(aStackParameter1,
                                                                                 &UNK_180a3a960);
                                                     if (cVar1 == '\0') {
-                                                      cVar1 = ValidateSystemConfiguration(auStack_50,
+                                                      cVar1 = ValidateSystemConfiguration(aStackParameter1,
                                                                                   &UNK_180a3ab28);
                                                       if (cVar1 != '\0') goto Label_18060b6a9;
-                                                      cVar1 = ValidateSystemConfiguration(auStack_50,
+                                                      cVar1 = ValidateSystemConfiguration(aStackParameter1,
                                                                                   &UNK_180a39f78);
                                                       if (cVar1 != '\0') goto Label_18060b6c7;
-                                                      cVar1 = ValidateSystemConfiguration(auStack_50,
+                                                      cVar1 = ValidateSystemConfiguration(aStackParameter1,
                                                                                   &UNK_180a3ab18);
                                                       if (cVar1 != '\0') goto Label_18060b6e5;
-                                                      cVar1 = ValidateSystemConfiguration(auStack_50,
+                                                      cVar1 = ValidateSystemConfiguration(aStackParameter1,
                                                                                   &UNK_180a39fb0);
                                                       if (cVar1 != '\0') goto Label_18060b703;
-                                                      cVar1 = ValidateSystemConfiguration(auStack_50,
+                                                      cVar1 = ValidateSystemConfiguration(aStackParameter1,
                                                                                   &UNK_180a3ab50);
                                                       if (cVar1 != '\0') goto Label_1806093cc;
-                                                      cVar1 = ValidateSystemConfiguration(auStack_50,
+                                                      cVar1 = ValidateSystemConfiguration(aStackParameter1,
                                                                                   &UNK_180a3ab38);
                                                       if (cVar1 != '\0') {
                                                         StringProcessingResult = 100;
                                                         goto Label_18060bbae;
                                                       }
-                                                      cVar1 = ValidateSystemConfiguration(auStack_50,
+                                                      cVar1 = ValidateSystemConfiguration(aStackParameter1,
                                                                                   &UNK_180a3aae8);
                                                       if (cVar1 != '\0') goto Label_180609b20;
-                                                      cVar1 = ValidateSystemConfiguration(auStack_50,
+                                                      cVar1 = ValidateSystemConfiguration(aStackParameter1,
                                                                                   &UNK_180a3aad8);
                                                       if (cVar1 != '\0') {
 Label_18060b76f:
                                                         StringProcessingResult = 0x6c;
                                                         goto Label_18060bbae;
                                                       }
-                                                      cVar1 = ValidateSystemConfiguration(auStack_50,
+                                                      cVar1 = ValidateSystemConfiguration(aStackParameter1,
                                                                                   &UNK_180a3ab08);
                                                       if (cVar1 != '\0') goto Label_18060b78d;
-                                                      cVar1 = ValidateSystemConfiguration(auStack_50,
+                                                      cVar1 = ValidateSystemConfiguration(aStackParameter1,
                                                                                   &UNK_180a3aaf8);
                                                       if (cVar1 != '\0') {
                                                         StringProcessingResult = 0x74;
                                                         goto Label_18060bbae;
                                                       }
-                                                      cVar1 = ValidateSystemConfiguration(auStack_50,
+                                                      cVar1 = ValidateSystemConfiguration(aStackParameter1,
                                                                                   &UNK_180a3abb0);
                                                       if (cVar1 != '\0') goto Label_18060b7c9;
-                                                      cVar1 = ValidateSystemConfiguration(auStack_50,
+                                                      cVar1 = ValidateSystemConfiguration(aStackParameter1,
                                                                                   &UNK_180a3aba0);
                                                       if (cVar1 != '\0') goto Label_18060b7e7;
-                                                      cVar1 = ValidateSystemConfiguration(auStack_50,
+                                                      cVar1 = ValidateSystemConfiguration(aStackParameter1,
                                                                                   &UNK_180a3abd0);
                                                       if (cVar1 != '\0') goto Label_18060b805;
-                                                      cVar1 = ValidateSystemConfiguration(auStack_50,
+                                                      cVar1 = ValidateSystemConfiguration(aStackParameter1,
                                                                                   &UNK_180a3abc0);
                                                       if (cVar1 != '\0') {
                                                         StringProcessingResult = 0x84;
                                                         goto Label_18060bbae;
                                                       }
-                                                      cVar1 = ValidateSystemConfiguration(auStack_50,
+                                                      cVar1 = ValidateSystemConfiguration(aStackParameter1,
                                                                                   &UNK_180a3ab70);
                                                       if (cVar1 != '\0') goto Label_18060b841;
-                                                      cVar1 = ValidateSystemConfiguration(auStack_50,
+                                                      cVar1 = ValidateSystemConfiguration(aStackParameter1,
                                                                                   &UNK_180a3ab60);
                                                       if (cVar1 != '\0') goto Label_18060b85f;
-                                                      cVar1 = ValidateSystemConfiguration(auStack_50,
+                                                      cVar1 = ValidateSystemConfiguration(aStackParameter1,
                                                                                   &UNK_180a3ab90);
                                                       if (cVar1 != '\0') goto Label_18060b87d;
-                                                      cVar1 = ValidateSystemConfiguration(auStack_50,
+                                                      cVar1 = ValidateSystemConfiguration(aStackParameter1,
                                                                                   &UNK_180a3ab80);
                                                       if (cVar1 != '\0') goto Label_18060b89b;
-                                                      cVar1 = ValidateSystemConfiguration(auStack_50,
+                                                      cVar1 = ValidateSystemConfiguration(aStackParameter1,
                                                                                   &UNK_180a3ac30);
                                                       if (cVar1 != '\0') {
                                                         StringProcessingResult = 0x96;
                                                         goto Label_18060bbae;
                                                       }
-                                                      cVar1 = ValidateSystemConfiguration(auStack_50,
+                                                      cVar1 = ValidateSystemConfiguration(aStackParameter1,
                                                                                   &UNK_180a3ac18);
                                                       if (cVar1 != '\0') goto Label_18060b8d7;
-                                                      cVar1 = ValidateSystemConfiguration(auStack_50,
+                                                      cVar1 = ValidateSystemConfiguration(aStackParameter1,
                                                                                   &UNK_180a3ac68);
                                                       if (cVar1 != '\0') goto Label_18060b8f9;
                                                     }
                                                   }
                                                   }
                                                   else {
-                                                    cVar1 = ValidateSystemConfiguration(auStack_50,
+                                                    cVar1 = ValidateSystemConfiguration(aStackParameter1,
                                                                                 &UNK_180a3a8b0);
                                                     if (cVar1 == '\0') {
-                                                      cVar1 = ValidateSystemConfiguration(auStack_50,
+                                                      cVar1 = ValidateSystemConfiguration(aStackParameter1,
                                                                                   &UNK_180a3a850);
                                                       if (cVar1 != '\0') goto Label_18060ad3e;
-                                                      cVar1 = ValidateSystemConfiguration(auStack_50,
+                                                      cVar1 = ValidateSystemConfiguration(aStackParameter1,
                                                                                   &UNK_180a3a830);
                                                       if (cVar1 != '\0') goto Label_18060a114;
-                                                      cVar1 = ValidateSystemConfiguration(auStack_50,
+                                                      cVar1 = ValidateSystemConfiguration(aStackParameter1,
                                                                                   &UNK_180a3a870);
                                                       if (cVar1 != '\0') goto Label_18060ba49;
-                                                      cVar1 = ValidateSystemConfiguration(auStack_50,
+                                                      cVar1 = ValidateSystemConfiguration(aStackParameter1,
                                                                                   &UNK_180a3a860);
                                                       if (cVar1 != '\0') goto Label_18060b32d;
-                                                      cVar1 = ValidateSystemConfiguration(auStack_50,
+                                                      cVar1 = ValidateSystemConfiguration(aStackParameter1,
                                                                                   &UNK_180a04be8);
                                                       if (cVar1 != '\0') goto Label_18060b34b;
-                                                      cVar1 = ValidateSystemConfiguration(auStack_50,
+                                                      cVar1 = ValidateSystemConfiguration(aStackParameter1,
                                                                                   &UNK_180a3a938);
                                                       if (cVar1 != '\0') goto Label_18060b369;
-                                                      cVar1 = ValidateSystemConfiguration(auStack_50,
+                                                      cVar1 = ValidateSystemConfiguration(aStackParameter1,
                                                                                   &UNK_180a3a920);
                                                       if (cVar1 != '\0') goto Label_18060b387;
-                                                      cVar1 = ValidateSystemConfiguration(auStack_50,
+                                                      cVar1 = ValidateSystemConfiguration(aStackParameter1,
                                                                                   &UNK_180a3a960);
                                                       if (cVar1 != '\0') goto Label_18060b3a5;
-                                                      cVar1 = ValidateSystemConfiguration(auStack_50,
+                                                      cVar1 = ValidateSystemConfiguration(aStackParameter1,
                                                                                   &UNK_180a3a948);
                                                       if (cVar1 != '\0') {
                                                         StringProcessingResult = 0xf8;
                                                         goto Label_18060bbae;
                                                       }
-                                                      cVar1 = ValidateSystemConfiguration(auStack_50,
+                                                      cVar1 = ValidateSystemConfiguration(aStackParameter1,
                                                                                   &UNK_180a3a8f0);
                                                       if (cVar1 != '\0') {
                                                         StringProcessingResult = 0xfc;
                                                         goto Label_18060bbae;
                                                       }
-                                                      cVar1 = ValidateSystemConfiguration(auStack_50,
+                                                      cVar1 = ValidateSystemConfiguration(aStackParameter1,
                                                                                   &UNK_180a3a8d8);
                                                       if (cVar1 != '\0') {
                                                         StringProcessingResult = 0x100;
                                                         goto Label_18060bbae;
                                                       }
-                                                      cVar1 = ValidateSystemConfiguration(auStack_50,
+                                                      cVar1 = ValidateSystemConfiguration(aStackParameter1,
                                                                                   &UNK_180a3a910);
                                                       if (cVar1 != '\0') {
                                                         StringProcessingResult = 0x110;
                                                         goto Label_18060bbae;
                                                       }
-                                                      cVar1 = ValidateSystemConfiguration(auStack_50,
+                                                      cVar1 = ValidateSystemConfiguration(aStackParameter1,
                                                                                   &UNK_180a3a900);
                                                       if (cVar1 != '\0') {
                                                         StringProcessingResult = 0x114;
                                                         goto Label_18060bbae;
                                                       }
-                                                      cVar1 = ValidateSystemConfiguration(auStack_50,
+                                                      cVar1 = ValidateSystemConfiguration(aStackParameter1,
                                                                                   &UNK_180a3a9d8);
                                                       if (cVar1 != '\0') {
                                                         StringProcessingResult = 0x118;
                                                         goto Label_18060bbae;
                                                       }
-                                                      cVar1 = ValidateSystemConfiguration(auStack_50,
+                                                      cVar1 = ValidateSystemConfiguration(aStackParameter1,
                                                                                   &UNK_180a3a9c8);
                                                       if (cVar1 != '\0') {
                                                         StringProcessingResult = 0x11c;
                                                         goto Label_18060bbae;
                                                       }
-                                                      cVar1 = ValidateSystemConfiguration(auStack_50,
+                                                      cVar1 = ValidateSystemConfiguration(aStackParameter1,
                                                                                   &UNK_180a3a9f0);
                                                       if (cVar1 != '\0') {
                                                         StringProcessingResult = 0x11e;
                                                         goto Label_18060bbae;
                                                       }
-                                                      cVar1 = ValidateSystemConfiguration(auStack_50,
+                                                      cVar1 = ValidateSystemConfiguration(aStackParameter1,
                                                                                   &UNK_180a3a9e0);
                                                       if (cVar1 != '\0') {
                                                         StringProcessingResult = 0x120;
                                                         goto Label_18060bbae;
                                                       }
-                                                      cVar1 = ValidateSystemConfiguration(auStack_50,
+                                                      cVar1 = ValidateSystemConfiguration(aStackParameter1,
                                                                                   &UNK_180a3a988);
                                                       if (cVar1 != '\0') {
                                                         StringProcessingResult = 0x130;
                                                         goto Label_18060bbae;
                                                       }
-                                                      cVar1 = ValidateSystemConfiguration(auStack_50,
+                                                      cVar1 = ValidateSystemConfiguration(aStackParameter1,
                                                                                   &UNK_180a2a000);
                                                       if (cVar1 != '\0') {
                                                         StringProcessingResult = 0x170;
                                                         goto Label_18060bbae;
                                                       }
-                                                      cVar1 = ValidateSystemConfiguration(auStack_50,
+                                                      cVar1 = ValidateSystemConfiguration(aStackParameter1,
                                                                                   &UNK_180a21a30);
                                                       if (cVar1 != '\0') {
                                                         StringProcessingResult = 0x174;
                                                         goto Label_18060bbae;
                                                       }
-                                                      cVar1 = ValidateSystemConfiguration(auStack_50,
+                                                      cVar1 = ValidateSystemConfiguration(aStackParameter1,
                                                                                   &UNK_180a3a970);
                                                       if (cVar1 != '\0') {
                                                         StringProcessingResult = 0x178;
                                                         goto Label_18060bbae;
                                                       }
-                                                      cVar1 = ValidateSystemConfiguration(auStack_50,
+                                                      cVar1 = ValidateSystemConfiguration(aStackParameter1,
                                                                                   &UNK_180a3a9b0);
                                                       if (cVar1 != '\0') {
                                                         StringProcessingResult = 0x188;
                                                         goto Label_18060bbae;
                                                       }
-                                                      cVar1 = ValidateSystemConfiguration(auStack_50,
+                                                      cVar1 = ValidateSystemConfiguration(aStackParameter1,
                                                                                   &UNK_180a3a998);
                                                       if (cVar1 != '\0') {
                                                         StringProcessingResult = 0x198;
                                                         goto Label_18060bbae;
                                                       }
-                                                      cVar1 = ValidateSystemConfiguration(auStack_50,
+                                                      cVar1 = ValidateSystemConfiguration(aStackParameter1,
                                                                                   &UNK_180a3aa98);
                                                       if (cVar1 != '\0') {
                                                         StringProcessingResult = 0x19c;
                                                         goto Label_18060bbae;
                                                       }
-                                                      cVar1 = ValidateSystemConfiguration(auStack_50,
+                                                      cVar1 = ValidateSystemConfiguration(aStackParameter1,
                                                                                   &UNK_180a3aa70);
                                                       if (cVar1 != '\0') {
                                                         StringProcessingResult = 0x1a0;
                                                         goto Label_18060bbae;
                                                       }
-                                                      cVar1 = ValidateSystemConfiguration(auStack_50,
+                                                      cVar1 = ValidateSystemConfiguration(aStackParameter1,
                                                                                   &UNK_180a3aac0);
                                                       if (cVar1 != '\0') {
                                                         StringProcessingResult = 0x220;
                                                         goto Label_18060bbae;
                                                       }
-                                                      cVar1 = ValidateSystemConfiguration(auStack_50,
+                                                      cVar1 = ValidateSystemConfiguration(aStackParameter1,
                                                                                   &UNK_180a3aab0);
                                                       if (cVar1 != '\0') {
                                                         StringProcessingResult = 0x230;
                                                         goto Label_18060bbae;
                                                       }
-                                                      cVar1 = ValidateSystemConfiguration(auStack_50,
+                                                      cVar1 = ValidateSystemConfiguration(aStackParameter1,
                                                                                   &UNK_180a3aa20);
                                                       if (cVar1 != '\0') {
                                                         StringProcessingResult = 0x234;
                                                         goto Label_18060bbae;
                                                       }
-                                                      cVar1 = ValidateSystemConfiguration(auStack_50,
+                                                      cVar1 = ValidateSystemConfiguration(aStackParameter1,
                                                                                   &UNK_180a3aa08);
                                                       if (cVar1 != '\0') {
                                                         StringProcessingResult = 0x238;
                                                         goto Label_18060bbae;
                                                       }
-                                                      cVar1 = ValidateSystemConfiguration(auStack_50,
+                                                      cVar1 = ValidateSystemConfiguration(aStackParameter1,
                                                                                   &UNK_180a3aa50);
                                                       if (cVar1 != '\0') {
                                                         StringProcessingResult = 0x23c;
                                                         goto Label_18060bbae;
                                                       }
-                                                      cVar1 = ValidateSystemConfiguration(auStack_50,
+                                                      cVar1 = ValidateSystemConfiguration(aStackParameter1,
                                                                                   &UNK_180a3aa38);
                                                       if (cVar1 != '\0') {
                                                         StringProcessingResult = 0x240;
@@ -8728,10 +8728,10 @@ Label_18060b76f:
                                                   }
                                                   }
                                                   else {
-                                                    cVar1 = ValidateSystemConfiguration(auStack_50,
+                                                    cVar1 = ValidateSystemConfiguration(aStackParameter1,
                                                                                 &UNK_180a3a650);
                                                     if (cVar1 == '\0') {
-                                                      cVar1 = ValidateSystemConfiguration(auStack_50,
+                                                      cVar1 = ValidateSystemConfiguration(aStackParameter1,
                                                                                   &UNK_180a3a640);
                                                       if (cVar1 != '\0') {
                                                         StringProcessingResult = 4;
@@ -8742,40 +8742,40 @@ Label_18060b76f:
                                                   }
                                                   }
                                                   else {
-                                                    cVar1 = ValidateSystemConfiguration(auStack_50,
+                                                    cVar1 = ValidateSystemConfiguration(aStackParameter1,
                                                                                 &UNK_180a3a800);
                                                     if (cVar1 == '\0') {
-                                                      cVar1 = ValidateSystemConfiguration(auStack_50,
+                                                      cVar1 = ValidateSystemConfiguration(aStackParameter1,
                                                                                   &UNK_180a3a7a8);
                                                       if (cVar1 == '\0') {
-                                                        cVar1 = ValidateSystemConfiguration(auStack_50,
+                                                        cVar1 = ValidateSystemConfiguration(aStackParameter1,
                                                                                     &UNK_180a3a798);
                                                         if (cVar1 != '\0') goto Label_18060ad3e;
-                                                        cVar1 = ValidateSystemConfiguration(auStack_50,
+                                                        cVar1 = ValidateSystemConfiguration(aStackParameter1,
                                                                                     &UNK_180a3a7d0);
                                                         if (cVar1 == '\0') {
-                                                          cVar1 = ValidateSystemConfiguration(auStack_50,
+                                                          cVar1 = ValidateSystemConfiguration(aStackParameter1,
                                                                                       &UNK_180a3a7b8
                                                                                      );
                                                           if (cVar1 != '\0') goto Label_18060a114;
-                                                          cVar1 = ValidateSystemConfiguration(auStack_50,
+                                                          cVar1 = ValidateSystemConfiguration(aStackParameter1,
                                                                                       &UNK_180a3a898
                                                                                      );
                                                           if (cVar1 == '\0') {
-                                                            cVar1 = ValidateSystemConfiguration(auStack_50,
+                                                            cVar1 = ValidateSystemConfiguration(aStackParameter1,
                                                                                         &
                                                   UNK_180a3a880);
                                                   if (cVar1 != '\0') goto Label_18060ba49;
-                                                  cVar1 = ValidateSystemConfiguration(auStack_50,
+                                                  cVar1 = ValidateSystemConfiguration(aStackParameter1,
                                                                               &UNK_180a3a8c0);
                                                   if (cVar1 != '\0') goto Label_18060b1d7;
-                                                  cVar1 = ValidateSystemConfiguration(auStack_50,
+                                                  cVar1 = ValidateSystemConfiguration(aStackParameter1,
                                                                               &DAT_180a0ba58);
                                                   if (cVar1 != '\0') goto Label_18060b1f5;
-                                                  cVar1 = ValidateSystemConfiguration(auStack_50,
+                                                  cVar1 = ValidateSystemConfiguration(aStackParameter1,
                                                                               &UNK_180a3a5a8);
                                                   if (cVar1 == '\0') {
-                                                    cVar1 = ValidateSystemConfiguration(auStack_50,
+                                                    cVar1 = ValidateSystemConfiguration(aStackParameter1,
                                                                                 &UNK_180a2e2bc);
                                                     if (cVar1 != '\0') goto Label_18060b32d;
                                                     pBufferSize = &UNK_180a2e9e0;
@@ -8792,27 +8792,27 @@ Label_18060b76f:
                                                   }
                                                 }
                                                 else {
-                                                  cVar1 = ValidateSystemConfiguration(auStack_50,
+                                                  cVar1 = ValidateSystemConfiguration(aStackParameter1,
                                                                               &UNK_180a3a720);
                                                   if (cVar1 == '\0') {
-                                                    cVar1 = ValidateSystemConfiguration(auStack_50,
+                                                    cVar1 = ValidateSystemConfiguration(aStackParameter1,
                                                                                 &UNK_180a3a754);
                                                     if (cVar1 != '\0') goto Label_18060b9cb;
-                                                    cVar1 = ValidateSystemConfiguration(auStack_50,
+                                                    cVar1 = ValidateSystemConfiguration(aStackParameter1,
                                                                                 &UNK_180a3a748);
                                                     if (cVar1 != '\0') {
 Label_18060acd8:
                                                       StringProcessingResult = 0xc;
                                                       goto Label_18060bbae;
                                                     }
-                                                    cVar1 = ValidateSystemConfiguration(auStack_50,
+                                                    cVar1 = ValidateSystemConfiguration(aStackParameter1,
                                                                                 &UNK_180a3a7f0);
                                                     if (cVar1 != '\0') {
 Label_18060a91e:
                                                       StringProcessingResult = 0x14;
                                                       goto Label_18060bbae;
                                                     }
-                                                    cVar1 = ValidateSystemConfiguration(auStack_50,
+                                                    cVar1 = ValidateSystemConfiguration(aStackParameter1,
                                                                                 &UNK_180a3a7e0);
                                                     if (cVar1 != '\0') {
 Label_18060ba67:
@@ -8821,34 +8821,34 @@ Label_18060ba67:
                                                     }
                                                     pBufferSize = &UNK_180a3a820;
 Label_18060b0e8:
-                                                    cVar1 = ValidateSystemConfiguration(auStack_50,pBufferSize);
+                                                    cVar1 = ValidateSystemConfiguration(aStackParameter1,pBufferSize);
                                                     if (cVar1 != '\0') goto Label_18060b0f9;
                                                   }
                                                 }
                                               }
                                               else {
-                                                cVar1 = ValidateSystemConfiguration(auStack_50,
+                                                cVar1 = ValidateSystemConfiguration(aStackParameter1,
                                                                             &UNK_180a1a470);
                                                 if (cVar1 == '\0') {
-                                                  cVar1 = ValidateSystemConfiguration(auStack_50,
+                                                  cVar1 = ValidateSystemConfiguration(aStackParameter1,
                                                                               &UNK_180a3a758);
                                                   if (cVar1 != '\0') {
                                                     StringProcessingResult = 0x2000;
                                                     goto Label_18060bbae;
                                                   }
-                                                  cVar1 = ValidateSystemConfiguration(auStack_50,
+                                                  cVar1 = ValidateSystemConfiguration(aStackParameter1,
                                                                               &UNK_180a3a788);
                                                   if (cVar1 != '\0') {
                                                     StringProcessingResult = 0x2010;
                                                     goto Label_18060bbae;
                                                   }
-                                                  cVar1 = ValidateSystemConfiguration(auStack_50,
+                                                  cVar1 = ValidateSystemConfiguration(aStackParameter1,
                                                                               &UNK_180a3a778);
                                                   if (cVar1 != '\0') {
                                                     StringProcessingResult = 0x2020;
                                                     goto Label_18060bbae;
                                                   }
-                                                  cVar1 = ValidateSystemConfiguration(auStack_50,
+                                                  cVar1 = ValidateSystemConfiguration(aStackParameter1,
                                                                               &UNK_180a3a738);
                                                   if (cVar1 != '\0') {
                                                     StringProcessingResult = 0x2024;
@@ -8860,9 +8860,9 @@ Label_18060b0e8:
                                           }
                                           else {
 Label_18060af51:
-                                            cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a3a650);
+                                            cVar1 = ValidateSystemConfiguration(aStackParameter1,&UNK_180a3a650);
                                             if (cVar1 == '\0') {
-                                              cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a3a640)
+                                              cVar1 = ValidateSystemConfiguration(aStackParameter1,&UNK_180a3a640)
                                               ;
                                               if (cVar1 == '\0') {
                                                 pBufferSize = &UNK_180a3a5c0;
@@ -8873,63 +8873,63 @@ Label_18060af51:
                                           }
                                         }
                                         else {
-                                          cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a3a6c0);
+                                          cVar1 = ValidateSystemConfiguration(aStackParameter1,&UNK_180a3a6c0);
                                           if (cVar1 == '\0') {
-                                            cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a3a708);
+                                            cVar1 = ValidateSystemConfiguration(aStackParameter1,&UNK_180a3a708);
                                             if (cVar1 != '\0') goto Label_18060a114;
-                                            cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a3a6f8);
+                                            cVar1 = ValidateSystemConfiguration(aStackParameter1,&UNK_180a3a6f8);
                                             if (cVar1 != '\0') goto Label_18060b32d;
-                                            cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a39ee0);
+                                            cVar1 = ValidateSystemConfiguration(aStackParameter1,&UNK_180a39ee0);
                                             if (cVar1 != '\0') {
 Label_18060b0f9:
                                               StringProcessingResult = 0x24;
                                               goto Label_18060bbae;
                                             }
-                                            cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a39e48);
+                                            cVar1 = ValidateSystemConfiguration(aStackParameter1,&UNK_180a39e48);
                                             if (cVar1 != '\0') goto Label_1806091a3;
-                                            cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a39dd0);
+                                            cVar1 = ValidateSystemConfiguration(aStackParameter1,&UNK_180a39dd0);
                                             if (cVar1 != '\0') {
 Label_18060ae39:
                                               StringProcessingResult = 0x2c;
                                               goto Label_18060bbae;
                                             }
-                                            cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a39df0);
+                                            cVar1 = ValidateSystemConfiguration(aStackParameter1,&UNK_180a39df0);
                                             if (cVar1 != '\0') goto Label_18060ae57;
-                                            cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a39fb0);
+                                            cVar1 = ValidateSystemConfiguration(aStackParameter1,&UNK_180a39fb0);
                                             if (cVar1 != '\0') {
 Label_18060ae75:
                                               StringProcessingResult = 0x34;
                                               goto Label_18060bbae;
                                             }
-                                            cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a3a670);
+                                            cVar1 = ValidateSystemConfiguration(aStackParameter1,&UNK_180a3a670);
                                             if (cVar1 != '\0') goto Label_18060ae93;
-                                            cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a3a660);
+                                            cVar1 = ValidateSystemConfiguration(aStackParameter1,&UNK_180a3a660);
                                             if (cVar1 != '\0') {
 Label_18060aeb1:
                                               StringProcessingResult = 0x3c;
                                               goto Label_18060bbae;
                                             }
-                                            cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a3a6a0);
+                                            cVar1 = ValidateSystemConfiguration(aStackParameter1,&UNK_180a3a6a0);
                                             if (cVar1 != '\0') {
 Label_18060b6c7:
                                               StringProcessingResult = 0x50;
                                               goto Label_18060bbae;
                                             }
-                                            cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a3a688);
+                                            cVar1 = ValidateSystemConfiguration(aStackParameter1,&UNK_180a3a688);
                                             if (cVar1 != '\0') goto Label_18060b6e5;
-                                            cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a39d58);
+                                            cVar1 = ValidateSystemConfiguration(aStackParameter1,&UNK_180a39d58);
                                             if (cVar1 != '\0') {
 Label_18060b703:
                                               StringProcessingResult = 0x5c;
                                               goto Label_18060bbae;
                                             }
-                                            cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a39f18);
+                                            cVar1 = ValidateSystemConfiguration(aStackParameter1,&UNK_180a39f18);
                                             if (cVar1 != '\0') {
 Label_1806093cc:
                                               StringProcessingResult = 0x60;
                                               goto Label_18060bbae;
                                             }
-                                            cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a3a768);
+                                            cVar1 = ValidateSystemConfiguration(aStackParameter1,&UNK_180a3a768);
                                             if (cVar1 != '\0') {
                                               StringProcessingResult = 0x61;
                                               goto Label_18060bbae;
@@ -8938,9 +8938,9 @@ Label_1806093cc:
                                         }
                                       }
                                       else {
-                                        cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a3a650);
+                                        cVar1 = ValidateSystemConfiguration(aStackParameter1,&UNK_180a3a650);
                                         if (cVar1 == '\0') {
-                                          cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a3a640);
+                                          cVar1 = ValidateSystemConfiguration(aStackParameter1,&UNK_180a3a640);
                                           if (cVar1 == '\0') {
 Label_18060ad8c:
                                             pBufferSize = &UNK_180a3a5c0;
@@ -8951,128 +8951,128 @@ Label_18060ad8c:
                                       }
                                     }
                                     else {
-                                      cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a3a600);
+                                      cVar1 = ValidateSystemConfiguration(aStackParameter1,&UNK_180a3a600);
                                       if (cVar1 == '\0') {
-                                        cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a3a5e0);
+                                        cVar1 = ValidateSystemConfiguration(aStackParameter1,&UNK_180a3a5e0);
                                         if (cVar1 != '\0') goto Label_18060b9cb;
                                         pBufferSize = &UNK_180a3a6e0;
 Label_18060ad2d:
-                                        cVar1 = ValidateSystemConfiguration(auStack_50,pBufferSize);
+                                        cVar1 = ValidateSystemConfiguration(aStackParameter1,pBufferSize);
                                         if (cVar1 != '\0') goto Label_18060ad3e;
                                       }
                                     }
                                   }
                                   else {
-                                    cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a3a650);
+                                    cVar1 = ValidateSystemConfiguration(aStackParameter1,&UNK_180a3a650);
                                     if (cVar1 == '\0') {
-                                      cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a3a640);
+                                      cVar1 = ValidateSystemConfiguration(aStackParameter1,&UNK_180a3a640);
                                       if (cVar1 != '\0') goto Label_18060b9cb;
-                                      cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a3a5d0);
+                                      cVar1 = ValidateSystemConfiguration(aStackParameter1,&UNK_180a3a5d0);
                                       if (cVar1 != '\0') goto Label_18060ad3e;
-                                      cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a3a5c0);
+                                      cVar1 = ValidateSystemConfiguration(aStackParameter1,&UNK_180a3a5c0);
                                       if (cVar1 != '\0') goto Label_18060acd8;
                                     }
                                   }
                                 }
                                 else {
-                                  cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a3a2f8);
+                                  cVar1 = ValidateSystemConfiguration(aStackParameter1,&UNK_180a3a2f8);
                                   if (cVar1 == '\0') {
-                                    cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a3a2e8);
+                                    cVar1 = ValidateSystemConfiguration(aStackParameter1,&UNK_180a3a2e8);
                                     if (cVar1 != '\0') goto Label_18060b9cb;
-                                    cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a3a310);
+                                    cVar1 = ValidateSystemConfiguration(aStackParameter1,&UNK_180a3a310);
                                     if (cVar1 != '\0') goto Label_18060ad3e;
-                                    cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a3a300);
+                                    cVar1 = ValidateSystemConfiguration(aStackParameter1,&UNK_180a3a300);
                                     if (cVar1 != '\0') goto Label_18060acd8;
-                                    cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a3a418);
+                                    cVar1 = ValidateSystemConfiguration(aStackParameter1,&UNK_180a3a418);
                                     if (cVar1 != '\0') goto Label_18060a114;
-                                    cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a3a408);
+                                    cVar1 = ValidateSystemConfiguration(aStackParameter1,&UNK_180a3a408);
                                     if (cVar1 != '\0') goto Label_18060a91e;
-                                    cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a3a440);
+                                    cVar1 = ValidateSystemConfiguration(aStackParameter1,&UNK_180a3a440);
                                     if (cVar1 != '\0') goto Label_18060ba49;
-                                    cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a3a428);
+                                    cVar1 = ValidateSystemConfiguration(aStackParameter1,&UNK_180a3a428);
                                     if (cVar1 != '\0') goto Label_18060ba67;
-                                    cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a3a3d0);
+                                    cVar1 = ValidateSystemConfiguration(aStackParameter1,&UNK_180a3a3d0);
                                     if (cVar1 != '\0') goto Label_18060b32d;
-                                    cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a3a3c0);
+                                    cVar1 = ValidateSystemConfiguration(aStackParameter1,&UNK_180a3a3c0);
                                     if (cVar1 != '\0') goto Label_18060b0f9;
-                                    cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a3a3f8);
+                                    cVar1 = ValidateSystemConfiguration(aStackParameter1,&UNK_180a3a3f8);
                                     if (cVar1 != '\0') goto Label_1806091a3;
-                                    cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a3a3e8);
+                                    cVar1 = ValidateSystemConfiguration(aStackParameter1,&UNK_180a3a3e8);
                                     if (cVar1 != '\0') goto Label_18060ae39;
-                                    cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a3a4c0);
+                                    cVar1 = ValidateSystemConfiguration(aStackParameter1,&UNK_180a3a4c0);
                                     if (cVar1 != '\0') goto Label_18060ae57;
-                                    cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a3a4a8);
+                                    cVar1 = ValidateSystemConfiguration(aStackParameter1,&UNK_180a3a4a8);
                                     if (cVar1 != '\0') goto Label_18060ae75;
-                                    cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a3a4e0);
+                                    cVar1 = ValidateSystemConfiguration(aStackParameter1,&UNK_180a3a4e0);
                                     if (cVar1 != '\0') goto Label_18060ae93;
-                                    cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a3a4d0);
+                                    cVar1 = ValidateSystemConfiguration(aStackParameter1,&UNK_180a3a4d0);
                                     if (cVar1 != '\0') goto Label_18060aeb1;
-                                    cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a3a468);
+                                    cVar1 = ValidateSystemConfiguration(aStackParameter1,&UNK_180a3a468);
                                     if (cVar1 != '\0') {
                                       StringProcessingResult = 0x53c;
                                       goto Label_18060bbae;
                                     }
-                                    cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a3a458);
+                                    cVar1 = ValidateSystemConfiguration(aStackParameter1,&UNK_180a3a458);
                                     if (cVar1 != '\0') {
                                       StringProcessingResult = 0x540;
                                       goto Label_18060bbae;
                                     }
-                                    cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a3a498);
+                                    cVar1 = ValidateSystemConfiguration(aStackParameter1,&UNK_180a3a498);
                                     if (cVar1 != '\0') {
                                       StringProcessingResult = 0x544;
                                       goto Label_18060bbae;
                                     }
-                                    cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a3a478);
+                                    cVar1 = ValidateSystemConfiguration(aStackParameter1,&UNK_180a3a478);
                                     if (cVar1 != '\0') {
                                       StringProcessingResult = 0x548;
                                       goto Label_18060bbae;
                                     }
-                                    cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a3a560);
+                                    cVar1 = ValidateSystemConfiguration(aStackParameter1,&UNK_180a3a560);
                                     if (cVar1 != '\0') {
                                       StringProcessingResult = 0x54c;
                                       goto Label_18060bbae;
                                     }
-                                    cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a3a540);
+                                    cVar1 = ValidateSystemConfiguration(aStackParameter1,&UNK_180a3a540);
                                     if (cVar1 != '\0') {
                                       StringProcessingResult = 0x550;
                                       goto Label_18060bbae;
                                     }
-                                    cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a3a5a8);
+                                    cVar1 = ValidateSystemConfiguration(aStackParameter1,&UNK_180a3a5a8);
                                     if (cVar1 != '\0') {
                                       StringProcessingResult = 0x554;
                                       goto Label_18060bbae;
                                     }
-                                    cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a3a580);
+                                    cVar1 = ValidateSystemConfiguration(aStackParameter1,&UNK_180a3a580);
                                     if (cVar1 != '\0') {
                                       StringProcessingResult = 0x558;
                                       goto Label_18060bbae;
                                     }
-                                    cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a3a508);
+                                    cVar1 = ValidateSystemConfiguration(aStackParameter1,&UNK_180a3a508);
                                     if (cVar1 != '\0') {
                                       StringProcessingResult = 0x55c;
                                       goto Label_18060bbae;
                                     }
-                                    cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a3a4f8);
+                                    cVar1 = ValidateSystemConfiguration(aStackParameter1,&UNK_180a3a4f8);
                                     if (cVar1 != '\0') {
                                       StringProcessingResult = 0x560;
                                       goto Label_18060bbae;
                                     }
-                                    cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a3a530);
+                                    cVar1 = ValidateSystemConfiguration(aStackParameter1,&UNK_180a3a530);
                                     if (cVar1 != '\0') {
                                       StringProcessingResult = 0x564;
                                       goto Label_18060bbae;
                                     }
-                                    cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a3a520);
+                                    cVar1 = ValidateSystemConfiguration(aStackParameter1,&UNK_180a3a520);
                                     if (cVar1 != '\0') {
                                       StringProcessingResult = 0x565;
                                       goto Label_18060bbae;
                                     }
-                                    cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a3a630);
+                                    cVar1 = ValidateSystemConfiguration(aStackParameter1,&UNK_180a3a630);
                                     if (cVar1 != '\0') {
                                       StringProcessingResult = 0x566;
                                       goto Label_18060bbae;
                                     }
-                                    cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a3a620);
+                                    cVar1 = ValidateSystemConfiguration(aStackParameter1,&UNK_180a3a620);
                                     if (cVar1 != '\0') {
                                       StringProcessingResult = 0x567;
                                       goto Label_18060bbae;
@@ -9081,29 +9081,29 @@ Label_18060ad2d:
                                 }
                               }
                               else {
-                                cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a2e1d8);
+                                cVar1 = ValidateSystemConfiguration(aStackParameter1,&UNK_180a2e1d8);
                                 if (cVar1 == '\0') {
-                                  cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a2e1e8);
+                                  cVar1 = ValidateSystemConfiguration(aStackParameter1,&UNK_180a2e1e8);
                                   if (cVar1 != '\0') goto Label_18060b9cb;
-                                  cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a2e158);
+                                  cVar1 = ValidateSystemConfiguration(aStackParameter1,&UNK_180a2e158);
                                   if (cVar1 != '\0') goto Label_18060ad3e;
-                                  cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a2e150);
+                                  cVar1 = ValidateSystemConfiguration(aStackParameter1,&UNK_180a2e150);
                                   if (cVar1 != '\0') goto Label_18060acd8;
-                                  cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a0696c);
+                                  cVar1 = ValidateSystemConfiguration(aStackParameter1,&UNK_180a0696c);
                                   if (cVar1 != '\0') goto Label_18060a114;
-                                  cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a0ae28);
+                                  cVar1 = ValidateSystemConfiguration(aStackParameter1,&UNK_180a0ae28);
                                   if (cVar1 != '\0') goto Label_18060a91e;
                                 }
                               }
                             }
                             else {
-                              cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a3a260);
+                              cVar1 = ValidateSystemConfiguration(aStackParameter1,&UNK_180a3a260);
                               if (cVar1 == '\0') {
-                                cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a3a348);
+                                cVar1 = ValidateSystemConfiguration(aStackParameter1,&UNK_180a3a348);
                                 if (cVar1 == '\0') {
-                                  cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a3a320);
+                                  cVar1 = ValidateSystemConfiguration(aStackParameter1,&UNK_180a3a320);
                                   if (cVar1 == '\0') {
-                                    cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a3a398);
+                                    cVar1 = ValidateSystemConfiguration(aStackParameter1,&UNK_180a3a398);
                                     if (cVar1 == '\0') {
                                       pBufferSize = &UNK_180a3a370;
                                       goto Label_18060a103;
@@ -9117,131 +9117,131 @@ Label_18060ad2d:
                             }
                           }
                           else {
-                            cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a3a068);
+                            cVar1 = ValidateSystemConfiguration(aStackParameter1,&UNK_180a3a068);
                             if (cVar1 == '\0') {
-                              cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a3a058);
+                              cVar1 = ValidateSystemConfiguration(aStackParameter1,&UNK_180a3a058);
                               if (cVar1 != '\0') {
 Label_18060b9cb:
                                 StringProcessingResult = 4;
                                 goto Label_18060bbae;
                               }
-                              cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a39fe0);
+                              cVar1 = ValidateSystemConfiguration(aStackParameter1,&UNK_180a39fe0);
                               if (cVar1 != '\0') goto Label_18060ad3e;
-                              cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a39fc0);
+                              cVar1 = ValidateSystemConfiguration(aStackParameter1,&UNK_180a39fc0);
                               if (cVar1 != '\0') goto Label_18060acd8;
-                              cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a3a018);
+                              cVar1 = ValidateSystemConfiguration(aStackParameter1,&UNK_180a3a018);
                               if (cVar1 != '\0') goto Label_18060a114;
-                              cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a39ff8);
+                              cVar1 = ValidateSystemConfiguration(aStackParameter1,&UNK_180a39ff8);
                               if (cVar1 != '\0') goto Label_18060a91e;
-                              cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a3a118);
+                              cVar1 = ValidateSystemConfiguration(aStackParameter1,&UNK_180a3a118);
                               if (cVar1 != '\0') goto Label_18060ba49;
-                              cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a3a0f0);
+                              cVar1 = ValidateSystemConfiguration(aStackParameter1,&UNK_180a3a0f0);
                               if (cVar1 != '\0') goto Label_18060ba67;
-                              cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a3a158);
+                              cVar1 = ValidateSystemConfiguration(aStackParameter1,&UNK_180a3a158);
                               if (cVar1 != '\0') goto Label_18060b32d;
-                              cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a3a140);
+                              cVar1 = ValidateSystemConfiguration(aStackParameter1,&UNK_180a3a140);
                               if (cVar1 != '\0') goto Label_1806091a3;
-                              cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a3a098);
+                              cVar1 = ValidateSystemConfiguration(aStackParameter1,&UNK_180a3a098);
                               if (cVar1 != '\0') goto Label_18060ae57;
-                              cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a3a078);
+                              cVar1 = ValidateSystemConfiguration(aStackParameter1,&UNK_180a3a078);
                               if (cVar1 != '\0') goto Label_18060ae93;
-                              cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a3a0d0);
+                              cVar1 = ValidateSystemConfiguration(aStackParameter1,&UNK_180a3a0d0);
                               if (cVar1 != '\0') goto Label_18060b6a9;
-                              cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a3a0b8);
+                              cVar1 = ValidateSystemConfiguration(aStackParameter1,&UNK_180a3a0b8);
                               if (cVar1 != '\0') goto Label_18060a66e;
-                              cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a3a1e8);
+                              cVar1 = ValidateSystemConfiguration(aStackParameter1,&UNK_180a3a1e8);
                               if (cVar1 != '\0') goto Label_18060a68c;
-                              cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a3a1c8);
+                              cVar1 = ValidateSystemConfiguration(aStackParameter1,&UNK_180a3a1c8);
                               if (cVar1 != '\0') goto Label_18060a6aa;
-                              cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a3a220);
+                              cVar1 = ValidateSystemConfiguration(aStackParameter1,&UNK_180a3a220);
                               if (cVar1 != '\0') goto Label_18060b6c7;
-                              cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a3a208);
+                              cVar1 = ValidateSystemConfiguration(aStackParameter1,&UNK_180a3a208);
                               if (cVar1 != '\0') goto Label_18060b6e5;
-                              cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a3a188);
+                              cVar1 = ValidateSystemConfiguration(aStackParameter1,&UNK_180a3a188);
                               if (cVar1 != '\0') goto Label_1806093cc;
-                              cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a3a178);
+                              cVar1 = ValidateSystemConfiguration(aStackParameter1,&UNK_180a3a178);
                               if (cVar1 != '\0') goto Label_180609b20;
-                              cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a3a1b8);
+                              cVar1 = ValidateSystemConfiguration(aStackParameter1,&UNK_180a3a1b8);
                               if (cVar1 != '\0') {
 Label_18060b78d:
                                 StringProcessingResult = 0x70;
                                 goto Label_18060bbae;
                               }
-                              cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a3a1a8);
+                              cVar1 = ValidateSystemConfiguration(aStackParameter1,&UNK_180a3a1a8);
                               if (cVar1 != '\0') goto Label_18060b7c9;
-                              cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a3a2b0);
+                              cVar1 = ValidateSystemConfiguration(aStackParameter1,&UNK_180a3a2b0);
                               if (cVar1 != '\0') {
 Label_18060b805:
                                 StringProcessingResult = 0x80;
                                 goto Label_18060bbae;
                               }
-                              cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a3a298);
+                              cVar1 = ValidateSystemConfiguration(aStackParameter1,&UNK_180a3a298);
                               if (cVar1 != '\0') goto Label_18060b841;
-                              cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a3a2d8);
+                              cVar1 = ValidateSystemConfiguration(aStackParameter1,&UNK_180a3a2d8);
                               if (cVar1 != '\0') goto Label_18060b85f;
-                              cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a3a2c0);
+                              cVar1 = ValidateSystemConfiguration(aStackParameter1,&UNK_180a3a2c0);
                               if (cVar1 != '\0') goto Label_18060b87d;
-                              cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a3a250);
+                              cVar1 = ValidateSystemConfiguration(aStackParameter1,&UNK_180a3a250);
                               if (cVar1 != '\0') goto Label_18060b8d7;
-                              cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a3a240);
+                              cVar1 = ValidateSystemConfiguration(aStackParameter1,&UNK_180a3a240);
                               if (cVar1 != '\0') goto Label_18060b34b;
-                              cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a3a278);
+                              cVar1 = ValidateSystemConfiguration(aStackParameter1,&UNK_180a3a278);
                               if (cVar1 != '\0') goto Label_18060a7ec;
                             }
                           }
                         }
                         else {
-                          cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a39f50);
+                          cVar1 = ValidateSystemConfiguration(aStackParameter1,&UNK_180a39f50);
                           if (cVar1 == '\0') {
-                            cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a3a048);
+                            cVar1 = ValidateSystemConfiguration(aStackParameter1,&UNK_180a3a048);
                             if (cVar1 != '\0') goto Label_18060a4de;
-                            cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a3a038);
+                            cVar1 = ValidateSystemConfiguration(aStackParameter1,&UNK_180a3a038);
                             if (cVar1 != '\0') goto Label_18060a500;
                           }
                         }
                       }
                       else {
-                        cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a39e78);
+                        cVar1 = ValidateSystemConfiguration(aStackParameter1,&UNK_180a39e78);
                         if (cVar1 == '\0') {
-                          cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a39eb8);
+                          cVar1 = ValidateSystemConfiguration(aStackParameter1,&UNK_180a39eb8);
                           if (cVar1 != '\0') goto Label_18060a114;
-                          cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a39ea8);
+                          cVar1 = ValidateSystemConfiguration(aStackParameter1,&UNK_180a39ea8);
                           if (cVar1 != '\0') goto Label_18060b32d;
-                          cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a39f88);
+                          cVar1 = ValidateSystemConfiguration(aStackParameter1,&UNK_180a39f88);
                           if (cVar1 != '\0') goto Label_18060ae57;
-                          cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a39f78);
+                          cVar1 = ValidateSystemConfiguration(aStackParameter1,&UNK_180a39f78);
                           if (cVar1 != '\0') {
 Label_18060ae93:
                             StringProcessingResult = 0x38;
                             goto Label_18060bbae;
                           }
-                          cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a39fb0);
+                          cVar1 = ValidateSystemConfiguration(aStackParameter1,&UNK_180a39fb0);
                           if (cVar1 != '\0') {
 Label_18060b6a9:
                             StringProcessingResult = 0x40;
                             goto Label_18060bbae;
                           }
-                          cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a39f98);
+                          cVar1 = ValidateSystemConfiguration(aStackParameter1,&UNK_180a39f98);
                           if (cVar1 != '\0') {
 Label_18060a66e:
                             StringProcessingResult = 0x44;
                             goto Label_18060bbae;
                           }
-                          cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a39f28);
+                          cVar1 = ValidateSystemConfiguration(aStackParameter1,&UNK_180a39f28);
                           if (cVar1 != '\0') {
 Label_18060a68c:
                             StringProcessingResult = 0x48;
                             goto Label_18060bbae;
                           }
-                          cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a1029c);
+                          cVar1 = ValidateSystemConfiguration(aStackParameter1,&UNK_180a1029c);
                           if (cVar1 != '\0') {
 Label_18060a6aa:
                             StringProcessingResult = 0x4c;
                             goto Label_18060bbae;
                           }
-                          cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a39f18);
+                          cVar1 = ValidateSystemConfiguration(aStackParameter1,&UNK_180a39f18);
                           if (cVar1 != '\0') goto Label_18060b6c7;
-                          cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a39f60);
+                          cVar1 = ValidateSystemConfiguration(aStackParameter1,&UNK_180a39f60);
                           if (cVar1 != '\0') {
                             StringProcessingResult = 0x51;
                             goto Label_18060bbae;
@@ -9250,125 +9250,125 @@ Label_18060a6aa:
                       }
                     }
                     else {
-                      cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a39d98);
+                      cVar1 = ValidateSystemConfiguration(aStackParameter1,&UNK_180a39d98);
                       if (cVar1 == '\0') {
-                        cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a39dc0);
+                        cVar1 = ValidateSystemConfiguration(aStackParameter1,&UNK_180a39dc0);
                         if (cVar1 != '\0') {
 Label_18060b6e5:
                           StringProcessingResult = 0x58;
                           goto Label_18060bbae;
                         }
-                        cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a35198);
+                        cVar1 = ValidateSystemConfiguration(aStackParameter1,&UNK_180a35198);
                         if (cVar1 != '\0') {
 Label_180609b20:
                           StringProcessingResult = 0x68;
                           goto Label_18060bbae;
                         }
-                        cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a39db0);
+                        cVar1 = ValidateSystemConfiguration(aStackParameter1,&UNK_180a39db0);
                         if (cVar1 != '\0') {
 Label_18060b7c9:
                           StringProcessingResult = 0x78;
                           goto Label_18060bbae;
                         }
-                        cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a39d58);
+                        cVar1 = ValidateSystemConfiguration(aStackParameter1,&UNK_180a39d58);
                         if (cVar1 != '\0') {
 Label_18060b841:
                           StringProcessingResult = 0x88;
                           goto Label_18060bbae;
                         }
-                        cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a39d40);
+                        cVar1 = ValidateSystemConfiguration(aStackParameter1,&UNK_180a39d40);
                         if (cVar1 != '\0') {
 Label_18060b85f:
                           StringProcessingResult = 0x8c;
                           goto Label_18060bbae;
                         }
-                        cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a39d88);
+                        cVar1 = ValidateSystemConfiguration(aStackParameter1,&UNK_180a39d88);
                         if (cVar1 != '\0') {
 Label_18060b87d:
                           StringProcessingResult = 0x90;
                           goto Label_18060bbae;
                         }
-                        cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a39d70);
+                        cVar1 = ValidateSystemConfiguration(aStackParameter1,&UNK_180a39d70);
                         if (cVar1 != '\0') {
 Label_18060b89b:
                           StringProcessingResult = 0x94;
                           goto Label_18060bbae;
                         }
-                        cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a39e30);
+                        cVar1 = ValidateSystemConfiguration(aStackParameter1,&UNK_180a39e30);
                         if (cVar1 != '\0') {
 Label_18060b8d7:
                           StringProcessingResult = 0x98;
                           goto Label_18060bbae;
                         }
-                        cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a39e18);
+                        cVar1 = ValidateSystemConfiguration(aStackParameter1,&UNK_180a39e18);
                         if (cVar1 != '\0') {
 Label_18060b8f9:
                           StringProcessingResult = 0x9c;
                           goto Label_18060bbae;
                         }
-                        cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a39e58);
+                        cVar1 = ValidateSystemConfiguration(aStackParameter1,&UNK_180a39e58);
                         if (cVar1 != '\0') {
 Label_18060b34b:
                           StringProcessingResult = 0xa0;
                           goto Label_18060bbae;
                         }
-                        cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a34948);
+                        cVar1 = ValidateSystemConfiguration(aStackParameter1,&UNK_180a34948);
                         if (cVar1 != '\0') {
 Label_18060a7ec:
                           StringProcessingResult = 0xa4;
                           goto Label_18060bbae;
                         }
-                        cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a39e48);
+                        cVar1 = ValidateSystemConfiguration(aStackParameter1,&UNK_180a39e48);
                         if (cVar1 != '\0') {
 Label_18060b369:
                           StringProcessingResult = 0xa8;
                           goto Label_18060bbae;
                         }
-                        cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a39de0);
+                        cVar1 = ValidateSystemConfiguration(aStackParameter1,&UNK_180a39de0);
                         if (cVar1 != '\0') {
 Label_18060a282:
                           StringProcessingResult = 0xac;
                           goto Label_18060bbae;
                         }
-                        cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a39dd0);
+                        cVar1 = ValidateSystemConfiguration(aStackParameter1,&UNK_180a39dd0);
                         if (cVar1 != '\0') {
 Label_18060b387:
                           StringProcessingResult = 0xb0;
                           goto Label_18060bbae;
                         }
-                        cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a39e08);
+                        cVar1 = ValidateSystemConfiguration(aStackParameter1,&UNK_180a39e08);
                         if (cVar1 != '\0') {
                           StringProcessingResult = 0xb4;
                           goto Label_18060bbae;
                         }
-                        cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a39df0);
+                        cVar1 = ValidateSystemConfiguration(aStackParameter1,&UNK_180a39df0);
                         if (cVar1 != '\0') {
                           StringProcessingResult = 0xb5;
                           goto Label_18060bbae;
                         }
-                        cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a39ee0);
+                        cVar1 = ValidateSystemConfiguration(aStackParameter1,&UNK_180a39ee0);
                         if (cVar1 != '\0') {
 Label_18060b3a5:
                           StringProcessingResult = 0xb8;
                           goto Label_18060bbae;
                         }
-                        cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a39ed0);
+                        cVar1 = ValidateSystemConfiguration(aStackParameter1,&UNK_180a39ed0);
                         if (cVar1 != '\0') {
 Label_18060a30c:
                           StringProcessingResult = 0xbc;
                           goto Label_18060bbae;
                         }
-                        cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a39f00);
+                        cVar1 = ValidateSystemConfiguration(aStackParameter1,&UNK_180a39f00);
                         if (cVar1 != '\0') {
                           StringProcessingResult = 0xbd;
                           goto Label_18060bbae;
                         }
-                        cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a39ef0);
+                        cVar1 = ValidateSystemConfiguration(aStackParameter1,&UNK_180a39ef0);
                         if (cVar1 != '\0') {
                           StringProcessingResult = 0xbe;
                           goto Label_18060bbae;
                         }
-                        cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a39e90);
+                        cVar1 = ValidateSystemConfiguration(aStackParameter1,&UNK_180a39e90);
                         if (cVar1 != '\0') {
 Label_18060a36a:
                           StringProcessingResult = 0xc0;
@@ -9378,143 +9378,143 @@ Label_18060a36a:
                     }
                   }
                   else {
-                    cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a39cd0);
+                    cVar1 = ValidateSystemConfiguration(aStackParameter1,&UNK_180a39cd0);
                     if (cVar1 == '\0') {
-                      cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a39ccc);
+                      cVar1 = ValidateSystemConfiguration(aStackParameter1,&UNK_180a39ccc);
                       if (cVar1 != '\0') goto Label_18060b9cb;
-                      cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a39cd8);
+                      cVar1 = ValidateSystemConfiguration(aStackParameter1,&UNK_180a39cd8);
                       if (cVar1 != '\0') goto Label_18060ad3e;
-                      cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a39cd4);
+                      cVar1 = ValidateSystemConfiguration(aStackParameter1,&UNK_180a39cd4);
                       if (cVar1 != '\0') goto Label_18060acd8;
                       pBufferSize = &UNK_180a39da8;
 Label_18060a103:
-                      cVar1 = ValidateSystemConfiguration(auStack_50,pBufferSize);
+                      cVar1 = ValidateSystemConfiguration(aStackParameter1,pBufferSize);
                       if (cVar1 != '\0') goto Label_18060a114;
                     }
                   }
                 }
                 else {
-                  cVar1 = ValidateSystemConfigurationData(auStack_50,&SystemConfigurationDataBuffer1,1);
+                  cVar1 = ValidateSystemConfigurationData(aStackParameter1,&SystemConfigurationDataBuffer1,1);
                   if (cVar1 == '\0') {
-                    cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a39988);
+                    cVar1 = ValidateSystemConfiguration(aStackParameter1,&UNK_180a39988);
                     if (cVar1 != '\0') {
 Label_18060a4de:
                       StringProcessingResult = 1;
                       goto Label_18060bbae;
                     }
-                    cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a39970);
+                    cVar1 = ValidateSystemConfiguration(aStackParameter1,&UNK_180a39970);
                     if (cVar1 != '\0') {
 Label_18060a500:
                       StringProcessingResult = 2;
                       goto Label_18060bbae;
                     }
-                    cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a398d8);
+                    cVar1 = ValidateSystemConfiguration(aStackParameter1,&UNK_180a398d8);
                     if (cVar1 != '\0') {
                       StringProcessingResult = 3;
                       goto Label_18060bbae;
                     }
-                    cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a398b8);
+                    cVar1 = ValidateSystemConfiguration(aStackParameter1,&UNK_180a398b8);
                     if (cVar1 != '\0') goto Label_18060b9cb;
-                    cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a39910);
+                    cVar1 = ValidateSystemConfiguration(aStackParameter1,&UNK_180a39910);
                     if (cVar1 != '\0') {
                       StringProcessingResult = 5;
                       goto Label_18060bbae;
                     }
-                    cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a398f0);
+                    cVar1 = ValidateSystemConfiguration(aStackParameter1,&UNK_180a398f0);
                     if (cVar1 != '\0') {
                       StringProcessingResult = 6;
                       goto Label_18060bbae;
                     }
-                    cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a39a28);
+                    cVar1 = ValidateSystemConfiguration(aStackParameter1,&UNK_180a39a28);
                     if (cVar1 != '\0') goto Label_180609cf8;
-                    cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a39a18);
+                    cVar1 = ValidateSystemConfiguration(aStackParameter1,&UNK_180a39a18);
                     if (cVar1 != '\0') goto Label_18060ad3e;
-                    cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a39a60);
+                    cVar1 = ValidateSystemConfiguration(aStackParameter1,&UNK_180a39a60);
                     if (cVar1 != '\0') goto Label_180609d2e;
-                    cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a39a40);
+                    cVar1 = ValidateSystemConfiguration(aStackParameter1,&UNK_180a39a40);
                     if (cVar1 != '\0') goto Label_180609d4c;
-                    cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a399c0);
+                    cVar1 = ValidateSystemConfiguration(aStackParameter1,&UNK_180a399c0);
                     if (cVar1 != '\0') goto Label_180609d6a;
-                    cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a399a8);
+                    cVar1 = ValidateSystemConfiguration(aStackParameter1,&UNK_180a399a8);
                     if (cVar1 != '\0') goto Label_18060acd8;
-                    cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a399f0);
+                    cVar1 = ValidateSystemConfiguration(aStackParameter1,&UNK_180a399f0);
                     if (cVar1 != '\0') goto Label_18060a114;
-                    cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a399e0);
+                    cVar1 = ValidateSystemConfiguration(aStackParameter1,&UNK_180a399e0);
                     if (cVar1 != '\0') goto Label_18060a91e;
-                    cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a39af0);
+                    cVar1 = ValidateSystemConfiguration(aStackParameter1,&UNK_180a39af0);
                     if (cVar1 != '\0') goto Label_18060ba49;
-                    cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a39ad8);
+                    cVar1 = ValidateSystemConfiguration(aStackParameter1,&UNK_180a39ad8);
                     if (cVar1 != '\0') goto Label_18060ba67;
-                    cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a39b18);
+                    cVar1 = ValidateSystemConfiguration(aStackParameter1,&UNK_180a39b18);
                     if (cVar1 != '\0') {
                       StringProcessingResult = 0x1d;
                       goto Label_18060bbae;
                     }
-                    cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a39b00);
+                    cVar1 = ValidateSystemConfiguration(aStackParameter1,&UNK_180a39b00);
                     if (cVar1 != '\0') {
                       StringProcessingResult = 0x1e;
                       goto Label_18060bbae;
                     }
-                    cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a39a88);
+                    cVar1 = ValidateSystemConfiguration(aStackParameter1,&UNK_180a39a88);
                     if (cVar1 != '\0') goto Label_18060b32d;
-                    cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a39a70);
+                    cVar1 = ValidateSystemConfiguration(aStackParameter1,&UNK_180a39a70);
                     if (cVar1 != '\0') goto Label_18060b0f9;
-                    cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a39ab8);
+                    cVar1 = ValidateSystemConfiguration(aStackParameter1,&UNK_180a39ab8);
                     if (cVar1 != '\0') goto Label_1806091a3;
-                    cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a39aa0);
+                    cVar1 = ValidateSystemConfiguration(aStackParameter1,&UNK_180a39aa0);
                     if (cVar1 != '\0') goto Label_18060ae39;
-                    cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a39ba0);
+                    cVar1 = ValidateSystemConfiguration(aStackParameter1,&UNK_180a39ba0);
                     if (cVar1 != '\0') goto Label_18060ae57;
-                    cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a39b88);
+                    cVar1 = ValidateSystemConfiguration(aStackParameter1,&UNK_180a39b88);
                     if (cVar1 != '\0') goto Label_18060ae75;
-                    cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a39bd8);
+                    cVar1 = ValidateSystemConfiguration(aStackParameter1,&UNK_180a39bd8);
                     if (cVar1 != '\0') goto Label_18060ae93;
-                    cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a39bc0);
+                    cVar1 = ValidateSystemConfiguration(aStackParameter1,&UNK_180a39bc0);
                     if (cVar1 != '\0') goto Label_18060aeb1;
-                    cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a39b48);
+                    cVar1 = ValidateSystemConfiguration(aStackParameter1,&UNK_180a39b48);
                     if (cVar1 != '\0') goto Label_18060b6a9;
-                    cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a39b30);
+                    cVar1 = ValidateSystemConfiguration(aStackParameter1,&UNK_180a39b30);
                     if (cVar1 != '\0') goto Label_18060a66e;
-                    cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a39b78);
+                    cVar1 = ValidateSystemConfiguration(aStackParameter1,&UNK_180a39b78);
                     if (cVar1 != '\0') goto Label_18060a68c;
-                    cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a39b68);
+                    cVar1 = ValidateSystemConfiguration(aStackParameter1,&UNK_180a39b68);
                     if (cVar1 != '\0') goto Label_18060a6aa;
-                    cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a39c80);
+                    cVar1 = ValidateSystemConfiguration(aStackParameter1,&UNK_180a39c80);
                     if (cVar1 != '\0') goto Label_18060b703;
-                    cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a39c60);
+                    cVar1 = ValidateSystemConfiguration(aStackParameter1,&UNK_180a39c60);
                     if (cVar1 != '\0') goto Label_18060b76f;
-                    cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a39cb8);
+                    cVar1 = ValidateSystemConfiguration(aStackParameter1,&UNK_180a39cb8);
                     if (cVar1 != '\0') {
 Label_18060b7e7:
                       StringProcessingResult = 0x7c;
                       goto Label_18060bbae;
                     }
-                    cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a39c98);
+                    cVar1 = ValidateSystemConfiguration(aStackParameter1,&UNK_180a39c98);
                     if (cVar1 != '\0') goto Label_18060b85f;
-                    cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a39c10);
+                    cVar1 = ValidateSystemConfiguration(aStackParameter1,&UNK_180a39c10);
                     if (cVar1 != '\0') goto Label_18060b8f9;
-                    cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a39bf0);
+                    cVar1 = ValidateSystemConfiguration(aStackParameter1,&UNK_180a39bf0);
                     if (cVar1 != '\0') goto Label_18060a282;
-                    cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a39c50);
+                    cVar1 = ValidateSystemConfiguration(aStackParameter1,&UNK_180a39c50);
                     if (cVar1 != '\0') goto Label_18060a30c;
-                    cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a39c30);
+                    cVar1 = ValidateSystemConfiguration(aStackParameter1,&UNK_180a39c30);
                     if (cVar1 != '\0') goto Label_18060a36a;
-                    cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a39cf8);
+                    cVar1 = ValidateSystemConfiguration(aStackParameter1,&UNK_180a39cf8);
                     if (cVar1 != '\0') {
                       StringProcessingResult = 0xc4;
                       goto Label_18060bbae;
                     }
-                    cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a39ce0);
+                    cVar1 = ValidateSystemConfiguration(aStackParameter1,&UNK_180a39ce0);
                     if (cVar1 != '\0') {
                       StringProcessingResult = 200;
                       goto Label_18060bbae;
                     }
-                    cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a39d28);
+                    cVar1 = ValidateSystemConfiguration(aStackParameter1,&UNK_180a39d28);
                     if (cVar1 != '\0') {
                       StringProcessingResult = 0xcc;
                       goto Label_18060bbae;
                     }
-                    cVar1 = ValidateSystemConfiguration(auStack_50,&UNK_180a39d10);
+                    cVar1 = ValidateSystemConfiguration(aStackParameter1,&UNK_180a39d10);
                     if (cVar1 != '\0') {
                       StringProcessingResult = 0xd0;
                       goto Label_18060bbae;
@@ -9523,34 +9523,34 @@ Label_18060b7e7:
                 }
               }
               else {
-                cVar1 = ValidateSystemConfigurationData(auStack_50,&SystemConfigurationDataBuffer2,1);
+                cVar1 = ValidateSystemConfigurationData(aStackParameter1,&SystemConfigurationDataBuffer2,1);
                 if (cVar1 == '\0') {
-                  cVar1 = ValidateSystemConfigurationData(auStack_50,&UNK_180a397f8,1);
+                  cVar1 = ValidateSystemConfigurationData(aStackParameter1,&UNK_180a397f8,1);
                   if (cVar1 != '\0') {
 Label_18060a114:
                     StringProcessingResult = 0x10;
                     goto Label_18060bbae;
                   }
-                  cVar1 = ValidateSystemConfigurationData(auStack_50,&UNK_180a397e8,1);
+                  cVar1 = ValidateSystemConfigurationData(aStackParameter1,&UNK_180a397e8,1);
                   if (cVar1 != '\0') {
 Label_18060b32d:
                     StringProcessingResult = 0x20;
                     goto Label_18060bbae;
                   }
-                  cVar1 = ValidateSystemConfigurationData(auStack_50,&UNK_180a39850,1);
+                  cVar1 = ValidateSystemConfigurationData(aStackParameter1,&UNK_180a39850,1);
                   if (cVar1 != '\0') goto Label_1806091a3;
-                  cVar1 = ValidateSystemConfigurationData(auStack_50,&UNK_180a39820,1);
+                  cVar1 = ValidateSystemConfigurationData(aStackParameter1,&UNK_180a39820,1);
                   if (cVar1 != '\0') {
 Label_18060ae57:
                     StringProcessingResult = 0x30;
                     goto Label_18060bbae;
                   }
-                  cVar1 = ValidateSystemConfigurationData(auStack_50,&UNK_180a39940,1);
+                  cVar1 = ValidateSystemConfigurationData(aStackParameter1,&UNK_180a39940,1);
                   if (cVar1 != '\0') {
                     StringProcessingResult = 0x31;
                     goto Label_18060bbae;
                   }
-                  cVar1 = ValidateSystemConfigurationData(auStack_50,&UNK_180a19c8c,1);
+                  cVar1 = ValidateSystemConfigurationData(aStackParameter1,&UNK_180a19c8c,1);
                   if (cVar1 != '\0') {
                     StringProcessingResult = 0x32;
                     goto Label_18060bbae;
@@ -9559,168 +9559,168 @@ Label_18060ae57:
               }
             }
             else {
-              cVar1 = ValidateSystemConfigurationData(auStack_50,&UNK_180a397d8,1);
+              cVar1 = ValidateSystemConfigurationData(aStackParameter1,&UNK_180a397d8,1);
               if (cVar1 == '\0') {
-                cVar1 = ValidateSystemConfigurationData(auStack_50,&UNK_180a397c8,1);
+                cVar1 = ValidateSystemConfigurationData(aStackParameter1,&UNK_180a397c8,1);
                 if (cVar1 != '\0') goto Label_18060b9cb;
-                cVar1 = ValidateSystemConfigurationData(auStack_50,&UNK_180a39740,1);
+                cVar1 = ValidateSystemConfigurationData(aStackParameter1,&UNK_180a39740,1);
                 if (cVar1 != '\0') goto Label_18060ad3e;
-                cVar1 = ValidateSystemConfigurationData(auStack_50,&UNK_180a39728,1);
+                cVar1 = ValidateSystemConfigurationData(aStackParameter1,&UNK_180a39728,1);
                 if (cVar1 != '\0') goto Label_18060acd8;
-                cVar1 = ValidateSystemConfigurationData(auStack_50,&UNK_180a39768,1);
+                cVar1 = ValidateSystemConfigurationData(aStackParameter1,&UNK_180a39768,1);
                 if (cVar1 != '\0') goto Label_18060a114;
-                cVar1 = ValidateSystemConfigurationData(auStack_50,&UNK_180a39758,1);
+                cVar1 = ValidateSystemConfigurationData(aStackParameter1,&UNK_180a39758,1);
                 if (cVar1 != '\0') goto Label_18060a91e;
-                cVar1 = ValidateSystemConfigurationData(auStack_50,&UNK_180a39870,1);
+                cVar1 = ValidateSystemConfigurationData(aStackParameter1,&UNK_180a39870,1);
                 if (cVar1 != '\0') goto Label_18060ba49;
-                cVar1 = ValidateSystemConfigurationData(auStack_50,&UNK_180a19c8c,1);
+                cVar1 = ValidateSystemConfigurationData(aStackParameter1,&UNK_180a19c8c,1);
                 if (cVar1 != '\0') {
 Label_18060b1d7:
                   StringProcessingResult = 0x19;
                   goto Label_18060bbae;
                 }
-                cVar1 = ValidateSystemConfigurationData(auStack_50,&UNK_180a39864,1);
+                cVar1 = ValidateSystemConfigurationData(aStackParameter1,&UNK_180a39864,1);
                 if (cVar1 != '\0') {
                   StringProcessingResult = 0x35;
                   goto Label_18060bbae;
                 }
-                cVar1 = ValidateSystemConfigurationData(auStack_50,&UNK_180a398a8,1);
+                cVar1 = ValidateSystemConfigurationData(aStackParameter1,&UNK_180a398a8,1);
                 if (cVar1 != '\0') goto Label_180609b20;
               }
             }
           }
           else {
-            cVar1 = ValidateSystemConfigurationData(auStack_50,&UNK_180a39568,1);
+            cVar1 = ValidateSystemConfigurationData(aStackParameter1,&UNK_180a39568,1);
             if (cVar1 == '\0') {
-              cVar1 = ValidateSystemConfigurationData(auStack_50,&UNK_180a39538,1);
+              cVar1 = ValidateSystemConfigurationData(aStackParameter1,&UNK_180a39538,1);
               if (cVar1 != '\0') {
 Label_180609cf8:
                 StringProcessingResult = 7;
                 goto Label_18060bbae;
               }
-              cVar1 = ValidateSystemConfigurationData(auStack_50,&UNK_180a396c8,1);
+              cVar1 = ValidateSystemConfigurationData(aStackParameter1,&UNK_180a396c8,1);
               if (cVar1 != '\0') goto Label_18060ad3e;
-              cVar1 = ValidateSystemConfigurationData(auStack_50,&UNK_180a396b0,1);
+              cVar1 = ValidateSystemConfigurationData(aStackParameter1,&UNK_180a396b0,1);
               if (cVar1 != '\0') goto Label_180609d2e;
-              cVar1 = ValidateSystemConfigurationData(auStack_50,&UNK_180a39710,1);
+              cVar1 = ValidateSystemConfigurationData(aStackParameter1,&UNK_180a39710,1);
               if (cVar1 != '\0') {
 Label_180609d4c:
                 StringProcessingResult = 10;
                 goto Label_18060bbae;
               }
-              cVar1 = ValidateSystemConfigurationData(auStack_50,&UNK_180a396f0,1);
+              cVar1 = ValidateSystemConfigurationData(aStackParameter1,&UNK_180a396f0,1);
               if (cVar1 != '\0') goto Label_180609d6a;
-              cVar1 = ValidateSystemConfigurationData(auStack_50,&UNK_180a39640,1);
+              cVar1 = ValidateSystemConfigurationData(aStackParameter1,&UNK_180a39640,1);
               if (cVar1 != '\0') goto Label_18060acd8;
-              cVar1 = ValidateSystemConfigurationData(auStack_50,&UNK_180a39628,1);
+              cVar1 = ValidateSystemConfigurationData(aStackParameter1,&UNK_180a39628,1);
               if (cVar1 != '\0') {
                 StringProcessingResult = 0xd;
                 goto Label_18060bbae;
               }
-              cVar1 = ValidateSystemConfigurationData(auStack_50,&UNK_180a39688,1);
+              cVar1 = ValidateSystemConfigurationData(aStackParameter1,&UNK_180a39688,1);
               if (cVar1 != '\0') {
                 StringProcessingResult = 0xe;
                 goto Label_18060bbae;
               }
-              cVar1 = ValidateSystemConfigurationData(auStack_50,&UNK_180a39660,1);
+              cVar1 = ValidateSystemConfigurationData(aStackParameter1,&UNK_180a39660,1);
               if (cVar1 != '\0') {
                 StringProcessingResult = 0xf;
                 goto Label_18060bbae;
               }
-              cVar1 = ValidateSystemConfigurationData(auStack_50,&UNK_180a397a8,1);
+              cVar1 = ValidateSystemConfigurationData(aStackParameter1,&UNK_180a397a8,1);
               if (cVar1 != '\0') goto Label_18060a114;
-              cVar1 = ValidateSystemConfigurationData(auStack_50,&UNK_180a39788,1);
+              cVar1 = ValidateSystemConfigurationData(aStackParameter1,&UNK_180a39788,1);
               if (cVar1 != '\0') goto Label_1806099ea;
             }
           }
         }
         else {
-          cVar1 = ValidateSystemConfigurationData(auStack_50,&UNK_180a39270,1);
+          cVar1 = ValidateSystemConfigurationData(aStackParameter1,&UNK_180a39270,1);
           if (cVar1 == '\0') {
-            cVar1 = ValidateSystemConfigurationData(auStack_50,&UNK_180a393a8,1);
+            cVar1 = ValidateSystemConfigurationData(aStackParameter1,&UNK_180a393a8,1);
             if (cVar1 != '\0') goto Label_18060ad3e;
-            cVar1 = ValidateSystemConfigurationData(auStack_50,&UNK_180a39390,1);
+            cVar1 = ValidateSystemConfigurationData(aStackParameter1,&UNK_180a39390,1);
             if (cVar1 != '\0') {
 Label_180609d2e:
               StringProcessingResult = 9;
               goto Label_18060bbae;
             }
-            cVar1 = ValidateSystemConfigurationData(auStack_50,&UNK_180a393f0,1);
+            cVar1 = ValidateSystemConfigurationData(aStackParameter1,&UNK_180a393f0,1);
             if (cVar1 != '\0') goto Label_18060a114;
-            cVar1 = ValidateSystemConfigurationData(auStack_50,&UNK_180a393d0,1);
+            cVar1 = ValidateSystemConfigurationData(aStackParameter1,&UNK_180a393d0,1);
             if (cVar1 != '\0') goto Label_1806099ea;
-            cVar1 = ValidateSystemConfigurationData(auStack_50,&UNK_180a39348,1);
+            cVar1 = ValidateSystemConfigurationData(aStackParameter1,&UNK_180a39348,1);
             if (cVar1 != '\0') {
 Label_18060965b:
               StringProcessingResult = 0x17;
               goto Label_18060bbae;
             }
-            cVar1 = ValidateSystemConfigurationData(auStack_50,&UNK_180a39328,1);
+            cVar1 = ValidateSystemConfigurationData(aStackParameter1,&UNK_180a39328,1);
             if (cVar1 != '\0') goto Label_18060ba49;
-            cVar1 = ValidateSystemConfigurationData(auStack_50,&UNK_180a39378,1);
+            cVar1 = ValidateSystemConfigurationData(aStackParameter1,&UNK_180a39378,1);
             if (cVar1 != '\0') goto Label_18060b32d;
-            cVar1 = ValidateSystemConfigurationData(auStack_50,&UNK_180a39360,1);
+            cVar1 = ValidateSystemConfigurationData(aStackParameter1,&UNK_180a39360,1);
             if (cVar1 != '\0') {
               StringProcessingResult = 0x21;
               goto Label_18060bbae;
             }
-            cVar1 = ValidateSystemConfigurationData(auStack_50,&UNK_180a394a0,1);
+            cVar1 = ValidateSystemConfigurationData(aStackParameter1,&UNK_180a394a0,1);
             if (cVar1 != '\0') {
               StringProcessingResult = 0x22;
               goto Label_18060bbae;
             }
-            cVar1 = ValidateSystemConfigurationData(auStack_50,&UNK_180a39480,1);
+            cVar1 = ValidateSystemConfigurationData(aStackParameter1,&UNK_180a39480,1);
             if (cVar1 != '\0') {
               StringProcessingResult = 0x23;
               goto Label_18060bbae;
             }
-            cVar1 = ValidateSystemConfigurationData(auStack_50,&UNK_180a394e0,1);
+            cVar1 = ValidateSystemConfigurationData(aStackParameter1,&UNK_180a394e0,1);
             if (cVar1 != '\0') goto Label_18060b0f9;
-            cVar1 = ValidateSystemConfigurationData(auStack_50,&UNK_180a394b8,1);
+            cVar1 = ValidateSystemConfigurationData(aStackParameter1,&UNK_180a394b8,1);
             if (cVar1 != '\0') {
               StringProcessingResult = 0x25;
               goto Label_18060bbae;
             }
-            cVar1 = ValidateSystemConfigurationData(auStack_50,&UNK_180a39428,1);
+            cVar1 = ValidateSystemConfigurationData(aStackParameter1,&UNK_180a39428,1);
             if (cVar1 != '\0') {
               StringProcessingResult = 0x26;
               goto Label_18060bbae;
             }
-            cVar1 = ValidateSystemConfigurationData(auStack_50,&UNK_180a39408,1);
+            cVar1 = ValidateSystemConfigurationData(aStackParameter1,&UNK_180a39408,1);
             if (cVar1 != '\0') {
               StringProcessingResult = 0x27;
               goto Label_18060bbae;
             }
-            cVar1 = ValidateSystemConfigurationData(auStack_50,&UNK_180a39468,1);
+            cVar1 = ValidateSystemConfigurationData(aStackParameter1,&UNK_180a39468,1);
             if (cVar1 != '\0') goto Label_1806091a3;
-            cVar1 = ValidateSystemConfigurationData(auStack_50,&UNK_180a39450,1);
+            cVar1 = ValidateSystemConfigurationData(aStackParameter1,&UNK_180a39450,1);
             if (cVar1 != '\0') {
               StringProcessingResult = 0x29;
               goto Label_18060bbae;
             }
-            cVar1 = ValidateSystemConfigurationData(auStack_50,&UNK_180a395c0,1);
+            cVar1 = ValidateSystemConfigurationData(aStackParameter1,&UNK_180a395c0,1);
             if (cVar1 != '\0') {
               StringProcessingResult = 0x2a;
               goto Label_18060bbae;
             }
-            cVar1 = ValidateSystemConfigurationData(auStack_50,&UNK_180a39598,1);
+            cVar1 = ValidateSystemConfigurationData(aStackParameter1,&UNK_180a39598,1);
             if (cVar1 != '\0') {
               StringProcessingResult = 0x2b;
               goto Label_18060bbae;
             }
-            cVar1 = ValidateSystemConfigurationData(auStack_50,&UNK_180a39600,1);
+            cVar1 = ValidateSystemConfigurationData(aStackParameter1,&UNK_180a39600,1);
             if (cVar1 != '\0') goto Label_18060ae39;
-            cVar1 = ValidateSystemConfigurationData(auStack_50,&UNK_180a395e0,1);
+            cVar1 = ValidateSystemConfigurationData(aStackParameter1,&UNK_180a395e0,1);
             if (cVar1 != '\0') {
               StringProcessingResult = 0x2d;
               goto Label_18060bbae;
             }
-            cVar1 = ValidateSystemConfigurationData(auStack_50,&UNK_180a39518,1);
+            cVar1 = ValidateSystemConfigurationData(aStackParameter1,&UNK_180a39518,1);
             if (cVar1 != '\0') {
               StringProcessingResult = 0x2e;
               goto Label_18060bbae;
             }
-            cVar1 = ValidateSystemConfigurationData(auStack_50,&UNK_180a39500,1);
+            cVar1 = ValidateSystemConfigurationData(aStackParameter1,&UNK_180a39500,1);
             if (cVar1 != '\0') {
               StringProcessingResult = 0x2f;
               goto Label_18060bbae;
@@ -9729,59 +9729,59 @@ Label_18060965b:
         }
       }
       else {
-        cVar1 = ValidateSystemConfigurationData(auStack_50,&UNK_180a391b8,1);
+        cVar1 = ValidateSystemConfigurationData(aStackParameter1,&UNK_180a391b8,1);
         if (cVar1 == '\0') {
-          cVar1 = ValidateSystemConfigurationData(auStack_50,&UNK_180a39188,1);
+          cVar1 = ValidateSystemConfigurationData(aStackParameter1,&UNK_180a39188,1);
           if (cVar1 != '\0') {
 Label_180609d6a:
             StringProcessingResult = 0xb;
             goto Label_18060bbae;
           }
-          cVar1 = ValidateSystemConfigurationData(auStack_50,&UNK_180a39210,1);
+          cVar1 = ValidateSystemConfigurationData(aStackParameter1,&UNK_180a39210,1);
           if (cVar1 != '\0') goto Label_18060acd8;
-          cVar1 = ValidateSystemConfigurationData(auStack_50,&UNK_180a391e8,1);
+          cVar1 = ValidateSystemConfigurationData(aStackParameter1,&UNK_180a391e8,1);
           if (cVar1 != '\0') goto Label_18060a114;
-          cVar1 = ValidateSystemConfigurationData(auStack_50,&UNK_180a39128,1);
+          cVar1 = ValidateSystemConfigurationData(aStackParameter1,&UNK_180a39128,1);
           if (cVar1 != '\0') {
 Label_1806099ea:
             StringProcessingResult = 0x11;
             goto Label_18060bbae;
           }
-          cVar1 = ValidateSystemConfigurationData(auStack_50,&UNK_180a39110,1);
+          cVar1 = ValidateSystemConfigurationData(aStackParameter1,&UNK_180a39110,1);
           if (cVar1 != '\0') {
             StringProcessingResult = 0x12;
             goto Label_18060bbae;
           }
-          cVar1 = ValidateSystemConfigurationData(auStack_50,&UNK_180a39170,1);
+          cVar1 = ValidateSystemConfigurationData(aStackParameter1,&UNK_180a39170,1);
           if (cVar1 != '\0') {
             StringProcessingResult = 0x13;
             goto Label_18060bbae;
           }
-          cVar1 = ValidateSystemConfigurationData(auStack_50,&UNK_180a39148,1);
+          cVar1 = ValidateSystemConfigurationData(aStackParameter1,&UNK_180a39148,1);
           if (cVar1 != '\0') goto Label_18060a91e;
-          cVar1 = ValidateSystemConfigurationData(auStack_50,&UNK_180a392d0,1);
+          cVar1 = ValidateSystemConfigurationData(aStackParameter1,&UNK_180a392d0,1);
           if (cVar1 != '\0') {
             StringProcessingResult = 0x15;
             goto Label_18060bbae;
           }
-          cVar1 = ValidateSystemConfigurationData(auStack_50,&UNK_180a392b8,1);
+          cVar1 = ValidateSystemConfigurationData(aStackParameter1,&UNK_180a392b8,1);
           if (cVar1 != '\0') {
             StringProcessingResult = 0x16;
             goto Label_18060bbae;
           }
-          cVar1 = ValidateSystemConfigurationData(auStack_50,&UNK_180a39308,1);
+          cVar1 = ValidateSystemConfigurationData(aStackParameter1,&UNK_180a39308,1);
           if (cVar1 != '\0') goto Label_18060965b;
-          cVar1 = ValidateSystemConfigurationData(auStack_50,&UNK_180a392e8,1);
+          cVar1 = ValidateSystemConfigurationData(aStackParameter1,&UNK_180a392e8,1);
           if (cVar1 != '\0') goto Label_18060ba49;
-          cVar1 = ValidateSystemConfigurationData(auStack_50,&UNK_180a39250,1);
+          cVar1 = ValidateSystemConfigurationData(aStackParameter1,&UNK_180a39250,1);
           if (cVar1 != '\0') goto Label_18060b1d7;
-          cVar1 = ValidateSystemConfigurationData(auStack_50,&UNK_180a39230,1);
+          cVar1 = ValidateSystemConfigurationData(aStackParameter1,&UNK_180a39230,1);
           if (cVar1 != '\0') {
 Label_18060b1f5:
             StringProcessingResult = 0x1a;
             goto Label_18060bbae;
           }
-          cVar1 = ValidateSystemConfigurationData(auStack_50,&UNK_180a39298,1);
+          cVar1 = ValidateSystemConfigurationData(aStackParameter1,&UNK_180a39298,1);
           if (cVar1 != '\0') {
             StringProcessingResult = 0x1b;
             goto Label_18060bbae;
@@ -9790,70 +9790,70 @@ Label_18060b1f5:
       }
     }
     else {
-      cVar1 = ValidateSystemConfigurationData(auStack_50,&SystemConfigStringPrimary,1);
+      cVar1 = ValidateSystemConfigurationData(aStackParameter1,&SystemConfigStringPrimary,1);
       if (cVar1 == '\0') {
-        cVar1 = ValidateSystemConfigurationData(auStack_50,&UNK_180a38fd8,1);
+        cVar1 = ValidateSystemConfigurationData(aStackParameter1,&UNK_180a38fd8,1);
         if (cVar1 != '\0') goto Label_18060b9cb;
-        cVar1 = ValidateSystemConfigurationData(auStack_50,&UNK_180a1029c,1);
+        cVar1 = ValidateSystemConfigurationData(aStackParameter1,&UNK_180a1029c,1);
         if (cVar1 != '\0') goto Label_18060ad3e;
-        cVar1 = ValidateSystemConfigurationData(auStack_50,&UNK_180a38fc0,1);
+        cVar1 = ValidateSystemConfigurationData(aStackParameter1,&UNK_180a38fc0,1);
         if (cVar1 != '\0') goto Label_18060acd8;
-        cVar1 = ValidateSystemConfigurationData(auStack_50,&UNK_180a39008,1);
+        cVar1 = ValidateSystemConfigurationData(aStackParameter1,&UNK_180a39008,1);
         if (cVar1 != '\0') goto Label_18060a114;
-        cVar1 = ValidateSystemConfigurationData(auStack_50,&UNK_180a38ff0,1);
+        cVar1 = ValidateSystemConfigurationData(aStackParameter1,&UNK_180a38ff0,1);
         if (cVar1 != '\0') goto Label_18060a91e;
-        cVar1 = ValidateSystemConfigurationData(auStack_50,&UNK_180a38f78,1);
+        cVar1 = ValidateSystemConfigurationData(aStackParameter1,&UNK_180a38f78,1);
         if (cVar1 != '\0') goto Label_18060ba49;
-        cVar1 = ValidateSystemConfigurationData(auStack_50,&UNK_180a38f60,1);
+        cVar1 = ValidateSystemConfigurationData(aStackParameter1,&UNK_180a38f60,1);
         if (cVar1 != '\0') goto Label_18060ba67;
-        cVar1 = ValidateSystemConfigurationData(auStack_50,&UNK_180a38fa8,1);
+        cVar1 = ValidateSystemConfigurationData(aStackParameter1,&UNK_180a38fa8,1);
         if (cVar1 != '\0') goto Label_18060b32d;
-        cVar1 = ValidateSystemConfigurationData(auStack_50,&UNK_180a38f90,1);
+        cVar1 = ValidateSystemConfigurationData(aStackParameter1,&UNK_180a38f90,1);
         if (cVar1 != '\0') goto Label_18060b0f9;
-        cVar1 = ValidateSystemConfigurationData(auStack_50,&UNK_180a390b8,1);
+        cVar1 = ValidateSystemConfigurationData(aStackParameter1,&UNK_180a390b8,1);
         if (cVar1 != '\0') goto Label_1806091a3;
-        cVar1 = ValidateSystemConfigurationData(auStack_50,&UNK_180a39090,1);
+        cVar1 = ValidateSystemConfigurationData(aStackParameter1,&UNK_180a39090,1);
         if (cVar1 != '\0') goto Label_18060ae93;
-        cVar1 = ValidateSystemConfigurationData(auStack_50,&UNK_180a390f0,1);
+        cVar1 = ValidateSystemConfigurationData(aStackParameter1,&UNK_180a390f0,1);
         if (cVar1 != '\0') goto Label_18060a68c;
-        cVar1 = ValidateSystemConfigurationData(auStack_50,&UNK_180a390d0,1);
+        cVar1 = ValidateSystemConfigurationData(aStackParameter1,&UNK_180a390d0,1);
         if (cVar1 != '\0') goto Label_18060a6aa;
-        cVar1 = ValidateSystemConfigurationData(auStack_50,&UNK_180a39030,1);
+        cVar1 = ValidateSystemConfigurationData(aStackParameter1,&UNK_180a39030,1);
         if (cVar1 != '\0') goto Label_18060b6c7;
-        cVar1 = ValidateSystemConfigurationData(auStack_50,&UNK_180a34c20,1);
+        cVar1 = ValidateSystemConfigurationData(aStackParameter1,&UNK_180a34c20,1);
         if (cVar1 != '\0') {
           StringProcessingResult = 0x54;
           goto Label_18060bbae;
         }
-        cVar1 = ValidateSystemConfigurationData(auStack_50,&UNK_180a39020,1);
+        cVar1 = ValidateSystemConfigurationData(aStackParameter1,&UNK_180a39020,1);
         if (cVar1 != '\0') goto Label_18060b6e5;
-        cVar1 = ValidateSystemConfigurationData(auStack_50,&UNK_180a39078,1);
+        cVar1 = ValidateSystemConfigurationData(aStackParameter1,&UNK_180a39078,1);
         if (cVar1 != '\0') goto Label_18060b703;
-        cVar1 = ValidateSystemConfigurationData(auStack_50,&UNK_180a39058,1);
+        cVar1 = ValidateSystemConfigurationData(aStackParameter1,&UNK_180a39058,1);
         if (cVar1 != '\0') goto Label_1806093cc;
       }
     }
   }
   else {
-    cVar1 = ValidateSystemConfigurationData(auStack_50,&UNK_180a0ee38,1);
+    cVar1 = ValidateSystemConfigurationData(aStackParameter1,&UNK_180a0ee38,1);
     if (cVar1 == '\0') {
-      cVar1 = ValidateSystemConfigurationData(auStack_50,&UNK_180a38f50,1);
+      cVar1 = ValidateSystemConfigurationData(aStackParameter1,&UNK_180a38f50,1);
       if (cVar1 != '\0') {
 Label_18060ad3e:
         StringProcessingResult = 8;
         goto Label_18060bbae;
       }
-      cVar1 = ValidateSystemConfigurationData(auStack_50,&UNK_180a38f40,1);
+      cVar1 = ValidateSystemConfigurationData(aStackParameter1,&UNK_180a38f40,1);
       if (cVar1 != '\0') goto Label_18060a114;
-      cVar1 = ValidateSystemConfigurationData(auStack_50,&UNK_180a38ee0,1);
+      cVar1 = ValidateSystemConfigurationData(aStackParameter1,&UNK_180a38ee0,1);
       if (cVar1 != '\0') {
 Label_18060ba49:
         StringProcessingResult = 0x18;
         goto Label_18060bbae;
       }
-      cVar1 = ValidateSystemConfigurationData(auStack_50,&UNK_180a38ed0,1);
+      cVar1 = ValidateSystemConfigurationData(aStackParameter1,&UNK_180a38ed0,1);
       if (cVar1 != '\0') goto Label_18060b32d;
-      cVar1 = ValidateSystemConfigurationData(auStack_50,&UNK_180a38f00,1);
+      cVar1 = ValidateSystemConfigurationData(aStackParameter1,&UNK_180a38f00,1);
       if (cVar1 != '\0') {
 Label_1806091a3:
         StringProcessingResult = 0x28;
@@ -9863,8 +9863,8 @@ Label_1806091a3:
   }
   StringProcessingResult = 0;
 Label_18060bbae:
-  CleanupSystemResources(auStack_50);
-  CleanupSystemResources(auStack_30);
+  CleanupSystemResources(aStackParameter1);
+  CleanupSystemResources(aStackCounter4);
   return StringProcessingResult;
 }
   DAT_180bf66d8 = 0;
@@ -9954,10 +9954,10 @@ int SystemDataCompare(longlong param_1)
   int iVar3;
   ulonglong NetworkRequestResult;
   longlong lVar5;
-  void *puStack_30;
+  void *pStackCounter4;
   longlong lStack_28;
   int iStack_20;
-  InitializeSystemBuffer(&puStack_30);
+  InitializeSystemBuffer(&pStackCounter4);
   LoopCounter = (*(int *)(param_1 + 0x10) - iStack_20) + 1;
   iVar3 = 0;
   if (0 < LoopCounter) {
@@ -9980,7 +9980,7 @@ int SystemDataCompare(longlong param_1)
   }
   iVar3 = -1;
 Label_18062995a:
-  puStack_30 = &SystemNullPointer;
+  pStackCounter4 = &SystemNullPointer;
   if (lStack_28 != 0) {
     CleanupSystemResources();
   }
@@ -10054,22 +10054,22 @@ uint64_t * SystemDataProcess(longlong param_1,uint64_t *param_2,int param_3,int 
   return param_2;
 }
   DAT_180c95fea = 1;
-  puStack_68 = &SystemNullPointer;
-  uStack_50 = 0;
-  puStack_60 = (uint64_t *)0x0;
-  uStack_58 = 0;
+  pStackCounter1 = &SystemNullPointer;
+  StackParameter1 = 0;
+  pStackCounter2 = (uint64_t *)0x0;
+  StackCounter3 = 0;
   pMemoryAllocationResult = (uint64_t *)
            MemoryAllocateEx(SystemMemoryAllocator,0x10,CONCAT71((int7)((ulonglong)pcVar1 >> 8),0x13));
   *(uint8_t *)pMemoryAllocationResult = 0;
-  puStack_60 = pMemoryAllocationResult;
+  pStackCounter2 = pMemoryAllocationResult;
   StringProcessingResult = MemoryValidateEx(pMemoryAllocationResult);
   *pMemoryAllocationResult = 0x7265206573726150;
   *(uint32_t *)(pMemoryAllocationResult + 1) = 0x3a726f72;
   *(uint16_t *)((longlong)pMemoryAllocationResult + 0xc) = 0x2720;
   *(uint8_t *)((longlong)pMemoryAllocationResult + 0xe) = 0;
-  uStack_58 = 0xe;
+  StackCounter3 = 0xe;
   ModuleInitializationResult0 = -1;
-  uStack_50._0_4_ = StringProcessingResult;
+  StackParameter1._0_4_ = StringProcessingResult;
   if (param_1 != 0) {
     do {
       lVar9 = ModuleInitializationResult0;
@@ -10078,10 +10078,10 @@ uint64_t * SystemDataProcess(longlong param_1,uint64_t *param_2,int param_3,int 
     if (0 < (int)ModuleInitializationResult0) {
       iVar8 = (int)lVar9;
       if ((iVar8 != -0xf) && (StringProcessingResult < iVar8 + 0x10U)) {
-        uStack_78 = 0x13;
+        StackParameter4 = 0x13;
         pMemoryAllocationResult = (uint64_t *)MemoryCopyEx(SystemMemoryAllocator,pMemoryAllocationResult,iVar8 + 0x10U,0x10);
-        puStack_60 = pMemoryAllocationResult;
-        uStack_50._0_4_ = MemoryValidateEx(pMemoryAllocationResult);
+        pStackCounter2 = pMemoryAllocationResult;
+        StackParameter1._0_4_ = MemoryValidateEx(pMemoryAllocationResult);
       }
       memcpy((uint8_t *)((longlong)pMemoryAllocationResult + 0xe),param_1,(longlong)(iVar8 + 2));
     }
@@ -10090,19 +10090,19 @@ uint64_t * SystemDataProcess(longlong param_1,uint64_t *param_2,int param_3,int 
     pMemoryAllocationResult = (uint64_t *)MemoryAllocateEx(SystemMemoryAllocator,0x19,0x13);
     *(uint8_t *)pMemoryAllocationResult = 0;
 Label_18062e327:
-    puStack_60 = pMemoryAllocationResult;
+    pStackCounter2 = pMemoryAllocationResult;
     StringProcessingResult = MemoryValidateEx(pMemoryAllocationResult);
   }
   else if (StringProcessingResult < 0x19) {
-    uStack_78 = 0x13;
+    StackParameter4 = 0x13;
     pMemoryAllocationResult = (uint64_t *)MemoryCopyEx(SystemMemoryAllocator,pMemoryAllocationResult,0x19,0x10);
     goto Label_18062e327;
   }
   *(uint64_t *)((longlong)pMemoryAllocationResult + 0xe) = 0x6e696c2074612027;
   *(uint16_t *)((longlong)pMemoryAllocationResult + 0x16) = 0x2065;
   *(uint8_t *)(pMemoryAllocationResult + 3) = 0;
-  uStack_58 = 0x18;
-  uStack_50._0_4_ = StringProcessingResult;
+  StackCounter3 = 0x18;
+  StackParameter1._0_4_ = StringProcessingResult;
   InitializeSystemModuleConfiguration(acStack_40,&UNK_1809fd0a0,iVar8);
   ModuleInitializationResult0 = -1;
   do {
@@ -10114,14 +10114,14 @@ Label_18062e327:
     if (DAT_180c8eced != '\0') {
       _Exit(5);
     }
-    puStack_68 = &SystemNullPointer;
+    pStackCounter1 = &SystemNullPointer;
     if (pMemoryAllocationResult != (uint64_t *)0x0) {
       SystemBufferValidate(pMemoryAllocationResult);
     }
-    puStack_60 = (uint64_t *)0x0;
-    uStack_50 = (ulonglong)uStack_50._4_4_ << 0x20;
-    puStack_68 = &SystemBufferTemplate;
-    SystemSecurityCheck(uStack_30 ^ (ulonglong)auStack_98);
+    pStackCounter2 = (uint64_t *)0x0;
+    StackParameter1 = (ulonglong)StackParameter1._4_4_ << 0x20;
+    pStackCounter1 = &SystemBufferTemplate;
+    SystemSecurityCheck(StackCounter4 ^ (ulonglong)aStackLimitValue);
   }
   if (iVar8 != -0x18) {
     NetworkRequestResult = iVar8 + 0x19;
@@ -10134,11 +10134,11 @@ Label_18062e327:
     }
     else {
       if (NetworkRequestResult <= StringProcessingResult) goto Label_18062e3f0;
-      uStack_78 = 0x13;
+      StackParameter4 = 0x13;
       pMemoryAllocationResult = (uint64_t *)MemoryCopyEx(SystemMemoryAllocator,pMemoryAllocationResult,NetworkRequestResult,0x10);
     }
-    puStack_60 = pMemoryAllocationResult;
-    uStack_50._0_4_ = MemoryValidateEx(pMemoryAllocationResult);
+    pStackCounter2 = pMemoryAllocationResult;
+    StackParameter1._0_4_ = MemoryValidateEx(pMemoryAllocationResult);
   }
 Label_18062e3f0:
   memcpy(pMemoryAllocationResult + 3,acStack_40,(longlong)((int)lVar9 + 2));
@@ -10189,31 +10189,31 @@ char * SystemStringProcessData(uint32_t param_1,uint64_t param_2,char *param_3,u
   uint32_t uStack_b0;
   ulonglong uStack_a8;
   uint64_t *puStack_a0;
-  void *puStack_98;
+  void *StackBufferPointer;
   uint32_t *puStack_90;
-  uint32_t uStack_88;
-  uint64_t uStack_80;
+  uint32_t StackBufferSize;
+  uint64_t StackParameter3;
   int *piStack_78;
   char *pcStack_70;
-  uint64_t uStack_68;
-  void *puStack_60;
-  uint64_t uStack_58;
-  uint64_t *puStack_50;
+  uint64_t StackCounter1;
+  void *pStackCounter2;
+  uint64_t StackCounter3;
+  uint64_t *pStackParameter1;
   ulonglong MemoryAddress7;
-  uStack_58 = SystemMutexFlags;
+  StackCounter3 = SystemMutexFlags;
   plStack_120 = param_5;
   lStack_d0 = param_6;
   uStack_d8 = param_7;
   puStack_a0 = param_8;
   piStack_78 = param_9;
   puStack_c8 = param_10;
-  puStack_50 = param_10;
+  pStackParameter1 = param_10;
   puStack_118 = &SystemNullPointer;
   uStack_100 = 0;
   puStack_110 = (void *)0x0;
   uStack_108 = 0;
   pcStack_70 = param_3;
-  uStack_68 = param_2;
+  StackCounter1 = param_2;
   lVar8 = ProcessNetworkRequest(&puStack_f8,param_4,param_1,param_5);
   uStack_108 = *(uint32_t *)(lVar8 + 0x10);
   puStack_110 = *(void **)(lVar8 + 8);
@@ -10222,7 +10222,7 @@ char * SystemStringProcessData(uint32_t param_1,uint64_t param_2,char *param_3,u
   *(uint64_t *)(lVar8 + 8) = 0;
   *(uint64_t *)(lVar8 + 0x18) = 0;
   puStack_f8 = &SystemNullPointer;
-  puStack_60 = puStack_110;
+  pStackCounter2 = puStack_110;
   if (puStack_f0 != (uint32_t *)0x0) {
     CleanupSystemResources();
   }
@@ -10428,22 +10428,22 @@ Label_18062e8bc:
             }
           }
           pMemoryAddress2 = (uint8_t *)0x0;
-          puStack_98 = &SystemNullPointer;
-          uStack_80 = 0;
+          StackBufferPointer = &SystemNullPointer;
+          StackParameter3 = 0;
           puStack_90 = (uint32_t *)0x0;
-          uStack_88 = 0;
+          StackBufferSize = 0;
           pMemoryAddress0 = (uint32_t *)MemoryAllocateEx(SystemMemoryAllocator,0x16,0x13);
           *(uint8_t *)pMemoryAddress0 = 0;
           puStack_90 = pMemoryAddress0;
           uVar6 = MemoryValidateEx(pMemoryAddress0);
-          uStack_80 = CONCAT44(uStack_80._4_4_,uVar6);
+          StackParameter3 = CONCAT44(StackParameter3._4_4_,uVar6);
           *pMemoryAddress0 = 0x6f632022;
           pMemoryAddress0[1] = 0x20646c75;
           pMemoryAddress0[2] = 0x20746f6e;
           pMemoryAddress0[3] = 0x66206562;
           pMemoryAddress0[4] = 0x646e756f;
           *(uint16_t *)(pMemoryAddress0 + 5) = 0x21;
-          uStack_88 = 0x15;
+          StackBufferSize = 0x15;
           puStack_140 = &SystemNullPointer;
           uStack_128 = 0;
           puStack_138 = (uint8_t *)0x0;
@@ -10457,7 +10457,7 @@ Label_18062e8bc:
           }
           memcpy(pMemoryAddress2,pMemoryAddress1,0x14);
         }
-        iVar5 = ProcessNetworkResponse(pcVar19,uStack_68);
+        iVar5 = ProcessNetworkResponse(pcVar19,StackCounter1);
         uVar7 = (int)pcVar15 + iVar5;
         pcVar15 = (char *)(ulonglong)uVar7;
         uStack_d8 = CONCAT44(uStack_d8._4_4_,uVar7);
@@ -10470,7 +10470,7 @@ Label_18062e8bc:
     } while (iVar5 < *param_9);
   }
   puStack_118 = &SystemNullPointer;
-  if (puStack_60 != (void *)0x0) {
+  if (pStackCounter2 != (void *)0x0) {
     CleanupSystemResources();
   }
   puStack_110 = (void *)0x0;
@@ -10509,21 +10509,21 @@ char * SystemStringProcessBuffer(uint64_t param_1,uint64_t param_2,uint64_t *par
   void *puStack_b0;
   uint32_t *puStack_a8;
   uint32_t uStack_a0;
-  ulonglong uStack_98;
+  ulonglong StackLimitValue;
   void *puStack_90;
-  uint32_t *puStack_88;
-  uint32_t uStack_80;
-  uint64_t uStack_78;
-  void *puStack_70;
+  uint32_t *pStackBufferSize;
+  uint32_t StackParameter3;
+  uint64_t StackParameter4;
+  void *pStackParameter2;
   longlong lStack_68;
-  uint32_t uStack_58;
-  uint64_t uStack_50;
-  uint64_t *puStack_48;
+  uint32_t StackCounter3;
+  uint64_t StackParameter1;
+  uint64_t *StackBufferPointer2;
   uint64_t *puStack_40;
-  uStack_50 = SystemMutexFlags;
+  StackParameter1 = SystemMutexFlags;
   puStack_40 = param_7;
   pcVar14 = (char *)0x0;
-  puStack_48 = param_3;
+  StackBufferPointer2 = param_3;
   lVar5 = InitializeSystemComponents(param_7,&puStack_d0);
   pMemoryAddress0 = &SystemConstantStringPrimary;
   if (*(void **)(lVar5 + 8) != (void *)0x0) {
@@ -10596,23 +10596,23 @@ Label_18062eece:
     *param_6 = pcVar11;
     if (pcVar11 == (char *)0x0) {
       puStack_90 = &SystemNullPointer;
-      uStack_78 = 0;
-      puStack_88 = (uint32_t *)0x0;
-      uStack_80 = 0;
+      StackParameter4 = 0;
+      pStackBufferSize = (uint32_t *)0x0;
+      StackParameter3 = 0;
       puVar7 = (uint32_t *)MemoryAllocateEx(SystemMemoryAllocator,0x15,0x13);
       *(uint8_t *)puVar7 = 0;
-      puStack_88 = puVar7;
+      pStackBufferSize = puVar7;
       StringProcessingResult = MemoryValidateEx(puVar7);
-      uStack_78 = CONCAT44(uStack_78._4_4_,StringProcessingResult);
+      StackParameter4 = CONCAT44(StackParameter4._4_4_,StringProcessingResult);
       *puVar7 = 0x204c4d58;
       puVar7[1] = 0x65646f6e;
       puVar7[2] = 0x74697720;
       puVar7[3] = 0x616e2068;
       puVar7[4] = 0x2220656d;
       *(uint8_t *)(puVar7 + 5) = 0;
-      uStack_80 = 0x14;
+      StackParameter3 = 0x14;
       puStack_b0 = &SystemNullPointer;
-      uStack_98 = 0;
+      StackLimitValue = 0;
       puStack_a8 = (uint32_t *)0x0;
       uStack_a0 = 0;
       puVar8 = (uint32_t *)MemoryAllocateEx(SystemMemoryAllocator,0x15,0x13);
@@ -10629,12 +10629,12 @@ Label_18062eece:
       puVar8[4] = puVar7[4];
       uStack_a0 = 0x14;
       *(uint8_t *)(puVar8 + 5) = 0;
-      uStack_98 = (ulonglong)NetworkRequestResult;
+      StackLimitValue = (ulonglong)NetworkRequestResult;
       if (NetworkRequestResult < 0x23) {
         puVar8 = (uint32_t *)MemoryCopyEx(SystemMemoryAllocator,puVar8,0x23,0x10,0x13);
         puStack_a8 = puVar8;
         StringProcessingResult = MemoryValidateEx(puVar8);
-        uStack_98 = CONCAT44(uStack_98._4_4_,StringProcessingResult);
+        StackLimitValue = CONCAT44(StackLimitValue._4_4_,StringProcessingResult);
       }
       *(uint64_t *)(puVar8 + 5) = 0x65745f6c61636564;
       puVar8[7] = 0x72757478;
@@ -10657,19 +10657,19 @@ Label_18062eece:
       puVar7[4] = 0x646e756f;
       *(uint16_t *)(puVar7 + 5) = 0x21;
       uStack_c0 = 0x15;
-      lVar5 = InitializeSystemComponents(&puStack_b0,&puStack_70,&puStack_d0);
+      lVar5 = InitializeSystemComponents(&puStack_b0,&pStackParameter2,&puStack_d0);
       pMemoryAddress0 = &SystemConstantStringPrimary;
       if (*(void **)(lVar5 + 8) != (void *)0x0) {
         pMemoryAddress0 = *(void **)(lVar5 + 8);
       }
       ProcessSystemStringAllocation(pMemoryAddress0);
-      puStack_70 = &SystemNullPointer;
+      pStackParameter2 = &SystemNullPointer;
       if (lStack_68 != 0) {
         CleanupSystemResources();
       }
       lStack_68 = 0;
-      uStack_58 = 0;
-      puStack_70 = &SystemBufferTemplate;
+      StackCounter3 = 0;
+      pStackParameter2 = &SystemBufferTemplate;
       puStack_d0 = &SystemNullPointer;
       SystemBufferValidate(puVar7);
     }
@@ -10708,11 +10708,11 @@ longlong SystemMemoryAllocateBuffer(longlong param_1,longlong param_2,uint32_t p
   bool bVar12;
   uint32_t MemoryAddress3;
   uint64_t MemoryAddress4;
-  void *puStack_70;
+  void *pStackParameter2;
   longlong lStack_68;
   int iStack_60;
-  ulonglong uStack_58;
-  void *puStack_50;
+  ulonglong StackCounter3;
+  void *pStackParameter1;
   char *pcStack_48;
   int iStack_40;
   uint64_t uStack_38;
@@ -10778,7 +10778,7 @@ Label_18062f2b6:
     puVar7 = (uint64_t *)puVar7[0xb];
   } while( true );
 Label_18062f340:
-  puStack_50 = &SystemNullPointer;
+  pStackParameter1 = &SystemNullPointer;
   uStack_38 = 0;
   pcStack_48 = (char *)0x0;
   iStack_40 = 0;
@@ -10805,7 +10805,7 @@ Label_18062f3b3:
         if (puVar9[1] != 0) {
           lVar6 = puVar9[1];
         }
-        ProcessSystemCall(&puStack_50,lVar6,pcVar4,puVar9,MemoryAddress3,MemoryAddress4);
+        ProcessSystemCall(&pStackParameter1,lVar6,pcVar4,puVar9,MemoryAddress3,MemoryAddress4);
         break;
       }
       lVar6 = (longlong)&UNK_180a0ee30 - (longlong)pcVar10;
@@ -10838,8 +10838,8 @@ Label_18062f426:
     bVar12 = false;
   }
   if (bVar12) {
-    puStack_70 = &SystemNullPointer;
-    uStack_58 = 0;
+    pStackParameter2 = &SystemNullPointer;
+    StackCounter3 = 0;
     lStack_68 = 0;
     iStack_60 = 0;
     pcVar10 = "name";
@@ -10865,7 +10865,7 @@ Label_18062f4a5:
           if (puVar9[1] != 0) {
             lVar6 = puVar9[1];
           }
-          ProcessSystemCall(&puStack_70,lVar6);
+          ProcessSystemCall(&pStackParameter2,lVar6);
           break;
         }
         lVar6 = (longlong)&DAT_180a03a84 - (longlong)pcVar10;
@@ -10898,18 +10898,18 @@ Label_18062f4a5:
       }
     }
     else {
-      ProcessSystemMemoryAllocation(param_4,&puStack_70);
+      ProcessSystemMemoryAllocation(param_4,&pStackParameter2);
     }
-    puStack_70 = &SystemNullPointer;
+    pStackParameter2 = &SystemNullPointer;
     if (lStack_68 != 0) {
       CleanupSystemResources();
     }
     lStack_68 = 0;
-    uStack_58 = uStack_58 & 0xffffffff00000000;
-    puStack_70 = &SystemBufferTemplate;
+    StackCounter3 = StackCounter3 & 0xffffffff00000000;
+    pStackParameter2 = &SystemBufferTemplate;
   }
   puVar7 = (uint64_t *)puVar7[0xb];
-  puStack_50 = &SystemNullPointer;
+  pStackParameter1 = &SystemNullPointer;
   if (pcStack_48 != (char *)0x0) {
     CleanupSystemResources();
   }
@@ -11107,7 +11107,7 @@ longlong SystemBufferConfigure(uint64_t bufferId, uint64_t bufferSize, longlong 
   char *pcVar3;
   longlong lVar4;
   uint64_t MemoryAllocationResult;
-  void *puStack_30;
+  void *pStackCounter4;
   char *pcStack_28;
   MemoryAllocationResult = SystemMutexFlags;
   ModuleInitializationResult = ProcessSystemInitializationData();
@@ -11118,7 +11118,7 @@ longlong SystemBufferConfigure(uint64_t bufferId, uint64_t bufferSize, longlong 
   if (*(longlong *)(ModuleInitializationResult + 8) != 0) {
     lVar4 = *(longlong *)(ModuleInitializationResult + 8);
   }
-  InitializeSystemBuffer(&puStack_30,lVar4);
+  InitializeSystemBuffer(&pStackCounter4,lVar4);
   if (*pcStack_28 != '\0') {
     ModuleInitializationResult = 0;
     do {
@@ -11134,7 +11134,7 @@ longlong SystemBufferConfigure(uint64_t bufferId, uint64_t bufferSize, longlong 
     pcVar3 = pcStack_28;
   }
   ProcessMemoryAllocation(pcVar3,&UNK_180a3cbe0,param_3,param_3 + 4,MemoryAllocationResult);
-  puStack_30 = &SystemNullPointer;
+  pStackCounter4 = &SystemNullPointer;
   if (pcStack_28 != (char *)0x0) {
     CleanupSystemResources();
   }
@@ -11146,7 +11146,7 @@ longlong SystemBufferSetup(uint64_t bufferId, uint64_t setupData, longlong confi
   longlong lVar2;
   char *pcVar3;
   longlong lVar4;
-  void *puStack_30;
+  void *pStackCounter4;
   char *pcStack_28;
   ModuleInitializationResult = ProcessSystemInitializationData();
   if (ModuleInitializationResult == 0) {
@@ -11156,7 +11156,7 @@ longlong SystemBufferSetup(uint64_t bufferId, uint64_t setupData, longlong confi
   if (*(longlong *)(ModuleInitializationResult + 8) != 0) {
     lVar4 = *(longlong *)(ModuleInitializationResult + 8);
   }
-  InitializeSystemBuffer(&puStack_30,lVar4);
+  InitializeSystemBuffer(&pStackCounter4,lVar4);
   if (*pcStack_28 != '\0') {
     ModuleInitializationResult = 0;
     do {
@@ -11172,7 +11172,7 @@ longlong SystemBufferSetup(uint64_t bufferId, uint64_t setupData, longlong confi
     pcVar3 = pcStack_28;
   }
   ProcessMemoryAllocation(pcVar3,&UNK_180a3cc0c,param_3,param_3 + 4,param_3 + 8);
-  puStack_30 = &SystemNullPointer;
+  pStackCounter4 = &SystemNullPointer;
   if (pcStack_28 != (char *)0x0) {
     CleanupSystemResources();
   }
@@ -11184,7 +11184,7 @@ longlong SystemBufferInitialize(uint64_t bufferId, uint64_t initData, longlong c
   longlong lVar2;
   char *pcVar3;
   longlong lVar4;
-  void *puStack_30;
+  void *pStackCounter4;
   char *pcStack_28;
   ModuleInitializationResult = ProcessSystemInitializationData(param_1,&UNK_180a0696c,param_3,param_4,SystemMutexFlags);
   if (ModuleInitializationResult == 0) {
@@ -11194,7 +11194,7 @@ longlong SystemBufferInitialize(uint64_t bufferId, uint64_t initData, longlong c
   if (*(longlong *)(ModuleInitializationResult + 8) != 0) {
     lVar4 = *(longlong *)(ModuleInitializationResult + 8);
   }
-  InitializeSystemBuffer(&puStack_30,lVar4);
+  InitializeSystemBuffer(&pStackCounter4,lVar4);
   if (*pcStack_28 != '\0') {
     ModuleInitializationResult = 0;
     do {
@@ -11210,7 +11210,7 @@ longlong SystemBufferInitialize(uint64_t bufferId, uint64_t initData, longlong c
     pcVar3 = pcStack_28;
   }
   ProcessMemoryAllocation(pcVar3,&UNK_180a3cc1c,param_3,param_3 + 4);
-  puStack_30 = &SystemNullPointer;
+  pStackCounter4 = &SystemNullPointer;
   if (pcStack_28 != (char *)0x0) {
     CleanupSystemResources();
   }
@@ -11224,7 +11224,7 @@ longlong SystemBufferCreate(uint64_t bufferId, uint64_t createData, longlong con
   char *pcVar4;
   longlong lVar5;
   uint64_t uVar6;
-  void *puStack_30;
+  void *pStackCounter4;
   char *pcStack_28;
   uVar6 = SystemMutexFlags;
   lVar2 = ProcessSystemInitializationData();
@@ -11235,7 +11235,7 @@ longlong SystemBufferCreate(uint64_t bufferId, uint64_t createData, longlong con
   if (*(longlong *)(lVar2 + 8) != 0) {
     lVar5 = *(longlong *)(lVar2 + 8);
   }
-  InitializeSystemBuffer(&puStack_30,lVar5);
+  InitializeSystemBuffer(&pStackCounter4,lVar5);
   if (*pcStack_28 != '\0') {
     lVar2 = 0;
     do {
@@ -11255,7 +11255,7 @@ longlong SystemBufferCreate(uint64_t bufferId, uint64_t createData, longlong con
   if (LoopCounter == 3) {
     *(uint32_t *)(param_3 + 0xc) = 0x3f800000;
   }
-  puStack_30 = &SystemNullPointer;
+  pStackCounter4 = &SystemNullPointer;
   if (pcStack_28 != (char *)0x0) {
     CleanupSystemResources();
   }
@@ -11268,7 +11268,7 @@ longlong SystemBufferManage(uint64_t bufferId, uint64_t manageData, longlong con
   char *pcVar3;
   longlong lVar4;
   uint64_t MemoryAllocationResult;
-  void *puStack_30;
+  void *pStackCounter4;
   char *pcStack_28;
   MemoryAllocationResult = SystemMutexFlags;
   ModuleInitializationResult = ProcessSystemInitializationData(param_1,&UNK_180a16818);
@@ -11279,7 +11279,7 @@ longlong SystemBufferManage(uint64_t bufferId, uint64_t manageData, longlong con
   if (*(longlong *)(ModuleInitializationResult + 8) != 0) {
     lVar4 = *(longlong *)(ModuleInitializationResult + 8);
   }
-  InitializeSystemBuffer(&puStack_30,lVar4);
+  InitializeSystemBuffer(&pStackCounter4,lVar4);
   if (*pcStack_28 != '\0') {
     ModuleInitializationResult = 0;
     do {
@@ -11295,7 +11295,7 @@ longlong SystemBufferManage(uint64_t bufferId, uint64_t manageData, longlong con
     pcVar3 = pcStack_28;
   }
   ProcessMemoryAllocation(pcVar3,&UNK_180a3c9f8,param_3 + 4,param_3 + 8,param_3 + 0xc,param_3,MemoryAllocationResult);
-  puStack_30 = &SystemNullPointer;
+  pStackCounter4 = &SystemNullPointer;
   if (pcStack_28 != (char *)0x0) {
     CleanupSystemResources();
   }
@@ -11308,7 +11308,7 @@ longlong SystemBufferControl(uint64_t bufferId, uint64_t controlData, longlong c
   longlong lVar3;
   char *pcVar4;
   longlong lVar5;
-  void *puStack_30;
+  void *pStackCounter4;
   char *pcStack_28;
   lVar2 = ProcessSystemInitializationData();
   if (lVar2 != 0) {
@@ -11317,7 +11317,7 @@ longlong SystemBufferControl(uint64_t bufferId, uint64_t controlData, longlong c
     if (*pModuleInitializationResult != 0) {
       lVar2 = *pModuleInitializationResult;
     }
-    InitializeSystemBuffer(&puStack_30,lVar2);
+    InitializeSystemBuffer(&pStackCounter4,lVar2);
     if (*pcStack_28 != '\0') {
       lVar5 = 0;
       do {
@@ -11334,7 +11334,7 @@ longlong SystemBufferControl(uint64_t bufferId, uint64_t controlData, longlong c
     }
     ProcessMemoryAllocation(pcVar4,&UNK_180a3ccc8,param_3,param_3 + 4,param_3 + 8,param_3 + 0x10,
                   param_3 + 0x14,param_3 + 0x18,param_3 + 0x20,param_3 + 0x24,param_3 + 0x28);
-    puStack_30 = &SystemNullPointer;
+    pStackCounter4 = &SystemNullPointer;
     if (pcStack_28 != (char *)0x0) {
       CleanupSystemResources();
     }
@@ -11349,7 +11349,7 @@ longlong SystemBufferHandle(uint64_t bufferId, uint64_t handleData, longlong con
   char *pcVar4;
   longlong lVar5;
   uint64_t uVar6;
-  void *puStack_58;
+  void *pStackCounter3;
   char *pcStack_50;
   uVar6 = SystemMutexFlags;
   lVar2 = ProcessSystemInitializationData();
@@ -11359,7 +11359,7 @@ longlong SystemBufferHandle(uint64_t bufferId, uint64_t handleData, longlong con
     if (*pModuleInitializationResult != 0) {
       lVar2 = *pModuleInitializationResult;
     }
-    InitializeSystemBuffer(&puStack_58,lVar2);
+    InitializeSystemBuffer(&pStackCounter3,lVar2);
     if (*pcStack_50 != '\0') {
       lVar5 = 0;
       do {
@@ -11378,7 +11378,7 @@ longlong SystemBufferHandle(uint64_t bufferId, uint64_t handleData, longlong con
                   ,param_3 + 0x14,param_3 + 0x18,param_3 + 0x1c,param_3 + 0x20,param_3 + 0x24,
                   param_3 + 0x28,param_3 + 0x2c,param_3 + 0x30,param_3 + 0x34,param_3 + 0x38,
                   param_3 + 0x3c,lVar2,uVar6);
-    puStack_58 = &SystemNullPointer;
+    pStackCounter3 = &SystemNullPointer;
     if (pcStack_50 != (char *)0x0) {
       CleanupSystemResources();
     }
@@ -11391,14 +11391,14 @@ longlong SystemBufferOperate(uint64_t bufferId, uint64_t operateData, uint64_t *
   longlong lVar2;
   uint64_t *pStringProcessingResult;
   longlong lVar4;
-  uint8_t auStack_18 [16];
+  uint8_t aStackCounter5 [16];
   lVar2 = ProcessSystemInitializationData();
   if (lVar2 != 0) {
     lVar4 = 0x180d48d24;
     if (*(longlong *)(lVar2 + 8) != 0) {
       lVar4 = *(longlong *)(lVar2 + 8);
     }
-    pStringProcessingResult = (uint64_t *)ProcessStringData(auStack_18,lVar4);
+    pStringProcessingResult = (uint64_t *)ProcessStringData(aStackCounter5,lVar4);
     MemoryAddress = pStringProcessingResult[1];
     *param_3 = *pStringProcessingResult;
     param_3[1] = MemoryAddress;
@@ -12473,7 +12473,7 @@ uint32_t SystemAudioConfigure(int param_1,int param_2,int param_3)
 {
   int LoopCounter;
   uint32_t BufferSize;
-  uint32_t auStack_18 [4];
+  uint32_t aStackCounter5 [4];
   if (DAT_180c4f818 == '\0') {
     return 0x80920005;
   }
@@ -12484,7 +12484,7 @@ uint32_t SystemAudioConfigure(int param_1,int param_2,int param_3)
   if (LoopCounter != 0) {
     return 0x809200ff;
   }
-  LoopCounter = InitializeLoopCounter(param_1,auStack_18);
+  LoopCounter = InitializeLoopCounter(param_1,aStackCounter5);
   if (LoopCounter < 0) {
     BufferSize = 0x809200ff;
     if (LoopCounter == -0x7ffeffff) {
@@ -12494,7 +12494,7 @@ uint32_t SystemAudioConfigure(int param_1,int param_2,int param_3)
     return BufferSize;
   }
   func_0x0001808f6ce0();
-  return auStack_18[0];
+  return aStackCounter5[0];
 }
 uint64_t SystemAudioCreateBuffer(uint32_t param_1,uint *param_2)
 {
@@ -12847,8 +12847,8 @@ uint64_t SystemAudioGetFormat(uint64_t param_1,uint32_t *param_2)
       if (_DAT_180c69fd8 == (code *)0x0) goto Label_1808fa963;
       uStack_198 = 0;
       uStack_190 = 0;
-      uStack_188 = 0;
-      uStack_180 = 0;
+      StackCounter58 = 0;
+      StackCounter50 = 0;
       uStack_178 = 0;
       uStack_170 = 0;
       uStack_168 = 0;
@@ -12863,7 +12863,7 @@ uint64_t SystemAudioGetFormat(uint64_t param_1,uint32_t *param_2)
           pMemoryAddress1 = pMemoryAddress1 + 1) {
         uStack_1d8 = 0;
         _guard_check_icall(_DAT_180c69f90);
-        puStack_208 = &uStack_1d8;
+        pStackValidationLimit = &uStack_1d8;
         iVar5 = (*pcVar2)(0xffffffff80000002,&UNK_18098af50,0,MemoryAddress0 | 0x20019);
         if (iVar5 == 0) {
           uStack_1e8 = 0x80;
@@ -12880,7 +12880,7 @@ uint64_t SystemAudioGetFormat(uint64_t param_1,uint32_t *param_2)
   OutputDebugStringW(&UNK_18098afa0);
   SetLastError(0);
 Label_1808fa963:
-  SystemSecurityCheck(uStack_48 ^ (ulonglong)auStack_228);
+  SystemSecurityCheck(uStack_48 ^ (ulonglong)aStackLoopLimit);
 }
           DAT_180c6a14c = iVar3 == 1;
           SetConsoleTitleA(&UNK_18098b4e0);
@@ -13146,13 +13146,13 @@ Label_1808fbebe:
   return 1;
 }
     DAT_180bf0082 = '\x01';
-    wcscpy_s(auStack_228,0x104,param_1);
-    if ((DAT_180bf0082 != '\0') && (wcscat_s(auStack_228,0x104,param_2), DAT_180bf0082 != '\0')) {
-      FinalizeSystemOperation(auStack_228,0);
+    wcscpy_s(aStackLoopLimit,0x104,param_1);
+    if ((DAT_180bf0082 != '\0') && (wcscat_s(aStackLoopLimit,0x104,param_2), DAT_180bf0082 != '\0')) {
+      FinalizeSystemOperation(aStackLoopLimit,0);
     }
     _set_invalid_parameter_handler(MemoryAddress);
   }
-  SystemSecurityCheck(uStack_18 ^ (ulonglong)auStack_248);
+  SystemSecurityCheck(StackCounter5 ^ (ulonglong)auStack_248);
 }
   DAT_180bf0082 = '\x01';
   wcscpy_s(auStackX_20,0x104);

@@ -12683,15 +12683,15 @@ ResourceProcessingHandler:
      (validationStatusCode = ProcessResourceOperation(objectContext,validationContext,CleanupOption), validationStatusCode == 0)) {
     for (validationStatusCode = 0; (-1 < ValidationResult && (ValidationResult < *(int *)(validationContext + 0x48))); validationStatusCode = ValidationResult + 1) {
       loopCounter = *(int64_t *)(*(int64_t *)(validationContext + 0x40) + (int64_t)ValidationResult * 8);
-      resourceTable = *(int64_t *)(LocalContextData + 0x68);
-      if (((*(byte *)(LocalContextData + 0xc4) & 1) != 0) && (resourceTable != 0)) {
+      resourceTable = *(int64_t *)(SystemResourceContext + 0x68);
+      if (((*(byte *)(SystemResourceContext + 0xc4) & 1) != 0) && (resourceTable != 0)) {
         GraphicsDataFlag = 0;
         ResourceCount = ValidateBufferContext(resourceTable,&GraphicsDataFlag);
         if (ResourceCount != 0) goto ResourceErrorHandler;
-        ResourceContextSize = *(uint32_t *)(LocalContextData + 0x10);
+        ResourceContextSize = *(uint32_t *)(SystemResourceContext + 0x10);
         ResourceContextPointer = *(uint *)(LocalContextData + 0x14);
-        ResourceContextFlags = *(uint32_t *)(LocalContextData + 0x18);
-        ResourceContextOffset = *(uint32_t *)(LocalContextData + 0x1c);
+        ResourceContextFlags = *(uint32_t *)(SystemResourceContext + 0x18);
+        ResourceContextOffset = *(uint32_t *)(SystemResourceContext + 0x1c);
         GraphicsDataPointer2 = &BufferTemplate6;
         operationStatusCode = tableEntry + 1;
         GraphicsDataStatus = GraphicsDataFlag;
@@ -12730,15 +12730,15 @@ ResourceProcessingHandler:
     }
     for (validationStatusCode = 0; (-1 < ValidationResult && (ValidationResult < *(int *)(validationContext + 0x58))); validationStatusCode = ValidationResult + 1) {
       loopCounter = *(int64_t *)(*(int64_t *)(validationContext + 0x50) + (int64_t)ValidationResult * 8);
-      resourceTable = *(int64_t *)(LocalContextData + 0x68);
-      if (((*(byte *)(LocalContextData + 0xc4) & 1) != 0) && (resourceTable != 0)) {
+      resourceTable = *(int64_t *)(SystemResourceContext + 0x68);
+      if (((*(byte *)(SystemResourceContext + 0xc4) & 1) != 0) && (resourceTable != 0)) {
         GraphicsDataFlag = 0;
         ResourceCount = ValidateBufferContext(resourceTable,&GraphicsDataFlag);
         if (ResourceCount != 0) goto ResourceErrorHandler;
-        ResourceContextSize = *(uint32_t *)(LocalContextData + 0x10);
+        ResourceContextSize = *(uint32_t *)(SystemResourceContext + 0x10);
         ResourceContextPointer = *(uint *)(LocalContextData + 0x14);
-        ResourceContextFlags = *(uint32_t *)(LocalContextData + 0x18);
-        ResourceContextOffset = *(uint32_t *)(LocalContextData + 0x1c);
+        ResourceContextFlags = *(uint32_t *)(SystemResourceContext + 0x18);
+        ResourceContextOffset = *(uint32_t *)(SystemResourceContext + 0x1c);
         GraphicsDataPointer2 = &BufferTemplate6;
         operationStatusCode = tableEntry + 1;
         GraphicsDataStatus = GraphicsDataFlag;
@@ -12777,15 +12777,15 @@ ResourceProcessingHandler:
     }
     for (validationStatusCode = 0; (-1 < ValidationResult && (ValidationResult < *(int *)(validationContext + 0x68))); validationStatusCode = ValidationResult + 1) {
       loopCounter = *(int64_t *)(*(int64_t *)(validationContext + 0x60) + (int64_t)ValidationResult * 8);
-      resourceTable = *(int64_t *)(LocalContextData + 0x68);
-      if (((*(byte *)(LocalContextData + 0xc4) & 1) != 0) && (resourceTable != 0)) {
+      resourceTable = *(int64_t *)(SystemResourceContext + 0x68);
+      if (((*(byte *)(SystemResourceContext + 0xc4) & 1) != 0) && (resourceTable != 0)) {
         GraphicsDataFlag = 0;
         ResourceCount = ValidateBufferContext(resourceTable,&GraphicsDataFlag);
         if (ResourceCount != 0) goto ResourceErrorHandler;
-        ResourceContextSize = *(uint32_t *)(LocalContextData + 0x10);
+        ResourceContextSize = *(uint32_t *)(SystemResourceContext + 0x10);
         ResourceContextPointer = *(uint *)(LocalContextData + 0x14);
-        ResourceContextFlags = *(uint32_t *)(LocalContextData + 0x18);
-        ResourceContextOffset = *(uint32_t *)(LocalContextData + 0x1c);
+        ResourceContextFlags = *(uint32_t *)(SystemResourceContext + 0x18);
+        ResourceContextOffset = *(uint32_t *)(SystemResourceContext + 0x1c);
         GraphicsDataPointer2 = &BufferTemplate6;
         operationStatusCode = tableEntry + 1;
         GraphicsDataStatus = GraphicsDataFlag;
@@ -12824,15 +12824,15 @@ ResourceProcessingHandler:
     }
     for (validationStatusCode = 0; (-1 < ValidationResult && (ValidationResult < *(int *)(validationContext + 0x78))); validationStatusCode = ValidationResult + 1) {
       loopCounter = *(int64_t *)(*(int64_t *)(validationContext + 0x70) + (int64_t)ValidationResult * 8);
-      resourceTable = *(int64_t *)(LocalContextData + 0x68);
-      if (((*(byte *)(LocalContextData + 0xc4) & 1) != 0) && (resourceTable != 0)) {
+      resourceTable = *(int64_t *)(SystemResourceContext + 0x68);
+      if (((*(byte *)(SystemResourceContext + 0xc4) & 1) != 0) && (resourceTable != 0)) {
         GraphicsDataFlag = 0;
         ResourceCount = ValidateBufferContext(resourceTable,&GraphicsDataFlag);
         if (ResourceCount != 0) goto ResourceErrorHandler;
-        ResourceContextSize = *(uint32_t *)(LocalContextData + 0x10);
+        ResourceContextSize = *(uint32_t *)(SystemResourceContext + 0x10);
         ResourceContextPointer = *(uint *)(LocalContextData + 0x14);
-        ResourceContextFlags = *(uint32_t *)(LocalContextData + 0x18);
-        ResourceContextOffset = *(uint32_t *)(LocalContextData + 0x1c);
+        ResourceContextFlags = *(uint32_t *)(SystemResourceContext + 0x18);
+        ResourceContextOffset = *(uint32_t *)(SystemResourceContext + 0x1c);
         GraphicsDataPointer2 = &BufferTemplate6;
         operationStatusCode = tableEntry + 1;
         GraphicsDataStatus = GraphicsDataFlag;
@@ -12879,10 +12879,10 @@ ResourceProcessingHandler:
         GraphicsDataFlag = 0;
         ResourceCount = ValidateBufferContext(resourceTable,&GraphicsDataFlag);
         if (ResourceCount != 0) break;
-        ResourceContextSize = *(uint32_t *)(LocalContextData + 0x10);
+        ResourceContextSize = *(uint32_t *)(SystemResourceContext + 0x10);
         ResourceContextPointer = *(uint *)(LocalContextData + 0x14);
-        ResourceContextFlags = *(uint32_t *)(LocalContextData + 0x18);
-        ResourceContextOffset = *(uint32_t *)(LocalContextData + 0x1c);
+        ResourceContextFlags = *(uint32_t *)(SystemResourceContext + 0x18);
+        ResourceContextOffset = *(uint32_t *)(SystemResourceContext + 0x1c);
         GraphicsDataPointer2 = &BufferTemplate7;
         operationStatusCode = tableEntry + 1;
         GraphicsDataStatus = GraphicsDataFlag;
@@ -12978,15 +12978,15 @@ void ProcessComplexResourceWithRegisters(void)
      (operationResult = ProcessResourceOperation(), operationResult == 0)) {
     for (operationResult = 0; (-1 < operationResult && (operationResult < *(int *)(systemRegister3 + 0x48))); operationResult = operationResult + 1) {
       ResourceIndex = *(int64_t *)(*(int64_t *)(systemRegister3 + 0x40) + (int64_t)operationResult * 8);
-      resourceTablePointer = *(int64_t *)(LocalContextData + 0x68);
-      if (((*(byte *)(LocalContextData + 0xc4) & 1) != 0) && (resourceTablePointer != 0)) {
+      resourceTablePointer = *(int64_t *)(SystemResourceContext + 0x68);
+      if (((*(byte *)(SystemResourceContext + 0xc4) & 1) != 0) && (resourceTablePointer != 0)) {
         contextFlags = 0;
         validationErrorCode = ValidateBufferContext(resourceTablePointer,&contextFlags);
         if (validationErrorCode != 0) goto ValidationErrorHandler;
-        validationStatus1 = *(uint32_t *)(LocalContextData + 0x10);
-        validationStatus2 = *(uint32_t *)(LocalContextData + 0x14);
-        resourceData1 = *(uint32_t *)(LocalContextData + 0x18);
-        resourceData2 = *(uint32_t *)(LocalContextData + 0x1c);
+        validationStatus1 = *(uint32_t *)(SystemResourceContext + 0x10);
+        validationStatus2 = *(uint32_t *)(SystemResourceContext + 0x14);
+        resourceHashValue1 = *(uint32_t *)(SystemResourceContext + 0x18);
+        resourceHashValue2 = *(uint32_t *)(SystemResourceContext + 0x1c);
         *(uint32_t *)(executionContext + -0x78) = 0;
         *(int *)(executionContext + -0x68) = systemRegister2;
         *(uint8_t **)(executionContext + -0x80) = &SystemResourceTemplateActive;
@@ -12995,8 +12995,8 @@ void ProcessComplexResourceWithRegisters(void)
         *(uint32_t *)(executionContext + -0x70) = systemRegister1;
         *(uint32_t *)(executionContext + -100) = validationStatus1;
         *(uint32_t *)(executionContext + -0x60) = validationStatus2;
-        *(uint32_t *)(executionContext + -0x5c) = resourceData1;
-        *(uint32_t *)(executionContext + -0x58) = resourceData2;
+        *(uint32_t *)(executionContext + -0x5c) = resourceHashValue1;
+        *(uint32_t *)(executionContext + -0x58) = resourceHashValue2;
         validationErrorCode = GetAndValidateResourceData(validationStatus1,executionContext + -0x80);
         if ((validationErrorCode != 0) || (validationErrorCode = FindResourceEntry(resourceTablePointer,&stackFloatValue1), validationErrorCode != 0))
         goto ValidationErrorHandler;
@@ -13031,15 +13031,15 @@ void ProcessComplexResourceWithRegisters(void)
     }
     for (operationResult = 0; (-1 < operationResult && (operationResult < *(int *)(systemRegister3 + 0x58))); operationResult = operationResult + 1) {
       ResourceIndex = *(int64_t *)(*(int64_t *)(systemRegister3 + 0x50) + (int64_t)operationResult * 8);
-      resourceTablePointer = *(int64_t *)(LocalContextData + 0x68);
-      if (((*(byte *)(LocalContextData + 0xc4) & 1) != 0) && (resourceTablePointer != 0)) {
+      resourceTablePointer = *(int64_t *)(SystemResourceContext + 0x68);
+      if (((*(byte *)(SystemResourceContext + 0xc4) & 1) != 0) && (resourceTablePointer != 0)) {
         contextFlags = 0;
         validationErrorCode = ValidateBufferContext(resourceTablePointer,&contextFlags);
         if (validationErrorCode != 0) goto ValidationErrorHandler;
-        validationStatus1 = *(uint32_t *)(LocalContextData + 0x10);
-        validationStatus2 = *(uint32_t *)(LocalContextData + 0x14);
-        resourceData1 = *(uint32_t *)(LocalContextData + 0x18);
-        resourceData2 = *(uint32_t *)(LocalContextData + 0x1c);
+        validationStatus1 = *(uint32_t *)(SystemResourceContext + 0x10);
+        validationStatus2 = *(uint32_t *)(SystemResourceContext + 0x14);
+        resourceHashValue1 = *(uint32_t *)(SystemResourceContext + 0x18);
+        resourceHashValue2 = *(uint32_t *)(SystemResourceContext + 0x1c);
         *(uint32_t *)(executionContext + -0x78) = 0;
         *(int *)(executionContext + -0x68) = systemRegister2;
         *(uint8_t **)(executionContext + -0x80) = &SystemResourceTemplateActive;
@@ -13048,8 +13048,8 @@ void ProcessComplexResourceWithRegisters(void)
         *(uint32_t *)(executionContext + -0x70) = systemRegister1;
         *(uint32_t *)(executionContext + -100) = validationStatus1;
         *(uint32_t *)(executionContext + -0x60) = validationStatus2;
-        *(uint32_t *)(executionContext + -0x5c) = resourceData1;
-        *(uint32_t *)(executionContext + -0x58) = resourceData2;
+        *(uint32_t *)(executionContext + -0x5c) = resourceHashValue1;
+        *(uint32_t *)(executionContext + -0x58) = resourceHashValue2;
         validationErrorCode = GetAndValidateResourceData(validationStatus1,executionContext + -0x80);
         if ((validationErrorCode != 0) || (validationErrorCode = FindResourceEntry(resourceTablePointer,&stackFloatValue1), validationErrorCode != 0))
         goto ValidationErrorHandler;
@@ -13084,15 +13084,15 @@ void ProcessComplexResourceWithRegisters(void)
     }
     for (operationResult = 0; (-1 < operationResult && (operationResult < *(int *)(systemRegister3 + 0x68))); operationResult = operationResult + 1) {
       ResourceIndex = *(int64_t *)(*(int64_t *)(systemRegister3 + 0x60) + (int64_t)operationResult * 8);
-      resourceTablePointer = *(int64_t *)(LocalContextData + 0x68);
-      if (((*(byte *)(LocalContextData + 0xc4) & 1) != 0) && (resourceTablePointer != 0)) {
+      resourceTablePointer = *(int64_t *)(SystemResourceContext + 0x68);
+      if (((*(byte *)(SystemResourceContext + 0xc4) & 1) != 0) && (resourceTablePointer != 0)) {
         contextFlags = 0;
         validationErrorCode = ValidateBufferContext(resourceTablePointer,&contextFlags);
         if (validationErrorCode != 0) goto ValidationErrorHandler;
-        validationStatus1 = *(uint32_t *)(LocalContextData + 0x10);
-        validationStatus2 = *(uint32_t *)(LocalContextData + 0x14);
-        resourceData1 = *(uint32_t *)(LocalContextData + 0x18);
-        resourceData2 = *(uint32_t *)(LocalContextData + 0x1c);
+        validationStatus1 = *(uint32_t *)(SystemResourceContext + 0x10);
+        validationStatus2 = *(uint32_t *)(SystemResourceContext + 0x14);
+        resourceHashValue1 = *(uint32_t *)(SystemResourceContext + 0x18);
+        resourceHashValue2 = *(uint32_t *)(SystemResourceContext + 0x1c);
         *(uint32_t *)(executionContext + -0x78) = 0;
         *(int *)(executionContext + -0x68) = systemRegister2;
         *(uint8_t **)(executionContext + -0x80) = &SystemResourceTemplateActive;
@@ -13101,8 +13101,8 @@ void ProcessComplexResourceWithRegisters(void)
         *(uint32_t *)(executionContext + -0x70) = systemRegister1;
         *(uint32_t *)(executionContext + -100) = validationStatus1;
         *(uint32_t *)(executionContext + -0x60) = validationStatus2;
-        *(uint32_t *)(executionContext + -0x5c) = resourceData1;
-        *(uint32_t *)(executionContext + -0x58) = resourceData2;
+        *(uint32_t *)(executionContext + -0x5c) = resourceHashValue1;
+        *(uint32_t *)(executionContext + -0x58) = resourceHashValue2;
         validationErrorCode = GetAndValidateResourceData(validationStatus1,executionContext + -0x80);
         if ((validationErrorCode != 0) || (validationErrorCode = FindResourceEntry(resourceTablePointer,&stackFloatValue1), validationErrorCode != 0))
         goto ValidationErrorHandler;
@@ -13137,15 +13137,15 @@ void ProcessComplexResourceWithRegisters(void)
     }
     for (operationResult = 0; (-1 < operationResult && (operationResult < *(int *)(systemRegister3 + 0x78))); operationResult = operationResult + 1) {
       ResourceIndex = *(int64_t *)(*(int64_t *)(systemRegister3 + 0x70) + (int64_t)operationResult * 8);
-      resourceTablePointer = *(int64_t *)(LocalContextData + 0x68);
-      if (((*(byte *)(LocalContextData + 0xc4) & 1) != 0) && (resourceTablePointer != 0)) {
+      resourceTablePointer = *(int64_t *)(SystemResourceContext + 0x68);
+      if (((*(byte *)(SystemResourceContext + 0xc4) & 1) != 0) && (resourceTablePointer != 0)) {
         contextFlags = 0;
         validationErrorCode = ValidateBufferContext(resourceTablePointer,&contextFlags);
         if (validationErrorCode != 0) goto ValidationErrorHandler;
-        validationStatus1 = *(uint32_t *)(LocalContextData + 0x10);
-        validationStatus2 = *(uint32_t *)(LocalContextData + 0x14);
-        resourceData1 = *(uint32_t *)(LocalContextData + 0x18);
-        resourceData2 = *(uint32_t *)(LocalContextData + 0x1c);
+        validationStatus1 = *(uint32_t *)(SystemResourceContext + 0x10);
+        validationStatus2 = *(uint32_t *)(SystemResourceContext + 0x14);
+        resourceHashValue1 = *(uint32_t *)(SystemResourceContext + 0x18);
+        resourceHashValue2 = *(uint32_t *)(SystemResourceContext + 0x1c);
         *(uint32_t *)(executionContext + -0x78) = 0;
         *(int *)(executionContext + -0x68) = systemRegister2;
         *(uint8_t **)(executionContext + -0x80) = &SystemResourceTemplateActive;
@@ -13154,8 +13154,8 @@ void ProcessComplexResourceWithRegisters(void)
         *(uint32_t *)(executionContext + -0x70) = systemRegister1;
         *(uint32_t *)(executionContext + -100) = validationStatus1;
         *(uint32_t *)(executionContext + -0x60) = validationStatus2;
-        *(uint32_t *)(executionContext + -0x5c) = resourceData1;
-        *(uint32_t *)(executionContext + -0x58) = resourceData2;
+        *(uint32_t *)(executionContext + -0x5c) = resourceHashValue1;
+        *(uint32_t *)(executionContext + -0x58) = resourceHashValue2;
         validationErrorCode = GetAndValidateResourceData(validationStatus1,executionContext + -0x80);
         if ((validationErrorCode != 0) || (validationErrorCode = FindResourceEntry(resourceTablePointer,&stackFloatValue1), validationErrorCode != 0))
         goto ValidationErrorHandler;
@@ -13198,10 +13198,10 @@ void ProcessComplexResourceWithRegisters(void)
         contextFlags = 0;
         temporaryIndex = ValidateBufferContext(resourceTablePointer,&contextFlags);
         if (temporaryIndex != 0) break;
-        validationStatus1 = *(uint32_t *)(LocalContextData + 0x10);
-        validationStatus2 = *(uint32_t *)(LocalContextData + 0x14);
-        resourceData1 = *(uint32_t *)(LocalContextData + 0x18);
-        resourceData2 = *(uint32_t *)(LocalContextData + 0x1c);
+        validationStatus1 = *(uint32_t *)(SystemResourceContext + 0x10);
+        validationStatus2 = *(uint32_t *)(SystemResourceContext + 0x14);
+        resourceHashValue1 = *(uint32_t *)(SystemResourceContext + 0x18);
+        resourceHashValue2 = *(uint32_t *)(SystemResourceContext + 0x1c);
         *(uint32_t *)(executionContext + -0x78) = 0;
         *(int *)(executionContext + -0x68) = validationErrorCode;
         *(uint8_t **)(executionContext + -0x80) = &SystemResourceTemplateBackground;
@@ -13210,8 +13210,8 @@ void ProcessComplexResourceWithRegisters(void)
         *(uint32_t *)(executionContext + -0x70) = systemRegister1;
         *(uint32_t *)(executionContext + -100) = validationStatus1;
         *(uint32_t *)(executionContext + -0x60) = validationStatus2;
-        *(uint32_t *)(executionContext + -0x5c) = resourceData1;
-        *(uint32_t *)(executionContext + -0x58) = resourceData2;
+        *(uint32_t *)(executionContext + -0x5c) = resourceHashValue1;
+        *(uint32_t *)(executionContext + -0x58) = resourceHashValue2;
         temporaryIndex = GetAndValidateResourceData(validationStatus1,executionContext + -0x80);
         if ((temporaryIndex != 0) || (temporaryIndex = SearchResourceTable(resourceTablePointer,&stackFloatValue1,0), temporaryIndex != 0)) break;
         if (stackFloatValue1 != 1.0) {
@@ -14405,10 +14405,10 @@ LoopExit:
                     // WARNING: Subroutine does not return
         FinalizeSecurityOperation(EncryptedValue ^ (uint64_t)StackBuffer2a8);
       }
-      uint32_t dataBuffer1 = *(uint32_t *)(LocalContextData + 0x10);
-      uint32_t dataBuffer2 = *(uint32_t *)(LocalContextData + 0x14);
-      uint32_t dataBuffer3 = *(uint32_t *)(LocalContextData + 0x18);
-      uint32_t dataBuffer4 = *(uint32_t *)(LocalContextData + 0x1c);
+      uint32_t dataBuffer1 = *(uint32_t *)(SystemResourceContext + 0x10);
+      uint32_t dataBuffer2 = *(uint32_t *)(SystemResourceContext + 0x14);
+      uint32_t dataBuffer3 = *(uint32_t *)(SystemResourceContext + 0x18);
+      uint32_t dataBuffer4 = *(uint32_t *)(SystemResourceContext + 0x1c);
       uint32_t operationFlag = 0;
       int nextResultIndex = resultCounter + 1;
       StackPointer268 = &SystemMemoryTemplateA;
@@ -40773,7 +40773,7 @@ void UnwindSystemResourceSecondaryHandler(uint8_t objectContext,int64_t validati
   
   loopCounter = *(int64_t *)(validationContext + 0x20);
   *(uint8_t *)(LocalContextData + 0x60) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x68) != 0) {
+  if (*(int64_t *)(SystemResourceContext + 0x68) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
@@ -40863,7 +40863,7 @@ void ResetSystemResourceHandler(uint8_t objectContext, int64_t validationContext
   
   loopCounter = *(int64_t *)(validationContext + 0x50);
   *(uint8_t *)(LocalContextData + 0x60) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(LocalContextData + 0x68) != 0) {
+  if (*(int64_t *)(SystemResourceContext + 0x68) != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
@@ -44667,7 +44667,19 @@ void CloseHandleAtContextOffset78(uint8_t objectContext,int64_t validationContex
 
 
 
-void Unwind_180904a80(uint8_t objectContext,int64_t validationContext)
+/**
+ * @brief 释放验证上下文中双重指针引用的资源句柄
+ * 
+ * 该函数负责释放验证上下文中通过双重指针引用的资源句柄
+ * 执行资源清理操作，确保系统资源正确释放
+ * 
+ * @param objectContext 对象上下文，标识要操作的对象
+ * @param validationContext 验证上下文，包含资源的位置信息
+ * @return 无返回值
+ * @note 此函数会释放指定位置的资源句柄
+ * @warning 调用此函数后，被释放的资源句柄将不再可用
+ */
+void ReleaseDoublePointerResourceHandle(uint8_t objectContext,int64_t validationContext)
 
 {
   int *pResourceIndex;
@@ -44703,35 +44715,47 @@ void Unwind_180904a80(uint8_t objectContext,int64_t validationContext)
 
 
 
-void Unwind_180904a90(uint8_t objectContext,int64_t validationContext)
+/**
+ * @brief 验证资源访问权限并处理异常情况
+ * 
+ * 该函数负责验证资源访问权限，检查资源索引并处理可能的异常情况
+ * 如果资源索引为零，会调用系统清理处理程序
+ * 
+ * @param objectContext 对象上下文，标识要操作的对象
+ * @param validationContext 验证上下文，包含资源的位置信息
+ * @return 无返回值
+ * @note 此函数会验证资源访问权限并处理异常情况
+ * @warning 如果资源索引为零，会触发系统清理处理程序
+ */
+void ValidateResourceAccessAndHandleException(uint8_t objectContext,int64_t validationContext)
 
 {
-  int *pResourceIndex;
-  uint8_t *pResourceValidationResult;
-  int64_t ResourceIndex;
-  uint64_t loopIncrement;
+  int *ResourceIndexPointer;
+  uint8_t *ResourceValidationResultPointer;
+  int64_t ResourceMemoryOffset;
+  uint64_t MemoryAlignmentMask;
   
-  pvalidationResult = (uint8_t *)**(uint64_t **)(validationContext + 0x70);
-  if (pvalidationResult == (uint8_t *)0x0) {
+  ResourceValidationData = (uint8_t *)**(uint64_t **)(validationContext + 0x70);
+  if (ResourceValidationData == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)pResourceValidationResult - loopIncrement >> 0x10) * 0x50;
-    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *pvalidationResult = *(uint8_t *)(ResourceIndex + 0x20);
-      *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(ResourceIndex + 0x18);
-      *pResourceIndex = *pResourceIndex + -1;
-      if (*pResourceIndex == 0) {
+  MemoryAlignmentMask = (uint64_t)ResourceValidationResultPointer & 0xffffffffffc00000;
+  if (MemoryAlignmentMask != 0) {
+    ResourceMemoryOffset = MemoryAlignmentMask + 0x80 + ((int64_t)ResourceValidationResultPointer - MemoryAlignmentMask >> 0x10) * 0x50;
+    ResourceMemoryOffset = ResourceMemoryOffset - (uint64_t)*(uint *)(ResourceMemoryOffset + 4);
+    if ((*(void ***)(MemoryAlignmentMask + 0x70) == &ExceptionList) && (*(char *)(ResourceMemoryOffset + 0xe) == '\0')) {
+      *ResourceValidationData = *(uint8_t *)(ResourceMemoryOffset + 0x20);
+      *(uint8_t **)(ResourceMemoryOffset + 0x20) = ResourceValidationResultPointer;
+      ResourceIndexPointer = (int *)(ResourceMemoryOffset + 0x18);
+      *ResourceIndexPointer = *ResourceIndexPointer + -1;
+      if (*ResourceIndexPointer == 0) {
         SystemCleanupHandler();
         return;
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          pResourceValidationResult,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAlignmentMask,CONCAT71(0xff000000,*(void ***)(MemoryAlignmentMask + 0x70) == &ExceptionList),
+                          ResourceValidationResultPointer,MemoryAlignmentMask,0xfffffffffffffffe);
     }
   }
   return;
@@ -44739,7 +44763,18 @@ void Unwind_180904a90(uint8_t objectContext,int64_t validationContext)
 
 
 
-void Unwind_180904aa0(uint8_t objectContext,int64_t validationContext)
+/**
+ * @brief 初始化验证上下文中的系统数据结构指针
+ * 
+ * 该函数负责将系统数据结构指针设置到验证上下文的指定偏移位置
+ * 
+ * @param objectContext 对象上下文，标识要操作的对象
+ * @param validationContext 验证上下文，包含系统数据结构的位置信息
+ * @return 无返回值
+ * @note 此函数会将系统数据结构指针设置到验证上下文的0xb0偏移位置
+ * @warning 调用此函数后，验证上下文中的系统数据结构指针将被更新
+ */
+void InitializeSystemDataStructurePointer(uint8_t objectContext,int64_t validationContext)
 
 {
   *(uint8_t **)(validationContext + 0xb0) = &SystemDataStructure;
@@ -44748,7 +44783,21 @@ void Unwind_180904aa0(uint8_t objectContext,int64_t validationContext)
 
 
 
-void Unwind_180904ab0(uint8_t objectContext,int64_t validationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 清理资源哈希表并执行系统清理操作
+ * 
+ * 该函数负责清理资源哈希表，执行资源哈希操作
+ * 根据清理选项和标志来处理不同的清理逻辑
+ * 
+ * @param objectContext 对象上下文，标识要操作的对象
+ * @param validationContext 验证上下文，包含资源的位置信息
+ * @param CleanupOption 清理选项，指定清理的方式
+ * @param CleanupFlag 清理标志，控制清理的执行
+ * @return 无返回值
+ * @note 此函数会执行资源哈希表的清理操作
+ * @warning 调用此函数后，相关的资源哈希表将被清理
+ */
+void CleanupResourceHashTable(uint8_t objectContext,int64_t validationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   uint8_t *presourceHash;
@@ -69656,7 +69705,7 @@ void Unwind_18090c540(uint8_t objectContext,int64_t validationContext)
       LocalContextData = *pLoopOffset;
       loopCounter = *(int64_t *)(LocalContextData + ((int64_t)(int)(pLoopOffset[1] - LocalContextData >> 3) + -1) * 8);
       PerformMemoryOperation();
-      if (*(int64_t *)(LocalContextData + 0x68) == 0) {
+      if (*(int64_t *)(SystemResourceContext + 0x68) == 0) {
         *(int64_t *)(ResourceTablePointer + 0x80b0 + (int64_t)*(int *)(ResourceTablePointer + 0x8088) * 8) = LocalContextData;
       }
       ResourceIndex = (int64_t)*(int *)(ResourceTablePointer + 0x8088) * 0x20;
@@ -69702,7 +69751,7 @@ void Unwind_18090c550(uint8_t objectContext,int64_t validationContext)
       LocalContextData = *pLoopOffset;
       loopCounter = *(int64_t *)(LocalContextData + ((int64_t)(int)(pLoopOffset[1] - LocalContextData >> 3) + -1) * 8);
       PerformMemoryOperation();
-      if (*(int64_t *)(LocalContextData + 0x68) == 0) {
+      if (*(int64_t *)(SystemResourceContext + 0x68) == 0) {
         *(int64_t *)(ResourceTablePointer + 0x80b0 + (int64_t)*(int *)(ResourceTablePointer + 0x8088) * 8) = LocalContextData;
       }
       ResourceIndex = (int64_t)*(int *)(ResourceTablePointer + 0x8088) * 0x20;
@@ -69778,7 +69827,7 @@ void Unwind_18090c590(uint8_t objectContext,int64_t validationContext)
       LocalContextData = *pLoopOffset;
       loopCounter = *(int64_t *)(LocalContextData + ((int64_t)(int)(pLoopOffset[1] - LocalContextData >> 3) + -1) * 8);
       PerformMemoryOperation();
-      if (*(int64_t *)(LocalContextData + 0x68) == 0) {
+      if (*(int64_t *)(SystemResourceContext + 0x68) == 0) {
         *(int64_t *)(ResourceTablePointer + 0x80b0 + (int64_t)*(int *)(ResourceTablePointer + 0x8088) * 8) = LocalContextData;
       }
       ResourceIndex = (int64_t)*(int *)(ResourceTablePointer + 0x8088) * 0x20;
@@ -69845,7 +69894,7 @@ void Unwind_18090c5c0(uint8_t objectContext,int64_t validationContext)
       LocalContextData = *pLoopOffset;
       loopCounter = *(int64_t *)(LocalContextData + ((int64_t)(int)(pLoopOffset[1] - LocalContextData >> 3) + -1) * 8);
       PerformMemoryOperation();
-      if (*(int64_t *)(LocalContextData + 0x68) == 0) {
+      if (*(int64_t *)(SystemResourceContext + 0x68) == 0) {
         *(int64_t *)(ResourceTablePointer + 0x80b0 + (int64_t)*(int *)(ResourceTablePointer + 0x8088) * 8) = LocalContextData;
       }
       ResourceIndex = (int64_t)*(int *)(ResourceTablePointer + 0x8088) * 0x20;
@@ -69891,7 +69940,7 @@ void Unwind_18090c5d0(uint8_t objectContext,int64_t validationContext)
       LocalContextData = *pLoopOffset;
       loopCounter = *(int64_t *)(LocalContextData + ((int64_t)(int)(pLoopOffset[1] - LocalContextData >> 3) + -1) * 8);
       PerformMemoryOperation();
-      if (*(int64_t *)(LocalContextData + 0x68) == 0) {
+      if (*(int64_t *)(SystemResourceContext + 0x68) == 0) {
         *(int64_t *)(ResourceTablePointer + 0x80b0 + (int64_t)*(int *)(ResourceTablePointer + 0x8088) * 8) = LocalContextData;
       }
       ResourceIndex = (int64_t)*(int *)(ResourceTablePointer + 0x8088) * 0x20;
@@ -69949,7 +69998,7 @@ void Unwind_18090c5f0(uint8_t objectContext,int64_t validationContext)
       LocalContextData = *pLoopOffset;
       loopCounter = *(int64_t *)(LocalContextData + ((int64_t)(int)(pLoopOffset[1] - LocalContextData >> 3) + -1) * 8);
       PerformMemoryOperation();
-      if (*(int64_t *)(LocalContextData + 0x68) == 0) {
+      if (*(int64_t *)(SystemResourceContext + 0x68) == 0) {
         *(int64_t *)(ResourceTablePointer + 0x80b0 + (int64_t)*(int *)(ResourceTablePointer + 0x8088) * 8) = LocalContextData;
       }
       ResourceIndex = (int64_t)*(int *)(ResourceTablePointer + 0x8088) * 0x20;
@@ -69995,7 +70044,7 @@ void Unwind_18090c600(uint8_t objectContext,int64_t validationContext)
       LocalContextData = *pLoopOffset;
       loopCounter = *(int64_t *)(LocalContextData + ((int64_t)(int)(pLoopOffset[1] - LocalContextData >> 3) + -1) * 8);
       PerformMemoryOperation();
-      if (*(int64_t *)(LocalContextData + 0x68) == 0) {
+      if (*(int64_t *)(SystemResourceContext + 0x68) == 0) {
         *(int64_t *)(ResourceTablePointer + 0x80b0 + (int64_t)*(int *)(ResourceTablePointer + 0x8088) * 8) = LocalContextData;
       }
       ResourceIndex = (int64_t)*(int *)(ResourceTablePointer + 0x8088) * 0x20;
@@ -70684,7 +70733,7 @@ void Unwind_18090ca20(uint8_t objectContext,int64_t validationContext)
       LocalContextData = *pLoopOffset;
       loopCounter = *(int64_t *)(LocalContextData + ((int64_t)(int)(pLoopOffset[1] - LocalContextData >> 3) + -1) * 8);
       PerformMemoryOperation();
-      if (*(int64_t *)(LocalContextData + 0x68) == 0) {
+      if (*(int64_t *)(SystemResourceContext + 0x68) == 0) {
         *(int64_t *)(ResourceTablePointer + 0x80b0 + (int64_t)*(int *)(ResourceTablePointer + 0x8088) * 8) = LocalContextData;
       }
       ResourceIndex = (int64_t)*(int *)(ResourceTablePointer + 0x8088) * 0x20;
@@ -70742,7 +70791,7 @@ void Unwind_18090ca40(uint8_t objectContext,int64_t validationContext)
       LocalContextData = *pLoopOffset;
       loopCounter = *(int64_t *)(LocalContextData + ((int64_t)(int)(pLoopOffset[1] - LocalContextData >> 3) + -1) * 8);
       PerformMemoryOperation();
-      if (*(int64_t *)(LocalContextData + 0x68) == 0) {
+      if (*(int64_t *)(SystemResourceContext + 0x68) == 0) {
         *(int64_t *)(ResourceTablePointer + 0x80b0 + (int64_t)*(int *)(ResourceTablePointer + 0x8088) * 8) = LocalContextData;
       }
       ResourceIndex = (int64_t)*(int *)(ResourceTablePointer + 0x8088) * 0x20;
@@ -70812,7 +70861,7 @@ void Unwind_18090ca70(uint8_t objectContext,int64_t validationContext)
       LocalContextData = *pLoopOffset;
       loopCounter = *(int64_t *)(LocalContextData + ((int64_t)(int)(pLoopOffset[1] - LocalContextData >> 3) + -1) * 8);
       PerformMemoryOperation();
-      if (*(int64_t *)(LocalContextData + 0x68) == 0) {
+      if (*(int64_t *)(SystemResourceContext + 0x68) == 0) {
         *(int64_t *)(ResourceTablePointer + 0x80b0 + (int64_t)*(int *)(ResourceTablePointer + 0x8088) * 8) = LocalContextData;
       }
       ResourceIndex = (int64_t)*(int *)(ResourceTablePointer + 0x8088) * 0x20;
@@ -70879,7 +70928,7 @@ void Unwind_18090caa0(uint8_t objectContext,int64_t validationContext)
       LocalContextData = *pLoopOffset;
       loopCounter = *(int64_t *)(LocalContextData + ((int64_t)(int)(pLoopOffset[1] - LocalContextData >> 3) + -1) * 8);
       PerformMemoryOperation();
-      if (*(int64_t *)(LocalContextData + 0x68) == 0) {
+      if (*(int64_t *)(SystemResourceContext + 0x68) == 0) {
         *(int64_t *)(ResourceTablePointer + 0x80b0 + (int64_t)*(int *)(ResourceTablePointer + 0x8088) * 8) = LocalContextData;
       }
       ResourceIndex = (int64_t)*(int *)(ResourceTablePointer + 0x8088) * 0x20;
@@ -70946,7 +70995,7 @@ void Unwind_18090cad0(uint8_t objectContext,int64_t validationContext)
       LocalContextData = *pLoopOffset;
       loopCounter = *(int64_t *)(LocalContextData + ((int64_t)(int)(pLoopOffset[1] - LocalContextData >> 3) + -1) * 8);
       PerformMemoryOperation();
-      if (*(int64_t *)(LocalContextData + 0x68) == 0) {
+      if (*(int64_t *)(SystemResourceContext + 0x68) == 0) {
         *(int64_t *)(ResourceTablePointer + 0x80b0 + (int64_t)*(int *)(ResourceTablePointer + 0x8088) * 8) = LocalContextData;
       }
       ResourceIndex = (int64_t)*(int *)(ResourceTablePointer + 0x8088) * 0x20;
@@ -71013,7 +71062,7 @@ void Unwind_18090cb00(uint8_t objectContext,int64_t validationContext)
       LocalContextData = *pLoopOffset;
       loopCounter = *(int64_t *)(LocalContextData + ((int64_t)(int)(pLoopOffset[1] - LocalContextData >> 3) + -1) * 8);
       PerformMemoryOperation();
-      if (*(int64_t *)(LocalContextData + 0x68) == 0) {
+      if (*(int64_t *)(SystemResourceContext + 0x68) == 0) {
         *(int64_t *)(ResourceTablePointer + 0x80b0 + (int64_t)*(int *)(ResourceTablePointer + 0x8088) * 8) = LocalContextData;
       }
       ResourceIndex = (int64_t)*(int *)(ResourceTablePointer + 0x8088) * 0x20;
@@ -71068,7 +71117,7 @@ void Unwind_18090cb20(uint8_t objectContext,int64_t validationContext)
       LocalContextData = *pLoopOffset;
       loopCounter = *(int64_t *)(LocalContextData + ((int64_t)(int)(pLoopOffset[1] - LocalContextData >> 3) + -1) * 8);
       PerformMemoryOperation();
-      if (*(int64_t *)(LocalContextData + 0x68) == 0) {
+      if (*(int64_t *)(SystemResourceContext + 0x68) == 0) {
         *(int64_t *)(ResourceTablePointer + 0x80b0 + (int64_t)*(int *)(ResourceTablePointer + 0x8088) * 8) = LocalContextData;
       }
       ResourceIndex = (int64_t)*(int *)(ResourceTablePointer + 0x8088) * 0x20;
@@ -71123,7 +71172,7 @@ void Unwind_18090cb40(uint8_t objectContext,int64_t validationContext)
       LocalContextData = *pLoopOffset;
       loopCounter = *(int64_t *)(LocalContextData + ((int64_t)(int)(pLoopOffset[1] - LocalContextData >> 3) + -1) * 8);
       PerformMemoryOperation();
-      if (*(int64_t *)(LocalContextData + 0x68) == 0) {
+      if (*(int64_t *)(SystemResourceContext + 0x68) == 0) {
         *(int64_t *)(ResourceTablePointer + 0x80b0 + (int64_t)*(int *)(ResourceTablePointer + 0x8088) * 8) = LocalContextData;
       }
       ResourceIndex = (int64_t)*(int *)(ResourceTablePointer + 0x8088) * 0x20;
@@ -71181,7 +71230,7 @@ void Unwind_18090cb60(uint8_t objectContext,int64_t validationContext)
       LocalContextData = *pLoopOffset;
       loopCounter = *(int64_t *)(LocalContextData + ((int64_t)(int)(pLoopOffset[1] - LocalContextData >> 3) + -1) * 8);
       PerformMemoryOperation();
-      if (*(int64_t *)(LocalContextData + 0x68) == 0) {
+      if (*(int64_t *)(SystemResourceContext + 0x68) == 0) {
         *(int64_t *)(ResourceTablePointer + 0x80b0 + (int64_t)*(int *)(ResourceTablePointer + 0x8088) * 8) = LocalContextData;
       }
       ResourceIndex = (int64_t)*(int *)(ResourceTablePointer + 0x8088) * 0x20;
@@ -71236,7 +71285,7 @@ void Unwind_18090cb80(uint8_t objectContext,int64_t validationContext)
       LocalContextData = *pLoopOffset;
       loopCounter = *(int64_t *)(LocalContextData + ((int64_t)(int)(pLoopOffset[1] - LocalContextData >> 3) + -1) * 8);
       PerformMemoryOperation();
-      if (*(int64_t *)(LocalContextData + 0x68) == 0) {
+      if (*(int64_t *)(SystemResourceContext + 0x68) == 0) {
         *(int64_t *)(ResourceTablePointer + 0x80b0 + (int64_t)*(int *)(ResourceTablePointer + 0x8088) * 8) = LocalContextData;
       }
       ResourceIndex = (int64_t)*(int *)(ResourceTablePointer + 0x8088) * 0x20;
@@ -71327,7 +71376,7 @@ void Unwind_18090cbd0(uint8_t objectContext,int64_t validationContext)
       LocalContextData = *pLoopOffset;
       loopCounter = *(int64_t *)(LocalContextData + ((int64_t)(int)(pLoopOffset[1] - LocalContextData >> 3) + -1) * 8);
       PerformMemoryOperation();
-      if (*(int64_t *)(LocalContextData + 0x68) == 0) {
+      if (*(int64_t *)(SystemResourceContext + 0x68) == 0) {
         *(int64_t *)(ResourceTablePointer + 0x80b0 + (int64_t)*(int *)(ResourceTablePointer + 0x8088) * 8) = LocalContextData;
       }
       ResourceIndex = (int64_t)*(int *)(ResourceTablePointer + 0x8088) * 0x20;
@@ -71394,7 +71443,7 @@ void Unwind_18090cc00(uint8_t objectContext,int64_t validationContext)
       LocalContextData = *pLoopOffset;
       loopCounter = *(int64_t *)(LocalContextData + ((int64_t)(int)(pLoopOffset[1] - LocalContextData >> 3) + -1) * 8);
       PerformMemoryOperation();
-      if (*(int64_t *)(LocalContextData + 0x68) == 0) {
+      if (*(int64_t *)(SystemResourceContext + 0x68) == 0) {
         *(int64_t *)(ResourceTablePointer + 0x80b0 + (int64_t)*(int *)(ResourceTablePointer + 0x8088) * 8) = LocalContextData;
       }
       ResourceIndex = (int64_t)*(int *)(ResourceTablePointer + 0x8088) * 0x20;
@@ -71560,7 +71609,7 @@ void Unwind_18090cce0(uint8_t objectContext,int64_t validationContext)
       LocalContextData = *pLoopOffset;
       loopCounter = *(int64_t *)(LocalContextData + ((int64_t)(int)(pLoopOffset[1] - LocalContextData >> 3) + -1) * 8);
       PerformMemoryOperation();
-      if (*(int64_t *)(LocalContextData + 0x68) == 0) {
+      if (*(int64_t *)(SystemResourceContext + 0x68) == 0) {
         *(int64_t *)(ResourceTablePointer + 0x80b0 + (int64_t)*(int *)(ResourceTablePointer + 0x8088) * 8) = LocalContextData;
       }
       ResourceIndex = (int64_t)*(int *)(ResourceTablePointer + 0x8088) * 0x20;
@@ -76847,7 +76896,7 @@ void Unwind_18090e760(uint8_t objectContext,int64_t validationContext)
       LocalContextData = *pLoopOffset;
       loopCounter = *(int64_t *)(LocalContextData + ((int64_t)(int)(pLoopOffset[1] - LocalContextData >> 3) + -1) * 8);
       PerformMemoryOperation();
-      if (*(int64_t *)(LocalContextData + 0x68) == 0) {
+      if (*(int64_t *)(SystemResourceContext + 0x68) == 0) {
         *(int64_t *)(ResourceTablePointer + 0x80b0 + (int64_t)*(int *)(ResourceTablePointer + 0x8088) * 8) = LocalContextData;
       }
       ResourceIndex = (int64_t)*(int *)(ResourceTablePointer + 0x8088) * 0x20;
@@ -76905,7 +76954,7 @@ void Unwind_18090e7a0(uint8_t objectContext,int64_t validationContext)
       LocalContextData = *pLoopOffset;
       loopCounter = *(int64_t *)(LocalContextData + ((int64_t)(int)(pLoopOffset[1] - LocalContextData >> 3) + -1) * 8);
       PerformMemoryOperation();
-      if (*(int64_t *)(LocalContextData + 0x68) == 0) {
+      if (*(int64_t *)(SystemResourceContext + 0x68) == 0) {
         *(int64_t *)(ResourceTablePointer + 0x80b0 + (int64_t)*(int *)(ResourceTablePointer + 0x8088) * 8) = LocalContextData;
       }
       ResourceIndex = (int64_t)*(int *)(ResourceTablePointer + 0x8088) * 0x20;
@@ -76951,7 +77000,7 @@ void Unwind_18090e7b0(uint8_t objectContext,int64_t validationContext)
       LocalContextData = *pLoopOffset;
       loopCounter = *(int64_t *)(LocalContextData + ((int64_t)(int)(pLoopOffset[1] - LocalContextData >> 3) + -1) * 8);
       PerformMemoryOperation();
-      if (*(int64_t *)(LocalContextData + 0x68) == 0) {
+      if (*(int64_t *)(SystemResourceContext + 0x68) == 0) {
         *(int64_t *)(ResourceTablePointer + 0x80b0 + (int64_t)*(int *)(ResourceTablePointer + 0x8088) * 8) = LocalContextData;
       }
       ResourceIndex = (int64_t)*(int *)(ResourceTablePointer + 0x8088) * 0x20;
@@ -76997,7 +77046,7 @@ void Unwind_18090e7c0(uint8_t objectContext,int64_t validationContext)
       LocalContextData = *pLoopOffset;
       loopCounter = *(int64_t *)(LocalContextData + ((int64_t)(int)(pLoopOffset[1] - LocalContextData >> 3) + -1) * 8);
       PerformMemoryOperation();
-      if (*(int64_t *)(LocalContextData + 0x68) == 0) {
+      if (*(int64_t *)(SystemResourceContext + 0x68) == 0) {
         *(int64_t *)(ResourceTablePointer + 0x80b0 + (int64_t)*(int *)(ResourceTablePointer + 0x8088) * 8) = LocalContextData;
       }
       ResourceIndex = (int64_t)*(int *)(ResourceTablePointer + 0x8088) * 0x20;
@@ -77043,7 +77092,7 @@ void Unwind_18090e7d0(uint8_t objectContext,int64_t validationContext)
       LocalContextData = *pLoopOffset;
       loopCounter = *(int64_t *)(LocalContextData + ((int64_t)(int)(pLoopOffset[1] - LocalContextData >> 3) + -1) * 8);
       PerformMemoryOperation();
-      if (*(int64_t *)(LocalContextData + 0x68) == 0) {
+      if (*(int64_t *)(SystemResourceContext + 0x68) == 0) {
         *(int64_t *)(ResourceTablePointer + 0x80b0 + (int64_t)*(int *)(ResourceTablePointer + 0x8088) * 8) = LocalContextData;
       }
       ResourceIndex = (int64_t)*(int *)(ResourceTablePointer + 0x8088) * 0x20;
@@ -77089,7 +77138,7 @@ void Unwind_18090e7e0(uint8_t objectContext,int64_t validationContext)
       LocalContextData = *pLoopOffset;
       loopCounter = *(int64_t *)(LocalContextData + ((int64_t)(int)(pLoopOffset[1] - LocalContextData >> 3) + -1) * 8);
       PerformMemoryOperation();
-      if (*(int64_t *)(LocalContextData + 0x68) == 0) {
+      if (*(int64_t *)(SystemResourceContext + 0x68) == 0) {
         *(int64_t *)(ResourceTablePointer + 0x80b0 + (int64_t)*(int *)(ResourceTablePointer + 0x8088) * 8) = LocalContextData;
       }
       ResourceIndex = (int64_t)*(int *)(ResourceTablePointer + 0x8088) * 0x20;
@@ -77135,7 +77184,7 @@ void Unwind_18090e7f0(uint8_t objectContext,int64_t validationContext)
       LocalContextData = *pLoopOffset;
       loopCounter = *(int64_t *)(LocalContextData + ((int64_t)(int)(pLoopOffset[1] - LocalContextData >> 3) + -1) * 8);
       PerformMemoryOperation();
-      if (*(int64_t *)(LocalContextData + 0x68) == 0) {
+      if (*(int64_t *)(SystemResourceContext + 0x68) == 0) {
         *(int64_t *)(ResourceTablePointer + 0x80b0 + (int64_t)*(int *)(ResourceTablePointer + 0x8088) * 8) = LocalContextData;
       }
       ResourceIndex = (int64_t)*(int *)(ResourceTablePointer + 0x8088) * 0x20;
@@ -77181,7 +77230,7 @@ void Unwind_18090e800(uint8_t objectContext,int64_t validationContext)
       LocalContextData = *pLoopOffset;
       loopCounter = *(int64_t *)(LocalContextData + ((int64_t)(int)(pLoopOffset[1] - LocalContextData >> 3) + -1) * 8);
       PerformMemoryOperation();
-      if (*(int64_t *)(LocalContextData + 0x68) == 0) {
+      if (*(int64_t *)(SystemResourceContext + 0x68) == 0) {
         *(int64_t *)(ResourceTablePointer + 0x80b0 + (int64_t)*(int *)(ResourceTablePointer + 0x8088) * 8) = LocalContextData;
       }
       ResourceIndex = (int64_t)*(int *)(ResourceTablePointer + 0x8088) * 0x20;
@@ -77239,7 +77288,7 @@ void Unwind_18090e820(uint8_t objectContext,int64_t validationContext)
       LocalContextData = *pLoopOffset;
       loopCounter = *(int64_t *)(LocalContextData + ((int64_t)(int)(pLoopOffset[1] - LocalContextData >> 3) + -1) * 8);
       PerformMemoryOperation();
-      if (*(int64_t *)(LocalContextData + 0x68) == 0) {
+      if (*(int64_t *)(SystemResourceContext + 0x68) == 0) {
         *(int64_t *)(ResourceTablePointer + 0x80b0 + (int64_t)*(int *)(ResourceTablePointer + 0x8088) * 8) = LocalContextData;
       }
       ResourceIndex = (int64_t)*(int *)(ResourceTablePointer + 0x8088) * 0x20;
@@ -77297,7 +77346,7 @@ void Unwind_18090e840(uint8_t objectContext,int64_t validationContext)
       LocalContextData = *pLoopOffset;
       loopCounter = *(int64_t *)(LocalContextData + ((int64_t)(int)(pLoopOffset[1] - LocalContextData >> 3) + -1) * 8);
       PerformMemoryOperation();
-      if (*(int64_t *)(LocalContextData + 0x68) == 0) {
+      if (*(int64_t *)(SystemResourceContext + 0x68) == 0) {
         *(int64_t *)(ResourceTablePointer + 0x80b0 + (int64_t)*(int *)(ResourceTablePointer + 0x8088) * 8) = LocalContextData;
       }
       ResourceIndex = (int64_t)*(int *)(ResourceTablePointer + 0x8088) * 0x20;
@@ -77355,7 +77404,7 @@ void Unwind_18090e860(uint8_t objectContext,int64_t validationContext)
       LocalContextData = *pLoopOffset;
       loopCounter = *(int64_t *)(LocalContextData + ((int64_t)(int)(pLoopOffset[1] - LocalContextData >> 3) + -1) * 8);
       PerformMemoryOperation();
-      if (*(int64_t *)(LocalContextData + 0x68) == 0) {
+      if (*(int64_t *)(SystemResourceContext + 0x68) == 0) {
         *(int64_t *)(ResourceTablePointer + 0x80b0 + (int64_t)*(int *)(ResourceTablePointer + 0x8088) * 8) = LocalContextData;
       }
       ResourceIndex = (int64_t)*(int *)(ResourceTablePointer + 0x8088) * 0x20;
@@ -77794,7 +77843,7 @@ void Unwind_18090eb00(uint8_t objectContext,int64_t validationContext)
       LocalContextData = *pLoopOffset;
       loopCounter = *(int64_t *)(LocalContextData + ((int64_t)(int)(pLoopOffset[1] - LocalContextData >> 3) + -1) * 8);
       PerformMemoryOperation();
-      if (*(int64_t *)(LocalContextData + 0x68) == 0) {
+      if (*(int64_t *)(SystemResourceContext + 0x68) == 0) {
         *(int64_t *)(ResourceTablePointer + 0x80b0 + (int64_t)*(int *)(ResourceTablePointer + 0x8088) * 8) = LocalContextData;
       }
       ResourceIndex = (int64_t)*(int *)(ResourceTablePointer + 0x8088) * 0x20;
