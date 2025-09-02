@@ -13239,7 +13239,7 @@ uint64_t SystemAudioCreateChannel(uint ChannelConfigurationParameter)
     }
     else {
       IntegerCounter = _initialize_onexit_table(&SystemInitializationBuffer);
-      if ((IntegerCounter != 0) || (IntegerCounter = _initialize_onexit_table(&DAT_180c821f8), IntegerCounter != 0)) {
+      if ((IntegerCounter != 0) || (IntegerCounter = _initialize_onexit_table(&SystemInitializationBuffer), IntegerCounter != 0)) {
         return 0;
       }
     }
@@ -13297,39 +13297,39 @@ Label_1808fc75b:
   SystemBufferStatus = 0;
   return;
 }
-    DAT_180c95ef0 = '\0';
+    SystemStringBufferFlagEF0 = '\0';
   }
   return;
 }
-    DAT_180c96008 = '\0';
+    SystemStringBufferFlag8 = '\0';
   }
   return;
 }
-    DAT_180c96028 = '\0';
+    SystemStringBufferFlag28 = '\0';
   }
   return;
 }
-    DAT_180c96048 = '\0';
+    SystemStringBufferFlag48 = '\0';
   }
   return;
 }
-    DAT_180c96068 = '\0';
+    SystemStringBufferFlag68 = '\0';
   }
   return;
 }
-    DAT_180c96098 = '\0';
+    SystemStringBufferFlag98 = '\0';
   }
   return;
 }
-    DAT_180c960b8 = '\0';
+    SystemStringBufferFlagB8 = '\0';
   }
   return;
 }
-    DAT_180c96100 = '\0';
+    SystemStringBufferFlag100 = '\0';
   }
   return;
 }
-    DAT_180c96140 = '\0';
+    SystemStringBufferFlag140 = '\0';
   }
   return;
 }
