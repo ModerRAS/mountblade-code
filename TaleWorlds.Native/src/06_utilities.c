@@ -7291,12 +7291,12 @@ void ValidateObjectContextAndProcessPointerValidation(int64_t ObjectContext, int
   int PackageValidationStatusCode;
   int64_t AllocatedMemory;
   int64_t *pointerReference;
-  uint8_t securityBuffer [32];
+  uint8_t SecurityBuffer [32];
   int64_t ContextBuffer;
-  uint8_t processingBuffer [40];
+  uint8_t ProcessingBuffer [40];
   uint64_t SecurityToken;
   
-  securityToken = SecurityEncryptionKey ^ (uint64_t)securityBuffer;
+  SecurityToken = SecurityEncryptionKey ^ (uint64_t)SecurityBuffer;
   ValidationStatus = ValidateObjectContext(*(uint32_t *)(ObjectContext + 0x10), &contextBuffer);
   if (ValidationStatus == 0) {
     if (contextBuffer != 0) {
@@ -7307,7 +7307,7 @@ void ValidateObjectContextAndProcessPointerValidation(int64_t ObjectContext, int
       AllocatedMemory = (**(code **)(**(int64_t **)(SystemContext + 800) + 0x2f0))
                         (*(int64_t **)(SystemContext + 800), objectDataPointer, 1);
       if (AllocatedMemory == 0) {
-              ProcessMemoryAllocationFailure(objectDataPointer, processingBuffer);
+              ProcessMemoryAllocationFailure(objectDataPointer, ProcessingBuffer);
       }
       pointerReference = (int64_t *)(AllocatedMemory + 0x58);
       if (((int64_t *)*pointerReference != pointerReference) || (*(int64_t **)(AllocatedMemory + 0x60) != pointerReference)) {
@@ -11704,20 +11704,20 @@ uint64_t ProcessExtendedResourcePoolDataValidation(uint8_t extendedResourcePoolI
   int ProcessingResult;
   uint8_t HashValidationResult;
   uint8_t *HashValidationResultPointer;
-  int resultRecordIndex;
+  int ResultRecordIndex;
   uint32_t *ResourceDataPointer;
-  uint configurationFlags;
+  uint ConfigurationFlags;
   int ValidationStatusCode;
   int *ResourceContext;
-  int operationCounter;
-  int64_t savedRegisterValue;
-  uint8_t *resourceRegisterPointer;
-  uint32_t *registerR15;
-  uint8_t stackValidationByte;
+  int OperationCounter;
+  int64_t SavedRegisterValue;
+  uint8_t *ResourceRegisterPointer;
+  uint32_t *RegisterR15;
+  uint8_t StackValidationByte;
   
   int ResourceCount = *(int *)(SystemSystemRegisterContext + 0x20);
   if (ResourceCount == -1) {
-    stackValidationByte = *resourceRegisterPointer;
+    StackValidationByte = *ResourceRegisterPointer;
     ResourceCount = *(int *)(SystemSystemRegisterContext + 0x18);
     int CapacityIndex = ResourceCount + 1;
     int ContextPackageValidationStatusCode = (int)*(uint *)(SystemSystemRegisterContext + 0x1c) >> 0x1f;
@@ -11742,7 +11742,7 @@ uint64_t ProcessExtendedResourcePoolDataValidation(uint8_t extendedResourcePoolI
     uint8_t *ValidationStatusCodePointer = (uint8_t *)
              ((int64_t)*(int *)(SystemRegisterContext + 0x18) * 0x10 + *(int64_t *)(SystemRegisterContext + 0x10));
     *ValidationStatusCodePointer = CombineHighLow32Bits(0xffffffff, ValidationContext);
-    HashValidationResultPointer[1] = stackValidationByte;
+    HashValidationResultPointer[1] = StackValidationByte;
     *(int *)(SystemRegisterContext + 0x18) = *(int *)(SystemRegisterContext + 0x18) + 1;
   }
   else {
@@ -30052,10 +30052,10 @@ void ResetSystemResourceManagerPointer(uint8_t ObjectContext, int64_t Validation
  * 遍历验证结果链表，对每个结果执行清理操作，处理异常情况
  * @param ObjectContext 对象上下文参数
  * @param ValidationContext 验证上下文参数
- * @param cleanupParam3 清理参数3
- * @param cleanupParam4 清理参数4
+ * @param CleanupOption 清理选项参数，用于传递额外的清理信息
+ * @param CleanupFlag 清理标志参数，用于传递额外的清理信息
  */
-void ExecuteResourceCleanupLoop(uint8_t ObjectContext, int64_t ValidationContext, uint8_t cleanupParam3, uint8_t cleanupParam4)
+void ExecuteResourceCleanupLoop(uint8_t ObjectContext, int64_t ValidationContext, uint8_t CleanupOption, uint8_t CleanupFlag)
 
 {
   uint8_t *HashDataPointer;
