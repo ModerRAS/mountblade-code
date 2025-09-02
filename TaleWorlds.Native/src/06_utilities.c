@@ -11574,26 +11574,26 @@ uint8_t ExpandResourcePoolCapacity(int64_t *ResourcePoolHandle)
       } while ((int64_t)ResourceInitializationCounter < (int64_t)MaximumResourceCapacity);
     }
     TotalResourceCount = ResourcePoolHandle[3];
-    loopCounter = InitializationCounter;
-    CopyCounter = InitializationCounter;
-    if (0 < (int)ResourceCount) {
+    ResourceInitializationCounter = ResourceSetupCounter;
+    ResourceCopyCounter = ResourceSetupCounter;
+    if (0 < (int)TotalResourceCount) {
       do {
         if ((int)ResourcePoolHandle[1] == 0) {
           return ErrorInvalidObjectHandle;
         }
-        NewPoolSize = (int64_t)(int)(*(uint *)(loopCounter + ResourcePoolHandle[2]) & (int)ResourcePoolHandle[1] - 1U);
-        resourceIndexPointer = (int *)(*ResourcePoolHandle + NewPoolSize * 4);
-        ResourceCapacity = *(int *)(*ResourcePoolHandle + NewPoolSize * 4);
-        while (ResourceCapacity != -1) {
-          resourceIndexPointer = (int *)(ResourcePoolHandle[2] + 4 + (int64_t)ResourceCapacity * 0x10);
-          ResourceCapacity = *resourceIndexPointer;
+        ExpandedPoolSize = (int64_t)(int)(*(uint *)(ResourceInitializationCounter + ResourcePoolHandle[2]) & (int)ResourcePoolHandle[1] - 1U);
+        ResourceIndexPointer = (int *)(*ResourcePoolHandle + ExpandedPoolSize * 4);
+        MaximumResourceCapacity = *(int *)(*ResourcePoolHandle + ExpandedPoolSize * 4);
+        while (MaximumResourceCapacity != -1) {
+          ResourceIndexPointer = (int *)(ResourcePoolHandle[2] + 4 + (int64_t)MaximumResourceCapacity * 0x10);
+          MaximumResourceCapacity = *ResourceIndexPointer;
         }
-        *resourceIndexPointer = (int)InitializationCounter;
-        CopyCounter = CopyCounter + 1;
-        InitializationCounter = (uint64_t)((int)InitializationCounter + 1);
-        *(uint32_t *)(ResourcePoolHandle[2] + 4 + loopCounter) = 0xffffffff;
-        loopCounter = loopCounter + 0x10;
-      } while ((int64_t)CopyCounter < (int64_t)(int)ResourceCount);
+        *ResourceIndexPointer = (int)ResourceSetupCounter;
+        ResourceCopyCounter = ResourceCopyCounter + 1;
+        ResourceSetupCounter = (uint64_t)((int)ResourceSetupCounter + 1);
+        *(uint32_t *)(ResourcePoolHandle[2] + 4 + ResourceInitializationCounter) = 0xffffffff;
+        ResourceInitializationCounter = ResourceInitializationCounter + 0x10;
+      } while ((int64_t)ResourceCopyCounter < (int64_t)(int)TotalResourceCount);
     }
   }
   return 0;
