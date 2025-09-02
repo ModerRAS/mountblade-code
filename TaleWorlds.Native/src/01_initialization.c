@@ -25397,35 +25397,35 @@ void ProcessSystemResourceAllocation(void* ResourceManagerPointer,long long Conf
   uint32_t unsignedValue180;
   void* *psystemFlag178;
   long long longValue170;
-  uint32_t uStack_160;
-  void* uStack_158;
-  ulong long uStack_150;
-  void* *puStack_148;
-  long long lStack_140;
-  uint32_t uStack_130;
-  void* *puStack_128;
-  long long lStack_120;
-  uint32_t UnsignedStackFlag110;
-  void* *punsignedValue108;
-  long long lStack_100;
-  uint32_t uStack_f0;
-  void* *pointerUnsignedE8;
-  void* *DataBufferPtrE0;
-  void* unsignedValueD8;
-  uint32_t uStack_d0;
-  void* *pointerUnsignedC8;
-  long long lStack_c0;
-  uint32_t UnsignedStackFlagB0;
-  void* UnsignedStackFlagA8;
+  uint32_t encryptionKeySize;
+  void* threadLocalStoragePointer;
+  ulong long creationFlagsLength;
+  void* *resourceManagerPointer;
+  long long systemStatusOffset;
+  uint32_t allocationFlags;
+  void* *memoryAllocatorPointer;
+  long long resourceCounter;
+  uint32_t systemConfigFlags;
+  void* *systemDataPointer;
+  long long operationResult;
+  uint32_t bufferFlags;
+  void* *dataBufferPointer;
+  void* *systemDataBuffer;
+  void* systemHandle;
+  uint32_t memoryPoolFlags;
+  void* *systemResourcePointer;
+  long long processStatus;
+  uint32_t securityFlags;
+  void* systemSemaphore;
   void* *stackParameterB;
   uint8_t *pStackParameterC;
-  uint32_t UnsignedStackFlag88;
-  uint8_t aUnsignedStackFlag80 [72];
-  ulong long uStack_38;
+  uint32_t systemStateFlags;
+  uint8_t systemStateBuffer [72];
+  ulong long encryptionKey;
   
   localSystemHandle4 = SystemStatusFlagsPointer;
-  UnsignedStackFlagA8 = 0xfffffffffffffffe;
-  uStack_38 = SystemEncryptionKeyTemplate ^ (ulong long)arrayUnsigned368;
+  systemSemaphore = 0xfffffffffffffffe;
+  encryptionKey = SystemEncryptionKeyTemplate ^ (ulong long)arrayUnsigned368;
   ThreadLocalStorage = (uint8_t *)0x0;
   unsignedValue334 = 0;
   longValue260 = SystemStatusFlagsPointer;
@@ -25445,7 +25445,7 @@ void ProcessSystemResourceAllocation(void* ResourceManagerPointer,long long Conf
   pointerUnsigned308 = (uint8_t *)0x0;
   unsignedValue300 = 0;
   pointerUnsigned268 = pointerToUnsigned17;
-  uStack_150 = creationFlags1;
+  creationFlagsLength = creationFlags1;
   (**(code **)(*(long long *)(SystemStatusFlagsPointer + 0x2c0) + 0x10))
             ((long long *)(SystemStatusFlagsPointer + 0x2c0),pointerToUnsigned17);
   unsignedValue2f0 = 0;
@@ -25565,19 +25565,19 @@ uint32_t GetSystemResourceStatus(void)
   uint currentThreadId;
   int systemFlag;
   void* *pointerUnsignedC8;
-  long long lStack_c0;
-  uint UnsignedStackFlagB8;
-  ulong long UnsignedStackFlagB0;
-  void* *pUnsignedStackFlagA8;
-  long long lStack_a0;
-  uint unsignedValue98;
+  long long bufferOffset;
+  uint stringBufferPosition;
+  ulong long stringBufferCapacity;
+  void* *stringBufferPointer;
+  long long stringBufferOffset;
+  uint stringBufferIndex;
   void* StackParameterC;
-  void* UnsignedStackFlag88;
-  uint8_t aUnsignedStackFlag80 [32];
-  uint8_t StackBuffer60 [40];
+  void* systemSemaphore;
+  uint8_t systemDataBuffer [32];
+  uint8_t threadLocalStorageBuffer [40];
   
   localResourceOffset = SystemStatusFlagsPointer;
-  UnsignedStackFlag88 = 0xfffffffffffffffe;
+  systemSemaphore = 0xfffffffffffffffe;
   asystemStatus = *(uint8_t (*) [16])
             (*(long long *)(SystemStatusFlagsPointer + 8) + 0xcc +
             (ulong long)(*(uint *)(*(long long *)(SystemStatusFlagsPointer + 8) + 0x13c) & 1) * 0x48);
@@ -58314,36 +58314,14 @@ void SystemNoOperationA(void)
   void* InputStackParameter80;
   void* InputStackParameter88;
   void* InputStackParameter90;
-  void* in_stack_00000098;
-  float fStack00000000000000a0;
-  float fStack00000000000000a4;
-  float fStack00000000000000a8;
-  float fStack00000000000000ac;
-  float fStack00000000000000b0;
-  float fStack00000000000000b4;
-  float fStack00000000000000b8;
-  float fStack00000000000000bc;
-  float fStack00000000000000c0;
-  float fStack00000000000000c4;
-  float fStack00000000000000c8;
-  float fStack00000000000000cc;
-  float fStack00000000000000d0;
-  float fStack00000000000000d4;
-  float fStack00000000000000d8;
-  float fStack00000000000000dc;
-  uint32_t in_stack_000000e0;
-  uint32_t in_stack_000000e8;
-  uint32_t in_stack_000000f0;
-  uint32_t in_stack_000000f8;
-  uint32_t in_stack_00000100;
-  uint32_t in_stack_00000108;
-  uint32_t in_stack_00000110;
-  uint32_t in_stack_00000118;
-  uint32_t in_stack_00000170;
-  long long in_stack_00000178;
-  float *in_stack_00000180;
-  void* in_stack_00000188;
-  long long in_stack_00000190;
+  void* ThreadCreationParameter;
+  float FloatStackArray[16];
+  uint32_t ResourceFlags[8];
+  uint32_t ThreadCreationFlags;
+  long long ResourceOffset;
+  float *FloatParameterArray;
+  void* ThreadParameter;
+  long long SystemMemoryOffset;
   
   if (!in_ZF) {
     FUN_18007ee70();
@@ -58408,7 +58386,7 @@ void SystemNoOperationA(void)
     isSystemActive9 = func_0x00018022d300();
     *(byte *)(localResourceOffset4 + 0x38c) = isSystemActive9;
   }
-  localResourceOffset4 = in_stack_00000178;
+  localResourceOffset4 = ResourceOffset;
   localResourceOffset3 = *(long long *)(localResourceOffset3 + 0x1e0);
   *HashNodePointer8 = *(void* *)(localResourceOffset3 + (ulong long)isSystemActive9 * 0x18);
   HashNodePointer8[1] = *(void* *)(localResourceOffset3 + 8 + (ulong long)isSystemActive9 * 0x18);
@@ -58469,11 +58447,11 @@ void SystemNoOperationA(void)
   }
   *(bool *)((long long)InputStackParameter40 + 0x4c) = *(long long *)(localResourceOffset3 + 0x10) != 0;
   *(uint8_t *)((long long)InputStackParameter40 + 0x4d) = 1;
-  if ((*(char *)(in_stack_00000190 + 0xc) != '\0') ||
+  if ((*(char *)(SystemMemoryOffset + 0xc) != '\0') ||
      (0 < *(int *)(*(long long *)(systemMemoryBlockPtr + 600) + 0x1c))) {
     *(uint8_t *)((long long)InputStackParameter40 + 0x4d) = 0;
   }
-  if (*(long long *)(in_stack_00000178 + 0x28) == 0) {
+  if (*(long long *)(ResourceOffset + 0x28) == 0) {
     InputStackParameter30 = 0xffffffff;
     HashNodePointer5 = &stack0x00000030;
     localResourceOffset3 = in_stack_00000178;
@@ -58733,11 +58711,11 @@ void FUN_180077ad8(void)
   }
   *(bool *)(InputStackParameter40 + 0x4c) = *(long long *)(localResourceOffset3 + 0x10) != 0;
   *(uint8_t *)(InputStackParameter40 + 0x4d) = 1;
-  if ((*(char *)(in_stack_00000190 + 0xc) != '\0') ||
+  if ((*(char *)(SystemMemoryOffset + 0xc) != '\0') ||
      (0 < *(int *)(*(long long *)(systemMemoryBlockPtr + 600) + 0x1c))) {
     *(uint8_t *)(InputStackParameter40 + 0x4d) = 0;
   }
-  if (*(long long *)(in_stack_00000178 + 0x28) == 0) {
+  if (*(long long *)(ResourceOffset + 0x28) == 0) {
     InputStackParameter30 = 0xffffffff;
     HashNodePointer4 = &stack0x00000030;
     localResourceOffset3 = in_stack_00000178;
