@@ -7315,7 +7315,7 @@ void ValidateObjectContextAndProcessPointerValidation(int64_t ObjectContext, int
       }
     }
   }
-        CleanupSecurityToken(securityToken ^ (uint64_t)securityBuffer);
+        CleanupSecurityToken(SecurityToken ^ (uint64_t)SecurityBuffer);
 }
 
 
@@ -11851,12 +11851,12 @@ uint32_t ValidateAndGetBufferContext(uint8_t bufferContext)
 
 {
   int PackageValidationStatusCode;
-  uint32_t contextBuffer [6];
+  uint32_t ContextBuffer [6];
   
-  contextBuffer[0] = 0;
-  ValidationStatus = ValidateBufferContext(bufferContext,contextBuffer);
+  ContextBuffer[0] = 0;
+  ValidationStatus = ValidateBufferContext(bufferContext,ContextBuffer);
   if (ValidationStatus == 0) {
-    return contextBuffer[0];
+    return ContextBuffer[0];
   }
   return 0;
 }
@@ -11877,31 +11877,31 @@ uint32_t ValidateAndGetBufferContext(uint8_t bufferContext)
 uint64_t AllocateAndCopyArrayData(int64_t *ArrayPointer,int newSize)
 
 {
-  int oldSize;
-  int64_t sourceDataPointer;
-  uint8_t *newArrayBuffer;
+  int OldSize;
+  int64_t SourceDataPointer;
+  uint8_t *NewArrayBuffer;
   int64_t IterationCounter;
-  uint8_t *destinationPointer;
+  uint8_t *DestinationPointer;
   
   if (newSize < (int)ArrayPointer[1]) {
     return 0x1c;
   }
-  newArrayBuffer = (uint8_t *)0x0;
+  NewArrayBuffer = (uint8_t *)0x0;
   if (newSize != 0) {
     if (newSize * 0xc - 1U < 0x3fffffff) {
-      newArrayBuffer = (uint8_t *)
+      NewArrayBuffer = (uint8_t *)
                AllocateMemoryBlock(*(uint8_t *)(SystemContext + 0x1a0),newSize * 0xc,&ResourceAllocationTemplate,
                              0xf4,0,0,1);
-      if (newArrayBuffer != (uint8_t *)0x0) {
-        oldSize = (int)ArrayPointer[1];
-        IterationCounter = (int64_t)oldSize;
-        if ((oldSize != 0) && (sourceDataPointer = *ArrayPointer, 0 < oldSize)) {
-          destinationPointer = newArrayBuffer;
+      if (NewArrayBuffer != (uint8_t *)0x0) {
+        OldSize = (int)ArrayPointer[1];
+        IterationCounter = (int64_t)OldSize;
+        if ((OldSize != 0) && (SourceDataPointer = *ArrayPointer, 0 < OldSize)) {
+          DestinationPointer = NewArrayBuffer;
           do {
-            *destinationPointer = *(uint8_t *)((sourceDataPointer - (int64_t)newArrayBuffer) + (int64_t)destinationPointer);
-            *(uint32_t *)(destinationPointer + 1) =
-                 *(uint32_t *)((sourceDataPointer - (int64_t)newArrayBuffer) + 8 + (int64_t)destinationPointer);
-            destinationPointer = (uint8_t *)((int64_t)destinationPointer + 0xc);
+            *DestinationPointer = *(uint8_t *)((SourceDataPointer - (int64_t)NewArrayBuffer) + (int64_t)DestinationPointer);
+            *(uint32_t *)(DestinationPointer + 1) =
+                 *(uint32_t *)((SourceDataPointer - (int64_t)NewArrayBuffer) + 8 + (int64_t)DestinationPointer);
+            DestinationPointer = (uint8_t *)((int64_t)DestinationPointer + 0xc);
             IterationCounter = IterationCounter + -1;
           } while (IterationCounter != 0);
         }
@@ -12049,26 +12049,26 @@ cleanup_old_memory:
  */
 uint64_t ExpandArray(uint8_t arrayHeader, int newSize)
 {
-  int64_t newMemoryBlock;
+  int64_t NewMemoryBlock;
   int64_t *ArrayPointer;
-  int currentSize;
+  int CurrentSize;
   
-  newMemoryBlock = 0;
-  if (currentSize == 0) {
+  NewMemoryBlock = 0;
+  if (CurrentSize == 0) {
 cleanup_old_memory:
     if ((0 < *(int *)((int64_t)ArrayPointer + 0xc)) && (*ArrayPointer != 0)) {
             ProcessResourceAllocation(*(uint8_t *)(SystemContext + 0x1a0),*ArrayPointer,&ResourceAllocationTemplate,0x100,1);
     }
-    *ArrayPointer = newMemoryBlock;
-    *(int *)((int64_t)ArrayPointer + 0xc) = currentSize;
+    *ArrayPointer = NewMemoryBlock;
+    *(int *)((int64_t)ArrayPointer + 0xc) = CurrentSize;
     return 0;
   }
   if (newSize * 0xc - 1U < 0x3fffffff) {
-    newMemoryBlock = AllocateMemoryBlock(*(uint8_t *)(SystemContext + 0x1a0),newSize * 0xc,&ResourceAllocationTemplate,0xf4,
+    NewMemoryBlock = AllocateMemoryBlock(*(uint8_t *)(SystemContext + 0x1a0),newSize * 0xc,&ResourceAllocationTemplate,0xf4,
                           0);
-    if (newMemoryBlock != 0) {
+    if (NewMemoryBlock != 0) {
       if ((int)ArrayPointer[1] != 0) {
-              memcpy(newMemoryBlock,*ArrayPointer,(int64_t)(int)ArrayPointer[1] * 0xc);
+              memcpy(NewMemoryBlock,*ArrayPointer,(int64_t)(int)ArrayPointer[1] * 0xc);
       }
       goto cleanup_old_memory;
     }
@@ -12142,10 +12142,10 @@ uint64_t InitializeResourceTableStructure(int64_t ObjectContext)
   uint8_t *EncodingContextPointer;
   uint32_t EncodingContextOffset;
   uint32_t EncodingContextFlags;
-  uint resourceFlagLowBits;
-  uint8_t *PrimaryresourceFlagPointer;
-  uint32_t SecondaryresourceFlag;
-  uint32_t TertiaryresourceFlag;
+  uint ResourceFlagLowBits;
+  uint8_t *PrimaryResourceFlagPointer;
+  uint32_t SecondaryResourceFlag;
+  uint32_t TertiaryResourceFlag;
   uint8_t ResourceValidationFlag;
   uint8_t ResourceEncryptionKey [8];
   uint8_t ResourceDecryptionKey [8];
