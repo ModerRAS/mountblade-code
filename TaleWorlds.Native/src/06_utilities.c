@@ -2100,6 +2100,7 @@ void VerifyDataIntegrity(void);
 uint8_t EnvironmentConfigActive;
 uint8_t EnvironmentConfigStandby;
 uint8_t ConfigurationCache;
+// 配置数据 - 存储系统配置信息
 uint8_t ConfigurationData;
 uint8_t ConfigurationExtra;
 uint8_t CoreConfigData;
@@ -2151,6 +2152,7 @@ char MemoryConfigFlag;                // 内存配置标志
 uint8_t MemoryConfigData;            // 内存配置数据
 uint8_t ResourceCacheSize;
 uint8_t MemoryPoolBuffer;
+// 内存分配器 - 负责内存分配操作
 uint8_t MemoryAllocator;
 // 系统内存配置数据模板扩展变量
 uint8_t MemoryConfigAdditional;      // 附加配置项
@@ -2166,6 +2168,7 @@ void* ExceptionListPointer;             // 系统异常列表指针
 uint8_t MemoryConfigOptionalBackup;          // 可选配置项备份
 uint8_t MemoryConfigSpecial;         // 特殊配置项
 uint8_t PerformanceMonitor;              // 系统性能监视器
+// 线程管理器 - 管理系统线程生命周期
 uint8_t ThreadManager;                   // 系统线程管理器
 uint8_t SecurityManager;                 // 系统安全管理器
 uint8_t NetworkManager;                  // 系统网络管理器
@@ -2222,6 +2225,7 @@ uint8_t LogMessageProcessorPrimary;           // 主要日志处理器模板
 uint8_t LogMessageProcessorSecondary;         // 次要日志处理器模板
 uint8_t LogMessageProcessorTertiary;          // 第三日志处理器模板
 uint8_t LogMessageProcessorQuaternary;        // 第四日志处理器模板
+// 内存池 - 管理内存池资源
 uint8_t MemoryPool;                      // 系统内存池
 uint8_t MemoryManager;                   // 系统内存管理器
 uint8_t LogMessageProcessorQuinary;           // 第五日志处理器模板
@@ -2435,6 +2439,7 @@ uint8_t MemoryAllocationGraph;
 uint8_t MemoryAllocationNetwork;
 
  uint8_t MemoryPoolManager;
+// 内存分配器 - 负责内存分配操作
 uint8_t MemoryAllocator;
 uint8_t SystemMemoryDescriptor;
 uint8_t MemoryPoolBuffer;
@@ -2600,7 +2605,7 @@ uint8_t ResourceAnalyzer;
 // 资源性能分析器 - 用于分析系统资源性能
 uint8_t ResourceProfiler;
 // 资源跟踪器副本 - 用于跟踪系统资源使用情况
-uint8_t ResourceTracker2;
+uint8_t ResourceTrackerBackup;
 // 资源日志记录器 - 用于记录系统资源使用日志
 uint8_t ResourceLogger;
 void* ResourceNetworkManager;
@@ -2632,6 +2637,7 @@ uint8_t ThreadPriorityTable;
 uint8_t ThreadAffinityTable;
 uint8_t ThreadLocalStorageTable;
 uint8_t ThreadSynchronizationTable;
+// 线程管理器 - 管理系统线程生命周期
 uint8_t ThreadManager;
 uint8_t SystemThreadScheduler;
 uint8_t SystemThreadPool;
@@ -2651,24 +2657,41 @@ uint8_t PrimaryDataBuffer;
 uint8_t SecondaryDataBuffer;
 // 进程上下文 - 用于存储进程相关的上下文信息
 uint8_t ProcessContext;
-uint8_t SystemHeapManager;
+// 堆管理器 - 用于管理系统堆内存分配
+uint8_t HeapManager;
+// 栈管理器 - 用于管理系统栈内存操作
 uint8_t StackManager;
 uint8_t ThreadLocalStorage;
+// 全局数据 - 存储系统全局状态信息
 uint8_t GlobalData;
+// 配置数据 - 存储系统配置信息
 uint8_t ConfigurationData;
+// 运行时数据 - 存储系统运行时状态
 uint8_t RuntimeData;
+// 缓存管理器 - 管理系统缓存机制
 uint8_t CacheManager;
+// 数据缓冲池 - 管理数据缓冲区资源
 uint8_t DataBufferPool;
+// 事件表 - 存储系统事件信息
 uint8_t EventTable;
+// 线程管理器 - 管理系统线程生命周期
 uint8_t ThreadManager;
+// 进程管理器 - 管理系统进程操作
 uint8_t ProcessManager;
+// 内存分配器 - 负责内存分配操作
 uint8_t MemoryAllocator;
+// 内存池 - 管理内存池资源
 uint8_t MemoryPool;
+// 任务调度器 - 负责任务调度执行
 uint8_t TaskScheduler;
 uint8_t ResourcePool;
+// 数据管理器 - 管理系统数据操作
 uint8_t DataManager;
+// 数据缓冲管理器 - 管理数据缓冲区
 uint8_t DataBufferManager;
+// IO管理器 - 管理系统输入输出操作
 uint8_t IoManager;
+// 文件处理器 - 处理文件相关操作
 uint8_t FileHandler;
 uint8_t SystemNetworkManager;
 uint8_t SystemSocketManager;
@@ -2701,6 +2724,7 @@ uint8_t SystemMetrics;
 uint8_t SystemAnalyzer;
 uint8_t SystemOptimizer;
 uint8_t MemoryPoolManager;
+// 内存分配器 - 负责内存分配操作
 uint8_t MemoryAllocator;
 uint8_t SystemMemoryTracker;
 uint8_t SystemMemoryCache;
@@ -2728,6 +2752,7 @@ uint8_t SystemMemorySaver;
 uint8_t SystemMemoryArchiver;
 uint8_t SystemMemoryRestorer;
 uint8_t SystemMementoManager;
+// 线程管理器 - 管理系统线程生命周期
 uint8_t ThreadManager;
 uint8_t SystemThreadScheduler;
 uint8_t SystemThreadDispatcher;
@@ -2754,6 +2779,7 @@ uint8_t SystemThreadSaver;
 uint8_t SystemThreadArchiver;
 uint8_t SystemThreadRestorer;
 uint8_t SystemThreadMementoManager;
+// 进程管理器 - 管理系统进程操作
 uint8_t ProcessManager;
 uint8_t SystemProcessScheduler;
 uint8_t SystemProcessDispatcher;
@@ -4879,22 +4905,22 @@ uint64_t HandleResourceProcessing(int64_t ResourceHandleIdentifier)
 uint32_t ProcessSystemResource(void)
 
 {
-  int64_t InputParameterValue;
+  int64_t inputParameterValue;
   int64_t loopCounter;
-  int64_t LocalContextData;
+  int64_t localContextData;
   
-  InputParameterValue = InputParameter;
-  if (InputParameterValue == 0) {
-    LocalContextData = 0;
+  inputParameterValue = InputParameter;
+  if (inputParameterValue == 0) {
+    localContextData = 0;
   }
   else {
-    LocalContextData = InputParameterValue - 8;
+    localContextData = inputParameterValue - 8;
   }
-  if (*(int64_t *)(LocalContextData + 0x10) == 0) {
+  if (*(int64_t *)(localContextData + 0x10) == 0) {
     return 0x1c;
   }
                     // WARNING: Subroutine does not return
-  ExecuteSystemExitOperation(*(int64_t *)(LocalContextData + 0x10),1);
+  ExecuteSystemExitOperation(*(int64_t *)(localContextData + 0x10),1);
 }
 
 
