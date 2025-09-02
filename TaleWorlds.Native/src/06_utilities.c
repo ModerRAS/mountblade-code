@@ -2008,14 +2008,14 @@ void GenerateSecureRandom(void);
 uint8_t ThreadLocalStorageIndex;
 void* ThreadLocalStorageDataPointer;
 // 系统内存配置数据模板基础变量
-uint8_t SystemMemoryConfigTemplateVersion;        // 版本信息
-uint8_t SystemMemoryConfigTemplateType;           // 类型标识
-uint8_t SystemMemoryConfigTemplateWorkingStatus;  // 工作状态
-uint8_t SystemMemoryConfigTemplateUsage;          // 使用情况
-uint8_t SystemMemoryConfigTemplateExtended;        // 扩展配置
-uint8_t SystemMemoryConfigTemplateYield;           // 性能调优
-uint8_t SystemMemoryConfigTemplateZone;            // 内存区域
-uint8_t SystemMemoryConfigTemplateAlternate;       // 备用配置
+uint8_t SystemMemoryConfigVersion;        // 版本信息
+uint8_t SystemMemoryConfigType;           // 类型标识
+uint8_t SystemMemoryConfigStatus;         // 工作状态
+uint8_t SystemMemoryConfigUsage;          // 使用情况
+uint8_t SystemMemoryConfigExtended;       // 扩展配置
+uint8_t SystemMemoryConfigYield;          // 性能调优
+uint8_t SystemMemoryConfigZone;           // 内存区域
+uint8_t SystemMemoryConfigAlternate;      // 备用配置
 
  /**
  * @brief 验证数据完整性
@@ -2028,24 +2028,24 @@ uint8_t SystemMemoryConfigTemplateAlternate;       // 备用配置
  * @warning 验证失败时可能触发系统安全机制
  */
 void VerifyDataIntegrity(void);
-uint8_t SystemEnvironmentConfigTemplatePrimary;
-uint8_t SystemEnvironmentConfigTemplateBackup;
-uint8_t SystemConfigurationTemplateCache;
-uint8_t SystemConfigurationTemplateData;
-uint8_t SystemConfigurationTemplateExtra;
+uint8_t SystemEnvironmentConfigPrimary;
+uint8_t SystemEnvironmentConfigBackup;
+uint8_t SystemConfigurationCache;
+uint8_t SystemConfigurationData;
+uint8_t SystemConfigurationExtra;
 uint8_t SystemCoreConfigData;
 uint8_t SystemEngineConfigData;
-uint8_t NetworkPrimaryConfigDataStream;
-uint8_t NetworkSecondaryConfigDataStream;
-uint8_t NetworkTertiaryConfigDataStream;
-uint8_t NetworkQuaternaryConfigDataStream;
-uint8_t NetworkQuinaryConfigDataStream;
+uint8_t NetworkPrimaryDataStream;
+uint8_t NetworkSecondaryDataStream;
+uint8_t NetworkTertiaryDataStream;
+uint8_t NetworkQuaternaryDataStream;
+uint8_t NetworkQuinaryDataStream;
 uint8_t NetworkDataStreamConfigPrimary;
-uint8_t SystemNetworkConfigDataPrimary;
+uint8_t SystemNetworkConfigPrimary;
 uint8_t SystemTertiaryConfigData;
 uint8_t SystemQuaternaryConfigData;
-uint8_t SystemNetworkConfigDataSecondary;
-uint8_t SystemNetworkConfigDataTertiary;
+uint8_t SystemNetworkConfigSecondary;
+uint8_t SystemNetworkConfigTertiary;
 uint8_t SystemQuinaryConfigData;
 uint8_t SystemSixthConfigData;
 bool SystemCoreStatusFlag;
@@ -2059,59 +2059,59 @@ uint8_t ResourceBufferConfigTertiary;
 uint8_t SystemConfigDataEighth;
 uint8_t SystemConfigDataNinth;
 // 系统内存配置数据模板中级变量
-uint8_t SystemMemoryConfigTemplateDuodecimal;       // 第十二配置项
-uint8_t SystemMemoryConfigTemplateTerdenary;        // 第十三配置项
-uint8_t SystemMemoryConfigTemplateQuattuordenary;    // 第十四配置项
-uint8_t SecurityEncryptionKey;                          // 安全加密密钥
-uint8_t SystemMemoryConfigTemplateQuattuordenaryAlt; // 第十四配置项备用
-uint8_t SystemMemoryConfigTemplateQuindenary;       // 第十五配置项
-uint8_t SystemMemoryConfigTemplateSecureSixteenth;   // 安全第16配置项
-uint8_t SystemMemoryConfigTemplateSecureSeventeenth; // 安全第17配置项
-uint8_t SystemMemoryConfigTemplateEighteenth;        // 第18配置项
-uint8_t SystemMemoryConfigTemplateNormalNineteenth; // 普通第19配置项
+uint8_t SystemMemoryConfigSecondary;       // 第二配置项
+uint8_t SystemMemoryConfigTertiary;        // 第三配置项
+uint8_t SystemMemoryConfigQuaternary;   // 第四配置项
+uint8_t SecurityEncryptionKey;             // 安全加密密钥
+uint8_t SystemMemoryConfigQuaternaryAlt; // 第四配置项备用
+uint8_t SystemMemoryConfigQuinary;       // 第五配置项
+uint8_t SystemMemoryConfigSecureSixth;  // 安全第6配置项
+uint8_t SystemMemoryConfigSecureSeventh; // 安全第7配置项
+uint8_t SystemMemoryConfigEighth;      // 第8配置项
+uint8_t SystemMemoryConfigNinth;       // 普通第9配置项
 // 系统内存配置数据模板高级变量
-uint8_t SystemMemoryConfigTemplateTwentieth;        // 第20配置项
-uint8_t SystemMemoryConfigTemplateTwentyFirstAlt;   // 第21配置项备用
-uint8_t SystemMemoryConfigTemplateTwentySecond;     // 第22配置项
-uint8_t SystemMemoryConfigTemplateTwentyThird;       // 第23配置项
-uint8_t SystemMemoryConfigTemplateTwentyThirdAlt;    // 第23配置项备用
-uint8_t SystemMemoryConfigTemplateTwentyThirdExtra; // 第23配置项扩展
-uint8_t GlobalSystemMemoryPoolSize;                     // 全局内存池大小
-uint8_t SystemResourceAllocator;                        // 系统资源分配器
-char SystemMemoryConfigFlag;                             // 内存配置标志
-uint8_t SystemMemoryConfigData;                          // 内存配置数据
+uint8_t SystemMemoryConfigTenth;        // 第10配置项
+uint8_t SystemMemoryConfigNinthAlt;   // 第9配置项备用
+uint8_t SystemMemoryConfigTenthAlt;     // 第10配置项备用
+uint8_t SystemMemoryConfigEleventh;      // 第11配置项
+uint8_t SystemMemoryConfigEleventhAlt;   // 第11配置项备用
+uint8_t SystemMemoryConfigEleventhExtra; // 第11配置项扩展
+uint8_t GlobalSystemMemoryPoolSize;         // 全局内存池大小
+uint8_t SystemResourceAllocator;           // 系统资源分配器
+char SystemMemoryConfigFlag;                // 内存配置标志
+uint8_t SystemMemoryConfigData;            // 内存配置数据
 uint8_t SystemResourceCacheSize;
 uint8_t SystemMemoryPoolBuffer;
 uint8_t SystemMemoryAllocator;
 // 系统内存配置数据模板扩展变量
-uint8_t SystemMemoryConfigDataTemplateTwentyFourth;     // 第24配置项
-uint8_t SystemMemoryConfigDataTemplateTwentyFifth;      // 第25配置项
-uint8_t SystemMemoryConfigDataTemplateTwentySixth;      // 第26配置项
-uint8_t SystemMemoryConfigDataTemplateTwentySeventh;    // 第27配置项
-uint8_t SystemMemoryConfigDataTemplateTwentyEighth;     // 第28配置项
-uint8_t SystemMemoryConfigDataTemplateTwentyNinth;      // 第29配置项
-uint8_t SystemConfigurationTemplate;                        // 系统配置模板
-uint8_t SystemConfigDataTenth;                          // 第10配置项
-char SystemConfigStatusFlag;                             // 配置状态标志
-uint8_t SystemConfigDataEleventh;                        // 第11配置项
+uint8_t SystemMemoryConfigFourth;     // 第4配置项
+uint8_t SystemMemoryConfigFifth;      // 第5配置项
+uint8_t SystemMemoryConfigTwentySixth;      // 第26配置项
+uint8_t SystemMemoryConfigTwentySeventh;    // 第27配置项
+uint8_t SystemMemoryConfigTwentyEighth;     // 第28配置项
+uint8_t SystemMemoryConfigTwentyNinth;      // 第29配置项
+uint8_t SystemConfigurationTemplate;        // 系统配置模板
+uint8_t SystemConfigDataTenth;              // 第10配置项
+char SystemConfigStatusFlag;                // 配置状态标志
+uint8_t SystemConfigDataEleventh;           // 第11配置项
 // 系统资源和管理器变量
-uint8_t SystemResourceTracker;                          // 系统资源跟踪器
-void* SystemExceptionListPointer;                        // 系统异常列表指针
-uint8_t SystemMemoryConfigTemplateThirtieth;       // 第30配置项
-uint8_t SystemMemoryConfigTemplateThirtyFirst;      // 第31配置项
-uint8_t SystemPerformanceMonitor;                       // 系统性能监视器
-uint8_t SystemThreadManager;                            // 系统线程管理器
-uint8_t SystemSecurityManager;                           // 系统安全管理器
-uint8_t SystemNetworkManager;                            // 系统网络管理器
-uint8_t ResourceReferenceCounter;                        // 资源引用计数器
-uint8_t SystemConfigDataThirteenth;                      // 第13配置项
+uint8_t SystemResourceTracker;               // 系统资源跟踪器
+void* SystemExceptionListPointer;             // 系统异常列表指针
+uint8_t SystemMemoryConfigThirtieth;          // 第30配置项
+uint8_t SystemMemoryConfigThirtyFirst;         // 第31配置项
+uint8_t SystemPerformanceMonitor;              // 系统性能监视器
+uint8_t SystemThreadManager;                   // 系统线程管理器
+uint8_t SystemSecurityManager;                 // 系统安全管理器
+uint8_t SystemNetworkManager;                  // 系统网络管理器
+uint8_t ResourceReferenceCounter;               // 资源引用计数器
+uint8_t SystemConfigDataThirteenth;            // 第13配置项
 // 系统配置和资源管理变量
-uint8_t SystemConfigDataFourteenth;                      // 第14配置项
-uint8_t SystemConfigDataFifteenth;                       // 第15配置项
-uint8_t SystemConfigDataSixteenth;                       // 第16配置项
-uint8_t SystemMemoryConfigTemplateAlternateTwo;     // 备用配置2
-uint8_t SystemResourceManager;                           // 系统资源管理器
-uint8_t SystemEventHandlerSlot;                           // 系统事件处理槽位
+uint8_t SystemConfigDataFourteenth;         // 第14配置项
+uint8_t SystemConfigDataFifteenth;          // 第15配置项
+uint8_t SystemConfigDataSixteenth;          // 第16配置项
+uint8_t SystemMemoryConfigAlternateTwo;     // 备用配置2
+uint8_t SystemResourceManager;              // 系统资源管理器
+uint8_t SystemEventHandlerSlot;             // 系统事件处理槽位
 
  /**
  * @brief 初始化系统日志
@@ -2121,17 +2121,17 @@ uint8_t SystemEventHandlerSlot;                           // 系统事件处理�
  */
 void InitializeSystemLogging(void);
 // 系统日志配置数据变量
-uint8_t SystemLogConfigDataPrimary;                       // 主要日志配置
-uint8_t SystemLogConfigDataSecondary;                     // 次要日志配置
-uint8_t SystemLogConfigDataTertiary;                      // 第三日志配置
-uint8_t SystemLogConfigDataQuaternary;                     // 第四日志配置
+uint8_t SystemLogConfigPrimary;             // 主要日志配置
+uint8_t SystemLogConfigSecondary;           // 次要日志配置
+uint8_t SystemLogConfigTertiary;            // 第三日志配置
+uint8_t SystemLogConfigQuaternary;          // 第四日志配置
 // 系统内存配置数据模板特殊变量
-uint8_t SystemMemoryConfigTemplateSecureSixth;        // 安全第6配置项
-uint8_t SystemMemoryConfigDataPrimary;                     // 主要内存配置
-uint8_t SystemMemoryConfigTemplateSecureSeventh;       // 安全第7配置项
-uint8_t SystemMemoryConfigTemplateEighth;              // 第8配置项
-uint8_t SystemMemoryConfigTemplateNormalNinth;         // 普通第9配置项
-uint8_t SystemMemoryConfigTemplateTenth;               // 第10配置项
+uint8_t SystemMemoryConfigSecureSixth;      // 安全第6配置项
+uint8_t SystemMemoryConfigPrimary;          // 主要内存配置
+uint8_t SystemMemoryConfigSecureSeventh;    // 安全第7配置项
+uint8_t SystemMemoryConfigEighth;           // 第8配置项
+uint8_t SystemMemoryConfigNinth;            // 普通第9配置项
+uint8_t SystemMemoryConfigTenth;             // 第10配置项
 
  void ConfigureLogOutput(void);
 /**
@@ -2142,9 +2142,9 @@ uint8_t SystemMemoryConfigTemplateTenth;               // 第10配置项
  */
 void ConfigureLogOutput(void);
 // 日志输出配置数据模板变量
-uint8_t SystemMemoryConfigTemplateSecondary;           // 次要内存配置模板
-uint8_t LogOutputConfigDataTemplatePrimary;               // 主要日志输出配置
-uint8_t LogOutputConfigDataTemplateSecondary;             // 次要日志输出配置
+uint8_t SystemMemoryConfigSecondary;           // 次要内存配置模板
+uint8_t LogOutputConfigPrimary;               // 主要日志输出配置
+uint8_t LogOutputConfigSecondary;             // 次要日志输出配置
 
  void ProcessLogMessage(void);
 /**
@@ -2155,16 +2155,16 @@ uint8_t LogOutputConfigDataTemplateSecondary;             // 次要日志输出�
  */
 void ProcessLogMessage(void);
 // 日志消息处理器数据模板变量
-uint8_t LogMessageProcessorDataTemplatePrimary;           // 主要日志处理器模板
-uint8_t LogMessageProcessorDataTemplateSecondary;         // 次要日志处理器模板
-uint8_t LogMessageProcessorDataTemplateTertiary;          // 第三日志处理器模板
-uint8_t LogMessageProcessorDataTemplateQuaternary;         // 第四日志处理器模板
-uint8_t SystemMemoryPool;                                  // 系统内存池
-uint8_t SystemMemoryManager;                               // 系统内存管理器
-uint8_t LogMessageProcessorDataTemplateQuinary;            // 第五日志处理器模板
-uint8_t LogMessageProcessorContextDataPrimary;              // 主要日志处理器上下文
-uint8_t LogMessageProcessorContextDataSecondary;            // 次要日志处理器上下文
-uint8_t LogMessageProcessorContextDataTertiary;             // 第三日志处理器上下文
+uint8_t LogMessageProcessorPrimary;           // 主要日志处理器模板
+uint8_t LogMessageProcessorSecondary;         // 次要日志处理器模板
+uint8_t LogMessageProcessorTertiary;          // 第三日志处理器模板
+uint8_t LogMessageProcessorQuaternary;        // 第四日志处理器模板
+uint8_t SystemMemoryPool;                      // 系统内存池
+uint8_t SystemMemoryManager;                   // 系统内存管理器
+uint8_t LogMessageProcessorQuinary;           // 第五日志处理器模板
+uint8_t LogMessageProcessorContextPrimary;     // 主要日志处理器上下文
+uint8_t LogMessageProcessorContextSecondary;   // 次要日志处理器上下文
+uint8_t LogMessageProcessorContextTertiary;    // 第三日志处理器上下文
 // 系统内存和本地化变量
 uint8_t SystemMemoryController;                            // 系统内存控制器
 uint8_t* LocaleConversionTablePointer;                     // 本地化转换表指针
