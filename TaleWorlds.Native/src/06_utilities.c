@@ -3039,24 +3039,24 @@ uint8_t ThreadManagerStatus;
 uint8_t TaskSchedulerStatus;
 uint8_t EventSystemStatus;
 uint8_t TimerManagerStatus;
-uint8_t LockManagerData;
-uint8_t SemaphoreManagerData;
-uint8_t MutexManagerData;
-uint8_t ConditionManagerData;
-uint8_t BarrierManagerData;
-uint8_t PoolManagerData;
-uint8_t QueueManagerData;
-uint8_t StackManagementData;
-uint8_t ListManagerData;
-uint8_t HashManagerData;
-uint8_t TreeManagerData;
-uint8_t MemoryManagerData;
-uint8_t ConfigurationManagerData;
-uint8_t EventManagerSlotData;
-uint8_t ThreadManagerData;
-uint8_t ProcessManagerData;
-uint8_t NetworkManagerData;
-uint8_t SecurityManagerData;
+uint8_t LockManagerStatus;
+uint8_t SemaphoreManagerStatus;
+uint8_t MutexManagerStatus;
+uint8_t ConditionManagerStatus;
+uint8_t BarrierManagerStatus;
+uint8_t PoolManagerStatus;
+uint8_t QueueManagerStatus;
+uint8_t StackManagerStatus;
+uint8_t ListManagerStatus;
+uint8_t HashManagerStatus;
+uint8_t TreeManagerStatus;
+uint8_t MemoryManagerStatus;
+uint8_t ConfigurationManagerStatus;
+uint8_t EventManagerSlotStatus;
+uint8_t ThreadManagerStatus;
+uint8_t ProcessManagerStatus;
+uint8_t NetworkManagerStatus;
+uint8_t SecurityManagerStatus;
 uint8_t PerformanceManagerData;
 uint8_t DebugManagerData;
 uint8_t ResourceValidationData;
@@ -47498,7 +47498,7 @@ void SetSystemDataStructureAtPrimaryOffset(uint8_t ObjectContext, int64_t Valida
 
 
 
-void SetSystemDataStructureAtOffset0x250(uint8_t ObjectContext,int64_t ValidationContext)
+void SetSystemDataStructureAtExtendedOffset(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   *(uint8_t **)(ValidationContext + 0x250) = &SystemDataStructure;
@@ -47507,7 +47507,7 @@ void SetSystemDataStructureAtOffset0x250(uint8_t ObjectContext,int64_t Validatio
 
 
 
-void ResetSystemResourceHandlerAtOffset0x128(uint8_t ObjectContext,int64_t ValidationContext)
+void ResetSystemResourceHandlerAtPrimaryOffset(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   *(uint8_t *)(ValidationContext + 0x128) = &SystemResourceHandlerTemplate;
