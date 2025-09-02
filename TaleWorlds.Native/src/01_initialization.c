@@ -42015,7 +42015,19 @@ int FUN_1800634b0(void* SystemResourcePointer,void* ConfigurationDataPointer,voi
 
 
 
-ulong long FUN_180063510(long long *SystemResourcePointer,long long ConfigurationDataPointer)
+/**
+ * @brief 搜索系统资源
+ * 
+ * 该函数负责在系统资源中搜索匹配的配置数据，通过遍历资源表
+ * 和比较配置参数来查找符合条件的系统资源。
+ * 
+ * @param SystemResourcePointer 系统资源指针，包含资源表信息
+ * @param ConfigurationDataPointer 配置数据指针，包含搜索条件
+ * @return 找到的资源索引或相关状态信息
+ * 
+ * 原始函数名为FUN_180063510，现已重命名为SearchSystemResource
+ */
+ulong long SearchSystemResource(long long *SystemResourcePointer,long long ConfigurationDataPointer)
 
 {
   byte *pbVar1;
@@ -42068,8 +42080,15 @@ LAB_18006357e:
 
 
 
-// 函数: void FUN_1800635c0(void)
-void FUN_1800635c0(void)
+/**
+ * @brief 初始化系统字符串格式化
+ * 
+ * 该函数负责初始化系统字符串格式化功能，调用相应的
+ * 格式化初始化函数来设置字符串处理环境。
+ * 
+ * 原始函数名为FUN_1800635c0，现已重命名为InitializeSystemStringFormatting
+ */
+void InitializeSystemStringFormatting(void)
 
 {
   FUN_1800635e0();
