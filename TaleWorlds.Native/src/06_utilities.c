@@ -4232,7 +4232,7 @@ uint32_t ValidateObjectHandleFromRegisterV2(void)
  * 该函数负责触发系统级别的异常处理流程
  * 用于处理严重的系统错误或异常情况
  */
-void TriggerSystemExceptionV2(void)
+void TriggerSystemExceptionVersion2(void)
 
 {
                     // WARNING: Subroutine does not return
@@ -29433,7 +29433,7 @@ void ProcessResourceValidation(uint8_t objectContext, int64_t validationContext,
  * @param objectContext 对象上下文参数
  * @param validationContext 验证上下文参数
  */
-void RestoreSystemDataStructureToContextOffset240(uint8_t objectContext, int64_t validationContext)
+void RestoreSystemDataStructureToContextOffsetF0(uint8_t objectContext, int64_t validationContext)
 
 {
   *(uint8_t **)(validationContext + 0xf0) = &SystemDataStructure;
@@ -29448,7 +29448,7 @@ void RestoreSystemDataStructureToContextOffset240(uint8_t objectContext, int64_t
  * @param objectContext 对象上下文参数
  * @param validationContext 验证上下文参数
  */
-void RestoreSystemDataStructureToContextOffset48(uint8_t objectContext, int64_t validationContext)
+void RestoreSystemDataStructureToContextOffset30(uint8_t objectContext, int64_t validationContext)
 
 {
   *(uint8_t **)(validationContext + 0x30) = &SystemDataStructure;
