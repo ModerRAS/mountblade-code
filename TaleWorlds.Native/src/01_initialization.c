@@ -51527,14 +51527,15 @@ ulong long InitializeAndProcessSystemResources(void* SystemResourceManager,void*
  * @brief 系统资源配置和管理函数
  * 
  * 该函数负责系统资源的配置和管理，包括内存分配、字符处理、
- * 系统索引管理等操作
+ * 系统索引管理等操作。这是系统初始化过程中的核心函数之一。
  * 
- * @param SystemResourceManager 资源管理器指针
- * @param ConfigurationDataPointer 配置数据指针
- * @param AdditionalParameter 额外参数
- * @return 系统状态码
+ * @param SystemResourceManager 资源管理器指针，包含系统资源管理信息
+ * @param ConfigurationDataPointer 配置数据指针，包含系统配置参数
+ * @param AdditionalParameter 额外参数，用于控制系统行为
+ * @return ulong long 系统状态码，0表示成功，非0表示错误状态
  * 
- *FUN_18006ff80：ConfigureAndManageSystemResources
+ * @note 该函数会检查调试器状态、初始化系统组件、配置系统管理器
+ * @note 原始函数名：FUN_18006ff80
  */
 ulong long ConfigureAndManageSystemResources(void* SystemResourceManager,void* ConfigurationDataPointer,char AdditionalParameter)
 
