@@ -5243,13 +5243,27 @@ uint8_t InitializeObjectHandleAdvanced(int64_t ObjectContext)
 
 
 /**
- * @brief 初始化对象句柄操作C
+ * @brief 初始化复杂对象句柄
  * 
- * 该函数负责处理对象句柄的初始化操作，包括上下文验证、
- * 资源遍历和批量处理等步骤
+ * 该函数负责处理复杂对象句柄的初始化操作，包括以下主要步骤：
+ * 1. 验证对象上下文的有效性
+ * 2. 调整系统上下文句柄
+ * 3. 遍历资源标识符数组
+ * 4. 对每个有效资源执行操作处理
+ * 5. 返回初始化结果状态码
  * 
- * @param ObjectContext 对象上下文参数，包含对象初始化所需的信息
- * @return uint8_t 操作结果状态码，0表示成功，非0表示失败
+ * 该函数主要用于系统对象的批量初始化和资源管理，确保所有相关资源
+ * 都被正确初始化和验证。函数使用迭代方式处理资源数组，支持
+ * 动态数量的资源处理。
+ * 
+ * @param ObjectContext 对象上下文参数，包含对象初始化所需的完整信息，
+ *                      包括对象偏移量、处理数据偏移量和验证数据偏移量等
+ * @return uint8_t 初始化结果状态码，0表示成功，非0表示失败（错误码）
+ * 
+ * @note 该函数会修改对象上下文中的相关状态
+ * @warning 如果资源句柄无效，函数会立即返回错误码
+ * 
+ * @error ErrorInvalidObjectHandle 当资源上下文句柄为空时返回
  */
 uint8_t InitializeObjectHandleComplex(int64_t ObjectContext)
 
@@ -5264,34 +5278,45 @@ uint8_t InitializeObjectHandleComplex(int64_t ObjectContext)
   int64_t ArrayBaseAddressOffset;
   int64_t ValidatedContextHandle;
   
+  // 步骤1: 验证对象上下文的有效性
   InitializationResult = ValidateObjectContext(*(uint32_t *)(ObjectContext + ObjectContextOffset), &ValidatedContextHandle);
   if ((int)InitializationResult == 0) {
+    // 步骤2: 初始化迭代计数器并调整上下文句柄
     IterationCounter = 0;
     AdjustedContextHandle = ValidatedContextHandle - 8;
     if (ValidatedContextHandle == 0) {
       AdjustedContextHandle = IterationCounter;
     }
+    // 步骤3: 设置资源标识符数组指针
     ResourceIdArrayPointer = (uint32_t *)(ObjectContext + ObjectContextProcessingDataOffset + (int64_t)*(int *)(ObjectContext + ObjectContextValidationDataOffset) * 4);
     if (0 < *(int *)(ObjectContext + ObjectContextValidationDataOffset)) {
+      // 步骤4: 计算数组基址偏移量
       ArrayBaseAddressOffset = (ObjectContext + ObjectContextProcessingDataOffset) - (int64_t)ResourceIdArrayPointer;
       do {
-        ResourceIdentifier = *(int *)(BaseAddressOffset + (int64_t)ResourceIdArrayPointer);
+        // 步骤5: 获取当前资源标识符
+        ResourceIdentifier = *(int *)(ArrayBaseAddressOffset + (int64_t)ResourceIdArrayPointer);
         if (ResourceIdentifier != -1) {
+          // 步骤6: 计算资源数据表地址
           ResourceDataTableAddress = *(int64_t *)(SystemContextPointer + ResourceContextOffset) + (int64_t)ResourceIdentifier * ResourceIdentifierOffset;
+          // 步骤7: 获取资源上下文句柄并验证
           int64_t ResourceContextHandle = *(int64_t *)(ResourceDataTableAddress + 8);
           if ((ResourceContextHandle == 0)) {
             return ErrorInvalidObjectHandle;
           }
+          // 步骤8: 执行资源操作
           InitializationResult = ProcessResourceOperation(ResourceContextHandle, *ResourceIdArrayPointer, 0);
+          // 步骤9: 检查资源操作结果
           if ((int)InitializationResult != 0) {
             return InitializationResult;
           }
         }
-        uint32_t NextIterationCount = (uint32_t)IterationCounter + 1;
-        IterationCounter = (uint64_t)NextIterationCount;
+        // 步骤10: 更新迭代计数器和数组指针
+        uint32_t UpdatedIterationCount = (uint32_t)IterationCounter + 1;
+        IterationCounter = (uint64_t)UpdatedIterationCount;
         ResourceIdArrayPointer = ResourceIdArrayPointer + 1;
-      } while ((int)NextIterationCount < *(int *)(ObjectContext + ObjectContextValidationDataOffset));
+      } while ((int)UpdatedIterationCount < *(int *)(ObjectContext + ObjectContextValidationDataOffset));
     }
+    // 步骤11: 设置成功状态码
     InitializationResult = 0;
   }
   return InitializationResult;
