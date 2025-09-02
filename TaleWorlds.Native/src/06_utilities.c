@@ -56336,7 +56336,19 @@ void ValidateCompleteResourceContextIntegrity(uint8_t ObjectContext,int64_t Vali
 
 
 
-void Unwind_180906e00(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 处理高级资源哈希验证和清理
+ * 
+ * 该函数负责处理高级资源哈希验证和清理操作
+ * 验证高级资源哈希值并执行必要的清理工作
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @return 无返回值
+ * @note 此函数用于资源管理系统的高级哈希验证
+ * @warning 调用此函数前必须确保上下文参数有效
+ */
+void ProcessAdvancedResourceHashValidationAndCleanup(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   if (*(int64_t **)(ValidationContext + 0x118) != (int64_t *)0x0) {
