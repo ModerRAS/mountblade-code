@@ -36938,8 +36938,8 @@ void InitializeSystemResources(ulong long SystemResourcePointer,long long Config
     if (systemCode != 0) {
       localSystemPointer = CreateSystemThreadObject(SystemMemoryAllocationTemplate,(long long)systemCode,3);
     }
-    FUN_18004b9b0(localSystemPointer,(long long)systemCode,&SystemFormatString,&dStackX_18);
-    FUN_1806281a0(ConfigurationDataPointer,localSystemPointer);
+    FormatSystemResourceOutput(localSystemPointer,(long long)systemCode,&SystemFormatString,&dStackX_18);
+    SearchSystemResourceString(ConfigurationDataPointer,localSystemPointer);
     if (localSystemPointer != 0) {
                     // WARNING: Subroutine does not return
       SystemCleanupFunction(localSystemPointer);
