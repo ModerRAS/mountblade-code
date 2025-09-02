@@ -4703,12 +4703,12 @@ uint64_t DecrementSystemResourceCount(int64_t SystemContext, uint64_t ResourceHa
  * @param ObjectContext 对象上下文指针，包含对象的相关信息
  * @return 操作结果状态码，0表示成功，非0表示失败
  */
-uint8_t IncrementObjectReferenceCount(int64_t objectContext) {
-  int64_t validatedObjectPointer;
-  uint8_t validationStatusCode;
-  int64_t objectContextHandles [4];
+uint8_t IncrementObjectReferenceCount(int64_t ObjectContext) {
+  int64_t ValidatedObjectPointer;
+  uint8_t ValidationStatusCode;
+  int64_t ObjectContextHandles [4];
   
-  validationStatusCode = ValidateObjectContext(*(uint32_t *)(objectContext + ObjectContextDataArrayOffset), objectContextHandles);
+  ValidationStatusCode = ValidateObjectContext(*(uint32_t *)(ObjectContext + ObjectContextDataArrayOffset), ObjectContextHandles);
   if ((int)validationStatusCode != 0) {
     return validationStatusCode;
   }
@@ -4846,12 +4846,12 @@ uint8_t ValidateObjectHandle(int64_t objectHandleToValidate)
     handleMemoryBuffer = 0;
   }
   else {
-    HandleMemoryBuffer = HandleMemoryBuffer + -8;
+    handleMemoryBuffer = handleMemoryBuffer + -8;
   }
-  if (*(int64_t *)(HandleMemoryBuffer + ObjectHandleMemoryOffset) == 0) {
+  if (*(int64_t *)(handleMemoryBuffer + ObjectHandleMemoryOffset) == 0) {
     return ErrorInvalidObjectHandle;
   }
-        ExecuteSystemExitOperation(*(int64_t *)(HandleMemoryBuffer + ObjectHandleMemoryOffset), 1);
+        ExecuteSystemExitOperation(*(int64_t *)(handleMemoryBuffer + ObjectHandleMemoryOffset), 1);
 }
 
 

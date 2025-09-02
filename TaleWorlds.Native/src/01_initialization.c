@@ -51455,7 +51455,7 @@ ulong long InitializeAndProcessSystemResources(void* SystemResourceManager,void*
   void* SystemOperationStatus3;
   void* *SystemThreadLocalStoragePointer;
   bool isByteValid5;
-  byte bStackX_20;
+  byte BooleanStatusFlag;
   void* *DataBufferPtrE0;
   void* *systemDataPointer;
   uint32_t StackUnsignedValueD0;
@@ -51475,7 +51475,7 @@ ulong long InitializeAndProcessSystemResources(void* SystemResourceManager,void*
   
   SystemBufferAddress = SystemAllocationFlagsTemplate;
   SystemOperationCounter = 0xfffffffffffffffe;
-  bStackX_20 = 0;
+  BooleanStatusFlag = 0;
   if (((SystemInitializationFlag == '\0') || (in_RAX = GetConfigurationDataStatus(ConfigurationDataPointer), (char)in_RAX != '\0')) ||
      (in_RAX = WaitForSingleObject(SystemSemaphoreHandle,0), (int)in_RAX != 0)) {
     SystemSecondaryStatus = in_RAX & MAX_UNSIGNED_32_BITffffff00;
@@ -51549,7 +51549,7 @@ ulong long InitializeAndProcessSystemResources(void* SystemResourceManager,void*
         SystemSecondaryStatus = (*pSystemOperationResult)();
         return SystemSecondaryStatus;
       }
-      bStackX_20 = 1;
+      BooleanStatusFlag = 1;
     }
     if (SystemSilentMode == '\0') {
       if (isByteValid5) {
@@ -51655,7 +51655,7 @@ ulong long InitializeAndProcessSystemResources(void* SystemResourceManager,void*
     if (SystemThreadContext != (void* *)0x0) {
         SystemCleanupFunction(SystemThreadContext);
     }
-    SystemSecondaryStatus = (ulong long)bStackX_20;
+    SystemSecondaryStatus = (ulong long)BooleanStatusFlag;
   }
   return SystemSecondaryStatus;
 }
@@ -53603,7 +53603,7 @@ bool InitializeSystemThreadAndResourceManager(void* SystemResourceManager,void* 
   void* *pSystemSecondaryStatus;
   void* *SystemDataConfigurationPointer;
   void* *SystemThreadLocalStoragePointer;
-  char cStackX_10;
+  char CharacterBuffer;
   uint SystemOperationStatus5;
   void* *pUnsignedStackFlag110;
   void* *systemHashPointer;
@@ -53723,7 +53723,7 @@ bool InitializeSystemThreadAndResourceManager(void* SystemResourceManager,void* 
   InitializeSystemManager();
   SystemBufferAddress = SystemGlobalStatusFlags;
   if (SystemGlobalStatusFlags == 0) {
-    cStackX_10 = '\0';
+    CharacterBuffer = '\0';
     pUnsignedStackFlag110 = &SystemGlobalDataReference;
     MemoryBufferAddress = 0;
     pEncryptionOffset1 = (void* *)0x0;
@@ -53750,7 +53750,7 @@ bool InitializeSystemThreadAndResourceManager(void* SystemResourceManager,void* 
     SystemThreadContext = pUnsignedStackFlagA8;
   }
   else {
-    cStackX_10 = *(char *)(SystemGlobalStatusFlags + 0x141);
+    CharacterBuffer = *(char *)(SystemGlobalStatusFlags + 0x141);
     alternateBufferPtrB0 = &SystemGlobalDataReference;
     systemConfigurationValue = 0;
     pUnsignedStackFlagA8 = (void* *)0x0;
@@ -53825,7 +53825,7 @@ bool InitializeSystemThreadAndResourceManager(void* SystemResourceManager,void* 
   if (SystemDataConfigurationPointer != (void* *)0x0) {
     SystemThreadLocalStoragePointer = SystemDataConfigurationPointer;
   }
-  ProcessSystemConfiguration(0,&pStackParameterC,cStackX_10,1,SystemThreadLocalStoragePointer,SystemDataPointer0,SystemOperationStatus5);
+  ProcessSystemConfiguration(0,&pStackParameterC,CharacterBuffer,1,SystemThreadLocalStoragePointer,SystemDataPointer0,SystemOperationStatus5);
   if (SystemStatusFlag48 != 0) {
     ResumeSystemThreads();
   }
@@ -53856,7 +53856,7 @@ bool InitializeSystemThreadAndResourceManager(void* SystemResourceManager,void* 
     dataBufferContext = &SystemMemoryAllocatorReference;
     SystemResourcePointerF0 = &SystemGlobalDataReference;
     if (pointerUnsignedE8 == (void*2 *)0x0) {
-      return cStackX_10 != '\0';
+      return CharacterBuffer != '\0';
     }
       SystemCleanupFunction();
   }
@@ -63329,7 +63329,7 @@ void InitializeSystemResourceCache(long long SystemResourceManager)
   float BaseValue1;
   float BaseValue2;
   float BaseValue3;
-  int iStackX_10;
+  int LoopCounter;
   ulong long SystemParameterPointer;
   ulong long SystemConfigurationPointer;
   int *piStack_218;
@@ -64118,7 +64118,7 @@ LAB_180079e40:
       SystemIntegerPointer3 = (int *)0x0;
       piStack_208 = (int *)0x0;
       StackValue200 = 3;
-      iStackX_10 = 1;
+      LoopCounter = 1;
       piStack_1f8 = *(int **)(*paresourceAddress2 + longValue170);
       SystemIntegerPointer5 = pointerToInteger20;
       CalculationFlags1A0 = SystemIntegerPointer4;
@@ -64160,11 +64160,11 @@ LAB_180079fb3:
             piStack_210 = SystemIntegerPointer6;
           }
           piStack_210 = piStack_210 + 1;
-          iStackX_10 = iStackX_10 + 1;
+          LoopCounter = LoopCounter + 1;
           SystemConfigurationPointer = SystemConfigurationPointer + 4;
           piStack_1f8 = *(int **)(*paresourceAddress2 + longValue170);
           pointerToInteger25 = SystemIntegerPointer6;
-        } while ((ulong long)(long long)iStackX_10 <
+        } while ((ulong long)(long long)LoopCounter <
                  (ulong long)(*(long long *)(*paresourceAddress2 + longValue170 + 8) - (long long)piStack_1f8 >> 2)
                 );
       }
