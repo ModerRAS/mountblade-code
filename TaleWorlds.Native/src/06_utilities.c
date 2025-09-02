@@ -10960,7 +10960,7 @@ uint8_t ReturnResourcePoolErrorCode(void)
  */
 void ProcessResourceCalculationAndValidation(int64_t objectContext, uint8_t *validationContext, int *calculationResult)
 {
-  byte encryptionShiftValue;
+  uint8_t encryptionShiftValue;
   int64_t ResourceTable;
   char StatusFlag;
   int ResultRecordIndex;
