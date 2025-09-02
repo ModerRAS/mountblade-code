@@ -47401,7 +47401,21 @@ void CleanupNetworkManagerResources(uint8_t ObjectContext,int64_t ValidationCont
 
 
 
-void Unwind_SystemCleanup_GraphicsManager(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 清理图形管理器的资源和渲染缓冲区
+ * 
+ * 该函数负责清理图形管理器中的资源句柄和渲染缓冲区
+ * 释放图形资源，确保图形渲染系统正确关闭
+ * 
+ * @param ObjectContext 对象上下文，包含对象的配置信息
+ * @param ValidationContext 验证上下文，用于验证操作的合法性
+ * @param CleanupOption 清理选项，指定清理的方式
+ * @param CleanupFlag 清理标志，控制清理的行为
+ * @return 无返回值
+ * @note 此函数在图形管理器清理过程中调用
+ * @warning 调用此函数前必须确保所有图形渲染已停止
+ */
+void CleanupGraphicsManagerResources(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   uint8_t *ResourceHashPointer;
@@ -47422,7 +47436,19 @@ void Unwind_SystemCleanup_GraphicsManager(uint8_t ObjectContext,int64_t Validati
 
 
 
-void Unwind_SystemCleanup_AudioManager(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 清理音频管理器的资源和音频缓冲区
+ * 
+ * 该函数负责清理音频管理器中的资源句柄和音频缓冲区
+ * 释放音频资源，确保音频系统正确关闭
+ * 
+ * @param ObjectContext 对象上下文，包含对象的配置信息
+ * @param ValidationContext 验证上下文，用于验证操作的合法性
+ * @return 无返回值
+ * @note 此函数在音频管理器清理过程中调用
+ * @warning 调用此函数前必须确保所有音频播放已停止
+ */
+void CleanupAudioManagerResources(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int *ResourceIndexPointer;
