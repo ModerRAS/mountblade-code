@@ -173,6 +173,15 @@
 #define ObjectContextMatrixWComponentOffset 0x3c
 #define ObjectContextMatrixXCoordinateOffset 0x44
 #define ObjectContextSecurityContextOffset 0x40
+#define ObjectHandleSecondaryOffset 0x8
+#define ObjectContextValidationDataOffset 0x18
+#define ObjectContextProcessingDataOffset 0x20
+#define ObjectContextStatusDataOffset 0x24
+#define ObjectContextRangeDataOffset 0x28
+#define SystemContextResourceManagerOffset 0x1a0
+#define SystemContextFlagCheckOffset 0x2d8
+#define MemoryContextResourceTableOffset 0x240
+#define ObjectStatusFlagsOffset 0x204
 
 /**
  * @brief 初始化模块依赖关系
@@ -3641,7 +3650,7 @@ void ValidateSystemObjectCollection(void)
   uint32_t MaxCapacity;
   uint64_t SecurityHash;
   
-  if (*(int64_t *)(ObjectContext + 8) != 0) {
+  if (*(int64_t *)(ObjectContext + ObjectHandleSecondaryOffset) != 0) {
     ObjectCollectionBuffer = &SystemObjectDataBuffer;
     ProcessedCount = 0;
     RetrievedCount = 0;
@@ -4100,7 +4109,7 @@ uint64_t DecrementSystemResourceCounter(int64_t SystemContext, uint64_t Resource
   int ResourceCounter;
   int64_t ContextHandles[2];
   
-  OperationResult = ValidateObjectContext(*(uint32_t *)(SystemContext + 0x10), ContextHandles);
+  OperationResult = ValidateObjectContext(*(uint32_t *)(SystemContext + ObjectContextOffset), ContextHandles);
   ContextData = ContextHandles[0];
   if ((int)OperationResult != 0) {
     return OperationResult;
@@ -4625,7 +4634,7 @@ uint8_t InitializeObjectHandleComplex(int64_t ObjectContext)
   int64_t BaseAddressOffset;
   int64_t ValidatedContextHandle;
   
-  OperationResultCode = ValidateObjectContext(*(uint32_t *)(ObjectContext + 0x10), &ValidatedContextHandle);
+  OperationResultCode = ValidateObjectContext(*(uint32_t *)(ObjectContext + ObjectContextOffset), &ValidatedContextHandle);
   if ((int)OperationResultCode == 0) {
     IterationCount = 0;
     SystemContextHandle = ValidatedContextHandle - 8;
@@ -4772,7 +4781,7 @@ uint8_t InitializeObjectHandleExtended(int64_t ObjectContext)
   int64_t ObjectContextValidation;
   int64_t ResourceValidationContext;
   
-  ResourceHash = ValidateObjectContext(*(uint32_t *)(ObjectContext + 0x10),&ObjectContextValidation);
+  ResourceHash = ValidateObjectContext(*(uint32_t *)(ObjectContext + ObjectContextOffset),&ObjectContextValidation);
   if ((int)ResourceHash == 0) {
     ResourceContextOffset = 0;
     ContextValidationStatusCode = ObjectContextValidation - 8;
