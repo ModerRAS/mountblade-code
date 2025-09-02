@@ -3514,21 +3514,21 @@ void ProcessGameObjectCollection(int64_t GameContext, int64_t SystemContext)
   uint64_t SecurityValidationKey;
   
   SecurityValidationKey = SecurityContextKey ^ (uint64_t)ObjectMetadataBuffer;
-  ProcessingOutcome = RetrieveContextHandles(*(uint32_t *)(GameContext + ObjectContextOffset), SystemHandleArray);
-  if ((ProcessingOutcome == 0) && (*(int64_t *)(SystemHandleArray[0] + RegistrationHandleOffset) != 0)) {
+  ProcessingResult = RetrieveContextHandles(*(uint32_t *)(GameContext + ObjectContextOffset), SystemHandleArray);
+  if ((ProcessingResult == 0) && (*(int64_t *)(SystemHandleArray[0] + RegistrationHandleOffset) != 0)) {
     DataBufferPointer = ProcessingWorkspace;
     ProcessedObjectCount = 0;
     BufferPosition = 0;
     MaxProcessableObjects = MaximumProcessableItemsLimit;
-    ProcessingOutcome = FetchObjectList(*(uint8_t *)(SystemExecutionContext + ThreadLocalStorageDataOffset), *(int64_t *)(SystemHandleArray[0] + RegistrationHandleOffset),
+    ProcessingResult = FetchObjectList(*(uint8_t *)(SystemExecutionContext + ThreadLocalStorageDataOffset), *(int64_t *)(SystemHandleArray[0] + RegistrationHandleOffset),
                           &DataBufferPointer);
-    if (ProcessingOutcome == 0) {
+    if (ProcessingResult == 0) {
       if (0 < BufferPosition) {
         CurrentObjectIndex = 0;
         do {
           ObjectValidationState = *(uint8_t *)(DataBufferPointer + CurrentObjectIndex);
-          ProcessingOutcome = ValidateObjectStatus(ObjectValidationState);
-          if (ProcessingOutcome != RegistrationStatusSuccess) {
+          ProcessingResult = ValidateObjectStatus(ObjectValidationState);
+          if (ProcessingResult != RegistrationStatusSuccess) {
                   HandleInvalidObject(ObjectValidationState, 1);
           }
           ProcessedObjectCount = ProcessedObjectCount + 1;
@@ -8247,13 +8247,13 @@ uint8_t ProcessObjectContextFloatRangeValidationAndClamping(void)
   int ValidationRange;
   int ArrayElementIndex;
   int64_t ContextPointer;
-  float *floatArrayPointer;
+  float *FloatArrayPointer;
   int64_t ObjectContext;
-  int64_t dataPointer;
+  int64_t DataPointer;
   uint64_t ValidationContext;
-  float *floatArrayStart;
+  float *FloatArrayStart;
   uint LoopCounter;
-  uint iterationIndex;
+  uint IterationIndex;
   int64_t SystemContext;
   float clampedValue;
   
