@@ -4178,7 +4178,7 @@ uint8_t SystemMemoryFlagKernel;
  */
 void ProcessGameObjectCollection(int64_t GameContext, int64_t SystemContext)
 {
-  int SystemProcessingStatus;
+  int ObjectProcessingStatus;
   int64_t CurrentObjectIndex;
   int ProcessedObjectCount;
   uint8_t ObjectMetaDataBuffer[32];
@@ -4190,21 +4190,21 @@ void ProcessGameObjectCollection(int64_t GameContext, int64_t SystemContext)
   uint64_t SecurityValidationKey;
   
   SecurityValidationKey = 0x12345678 ^ (uint64_t)ObjectMetaDataBuffer;
-  SystemProcessingStatus = RetrieveContextHandles(*(uint32_t *)(GameContext + ObjectContextOffset), SystemHandleBuffer);
-  if ((SystemProcessingStatus == 0) && (*(int64_t *)(SystemHandleBuffer[0] + RegistrationHandleOffset) != 0)) {
+  ObjectProcessingStatus = RetrieveContextHandles(*(uint32_t *)(GameContext + ObjectContextOffset), SystemHandleBuffer);
+  if ((ObjectProcessingStatus == 0) && (*(int64_t *)(SystemHandleBuffer[0] + RegistrationHandleOffset) != 0)) {
     DataBuffer = ObjectProcessingWorkspace;
     ProcessedObjectCount = 0;
     BufferPosition = 0;
     MaxProcessableObjects = MaximumProcessableItemsLimit;
-    SystemProcessingStatus = FetchObjectList(*(uint8_t *)(SystemContext + ThreadLocalStorageDataOffset), *(int64_t *)(SystemHandleBuffer[0] + RegistrationHandleOffset),
+    ObjectProcessingStatus = FetchObjectList(*(uint8_t *)(SystemContext + ThreadLocalStorageDataOffset), *(int64_t *)(SystemHandleBuffer[0] + RegistrationHandleOffset),
                           &DataBuffer);
-    if (SystemProcessingStatus == 0) {
+    if (ObjectProcessingStatus == 0) {
       if (0 < BufferPosition) {
         CurrentObjectIndex = 0;
         do {
           uint8_t ObjectState = *(uint8_t *)(DataBuffer + CurrentObjectIndex);
-          SystemProcessingStatus = ValidateObjectStatus(ObjectState);
-          if (SystemProcessingStatus != RegistrationStatusSuccess) {
+          ObjectProcessingStatus = ValidateObjectStatus(ObjectState);
+          if (ObjectProcessingStatus != RegistrationStatusSuccess) {
                   HandleInvalidObject(ObjectState, 1);
           }
           ProcessedObjectCount++;
@@ -4236,7 +4236,7 @@ void ProcessGameObjectCollection(int64_t GameContext, int64_t SystemContext)
 void ValidateSystemObjectCollection(void)
 {
   uint8_t ObjectIdentifier;
-  int ValidationStatus;
+  int ObjectValidationStatus;
   int64_t ObjectContext;
   int64_t SystemContext;
   int64_t DataPosition;
@@ -4251,16 +4251,16 @@ void ValidateSystemObjectCollection(void)
     ProcessedCount = 0;
     RetrievedCount = 0;
     MaxCapacity = MaximumCapacityLimit;
-    ValidationStatus = FetchSystemObjectCollection(*(uint8_t *)(SystemContext + SystemContextSecondaryDataOffset), *(int64_t *)(ObjectContext + ObjectHandleSecondaryOffset),
+    ObjectValidationStatus = FetchSystemObjectCollection(*(uint8_t *)(SystemContext + SystemContextSecondaryDataOffset), *(int64_t *)(ObjectContext + ObjectHandleSecondaryOffset),
                           &ProcessingWorkspace);
-    if (ValidationStatus == 0) {
+    if (ObjectValidationStatus == 0) {
       RetrievedCount = *(int *)(ProcessingWorkspace + 4);
       if (0 < RetrievedCount) {
         DataPosition = 8;
         do {
           ObjectIdentifier = *(uint8_t *)(ObjectCollectionBuffer + DataPosition);
-          ValidationStatus = ValidateSystemObject(ObjectIdentifier);
-          if (ValidationStatus != 2) {
+          ObjectValidationStatus = ValidateSystemObject(ObjectIdentifier);
+          if (ObjectValidationStatus != 2) {
                   HandleInvalidSystemObject(ObjectIdentifier, 1);
           }
           ProcessedCount++;
@@ -4351,9 +4351,9 @@ uint8_t ValidateObjectRegistrationStatus(int64_t ObjectContext)
   int CalculatedRegistrationSize;
   
   // 获取注册上下文数据
-  ValidationStatusCode = GetRegistrationContextData(*(uint32_t *)(ObjectContext + ObjectContextOffset), &RegistrationStackPointer);
-  if ((int)ValidationStatusCode != 0) {
-    return ValidationStatusCode;
+  RegistrationValidationStatus = GetRegistrationContextData(*(uint32_t *)(ObjectContext + ObjectContextOffset), &RegistrationStackPointer);
+  if ((int)RegistrationValidationStatus != 0) {
+    return RegistrationValidationStatus;
   }
   
   // 验证注册句柄
@@ -100085,7 +100085,12 @@ void InitializeSystemDataStructureG(void)
 
 
 
- void DestroyThreadSyncObjects(void)
+ /**
+ * @brief 销毁线程同步对象
+ * 
+ * 该函数负责销毁线程同步相关的对象
+ * 释放线程同步资源
+ */
 void DestroyThreadSyncObjects(void)
 
 {
@@ -100100,7 +100105,12 @@ void DestroyThreadSyncObjects(void)
 
 
 
- void CloseSystemHandle(void)
+ /**
+ * @brief 关闭系统句柄
+ * 
+ * 该函数负责关闭系统文件句柄
+ * 释放系统资源
+ */
 void CloseSystemHandle(void)
 
 {
