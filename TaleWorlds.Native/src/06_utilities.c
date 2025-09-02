@@ -3479,12 +3479,24 @@ uint8_t SystemMemoryFlagKernel;
  * @note 此函数会执行安全验证，确保处理过程的安全性
  * @warning 如果发现无效对象，会调用相应的处理函数
  */
-void ProcessGameObjects(int64_t GameContext, int64_t SystemContext)
+/**
+ * @brief 处理游戏对象集合
+ * 
+ * 该函数负责处理系统中的游戏对象集合
+ * 包括对象验证、状态检查和批量处理
+ * 
+ * @param GameContext 游戏上下文，包含游戏相关的状态信息
+ * @param SystemContext 系统上下文，包含系统运行环境信息
+ * @return 无返回值
+ * @note 此函数在游戏循环中定期调用
+ * @warning 处理失败时会导致程序异常终止
+ */
+void ProcessGameObjectCollection(int64_t GameContext, int64_t SystemContext)
 {
-  uint8_t ObjectValidationState;
+  uint8_t ObjectValidationStatus;
   int ProcessingResult;
   int64_t CurrentObjectOffset;
-  int ProcessedCount;
+  int ProcessedItemCount;
   uint8_t MetadataBuffer[32];
   int64_t SystemHandleArray[2];
   uint8_t *DataBuffer;
@@ -3497,7 +3509,7 @@ void ProcessGameObjects(int64_t GameContext, int64_t SystemContext)
   ProcessingResult = RetrieveContextHandles(*(uint32_t *)(GameContext + ObjectContextOffset), SystemHandleArray);
   if ((ProcessingResult == 0) && (*(int64_t *)(SystemHandleArray[0] + RegistrationHandleOffset) != 0)) {
     DataBuffer = Workspace;
-    ProcessedCount = 0;
+    ProcessedItemCount = 0;
     BufferIndex = 0;
     MaxProcessableItems = MaximumProcessableItemsLimit;
     ProcessingResult = FetchObjectList(*(uint8_t *)(SystemExecutionContext + ThreadLocalStorageDataOffset), *(int64_t *)(SystemHandleArray[0] + RegistrationHandleOffset),
@@ -3506,15 +3518,15 @@ void ProcessGameObjects(int64_t GameContext, int64_t SystemContext)
       if (0 < BufferIndex) {
         CurrentObjectOffset = 0;
         do {
-          ObjectValidationState = *(uint8_t *)(DataBuffer + CurrentObjectOffset);
-          ProcessingResult = ValidateObjectStatus(ObjectValidationState);
+          ObjectValidationStatus = *(uint8_t *)(DataBuffer + CurrentObjectOffset);
+          ProcessingResult = ValidateObjectStatus(ObjectValidationStatus);
           if (ProcessingResult != RegistrationStatusSuccess) {
                     // WARNING: Subroutine does not return
-            HandleInvalidObject(ObjectValidationState, 1);
+            HandleInvalidObject(ObjectValidationStatus, 1);
           }
-          ProcessedCount = ProcessedCount + 1;
+          ProcessedItemCount = ProcessedItemCount + 1;
           CurrentObjectOffset = CurrentObjectOffset + ResourceEntrySizeBytes;
-        } while (ProcessedCount < BufferIndex);
+        } while (ProcessedItemCount < BufferIndex);
       }
       FreeObjectListMemory(&DataBuffer);
     }
@@ -47676,14 +47688,28 @@ void CleanupContextAlternateHandler(uint8_t ObjectContext, int64_t ValidationCon
 
 
 
-void Unwind_1809053f0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 清理句柄上下文回调函数
+ * 
+ * 该函数负责清理句柄上下文中的回调函数，执行必要的清理操作。
+ * 主要用于系统资源清理和句柄上下文的管理。
+ * 
+ * @param ObjectContext 对象上下文，包含对象的相关信息
+ * @param ValidationContext 验证上下文，包含验证相关的数据结构
+ * @param CleanupOption 清理选项，控制清理行为的具体参数
+ * @param CleanupFlag 清理标志，指定清理操作的标志位
+ * @return 无返回值
+ * @note 此函数会调用句柄上下文中注册的清理回调函数
+ * @warning 调用此函数前必须确保句柄上下文已正确初始化
+ */
+void CleanupHandleContextCallback(uint8_t ObjectContext, int64_t ValidationContext, uint8_t CleanupOption, uint8_t CleanupFlag)
 
 {
-  code *charPointer;
+  CodeFunctionPointer *handleCallback;
   
-  charPointer = *(code **)(*(int64_t *)(ValidationContext + 0xf8) + 0x10);
-  if (charPointer != (code *)0x0) {
-    (*charPointer)(*(int64_t *)(ValidationContext + 0xf8),0,0,CleanupFlag,0xfffffffffffffffe);
+  handleCallback = *(CodeFunctionPointer **)(*(int64_t *)(ValidationContext + 0xf8) + 0x10);
+  if (handleCallback != (CodeFunctionPointer *)0x0) {
+    (*handleCallback)(*(int64_t *)(ValidationContext + 0xf8), 0, 0, CleanupFlag, 0xfffffffffffffffe);
   }
   return;
 }
