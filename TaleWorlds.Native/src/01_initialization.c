@@ -19875,8 +19875,8 @@ int InitializeSystemCoreComponents(long long ResourceManagerPointer,long long In
   long long MemoryBufferBase;              // 内存缓冲区基地址
   int SystemResultValue;                    // 系统结果值
   long long LocalSystemFlags;               // 本地系统标志
-  long long localDataIndex;
-  ulong long unsignedSystemValue8;
+  long long DataIndex;                     // 数据索引
+  ulong long MemoryAddress;                // 内存地址
   void* ****ppppunsignedSystemValue9;
   void* ***pppuStackX_8;
   void* *systemMemoryContext;
@@ -19912,8 +19912,8 @@ int InitializeSystemCoreComponents(long long ResourceManagerPointer,long long In
   uint32_t LocalSystemStatus;
   void* LocalSystemHandle;
   
-  LocalSystemHandle = 0xfffffffffffffffe;
-  localSystemHandle = 0;
+  SystemGlobalHandle = 0xfffffffffffffffe;
+  SystemHandle = 0;
   systemMemoryContext = (void* *)&SystemGlobalDataReference;
   LocalSystemContextA = 0;
   LocalMemoryBufferHandle = 0;

@@ -6636,9 +6636,9 @@ void ProcessSystemDataBufferExpansion(uint8_t SystemContext, uint8_t bufferConte
   if (ValidationStatus != 0) {
     return;
   }
-  CapacityCheck = (int)*(uint *)(stackPointerSecondary + 0x2c) >> 0x1f;
-  BufferSize = (*(uint *)(stackPointerSecondary + 0x2c) ^ CapacityCheck) - CapacityCheck;
-  ValidationStatus = *(int *)(stackPointerSecondary + 0x28) + 1;
+  CapacityCheck = (int)*(uint *)(secondaryContextPointer + 0x2c) >> 0x1f;
+  BufferSize = (*(uint *)(secondaryContextPointer + 0x2c) ^ CapacityCheck) - CapacityCheck;
+  ValidationStatus = *(int *)(secondaryContextPointer + 0x28) + 1;
   if (OperationResult < ResourceIndex) {
     OperationStatusCode = (int)((float)OperationResult * 1.5);
     if (ResourceIndex <= OperationResult) {
