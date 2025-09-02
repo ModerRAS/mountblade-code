@@ -64374,7 +64374,7 @@ void ProcessResourceValidationAtF0(uint8_t ObjectContext, int64_t ValidationCont
 
 
 
-void UnwindExceptionHandler180908850(uint8_t ObjectContext, int64_t ValidationContext)
+void UnwindExceptionHandlerTypeOne(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   if (*(int64_t **)(ValidationContext + 0xf8) != (int64_t *)0x0) {
@@ -64385,7 +64385,7 @@ void UnwindExceptionHandler180908850(uint8_t ObjectContext, int64_t ValidationCo
 
 
 
-void UnwindResourceTableHandler180908860(uint8_t ObjectContext, int64_t ValidationContext)
+void UnwindResourceTableHandlerTypeTwo(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int64_t *processPointer;
@@ -64405,7 +64405,7 @@ void UnwindResourceTableHandler180908860(uint8_t ObjectContext, int64_t Validati
 
 
 
-void UnwindMemoryAccessValidator180908870(uint8_t ObjectContext, int64_t ValidationContext)
+void UnwindMemoryAccessValidatorTypeThree(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int *ResourceIndexPointer;
@@ -98976,7 +98976,7 @@ void TerminateSystemProcess(void)
  * 该函数负责执行系统清理操作1
  * 检查系统状态并执行相应的清理任务
  */
-void ExecuteSystemCleanupOperation1(void)
+void ExecuteSystemCleanupOperationPrimary(void)
 {
   if (SystemCleanupOperation1Flag != '\0') {
     SystemModuleConfigurator(PrimaryModuleConfiguratorPointer);
