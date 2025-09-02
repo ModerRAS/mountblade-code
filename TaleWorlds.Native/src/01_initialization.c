@@ -1330,6 +1330,14 @@ void* GetSystemInitializationFunction;
  * @param void 无参数
  * @return void 无返回值
  */
+/**
+ * @brief 初始化游戏核心系统
+ * 
+ * 初始化游戏核心系统，包括系统节点的创建、配置和激活。
+ * 用于游戏核心系统的启动和初始化工作。
+ * 
+ * @return 无返回值
+ */
 void InitializeGameCoreSystem(void)
 {
   bool IsSystemNodeActive;
@@ -18921,69 +18929,74 @@ SkipLibraryHandleInitialization:
   SystemPerformanceCurrentStorage = performanceCounterData;
 
 /**
- * 初始化线程管理器
- * 初始化线程管理器并设置线程相关信息
- * 此函数不会返回
+ * @brief 初始化系统线程管理器
+ * 
+ * 该函数负责初始化系统的线程管理器，创建线程对象并设置线程状态。
+ * 线程管理器负责管理系统中的所有线程，包括创建、销毁和调度。
+ * 
+ * @note 此函数在系统启动时被调用
+ * @warning 函数中使用了系统特定的内存池模板
  */
-void InitializeThreadManager(void)
-
+void InitializeSystemThreadManager(void)
 {
-  void* currentThread;
-  uint32_t threadResult;
-  void* *threadManager;
-  void* registerR9;
-  void* *errorPtr;
-  void* *ThreadManagerPointer;
-  uint32_t ThreadStatusFlags;
-  void* ThreadStackPointer;
+  void* CurrentThreadHandle;
+  uint32_t ThreadCreationResult;
+  void* ThreadManagerObject;
+  void* ThreadRegisterR9;
+  void* ErrorHandlingPointer;
+  void* ThreadManagerInstance;
+  uint32_t ThreadOperationFlags;
+  void* ThreadStackMemory;
   
-  errorPtr = &SystemGlobalDataReference;
-  ThreadStackPointer = 0;
-  ThreadManagerPointer = (void* *)0x0;
-  ThreadStatusFlags = 0;
-  threadManager = (void* *)CreateSystemThreadObject(SystemMemoryPoolTemplate,0x10,0x13,registerR9,0xfffffffffffffffe);
-  *(uint8_t *)threadManager = 0;
-  ThreadManagerPointer = threadManager;
-  threadResult = StartSystemThread(threadManager);
-  ThreadStackPointer = CONCAT44(ThreadStackPointer.HighPart,threadResult);
-  *threadManager = 0x72657472617453;
-  ThreadStatusFlags = 7;
-  currentThread = GetCurrentThread();
-  InitializeSystemThreadContext(currentThread,&errorPtr);
-  errorPtr = &SystemGlobalDataReference;
-    SystemCleanupFunction(threadManager);
+  ErrorHandlingPointer = &SystemGlobalDataReference;
+  ThreadStackMemory = 0;
+  ThreadManagerInstance = (void* *)0x0;
+  ThreadOperationFlags = 0;
+  ThreadManagerObject = (void* *)CreateSystemThreadObject(SystemMemoryPoolTemplate,0x10,0x13,ThreadRegisterR9,0xfffffffffffffffe);
+  *(uint8_t *)ThreadManagerObject = 0;
+  ThreadManagerInstance = ThreadManagerObject;
+  ThreadCreationResult = StartSystemThread(ThreadManagerObject);
+  ThreadStackMemory = CONCAT44(ThreadStackMemory.HighPart,ThreadCreationResult);
+  *ThreadManagerObject = 0x72657472617453;
+  ThreadOperationFlags = 7;
+  CurrentThreadHandle = GetCurrentThread();
+  InitializeSystemThreadContext(CurrentThreadHandle,&ErrorHandlingPointer);
+  ErrorHandlingPointer = &SystemGlobalDataReference;
+    SystemCleanupFunction(ThreadManagerObject);
 }
 
 
 
 
 /**
- * 最终系统初始化函数
- * 执行最终的系统初始化，等待系统就绪，清理系统资源
+ * @brief 执行系统最终初始化
  * 
- * @return 初始化结果
+ * 该函数负责执行系统的最终初始化工作，包括等待系统就绪、
+ * 初始化管理器、分配内存资源、设置回调函数等。
+ * 这是系统启动过程中的最后一个初始化步骤。
+ * 
+ * @return 初始化结果状态码，0表示成功，非0表示失败
  */
 uint32_t FinalSystemInitialization(void)
-
 {
-  void* *systemPtr;
-  code *systemCallback;
-  long long **systemController;
-  uint32_t initResult;
-  int waitResult;
-  long long ****systemManager;
-  void* SystemAllocationFlags;
-  long long ****tempManager8;
-  long long ***tempManager9;
-  long long systemObject;
-  char IsActiveFlag;
-  long long ****stackManager8;
-  long long ***stackManager10;
-  long long **stackController18;
-  long long ***stackManager20;
-  void* CalculationFlagss;
-  long long *****systemSuperManager;
-  long long ****tempManager14;
+  void* SystemInterfacePointer;
+  void* SystemCallbackFunction;
+  long long** SystemControllerInstance;
+  uint32_t InitializationResult;
+  int WaitOperationResult;
+  long long**** SystemManagerInstance;
+  void* MemoryAllocationFlags;
+  long long**** TemporaryManager8;
+  long long*** TemporaryManager9;
+  long long SystemObjectHandle;
+  char SystemActiveStatus;
+  long long**** StackManager8;
+  long long*** StackManager10;
+  long long** StackController18;
+  long long*** StackManager20;
+  void* CalculationFlags;
+  long long***** SystemSuperManager;
+  long long**** TemporaryManager14;
   
   CalculationFlagss = 0xfffffffffffffffe;
   if (SystemGlobalControllerPointer != (void* *)0x0) {
@@ -43577,6 +43590,7 @@ void ReleaseSystemResource(void* SystemResourceManager)
   uint32_t systemDataBuffer;
   void* aUnsignedStackFlagB0 [40];
   uint32_t StackBuffer [14];
+  uint32_t SystemOperationTypeE0;
   ulong long ThreadContextFlag;
   ulong long SystemContextValue;
   
@@ -43659,7 +43673,7 @@ void ReleaseSystemResource(void* SystemResourceManager)
       SystemCleanupFunction();
   }
   SystemGameControllerBuffer = (void* *)0x0;
-  uStack_1a8 = 0;
+  StackUnsignedValue1A8 = 0;
   pGlobalDataFlags = &SystemMemoryAllocatorReference;
   pointerUnsigned2c0 = &SystemGlobalDataReference;
   SystemOperationFlag2a8 = 0;
@@ -43737,7 +43751,7 @@ void ReleaseSystemResource(void* SystemResourceManager)
   SystemResourcePointerF0 = &SystemResourceTemplateSecondary;
   pointerUnsignedE8 = EncryptionBufferD8;
   EncryptionBufferD8[0] = 0;
-  uStack_e0 = 9;
+  SystemOperationTypeE0 = 9;
   strcpy_s(EncryptionBufferD8,0x10,&SystemStringTemplate1);
   ProcessSystemResourceTemplate(&SystemResourcePointer160,&pStackValue200,&SystemResourcePointerF0);
   SystemDataBufferPointer = pSystemConfigurationId;
@@ -44360,7 +44374,7 @@ SystemIndexCheckPoint:
     SystemGameControllerBuffer = &SystemGlobalDataReference;
     CalculationFlags1A0 = 0;
     StackCleanupFlag = 0;
-    uStack_1a8 = 0;
+    StackUnsignedValue1A8 = 0;
     pSystemConfigurationId = &SystemGlobalDataReference;
     SystemThreadContext140 = 0;
     pSystemResourceSize = (void* *)0x0;
