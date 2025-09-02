@@ -47505,7 +47505,20 @@ void SetValidationContextDataStructure(uint8_t ObjectContext,int64_t ValidationC
 
 
 
-void Unwind_180905380(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行资源验证和清理操作
+ * 
+ * 该函数负责执行系统资源的验证和清理操作。
+ * 检查资源索引和验证结果，执行必要的内存访问验证。
+ * 
+ * @param ObjectContext 对象上下文，包含对象的相关信息
+ * @param ValidationContext 验证上下文，包含验证相关的数据结构
+ * @return 无返回值
+ * @note 此函数会验证资源索引并执行清理操作
+ * @warning 调用此函数前必须确保验证上下文已正确初始化
+ * @remark 原始函数名：Unwind_180905380
+ */
+void ExecuteResourceValidationAndCleanup(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int *ResourceIndexPointer;
@@ -47871,28 +47884,58 @@ void ExecuteValidationContextSecondaryCleanupCallback(uint8_t ObjectContext, int
 
 
 
-void Unwind_180905450(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 执行验证上下文核心清理回调函数
+ * 
+ * 该函数负责执行验证上下文中注册的核心清理回调函数。
+ * 从验证上下文中获取核心回调函数指针并执行清理操作。
+ * 
+ * @param ObjectContext 对象上下文，包含对象的相关信息
+ * @param ValidationContext 验证上下文，包含验证相关的数据结构
+ * @param CleanupOption 清理选项，控制清理行为的具体参数
+ * @param CleanupFlag 清理标志，指定清理操作的标志位
+ * @return 无返回值
+ * @note 此函数会调用验证上下文中偏移0x100处的回调函数
+ * @warning 调用此函数前必须确保验证上下文已正确初始化
+ * @remark 原始函数名：Unwind_180905450
+ */
+void ExecuteValidationContextCoreCleanupCallback(uint8_t ObjectContext, int64_t ValidationContext, uint8_t CleanupOption, uint8_t CleanupFlag)
 
 {
-  code *charPointer;
+  code *CallbackFunctionPointer;
   
-  charPointer = *(code **)(*(int64_t *)(ValidationContext + 0x100) + 0x10);
-  if (charPointer != (code *)0x0) {
-    (*charPointer)(*(int64_t *)(ValidationContext + 0x100),0,0,CleanupFlag,0xfffffffffffffffe);
+  CallbackFunctionPointer = *(code **)(*(int64_t *)(ValidationContext + 0x100) + 0x10);
+  if (CallbackFunctionPointer != (code *)0x0) {
+    (*CallbackFunctionPointer)(*(int64_t *)(ValidationContext + 0x100), 0, 0, CleanupFlag, 0xfffffffffffffffe);
   }
   return;
 }
 
 
 
-void Unwind_180905460(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 执行验证上下文补充清理回调函数
+ * 
+ * 该函数负责执行验证上下文中注册的补充清理回调函数。
+ * 从验证上下文中获取补充回调函数指针并执行清理操作。
+ * 
+ * @param ObjectContext 对象上下文，包含对象的相关信息
+ * @param ValidationContext 验证上下文，包含验证相关的数据结构
+ * @param CleanupOption 清理选项，控制清理行为的具体参数
+ * @param CleanupFlag 清理标志，指定清理操作的标志位
+ * @return 无返回值
+ * @note 此函数会调用验证上下文中偏移0x108处的回调函数
+ * @warning 调用此函数前必须确保验证上下文已正确初始化
+ * @remark 原始函数名：Unwind_180905460
+ */
+void ExecuteValidationContextSupplementaryCleanupCallback(uint8_t ObjectContext, int64_t ValidationContext, uint8_t CleanupOption, uint8_t CleanupFlag)
 
 {
-  code *charPointer;
+  code *CallbackFunctionPointer;
   
-  charPointer = *(code **)(*(int64_t *)(ValidationContext + 0x108) + 0x10);
-  if (charPointer != (code *)0x0) {
-    (*charPointer)(*(int64_t *)(ValidationContext + 0x108),0,0,CleanupFlag,0xfffffffffffffffe);
+  CallbackFunctionPointer = *(code **)(*(int64_t *)(ValidationContext + 0x108) + 0x10);
+  if (CallbackFunctionPointer != (code *)0x0) {
+    (*CallbackFunctionPointer)(*(int64_t *)(ValidationContext + 0x108), 0, 0, CleanupFlag, 0xfffffffffffffffe);
   }
   return;
 }
