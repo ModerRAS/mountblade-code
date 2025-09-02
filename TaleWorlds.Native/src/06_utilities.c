@@ -2029,8 +2029,8 @@ uint8_t SecurityTokenAccessFlags;
  * 确保令牌的有效性和完整性
  */
 void ValidateSecurityToken(void);
-uint8_t AuthenticationContextInstance;
-uint8_t AuthenticationConfigurationInstance;
+uint8_t AuthenticationContext;
+uint8_t AuthenticationConfiguration;
 
  void ProcessAuthenticationRequest(void);
 /**
