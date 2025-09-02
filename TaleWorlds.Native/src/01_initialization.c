@@ -58132,7 +58132,7 @@ void SystemNoOperationA(void)
   void* InputStackParameter78;
   void* InputStackParameter80;
   void* InputStackParameter88;
-  void* in_stack_00000090;
+  void* InputStackParameter90;
   void* in_stack_00000098;
   float fStack00000000000000a0;
   float fStack00000000000000a4;
@@ -58353,7 +58353,7 @@ void SystemNoOperationA(void)
   }
   FUN_180085190(&stack0x00000060,localResourceOffset4 + 0x30,*(uint8_t *)(systemMemoryBlockPtr + 0xf7),pfVar39);
   creationFlags8 = in_stack_00000098;
-  creationFlags7 = in_stack_00000090;
+  creationFlags7 = InputStackParameter90;
   creationFlags6 = InputStackParameter88;
   creationFlags5 = InputStackParameter80;
   creationFlags4 = InputStackParameter78;
@@ -58378,7 +58378,7 @@ void SystemNoOperationA(void)
     *(void* *)(systemMemoryBlockPtr + 0x178) = InputStackParameter78;
     *(void* *)(systemMemoryBlockPtr + 0x180) = InputStackParameter80;
     *(void* *)(systemMemoryBlockPtr + 0x188) = InputStackParameter88;
-    *(void* *)(systemMemoryBlockPtr + 400) = in_stack_00000090;
+    *(void* *)(systemMemoryBlockPtr + 400) = InputStackParameter90;
     *(void* *)(systemMemoryBlockPtr + 0x198) = in_stack_00000098;
   }
   FUN_18024a290(localResourceOffset4);
@@ -58451,7 +58451,7 @@ void FUN_180077ad8(void)
   void* InputStackParameter78;
   void* InputStackParameter80;
   void* InputStackParameter88;
-  void* in_stack_00000090;
+  void* InputStackParameter90;
   void* in_stack_00000098;
   float fStack00000000000000a0;
   float fStack00000000000000a4;
@@ -58617,7 +58617,7 @@ void FUN_180077ad8(void)
   }
   FUN_180085190(&stack0x00000060,localSystemHandle9 + 0x30,*(uint8_t *)(systemMemoryBlockPtr + 0xf7),pfVar36);
   creationFlags8 = in_stack_00000098;
-  creationFlags7 = in_stack_00000090;
+  creationFlags7 = InputStackParameter90;
   creationFlags6 = InputStackParameter88;
   creationFlags5 = InputStackParameter80;
   creationFlags4 = InputStackParameter78;
@@ -58642,7 +58642,7 @@ void FUN_180077ad8(void)
     *(void* *)(systemMemoryBlockPtr + 0x178) = InputStackParameter78;
     *(void* *)(systemMemoryBlockPtr + 0x180) = InputStackParameter80;
     *(void* *)(systemMemoryBlockPtr + 0x188) = InputStackParameter88;
-    *(void* *)(systemMemoryBlockPtr + 400) = in_stack_00000090;
+    *(void* *)(systemMemoryBlockPtr + 400) = InputStackParameter90;
     *(void* *)(systemMemoryBlockPtr + 0x198) = in_stack_00000098;
   }
   FUN_18024a290(localSystemHandle9);
@@ -58707,7 +58707,7 @@ void FUN_180077c96(void)
   void* InputStackParameter78;
   void* InputStackParameter80;
   void* InputStackParameter88;
-  void* in_stack_00000090;
+  void* InputStackParameter90;
   void* in_stack_00000098;
   float fStack00000000000000a0;
   float fStack00000000000000a4;
@@ -58770,7 +58770,7 @@ void FUN_180077c96(void)
   }
   FUN_180085190(&stack0x00000060,unaff_R13 + 0x30,*(uint8_t *)(systemMemoryBlockPtr + 0xf7));
   creationFlags6 = in_stack_00000098;
-  creationFlags5 = in_stack_00000090;
+  creationFlags5 = InputStackParameter90;
   creationFlags4 = InputStackParameter88;
   creationFlags3 = InputStackParameter80;
   creationFlags2 = InputStackParameter78;
@@ -58795,7 +58795,7 @@ void FUN_180077c96(void)
     *(void* *)(systemMemoryBlockPtr + 0x178) = InputStackParameter78;
     *(void* *)(systemMemoryBlockPtr + 0x180) = InputStackParameter80;
     *(void* *)(systemMemoryBlockPtr + 0x188) = InputStackParameter88;
-    *(void* *)(systemMemoryBlockPtr + 400) = in_stack_00000090;
+    *(void* *)(systemMemoryBlockPtr + 400) = InputStackParameter90;
     *(void* *)(systemMemoryBlockPtr + 0x198) = in_stack_00000098;
   }
   FUN_18024a290();
@@ -58860,7 +58860,7 @@ void FUN_180077dc6(void)
   void* InputStackParameter78;
   void* InputStackParameter80;
   void* InputStackParameter88;
-  void* in_stack_00000090;
+  void* InputStackParameter90;
   void* in_stack_00000098;
   float fStack00000000000000a0;
   float fStack00000000000000a4;
@@ -58941,7 +58941,7 @@ void FUN_180077dc6(void)
   }
   FUN_180085190(&stack0x00000060,unaff_R13 + 0x30,*(uint8_t *)(systemMemoryBlockPtr + 0xf7),pfVar29);
   creationFlags6 = in_stack_00000098;
-  creationFlags5 = in_stack_00000090;
+  creationFlags5 = InputStackParameter90;
   creationFlags4 = InputStackParameter88;
   creationFlags3 = InputStackParameter80;
   creationFlags2 = InputStackParameter78;
@@ -58966,7 +58966,7 @@ void FUN_180077dc6(void)
     *(void* *)(systemMemoryBlockPtr + 0x178) = InputStackParameter78;
     *(void* *)(systemMemoryBlockPtr + 0x180) = InputStackParameter80;
     *(void* *)(systemMemoryBlockPtr + 0x188) = InputStackParameter88;
-    *(void* *)(systemMemoryBlockPtr + 400) = in_stack_00000090;
+    *(void* *)(systemMemoryBlockPtr + 400) = InputStackParameter90;
     *(void* *)(systemMemoryBlockPtr + 0x198) = in_stack_00000098;
   }
   FUN_18024a290();
@@ -59012,12 +59012,12 @@ void FUN_180077dec(void)
   void* InputStackParameter78;
   void* InputStackParameter80;
   void* InputStackParameter88;
-  void* in_stack_00000090;
+  void* InputStackParameter90;
   void* in_stack_00000098;
   
   FUN_180085190(&stack0x00000060,unaff_R13 + 0x30,*(uint8_t *)(systemMemoryBlockPtr + 0xf7));
   unsignedSystemValue9 = in_stack_00000098;
-  unsignedSystemValue8 = in_stack_00000090;
+  unsignedSystemValue8 = InputStackParameter90;
   unsignedSystemValue7 = InputStackParameter88;
   hashValue = InputStackParameter80;
   currentThreadId = InputStackParameter78;
@@ -59042,7 +59042,7 @@ void FUN_180077dec(void)
     *(void* *)(systemMemoryBlockPtr + 0x178) = InputStackParameter78;
     *(void* *)(systemMemoryBlockPtr + 0x180) = InputStackParameter80;
     *(void* *)(systemMemoryBlockPtr + 0x188) = InputStackParameter88;
-    *(void* *)(systemMemoryBlockPtr + 400) = in_stack_00000090;
+    *(void* *)(systemMemoryBlockPtr + 400) = InputStackParameter90;
     *(void* *)(systemMemoryBlockPtr + 0x198) = in_stack_00000098;
   }
   FUN_18024a290();

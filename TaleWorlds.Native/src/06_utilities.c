@@ -4707,7 +4707,7 @@ uint8_t InitializeObjectHandleExtended(int64_t ObjectContext)
             return ResourceHash;
           }
         }
-        loopIncrement = (int)ResourceContextOffset + 1;
+        LoopIncrement = (int)ResourceContextOffset + 1;
         ResourceContextOffset = (uint64_t)loopIncrement;
         PackageValidationStatusCodePointer = HashValidationResultPointer + 1;
         OperationStatusCodePointer = OperationResultPointer + 2;
@@ -6495,7 +6495,7 @@ void ExpandDynamicBufferCapacity(int64_t ObjectContext, int64_t SystemContext)
   }
   NewBufferPointer = 0;
   BufferOffset = memoryContextBuffer + 8;
-  if (memoryContextBuffer == 0) {
+  if (MemoryContextBuffer == 0) {
     BufferOffset = NewBufferPointer;
   }
   ValidationStatus = ValidateBufferContext(BufferOffset,ObjectContext + ObjectContextValidationDataOffset);
@@ -6568,7 +6568,7 @@ void ProcessSystemDataBufferExpansion(uint8_t SystemContext, uint8_t bufferConte
   }
   NewBufferPointer = 0;
   BufferOffset = primaryContextPointer + 8;
-  if (primaryContextPointer == 0) {
+  if (PrimaryContextPointer == 0) {
     BufferOffset = NewBufferPointer;
   }
   ValidationStatus = ValidateBufferContext(BufferOffset, systemBasePointer + 0x18);
@@ -7073,12 +7073,12 @@ uint8_t ValidateObjectContextAndProcessBuffers(int64_t ObjectContext, int64_t Sy
     if (StackBuffer != 0) {
       BufferArrayOffset = StackBuffer - 8;
     }
-    bufferEntryOffset = BufferIndex;
+    BufferEntryOffset = BufferIndex;
     if (0 < *(int *)(BufferArrayOffset + 0x28)) {
       do {
-        bufferContext = *(int64_t *)(BufferArrayOffset + 0x20) + bufferEntryOffset;
-        bufferEntryPointer = *(int64_t *)(bufferContext + 0x10);
-        if (bufferEntryPointer == 0) {
+        BufferContext = *(int64_t *)(BufferArrayOffset + 0x20) + BufferEntryOffset;
+        BufferEntryPointer = *(int64_t *)(BufferContext + 0x10);
+        if (BufferEntryPointer == 0) {
           return 0x1e;
         }
         if (*(int *)(bufferEntryPointer + 0x58) < 1) {
@@ -17068,7 +17068,7 @@ uint8_t ProcessResourceRegistry(uint8_t *ObjectContext, uint8_t ValidationContex
         if (OperationResult != 0) {
           return;
         }
-        loopIncrement = (int)ResourceContextOffset + 1;
+        LoopIncrement = (int)ResourceContextOffset + 1;
         ResourceContextOffset = (uint64_t)loopIncrement;
         ValidationCounter = FloatingPointResultFirst;
       } while ((int)LoopCondition < HashValidationResult);
@@ -17087,7 +17087,7 @@ uint8_t ProcessResourceRegistry(uint8_t *ObjectContext, uint8_t ValidationContex
           if (OperationResult != 0) {
             return;
           }
-          loopIncrement = (int)ResourceContextOffset + 1;
+          LoopIncrement = (int)ResourceContextOffset + 1;
           ResourceContextOffset = (uint64_t)loopIncrement;
           ValidationCounter = FloatingPointResultThird;
         } while ((int)LoopCondition < HashValidationResult);
@@ -25802,7 +25802,7 @@ uint64_t ProcessResourceDataExtraction(int64_t ObjectContext,int64_t *Validation
       if ((int)HashValidationResult != 0) {
         return ResourceHashValidationResult;
       }
-      loopIncrement = (int)ResourceContextOffset + 1;
+      LoopIncrement = (int)ResourceContextOffset + 1;
       ResourceContextOffset = (uint64_t)loopIncrement;
       ResourceValidationBuffer[0] = ResourceValidationBuffer[0] & -HashValidationResult;
       ValidationResult = (uint64_t)ResourceValidationBuffer[0];
