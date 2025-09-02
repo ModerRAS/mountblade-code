@@ -10407,7 +10407,7 @@ Label_18062e327:
   *(uint8_t *)(pMemoryAllocationResult + 3) = 0;
   StackCounter3 = 0x18;
   StackParameter1._0_4_ = StringProcessingResult;
-  InitializeSystemModuleConfiguration(acStack_40,&UNK_1809fd0a0,IntegerStatus);
+  InitializeSystemModuleConfiguration(acStack_40,&SystemModuleConfiguration,IntegerStatus);
   ModuleInitializationResult0 = -1;
   do {
     LongAddress = ModuleInitializationResult0;
@@ -10537,7 +10537,7 @@ char * SystemStringProcessData(uint32_t StringFormatId,uint64_t BufferSizeParame
   if (puStack_110 != (void *)0x0) {
     pMemoryAddress3 = puStack_110;
   }
-  AllocateSystemMemory(&UNK_180a3cac0,pMemoryAddress3);
+  AllocateSystemMemory(&SystemMemoryAllocationBuffer,pMemoryAddress3);
   *param_9 = 0;
   LongOffset = *param_5;
   IntegerCounter = 0;
