@@ -2746,11 +2746,16 @@ uint8_t EventObject;
 uint8_t TimerManager;
 // 时钟管理器 - 管理系统时钟
 uint8_t ClockManager;
-uint8_t SystemPerformanceCounter;
-uint8_t SystemProfiler;
-uint8_t SystemTracer;
-uint8_t SystemLogger;
-uint8_t SystemDebugger;
+// 性能计数器 - 用于性能监控和统计
+uint8_t PerformanceCounter;
+// 性能分析器 - 用于性能分析
+uint8_t Profiler;
+// 跟踪器 - 用于执行路径跟踪
+uint8_t Tracer;
+// 日志记录器 - 用于日志记录
+uint8_t Logger;
+// 调试器 - 用于程序调试
+uint8_t Debugger;
 uint8_t SystemMonitor;
 uint8_t SystemStatistics;
 uint8_t SystemMetrics;
@@ -2850,9 +2855,9 @@ uint8_t SystemResourceHandler;
 uint8_t SystemResourceBalancer;
 uint8_t SystemResourceOptimizer;
 // 资源监控器副本 - 用于监控系统资源使用情况
-uint8_t ResourceMonitor2;
+uint8_t ResourceMonitorSecondary;
 // 资源验证器副本 - 用于验证系统资源的有效性
-uint8_t ResourceValidator2;
+uint8_t ResourceValidatorSecondary;
 uint8_t SystemResourceCleaner;
 uint8_t SystemResourceCollector;
 uint8_t SystemResourceCompactor;
@@ -5009,23 +5014,23 @@ void ReturnNoOperation(void)
 uint64_t HandleResourceOperation(int64_t resourceHandle)
 
 {
-  uint8_t ResourceHash;
-  int64_t ResourceTable;
-  int64_t StackContextPointer;
+  uint8_t ResourceValidationHash;
+  int64_t ResourceContextTable;
+  int64_t StackValidationContext;
   
-  ResourceHash = ValidateObjectContext(*(uint32_t *)(objectContext + 0x10),&StackContextPointer);
-  if ((int)resourceHash != 0) {
-    return ResourceHash;
+  ResourceValidationHash = ValidateObjectContext(*(uint32_t *)(objectContext + 0x10),&StackValidationContext);
+  if ((int)ResourceValidationHash != 0) {
+    return ResourceValidationHash;
   }
-  ResourceTable = StackContextPointer + -8;
-  if (StackContextPointer == 0) {
-    ResourceTable = 0;
+  ResourceContextTable = StackValidationContext + -8;
+  if (StackValidationContext == 0) {
+    ResourceContextTable = 0;
   }
-  if (*(int64_t *)(resourceTable + 0x10) == 0) {
+  if (*(int64_t *)(ResourceContextTable + 0x10) == 0) {
     return 0x1c;
   }
                     // WARNING: Subroutine does not return
-  ExecuteSystemExitOperation(*(int64_t *)(resourceTable + 0x10),1);
+  ExecuteSystemExitOperation(*(int64_t *)(ResourceContextTable + 0x10),1);
 }
 
 
@@ -60025,7 +60030,17 @@ void Unwind_1809087d0(uint8_t objectContext,int64_t validationContext)
 
 
 
-void Unwind_1809087e0(uint8_t objectContext,int64_t validationContext)
+/**
+ * @brief 执行验证上下文（偏移量C0）
+ * 
+ * 该函数负责执行位于验证上下文偏移量C0处的处理函数
+ * 如果验证上下文存在，则调用相应的处理函数
+ * 
+ * @param objectContext 对象上下文
+ * @param validationContext 验证上下文
+ * @return 无返回值
+ */
+void ExecuteValidationContextAtC0(uint8_t objectContext,int64_t validationContext)
 
 {
   if (*(int64_t **)(validationContext + 0xc0) != (int64_t *)0x0) {
@@ -60036,7 +60051,17 @@ void Unwind_1809087e0(uint8_t objectContext,int64_t validationContext)
 
 
 
-void Unwind_1809087f0(uint8_t objectContext,int64_t validationContext)
+/**
+ * @brief 执行验证上下文（偏移量D0）
+ * 
+ * 该函数负责执行位于验证上下文偏移量D0处的处理函数
+ * 如果验证上下文存在，则调用相应的处理函数
+ * 
+ * @param objectContext 对象上下文
+ * @param validationContext 验证上下文
+ * @return 无返回值
+ */
+void ExecuteValidationContextAtD0(uint8_t objectContext,int64_t validationContext)
 
 {
   if (*(int64_t **)(validationContext + 0xd0) != (int64_t *)0x0) {
