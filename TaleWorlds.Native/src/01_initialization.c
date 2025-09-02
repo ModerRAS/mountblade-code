@@ -45394,7 +45394,7 @@ void ProcessSystemResourceMemoryAllocation(long long* SystemResourceManager)
   UnsignedStackFlagB0 = 1;
   SystemResourceContextValue = SystemResourceContextPointer;
   (**(code **)(ResourceDataOffset + 0x180))(&SystemResourceContextPointer,*(long long *)(ResourceDataOffset + 0x1f8) + 8);
-  if (((char)UnsignedStackFlagB0 == '\0') && (lStack_c8 != 0)) {
+  if (((char)UnsignedStackFlagB0 == '\0') && (SystemResourceContextPointer != 0)) {
       SystemCleanupFunction();
   }
   LOCK();

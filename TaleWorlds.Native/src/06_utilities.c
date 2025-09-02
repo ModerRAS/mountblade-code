@@ -4184,8 +4184,7 @@ uint8_t SystemMemoryFlagKernel;
  */
 void ProcessGameObjectCollection(int64_t GameContext, int64_t SystemContext)
 {
-  uint8_t ObjectValidationState;
-  int ProcessingStatusCode;
+  int ProcessingStatus;
   int64_t CurrentObjectIndex;
   int ProcessedObjectCount;
   uint8_t ObjectMetadataBuffer[32];
@@ -4197,22 +4196,22 @@ void ProcessGameObjectCollection(int64_t GameContext, int64_t SystemContext)
   uint64_t SecurityValidationKey;
   
   SecurityValidationKey = 0x12345678 ^ (uint64_t)ObjectMetadataBuffer;
-  ProcessingStatusCode = RetrieveContextHandles(*(uint32_t *)(GameContext + ObjectContextOffset), SystemHandleArray);
-  if ((ProcessingStatusCode == 0) && (*(int64_t *)(SystemHandleArray[0] + RegistrationHandleOffset) != 0)) {
+  ProcessingStatus = RetrieveContextHandles(*(uint32_t *)(GameContext + ObjectContextOffset), SystemHandleArray);
+  if ((ProcessingStatus == 0) && (*(int64_t *)(SystemHandleArray[0] + RegistrationHandleOffset) != 0)) {
     DataBuffer = ProcessingWorkspace;
     ProcessedObjectCount = 0;
     BufferPosition = 0;
     MaxProcessableObjects = MaximumProcessableItemsLimit;
-    ProcessingStatusCode = FetchObjectList(*(uint8_t *)(SystemContext + ThreadLocalStorageDataOffset), *(int64_t *)(SystemHandleArray[0] + RegistrationHandleOffset),
+    ProcessingStatus = FetchObjectList(*(uint8_t *)(SystemContext + ThreadLocalStorageDataOffset), *(int64_t *)(SystemHandleArray[0] + RegistrationHandleOffset),
                           &DataBuffer);
-    if (ProcessingStatusCode == 0) {
+    if (ProcessingStatus == 0) {
       if (0 < BufferPosition) {
         CurrentObjectIndex = 0;
         do {
-          ObjectValidationState = *(uint8_t *)(DataBuffer + CurrentObjectIndex);
-          ProcessingStatusCode = ValidateObjectStatus(ObjectValidationState);
-          if (ProcessingStatusCode != RegistrationStatusSuccess) {
-                  HandleInvalidObject(ObjectValidationState, 1);
+          uint8_t ObjectState = *(uint8_t *)(DataBuffer + CurrentObjectIndex);
+          ProcessingStatus = ValidateObjectStatus(ObjectState);
+          if (ProcessingStatus != RegistrationStatusSuccess) {
+                  HandleInvalidObject(ObjectState, 1);
           }
           ProcessedObjectCount++;
           CurrentObjectIndex += ResourceEntrySizeBytes;
@@ -4243,7 +4242,7 @@ void ProcessGameObjectCollection(int64_t GameContext, int64_t SystemContext)
 void ValidateSystemObjectCollection(void)
 {
   uint8_t ObjectIdentifier;
-  int ValidationResult;
+  int ValidationStatus;
   int64_t ObjectContext;
   int64_t SystemContext;
   int64_t DataPosition;
@@ -4258,16 +4257,16 @@ void ValidateSystemObjectCollection(void)
     ProcessedCount = 0;
     RetrievedCount = 0;
     MaxCapacity = MaximumCapacityLimit;
-    ValidationResult = FetchSystemObjectCollection(*(uint8_t *)(SystemContext + SystemContextSecondaryDataOffset), *(int64_t *)(ObjectContext + ObjectHandleSecondaryOffset),
+    ValidationStatus = FetchSystemObjectCollection(*(uint8_t *)(SystemContext + SystemContextSecondaryDataOffset), *(int64_t *)(ObjectContext + ObjectHandleSecondaryOffset),
                           &ProcessingWorkspace);
-    if (ValidationResult == 0) {
+    if (ValidationStatus == 0) {
       RetrievedCount = *(int *)(ProcessingWorkspace + 4);
       if (0 < RetrievedCount) {
         DataPosition = 8;
         do {
           ObjectIdentifier = *(uint8_t *)(ObjectCollectionBuffer + DataPosition);
-          ValidationResult = ValidateSystemObject(ObjectIdentifier);
-          if (ValidationResult != 2) {
+          ValidationStatus = ValidateSystemObject(ObjectIdentifier);
+          if (ValidationStatus != 2) {
                   HandleInvalidSystemObject(ObjectIdentifier, 1);
           }
           ProcessedCount++;
@@ -8071,15 +8070,15 @@ void CleanupSecurityTokenFunction(void)
 uint8_t ValidateMatrixTransformationData(int64_t matrixDataPointer,int64_t ContextPointer)
 
 {
-    uint8_t MatrixValidationStatus;
-  int MatrixRow1InfinityStatus;
-  int MatrixRow2InfinityStatus;
-  int MatrixRow3InfinityStatus;
-  int MatrixOverallInfinityStatus;
-  int MatrixRow1InfinityCheck;
-  int MatrixRow2InfinityCheck;
-  int MatrixRow3InfinityCheck;
-  int MatrixInfinityStatusFlag;
+    uint8_t ValidationStatus;
+  int Row1InfinityStatus;
+  int Row2InfinityStatus;
+  int Row3InfinityStatus;
+  int OverallInfinityStatus;
+  int Row1InfinityCheck;
+  int Row2InfinityCheck;
+  int Row3InfinityCheck;
+  int InfinityStatusFlag;
   int64_t TransformContext;
   int64_t MatrixBuffer[2];
   uint MatrixFlags;
@@ -8087,68 +8086,68 @@ uint8_t ValidateMatrixTransformationData(int64_t matrixDataPointer,int64_t Conte
   int64_t MatrixContextPointer;
   
   MatrixContextPointer = 0;
-  MatrixRow1InfinityStatus = 0;
-  MatrixRow2InfinityStatus = MatrixRow1InfinityStatus;
+  Row1InfinityStatus = 0;
+  Row2InfinityStatus = Row1InfinityStatus;
   if ((*(uint *)(ObjectContext + ObjectContextProcessingDataOffset) & FloatInfinityMask) == FloatInfinityMask) {
-    MatrixRow2InfinityStatus = FloatValidationErrorCode;
+    Row2InfinityStatus = FloatValidationErrorCode;
   }
-  MatrixRow3InfinityStatus = MatrixRow1InfinityStatus;
+  Row3InfinityStatus = Row1InfinityStatus;
   if ((*(uint *)(ObjectContext + ObjectContextHandleDataOffset) & FloatInfinityMask) == FloatInfinityMask) {
-    MatrixRow3InfinityStatus = FloatValidationErrorCode;
+    Row3InfinityStatus = FloatValidationErrorCode;
   }
-  MatrixOverallInfinityStatus = MatrixRow1InfinityStatus;
+  OverallInfinityStatus = Row1InfinityStatus;
   if ((*(uint *)(ObjectContext + ObjectContextValidationDataOffset) & FloatInfinityMask) == FloatInfinityMask) {
-    MatrixOverallInfinityStatus = FloatValidationErrorCode;
+    OverallInfinityStatus = FloatValidationErrorCode;
   }
-  if ((MatrixRow2InfinityStatus != 0 || MatrixRow3InfinityStatus != 0) || MatrixOverallInfinityStatus != 0) {
+  if ((Row2InfinityStatus != 0 || Row3InfinityStatus != 0) || OverallInfinityStatus != 0) {
     return ErrorResourceValidationFailed;
   }
-  MatrixRow2InfinityCheck = 0;
+  Row2InfinityCheck = 0;
   if ((*(uint *)(ObjectContext + ObjectContextMatrixFlagsOffset) & FloatInfinityMask) == FloatInfinityMask) {
-    MatrixRow1InfinityCheck = 0x1d;
+    Row1InfinityCheck = 0x1d;
   }
-  MatrixRow3InfinityCheck = MatrixRow2InfinityCheck;
+  Row3InfinityCheck = Row2InfinityCheck;
   if ((*(uint *)(ObjectContext + ObjectContextRangeDataOffset) & FloatInfinityMask) == FloatInfinityMask) {
-    MatrixRow3InfinityCheck = 0x1d;
+    Row3InfinityCheck = 0x1d;
   }
-  MatrixInfinityStatusFlag = MatrixRow2InfinityCheck;
+  InfinityStatusFlag = Row2InfinityCheck;
   if ((*(uint *)(ObjectContext + ObjectContextStatusDataOffset) & FloatInfinityMask) == FloatInfinityMask) {
-    MatrixInfinityStatusFlag = 0x1d;
+    InfinityStatusFlag = 0x1d;
   }
-  if ((MatrixRow1InfinityCheck != 0 || MatrixRow3InfinityCheck != 0) || MatrixInfinityStatusFlag != 0) {
+  if ((Row1InfinityCheck != 0 || Row3InfinityCheck != 0) || InfinityStatusFlag != 0) {
     return ErrorResourceValidationFailed;
   }
-  MatrixRow1InfinityCheck = MatrixRow2InfinityCheck;
+  Row1InfinityCheck = Row2InfinityCheck;
   if ((*(uint *)(ObjectContext + ObjectContextFloatValueOffset) & FloatInfinityMask) == FloatInfinityMask) {
-    MatrixRow1InfinityCheck = 0x1d;
+    Row1InfinityCheck = 0x1d;
   }
-  MatrixRow3InfinityCheck = MatrixRow2InfinityCheck;
+  Row3InfinityCheck = Row2InfinityCheck;
   if ((*(uint *)(ObjectContext + ObjectContextMatrixTranslationOffset) & FloatInfinityMask) == FloatInfinityMask) {
-    MatrixRow3InfinityCheck = 0x1d;
+    Row3InfinityCheck = 0x1d;
   }
   if (((uint)*(float *)(ObjectContext + ObjectContextMatrixScaleOffset) & FloatInfinityMask) == FloatInfinityMask) {
-    MatrixRow2InfinityCheck = 0x1d;
+    Row2InfinityCheck = 0x1d;
   }
-  if ((MatrixRow1InfinityCheck != 0 || MatrixRow3InfinityCheck != 0) || MatrixRow2InfinityCheck != 0) {
+  if ((Row1InfinityCheck != 0 || Row3InfinityCheck != 0) || Row2InfinityCheck != 0) {
     return ErrorResourceValidationFailed;
   }
-  float MatrixElementXCoordinate = *(float *)(ObjectContext + ObjectContextMatrixXCoordinateOffset);
-  MatrixRow1InfinityCheck = 0;
+  float MatrixElementX = *(float *)(ObjectContext + ObjectContextMatrixXCoordinateOffset);
+  Row1InfinityCheck = 0;
   uint32_t SecurityValidationContext = *(uint *)(ObjectContext + ObjectContextSecurityContextOffset);
-  float MatrixElementWComponent = *(float *)(ObjectContext + ObjectContextMatrixWComponentOffset);
-  ResourceValidationData[0] = CombineFloatAndInt(ResourceValidationData[0].VectorComponent,MatrixElementXCoordinate);
-  MatrixRow2InfinityCheck = MatrixRow1InfinityCheck;
-  if (((uint)MatrixElementXCoordinate & FloatInfinityMask) == FloatInfinityMask) {
-    MatrixRow2InfinityCheck = 0x1d;
+  float MatrixElementW = *(float *)(ObjectContext + ObjectContextMatrixWComponentOffset);
+  ResourceValidationData[0] = CombineFloatAndInt(ResourceValidationData[0].VectorComponent,MatrixElementX);
+  Row2InfinityCheck = Row1InfinityCheck;
+  if (((uint)MatrixElementX & FloatInfinityMask) == FloatInfinityMask) {
+    Row2InfinityCheck = 0x1d;
   }
-  MatrixRow3InfinityCheck = MatrixRow1InfinityCheck;
+  Row3InfinityCheck = Row1InfinityCheck;
   if ((SecurityValidationContext & FloatInfinityMask) == FloatInfinityMask) {
-    MatrixRow3InfinityCheck = 0x1d;
+    Row3InfinityCheck = 0x1d;
   }
-  if (((uint)MatrixElementWComponent & FloatInfinityMask) == FloatInfinityMask) {
-    MatrixRow1InfinityCheck = 0x1d;
+  if (((uint)MatrixElementW & FloatInfinityMask) == FloatInfinityMask) {
+    Row1InfinityCheck = 0x1d;
   }
-  if ((MatrixRow2InfinityCheck == 0 && MatrixRow3InfinityCheck == 0) && MatrixRow1InfinityCheck == 0) {
+  if ((Row2InfinityCheck == 0 && Row3InfinityCheck == 0) && Row1InfinityCheck == 0) {
     if (((*(float *)(ObjectContext + ObjectContextMatrixScaleOffset) == 0.0) && (*(float *)(ObjectContext + ObjectContextMatrixTranslationOffset) == 0.0)) &&
        (*(float *)(ObjectContext + ObjectContextFloatValueOffset) == 0.0)) {
       return ErrorResourceValidationFailed;
@@ -10013,10 +10012,10 @@ uint8_t ProcessFloatDataValidationAndConversion(int64_t ObjectContext,int64_t Va
   int64_t ResourceIndex;
   uint32_t SystemArrayStackBuffer [2];
   
-  SystemCommandParameters[0] = 0;
-  ValidationResult = ProcessDataHashing(ValidationContext + ValidationContextDataOffset,ObjectContext + ObjectContextValidationDataOffset,SystemCommandParameters);
+  CommandParameters[0] = 0;
+  ValidationResult = ProcessDataHashing(ValidationContext + ValidationContextDataOffset,ObjectContext + ObjectContextValidationDataOffset,CommandParameters);
   if ((int)ValidationResult == 0) {
-    ResourceIndex = LookupResourceIndexPointer(ValidationContext + ValidationContextDataOffset,SystemCommandParameters[0]);
+    ResourceIndex = LookupResourceIndexPointer(ValidationContext + ValidationContextDataOffset,CommandParameters[0]);
     if ((*(uint *)(ResourceIndex + 0x34) >> 4 & 1) != 0) {
       return ErrorResourceValidationFailed;
     }
@@ -10028,7 +10027,7 @@ uint8_t ProcessFloatDataValidationAndConversion(int64_t ObjectContext,int64_t Va
         ValidationResult = ErrorInvalidObjectHandle;
       }
       else {
-        ValidationResult = ValidateResourceParameters(ValidationContext + ValidationContextDataOffset,SystemCommandParameters[0]);
+        ValidationResult = ValidateResourceParameters(ValidationContext + ValidationContextDataOffset,CommandParameters[0]);
         if ((int)ValidationResult == 0) {
                 ReleaseSystemContextResources(*(uint8_t *)(ValidationContext + ValidationContextSystemHandleOffset),ObjectContext);
         }
@@ -12891,7 +12890,7 @@ uint64_t InitializeResourceTableStructure(int64_t ObjectContext)
   int ResourceProcessingIndex;
   bool EncryptionShiftValue;
   int SystemCommandArray [2];
-  uint SystemCommandParameters [2];
+  uint CommandParameters [2];
   uint8_t ResourceValidationBuffer;
   uint8_t StackContextBuffer [8];
   uint64_t ResourceHandlerPrimaryFlag;
@@ -12926,7 +12925,7 @@ uint64_t InitializeResourceTableStructure(int64_t ObjectContext)
     DataHandlerContextPointer = (int64_t *)(dataContext + 0x70);
     ResourceAllocationFlag = 0;
     ResourceCapacityMultiplier = 0;
-    SystemCommandParameters[0] = 0;
+    CommandParameters[0] = 0;
     ResourceValidationFlag = 0;
     ResourceHandlerParam = 0xffffffffffffffff;
     ResourceHandlerArray[0] = -1;
@@ -12955,7 +12954,7 @@ uint64_t InitializeResourceTableStructure(int64_t ObjectContext)
                 ParseDataStructure(&SystemDataBufferPointer,*(uint8_t *)(ObjectContext + 0x58));
                 OperationStatusCode = ValidateTableEntry(ResourceHashValidationResult);
               } while (0 < OperationResult);
-              ContextValidationStatusCode = (uint64_t)SystemCommandParameters[0];
+              ContextValidationStatusCode = (uint64_t)CommandParameters[0];
               ResourceContextSecondary = DataHandlerContextPointer;
             }
           }
@@ -13083,9 +13082,9 @@ uint64_t InitializeResourceTableStructure(int64_t ObjectContext)
               ResourceHashInitialValue = (uint64_t)ResourceValidationFlag.Field44;
               ResourceCapacityIndex = (int)ResourceValidationFlag;
             }
-            SystemCommandParameters[0] = ResourceCapacityIndex + 1;
-            ContextValidationStatusCode = (uint64_t)SystemCommandParameters[0];
-            ResourceValidationFlag = CONCAT44(ResourceValidationFlag.Field44,SystemCommandParameters[0]);
+            CommandParameters[0] = ResourceCapacityIndex + 1;
+            ContextValidationStatusCode = (uint64_t)CommandParameters[0];
+            ResourceValidationFlag = CONCAT44(ResourceValidationFlag.Field44,CommandParameters[0]);
             *(uint32_t *)(ResourceAllocationFlag + (int64_t)ResourceCapacityIndex * 4) = ResourceHashValidationResult;
             ResourceContextSecondary = DataHandlerContextPointer;
           }
@@ -13189,9 +13188,9 @@ ResourceValidationComplete:
       if ((*(int *)(ObjectContext + 0xb0) == -1) || (*(int *)(ObjectContext + 0xac) <= *(int *)(ObjectContext + 0xb0))
          ) {
         SystemCommandArray[0] = Combine31BitsAndFlag(SystemCommandArray[0].High31Bits,1);
-        SystemCommandParameters[0] = 0;
+        CommandParameters[0] = 0;
         do {
-          ContextValidationStatusCode = ExecuteSystemCommand(ObjectContext,SystemCommandArray,SystemCommandParameters);
+          ContextValidationStatusCode = ExecuteSystemCommand(ObjectContext,SystemCommandArray,CommandParameters);
           if ((int)ContextResourceHashValidationResult != 0) {
             return ContextResourceHashValidationResult;
           }
@@ -16909,8 +16908,8 @@ uint8_t ProcessResourceDataParsing(int64_t *dataContext,uint32_t *dataBuffer)
   SystemArrayUnionBuffer[0] = *ValidationContext;
   ResourceIndex = (**(code **)**(uint8_t **)(ObjectContext + 8))(*(uint8_t **)(ObjectContext + 8),ResourceAccessStack,4);
   if (ResourceIndex == 0) {
-    SystemCommandParameters[0] = ValidationContext[1];
-    ResourceIndex = (**(code **)**(uint8_t **)(ObjectContext + 8))(*(uint8_t **)(ObjectContext + 8),SystemCommandParameters,4)
+    CommandParameters[0] = ValidationContext[1];
+    ResourceIndex = (**(code **)**(uint8_t **)(ObjectContext + 8))(*(uint8_t **)(ObjectContext + 8),CommandParameters,4)
     ;
     if (ResourceIndex == 0) {
       ResourceValidationBuffer[0] = ValidationContext[2];
@@ -17163,7 +17162,7 @@ uint8_t ProcessResourceTableQueryOperation(uint8_t *tableHandle,int64_t *queryPa
   int64_t ResourceTable;
   uint *ResourceHashValidationResultAddress;
   int SystemCommandArray [2];
-  uint SystemCommandParameters [2];
+  uint CommandParameters [2];
   
   SystemCommandArray[0] = *(int *)(ObjectContext + 1);
   if (*ValidationContext == 0) {
@@ -17171,12 +17170,12 @@ uint8_t ProcessResourceTableQueryOperation(uint8_t *tableHandle,int64_t *queryPa
   }
   else {
     if (ValidationContext[2] != 0) {
-      SystemCommandParameters[0] = 0;
-      ResourceHash = ValidateResourceAccess(*ValidationContext,SystemCommandParameters);
+      CommandParameters[0] = 0;
+      ResourceHash = ValidateResourceAccess(*ValidationContext,CommandParameters);
       if ((int)ResourceHash != 0) {
         return ResourceHash;
       }
-      if ((uint64_t)ValidationContext[2] < (uint64_t)SystemCommandParameters[0] + 4) {
+      if ((uint64_t)ValidationContext[2] < (uint64_t)CommandParameters[0] + 4) {
         ResourceHash = 0x11;
         goto ResourceValidationCheck;
       }
@@ -17306,7 +17305,7 @@ uint8_t ProcessResourceDataExtraction(int64_t *ResourceContext,int64_t *outputDa
   uint8_t ResourceHash;
   int ProcessingStatusCode;
   int SystemCommandArray [2];
-  uint SystemCommandParameters [2];
+  uint CommandParameters [2];
   uint32_t OperationStatusCode;
   int64_t *ObjectContext;
   int64_t *ValidationContext;
@@ -17321,12 +17320,12 @@ uint8_t ProcessResourceDataExtraction(int64_t *ResourceContext,int64_t *outputDa
   }
   else {
     if (ObjectContext[2] != 0) {
-      SystemCommandParameters[0] = 0;
-      ResourceHash = ValidateResourceAccess(*ObjectContext,SystemCommandParameters);
+      CommandParameters[0] = 0;
+      ResourceHash = ValidateResourceAccess(*ObjectContext,CommandParameters);
       if ((int)ResourceHash != 0) {
         return ResourceHash;
       }
-      if ((uint64_t)ObjectContext[2] < (uint64_t)SystemCommandParameters[0] + 4) {
+      if ((uint64_t)ObjectContext[2] < (uint64_t)CommandParameters[0] + 4) {
         ResourceHash = 0x11;
         goto ResourceCleanupHandler;
       }
@@ -19112,7 +19111,7 @@ uint64_t ValidateResourceHash(int64_t ResourceContext, uint8_t *ResourceData)
   int ResultRecordIndex;
   uint *ResourceDataSecondaryPointer6;
   int SystemCommandArray [2];
-  uint SystemCommandParameters [2];
+  uint CommandParameters [2];
   uint ResourceValidationBuffer [2];
   uint StackContextBuffer [2];
   uint EncryptedDataBuffer [6];
@@ -19123,9 +19122,9 @@ uint64_t ValidateResourceHash(int64_t ResourceContext, uint8_t *ResourceData)
   if ((int)ResourceHash == 0) {
     ResourceDataAddress = (uint *)*ValidationContext;
     for (; 0 < OperationResult; OperationStatusCode = OperationResult + ResourceHashValidationResult) {
-      SystemCommandParameters[0] = *ResourceDataSecondaryPointer;
+      CommandParameters[0] = *ResourceDataSecondaryPointer;
       ResourceHash = (**(code **)**(uint8_t **)(ObjectContext + 8))
-                        (*(uint8_t **)(ObjectContext + 8),SystemCommandParameters,4);
+                        (*(uint8_t **)(ObjectContext + 8),CommandParameters,4);
       if ((int)ResourceHash != 0) {
         return ResourceHash;
       }
@@ -28487,35 +28486,35 @@ uint8_t ResourceBatchProcessor(int64_t ObjectContext,int64_t *ValidationContext)
 
 {
   uint8_t ResourceHash;
-  uint32_t SystemCommandParameters [6];
+  uint32_t CommandParameters [6];
   
   if (*(int *)(ResourceMetadataTable[1] + 0x18) != 0) {
     return ErrorInvalidObjectHandle;
   }
-  SystemCommandParameters[0] = *(uint32_t *)(ObjectContext + 0x50);
-  ResourceHash = (**(code **)**(uint8_t **)(*ValidationContext + 8))(*(uint8_t **)(*ValidationContext + 8),SystemCommandParameters,4)
+  CommandParameters[0] = *(uint32_t *)(ObjectContext + 0x50);
+  ResourceHash = (**(code **)**(uint8_t **)(*ValidationContext + 8))(*(uint8_t **)(*ValidationContext + 8),CommandParameters,4)
   ;
   if ((int)ResourceHash == 0) {
     if (*(int *)(ResourceData[1] + 0x18) != 0) {
       return ErrorInvalidObjectHandle;
     }
-    SystemCommandParameters[0] = *(uint32_t *)(ObjectContext + 0x54);
+    CommandParameters[0] = *(uint32_t *)(ObjectContext + 0x54);
     ResourceHash = (**(code **)**(uint8_t **)(*ValidationContext + 8))
-                      (*(uint8_t **)(*ValidationContext + 8),SystemCommandParameters,4);
+                      (*(uint8_t **)(*ValidationContext + 8),CommandParameters,4);
     if ((int)ResourceHash == 0) {
       if (*(int *)(ResourceData[1] + 0x18) != 0) {
         return ErrorInvalidObjectHandle;
       }
-      SystemCommandParameters[0] = *(uint32_t *)(ObjectContext + 0x58);
+      CommandParameters[0] = *(uint32_t *)(ObjectContext + 0x58);
       ResourceHash = (**(code **)**(uint8_t **)(*ValidationContext + 8))
-                        (*(uint8_t **)(*ValidationContext + 8),SystemCommandParameters,4);
+                        (*(uint8_t **)(*ValidationContext + 8),CommandParameters,4);
       if ((int)ResourceHash == 0) {
         if (*(int *)(ResourceData[1] + 0x18) != 0) {
           return ErrorInvalidObjectHandle;
         }
-        SystemCommandParameters[0] = *(uint32_t *)(ObjectContext + 0x60);
+        CommandParameters[0] = *(uint32_t *)(ObjectContext + 0x60);
         ResourceHash = (**(code **)**(uint8_t **)(*ValidationContext + 8))
-                          (*(uint8_t **)(*ValidationContext + 8),SystemCommandParameters,4);
+                          (*(uint8_t **)(*ValidationContext + 8),CommandParameters,4);
         if (((((int)ResourceHash == 0) && (ResourceHash = ComputeDataHash(ValidationContext,ObjectContext + 100), (int)ResourceHash == 0))
             && (ResourceHash = ComputeDataHash(ValidationContext,ObjectContext + ObjectContextMatrixScaleOffset), (int)ResourceHash == 0)) &&
            (((ResourceHash = ComputeDataHash(ValidationContext,ObjectContext + ObjectContextEncryptionOffset), (int)ResourceHash == 0 &&
@@ -29548,24 +29547,24 @@ uint8_t ValidateResourceId(int64_t ObjectContext,int64_t *ValidationContext)
 
 {
   uint8_t ResourceHash;
-  uint32_t SystemCommandParameters [6];
+  uint32_t CommandParameters [6];
   
   if (*(uint *)(ResourceData + 8) < 0x55) {
     if (*(int *)(ResourceData[1] + 0x18) != 0) {
       return ErrorInvalidObjectHandle;
     }
-    SystemCommandParameters[0] = *(uint32_t *)(ObjectContext + 0x50);
+    CommandParameters[0] = *(uint32_t *)(ObjectContext + 0x50);
     ResourceHash = (**(code **)**(uint8_t **)(*ValidationContext + 8))
-                      (*(uint8_t **)(*ValidationContext + 8),SystemCommandParameters,4);
+                      (*(uint8_t **)(*ValidationContext + 8),CommandParameters,4);
     if ((int)ResourceHash != 0) {
       return ResourceHash;
     }
     if (*(int *)(ResourceData[1] + 0x18) != 0) {
       return ErrorInvalidObjectHandle;
     }
-    SystemCommandParameters[0] = *(uint32_t *)(ObjectContext + 0x54);
+    CommandParameters[0] = *(uint32_t *)(ObjectContext + 0x54);
     ResourceHash = (**(code **)**(uint8_t **)(*ValidationContext + 8))
-                      (*(uint8_t **)(*ValidationContext + 8),SystemCommandParameters,4);
+                      (*(uint8_t **)(*ValidationContext + 8),CommandParameters,4);
     if ((int)ResourceHash != 0) {
       return ResourceHash;
     }
@@ -29574,9 +29573,9 @@ uint8_t ValidateResourceId(int64_t ObjectContext,int64_t *ValidationContext)
     if (*(int *)(ResourceData[1] + 0x18) != 0) {
       return ErrorInvalidObjectHandle;
     }
-    SystemCommandParameters[0] = *(uint32_t *)(dataContext + ResourceContextSecondaryOffset);
+    CommandParameters[0] = *(uint32_t *)(dataContext + ResourceContextSecondaryOffset);
     ResourceHash = (**(code **)**(uint8_t **)(*ValidationContext + 8))
-                      (*(uint8_t **)(*ValidationContext + 8),SystemCommandParameters,4);
+                      (*(uint8_t **)(*ValidationContext + 8),CommandParameters,4);
     if ((int)ResourceHash != 0) {
       return ResourceHash;
     }
@@ -29584,8 +29583,8 @@ uint8_t ValidateResourceId(int64_t ObjectContext,int64_t *ValidationContext)
   if (*(int *)(ResourceMetadataTable[1] + 0x18) != 0) {
     return ErrorInvalidObjectHandle;
   }
-  SystemCommandParameters[0] = *(uint32_t *)(ObjectContext + 0x58);
-  ResourceHash = (**(code **)**(uint8_t **)(*ValidationContext + 8))(*(uint8_t **)(*ValidationContext + 8),SystemCommandParameters,4)
+  CommandParameters[0] = *(uint32_t *)(ObjectContext + 0x58);
+  ResourceHash = (**(code **)**(uint8_t **)(*ValidationContext + 8))(*(uint8_t **)(*ValidationContext + 8),CommandParameters,4)
   ;
   if ((int)ResourceHash != 0) {
     return ResourceHash;
@@ -29593,8 +29592,8 @@ uint8_t ValidateResourceId(int64_t ObjectContext,int64_t *ValidationContext)
   if (*(int *)(ResourceMetadataTable[1] + 0x18) != 0) {
     return ErrorInvalidObjectHandle;
   }
-  SystemCommandParameters[0] = *(uint32_t *)(ObjectContext + 0x5c);
-  ResourceHash = (**(code **)**(uint8_t **)(*ValidationContext + 8))(*(uint8_t **)(*ValidationContext + 8),SystemCommandParameters,4)
+  CommandParameters[0] = *(uint32_t *)(ObjectContext + 0x5c);
+  ResourceHash = (**(code **)**(uint8_t **)(*ValidationContext + 8))(*(uint8_t **)(*ValidationContext + 8),CommandParameters,4)
   ;
   if ((int)ResourceHash == 0) {
     if (*(uint *)(ResourceData + 8) < 0x53) {
