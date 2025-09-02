@@ -29258,7 +29258,7 @@ void UnwindExceptionHandlerTypeFive(uint8_t ObjectContext,int64_t ValidationCont
 void UnwindExceptionHandlerTypeSix(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  **(uint8_t **)(ValidationContext + 0x48) = &ResourceCacheTemplate;
+  **(uint8_t **)(ValidationContext + ExceptionHandlerResourceHashOffset) = &ResourceCacheTemplate;
   return;
 }
 
@@ -29278,7 +29278,7 @@ void UnlockMutexAndHandleException(uint8_t exceptionHandlerType, int64_t Excepti
 {
   int UnlockResult;
   
-  UnlockResult = _Mtx_unlock(*(uint8_t *)(ExceptionContext + 0x60));
+  UnlockResult = _Mtx_unlock(*(uint8_t *)(ExceptionContext + ExceptionHandlerMutexLockOffset));
   if (UnlockResult != 0) {
     __Throw_C_error_std__YAXH_Z(UnlockResult);
   }
