@@ -120,6 +120,16 @@
 #define ChecksumSeedValueTIW 0x54494157
 #define ChecksumSeedValueBTIW 0x42494157
 
+// 新增的偏移量常量
+#define ObjectContextValidationDataOffset 0x14
+#define SystemDataContextFloatValueOffset 0x20
+#define SystemDataContextConfigFlagOffset 0x34
+#define SystemDataContextConfigStatusOffset 0x35
+#define ResourceContextArraySizeOffset 0x50
+#define ValidationContextHashOffset 0x60
+#define QueueContextHeadPointerOffset 0x50
+#define ObjectHandleStatusOffset 0x10
+
 // 系统请求处理相关偏移量常量
 #define RequestParameterPrimaryOffset 0x10
 #define RequestParameterSecondaryOffset 0x18
