@@ -3345,7 +3345,7 @@ void TerminateSystemProcess(void)
   uint64_t SystemTerminationToken;
   
                     // WARNING: Subroutine does not return
-  ExecuteSystemTermination(SystemTerminationToken ^ (uint64_t)&SystemSecurityValidationBuffer);
+  terminateSystem(SystemTerminationToken ^ (uint64_t)&SystemSecurityValidationBuffer);
 }
 
 
@@ -3923,7 +3923,7 @@ uint32_t ValidateObjectHandleFromRegister(void)
  * 
  * 该函数用于触发系统异常处理流程，通常在遇到严重错误时调用
  */
-void TriggerSystemException(void)
+void raiseSystemException(void)
 
 {
                     // WARNING: Subroutine does not return
@@ -4573,14 +4573,14 @@ uint32_t ValidateRegisterPointer(void)
 
 
 
- void TriggerSystemShutdown(void)
+ void initiateSystemShutdown(void)
 /**
  * @brief 触发系统关闭
  * 
  * 该函数负责触发系统的关闭过程
  * 调用系统关闭函数来终止程序运行
  */
-void TriggerSystemShutdown(void)
+void initiateSystemShutdown(void)
 
 {
                     // WARNING: Subroutine does not return
@@ -4596,7 +4596,7 @@ void TriggerSystemShutdown(void)
  * 该函数是一个空操作函数，不执行任何实际操作
  * 通常用作占位符或默认实现
  */
-void ExecuteNoOperation(void)
+void performNoOperation(void)
 {
   return;
 }
@@ -4668,14 +4668,14 @@ uint32_t ProcessSystemResource(void)
 
 
 
- void ExecuteSystemTermination(void)
+ void terminateSystem(void)
 /**
  * @brief 执行系统终止
  * 
  * 该函数负责执行系统终止操作
  * 调用系统终止函数来结束程序运行
  */
-void ExecuteSystemTermination(void)
+void terminateSystem(void)
 
 {
                     // WARNING: Subroutine does not return
@@ -4685,14 +4685,14 @@ void ExecuteSystemTermination(void)
 
 
 
- void ReturnNoOperation(void)
+ void returnNoOperation(void)
 /**
  * @brief 空操作返回函数
  * 
  * 该函数是一个空操作函数，直接返回
  * 用作无操作时的占位符
  */
-void ReturnNoOperation(void)
+void returnNoOperation(void)
 
 {
   return;
@@ -4858,14 +4858,14 @@ uint32_t ValidateAndProcessCurrentObjectHandle(void)
 
 
 
- void ExecuteSystemTermination(void)
+ void terminateSystem(void)
 /**
  * @brief 执行系统终止
  * 
  * 该函数负责执行系统的终止操作，清理系统资源
  * 确保系统能够安全地关闭
  */
-void ExecuteSystemTermination(void)
+void terminateSystem(void)
 
 {
                     // WARNING: Subroutine does not return
@@ -4875,14 +4875,14 @@ void ExecuteSystemTermination(void)
 
 
 
- void ReturnNoOperation(void)
+ void returnNoOperation(void)
 /**
  * @brief 无操作返回
  * 
  * 该函数是一个无操作函数，直接返回而不执行任何操作
  * 用于占位或作为默认的空实现
  */
-void ReturnNoOperation(void)
+void returnNoOperation(void)
 
 {
   return;
