@@ -41362,7 +41362,6 @@ void Unwind_SystemResourceCleanup_Batch5(uint8_t ObjectContext,int64_t Validatio
  * 返回值：void
  *
  * 注意：此函数由逆向工程生成，用于系统资源管理和清理
- *       原始函数名：Unwind_180904290
  */
 void InitializeSystemResourceHandlers(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
@@ -41426,7 +41425,6 @@ void InitializeSystemResourceHandlers(uint8_t ObjectContext,int64_t ValidationCo
  * 返回值：void
  *
  * 注意：此函数由逆向工程生成，用于系统资源管理和清理
- *       原始函数名：Unwind_1809042b0
  */
 void SetupSystemResourceCleanup(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
@@ -41490,7 +41488,6 @@ void SetupSystemResourceCleanup(uint8_t ObjectContext,int64_t ValidationContext,
  * 返回值：void
  *
  * 注意：此函数由逆向工程生成，用于系统资源管理和清理
- *       原始函数名：Unwind_1809042d0
  */
 void ConfigureResourceValidation(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
@@ -46677,7 +46674,6 @@ void ProcessResourceHashValidationAndCleanup(uint8_t ObjectContext, int64_t Vali
 /**
  * @brief 验证资源上下文并处理哈希值
  * 
- * 原始函数名：Unwind_180905220
  * 验证资源上下文的有效性并处理资源哈希值
  * 
  * @param ObjectContext 对象上下文
@@ -61254,7 +61250,20 @@ void Unwind_180907c80(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180907c90(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 执行验证上下文0x1d0位置的回调函数
+ * 
+ * 该函数负责执行验证上下文0x1d0位置的回调函数
+ * 如果回调函数存在，则执行该函数
+ * 
+ * @param ObjectContext 对象上下文，包含对象相关的状态信息
+ * @param ValidationContext 验证上下文，包含验证所需的数据和参数
+ * @param CleanupOption 清理选项，指定资源清理的方式
+ * @param CleanupFlag 清理标志，控制清理过程的标志位
+ * @return 无返回值
+ * @note 此函数会执行验证上下文0x1d0位置的回调函数
+ */
+void ExecuteValidationContextCallbackAtOffset1D0(uint8_t ObjectContext, int64_t ValidationContext, uint8_t CleanupOption, uint8_t CleanupFlag)
 
 {
   if (*(code **)(ValidationContext + 0x1d0) != (code *)0x0) {
@@ -61265,7 +61274,20 @@ void Unwind_180907c90(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 
 
 
-void Unwind_180907ca0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 执行验证上下文0x1f0位置的回调函数
+ * 
+ * 该函数负责执行验证上下文0x1f0位置的回调函数
+ * 如果回调函数存在，则执行该函数
+ * 
+ * @param ObjectContext 对象上下文，包含对象相关的状态信息
+ * @param ValidationContext 验证上下文，包含验证所需的数据和参数
+ * @param CleanupOption 清理选项，指定资源清理的方式
+ * @param CleanupFlag 清理标志，控制清理过程的标志位
+ * @return 无返回值
+ * @note 此函数会执行验证上下文0x1f0位置的回调函数
+ */
+void ExecuteValidationContextCallbackAtOffset1F0(uint8_t ObjectContext, int64_t ValidationContext, uint8_t CleanupOption, uint8_t CleanupFlag)
 
 {
   if (*(code **)(ValidationContext + 0x1f0) != (code *)0x0) {
@@ -61276,7 +61298,20 @@ void Unwind_180907ca0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 
 
 
-void Unwind_180907cb0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 执行验证上下文0x210位置的回调函数
+ * 
+ * 该函数负责执行验证上下文0x210位置的回调函数
+ * 如果回调函数存在，则执行该函数
+ * 
+ * @param ObjectContext 对象上下文，包含对象相关的状态信息
+ * @param ValidationContext 验证上下文，包含验证所需的数据和参数
+ * @param CleanupOption 清理选项，指定资源清理的方式
+ * @param CleanupFlag 清理标志，控制清理过程的标志位
+ * @return 无返回值
+ * @note 此函数会执行验证上下文0x210位置的回调函数
+ */
+void ExecuteValidationContextCallbackAtOffset210(uint8_t ObjectContext, int64_t ValidationContext, uint8_t CleanupOption, uint8_t CleanupFlag)
 
 {
   if (*(code **)(ValidationContext + 0x210) != (code *)0x0) {
@@ -61287,7 +61322,20 @@ void Unwind_180907cb0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 
 
 
-void Unwind_180907cc0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 执行资源哈希验证结果指针的回调函数
+ * 
+ * 该函数负责执行资源哈希验证结果指针的回调函数
+ * 遍历资源哈希验证结果指针，执行相应的回调函数
+ * 
+ * @param ObjectContext 对象上下文，包含对象相关的状态信息
+ * @param ValidationContext 验证上下文，包含验证所需的数据和参数
+ * @param CleanupOption 清理选项，指定资源清理的方式
+ * @param CleanupFlag 清理标志，控制清理过程的标志位
+ * @return 无返回值
+ * @note 此函数会执行资源哈希验证结果指针的回调函数
+ */
+void ExecuteResourceHashValidationResultCallbacks(uint8_t ObjectContext, int64_t ValidationContext, uint8_t CleanupOption, uint8_t CleanupFlag)
 
 {
   uint8_t *ResourceHashPointer;
@@ -61307,7 +61355,17 @@ void Unwind_180907cc0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 
 
 
-void Unwind_180907cd0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 设置系统数据结构指针到验证上下文
+ * 
+ * 该函数负责将系统数据结构指针设置到验证上下文的0x360偏移量位置
+ * 
+ * @param ObjectContext 对象上下文，包含对象相关的状态信息
+ * @param ValidationContext 验证上下文，包含验证所需的数据和参数
+ * @return 无返回值
+ * @note 此函数会将系统数据结构指针设置到验证上下文的指定位置
+ */
+void SetSystemDataStructurePointerToValidationContext(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   *(uint8_t **)(ValidationContext + 0x360) = &SystemDataStructure;
