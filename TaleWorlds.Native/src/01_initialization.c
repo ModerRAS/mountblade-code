@@ -56381,15 +56381,15 @@ uint8_t ProcessSystemResourceAndManageStatus(long long SystemResourceManager,voi
 
 {
   uint8_t SystemOperationStatus;
-  void* creationFlags;
-  void* *pointerUnsigned30;
-  long long lStack_28;
+  void* CreationFlags;
+  void* *ResourcePointer;
+  long long LocalStackOffset;
   
-  creationFlags = 0xfffffffffffffffe;
-  SetupSystemMemory(&pointerUnsigned30);
-  SystemOperationStatus = SearchSystemResource(SystemResourceManager + 0x218,&pointerUnsigned30,AdditionalParameter,ConfigurationFlag,creationFlags);
-  pointerUnsigned30 = &SystemGlobalDataReference;
-  if (lStack_28 != 0) {
+  CreationFlags = 0xfffffffffffffffe;
+  SetupSystemMemory(&ResourcePointer);
+  SystemOperationStatus = SearchSystemResource(SystemResourceManager + 0x218,&ResourcePointer,AdditionalParameter,ConfigurationFlag,CreationFlags);
+  ResourcePointer = &SystemGlobalDataReference;
+  if (LocalStackOffset != 0) {
       SystemCleanupFunction();
   }
   return SystemOperationStatus;
