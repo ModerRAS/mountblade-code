@@ -52875,7 +52875,7 @@ bool FUN_180072f00(void* ResourceManagerPointer,void* *ConfigurationDataPointer)
   uStack_c0 = 0;
   FUN_1800a32b0(SystemTextureManagerPointer,&pEncryptionValue68);
   if (pEncryptionValue68 != puStack_60) {
-    ConfigureSystemDataBuffer(&puStack_f0,&SystemDataBufferTemplateA,&UNK_1809ff7c0);
+    ConfigureSystemDataBuffer(&puStack_f0,&SystemDataBufferTemplateA,&SystemResourceDataBufferA);
     resourceEntryPointer = pcurrentThreadId;
     psystemStatus2 = pcurrentThreadId;
     if ((long long)puStack_60 - (long long)pEncryptionValue68 >> 5 != 0) {
