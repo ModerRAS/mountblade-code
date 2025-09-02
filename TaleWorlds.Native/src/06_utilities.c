@@ -4646,17 +4646,6 @@ uint64_t DecrementSystemResourceCount(int64_t SystemContext, uint64_t ResourceHa
 /**
  * @brief 增加对象引用计数
  * 
- * 该函数负责增加指定对象的引用计数，用于对象生命周期管理
- * 确保对象在引用期间不会被释放，是内存管理的重要组成部分
- * 
- * @param ObjectContext 对象上下文指针，包含对象的管理信息
- * @return uint8_t 返回操作结果，0表示成功，非0表示错误代码
- * @note 此函数用于对象引用计数管理
- * @warning 如果对象上下文无效，函数会返回错误代码
- */
-/**
- * @brief 增加对象引用计数
- * 
  * 该函数负责增加系统对象的引用计数，用于对象生命周期管理
  * 通过对象上下文验证和引用计数递增来确保对象正确管理
  * 
@@ -35520,6 +35509,17 @@ void UnwindSemaphoreHandler(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
+/**
+ * @brief 临界区异常处理函数
+ * 
+ * 该函数负责处理临界区的异常展开操作
+ * 主要用于临界区资源的清理和状态恢复
+ * 
+ * @param ObjectContext 对象上下文参数
+ * @param ValidationContext 验证上下文参数
+ * @return 无返回值
+ * @note 此函数在临界区异常处理过程中被调用
+ */
 void UnwindCriticalSectionHandler(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
@@ -35556,6 +35556,18 @@ void UnwindCriticalSectionHandler(uint8_t ObjectContext,int64_t ValidationContex
 
 
 
+/**
+ * @brief 互斥锁异常处理函数
+ * 
+ * 该函数负责处理互斥锁的异常展开操作
+ * 主要用于互斥锁资源的清理和状态恢复
+ * 遍历资源表并释放相关资源
+ * 
+ * @param ObjectContext 对象上下文参数
+ * @param ValidationContext 验证上下文参数
+ * @return 无返回值
+ * @note 此函数在互斥锁异常处理过程中被调用
+ */
 void UnwindMutexHandler(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
@@ -41013,7 +41025,7 @@ void CleanupSystemResourceHandlerGroup11(uint8_t ObjectContext,int64_t Validatio
  * @note 此函数会清理系统资源处理器集合12中的所有资源
  * @warning 调用此函数后，相关资源将不再可用
  */
-void CleanupSystemResourceHandlerSet12(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+void CleanupSystemResourceHandlerSetDuodecimal(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
