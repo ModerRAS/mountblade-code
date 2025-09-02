@@ -27657,8 +27657,8 @@ uint8_t ResourceValidationService(void)
 
 
 
- f31e(void)
-f31e(void)
+ SystemResourceValidationHandler(void)
+SystemResourceValidationHandler(void)
 
 {
   int InputRegisterResult;
@@ -46029,21 +46029,36 @@ void CleanupResourceTableValidationResults(uint8_t ObjectContextParameter, int64
 
 
 
-void Unwind_1809058b0(uint8_t ObjectContextParameter,int64_t ValidationContextParameter,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 清理备用资源表中的验证结果
+ * 
+ * 该函数负责清理备用资源表中存储的验证结果，遍历验证结果数组
+ * 并对每个验证结果执行清理操作，释放相关资源
+ * 
+ * @param ObjectContextParameter 对象上下文参数，包含对象的状态信息
+ * @param ValidationContextParameter 验证上下文参数，包含验证相关的数据结构
+ * @param CleanupOption 清理选项，控制清理行为的具体参数
+ * @param CleanupFlag 清理标志，指定清理操作的标志位
+ * @return 无返回值
+ * @note 此函数会遍历备用资源表并清理所有验证结果
+ * @warning 如果资源表无效，系统将执行紧急退出
+ */
+void CleanupAlternateResourceTableValidationResults(uint8_t ObjectContextParameter, int64_t ValidationContextParameter, uint8_t CleanupOption, uint8_t CleanupFlag)
 
 {
-  uint8_t *presourceHash;
-  int64_t *presourceTable;
-  uint8_t *pValidationResult;
-  uint8_t LoopCondition;
+  uint8_t *AlternateResourceHashPointer;
+  int64_t *AlternateResourceTablePointer;
+  uint8_t *AlternateValidationResultPointer;
+  uint8_t *AlternateValidationStatusCodePointer;
+  int64_t AlternateLoopIncrementValue;
   
-  presourceTable = (int64_t *)(*(int64_t *)(ValidationContextParameter + 0x2e0) + 0x40);
-  LoopIncrement = 0xfffffffffffffffe;
-  presourceHash = *(uint8_t **)(*(int64_t *)(ValidationContextParameter + 0x2e0) + 0x48);
-  for (pValidationStatusCode = (uint8_t *)*presourceTable; pValidationResult != presourceHash; pValidationStatusCode = pValidationResult + 4) {
-    (**(code **)*pValidationResult)(pValidationResult,0,CleanupOption,CleanupFlag,LoopIncrement);
+  AlternateResourceTablePointer = (int64_t *)(*(int64_t *)(ValidationContextParameter + 0x2e0) + 0x40);
+  AlternateLoopIncrementValue = 0xfffffffffffffffe;
+  AlternateResourceHashPointer = *(uint8_t **)(*(int64_t *)(ValidationContextParameter + 0x2e0) + 0x48);
+  for (AlternateValidationStatusCodePointer = (uint8_t *)*AlternateResourceTablePointer; AlternateValidationResultPointer != AlternateResourceHashPointer; AlternateValidationStatusCodePointer = AlternateValidationResultPointer + 4) {
+    (**(code **)*AlternateValidationResultPointer)(AlternateValidationResultPointer, 0, CleanupOption, CleanupFlag, AlternateLoopIncrementValue);
   }
-  if (*presourceTable == 0) {
+  if (*AlternateResourceTablePointer == 0) {
     return;
   }
                     // WARNING: Subroutine does not return
@@ -46052,26 +46067,39 @@ void Unwind_1809058b0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 
 
 
-void Unwind_1809058c0(uint8_t ObjectContextParameter,int64_t ValidationContextParameter)
+/**
+ * @brief 重置资源索引并清理相关资源
+ * 
+ * 该函数负责重置资源索引，遍历资源表并清理相关资源
+ * 包括资源处理器、数据结构和相关标志位
+ * 
+ * @param ObjectContextParameter 对象上下文参数，包含对象的状态信息
+ * @param ValidationContextParameter 验证上下文参数，包含验证相关的数据结构
+ * @return 无返回值
+ * @note 此函数会遍历资源表并重置所有资源索引
+ * @warning 如果资源表无效，系统将执行紧急退出
+ */
+void ResetResourceIndexAndCleanup(uint8_t ObjectContextParameter, int64_t ValidationContextParameter)
 
 {
-  int64_t loopCounter;
-  int64_t *presourceTable;
-  int64_t ResourceIndex;
+  int64_t ResourceLoopCounter;
+  int64_t *ResourceTablePointer;
+  int64_t CurrentResourceIndex;
+  int64_t LocalContextData;
   
-  presourceTable = *(int64_t **)(ValidationContextParameter + 0x2e8);
-  LocalContextData = presourceTable[1];
-  for (ResourceIndex = *presourceTable; ResourceIndex != LocalContextData; ResourceIndex = ResourceIndex + 0x28) {
-    *(uint8_t *)(ResourceIndex + 8) = &SystemResourceHandlerTemplate;
-    if (*(int64_t *)(ResourceIndex + 0x10) != 0) {
+  ResourceTablePointer = *(int64_t **)(ValidationContextParameter + 0x2e8);
+  LocalContextData = ResourceTablePointer[1];
+  for (CurrentResourceIndex = *ResourceTablePointer; CurrentResourceIndex != LocalContextData; CurrentResourceIndex = CurrentResourceIndex + 0x28) {
+    *(uint8_t *)(CurrentResourceIndex + 8) = &SystemResourceHandlerTemplate;
+    if (*(int64_t *)(CurrentResourceIndex + 0x10) != 0) {
                     // WARNING: Subroutine does not return
       ExecuteSystemEmergencyExit();
     }
-    *(uint8_t *)(ResourceIndex + 0x10) = 0;
-    *(uint32_t *)(ResourceIndex + 0x20) = 0;
-    *(uint8_t *)(ResourceIndex + 8) = &SystemDataStructure;
+    *(uint8_t *)(CurrentResourceIndex + 0x10) = 0;
+    *(uint32_t *)(CurrentResourceIndex + 0x20) = 0;
+    *(uint8_t *)(CurrentResourceIndex + 8) = &SystemDataStructure;
   }
-  if (*presourceTable != 0) {
+  if (*ResourceTablePointer != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
@@ -46080,7 +46108,19 @@ void Unwind_1809058c0(uint8_t ObjectContextParameter,int64_t ValidationContextPa
 
 
 
-void Unwind_1809058d0(uint8_t ObjectContextParameter,int64_t ValidationContextParameter)
+/**
+ * @brief 重置验证上下文的资源处理器
+ * 
+ * 该函数负责重置验证上下文中的资源处理器，设置系统资源处理器模板
+ * 并检查资源处理器的状态，确保系统安全运行
+ * 
+ * @param ObjectContextParameter 对象上下文参数，包含对象的状态信息
+ * @param ValidationContextParameter 验证上下文参数，包含验证相关的数据结构
+ * @return 无返回值
+ * @note 此函数会重置验证上下文的资源处理器
+ * @warning 如果资源处理器无效，系统将执行紧急退出
+ */
+void ResetValidationContextResourceHandler(uint8_t ObjectContextParameter, int64_t ValidationContextParameter)
 
 {
   *(uint8_t *)(ValidationContextParameter + 0x200) = &SystemResourceHandlerTemplate;

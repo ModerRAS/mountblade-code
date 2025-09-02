@@ -37847,23 +37847,30 @@ void ProcessSystemResourceThreadManagement(long long SystemResourcePointer)
 
 
 // 函数: void FUN_18005dade(void)
-void FUN_18005dade(void)
+/**
+ * @brief 全局线程管理器
+ * 
+ * 该函数负责全局线程管理，遍历所有线程并挂起非当前线程
+ * 用于系统级别的线程控制和资源管理
+ * 
+ */
+void GlobalThreadManager(void)
 
 {
-  long long localMemoryPointer;
-  long long localSystemHandle;
-  long long systemStackFramePtr;
-  long long systemStringIteratorPtr;
-  long long systemDataIndexPtr;
+  long long ThreadHandlePointer;
+  long long ThreadIndex;
+  long long StackFramePointer;
+  long long StringIteratorPtr;
+  long long DataIndexPtr;
   
-  localSystemHandle = 0;
+  ThreadIndex = 0;
   do {
-    localMemoryPointer = *(long long *)(*(long long *)(*(long long *)(systemStringIteratorPtr + 8) + localSystemHandle * 8) + 0x40);
-    if ((localMemoryPointer != 0) && (localMemoryPointer != systemStackFramePtr)) {
+    ThreadHandlePointer = *(long long *)(*(long long *)(*(long long )(StringIteratorPtr + 8) + ThreadIndex * 8) + 0x40);
+    if ((ThreadHandlePointer != 0) && (ThreadHandlePointer != StackFramePointer)) {
       SuspendThread();
     }
-    localSystemHandle = localSystemHandle + 1;
-  } while (localSystemHandle < systemDataIndexPtr);
+    ThreadIndex = ThreadIndex + 1;
+  } while (ThreadIndex < DataIndexPtr);
   return;
 }
 
@@ -37980,62 +37987,69 @@ void SystemNoOperationD(void)
 
 
 // 函数: void FUN_18005dbb0(void)
-void FUN_18005dbb0(void)
+/**
+ * @brief 系统资源初始化和配置函数
+ * 
+ * 该函数负责初始化系统资源并进行配置，包括内存分配、缓冲区设置
+ * 和系统参数配置等操作
+ * 
+ */
+void InitializeAndConfigureSystemResources(void)
 
 {
   long long *PrimaryResourcePointer;
-  int systemResult;
-  void* unsignedSystemValue3;
-  void* *punsignedSystemValue4;
+  int SystemResult;
+  void* SystemValue3;
+  void* *SystemValue4Pointer;
   long long SystemTimeValue;
-  long long localDataPointer;
-  ulong long unsignedSystemValue8;
-  ulong long unsignedSystemValue9;
-  long long localAllocationFlags;
-  long long localMemoryPointer1;
-  int systemStatus2;
-  uint unsignedSystemValue13;
-  ulong long unsignedSystemValue14;
-  void* **ppointerToUnsigned15;
-  uint8_t auStack_1b8 [32];
-  long long lStack_198;
-  long long lStack_190;
-  long long lStack_188;
-  long long lStack_178;
-  void* **ppuStack_170;
-  void* uStack_168;
-  void* *puStack_160;
-  uint8_t *puStack_158;
-  uint uStack_150;
-  uint8_t auStack_148 [16];
-  void* *systemMemoryContext;
-  uint8_t *puStack_130;
-  uint32_t uStack_128;
-  uint8_t auStack_120 [24];
-  void* *apuStack_108 [19];
-  int iStack_70;
-  void* uStack_58;
-  char acStack_48 [16];
-  ulong long uStack_38;
-  long long localSystemFlags;
+  long long DataPointer;
+  ulong long SystemValue8;
+  ulong long SystemValue9;
+  long long AllocationFlags;
+  long long MemoryPointer1;
+  int SystemStatus2;
+  uint SystemValue13;
+  ulong long SystemValue14;
+  void* **SystemValue15Pointer;
+  uint8_t StackBuffer1b8 [32];
+  long long StackValue198;
+  long long StackValue190;
+  long long StackValue188;
+  long long StackValue178;
+  void* **StackPointer170;
+  void* StackValue168;
+  void* *StackPointer160;
+  uint8_t *StackPointer158;
+  uint StackValue150;
+  uint8_t StackBuffer148 [16];
+  void* *SystemMemoryContext;
+  uint8_t *StackPointer130;
+  uint32_t StackValue128;
+  uint8_t StackBuffer120 [24];
+  void* *StackBuffer108 [19];
+  int StackValue70;
+  void* StackValue58;
+  char StackBuffer48 [16];
+  ulong long StackValue38;
+  long long SystemFlags;
   
-  localAllocationFlags = SystemAllocationFlagsTemplate;
-  uStack_168 = 0xfffffffffffffffe;
-  uStack_38 = SystemEncryptionKeyTemplate ^ (ulong long)auStack_1b8;
-  lStack_178 = SystemAllocationFlagsTemplate;
-  InitializeSystemBuffer(apuStack_108);
-  systemStatus2 = iStack_70 + -1;
-  if (*(int *)(localAllocationFlags + 0x7b4) < iStack_70 + -1) {
-    systemStatus2 = *(int *)(localAllocationFlags + 0x7b4);
+  AllocationFlags = SystemAllocationFlagsTemplate;
+  StackValue168 = 0xfffffffffffffffe;
+  StackValue38 = SystemEncryptionKeyTemplate ^ (ulong long)StackBuffer1b8;
+  StackValue178 = SystemAllocationFlagsTemplate;
+  InitializeSystemBuffer(StackBuffer108);
+  SystemStatus2 = StackValue70 + -1;
+  if (*(int *)(AllocationFlags + 0x7b4) < StackValue70 + -1) {
+    SystemStatus2 = *(int *)(AllocationFlags + 0x7b4);
   }
-  systemResult = 3;
-  if (3 < systemStatus2) {
-    systemResult = systemStatus2;
+  SystemResult = 3;
+  if (3 < SystemStatus2) {
+    SystemResult = SystemStatus2;
   }
-  ppointerToUnsigned15 = (void* **)(localAllocationFlags + 8);
-  localMemoryPointer1 = (long long)systemResult;
-  ppuStack_170 = ppointerToUnsigned15;
-  ResizeSystemMemoryPool(ppointerToUnsigned15,localMemoryPointer1);
+  SystemValue15Pointer = (void* **)(AllocationFlags + 8);
+  MemoryPointer1 = (long long)SystemResult;
+  StackPointer170 = SystemValue15Pointer;
+  ResizeSystemMemoryPool(SystemValue15Pointer,MemoryPointer1);
   unsignedSystemValue3 = SystemMemoryAllocationFunction(SystemMemoryAllocationTemplate,0x208,8,3);
   unsignedSystemValue9 = 0;
   puStack_160 = &SystemResourceTemplateSecondary;
