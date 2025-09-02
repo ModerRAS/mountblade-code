@@ -8007,43 +8007,43 @@ Label_180608fee:
       }
       goto Label_18060906e;
     }
-    if (iStack_20 == 0x24) {
-      LoopCounter = strcmp(lStack_28,&SystemStringConnect);
-      if (LoopCounter == 0) {
-        LoopCounter = 0x12;
+    if (StackBufferInteger == 0x24) {
+      IterationCounter = strcmp(StackBufferLong,&SystemStringConnect);
+      if (IterationCounter == 0) {
+        IterationCounter = 0x12;
         goto Label_180609070;
       }
       goto Label_18060906e;
     }
-    if (iStack_20 == 0x15) goto Label_180608a24;
-    if (iStack_20 == 0x1f) {
-      LoopCounter = strcmp(lStack_28,&NetworkRequestStringAuth);
-      if (LoopCounter == 0) {
-        LoopCounter = 0x48;
+    if (StackBufferInteger == 0x15) goto Label_180608a24;
+    if (StackBufferInteger == 0x1f) {
+      IterationCounter = strcmp(StackBufferLong,&NetworkAuthRequestString);
+      if (IterationCounter == 0) {
+        IterationCounter = 0x48;
         goto Label_180609070;
       }
 Label_180608e4c:
-      LoopCounter = strcmp(LongIndex,&NetworkRequestStringVerify);
-      if (LoopCounter == 0) {
-        LoopCounter = 1;
+      IterationCounter = strcmp(LongIndex,&NetworkVerifyRequestString);
+      if (IterationCounter == 0) {
+        IterationCounter = 1;
         goto Label_180609070;
       }
       goto Label_18060906e;
     }
-    if (iStack_20 == 10) {
-      LoopCounter = strcmp(lStack_28,&NetworkRequestStringDisconnect);
-      if (LoopCounter == 0) {
-        LoopCounter = 8;
+    if (StackBufferInteger == 10) {
+      IterationCounter = strcmp(StackBufferLong,&NetworkDisconnectRequestString);
+      if (IterationCounter == 0) {
+        IterationCounter = 8;
         goto Label_180609070;
       }
 Label_180608b18:
-      LoopCounter = strcmp(LongIndex,&NetworkRequestStringValidate);
-      if (LoopCounter == 0) {
-        LoopCounter = 4;
+      IterationCounter = strcmp(LongIndex,&NetworkValidateRequestString);
+      if (IterationCounter == 0) {
+        IterationCounter = 4;
         goto Label_180609070;
       }
 Label_180608fdd:
-      pNetworkRequestResult = &NetworkRequestResultDisconnect;
+      NetworkResponseData = &NetworkDisconnectResponseData;
       goto Label_18060905e;
     }
     if (iStack_20 == 0x15) goto Label_180608a96;

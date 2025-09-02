@@ -8598,8 +8598,8 @@ uint8_t ValidateObjectContextAndProcessFloatRange(int64_t ObjectContext, int64_t
   }
   switch(*(uint32_t *)(ObjectContext + ObjectContextValidationDataOffset)) {
   case 0:
-    if ((0.0 <= FloatValueToValidate) && (FloatValueToValidate <= 256.0)) goto code_r0x00018089322c;
-    goto joined_r0x00018089322a;
+    if ((0.0 <= FloatValueToValidate) && (FloatValueToValidate <= 256.0)) goto ValidationSuccessLabel;
+    goto ValidationFailureLabel;
   case 1:
   case 2:
   case 3:
@@ -63864,7 +63864,14 @@ void Unwind_180908730(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180908750(void)
+/**
+ * @brief 清理内存缓存
+ * 
+ * 该函数负责清理系统的内存缓存，释放临时内存资源
+ * 
+ * @remark 原始函数名: Unwind_180908750
+ */
+void ClearMemoryCache(void)
 
 {
   _Mtx_destroy_in_situ();
