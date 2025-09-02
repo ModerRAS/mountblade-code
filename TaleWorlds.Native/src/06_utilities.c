@@ -9254,10 +9254,10 @@ uint8_t ProcessDataValidationAndSystemOperation(int64_t ObjectContextParameter,i
       return 0x1f;
     }
     floatComparisonResult = *(float *)(ObjectContextParameter + 0x10);
-    ThirdFloatValue = *(float *)(ResourceIndex + 0x38);
+    thirdFloatResult = *(float *)(ResourceIndex + 0x38);
     if ((*(float *)(ResourceIndex + 0x38) <= inputFloatValue) &&
-       (ThirdFloatValue = *(float *)(ResourceIndex + 0x3c), inputFloatValue <= *(float *)(ResourceIndex + 0x3c))) {
-      ThirdFloatValue = inputFloatValue;
+       (thirdFloatResult = *(float *)(ResourceIndex + 0x3c), inputFloatValue <= *(float *)(ResourceIndex + 0x3c))) {
+      thirdFloatResult = inputFloatValue;
     }
     *(float *)(ObjectContextParameter + 0x10) = floatValue5;
     ResourceValidationCode = ValidateResourceParameters(ValidationContextParameter + 0x60,aSecurityValidationContext[0],floatValue5);
@@ -9298,10 +9298,10 @@ uint64_t GetSystemRuntimeStatus(void)
     return 0x1f;
   }
   floatComparisonResult = *(float *)(ResourceContextPointer + 0x10);
-  ThirdFloatValue = *(float *)(resourceTable + 0x38);
+  thirdFloatResult = *(float *)(resourceTable + 0x38);
   if ((*(float *)(resourceTable + 0x38) <= inputFloatValue) &&
-     (ThirdFloatValue = *(float *)(resourceTable + 0x3c), inputFloatValue <= *(float *)(resourceTable + 0x3c))) {
-    ThirdFloatValue = inputFloatValue;
+     (thirdFloatResult = *(float *)(resourceTable + 0x3c), inputFloatValue <= *(float *)(resourceTable + 0x3c))) {
+    thirdFloatResult = inputFloatValue;
   }
   *(float *)(ResourceContextPointer + 0x10) = floatValue5;
   ValidationStatusCode = ValidateResourceParameters(RegisterContext + 0x60,StackParameterContextSecondary,floatValue5);
@@ -14043,7 +14043,7 @@ void ProcessFloatOperationsAndContextValidation(float ObjectContextParameter)
       OperationStatusCode = GetAndValidateResourceData(StackFloatParameter,&ObjectStackBufferResource28);
       if (OperationResult != 0) goto OperationResultHandler;
     }
-    pThirdFloatValue = (float *)(RegisterR15 + 0x94);
+    pthirdFloatResult = (float *)(RegisterR15 + 0x94);
     secondFloatResult = FloatRegisterValue;
     do {
       floatComparisonResult = *pfloatValue5;
@@ -14057,9 +14057,9 @@ void ProcessFloatOperationsAndContextValidation(float ObjectContextParameter)
         if (OperationResult != 0) goto OperationResultHandler;
       }
       secondFloatResult = (float)((int)floatValue4 + 1);
-      pThirdFloatValue = pfloatValue5 + 1;
+      pthirdFloatResult = pfloatValue5 + 1;
     } while ((int)floatValue4 < 4);
-    pThirdFloatValue = (float *)&SystemFloatTemplateActive;
+    pthirdFloatResult = (float *)&SystemFloatTemplateActive;
     secondFloatResult = FloatRegisterValue;
     do {
       floatComparisonResult = *(float *)(RegisterR15 + -0x180985054 + (int64_t)pfloatValue5);
@@ -14073,7 +14073,7 @@ void ProcessFloatOperationsAndContextValidation(float ObjectContextParameter)
         if (OperationResult != 0) goto OperationResultHandler;
       }
       secondFloatResult = (float)((int)floatValue4 + 1);
-      pThirdFloatValue = pfloatValue5 + 1;
+      pthirdFloatResult = pfloatValue5 + 1;
     } while ((int)floatValue4 < 6);
     ValidationStatusCode = CalculateSecurityHash(ResourceRegisterPointer + 200);
     ContextValidationStatusCode = extraout_XMM0_Da_00;
@@ -21532,7 +21532,7 @@ LAB_18089c40a:
         do {
           pinputFloatValue4 = (float *)AllocateMemoryBlock();
           calculatedFloatResult = *pinputFloatValue4;
-          ThirdFloatValue = pinputFloatValue4[1];
+          thirdFloatResult = pinputFloatValue4[1];
           fourthFloatResult = pinputFloatValue4[2];
           floatValue7 = pinputFloatValue4[3];
           *(float *)(LocalContextData7 + -0x14) = calculatedFloatResult;
@@ -21754,7 +21754,7 @@ LAB_18089c40a:
           pinputFloatValue3 = (float *)AllocateMemoryBlock();
           MemoryFloatValue = *pinputFloatValue3;
           secondFloatResult = pinputFloatValue3[1];
-          ThirdFloatValue = pinputFloatValue3[2];
+          thirdFloatResult = pinputFloatValue3[2];
           fourthFloatResult = pinputFloatValue3[3];
           *(float *)(LocalContextData6 + -0x14) = MemoryFloatValue;
           *(float *)(LocalContextData6 + -0x10) = floatValue4;
