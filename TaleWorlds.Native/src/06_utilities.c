@@ -102008,13 +102008,12 @@ void InitializeSystemDataStructureCI(void)
 
 
  /**
- * 初始化系统数据结构CJ
+ * @brief 初始化系统数据结构CJ
+ * 
  * 设置全局系统数据结构指针，用于系统初始化
- */
-void InitializeSystemDataStructureCJ(void)
-/**
- * 初始化系统数据结构CJ
- * 设置全局系统数据结构指针，用于系统初始化
+ * 
+ * @return 无返回值
+ * @note 此函数在系统启动时调用
  */
 void InitializeSystemDataStructureCJ(void)
 
@@ -102028,8 +102027,12 @@ void InitializeSystemDataStructureCJ(void)
 
 
  /**
- * 初始化系统数据结构CK
+ * @brief 初始化系统数据结构CK
+ * 
  * 设置全局系统数据结构指针，用于系统初始化
+ * 
+ * @return 无返回值
+ * @note 此函数在系统启动时调用
  */
 void InitializeSystemDataStructureCK(void)
 
