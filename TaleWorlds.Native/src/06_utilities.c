@@ -12695,21 +12695,21 @@ ResourceProcessingHandler:
       if (1 < HashValidationResult - 1U) {
         GraphicsDataPointer = &BufferTemplate2;
         pContextValidationStatusCodePointer = &GraphicsDataPointer;
-        GraphicsOperationFlag7 = 0;
-        GraphicsOperationFlag1 = 0;
-        GraphicsOperationFlag2 = 0;
+        GraphicsSeptenaryOperationFlag = 0;
+        GraphicsPrimaryOperationFlag = 0;
+        GraphicsSecondaryOperationFlag = 0;
         GraphicsContextOffset = 0;
-        GraphicsOperationFlag3 = 0;
-        GraphicsOperationFlag4 = 0;
-        GraphicsOperationFlag5 = 0;
-        GraphicsOperationFlag6 = 0;
-        GraphicsOperationFlag8 = CleanupOption;
+        GraphicsTertiaryOperationFlag = 0;
+        GraphicsQuaternaryOperationFlag = 0;
+        GraphicsQuinaryOperationFlag = 0;
+        GraphicsSenaryOperationFlag = 0;
+        GraphicsOctonaryOperationFlag = CleanupOption;
         goto ResourceProcessingHandler;
       }
       GraphicsDataPointer = &BufferTemplate3;
       GraphicsContextOffset = (uint64_t)CleanupOption << 0x20;
-      GraphicsOperationFlag1 = *(uint8_t *)(validationContext + 0x228);
-      GraphicsOperationFlag2 = (uint64_t)CONCAT14(HashValidationResult != 1,*(uint32_t *)(validationContext + 0x230));
+      GraphicsPrimaryOperationFlag = *(uint8_t *)(validationContext + 0x228);
+      GraphicsSecondaryOperationFlag = (uint64_t)CONCAT14(HashValidationResult != 1,*(uint32_t *)(validationContext + 0x230));
       validationStatusCode = GetAndValidateResourceData(objectContext,&GraphicsDataPointer);
     }
     if (HashValidationResult != 0) goto ResourceErrorHandler;
@@ -12729,7 +12729,7 @@ ResourceProcessingHandler:
       do {
         GraphicsDataIndex = 0;
         GraphicsDataPointer = &BufferTemplate5;
-        GraphicsOperationFlag1 = CONCAT44(GraphicsOperationFlag1._4_4_,CleanupOption);
+        GraphicsPrimaryOperationFlag = CONCAT44(GraphicsPrimaryOperationFlag._4_4_,CleanupOption);
         operationStatusCode = GetAndValidateResourceData(objectContext,&GraphicsDataPointer);
         if (OperationResult != 0) goto ResourceErrorHandler;
         resourceCount = resourceCount + 1;
