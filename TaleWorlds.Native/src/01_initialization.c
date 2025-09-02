@@ -34946,7 +34946,7 @@ void CreateAndInitializeSystemThread(void* SystemResourcePointer,void* Configura
 void* ProcessAndReleaseSystemResource(void* SystemResourcePointer,ulong long ConfigurationDataPointer)
 
 {
-  FUN_18005a9a0();
+  InitializeSystemResourceProcessor();
   if ((ConfigurationDataPointer & 1) != 0) {
     free(SystemResourcePointer,0xa90);
   }
@@ -37680,7 +37680,7 @@ void InitializeAndConfigureSystemResources(void)
   lStack_198 = localAllocationFlags + 0x78;
   lStack_190 = localAllocationFlags + 0x548;
   lStack_188 = localAllocationFlags + 0x68;
-  FUN_18020e410(punsignedSystemValue4,&systemMemoryContext,1);
+  InitializeSystemMemoryContext(punsignedSystemValue4,&systemMemoryContext,1);
   *punsignedSystemValue4 = &SystemStringFormatTemplateA;
   *(void* **)((long long)*ppointerToUnsigned15 + 8) = punsignedSystemValue4;
   systemMemoryContext = &SystemMemoryAllocatorReference;
@@ -37709,7 +37709,7 @@ void InitializeAndConfigureSystemResources(void)
       lStack_188 = lStack_178 + 0x68;
       lStack_190 = lStack_178 + 0x548;
       lStack_198 = lStack_178 + 0x78;
-      unsignedSystemValue3 = FUN_18020e410(unsignedSystemValue3,&puStack_160,2,systemStatus2);
+      unsignedSystemValue3 = ExtendSystemMemoryContext(unsignedSystemValue3,&puStack_160,2,systemStatus2);
       *(void* *)((long long)*ppointerToUnsigned15 + localAllocationFlags * 8) = unsignedSystemValue3;
       puStack_160 = &SystemMemoryAllocatorReference;
       systemStatus2 = systemStatus2 + 1;
@@ -37760,7 +37760,7 @@ void InitializeAndConfigureSystemResources(void)
   unsignedSystemValue14 = unsignedSystemValue9;
   if (((long long *)ppointerToUnsigned15)[1] - (long long)*ppointerToUnsigned15 >> 3 != 0) {
     do {
-      FUN_18020e840(*(void* *)((long long)*ppointerToUnsigned15 + unsignedSystemValue8));
+      ProcessSystemResource(*(void* *)((long long)*ppointerToUnsigned15 + unsignedSystemValue8));
       unsignedSystemValue13 = (int)unsignedSystemValue14 + 1;
       unsignedSystemValue8 = unsignedSystemValue8 + 8;
       unsignedSystemValue14 = (ulong long)unsignedSystemValue13;
