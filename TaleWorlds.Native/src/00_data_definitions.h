@@ -3514,20 +3514,20 @@ Label_SecondSpaceFound:
 Label_CompatibilitySpaceFound:
                 UnsignedIndex = (int)BufferSize1 + 1;
                 BufferSize8 = (ulonglong)(int)UnsignedIndex;
-                if (UnsignedIndex < uStack_1e8) {
-                  StringPointer = (char *)(lStack_1f0 + BufferSize8);
+                if (UnsignedIndex < StackValidationLimit) {
+                  StringPointer = (char *)(StackStringData + BufferSize8);
                   do {
                     if (*StringPointer == ' ') goto Label_SecondCompatibilitySpaceFound;
                     BufferSize6 = (int)BufferSize8 + 1;
                     BufferSize8 = (ulonglong)BufferSize6;
                     StringPointer = StringPointer + 1;
-                  } while (BufferSize6 < uStack_1e8);
+                  } while (BufferSize6 < StackValidationLimit);
                 }
                 BufferSize8 = 0xffffffff;
 Label_SecondCompatibilitySpaceFound:
                 if ((int)BufferSize1 != -1) {
-                  ProcessBufferData(&puStack_1f8,&puStack_2a8,UnsignedIndex,BufferSize8);
-                  FinalizeDataBuffer(&puStack_2a8);
+                  ProcessBufferData(&StackDataBuffer,&StackOutputBuffer,UnsignedIndex,BufferSize8);
+                  FinalizeDataBuffer(&StackOutputBuffer);
                   if (StackStringLength != 0) {
                     LoopCounterValue = 0;
                     StringSearchResult = (longlong)(int)(StackStringLength - 1);
@@ -3541,7 +3541,7 @@ Label_SecondCompatibilitySpaceFound:
                     StackStringLength = StackStringLength - LoopCounterValue;
                     StackBufferPointer8[StackStringLength] = 0;
                   }
-                  ValidateDataBuffer(&puStack_2a8,1);
+                  ValidateDataBuffer(&StackOutputBuffer,1);
                   pMemoryAddress8 = &SystemConstantStringPrimary;
                   if (StackBufferPointer8 != (void *)0x0) {
                     pMemoryAddress8 = StackBufferPointer8;
@@ -3571,17 +3571,17 @@ Label_SecondCompatibilitySpaceFound:
                   if (*(longlong *)(SystemDataPointer + 0x178) != 0) {
                     *(uint8_t *)(BufferSize1 + *(longlong *)(SystemDataPointer + 0x178)) = 0;
                   }
-                  *(uint32_t *)(SystemDataPointer + 0x18c) = uStack_28c;
-                  puStack_2a8 = &SystemNullPointer;
+                  *(uint32_t *)(SystemDataPointer + 0x18c) = StackProcessingCounter;
+                  StackOutputBuffer = &SystemNullPointer;
                   if (StackBufferPointer8 != (void *)0x0) {
                     SystemBufferValidate(StackBufferPointer8,StackBufferPointer8);
                   }
                   StackBufferPointer8 = (void *)0x0;
                   StackParameter7 = 0;
-                  puStack_2a8 = &SystemBufferTemplate;
+                  StackOutputBuffer = &SystemBufferTemplate;
                   BufferSize1 = 0;
                 }
-                puStack_1f8 = &SystemNullPointer;
+                StackDataBuffer = &SystemNullPointer;
                 if (lStack_1f0 != 0) {
                   SystemBufferValidate(lStack_1f0,BufferSize1);
                 }
