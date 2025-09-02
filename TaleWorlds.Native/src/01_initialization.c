@@ -25373,7 +25373,7 @@ void ProcessSystemResourceAllocation(void* ResourceManagerPointer,long long Conf
   uint32_t unsignedValue23c;
   void* *pointerUnsigned238;
   long long longValue230;
-  uint uStack_228;
+  uint unsignedValue228;
   uint32_t uStack_220;
   void* *SystemStringTemplatePtr;
   long long lStack_210;
@@ -43433,7 +43433,7 @@ void ReleaseSystemResource(void* ResourceManagerPointer)
   uint32_t unsignedValue248;
   void* *punsignedValue240;
   long long lStack_238;
-  uint32_t uStack_228;
+  uint32_t unsignedValue228;
   void* *SystemStringTemplatePtr2;
   void* *SystemStringTemplatePtr;
   void* uStack_210;
@@ -43803,7 +43803,7 @@ LAB_180065a3e:
         SystemCleanupFunction();
     }
     lStack_238 = 0;
-    uStack_228 = 0;
+    unsignedValue228 = 0;
     punsignedValue240 = &SystemMemoryAllocatorReference;
     puStack_260 = pointerToUnsigned18;
     pointerUnsigned258 = pointerToUnsigned17;
@@ -43921,7 +43921,7 @@ void InitializeSystemResourceAllocator(void)
   uint32_t uStack_234;
   uint32_t uStack_230;
   uint8_t uStack_22c;
-  uint8_t auStack_228 [512];
+  uint8_t aunsignedValue228 [512];
   ulong long EncryptionKeyValue;
   
   EncryptionKeyValue = SystemEncryptionKeyTemplate ^ (ulong long)auStack_2c8;
@@ -43937,7 +43937,7 @@ void InitializeSystemResourceAllocator(void)
   uStack_24c = 0x73696c62;
   unsignedValue248 = 0x72435c68;
   uStack_244 = 0x55687361;
-    memset(auStack_228,0,0x80);
+    memset(aunsignedValue228,0,0x80);
 }
 
 
@@ -48018,7 +48018,7 @@ void ProcessSystemResourceNodeQueue(long long ResourceManagerPointer)
   long long *plStack_240;
   long long lStack_238;
   long long longValue230;
-  uint8_t uStack_228;
+  uint8_t unsignedValue228;
   void* uStack_218;
   int iStack_210;
   uint32_t unsignedValue20c;
@@ -48079,13 +48079,13 @@ void ProcessSystemResourceNodeQueue(long long ResourceManagerPointer)
       charOutput = FUN_18006d4e0(ResourceManagerPointer + 200,&SystemGlobalDataReferencePtr2);
       if (systemAvailabilityFlag == '\0') {
         nextDataIndex3 = ResourceManagerPointer + 0x378;
-        uStack_228 = 0;
+        unsignedValue228 = 0;
         longValue230 = nextDataIndex3;
         systemStatus7 = _Mtx_lock(nextDataIndex3);
         if (systemStatus7 != 0) {
           __Throw_C_error_std__YAXH_Z(systemStatus7);
         }
-        uStack_228 = 1;
+        unsignedValue228 = 1;
         allocationFlags = _Xtime_get_ticks();
         nextDataIndex4 = (allocationFlags + 50000) * 100;
         allocationFlags = nextDataIndex4 / 1000000000;
