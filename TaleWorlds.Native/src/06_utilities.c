@@ -14577,7 +14577,7 @@ void ExecuteSecurityEncryptionValidation(int64_t *objectContext,int64_t validati
   int tableEntry;
   int ProcessedIntegerValue6;
   int PackageValidationStatusCode;
-  uint8_t StackArray2a8 [32];
+  uint8_t SecurityEncryptionBuffer [32];
   uint32_t dataChecksumBuffer8 [2];
   uint8_t *StackPointer280;
   uint32_t SecurityContextId;
@@ -14594,7 +14594,7 @@ void ExecuteSecurityEncryptionValidation(int64_t *objectContext,int64_t validati
   uint8_t SecurityDataBuffer[64];
   uint64_t EncryptedValue;
   
-  EncryptedValue = SecurityEncryptionKey ^ (uint64_t)StackBuffer2a8;
+  EncryptedValue = SecurityEncryptionKey ^ (uint64_t)SecurityEncryptionBuffer;
   int resultCounter = 0;
   int loopIndex = 0;
   do {
