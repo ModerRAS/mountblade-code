@@ -11647,30 +11647,39 @@ uint64_t FindOrInsertInResourcePool(uint8_t resourcePoolId, int searchKey)
  * @param operationFlags 操作标志，控制处理流程
  * @return uint64_t 处理结果状态码
  */
-uint64_t ProcessExtendedResourcePoolDataValidation(uint8_t extendedResourcePool, uint32_t operationFlags)
-
+/**
+ * @brief 处理扩展资源池数据验证和操作
+ * 
+ * 该函数用于处理扩展资源池中的数据验证和相关操作
+ * 提供了更复杂的资源管理功能，包括哈希验证和容量扩展
+ * 
+ * @param extendedResourcePoolId 扩展资源池标识符
+ * @param operationFlags 操作标志，控制处理流程
+ * @return uint64_t 处理结果状态码
+ */
+uint64_t ProcessExtendedResourcePoolDataValidation(uint8_t extendedResourcePoolId, uint32_t operationFlags)
 {
-  int ProcessingResult;
-  uint8_t HashValidationResult;
-  uint8_t *HashValidationResultPointer;
-  int ResultRecordIndex;
-  uint32_t *ResourceDataPointer6;
+  int processingResult;
+  uint8_t hashValidationResult;
+  uint8_t *hashValidationResultPointer;
+  int resultRecordIndex;
+  uint32_t *resourceDataPointer;
   uint configurationFlags;
-  int ValidationStatusCode;
+  int validationStatusCode;
   int *resourceContext;
-  int OperationCounter;
-  int64_t SavedRegisterValue;
-  uint8_t *ResourceRegisterPointer;
-  uint32_t *RegisterR15;
-  uint8_t StackValidationByte;
+  int operationCounter;
+  int64_t savedRegisterValue;
+  uint8_t *resourceRegisterPointer;
+  uint32_t *registerR15;
+  uint8_t stackValidationByte;
   
-  resourceCount = *(int *)(SystemSystemRegisterContext + 0x20);
+  int resourceCount = *(int *)(SystemSystemRegisterContext + 0x20);
   if (resourceCount == -1) {
-    StackValidationByte = *ResourceRegisterPointer;
+    stackValidationByte = *resourceRegisterPointer;
     resourceCount = *(int *)(SystemSystemRegisterContext + 0x18);
-    CapacityIndex = resourceCount + 1;
-    ContextvalidationStatusCode = (int)*(uint *)(SystemSystemRegisterContext + 0x1c) >> 0x1f;
-    ResourceIndex = (*(uint *)(SystemSystemRegisterContext + 0x1c) ^ ContextHashValidationResult) - ContextHashValidationResult;
+    int capacityIndex = resourceCount + 1;
+    int contextValidationStatusCode = (int)*(uint *)(SystemSystemRegisterContext + 0x1c) >> 0x1f;
+    int resourceIndex = (*(uint *)(SystemSystemRegisterContext + 0x1c) ^ contextValidationStatusCode) - contextValidationStatusCode;
     if (ResourceIndex < CapacityIndex) {
       ExpandedCapacity = (int)((float)ResourceIndex * 1.5);
       ResourceIndex = CapacityIndex;
