@@ -52182,7 +52182,7 @@ void InitializeSystemDataStructure(void* SystemResourceManager,long long Configu
   EncryptionOffset2 = 0;
   pUnsignedStackFlag110 = (uint8_t *)0x0;
   EncryptionOffset1 = 0;
-  uStack_11c = 4;
+  SystemOperationMode = 4;
   ResourceHash = *(uint *)(resourceCounter + 0x10);
   SystemContextPointer = (ulong long)ResourceHash;
   currentThreadId = 0;
@@ -52686,7 +52686,7 @@ LAB_18007113f:
         SystemCleanupFunction();
     }
 LAB_1800718e9:
-    uStack_e0 = 0;
+    SystemThreadState = 0;
     SystemResourcePointerF0 = (void* *)0x0;
     pMemoryBufferAddress = &SystemMemoryAllocatorReference;
       ValidateSystemChecksum(SystemEncryptionKey ^ (ulong long)SystemConcatenatedBuffer448);
@@ -53681,15 +53681,15 @@ bool InitializeSystemThreadAndResourceManager(void* SystemResourceManager,void* 
   }
   SystemResourcePointerF0 = &SystemGlobalDataReference;
   SystemMemoryAllocatorStatus = 0;
-  pointerUnsignedE8 = (void*2 *)0x0;
-  uStack_e0 = 0;
-  pointerUnsignedE8 = (void*2 *)CreateSystemThreadObject(SystemMemoryPoolTemplate,0x10,0x13);
-  *(uint8_t *)pointerUnsignedE8 = 0;
-  SystemOperationStatus = StartSystemThread(pointerUnsignedE8);
+  SystemThreadHandle = (void*2 *)0x0;
+  SystemThreadState = 0;
+  SystemThreadHandle = (void*2 *)CreateSystemThreadObject(SystemMemoryPoolTemplate,0x10,0x13);
+  *(uint8_t *)SystemThreadHandle = 0;
+  SystemOperationStatus = StartSystemThread(SystemThreadHandle);
   SystemMemoryAllocatorStatus = ConcatenatedValue44(SystemMemoryAllocatorStatus._4_4_,SystemOperationStatus);
-  *pointerUnsignedE8 = 0xa0a;
-  *(uint8_t *)(pointerUnsignedE8 + 1) = 0;
-  uStack_e0 = 2;
+  *SystemThreadHandle = 0xa0a;
+  *(uint8_t *)(SystemThreadHandle + 1) = 0;
+  SystemThreadState = 2;
   dataBufferContext = &SystemGlobalDataReference;
   systemDataBuffer = 0;
   pointerUnsignedC8 = (void* *)0x0;
