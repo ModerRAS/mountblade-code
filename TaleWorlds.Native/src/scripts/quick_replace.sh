@@ -1,12 +1,84 @@
 #!/bin/bash
 
-# 使用 sed 命令直接替换变量名
-sed -i 's/localContextPointer/LocalContext/g' TaleWorlds.Native/src/06_utilities.c
-sed -i 's/bytePointer5/BytePtr5/g' TaleWorlds.Native/src/06_utilities.c
-sed -i 's/resourcePointer5/ResourcePtr5/g' TaleWorlds.Native/src/06_utilities.c
-sed -i 's/unsignedResult4/UnsignedResult4/g' TaleWorlds.Native/src/06_utilities.c
-sed -i 's/unsignedResult3/UnsignedResult3/g' TaleWorlds.Native/src/06_utilities.c
-sed -i 's/objectContextParam/ObjectContextParam/g' TaleWorlds.Native/src/06_utilities.c
-sed -i 's/byteValue4/ByteValue4/g' TaleWorlds.Native/src/06_utilities.c
+# 使用 sed 命令替换99_unmatched_functions.c中的UNK_变量
+file="TaleWorlds.Native/src/99_unmatched_functions.c"
 
-echo "替换完成"
+# 系统内存管理相关变量
+sed -i 's/UNK_180a14b08/SystemMemoryPoolHeader/g' "$file"
+sed -i 's/UNK_180a14b80/SystemMemoryPoolFooter/g' "$file"
+sed -i 's/UNK_180a150c0/SystemMemoryAllocationTable/g' "$file"
+sed -i 's/UNK_180a150a0/SystemMemoryFreeList/g' "$file"
+sed -i 's/UNK_18098d7d8/SystemMemoryBlockSize/g' "$file"
+sed -i 's/UNK_180a14da8/SystemMemoryPoolSize/g' "$file"
+sed -i 's/UNK_18098d7e0/SystemMemoryAlignment/g' "$file"
+sed -i 's/UNK_180a15360/SystemMemoryGuardPage/g' "$file"
+sed -i 's/UNK_180a15310/SystemMemoryDebugInfo/g' "$file"
+sed -i 's/UNK_18098daa0/SystemMemoryStatistics/g' "$file"
+sed -i 's/UNK_18098daa8/SystemMemoryUsageCounter/g' "$file"
+sed -i 's/UNK_18098d9d0/SystemMemoryAllocationCount/g' "$file"
+sed -i 's/UNK_18098d9d8/SystemMemoryFreeCount/g' "$file"
+sed -i 's/UNK_180a15380/SystemMemoryPeakUsage/g' "$file"
+
+# 线程管理相关变量
+sed -i 's/UNK_18014f380/MainThreadContext/g' "$file"
+sed -i 's/UNK_18014f390/WorkerThreadContext/g' "$file"
+sed -i 's/UNK_18098dac0/ThreadLocalStorage/g' "$file"
+sed -i 's/UNK_18098dac8/ThreadSynchronizationObject/g' "$file"
+sed -i 's/UNK_180a15688/ThreadQueueHeader/g' "$file"
+sed -i 's/UNK_180a06418/ThreadPriorityTable/g' "$file"
+sed -i 's/UNK_180a06b78/ThreadStateTable/g' "$file"
+sed -i 's/UNK_180a15760/ThreadScheduler/g' "$file"
+sed -i 's/UNK_180a15838/ThreadEventQueue/g' "$file"
+sed -i 's/UNK_180a15848/ThreadMutexArray/g' "$file"
+sed -i 's/UNK_180a15858/ThreadSemaphoreArray/g' "$file"
+sed -i 's/UNK_180a15870/ThreadConditionVariable/g' "$file"
+sed -i 's/UNK_180a15880/ThreadCriticalSection/g' "$file"
+sed -i 's/UNK_180a158a8/ThreadStackPointer/g' "$file"
+sed -i 's/UNK_180a158c0/ThreadRegisterContext/g' "$file"
+sed -i 's/UNK_180a158d8/ThreadExceptionHandler/g' "$file"
+sed -i 's/UNK_180a15900/ThreadDebugInfo/g' "$file"
+sed -i 's/UNK_180a15918/ThreadPerformanceCounter/g' "$file"
+sed -i 's/UNK_180a15930/ThreadMemoryUsage/g' "$file"
+sed -i 's/UNK_180a15940/ThreadCPUTime/g' "$file"
+sed -i 's/UNK_180a15958/ThreadLastRunTime/g' "$file"
+sed -i 's/UNK_180a15978/ThreadWaitTime/g' "$file"
+sed -i 's/UNK_180a15990/ThreadBlockTime/g' "$file"
+sed -i 's/UNK_180a159b0/ThreadContextSwitchCount/g' "$file"
+sed -i 's/UNK_180a159d8/ThreadInterruptCount/g' "$file"
+sed -i 's/UNK_180a159f8/ThreadSystemCallCount/g' "$file"
+sed -i 's/UNK_180a15a18/ThreadPageFaultCount/g' "$file"
+sed -i 's/UNK_180a15a30/ThreadCacheMissCount/g' "$file"
+
+# 网络系统相关变量（部分）
+sed -i 's/UNK_180a15b08/NetworkSocketManager/g' "$file"
+sed -i 's/UNK_180a15b18/NetworkConnectionPool/g' "$file"
+sed -i 's/UNK_180a15b48/NetworkPacketBuffer/g' "$file"
+sed -i 's/UNK_180a15b58/NetworkProtocolHandler/g' "$file"
+sed -i 's/UNK_180a15b70/NetworkAddressTable/g' "$file"
+sed -i 's/UNK_180a15b80/NetworkPortTable/g' "$file"
+sed -i 's/UNK_180a15b98/NetworkRouteTable/g' "$file"
+sed -i 's/UNK_180a15bb0/NetworkFirewallRules/g' "$file"
+sed -i 's/UNK_180a15bd8/NetworkEncryptionKey/g' "$file"
+sed -i 's/UNK_180a15bf8/NetworkCertificateStore/g' "$file"
+sed -i 's/UNK_180a15c20/NetworkAuthenticationContext/g' "$file"
+sed -i 's/UNK_180a15c48/NetworkSessionManager/g' "$file"
+sed -i 's/UNK_180a15c60/NetworkBandwidthMonitor/g' "$file"
+sed -i 's/UNK_180a15c80/NetworkLatencyTracker/g' "$file"
+sed -i 's/UNK_180a15c90/NetworkPacketLossCounter/g' "$file"
+sed -i 's/UNK_180a15ca0/NetworkConnectionQuality/g' "$file"
+sed -i 's/UNK_180a15cb0/NetworkThroughputMeter/g' "$file"
+sed -i 's/UNK_180a15cc8/NetworkErrorLog/g' "$file"
+sed -i 's/UNK_180a15ce0/NetworkStatistics/g' "$file"
+sed -i 's/UNK_180a15cf8/NetworkConfiguration/g' "$file"
+sed -i 's/UNK_180a15d18/NetworkInterfaceTable/g' "$file"
+sed -i 's/UNK_180a15d30/NetworkDNSServer/g' "$file"
+sed -i 's/UNK_180a15d40/NetworkProxySettings/g' "$file"
+sed -i 's/UNK_180a15d50/NetworkTimeoutSettings/g' "$file"
+sed -i 's/UNK_180a15d60/NetworkRetryPolicy/g' "$file"
+sed -i 's/UNK_180a15d78/NetworkCompressionSettings/g' "$file"
+sed -i 's/UNK_180a15d98/NetworkChecksumVerifier/g' "$file"
+sed -i 's/UNK_180a15da8/NetworkSignatureValidator/g' "$file"
+sed -i 's/UNK_180a15db8/NetworkPacketFilter/g' "$file"
+sed -i 's/UNK_180a15dc8/NetworkTrafficShaper/g' "$file"
+
+echo "99_unmatched_functions.c变量替换完成"
