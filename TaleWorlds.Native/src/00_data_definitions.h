@@ -3713,9 +3713,9 @@ LAB_18004e088:
     puStack_288 = &SystemNullPointer;
     SystemBufferValidate(pMemoryAddress3);
   }
-  ProcessGameData(_DAT_180c86920,&puStack_148,&puStack_108);
-  lVar9 = _DAT_180c86920 + 0x90;
-  SystemDataPointer = MemoryAllocateEx(_DAT_180c8ed18,0x40,*(uint8_t *)(_DAT_180c86920 + 0xb8));
+  ProcessGameData(SystemRuntimeConfigData,&puStack_148,&puStack_108);
+  lVar9 = SystemRuntimeConfigData + 0x90;
+  SystemDataPointer = MemoryAllocateEx(SystemMemoryAllocationPointer,0x40,*(uint8_t *)(SystemRuntimeConfigData + 0xb8));
   SystemDataConfigure(SystemDataPointer + 0x20,&puStack_148);
   StringSearchResult = CalculateGameLogic(lVar9,acStack_336,SystemDataPointer + 0x20);
   if (acStack_336[0] == '\0') {
@@ -4136,9 +4136,9 @@ LAB_18005122d:
       (**(code **)((void *)*puVar7 + 8))();
     }
   }
-  *_DAT_180c86910 = fVar15;
-  lVar9 = (longlong)*(int *)(_DAT_180c86938 + 0x1d40) * 0xd0;
-  ModuleInitializationResult2 = *(longlong *)(lVar9 + 0xb0 + *(longlong *)(_DAT_180c86938 + 0x1d20));
+  *SystemPrimaryStatusFlag = fVar15;
+  lVar9 = (longlong)*(int *)(SystemModuleConfigData + 0x1d40) * 0xd0;
+  ModuleInitializationResult2 = *(longlong *)(lVar9 + 0xb0 + *(longlong *)(SystemModuleConfigData + 0x1d20));
   fVar17 = (float)ModuleInitializationResult2;
   if (ModuleInitializationResult2 < 0) {
     fVar17 = fVar17 + 1.8446744e+19;
@@ -4165,9 +4165,9 @@ LAB_18005122d:
       SystemBufferValidate(puVar7);
     }
   }
-  pModuleInitializationResult4 = _DAT_180c86878;
-  if ((char)_DAT_180c86878[0x42] == '\0') {
-    (**(code **)(*_DAT_180c86878 + 0xb0))(_DAT_180c86878,*(uint32_t *)(_DAT_180c86920 + 0x1340));
+  pModuleInitializationResult4 = SystemNetworkDataPointer;
+  if ((char)SystemNetworkDataPointer[0x42] == '\0') {
+    (**(code **)(*SystemNetworkDataPointer + 0xb0))(SystemNetworkDataPointer,*(uint32_t *)(SystemRuntimeConfigData + 0x1340));
     (**(code **)(*pModuleInitializationResult4 + 0xb8))(pModuleInitializationResult4,*(uint32_t *)(_DAT_180c86920 + 0x1500));
     (**(code **)(*pModuleInitializationResult4 + 0xc0))(pModuleInitializationResult4,*(uint32_t *)(_DAT_180c86920 + 0x13b0));
     (**(code **)(*pModuleInitializationResult4 + 200))(pModuleInitializationResult4,*(uint32_t *)(_DAT_180c86920 + 0x1490));
