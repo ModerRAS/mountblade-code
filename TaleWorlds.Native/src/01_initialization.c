@@ -9983,16 +9983,16 @@ void InitializeSystemLogManager(void)
 void InitializeSystemStringProcessorA(void)
 
 {
-  void* SystemRegisterR9Value;
-  void* *systemStringPointer;
-  uint8_t *systemBufferPointer;
-  uint32_t SystemConfigValue;
-  uint8_t SystemStringBuffer [136];
+  void* SystemRegisterValue;
+  void* *SystemStringPointer;
+  uint8_t *SystemBufferPointer;
+  uint32_t SystemConfigurationValue;
+  uint8_t SystemProcessingBuffer [136];
   
-  systemStringPointer = &SystemStringConstant;
-  systemBufferPointer = SystemStringBuffer;
-  SystemStringBuffer[0] = 0;
-  SystemConfigValue = 0xb;
+  SystemStringPointer = &SystemStringConstant;
+  SystemBufferPointer = SystemProcessingBuffer;
+  SystemProcessingBuffer[0] = 0;
+  SystemConfigurationValue = 0xb;
   strcpy_s(SystemStringBuffer,0x80,&SystemStringTemplate,systemRegisterR9,0xfffffffffffffffe);
   SystemStringProcessorA = SystemStringProcessingCallback(&systemStringPointer);
   return;
@@ -10014,16 +10014,16 @@ void InitializeSystemStringProcessorA(void)
 void InitializeSystemStringProcessorB(void)
 
 {
-  void* SystemRegisterR9Value;
-  void* *systemStringPointer;
-  uint8_t *systemBufferPointer;
-  uint32_t SystemConfigValue;
-  uint8_t SystemStringBuffer [136];
+  void* SystemRegisterValue;
+  void* *SystemStringPointer;
+  uint8_t *SystemBufferPointer;
+  uint32_t SystemConfigurationValue;
+  uint8_t SystemProcessingBuffer [136];
   
-  systemStringPointer = &SystemStringConstant;
-  systemBufferPointer = SystemStringBuffer;
-  SystemStringBuffer[0] = 0;
-  SystemConfigValue = 0xd;
+  SystemStringPointer = &SystemStringConstant;
+  SystemBufferPointer = SystemProcessingBuffer;
+  SystemProcessingBuffer[0] = 0;
+  SystemConfigurationValue = 0xd;
   strcpy_s(SystemStringBuffer,0x80,&SystemStringTemplateB,systemRegisterR9,0xfffffffffffffffe);
   SystemStringProcessorB = SystemStringProcessingCallback(&systemStringPointer);
   return;
@@ -10045,16 +10045,16 @@ void InitializeSystemStringProcessorB(void)
 void InitializeSystemStringProcessorC(void)
 
 {
-  void* SystemRegisterR9Value;
-  void* *systemStringPointer;
-  uint8_t *systemBufferPointer;
-  uint32_t SystemConfigValue;
-  uint8_t SystemStringBuffer [136];
+  void* SystemRegisterValue;
+  void* *SystemStringPointer;
+  uint8_t *SystemBufferPointer;
+  uint32_t SystemConfigurationValue;
+  uint8_t SystemProcessingBuffer [136];
   
-  systemStringPointer = &SystemStringConstant;
-  systemBufferPointer = SystemStringBuffer;
-  SystemStringBuffer[0] = 0;
-  SystemConfigValue = 0x1c;
+  SystemStringPointer = &SystemStringConstant;
+  SystemBufferPointer = SystemProcessingBuffer;
+  SystemProcessingBuffer[0] = 0;
+  SystemConfigurationValue = 0x1c;
   strcpy_s(SystemStringBuffer,0x80,&SystemStringTemplateC,systemRegisterR9,0xfffffffffffffffe);
   SystemStringProcessorC = SystemStringProcessingCallback(&systemStringPointer);
   return;
@@ -12117,7 +12117,7 @@ void InitializeSystemDeviceNodeManager(void)
 void InitializeSystemStringProcessor(void)
 
 {
-  void* SystemRegisterR9Value;
+  void* SystemRegisterValue;
   void* *SystemStackPointerA0;
   uint8_t *SystemStackPointer98;
   uint32_t SystemStackValue90;
@@ -41070,7 +41070,7 @@ void* GetSystemDataIndexPointer(void)
            (((creationFlags & 0xffffffffffffffe0) - **(long long **)(pbufferBaseAddress[3] + pbufferBaseAddress[1] * 8) >> 5) +
             pbufferBaseAddress[1] & *pbufferBaseAddress - 1U) * 8);
   localSystemFlags = *(long long *)(localSystemPointer + 8);
-  FUN_180060b80();
+  InitializeSystemDataBuffer();
   pbufferBaseAddress = *(long long **)(localSystemFlags + (ulong long)((uint)creationFlags & 0x1f) * 8);
   if (pbufferBaseAddress != (long long *)0x0) {
     (**(code **)(*pbufferBaseAddress + 0x38))();
@@ -41137,7 +41137,7 @@ void* AllocateAndSynchronizeSystemResource(void* *ResourceManagerPointer,long lo
   long long *plocalSystemFlags;
   
   if (((*(long long *)(ConfigurationDataPointer + 0x18) == 0) || (*(int *)(ConfigurationDataPointer + 4) != *(int *)(ResourceManagerPointer + 0x4c)))
-     && (cVar1 = FUN_180060a50(), cVar1 == '\0')) {
+     && (cVar1 = ValidateSystemResourceStatus(), cVar1 == '\0')) {
     return 0;
   }
   plocalSystemFlags = (long long *)0x0;
@@ -41145,7 +41145,7 @@ void* AllocateAndSynchronizeSystemResource(void* *ResourceManagerPointer,long lo
   if (*(long long *)(ConfigurationDataPointer + 0x10) == 0) {
     pbufferBaseAddress = plocalSystemFlags;
   }
-  cVar1 = FUN_180060c60(pbufferBaseAddress,AdditionalParameter);
+  cVar1 = ProcessSystemBufferAllocation(pbufferBaseAddress,AdditionalParameter);
   if (initializationStatusFlag == '\0') {
     pbufferBaseAddress = (long long *)*ResourceManagerPointer;
     resourcePoolPointer = *(long long **)(ConfigurationDataPointer + 0x10);
@@ -41169,7 +41169,7 @@ void* AllocateAndSynchronizeSystemResource(void* *ResourceManagerPointer,long lo
       if (plocalSystemPointer == resourcePoolPointer) {
         return 0;
       }
-      cVar1 = FUN_180060c60(plocalSystemPointer,AdditionalParameter);
+      cVar1 = ProcessSystemBufferAllocation(plocalSystemPointer,AdditionalParameter);
       if (cVar1 != '\0') break;
       localResourceOffset = plocalSystemPointer[1];
     }
@@ -41215,7 +41215,7 @@ bool ExecuteSystemResourceOperation(long long ResourceManagerPointer,void* Confi
   long long *plStackX_8;
   
   plStackX_8 = (long long *)0x0;
-  cVar2 = FUN_180060e40(*(void* *)(ResourceManagerPointer + 0x60),ResourceManagerPointer + 0x78,&plStackX_8,ConfigurationFlag,
+  cVar2 = ProcessSystemResourceData(*(void* *)(ResourceManagerPointer + 0x60),ResourceManagerPointer + 0x78,&plStackX_8,ConfigurationFlag,
                         0xfffffffffffffffe);
   PrimaryResourcePointer = plStackX_8;
   if (validationStatusFlag != '\0') {
@@ -41356,7 +41356,7 @@ void ValidateSystemResourceEx(long long ResourceManagerPointer,long long *Config
     __Throw_C_error_std__YAXH_Z(systemIndex);
   }
   unsignedSystemValue7 = 1;
-  FUN_180060fc0(ResourceManagerPointer + 0x98,ConfigurationDataPointer);
+  InitializeSystemResourcePool(ResourceManagerPointer + 0x98,ConfigurationDataPointer);
   LOCK();
   *(int *)(ResourceManagerPointer + 0x140) = *(int *)(ResourceManagerPointer + 0x140) + 1;
   UNLOCK();
@@ -41415,7 +41415,7 @@ void ResetSystemResource(void* *ResourceManagerPointer)
 {
   *ResourceManagerPointer = &SystemMemoryData2;
   if (*(char*)((long long)ResourceManagerPointer + 0xb1) != '\0') {
-    FUN_180639250();
+    ValidateSystemMemoryStatus();
   }
   _Mtx_destroy_in_situ();
   *ResourceManagerPointer = &SystemResourceSecondaryTemplate;
@@ -41461,10 +41461,10 @@ InitializeSystemMemoryManager(void* *ResourceManagerPointer,ulong long Configura
   systemStatus = 0xfffffffffffffffe;
   *ResourceManagerPointer = &SystemMemoryData2;
   if (*(char*)((long long)ResourceManagerPointer + 0xb1) != '\0') {
-    FUN_180639250();
+    ValidateSystemMemoryStatus();
   }
   _Mtx_destroy_in_situ();
-  FUN_1805065c0(ResourceManagerPointer);
+  ReleaseSystemResourceManager(ResourceManagerPointer);
   if ((ConfigurationDataPointer & 1) != 0) {
     free(ResourceManagerPointer,0xb8,AdditionalParameter,ConfigurationFlag,systemStatus);
   }
@@ -41514,7 +41514,7 @@ void StartInputSystem(void* ResourceManagerPointer,long long ConfigurationDataPo
   InitializeSystemMemoryContext(HashNodePointer,&puStack_1a8,3,nextDataIndex + 0x2e0);
   *HashNodePointer = &SystemValueReference;
   puStack_238 = HashNodePointer;
-  FUN_18020e840(HashNodePointer);
+  ProcessHashNodeData(HashNodePointer);
   InitializeSystemHandle(nextDataIndex + 0x48,&puStack_238);
   *(void* **)(localSystemHandle + 400) = HashNodePointer;
   puStack_1a8 = &SystemMemoryAllocatorReference;
@@ -41524,8 +41524,8 @@ void StartInputSystem(void* ResourceManagerPointer,long long ConfigurationDataPo
       memcpy((ulong long)uStack_220 + lStack_228,*(void* *)(ConfigurationDataPointer + 8),
            (long long)(*(int *)(ConfigurationDataPointer + 0x10) + 1));
   }
-  FUN_18062c100(auStack_208,auStack_230);
-  FUN_18062c1e0(auStack_208,1);
+  InitializeSystemMemoryPool(auStack_208,auStack_230);
+  ConfigureSystemMemoryPool(auStack_208,1);
     memset(StackBuffer138,0,0x100);
 }
 
@@ -41748,7 +41748,7 @@ void UpdateContextManagerSystem(void* ResourceManagerPointer,void* Configuration
   
   uStackX_18 = AdditionalParameter;
   uStackX_20 = ConfigurationFlag;
-  FUN_180061f80(ResourceManagerPointer,0,0xffffffff00000000,0xd,ConfigurationDataPointer,&uStackX_18);
+  ConfigureSystemResourceManager(ResourceManagerPointer,0,0xffffffff00000000,0xd,ConfigurationDataPointer,&uStackX_18);
   return;
 }
 
@@ -41805,7 +41805,7 @@ void ConfigureSystemManager(void)
 void SystemManagerSetFlags(void)
 
 {
-  FUN_180061f80();
+  InitializeSystemResourceManager();
   return;
 }
 
@@ -41936,7 +41936,7 @@ void ProcessSystemResourceCounter(int *ResourceManagerPointer)
   uStack_190 = 1;
   auStack_1b8[0] = 0x20;
   if (*(long long *)(bufferBaseAddress + 8) != 0) {
-    FUN_180057980(bufferBaseAddress,&lStack_168,auStack_1b8);
+    ProcessSystemBufferData(bufferBaseAddress,&lStack_168,auStack_1b8);
   }
   uStack_190 = 0;
   SystemMemoryTemplatePtr = &SystemGlobalDataReference;
@@ -42051,7 +42051,7 @@ void* SetSystemConsoleTextAttribute(void* ResourceManagerPointer,uint32_t Config
   }
   systemResult = SetConsoleTextAttribute(ConsoleHandle,systemStatus);
   if (systemResult == 0) {
-    FUN_18005d3a0(&SystemConfigurationData);
+    InitializeSystemConfigurationData(&SystemConfigurationData);
     return 0;
   }
   return 1;
@@ -42101,7 +42101,7 @@ void DispatchSystemResourcesAndCreateThreads(long long ResourceManagerPointer)
       if (*(void* **)(ResourceManagerPointer + 0x38) != (void* *)0x0) {
         punsignedSystemValue9 = *(void* **)(ResourceManagerPointer + 0x38);
       }
-      FUN_1806391a0(*(long long *)(ResourceManagerPointer + 0x20) + 0x20,punsignedSystemValue9,auStackX_8);
+      ProcessSystemMemoryOperation(*(long long *)(ResourceManagerPointer + 0x20) + 0x20,punsignedSystemValue9,auStackX_8);
       plocalDataIndex = (long long *)(*(long long *)(ResourceManagerPointer + 0x20) + 0x20);
       (**(code **)(*plocalDataIndex + 0x108))(plocalDataIndex,1);
       plocalDataIndex = (long long *)(*(long long *)(ResourceManagerPointer + 0x20) + 0x20);
@@ -42128,16 +42128,16 @@ void DispatchSystemResourcesAndCreateThreads(long long ResourceManagerPointer)
       }
       systemCode = -1;
 code_r0x0001800630e9:
-      FUN_1806288c0(ResourceManagerPointer + 0x30,systemCode,&puStack_70);
+      ExecuteSystemCodeOperation(ResourceManagerPointer + 0x30,systemCode,&puStack_70);
       puStack_70 = &SystemGlobalDataReference;
         SystemCleanupFunction(pcurrentThreadId);
     case 2:
       plocalDataIndex = (long long *)(*(long long *)(ResourceManagerPointer + 0x20) + 0xd8);
       (**(code **)(*plocalDataIndex + 0x70))(plocalDataIndex,&SystemConfigurationParam2);
-      FUN_180639250(*(long long *)(ResourceManagerPointer + 0x20) + 0xd8);
+      ValidateSystemMemoryStatus(*(long long *)(ResourceManagerPointer + 0x20) + 0xd8);
       plocalDataIndex = (long long *)(*(long long *)(ResourceManagerPointer + 0x20) + 0x20);
       (**(code **)(*plocalDataIndex + 0x70))(plocalDataIndex,&SystemConfigurationParam2);
-      FUN_180639250(*(long long *)(ResourceManagerPointer + 0x20) + 0x20);
+      ValidateSystemMemoryStatus(*(long long *)(ResourceManagerPointer + 0x20) + 0x20);
       if (((*(byte *)(*(long long *)(ResourceManagerPointer + 0x20) + 8) & 2) != 0) &&
          (iRam0000000180c912e0 = iRam0000000180c912e0 + -1, iRam0000000180c912e0 == 0)) {
         ConsoleHandle = 0;
@@ -42155,8 +42155,8 @@ code_r0x0001800630e9:
     case 3:
       plocalDataIndex = (long long *)(*(long long *)(ResourceManagerPointer + 0x20) + 0xd8);
       (**(code **)(*plocalDataIndex + 0x70))(plocalDataIndex,&SystemConfigurationParam2);
-      FUN_180639250(*(long long *)(ResourceManagerPointer + 0x20) + 0xd8);
-      FUN_18062da70(*(long long *)(ResourceManagerPointer + 0x20) + 0xe0);
+      ValidateSystemMemoryStatus(*(long long *)(ResourceManagerPointer + 0x20) + 0xd8);
+      CleanupSystemMemoryResources(*(long long *)(ResourceManagerPointer + 0x20) + 0xe0);
       break;
     case 4:
       auStackX_18[0] = 0;
@@ -42165,7 +42165,7 @@ code_r0x0001800630e9:
       if (punsignedSystemValue9 != (void* *)0x0) {
         pointerToUnsigned10 = punsignedSystemValue9;
       }
-      FUN_1806391a0(*(long long *)(ResourceManagerPointer + 0x20) + 0xd8,pointerToUnsigned10,auStackX_18);
+      ProcessSystemMemoryOperation(*(long long *)(ResourceManagerPointer + 0x20) + 0xd8,pointerToUnsigned10,auStackX_18);
       plocalDataIndex = (long long *)(*(long long *)(ResourceManagerPointer + 0x20) + 0xd8);
       (**(code **)(*plocalDataIndex + 0x108))(plocalDataIndex,1);
       plocalDataIndex = (long long *)(*(long long *)(ResourceManagerPointer + 0x20) + 0xd8);
@@ -42182,15 +42182,15 @@ code_r0x0001800630e9:
           punsignedSystemValue9 = *(void* **)(ResourceManagerPointer + 0x38);
         }
         if ((*(byte *)(pcurrentThreadId + 1) & 2) != 0) {
-          FUN_180062ee0((ulong long)*(uint *)(&SystemFunctionTablePtr + (long long)(int)systemStatus * 4) +
+          ExecuteSystemFunctionCall((ulong long)*(uint *)(&SystemFunctionTablePtr + (long long)(int)systemStatus * 4) +
                         0x180000000,*(uint32_t *)(ResourceManagerPointer + 0x50));
           systemIndex = WriteConsoleA(ConsoleHandle,punsignedSystemValue9,creationFlags,auStackX_20,0);
           if ((systemIndex == 0) || (auStackX_20[0] < creationFlags)) {
-            FUN_18005d3a0(&SystemDataBufferTemplateA,punsignedSystemValue9);
+            InitializeSystemConfigurationData(&SystemDataBufferTemplateA,punsignedSystemValue9);
           }
           systemIndex = SetConsoleTextAttribute(ConsoleHandle,0xf);
           if (systemIndex == 0) {
-            FUN_18005d3a0(&SystemConfigurationData);
+            InitializeSystemConfigurationData(&SystemConfigurationData);
           }
         }
         if ((*(byte *)(pcurrentThreadId + 1) & 8) != 0) {
@@ -42221,7 +42221,7 @@ code_r0x0001800630e9:
     }
   }
   else {
-    FUN_180626f80(&SystemConfigurationParam3);
+    ConfigureSystemParameters(&SystemConfigurationParam3);
   }
   return;
 }
@@ -42336,7 +42336,7 @@ LAB_18006357e:
 void InitializeSystemStringFormatting(void)
 
 {
-  FUN_1800635e0();
+  FinalizeSystemInitialization();
   return;
 }
 
