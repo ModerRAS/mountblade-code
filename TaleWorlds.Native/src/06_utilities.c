@@ -13778,10 +13778,10 @@ void CalculateFloatValueAndValidateResources(void)
         ResourceValidationResult3 = *(uint32_t *)(ResourceValidationResult0 + 4 + LocalContextData5);
         ExecutionContextPointer[-4] = &SystemResourceTemplateDatabase;
         *(uint32_t *)(ExecutionContextPointer + -2) = StackContextBuffer;
-        pLoopIncrement = (uint8_t *)*in_stack_00000058;
+        pLoopIncrement = (uint8_t *)*StackVariable58;
         *(uint32_t *)(ExecutionContextPointer + -1) = ResourceValidationResult3;
         *(uint32_t *)(ExecutionContextPointer + -3) = 0;
-        LocalContextData5 = (*(code *)*pLoopIncrement)(in_stack_00000058);
+        LocalContextData5 = (*(code *)*pLoopIncrement)(StackVariable58);
         *ExecutionContextPointer = *(uint8_t *)(*(int64_t *)(LocalContextData5 + 0x90) + ResourceValidationResult2 * 8);
         *(uint8_t *)((int64_t)ExecutionContextPointer + -4) = 0;
         if (*(int *)(resourceTable + 0x58) < 1) {
@@ -13797,7 +13797,7 @@ void CalculateFloatValueAndValidateResources(void)
       FloatRegisterValue = 0.0;
       ResourceValidationResult2 = ResourceValidationResult2 + 1;
       ResourceValidationResult0 = ResourceValidationResult0 + 0x18;
-      ResourceRegisterPointer = in_stack_00000068;
+      ResourceRegisterPointer = StackVariable68;
     } while ((int64_t)ResourceValidationResult2 < StackBuffer60);
   }
   resourceHash7 = *(uint8_t *)(*(int64_t *)(SystemContextPointer + 8) + 800);
