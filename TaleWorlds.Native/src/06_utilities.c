@@ -1199,7 +1199,7 @@ void* SystemDebugLogger;
 void ConfigureMemoryProtection(void);
 void* SystemThreadingConfigTableQuaternary;
 void* SystemProcessConfigTableQuinary;
-void* SystemMemoryAllocator;
+void* MemoryAllocator;
 void* SystemSecurityConfigTableQuaternary;
 void* SystemNetworkConfigTableTertiary;
 void* SystemEventConfigTableSeptenary;
@@ -1969,14 +1969,14 @@ uint8_t SystemMemoryConfigTemplateIntelligent;
 uint8_t SystemMemoryConfigTemplateJustInTime;
 uint8_t SystemMemoryConfigTemplateKernelOptimized;
 
- void InitializeSystemThreadManager(void)
+ void InitializeThreadManager(void)
 /**
  * @brief 初始化系统线程管理器
  * 
  * 该函数负责初始化系统的线程管理组件
  * 设置线程创建、调度和同步的机制
  */
-void InitializeSystemThreadManager(void);
+void InitializeThreadManager(void);
 uint8_t DataStructureReferencePointer;
 uint8_t DataTableInstance;
 uint8_t DataBufferStorage;
@@ -2348,7 +2348,7 @@ uint8_t ResourceSynchronizationManagerData;
 uint8_t ResourceReplicationManagerData;
 uint8_t ResourceSystemPrimaryData;
 uint8_t ResourceSystemSecondaryData;
-uint8_t SystemProcessManagerData;
+uint8_t ProcessManagerData;
 uint8_t SystemSecurityManagerData;
 uint8_t SystemNetworkManagerData;
 uint8_t SystemAudioManagerData;
@@ -2376,7 +2376,7 @@ uint8_t SystemResourceTableTemplate;
 uint8_t SystemMemoryMapTemplate;
 uint8_t SystemThreadContextTemplate;
 uint8_t SystemSecurityContextTemplate;
-uint8_t SystemEventTableTemplate;
+uint8_t EventTableTemplate;
 uint8_t SystemNetworkTableTemplate;
 
  uint8_t MemoryPoolManagerData;
@@ -2436,7 +2436,7 @@ uint8_t MemoryAllocationGraph;
 uint8_t MemoryAllocationNetwork;
 
  uint8_t SystemMemoryPoolManager;
-uint8_t SystemMemoryAllocator;
+uint8_t MemoryAllocator;
 uint8_t SystemMemoryDescriptor;
 uint8_t SystemMemoryPoolBuffer;
 uint8_t SystemMemoryCache;
@@ -2518,7 +2518,7 @@ uint8_t QuaternaryThreadAllocator; // 第四线程分配器
 uint8_t MemoryTemplateHeader;
 uint8_t MemoryTemplateData;
 uint8_t MemoryTemplateConfig;
-uint8_t SystemMemoryAllocatorHandle;
+uint8_t MemoryAllocatorHandle;
 uint8_t SystemMemoryManagerPrimary;
 uint8_t SystemMemoryManagerSecondary;
 uint8_t SystemMemoryManagerTertiary;
@@ -2633,7 +2633,7 @@ uint8_t ThreadPriorityTable;
 uint8_t ThreadAffinityTable;
 uint8_t ThreadLocalStorageTable;
 uint8_t ThreadSynchronizationTable;
-uint8_t SystemThreadManager;
+uint8_t ThreadManager;
 uint8_t SystemThreadScheduler;
 uint8_t SystemThreadPool;
 uint8_t SystemThreadQueue;
@@ -2659,11 +2659,11 @@ uint8_t GlobalData;
 uint8_t ConfigurationData;
 uint8_t RuntimeData;
 uint8_t CacheManager;
-uint8_t SystemDataBufferPool;
-uint8_t SystemEventTable;
-uint8_t SystemThreadManager;
-uint8_t SystemProcessManager;
-uint8_t SystemMemoryAllocator;
+uint8_t DataBufferPool;
+uint8_t EventTable;
+uint8_t ThreadManager;
+uint8_t ProcessManager;
+uint8_t MemoryAllocator;
 uint8_t SystemMemoryPool;
 uint8_t SystemTaskScheduler;
 uint8_t SystemResourcePool;
@@ -2702,7 +2702,7 @@ uint8_t SystemMetrics;
 uint8_t SystemAnalyzer;
 uint8_t SystemOptimizer;
 uint8_t SystemMemoryPoolManager;
-uint8_t SystemMemoryAllocator;
+uint8_t MemoryAllocator;
 uint8_t SystemMemoryTracker;
 uint8_t SystemMemoryCache;
 uint8_t SystemMemoryPoolBuffer;
@@ -2729,7 +2729,7 @@ uint8_t SystemMemorySaver;
 uint8_t SystemMemoryArchiver;
 uint8_t SystemMemoryRestorer;
 uint8_t SystemMementoManager;
-uint8_t SystemThreadManager;
+uint8_t ThreadManager;
 uint8_t SystemThreadScheduler;
 uint8_t SystemThreadDispatcher;
 uint8_t SystemThreadController;
@@ -2755,7 +2755,7 @@ uint8_t SystemThreadSaver;
 uint8_t SystemThreadArchiver;
 uint8_t SystemThreadRestorer;
 uint8_t SystemThreadMementoManager;
-uint8_t SystemProcessManager;
+uint8_t ProcessManager;
 uint8_t SystemProcessScheduler;
 uint8_t SystemProcessDispatcher;
 uint8_t SystemProcessController;
@@ -24053,7 +24053,7 @@ uint64_t ValidateResourcePackageStructure(int64_t objectContext,int64_t *validat
 
 {
   int64_t *ResourceContext;
-  uint64_t PackagePackageValidationStatus;
+  uint64_t PackageValidationStatus;
   uint32_t ResourceDataSize;
   bool HasValidResourceData;
   uint32_t ResourceValidationBuffer[2];
@@ -33542,7 +33542,7 @@ void ExceptionStackManager(uint8_t objectContext,int64_t validationContext)
 
 
 
-void SystemMemoryAllocator(uint8_t objectContext,int64_t validationContext)
+void MemoryAllocator(uint8_t objectContext,int64_t validationContext)
 
 {
   int *ResourceIndexPointer;
@@ -92432,7 +92432,7 @@ void InitializeSystemDataStructureW(void)
  * 初始化系统数据结构X
  * 
  * 此函数负责初始化系统中的某个关键数据结构X，将全局变量
- * SystemMemoryAllocator设置为指向预定义的数据结构SystemMemoryStructure001。
+ * MemoryAllocator设置为指向预定义的数据结构SystemMemoryStructure001。
  * 如果相关状态变量不为0，则调用错误处理函数。
  * 最后重置相关状态变量并将指针设置为指向默认数据结构。
  */
@@ -92440,14 +92440,14 @@ void InitializeSystemDataStructureX(void)
 void InitializeSystemDataStructureX(void)
 
 {
-  SystemMemoryAllocator = &SystemResourceHandlerTemplate;
-  if (SystemMemoryAllocatorFlag != 0) {
+  MemoryAllocator = &SystemResourceHandlerTemplate;
+  if (MemoryAllocatorFlag != 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemEmergencyExit();
   }
-  SystemMemoryAllocatorFlag = 0;
-  SystemMemoryAllocatorLock = 0;
-  SystemMemoryAllocator = &SystemDataStructure;
+  MemoryAllocatorFlag = 0;
+  MemoryAllocatorLock = 0;
+  MemoryAllocator = &SystemDataStructure;
   return;
 }
 
@@ -94545,7 +94545,7 @@ void ReleaseHashValidationResultTable(void)
   uint64_t ResourceHashValidationResult;
   
   if (SystemMemoryBufferPointer != 0) {
-    SystemMemoryAllocator(SystemMemoryBufferPointer,SystemMemoryAllocationSize);
+    MemoryAllocator(SystemMemoryBufferPointer,SystemMemoryAllocationSize);
     ValidationResult = SystemMemoryEndAddress - SystemMemoryBufferPointer & 0xfffffffffffffff0;
     LocalContextData = SystemMemoryBufferPointer;
     if (0xfff < ResourceHashValidationResult) {
