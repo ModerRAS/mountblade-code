@@ -24553,10 +24553,10 @@ uint64_t GetResourceHashAndValidate(void)
   int64_t SystemContext;
   uint64_t HashValidationResult;
   
-  if (*(int *)(InputParameter + 0x18) != 0) {
+  if (*(int *)(InputParameter + InputParameterValidationOffset) != 0) {
     return 0x1c;
   }
-  ResourceHash = GetResourceHash(*ResourceContext, SystemContext + 0x60);
+  ResourceHash = GetResourceHash(*ResourceContext, SystemContext + ObjectContextSecondaryResourceOffset);
   PackageValidationStatusCode = (uint64_t)ResourceHash;
   if (ResourceHash == 0) {
     PackageValidationStatusCode = 0x1c;
@@ -24565,8 +24565,8 @@ uint64_t GetResourceHashAndValidate(void)
     }
     else {
       HashValidationResult = HashValidationResult;
-      if (*(int *)(ResourceContext[1] + 0x18) == 0) {
-        HashValidationResult = GetResourceHash(*ResourceContext, SystemContext + 0x70);
+      if (*(int *)(ResourceContext[1] + ResourceMetadataTableSizeOffset) == 0) {
+        HashValidationResult = GetResourceHash(*ResourceContext, SystemContext + ObjectContextTertiaryResourceOffset);
       }
     }
     if ((int)HashValidationResult != 0) {
@@ -24575,8 +24575,8 @@ uint64_t GetResourceHashAndValidate(void)
     if (*(uint *)(ResourceContext + 8) < 0x3d) {
       PackageValidationStatusCode = 0;
     }
-    else if (*(int *)(ResourceContext[1] + 0x18) == 0) {
-      ResourceHash = ProcessResourceHash(*ResourceContext, SystemContext + 0x40);
+    else if (*(int *)(ResourceContext[1] + ResourceMetadataTableSizeOffset) == 0) {
+      ResourceHash = ProcessResourceHash(*ResourceContext, SystemContext + ResourceContextSecurityOffset);
       PackageValidationStatusCode = (uint64_t)ResourceHash;
     }
     if ((int)PackageValidationStatusCode == 0) {

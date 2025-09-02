@@ -25599,7 +25599,7 @@ ErrorHandler:
 uint32_t GetSystemResourceStatus(void)
 
 {
-  uint8_t aSystemOperationStatus [16];
+  uint8_t SystemOperationStatusArray [16];
   long long localSystemHandle;
   long long ResourceDataOffset;
   void* *pSystemResourceAddress;
