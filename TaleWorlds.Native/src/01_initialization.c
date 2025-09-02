@@ -28229,7 +28229,7 @@ void SystemResourceDataProcessor(long long *SystemResourceManager,long long Conf
   if (LongStackVariable200 != 0) {
     *(uint8_t *)(unsignedSystemValue7 + LongStackVariable200) = 0;
   }
-  uStack_1f0 = CONCAT44(*(uint *)(localSystemFlags + 0x1c),(uint32_t)uStack_1f0);
+  StackVariable1f0 = CONCAT44(*(uint *)(localSystemFlags + 0x1c),(uint32_t)StackVariable1f0);
   if (0 < iStack_180) {
     uStack_1f8 = SystemOperationStatus;
     ExecuteSystemCommand(&punsignedValue208,iStack_180);

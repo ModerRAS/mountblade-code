@@ -59501,7 +59501,15 @@ void CompleteSystemCleanup(void)
 
 
 
-void Unwind_180907780(void)
+/**
+ * @brief 初始化系统数据指针001
+ * 
+ * 该函数负责初始化系统数据指针001
+ * 设置系统数据指针到系统数据结构
+ * 
+ * @note 此函数会设置 SystemDataPointer001 到 SystemDataStructure
+ */
+void InitializeSystemDataPointer001(void)
 
 {
   SystemDataPointer001 = &SystemDataStructure;
