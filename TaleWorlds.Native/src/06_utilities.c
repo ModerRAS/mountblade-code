@@ -4667,7 +4667,7 @@ uint64_t GetSystemErrorSuccessCode(void)
  * @param ObjectContext 对象上下文参数
  * @return 操作结果状态码
  */
-uint8_t InitializeObjectHandleE(int64_t ObjectContext)
+uint8_t InitializeObjectHandleExtended(int64_t ObjectContext)
 
 {
   uint8_t ResourceHash;
