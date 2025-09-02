@@ -5652,12 +5652,12 @@ void InitializeSystemEventNode(void)
   void *SystemCurrentNode;
   void *SystemNextNode;
   void *HashBucketNode;
-  void *systemValidationCallback;
+  void *SystemValidationCallback;
   
   SystemDataTable = (void*)GetSystemRootPointer();
   SystemRootNode = (void *)*(long long *)SystemDataTable;
   SystemNodeFlag = *(char*)((long long)SystemRootNode[1] + 0x19);
-  systemValidationCallback = SystemInitializationCallbackB;
+  SystemValidationCallback = SystemInitializationCallbackB;
   HashBucketNode = SystemRootNode;
   SystemCurrentNode = (void**)SystemRootNode[1];
   while (SystemNodeFlag == '\0') {
@@ -17982,7 +17982,7 @@ void InitializeEngineModuleA(void)
 
 {
   uint64_t registerR9;
-  void *paramStackPtr;
+  void *ParameterStackPointer;
   uint8_t *bufferPtr;
   uint32_t bufferSize;
   uint8_t stringBuffer [136];
@@ -18008,7 +18008,7 @@ void InitializeEngineModuleB(void)
 
 {
   uint64_t registerR9;
-  void *paramStackPtr;
+  void *ParameterStackPointer;
   uint8_t *bufferPtr;
   uint32_t bufferSize;
   uint8_t stringBuffer [136];
@@ -22840,7 +22840,7 @@ bool SystemNodeCheckStatus(void)
   uint32_t *HashEntryStatus;
   void* *HashNodePointer;
   int systemIndex;
-  bool bVar5;
+  bool systemNodeStatus;
   void* EncryptionValue48;
   long long lStack_40;
   void* *puStack_30;
@@ -22865,7 +22865,7 @@ bool SystemNodeCheckStatus(void)
   uStack_20 = systemIndex;
   ValidateSystemStringFormat(&EncryptionValue48,HashNodePointer,&SystemStringConstant);
   if (lStack_40 == 0) {
-    bVar5 = false;
+    systemNodeStatus = false;
   }
   else {
     initializationStatusFlag = CheckSystemNodeAvailability(SystemNodeManagerPointer,&EncryptionValue48);
@@ -22876,7 +22876,7 @@ bool SystemNodeCheckStatus(void)
       SystemReferenceCounterStorage = SystemReferenceCounterStorage + -1;
       UNLOCK();
     }
-    bVar5 = initializationStatusFlag != '\0';
+    systemNodeStatus = initializationStatusFlag != '\0';
   }
   if (lStack_40 != 0) {
     fclose();
@@ -22889,7 +22889,7 @@ bool SystemNodeCheckStatus(void)
   if (pEncryptionKeyValue != (void* *)0x0) {
       SystemCleanupFunction();
   }
-  return bVar5;
+  return systemNodeStatus;
 }
 
 
@@ -25285,7 +25285,7 @@ void SystemResourceCleanupManager(long long *ResourceManagerPointer)
 void ProcessSystemResourceAllocation(void* ResourceManagerPointer,long long ConfigurationDataPointer)
 
 {
-  byte bVar1;
+  byte systemByteValue;
   uint8_t creationFlags;
   void* *HashNodePointer;
   void* *punsignedSystemValue4;
@@ -25299,7 +25299,7 @@ void ProcessSystemResourceAllocation(void* ResourceManagerPointer,long long Conf
   char *systemFunctionPointer2;
   uint32_t *pointerToUnsigned13;
   uint8_t *pointerToUnsigned14;
-  byte *pbVar15;
+  byte *resourceStringPointer;
   uint8_t *pointerToUnsigned16;
   void* *pointerToUnsigned17;
   void* *pointerToUnsigned18;
@@ -25438,9 +25438,9 @@ void ProcessSystemResourceAllocation(void* ResourceManagerPointer,long long Conf
   pointerToUnsigned14 = ThreadLocalStorage;
   if (creationFlags1 != 0) {
     do {
-      bVar1 = pointerToUnsigned17[uStack_2f0];
+      systemByteValue = pointerToUnsigned17[uStack_2f0];
       unsignedSystemValue8 = (uint)pointerToUnsigned14;
-      if ((bVar1 & 0xdf) == 0) {
+      if ((systemByteValue & 0xdf) == 0) {
         localSystemHandle0 = localSystemHandle4 + 0x2e0;
         resourceCounter = CreateSystemThreadObject(SystemMemoryPoolTemplate,0x40,*(uint8_t *)(localSystemHandle4 + 0x308));
         ProcessResourcePointerOperation(resourceCounter + 0x20,&puStack_310);
@@ -25449,8 +25449,8 @@ void ProcessSystemResourceAllocation(void* ResourceManagerPointer,long long Conf
           if (allocationFlags == localSystemHandle0) goto ResourceAllocationCheck;
           if (*(int *)(allocationFlags + 0x30) == 0) goto AllocationFlagCheck;
           if (*(int *)(resourceCounter + 0x30) == 0) goto ResourceAllocationCheck;
-          pbVar15 = *(byte **)(allocationFlags + 0x28);
-          localSystemHandle4 = *(long long *)(resourceCounter + 0x28) - (long long)pbVar15;
+          resourceStringPointer = *(byte **)(allocationFlags + 0x28);
+          localSystemHandle4 = *(long long *)(resourceCounter + 0x28) - (long long)resourceStringPointer;
           goto AllocationHandler;
         }
         SystemUtilityHandler(extraout_XMM0_Da,resourceCounter);
@@ -27186,8 +27186,8 @@ void SystemFloatingPointProcessor(long long resourceManagerPointer,float floatVa
 
 {
   ulong long systemStatus;
-  float fVar2;
-  float fVar3;
+  float FloatVariable2;
+  float FloatVariable3;
   ulong long unsignedSystemValue4;
   ulong long currentThreadId;
   int systemFlag;
@@ -55954,7 +55954,7 @@ void FUN_180075630(long long ResourceManagerPointer,void* *ConfigurationDataPoin
   uint32_t currentThreadId;
   uint32_t hashValue;
   void* unsignedSystemValue7;
-  char cVar8;
+  char CharacterVariable8;
   long long resourceCounter;
   long long *PrimaryResourcePointer0;
   uint systemStatus1;
@@ -57675,10 +57675,10 @@ ulong long FUN_180077750(long long ResourceManagerPointer,uint *ConfigurationDat
                        long long systemConfigurationParameter)
 
 {
-  float fVar1;
-  float fVar2;
-  float fVar3;
-  float fVar4;
+  float FloatVariable1;
+  float FloatVariable2;
+  float FloatVariable3;
+  float FloatVariable4;
   float fVar5;
   uint hashValue;
   uint32_t unsignedSystemValue7;
@@ -57695,7 +57695,7 @@ ulong long FUN_180077750(long long ResourceManagerPointer,uint *ConfigurationDat
   float fVar18;
   float fVar19;
   float fVar20;
-  char cVar21;
+  char CharacterVariable21;
   byte bVar22;
   uint32_t creationFlags3;
   void* creationFlags4;
@@ -58077,9 +58077,9 @@ void SystemNoOperationA(void)
 
 {
   uint systemStatus;
-  float fVar2;
-  float fVar3;
-  float fVar4;
+  float FloatVariable2;
+  float FloatVariable3;
+  float FloatVariable4;
   float fVar5;
   float fVar6;
   uint32_t unsignedSystemValue7;
@@ -58405,10 +58405,10 @@ void SystemNoOperationA(void)
 void FUN_180077ad8(void)
 
 {
-  float fVar1;
-  float fVar2;
-  float fVar3;
-  float fVar4;
+  float FloatVariable1;
+  float FloatVariable2;
+  float FloatVariable3;
+  float FloatVariable4;
   float fVar5;
   int systemFlag;
   uint32_t unsignedSystemValue7;
@@ -58669,10 +58669,10 @@ void FUN_180077ad8(void)
 void FUN_180077c96(void)
 
 {
-  float fVar1;
-  float fVar2;
-  float fVar3;
-  float fVar4;
+  float FloatVariable1;
+  float FloatVariable2;
+  float FloatVariable3;
+  float FloatVariable4;
   float fVar5;
   int systemFlag;
   float fVar7;
@@ -58822,10 +58822,10 @@ void FUN_180077c96(void)
 void FUN_180077dc6(void)
 
 {
-  float fVar1;
-  float fVar2;
-  float fVar3;
-  float fVar4;
+  float FloatVariable1;
+  float FloatVariable2;
+  float FloatVariable3;
+  float FloatVariable4;
   float fVar5;
   int systemFlag;
   float fVar7;
@@ -59075,10 +59075,10 @@ ulong long FUN_180077f20(long long ResourceManagerPointer,void* ConfigurationDat
                        uint32_t primaryConfigurationParameter,uint32_t secondaryConfigurationParameter)
 
 {
-  float fVar1;
-  float fVar2;
-  float fVar3;
-  float fVar4;
+  float FloatVariable1;
+  float FloatVariable2;
+  float FloatVariable3;
+  float FloatVariable4;
   float fVar5;
   float fVar6;
   float fVar7;
@@ -59093,7 +59093,7 @@ ulong long FUN_180077f20(long long ResourceManagerPointer,void* ConfigurationDat
   float fVar16;
   float fVar17;
   float fVar18;
-  char cVar19;
+  char CharacterVariable19;
   ulong long in_RAX;
   long long localSystemHandle0;
   ulong long creationFlags1;
@@ -59206,10 +59206,10 @@ LAB_180077fcf:
 void FUN_180078051(void* ResourceManagerPointer,void* ConfigurationDataPointer,float AdditionalParameter,float ConfigurationFlag)
 
 {
-  float fVar1;
-  float fVar2;
-  float fVar3;
-  float fVar4;
+  float FloatVariable1;
+  float FloatVariable2;
+  float FloatVariable3;
+  float FloatVariable4;
   float fVar5;
   float fVar6;
   float fVar7;
@@ -60172,9 +60172,9 @@ void FUN_180078c10(long long ResourceManagerPointer)
 
 {
   float *pfVar1;
-  float fVar2;
-  float fVar3;
-  float fVar4;
+  float FloatVariable2;
+  float FloatVariable3;
+  float FloatVariable4;
   float fVar5;
   float fVar6;
   float fVar7;
@@ -60545,7 +60545,7 @@ void ProcessSystemResourceConfiguration(long long ResourceManagerPointer,long lo
   float scaleFactor8;
   float scaleFactor9;
   uint8_t systemStatus5;
-  char cVar16;
+  char CharacterVariable16;
   long long nextDataIndex7;
   float *pfVar18;
   float fVar19;
@@ -60851,7 +60851,7 @@ void FUN_180079284(long long ResourceManagerPointer)
   float fVar13;
   float fVar14;
   uint8_t systemStatus5;
-  char cVar16;
+  char CharacterVariable16;
   long long nextDataIndex7;
   float *pfVar18;
   float fVar19;
@@ -61157,7 +61157,7 @@ void FUN_1800792ea(void)
   float fVar11;
   float fVar12;
   float fVar13;
-  char cVar14;
+  char CharacterVariable14;
   float *pfVar15;
   long long nextDataIndex6;
   float fVar17;
@@ -61446,7 +61446,7 @@ void FUN_180079309(long long ResourceManagerPointer,uint ConfigurationDataPointe
   float fVar11;
   float fVar12;
   float fVar13;
-  char cVar14;
+  char CharacterVariable14;
   long long nextDataIndex5;
   float fVar16;
   float fVar17;
@@ -64691,7 +64691,7 @@ void SystemThreadStatusManager(long long systemContext,byte threadStatus,long lo
 void FUN_18007cbb0(uint ResourceManagerPointer,long long ConfigurationDataPointer,long long *AdditionalParameter,void* ConfigurationFlag)
 
 {
-  float fVar1;
+  float FloatVariable1;
   int systemResult;
   long long *plocalResourceOffset;
   long long bufferBaseAddress;
