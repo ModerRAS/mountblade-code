@@ -45073,7 +45073,7 @@ void ProcessSystemResourceQueueAndCompletion(long long ResourceManagerPointer)
       return;
     }
     if (lStackX_10 == 0) break;
-    FUN_180067480(*(void* *)(ResourceManagerPointer + 0x20));
+    UpdateSystemResourceContextManager(*(void* )(ResourceManagerPointer + 0x20));
   }
     UpdateContextManagerSystem(SystemContextManagerPointer,&SystemContextUpdateData,systemCounter);
 }
@@ -45204,14 +45204,14 @@ void ProcessSystemResourceMemoryAllocation(long long *ResourceManagerPointer)
   UNLOCK();
   lStackX_8 = *(long long *)(ResourceManagerPointer[1] + 0x1a8);
   localResourceOffset = *ResourceManagerPointer;
-  FUN_180069cc0(localResourceOffset + 0x10,&lStackX_8);
+  AllocateSystemResource(localResourceOffset + 0x10,&lStackX_8);
   systemId = _Cnd_signal(localResourceOffset + 0x278);
   if (systemId != 0) {
     __Throw_C_error_std__YAXH_Z(systemId);
   }
   puStackX_10 = *(void* **)(ResourceManagerPointer[1] + 0x1b0);
   localResourceOffset = *ResourceManagerPointer;
-  FUN_180069cc0(localResourceOffset + 0x10,&puStackX_10);
+  AllocateSystemResource(localResourceOffset + 0x10,&puStackX_10);
   systemId = _Cnd_signal(localResourceOffset + 0x278);
   if (systemId != 0) {
     __Throw_C_error_std__YAXH_Z(systemId);
@@ -45255,7 +45255,7 @@ void ProcessSystemResourceMemoryAllocation(long long *ResourceManagerPointer)
     __Throw_C_error_std__YAXH_Z(systemId);
   }
   unsignedValue40 = 0x18006881f;
-  FUN_180069530(HashBucketNode + 4);
+  ReleaseSystemResource(HashBucketNode + 4);
   *HashBucketNode = *(void* *)(bufferBaseAddress + 0x200378);
   *(void* **)(bufferBaseAddress + 0x200378) = HashBucketNode;
   unsignedValue40 = 0x18006883a;
@@ -45689,7 +45689,7 @@ void ConfigureSystemResourceWithLock(long long ResourceManagerPointer,void* *Con
   if (systemStatus != 0) {
     __Throw_C_error_std__YAXH_Z(systemStatus);
   }
-  FUN_180069530(ConfigurationDataPointer + 4);
+  ReleaseSystemResource(ConfigurationDataPointer + 4);
   *ConfigurationDataPointer = *(void* *)(ResourceManagerPointer + 0x200008);
   *(void* **)(ResourceManagerPointer + 0x200008) = ConfigurationDataPointer;
   systemStatus = _Mtx_unlock(ResourceManagerPointer + 0x200010);
@@ -48166,7 +48166,7 @@ void ProcessSystemResourceNodeQueue(long long ResourceManagerPointer)
       unsignedValue60 = *(void* *)(nextDataIndex3 + 0x198);
       processFlags58 = *(void* *)(nextDataIndex3 + 0x1a0);
       *(long long *)(ResourceManagerPointer + 0x3d0) = *(long long *)(ResourceManagerPointer + 0x3d0) + -0x1a8;
-      FUN_180069530();
+      ReleaseSystemResource();
       isDataValid = true;
     }
     HashEntryStatus0 = *(void* **)(ResourceManagerPointer + 0xc0);
@@ -48392,7 +48392,7 @@ LAB_18006c9ac:
         localSystemHandle1 = *PrimaryResourcePointer8;
         if (localSystemHandle1 != allocationFlags) {
           do {
-            FUN_180069530(localSystemHandle1);
+            ReleaseSystemResource(localSystemHandle1);
             localSystemHandle1 = localSystemHandle1 + 0x1a8;
           } while (localSystemHandle1 != allocationFlags);
           localSystemHandle1 = *PrimaryResourcePointer8;
@@ -48571,7 +48571,7 @@ LAB_18006ccef:
   localResourceOffset = *ResourceManagerPointer;
   if (localResourceOffset != localSystemFlags) {
     do {
-      FUN_180069530(localResourceOffset);
+      ReleaseSystemResource(localResourceOffset);
       localResourceOffset = localResourceOffset + 0x1a8;
     } while (localResourceOffset != localSystemFlags);
     localResourceOffset = *ResourceManagerPointer;
@@ -48639,7 +48639,7 @@ LAB_18006ccef:
   localSystemPointer = *systemDataIndexPtr;
   if (localSystemPointer != nextDataIndex) {
     do {
-      FUN_180069530(localSystemPointer);
+      ReleaseSystemResource(localSystemPointer);
       localSystemPointer = localSystemPointer + 0x1a8;
     } while (localSystemPointer != nextDataIndex);
     localSystemPointer = *systemDataIndexPtr;
@@ -48806,7 +48806,7 @@ LAB_18006cfb1:
                   + plocalSystemPointer[1] & *plocalSystemPointer - 1U) * 8) + 8);
     }
     else if (resourceCounter == 0) goto LAB_18006cfb1;
-    FUN_180069530((ulong long)((uint)systemOperationFlags & 0x1f) * 0x1a8 + resourceCounter);
+    ReleaseSystemResource((ulong long)((uint)systemOperationFlags & 0x1f) * 0x1a8 + resourceCounter);
   }
   resourceCounter = ResourceManagerPointer[8];
   if ((resourceCounter != 0) && ((unsignedSystemValue4 != allocationContext || ((allocationContext & 0x1f) != 0)))) {
@@ -49162,7 +49162,7 @@ void* GetSystemDataResourcePointer(ulong long* ResourceManagerPointer, void* Con
               unsignedSystemValue8 = (ulong long)((uint)unsignedSystemValue8 & 0x1f);
               localResourceOffset = unsignedSystemValue8 * 0x1a8 + bufferBaseAddress;
               ConfigureResourceManagerData(ConfigurationDataPointer,localResourceOffset);
-              FUN_180069530(localResourceOffset);
+              ReleaseSystemResource(localResourceOffset);
               *(uint8_t *)((bufferBaseAddress - unsignedSystemValue8) + 0x352f) = 1;
               charValue = '\x01';
               goto LAB_18006d67d;
@@ -49285,7 +49285,7 @@ void* FUN_18006d810(long long ResourceManagerPointer,void* ConfigurationDataPoin
         unsignedSystemValue8 = (ulong long)((uint)unsignedSystemValue4 & 0x1f);
         localResourceOffset = unsignedSystemValue8 * 0x1a8 + localSystemFlags;
         FUN_18006dcb0(ConfigurationDataPointer,localResourceOffset,PrimaryResourcePointer,localSystemPointer,0xfffffffffffffffe,localSystemFlags,unsignedSystemValue4);
-        FUN_180069530(localResourceOffset);
+        ReleaseSystemResource(localResourceOffset);
         *(uint8_t *)((localSystemFlags - unsignedSystemValue8) + 0x352f) = 1;
         return 1;
       }
@@ -49430,7 +49430,7 @@ LAB_18006d9d7:
 void ProcessSystemResourceDataC(long long *ResourceManagerPointer)
 
 {
-  FUN_180069530((ulong long)(*(uint *)(ResourceManagerPointer + 1) & 0x1f) * 0x1a8 + *ResourceManagerPointer);
+  ReleaseSystemResource((ulong long)(*(uint *)(ResourceManagerPointer + 1) & 0x1f) * 0x1a8 + *ResourceManagerPointer);
   *(uint8_t *)((*ResourceManagerPointer - (ulong long)(*(uint *)(ResourceManagerPointer + 1) & 0x1f)) + 0x352f) = 1;
   return;
 }
@@ -49487,7 +49487,7 @@ ulong long GetSystemResourceHash(long long ResourceManagerPointer,void* Configur
       allocationFlags = (ulong long)((uint)unsignedSystemValue8 & 0x1f) * 0x1a8 + hashValue;
       localDataIndex = *(long long *)(ResourceManagerPointer + 0x50);
       ConfigureResourceManagerData(ConfigurationDataPointer,allocationFlags,systemStatus1,PrimaryResourcePointer,0xfffffffffffffffe,hashValue,unsignedSystemValue8,localSystemPointer);
-      FUN_180069530(allocationFlags);
+      ReleaseSystemResource(allocationFlags);
       LOCK();
       HashEntryStatus = (ulong long *)(hashValue + 0x3508);
       unsignedSystemValue8 = *HashEntryStatus;
@@ -49562,7 +49562,7 @@ void CleanupSystemResourceDataB(long long *ResourceManagerPointer)
   long long localDataIndex;
   bool isConfigValid;
   
-  FUN_180069530((ulong long)(*(uint *)(ResourceManagerPointer + 1) & 0x1f) * 0x1a8 + *ResourceManagerPointer);
+  ReleaseSystemResource((ulong long)(*(uint *)(ResourceManagerPointer + 1) & 0x1f) * 0x1a8 + *ResourceManagerPointer);
   LOCK();
   PrimaryResourcePointer = (long long *)(*ResourceManagerPointer + 0x3508);
   bufferBaseAddress = *PrimaryResourcePointer;
