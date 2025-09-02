@@ -18921,7 +18921,7 @@ uint64_t ProcessResourceDataReadAndValidate(int64_t ResourceHandle,uint8_t *Reso
         validationStatusCode = ReadResourceData(resourceHash,&EncryptedValue,4);
         if ((((int)validationStatusCode == 0) && (validationStatusCode = ReadResourceData(resourceHash,&UnsignedStackValue34,2), (int)validationStatusCode == 0)) &&
            (validationStatusCode = ReadResourceData(resourceHash,(int64_t)&UnsignedStackValue34 + 2,2), (int)validationStatusCode == 0)) {
-          validationStatusCode = ReadResourceData(resourceHash,&uStack_30,8);
+          validationStatusCode = ReadResourceData(resourceHash,&ResourceValidationLower32Bits,8);
         }
       }
       else {
@@ -20946,7 +20946,7 @@ uint64_t ProcessResourceAllocation(int64_t ResourceHandle,uint8_t *ResourceData)
   uint8_t *pResourceTertiaryFlag;
   uint8_t ResourceQuaternaryFlag;
   uint32_t ResourceLowByteFlag;
-  uint32_t uStack_74;
+  uint32_t ResourceCounterPrimary;
   uint32_t ResourceMidByteFlag;
   uint32_t uStack_6c;
   uint8_t EncryptionBuffer [32];
@@ -25935,7 +25935,7 @@ uint64_t ProcessComplexResourceOperations(int64_t objectContext,uint8_t *validat
   uint32_t *pResourceTertiaryFlag;
   uint8_t ResourceQuaternaryFlag;
   uint32_t ResourceLowByteFlag;
-  uint32_t uStack_74;
+  uint32_t ResourceCounterPrimary;
   uint32_t ResourceMidByteFlag;
   uint32_t uStack_6c;
   uint8_t ResourceOperationBuffer [32];
@@ -50095,7 +50095,7 @@ void Unwind_1809061f0(uint8_t objectContext,int64_t validationContext)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_180906210(void)
+void UnwindCloseSystemFileHandle(void)
 
 {
   CloseHandle(SystemFileHandle);
@@ -50104,7 +50104,7 @@ void Unwind_180906210(void)
 
 
 
-void Unwind_180906220(uint8_t objectContext,int64_t validationContext)
+void UnwindReleaseSystemResourceAt0xa8(uint8_t objectContext,int64_t validationContext)
 
 {
   if ((*(uint *)(resourceData + 0x40) & 1) != 0) {
@@ -50116,7 +50116,7 @@ void Unwind_180906220(uint8_t objectContext,int64_t validationContext)
 
 
 
-void Unwind_180906250(uint8_t objectContext,int64_t validationContext)
+void UnwindReleaseSystemResourceAt200(uint8_t objectContext,int64_t validationContext)
 
 {
   if ((*(uint *)(resourceData + 0x44) & 1) != 0) {
@@ -50128,7 +50128,7 @@ void Unwind_180906250(uint8_t objectContext,int64_t validationContext)
 
 
 
-void Unwind_180906280(uint8_t objectContext,int64_t validationContext)
+void UnwindReleaseSystemResourceAt0x88(uint8_t objectContext,int64_t validationContext)
 
 {
   if ((*(uint *)(resourceData + 0x44) & 2) != 0) {
@@ -50140,7 +50140,7 @@ void Unwind_180906280(uint8_t objectContext,int64_t validationContext)
 
 
 
-void Unwind_1809062b0(uint8_t objectContext,int64_t validationContext)
+void UnwindResetSystemResourceHandler(uint8_t objectContext,int64_t validationContext)
 
 {
   *(uint8_t *)(validationContext + 0xb0) = &SystemResourceHandlerTemplate;
