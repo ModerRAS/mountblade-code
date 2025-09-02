@@ -3228,49 +3228,49 @@ uint8_t SystemMemoryFlagKernel;
 void ProcessGameObjects(int64_t GameContext, int64_t SystemContext)
 
 {
-  uint8_t objectStatus;
-  int OperationStatus;
-  int64_t CurrentObjectPointer;
-  int TotalProcessedObjects;
+  uint8_t ObjectValidationState;
+  int ProcessingResultCode;
+  int64_t CurrentGameObjectPointer;
+  int ProcessedObjectCount;
   uint8_t ObjectMetadataBuffer[32];
   int64_t SystemHandleArray[2];
-  uint8_t *GameObjectDataList;
-  int CurrentListIndex;
-  uint32_t MaxItems;
+  uint8_t *GameObjectDataBuffer;
+  int BufferIndex;
+  uint32_t MaximumProcessableItems;
   uint8_t ObjectProcessingWorkspace[512];
-  uint64_t SecurityKey;
+  uint64_t SecurityValidationKey;
   
-  SecurityKey = SecurityContextKey ^ (uint64_t)ObjectMetadataBuffer;
-  OperationStatus = RetrieveContextHandles(*(uint32_t *)(GameContext + 0x10), SystemHandleArray);
-  if ((OperationStatus == 0) && (*(int64_t *)(SystemHandleArray[0] + 8) != 0)) {
-    GameObjectDataList = ObjectProcessingWorkspace;
-    TotalProcessedObjects = 0;
-    CurrentListIndex = 0;
-    MaxItems = 0xffffffc0;
-    OperationStatus = FetchObjectList(*(uint8_t *)(SystemExecutionContext + 0x90), *(int64_t *)(SystemHandleArray[0] + 8),
-                          &GameObjectDataList);
-    if (OperationStatus == 0) {
-      if (0 < CurrentListIndex) {
-        CurrentObjectPointer = 0;
+  SecurityValidationKey = SecurityContextKey ^ (uint64_t)ObjectMetadataBuffer;
+  ProcessingResultCode = RetrieveContextHandles(*(uint32_t *)(GameContext + 0x10), SystemHandleArray);
+  if ((ProcessingResultCode == 0) && (*(int64_t *)(SystemHandleArray[0] + 8) != 0)) {
+    GameObjectDataBuffer = ObjectProcessingWorkspace;
+    ProcessedObjectCount = 0;
+    BufferIndex = 0;
+    MaximumProcessableItems = 0xffffffc0;
+    ProcessingResultCode = FetchObjectList(*(uint8_t *)(SystemExecutionContext + 0x90), *(int64_t *)(SystemHandleArray[0] + 8),
+                          &GameObjectDataBuffer);
+    if (ProcessingResultCode == 0) {
+      if (0 < BufferIndex) {
+        CurrentGameObjectPointer = 0;
         do {
-          ObjectStatus = *(uint8_t *)(GameObjectDataList + CurrentObjectPointer);
-          OperationStatus = ValidateObjectStatus(ObjectStatus);
-          if (OperationStatus != 2) {
+          ObjectValidationState = *(uint8_t *)(GameObjectDataBuffer + CurrentGameObjectPointer);
+          ProcessingResultCode = ValidateObjectStatus(ObjectValidationState);
+          if (ProcessingResultCode != 2) {
                     // WARNING: Subroutine does not return
-            HandleInvalidObject(ObjectStatus, 1);
+            HandleInvalidObject(ObjectValidationState, 1);
           }
-          TotalProcessedObjects = TotalProcessedObjects + 1;
-          CurrentObjectPointer = CurrentObjectPointer + 8;
-        } while (TotalProcessedObjects < CurrentListIndex);
+          ProcessedObjectCount = ProcessedObjectCount + 1;
+          CurrentGameObjectPointer = CurrentGameObjectPointer + 8;
+        } while (ProcessedObjectCount < BufferIndex);
       }
-      FreeObjectListMemory(&GameObjectDataList);
+      FreeObjectListMemory(&GameObjectDataBuffer);
     }
     else {
-      FreeObjectListMemory(&GameObjectDataList);
+      FreeObjectListMemory(&GameObjectDataBuffer);
     }
   }
                     // WARNING: Subroutine does not return
-  PerformSecurityValidation(SecurityKey ^ (uint64_t)ObjectMetadataBuffer);
+  PerformSecurityValidation(SecurityValidationKey ^ (uint64_t)ObjectMetadataBuffer);
 }
 
 
@@ -3289,38 +3289,38 @@ void ProcessGameObjects(int64_t GameContext, int64_t SystemContext)
 void ValidateSystemObjectCollection(void)
 
 {
-  uint8_t SystemObjectHandle;
-  int ValidationStatusCode;
+  uint8_t SystemObjectIdentifier;
+  int ValidationResultCode;
   int64_t SystemObjectContext;
   int64_t SystemContext;
-  int64_t ObjectDataOffset;
-  int ProcessedObjectCount;
-  uint8_t *ObjectCollectionArray;
-  int RetrievedObjectCount;
+  int64_t ObjectDataPosition;
+  int ProcessedObjectTotal;
+  uint8_t *ObjectCollectionBuffer;
+  int RetrievedObjectTotal;
   uint32_t MaximumCapacity;
   uint64_t SecurityValidationHash;
   
   if (*(int64_t *)(SystemObjectContext + 8) != 0) {
-    ObjectCollectionArray = &SystemObjectDataBuffer;
-    ProcessedObjectCount = 0;
-    RetrievedObjectCount = 0;
+    ObjectCollectionBuffer = &SystemObjectDataBuffer;
+    ProcessedObjectTotal = 0;
+    RetrievedObjectTotal = 0;
     MaximumCapacity = 0xffffffc0;
-    ValidationStatusCode = FetchSystemObjectCollection(*(uint8_t *)(SystemContext + 0x90), *(int64_t *)(SystemObjectContext + 8),
+    ValidationResultCode = FetchSystemObjectCollection(*(uint8_t *)(SystemContext + 0x90), *(int64_t *)(SystemObjectContext + 8),
                           &RetrievedObjectDataBuffer);
-    if (ValidationStatusCode == 0) {
-      RetrievedObjectCount = *(int *)(RetrievedObjectDataBuffer + 4);
-      if (0 < RetrievedObjectCount) {
-        ObjectDataOffset = 8;
+    if (ValidationResultCode == 0) {
+      RetrievedObjectTotal = *(int *)(RetrievedObjectDataBuffer + 4);
+      if (0 < RetrievedObjectTotal) {
+        ObjectDataPosition = 8;
         do {
-          SystemObjectHandle = *(uint8_t *)(ObjectCollectionArray + ObjectDataOffset);
-          ValidationStatusCode = ValidateSystemObject(SystemObjectHandle);
-          if (ValidationStatusCode != 2) {
+          SystemObjectIdentifier = *(uint8_t *)(ObjectCollectionBuffer + ObjectDataPosition);
+          ValidationResultCode = ValidateSystemObject(SystemObjectIdentifier);
+          if (ValidationResultCode != 2) {
                     // WARNING: Subroutine does not return
-            HandleInvalidSystemObject(SystemObjectHandle, 1);
+            HandleInvalidSystemObject(SystemObjectIdentifier, 1);
           }
-          ProcessedObjectCount = ProcessedObjectCount + 1;
-          ObjectDataOffset = ObjectDataOffset + 8;
-        } while (ProcessedObjectCount < RetrievedObjectCount);
+          ProcessedObjectTotal = ProcessedObjectTotal + 1;
+          ObjectDataPosition = ObjectDataPosition + 8;
+        } while (ProcessedObjectTotal < RetrievedObjectTotal);
       }
       ReleaseSystemObjectCollection(&RetrievedObjectDataBuffer);
     }
@@ -3824,7 +3824,7 @@ uint8_t CleanupObjectHandle(void)
   }
   if (*(int64_t *)(AdjustedObjectPointer + 0x10) != 0) {
                     // WARNING: Subroutine does not return
-    ExecuteSystemExitOperation(*(int64_t *)(AdjustedPointer + 0x10), 1);
+    ExecuteSystemExitOperation(*(int64_t *)(AdjustedObjectPointer + 0x10), 1);
   }
   return 0;
 }
@@ -3879,7 +3879,7 @@ uint8_t ValidateObjectHandle(int64_t objectPointer)
   
   validationResult = ValidateObjectContext(*(uint32_t *)(objectPointer + 0x10), &handleStorage);
   if ((int)validationResult != 0) {
-    return ResourceValidationResult;
+    return validationResult;
   }
   if (handleStorage == 0) {
     handleStorage = 0;
@@ -6071,15 +6071,15 @@ uint8_t ActivateObjectPropertiesAndDispatch(int64_t ObjectContext, int64_t Sched
   int64_t PropertyBuffer;
   
   OperationResult = ValidateObjectContext(*(uint32_t *)(ObjectContext + 0x10), &PropertyBuffer);
-  if ((int)operationResult != 0) {
-    return operationResult;
+  if ((int)OperationResult != 0) {
+    return OperationResult;
   }
-  if (*(char *)(propertyBuffer + 0x2c) != '\0') {
+  if (*(char *)(PropertyBuffer + 0x2c) != '\0') {
     return 0x4e;
   }
-  *(uint8_t *)(propertyBuffer + 0x2c) = 1;
+  *(uint8_t *)(PropertyBuffer + 0x2c) = 1;
                     // WARNING: Subroutine does not return
-  ReleaseSystemContextResources(*(uint8_t *)(schedulerContext + 0x98),ObjectContext);
+  ReleaseSystemContextResources(*(uint8_t *)(SchedulerContext + 0x98), ObjectContext);
 }
 
 
@@ -6094,17 +6094,17 @@ uint8_t ActivateObjectPropertiesAndDispatch(int64_t ObjectContext, int64_t Sched
  * @param ObjectContext 对象上下文指针
  * @param processContext 处理上下文指针，包含处理所需的数据
  */
-void SetObjectContextByte29(int64_t ObjectContext, int64_t processContext)
+void SetObjectContextByte29(int64_t ObjectContext, int64_t ProcessContext)
 
 {
   int ValidationStatus;
-  int64_t contextBuffer;
+  int64_t ContextBuffer;
   
-  validationStatus = ValidateObjectContext(*(uint32_t *)(ObjectContext + 0x10),&contextBuffer);
-  if (validationStatus == 0) {
-    *(uint8_t *)(contextBuffer + 0x29) = *(uint8_t *)(ObjectContext + 0x18);
+  ValidationStatus = ValidateObjectContext(*(uint32_t *)(ObjectContext + 0x10), &ContextBuffer);
+  if (ValidationStatus == 0) {
+    *(uint8_t *)(ContextBuffer + 0x29) = *(uint8_t *)(ObjectContext + 0x18);
                     // WARNING: Subroutine does not return
-    ProcessContextData(*(uint8_t *)(processContext + 0x98),ObjectContext);
+    ProcessContextData(*(uint8_t *)(ProcessContext + 0x98), ObjectContext);
   }
   return;
 }
