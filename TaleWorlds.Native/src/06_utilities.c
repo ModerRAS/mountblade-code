@@ -3550,103 +3550,119 @@ void CheckSystemFlags(void)
  * @warning 如果对象注册无效，函数将返回相应的错误代码
  */
 /**
- * @brief 验证对象注册状态的有效性
+ * @brief 验证对象注册状态
  * 
- * 该函数负责验证对象的注册状态，包括：
- * - 验证对象上下文的有效性
- * - 检查对象注册句柄的合法性
- * - 确认对象注册数据的完整性
- * - 验证对象注册状态的有效性
+ * 该函数负责验证对象的注册状态，确保对象已正确注册到系统中
+ * 包括验证注册数据的完整性、有效性和状态一致性
  * 
- * @param ObjectContext 对象上下文指针，包含需要验证的对象信息
- * @return uint8_t 返回验证状态码，0表示成功，非零表示错误
+ * @param ObjectContext 对象上下文指针，包含对象注册所需的信息
+ * @return uint8_t 验证结果状态码，0表示成功，非0表示失败
  * @note 此函数用于确保系统中的对象都经过正确的注册流程
- * @warning 如果对象注册无效，可能需要重新注册或清理对象
+ * @warning 如果对象注册无效，函数将返回相应的错误代码
  */
-uint8_t VerifyObjectRegistration(int64_t ObjectContext)
-
+uint8_t ValidateObjectRegistrationStatus(int64_t ObjectContext)
 {
-  int64_t RegistrationObjectData;
-  int64_t RegistrationObjectHandle;
-  int ArrayResizeCount;
-  uint8_t RegistrationValidationStatus;
-  uint8_t ObjectRegistrationStatus;
-  int64_t *ObjectRegistrationArray;
-  int RegistrationArraySize;
-  uint64_t CurrentArrayIndex;
-  int NewRegistrationSize;
-  uint64_t ObjectSearchIndex;
-  int64_t *RegistrationArrayPointer;
-  int64_t ContextStackData;
-  char RegisteredObjectName[16];
+  int64_t RegistrationData;
+  int64_t RegistrationHandle;
+  uint8_t ContextValidationResult;
+  uint8_t ObjectStatusResult;
+  int64_t *RegistrationEntryArray;
+  int RegistrationArrayCurrentSize;
+  uint64_t ArrayIterator;
+  int CalculatedNewSize;
+  uint64_t SearchIndex;
+  int64_t *ArrayBasePointer;
+  int64_t ContextStackPointer;
+  char ObjectName[16];
   
-  RegistrationValidationStatus = GetRegistrationContextData(*(uint32_t *)(ObjectContext + OBJECT_CONTEXT_OFFSET), &ContextStackData);
-  if ((int)RegistrationValidationStatus != 0) {
-    return RegistrationValidationStatus;
+  // 获取注册上下文数据
+  ContextValidationResult = GetRegistrationContextData(*(uint32_t *)(ObjectContext + OBJECT_CONTEXT_OFFSET), &ContextStackPointer);
+  if ((int)ContextValidationResult != 0) {
+    return ContextValidationResult;
   }
-  RegistrationObjectHandle = *(int64_t *)(ContextStackData + 8);
-  if ((RegistrationObjectHandle == 0) || (*(int64_t *)(RegistrationObjectHandle + REGISTRATION_HANDLE_OFFSET) != ContextStackData)) {
+  
+  // 验证注册句柄
+  RegistrationHandle = *(int64_t *)(ContextStackPointer + 8);
+  if ((RegistrationHandle == 0) || (*(int64_t *)(RegistrationHandle + REGISTRATION_HANDLE_OFFSET) != ContextStackPointer)) {
     return ERROR_INVALID_OBJECT_HANDLE;
   }
-  RegistrationObjectData = *(int64_t *)(RegistrationObjectHandle + REGISTRATION_DATA_OFFSET);
-  if (RegistrationObjectHandle == 0) {
+  
+  // 获取注册数据
+  RegistrationData = *(int64_t *)(RegistrationHandle + REGISTRATION_DATA_OFFSET);
+  if (RegistrationHandle == 0) {
     return ERROR_INVALID_REGISTRATION_DATA;
   }
-  if (*(int *)(RegistrationObjectHandle + REGISTRATION_STATUS_OFFSET) == INVALID_REGISTRATION_STATUS) {
-    RegistrationValidationStatus = GetRegisteredObjectName(RegistrationObjectHandle, RegisteredObjectName);
-    if ((int)RegistrationValidationStatus != 0) {
-      return RegistrationValidationStatus;
+  
+  // 检查注册状态
+  if (*(int *)(RegistrationHandle + REGISTRATION_STATUS_OFFSET) == INVALID_REGISTRATION_STATUS) {
+    // 获取对象名称
+    ContextValidationResult = GetRegisteredObjectName(RegistrationHandle, ObjectName);
+    if ((int)ContextValidationResult != 0) {
+      return ContextValidationResult;
     }
-    ObjectRegistrationStatus = VerifyObjectRegistrationStatus(RegistrationObjectHandle);
-    if ((int)ObjectRegistrationStatus != 0) {
-      return ObjectRegistrationStatus;
+    
+    // 验证对象状态
+    ObjectStatusResult = VerifyObjectRegistrationStatus(RegistrationHandle);
+    if ((int)ObjectStatusResult != 0) {
+      return ObjectStatusResult;
     }
-    if ((char)RegistrationValidationStatus == (char)ObjectRegistrationStatus) {
-      if (RegisteredObjectName[0] == (char)ObjectRegistrationStatus) {
-        RegistrationArrayPointer = (int64_t *)(RegistrationObjectData + REGISTRATION_ARRAY_OFFSET);
-        CurrentArrayIndex = 0;
-        RegistrationArraySize = *(int *)(RegistrationObjectData + REGISTRATION_SIZE_OFFSET);
-        if (0 < RegistrationArraySize) {
-          ObjectRegistrationArray = (int64_t *)*RegistrationArrayPointer;
-          ObjectSearchIndex = CurrentArrayIndex;
+    
+    // 验证状态一致性
+    if ((char)ContextValidationResult == (char)ObjectStatusResult) {
+      if (ObjectName[0] == (char)ObjectStatusResult) {
+        // 搜索现有注册项
+        ArrayBasePointer = (int64_t *)(RegistrationData + REGISTRATION_ARRAY_OFFSET);
+        ArrayIterator = 0;
+        RegistrationArrayCurrentSize = *(int *)(RegistrationData + REGISTRATION_SIZE_OFFSET);
+        if (0 < RegistrationArrayCurrentSize) {
+          RegistrationEntryArray = (int64_t *)*ArrayBasePointer;
+          SearchIndex = ArrayIterator;
           do {
-            if (*ObjectRegistrationArray == RegistrationObjectHandle) {
-              if (-1 < (int)ObjectSearchIndex) {
+            if (*RegistrationEntryArray == RegistrationHandle) {
+              if (-1 < (int)SearchIndex) {
                 return 0;
               }
               break;
             }
-            ObjectSearchIndex = (uint64_t)((int)ObjectSearchIndex + 1);
-            CurrentArrayIndex = CurrentArrayIndex + 1;
-            ObjectRegistrationArray = ObjectRegistrationArray + 1;
-          } while ((int64_t)CurrentArrayIndex < (int64_t)RegistrationArraySize);
+            SearchIndex = (uint64_t)((int)SearchIndex + 1);
+            ArrayIterator = ArrayIterator + 1;
+            RegistrationEntryArray = RegistrationEntryArray + 1;
+          } while ((int64_t)ArrayIterator < (int64_t)RegistrationArrayCurrentSize);
         }
+        
+        // 检查是否需要扩容
         RegistrationCounter = RegistrationCounter + 1;
-        if (*(int *)(RegistrationObjectData + REGISTRATION_CAPACITY_OFFSET) < RegistrationCounter) {
-          NewSizeCalculation = (int)((float)*(int *)(RegistrationObjectData + REGISTRATION_CAPACITY_OFFSET) * REGISTRATION_ARRAY_GROWTH_FACTOR);
+        if (*(int *)(RegistrationData + REGISTRATION_CAPACITY_OFFSET) < RegistrationCounter) {
+          // 计算新的容量大小
+          CalculatedNewSize = (int)((float)*(int *)(RegistrationData + REGISTRATION_CAPACITY_OFFSET) * REGISTRATION_ARRAY_GROWTH_FACTOR);
           TargetSize = RegistrationCounter;
-          if (RegistrationCounter <= NewSizeCalculation) {
-            TargetSize = NewSizeCalculation;
+          if (RegistrationCounter <= CalculatedNewSize) {
+            TargetSize = CalculatedNewSize;
           }
           if (TargetSize < REGISTRATION_ARRAY_INITIAL_SIZE) {
-            NewSizeCalculation = REGISTRATION_ARRAY_INITIAL_SIZE;
+            CalculatedNewSize = REGISTRATION_ARRAY_INITIAL_SIZE;
           }
-          else if (NewSizeCalculation < RegistrationCounter) {
-            NewSizeCalculation = RegistrationCounter;
+          else if (CalculatedNewSize < RegistrationCounter) {
+            CalculatedNewSize = RegistrationCounter;
           }
-          RegistrationCounter = ResizeRegistrationArray(RegistrationArrayPointer,NewSizeCalculation);
+          
+          // 执行数组扩容
+          RegistrationCounter = ResizeRegistrationArray(ArrayBasePointer, CalculatedNewSize);
           if (RegistrationCounter != 0) {
             return 0;
           }
         }
-        *(int64_t *)(*RegistrationArrayPointer + (int64_t)*(int *)(RegistrationObjectData + REGISTRATION_SIZE_OFFSET) * 8) = registrationObjectHandle;
-        *(int *)(RegistrationObjectData + REGISTRATION_SIZE_OFFSET) = *(int *)(RegistrationObjectData + REGISTRATION_SIZE_OFFSET) + 1;
-        *(int *)(RegistrationObjectData + REGISTRATION_COUNT_OFFSET) = *(int *)(RegistrationObjectData + REGISTRATION_COUNT_OFFSET) + 1;
+        
+        // 添加新的注册项
+        *(int64_t *)(*ArrayBasePointer + (int64_t)*(int *)(RegistrationData + REGISTRATION_SIZE_OFFSET) * 8) = RegistrationHandle;
+        *(int *)(RegistrationData + REGISTRATION_SIZE_OFFSET) = *(int *)(RegistrationData + REGISTRATION_SIZE_OFFSET) + 1;
+        *(int *)(RegistrationData + REGISTRATION_COUNT_OFFSET) = *(int *)(RegistrationData + REGISTRATION_COUNT_OFFSET) + 1;
       }
       else {
-        RegistrationStatus = ValidateObjectRegistrationData(RegistrationObjectData + REGISTRATION_VALIDATION_DATA_OFFSET,registrationObjectHandle);
-        if ((int)RegistrationStatus != 0) {
-          return RegistrationStatus;
+        // 验证对象注册数据
+        uint8_t DataValidationResult = ValidateObjectRegistrationData(RegistrationData + REGISTRATION_VALIDATION_DATA_OFFSET, RegistrationHandle);
+        if ((int)DataValidationResult != 0) {
+          return DataValidationResult;
         }
       }
     }
