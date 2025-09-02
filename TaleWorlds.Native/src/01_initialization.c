@@ -33400,7 +33400,7 @@ void InitializeSystemResourceManager(long long *resourcePointer)
     localMemoryPointer2 = lStack_310;
     lStack_368 = localAllocationFlags;
     do {
-      PrimaryResourcePointer5 = (long long *)FUN_180058080(localAllocationFlags,&puStack_2a0,pppppppointerToUnsigned14 + 4);
+      PrimaryResourcePointer5 = (long long *)FindSystemResourceNode(localAllocationFlags,&puStack_2a0,pppppppointerToUnsigned14 + 4);
       if (*PrimaryResourcePointer5 != localAllocationFlags) {
         bVar26 = false;
         unsignedSystemValue23 = 0;
@@ -34137,7 +34137,7 @@ void ProcessSystemConfiguration(long long *SystemResourcePointer,void* Configura
   localResourceOffset = SystemResourcePointer[1];
   localBufferAddress = *SystemResourcePointer;
 LAB_180059885:
-  localResourceOffset = FUN_180059780(localBufferAddress,localResourceOffset,localSystemHandle);
+  localResourceOffset = CopySystemResourceDataExtended(localBufferAddress,localResourceOffset,localSystemHandle);
   CreateSystemObject(localResourceOffset,ConfigurationDataPointer);
   pointerToUnsigned1 = (void* *)SystemResourcePointer[1];
   punsignedSystemValue5 = (void* *)*SystemResourcePointer;
@@ -35281,7 +35281,7 @@ void CreateAndInitializeSystemThread(void* SystemResourcePointer,void* Configura
   *(uint32_t *)(pointerToUnsigned2 + 1) = 0x69666e6f;
   *(void*2 *)((long long)pointerToUnsigned2 + 0xc) = 0x67;
   uStack_40 = 0xd;
-  FUN_1800ae520(SystemResourcePointer,&memoryAllocationEnd);
+  ManageSystemResource(SystemResourcePointer,&memoryAllocationEnd);
   memoryAllocationEnd = &SystemGlobalDataReference;
                     // WARNING: Subroutine does not return
   SystemCleanupFunction(pointerToUnsigned2);
@@ -35329,8 +35329,8 @@ void ProcessAndCleanupBatchSystemResources(void* *SystemResourcePointer,void* Co
 
 {
   *SystemResourcePointer = &SystemConfigDataTemplateA;
-  FUN_18005ab50(SystemResourcePointer + 0x143);
-  FUN_18005ab50(SystemResourcePointer + 0x134);
+  InitializeSystemResourceA(SystemResourcePointer + 0x143);
+  InitializeSystemResourceA(SystemResourcePointer + 0x134);
   ExecuteSystemResourceOperation(SystemResourcePointer + 0x126);
   ExecuteSystemResourceOperation(SystemResourcePointer + 0x118);
   ExecuteSystemResourceOperation(SystemResourcePointer + 0x10a);
@@ -35512,7 +35512,7 @@ void InitializeSystemResourceB(void* SystemResourcePointer,void* ConfigurationDa
   *(void*2 *)(pointerToUnsigned2 + 4) = 0x6769;
   *(uint8_t *)((long long)pointerToUnsigned2 + 0x12) = 0;
   uStack_40 = 0x12;
-  FUN_1800ae520(SystemResourcePointer,&memoryAllocationEnd);
+  ManageSystemResource(SystemResourcePointer,&memoryAllocationEnd);
   memoryAllocationEnd = &SystemGlobalDataReference;
                     // WARNING: Subroutine does not return
   SystemCleanupFunction(pointerToUnsigned2);
@@ -35535,7 +35535,7 @@ void InitializeSystemResourceB(void* SystemResourcePointer,void* ConfigurationDa
 void* ManageSystemResource(void* systemResourcePointer, unsigned long long configurationDataPointer)
 
 {
-  FUN_18005b560();
+  CleanupSystemResource();
   if ((ConfigurationDataPointer & 1) != 0) {
     free(SystemResourcePointer,0x13c0);
   }
@@ -35877,7 +35877,7 @@ void InitializeSystemThread(void* SystemResourcePointer,void* ConfigurationDataP
   threadConfiguration = 0xb;
   
   // 调用系统线程处理函数
-  FUN_1800ae520(SystemResourcePointer, &memoryAllocationEnd);
+  ManageSystemResource(SystemResourcePointer, &memoryAllocationEnd);
   memoryAllocationEnd = &SystemGlobalDataReference;
   
   // WARNING: Subroutine does not return
@@ -36115,7 +36115,7 @@ long long ReleaseSystemResourceConfiguration(long long SystemResourcePointer,uin
   if (*(code **)(SystemResourcePointer + 0xd0) != (code *)0x0) {
     (**(code **)(SystemResourcePointer + 0xd0))(SystemResourcePointer + 0xc0,0,0,ConfigurationFlag,0xfffffffffffffffe);
   }
-  FUN_180049470(SystemResourcePointer);
+  ReleaseSystemResources(SystemResourcePointer);
   if ((ConfigurationDataPointer & 1) != 0) {
     free(SystemResourcePointer,0xe8);
   }
@@ -36305,7 +36305,7 @@ void ProcessSystemResourceData(long long *SystemResourcePointer)
       pcStack_e0 = (code *)SystemResourcePointer[3];
       pcStack_e8 = pcVar6;
     }
-    plocalSystemPointer = (long long *)FUN_18005c590(unsignedSystemValue4,alStack_f8,alStack_b8);
+    plocalSystemPointer = (long long *)ProcessSystemResourceData(unsignedSystemValue4,alStack_f8,alStack_b8);
     plStack_c8 = plocalSystemPointer;
     if (plocalSystemPointer != (long long *)0x0) {
       (**(code **)(*plocalSystemPointer + 0x28))(plocalSystemPointer);
@@ -36317,7 +36317,7 @@ void ProcessSystemResourceData(long long *SystemResourcePointer)
       (**(code **)(*plocalSystemPointer + 0x28))(plocalSystemPointer);
     }
     SetupMemoryAllocationContext(localSystemHandle,&plStack_108);
-    FUN_180046190(alStack_b8);
+    ConfigureSystemResources(alStack_b8);
     if (plocalSystemPointer != (long long *)0x0) {
       (**(code **)(*plocalSystemPointer + 0x38))(plocalSystemPointer);
     }
@@ -36604,7 +36604,7 @@ void ConfigureSystemResourceAllocation(void* **ResourcePointer,void* Configurati
   allocationResult = 0;
   systemDataManagerPointer = (void* **)(SystemDataManagerPointer + 0x70);
   resourceReference = ResourcePointer;
-  FUN_180058080(systemDataManagerPointer,&resourceReference,ConfigurationDataPointer,ConfigurationFlag,0,0xfffffffffffffffe);
+  FindSystemResourceNode(systemDataManagerPointer,&resourceReference,ConfigurationDataPointer,ConfigurationFlag,0,0xfffffffffffffffe);
   if (resourceReference != systemDataManagerPointer) {
     ProcessDataManager(resourceReference + 8,AdditionalParameter);
     return;
@@ -37546,9 +37546,9 @@ uint8_t * FUN_18005d660(uint8_t *SystemResourcePointer)
   *(void* *)(SystemResourcePointer + 0x68) = unsignedSystemValue1;
   unsignedSystemValue1 = CreateSemaphoreW(0,0,0x7fffffff,0);
   *(void* *)(SystemResourcePointer + 0x70) = unsignedSystemValue1;
-  FUN_18005e950(SystemResourcePointer + 0x78);
-  FUN_18005e950(SystemResourcePointer + 0x2e0);
-  FUN_18005e950(SystemResourcePointer + 0x548);
+  CloseSystemHandle(SystemResourcePointer + 0x78);
+  CloseSystemHandle(SystemResourcePointer + 0x2e0);
+  CloseSystemHandle(SystemResourcePointer + 0x548);
   *(uint32_t *)(SystemResourcePointer + 0x7b0) = 0;
   *(uint32_t *)(SystemResourcePointer + 0x7b4) = 0x1000;
   *SystemResourcePointer = 0;
@@ -37681,9 +37681,9 @@ void InitializeSystemLogger(long long SystemResourcePointer,void* ConfigurationD
       localSystemPointer = *plocalResourceOffset;
     } while ((ulong long)(long long)systemFlag < (ulong long)(*(long long *)(SystemResourcePointer + 0x50) - localSystemPointer >> 3));
   }
-  FUN_180059ee0(SystemResourcePointer + 0x548);
-  FUN_180059ee0(SystemResourcePointer + 0x2e0);
-  FUN_180059ee0(SystemResourcePointer + 0x78);
+  SuspendSystemThreads(SystemResourcePointer + 0x548);
+  SuspendSystemThreads(SystemResourcePointer + 0x2e0);
+  SuspendSystemThreads(SystemResourcePointer + 0x78);
   CloseHandle(*(void* *)(SystemResourcePointer + 0x70));
   CloseHandle(*(void* *)(SystemResourcePointer + 0x68));
   if (*plocalResourceOffset != 0) {
@@ -42947,7 +42947,7 @@ LAB_180064eed:
       localMemoryPointer1 = localMemoryPointer1 * 2;
       if (localMemoryPointer1 != 0) goto LAB_180064eed;
     }
-    dataBufferContext = (void* *)FUN_180059780(localMemoryPointer2,punsignedSystemValue4,localAllocationFlags);
+    dataBufferContext = (void* *)CopySystemResourceDataExtended(localMemoryPointer2,punsignedSystemValue4,localAllocationFlags);
     *dataBufferContext = &SystemMemoryAllocatorReference;
     dataBufferContext[1] = 0;
     *(uint32_t *)(dataBufferContext + 2) = 0;
@@ -44192,7 +44192,7 @@ void FUN_180066df0(long long *SystemResourcePointer,long long ConfigurationDataP
   punsignedSystemValue4 = (void* *)SystemResourcePointer[1];
   localResourceOffset = *SystemResourcePointer;
 LAB_180066ec4:
-  pointerToUnsigned2 = (void* *)FUN_180059780(localResourceOffset,punsignedSystemValue4,localMemoryPointer);
+  pointerToUnsigned2 = (void* *)CopySystemResourceDataExtended(localResourceOffset,punsignedSystemValue4,localMemoryPointer);
   *pointerToUnsigned2 = &SystemMemoryAllocatorReference;
   pointerToUnsigned2[1] = 0;
   *(uint32_t *)(pointerToUnsigned2 + 2) = 0;
@@ -46279,7 +46279,7 @@ void* * FUN_18006a090(void* *SystemResourcePointer,ulong long ConfigurationDataP
   SystemResourcePointer[0x19] = 0;
   *(uint32_t *)(SystemResourcePointer + 0x1b) = 0;
   SystemResourcePointer[0x18] = &SystemMemoryAllocatorReference;
-  FUN_180049470(SystemResourcePointer);
+  ReleaseSystemResources(SystemResourcePointer);
   if ((ConfigurationDataPointer & 1) != 0) {
     free(SystemResourcePointer,0xe8);
   }
@@ -46579,7 +46579,7 @@ long long CleanupSystemResourceHandle(long long SystemResourcePointer,uint Confi
   if (*(code **)(SystemResourcePointer + 0xd0) != (code *)0x0) {
     (**(code **)(SystemResourcePointer + 0xd0))(SystemResourcePointer + 0xc0,0,0,ConfigurationFlag,0xfffffffffffffffe);
   }
-  FUN_180049470(SystemResourcePointer);
+  ReleaseSystemResources(SystemResourcePointer);
   if ((ConfigurationDataPointer & 1) != 0) {
     free(SystemResourcePointer,0xe0);
   }
@@ -46989,7 +46989,7 @@ void ConfigureSystemBuffer(void* *SystemResourcePointer)
   FUN_18006cb90();
   _Mtx_destroy_in_situ();
   _Cnd_destroy_in_situ();
-  FUN_180059ee0(SystemResourcePointer + 2);
+  SuspendSystemThreads(SystemResourcePointer + 2);
   if ((long long *)SystemResourcePointer[1] != (long long *)0x0) {
     (**(code **)(*(long long *)SystemResourcePointer[1] + 0x38))();
   }
@@ -48668,7 +48668,7 @@ long long FUN_18006e0b0(long long SystemResourcePointer,ulong long Configuration
   _Mtx_destroy_in_situ();
   _Cnd_destroy_in_situ();
   FUN_18006e4a0(SystemResourcePointer + 200);
-  FUN_180049470(SystemResourcePointer);
+  ReleaseSystemResources(SystemResourcePointer);
   if ((ConfigurationDataPointer & 1) != 0) {
     free(SystemResourcePointer,0x408);
   }
