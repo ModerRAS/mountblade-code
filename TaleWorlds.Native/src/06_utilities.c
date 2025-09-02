@@ -4831,13 +4831,13 @@ void InitializeSystemResources(void)
  * @note 此函数在对象操作前调用，确保对象句柄的有效性
  * @warning 验证失败时会触发系统退出操作
  */
-uint8_t ValidateObjectHandle(int64_t objectHandleToValidate)
+uint8_t ValidateObjectHandle(int64_t ObjectHandleToValidate)
 
 {
   uint8_t ContextValidationStatusCode;
   int64_t HandleMemoryBuffer;
   
-  ContextValidationStatusCode = ValidateObjectContext(*(uint32_t *)(objectHandleToValidate + ObjectHandleMemoryOffset), &HandleMemoryBuffer);
+  ContextValidationStatusCode = ValidateObjectContext(*(uint32_t *)(ObjectHandleToValidate + ObjectHandleMemoryOffset), &HandleMemoryBuffer);
   if ((int)ContextValidationStatusCode != 0) {
     return ContextValidationStatusCode;
   }
@@ -4919,15 +4919,15 @@ void CleanupSystemResources(void)
  * 该函数验证对象句柄的有效性，并执行相应的资源管理操作
  * 这是validateObjectHandle函数的另一个版本
  */
-uint8_t ValidateAndProcessObjectHandle(int64_t objectHandleToValidate)
+uint8_t ValidateAndProcessObjectHandle(int64_t ObjectHandleToValidate)
 
 {
-  uint8_t validationStatusCode;
+  uint8_t ValidationStatusCode;
   int64_t HandleMemoryBuffer;
   
-  validationStatusCode = ValidateObjectContext(*(uint32_t *)(objectHandleToValidate + ObjectContextValidationOffset), &HandleMemoryBuffer);
-  if ((int)validationStatusCode != 0) {
-    return validationStatusCode;
+  ValidationStatusCode = ValidateObjectContext(*(uint32_t *)(ObjectHandleToValidate + ObjectContextValidationOffset), &HandleMemoryBuffer);
+  if ((int)ValidationStatusCode != 0) {
+    return ValidationStatusCode;
   }
   if (HandleMemoryBuffer == 0) {
     HandleMemoryBuffer = 0;
@@ -4953,14 +4953,14 @@ uint8_t ValidateAndProcessObjectHandle(int64_t objectHandleToValidate)
 uint32_t ValidateObjectHandleFromRegisterAlternative(void)
 
 {
-  int64_t registerContext;
+  int64_t RegisterContext;
   int64_t memoryPointer;
   
-  if (registerContext == 0) {
+  if (RegisterContext == 0) {
     memoryPointer = 0;
   }
   else {
-    memoryPointer = registerContext + -8;
+    memoryPointer = RegisterContext + -8;
   }
   if (*(int64_t *)(memoryPointer + HandleMemoryBufferHeaderOffset) == 0) {
     return ErrorInvalidObjectHandle;
@@ -50019,7 +50019,7 @@ void CleanupResourceHashValidationStatusCodes(uint8_t ObjectContext, int64_t Val
 {
   uint8_t *resourceHashPointer;
   int64_t *resourceTablePointerPointer;
-  uint8_t *validationStatusCodeAddress;
+  uint8_t *ValidationStatusCodeAddress;
   uint8_t *resourceHashAddress;
   uint8_t cleanupLoopCondition;
   int64_t cleanupLoopIncrement;
@@ -50027,8 +50027,8 @@ void CleanupResourceHashValidationStatusCodes(uint8_t ObjectContext, int64_t Val
   resourceTablePointerPointer = *(int64_t **)(ValidationContext + 0x2e8);
   cleanupLoopIncrement = 0xfffffffffffffffe;
   resourceHashPointer = (uint8_t *)resourceTablePointerPointer[1];
-  for (validationStatusCodeAddress = (uint8_t *)*resourceTablePointerPointer; validationStatusCodeAddress != resourceHashAddress; validationStatusCodeAddress = validationStatusCodeAddress + 4) {
-    (**(code **)*validationStatusCodeAddress)(validationStatusCodeAddress, 0, CleanupOption, CleanupFlag, cleanupLoopIncrement);
+  for (ValidationStatusCodeAddress = (uint8_t *)*resourceTablePointerPointer; ValidationStatusCodeAddress != resourceHashAddress; ValidationStatusCodeAddress = ValidationStatusCodeAddress + 4) {
+    (**(code **)*ValidationStatusCodeAddress)(ValidationStatusCodeAddress, 0, CleanupOption, CleanupFlag, cleanupLoopIncrement);
   }
   if (*resourceTablePointerPointer == 0) {
     return;

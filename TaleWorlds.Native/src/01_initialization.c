@@ -56949,7 +56949,7 @@ float * ProcessSystemResourceManagerFloat(float *SystemResourceManager)
   float fStack_a4;
   float fStack_a0;
   uint32_t StackUnsignedValue9C;
-  float *pfStack_98;
+  float *SystemFloatPointer;
   uint32_t SystemConfigurationValue;
   long long SystemConfigurationData;
   void* SystemUnsignedFlag78;
@@ -56986,8 +56986,8 @@ float * ProcessSystemResourceManagerFloat(float *SystemResourceManager)
     SystemResourceManager[0xa7] = 0.0;
     SystemResourceManager[0xa8] = 3.4028235e+38;
     SystemConfigurationValue = 0;
-    pfStack_98 = pfloatValue6;
-    ProcessFloatValue(&pfStack_98);
+    SystemFloatPointer = pfloatValue6;
+    ProcessFloatValue(&SystemFloatPointer);
     if (*(int *)(SystemConfigurationData + 0x10) != 0) {
       do {
         pfloatValue6 = (float *)((long long)(int)ThreadContextFlag * 0x10 + *(long long *)(SystemConfigurationData + 0x18));
@@ -57064,7 +57064,7 @@ float * ProcessSystemResourceManagerFloat(float *SystemResourceManager)
         pfloatValue6 = (float *)ProcessRenderObjectStateAllocation(primaryFloatPointer,primaryFloatPointer,&SystemUnsignedFlag78);
       }
     }
-    pfloatValue4 = pfStack_98;
+    pfloatValue4 = SystemFloatPointer;
     if (SystemResourceManager[0xa1] < *primaryFloatPointer) {
       SystemResourceManager[0xa9] = 0.0;
       primaryFloatPointer[0] = 0.0;
@@ -57104,7 +57104,7 @@ float * ProcessSystemResourceManagerFloat(float *SystemResourceManager)
       }
       SystemResourceManager[0xa9] = SQRT(ScalingFactor);
     }
-    if (pfStack_98 != (float *)0x0) {
+    if (SystemFloatPointer != (float *)0x0) {
       while( true ) {
         LOCK();
         systemStatusFlag = *(char *)(pfloatValue4 + 0x3b);
@@ -57128,8 +57128,8 @@ LAB_180075f4f:
       *primaryFloatPointer = (float)((int)*primaryFloatPointer + -1);
       UNLOCK();
       if (systemStatusFlag == '\0') {
-        if ((((ScalingFactor == 1.4013e-45) && (*(long long *)(pfStack_98 + 0x84) != 0)) &&
-            (pfloatValue6 = pfStack_98, ValidateSystemString(pfStack_98), *(char *)(pfloatValue6 + 0x3f) == '\0')) &&
+        if ((((ScalingFactor == 1.4013e-45) && (*(long long *)(SystemFloatPointer + 0x84) != 0)) &&
+            (pfloatValue6 = SystemFloatPointer, ValidateSystemString(SystemFloatPointer), *(char *)(pfloatValue6 + 0x3f) == '\0')) &&
            ((*(char *)(pfloatValue6 + 0x3d) == '\0' &&
             (((*(byte *)((long long)pfloatValue6 + 0xfd) & 0x20) == 0 ||
              ((*(byte *)((long long)pfloatValue6 + 0xfe) & 1) == 0)))))) {
@@ -57184,7 +57184,7 @@ void InitializeSystemResourceManagerExtended(long long* SystemResourceManager)
   long long *plStack_120;
   long long *pStackValue3;
   uint32_t UnsignedStackFlag110;
-  long long lStack_108;
+  long long LocalSystemAddress;
   void* EncryptionOffset2;
   void* MemoryBufferAddress;
   uint8_t SystemResourceDataIndex;
@@ -57273,13 +57273,13 @@ void InitializeSystemResourceManagerExtended(long long* SystemResourceManager)
         UnsignedStackFlag110 = 0;
         pStackValue3 = resourcePoolPointer;
         InitializeSystemStackContext(&pStackValue3);
-        localDataIndex = lStack_108 + 0xb0;
-        SystemOperationStatus = *(ushort *)(lStack_108 + 0xc0);
-        floatValue8 = *(float *)(*(long long *)(lStack_108 + 0xb8) + -4 + (ulong long)SystemOperationStatus * 4);
+        localDataIndex = LocalSystemAddress + 0xb0;
+        SystemOperationStatus = *(ushort *)(LocalSystemAddress + 0xc0);
+        floatValue8 = *(float *)(*(long long *)(LocalSystemAddress + 0xb8) + -4 + (ulong long)SystemOperationStatus * 4);
         ScaleValue = *(float *)((long long)SystemResourceManager + 0x2dc);
         if (floatValue8 < *(float *)((long long)SystemResourceManager + 0x2dc)) {
           *(float *)((long long)SystemResourceManager + 0x2dc) = floatValue8;
-          SystemOperationStatus = *(ushort *)(lStack_108 + 0xc0);
+          SystemOperationStatus = *(ushort *)(LocalSystemAddress + 0xc0);
           ScaleValue = floatValue8;
         }
         resourceAllocationContext = (uint)SystemOperationStatus;
@@ -57293,16 +57293,16 @@ void InitializeSystemResourceManagerExtended(long long* SystemResourceManager)
           if (0 < (int)(resourceAllocationContext - 2)) {
             do {
               systemIndex = systemValue + CalculationFlags >> 1;
-              if (*(float *)(*(long long *)(lStack_108 + 0xb8) + (long long)systemIndex * 4) <= ScaleValue) {
+              if (*(float *)(*(long long *)(LocalSystemAddress + 0xb8) + (long long)systemIndex * 4) <= ScaleValue) {
                 CalculationFlags = systemIndex;
                 systemIndex = systemValue;
               }
               systemValue = systemIndex;
             } while (CalculationFlags < systemValue + -1);
           }
-          floatValue8 = *(float *)(*(long long *)(lStack_108 + 0xb8) + (long long)CalculationFlags * 4);
+          floatValue8 = *(float *)(*(long long *)(LocalSystemAddress + 0xb8) + (long long)CalculationFlags * 4);
           floatValue8 = (ScaleValue - floatValue8) /
-                  (*(float *)(*(long long *)(lStack_108 + 0xb8) + (long long)systemValue * 4) - floatValue8);
+                  (*(float *)(*(long long *)(LocalSystemAddress + 0xb8) + (long long)systemValue * 4) - floatValue8);
           if (0.0 <= floatValue8) {
             if (1.0 <= floatValue8) {
               floatValue8 = 1.0;
@@ -63028,7 +63028,7 @@ float * ProcessSystemFloatData(float *SystemResourceManager)
   float fStack_a4;
   float fStack_a0;
   uint32_t StackUnsignedValue9C;
-  float *pfStack_98;
+  float *SystemFloatPointer;
   uint32_t SystemConfigurationValue;
   long long SystemConfigurationData;
   void* UnsignedStackFlag80;
@@ -63094,8 +63094,8 @@ float * ProcessSystemFloatData(float *SystemResourceManager)
     SystemResourceManager[0xa7] = 0.0;
     SystemResourceManager[0xa8] = 3.4028235e+38;
     SystemConfigurationValue = 0;
-    pfStack_98 = pfloatValue7;
-    InitializeSystemContext(&pfStack_98);
+    SystemFloatPointer = pfloatValue7;
+    InitializeSystemContext(&SystemFloatPointer);
     if (*(int *)(SystemConfigurationData + 0x10) != 0) {
       do {
         pfloatValue7 = (float *)((long long)(int)OperationCode * 0x10 + *(long long *)(SystemConfigurationData + 0x18));
@@ -63169,7 +63169,7 @@ float * ProcessSystemFloatData(float *SystemResourceManager)
         pfloatValue7 = (float *)ProcessRenderObjectStateAllocation(primaryFloatPointer,primaryFloatPointer,&SystemUnsignedFlag78);
       }
     }
-    pfloatValue4 = pfStack_98;
+    pfloatValue4 = SystemFloatPointer;
     if (SystemResourceManager[0xa1] < *primaryFloatPointer) {
       SystemResourceManager[0xa9] = 0.0;
       primaryFloatPointer[0] = 0.0;
@@ -63209,7 +63209,7 @@ float * ProcessSystemFloatData(float *SystemResourceManager)
       }
       SystemResourceManager[0xa9] = SQRT(floatValue6);
     }
-    if (pfStack_98 != (float *)0x0) {
+    if (SystemFloatPointer != (float *)0x0) {
       while( true ) {
         LOCK();
         systemStatusFlag = *(char *)(pfloatValue4 + 0x3b);
@@ -63233,8 +63233,8 @@ LAB_180075f4f:
       *primaryFloatPointer = (float)((int)*primaryFloatPointer + -1);
       UNLOCK();
       if (systemStatusFlag == '\0') {
-        if ((((floatValue6 == 1.4013e-45) && (*(long long *)(pfStack_98 + 0x84) != 0)) &&
-            (pfloatValue7 = pfStack_98, ValidateSystemString(pfStack_98), *(char *)(pfloatValue7 + 0x3f) == '\0')) &&
+        if ((((floatValue6 == 1.4013e-45) && (*(long long *)(SystemFloatPointer + 0x84) != 0)) &&
+            (pfloatValue7 = SystemFloatPointer, ValidateSystemString(SystemFloatPointer), *(char *)(pfloatValue7 + 0x3f) == '\0')) &&
            ((*(char *)(pfloatValue7 + 0x3d) == '\0' &&
             (((*(byte *)((long long)pfloatValue7 + 0xfd) & 0x20) == 0 ||
              ((*(byte *)((long long)pfloatValue7 + 0xfe) & 1) == 0)))))) {
