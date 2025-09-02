@@ -65009,7 +65009,13 @@ void Unwind_ResourceHashCleanupHandler2(uint8_t ObjectContext,int64_t Validation
 
 
 
-void Unwind_180908a80(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 资源哈希清理处理器3
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @remark 原始函数名：Unwind_180908a80
+ */
+void Unwind_ResourceHashCleanupHandler3(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int *ResourceIndexPointer;
@@ -65017,7 +65023,7 @@ void Unwind_180908a80(uint8_t ObjectContext,int64_t ValidationContext)
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
   
-  ValidationResultPointer = *(uint8_t **)(ValidationContext + 0x120);
+  ResourceHashValidationResultPointer = *(uint8_t **)(ValidationContext + 0x120);
   if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
@@ -65045,7 +65051,13 @@ void Unwind_180908a80(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180908a90(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 资源哈希清理处理器4
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @remark 原始函数名：Unwind_180908a90
+ */
+void Unwind_ResourceHashCleanupHandler4(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int *ResourceIndexPointer;
@@ -65053,7 +65065,7 @@ void Unwind_180908a90(uint8_t ObjectContext,int64_t ValidationContext)
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
   
-  ValidationResultPointer = *(uint8_t **)(ValidationContext + 0x68);
+  ResourceHashValidationResultPointer = *(uint8_t **)(ValidationContext + 0x68);
   if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
@@ -65081,7 +65093,13 @@ void Unwind_180908a90(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180908aa0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 系统内存释放处理器1
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @remark 原始函数名：Unwind_180908aa0
+ */
+void Unwind_SystemMemoryReleaseHandler1(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   ReleaseSystemMemory(ValidationContext + 0x170);
@@ -65090,7 +65108,13 @@ void Unwind_180908aa0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180908ab0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 资源哈希清理处理器5
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @remark 原始函数名：Unwind_180908ab0
+ */
+void Unwind_ResourceHashCleanupHandler5(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int *ResourceIndexPointer;
@@ -65098,7 +65122,7 @@ void Unwind_180908ab0(uint8_t ObjectContext,int64_t ValidationContext)
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
   
-  ValidationResultPointer = *(uint8_t **)(*(int64_t *)(ValidationContext + 0x60) + 0x48);
+  ResourceHashValidationResultPointer = *(uint8_t **)(*(int64_t *)(ValidationContext + 0x60) + 0x48);
   if (ResourceHashValidationResultPointer == (uint8_t *)0x0) {
     return;
   }
