@@ -10224,7 +10224,7 @@ void InitializeSystemStringProcessorA(void)
   SystemProcessingBuffer[0] = 0;
   SystemConfigurationValue = 0x15;
   strcpy_s(SystemProcessingBuffer,0x80,&SystemMemoryStringTemplate,SystemRegisterValue,0xfffffffffffffffe);
-  SystemMemoryAllocationTableEntry007 = SystemMemoryAllocationFunction(&SystemParameterPointerA);
+  SystemMemoryAllocationTableEntrySeptenary = SystemMemoryAllocationFunction(&SystemParameterPointerA);
   return;
 }
 
@@ -35070,21 +35070,21 @@ void InitializeAndCleanupSystemResource(void* *systemResourceManager)
   systemResourceManager[8] = 0x20;
   systemResourceManager[9] = systemThreadContext;
   do {
-    *(uint32_t *)SystemThreadContext = 0;
-    SystemThreadContext = SystemThreadContext + 2;
-    SystemMemoryAddress = SystemMemoryAddress + -1;
-  } while (SystemMemoryAddress != 0);
-  SystemResourceManager[10] = 0;
-  SystemResourceManager[6] = SystemResourceManager + 8;
-  SystemResourceManager[4] = 0x15;
-  SystemThreadFlags = InitializeSystemThreadStructure();
-  SystemResourceManager[3] = SystemThreadFlags;
-  if (SystemThreadFlags == 0) {
-    SystemResourceManager[4] = 0;
-    SystemOperationStatus = resourceAllocationContext;
+    *(uint32_t *)systemThreadContext = 0;
+    systemThreadContext = systemThreadContext + 2;
+    systemMemoryAddress = systemMemoryAddress + -1;
+  } while (systemMemoryAddress != 0);
+  systemResourceManager[10] = 0;
+  systemResourceManager[6] = systemResourceManager + 8;
+  systemResourceManager[4] = 0x15;
+  systemThreadFlags = InitializeSystemThreadStructure();
+  systemResourceManager[3] = systemThreadFlags;
+  if (systemThreadFlags == 0) {
+    systemResourceManager[4] = 0;
+    systemOperationStatus = resourceAllocationContext;
   }
   else {
-    SystemOperationStatus = SystemResourceManager[4];
+    systemOperationStatus = systemResourceManager[4];
   }
   resourceAddress = resourceAllocationContext;
   if (SystemOperationStatus != 0) {

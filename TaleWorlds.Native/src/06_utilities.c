@@ -11373,29 +11373,29 @@ uint ValidateAndProcessDataContainer(int64_t *DataContainerPointer)
   uint ResourceChecksumHash;
   uint SystemOperationStatusCode;
   
-  ContainerStatus = *(uint *)((int64_t)DataContainerPointer + 0xc);
-  SystemOperationResult = ResourceValidationHash ^ (int)ResourceValidationHash >> ErrorResourceValidationFailed;
-  if ((int)(ResourceValidationHash - ((int)ResourceValidationHash >> ErrorResourceValidationFailed)) < 0) {
+  ContainerValidationStatus = *(uint *)((int64_t)DataContainerPointer + 0xc);
+  SystemOperationStatusCode = ResourceChecksumHash ^ (int)ResourceChecksumHash >> ErrorResourceValidationFailed;
+  if ((int)(ResourceChecksumHash - ((int)ResourceChecksumHash >> ErrorResourceValidationFailed)) < 0) {
     if (0 < (int)DataContainerPointer[1]) {
-      return ResourceValidationHash;
+      return ResourceChecksumHash;
     }
-    if ((0 < (int)ResourceValidationHash) && (*DataContainerPointer != 0)) {
+    if ((0 < (int)ResourceChecksumHash) && (*DataContainerPointer != 0)) {
             ProcessResourceAllocation(*(uint8_t *)(SystemContext + SystemContextAllocationOffset),*DataContainerPointer,&ResourceAllocationTemplate,0x100,1);
     }
     *DataContainerPointer = 0;
-    ContainerStatus = 0;
+    ContainerValidationStatus = 0;
     *(uint32_t *)((int64_t)DataContainerPointer + 0xc) = 0;
   }
-  int SystemResourceIndex = (int)DataContainerPointer[1];
+  int ResourcePoolIndex = (int)DataContainerPointer[1];
   if (SystemResourceIndex < 0) {
     if (SystemResourceIndex < 0) {
             memset(*DataContainerPointer + (int64_t)SystemResourceIndex * 0xc,0,(uint64_t)(uint)-SystemResourceIndex * 0xc);
     }
   }
   *(uint32_t *)(DataContainerPointer + 1) = 0;
-  ContainerStatus = (ResourceValidationHash ^ (int)ResourceValidationHash >> ErrorResourceValidationFailed) - ((int)ResourceValidationHash >> ErrorResourceValidationFailed);
-  if ((int)ResourceValidationHash < 1) {
-    return ResourceValidationHash;
+  ContainerValidationStatus = (ResourceChecksumHash ^ (int)ResourceChecksumHash >> ErrorResourceValidationFailed) - ((int)ResourceChecksumHash >> ErrorResourceValidationFailed);
+  if ((int)ResourceChecksumHash < 1) {
+    return ResourceChecksumHash;
   }
   if (0 < (int)DataContainerPointer[1]) {
     return ErrorInvalidObjectHandle;
