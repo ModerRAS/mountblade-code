@@ -50547,49 +50547,63 @@ void FinalizeSystemMemorySetup(void* ResourceManagerPointer,void* ConfigurationD
 
 
 // 函数: void FUN_18006edf0(void* ResourceManagerPointer,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
-void FUN_18006edf0(void* ResourceManagerPointer,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
+/**
+ * @brief 初始化系统资源管理器
+ * 
+ * 该函数负责初始化系统资源管理器，包括创建线程对象、
+ * 设置资源参数和配置系统状态
+ * 
+ * @param ResourceManagerPointer 资源管理器指针
+ * @param ConfigurationDataPointer 配置数据指针
+ * @param AdditionalParameter 额外参数
+ * @param ConfigurationFlag 配置标志
+ * @return 无返回值
+ * 
+ * 原始函数名为FUN_18006edf0，现已重命名为InitializeSystemResourceManagerEx
+ */
+void InitializeSystemResourceManagerEx(void* ResourceManagerPointer,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
 {
-  long long nextDataIndex;
-  int systemResult;
-  long long localResourceOffset;
-  int systemIndex;
-  long long *plocalSystemPointer;
-  long long localSystemFlags;
-  void* unsignedSystemValue7;
-  uint32_t uStack_1c;
-  uint32_t uStack_18;
-  uint32_t uStack_14;
-  uint7 uStack_f;
+  long long DataIndex;
+  int SystemOperationResult;
+  long long ResourceOffset;
+  int SystemIndex;
+  long long *SystemPointer;
+  long long SystemFlags;
+  void* SystemValue;
+  uint32_t StackParameter1;
+  uint32_t StackParameter2;
+  uint32_t StackParameter3;
+  uint7 StackParameter4;
   
-  localResourceOffset = SystemInitializationFlag;
-  unsignedSystemValue7 = 0xfffffffffffffffe;
+  ResourceOffset = SystemInitializationFlag;
+  SystemValue = 0xfffffffffffffffe;
   if (SystemInitializationFlag != 0) {
-    localSystemFlags = SystemInitializationFlag + 0xf0;
-    nextDataIndex = SystemInitializationFlag + 0x110;
-    systemIndex = _Mtx_lock(nextDataIndex);
-    if (systemIndex != 0) {
-      __Throw_C_error_std__YAXH_Z(systemIndex);
+    SystemFlags = SystemInitializationFlag + 0xf0;
+    DataIndex = SystemInitializationFlag + 0x110;
+    SystemIndex = _Mtx_lock(DataIndex);
+    if (SystemIndex != 0) {
+      __Throw_C_error_std__YAXH_Z(SystemIndex);
     }
-    systemIndex = *(int *)(localResourceOffset + 0x164);
-    systemResult = *(int *)(localResourceOffset + 0x160);
-    plocalSystemPointer = (long long *)
-             CreateSystemThreadObject(SystemMemoryPoolTemplate,0x28,*(uint8_t *)(localResourceOffset + 0x100),ConfigurationFlag,unsignedSystemValue7);
-    uStack_18 = (uint32_t)ResourceManagerPointer;
-    uStack_14 = (uint32_t)((ulong long)ResourceManagerPointer >> 0x20);
-    *(int *)(plocalSystemPointer + 2) = systemIndex + systemResult;
-    *(uint32_t *)((long long)plocalSystemPointer + 0x14) = uStack_1c;
-    *(uint32_t *)(plocalSystemPointer + 3) = uStack_18;
-    *(uint32_t *)((long long)plocalSystemPointer + 0x1c) = uStack_14;
-    plocalSystemPointer[4] = (ulong long)uStack_f << 8;
-    *plocalSystemPointer = localSystemFlags;
-    plocalSystemPointer[1] = *(long long *)(localResourceOffset + 0xf8);
-    **(long long **)(localResourceOffset + 0xf8) = (long long)plocalSystemPointer;
-    *(long long **)(localResourceOffset + 0xf8) = plocalSystemPointer;
-    *(long long *)(localResourceOffset + 0x108) = *(long long *)(localResourceOffset + 0x108) + 1;
-    systemIndex = _Mtx_unlock(nextDataIndex);
-    if (systemIndex != 0) {
-      __Throw_C_error_std__YAXH_Z(systemIndex);
+    SystemIndex = *(int *)(ResourceOffset + 0x164);
+    SystemOperationResult = *(int *)(ResourceOffset + 0x160);
+    SystemPointer = (long long *)
+             CreateSystemThreadObject(SystemMemoryPoolTemplate,0x28,*(uint8_t *)(ResourceOffset + 0x100),ConfigurationFlag,SystemValue);
+    StackParameter2 = (uint32_t)ResourceManagerPointer;
+    StackParameter3 = (uint32_t)((ulong long)ResourceManagerPointer >> 0x20);
+    *(int *)(SystemPointer + 2) = SystemIndex + SystemOperationResult;
+    *(uint32_t *)((long long)SystemPointer + 0x14) = StackParameter1;
+    *(uint32_t *)(SystemPointer + 3) = StackParameter2;
+    *(uint32_t *)((long long)SystemPointer + 0x1c) = StackParameter3;
+    SystemPointer[4] = (ulong long)StackParameter4 << 8;
+    *SystemPointer = SystemFlags;
+    SystemPointer[1] = *(long long *)(ResourceOffset + 0xf8);
+    **(long long **)(ResourceOffset + 0xf8) = (long long)SystemPointer;
+    *(long long **)(ResourceOffset + 0xf8) = SystemPointer;
+    *(long long *)(ResourceOffset + 0x108) = *(long long *)(ResourceOffset + 0x108) + 1;
+    SystemIndex = _Mtx_unlock(DataIndex);
+    if (SystemIndex != 0) {
+      __Throw_C_error_std__YAXH_Z(SystemIndex);
     }
   }
   return;
@@ -50597,28 +50611,48 @@ void FUN_18006edf0(void* ResourceManagerPointer,void* ConfigurationDataPointer,v
 
 
 
-void* FUN_18006eec0(long long ResourceManagerPointer)
+/**
+ * @brief 获取系统资源状态
+ * 
+ * 该函数负责获取系统资源的状态信息，通过线程安全的方式
+ * 访问资源管理器中的状态数据
+ * 
+ * @param ResourceManagerPointer 资源管理器指针
+ * @return 系统状态指针，包含当前系统状态信息
+ * 
+ * 原始函数名为FUN_18006eec0，现已重命名为GetSystemResourceStatus
+ */
+void* GetSystemResourceStatus(long long ResourceManagerPointer)
 
 {
-  void* systemStatus;
-  int systemResult;
+  void* SystemStatus;
+  int OperationResult;
   
-  systemResult = _Mtx_lock(ResourceManagerPointer + 0x20);
-  if (systemResult != 0) {
-    __Throw_C_error_std__YAXH_Z(systemResult);
+  OperationResult = _Mtx_lock(ResourceManagerPointer + 0x20);
+  if (OperationResult != 0) {
+    __Throw_C_error_std__YAXH_Z(OperationResult);
   }
-  systemStatus = *(void* *)(ResourceManagerPointer + 0x18);
-  systemResult = _Mtx_unlock(ResourceManagerPointer + 0x20);
-  if (systemResult != 0) {
-    __Throw_C_error_std__YAXH_Z(systemResult);
+  SystemStatus = *(void* *)(ResourceManagerPointer + 0x18);
+  OperationResult = _Mtx_unlock(ResourceManagerPointer + 0x20);
+  if (OperationResult != 0) {
+    __Throw_C_error_std__YAXH_Z(OperationResult);
   }
-  return systemStatus;
+  return SystemStatus;
 }
 
 
 
 
 // 函数: void ReleaseSystemResource(long long *ResourceManagerPointer)
+/**
+ * @brief 释放系统资源
+ * 
+ * 该函数负责释放系统资源，包括销毁互斥锁和清理相关资源
+ * 确保系统资源的正确释放和内存管理
+ * 
+ * @param ResourceManagerPointer 资源管理器指针
+ * @return 无返回值
+ */
 void ReleaseSystemResource(long long *ResourceManagerPointer)
 
 {
@@ -50633,7 +50667,18 @@ void ReleaseSystemResource(long long *ResourceManagerPointer)
 
 
 // 函数: void FUN_18006ef80(long long *ResourceManagerPointer)
-void FUN_18006ef80(long long *ResourceManagerPointer)
+/**
+ * @brief 清理系统资源管理器
+ * 
+ * 该函数负责清理系统资源管理器，确保资源的正确释放
+ * 主要用于系统关闭时的资源清理工作
+ * 
+ * @param ResourceManagerPointer 资源管理器指针
+ * @return 无返回值
+ * 
+ * 原始函数名为FUN_18006ef80，现已重命名为CleanupSystemResourceManager
+ */
+void CleanupSystemResourceManager(long long *ResourceManagerPointer)
 
 {
   if ((long long *)*ResourceManagerPointer != ResourceManagerPointer) {
@@ -50646,25 +50691,39 @@ void FUN_18006ef80(long long *ResourceManagerPointer)
 
 
 // 函数: void FUN_18006efc0(void* *ResourceManagerPointer,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
-void FUN_18006efc0(void* *ResourceManagerPointer,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
+/**
+ * @brief 执行系统资源清理操作
+ * 
+ * 该函数负责执行系统资源的清理操作，包括锁定资源管理器、
+ * 清理主要资源指针和释放相关资源
+ * 
+ * @param ResourceManagerPointer 资源管理器指针
+ * @param ConfigurationDataPointer 配置数据指针
+ * @param AdditionalParameter 额外参数
+ * @param ConfigurationFlag 配置标志
+ * @return 无返回值
+ * 
+ * 原始函数名为FUN_18006efc0，现已重命名为ExecuteSystemResourceCleanup
+ */
+void ExecuteSystemResourceCleanup(void* *ResourceManagerPointer,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
 {
-  long long *PrimaryResourcePointer;
-  int systemResult;
+  long long *MainResourcePointer;
+  int OperationResult;
   
-  systemResult = _Mtx_lock(ResourceManagerPointer + 4,ConfigurationDataPointer,AdditionalParameter,ConfigurationFlag,0xfffffffffffffffe);
-  if (systemResult != 0) {
-    __Throw_C_error_std__YAXH_Z(systemResult);
+  OperationResult = _Mtx_lock(ResourceManagerPointer + 4,ConfigurationDataPointer,AdditionalParameter,ConfigurationFlag,0xfffffffffffffffe);
+  if (OperationResult != 0) {
+    __Throw_C_error_std__YAXH_Z(OperationResult);
   }
   if (ResourceManagerPointer[3] != 0) {
-    PrimaryResourcePointer = *(long long **)(*(long long *)*ResourceManagerPointer + 8);
-    *(long long *)(*PrimaryResourcePointer + 8) = PrimaryResourcePointer[1];
-    *(long long *)PrimaryResourcePointer[1] = *PrimaryResourcePointer;
+    MainResourcePointer = *(long long **)(*(long long *)*ResourceManagerPointer + 8);
+    *(long long *)(*MainResourcePointer + 8) = MainResourcePointer[1];
+    *(long long *)MainResourcePointer[1] = *MainResourcePointer;
       SystemCleanupFunction();
   }
-  systemResult = _Mtx_unlock(ResourceManagerPointer + 4);
-  if (systemResult != 0) {
-    __Throw_C_error_std__YAXH_Z(systemResult);
+  OperationResult = _Mtx_unlock(ResourceManagerPointer + 4);
+  if (OperationResult != 0) {
+    __Throw_C_error_std__YAXH_Z(OperationResult);
   }
   return;
 }
