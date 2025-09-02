@@ -2868,12 +2868,12 @@ uint8_t SystemResourceTracker;               // 系统资源跟踪器
 void* SystemExceptionListPointer;             // 系统异常列表指针
 uint8_t SystemMemoryConfigOptionalBackup; // 系统内存配置可选备份
 uint8_t SystemMemoryConfigSpecial;         // 系统内存配置特殊数据
-uint8_t SystemPerformanceMonitor;              // 系统性能监视器
+uint8_t SystemPerformanceMonitor;              // 系统性能监控器
 // 线程管理器 - 管理系统线程生命周期
 uint8_t SystemThreadManager;                   // 系统线程管理器
 uint8_t SystemSecurityManager;                 // 系统安全管理器
 uint8_t SystemNetworkManager;                  // 系统网络管理器
-uint8_t SystemResourceReferenceCounter;               // 系统资源引用计数器
+uint8_t SystemResourceReferenceCounter;       // 系统资源引用计数器
 uint8_t SystemConfigurationExtendedPrimary;  // 扩展主要系统配置项
 // 系统配置和资源管理变量
 uint8_t SystemConfigurationExtendedSecondary;  // 扩展次要系统配置项
