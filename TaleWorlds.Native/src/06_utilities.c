@@ -20656,7 +20656,16 @@ LAB_18089bfc7:
 
 
 
- ValidateResourceIntegrity(void)
+ /**
+ * @brief 验证资源完整性
+ * 
+ * 该函数负责验证系统中资源的完整性和一致性
+ * 检查资源是否损坏或被篡改，确保数据安全
+ * 
+ * @return 无返回值
+ * @note 此函数会在资源访问时自动调用
+ * @warning 如果资源完整性检查失败，系统可能会拒绝访问该资源
+ */
 ValidateResourceIntegrity(void)
 
 {
@@ -40826,7 +40835,28 @@ void ResetMultiLayerSystemResourceHandler(uint8_t objectContext, int64_t validat
 
 
 
-void Unwind_1809041f0(uint8_t objectContext,int64_t validationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * 清理系统资源处理器 - 批量模式1
+ * 
+ * 功能描述：
+ * 清理多个系统资源处理器，包括执行回调函数、重置状态标志和释放资源。
+ * 该函数处理一组系统资源处理器的清理工作，确保系统资源正确释放。
+ * 
+ * 参数说明：
+ * @param objectContext 对象上下文，标识要清理的对象
+ * @param validationContext 验证上下文，包含清理所需的验证信息
+ * @param CleanupOption 清理选项，指定清理的方式和范围
+ * @param CleanupFlag 清理标志，控制清理过程中的具体行为
+ * 
+ * 返回值：
+ * 无返回值
+ * 
+ * 注意事项：
+ * - 如果系统资源处理器处于活动状态，会调用紧急退出函数
+ * - 函数会重置所有相关的状态标志和计数器
+ * - 确保在异常情况下也能正确清理资源
+ */
+void Unwind_SystemResourceCleanup_Batch1(uint8_t objectContext,int64_t validationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
@@ -40880,7 +40910,28 @@ void Unwind_1809041f0(uint8_t objectContext,int64_t validationContext,uint8_t Cl
 
 
 
-void Unwind_180904210(uint8_t objectContext,int64_t validationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * 清理系统资源处理器 - 批量模式2
+ * 
+ * 功能描述：
+ * 清理另一组系统资源处理器，执行回调函数并重置系统状态。
+ * 该函数处理不同偏移量的系统资源处理器，确保所有相关资源都被正确释放。
+ * 
+ * 参数说明：
+ * @param objectContext 对象上下文，标识要清理的对象
+ * @param validationContext 验证上下文，包含清理所需的验证信息
+ * @param CleanupOption 清理选项，指定清理的方式和范围
+ * @param CleanupFlag 清理标志，控制清理过程中的具体行为
+ * 
+ * 返回值：
+ * 无返回值
+ * 
+ * 注意事项：
+ * - 处理不同内存偏移量的资源处理器
+ * - 如果资源处理器处于活动状态，会触发系统紧急退出
+ * - 确保所有资源处理器都被正确重置和释放
+ */
+void Unwind_SystemResourceCleanup_Batch2(uint8_t objectContext,int64_t validationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
