@@ -3862,8 +3862,8 @@ uint64_t ProcessSystemRequest(int64_t requestParameters,int64_t SystemContext)
         if (ContextDataPointer == (int64_t *)0x0) {
           ResourceDataPointer = (int64_t *)0x38;
         }
-        *(int64_t *)(CleanupDataPointer[4] + 8 + (int64_t)resourceTablePointer) = *ResourceDataPointer;
-        if (ContextDataPointer == resourceTablePointer) break;
+        *(int64_t *)(CleanupDataPointer[4] + 8 + (int64_t)ResourceTablePointer) = *ResourceDataPointer;
+        if (ContextDataPointer == ResourceTablePointer) break;
         ResourceDataPointer = (int64_t *)(*ContextDataPointer + -0x18);
         if (*ContextDataPointer == 0) {
           ResourceDataPointer = NullDataPointer;
@@ -4463,14 +4463,14 @@ uint8_t ValidateAndProcessObjectStatus(int64_t ObjectContext)
 uint8_t InitializeObjectHandleB(int64_t ObjectContext)
 
 {
-  int64_t resourceCount;
+  int64_t ResourceCount;
   uint PackageValidationStatusCode;
   uint ResourceHash;
   uint8_t ContextHashValidationResult;
-  uint8_t *resourcePointer;
+  uint8_t *ResourcePointer;
   int FloatConversionResult;
   float ProcessedFloatValue;
-  uint8_t resourceMetadata[16];
+  uint8_t ResourceMetadata[16];
   int64_t ContextHandle;
   
   ContextHashValidationResult = ValidateObjectContext(*(uint32_t *)(ObjectContext + 0x1c), &ContextHandle);
