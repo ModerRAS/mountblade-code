@@ -19870,11 +19870,11 @@ int InitializeSystemCoreComponents(long long ResourceManagerPointer,long long In
 
 {
   void*** SystemResourcePointer;           // 系统资源指针
-  long long localSystemHandle;
-  void* *HashNodePointer;
-  long long bufferBaseAddress;
-  int systemValue;
-  long long localSystemFlags;
+  long long SystemHandle;                  // 系统句柄
+  void** SystemHashNodePointer;            // 系统哈希节点指针
+  long long MemoryBufferBase;              // 内存缓冲区基地址
+  int SystemResultValue;                    // 系统结果值
+  long long LocalSystemFlags;               // 本地系统标志
   long long localDataIndex;
   ulong long unsignedSystemValue8;
   void* ****ppppunsignedSystemValue9;

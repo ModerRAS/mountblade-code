@@ -6620,16 +6620,16 @@ void ProcessSystemDataBufferExpansion(uint8_t SystemContext, uint8_t bufferConte
   uint CapacityCheck;
   int64_t systemBasePointer;
   int64_t systemRegister;
-  int64_t stackPointerPrimary;
-  int64_t stackPointerSecondary;
+  int64_t primaryContextPointer;
+  int64_t secondaryContextPointer;
   
-  ValidationStatus = ProcessSystemContext(SystemContext, bufferContext, *(uint8_t *)(stackPointerSecondary + 8));
+  ValidationStatus = ProcessSystemContext(SystemContext, bufferContext, *(uint8_t *)(secondaryContextPointer + 8));
   if (ValidationStatus != 0) {
     return;
   }
   newBufferPointer = 0;
-  bufferOffset = stackPointerPrimary + 8;
-  if (stackPointerPrimary == 0) {
+  bufferOffset = primaryContextPointer + 8;
+  if (primaryContextPointer == 0) {
     bufferOffset = newBufferPointer;
   }
   ValidationStatus = ValidateBufferContext(bufferOffset, systemBasePointer + 0x18);
