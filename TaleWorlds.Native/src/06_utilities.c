@@ -120,6 +120,32 @@
 #define ChecksumSeedValueTIW 0x54494157
 #define ChecksumSeedValueBTIW 0x42494157
 
+// CONCAT宏的语义化定义
+#define CombineValidationContextAndParam CONCAT44
+#define CombineParameterAndValidationRegisters CONCAT44
+#define CombineInputRegisters CONCAT44
+#define CombineSavedRegisterAndIndex CONCAT44
+#define CombineResourceValidationAndCommand CONCAT44
+#define CombineGraphicsOperationFlags CONCAT44
+#define CombineFloatWithHighBits CONCAT31
+#define CombineValidationContextWithResource CONCAT44
+#define CombineValidationContextWithHash CONCAT44
+#define CombineSystemArrayWithByte CONCAT11
+#define CombineSystemArrayWithShort CONCAT22
+#define CombineSystemArrayWithInt CONCAT31
+#define CombineSystemContextWithValidation CONCAT71
+#define CombineRegisterWithLoopCounter CONCAT44
+#define CombineValidationContextWithChar CONCAT62
+#define CombineResourceHashWithFormat CONCAT22
+#define CombineResourceCountWithOffset CONCAT22
+#define CombineHashWithStatus CONCAT31
+#define CombineRegisterStorageValues CONCAT44
+#define CombineHashWithCharacterCheck CONCAT71
+#define CombineResourceWithChecksum CONCAT31
+#define CombineMemoryWithExceptionCheck CONCAT71
+#define CombineLoopControlWithException CONCAT71
+#define CombineMemoryAlignmentWithCheck CONCAT71
+
 // 新增的偏移量常量
 #define ObjectContextValidationDataOffset 0x14
 #define SystemDataContextFloatValueOffset 0x20

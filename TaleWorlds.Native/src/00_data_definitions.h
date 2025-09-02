@@ -10184,7 +10184,7 @@ Label_18060bbae:
   SystemMemoryConfigPointer2 = (longlong)SystemMemoryConfigBuffer2;
   CleanupSystemConfiguration();
   if (SystemConfigFlag3 != '\0') {
-    HandleSystemConfigurationData(&UNK_180a3d970);
+    HandleSystemConfigurationData(&SystemDataProcessingConfiguration);
   }
   return;
 }
@@ -11756,7 +11756,7 @@ uint64_t SystemBufferProcess(uint64_t bufferId)
   SystemMemoryConfigPointer2 = (longlong)SystemMemoryConfigBuffer2;
   CleanupSystemConfiguration();
   if (SystemConfigFlag3 != '\0') {
-    HandleSystemConfigurationData(&UNK_180a3d970);
+    HandleSystemConfigurationData(&SystemDataProcessingConfiguration);
   }
   return;
 }

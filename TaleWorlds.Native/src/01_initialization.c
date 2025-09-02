@@ -63092,8 +63092,16 @@ LAB_180075f4f:
 0001800797dd)
 
 
-// 函数: void FUN_1800796b0(long long SystemResourceManager)
-void FUN_1800796b0(long long SystemResourceManager)
+/**
+ * @brief 初始化系统资源缓存
+ * 
+ * 初始化系统资源的缓存机制，包括哈希表、内存分配和资源数据结构。
+ * 该函数负责设置资源缓存的基础设施，为后续的资源操作提供支持。
+ * 
+ * @param SystemResourceManager 资源管理器指针，包含要初始化的资源管理系统
+ * @return 无返回值
+ */
+void InitializeSystemResourceCache(long long SystemResourceManager)
 
 {
   int *SystemIntegerPointer;
