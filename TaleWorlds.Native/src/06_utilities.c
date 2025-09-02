@@ -18598,16 +18598,16 @@ void ValidateAndProcessResourceData(int64_t resourceContext, uint8_t resourceDat
 {
   int ResourceValidationResult;
   uint8_t checksumBufferPrimary [64];
-  uint8_t checksumBuffer2 [32];
+  uint8_t checksumBufferSecondary [32];
   
-  validationResult = ComputeDataChecksum(resourceData,checksumBuffer2,1,checksumParam1);
-  if (((validationResult == 0) && (validationResult = ComputeDataChecksum(resourceData,checksumBuffer1,0,checksumParam2), validationResult == 0)) &&
+  validationResult = ComputeDataChecksum(resourceData,checksumBufferSecondary,1,checksumParam1);
+  if (((validationResult == 0) && (validationResult = ComputeDataChecksum(resourceData,checksumBufferPrimary,0,checksumParam2), validationResult == 0)) &&
      (validationResult = ValidateResourceHash(resourceData,resourceContext + 0x10), validationResult == 0)) {
     if ((authenticationFlag != '\0') && (validationResult = ResourceDataAuthenticator(resourceContext + 0x48,resourceData), validationResult != 0)) {
       return;
     }
                     // WARNING: Subroutine does not return
-    CleanupResourceData(resourceData,checksumBuffer1);
+    CleanupResourceData(resourceData,checksumBufferPrimary);
   }
   return;
 }
