@@ -14255,16 +14255,16 @@ void CalculateFloatValueAndValidateResources(void)
     if (ResourceIndexTertiary == 0) {
       RegisterStorageA0 = Xmm6RegisterDa;
       RegisterStorageA8 = Xmm6RegisterDc;
-      if (StackParameterContextExtended._FloatField4_4 != 1.0) {
-        StackFloatResourceValue = StackParameterContextExtended._FloatField4_4;
+      if (StackParameterContextExtended.FloatValue != 1.0) {
+        StackFloatResourceValue = StackParameterContextExtended.FloatValue;
         StackResourceTemplatePointer = &SystemResourceTemplateFile;
         StackContextBufferPointer = StackContextBuffer;
         StackFloatRegisterValue = FloatRegisterValue;
-        ResourceIndexTertiary = GetAndValidateResourceData(StackParameterContextExtended._FloatField4_4,&PrimaryObjectStackBuffer);
-        StackParameterContextExtended._FloatField4_4 = FloatingPointResultThird;
+        ResourceIndexTertiary = GetAndValidateResourceData(StackParameterContextExtended.FloatValue,&PrimaryObjectStackBuffer);
+        StackParameterContextExtended.FloatValue = FloatingPointResultThird;
         if (ResourceIndexTertiary != 0) goto ExecuteMemoryDeallocation;
       }
-      ResourceIndexTertiary = CheckResourceIntegrity(StackParameterContextExtended._FloatField4_4,&ObjectStackBufferTertiary,0);
+      ResourceIndexTertiary = CheckResourceIntegrity(StackParameterContextExtended.FloatValue,&ObjectStackBufferTertiary,0);
       if (ResourceIndexTertiary == 0) {
         if (RegisterStorageQuinary != 1.0) {
           StackFloatResourceValue = RegisterStorageQuinary;
@@ -14948,7 +14948,7 @@ void ProcessResourceDataValidation(int64_t *objectContext)
       if (integerValue6 != 1) {
         ResourceProcessingMask = ResourceProcessingMask & 0xffffffff00000000;
         PointerStackPrimary = (int64_t *)&SystemMemoryConfigTemplate;
-        AudioBufferPointer[0] = (int64_t *)CONCAT44(AudioBufferPointer[0]._FloatField4_4,integerValue6);
+        AudioBufferPointer[0] = (int64_t *)CONCAT44(AudioBufferPointer[0].FloatValue,integerValue6);
         resourceCount = GetAndValidateResourceData(objectContext,&PointerStackPrimary);
         if (resourceCount != 0) goto ResourceProcessingComplete;
       }
@@ -15074,7 +15074,7 @@ void ProcessResourceDataValidation(int64_t *objectContext)
           do {
             LocalContextPointer = (int64_t)(int)ValidationFloatBuffer[0] * 0x20;
             ResourceProcessingMask = 0xffffffffffffffff;
-            AudioBufferPointer[0] = (int64_t *)CONCAT44(AudioBufferPointer[0]._FloatField4_4,0xffffffff);
+            AudioBufferPointer[0] = (int64_t *)CONCAT44(AudioBufferPointer[0].FloatValue,0xffffffff);
             PointerStackPrimary = *(int64_t **)(ResourceContext6[2] + 0x18 + LocalContextPointer);
             AudioSampleRate = LocalContextPointer;
             SetupResourceHandlers(PointerStackPrimary,&ResourceProcessingMask,AudioBufferPointer);
@@ -17015,14 +17015,14 @@ uint8_t ProcessResourceValidationContext(int64_t objectContext, uint32_t *valida
   uint64_t MemorySize;
   uint8_t ValidationContext;
   
-  ValidationContext = CONCAT44(ValidationContext._FloatField4_4,*validationContext);
+  ValidationContext = CONCAT44(ValidationContext.FloatValue,*validationContext);
   ResourceIndex = (**(code **)**(uint8_t **)(objectContext + 8))(*(uint8_t **)(objectContext + 8),&ValidationContext,4);
   if (ResourceIndex == 0) {
     ValidationContext = *(uint8_t *)(validationContext + 2);
     ResourceIndex = (**(code **)**(uint8_t **)(objectContext + 8))(*(uint8_t **)(objectContext + 8),&ValidationContext,8);
     if ((ResourceIndex == 0) && (ResourceIndex = CheckResourceAvailability(objectContext,validationContext + 4), ResourceIndex == 0)) {
       ResourceIndex = validationContext[10];
-      ValidationContext = CONCAT44(ValidationContext._FloatField4_4,ResourceIndex);
+      ValidationContext = CONCAT44(ValidationContext.FloatValue,ResourceIndex);
       operationStatusCode = (**(code **)**(uint8_t **)(objectContext + 8))
                         (*(uint8_t **)(objectContext + 8),&ValidationContext,4);
       ContextvalidationStatusCode = 0;
@@ -17039,7 +17039,7 @@ uint8_t ProcessResourceValidationContext(int64_t objectContext, uint32_t *valida
           } while ((int)HashValidationResult < ResourceIndex);
         }
         ResourceIndex = validationContext[0xe];
-        ValidationContext = CONCAT44(ValidationContext._FloatField4_4,ResourceIndex);
+        ValidationContext = CONCAT44(ValidationContext.FloatValue,ResourceIndex);
         operationStatusCode = (**(code **)**(uint8_t **)(objectContext + 8))
                           (*(uint8_t **)(objectContext + 8),&ValidationContext,4);
         if (operationStatusCode == 0) {
@@ -17056,14 +17056,14 @@ uint8_t ProcessResourceValidationContext(int64_t objectContext, uint32_t *valida
             } while ((int)HashValidationResult < ResourceIndex);
           }
           ResourceIndex = validationContext[0x12];
-          ValidationContext = CONCAT44(ValidationContext._FloatField4_4,ResourceIndex);
+          ValidationContext = CONCAT44(ValidationContext.FloatValue,ResourceIndex);
           operationStatusCode = (**(code **)**(uint8_t **)(objectContext + 8))
                             (*(uint8_t **)(objectContext + 8),&ValidationContext,4);
           if (operationStatusCode == 0) {
             loopIncrement = ContextHashValidationResult;
             if (0 < ResourceIndex) {
               do {
-                ValidationContext = CONCAT44(ValidationContext._FloatField4_4,
+                ValidationContext = CONCAT44(ValidationContext.FloatValue,
                                      *(uint32_t *)(*(int64_t *)(validationContext + 0x10) + loopIncrement * 4));
                 operationStatusCode = (**(code **)**(uint8_t **)(objectContext + 8))
                                   (*(uint8_t **)(objectContext + 8),&ValidationContext,4);
@@ -17074,7 +17074,7 @@ uint8_t ProcessResourceValidationContext(int64_t objectContext, uint32_t *valida
               } while ((int64_t)loopIncrement < (int64_t)ResourceIndex);
             }
             ResourceIndex = validationContext[0x16];
-            ValidationContext = CONCAT44(ValidationContext._FloatField4_4,ResourceIndex);
+            ValidationContext = CONCAT44(ValidationContext.FloatValue,ResourceIndex);
             operationStatusCode = (**(code **)**(uint8_t **)(objectContext + 8))
                               (*(uint8_t **)(objectContext + 8),&ValidationContext,4);
             if (operationStatusCode == 0) {
@@ -17089,12 +17089,12 @@ uint8_t ProcessResourceValidationContext(int64_t objectContext, uint32_t *valida
                   }
                   validationStatusCode = *(uint *)(resourceTablePointer + 0x10);
                   if (HashValidationResult < 0x8000) {
-                    ValidationContext = CONCAT62(ValidationContext._2_6_,(short)HashValidationResult);
+                    ValidationContext = CONCAT62(ValidationContext.ShortValue,(short)HashValidationResult);
                     SecurityHashValue = 2;
                   }
                   else {
                     SecurityHashValue = 4;
-                    ValidationContext = CONCAT44(ValidationContext._FloatField4_4,
+                    ValidationContext = CONCAT44(ValidationContext.FloatValue,
                                          (HashValidationResult & 0xffffc000 | 0x4000) * 2 | HashValidationResult & 0x7fff);
                   }
                   operationStatusCode = (**(code **)**(uint8_t **)(objectContext + 8))
@@ -17113,7 +17113,7 @@ uint8_t ProcessResourceValidationContext(int64_t objectContext, uint32_t *valida
               ResourceIndex = RetrieveResourceData(objectContext,validationContext + 0x18);
               if (ResourceIndex == 0) {
                 ResourceIndex = validationContext[0x1e];
-                ValidationContext = CONCAT44(ValidationContext._FloatField4_4,ResourceIndex);
+                ValidationContext = CONCAT44(ValidationContext.FloatValue,ResourceIndex);
                 operationStatusCode = (**(code **)**(uint8_t **)(objectContext + 8))
                                   (*(uint8_t **)(objectContext + 8),&ValidationContext,4);
                 if (operationStatusCode == 0) {
@@ -17126,7 +17126,7 @@ uint8_t ProcessResourceValidationContext(int64_t objectContext, uint32_t *valida
                       if (OperationResult != 0) {
                         return;
                       }
-                      ValidationContext = CONCAT44(ValidationContext._FloatField4_4,*(uint32_t *)(resourceTablePointer + 4 + ContextHashValidationResult * 8));
+                      ValidationContext = CONCAT44(ValidationContext.FloatValue,*(uint32_t *)(resourceTablePointer + 4 + ContextHashValidationResult * 8));
                       operationStatusCode = (**(code **)**(uint8_t **)(objectContext + 8))
                                         (*(uint8_t **)(objectContext + 8),&ValidationContext,4);
                       if (OperationResult != 0) {
@@ -17135,7 +17135,7 @@ uint8_t ProcessResourceValidationContext(int64_t objectContext, uint32_t *valida
                       ContextvalidationStatusCode = ContextHashValidationResult + 1;
                     } while ((int64_t)ContextHashValidationResult < (int64_t)ResourceIndex);
                   }
-                  ValidationContext = CONCAT44(ValidationContext._FloatField4_4,validationContext[0x20]);
+                  ValidationContext = CONCAT44(ValidationContext.FloatValue,validationContext[0x20]);
                   (**(code **)**(uint8_t **)(objectContext + 8))
                             (*(uint8_t **)(objectContext + 8),&ValidationContext,4);
                 }
@@ -17581,7 +17581,7 @@ uint8_t ProcessResourceDataNormalization(int64_t ResourceContext, int64_t dataPo
   float SecondaryFloatValue;
   uint16_t ArrayUnionBuffer [4];
   
-  ArrayUnionBuffer[0] = CONCAT11(ArrayUnionBuffer[0]._1_1_,*(uint8_t *)(validationContext + 0x104));
+  ArrayUnionBuffer[0] = CONCAT11(ArrayUnionBuffer[0].ByteValue,*(uint8_t *)(validationContext + 0x104));
   resourceHash = (**(code **)**(uint8_t **)(objectContext + 8))(*(uint8_t **)(objectContext + 8),ArrayUnionStackX8,1);
   if ((int)ResourceHash == 0) {
     validationStatusCode = 0;
@@ -17789,7 +17789,7 @@ uint8_t ProcessResourcePropertySet(int64_t objectContext, uint32_t *validationCo
   uint8_t loopCondition;
   uint8_t ValidationContext;
   
-  ValidationContext = CONCAT44(ValidationContext._FloatField4_4,*validationContext);
+  ValidationContext = CONCAT44(ValidationContext.FloatValue,*validationContext);
   operationStatusCode = (**(code **)**(uint8_t **)(objectContext + 8))(*(uint8_t **)(objectContext + 8),&ValidationContext,4);
   if (operationStatusCode == 0) {
     ValidationContext = *(uint8_t *)(validationContext + 2);
@@ -17823,12 +17823,12 @@ uint8_t ProcessResourcePropertySet(int64_t objectContext, uint32_t *validationCo
         }
         resourceHash = validationContext[100];
         if (resourceHash < 0x8000) {
-          ValidationContext = CONCAT62(ValidationContext._2_6_,(short)resourceHash);
+          ValidationContext = CONCAT62(ValidationContext.ShortValue,(short)resourceHash);
           loopIncrement = 2;
         }
         else {
           loopIncrement = 4;
-          ValidationContext = CONCAT44(ValidationContext._FloatField4_4,(resourceHash & 0xffffc000 | 0x4000) * 2 | resourceHash & 0x7fff);
+          ValidationContext = CONCAT44(ValidationContext.FloatValue,(resourceHash & 0xffffc000 | 0x4000) * 2 | resourceHash & 0x7fff);
         }
         operationStatusCode = (**(code **)**(uint8_t **)(objectContext + 8))
                           (*(uint8_t **)(objectContext + 8),&ValidationContext,loopIncrement);
@@ -17862,7 +17862,7 @@ uint8_t ProcessResourcePropertySet(int64_t objectContext, uint32_t *validationCo
                       operationStatusCode = (**(code **)**(uint8_t **)(objectContext + 8))
                                         (*(uint8_t **)(objectContext + 8),&ValidationContext,4);
                       if (operationStatusCode == 0) {
-                        ValidationContext = CONCAT44(ValidationContext._FloatField4_4,validationContext[0x6f]);
+                        ValidationContext = CONCAT44(ValidationContext.FloatValue,validationContext[0x6f]);
                         operationStatusCode = (**(code **)**(uint8_t **)(objectContext + 8))
                                           (*(uint8_t **)(objectContext + 8),&ValidationContext,4);
                         if (operationStatusCode == 0) {
@@ -17886,7 +17886,7 @@ uint8_t ProcessResourcePropertySet(int64_t objectContext, uint32_t *validationCo
                                   operationStatusCode = (**(code **)**(uint8_t **)(objectContext + 8))
                                                     (*(uint8_t **)(objectContext + 8),&ValidationContext,4);
                                   if (operationStatusCode == 0) {
-                                    ValidationContext = CONCAT44(ValidationContext._FloatField4_4,validationContext[0x78]);
+                                    ValidationContext = CONCAT44(ValidationContext.FloatValue,validationContext[0x78]);
                                     (**(code **)**(uint8_t **)(objectContext + 8))
                                               (*(uint8_t **)(objectContext + 8),&ValidationContext,4);
                                   }
@@ -18296,14 +18296,14 @@ uint8_t ProcessResourceConfigurationData(int64_t configContext, uint32_t *config
   int PackageValidationStatusCode;
   uint8_t ValidationContext;
   
-  ValidationContext = CONCAT44(ValidationContext._FloatField4_4,*validationContext);
+  ValidationContext = CONCAT44(ValidationContext.FloatValue,*validationContext);
   ValidationResult = (**(code **)**(uint8_t **)(objectContext + 8))(*(uint8_t **)(objectContext + 8),&ValidationContext,4);
   if ((int)ValidationResult == 0) {
     ValidationContext = *(uint8_t *)(validationContext + 2);
     ValidationResult = (**(code **)**(uint8_t **)(objectContext + 8))(*(uint8_t **)(objectContext + 8),&ValidationContext,8);
     if ((int)ValidationResult == 0) {
       ResourceIndex = validationContext[6];
-      ValidationContext = CONCAT44(ValidationContext._FloatField4_4,ResourceIndex);
+      ValidationContext = CONCAT44(ValidationContext.FloatValue,ResourceIndex);
       ValidationResult = (**(code **)**(uint8_t **)(objectContext + 8))
                         (*(uint8_t **)(objectContext + 8),&ValidationContext,4);
       if ((int)ValidationResult == 0) {
@@ -21466,17 +21466,17 @@ uint64_t ProcessResourceAllocation(int64_t ResourceHandle,uint8_t *ResourceData)
     SecurityHashValue = (uint64_t)ContextHashValidationResult;
     if (ContextHashValidationResult != 0) {
 ResourceValidationWait:
-      ContextvalidationStatusCode = ResourceQuaternaryFlag._FloatField4_4;
+      ContextvalidationStatusCode = ResourceQuaternaryFlag.FloatValue;
       if ((int64_t)ResourceQuaternaryFlag < 0) {
-        ContextvalidationStatusCode = -ResourceQuaternaryFlag._FloatField4_4;
+        ContextvalidationStatusCode = -ResourceQuaternaryFlag.FloatValue;
       }
       ResourceIndexTertiary = (int)ResourceQuaternaryFlag;
-      ValidationCounter = ResourceQuaternaryFlag._FloatField4_4;
+      ValidationCounter = ResourceQuaternaryFlag.FloatValue;
       if ((int)ContextHashValidationResult < 0) {
         if (0 < (int)ResourceQuaternaryFlag) {
           return SecurityHashValue;
         }
-        if ((0 < (int)ResourceQuaternaryFlag._FloatField4_4) && (pResourceTertiaryFlag != (uint8_t *)0x0)) {
+        if ((0 < (int)ResourceQuaternaryFlag.FloatValue) && (pResourceTertiaryFlag != (uint8_t *)0x0)) {
                     // WARNING: Subroutine does not return
           ProcessResourceAllocation(*(uint8_t *)(SystemContext + 0x1a0),pResourceTertiaryFlag,&ResourceTableTemplate,0x100,1);
         }
@@ -21501,7 +21501,7 @@ ResourceValidationWait:
             LocalContextSecondary = LocalContextSecondary + -1;
             LocalContextHandle = LocalContextHandle + 0x18;
           } while (LocalContextSecondary != 0);
-          ValidationCounter = ResourceQuaternaryFlag._FloatField4_4;
+          ValidationCounter = ResourceQuaternaryFlag.FloatValue;
         }
       }
       ResourceQuaternaryFlag = ResourceQuaternaryFlag & 0xffffffff00000000;
@@ -21541,14 +21541,14 @@ ResourceValidationWait:
         *(uint8_t *)(pResourceValidationBuffer + 3) = 1;
       }
     }
-    ContextvalidationStatusCode = ResourceQuaternaryFlag._FloatField4_4;
+    ContextvalidationStatusCode = ResourceQuaternaryFlag.FloatValue;
     if ((int64_t)ResourceQuaternaryFlag < 0) {
-      ContextvalidationStatusCode = -ResourceQuaternaryFlag._FloatField4_4;
+      ContextvalidationStatusCode = -ResourceQuaternaryFlag.FloatValue;
     }
-    ValidationCounter = ResourceQuaternaryFlag._FloatField4_4;
+    ValidationCounter = ResourceQuaternaryFlag.FloatValue;
     if ((int)ContextHashValidationResult < 0) {
       if (0 < ResourceIndexTertiary) goto ResourceIndexProcessing;
-      if ((0 < (int)ResourceQuaternaryFlag._FloatField4_4) && (pResourceTertiaryFlag != (uint8_t *)0x0)) {
+      if ((0 < (int)ResourceQuaternaryFlag.FloatValue) && (pResourceTertiaryFlag != (uint8_t *)0x0)) {
                     // WARNING: Subroutine does not return
         ProcessResourceAllocation(*(uint8_t *)(SystemContext + 0x1a0),pResourceTertiaryFlag,&ResourceTableTemplate,0x100,1);
       }
@@ -21573,7 +21573,7 @@ ResourceValidationWait:
           LocalContextSecondary = LocalContextSecondary + -1;
           LocalContextHandle = LocalContextHandle + 0x18;
         } while (LocalContextSecondary != 0);
-        ValidationCounter = ResourceQuaternaryFlag._FloatField4_4;
+        ValidationCounter = ResourceQuaternaryFlag.FloatValue;
       }
     }
     ResourceQuaternaryFlag = ResourceQuaternaryFlag & 0xffffffff00000000;
