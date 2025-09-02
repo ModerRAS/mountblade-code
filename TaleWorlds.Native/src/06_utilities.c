@@ -1835,8 +1835,7 @@ uint8_t SystemMemoryConfigDataTemplateLarge;
 uint8_t SystemMemoryConfigDataTemplateMedium;
 uint8_t SystemMemoryConfigDataTemplateNormal;
 
- void SetupMemoryQuality(void);
-/**
+ /**
  * @brief 设置内存质量管理
  * 
  * 该函数负责设置内存质量管理系统
@@ -1853,8 +1852,7 @@ void* SystemMemoryValidationStatus;
 void* SystemMemoryValidationFlags;
 uint8_t SystemMemoryValidationData;
 
- void InitializeMemoryValidation(void);
-/**
+ /**
  * @brief 初始化内存验证
  * 
  * 该函数负责初始化内存验证系统
@@ -1868,8 +1866,7 @@ uint8_t SystemMemoryRecoveryPoolSecondary;
 uint8_t SystemMemoryRecoveryPoolTertiary;
 uint8_t SystemMemoryRecoveryPoolQuaternary;
 
- void ConfigureMemoryRecovery(void);
-/**
+ /**
  * @brief 配置内存恢复
  * 
  * 该函数负责配置内存恢复系统
@@ -1881,8 +1878,7 @@ uint8_t SystemMemoryConfigDataTemplate;
 uint8_t SystemMemoryConfigDataTable;
 uint8_t SystemMemoryConfigDataCache;
 
- void SetupMemoryAuditing(void);
-/**
+ /**
  * @brief 设置内存审计
  * 
  * 该函数负责设置内存审计系统
@@ -1896,8 +1892,7 @@ uint8_t SystemDataStructureContext;
 uint8_t SystemDataConfiguration;
 uint8_t SystemMemoryConfigDataTemplatePerformance;
 
- void InitializeMemoryCompliance(void);
-/**
+ /**
  * @brief 初始化内存合规性
  * 
  * 该函数负责初始化内存合规性系统
@@ -1910,8 +1905,7 @@ uint8_t SystemMemoryConfigDataTemplateOptimized;
 uint8_t SystemMemoryConfigDataTemplatePerformance;
 uint8_t SystemMemoryConfigDataTemplateQuick;
 
- void ConfigureMemoryDiagnostics(void);
-/**
+ /**
  * @brief 配置内存诊断
  * 
  * 该函数负责配置内存诊断系统
@@ -2214,8 +2208,7 @@ uint8_t MemoryConfigEighth;           // 第8配置项
 uint8_t MemoryConfigNinth;            // 普通第9配置项
 uint8_t MemoryConfigTenth;             // 第10配置项
 
- void ConfigureLogOutput(void);
-/**
+ /**
  * @brief 配置日志输出
  * 
  * 该函数负责配置日志的输出方式和目标

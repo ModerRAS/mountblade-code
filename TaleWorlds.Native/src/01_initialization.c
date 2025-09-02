@@ -38146,7 +38146,7 @@ void ReleaseSystemResourceHandle(long long SystemResourcePointer,long long *Conf
   if (resourceCount != 0) {
     do {
       if ((long long *)*systemMemoryPointer == ConfigurationDataPointer) {
-        FUN_18020e7b0(primaryResourcePointer[resourceIndex]);
+        ReleaseSystemResource(primaryResourcePointer[resourceIndex]);
         systemResourceSize = *(ulong long *)(SystemResourcePointer + 0x50);
         resourceOffset = *(long long *)(SystemResourcePointer + 0x48) + (long long)resourceIndex * 8;
         resourceCount = resourceOffset + 8;
@@ -38201,7 +38201,7 @@ void CleanupSystemResourceConfiguration(long long SystemResourcePointer,long lon
   if (resourceCount != 0) {
     do {
       if ((long long *)*systemMemoryPointer == ConfigurationDataPointer) {
-        FUN_18020e7b0(primaryResourcePointer[resourceIndex]);
+        ReleaseSystemResource(primaryResourcePointer[resourceIndex]);
         systemResourceSize = *(ulong long *)(SystemResourcePointer + 0x50);
         resourceOffset = *(long long *)(SystemResourcePointer + 0x48) + (long long)resourceIndex * 8;
         resourceCount = resourceOffset + 8;
@@ -38311,7 +38311,7 @@ void InitializeSystemMemoryContext(void* SystemResourcePointer,long long *Config
     if (cVar3 == '\0') {
       pcVar1 = *(code **)(*(long long *)*ConfigurationDataPointer + 0x80);
       if (pcVar1 == (code *)&SystemFunctionPointer2) {
-        FUN_1800496b0((long long *)*ConfigurationDataPointer + 4);
+        ProcessConfigurationData((long long *)*ConfigurationDataPointer + 4);
       }
       else {
         (*pcVar1)();
@@ -38380,7 +38380,7 @@ void ProcessSystemResourceAllocationAndCallback(void* SystemResourcePointer,long
           plocalResourceOffset = *(long long **)(unsignedSystemValue4 * 8 + *ConfigurationDataPointer);
           pcVar1 = *(code **)(*plocalResourceOffset + 0x80);
           if (pcVar1 == (code *)&SystemFunctionPointer2) {
-            FUN_1800496b0(plocalResourceOffset + 4);
+            ProcessConfigurationData(plocalResourceOffset + 4);
           }
           else {
             (*pcVar1)();
@@ -38678,7 +38678,7 @@ long long FindThreadLocalStorageResource(long long SystemResourcePointer)
       }
     }
     if (unsignedSystemValue6 < (*SystemPreviousNode >> 2) + (*SystemPreviousNode >> 1)) {
-      localMemoryAddress = FUN_18005ee30(SystemResourcePointer,0,acStackX_8);
+      localMemoryAddress = AllocateSystemMemory(SystemResourcePointer,0,stackValue8);
       if (localMemoryAddress == 0) {
         LOCK();
         *(long long *)(SystemResourcePointer + 0x38) = *(long long *)(SystemResourcePointer + 0x38) + -1;
@@ -38789,7 +38789,7 @@ long long AllocateSystemResourceId(void)
     if (unsignedSystemValue9 < (*systemDataIndexPtr >> 2) + (*systemDataIndexPtr >> 1)) break;
     systemDataIndexPtr = *(ulong long **)(systemResourceCounter + 0x30);
   }
-  localDataIndex = FUN_18005ee30();
+  localDataIndex = AllocateSystemMemory();
   if (localDataIndex == 0) {
     LOCK();
     *(long long *)(systemResourceCounter + 0x38) = *(long long *)(systemResourceCounter + 0x38) + -1;
@@ -38908,7 +38908,7 @@ long long ManageSystemResourceAllocationPool(void)
       do {
         do {
           if (systemStackFramePtr < (*systemDataIndexPtr >> 2) + (*systemDataIndexPtr >> 1)) {
-            localSystemFlags = FUN_18005ee30();
+            localSystemFlags = AllocateSystemMemory();
             if (localSystemFlags == 0) {
               LOCK();
               *(long long *)(systemResourceCounter + 0x38) = *(long long *)(systemResourceCounter + 0x38) + -1;
@@ -39064,7 +39064,7 @@ void* * CreateAndInitializeSystemThreadObject(long long *SystemResourcePointer,c
         if ((ulong long)pointerToUnsigned2[0xd] < unsignedSystemValue8) {
           pointerToUnsigned2[0xd] = unsignedSystemValue8;
         }
-        FUN_18005f340(pointerToUnsigned2,0);
+        InitializeSystemComponent(pointerToUnsigned2,0);
       }
       punsignedSystemValue5 = punsignedSystemValue6;
       if (pointerToUnsigned2 != (void* *)0x0) {
@@ -39148,7 +39148,7 @@ ResourceOperationLoop:
       if ((((*(long long *)(SystemResourcePointer + 0x28) - unsignedSystemValue1) - 0x20 < 0x8000000000000001) ||
           (((*(long long *)(SystemResourcePointer + 0x80) == 0 ||
             (*(long long *)(SystemResourcePointer + 0x60) == *(long long *)(SystemResourcePointer + 0x68))) &&
-           (cVar2 = FUN_18005f340(SystemResourcePointer,*(void* *)(SystemResourcePointer + 0x60),unsignedSystemValue7,ConfigurationFlag,
+           (cVar2 = InitializeSystemComponent(SystemResourcePointer,*(void* *)(SystemResourcePointer + 0x60),unsignedSystemValue7,ConfigurationFlag,
                                   0xfffffffffffffffe), cVar2 == '\0')))) ||
          (localResourceOffset = GetSystemResourceOffset(*(void* *)(SystemResourcePointer + 0x50)), localResourceOffset == 0)) {
         return 0;
@@ -39243,7 +39243,7 @@ ResourceProcessingLoop:
     return 1;
   }
   if (0x8000000000000000 < (*(long long *)(SystemResourcePointer + 0x28) - unsignedSystemValue1) - 0x20) {
-    cVar2 = FUN_180060080(SystemResourcePointer,&uStackX_18,unsignedSystemValue1,unsignedSystemValue4,0xfffffffffffffffe);
+    cVar2 = ConfigureSystemSettings(SystemResourcePointer,&stackValue18,unsignedSystemValue1,unsignedSystemValue4,0xfffffffffffffffe);
     if (cVar2 != '\0') {
       plocalResourceOffset = (long long *)FUN_18005ff50(*(void* *)(SystemResourcePointer + 0x50));
       if (plocalResourceOffset != (long long *)0x0) {
