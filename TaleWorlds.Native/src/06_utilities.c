@@ -5639,7 +5639,7 @@ void ProcessSystemMessageQueue(int64_t messageQueueHandle, uint8_t Configuration
  * @param operationFlag 操作标志，指定要执行的操作类型
  * @return 处理结果，成功返回0，失败返回错误码
  */
-uint64_t ProcessSystemResourceAllocation(int64_t resourceHandle, uint8_t operationFlag)
+uint64_t ProcessSystemResourceAllocation(int64_t ResourceHandle, uint8_t OperationFlag)
 
 {
   uint ResourceHash;
@@ -5650,24 +5650,24 @@ uint64_t ProcessSystemResourceAllocation(int64_t resourceHandle, uint8_t operati
   int64_t ResourceHandleValue;
   int resourceCount;
   
-  HashValidationResult = ValidateObjectContext(*(uint32_t *)(resourceHandle + 0x24),&ValidationContext);
-  if ((int)validationResult == 0) {
-    resourceCount = *(int *)(resourceHandle + 0x18);
-    if ((0 < resourceCount) && (*(uint *)(resourceHandle + 0x1c) < 2)) {
+  HashValidationResult = ValidateObjectContext(*(uint32_t *)(ResourceHandle + 0x24),&ValidationContext);
+  if ((int)HashValidationResult == 0) {
+    ResourceCount = *(int *)(ResourceHandle + 0x18);
+    if ((0 < ResourceCount) && (*(uint *)(ResourceHandle + 0x1c) < 2)) {
       ResourceIndex = 0;
-      if (*(uint *)(resourceHandle + 0x1c) == 0) {
-        ResourceHandleValue = *(int64_t *)(resourceHandle + 0x10);
+      if (*(uint *)(ResourceHandle + 0x1c) == 0) {
+        ResourceHandleValue = *(int64_t *)(ResourceHandle + 0x10);
         ResourceOperationBuffer[0] = 1;
         ResourceIndex = ResourceHandleValue;
       }
       else {
-        ResourceHandleValue = *(int64_t *)(resourceHandle + 0x10);
+        ResourceHandleValue = *(int64_t *)(ResourceHandle + 0x10);
         ResourceOperationBuffer[0] = 2;
       }
-      resourceHash = ProcessResourceOperationEx(operationFlag,ResourceOperationBuffer,*(uint32_t *)(resourceHandle + 0x20),ValidationContext);
-      validationResult = (uint64_t)resourceHash;
-      if (resourceHash == 0) {
-        validationResult = 0;
+      ResourceHash = ProcessResourceOperationEx(OperationFlag,ResourceOperationBuffer,*(uint32_t *)(ResourceHandle + 0x20),ValidationContext);
+      ResourceHashValidationResult = (uint64_t)ResourceHash;
+      if (ResourceHash == 0) {
+        ResourceHashValidationResult = 0;
       }
       else if (ResourceIndex != 0) {
         ProcessResourceRelease(*(uint8_t *)(SystemContext + 0x1a0),ResourceIndex,&ResourceTableTemplate,0xe9);
