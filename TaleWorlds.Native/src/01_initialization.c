@@ -56854,11 +56854,11 @@ int FUN_180076c50(long long ResourceManagerPointer,long long *ConfigurationDataP
   }
   SystemStackPointer = &uStackX_8;
   uStackX_8 = 0;
-  systemStatus5 = FUN_1801cdb50(resourceCounter,puStackX_10,&uStack_60,0,in_stack_ffffffffffffff38 & 0xffffff00,0,
+  systemStatus5 = InitializeResourceContext(resourceCounter,puStackX_10,&uStack_60,0,in_stack_ffffffffffffff38 & 0xffffff00,0,
                          (byte)systemStatus3 & 1,PrimaryResourcePointer,1,0,0,&uStackX_8,systemStatus6);
   puStackX_10 = &uStackX_8;
   uStackX_8 = 0;
-  systemStatusFlag = FUN_1801de280(systemStatus5,PrimaryResourcePointer,&uStackX_8);
+  systemStatusFlag = ValidateResourceInitialization(systemStatus5,PrimaryResourcePointer,&uStackX_8);
   if (systemStatusFlag == '\0') {
     systemValue = systemValue + 1;
   }
@@ -59481,7 +59481,7 @@ void FUN_1800786e0(void* *ResourceManagerPointer,long long ConfigurationDataPoin
   systemId = 0;
   plocalMemoryAddress = ResourceManagerPointer + 1;
   do {
-    plocalResourceOffset = (long long *)FUN_1801fd480(ConfigurationDataPointer,systemId);
+    plocalResourceOffset = (long long *)GetResourceConfigurationPointer(ConfigurationDataPointer,systemId);
     if (plocalResourceOffset != (long long *)0x0) {
       plStackX_8 = plocalResourceOffset;
       (**(code **)(*plocalResourceOffset + 0x28))(plocalResourceOffset);
@@ -59502,9 +59502,9 @@ void FUN_1800786e0(void* *ResourceManagerPointer,long long ConfigurationDataPoin
     systemId = systemId + 1;
     plocalMemoryAddress = plocalMemoryAddress + 1;
   } while (systemId < 7);
-  unsignedSystemValue4 = FUN_1801fc6c0(ConfigurationDataPointer,&uStack_58);
+  unsignedSystemValue4 = GetSystemResourceIdentifier(ConfigurationDataPointer,&uStack_58);
   nextDataIndex = SystemDataBufferPointer;
-  systemId = FUN_180191c00(SystemDataBufferPointer,unsignedSystemValue4);
+  systemId = FindSystemDataIndex(SystemDataBufferPointer,unsignedSystemValue4);
   if ((systemId == -1) || (localDataIndex = (long long)systemId * 0x68 + *(long long *)(nextDataIndex + 0x38), localDataIndex == 0)) {
     localDataIndex = *(long long *)(nextDataIndex + 0x28);
   }
@@ -59534,7 +59534,7 @@ void FUN_1800786e0(void* *ResourceManagerPointer,long long ConfigurationDataPoin
   }
   *(uint32_t *)(ResourceManagerPointer + 0x23) = creationFlags;
   if ((*(char *)(ConfigurationDataPointer + 0x2f0) == '\0') && (*(long long *)(ConfigurationDataPointer + 0x3c8) != 0)) {
-    FUN_1801fca40(*(long long *)(ConfigurationDataPointer + 0x3c8),&uStack_58);
+    ProcessResourceConfigurationData(*(long long *)(ConfigurationDataPointer + 0x3c8),&uStack_58);
     creationFlags = (uint32_t)uStack_58;
     systemStatus1 = uStack_58._4_4_;
     systemStatus2 = (uint32_t)uStack_50;
@@ -59637,25 +59637,25 @@ void FUN_1800786e0(void* *ResourceManagerPointer,long long ConfigurationDataPoin
   *(uint8_t *)((long long)ResourceManagerPointer + 0x152) = *(uint8_t *)(ConfigurationDataPointer + 0x380);
   *(uint8_t *)(ResourceManagerPointer + 0x2a) = *(uint8_t *)(ConfigurationDataPointer + 0x381);
   if ((*(char *)(ConfigurationDataPointer + 0x35c) == '\0') && (*(long long *)(ConfigurationDataPointer + 0x3c8) != 0)) {
-    FUN_1801fc9f0(*(long long *)(ConfigurationDataPointer + 0x3c8),&plStackX_8);
+    ValidateResourceConfiguration(*(long long *)(ConfigurationDataPointer + 0x3c8),&plStackX_8);
   }
   else {
     plStackX_8 = *(long long **)(ConfigurationDataPointer + 0x34c);
   }
   if ((*(char *)(ConfigurationDataPointer + 0x348) == '\0') && (*(long long *)(ConfigurationDataPointer + 0x3c8) != 0)) {
-    FUN_1801fc9a0(*(long long *)(ConfigurationDataPointer + 0x3c8),auStackX_10);
+    InitializeResourceConfiguration(*(long long *)(ConfigurationDataPointer + 0x3c8),auStackX_10);
   }
   else {
     auStackX_10[0] = *(void* *)(ConfigurationDataPointer + 0x338);
   }
   if ((*(char *)(ConfigurationDataPointer + 0x334) == '\0') && (*(long long *)(ConfigurationDataPointer + 0x3c8) != 0)) {
-    FUN_1801fc950(*(long long *)(ConfigurationDataPointer + 0x3c8),&uStackX_20);
+    ProcessResourceConfiguration(*(long long *)(ConfigurationDataPointer + 0x3c8),&uStackX_20);
   }
   else {
     uStackX_20 = *(void* *)(ConfigurationDataPointer + 0x324);
   }
   if ((*(char *)(ConfigurationDataPointer + 800) == '\0') && (*(long long *)(ConfigurationDataPointer + 0x3c8) != 0)) {
-    FUN_1801fc900(*(long long *)(ConfigurationDataPointer + 0x3c8),&uStack_58);
+    ConfigureResourceSettings(*(long long *)(ConfigurationDataPointer + 0x3c8),&uStack_58);
   }
   else {
     uStack_58 = *(void* **)(ConfigurationDataPointer + 0x300);
