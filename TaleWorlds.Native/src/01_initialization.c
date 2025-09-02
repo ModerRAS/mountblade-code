@@ -27262,12 +27262,12 @@ void SystemFloatingPointProcessor(long long SystemResourcePointer,float paramete
       }
       unsignedSystemValue1 = (long long)(int)(((int)unsignedSystemValue13 / (int)unsignedSystemValue12) * unsignedSystemValue11) / (long long)systemFlag;
       unsignedSystemValue7 = (uint)unsignedSystemValue1;
-      if (((unsignedSystemValue11 & 1) == 0) && ((unsignedSystemValue1 & 1) == 0)) goto LAB_180052ce3;
+      if (((unsignedSystemValue11 & 1) == 0) && ((unsignedSystemValue1 & 1) == 0)) goto LAB_SystemFlagHandler;
       fVar15 = fVar15 + 0.01;
       *(float *)(SystemResourcePointer + 0x234) = fVar15;
     } while (fVar15 <= 1.0);
     *(uint32_t *)(SystemResourcePointer + 0x234) = 0x3f800000;
-LAB_180052ce3:
+LAB_SystemFlagHandler:
     fStackX_8 = (float)(int)unsignedSystemValue11 / fStackX_8;
     fStackX_c = (float)(int)unsignedSystemValue7 / (float)(int)unsignedSystemValue13;
     unsignedSystemValue13 = unsignedSystemValue7;
