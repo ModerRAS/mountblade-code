@@ -14684,7 +14684,7 @@ uint8_t ValidateResourceRenderingState(void)
             LocalContextData1 = (ValidationCounter & 0xffffffff) - (uint64_t)StackVariable28c;
           }
           LocalContextData5 = objectContext[4];
-          uStack_288 = LocalContextData1 == 0;
+          GraphicsOperationStatus = LocalContextData1 == 0;
           fStack_2c8 = inputFloatValue8;
           if (((char)LocalContextData5 == '\0') &&
              (integerValue6 = CheckSystemStatus(objectContext,CONCAT71((uint7)(uint3)(StackVariable28c >> 8),1)), integerValue6 != 0
@@ -26385,7 +26385,7 @@ uint64_t ProcessResourceTableOperationsAndDataValidation(int64_t objectContext,i
     loopIncrement = 0x1c;
   }
   else if (presourceTable[2] == 0) {
-LAB_18089ea0f:
+LAB_EncryptedDataValidation:
     loopIncrement = CalculateResourceHash(*presourceTable,auStack_a0,1,4,0);
   }
   else {
@@ -26584,7 +26584,7 @@ MemoryBoundaryCheck4:
   }
   *(uint32_t *)(objectContext + 0x38) = ContextValidationResult;
   validationStatusCode = *(uint *)(resourceData + 8);
-LAB_18089ed1b:
+SecurityValidationFailed:
   loopIncrement = 0;
   if ((0x7e < ValidationResult) && (loopIncrement = 0x1c, *(int *)(resourceData[1] + 0x18) == 0)) {
     validationStatusCode = ReadResourceData(*validationContext,objectContext + 0x38,4);
@@ -26691,14 +26691,14 @@ uint64_t ProcessResourceTableValidationAndOperations(void)
     loopIncrement = 0x1c;
   }
   else if (presourceTable[2] == 0) {
-LAB_18089ea0f:
+LAB_ContextDataValidation:
     loopIncrement = CalculateResourceHash(*presourceTable,ExecutionContextPointer + -0x41,ResourceDataPointerD,4,0);
   }
   else {
     *(uint32_t *)(ExecutionContextPointer + 0x77) = 0;
     loopIncrement = ValidateResourceAccess(LocalContextData,ExecutionContextPointer + 0x77);
     if ((int)loopCondition == 0) {
-      if ((uint64_t)*(uint *)(ExecutionContextPointer + 0x77) + 4 <= (uint64_t)presourceTable[2]) goto LAB_18089ea0f;
+      if ((uint64_t)*(uint *)(ExecutionContextPointer + 0x77) + 4 <= (uint64_t)presourceTable[2]) goto ContextValidationLoop;
       loopIncrement = 0x11;
     }
   }
@@ -26902,7 +26902,7 @@ MemoryBoundaryCheck4:
   }
   *(int *)(RegisterR15 + 0x38) = ResourceDataPointerD;
   validationStatusCode = *(uint *)(SystemRegisterContext + 8);
-LAB_18089ed1b:
+SecurityValidationFailed:
   loopIncrement = 0;
   if ((0x7e < ValidationResult) && (loopIncrement = 0x1c, *(int *)(SystemRegisterContext[1] + 0x18) == 0)) {
     validationStatusCode = ReadResourceData(*SystemRegisterContext,RegisterR15 + 0x38,4);
@@ -26946,7 +26946,7 @@ uint64_t ProcessResourceDataValidationAndAllocation(uint8_t ObjectContext,uint8_
   }
   else {
     if (resourceContext[2] == CleanupOption) {
-LAB_18089ea0f:
+LAB_ResourceCleanupValidation:
       loopIncrement = CalculateResourceHash(*resourceContext,ExecutionContextPointer + -0x41,ResourceDataPointerD,4,CleanupOption);
     }
     else {
@@ -26956,14 +26956,14 @@ LAB_18089ea0f:
         CleanupOption = 0;
         if ((uint64_t)resourceContext[2] < (uint64_t)*(uint *)(ExecutionContextPointer + 0x77) + 4) {
           loopIncrement = 0x11;
-          goto LAB_18089ea2c;
+          goto ContextValidationContinue;
         }
-        goto LAB_18089ea0f;
+        goto ContextValidationLoop;
       }
     }
     CleanupOption = 0;
   }
-LAB_18089ea2c:
+ContextValidationContinue:
   if ((int)loopCondition != 0) {
     return loopCondition;
   }
@@ -27036,14 +27036,14 @@ MemoryBoundaryCheck1:
           CleanupOption = 0;
           if ((uint64_t)resourceContext[2] < (uint64_t)*(uint *)(ExecutionContextPointer + -0x45) + 1) {
             validationStatusCode = 0x11;
-            goto LAB_18089eb3c;
+            goto MemoryBoundaryContinue1;
           }
           goto MemoryBoundaryCheck1;
         }
       }
       CleanupOption = 0;
     }
-LAB_18089eb3c:
+LAB_BoundaryCheckComplete:
     if (validationStatusCode == 0) {
       *(bool *)(ExecutionContextPointer + 0x77) = *(char *)(ExecutionContextPointer + -0x49) != '\0';
     }
@@ -27079,14 +27079,14 @@ MemoryBoundaryCheck2:
           CleanupOption = 0;
           if ((uint64_t)resourceContext[2] < (uint64_t)*(uint *)(ExecutionContextPointer + -0x45) + 1) {
             validationStatusCode = 0x11;
-            goto LAB_18089ebc4;
+            goto MemoryBoundaryContinue2;
           }
           goto MemoryBoundaryCheck2;
         }
       }
       CleanupOption = 0;
     }
-LAB_18089ebc4:
+LAB_DataCheckComplete:
     if (validationStatusCode == 0) {
       *(bool *)(ExecutionContextPointer + 0x7f) = *(char *)(ExecutionContextPointer + -0x49) != '\0';
     }
@@ -27122,14 +27122,14 @@ MemoryBoundaryCheck3:
           CleanupOption = 0;
           if ((uint64_t)resourceContext[2] < (uint64_t)*(uint *)(ExecutionContextPointer + -0x45) + 1) {
             validationStatusCode = 0x11;
-            goto LAB_18089ec4c;
+            goto MemoryBoundaryContinue3;
           }
           goto MemoryBoundaryCheck3;
         }
       }
       CleanupOption = 0;
     }
-LAB_18089ec4c:
+LAB_IntegrityCheckComplete:
     if (validationStatusCode == 0) {
       ValidationSuccess = *(char *)(ExecutionContextPointer + -0x49) != '\0';
     }
@@ -27165,14 +27165,14 @@ MemoryBoundaryCheck4:
           CleanupOption = 0;
           if ((uint64_t)resourceContext[2] < (uint64_t)*(uint *)(ExecutionContextPointer + -0x45) + 1) {
             validationStatusCode = 0x11;
-            goto LAB_18089ecd4;
+            goto MemoryBoundaryContinue4;
           }
           goto MemoryBoundaryCheck4;
         }
       }
       CleanupOption = 0;
     }
-LAB_18089ecd4:
+LAB_VerificationComplete:
     if (validationStatusCode == 0) {
       ValidationSuccess = *(char *)(ExecutionContextPointer + -0x49) != '\0';
     }
@@ -27193,7 +27193,7 @@ LAB_18089ecd4:
   }
   *(uint32_t *)(RegisterR15 + 0x38) = ResourceDataPointerD;
   InputParameterValue = *(uint *)(SystemRegisterContext + 8);
-LAB_18089ed1b:
+SecurityValidationFailed:
   if (InputParameterValue < 0x7f) {
     ResourceContextOffset = CleanupOption & 0xffffffff;
   }
@@ -27800,7 +27800,7 @@ SystemResourceValidationHandler(void)
       if (ResourceIndex != 0) {
         return;
       }
-      goto LAB_18089f45f;
+      goto SystemResourceCleanup;
     }
   }
   else if ((InputParameterValue == 0x12) && (*(uint *)(resourceContext + 8) < 0x40)) {
@@ -27843,7 +27843,7 @@ SystemResourceValidationHandler(void)
   if (ResourceIndex != 0) {
     return;
   }
-LAB_18089f45f:
+SystemResourceCleanup:
                     // WARNING: Subroutine does not return
   CleanupResourceBuffer();
 }
@@ -41262,7 +41262,22 @@ void Unwind_SystemResourceCleanup_Batch5(uint8_t objectContext,int64_t validatio
 
 
 
-void Unwind_180904290(uint8_t objectContext,int64_t validationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * InitializeSystemResourceHandlers - 系统资源清理和验证函数
+ *
+ * 功能：初始化系统资源处理程序和数据结构
+ *
+ * @param objectContext 对象上下文标识符 (uint8_t)
+ * @param validationContext 验证上下文指针 (int64_t)
+ * @param CleanupOption 清理选项标志 (uint8_t)
+ * @param CleanupFlag 清理标志参数 (uint8_t)
+ *
+ * 返回值：void
+ *
+ * 注意：此函数由逆向工程生成，用于系统资源管理和清理
+ *       原始函数名：Unwind_180904290
+ */
+void InitializeSystemResourceHandlers(uint8_t objectContext,int64_t validationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
@@ -41316,7 +41331,22 @@ void Unwind_180904290(uint8_t objectContext,int64_t validationContext,uint8_t Cl
 
 
 
-void Unwind_1809042b0(uint8_t objectContext,int64_t validationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * SetupSystemResourceCleanup - 系统资源清理和验证函数
+ *
+ * 功能：设置系统资源清理处理程序
+ *
+ * @param objectContext 对象上下文标识符 (uint8_t)
+ * @param validationContext 验证上下文指针 (int64_t)
+ * @param CleanupOption 清理选项标志 (uint8_t)
+ * @param CleanupFlag 清理标志参数 (uint8_t)
+ *
+ * 返回值：void
+ *
+ * 注意：此函数由逆向工程生成，用于系统资源管理和清理
+ *       原始函数名：Unwind_1809042b0
+ */
+void SetupSystemResourceCleanup(uint8_t objectContext,int64_t validationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
@@ -41370,7 +41400,22 @@ void Unwind_1809042b0(uint8_t objectContext,int64_t validationContext,uint8_t Cl
 
 
 
-void Unwind_1809042d0(uint8_t objectContext,int64_t validationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * ConfigureResourceValidation - 系统资源清理和验证函数
+ *
+ * 功能：配置资源验证处理程序
+ *
+ * @param objectContext 对象上下文标识符 (uint8_t)
+ * @param validationContext 验证上下文指针 (int64_t)
+ * @param CleanupOption 清理选项标志 (uint8_t)
+ * @param CleanupFlag 清理标志参数 (uint8_t)
+ *
+ * 返回值：void
+ *
+ * 注意：此函数由逆向工程生成，用于系统资源管理和清理
+ *       原始函数名：Unwind_1809042d0
+ */
+void ConfigureResourceValidation(uint8_t objectContext,int64_t validationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
@@ -46621,7 +46666,7 @@ void Unwind_1809057b0(uint8_t objectContext,int64_t validationContext)
       for (pResourceCount = *(int **)(resourcePointer5[7] + resourceHash2 * 8); pResourceCount != (int *)0x0;
           pResourceCount = *(int **)(pResourceCount + 4)) {
         if (integerValue6 == *pResourceCount) {
-          if (pResourceCount != (int *)0x0) goto LAB_1801571ef;
+          if (pResourceCount != (int *)0x0) goto ResourceCleanupHandler;
           break;
         }
       }
@@ -46640,7 +46685,7 @@ void Unwind_1809057b0(uint8_t objectContext,int64_t validationContext)
       *(uint8_t *)(pResourceCount + 4) = *(uint8_t *)(resourcePointer5[7] + resourceHash2 * 8);
       *(int **)(resourcePointer5[7] + resourceHash2 * 8) = pResourceCount;
       resourcePointer5[9] = resourcePointer5[9] + 1;
-LAB_1801571ef:
+ResourceCleanupHandler:
       PointerStack18 = *(int64_t **)(pResourceCount + 2);
       pResourceCount[2] = 0;
       pResourceCount[3] = 0;
@@ -47395,7 +47440,7 @@ void Unwind_180905950(uint8_t objectContext,int64_t validationContext)
       for (pResourceCount = *(int **)(resourcePointer5[7] + resourceHash2 * 8); pResourceCount != (int *)0x0;
           pResourceCount = *(int **)(pResourceCount + 4)) {
         if (integerValue6 == *pResourceCount) {
-          if (pResourceCount != (int *)0x0) goto LAB_1801571ef;
+          if (pResourceCount != (int *)0x0) goto ResourceCleanupHandler;
           break;
         }
       }
@@ -47414,7 +47459,7 @@ void Unwind_180905950(uint8_t objectContext,int64_t validationContext)
       *(uint8_t *)(pResourceCount + 4) = *(uint8_t *)(resourcePointer5[7] + resourceHash2 * 8);
       *(int **)(resourcePointer5[7] + resourceHash2 * 8) = pResourceCount;
       resourcePointer5[9] = resourcePointer5[9] + 1;
-LAB_1801571ef:
+ResourceCleanupHandler:
       PointerStack18 = *(int64_t **)(pResourceCount + 2);
       pResourceCount[2] = 0;
       pResourceCount[3] = 0;
