@@ -60003,7 +60003,20 @@ void ExecuteTertiaryResourceProcessingCallback(uint8_t ObjectContext, int64_t Va
 
 
 
-void Unwind_1809078f0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 执行第四级资源处理回调函数
+ * 
+ * 该函数负责执行第四级资源处理的回调操作
+ * 处理资源验证并执行相应的清理操作
+ * 
+ * @param ObjectContext 对象上下文，包含资源处理所需的对象信息
+ * @param ValidationContext 验证上下文，用于验证资源状态的上下文信息
+ * @param CleanupOption 清理选项，指定资源清理的方式
+ * @param CleanupFlag 清理标志，控制清理过程的标志位
+ * @return 无返回值
+ * @note 此函数在第四级资源处理过程中被调用
+ */
+void ExecuteQuaternaryResourceProcessingCallback(uint8_t ObjectContext, int64_t ValidationContext, uint8_t CleanupOption, uint8_t CleanupFlag)
 
 {
   ProcessResourceValidation(*(int64_t *)(ValidationContext + 0x28),*(uint8_t *)(*(int64_t *)(ValidationContext + 0x28) + 0x10),
