@@ -20157,7 +20157,7 @@ LocalDataPointerCheck:
   InitializeSystemBuffer(&encryptionPointerTripleX,bufferBaseAddress,SystemOperationCode,localSystemHandle);
   ppSystemDataPointer = encryptionPointerTripleX;
   ProcessSystemData(encryptionPointerTripleX,&systemMemoryContext);
-  ppppunsignedSystemValue9 = (void* ****)(ppSystemDataPointer + 0x20);
+  systemResourceManagerContext = (void* ****)(ppSystemDataPointer + 0x20);
   bufferBaseAddress = *(long long *)(SystemResourceManager + 0x10);
   localSystemFlags = *(long long *)(SystemResourceManager + 8);
   if (localSystemFlags != bufferBaseAddress) {
@@ -20171,10 +20171,10 @@ LocalDataPointerCheck:
       SystemCleanupFunction(localSystemFlags);
   }
   *(long long *)(SystemResourceManager + 8) = localSystemHandle;
-  *(void* *****)(SystemResourceManager + 0x10) = ppppunsignedSystemValue9;
+  *(void* *****)(SystemResourceManager + 0x10) = systemResourceManagerContext;
   *(long long *)(SystemResourceManager + 0x18) = localDataIndex * 0x100 + localSystemHandle;
 SystemValueCalculation:
-  systemValue = (int)((ulong long)((long long)ppppunsignedSystemValue9 - *(long long *)(SystemResourceManager + 8)) >> 8) + -1;
+  systemValue = (int)((ulong long)((long long)systemResourceManagerContext - *(long long *)(SystemResourceManager + 8)) >> 8) + -1;
   *(int *)(SystemResourceManager + 0x68) = systemValue;
   encryptionPointerTripleX = &pppEncryptionValue68;
   InitializeAndCleanupSystemMemoryAllocator(&pppEncryptionValue68,processFlags58);
@@ -20572,13 +20572,13 @@ void InitializeSystemCoreEngine(void)
   *(void*2 *)(newThreadLocalStorage + 4) = 0x74;
   systemOffsetCounter = systemCounter;
   HashBucketNode = (void* *)SystemMemoryAllocationFunction(SystemMemoryPoolTemplate,0x18,8,3);
-  punsignedSystemValue9 = &SystemStringTemplate;
+  systemTemplatePointer = &SystemStringTemplate;
   if (dataBufferPointer != (uint8_t *)0x0) {
-    punsignedSystemValue9 = dataBufferPointer;
+    systemTemplatePointer = dataBufferPointer;
   }
   *HashBucketNode = 0;
   *(uint8_t *)(HashBucketNode + 2) = 0;
-  ConfigureSystemNodeParameters(HashBucketNode,punsignedSystemValue9,&SystemConfigurationDataTemplate);
+  ConfigureSystemNodeParameters(HashBucketNode,systemTemplatePointer,&SystemConfigurationDataTemplate);
   RegisterSystemNode(SystemNodeManagerPointer,HashBucketNode);
   if (HashBucketNode[1] != 0) {
     fclose();
@@ -31667,27 +31667,27 @@ void* * FindSystemResourceNode(void* *resourcePointer,void* *configDataPointer,l
         void* *nextNodePointer = (void* *)*previousNode;
       }
 SystemResourceNodeCheck:
-      punsignedSystemValue9 = HashBucketNode;
+      systemHashBucketNode = HashBucketNode;
       if (isSystemActive) {
-        punsignedSystemValue9 = SystemDataPointer0;
+        systemHashBucketNode = SystemDataPointer0;
       }
       HashBucketNode = newThreadLocalStorage;
-      SystemDataPointer0 = punsignedSystemValue9;
+      SystemDataPointer0 = systemHashBucketNode;
     } while (newThreadLocalStorage != (void* *)0x0);
-    if (punsignedSystemValue9 != SystemResourceManager) {
-      if (*(int *)(punsignedSystemValue9 + 6) == 0) {
+    if (systemHashBucketNode != SystemResourceManager) {
+      if (*(int *)(systemHashBucketNode + 6) == 0) {
 SystemResourceNodeValidation:
-        *ConfigurationDataPointer = punsignedSystemValue9;
+        *ConfigurationDataPointer = systemHashBucketNode;
         return ConfigurationDataPointer;
       }
       if (*(int *)(AdditionalParameter + 0x10) != 0) {
-        pisOperationComplete = (byte *)punsignedSystemValue9[5];
-        localSystemFlags = *(long long *)(AdditionalParameter + 8) - (long long)pisOperationComplete;
+        operationCompletionFlag = (byte *)systemHashBucketNode[5];
+        localSystemFlags = *(long long *)(AdditionalParameter + 8) - (long long)operationCompletionFlag;
         do {
-          isByteValid = *pisOperationComplete;
-          SystemResourceAddress = (uint)pisOperationComplete[localSystemFlags];
+          isByteValid = *operationCompletionFlag;
+          SystemResourceAddress = (uint)operationCompletionFlag[localSystemFlags];
           if (isByteValid != SystemResourceAddress) break;
-          pisOperationComplete = pisOperationComplete + 1;
+          operationCompletionFlag = operationCompletionFlag + 1;
         } while (SystemResourceAddress != 0);
         if ((int)(isByteValid - SystemResourceAddress) < 1) goto SystemResourceNodeValidation;
       }
@@ -41830,7 +41830,7 @@ void ExecuteSystemDataOperation(void)
 void ProcessSystemResourceConfigurationOperation(void* SystemResourceManager,void* ConfigurationDataPointer,uint32_t AdditionalParameter,void* ConfigurationFlag)
 
 {
-  ExecuteSystemDataOperation(SystemResourceManager,ConfigurationDataPointer,0xffffffff00000000,AdditionalParameter,ConfigurationFlag,&stack0x00000028);
+  ExecuteSystemDataOperation(SystemResourceManager,ConfigurationDataPointer,0xffffffff00000000,AdditionalParameter,ConfigurationFlag,&stackParameterBuffer);
   return;
 }
 
@@ -41842,10 +41842,10 @@ void UpdateContextManagerSystem(void* SystemResourceManager,void* ConfigurationD
 
 {
   uint64_t SystemInitializationFlag;
-  void* uStackX_20;
+  void* configurationStackParameter;
   
   uStackX_18 = AdditionalParameter;
-  uStackX_20 = ConfigurationFlag;
+  configurationStackParameter = ConfigurationFlag;
   ConfigureSystemResourceManager(SystemResourceManager,0,0xffffffff00000000,0xd,ConfigurationDataPointer,&uStackX_18);
   return;
 }
@@ -48686,7 +48686,7 @@ void ConfigureSystemResourceNode(void* SystemResourceManager,void* Configuration
   AdditionalParameter = systemDataIndexPtr[1];
   in_R10 = *systemDataIndexPtr;
 LAB_18006ccef:
-  InitializeSystemMemoryAllocatorWithHashNodes(&stack0x00000050,in_R10,AdditionalParameter,ResourceDataOffset);
+  InitializeSystemMemoryAllocatorWithHashNodes(&stackBuffer50,in_R10,AdditionalParameter,ResourceDataOffset);
   localSystemHandle = InputStackParameter50;
   FUN_18006cd80(InputStackParameter50);
   nextDataIndex = systemDataIndexPtr[1];
@@ -58891,15 +58891,15 @@ void SystemNoOperationA(void)
   }
   if (*(long long *)(ResourceOffset + 0x28) == 0) {
     InputStackParameter30 = 0xffffffff;
-    HashNodeData5 = &stack0x00000030;
+    HashNodeData5 = &stackBuffer30;
     ResourceDataOffset3 = ResourceOffset;
   }
   else {
     ThreadCreationFlags = 0xffffffff;
-    HashNodeData5 = &stack0x00000170;
+    HashNodeData5 = &stackBuffer170;
     ResourceDataOffset3 = *(long long *)(ResourceOffset + 0x28);
   }
-  FUN_180080e90(ResourceDataOffset3 + 0x3388,HashNodeData5,&stack0x00000040);
+  FUN_180080e90(ResourceDataOffset3 + 0x3388,HashNodeData5,&stackBuffer40);
   pfloatValue39 = FloatParameterArray;
   if ((*(uint *)(MemoryBlockAddress + 0x100) & 0x4000000) != 0) {
     FloatVectorFirstComponent = *FloatParameterArray;
@@ -58945,9 +58945,9 @@ void SystemNoOperationA(void)
          floatValue5 * interpolationFactor3 + floatValue6 * FloatVectorThirdComponent + floatValue2 * FloatVectorNinthComponent + FloatParameterArray[0xe];
     fStack00000000000000dc =
          floatValue5 * InterpolationFactorW + floatValue6 * FloatVectorFourthComponent + floatValue2 * FloatVectorTenthComponent + FloatParameterArray[0xf];
-    pfloatValue39 = &stack0x000000a0;
+    pfloatValue39 = &stackBufferA0;
   }
-  FUN_180085190(&stack0x00000060,ResourceDataOffset4 + 0x30,*(uint8_t *)(MemoryBlockAddress + 0xf7),pfloatValue39);
+  FUN_180085190(&stackBuffer60,ResourceDataOffset4 + 0x30,*(uint8_t *)(MemoryBlockAddress + 0xf7),pfloatValue39);
   creationFlags8 = ThreadCreationParameter;
   creationFlags7 = InputStackParameter90;
   NetworkConnectionFlags = InputStackParameter88;
@@ -59161,15 +59161,15 @@ void CleanupGlobalSystemResources(void)
   }
   if (*(long long *)(ResourceOffset + 0x28) == 0) {
     InputStackParameter30 = 0xffffffff;
-    HashNodeData4 = &stack0x00000030;
+    HashNodeData4 = &stackBuffer30;
     ResourceDataOffset3 = ResourceOffset;
   }
   else {
     ThreadCreationFlags = 0xffffffff;
-    HashNodeData4 = &stack0x00000170;
+    HashNodeData4 = &stackBuffer170;
     ResourceDataOffset3 = *(long long *)(ResourceOffset + 0x28);
   }
-  FUN_180080e90(ResourceDataOffset3 + 0x3388,HashNodeData4,&stack0x00000040);
+  FUN_180080e90(ResourceDataOffset3 + 0x3388,HashNodeData4,&stackBuffer40);
   pfloatValue36 = FloatParameterArray;
   if ((*(uint *)(MemoryBlockAddress + 0x100) & 0x4000000) != 0) {
     FloatVectorFirstComponent = *FloatParameterArray;
@@ -59215,7 +59215,7 @@ void CleanupGlobalSystemResources(void)
          FloatTransformValue4 * interpolationFactor3 + FloatTransformValue5 * FloatVectorThirdComponent + FloatTransformValue6 * FloatVectorNinthComponent + FloatParameterArray[0xe];
     fStack00000000000000dc =
          FloatTransformValue4 * InterpolationFactorW + FloatTransformValue5 * FloatVectorFourthComponent + FloatTransformValue6 * FloatVectorTenthComponent + FloatParameterArray[0xf];
-    pfloatValue36 = &stack0x000000a0;
+    pfloatValue36 = &stackBufferA0;
   }
   FUN_180085190(&stack0x00000060,localSystemHandle9 + 0x30,*(uint8_t *)(MemoryBlockAddress + 0xf7),pfloatValue36);
   creationFlags8 = ThreadCreationParameter;
