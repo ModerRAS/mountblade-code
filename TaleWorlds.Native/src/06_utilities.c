@@ -44480,7 +44480,7 @@ void ReleaseResourceHandleAtRegistrationDataOffset(uint8_t ObjectContext,int64_t
  * @note 此函数会关闭指定位置的系统句柄
  * @warning 调用此函数后，被关闭的句柄将不再可用
  */
-void CloseHandleAtContextOffset68(uint8_t ObjectContext,int64_t ValidationContext)
+void CloseHandleAtResourceContextOffset(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   CloseHandle(*(uint8_t *)(*(int64_t *)(ValidationContext + SystemContextPrimaryResourceManagerOffset) + 0x68));
@@ -44501,7 +44501,7 @@ void CloseHandleAtContextOffset68(uint8_t ObjectContext,int64_t ValidationContex
  * @note 此函数会关闭指定位置的系统句柄
  * @warning 调用此函数后，被关闭的句柄将不再可用
  */
-void CloseHandleAtContextOffset70(uint8_t ObjectContext,int64_t ValidationContext)
+void CloseHandleAtResourceManagerOffset(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   CloseHandle(*(uint8_t *)(*(int64_t *)(ValidationContext + SystemContextPrimaryResourceManagerOffset) + 0x70));
@@ -44522,7 +44522,7 @@ void CloseHandleAtContextOffset70(uint8_t ObjectContext,int64_t ValidationContex
  * @note 此函数会释放指定位置的资源句柄
  * @warning 调用此函数后，被释放的资源句柄将不再可用
  */
-void ReleaseResourceHandleAtContextOffset70(uint8_t ObjectContext,int64_t ValidationContext)
+void ReleaseResourceHandleAtResourceManagerOffset(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int *ResourceIndexPointer;
@@ -44593,7 +44593,7 @@ void ReleaseResourceHandleAtContextOffset70(uint8_t ObjectContext,int64_t Valida
  * @note 此函数会释放指定位置的资源句柄
  * @warning 调用此函数后，被释放的资源句柄将不再可用
  */
-void ReleaseResourceHandleAtContextOffset2E0(uint8_t ObjectContext,int64_t ValidationContext)
+void ReleaseResourceHandleAtExtendedResourceManagerOffset(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int *ResourceIndexPointer;
@@ -44664,7 +44664,7 @@ void ReleaseResourceHandleAtContextOffset2E0(uint8_t ObjectContext,int64_t Valid
  * @note 此函数会释放指定位置的资源句柄
  * @warning 调用此函数后，被释放的资源句柄将不再可用
  */
-void ReleaseResourceHandleAtContextOffset2F8(uint8_t ObjectContext,int64_t ValidationContext)
+void ReleaseResourceHandleAtTertiaryResourceManagerOffset(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int *ResourceIndexPointer;
@@ -44735,7 +44735,7 @@ void ReleaseResourceHandleAtContextOffset2F8(uint8_t ObjectContext,int64_t Valid
  * @note 此函数会关闭指定位置的系统句柄
  * @warning 调用此函数后，被关闭的句柄将不再可用
  */
-void CloseHandleAtContextOffset78(uint8_t ObjectContext,int64_t ValidationContext)
+void CloseHandleAtSecondaryResourceManagerOffset(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   CloseHandle(**(uint8_t **)(ValidationContext + 0x78));
@@ -95155,10 +95155,30 @@ void ResetSystemContextState(uint8_t ObjectContext, int64_t ValidationContext)
 
 
 
-void Unwind_180911bb0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 注册资源处理器（偏移量0xb8）
+ * 
+ * 该函数负责注册系统资源处理器，将资源处理器与系统上下文关联起来。
+ * 这是一个资源管理的关键函数，确保资源能够被正确处理和管理。
+ * 
+ * @处理过程包括：
+ * - 从验证上下文中获取系统操作偏移量
+ * - 计算资源处理器的注册地址（偏移量0xb8）
+ * - 调用资源处理器注册函数完成注册
+ * 
+ * @param ObjectContext 对象上下文，用于标识操作的对象
+ * @param ValidationContext 验证上下文，包含验证相关的数据和信息
+ * @return 无返回值
+ * @note 此函数会注册一个资源处理器到系统上下文中
+ * @warning 资源处理器注册后，系统将能够处理相应的资源类型
+ * @see RegisterResourceHandler
+ * @see ResourceTypeHandler010
+ * @see SystemContextOperationOffset
+ */
+void RegisterResourceHandlerOffsetB8(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
-  RegisterResourceHandler(*(int64_t *)(ValidationContext + SystemContextOperationOffset) + 0xb8,0x10,2,ResourceTypeHandler010,0xfffffffffffffffe);
+  RegisterResourceHandler(*(int64_t *)(ValidationContext + SystemContextOperationOffset) + 0xb8, 0x10, 2, ResourceTypeHandler010, 0xfffffffffffffffe);
   return;
 }
 
