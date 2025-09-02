@@ -7547,50 +7547,50 @@ uint8_t ValidateMatrixTransformationData(int64_t matrixDataPointer,int64_t Conte
   if ((MatrixRow2InfinityStatus != 0 || MatrixRow3InfinityStatus != 0) || MatrixOverallInfinityStatus != 0) {
     return 0x1f;
   }
-  SecondRowInfinityStatus = 0;
+  MatrixRow2InfinityStatus = 0;
   if ((*(uint *)(ObjectContext + ObjectContextMatrixFlagsOffset) & 0x7f800000) == 0x7f800000) {
-    FirstRowInfinityStatus = 0x1d;
+    MatrixRow1InfinityStatus = 0x1d;
   }
-  ThirdRowInfinityStatus = SecondRowInfinityStatus;
+  MatrixRow3InfinityStatus = MatrixRow2InfinityStatus;
   if ((*(uint *)(ObjectContext + 0x28) & 0x7f800000) == 0x7f800000) {
-    ThirdRowInfinityCheck = 0x1d;
+    MatrixRow3InfinityCheck = 0x1d;
   }
-  InfinityStatusFlag = SecondRowInfinityCheck;
+  MatrixInfinityStatusFlag = MatrixRow2InfinityCheck;
   if ((*(uint *)(ObjectContext + ObjectContextStatusDataOffset) & 0x7f800000) == 0x7f800000) {
-    InfinityStatusFlag = 0x1d;
+    MatrixInfinityStatusFlag = 0x1d;
   }
-  if ((FirstRowInfinityCheck != 0 || ThirdRowInfinityCheck != 0) || InfinityStatusFlag != 0) {
+  if ((MatrixRow1InfinityCheck != 0 || MatrixRow3InfinityCheck != 0) || MatrixInfinityStatusFlag != 0) {
     return 0x1f;
   }
-  FirstRowInfinityCheck = SecondRowInfinityCheck;
+  MatrixRow1InfinityCheck = MatrixRow2InfinityCheck;
   if ((*(uint *)(ObjectContext + 0x38) & 0x7f800000) == 0x7f800000) {
-    FirstRowInfinityCheck = 0x1d;
+    MatrixRow1InfinityCheck = 0x1d;
   }
-  ThirdRowInfinityCheck = SecondRowInfinityCheck;
+  MatrixRow3InfinityCheck = MatrixRow2InfinityCheck;
   if ((*(uint *)(ObjectContext + ObjectContextMatrixTranslationOffset) & 0x7f800000) == 0x7f800000) {
-    ThirdRowInfinityCheck = 0x1d;
+    MatrixRow3InfinityCheck = 0x1d;
   }
   if (((uint)*(float *)(ObjectContext + ObjectContextMatrixScaleOffset) & 0x7f800000) == 0x7f800000) {
-    SecondRowInfinityCheck = 0x1d;
+    MatrixRow2InfinityCheck = 0x1d;
   }
-  if ((FirstRowInfinityCheck != 0 || ThirdRowInfinityCheck != 0) || SecondRowInfinityCheck != 0) {
+  if ((MatrixRow1InfinityCheck != 0 || MatrixRow3InfinityCheck != 0) || MatrixRow2InfinityCheck != 0) {
     return 0x1f;
   }
   float MatrixElementXCoordinate = *(float *)(ObjectContext + ObjectContextMatrixXCoordinateOffset);
-  FirstRowInfinityCheck = 0;
+  MatrixRow1InfinityCheck = 0;
   uint32_t SecurityValidationContext = *(uint *)(ObjectContext + ObjectContextSecurityContextOffset);
   float MatrixElementWComponent = *(float *)(ObjectContext + ObjectContextMatrixWComponentOffset);
   ResourceValidationData[0] = CONCAT44(ResourceValidationData[0].VectorComponent,matrixElementXCoordinate);
-  SecondRowInfinityCheck = FirstRowInfinityCheck;
+  MatrixRow2InfinityCheck = MatrixRow1InfinityCheck;
   if (((uint)matrixElementXCoordinate & 0x7f800000) == 0x7f800000) {
-    SecondRowInfinityCheck = 0x1d;
+    MatrixRow2InfinityCheck = 0x1d;
   }
-  ThirdRowInfinityCheck = FirstRowInfinityCheck;
+  MatrixRow3InfinityCheck = MatrixRow1InfinityCheck;
   if ((securityValidationContext & 0x7f800000) == 0x7f800000) {
-    ThirdRowInfinityCheck = 0x1d;
+    MatrixRow3InfinityCheck = 0x1d;
   }
   if (((uint)matrixElementWComponent & 0x7f800000) == 0x7f800000) {
-    FirstRowInfinityCheck = 0x1d;
+    MatrixRow1InfinityCheck = 0x1d;
   }
   if ((SecondRowInfinityCheck == 0 && ThirdRowInfinityCheck == 0) && FirstRowInfinityCheck == 0) {
     if (((*(float *)(ObjectContext + ObjectContextMatrixScaleOffset) == 0.0) && (*(float *)(ObjectContext + ObjectContextMatrixTranslationOffset) == 0.0)) &&

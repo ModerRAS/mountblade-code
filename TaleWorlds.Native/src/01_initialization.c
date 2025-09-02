@@ -57199,7 +57199,23 @@ void InitializeSystemResourceManagerExtended(long long *SystemResourceManager)
 
 
 
-long long * FUN_1800763c0(long long *SystemResourceManager,long long *ConfigurationDataPointer)
+/**
+ * @brief 系统资源管理器配置和数据复制器
+ * 
+ * 该函数负责配置系统资源管理器并复制相关数据，包括：
+ * - 分配和初始化系统资源管理器内存
+ * - 复制系统配置数据和资源参数
+ * - 设置线程创建标志和资源地址
+ * - 管理哈希表项和数据索引
+ * - 配置系统资源管理器的各种属性
+ * 
+ * @param SystemResourceManager 系统资源管理器指针
+ * @param ConfigurationDataPointer 配置数据指针
+ * @return 配置完成后的配置数据指针
+ * 
+ * 原始函数名：FUN_1800763c0
+ */
+long long * SystemResourceManagerConfiguratorAndDataCopier(long long *SystemResourceManager,long long *ConfigurationDataPointer)
 
 {
   byte *pisByteValid;
@@ -57641,7 +57657,21 @@ void ManageSystemResourceReferenceCount(long long SystemResourceManager)
 
 
 
-void* FUN_180076b90(long long SystemResourceManager)
+/**
+ * @brief 系统资源状态验证器
+ * 
+ * 该函数负责验证系统资源的状态和可用性，包括：
+ * - 检查系统资源的操作完成状态
+ * - 验证资源管理器的有效性
+ * - 处理系统资源的配置和状态标志
+ * - 确保资源数据的完整性和可用性
+ * 
+ * @param SystemResourceManager 系统资源管理器指针
+ * @return 资源有效返回1，无效返回0
+ * 
+ * 原始函数名：FUN_180076b90
+ */
+void* SystemResourceStatusValidator(long long SystemResourceManager)
 
 {
   byte isByteValid;
@@ -57675,7 +57705,22 @@ void* FUN_180076b90(long long SystemResourceManager)
 
 
 
-int FUN_180076c50(long long SystemResourceManager,long long *ConfigurationDataPointer)
+/**
+ * @brief 系统资源管理器配置处理器
+ * 
+ * 该函数负责处理系统资源管理器的配置操作，包括：
+ * - 管理主资源指针和资源池
+ * - 处理哈希节点数据和系统操作状态
+ * - 执行资源计数和系统哈希计算
+ * - 管理系统堆栈指针和操作标志
+ * 
+ * @param SystemResourceManager 系统资源管理器指针
+ * @param ConfigurationDataPointer 配置数据指针
+ * @return 配置处理结果状态码
+ * 
+ * 原始函数名：FUN_180076c50
+ */
+int SystemResourceManagerConfigurationProcessor(long long SystemResourceManager,long long *ConfigurationDataPointer)
 
 {
   long long *PrimaryResourcePointer;
