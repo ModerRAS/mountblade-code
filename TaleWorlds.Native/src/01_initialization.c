@@ -35041,14 +35041,14 @@ void* ReleaseSystemResourceHandler(void* SystemResourceManager,ulong long Config
 void InitializeAndCleanupSystemResource(void* *systemResourceManager)
 
 {
-  ulong long SystemOperationStatus;
+  ulong long systemOperationStatus;
   void* resourceCreationFlags;
   ulong long resourceAllocationContext;
   ulong long resourceAddress;
-  void* SystemThreadContext;
-  long long SystemThreadFlags;
-  void** SystemCurrentNode;
-  long long SystemMemoryAddress;
+  void* systemThreadContext;
+  long long systemThreadFlags;
+  void** systemCurrentNode;
+  long long systemMemoryAddress;
   
   resourceAllocationContext = 0;
   *SystemResourceManager = 0;
