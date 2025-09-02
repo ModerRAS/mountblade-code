@@ -57508,7 +57508,7 @@ void ConfigureSystemResourceManagerAdvanced(long long* SystemResourceManager,voi
     plStack_18 = (long long *)0x0;
     EncryptionKeyValue = 0;
     SystemResourceStatusFlagCompact[0] = 0;
-    FUN_18022f2e0(&plongValue40,SystemResourceManager,0,ConfigurationFlag,resourceCreationFlags);
+    InitializeMemoryAllocatorWithFlags(&plongValue40,SystemResourceManager,0,ConfigurationFlag,resourceCreationFlags);
     (**(code **)(*SystemResourceManager + 0x38))(SystemResourceManager);
     PrimaryResourcePointer = plongValue38;
     *(uint32_t *)(plongValue38 + 2) = 0;
@@ -58446,23 +58446,23 @@ ulong long ProcessSystemResourceManagement(long long SystemResourceManager, uint
     *(uint32_t *)(SystemResourceManager + 0x2c4) = OperationCode;
   }
   SecurityParameter = (ulong long)*(uint *)(SystemResourceManager + 0x270);
-  if ((*ConfigurationDataPointer & *(uint *)(SystemResourceManager + 0x270)) == 0) goto FUN_180077ef9;
+  if ((*ConfigurationDataPointer & *(uint *)(SystemResourceManager + 0x270)) == 0) goto SystemSecurityValidationFailed;
   OperationCompleteFlag = *(byte *)(SystemResourceManager + 0xfd) & 0x20;
   ThreadHandle1 = SystemResourceManager;
   if (OperationCompleteFlag == 0) {
     ThreadHandle1 = func_0x000180085de0(*(void* *)(SystemResourceManager + 0x1b0));
   }
   if (*(int *)(ThreadHandle1 + 0x200) == 0) {
-LAB_180077847:
-    if ((*(byte *)(SystemResourceManager + 0x100) & 4) != 0) goto LAB_180077879;
+SystemResourceValidationPoint:
+    if ((*(byte *)(SystemResourceManager + 0x100) & 4) != 0) goto SystemResourceProcessingComplete;
     ThreadHandle1 = *(long long *)(SystemResourceManager + 0x1b8);
     SecurityParameter = 0;
     if (*(char *)(ThreadHandle1 + 0x38c) == '\t') {
       SecurityParameter = func_0x00018022d300();
       *(char *)(ThreadHandle1 + 0x38c) = (char)SecurityParameter;
-      if ((char)SecurityParameter == '\t') goto LAB_180077879;
+      if ((char)SecurityParameter == '\t') goto SystemResourceProcessingComplete;
     }
-FUN_180077ef9:
+SystemSecurityValidationFailed:
     SecurityParameter = SecurityParameter & MAX_UNSIGNED_32_BITffffff00;
   }
   else {
@@ -58470,8 +58470,8 @@ FUN_180077ef9:
     if (OperationCompleteFlag == 0) {
       ThreadHandle1 = func_0x000180085de0(*(void* *)(SystemResourceManager + 0x1b0));
     }
-    if (*(int *)(ThreadHandle1 + 0x1fc) * 3 == 0) goto LAB_180077847;
-LAB_180077879:
+    if (*(int *)(ThreadHandle1 + 0x1fc) * 3 == 0) goto SystemResourceValidationPoint;
+SystemResourceProcessingComplete:
     SystemOperationResult1 = func_0x0001800854e0(SystemResourceManager);
     if ((SystemOperationResult1 == '\0') || (ConfigurationFlag == 0)) {
       ReleaseSystemResourceManager(SystemResourceManager,0);
@@ -62963,7 +62963,7 @@ float * ProcessSystemFloatData(float *SystemResourceManager)
     pfStack_28 = SystemResourceManager;
     InitializeSystemResourceEncryption(SystemResourceStatusFlagCompact);
     UnsignedStackFlag80 = 0x180079605;
-    floatValue6 = (float)FUN_1802349a0(0);
+    floatValue6 = (float)GetSystemTimeValue(0);
     if ((10 < (int)floatValue6) ||
        ((int)(*(int *)(*(long long *)(SystemResourceManager + 0x84) + 0x88) +
              (*(int *)(*(long long *)(SystemResourceManager + 0x84) + 0x88) >> 0x1f & 3U)) >> 2 < (int)floatValue6)) {
@@ -64606,17 +64606,17 @@ LAB_18007b454:
       ThreadContextFlag = SystemMemoryAllocationFunction(SystemMemoryPoolTemplate,0xe0,8,3);
       (**(code **)(*PrimaryResourcePointer0 + 0x28))(PrimaryResourcePointer0);
       (**(code **)(*PrimaryResourcePointer1 + 0x28))(PrimaryResourcePointer1);
-      SystemFunctionPointer68 = FUN_180083390;
+      SystemFunctionPointer68 = SystemMemoryAllocationCallback;
       pSystemThreadContext = &SystemValueTableA;
-      plStack_b8 = (long long *)SystemMemoryAllocationFunction(SystemMemoryPoolTemplate,0x20,8,SystemMemoryAllocationTag);
-      *plStack_b8 = SystemResourceManager;
-      *(byte *)(plStack_b8 + 1) = AdditionalParameter;
-      plStack_b8[2] = (long long)PrimaryResourcePointer0;
-      plStack_b8[3] = (long long)PrimaryResourcePointer1;
-      aplStack_78[0] = plStack_b8;
-      PrimaryResourcePointer2 = (long long *)InitializeSystemResourceManager(ThreadContextFlag,aplStack_78);
-      plStack_c0 = PrimaryResourcePointer2;
-      plongValue40 = PrimaryResourcePointer2;
+      SystemContextPointer = (long long *)SystemMemoryAllocationFunction(SystemMemoryPoolTemplate,0x20,8,SystemMemoryAllocationTag);
+      *SystemContextPointer = SystemResourceManager;
+      *(byte *)(SystemContextPointer + 1) = AdditionalParameter;
+      SystemContextPointer[2] = (long long)SystemResourcePrimary;
+      SystemContextPointer[3] = (long long)SystemResourceSecondary;
+      SystemResourceArray[0] = SystemContextPointer;
+      SystemResourceTertiary = (long long *)InitializeSystemResourceManager(ThreadContextFlag,SystemResourceArray);
+      SystemResourceManagerPointer = SystemResourceTertiary;
+      SystemResourceValue = SystemResourceTertiary;
       ThreadContextFlag = SystemAllocationFlagsTemplate;
       if (PrimaryResourcePointer2 != (long long *)0x0) {
         (**(code **)(*PrimaryResourcePointer2 + 0x28))(PrimaryResourcePointer2);
@@ -65572,8 +65572,8 @@ void SystemThreadStatusManager(long long systemContext,byte threadStatus,long lo
     psystemMemoryOffset = plStack_80;
     plStack_80 = (long long *)0x0;
     plStack_b8 = &lStack_78;
-    SystemThreadCallback48 = FUN_180082e70;
-    SystemThreadCallback40 = FUN_180082da0;
+    SystemThreadCallback48 = SystemThreadPrimaryCallback;
+    SystemThreadCallback40 = SystemThreadSecondaryCallback;
     plStack_a8 = (long long *)SystemMemoryAllocationFunction(SystemMemoryPoolTemplate,0x20,8,SystemMemoryAllocationTag);
     *plStack_a8 = lStack_78;
     *(byte *)(plStack_a8 + 1) = bStack_70;
@@ -69336,8 +69336,8 @@ void SystemInitializationFunction(void* SystemResourceManager,void* Configuratio
   if (resourcePoolPointer != (long long *)0x0) {
     (**(code **)(*resourcePoolPointer + 0x28))(resourcePoolPointer);
   }
-  FUN_18007e2b0(resourcePoolPointer,SystemResourceManager);
-  FUN_18007e5b0(resourcePoolPointer,AdditionalParameter);
+  ProcessResourcePoolData(resourcePoolPointer,SystemResourceManager);
+  ProcessResourcePoolIndex(resourcePoolPointer,AdditionalParameter);
   if (resourcePoolPointer != (long long *)0x0) {
     (**(code **)(*resourcePoolPointer + 0x38))(resourcePoolPointer);
   }
@@ -69376,7 +69376,7 @@ void ProcessSystemResourceDataWithEncryption(void* SystemResourceManager,long lo
   EncryptedKey = SystemEncryptionKeyTemplate ^ (ulong long)EncryptionKeyBuffer;
   *(long long *)(ConfigurationFlag + 8) = *(long long *)(ConfigurationFlag + 8) + 4;
   systemResult = *(int *)(ConfigurationDataPointer + 0x14) * *(int *)(ConfigurationDataPointer + 0x10);
-  PrimaryResourcePointer = (long long *)FUN_180081590(SystemResourceManager,ResourceArrayPointer,systemResult);
+  PrimaryResourcePointer = (long long *)AllocateResourcePool(SystemResourceManager,ResourceArrayPointer,systemResult);
   PrimaryResourcePointer = (long long *)*PrimaryResourcePointer;
   if (PrimaryResourcePointer != (long long *)0x0) {
     ResourceHandlePointer = PrimaryResourcePointer;
