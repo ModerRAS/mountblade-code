@@ -7555,19 +7555,19 @@ uint8_t ValidateMatrixTransformationData(int64_t matrixDataPointer,int64_t conte
     uint32_t matrixViewFlags = *(uint32_t *)(ObjectContext + 0x40);
     uint32_t matrixWorldFlags = *(uint32_t *)(ObjectContext + 0x44);
     *(uint32_t *)(matrixContextPointer + 0x58) = *(uint32_t *)(ObjectContext + 0x38);
-    *(uint32_t *)(MatrixContextPointer + 0x5c) = MatrixProjectionFlags;
-    *(uint32_t *)(MatrixContextPointer + 0x60) = MatrixViewFlags;
-    *(uint32_t *)(MatrixContextPointer + 100) = MatrixWorldFlags;
-    MatrixContextPointer = *(int64_t *)(ValidationContext + 0x98);
-    if ((*(int *)(MatrixContextPointer + 0x180) != 0) || (*(int *)(MatrixContextPointer + 0x184) != 0)) {
+    *(uint32_t *)(matrixContextPointer + 0x5c) = matrixProjectionFlags;
+    *(uint32_t *)(matrixContextPointer + 0x60) = matrixViewFlags;
+    *(uint32_t *)(matrixContextPointer + 100) = matrixWorldFlags;
+    matrixContextPointer = *(int64_t *)(SystemContext + 0x98);
+    if ((*(int *)(matrixContextPointer + 0x180) != 0) || (*(int *)(matrixContextPointer + 0x184) != 0)) {
       ResourceValidationBuffer[0] = 0;
       InitializeSecurityContext(ResourceValidationBuffer);
-      if (ResourceValidationBuffer[0] == *(int64_t *)((int64_t)*(int *)(MatrixContextPointer + 0x17c) * 8 + 0x180c4f450)) {
-        uint32_t resourcevalidationStatusCode = ProcessResourceValidation(MatrixContextPointer,ObjectContext);
-        if ((int)resourcevalidationStatusCode == 0) {
+      if (ResourceValidationBuffer[0] == *(int64_t *)((int64_t)*(int *)(matrixContextPointer + 0x17c) * 8 + 0x180c4f450)) {
+        uint32_t resourceValidationStatusCode = ProcessResourceValidation(matrixContextPointer,ObjectContext);
+        if ((int)resourceValidationStatusCode == 0) {
           return 0;
         }
-        return resourceHashValidationResult;
+        return resourceValidationStatusCode;
       }
     }
     *(uint *)(ObjectContext + 8) = *(int *)(ObjectContext + 8) + 0xfU & 0xfffffff0;
@@ -47519,64 +47519,132 @@ void Unwind_180905380(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180905390(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 清理验证上下文回调函数
+ * 
+ * 该函数负责清理验证上下文中的回调函数，执行必要的清理操作。
+ * 主要用于系统资源清理和上下文管理。
+ * 
+ * @param ObjectContext 对象上下文，包含对象的相关信息
+ * @param ValidationContext 验证上下文，包含验证相关的数据结构
+ * @param CleanupOption 清理选项，控制清理行为的具体参数
+ * @param CleanupFlag 清理标志，指定清理操作的标志位
+ * @return 无返回值
+ * @note 此函数会调用验证上下文中注册的清理回调函数
+ * @warning 调用此函数前必须确保验证上下文已正确初始化
+ */
+void CleanupValidationContextCallback(uint8_t ObjectContext, int64_t ValidationContext, uint8_t CleanupOption, uint8_t CleanupFlag)
 
 {
-  code *charPointer;
+  CodeFunctionPointer *cleanupCallback;
   
-  charPointer = *(code **)(*(int64_t *)(ValidationContext + 0xd8) + 0x10);
-  if (charPointer != (code *)0x0) {
-    (*charPointer)(*(int64_t *)(ValidationContext + 0xd8),0,0,CleanupFlag,0xfffffffffffffffe);
+  cleanupCallback = *(CodeFunctionPointer **)(*(int64_t *)(ValidationContext + 0xd8) + 0x10);
+  if (cleanupCallback != (CodeFunctionPointer *)0x0) {
+    (*cleanupCallback)(*(int64_t *)(ValidationContext + 0xd8), 0, 0, CleanupFlag, 0xfffffffffffffffe);
   }
   return;
 }
 
 
 
-void Unwind_1809053a0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 清理验证上下文备用回调函数
+ * 
+ * 该函数负责清理验证上下文中的备用回调函数，执行必要的清理操作。
+ * 主要用于系统资源清理和上下文管理的备用路径。
+ * 
+ * @param ObjectContext 对象上下文，包含对象的相关信息
+ * @param ValidationContext 验证上下文，包含验证相关的数据结构
+ * @param CleanupOption 清理选项，控制清理行为的具体参数
+ * @param CleanupFlag 清理标志，指定清理操作的标志位
+ * @return 无返回值
+ * @note 此函数会调用验证上下文中注册的备用清理回调函数
+ * @warning 调用此函数前必须确保验证上下文已正确初始化
+ */
+void CleanupValidationContextAlternateCallback(uint8_t ObjectContext, int64_t ValidationContext, uint8_t CleanupOption, uint8_t CleanupFlag)
 
 {
-  code *charPointer;
+  CodeFunctionPointer *alternateCallback;
   
-  charPointer = *(code **)(*(int64_t *)(ValidationContext + 0xd8) + 0x10);
-  if (charPointer != (code *)0x0) {
-    (*charPointer)(*(int64_t *)(ValidationContext + 0xd8),0,0,CleanupFlag,0xfffffffffffffffe);
+  alternateCallback = *(CodeFunctionPointer **)(*(int64_t *)(ValidationContext + 0xd8) + 0x10);
+  if (alternateCallback != (CodeFunctionPointer *)0x0) {
+    (*alternateCallback)(*(int64_t *)(ValidationContext + 0xd8), 0, 0, CleanupFlag, 0xfffffffffffffffe);
   }
   return;
 }
 
 
 
-void Unwind_1809053b0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 清理上下文处理器函数
+ * 
+ * 该函数负责清理上下文处理器，执行必要的清理操作。
+ * 主要用于系统资源清理和上下文处理器的管理。
+ * 
+ * @param ObjectContext 对象上下文，包含对象的相关信息
+ * @param ValidationContext 验证上下文，包含验证相关的数据结构
+ * @param CleanupOption 清理选项，控制清理行为的具体参数
+ * @param CleanupFlag 清理标志，指定清理操作的标志位
+ * @return 无返回值
+ * @note 此函数会调用上下文中注册的处理器清理函数
+ * @warning 调用此函数前必须确保上下文处理器已正确初始化
+ */
+void CleanupContextHandler(uint8_t ObjectContext, int64_t ValidationContext, uint8_t CleanupOption, uint8_t CleanupFlag)
 
 {
-  if (*(code **)(ValidationContext + 0x50) != (code *)0x0) {
-    (**(code **)(ValidationContext + 0x50))(ValidationContext + 0x40,0,0,CleanupFlag,0xfffffffffffffffe);
+  if (*(CodeFunctionPointer **)(ValidationContext + 0x50) != (CodeFunctionPointer *)0x0) {
+    (**(CodeFunctionPointer **)(ValidationContext + 0x50))(ValidationContext + 0x40, 0, 0, CleanupFlag, 0xfffffffffffffffe);
   }
   return;
 }
 
 
 
-void Unwind_1809053c0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 清理扩展验证上下文回调函数
+ * 
+ * 该函数负责清理扩展验证上下文中的回调函数，执行必要的清理操作。
+ * 主要用于系统资源清理和扩展验证上下文的管理。
+ * 
+ * @param ObjectContext 对象上下文，包含对象的相关信息
+ * @param ValidationContext 验证上下文，包含验证相关的数据结构
+ * @param CleanupOption 清理选项，控制清理行为的具体参数
+ * @param CleanupFlag 清理标志，指定清理操作的标志位
+ * @return 无返回值
+ * @note 此函数会调用扩展验证上下文中注册的清理回调函数
+ * @warning 调用此函数前必须确保扩展验证上下文已正确初始化
+ */
+void CleanupExtendedValidationContextCallback(uint8_t ObjectContext, int64_t ValidationContext, uint8_t CleanupOption, uint8_t CleanupFlag)
 
 {
-  code *charPointer;
+  CodeFunctionPointer *extendedCallback;
   
-  charPointer = *(code **)(*(int64_t *)(ValidationContext + 0xf0) + 0x10);
-  if (charPointer != (code *)0x0) {
-    (*charPointer)(*(int64_t *)(ValidationContext + 0xf0),0,0,CleanupFlag,0xfffffffffffffffe);
+  extendedCallback = *(CodeFunctionPointer **)(*(int64_t *)(ValidationContext + 0xf0) + 0x10);
+  if (extendedCallback != (CodeFunctionPointer *)0x0) {
+    (*extendedCallback)(*(int64_t *)(ValidationContext + 0xf0), 0, 0, CleanupFlag, 0xfffffffffffffffe);
   }
   return;
 }
 
 
 
-void Unwind_1809053d0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行系统清理回调函数
+ * 
+ * 该函数负责执行系统清理回调函数，进行系统资源的清理操作。
+ * 主要用于系统级别的资源回收和清理工作。
+ * 
+ * @param ObjectContext 对象上下文，包含对象的相关信息
+ * @param ValidationContext 验证上下文，包含验证相关的数据结构
+ * @return 无返回值
+ * @note 此函数会调用系统中注册的清理回调函数
+ * @warning 调用此函数前必须确保系统清理回调已正确设置
+ */
+void ExecuteSystemCleanupCallback(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   if (*(int64_t **)(ValidationContext + 0x108) != (int64_t *)0x0) {
-    (**(code **)(**(int64_t **)(ValidationContext + 0x108) + 0x38))();
+    (**(CodeFunctionPointer **)(**(int64_t **)(ValidationContext + 0x108) + 0x38))();
   }
   return;
 }
