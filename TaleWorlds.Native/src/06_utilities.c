@@ -62470,7 +62470,19 @@ void ValidateResourceHashAndCleanupReferenceCountAtOffset48(uint8_t ObjectContex
 
 
 
-void Unwind_180908010(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 释放内存管理数组
+ * 
+ * 该函数负责释放内存管理数组，清理相关资源并释放内存
+ * 主要用于系统资源管理和内存回收
+ * 
+ * @param ObjectContext 对象上下文，包含对象相关的状态信息
+ * @param ValidationContext 验证上下文，包含验证所需的数据和参数
+ * @param CleanupOption 清理选项，指定清理的方式和范围
+ * @param CleanupFlag 清理标志，指示是否需要执行清理操作
+ * @return 无返回值
+ */
+void ReleaseMemoryManagementArray(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   uint8_t *ResourceHashPointer;
