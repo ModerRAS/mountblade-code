@@ -6018,18 +6018,18 @@ uint8_t GetSystemVersionInfo(void)
 void ProcessSystemPacketTransmission(int64_t PacketHandle, int64_t TransmissionConfig)
 
 {
-  int ProcessingStatusCode;
+  int SystemTransmissionStatusCode;
   
-  ResourceIndex = ProcessResourceRequest(*(uint8_t *)(ValidationContext + ValidationContextPrimaryDataOffset),*(uint32_t *)(ObjectContext + ObjectHandleMemoryOffset),
+  SystemResourceIndex = ProcessResourceRequest(*(uint8_t *)(ValidationContext + ValidationContextPrimaryDataOffset),*(uint32_t *)(ObjectContext + ObjectHandleMemoryOffset),
                         ObjectContext + ObjectHandleSecondaryOffset,ObjectContext + ObjectContextProcessingDataOffset,ObjectContext + ObjectContextMatrixFlagsOffset,ObjectContext + ObjectContextMatrixRotationDataOffset);
-  if ((ResourceIndex == 0) &&
-     (ResourceIndex = InitializeDataStructure((int64_t)*(int *)(ObjectContext + SystemManagerContextOffset) * ResourceEntrySizeMultiplier +
-                                  *(int64_t *)(ValidationContext + SystemContextSecondaryDataOffset) + ExtendedDataOffset,ObjectContext + ObjectHandleSecondaryOffset), ResourceIndex == 0)
+  if ((SystemResourceIndex == 0) &&
+     (SystemResourceIndex = InitializeDataStructure((int64_t)*(int *)(ObjectContext + SystemManagerContextOffset) * ResourceEntrySizeMultiplier +
+                                  *(int64_t *)(ValidationContext + SystemContextSecondaryDataOffset) + ExtendedDataOffset,ObjectContext + ObjectHandleSecondaryOffset), SystemResourceIndex == 0)
      ) {
     if ((*(char *)(ObjectContext + ObjectDataSizeOffset) != '\0') &&
-       (ResourceIndex = ConfigureDataStructure((int64_t)*(int *)(ObjectContext + SystemManagerContextOffset) * ResourceEntrySizeMultiplier +
+       (SystemResourceIndex = ConfigureDataStructure((int64_t)*(int *)(ObjectContext + SystemManagerContextOffset) * ResourceEntrySizeMultiplier +
                                     *(int64_t *)(ValidationContext + SystemContextSecondaryDataOffset) + ExtendedDataOffset,ObjectContext + ObjectContextMatrixXCoordinateOffset),
-       ResourceIndex != 0)) {
+       SystemResourceIndex != 0)) {
       return;
     }
     FinalizeDataStructure((int64_t)*(int *)(ObjectContext + SystemManagerContextOffset) * ResourceEntrySizeMultiplier +
@@ -6078,10 +6078,10 @@ void ProcessSystemObjectLifecycle(int64_t ObjectHandle, int64_t LifecycleConfig)
 uint8_t ValidateSystemDataIntegrity(int64_t DataBuffer, int64_t ValidationConfig)
 
 {
-  uint8_t ResourceHash;
-  int *OperationResultPointer;
-  uint32_t *HashValidationResultAddress;
-  int ValidationIndex;
+  uint8_t SystemResourceHash;
+  int *SystemOperationResultPointer;
+  uint32_t *SystemHashValidationResultAddress;
+  int SystemValidationIndex;
   
   ValidationIndex = 0;
   PackageValidationStatusCodePointer = (uint32_t *)(ObjectContext + ObjectContextValidationDataOffset + (int64_t)*(int *)(ObjectContext + SystemManagerContextOffset) * 8);
@@ -8672,7 +8672,7 @@ uint8_t ValidateObjectContextAndProcessFloatRange(int64_t ObjectContext, int64_t
   float FloatValueToValidate;
   
   FloatValueToValidate = *(float *)(ObjectContext + ObjectContextHandleDataOffset);
-  StackContextPointer = CombineFloatAndInt(StackContextPointer.Field44,FloatValueToValidate);
+  StackContextPointer = CombineFloatAndInt(StackContextPointer.StatusField,FloatValueToValidate);
   if (((uint)FloatValueToValidate & 0x7f800000) == 0x7f800000) {
     return ErrorFloatValidationFailure;
   }
@@ -8748,7 +8748,7 @@ uint8_t ValidateObjectContextAndProcessFloatComparison(int64_t ObjectContext, in
   if (3 < *(uint *)(ObjectContext + ObjectContextValidationDataOffset)) {
     return 0x1f;
   }
-  StackContextPointer = CombineFloatAndInt(StackContextPointer.Field44,*(uint *)(ObjectContext + ObjectContextHandleDataOffset));
+  StackContextPointer = CombineFloatAndInt(StackContextPointer.StatusField,*(uint *)(ObjectContext + ObjectContextHandleDataOffset));
   if ((*(uint *)(ObjectContext + ObjectContextHandleDataOffset) & 0x7f800000) == 0x7f800000) {
     return ErrorFloatValidationFailure;
   }
@@ -11658,14 +11658,14 @@ StackIndexHandler:
  * 如果没有错误，则查找并执行对应的回调函数。
  * 
  * @param ResourceArray 资源数组指针，包含要处理的资源数据
- * @param ContextContext 上下文环境参数，用于确定执行环境
+ * @param ExecutionContext 上下文环境参数，用于确定执行环境
  * @param CallbackIndex 回调函数索引，指定要执行的回调函数
  * @return uint8_t 操作结果状态码，0表示成功，非0表示错误
  * 
  * @note 此函数假设资源数组和回调函数表已正确初始化
  * @warning 回调函数执行前必须验证其有效性
  */
-uint8_t ProcessResourceHashAndExecuteCallback(int64_t ResourceArray, uint8_t ContextContext, int64_t CallbackIndex)
+uint8_t ProcessResourceHashAndExecuteCallback(int64_t ResourceArray, uint8_t ExecutionContext, int64_t CallbackIndex)
 
 {
   uint8_t ResourceHashValue;
@@ -11676,9 +11676,9 @@ uint8_t ProcessResourceHashAndExecuteCallback(int64_t ResourceArray, uint8_t Con
   uint8_t ResourceCallbackContext;
   
   ResourceHashValue = *(uint8_t *)(ResourceArray + ResourceCleanupOffset + ArrayIndex * 8);
-  ResourceCallbackContext.Field44 = (int)((uint64_t)ResourceHashValue >> 0x20);
-  if (ResourceCallbackContext.Field44 != 0) {
-    *ResultPointer = ResourceCallbackContext.Field44;
+  ResourceCallbackContext.StatusField = (int)((uint64_t)ResourceHashValue >> 0x20);
+  if (ResourceCallbackContext.StatusField != 0) {
+    *ResultPointer = ResourceCallbackContext.StatusField;
     return 0;
   }
   CallbackFunctionPointer = (uint8_t *)
@@ -89997,7 +89997,18 @@ void Unwind_180910350(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180910360(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 处理资源数据标志位并释放系统资源
+ * 
+ * 该函数负责检查资源数据的标志位，如果设置了特定标志，
+ * 则清除标志位并释放相应的系统资源
+ * 
+ * @param ObjectContext 对象上下文参数，用于标识操作的对象
+ * @param ValidationContext 验证上下文参数，包含操作所需的上下文信息
+ * @return 无返回值
+ * @note 此函数会修改资源数据的标志位状态
+ */
+void ProcessResourceDataFlagsAndRelease(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   if ((*(uint *)(ResourceData + 0x20) & 1) != 0) {
@@ -90009,7 +90020,17 @@ void Unwind_180910360(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180910390(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 设置系统资源表001到验证上下文
+ * 
+ * 该函数负责将系统资源表001的地址设置到验证上下文的指定位置
+ * 
+ * @param ObjectContext 对象上下文参数，用于标识操作的对象
+ * @param ValidationContext 验证上下文参数，包含操作所需的上下文信息
+ * @return 无返回值
+ * @note 此函数会修改验证上下文中的资源表指针
+ */
+void SetSystemResourceTable001(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   **(uint8_t **)(ValidationContext + 0x40) = &SystemResourceTable001;
@@ -90018,7 +90039,17 @@ void Unwind_180910390(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_1809103a0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 设置系统资源表002到验证上下文
+ * 
+ * 该函数负责将系统资源表002的地址设置到验证上下文的指定位置
+ * 
+ * @param ObjectContext 对象上下文参数，用于标识操作的对象
+ * @param ValidationContext 验证上下文参数，包含操作所需的上下文信息
+ * @return 无返回值
+ * @note 此函数会修改验证上下文中的资源表指针
+ */
+void SetSystemResourceTable002(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   **(uint8_t **)(ValidationContext + 0x48) = &SystemResourceTable002;
@@ -90027,7 +90058,17 @@ void Unwind_1809103a0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_1809103b0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 设置系统资源表003到验证上下文
+ * 
+ * 该函数负责将系统资源表003的地址设置到验证上下文的指定位置
+ * 
+ * @param ObjectContext 对象上下文参数，用于标识操作的对象
+ * @param ValidationContext 验证上下文参数，包含操作所需的上下文信息
+ * @return 无返回值
+ * @note 此函数会修改验证上下文中的资源表指针
+ */
+void SetSystemResourceTable003(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   **(uint8_t **)(ValidationContext + 0x48) = &SystemResourceTable003;
@@ -90036,7 +90077,19 @@ void Unwind_1809103b0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_1809103c0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 处理资源索引验证和哈希结果
+ * 
+ * 该函数负责处理资源索引的验证和哈希验证结果的操作
+ * 包括内存地址计算、资源索引更新和系统清理处理
+ * 
+ * @param ObjectContext 对象上下文参数，用于标识操作的对象
+ * @param ValidationContext 验证上下文参数，包含操作所需的上下文信息
+ * @return 无返回值
+ * @note 此函数会修改资源索引和验证结果地址
+ * @warning 如果资源索引计数器为0，将触发系统清理处理
+ */
+void ProcessResourceIndexValidationAndHash(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int *ResourceIndexPointer;
@@ -90072,7 +90125,16 @@ void Unwind_1809103c0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_1809103d0(void)
+/**
+ * @brief 销毁互斥锁资源
+ * 
+ * 该函数负责销毁当前的互斥锁资源
+ * 释放互斥锁占用的系统资源
+ * 
+ * @return 无返回值
+ * @note 此函数会销毁互斥锁并释放相关资源
+ */
+void DestroyMutexResourceInPlace(void)
 
 {
   MutexDestroyInPlace();
