@@ -11550,9 +11550,9 @@ uint64_t ProcessExtendedParameterizedDataValidation(int64_t extendedContext, uin
   int StackVariableIndex;
   
   if (((!ZeroFlag) && (*(int *)(dataContext + 0x78) != 0)) &&
-     (OperationStatusCode = *(int *)(*(int64_t *)(RegisterValueR10 + 0x70) +
+     (OperationStatusCode = *(int *)(*(int64_t *)(SystemContextData + 0x70) +
                       (int64_t)(int)(*(int *)(dataContext + 0x78) - 1U & CleanupFlag) * 4), OperationResult != -1)) {
-    loopCounter = *(int64_t *)(RegisterValueR10 + 0x80);
+    loopCounter = *(int64_t *)(SystemContextData + 0x80);
     do {
       ResourceTable = (int64_t)OperationResult;
       if (*(uint *)(SystemContextPointer + ResourceTable * 0x10) == CleanupFlag) {
@@ -11570,8 +11570,8 @@ uint64_t ProcessExtendedParameterizedDataValidation(int64_t extendedContext, uin
   StackVariableIndex = 0;
 StackVariableHandler:
   PackageValidationStatusCodePointer = (uint8_t *)
-           ((int64_t)*(int *)(*(int64_t *)(RegisterValueR10 + 0x18) + CleanupOption * 0xc) +
-           *(int64_t *)(RegisterValueR10 + 8));
+           ((int64_t)*(int *)(*(int64_t *)(SystemContextData + 0x18) + CleanupOption * 0xc) +
+           *(int64_t *)(SystemContextData + 8));
   if (HashValidationResultPointer != (uint8_t *)0x0) {
     (**(code **)*HashValidationResultPointer)();
   }

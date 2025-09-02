@@ -50405,8 +50405,15 @@ FUN_18006e870(uint32_t *ResourceManagerPointer,void* ConfigurationDataPointer,vo
 
 
 
-// 函数: void FUN_18006e990(void)
-void FUN_18006e990(void)
+/**
+ * @brief 系统初始化状态管理器
+ * 
+ * 该函数负责管理系统初始化状态，包括初始化标志的设置、
+ * 系统计数器的更新和系统内存的管理
+ * 
+ * 原始函数名为FUN_18006e990，现已重命名为ManageSystemInitializationState
+ */
+void ManageSystemInitializationState(void)
 
 {
   long long nextDataIndex;
