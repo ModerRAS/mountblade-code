@@ -331,7 +331,7 @@ void* ThreadCleanupAuxiliaryStorage;
  * @return 无返回值
  * @note 此函数必须在系统启动时调用，以确保资源管理系统的正常运行
  */
-void InitializeResourceManager(void);
+void ResourceManagerInitFlag(void);
 
 /**
  * @brief 配置资源设置
@@ -340,9 +340,9 @@ void InitializeResourceManager(void);
  * 包括资源分配策略、缓存策略等配置参数
  * 
  * @return 无返回值
- * @note 此函数必须在InitializeResourceManager之后调用
+ * @note 此函数必须在ResourceManagerInitFlag之后调用
  */
-void ConfigureResourceSettings(void);
+void ResourceSettingsConfigFlag(void);
 
 /**
  * @brief 处理资源操作
@@ -91642,7 +91642,7 @@ uint32_t SystemConfigurationFlag;
   char systemState;
   int systemStatus;
   
-  InitializeResourceManager();
+  ResourceManagerInitFlag();
   systemState = *(char *)(contextPointer + 0x38);
   systemStatus = GetSystemStatus();
   if ((systemStatus != 0) && (systemState == '\0')) {

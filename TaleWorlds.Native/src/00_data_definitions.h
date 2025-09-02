@@ -13287,14 +13287,14 @@ Label_1808fc75b:
   }
   return MappedMemoryAddress;
 }
-    DAT_180c91d50 = '\0';
+    SystemStringBufferFlag = '\0';
   }
   return;
 }
-  DAT_180bfc100 = 0;
+  SystemBufferFlag = 0;
   return;
 }
-  DAT_180bfc170 = 0;
+  SystemBufferStatus = 0;
   return;
 }
     DAT_180c95ef0 = '\0';
