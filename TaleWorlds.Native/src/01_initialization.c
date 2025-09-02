@@ -21465,10 +21465,10 @@ SystemDataValidation:
     if (*(int *)(SystemDataStructurePointer + 0x10) == 0) goto SystemDataBufferValidation;
     if ((int)pbufferBaseAddress[6] != 0) {
       StringPointer = *(byte **)(SystemDataStructurePointer + 8);
-      localDataIndex = pbufferBaseAddress[5] - (long long)StringPointer;
+      SystemStringLength = pbufferBaseAddress[5] - (long long)StringPointer;
       do {
         currentChar = *StringPointer;
-        SystemHashValue = (uint)StringPointer[localDataIndex];
+        SystemHashValue = (uint)StringPointer[SystemStringLength];
         if (currentChar != SystemHashValue) break;
         StringPointer = StringPointer + 1;
       } while (SystemHashValue != 0);

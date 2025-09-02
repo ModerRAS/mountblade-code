@@ -65910,7 +65910,19 @@ void ExecuteResourceCleanupCallback1(uint8_t ObjectContext,int64_t ValidationCon
 
 
 
-void Unwind_180908c30(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 重置验证上下文状态2
+ * 
+ * 该函数负责重置验证上下文的状态，清理资源处理器
+ * 执行系统资源的重置操作，确保系统状态的正确性
+ * 
+ * @param ObjectContext 对象上下文，包含对象相关的状态信息
+ * @param ValidationContext 验证上下文，用于验证操作的合法性
+ * @return 无返回值
+ * @note 此函数在系统重置过程中被调用
+ * @warning 原始函数名：Unwind_180908c30
+ */
+void ResetValidationContextSystemDataPointer2(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   *(uint8_t *)(ValidationContext + 0x48) = &SystemResourceHandlerTemplate;
@@ -65925,7 +65937,19 @@ void Unwind_180908c30(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180908c40(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行验证上下文回调函数3
+ * 
+ * 该函数负责执行验证上下文中的回调函数，处理资源相关的异常情况
+ * 如果验证上下文中存在回调函数指针，则调用该回调函数
+ * 
+ * @param ObjectContext 对象上下文，包含对象相关的状态信息
+ * @param ValidationContext 验证上下文，用于验证操作的合法性
+ * @return 无返回值
+ * @note 此函数在异常处理过程中被调用
+ * @warning 原始函数名：Unwind_180908c40
+ */
+void ExecuteValidationContextCallback3(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   if (*(int64_t **)(ValidationContext + 0x78) != (int64_t *)0x0) {
