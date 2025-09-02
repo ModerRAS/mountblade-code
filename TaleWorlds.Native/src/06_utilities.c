@@ -3515,7 +3515,7 @@ uint8_t VerifyObjectRegistration(int64_t ObjectContext)
 uint64_t ProcessSystemRequest(int64_t requestParameters,int64_t SystemContext)
 
 {
-  int64_t *processResultPointer;
+  int64_t *ProcessResultPointer;
   int64_t *ResourceTablePointer;
   int64_t *ResourceIndexPointer;
   int ValidationStatusCode;
@@ -3529,15 +3529,15 @@ uint64_t ProcessSystemRequest(int64_t requestParameters,int64_t SystemContext)
   int64_t ValidationContext;
   
   OperationResult = ValidateObjectContext(*(uint32_t *)(requestParameters + 0x18),&ValidationContext);
-  validationStatusCode = (int)OperationResult;
-  if (validationStatusCode == 0) {
+  ValidationStatusCode = (int)OperationResult;
+  if (ValidationStatusCode == 0) {
     NullDataPointer = (int64_t *)0x0;
     CleanupDataPointer = NullDataPointer;
     if (ValidationContext != 0) {
       CleanupDataPointer = (int64_t *)(ValidationContext + -8);
     }
     OperationResult = ValidateObjectContext(*(uint32_t *)(requestParameters + 0x10),&ValidationContext);
-    validationStatusCode = (int)OperationResult;
+    ValidationStatusCode = (int)OperationResult;
     if (validationStatusCode == 0) {
       MemoryContextHandle = 0;
       ProcessResult = ProcessSystemObjectValidation(*(uint8_t *)(SystemContext + 0x90),*(int64_t *)(ValidationContext + 8) + 0x10,
@@ -8412,31 +8412,30 @@ uint8_t ValidateObjectContextAndProcessComplexFloatOperation(int64_t objectConte
 
 
 
- void ProcessObjectContextValidationAndIncrement(int64_t objectContext,int64_t validationContext)
-/**
+ /**
  * @brief 处理对象上下文验证并递增计数器
  * 
  * 该函数验证对象上下文的有效性，并在验证通过后递增相关计数器
  * 主要用于对象引用计数和状态管理
  * 
- * @param objectContext 对象上下文参数，包含对象的基本信息
- * @param validationContext 系统上下文参数，用于系统级操作
+ * @param ObjectContext 对象上下文参数，包含对象的基本信息
+ * @param ValidationContext 系统上下文参数，用于系统级操作
  */
-void ProcessObjectContextValidationAndIncrement(int64_t objectContext,int64_t validationContext)
+void ProcessObjectContextValidationAndIncrement(int64_t ObjectContext,int64_t ValidationContext)
 
 {
   int ValidationStatus;
   int64_t contextPointer;
   
-  validationStatus = ValidateObjectContext(*(uint32_t *)(objectContext + 0x10),&contextPointer);
-  if (validationStatus == 0) {
+  ValidationStatus = ValidateObjectContext(*(uint32_t *)(ObjectContext + 0x10),&contextPointer);
+  if (ValidationStatus == 0) {
     if (contextPointer != 0) {
       contextPointer = contextPointer + -8;
     }
     *(int *)(contextPointer + 0x84) = *(int *)(contextPointer + 0x84) + 1;
     *(uint8_t *)(contextPointer + 0xbd) = 1;
                     // WARNING: Subroutine does not return
-    ReleaseSystemContextResources(*(uint8_t *)(validationContext + 0x98),objectContext);
+    ReleaseSystemContextResources(*(uint8_t *)(ValidationContext + 0x98),ObjectContext);
   }
   return;
 }
@@ -9815,7 +9814,7 @@ int ProcessDataWithStack(int64_t *ObjectContext,int64_t ValidationContext,int Da
   uint ResourceValidationFlag12;
   int64_t ResourceHandleBackup;
   uint8_t ResourceDataBuffer [40];
-  uint64_t OperationParam1;
+  uint64_t PrimaryOperationParameter;
   
   OperationParam1 = SecurityEncryptionKey ^ (uint64_t)SecurityDataBuffer;
   resourceContext = *(int64_t **)(objectContext + 800);
@@ -9892,7 +9891,7 @@ void ProcessResourceIndexAndSecurity(int64_t objectContext,uint32_t *validationC
   uint ResourceValidationFlag7;
   uint ResourceValidationFlag8;
   uint ResourceValidationFlag9;
-  uint ResourceFlag11;
+  uint ResourceValidationFlag11;
   uint32_t validationParameter;
   uint validationParameterSecondary;
   uint validationParameterTertiary;
@@ -14859,7 +14858,7 @@ uint8_t ProcessResourceTimeSynchronization(int64_t *objectContext,char validatio
   int64_t ValidationStackBuffer [2];
   uint8_t *puStack_28;
   uint32_t uStack_20;
-  uint64_t OperationParam1;
+  uint64_t PrimaryOperationParameter;
   
   *(uint8_t *)(objectContext + 4) = 1;
   validationResult = InitializeResourceContext(*(uint8_t *)(objectContext[1] + 0x78),&ValidationContext);
