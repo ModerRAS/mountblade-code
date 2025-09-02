@@ -11316,21 +11316,21 @@ uint8_t InsertOrUpdateResourceInHashTable(int64_t *hashTablePointer, uint *resou
 uint64_t FindOrInsertInResourcePool(uint8_t resourcePool, int SearchKey)
 {
   int64_t poolData;
-  int index;
-  int currentEntry;
-  int newCapacity;
-  uint8_t operationResult;
-  uint8_t *entryPointer;
-  int entryCount;
-  int64_t entryOffset;
-  uint32_t *entryData;
-  uint capacity;
-  int expandedCapacity;
-  int *indexPointer;
-  int64_t *poolHeader;
-  uint8_t *valuePointer;
-  uint32_t *keyPointer;
-  uint8_t newValue;
+  int SearchIndex;
+  int CurrentEntry;
+  int NewCapacity;
+  uint8_t OperationResult;
+  uint8_t *EntryPointer;
+  int EntryCount;
+  int64_t EntryOffset;
+  uint32_t *EntryData;
+  uint PoolCapacity;
+  int ExpandedCapacity;
+  int *IndexPointer;
+  int64_t *PoolHeader;
+  uint8_t *ValuePointer;
+  uint32_t *KeyPointer;
+  uint8_t NewValue;
   
   indexPointer = (int *)(*poolHeader + (int64_t)index * 4);
   currentEntry = *(int *)(*poolHeader + (int64_t)index * 4);
