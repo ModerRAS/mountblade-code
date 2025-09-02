@@ -177,29 +177,25 @@ long long GetSystemStatusFlags(void);
 /**
  * @brief 配置系统数据
  * 
- * 该函数负责配置系统数据，设置数据参数和属性
- * 用于系统数据的配置和管理
+ * 配置系统数据，设置数据参数和属性。
+ * 用于系统数据的配置和管理。
  * 
  * @param bufferAddress 缓冲区地址，指定要配置的数据缓冲区
  * @param configData 配置数据，包含配置的相关信息
  * @param contextPointer 上下文指针，包含上下文相关信息
  * @param parameterArray 参数数组，包含配置参数的相关信息
  * @return 无返回值
- * 
- *ConfigureSystemData：ConfigureSystemData
  */
 void ConfigureSystemData(void* bufferAddress, void* configData, void* contextPointer, void* parameterArray);
 
 /**
  * @brief 释放系统资源
  * 
- * 该函数负责释放系统资源，包括内存、句柄和对象
- * 用于系统资源的清理和回收
+ * 释放系统资源，包括内存、句柄和对象。
+ * 用于系统资源的清理和回收。
  * 
  * @param resourcePointer 资源指针，指定要释放的系统资源
  * @return 无返回值
- * 
- *ReleaseSystemResources：ReleaseSystemResources
  */
 void ReleaseSystemResources(void* resourcePointer);
 
