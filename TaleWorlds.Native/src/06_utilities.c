@@ -132,24 +132,24 @@
  * @warning 调用此函数前必须确保系统已准备好处理模块依赖关系
  */
 void InitializeModuleDependencies(int64_t ModuleHandle, int64_t ModuleContext);
-void* ModuleDependencyGlobalRegistry;
-uint32_t ModuleDependencyEntryCount;
-uint32_t ModuleDependencyConfigurationFlags;
-uint32_t ModuleDependencyInitializationStatus;
-void* ModuleDependencyAccessLock;
-void* ModuleDependencySyncMutex;
-bool ModuleDependencyInitializationComplete;
-void* ModuleDependencyExecutionContext;
-void* ModuleDependencySystemConfig;
-bool ModuleDependencySystemEnabled;
-void* ModuleDependencyPersistentStorage;
-void* ModuleDependencyCacheStorage;
-void* ModuleDependencyRuntimeBuffer;
-uint32_t ModuleDependencySystemVersion;
-uint32_t ModuleDependencyBuildNumber;
-uint32_t ModuleDependencyIntegrityChecksum;
-void* ModuleDependencySignature;
-void* ModuleDependencyHandle;
+void* ModuleDependencyGlobalRegistry;        // 模块依赖全局注册表
+uint32_t ModuleDependencyEntryCount;         // 模块依赖条目计数
+uint32_t ModuleDependencyConfigurationFlags; // 模块依赖配置标志
+uint32_t ModuleDependencyInitializationStatus; // 模块依赖初始化状态
+void* ModuleDependencyAccessLock;            // 模块依赖访问锁
+void* ModuleDependencySyncMutex;             // 模块依赖同步互斥锁
+bool ModuleDependencyInitializationComplete; // 模块依赖初始化完成标志
+void* ModuleDependencyExecutionContext;      // 模块依赖执行上下文
+void* ModuleDependencySystemConfig;          // 模块依赖系统配置
+bool ModuleDependencySystemEnabled;          // 模块依赖系统启用标志
+void* ModuleDependencyPersistentStorage;     // 模块依赖持久化存储
+void* ModuleDependencyCacheStorage;          // 模块依赖缓存存储
+void* ModuleDependencyRuntimeBuffer;        // 模块依赖运行时缓冲区
+uint32_t ModuleDependencySystemVersion;      // 模块依赖系统版本
+uint32_t ModuleDependencyBuildNumber;        // 模块依赖构建编号
+uint32_t ModuleDependencyIntegrityChecksum;  // 模块依赖完整性校验和
+void* ModuleDependencySignature;             // 模块依赖签名
+void* ModuleDependencyHandle;                // 模块依赖句柄
 
 /**
  * @brief 初始化核心引擎模块
@@ -163,10 +163,10 @@ void* ModuleDependencyHandle;
  * @warning 调用此函数前必须确保系统资源已准备就绪
  */
 void InitializeCoreEngineModule(void);
-void* CoreEngineInstance;
-void* CoreEngineConfiguration;
-uint32_t CoreEngineInitializationStatus;
-void* CoreEngineHandle;
+void* CoreEngineInstance;                  // 核心引擎实例
+void* CoreEngineConfiguration;             // 核心引擎配置
+uint32_t CoreEngineInitializationStatus;    // 核心引擎初始化状态
+void* CoreEngineHandle;                    // 核心引擎句柄
 
  /**
  * @brief 初始化渲染引擎模块
@@ -180,11 +180,11 @@ void* CoreEngineHandle;
  * @warning 调用此函数前必须确保图形设备已初始化
  */
 void InitializeRenderingEngineModule(void);
-void* RenderingEngineInstance;
-void* RenderingEngineConfiguration;
-uint32_t RenderingEngineInitializationStatus;
-void* RenderingEngineHandle;
-void* RenderingEngineExecutionContext;
+void* RenderingEngineInstance;              // 渲染引擎实例
+void* RenderingEngineConfiguration;         // 渲染引擎配置
+uint32_t RenderingEngineInitializationStatus; // 渲染引擎初始化状态
+void* RenderingEngineHandle;                // 渲染引擎句柄
+void* RenderingEngineExecutionContext;      // 渲染引擎执行上下文
 /**
  * @brief 初始化图形系统模块
  * 
@@ -197,11 +197,11 @@ void* RenderingEngineExecutionContext;
  * @warning 调用此函数前必须确保渲染引擎已初始化
  */
 void InitializeGraphicsSystemModule(void);
-void* GraphicsInstance;
-void* GraphicsConfiguration;
-uint32_t GraphicsInitializationStatus;
-void* GraphicsHandle;
-void* GraphicsExecutionContext;
+void* GraphicsInstance;                    // 图形系统实例
+void* GraphicsConfiguration;               // 图形系统配置
+uint32_t GraphicsInitializationStatus;      // 图形系统初始化状态
+void* GraphicsHandle;                      // 图形系统句柄
+void* GraphicsExecutionContext;            // 图形系统执行上下文
 
 
 /**
@@ -216,10 +216,10 @@ void* GraphicsExecutionContext;
  * @warning 调用此函数前必须确保音频设备可用
  */
 void InitializeAudioSystemModule(void);
-void* AudioInstance;
-void* AudioConfiguration;
-uint32_t AudioInitializationStatus;
-void* AudioHandle;
+void* AudioInstance;                      // 音频系统实例
+void* AudioConfiguration;                 // 音频系统配置
+uint32_t AudioInitializationStatus;        // 音频系统初始化状态
+void* AudioHandle;                        // 音频系统句柄
 
 
 /**
@@ -251,7 +251,7 @@ void* NetworkHandle;
  * @warning 状态标志值的含义取决于具体的系统实现
  */
 uint32_t GetCoreEngineSystemStatusFlag(void);
-bool CoreEngineInitializationComplete;
+bool CoreEngineInitializationComplete;   // 核心引擎初始化完成标志
 
 
 /**
@@ -265,7 +265,7 @@ bool CoreEngineInitializationComplete;
  * @warning 状态标志值的含义取决于具体的渲染引擎实现
  */
 uint32_t GetRenderingEngineSystemStatusFlag(void);
-bool RenderingEngineInitializationComplete;
+bool RenderingEngineInitializationComplete; // 渲染引擎初始化完成标志
 
 
 /**
@@ -279,7 +279,7 @@ bool RenderingEngineInitializationComplete;
  * @warning 状态标志值的含义取决于具体的图形系统实现
  */
 uint32_t GetGraphicsSystemStatusFlag(void);
-bool GraphicsSystemInitializationComplete;
+bool GraphicsSystemInitializationComplete; // 图形系统初始化完成标志
 
  /**
  * @brief 获取音频系统状态标志
@@ -8067,8 +8067,8 @@ uint8_t ValidateObjectContextAndProcessComplexFloatOperation(int64_t ObjectConte
  * 
  * @param ObjectContext 对象上下文指针，包含对象的状态和配置信息
  * @param SystemContext 系统上下文指针，包含系统运行环境信息
- * @param parameter3 第三个参数，用于操作控制
- * @param parameter4 第四个参数，用于操作控制
+ * @param OperationControlParam1 第一个操作控制参数，用于控制操作类型
+ * @param OperationControlParam2 第二个操作控制参数，用于控制操作行为
  * @return uint8_t 操作结果，成功返回0，失败返回错误码
  */
 uint8_t ValidateObjectContextAndProcessParameterizedComplexFloatOperation(int64_t ObjectContext, int64_t SystemContext, uint8_t OperationControlParam1, uint8_t OperationControlParam2)
@@ -10041,15 +10041,15 @@ void ProcessResourceIndexAndSecurity(int64_t ObjectContext,uint32_t *ValidationC
   uint resourcePrimaryByte;
   uint resourceSecondaryByte;
   uint resourceTertiaryByte;
-  uint resourceFlagByte4;
-  uint resourceFlagByte5;
-  uint resourceFlagByte6;
-  uint resourceFlagByte7;
-  uint resourceFlagByte8;
-  uint32_t resourceFlagPrimary;
-  uint resourceSecondaryByte1;
-  uint resourceFlagSecondary2;
-  uint resourceFlagSecondary3;
+  uint ResourceFlagByteFourth;
+  uint ResourceFlagByteFifth;
+  uint ResourceFlagByteSixth;
+  uint ResourceFlagByteSeventh;
+  uint ResourceFlagByteEighth;
+  uint32_t ResourceFlagPrimary;
+  uint ResourceSecondaryByteFirst;
+  uint ResourceFlagSecondarySecond;
+  uint ResourceFlagSecondaryThird;
   int64_t ResourceHandleBackup;
   uint8_t ResourceChecksumBuffer [40];
   uint64_t PrimaryOperationParameter;
@@ -10060,14 +10060,14 @@ void ProcessResourceIndexAndSecurity(int64_t ObjectContext,uint32_t *ValidationC
   uint32_t ResourceValidationByteThird;
   uint32_t ResourceQuaternaryFlag;
   uint32_t ResourceTopByteFlag;
-  uint32_t resourceFlagLowBits;
-  uint32_t ResourceHighByteFlag;
-  uint32_t ResourceMidByteFlag;
-  uint32_t ResourceLowByteFlag;
-  uint32_t ResourceTertiaryFlag;
-  uint32_t ResourceSecondaryFlag;
-  uint32_t ResourcePrimaryFlag;
-  uint32_t resourceFlagHighBits;
+  uint32_t ResourceFlagLowBits;
+  uint32_t ResourceFlagHighByte;
+  uint32_t ResourceFlagMidByte;
+  uint32_t ResourceFlagLowByte;
+  uint32_t ResourceFlagTertiary;
+  uint32_t ResourceFlagSecondary;
+  uint32_t ResourceFlagPrimary;
+  uint32_t ResourceFlagHighBits;
   void* SecurityOperationData;
   uint64_t SecurityEncryptionKey;
   
