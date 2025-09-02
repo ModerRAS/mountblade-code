@@ -7861,7 +7861,7 @@ uint8_t ValidateAndProcessComplexObjectContext(int64_t ObjectContext, int64_t Sy
   int64_t ContextPointer;
   int64_t ValidationBuffer;
   
-  ProcessingStatusCode = ValidateObjectContext(*(uint32_t *)(ObjectContext + ObjectContextValidationDataOffset), &ValidationBuffer);
+  ProcessingResult = ValidateObjectContext(*(uint32_t *)(ObjectContext + ObjectContextValidationDataOffset), &ValidationBuffer);
   if ((int)ProcessingResult != 0) {
     return ProcessingResult;
   }

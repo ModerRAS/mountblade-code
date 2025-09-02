@@ -224,36 +224,38 @@ void InitializeSystemBuffer(void* bufferAddress, int initFlag, int parameter);
 void UpdateSystemData(void* dataPointer);
 
 /**
- * @brief 系统内存分配验证函数
+ * @brief 验证系统内存分配
  * 
- * 该函数负责验证系统内存分配的有效性和完整性
- * 用于系统内存管理的安全检查和验证
+ * 验证系统内存分配的有效性和完整性。
+ * 用于系统内存管理的安全检查和验证。
  * 
  * @param memoryContext 内存上下文指针
- * @return 验证结果状态码
+ * @return 验证结果状态码，返回0表示成功，非0表示失败
  */
 char ValidateSystemMemoryAllocation(void* memoryContext);
 
 /**
- * @brief 系统内存资源分配函数
+ * @brief 分配系统内存资源
  * 
- * 该函数负责分配系统内存资源，设置内存池和分配策略
- * 用于系统内存管理的前期准备工作
+ * 分配系统内存资源，设置内存池和分配策略。
+ * 用于系统内存管理的前期准备工作。
  * 
  * @param memoryContext 内存上下文指针
  * @param allocationBuffer 分配缓冲区指针
+ * @return 无返回值
  */
 void AllocateSystemMemoryResources(void* memoryContext, void* allocationBuffer);
 
 /**
- * @brief 系统数据缓冲区配置函数
+ * @brief 配置系统数据缓冲区
  * 
- * 该函数负责配置系统数据缓冲区，设置缓冲区参数和属性
- * 用于系统数据缓冲区的配置和管理
+ * 配置系统数据缓冲区，设置缓冲区参数和属性。
+ * 用于系统数据缓冲区的配置和管理。
  * 
  * @param bufferContext 缓冲区上下文指针
  * @param configTemplate 配置模板指针
  * @param dataSource 数据源指针
+ * @return 无返回值
  */
 void ConfigureSystemDataBuffer(void* bufferContext, void* configTemplate, void* dataSource);
 
