@@ -56425,9 +56425,9 @@ float * FUN_180075b70(float *ResourceManagerPointer)
   float *pfloatValue1;
   byte isSystemActive;
   long long *plocalResourceOffset;
-  float *pfVar4;
+  float *pfloatValue4;
   char operationStatusFlag;
-  float *pfVar6;
+  float *pfloatValue6;
   uint unsignedSystemValue7;
   ulong long unsignedSystemValue8;
   bool isSystemBusy;
@@ -56457,11 +56457,11 @@ float * FUN_180075b70(float *ResourceManagerPointer)
   void* uStack_38;
   
   uStack_38 = 0xfffffffffffffffe;
-  pfVar6 = ResourceManagerPointer;
+  pfloatValue6 = ResourceManagerPointer;
   if ((*(byte *)((long long)ResourceManagerPointer + 0xfd) & 0x20) == 0) {
-    pfVar6 = (float *)func_0x000180085de0(*(void* *)(ResourceManagerPointer + 0x6c));
+    pfloatValue6 = (float *)func_0x000180085de0(*(void* *)(ResourceManagerPointer + 0x6c));
   }
-  if ((*(long long *)(pfVar6 + 0x84) != 0) && (((uint)ResourceManagerPointer[0x40] & 0x80) == 0)) {
+  if ((*(long long *)(pfloatValue6 + 0x84) != 0) && (((uint)ResourceManagerPointer[0x40] & 0x80) == 0)) {
     pfloatValue1 = ResourceManagerPointer + 0x9d;
     pfloatValue1[0] = 1e+08;
     pfloatValue1[1] = 1e+08;
@@ -56478,34 +56478,34 @@ float * FUN_180075b70(float *ResourceManagerPointer)
     ResourceManagerPointer[0xa7] = 0.0;
     ResourceManagerPointer[0xa8] = 3.4028235e+38;
     SystemConfigurationValue = 0;
-    pfStack_98 = pfVar6;
+    pfStack_98 = pfloatValue6;
     FUN_18007f770(&pfStack_98);
     if (*(int *)(lStack_88 + 0x10) != 0) {
       do {
-        pfVar6 = (float *)((long long)(int)unsignedSystemValue7 * 0x10 + *(long long *)(lStack_88 + 0x18));
-        fStack_a8 = *pfVar6;
+        pfloatValue6 = (float *)((long long)(int)unsignedSystemValue7 * 0x10 + *(long long *)(lStack_88 + 0x18));
+        fStack_a8 = *pfloatValue6;
         if (*pfloatValue1 < fStack_a8) {
           fStack_a8 = *pfloatValue1;
         }
-        fStack_a4 = pfVar6[1];
+        fStack_a4 = pfloatValue6[1];
         if (ResourceManagerPointer[0x9e] < fStack_a4) {
           fStack_a4 = ResourceManagerPointer[0x9e];
         }
-        fStack_a0 = pfVar6[2];
+        fStack_a0 = pfloatValue6[2];
         if (ResourceManagerPointer[0x9f] < fStack_a0) {
           fStack_a0 = ResourceManagerPointer[0x9f];
         }
         *(ulong long *)pfloatValue1 = CONCAT44(fStack_a4,fStack_a8);
         *(ulong long *)(ResourceManagerPointer + 0x9f) = CONCAT44(uStack_9c,fStack_a0);
-        fStack_b8 = *pfVar6;
+        fStack_b8 = *pfloatValue6;
         if (fStack_b8 < ResourceManagerPointer[0xa1]) {
           fStack_b8 = ResourceManagerPointer[0xa1];
         }
-        fStack_b4 = pfVar6[1];
+        fStack_b4 = pfloatValue6[1];
         if (fStack_b4 < ResourceManagerPointer[0xa2]) {
           fStack_b4 = ResourceManagerPointer[0xa2];
         }
-        fStack_b0 = pfVar6[2];
+        fStack_b0 = pfloatValue6[2];
         if (fStack_b0 < ResourceManagerPointer[0xa3]) {
           fStack_b0 = ResourceManagerPointer[0xa3];
         }
@@ -56514,8 +56514,8 @@ float * FUN_180075b70(float *ResourceManagerPointer)
         unsignedSystemValue7 = unsignedSystemValue7 + 1;
       } while (unsignedSystemValue7 < *(uint *)(lStack_88 + 0x10));
     }
-    pfVar6 = *(float **)(ResourceManagerPointer + 0x6e);
-    if ((pfVar6 != (float *)0x0) && (((uint)pfVar6[0x4e] & 0x3000) != 0)) {
+    pfloatValue6 = *(float **)(ResourceManagerPointer + 0x6e);
+    if ((pfloatValue6 != (float *)0x0) && (((uint)pfloatValue6[0x4e] & 0x3000) != 0)) {
       UnsignedStackFlag78 = *(void* *)(ResourceManagerPointer + 0x48);
       uStack_70 = *(void* *)(ResourceManagerPointer + 0x4a);
       EncryptionValue68 = *(void* *)(ResourceManagerPointer + 0x4c);
@@ -56528,8 +56528,8 @@ float * FUN_180075b70(float *ResourceManagerPointer)
       uStack_40 = *(void* *)(ResourceManagerPointer + 0x56);
       FUN_180085c10(&UnsignedStackFlag78);
       FUN_18063a240(pfloatValue1,pfloatValue1,&UnsignedStackFlag78);
-      pfVar6 = *(float **)(ResourceManagerPointer + 0x6e);
-      if (((uint)pfVar6[0x4e] & 0x3000) == 0x2000) {
+      pfloatValue6 = *(float **)(ResourceManagerPointer + 0x6e);
+      if (((uint)pfloatValue6[0x4e] & 0x3000) == 0x2000) {
         UnsignedStackFlag78 = *(void* *)(ResourceManagerPointer + 0x48);
         uStack_70 = *(void* *)(ResourceManagerPointer + 0x4a);
         EncryptionValue68 = *(void* *)(ResourceManagerPointer + 0x4c);
@@ -56553,10 +56553,10 @@ float * FUN_180075b70(float *ResourceManagerPointer)
         EncryptionValue48 = *(void* *)(ResourceManagerPointer + 0x54);
         uStack_40 = *(void* *)(ResourceManagerPointer + 0x56);
         FUN_180085970(&UnsignedStackFlag78);
-        pfVar6 = (float *)FUN_18063a240(pfloatValue1,pfloatValue1,&UnsignedStackFlag78);
+        pfloatValue6 = (float *)FUN_18063a240(pfloatValue1,pfloatValue1,&UnsignedStackFlag78);
       }
     }
-    pfVar4 = pfStack_98;
+    pfloatValue4 = pfStack_98;
     if (ResourceManagerPointer[0xa1] < *pfloatValue1) {
       ResourceManagerPointer[0xa9] = 0.0;
       pfloatValue1[0] = 0.0;
@@ -56580,16 +56580,16 @@ float * FUN_180075b70(float *ResourceManagerPointer)
       FloatScaleFactor = 0.0;
       unsignedSystemValue8 = (ulong long)*(uint *)(lStack_88 + 0x10);
       if (0 < (int)*(uint *)(lStack_88 + 0x10)) {
-        pfVar6 = *(float **)(lStack_88 + 0x18);
+        pfloatValue6 = *(float **)(lStack_88 + 0x18);
         floatValue11 = FloatScaleFactor;
         do {
-          FloatScaleFactor = (*pfVar6 - ResourceManagerPointer[0xa5]) * (*pfVar6 - ResourceManagerPointer[0xa5]) +
-                   (pfVar6[1] - ResourceManagerPointer[0xa6]) * (pfVar6[1] - ResourceManagerPointer[0xa6]) +
-                   (pfVar6[2] - ResourceManagerPointer[0xa7]) * (pfVar6[2] - ResourceManagerPointer[0xa7]);
+          FloatScaleFactor = (*pfloatValue6 - ResourceManagerPointer[0xa5]) * (*pfloatValue6 - ResourceManagerPointer[0xa5]) +
+                   (pfloatValue6[1] - ResourceManagerPointer[0xa6]) * (pfloatValue6[1] - ResourceManagerPointer[0xa6]) +
+                   (pfloatValue6[2] - ResourceManagerPointer[0xa7]) * (pfloatValue6[2] - ResourceManagerPointer[0xa7]);
           if (FloatScaleFactor <= floatValue11) {
             FloatScaleFactor = floatValue11;
           }
-          pfVar6 = pfVar6 + 4;
+          pfloatValue6 = pfloatValue6 + 4;
           unsignedSystemValue8 = unsignedSystemValue8 - 1;
           floatValue11 = FloatScaleFactor;
         } while (unsignedSystemValue8 != 0);
@@ -56599,48 +56599,48 @@ float * FUN_180075b70(float *ResourceManagerPointer)
     if (pfStack_98 != (float *)0x0) {
       while( true ) {
         LOCK();
-        charValue = *(char *)(pfVar4 + 0x3b);
+        charValue = *(char *)(pfloatValue4 + 0x3b);
         isSystemBusy = charValue == '\0';
         if (isSystemBusy) {
-          *(char *)(pfVar4 + 0x3b) = '\x01';
+          *(char *)(pfloatValue4 + 0x3b) = '\x01';
           charValue = '\0';
         }
         UNLOCK();
         if (isSystemBusy) break;
         FloatScaleFactor = (float)_Thrd_id();
-        if ((pfVar4[0x3c] == FloatScaleFactor) || (pfVar4[0x3c] != 0.0)) goto LAB_180075f4f;
+        if ((pfloatValue4[0x3c] == FloatScaleFactor) || (pfloatValue4[0x3c] != 0.0)) goto LAB_180075f4f;
         Sleep();
       }
       charValue = '\0';
 LAB_180075f4f:
       LOCK();
-      pfloatValue1 = pfVar4 + 0x3a;
+      pfloatValue1 = pfloatValue4 + 0x3a;
       FloatScaleFactor = *pfloatValue1;
-      pfVar6 = (float *)(ulong long)(uint)FloatScaleFactor;
+      pfloatValue6 = (float *)(ulong long)(uint)FloatScaleFactor;
       *pfloatValue1 = (float)((int)*pfloatValue1 + -1);
       UNLOCK();
       if (charValue == '\0') {
         if ((((FloatScaleFactor == 1.4013e-45) && (*(long long *)(pfStack_98 + 0x84) != 0)) &&
-            (pfVar6 = pfStack_98, FUN_1800791a0(pfStack_98), *(char *)(pfVar6 + 0x3f) == '\0')) &&
-           ((*(char *)(pfVar6 + 0x3d) == '\0' &&
-            (((*(byte *)((long long)pfVar6 + 0xfd) & 0x20) == 0 ||
-             ((*(byte *)((long long)pfVar6 + 0xfe) & 1) == 0)))))) {
-          plocalResourceOffset = *(long long **)(pfVar6 + 0x84);
-          pfVar6[0x84] = 0.0;
-          pfVar6[0x85] = 0.0;
+            (pfloatValue6 = pfStack_98, FUN_1800791a0(pfStack_98), *(char *)(pfloatValue6 + 0x3f) == '\0')) &&
+           ((*(char *)(pfloatValue6 + 0x3d) == '\0' &&
+            (((*(byte *)((long long)pfloatValue6 + 0xfd) & 0x20) == 0 ||
+             ((*(byte *)((long long)pfloatValue6 + 0xfe) & 1) == 0)))))) {
+          plocalResourceOffset = *(long long **)(pfloatValue6 + 0x84);
+          pfloatValue6[0x84] = 0.0;
+          pfloatValue6[0x85] = 0.0;
           if (plocalResourceOffset != (long long *)0x0) {
             (**(code **)(*plocalResourceOffset + 0x38))();
           }
         }
         LOCK();
-        isSystemActive = *(byte *)(pfVar4 + 0x3b);
-        *(byte *)(pfVar4 + 0x3b) = 0;
-        pfVar6 = (float *)(ulong long)isSystemActive;
+        isSystemActive = *(byte *)(pfloatValue4 + 0x3b);
+        *(byte *)(pfloatValue4 + 0x3b) = 0;
+        pfloatValue6 = (float *)(ulong long)isSystemActive;
         UNLOCK();
       }
     }
   }
-  return pfVar6;
+  return pfloatValue6;
 }
 
 
@@ -57794,7 +57794,7 @@ ulong long FUN_180077750(long long ResourceManagerPointer,uint *ConfigurationDat
   float FloatVariable2;
   float FloatVariable3;
   float FloatVariable4;
-  float fVar5;
+  float floatValue5;
   uint hashValue;
   uint32_t unsignedSystemValue7;
   uint32_t unsignedSystemValue8;
@@ -58110,32 +58110,32 @@ LAB_180077879:
       floatValue20 = AdditionalParameter[0xb];
       floatValue1 = *(float *)(ResourceManagerPointer + 0x124);
       floatValue2 = *(float *)(ResourceManagerPointer + 0x120);
-      fVar3 = *(float *)(ResourceManagerPointer + 0x128);
-      fVar4 = *(float *)(ResourceManagerPointer + 0x134);
-      fVar5 = *(float *)(ResourceManagerPointer + 0x130);
-      fStack_c8 = floatValue1 * interpolationFactor1 + floatValue2 * fVar9 + fVar3 * interpolationFactor5;
-      fStack_c4 = floatValue1 * interpolationFactor2 + floatValue2 * FloatScaleFactor + fVar3 * magnitudeSquared1;
-      fStack_c0 = floatValue1 * interpolationFactor3 + floatValue2 * floatValue11 + fVar3 * floatValue19;
-      fStack_bc = floatValue1 * interpolationFactor4 + floatValue2 * FloatRatioValue + fVar3 * floatValue20;
+      floatValue3 = *(float *)(ResourceManagerPointer + 0x128);
+      floatValue4 = *(float *)(ResourceManagerPointer + 0x134);
+      floatValue5 = *(float *)(ResourceManagerPointer + 0x130);
+      fStack_c8 = floatValue1 * interpolationFactor1 + floatValue2 * fVar9 + floatValue3 * interpolationFactor5;
+      fStack_c4 = floatValue1 * interpolationFactor2 + floatValue2 * FloatScaleFactor + floatValue3 * magnitudeSquared1;
+      fStack_c0 = floatValue1 * interpolationFactor3 + floatValue2 * floatValue11 + floatValue3 * floatValue19;
+      fStack_bc = floatValue1 * interpolationFactor4 + floatValue2 * FloatRatioValue + floatValue3 * floatValue20;
       floatValue1 = *(float *)(ResourceManagerPointer + 0x138);
       floatValue2 = *(float *)(ResourceManagerPointer + 0x140);
-      fVar3 = *(float *)(ResourceManagerPointer + 0x144);
-      fStack_b8 = fVar4 * interpolationFactor1 + fVar5 * fVar9 + floatValue1 * interpolationFactor5;
-      fStack_b4 = fVar4 * interpolationFactor2 + fVar5 * FloatScaleFactor + floatValue1 * magnitudeSquared1;
-      fStack_b0 = fVar4 * interpolationFactor3 + fVar5 * floatValue11 + floatValue1 * floatValue19;
-      fStack_ac = fVar4 * interpolationFactor4 + fVar5 * FloatRatioValue + floatValue1 * floatValue20;
+      floatValue3 = *(float *)(ResourceManagerPointer + 0x144);
+      fStack_b8 = floatValue4 * interpolationFactor1 + floatValue5 * fVar9 + floatValue1 * interpolationFactor5;
+      fStack_b4 = floatValue4 * interpolationFactor2 + floatValue5 * FloatScaleFactor + floatValue1 * magnitudeSquared1;
+      fStack_b0 = floatValue4 * interpolationFactor3 + floatValue5 * floatValue11 + floatValue1 * floatValue19;
+      fStack_ac = floatValue4 * interpolationFactor4 + floatValue5 * FloatRatioValue + floatValue1 * floatValue20;
       floatValue1 = *(float *)(ResourceManagerPointer + 0x148);
-      fVar4 = *(float *)(ResourceManagerPointer + 0x154);
-      fVar5 = *(float *)(ResourceManagerPointer + 0x150);
-      fStack_a8 = fVar3 * interpolationFactor1 + floatValue2 * fVar9 + floatValue1 * interpolationFactor5;
-      fStack_a4 = fVar3 * interpolationFactor2 + floatValue2 * FloatScaleFactor + floatValue1 * magnitudeSquared1;
-      fStack_a0 = fVar3 * interpolationFactor3 + floatValue2 * floatValue11 + floatValue1 * floatValue19;
-      fStack_9c = fVar3 * interpolationFactor4 + floatValue2 * FloatRatioValue + floatValue1 * floatValue20;
+      floatValue4 = *(float *)(ResourceManagerPointer + 0x154);
+      floatValue5 = *(float *)(ResourceManagerPointer + 0x150);
+      fStack_a8 = floatValue3 * interpolationFactor1 + floatValue2 * fVar9 + floatValue1 * interpolationFactor5;
+      fStack_a4 = floatValue3 * interpolationFactor2 + floatValue2 * FloatScaleFactor + floatValue1 * magnitudeSquared1;
+      fStack_a0 = floatValue3 * interpolationFactor3 + floatValue2 * floatValue11 + floatValue1 * floatValue19;
+      fStack_9c = floatValue3 * interpolationFactor4 + floatValue2 * FloatRatioValue + floatValue1 * floatValue20;
       floatValue1 = *(float *)(ResourceManagerPointer + 0x158);
-      fStack_98 = fVar4 * interpolationFactor1 + fVar5 * fVar9 + floatValue1 * interpolationFactor5 + AdditionalParameter[0xc];
-      fStack_94 = fVar4 * interpolationFactor2 + fVar5 * FloatScaleFactor + floatValue1 * magnitudeSquared1 + AdditionalParameter[0xd];
-      fStack_90 = fVar4 * interpolationFactor3 + fVar5 * floatValue11 + floatValue1 * floatValue19 + AdditionalParameter[0xe];
-      fStack_8c = fVar4 * interpolationFactor4 + fVar5 * FloatRatioValue + floatValue1 * floatValue20 + AdditionalParameter[0xf];
+      fStack_98 = floatValue4 * interpolationFactor1 + floatValue5 * fVar9 + floatValue1 * interpolationFactor5 + AdditionalParameter[0xc];
+      fStack_94 = floatValue4 * interpolationFactor2 + floatValue5 * FloatScaleFactor + floatValue1 * magnitudeSquared1 + AdditionalParameter[0xd];
+      fStack_90 = floatValue4 * interpolationFactor3 + floatValue5 * floatValue11 + floatValue1 * floatValue19 + AdditionalParameter[0xe];
+      fStack_8c = floatValue4 * interpolationFactor4 + floatValue5 * FloatRatioValue + floatValue1 * floatValue20 + AdditionalParameter[0xf];
       AdditionalParameter = &fStack_c8;
     }
     FUN_180085190(&uStack_108,ConfigurationDataPointer + 0xc,*(uint8_t *)(ResourceManagerPointer + 0xf7),AdditionalParameter);
@@ -58195,8 +58195,8 @@ void SystemNoOperationA(void)
   float FloatVariable2;
   float FloatVariable3;
   float FloatVariable4;
-  float fVar5;
-  float fVar6;
+  float floatValue5;
+  float floatValue6;
   uint32_t unsignedSystemValue7;
   uint32_t unsignedSystemValue8;
   float fVar9;
@@ -58230,7 +58230,7 @@ void SystemNoOperationA(void)
   uint *HashNodePointer6;
   char *pcharFlag7;
   void* *HashNodePointer8;
-  float *pfVar39;
+  float *pfloatValue39;
   int systemAllocationOffsetD;
   int systemIndex0;
   ulong long unsignedSystemValue41;
@@ -58418,7 +58418,7 @@ void SystemNoOperationA(void)
     localResourceOffset3 = *(long long *)(in_stack_00000178 + 0x28);
   }
   FUN_180080e90(localResourceOffset3 + 0x3388,HashNodePointer5,&stack0x00000040);
-  pfVar39 = in_stack_00000180;
+  pfloatValue39 = in_stack_00000180;
   if ((*(uint *)(systemMemoryBlockPtr + 0x100) & 0x4000000) != 0) {
     fVar9 = *in_stack_00000180;
     FloatScaleFactor = in_stack_00000180[1];
@@ -58433,40 +58433,40 @@ void SystemNoOperationA(void)
     floatValue19 = in_stack_00000180[10];
     floatValue20 = in_stack_00000180[0xb];
     floatValue2 = *(float *)(systemMemoryBlockPtr + 0x124);
-    fVar3 = *(float *)(systemMemoryBlockPtr + 0x120);
-    fVar4 = *(float *)(systemMemoryBlockPtr + 0x128);
-    fVar5 = *(float *)(systemMemoryBlockPtr + 0x134);
-    fVar6 = *(float *)(systemMemoryBlockPtr + 0x130);
-    fStack00000000000000a0 = floatValue2 * interpolationFactor1 + fVar3 * fVar9 + fVar4 * interpolationFactor5;
-    fStack00000000000000a4 = floatValue2 * interpolationFactor2 + fVar3 * FloatScaleFactor + fVar4 * magnitudeSquared1;
-    fStack00000000000000a8 = floatValue2 * interpolationFactor3 + fVar3 * floatValue11 + fVar4 * floatValue19;
-    fStack00000000000000ac = floatValue2 * interpolationFactor4 + fVar3 * FloatRatioValue + fVar4 * floatValue20;
+    floatValue3 = *(float *)(systemMemoryBlockPtr + 0x120);
+    floatValue4 = *(float *)(systemMemoryBlockPtr + 0x128);
+    floatValue5 = *(float *)(systemMemoryBlockPtr + 0x134);
+    floatValue6 = *(float *)(systemMemoryBlockPtr + 0x130);
+    fStack00000000000000a0 = floatValue2 * interpolationFactor1 + floatValue3 * fVar9 + floatValue4 * interpolationFactor5;
+    fStack00000000000000a4 = floatValue2 * interpolationFactor2 + floatValue3 * FloatScaleFactor + floatValue4 * magnitudeSquared1;
+    fStack00000000000000a8 = floatValue2 * interpolationFactor3 + floatValue3 * floatValue11 + floatValue4 * floatValue19;
+    fStack00000000000000ac = floatValue2 * interpolationFactor4 + floatValue3 * FloatRatioValue + floatValue4 * floatValue20;
     floatValue2 = *(float *)(systemMemoryBlockPtr + 0x138);
-    fVar3 = *(float *)(systemMemoryBlockPtr + 0x140);
-    fVar4 = *(float *)(systemMemoryBlockPtr + 0x144);
-    fStack00000000000000b0 = fVar5 * interpolationFactor1 + fVar6 * fVar9 + floatValue2 * interpolationFactor5;
-    fStack00000000000000b4 = fVar5 * interpolationFactor2 + fVar6 * FloatScaleFactor + floatValue2 * magnitudeSquared1;
-    fStack00000000000000b8 = fVar5 * interpolationFactor3 + fVar6 * floatValue11 + floatValue2 * floatValue19;
-    fStack00000000000000bc = fVar5 * interpolationFactor4 + fVar6 * FloatRatioValue + floatValue2 * floatValue20;
+    floatValue3 = *(float *)(systemMemoryBlockPtr + 0x140);
+    floatValue4 = *(float *)(systemMemoryBlockPtr + 0x144);
+    fStack00000000000000b0 = floatValue5 * interpolationFactor1 + floatValue6 * fVar9 + floatValue2 * interpolationFactor5;
+    fStack00000000000000b4 = floatValue5 * interpolationFactor2 + floatValue6 * FloatScaleFactor + floatValue2 * magnitudeSquared1;
+    fStack00000000000000b8 = floatValue5 * interpolationFactor3 + floatValue6 * floatValue11 + floatValue2 * floatValue19;
+    fStack00000000000000bc = floatValue5 * interpolationFactor4 + floatValue6 * FloatRatioValue + floatValue2 * floatValue20;
     floatValue2 = *(float *)(systemMemoryBlockPtr + 0x148);
-    fVar5 = *(float *)(systemMemoryBlockPtr + 0x154);
-    fVar6 = *(float *)(systemMemoryBlockPtr + 0x150);
-    fStack00000000000000c0 = fVar4 * interpolationFactor1 + fVar3 * fVar9 + floatValue2 * interpolationFactor5;
-    fStack00000000000000c4 = fVar4 * interpolationFactor2 + fVar3 * FloatScaleFactor + floatValue2 * magnitudeSquared1;
-    fStack00000000000000c8 = fVar4 * interpolationFactor3 + fVar3 * floatValue11 + floatValue2 * floatValue19;
-    fStack00000000000000cc = fVar4 * interpolationFactor4 + fVar3 * FloatRatioValue + floatValue2 * floatValue20;
+    floatValue5 = *(float *)(systemMemoryBlockPtr + 0x154);
+    floatValue6 = *(float *)(systemMemoryBlockPtr + 0x150);
+    fStack00000000000000c0 = floatValue4 * interpolationFactor1 + floatValue3 * fVar9 + floatValue2 * interpolationFactor5;
+    fStack00000000000000c4 = floatValue4 * interpolationFactor2 + floatValue3 * FloatScaleFactor + floatValue2 * magnitudeSquared1;
+    fStack00000000000000c8 = floatValue4 * interpolationFactor3 + floatValue3 * floatValue11 + floatValue2 * floatValue19;
+    fStack00000000000000cc = floatValue4 * interpolationFactor4 + floatValue3 * FloatRatioValue + floatValue2 * floatValue20;
     floatValue2 = *(float *)(systemMemoryBlockPtr + 0x158);
     fStack00000000000000d0 =
-         fVar5 * interpolationFactor1 + fVar6 * fVar9 + floatValue2 * interpolationFactor5 + in_stack_00000180[0xc];
+         floatValue5 * interpolationFactor1 + floatValue6 * fVar9 + floatValue2 * interpolationFactor5 + in_stack_00000180[0xc];
     fStack00000000000000d4 =
-         fVar5 * interpolationFactor2 + fVar6 * FloatScaleFactor + floatValue2 * magnitudeSquared1 + in_stack_00000180[0xd];
+         floatValue5 * interpolationFactor2 + floatValue6 * FloatScaleFactor + floatValue2 * magnitudeSquared1 + in_stack_00000180[0xd];
     fStack00000000000000d8 =
-         fVar5 * interpolationFactor3 + fVar6 * floatValue11 + floatValue2 * floatValue19 + in_stack_00000180[0xe];
+         floatValue5 * interpolationFactor3 + floatValue6 * floatValue11 + floatValue2 * floatValue19 + in_stack_00000180[0xe];
     fStack00000000000000dc =
-         fVar5 * interpolationFactor4 + fVar6 * FloatRatioValue + floatValue2 * floatValue20 + in_stack_00000180[0xf];
-    pfVar39 = &stack0x000000a0;
+         floatValue5 * interpolationFactor4 + floatValue6 * FloatRatioValue + floatValue2 * floatValue20 + in_stack_00000180[0xf];
+    pfloatValue39 = &stack0x000000a0;
   }
-  FUN_180085190(&stack0x00000060,localResourceOffset4 + 0x30,*(uint8_t *)(systemMemoryBlockPtr + 0xf7),pfVar39);
+  FUN_180085190(&stack0x00000060,localResourceOffset4 + 0x30,*(uint8_t *)(systemMemoryBlockPtr + 0xf7),pfloatValue39);
   creationFlags8 = in_stack_00000098;
   creationFlags7 = InputStackParameter90;
   creationFlags6 = InputStackParameter88;
@@ -58524,7 +58524,7 @@ void FUN_180077ad8(void)
   float FloatVariable2;
   float FloatVariable3;
   float FloatVariable4;
-  float fVar5;
+  float floatValue5;
   int systemFlag;
   uint32_t unsignedSystemValue7;
   uint32_t unsignedSystemValue8;
@@ -58557,7 +58557,7 @@ void FUN_180077ad8(void)
   long long systemMemoryBlockPtr;
   void* *systemDataIndexPtr;
   long long localResourceOffset5;
-  float *pfVar36;
+  float *pfloatValue36;
   uint32_t InputStackParameter30;
   long long InputStackParameter40;
   void* InputStackParameter60;
@@ -58682,7 +58682,7 @@ void FUN_180077ad8(void)
     localResourceOffset3 = *(long long *)(in_stack_00000178 + 0x28);
   }
   FUN_180080e90(localResourceOffset3 + 0x3388,HashNodePointer4,&stack0x00000040);
-  pfVar36 = in_stack_00000180;
+  pfloatValue36 = in_stack_00000180;
   if ((*(uint *)(systemMemoryBlockPtr + 0x100) & 0x4000000) != 0) {
     fVar9 = *in_stack_00000180;
     FloatScaleFactor = in_stack_00000180[1];
@@ -58698,39 +58698,39 @@ void FUN_180077ad8(void)
     floatValue20 = in_stack_00000180[0xb];
     floatValue1 = *(float *)(systemMemoryBlockPtr + 0x124);
     floatValue2 = *(float *)(systemMemoryBlockPtr + 0x120);
-    fVar3 = *(float *)(systemMemoryBlockPtr + 0x128);
-    fVar4 = *(float *)(systemMemoryBlockPtr + 0x134);
-    fVar5 = *(float *)(systemMemoryBlockPtr + 0x130);
-    fStack00000000000000a0 = floatValue1 * interpolationFactor1 + floatValue2 * fVar9 + fVar3 * interpolationFactor5;
-    fStack00000000000000a4 = floatValue1 * interpolationFactor2 + floatValue2 * FloatScaleFactor + fVar3 * magnitudeSquared1;
-    fStack00000000000000a8 = floatValue1 * interpolationFactor3 + floatValue2 * floatValue11 + fVar3 * floatValue19;
-    fStack00000000000000ac = floatValue1 * interpolationFactor4 + floatValue2 * FloatRatioValue + fVar3 * floatValue20;
+    floatValue3 = *(float *)(systemMemoryBlockPtr + 0x128);
+    floatValue4 = *(float *)(systemMemoryBlockPtr + 0x134);
+    floatValue5 = *(float *)(systemMemoryBlockPtr + 0x130);
+    fStack00000000000000a0 = floatValue1 * interpolationFactor1 + floatValue2 * fVar9 + floatValue3 * interpolationFactor5;
+    fStack00000000000000a4 = floatValue1 * interpolationFactor2 + floatValue2 * FloatScaleFactor + floatValue3 * magnitudeSquared1;
+    fStack00000000000000a8 = floatValue1 * interpolationFactor3 + floatValue2 * floatValue11 + floatValue3 * floatValue19;
+    fStack00000000000000ac = floatValue1 * interpolationFactor4 + floatValue2 * FloatRatioValue + floatValue3 * floatValue20;
     floatValue1 = *(float *)(systemMemoryBlockPtr + 0x138);
     floatValue2 = *(float *)(systemMemoryBlockPtr + 0x140);
-    fVar3 = *(float *)(systemMemoryBlockPtr + 0x144);
-    fStack00000000000000b0 = fVar4 * interpolationFactor1 + fVar5 * fVar9 + floatValue1 * interpolationFactor5;
-    fStack00000000000000b4 = fVar4 * interpolationFactor2 + fVar5 * FloatScaleFactor + floatValue1 * magnitudeSquared1;
-    fStack00000000000000b8 = fVar4 * interpolationFactor3 + fVar5 * floatValue11 + floatValue1 * floatValue19;
-    fStack00000000000000bc = fVar4 * interpolationFactor4 + fVar5 * FloatRatioValue + floatValue1 * floatValue20;
+    floatValue3 = *(float *)(systemMemoryBlockPtr + 0x144);
+    fStack00000000000000b0 = floatValue4 * interpolationFactor1 + floatValue5 * fVar9 + floatValue1 * interpolationFactor5;
+    fStack00000000000000b4 = floatValue4 * interpolationFactor2 + floatValue5 * FloatScaleFactor + floatValue1 * magnitudeSquared1;
+    fStack00000000000000b8 = floatValue4 * interpolationFactor3 + floatValue5 * floatValue11 + floatValue1 * floatValue19;
+    fStack00000000000000bc = floatValue4 * interpolationFactor4 + floatValue5 * FloatRatioValue + floatValue1 * floatValue20;
     floatValue1 = *(float *)(systemMemoryBlockPtr + 0x148);
-    fVar4 = *(float *)(systemMemoryBlockPtr + 0x154);
-    fVar5 = *(float *)(systemMemoryBlockPtr + 0x150);
-    fStack00000000000000c0 = fVar3 * interpolationFactor1 + floatValue2 * fVar9 + floatValue1 * interpolationFactor5;
-    fStack00000000000000c4 = fVar3 * interpolationFactor2 + floatValue2 * FloatScaleFactor + floatValue1 * magnitudeSquared1;
-    fStack00000000000000c8 = fVar3 * interpolationFactor3 + floatValue2 * floatValue11 + floatValue1 * floatValue19;
-    fStack00000000000000cc = fVar3 * interpolationFactor4 + floatValue2 * FloatRatioValue + floatValue1 * floatValue20;
+    floatValue4 = *(float *)(systemMemoryBlockPtr + 0x154);
+    floatValue5 = *(float *)(systemMemoryBlockPtr + 0x150);
+    fStack00000000000000c0 = floatValue3 * interpolationFactor1 + floatValue2 * fVar9 + floatValue1 * interpolationFactor5;
+    fStack00000000000000c4 = floatValue3 * interpolationFactor2 + floatValue2 * FloatScaleFactor + floatValue1 * magnitudeSquared1;
+    fStack00000000000000c8 = floatValue3 * interpolationFactor3 + floatValue2 * floatValue11 + floatValue1 * floatValue19;
+    fStack00000000000000cc = floatValue3 * interpolationFactor4 + floatValue2 * FloatRatioValue + floatValue1 * floatValue20;
     floatValue1 = *(float *)(systemMemoryBlockPtr + 0x158);
     fStack00000000000000d0 =
-         fVar4 * interpolationFactor1 + fVar5 * fVar9 + floatValue1 * interpolationFactor5 + in_stack_00000180[0xc];
+         floatValue4 * interpolationFactor1 + floatValue5 * fVar9 + floatValue1 * interpolationFactor5 + in_stack_00000180[0xc];
     fStack00000000000000d4 =
-         fVar4 * interpolationFactor2 + fVar5 * FloatScaleFactor + floatValue1 * magnitudeSquared1 + in_stack_00000180[0xd];
+         floatValue4 * interpolationFactor2 + floatValue5 * FloatScaleFactor + floatValue1 * magnitudeSquared1 + in_stack_00000180[0xd];
     fStack00000000000000d8 =
-         fVar4 * interpolationFactor3 + fVar5 * floatValue11 + floatValue1 * floatValue19 + in_stack_00000180[0xe];
+         floatValue4 * interpolationFactor3 + floatValue5 * floatValue11 + floatValue1 * floatValue19 + in_stack_00000180[0xe];
     fStack00000000000000dc =
-         fVar4 * interpolationFactor4 + fVar5 * FloatRatioValue + floatValue1 * floatValue20 + in_stack_00000180[0xf];
-    pfVar36 = &stack0x000000a0;
+         floatValue4 * interpolationFactor4 + floatValue5 * FloatRatioValue + floatValue1 * floatValue20 + in_stack_00000180[0xf];
+    pfloatValue36 = &stack0x000000a0;
   }
-  FUN_180085190(&stack0x00000060,localSystemHandle9 + 0x30,*(uint8_t *)(systemMemoryBlockPtr + 0xf7),pfVar36);
+  FUN_180085190(&stack0x00000060,localSystemHandle9 + 0x30,*(uint8_t *)(systemMemoryBlockPtr + 0xf7),pfloatValue36);
   creationFlags8 = in_stack_00000098;
   creationFlags7 = InputStackParameter90;
   creationFlags6 = InputStackParameter88;
@@ -58788,7 +58788,7 @@ void FUN_180077c96(void)
   float FloatVariable2;
   float FloatVariable3;
   float FloatVariable4;
-  float fVar5;
+  float floatValue5;
   int systemFlag;
   float fVar7;
   float fVar8;
@@ -58856,32 +58856,32 @@ void FUN_180077c96(void)
     magnitudeSquared1 = systemStringIteratorPtr[0xb];
     floatValue1 = *(float *)(systemMemoryBlockPtr + 0x124);
     floatValue2 = *(float *)(systemMemoryBlockPtr + 0x120);
-    fVar3 = *(float *)(systemMemoryBlockPtr + 0x128);
-    fVar4 = *(float *)(systemMemoryBlockPtr + 0x134);
-    fVar5 = *(float *)(systemMemoryBlockPtr + 0x130);
-    fStack00000000000000a0 = floatValue1 * floatValue11 + floatValue2 * fVar7 + fVar3 * interpolationFactor3;
-    fStack00000000000000a4 = floatValue1 * FloatRatioValue + floatValue2 * fVar8 + fVar3 * interpolationFactor4;
-    fStack00000000000000a8 = floatValue1 * interpolationFactor1 + floatValue2 * fVar9 + fVar3 * interpolationFactor5;
-    fStack00000000000000ac = floatValue1 * interpolationFactor2 + floatValue2 * FloatScaleFactor + fVar3 * magnitudeSquared1;
+    floatValue3 = *(float *)(systemMemoryBlockPtr + 0x128);
+    floatValue4 = *(float *)(systemMemoryBlockPtr + 0x134);
+    floatValue5 = *(float *)(systemMemoryBlockPtr + 0x130);
+    fStack00000000000000a0 = floatValue1 * floatValue11 + floatValue2 * fVar7 + floatValue3 * interpolationFactor3;
+    fStack00000000000000a4 = floatValue1 * FloatRatioValue + floatValue2 * fVar8 + floatValue3 * interpolationFactor4;
+    fStack00000000000000a8 = floatValue1 * interpolationFactor1 + floatValue2 * fVar9 + floatValue3 * interpolationFactor5;
+    fStack00000000000000ac = floatValue1 * interpolationFactor2 + floatValue2 * FloatScaleFactor + floatValue3 * magnitudeSquared1;
     floatValue1 = *(float *)(systemMemoryBlockPtr + 0x138);
     floatValue2 = *(float *)(systemMemoryBlockPtr + 0x140);
-    fVar3 = *(float *)(systemMemoryBlockPtr + 0x144);
-    fStack00000000000000b0 = fVar4 * floatValue11 + fVar5 * fVar7 + floatValue1 * interpolationFactor3;
-    fStack00000000000000b4 = fVar4 * FloatRatioValue + fVar5 * fVar8 + floatValue1 * interpolationFactor4;
-    fStack00000000000000b8 = fVar4 * interpolationFactor1 + fVar5 * fVar9 + floatValue1 * interpolationFactor5;
-    fStack00000000000000bc = fVar4 * interpolationFactor2 + fVar5 * FloatScaleFactor + floatValue1 * magnitudeSquared1;
+    floatValue3 = *(float *)(systemMemoryBlockPtr + 0x144);
+    fStack00000000000000b0 = floatValue4 * floatValue11 + floatValue5 * fVar7 + floatValue1 * interpolationFactor3;
+    fStack00000000000000b4 = floatValue4 * FloatRatioValue + floatValue5 * fVar8 + floatValue1 * interpolationFactor4;
+    fStack00000000000000b8 = floatValue4 * interpolationFactor1 + floatValue5 * fVar9 + floatValue1 * interpolationFactor5;
+    fStack00000000000000bc = floatValue4 * interpolationFactor2 + floatValue5 * FloatScaleFactor + floatValue1 * magnitudeSquared1;
     floatValue1 = *(float *)(systemMemoryBlockPtr + 0x148);
-    fVar4 = *(float *)(systemMemoryBlockPtr + 0x154);
-    fVar5 = *(float *)(systemMemoryBlockPtr + 0x150);
-    fStack00000000000000c0 = fVar3 * floatValue11 + floatValue2 * fVar7 + floatValue1 * interpolationFactor3;
-    fStack00000000000000c4 = fVar3 * FloatRatioValue + floatValue2 * fVar8 + floatValue1 * interpolationFactor4;
-    fStack00000000000000c8 = fVar3 * interpolationFactor1 + floatValue2 * fVar9 + floatValue1 * interpolationFactor5;
-    fStack00000000000000cc = fVar3 * interpolationFactor2 + floatValue2 * FloatScaleFactor + floatValue1 * magnitudeSquared1;
+    floatValue4 = *(float *)(systemMemoryBlockPtr + 0x154);
+    floatValue5 = *(float *)(systemMemoryBlockPtr + 0x150);
+    fStack00000000000000c0 = floatValue3 * floatValue11 + floatValue2 * fVar7 + floatValue1 * interpolationFactor3;
+    fStack00000000000000c4 = floatValue3 * FloatRatioValue + floatValue2 * fVar8 + floatValue1 * interpolationFactor4;
+    fStack00000000000000c8 = floatValue3 * interpolationFactor1 + floatValue2 * fVar9 + floatValue1 * interpolationFactor5;
+    fStack00000000000000cc = floatValue3 * interpolationFactor2 + floatValue2 * FloatScaleFactor + floatValue1 * magnitudeSquared1;
     floatValue1 = *(float *)(systemMemoryBlockPtr + 0x158);
-    fStack00000000000000d0 = fVar4 * floatValue11 + fVar5 * fVar7 + floatValue1 * interpolationFactor3 + systemStringIteratorPtr[0xc];
-    fStack00000000000000d4 = fVar4 * FloatRatioValue + fVar5 * fVar8 + floatValue1 * interpolationFactor4 + systemStringIteratorPtr[0xd];
-    fStack00000000000000d8 = fVar4 * interpolationFactor1 + fVar5 * fVar9 + floatValue1 * interpolationFactor5 + systemStringIteratorPtr[0xe];
-    fStack00000000000000dc = fVar4 * interpolationFactor2 + fVar5 * FloatScaleFactor + floatValue1 * magnitudeSquared1 + systemStringIteratorPtr[0xf];
+    fStack00000000000000d0 = floatValue4 * floatValue11 + floatValue5 * fVar7 + floatValue1 * interpolationFactor3 + systemStringIteratorPtr[0xc];
+    fStack00000000000000d4 = floatValue4 * FloatRatioValue + floatValue5 * fVar8 + floatValue1 * interpolationFactor4 + systemStringIteratorPtr[0xd];
+    fStack00000000000000d8 = floatValue4 * interpolationFactor1 + floatValue5 * fVar9 + floatValue1 * interpolationFactor5 + systemStringIteratorPtr[0xe];
+    fStack00000000000000dc = floatValue4 * interpolationFactor2 + floatValue5 * FloatScaleFactor + floatValue1 * magnitudeSquared1 + systemStringIteratorPtr[0xf];
   }
   FUN_180085190(&stack0x00000060,unaff_R13 + 0x30,*(uint8_t *)(systemMemoryBlockPtr + 0xf7));
   creationFlags6 = in_stack_00000098;
@@ -58941,7 +58941,7 @@ void FUN_180077dc6(void)
   float FloatVariable2;
   float FloatVariable3;
   float FloatVariable4;
-  float fVar5;
+  float floatValue5;
   int systemFlag;
   float fVar7;
   float fVar8;
@@ -59022,36 +59022,36 @@ void FUN_180077dc6(void)
     magnitudeSquared1 = in_stack_00000180[0xb];
     floatValue1 = *(float *)(systemMemoryBlockPtr + 0x124);
     floatValue2 = *(float *)(systemMemoryBlockPtr + 0x120);
-    fVar3 = *(float *)(systemMemoryBlockPtr + 0x128);
-    fVar4 = *(float *)(systemMemoryBlockPtr + 0x134);
-    fVar5 = *(float *)(systemMemoryBlockPtr + 0x130);
-    fStack00000000000000a0 = floatValue1 * floatValue11 + floatValue2 * fVar7 + fVar3 * interpolationFactor3;
-    fStack00000000000000a4 = floatValue1 * FloatRatioValue + floatValue2 * fVar8 + fVar3 * interpolationFactor4;
-    fStack00000000000000a8 = floatValue1 * interpolationFactor1 + floatValue2 * fVar9 + fVar3 * interpolationFactor5;
-    fStack00000000000000ac = floatValue1 * interpolationFactor2 + floatValue2 * FloatScaleFactor + fVar3 * magnitudeSquared1;
+    floatValue3 = *(float *)(systemMemoryBlockPtr + 0x128);
+    floatValue4 = *(float *)(systemMemoryBlockPtr + 0x134);
+    floatValue5 = *(float *)(systemMemoryBlockPtr + 0x130);
+    fStack00000000000000a0 = floatValue1 * floatValue11 + floatValue2 * fVar7 + floatValue3 * interpolationFactor3;
+    fStack00000000000000a4 = floatValue1 * FloatRatioValue + floatValue2 * fVar8 + floatValue3 * interpolationFactor4;
+    fStack00000000000000a8 = floatValue1 * interpolationFactor1 + floatValue2 * fVar9 + floatValue3 * interpolationFactor5;
+    fStack00000000000000ac = floatValue1 * interpolationFactor2 + floatValue2 * FloatScaleFactor + floatValue3 * magnitudeSquared1;
     floatValue1 = *(float *)(systemMemoryBlockPtr + 0x138);
     floatValue2 = *(float *)(systemMemoryBlockPtr + 0x140);
-    fVar3 = *(float *)(systemMemoryBlockPtr + 0x144);
-    fStack00000000000000b0 = fVar4 * floatValue11 + fVar5 * fVar7 + floatValue1 * interpolationFactor3;
-    fStack00000000000000b4 = fVar4 * FloatRatioValue + fVar5 * fVar8 + floatValue1 * interpolationFactor4;
-    fStack00000000000000b8 = fVar4 * interpolationFactor1 + fVar5 * fVar9 + floatValue1 * interpolationFactor5;
-    fStack00000000000000bc = fVar4 * interpolationFactor2 + fVar5 * FloatScaleFactor + floatValue1 * magnitudeSquared1;
+    floatValue3 = *(float *)(systemMemoryBlockPtr + 0x144);
+    fStack00000000000000b0 = floatValue4 * floatValue11 + floatValue5 * fVar7 + floatValue1 * interpolationFactor3;
+    fStack00000000000000b4 = floatValue4 * FloatRatioValue + floatValue5 * fVar8 + floatValue1 * interpolationFactor4;
+    fStack00000000000000b8 = floatValue4 * interpolationFactor1 + floatValue5 * fVar9 + floatValue1 * interpolationFactor5;
+    fStack00000000000000bc = floatValue4 * interpolationFactor2 + floatValue5 * FloatScaleFactor + floatValue1 * magnitudeSquared1;
     floatValue1 = *(float *)(systemMemoryBlockPtr + 0x148);
-    fVar4 = *(float *)(systemMemoryBlockPtr + 0x154);
-    fVar5 = *(float *)(systemMemoryBlockPtr + 0x150);
-    fStack00000000000000c0 = fVar3 * floatValue11 + floatValue2 * fVar7 + floatValue1 * interpolationFactor3;
-    fStack00000000000000c4 = fVar3 * FloatRatioValue + floatValue2 * fVar8 + floatValue1 * interpolationFactor4;
-    fStack00000000000000c8 = fVar3 * interpolationFactor1 + floatValue2 * fVar9 + floatValue1 * interpolationFactor5;
-    fStack00000000000000cc = fVar3 * interpolationFactor2 + floatValue2 * FloatScaleFactor + floatValue1 * magnitudeSquared1;
+    floatValue4 = *(float *)(systemMemoryBlockPtr + 0x154);
+    floatValue5 = *(float *)(systemMemoryBlockPtr + 0x150);
+    fStack00000000000000c0 = floatValue3 * floatValue11 + floatValue2 * fVar7 + floatValue1 * interpolationFactor3;
+    fStack00000000000000c4 = floatValue3 * FloatRatioValue + floatValue2 * fVar8 + floatValue1 * interpolationFactor4;
+    fStack00000000000000c8 = floatValue3 * interpolationFactor1 + floatValue2 * fVar9 + floatValue1 * interpolationFactor5;
+    fStack00000000000000cc = floatValue3 * interpolationFactor2 + floatValue2 * FloatScaleFactor + floatValue1 * magnitudeSquared1;
     floatValue1 = *(float *)(systemMemoryBlockPtr + 0x158);
     fStack00000000000000d0 =
-         fVar4 * floatValue11 + fVar5 * fVar7 + floatValue1 * interpolationFactor3 + in_stack_00000180[0xc];
+         floatValue4 * floatValue11 + floatValue5 * fVar7 + floatValue1 * interpolationFactor3 + in_stack_00000180[0xc];
     fStack00000000000000d4 =
-         fVar4 * FloatRatioValue + fVar5 * fVar8 + floatValue1 * interpolationFactor4 + in_stack_00000180[0xd];
+         floatValue4 * FloatRatioValue + floatValue5 * fVar8 + floatValue1 * interpolationFactor4 + in_stack_00000180[0xd];
     fStack00000000000000d8 =
-         fVar4 * interpolationFactor1 + fVar5 * fVar9 + floatValue1 * interpolationFactor5 + in_stack_00000180[0xe];
+         floatValue4 * interpolationFactor1 + floatValue5 * fVar9 + floatValue1 * interpolationFactor5 + in_stack_00000180[0xe];
     fStack00000000000000dc =
-         fVar4 * interpolationFactor2 + fVar5 * FloatScaleFactor + floatValue1 * magnitudeSquared1 + in_stack_00000180[0xf];
+         floatValue4 * interpolationFactor2 + floatValue5 * FloatScaleFactor + floatValue1 * magnitudeSquared1 + in_stack_00000180[0xf];
     pfloatValue29 = &stack0x000000a0;
   }
   FUN_180085190(&stack0x00000060,unaff_R13 + 0x30,*(uint8_t *)(systemMemoryBlockPtr + 0xf7),pfloatValue29);
@@ -59194,8 +59194,8 @@ ulong long FUN_180077f20(long long ResourceManagerPointer,void* ConfigurationDat
   float FloatVariable2;
   float FloatVariable3;
   float FloatVariable4;
-  float fVar5;
-  float fVar6;
+  float floatValue5;
+  float floatValue6;
   float fVar7;
   float fVar8;
   float fVar9;
@@ -59268,34 +59268,34 @@ LAB_180077fcf:
         FloatRatioValue = ConfigurationFlag[6];
         floatValue1 = *(float *)(ResourceManagerPointer + 0x120);
         floatValue2 = *(float *)(ResourceManagerPointer + 0x128);
-        fVar3 = *(float *)(ResourceManagerPointer + 0x134);
-        fVar4 = *(float *)(ResourceManagerPointer + 0x144);
-        fVar5 = *(float *)(ResourceManagerPointer + 0x154);
+        floatValue3 = *(float *)(ResourceManagerPointer + 0x134);
+        floatValue4 = *(float *)(ResourceManagerPointer + 0x144);
+        floatValue5 = *(float *)(ResourceManagerPointer + 0x154);
         interpolationFactor1 = *ConfigurationFlag;
         interpolationFactor2 = ConfigurationFlag[1];
         scaleResult1 = ConfigurationFlag[2];
         interpolationFactor4 = ConfigurationFlag[8];
         interpolationFactor5 = ConfigurationFlag[9];
         magnitudeSquared1 = ConfigurationFlag[10];
-        fVar6 = *(float *)(ResourceManagerPointer + 0x124);
+        floatValue6 = *(float *)(ResourceManagerPointer + 0x124);
         fVar7 = *(float *)(ResourceManagerPointer + 0x130);
-        UnsignedStackFlag80._0_4_ = fVar6 * FloatRatioValue + floatValue1 * interpolationFactor3 + floatValue2 * magnitudeSquared1;
+        UnsignedStackFlag80._0_4_ = floatValue6 * FloatRatioValue + floatValue1 * interpolationFactor3 + floatValue2 * magnitudeSquared1;
         fVar8 = *(float *)(ResourceManagerPointer + 0x138);
         fVar9 = *(float *)(ResourceManagerPointer + 0x140);
-        uStack_70._0_4_ = fVar3 * FloatRatioValue + fVar7 * interpolationFactor3 + fVar8 * magnitudeSquared1;
-        UnsignedStackFlag88 = CONCAT44(fVar6 * floatValue11 + floatValue1 * interpolationFactor2 + floatValue2 * interpolationFactor5,
-                             fVar6 * FloatScaleFactor + floatValue1 * interpolationFactor1 + floatValue2 * interpolationFactor4);
+        uStack_70._0_4_ = floatValue3 * FloatRatioValue + fVar7 * interpolationFactor3 + fVar8 * magnitudeSquared1;
+        UnsignedStackFlag88 = CONCAT44(floatValue6 * floatValue11 + floatValue1 * interpolationFactor2 + floatValue2 * interpolationFactor5,
+                             floatValue6 * FloatScaleFactor + floatValue1 * interpolationFactor1 + floatValue2 * interpolationFactor4);
         floatValue1 = *(float *)(ResourceManagerPointer + 0x148);
         floatValue2 = *(float *)(ResourceManagerPointer + 0x150);
-        uStack_60._0_4_ = fVar4 * FloatRatioValue + fVar9 * interpolationFactor3 + floatValue1 * magnitudeSquared1;
-        fVar6 = *(float *)(ResourceManagerPointer + 0x158);
-        UnsignedStackFlag78 = CONCAT44(fVar3 * floatValue11 + fVar7 * interpolationFactor2 + fVar8 * interpolationFactor5,
-                             fVar3 * FloatScaleFactor + fVar7 * interpolationFactor1 + fVar8 * interpolationFactor4);
-        EncryptionValue68 = CONCAT44(fVar4 * floatValue11 + fVar9 * interpolationFactor2 + floatValue1 * interpolationFactor5,
-                             fVar4 * FloatScaleFactor + fVar9 * interpolationFactor1 + floatValue1 * interpolationFactor4);
-        fStack_58 = fVar5 * FloatScaleFactor + floatValue2 * interpolationFactor1 + fVar6 * interpolationFactor4 + ConfigurationFlag[0xc];
-        fStack_54 = fVar5 * floatValue11 + floatValue2 * interpolationFactor2 + fVar6 * interpolationFactor5 + ConfigurationFlag[0xd];
-        fStack_50 = fVar5 * FloatRatioValue + floatValue2 * interpolationFactor3 + fVar6 * magnitudeSquared1 + ConfigurationFlag[0xe];
+        uStack_60._0_4_ = floatValue4 * FloatRatioValue + fVar9 * interpolationFactor3 + floatValue1 * magnitudeSquared1;
+        floatValue6 = *(float *)(ResourceManagerPointer + 0x158);
+        UnsignedStackFlag78 = CONCAT44(floatValue3 * floatValue11 + fVar7 * interpolationFactor2 + fVar8 * interpolationFactor5,
+                             floatValue3 * FloatScaleFactor + fVar7 * interpolationFactor1 + fVar8 * interpolationFactor4);
+        EncryptionValue68 = CONCAT44(floatValue4 * floatValue11 + fVar9 * interpolationFactor2 + floatValue1 * interpolationFactor5,
+                             floatValue4 * FloatScaleFactor + fVar9 * interpolationFactor1 + floatValue1 * interpolationFactor4);
+        fStack_58 = floatValue5 * FloatScaleFactor + floatValue2 * interpolationFactor1 + floatValue6 * interpolationFactor4 + ConfigurationFlag[0xc];
+        fStack_54 = floatValue5 * floatValue11 + floatValue2 * interpolationFactor2 + floatValue6 * interpolationFactor5 + ConfigurationFlag[0xd];
+        fStack_50 = floatValue5 * FloatRatioValue + floatValue2 * interpolationFactor3 + floatValue6 * magnitudeSquared1 + ConfigurationFlag[0xe];
       }
       uStack_4c = 0x3f800000;
       uStack_60 = (ulong long)(uint)(float)uStack_60;
@@ -59325,8 +59325,8 @@ void FUN_180078051(void* ResourceManagerPointer,void* ConfigurationDataPointer,f
   float FloatVariable2;
   float FloatVariable3;
   float FloatVariable4;
-  float fVar5;
-  float fVar6;
+  float floatValue5;
+  float floatValue6;
   float fVar7;
   float fVar8;
   float fVar9;
@@ -59359,33 +59359,33 @@ void FUN_180078051(void* ResourceManagerPointer,void* ConfigurationDataPointer,f
   uint32_t in_stack_000000e0;
   uint32_t in_stack_000000e8;
   
-  fVar4 = *systemDataIndexPtr;
-  fVar5 = systemDataIndexPtr[1];
-  fVar6 = systemDataIndexPtr[2];
+  floatValue4 = *systemDataIndexPtr;
+  floatValue5 = systemDataIndexPtr[1];
+  floatValue6 = systemDataIndexPtr[2];
   fVar7 = systemDataIndexPtr[8];
   fVar8 = systemDataIndexPtr[9];
   fVar9 = systemDataIndexPtr[10];
   floatValue1 = *(float *)(systemMemoryBlockPtr + 0x124);
   floatValue2 = *(float *)(systemMemoryBlockPtr + 0x130);
-  fStack0000000000000030 = floatValue1 * in_XMM4_Da + (float)ResourceManagerPointer * fVar4 + (float)ConfigurationDataPointer * fVar7;
+  fStack0000000000000030 = floatValue1 * in_XMM4_Da + (float)ResourceManagerPointer * floatValue4 + (float)ConfigurationDataPointer * fVar7;
   fStack0000000000000034 =
-       floatValue1 * in_XMM4_Db + (float)((ulong long)ResourceManagerPointer >> 0x20) * fVar5 +
+       floatValue1 * in_XMM4_Db + (float)((ulong long)ResourceManagerPointer >> 0x20) * floatValue5 +
        (float)((ulong long)ConfigurationDataPointer >> 0x20) * fVar8;
-  fStack0000000000000038 = floatValue1 * in_XMM4_Dc + in_XMM0_Dc * fVar6 + in_XMM1_Dc * fVar9;
+  fStack0000000000000038 = floatValue1 * in_XMM4_Dc + in_XMM0_Dc * floatValue6 + in_XMM1_Dc * fVar9;
   floatValue1 = *(float *)(systemMemoryBlockPtr + 0x138);
-  fVar3 = *(float *)(systemMemoryBlockPtr + 0x140);
-  fStack0000000000000040 = in_XMM5_Da * in_XMM4_Da + floatValue2 * fVar4 + floatValue1 * fVar7;
-  fStack0000000000000044 = in_XMM5_Da * in_XMM4_Db + floatValue2 * fVar5 + floatValue1 * fVar8;
-  fStack0000000000000048 = in_XMM5_Da * in_XMM4_Dc + floatValue2 * fVar6 + floatValue1 * fVar9;
+  floatValue3 = *(float *)(systemMemoryBlockPtr + 0x140);
+  fStack0000000000000040 = in_XMM5_Da * in_XMM4_Da + floatValue2 * floatValue4 + floatValue1 * fVar7;
+  fStack0000000000000044 = in_XMM5_Da * in_XMM4_Db + floatValue2 * floatValue5 + floatValue1 * fVar8;
+  fStack0000000000000048 = in_XMM5_Da * in_XMM4_Dc + floatValue2 * floatValue6 + floatValue1 * fVar9;
   floatValue1 = *(float *)(systemMemoryBlockPtr + 0x148);
   floatValue2 = *(float *)(systemMemoryBlockPtr + 0x150);
-  fStack0000000000000050 = ConfigurationFlag * in_XMM4_Da + fVar3 * fVar4 + floatValue1 * fVar7;
-  fStack0000000000000054 = ConfigurationFlag * in_XMM4_Db + fVar3 * fVar5 + floatValue1 * fVar8;
-  fStack0000000000000058 = ConfigurationFlag * in_XMM4_Dc + fVar3 * fVar6 + floatValue1 * fVar9;
+  fStack0000000000000050 = ConfigurationFlag * in_XMM4_Da + floatValue3 * floatValue4 + floatValue1 * fVar7;
+  fStack0000000000000054 = ConfigurationFlag * in_XMM4_Db + floatValue3 * floatValue5 + floatValue1 * fVar8;
+  fStack0000000000000058 = ConfigurationFlag * in_XMM4_Dc + floatValue3 * floatValue6 + floatValue1 * fVar9;
   floatValue1 = *(float *)(systemMemoryBlockPtr + 0x158);
-  fStack0000000000000060 = AdditionalParameter * in_XMM4_Da + floatValue2 * fVar4 + floatValue1 * fVar7 + systemDataIndexPtr[0xc];
-  fStack0000000000000064 = AdditionalParameter * in_XMM4_Db + floatValue2 * fVar5 + floatValue1 * fVar8 + systemDataIndexPtr[0xd];
-  fStack0000000000000068 = AdditionalParameter * in_XMM4_Dc + floatValue2 * fVar6 + floatValue1 * fVar9 + systemDataIndexPtr[0xe];
+  fStack0000000000000060 = AdditionalParameter * in_XMM4_Da + floatValue2 * floatValue4 + floatValue1 * fVar7 + systemDataIndexPtr[0xc];
+  fStack0000000000000064 = AdditionalParameter * in_XMM4_Db + floatValue2 * floatValue5 + floatValue1 * fVar8 + systemDataIndexPtr[0xd];
+  fStack0000000000000068 = AdditionalParameter * in_XMM4_Dc + floatValue2 * floatValue6 + floatValue1 * fVar9 + systemDataIndexPtr[0xe];
   uStack0000000000000028 = in_stack_000000e8;
   uStack000000000000006c = 0x3f800000;
   uStack000000000000005c = 0;
@@ -59971,7 +59971,7 @@ void FUN_1800786e0(void* *ResourceManagerPointer,long long ConfigurationDataPoin
   uint32_t creationFlags;
   long long *plocalResourceOffset;
   void* unsignedSystemValue4;
-  float *pfVar5;
+  float *pfloatValue5;
   void* *resourceEntryPointer;
   long long localDataIndex;
   long long *plocalMemoryAddress;
@@ -59996,8 +59996,8 @@ void FUN_1800786e0(void* *ResourceManagerPointer,long long ConfigurationDataPoin
   float floatValue27;
   float floatValue28;
   float floatValue29;
-  float fVar30;
-  float fVar31;
+  float floatValue30;
+  float floatValue31;
   long long *plStackX_8;
   void* auStackX_10 [2];
   void* uStackX_20;
@@ -60190,8 +60190,8 @@ void FUN_1800786e0(void* *ResourceManagerPointer,long long ConfigurationDataPoin
   }
   FUN_180084c70(ResourceManagerPointer + 8,&uStack_58,&uStackX_20,auStackX_10,&plStackX_8);
   if ((void* *)*ResourceManagerPointer == &UNK_180a001e8) {
-    pfVar5 = (float *)(ResourceManagerPointer + 0x10);
-    *(void* *)pfVar5 = ResourceManagerPointer[8];
+    pfloatValue5 = (float *)(ResourceManagerPointer + 0x10);
+    *(void* *)pfloatValue5 = ResourceManagerPointer[8];
     ResourceManagerPointer[0x11] = ResourceManagerPointer[9];
     ResourceManagerPointer[0x12] = ResourceManagerPointer[10];
     ResourceManagerPointer[0x13] = ResourceManagerPointer[0xb];
@@ -60208,14 +60208,14 @@ void FUN_1800786e0(void* *ResourceManagerPointer,long long ConfigurationDataPoin
     *(uint32_t *)((long long)ResourceManagerPointer + 0x9c) = 0;
     *(uint32_t *)((long long)ResourceManagerPointer + 0xac) = 0;
     *(uint32_t *)((long long)ResourceManagerPointer + 0xbc) = 0x3f800000;
-    magnitudeSquared1 = pfVar5[6];
-    interpolationFactor4 = pfVar5[0xd];
-    FloatScaleFactor = pfVar5[9];
-    interpolationFactor5 = pfVar5[1];
-    scaleResult1 = pfVar5[0xe];
-    floatValue23 = pfVar5[2];
-    floatValue25 = pfVar5[10];
-    floatValue28 = pfVar5[5];
+    magnitudeSquared1 = pfloatValue5[6];
+    interpolationFactor4 = pfloatValue5[0xd];
+    FloatScaleFactor = pfloatValue5[9];
+    interpolationFactor5 = pfloatValue5[1];
+    scaleResult1 = pfloatValue5[0xe];
+    floatValue23 = pfloatValue5[2];
+    floatValue25 = pfloatValue5[10];
+    floatValue28 = pfloatValue5[5];
     floatValue24 = interpolationFactor3 * FloatScaleFactor - interpolationFactor4 * floatValue25;
     floatValue21 = interpolationFactor3 * floatValue28 - interpolationFactor4 * magnitudeSquared1;
     floatValue22 = interpolationFactor3 * interpolationFactor5 - interpolationFactor4 * floatValue23;
@@ -60223,47 +60223,47 @@ void FUN_1800786e0(void* *ResourceManagerPointer,long long ConfigurationDataPoin
     floatValue20 = interpolationFactor5 * floatValue25 - FloatScaleFactor * floatValue23;
     *(float *)(ResourceManagerPointer + 0x18) = floatValue29;
     floatValue19 = interpolationFactor5 * magnitudeSquared1 - floatValue28 * floatValue23;
-    fVar30 = floatValue23 * pfVar5[9] - floatValue25 * pfVar5[1];
-    *(float *)((long long)ResourceManagerPointer + 0xc4) = fVar30;
-    interpolationFactor4 = pfVar5[5];
-    scaleResult1 = pfVar5[1];
+    floatValue30 = floatValue23 * pfloatValue5[9] - floatValue25 * pfloatValue5[1];
+    *(float *)((long long)ResourceManagerPointer + 0xc4) = floatValue30;
+    interpolationFactor4 = pfloatValue5[5];
+    scaleResult1 = pfloatValue5[1];
     *(uint32_t *)((long long)ResourceManagerPointer + 0xcc) = 0;
-    fVar31 = magnitudeSquared1 * interpolationFactor3 - floatValue23 * interpolationFactor4;
-    *(float *)(ResourceManagerPointer + 0x19) = fVar31;
-    interpolationFactor2 = magnitudeSquared1 * pfVar5[8] - floatValue25 * pfVar5[4];
+    floatValue31 = magnitudeSquared1 * interpolationFactor3 - floatValue23 * interpolationFactor4;
+    *(float *)(ResourceManagerPointer + 0x19) = floatValue31;
+    interpolationFactor2 = magnitudeSquared1 * pfloatValue5[8] - floatValue25 * pfloatValue5[4];
     *(float *)(ResourceManagerPointer + 0x1a) = interpolationFactor2;
-    floatValue27 = floatValue25 * *pfVar5 - floatValue23 * pfVar5[8];
+    floatValue27 = floatValue25 * *pfloatValue5 - floatValue23 * pfloatValue5[8];
     *(float *)((long long)ResourceManagerPointer + 0xd4) = floatValue27;
-    interpolationFactor4 = pfVar5[4];
-    scaleResult1 = *pfVar5;
+    interpolationFactor4 = pfloatValue5[4];
+    scaleResult1 = *pfloatValue5;
     *(uint32_t *)((long long)ResourceManagerPointer + 0xdc) = 0;
     floatValue26 = floatValue23 * interpolationFactor4 - magnitudeSquared1 * interpolationFactor3;
     *(float *)(ResourceManagerPointer + 0x1b) = floatValue26;
-    scaleResult1 = FloatScaleFactor * pfVar5[4] - floatValue28 * pfVar5[8];
+    scaleResult1 = FloatScaleFactor * pfloatValue5[4] - floatValue28 * pfloatValue5[8];
     *(float *)(ResourceManagerPointer + 0x1c) = interpolationFactor3;
-    FloatScaleFactor = interpolationFactor5 * pfVar5[8] - FloatScaleFactor * *pfVar5;
+    FloatScaleFactor = interpolationFactor5 * pfloatValue5[8] - FloatScaleFactor * *pfloatValue5;
     *(float *)((long long)ResourceManagerPointer + 0xe4) = FloatScaleFactor;
-    magnitudeSquared1 = pfVar5[4];
-    interpolationFactor4 = *pfVar5;
+    magnitudeSquared1 = pfloatValue5[4];
+    interpolationFactor4 = *pfloatValue5;
     *(uint32_t *)((long long)ResourceManagerPointer + 0xec) = 0;
     floatValue28 = floatValue28 * interpolationFactor4 - interpolationFactor5 * magnitudeSquared1;
     *(float *)(ResourceManagerPointer + 0x1d) = floatValue28;
-    interpolationFactor4 = (floatValue21 * pfVar5[8] - floatValue24 * pfVar5[4]) - floatValue29 * pfVar5[0xc];
+    interpolationFactor4 = (floatValue21 * pfloatValue5[8] - floatValue24 * pfloatValue5[4]) - floatValue29 * pfloatValue5[0xc];
     *(float *)(ResourceManagerPointer + 0x1e) = interpolationFactor4;
-    floatValue25 = (floatValue24 * *pfVar5 - floatValue22 * pfVar5[8]) + floatValue20 * pfVar5[0xc];
+    floatValue25 = (floatValue24 * *pfloatValue5 - floatValue22 * pfloatValue5[8]) + floatValue20 * pfloatValue5[0xc];
     *(float *)((long long)ResourceManagerPointer + 0xf4) = floatValue25;
-    floatValue23 = (floatValue22 * pfVar5[4] - floatValue21 * *pfVar5) - floatValue19 * pfVar5[0xc];
+    floatValue23 = (floatValue22 * pfloatValue5[4] - floatValue21 * *pfloatValue5) - floatValue19 * pfloatValue5[0xc];
     *(float *)(ResourceManagerPointer + 0x1f) = floatValue23;
-    interpolationFactor5 = (floatValue29 * *pfVar5 - floatValue20 * pfVar5[4]) + floatValue19 * pfVar5[8];
+    interpolationFactor5 = (floatValue29 * *pfloatValue5 - floatValue20 * pfloatValue5[4]) + floatValue19 * pfloatValue5[8];
     *(float *)((long long)ResourceManagerPointer + 0xfc) = interpolationFactor5;
-    magnitudeSquared1 = fVar30 * pfVar5[4] + floatValue29 * *pfVar5 + fVar31 * pfVar5[8];
+    magnitudeSquared1 = floatValue30 * pfloatValue5[4] + floatValue29 * *pfloatValue5 + floatValue31 * pfloatValue5[8];
     if (magnitudeSquared1 != 1.0) {
       magnitudeSquared1 = 1.0 / magnitudeSquared1;
       *(float *)(ResourceManagerPointer + 0x1a) = interpolationFactor2 * magnitudeSquared1;
       *(float *)(ResourceManagerPointer + 0x1c) = interpolationFactor3 * magnitudeSquared1;
       *(float *)(ResourceManagerPointer + 0x18) = floatValue29 * magnitudeSquared1;
-      *(float *)((long long)ResourceManagerPointer + 0xc4) = fVar30 * magnitudeSquared1;
-      *(float *)(ResourceManagerPointer + 0x19) = fVar31 * magnitudeSquared1;
+      *(float *)((long long)ResourceManagerPointer + 0xc4) = floatValue30 * magnitudeSquared1;
+      *(float *)(ResourceManagerPointer + 0x19) = floatValue31 * magnitudeSquared1;
       *(float *)((long long)ResourceManagerPointer + 0xd4) = floatValue27 * magnitudeSquared1;
       *(float *)(ResourceManagerPointer + 0x1b) = floatValue26 * magnitudeSquared1;
       *(float *)((long long)ResourceManagerPointer + 0xe4) = FloatScaleFactor * magnitudeSquared1;
@@ -60290,8 +60290,8 @@ void FUN_180078c10(long long ResourceManagerPointer)
   float FloatVariable2;
   float FloatVariable3;
   float FloatVariable4;
-  float fVar5;
-  float fVar6;
+  float floatValue5;
+  float floatValue6;
   float fVar7;
   float fVar8;
   float fVar9;
@@ -60326,58 +60326,58 @@ void FUN_180078c10(long long ResourceManagerPointer)
   *(uint32_t *)(ResourceManagerPointer + 0x9c) = 0;
   *(uint32_t *)(ResourceManagerPointer + 0xac) = 0;
   fVar7 = pfloatValue1[6];
-  fVar5 = pfloatValue1[0xd];
+  floatValue5 = pfloatValue1[0xd];
   floatValue2 = pfloatValue1[9];
-  fVar6 = pfloatValue1[1];
-  fVar4 = pfloatValue1[0xe];
+  floatValue6 = pfloatValue1[1];
+  floatValue4 = pfloatValue1[0xe];
   FloatRatioValue = pfloatValue1[2];
   interpolationFactor2 = pfloatValue1[10];
   interpolationFactor5 = pfloatValue1[5];
-  interpolationFactor1 = fVar4 * floatValue2 - fVar5 * interpolationFactor2;
-  FloatScaleFactor = fVar4 * interpolationFactor5 - fVar5 * fVar7;
-  floatValue11 = fVar4 * fVar6 - fVar5 * FloatRatioValue;
+  interpolationFactor1 = floatValue4 * floatValue2 - floatValue5 * interpolationFactor2;
+  FloatScaleFactor = floatValue4 * interpolationFactor5 - floatValue5 * fVar7;
+  floatValue11 = floatValue4 * floatValue6 - floatValue5 * FloatRatioValue;
   magnitudeSquared1 = interpolationFactor5 * interpolationFactor2 - floatValue2 * fVar7;
-  fVar9 = fVar6 * interpolationFactor2 - floatValue2 * FloatRatioValue;
+  fVar9 = floatValue6 * interpolationFactor2 - floatValue2 * FloatRatioValue;
   *(float *)(ResourceManagerPointer + 0xc0) = magnitudeSquared1;
-  fVar8 = fVar6 * fVar7 - interpolationFactor5 * FloatRatioValue;
+  fVar8 = floatValue6 * fVar7 - interpolationFactor5 * FloatRatioValue;
   floatValue19 = FloatRatioValue * pfloatValue1[9] - interpolationFactor2 * pfloatValue1[1];
   *(float *)(ResourceManagerPointer + 0xc4) = floatValue19;
-  fVar5 = pfloatValue1[5];
-  fVar4 = pfloatValue1[1];
+  floatValue5 = pfloatValue1[5];
+  floatValue4 = pfloatValue1[1];
   *(uint32_t *)(ResourceManagerPointer + 0xcc) = 0;
-  floatValue20 = fVar7 * fVar4 - FloatRatioValue * fVar5;
+  floatValue20 = fVar7 * floatValue4 - FloatRatioValue * floatValue5;
   *(float *)(ResourceManagerPointer + 200) = floatValue20;
-  fVar3 = fVar7 * pfloatValue1[8] - interpolationFactor2 * pfloatValue1[4];
-  *(float *)(ResourceManagerPointer + 0xd0) = fVar3;
+  floatValue3 = fVar7 * pfloatValue1[8] - interpolationFactor2 * pfloatValue1[4];
+  *(float *)(ResourceManagerPointer + 0xd0) = floatValue3;
   interpolationFactor4 = interpolationFactor2 * *pfloatValue1 - FloatRatioValue * pfloatValue1[8];
   *(float *)(ResourceManagerPointer + 0xd4) = interpolationFactor4;
-  fVar5 = pfloatValue1[4];
-  fVar4 = *pfloatValue1;
+  floatValue5 = pfloatValue1[4];
+  floatValue4 = *pfloatValue1;
   *(uint32_t *)(ResourceManagerPointer + 0xdc) = 0;
-  scaleResult1 = FloatRatioValue * fVar5 - fVar7 * fVar4;
+  scaleResult1 = FloatRatioValue * floatValue5 - fVar7 * floatValue4;
   *(float *)(ResourceManagerPointer + 0xd8) = interpolationFactor3;
-  fVar4 = floatValue2 * pfloatValue1[4] - interpolationFactor5 * pfloatValue1[8];
-  *(float *)(ResourceManagerPointer + 0xe0) = fVar4;
-  floatValue2 = fVar6 * pfloatValue1[8] - floatValue2 * *pfloatValue1;
+  floatValue4 = floatValue2 * pfloatValue1[4] - interpolationFactor5 * pfloatValue1[8];
+  *(float *)(ResourceManagerPointer + 0xe0) = floatValue4;
+  floatValue2 = floatValue6 * pfloatValue1[8] - floatValue2 * *pfloatValue1;
   *(float *)(ResourceManagerPointer + 0xe4) = floatValue2;
   fVar7 = pfloatValue1[4];
-  fVar5 = *pfloatValue1;
+  floatValue5 = *pfloatValue1;
   *(uint32_t *)(ResourceManagerPointer + 0xec) = 0;
-  interpolationFactor5 = interpolationFactor5 * fVar5 - fVar6 * fVar7;
+  interpolationFactor5 = interpolationFactor5 * floatValue5 - floatValue6 * fVar7;
   *(float *)(ResourceManagerPointer + 0xe8) = interpolationFactor5;
-  fVar5 = (FloatScaleFactor * pfloatValue1[8] - interpolationFactor1 * pfloatValue1[4]) - magnitudeSquared1 * pfloatValue1[0xc];
-  *(float *)(ResourceManagerPointer + 0xf0) = fVar5;
+  floatValue5 = (FloatScaleFactor * pfloatValue1[8] - interpolationFactor1 * pfloatValue1[4]) - magnitudeSquared1 * pfloatValue1[0xc];
+  *(float *)(ResourceManagerPointer + 0xf0) = floatValue5;
   interpolationFactor2 = (interpolationFactor1 * *pfloatValue1 - floatValue11 * pfloatValue1[8]) + fVar9 * pfloatValue1[0xc];
   *(float *)(ResourceManagerPointer + 0xf4) = interpolationFactor2;
   FloatRatioValue = (floatValue11 * pfloatValue1[4] - FloatScaleFactor * *pfloatValue1) - fVar8 * pfloatValue1[0xc];
   *(float *)(ResourceManagerPointer + 0xf8) = FloatRatioValue;
-  fVar6 = (magnitudeSquared1 * *pfloatValue1 - fVar9 * pfloatValue1[4]) + fVar8 * pfloatValue1[8];
-  *(float *)(ResourceManagerPointer + 0xfc) = fVar6;
+  floatValue6 = (magnitudeSquared1 * *pfloatValue1 - fVar9 * pfloatValue1[4]) + fVar8 * pfloatValue1[8];
+  *(float *)(ResourceManagerPointer + 0xfc) = floatValue6;
   fVar7 = floatValue19 * pfloatValue1[4] + magnitudeSquared1 * *pfloatValue1 + floatValue20 * pfloatValue1[8];
   if (fVar7 != 1.0) {
     fVar7 = 1.0 / fVar7;
-    *(float *)(ResourceManagerPointer + 0xd0) = fVar3 * fVar7;
-    *(float *)(ResourceManagerPointer + 0xe0) = fVar4 * fVar7;
+    *(float *)(ResourceManagerPointer + 0xd0) = floatValue3 * fVar7;
+    *(float *)(ResourceManagerPointer + 0xe0) = floatValue4 * fVar7;
     *(float *)(ResourceManagerPointer + 0xc0) = magnitudeSquared1 * fVar7;
     *(float *)(ResourceManagerPointer + 0xc4) = floatValue19 * fVar7;
     *(float *)(ResourceManagerPointer + 200) = floatValue20 * fVar7;
@@ -60385,10 +60385,10 @@ void FUN_180078c10(long long ResourceManagerPointer)
     *(float *)(ResourceManagerPointer + 0xd8) = interpolationFactor3 * fVar7;
     *(float *)(ResourceManagerPointer + 0xe4) = floatValue2 * fVar7;
     *(float *)(ResourceManagerPointer + 0xe8) = interpolationFactor5 * fVar7;
-    *(float *)(ResourceManagerPointer + 0xf0) = fVar5 * fVar7;
+    *(float *)(ResourceManagerPointer + 0xf0) = floatValue5 * fVar7;
     *(float *)(ResourceManagerPointer + 0xf4) = interpolationFactor2 * fVar7;
     *(float *)(ResourceManagerPointer + 0xf8) = FloatRatioValue * fVar7;
-    *(float *)(ResourceManagerPointer + 0xfc) = fVar6 * fVar7;
+    *(float *)(ResourceManagerPointer + 0xfc) = floatValue6 * fVar7;
   }
   return;
 }
@@ -60674,7 +60674,7 @@ void ProcessSystemResourceConfiguration(long long ResourceManagerPointer,long lo
   float floatValue27;
   float floatValue28;
   float floatValue29;
-  float fVar30;
+  float floatValue30;
   void* allocationContext1;
   uint32_t allocationContext2;
   long long localResourceOffset3;
@@ -60750,8 +60750,8 @@ void ProcessSystemResourceConfiguration(long long ResourceManagerPointer,long lo
     floatValue27 = pmagnitudeSquared1[4];
     floatValue28 = pmagnitudeSquared1[5];
     floatValue29 = pmagnitudeSquared1[6];
-    fVar30 = pmagnitudeSquared1[7];
-    fVar6 = *(float *)(nextDataIndex7 + 0x374);
+    floatValue30 = pmagnitudeSquared1[7];
+    floatValue6 = *(float *)(nextDataIndex7 + 0x374);
     fVar7 = *(float *)(nextDataIndex7 + 0x370);
     fVar8 = *(float *)(nextDataIndex7 + 0x378);
     fVar9 = *(float *)(nextDataIndex7 + 900);
@@ -60760,18 +60760,18 @@ void ProcessSystemResourceConfiguration(long long ResourceManagerPointer,long lo
     FloatRatioValue = *(float *)(nextDataIndex7 + 0x388);
     interpolationFactor1 = *(float *)(nextDataIndex7 + 0x390);
     interpolationFactor2 = *(float *)(nextDataIndex7 + 0x398);
-    *pmagnitudeSquared1 = fVar6 * floatValue27 + fVar7 * floatValue23 + fVar8 * floatValue19;
-    pmagnitudeSquared1[1] = fVar6 * floatValue28 + fVar7 * floatValue24 + fVar8 * floatValue20;
-    pmagnitudeSquared1[2] = fVar6 * floatValue29 + fVar7 * floatValue25 + fVar8 * floatValue21;
-    pmagnitudeSquared1[3] = fVar6 * fVar30 + fVar7 * floatValue26 + fVar8 * floatValue22;
+    *pmagnitudeSquared1 = floatValue6 * floatValue27 + fVar7 * floatValue23 + fVar8 * floatValue19;
+    pmagnitudeSquared1[1] = floatValue6 * floatValue28 + fVar7 * floatValue24 + fVar8 * floatValue20;
+    pmagnitudeSquared1[2] = floatValue6 * floatValue29 + fVar7 * floatValue25 + fVar8 * floatValue21;
+    pmagnitudeSquared1[3] = floatValue6 * floatValue30 + fVar7 * floatValue26 + fVar8 * floatValue22;
     pmagnitudeSquared1[4] = fVar9 * floatValue27 + floatValue11 * floatValue23 + FloatRatioValue * floatValue19;
     pmagnitudeSquared1[5] = fVar9 * floatValue28 + floatValue11 * floatValue24 + FloatRatioValue * floatValue20;
     pmagnitudeSquared1[6] = fVar9 * floatValue29 + floatValue11 * floatValue25 + FloatRatioValue * floatValue21;
-    pmagnitudeSquared1[7] = fVar9 * fVar30 + floatValue11 * floatValue26 + FloatRatioValue * floatValue22;
+    pmagnitudeSquared1[7] = fVar9 * floatValue30 + floatValue11 * floatValue26 + FloatRatioValue * floatValue22;
     pmagnitudeSquared1[8] = FloatScaleFactor * floatValue27 + interpolationFactor1 * floatValue23 + interpolationFactor2 * floatValue19;
     pmagnitudeSquared1[9] = FloatScaleFactor * floatValue28 + interpolationFactor1 * floatValue24 + interpolationFactor2 * floatValue20;
     pmagnitudeSquared1[10] = FloatScaleFactor * floatValue29 + interpolationFactor1 * floatValue25 + interpolationFactor2 * floatValue21;
-    pmagnitudeSquared1[0xb] = FloatScaleFactor * fVar30 + interpolationFactor1 * floatValue26 + interpolationFactor2 * floatValue22;
+    pmagnitudeSquared1[0xb] = FloatScaleFactor * floatValue30 + interpolationFactor1 * floatValue26 + interpolationFactor2 * floatValue22;
   }
   nextDataIndex7 = *(long long *)(ResourceManagerPointer + 600);
   if (*(int *)(nextDataIndex7 + 0x28) != *(int *)(SystemStatusFlagsPointer + 0x224)) {
@@ -60956,7 +60956,7 @@ void FUN_180079284(long long ResourceManagerPointer)
   long long *plocalResourceOffset;
   byte *pisResourceAvailable;
   void* *pcurrentThreadId;
-  float fVar6;
+  float floatValue6;
   float fVar7;
   float fVar8;
   float fVar9;
@@ -60980,7 +60980,7 @@ void FUN_180079284(long long ResourceManagerPointer)
   float floatValue27;
   float floatValue28;
   float floatValue29;
-  float fVar30;
+  float floatValue30;
   void* allocationContext1;
   uint32_t allocationContext2;
   long long localResourceOffset3;
@@ -61058,8 +61058,8 @@ void FUN_180079284(long long ResourceManagerPointer)
     floatValue27 = pmagnitudeSquared1[4];
     floatValue28 = pmagnitudeSquared1[5];
     floatValue29 = pmagnitudeSquared1[6];
-    fVar30 = pmagnitudeSquared1[7];
-    fVar6 = *(float *)(nextDataIndex7 + 0x374);
+    floatValue30 = pmagnitudeSquared1[7];
+    floatValue6 = *(float *)(nextDataIndex7 + 0x374);
     fVar7 = *(float *)(nextDataIndex7 + 0x370);
     fVar8 = *(float *)(nextDataIndex7 + 0x378);
     fVar9 = *(float *)(nextDataIndex7 + 900);
@@ -61068,18 +61068,18 @@ void FUN_180079284(long long ResourceManagerPointer)
     FloatRatioValue = *(float *)(nextDataIndex7 + 0x388);
     interpolationFactor1 = *(float *)(nextDataIndex7 + 0x390);
     interpolationFactor2 = *(float *)(nextDataIndex7 + 0x398);
-    *pmagnitudeSquared1 = fVar6 * floatValue27 + fVar7 * floatValue23 + fVar8 * floatValue19;
-    pmagnitudeSquared1[1] = fVar6 * floatValue28 + fVar7 * floatValue24 + fVar8 * floatValue20;
-    pmagnitudeSquared1[2] = fVar6 * floatValue29 + fVar7 * floatValue25 + fVar8 * floatValue21;
-    pmagnitudeSquared1[3] = fVar6 * fVar30 + fVar7 * floatValue26 + fVar8 * floatValue22;
+    *pmagnitudeSquared1 = floatValue6 * floatValue27 + fVar7 * floatValue23 + fVar8 * floatValue19;
+    pmagnitudeSquared1[1] = floatValue6 * floatValue28 + fVar7 * floatValue24 + fVar8 * floatValue20;
+    pmagnitudeSquared1[2] = floatValue6 * floatValue29 + fVar7 * floatValue25 + fVar8 * floatValue21;
+    pmagnitudeSquared1[3] = floatValue6 * floatValue30 + fVar7 * floatValue26 + fVar8 * floatValue22;
     pmagnitudeSquared1[4] = fVar9 * floatValue27 + floatValue11 * floatValue23 + FloatRatioValue * floatValue19;
     pmagnitudeSquared1[5] = fVar9 * floatValue28 + floatValue11 * floatValue24 + FloatRatioValue * floatValue20;
     pmagnitudeSquared1[6] = fVar9 * floatValue29 + floatValue11 * floatValue25 + FloatRatioValue * floatValue21;
-    pmagnitudeSquared1[7] = fVar9 * fVar30 + floatValue11 * floatValue26 + FloatRatioValue * floatValue22;
+    pmagnitudeSquared1[7] = fVar9 * floatValue30 + floatValue11 * floatValue26 + FloatRatioValue * floatValue22;
     pmagnitudeSquared1[8] = FloatScaleFactor * floatValue27 + interpolationFactor1 * floatValue23 + interpolationFactor2 * floatValue19;
     pmagnitudeSquared1[9] = FloatScaleFactor * floatValue28 + interpolationFactor1 * floatValue24 + interpolationFactor2 * floatValue20;
     pmagnitudeSquared1[10] = FloatScaleFactor * floatValue29 + interpolationFactor1 * floatValue25 + interpolationFactor2 * floatValue21;
-    pmagnitudeSquared1[0xb] = FloatScaleFactor * fVar30 + interpolationFactor1 * floatValue26 + interpolationFactor2 * floatValue22;
+    pmagnitudeSquared1[0xb] = FloatScaleFactor * floatValue30 + interpolationFactor1 * floatValue26 + interpolationFactor2 * floatValue22;
   }
   nextDataIndex7 = *(long long *)(ResourceManagerPointer + 600);
   if (*(int *)(nextDataIndex7 + 0x28) != *(int *)(SystemStatusFlagsPointer + 0x224)) {
@@ -61263,8 +61263,8 @@ void FUN_1800792ea(void)
   long long *resourcePoolPointer;
   byte *pisOperationComplete;
   void* *punsignedSystemValue4;
-  float fVar5;
-  float fVar6;
+  float floatValue5;
+  float floatValue6;
   float fVar7;
   float fVar8;
   float fVar9;
@@ -61348,8 +61348,8 @@ void FUN_1800792ea(void)
   floatValue26 = pinterpolationFactor3[5];
   floatValue27 = pinterpolationFactor3[6];
   floatValue28 = pinterpolationFactor3[7];
-  fVar5 = *(float *)(nextDataIndex6 + 0x374);
-  fVar6 = *(float *)(nextDataIndex6 + 0x370);
+  floatValue5 = *(float *)(nextDataIndex6 + 0x374);
+  floatValue6 = *(float *)(nextDataIndex6 + 0x370);
   fVar7 = *(float *)(nextDataIndex6 + 0x378);
   fVar8 = *(float *)(nextDataIndex6 + 900);
   fVar9 = *(float *)(nextDataIndex6 + 0x394);
@@ -61357,10 +61357,10 @@ void FUN_1800792ea(void)
   floatValue11 = *(float *)(nextDataIndex6 + 0x388);
   FloatRatioValue = *(float *)(nextDataIndex6 + 0x390);
   interpolationFactor1 = *(float *)(nextDataIndex6 + 0x398);
-  *pscaleResult1 = fVar5 * floatValue25 + fVar6 * floatValue21 + fVar7 * interpolationFactor5;
-  pinterpolationFactor3[1] = fVar5 * floatValue26 + fVar6 * floatValue22 + fVar7 * magnitudeSquared1;
-  pinterpolationFactor3[2] = fVar5 * floatValue27 + fVar6 * floatValue23 + fVar7 * floatValue19;
-  pinterpolationFactor3[3] = fVar5 * floatValue28 + fVar6 * floatValue24 + fVar7 * floatValue20;
+  *pscaleResult1 = floatValue5 * floatValue25 + floatValue6 * floatValue21 + fVar7 * interpolationFactor5;
+  pinterpolationFactor3[1] = floatValue5 * floatValue26 + floatValue6 * floatValue22 + fVar7 * magnitudeSquared1;
+  pinterpolationFactor3[2] = floatValue5 * floatValue27 + floatValue6 * floatValue23 + fVar7 * floatValue19;
+  pinterpolationFactor3[3] = floatValue5 * floatValue28 + floatValue6 * floatValue24 + fVar7 * floatValue20;
   pinterpolationFactor3[4] = fVar8 * floatValue25 + FloatScaleFactor * floatValue21 + floatValue11 * interpolationFactor5;
   pinterpolationFactor3[5] = fVar8 * floatValue26 + FloatScaleFactor * floatValue22 + floatValue11 * magnitudeSquared1;
   pinterpolationFactor3[6] = fVar8 * floatValue27 + FloatScaleFactor * floatValue23 + floatValue11 * floatValue19;
@@ -61552,8 +61552,8 @@ void FUN_180079309(long long ResourceManagerPointer,uint ConfigurationDataPointe
   long long *resourcePoolPointer;
   byte *pisOperationComplete;
   void* *punsignedSystemValue4;
-  float fVar5;
-  float fVar6;
+  float floatValue5;
+  float floatValue6;
   float fVar7;
   float fVar8;
   float fVar9;
@@ -61633,8 +61633,8 @@ void FUN_180079309(long long ResourceManagerPointer,uint ConfigurationDataPointe
   floatValue25 = ConfigurationFlag[5];
   floatValue26 = ConfigurationFlag[6];
   floatValue27 = ConfigurationFlag[7];
-  fVar5 = *(float *)(nextDataIndex5 + 0x374);
-  fVar6 = *(float *)(nextDataIndex5 + 0x370);
+  floatValue5 = *(float *)(nextDataIndex5 + 0x374);
+  floatValue6 = *(float *)(nextDataIndex5 + 0x370);
   fVar7 = *(float *)(nextDataIndex5 + 0x378);
   fVar8 = *(float *)(nextDataIndex5 + 900);
   fVar9 = *(float *)(nextDataIndex5 + 0x394);
@@ -61642,10 +61642,10 @@ void FUN_180079309(long long ResourceManagerPointer,uint ConfigurationDataPointe
   floatValue11 = *(float *)(nextDataIndex5 + 0x388);
   FloatRatioValue = *(float *)(nextDataIndex5 + 0x390);
   interpolationFactor1 = *(float *)(nextDataIndex5 + 0x398);
-  *ConfigurationFlag = fVar5 * floatValue24 + fVar6 * floatValue20 + fVar7 * interpolationFactor4;
-  ConfigurationFlag[1] = fVar5 * floatValue25 + fVar6 * floatValue21 + fVar7 * interpolationFactor5;
-  ConfigurationFlag[2] = fVar5 * floatValue26 + fVar6 * floatValue22 + fVar7 * magnitudeSquared1;
-  ConfigurationFlag[3] = fVar5 * floatValue27 + fVar6 * floatValue23 + fVar7 * floatValue19;
+  *ConfigurationFlag = floatValue5 * floatValue24 + floatValue6 * floatValue20 + fVar7 * interpolationFactor4;
+  ConfigurationFlag[1] = floatValue5 * floatValue25 + floatValue6 * floatValue21 + fVar7 * interpolationFactor5;
+  ConfigurationFlag[2] = floatValue5 * floatValue26 + floatValue6 * floatValue22 + fVar7 * magnitudeSquared1;
+  ConfigurationFlag[3] = floatValue5 * floatValue27 + floatValue6 * floatValue23 + fVar7 * floatValue19;
   ConfigurationFlag[4] = fVar8 * floatValue24 + FloatScaleFactor * floatValue20 + floatValue11 * interpolationFactor4;
   ConfigurationFlag[5] = fVar8 * floatValue25 + FloatScaleFactor * floatValue21 + floatValue11 * interpolationFactor5;
   ConfigurationFlag[6] = fVar8 * floatValue26 + FloatScaleFactor * floatValue22 + floatValue11 * magnitudeSquared1;
@@ -62194,9 +62194,9 @@ float * FUN_1800795b0(float *ResourceManagerPointer)
   float *pfloatValue1;
   byte isSystemActive;
   long long *plocalResourceOffset;
-  float *pfVar4;
+  float *pfloatValue4;
   char operationStatusFlag;
-  float fVar6;
+  float floatValue6;
   float *pfVar7;
   uint unsignedSystemValue8;
   ulong long unsignedSystemValue9;
@@ -62236,10 +62236,10 @@ float * FUN_1800795b0(float *ResourceManagerPointer)
     pfStack_28 = ResourceManagerPointer;
     FUN_18007f4c0(auStack_30);
     UnsignedStackFlag80 = 0x180079605;
-    fVar6 = (float)FUN_1802349a0(0);
-    if ((10 < (int)fVar6) ||
+    floatValue6 = (float)FUN_1802349a0(0);
+    if ((10 < (int)floatValue6) ||
        ((int)(*(int *)(*(long long *)(ResourceManagerPointer + 0x84) + 0x88) +
-             (*(int *)(*(long long *)(ResourceManagerPointer + 0x84) + 0x88) >> 0x1f & 3U)) >> 2 < (int)fVar6)) {
+             (*(int *)(*(long long *)(ResourceManagerPointer + 0x84) + 0x88) >> 0x1f & 3U)) >> 2 < (int)floatValue6)) {
       pEncryptionValue48 = &SystemStringTemplate;
       if (*(void* **)(ResourceManagerPointer + 6) != (void* *)0x0) {
         pEncryptionValue48 = *(void* **)(ResourceManagerPointer + 6);
@@ -62247,7 +62247,7 @@ float * FUN_1800795b0(float *ResourceManagerPointer)
       uStack_40 = CONCAT44(uStack_40._4_4_,*(uint32_t *)(*(long long *)(ResourceManagerPointer + 0x84) + 0x60));
       memoryAllocationBuffer = &UNK_1809ffb30;
       UnsignedStackFlag80 = 0x18007967a;
-      fStack_50 = fVar6;
+      fStack_50 = floatValue6;
       SystemManagerSetFlags(SystemContextManagerPointer,0,0x80000000000,3);
     }
     ResourceManagerPointer[0x40] = (float)((uint)ResourceManagerPointer[0x40] | 0x10000);
@@ -62351,7 +62351,7 @@ float * FUN_1800795b0(float *ResourceManagerPointer)
         pfVar7 = (float *)FUN_18063a240(pfloatValue1,pfloatValue1,&UnsignedStackFlag78);
       }
     }
-    pfVar4 = pfStack_98;
+    pfloatValue4 = pfStack_98;
     if (ResourceManagerPointer[0xa1] < *pfloatValue1) {
       ResourceManagerPointer[0xa9] = 0.0;
       pfloatValue1[0] = 0.0;
@@ -62372,50 +62372,50 @@ float * FUN_1800795b0(float *ResourceManagerPointer)
       ResourceManagerPointer[0xa6] = (ResourceManagerPointer[0xa2] + ResourceManagerPointer[0x9e]) * 0.5;
       ResourceManagerPointer[0xa7] = (ResourceManagerPointer[0xa3] + ResourceManagerPointer[0x9f]) * 0.5;
       ResourceManagerPointer[0xa8] = 3.4028235e+38;
-      fVar6 = 0.0;
+      floatValue6 = 0.0;
       unsignedSystemValue9 = (ulong long)*(uint *)(lStack_88 + 0x10);
       if (0 < (int)*(uint *)(lStack_88 + 0x10)) {
         pfVar7 = *(float **)(lStack_88 + 0x18);
-        floatValue11 = fVar6;
+        floatValue11 = floatValue6;
         do {
-          fVar6 = (*pfVar7 - ResourceManagerPointer[0xa5]) * (*pfVar7 - ResourceManagerPointer[0xa5]) +
+          floatValue6 = (*pfVar7 - ResourceManagerPointer[0xa5]) * (*pfVar7 - ResourceManagerPointer[0xa5]) +
                   (pfVar7[1] - ResourceManagerPointer[0xa6]) * (pfVar7[1] - ResourceManagerPointer[0xa6]) +
                   (pfVar7[2] - ResourceManagerPointer[0xa7]) * (pfVar7[2] - ResourceManagerPointer[0xa7]);
-          if (fVar6 <= floatValue11) {
-            fVar6 = floatValue11;
+          if (floatValue6 <= floatValue11) {
+            floatValue6 = floatValue11;
           }
           pfVar7 = pfVar7 + 4;
           unsignedSystemValue9 = unsignedSystemValue9 - 1;
-          floatValue11 = fVar6;
+          floatValue11 = floatValue6;
         } while (unsignedSystemValue9 != 0);
       }
-      ResourceManagerPointer[0xa9] = SQRT(fVar6);
+      ResourceManagerPointer[0xa9] = SQRT(floatValue6);
     }
     if (pfStack_98 != (float *)0x0) {
       while( true ) {
         LOCK();
-        charValue = *(char *)(pfVar4 + 0x3b);
+        charValue = *(char *)(pfloatValue4 + 0x3b);
         isByteValid0 = charValue == '\0';
         if (isByteValid0) {
-          *(char *)(pfVar4 + 0x3b) = '\x01';
+          *(char *)(pfloatValue4 + 0x3b) = '\x01';
           charValue = '\0';
         }
         UNLOCK();
         if (isByteValid0) break;
-        fVar6 = (float)_Thrd_id();
-        if ((pfVar4[0x3c] == fVar6) || (pfVar4[0x3c] != 0.0)) goto LAB_180075f4f;
+        floatValue6 = (float)_Thrd_id();
+        if ((pfloatValue4[0x3c] == floatValue6) || (pfloatValue4[0x3c] != 0.0)) goto LAB_180075f4f;
         Sleep();
       }
       charValue = '\0';
 LAB_180075f4f:
       LOCK();
-      pfloatValue1 = pfVar4 + 0x3a;
-      fVar6 = *pfloatValue1;
-      pfVar7 = (float *)(ulong long)(uint)fVar6;
+      pfloatValue1 = pfloatValue4 + 0x3a;
+      floatValue6 = *pfloatValue1;
+      pfVar7 = (float *)(ulong long)(uint)floatValue6;
       *pfloatValue1 = (float)((int)*pfloatValue1 + -1);
       UNLOCK();
       if (charValue == '\0') {
-        if ((((fVar6 == 1.4013e-45) && (*(long long *)(pfStack_98 + 0x84) != 0)) &&
+        if ((((floatValue6 == 1.4013e-45) && (*(long long *)(pfStack_98 + 0x84) != 0)) &&
             (pfVar7 = pfStack_98, FUN_1800791a0(pfStack_98), *(char *)(pfVar7 + 0x3f) == '\0')) &&
            ((*(char *)(pfVar7 + 0x3d) == '\0' &&
             (((*(byte *)((long long)pfVar7 + 0xfd) & 0x20) == 0 ||
@@ -62428,8 +62428,8 @@ LAB_180075f4f:
           }
         }
         LOCK();
-        isSystemActive = *(byte *)(pfVar4 + 0x3b);
-        *(byte *)(pfVar4 + 0x3b) = 0;
+        isSystemActive = *(byte *)(pfloatValue4 + 0x3b);
+        *(byte *)(pfloatValue4 + 0x3b) = 0;
         pfVar7 = (float *)(ulong long)isSystemActive;
         UNLOCK();
       }
@@ -62454,7 +62454,7 @@ void FUN_1800796b0(long long ResourceManagerPointer)
   uint *HashEntryStatus;
   void* *HashNodePointer;
   void* *punsignedSystemValue4;
-  float fVar5;
+  float floatValue5;
   void* hashValue;
   void* unsignedSystemValue7;
   uint8_t aunsignedSystemValue8 [16];
@@ -62494,15 +62494,15 @@ void FUN_1800796b0(long long ResourceManagerPointer)
   uint8_t (*paunsignedSystemValue42) [16];
   long long bufferBaseAddress3;
   bool isResourceAvailable4;
-  float fVar45;
-  float fVar46;
+  float floatValue45;
+  float floatValue46;
   uint8_t aunsignedSystemValue47 [16];
-  float fVar48;
-  float fVar49;
-  float fVar50;
-  float fVar51;
-  float fVar52;
-  float fVar53;
+  float floatValue48;
+  float floatValue49;
+  float floatValue50;
+  float floatValue51;
+  float floatValue52;
+  float floatValue53;
   int iStackX_10;
   ulong long uStackX_18;
   ulong long uStackX_20;
@@ -62651,53 +62651,53 @@ void FUN_1800796b0(long long ResourceManagerPointer)
           bufferBaseAddress0 = *(long long *)(ResourceManagerPointer + 0x18);
           nextDataIndex7 = (long long)*(int *)(nextDataIndex7 + nextDataIndex2);
           localSystemHandle1 = (long long)*(int *)((long long)*(int *)(localSystemHandle1 + unsignedSystemValue41) * 0x5c + nextDataIndex2);
-          fVar48 = *(float *)(bufferBaseAddress0 + 8 + localSystemHandle1 * 0x10);
-          fVar49 = *(float *)(bufferBaseAddress0 + 8 + nextDataIndex7 * 0x10) - fVar48;
-          fVar5 = *(float *)(bufferBaseAddress0 + 4 + localSystemHandle1 * 0x10);
-          fVar52 = *(float *)(bufferBaseAddress0 + 4 + nextDataIndex7 * 0x10);
-          fVar51 = *(float *)(bufferBaseAddress0 + localSystemHandle1 * 0x10);
+          floatValue48 = *(float *)(bufferBaseAddress0 + 8 + localSystemHandle1 * 0x10);
+          floatValue49 = *(float *)(bufferBaseAddress0 + 8 + nextDataIndex7 * 0x10) - floatValue48;
+          floatValue5 = *(float *)(bufferBaseAddress0 + 4 + localSystemHandle1 * 0x10);
+          floatValue52 = *(float *)(bufferBaseAddress0 + 4 + nextDataIndex7 * 0x10);
+          floatValue51 = *(float *)(bufferBaseAddress0 + localSystemHandle1 * 0x10);
           localSystemHandle1 = (long long)*(int *)(localSystemHandle4 * 0x5c + nextDataIndex2);
-          fVar48 = *(float *)(bufferBaseAddress0 + 8 + localSystemHandle1 * 0x10) - fVar48;
-          fVar45 = *(float *)(bufferBaseAddress0 + 4 + localSystemHandle1 * 0x10);
-          fVar46 = *(float *)(bufferBaseAddress0 + nextDataIndex7 * 0x10);
-          fVar53 = *(float *)(bufferBaseAddress0 + localSystemHandle1 * 0x10);
+          floatValue48 = *(float *)(bufferBaseAddress0 + 8 + localSystemHandle1 * 0x10) - floatValue48;
+          floatValue45 = *(float *)(bufferBaseAddress0 + 4 + localSystemHandle1 * 0x10);
+          floatValue46 = *(float *)(bufferBaseAddress0 + nextDataIndex7 * 0x10);
+          floatValue53 = *(float *)(bufferBaseAddress0 + localSystemHandle1 * 0x10);
         }
         else {
           nextDataIndex2 = *(long long *)(ResourceManagerPointer + 0x68);
           bufferBaseAddress0 = *(long long *)(localSystemHandle3 * 0x50 + *(long long *)(ResourceManagerPointer + 0xb0) + 8);
           nextDataIndex7 = (long long)*(int *)(nextDataIndex7 + nextDataIndex2);
           localSystemHandle1 = (long long)*(int *)((long long)*(int *)(localSystemHandle1 + unsignedSystemValue41) * 0x5c + nextDataIndex2);
-          fVar48 = *(float *)(bufferBaseAddress0 + 8 + localSystemHandle1 * 0x10);
-          fVar49 = *(float *)(bufferBaseAddress0 + 8 + nextDataIndex7 * 0x10) - fVar48;
-          fVar5 = *(float *)(bufferBaseAddress0 + 4 + localSystemHandle1 * 0x10);
-          fVar52 = *(float *)(bufferBaseAddress0 + 4 + nextDataIndex7 * 0x10);
-          fVar51 = *(float *)(bufferBaseAddress0 + localSystemHandle1 * 0x10);
+          floatValue48 = *(float *)(bufferBaseAddress0 + 8 + localSystemHandle1 * 0x10);
+          floatValue49 = *(float *)(bufferBaseAddress0 + 8 + nextDataIndex7 * 0x10) - floatValue48;
+          floatValue5 = *(float *)(bufferBaseAddress0 + 4 + localSystemHandle1 * 0x10);
+          floatValue52 = *(float *)(bufferBaseAddress0 + 4 + nextDataIndex7 * 0x10);
+          floatValue51 = *(float *)(bufferBaseAddress0 + localSystemHandle1 * 0x10);
           localSystemHandle1 = (long long)*(int *)(localSystemHandle4 * 0x5c + nextDataIndex2);
-          fVar48 = *(float *)(bufferBaseAddress0 + 8 + localSystemHandle1 * 0x10) - fVar48;
-          fVar45 = *(float *)(bufferBaseAddress0 + 4 + localSystemHandle1 * 0x10);
-          fVar46 = *(float *)(bufferBaseAddress0 + nextDataIndex7 * 0x10);
-          fVar53 = *(float *)(bufferBaseAddress0 + localSystemHandle1 * 0x10);
+          floatValue48 = *(float *)(bufferBaseAddress0 + 8 + localSystemHandle1 * 0x10) - floatValue48;
+          floatValue45 = *(float *)(bufferBaseAddress0 + 4 + localSystemHandle1 * 0x10);
+          floatValue46 = *(float *)(bufferBaseAddress0 + nextDataIndex7 * 0x10);
+          floatValue53 = *(float *)(bufferBaseAddress0 + localSystemHandle1 * 0x10);
         }
-        fVar50 = (fVar46 - fVar51) * (fVar45 - fVar5) - (fVar52 - fVar5) * (fVar53 - fVar51);
-        fVar51 = fVar49 * (fVar53 - fVar51) - fVar48 * (fVar46 - fVar51);
-        fVar48 = fVar48 * (fVar52 - fVar5) - fVar49 * (fVar45 - fVar5);
-        fStack_174 = SQRT(fVar51 * fVar51 + fVar48 * fVar48 + fVar50 * fVar50);
+        floatValue50 = (floatValue46 - floatValue51) * (floatValue45 - floatValue5) - (floatValue52 - floatValue5) * (floatValue53 - floatValue51);
+        floatValue51 = floatValue49 * (floatValue53 - floatValue51) - floatValue48 * (floatValue46 - floatValue51);
+        floatValue48 = floatValue48 * (floatValue52 - floatValue5) - floatValue49 * (floatValue45 - floatValue5);
+        fStack_174 = SQRT(floatValue51 * floatValue51 + floatValue48 * floatValue48 + floatValue50 * floatValue50);
         if (fStack_174 <= 0.0) {
-          fVar48 = 0.0;
-          fVar51 = 0.0;
+          floatValue48 = 0.0;
+          floatValue51 = 0.0;
           fStack_178 = 1.0;
           fStack_174 = 1.0;
         }
         else {
           fStack_178 = 1.0 / fStack_174;
-          fVar48 = fVar48 * fStack_178;
-          fVar51 = fStack_178 * fVar51;
-          fStack_178 = fStack_178 * fVar50;
+          floatValue48 = floatValue48 * fStack_178;
+          floatValue51 = fStack_178 * floatValue51;
+          fStack_178 = fStack_178 * floatValue50;
         }
-        uStack_180 = CONCAT44(fVar51,fVar48);
+        uStack_180 = CONCAT44(floatValue51,floatValue48);
         pmagnitudeSquared1 = (float *)(*(long long *)(auStack_150._0_8_ + localSystemHandle2) + allocationContext0);
-        *pmagnitudeSquared1 = fVar48;
-        pmagnitudeSquared1[1] = fVar51;
+        *pmagnitudeSquared1 = floatValue48;
+        pmagnitudeSquared1[1] = floatValue51;
         pmagnitudeSquared1[2] = fStack_178;
         pmagnitudeSquared1[3] = fStack_174;
         allocationContext8 = allocationContext8 - 1;
@@ -62866,26 +62866,26 @@ LAB_18007a5ac:
                 hashValue = ((void* *)(localSystemHandle3 + *plocalResourceOffset9))[1];
                 *(void* *)(localResourceOffset1 + 0x34) = *(void* *)(localSystemHandle3 + *plocalResourceOffset9);
                 *(void* *)(localResourceOffset1 + 0x3c) = hashValue;
-                fVar48 = *(float *)(localResourceOffset1 + 8);
-                fVar52 = *(float *)(localResourceOffset1 + 4);
-                fVar51 = *(float *)(localResourceOffset1 + 0xc);
-                fVar45 = fVar51 * fVar51 + fVar52 * fVar52 + fVar48 * fVar48;
-                aunsignedSystemValue47 = rsqrtss(ZEXT416((uint)fVar45),ZEXT416((uint)fVar45));
-                fVar46 = aunsignedSystemValue47._0_4_;
-                fVar45 = fVar46 * 0.5 * (3.0 - fVar45 * fVar46 * fVar46);
-                *(float *)(localResourceOffset1 + 4) = fVar45 * fVar52;
-                *(float *)(localResourceOffset1 + 8) = fVar45 * fVar48;
-                *(float *)(localResourceOffset1 + 0xc) = fVar45 * fVar51;
-                fVar48 = *(float *)(localResourceOffset1 + 0x38);
-                fVar52 = *(float *)(localResourceOffset1 + 0x34);
-                fVar51 = *(float *)(localResourceOffset1 + 0x3c);
-                fVar45 = fVar51 * fVar51 + fVar52 * fVar52 + fVar48 * fVar48;
-                aunsignedSystemValue47 = rsqrtss(ZEXT416((uint)fVar45),ZEXT416((uint)fVar45));
-                fVar46 = aunsignedSystemValue47._0_4_;
-                fVar45 = fVar46 * 0.5 * (3.0 - fVar45 * fVar46 * fVar46);
-                *(float *)(localResourceOffset1 + 0x34) = fVar52 * fVar45;
-                *(float *)(localResourceOffset1 + 0x38) = fVar48 * fVar45;
-                *(float *)(localResourceOffset1 + 0x3c) = fVar51 * fVar45;
+                floatValue48 = *(float *)(localResourceOffset1 + 8);
+                floatValue52 = *(float *)(localResourceOffset1 + 4);
+                floatValue51 = *(float *)(localResourceOffset1 + 0xc);
+                floatValue45 = floatValue51 * floatValue51 + floatValue52 * floatValue52 + floatValue48 * floatValue48;
+                aunsignedSystemValue47 = rsqrtss(ZEXT416((uint)floatValue45),ZEXT416((uint)floatValue45));
+                floatValue46 = aunsignedSystemValue47._0_4_;
+                floatValue45 = floatValue46 * 0.5 * (3.0 - floatValue45 * floatValue46 * floatValue46);
+                *(float *)(localResourceOffset1 + 4) = floatValue45 * floatValue52;
+                *(float *)(localResourceOffset1 + 8) = floatValue45 * floatValue48;
+                *(float *)(localResourceOffset1 + 0xc) = floatValue45 * floatValue51;
+                floatValue48 = *(float *)(localResourceOffset1 + 0x38);
+                floatValue52 = *(float *)(localResourceOffset1 + 0x34);
+                floatValue51 = *(float *)(localResourceOffset1 + 0x3c);
+                floatValue45 = floatValue51 * floatValue51 + floatValue52 * floatValue52 + floatValue48 * floatValue48;
+                aunsignedSystemValue47 = rsqrtss(ZEXT416((uint)floatValue45),ZEXT416((uint)floatValue45));
+                floatValue46 = aunsignedSystemValue47._0_4_;
+                floatValue45 = floatValue46 * 0.5 * (3.0 - floatValue45 * floatValue46 * floatValue46);
+                *(float *)(localResourceOffset1 + 0x34) = floatValue52 * floatValue45;
+                *(float *)(localResourceOffset1 + 0x38) = floatValue48 * floatValue45;
+                *(float *)(localResourceOffset1 + 0x3c) = floatValue51 * floatValue45;
               }
               else {
                 hashValue = ((void* *)(localSystemHandle3 + *plocalResourceOffset9))[1];
@@ -62897,16 +62897,16 @@ LAB_18007a5ac:
                 pmagnitudeSquared1 = (float *)((long long)*(int *)(uStack_180 + localSystemHandle1 * 4) * 0x10 +
                                    *(long long *)
                                     (*(long long *)(ResourceManagerPointer + 0xb0) + 0x30 + uStackX_18 * 0x50));
-                fVar48 = pmagnitudeSquared1[1];
-                fVar52 = *pmagnitudeSquared1;
-                fVar51 = pmagnitudeSquared1[2];
-                fVar45 = fVar51 * fVar51 + fVar52 * fVar52 + fVar48 * fVar48;
-                aunsignedSystemValue47 = rsqrtss(ZEXT416((uint)fVar45),ZEXT416((uint)fVar45));
-                fVar46 = aunsignedSystemValue47._0_4_;
-                fVar45 = fVar46 * 0.5 * (3.0 - fVar45 * fVar46 * fVar46);
-                *pmagnitudeSquared1 = fVar52 * fVar45;
-                pmagnitudeSquared1[1] = fVar48 * fVar45;
-                pmagnitudeSquared1[2] = fVar51 * fVar45;
+                floatValue48 = pmagnitudeSquared1[1];
+                floatValue52 = *pmagnitudeSquared1;
+                floatValue51 = pmagnitudeSquared1[2];
+                floatValue45 = floatValue51 * floatValue51 + floatValue52 * floatValue52 + floatValue48 * floatValue48;
+                aunsignedSystemValue47 = rsqrtss(ZEXT416((uint)floatValue45),ZEXT416((uint)floatValue45));
+                floatValue46 = aunsignedSystemValue47._0_4_;
+                floatValue45 = floatValue46 * 0.5 * (3.0 - floatValue45 * floatValue46 * floatValue46);
+                *pmagnitudeSquared1 = floatValue52 * floatValue45;
+                pmagnitudeSquared1[1] = floatValue48 * floatValue45;
+                pmagnitudeSquared1[2] = floatValue51 * floatValue45;
               }
               localSystemHandle1 = localSystemHandle1 + 1;
             } while (localSystemHandle1 < 3);
@@ -62933,13 +62933,13 @@ LAB_18007a5ac:
                     HashEntryStatus = (uint *)(localResourceOffset1 + *(long long *)(piStack_218 + (ulong long)allocationContext3 * 8));
                     *HashEntryStatus = *HashEntryStatus | systemStatus9;
                     localSystemHandle2 = *plocalResourceOffset9;
-                    fVar48 = *(float *)(localSystemHandle3 + 8 + localSystemHandle2);
-                    fVar52 = *(float *)(localSystemHandle3 + 4 + localSystemHandle2);
+                    floatValue48 = *(float *)(localSystemHandle3 + 8 + localSystemHandle2);
+                    floatValue52 = *(float *)(localSystemHandle3 + 4 + localSystemHandle2);
                     nextDataIndex2 = *(long long *)(piStack_218 + (ulong long)*HashNodePointer2 * 8);
                     *(float *)(nextDataIndex2 + 4 + localResourceOffset1) =
                          *(float *)(nextDataIndex2 + 4 + localResourceOffset1) + *(float *)(localSystemHandle3 + localSystemHandle2);
-                    *(float *)(nextDataIndex2 + 8 + localResourceOffset1) = fVar52 + *(float *)(nextDataIndex2 + 8 + localResourceOffset1);
-                    *(float *)(nextDataIndex2 + 0xc + localResourceOffset1) = fVar48 + *(float *)(nextDataIndex2 + 0xc + localResourceOffset1);
+                    *(float *)(nextDataIndex2 + 8 + localResourceOffset1) = floatValue52 + *(float *)(nextDataIndex2 + 8 + localResourceOffset1);
+                    *(float *)(nextDataIndex2 + 0xc + localResourceOffset1) = floatValue48 + *(float *)(nextDataIndex2 + 0xc + localResourceOffset1);
                     isResourceAvailable4 = true;
                     allocationContext3 = *HashNodePointer2;
                   }
@@ -62949,14 +62949,14 @@ LAB_18007a5ac:
                                      localResourceOffset1);
                     *HashEntryStatus = *HashEntryStatus | systemStatus9;
                     localSystemHandle2 = *plocalResourceOffset9;
-                    fVar48 = *(float *)(localSystemHandle3 + 8 + localSystemHandle2);
-                    fVar52 = *(float *)(localSystemHandle3 + 4 + localSystemHandle2);
+                    floatValue48 = *(float *)(localSystemHandle3 + 8 + localSystemHandle2);
+                    floatValue52 = *(float *)(localSystemHandle3 + 4 + localSystemHandle2);
                     nextDataIndex2 = *(long long *)(piStack_218 + (ulong long)*HashNodePointer2 * 8);
                     *(float *)(nextDataIndex2 + 0x18 + localResourceOffset1) =
                          *(float *)(nextDataIndex2 + 0x18 + localResourceOffset1) + *(float *)(localSystemHandle3 + localSystemHandle2);
-                    *(float *)(nextDataIndex2 + 0x1c + localResourceOffset1) = fVar52 + *(float *)(nextDataIndex2 + 0x1c + localResourceOffset1)
+                    *(float *)(nextDataIndex2 + 0x1c + localResourceOffset1) = floatValue52 + *(float *)(nextDataIndex2 + 0x1c + localResourceOffset1)
                     ;
-                    *(float *)(nextDataIndex2 + 0x20 + localResourceOffset1) = fVar48 + *(float *)(nextDataIndex2 + 0x20 + localResourceOffset1)
+                    *(float *)(nextDataIndex2 + 0x20 + localResourceOffset1) = floatValue48 + *(float *)(nextDataIndex2 + 0x20 + localResourceOffset1)
                     ;
                     isResourceAvailable4 = true;
                     allocationContext3 = *HashNodePointer2;
@@ -62967,14 +62967,14 @@ LAB_18007a5ac:
                                      localResourceOffset1);
                     *HashEntryStatus = *HashEntryStatus | systemStatus9;
                     localSystemHandle2 = *plocalResourceOffset9;
-                    fVar48 = *(float *)(localSystemHandle3 + 8 + localSystemHandle2);
-                    fVar52 = *(float *)(localSystemHandle3 + 4 + localSystemHandle2);
+                    floatValue48 = *(float *)(localSystemHandle3 + 8 + localSystemHandle2);
+                    floatValue52 = *(float *)(localSystemHandle3 + 4 + localSystemHandle2);
                     nextDataIndex2 = *(long long *)(piStack_218 + (ulong long)*HashNodePointer2 * 8);
                     *(float *)(nextDataIndex2 + 0x2c + localResourceOffset1) =
                          *(float *)(nextDataIndex2 + 0x2c + localResourceOffset1) + *(float *)(localSystemHandle3 + localSystemHandle2);
-                    *(float *)(nextDataIndex2 + 0x30 + localResourceOffset1) = fVar52 + *(float *)(nextDataIndex2 + 0x30 + localResourceOffset1)
+                    *(float *)(nextDataIndex2 + 0x30 + localResourceOffset1) = floatValue52 + *(float *)(nextDataIndex2 + 0x30 + localResourceOffset1)
                     ;
-                    *(float *)(nextDataIndex2 + 0x34 + localResourceOffset1) = fVar48 + *(float *)(nextDataIndex2 + 0x34 + localResourceOffset1)
+                    *(float *)(nextDataIndex2 + 0x34 + localResourceOffset1) = floatValue48 + *(float *)(nextDataIndex2 + 0x34 + localResourceOffset1)
                     ;
                     isResourceAvailable4 = true;
                   }
@@ -62984,14 +62984,14 @@ LAB_18007a5ac:
                     *(uint *)(*(long long *)(piStack_218 + (ulong long)*HashNodePointer2 * 8) + 0x3c + localResourceOffset1)
                          = allocationContext3 | systemStatus9;
                     localSystemHandle2 = *plocalResourceOffset9;
-                    fVar48 = *(float *)(localSystemHandle3 + 8 + localSystemHandle2);
-                    fVar52 = *(float *)(localSystemHandle3 + 4 + localSystemHandle2);
+                    floatValue48 = *(float *)(localSystemHandle3 + 8 + localSystemHandle2);
+                    floatValue52 = *(float *)(localSystemHandle3 + 4 + localSystemHandle2);
                     nextDataIndex2 = *(long long *)(piStack_218 + (ulong long)*HashNodePointer2 * 8);
                     *(float *)(nextDataIndex2 + 0x40 + localResourceOffset1) =
                          *(float *)(nextDataIndex2 + 0x40 + localResourceOffset1) + *(float *)(localSystemHandle3 + localSystemHandle2);
-                    *(float *)(nextDataIndex2 + 0x44 + localResourceOffset1) = fVar52 + *(float *)(nextDataIndex2 + 0x44 + localResourceOffset1)
+                    *(float *)(nextDataIndex2 + 0x44 + localResourceOffset1) = floatValue52 + *(float *)(nextDataIndex2 + 0x44 + localResourceOffset1)
                     ;
-                    *(float *)(nextDataIndex2 + 0x48 + localResourceOffset1) = fVar48 + *(float *)(nextDataIndex2 + 0x48 + localResourceOffset1)
+                    *(float *)(nextDataIndex2 + 0x48 + localResourceOffset1) = floatValue48 + *(float *)(nextDataIndex2 + 0x48 + localResourceOffset1)
                     ;
                     isResourceAvailable4 = true;
                   }
@@ -63009,13 +63009,13 @@ LAB_18007a5ac:
                     *(uint *)(localResourceOffset1 + *(long long *)(piStack_218 + (ulong long)*HashNodePointer2 * 8)) =
                          allocationContext3 | systemStatus9;
                     localSystemHandle1 = *plocalResourceOffset9;
-                    fVar48 = *(float *)(localSystemHandle3 + 8 + localSystemHandle1);
-                    fVar52 = *(float *)(localSystemHandle3 + 4 + localSystemHandle1);
+                    floatValue48 = *(float *)(localSystemHandle3 + 8 + localSystemHandle1);
+                    floatValue52 = *(float *)(localSystemHandle3 + 4 + localSystemHandle1);
                     localSystemHandle4 = *(long long *)(piStack_218 + (ulong long)*HashNodePointer2 * 8);
                     *(float *)(localResourceOffset1 + 4 + localSystemHandle4) =
                          *(float *)(localResourceOffset1 + 4 + localSystemHandle4) + *(float *)(localSystemHandle3 + localSystemHandle1);
-                    *(float *)(localResourceOffset1 + 8 + localSystemHandle4) = fVar52 + *(float *)(localResourceOffset1 + 8 + localSystemHandle4);
-                    *(float *)(localResourceOffset1 + 0xc + localSystemHandle4) = fVar48 + *(float *)(localResourceOffset1 + 0xc + localSystemHandle4);
+                    *(float *)(localResourceOffset1 + 8 + localSystemHandle4) = floatValue52 + *(float *)(localResourceOffset1 + 8 + localSystemHandle4);
+                    *(float *)(localResourceOffset1 + 0xc + localSystemHandle4) = floatValue48 + *(float *)(localResourceOffset1 + 0xc + localSystemHandle4);
                     isResourceAvailable4 = true;
                   }
                   localResourceOffset1 = localResourceOffset1 + 0x14;
@@ -63097,20 +63097,20 @@ LAB_18007ac04:
           if (0 < systemResult7) {
             do {
               nextDataIndex2 = *(long long *)(localSystemHandle3 + (long long)piStack_218);
-              fVar48 = *(float *)(nextDataIndex2 + 8 + localSystemHandle4);
-              fVar52 = *(float *)(nextDataIndex2 + 4 + localSystemHandle4);
-              fVar51 = *(float *)(nextDataIndex2 + 0xc + localSystemHandle4);
-              fVar45 = fVar52 * fVar52 + fVar48 * fVar48 + fVar51 * fVar51;
-              if (SQRT(fVar45) == 0.0) {
+              floatValue48 = *(float *)(nextDataIndex2 + 8 + localSystemHandle4);
+              floatValue52 = *(float *)(nextDataIndex2 + 4 + localSystemHandle4);
+              floatValue51 = *(float *)(nextDataIndex2 + 0xc + localSystemHandle4);
+              floatValue45 = floatValue52 * floatValue52 + floatValue48 * floatValue48 + floatValue51 * floatValue51;
+              if (SQRT(floatValue45) == 0.0) {
                 *(uint8_t (*) [16])(nextDataIndex2 + 4 + localSystemHandle4) = SystemZeroVectorData;
               }
               else {
-                aunsignedSystemValue47 = rsqrtss(ZEXT416((uint)fVar45),ZEXT416((uint)fVar45));
-                fVar46 = aunsignedSystemValue47._0_4_;
-                fVar45 = fVar46 * 0.5 * (3.0 - fVar45 * fVar46 * fVar46);
-                *(float *)(nextDataIndex2 + 4 + localSystemHandle4) = fVar52 * fVar45;
-                *(float *)(nextDataIndex2 + 8 + localSystemHandle4) = fVar45 * fVar48;
-                *(float *)(nextDataIndex2 + 0xc + localSystemHandle4) = fVar51 * fVar45;
+                aunsignedSystemValue47 = rsqrtss(ZEXT416((uint)floatValue45),ZEXT416((uint)floatValue45));
+                floatValue46 = aunsignedSystemValue47._0_4_;
+                floatValue45 = floatValue46 * 0.5 * (3.0 - floatValue45 * floatValue46 * floatValue46);
+                *(float *)(nextDataIndex2 + 4 + localSystemHandle4) = floatValue52 * floatValue45;
+                *(float *)(nextDataIndex2 + 8 + localSystemHandle4) = floatValue45 * floatValue48;
+                *(float *)(nextDataIndex2 + 0xc + localSystemHandle4) = floatValue51 * floatValue45;
               }
               localSystemHandle2 = localSystemHandle2 + -1;
               localSystemHandle4 = localSystemHandle4 + 0x14;
@@ -64835,11 +64835,11 @@ void FUN_18007cbb0(uint ResourceManagerPointer,long long ConfigurationDataPointe
   long long localSystemHandle7;
   float floatValue28;
   float floatValue29;
-  float fVar30;
-  float fVar31;
-  float fVar32;
-  float fVar33;
-  float fVar34;
+  float floatValue30;
+  float floatValue31;
+  float floatValue32;
+  float floatValue33;
+  float floatValue34;
   long long *plStackX_20;
   uint32_t allocationContext5;
   float fStack_128;
@@ -65326,38 +65326,38 @@ code_r0x00018007db1b:
       do {
         localSystemHandle5 = *(long long *)(ConfigurationDataPointer + 0x68);
         floatValue29 = *(float *)(localSystemHandle1 + 0x34 + localSystemHandle5) * 0.5;
-        fVar34 = *(float *)(localSystemHandle1 + 0x38 + localSystemHandle5) * 0.5;
+        floatValue34 = *(float *)(localSystemHandle1 + 0x38 + localSystemHandle5) * 0.5;
         floatValue28 = *(float *)(localSystemHandle1 + 0x3c + localSystemHandle5) * 0.5;
-        fVar31 = floatValue29 + 0.5;
-        fVar32 = fVar34 + 0.5;
-        fVar33 = floatValue28 + 0.5;
+        floatValue31 = floatValue29 + 0.5;
+        floatValue32 = floatValue34 + 0.5;
+        floatValue33 = floatValue28 + 0.5;
         if (-0.5 <= floatValue28) {
-          if (1.0 <= fVar33) {
-            fVar33 = 1.0;
+          if (1.0 <= floatValue33) {
+            floatValue33 = 1.0;
           }
         }
         else {
-          fVar33 = 0.0;
+          floatValue33 = 0.0;
         }
-        if (-0.5 <= fVar34) {
-          if (1.0 <= fVar32) {
-            fVar32 = 1.0;
+        if (-0.5 <= floatValue34) {
+          if (1.0 <= floatValue32) {
+            floatValue32 = 1.0;
           }
         }
         else {
-          fVar32 = 0.0;
+          floatValue32 = 0.0;
         }
         if (-0.5 <= floatValue29) {
-          if (1.0 <= fVar31) {
-            fVar31 = 1.0;
+          if (1.0 <= floatValue31) {
+            floatValue31 = 1.0;
           }
         }
         else {
-          fVar31 = 0.0;
+          floatValue31 = 0.0;
         }
-        *pfloatValue20 = (float)(((uint)(long long)(fVar32 * 2047.0) & 0x7ff |
-                           (int)(long long)(fVar31 * 2047.0) << 0xb) << 10 |
-                          (uint)(long long)(fVar33 * 1023.0) & 0x3ff);
+        *pfloatValue20 = (float)(((uint)(long long)(floatValue32 * 2047.0) & 0x7ff |
+                           (int)(long long)(floatValue31 * 2047.0) << 0xb) << 10 |
+                          (uint)(long long)(floatValue33 * 1023.0) & 0x3ff);
         pfloatValue20 = (float *)((long long)pfloatValue20 + (long long)systemCode);
         localSystemHandle1 = localSystemHandle1 + 0x5c;
         localSystemHandle7 = localSystemHandle7 + -1;
@@ -65398,21 +65398,21 @@ code_r0x00018007db1b:
       do {
         localSystemHandle5 = *(long long *)(ConfigurationDataPointer + 0x68);
         floatValue28 = *(float *)(localSystemHandle1 + 0x1c + localSystemHandle5);
-        fVar31 = *(float *)(localSystemHandle1 + 0x18 + localSystemHandle5);
-        fVar32 = *(float *)(localSystemHandle1 + 0x14 + localSystemHandle5);
-        fVar33 = *(float *)(localSystemHandle1 + 4 + localSystemHandle5);
-        fVar34 = fVar32 * 0.5 + 0.5;
-        floatValue29 = fVar31 * 0.5 + 0.5;
-        fVar30 = floatValue28 * 0.5 + 0.5;
+        floatValue31 = *(float *)(localSystemHandle1 + 0x18 + localSystemHandle5);
+        floatValue32 = *(float *)(localSystemHandle1 + 0x14 + localSystemHandle5);
+        floatValue33 = *(float *)(localSystemHandle1 + 4 + localSystemHandle5);
+        floatValue34 = floatValue32 * 0.5 + 0.5;
+        floatValue29 = floatValue31 * 0.5 + 0.5;
+        floatValue30 = floatValue28 * 0.5 + 0.5;
         if (-0.5 <= floatValue28 * 0.5) {
-          if (1.0 <= fVar30) {
-            fVar30 = 1.0;
+          if (1.0 <= floatValue30) {
+            floatValue30 = 1.0;
           }
         }
         else {
-          fVar30 = 0.0;
+          floatValue30 = 0.0;
         }
-        if (-0.5 <= fVar31 * 0.5) {
+        if (-0.5 <= floatValue31 * 0.5) {
           if (1.0 <= floatValue29) {
             floatValue29 = 1.0;
           }
@@ -65420,26 +65420,26 @@ code_r0x00018007db1b:
         else {
           floatValue29 = 0.0;
         }
-        if (-0.5 <= fVar32 * 0.5) {
-          if (1.0 <= fVar34) {
-            fVar34 = 1.0;
+        if (-0.5 <= floatValue32 * 0.5) {
+          if (1.0 <= floatValue34) {
+            floatValue34 = 1.0;
           }
         }
         else {
-          fVar34 = 0.0;
+          floatValue34 = 0.0;
         }
         unsignedSystemValue9 = 0;
-        if ((fVar32 * *(float *)(localSystemHandle1 + 0xc + localSystemHandle5) - fVar33 * floatValue28) *
+        if ((floatValue32 * *(float *)(localSystemHandle1 + 0xc + localSystemHandle5) - floatValue33 * floatValue28) *
             *(float *)(localSystemHandle1 + 0x28 + localSystemHandle5) +
-            (floatValue28 * *(float *)(localSystemHandle1 + 8 + localSystemHandle5) - fVar31 * *(float *)(localSystemHandle1 + 0xc + localSystemHandle5))
+            (floatValue28 * *(float *)(localSystemHandle1 + 8 + localSystemHandle5) - floatValue31 * *(float *)(localSystemHandle1 + 0xc + localSystemHandle5))
             * *(float *)(localSystemHandle1 + 0x24 + localSystemHandle5) +
-            (fVar33 * fVar31 - fVar32 * *(float *)(localSystemHandle1 + 8 + localSystemHandle5)) *
+            (floatValue33 * floatValue31 - floatValue32 * *(float *)(localSystemHandle1 + 8 + localSystemHandle5)) *
             *(float *)(localSystemHandle1 + 0x2c + localSystemHandle5) < 0.0) {
           unsignedSystemValue9 = 0x80000000;
         }
-        *pfloatValue20 = (float)((((uint)(long long)(fVar34 * 1023.0) & 0x3ff) << 0xb |
+        *pfloatValue20 = (float)((((uint)(long long)(floatValue34 * 1023.0) & 0x3ff) << 0xb |
                            (uint)(long long)(floatValue29 * 2047.0) & 0x7ff) << 10 |
-                           (uint)(long long)(fVar30 * 1023.0) & 0x3ff | unsignedSystemValue9);
+                           (uint)(long long)(floatValue30 * 1023.0) & 0x3ff | unsignedSystemValue9);
         pfloatValue20 = (float *)((long long)pfloatValue20 + (long long)systemCode);
         localSystemHandle1 = localSystemHandle1 + 0x5c;
         localSystemHandle7 = localSystemHandle7 + -1;
@@ -65468,8 +65468,8 @@ code_r0x00018007db1b:
         fStack_e4 = pinterpolationFactor3[1];
         fStack_e0 = pinterpolationFactor3[2];
         fStack_dc = pinterpolationFactor3[3];
-        fVar31 = fStack_100 * fStack_f8 - fStack_f0 * fStack_108;
-        if ((fStack_f0 * fStack_104 - fStack_100 * fStack_f4) * fStack_e8 + fStack_e4 * fVar31 +
+        floatValue31 = fStack_100 * fStack_f8 - fStack_f0 * fStack_108;
+        if ((fStack_f0 * fStack_104 - fStack_100 * fStack_f4) * fStack_e8 + fStack_e4 * floatValue31 +
             fStack_e0 * (fStack_f4 * fStack_108 - fStack_f8 * fStack_104) < 0.0) {
           fStack_e0 = -fStack_e0;
           fStack_118 = -fStack_e8;
@@ -65480,7 +65480,7 @@ code_r0x00018007db1b:
           fStack_dc = 3.4028235e+38;
           fStack_110 = fStack_e0;
         }
-        FUN_18063b470(&fStack_128,&fStack_108,fStack_e0,fVar31,allocationContext5);
+        FUN_18063b470(&fStack_128,&fStack_108,fStack_e0,floatValue31,allocationContext5);
         FUN_180084000(&fStack_128);
         if (fStack_128 < 0.0) {
           fStack_128 = -fStack_128;
@@ -65488,10 +65488,10 @@ code_r0x00018007db1b:
           fStack_120 = -fStack_120;
           fStack_11c = -fStack_11c;
         }
-        fVar34 = fStack_11c;
-        fVar33 = fStack_120;
-        fVar32 = fStack_124;
-        fVar31 = fStack_128;
+        floatValue34 = fStack_11c;
+        floatValue33 = fStack_120;
+        floatValue32 = fStack_124;
+        floatValue31 = fStack_128;
         if (*(int *)(localSystemHandle5 + localSystemHandle2) < iRam0000000180d49150) {
           CheckSystemDataAvailability(0x180d49150);
           if (iRam0000000180d49150 == -1) {
@@ -65501,39 +65501,39 @@ code_r0x00018007db1b:
           localSystemHandle2 = 0x48;
           floatValue28 = fRam0000000180d49154;
         }
-        if (fVar31 < 3.051851e-05) {
-          fVar31 = 3.051851e-05;
+        if (floatValue31 < 3.051851e-05) {
+          floatValue31 = 3.051851e-05;
           fStack_128 = 3.051851e-05;
-          fVar32 = fVar32 * floatValue28;
-          fVar33 = fVar33 * floatValue28;
-          fVar34 = fVar34 * floatValue28;
-          fStack_124 = fVar32;
-          fStack_120 = fVar33;
-          fStack_11c = fVar34;
+          floatValue32 = floatValue32 * floatValue28;
+          floatValue33 = floatValue33 * floatValue28;
+          floatValue34 = floatValue34 * floatValue28;
+          fStack_124 = floatValue32;
+          fStack_120 = floatValue33;
+          fStack_11c = floatValue34;
         }
         floatValue29 = *(float *)(localSystemHandle1 + 0x18 + localSystemHandle4);
-        fVar30 = *(float *)(localSystemHandle1 + 0x1c + localSystemHandle4);
+        floatValue30 = *(float *)(localSystemHandle1 + 0x1c + localSystemHandle4);
         floatValue1 = *(float *)(localSystemHandle1 + 0x14 + localSystemHandle4);
-        if ((fVar30 * *(float *)(localSystemHandle1 + 0x34 + localSystemHandle4) -
+        if ((floatValue30 * *(float *)(localSystemHandle1 + 0x34 + localSystemHandle4) -
             floatValue1 * *(float *)(localSystemHandle1 + 0x3c + localSystemHandle4)) * *(float *)(localSystemHandle1 + 0x28 + localSystemHandle4) +
             (floatValue29 * *(float *)(localSystemHandle1 + 0x3c + localSystemHandle4) -
-            fVar30 * *(float *)(localSystemHandle1 + 0x38 + localSystemHandle4)) * *(float *)(localSystemHandle1 + 0x24 + localSystemHandle4) +
+            floatValue30 * *(float *)(localSystemHandle1 + 0x38 + localSystemHandle4)) * *(float *)(localSystemHandle1 + 0x24 + localSystemHandle4) +
             (floatValue1 * *(float *)(localSystemHandle1 + 0x38 + localSystemHandle4) -
             floatValue29 * *(float *)(localSystemHandle1 + 0x34 + localSystemHandle4)) * *(float *)(localSystemHandle1 + 0x2c + localSystemHandle4) <= 0.0
            ) {
-          fVar31 = -fVar31;
-          fVar32 = -fVar32;
-          fVar33 = -fVar33;
-          fVar34 = -fVar34;
-          fStack_128 = fVar31;
-          fStack_124 = fVar32;
-          fStack_120 = fVar33;
-          fStack_11c = fVar34;
+          floatValue31 = -floatValue31;
+          floatValue32 = -floatValue32;
+          floatValue33 = -floatValue33;
+          floatValue34 = -floatValue34;
+          fStack_128 = floatValue31;
+          fStack_124 = floatValue32;
+          fStack_120 = floatValue33;
+          fStack_11c = floatValue34;
         }
-        *(short *)pfloatValue20 = (short)(int)(fVar32 * 32767.0);
-        *(short *)((long long)pfloatValue20 + 2) = (short)(int)(fVar33 * 32767.0);
-        *(short *)(pfloatValue20 + 1) = (short)(int)(fVar34 * 32767.0);
-        *(short *)((long long)pfloatValue20 + 6) = (short)(int)(fVar31 * 32767.0);
+        *(short *)pfloatValue20 = (short)(int)(floatValue32 * 32767.0);
+        *(short *)((long long)pfloatValue20 + 2) = (short)(int)(floatValue33 * 32767.0);
+        *(short *)(pfloatValue20 + 1) = (short)(int)(floatValue34 * 32767.0);
+        *(short *)((long long)pfloatValue20 + 6) = (short)(int)(floatValue31 * 32767.0);
         pfloatValue20 = (float *)((long long)pfloatValue20 + (long long)systemCode);
         localSystemHandle1 = localSystemHandle1 + 0x5c;
         localSystemHandle7 = localSystemHandle7 + -1;
@@ -69000,10 +69000,10 @@ void* ProcessSystemResourceConfiguration(int ResourceManagerPointer,void* Config
   float audioSignal31;
   float audioSignal32;
   float audioSignal33;
-  float fVar34;
-  float fVar35;
-  float fVar36;
-  float fVar37;
+  float floatValue34;
+  float floatValue35;
+  float floatValue36;
+  float floatValue37;
   int unaff_XMM12_Da;
   int unaff_XMM12_Db;
   int unaff_XMM12_Dc;
@@ -69024,20 +69024,20 @@ void* ProcessSystemResourceConfiguration(int ResourceManagerPointer,void* Config
   asystemStatus9 = rcpps(asystemStatus9,asystemStatus6);
   floatValue24 = 0.0;
   floatValue28 = 0.0;
-  fVar30 = 0.0;
+  floatValue30 = 0.0;
   interpolationFactor5 = 0.0;
   magnitudeSquared1 = asystemStatus9._0_4_;
   floatValue20 = asystemStatus9._4_4_;
   floatValue21 = asystemStatus9._8_4_;
   floatValue22 = asystemStatus9._12_4_;
   floatValue29 = 0.0;
-  fVar31 = 0.0;
-  fVar32 = 0.0;
-  fVar33 = 0.0;
-  fVar34 = 0.0;
-  fVar35 = 0.0;
-  fVar36 = 0.0;
-  fVar37 = 0.0;
+  floatValue31 = 0.0;
+  floatValue32 = 0.0;
+  floatValue33 = 0.0;
+  floatValue34 = 0.0;
+  floatValue35 = 0.0;
+  floatValue36 = 0.0;
+  floatValue37 = 0.0;
   floatValue23 = 0.0;
   floatValue25 = 0.0;
   floatValue26 = 0.0;
@@ -69051,15 +69051,15 @@ void* ProcessSystemResourceConfiguration(int ResourceManagerPointer,void* Config
     systemStatus1 = ResourceManagerPointer;
     floatValue1 = *pFloatScaleFactor;
     floatValue2 = pFloatScaleFactor[1];
-    fVar3 = pFloatScaleFactor[2];
-    fVar4 = pFloatScaleFactor[3];
+    floatValue3 = pFloatScaleFactor[2];
+    floatValue4 = pFloatScaleFactor[3];
     systemStatus2 = -(uint)(0.0001 < floatValue1);
     systemStatus3 = -(uint)(0.0001 < floatValue2);
-    systemStatus4 = -(uint)(0.0001 < fVar3);
-    systemStatus5 = -(uint)(0.0001 < fVar4);
+    systemStatus4 = -(uint)(0.0001 < floatValue3);
+    systemStatus5 = -(uint)(0.0001 < floatValue4);
     ResourceManagerPointer = systemStatus1 + 8;
-    fVar5 = pFloatScaleFactor[4];
-    fVar6 = pFloatScaleFactor[5];
+    floatValue5 = pFloatScaleFactor[4];
+    floatValue6 = pFloatScaleFactor[5];
     fVar7 = pFloatScaleFactor[6];
     fVar8 = pFloatScaleFactor[7];
     pFloatScaleFactor = pFloatScaleFactor + 8;
@@ -69067,59 +69067,59 @@ void* ProcessSystemResourceConfiguration(int ResourceManagerPointer,void* Config
                      systemStatus2 | ~systemStatus2 & (uint)floatValue24);
     floatValue28 = (float)((uint)((float)(systemStatus1 + 1) * (float)unaff_XMM12_Db * 0.5 * floatValue20 * floatValue2 +
                            floatValue28) & systemStatus3 | ~systemStatus3 & (uint)floatValue28);
-    fVar30 = (float)((uint)((float)(systemStatus1 + 2) * (float)unaff_XMM12_Dc * 0.5 * floatValue21 * fVar3 +
-                           fVar30) & systemStatus4 | ~systemStatus4 & (uint)fVar30);
-    interpolationFactor5 = (float)((uint)((float)(systemStatus1 + 3) * (float)unaff_XMM12_Dd * 0.5 * floatValue22 * fVar4 +
+    floatValue30 = (float)((uint)((float)(systemStatus1 + 2) * (float)unaff_XMM12_Dc * 0.5 * floatValue21 * floatValue3 +
+                           floatValue30) & systemStatus4 | ~systemStatus4 & (uint)floatValue30);
+    interpolationFactor5 = (float)((uint)((float)(systemStatus1 + 3) * (float)unaff_XMM12_Dd * 0.5 * floatValue22 * floatValue4 +
                            interpolationFactor5) & systemStatus5 | ~systemStatus5 & (uint)interpolationFactor5);
     floatValue23 = (float)((uint)(floatValue1 + floatValue23) & systemStatus2 | ~systemStatus2 & (uint)floatValue23);
     floatValue25 = (float)((uint)(floatValue2 + floatValue25) & systemStatus3 | ~systemStatus3 & (uint)floatValue25);
-    floatValue26 = (float)((uint)(fVar3 + floatValue26) & systemStatus4 | ~systemStatus4 & (uint)floatValue26);
-    floatValue27 = (float)((uint)(fVar4 + floatValue27) & systemStatus5 | ~systemStatus5 & (uint)floatValue27);
-    systemStatus2 = -(uint)(0.0001 < fVar5);
-    systemStatus3 = -(uint)(0.0001 < fVar6);
+    floatValue26 = (float)((uint)(floatValue3 + floatValue26) & systemStatus4 | ~systemStatus4 & (uint)floatValue26);
+    floatValue27 = (float)((uint)(floatValue4 + floatValue27) & systemStatus5 | ~systemStatus5 & (uint)floatValue27);
+    systemStatus2 = -(uint)(0.0001 < floatValue5);
+    systemStatus3 = -(uint)(0.0001 < floatValue6);
     systemStatus4 = -(uint)(0.0001 < fVar7);
     systemStatus5 = -(uint)(0.0001 < fVar8);
-    floatValue29 = (float)((uint)((float)(systemStatus1 + 4) * (float)unaff_XMM12_Da * 0.5 * magnitudeSquared1 * fVar5 +
+    floatValue29 = (float)((uint)((float)(systemStatus1 + 4) * (float)unaff_XMM12_Da * 0.5 * magnitudeSquared1 * floatValue5 +
                            floatValue29) & systemStatus2 | ~systemStatus2 & (uint)floatValue29);
-    fVar31 = (float)((uint)((float)(systemStatus1 + 5) * (float)unaff_XMM12_Db * 0.5 * floatValue20 * fVar6 +
-                           fVar31) & systemStatus3 | ~systemStatus3 & (uint)fVar31);
-    fVar32 = (float)((uint)((float)(systemStatus1 + 6) * (float)unaff_XMM12_Dc * 0.5 * floatValue21 * fVar7 +
-                           fVar32) & systemStatus4 | ~systemStatus4 & (uint)fVar32);
-    fVar33 = (float)((uint)((float)(systemStatus1 + 7) * (float)unaff_XMM12_Dd * 0.5 * floatValue22 * fVar8 +
-                           fVar33) & systemStatus5 | ~systemStatus5 & (uint)fVar33);
-    fVar34 = (float)((uint)(fVar5 + fVar34) & systemStatus2 | ~systemStatus2 & (uint)fVar34);
-    fVar35 = (float)((uint)(fVar6 + fVar35) & systemStatus3 | ~systemStatus3 & (uint)fVar35);
-    fVar36 = (float)((uint)(fVar7 + fVar36) & systemStatus4 | ~systemStatus4 & (uint)fVar36);
-    fVar37 = (float)((uint)(fVar8 + fVar37) & systemStatus5 | ~systemStatus5 & (uint)fVar37);
+    floatValue31 = (float)((uint)((float)(systemStatus1 + 5) * (float)unaff_XMM12_Db * 0.5 * floatValue20 * floatValue6 +
+                           floatValue31) & systemStatus3 | ~systemStatus3 & (uint)floatValue31);
+    floatValue32 = (float)((uint)((float)(systemStatus1 + 6) * (float)unaff_XMM12_Dc * 0.5 * floatValue21 * fVar7 +
+                           floatValue32) & systemStatus4 | ~systemStatus4 & (uint)floatValue32);
+    floatValue33 = (float)((uint)((float)(systemStatus1 + 7) * (float)unaff_XMM12_Dd * 0.5 * floatValue22 * fVar8 +
+                           floatValue33) & systemStatus5 | ~systemStatus5 & (uint)floatValue33);
+    floatValue34 = (float)((uint)(floatValue5 + floatValue34) & systemStatus2 | ~systemStatus2 & (uint)floatValue34);
+    floatValue35 = (float)((uint)(floatValue6 + floatValue35) & systemStatus3 | ~systemStatus3 & (uint)floatValue35);
+    floatValue36 = (float)((uint)(fVar7 + floatValue36) & systemStatus4 | ~systemStatus4 & (uint)floatValue36);
+    floatValue37 = (float)((uint)(fVar8 + floatValue37) & systemStatus5 | ~systemStatus5 & (uint)floatValue37);
   } while (ResourceManagerPointer < (int)(ConfigurationFlag - unsignedSystemValue9));
-  magnitudeSquared1 = floatValue26 + fVar36 + floatValue23 + fVar34 + floatValue27 + fVar37 + floatValue25 + fVar35;
-  floatValue24 = fVar30 + fVar32 + floatValue24 + floatValue29 + interpolationFactor5 + fVar33 + floatValue28 + fVar31;
+  magnitudeSquared1 = floatValue26 + floatValue36 + floatValue23 + floatValue34 + floatValue27 + floatValue37 + floatValue25 + floatValue35;
+  floatValue24 = floatValue30 + floatValue32 + floatValue24 + floatValue29 + interpolationFactor5 + floatValue33 + floatValue28 + floatValue31;
   if (ResourceManagerPointer < (int)ConfigurationFlag) {
     if (3 < (int)(ConfigurationFlag - ResourceManagerPointer)) {
       systemStatus1 = systemStatus1 + 10;
       floatValue28 = (float)unaff_EBX;
       pFloatScaleFactor = systemDataIndexPtr + (long long)ResourceManagerPointer + 2;
-      fVar30 = (float)(int)ConfigurationFlag;
+      floatValue30 = (float)(int)ConfigurationFlag;
       do {
         interpolationFactor5 = pFloatScaleFactor[-2];
         if (0.0001 < interpolationFactor5) {
           magnitudeSquared1 = magnitudeSquared1 + interpolationFactor5;
-          floatValue24 = floatValue24 + ((floatValue28 * 0.5 * (float)ResourceManagerPointer) / fVar30) * interpolationFactor5;
+          floatValue24 = floatValue24 + ((floatValue28 * 0.5 * (float)ResourceManagerPointer) / floatValue30) * interpolationFactor5;
         }
         interpolationFactor5 = pFloatScaleFactor[-1];
         if (0.0001 < interpolationFactor5) {
           magnitudeSquared1 = magnitudeSquared1 + interpolationFactor5;
-          floatValue24 = floatValue24 + (((float)(systemStatus1 + -1) * floatValue28 * 0.5) / fVar30) * interpolationFactor5;
+          floatValue24 = floatValue24 + (((float)(systemStatus1 + -1) * floatValue28 * 0.5) / floatValue30) * interpolationFactor5;
         }
         interpolationFactor5 = *pFloatScaleFactor;
         if (0.0001 < interpolationFactor5) {
           magnitudeSquared1 = magnitudeSquared1 + interpolationFactor5;
-          floatValue24 = floatValue24 + (((float)systemStatus1 * floatValue28 * 0.5) / fVar30) * interpolationFactor5;
+          floatValue24 = floatValue24 + (((float)systemStatus1 * floatValue28 * 0.5) / floatValue30) * interpolationFactor5;
         }
         interpolationFactor5 = pFloatScaleFactor[1];
         if (0.0001 < interpolationFactor5) {
           magnitudeSquared1 = magnitudeSquared1 + interpolationFactor5;
-          floatValue24 = floatValue24 + (((float)(systemStatus1 + 1) * floatValue28 * 0.5) / fVar30) * interpolationFactor5;
+          floatValue24 = floatValue24 + (((float)(systemStatus1 + 1) * floatValue28 * 0.5) / floatValue30) * interpolationFactor5;
         }
         pFloatScaleFactor = pFloatScaleFactor + 4;
         ResourceManagerPointer = ResourceManagerPointer + 4;
@@ -69554,47 +69554,47 @@ void* FastFourierTransform(void* context, void* dataBuffer, uint dataSize)
               magnitudeSquared1 = *(float *)(bufferBaseAddress + 4 + (ulong long)unsignedSystemValue7 * 8);
               floatValue1 = *(float *)(bufferBaseAddress + (ulong long)unsignedSystemValue7 * 8);
               floatValue2 = *(float *)(bufferBaseAddress + nextDataIndex4 * 8);
-              fVar3 = *(float *)(bufferBaseAddress + 4 + nextDataIndex4 * 8);
+              floatValue3 = *(float *)(bufferBaseAddress + 4 + nextDataIndex4 * 8);
               interpolationFactor5 = floatValue1 * floatValue20 - magnitudeSquared1 * floatValue19;
               magnitudeSquared1 = magnitudeSquared1 * floatValue20 + floatValue1 * floatValue19;
               *(float *)(bufferBaseAddress + nextDataIndex4 * 8) = interpolationFactor5 + floatValue2;
-              *(float *)(*(long long *)(in_R11 + 0x218) + 4 + nextDataIndex4 * 8) = magnitudeSquared1 + fVar3;
+              *(float *)(*(long long *)(in_R11 + 0x218) + 4 + nextDataIndex4 * 8) = magnitudeSquared1 + floatValue3;
               *(float *)(*(long long *)(in_R11 + 0x218) + (ulong long)unsignedSystemValue7 * 8) = floatValue2 - interpolationFactor5;
-              *(float *)(*(long long *)(in_R11 + 0x218) + 4 + (ulong long)unsignedSystemValue7 * 8) = fVar3 - magnitudeSquared1;
+              *(float *)(*(long long *)(in_R11 + 0x218) + 4 + (ulong long)unsignedSystemValue7 * 8) = floatValue3 - magnitudeSquared1;
               bufferBaseAddress = *(long long *)(in_R11 + 0x218);
               magnitudeSquared1 = *(float *)(bufferBaseAddress + 4 + currentThreadId * 8);
               floatValue1 = *(float *)(bufferBaseAddress + currentThreadId * 8);
               floatValue2 = *(float *)(bufferBaseAddress + 8 + nextDataIndex4 * 8);
-              fVar3 = *(float *)(bufferBaseAddress + 0xc + nextDataIndex4 * 8);
+              floatValue3 = *(float *)(bufferBaseAddress + 0xc + nextDataIndex4 * 8);
               interpolationFactor5 = floatValue1 * floatValue20 - magnitudeSquared1 * floatValue19;
               magnitudeSquared1 = magnitudeSquared1 * floatValue20 + floatValue1 * floatValue19;
               *(float *)(bufferBaseAddress + 8 + nextDataIndex4 * 8) = interpolationFactor5 + floatValue2;
-              *(float *)(*(long long *)(in_R11 + 0x218) + 0xc + nextDataIndex4 * 8) = magnitudeSquared1 + fVar3;
+              *(float *)(*(long long *)(in_R11 + 0x218) + 0xc + nextDataIndex4 * 8) = magnitudeSquared1 + floatValue3;
               *(float *)(*(long long *)(in_R11 + 0x218) + currentThreadId * 8) = floatValue2 - interpolationFactor5;
-              *(float *)(*(long long *)(in_R11 + 0x218) + 4 + currentThreadId * 8) = fVar3 - magnitudeSquared1;
+              *(float *)(*(long long *)(in_R11 + 0x218) + 4 + currentThreadId * 8) = floatValue3 - magnitudeSquared1;
               bufferBaseAddress = *(long long *)(in_R11 + 0x218);
               magnitudeSquared1 = *(float *)(bufferBaseAddress + systemStatus3 * 8);
               floatValue1 = *(float *)(bufferBaseAddress + 4 + systemStatus3 * 8);
               floatValue2 = *(float *)(bufferBaseAddress + 0x10 + nextDataIndex4 * 8);
-              fVar3 = *(float *)(bufferBaseAddress + 0x14 + nextDataIndex4 * 8);
+              floatValue3 = *(float *)(bufferBaseAddress + 0x14 + nextDataIndex4 * 8);
               interpolationFactor5 = magnitudeSquared1 * floatValue20 - floatValue1 * floatValue19;
               magnitudeSquared1 = floatValue1 * floatValue20 + magnitudeSquared1 * floatValue19;
               *(float *)(bufferBaseAddress + 0x10 + nextDataIndex4 * 8) = interpolationFactor5 + floatValue2;
-              *(float *)(*(long long *)(in_R11 + 0x218) + 0x14 + nextDataIndex4 * 8) = magnitudeSquared1 + fVar3;
+              *(float *)(*(long long *)(in_R11 + 0x218) + 0x14 + nextDataIndex4 * 8) = magnitudeSquared1 + floatValue3;
               *(float *)(*(long long *)(in_R11 + 0x218) + systemStatus3 * 8) = floatValue2 - interpolationFactor5;
-              *(float *)(*(long long *)(in_R11 + 0x218) + 4 + systemStatus3 * 8) = fVar3 - magnitudeSquared1;
+              *(float *)(*(long long *)(in_R11 + 0x218) + 4 + systemStatus3 * 8) = floatValue3 - magnitudeSquared1;
               bufferBaseAddress = *(long long *)(in_R11 + 0x218);
               magnitudeSquared1 = *(float *)(bufferBaseAddress + systemStatus6 * 8);
               floatValue1 = *(float *)(bufferBaseAddress + 4 + systemStatus6 * 8);
               floatValue2 = *(float *)(bufferBaseAddress + 0x18 + nextDataIndex4 * 8);
-              fVar3 = *(float *)(bufferBaseAddress + 0x1c + nextDataIndex4 * 8);
+              floatValue3 = *(float *)(bufferBaseAddress + 0x1c + nextDataIndex4 * 8);
               interpolationFactor5 = magnitudeSquared1 * floatValue20 - floatValue1 * floatValue19;
               magnitudeSquared1 = floatValue1 * floatValue20 + magnitudeSquared1 * floatValue19;
               *(float *)(bufferBaseAddress + 0x18 + nextDataIndex4 * 8) = interpolationFactor5 + floatValue2;
-              *(float *)(*(long long *)(in_R11 + 0x218) + 0x1c + nextDataIndex4 * 8) = magnitudeSquared1 + fVar3;
+              *(float *)(*(long long *)(in_R11 + 0x218) + 0x1c + nextDataIndex4 * 8) = magnitudeSquared1 + floatValue3;
               nextDataIndex4 = nextDataIndex4 + 4;
               *(float *)(*(long long *)(in_R11 + 0x218) + systemStatus6 * 8) = floatValue2 - interpolationFactor5;
-              *(float *)(*(long long *)(in_R11 + 0x218) + 4 + systemStatus6 * 8) = fVar3 - magnitudeSquared1;
+              *(float *)(*(long long *)(in_R11 + 0x218) + 4 + systemStatus6 * 8) = floatValue3 - magnitudeSquared1;
               systemStatus2 = systemStatus2 + 4;
             } while (nextDataIndex4 < resourceCounter + -3);
           }
@@ -69606,14 +69606,14 @@ void* FastFourierTransform(void* context, void* dataBuffer, uint dataSize)
               magnitudeSquared1 = *(float *)(bufferBaseAddress + currentThreadId * 8);
               floatValue1 = *(float *)(bufferBaseAddress + 4 + currentThreadId * 8);
               floatValue2 = *(float *)(bufferBaseAddress + nextDataIndex4 * 8);
-              fVar3 = *(float *)(bufferBaseAddress + 4 + nextDataIndex4 * 8);
+              floatValue3 = *(float *)(bufferBaseAddress + 4 + nextDataIndex4 * 8);
               interpolationFactor5 = magnitudeSquared1 * floatValue20 - floatValue1 * floatValue19;
               magnitudeSquared1 = floatValue1 * floatValue20 + magnitudeSquared1 * floatValue19;
               *(float *)(bufferBaseAddress + nextDataIndex4 * 8) = interpolationFactor5 + floatValue2;
-              *(float *)(*(long long *)(in_R11 + 0x218) + 4 + nextDataIndex4 * 8) = magnitudeSquared1 + fVar3;
+              *(float *)(*(long long *)(in_R11 + 0x218) + 4 + nextDataIndex4 * 8) = magnitudeSquared1 + floatValue3;
               nextDataIndex4 = nextDataIndex4 + 1;
               *(float *)(*(long long *)(in_R11 + 0x218) + currentThreadId * 8) = floatValue2 - interpolationFactor5;
-              *(float *)(*(long long *)(in_R11 + 0x218) + 4 + currentThreadId * 8) = fVar3 - magnitudeSquared1;
+              *(float *)(*(long long *)(in_R11 + 0x218) + 4 + currentThreadId * 8) = floatValue3 - magnitudeSquared1;
               systemStatus2 = systemStatus2 + 1;
             } while (nextDataIndex4 < resourceCounter);
           }
