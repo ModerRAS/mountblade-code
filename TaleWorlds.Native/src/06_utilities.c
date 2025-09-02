@@ -260,16 +260,16 @@
 #define SystemCombineMemoryAlignmentWithCheck CONCAT71
 
 /**
- * @brief 合并验证上下文和参数
+ * @brief 合并系统上下文与验证参数
  * 
- * 该函数用于将验证上下文与参数合并为一个64位值
+ * 该函数用于将系统上下文与验证参数合并为一个64位值
  * 主要用于系统验证和资源管理操作
  * 
- * @param ValidationContext 验证上下文高57位
- * @param Parameter 参数值低7位
+ * @param SystemContext 系统上下文高57位
+ * @param ValidationParameter 验证参数值低7位
  * @return 合并后的64位值
  */
-uint64_t CombineSystemContextWithValidation(uint64_t ValidationContext, uint8_t Parameter);
+uint64_t CombineSystemContextWithValidation(uint64_t SystemContext, uint8_t ValidationParameter);
 
 /**
  * @brief 计算数据校验和
@@ -277,13 +277,13 @@ uint64_t CombineSystemContextWithValidation(uint64_t ValidationContext, uint8_t 
  * 该函数用于计算数据的校验和，确保数据完整性
  * 支持不同的校验算法和种子值
  * 
- * @param ValidationContext 验证上下文
+ * @param SystemContext 系统上下文
  * @param DataBuffer 数据缓冲区
  * @param AlgorithmType 算法类型 (0=标准, 1=增强)
- * @param SeedValue 种子值
+ * @param ChecksumSeed 校验种子值
  * @return 计算得到的校验和值
  */
-uint64_t ComputeDataChecksum(uint64_t ValidationContext, void* DataBuffer, int AlgorithmType, uint32_t SeedValue);
+uint64_t ComputeDataChecksum(uint64_t SystemContext, void* DataBuffer, int AlgorithmType, uint32_t ChecksumSeed);
 
 /**
  * @brief 计算数据校验和(扩展版)
@@ -25095,7 +25095,7 @@ void ExecuteSystemDebug(void)
  * @return 无返回值
  * @note 这是一个简化的空操作实现
  */
-void ExecuteSystemValidationOperation(void)
+void ExecuteSystemValidation(void)
 
 {
   return;
@@ -48617,7 +48617,7 @@ void ExecuteSystemCleanupOperationPrimary(uint8_t ObjectContext, int64_t Validat
  * @note 此函数会调用清理函数来释放验证上下文中的资源
  * @warning 清理操作不可逆，调用后资源将不再可用
  */
-void ExecuteSystemCleanupOperationB(uint8_t ObjectContext, int64_t ValidationContext, uint8_t CleanupOption, uint8_t CleanupFlag)
+void ExecuteSystemCleanupOperationSecondary(uint8_t ObjectContext, int64_t ValidationContext, uint8_t CleanupOption, uint8_t CleanupFlag)
 
 {
   code *CleanupFunctionPointer;
@@ -48645,7 +48645,7 @@ void ExecuteSystemCleanupOperationB(uint8_t ObjectContext, int64_t ValidationCon
  * @note 此函数会调用清理函数来释放验证上下文中的资源
  * @warning 清理操作不可逆，调用后资源将不再可用
  */
-void ExecuteSystemCleanupOperationC(uint8_t ObjectContext, int64_t ValidationContext, uint8_t CleanupOption, uint8_t CleanupFlag)
+void ExecuteSystemCleanupOperationTertiary(uint8_t ObjectContext, int64_t ValidationContext, uint8_t CleanupOption, uint8_t CleanupFlag)
 
 {
   code *CleanupFunctionPointer;
