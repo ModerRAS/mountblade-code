@@ -43526,12 +43526,26 @@ void Unwind_180904810(uint8_t objectContext,int64_t validationContext)
 
 
 
-void Unwind_180904820(uint8_t objectContext,int64_t validationContext)
+/**
+ * @brief 初始化系统资源处理器模板
+ * 
+ * 该函数负责初始化系统资源处理器模板，设置必要的指针和状态
+ * 确保系统资源处理器在正确的状态下运行
+ * 
+ * @param objectContext 对象上下文，标识要操作的对象
+ * @param validationContext 验证上下文，包含验证所需的数据
+ * @return 无返回值
+ * @note 此函数在系统初始化过程中被调用
+ * @warning 初始化失败时可能会触发系统紧急退出
+ * 
+ * 原始函数名为Unwind_180904820，现已重命名为InitializeSystemResourceHandlerTemplate
+ */
+void InitializeSystemResourceHandlerTemplate(uint8_t objectContext,int64_t validationContext)
 
 {
-  int64_t loopCounter;
+  int64_t ResourceIndex;
   
-  loopCounter = *(int64_t *)(validationContext + 0x60);
+  ResourceIndex = *(int64_t *)(validationContext + 0x60);
   *(uint8_t *)(LocalContextData + 0x20) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(LocalContextData + 0x28) != 0) {
                     // WARNING: Subroutine does not return
@@ -43753,35 +43767,49 @@ void ProcessResourceCleanupB(uint8_t objectContext,int64_t validationContext,uin
 
 
 
-void Unwind_180904920(uint8_t objectContext,int64_t validationContext)
+/**
+ * @brief 释放系统资源索引
+ * 
+ * 该函数负责释放系统资源索引，处理资源引用计数和内存验证
+ * 确保系统资源在不再使用时正确释放
+ * 
+ * @param objectContext 对象上下文，标识要操作的对象
+ * @param validationContext 验证上下文，包含验证所需的数据
+ * @return 无返回值
+ * @note 此函数在系统资源清理过程中被调用
+ * @warning 资源释放失败时可能会触发系统紧急退出
+ * 
+ * 原始函数名为Unwind_180904920，现已重命名为ReleaseSystemResourceIndex
+ */
+void ReleaseSystemResourceIndex(uint8_t objectContext,int64_t validationContext)
 
 {
-  int *pResourceIndex;
+  int *pResourceReferenceCount;
   uint8_t *pResourceValidationResult;
   int64_t ResourceIndex;
-  uint64_t loopIncrement;
+  uint64_t MemoryAlignmentMask;
   
   pvalidationResult = *(uint8_t **)(*(int64_t *)(validationContext + 0x40) + 0x28);
   if (pvalidationResult == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)pResourceValidationResult - loopIncrement >> 0x10) * 0x50;
+  MemoryAlignmentMask = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
+  if (MemoryAlignmentMask != 0) {
+    ResourceIndex = MemoryAlignmentMask + 0x80 + ((int64_t)pResourceValidationResult - MemoryAlignmentMask >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+    if ((*(void ***)(MemoryAlignmentMask + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(ResourceIndex + 0x18);
-      *pResourceIndex = *pResourceIndex + -1;
-      if (*pResourceIndex == 0) {
+      pResourceReferenceCount = (int *)(ResourceIndex + 0x18);
+      *pResourceReferenceCount = *pResourceReferenceCount + -1;
+      if (*pResourceReferenceCount == 0) {
         SystemCleanupHandler();
         return;
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          pResourceValidationResult,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAlignmentMask,CONCAT71(0xff000000,*(void ***)(MemoryAlignmentMask + 0x70) == &ExceptionList),
+                          pResourceValidationResult,MemoryAlignmentMask,0xfffffffffffffffe);
     }
   }
   return;
@@ -43789,35 +43817,49 @@ void Unwind_180904920(uint8_t objectContext,int64_t validationContext)
 
 
 
-void Unwind_180904930(uint8_t objectContext,int64_t validationContext)
+/**
+ * @brief 释放系统资源索引扩展版本
+ * 
+ * 该函数负责释放系统资源索引的扩展版本，处理资源引用计数和内存验证
+ * 与ReleaseSystemResourceIndex函数类似，但使用不同的偏移量
+ * 
+ * @param objectContext 对象上下文，标识要操作的对象
+ * @param validationContext 验证上下文，包含验证所需的数据
+ * @return 无返回值
+ * @note 此函数在系统资源清理过程中被调用
+ * @warning 资源释放失败时可能会触发系统紧急退出
+ * 
+ * 原始函数名为Unwind_180904930，现已重命名为ReleaseSystemResourceIndexExtended
+ */
+void ReleaseSystemResourceIndexExtended(uint8_t objectContext,int64_t validationContext)
 
 {
-  int *pResourceIndex;
+  int *pResourceReferenceCount;
   uint8_t *pResourceValidationResult;
   int64_t ResourceIndex;
-  uint64_t loopIncrement;
+  uint64_t MemoryAlignmentMask;
   
   pvalidationResult = *(uint8_t **)(*(int64_t *)(validationContext + 0x40) + 0x48);
   if (pvalidationResult == (uint8_t *)0x0) {
     return;
   }
-  loopIncrement = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
-  if (loopIncrement != 0) {
-    ResourceIndex = loopIncrement + 0x80 + ((int64_t)pResourceValidationResult - loopIncrement >> 0x10) * 0x50;
+  MemoryAlignmentMask = (uint64_t)pResourceValidationResult & 0xffffffffffc00000;
+  if (MemoryAlignmentMask != 0) {
+    ResourceIndex = MemoryAlignmentMask + 0x80 + ((int64_t)pResourceValidationResult - MemoryAlignmentMask >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(loopIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+    if ((*(void ***)(MemoryAlignmentMask + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
       *pvalidationResult = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = pResourceValidationResult;
-      pResourceIndex = (int *)(ResourceIndex + 0x18);
-      *pResourceIndex = *pResourceIndex + -1;
-      if (*pResourceIndex == 0) {
+      pResourceReferenceCount = (int *)(ResourceIndex + 0x18);
+      *pResourceReferenceCount = *pResourceReferenceCount + -1;
+      if (*pResourceReferenceCount == 0) {
         SystemCleanupHandler();
         return;
       }
     }
     else {
-      ValidateMemoryAccess(loopIncrement,CONCAT71(0xff000000,*(void ***)(loopIncrement + 0x70) == &ExceptionList),
-                          pResourceValidationResult,loopIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAlignmentMask,CONCAT71(0xff000000,*(void ***)(MemoryAlignmentMask + 0x70) == &ExceptionList),
+                          pResourceValidationResult,MemoryAlignmentMask,0xfffffffffffffffe);
     }
   }
   return;
