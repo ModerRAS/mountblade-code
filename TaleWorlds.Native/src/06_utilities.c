@@ -3570,6 +3570,16 @@ void ProcessGameObjectCollection(int64_t GameContext, int64_t SystemContext)
  * @return void 无返回值
  * @note 此函数会遍历所有系统对象并进行验证
  */
+/**
+ * @brief 验证系统对象集合
+ * 
+ * 该函数负责验证系统中的对象集合，确保所有对象都处于有效状态
+ * 包括对象标识符验证、数据完整性检查和安全验证
+ * 
+ * @return 无返回值
+ * @note 此函数在系统维护和清理过程中调用
+ * @warning 验证失败时可能会导致系统异常终止
+ */
 void ValidateSystemObjectCollection(void)
 {
   uint8_t ObjectIdentifier;
@@ -56994,7 +57004,19 @@ void RegisterAlternativeResourceEventHandler(uint8_t ObjectContext, int64_t Vali
 
 
 
-void Unwind_180906ff0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行双重资源回调
+ * 
+ * 该函数负责执行两个不同的资源回调函数
+ * 首先执行第一个资源回调，然后执行第二个资源回调
+ * 
+ * @param ObjectContext 对象上下文，包含对象的状态信息
+ * @param ValidationContext 验证上下文，包含两个回调函数的上下文信息
+ * @return 无返回值
+ * @note 此函数通常在需要执行多个回调时被调用
+ * @warning 调用此函数前必须确保验证上下文已正确初始化
+ */
+void ExecuteDualResourceCallback(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   if (*(int64_t **)(ValidationContext + 0x50) != (int64_t *)0x0) {
@@ -57037,7 +57059,21 @@ void CleanupResourceHandlePrimary(uint8_t ObjectContext,int64_t ValidationContex
 
 
 
-void Unwind_180907010(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 执行资源清理操作A
+ * 
+ * 该函数负责执行资源的清理操作A，使用指定的清理标志
+ * 检查验证上下文中的清理函数指针并执行清理操作
+ * 
+ * @param ObjectContext 对象上下文，包含对象的状态信息
+ * @param ValidationContext 验证上下文，包含清理函数的上下文信息
+ * @param CleanupOption 清理选项，指定清理的方式
+ * @param CleanupFlag 清理标志，控制清理的行为
+ * @return 无返回值
+ * @note 此函数通常在资源清理过程中被调用
+ * @warning 调用此函数前必须确保验证上下文已正确初始化
+ */
+void ExecuteResourceCleanupOperationA(uint8_t ObjectContext, int64_t ValidationContext, uint8_t CleanupOption, uint8_t CleanupFlag)
 
 {
   if (*(code **)(ValidationContext + 0xe8) != (code *)0x0) {
@@ -57048,7 +57084,21 @@ void Unwind_180907010(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 
 
 
-void Unwind_180907020(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 执行资源清理操作B
+ * 
+ * 该函数负责执行资源的清理操作B，使用指定的清理标志
+ * 检查验证上下文中的清理函数指针并执行清理操作
+ * 
+ * @param ObjectContext 对象上下文，包含对象的状态信息
+ * @param ValidationContext 验证上下文，包含清理函数的上下文信息
+ * @param CleanupOption 清理选项，指定清理的方式
+ * @param CleanupFlag 清理标志，控制清理的行为
+ * @return 无返回值
+ * @note 此函数通常在资源清理过程中被调用
+ * @warning 调用此函数前必须确保验证上下文已正确初始化
+ */
+void ExecuteResourceCleanupOperationB(uint8_t ObjectContext, int64_t ValidationContext, uint8_t CleanupOption, uint8_t CleanupFlag)
 
 {
   if (*(code **)(ValidationContext + 0x68) != (code *)0x0) {
@@ -57059,7 +57109,19 @@ void Unwind_180907020(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 
 
 
-void Unwind_180907030(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行扩展资源表回调
+ * 
+ * 该函数负责执行扩展资源表中的回调函数
+ * 从验证上下文中获取资源表，然后执行表中的回调操作
+ * 
+ * @param ObjectContext 对象上下文，包含对象的状态信息
+ * @param ValidationContext 验证上下文，包含资源表的引用信息
+ * @return 无返回值
+ * @note 此函数通常在扩展资源管理中被调用
+ * @warning 调用此函数前必须确保验证上下文已正确初始化
+ */
+void ExecuteExtendedResourceTableCallback(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int64_t *processPointer;

@@ -52506,7 +52506,7 @@ LAB_1800715eb:
     SystemDataPointer8 = puStack_f0;
   }
   unsignedSystemValue7 = FUN_1800f98e0(SystemDataPointer8);
-    UpdateContextManagerSystem(SystemContextManagerPointer,&UNK_1809ff6e0,isByteValid3 ^ 1,unsignedSystemValue7);
+    UpdateContextManagerSystem(SystemContextManagerPointer,&SystemConfigurationDataBufferE,isByteValid3 ^ 1,unsignedSystemValue7);
 }
 
 
@@ -52777,7 +52777,7 @@ LAB_180071eb0:
   if (pUnsignedStackFlag88 != (uint8_t *)0x0) {
     newThreadLocalStorage = pUnsignedStackFlag88;
   }
-  FUN_180062380(SystemContextManagerPointer,4,0xffffffff00000000,&UNK_1809ff5b0,newThreadLocalStorage);
+  FUN_180062380(SystemContextManagerPointer,4,0xffffffff00000000,&SystemConfigurationDataBufferD,newThreadLocalStorage);
   pcurrentThreadId = &SystemStringTemplate;
   if (punsignedSystemValue9 != (void* *)0x0) {
     pcurrentThreadId = punsignedSystemValue9;
