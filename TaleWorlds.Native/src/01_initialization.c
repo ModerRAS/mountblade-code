@@ -20458,10 +20458,10 @@ void InitializeSystemCoreEngine(void)
         systemCounter = -1;
       } while (-1 < localSystemFlags);
     }
-    InitializeSystemConfiguration(&puStack_558,&puStack_538,systemCounter + 1,0xffffffff);
-    systemCounter = FindSystemResourceIndex(&SystemResourceTemplate,&puStack_538);
+    InitializeSystemConfiguration(&SystemConfigPathBuffer,&SystemConfigNameBuffer,systemCounter + 1,0xffffffff);
+    systemCounter = FindSystemResourceIndex(&SystemResourceTemplate,&SystemConfigNameBuffer);
     if (systemCounter == -1) {
-      systemCounter = FindSystemResourceHandle(&SystemResourceTemplate,&puStack_538);
+      systemCounter = FindSystemResourceHandle(&SystemResourceTemplate,&SystemConfigNameBuffer);
     }
     localSystemFlags = (long long)systemCounter * 0x100;
     ppplStack_590 = (long long ***)(SystemInitializationDataStart + 0x30 + localSystemFlags);
