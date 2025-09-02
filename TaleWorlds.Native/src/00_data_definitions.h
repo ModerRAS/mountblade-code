@@ -6024,9 +6024,9 @@ uint64_t ProcessDataConversionAndCalculation(uint64_t *DataArray)
   ushort *PointerValue;
   float *SecondaryColorProcessingPointer;
   ulonglong UnsignedIndex;
-  byte *pbVar9;
-  float fVar10;
-  float fVar11;
+  byte *ColorDataPointer;
+  float ColorMagnitude;
+  float NormalizationFactor;
   uint8_t aMemoryAddress2 [16];
   float FloatValue;
   float FloatCalculationResult;

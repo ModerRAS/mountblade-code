@@ -3380,8 +3380,8 @@ void ProcessGameObjects(int64_t GameContext, int64_t SystemContext)
   
   SecurityValidationKey = SecurityContextKey ^ (uint64_t)ObjectMetadataBuffer;
   ProcessingResult = RetrieveContextHandles(*(uint32_t *)(GameContext + 0x10), SystemHandleArray);
-  if ((ProcessingResultCode == 0) && (*(int64_t *)(SystemHandleArray[0] + 8) != 0)) {
-    GameObjectDataBuffer = ObjectProcessingWorkspace;
+  if ((ProcessingResult == 0) && (*(int64_t *)(SystemHandleArray[0] + 8) != 0)) {
+    ObjectDataBuffer = ProcessingWorkspace;
     ProcessedObjectCount = 0;
     BufferIndex = 0;
     MaximumProcessableItems = MaximumProcessableItemsLimit;
