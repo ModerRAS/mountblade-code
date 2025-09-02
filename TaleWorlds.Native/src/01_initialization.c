@@ -39467,37 +39467,49 @@ void SystemNoOperation(void)
 
 
 
-ulong long FUN_18005f570(long long SystemResourcePointer,long long *ConfigurationDataPointer,long long AdditionalParameter)
+/**
+ * @brief 系统资源数据处理函数
+ * 
+ * 该函数负责处理系统资源数据，包括内存分配、数据操作和资源管理。
+ * 该函数包含复杂的内存操作和数据处理逻辑。
+ * 
+ * @param SystemResourcePointer 系统资源指针
+ * @param ConfigurationDataPointer 配置数据指针
+ * @param AdditionalParameter 附加参数
+ * @return 处理结果状态码
+ * 
+ * 原始函数名为FUN_18005f570，现已重命名为ProcessSystemResourceData
+ */
+ulong long ProcessSystemResourceData(long long SystemResourcePointer,long long *ConfigurationDataPointer,long long AdditionalParameter)
 
 {
-  uint *pointerToUnsigned1;
-  uint32_t *pointerToUnsigned2;
-  uint unsignedSystemValue3;
-  uint unsignedSystemValue4;
-  long long *plocalSystemPointer;
-  uint32_t unsignedSystemValue6;
-  uint32_t unsignedSystemValue7;
-  uint32_t unsignedSystemValue8;
-  long long *plocalResourcePointer;
-  ulong long unsignedSystemValue10;
-  long long localMemoryPointer1;
-  ulong long unsignedSystemValue12;
-  ulong long unsignedSystemValue13;
-  ulong long unsignedSystemValue14;
-  ulong long unsignedSystemValue15;
-  ulong long unsignedSystemValue16;
-  ulong long *pointerToUnsigned17;
-  ulong long unsignedSystemValue18;
-  ulong long unsignedSystemValue19;
-  ulong long unsignedSystemValue20;
-  uint32_t *pointerToUnsigned21;
-  uint32_t *pointerToUnsigned22;
-  long long localSystemHandle3;
-  long long localSystemHandle4;
-  ulong long unsignedSystemValue25;
-  bool bVar26;
-  ulong long uStack_78;
-  ulong long uStack_68;
+  uint *systemDataPointer1;
+  uint32_t *systemDataPointer2;
+  uint systemStatusValue1;
+  uint systemStatusValue2;
+  long long *localSystemMemoryPointer;
+  uint32_t systemMemoryOffset1;
+  uint32_t systemMemoryOffset2;
+  uint32_t systemMemoryOffset3;
+  long long *localResourceDataPointer;
+  ulong long systemResourceValue1;
+  long long localMemoryAddress1;
+  ulong long systemResourceValue2;
+  ulong long systemResourceValue3;
+  ulong long systemResourceValue4;
+  ulong long systemResourceValue5;
+  ulong long *systemResourcePointer1;
+  ulong long systemResourceValue6;
+  ulong long systemResourceValue7;
+  ulong long systemResourceValue8;
+  uint32_t *systemDataPointer3;
+  uint32_t *systemDataPointer4;
+  long long systemHandle1;
+  long long systemHandle2;
+  ulong long systemResourceValue9;
+  bool operationStatus;
+  ulong long stackParameter1;
+  ulong long stackParameter2;
   
   unsignedSystemValue25 = *(ulong long *)(SystemResourcePointer + 0x20);
   unsignedSystemValue13 = *(ulong long *)(SystemResourcePointer + 0x40);
@@ -39763,16 +39775,29 @@ LAB_18005f92b:
 
 
 
-ulong long FUN_18005fb30(long long SystemResourcePointer,long long *ConfigurationDataPointer,long long AdditionalParameter)
+/**
+ * @brief 系统资源数据扩展处理函数
+ * 
+ * 该函数负责扩展处理系统资源数据，包括更多的内存操作和数据管理功能。
+ * 该函数是对ProcessSystemResourceData函数的扩展和补充。
+ * 
+ * @param SystemResourcePointer 系统资源指针
+ * @param ConfigurationDataPointer 配置数据指针
+ * @param AdditionalParameter 附加参数
+ * @return 处理结果状态码
+ * 
+ * 原始函数名为FUN_18005fb30，现已重命名为ProcessSystemResourceDataExtended
+ */
+ulong long ProcessSystemResourceDataExtended(long long SystemResourcePointer,long long *ConfigurationDataPointer,long long AdditionalParameter)
 
 {
-  ulong long *pointerToUnsigned1;
-  uint *pointerToUnsigned2;
-  uint unsignedSystemValue3;
-  uint unsignedSystemValue4;
-  long long *plocalSystemPointer;
-  long long localSystemFlags;
-  ulong long unsignedSystemValue7;
+  ulong long *systemResourcePointer1;
+  uint *systemDataPointer1;
+  uint systemStatusValue1;
+  uint systemStatusValue2;
+  long long *localSystemMemoryPointer;
+  long long systemOperationFlags;
+  ulong long systemResourceValue1;
   ulong long unsignedSystemValue8;
   char cVar9;
   ulong long unsignedSystemValue10;
@@ -40078,40 +40103,53 @@ LAB_180060007:
 
 
 
-ulong long FUN_180060080(long long SystemResourcePointer,long long *ConfigurationDataPointer,void* AdditionalParameter)
+/**
+ * @brief 系统资源内存处理函数
+ * 
+ * 该函数负责处理系统资源的内存分配和管理，包括主资源指针和辅助资源指针的操作。
+ * 该函数包含复杂的内存管理和指针操作逻辑。
+ * 
+ * @param SystemResourcePointer 系统资源指针
+ * @param ConfigurationDataPointer 配置数据指针
+ * @param AdditionalParameter 附加参数
+ * @return 处理结果状态码
+ * 
+ * 原始函数名为FUN_180060080，现已重命名为ProcessSystemResourceMemory
+ */
+ulong long ProcessSystemResourceMemory(long long SystemResourcePointer,long long *ConfigurationDataPointer,void* AdditionalParameter)
 
 {
-  long long *PrimaryResourcePointer;
-  long long *SecondaryResourcePointer;
+  long long *primaryResourcePointer;
+  long long *secondaryResourcePointer;
   long long localResourceOffset;
-  void* *punsignedSystemValue4;
-  ulong long in_RAX;
-  ulong long unsignedSystemValue5;
+  void* *systemDataPointer;
+  ulong long systemResourceValue;
+  ulong long systemStatusValue;
   
-  PrimaryResourcePointer = *(long long **)(SystemResourcePointer + 0x60);
-  if (PrimaryResourcePointer != (long long *)0x0) {
-    unsignedSystemValue5 = *PrimaryResourcePointer - 1U & PrimaryResourcePointer[1] + 1U;
-    SecondaryResourcePointer = *(long long **)(PrimaryResourcePointer[3] + unsignedSystemValue5 * 8);
-    *ConfigurationDataPointer = (long long)SecondaryResourcePointer;
-    if ((*SecondaryResourcePointer == 1) || (*(long long *)(*ConfigurationDataPointer + 8) == 0)) {
-      punsignedSystemValue4 = (void* *)*ConfigurationDataPointer;
-      *punsignedSystemValue4 = AdditionalParameter;
-      PrimaryResourcePointer[1] = unsignedSystemValue5;
-      return CONCAT71((int7)((ulong long)punsignedSystemValue4 >> 8),1);
+  primaryResourcePointer = *(long long **)(SystemResourcePointer + 0x60);
+  if (primaryResourcePointer != (long long *)0x0) {
+    systemStatusValue = *primaryResourcePointer - 1U & primaryResourcePointer[1] + 1U;
+    secondaryResourcePointer = *(long long **)(primaryResourcePointer[3] + systemStatusValue * 8);
+    *ConfigurationDataPointer = (long long)secondaryResourcePointer;
+    if ((*secondaryResourcePointer == 1) || (*(long long *)(*ConfigurationDataPointer + 8) == 0)) {
+      systemDataPointer = (void* *)*ConfigurationDataPointer;
+      *systemDataPointer = AdditionalParameter;
+      primaryResourcePointer[1] = systemStatusValue;
+      return CONCAT71((int7)((ulong long)systemDataPointer >> 8),1);
     }
-    in_RAX = FUN_18005f430();
-    if ((char)in_RAX != '\0') {
-      PrimaryResourcePointer = *(long long **)(SystemResourcePointer + 0x60);
-      unsignedSystemValue5 = *PrimaryResourcePointer - 1U & PrimaryResourcePointer[1] + 1U;
-      localResourceOffset = PrimaryResourcePointer[3];
-      punsignedSystemValue4 = *(void* **)(localResourceOffset + unsignedSystemValue5 * 8);
-      *ConfigurationDataPointer = (long long)punsignedSystemValue4;
-      *punsignedSystemValue4 = AdditionalParameter;
-      PrimaryResourcePointer[1] = unsignedSystemValue5;
+    systemResourceValue = FUN_18005f430();
+    if ((char)systemResourceValue != '\0') {
+      primaryResourcePointer = *(long long **)(SystemResourcePointer + 0x60);
+      systemStatusValue = *primaryResourcePointer - 1U & primaryResourcePointer[1] + 1U;
+      localResourceOffset = primaryResourcePointer[3];
+      systemDataPointer = *(void* **)(localResourceOffset + systemStatusValue * 8);
+      *ConfigurationDataPointer = (long long)systemDataPointer;
+      *systemDataPointer = AdditionalParameter;
+      primaryResourcePointer[1] = systemStatusValue;
       return CONCAT71((int7)((ulong long)localResourceOffset >> 8),1);
     }
   }
-  return in_RAX & 0xffffffffffffff00;
+  return systemResourceValue & 0xffffffffffffff00;
 }
 
 
@@ -40268,7 +40306,19 @@ code_r0x000180060327:
 
 
 
-void* FUN_1800603e0(void* SystemResourcePointer,ulong long ConfigurationDataPointer)
+/**
+ * @brief 初始化系统资源上下文函数
+ * 
+ * 该函数负责初始化系统资源上下文，包括资源分配和配置。
+ * 该函数会根据配置数据指针的标志来决定是否释放资源。
+ * 
+ * @param SystemResourcePointer 系统资源指针
+ * @param ConfigurationDataPointer 配置数据指针
+ * @return 系统资源指针
+ * 
+ * 原始函数名为FUN_1800603e0，现已重命名为InitializeSystemResourceContext
+ */
+void* InitializeSystemResourceContext(void* SystemResourcePointer,ulong long ConfigurationDataPointer)
 
 {
   FUN_180060420();
@@ -40398,7 +40448,19 @@ LAB_1800604d1:
 
 
 
-void* * FUN_1800605d0(void* *SystemResourcePointer,ulong long ConfigurationDataPointer)
+/**
+ * @brief 配置系统资源数据函数
+ * 
+ * 该函数负责配置系统资源数据，设置资源表和配置参数。
+ * 该函数会根据配置数据指针的标志来决定是否释放资源。
+ * 
+ * @param SystemResourcePointer 系统资源指针
+ * @param ConfigurationDataPointer 配置数据指针
+ * @return 系统资源指针
+ * 
+ * 原始函数名为FUN_1800605d0，现已重命名为ConfigureSystemResourceData
+ */
+void* * ConfigureSystemResourceData(void* *SystemResourcePointer,ulong long ConfigurationDataPointer)
 
 {
   *SystemResourcePointer = &SystemResourceTableB;
