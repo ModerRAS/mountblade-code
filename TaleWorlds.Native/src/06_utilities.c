@@ -15069,8 +15069,8 @@ void ProcessResourceDataValidation(int64_t *ObjectContext)
             LocalContextHandle = ObjectContext[4];
             if ((char)LocalContextHandle == '\0') {
               *(uint8_t *)(ObjectContext + 4) = 1;
-              ResourceCount = InitializeResourceContext(*(uint8_t *)(ObjectContext[1] + 0x78),aGraphicsOperationFlagPrimary);
-              if (((ResourceCount != 0) || (ResourceCount = SetupResourceEnvironment(aGraphicsOperationFlagPrimary[0],&AudioSampleRate,0), ResourceCount != 0)
+              ResourceCount = InitializeResourceContext(*(uint8_t *)(ObjectContext[1] + 0x78),GraphicsOperationFlagPrimary);
+              if (((ResourceCount != 0) || (ResourceCount = SetupResourceEnvironment(GraphicsOperationFlagPrimary[0],&AudioSampleRate,0), ResourceCount != 0)
                   ) || (ResourceCount = (**(code **)(*ObjectContext + 0x10))(ObjectContext), ResourceCount != 0))
               goto ResourceProcessingComplete;
               ValidationCounter = (uint64_t)(AudioSampleRate * 48000) /
@@ -18514,7 +18514,7 @@ uint64_t ValidateResourceHash(int64_t ResourceContext, uint8_t *ResourceData)
   uint SystemCommandParams [2];
   uint ResourceValidationBuffer [2];
   uint StackContextBuffer [2];
-  uint aEncryptedValue [6];
+  uint EncryptedDataBuffer [6];
   
   OperationStatusCode = *(int *)(ValidationContext + 1);
   SystemCommandArray[0] = OperationResult;
@@ -18565,7 +18565,7 @@ uint64_t ValidateResourceHash(int64_t ResourceContext, uint8_t *ResourceData)
         if ((int)ResourceHash != 0) {
           return ResourceHash;
         }
-        aEncryptedValue[0] = ResourceDataPointer[2];
+        EncryptedDataBuffer[0] = ResourceDataPointer[2];
         ResourceHash = (**(code **)**(uint8_t **)(ObjectContext + 8))
                           (*(uint8_t **)(ObjectContext + 8),aEncryptedValue,4);
         if ((int)ResourceHash != 0) {
