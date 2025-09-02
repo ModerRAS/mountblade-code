@@ -587,7 +587,6 @@ void* DatabaseMemory;
 void* DatabaseHeap;
 void* DatabaseStack;
 void* DatabasePool;
-void* DatabaseConnectionPool;
 void* DatabaseConnectionPoolConfiguration;
 void* DatabaseConnectionPoolStatus;
 void* DatabaseConnectionPoolParams;
@@ -663,16 +662,16 @@ void* SystemConditionVariableBuffer;
 void* SystemBarrierManagerBuffer;
 void* SystemMemoryPoolBuffer;
 void* TaskExecutionQueueBuffer;
-void* SystemStackManagerBuffer;
+void* StackManagerBuffer;
 void* SystemLinkedListBuffer;
 void* SystemHashTableBuffer;
 void* SystemTreeStructureBuffer;
 void* SystemGraphDataBuffer;
-void* SystemCacheManagerBuffer;
+void* CacheManagerBuffer;
 void* SystemNetworkConfigurationBuffer;
 void* SystemResourceMetadataTable;
 void* SystemStatusDataTable;
-void* SystemConfigurationDataTable;
+void* ConfigurationDataTable;
 void* SystemInstancePointerTable;
 void* SystemGraphicsSettingsBuffer;
 void* SystemAudioSettingsBuffer;
@@ -690,12 +689,12 @@ void* SystemConditionVariableTable;
 void* SystemBarrierManagerTable;
 void* SystemMemoryPoolTable;
 void* TaskManagementQueueTable;
-void* SystemStackManagerTable;
+void* StackManagerTable;
 void* SystemLinkedListTable;
 void* SystemHashTable;
 void* SystemTreeStructureTable;
 void* SystemGraphDataTable;
-void* SystemCacheManagerTable;
+void* CacheManagerTable;
 void* SystemNetworkConfigurationTable;
 void* SystemGraphicsSettingsTable;
 void* SystemAudioSettingsTable;
@@ -793,7 +792,7 @@ void* SystemMemoryAllocationBuffer;
 void* SystemThreadSynchronizationBuffer;
 void* SystemEventDispatchBuffer;
 void* SystemTimerReferenceBuffer;
-void* SystemConfigurationDataBuffer;
+void* ConfigurationDataBuffer;
 void* SystemResourceTrackingBuffer;
 void* SystemStateManagementBuffer;
 void* SystemNetworkPacketBuffer;
@@ -938,7 +937,7 @@ void* SystemConditionManagerTable;
 void* SystemBarrierManagerTable;
 void* SystemPoolManagerTable;
 void* SystemQueueManagerTable;
-void* SystemStackManagerTable;
+void* StackManagerTable;
 void* SystemLinkedListTable;
 void* SystemDataBufferMemoryPool;
 void* SystemDataBufferDataCache;
@@ -1032,7 +1031,7 @@ uint8_t SystemDataBufferGuideQueue;
 uint8_t SystemDataBufferLeadQueue;
 uint8_t SystemDataBufferSuperviseQueue;
 uint8_t SystemDataBufferOverseeQueue;
-void* SystemConfigurationDataTable;
+void* ConfigurationDataTable;
 void* SystemMemoryStatusTable;
 void* SystemThreadControlTable;
 void* SystemEventQueueTable;
@@ -1048,7 +1047,6 @@ void* SystemAnimationStateTable;
 void* SystemScriptingContextTable;
 void* SystemFileSystemTable;
 void* SystemScriptingConfigTable;
-void* SystemFileSystemTable;
 void* SystemMemoryConfigTableSecondary;
 void* SystemThreadConfigTableSecondary;
 void* SystemProcessConfigTableSecondary;
@@ -1922,7 +1920,7 @@ uint8_t SystemMemoryConfigTemplateReliable;
  * 设置系统运行所需的配置参数和环境变量
  */
 void InitializeSystemConfiguration(void);
-uint8_t SystemConfigurationDataTemplatePrimary;
+uint8_t ConfigurationDataTemplatePrimary;
 
  /**
  * @brief 设置系统环境
@@ -2264,7 +2262,7 @@ uint8_t ResourceHeap;
 uint8_t ResourceCacheManager;
 uint8_t MemoryScheduler;
 uint8_t MemoryOptimizer;
-uint8_t LogSystemConfigurationData;
+uint8_t LogConfigurationData;
 
  /**
  * @brief 设置日志级别
@@ -2372,8 +2370,8 @@ uint8_t SystemDataPipelinePrimary;
 uint8_t MemoryPoolDescriptorBuffer;
 uint8_t SystemDataProcessorBuffer;
 uint8_t MemoryAllocatorStateBuffer;
-uint8_t SystemConfigurationDataStructurePrimary;
-uint8_t SystemConfigurationDataStructureSecondary;
+uint8_t ConfigurationDataStructurePrimary;
+uint8_t ConfigurationDataStructureSecondary;
 uint8_t SystemResourceTableTemplate;
 uint8_t SystemMemoryMapTemplate;
 uint8_t SystemThreadContextTemplate;
@@ -2655,12 +2653,12 @@ uint8_t SecondaryDataBuffer;
 // 进程上下文 - 用于存储进程相关的上下文信息
 uint8_t ProcessContext;
 uint8_t SystemHeapManager;
-uint8_t SystemStackManager;
+uint8_t StackManager;
 uint8_t ThreadLocalStorage;
-uint8_t SystemGlobalData;
-uint8_t SystemConfigurationData;
-uint8_t SystemRuntimeData;
-uint8_t SystemCacheManager;
+uint8_t GlobalData;
+uint8_t ConfigurationData;
+uint8_t RuntimeData;
+uint8_t CacheManager;
 uint8_t SystemDataBufferPool;
 uint8_t SystemEventTable;
 uint8_t SystemThreadManager;
@@ -65952,7 +65950,7 @@ void Unwind_18090a6e0(void)
   byte encryptionShiftValue;
   
   EnterCriticalSection(0x180c82210);
-  SystemGlobalDataBufferD49238 = 0;
+  GlobalDataBufferD49238 = 0;
   LeaveCriticalSection(0x180c82210);
   if (SystemEventHandle != 0) {
     SetEvent();
@@ -70678,8 +70676,8 @@ void Unwind_18090c540(uint8_t objectContext,int64_t validationContext)
   int64_t MemoryRegion;
   
   if (0 < *(int *)(validationContext + 0x180)) {
-    resourceTablePointer = *(int64_t *)(SystemGlobalDataBufferC86938 + 0x1cd8);
-    if ((*(char *)(SystemGlobalDataBufferC86890 + 0x12e3) != '\0') || (*(char *)(SystemGlobalDataBufferC86890 + 0x12dd) != '\0')
+    resourceTablePointer = *(int64_t *)(GlobalDataBufferC86938 + 0x1cd8);
+    if ((*(char *)(GlobalDataBufferC86890 + 0x12e3) != '\0') || (*(char *)(GlobalDataBufferC86890 + 0x12dd) != '\0')
        ) {
       pLoopOffset = (int64_t *)(resourceTablePointer + 0x80d8 + (int64_t)*(int *)(resourceTablePointer + 0x8088) * 0x20);
       LocalContextData = *pLoopOffset;
@@ -70724,8 +70722,8 @@ void Unwind_18090c550(uint8_t objectContext,int64_t validationContext)
   int64_t MemoryRegion;
   
   if (0 < *(int *)(validationContext + 0x240)) {
-    resourceTablePointer = *(int64_t *)(SystemGlobalDataBufferC86938 + 0x1cd8);
-    if ((*(char *)(SystemGlobalDataBufferC86890 + 0x12e3) != '\0') || (*(char *)(SystemGlobalDataBufferC86890 + 0x12dd) != '\0')
+    resourceTablePointer = *(int64_t *)(GlobalDataBufferC86938 + 0x1cd8);
+    if ((*(char *)(GlobalDataBufferC86890 + 0x12e3) != '\0') || (*(char *)(GlobalDataBufferC86890 + 0x12dd) != '\0')
        ) {
       pLoopOffset = (int64_t *)(resourceTablePointer + 0x80d8 + (int64_t)*(int *)(resourceTablePointer + 0x8088) * 0x20);
       LocalContextData = *pLoopOffset;
@@ -70800,8 +70798,8 @@ void Unwind_18090c590(uint8_t objectContext,int64_t validationContext)
   int64_t MemoryRegion;
   
   if (0 < *(int *)(validationContext + 0x1e0)) {
-    resourceTablePointer = *(int64_t *)(SystemGlobalDataBufferC86938 + 0x1cd8);
-    if ((*(char *)(SystemGlobalDataBufferC86890 + 0x12e3) != '\0') || (*(char *)(SystemGlobalDataBufferC86890 + 0x12dd) != '\0')
+    resourceTablePointer = *(int64_t *)(GlobalDataBufferC86938 + 0x1cd8);
+    if ((*(char *)(GlobalDataBufferC86890 + 0x12e3) != '\0') || (*(char *)(GlobalDataBufferC86890 + 0x12dd) != '\0')
        ) {
       pLoopOffset = (int64_t *)(resourceTablePointer + 0x80d8 + (int64_t)*(int *)(resourceTablePointer + 0x8088) * 0x20);
       LocalContextData = *pLoopOffset;
@@ -70867,8 +70865,8 @@ void Unwind_18090c5c0(uint8_t objectContext,int64_t validationContext)
   int64_t MemoryRegion;
   
   if (0 < *(int *)(validationContext + 0x120)) {
-    resourceTablePointer = *(int64_t *)(SystemGlobalDataBufferC86938 + 0x1cd8);
-    if ((*(char *)(SystemGlobalDataBufferC86890 + 0x12e3) != '\0') || (*(char *)(SystemGlobalDataBufferC86890 + 0x12dd) != '\0')
+    resourceTablePointer = *(int64_t *)(GlobalDataBufferC86938 + 0x1cd8);
+    if ((*(char *)(GlobalDataBufferC86890 + 0x12e3) != '\0') || (*(char *)(GlobalDataBufferC86890 + 0x12dd) != '\0')
        ) {
       pLoopOffset = (int64_t *)(resourceTablePointer + 0x80d8 + (int64_t)*(int *)(resourceTablePointer + 0x8088) * 0x20);
       LocalContextData = *pLoopOffset;
@@ -70913,8 +70911,8 @@ void Unwind_18090c5d0(uint8_t objectContext,int64_t validationContext)
   int64_t MemoryRegion;
   
   if (0 < *(int *)(validationContext + 0x2a0)) {
-    resourceTablePointer = *(int64_t *)(SystemGlobalDataBufferC86938 + 0x1cd8);
-    if ((*(char *)(SystemGlobalDataBufferC86890 + 0x12e3) != '\0') || (*(char *)(SystemGlobalDataBufferC86890 + 0x12dd) != '\0')
+    resourceTablePointer = *(int64_t *)(GlobalDataBufferC86938 + 0x1cd8);
+    if ((*(char *)(GlobalDataBufferC86890 + 0x12e3) != '\0') || (*(char *)(GlobalDataBufferC86890 + 0x12dd) != '\0')
        ) {
       pLoopOffset = (int64_t *)(resourceTablePointer + 0x80d8 + (int64_t)*(int *)(resourceTablePointer + 0x8088) * 0x20);
       LocalContextData = *pLoopOffset;
@@ -70971,8 +70969,8 @@ void Unwind_18090c5f0(uint8_t objectContext,int64_t validationContext)
   int64_t MemoryRegion;
   
   if (0 < *(int *)(validationContext + 0x300)) {
-    resourceTablePointer = *(int64_t *)(SystemGlobalDataBufferC86938 + 0x1cd8);
-    if ((*(char *)(SystemGlobalDataBufferC86890 + 0x12e3) != '\0') || (*(char *)(SystemGlobalDataBufferC86890 + 0x12dd) != '\0')
+    resourceTablePointer = *(int64_t *)(GlobalDataBufferC86938 + 0x1cd8);
+    if ((*(char *)(GlobalDataBufferC86890 + 0x12e3) != '\0') || (*(char *)(GlobalDataBufferC86890 + 0x12dd) != '\0')
        ) {
       pLoopOffset = (int64_t *)(resourceTablePointer + 0x80d8 + (int64_t)*(int *)(resourceTablePointer + 0x8088) * 0x20);
       LocalContextData = *pLoopOffset;
@@ -71017,8 +71015,8 @@ void Unwind_18090c600(uint8_t objectContext,int64_t validationContext)
   int64_t MemoryRegion;
   
   if (0 < *(int *)(validationContext + 0x360)) {
-    resourceTablePointer = *(int64_t *)(SystemGlobalDataBufferC86938 + 0x1cd8);
-    if ((*(char *)(SystemGlobalDataBufferC86890 + 0x12e3) != '\0') || (*(char *)(SystemGlobalDataBufferC86890 + 0x12dd) != '\0')
+    resourceTablePointer = *(int64_t *)(GlobalDataBufferC86938 + 0x1cd8);
+    if ((*(char *)(GlobalDataBufferC86890 + 0x12e3) != '\0') || (*(char *)(GlobalDataBufferC86890 + 0x12dd) != '\0')
        ) {
       pLoopOffset = (int64_t *)(resourceTablePointer + 0x80d8 + (int64_t)*(int *)(resourceTablePointer + 0x8088) * 0x20);
       LocalContextData = *pLoopOffset;
@@ -71706,8 +71704,8 @@ void Unwind_18090ca20(uint8_t objectContext,int64_t validationContext)
   int64_t MemoryRegion;
   
   if (0 < *(int *)(validationContext + 0xd0)) {
-    resourceTablePointer = *(int64_t *)(SystemGlobalDataBufferC86938 + 0x1cd8);
-    if ((*(char *)(SystemGlobalDataBufferC86890 + 0x12e3) != '\0') || (*(char *)(SystemGlobalDataBufferC86890 + 0x12dd) != '\0')
+    resourceTablePointer = *(int64_t *)(GlobalDataBufferC86938 + 0x1cd8);
+    if ((*(char *)(GlobalDataBufferC86890 + 0x12e3) != '\0') || (*(char *)(GlobalDataBufferC86890 + 0x12dd) != '\0')
        ) {
       pLoopOffset = (int64_t *)(resourceTablePointer + 0x80d8 + (int64_t)*(int *)(resourceTablePointer + 0x8088) * 0x20);
       LocalContextData = *pLoopOffset;
@@ -71764,8 +71762,8 @@ void Unwind_18090ca40(uint8_t objectContext,int64_t validationContext)
   int64_t MemoryRegion;
   
   if (0 < *(int *)(validationContext + 0x130)) {
-    resourceTablePointer = *(int64_t *)(SystemGlobalDataBufferC86938 + 0x1cd8);
-    if ((*(char *)(SystemGlobalDataBufferC86890 + 0x12e3) != '\0') || (*(char *)(SystemGlobalDataBufferC86890 + 0x12dd) != '\0')
+    resourceTablePointer = *(int64_t *)(GlobalDataBufferC86938 + 0x1cd8);
+    if ((*(char *)(GlobalDataBufferC86890 + 0x12e3) != '\0') || (*(char *)(GlobalDataBufferC86890 + 0x12dd) != '\0')
        ) {
       pLoopOffset = (int64_t *)(resourceTablePointer + 0x80d8 + (int64_t)*(int *)(resourceTablePointer + 0x8088) * 0x20);
       LocalContextData = *pLoopOffset;
@@ -71834,8 +71832,8 @@ void Unwind_18090ca70(uint8_t objectContext,int64_t validationContext)
   int64_t MemoryRegion;
   
   if (0 < *(int *)(validationContext + 400)) {
-    resourceTablePointer = *(int64_t *)(SystemGlobalDataBufferC86938 + 0x1cd8);
-    if ((*(char *)(SystemGlobalDataBufferC86890 + 0x12e3) != '\0') || (*(char *)(SystemGlobalDataBufferC86890 + 0x12dd) != '\0')
+    resourceTablePointer = *(int64_t *)(GlobalDataBufferC86938 + 0x1cd8);
+    if ((*(char *)(GlobalDataBufferC86890 + 0x12e3) != '\0') || (*(char *)(GlobalDataBufferC86890 + 0x12dd) != '\0')
        ) {
       pLoopOffset = (int64_t *)(resourceTablePointer + 0x80d8 + (int64_t)*(int *)(resourceTablePointer + 0x8088) * 0x20);
       LocalContextData = *pLoopOffset;
@@ -71901,8 +71899,8 @@ void Unwind_18090caa0(uint8_t objectContext,int64_t validationContext)
   int64_t MemoryRegion;
   
   if (0 < *(int *)(validationContext + 0x1f0)) {
-    resourceTablePointer = *(int64_t *)(SystemGlobalDataBufferC86938 + 0x1cd8);
-    if ((*(char *)(SystemGlobalDataBufferC86890 + 0x12e3) != '\0') || (*(char *)(SystemGlobalDataBufferC86890 + 0x12dd) != '\0')
+    resourceTablePointer = *(int64_t *)(GlobalDataBufferC86938 + 0x1cd8);
+    if ((*(char *)(GlobalDataBufferC86890 + 0x12e3) != '\0') || (*(char *)(GlobalDataBufferC86890 + 0x12dd) != '\0')
        ) {
       pLoopOffset = (int64_t *)(resourceTablePointer + 0x80d8 + (int64_t)*(int *)(resourceTablePointer + 0x8088) * 0x20);
       LocalContextData = *pLoopOffset;
@@ -71968,8 +71966,8 @@ void Unwind_18090cad0(uint8_t objectContext,int64_t validationContext)
   int64_t MemoryRegion;
   
   if (0 < *(int *)(validationContext + 0x250)) {
-    resourceTablePointer = *(int64_t *)(SystemGlobalDataBufferC86938 + 0x1cd8);
-    if ((*(char *)(SystemGlobalDataBufferC86890 + 0x12e3) != '\0') || (*(char *)(SystemGlobalDataBufferC86890 + 0x12dd) != '\0')
+    resourceTablePointer = *(int64_t *)(GlobalDataBufferC86938 + 0x1cd8);
+    if ((*(char *)(GlobalDataBufferC86890 + 0x12e3) != '\0') || (*(char *)(GlobalDataBufferC86890 + 0x12dd) != '\0')
        ) {
       pLoopOffset = (int64_t *)(resourceTablePointer + 0x80d8 + (int64_t)*(int *)(resourceTablePointer + 0x8088) * 0x20);
       LocalContextData = *pLoopOffset;
@@ -72035,8 +72033,8 @@ void Unwind_18090cb00(uint8_t objectContext,int64_t validationContext)
   int64_t MemoryRegion;
   
   if (0 < *(int *)(validationContext + 0x2b0)) {
-    resourceTablePointer = *(int64_t *)(SystemGlobalDataBufferC86938 + 0x1cd8);
-    if ((*(char *)(SystemGlobalDataBufferC86890 + 0x12e3) != '\0') || (*(char *)(SystemGlobalDataBufferC86890 + 0x12dd) != '\0')
+    resourceTablePointer = *(int64_t *)(GlobalDataBufferC86938 + 0x1cd8);
+    if ((*(char *)(GlobalDataBufferC86890 + 0x12e3) != '\0') || (*(char *)(GlobalDataBufferC86890 + 0x12dd) != '\0')
        ) {
       pLoopOffset = (int64_t *)(resourceTablePointer + 0x80d8 + (int64_t)*(int *)(resourceTablePointer + 0x8088) * 0x20);
       LocalContextData = *pLoopOffset;
@@ -72090,8 +72088,8 @@ void Unwind_18090cb20(uint8_t objectContext,int64_t validationContext)
   int64_t MemoryRegion;
   
   if (0 < *(int *)(validationContext + 0x310)) {
-    resourceTablePointer = *(int64_t *)(SystemGlobalDataBufferC86938 + 0x1cd8);
-    if ((*(char *)(SystemGlobalDataBufferC86890 + 0x12e3) != '\0') || (*(char *)(SystemGlobalDataBufferC86890 + 0x12dd) != '\0')
+    resourceTablePointer = *(int64_t *)(GlobalDataBufferC86938 + 0x1cd8);
+    if ((*(char *)(GlobalDataBufferC86890 + 0x12e3) != '\0') || (*(char *)(GlobalDataBufferC86890 + 0x12dd) != '\0')
        ) {
       pLoopOffset = (int64_t *)(resourceTablePointer + 0x80d8 + (int64_t)*(int *)(resourceTablePointer + 0x8088) * 0x20);
       LocalContextData = *pLoopOffset;
@@ -72145,8 +72143,8 @@ void Unwind_18090cb40(uint8_t objectContext,int64_t validationContext)
   int64_t MemoryRegion;
   
   if (0 < *(int *)(validationContext + 0x4f0)) {
-    resourceTablePointer = *(int64_t *)(SystemGlobalDataBufferC86938 + 0x1cd8);
-    if ((*(char *)(SystemGlobalDataBufferC86890 + 0x12e3) != '\0') || (*(char *)(SystemGlobalDataBufferC86890 + 0x12dd) != '\0')
+    resourceTablePointer = *(int64_t *)(GlobalDataBufferC86938 + 0x1cd8);
+    if ((*(char *)(GlobalDataBufferC86890 + 0x12e3) != '\0') || (*(char *)(GlobalDataBufferC86890 + 0x12dd) != '\0')
        ) {
       pLoopOffset = (int64_t *)(resourceTablePointer + 0x80d8 + (int64_t)*(int *)(resourceTablePointer + 0x8088) * 0x20);
       LocalContextData = *pLoopOffset;
@@ -72203,8 +72201,8 @@ void Unwind_18090cb60(uint8_t objectContext,int64_t validationContext)
   int64_t MemoryRegion;
   
   if (0 < *(int *)(validationContext + 0x370)) {
-    resourceTablePointer = *(int64_t *)(SystemGlobalDataBufferC86938 + 0x1cd8);
-    if ((*(char *)(SystemGlobalDataBufferC86890 + 0x12e3) != '\0') || (*(char *)(SystemGlobalDataBufferC86890 + 0x12dd) != '\0')
+    resourceTablePointer = *(int64_t *)(GlobalDataBufferC86938 + 0x1cd8);
+    if ((*(char *)(GlobalDataBufferC86890 + 0x12e3) != '\0') || (*(char *)(GlobalDataBufferC86890 + 0x12dd) != '\0')
        ) {
       pLoopOffset = (int64_t *)(resourceTablePointer + 0x80d8 + (int64_t)*(int *)(resourceTablePointer + 0x8088) * 0x20);
       LocalContextData = *pLoopOffset;
@@ -72258,8 +72256,8 @@ void Unwind_18090cb80(uint8_t objectContext,int64_t validationContext)
   int64_t MemoryRegion;
   
   if (0 < *(int *)(validationContext + 0x3d0)) {
-    resourceTablePointer = *(int64_t *)(SystemGlobalDataBufferC86938 + 0x1cd8);
-    if ((*(char *)(SystemGlobalDataBufferC86890 + 0x12e3) != '\0') || (*(char *)(SystemGlobalDataBufferC86890 + 0x12dd) != '\0')
+    resourceTablePointer = *(int64_t *)(GlobalDataBufferC86938 + 0x1cd8);
+    if ((*(char *)(GlobalDataBufferC86890 + 0x12e3) != '\0') || (*(char *)(GlobalDataBufferC86890 + 0x12dd) != '\0')
        ) {
       pLoopOffset = (int64_t *)(resourceTablePointer + 0x80d8 + (int64_t)*(int *)(resourceTablePointer + 0x8088) * 0x20);
       LocalContextData = *pLoopOffset;
@@ -72349,8 +72347,8 @@ void Unwind_18090cbd0(uint8_t objectContext,int64_t validationContext)
   int64_t MemoryRegion;
   
   if (0 < *(int *)(validationContext + 0x430)) {
-    resourceTablePointer = *(int64_t *)(SystemGlobalDataBufferC86938 + 0x1cd8);
-    if ((*(char *)(SystemGlobalDataBufferC86890 + 0x12e3) != '\0') || (*(char *)(SystemGlobalDataBufferC86890 + 0x12dd) != '\0')
+    resourceTablePointer = *(int64_t *)(GlobalDataBufferC86938 + 0x1cd8);
+    if ((*(char *)(GlobalDataBufferC86890 + 0x12e3) != '\0') || (*(char *)(GlobalDataBufferC86890 + 0x12dd) != '\0')
        ) {
       pLoopOffset = (int64_t *)(resourceTablePointer + 0x80d8 + (int64_t)*(int *)(resourceTablePointer + 0x8088) * 0x20);
       LocalContextData = *pLoopOffset;
@@ -72416,8 +72414,8 @@ void Unwind_18090cc00(uint8_t objectContext,int64_t validationContext)
   int64_t MemoryRegion;
   
   if (0 < *(int *)(validationContext + 0x490)) {
-    resourceTablePointer = *(int64_t *)(SystemGlobalDataBufferC86938 + 0x1cd8);
-    if ((*(char *)(SystemGlobalDataBufferC86890 + 0x12e3) != '\0') || (*(char *)(SystemGlobalDataBufferC86890 + 0x12dd) != '\0')
+    resourceTablePointer = *(int64_t *)(GlobalDataBufferC86938 + 0x1cd8);
+    if ((*(char *)(GlobalDataBufferC86890 + 0x12e3) != '\0') || (*(char *)(GlobalDataBufferC86890 + 0x12dd) != '\0')
        ) {
       pLoopOffset = (int64_t *)(resourceTablePointer + 0x80d8 + (int64_t)*(int *)(resourceTablePointer + 0x8088) * 0x20);
       LocalContextData = *pLoopOffset;
@@ -72582,8 +72580,8 @@ void Unwind_18090cce0(uint8_t objectContext,int64_t validationContext)
   int64_t MemoryRegion;
   
   if (0 < *(int *)(validationContext + 0x50)) {
-    resourceTablePointer = *(int64_t *)(SystemGlobalDataBufferC86938 + 0x1cd8);
-    if ((*(char *)(SystemGlobalDataBufferC86890 + 0x12e3) != '\0') || (*(char *)(SystemGlobalDataBufferC86890 + 0x12dd) != '\0')
+    resourceTablePointer = *(int64_t *)(GlobalDataBufferC86938 + 0x1cd8);
+    if ((*(char *)(GlobalDataBufferC86890 + 0x12e3) != '\0') || (*(char *)(GlobalDataBufferC86890 + 0x12dd) != '\0')
        ) {
       pLoopOffset = (int64_t *)(resourceTablePointer + 0x80d8 + (int64_t)*(int *)(resourceTablePointer + 0x8088) * 0x20);
       LocalContextData = *pLoopOffset;
@@ -77869,8 +77867,8 @@ void Unwind_18090e760(uint8_t objectContext,int64_t validationContext)
   int64_t MemoryRegion;
   
   if (0 < *(int *)(validationContext + 0x70)) {
-    resourceTablePointer = *(int64_t *)(SystemGlobalDataBufferC86938 + 0x1cd8);
-    if ((*(char *)(SystemGlobalDataBufferC86890 + 0x12e3) != '\0') || (*(char *)(SystemGlobalDataBufferC86890 + 0x12dd) != '\0')
+    resourceTablePointer = *(int64_t *)(GlobalDataBufferC86938 + 0x1cd8);
+    if ((*(char *)(GlobalDataBufferC86890 + 0x12e3) != '\0') || (*(char *)(GlobalDataBufferC86890 + 0x12dd) != '\0')
        ) {
       pLoopOffset = (int64_t *)(resourceTablePointer + 0x80d8 + (int64_t)*(int *)(resourceTablePointer + 0x8088) * 0x20);
       LocalContextData = *pLoopOffset;
@@ -77927,8 +77925,8 @@ void Unwind_18090e7a0(uint8_t objectContext,int64_t validationContext)
   int64_t MemoryRegion;
   
   if (0 < *(int *)(validationContext + 0x1a0)) {
-    resourceTablePointer = *(int64_t *)(SystemGlobalDataBufferC86938 + 0x1cd8);
-    if ((*(char *)(SystemGlobalDataBufferC86890 + 0x12e3) != '\0') || (*(char *)(SystemGlobalDataBufferC86890 + 0x12dd) != '\0')
+    resourceTablePointer = *(int64_t *)(GlobalDataBufferC86938 + 0x1cd8);
+    if ((*(char *)(GlobalDataBufferC86890 + 0x12e3) != '\0') || (*(char *)(GlobalDataBufferC86890 + 0x12dd) != '\0')
        ) {
       pLoopOffset = (int64_t *)(resourceTablePointer + 0x80d8 + (int64_t)*(int *)(resourceTablePointer + 0x8088) * 0x20);
       LocalContextData = *pLoopOffset;
@@ -77973,8 +77971,8 @@ void Unwind_18090e7b0(uint8_t objectContext,int64_t validationContext)
   int64_t MemoryRegion;
   
   if (0 < *(int *)(validationContext + 0xa0)) {
-    resourceTablePointer = *(int64_t *)(SystemGlobalDataBufferC86938 + 0x1cd8);
-    if ((*(char *)(SystemGlobalDataBufferC86890 + 0x12e3) != '\0') || (*(char *)(SystemGlobalDataBufferC86890 + 0x12dd) != '\0')
+    resourceTablePointer = *(int64_t *)(GlobalDataBufferC86938 + 0x1cd8);
+    if ((*(char *)(GlobalDataBufferC86890 + 0x12e3) != '\0') || (*(char *)(GlobalDataBufferC86890 + 0x12dd) != '\0')
        ) {
       pLoopOffset = (int64_t *)(resourceTablePointer + 0x80d8 + (int64_t)*(int *)(resourceTablePointer + 0x8088) * 0x20);
       LocalContextData = *pLoopOffset;
@@ -78019,8 +78017,8 @@ void Unwind_18090e7c0(uint8_t objectContext,int64_t validationContext)
   int64_t MemoryRegion;
   
   if (0 < *(int *)(validationContext + 0x100)) {
-    resourceTablePointer = *(int64_t *)(SystemGlobalDataBufferC86938 + 0x1cd8);
-    if ((*(char *)(SystemGlobalDataBufferC86890 + 0x12e3) != '\0') || (*(char *)(SystemGlobalDataBufferC86890 + 0x12dd) != '\0')
+    resourceTablePointer = *(int64_t *)(GlobalDataBufferC86938 + 0x1cd8);
+    if ((*(char *)(GlobalDataBufferC86890 + 0x12e3) != '\0') || (*(char *)(GlobalDataBufferC86890 + 0x12dd) != '\0')
        ) {
       pLoopOffset = (int64_t *)(resourceTablePointer + 0x80d8 + (int64_t)*(int *)(resourceTablePointer + 0x8088) * 0x20);
       LocalContextData = *pLoopOffset;
@@ -78065,8 +78063,8 @@ void Unwind_18090e7d0(uint8_t objectContext,int64_t validationContext)
   int64_t MemoryRegion;
   
   if (0 < *(int *)(validationContext + 0x60)) {
-    resourceTablePointer = *(int64_t *)(SystemGlobalDataBufferC86938 + 0x1cd8);
-    if ((*(char *)(SystemGlobalDataBufferC86890 + 0x12e3) != '\0') || (*(char *)(SystemGlobalDataBufferC86890 + 0x12dd) != '\0')
+    resourceTablePointer = *(int64_t *)(GlobalDataBufferC86938 + 0x1cd8);
+    if ((*(char *)(GlobalDataBufferC86890 + 0x12e3) != '\0') || (*(char *)(GlobalDataBufferC86890 + 0x12dd) != '\0')
        ) {
       pLoopOffset = (int64_t *)(resourceTablePointer + 0x80d8 + (int64_t)*(int *)(resourceTablePointer + 0x8088) * 0x20);
       LocalContextData = *pLoopOffset;
@@ -78111,8 +78109,8 @@ void Unwind_18090e7e0(uint8_t objectContext,int64_t validationContext)
   int64_t MemoryRegion;
   
   if (0 < *(int *)(validationContext + 0x90)) {
-    resourceTablePointer = *(int64_t *)(SystemGlobalDataBufferC86938 + 0x1cd8);
-    if ((*(char *)(SystemGlobalDataBufferC86890 + 0x12e3) != '\0') || (*(char *)(SystemGlobalDataBufferC86890 + 0x12dd) != '\0')
+    resourceTablePointer = *(int64_t *)(GlobalDataBufferC86938 + 0x1cd8);
+    if ((*(char *)(GlobalDataBufferC86890 + 0x12e3) != '\0') || (*(char *)(GlobalDataBufferC86890 + 0x12dd) != '\0')
        ) {
       pLoopOffset = (int64_t *)(resourceTablePointer + 0x80d8 + (int64_t)*(int *)(resourceTablePointer + 0x8088) * 0x20);
       LocalContextData = *pLoopOffset;
@@ -78157,8 +78155,8 @@ void Unwind_18090e7f0(uint8_t objectContext,int64_t validationContext)
   int64_t MemoryRegion;
   
   if (0 < *(int *)(validationContext + 0xf0)) {
-    resourceTablePointer = *(int64_t *)(SystemGlobalDataBufferC86938 + 0x1cd8);
-    if ((*(char *)(SystemGlobalDataBufferC86890 + 0x12e3) != '\0') || (*(char *)(SystemGlobalDataBufferC86890 + 0x12dd) != '\0')
+    resourceTablePointer = *(int64_t *)(GlobalDataBufferC86938 + 0x1cd8);
+    if ((*(char *)(GlobalDataBufferC86890 + 0x12e3) != '\0') || (*(char *)(GlobalDataBufferC86890 + 0x12dd) != '\0')
        ) {
       pLoopOffset = (int64_t *)(resourceTablePointer + 0x80d8 + (int64_t)*(int *)(resourceTablePointer + 0x8088) * 0x20);
       LocalContextData = *pLoopOffset;
@@ -78203,8 +78201,8 @@ void Unwind_18090e800(uint8_t objectContext,int64_t validationContext)
   int64_t MemoryRegion;
   
   if (0 < *(int *)(validationContext + 0x1b0)) {
-    resourceTablePointer = *(int64_t *)(SystemGlobalDataBufferC86938 + 0x1cd8);
-    if ((*(char *)(SystemGlobalDataBufferC86890 + 0x12e3) != '\0') || (*(char *)(SystemGlobalDataBufferC86890 + 0x12dd) != '\0')
+    resourceTablePointer = *(int64_t *)(GlobalDataBufferC86938 + 0x1cd8);
+    if ((*(char *)(GlobalDataBufferC86890 + 0x12e3) != '\0') || (*(char *)(GlobalDataBufferC86890 + 0x12dd) != '\0')
        ) {
       pLoopOffset = (int64_t *)(resourceTablePointer + 0x80d8 + (int64_t)*(int *)(resourceTablePointer + 0x8088) * 0x20);
       LocalContextData = *pLoopOffset;
@@ -78261,8 +78259,8 @@ void Unwind_18090e820(uint8_t objectContext,int64_t validationContext)
   int64_t MemoryRegion;
   
   if (0 < *(int *)(validationContext + 0x210)) {
-    resourceTablePointer = *(int64_t *)(SystemGlobalDataBufferC86938 + 0x1cd8);
-    if ((*(char *)(SystemGlobalDataBufferC86890 + 0x12e3) != '\0') || (*(char *)(SystemGlobalDataBufferC86890 + 0x12dd) != '\0')
+    resourceTablePointer = *(int64_t *)(GlobalDataBufferC86938 + 0x1cd8);
+    if ((*(char *)(GlobalDataBufferC86890 + 0x12e3) != '\0') || (*(char *)(GlobalDataBufferC86890 + 0x12dd) != '\0')
        ) {
       pLoopOffset = (int64_t *)(resourceTablePointer + 0x80d8 + (int64_t)*(int *)(resourceTablePointer + 0x8088) * 0x20);
       LocalContextData = *pLoopOffset;
@@ -78319,8 +78317,8 @@ void Unwind_18090e840(uint8_t objectContext,int64_t validationContext)
   int64_t MemoryRegion;
   
   if (0 < *(int *)(validationContext + 0x270)) {
-    resourceTablePointer = *(int64_t *)(SystemGlobalDataBufferC86938 + 0x1cd8);
-    if ((*(char *)(SystemGlobalDataBufferC86890 + 0x12e3) != '\0') || (*(char *)(SystemGlobalDataBufferC86890 + 0x12dd) != '\0')
+    resourceTablePointer = *(int64_t *)(GlobalDataBufferC86938 + 0x1cd8);
+    if ((*(char *)(GlobalDataBufferC86890 + 0x12e3) != '\0') || (*(char *)(GlobalDataBufferC86890 + 0x12dd) != '\0')
        ) {
       pLoopOffset = (int64_t *)(resourceTablePointer + 0x80d8 + (int64_t)*(int *)(resourceTablePointer + 0x8088) * 0x20);
       LocalContextData = *pLoopOffset;
@@ -78377,8 +78375,8 @@ void Unwind_18090e860(uint8_t objectContext,int64_t validationContext)
   int64_t MemoryRegion;
   
   if (0 < *(int *)(validationContext + 0x2d0)) {
-    resourceTablePointer = *(int64_t *)(SystemGlobalDataBufferC86938 + 0x1cd8);
-    if ((*(char *)(SystemGlobalDataBufferC86890 + 0x12e3) != '\0') || (*(char *)(SystemGlobalDataBufferC86890 + 0x12dd) != '\0')
+    resourceTablePointer = *(int64_t *)(GlobalDataBufferC86938 + 0x1cd8);
+    if ((*(char *)(GlobalDataBufferC86890 + 0x12e3) != '\0') || (*(char *)(GlobalDataBufferC86890 + 0x12dd) != '\0')
        ) {
       pLoopOffset = (int64_t *)(resourceTablePointer + 0x80d8 + (int64_t)*(int *)(resourceTablePointer + 0x8088) * 0x20);
       LocalContextData = *pLoopOffset;
@@ -78816,8 +78814,8 @@ void Unwind_18090eb00(uint8_t objectContext,int64_t validationContext)
   int64_t MemoryRegion;
   
   if (0 < *(int *)(validationContext + 0x140)) {
-    resourceTablePointer = *(int64_t *)(SystemGlobalDataBufferC86938 + 0x1cd8);
-    if ((*(char *)(SystemGlobalDataBufferC86890 + 0x12e3) != '\0') || (*(char *)(SystemGlobalDataBufferC86890 + 0x12dd) != '\0')
+    resourceTablePointer = *(int64_t *)(GlobalDataBufferC86938 + 0x1cd8);
+    if ((*(char *)(GlobalDataBufferC86890 + 0x12e3) != '\0') || (*(char *)(GlobalDataBufferC86890 + 0x12dd) != '\0')
        ) {
       pLoopOffset = (int64_t *)(resourceTablePointer + 0x80d8 + (int64_t)*(int *)(resourceTablePointer + 0x8088) * 0x20);
       LocalContextData = *pLoopOffset;
@@ -91946,7 +91944,7 @@ void InitializeSystemDataStructureC(void)
 void InitializeSystemDataStructureD(void)
 
 {
-  SystemGlobalDataReference = &SystemConfigurationTable;
+  GlobalDataReference = &SystemConfigurationTable;
   return;
 }
 
@@ -94517,10 +94515,10 @@ void ReleaseResourceHashTable(void)
     SystemConfigurationFlag = 0;
     ResourceHashIndex = 0;
   }
-  SystemConfigurationHandler(&SystemConfigurationData);
+  SystemConfigurationHandler(&ConfigurationData);
                     // WARNING: Could not recover jumptable at 0x0001808ffc83. Too many branches
                     // WARNING: Treating indirect jump as call
-  free(SystemConfigurationData,0x40);
+  free(ConfigurationData,0x40);
   return;
 }
 
