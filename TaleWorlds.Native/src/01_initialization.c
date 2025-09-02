@@ -51761,12 +51761,12 @@ LAB_18007113f:
     puStack_d8 = &SystemMemoryAllocatorReference;
   }
   pointerToUnsigned10 = puStack_110;
-  FUN_180062380(SystemContextManagerPointer,5,0xffffffff00000000,&UNK_1809ff550);
+  FUN_180062380(SystemContextManagerPointer,5,0xffffffff00000000,&SystemConfigurationDataBufferA);
   puStack_168 = &SystemStringTemplate;
   if (systemMemoryContext != (uint8_t *)0x0) {
     puStack_168 = systemMemoryContext;
   }
-  FUN_180062380(SystemContextManagerPointer,4,0xffffffff00000000,&UNK_1809ff5b0);
+  FUN_180062380(SystemContextManagerPointer,4,0xffffffff00000000,&SystemConfigurationDataBufferB);
   puStack_168 = &SystemStringTemplate;
   if (pointerToUnsigned10 != (uint8_t *)0x0) {
     puStack_168 = pointerToUnsigned10;
@@ -51791,7 +51791,7 @@ LAB_18007113f:
       }
     }
     if ((SystemInitializationFlag == 0) || (*(int *)(SystemInitializationFlag + 0x168) == 2)) {
-      FUN_180062380(SystemContextManagerPointer,4,0xffffffff00000000,&UNK_1809ff688);
+      FUN_180062380(SystemContextManagerPointer,4,0xffffffff00000000,&SystemSecurityDataBuffer);
       InitializeSystemManager();
       systemIndex = IsDebuggerPresent();
       if ((systemIndex != 0) && (SystemDebugFlag == '\0')) {
@@ -52179,7 +52179,7 @@ LAB_180071e34:
 LAB_180071eb0:
   *(void*2 *)(puStack_88 + uStack_80) = 10;
   uStack_80 = creationFlags + 0xe;
-  FUN_180062380(SystemContextManagerPointer,5,0xffffffff00000000,&UNK_1809ff550);
+  FUN_180062380(SystemContextManagerPointer,5,0xffffffff00000000,&SystemConfigurationDataBufferA);
   newThreadLocalStorage = &SystemStringTemplate;
   if (puStack_88 != (uint8_t *)0x0) {
     newThreadLocalStorage = puStack_88;
@@ -52673,7 +52673,7 @@ LAB_1800729bd:
         puStack_148 = puStack_130;
       }
       uStack_128 = hashValue + 0x6d;
-      FUN_180062380(SystemContextManagerPointer,4,0xffffffff00000000,&UNK_1809ff5b0);
+      FUN_180062380(SystemContextManagerPointer,4,0xffffffff00000000,&SystemConfigurationDataBufferB);
       puStack_148 = &SystemStringTemplate;
       if (pointerToUnsigned10 != (void* *)0x0) {
         puStack_148 = pointerToUnsigned10;
