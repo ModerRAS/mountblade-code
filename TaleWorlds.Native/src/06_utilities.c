@@ -63822,7 +63822,16 @@ void CleanupResourceTable(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180908670(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 初始化系统上下文
+ * 
+ * 该函数负责初始化系统上下文结构
+ * 设置系统运行所需的初始状态和配置
+ * 
+ * @param ObjectContext 对象上下文，指向要初始化的对象上下文
+ * @param ValidationContext 验证上下文，包含验证所需的数据和状态
+ */
+void UnwindSystemContextInitialize(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t *processPointer;
@@ -63854,7 +63863,16 @@ void Unwind_180908670(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180908690(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 验证系统上下文
+ * 
+ * 该函数负责验证系统上下文的有效性
+ * 检查上下文数据的完整性和一致性
+ * 
+ * @param ObjectContext 对象上下文，指向要验证的对象上下文
+ * @param ValidationContext 验证上下文，包含验证所需的数据和状态
+ */
+void UnwindSystemContextValidate(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t *processPointer;
@@ -63868,7 +63886,7 @@ void Unwind_180908690(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_1809086b0(uint8_t ObjectContext,int64_t ValidationContext)
+void UnwindSystemContextCleanup(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t *processPointer;
@@ -63882,7 +63900,7 @@ void Unwind_1809086b0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_1809086d0(uint8_t ObjectContext,int64_t ValidationContext)
+void UnwindSystemContextReset(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t *processPointer;
@@ -63912,7 +63930,7 @@ void DestroyMutexInSitu(void)
 
 
 
-void Unwind_180908710(uint8_t ObjectContext,int64_t ValidationContext)
+void UnwindSystemContextActivate(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t *processPointer;
@@ -63926,7 +63944,7 @@ void Unwind_180908710(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180908730(uint8_t ObjectContext,int64_t ValidationContext)
+void UnwindSystemContextDeactivate(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t *processPointer;
@@ -63964,7 +63982,7 @@ void ClearMemoryCache(void)
 
 
 
-void Unwind_180908760(uint8_t ObjectContext,int64_t ValidationContext)
+void UnwindSystemContextSuspend(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   _Mtx_destroy_in_situ(*(uint8_t *)(ValidationContext + 0x60));
