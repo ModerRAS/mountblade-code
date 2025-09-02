@@ -5773,7 +5773,7 @@ code_r0x0001802a1ade:
     break;
   case 0x27:
     iStack_2c8 = param_4;
-    FUN_1802a2ab0(ModuleInitializationResult0,&uStack_2b0,param_1,&uStackX_18);
+    ProcessModuleConfigurationData(ModuleInitializationResult0,&uStack_2b0,param_1,&uStackX_18);
     fVar16 = 1.5259022e-05;
     *param_2 = (float)(ushort)uStack_2b0 * 1.5259022e-05;
     uVar6 = (uint)uStack_2b0._2_2_;
@@ -5781,7 +5781,7 @@ code_r0x0001802a1ade:
     goto code_r0x0001802a16a1;
   case 0x28:
     iStack_2c8 = param_4;
-    FUN_1802a2d10(ModuleInitializationResult0,&uStack_2b0,param_1,&uStackX_18);
+    InitializeModuleConfiguration(ModuleInitializationResult0,&uStack_2b0,param_1,&uStackX_18);
     fVar16 = 0.003921569;
     *param_2 = (float)(byte)uStack_2b0 * 0.003921569;
     uVar6 = (uint)uStack_2b0._1_1_;
@@ -5789,7 +5789,7 @@ code_r0x0001802a1ade:
     goto code_r0x0001802a16a1;
   case 0x29:
     iStack_2c8 = param_4;
-    FUN_1802a2d10(ModuleInitializationResult0,&uStack_2b0,param_1,&uStackX_18);
+    InitializeModuleConfiguration(ModuleInitializationResult0,&uStack_2b0,param_1,&uStackX_18);
 code_r0x0001802a1677:
     fVar16 = 0.003921569;
     *param_2 = (float)uStack_2b0._2_1_ * 0.003921569;
