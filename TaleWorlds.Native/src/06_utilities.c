@@ -7866,10 +7866,10 @@ uint8_t ValidateObjectContextAndProcessParameterizedComplexFloatOperation(int64_
   }
   if ((*(byte *)(ResourceIndex + 0x34) & 0x11) == 0) {
     floatComparisonResult = *(float *)(ObjectContextParameter + 0x20);
-    FourthFloatValue = *(float *)(ResourceIndex + 0x38);
+    fourthFloatResult = *(float *)(ResourceIndex + 0x38);
     if ((*(float *)(ResourceIndex + 0x38) <= inputFloatValue) &&
-       (FourthFloatValue = *(float *)(ResourceIndex + 0x3c), inputFloatValue <= *(float *)(ResourceIndex + 0x3c))) {
-      FourthFloatValue = inputFloatValue;
+       (fourthFloatResult = *(float *)(ResourceIndex + 0x3c), inputFloatValue <= *(float *)(ResourceIndex + 0x3c))) {
+      fourthFloatResult = inputFloatValue;
     }
     *(float *)(ObjectContextParameter + 0x20) = floatValue6;
     *(float *)(ResourceTablePointer + 4) = floatValue6;
@@ -21533,7 +21533,7 @@ LAB_18089c40a:
           pinputFloatValue4 = (float *)AllocateMemoryBlock();
           calculatedFloatResult = *pinputFloatValue4;
           ThirdFloatValue = pinputFloatValue4[1];
-          FourthFloatValue = pinputFloatValue4[2];
+          fourthFloatResult = pinputFloatValue4[2];
           floatValue7 = pinputFloatValue4[3];
           *(float *)(LocalContextData7 + -0x14) = calculatedFloatResult;
           *(float *)(LocalContextData7 + -0x10) = floatValue5;
@@ -21755,7 +21755,7 @@ LAB_18089c40a:
           MemoryFloatValue = *pinputFloatValue3;
           SecondFloatValue = pinputFloatValue3[1];
           ThirdFloatValue = pinputFloatValue3[2];
-          FourthFloatValue = pinputFloatValue3[3];
+          fourthFloatResult = pinputFloatValue3[3];
           *(float *)(LocalContextData6 + -0x14) = MemoryFloatValue;
           *(float *)(LocalContextData6 + -0x10) = floatValue4;
           *(float *)(LocalContextData6 + -0xc) = floatValue5;
