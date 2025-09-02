@@ -64672,8 +64672,16 @@ void ProcessSystemResourceAllocation(long long *SystemResourceManager)
 
 
 
-// 函数: void FUN_18007ba60(long long SystemResourceManager)
-void FUN_18007ba60(long long SystemResourceManager)
+/**
+ * @brief 释放系统资源句柄
+ * 
+ * 释放系统资源的句柄，清理相关资源并更新状态。
+ * 该函数负责安全地释放资源句柄，防止资源泄漏。
+ * 
+ * @param SystemResourceManager 资源管理器指针，包含要释放的资源句柄
+ * @return 无返回值
+ */
+void ReleaseSystemResourceHandle(long long SystemResourceManager)
 
 {
   if (*(long long **)(SystemResourceManager + 0x18) != (long long *)0x0) {
