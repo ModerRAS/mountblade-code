@@ -9767,19 +9767,19 @@ Label_18060a500:
                     }
                     NetworkRequestStatus = ValidateSystemConfiguration(aStackParameter1,&SystemConfigValidationParameterA28);
                     if (NetworkRequestStatus != '\0') goto Label_180609cf8;
-                    NetworkRequestStatus = ValidateSystemConfiguration(aStackParameter1,&UNK_180a39a18);
+                    NetworkRequestStatus = ValidateSystemConfiguration(aStackParameter1,&NetworkSystemConfigParam1);
                     if (NetworkRequestStatus != '\0') goto Label_18060ad3e;
-                    NetworkRequestStatus = ValidateSystemConfiguration(aStackParameter1,&UNK_180a39a60);
+                    NetworkRequestStatus = ValidateSystemConfiguration(aStackParameter1,&NetworkSystemConfigParam2);
                     if (NetworkRequestStatus != '\0') goto Label_180609d2e;
-                    NetworkRequestStatus = ValidateSystemConfiguration(aStackParameter1,&UNK_180a39a40);
+                    NetworkRequestStatus = ValidateSystemConfiguration(aStackParameter1,&NetworkSystemConfigParam3);
                     if (NetworkRequestStatus != '\0') goto Label_180609d4c;
-                    NetworkRequestStatus = ValidateSystemConfiguration(aStackParameter1,&UNK_180a399c0);
+                    NetworkRequestStatus = ValidateSystemConfiguration(aStackParameter1,&NetworkSystemConfigParam4);
                     if (NetworkRequestStatus != '\0') goto Label_180609d6a;
-                    NetworkRequestStatus = ValidateSystemConfiguration(aStackParameter1,&UNK_180a399a8);
+                    NetworkRequestStatus = ValidateSystemConfiguration(aStackParameter1,&NetworkSystemConfigParam5);
                     if (NetworkRequestStatus != '\0') goto Label_18060acd8;
-                    NetworkRequestStatus = ValidateSystemConfiguration(aStackParameter1,&UNK_180a399f0);
+                    NetworkRequestStatus = ValidateSystemConfiguration(aStackParameter1,&NetworkSystemConfigParam6);
                     if (NetworkRequestStatus != '\0') goto Label_18060a114;
-                    NetworkRequestStatus = ValidateSystemConfiguration(aStackParameter1,&UNK_180a399e0);
+                    NetworkRequestStatus = ValidateSystemConfiguration(aStackParameter1,&NetworkSystemConfigParam7);
                     if (NetworkRequestStatus != '\0') goto Label_18060a91e;
                     NetworkRequestStatus = ValidateSystemConfiguration(aStackParameter1,&UNK_180a39af0);
                     if (NetworkRequestStatus != '\0') goto Label_18060ba49;
