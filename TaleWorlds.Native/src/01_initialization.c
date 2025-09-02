@@ -12164,7 +12164,7 @@ void InitializeSystemStringProcessor(void)
   SystemStringProcessingBuffer[0] = 0;
   SystemConfigurationFlag = 0x16;
   strcpy_s(SystemStringProcessingBuffer,0x80,&SystemSecurityStringTemplate,SystemRegisterValue,0xfffffffffffffffe);
-  SystemMemoryAllocationTableEntry011 = SystemMemoryAllocationFunction(&SystemStackPointerA0);
+  SystemMemoryAllocationTableEntry011 = SystemMemoryAllocationFunction(&SystemStackPointerPrimary);
   return;
 }
 
@@ -18565,18 +18565,18 @@ void InitializeSystemInfoAndUserEnvironment(void)
   int operationResult;
   void* allocationFlags;
   long long *controllerPtr;
-  uint8_t SystemStackBuffer248 [32];
+  uint8_t SystemEncryptionBuffer [32];
   void* *SystemConfigurationTemplatePointer;
   void* *SystemStringTemplatePointer;
-  void* *SystemStringTemplatePointer2;
+  void* *SystemStringTemplatePointerSecondary;
   long long *SystemMemoryOffsetPointer;
   uint32_t GameControllerStatusFlag;
   void* *SystemGlobalDataReferencePointer;
   void* *SystemFunctionPointer;
   uint32_t SystemInitializationFlag;
   ulong long SystemFlags;
-  void* *SystemGlobalDataReferencePointer2;
-  void* *SystemFunctionPointer2;
+  void* *SystemGlobalDataReferencePointerSecondary;
+  void* *SystemFunctionPointerSecondary;
   uint32_t SystemDataProcessingFlag;
   ulong long SystemFlags2;
   void* *GameControllerPointer;
@@ -18589,12 +18589,12 @@ void InitializeSystemInfoAndUserEnvironment(void)
   uint32_t SystemDataFlags;
   void* SystemDataArray [32];
   long long **ApplicationPointerArray [3];
-  uint8_t SystemStackBuffer138 [272];
-  uint8_t SystemStackBuffer170 [32];
+  uint8_t SystemDataProcessingBuffer [272];
+  uint8_t SystemTemporaryBuffer [32];
   ulong long SystemEncryptionKey;
   
   SystemStackFlag = 0xfffffffffffffffe;
-  EncryptionKeyValue = SystemEncryptionKeyTemplate ^ (ulong long)SystemStackBuffer248;
+  EncryptionKeyValue = SystemEncryptionKeyTemplate ^ (ulong long)SystemEncryptionBuffer;
   GameControllerStatusFlag = 0;
   if (*(char *)(SystemContextManagerPointer + 0x18) == '\0') {
     InitializeGameController(&GameControllerBuffer);
@@ -18663,9 +18663,9 @@ HandleMemoryBufferOverflow:
     SystemConfigurationTemplatePtr = &SystemConfigurationTemplatePrimary;
     SystemManagerSetFlags(SystemContextManagerPointer,5,0xffffffffffffffff,4);
     SystemMemoryTemplatePtr = &SystemMemoryTemplateE;
-    LocalStackBuffer = SystemStackBuffer170;
+    LocalStackBuffer = SystemTemporaryBuffer;
     systemFlag178 = 0;
-    SystemStackBuffer170[0] = 0;
+    SystemTemporaryBuffer[0] = 0;
     GameControllerStatusFlag = 2;
     InitializeGameSettings(&SystemMemoryTemplatePtr,&SystemDataBufferTemplateI,0x130a7);
     SystemStringTemplatePtr2 = &SystemStringTemplate;
@@ -18699,7 +18699,7 @@ HandleMemoryBufferOverflow:
     GameControllerBuffer = &SystemMemoryAllocatorReference;
   }
   GameControllerStatusFlag = 0;
-    ValidateSystemChecksum(EncryptionKeyValue ^ (ulong long)SystemStackBuffer248);
+    ValidateSystemChecksum(EncryptionKeyValue ^ (ulong long)SystemEncryptionBuffer);
 }
 
 
@@ -18873,19 +18873,19 @@ void InitializeThreadManager(void)
   void* *threadManager;
   void* registerR9;
   void* *errorPtr;
-  void* *ThreadStackBuffer60;
+  void* *ThreadManagerPointer;
   uint32_t ThreadStatusFlags;
-  void* ThreadStackPointer50;
+  void* ThreadStackPointer;
   
   errorPtr = &SystemGlobalDataReference;
-  ThreadStackPointer50 = 0;
-  ThreadStackBuffer60 = (void* *)0x0;
+  ThreadStackPointer = 0;
+  ThreadManagerPointer = (void* *)0x0;
   ThreadStatusFlags = 0;
   threadManager = (void* *)CreateSystemThreadObject(SystemMemoryPoolTemplate,0x10,0x13,registerR9,0xfffffffffffffffe);
   *(uint8_t *)threadManager = 0;
-  ThreadStackBuffer60 = threadManager;
+  ThreadManagerPointer = threadManager;
   threadResult = StartSystemThread(threadManager);
-  ThreadStackPointer50 = CONCAT44(ThreadStackPointer50._4_4_,threadResult);
+  ThreadStackPointer = CONCAT44(ThreadStackPointer._4_4_,threadResult);
   *threadManager = 0x72657472617453;
   ThreadStatusFlags = 7;
   currentThread = GetCurrentThread();
@@ -22949,7 +22949,7 @@ void InitializeSystemThreadPoolManager(void)
   int systemValue;
   uint8_t StackBuffer [32];
   uint32_t EncryptionValue68;
-  uint8_t StackBuffer60 [8];
+  uint8_t ThreadTitleBuffer [8];
   void* *memoryAllocationBuffer;
   uint unsignedValue50;
   void* unsignedValue40;
@@ -22973,11 +22973,11 @@ void InitializeSystemThreadPoolManager(void)
   EncryptionKeyValue = 6;
   strcpy_s(aunsignedValue20,0x10,&SystemStringConstantWindowTitleJ);
   EncryptionValue68 = 1;
-  ProcessSystemWindowTitle(StackBuffer60,&pointerUnsigned38);
+  ProcessSystemWindowTitle(ThreadTitleBuffer,&pointerUnsigned38);
   EncryptionValue68 = 0;
   pointerUnsigned38 = &SystemMemoryAllocatorReference;
   systemValue = unsignedValue50 + 0xf;
-  ProcessSystemStringData(StackBuffer60,systemValue);
+  ProcessSystemStringData(ThreadTitleBuffer,systemValue);
   HashEntryPointer = (uint32_t *)(memoryAllocationBuffer + unsignedValue50);
   *HashEntryPointer = 0x72657375;
   HashEntryPointer[1] = 0x6e6f635f;
@@ -25683,7 +25683,7 @@ uint32_t GetSystemResourceStatus(void)
     *(void*2 *)((ulong long)secondarySystemDataBuffer + secondarySystemOffsetCounter) = 0x2c;
     secondarySystemDataBuffer = systemFlag;
     ProcessSystemData(&pUnsignedStackFlagA8,aSystemOperationStatus._8_8_ >> 0x20);
-    pSystemResourceAddress = (void* *)CreateSystemObject(StackBuffer60,&pUnsignedStackFlagA8);
+    pSystemResourceAddress = (void* *)CreateSystemObject(ThreadTitleBuffer,&pUnsignedStackFlagA8);
     ProcessMemoryManagerOperation(SystemMemoryManagerPointer + 0xef0,pSystemResourceAddress);
     *pSystemResourceAddress = &SystemGlobalDataReference;
     if (pSystemResourceAddress[1] != 0) {
@@ -26569,7 +26569,7 @@ void InitializeSystemDataSynchronizer(long long systemResourcePointer,void* data
   uint32_t stackValue318;
   void* stackValue308;
   char stackFlag300;
-  char StackBuffer2ff [7];
+  char SystemSyncBuffer [7];
   long long *stackPointer2f8;
   uint32_t stackValue2f0;
   void* *stackPointer2e8;
