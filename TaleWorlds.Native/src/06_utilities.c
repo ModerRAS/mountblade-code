@@ -25709,10 +25709,10 @@ uint8_t ResourceValidationHandler(int64_t ObjectContext,uint8_t *ValidationConte
 {
   uint8_t ResourceHash;
   uint8_t HashValidationResult;
-  uint8_t resourceValidationBuffer [32];
-  uint8_t dataChecksumBuffer [32];
+  uint8_t ResourceValidationBuffer [32];
+  uint8_t DataChecksumBuffer [32];
   
-  ValidationResult = ComputeDataChecksum(ValidationContext,dataChecksumBuffer,1,0x46464553);
+  ValidationResult = ComputeDataChecksum(ValidationContext,DataChecksumBuffer,1,0x46464553);
   if (((((int)ValidationResult == 0) &&
        (ValidationResult = ComputeDataChecksum(ValidationContext,resourceValidationBuffer,0,0x42464553), (int)ValidationResult == 0)) &&
       (ValidationResult = ValidateResourceHash(ValidationContext,ObjectContext + 0x10), (int)ValidationResult == 0)) &&
