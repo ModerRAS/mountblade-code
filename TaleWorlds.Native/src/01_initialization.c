@@ -67573,7 +67573,16 @@ void SetSystemResourceCounter(void)
 
 
 
-void* * FUN_18007f2f0(void* *SystemResourceManager)
+/**
+ * @brief 初始化系统资源管理器模板
+ * 
+ * 该函数用于初始化系统资源管理器的模板数据结构
+ * 设置内存模板和资源管理器的基本配置
+ * 
+ * @param SystemResourceManager 系统资源管理器指针
+ * @return 初始化后的系统资源管理器指针
+ */
+void* * InitializeSystemResourceManagerTemplate(void* *SystemResourceManager)
 
 {
   *SystemResourceManager = &SystemMemoryTemplateA;
@@ -67608,7 +67617,17 @@ void* * FUN_18007f2f0(void* *SystemResourceManager)
 
 
 
-void* * FUN_18007f3b0(void* *SystemResourceManager,ulong long ConfigurationDataPointer)
+/**
+ * @brief 配置系统资源管理器数据
+ * 
+ * 该函数用于配置系统资源管理器的数据结构
+ * 根据配置数据指针设置资源管理器的参数
+ * 
+ * @param SystemResourceManager 系统资源管理器指针
+ * @param ConfigurationDataPointer 配置数据指针
+ * @return 配置后的系统资源管理器指针
+ */
+void* * ConfigureSystemResourceManagerData(void* *SystemResourceManager,ulong long ConfigurationDataPointer)
 
 {
   *SystemResourceManager = &SystemResourceManagerTemplateB;
@@ -67995,7 +68014,15 @@ LAB_18007f89f:
 
 
 
-uint8_t FUN_18007f8bb(void)
+/**
+ * @brief 获取系统操作状态
+ * 
+ * 该函数用于获取系统的操作状态，并重置状态标志
+ * 用于系统状态监控和管理
+ * 
+ * @return 系统操作状态码
+ */
+uint8_t GetSystemOperationStatus(void)
 
 {
   uint8_t SystemOperationStatus;
