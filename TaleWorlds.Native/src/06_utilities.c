@@ -11242,7 +11242,7 @@ void ProcessModuleInitialization(int64_t ModuleHandle, void* ModuleContext, int*
   uint32_t SavedRegisterValue1c;
   int64_t ExecutionContextPointer;
   int64_t SavedRegisterValue;
-  char InputRegisterByte;
+  char InputParameterByte;
   uint8_t *SystemContext;
   int64_t ResourceDataOffset;
   float RangeValue;
