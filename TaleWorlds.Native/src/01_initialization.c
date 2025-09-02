@@ -20399,13 +20399,13 @@ void InitializeSystemCoreEngine(void)
   if (validationStatusFlag == '\0') {
     SetupSystemResources(&lStack_678);
   }
-  puStack_4e8 = &SystemDataBufferTemplateB;
+  SystemDataBufferPointer = &SystemDataBufferTemplateB;
   DataBufferPtr4E0 = DataBuffer4D0;
   DataBuffer4D0[0] = 0;
   uStack_4d8 = 0x18;
   strcpy_s(DataBuffer4D0,0x40,&SystemDataBufferTemplateJ);
-  InitializeResourceManager(SystemResourceManagerPointer,&puStack_4e8,&lStack_678);
-  puStack_4e8 = &SystemMemoryAllocatorReference;
+  InitializeResourceManager(SystemResourceManagerPointer,&SystemDataBufferPointer,&lStack_678);
+  SystemDataBufferPointer = &SystemMemoryAllocatorReference;
   pEncryptionValue488 = &SystemDataBufferTemplateB;
   DataBufferPtr480 = DataBuffer470;
   DataBuffer470[0] = 0;
@@ -20413,30 +20413,30 @@ void InitializeSystemCoreEngine(void)
   strcpy_s(DataBuffer470,0x40,&SystemDataBufferTemplateK);
   InitializeResourceManager(SystemResourceManagerPointer,&pEncryptionValue488,&lStack_678);
   pEncryptionValue488 = &SystemMemoryAllocatorReference;
-  puStack_428 = &SystemDataBufferTemplateB;
+  SystemScaleFactorBuffer = &SystemDataBufferTemplateB;
   DataBufferPtr420 = DataBuffer410;
   DataBuffer410[0] = 0;
   uStack_418 = 0x18;
   systemOperationFlags = strcpy_s(DataBuffer410,0x40,&SystemDataBufferTemplateJ);
-  SystemScaleFactorXStorage = (float)GetSystemScaleFactor(systemOperationFlags,&puStack_428);
+  SystemScaleFactorXStorage = (float)GetSystemScaleFactor(systemOperationFlags,&SystemScaleFactorBuffer);
   SystemScaleFactorXStorage = 1.0 / SystemScaleFactorXStorage;
-  puStack_428 = &SystemMemoryAllocatorReference;
-  puStack_3c8 = &SystemDataBufferTemplateB;
+  SystemScaleFactorBuffer = &SystemMemoryAllocatorReference;
+  SystemResolutionFactorBuffer = &SystemDataBufferTemplateB;
   DataBufferPtr3C0 = DataBuffer3B0;
   DataBuffer3B0[0] = 0;
   uStack_3b8 = 0xb;
   systemOperationFlags = strcpy_s(DataBuffer3B0,0x40,&SystemDataBufferTemplateK);
-  SystemScaleFactorYStorage = (float)GetSystemScaleFactor(systemOperationFlags,&puStack_3c8);
+  SystemScaleFactorYStorage = (float)GetSystemScaleFactor(systemOperationFlags,&SystemResolutionFactorBuffer);
   SystemScaleFactorYStorage = 1.0 / SystemScaleFactorYStorage;
-  puStack_3c8 = &SystemMemoryAllocatorReference;
-  puStack_368 = &SystemDataBufferTemplateB;
+  SystemResolutionFactorBuffer = &SystemMemoryAllocatorReference;
+  HorizontalResolutionBuffer = &SystemDataBufferTemplateB;
   DataBufferPtr360 = DataBuffer350;
   DataBuffer350[0] = 0;
   uStack_358 = 0xb;
   systemOperationFlags = strcpy_s(DataBuffer350,0x40,&SystemDataBufferTemplateK);
-  horizontalResolutionFactor = (float)GetSystemResolutionFactor(systemOperationFlags,&puStack_368);
-  puStack_368 = &SystemMemoryAllocatorReference;
-  puStack_308 = &SystemDataBufferTemplateB;
+  horizontalResolutionFactor = (float)GetSystemResolutionFactor(systemOperationFlags,&HorizontalResolutionBuffer);
+  HorizontalResolutionBuffer = &SystemMemoryAllocatorReference;
+  VerticalResolutionBuffer = &SystemDataBufferTemplateB;
   DataBufferPtr300 = DataBuffer2F0;
   DataBuffer2F0[0] = 0;
   uStack_2f8 = 0x18;
@@ -65725,13 +65725,13 @@ code * ConfigureSystemResources(long long ResourceManagerPointer,char Configurat
         }
         return ResourcePointer;
       }
-      FUN_1806272a0(&UNK_1809ffbe0);
-      ResultCode = (code *)FUN_180626f80(&UNK_1809ffab0);
+      InitializeSystemResource(&SystemResourceInitializer);
+      ResultCode = (code *)AllocateSystemMemory(&SystemFunctionAllocator);
     }
     else {
       PrimaryResourcePointer = *(long long **)(*(long long *)(ResourceManagerPointer + 0xa8) + 0x88);
-      FunctionPointer1 = (code *)&UNK_180083070;
-      FunctionPointer2 = FUN_180082fd0;
+      FunctionPointer1 = (code *)&SystemEntryPoint;
+      FunctionPointer2 = SystemMainFunction;
       LocalContext = ResourceManagerPointer;
       (**(code **)(*PrimaryResourcePointer + 0x60))(PrimaryResourcePointer,&GAME_CORE_SYSTEM_ID,ResourceManagerPointer + 0xb8,0,&LocalContext);
       ResultCode = FunctionPointer1;
