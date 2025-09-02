@@ -4432,14 +4432,26 @@ uint64_t DecrementSystemResourceCount(int64_t SystemContext, uint64_t ResourceHa
  * @param ObjectContext 对象上下文指针，包含对象管理所需的信息
  * @return uint8_t 操作状态码，0表示成功，0x1c表示错误
  */
+/**
+ * @brief 增加对象引用计数
+ * 
+ * 该函数负责增加指定对象的引用计数
+ * 用于对象生命周期管理，确保对象在引用期间不会被释放
+ * 函数会验证对象上下文的有效性，然后安全地增加引用计数
+ * 
+ * @param ObjectContext 对象上下文指针，包含对象的管理信息
+ * @return uint8_t 返回操作结果，0表示成功，非0表示错误代码
+ * @note 此函数用于对象引用计数管理，是内存管理的重要组成部分
+ * @warning 如果对象上下文无效，函数会返回错误代码
+ */
 uint8_t IncrementObjectReferenceCount(int64_t ObjectContext) {
   int64_t SystemObjectPointer;
-  uint8_t ReferenceCountResult;
+  uint8_t ValidationStatus;
   int64_t ObjectContextHandles [4];
   
-  ReferenceCountResult = ValidateObjectContext(*(uint32_t *)(ObjectContext + ObjectContextDataArrayOffset), ObjectContextHandles);
-  if ((int)ReferenceCountResult != 0) {
-    return ReferenceCountResult;
+  ValidationStatus = ValidateObjectContext(*(uint32_t *)(ObjectContext + ObjectContextDataArrayOffset), ObjectContextHandles);
+  if ((int)ValidationStatus != 0) {
+    return ValidationStatus;
   }
   if (ObjectContextHandles[0] != 0) {
     ObjectContextHandles[0] = ObjectContextHandles[0] + -8;
@@ -4447,8 +4459,8 @@ uint8_t IncrementObjectReferenceCount(int64_t ObjectContext) {
   SystemObjectPointer = *(int64_t *)(ObjectContextHandles[0] + ObjectHandleMemoryOffset);
   if (SystemObjectPointer != 0) {
     *(int *)(SystemObjectPointer + ObjectReferenceCountOffset) = *(int *)(SystemObjectPointer + ObjectReferenceCountOffset) + 1;
-    if ((*(char *)(SystemObjectPointer + ObjectSystemStatusFlagsOffset) != '\0') && (ReferenceCountResult = CheckSystemStatus(), (int)ReferenceCountResult != 0)) {
-      return ReferenceCountResult;
+    if ((*(char *)(SystemObjectPointer + ObjectSystemStatusFlagsOffset) != '\0') && (ValidationStatus = CheckSystemStatus(), (int)ValidationStatus != 0)) {
+      return ValidationStatus;
     }
     return 0;
   }
@@ -8576,12 +8588,12 @@ uint8_t ValidateObjectContextAndProcessComplexFloatOperation(int64_t ObjectConte
  */
 uint8_t ValidateObjectContextAndProcessFloatRange(int64_t ObjectContext,int64_t ValidationParams)
 {
-  int contextValidationStatus;
-  int currentArrayIndex;
+  int objectValidationStatus;
+  int arrayIndexCounter;
   uint8_t hashValidationResult;
   float *floatDataPointer;
   int64_t resourceDataPointer;
-  uint64_t validationContextOffset;
+  uint64_t validationOffset;
   float *floatArrayDataPointer;
   uint64_t processingIterator;
   uint totalArraySize;
@@ -8591,7 +8603,7 @@ uint8_t ValidateObjectContextAndProcessFloatRange(int64_t ObjectContext,int64_t 
   uint32_t stackBuffer;
   uint64_t resourceHash;
   
-  hashValidationResult = ValidateObjectContext(*(uint32_t *)(objectContext + 0x10),&CurrentValue);
+  hashValidationResult = ValidateObjectContext(*(uint32_t *)(ObjectContext + 0x10),&CurrentValue);
   if ((int)hashValidationResult != 0) {
     return resourceHashValidationResult;
   }
@@ -8601,12 +8613,12 @@ uint8_t ValidateObjectContextAndProcessFloatRange(int64_t ObjectContext,int64_t 
     ContextOffset = LoopCounter;
   }
   ArrayIndex = *(int *)(ContextOffset + 0x28);
-  FloatArrayPointer = (float *)(objectContext + ObjectContextProcessingDataOffset + (int64_t)*(int *)(objectContext + ObjectContextValidationDataOffset) * 4);
-  if (0 < *(int *)(objectContext + ObjectContextValidationDataOffset)) {
+  FloatArrayPointer = (float *)(ObjectContext + ObjectContextProcessingDataOffset + (int64_t)*(int *)(ObjectContext + ObjectContextValidationDataOffset) * 4);
+  if (0 < *(int *)(ObjectContext + ObjectContextValidationDataOffset)) {
     FloatPointer = FloatArrayPointer;
     ResourceHash = LoopCounter;
     do {
-      arrayIndex = *(int *)(((objectContext + ObjectContextProcessingDataOffset) - (int64_t)FloatArrayPointer) + (int64_t)FloatPointer);
+      arrayIndex = *(int *)(((ObjectContext + ObjectContextProcessingDataOffset) - (int64_t)FloatArrayPointer) + (int64_t)FloatPointer);
       if (arrayIndex != -1) {
         CurrentValue = *FloatPointer;
         if (((uint)CurrentValue & FloatInfinityMask) == FloatInfinityMask) {
@@ -8636,9 +8648,9 @@ uint8_t ValidateObjectContextAndProcessFloatRange(int64_t ObjectContext,int64_t 
       ValidationCounter = (int)ResourceHashValue + 1;
       ResourceHashValue = (uint64_t)ValidationCounter;
       psecondFloatResult = floatParameterValue + 1;
-    } while ((int)ValidationCounter < *(int *)(objectContext + ObjectContextValidationDataOffset));
-    if (0 < *(int *)(objectContext + ObjectContextValidationDataOffset)) {
-      ResourceTablePointer = (objectContext + ObjectContextProcessingDataOffset) - (int64_t)floatParameterValue;
+    } while ((int)ValidationCounter < *(int *)(ObjectContext + ObjectContextValidationDataOffset));
+    if (0 < *(int *)(ObjectContext + ObjectContextValidationDataOffset)) {
+      ResourceTablePointer = (ObjectContext + ObjectContextProcessingDataOffset) - (int64_t)floatParameterValue;
       do {
         ResourceIndex = *(int *)((int64_t)floatParameterValue + ResourceTablePointer);
         if (ResourceIndex != -1) {
@@ -10432,26 +10444,38 @@ int ProcessDataWithQueue(int64_t *ObjectContext,int64_t ValidationContext,int da
  * @param DataLength 数据长度，表示要解析的数据大小
  * @return int 解析结果状态码，0表示成功，非0表示错误
  */
+/**
+ * @brief 使用栈处理数据操作
+ * 
+ * 该函数负责使用栈方式处理数据操作，包括字符串处理、数据解析和回调执行
+ * 函数通过多次迭代处理数据块，并在最后执行回调函数来完成数据处理
+ * 
+ * @param DataContext 数据上下文指针，包含数据处理所需的配置和状态信息
+ * @param BufferContext 缓冲区上下文指针，指向数据缓冲区的起始位置
+ * @param DataLength 数据长度，指定要处理的数据总长度
+ * @return int 返回处理的总字节数，包括所有操作处理的数据量
+ * @note 此函数使用栈式处理方式，逐层处理数据
+ * @warning 调用此函数前必须确保DataContext和BufferContext有效
+ */
 int ProcessDataWithStack(int64_t *DataContext, int64_t *BufferContext, int DataLength)
-
 {
-  int TotalProcessedBytes;
-  int StringOperationResult;
-  int DataOperationResult;
-  int RemainingDataLength;
-  void* StringBuffer;
-  void* TemplateBuffer;
+  int CumulativeProcessedBytes;
+  int StringProcessingResult;
+  int DataParsingResult;
+  int RemainingDataSize;
+  void* CharacterBuffer;
+  void* ProcessingTemplate;
   
-  RemainingDataLength = DataLength;
-  TotalProcessedBytes = ProcessStringOperation(BufferContext, RemainingDataLength, &StringBuffer);
-  StringOperationResult = ProcessStringOperation(BufferContext + TotalProcessedBytes, RemainingDataLength - TotalProcessedBytes, &TemplateBuffer);
-  TotalProcessedBytes = TotalProcessedBytes + StringOperationResult;
-  StringOperationResult = ParseDataContent(TotalProcessedBytes + BufferContext, RemainingDataLength - TotalProcessedBytes, ((int)DataContext[2] + 2) * 0xc);
-  TotalProcessedBytes = TotalProcessedBytes + StringOperationResult;
-  StringOperationResult = ProcessStringOperation(TotalProcessedBytes + BufferContext, RemainingDataLength - TotalProcessedBytes, &TemplateBuffer);
-  TotalProcessedBytes = TotalProcessedBytes + StringOperationResult;
-  StringOperationResult = (**(code **)(*DataContext + 8))(DataContext, TotalProcessedBytes + BufferContext, RemainingDataLength - TotalProcessedBytes);
-  return StringOperationResult + TotalProcessedBytes;
+  RemainingDataSize = DataLength;
+  CumulativeProcessedBytes = ProcessStringOperation(BufferContext, RemainingDataSize, &CharacterBuffer);
+  StringProcessingResult = ProcessStringOperation(BufferContext + CumulativeProcessedBytes, RemainingDataSize - CumulativeProcessedBytes, &ProcessingTemplate);
+  CumulativeProcessedBytes = CumulativeProcessedBytes + StringProcessingResult;
+  StringProcessingResult = ParseDataContent(CumulativeProcessedBytes + BufferContext, RemainingDataSize - CumulativeProcessedBytes, ((int)DataContext[2] + 2) * 0xc);
+  CumulativeProcessedBytes = CumulativeProcessedBytes + StringProcessingResult;
+  StringProcessingResult = ProcessStringOperation(CumulativeProcessedBytes + BufferContext, RemainingDataSize - CumulativeProcessedBytes, &ProcessingTemplate);
+  CumulativeProcessedBytes = CumulativeProcessedBytes + StringProcessingResult;
+  StringProcessingResult = (**(code **)(*DataContext + 8))(DataContext, CumulativeProcessedBytes + BufferContext, RemainingDataSize - CumulativeProcessedBytes);
+  return StringProcessingResult + CumulativeProcessedBytes;
 }
 
 
@@ -29456,7 +29480,7 @@ void InitializeUtilitySystemWithParameters(uint8_t *systemParameters)
  * @return 无返回值
  * @note 此函数在异常处理过程中被自动调用
  */
-void UnwindExceptionHandlerTypeOne(uint8_t ObjectContext, int64_t ValidationContext) {
+void UnwindPrimaryContextExceptionHandler(uint8_t ObjectContext, int64_t ValidationContext) {
   if ((int64_t *)**(int64_t **)(ValidationContext + ExceptionHandlerPrimaryContextOffset) != (int64_t *)0x0) {
     (**(code **)(*(int64_t *)**(int64_t **)(ValidationContext + ExceptionHandlerPrimaryContextOffset) + ExceptionHandlerFunctionPointerOffset))();
   }
@@ -29478,7 +29502,7 @@ void UnwindExceptionHandlerTypeOne(uint8_t ObjectContext, int64_t ValidationCont
  * @note 此函数在异常处理过程中被自动调用
  * @warning 调用此函数会释放相关资源并恢复系统状态
  */
-void UnwindExceptionHandlerTypeTwo(uint8_t ObjectContext, int64_t ValidationContext) {
+void UnwindSecondaryContextExceptionHandler(uint8_t ObjectContext, int64_t ValidationContext) {
   if (*(int64_t **)(ValidationContext + ExceptionHandlerSecondaryContextOffset) != (int64_t *)0x0) {
     (**(code **)(**(int64_t **)(ValidationContext + ExceptionHandlerSecondaryContextOffset) + ExceptionHandlerFunctionPointerOffset))();
   }
@@ -29500,7 +29524,7 @@ void UnwindExceptionHandlerTypeTwo(uint8_t ObjectContext, int64_t ValidationCont
  * @note 此函数在异常处理过程中被自动调用
  * @warning 调用此函数会释放相关资源并恢复系统状态
  */
-void UnwindExceptionHandlerTypeThree(uint8_t ObjectContext, int64_t ValidationContext) {
+void UnwindTertiaryContextExceptionHandler(uint8_t ObjectContext, int64_t ValidationContext) {
   if ((int64_t *)**(int64_t **)(ValidationContext + ExceptionHandlerTertiaryContextOffset) != (int64_t *)0x0) {
     (**(code **)(*(int64_t *)**(int64_t **)(ValidationContext + ExceptionHandlerTertiaryContextOffset) + ExceptionHandlerFunctionPointerOffset))();
   }
@@ -29517,7 +29541,7 @@ void UnwindExceptionHandlerTypeThree(uint8_t ObjectContext, int64_t ValidationCo
  * @param ObjectContext 异常上下文参数
  * @param ValidationContext 系统上下文指针
  */
-void UnwindExceptionHandlerTypeFour(uint8_t ObjectContext, int64_t ValidationContext) {
+void UnwindQuaternaryContextExceptionHandler(uint8_t ObjectContext, int64_t ValidationContext) {
   uint8_t *ResourceHashAddress;
   
   ResourceHashAddress = *(uint8_t **)(ValidationContext + ExceptionHandlerResourceHashOffset);
@@ -29537,7 +29561,7 @@ void UnwindExceptionHandlerTypeFour(uint8_t ObjectContext, int64_t ValidationCon
  * @param ObjectContext 异常上下文参数
  * @param ValidationContext 系统上下文指针
  */
-void UnwindExceptionHandlerTypeFive(uint8_t ObjectContext, int64_t ValidationContext) {
+void UnwindQuinaryContextExceptionHandler(uint8_t ObjectContext, int64_t ValidationContext) {
   uint8_t *ResourceHashAddress;
   
   ResourceHashAddress = *(uint8_t **)(ValidationContext + ExceptionHandlerResourceHashOffset);
@@ -29556,7 +29580,7 @@ void UnwindExceptionHandlerTypeFive(uint8_t ObjectContext, int64_t ValidationCon
  * @param ObjectContext 异常上下文参数
  * @param ValidationContext 系统上下文指针
  */
-void UnwindExceptionHandlerTypeSix(uint8_t ObjectContext, int64_t ValidationContext) {
+void UnwindSenaryContextExceptionHandler(uint8_t ObjectContext, int64_t ValidationContext) {
   **(uint8_t **)(ValidationContext + ExceptionHandlerResourceHashOffset) = &ResourceCacheTemplate;
   return;
 }
@@ -34637,7 +34661,7 @@ void UnwindStackFrameProcessor(uint8_t ObjectContext,int64_t ValidationContext)
  * @return 无返回值
  * @note 此函数在异常处理过程中被调用
  */
-void UnwindExceptionHandlerTypeSix(uint8_t ObjectContext, int64_t ValidationContext) {
+void UnwindSystemDataStructureExceptionHandler(uint8_t ObjectContext, int64_t ValidationContext) {
   *(uint8_t **)(*(int64_t *)(ValidationContext + SystemContextResourceOffset) + 0x438) = &SystemDataStructure;
   return;
 }
