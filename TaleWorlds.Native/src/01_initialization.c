@@ -44961,8 +44961,18 @@ void ProcessSystemResourceQueueAndCompletion(long long SystemResourcePointer)
 
 
 
-// 函数: void FUN_180067480(void* SystemResourcePointer,long long ConfigurationDataPointer)
-void FUN_180067480(void* SystemResourcePointer,long long ConfigurationDataPointer)
+/**
+ * @brief 更新系统资源上下文管理器
+ * 
+ * 该函数负责更新系统资源上下文管理器，处理字符串模板和配置数据
+ * 用于系统资源管理和上下文更新
+ * 
+ * @param SystemResourcePointer 系统资源指针
+ * @param ConfigurationDataPointer 配置数据指针
+ * 
+ * 原始函数名为FUN_180067480，现已重命名为UpdateSystemResourceContextManager
+ */
+void UpdateSystemResourceContextManager(void* SystemResourcePointer,long long ConfigurationDataPointer)
 
 {
   void* *pointerToUnsigned1;
@@ -44979,8 +44989,20 @@ void FUN_180067480(void* SystemResourcePointer,long long ConfigurationDataPointe
 
 
 
-// 函数: void FUN_180067810(long long SystemResourcePointer,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
-void FUN_180067810(long long SystemResourcePointer,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
+/**
+ * @brief 执行系统资源操作
+ * 
+ * 该函数负责执行系统资源操作，调用系统资源指针中的代码函数
+ * 用于系统资源管理和操作执行
+ * 
+ * @param SystemResourcePointer 系统资源指针
+ * @param ConfigurationDataPointer 配置数据指针
+ * @param AdditionalParameter 附加参数
+ * @param ConfigurationFlag 配置标志
+ * 
+ * 原始函数名为FUN_180067810，现已重命名为ExecuteSystemResourceOperation
+ */
+void ExecuteSystemResourceOperation(long long SystemResourcePointer,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
 {
   if (*(code **)(SystemResourcePointer + 0x10) != (code *)0x0) {
