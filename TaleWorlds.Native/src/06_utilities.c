@@ -10192,28 +10192,28 @@ void ProcessResourceIndexAndSecurity(int64_t objectContext,uint32_t *validationC
  * @return int 返回操作结果代码
  * @note 返回0表示成功，非0表示失败
  */
-int ValidateResourceTableAccess(uint64_t resource_handle)
+int ValidateResourceTableAccess(uint64_t ResourceHandle)
 
 {
-  int ProcessingResult;
-  int64_t InputParameterValue;
-  int64_t ResourceTable;
-  int64_t *systemContext;
+  int ValidationStatus;
+  int64_t ObjectContextPointer;
+  int64_t ResourceTablePointer;
+  int64_t *SystemContextPointer;
   int64_t SavedRegisterValue;
   uint64_t StackSecurityToken;
   
-  LocalContextPointer = objectContext;
-  resourceTable = (**(code **)(InputParameter + 0x288))();
-  if (resourceTable == 0) {
+  ObjectContextPointer = objectContext;
+  ResourceTablePointer = (**(code **)(InputParameter + 0x288))();
+  if (ResourceTablePointer == 0) {
                     // WARNING: Subroutine does not return
-    ExecuteSecurityOperation(&SecurityStackBuffer,0x27,&SecurityOperationData,LocalContextPointer & 0xffffffff,
-                  LocalContextPointer.Field42);
+    ExecuteSecurityOperation(&SecurityStackBuffer,0x27,&SecurityOperationData,ObjectContextPointer & 0xffffffff,
+                  ObjectContextPointer.Field42);
   }
-  if (**(int **)(resourceTable + 0xd0) == 0) {
+  if (**(int **)(ResourceTablePointer + 0xd0) == 0) {
     ResourceIndex = CheckResourceAvailability(*(uint32_t *)(SystemRegisterContext + 0x18));
     if (ResourceIndex != 0) goto ValidationSuccessLabel;
   }
-  *systemContext = resourceTable;
+  *SystemContextPointer = ResourceTablePointer;
 ValidationSuccessLabel:
                     // WARNING: Subroutine does not return
   FinalizeSecurityOperation(StackSecurityToken ^ (uint64_t)&SystemSecurityValidationBuffer);
@@ -10329,7 +10329,16 @@ uint32_t HandleResourceIndexOperation(int64_t ResourceHandle, uint32_t *resource
  * @note 此函数不会返回，会直接调用安全操作
  * @warning 调用此函数将触发安全操作，程序不会继续执行
  */
-void ExecuteSecurityOperationHandler(void)
+/**
+ * @brief 执行安全操作处理函数
+ * 
+ * 该函数负责执行系统安全操作的处理
+ * 这是一个包装函数，调用实际的安全操作执行函数
+ * 
+ * @return 无返回值
+ * @note 此函数不会返回，会直接调用安全操作
+ * @warning 调用此函数将导致程序执行安全操作并可能终止
+ */
 void ExecuteSecurityOperationHandler(void)
 
 {
@@ -11262,11 +11271,11 @@ void FinalizeSecurityOperationWithStack(void)
  */
 void ProcessResourceHashAndIndex(int64_t objectContext, int validationContext, uint8_t *hashOutput)
 {
-  uint8_t ResourceHash;
-  int *OperationResultPointer;
+  uint8_t ResourceHashValue;
+  int *OperationStatusPointer;
   int64_t ResourceIndex;
   int64_t DataOffset;
-  int tableEntry;
+  int TableEntryValue;
   
   *hashOutput = 0;
   hashOutput[1] = 0;
@@ -11275,26 +11284,26 @@ void ProcessResourceHashAndIndex(int64_t objectContext, int validationContext, u
                                  *(int *)(*(int64_t *)(objectContext + 0x18) + (int64_t)validationContext * 0xc) +
                                 *(int64_t *)(objectContext + 8)) + 0x50))();
   if (OperationStatusCodePointer == (int *)0x0) {
-    tableEntry = 0;
+    TableEntryValue = 0;
   }
   else {
-    tableEntry = *OperationResultPointer;
+    TableEntryValue = *OperationStatusPointer;
   }
   if (validationContext + 1 < *(int *)(objectContext + 0x20)) {
     int64_t LoopOffset = (int64_t)(validationContext + 1);
     OperationStatusCodePointer = (int *)(*(int64_t *)(objectContext + 0x18) + LoopOffset * 0xc);
-    while (((char)OperationResultPointer[2] != '\x02' ||
-           (ResourceIndex = (int64_t)*OperationResultPointer + *(int64_t *)(objectContext + 8), *(int *)(ResourceIndex + 0x20) != tableEntry)
+    while (((char)OperationStatusPointer[2] != '\x02' ||
+           (ResourceIndex = (int64_t)*OperationStatusPointer + *(int64_t *)(objectContext + 8), *(int *)(ResourceIndex + 0x20) != TableEntryValue)
            )) {
       LoopOffset = LoopOffset + 1;
-      OperationStatusCodePointer = OperationResultPointer + 3;
+      OperationStatusCodePointer = OperationStatusPointer + 3;
       if (*(int *)(objectContext + 0x20) <= LoopOffset) {
         return;
       }
     }
-    resourceHash = *(uint8_t *)(ResourceIndex + 0x18);
+    ResourceHashValue = *(uint8_t *)(ResourceIndex + 0x18);
     *hashOutput = *(uint8_t *)(ResourceIndex + 0x10);
-    hashOutput[1] = resourceHash;
+    hashOutput[1] = ResourceHashValue;
   }
   return;
 }
@@ -11314,43 +11323,43 @@ void ProcessResourceHashAndIndex(int64_t objectContext, int validationContext, u
  */
 uint64_t ProcessParameterizedDataValidationAndOperation(int64_t dataContext, int operationType, uint *validationFlags)
 {
-  uint ResourceHash;
-  int64_t ResourceTable;
+  uint ResourceHashValue;
+  int64_t ResourceTablePointer;
   int64_t ResourceIndex;
-  uint8_t *callbackFunction;
-  int tableEntry;
+  uint8_t *CallbackFunctionPointer;
+  int TableEntryIndex;
   uint32_t ResourceHashValidationResult;
   
   if (validationFlags != (uint *)0x0) {
-    resourceHash = *validationFlags;
-    if (resourceHash != 0) {
+    ResourceHashValue = *validationFlags;
+    if (ResourceHashValue != 0) {
       if (((*(int *)(dataContext + 0x94) != 0) && (*(int *)(dataContext + 0x78) != 0)) &&
-         (tableEntry = *(int *)(*(int64_t *)(dataContext + 0x70) +
-                          (int64_t)(int)(*(int *)(dataContext + 0x78) - 1U & resourceHash) * 4), tableEntry != -1))
+         (TableEntryIndex = *(int *)(*(int64_t *)(dataContext + 0x70) +
+                          (int64_t)(int)(*(int *)(dataContext + 0x78) - 1U & ResourceHashValue) * 4), TableEntryIndex != -1))
       {
-        resourceTable = *(int64_t *)(dataContext + 0x80);
+        ResourceTablePointer = *(int64_t *)(dataContext + 0x80);
         do {
-          ResourceIndex = (int64_t)tableEntry;
-          if (*(uint *)(resourceTable + ResourceIndex * 0x10) == resourceHash) {
-            uint HashValueParam = (uint)((uint64_t)*(uint8_t *)(resourceTable + 8 + ResourceIndex * 0x10) >> 0x20);
-            if (HashValueParam != 0) {
-              *hashOutput = HashValueParam;
+          ResourceIndex = (int64_t)TableEntryIndex;
+          if (*(uint *)(ResourceTablePointer + ResourceIndex * 0x10) == ResourceHashValue) {
+            uint HashValueParameter = (uint)((uint64_t)*(uint8_t *)(ResourceTablePointer + 8 + ResourceIndex * 0x10) >> 0x20);
+            if (HashValueParameter != 0) {
+              *hashOutput = HashValueParameter;
               return 0;
             }
             goto HashValueHandler;
           }
-          tableEntry = *(int *)(resourceTable + 4 + ResourceIndex * 0x10);
-        } while (tableEntry != -1);
+          TableEntryIndex = *(int *)(ResourceTablePointer + 4 + ResourceIndex * 0x10);
+        } while (TableEntryIndex != -1);
       }
-      HashValueParam = 0;
+      HashValueParameter = 0;
 HashValueHandler:
-      uint8_t *ploopIncrement = (uint8_t *)
+      uint8_t *CallbackPointer = (uint8_t *)
                ((int64_t)*(int *)(*(int64_t *)(objectContext + 0x18) + (int64_t)validationContext * 0xc) +
                *(int64_t *)(objectContext + 8));
-      if (ploopIncrement != (uint8_t *)0x0) {
-        (**(code **)*ploopIncrement)();
+      if (CallbackPointer != (uint8_t *)0x0) {
+        (**(code **)*CallbackPointer)();
       }
-      *hashOutput = HashValueParam;
+      *hashOutput = HashValueParameter;
       return 0;
     }
   }
@@ -11484,82 +11493,82 @@ uint8_t GetSystemStatusCode(void)
 uint8_t InsertOrUpdateResourceInHashTable(int64_t *hashTablePointer, uint *resourceHashPointer, uint8_t *resourceDataPointer)
 
 {
-  uint ResourceHash;
-  int existingEntryIndex;
-  int tableCapacity;
-  uint8_t OperationResult;
-  uint8_t allocationResult;
-  uint8_t *newEntryPointer;
-  int newCapacity;
-  int64_t hashIndex;
-  int64_t entryIndex;
-  uint *freeEntryPointer;
-  uint capacityMask;
-  int calculatedCapacity;
-  int *previousEntryPointer;
+  uint ResourceHashValue;
+  int ExistingEntryIndex;
+  int TableCapacity;
+  uint8_t ValidationStatus;
+  uint8_t AllocationStatus;
+  uint8_t *NewEntryPointer;
+  int NewCapacity;
+  int64_t HashIndex;
+  int64_t EntryIndex;
+  uint *FreeEntryPointer;
+  uint CapacityMask;
+  int CalculatedCapacity;
+  int *PreviousEntryPointer;
   
-  operationResult = ValidateHashTableState();
-  if ((int)operationResult == 0) {
+  ValidationStatus = ValidateHashTableState();
+  if ((int)ValidationStatus == 0) {
     if ((int)hashTablePointer[1] == 0) {
       return 0x1c;
     }
-    resourceHash = *resourceHashPointer;
-    hashIndex = (int64_t)(int)((int)hashTablePointer[1] - 1U & resourceHash);
-    previousEntryPointer = (int *)(*hashTablePointer + hashIndex * 4);
-    existingEntryIndex = *(int *)(*hashTablePointer + hashIndex * 4);
-    if (existingEntryIndex != -1) {
-      hashIndex = hashTablePointer[2];
+    ResourceHashValue = *resourceHashPointer;
+    HashIndex = (int64_t)(int)((int)hashTablePointer[1] - 1U & ResourceHashValue);
+    PreviousEntryPointer = (int *)(*hashTablePointer + HashIndex * 4);
+    ExistingEntryIndex = *(int *)(*hashTablePointer + HashIndex * 4);
+    if (ExistingEntryIndex != -1) {
+      HashIndex = hashTablePointer[2];
       do {
-        entryIndex = (int64_t)existingEntryIndex;
-        if (*(uint *)(hashIndex + entryIndex * 0x10) == resourceHash) {
-          *(uint8_t *)(hashIndex + 8 + entryIndex * 0x10) = *resourceDataPointer;
+        EntryIndex = (int64_t)ExistingEntryIndex;
+        if (*(uint *)(HashIndex + EntryIndex * 0x10) == ResourceHashValue) {
+          *(uint8_t *)(HashIndex + 8 + EntryIndex * 0x10) = *resourceDataPointer;
           return 0;
         }
-        existingEntryIndex = *(int *)(hashIndex + 4 + entryIndex * 0x10);
-        previousEntryPointer = (int *)(hashIndex + 4 + entryIndex * 0x10);
-      } while (existingEntryIndex != -1);
+        ExistingEntryIndex = *(int *)(HashIndex + 4 + EntryIndex * 0x10);
+        PreviousEntryPointer = (int *)(HashIndex + 4 + EntryIndex * 0x10);
+      } while (ExistingEntryIndex != -1);
     }
-    existingEntryIndex = (int)hashTablePointer[4];
-    if (existingEntryIndex == -1) {
-      operationResult = *resourceDataPointer;
-      existingEntryIndex = (int)hashTablePointer[3];
-      newCapacity = existingEntryIndex + 1;
-      capacityMask = (int)*(uint *)((int64_t)hashTablePointer + 0x1c) >> 0x1f;
-      tableCapacity = (*(uint *)((int64_t)hashTablePointer + 0x1c) ^ capacityMask) - capacityMask;
-      if (tableCapacity < newCapacity) {
-        calculatedCapacity = (int)((float)tableCapacity * 1.5);
-        tableCapacity = newCapacity;
-        if (newCapacity <= calculatedCapacity) {
-          tableCapacity = calculatedCapacity;
+    ExistingEntryIndex = (int)hashTablePointer[4];
+    if (ExistingEntryIndex == -1) {
+      ValidationStatus = *resourceDataPointer;
+      ExistingEntryIndex = (int)hashTablePointer[3];
+      NewCapacity = ExistingEntryIndex + 1;
+      CapacityMask = (int)*(uint *)((int64_t)hashTablePointer + 0x1c) >> 0x1f;
+      TableCapacity = (*(uint *)((int64_t)hashTablePointer + 0x1c) ^ CapacityMask) - CapacityMask;
+      if (TableCapacity < NewCapacity) {
+        CalculatedCapacity = (int)((float)TableCapacity * 1.5);
+        TableCapacity = NewCapacity;
+        if (NewCapacity <= CalculatedCapacity) {
+          TableCapacity = CalculatedCapacity;
         }
-        if (tableCapacity < 4) {
-          calculatedCapacity = 4;
+        if (TableCapacity < 4) {
+          CalculatedCapacity = 4;
         }
-        else if (calculatedCapacity < newCapacity) {
-          calculatedCapacity = newCapacity;
+        else if (CalculatedCapacity < NewCapacity) {
+          CalculatedCapacity = NewCapacity;
         }
-        allocationResult = ReallocateHashTableEntries(hashTablePointer + 2,calculatedCapacity);
-        if ((int)allocationResult != 0) {
-          return allocationResult;
+        AllocationStatus = ReallocateHashTableEntries(hashTablePointer + 2,CalculatedCapacity);
+        if ((int)AllocationStatus != 0) {
+          return AllocationStatus;
         }
       }
-      newEntryPointer = (uint8_t *)((int64_t)(int)hashTablePointer[3] * 0x10 + hashTablePointer[2]);
-      *newEntryPointer = CombineHighLow32Bits(0xffffffff,resourceHash);
-      newEntryPointer[1] = operationResult;
+      NewEntryPointer = (uint8_t *)((int64_t)(int)hashTablePointer[3] * 0x10 + hashTablePointer[2]);
+      *NewEntryPointer = CombineHighLow32Bits(0xffffffff,ResourceHashValue);
+      NewEntryPointer[1] = ValidationStatus;
       *(int *)(hashTablePointer + 3) = (int)hashTablePointer[3] + 1;
     }
     else {
-      freeEntryPointer = (uint *)((int64_t)existingEntryIndex * 0x10 + hashTablePointer[2]);
-      *(uint *)(hashTablePointer + 4) = freeEntryPointer[1];
-      freeEntryPointer[1] = 0xffffffff;
-      *freeEntryPointer = *resourceHashPointer;
-      *(uint8_t *)(freeEntryPointer + 2) = *resourceDataPointer;
+      FreeEntryPointer = (uint *)((int64_t)ExistingEntryIndex * 0x10 + hashTablePointer[2]);
+      *(uint *)(hashTablePointer + 4) = FreeEntryPointer[1];
+      FreeEntryPointer[1] = 0xffffffff;
+      *FreeEntryPointer = *resourceHashPointer;
+      *(uint8_t *)(FreeEntryPointer + 2) = *resourceDataPointer;
     }
-    *previousEntryPointer = existingEntryIndex;
+    *PreviousEntryPointer = ExistingEntryIndex;
     *(int *)((int64_t)hashTablePointer + 0x24) = *(int *)((int64_t)hashTablePointer + 0x24) + 1;
-    operationResult = 0;
+    ValidationStatus = 0;
   }
-  return operationResult;
+  return ValidationStatus;
 }
 
 
