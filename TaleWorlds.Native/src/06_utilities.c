@@ -4695,21 +4695,21 @@ uint64_t DecrementSystemResourceCount(int64_t SystemContext, uint64_t ResourceHa
  */
 uint8_t IncrementObjectReferenceCount(int64_t ObjectContext) {
   int64_t ValidatedObjectPointer;
-  uint8_t ValidationStatusCode;
-  int64_t ObjectContextHandles [4];
+  uint8_t ObjectValidationStatusCode;
+  int64_t ObjectValidationContext [4];
   
-  ValidationStatusCode = ValidateObjectContext(*(uint32_t *)(ObjectContext + ObjectContextDataArrayOffset), ObjectContextHandles);
-  if ((int)ValidationStatusCode != 0) {
-    return ValidationStatusCode;
+  ObjectValidationStatusCode = ValidateObjectContext(*(uint32_t *)(ObjectContext + ObjectContextDataArrayOffset), ObjectValidationContext);
+  if ((int)ObjectValidationStatusCode != 0) {
+    return ObjectValidationStatusCode;
   }
-  if (ObjectContextHandles[0] != 0) {
-    ObjectContextHandles[0] = ObjectContextHandles[0] + -8;
+  if (ObjectValidationContext[0] != 0) {
+    ObjectValidationContext[0] = ObjectValidationContext[0] + -8;
   }
-  ValidatedObjectPointer = *(int64_t *)(ObjectContextHandles[0] + ObjectHandleMemoryOffset);
+  ValidatedObjectPointer = *(int64_t *)(ObjectValidationContext[0] + ObjectHandleMemoryOffset);
   if (ValidatedObjectPointer != 0) {
     *(int *)(ValidatedObjectPointer + ObjectReferenceCountOffset) = *(int *)(ValidatedObjectPointer + ObjectReferenceCountOffset) + 1;
-    if ((*(char *)(ValidatedObjectPointer + ObjectSystemStatusFlagsOffset) != '\0') && (ValidationStatusCode = CheckSystemStatus(), (int)ValidationStatusCode != 0)) {
-      return ValidationStatusCode;
+    if ((*(char *)(ValidatedObjectPointer + ObjectSystemStatusFlagsOffset) != '\0') && (ObjectValidationStatusCode = CheckSystemStatus(), (int)ObjectValidationStatusCode != 0)) {
+      return ObjectValidationStatusCode;
     }
     return 0;
   }
@@ -10038,7 +10038,7 @@ uint8_t ProcessFloatDataValidationAndConversion(int64_t ObjectContext,int64_t Va
     }
     ResourceHashValidationStatusCode = ValidateObjectContextAndProcessData(ResourceIndex,ObjectContext + ObjectContextProcessingDataOffset,ObjectContext + ObjectContextValidationDataOffset);
     if ((int)ValidationStatusCode == 0) {
-      CalculatedFloatValue = *(float *)(ObjectContext + ObjectContextValidationDataOffset);
+      CalculatedFloatResult = *(float *)(ObjectContext + ObjectContextValidationDataOffset);
       if ((InputFloatValue < *(float *)(ResourceIndex + 0x38)) ||
          (*(float *)(ResourceIndex + 0x3c) <= InputFloatValue && InputFloatValue != *(float *)(ResourceIndex + 0x3c))) {
         ValidationStatusCode = ErrorInvalidObjectHandle;
@@ -10181,7 +10181,7 @@ uint8_t ProcessDataValidationAndSystemOperation(int64_t ObjectContext,int64_t Va
     if ((*(uint *)(ResourceIndex + 0x34) >> 4 & 1) != 0) {
       return ErrorResourceValidationFailed;
     }
-    CalculatedFloatValue = *(float *)(ObjectContext + ObjectContextValidationDataOffset);
+    CalculatedFloatResult = *(float *)(ObjectContext + ObjectContextValidationDataOffset);
     LowerBoundFloatValue = *(float *)(ResourceIndex + 0x38);
     if ((*(float *)(ResourceIndex + 0x38) <= InputFloatValue) &&
        (LowerBoundFloatValue = *(float *)(ResourceIndex + 0x3c), InputFloatValue <= *(float *)(ResourceIndex + 0x3c))) {
@@ -10343,7 +10343,7 @@ uint8_t ProcessFloatRangeValidationAndDataHandling(int64_t ObjectContext,int64_t
     }
     ResourceHashValidationStatusCode = ValidateObjectContextAndProcessData(ResourceIndex,ObjectContext + ObjectContextResourceTablePointerOffset,ObjectContext + ObjectContextValidationDataOffset);
     if ((int)ValidationStatusCode == 0) {
-      CalculatedFloatValue = *(float *)(ObjectContext + ObjectContextValidationDataOffset);
+      CalculatedFloatResult = *(float *)(ObjectContext + ObjectContextValidationDataOffset);
       if ((InputFloatValue < *(float *)(ResourceIndex + 0x38)) ||
          (*(float *)(ResourceIndex + 0x3c) <= InputFloatValue && InputFloatValue != *(float *)(ResourceIndex + 0x3c))) {
         ValidationStatusCode = ErrorInvalidObjectHandle;
