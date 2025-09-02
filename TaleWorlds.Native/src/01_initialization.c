@@ -20711,7 +20711,7 @@ void SystemDataSearchAndMatch(void* searchContext,void* searchData,long long mat
     newThreadLocalStorage = (void* *)HashBucketNode[2];
     do {
       if (*(int *)(AdditionalParameter + 0x10) == 0) {
-        punsignedSystemValue9 = (void* *)newThreadLocalStorage[1];
+        systemHashBucketNode = (void* *)newThreadLocalStorage[1];
         IsMatchFound = false;
       }
       else {
@@ -20729,19 +20729,19 @@ void SystemDataSearchAndMatch(void* searchContext,void* searchData,long long mat
           } while (comparisonCharValue != 0);
           IsMatchFound = 0 < systemCounter;
           if (systemCounter < 1) {
-            punsignedSystemValue9 = (void* *)newThreadLocalStorage[1];
+            systemHashBucketNode = (void* *)newThreadLocalStorage[1];
             goto SystemNodeTraversalContinue;
           }
         }
-        punsignedSystemValue9 = (void* *)*newThreadLocalStorage;
+        systemHashBucketNode = (void* *)*newThreadLocalStorage;
       }
 SystemNodeTraversalContinue:
       if (IsMatchFound) {
         newThreadLocalStorage = pSystemResourceAddress;
       }
       pSystemResourceAddress = newThreadLocalStorage;
-      newThreadLocalStorage = punsignedSystemValue9;
-    } while (punsignedSystemValue9 != (void* *)0x0);
+      newThreadLocalStorage = systemHashBucketNode;
+    } while (systemHashBucketNode != (void* *)0x0);
   }
   if (pSystemResourceAddress != HashBucketNode) {
     if (*(int *)(pSystemResourceAddress + 6) == 0) goto SystemNodeDataValidation;
@@ -21067,10 +21067,10 @@ void InitializeSystemConfigurationData(void* SystemResourceManager,void* Configu
         systemFunctionPointer4 = *(char **)(localSystemFlags + 8 + nextDataIndex1);
         validationStatusFlag = systemFunctionPointer4[nextDataIndex3];
       }
-      punsignedSystemValue9 = *(void* **)(SystemInitializationStatusCode + 8 + nextDataIndex1);
+      systemHashBucketNode = *(void* **)(SystemInitializationStatusCode + 8 + nextDataIndex1);
       ThreadLocalStorageEntry = &SystemStringTemplate;
       if (punsignedSystemValue9 != (void* *)0x0) {
-        ThreadLocalStorageEntry = punsignedSystemValue9;
+        ThreadLocalStorageEntry = systemHashBucketNode;
       }
       SetSystemPropertyPointerValue(SystemThreadContext,&SystemPropertyTemplate,ThreadLocalStorageEntry,*(void* *)(SystemInitializationStatusCode + 0x20 + nextDataIndex1));
       SystemOperationStatus7 = SystemOperationStatus7 + 1;
@@ -21289,7 +21289,7 @@ long long ManageSystemResources(long long SystemResourceManager,long long resour
   *(uint8_t *)(SystemResourceManager + 0xe8) = 0;
   *(void* *)(SystemResourceManager + 0xf0) = 0;
   if (*(long long *)(ConfigurationDataPointer + 0xe0) != 0) {
-    punsignedSystemValue9 = (void* *)CreateSystemResourceManager(SystemDataPointer,*(long long *)(ConfigurationDataPointer + 0xe0),SystemDataPointer,ConfigurationFlag,systemOperationFlags)
+    systemHashBucketNode = (void* *)CreateSystemResourceManager(SystemDataPointer,*(long long *)(ConfigurationDataPointer + 0xe0),SystemDataPointer,ConfigurationFlag,systemOperationFlags)
     ;
     *(void* **)(SystemResourceManager + 0xe0) = punsignedSystemValue9;
     newThreadLocalStorage = (void* *)*punsignedSystemValue9;
@@ -24809,7 +24809,7 @@ void* * SystemResourceComplexInitializer(void* *SystemResourceManager)
   void** SystemRootNode;
   long long *plocalDataIndex;
   uint32_t *newThreadLocalStorage;
-  uint32_t *punsignedSystemValue9;
+  uint32_t *systemResourceCounter;
   long long allocationFlags;
   void* *ParameterStackArray [3];
   
@@ -24945,8 +24945,8 @@ void* * SystemResourceComplexInitializer(void* *SystemResourceManager)
   *(uint32_t *)((long long)SystemResourceManager + 0x104) = 0xffffffff;
   allocationFlags = 8;
   do {
-    punsignedSystemValue9 = (uint32_t *)SystemResourceManager[0x22];
-    if (punsignedSystemValue9 < (uint32_t *)SystemResourceManager[0x23]) {
+    systemResourceCounter = (uint32_t *)SystemResourceManager[0x22];
+    if (systemResourceCounter < (uint32_t *)SystemResourceManager[0x23]) {
       SystemResourceManager[0x22] = punsignedSystemValue9 + 1;
       *punsignedSystemValue9 = 0;
     }
@@ -24958,7 +24958,7 @@ void* * SystemResourceComplexInitializer(void* *SystemResourceManager)
 SystemBufferAllocationHandler:
         SystemThreadContext = (uint32_t *)
                  CreateSystemThreadObject(SystemMemoryPoolTemplate,bufferBaseAddress * 4,*(uint8_t *)(SystemResourceManager + 0x24));
-        punsignedSystemValue9 = (uint32_t *)SystemResourceManager[0x22];
+        systemResourceCounter = (uint32_t *)SystemResourceManager[0x22];
         newThreadLocalStorage = (uint32_t *)*PrimaryResourcePointer;
       }
       else {
@@ -26939,7 +26939,7 @@ bool SystemResourceValidator(long long SystemResourceManager)
   int CalculationFlags;
   long long localDataIndex;
   void** SystemNextNode;
-  void* *punsignedSystemValue9;
+  void* *systemHashBucketNode;
   void* *SystemDataPointer0;
   void* *ThreadLocalStorage;
   void* *pointerUnsigned30;
@@ -26954,7 +26954,7 @@ bool SystemResourceValidator(long long SystemResourceManager)
     do {
       if (IntegerStack20 == 0) {
         isValidOperation = false;
-        punsignedSystemValue9 = (void* *)newThreadLocalStorage[1];
+        systemHashBucketNode = (void* *)newThreadLocalStorage[1];
       }
       else {
         if (*(int *)(newThreadLocalStorage + 6) == 0) {
@@ -26970,20 +26970,20 @@ bool SystemResourceValidator(long long SystemResourceManager)
           } while (currentThreadId != 0);
           isValidOperation = 0 < CalculationFlags;
           if (CalculationFlags < 1) {
-            punsignedSystemValue9 = (void* *)newThreadLocalStorage[1];
+            systemHashBucketNode = (void* *)newThreadLocalStorage[1];
             goto SystemValidationCheck;
           }
         }
-        punsignedSystemValue9 = (void* *)*newThreadLocalStorage;
+        systemHashBucketNode = (void* *)*newThreadLocalStorage;
       }
 SystemValidationCheck:
       SystemDataPointer0 = newThreadLocalStorage;
       if (isValidOperation) {
         SystemDataPointer0 = ThreadLocalStorage;
       }
-      newThreadLocalStorage = punsignedSystemValue9;
+      newThreadLocalStorage = systemHashBucketNode;
       ThreadLocalStorage = SystemDataPointer0;
-    } while (punsignedSystemValue9 != (void* *)0x0);
+    } while (systemHashBucketNode != (void* *)0x0);
     if (SystemDataPointer0 != SystemDataPointer) {
       if (*(int *)(SystemDataPointer0 + 6) == 0) goto SystemValueValidation;
       if (IntegerStack20 != 0) {
@@ -29452,7 +29452,7 @@ void ProcessSystemConfigurationParameters(long long SystemResourceManager)
   void** SystemRootNode;
   int systemOffset;
   long long localMemoryAddress;
-  void* *punsignedSystemValue9;
+  void* *systemHashBucketNode;
   uint8_t auStack_c8 [32];
   uint8_t UnsignedStackFlagA8;
   uint8_t UnsignedStackFlagA0;
@@ -42180,7 +42180,7 @@ void DispatchSystemResourcesAndCreateThreads(long long SystemResourceManager)
   long long localSystemFlags;
   long long *plocalDataIndex;
   int systemCode;
-  void* *punsignedSystemValue9;
+  void* *systemHashBucketNode;
   void* *SystemDataPointer0;
   uint auStackX_8 [4];
   uint8_t auStackX_18 [8];
@@ -42682,7 +42682,7 @@ void CleanupAndValidateSystemResources(void)
   int CalculationFlags;
   long long localDataIndex;
   long long localMemoryAddress;
-  void* *punsignedSystemValue9;
+  void* *systemHashBucketNode;
   uint systemOperationFlags;
   void* *pSystemSecondaryStatus;
   ulong long SystemOperationStatus3;
@@ -51563,7 +51563,7 @@ ulong long ConfigureAndManageSystemResources(void* SystemResourceManager,void* C
   uint8_t *resourceEntryPointer;
   long long localDataIndex;
   void* **pnewThreadLocalStorage;
-  void* *punsignedSystemValue9;
+  void* *systemHashBucketNode;
   void* *SystemDataPointer0;
   ulong long SystemOperationStatus1;
   void* *pSystemSecondaryStatus;
