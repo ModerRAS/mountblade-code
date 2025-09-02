@@ -26115,17 +26115,17 @@ uint64_t ValidateAndProcessResourceDataVariantC(void)
   uint configurationFlags;
   uint64_t SecurityHashValue;
   uint RegisterStorageBuffer2;
-  uint StackVariableB8;
+  uint ResourceContextData;
   
   SecurityHashValue = 0;
-  StackVariableB8 = 0;
+  ResourceContextData = 0;
   ValidationResult = LoadResourceData(*ResourceContext,&ResourceContextBuffer);
   if ((int)HashValidationResult != 0) {
     return ResourceHashValidationResult;
   }
   ResourceOperationBuffer = 0;
-  loopIncrement = StackVariableB8 & 1;
-  ContextValidationStatusCode = StackVariableB8 >> 1;
+  loopIncrement = ResourceContextData & 1;
+  ContextValidationStatusCode = ResourceContextData >> 1;
   ValidationResult = SecurityHashValue;
   if (ContextHashValidationResult != 0) {
     do {
@@ -26176,9 +26176,9 @@ uint64_t ValidateAndProcessResourceDataVariantC(void)
   }
 SecurityCheckHandler:
   if ((int)ValidationResult == 0) {
-    *(uint *)(SystemContext + 0x4c) = StackVariableB8;
+    *(uint *)(SystemContext + 0x4c) = ResourceContextData;
     ValidationResult = 0xd;
-    if (StackVariableB8 < 7) {
+    if (ResourceContextData < 7) {
       ValidationResult = SecurityHashValue;
     }
     if ((int)ValidationResult == 0) {
@@ -28193,7 +28193,7 @@ uint64_t ValidateResourceDataIntegrityInternal(void)
   uint64_t ResourceHashValidationResult;
   uint8_t *ResourceContext;
   int64_t ExecutionContextPointer;
-  char stackVariableChar;
+  char CharacterFlag;
   
   ValidationResult = CalculateDataChecksum();
   if ((int)ValidationResult == 0) {
