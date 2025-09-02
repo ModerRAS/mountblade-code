@@ -967,21 +967,21 @@ void* SystemResourceTrackingBuffer;          // 系统资源跟踪缓冲区
 void* SystemStateManagementBuffer;           // 系统状态管理缓冲区
 void* SystemNetworkPacketBuffer;             // 系统网络数据包缓冲区
 void* SystemGraphicsRenderBuffer;             // 系统图形渲染缓冲区
-void* SystemAudioStreamBuffer;
-void* SystemInputCommandBuffer;
-void* SystemPhysicsSimulationBuffer;
-void* SystemAnimationKeyframeBuffer;
-void* SystemScriptBytecodeBuffer;
-void* SystemFileOperationBuffer;
-void* SystemDatabaseTransactionBuffer;
-void* SystemSecurityTokenBuffer;
-void* SystemLogMessageBuffer;
-void* SystemProfilerSampleBuffer;
-void* SystemMemoryPageBuffer;
-void* SystemThreadWorkItemBuffer;
+void* SystemAudioStreamBuffer;               // 系统音频流缓冲区
+void* SystemInputCommandBuffer;               // 系统输入命令缓冲区
+void* SystemPhysicsSimulationBuffer;          // 系统物理模拟缓冲区
+void* SystemAnimationKeyframeBuffer;          // 系统动画关键帧缓冲区
+void* SystemScriptBytecodeBuffer;           // 系统脚本字节码缓冲区
+void* SystemFileOperationBuffer;             // 系统文件操作缓冲区
+void* SystemDatabaseTransactionBuffer;       // 系统数据库事务缓冲区
+void* SystemSecurityTokenBuffer;              // 系统安全令牌缓冲区
+void* SystemLogMessageBuffer;                 // 系统日志消息缓冲区
+void* SystemProfilerSampleBuffer;            // 系统性能分析器采样缓冲区
+void* SystemMemoryPageBuffer;                // 系统内存页缓冲区
+void* SystemThreadWorkItemBuffer;             // 系统线程工作项缓冲区
 // 事件处理器槽缓冲区 - 缓存事件处理器槽数据
-void* EventHandlerSlotBuffer;
-void* SystemKernelCallBuffer;
+void* EventHandlerSlotBuffer;                // 事件处理器槽缓冲区
+void* SystemKernelCallBuffer;                 // 系统内核调用缓冲区
 
 /**
  * @brief 处理资源条目与验证
