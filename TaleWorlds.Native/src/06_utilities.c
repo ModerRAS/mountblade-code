@@ -46761,7 +46761,18 @@ void ReleaseSystemComponentAtExceptionListOffset(uint8_t ObjectContext,int64_t V
  * @return 无返回值
  * @note 此函数通常在系统清理或异常处理时调用
  */
-void ReleaseSystemComponentAtOffset0xb0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 释放次要偏移量处的系统组件
+ * 
+ * 该函数负责释放验证上下文中次要偏移量处的系统组件
+ * 用于系统资源清理和内存管理
+ * 
+ * @param ObjectContext 对象上下文参数，用于标识当前处理的对象
+ * @param ValidationContext 验证上下文参数，包含验证相关的上下文信息
+ * @return 无返回值
+ * @note 此函数通常在系统清理或异常处理时调用
+ */
+void ReleaseSystemComponentAtSecondaryOffset(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   ReleaseSystemComponent(ValidationContext + 0xb0);
@@ -46770,7 +46781,18 @@ void ReleaseSystemComponentAtOffset0xb0(uint8_t ObjectContext,int64_t Validation
 
 
 
-void ReleaseSystemComponentAtOffset0x90(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 释放主要偏移量处的系统组件
+ * 
+ * 该函数负责释放验证上下文中主要偏移量处的系统组件
+ * 用于系统资源清理和内存管理
+ * 
+ * @param ObjectContext 对象上下文参数，用于标识当前处理的对象
+ * @param ValidationContext 验证上下文参数，包含验证相关的上下文信息
+ * @return 无返回值
+ * @note 此函数通常在系统清理或异常处理时调用
+ */
+void ReleaseSystemComponentAtPrimaryOffset(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   ReleaseSystemComponent(ValidationContext + 0x90);
