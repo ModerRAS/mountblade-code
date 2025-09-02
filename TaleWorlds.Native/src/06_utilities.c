@@ -4774,17 +4774,6 @@ uint8_t IncrementObjectReferenceCount(int64_t ObjectContext) {
  * @param ObjectContext 对象上下文参数，包含对象的初始化信息
  * @return uint8_t 操作结果状态码，0表示成功，非0表示失败
  */
-/**
- * @brief 初始化对象句柄基础操作
- * 
- * 该函数负责初始化对象句柄的基础操作，包括验证对象上下文和系统上下文。
- * 如果系统上下文有效且对象句柄内存指针不为空，会执行系统退出操作。
- * 
- * @param ObjectContext 对象上下文，包含对象相关的状态信息
- * @return uint8_t 返回操作状态码，0表示成功，非0表示失败
- * @note 此函数用于对象句柄的初始化处理
- * @warning 如果对象上下文无效，函数会返回错误码
- */
 uint8_t InitializeObjectHandleBasic(int64_t ObjectContext) {
   uint8_t ObjectValidationResult;
   int64_t ValidatedSystemContext;
