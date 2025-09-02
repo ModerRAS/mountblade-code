@@ -58461,7 +58461,19 @@ void ExecuteResourceHandlerCallbackOffset8818(uint8_t ObjectContext, int64_t Val
 
 
 
-void Unwind_1809073e0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 释放资源上下文处理器
+ * 
+ * 该函数负责释放指定偏移量的资源上下文处理器
+ * 通过调用资源上下文中的释放函数来清理资源
+ * 
+ * @param ObjectContext 对象上下文，标识要处理的对象
+ * @param ValidationContext 验证上下文，包含资源处理所需的验证信息
+ * @return 无返回值
+ * @note 此函数处理偏移量0x10处的资源上下文
+ * @warning 调用前必须确保资源上下文有效
+ */
+void ReleaseResourceContextHandler(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t *processPointer;
@@ -58475,7 +58487,19 @@ void Unwind_1809073e0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_1809073f0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 释放资源上下文处理器扩展
+ * 
+ * 该函数负责释放指定偏移量的资源上下文处理器扩展版本
+ * 通过调用资源上下文中的释放函数来清理资源
+ * 
+ * @param ObjectContext 对象上下文，标识要处理的对象
+ * @param ValidationContext 验证上下文，包含资源处理所需的验证信息
+ * @return 无返回值
+ * @note 此函数处理偏移量0x18处的资源上下文
+ * @warning 调用前必须确保资源上下文有效
+ */
+void ReleaseResourceContextHandlerExtended(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t *processPointer;
@@ -58489,7 +58513,19 @@ void Unwind_1809073f0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180907400(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 处理资源状态标志清理
+ * 
+ * 该函数负责处理资源状态标志的清理工作
+ * 当资源的第0位标志被设置时，清除该标志并执行相应的资源操作
+ * 
+ * @param ObjectContext 对象上下文，标识要处理的对象
+ * @param ValidationContext 验证上下文，包含资源处理所需的验证信息
+ * @return 无返回值
+ * @note 此函数处理资源状态标志的第0位（位掩码0x1）
+ * @warning 调用前必须确保资源数据有效
+ */
+void ProcessResourceStatusFlagCleanup(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   if ((*(uint *)(ResourceData + 0x20) & 1) != 0) {
@@ -58501,7 +58537,19 @@ void Unwind_180907400(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180907430(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 重置系统数据结构指针
+ * 
+ * 该函数负责重置验证上下文中的系统数据结构指针
+ * 将指定偏移量处的指针设置为系统数据结构地址
+ * 
+ * @param ObjectContext 对象上下文，标识要处理的对象
+ * @param ValidationContext 验证上下文，包含重置操作的验证信息
+ * @return 无返回值
+ * @note 此函数重置偏移量0x40处的指针
+ * @warning 调用前必须确保验证上下文有效
+ */
+void ResetSystemDataStructurePointer(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   *(uint8_t **)(ValidationContext + 0x40) = &SystemDataStructure;
@@ -58510,7 +58558,19 @@ void Unwind_180907430(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180907440(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 处理资源状态标志清理扩展
+ * 
+ * 该函数负责处理资源状态标志的清理工作扩展版本
+ * 当资源的第1位标志被设置时，清除该标志并执行相应的资源操作
+ * 
+ * @param ObjectContext 对象上下文，标识要处理的对象
+ * @param ValidationContext 验证上下文，包含资源处理所需的验证信息
+ * @return 无返回值
+ * @note 此函数处理资源状态标志的第1位（位掩码0x2）
+ * @warning 调用前必须确保资源数据有效
+ */
+void ProcessResourceStatusFlagCleanupExtended(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   if ((*(uint *)(ResourceData + 0x20) & 2) != 0) {
@@ -58522,7 +58582,20 @@ void Unwind_180907440(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180907470(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 处理资源状态标志清理备用版本
+ * 
+ * 该函数负责处理资源状态标志的清理工作备用版本
+ * 当资源的第0位标志被设置时，清除该标志并执行相应的资源操作
+ * 使用不同的参数传递方式
+ * 
+ * @param ObjectContext 对象上下文，标识要处理的对象
+ * @param ValidationContext 验证上下文，包含资源处理所需的验证信息
+ * @return 无返回值
+ * @note 此函数处理资源状态标志的第0位（位掩码0x1），但传递验证上下文地址
+ * @warning 调用前必须确保资源数据有效
+ */
+void ProcessResourceStatusFlagCleanupAlternate(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   if ((*(uint *)(ResourceData + 0x20) & 1) != 0) {
@@ -58534,7 +58607,20 @@ void Unwind_180907470(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_1809074a0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 处理资源状态标志清理扩展备用版本
+ * 
+ * 该函数负责处理资源状态标志的清理工作扩展备用版本
+ * 当资源的第1位标志被设置时，清除该标志并执行相应的资源操作
+ * 使用验证上下文地址作为参数
+ * 
+ * @param ObjectContext 对象上下文，标识要处理的对象
+ * @param ValidationContext 验证上下文，包含资源处理所需的验证信息
+ * @return 无返回值
+ * @note 此函数处理资源状态标志的第1位（位掩码0x2），传递验证上下文地址
+ * @warning 调用前必须确保资源数据有效
+ */
+void ProcessResourceStatusFlagCleanupExtendedAlternate(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   if ((*(uint *)(ResourceData + 0x20) & 2) != 0) {
@@ -58546,7 +58632,19 @@ void Unwind_1809074a0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_1809074d0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 处理资源索引和内存地址验证
+ * 
+ * 该函数负责处理资源索引和内存地址的验证工作
+ * 通过复杂的地址计算和验证逻辑来确保资源访问的安全性
+ * 
+ * @param ObjectContext 对象上下文，标识要处理的对象
+ * @param ValidationContext 验证上下文，包含资源处理所需的验证信息
+ * @return 无返回值
+ * @note 此函数执行复杂的内存地址计算和资源索引验证
+ * @warning 调用前必须确保验证上下文和相关指针有效
+ */
+void ProcessResourceIndexAndMemoryValidation(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int *ResourceIndexPointer;
@@ -58582,7 +58680,20 @@ void Unwind_1809074d0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_1809074e0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 验证资源哈希并释放资源索引
+ * 
+ * 该函数负责验证资源的哈希值并释放相关的资源索引
+ * 通过复杂的内存地址计算和验证逻辑来确保资源访问的安全性
+ * 处理资源索引的递减和清理工作
+ * 
+ * @param ObjectContext 对象上下文，标识要操作的对象
+ * @param ValidationContext 验证上下文，包含验证所需的资源和数据
+ * @return 无返回值
+ * @note 此函数涉及复杂的内存地址计算和资源验证
+ * @warning 验证失败时可能会触发系统清理处理程序
+ */
+void ValidateResourceHashAndReleaseIndex(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int *ResourceIndexPointer;
@@ -58618,7 +58729,20 @@ void Unwind_1809074e0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_1809074f0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 处理资源索引和内存地址验证扩展
+ * 
+ * 该函数负责处理资源索引和内存地址的验证工作扩展版本
+ * 通过复杂的地址计算和验证逻辑来确保资源访问的安全性
+ * 使用不同的验证上下文偏移量
+ * 
+ * @param ObjectContext 对象上下文，标识要处理的对象
+ * @param ValidationContext 验证上下文，包含资源处理所需的验证信息
+ * @return 无返回值
+ * @note 此函数执行复杂的内存地址计算和资源索引验证，使用偏移量0x40
+ * @warning 调用前必须确保验证上下文和相关指针有效
+ */
+void ProcessResourceIndexAndMemoryValidationExtended(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int *ResourceIndexPointer;
@@ -58654,7 +58778,20 @@ void Unwind_1809074f0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180907500(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 处理资源状态标志清理高级版本
+ * 
+ * 该函数负责处理资源状态标志的清理工作高级版本
+ * 当资源的第0位标志被设置时，清除该标志并执行相应的资源操作
+ * 使用验证上下文偏移量0x78处的参数
+ * 
+ * @param ObjectContext 对象上下文，标识要处理的对象
+ * @param ValidationContext 验证上下文，包含资源处理所需的验证信息
+ * @return 无返回值
+ * @note 此函数处理资源状态标志的第0位（位掩码0x1），使用偏移量0x78
+ * @warning 调用前必须确保资源数据有效
+ */
+void ProcessResourceStatusFlagCleanupAdvanced(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   if ((*(uint *)(ResourceData + 0x20) & 1) != 0) {
@@ -58666,7 +58803,20 @@ void Unwind_180907500(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180907530(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 处理资源状态标志清理高级扩展版本
+ * 
+ * 该函数负责处理资源状态标志的清理工作高级扩展版本
+ * 当资源的第1位标志被设置时，清除该标志并执行相应的资源操作
+ * 使用验证上下文偏移量0x78处的参数
+ * 
+ * @param ObjectContext 对象上下文，标识要处理的对象
+ * @param ValidationContext 验证上下文，包含资源处理所需的验证信息
+ * @return 无返回值
+ * @note 此函数处理资源状态标志的第1位（位掩码0x2），使用偏移量0x78
+ * @warning 调用前必须确保资源数据有效
+ */
+void ProcessResourceStatusFlagCleanupAdvancedExtended(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   uint8_t *ResourceHashPointer;
@@ -58679,7 +58829,19 @@ void Unwind_180907530(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180907540(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 设置资源哈希指针到分配模板
+ * 
+ * 该函数负责将资源哈希指针设置为资源分配模板
+ * 然后更新为资源缓存模板，确保资源哈希的正确设置
+ * 
+ * @param ObjectContext 对象上下文，标识要操作的对象
+ * @param ValidationContext 验证上下文，包含资源哈希指针的信息
+ * @return 无返回值
+ * @note 此函数主要用于资源哈希指针的初始化和设置
+ * @warning 确保验证上下文中的资源哈希指针有效
+ */
+void SetResourceHashPointerToAllocationTemplate(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   uint8_t *ResourceHashPointer;
@@ -58692,7 +58854,19 @@ void Unwind_180907540(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180907550(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 设置资源哈希表指针到哈希表003
+ * 
+ * 该函数负责将资源哈希表指针设置为特定的哈希表003
+ * 通过双重指针操作来确保正确的哈希表设置
+ * 
+ * @param ObjectContext 对象上下文，标识要操作的对象
+ * @param ValidationContext 验证上下文，包含资源哈希表指针的信息
+ * @return 无返回值
+ * @note 此函数用于将资源哈希表指针指向特定的哈希表003
+ * @warning 确保验证上下文中的资源哈希表指针有效
+ */
+void SetResourceHashTablePointerToTable003(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   **(uint8_t **)(ValidationContext + 0x30) = &ResourceHashTable003;
