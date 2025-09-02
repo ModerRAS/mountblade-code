@@ -7962,7 +7962,7 @@ uint8_t ValidateObjectContextAndProcessFloatRange(int64_t objectContext,int64_t 
       }
       ValidationCounter = (int)resourceHash0 + 1;
       resourceHash0 = (uint64_t)ValidationCounter;
-      pSecondFloatValue = pfloatValue4 + 1;
+      psecondFloatResult = pfloatValue4 + 1;
     } while ((int)ValidationCounter < *(int *)(ObjectContextParameter + 0x18));
     if (0 < *(int *)(ObjectContextParameter + 0x18)) {
       ResourceTablePointer = (ObjectContextParameter + 0x20) - (int64_t)FloatParameterValue;
@@ -8038,15 +8038,15 @@ uint8_t ProcessObjectContextFloatRangeValidationAndClamping(void)
         if (*(uint *)(ResourceTablePointer + 0x30) != in_R9D) {
           return 0x1f;
         }
-        FifthFloatValue = *(float *)(ResourceTablePointer + 0x38);
+        fifthFloatResult = *(float *)(ResourceTablePointer + 0x38);
         if ((*(float *)(ResourceTablePointer + 0x38) <= inputFloatValue) &&
-           (FifthFloatValue = *(float *)(ResourceTablePointer + 0x3c), inputFloatValue <= *(float *)(ResourceTablePointer + 0x3c))) {
-          FifthFloatValue = inputFloatValue;
+           (fifthFloatResult = *(float *)(ResourceTablePointer + 0x3c), inputFloatValue <= *(float *)(ResourceTablePointer + 0x3c))) {
+          fifthFloatResult = inputFloatValue;
         }
-        *pSecondFloatValue = floatValue9;
+        *psecondFloatResult = floatValue9;
       }
       ResourceCounter = ResourceCounter + 1;
-      pSecondFloatValue = pfloatValue4 + 1;
+      psecondFloatResult = pfloatValue4 + 1;
     } while ((int)ResourceCounter < *(int *)(ResourceContextPointer + 0x18));
     if (0 < *(int *)(ResourceContextPointer + 0x18)) {
       ResourceTablePointer = (ResourceContextPointer + 0x20) - (int64_t)FloatParameterValue;
@@ -8495,10 +8495,10 @@ uint8_t ProcessObjectContextFloatRangeValidationAndClamping(int64_t objectContex
     return 0x1f;
   }
   floatComparisonResult = *(float *)(ObjectContextParameter + 0x14);
-  SecondFloatValue = *(float *)(resourceTable + 0x38);
+  secondFloatResult = *(float *)(resourceTable + 0x38);
   if ((*(float *)(resourceTable + 0x38) <= inputFloatValue) &&
-     (SecondFloatValue = *(float *)(resourceTable + 0x3c), inputFloatValue <= *(float *)(resourceTable + 0x3c))) {
-    SecondFloatValue = inputFloatValue;
+     (secondFloatResult = *(float *)(resourceTable + 0x3c), inputFloatValue <= *(float *)(resourceTable + 0x3c))) {
+    secondFloatResult = inputFloatValue;
   }
   *(float *)(ObjectContextParameter + 0x14) = floatValue4;
   *(float *)(CONCAT44(ValidationContextParam,ValidationContext) + 4) = floatValue4;
@@ -9340,11 +9340,11 @@ void ProcessFloatRangeClamping(void)
   float SecondaryFloatValue;
   uint32_t StackParameterContextSecondary;
   
-  SecondFloatValue = *(float *)(CONCAT44(InputRegisterHigh,InputRegisterLow) + 0x38);
+  secondFloatResult = *(float *)(CONCAT44(InputRegisterHigh,InputRegisterLow) + 0x38);
   floatComparisonResult = *(float *)(ResourceContextPointer + 0x10);
   if ((floatValue4 <= inputFloatValue) &&
-     (SecondFloatValue = *(float *)(CONCAT44(InputRegisterHigh,InputRegisterLow) + 0x3c), inputFloatValue <= floatValue4)) {
-    SecondFloatValue = inputFloatValue;
+     (secondFloatResult = *(float *)(CONCAT44(InputRegisterHigh,InputRegisterLow) + 0x3c), inputFloatValue <= floatValue4)) {
+    secondFloatResult = inputFloatValue;
   }
   *(float *)(ResourceContextPointer + 0x10) = floatValue4;
   ValidationStatus = ValidateResourceParameters(RegisterContext + 0x60,StackParameterContextSecondary,floatValue4);
@@ -10888,7 +10888,7 @@ void ProcessModuleInitialization(int64_t ModuleHandle, void* ModuleContext, int*
       *(int *)(ObjectContextParameter + 0xac) = RegisterEBX + 1;
       goto HANDLE_CONTEXT_ERROR;
     }
-    float FifthFloatValue = *(float *)(longValue8 + 0x18);
+    float fifthFloatResult = *(float *)(longValue8 + 0x18);
     float calculatedFloatResult = floatValue9;
     if (OperationResult != -1) {
       calculatedFloatResult = *(float *)(ObjectContextParameter + 0xb4);
@@ -10898,8 +10898,8 @@ void ProcessModuleInitialization(int64_t ModuleHandle, void* ModuleContext, int*
     }
     *(float *)(ObjectContextParameter + 0xa8) = floatValue9;
     ResourceTablePointer = 0;
-    FifthFloatValue = (float)*(uint *)(ObjectContextParameter + 0x68) * floatValue9;
-    if ((9.223372e+18 <= floatValue9) && (FifthFloatValue = floatValue9 - 9.223372e+18, floatValue9 < 9.223372e+18)) {
+    fifthFloatResult = (float)*(uint *)(ObjectContextParameter + 0x68) * floatValue9;
+    if ((9.223372e+18 <= floatValue9) && (fifthFloatResult = floatValue9 - 9.223372e+18, floatValue9 < 9.223372e+18)) {
       ResourceTablePointer = -0x8000000000000000;
     }
     loopCounter = *(int64_t *)(ObjectContextParameter + 0xa0);
@@ -14044,7 +14044,7 @@ void ProcessFloatOperationsAndContextValidation(float ObjectContextParameter)
       if (OperationResult != 0) goto OperationResultHandler;
     }
     pThirdFloatValue = (float *)(RegisterR15 + 0x94);
-    SecondFloatValue = FloatRegisterValue;
+    secondFloatResult = FloatRegisterValue;
     do {
       floatComparisonResult = *pfloatValue5;
       if (inputFloatValue != 0.0) {
@@ -14056,11 +14056,11 @@ void ProcessFloatOperationsAndContextValidation(float ObjectContextParameter)
         OperationStatusCode = GetAndValidateResourceData(inputFloatValue,&ObjectStackBufferResource28);
         if (OperationResult != 0) goto OperationResultHandler;
       }
-      SecondFloatValue = (float)((int)floatValue4 + 1);
+      secondFloatResult = (float)((int)floatValue4 + 1);
       pThirdFloatValue = pfloatValue5 + 1;
     } while ((int)floatValue4 < 4);
     pThirdFloatValue = (float *)&SystemFloatTemplateActive;
-    SecondFloatValue = FloatRegisterValue;
+    secondFloatResult = FloatRegisterValue;
     do {
       floatComparisonResult = *(float *)(RegisterR15 + -0x180985054 + (int64_t)pfloatValue5);
       if (inputFloatValue != *pfloatValue5) {
@@ -14072,7 +14072,7 @@ void ProcessFloatOperationsAndContextValidation(float ObjectContextParameter)
         OperationStatusCode = GetAndValidateResourceData(inputFloatValue,&ObjectStackBufferResource28);
         if (OperationResult != 0) goto OperationResultHandler;
       }
-      SecondFloatValue = (float)((int)floatValue4 + 1);
+      secondFloatResult = (float)((int)floatValue4 + 1);
       pThirdFloatValue = pfloatValue5 + 1;
     } while ((int)floatValue4 < 6);
     ValidationStatusCode = CalculateSecurityHash(ResourceRegisterPointer + 200);
@@ -17089,14 +17089,14 @@ uint8_t ProcessResourceDataNormalization(int64_t resourceContext, int64_t dataPo
     if (0 < *(short *)(ValidationContextParameter + 0x104)) {
       ValidationFloatDataPointer = (float *)(ValidationContextParameter + 0x84);
       do {
-        SecondFloatValue = ValidationFloatPointer[-0x20] * 0.25;
+        secondFloatResult = ValidationFloatPointer[-0x20] * 0.25;
         if (0.0 <= floatValue4) {
           if (1.0 <= floatValue4) {
-            SecondFloatValue = 1.0;
+            secondFloatResult = 1.0;
           }
         }
         else {
-          SecondFloatValue = 0.0;
+          secondFloatResult = 0.0;
         }
         ArrayUnionStackX8[0] = (uint16_t)(int)(floatValue4 * 65535.0);
         resourceHash = (**(code **)**(uint8_t **)(ObjectContextParameter + 8))
@@ -17104,14 +17104,14 @@ uint8_t ProcessResourceDataNormalization(int64_t resourceContext, int64_t dataPo
         if ((int)resourceHash != 0) {
           return resourceHash;
         }
-        SecondFloatValue = *ValidationFloatPointer * 0.25;
+        secondFloatResult = *ValidationFloatPointer * 0.25;
         if (0.0 <= floatValue4) {
           if (1.0 <= floatValue4) {
-            SecondFloatValue = 1.0;
+            secondFloatResult = 1.0;
           }
         }
         else {
-          SecondFloatValue = 0.0;
+          secondFloatResult = 0.0;
         }
         ArrayUnionStackX8[0] = (uint16_t)(int)(floatValue4 * 65535.0);
         resourceHash = (**(code **)**(uint8_t **)(ObjectContextParameter + 8))
@@ -17154,14 +17154,14 @@ uint8_t ProcessResourceDataNormalizationSimple(void)
   if (0 < *(short *)(SystemContextPointer + 0x104)) {
     ValidationFloatDataPointer = (float *)(SystemContextPointer + 0x84);
     do {
-      SecondFloatValue = ValidationFloatPointer[-0x20] * 0.25;
+      secondFloatResult = ValidationFloatPointer[-0x20] * 0.25;
       if (0.0 <= floatValue4) {
         if (1.0 <= floatValue4) {
-          SecondFloatValue = 1.0;
+          secondFloatResult = 1.0;
         }
       }
       else {
-        SecondFloatValue = 0.0;
+        secondFloatResult = 0.0;
       }
       uStack0000000000000070 = (uint16_t)(int)(floatValue4 * 65535.0);
       resourceHash = (**(code **)**(uint8_t **)(ExecutionContextPointer + 8))
@@ -17169,14 +17169,14 @@ uint8_t ProcessResourceDataNormalizationSimple(void)
       if ((int)resourceHash != 0) {
         return resourceHash;
       }
-      SecondFloatValue = *ValidationFloatPointer * 0.25;
+      secondFloatResult = *ValidationFloatPointer * 0.25;
       if (0.0 <= floatValue4) {
         if (1.0 <= floatValue4) {
-          SecondFloatValue = 1.0;
+          secondFloatResult = 1.0;
         }
       }
       else {
-        SecondFloatValue = 0.0;
+        secondFloatResult = 0.0;
       }
       uStack0000000000000070 = (uint16_t)(int)(floatValue4 * 65535.0);
       resourceHash = (**(code **)**(uint8_t **)(ExecutionContextPointer + 8))
@@ -21753,7 +21753,7 @@ LAB_18089c40a:
         do {
           pinputFloatValue3 = (float *)AllocateMemoryBlock();
           MemoryFloatValue = *pinputFloatValue3;
-          SecondFloatValue = pinputFloatValue3[1];
+          secondFloatResult = pinputFloatValue3[1];
           ThirdFloatValue = pinputFloatValue3[2];
           fourthFloatResult = pinputFloatValue3[3];
           *(float *)(LocalContextData6 + -0x14) = MemoryFloatValue;
@@ -22423,7 +22423,7 @@ LAB_18089c878:
     return LoopCondition;
   }
   LoopIncrement = SecurityHashValue;
-  FifthFloatValue = extraout_XMM0_Da;
+  fifthFloatResult = extraout_XMM0_Da;
   ResourceContextOffset = ContextValidationResult;
   ResourceCounter = ResourceRegisterPointerD;
   if (*(uint *)(ResourceContextPointer + 8) < 0x70) {
@@ -22436,12 +22436,12 @@ LAB_18089c878:
       else if (ResourceContextPointer[2] == 0) {
 LAB_18089c9a8:
         ValidationStatusCode = CalculateResourceHash(*ResourceContextPointer,ExecutionContextPointer + 0x77,ResourceRegisterPointerD,ResourceRegisterPointerD,0);
-        FifthFloatValue = extraout_XMM0_Da_01;
+        fifthFloatResult = extraout_XMM0_Da_01;
       }
       else {
         *(uint32_t *)(ExecutionContextPointer + -0x25) = 0;
         ValidationStatusCode = ValidateResourceAccess(resourceTable,ExecutionContextPointer + -0x25);
-        FifthFloatValue = extraout_XMM0_Da_00;
+        fifthFloatResult = extraout_XMM0_Da_00;
         if (ValidationStatusCode == 0) {
           if ((uint64_t)*(uint *)(ExecutionContextPointer + -0x25) + 1 <= (uint64_t)ResourceContextPointer[2])
           goto LAB_18089c9a8;
@@ -22469,14 +22469,14 @@ LAB_18089c9a8:
     return LoopCondition;
   }
   if ((*(uint *)(ResourceContextPointer + 8) < 0x60) &&
-     (LoopIncrement = CheckSecurityValidation(), FifthFloatValue = extraout_XMM0_Da_02, (int)LoopCondition != 0)) {
+     (LoopIncrement = CheckSecurityValidation(), fifthFloatResult = extraout_XMM0_Da_02, (int)LoopCondition != 0)) {
     return LoopCondition;
   }
   LoopIncrement = SecurityHashValue;
   if (0x51 < *(uint *)(ResourceContextPointer + 8)) {
     if (*(int *)(ResourceContextPointer[1] + 0x18) == 0) {
       LoopIncrement = CalculateResourceHash(*ResourceContextPointer,SystemContextBase + 0x48);
-      FifthFloatValue = extraout_XMM0_Da_03;
+      fifthFloatResult = extraout_XMM0_Da_03;
     }
     else {
       LoopIncrement = 0x1c;
@@ -22499,12 +22499,12 @@ LAB_18089c9a8:
   else if (ResourceContextPointer[2] == 0) {
 LAB_18089ca9c:
     ValidationStatusCode = CalculateResourceHash(*ResourceContextPointer,ExecutionContextPointer + 0x77,ResourceRegisterPointerD,ResourceRegisterPointerD,0);
-    FifthFloatValue = extraout_XMM0_Da_05;
+    fifthFloatResult = extraout_XMM0_Da_05;
   }
   else {
     *(uint32_t *)(ExecutionContextPointer + -0x25) = 0;
     ValidationStatusCode = ValidateResourceAccess(resourceTable,ExecutionContextPointer + -0x25);
-    FifthFloatValue = extraout_XMM0_Da_04;
+    fifthFloatResult = extraout_XMM0_Da_04;
     if (ValidationStatusCode == 0) {
       if ((uint64_t)*(uint *)(ExecutionContextPointer + -0x25) + 1 <= (uint64_t)ResourceContextPointer[2]) goto LAB_18089ca9c;
       ValidationStatusCode = 0x11;
@@ -22532,7 +22532,7 @@ LAB_18089cad8:
     ValidationStatusCode = *(uint *)(ResourceContextPointer + 8);
   }
   if ((ValidationResult < 0x87) && ((*(uint *)(SystemContextBase + 0x34) >> 3 & 1) != 0)) {
-    FifthFloatValue = *(float *)(SystemContextBase + 0x3c) - 1.0;
+    fifthFloatResult = *(float *)(SystemContextBase + 0x3c) - 1.0;
     *(float *)(SystemContextBase + 0x3c) = floatValue9;
     ValidationStatusCode = *(uint *)(ResourceContextPointer + 8);
   }
@@ -22550,7 +22550,7 @@ LAB_18089cad8:
     }
     *(uint32_t *)(ExecutionContextPointer + 0x77) = 0;
     LoopIncrement = SecurityHashValue;
-    FifthFloatValue = extraout_XMM0_Da_06;
+    fifthFloatResult = extraout_XMM0_Da_06;
     if (ResourceContextOffset >> 1 != 0) {
       do {
         LoopIncrement = ExtractResourceInfo(floatValue9,LoopIncrement);
@@ -22578,7 +22578,7 @@ LAB_18089cad8:
         ResourceCounter = *(uint *)(ExecutionContextPointer + 0x77) & -(ResourceContextOffset & 1);
         LoopIncrement = (uint64_t)ResourceCounter;
         *(uint *)(ExecutionContextPointer + 0x77) = ResourceCounter;
-        FifthFloatValue = extraout_XMM0_Da_09;
+        fifthFloatResult = extraout_XMM0_Da_09;
       } while ((int)ContextValidationResult < (int)(ResourceContextOffset >> 1));
     }
   }
