@@ -8131,39 +8131,39 @@ uint8_t ValidateMatrixTransformationData(int64_t matrixDataPointer,int64_t Conte
        (*(float *)(ObjectContext + ObjectContextFloatValueOffset) == 0.0)) {
       return ErrorResourceValidationFailed;
     }
-    if (((MatrixElementW == 0.0) && (*(float *)(ObjectContext + ObjectContextSecurityContextOffset) == 0.0)) && (MatrixElementX == 0.0)) {
+    if (((MatrixElementWComponent == 0.0) && (*(float *)(ObjectContext + ObjectContextSecurityContextOffset) == 0.0)) && (MatrixElementXCoordinate == 0.0)) {
       return ErrorResourceValidationFailed;
     }
     uint32_t ValidationContextResult = ValidateObjectContext(*(uint32_t *)(ObjectContext + ObjectContextValidationDataOffset),ResourceValidationBuffer);
-    if ((int)validationContextResult != 0) {
+    if ((int)ValidationContextResult != 0) {
       return ValidationContextResult;
     }
     if (ResourceValidationBuffer[0] != 0) {
-      matrixContextPointer = ResourceValidationBuffer[0] + -8;
+      MatrixContextPointer = ResourceValidationBuffer[0] + -8;
     }
     uint8_t MatrixConfigurationType;
-    *(uint8_t *)(matrixContextPointer + 0x38) = *(uint8_t *)(ObjectContext + ObjectContextValidationDataOffset);
-    *(uint8_t *)(matrixContextPointer + 0x40) = matrixConfigurationType;
+    *(uint8_t *)(MatrixContextPointer + 0x38) = *(uint8_t *)(ObjectContext + ObjectContextValidationDataOffset);
+    *(uint8_t *)(MatrixContextPointer + 0x40) = MatrixConfigurationType;
     uint32_t MatrixRotationFlags = *(uint32_t *)(ObjectContext + ObjectContextMatrixFlagsOffset);
     uint32_t MatrixScaleFlags = *(uint32_t *)(ObjectContext + ObjectContextMatrixScaleOffset);
     uint32_t MatrixTranslationFlags = *(uint32_t *)(ObjectContext + ObjectContextMatrixTranslationOffset);
-    *(uint32_t *)(matrixContextPointer + 0x48) = *(uint32_t *)(ObjectContext + ObjectContextRangeDataOffset);
-    *(uint32_t *)(matrixContextPointer + 0x4c) = matrixRotationFlags;
-    *(uint32_t *)(matrixContextPointer + 0x50) = matrixScaleFlags;
-    *(uint32_t *)(matrixContextPointer + MatrixTranslationFlagsOffset) = matrixTranslationFlags;
+    *(uint32_t *)(MatrixContextPointer + 0x48) = *(uint32_t *)(ObjectContext + ObjectContextRangeDataOffset);
+    *(uint32_t *)(MatrixContextPointer + 0x4c) = MatrixRotationFlags;
+    *(uint32_t *)(MatrixContextPointer + 0x50) = MatrixScaleFlags;
+    *(uint32_t *)(MatrixContextPointer + MatrixTranslationFlagsOffset) = MatrixTranslationFlags;
     uint32_t MatrixProjectionFlags = *(uint32_t *)(ObjectContext + ObjectContextMatrixWComponentOffset);
     uint32_t MatrixViewFlags = *(uint32_t *)(ObjectContext + ObjectContextSecurityContextOffset);
     uint32_t MatrixWorldFlags = *(uint32_t *)(ObjectContext + ObjectContextMatrixXCoordinateOffset);
-    *(uint32_t *)(matrixContextPointer + 0x58) = *(uint32_t *)(ObjectContext + ObjectContextFloatValueOffset);
-    *(uint32_t *)(matrixContextPointer + MatrixProjectionDataOffset) = matrixProjectionFlags;
-    *(uint32_t *)(matrixContextPointer + MatrixViewDataOffset) = matrixViewFlags;
-    *(uint32_t *)(matrixContextPointer + MatrixWorldDataOffset) = MatrixWorldFlags;
-    matrixContextPointer = *(int64_t *)(SystemContext + SystemContextMatrixPointerOffset);
-    if ((*(int *)(matrixContextPointer + SystemContextStatusFlag1Offset) != 0) || (*(int *)(matrixContextPointer + SystemContextStatusFlag2Offset) != 0)) {
+    *(uint32_t *)(MatrixContextPointer + 0x58) = *(uint32_t *)(ObjectContext + ObjectContextFloatValueOffset);
+    *(uint32_t *)(MatrixContextPointer + MatrixProjectionDataOffset) = MatrixProjectionFlags;
+    *(uint32_t *)(MatrixContextPointer + MatrixViewDataOffset) = MatrixViewFlags;
+    *(uint32_t *)(MatrixContextPointer + MatrixWorldDataOffset) = MatrixWorldFlags;
+    MatrixContextPointer = *(int64_t *)(SystemContext + SystemContextMatrixPointerOffset);
+    if ((*(int *)(MatrixContextPointer + SystemContextStatusFlag1Offset) != 0) || (*(int *)(MatrixContextPointer + SystemContextStatusFlag2Offset) != 0)) {
       ResourceValidationBuffer[0] = 0;
       InitializeSecurityContext(ResourceValidationBuffer);
-      if (ResourceValidationBuffer[0] == SystemDataBaseAddress(matrixContextPointer)) {
-        uint32_t ResourceValidationStatusCode = ProcessResourceValidation(matrixContextPointer,ObjectContext);
+      if (ResourceValidationBuffer[0] == SystemDataBaseAddress(MatrixContextPointer)) {
+        uint32_t ResourceValidationStatusCode = ProcessResourceValidation(MatrixContextPointer,ObjectContext);
         if ((int)ResourceValidationStatusCode == 0) {
           return 0;
         }
