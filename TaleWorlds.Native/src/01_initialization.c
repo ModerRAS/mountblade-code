@@ -55801,149 +55801,159 @@ void AllocateSystemResourceMemory(long long *SystemResourceManager,ulong long Co
 
 
 
-// 函数: void FUN_180074c20(void* *SystemResourceManager,ulong long ConfigurationDataPointer)
-void FUN_180074c20(void* *SystemResourceManager,ulong long ConfigurationDataPointer)
-
+/**
+ * @brief 扩展系统资源管理器的哈希表容量
+ * 
+ * 该函数负责扩展系统资源管理器的哈希表容量，重新分配内存并复制现有数据
+ * 用于系统资源管理器的动态扩容操作
+ * 
+ * @param SystemResourceManager 系统资源管理器指针的指针
+ * @param ConfigurationDataPointer 配置数据指针，指定要扩展的容量
+ * @return 无返回值
+ * 
+ * 原始函数名为FUN_180074c20，现已重命名为ExpandSystemResourceManagerHashTable
+ */
+void ExpandSystemResourceManagerHashTable(void** SystemResourceManager, unsigned long long ConfigurationDataPointer)
 {
-  long long *PrimaryResourcePointer;
-  long long *resourcePoolPointer;
-  void* *HashNodeData;
+  long long* PrimaryResourcePointer;
+  long long* ResourcePoolPointer;
+  void** HashNodeData;
   long long* SystemMemoryPointer;
-  long long *plocalSystemPointer;
-  ulong long hashValue;
+  long long* LocalSystemPointer;
+  unsigned long long HashValue;
   void** SystemCurrentNode;
-  long long localMemoryAddress;
-  ulong long unsignedSystemValue9;
+  long long LocalMemoryAddress;
+  unsigned long long NewHashTableSize;
   
-  HashBucketNode = (void* *)SystemResourceManager[1];
-  if ((ulong long)((SystemResourceManager[2] - (long long)HashBucketNode) / 0x24) < ConfigurationDataPointer) {
-    HashNodeData = (void* *)*SystemResourceManager;
-    localMemoryAddress = ((long long)HashBucketNode - (long long)HashNodeData) / 0x24;
-    unsignedSystemValue9 = localMemoryAddress * 2;
-    if (localMemoryAddress == 0) {
-      unsignedSystemValue9 = 1;
+  void** HashBucketNode = (void**)SystemResourceManager[1];
+  if (((unsigned long long)((SystemResourceManager[2] - (long long)HashBucketNode) / 0x24)) < ConfigurationDataPointer) {
+    HashNodeData = (void**)*SystemResourceManager;
+    LocalMemoryAddress = ((long long)HashBucketNode - (long long)HashNodeData) / 0x24;
+    NewHashTableSize = LocalMemoryAddress * 2;
+    if (LocalMemoryAddress == 0) {
+      NewHashTableSize = 1;
     }
-    if (unsignedSystemValue9 < localMemoryAddress + ConfigurationDataPointer) {
-      unsignedSystemValue9 = localMemoryAddress + ConfigurationDataPointer;
+    if (NewHashTableSize < LocalMemoryAddress + ConfigurationDataPointer) {
+      NewHashTableSize = LocalMemoryAddress + ConfigurationDataPointer;
     }
-    PrimaryResourcePointer = (long long *)0x0;
-    if (unsignedSystemValue9 != 0) {
-      PrimaryResourcePointer = (long long *)
-               CreateSystemThreadObject(SystemMemoryPoolTemplate,unsignedSystemValue9 * 0x24,*(uint8_t *)(SystemResourceManager + 3),HashBucketNode,
+    PrimaryResourcePointer = (long long*)0x0;
+    if (NewHashTableSize != 0) {
+      PrimaryResourcePointer = (long long*)
+               CreateSystemThreadObject(SystemMemoryPoolTemplate, NewHashTableSize * 0x24, *(uint8_t*)(SystemResourceManager + 3), HashBucketNode,
                              0xfffffffffffffffe);
-      HashBucketNode = (void* *)SystemResourceManager[1];
-      HashNodeData = (void* *)*SystemResourceManager;
+      HashBucketNode = (void**)SystemResourceManager[1];
+      HashNodeData = (void**)*SystemResourceManager;
     }
-    resourcePoolPointer = PrimaryResourcePointer;
+    ResourcePoolPointer = PrimaryResourcePointer;
     if (HashNodeData != HashBucketNode) {
-      localMemoryAddress = (long long)PrimaryResourcePointer - (long long)HashNodeData;
-      pbufferBaseAddress = (long long *)((long long)HashNodeData + 0x1a);
+      LocalMemoryAddress = (long long)PrimaryResourcePointer - (long long)HashNodeData;
+      long long* BufferBaseAddress = (long long*)((long long)HashNodeData + 0x1a);
       do {
-        *(void*2 *)(localMemoryAddress + -10 + (long long)pbufferBaseAddress) = *(void*2 *)((long long)pbufferBaseAddress + -10);
-        if (*(long long *)((long long)pbufferBaseAddress + -0x12) == 0) {
-          *(void* *)(localMemoryAddress + -0x12 + (long long)pbufferBaseAddress) = 0;
+        *(void**)(LocalMemoryAddress + -10 + (long long)BufferBaseAddress) = *(void**)((long long)BufferBaseAddress + -10);
+        if (*(long long*)((long long)BufferBaseAddress + -0x12) == 0) {
+          *(void**)(LocalMemoryAddress + -0x12 + (long long)BufferBaseAddress) = 0;
         }
         else {
-          *(long long *)(localMemoryAddress + -0x12 + (long long)pbufferBaseAddress) = *(long long *)((long long)pbufferBaseAddress + -0x12);
-          *(void* *)((long long)pbufferBaseAddress + -0x12) = 0;
+          *(long long*)(LocalMemoryAddress + -0x12 + (long long)BufferBaseAddress) = *(long long*)((long long)BufferBaseAddress + -0x12);
+          *(void**)((long long)BufferBaseAddress + -0x12) = 0;
         }
-        if (*(long long *)((long long)pbufferBaseAddress + -0x1a) == 0) {
-          *resourcePoolPointer = 0;
-        }
-        else {
-          *resourcePoolPointer = *(long long *)((long long)pbufferBaseAddress + -0x1a);
-          *(void* *)((long long)pbufferBaseAddress + -0x1a) = 0;
-        }
-        *(void*2 *)((long long)pbufferBaseAddress + -10) = 0;
-        *(short *)(localMemoryAddress + 8 + (long long)pbufferBaseAddress) = (short)pbufferBaseAddress[1];
-        if (*pbufferBaseAddress == 0) {
-          *(void* *)((long long)pbufferBaseAddress + localMemoryAddress) = 0;
+        if (*(long long*)((long long)BufferBaseAddress + -0x1a) == 0) {
+          *ResourcePoolPointer = 0;
         }
         else {
-          *(long long *)((long long)pbufferBaseAddress + localMemoryAddress) = *pbufferBaseAddress;
-          *pbufferBaseAddress = 0;
+          *ResourcePoolPointer = *(long long*)((long long)BufferBaseAddress + -0x1a);
+          *(void**)((long long)BufferBaseAddress + -0x1a) = 0;
         }
-        if (pbufferBaseAddress[-1] == 0) {
-          *(void* *)(localMemoryAddress + -8 + (long long)pbufferBaseAddress) = 0;
+        *(void**)((long long)BufferBaseAddress + -10) = 0;
+        *(short*)(LocalMemoryAddress + 8 + (long long)BufferBaseAddress) = (short)BufferBaseAddress[1];
+        if (*BufferBaseAddress == 0) {
+          *(void**)((long long)BufferBaseAddress + LocalMemoryAddress) = 0;
         }
         else {
-          *(long long *)(localMemoryAddress + -8 + (long long)pbufferBaseAddress) = pbufferBaseAddress[-1];
-          pbufferBaseAddress[-1] = 0;
+          *(long long*)((long long)BufferBaseAddress + LocalMemoryAddress) = *BufferBaseAddress;
+          *BufferBaseAddress = 0;
         }
-        *(void*2 *)(pbufferBaseAddress + 1) = 0;
-        resourcePoolPointer = (long long *)((long long)resourcePoolPointer + 0x24);
-        HashNodeData = (void* *)((long long)pbufferBaseAddress + 10);
-        pbufferBaseAddress = (long long *)((long long)pbufferBaseAddress + 0x24);
+        if (BufferBaseAddress[-1] == 0) {
+          *(void**)(LocalMemoryAddress + -8 + (long long)BufferBaseAddress) = 0;
+        }
+        else {
+          *(long long*)(LocalMemoryAddress + -8 + (long long)BufferBaseAddress) = BufferBaseAddress[-1];
+          BufferBaseAddress[-1] = 0;
+        }
+        *(void**)(BufferBaseAddress + 1) = 0;
+        ResourcePoolPointer = (long long*)((long long)ResourcePoolPointer + 0x24);
+        HashNodeData = (void**)((long long)BufferBaseAddress + 10);
+        BufferBaseAddress = (long long*)((long long)BufferBaseAddress + 0x24);
       } while (HashNodeData != HashBucketNode);
     }
     if (ConfigurationDataPointer != 0) {
-      HashBucketNode = (void* *)((long long)resourcePoolPointer + 0x1a);
-      hashValue = ConfigurationDataPointer;
+      HashBucketNode = (void**)((long long)ResourcePoolPointer + 0x1a);
+      HashValue = ConfigurationDataPointer;
       do {
         HashBucketNode[-1] = 0;
         *HashBucketNode = 0;
-        *(void*2 *)(HashBucketNode + 1) = 0;
-        *(void*2 *)((long long)HashBucketNode + -10) = 0;
-        *(void* *)((long long)HashBucketNode + -0x1a) = 0;
-        *(void* *)((long long)HashBucketNode + -0x12) = 0;
-        *(void*2 *)(HashBucketNode + 1) = 0;
+        *(void**)(HashBucketNode + 1) = 0;
+        *(void**)((long long)HashBucketNode + -10) = 0;
+        *(void**)((long long)HashBucketNode + -0x1a) = 0;
+        *(void**)((long long)HashBucketNode + -0x12) = 0;
+        *(void**)(HashBucketNode + 1) = 0;
         HashBucketNode[-1] = 0;
         *HashBucketNode = 0;
-        HashBucketNode = (void* *)((long long)HashBucketNode + 0x24);
-        hashValue = hashValue - 1;
-      } while (hashValue != 0);
+        HashBucketNode = (void**)((long long)HashBucketNode + 0x24);
+        HashValue = HashValue - 1;
+      } while (HashValue != 0);
     }
-    pbufferBaseAddress = (long long *)SystemResourceManager[1];
-    plocalSystemPointer = (long long *)*SystemResourceManager;
-    if (plocalSystemPointer != pbufferBaseAddress) {
+    long long* BufferBaseAddress = (long long*)SystemResourceManager[1];
+    LocalSystemPointer = (long long**)*SystemResourceManager;
+    if (LocalSystemPointer != (long long**)BufferBaseAddress) {
       do {
-        if (*(long long *)((long long)plocalSystemPointer + 0x12) != 0) {
+        if (*(long long*)((long long)LocalSystemPointer + 0x12) != 0) {
             SystemCleanupFunction();
         }
-        *(void* *)((long long)plocalSystemPointer + 0x12) = 0;
-        if (*(long long *)((long long)plocalSystemPointer + 0x1a) != 0) {
+        *(void**)((long long)LocalSystemPointer + 0x12) = 0;
+        if (*(long long*)((long long)LocalSystemPointer + 0x1a) != 0) {
             SystemCleanupFunction();
         }
-        *(void* *)((long long)plocalSystemPointer + 0x1a) = 0;
-        if (*plocalSystemPointer != 0) {
+        *(void**)((long long)LocalSystemPointer + 0x1a) = 0;
+        if (*LocalSystemPointer != 0) {
             SystemCleanupFunction();
         }
-        *plocalSystemPointer = 0;
-        if (plocalSystemPointer[1] != 0) {
+        *LocalSystemPointer = 0;
+        if (LocalSystemPointer[1] != 0) {
             SystemCleanupFunction();
         }
-        plocalSystemPointer[1] = 0;
-        plocalSystemPointer = (long long *)((long long)plocalSystemPointer + 0x24);
-      } while (plocalSystemPointer != pbufferBaseAddress);
-      plocalSystemPointer = (long long *)*SystemResourceManager;
+        LocalSystemPointer[1] = 0;
+        LocalSystemPointer = (long long**)((long long)LocalSystemPointer + 0x24);
+      } while (LocalSystemPointer != (long long**)BufferBaseAddress);
+      LocalSystemPointer = (long long**)*SystemResourceManager;
     }
-    if (plocalSystemPointer != (long long *)0x0) {
-        SystemCleanupFunction(plocalSystemPointer);
+    if (LocalSystemPointer != (long long**)0x0) {
+        SystemCleanupFunction((void*)LocalSystemPointer);
     }
-    *SystemResourceManager = PrimaryResourcePointer;
-    SystemResourceManager[1] = (long long)resourcePoolPointer + ConfigurationDataPointer * 0x24;
-    SystemResourceManager[2] = (long long)PrimaryResourcePointer + unsignedSystemValue9 * 0x24;
+    *SystemResourceManager = (void**)PrimaryResourcePointer;
+    SystemResourceManager[1] = (long long)ResourcePoolPointer + ConfigurationDataPointer * 0x24;
+    SystemResourceManager[2] = (long long)PrimaryResourcePointer + NewHashTableSize * 0x24;
   }
   else {
     if (ConfigurationDataPointer != 0) {
-      HashNodeData = (void* *)((long long)HashBucketNode + 0x1a);
-      unsignedSystemValue9 = ConfigurationDataPointer;
+      HashNodeData = (void**)((long long)HashBucketNode + 0x1a);
+      NewHashTableSize = ConfigurationDataPointer;
       do {
         HashBucketNode[1] = 0;
         HashBucketNode[2] = 0;
         HashBucketNode[3] = 0;
-        *(uint32_t *)(HashBucketNode + 4) = 0;
-        *(void*2 *)((long long)HashNodeData + -10) = 0;
+        *(uint32_t*)(HashBucketNode + 4) = 0;
+        *(void**)((long long)HashNodeData + -10) = 0;
         *HashBucketNode = 0;
-        *(void* *)((long long)HashNodeData + -0x12) = 0;
-        *(void*2 *)(HashNodeData + 1) = 0;
+        *(void**)((long long)HashNodeData + -0x12) = 0;
+        *(void**)(HashNodeData + 1) = 0;
         HashNodeData[-1] = 0;
         *HashNodeData = 0;
-        HashBucketNode = (void* *)((long long)HashBucketNode + 0x24);
-        HashNodeData = (void* *)((long long)HashNodeData + 0x24);
-        unsignedSystemValue9 = unsignedSystemValue9 - 1;
-      } while (unsignedSystemValue9 != 0);
-      HashBucketNode = (void* *)SystemResourceManager[1];
+        HashBucketNode = (void**)((long long)HashBucketNode + 0x24);
+        HashNodeData = (void**)((long long)HashNodeData + 0x24);
+        NewHashTableSize = NewHashTableSize - 1;
+      } while (NewHashTableSize != 0);
+      HashBucketNode = (void**)SystemResourceManager[1];
     }
     SystemResourceManager[1] = (long long)HashBucketNode + ConfigurationDataPointer * 0x24;
   }
@@ -55953,9 +55963,18 @@ void FUN_180074c20(void* *SystemResourceManager,ulong long ConfigurationDataPoin
 
 
 
-// 函数: void FUN_180074ed0(long long *SystemResourceManager)
-void FUN_180074ed0(long long *SystemResourceManager)
-
+/**
+ * @brief 清理系统资源管理器
+ * 
+ * 该函数负责清理系统资源管理器，释放相关资源并重置状态
+ * 用于系统资源的清理和释放操作
+ * 
+ * @param SystemResourceManager 系统资源管理器指针
+ * @return 无返回值
+ * 
+ * 原始函数名为FUN_180074ed0，现已重命名为CleanupSystemResourceManager
+ */
+void CleanupSystemResourceManager(long long* SystemResourceManager)
 {
   if (*SystemResourceManager != 0) {
       SystemCleanupFunction();
@@ -55970,55 +55989,102 @@ void FUN_180074ed0(long long *SystemResourceManager)
 
 
 
-void* *
-FUN_180074f20(void* *SystemResourceManager,ulong long ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
-
+/**
+ * @brief 初始化系统资源管理器模板
+ * 
+ * 该函数负责初始化系统资源管理器模板，设置基本参数和配置
+ * 用于系统资源管理器的初始化操作
+ * 
+ * @param SystemResourceManager 系统资源管理器指针的指针
+ * @param ConfigurationDataPointer 配置数据指针
+ * @param AdditionalParameter 额外参数
+ * @param ConfigurationFlag 配置标志
+ * @return 系统资源管理器指针
+ * 
+ * 原始函数名为FUN_180074f20，现已重命名为InitializeSystemResourceManagerTemplate
+ */
+void** InitializeSystemResourceManagerTemplate(void** SystemResourceManager, unsigned long long ConfigurationDataPointer, void* AdditionalParameter, void* ConfigurationFlag)
 {
   *SystemResourceManager = &SystemResourceManagerTemplateA;
   if ((ConfigurationDataPointer & 1) != 0) {
-    free(SystemResourceManager,0x38,AdditionalParameter,ConfigurationFlag,0xfffffffffffffffe);
+    free(SystemResourceManager, 0x38, AdditionalParameter, ConfigurationFlag, 0xfffffffffffffffe);
   }
   return SystemResourceManager;
 }
 
 
 
-void* * FUN_180074f70(void* *SystemResourceManager,ulong long ConfigurationDataPointer)
-
+/**
+ * @brief 释放并重置系统资源管理器
+ * 
+ * 该函数负责释放系统资源管理器并重置其状态
+ * 用于系统资源管理器的清理和重置操作
+ * 
+ * @param SystemResourceManager 系统资源管理器指针的指针
+ * @param ConfigurationDataPointer 配置数据指针
+ * @return 系统资源管理器指针
+ * 
+ * 原始函数名为FUN_180074f70，现已重命名为ReleaseAndResetSystemResourceManager
+ */
+void** ReleaseAndResetSystemResourceManager(void** SystemResourceManager, unsigned long long ConfigurationDataPointer)
 {
   *SystemResourceManager = &SystemResourceManagerTemplateA;
   if ((ConfigurationDataPointer & 1) != 0) {
-    free(SystemResourceManager,8);
+    free(SystemResourceManager, 8);
   }
   return SystemResourceManager;
 }
 
 
 
-void* *
-FUN_180074fb0(void* SystemResourceManager,void* *ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
-
+/**
+ * @brief 配置系统资源数据结构
+ * 
+ * 该函数负责配置系统资源数据结构，设置内存分配器和资源模板
+ * 用于系统资源数据结构的初始化和配置
+ * 
+ * @param SystemResourceManager 系统资源管理器指针
+ * @param ConfigurationDataPointer 配置数据指针的指针
+ * @param AdditionalParameter 额外参数
+ * @param ConfigurationFlag 配置标志
+ * @return 配置数据指针
+ * 
+ * 原始函数名为FUN_180074fb0，现已重命名为ConfigureSystemResourceDataStructure
+ */
+void** ConfigureSystemResourceDataStructure(void* SystemResourceManager, void** ConfigurationDataPointer, void* AdditionalParameter, void* ConfigurationFlag)
 {
   *ConfigurationDataPointer = &SystemMemoryAllocatorReference;
   ConfigurationDataPointer[1] = 0;
-  *(uint32_t *)(ConfigurationDataPointer + 2) = 0;
+  *(uint32_t*)(ConfigurationDataPointer + 2) = 0;
   *ConfigurationDataPointer = &SystemResourceTemplatePrimary;
   ConfigurationDataPointer[1] = ConfigurationDataPointer + 3;
-  *(uint8_t *)(ConfigurationDataPointer + 3) = 0;
-  *(uint32_t *)(ConfigurationDataPointer + 2) = 7;
-  strcpy_s(ConfigurationDataPointer[1],0x80,&SystemStringTemplateA,ConfigurationFlag,0,0xfffffffffffffffe);
+  *(uint8_t*)(ConfigurationDataPointer + 3) = 0;
+  *(uint32_t*)(ConfigurationDataPointer + 2) = 7;
+  strcpy_s(ConfigurationDataPointer[1], 0x80, &SystemStringTemplateA, ConfigurationFlag, 0, 0xfffffffffffffffe);
   return ConfigurationDataPointer;
 }
 
 
 
 
-void* * FUN_180075030(void* *SystemResourceManager,char ConfigurationDataPointer,char AdditionalParameter)
-
+/**
+ * @brief 初始化系统资源管理器扩展版本
+ * 
+ * 该函数负责初始化系统资源管理器的扩展版本，设置各种参数和配置
+ * 用于系统资源管理器的完整初始化操作
+ * 
+ * @param SystemResourceManager 系统资源管理器指针的指针
+ * @param ConfigurationDataPointer 配置数据指针
+ * @param AdditionalParameter 额外参数
+ * @return 系统资源管理器指针
+ * 
+ * 原始函数名为FUN_180075030，现已重命名为InitializeSystemResourceManagerEx
+ */
+void** InitializeSystemResourceManagerEx(void** SystemResourceManager, char ConfigurationDataPointer, char AdditionalParameter)
 {
-  long long *PrimaryResourcePointer;
-  byte isSystemActive;
-  long long *pResourceDataOffset;
+  long long* PrimaryResourcePointer;
+  uint8_t IsSystemActive;
+  long long* ResourceDataOffset;
   long long* SystemMemoryPointer;
   
   *SystemResourceManager = &SystemMemoryTemplateA;
@@ -56080,37 +56146,37 @@ void* * FUN_180075030(void* *SystemResourceManager,char ConfigurationDataPointer
   *(uint32_t *)((long long)SystemResourceManager + 0xc4) = 0;
   *(byte *)((long long)SystemResourceManager + 0xfe) = *(byte *)((long long)SystemResourceManager + 0xfe) & 0xfe;
   *(uint8_t *)((long long)SystemResourceManager + 0xfc) = 0;
-  pbufferBaseAddress = (long long *)SystemResourceManager[0x36];
+  long long* BufferBaseAddress = (long long*)SystemResourceManager[0x36];
   SystemResourceManager[0x36] = 0;
-  if (pbufferBaseAddress != (long long *)0x0) {
-    (**(code **)(*pbufferBaseAddress + 0x38))();
+  if (BufferBaseAddress != (long long*)0x0) {
+    (**(code **)(*BufferBaseAddress + 0x38))();
   }
   SystemResourceManager[0x39] = 0;
   SystemResourceManager[0x3c] = 0;
   if (AdditionalParameter == '\0') {
-    *(byte *)((long long)SystemResourceManager + 0xfd) = *(byte *)((long long)SystemResourceManager + 0xfd) & 0xdf;
+    *(uint8_t*)((long long)SystemResourceManager + 0xfd) = *(uint8_t*)((long long)SystemResourceManager + 0xfd) & 0xdf;
   }
   else {
-    *(byte *)((long long)SystemResourceManager + 0xfd) = *(byte *)((long long)SystemResourceManager + 0xfd) | 0x20;
+    *(uint8_t*)((long long)SystemResourceManager + 0xfd) = *(uint8_t*)((long long)SystemResourceManager + 0xfd) | 0x20;
   }
-  *(byte *)((long long)SystemResourceManager + 0xfd) = *(byte *)((long long)SystemResourceManager + 0xfd) & 0xbf;
-  *(uint8_t *)((long long)SystemResourceManager + 0xff) = 1;
-  pbufferBaseAddress = (long long *)SystemResourceManager[0x37];
+  *(uint8_t*)((long long)SystemResourceManager + 0xfd) = *(uint8_t*)((long long)SystemResourceManager + 0xfd) & 0xbf;
+  *(uint8_t*)((long long)SystemResourceManager + 0xff) = 1;
+  BufferBaseAddress = (long long*)SystemResourceManager[0x37];
   SystemResourceManager[0x37] = 0;
-  if (pbufferBaseAddress != (long long *)0x0) {
-    (**(code **)(*pbufferBaseAddress + 0x38))();
+  if (BufferBaseAddress != (long long*)0x0) {
+    (**(code **)(*BufferBaseAddress + 0x38))();
   }
-  *(uint8_t *)((long long)SystemResourceManager + 0xf4) = 0;
-  *(uint32_t *)(SystemResourceManager + 0x20) = 0;
-  *(uint8_t *)((long long)SystemResourceManager + 0xf7) = 0;
-  *(byte *)((long long)SystemResourceManager + 0xfd) = *(byte *)((long long)SystemResourceManager + 0xfd) & 0x6d;
-  pResourceDataOffset = (long long *)SystemResourceManager[0x38];
+  *(uint8_t*)((long long)SystemResourceManager + 0xf4) = 0;
+  *(uint32_t*)(SystemResourceManager + 0x20) = 0;
+  *(uint8_t*)((long long)SystemResourceManager + 0xf7) = 0;
+  *(uint8_t*)((long long)SystemResourceManager + 0xfd) = *(uint8_t*)((long long)SystemResourceManager + 0xfd) & 0x6d;
+  ResourceDataOffset = (long long*)SystemResourceManager[0x38];
   SystemResourceManager[0x38] = 0;
-  if (pResourceDataOffset != (long long *)0x0) {
-    (**(code **)(*pResourceDataOffset + 0x38))();
+  if (ResourceDataOffset != (long long*)0x0) {
+    (**(code **)(*ResourceDataOffset + 0x38))();
   }
-  isSystemActive = *(byte *)((long long)SystemResourceManager + 0xfd) & 0xf7;
-  *(byte *)((long long)SystemResourceManager + 0xfd) = isSystemActive;
+  IsSystemActive = *(uint8_t*)((long long)SystemResourceManager + 0xfd) & 0xf7;
+  *(uint8_t*)((long long)SystemResourceManager + 0xfd) = IsSystemActive;
   SystemResourceManager[0x47] = 0x3f8000003f800000;
   SystemResourceManager[0x48] = 0x3f8000003f800000;
   SystemResourceManager[0x49] = 0x3f8000003f800000;
@@ -56158,49 +56224,49 @@ void* * FUN_180075030(void* *SystemResourceManager,char ConfigurationDataPointer
   *(uint32_t *)(SystemResourceManager + 0x21) = 0xffffffff;
   SystemResourceManager[0x5a] = 0;
   if (ConfigurationDataPointer == '\0') {
-    PrimaryResourcePointer = (long long *)SystemResourceManager[0x42];
+    PrimaryResourcePointer = (long long*)SystemResourceManager[0x42];
     SystemResourceManager[0x42] = 0;
-    if (PrimaryResourcePointer != (long long *)0x0) {
-      (**(code **)(*PrimaryResourcePointer + 0x38))(PrimaryResourcePointer,0);
+    if (PrimaryResourcePointer != (long long*)0x0) {
+      (**(code **)(*PrimaryResourcePointer + 0x38))(PrimaryResourcePointer, 0);
     }
   }
-  *(uint8_t *)(SystemResourceManager + 0x1f) = 0;
-  *(uint32_t *)(SystemResourceManager + 0x34) = 0x3f800000;
-  *(uint32_t *)((long long)SystemResourceManager + 0x1a4) = 0x3f800000;
-  *(uint32_t *)(SystemResourceManager + 0x35) = 0x3f800000;
-  *(uint32_t *)((long long)SystemResourceManager + 0x1ac) = 0x7f7fffff;
-  *(uint32_t *)(SystemResourceManager + 0x3a) = 0xffffffff;
-  pResourceDataOffset = (long long *)SystemMemoryAllocationFunction(SystemMemoryPoolTemplate,0x70,8,9,pbufferBaseAddress,pResourceDataOffset);
-  *pResourceDataOffset = (long long)&SystemMemoryTemplateA;
-  *pResourceDataOffset = (long long)&SystemMemoryTemplateB;
-  *(uint32_t *)(pResourceDataOffset + 1) = 0;
-  *pResourceDataOffset = (long long)&SystemResourceDataTableD;
-  pResourceDataOffset[4] = (long long)&SystemMemoryAllocatorReference;
-  pResourceDataOffset[5] = 0;
-  *(uint32_t *)(pResourceDataOffset + 6) = 0;
-  pResourceDataOffset[4] = (long long)&SystemGlobalDataReference;
-  pResourceDataOffset[7] = 0;
-  pResourceDataOffset[5] = 0;
-  *(uint32_t *)(pResourceDataOffset + 6) = 0;
-  *(uint32_t *)(pResourceDataOffset + 8) = 0xffffffff;
-  *(uint32_t *)((long long)pResourceDataOffset + 0x44) = 0x3f000000;
-  *(uint32_t *)(pResourceDataOffset + 9) = 0x3f000000;
-  *(uint32_t *)((long long)pResourceDataOffset + 0x4c) = 0x3f4ccccd;
-  *(uint32_t *)(pResourceDataOffset + 10) = 0x3f000000;
-  *(uint32_t *)((long long)pResourceDataOffset + 0x54) = 0x3e99999a;
-  *(uint32_t *)(pResourceDataOffset + 0xb) = 0x411cf5c3;
-  *(uint32_t *)((long long)pResourceDataOffset + 0x5c) = 0x3f800000;
-  *(uint32_t *)(pResourceDataOffset + 0xc) = 0xbf800000;
-  *(uint32_t *)((long long)pResourceDataOffset + 100) = 0x3f800000;
-  *(uint32_t *)(pResourceDataOffset + 0xd) = 0x3f000000;
-  *(uint32_t *)((long long)pResourceDataOffset + 0x6c) = 0x3f800000;
-  *(uint32_t *)(pResourceDataOffset + 2) = 0x3f800000;
-  *(uint32_t *)((long long)pResourceDataOffset + 0x14) = 0x78;
-  *(void*2 *)(pResourceDataOffset + 3) = 0;
-  *(uint8_t *)((long long)pResourceDataOffset + 0x1a) = 0;
-  (**(code **)(*pResourceDataOffset + 0x28))(pResourceDataOffset);
-  pbufferBaseAddress = (long long *)SystemResourceManager[0x4d];
-  SystemResourceManager[0x4d] = pResourceDataOffset;
+  *(uint8_t*)(SystemResourceManager + 0x1f) = 0;
+  *(uint32_t*)(SystemResourceManager + 0x34) = 0x3f800000;
+  *(uint32_t*)((long long)SystemResourceManager + 0x1a4) = 0x3f800000;
+  *(uint32_t*)(SystemResourceManager + 0x35) = 0x3f800000;
+  *(uint32_t*)((long long)SystemResourceManager + 0x1ac) = 0x7f7fffff;
+  *(uint32_t*)(SystemResourceManager + 0x3a) = 0xffffffff;
+  ResourceDataOffset = (long long*)SystemMemoryAllocationFunction(SystemMemoryPoolTemplate, 0x70, 8, 9, BufferBaseAddress, ResourceDataOffset);
+  *ResourceDataOffset = (long long)&SystemMemoryTemplateA;
+  *ResourceDataOffset = (long long)&SystemMemoryTemplateB;
+  *(uint32_t*)(ResourceDataOffset + 1) = 0;
+  *ResourceDataOffset = (long long)&SystemResourceDataTableD;
+  ResourceDataOffset[4] = (long long)&SystemMemoryAllocatorReference;
+  ResourceDataOffset[5] = 0;
+  *(uint32_t*)(ResourceDataOffset + 6) = 0;
+  ResourceDataOffset[4] = (long long)&SystemGlobalDataReference;
+  ResourceDataOffset[7] = 0;
+  ResourceDataOffset[5] = 0;
+  *(uint32_t*)(ResourceDataOffset + 6) = 0;
+  *(uint32_t*)(ResourceDataOffset + 8) = 0xffffffff;
+  *(uint32_t*)((long long)ResourceDataOffset + 0x44) = 0x3f000000;
+  *(uint32_t*)(ResourceDataOffset + 9) = 0x3f000000;
+  *(uint32_t*)((long long)ResourceDataOffset + 0x4c) = 0x3f4ccccd;
+  *(uint32_t*)(ResourceDataOffset + 10) = 0x3f000000;
+  *(uint32_t*)((long long)ResourceDataOffset + 0x54) = 0x3e99999a;
+  *(uint32_t*)(ResourceDataOffset + 0xb) = 0x411cf5c3;
+  *(uint32_t*)((long long)ResourceDataOffset + 0x5c) = 0x3f800000;
+  *(uint32_t*)(ResourceDataOffset + 0xc) = 0xbf800000;
+  *(uint32_t*)((long long)ResourceDataOffset + 100) = 0x3f800000;
+  *(uint32_t*)(ResourceDataOffset + 0xd) = 0x3f000000;
+  *(uint32_t*)((long long)ResourceDataOffset + 0x6c) = 0x3f800000;
+  *(uint32_t*)(ResourceDataOffset + 2) = 0x3f800000;
+  *(uint32_t*)((long long)ResourceDataOffset + 0x14) = 0x78;
+  *(void**)(ResourceDataOffset + 3) = 0;
+  *(uint8_t*)((long long)ResourceDataOffset + 0x1a) = 0;
+  (**(code **)(*ResourceDataOffset + 0x28))(ResourceDataOffset);
+  BufferBaseAddress = (long long*)SystemResourceManager[0x4d];
+  SystemResourceManager[0x4d] = ResourceDataOffset;
   if (pbufferBaseAddress != (long long *)0x0) {
     (**(code **)(*pbufferBaseAddress + 0x38))();
   }
