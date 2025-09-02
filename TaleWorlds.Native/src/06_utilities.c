@@ -18954,6 +18954,15 @@ void ValidateAndProcessResourceData(int64_t resourceContext, uint8_t resourceDat
 
 
 
+/**
+ * @brief 验证并处理资源数据
+ * 
+ * 该函数负责验证资源数据的完整性和正确性，
+ * 并根据验证结果执行相应的处理操作。
+ * 包括哈希验证、资源访问验证和状态更新等功能。
+ * 
+ * @return uint64_t 返回处理结果状态码，0表示成功，非0表示失败
+ */
 uint64_t ValidateAndProcessResourceData(void)
 
 {
