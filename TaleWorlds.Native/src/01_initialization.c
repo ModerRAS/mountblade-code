@@ -41146,7 +41146,21 @@ void* FUN_180060e40(void* *SystemResourcePointer,long long ConfigurationDataPoin
 
 
 
-bool FUN_180060f50(long long SystemResourcePointer,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
+/**
+ * @brief 执行系统资源操作并返回状态
+ * 
+ * 该函数负责执行系统资源的操作，包括资源初始化、配置和状态检查。
+ * 主要用于系统资源的管理和控制。
+ * 
+ * @param SystemResourcePointer 系统资源指针
+ * @param ConfigurationDataPointer 配置数据指针
+ * @param AdditionalParameter 额外参数
+ * @param ConfigurationFlag 配置标志
+ * @return 操作状态，true表示成功，false表示失败
+ * 
+ * 原始函数名为FUN_180060f50，现已重命名为ExecuteSystemResourceOperation
+ */
+bool ExecuteSystemResourceOperation(long long SystemResourcePointer,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
 {
   long long *PrimaryResourcePointer;
@@ -42141,7 +42155,21 @@ code_r0x0001800630e9:
 
 
 
-int FUN_1800634b0(void* SystemResourcePointer,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
+/**
+ * @brief 格式化系统资源字符串
+ * 
+ * 该函数负责格式化系统资源的字符串，使用类似printf的格式化功能。
+ * 主要用于系统资源字符串的格式化和输出。
+ * 
+ * @param SystemResourcePointer 系统资源指针
+ * @param ConfigurationDataPointer 配置数据指针
+ * @param AdditionalParameter 额外参数
+ * @param ConfigurationFlag 配置标志
+ * @return 格式化结果状态码，-1表示失败
+ * 
+ * 原始函数名为FUN_1800634b0，现已重命名为FormatSystemResourceString
+ */
+int FormatSystemResourceString(void* SystemResourcePointer,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
 {
   int systemStatus;
@@ -42241,7 +42269,21 @@ void InitializeSystemStringFormatting(void)
 
 
 
-int FUN_1800635e0(void* SystemResourcePointer,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
+/**
+ * @brief 格式化系统资源字符串（扩展版本）
+ * 
+ * 该函数负责格式化系统资源的字符串，使用扩展的格式化功能。
+ * 主要用于系统资源字符串的格式化和输出，支持额外的格式化选项。
+ * 
+ * @param SystemResourcePointer 系统资源指针
+ * @param ConfigurationDataPointer 配置数据指针
+ * @param AdditionalParameter 额外参数
+ * @param ConfigurationFlag 配置标志
+ * @return 格式化结果状态码，-1表示失败
+ * 
+ * 原始函数名为FUN_1800635e0，现已重命名为FormatSystemResourceStringExtended
+ */
+int FormatSystemResourceStringExtended(void* SystemResourcePointer,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
 {
   int systemStatus;
@@ -43191,8 +43233,18 @@ LAB_180065009:
 0001800654f0)
 
 
-// 函数: void FUN_180065160(void* SystemResourcePointer)
-void FUN_180065160(void* SystemResourcePointer)
+/**
+ * @brief 释放系统资源
+ * 
+ * 该函数负责释放系统资源，包括内存清理、资源句柄释放和相关数据结构的销毁。
+ * 主要用于系统资源的清理和释放操作。
+ * 
+ * @param SystemResourcePointer 系统资源指针
+ * @return 无返回值
+ * 
+ * 原始函数名为FUN_180065160，现已重命名为ReleaseSystemResource
+ */
+void ReleaseSystemResource(void* SystemResourcePointer)
 
 {
   byte *pbVar1;
