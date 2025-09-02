@@ -2174,7 +2174,7 @@ uint8_t SystemMemoryConfigType;           // 类型标识
 uint8_t SystemMemoryConfigStatus;         // 工作状态
 uint8_t SystemMemoryConfigUsage;          // 使用情况
 uint8_t SystemMemoryConfigExtended;       // 扩展配置
-uint8_t SystemMemoryConfigYield;          // 性能调优
+uint8_t SystemMemoryConfigPerformance;    // 性能调优
 uint8_t SystemMemoryConfigZone;           // 内存区域
 uint8_t SystemMemoryConfigAlternate;      // 备用配置
 
@@ -2223,21 +2223,21 @@ uint8_t ConfigDataSupplementary;
 // 系统内存配置数据模板中级变量
 uint8_t MemoryConfigSecondary;       // 次要配置项
 uint8_t MemoryConfigTertiary;        // 第三级配置项
-uint8_t MemoryConfigQuaternary;   // 第四级配置项
+uint8_t MemoryConfigQuaternary;      // 第四级配置项
 uint8_t SecurityEncryptionKey;             // 安全加密密钥
 uint8_t MemoryConfigQuaternaryBackup; // 第四级配置项备用
 uint8_t MemoryConfigQuinary;       // 第五级配置项
 uint8_t MemoryConfigSecureAdditional;  // 安全附加配置项
-uint8_t MemoryConfigSecureExtra; // 安全扩展配置项
-uint8_t MemoryConfigExtended;      // 扩展配置项
-uint8_t MemoryConfigSupplementary;       // 补充配置项
+uint8_t MemoryConfigSecureExtended; // 安全扩展配置项
+uint8_t MemoryConfigExtended;        // 扩展配置项
+uint8_t MemoryConfigSupplementary;   // 补充配置项
 // 系统内存配置数据模板高级变量
-uint8_t MemoryConfigAdvanced;        // 高级配置项
+uint8_t MemoryConfigAdvanced;              // 高级配置项
 uint8_t MemoryConfigSupplementaryBackup;   // 补充配置项备用
-uint8_t MemoryConfigAdvancedBackup;     // 高级配置项备用
-uint8_t MemoryConfigPremium;      // 优先配置项
-uint8_t MemoryConfigPremiumBackup;   // 优先配置项备用
-uint8_t MemoryConfigPremiumExtended; // 优先配置项扩展
+uint8_t MemoryConfigAdvancedBackup;        // 高级配置项备用
+uint8_t MemoryConfigPremium;               // 优先配置项
+uint8_t MemoryConfigPremiumBackup;         // 优先配置项备用
+uint8_t MemoryConfigPremiumExtended;       // 优先配置项扩展
 uint8_t GlobalMemoryPoolSize;         // 全局内存池大小
 uint8_t ResourceAllocator;           // 系统资源分配器
 char MemoryConfigFlag;                // 内存配置标志
@@ -62658,7 +62658,15 @@ void ReleaseMemoryManagementArray(void)
 
 
 
-void Catch_180908080(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 处理系统异常
+ * 
+ * 该函数负责处理系统中发生的异常情况，进行异常恢复和清理
+ * 
+ * @param ObjectContext 对象上下文，异常发生的对象环境
+ * @param ValidationContext 验证上下文，用于验证异常处理
+ */
+void HandleSystemException(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   UpdateObjectContext(ObjectContext,*(uint8_t *)(ValidationContext + 0x40));
@@ -62839,7 +62847,19 @@ void ExecuteBasicResourceOperationProcessing(uint8_t ObjectContext,int64_t Valid
 
 
 
-void Unwind_180908100(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 执行系统资源清理和哈希验证操作
+ * 
+ * 该函数处理系统资源的清理操作，包括执行资源操作和哈希验证。
+ * 主要用于系统资源管理和清理流程。
+ * 
+ * @param ObjectContext 对象上下文，包含系统对象的状态信息
+ * @param ValidationContext 验证上下文，包含验证所需的数据
+ * @param CleanupOption 清理选项，指定清理的方式
+ * @param CleanupFlag 清理标志，控制清理的行为
+ * @note 此函数会调用ProcessResourceOperation来执行实际的资源操作
+ */
+void ExecuteSystemResourceCleanupAndHashValidation(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   ProcessResourceOperation(*(int64_t *)(ValidationContext + 0x30),*(uint8_t *)(*(int64_t *)(ValidationContext + 0x30) + 0x10),
@@ -62849,7 +62869,19 @@ void Unwind_180908100(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 
 
 
-void Unwind_180908110(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 执行辅助系统资源清理和哈希验证操作
+ * 
+ * 该函数处理辅助系统资源的清理操作，包括资源命令执行和句柄释放。
+ * 主要用于辅助系统资源管理和清理流程。
+ * 
+ * @param ObjectContext 对象上下文，包含系统对象的状态信息
+ * @param ValidationContext 验证上下文，包含验证所需的数据
+ * @param CleanupOption 清理选项，指定清理的方式
+ * @param CleanupFlag 清理标志，控制清理的行为
+ * @note 此函数会调用ExecuteResourceCommand来执行资源命令
+ */
+void ExecuteSecondarySystemResourceCleanupAndHashValidation(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   uint8_t *ResourceHashPointer;
@@ -62864,7 +62896,19 @@ void Unwind_180908110(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 
 
 
-void Unwind_180908120(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 执行第三级系统资源清理和哈希验证操作
+ * 
+ * 该函数处理第三级系统资源的清理操作，与第二级清理功能相似。
+ * 主要用于第三级系统资源管理和清理流程。
+ * 
+ * @param ObjectContext 对象上下文，包含系统对象的状态信息
+ * @param ValidationContext 验证上下文，包含验证所需的数据
+ * @param CleanupOption 清理选项，指定清理的方式
+ * @param CleanupFlag 清理标志，控制清理的行为
+ * @note 此函数会调用ExecuteResourceCommand来执行资源命令
+ */
+void ExecuteTertiarySystemResourceCleanupAndHashValidation(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   uint8_t *ResourceHashPointer;
@@ -62879,7 +62923,17 @@ void Unwind_180908120(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 
 
 
-void Unwind_180908130(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 初始化系统资源处理器模板
+ * 
+ * 该函数负责初始化系统资源处理器模板，设置系统资源处理的基本配置。
+ * 如果检测到异常状态，会执行系统紧急退出操作。
+ * 
+ * @param ObjectContext 对象上下文，包含系统对象的状态信息
+ * @param ValidationContext 验证上下文，包含验证所需的数据
+ * @note 此函数会重置相关标志位和数据结构
+ */
+void InitializeSystemResourceHandlerTemplate(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   uint8_t *ResourceHashPointer;
@@ -62897,7 +62951,17 @@ void Unwind_180908130(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180908140(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 配置偏移量0x98处的系统数据结构
+ * 
+ * 该函数在验证上下文的偏移量0x98处配置系统数据结构。
+ * 主要用于系统数据结构的初始化和配置。
+ * 
+ * @param ObjectContext 对象上下文，包含系统对象的状态信息
+ * @param ValidationContext 验证上下文，包含验证所需的数据
+ * @note 此函数会设置系统数据结构的指针
+ */
+void ConfigureSystemDataStructureAtOffset98(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   *(uint8_t **)(*(int64_t *)(ValidationContext + 0x98) + 0x20) = &SystemDataStructure;
@@ -62906,7 +62970,17 @@ void Unwind_180908140(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180908150(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 配置偏移量0x80处的系统数据结构
+ * 
+ * 该函数在验证上下文的偏移量0x80处配置系统数据结构。
+ * 主要用于系统数据结构的初始化和配置。
+ * 
+ * @param ObjectContext 对象上下文，包含系统对象的状态信息
+ * @param ValidationContext 验证上下文，包含验证所需的数据
+ * @note 此函数会设置系统数据结构的指针
+ */
+void ConfigureSystemDataStructureAtOffset80(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   *(uint8_t **)(*(int64_t *)(ValidationContext + 0x80) + 0x20) = &SystemDataStructure;
@@ -63087,7 +63161,15 @@ void Unwind_180908210(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 
 
 
-void Catch_180908220(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 处理资源清理异常
+ * 
+ * 该函数负责处理资源清理过程中发生的异常情况
+ * 
+ * @param ObjectContext 对象上下文，异常发生的对象环境
+ * @param ValidationContext 验证上下文，用于验证异常处理
+ */
+void HandleResourceCleanupException(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   UpdateObjectContext(ObjectContext,*(uint8_t *)(ValidationContext + 0x58));
@@ -63096,7 +63178,13 @@ void Catch_180908220(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Catch_180908240(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 处理系统内存访问异常
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @remark 原始函数名：Catch_180908240
+ */
+void HandleMemoryAccessException(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   UpdateObjectContext(ObjectContext,*(uint8_t *)(ValidationContext + 0x90));
@@ -63105,7 +63193,13 @@ void Catch_180908240(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Catch_180908270(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 处理系统验证异常
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @remark 原始函数名：Catch_180908270
+ */
+void HandleValidationException(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   UpdateObjectContext(ObjectContext,*(uint8_t *)(ValidationContext + 0x40));
@@ -63114,7 +63208,13 @@ void Catch_180908270(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Catch_180908290(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 处理系统安全异常
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @remark 原始函数名：Catch_180908290
+ */
+void HandleSecurityException(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   UpdateObjectContext(ObjectContext,*(uint8_t *)(ValidationContext + 0xa0));
@@ -65786,7 +65886,14 @@ void Unwind_180908f30(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-uint8_t * Catch_180908f50(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 处理系统I/O状态异常
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @return 返回系统数据指针
+ * @remark 原始函数名：Catch_180908f50
+ */
+uint8_t * HandleIOException(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   _setstate___basic_ios_DU__char_traits_D_std___std__QEAAXH_N_Z
@@ -65870,7 +65977,14 @@ void Unwind_180908fb0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-uint8_t * Catch_180908fc0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 处理系统流状态异常
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @return 返回系统数据指针
+ * @remark 原始函数名：Catch_180908fc0
+ */
+uint8_t * HandleStreamException(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   _setstate___basic_ios_DU__char_traits_D_std___std__QEAAXH_N_Z
