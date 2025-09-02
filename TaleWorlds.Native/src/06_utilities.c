@@ -10041,28 +10041,26 @@ int ProcessDataWithValidator(int64_t ObjectContext, int64_t ValidationContext, i
 int ProcessDataWithExtendedValidator(int64_t ObjectContext,int64_t ValidationContext,int dataLength)
 
 {
-  int ProcessingStatusCode;
-  int ProcessingStatusCode;
-  
-  OperationResult = ValidateDataFormat(ValidationContext,dataLength,*(uint32_t *)(ObjectContext + 0x10));
-  OperationStatusCode = ProcessStringOperation(ValidationContext + OperationResult,dataLength - OperationResult,&StringProcessingTemplate);
-  OperationResult = OperationResult + OperationResult;
-  OperationStatusCode = ParseDataContent(OperationResult + ValidationContext,dataLength - OperationResult,*(uint32_t *)(ObjectContext + ObjectContextValidationDataOffset));
-  OperationResult = OperationResult + OperationResult;
-  OperationStatusCode = ProcessStringOperation(OperationResult + ValidationContext,dataLength - OperationResult,&StringProcessingTemplate);
-  OperationResult = OperationResult + OperationResult;
-  OperationStatusCode = ProcessStringValidation(OperationResult + ValidationContext,dataLength - OperationResult,ObjectContext + ObjectContextProcessingDataOffset,
+    
+  int DataFormatValidationResult = ValidateDataFormat(ValidationContext,dataLength,*(uint32_t *)(ObjectContext + 0x10));
+  int StringProcessingResult = ProcessStringOperation(ValidationContext + DataFormatValidationResult,dataLength - DataFormatValidationResult,&StringProcessingTemplate);
+  int TotalProcessedBytes = DataFormatValidationResult + StringProcessingResult;
+  int DataContentResult = ParseDataContent(TotalProcessedBytes + ValidationContext,dataLength - TotalProcessedBytes,*(uint32_t *)(ObjectContext + ObjectContextValidationDataOffset));
+  TotalProcessedBytes = TotalProcessedBytes + DataContentResult;
+  int StringValidationResult = ProcessStringOperation(TotalProcessedBytes + ValidationContext,dataLength - TotalProcessedBytes,&StringProcessingTemplate);
+  TotalProcessedBytes = TotalProcessedBytes + StringValidationResult;
+  int StringProcessingValidationResult = ProcessStringValidation(TotalProcessedBytes + ValidationContext,dataLength - TotalProcessedBytes,ObjectContext + ObjectContextProcessingDataOffset,
                         *(uint32_t *)(ObjectContext + ObjectContextValidationDataOffset));
-  OperationResult = OperationResult + OperationResult;
-  OperationStatusCode = ProcessStringOperation(OperationResult + ValidationContext,dataLength - OperationResult,&StringProcessingTemplate);
-  OperationResult = OperationResult + OperationResult;
-  OperationStatusCode = ProcessResourceData(OperationResult + ValidationContext,dataLength - OperationResult,
+  TotalProcessedBytes = TotalProcessedBytes + StringProcessingValidationResult;
+  int SecondStringProcessingResult = ProcessStringOperation(TotalProcessedBytes + ValidationContext,dataLength - TotalProcessedBytes,&StringProcessingTemplate);
+  TotalProcessedBytes = TotalProcessedBytes + SecondStringProcessingResult;
+  int ResourceProcessingResult = ProcessResourceData(TotalProcessedBytes + ValidationContext,dataLength - TotalProcessedBytes,
                         ObjectContext + ObjectContextProcessingDataOffset + (int64_t)*(int *)(ObjectContext + ObjectContextValidationDataOffset) * 8);
-  OperationResult = OperationResult + OperationResult;
-  OperationStatusCode = ProcessStringOperation(OperationResult + ValidationContext,dataLength - OperationResult,&StringProcessingTemplate);
-  OperationResult = OperationResult + OperationResult;
-  OperationStatusCode = ValidateResourceFormat(OperationResult + ValidationContext,dataLength - OperationResult,*(uint8_t *)(ObjectContext + ObjectContextHandleDataOffset));
-  return OperationResult + OperationResult;
+  TotalProcessedBytes = TotalProcessedBytes + ResourceProcessingResult;
+  int FinalStringProcessingResult = ProcessStringOperation(TotalProcessedBytes + ValidationContext,dataLength - TotalProcessedBytes,&StringProcessingTemplate);
+  TotalProcessedBytes = TotalProcessedBytes + FinalStringProcessingResult;
+  int ResourceFormatValidationResult = ValidateResourceFormat(TotalProcessedBytes + ValidationContext,dataLength - TotalProcessedBytes,*(uint8_t *)(ObjectContext + ObjectContextHandleDataOffset));
+  return TotalProcessedBytes + ResourceFormatValidationResult;
 }
 
 
@@ -10081,28 +10079,28 @@ int ProcessDataWithExtendedValidator(int64_t ObjectContext,int64_t ValidationCon
 int ProcessDataWithSimplifiedValidator(int64_t ObjectContext,int64_t ValidationContext,int dataLength)
 
 {
-  int ResourceIndex;
-  int OperationStatusCode;
-  int OperationResultValue;
-  int ProcessedDataLength;
+  int DataProcessingOffset;
+  int StringProcessingStatusCode;
+  int StringProcessingResult;
+  int TotalDataLength;
   void* StringProcessingTemplate;
   
-  ProcessedDataLength = dataLength;
-  ResourceIndex = ParseDataContent(ValidationContext,ProcessedDataLength,*(uint32_t *)(ObjectContext + 0x10));
-  OperationStatusCode = ProcessStringOperation(ValidationContext + ResourceIndex,ProcessedDataLength - ResourceIndex,&StringProcessingTemplate);
-  ResourceIndex = ResourceIndex + OperationResultValue;
-  OperationStatusCode = ProcessStringValidation(ResourceIndex + ValidationContext,ProcessedDataLength - ResourceIndex,ObjectContext + ObjectContextValidationDataOffset,
+  TotalDataLength = dataLength;
+  DataProcessingOffset = ParseDataContent(ValidationContext,TotalDataLength,*(uint32_t *)(ObjectContext + 0x10));
+  StringProcessingStatusCode = ProcessStringOperation(ValidationContext + DataProcessingOffset,TotalDataLength - DataProcessingOffset,&StringProcessingTemplate);
+  DataProcessingOffset = DataProcessingOffset + StringProcessingResult;
+  StringProcessingStatusCode = ProcessStringValidation(DataProcessingOffset + ValidationContext,TotalDataLength - DataProcessingOffset,ObjectContext + ObjectContextValidationDataOffset,
                         *(uint32_t *)(ObjectContext + 0x10));
-  ResourceIndex = ResourceIndex + OperationResultValue;
-  OperationStatusCode = ProcessStringOperation(ResourceIndex + ValidationContext,ProcessedDataLength - ResourceIndex,&StringProcessingTemplate);
-  ResourceIndex = ResourceIndex + OperationResultValue;
-  OperationStatusCode = ProcessResourceData(ResourceIndex + ValidationContext,ProcessedDataLength - ResourceIndex,
+  DataProcessingOffset = DataProcessingOffset + StringProcessingResult;
+  StringProcessingStatusCode = ProcessStringOperation(DataProcessingOffset + ValidationContext,TotalDataLength - DataProcessingOffset,&StringProcessingTemplate);
+  DataProcessingOffset = DataProcessingOffset + StringProcessingResult;
+  StringProcessingStatusCode = ProcessResourceData(DataProcessingOffset + ValidationContext,TotalDataLength - DataProcessingOffset,
                         ObjectContext + ObjectContextValidationDataOffset + (int64_t)*(int *)(ObjectContext + SystemManagerContextOffset) * 8);
-  ResourceIndex = ResourceIndex + OperationResultValue;
-  OperationStatusCode = ProcessStringOperation(ResourceIndex + ValidationContext,ProcessedDataLength - ResourceIndex,&StringProcessingTemplate);
-  ResourceIndex = ResourceIndex + OperationResultValue;
-  OperationStatusCode = ValidateResourceFormat(ResourceIndex + ValidationContext,ProcessedDataLength - ResourceIndex,*(uint8_t *)(ObjectContext + 0x14));
-  return OperationResultValue + ResourceIndex;
+  DataProcessingOffset = DataProcessingOffset + StringProcessingResult;
+  StringProcessingStatusCode = ProcessStringOperation(DataProcessingOffset + ValidationContext,TotalDataLength - DataProcessingOffset,&StringProcessingTemplate);
+  DataProcessingOffset = DataProcessingOffset + StringProcessingResult;
+  StringProcessingStatusCode = ValidateResourceFormat(DataProcessingOffset + ValidationContext,TotalDataLength - DataProcessingOffset,*(uint8_t *)(ObjectContext + 0x14));
+  return StringProcessingResult + DataProcessingOffset;
 }
 
 
@@ -25297,6 +25295,7 @@ uint64_t ValidateAndAllocateResourceData(void)
   uint8_t *ResourceContext;
   int64_t SystemContext;
   uint64_t MemoryAddressIncrement;
+  uint8_t ResourceValidationBuffer94[32];
   
   if (*(int *)(InputParameter + 0x18) != 0) {
     return 0x1c;
