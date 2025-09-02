@@ -99002,7 +99002,7 @@ void ExecuteSystemCleanupOperationPrimary(void)
  * 该函数负责执行系统清理操作2
  * 检查系统状态并执行相应的清理任务
  */
-void ExecuteSystemCleanupOperation2(void)
+void ExecuteSystemCleanupOperationSecondary(void)
 {
   if (SystemCleanupOperation2Flag != '\0') {
     SystemModuleConfigurator(SecondaryModuleConfiguratorPointer);
@@ -99016,7 +99016,7 @@ void ExecuteSystemCleanupOperation2(void)
  * 该函数负责执行系统清理操作3
  * 检查系统状态并执行相应的清理任务
  */
-void ExecuteSystemCleanupOperation3(void)
+void ExecuteSystemCleanupOperationTertiary(void)
 
 {
   if (SystemCleanupOperation3Flag != '\0') {
