@@ -261,6 +261,12 @@
 #define StackParameterBufferSizeOffset 0x28
 #define StackParameterBufferCapacityOffset 0x2c
 #define SystemManagerContextOffset 0x1a0
+#define SystemContextResourceManagerOffset 0x98
+#define ResourceContextDataOffset 0x20
+#define ResourceContextSizeOffset 0x28
+#define ResourceContextCapacityOffset 0x2c
+#define ValidationContextResourceOffset 0x98
+#define SystemContextDataOffset 0x20
 
 // 验证上下文相关偏移量常量
 #define ValidationContextMutexDestroyOffset 0x78  // 需要根据实际值确定
@@ -6953,7 +6959,7 @@ void ProcessSystemDataBufferExpansion(uint8_t SystemContext, uint8_t bufferConte
        StackParameterContext;
   *(int *)(StackParameterBuffer + StackParameterBufferSizeOffset) = *(int *)(StackParameterBuffer + StackParameterBufferSizeOffset) + 1;
 ResourceErrorHandler:
-        ReleaseSystemContextResources(*(uint8_t *)(SystemContextHandle + 0x98));
+        ReleaseSystemContextResources(*(uint8_t *)(SystemContextHandle + SystemContextResourceManagerOffset));
 }
 
 
@@ -6991,9 +6997,9 @@ void ProcessDynamicBufferReallocation(void)
   if (ResourceIndex != 0) {
     return;
   }
-  ResourceContextOffset = (int)*(uint *)(ResourceContext + 0x2c) >> ErrorResourceValidationFailed;
-  OperationStatusCode = (*(uint *)(ResourceContext + 0x2c) ^ ResourceContextOffset) - ResourceContextOffset;
-  ResourceIndex = *(int *)(ResourceContext + 0x28) + 1;
+  ResourceContextOffset = (int)*(uint *)(ResourceContext + ResourceContextCapacityOffset) >> ErrorResourceValidationFailed;
+  OperationStatusCode = (*(uint *)(ResourceContext + ResourceContextCapacityOffset) ^ ResourceContextOffset) - ResourceContextOffset;
+  ResourceIndex = *(int *)(ResourceContext + ResourceContextSizeOffset) + 1;
   if (OperationResult < ResourceIndex) {
     OperationStatusCode = (int)((float)OperationResult * 1.5);
     if (ResourceIndex <= OperationResult) {
