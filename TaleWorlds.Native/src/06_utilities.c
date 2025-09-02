@@ -6175,12 +6175,12 @@ void ValidateObjectStateAndDispatchB(int64_t ObjectContext, int64_t schedulerCon
 
 {
   int PackageValidationStatusCode;
-  uint8_t validationBuffer;
+  uint8_t ValidationBuffer;
   
   if (*(int *)(ObjectContext + ObjectContextMatrixFlagsOffset) == 0) {
-    PackageValidationStatusCode = ProcessSchedulerFinalization(schedulerContext,ObjectContext + ObjectContextHandleDataOffset,&validationBuffer);
+    PackageValidationStatusCode = ProcessSchedulerFinalization(schedulerContext,ObjectContext + ObjectContextHandleDataOffset,&ValidationBuffer);
     if (PackageValidationStatusCode == 0) {
-      PackageValidationStatusCode = ValidateBufferContext(validationBuffer,ObjectContext + ObjectContextMatrixFlagsOffset);
+      PackageValidationStatusCode = ValidateBufferContext(ValidationBuffer,ObjectContext + ObjectContextMatrixFlagsOffset);
       if (PackageValidationStatusCode == 0) goto ValidationCompleteLabel;
     }
     return;
@@ -6849,20 +6849,20 @@ void ValidateAndProcessSystemStatusData(void)
   int PackageValidationStatusCode;
   int64_t SystemBasePointer;
   int64_t SystemStatusPointer;
-  uint8_t systemParameter;
+  uint8_t SystemParameter;
   
-  ValidationStatus = ValidateSystemParameter(systemParameter);
+  ValidationStatus = ValidateSystemParameter(SystemParameter);
   if (ValidationStatus < 1) {
-    ValidationStatus = ValidateSystemContext(systemParameter);
-    *(uint *)(systemStatusPointer + 0x18) = (uint)(ValidationStatus < 1);
+    ValidationStatus = ValidateSystemContext(SystemParameter);
+    *(uint *)(SystemStatusPointer + 0x18) = (uint)(ValidationStatus < 1);
   }
   else {
-    ValidationStatus = ValidateSystemContext(systemParameter);
+    ValidationStatus = ValidateSystemContext(SystemParameter);
     if (ValidationStatus < 1) {
-      *(uint32_t *)(systemStatusPointer + 0x18) = 2;
+      *(uint32_t *)(SystemStatusPointer + 0x18) = 2;
     }
     else {
-      ValidationStatus = ProcessSystemData(systemParameter, systemStatusPointer + 0x18);
+      ValidationStatus = ProcessSystemData(SystemParameter, SystemStatusPointer + 0x18);
       if (ValidationStatus != 0) {
         return;
       }
@@ -7124,10 +7124,10 @@ uint64_t ValidateSystemDataBufferContext(void)
   uint8_t OperationResult;
   uint8_t *stringPointer;
   uint IterationCounter;
-  uint64_t systemStatus;
+  uint64_t SystemStatus;
   int64_t ContextPointer;
   uint64_t ContextOffset;
-  uint64_t arrayIndex;
+  uint64_t ArrayIndex;
   int64_t PrimarySystemContext;
   int64_t SecondarySystemContext;
   int64_t stackParameter;
@@ -7294,7 +7294,7 @@ void ValidateObjectContextAndProcessPointerValidation(int64_t ObjectContext, int
   uint8_t securityBuffer [32];
   int64_t ContextBuffer;
   uint8_t processingBuffer [40];
-  uint64_t securityToken;
+  uint64_t SecurityToken;
   
   securityToken = SecurityEncryptionKey ^ (uint64_t)securityBuffer;
   ValidationStatus = ValidateObjectContext(*(uint32_t *)(ObjectContext + 0x10), &contextBuffer);
@@ -7336,7 +7336,7 @@ void ProcessPointerValidationAndSystemObjectHandling(int64_t *ObjectPointer, int
   int64_t allocatedMemory;
   int64_t *pointerReference;
   int64_t SystemContext;
-  uint64_t securityToken;
+  uint64_t SecurityToken;
   
   allocatedMemory = (**(code **)(*ObjectPointer + 0x2f0))(ObjectPointer, SystemContext + 0x30);
   if (allocatedMemory == 0) {
@@ -7361,7 +7361,7 @@ void ProcessPointerValidationAndSystemObjectHandling(int64_t *ObjectPointer, int
 void CleanupSecurityTokenFunction(void)
 
 {
-  uint64_t securityToken;
+  uint64_t SecurityToken;
   
         CleanupSecurityToken(securityToken ^ (uint64_t)&SystemSecurityValidationBuffer);
 }
@@ -8361,12 +8361,12 @@ void ValidateObjectContextAndProcessOperation(int64_t ObjectContext, uint8_t ope
 {
   int PackageValidationStatusCode;
   int64_t objectSize;
-  uint64_t allocationSize;
+  uint64_t AllocationSize;
   bool isZeroSize;
   int64_t stackBuffer [3];
   int64_t objectPointer;
   uint8_t securityHandle;
-  uint64_t securityToken;
+  uint64_t SecurityToken;
   
   securityToken = SecurityEncryptionKey ^ (uint64_t)stackBuffer;
   securityHandle = operationHandle;
@@ -13370,7 +13370,7 @@ void ProcessContextDataValidation(int64_t *ObjectContext,int64_t *ValidationCont
   int ProcessingResult;
   uint8_t encryptionBuffer [32];
   uint8_t dataBuffer [512];
-  uint64_t securityParameter;
+  uint64_t SecurityParameter;
   
   securityParameter = SecurityEncryptionKey ^ (uint64_t)encryptionBuffer;
   SystemContextPointer = ObjectContext[4];
@@ -13404,7 +13404,7 @@ void ExecuteSimplifiedContextValidation(void)
   char systemFlag;
   int64_t *resourcePointer;
   uint8_t validationBuffer [8];
-  uint64_t stackParameter;
+  uint64_t StackParameter;
   
   OperationResult = (**(code **)(SystemContext + 0x10))();
   ProcessDataBuffer(validationBuffer + OperationResult,0x200 - OperationResult,10);
@@ -14549,7 +14549,7 @@ void ProcessResourceDataValidationOperation(int64_t *ObjectContext,uint8_t Valid
   uint8_t validationFlags;
   uint8_t securityBuffer [32];
   uint8_t dataBuffer [1024];
-  uint64_t operationParam1;
+  uint64_t OperationParam1;
   
   operationParam1 = SecurityEncryptionKey ^ (uint64_t)securityBuffer;
   securityValidationContext = ResourceDataParam;
@@ -15126,7 +15126,7 @@ uint8_t ProcessResourceTimeSynchronization(int64_t *ObjectContext,char Validatio
   int64_t validationStackBuffer [2];
   uint8_t *networkDataPointer;
   uint32_t networkPort;
-  uint64_t primaryOperationParameter;
+  uint64_t PrimaryOperationParameter;
   
   *(uint8_t *)(ObjectContext + 4) = 1;
   ValidationResult = InitializeResourceContext(*(uint8_t *)(ObjectContext[1] + 0x78),&ValidationContext8);
