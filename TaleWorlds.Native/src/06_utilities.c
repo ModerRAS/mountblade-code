@@ -10009,19 +10009,19 @@ int ProcessDataWithStack(int64_t *ObjectContext,int64_t ValidationContext,int Da
   int ResourceIndex;
   int OperationStatusCode;
   int OperationResult;
-  int dataLength;
-  void* SystemStringBufferC;
+  int LocalDataLength;
+  void* SystemStringBuffer;
   void* StringProcessingTemplate;
   
-  dataLength = DataLength;
-  ResourceIndex = ProcessStringOperation(ValidationContext,dataLength,&SystemStringBufferC);
-  OperationStatusCode = ProcessStringOperation(ValidationContext + ResourceIndex,dataLength - ResourceIndex,&StringProcessingTemplate);
+  LocalDataLength = DataLength;
+  ResourceIndex = ProcessStringOperation(ValidationContext,LocalDataLength,&SystemStringBuffer);
+  OperationStatusCode = ProcessStringOperation(ValidationContext + ResourceIndex,LocalDataLength - ResourceIndex,&StringProcessingTemplate);
   ResourceIndex = ResourceIndex + OperationResultValue;
-  OperationStatusCode = ParseDataContent(ResourceIndex + ValidationContext,dataLength - ResourceIndex,((int)ObjectContext[2] + 2) * 0xc);
+  OperationStatusCode = ParseDataContent(ResourceIndex + ValidationContext,LocalDataLength - ResourceIndex,((int)ObjectContext[2] + 2) * 0xc);
   ResourceIndex = ResourceIndex + OperationResultValue;
-  OperationStatusCode = ProcessStringOperation(ResourceIndex + ValidationContext,dataLength - ResourceIndex,&StringProcessingTemplate);
+  OperationStatusCode = ProcessStringOperation(ResourceIndex + ValidationContext,LocalDataLength - ResourceIndex,&StringProcessingTemplate);
   ResourceIndex = ResourceIndex + OperationResultValue;
-  OperationStatusCode = (**(code **)(*ObjectContext + 8))(ObjectContext,ResourceIndex + ValidationContext,dataLength - ResourceIndex);
+  OperationStatusCode = (**(code **)(*ObjectContext + 8))(ObjectContext,ResourceIndex + ValidationContext,LocalDataLength - ResourceIndex);
   return OperationResultValue + ResourceIndex;
 }
 
@@ -20022,15 +20022,15 @@ void ExecuteSystemBackupOperation(void)
 uint64_t ProcessResourceDataA(int64_t ObjectContext,int64_t *ValidationContext)
 
 {
-  int64_t *processPointer;
+  int64_t *ProcessPointer;
   int64_t ResourceTable;
-  uint unsignedValue3;
+  uint UnsignedValue3;
   uint LoopIncrement;
   uint64_t ResourceContextOffset;
   uint64_t ContextHashValidationResult;
   uint SecurityHashValue;
   uint64_t MemorySize;
-  char CharStackArray18 [8];
+  char CharStackArray [8];
   uint StackContextBuffer [2];
   uint8_t ResourceValidationBuffer [32];
   
@@ -20072,25 +20072,25 @@ uint64_t ProcessResourceDataA(int64_t ObjectContext,int64_t *ValidationContext)
     ResourceContext = (int64_t *)*ValidationContext;
     ValidationStatusCode = 1;
     if (*ResourceContext == 0) {
-      loopIncrement = 0x1c;
+      LoopIncrement = 0x1c;
     }
     else if (ResourceContext[2] == 0) {
 ResourceValidationLoop:
-      loopIncrement = CalculateResourceHash(*ResourceContext,CharStackArray18,1,1,0);
+      LoopIncrement = CalculateResourceHash(*ResourceContext,CharStackArray,1,1,0);
     }
     else {
       StackContextBuffer[0] = 0;
-      loopIncrement = ValidateResourceAccess(*ResourceContext,StackContextBuffer);
-      if (loopIncrement == 0) {
+      LoopIncrement = ValidateResourceAccess(*ResourceContext,StackContextBuffer);
+      if (LoopIncrement == 0) {
         if ((uint64_t)StackContextBuffer[0] + 1 <= (uint64_t)ResourceContext[2]) goto ResourceValidationLoop;
-        loopIncrement = 0x11;
+        LoopIncrement = 0x11;
       }
     }
     SecurityHashValue = 0;
-    if (loopIncrement == 0) {
-      SecurityHashValue = (uint)(CharStackArray18[0] != '\0');
-      ValidationStatusCode = (uint)(CharStackArray18[0] == '\0');
-      loopIncrement = 0;
+    if (LoopIncrement == 0) {
+      SecurityHashValue = (uint)(CharStackArray[0] != '\0');
+      ValidationStatusCode = (uint)(CharStackArray[0] == '\0');
+      LoopIncrement = 0;
     }
     if (loopIncrement != 0) {
       return (uint64_t)loopIncrement;
