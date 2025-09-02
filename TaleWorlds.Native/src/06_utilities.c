@@ -93878,7 +93878,7 @@ void InitializeSystemDataStructureCC(void)
       resourceTable = *(int64_t *)(LocalContextData + -8);
       if (0x1f < (LocalContextData - resourceTable) - 8U) {
                     // WARNING: Subroutine does not return
-        _invalid_parameter_noinfo_noreturn(LocalContextData - resourceTable,SystemresourceCounter001 + 0x28);
+        _invalid_parameter_noinfo_noreturn(LocalContextData - resourceTable,SystemResourcePrimaryCounter + 0x28);
       }
     }
     free(resourceTable);

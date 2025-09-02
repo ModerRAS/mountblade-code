@@ -20,6 +20,66 @@ def beautify_variables():
     
     # 定义变量替换映射
     variable_mappings = {
+        # 系统配置验证缓冲区
+        '_DAT_180c69fd8': 'SystemConfigurationValidationBuffer',
+        'DAT_180c69fd8': 'SystemConfigurationValidationBuffer',
+        
+        # 文件系统相关变量
+        '_DAT_180c6a140': 'FileSystemHandle',
+        'DAT_180c6a140': 'FileSystemHandle',
+        
+        # 文件系统状态变量
+        '_DAT_180c6a148': 'FileSystemStatusCounter',
+        'DAT_180c6a148': 'FileSystemStatusCounter',
+        
+        # 文件系统标志变量
+        'DAT_180c6a14c': 'FileSystemOperationFlag',
+        'DAT_180c6a14d': 'FileSystemValidationFlag',
+        
+        # 系统安全相关变量
+        '_DAT_180bf00a8': 'SystemSecurityMask',
+        'DAT_180bf00a8': 'SystemSecurityMask',
+        
+        # 系统初始化相关变量
+        '_DAT_180c821e0': 'SystemInitializationBuffer',
+        'DAT_180c821e0': 'SystemInitializationBuffer',
+        '_DAT_180c821e8': 'SystemInitializationBuffer',
+        'DAT_180c821e8': 'SystemInitializationBuffer',
+        '_DAT_180c821f0': 'SystemInitializationBuffer',
+        'DAT_180c821f0': 'SystemInitializationBuffer',
+        '_DAT_180c821f8': 'SystemInitializationBuffer',
+        'DAT_180c821f8': 'SystemInitializationBuffer',
+        '_DAT_180c82200': 'SystemInitializationBuffer',
+        'DAT_180c82200': 'SystemInitializationBuffer',
+        '_DAT_180c82208': 'SystemInitializationBuffer',
+        'DAT_180c82208': 'SystemInitializationBuffer',
+        
+        # 系统初始化标志
+        'DAT_180c821d8': 'SystemInitializationFlag',
+        'DAT_180c821d9': 'SystemInitializationCompleteFlag',
+        
+        # 系统字符串处理标志
+        'DAT_180bf0082': 'SystemStringProcessingFlag',
+        
+        # 系统缓冲区指针
+        'UNK_18098b490': 'SystemBufferPointer',
+        'UNK_18098b470': 'SystemBufferPointer',
+        
+        # 系统缓冲区变量
+        'DAT_180bfc100': 'SystemBufferFlag',
+        'DAT_180bfc170': 'SystemBufferStatus',
+        
+        # 系统字符串缓冲区
+        'DAT_180c91d50': 'SystemStringBufferFlag',
+        'DAT_180c96008': 'SystemStringBufferFlag8',
+        'DAT_180c96028': 'SystemStringBufferFlag28',
+        'DAT_180c96048': 'SystemStringBufferFlag48',
+        'DAT_180c96068': 'SystemStringBufferFlag68',
+        'DAT_180c96098': 'SystemStringBufferFlag98',
+        'DAT_180c960b8': 'SystemStringBufferFlagB8',
+        'DAT_180c96100': 'SystemStringBufferFlag100',
+        'DAT_180c96140': 'SystemStringBufferFlag140',
+        'DAT_180c95ef0': 'SystemStringBufferFlagEF0',
         # 长整型变量
         'lVar2': 'LocalVariable2',
         'lVar3': 'LocalVariable3', 
