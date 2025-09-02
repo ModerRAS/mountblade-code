@@ -62736,8 +62736,21 @@ void ExecuteSecondarySystemResourceCleanupAndHashValidation(uint8_t ObjectContex
 
 
 
-void Unwind_1809080c0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
-
+/**
+ * @brief 执行简化的系统资源清理操作
+ * 
+ * 该函数是一个简化的资源清理函数，主要处理资源哈希指针的获取和释放。
+ * 它直接从验证上下文中获取资源哈希指针，并执行相应的清理命令。
+ * 
+ * @param ObjectContext 对象上下文，标识要操作的对象
+ * @param ValidationContext 验证上下文，包含验证所需的数据和状态
+ * @param CleanupOption 清理选项，指定清理的方式和范围
+ * @param CleanupFlag 清理标志，控制清理过程的特定行为
+ * @return 无返回值
+ * @note 此函数使用偏移量0x78和0x10来访问资源哈希指针
+ * @warning 调用此函数前必须确保验证上下文有效
+ */
+void ExecuteSimplifiedSystemResourceCleanup(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 {
   uint8_t *ResourceHashPointer;
   
@@ -62751,8 +62764,21 @@ void Unwind_1809080c0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 
 
 
-void Unwind_1809080d0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
-
+/**
+ * @brief 执行直接资源操作处理
+ * 
+ * 该函数负责直接处理资源操作，不涉及资源哈希指针的管理。
+ * 它直接从验证上下文中提取参数并调用资源操作函数。
+ * 
+ * @param ObjectContext 对象上下文，标识要操作的对象
+ * @param ValidationContext 验证上下文，包含验证所需的数据和状态
+ * @param CleanupOption 清理选项，指定清理的方式和范围
+ * @param CleanupFlag 清理标志，控制清理过程的特定行为
+ * @return 无返回值
+ * @note 此函数使用偏移量0x78、0x30和0x40来访问资源数据
+ * @warning 调用此函数前必须确保验证上下文有效
+ */
+void ExecuteDirectResourceOperationProcessing(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 {
   ProcessResourceOperation(*(int64_t *)(ValidationContext + 0x78) + 0x30,
                 *(uint8_t *)(*(int64_t *)(ValidationContext + 0x78) + 0x40),CleanupOption,CleanupFlag,
@@ -62762,8 +62788,21 @@ void Unwind_1809080d0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 
 
 
-void Unwind_1809080e0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
-
+/**
+ * @brief 执行扩展的系统资源清理操作
+ * 
+ * 该函数是另一个资源清理函数，使用不同的偏移量来访问资源哈希指针。
+ * 它处理偏移量0x78和0x70的资源哈希指针，以及偏移量0x60的资源命令执行。
+ * 
+ * @param ObjectContext 对象上下文，标识要操作的对象
+ * @param ValidationContext 验证上下文，包含验证所需的数据和状态
+ * @param CleanupOption 清理选项，指定清理的方式和范围
+ * @param CleanupFlag 清理标志，控制清理过程的特定行为
+ * @return 无返回值
+ * @note 此函数使用偏移量0x78、0x70和0x60来访问资源数据
+ * @warning 调用此函数前必须确保验证上下文有效
+ */
+void ExecuteExtendedSystemResourceCleanup(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 {
   uint8_t *ResourceHashPointer;
   
@@ -62777,8 +62816,21 @@ void Unwind_1809080e0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 
 
 
-void Unwind_1809080f0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
-
+/**
+ * @brief 执行基础资源操作处理
+ * 
+ * 该函数是一个基础资源处理函数，使用偏移量0x30和0x10来访问和处理资源。
+ * 它直接从验证上下文中提取参数并调用资源操作函数。
+ * 
+ * @param ObjectContext 对象上下文，标识要操作的对象
+ * @param ValidationContext 验证上下文，包含验证所需的数据和状态
+ * @param CleanupOption 清理选项，指定清理的方式和范围
+ * @param CleanupFlag 清理标志，控制清理过程的特定行为
+ * @return 无返回值
+ * @note 此函数使用偏移量0x30和0x10来访问资源数据
+ * @warning 调用此函数前必须确保验证上下文有效
+ */
+void ExecuteBasicResourceOperationProcessing(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 {
   ProcessResourceOperation(*(int64_t *)(ValidationContext + 0x30),*(uint8_t *)(*(int64_t *)(ValidationContext + 0x30) + 0x10),
                 CleanupOption,CleanupFlag,0xfffffffffffffffe);
