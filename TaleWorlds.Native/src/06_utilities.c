@@ -26293,7 +26293,7 @@ uint64_t ProcessResourceTableOperationsAndDataValidation(int64_t objectContext,i
   bool ValidationSuccess;
   bool OperationCompleted;
   uint aSecurityValidationContext [2];
-  char cStackX_20;
+  char ValidationFlag;
   char ResourceValidationBuffer [4];
   uint ResourceAccessIndex;
   uint8_t ResourceDataBuffer [40];

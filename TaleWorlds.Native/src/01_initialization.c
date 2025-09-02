@@ -65140,11 +65140,11 @@ void CleanupSystemResources(long long SystemResourcePointer,char ConfigurationDa
     }
     if (((*(char *)(SystemResourcePointer + 0xfc) == '\0') && (*(char *)(SystemResourcePointer + 0xf4) == '\0')) &&
        (((*(byte *)(SystemResourcePointer + 0xfd) & 0x20) == 0 || ((*(byte *)(SystemResourcePointer + 0xfe) & 1) == 0)))) {
-      PrimaryResourcePointer = *(long long **)(SystemResourcePointer + 0x210);
+      ResourceToRelease = *(long long **)(SystemResourcePointer + 0x210);
       *(void* *)(SystemResourcePointer + 0x210) = 0;
-      if (PrimaryResourcePointer != (long long *)0x0) {
+      if (ResourceToRelease != (long long *)0x0) {
                     00018007ee5b. Too many branches
-                            (**(code **)(*PrimaryResourcePointer + 0x38))();
+                            (**(code **)(*ResourceToRelease + 0x38))();
         return;
       }
     }
