@@ -2542,7 +2542,8 @@ uint8_t AnimationParameterTable;
 uint8_t AnimationEventTable;
 uint8_t AnimationLayerTable;
 uint8_t AnimationMixerTable;
-uint8_t SystemResourceTracker;
+// 资源跟踪器主版本 - 用于跟踪系统资源使用情况
+uint8_t ResourceTracker;
 uint32_t SystemResourceFlags;
 uint32_t SystemResourceState;
 uint8_t SystemResourceHandler;
@@ -2596,8 +2597,10 @@ uint8_t ResourceProfilerTable;
 uint8_t ResourceAnalyzer;
 // 资源性能分析器 - 用于分析系统资源性能
 uint8_t ResourceProfiler;
-uint8_t SystemResourceTracker;
-uint8_t SystemResourceLogger;
+// 资源跟踪器副本 - 用于跟踪系统资源使用情况
+uint8_t ResourceTracker2;
+// 资源日志记录器 - 用于记录系统资源使用日志
+uint8_t ResourceLogger;
 void* ResourceNetworkManager;
 void* ResourceDatabaseManager;
 void* SystemConfigTable;
