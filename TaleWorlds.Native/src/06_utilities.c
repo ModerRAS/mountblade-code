@@ -22197,19 +22197,19 @@ ResourceValidationWait:
       if (ResourceIndexOctal < 0) {
         SystemContextDataPointer = (int64_t)-ResourceIndexOctal;
         if (ResourceIndexOctal < 0) {
-          SystemContextPointer6 = (int64_t)ResourceIndexOctal * 0x18 + 0x14 + (int64_t)ResourceDataPointerSecondary;
+          SystemContextDataIterator = (int64_t)ResourceIndexOctal * 0x18 + 0x14 + (int64_t)ResourceDataPointerSecondary;
           do {
             ResourceHashSecondaryPointer = (uint32_t *)AllocateMemoryBlock();
             ResourceHash = ResourceHashSecondaryPointer[1];
             ValidationResult = ResourceHashSecondaryPointer[2];
             ValidationStatusCode = ResourceHashSecondaryPointer[3];
-            *(uint32_t *)(SystemContextPointer6 + -0x14) = *ResourceHashSecondaryPointer;
-            *(uint32_t *)(SystemContextPointer6 + -0x10) = ResourceHash;
-            *(uint32_t *)(SystemContextPointer6 + -0xc) = ResourceHashValidationResult;
-            *(uint32_t *)(SystemContextPointer6 + -8) = HashValidationResult;
-            *(uint8_t **)(SystemContextPointer6 + -4) = ResourceDataPointer;
+            *(uint32_t *)(SystemContextDataIterator + -0x14) = *ResourceHashSecondaryPointer;
+            *(uint32_t *)(SystemContextDataIterator + -0x10) = ResourceHash;
+            *(uint32_t *)(SystemContextDataIterator + -0xc) = ResourceHashValidationResult;
+            *(uint32_t *)(SystemContextDataIterator + -8) = HashValidationResult;
+            *(uint8_t **)(SystemContextDataIterator + -4) = ResourceDataPointer;
             SystemContextDataPointer = SystemContextDataPointer + -1;
-            SystemContextPointer6 = SystemContextPointer6 + 0x18;
+            SystemContextDataIterator = SystemContextDataIterator + 0x18;
           } while (SystemContextDataPointer != 0);
           ValidationCounter = *(uint *)(SystemExecutionPointer + -0x1d);
         }
@@ -22275,20 +22275,20 @@ ResourceValidationWait:
     if (ResourceIndexOctal < 0) {
       SystemContextDataPointer = (int64_t)-ResourceIndexOctal;
       if (ResourceIndexOctal < 0) {
-        SystemContextPointer6 = (int64_t)ResourceIndexOctal * 0x18 + 0x14 + (int64_t)ResourceDataPointerSecondary;
+        SystemContextDataIterator = (int64_t)ResourceIndexOctal * 0x18 + 0x14 + (int64_t)ResourceDataPointerSecondary;
         do {
           ValidationFloatValue = (float *)AllocateMemoryBlock();
           MemoryFloatValue = *ValidationFloatValue;
           secondFloatResult = ValidationFloatValue[1];
           thirdFloatResult = ValidationFloatValue[2];
           fourthFloatResult = ValidationFloatValue[3];
-          *(float *)(SystemContextPointer6 + -0x14) = MemoryFloatValue;
-          *(float *)(SystemContextPointer6 + -0x10) = inputFloatValue;
-          *(float *)(SystemContextPointer6 + -0xc) = resultFloatValue;
-          *(float *)(SystemContextPointer6 + -8) = TemporaryFloatValue;
-          *(uint8_t **)(SystemContextPointer6 + -4) = ResourceDataPointer;
+          *(float *)(SystemContextDataIterator + -0x14) = MemoryFloatValue;
+          *(float *)(SystemContextDataIterator + -0x10) = inputFloatValue;
+          *(float *)(SystemContextDataIterator + -0xc) = resultFloatValue;
+          *(float *)(SystemContextDataIterator + -8) = TemporaryFloatValue;
+          *(uint8_t **)(SystemContextDataIterator + -4) = ResourceDataPointer;
           SystemContextDataPointer = SystemContextDataPointer + -1;
-          SystemContextPointer6 = SystemContextPointer6 + 0x18;
+          SystemContextDataIterator = SystemContextDataIterator + 0x18;
         } while (SystemContextDataPointer != 0);
         ValidationCounter = *(uint *)(SystemExecutionPointer + -0x1d);
       }
@@ -70339,7 +70339,7 @@ void Unwind_18090a6e0(void)
   byte encryptionShiftValue;
   
   EnterCriticalSection(0x180c82210);
-  GlobalDataBufferD49238 = 0;
+  GlobalDataBufferStatusFlag = 0;
   LeaveCriticalSection(0x180c82210);
   if (SystemEventHandle != 0) {
     SetEvent();
@@ -75087,8 +75087,8 @@ void Unwind_18090c540(uint8_t ObjectContext,int64_t ValidationContext)
   int64_t MemoryRegion;
   
   if (0 < *(int *)(ValidationContext + 0x180)) {
-    ResourceTablePointer = *(int64_t *)(GlobalDataBufferC86938 + 0x1cd8);
-    if ((*(char *)(GlobalDataBufferC86890 + 0x12e3) != '\0') || (*(char *)(GlobalDataBufferC86890 + 0x12dd) != '\0')
+    ResourceTablePointer = *(int64_t *)(GlobalDataBufferResourceTable + 0x1cd8);
+    if ((*(char *)(GlobalDataBufferSystemFlags + 0x12e3) != '\0') || (*(char *)(GlobalDataBufferSystemFlags + 0x12dd) != '\0')
        ) {
       LoopOffsetPointer = (int64_t *)(ResourceTablePointer + 0x80d8 + (int64_t)*(int *)(ResourceTablePointer + 0x8088) * 0x20);
       SystemContextPointer = *LoopOffsetPointer;
@@ -75132,8 +75132,8 @@ void Unwind_18090c550(uint8_t ObjectContext,int64_t ValidationContext)
   int64_t MemoryRegion;
   
   if (0 < *(int *)(ValidationContext + 0x240)) {
-    ResourceTablePointer = *(int64_t *)(GlobalDataBufferC86938 + 0x1cd8);
-    if ((*(char *)(GlobalDataBufferC86890 + 0x12e3) != '\0') || (*(char *)(GlobalDataBufferC86890 + 0x12dd) != '\0')
+    ResourceTablePointer = *(int64_t *)(GlobalDataBufferResourceTable + 0x1cd8);
+    if ((*(char *)(GlobalDataBufferSystemFlags + 0x12e3) != '\0') || (*(char *)(GlobalDataBufferSystemFlags + 0x12dd) != '\0')
        ) {
       LoopOffsetPointer = (int64_t *)(ResourceTablePointer + 0x80d8 + (int64_t)*(int *)(ResourceTablePointer + 0x8088) * 0x20);
       SystemContextPointer = *LoopOffsetPointer;
@@ -75206,8 +75206,8 @@ void Unwind_18090c590(uint8_t ObjectContext,int64_t ValidationContext)
   int64_t MemoryRegion;
   
   if (0 < *(int *)(ValidationContext + 0x1e0)) {
-    ResourceTablePointer = *(int64_t *)(GlobalDataBufferC86938 + 0x1cd8);
-    if ((*(char *)(GlobalDataBufferC86890 + 0x12e3) != '\0') || (*(char *)(GlobalDataBufferC86890 + 0x12dd) != '\0')
+    ResourceTablePointer = *(int64_t *)(GlobalDataBufferResourceTable + 0x1cd8);
+    if ((*(char *)(GlobalDataBufferSystemFlags + 0x12e3) != '\0') || (*(char *)(GlobalDataBufferSystemFlags + 0x12dd) != '\0')
        ) {
       LoopOffsetPointer = (int64_t *)(ResourceTablePointer + 0x80d8 + (int64_t)*(int *)(ResourceTablePointer + 0x8088) * 0x20);
       SystemContextPointer = *LoopOffsetPointer;
@@ -75271,8 +75271,8 @@ void Unwind_18090c5c0(uint8_t ObjectContext,int64_t ValidationContext)
   int64_t MemoryRegion;
   
   if (0 < *(int *)(ValidationContext + 0x120)) {
-    ResourceTablePointer = *(int64_t *)(GlobalDataBufferC86938 + 0x1cd8);
-    if ((*(char *)(GlobalDataBufferC86890 + 0x12e3) != '\0') || (*(char *)(GlobalDataBufferC86890 + 0x12dd) != '\0')
+    ResourceTablePointer = *(int64_t *)(GlobalDataBufferResourceTable + 0x1cd8);
+    if ((*(char *)(GlobalDataBufferSystemFlags + 0x12e3) != '\0') || (*(char *)(GlobalDataBufferSystemFlags + 0x12dd) != '\0')
        ) {
       LoopOffsetPointer = (int64_t *)(ResourceTablePointer + 0x80d8 + (int64_t)*(int *)(ResourceTablePointer + 0x8088) * 0x20);
       SystemContextPointer = *LoopOffsetPointer;
@@ -75316,8 +75316,8 @@ void Unwind_18090c5d0(uint8_t ObjectContext,int64_t ValidationContext)
   int64_t MemoryRegion;
   
   if (0 < *(int *)(ValidationContext + 0x2a0)) {
-    ResourceTablePointer = *(int64_t *)(GlobalDataBufferC86938 + 0x1cd8);
-    if ((*(char *)(GlobalDataBufferC86890 + 0x12e3) != '\0') || (*(char *)(GlobalDataBufferC86890 + 0x12dd) != '\0')
+    ResourceTablePointer = *(int64_t *)(GlobalDataBufferResourceTable + 0x1cd8);
+    if ((*(char *)(GlobalDataBufferSystemFlags + 0x12e3) != '\0') || (*(char *)(GlobalDataBufferSystemFlags + 0x12dd) != '\0')
        ) {
       LoopOffsetPointer = (int64_t *)(ResourceTablePointer + 0x80d8 + (int64_t)*(int *)(ResourceTablePointer + 0x8088) * 0x20);
       SystemContextPointer = *LoopOffsetPointer;
@@ -75372,8 +75372,8 @@ void Unwind_18090c5f0(uint8_t ObjectContext,int64_t ValidationContext)
   int64_t MemoryRegion;
   
   if (0 < *(int *)(ValidationContext + 0x300)) {
-    ResourceTablePointer = *(int64_t *)(GlobalDataBufferC86938 + 0x1cd8);
-    if ((*(char *)(GlobalDataBufferC86890 + 0x12e3) != '\0') || (*(char *)(GlobalDataBufferC86890 + 0x12dd) != '\0')
+    ResourceTablePointer = *(int64_t *)(GlobalDataBufferResourceTable + 0x1cd8);
+    if ((*(char *)(GlobalDataBufferSystemFlags + 0x12e3) != '\0') || (*(char *)(GlobalDataBufferSystemFlags + 0x12dd) != '\0')
        ) {
       LoopOffsetPointer = (int64_t *)(ResourceTablePointer + 0x80d8 + (int64_t)*(int *)(ResourceTablePointer + 0x8088) * 0x20);
       SystemContextPointer = *LoopOffsetPointer;
@@ -75417,8 +75417,8 @@ void Unwind_18090c600(uint8_t ObjectContext,int64_t ValidationContext)
   int64_t MemoryRegion;
   
   if (0 < *(int *)(ValidationContext + 0x360)) {
-    ResourceTablePointer = *(int64_t *)(GlobalDataBufferC86938 + 0x1cd8);
-    if ((*(char *)(GlobalDataBufferC86890 + 0x12e3) != '\0') || (*(char *)(GlobalDataBufferC86890 + 0x12dd) != '\0')
+    ResourceTablePointer = *(int64_t *)(GlobalDataBufferResourceTable + 0x1cd8);
+    if ((*(char *)(GlobalDataBufferSystemFlags + 0x12e3) != '\0') || (*(char *)(GlobalDataBufferSystemFlags + 0x12dd) != '\0')
        ) {
       LoopOffsetPointer = (int64_t *)(ResourceTablePointer + 0x80d8 + (int64_t)*(int *)(ResourceTablePointer + 0x8088) * 0x20);
       SystemContextPointer = *LoopOffsetPointer;
@@ -76102,8 +76102,8 @@ void Unwind_18090ca20(uint8_t ObjectContext,int64_t ValidationContext)
   int64_t MemoryRegion;
   
   if (0 < *(int *)(ValidationContext + 0xd0)) {
-    ResourceTablePointer = *(int64_t *)(GlobalDataBufferC86938 + 0x1cd8);
-    if ((*(char *)(GlobalDataBufferC86890 + 0x12e3) != '\0') || (*(char *)(GlobalDataBufferC86890 + 0x12dd) != '\0')
+    ResourceTablePointer = *(int64_t *)(GlobalDataBufferResourceTable + 0x1cd8);
+    if ((*(char *)(GlobalDataBufferSystemFlags + 0x12e3) != '\0') || (*(char *)(GlobalDataBufferSystemFlags + 0x12dd) != '\0')
        ) {
       LoopOffsetPointer = (int64_t *)(ResourceTablePointer + 0x80d8 + (int64_t)*(int *)(ResourceTablePointer + 0x8088) * 0x20);
       SystemContextPointer = *LoopOffsetPointer;
@@ -76158,8 +76158,8 @@ void Unwind_18090ca40(uint8_t ObjectContext,int64_t ValidationContext)
   int64_t MemoryRegion;
   
   if (0 < *(int *)(ValidationContext + 0x130)) {
-    ResourceTablePointer = *(int64_t *)(GlobalDataBufferC86938 + 0x1cd8);
-    if ((*(char *)(GlobalDataBufferC86890 + 0x12e3) != '\0') || (*(char *)(GlobalDataBufferC86890 + 0x12dd) != '\0')
+    ResourceTablePointer = *(int64_t *)(GlobalDataBufferResourceTable + 0x1cd8);
+    if ((*(char *)(GlobalDataBufferSystemFlags + 0x12e3) != '\0') || (*(char *)(GlobalDataBufferSystemFlags + 0x12dd) != '\0')
        ) {
       LoopOffsetPointer = (int64_t *)(ResourceTablePointer + 0x80d8 + (int64_t)*(int *)(ResourceTablePointer + 0x8088) * 0x20);
       SystemContextPointer = *LoopOffsetPointer;
@@ -76225,8 +76225,8 @@ void Unwind_18090ca70(uint8_t ObjectContext,int64_t ValidationContext)
   int64_t MemoryRegion;
   
   if (0 < *(int *)(ValidationContext + 400)) {
-    ResourceTablePointer = *(int64_t *)(GlobalDataBufferC86938 + 0x1cd8);
-    if ((*(char *)(GlobalDataBufferC86890 + 0x12e3) != '\0') || (*(char *)(GlobalDataBufferC86890 + 0x12dd) != '\0')
+    ResourceTablePointer = *(int64_t *)(GlobalDataBufferResourceTable + 0x1cd8);
+    if ((*(char *)(GlobalDataBufferSystemFlags + 0x12e3) != '\0') || (*(char *)(GlobalDataBufferSystemFlags + 0x12dd) != '\0')
        ) {
       LoopOffsetPointer = (int64_t *)(ResourceTablePointer + 0x80d8 + (int64_t)*(int *)(ResourceTablePointer + 0x8088) * 0x20);
       SystemContextPointer = *LoopOffsetPointer;
@@ -76290,8 +76290,8 @@ void Unwind_18090caa0(uint8_t ObjectContext,int64_t ValidationContext)
   int64_t MemoryRegion;
   
   if (0 < *(int *)(ValidationContext + 0x1f0)) {
-    ResourceTablePointer = *(int64_t *)(GlobalDataBufferC86938 + 0x1cd8);
-    if ((*(char *)(GlobalDataBufferC86890 + 0x12e3) != '\0') || (*(char *)(GlobalDataBufferC86890 + 0x12dd) != '\0')
+    ResourceTablePointer = *(int64_t *)(GlobalDataBufferResourceTable + 0x1cd8);
+    if ((*(char *)(GlobalDataBufferSystemFlags + 0x12e3) != '\0') || (*(char *)(GlobalDataBufferSystemFlags + 0x12dd) != '\0')
        ) {
       LoopOffsetPointer = (int64_t *)(ResourceTablePointer + 0x80d8 + (int64_t)*(int *)(ResourceTablePointer + 0x8088) * 0x20);
       SystemContextPointer = *LoopOffsetPointer;
@@ -76355,8 +76355,8 @@ void Unwind_18090cad0(uint8_t ObjectContext,int64_t ValidationContext)
   int64_t MemoryRegion;
   
   if (0 < *(int *)(ValidationContext + 0x250)) {
-    ResourceTablePointer = *(int64_t *)(GlobalDataBufferC86938 + 0x1cd8);
-    if ((*(char *)(GlobalDataBufferC86890 + 0x12e3) != '\0') || (*(char *)(GlobalDataBufferC86890 + 0x12dd) != '\0')
+    ResourceTablePointer = *(int64_t *)(GlobalDataBufferResourceTable + 0x1cd8);
+    if ((*(char *)(GlobalDataBufferSystemFlags + 0x12e3) != '\0') || (*(char *)(GlobalDataBufferSystemFlags + 0x12dd) != '\0')
        ) {
       LoopOffsetPointer = (int64_t *)(ResourceTablePointer + 0x80d8 + (int64_t)*(int *)(ResourceTablePointer + 0x8088) * 0x20);
       SystemContextPointer = *LoopOffsetPointer;
@@ -76420,8 +76420,8 @@ void Unwind_18090cb00(uint8_t ObjectContext,int64_t ValidationContext)
   int64_t MemoryRegion;
   
   if (0 < *(int *)(ValidationContext + 0x2b0)) {
-    ResourceTablePointer = *(int64_t *)(GlobalDataBufferC86938 + 0x1cd8);
-    if ((*(char *)(GlobalDataBufferC86890 + 0x12e3) != '\0') || (*(char *)(GlobalDataBufferC86890 + 0x12dd) != '\0')
+    ResourceTablePointer = *(int64_t *)(GlobalDataBufferResourceTable + 0x1cd8);
+    if ((*(char *)(GlobalDataBufferSystemFlags + 0x12e3) != '\0') || (*(char *)(GlobalDataBufferSystemFlags + 0x12dd) != '\0')
        ) {
       LoopOffsetPointer = (int64_t *)(ResourceTablePointer + 0x80d8 + (int64_t)*(int *)(ResourceTablePointer + 0x8088) * 0x20);
       SystemContextPointer = *LoopOffsetPointer;
@@ -76474,8 +76474,8 @@ void Unwind_18090cb20(uint8_t ObjectContext,int64_t ValidationContext)
   int64_t MemoryRegion;
   
   if (0 < *(int *)(ValidationContext + 0x310)) {
-    ResourceTablePointer = *(int64_t *)(GlobalDataBufferC86938 + 0x1cd8);
-    if ((*(char *)(GlobalDataBufferC86890 + 0x12e3) != '\0') || (*(char *)(GlobalDataBufferC86890 + 0x12dd) != '\0')
+    ResourceTablePointer = *(int64_t *)(GlobalDataBufferResourceTable + 0x1cd8);
+    if ((*(char *)(GlobalDataBufferSystemFlags + 0x12e3) != '\0') || (*(char *)(GlobalDataBufferSystemFlags + 0x12dd) != '\0')
        ) {
       LoopOffsetPointer = (int64_t *)(ResourceTablePointer + 0x80d8 + (int64_t)*(int *)(ResourceTablePointer + 0x8088) * 0x20);
       SystemContextPointer = *LoopOffsetPointer;
@@ -76528,8 +76528,8 @@ void Unwind_18090cb40(uint8_t ObjectContext,int64_t ValidationContext)
   int64_t MemoryRegion;
   
   if (0 < *(int *)(ValidationContext + 0x4f0)) {
-    ResourceTablePointer = *(int64_t *)(GlobalDataBufferC86938 + 0x1cd8);
-    if ((*(char *)(GlobalDataBufferC86890 + 0x12e3) != '\0') || (*(char *)(GlobalDataBufferC86890 + 0x12dd) != '\0')
+    ResourceTablePointer = *(int64_t *)(GlobalDataBufferResourceTable + 0x1cd8);
+    if ((*(char *)(GlobalDataBufferSystemFlags + 0x12e3) != '\0') || (*(char *)(GlobalDataBufferSystemFlags + 0x12dd) != '\0')
        ) {
       LoopOffsetPointer = (int64_t *)(ResourceTablePointer + 0x80d8 + (int64_t)*(int *)(ResourceTablePointer + 0x8088) * 0x20);
       SystemContextPointer = *LoopOffsetPointer;
@@ -76584,8 +76584,8 @@ void Unwind_18090cb60(uint8_t ObjectContext,int64_t ValidationContext)
   int64_t MemoryRegion;
   
   if (0 < *(int *)(ValidationContext + 0x370)) {
-    ResourceTablePointer = *(int64_t *)(GlobalDataBufferC86938 + 0x1cd8);
-    if ((*(char *)(GlobalDataBufferC86890 + 0x12e3) != '\0') || (*(char *)(GlobalDataBufferC86890 + 0x12dd) != '\0')
+    ResourceTablePointer = *(int64_t *)(GlobalDataBufferResourceTable + 0x1cd8);
+    if ((*(char *)(GlobalDataBufferSystemFlags + 0x12e3) != '\0') || (*(char *)(GlobalDataBufferSystemFlags + 0x12dd) != '\0')
        ) {
       LoopOffsetPointer = (int64_t *)(ResourceTablePointer + 0x80d8 + (int64_t)*(int *)(ResourceTablePointer + 0x8088) * 0x20);
       SystemContextPointer = *LoopOffsetPointer;
@@ -76638,8 +76638,8 @@ void Unwind_18090cb80(uint8_t ObjectContext,int64_t ValidationContext)
   int64_t MemoryRegion;
   
   if (0 < *(int *)(ValidationContext + 0x3d0)) {
-    ResourceTablePointer = *(int64_t *)(GlobalDataBufferC86938 + 0x1cd8);
-    if ((*(char *)(GlobalDataBufferC86890 + 0x12e3) != '\0') || (*(char *)(GlobalDataBufferC86890 + 0x12dd) != '\0')
+    ResourceTablePointer = *(int64_t *)(GlobalDataBufferResourceTable + 0x1cd8);
+    if ((*(char *)(GlobalDataBufferSystemFlags + 0x12e3) != '\0') || (*(char *)(GlobalDataBufferSystemFlags + 0x12dd) != '\0')
        ) {
       LoopOffsetPointer = (int64_t *)(ResourceTablePointer + 0x80d8 + (int64_t)*(int *)(ResourceTablePointer + 0x8088) * 0x20);
       SystemContextPointer = *LoopOffsetPointer;
@@ -76725,8 +76725,8 @@ void Unwind_18090cbd0(uint8_t ObjectContext,int64_t ValidationContext)
   int64_t MemoryRegion;
   
   if (0 < *(int *)(ValidationContext + 0x430)) {
-    ResourceTablePointer = *(int64_t *)(GlobalDataBufferC86938 + 0x1cd8);
-    if ((*(char *)(GlobalDataBufferC86890 + 0x12e3) != '\0') || (*(char *)(GlobalDataBufferC86890 + 0x12dd) != '\0')
+    ResourceTablePointer = *(int64_t *)(GlobalDataBufferResourceTable + 0x1cd8);
+    if ((*(char *)(GlobalDataBufferSystemFlags + 0x12e3) != '\0') || (*(char *)(GlobalDataBufferSystemFlags + 0x12dd) != '\0')
        ) {
       LoopOffsetPointer = (int64_t *)(ResourceTablePointer + 0x80d8 + (int64_t)*(int *)(ResourceTablePointer + 0x8088) * 0x20);
       SystemContextPointer = *LoopOffsetPointer;
@@ -76790,8 +76790,8 @@ void Unwind_18090cc00(uint8_t ObjectContext,int64_t ValidationContext)
   int64_t MemoryRegion;
   
   if (0 < *(int *)(ValidationContext + 0x490)) {
-    ResourceTablePointer = *(int64_t *)(GlobalDataBufferC86938 + 0x1cd8);
-    if ((*(char *)(GlobalDataBufferC86890 + 0x12e3) != '\0') || (*(char *)(GlobalDataBufferC86890 + 0x12dd) != '\0')
+    ResourceTablePointer = *(int64_t *)(GlobalDataBufferResourceTable + 0x1cd8);
+    if ((*(char *)(GlobalDataBufferSystemFlags + 0x12e3) != '\0') || (*(char *)(GlobalDataBufferSystemFlags + 0x12dd) != '\0')
        ) {
       LoopOffsetPointer = (int64_t *)(ResourceTablePointer + 0x80d8 + (int64_t)*(int *)(ResourceTablePointer + 0x8088) * 0x20);
       SystemContextPointer = *LoopOffsetPointer;
@@ -76954,8 +76954,8 @@ void Unwind_18090cce0(uint8_t ObjectContext,int64_t ValidationContext)
   int64_t MemoryRegion;
   
   if (0 < *(int *)(ValidationContext + 0x50)) {
-    ResourceTablePointer = *(int64_t *)(GlobalDataBufferC86938 + 0x1cd8);
-    if ((*(char *)(GlobalDataBufferC86890 + 0x12e3) != '\0') || (*(char *)(GlobalDataBufferC86890 + 0x12dd) != '\0')
+    ResourceTablePointer = *(int64_t *)(GlobalDataBufferResourceTable + 0x1cd8);
+    if ((*(char *)(GlobalDataBufferSystemFlags + 0x12e3) != '\0') || (*(char *)(GlobalDataBufferSystemFlags + 0x12dd) != '\0')
        ) {
       LoopOffsetPointer = (int64_t *)(ResourceTablePointer + 0x80d8 + (int64_t)*(int *)(ResourceTablePointer + 0x8088) * 0x20);
       SystemContextPointer = *LoopOffsetPointer;
@@ -82328,8 +82328,8 @@ void Unwind_18090e760(uint8_t ObjectContext,int64_t ValidationContext)
   int64_t MemoryRegion;
   
   if (0 < *(int *)(ValidationContext + 0x70)) {
-    ResourceTablePointer = *(int64_t *)(GlobalDataBufferC86938 + 0x1cd8);
-    if ((*(char *)(GlobalDataBufferC86890 + 0x12e3) != '\0') || (*(char *)(GlobalDataBufferC86890 + 0x12dd) != '\0')
+    ResourceTablePointer = *(int64_t *)(GlobalDataBufferResourceTable + 0x1cd8);
+    if ((*(char *)(GlobalDataBufferSystemFlags + 0x12e3) != '\0') || (*(char *)(GlobalDataBufferSystemFlags + 0x12dd) != '\0')
        ) {
       LoopOffsetPointer = (int64_t *)(ResourceTablePointer + 0x80d8 + (int64_t)*(int *)(ResourceTablePointer + 0x8088) * 0x20);
       SystemContextPointer = *LoopOffsetPointer;
@@ -82385,8 +82385,8 @@ void Unwind_18090e7a0(uint8_t ObjectContext,int64_t ValidationContext)
   int64_t MemoryRegion;
   
   if (0 < *(int *)(ValidationContext + 0x1a0)) {
-    ResourceTablePointer = *(int64_t *)(GlobalDataBufferC86938 + 0x1cd8);
-    if ((*(char *)(GlobalDataBufferC86890 + 0x12e3) != '\0') || (*(char *)(GlobalDataBufferC86890 + 0x12dd) != '\0')
+    ResourceTablePointer = *(int64_t *)(GlobalDataBufferResourceTable + 0x1cd8);
+    if ((*(char *)(GlobalDataBufferSystemFlags + 0x12e3) != '\0') || (*(char *)(GlobalDataBufferSystemFlags + 0x12dd) != '\0')
        ) {
       LoopOffsetPointer = (int64_t *)(ResourceTablePointer + 0x80d8 + (int64_t)*(int *)(ResourceTablePointer + 0x8088) * 0x20);
       SystemContextPointer = *LoopOffsetPointer;
@@ -82430,8 +82430,8 @@ void Unwind_18090e7b0(uint8_t ObjectContext,int64_t ValidationContext)
   int64_t MemoryRegion;
   
   if (0 < *(int *)(ValidationContext + 0xa0)) {
-    ResourceTablePointer = *(int64_t *)(GlobalDataBufferC86938 + 0x1cd8);
-    if ((*(char *)(GlobalDataBufferC86890 + 0x12e3) != '\0') || (*(char *)(GlobalDataBufferC86890 + 0x12dd) != '\0')
+    ResourceTablePointer = *(int64_t *)(GlobalDataBufferResourceTable + 0x1cd8);
+    if ((*(char *)(GlobalDataBufferSystemFlags + 0x12e3) != '\0') || (*(char *)(GlobalDataBufferSystemFlags + 0x12dd) != '\0')
        ) {
       LoopOffsetPointer = (int64_t *)(ResourceTablePointer + 0x80d8 + (int64_t)*(int *)(ResourceTablePointer + 0x8088) * 0x20);
       SystemContextPointer = *LoopOffsetPointer;
@@ -82475,8 +82475,8 @@ void Unwind_18090e7c0(uint8_t ObjectContext,int64_t ValidationContext)
   int64_t MemoryRegion;
   
   if (0 < *(int *)(ValidationContext + 0x100)) {
-    ResourceTablePointer = *(int64_t *)(GlobalDataBufferC86938 + 0x1cd8);
-    if ((*(char *)(GlobalDataBufferC86890 + 0x12e3) != '\0') || (*(char *)(GlobalDataBufferC86890 + 0x12dd) != '\0')
+    ResourceTablePointer = *(int64_t *)(GlobalDataBufferResourceTable + 0x1cd8);
+    if ((*(char *)(GlobalDataBufferSystemFlags + 0x12e3) != '\0') || (*(char *)(GlobalDataBufferSystemFlags + 0x12dd) != '\0')
        ) {
       LoopOffsetPointer = (int64_t *)(ResourceTablePointer + 0x80d8 + (int64_t)*(int *)(ResourceTablePointer + 0x8088) * 0x20);
       SystemContextPointer = *LoopOffsetPointer;
@@ -82520,8 +82520,8 @@ void Unwind_18090e7d0(uint8_t ObjectContext,int64_t ValidationContext)
   int64_t MemoryRegion;
   
   if (0 < *(int *)(ValidationContext + 0x60)) {
-    ResourceTablePointer = *(int64_t *)(GlobalDataBufferC86938 + 0x1cd8);
-    if ((*(char *)(GlobalDataBufferC86890 + 0x12e3) != '\0') || (*(char *)(GlobalDataBufferC86890 + 0x12dd) != '\0')
+    ResourceTablePointer = *(int64_t *)(GlobalDataBufferResourceTable + 0x1cd8);
+    if ((*(char *)(GlobalDataBufferSystemFlags + 0x12e3) != '\0') || (*(char *)(GlobalDataBufferSystemFlags + 0x12dd) != '\0')
        ) {
       LoopOffsetPointer = (int64_t *)(ResourceTablePointer + 0x80d8 + (int64_t)*(int *)(ResourceTablePointer + 0x8088) * 0x20);
       SystemContextPointer = *LoopOffsetPointer;
@@ -82565,8 +82565,8 @@ void Unwind_18090e7e0(uint8_t ObjectContext,int64_t ValidationContext)
   int64_t MemoryRegion;
   
   if (0 < *(int *)(ValidationContext + 0x90)) {
-    ResourceTablePointer = *(int64_t *)(GlobalDataBufferC86938 + 0x1cd8);
-    if ((*(char *)(GlobalDataBufferC86890 + 0x12e3) != '\0') || (*(char *)(GlobalDataBufferC86890 + 0x12dd) != '\0')
+    ResourceTablePointer = *(int64_t *)(GlobalDataBufferResourceTable + 0x1cd8);
+    if ((*(char *)(GlobalDataBufferSystemFlags + 0x12e3) != '\0') || (*(char *)(GlobalDataBufferSystemFlags + 0x12dd) != '\0')
        ) {
       LoopOffsetPointer = (int64_t *)(ResourceTablePointer + 0x80d8 + (int64_t)*(int *)(ResourceTablePointer + 0x8088) * 0x20);
       SystemContextPointer = *LoopOffsetPointer;
@@ -82610,8 +82610,8 @@ void Unwind_18090e7f0(uint8_t ObjectContext,int64_t ValidationContext)
   int64_t MemoryRegion;
   
   if (0 < *(int *)(ValidationContext + 0xf0)) {
-    ResourceTablePointer = *(int64_t *)(GlobalDataBufferC86938 + 0x1cd8);
-    if ((*(char *)(GlobalDataBufferC86890 + 0x12e3) != '\0') || (*(char *)(GlobalDataBufferC86890 + 0x12dd) != '\0')
+    ResourceTablePointer = *(int64_t *)(GlobalDataBufferResourceTable + 0x1cd8);
+    if ((*(char *)(GlobalDataBufferSystemFlags + 0x12e3) != '\0') || (*(char *)(GlobalDataBufferSystemFlags + 0x12dd) != '\0')
        ) {
       LoopOffsetPointer = (int64_t *)(ResourceTablePointer + 0x80d8 + (int64_t)*(int *)(ResourceTablePointer + 0x8088) * 0x20);
       SystemContextPointer = *LoopOffsetPointer;
@@ -82655,8 +82655,8 @@ void Unwind_18090e800(uint8_t ObjectContext,int64_t ValidationContext)
   int64_t MemoryRegion;
   
   if (0 < *(int *)(ValidationContext + 0x1b0)) {
-    ResourceTablePointer = *(int64_t *)(GlobalDataBufferC86938 + 0x1cd8);
-    if ((*(char *)(GlobalDataBufferC86890 + 0x12e3) != '\0') || (*(char *)(GlobalDataBufferC86890 + 0x12dd) != '\0')
+    ResourceTablePointer = *(int64_t *)(GlobalDataBufferResourceTable + 0x1cd8);
+    if ((*(char *)(GlobalDataBufferSystemFlags + 0x12e3) != '\0') || (*(char *)(GlobalDataBufferSystemFlags + 0x12dd) != '\0')
        ) {
       LoopOffsetPointer = (int64_t *)(ResourceTablePointer + 0x80d8 + (int64_t)*(int *)(ResourceTablePointer + 0x8088) * 0x20);
       SystemContextPointer = *LoopOffsetPointer;
@@ -82711,8 +82711,8 @@ void Unwind_18090e820(uint8_t ObjectContext,int64_t ValidationContext)
   int64_t MemoryRegion;
   
   if (0 < *(int *)(ValidationContext + 0x210)) {
-    ResourceTablePointer = *(int64_t *)(GlobalDataBufferC86938 + 0x1cd8);
-    if ((*(char *)(GlobalDataBufferC86890 + 0x12e3) != '\0') || (*(char *)(GlobalDataBufferC86890 + 0x12dd) != '\0')
+    ResourceTablePointer = *(int64_t *)(GlobalDataBufferResourceTable + 0x1cd8);
+    if ((*(char *)(GlobalDataBufferSystemFlags + 0x12e3) != '\0') || (*(char *)(GlobalDataBufferSystemFlags + 0x12dd) != '\0')
        ) {
       LoopOffsetPointer = (int64_t *)(ResourceTablePointer + 0x80d8 + (int64_t)*(int *)(ResourceTablePointer + 0x8088) * 0x20);
       SystemContextPointer = *LoopOffsetPointer;
@@ -82767,8 +82767,8 @@ void Unwind_18090e840(uint8_t ObjectContext,int64_t ValidationContext)
   int64_t MemoryRegion;
   
   if (0 < *(int *)(ValidationContext + 0x270)) {
-    ResourceTablePointer = *(int64_t *)(GlobalDataBufferC86938 + 0x1cd8);
-    if ((*(char *)(GlobalDataBufferC86890 + 0x12e3) != '\0') || (*(char *)(GlobalDataBufferC86890 + 0x12dd) != '\0')
+    ResourceTablePointer = *(int64_t *)(GlobalDataBufferResourceTable + 0x1cd8);
+    if ((*(char *)(GlobalDataBufferSystemFlags + 0x12e3) != '\0') || (*(char *)(GlobalDataBufferSystemFlags + 0x12dd) != '\0')
        ) {
       LoopOffsetPointer = (int64_t *)(ResourceTablePointer + 0x80d8 + (int64_t)*(int *)(ResourceTablePointer + 0x8088) * 0x20);
       SystemContextPointer = *LoopOffsetPointer;
@@ -82823,8 +82823,8 @@ void Unwind_18090e860(uint8_t ObjectContext,int64_t ValidationContext)
   int64_t MemoryRegion;
   
   if (0 < *(int *)(ValidationContext + 0x2d0)) {
-    ResourceTablePointer = *(int64_t *)(GlobalDataBufferC86938 + 0x1cd8);
-    if ((*(char *)(GlobalDataBufferC86890 + 0x12e3) != '\0') || (*(char *)(GlobalDataBufferC86890 + 0x12dd) != '\0')
+    ResourceTablePointer = *(int64_t *)(GlobalDataBufferResourceTable + 0x1cd8);
+    if ((*(char *)(GlobalDataBufferSystemFlags + 0x12e3) != '\0') || (*(char *)(GlobalDataBufferSystemFlags + 0x12dd) != '\0')
        ) {
       LoopOffsetPointer = (int64_t *)(ResourceTablePointer + 0x80d8 + (int64_t)*(int *)(ResourceTablePointer + 0x8088) * 0x20);
       SystemContextPointer = *LoopOffsetPointer;
@@ -83335,8 +83335,8 @@ void Unwind_18090eb00(uint8_t ObjectContext,int64_t ValidationContext)
   int64_t MemoryRegion;
   
   if (0 < *(int *)(ValidationContext + 0x140)) {
-    ResourceTablePointer = *(int64_t *)(GlobalDataBufferC86938 + 0x1cd8);
-    if ((*(char *)(GlobalDataBufferC86890 + 0x12e3) != '\0') || (*(char *)(GlobalDataBufferC86890 + 0x12dd) != '\0')
+    ResourceTablePointer = *(int64_t *)(GlobalDataBufferResourceTable + 0x1cd8);
+    if ((*(char *)(GlobalDataBufferSystemFlags + 0x12e3) != '\0') || (*(char *)(GlobalDataBufferSystemFlags + 0x12dd) != '\0')
        ) {
       LoopOffsetPointer = (int64_t *)(ResourceTablePointer + 0x80d8 + (int64_t)*(int *)(ResourceTablePointer + 0x8088) * 0x20);
       SystemContextPointer = *LoopOffsetPointer;
