@@ -59344,7 +59344,20 @@ void ProcessSystemMatrixOperations(void)
 
 
 
-// 函数: void InitializeSystemVectorCalculations(void)
+/**
+ * @brief 初始化系统向量计算功能
+ * 
+ * 该函数负责初始化游戏引擎的向量计算子系统，设置向量运算的基础设施。
+ * 主要用于3D图形渲染、物理模拟和动画系统的向量数学运算。
+ * 
+ * 功能包括：
+ * - 向量运算器的初始化
+ * - 数学运算参数的设置
+ * - 向量计算缓冲区的配置
+ * - 物理和音频系统的向量参数初始化
+ * 
+ * @note 该函数在系统初始化阶段被调用，是向量运算系统的基础组件
+ */
 void InitializeSystemVectorCalculations(void)
 
 {
