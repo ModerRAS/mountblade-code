@@ -36,7 +36,7 @@
 #define ErrorFloatValidationFailure 0x1d
 #define MaximumProcessableItemsLimit 0xffffffc0
 #define MaximumCapacityLimit 0xffffffc0
-#define FloatInfinityMask FloatInfinityMask
+#define FloatInfinityMask 0x7f800000
 #define FloatValidationErrorCode 0x1d
 #define FloatNegativeInfinity 0xbf800000
 #define FloatOneValue 0x3f800000
@@ -77,11 +77,11 @@
 #define ResourceDataOffset 4
 #define SystemStatusConstant 0x1c
 #define SystemResourceOffset 0x180985054
-#define SystemMutexAddress SystemMutexAddress
-#define SystemCriticalSectionAddress SystemCriticalSectionAddress
-#define SystemSecurityFunctionAddress SystemSecurityFunctionAddress
-#define SystemMutexSecondaryAddress SystemMutexSecondaryAddress
-#define SystemDataStructureAddress SystemDataStructureAddress
+#define SystemMutexAddress 0x180c4f450
+#define SystemCriticalSectionAddress 0x180c4f458
+#define SystemSecurityFunctionAddress 0x180c4f460
+#define SystemMutexSecondaryAddress 0x180c4f468
+#define SystemDataStructureAddress 0x180c4f470
 #define SystemSecondaryDataStructureAddress SystemSecondaryDataStructureAddress
 #define SystemDataBaseAddressConstant SystemDataBaseAddress
 #define SystemMutexTertiaryAddress SystemMutexTertiaryAddress
