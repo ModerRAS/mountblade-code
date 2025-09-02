@@ -32881,9 +32881,9 @@ void DestroySystemResourceMutex(long long SystemResourcePointer,void* Configurat
   ProcessMemoryBlock(SystemResourcePointer + 0xf0,*(void* *)(SystemResourcePointer + 0x100),AdditionalParameter,ConfigurationFlag,cleanupFlag);
   ProcessMemoryBlock(SystemResourcePointer + 0xc0,*(void* *)(SystemResourcePointer + 0xd0));
   ProcessMemoryBlock(SystemResourcePointer + 0x90,*(void* *)(SystemResourcePointer + 0xa0));
-  FUN_1800593f0(SystemResourcePointer + 0x60,*(void* *)(SystemResourcePointer + 0x70));
+  InitializeSystemConfigurationDataRecursive(SystemResourcePointer + 0x60,*(void* )(SystemResourcePointer + 0x70));
   ProcessSystemResourceExtension(SystemResourcePointer + 0x30,*(void* *)(SystemResourcePointer + 0x40));
-  FUN_1800593f0(SystemResourcePointer,*(void* *)(SystemResourcePointer + 0x10));
+  InitializeSystemConfigurationDataRecursive(SystemResourcePointer,*(void* )(SystemResourcePointer + 0x10));
   return;
 }
 
@@ -32903,7 +32903,7 @@ void DestroySystemResourceMutex(long long SystemResourcePointer,void* Configurat
  */
 void ProcessSystemResourceInitialization(long long SystemResourcePointer,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 {
-  FUN_1800593f0(SystemResourcePointer,*(void* )(SystemResourcePointer + 0x10),AdditionalParameter,ConfigurationFlag,0xfffffffffffffffe);
+  InitializeSystemConfigurationDataRecursive(SystemResourcePointer,*(void* )(SystemResourcePointer + 0x10),AdditionalParameter,ConfigurationFlag,0xfffffffffffffffe);
   return;
 }
 
@@ -32923,7 +32923,7 @@ void ProcessSystemResourceInitialization(long long SystemResourcePointer,void* C
  */
 void ExecuteSystemResourceConfiguration(long long SystemResourcePointer,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 {
-  FUN_1800593f0(SystemResourcePointer,*(void* )(SystemResourcePointer + 0x10),AdditionalParameter,ConfigurationFlag,0xfffffffffffffffe);
+  InitializeSystemConfigurationDataRecursive(SystemResourcePointer,*(void* )(SystemResourcePointer + 0x10),AdditionalParameter,ConfigurationFlag,0xfffffffffffffffe);
   return;
 }
 
@@ -34970,7 +34970,7 @@ void ValidateSystemResourcePointer(long long SystemResourcePointer)
   long long localResourceOffset;
   ulong long unsignedSystemValue4;
   
-  FUN_18005a050();
+  CleanupSystemAndProcessBuffers();
   if ((1 < *(ulong long *)(SystemResourcePointer + 0x10)) &&
      (pointerToUnsigned2 = *(void* **)(SystemResourcePointer + 8), pointerToUnsigned2 != (void* *)0x0)) {
     unsignedSystemValue4 = (ulong long)pointerToUnsigned2 & 0xffffffffffc00000;
@@ -35018,7 +35018,7 @@ void ValidateAndCleanupSystemResourceTable(long long SystemResourcePointer)
   long long localResourceOffset;
   ulong long unsignedSystemValue4;
   
-  FUN_18005a050();
+  CleanupSystemAndProcessBuffers();
   if ((1 < *(ulong long *)(SystemResourcePointer + 0x10)) &&
      (pointerToUnsigned2 = *(void* **)(SystemResourcePointer + 8), pointerToUnsigned2 != (void* *)0x0)) {
     unsignedSystemValue4 = (ulong long)pointerToUnsigned2 & 0xffffffffffc00000;
@@ -35065,7 +35065,7 @@ void HandleSystemResourceException(long long SystemResourcePointer)
   long long localResourceOffset;
   ulong long unsignedSystemValue4;
   
-  FUN_18005a050();
+  CleanupSystemAndProcessBuffers();
   if ((1 < *(ulong long *)(SystemResourcePointer + 0x10)) &&
      (pointerToUnsigned2 = *(void* **)(SystemResourcePointer + 8), pointerToUnsigned2 != (void* *)0x0)) {
     unsignedSystemValue4 = (ulong long)pointerToUnsigned2 & 0xffffffffffc00000;
@@ -35225,16 +35225,16 @@ void* * CleanupAndReleaseMultipleSystemResources(void* *SystemResourcePointer,ul
 
 {
   *SystemResourcePointer = &SystemMemoryData3;
-  FUN_18005b7c0(SystemResourcePointer + 0xa4);
-  FUN_18005b960(SystemResourcePointer + 0x8c);
-  FUN_18005b7c0(SystemResourcePointer + 0x7e);
-  FUN_18005b7c0(SystemResourcePointer + 0x70);
-  FUN_18005b7c0(SystemResourcePointer + 0x62);
-  FUN_18005b7c0(SystemResourcePointer + 0x54);
-  FUN_18005b7c0(SystemResourcePointer + 0x46);
-  FUN_18005b7c0(SystemResourcePointer + 0x38);
-  FUN_18005b7c0(SystemResourcePointer + 0x2a);
-  FUN_18005b7c0(SystemResourcePointer + 0x1c);
+  ExecuteSystemResourceOperation(SystemResourcePointer + 0xa4);
+  InitializeSystemResourceManager(SystemResourcePointer + 0x8c);
+  ExecuteSystemResourceOperation(SystemResourcePointer + 0x7e);
+  ExecuteSystemResourceOperation(SystemResourcePointer + 0x70);
+  ExecuteSystemResourceOperation(SystemResourcePointer + 0x62);
+  ExecuteSystemResourceOperation(SystemResourcePointer + 0x54);
+  ExecuteSystemResourceOperation(SystemResourcePointer + 0x46);
+  ExecuteSystemResourceOperation(SystemResourcePointer + 0x38);
+  ExecuteSystemResourceOperation(SystemResourcePointer + 0x2a);
+  ExecuteSystemResourceOperation(SystemResourcePointer + 0x1c);
   FUN_1800ae640(SystemResourcePointer);
   if ((ConfigurationDataPointer & 1) != 0) {
     free(SystemResourcePointer,0x590);
@@ -35331,26 +35331,26 @@ void ProcessAndCleanupBatchSystemResources(void* *SystemResourcePointer,void* Co
   *SystemResourcePointer = &SystemConfigDataTemplateA;
   FUN_18005ab50(SystemResourcePointer + 0x143);
   FUN_18005ab50(SystemResourcePointer + 0x134);
-  FUN_18005b7c0(SystemResourcePointer + 0x126);
-  FUN_18005b7c0(SystemResourcePointer + 0x118);
-  FUN_18005b7c0(SystemResourcePointer + 0x10a);
-  FUN_18005b7c0(SystemResourcePointer + 0xfc);
-  FUN_18005b7c0(SystemResourcePointer + 0xee);
-  FUN_18005b7c0(SystemResourcePointer + 0xe0);
-  FUN_18005b7c0(SystemResourcePointer + 0xd2);
-  FUN_18005b7c0(SystemResourcePointer + 0xc4);
-  FUN_18005b7c0(SystemResourcePointer + 0xb6);
-  FUN_18005b7c0(SystemResourcePointer + 0xa8);
-  FUN_18005b7c0(SystemResourcePointer + 0x9a);
-  FUN_18005b7c0(SystemResourcePointer + 0x8c);
-  FUN_18005b7c0(SystemResourcePointer + 0x7e);
-  FUN_18005b7c0(SystemResourcePointer + 0x70);
-  FUN_18005b7c0(SystemResourcePointer + 0x62);
-  FUN_18005b7c0(SystemResourcePointer + 0x54);
-  FUN_18005b7c0(SystemResourcePointer + 0x46);
-  FUN_18005b7c0(SystemResourcePointer + 0x38);
-  FUN_18005b7c0(SystemResourcePointer + 0x2a);
-  FUN_18005b7c0(SystemResourcePointer + 0x1c);
+  ExecuteSystemResourceOperation(SystemResourcePointer + 0x126);
+  ExecuteSystemResourceOperation(SystemResourcePointer + 0x118);
+  ExecuteSystemResourceOperation(SystemResourcePointer + 0x10a);
+  ExecuteSystemResourceOperation(SystemResourcePointer + 0xfc);
+  ExecuteSystemResourceOperation(SystemResourcePointer + 0xee);
+  ExecuteSystemResourceOperation(SystemResourcePointer + 0xe0);
+  ExecuteSystemResourceOperation(SystemResourcePointer + 0xd2);
+  ExecuteSystemResourceOperation(SystemResourcePointer + 0xc4);
+  ExecuteSystemResourceOperation(SystemResourcePointer + 0xb6);
+  ExecuteSystemResourceOperation(SystemResourcePointer + 0xa8);
+  ExecuteSystemResourceOperation(SystemResourcePointer + 0x9a);
+  ExecuteSystemResourceOperation(SystemResourcePointer + 0x8c);
+  ExecuteSystemResourceOperation(SystemResourcePointer + 0x7e);
+  ExecuteSystemResourceOperation(SystemResourcePointer + 0x70);
+  ExecuteSystemResourceOperation(SystemResourcePointer + 0x62);
+  ExecuteSystemResourceOperation(SystemResourcePointer + 0x54);
+  ExecuteSystemResourceOperation(SystemResourcePointer + 0x46);
+  ExecuteSystemResourceOperation(SystemResourcePointer + 0x38);
+  ExecuteSystemResourceOperation(SystemResourcePointer + 0x2a);
+  ExecuteSystemResourceOperation(SystemResourcePointer + 0x1c);
   *SystemResourcePointer = &SystemMemoryPoolTemplateA;
   SystemResourcePointer[0x18] = &SystemGlobalDataReference;
   if (SystemResourcePointer[0x19] != 0) {
@@ -35360,7 +35360,7 @@ void ProcessAndCleanupBatchSystemResources(void* *SystemResourcePointer,void* Co
   SystemResourcePointer[0x19] = 0;
   *(uint32_t *)(SystemResourcePointer + 0x1b) = 0;
   SystemResourcePointer[0x18] = &SystemMemoryAllocatorReference;
-  FUN_18005d260(SystemResourcePointer + 0x12,SystemResourcePointer[0x14],AdditionalParameter,ConfigurationFlag,0xfffffffffffffffe);
+  ProcessSystemResourceConfiguration(SystemResourcePointer + 0x12,SystemResourcePointer[0x14],AdditionalParameter,ConfigurationFlag,0xfffffffffffffffe);
   if (SystemResourcePointer[0xd] != 0) {
                     // WARNING: Subroutine does not return
     SystemCleanupFunction();
@@ -35567,32 +35567,32 @@ void CleanupSystemResource(void** systemResourcePointer, void* configurationData
   ExecuteSystemResourceOperation((long long)*systemResourcePointer + 0x262, configurationDataPointer, additionalParameter, configurationFlag);
   ExecuteSystemResourceOperation((long long)*systemResourcePointer + 0x254, configurationDataPointer, additionalParameter, configurationFlag);
   ExecuteSystemResourceOperation((long long)*systemResourcePointer + 0x246, configurationDataPointer, additionalParameter, configurationFlag);
-  FUN_18005b7c0(SystemResourcePointer + 0x238);
-  FUN_18005b7c0(SystemResourcePointer + 0x22a);
-  FUN_18005b7c0(SystemResourcePointer + 0x21c);
-  FUN_18005b7c0(SystemResourcePointer + 0x20e);
-  FUN_18005b960(SystemResourcePointer + 0x1f6);
-  FUN_18005b960(SystemResourcePointer + 0x1de);
-  FUN_18005b960(SystemResourcePointer + 0x1c6);
-  FUN_18005b7c0(SystemResourcePointer + 0x1b8);
-  FUN_18005b7c0(SystemResourcePointer + 0x1aa);
-  FUN_18005b7c0(SystemResourcePointer + 0x19c);
-  FUN_18005b960(SystemResourcePointer + 0x184);
-  FUN_18005b960(SystemResourcePointer + 0x16c);
-  FUN_18005b960(SystemResourcePointer + 0x154);
-  FUN_18005b960(SystemResourcePointer + 0x13c);
-  FUN_18005b960(SystemResourcePointer + 0x124);
-  FUN_18005b960(SystemResourcePointer + 0x10c);
-  FUN_18005b960(SystemResourcePointer + 0xf4);
-  FUN_18005b960(SystemResourcePointer + 0xdc);
-  FUN_18005b960(SystemResourcePointer + 0xc4);
-  FUN_18005b960(SystemResourcePointer + 0xac);
-  FUN_18005b960(SystemResourcePointer + 0x94);
-  FUN_18005b960(SystemResourcePointer + 0x7c);
-  FUN_18005b960(SystemResourcePointer + 100);
-  FUN_18005b960(SystemResourcePointer + 0x4c);
-  FUN_18005b960(SystemResourcePointer + 0x34);
-  FUN_18005b960(SystemResourcePointer + 0x1c);
+  ExecuteSystemResourceOperation(SystemResourcePointer + 0x238);
+  ExecuteSystemResourceOperation(SystemResourcePointer + 0x22a);
+  ExecuteSystemResourceOperation(SystemResourcePointer + 0x21c);
+  ExecuteSystemResourceOperation(SystemResourcePointer + 0x20e);
+  InitializeSystemResourceManager(SystemResourcePointer + 0x1f6);
+  InitializeSystemResourceManager(SystemResourcePointer + 0x1de);
+  InitializeSystemResourceManager(SystemResourcePointer + 0x1c6);
+  ExecuteSystemResourceOperation(SystemResourcePointer + 0x1b8);
+  ExecuteSystemResourceOperation(SystemResourcePointer + 0x1aa);
+  ExecuteSystemResourceOperation(SystemResourcePointer + 0x19c);
+  InitializeSystemResourceManager(SystemResourcePointer + 0x184);
+  InitializeSystemResourceManager(SystemResourcePointer + 0x16c);
+  InitializeSystemResourceManager(SystemResourcePointer + 0x154);
+  InitializeSystemResourceManager(SystemResourcePointer + 0x13c);
+  InitializeSystemResourceManager(SystemResourcePointer + 0x124);
+  InitializeSystemResourceManager(SystemResourcePointer + 0x10c);
+  InitializeSystemResourceManager(SystemResourcePointer + 0xf4);
+  InitializeSystemResourceManager(SystemResourcePointer + 0xdc);
+  InitializeSystemResourceManager(SystemResourcePointer + 0xc4);
+  InitializeSystemResourceManager(SystemResourcePointer + 0xac);
+  InitializeSystemResourceManager(SystemResourcePointer + 0x94);
+  InitializeSystemResourceManager(SystemResourcePointer + 0x7c);
+  InitializeSystemResourceManager(SystemResourcePointer + 100);
+  InitializeSystemResourceManager(SystemResourcePointer + 0x4c);
+  InitializeSystemResourceManager(SystemResourcePointer + 0x34);
+  InitializeSystemResourceManager(SystemResourcePointer + 0x1c);
   *SystemResourcePointer = &SystemMemoryPoolTemplateA;
   SystemResourcePointer[0x18] = &SystemGlobalDataReference;
   if (SystemResourcePointer[0x19] != 0) {
@@ -35602,7 +35602,7 @@ void CleanupSystemResource(void** systemResourcePointer, void* configurationData
   SystemResourcePointer[0x19] = 0;
   *(uint32_t *)(SystemResourcePointer + 0x1b) = 0;
   SystemResourcePointer[0x18] = &SystemMemoryAllocatorReference;
-  FUN_18005d260(SystemResourcePointer + 0x12,SystemResourcePointer[0x14],AdditionalParameter,ConfigurationFlag,0xfffffffffffffffe);
+  ProcessSystemResourceConfiguration(SystemResourcePointer + 0x12,SystemResourcePointer[0x14],AdditionalParameter,ConfigurationFlag,0xfffffffffffffffe);
   if (SystemResourcePointer[0xd] != 0) {
                     // WARNING: Subroutine does not return
     SystemCleanupFunction();
