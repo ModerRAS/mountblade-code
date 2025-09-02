@@ -9998,31 +9998,31 @@ int ProcessDataWithQueue(int64_t *ObjectContext,int64_t ValidationContext,int da
  * 该函数负责解析带有堆栈的数据，它会先处理堆栈部分，
  * 然后处理数据部分，最后处理结束标记
  * 
- * @param ObjectContext 数据对象指针，包含堆栈和数据信息
- * @param ValidationContext 数据缓冲区指针，包含要解析的数据
- * @param dataLength 数据长度，表示要解析的数据大小
+ * @param DataContext 数据对象指针，包含堆栈和数据信息
+ * @param BufferContext 数据缓冲区指针，包含要解析的数据
+ * @param DataLength 数据长度，表示要解析的数据大小
  * @return int 解析结果状态码，0表示成功，非0表示错误
  */
-int ProcessDataWithStack(int64_t *ObjectContext,int64_t ValidationContext,int DataLength)
+int ProcessDataWithStack(int64_t *DataContext, int64_t *BufferContext, int DataLength)
 
 {
-  int ResourceIndex;
-  int OperationStatusCode;
-  int OperationResult;
-  int LocalDataLength;
-  void* SystemStringBuffer;
-  void* StringProcessingTemplate;
+  int ProcessedBytes;
+  int StringOperationResult;
+  int DataOperationResult;
+  int RemainingDataLength;
+  void* StringBuffer;
+  void* TemplateBuffer;
   
-  LocalDataLength = DataLength;
-  ResourceIndex = ProcessStringOperation(ValidationContext,LocalDataLength,&SystemStringBuffer);
-  OperationStatusCode = ProcessStringOperation(ValidationContext + ResourceIndex,LocalDataLength - ResourceIndex,&StringProcessingTemplate);
-  ResourceIndex = ResourceIndex + OperationResultValue;
-  OperationStatusCode = ParseDataContent(ResourceIndex + ValidationContext,LocalDataLength - ResourceIndex,((int)ObjectContext[2] + 2) * 0xc);
-  ResourceIndex = ResourceIndex + OperationResultValue;
-  OperationStatusCode = ProcessStringOperation(ResourceIndex + ValidationContext,LocalDataLength - ResourceIndex,&StringProcessingTemplate);
-  ResourceIndex = ResourceIndex + OperationResultValue;
-  OperationStatusCode = (**(code **)(*ObjectContext + 8))(ObjectContext,ResourceIndex + ValidationContext,LocalDataLength - ResourceIndex);
-  return OperationResultValue + ResourceIndex;
+  RemainingDataLength = DataLength;
+  ProcessedBytes = ProcessStringOperation(BufferContext, RemainingDataLength, &StringBuffer);
+  StringOperationResult = ProcessStringOperation(BufferContext + ProcessedBytes, RemainingDataLength - ProcessedBytes, &TemplateBuffer);
+  ProcessedBytes = ProcessedBytes + StringOperationResult;
+  StringOperationResult = ParseDataContent(ProcessedBytes + BufferContext, RemainingDataLength - ProcessedBytes, ((int)DataContext[2] + 2) * 0xc);
+  ProcessedBytes = ProcessedBytes + StringOperationResult;
+  StringOperationResult = ProcessStringOperation(ProcessedBytes + BufferContext, RemainingDataLength - ProcessedBytes, &TemplateBuffer);
+  ProcessedBytes = ProcessedBytes + StringOperationResult;
+  StringOperationResult = (**(code **)(*DataContext + 8))(DataContext, ProcessedBytes + BufferContext, RemainingDataLength - ProcessedBytes);
+  return StringOperationResult + ProcessedBytes;
 }
 
 
@@ -10241,29 +10241,23 @@ void FinalizeSecurityOperationHandler(uint64_t SecurityContext)
 uint32_t HandleResourceIndexOperation(int64_t ResourceHandle, uint32_t *ResourceDataPointer, int64_t *ResourceIndexPointer)
 
 {
-  int64_t *ProcessContext;
-  int32_t OperationStatus;
+  int64_t *SecurityContext;
+  int32_t LockStatus;
   int64_t ResourceIndex;
   uint8_t SecurityDataBuffer[32];
-  uint32_t ResourceFlagHigh;
-  uint32_t ResourceFlagLow;
-  uint32_t ResourceFlagValidation;
-  uint32_t ResourceFlagAccess;
-  uint32_t ResourceFlagSecurity;
-  uint32_t ResourceFlagStatus;
-  uint32_t ResourceFlagControl;
-  uint32_t ResourceFlagPriority;
-  uint32_t ResourceFlagOwnership;
-  uint32_t ResourceFlagPermissions;
   uint32_t ResourceValidationFlag;
   uint32_t ResourceAccessFlag;
   uint32_t ResourceSecurityFlag;
   uint32_t ResourceStatusFlag;
+  uint32_t ResourceControlFlag;
+  uint32_t ResourcePriorityFlag;
+  uint32_t ResourceOwnershipFlag;
+  uint32_t ResourcePermissionFlag;
   int64_t ResourceHandleBackup;
   uint8_t ResourceChecksumBuffer[40];
-  uint64_t SecurityContextParameter;
+  uint64_t SecurityToken;
   
-  SecurityContextParameter = SecurityEncryptionKey ^ (uint64_t)SecurityDataBuffer;
+  SecurityToken = SecurityEncryptionKey ^ (uint64_t)SecurityDataBuffer;
   ResourceContext = *(int64_t **)(ObjectContext + 800);
   if (ResourceContext != (int64_t *)0x0) {
     ResourceValidationFlag = *ResourceDataPointer;
@@ -10285,11 +10279,11 @@ uint32_t HandleResourceIndexOperation(int64_t ResourceHandle, uint32_t *Resource
       ExecuteSecurityOperation(ResourceChecksumBuffer, 0x27, &SecurityOperationData, ResourceValidationFlag);
     }
     ResourceHandleBackup = *(int64_t *)(ResourceIndex + 0x48);
-    if ((ResourceHandleBackup != 0) || (OperationStatus = AcquireResourceLock(ObjectContext, ResourceIndex, &ResourceHandleBackup), OperationStatus == 0)) {
+    if ((ResourceHandleBackup != 0) || (LockStatus = AcquireResourceLock(ObjectContext, ResourceIndex, &ResourceHandleBackup), LockStatus == 0)) {
       *ResourceIndexPointer = ResourceHandleBackup;
     }
   }
-  FinalizeSecurityOperation(SecurityContextParameter ^ (uint64_t)SecurityDataBuffer);
+  FinalizeSecurityOperation(SecurityToken ^ (uint64_t)SecurityDataBuffer);
 }
 
 
