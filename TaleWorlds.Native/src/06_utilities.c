@@ -3407,7 +3407,7 @@ void ProcessGameObjects(int64_t GameContext, int64_t SystemContext)
             HandleInvalidObject(GameObjectValidationState, 1);
           }
           ProcessedObjectCount = ProcessedObjectCount + 1;
-          CurrentObjectPointer = CurrentObjectPointer + 8;
+          CurrentObjectOffset = CurrentObjectOffset + 8;
         } while (ProcessedObjectCount < BufferIndex);
       }
       FreeObjectListMemory(&ObjectDataBuffer);
@@ -3447,7 +3447,7 @@ void ValidateSystemObjectCollection(void)
 
 {
   uint8_t SystemObjectIdentifier;
-  int HashValidationResultCode;
+  int ValidationResultCode;
   int64_t SystemObjectContext;
   int64_t SystemContext;
   int64_t ObjectDataPosition;
@@ -3462,9 +3462,9 @@ void ValidateSystemObjectCollection(void)
     ProcessedObjectTotal = 0;
     RetrievedObjectTotal = 0;
     MaximumCapacity = MaximumCapacityLimit;
-    HashValidationResultCode = FetchSystemObjectCollection(*(uint8_t *)(SystemContext + 0x90), *(int64_t *)(SystemObjectContext + 8),
+    ValidationResultCode = FetchSystemObjectCollection(*(uint8_t *)(SystemContext + 0x90), *(int64_t *)(SystemObjectContext + 8),
                           &RetrievedObjectDataBuffer);
-    if (HashValidationResultCode == 0) {
+    if (ValidationResultCode == 0) {
       RetrievedObjectTotal = *(int *)(RetrievedObjectDataBuffer + 4);
       if (0 < RetrievedObjectTotal) {
         ObjectDataPosition = 8;
@@ -46008,7 +46008,18 @@ void ValidateResourceIndexAndHandleMemoryAccess(uint8_t objectContext,int64_t va
 
 
 
-void Unwind_180904fc0(uint8_t objectContext,int64_t validationContext)
+/**
+ * @brief 释放系统资源并清理数据结构
+ * 
+ * 该函数负责释放系统资源，清理相关的数据结构
+ * 确保系统能够正常释放资源并重置状态
+ * 
+ * @param objectContext 对象上下文，包含资源相关的上下文信息
+ * @param validationContext 验证上下文，用于验证操作的环境信息
+ * @return 无返回值
+ * @note 此函数主要用于系统资源的释放和数据结构的清理
+ */
+void ReleaseSystemResourceAndCleanupDataStructure(uint8_t objectContext,int64_t validationContext)
 
 {
   *(uint8_t *)(validationContext + 0xb8) = &SystemResourceHandlerTemplate;
