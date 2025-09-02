@@ -14721,7 +14721,7 @@ ResourceSearchSuccess:
             do {
               if (*(int *)(*ResourceContextPointer6 + LocalContextData5 * 4) != -1) {
                 ValidationFloatBuffer[0] = *(float *)(*ResourceContextPointer6 + (int64_t)(int)floatValue18 * 4);
-                goto LAB_180898629;
+                goto ResourceValidationComplete;
               }
               floatValue18 = (float)((int)floatValue18 + 1);
               LocalContextData5 = LocalContextData5 + 1;
