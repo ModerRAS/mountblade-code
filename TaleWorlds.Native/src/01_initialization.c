@@ -55613,7 +55613,7 @@ void FUN_180075630(long long ResourceManagerPointer,void* *ConfigurationDataPoin
               resourceCounter = localResourceOffset + 0x120;
             }
             else {
-              resourceCounter = FUN_180194940(localResourceOffset + 0x120,auStack_e8,resourcePoolPointer[5] + 0x70);
+              resourceCounter = CalculateResourceCount(localResourceOffset + 0x120,auStack_e8,resourcePoolPointer[5] + 0x70);
             }
             FUN_18063a240(pointerToUnsigned1,localResourceOffset + 0x274,resourceCounter);
             PrimaryResourcePointer0 = PrimaryResourcePointer0 + 2;
