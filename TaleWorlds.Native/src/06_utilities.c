@@ -6047,10 +6047,10 @@ uint8_t GetSystemVersionInfo(void)
  * 该函数处理系统数据包的传输操作，从数据包中提取信息
  * 并调用相应的处理函数进行数据传输
  * 
- * @param packetHandle 数据包句柄，包含要传输的数据包信息
- * @param transmissionConfig 传输配置，包含传输参数和设置
+ * @param PacketHandle 数据包句柄，包含要传输的数据包信息
+ * @param TransmissionConfig 传输配置，包含传输参数和设置
  */
-void ProcessSystemDataPacketTransmission(int64_t packetHandle, int64_t transmissionConfig)
+void ProcessSystemDataPacketTransmission(int64_t PacketHandle, int64_t TransmissionConfig)
 
 {
   int ProcessingStatusCode;
@@ -6082,17 +6082,17 @@ void ProcessSystemDataPacketTransmission(int64_t packetHandle, int64_t transmiss
  * 该函数处理系统对象的创建、初始化和销毁等生命周期操作
  * 根据传入的参数执行相应的对象管理任务
  * 
- * @param objectHandle 对象句柄，用于标识要处理的对象
- * @param lifecycleConfig 生命周期配置，包含对象生命周期参数
+ * @param ObjectHandle 对象句柄，用于标识要处理的对象
+ * @param LifecycleConfig 生命周期配置，包含对象生命周期参数
  */
-void ProcessSystemObjectLifecycle(int64_t objectHandle, int64_t lifecycleConfig)
+void ProcessSystemObjectLifecycle(int64_t ObjectHandle, int64_t LifecycleConfig)
 
 {
   int PackageValidationStatusCode;
   
-  ValidationStatus = ProcessResourceValidationCheck(*(uint8_t *)(lifecycleConfig + ValidationContextPrimaryDataOffset),*(uint32_t *)(objectHandle + ObjectHandleMemoryOffset));
+  ValidationStatus = ProcessResourceValidationCheck(*(uint8_t *)(LifecycleConfig + ValidationContextPrimaryDataOffset),*(uint32_t *)(ObjectHandle + ObjectHandleMemoryOffset));
   if (ValidationStatus == 0) {
-    ProcessObjectLifecycle(*(uint8_t *)(lifecycleConfig + SystemContextSecondaryDataOffset),*(uint32_t *)(objectHandle + ObjectHandleMemoryOffset));
+    ProcessObjectLifecycle(*(uint8_t *)(LifecycleConfig + SystemContextSecondaryDataOffset),*(uint32_t *)(ObjectHandle + ObjectHandleMemoryOffset));
   }
   return;
 }
@@ -6106,11 +6106,11 @@ void ProcessSystemObjectLifecycle(int64_t objectHandle, int64_t lifecycleConfig)
  * 该函数验证系统数据的完整性和一致性，检查数据是否符合预期格式
  * 遍历数据结构并执行相应的验证逻辑
  * 
- * @param dataBuffer 数据缓冲区，包含要验证的数据
- * @param validationConfig 验证配置，包含验证规则和参数
+ * @param DataBuffer 数据缓冲区，包含要验证的数据
+ * @param ValidationConfig 验证配置，包含验证规则和参数
  * @return 验证结果，0表示验证成功，非0表示验证失败
  */
-uint8_t ValidateSystemDataIntegrity(int64_t dataBuffer, int64_t validationConfig)
+uint8_t ValidateSystemDataIntegrity(int64_t DataBuffer, int64_t ValidationConfig)
 
 {
   uint8_t ResourceHash;
@@ -6160,7 +6160,7 @@ uint8_t ValidateSystemDataIntegrity(int64_t dataBuffer, int64_t validationConfig
  * @note 此函数会处理队列中的所有对象，直到队列为空或遇到错误
  * @warning 处理失败时会导致队列处理中断
  */
-void ProcessSystemObjectQueue(int64_t objectHandle, int64_t queueContext)
+void ProcessSystemObjectQueue(int64_t ObjectHandle, int64_t QueueContext)
 
 {
   int64_t *QueueCurrentIterator;
