@@ -68801,7 +68801,19 @@ void SetValidationContextSystemDataStructureQuinary(uint8_t ObjectContext, int64
 
 
 
-void Unwind_180909530(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 设置系统数据结构指针到验证上下文
+ * 
+ * 该函数负责将系统数据结构指针设置到验证上下文的指定位置
+ * 用于初始化系统数据结构的引用关系
+ * 
+ * @param ObjectContext 对象上下文，用于标识特定的对象实例
+ * @param ValidationContext 验证上下文，包含系统验证所需的环境信息
+ * @return 无返回值
+ * @note 此函数会修改验证上下文中的指针值
+ * @warning 调用此函数前必须确保验证上下文已正确初始化
+ */
+void SetSystemDataStructurePointer(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   *(uint8_t **)(ValidationContext + 0x5d0) = &SystemDataStructure;
