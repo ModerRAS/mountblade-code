@@ -5720,12 +5720,12 @@ uint64_t ProcessFloatParameterAndUpdateSystem(int64_t ParameterObject)
 int InitializeSystemManager(int64_t ManagerHandle)
 
 {
-  int SystemManagerProcessingResult;
-  int64_t SystemResourceTablePointer;
-  uint8_t ResourceValidationBuffer[8];
-  uint8_t ObjectContextDataBuffer[72];
+  int SystemManagerInitializationResult;
+  int64_t SystemResourceTableAddress;
+  uint8_t ResourceValidationDataBuffer[8];
+  uint8_t ObjectContextInformationBuffer[72];
   
-  SystemResourceTablePointer = 0;
+  SystemResourceTableAddress = 0;
   if (0 < *(int *)(ObjectContext + ObjectContextProcessingDataOffset)) {
     SystemResourceTableHandle = *(int64_t *)(ObjectContext + ObjectContextValidationDataOffset);
   }
