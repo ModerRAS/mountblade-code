@@ -4616,7 +4616,7 @@ uint8_t ValidateSystemAccess(int64_t AccessRequestParameters,int64_t SystemConte
  */
 uint64_t UpdateObjectStatusFlags(int64_t ObjectContext)
 {
-  uint *ObjectStatusFlagsPointer;
+  uint64_t *SystemStatusFlagsPointer;
   int64_t ObjectInstancePointer;
   uint64_t UpdateOperationResult;
   int64_t *ObjectCollectionIterator;
@@ -5343,7 +5343,7 @@ uint8_t InitializeObjectHandleExtended(int64_t ObjectContext)
 
 {
   uint8_t ResourceHash;
-  int *ValidationCodePointer;
+  int32_t *SystemValidationCodePointer;
   uint32_t *ResourceDataAddress;
   uint LoopCounter;
   uint64_t ContextOffset;
@@ -5406,7 +5406,7 @@ uint8_t InitializeObjectHandleFinal(void)
 {
   uint64_t ObjectHandleIdentifier;
   uint8_t ResourceValidationResult;
-  int *SystemStatusPointer;
+  int32_t *SystemStatusRegisterPointer;
   int64_t SystemExecutionContext;
   uint32_t *ResourceHashValidationResultPointer;
   uint ResourceProcessingStep;
@@ -6598,7 +6598,7 @@ uint8_t ValidateSystemDataIntegrity(int64_t DataBuffer, int64_t ValidationConfig
 
 {
   uint8_t ResourceHash;
-  int *OperationResultPointer;
+  int32_t *SystemOperationResultPointer;
   uint32_t *ResourceHashValidationResultAddress;
   int ValidationIndex;
   
@@ -11575,7 +11575,7 @@ uint8_t ExpandResourcePoolCapacity(int64_t *ResourcePoolHandle)
   uint64_t ResourceInitializationCounter;
   int64_t ExpandedPoolSize;
   uint ValidationSignValue;
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   int MaximumResourceCapacity;
   uint64_t ResourceSetupCounter;
   uint64_t ResourceCopyCounter;
@@ -11665,7 +11665,7 @@ uint8_t ExpandResourcePoolCapacitySimple(void)
   uint64_t ResourceHashValidationResult;
   int64_t DataOffset;
   uint ResourceContextOffset;
-  int *ResourceDataAddress;
+  int32_t *ResourceDataBufferPointer;
   int64_t *ResourceContext;
   int DataIndexRegister;
   int PackageValidationStatusCode;
@@ -29994,7 +29994,7 @@ void UnlockResourceHandleAndHandleException(uint8_t exceptionHandlerType, int64_
 void CleanupResourceHashValidationResultAddressResources(uint8_t exceptionHandlerType, int64_t ExceptionContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -31029,7 +31029,7 @@ void ExecuteValidationCleanupLoop(uint8_t ObjectContext, int64_t ValidationConte
 void ReleaseValidationResourceAndUpdateReferenceCount(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ValidationResultDataPointer;
   int64_t ResourceIndex;
   uint64_t MemoryAddressOffset;
@@ -31402,7 +31402,7 @@ void CleanupResourceHashValidationResultAddresss(uint8_t ObjectContext, int64_t 
 void ReleaseResourceHandleOnException(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
-  int *resourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -31777,7 +31777,7 @@ void ResetSystemContextOnException(uint8_t ObjectContext, int64_t ValidationCont
 void ExceptionResourceCleanupHandler(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -32738,7 +32738,7 @@ void ReleaseIndexBufferLock(uint8_t ObjectContext,int64_t ValidationContext,uint
 void UnwindProcessControllerBase(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -32836,7 +32836,7 @@ void UnwindExceptionHandlerBase(uint8_t ObjectContext,int64_t ValidationContext)
 void UnwindStackFrameBase(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -32884,7 +32884,7 @@ void UnwindStackFrameBase(uint8_t ObjectContext,int64_t ValidationContext)
 void MutexUnlockHandler(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -32990,7 +32990,7 @@ void ValidationContextCleanupHandler(uint8_t ObjectContext,int64_t ValidationCon
 void ReleaseResourceHandlesBatch(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   int64_t ResourceTable;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t DataOffset;
@@ -33055,7 +33055,7 @@ void ReleaseResourceHandlesBatch(uint8_t ObjectContext,int64_t ValidationContext
 void CleanupResourceTableAndReleaseHandles(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   int64_t ResourceTable;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t DataOffset;
@@ -33211,7 +33211,7 @@ void RegisterAdvancedResourceHandler(uint8_t ObjectContext,int64_t ValidationCon
 void ReleaseResourceHandleTable(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   int64_t ResourceTable;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t DataOffset;
@@ -33276,7 +33276,7 @@ void ReleaseResourceHandleTable(uint8_t ObjectContext,int64_t ValidationContext)
 void ValidateMemoryAccessPermissions(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   int64_t ResourceTable;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t DataOffset;
@@ -33910,7 +33910,7 @@ void CleanupSystemResourceHandlerB(uint8_t ObjectContext,int64_t ValidationConte
 void CleanupSystemResourceHandlerC(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -34035,7 +34035,7 @@ void SystemResourceCleanupHandler(uint8_t ObjectContext,int64_t ValidationContex
 void MemoryValidationCleanupHandler(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -34071,7 +34071,7 @@ void MemoryValidationCleanupHandler(uint8_t ObjectContext,int64_t ValidationCont
 void ExceptionHandlerCleanup(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -34107,7 +34107,7 @@ void ExceptionHandlerCleanup(uint8_t ObjectContext,int64_t ValidationContext)
 void ResourceIndexCleanupHandler(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -34152,7 +34152,7 @@ void MemoryAccessValidator(uint8_t ObjectContext,int64_t ValidationContext)
 void SystemContextInitializer(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -34188,7 +34188,7 @@ void SystemContextInitializer(uint8_t ObjectContext,int64_t ValidationContext)
 void ExceptionListManager(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -34351,7 +34351,7 @@ void ExceptionStackManager(uint8_t ObjectContext,int64_t ValidationContext)
 void MemoryAllocator(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -34387,7 +34387,7 @@ void MemoryAllocator(uint8_t ObjectContext,int64_t ValidationContext)
 void ResourcePoolManager(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -34700,7 +34700,7 @@ void InitializeSystemResourceHandler(uint8_t ObjectContext, int64_t ValidationCo
 void UnwindSystemContextInitializer(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -34746,7 +34746,7 @@ void UnwindSystemContextInitializer(uint8_t ObjectContext,int64_t ValidationCont
 void ValidateAndProcessResourceIndex(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -34792,7 +34792,7 @@ void ValidateAndProcessResourceIndex(uint8_t ObjectContext, int64_t ValidationCo
 void ExecuteSystemResourceRelease(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -34828,7 +34828,7 @@ void ExecuteSystemResourceRelease(uint8_t ObjectContext, int64_t ValidationConte
 void UnwindResourceTableSetup(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   uint64_t *ResourceHashValidationResultAddress;
   int64_t DataOffset;
@@ -34889,7 +34889,7 @@ void UnwindMemoryPoolInitializer(uint8_t ObjectContext,int64_t ValidationContext
 void UnwindProcessControllerSetup(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t *LoopProcessingPointer;
@@ -34932,7 +34932,7 @@ void UnwindProcessControllerSetup(uint8_t ObjectContext,int64_t ValidationContex
 void UnwindExceptionHandlerSetup(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   uint64_t *ResourceHashValidationResultAddress;
   int64_t DataOffset;
@@ -35609,7 +35609,7 @@ void UnwindSystemValidator(uint8_t ObjectContext,int64_t ValidationContext)
 void UnwindErrorHandler(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -35645,7 +35645,7 @@ void UnwindErrorHandler(uint8_t ObjectContext,int64_t ValidationContext)
 void UnwindStateSynchronizer(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -35702,7 +35702,7 @@ void UnwindDataProcessor(uint8_t ObjectContext,int64_t ValidationContext)
 void UnwindBufferManager(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -35788,7 +35788,7 @@ void UnwindSemaphoreHandler(uint8_t ObjectContext,int64_t ValidationContext)
 void UnwindCriticalSectionHandler(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -35910,7 +35910,7 @@ void UnwindAsyncCleanupHandler(uint8_t ObjectContext,int64_t ValidationContext,u
 void UnwindIoCompletionHandler(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -35956,7 +35956,7 @@ void UnwindIoCompletionHandler(uint8_t ObjectContext,int64_t ValidationContext)
 void ProcessResourceValidation(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -36267,7 +36267,7 @@ void ProcessResourceReleaseUnwindD(uint8_t ObjectContext, int64_t ValidationCont
 void ProcessResourceValidationUnwindPrimary(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
-  int *resourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -36560,7 +36560,7 @@ void CleanupResourceContextData(void)
 void ReleaseResourceHandlerReference(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   char *StatusCharacter;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t *ContextPointer;
@@ -36648,7 +36648,7 @@ void FinalizeResourceProcessing(void)
 void ValidateResourceCleanup(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -36696,7 +36696,7 @@ void ValidateResourceCleanup(uint8_t ObjectContext, int64_t ValidationContext)
 void ValidateResourceCleanupSecondary(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -36744,7 +36744,7 @@ void ValidateResourceCleanupSecondary(uint8_t ObjectContext, int64_t ValidationC
 void ValidateResourceCleanupTertiary(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -36792,7 +36792,7 @@ void ValidateResourceCleanupTertiary(uint8_t ObjectContext, int64_t ValidationCo
 void ValidateResourceCleanupQuaternary(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -36840,7 +36840,7 @@ void ValidateResourceCleanupQuaternary(uint8_t ObjectContext, int64_t Validation
 void ValidateResourceCleanupQuinary(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -36890,7 +36890,7 @@ void ValidateResourceCleanupQuinary(uint8_t ObjectContext, int64_t ValidationCon
 void ValidateResourceIndex(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -36940,7 +36940,7 @@ void ValidateResourceIndex(uint8_t ObjectContext, int64_t ValidationContext)
 void CleanupResourceHandlesAndReleaseMemory(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   char *StatusCharacter;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t *ContextPointer;
@@ -37012,7 +37012,7 @@ void CleanupResourceHandlesAndReleaseMemory(uint8_t ObjectContext, int64_t Valid
 void DestroyMutexAndConditionVariables(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -37086,7 +37086,7 @@ void ReleaseSystemResourcesAndCleanup(uint8_t ObjectContext, int64_t ValidationC
 void CleanupThreadLocalStorage(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -37136,7 +37136,7 @@ void CleanupThreadLocalStorage(uint8_t ObjectContext, int64_t ValidationContext)
 void ResetSystemContextAndHandlers(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   char *StatusCharacter;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t *ContextPointer;
@@ -37265,7 +37265,7 @@ void ExecuteSystemCleanupTertiary(uint8_t ObjectContext, int64_t ValidationConte
 void ExecuteSystemCleanupQuaternary(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -37315,7 +37315,7 @@ void ExecuteSystemCleanupQuaternary(uint8_t ObjectContext, int64_t ValidationCon
 void ExecuteSystemCleanupQuinary(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -43757,7 +43757,7 @@ void RegisterExtendedResourceHandler(uint8_t ObjectContext, int64_t ValidationCo
 void ValidateAndProcessResourceIndex(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
-  int *resourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndexValue;
   uint64_t LoopControlValue;
@@ -44936,7 +44936,7 @@ void CloseSystemHandleExtended(uint8_t ObjectContext,int64_t ValidationContext)
 void ReleaseSystemResourceIndex(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int *resourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   char *StatusCharacterPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t DataOffset;
@@ -45081,7 +45081,7 @@ void ReleaseSystemResourceIndexExtended(uint8_t ObjectContext,int64_t Validation
 void ReleaseValidationContextResourceHandle(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   char *StatusCharacter;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t DataOffset;
@@ -45194,7 +45194,7 @@ void CloseSystemHandleExtended(uint8_t ObjectContext,int64_t ValidationContext)
 void ProcessResourceIndexValidationAndCleanup(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -45242,7 +45242,7 @@ void ProcessResourceIndexValidationAndCleanup(uint8_t ObjectContext,int64_t Vali
 void ProcessExtendedResourceIndexValidationAndCleanup(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -45290,7 +45290,7 @@ void ProcessExtendedResourceIndexValidationAndCleanup(uint8_t ObjectContext,int6
 void ReleaseResourceHandleAtRegistrationDataOffset(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -45380,7 +45380,7 @@ void CloseHandleAtResourceManagerOffset(uint8_t ObjectContext,int64_t Validation
 void ReleaseResourceHandleAtResourceManagerOffset(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   char *StatusCharacter;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t DataOffset;
@@ -45451,7 +45451,7 @@ void ReleaseResourceHandleAtResourceManagerOffset(uint8_t ObjectContext,int64_t 
 void ReleaseResourceHandleAtExtendedResourceManagerOffset(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   char *StatusCharacter;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t DataOffset;
@@ -45522,7 +45522,7 @@ void ReleaseResourceHandleAtExtendedResourceManagerOffset(uint8_t ObjectContext,
 void ReleaseResourceHandleAtTertiaryResourceManagerOffset(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   char *StatusCharacter;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t DataOffset;
@@ -45614,7 +45614,7 @@ void CloseHandleAtSecondaryResourceManagerOffset(uint8_t ObjectContext,int64_t V
 void ReleaseDoublePointerResourceHandle(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -45662,7 +45662,7 @@ void ReleaseDoublePointerResourceHandle(uint8_t ObjectContext,int64_t Validation
 void ValidateResourceAccessAndHandleException(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int *resourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceMemoryOffset;
   uint64_t MemoryAlignmentMask;
@@ -46448,7 +46448,7 @@ void ExecuteResourceHashValidationLoop(uint8_t ObjectContext,int64_t ValidationC
 void ValidateResourceIndexAndHash(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -46640,7 +46640,7 @@ void ProcessResourceHashAndCleanup(uint8_t ObjectContext,int64_t ValidationConte
 void ValidateResourceHashAndMemoryAccess(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -46834,7 +46834,7 @@ void BatchExecuteResourceCleanupAndValidateSystem(uint8_t ObjectContext,int64_t 
 void ValidateResourceIndexAndHandleMemoryAccess(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -47048,7 +47048,7 @@ void ExecuteSystemResourceCleanupWithFlags(uint8_t ObjectContext,int64_t Validat
 void ValidateSystemResourceContext(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -47104,7 +47104,7 @@ void ProcessSystemResourceValidationWithFlags(uint8_t ObjectContext,int64_t Vali
 void CleanupResourceHashValidation(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -47690,7 +47690,7 @@ void CleanupResourceHandleAndHashValidation(uint8_t ObjectContext,int64_t Valida
 void ProcessResourceHashValidationAndUpdateIndex(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -47766,7 +47766,7 @@ void ProcessResourceHashValidationAndCleanup(uint8_t ObjectContext, int64_t Vali
 void ValidateResourceContextAndProcessHash(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -47890,7 +47890,7 @@ void CleanupThreadManagerResources(uint8_t ObjectContext,int64_t ValidationConte
 void CleanupNetworkManagerResources(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -47972,7 +47972,7 @@ void CleanupGraphicsManagerResources(uint8_t ObjectContext,int64_t ValidationCon
 void CleanupAudioManagerResources(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -48230,7 +48230,7 @@ void SetValidationContextDataStructure(uint8_t ObjectContext,int64_t ValidationC
 void ExecuteResourceValidationAndCleanup(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -48941,7 +48941,7 @@ void DestroyMutexInPlaceSecondary(void)
 void ValidateResourceIndexAndExecuteCleanup(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -49041,7 +49041,7 @@ void DestroyMutexLockDuplicate(void)
 void ExecuteResourceHashValidationAndCleanup(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -49091,7 +49091,7 @@ void ExecuteResourceHashValidationAndCleanup(uint8_t ObjectContext, int64_t Vali
 void ExecuteAdvancedResourceHashValidationAndCleanup(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -50032,7 +50032,7 @@ void CleanupResourceHashResourceHashValidationResults(uint8_t ObjectContext, int
 void CleanupResourceHashValidationResultAddresss(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
-  int *resourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t resourceIndex;
   uint64_t cleanupLoopIncrement;
@@ -50416,7 +50416,7 @@ void ExecuteResourceTableHashCallback(uint8_t ObjectContext,int64_t ValidationCo
 void ProcessResourceValidationAndCleanup(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int *resourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   uint64_t *ResourceHashValidationResultAddress;
   int64_t DataOffset;
@@ -51309,7 +51309,7 @@ void ResetExceptionUnwindPointerTable(uint8_t ObjectContext, int64_t ValidationC
 void UnwindSystemContextCleanup(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   char *StatusCharacter;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t *ContextPointer;
@@ -51652,7 +51652,7 @@ void UnwindResourceContextCleanupType3(uint8_t ObjectContext,int64_t ValidationC
 void CleanupResourceTableAndValidationContext(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   char *ResourceStatusCharacter;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t DataOffset;
@@ -52307,7 +52307,7 @@ void ProcessSystemResourceRollback(uint8_t ObjectContext, int64_t ValidationCont
 
 {
   int64_t *processPointer;
-  int *OperationResultPointer;
+  int32_t *SystemOperationResultPointer;
   int64_t *ResourceIndexPointer;
   int ResultRecordIndex;
   int64_t MemoryRegion;
@@ -52462,7 +52462,7 @@ void ExecuteSystemCleanupCallbackTertiary(uint8_t ObjectContext, int64_t Validat
 void ValidateResourceTableStatus(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   char *StatusCharacter;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t DataOffset;
@@ -52599,7 +52599,7 @@ void InitializeSystemContext(uint8_t ObjectContext, int64_t ValidationContext)
 void ReleaseResourceHandleAndValidateStatus(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   char *StatusCharacter;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t *ContextPointer;
@@ -52771,7 +52771,7 @@ void DestroyValidationContextConditionVariable(uint8_t ObjectContext, int64_t Va
 void ValidateResourceContextAndCleanup(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   char *StatusCharacter;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t *ContextPointer;
@@ -52904,7 +52904,7 @@ void InitializeResourceHashTableAndSyncObjects(uint8_t ObjectContext, int64_t Va
 void DestroyResourceTableSyncObjectsAndValidateStatus(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   char *StatusCharacter;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t DataOffset;
@@ -53012,7 +53012,7 @@ void ProcessResourceTableIndexTraversal(uint8_t ObjectContext, int64_t Validatio
 void ValidateResourceTableOffsetStatus(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   char *StatusCharacter;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t *ContextPointer;
@@ -53465,7 +53465,7 @@ void UnwindResourceContextAtValidationOffset(uint8_t ObjectContext,int64_t Valid
 void UnwindResourceValidationAtContextOffset(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -53514,7 +53514,7 @@ void UnwindResourceValidationAtContextOffset(uint8_t ObjectContext,int64_t Valid
 void ProcessResourceHashValidationAndMemoryAddress(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -53563,7 +53563,7 @@ void ProcessResourceHashValidationAndMemoryAddress(uint8_t ObjectContext, int64_
 void ProcessResourceHashValidationAndMemoryAddressVariant(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -53691,7 +53691,7 @@ void ExecuteResourceContextCleanup(uint8_t ObjectContext,int64_t ValidationConte
 void ProcessResourceHashTableValidation(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -54087,7 +54087,7 @@ void ExecuteResourceCleanupHandlers(uint8_t ObjectContext,int64_t ValidationCont
 void ReleaseSystemResourceAtOffset152(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -56127,7 +56127,7 @@ void ValidateResourceHashAtOffsetB4(uint8_t ObjectContext,int64_t ValidationCont
 void ValidateResourceHashAtIndex(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -56313,7 +56313,7 @@ void ExecutePrimaryResourceHandler(uint8_t ObjectContext,int64_t ValidationConte
 void ValidateResourceHashAtSecondaryIndex(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -56349,7 +56349,7 @@ void ValidateResourceHashAtSecondaryIndex(uint8_t ObjectContext,int64_t Validati
 void ValidateObjectContextBasic(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -56494,7 +56494,7 @@ void ValidateObjectContextWithFlags(uint8_t ObjectContext,int64_t ValidationCont
 void ProcessResourceHashValidationAndCleanup(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -56604,7 +56604,7 @@ void ValidateSecondaryResourceContextIntegrity(uint8_t ObjectContext, int64_t Va
 void ProcessSecondaryResourceHashValidationAndCleanup(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -56652,7 +56652,7 @@ void ProcessSecondaryResourceHashValidationAndCleanup(uint8_t ObjectContext, int
 void ProcessExtendedResourceHashValidationAndCleanup(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -56700,7 +56700,7 @@ void ProcessExtendedResourceHashValidationAndCleanup(uint8_t ObjectContext, int6
 void ProcessCompleteResourceHashValidationAndCleanup(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -56780,7 +56780,7 @@ void ValidateResourceContextIntegrity(uint8_t ObjectContext,int64_t ValidationCo
 void ValidateAndCleanupResourceContext(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -56828,7 +56828,7 @@ void ValidateAndCleanupResourceContext(uint8_t ObjectContext, int64_t Validation
 void ExecuteResourceValidationAndCleanup(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -56883,7 +56883,7 @@ void ValidateResourceContextAndExecuteEmergencyExit(uint8_t ObjectContext,int64_
 void ProcessResourceValidationWithEmergencyExit(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -56919,7 +56919,7 @@ void ProcessResourceValidationWithEmergencyExit(uint8_t ObjectContext,int64_t Va
 void HandleResourceValidationWithEmergencyExit(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -56967,7 +56967,7 @@ void HandleResourceValidationWithEmergencyExit(uint8_t ObjectContext,int64_t Val
 void ProcessResourceCleanupBasic(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -57046,7 +57046,7 @@ void ProcessResourceCleanupExtended(uint8_t ObjectContext,int64_t ValidationCont
 void ProcessResourceCleanupWithFlags(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -57094,7 +57094,7 @@ void ProcessResourceCleanupWithFlags(uint8_t ObjectContext,int64_t ValidationCon
 void ProcessResourceCleanupWithValidation(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -57142,7 +57142,7 @@ void ProcessResourceCleanupWithValidation(uint8_t ObjectContext,int64_t Validati
 void ProcessResourceCleanupWithResources(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -57190,7 +57190,7 @@ void ProcessResourceCleanupWithResources(uint8_t ObjectContext,int64_t Validatio
 void ValidateCompleteResourceContextIntegrity(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -57238,7 +57238,7 @@ void ValidateCompleteResourceContextIntegrity(uint8_t ObjectContext, int64_t Val
 void ProcessAdvancedResourceHashValidationAndCleanup(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -57287,7 +57287,7 @@ void ProcessAdvancedResourceHashValidationAndCleanup(uint8_t ObjectContext, int6
 void ValidateResourceHashAndCleanup(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -57336,7 +57336,7 @@ void ValidateResourceHashAndCleanup(uint8_t ObjectContext, int64_t ValidationCon
 void ValidateResourceContextIntegrity(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -57385,7 +57385,7 @@ void ValidateResourceContextIntegrity(uint8_t ObjectContext, int64_t ValidationC
 void ValidateSecondaryResourceContextIntegrity(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -57466,7 +57466,7 @@ void ProcessSecondaryResourceHashValidationAndCleanup(uint8_t ObjectContext, int
 void ProcessPrimaryResourceHashValidationAndCleanup(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -59334,7 +59334,7 @@ void ReleaseExclusiveLockResource(uint8_t ObjectContext,int64_t ValidationContex
 void CleanupResourceHashValidationResult(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -59379,7 +59379,7 @@ void CleanupResourceHashValidationResult(uint8_t ObjectContext,int64_t Validatio
 void ResourceHashValidationHandler(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -59436,7 +59436,7 @@ void ResourceHashValidationHandler(uint8_t ObjectContext, int64_t ValidationCont
 void ResourceIntegrityValidationHandler(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -59796,7 +59796,7 @@ void ProcessResourceStatusFlagCleanupExtendedAlternate(uint8_t ObjectContext,int
 void ProcessResourceIndexAndMemoryValidation(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -59845,7 +59845,7 @@ void ProcessResourceIndexAndMemoryValidation(uint8_t ObjectContext,int64_t Valid
 void ValidateResourceHashAndReleaseIndex(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -59894,7 +59894,7 @@ void ValidateResourceHashAndReleaseIndex(uint8_t ObjectContext,int64_t Validatio
 void ProcessResourceIndexAndMemoryValidationExtended(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -61015,7 +61015,7 @@ void AdvancedResourceCleanupHandler(uint8_t ObjectContext, int64_t ValidationCon
  */
 void ValidateResourceHashResult(uint8_t ObjectContext,int64_t ValidationContext)
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -61523,7 +61523,7 @@ void UnwindSystemResourceHandler001(uint8_t ObjectContext,int64_t ValidationCont
 void UnwindSystemResourceHandler002(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -61618,7 +61618,7 @@ void ResetResourceValidationTable(uint8_t ObjectContext,int64_t ValidationContex
 void ProcessResourceValidationCleanup(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -61747,7 +61747,7 @@ void CleanupExtendedMultiLevelResourceHandlers(uint8_t ObjectContext, int64_t Va
 void ProcessResourceIndexValidation(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -61794,7 +61794,7 @@ void ProcessResourceIndexValidation(uint8_t ObjectContext, int64_t ValidationCon
 void ValidateResourceIndexAndHandleExceptions(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -62409,7 +62409,7 @@ void UnwindResourceValidationAndCleanup(uint8_t ExceptionContext, int64_t System
 void ProcessResourceIndexValidation(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -62721,7 +62721,7 @@ void ExecuteResourceHashValidationCallbacks(uint8_t ObjectContext,int64_t Valida
 void ValidateResourceHashAndExecuteCleanup(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -63073,7 +63073,7 @@ void ExecuteSystemResourceCleanupOperation4(uint8_t ObjectContext,int64_t Valida
 void ValidateResourceIndexAndHandleExceptions(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -63115,7 +63115,7 @@ void ValidateResourceIndexAndHandleExceptions(uint8_t ObjectContext,int64_t Vali
 void ValidateResourceHashAndHandleReferenceCount(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -63157,7 +63157,7 @@ void ValidateResourceHashAndHandleReferenceCount(uint8_t ObjectContext,int64_t V
 void ValidateResourceHashAndHandleReferenceCountExtended(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -63199,7 +63199,7 @@ void ValidateResourceHashAndHandleReferenceCountExtended(uint8_t ObjectContext,i
 void ValidateResourceHashAndHandleReferenceCountSecondary(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -63245,7 +63245,7 @@ void ValidateResourceHashAndHandleReferenceCountSecondary(uint8_t ObjectContext,
 void ValidateResourceHashAndHandleReferenceCount(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -63632,7 +63632,7 @@ void ExecuteResourceCommandAndReleaseHandle(uint8_t ObjectContext,int64_t Valida
 void ValidateResourceHashAndCleanupReferenceCountAtOffset48(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -63732,7 +63732,7 @@ void ResetMemoryOperationFlagAndExecuteEncryption(uint8_t ObjectContext,int64_t 
 void ValidateResourceHashAndHandleReferenceCountExtended(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -64916,7 +64916,7 @@ void ExecuteResourceContextCleanup(uint8_t ObjectContext,int64_t ValidationConte
 void ResetResourcePointers(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -65222,7 +65222,7 @@ void CleanupSystemResources(uint8_t ObjectContext,int64_t ValidationContext)
 void ReleaseSystemMemory(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -65405,7 +65405,7 @@ void ExecuteValidationContextAtE8(uint8_t ObjectContext, int64_t ValidationConte
 void ProcessResourceHashValidationAtA0(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -65452,7 +65452,7 @@ void ProcessResourceHashValidationAtA0(uint8_t ObjectContext, int64_t Validation
 void ProcessResourceValidationAtF0(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -65519,7 +65519,7 @@ void UnwindResourceTableHandlerTypeTwo(uint8_t ObjectContext, int64_t Validation
 void UnwindMemoryAccessValidatorTypeThree(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -65905,7 +65905,7 @@ void UnwindMutexLockC(uint8_t ObjectContext,int64_t ValidationContext)
 void UnwindMutexLockD(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -65952,7 +65952,7 @@ void UnwindMutexLockD(uint8_t ObjectContext,int64_t ValidationContext)
 void CleanupResourceHashValidationResultAddress(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -65999,7 +65999,7 @@ void CleanupResourceHashValidationResultAddress(uint8_t ObjectContext, int64_t V
 void CleanupSecondaryResourceHashValidationResult(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -66035,7 +66035,7 @@ void CleanupSecondaryResourceHashValidationResult(uint8_t ObjectContext, int64_t
 void UnwindMemoryAccessValidator180908a50(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -66089,7 +66089,7 @@ void UnwindMemoryAccessValidator180908a50(uint8_t ObjectContext, int64_t Validat
 void ExecuteResourceHashCleanupHandler1(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -66143,7 +66143,7 @@ void ExecuteResourceHashCleanupHandler1(uint8_t ObjectContext,int64_t Validation
 void ExecuteResourceHashCleanupHandler2(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -66197,7 +66197,7 @@ void ExecuteResourceHashCleanupHandler2(uint8_t ObjectContext,int64_t Validation
 void ExecuteResourceHashCleanupHandler3(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -66251,7 +66251,7 @@ void ExecuteResourceHashCleanupHandler3(uint8_t ObjectContext,int64_t Validation
 void ExecuteResourceHashCleanupHandler4(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -66332,7 +66332,7 @@ void ExecuteSystemMemoryReleaseHandler1(uint8_t ObjectContext,int64_t Validation
 void ExecuteResourceHashCleanupHandler5(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -66379,7 +66379,7 @@ void ExecuteResourceHashCleanupHandler5(uint8_t ObjectContext,int64_t Validation
 void ExecuteResourceHashValidationHandler(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -66426,7 +66426,7 @@ void ExecuteResourceHashValidationHandler(uint8_t ObjectContext,int64_t Validati
 void InitializeResourceHashProcessor(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -66542,7 +66542,7 @@ void FinalizeResourceTableOperation(uint8_t ObjectContext,int64_t ValidationCont
 void ResetResourceTableState(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -67502,7 +67502,7 @@ void ProcessExtendedResourceHashValidation(uint8_t ObjectContext, int64_t Valida
 void ProcessResourceHashValidationReset(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -67604,7 +67604,7 @@ void ExecuteResourceHashCleanupExtended(uint8_t ObjectContext, int64_t Validatio
  */
 void ExecuteResourceHashCleanupComplete(uint8_t ObjectContext, int64_t ValidationContext)
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -67653,7 +67653,7 @@ void ExecuteResourceHashCleanupComplete(uint8_t ObjectContext, int64_t Validatio
  */
 void ProcessResourceHashValidationBasic(uint8_t ObjectContext, int64_t ValidationContext)
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -67702,7 +67702,7 @@ void ProcessResourceHashValidationBasic(uint8_t ObjectContext, int64_t Validatio
 void ExecuteResourceHashValidationAndMemoryAccessControl(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -68308,7 +68308,7 @@ void InitializeResourceHashAndTableStructure(uint8_t ObjectContext, int64_t Vali
 void ExecuteResourceHashValidationAndIndexManagement(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -68399,7 +68399,7 @@ void ProcessSystemResourceCleanupPhase1(uint8_t ObjectContext,int64_t Validation
 void ProcessSystemResourceCleanupPhase2(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -68679,7 +68679,7 @@ void ProcessSystemResourceCleanupPhase7(uint8_t ObjectContext,int64_t Validation
 void ProcessSystemResourceCleanupPhase8(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t *LoopProcessingPointer;
@@ -68748,7 +68748,7 @@ void ProcessSystemResourceCleanupPhase9(uint8_t ObjectContext,int64_t Validation
 void ProcessSystemResourceCleanupPhase10(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   uint64_t *ResourceHashValidationResultAddress;
   int64_t DataOffset;
@@ -68803,7 +68803,7 @@ void ProcessSystemResourceCleanupPhase10(uint8_t ObjectContext,int64_t Validatio
 void CleanupResourceHashValidationResultAddressOffset10(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   uint64_t *ResourceHashValidationResultAddress;
   int64_t DataOffset;
@@ -70153,7 +70153,7 @@ void CleanupResourceHashUnwindA(uint8_t ObjectContext,int64_t ValidationContext)
 void UnwindSystemResourceProcessingA(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -70201,7 +70201,7 @@ void UnwindSystemResourceProcessingA(uint8_t ObjectContext,int64_t ValidationCon
 void UnwindSystemResourceProcessingB(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -70249,7 +70249,7 @@ void UnwindSystemResourceProcessingB(uint8_t ObjectContext,int64_t ValidationCon
 void UnwindSystemResourceProcessingC(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -70297,7 +70297,7 @@ void UnwindSystemResourceProcessingC(uint8_t ObjectContext,int64_t ValidationCon
 void UnwindSystemResourceProcessingD(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -70345,7 +70345,7 @@ void UnwindSystemResourceProcessingD(uint8_t ObjectContext,int64_t ValidationCon
 void UnwindSystemResourceProcessingE(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -70839,7 +70839,7 @@ void CleanupResourceQuinaryHandler(uint8_t ObjectContext,int64_t ValidationConte
 void ValidateResourceHashMemory(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -71204,7 +71204,7 @@ void ClearResourceHashFlag(uint8_t ObjectContext,int64_t ValidationContext)
 void ValidateResourceHashAddress(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -71314,7 +71314,7 @@ void UnlockValidationContextMutex(uint8_t ObjectContext, int64_t ValidationConte
 void CleanupPrimaryResourceHashValidationResult(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -71350,7 +71350,7 @@ void CleanupPrimaryResourceHashValidationResult(uint8_t ObjectContext, int64_t V
 void CleanupSecondaryResourceHashValidationResult(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -71664,7 +71664,7 @@ void ProcessResourceOperationWithFlag2(uint8_t ObjectContext,int64_t ValidationC
 void ValidateResourceHashAndIndex(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -72188,7 +72188,7 @@ void CleanupResourceHashHandler(uint8_t ObjectContext,int64_t ValidationContext,
 void FinalizeResourceRegistrationHandler(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -72968,7 +72968,7 @@ void Unwind_ProcessResourceHashCleanup(uint8_t ObjectContext,int64_t ValidationC
 void Unwind_FinalizeResourceRegistrationAndCleanup(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -73285,7 +73285,7 @@ void CleanupResourceHashPointerExtended(uint8_t ObjectContext, int64_t Validatio
 void ValidateAndCleanupResourceHashResult(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -73332,7 +73332,7 @@ void ValidateAndCleanupResourceHashResult(uint8_t ObjectContext, int64_t Validat
 void ValidateAndCleanupResourceHashResultExtended(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -73699,7 +73699,7 @@ void CleanupResourceQuaternaryStatusFlag(uint8_t ObjectContext, int64_t Validati
 void ValidateResourceHashAndCleanup(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -73749,7 +73749,7 @@ void Unwind_18090a790(uint8_t ObjectContext,int64_t ValidationContext)
 void Unwind_18090a7a0(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -73972,7 +73972,7 @@ void Unwind_18090a870(uint8_t ObjectContext,int64_t ValidationContext)
 void Unwind_18090a880(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -74008,7 +74008,7 @@ void Unwind_18090a880(uint8_t ObjectContext,int64_t ValidationContext)
 void Unwind_18090a890(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -74225,7 +74225,7 @@ void Unwind_18090a920(uint8_t ObjectContext,int64_t ValidationContext)
 void Unwind_18090a930(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -74263,7 +74263,7 @@ void Unwind_18090a930(uint8_t ObjectContext,int64_t ValidationContext)
 void Unwind_18090a940(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -74312,7 +74312,7 @@ void Unwind_18090a940(uint8_t ObjectContext,int64_t ValidationContext)
 void ExecuteResourceIndexValidationAndMemoryManagement(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressBase;
@@ -74361,7 +74361,7 @@ void ExecuteResourceIndexValidationAndMemoryManagement(uint8_t ObjectContext, in
 void ExecuteResourceIndexValidationAndMemoryManagementExtended(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressBase;
@@ -74410,7 +74410,7 @@ void ExecuteResourceIndexValidationAndMemoryManagementExtended(uint8_t ObjectCon
 void ExecuteResourceIndexValidationAndMemoryManagementThird(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressBase;
@@ -77508,7 +77508,7 @@ void Unwind_18090c130(uint8_t ObjectContext,int64_t ValidationContext)
 void Unwind_18090c140(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -77651,7 +77651,7 @@ void Unwind_18090c1b0(uint8_t ObjectContext,int64_t ValidationContext)
 void Unwind_18090c1c0(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -77802,7 +77802,7 @@ void Unwind_18090c270(uint8_t ObjectContext,int64_t ValidationContext)
 void Unwind_18090c280(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -77874,7 +77874,7 @@ void Unwind_18090c2c0(uint8_t ObjectContext,int64_t ValidationContext)
 void Unwind_18090c2d0(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -77910,7 +77910,7 @@ void Unwind_18090c2d0(uint8_t ObjectContext,int64_t ValidationContext)
 void Unwind_18090c2e0(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -78055,7 +78055,7 @@ void Unwind_18090c390(uint8_t ObjectContext,int64_t ValidationContext)
 void Unwind_18090c3b0(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -78114,7 +78114,7 @@ void Unwind_18090c3e0(uint8_t ObjectContext,int64_t ValidationContext)
 void Unwind_18090c400(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -78405,7 +78405,7 @@ void Unwind_18090c520(uint8_t ObjectContext,int64_t ValidationContext)
 void Unwind_18090c530(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -78816,7 +78816,7 @@ void Unwind_18090c600(uint8_t ObjectContext,int64_t ValidationContext)
 void Unwind_18090c610(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -78852,7 +78852,7 @@ void Unwind_18090c610(uint8_t ObjectContext,int64_t ValidationContext)
 void Unwind_18090c620(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -80943,7 +80943,7 @@ void Unwind_18090cff0(uint8_t ObjectContext,int64_t ValidationContext)
 void CleanupResourceHashValidationResultAddressOffsetB0(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -80991,7 +80991,7 @@ void CleanupResourceHashValidationResultAddressOffsetB0(uint8_t ObjectContext,in
 void CleanupResourceHashValidationResultAddressOffsetD0(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -81039,7 +81039,7 @@ void CleanupResourceHashValidationResultAddressOffsetD0(uint8_t ObjectContext,in
 void CleanupResourceHashValidationResultAddressOffsetF0(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -81087,7 +81087,7 @@ void CleanupResourceHashValidationResultAddressOffsetF0(uint8_t ObjectContext,in
 void CleanupResourceHashValidationResultAddressOffset110(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -81123,7 +81123,7 @@ void CleanupResourceHashValidationResultAddressOffset110(uint8_t ObjectContext,i
 void Unwind_18090d040(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -81159,7 +81159,7 @@ void Unwind_18090d040(uint8_t ObjectContext,int64_t ValidationContext)
 void Unwind_18090d050(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -81195,7 +81195,7 @@ void Unwind_18090d050(uint8_t ObjectContext,int64_t ValidationContext)
 void Unwind_18090d060(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -81231,7 +81231,7 @@ void Unwind_18090d060(uint8_t ObjectContext,int64_t ValidationContext)
 void Unwind_18090d070(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -81279,7 +81279,7 @@ void Unwind_18090d070(uint8_t ObjectContext,int64_t ValidationContext)
 void ValidateResourceHashMemoryAddress(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -81327,7 +81327,7 @@ void ValidateResourceHashMemoryAddress(uint8_t ObjectContext,int64_t ValidationC
 void ValidateErrorResourceHashMemoryAddress(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -81375,7 +81375,7 @@ void ValidateErrorResourceHashMemoryAddress(uint8_t ObjectContext,int64_t Valida
 void ValidateSystemResourceHashMemoryAddress(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -81423,7 +81423,7 @@ void ValidateSystemResourceHashMemoryAddress(uint8_t ObjectContext,int64_t Valid
 void ValidateExtendedResourceHashMemoryAddress(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -81459,7 +81459,7 @@ void ValidateExtendedResourceHashMemoryAddress(uint8_t ObjectContext,int64_t Val
 void Unwind_18090d0c0(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -81495,7 +81495,7 @@ void Unwind_18090d0c0(uint8_t ObjectContext,int64_t ValidationContext)
 void Unwind_18090d0d0(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -81531,7 +81531,7 @@ void Unwind_18090d0d0(uint8_t ObjectContext,int64_t ValidationContext)
 void Unwind_18090d0e0(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -81567,7 +81567,7 @@ void Unwind_18090d0e0(uint8_t ObjectContext,int64_t ValidationContext)
 void Unwind_18090d0f0(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -81603,7 +81603,7 @@ void Unwind_18090d0f0(uint8_t ObjectContext,int64_t ValidationContext)
 void Unwind_18090d100(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -81639,7 +81639,7 @@ void Unwind_18090d100(uint8_t ObjectContext,int64_t ValidationContext)
 void Unwind_18090d110(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -81675,7 +81675,7 @@ void Unwind_18090d110(uint8_t ObjectContext,int64_t ValidationContext)
 void Unwind_18090d120(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -81711,7 +81711,7 @@ void Unwind_18090d120(uint8_t ObjectContext,int64_t ValidationContext)
 void CleanupExtendedResourceHashValidationResult(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -81747,7 +81747,7 @@ void CleanupExtendedResourceHashValidationResult(uint8_t ObjectContext,int64_t V
 void Unwind_18090d140(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -81783,7 +81783,7 @@ void Unwind_18090d140(uint8_t ObjectContext,int64_t ValidationContext)
 void Unwind_18090d150(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -81819,7 +81819,7 @@ void Unwind_18090d150(uint8_t ObjectContext,int64_t ValidationContext)
 void Unwind_18090d160(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -81855,7 +81855,7 @@ void Unwind_18090d160(uint8_t ObjectContext,int64_t ValidationContext)
 void Unwind_18090d170(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -81891,7 +81891,7 @@ void Unwind_18090d170(uint8_t ObjectContext,int64_t ValidationContext)
 void Unwind_18090d180(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -81938,7 +81938,7 @@ void Unwind_18090d190(uint8_t ObjectContext,int64_t ValidationContext)
 void Unwind_18090d1a0(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -81974,7 +81974,7 @@ void Unwind_18090d1a0(uint8_t ObjectContext,int64_t ValidationContext)
 void Unwind_18090d1b0(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -82010,7 +82010,7 @@ void Unwind_18090d1b0(uint8_t ObjectContext,int64_t ValidationContext)
 void Unwind_18090d1c0(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -82046,7 +82046,7 @@ void Unwind_18090d1c0(uint8_t ObjectContext,int64_t ValidationContext)
 void Unwind_18090d1d0(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -82082,7 +82082,7 @@ void Unwind_18090d1d0(uint8_t ObjectContext,int64_t ValidationContext)
 void Unwind_18090d1e0(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -82118,7 +82118,7 @@ void Unwind_18090d1e0(uint8_t ObjectContext,int64_t ValidationContext)
 void Unwind_18090d1f0(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -82154,7 +82154,7 @@ void Unwind_18090d1f0(uint8_t ObjectContext,int64_t ValidationContext)
 void Unwind_18090d200(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -82190,7 +82190,7 @@ void Unwind_18090d200(uint8_t ObjectContext,int64_t ValidationContext)
 void Unwind_18090d210(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -82226,7 +82226,7 @@ void Unwind_18090d210(uint8_t ObjectContext,int64_t ValidationContext)
 void Unwind_18090d220(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -82262,7 +82262,7 @@ void Unwind_18090d220(uint8_t ObjectContext,int64_t ValidationContext)
 void Unwind_18090d230(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -82298,7 +82298,7 @@ void Unwind_18090d230(uint8_t ObjectContext,int64_t ValidationContext)
 void Unwind_18090d240(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -82346,7 +82346,7 @@ void Unwind_18090d240(uint8_t ObjectContext,int64_t ValidationContext)
 void CleanupResourceHashValidationResultAddressOffset170(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -82394,7 +82394,7 @@ void CleanupResourceHashValidationResultAddressOffset170(uint8_t ObjectContext,i
 void CleanupResourceHashValidationResultAddressOffset400(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -82442,7 +82442,7 @@ void CleanupResourceHashValidationResultAddressOffset400(uint8_t ObjectContext,i
 void CleanupResourceHashValidationResultAddressOffset1A0(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -82478,7 +82478,7 @@ void CleanupResourceHashValidationResultAddressOffset1A0(uint8_t ObjectContext,i
 void Unwind_18090d280(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -82514,7 +82514,7 @@ void Unwind_18090d280(uint8_t ObjectContext,int64_t ValidationContext)
 void Unwind_18090d290(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -82550,7 +82550,7 @@ void Unwind_18090d290(uint8_t ObjectContext,int64_t ValidationContext)
 void Unwind_18090d2a0(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -82586,7 +82586,7 @@ void Unwind_18090d2a0(uint8_t ObjectContext,int64_t ValidationContext)
 void Unwind_18090d2b0(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -82622,7 +82622,7 @@ void Unwind_18090d2b0(uint8_t ObjectContext,int64_t ValidationContext)
 void Unwind_18090d2c0(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -82658,7 +82658,7 @@ void Unwind_18090d2c0(uint8_t ObjectContext,int64_t ValidationContext)
 void Unwind_18090d2d0(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -82694,7 +82694,7 @@ void Unwind_18090d2d0(uint8_t ObjectContext,int64_t ValidationContext)
 void Unwind_18090d2e0(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -82730,7 +82730,7 @@ void Unwind_18090d2e0(uint8_t ObjectContext,int64_t ValidationContext)
 void Unwind_18090d2f0(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -82766,7 +82766,7 @@ void Unwind_18090d2f0(uint8_t ObjectContext,int64_t ValidationContext)
 void Unwind_18090d300(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -82802,7 +82802,7 @@ void Unwind_18090d300(uint8_t ObjectContext,int64_t ValidationContext)
 void Unwind_18090d310(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -82894,7 +82894,7 @@ void Unwind_18090d350(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 void Unwind_18090d360(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -82930,7 +82930,7 @@ void Unwind_18090d360(uint8_t ObjectContext,int64_t ValidationContext)
 void Unwind_18090d370(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -82966,7 +82966,7 @@ void Unwind_18090d370(uint8_t ObjectContext,int64_t ValidationContext)
 void Unwind_18090d380(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -83002,7 +83002,7 @@ void Unwind_18090d380(uint8_t ObjectContext,int64_t ValidationContext)
 void Unwind_18090d390(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -83038,7 +83038,7 @@ void Unwind_18090d390(uint8_t ObjectContext,int64_t ValidationContext)
 void Unwind_18090d3a0(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -83074,7 +83074,7 @@ void Unwind_18090d3a0(uint8_t ObjectContext,int64_t ValidationContext)
 void Unwind_18090d3b0(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -83110,7 +83110,7 @@ void Unwind_18090d3b0(uint8_t ObjectContext,int64_t ValidationContext)
 void Unwind_18090d3c0(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -83146,7 +83146,7 @@ void Unwind_18090d3c0(uint8_t ObjectContext,int64_t ValidationContext)
 void Unwind_18090d3d0(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -83182,7 +83182,7 @@ void Unwind_18090d3d0(uint8_t ObjectContext,int64_t ValidationContext)
 void Unwind_18090d3e0(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -83218,7 +83218,7 @@ void Unwind_18090d3e0(uint8_t ObjectContext,int64_t ValidationContext)
 void Unwind_18090d3f0(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -83254,7 +83254,7 @@ void Unwind_18090d3f0(uint8_t ObjectContext,int64_t ValidationContext)
 void Unwind_18090d400(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -83290,7 +83290,7 @@ void Unwind_18090d400(uint8_t ObjectContext,int64_t ValidationContext)
 void Unwind_18090d410(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -83326,7 +83326,7 @@ void Unwind_18090d410(uint8_t ObjectContext,int64_t ValidationContext)
 void Unwind_18090d420(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -83362,7 +83362,7 @@ void Unwind_18090d420(uint8_t ObjectContext,int64_t ValidationContext)
 void Unwind_18090d430(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -83398,7 +83398,7 @@ void Unwind_18090d430(uint8_t ObjectContext,int64_t ValidationContext)
 void Unwind_18090d440(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -83434,7 +83434,7 @@ void Unwind_18090d440(uint8_t ObjectContext,int64_t ValidationContext)
 void Unwind_18090d450(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -83470,7 +83470,7 @@ void Unwind_18090d450(uint8_t ObjectContext,int64_t ValidationContext)
 void Unwind_18090d460(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -83506,7 +83506,7 @@ void Unwind_18090d460(uint8_t ObjectContext,int64_t ValidationContext)
 void Unwind_18090d470(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -83542,7 +83542,7 @@ void Unwind_18090d470(uint8_t ObjectContext,int64_t ValidationContext)
 void Unwind_18090d480(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -83578,7 +83578,7 @@ void Unwind_18090d480(uint8_t ObjectContext,int64_t ValidationContext)
 void Unwind_18090d490(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -83614,7 +83614,7 @@ void Unwind_18090d490(uint8_t ObjectContext,int64_t ValidationContext)
 void Unwind_18090d4a0(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -83650,7 +83650,7 @@ void Unwind_18090d4a0(uint8_t ObjectContext,int64_t ValidationContext)
 void Unwind_18090d4b0(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -83686,7 +83686,7 @@ void Unwind_18090d4b0(uint8_t ObjectContext,int64_t ValidationContext)
 void Unwind_18090d4c0(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -83722,7 +83722,7 @@ void Unwind_18090d4c0(uint8_t ObjectContext,int64_t ValidationContext)
 void Unwind_18090d4d0(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -83758,7 +83758,7 @@ void Unwind_18090d4d0(uint8_t ObjectContext,int64_t ValidationContext)
 void Unwind_18090d4e0(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -83794,7 +83794,7 @@ void Unwind_18090d4e0(uint8_t ObjectContext,int64_t ValidationContext)
 void Unwind_18090d4f0(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -84349,7 +84349,7 @@ void Unwind_18090d7c0(uint8_t ObjectContext,int64_t ValidationContext)
 void Unwind_18090d7e0(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -84934,7 +84934,7 @@ void Unwind_18090de30(uint8_t ObjectContext,int64_t ValidationContext)
 void Unwind_18090de40(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -85169,7 +85169,7 @@ void Unwind_18090dfe0(uint8_t ObjectContext,int64_t ValidationContext)
 void Unwind_18090e000(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -85494,7 +85494,7 @@ void Unwind_18090e3a0(uint8_t ObjectContext,int64_t ValidationContext)
 void Unwind_18090e3c0(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -85530,7 +85530,7 @@ void Unwind_18090e3c0(uint8_t ObjectContext,int64_t ValidationContext)
 void UnwindResourceHashValidator(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -87588,7 +87588,7 @@ void Unwind_18090eea0(uint8_t ObjectContext,int64_t ValidationContext)
 void Unwind_18090eeb0(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -87645,7 +87645,7 @@ void Unwind_18090eec0(uint8_t ObjectContext,int64_t ValidationContext)
 void UnwindSystemResourceValidation(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -87707,7 +87707,7 @@ void UnwindResourceContextCleanup(uint8_t ObjectContext,int64_t ValidationContex
 void Unwind_18090ef20(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -87775,7 +87775,7 @@ void Unwind_ResourceContextCleanup(uint8_t ObjectContext,int64_t ValidationConte
 void Unwind_ResourceHashValidation(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -87811,7 +87811,7 @@ void Unwind_ResourceHashValidation(uint8_t ObjectContext,int64_t ValidationConte
 void Unwind_18090ef60(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -88428,7 +88428,7 @@ void Unwind_18090f1a0(uint8_t ObjectContext,int64_t ValidationContext)
 void Unwind_18090f1b0(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -88464,7 +88464,7 @@ void Unwind_18090f1b0(uint8_t ObjectContext,int64_t ValidationContext)
 void Unwind_18090f1d0(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -88521,7 +88521,7 @@ void Unwind_18090f200(uint8_t ObjectContext,int64_t ValidationContext)
 void Unwind_18090f210(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -88557,7 +88557,7 @@ void Unwind_18090f210(uint8_t ObjectContext,int64_t ValidationContext)
 void Unwind_18090f230(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -88593,7 +88593,7 @@ void Unwind_18090f230(uint8_t ObjectContext,int64_t ValidationContext)
 void Unwind_18090f250(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -88629,7 +88629,7 @@ void Unwind_18090f250(uint8_t ObjectContext,int64_t ValidationContext)
 void Unwind_18090f270(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -88665,7 +88665,7 @@ void Unwind_18090f270(uint8_t ObjectContext,int64_t ValidationContext)
 void Unwind_18090f290(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -88701,7 +88701,7 @@ void Unwind_18090f290(uint8_t ObjectContext,int64_t ValidationContext)
 void Unwind_18090f2b0(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -88757,7 +88757,7 @@ void Unwind_18090f2d0(uint8_t ObjectContext,int64_t ValidationContext)
 void Unwind_18090f2f0(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -90541,7 +90541,7 @@ void Unwind_18090ff80(uint8_t ObjectContext,int64_t ValidationContext)
 void Unwind_18090ff90(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -91427,7 +91427,7 @@ void Unwind_180910310(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 void Unwind_180910320(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -91483,7 +91483,7 @@ void Unwind_180910330(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 void Unwind_180910340(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -91519,7 +91519,7 @@ void Unwind_180910340(uint8_t ObjectContext,int64_t ValidationContext)
 void Unwind_180910350(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -91647,7 +91647,7 @@ void SetSystemResourceTable003(uint8_t ObjectContext, int64_t ValidationContext)
 void ProcessResourceIndexValidationAndHash(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -91880,7 +91880,7 @@ void Unwind_1809104d0(uint8_t ObjectContext,int64_t ValidationContext)
 void Unwind_1809104f0(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -91916,7 +91916,7 @@ void Unwind_1809104f0(uint8_t ObjectContext,int64_t ValidationContext)
 void Unwind_180910510(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -92098,7 +92098,7 @@ void Unwind_180910620(uint8_t ObjectContext,int64_t ValidationContext)
 void Unwind_180910640(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -92134,7 +92134,7 @@ void Unwind_180910640(uint8_t ObjectContext,int64_t ValidationContext)
 void Unwind_180910660(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -92230,7 +92230,7 @@ void Unwind_1809106d0(uint8_t ObjectContext,int64_t ValidationContext)
 void Unwind_1809106e0(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -92290,7 +92290,7 @@ void Unwind_180910720(uint8_t ObjectContext,int64_t ValidationContext)
 void Unwind_180910750(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -92346,7 +92346,7 @@ void Unwind_180910760(uint8_t ObjectContext,int64_t ValidationContext)
 void Unwind_180910770(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -92382,7 +92382,7 @@ void Unwind_180910770(uint8_t ObjectContext,int64_t ValidationContext)
 void Unwind_180910780(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -92418,7 +92418,7 @@ void Unwind_180910780(uint8_t ObjectContext,int64_t ValidationContext)
 void Unwind_180910790(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -96434,7 +96434,7 @@ void Unwind_1809118b0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 void Unwind_1809118c0(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -96499,7 +96499,7 @@ void Unwind_1809118e0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 void Unwind_1809118f0(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -96635,7 +96635,7 @@ void Unwind_180911940(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 void Unwind_180911950(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -97366,7 +97366,7 @@ void Unwind_180911dc0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 void Unwind_180911de0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   int ProcessingStatusCode;
   int64_t ResourceIndex;
   int64_t DataOffset;
@@ -99422,7 +99422,7 @@ void Unwind_180912910(uint8_t ObjectContext,int64_t ValidationContext)
 void Unwind_180912930(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -100192,7 +100192,7 @@ void InitializeSystemDataStructureW(void)
 void InitializeSystemDataStructureW(void)
 
 {
-  int *ResourceIndexPointer;
+  int32_t *ResourceTableIndexPointer;
   uint8_t *ResourceHashValidationResultAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
@@ -101954,7 +101954,7 @@ void ReleaseResourceReferenceWithParameter(void)
 
 {
   int64_t *processPointer;
-  int *OperationResultPointer;
+  int32_t *SystemOperationResultPointer;
   int PackageValidationStatusCode;
   int64_t DataOffset;
   int64_t *ResourceContext;
@@ -102013,7 +102013,7 @@ void InitializeSystemDataStructureCM(void)
 
 {
   int64_t *processPointer;
-  int *OperationResultPointer;
+  int32_t *SystemOperationResultPointer;
   int PackageValidationStatusCode;
   int64_t DataOffset;
   int64_t *ResourceTablePointerPointer;
@@ -102056,7 +102056,7 @@ void InitializeSystemDataStructureCN(void)
 
 {
   int64_t *processPointer;
-  int *OperationResultPointer;
+  int32_t *SystemOperationResultPointer;
   int PackageValidationStatusCode;
   int64_t DataOffset;
   int64_t *ResourceContext;
@@ -102109,7 +102109,7 @@ void ExecuteReferenceCountDecrementAndCleanup(void)
 
 {
   int64_t *processPointer;
-  int *OperationResultPointer;
+  int32_t *SystemOperationResultPointer;
   int PackageValidationStatusCode;
   int64_t DataOffset;
   int64_t *ResourceTablePointerPointer;
@@ -102152,7 +102152,7 @@ void InitializeSystemDataStructureCP(void)
 
 {
   int64_t *processPointer;
-  int *OperationResultPointer;
+  int32_t *SystemOperationResultPointer;
   int PackageValidationStatusCode;
   int64_t DataOffset;
   int64_t *ResourceContext;
