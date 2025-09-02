@@ -59566,9 +59566,9 @@ void InitializeSystemVectorCalculations(void)
          FloatTransformValue4 * InterpolationFactorX + FloatTransformValue5 * FloatVectorThirdComponent + FloatTransformValue9 * InterpolationFactorV + FloatParameterArray[0xe];
     fStack00000000000000dc =
          FloatTransformValue4 * InterpolationFactorY + FloatTransformValue5 * FloatVectorFourthComponent + FloatTransformValue9 * MagnitudeSquared + FloatParameterArray[0xf];
-    pfloatValue29 = &stack0x000000a0;
+    pfloatValue29 = &stackBufferA0;
   }
-  FUN_180085190(&stack0x00000060,unaff_R13 + 0x30,*(uint8_t *)(MemoryBlockAddress + 0xf7),pfloatValue29);
+  FUN_180085190(&stackBuffer60,unaff_R13 + 0x30,*(uint8_t *)(MemoryBlockAddress + 0xf7),pfloatValue29);
   NetworkConnectionFlags = ThreadCreationParameter;
   SecurityStackParameter = InputStackParameter90;
   SystemConfigurationFlags = InputStackParameter88;
@@ -59644,7 +59644,7 @@ void ExecuteSystemTransformOperations(void)
   void* InputStackParameter90;
   void* ThreadCreationParameter;
   
-  FUN_180085190(&stack0x00000060,unaff_R13 + 0x30,*(uint8_t *)(MemoryBlockAddress + 0xf7));
+  FUN_180085190(&stackBuffer60,unaff_R13 + 0x30,*(uint8_t *)(MemoryBlockAddress + 0xf7));
   unsignedSystemValue9 = ThreadCreationParameter;
   SystemOperationCode = InputStackParameter90;
   unsignedSystemValue7 = InputStackParameter88;
@@ -59905,7 +59905,7 @@ void ProcessSystemFloatOperations(void* SystemResourceManager,void* Configuratio
   uStack000000000000005c = 0;
   uStack000000000000004c = 0;
   uStack000000000000003c = 0;
-  FUN_180252ca0(0x3f800000,floatValue1 * floatValue7,systemResourceCounterD,&stack0x00000030,in_stack_000000e0);
+  FUN_180252ca0(0x3f800000,floatValue1 * floatValue7,systemResourceCounterD,&stackBuffer30,in_stack_000000e0);
   return;
 }
 
@@ -59952,7 +59952,7 @@ void InitializeSystemDataIndexPointer(void)
   uStack0000000000000058 = systemDataIndexPtr[5] & 0xffffffff;
   uStack0000000000000048 = systemDataIndexPtr[3] & 0xffffffff;
   uStack0000000000000038 = systemDataIndexPtr[1] & 0xffffffff;
-  FUN_180252ca0(0x3f800000,uStack0000000000000060,systemResourceCounterD,&stack0x00000030,in_stack_000000e0);
+  FUN_180252ca0(0x3f800000,uStack0000000000000060,systemResourceCounterD,&stackBuffer30,in_stack_000000e0);
   return;
 }
 
