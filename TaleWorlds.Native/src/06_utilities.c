@@ -4194,8 +4194,8 @@ void ProcessGameObjectCollection(int64_t GameContext, int64_t SystemContext)
           if (ProcessingStatusCode != RegistrationStatusSuccess) {
                   HandleInvalidObject(ObjectValidationState, 1);
           }
-          ProcessedObjectCount = ProcessedObjectCount + 1;
-          CurrentObjectIndex = CurrentObjectIndex + ResourceEntrySizeBytes;
+          ProcessedObjectCount++;
+          CurrentObjectIndex += ResourceEntrySizeBytes;
         } while (ProcessedObjectCount < BufferPosition);
       }
       FreeObjectListMemory(&DataBuffer);
@@ -4250,8 +4250,8 @@ void ValidateSystemObjectCollection(void)
           if (ValidationResult != 2) {
                   HandleInvalidSystemObject(ObjectIdentifier, 1);
           }
-          ProcessedCount = ProcessedCount + 1;
-          DataPosition = DataPosition + 8;
+          ProcessedCount++;
+          DataPosition += 8;
         } while (ProcessedCount < RetrievedCount);
       }
       ReleaseSystemObjectCollection(&ProcessingWorkspace);
@@ -4387,13 +4387,13 @@ uint8_t ValidateObjectRegistrationStatus(int64_t ObjectContext)
               break;
             }
             CurrentRegistrationIndex = (uint64_t)((int)CurrentRegistrationIndex + 1);
-            RegistrationIterator = RegistrationIterator + 1;
-            RegistrationEntryArray = RegistrationEntryArray + 1;
+            RegistrationIterator++;
+            RegistrationEntryArray++;
           } while ((int64_t)RegistrationIterator < (int64_t)RegistrationArraySize);
         }
         
         // 检查是否需要扩容
-        RegistrationCounter = RegistrationCounter + 1;
+        RegistrationCounter++;
         if (*(int *)(RegistrationData + RegistrationCapacityOffset) < RegistrationCounter) {
           // 计算新的容量大小
           NewRegistrationArraySize = (int)((float)*(int *)(RegistrationData + RegistrationCapacityOffset) * RegistrationArrayGrowthFactor);
@@ -4417,8 +4417,8 @@ uint8_t ValidateObjectRegistrationStatus(int64_t ObjectContext)
         
         // 添加新的注册项
         *(int64_t *)(*RegistrationBasePointer + (int64_t)*(int *)(RegistrationData + RegistrationSizeOffset) * 8) = RegistrationHandle;
-        *(int *)(RegistrationData + RegistrationSizeOffset) = *(int *)(RegistrationData + RegistrationSizeOffset) + 1;
-        *(int *)(RegistrationData + RegistrationCountOffset) = *(int *)(RegistrationData + RegistrationCountOffset) + 1;
+        (*(int *)(RegistrationData + RegistrationSizeOffset))++;
+        (*(int *)(RegistrationData + RegistrationCountOffset))++;
       }
       else {
         // 验证对象注册数据
@@ -4526,7 +4526,7 @@ uint64_t ProcessSystemRequest(int64_t RequestParameters,int64_t SystemContext)
           ContextDataPointer = ResourceDataAddress + ResourcePointerOffset;
         }
         ResourceTablePointer = ResourceTablePointer + ResourcePointerOffset;
-        ResourceIndexPointer = (int64_t *)(uint64_t)((int)ResourceIndexPointer + 1);
+        ResourceIndexPointer++;
       }
       return ErrorInvalidObjectHandle;
     }
@@ -4564,7 +4564,7 @@ uint8_t ValidateSystemAccess(int64_t AccessRequestParameters,int64_t SystemConte
   if ((int)AccessValidationResult != 0) {
     return AccessValidationResult;
   }
-  *(int *)(SecurityValidationContext[0] + ResourceCountOffset) = *(int *)(SecurityValidationContext[0] + ResourceCountOffset) + 1;
+  (*(int *)(SecurityValidationContext[0] + ResourceCountOffset))++;
   if (*(int *)(SecurityValidationContext[0] + ResourceTertiaryCounterOffset) + *(int *)(SecurityValidationContext[0] + ResourceSecondaryCounterOffset) +
       *(int *)(SecurityValidationContext[0] + ResourceCountOffset) == 1) {
     SecurityValidationContext[0] = 0;
