@@ -8127,33 +8127,33 @@ uint8_t ValidateObjectContextAndProcessComplexFloatOperation(int64_t ObjectConte
     ResourceTableData = StackContextData + -8;
   }
   OperationStatusCode = *(int *)(ObjectContext + ObjectContextValidationDataOffset);
-  if ((OperationResult < 0) || (*(int *)(ResourceTablePointer + 0x28) <= OperationResult)) {
+  if ((OperationResult < 0) || (*(int *)(ResourceTableData + 0x28) <= OperationResult)) {
     return 0x1f;
   }
-  ResourceTablePointer = *(int64_t *)(ResourceTablePointer + 0x20) + (int64_t)OperationResult * 0x18;
-  ResourceIndex = *(int64_t *)(ResourceTablePointer + 0x10);
-  if (ResourceIndex == 0) {
+  ResourceTableData = *(int64_t *)(ResourceTableData + 0x20) + (int64_t)OperationResult * 0x18;
+  ResourceHandle = *(int64_t *)(ResourceTableData + 0x10);
+  if (ResourceHandle == 0) {
     return 0x1e;
   }
-  if ((*(byte *)(ResourceIndex + 0x34) & 0x11) == 0) {
+  if ((*(byte *)(ResourceHandle + 0x34) & 0x11) == 0) {
     floatComparisonResult = *(float *)(ObjectContext + ObjectContextProcessingDataOffset);
-    fourthFloatResult = *(float *)(ResourceIndex + 0x38);
-    if ((*(float *)(ResourceIndex + 0x38) <= inputFloatValue) &&
-       (fourthFloatResult = *(float *)(ResourceIndex + 0x3c), inputFloatValue <= *(float *)(ResourceIndex + 0x3c))) {
+    fourthFloatResult = *(float *)(ResourceHandle + 0x38);
+    if ((*(float *)(ResourceHandle + 0x38) <= inputFloatValue) &&
+       (fourthFloatResult = *(float *)(ResourceHandle + 0x3c), inputFloatValue <= *(float *)(ResourceHandle + 0x3c))) {
       fourthFloatResult = inputFloatValue;
     }
     *(float *)(ObjectContext + ObjectContextProcessingDataOffset) = TemporaryFloatValue;
-    *(float *)(ResourceTablePointer + 4) = TemporaryFloatValue;
-    ValidationStatus = ValidateBufferContext(ResourceTablePointer,ObjectContext + ObjectContextHandleDataOffset);
+    *(float *)(ResourceTableData + 4) = TemporaryFloatValue;
+    ValidationStatus = ValidateBufferContext(ResourceTableData,ObjectContext + ObjectContextHandleDataOffset);
     if ((int)LoopCondition != 0) {
       return LoopCondition;
     }
-    ResourceTablePointer = *(int64_t *)(ValidationContext + 0x98);
-    if ((*(int *)(ResourceTablePointer + 0x180) != 0) || (*(int *)(ResourceTablePointer + 0x184) != 0)) {
+    ResourceTableData = *(int64_t *)(ValidationContext + 0x98);
+    if ((*(int *)(ResourceTableData + 0x180) != 0) || (*(int *)(ResourceTableData + 0x184) != 0)) {
       SecurityContext = 0;
       InitializeSecurityContext(&SecurityContext,ObjectContext,OperationControlParam1,OperationControlParam2,SecurityContext);
-      if (SecurityContext == *(int64_t *)((int64_t)*(int *)(ResourceTablePointer + 0x17c) * 8 + 0x180c4f450)) {
-        ValidationStatus = ProcessResourceValidation(ResourceTablePointer,ObjectContext);
+      if (SecurityContext == *(int64_t *)((int64_t)*(int *)(ResourceTableData + 0x17c) * 8 + 0x180c4f450)) {
+        ValidationStatus = ProcessResourceValidation(ResourceTableData,ObjectContext);
         if ((int)LoopCondition == 0) {
           return 0;
         }
@@ -8161,7 +8161,7 @@ uint8_t ValidateObjectContextAndProcessComplexFloatOperation(int64_t ObjectConte
       }
     }
     *(uint *)(ObjectContext + 8) = *(int *)(ObjectContext + 8) + 0xfU & 0xfffffff0;
-    OperationResult = ExecuteSystemOperation(*(uint8_t *)(ResourceTablePointer + 0x1e0));
+    OperationResult = ExecuteSystemOperation(*(uint8_t *)(ResourceTableData + 0x1e0));
     if ((int)LoopCondition == 0) {
       return 0;
     }
