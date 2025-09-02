@@ -13224,7 +13224,7 @@ void SystemStatusProcessorPrimary(void)
  * @param ValidationContext 验证上下文，包含验证所需的环境信息
  * @return 处理结果，0表示成功，非0表示失败
  */
-int SystemResourceProcessorB(int64_t ObjectContext,int64_t ValidationContext)
+int SystemResourceProcessorSecondary(int64_t ObjectContext,int64_t ValidationContext)
 
 {
   float calculatedFloatResult;
