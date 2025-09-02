@@ -18470,9 +18470,9 @@ void InitializeMainSystemController(long long systemParameter)
   long long SystemObject;
   long long *ControllerPointer;
   bool IsActiveFlag;
-  long long *SystemDataBuffer8;
-  long long **SystemDataBuffer10;
-  long long *SystemDataBuffer18;
+  long long *SystemMemoryBlock;
+  long long **SystemVirtualTablePointer;
+  long long *SystemGlobalDataPointer;
   long long* InitializationCounter;
   void* MemoryAllocationFlags;
   
