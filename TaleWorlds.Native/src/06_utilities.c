@@ -4991,7 +4991,7 @@ uint8_t ValidateResourceHandle(int64_t resourceHandle)
   int64_t ValidatedContextPointer;
   
   // 验证对象上下文
-  ContextValidationResult = ValidateObjectContext(*(uint32_t *)(resourceHandle + 0x10), &ValidatedContextPointer);
+  ContextValidationResult = ValidateObjectContext(*(uint32_t *)(resourceHandle + ObjectContextValidationOffset), &ValidatedContextPointer);
   if ((int)ContextValidationResult != 0) {
     return ContextValidationResult;
   }
@@ -5001,16 +5001,16 @@ uint8_t ValidateResourceHandle(int64_t resourceHandle)
     ValidatedContextPointer = 0;
   }
   else {
-    ValidatedContextPointer = ValidatedContextPointer - 8;
+    ValidatedContextPointer = ValidatedContextPointer + HandleMemoryBufferAdjustment;
   }
   
   // 检查句柄有效性
-  if (*(int64_t *)(ValidatedContextPointer + 0x10) == 0) {
+  if (*(int64_t *)(ValidatedContextPointer + ObjectContextValidationOffset) == 0) {
     return ErrorInvalidObjectHandle;
   }
   
   // 清理资源句柄（此函数不会返回）
-  CleanupResourceHandle(*(int64_t *)(ValidatedContextPointer + 0x10), 1);
+  CleanupResourceHandle(*(int64_t *)(ValidatedContextPointer + ObjectContextValidationOffset), SystemExitOperationParameter);
 }
 
 
