@@ -60695,7 +60695,21 @@ void ExecuteSystemResourceDataProcessingCallbackB(uint8_t ObjectContext, int64_t
 
 
 
-void Unwind_180907a90(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 初始化系统资源处理器模板B
+ * 
+ * 该函数负责初始化系统资源处理器模板B，包括：
+ * - 设置系统资源处理器模板指针到0x20偏移
+ * - 验证系统上下文状态
+ * - 初始化系统资源处理器参数
+ * - 配置系统数据结构指针
+ * 
+ * @param ObjectContext 对象上下文，包含对象相关的状态信息
+ * @param ValidationContext 验证上下文，包含验证所需的数据和参数
+ * @return 无返回值
+ * @note 此函数会执行系统资源处理器模板B的初始化操作
+ */
+void InitializeSystemResourceHandlerTemplateB(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int64_t loopCounter;
@@ -61071,7 +61085,22 @@ void SystemUnwindValidationHandler(uint8_t ObjectContext,int64_t ValidationConte
 
 
 
-void Unwind_180907c30(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 执行系统资源清理回调链
+ * 
+ * 该函数负责执行系统资源清理的回调链，包括：
+ * - 检查并执行0x210偏移处的回调函数
+ * - 检查并执行0x1f0偏移处的回调函数
+ * - 检查并执行0x1d0偏移处的回调函数
+ * 
+ * @param ObjectContext 对象上下文，包含对象相关的状态信息
+ * @param ValidationContext 验证上下文，包含验证所需的数据和参数
+ * @param CleanupOption 清理选项，指定资源清理的方式
+ * @param CleanupFlag 清理标志，控制清理过程的标志位
+ * @return 无返回值
+ * @note 此函数会按顺序执行多个资源清理回调函数
+ */
+void ExecuteSystemResourceCleanupCallbackChain(uint8_t ObjectContext, int64_t ValidationContext, uint8_t CleanupOption, uint8_t CleanupFlag)
 
 {
   if (*(code **)(ValidationContext + 0x210) != (code *)0x0) {
@@ -61124,7 +61153,18 @@ void UnwindCleanupCallbackB(uint8_t ExceptionContext, int64_t SystemContext)
 
 
 
-void Unwind_180907c60(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 设置系统数据结构指针到0x2c0偏移
+ * 
+ * 该函数负责将系统数据结构指针设置到验证上下文的0x2c0偏移处
+ * 用于系统资源管理和状态跟踪
+ * 
+ * @param ObjectContext 对象上下文，包含对象相关的状态信息
+ * @param ValidationContext 验证上下文，包含验证所需的数据和参数
+ * @return 无返回值
+ * @note 此函数会设置系统数据结构指针到指定位置
+ */
+void SetSystemDataStructurePointerToOffset2C0(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   *(uint8_t **)(ValidationContext + 0x2c0) = &SystemDataStructure;
@@ -69965,13 +70005,24 @@ void Unwind_18090a940(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090a950(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行资源索引验证和内存管理操作
+ * 
+ * 该函数负责执行资源索引的验证和内存管理操作
+ * 从验证上下文中获取资源索引，执行资源初始化，然后验证和管理内存访问
+ * 
+ * @param ObjectContext 对象上下文，包含对象相关的状态信息
+ * @param ValidationContext 验证上下文，包含验证所需的数据和参数
+ * @return 无返回值
+ * @note 此函数会处理资源索引的验证和内存管理
+ */
+void ExecuteResourceIndexValidationAndMemoryManagement(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int *ResourceIndexPointer;
-  uint8_t *ResourceHashValidationResultPointer;
+  uint8_t *ValidationResultPointer;
   int64_t ResourceIndex;
-  uint64_t MemoryAddressIncrement;
+  uint64_t MemoryAddressBase;
   
   ResourceIndex = *(int64_t *)(ValidationContext + 0x40);
   ExecuteResourceInitialization();
@@ -80052,7 +80103,20 @@ void Unwind_18090db60(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090db80(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 注册资源类型处理器248（扩展版本）
+ * 
+ * 该函数负责注册资源类型处理器248，使用扩展参数
+ * 从验证上下文中获取资源处理器的地址并注册
+ * 
+ * @param ObjectContext 对象上下文，包含对象相关的状态信息
+ * @param ValidationContext 验证上下文，包含验证所需的数据和参数
+ * @return 无返回值
+ * @note 此函数会注册资源类型248的处理器
+ * @warning 调用此函数前必须确保验证上下文有效
+ * @remark 原始函数名：Unwind_18090db80
+ */
+void RegisterResourceTypeHandler248Extended(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   RegisterResourceHandler(*(int64_t *)(ValidationContext + 0x40) + 0x7620,0x248,2,ResourceTypeHandler248,0xfffffffffffffffe);
@@ -80070,7 +80134,20 @@ void Unwind_18090dba0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090dbd0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 注册资源类型处理器098（标准版本）
+ * 
+ * 该函数负责注册资源类型处理器098，使用标准参数
+ * 从验证上下文中获取资源处理器的地址并注册
+ * 
+ * @param ObjectContext 对象上下文，包含对象相关的状态信息
+ * @param ValidationContext 验证上下文，包含验证所需的数据和参数
+ * @return 无返回值
+ * @note 此函数会注册资源类型098的处理器
+ * @warning 调用此函数前必须确保验证上下文有效
+ * @remark 原始函数名：Unwind_18090dbd0
+ */
+void RegisterResourceTypeHandler098Standard(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   RegisterResourceHandler(*(uint8_t *)(ValidationContext + 0x48),0x98,2,ResourceTypeHandler098);
@@ -80079,7 +80156,20 @@ void Unwind_18090dbd0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090dc00(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 注册资源类型处理器050（标准版本）
+ * 
+ * 该函数负责注册资源类型处理器050，使用标准参数
+ * 从验证上下文中获取资源处理器的地址并注册
+ * 
+ * @param ObjectContext 对象上下文，包含对象相关的状态信息
+ * @param ValidationContext 验证上下文，包含验证所需的数据和参数
+ * @return 无返回值
+ * @note 此函数会注册资源类型050的处理器
+ * @warning 调用此函数前必须确保验证上下文有效
+ * @remark 原始函数名：Unwind_18090dc00
+ */
+void RegisterResourceTypeHandler050Standard(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   RegisterResourceHandler(*(uint8_t *)(ValidationContext + 0x48),0x50,2,ResourceTypeHandler050);
@@ -80088,7 +80178,20 @@ void Unwind_18090dc00(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090dc30(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 注册资源类型处理器488（标准版本）
+ * 
+ * 该函数负责注册资源类型处理器488，使用标准参数
+ * 从验证上下文中获取资源处理器的地址并注册
+ * 
+ * @param ObjectContext 对象上下文，包含对象相关的状态信息
+ * @param ValidationContext 验证上下文，包含验证所需的数据和参数
+ * @return 无返回值
+ * @note 此函数会注册资源类型488的处理器
+ * @warning 调用此函数前必须确保验证上下文有效
+ * @remark 原始函数名：Unwind_18090dc30
+ */
+void RegisterResourceTypeHandler488Standard(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   RegisterResourceHandler(*(uint8_t *)(ValidationContext + 0x48),0x488,2,ResourceTypeHandler488);
@@ -89535,7 +89638,29 @@ void Unwind_180910fe0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 
 
 
-void Unwind_180911000(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 系统资源清理处理器 - 高级清理操作1
+ * 
+ * 功能描述：
+ * 该函数负责执行高级系统资源清理操作，处理特定的资源处理器集合
+ * 并确保所有相关资源都被正确释放和重置。
+ * 
+ * 参数说明：
+ * @param ObjectContext 对象上下文，标识要清理的对象
+ * @param ValidationContext 验证上下文，包含清理所需的验证信息
+ * @param CleanupOption 清理选项，指定清理的方式和范围
+ * @param CleanupFlag 清理标志，控制清理过程中的具体行为
+ * 
+ * 返回值：
+ * 无返回值
+ * 
+ * 注意事项：
+ * - 此函数会处理特定的系统资源处理器集合
+ * - 如果资源处理器处于活动状态，会触发系统紧急退出
+ * - 确保所有资源处理器都被正确重置和释放
+ * @warning 调用此函数后，相关资源将不再可用
+ */
+void ExecuteAdvancedResourceCleanupOperation1(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
@@ -89563,7 +89688,29 @@ void Unwind_180911000(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 
 
 
-void Unwind_180911020(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 系统资源清理处理器 - 高级清理操作2
+ * 
+ * 功能描述：
+ * 该函数负责执行第二组高级系统资源清理操作，处理不同的资源处理器集合
+ * 并确保所有相关资源都被正确释放和重置。
+ * 
+ * 参数说明：
+ * @param ObjectContext 对象上下文，标识要清理的对象
+ * @param ValidationContext 验证上下文，包含清理所需的验证信息
+ * @param CleanupOption 清理选项，指定清理的方式和范围
+ * @param CleanupFlag 清理标志，控制清理过程中的具体行为
+ * 
+ * 返回值：
+ * 无返回值
+ * 
+ * 注意事项：
+ * - 此函数会处理第二组系统资源处理器集合
+ * - 如果资源处理器处于活动状态，会触发系统紧急退出
+ * - 确保所有资源处理器都被正确重置和释放
+ * @warning 调用此函数后，相关资源将不再可用
+ */
+void ExecuteAdvancedResourceCleanupOperation2(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
