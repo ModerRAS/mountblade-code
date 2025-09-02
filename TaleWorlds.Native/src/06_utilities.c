@@ -9009,7 +9009,7 @@ void ProcessBufferContextValidationAndCleanup(int64_t ObjectContext,int64_t Vali
 void ProcessBufferContextValidationAndSystemExit(int64_t ObjectContext,int64_t ValidationContext)
 
 {
-  int ProcessingResult;
+  int ValidationProcessingResult;
   uint8_t ValidationContext;
   
   ResourceIndex = ProcessSchedulerFinalization(ValidationContext,ObjectContext + 0x10,&ValidationContext);
@@ -9041,9 +9041,9 @@ void ProcessBufferContextValidationAndSystemExit(int64_t ObjectContext,int64_t V
 int ProcessObjectContextValidationAndStatusUpdate(int64_t ObjectContext,int64_t ValidationContext)
 
 {
-  int ProcessingResult;
-  int64_t ResourceTable;
-  int64_t StackContextPointer;
+  int ValidationProcessingResult;
+  int64_t MemoryResourceTable;
+  int64_t ThreadStackContextPointer;
   
   if ((((*(int64_t *)(ObjectContext + 0x28) != 0) && (*(int64_t *)(ObjectContext + 0x30) != 0)) &&
       (*(int64_t *)(ObjectContext + 0x38) != 0)) && (*(int64_t *)(ObjectContext + 0x40) != 0)) {
