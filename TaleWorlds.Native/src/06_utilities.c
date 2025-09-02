@@ -53006,7 +53006,19 @@ void Unwind_180906500(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180906510(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 清理资源表指针和上下文数据
+ * 
+ * 该函数负责清理验证上下文中的资源表指针和相关的上下文数据
+ * 遍历资源表中的所有条目，清理相应的数据并验证完整性
+ * 
+ * @param ObjectContext 对象上下文参数，用于标识特定的对象实例
+ * @param ValidationContext 验证上下文参数，包含资源表和上下文信息
+ * @return 无返回值
+ * @note 此函数会遍历资源表并清理所有相关数据
+ * @warning 如果发现任何无效的资源状态，函数会触发紧急退出
+ */
+void UnwindCleanupResourceTableAndContextData(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int64_t *processPointer;
@@ -53044,7 +53056,19 @@ void Unwind_180906510(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180906520(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 设置资源哈希表指针
+ * 
+ * 该函数负责设置验证上下文中的资源哈希表指针
+ * 将资源哈希表指针指向预定义的资源哈希表地址
+ * 
+ * @param ObjectContext 对象上下文参数，用于标识特定的对象实例
+ * @param ValidationContext 验证上下文参数，包含资源哈希表指针的地址
+ * @return 无返回值
+ * @note 此函数会直接修改验证上下文中的资源哈希表指针
+ * @warning 调用此函数会覆盖原有的资源哈希表指针
+ */
+void UnwindSetResourceHashTablePointer(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   **(uint8_t **)(ValidationContext + 0x48) = &ResourceHashTable005;
@@ -53053,7 +53077,19 @@ void Unwind_180906520(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180906530(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 初始化资源哈希表和系统数据结构
+ * 
+ * 该函数负责初始化资源哈希表和相关的系统数据结构
+ * 设置资源哈希表、系统数据结构、资源分配模板和资源缓存模板
+ * 
+ * @param ObjectContext 对象上下文参数，用于标识特定的对象实例
+ * @param ValidationContext 验证上下文参数，包含资源哈希表的地址
+ * @return 无返回值
+ * @note 此函数会初始化多个系统数据结构
+ * @warning 调用此函数会覆盖原有的资源哈希表和相关数据结构
+ */
+void UnwindInitializeResourceHashTableAndSystemData(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   uint8_t *ResourceHashPointer;
@@ -53068,7 +53104,19 @@ void Unwind_180906530(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180906540(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 设置系统数据结构指针
+ * 
+ * 该函数负责设置资源哈希表中的系统数据结构指针
+ * 将系统数据结构指针指向预定义的系统数据结构地址
+ * 
+ * @param ObjectContext 对象上下文参数，用于标识特定的对象实例
+ * @param ValidationContext 验证上下文参数，包含资源哈希表的地址
+ * @return 无返回值
+ * @note 此函数会修改资源哈希表中的系统数据结构指针
+ * @warning 调用此函数会覆盖原有的系统数据结构指针
+ */
+void UnwindSetSystemDataStructurePointer(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   *(uint8_t **)(*(int64_t *)(ValidationContext + 0x48) + 0x10) = &SystemDataStructure;
@@ -53077,7 +53125,19 @@ void Unwind_180906540(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180906550(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 清理资源上下文数据
+ * 
+ * 该函数负责清理验证上下文中的资源上下文数据
+ * 将资源上下文中的数据清零并验证完整性
+ * 
+ * @param ObjectContext 对象上下文参数，用于标识特定的对象实例
+ * @param ValidationContext 验证上下文参数，包含资源上下文的地址
+ * @return 无返回值
+ * @note 此函数会清理资源上下文中的数据并验证完整性
+ * @warning 如果发现任何无效的资源状态，函数会触发紧急退出
+ */
+void UnwindCleanupResourceContextData(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int64_t *processPointer;
