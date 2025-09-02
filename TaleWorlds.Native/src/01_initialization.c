@@ -57788,19 +57788,19 @@ int SystemResourceManagerConfigurationProcessor(long long SystemResourceManager,
     systemValue = GetSystemOperationValue();
   }
   if ((*(byte *)(ConfigurationDataPointer + 1) & 0x20) == 0) {
-    SystemOperationStatusFlag = FUN_180076b90(SystemResourceManager);
+    SystemOperationStatusFlag = ValidateSystemResourceManagerStatus(SystemResourceManager);
     if (SystemOperationStatusFlag == '\0') {
       if ((char)ConfigurationDataPointer[2] != '\0') {
         pUnsignedStackFlag80 = (ulong long *)0x0;
         plStack_78 = (long long *)0x0;
         SystemFunctionPointer70 = (code *)0x0;
         SystemFunctionPointer68 = _guard_check_icall;
-        FUN_1800b6f90(extraout_XMM0_Da,SystemResourceManager,&pUnsignedStackFlag80);
+        ProcessSystemResourceValidation(extraout_XMM0_Da,SystemResourceManager,&pUnsignedStackFlag80);
         if (SystemFunctionPointer70 != (code *)0x0) {
           (*SystemFunctionPointer70)(&pUnsignedStackFlag80,0,0);
         }
       }
-      SystemOperationStatusFlag = FUN_180076b90(SystemResourceManager);
+      SystemOperationStatusFlag = ValidateSystemResourceManagerStatus(SystemResourceManager);
       if (SystemOperationStatusFlag == '\0') {
         systemValue = systemValue + 1;
         if (*ConfigurationDataPointer != 0) {
