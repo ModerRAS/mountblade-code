@@ -3985,10 +3985,11 @@ uint8_t MemoryPoolBufferEventHandler;
 uint8_t MemoryPoolBufferMessageHandler;
 uint8_t MemoryPoolBufferRequestHandler;
 uint8_t MemoryPoolBufferResponseHandler;
+/* 内存池缓冲区的保留区域 - 用于特殊用途和系统内部操作 */
 uint8_t MemoryPoolBufferReserved;
-uint8_t MemoryPoolBufferReservedOne;
-uint8_t MemoryPoolBufferReservedTwo;
-uint8_t MemoryPoolBufferReservedThree;
+uint8_t MemoryPoolBufferExtended;
+uint8_t MemoryPoolBufferSpecial;
+uint8_t MemoryPoolBufferTemp;
 uint8_t MemoryPoolBufferReservedFour;
 uint8_t MemoryPoolBufferReservedFive;
 uint8_t MemoryPoolBufferReservedSix;
