@@ -39891,7 +39891,7 @@ joined_r0x00018005fdcd:
     plocalSystemPointer = *(long long **)(ResourceManagerPointer + 0x60);
     plocalSystemPointer[1] = plocalSystemPointer[1] - 1U & *plocalSystemPointer - 1U;
   }
-  systemStatus3 = func_0x000180060150(*(void* *)(ResourceManagerPointer + 0x50),unsignedSystemValue7);
+  systemStatus3 = InitializeSystemResourceHandle(*(void* *)(ResourceManagerPointer + 0x50),unsignedSystemValue7);
   *(ulong long *)(ResourceManagerPointer + 0x40) = systemStatus7;
   return systemStatus3 & 0xffffffffffffff00;
 }
@@ -40874,7 +40874,7 @@ void* AllocateSystemResourceMemory(long long ResourceManagerPointer,void* Config
       UNLOCK();
       if (localSystemPointer == 0x1f) {
         *(void* *)(localResourceOffset + 8) = 0;
-        func_0x000180060c10(*(void* *)(ResourceManagerPointer + 0x50),localSystemFlags);
+        ReleaseSystemResourceHandle(*(void* *)(ResourceManagerPointer + 0x50),localSystemFlags);
       }
       return 1;
     }
@@ -40966,7 +40966,7 @@ void* GetSystemDataIndexPointer(void)
   UNLOCK();
   if (localResourceOffset == 0x1f) {
     *(void* *)(localSystemPointer + 8) = 0;
-    func_0x000180060c10(*(void* *)(systemDataIndexPtr + 0x50),localSystemFlags);
+    ReleaseSystemResourceHandle(*(void* *)(systemDataIndexPtr + 0x50),localSystemFlags);
   }
   return 1;
 }
@@ -45553,7 +45553,7 @@ FUN_180068860(long long ResourceManagerPointer,long long *ConfigurationDataPoint
   void* unsignedSystemValue4;
   
   creationFlags = ArraySize % (ulong long)*(uint *)(ResourceManagerPointer + 0x10);
-  localResourceOffset = func_0x0001800694c0(ResourceManagerPointer,*(void* *)(*(long long *)(ResourceManagerPointer + 8) + creationFlags * 8),
+  localResourceOffset = AllocateSystemMemoryBlock(ResourceManagerPointer,*(void* *)(*(long long *)(ResourceManagerPointer + 8) + creationFlags * 8),
                               ConfigurationFlag);
   if (localResourceOffset == 0) {
     FUN_18066c220(ResourceManagerPointer + 0x20,&ArraySize,*(uint32_t *)(ResourceManagerPointer + 0x10),
@@ -45680,7 +45680,7 @@ void* FindResourceManagerPointerMapping(ulong long *ResourceManagerPointer,void*
           UNLOCK();
           if (bufferBaseAddress == 0x1f) {
             *(void* *)(localResourceOffset + 8) = 0;
-            func_0x000180060c10(*(void* *)(systemStatus1 + 0x50));
+            ReleaseSystemResourceHandle(*(void* *)(systemStatus1 + 0x50));
           }
           bVar6 = true;
         }
@@ -45788,7 +45788,7 @@ void* AllocateAndLockSystemResource(long long ResourceManagerPointer,void* *Conf
       UNLOCK();
       if (localResourceOffset == 0x1f) {
         *(void* *)(localSystemPointer + 8) = 0;
-        func_0x000180060c10(*(void* *)(ResourceManagerPointer + 0x50));
+        ReleaseSystemResourceHandle(*(void* *)(ResourceManagerPointer + 0x50));
       }
       return 1;
     }
@@ -47721,8 +47721,8 @@ FUN_18006bda0(long long ResourceManagerPointer,long long ConfigurationDataPointe
     *(long long **)(ConfigurationDataPointer + 0x188) = resourcePoolPointer;
     if (resourcePoolPointer == (long long *)0x0) {
 LAB_18006bf7f:
-      func_0x0001800695d0(ResourceManagerPointer,*(void* *)(ConfigurationDataPointer + 0x188));
-      func_0x0001800695d0(ResourceManagerPointer,*(void* *)(ConfigurationDataPointer + 400));
+      ConfigureSystemMemoryBlock(ResourceManagerPointer,*(void* *)(ConfigurationDataPointer + 0x188));
+      ConfigureSystemMemoryBlock(ResourceManagerPointer,*(void* *)(ConfigurationDataPointer + 400));
       return 0;
     }
     localResourceOffset = *resourcePoolPointer + *(long long *)(ResourceManagerPointer + 800);
@@ -49520,7 +49520,7 @@ long long * FUN_18006e000(long long ResourceManagerPointer,long long Configurati
     } while (resourcePoolPointer != (long long *)0x0);
     if (plocalResourceOffset != (long long *)0x0) {
       if (unsignedSystemValue4 < (ulong long)plocalResourceOffset[1]) {
-        resourcePoolPointer = (long long *)func_0x00018006e810(plocalSystemPointer + 4);
+        resourcePoolPointer = (long long *)CreateResourcePoolPointer(plocalSystemPointer + 4);
         *(uint8_t *)(resourcePoolPointer + 4) = 0;
         *resourcePoolPointer = *plocalResourceOffset + unsignedSystemValue4;
         resourcePoolPointer[1] = plocalResourceOffset[1] - unsignedSystemValue4;
@@ -55306,7 +55306,7 @@ void* * FUN_180075030(void* *ResourceManagerPointer,char ConfigurationDataPointe
   *(void*2 *)(ResourceManagerPointer + 0x16) = 0;
   ResourceManagerPointer[0x15] = 0;
   *ResourceManagerPointer = &UNK_180a00270;
-  func_0x000180086550(ResourceManagerPointer + 0x19);
+  InitializeResourceManager(ResourceManagerPointer + 0x19);
   *(uint32_t *)(ResourceManagerPointer + 0x1e) = 0;
   LOCK();
   *(uint32_t *)(ResourceManagerPointer + 0x1d) = 0;
