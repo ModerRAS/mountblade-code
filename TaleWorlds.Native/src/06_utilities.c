@@ -117,6 +117,10 @@
 #define SystemCallbackTableOffset 0x18
 #define SystemCallbackBaseOffset 8
 #define SystemCallbackEntrySize 0xc
+#define HashTableCapacityOffset 0x1c
+#define HashTableEntrySize 0x10
+#define HashTableDataOffset 4
+#define HashTableGrowthFactor 1.5
 #define ChecksumSeedValueFEFB 0x46464542
 #define ChecksumSeedValueBEFB 0x42464542
 #define ChecksumSeedValueCTRL 0x4c525443
