@@ -59765,6 +59765,20 @@ uint8_t ValidateSystemIntegrity(void)
 
 
 
+/**
+ * @brief 处理系统资源初始化
+ * 
+ * 该函数负责初始化系统资源，包括线程创建、内存分配、配置参数设置等。
+ * 它会根据传入的配置参数创建系统线程，并初始化相关的资源管理结构。
+ * 
+ * @param SystemResourceManager 系统资源管理器指针
+ * @param ConfigurationDataPointer 配置数据指针
+ * @param AdditionalParameter 额外参数
+ * @param ConfigurationFlag 配置标志指针
+ * @param primaryConfigurationParameter 主要配置参数
+ * @param secondaryConfigurationParameter 次要配置参数
+ * @return ulong long 初始化结果状态码
+ */
 ulong long ProcessSystemResourceInitialization(long long SystemResourceManager,void* ConfigurationDataPointer,uint32_t AdditionalParameter,float *ConfigurationFlag,
                        uint32_t primaryConfigurationParameter,uint32_t secondaryConfigurationParameter)
 
@@ -64618,16 +64632,16 @@ LAB_18007b454:
       SystemResourceManagerPointer = SystemResourceTertiary;
       SystemResourceValue = SystemResourceTertiary;
       ThreadContextFlag = SystemAllocationFlagsTemplate;
-      if (PrimaryResourcePointer2 != (long long *)0x0) {
-        (**(code **)(*PrimaryResourcePointer2 + 0x28))(PrimaryResourcePointer2);
+      if (SystemResourceTertiary != (long long *)0x0) {
+        (**(code **)(*SystemResourceTertiary + 0x28))(SystemResourceTertiary);
         ThreadContextFlag = SystemAllocationFlagsTemplate;
-        (**(code **)(*PrimaryResourcePointer2 + 0x28))(PrimaryResourcePointer2);
+        (**(code **)(*SystemResourceTertiary + 0x28))(SystemResourceTertiary);
       }
-      ProcessThreadContextData(ThreadContextFlag,&plStack_c0);
-      if (PrimaryResourcePointer2 != (long long *)0x0) {
-        SystemThreadFlags = *PrimaryResourcePointer2;
-LAB_18007b8dc:
-        (**(code **)(SystemThreadFlags + 0x38))(PrimaryResourcePointer2);
+      ProcessThreadContextData(ThreadContextFlag,&SystemResourceManagerPointer);
+      if (SystemResourceTertiary != (long long *)0x0) {
+        SystemThreadFlags = *SystemResourceTertiary;
+SystemResourceCleanupPoint:
+        (**(code **)(SystemThreadFlags + 0x38))(SystemResourceTertiary);
       }
     }
     else {
