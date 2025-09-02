@@ -40192,7 +40192,21 @@ void CleanupSystemResourceHandlerSet13(uint8_t objectContext,int64_t validationC
 
 
 
-void Unwind_180904050(uint8_t objectContext,int64_t validationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 清理系统资源处理器集合14
+ * 
+ * 该函数负责清理第十四组系统资源处理器，包括重置资源状态
+ * 释放相关内存并确保系统资源处于一致状态
+ * 
+ * @param objectContext 对象上下文，标识要清理的资源对象
+ * @param validationContext 验证上下文，包含资源验证信息
+ * @param CleanupOption 清理选项，控制清理行为的具体参数
+ * @param CleanupFlag 清理标志，指定清理操作的标志位
+ * @return 无返回值
+ * @note 此函数会清理系统资源处理器集合14中的所有资源
+ * @warning 调用此函数后，相关资源将不再可用
+ */
+void CleanupSystemResourceHandlerSet14(uint8_t objectContext,int64_t validationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
@@ -40222,7 +40236,21 @@ void Unwind_180904050(uint8_t objectContext,int64_t validationContext,uint8_t Cl
 
 
 
-void Unwind_180904070(uint8_t objectContext,int64_t validationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 清理系统资源处理器集合15
+ * 
+ * 该函数负责清理第十五组系统资源处理器，包括重置资源状态
+ * 释放相关内存并确保系统资源处于一致状态
+ * 
+ * @param objectContext 对象上下文，标识要清理的资源对象
+ * @param validationContext 验证上下文，包含资源验证信息
+ * @param CleanupOption 清理选项，控制清理行为的具体参数
+ * @param CleanupFlag 清理标志，指定清理操作的标志位
+ * @return 无返回值
+ * @note 此函数会清理系统资源处理器集合15中的所有资源
+ * @warning 调用此函数后，相关资源将不再可用
+ */
+void CleanupSystemResourceHandlerSet15(uint8_t objectContext,int64_t validationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   int64_t loopCounter;
@@ -40252,7 +40280,21 @@ void Unwind_180904070(uint8_t objectContext,int64_t validationContext,uint8_t Cl
 
 
 
-void Unwind_180904090(uint8_t objectContext,int64_t validationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 清理系统资源处理器集合16
+ * 
+ * 该函数负责清理第十六组系统资源处理器，包括重置资源状态
+ * 释放相关内存并确保系统资源处于一致状态
+ * 
+ * @param objectContext 对象上下文，标识要清理的资源对象
+ * @param validationContext 验证上下文，包含资源验证信息
+ * @param CleanupOption 清理选项，控制清理行为的具体参数
+ * @param CleanupFlag 清理标志，指定清理操作的标志位
+ * @return 无返回值
+ * @note 此函数会清理系统资源处理器集合16中的所有资源
+ * @warning 调用此函数后，相关资源将不再可用
+ */
+void CleanupSystemResourceHandlerSet16(uint8_t objectContext,int64_t validationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   uint8_t *presourceHash;
@@ -40275,7 +40317,21 @@ void Unwind_180904090(uint8_t objectContext,int64_t validationContext,uint8_t Cl
 
 
 
-void Unwind_1809040b0(uint8_t objectContext,int64_t validationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 清理系统资源处理器集合17
+ * 
+ * 该函数负责清理第十七组系统资源处理器，包括重置资源状态
+ * 释放相关内存并确保系统资源处于一致状态
+ * 
+ * @param objectContext 对象上下文，标识要清理的资源对象
+ * @param validationContext 验证上下文，包含资源验证信息
+ * @param CleanupOption 清理选项，控制清理行为的具体参数
+ * @param CleanupFlag 清理标志，指定清理操作的标志位
+ * @return 无返回值
+ * @note 此函数会清理系统资源处理器集合17中的所有资源
+ * @warning 调用此函数后，相关资源将不再可用
+ */
+void CleanupSystemResourceHandlerSet17(uint8_t objectContext,int64_t validationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   uint8_t *presourceHash;
@@ -40298,7 +40354,19 @@ void Unwind_1809040b0(uint8_t objectContext,int64_t validationContext,uint8_t Cl
 
 
 
-void Unwind_1809040d0(uint8_t objectContext,int64_t validationContext)
+/**
+ * @brief 重置系统资源上下文
+ * 
+ * 该函数负责重置系统资源上下文，将资源状态恢复到初始状态
+ * 清理所有临时数据并重置资源指针和计数器
+ * 
+ * @param objectContext 对象上下文，标识要重置的资源对象
+ * @param validationContext 验证上下文，包含资源验证信息
+ * @return 无返回值
+ * @note 此函数会将系统资源上下文重置到初始状态
+ * @warning 调用此函数后，所有未保存的资源状态将丢失
+ */
+void ResetSystemResourceContext(uint8_t objectContext,int64_t validationContext)
 
 {
   int64_t loopCounter;
@@ -40317,7 +40385,21 @@ void Unwind_1809040d0(uint8_t objectContext,int64_t validationContext)
 
 
 
-void Unwind_1809040e0(uint8_t objectContext,int64_t validationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 清理系统资源处理器集合18
+ * 
+ * 该函数负责清理第十八组系统资源处理器，包括重置资源状态
+ * 释放相关内存并确保系统资源处于一致状态
+ * 
+ * @param objectContext 对象上下文，标识要清理的资源对象
+ * @param validationContext 验证上下文，包含资源验证信息
+ * @param CleanupOption 清理选项，控制清理行为的具体参数
+ * @param CleanupFlag 清理标志，指定清理操作的标志位
+ * @return 无返回值
+ * @note 此函数会清理系统资源处理器集合18中的所有资源
+ * @warning 调用此函数后，相关资源将不再可用
+ */
+void CleanupSystemResourceHandlerSet18(uint8_t objectContext,int64_t validationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   code *CharPointer;
@@ -40331,7 +40413,21 @@ void Unwind_1809040e0(uint8_t objectContext,int64_t validationContext,uint8_t Cl
 
 
 
-void Unwind_1809040f0(uint8_t objectContext,int64_t validationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 清理系统资源处理器集合19
+ * 
+ * 该函数负责清理第十九组系统资源处理器，包括重置资源状态
+ * 释放相关内存并确保系统资源处于一致状态
+ * 
+ * @param objectContext 对象上下文，标识要清理的资源对象
+ * @param validationContext 验证上下文，包含资源验证信息
+ * @param CleanupOption 清理选项，控制清理行为的具体参数
+ * @param CleanupFlag 清理标志，指定清理操作的标志位
+ * @return 无返回值
+ * @note 此函数会清理系统资源处理器集合19中的所有资源
+ * @warning 调用此函数后，相关资源将不再可用
+ */
+void CleanupSystemResourceHandlerSet19(uint8_t objectContext,int64_t validationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   code *CharPointer;
