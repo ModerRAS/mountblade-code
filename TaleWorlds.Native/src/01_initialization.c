@@ -1,5 +1,27 @@
 #include "TaleWorlds.Native.Split.h"
 
+// 系统地址常量定义
+#define SYSTEM_EVENT_HANDLER_PRIMARY_ADDRESS    0x180c91700
+#define SYSTEM_EVENT_HANDLER_SECONDARY_ADDRESS  0x180c91800
+#define SYSTEM_FLOAT_TABLE_START_ADDRESS       0x180c8aa70
+#define SYSTEM_FLOAT_TABLE_END_ADDRESS         0x180c8ea71
+#define SYSTEM_FLOAT_TABLE_SECOND_START_ADDRESS 0x180c8eb70
+#define SYSTEM_SECURITY_CONTEXT_ADDRESS        0x180d49d50
+#define SYSTEM_MUTEX_PRIMARY_ADDRESS           0x180c96690
+#define SYSTEM_MUTEX_SECONDARY_ADDRESS         0x180c966f0
+#define SYSTEM_MUTEX_TERTIARY_ADDRESS          0x180c96740
+#define SYSTEM_MEMORY_MANAGER_ADDRESS          0x180c0c340
+#define SYSTEM_VTABLE_POINTER_ADDRESS          0x180c35590
+#define SYSTEM_DATABASE_ADDRESS                0x180c4f510
+#define SYSTEM_MUTEX_QUATERNARY_ADDRESS        0x180c82170
+#define SYSTEM_CONTROLLER_ADDRESS               0x180c91060
+#define SYSTEM_MUTEX_UNLOCK_ADDRESS            0x180c91970
+#define SYSTEM_MUTEX_LOCK_ADDRESS              0x180c91288
+#define SYSTEM_RESOURCE_STRING_ADDRESS         0x180d48d24
+#define SYSTEM_STRING_OFFSET_ADDRESS           0x180c84871
+#define SYSTEM_MUTEX_SECURITY_ADDRESS          0x180c91910
+#define SYSTEM_DATA_CHECK_ADDRESS             0x180d49150
+
 /**
  * @brief 系统内存页面处理函数
  * 
@@ -1948,7 +1970,7 @@ int InitializeAudioSystemResourcePool(void)
 {
   long long AudioInitializationResult;
   
-  RegisterSystemEventHandler(0x180c91700,0x20,8,GetSystemEventCallbackA,GetSystemEventCallbackB);
+  RegisterSystemEventHandler(SYSTEM_EVENT_HANDLER_PRIMARY_ADDRESS,0x20,8,GetSystemEventCallbackA,GetSystemEventCallbackB);
   AudioInitializationResult = InitializeAudioSystem(&AudioSystemConfiguration);
   return (AudioInitializationResult != 0) - 1;
 }
@@ -1966,7 +1988,7 @@ int InitializeInputSystemResourcePool(void)
 {
   long long InputInitializationResult;
   
-  RegisterSystemEventHandler(0x180c91800,0x20,8,GetSystemEventCallbackC,GetSystemEventCallbackB);
+  RegisterSystemEventHandler(SYSTEM_EVENT_HANDLER_SECONDARY_ADDRESS,0x20,8,GetSystemEventCallbackC,GetSystemEventCallbackB);
   InputInitializationResult = InitializeInputSystem(&InputSystemConfiguration);
   return (InputInitializationResult != 0) - 1;
 }
@@ -6973,7 +6995,7 @@ void InitializeSystemFloatingPointCalculator(void)
   float *currentFloatTable;
   float calculatedValue;
   
-  currentFloatTable = (float *)0x180c8aa70;
+  currentFloatTable = (float *)SYSTEM_FLOAT_TABLE_START_ADDRESS;
   baseCounter = 0;
   rangeOffset = -3;
   outerLoopCounter = baseCounter;
@@ -7002,8 +7024,8 @@ void InitializeSystemFloatingPointCalculator(void)
     rangeOffset = rangeOffset + 1;
     outerLoopCounter = outerLoopCounter + 1;
     currentFloatTable = currentFloatTable + 0x40;
-  } while ((long long)currentFloatTable < 0x180c8ea71);
-  currentFloatTable = (float *)0x180c8eb70;
+  } while ((long long)currentFloatTable < SYSTEM_FLOAT_TABLE_END_ADDRESS);
+  currentFloatTable = (float *)SYSTEM_FLOAT_TABLE_SECOND_START_ADDRESS;
   do {
     innerLoopCounter = (int)baseCounter + 1;
     *currentFloatTable = 1.0 / SQRT((float)baseCounter) + 1.0 / SQRT((float)baseCounter);
@@ -14112,7 +14134,7 @@ int InitializeSystemModuleE(void)
 {
   long long systemStatus;
   
-  InitializeSystemSecurityContext(0x180d49d50);
+  InitializeSystemSecurityContext(SYSTEM_SECURITY_CONTEXT_ADDRESS);
   systemStatus = ValidateSystemConfiguration(SystemConfigValidatorQuinary);
   return (systemStatus != 0) - 1;
 }
@@ -16518,7 +16540,7 @@ int InitializeSystemMutex(void* MutexIdentifier,void* MutexType,void* SyncParame
 {
   long long initializationResult;
   
-  _Mtx_init_in_situ(0x180c96690,2,SyncParameter1,SyncParameter2,0xfffffffffffffffe);
+  _Mtx_init_in_situ(SYSTEM_MUTEX_PRIMARY_ADDRESS,2,SyncParameter1,SyncParameter2,0xfffffffffffffffe);
   initializationResult = InitializeSystemSyncMechanism(SystemSyncCallbackFunction);
   return (initializationResult != 0) - 1;
 }
@@ -17793,7 +17815,7 @@ int InitializeSystemMutex(void* MutexParameter1,void* MutexParameter2,void* Mute
 {
   long long InitializationStatus;
   
-  _Mtx_init_in_situ(0x180c966f0,2,MutexParameter3,MutexParameter4,0xfffffffffffffffe);
+  _Mtx_init_in_situ(SYSTEM_MUTEX_SECONDARY_ADDRESS,2,MutexParameter3,MutexParameter4,0xfffffffffffffffe);
   InitializationStatus = ValidateSystemConfiguration(SystemConfigValidatorSenary);
   return (InitializationStatus != 0) - 1;
 }
@@ -17817,7 +17839,7 @@ int InitializeSystemSemaphore(void* SemaphoreParameter1,void* SemaphoreParameter
 {
   long long InitializationStatus;
   
-  _Mtx_init_in_situ(0x180c96740,2,SemaphoreParameter3,SemaphoreParameter4,0xfffffffffffffffe);
+  _Mtx_init_in_situ(SYSTEM_MUTEX_TERTIARY_ADDRESS,2,SemaphoreParameter3,SemaphoreParameter4,0xfffffffffffffffe);
   InitializationStatus = ValidateSystemConfiguration(SystemConfigValidatorSeptenary);
   return (InitializationStatus != 0) - 1;
 }
@@ -18038,7 +18060,7 @@ int InitializeEngineModuleB(void)
 {
   long long CallbackResult;
   
-  SystemMemoryManagerInitialize(0x180c0c340);
+  SystemMemoryManagerInitialize(SYSTEM_MEMORY_MANAGER_ADDRESS);
   CallbackResult = SystemEventCallback(&SystemEventParameterB);
   return (CallbackResult != 0) - 1;
 }
