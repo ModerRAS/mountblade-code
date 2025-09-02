@@ -25636,9 +25636,18 @@ uint64_t CheckResourceAvailability(void)
  * 
  * @return 无返回值
  */
+/**
+ * @brief 空操作函数
+ * 
+ * 该函数执行空操作，不进行任何实际的处理。
+ * 通常用作占位符或默认操作。
+ * 
+ * @return 无返回值
+ * 
+ * @note 此函数不执行任何操作，直接返回
+ * @note 主要用于程序结构完整性或作为默认处理函数
+ */
 void EmptyOperation(void)
-
-EmptyOperation(void)
 
 {
   return;
@@ -25664,12 +25673,12 @@ uint8_t ResourceValidationHandler(int64_t ObjectContext,uint8_t *ValidationConte
   uint8_t ResourceValidationBuffer [32];
   uint8_t DataChecksumBuffer [32];
   
-  ValidationResult = ComputeDataChecksum(ValidationContext,DataChecksumBuffer,1,0x46464553);
-  if (((((int)ValidationResult == 0) &&
-       (ValidationResult = ComputeDataChecksum(ValidationContext,ResourceValidationBuffer,0,0x42464553), (int)ValidationResult == 0)) &&
-      (ValidationResult = ValidateResourceHash(ValidationContext,ObjectContext + 0x10), (int)ValidationResult == 0)) &&
+  HashValidationResult = ComputeDataChecksum(ValidationContext,DataChecksumBuffer,1,0x46464553);
+  if (((((int)HashValidationResult == 0) &&
+       (HashValidationResult = ComputeDataChecksum(ValidationContext,ResourceValidationBuffer,0,0x42464553), (int)HashValidationResult == 0)) &&
+      (HashValidationResult = ValidateResourceHash(ValidationContext,ObjectContext + 0x10), (int)HashValidationResult == 0)) &&
      ((0x5a < *(uint *)(ResourceData + 8) ||
-      (ValidationResult = ValidateResourceData(ValidationContext,ObjectContext + 0x44), (int)ValidationResult == 0)))) {
+      (HashValidationResult = ValidateResourceData(ValidationContext,ObjectContext + 0x44), (int)HashValidationResult == 0)))) {
     if (*(int *)(ResourceData[1] + 0x18) != 0) {
       return 0x1c;
     }
@@ -30470,7 +30479,7 @@ void RestoreResourceHandlerAtPrimaryContext(uint8_t ObjectContext, int64_t Valid
  * @param ObjectContext 对象上下文参数
  * @param ValidationContext 验证上下文参数
  */
-void RestoreSystemResourceHandlerAtContextOffsetD0(uint8_t ObjectContext, int64_t ValidationContext)
+void RestoreResourceHandlerAtSecondaryContext(uint8_t ObjectContext, int64_t ValidationContext)
 {
   *(uint8_t *)(ValidationContext + 0xd0) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(ValidationContext + 0xd8) != 0) {
@@ -30492,7 +30501,7 @@ void RestoreSystemResourceHandlerAtContextOffsetD0(uint8_t ObjectContext, int64_
  * @param ObjectContext 对象上下文参数
  * @param ValidationContext 验证上下文参数
  */
-void RestoreSystemResourceHandlerAtContextOffset78(uint8_t ObjectContext, int64_t ValidationContext)
+void RestoreResourceHandlerAtExceptionContext(uint8_t ObjectContext, int64_t ValidationContext)
 {
   *(uint8_t *)(ValidationContext + 0x78) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(ValidationContext + 0x80) != 0) {
@@ -30528,13 +30537,18 @@ void ResetIndirectSystemDataStructureAtExtendedContext(uint8_t ObjectContext, in
 
 
 /**
- * @brief 在异常处理时重置验证上下文0xd0位置的系统数据结构
- * 该函数将验证上下文中0xd0位置的指针重置为系统数据结构
+ * @brief 在异常处理时重置验证上下文次要位置的系统数据结构
+ * 
+ * 该函数将验证上下文中次要位置的指针重置为系统数据结构
  * 用于在异常处理过程中恢复系统数据结构的引用
- * @param ObjectContext 对象上下文参数
- * @param ValidationContext 验证上下文参数
+ * 
+ * @param ObjectContext 对象上下文参数，包含对象相关的状态信息
+ * @param ValidationContext 验证上下文参数，用于验证和重置操作
+ * @return 无返回值
+ * @note 此函数在异常处理过程中调用，用于重置次要位置的系统数据结构
+ * @warning 调用此函数前必须确保验证上下文已正确初始化
  */
-void ResetSystemDataStructureAtContextOffsetD0(uint8_t ObjectContext, int64_t ValidationContext)
+void ResetSystemDataStructureAtSecondaryContext(uint8_t ObjectContext, int64_t ValidationContext)
 {
   *(uint8_t **)(ValidationContext + 0xd0) = &SystemDataStructure;
   return;
@@ -30543,13 +30557,18 @@ void ResetSystemDataStructureAtContextOffsetD0(uint8_t ObjectContext, int64_t Va
 
 
 /**
- * @brief 在异常处理时释放验证上下文0x30位置的系统资源
- * 该函数检查资源数据的状态标志，如果需要则释放验证上下文中0x30位置的系统资源
+ * @brief 在异常处理时释放验证上下文主要位置的系统资源
+ * 
+ * 该函数检查资源数据的状态标志，如果需要则释放验证上下文中主要位置的系统资源
  * 用于在异常处理过程中清理系统资源
- * @param ObjectContext 对象上下文参数
- * @param ValidationContext 验证上下文参数
+ * 
+ * @param ObjectContext 对象上下文参数，包含对象相关的状态信息
+ * @param ValidationContext 验证上下文参数，用于验证和资源释放操作
+ * @return 无返回值
+ * @note 此函数在异常处理过程中调用，用于清理主要位置的系统资源
+ * @warning 调用此函数前必须确保ResourceData已正确初始化
  */
-void ReleaseSystemResourceAtContextOffset30(uint8_t ObjectContext, int64_t ValidationContext)
+void ReleaseSystemResourceAtPrimaryContext(uint8_t ObjectContext, int64_t ValidationContext)
 {
   if ((*(uint *)(ResourceData + 0x50) & 1) != 0) {
     *(uint *)(ResourceData + 0x50) = *(uint *)(ResourceData + 0x50) & 0xfffffffe;
