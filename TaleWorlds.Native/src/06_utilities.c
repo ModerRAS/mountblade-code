@@ -2040,9 +2040,9 @@ uint8_t AuthenticationConfiguration;
  * 验证用户身份和权限
  */
 void ProcessAuthenticationRequest(void);
-uint8_t AuthenticationRequestDataBuffer;
+uint8_t AuthenticationRequestBuffer;
 uint8_t AuthenticationRequestConfiguration;
-uint8_t AuthenticationResponseDataBuffer;
+uint8_t AuthenticationResponseBuffer;
 uint8_t AuthenticationResponseConfiguration;
 
 /**
@@ -2064,7 +2064,7 @@ void EncryptDataBuffer(void);
  * 恢复加密的敏感数据
  */
 void DecryptDataBuffer(void);
-uint8_t DataEncryptionSecretKey;
+uint8_t EncryptionSecretKey;
 uint8_t DataEncryptionInitializationVector;
 
  /**
