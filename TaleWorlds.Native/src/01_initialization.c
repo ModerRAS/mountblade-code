@@ -22604,13 +22604,13 @@ void* SystemThreadObjectManager(long long threadPoolContext, uint32_t threadFlag
   if (punsignedSystemValue6 < *(void* **)(SystemResourcePointer + 0x18)) {
     *(void* **)(SystemResourcePointer + 0x10) = punsignedSystemValue6 + 1;
     *punsignedSystemValue6 = unsignedSystemValue2;
-    goto LAB_18004a322;
+    goto SystemResourceAllocationComplete;
   }
   punsignedSystemValue5 = *(void* **)(SystemResourcePointer + 8);
   localResourceOffset = (long long)punsignedSystemValue6 - (long long)punsignedSystemValue5 >> 3;
   if (localResourceOffset == 0) {
     localResourceOffset = 1;
-LAB_18004a2b9:
+SystemResourceAllocationHandler:
     punsignedSystemValue4 = (void* *)
              CreateSystemThreadObject(SystemMemoryAllocationTemplate,localResourceOffset * 8,*(uint8_t *)(SystemResourcePointer + 0x20),ConfigurationFlag,unsignedSystemValue7);
     punsignedSystemValue6 = *(void* **)(SystemResourcePointer + 0x10);
@@ -22618,7 +22618,7 @@ LAB_18004a2b9:
   }
   else {
     localResourceOffset = localResourceOffset * 2;
-    if (localResourceOffset != 0) goto LAB_18004a2b9;
+    if (localResourceOffset != 0) goto SystemResourceAllocationHandler;
     punsignedSystemValue4 = (void* *)0x0;
   }
   if (punsignedSystemValue5 != punsignedSystemValue6) {
@@ -22631,7 +22631,7 @@ LAB_18004a2b9:
   *(void* **)(SystemResourcePointer + 8) = punsignedSystemValue4;
   *(void* **)(SystemResourcePointer + 0x10) = punsignedSystemValue4 + 1;
   *(void* **)(SystemResourcePointer + 0x18) = punsignedSystemValue4 + localResourceOffset;
-LAB_18004a322:
+SystemResourceAllocationComplete:
   systemStatus = _Mtx_unlock(SystemResourcePointer + 0x28);
   if (systemStatus != 0) {
     __Throw_C_error_std__YAXH_Z(systemStatus);
@@ -24832,7 +24832,7 @@ void* * SystemResourceComplexInitializer(void* *SystemResourcePointer)
       localBufferAddress = (long long)punsignedSystemValue9 - (long long)punsignedSystemValue8 >> 2;
       if (localBufferAddress == 0) {
         localBufferAddress = 1;
-LAB_18004c7ef:
+SystemBufferAllocationHandler:
         punsignedSystemValue5 = (uint32_t *)
                  CreateSystemThreadObject(SystemMemoryAllocationTemplate,localBufferAddress * 4,*(uint8_t *)(SystemResourcePointer + 0x24));
         punsignedSystemValue9 = (uint32_t *)SystemResourcePointer[0x22];
@@ -24841,7 +24841,7 @@ LAB_18004c7ef:
       else {
         localBufferAddress = localBufferAddress * 2;
         punsignedSystemValue5 = (uint32_t *)0x0;
-        if (localBufferAddress != 0) goto LAB_18004c7ef;
+        if (localBufferAddress != 0) goto SystemBufferAllocationHandler;
       }
       if (punsignedSystemValue8 != punsignedSystemValue9) {
           memmove(punsignedSystemValue5,punsignedSystemValue8,(long long)punsignedSystemValue9 - (long long)punsignedSystemValue8);
