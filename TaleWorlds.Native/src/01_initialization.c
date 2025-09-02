@@ -20061,7 +20061,7 @@ LocalDataPointerCheck:
   }
   else {
     localDataPointer = localDataPointer * 2;
-    if (localDataPointer != 0) goto LAB_1800469fd;
+    if (localDataPointer != 0) goto SystemDataPointerCheck;
   }
   InitializeSystemBuffer(&pppuStackX_8,localBufferAddress,unsignedSystemValue8,localSystemHandle);
   pppointerToUnsigned1 = pppuStackX_8;
@@ -20082,7 +20082,7 @@ LocalDataPointerCheck:
   *(long long *)(SystemResourcePointer + 8) = localSystemHandle;
   *(void* *****)(SystemResourcePointer + 0x10) = ppppunsignedSystemValue9;
   *(long long *)(SystemResourcePointer + 0x18) = localDataPointer * 0x100 + localSystemHandle;
-LAB_180046a90:
+SystemValueCalculation:
   systemValue = (int)((ulong long)((long long)ppppunsignedSystemValue9 - *(long long *)(SystemResourcePointer + 8)) >> 8) + -1;
   *(int *)(SystemResourcePointer + 0x68) = systemValue;
   pppuStackX_8 = &pppuStack_68;
@@ -20147,13 +20147,13 @@ ulong long CompareSystemDataBlocks(long long SystemResourcePointer,long long Com
         } while (*comparisonBytePointer != 0);
       }
     }
-    else if (systemResult != 0) goto LAB_180046c03;
+    else if (systemResult != 0) goto SystemResultCheck;
     if (systemValue == 0) {
-LAB_180046c90:
+SystemResultHandler:
       return comparisonIndex & 0xffffffff;
     }
   }
-LAB_180046c03:
+SystemResultCheck:
   comparisonIndex = 0;
   dataSizeLimit = *(long long *)(SystemResourcePointer + 0x10) - localResourceOffset >> 8;
   if (dataSizeLimit != 0) {
@@ -20173,10 +20173,10 @@ LAB_180046c03:
             sourceBytePointer = sourceBytePointer + 1;
           } while (*comparisonBytePointer != 0);
         }
-LAB_180046c5e:
+SystemResultZeroHandler:
         if (systemFlag == 0) {
           *(int *)(SystemResourcePointer + 0x68) = (int)comparisonIndex;
-          goto LAB_180046c90;
+          goto SystemResultHandler;
         }
       }
       else if (systemResult == 0) goto LAB_180046c5e;
@@ -44943,8 +44943,8 @@ void ProcessSystemResourceQueueAndCompletion(long long SystemResourcePointer)
         localMemoryPointer = *(long long *)(SystemResourcePointer + 0x20);
         unsignedSystemValue5 = SystemMemoryAllocationFunction(SystemMemoryAllocationTemplate,0x40,8,10);
         plStackX_20 = (long long *)&uStack_60;
-        memoryAllocationEnd = &UNK_180068e70;
-        puStack_48 = &UNK_180068e60;
+        memoryAllocationEnd = &SystemMemoryAllocationEndMarker;
+        puStack_48 = &SystemMemoryAllocationStartMarker;
         uStack_70 = (uint32_t)unsignedSystemValue4;
         uStack_6c = (uint32_t)((ulong long)unsignedSystemValue4 >> 0x20);
         uStack_68 = (uint32_t)localSystemHandle;
@@ -45011,7 +45011,7 @@ void UpdateSystemResourceContextManager(void* SystemResourcePointer,long long Co
   if (pointerToUnsigned1 != (void* *)0x0) {
     pointerToUnsigned2 = pointerToUnsigned1;
   }
-    UpdateContextManagerSystem(SystemContextManagerPointer,&UNK_1809fec70,pointerToUnsigned2);
+    UpdateContextManagerSystem(SystemContextManagerPointer,&SystemErrorMessageContextManager,pointerToUnsigned2);
 }
 
 
@@ -45089,7 +45089,7 @@ void ProcessSystemResourceMemoryAllocation(long long *SystemResourcePointer)
     localResourceOffset = *(long long *)(localResourceOffset + 0x1f0);
     if (localBufferAddress - 2U < 2) {
       plocalMemoryAddress = (long long *)SystemMemoryAllocationFunction(SystemMemoryAllocationTemplate,0x10,8,3);
-      *plocalMemoryAddress = (long long)&UNK_1809ff4e0;
+      *plocalMemoryAddress = (long long)&SystemMemoryAllocationTemplate;
       *(bool *)(plocalMemoryAddress + 1) = localBufferAddress == 3;
     }
     (**(code **)(*plocalMemoryAddress + 0x18))(plocalMemoryAddress,StackBuffer,systemId + localResourceOffset,lStackX_8,unsignedSystemValue6,unsignedSystemValue5);
@@ -45202,7 +45202,7 @@ void CleanupAndInitializeSystemResource(void* *SystemResourcePointer)
   uStack_30 = SystemEncryptionKeyTemplate ^ (ulong long)auStack_b8;
   puStack_68 = SystemResourcePointer;
   FUN_18006b940();
-  *SystemResourcePointer = &UNK_1809fee70;
+  *SystemResourcePointer = &SystemResourceEncryptionKeyTemplate;
   puStack_88 = SystemResourcePointer + 0x6e;
     memset(puStack_88,0,0x200000);
 }
@@ -45288,7 +45288,7 @@ void CreateSystemIoCompletionPort(long long SystemResourcePointer,long long Conf
     if (*(void* **)(ConfigurationDataPointer + 8) != (void* *)0x0) {
       punsignedSystemValue4 = *(void* **)(ConfigurationDataPointer + 8);
     }
-      UpdateContextManagerSystem(SystemContextManagerPointer,&UNK_1809fecd8,punsignedSystemValue4);
+      UpdateContextManagerSystem(SystemContextManagerPointer,&SystemErrorMessageFileCreation,punsignedSystemValue4);
   }
   localResourceOffset = CreateIoCompletionPort(localSystemHandle,*(void* *)(SystemResourcePointer + 0x213430),0,0);
   if (localResourceOffset != *(long long *)(SystemResourcePointer + 0x213430)) {
@@ -46129,36 +46129,57 @@ void ConfigureSystemResourceAndProcessData(long long SystemResourcePointer,long 
 
 
 
-// 函数: void FUN_1800693f0(long long SystemResourcePointer,long long ConfigurationDataPointer)
-void FUN_1800693f0(long long SystemResourcePointer,long long ConfigurationDataPointer)
+/**
+ * @brief 复制字符串到系统缓冲区
+ * 
+ * 该函数负责将源字符串复制到目标系统缓冲区中，处理字符串长度检查
+ * 和内存分配。当字符串长度超过限制时，会使用系统内存模板进行处理。
+ * 
+ * @param SystemResourcePointer 目标系统资源指针
+ * @param ConfigurationDataPointer 源字符串数据指针
+ * @note 这是字符串处理和内存管理的重要组成部分
+ */
+void CopyStringToSystemBuffer(long long SystemResourcePointer,long long ConfigurationDataPointer)
 
 {
-  long long localMemoryPointer;
+  long long stringLength;
   
-  if (sourceString == 0) {
-    *(uint32_t *)(targetBuffer + 0x10) = 0;
-    **(uint8_t **)(targetBuffer + 8) = 0;
+  if (ConfigurationDataPointer == 0) {
+    *(uint32_t *)(SystemResourcePointer + 0x10) = 0;
+    **(uint8_t **)(SystemResourcePointer + 8) = 0;
     return;
   }
-  localMemoryPointer = -1;
+  stringLength = -1;
   do {
-    localMemoryPointer = localMemoryPointer + 1;
-  } while (*(char *)(ConfigurationDataPointer + localMemoryPointer) != '\0');
-  if ((int)localMemoryPointer < 0x100) {
-    *(int *)(SystemResourcePointer + 0x10) = (int)localMemoryPointer;
-                    000180069429. Too many branches
-                        strcpy_s(*(void* *)(SystemResourcePointer + 8),0x100);
+    stringLength = stringLength + 1;
+  } while (*(char *)(ConfigurationDataPointer + stringLength) != '\0');
+  if ((int)stringLength < 0x100) {
+    *(int *)(SystemResourcePointer + 0x10) = (int)stringLength;
+    strcpy_s(*(void* *)(SystemResourcePointer + 8),0x100,ConfigurationDataPointer);
     return;
   }
   FUN_180626f80(&SystemMemoryTemplateG,0x100,ConfigurationDataPointer);
-  *(uint32_t *)(targetBuffer + 0x10) = 0;
-  **(uint8_t **)(targetBuffer + 8) = 0;
+  *(uint32_t *)(SystemResourcePointer + 0x10) = 0;
+  **(uint8_t **)(SystemResourcePointer + 8) = 0;
   return;
 }
 
 
 
-long long FUN_180069470(long long SystemResourcePointer,ulong long ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
+/**
+ * @brief 初始化系统内存分配器引用
+ * 
+ * 该函数负责初始化系统内存分配器的引用，设置内存分配器的指针。
+ * 当配置标志指示需要释放内存时，会执行相应的内存释放操作。
+ * 
+ * @param SystemResourcePointer 系统资源指针
+ * @param ConfigurationDataPointer 配置数据指针（包含释放标志）
+ * @param AdditionalParameter 附加参数
+ * @param ConfigurationFlag 配置标志
+ * @return 返回系统资源指针
+ * @note 这是内存管理系统的初始化函数
+ */
+long long InitializeSystemMemoryAllocatorReference(long long SystemResourcePointer,ulong long ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
 {
   *(void* **)(SystemResourcePointer + 8) = &SystemMemoryAllocatorReference;
@@ -46171,8 +46192,19 @@ long long FUN_180069470(long long SystemResourcePointer,ulong long Configuration
 
 
 
-// 函数: void FUN_180069530(void* *SystemResourcePointer,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
-void FUN_180069530(void* *SystemResourcePointer,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
+/**
+ * @brief 执行系统资源回调函数
+ * 
+ * 该函数负责执行系统资源的回调函数，包括配置回调和其他回调函数。
+ * 在执行完回调函数后，会将系统资源指针设置为内存分配器引用。
+ * 
+ * @param SystemResourcePointer 系统资源指针数组
+ * @param ConfigurationDataPointer 配置数据指针
+ * @param AdditionalParameter 附加参数
+ * @param ConfigurationFlag 配置标志
+ * @note 这是系统资源回调管理的重要组成部分
+ */
+void ExecuteSystemResourceCallbacks(void* *SystemResourcePointer,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
 {
   if ((code *)SystemResourcePointer[0x2f] != (code *)0x0) {
@@ -46188,8 +46220,16 @@ void FUN_180069530(void* *SystemResourcePointer,void* ConfigurationDataPointer,v
 
 
 
-// 函数: void FUN_1800695a0(long long SystemResourcePointer)
-void FUN_1800695a0(long long SystemResourcePointer)
+/**
+ * @brief 设置系统内存分配器引用
+ * 
+ * 该函数负责设置系统内存分配器的引用，将内存分配器指针
+ * 存储到系统资源结构的指定位置。
+ * 
+ * @param SystemResourcePointer 系统资源指针
+ * @note 这是内存管理系统的初始化函数
+ */
+void SetSystemMemoryAllocatorReference(long long SystemResourcePointer)
 
 {
   *(void* **)(SystemResourcePointer + 8) = &SystemMemoryAllocatorReference;
@@ -46198,8 +46238,21 @@ void FUN_1800695a0(long long SystemResourcePointer)
 
 
 
+/**
+ * @brief 初始化系统内存模板
+ * 
+ * 该函数负责初始化系统内存模板，设置多个内存模板的引用。
+ * 当配置标志指示需要释放内存时，会执行相应的内存释放操作。
+ * 
+ * @param SystemResourcePointer 系统资源指针数组
+ * @param ConfigurationDataPointer 配置数据指针（包含释放标志）
+ * @param AdditionalParameter 附加参数
+ * @param ConfigurationFlag 配置标志
+ * @return 返回系统资源指针数组
+ * @note 这是内存管理系统的初始化函数
+ */
 void* *
-FUN_1800696d0(void* *SystemResourcePointer,ulong long ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
+InitializeSystemMemoryTemplates(void* *SystemResourcePointer,ulong long ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
 {
   *SystemResourcePointer = &SystemMemoryTemplateC;
@@ -46213,10 +46266,21 @@ FUN_1800696d0(void* *SystemResourcePointer,ulong long ConfigurationDataPointer,v
 
 
 
-void* * FUN_180069720(void* *SystemResourcePointer,ulong long ConfigurationDataPointer)
+/**
+ * @brief 初始化系统数据引用
+ * 
+ * 该函数负责初始化系统数据引用，设置系统数据模板的引用。
+ * 当配置标志指示需要释放内存时，会执行相应的内存释放操作。
+ * 
+ * @param SystemResourcePointer 系统资源指针数组
+ * @param ConfigurationDataPointer 配置数据指针（包含释放标志）
+ * @return 返回系统资源指针数组
+ * @note 这是数据管理系统的初始化函数
+ */
+void* * InitializeSystemDataReference(void* *SystemResourcePointer,ulong long ConfigurationDataPointer)
 
 {
-  *SystemResourcePointer = &UNK_1809feeb8;
+  *SystemResourcePointer = &SystemDataTemplateUnknown;
   if ((ConfigurationDataPointer & 1) != 0) {
     free(SystemResourcePointer,0x58);
   }
@@ -46225,10 +46289,21 @@ void* * FUN_180069720(void* *SystemResourcePointer,ulong long ConfigurationDataP
 
 
 
-void* FUN_180069760(void* SystemResourcePointer,ulong long ConfigurationDataPointer)
+/**
+ * @brief 初始化系统资源数据
+ * 
+ * 该函数负责初始化系统资源数据，调用系统资源初始化函数。
+ * 当配置标志指示需要释放内存时，会执行相应的内存释放操作。
+ * 
+ * @param SystemResourcePointer 系统资源指针
+ * @param ConfigurationDataPointer 配置数据指针（包含释放标志）
+ * @return 返回系统资源指针
+ * @note 这是系统资源初始化的重要组成部分
+ */
+void* InitializeSystemResourceData(void* SystemResourcePointer,ulong long ConfigurationDataPointer)
 
 {
-  FUN_1800697a0();
+  InitializeSystemResourceAllocator();
   if ((ConfigurationDataPointer & 1) != 0) {
     free(SystemResourcePointer,0x68);
   }
