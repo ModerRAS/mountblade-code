@@ -5030,18 +5030,18 @@ uint8_t ProcessComplexObjectHandle(int64_t ObjectContext)
 {
   uint8_t OperationResult;
   int64_t OperationResultBuffer[2];
-  int64_t contextHandleBuffer[2];
+  int64_t ContextHandleBuffer[2];
   
-  OperationResult = ValidateObjectContext(*(uint32_t *)(ObjectContext + ObjectContextDataArrayOffset), contextHandleBuffer);
+  OperationResult = ValidateObjectContext(*(uint32_t *)(ObjectContext + ObjectContextDataArrayOffset), ContextHandleBuffer);
   if ((int)OperationResult == 0) {
-    if (contextHandleBuffer[0] == 0) {
-      contextHandleBuffer[0] = 0;
+    if (ContextHandleBuffer[0] == 0) {
+      ContextHandleBuffer[0] = 0;
     }
     else {
-      contextHandleBuffer[0] = contextHandleBuffer[0] - 8;
+      ContextHandleBuffer[0] = ContextHandleBuffer[0] - 8;
     }
     OperationResultBuffer[0] = 0;
-    OperationResult = ProcessSystemContextValidation(contextHandleBuffer[0], ObjectContext + ObjectContextValidationDataOffset, OperationResultBuffer);
+    OperationResult = ProcessSystemContextValidation(ContextHandleBuffer[0], ObjectContext + ObjectContextValidationDataOffset, OperationResultBuffer);
     if ((int)OperationResult == 0) {
       if (OperationResultBuffer[0] != 0) {
         if (*(int64_t *)(OperationResultBuffer[0] + 8) == 0) {

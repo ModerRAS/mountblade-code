@@ -58246,7 +58246,7 @@ void* ConfigureSystemResourceData(long long SystemResourceManager,long long Conf
   uint32_t StackUnsignedValue64;
   uint8_t SystemThreadContext;
   void* SystemProcessFlags58;
-  long long lStack_50;
+  long long LocalSystemValue1;
   void* SystemEncryptionKey;
   void* SystemOperationCounter;
   uint32_t SystemContextValue;
@@ -58278,14 +58278,14 @@ void* ConfigureSystemResourceData(long long SystemResourceManager,long long Conf
     uStack_64 = 0xffffffff;
     SystemThreadContext = 1;
     SystemProcessFlags58 = 0;
-    lStack_50 = 0;
+    LocalSystemValue1 = 0;
     SystemEncryptionKey = 0;
     SystemOperationCounter = 0;
     SystemContextValue = 3;
     SystemResourceStatusFlag = 0;
     systemCode = ProcessSystemConfigurationData(*(void* *)(SystemResourceManager + 0x1b8),&SystemUnsignedFlag78);
     if (systemCode < 1) {
-      if (lStack_50 != 0) {
+      if (LocalSystemValue1 != 0) {
           SystemCleanupFunction();
       }
       isMemoryReady = false;
@@ -58352,7 +58352,7 @@ void* ConfigureSystemResourceData(long long SystemResourceManager,long long Conf
       *(byte *)(SystemResourceManager + 0xfe) = *(byte *)(SystemResourceManager + 0xfe) | 4;
       return 1;
     }
-    if (lStack_50 != 0) {
+    if (LocalSystemValue1 != 0) {
         SystemCleanupFunction();
     }
   }
@@ -64544,7 +64544,7 @@ ulong long ProcessSystemResourceConfiguration(long long SystemResourceManager,lo
   code *SystemFunctionPointer68;
   void* *systemContextPointer;
   void* SystemProcessFlags58;
-  long long *plStack_50;
+  long long *pLocalSystemValue1;
   long long *pSystemStatusFlag48;
   long long *plongValue40;
   
@@ -64645,7 +64645,7 @@ LAB_18007b454:
   }
   ThreadContextFlag = SystemMemoryAllocationFunction(SystemMemoryPoolTemplate,0xa0,8,0x20);
   PrimaryResourcePointer0 = (long long *)GetThreadContextPointer(ThreadContextFlag);
-  plStack_50 = PrimaryResourcePointer0;
+  pLocalSystemValue1 = PrimaryResourcePointer0;
   if (PrimaryResourcePointer0 != (long long *)0x0) {
     (**(code **)(*PrimaryResourcePointer0 + 0x28))(PrimaryResourcePointer0);
   }
