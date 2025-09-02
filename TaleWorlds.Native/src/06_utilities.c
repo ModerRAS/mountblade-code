@@ -257,6 +257,10 @@
 #define ResourceContextTertiaryOffset 0xb0
 #define ResourceContextQuaternaryOffset 0xb4
 #define ResourceContextCallbackOffset 0x38
+#define StackParameterBufferDataOffset 0x20
+#define StackParameterBufferSizeOffset 0x28
+#define StackParameterBufferCapacityOffset 0x2c
+#define SystemManagerContextOffset 0x1a0
 
 // 验证上下文相关偏移量常量
 #define ValidationContextMutexDestroyOffset 0x78  // 需要根据实际值确定
@@ -71321,7 +71325,11 @@ void UnwindSystemResourceProcessor(uint8_t ObjectContext,int64_t ValidationConte
 
 
 
-void Unwind_180909e00(void)
+/**
+ * @brief Unwind异常处理函数：销毁互斥资源处理器1
+ * @remark 原始函数名：Unwind_180909e00
+ */
+void DestroyMutexResourceHandler1(void)
 
 {
   MutexDestroyInPlace();
@@ -71330,7 +71338,11 @@ void Unwind_180909e00(void)
 
 
 
-void Unwind_180909e20(void)
+/**
+ * @brief Unwind异常处理函数：销毁互斥资源处理器2
+ * @remark 原始函数名：Unwind_180909e20
+ */
+void DestroyMutexResourceHandler2(void)
 
 {
   MutexDestroyInPlace();
@@ -71339,7 +71351,11 @@ void Unwind_180909e20(void)
 
 
 
-void Unwind_180909e40(void)
+/**
+ * @brief Unwind异常处理函数：销毁互斥资源处理器3
+ * @remark 原始函数名：Unwind_180909e40
+ */
+void DestroyMutexResourceHandler3(void)
 
 {
   MutexDestroyInPlace();
@@ -71348,7 +71364,11 @@ void Unwind_180909e40(void)
 
 
 
-void Unwind_180909e60(void)
+/**
+ * @brief Unwind异常处理函数：销毁互斥资源处理器4
+ * @remark 原始函数名：Unwind_180909e60
+ */
+void DestroyMutexResourceHandler4(void)
 
 {
   MutexDestroyInPlace();
@@ -71357,7 +71377,11 @@ void Unwind_180909e60(void)
 
 
 
-void Unwind_180909e80(void)
+/**
+ * @brief Unwind异常处理函数：销毁互斥资源处理器5
+ * @remark 原始函数名：Unwind_180909e80
+ */
+void DestroyMutexResourceHandler5(void)
 
 {
   MutexDestroyInPlace();
@@ -71366,7 +71390,11 @@ void Unwind_180909e80(void)
 
 
 
-void Unwind_180909ea0(void)
+/**
+ * @brief Unwind异常处理函数：销毁互斥资源处理器6
+ * @remark 原始函数名：Unwind_180909ea0
+ */
+void DestroyMutexResourceHandler6(void)
 
 {
   MutexDestroyInPlace();
@@ -71375,7 +71403,11 @@ void Unwind_180909ea0(void)
 
 
 
-void Unwind_180909ec0(void)
+/**
+ * @brief Unwind异常处理函数：销毁互斥资源处理器7
+ * @remark 原始函数名：Unwind_180909ec0
+ */
+void DestroyMutexResourceHandler7(void)
 
 {
   MutexDestroyInPlace();
@@ -71384,7 +71416,11 @@ void Unwind_180909ec0(void)
 
 
 
-void Unwind_180909ee0(void)
+/**
+ * @brief Unwind异常处理函数：销毁互斥资源处理器8
+ * @remark 原始函数名：Unwind_180909ee0
+ */
+void DestroyMutexResourceHandler8(void)
 
 {
   MutexDestroyInPlace();
@@ -71393,7 +71429,11 @@ void Unwind_180909ee0(void)
 
 
 
-void Unwind_180909f00(void)
+/**
+ * @brief Unwind异常处理函数：销毁互斥资源处理器9
+ * @remark 原始函数名：Unwind_180909f00
+ */
+void DestroyMutexResourceHandler9(void)
 
 {
   MutexDestroyInPlace();
@@ -71402,7 +71442,11 @@ void Unwind_180909f00(void)
 
 
 
-void Unwind_180909f20(void)
+/**
+ * @brief Unwind异常处理函数：销毁互斥资源处理器10
+ * @remark 原始函数名：Unwind_180909f20
+ */
+void DestroyMutexResourceHandler10(void)
 
 {
   MutexDestroyInPlace();
@@ -71411,7 +71455,15 @@ void Unwind_180909f20(void)
 
 
 
-void Unwind_180909f40(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief Unwind异常处理函数：清理资源哈希处理器
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @param CleanupOption 清理选项
+ * @param CleanupFlag 清理标志
+ * @remark 原始函数名：Unwind_180909f40
+ */
+void CleanupResourceHashHandler(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   uint8_t *ResourceHashAddress;
@@ -71427,7 +71479,13 @@ void Unwind_180909f40(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 
 
 
-void Unwind_180909f60(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief Unwind异常处理函数：完成资源注册处理器
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @remark 原始函数名：Unwind_180909f60
+ */
+void FinalizeResourceRegistrationHandler(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int *ResourceIndexPointer;
@@ -71469,7 +71527,11 @@ void Unwind_180909f60(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180909f80(void)
+/**
+ * @brief Unwind异常处理函数：系统资源清理处理器1
+ * @remark 原始函数名：Unwind_180909f80
+ */
+void SystemResourceCleanupHandler1(void)
 
 {
   MutexDestroyInPlace();
@@ -71478,7 +71540,15 @@ void Unwind_180909f80(void)
 
 
 
-void Unwind_180909fa0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief Unwind异常处理函数：系统资源清理处理器2
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @param CleanupOption 清理选项
+ * @param CleanupFlag 清理标志
+ * @remark 原始函数名：Unwind_180909fa0
+ */
+void SystemResourceCleanupHandler2(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   ProcessResourceValidation(*(int64_t *)(ValidationContext + SystemContextResourceOffset) + 0xba8,
@@ -71489,7 +71559,15 @@ void Unwind_180909fa0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 
 
 
-void Unwind_180909fc0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief Unwind异常处理函数：系统资源清理处理器3
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @param CleanupOption 清理选项
+ * @param CleanupFlag 清理标志
+ * @remark 原始函数名：Unwind_180909fc0
+ */
+void SystemResourceCleanupHandler3(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   ProcessResourceOperation(*(int64_t *)(ValidationContext + SystemContextResourceOffset) + 0xbd8,
