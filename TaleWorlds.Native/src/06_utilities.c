@@ -3797,16 +3797,6 @@ void TerminateSystemProcess(void)
  * @note 此函数会检查多个系统标志位，包括安全状态和运行状态
  * @warning 如果发现系统状态异常，可能触发相应的处理机制
  */
-/**
- * @brief 检查系统标志
- * 
- * 该函数负责检查系统标志状态，根据不同的标志位执行相应的操作
- * 函数会验证系统当前状态并确保系统在正确的状态下运行
- * 
- * @return 无返回值
- * @note 此函数会检查多个系统标志位，包括安全状态和运行状态
- * @warning 如果发现系统状态异常，可能触发相应的处理机制
- */
 void CheckSystemFlags(void)
 {
   int64_t SystemContext;
@@ -3821,26 +3811,6 @@ void CheckSystemFlags(void)
 
 
 
-/**
- * @brief 验证对象注册
- * 
- * 该函数负责验证对象的注册状态
- * 确保对象已正确注册到系统中
- * 
- * @param ObjectContext 对象上下文，包含对象的注册信息
- * @return 验证结果，0表示成功，非0表示错误码
- */
-/**
- * @brief 验证对象注册状态
- * 
- * 该函数负责验证对象的注册状态，确保对象已正确注册到系统中
- * 包括验证注册数据的完整性、有效性和状态一致性
- * 
- * @param ObjectContext 对象上下文指针，包含对象注册所需的信息
- * @return uint8_t 验证结果状态码，0表示成功，非0表示失败
- * @note 此函数用于确保系统中的对象都经过正确的注册流程
- * @warning 如果对象注册无效，函数将返回相应的错误代码
- */
 /**
  * @brief 验证对象注册状态
  * 
@@ -4071,16 +4041,6 @@ uint64_t ProcessSystemRequest(int64_t RequestParameters,int64_t SystemContext)
 
 
  uint8_t ValidateSystemAccess(int64_t accessRequestParameters,int64_t SystemContextParameters)
-/**
- * @brief 验证系统访问权限
- * 
- * 该函数负责验证对系统资源的访问权限
- * 检查访问权限等级和安全状态
- * 
- * @param accessRequestParameters 访问请求参数，包含资源标识和访问类型
- * @param SystemContextParameters 系统上下文参数，包含安全策略和权限信息
- * @return 验证结果，成功返回0，失败返回错误码
- */
 /**
  * @brief 验证系统访问权限
  * 
