@@ -34987,6 +34987,17 @@ void UnwindStackFrameProcessor(uint8_t ObjectContext,int64_t ValidationContext)
  * @return 无返回值
  * @note 此函数在异常处理过程中被调用
  */
+/**
+ * @brief 异常处理函数：解卷系统数据结构异常处理器
+ * 
+ * 该函数负责处理系统数据结构相关的异常情况
+ * 主要用于系统数据结构的清理和状态恢复工作
+ * 
+ * @param ObjectContext 异常上下文参数，包含对象相关的状态信息
+ * @param ValidationContext 系统上下文指针，包含系统运行时状态数据
+ * @note 此函数在异常处理过程中被自动调用
+ * @warning 调用此函数会释放相关资源并恢复系统状态
+ */
 void UnwindSystemDataStructureExceptionHandler(uint8_t ObjectContext, int64_t ValidationContext) {
   *(uint8_t **)(*(int64_t *)(ValidationContext + SystemContextResourceOffset) + 0x438) = &SystemDataStructure;
   return;
@@ -100152,9 +100163,9 @@ void DestroySpecificMutex(void)
 
 
  /**
- * 初始化系统数据结构U
+ * 初始化系统数据结构资源管理器
  * 
- * 此函数负责初始化系统中的某个关键数据结构U，将全局变量
+ * 此函数负责初始化系统中的关键数据结构资源管理器，将全局变量
  * SystemResourceHandlerPointer001设置为指向预定义的数据结构SystemMemoryStructure001。
  * 如果相关状态变量不为0，则调用错误处理函数。
  * 最后重置相关状态变量并将指针设置为指向默认数据结构。
@@ -100177,15 +100188,14 @@ void InitializeSystemDataStructureResourceManager(void)
 
 
  /**
- * 初始化系统数据结构V
+ * 初始化系统数据结构内存管理器
  * 
- * 此函数负责初始化系统中的某个关键数据结构V，将全局变量
+ * 此函数负责初始化系统中的关键数据结构内存管理器，将全局变量
  * SystemResourceHandlerPointer002设置为指向预定义的数据结构SystemMemoryStructure001。
  * 如果相关状态变量不为0，则调用错误处理函数。
  * 最后重置相关状态变量并将指针设置为指向默认数据结构。
  */
-void InitializeSystemDataStructureV(void)
-void InitializeSystemDataStructureV(void)
+void InitializeSystemDataStructureMemoryManager(void)
 
 {
   SystemResourceHandlerSecondaryPointer = &SystemResourceHandlerTemplate;
@@ -100203,15 +100213,14 @@ void InitializeSystemDataStructureV(void)
 
 
  /**
- * 初始化系统数据结构W
+ * 初始化系统数据结构验证管理器
  * 
- * 此函数负责初始化系统中的某个关键数据结构W，处理资源验证
+ * 此函数负责初始化系统中的关键数据结构验证管理器，处理资源验证
  * 和链接操作。函数会检查全局变量ResourceValidator，如果有效则
  * 执行资源链接和引用计数管理。如果资源引用计数降为0，则
  * 调用清理函数。
  */
-void InitializeSystemDataStructureW(void)
-void InitializeSystemDataStructureW(void)
+void InitializeSystemDataStructureValidationManager(void)
 
 {
   int32_t *ResourceTablePointerIndexPointer;
@@ -100250,14 +100259,14 @@ void InitializeSystemDataStructureW(void)
 
 
  /**
- * 初始化系统数据结构X
+ * 初始化系统数据结构分配管理器
  * 
- * 此函数负责初始化系统中的某个关键数据结构X，将全局变量
+ * 此函数负责初始化系统中的关键数据结构分配管理器，将全局变量
  * MemoryAllocator设置为指向预定义的数据结构SystemMemoryStructure001。
  * 如果相关状态变量不为0，则调用错误处理函数。
  * 最后重置相关状态变量并将指针设置为指向默认数据结构。
  */
-void InitializeSystemDataStructureX(void)
+void InitializeSystemDataStructureAllocationManager(void)
 void InitializeSystemDataStructureX(void)
 
 {
